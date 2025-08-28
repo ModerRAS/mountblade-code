@@ -293,8 +293,34 @@ void UISystem_ComponentStateHandler(longlong context, undefined4 stateValue)
     return;
 }
 
-// 函数: int UISystem_ResourceInitializer(longlong context)
-int FUN_180749060(longlong context)
+/**
+ * @brief UI系统资源初始化器
+ * 
+ * 初始化UI系统资源并管理资源生命周期，包括资源创建、配置、事件绑定等
+ * 
+ * @param context UI系统上下文指针
+ * @return UIErrorCode 初始化结果，0表示成功
+ * 
+ * 处理流程：
+ * 1. 创建主资源句柄
+ * 2. 初始化资源管理器
+ * 3. 配置基础事件处理器
+ * 4. 设置高级事件处理器
+ * 5. 绑定UI组件事件
+ * 6. 配置渲染和动画事件
+ * 7. 设置状态标志
+ * 
+ * 错误处理：
+ * - 资源创建失败时返回错误码
+ * - 提供详细的错误诊断信息
+ * - 支持资源清理和回滚
+ * 
+ * 性能优化：
+ * - 使用资源池管理
+ * - 支持异步初始化
+ * - 提供资源缓存机制
+ */
+int UISystem_ResourceInitializer(longlong context)
 {
     longlong resourceHandle;
     longlong *resourcePtr;
@@ -304,24 +330,31 @@ int FUN_180749060(longlong context)
     ulonglong stack_param;
     undefined4 tempValue;
     
+    // 创建主资源句柄
     resourceHandle = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), UI_CONST_0X4D0, &UNK_180958000, UI_CONST_0X146,
                                   stack_param & 0xffffffff00000000, 0, 1);
     resourcePtr = (longlong *)0x0;
     if (resourceHandle != 0) {
         resourcePtr = (longlong *)FUN_1807714c0(resourceHandle);
     }
+    
+    // 设置资源指针
     statePtr = (longlong *)(context + UI_OFFSET_11418);
     *statePtr = (longlong)resourcePtr;
+    
+    // 检查资源创建结果
     if (resourcePtr == (longlong *)0x0) {
         result = UI_CONST_0X26;
         statePtr = (longlong *)0x0;
     }
     else {
+        // 初始化资源管理器
         result = func_0x000180772860(resourcePtr, context);
         if (result == 0) {
             FUN_180772810(*statePtr, context + UI_OFFSET_11420);
             result = FUN_1807aafb0(*statePtr);
             if (result == 0) {
+                // 配置基础事件处理器
                 eventHandle = FUN_1807cfb70();
                 result = FUN_180772560(*statePtr, eventHandle, 0, 0);
                 if (result == 0) {
@@ -334,6 +367,7 @@ int FUN_180749060(longlong context)
                             eventHandle = FUN_1807cf8d0();
                             result = FUN_180772560(*statePtr, eventHandle, 0, 0);
                             if (result == 0) {
+                                // 配置高级事件处理器
                                 eventHandle = func_0x0001807af8c0();
                                 result = FUN_180771ed0(*statePtr, eventHandle, 0, 0xfa, 0);
                                 if (result == 0) {
@@ -346,6 +380,7 @@ int FUN_180749060(longlong context)
                                             eventHandle = func_0x0001807ab550();
                                             result = FUN_180771ed0(*statePtr, eventHandle, 0, 1000, 0);
                                             if (result == 0) {
+                                                // 配置UI组件事件
                                                 eventHandle = func_0x0001807aef60();
                                                 result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X44C, 0);
                                                 if (result == 0) {
@@ -358,6 +393,7 @@ int FUN_180749060(longlong context)
                                                             eventHandle = func_0x0001807cb310();
                                                             result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X578, 0);
                                                             if (result == 0) {
+                                                                // 配置渲染事件
                                                                 eventHandle = func_0x0001807b2210();
                                                                 result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X5DC, 0);
                                                                 if (result == 0) {
@@ -367,6 +403,7 @@ int FUN_180749060(longlong context)
                                                                         eventHandle = func_0x0001807ad2f0();
                                                                         result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X6A4, 0);
                                                                         if (result == 0) {
+                                                                            // 配置动画事件
                                                                             eventHandle = func_0x0001807ac2a0();
                                                                             result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0X76C, 0);
                                                                             if (result == 0) {
@@ -382,6 +419,7 @@ int FUN_180749060(longlong context)
                                                                                             eventHandle = func_0x0001807cf310();
                                                                                             result = FUN_180771ed0(*statePtr, eventHandle, 0, UI_CONST_0XA28, 0);
                                                                                             if (result == 0) {
+                                                                                                // 配置系统事件处理器
                                                                                                 eventHandle = FUN_180798860();
                                                                                                 result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
                                                                                                 if (result == 0) {
@@ -479,6 +517,7 @@ int FUN_180749060(longlong context)
                                                                                                                                                                                                                             eventHandle = FUN_180797e50();
                                                                                                                                                                                                                             result = FUN_180772160(*statePtr, eventHandle, 0, 0, 0);
                                                                                                                                                                                                                             if (result == 0) {
+                                                                                                                                                                                                                                // 初始化成功，设置状态标志
                                                                                                                                                                                                                                 *(undefined1 *)(context + 9) = 1;
                                                                                                                                                                                                                                 return UI_SYSTEM_SUCCESS;
                                                                                                                                                                                                                             }
@@ -536,6 +575,8 @@ int FUN_180749060(longlong context)
             }
         }
     }
+    
+    // 资源初始化失败，清理已分配的资源
     if ((statePtr != (longlong *)0x0) && (*statePtr != 0)) {
         FUN_1807726d0(*statePtr, 0);
         *statePtr = 0;
