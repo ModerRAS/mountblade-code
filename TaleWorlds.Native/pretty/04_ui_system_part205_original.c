@@ -443,7 +443,7 @@ void UI_ShutdownSystem(longlong system_ptr)
     }
     
     // 执行系统清理（此函数不返回）
-    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), system_ptr, &UNK_18095ac80, 0x56, 1);
+    UI_InternalCleanup(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), system_ptr, &UNK_18095ac80, 0x56, 1);
 }
 
 

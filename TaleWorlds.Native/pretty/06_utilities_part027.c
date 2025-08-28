@@ -253,7 +253,7 @@ int32_t utilities_system_state_initializer(uint64_t param_1, longlong param_2)
 // 参数：param_1 - 系统上下文，param_2 - 配置参数
 // 返回值：无
 // =============================================================================
-void FUN_180941486(uint64_t param_1,longlong param_2)
+void utilities_system_configuration_handler(uint64_t param_1, longlong param_2)
 
 {
   // 检查配置状态是否为空闲
@@ -278,7 +278,7 @@ void FUN_180941486(uint64_t param_1,longlong param_2)
 // 参数：param_1 - 函数参数数组指针
 // 返回值：无
 // =============================================================================
-void FUN_1809414b5(uint64_t *param_1)
+void utilities_system_function_executor(uint64_t *param_1)
 
 {
   // 执行系统函数并传递参数
@@ -359,15 +359,11 @@ static uint64_t* system_memory_data_ptr = (uint64_t*)0x180d49830;         // 系
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809414f0(void)
+void utilities_system_module_initializer(void)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  
-  // 变量重命名以提高可读性：
-  // lVar1 -> module_end: 模块结束地址
-  // lVar2 -> module_ptr: 模块指针
+  longlong module_end;
+  longlong module_ptr;
   
   // 初始化系统模块
   module_state_ptr = (uint64_t*)SYSTEM_INIT_VALUE;
