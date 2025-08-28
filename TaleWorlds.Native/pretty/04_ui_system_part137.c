@@ -789,8 +789,15 @@ UISystem_DataValidator:
 
 
 
-uint64_t FUN_18074a63d(uint64_t param_1,longlong param_2)
-
+/**
+ * UI系统碰撞检测器
+ * 检测UI组件之间的碰撞和交互，计算碰撞响应
+ * 
+ * @param param_1 系统参数
+ * @param param_2 组件列表指针
+ * @return 检测结果，0表示成功
+ */
+uint64_t UISystem_CollisionDetector(uint64_t param_1,longlong param_2)
 {
   longlong in_RAX;
   longlong lVar1;
@@ -817,14 +824,14 @@ uint64_t FUN_18074a63d(uint64_t param_1,longlong param_2)
   lVar1 = param_2;
   plVar2 = unaff_RSI;
   while( true ) {
-    fVar6 = *(float *)(lVar1 + 0x20);
+    fVar6 = *(float *)(lVar1 + UI_SYSTEM_ANGLE_OFFSET);
     lVar3 = plVar2[1];
     plVar2 = plVar2 + 1;
     lVar4 = param_2;
     if (lVar3 != 0) {
       lVar4 = lVar3;
     }
-    fVar7 = *(float *)(lVar4 + 0x20);
+    fVar7 = *(float *)(lVar4 + UI_SYSTEM_ANGLE_OFFSET);
     if ((fVar6 != fVar7) &&
        ((unaff_XMM6_Da < fVar7 - fVar6 || ((fVar7 < fVar6 && (fVar6 - fVar7 < unaff_XMM6_Da))))))
     break;
@@ -839,8 +846,8 @@ UISystem_StateSynchronizer:
         if (lVar3 == 0) {
           lVar3 = *unaff_RSI;
         }
-        if (*(float *)(lVar1 + 0x20) != *(float *)(lVar3 + 0x20)) {
-          fVar6 = *(float *)(lVar3 + 0x20) - *(float *)(lVar1 + 0x20);
+        if (*(float *)(lVar1 + UI_SYSTEM_ANGLE_OFFSET) != *(float *)(lVar3 + UI_SYSTEM_ANGLE_OFFSET)) {
+          fVar6 = *(float *)(lVar3 + UI_SYSTEM_ANGLE_OFFSET) - *(float *)(lVar1 + UI_SYSTEM_ANGLE_OFFSET);
           fVar7 = (float)((uint)fVar6 & unaff_XMM9_Da);
           if (unaff_XMM6_Da <= (float)((uint)fVar6 & unaff_XMM9_Da)) {
             fVar7 = fVar7 - unaff_XMM6_Da;
@@ -848,11 +855,11 @@ UISystem_StateSynchronizer:
           else {
             fVar7 = unaff_XMM6_Da - fVar7;
           }
-          *(bool *)(lVar1 + 0x29) = 0.002 < fVar7;
-          if (0.002 < fVar7) {
+          *(bool *)(lVar1 + 0x29) = UI_SYSTEM_THRESHOLD_VALUE < fVar7;
+          if (UI_SYSTEM_THRESHOLD_VALUE < fVar7) {
             fVar6 = unaff_XMM12_Da;
-            if (*(float *)(lVar3 + 0x1c) * *(float *)(lVar1 + 0x14) -
-                *(float *)(lVar3 + 0x14) * *(float *)(lVar1 + 0x1c) <= unaff_XMM7_Da) {
+            if (*(float *)(lVar3 + UI_SYSTEM_VECTOR_OFFSET + 8) * *(float *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET) -
+                *(float *)(lVar3 + UI_SYSTEM_VECTOR_OFFSET) * *(float *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET + 8) <= unaff_XMM7_Da) {
               fVar6 = -1.0;
             }
             *(float *)(lVar1 + 0x2c) = fVar6;
@@ -863,9 +870,9 @@ UISystem_StateSynchronizer:
       return 0;
     }
   }
-  fVar8 = *(float *)(lVar1 + 0x14) - *(float *)(lVar4 + 0x14);
-  fVar9 = *(float *)(lVar1 + 0x18) - *(float *)(lVar4 + 0x18);
-  fVar10 = *(float *)(lVar1 + 0x1c) - *(float *)(lVar4 + 0x1c);
+  fVar8 = *(float *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET) - *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET);
+  fVar9 = *(float *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET + 4) - *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET + 4);
+  fVar10 = *(float *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET + 8) - *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET + 8);
   fVar5 = SQRT(fVar9 * fVar9 + fVar8 * fVar8 + fVar10 * fVar10);
   fVar6 = unaff_XMM7_Da;
   fVar7 = unaff_XMM7_Da;
@@ -876,13 +883,13 @@ UISystem_StateSynchronizer:
     fVar6 = fVar5 * fVar8;
     fVar7 = fVar5 * fVar9;
   }
-  *(ulonglong *)(lVar1 + 0x14) = CONCAT44(fVar7,fVar6);
-  *(float *)(lVar1 + 0x1c) = fStack0000000000000028;
-  *(float *)(lVar4 + 0x14) = -fVar6;
-  *(float *)(lVar4 + 0x18) = -fVar7;
-  *(float *)(lVar4 + 0x1c) = -fStack0000000000000028;
-  fVar6 = *(float *)(lVar1 + 0x14);
-  fVar7 = *(float *)(lVar1 + 0x1c);
+  *(ulonglong *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET) = CONCAT44(fVar7,fVar6);
+  *(float *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET + 8) = fStack0000000000000028;
+  *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET) = -fVar6;
+  *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET + 4) = -fVar7;
+  *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET + 8) = -fStack0000000000000028;
+  fVar6 = *(float *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET);
+  fVar7 = *(float *)(lVar1 + UI_SYSTEM_VECTOR_OFFSET + 8);
   if ((fVar6 != unaff_XMM7_Da) || (fVar5 = unaff_XMM7_Da, fVar7 != unaff_XMM7_Da)) {
     if ((float)((uint)fVar7 & unaff_XMM9_Da) < (float)((uint)fVar6 & unaff_XMM9_Da)) {
       fVar5 = 3.0 - fVar7 / (float)((uint)fVar6 & unaff_XMM9_Da);
@@ -897,11 +904,11 @@ UISystem_StateSynchronizer:
       }
     }
   }
-  *(float *)(lVar1 + 0x20) = fVar5;
+  *(float *)(lVar1 + UI_SYSTEM_ANGLE_OFFSET) = fVar5;
   fVar6 = (float)atan2f(fVar6,fVar7);
-  *(float *)(lVar1 + 0x24) = fVar6 * 57.295776;
-  fVar6 = *(float *)(lVar4 + 0x14);
-  fVar7 = *(float *)(lVar4 + 0x1c);
+  *(float *)(lVar1 + UI_SYSTEM_ANGLE_OFFSET + 4) = fVar6 * UI_SYSTEM_ANGLE_MULTIPLIER;
+  fVar6 = *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET);
+  fVar7 = *(float *)(lVar4 + UI_SYSTEM_VECTOR_OFFSET + 8);
   if ((fVar6 != unaff_XMM7_Da) || (fVar5 = unaff_XMM7_Da, fVar7 != unaff_XMM7_Da)) {
     if ((float)((uint)fVar7 & unaff_XMM9_Da) < (float)((uint)fVar6 & unaff_XMM9_Da)) {
       fVar5 = 3.0 - fVar7 / (float)((uint)fVar6 & unaff_XMM9_Da);
@@ -916,9 +923,9 @@ UISystem_StateSynchronizer:
       }
     }
   }
-  *(float *)(lVar4 + 0x20) = fVar5;
+  *(float *)(lVar4 + UI_SYSTEM_ANGLE_OFFSET) = fVar5;
   fVar6 = (float)atan2f(fVar6);
-  *(float *)(lVar4 + 0x24) = fVar6 * 57.295776;
+  *(float *)(lVar4 + UI_SYSTEM_ANGLE_OFFSET + 4) = fVar6 * UI_SYSTEM_ANGLE_MULTIPLIER;
   goto UISystem_StateSynchronizer;
 }
 

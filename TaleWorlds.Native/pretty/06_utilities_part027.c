@@ -465,6 +465,9 @@ static uint64_t* system_temp_ptr_3 = (uint64_t*)0x180c91f20;               // �
 // 系统内存状态变量
 static uint64_t* system_memory_state_1d50 = (uint64_t*)0x180c91d50;         // 系统内存状态指针1d50
 
+// 异常处理相关变量
+static void* ExceptionList = (void*)0x180d493f8;                          // 异常列表指针
+
 // 工具系统附加指针
 static uint64_t* utilities_system_additional_ptr_1 = (uint64_t*)0x180bf72b0; // 工具系统附加指针1
 static uint64_t* utilities_system_additional_ptr_2 = (uint64_t*)0x180bf7310; // 工具系统附加指针2
@@ -1378,7 +1381,7 @@ void utilities_system_state_cleaner_and_terminator(void)
                     // WARNING: Subroutine does not return
       utilities_system_error_handler();
     }
-    if (*system_sync_handler_ptr != (long long *)0x0) {
+    if (*system_sync_handler_ptr != 0) {
       (**(code **)(**system_sync_handler_ptr + 0x38))();
     }
     if (*system_sync_flag_ptr != 0) {
