@@ -54,123 +54,174 @@ void UI_System_AdvancedMatrixTransformAndAnimation(
 )
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  undefined1 auVar3 [16];
-  undefined1 auVar4 [16];
-  undefined1 auVar5 [16];
-  undefined1 auVar6 [16];
-  undefined1 auVar7 [16];
-  undefined1 auVar8 [16];
-  undefined1 auVar9 [16];
-  undefined1 auVar10 [16];
-  int iVar11;
-  uint uVar12;
-  float *pfVar13;
-  float fVar14;
-  float extraout_XMM0_Da;
-  float extraout_XMM0_Da_00;
-  float fVar15;
-  float extraout_XMM0_Da_01;
-  float extraout_XMM0_Da_02;
-  undefined4 uVar16;
-  float extraout_XMM0_Da_03;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar36;
-  undefined1 auVar20 [16];
-  undefined1 auVar21 [16];
-  undefined1 auVar22 [16];
-  undefined1 auVar23 [16];
-  undefined1 auVar24 [16];
-  undefined1 auVar25 [16];
-  undefined1 auVar26 [16];
-  undefined1 auVar27 [16];
-  undefined1 auVar28 [16];
-  undefined1 auVar29 [16];
-  undefined1 auVar30 [16];
-  undefined1 auVar31 [16];
-  undefined1 auVar32 [16];
-  undefined1 auVar33 [16];
-  undefined1 auVar34 [16];
-  undefined1 auVar35 [16];
-  float fVar37;
-  float fVar38;
-  float fVar39;
-  float fVar40;
-  float fVar41;
-  float fVar42;
-  float fVar43;
-  float fVar44;
-  float fVar45;
-  float fVar46;
-  float fVar47;
-  float fVar48;
-  float fVar49;
-  float fVar50;
-  float fVar51;
-  float fVar52;
-  float fVar53;
-  float fVar54;
-  float fVar55;
-  undefined1 auVar56 [4];
-  float fVar57;
-  float fVar58;
-  float fVar59;
-  float fVar60;
-  float fVar61;
-  float fVar62;
-  float fVar63;
-  float fVar64;
-  float fVar65;
-  float fVar66;
-  float fVar67;
-  float fVar68;
-  undefined1 auStack_1b8 [32];
-  float *pfStack_198;
-  undefined4 uStack_190;
-  undefined1 auStack_188 [8];
-  float fStack_180;
-  float fStack_17c;
-  undefined8 uStack_178;
-  undefined8 uStack_170;
-  float fStack_168;
-  float fStack_164;
-  float fStack_160;
-  undefined1 auStack_158 [8];
-  float fStack_150;
-  float fStack_14c;
-  float fStack_148;
-  float fStack_144;
-  float fStack_140;
-  float fStack_13c;
-  float fStack_138;
-  float fStack_134;
-  float fStack_130;
-  float fStack_12c;
-  undefined1 auStack_128 [4];
-  float fStack_124;
-  undefined8 uStack_120;
-  undefined4 uStack_118;
-  undefined4 uStack_114;
-  undefined4 uStack_110;
-  undefined4 uStack_10c;
-  undefined1 auStack_108 [4];
-  float fStack_104;
-  undefined8 uStack_100;
-  undefined4 uStack_f8;
-  undefined4 uStack_f4;
-  undefined4 uStack_f0;
-  undefined4 uStack_ec;
-  ulonglong uStack_e8;
+  // 局部变量声明
+  longlong tempPointer1;           // lVar1: 临时指针变量
+  uint64_t transformParamPtr;     // uVar2: 变换参数指针
   
-  uStack_e8 = _DAT_180bf00a8 ^ (ulonglong)auStack_1b8;
-  uVar2 = *(undefined8 *)(param_3 + 0x208);
-  if (1e-05 < ABS(param_4)) {
+  // 矩阵和四元数缓冲区
+  float matrixBuffer1[16];         // auVar3: 矩阵缓冲区1
+  float matrixBuffer2[16];         // auVar4: 矩阵缓冲区2
+  float matrixBuffer3[16];         // auVar5: 矩阵缓冲区3
+  float matrixBuffer4[16];         // auVar6: 矩阵缓冲区4
+  float matrixBuffer5[16];         // auVar7: 矩阵缓冲区5
+  float matrixBuffer6[16];         // auVar8: 矩阵缓冲区6
+  float matrixBuffer7[16];         // auVar9: 矩阵缓冲区7
+  float matrixBuffer8[16];         // auVar10: 矩阵缓冲区8
+  
+  // 计算过程中的临时变量
+  int transformFlag;              // iVar11: 变换标志
+  uint maskResult;                // uVar12: 掩码结果
+  float *matrixPtr;               // pfVar13: 矩阵指针
+  
+  // 四元数和旋转计算变量
+  float quaternionW;              // fVar14: 四元数W分量
+  float tempFloat1;               // extraout_XMM0_Da: 临时浮点数1
+  float tempFloat2;               // extraout_XMM0_Da_00: 临时浮点数2
+  float angleResult;              // fVar15: 角度计算结果
+  float tempFloat3;               // extraout_XMM0_Da_01: 临时浮点数3
+  float tempFloat4;               // extraout_XMM0_Da_02: 临时浮点数4
+  uint32_t tempConfig;            // uVar16: 临时配置
+  float tempFloat5;               // extraout_XMM0_Da_03: 临时浮点数5
+  
+  // 变换矩阵分量
+  float transformX;               // fVar17: 变换X分量
+  float transformY;               // fVar18: 变换Y分量
+  float transformZ;               // fVar19: 变换Z分量
+  float transformW;               // fVar36: 变换W分量
+  
+  // 更多矩阵缓冲区
+  float matrixBuffer9[16];        // auVar20: 矩阵缓冲区9
+  float matrixBuffer10[16];       // auVar21: 矩阵缓冲区10
+  float matrixBuffer11[16];       // auVar22: 矩阵缓冲区11
+  float matrixBuffer12[16];       // auVar23: 矩阵缓冲区12
+  float matrixBuffer13[16];       // auVar24: 矩阵缓冲区13
+  float matrixBuffer14[16];       // auVar25: 矩阵缓冲区14
+  float matrixBuffer15[16];       // auVar26: 矩阵缓冲区15
+  float matrixBuffer16[16];       // auVar27: 矩阵缓冲区16
+  float matrixBuffer17[16];       // auVar28: 矩阵缓冲区17
+  float matrixBuffer18[16];       // auVar29: 矩阵缓冲区18
+  float matrixBuffer19[16];       // auVar30: 矩阵缓冲区19
+  float matrixBuffer20[16];       // auVar31: 矩阵缓冲区20
+  float matrixBuffer21[16];       // auVar32: 矩阵缓冲区21
+  float matrixBuffer22[16];       // auVar33: 矩阵缓冲区22
+  float matrixBuffer23[16];       // auVar34: 矩阵缓冲区23
+  float matrixBuffer24[16];       // auVar35: 矩阵缓冲区24
+  
+  // 旋转和插值变量
+  float rotationComponent1;       // fVar37: 旋转分量1
+  float rotationComponent2;       // fVar38: 旋转分量2
+  float rotationComponent3;       // fVar39: 旋转分量3
+  float rotationComponent4;       // fVar40: 旋转分量4
+  float rotationComponent5;       // fVar41: 旋转分量5
+  float rotationComponent6;       // fVar42: 旋转分量6
+  float rotationComponent7;       // fVar43: 旋转分量7
+  float rotationComponent8;       // fVar44: 旋转分量8
+  float rotationComponent9;       // fVar45: 旋转分量9
+  float rotationComponent10;      // fVar46: 旋转分量10
+  float rotationComponent11;      // fVar47: 旋转分量11
+  float rotationComponent12;      // fVar48: 旋转分量12
+  float rotationComponent13;      // fVar49: 旋转分量13
+  float rotationComponent14;      // fVar50: 旋转分量14
+  float rotationComponent15;      // fVar51: 旋转分量15
+  float rotationComponent16;      // fVar52: 旋转分量16
+  float rotationComponent17;      // fVar53: 旋转分量17
+  float rotationComponent18;      // fVar54: 旋转分量18
+  float rotationComponent19;      // fVar55: 旋转分量19
+  
+  // 向量缓冲区
+  float vectorBuffer[4];          // auVar56: 向量缓冲区
+  
+  // 插值和混合变量
+  float interpolationFactor1;     // fVar57: 插值因子1
+  float interpolationFactor2;     // fVar58: 插值因子2
+  float interpolationFactor3;     // fVar59: 插值因子3
+  float interpolationFactor4;     // fVar60: 插值因子4
+  float interpolationFactor5;     // fVar61: 插值因子5
+  float interpolationFactor6;     // fVar62: 插值因子6
+  float interpolationFactor7;     // fVar63: 插值因子7
+  float interpolationFactor8;     // fVar64: 插值因子8
+  float interpolationFactor9;     // fVar65: 插值因子9
+  float interpolationFactor10;    // fVar66: 插值因子10
+  float interpolationFactor11;    // fVar67: 插值因子11
+  float interpolationFactor12;    // fVar68: 插值因子12
+  
+  // 栈变量 - 用于存储中间结果
+  float stackBuffer1[32];         // auStack_1b8: 栈缓冲区1
+  float *stackMatrixPtr;         // pfStack_198: 栈矩阵指针
+  uint32_t stackConfig;          // uStack_190: 栈配置
+  float stackVector[2];           // auStack_188: 栈向量
+  float stackResult1;            // fStack_180: 栈结果1
+  float stackResult2;            // fStack_17c: 栈结果2
+  uint64_t stackPair1;            // uStack_178: 栈对1
+  uint64_t stackPair2;            // uStack_170: 栈对2
+  float stackAngle1;              // fStack_168: 栈角度1
+  float stackAngle2;              // fStack_164: 栈角度2
+  float stackAngle3;              // fStack_160: 栈角度3
+  float stackPair3[2];           // auStack_158: 栈对3
+  float stackMatrix1;             // fStack_150: 栈矩阵1
+  float stackMatrix2;             // fStack_14c: 栈矩阵2
+  float stackMatrix3;             // fStack_148: 栈矩阵3
+  float stackMatrix4;             // fStack_144: 栈矩阵4
+  float stackMatrix5;             // fStack_140: 栈矩阵5
+  float stackMatrix6;             // fStack_13c: 栈矩阵6
+  float stackMatrix7;             // fStack_138: 栈矩阵7
+  float stackMatrix8;             // fStack_134: 栈矩阵8
+  float stackMatrix9;             // fStack_130: 栈矩阵9
+  float stackMatrix10;            // fStack_12c: 栈矩阵10
+  float stackVector2[4];          // auStack_128: 栈向量2
+  float stackMatrix11;            // fStack_124: 栈矩阵11
+  uint64_t stackPair4;            // uStack_120: 栈对4
+  uint32_t stackConfig1;          // uStack_118: 栈配置1
+  uint32_t stackConfig2;          // uStack_114: 栈配置2
+  uint32_t stackConfig3;          // uStack_110: 栈配置3
+  uint32_t stackConfig4;          // uStack_10c: 栈配置4
+  float stackVector3[4];          // auStack_108: 栈向量3
+  float stackMatrix12;            // fStack_104: 栈矩阵12
+  uint64_t stackPair5;            // uStack_100: 栈对5
+  float stackNegative1;           // uStack_f8: 负常数1
+  float stackNegative2;           // uStack_f4: 负常数2
+  float stackNegative3;           // uStack_f0: 负常数3
+  float stackNegative4;           // uStack_ec: 负常数4
+  uint64_t stackSecurity;         // uStack_e8: 栈安全检查
+  
+  // ========================= 函数主要逻辑开始 =========================
+  
+  // 初始化栈安全检查
+  stackSecurity = DAT_STACK_SECURITY ^ (uint64_t)stackBuffer1;
+  
+  // 获取变换参数指针
+  transformParamPtr = *(uint64_t *)(transformParams + 0x208);
+  
+  // ========================= 第一个旋转角度处理 =========================
+  // 检查第一个旋转角度是否超过阈值
+  if (1e-05 < ABS(rotationAngle1)) {
+    // 初始化栈变量
     stack0xfffffffffffffe7c = 0;
-                    // WARNING: Subroutine does not return
-    FUN_1808fd400(param_4 * 0.5);
+    // 调用角度处理函数（不返回）
+    FUN_1808fd400(rotationAngle1 * 0.5);
+  }
+  
+  // ========================= 四元数旋转计算 =========================
+  // 从输入变换数据中获取X和Y分量
+  interpolationFactor1 = *(float *)(inputTransformData + 8);
+  if (1.0000001e-06 < *(float *)(inputTransformData + 0xc) * *(float *)(inputTransformData + 0xc) + interpolationFactor1 * interpolationFactor1) {
+    rotationComponent19 = *(float *)(inputTransformData + 0xc);
+    quaternionW = rotationComponent19 * rotationComponent19 + interpolationFactor1 * interpolationFactor1 + 1.0;
+    // 使用SIMD指令计算快速平方根倒数
+    matrixBuffer9[0] = rsqrtss(ZEXT416((uint)quaternionW), ZEXT416((uint)quaternionW));
+    rotationComponent18 = matrixBuffer9[0];
+    // 使用牛顿迭代法优化平方根精度
+    quaternionW = rotationComponent18 * 0.5 * (3.0 - quaternionW * rotationComponent18 * rotationComponent18);
+    interpolationFactor1 = interpolationFactor1 * quaternionW;
+    rotationComponent19 = -(rotationComponent19 * quaternionW);
+    rotationComponent19 = interpolationFactor1 * interpolationFactor1 + rotationComponent19 * rotationComponent19;
+    // 再次计算平方根倒数
+    matrixBuffer9[0] = rsqrtss(ZEXT416((uint)rotationComponent19), ZEXT416((uint)rotationComponent19));
+    interpolationFactor1 = matrixBuffer9[0];
+    // 计算反正弦值并处理角度
+    interpolationFactor1 = (float)asinf(interpolationFactor1 * 0.5 * (3.0 - rotationComponent19 * interpolationFactor1 * interpolationFactor1) * rotationComponent19);
+    // 调用角度处理函数（不返回）
+    FUN_1808fd400(interpolationFactor1 * 0.5);
   }
   fVar57 = *(float *)(param_1 + 8);
   if (1.0000001e-06 < *(float *)(param_1 + 0xc) * *(float *)(param_1 + 0xc) + fVar57 * fVar57) {
