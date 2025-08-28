@@ -960,7 +960,7 @@ int UISystem_StateManager(longlong system_context, int *state_array, uint start_
   if ((((*param_2 == 0) && (param_2[1] == 0)) && (param_2[2] == 0)) && (param_2[3] == 0)) {
     return 0x1c;
   }
-  puVar8 = (int32_t *)FUN_18084cde0(*(uint64_t *)(param_1 + 0x110),aiStack_d8);
+  puVar8 = (int32_t *)UISystem_ExternalResourceManager(*(uint64_t *)(param_1 + 0x110),aiStack_d8);
   *(int32_t *)(param_1 + 0x10c) = *puVar8;
   if (*(int *)(*(longlong *)(param_1 + 0x160) + 0x2e4) < 3) {
     return 0;
@@ -1725,7 +1725,7 @@ ulonglong UISystem_AdvancedController(longlong system_context)
   }
   uVar19 = 0;
 LAB_180857f18:
-  iVar9 = FUN_18085ab70(param_1);
+  iVar9 = UISystem_StateGetter(param_1);
   if (0 < iVar9) {
     uVar27 = *(uint *)(*(longlong *)(param_1 + 0x168) + 0x774);
     uVar26 = (longlong)iVar9;
@@ -1969,7 +1969,7 @@ LAB_1808580a0:
         if ((char)uVar6 != '\0') {
           uVar24 = uStack_60;
         }
-        uVar7 = FUN_18085b580(param_1,uStack_158,uVar24,uVar10);
+        uVar7 = UISystem_EventHandler(param_1,uStack_158,uVar24,uVar10);
         uVar19 = (ulonglong)uVar7;
         if (uVar7 != 0) goto LAB_180859163;
         uVar27 = uVar27 - uStack_158;
@@ -2060,7 +2060,7 @@ LAB_180858c20:
     if (auStack_b0[0] < uStack_134) {
       uStack_dc = auStack_b0[0];
     }
-    uVar19 = FUN_18085b200(param_1,&uStack_e0,&uStack_f0);
+    uVar19 = UISystem_StateChecker(param_1,&uStack_e0,&uStack_f0);
     uVar20 = uStack_dc;
     uVar6 = uStack_e0;
     if ((int)uVar19 != 0) {
