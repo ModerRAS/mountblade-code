@@ -2111,7 +2111,7 @@ LAB_180858c20:
         iStack_164 = 0;
         uVar24 = CONCAT71(uVar32,bVar29);
         uVar10 = CONCAT71(uVar31,1);
-        uVar19 = FUN_18085acd0(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x48,
+        uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x48,
                                uVar10,uVar24,lVar12);
         if ((int)uVar19 != 0) {
           return uVar19;
@@ -2119,7 +2119,7 @@ LAB_180858c20:
         in_stack_fffffffffffffe88 = CONCAT71((int7)((ulonglong)lVar12 >> 8),(char)uVar19);
         in_stack_fffffffffffffe80 = (int *)CONCAT71((int7)((ulonglong)uVar24 >> 8),bVar29);
         puVar15 = (uint *)CONCAT71((int7)((ulonglong)uVar10 >> 8),(char)uVar19);
-        uVar19 = FUN_18085acd0(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x38,
+        uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x38,
                                puVar15,in_stack_fffffffffffffe80,in_stack_fffffffffffffe88);
         if ((int)uVar19 != 0) {
           return uVar19;
@@ -2154,7 +2154,7 @@ LAB_180858c20:
       lStack_f8 = lVar12;
       if ((*(uint *)(lVar14 + 0x38) >> 2 & 1) != 0) {
         puVar15 = auStack_140;
-        uVar19 = FUN_180854ce0(param_1,lVar14,lVar12,uVar21,puVar15);
+        uVar19 = UISystem_DataStreamManager(param_1,lVar14,lVar12,uVar21,puVar15);
         if ((int)uVar19 != 0) {
           return uVar19;
         }
@@ -2383,7 +2383,7 @@ LAB_180858e04:
     lVar14 = (ulonglong)uVar33 << 8;
     uVar24 = CONCAT71(uVar32,bVar30);
     uVar10 = CONCAT71(uVar31,1);
-    uVar19 = FUN_18085acd0(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x48,
+    uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x48,
                            uVar10,uVar24,lVar14);
     if ((int)uVar19 != 0) {
       return uVar19;
@@ -2391,7 +2391,7 @@ LAB_180858e04:
     in_stack_fffffffffffffe88 = CONCAT71((int7)((ulonglong)lVar14 >> 8),(char)uVar19);
     in_stack_fffffffffffffe80 = (int *)CONCAT71((int7)((ulonglong)uVar24 >> 8),bVar30);
     in_stack_fffffffffffffe78 = (ulonglong **)CONCAT71((int7)((ulonglong)uVar10 >> 8),(char)uVar19);
-    uVar19 = FUN_18085acd0(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x38,
+    uVar19 = UISystem_ConfigManager(param_1,&uStack_f0,&uStack_138,*(longlong *)(param_1 + 0x110) + 0x38,
                            in_stack_fffffffffffffe78,in_stack_fffffffffffffe80,
                            in_stack_fffffffffffffe88);
     if ((int)uVar19 != 0) {

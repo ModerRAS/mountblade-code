@@ -271,8 +271,9 @@ uint64_t UI_System_Event_State_Check(uint64_t param_1,longlong param_2)
 
 
 
-uint64_t FUN_1807460d0(longlong param_1,int *param_2)
-
+// 函数: uint64_t FUN_1807460d0(longlong param_1,int *param_2)
+// UI系统数据复制函数
+uint64_t UI_System_Data_Copy(longlong param_1,int *param_2)
 {
   int iVar1;
   
@@ -289,8 +290,8 @@ uint64_t FUN_1807460d0(longlong param_1,int *param_2)
 
 
 // 函数: void FUN_18074610a(void)
-void FUN_18074610a(void)
-
+// UI系统内存操作函数
+void UI_System_Memory_Operation(void)
 {
                     // WARNING: Subroutine does not return
   memcpy();
@@ -298,8 +299,9 @@ void FUN_18074610a(void)
 
 
 
-uint64_t FUN_180746135(void)
-
+// 函数: uint64_t FUN_180746135(void)
+// UI系统数据批量复制函数
+uint64_t UI_System_Data_Batch_Copy(void)
 {
   longlong lVar1;
   longlong unaff_RBP;
