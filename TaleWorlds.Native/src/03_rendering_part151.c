@@ -318,45 +318,62 @@ void FUN_18035ec20(longlong param_1,longlong param_2)
      (iVar4 = strcmp(*(undefined8 *)(param_2 + 8),&DAT_180a1f740), iVar4 != 0)) {
     return;  // 参数验证失败，退出函数
   }
-  uStack_280 = 0xfffffffffffffffe;
-  uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_458;
-  puVar10 = (undefined8 *)0x0;
-  alStack_1b8[0] = 0;
-  alStack_1b8[1] = 0;
-  uStack_1a8 = 0;
-  uStack_1a6 = 3;
-  uStack_156 = 0;
-  uStack_164 = 0;
-  uStack_15c = 0;
-  uStack_158 = 0;
-  uStack_152 = 0;
-  uStack_1a4 = 0;
-  uStack_19c = 0;
-  uStack_194 = 0;
-  uStack_18c = 0;
-  uStack_184 = 0;
-  uStack_17c = 0;
-  uStack_174 = 0;
-  uStack_16c = 0;
-  puStack_148 = (undefined *)0x0;
-  uStack_140 = 0;
-  uStack_138 = 0;
-  uStack_136 = 3;
-  uStack_e6 = 0;
-  uStack_f4 = 0;
-  uStack_ec = 0;
-  uStack_e8 = 0;
-  uStack_e2 = 0;
-  uStack_134 = 0;
-  uStack_12c = 0;
-  uStack_124 = 0;
-  uStack_11c = 0;
-  uStack_114 = 0;
-  uStack_10c = 0;
-  uStack_104 = 0;
-  uStack_fc = 0;
-  plStack_3b0 = (longlong *)0x0;
-  plStack_3f8 = (longlong *)0x0;
+  
+  // 第二阶段：渲染系统初始化
+  // 初始化渲染管线状态、缓冲区和内存管理器
+  uStack_280 = 0xfffffffffffffffe;                    // 设置渲染管线状态掩码
+  uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_458; // 计算内存保护密钥
+  puVar10 = (undefined8 *)0x0;                         // 初始化渲染数据指针
+  
+  // 初始化渲染管线数组
+  alStack_1b8[0] = 0;                                  // 清空管线数组第一项
+  alStack_1b8[1] = 0;                                  // 清空管线数组第二项
+  
+  // 初始化渲染状态标志
+  uStack_1a8 = 0;                                      // 重置状态标志
+  uStack_1a6 = 3;                                      // 设置渲染模式为高级模式
+  uStack_156 = 0;                                      // 重置渲染标志
+  uStack_164 = 0;                                      // 重置质量标志
+  uStack_15c = 0;                                      // 重置顶点计数器
+  uStack_158 = 0;                                      // 重置索引计数器
+  uStack_152 = 0;                                      // 重置纹理计数器
+  
+  // 初始化渲染缓冲区
+  uStack_1a4 = 0;                                      // 清空顶点缓冲区
+  uStack_19c = 0;                                      // 清空索引缓冲区
+  uStack_194 = 0;                                      // 清空纹理缓冲区
+  uStack_18c = 0;                                      // 清空颜色缓冲区
+  uStack_184 = 0;                                      // 清空深度缓冲区
+  uStack_17c = 0;                                      // 清空模板缓冲区
+  uStack_174 = 0;                                      // 清空帧缓冲区
+  uStack_16c = 0;                                      // 清空渲染目标缓冲区
+  
+  // 初始化渲染资源指针
+  puStack_148 = (undefined *)0x0;                      // 重置资源指针
+  uStack_140 = 0;                                      // 重置资源大小
+  uStack_138 = 0;                                      // 重置资源类型
+  uStack_136 = 3;                                      // 设置资源类型为渲染资源
+  
+  // 初始化渲染错误状态
+  uStack_e6 = 0;                                       // 清空错误代码
+  uStack_f4 = 0;                                       // 清空警告标志
+  uStack_ec = 0;                                       // 清空状态标志
+  uStack_e8 = 0;                                       // 清空标志位
+  uStack_e2 = 0;                                       // 清空控制标志
+  
+  // 初始化渲染数据缓冲区
+  uStack_134 = 0;                                      // 清空数据缓冲区0
+  uStack_12c = 0;                                      // 清空数据缓冲区1
+  uStack_124 = 0;                                      // 清空数据缓冲区2
+  uStack_11c = 0;                                      // 清空数据缓冲区3
+  uStack_114 = 0;                                      // 清空数据缓冲区4
+  uStack_10c = 0;                                      // 清空数据缓冲区5
+  uStack_104 = 0;                                      // 清空数据缓冲区6
+  uStack_fc = 0;                                       // 清空数据缓冲区7
+  
+  // 初始化渲染管线句柄
+  plStack_3b0 = (longlong *)0x0;                       // 重置顶点管线句柄
+  plStack_3f8 = (longlong *)0x0;                       // 重置片段管线句柄
   plVar12 = *(longlong **)(param_1 + 0x70);
   uStack_398 = param_1;
   if (plVar12 != (longlong *)0x0) {
