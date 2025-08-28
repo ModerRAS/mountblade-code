@@ -26,7 +26,7 @@ void FUN_180310a00(longlong *param_1,uint64_t *param_2)
   if (param_1[1] <= (param_1[9] - *param_1 >> 3) + 1) {
     FUN_1801ee9c0(param_1,1,1);
   }
-  uVar5 = FUN_18062b420(_DAT_180c8ed18,0x100,(char)param_1[10]);
+  uVar5 = FUN_18062b420(system_memory_pool_ptr,0x100,(char)param_1[10]);
   *(uint64_t *)(param_1[9] + 8) = uVar5;
   puVar1 = (uint64_t *)param_1[6];
   *puVar1 = uVar3;

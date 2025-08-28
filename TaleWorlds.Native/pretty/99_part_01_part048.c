@@ -316,12 +316,12 @@ void FUN_1800d4270(uint64_t *param_1,uint64_t *param_2,char param_3)
   int *piStack_68;
   longlong lStack_60;
   
-  lVar8 = _DAT_180c86890;
+  lVar8 = system_parameter_buffer;
   uStack_4a8 = 0xfffffffffffffffe;
   puVar1 = param_2 + 0x4ff;
   puStackX_8 = param_1;
   if (param_3 == '\0') {
-    FUN_1800e4da0(_DAT_180c86890,param_2,puVar1);
+    FUN_1800e4da0(system_parameter_buffer,param_2,puVar1);
     puVar2 = param_2 + 0x4da;
     FUN_1800e4da0(lVar8);
     puVar3 = param_2 + 0x4b5;
@@ -548,7 +548,7 @@ void FUN_1800d4270(uint64_t *param_1,uint64_t *param_2,char param_3)
     }
   }
   else {
-    FUN_1800e4da0(_DAT_180c86890,param_2,puVar1);
+    FUN_1800e4da0(system_parameter_buffer,param_2,puVar1);
     puVar2 = param_2 + 0x4b5;
     FUN_1800e4da0(lVar8);
     uStack_490 = *(int32_t *)puVar1;

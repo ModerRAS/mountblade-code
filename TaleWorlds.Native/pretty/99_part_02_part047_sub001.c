@@ -121,8 +121,8 @@ int FUN_1801b8840(uint64_t param_1,longlong param_2,longlong param_3,int8_t para
           fVar22 = *(float *)(param_2 + 0x120);
           fVar17 = *(float *)(param_2 + 0x124);
           fVar20 = *(float *)(param_2 + 0x128);
-          auVar24 = _DAT_180a40110;
-          auVar25 = _DAT_180a400e0;
+          auVar24 = system_system_config;
+          auVar25 = system_system_config;
           do {
             fVar26 = pfVar16[-2] - fVar22;
             fVar18 = pfVar16[-1] - fVar17;
@@ -302,8 +302,8 @@ ulonglong FUN_1801b88cb(uint64_t param_1,longlong param_2,longlong param_3)
       fVar23 = *(float *)(unaff_RSI + 0x120);
       fVar18 = *(float *)(unaff_RSI + 0x124);
       fVar21 = *(float *)(unaff_RSI + 0x128);
-      auVar25 = _DAT_180a40110;
-      auVar26 = _DAT_180a400e0;
+      auVar25 = system_system_config;
+      auVar26 = system_system_config;
       do {
         fVar27 = pfVar17[-2] - fVar23;
         fVar19 = pfVar17[-1] - fVar18;
@@ -453,7 +453,7 @@ int32_t FUN_1801b89fa(uint64_t param_1,int param_2)
   fVar14 = *(float *)(unaff_RSI + 0x120);
   fVar16 = *(float *)(unaff_RSI + 0x124);
   fVar17 = *(float *)(unaff_RSI + 0x128);
-  auVar18 = _DAT_180a400e0;
+  auVar18 = system_system_config;
   do {
     fVar22 = unaff_R13[-2] - fVar14;
     fVar9 = unaff_R13[-1] - fVar16;

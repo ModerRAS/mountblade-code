@@ -21,7 +21,7 @@
 #define RENDER_PARAM_DATA       system_buffer_67e8
 #define RENDER_BUFFER_SIZE      system_buffer_67f0
 #define RENDER_CONTROL_DATA     system_buffer_67f8
-#define RENDER_SYSTEM_DATA      _DAT_180c8ed18
+#define RENDER_SYSTEM_DATA      system_memory_pool_ptr
 
 // 函数别名定义
 // 哈希表和资源管理函数
@@ -477,7 +477,7 @@ void transform_3d_matrices(longlong *param_1,longlong *param_2)
         if (lVar34 == 0) {
           lVar34 = 1;
 LAB_180280e02:
-          plVar28 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar34 << 4,(char)param_1[10]);
+          plVar28 = (longlong *)FUN_18062b420(system_memory_pool_ptr,lVar34 << 4,(char)param_1[10]);
           plVar33 = (longlong *)param_1[8];
           plVar31 = (longlong *)param_1[7];
           plVar32 = plVar28;
@@ -675,16 +675,16 @@ execute_render_pipeline(longlong param_1,uint64_t param_2,longlong param_3)
   uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_128;
   uVar13 = 0;
   if (0 < *(int *)(param_3 + 0xc0)) {
-    lVar3 = FUN_1800b6de0(_DAT_180c86930,param_3 + 0xb0,0);
-    pplVar1 = _DAT_180c868f0;
+    lVar3 = FUN_1800b6de0(system_resource_state,param_3 + 0xb0,0);
+    pplVar1 = render_system_data_config;
     if (lVar3 != 0) {
       if (*(float *)(param_3 + 0x1b8) <= -1.0) {
         FUN_180275a60(lVar3,param_1,1);
       }
       else {
         iVar14 = (int)*(float *)(param_3 + 0x1b8);
-        pplStack_c0 = _DAT_180c868f0;
-        iVar2 = _Mtx_lock(_DAT_180c868f0);
+        pplStack_c0 = render_system_data_config;
+        iVar2 = _Mtx_lock(render_system_data_config);
         if (iVar2 != 0) {
           __Throw_C_error_std__YAXH_Z(iVar2);
         }
@@ -732,7 +732,7 @@ execute_render_pipeline(longlong param_1,uint64_t param_2,longlong param_3)
       iVar9 = (int)uVar10;
       if (*(int *)(uVar6 + 0x70 + lVar3) == 0) {
         uStack_108 = 0;
-        FUN_1800b32c0(_DAT_180c86930,&plStack_c8,(longlong)iVar9 * 0x1a0 + lVar3,1);
+        FUN_1800b32c0(system_resource_state,&plStack_c8,(longlong)iVar9 * 0x1a0 + lVar3,1);
         FUN_1800763c0(plStack_c8,&plStack_d0);
         pplStack_c0 = &plStack_d8;
         plStack_d8 = plStack_d0;

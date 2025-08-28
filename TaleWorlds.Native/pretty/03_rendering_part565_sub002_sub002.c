@@ -151,7 +151,7 @@ LAB_180579e93:
           cVar3 = *(char *)(param_6 + 5);
         }
         fVar13 = fVar19;
-        if ((cVar3 != '\0') && ((cVar3 != '\x01' || (_DAT_180c91044 < param_6[-2])))) {
+        if ((cVar3 != '\0') && ((cVar3 != '\x01' || (render_system_config < param_6[-2])))) {
           fVar12 = fVar22 * 4.0;
           if (fVar22 * 4.0 <= fVar20) {
             fVar12 = fVar20;
@@ -193,7 +193,7 @@ LAB_180579e93:
           fVar13 = fVar20;
         }
         if ((ABS(*pfVar7 - *(float *)(lVar11 + (longlong)param_8)) < fVar13) &&
-           ((*(char *)(param_6 + 5) != '\x01' || (_DAT_180c91044 < param_6[-2])))) {
+           ((*(char *)(param_6 + 5) != '\x01' || (render_system_config < param_6[-2])))) {
           lVar11 = (longlong)pfVar7 - (longlong)param_8;
         }
       }
@@ -421,7 +421,7 @@ LAB_180579e93:
           cVar8 = *(char *)(in_stack_00000148 + 5);
         }
         fVar4 = fVar15;
-        if ((cVar8 != '\0') && ((cVar8 != '\x01' || (_DAT_180c91044 < in_stack_00000148[-2])))) {
+        if ((cVar8 != '\0') && ((cVar8 != '\x01' || (render_system_config < in_stack_00000148[-2])))) {
           fVar12 = fVar17 * 4.0;
           if (fVar17 * 4.0 <= fVar3) {
             fVar12 = fVar3;
@@ -467,7 +467,7 @@ LAB_180579e93:
           fVar4 = fVar3;
         }
         if ((ABS(*pfVar6 - *(float *)(lVar11 + (longlong)unaff_RBX)) < fVar4) &&
-           ((*(char *)(in_stack_00000148 + 5) != '\x01' || (_DAT_180c91044 < in_stack_00000148[-2]))
+           ((*(char *)(in_stack_00000148 + 5) != '\x01' || (render_system_config < in_stack_00000148[-2]))
            )) {
           lVar11 = (longlong)pfVar6 - (longlong)unaff_RBX;
         }
@@ -601,7 +601,7 @@ int FUN_180579ec7(longlong param_1,uint64_t param_2,longlong param_3,uint64_t pa
         cVar6 = *(char *)((longlong)plVar8 + 0x14);
       }
       fVar12 = unaff_XMM8_Da;
-      if ((cVar6 != '\0') && ((cVar6 != '\x01' || (_DAT_180c91044 < *(float *)(plVar8 + -1))))) {
+      if ((cVar6 != '\0') && ((cVar6 != '\x01' || (render_system_config < *(float *)(plVar8 + -1))))) {
         fVar13 = unaff_XMM7_Da * 4.0;
         if (unaff_XMM7_Da * 4.0 <= unaff_XMM10_Da) {
           fVar13 = unaff_XMM10_Da;
@@ -654,7 +654,7 @@ int FUN_180579ec7(longlong param_1,uint64_t param_2,longlong param_3,uint64_t pa
       }
       if ((ABS(*pfVar3 - *(float *)(lVar11 + (longlong)unaff_RBX)) < fVar12) &&
          ((*(char *)((longlong)plVar8 + 0x14) != '\x01' ||
-          (_DAT_180c91044 < *(float *)(plVar8 + -1))))) {
+          (render_system_config < *(float *)(plVar8 + -1))))) {
         lVar11 = (longlong)pfVar3 - (longlong)unaff_RBX;
       }
     }

@@ -373,7 +373,7 @@ LAB_18083bb2d:
     piVar6[0xd1] = 0;
     piVar6[0xd2] = 1 << ((byte)iVar10 & 0x1f);
     if (0 < (int)uVar17) {
-      if ((7 < uVar17) && (1 < _DAT_180bf00b0)) {
+      if ((7 < uVar17) && (1 < ui_system_control_ui)) {
         uVar5 = uVar17 & 0x80000007;
         if ((int)uVar5 < 0) {
           uVar5 = (uVar5 - 1 | 0xfffffff8) + 1;
@@ -519,7 +519,7 @@ void FUN_18083bb80(uint64_t param_1,uint64_t param_2,int *param_3)
     *(uint *)(lVar3 + 0x400) = uVar15;
     iVar12 = 2;
     iVar16 = iVar13;
-    if (((0 < (int)uVar15) && (7 < uVar15)) && (iVar16 = 0, 1 < _DAT_180bf00b0)) {
+    if (((0 < (int)uVar15) && (7 < uVar15)) && (iVar16 = 0, 1 < ui_system_control_ui)) {
       uVar1 = uVar15 & 0x80000007;
       if ((int)uVar1 < 0) {
         uVar1 = (uVar1 - 1 | 0xfffffff8) + 1;
@@ -716,7 +716,7 @@ void FUN_18083bbcf(void)
   *(uint *)(unaff_RSI + 0x400) = uVar14;
   iVar11 = 2;
   iVar15 = iVar12;
-  if (((0 < (int)uVar14) && (7 < uVar14)) && (iVar15 = 0, 1 < _DAT_180bf00b0)) {
+  if (((0 < (int)uVar14) && (7 < uVar14)) && (iVar15 = 0, 1 < ui_system_control_ui)) {
     uVar2 = uVar14 & 0x80000007;
     if ((int)uVar2 < 0) {
       uVar2 = (uVar2 - 1 | 0xfffffff8) + 1;

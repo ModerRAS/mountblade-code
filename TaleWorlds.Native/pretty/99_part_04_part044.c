@@ -42,7 +42,7 @@ void FUN_1802b0670(longlong param_1)
     else {
       (**(code **)(**(longlong **)(param_1 + 0x58) + 0xa8))
                 (*(longlong **)(param_1 + 0x58),*(longlong *)(param_1 + 0x20) + 0xe0);
-      if ((*(char *)(_DAT_180c86878 + 0x161) != '\0') && (*(char *)(_DAT_180c86878 + 0x210) == '\0')
+      if ((*(char *)(system_system_data_config + 0x161) != '\0') && (*(char *)(system_system_data_config + 0x210) == '\0')
          ) {
                     // WARNING: Could not recover jumptable at 0x0001802b075c. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -280,7 +280,7 @@ void FUN_1802b09d0(longlong param_1,int32_t param_2)
       goto LAB_1802b0a61;
     }
   }
-  puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,lVar1 * 4,*(int8_t *)(param_1 + 0x80));
+  puVar2 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,lVar1 * 4,*(int8_t *)(param_1 + 0x80));
   puVar3 = *(int32_t **)(param_1 + 0x68);
   puVar4 = *(int32_t **)(param_1 + 0x70);
 LAB_1802b0a61:

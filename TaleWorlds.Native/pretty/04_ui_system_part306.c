@@ -233,9 +233,9 @@ void FUN_180837050(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   puVar13 = auStack_78;
   auStack_78[0] = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_78;
   uVar10 = (ulonglong)param_1 & 0x1f;
-  auVar12 = _DAT_180980c60;
+  auVar12 = ui_system_memory_config;
                     // WARNING: Read-only address (ram,0x000180980c60) is written
-  while ((_DAT_180980c60 = auVar12, uVar10 != 0 && (param_2 != 0))) {
+  while ((ui_system_memory_config = auVar12, uVar10 != 0 && (param_2 != 0))) {
     param_2 = param_2 - 1;
     auVar18 = ZEXT416((uint)((float)(*param_4 >> 1) * 4.656613e-10));
     uVar11 = param_4[1] * 2;
@@ -251,7 +251,7 @@ void FUN_180837050(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     param_1 = param_1 + 2;
     *(longlong *)param_4 = *(longlong *)param_4 + *param_5;
     uVar10 = (ulonglong)param_1 & 0x1f;
-    auVar12 = _DAT_180980c60;
+    auVar12 = ui_system_memory_config;
   }
   iVar14 = (int)param_2 >> 2;
   if (iVar14 != 0) {
@@ -431,11 +431,11 @@ void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     puVar25 = auStack_168;
     do {
       auStack_160 = auStack_120;
-      auVar30 = vpermd_avx2(_DAT_180980c20,auStack_160);
-      auVar29 = vpermd_avx2(_DAT_180980be0,auStack_160);
+      auVar30 = vpermd_avx2(ui_system_memory_config,auStack_160);
+      auVar29 = vpermd_avx2(ui_system_memory_config,auStack_160);
       auVar29 = vpsrld_avx2(auVar29,1);
       auVar29 = vcvtdq2ps_avx(auVar29);
-      auVar31 = vpermd_avx2(_DAT_180980c80,auStack_160);
+      auVar31 = vpermd_avx2(ui_system_memory_config,auStack_160);
       auVar30 = vpsrld_avx2(auVar30,1);
       auVar30 = vcvtdq2ps_avx(auVar30);
       auVar31 = vpsrld_avx2(auVar31,1);

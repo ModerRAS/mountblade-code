@@ -332,7 +332,7 @@ void FUN_1805ab6a0(longlong *param_1,longlong param_2)
   uint64_t uStack_a0;
   float fStack_98;
   
-  if ((0 < (int)*(float *)(_DAT_180c95fc8 + 0x20)) &&
+  if ((0 < (int)*(float *)(system_system_config + 0x20)) &&
      ((param_1[1] - *param_1 & 0xfffffffffffffff8U) == 0)) {
     lVar1 = *(longlong *)(param_2 + 0x8d8);
     uStack_a0 = 0;
@@ -463,8 +463,8 @@ void FUN_1805ab940(longlong param_1,int8_t *param_2,longlong param_3,char param_
   uStack_138 = param_8;
   uStack_137 = param_7;
   uStack_130 = param_5;
-  iStack_134 = (int)*(float *)(_DAT_180c95fc8 + 0x20);
-  iVar8 = (int)_DAT_180c92514;
+  iStack_134 = (int)*(float *)(system_system_config + 0x20);
+  iVar8 = (int)system_status_flag;
   cStack_136 = param_4;
   puStack_128 = param_2;
   if (((0 < iStack_134) || (((iVar8 - 2U & 0xfffffffc) == 0 && (iVar8 != 4)))) &&
@@ -511,11 +511,11 @@ void FUN_1805ab940(longlong param_1,int8_t *param_2,longlong param_3,char param_
         }
       }
       lVar5 = *(longlong *)(param_3 + 0x20);
-      _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-      iVar8 = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+      system_system_config = system_system_config & 0xffffffff00000000;
+      iVar8 = (int)(system_system_config - system_system_config >> 3);
       if (0 < iVar8) {
         lVar10 = 0;
-        lVar9 = _DAT_180c92cd8;
+        lVar9 = system_system_config;
         do {
           lVar6 = *(longlong *)(lVar9 + lVar10 * 8);
           if (((lVar6 != 0) && (*(char *)(*(longlong *)(lVar6 + 0x58f8) + 0x1c) != '\0')) &&
@@ -525,18 +525,18 @@ void FUN_1805ab940(longlong param_1,int8_t *param_2,longlong param_3,char param_
             fVar11 = *(float *)(lVar5 + 0x14) - *(float *)(lVar6 + 0x5908);
             if (fVar13 * fVar13 + fVar12 * fVar12 + fVar11 * fVar11 < 400.0) {
               FUN_1805b59d0(lVar6,0x180c95578);
-              lVar9 = _DAT_180c92cd8;
+              lVar9 = system_system_config;
             }
           }
           lVar10 = lVar10 + 1;
         } while (lVar10 < iVar8);
       }
-      if (_DAT_180c96070 != 0) {
-        FUN_180567f30(_DAT_180c92580,0x180c95578);
+      if (system_system_config != 0) {
+        FUN_180567f30(system_system_config,0x180c95578);
       }
-      _DAT_180c95b3c = 0;
+      system_system_config = 0;
                     // WARNING: Subroutine does not return
-      memset(_DAT_180c95b10,0,(longlong)(_DAT_180c95b08 >> 3));
+      memset(system_system_config,0,(longlong)(system_system_config >> 3));
     }
     if (0 < iStack_134) {
       uStack_140 = param_7;

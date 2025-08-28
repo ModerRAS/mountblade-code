@@ -426,15 +426,15 @@ void FUN_18046e780(longlong param_1,uint param_2,uint param_3)
     }
     if (uVar6 < 8) {
       uVar17 = 0;
-      auStack_4c0 = _DAT_180a407a0;
+      auStack_4c0 = render_system_memory;
       uVar12 = uVar6;
       if (uVar6 != 0) {
         auVar21 = ZEXT1632(auVar19);
         auVar44 = ZEXT1632(auVar20);
-        if ((0xf < uVar6) && (1 < _DAT_180bf00b0)) {
+        if ((0xf < uVar6) && (1 < render_system_control_memory)) {
           uVar13 = 8;
           auVar22 = ZEXT1664(auVar19);
-          auVar44 = ZEXT1632(_DAT_180a3f750);
+          auVar44 = ZEXT1632(render_system_memory);
           do {
             iVar8 = uVar13 - 4;
             iVar16 = (int)uVar17;
@@ -446,20 +446,20 @@ void FUN_18046e780(longlong param_1,uint param_2,uint param_3)
             auVar19._8_4_ = iVar16 + iVar49;
             iVar50 = system_data_f750._12_4_;
             auVar19._12_4_ = iVar16 + iVar50;
-            auVar19 = pmulld(auVar19,_DAT_180a3f790);
+            auVar19 = pmulld(auVar19,render_system_memory);
             *(int8_t (*) [16])(auStack_4c0 + uVar17 * 4) = auVar19;
             uVar17 = (ulonglong)(iVar16 + 0x10U);
             auVar25._0_4_ = iVar8 + iVar7;
             auVar25._4_4_ = iVar8 + iVar48;
             auVar25._8_4_ = iVar8 + iVar49;
             auVar25._12_4_ = iVar8 + iVar50;
-            auVar19 = pmulld(auVar25,_DAT_180a3f790);
+            auVar19 = pmulld(auVar25,render_system_memory);
             *(int8_t (*) [16])(auStack_4c0 + (ulonglong)(uVar13 - 4) * 4) = auVar19;
             auVar20._0_4_ = uVar13 + iVar7;
             auVar20._4_4_ = uVar13 + iVar48;
             auVar20._8_4_ = uVar13 + iVar49;
             auVar20._12_4_ = uVar13 + iVar50;
-            auVar22._0_16_ = pmulld(auVar20,_DAT_180a3f790);
+            auVar22._0_16_ = pmulld(auVar20,render_system_memory);
             auVar21 = auVar22._0_32_;
             *(int8_t (*) [16])(auStack_4c0 + (ulonglong)uVar13 * 4) = auVar22._0_16_;
             uVar4 = uVar13 + 4;
@@ -468,7 +468,7 @@ void FUN_18046e780(longlong param_1,uint param_2,uint param_3)
             auVar26._4_4_ = uVar4 + iVar48;
             auVar26._8_4_ = uVar4 + iVar49;
             auVar26._12_4_ = uVar4 + iVar50;
-            auVar19 = pmulld(auVar26,_DAT_180a3f790);
+            auVar19 = pmulld(auVar26,render_system_memory);
             *(int8_t (*) [16])(auStack_4c0 + (ulonglong)uVar4 * 4) = auVar19;
           } while (iVar16 + 0x10U < uVar6 - (uVar6 & 0xf));
         }
@@ -504,20 +504,20 @@ void FUN_18046e780(longlong param_1,uint param_2,uint param_3)
     auStack_420 = vpgatherdd(auVar44,auVar21);
     auVar44 = vpcmpeqb_avx2((int8_t  [32])0x0,(int8_t  [32])0x0);
     auStack_1c0 = auStack_420;
-    auVar21 = vpaddd_avx2(_DAT_180a40840,auStack_4c0);
+    auVar21 = vpaddd_avx2(render_system_memory,auStack_4c0);
     auStack_4a0 = vpgatherdd(auStack_420,auVar44);
     auStack_1a0 = auStack_4a0;
     auVar45 = vpcmpeqb_avx2((int8_t  [32])0x0,(int8_t  [32])0x0);
-    auVar44 = vpaddd_avx2(auVar21,_DAT_180a40840);
+    auVar44 = vpaddd_avx2(auVar21,render_system_memory);
     auStack_480 = vpgatherdd(auVar21,auVar45);
     auVar45 = vpcmpeqb_avx2((int8_t  [32])0x0,(int8_t  [32])0x0);
-    auVar21 = vpaddd_avx2(_DAT_180a40840,auVar44);
+    auVar21 = vpaddd_avx2(render_system_memory,auVar44);
     auStack_180 = auStack_480;
-    auStack_4c0 = vpaddd_avx2(auVar21,_DAT_180a40840);
+    auStack_4c0 = vpaddd_avx2(auVar21,render_system_memory);
     auStack_160 = vpgatherdd(auStack_480,auVar45);
     auVar21 = vpcmpeqb_avx2((int8_t  [32])0x0,(int8_t  [32])0x0);
     auStack_140 = vpgatherdd(auStack_160,auVar21);
-    vpaddd_avx2(_DAT_180a40840,auStack_4c0);
+    vpaddd_avx2(render_system_memory,auStack_4c0);
     auVar21 = vpcmpeqb_avx2((int8_t  [32])0x0,(int8_t  [32])0x0);
     auStack_120 = vpgatherdd(auStack_140,auVar21);
 LAB_18046ebfe:
@@ -561,10 +561,10 @@ LAB_18046ebfe:
     auVar45._20_4_ = uStack_538;
     auVar45._24_4_ = uStack_538;
     auVar45._28_4_ = uStack_538;
-    auStack_260 = vpand_avx2(auVar21,_DAT_180a408a0);
+    auStack_260 = vpand_avx2(auVar21,render_system_memory);
     auVar21 = vpmaxsd_avx2(auStack_220,auStack_240);
     auVar21 = vpmaxsd_avx2(auStack_200,auVar21);
-    auVar21 = vpaddd_avx2(auVar21,_DAT_180a40800);
+    auVar21 = vpaddd_avx2(auVar21,render_system_memory);
     auStack_400 = vpminsd_avx2(auVar45,auVar21);
     auVar19 = vpshufd_avx(ZEXT416(uStack_52c),0);
     auVar21 = vpminsd_avx2(auVar56,auVar59);
@@ -581,10 +581,10 @@ LAB_18046ebfe:
     auVar46._20_4_ = iStack_4e0;
     auVar46._24_4_ = iStack_4e0;
     auVar46._28_4_ = iStack_4e0;
-    auStack_3e0 = vpand_avx2(auVar21,_DAT_180a408c0);
+    auStack_3e0 = vpand_avx2(auVar21,render_system_memory);
     auVar21 = vpmaxsd_avx2(auVar56,auVar59);
     auVar21 = vpmaxsd_avx2(auVar21,auVar54);
-    auVar21 = vpaddd_avx2(auVar21,_DAT_180a40800);
+    auVar21 = vpaddd_avx2(auVar21,render_system_memory);
     auVar19 = auVar21._0_16_;
     lVar18 = 0;
     auStack_3c0 = vpminsd_avx2(auVar46,auVar21);
@@ -662,7 +662,7 @@ LAB_18046ebfe:
         auVar19 = vpshufd_avx(ZEXT416(uVar4),0);
         auVar54._16_16_ = auVar19;
         auVar54._0_16_ = auVar19;
-        auVar21 = vpaddd_avx2(auVar54,_DAT_180a40820);
+        auVar21 = vpaddd_avx2(auVar54,render_system_memory);
         auVar56 = vpmulld_avx2(auVar21,auVar56);
         auVar54 = vpmulld_avx2(auVar21,auVar59);
         auVar59 = vpmulld_avx2(auVar21,auVar53);
@@ -678,7 +678,7 @@ LAB_18046ebfe:
         auVar19 = vpshufd_avx(ZEXT416(uVar13),0);
         auVar63._16_16_ = auVar19;
         auVar63._0_16_ = auVar19;
-        auVar21 = vpaddd_avx2(auVar63,_DAT_180a407e0);
+        auVar21 = vpaddd_avx2(auVar63,render_system_memory);
         auVar44 = vpmulld_avx2(auVar21,auVar60);
         auVar63 = vpslld_avx2(auVar53,2);
         auVar58 = vpaddd_avx2(auVar44,auVar27);

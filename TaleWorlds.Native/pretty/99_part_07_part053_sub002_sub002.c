@@ -359,7 +359,7 @@ void FUN_1804cef30(longlong param_1,longlong param_2,uint param_3,int param_4)
                 if (lVar7 == 0) {
                   puStack_3a0 = (uint *)0x1;
 LAB_1804cf4bf:
-                  puStack_398 = (uint *)FUN_18062b420(_DAT_180c8ed18,(longlong)puStack_3a0 * 4,
+                  puStack_398 = (uint *)FUN_18062b420(system_memory_pool_ptr,(longlong)puStack_3a0 * 4,
                                                       *(int8_t *)(lVar13 + 0x88 + lVar18));
                   puVar6 = *(uint **)(lVar13 + 0x78 + lVar18);
                   puVar15 = *(uint **)(lVar13 + 0x70 + lVar18);
@@ -432,7 +432,7 @@ LAB_1804cf4bf:
                 if (lVar7 == 0) {
                   puStack_3a0 = (uint *)0x1;
 LAB_1804cf694:
-                  puStack_398 = (uint *)FUN_18062b420(_DAT_180c8ed18,(longlong)puStack_3a0 * 4);
+                  puStack_398 = (uint *)FUN_18062b420(system_memory_pool_ptr,(longlong)puStack_3a0 * 4);
                   puVar6 = *(uint **)(lVar13 + 0x58 + lVar18);
                   puVar15 = *(uint **)(lVar13 + 0x50 + lVar18);
                 }

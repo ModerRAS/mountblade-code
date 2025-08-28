@@ -163,7 +163,7 @@ ulonglong FUN_18007b240(longlong param_1,longlong *param_2,byte param_3,char par
     goto LAB_18007b8fd;
   }
   if (*plVar14 == 0) {
-    puVar7 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,0x20);
+    puVar7 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x28,8,0x20);
     *puVar7 = &unknown_var_3552_ptr;
     *puVar7 = &unknown_var_3696_ptr;
     *(int32_t *)(puVar7 + 1) = 0;
@@ -179,7 +179,7 @@ ulonglong FUN_18007b240(longlong param_1,longlong *param_2,byte param_3,char par
     FUN_180056f10(plVar14);
   }
   if (plVar14[1] == 0) {
-    puVar7 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,0x20);
+    puVar7 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,0x20);
     *puVar7 = &unknown_var_3552_ptr;
     *puVar7 = &unknown_var_3696_ptr;
     *(int32_t *)(puVar7 + 1) = 0;
@@ -209,7 +209,7 @@ LAB_18007b454:
     if (*(int *)(lVar6 + 0x60) == 0) goto LAB_18007b454;
     if (lVar6 == 0) goto LAB_18007b44a;
   }
-  uVar9 = FUN_18062b1e0(_DAT_180c8ed18,0xa0,8,0x20);
+  uVar9 = FUN_18062b1e0(system_memory_pool_ptr,0xa0,8,0x20);
   plVar10 = (longlong *)FUN_1800842a0(uVar9);
   plStack_50 = plVar10;
   if (plVar10 != (longlong *)0x0) {
@@ -228,7 +228,7 @@ LAB_18007b454:
   if (cVar2 == '\x01') {
     param_4 = '\x01';
   }
-  plVar11 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,0x20);
+  plVar11 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x30,8,0x20);
   *plVar11 = (longlong)&unknown_var_3552_ptr;
   *plVar11 = (longlong)&unknown_var_3696_ptr;
   *(int32_t *)(plVar11 + 1) = 0;
@@ -260,12 +260,12 @@ LAB_18007b454:
   *(int8_t *)(plVar11 + 3) = *(int8_t *)(param_1 + 0xfa);
   if ((*(longlong *)(param_1 + 0xa8) == 0) || (*(longlong *)(param_1 + 0x210) != 0)) {
     if (param_4 == '\0') {
-      uVar9 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
+      uVar9 = FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3);
       (**(code **)(*plVar10 + 0x28))(plVar10);
       (**(code **)(*plVar11 + 0x28))(plVar11);
       pcStack_68 = FUN_180083390;
       puStack_60 = &unknown_var_8416_ptr;
-      plStack_b8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x20,8,system_allocation_flags);
+      plStack_b8 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x20,8,system_allocation_flags);
       *plStack_b8 = param_1;
       *(byte *)(plStack_b8 + 1) = param_3;
       plStack_b8[2] = (longlong)plVar10;
@@ -274,10 +274,10 @@ LAB_18007b454:
       plVar12 = (longlong *)FUN_18006b640(uVar9,aplStack_78);
       plStack_c0 = plVar12;
       plStack_40 = plVar12;
-      uVar9 = _DAT_180c82868;
+      uVar9 = system_context_ptr;
       if (plVar12 != (longlong *)0x0) {
         (**(code **)(*plVar12 + 0x28))(plVar12);
-        uVar9 = _DAT_180c82868;
+        uVar9 = system_context_ptr;
         (**(code **)(*plVar12 + 0x28))(plVar12);
       }
       FUN_18005e450(uVar9,&plStack_c0);
@@ -430,7 +430,7 @@ void FUN_18007baa0(longlong param_1)
   uint64_t uVar1;
   
   if (*(longlong *)(param_1 + 0x1e0) == 0) {
-    uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x180,8,0x1c);
+    uVar1 = FUN_18062b1e0(system_memory_pool_ptr,0x180,8,0x1c);
                     // WARNING: Subroutine does not return
     memset(uVar1,0,0x180);
   }
@@ -773,7 +773,7 @@ void FUN_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
       puVar12 = *(void **)(param_1 + 0x18);
     }
     FUN_180627020(&unknown_var_5560_ptr,puVar12);
-    plVar8 = (longlong *)FUN_1800be9a0(_DAT_180c86898,&plStack_30,0);
+    plVar8 = (longlong *)FUN_1800be9a0(init_system_data_config,&plStack_30,0);
     lVar7 = *plVar8;
     *plVar8 = 0;
     plStack_40 = (longlong *)*plVar6;
@@ -788,7 +788,7 @@ void FUN_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
   FUN_1800781e0(param_1);
   if ((*(longlong *)(param_1 + 600) == 0) &&
      ((*(uint *)(*(longlong *)(param_1 + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
-    puVar9 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x58,8,0x1c);
+    puVar9 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x58,8,0x1c);
     *(uint64_t *)((longlong)puVar9 + 0x2c) = 0xffffffffffffffff;
     *(int32_t *)(puVar9 + 9) = 0xffffffff;
     *puVar9 = 0;

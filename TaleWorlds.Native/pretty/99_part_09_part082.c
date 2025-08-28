@@ -101,7 +101,7 @@ void FUN_1805f35f3(longlong param_1)
         if (lVar12 == 0) {
           lVar12 = 1;
 LAB_1805f3837:
-          piVar10 = (int *)FUN_18062b420(_DAT_180c8ed18,lVar12 * 0x1c,
+          piVar10 = (int *)FUN_18062b420(system_memory_pool_ptr,lVar12 * 0x1c,
                                          *(int8_t *)(puVar20 + lVar18 * 4 + 0x1c));
           puVar19 = (uint64_t *)puVar20[lVar18 * 4 + 0x19];
           puVar16 = (uint64_t *)puVar20[lVar18 * 4 + 0x1a];
@@ -133,7 +133,7 @@ LAB_1805f3837:
         puVar20[lVar18 * 4 + 0x1a] = piVar10 + 7;
         bVar7 = bVar8;
       }
-      fVar23 = (float)_DAT_180c8ed30 * 1e-05 - (float)piVar15[6];
+      fVar23 = (float)system_error_code * 1e-05 - (float)piVar15[6];
       if (fVar23 < (float)piVar15[5] || fVar23 == (float)piVar15[5]) {
         bVar7 = true;
         bVar8 = true;
@@ -290,7 +290,7 @@ void FUN_1805f36f9(void)
       if (lVar10 == 0) {
         lVar10 = 1;
 LAB_1805f3837:
-        piVar8 = (int *)FUN_18062b420(_DAT_180c8ed18,lVar10 * 0x1c,
+        piVar8 = (int *)FUN_18062b420(system_memory_pool_ptr,lVar10 * 0x1c,
                                       *(int8_t *)(puVar17 + lVar11 * 4 + 0x1c));
         puVar16 = (uint64_t *)puVar17[lVar11 * 4 + 0x19];
         puVar14 = (uint64_t *)puVar17[lVar11 * 4 + 0x1a];
@@ -322,7 +322,7 @@ LAB_1805f3837:
       puVar17[lVar11 * 4 + 0x1a] = piVar8 + 7;
       unaff_R12B = in_stack_000000d8;
     }
-    fVar19 = (float)_DAT_180c8ed30 * unaff_XMM6_Da - (float)piVar13[6];
+    fVar19 = (float)system_error_code * unaff_XMM6_Da - (float)piVar13[6];
     if (fVar19 < (float)piVar13[5] || fVar19 == (float)piVar13[5]) {
       unaff_R12B = '\x01';
       in_stack_000000d8 = '\x01';

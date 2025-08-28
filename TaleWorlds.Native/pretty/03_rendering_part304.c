@@ -33,7 +33,7 @@ void FUN_18042d180(int *param_1,int *param_2,int *param_3,int *param_4)
   if (iVar3 == 0) {
     *(uint64_t *)(apiStack_488[0] + 0x2e) = *(uint64_t *)(apiStack_488[0] + 0x32);
     *(uint64_t *)(apiStack_488[0] + 0x30) = *(uint64_t *)(apiStack_488[0] + 0x34);
-    piVar6 = (int *)FUN_18062b420(_DAT_180c8ed18,0x4860,0x22);
+    piVar6 = (int *)FUN_18062b420(system_memory_pool_ptr,0x4860,0x22);
     iVar3 = FUN_18042b010(param_1,piVar6,param_4,1);
     if (iVar3 == 0) {
       if (piVar6 != (int *)0x0) {
@@ -356,7 +356,7 @@ void FUN_18042d6c0(uint64_t *param_1,int param_2,int param_3,uint param_4,int pa
   uStack_48 = 0;
   if (0 < param_5) {
     iStackX_18 = param_3;
-    if (_DAT_180c8ec8c != 0) {
+    if (render_system_data_config != 0) {
       iStackX_18 = -param_3;
     }
     iVar12 = param_5 + -1;

@@ -155,7 +155,7 @@ LAB_180331625:
           if (buffer_size == 0) {
             buffer_size = 1;
 LAB_180331688:
-            temp_buffer_ptr = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,buffer_size * 4,(int8_t)allocation_flag);
+            temp_buffer_ptr = (ulonglong *)FUN_18062b420(system_memory_pool_ptr,buffer_size * 4,(int8_t)allocation_flag);
           }
           else {
             buffer_size = buffer_size * 2;
@@ -184,7 +184,7 @@ LAB_180331688:
           if (buffer_size == 0) {
             buffer_size = 1;
 LAB_18033173f:
-            temp_data_ptr = (uint *)FUN_18062b420(_DAT_180c8ed18,buffer_size * 8,(char)thread_flag);
+            temp_data_ptr = (uint *)FUN_18062b420(system_memory_pool_ptr,buffer_size * 8,(char)thread_flag);
           }
           else {
             buffer_size = buffer_size * 2;
@@ -256,7 +256,7 @@ LAB_18033173f:
     pcStack_e8 = FUN_18033cd80;
     puStack_e0 = &unknown_var_5872_ptr;
     lStack_c0 = param_1;
-    plStack_f8 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,system_allocation_flags);
+    plStack_f8 = (longlong *)FUN_18062b1e0(system_memory_pool_ptr,0x30,8,system_allocation_flags);
     *plStack_f8 = (longlong)puStack_d8;
     plStack_f8[1] = (longlong)puStack_d0;
     plStack_f8[2] = (longlong)pplStack_c8;
@@ -322,7 +322,7 @@ LAB_180331a35:
             lVar22 = 1;
 LAB_180331a9e:
             puVar10 = (ulonglong *)
-                      FUN_18062b420(_DAT_180c8ed18,lVar22 * 4,
+                      FUN_18062b420(system_memory_pool_ptr,lVar22 * 4,
                                     CONCAT71((int7)((ulonglong)lVar23 >> 8),3));
           }
           else {
@@ -354,7 +354,7 @@ LAB_180331a9e:
           if ((longlong)uStack_128 >> 3 == 0) {
             lVar23 = 1;
 LAB_180331b54:
-            puVar10 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,lVar23 * 8,3);
+            puVar10 = (ulonglong *)FUN_18062b420(system_memory_pool_ptr,lVar23 * 8,3);
           }
           else {
             lVar23 = ((longlong)uStack_128 >> 3) * 2;
@@ -620,7 +620,7 @@ void RenderingSystem_ExecuteBatchOperations(uint64_t *batch_context, int start_i
                             if (buffer_start == 0) {
                                 buffer_start = 1;
 LAB_180332267:
-                                data_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18, buffer_start * 8);
+                                data_ptr = (longlong *)FUN_18062b420(system_memory_pool_ptr, buffer_start * 8);
                             }
                             else {
                                 buffer_start = buffer_start * 2;

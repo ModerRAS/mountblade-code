@@ -59,7 +59,7 @@ void FUN_180650a70(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
 
 {
   // 调用渲染系统高级数据处理函数
-  FUN_180651560(param_1, _DAT_180c967a0, param_3, param_4, 0xfffffffffffffffe);
+  FUN_180651560(param_1, render_system_config, param_3, param_4, 0xfffffffffffffffe);
   return;
 }
 

@@ -72,7 +72,7 @@ void FUN_1805b41b0(longlong param_1,longlong param_2,int32_t *param_3)
       iVar12 = *(int *)(param_1 + 0x18);
     }
     if ((iVar12 != param_3[5]) || (*(short *)(param_1 + 0x14) != *(short *)(param_3 + 4))) {
-      FUN_180062340(_DAT_180c86928,2);
+      FUN_180062340(system_message_context,2);
       uVar16 = param_3[1];
       uVar2 = param_3[2];
       uVar3 = param_3[3];
@@ -82,12 +82,12 @@ void FUN_1805b41b0(longlong param_1,longlong param_2,int32_t *param_3)
       *(int32_t *)(param_1 + 0x10) = uVar3;
       *(uint64_t *)(param_1 + 0x14) = *(uint64_t *)(param_3 + 4);
     }
-    if (((*(longlong *)(param_1 + 0x58f8) == 0) || (_DAT_180c96070 == 0)) ||
+    if (((*(longlong *)(param_1 + 0x58f8) == 0) || (system_system_memory == 0)) ||
        (iVar12 = *(int *)(*(longlong *)(param_1 + 0x58f8) + 0x18), iVar12 < 0)) {
       uStack_d0 = 0;
     }
     else {
-      uStack_d0 = _DAT_180c96070 + 0x30a0 + (longlong)iVar12 * 0xa60;
+      uStack_d0 = system_system_memory + 0x30a0 + (longlong)iVar12 * 0xa60;
     }
     uStack_d8 = 0;
     cVar7 = FUN_180646b50();
@@ -115,11 +115,11 @@ LAB_1805b4350:
         cVar7 = FUN_18055f260(lVar10);
         if (cVar7 == '\0') goto LAB_1805b4442;
         if (auStack_108[0] != 0) {
-          _DAT_180c95dc8 = lVar10;
-          cVar7 = (**(code **)(_DAT_180c8ece0 + 0x140))
+          system_system_memory = lVar10;
+          cVar7 = (**(code **)(system_system_data_memory + 0x140))
                             (*(int32_t *)(*(longlong *)(param_1 + 0x58f8) + 0x4c));
           bVar13 = cVar7 != '\0';
-          _DAT_180c95dc8 = 0;
+          system_system_memory = 0;
 LAB_1805b441a:
           if (!bVar13) goto LAB_1805b4445;
           goto LAB_1805b4350;

@@ -84,9 +84,9 @@ void FUN_1807897f7(longlong param_1)
     } while (iVar3 < iVar4 / 2);
   }
 LAB_180789990:
-  (*(code *)*_DAT_180c108d0)(pfVar2,*(longlong *)(unaff_RBX + 0x30) + (longlong)iVar4 * 4,iVar4 / 2)
+  (*(code *)*ui_system_config)(pfVar2,*(longlong *)(unaff_RBX + 0x30) + (longlong)iVar4 * 4,iVar4 / 2)
   ;
-  (*(code *)_DAT_180c108d0[2])(pfVar2);
+  (*(code *)ui_system_config[2])(pfVar2);
                     // WARNING: Subroutine does not return
   FUN_180768400(uVar1);
 }
@@ -129,7 +129,7 @@ FUN_180789a00(longlong param_1,uint64_t param_2,int32_t *param_3,longlong param_
   if (param_5 != 0) {
     uVar1 = *(uint64_t *)(param_1 + 0x68);
     FUN_180768360(uVar1);
-    (**(code **)(_DAT_180c108d0 + 0x18))
+    (**(code **)(ui_system_config + 0x18))
               (param_2,*(uint64_t *)(param_1 + 0x28),*(uint64_t *)(param_1 + 0x30),
                *(int32_t *)(param_1 + 0x18));
     iVar3 = *(int *)(param_1 + 0x18);
@@ -151,7 +151,7 @@ FUN_180789a00(longlong param_1,uint64_t param_2,int32_t *param_3,longlong param_
       } while (iVar6 < iVar2);
       lVar11 = *(longlong *)(param_1 + 0x28);
     }
-    (**(code **)(_DAT_180c108d0 + 8))
+    (**(code **)(ui_system_config + 8))
               (lVar11 + (longlong)iVar3 * 4,*(longlong *)(param_1 + 0x30) + (longlong)iVar3 * 4,
                iVar3 / 2);
     if ((param_5 == 1) && (param_4 == 0)) {
@@ -254,7 +254,7 @@ void FUN_180789a48(longlong param_1)
   
   uVar1 = *(uint64_t *)(param_1 + 0x68);
   uVar11 = FUN_180768360(uVar1);
-  (**(code **)(_DAT_180c108d0 + 0x18))
+  (**(code **)(ui_system_config + 0x18))
             (uVar11,*(uint64_t *)(unaff_RBX + 0x28),*(uint64_t *)(unaff_RBX + 0x30),
              *(int32_t *)(unaff_RBX + 0x18));
   iVar3 = *(int *)(unaff_RBX + 0x18);
@@ -276,7 +276,7 @@ void FUN_180789a48(longlong param_1)
     } while (iVar5 < iVar2);
     lVar10 = *(longlong *)(unaff_RBX + 0x28);
   }
-  (**(code **)(_DAT_180c108d0 + 8))
+  (**(code **)(ui_system_config + 8))
             (lVar10 + (longlong)iVar3 * 4,*(longlong *)(unaff_RBX + 0x30) + (longlong)iVar3 * 4,
              iVar3 / 2);
   iVar3 = (int)unaff_RSI;

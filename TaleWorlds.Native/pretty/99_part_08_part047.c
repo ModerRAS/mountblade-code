@@ -540,7 +540,7 @@ LAB_1805a8fbe:
       UNLOCK();
       uVar13 = uVar5 >> 6;
       if (*(longlong *)(param_1 + 0x290 + (ulonglong)uVar13 * 8) == 0) {
-        lVar15 = FUN_18062b420(_DAT_180c8ed18,0x900,8);
+        lVar15 = FUN_18062b420(system_memory_pool_ptr,0x900,8);
         plVar3 = (longlong *)(param_1 + 0x290 + (ulonglong)uVar13 * 8);
         LOCK();
         bVar25 = *plVar3 == 0;
@@ -771,7 +771,7 @@ LAB_1805a8fbe:
       UNLOCK();
       uVar10 = uVar4 >> 6;
       if (*(longlong *)(unaff_R15 + 0x290 + (ulonglong)uVar10 * 8) == 0) {
-        lVar11 = FUN_18062b420(_DAT_180c8ed18,0x900,8);
+        lVar11 = FUN_18062b420(system_memory_pool_ptr,0x900,8);
         plVar3 = (longlong *)(unaff_R15 + 0x290 + (ulonglong)uVar10 * 8);
         LOCK();
         bVar15 = *plVar3 == 0;

@@ -262,7 +262,7 @@ void FUN_180528c80(longlong param_1,float param_2)
     uVar17 = (ulonglong)uVar3;
 LAB_180528d8a:
     uVar13 = (uint)uVar17;
-    lVar8 = _DAT_180c8f008;
+    lVar8 = system_cache_buffer;
     while ((int)uVar13 < (int)uVar3) {
       lStack_190 = (longlong)(int)uVar17;
       lVar19 = lVar19 + 0x30a0 + lStack_190 * 0xa60;
@@ -332,7 +332,7 @@ LAB_180529019:
             FUN_180528530(param_1,auStack_170,auStack_140,&system_ptr_02f0);
             fVar23 = (float)FUN_18051b450(lVar19,auStack_170);
             fVar22 = fVar22 * fVar23;
-            lVar8 = _DAT_180c8f008;
+            lVar8 = system_cache_buffer;
             if (0.5 < fVar22) {
               lVar8 = *(longlong *)(param_1 + 0x660);
               fVar24 = SQRT(*(float *)(lVar8 + 0x30ec) * *(float *)(lVar8 + 0x30ec) +
@@ -392,7 +392,7 @@ LAB_1805291c0:
                 goto LAB_1805291c0;
               }
               fVar22 = fVar22 * fVar24;
-              lVar8 = _DAT_180c8f008;
+              lVar8 = system_cache_buffer;
               if (0.5 < fVar22) {
                 fVar29 = fVar29 + fVar22;
               }
@@ -422,16 +422,16 @@ LAB_1805291c0:
           puVar1 = (ushort *)(*(longlong *)(param_1 + 0x6e0) + 0x130);
           *puVar1 = *puVar1 | 0x200;
           FUN_1805a43d0(param_1 + 0x28);
-          lVar19 = _DAT_180c8ece0;
+          lVar19 = render_system_data_memory;
           iVar14 = *(int *)(param_1 + 0x18);
           if ((iVar14 != 0) && (lVar8 != 0)) {
             (**(code **)(lVar8 + 0x30))(iVar14);
           }
           (**(code **)(lVar19 + 0x58))(iVar14,1);
-          lVar8 = _DAT_180c8f008;
-          if ((iVar14 != 0) && (_DAT_180c8f008 != 0)) {
-            (**(code **)(_DAT_180c8f008 + 0x18))(iVar14);
-            lVar8 = _DAT_180c8f008;
+          lVar8 = system_cache_buffer;
+          if ((iVar14 != 0) && (system_cache_buffer != 0)) {
+            (**(code **)(system_cache_buffer + 0x18))(iVar14);
+            lVar8 = system_cache_buffer;
           }
         }
         lVar19 = *(longlong *)(param_1 + 0x6e0);
@@ -462,14 +462,14 @@ LAB_1805291c0:
     if (*(float *)(lVar19 + 0x13d4) < 2.0) {
       if ((*(float *)(lVar19 + 0x13d4) < 0.1) && ((*(byte *)(lVar19 + 0x1484) & 1) != 0)) {
         *(uint *)(lVar19 + 0x1484) = *(uint *)(lVar19 + 0x1484) & 0xfffffffe;
-        lVar19 = _DAT_180c8ece0;
+        lVar19 = render_system_data_memory;
         iVar14 = *(int *)(param_1 + 0x18);
         if ((iVar14 != 0) && (lVar8 != 0)) {
           (**(code **)(lVar8 + 0x30))(iVar14);
         }
         (**(code **)(lVar19 + 0x58))(iVar14,0);
-        if ((iVar14 != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x18))(iVar14);
+        if ((iVar14 != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x18))(iVar14);
         }
       }
     }
@@ -485,14 +485,14 @@ LAB_1805291c0:
               (&system_error_code + (longlong)*(int *)(*(longlong *)(param_1 + 0x6e0) + 0x1478) * 8) +
              300000;
         *(int8_t *)(*(longlong *)(param_1 + 0x738) + 0x180) = 1;
-        lVar19 = _DAT_180c8ece0;
+        lVar19 = render_system_data_memory;
         iVar14 = *(int *)(param_1 + 0x18);
         if ((iVar14 != 0) && (lVar8 != 0)) {
           (**(code **)(lVar8 + 0x30))(iVar14);
         }
         (**(code **)(lVar19 + 0x58))(iVar14,2);
-        if ((iVar14 != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x18))(iVar14);
+        if ((iVar14 != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x18))(iVar14);
         }
       }
       fVar21 = *(float *)(*(longlong *)(param_1 + 0x6e0) + 0x13d4);
@@ -524,13 +524,13 @@ LAB_1805291c0:
        (10.0 <= (float)(*(longlong *)(&system_error_code + (longlong)*(int *)(lVar19 + 0x1478) * 8) -
                        *(longlong *)(lVar19 + 0x1470)) * 1e-05)) {
       if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8)
-                   + 0x48) < _DAT_180d49f60) &&
-         (FUN_1808fcb90(&system_ptr_9f60), _DAT_180d49f60 == -1)) {
+                   + 0x48) < render_system_config_memory) &&
+         (FUN_1808fcb90(&system_ptr_9f60), render_system_config_memory == -1)) {
         puStack_1b0 = &unknown_var_3456_ptr;
         uStack_198 = 0;
         puStack_1a8 = (int32_t *)0x0;
         uStack_1a0 = 0;
-        puVar12 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+        puVar12 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
         *(int8_t *)puVar12 = 0;
         puStack_1a8 = puVar12;
         uVar7 = FUN_18064e990(puVar12);
@@ -538,12 +538,12 @@ LAB_1805291c0:
         *puVar12 = 0x6c6c6559;
         *(int8_t *)(puVar12 + 1) = 0;
         uStack_1a0 = 4;
-        _DAT_180d49f64 = FUN_180571e20(&system_ptr_60c0,&puStack_1b0);
+        render_system_config_memory = FUN_180571e20(&system_ptr_60c0,&puStack_1b0);
         puStack_1b0 = &unknown_var_3456_ptr;
                     // WARNING: Subroutine does not return
         FUN_18064e900(puVar12);
       }
-      FUN_180508510(param_1,_DAT_180d49f64,0,0);
+      FUN_180508510(param_1,render_system_config_memory,0,0);
       lVar19 = *(longlong *)(param_1 + 0x20);
       fStack_1c4 = *(float *)(lVar19 + 0xc);
       fStack_1c0 = *(float *)(lVar19 + 0x10);
@@ -676,9 +676,9 @@ LAB_180529996:
         }
         else {
           if (((*(uint *)(param_1 + 0x56c) & 0x800) != 0) ||
-             (fVar17 = *(float *)(_DAT_180c86878 + 0x1bc) - *(float *)(lVar4 + 0x8e8),
-             fVar19 = *(float *)(_DAT_180c86878 + 0x1b8) - *(float *)(lVar4 + 0x8e4),
-             fVar20 = *(float *)(_DAT_180c86878 + 0x1c0) - *(float *)(lVar4 + 0x8ec),
+             (fVar17 = *(float *)(render_system_data_memory + 0x1bc) - *(float *)(lVar4 + 0x8e8),
+             fVar19 = *(float *)(render_system_data_memory + 0x1b8) - *(float *)(lVar4 + 0x8e4),
+             fVar20 = *(float *)(render_system_data_memory + 0x1c0) - *(float *)(lVar4 + 0x8ec),
              fVar19 * fVar19 + fVar17 * fVar17 + fVar20 * fVar20 <= 100.0)) {
             puVar13 = &stack0x00000008;
           }

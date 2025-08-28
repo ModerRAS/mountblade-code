@@ -144,7 +144,7 @@ void FUN_1803e67b0(longlong param_1)
   fVar3 = (float)(*(int *)(*(longlong *)(param_1 + 400) + 0x18) << 8);
   fVar4 = (float)(*(int *)(*(longlong *)(param_1 + 400) + 0x14) << 8);
   uStack_36c = 0;
-  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+  puVar1 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x70,8,3);
   *puVar1 = 0;
   puVar1[1] = 0;
   *(int16_t *)(puVar1 + 2) = 0;
@@ -546,7 +546,7 @@ LAB_1803e70db:
   else {
     iVar2 = iVar2 + 1;
     if (iVar2 != 0) {
-      lVar9 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar2,3);
+      lVar9 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar2,3);
     }
     FUN_18004b9b0(lVar9,(longlong)iVar2,&unknown_var_9680_ptr,&uStackX_18);
     FUN_1806281a0(param_2,lVar9);
@@ -692,7 +692,7 @@ LAB_1803e70db:
       else {
         iVar2 = iVar2 + 1;
         if (iVar2 != 0) {
-          lVar8 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar2,3);
+          lVar8 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar2,3);
         }
         uVar11 = FUN_18004b9b0(lVar8,(longlong)iVar2,&unknown_var_9680_ptr,&stack0x000000a0);
         FUN_1806281a0(uVar11,lVar8);
@@ -766,7 +766,7 @@ void FUN_1803e7203(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   else {
     iVar1 = iVar1 + 1;
     if (iVar1 != 0) {
-      lVar3 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar1,3);
+      lVar3 = FUN_18062b420(system_memory_pool_ptr,(longlong)iVar1,3);
     }
     FUN_18004b9b0(lVar3,(longlong)iVar1,puStack0000000000000098,&stack0x000000a0);
     FUN_1806281a0();
@@ -830,7 +830,7 @@ void FUN_1803e7220(longlong param_1,int param_2)
         if ((*(char *)(lVar7 + 0x382) != '\0') && (cVar4 = FUN_1801fcbc0(lVar7,0), cVar4 != '\0')) {
           *(int *)(param_1 + 0x180) = *(int *)(param_1 + 0x180) + 1;
         }
-        lVar5 = FUN_18062b420(_DAT_180c8ed18,0x28,*(int8_t *)(param_1 + 0x178));
+        lVar5 = FUN_18062b420(system_memory_pool_ptr,0x28,*(int8_t *)(param_1 + 0x178));
         *(int *)(lVar5 + 0x20) = iVar10;
         bVar2 = true;
         puVar3 = puVar1;

@@ -686,7 +686,7 @@ void FUN_1806b0510(uint64_t *param_1)
   (**(code **)*param_1)(param_1,0);
                     // WARNING: Could not recover jumptable at 0x0001806b0548. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*_DAT_180be0050 + 0x10))(_DAT_180be0050,param_1);
+  (**(code **)(*system_system_buffer_config + 0x10))(system_system_buffer_config,param_1);
   return;
 }
 

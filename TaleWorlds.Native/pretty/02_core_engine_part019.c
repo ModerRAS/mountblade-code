@@ -151,7 +151,7 @@ void FUN_180059820(longlong *param_1,uint64_t param_2)
       goto LAB_180059885;
     }
   }
-  lVar2 = FUN_18062b420(_DAT_180c8ed18,lVar6 << 5,(char)param_1[3]);
+  lVar2 = FUN_18062b420(system_memory_pool_ptr,lVar6 << 5,(char)param_1[3]);
   lVar3 = param_1[1];
   lVar4 = *param_1;
 LAB_180059885:
@@ -359,7 +359,7 @@ void FUN_180059bc0(void)
 {
   longlong lVar1;
   
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0x1ae8,10);
+  lVar1 = FUN_18062b420(system_memory_pool_ptr,0x1ae8,10);
   if (lVar1 == 0) {
     return;
   }

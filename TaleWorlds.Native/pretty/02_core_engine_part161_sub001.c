@@ -32,7 +32,7 @@ void FUN_18014ae70(longlong param_1,longlong *param_2,longlong param_3,longlong 
       lVar3 = 0;
     }
     else {
-      lVar3 = FUN_18062b420(_DAT_180c8ed18,uVar5 * 0x30,(char)unaff_RDI[3]);
+      lVar3 = FUN_18062b420(system_memory_pool_ptr,uVar5 * 0x30,(char)unaff_RDI[3]);
     }
     if (lVar2 != lVar1) {
                     // WARNING: Subroutine does not return
@@ -98,7 +98,7 @@ void FUN_18014aec1(void)
     lVar1 = 0;
   }
   else {
-    lVar1 = FUN_18062b420(_DAT_180c8ed18,unaff_RBX * 0x30,(char)unaff_RDI[3]);
+    lVar1 = FUN_18062b420(system_memory_pool_ptr,unaff_RBX * 0x30,(char)unaff_RDI[3]);
   }
   if (unaff_R14 != unaff_R15) {
                     // WARNING: Subroutine does not return

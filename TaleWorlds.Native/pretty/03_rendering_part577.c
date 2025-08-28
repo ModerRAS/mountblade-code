@@ -265,7 +265,7 @@ void FUN_180583b80(longlong *param_1,float param_2)
   cVar14 = '\0';
   acStack_748[0] = '\0';
   fStack_734 = param_2;
-  if (((0.0 < param_2) && (_DAT_180c92514 != 1)) && (_DAT_180c92514 != 4)) {
+  if (((0.0 < param_2) && (system_status_flag != 1)) && (system_status_flag != 4)) {
     if ((*(byte *)(param_1[2] + 0x87b714) & 1) != 0) {
       FUN_180581090();
     }
@@ -458,7 +458,7 @@ LAB_180583e24:
                              fStack_728 * 3.4028235e+38;
                 iVar10 = *(int *)(*(longlong *)(lVar17 + 0x590) + 0x2498);
                 if (((iVar10 == -1) ||
-                    (*(int *)((longlong)iVar10 * 0x68 + 0x58 + _DAT_180c96150) != 2)) ||
+                    (*(int *)((longlong)iVar10 * 0x68 + 0x58 + render_system_memory) != 2)) ||
                    (*(longlong *)(lVar17 + 0x288) == 0)) {
                   iVar10 = -1;
                 }
@@ -609,14 +609,14 @@ LAB_180583e24:
             }
             else {
               lVar17 = *(longlong *)
-                        (_DAT_180c91fe0 +
+                        (render_system_memory +
                         (longlong)
                         *(int *)((longlong)*(int *)(param_1[0x1e] + 0x34) * 0x68 +
-                                 *(longlong *)(_DAT_180c8aa00 + 0x38) + 100) * 8);
+                                 *(longlong *)(render_system_data_memory + 0x38) + 100) * 8);
               piVar18 = (int *)(lVar17 + (longlong)(int)pfVar13[6] * 0x28);
               iVar10 = *piVar18;
               if (iVar10 < 0) {
-                piVar18 = (int *)((longlong)*(int *)(*(longlong *)(_DAT_180c8aa00 + 0x28) + 100) *
+                piVar18 = (int *)((longlong)*(int *)(*(longlong *)(render_system_data_memory + 0x28) + 100) *
                                   0x28 + lVar17);
                 iVar10 = *piVar18;
               }

@@ -107,14 +107,14 @@ void FUN_180584d80(longlong param_1,float *param_2,int32_t param_3,int32_t param
   iVar9 = 0;
   if (((-1 < *(int *)(param_1 + 0x2a0)) &&
       (iVar9 = *(int *)((longlong)*(int *)(param_1 + 0x2a0) * 0xa60 + 0x30b8 +
-                       *(longlong *)(param_1 + 0x10)), iVar9 != 0)) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x30))(iVar9);
+                       *(longlong *)(param_1 + 0x10)), iVar9 != 0)) && (system_cache_buffer != 0)) {
+    (**(code **)(system_cache_buffer + 0x30))(iVar9);
   }
   iVar8 = 0;
   if (((param_2[10] != -NAN) && (-1 < (int)param_2[0xd])) &&
      ((iVar8 = *(int *)((longlong)(int)param_2[0xd] * 0xa60 + 0x30b8 + *(longlong *)(param_1 + 0x10)
-                       ), iVar8 != 0 && (_DAT_180c8f008 != 0)))) {
-    (**(code **)(_DAT_180c8f008 + 0x30))(iVar8);
+                       ), iVar8 != 0 && (system_cache_buffer != 0)))) {
+    (**(code **)(system_cache_buffer + 0x30))(iVar8);
   }
   uVar2 = 0xff;
   if ((-1 < (int)param_2[0xd]) && (*(char *)(param_2 + 0xf) != -1)) {
@@ -340,7 +340,7 @@ void FUN_180584d80(longlong param_1,float *param_2,int32_t param_3,int32_t param
   else {
     uStack_1e0 = (**(code **)(*plVar6 + 8))(plVar6);
   }
-  lVar5 = _DAT_180c8ece0;
+  lVar5 = render_system_data_memory;
   uVar2 = *(int8_t *)(param_1 + 0x2e8);
   uStack_1e8 = plVar6;
   if (*(char *)(param_1 + 0x3d2) == '\0') {
@@ -405,11 +405,11 @@ void FUN_180584d80(longlong param_1,float *param_2,int32_t param_3,int32_t param
                      &uStack_1d8,&uStack_1e8,&uStack_1c8,&fStack_1b8,&uStack_148,&uStack_198,uVar2,
                      iVar9,iVar8,&uStack_1a8);
   *param_9 = uVar2;
-  if ((iVar8 != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))(iVar8);
+  if ((iVar8 != 0) && (system_cache_buffer != 0)) {
+    (**(code **)(system_cache_buffer + 0x18))(iVar8);
   }
-  if ((iVar9 != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))(iVar9);
+  if ((iVar9 != 0) && (system_cache_buffer != 0)) {
+    (**(code **)(system_cache_buffer + 0x18))(iVar9);
   }
   return;
 }
@@ -656,7 +656,7 @@ uint64_t * FUN_180585c10(uint64_t *param_1)
   param_1[0x1c] = 0;
   FUN_180544dc0(param_1 + 0x20);
   *(int32_t *)(param_1 + 0x53) = 1;
-  param_1[0x52] = _DAT_180c8ed38;
+  param_1[0x52] = render_system_data_memory;
   *(int32_t *)(param_1 + 0x5e) = 0xffffffff;
   *(int32_t *)((longlong)param_1 + 0x2fc) = 0xffff;
   *(int32_t *)((longlong)param_1 + 0x2ec) = 0x3f800000;

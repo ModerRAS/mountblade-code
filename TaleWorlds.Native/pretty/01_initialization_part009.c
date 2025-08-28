@@ -221,7 +221,7 @@ void InitializationSystem_ConfigRegistrationManager1(void)
     strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &unknown_var_7304_ptr, register_value, 0xfffffffffffffffe);
     
     // 注册配置到系统
-    _DAT_180c91f68 = FUN_180623800(&config_base);
+    init_system_string = FUN_180623800(&config_base);
     
     return;
 }
@@ -244,8 +244,8 @@ int InitializationSystem_GlobalDataInitializer1(void)
     uint64_t register_value;
     
     // 初始化全局数据指针
-    _DAT_180bf91b0 = &unknown_var_3480_ptr;
-    _DAT_180bf91b8 = &system_memory_91c8;
+    init_system_control_string = &unknown_var_3480_ptr;
+    init_system_control_string = &system_memory_91c8;
     
     // 返回初始化状态
     return 0;
@@ -863,7 +863,7 @@ void InitializationSystem_RegistrySearchAndInsert11(void)
     strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &unknown_var_4992_ptr, register_value, 0xfffffffffffffffe);
     
     // 注册配置到系统
-    _DAT_180c91f6c = FUN_180623800(&config_base);
+    init_system_string = FUN_180623800(&config_base);
     
     return;
 }
@@ -894,7 +894,7 @@ void InitializationSystem_RegistrySearchAndInsert12(void)
     strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &unknown_var_6248_ptr, register_value, 0xfffffffffffffffe);
     
     // 注册配置到系统
-    _DAT_180c91fcc = FUN_180623800(&config_base);
+    init_system_string = FUN_180623800(&config_base);
     
     return;
 }
@@ -1317,8 +1317,8 @@ int InitializationSystem_GlobalDataInitializer2(void)
     uint64_t register_value;
     
     // 初始化全局数据指针
-    _DAT_180bfa350 = &unknown_var_3432_ptr;
-    _DAT_180bfa358 = &system_memory_a368;
+    init_system_control_string = &unknown_var_3432_ptr;
+    init_system_control_string = &system_memory_a368;
     
     // 返回初始化状态
     return 0;

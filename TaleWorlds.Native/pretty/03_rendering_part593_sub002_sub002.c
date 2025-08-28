@@ -232,7 +232,7 @@ LAB_180592490:
         if ((*(float *)(lVar12 + 0x88) <= 0.0 && *(float *)(lVar12 + 0x88) != 0.0) &&
            (0.2 < (float)uStack_190)) {
           if ((fVar22 <= 1.0) ||
-             (((_DAT_180c92514 == 1 || (_DAT_180c92514 == 4)) && (*(int *)(param_4 + 0x178) != 2))))
+             (((system_status_flag == 1 || (system_status_flag == 4)) && (*(int *)(param_4 + 0x178) != 2))))
           {
             uStack_1d0 = CONCAT44(uStack_1d0._4_4_,(float)uStack_178);
             if ((-0.01 < *(float *)(param_1 + 0x170)) && (*(float *)(param_1 + 0x170) < 0.01)) {
@@ -314,7 +314,7 @@ LAB_180592690:
     if (fVar22 <= 0.5) {
       if ((-1.5 <= fVar22) || (cVar10 == '\x01')) {
         cVar10 = func_0x00018057c520(&uStack_1a8,cVar11);
-        fVar27 = _DAT_180c91040;
+        fVar27 = render_system_config;
         fVar26 = (float)uStack_190;
         if (cVar10 == '\0') {
           if (uStack_178._4_1_ == '\x02') {
@@ -323,7 +323,7 @@ LAB_180592690:
           else {
             uVar18 = 0;
           }
-          if ((((uVar18 & 0x40) != 0) || (_DAT_180c91040 <= (float)uStack_190)) ||
+          if ((((uVar18 & 0x40) != 0) || (render_system_config <= (float)uStack_190)) ||
              ((float)uStack_178 < fStack_148 - 0.01)) {
             cVar10 = '\0';
           }
@@ -725,7 +725,7 @@ LAB_1805929c8:
     }
     if ((((float)uStackX_18 < -1.0) &&
         (*(float *)(param_1 + 0x204) <= -1.0 && *(float *)(param_1 + 0x204) != -1.0)) &&
-       ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+       ((system_status_flag != 1 && (system_status_flag != 4)))) {
       *(float *)(param_1 + 0xd8) = -(float)uStackX_18;
       *(uint *)(param_1 + 8) = *(uint *)(param_1 + 8) | 0x800000;
     }
@@ -782,7 +782,7 @@ LAB_1805929c8:
          ((((6.5 < uStackX_18._4_4_ && (0.45 <= fVar25)) ||
            ((3.5 < uStackX_18._4_4_ && ((uStackX_8._4_4_ < 3.0 && (7.0 < fVar22)))))) &&
           (((*(uint *)(param_1 + 8) >> 8 & 1) != 0 &&
-           ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))))))) {
+           ((system_status_flag != 1 && (system_status_flag != 4)))))))) {
         uStackX_8 = 0;
         *(int32_t *)(param_1 + 0x160) = 0;
         if ((uStackX_18._4_4_ < 9.5) || (fVar25 < 0.9)) {

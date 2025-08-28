@@ -299,10 +299,10 @@ void FUN_1800df927(uint64_t param_1,code *param_2)
   int32_t uStack000000000000002c;
   
   lVar14 = (*param_2)();
-  lVar15 = _DAT_180c86938;
+  lVar15 = system_message_buffer;
   lVar16 = SYSTEM_STATE_MANAGER;
   if (lVar14 == 0) {
-    *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d5c) = 0x43960000;
+    *(int32_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1d5c) = 0x43960000;
     lVar14 = *(longlong *)(lVar15 + 0x1cd8);
     *(uint64_t *)(lVar14 + 0x1d70) = 0;
     *(uint64_t *)(lVar14 + 0x1d78) = 0;
@@ -312,16 +312,16 @@ void FUN_1800df927(uint64_t param_1,code *param_2)
     if (pcVar10 != unaff_R13) {
       (*pcVar10)();
     }
-    lVar15 = _DAT_180c86938;
+    lVar15 = system_message_buffer;
     lVar16 = SYSTEM_STATE_MANAGER;
-    *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d5c) = 0x41f00000;
+    *(int32_t *)(*(longlong *)(system_message_buffer + 0x1cd8) + 0x1d5c) = 0x41f00000;
     pcVar10 = *(code **)(**(longlong **)(unaff_RSI + 0x3580) + 0xb8);
     if (pcVar10 == unaff_R13) {
       lVar14 = (*(longlong **)(unaff_RSI + 0x3580))[0xda];
     }
     else {
       lVar14 = (*pcVar10)();
-      lVar15 = _DAT_180c86938;
+      lVar15 = system_message_buffer;
       lVar16 = SYSTEM_STATE_MANAGER;
     }
     uVar12 = *(uint64_t *)(lVar14 + 0x3f44);
@@ -334,7 +334,7 @@ void FUN_1800df927(uint64_t param_1,code *param_2)
     }
     else {
       lVar14 = (*pcVar10)();
-      lVar15 = _DAT_180c86938;
+      lVar15 = system_message_buffer;
       lVar16 = SYSTEM_STATE_MANAGER;
     }
     *(int32_t *)(*(longlong *)(lVar15 + 0x1cd8) + 0x1d7c) = *(int32_t *)(lVar14 + 0x3f38);

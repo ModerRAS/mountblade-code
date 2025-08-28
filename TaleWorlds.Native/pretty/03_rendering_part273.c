@@ -55,7 +55,7 @@ void FUN_180419ecf(longlong param_1,uint param_2,longlong *param_3)
     pfVar7 = pfVar4;
     pfVar3 = pfVar8;
     if (uVar11 != 0) {
-      pfVar3 = (float *)FUN_18062b420(_DAT_180c8ed18,uVar11 * 8,(char)param_3[3]);
+      pfVar3 = (float *)FUN_18062b420(system_memory_pool_ptr,uVar11 * 8,(char)param_3[3]);
       pfVar4 = (float *)param_3[1];
       pfVar7 = (float *)*param_3;
     }
@@ -112,7 +112,7 @@ void FUN_180419ecf(longlong param_1,uint param_2,longlong *param_3)
           if (lVar10 == 0) {
             lVar10 = 1;
 LAB_18041a160:
-            pfVar5 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar10 * 8,(char)param_3[3]);
+            pfVar5 = (float *)FUN_18062b420(system_memory_pool_ptr,lVar10 * 8,(char)param_3[3]);
             pfVar9 = (float *)param_3[1];
             pfVar7 = (float *)*param_3;
             pfVar3 = pfVar5;
@@ -272,7 +272,7 @@ void FUN_180419ed6(longlong param_1,uint param_2)
     pfVar7 = pfVar4;
     pfVar3 = pfVar8;
     if (uVar11 != 0) {
-      pfVar3 = (float *)FUN_18062b420(_DAT_180c8ed18,uVar11 * 8,(char)unaff_RDI[3]);
+      pfVar3 = (float *)FUN_18062b420(system_memory_pool_ptr,uVar11 * 8,(char)unaff_RDI[3]);
       pfVar4 = (float *)unaff_RDI[1];
       pfVar7 = (float *)*unaff_RDI;
     }
@@ -329,7 +329,7 @@ void FUN_180419ed6(longlong param_1,uint param_2)
           if (lVar10 == 0) {
             lVar10 = 1;
 LAB_18041a160:
-            pfVar5 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar10 * 8,(char)unaff_RDI[3]);
+            pfVar5 = (float *)FUN_18062b420(system_memory_pool_ptr,lVar10 * 8,(char)unaff_RDI[3]);
             pfVar9 = (float *)unaff_RDI[1];
             pfVar7 = (float *)*unaff_RDI;
             pfVar3 = pfVar5;
@@ -496,7 +496,7 @@ void FUN_180419fec(void)
         if (lVar3 == 0) {
           lVar3 = 1;
 LAB_18041a160:
-          pfVar2 = (float *)FUN_18062b420(_DAT_180c8ed18,lVar3 * 8,(char)unaff_RDI[3]);
+          pfVar2 = (float *)FUN_18062b420(system_memory_pool_ptr,lVar3 * 8,(char)unaff_RDI[3]);
           unaff_RBX = (float *)unaff_RDI[1];
           pfVar5 = (float *)*unaff_RDI;
           pfVar4 = pfVar2;

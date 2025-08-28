@@ -299,7 +299,7 @@ void FUN_180595ba0(uint64_t param_1,float param_2,uint64_t *param_3,longlong par
   }
   fVar2 = fVar3;
   if ((fVar3 < *(float *)(param_5 + 0x74)) &&
-     (fVar2 = *(float *)(param_5 + 0x74) - _DAT_180c963cc * param_2, fVar2 <= fVar3)) {
+     (fVar2 = *(float *)(param_5 + 0x74) - render_system_config * param_2, fVar2 <= fVar3)) {
     fVar2 = fVar3;
   }
   *(float *)(param_5 + 0x74) = fVar2;
@@ -379,9 +379,9 @@ void FUN_180595bc7(uint64_t param_1,uint64_t param_2,uint64_t *param_3,longlong 
   *(int32_t *)(in_RAX + -0x6c) = unaff_XMM11_Dd;
   fVar4 = 1.0;
   uStack0000000000000110 = 0x3f800000;
-  uVar2 = _DAT_180c963b8;
+  uVar2 = render_system_config;
   if ((*(int *)(param_4 + 0x78) == 0x1a) ||
-     (uVar2 = _DAT_180c963bc, *(int *)(param_4 + 0x78) == 0x1b)) {
+     (uVar2 = render_system_config, *(int *)(param_4 + 0x78) == 0x1b)) {
     uStack0000000000000110 = uVar2;
   }
   if ((*(uint *)(param_4 + 0xe0) & 0x102) == 2) {
@@ -411,7 +411,7 @@ void FUN_180595bc7(uint64_t param_1,uint64_t param_2,uint64_t *param_3,longlong 
   }
   fVar3 = fVar4;
   if ((fVar4 < *(float *)(unaff_RBX + 0x74)) &&
-     (fVar3 = *(float *)(unaff_RBX + 0x74) - _DAT_180c963cc * in_XMM2_Da, fVar3 <= fVar4)) {
+     (fVar3 = *(float *)(unaff_RBX + 0x74) - render_system_config * in_XMM2_Da, fVar3 <= fVar4)) {
     fVar3 = fVar4;
   }
   *(float *)(unaff_RBX + 0x74) = fVar3;
@@ -489,9 +489,9 @@ void FUN_180595bcb(uint64_t param_1,uint64_t param_2,float param_3,longlong para
   *(int32_t *)(in_RAX + -0x6c) = unaff_XMM11_Dd;
   fVar4 = 1.0;
   uStack0000000000000110 = 0x3f800000;
-  uVar2 = _DAT_180c963b8;
+  uVar2 = render_system_config;
   if ((*(int *)(param_4 + 0x78) == 0x1a) ||
-     (uVar2 = _DAT_180c963bc, *(int *)(param_4 + 0x78) == 0x1b)) {
+     (uVar2 = render_system_config, *(int *)(param_4 + 0x78) == 0x1b)) {
     uStack0000000000000110 = uVar2;
   }
   if ((*(uint *)(param_4 + 0xe0) & 0x102) == 2) {
@@ -521,7 +521,7 @@ void FUN_180595bcb(uint64_t param_1,uint64_t param_2,float param_3,longlong para
   }
   fVar3 = fVar4;
   if ((fVar4 < *(float *)(unaff_RBX + 0x74)) &&
-     (fVar3 = *(float *)(unaff_RBX + 0x74) - _DAT_180c963cc * param_3, fVar3 <= fVar4)) {
+     (fVar3 = *(float *)(unaff_RBX + 0x74) - render_system_config * param_3, fVar3 <= fVar4)) {
     fVar3 = fVar4;
   }
   *(float *)(unaff_RBX + 0x74) = fVar3;
@@ -583,7 +583,7 @@ void FUN_180595cf1(uint64_t param_1,uint64_t param_2,float param_3,longlong para
   }
   fVar2 = unaff_XMM13_Da;
   if ((unaff_XMM13_Da < *(float *)(unaff_RBX + 0x74)) &&
-     (fVar2 = *(float *)(unaff_RBX + 0x74) - _DAT_180c963cc * param_3, fVar2 <= unaff_XMM13_Da)) {
+     (fVar2 = *(float *)(unaff_RBX + 0x74) - render_system_config * param_3, fVar2 <= unaff_XMM13_Da)) {
     fVar2 = unaff_XMM13_Da;
   }
   *(float *)(unaff_RBX + 0x74) = fVar2;
@@ -719,7 +719,7 @@ void FUN_180596283(uint64_t param_1,float param_2)
     if (fVar2 <= 0.001) {
       fVar2 = 0.001;
     }
-    unaff_RBX[0x13] = (uint)(fVar2 * _DAT_180c963b4);
+    unaff_RBX[0x13] = (uint)(fVar2 * render_system_config);
   }
   fVar2 = *(float *)(unaff_RDI + 0xe8);
   if (unaff_XMM14_Da < fVar2) {
@@ -817,7 +817,7 @@ void FUN_18059632d(void)
     if (fVar3 <= 0.001) {
       fVar3 = 0.001;
     }
-    unaff_RBX[0x13] = (uint)(fVar3 * _DAT_180c963b4);
+    unaff_RBX[0x13] = (uint)(fVar3 * render_system_config);
   }
   fVar3 = *(float *)(unaff_RDI + 0xe8);
   if (unaff_XMM14_Da < fVar3) {
@@ -911,7 +911,7 @@ void FUN_180596345(void)
     if (fVar3 <= 0.001) {
       fVar3 = 0.001;
     }
-    unaff_RBX[0x13] = (uint)(fVar3 * _DAT_180c963b4);
+    unaff_RBX[0x13] = (uint)(fVar3 * render_system_config);
   }
   fVar3 = *(float *)(unaff_RDI + 0xe8);
   if (unaff_XMM14_Da < fVar3) {
@@ -998,7 +998,7 @@ void FUN_180596386(uint param_1,char param_2,uint64_t param_3,float param_4)
     if (fVar2 <= 0.001) {
       fVar2 = 0.001;
     }
-    *(float *)(unaff_RBX + 0x4c) = fVar2 * _DAT_180c963b4;
+    *(float *)(unaff_RBX + 0x4c) = fVar2 * render_system_config;
   }
   fVar2 = *(float *)(unaff_RDI + 0xe8);
   if (unaff_XMM14_Da < fVar2) {

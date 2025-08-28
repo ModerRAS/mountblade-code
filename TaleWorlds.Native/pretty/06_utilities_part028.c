@@ -206,11 +206,11 @@ void FUN_180942750(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     uint64_t *puVar2;
     
     // 调用系统初始化函数
-    FUN_18005d260(&system_memory_aec0, _DAT_180bfaed0, param_3, param_4, 0xfffffffffffffffe);
+    FUN_18005d260(&system_memory_aec0, system_control_config_data_aed0, param_3, param_4, 0xfffffffffffffffe);
     
     // 初始化全局指针数组
-    puVar1 = _DAT_180bfaea8;
-    for (puVar2 = _DAT_180bfaea0; puVar2 != puVar1; puVar2 = puVar2 + 7) {
+    puVar1 = system_control_config_data_aea8;
+    for (puVar2 = system_control_config_data_aea0; puVar2 != puVar1; puVar2 = puVar2 + 7) {
         *puVar2 = &unknown_var_3456_ptr;
         if (puVar2[1] != 0) {
             // 错误处理：不返回的函数调用
@@ -222,7 +222,7 @@ void FUN_180942750(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     }
     
     // 验证初始化结果
-    if (_DAT_180bfaea0 != (uint64_t *)0x0) {
+    if (system_control_config_data_aea0 != (uint64_t *)0x0) {
         // 初始化失败处理
         FUN_18064e900();
     }
@@ -241,7 +241,7 @@ void FUN_180942750(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
 void FUN_180942790(void)
 {
     // 设置全局清理标志
-    _DAT_180c92050 = &unknown_var_720_ptr;
+    system_config_data_2050 = &unknown_var_720_ptr;
     
     // 销毁互斥量（可能不返回）
     _Mtx_destroy_in_situ();
@@ -259,7 +259,7 @@ void FUN_180942790(void)
 void FUN_1809427d0(void)
 {
     // 重置全局状态指针
-    _DAT_180bfaef0 = &unknown_var_720_ptr;
+    system_control_config_data_aef0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -273,7 +273,7 @@ void FUN_1809427d0(void)
 void FUN_1809427f0(void)
 {
     // 设置系统就绪标志
-    _DAT_180bfb310 = &unknown_var_720_ptr;
+    system_control_config_data_b310 = &unknown_var_720_ptr;
     return;
 }
 
@@ -287,7 +287,7 @@ void FUN_1809427f0(void)
 void FUN_180942810(void)
 {
     // 设置系统配置标志
-    _DAT_180bfb730 = &unknown_var_720_ptr;
+    system_control_config_data_b730 = &unknown_var_720_ptr;
     return;
 }
 
@@ -301,7 +301,7 @@ void FUN_180942810(void)
 void FUN_180942830(void)
 {
     // 设置系统验证标志
-    _DAT_180d499d0 = &unknown_var_720_ptr;
+    system_config_config_data_99d0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -315,7 +315,7 @@ void FUN_180942830(void)
 void FUN_180942850(void)
 {
     // 设置启动序列标志
-    _DAT_180d49bf0 = &unknown_var_720_ptr;
+    system_config_config_data_9bf0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -336,11 +336,11 @@ void FUN_180942890(void)
     longlong *plVar5;
     
     // 获取系统上下文
-    plVar5 = _DAT_180c92478;
-    if (_DAT_180c92478 != (longlong *)0x0) {
+    plVar5 = system_config_data_2478;
+    if (system_config_data_2478 != (longlong *)0x0) {
         // 加锁保护
         LOCK();
-        plVar1 = _DAT_180c92478 + 1;
+        plVar1 = system_config_data_2478 + 1;
         lVar4 = *plVar1;
         *(int *)plVar1 = (int)*plVar1 + -1;
         UNLOCK();
@@ -433,11 +433,11 @@ void FUN_1809428e0(void)
     longlong *plVar5;
     
     // 获取内存池上下文
-    plVar5 = _DAT_180c92498;
-    if (_DAT_180c92498 != (longlong *)0x0) {
+    plVar5 = system_config_data_2498;
+    if (system_config_data_2498 != (longlong *)0x0) {
         // 加锁保护初始化过程
         LOCK();
-        plVar1 = _DAT_180c92498 + 1;
+        plVar1 = system_config_data_2498 + 1;
         lVar4 = *plVar1;
         *(int *)plVar1 = (int)*plVar1 + -1;
         UNLOCK();
@@ -529,11 +529,11 @@ void FUN_180942930(void)
     longlong *plVar5;
     
     // 获取内存管理器上下文
-    plVar5 = _DAT_180c92488;
-    if (_DAT_180c92488 != (longlong *)0x0) {
+    plVar5 = system_config_data_2488;
+    if (system_config_data_2488 != (longlong *)0x0) {
         // 加锁保护重置过程
         LOCK();
-        plVar1 = _DAT_180c92488 + 1;
+        plVar1 = system_config_data_2488 + 1;
         lVar4 = *plVar1;
         *(int *)plVar1 = (int)*plVar1 + -1;
         UNLOCK();
@@ -622,16 +622,16 @@ void FUN_180942980(void)
     longlong lVar2;
     
     // 检查内存池大小
-    if (0xf < _DAT_180bfc188) {
+    if (0xf < system_control_config_data_c188) {
         lVar1 = CONCAT71(uRam0000000180bfc171, system_memory_c170);
         lVar2 = lVar1;
         
         // 验证内存块大小
-        if (0xfff < _DAT_180bfc188 + 1) {
+        if (0xfff < system_control_config_data_c188 + 1) {
             lVar2 = *(longlong *)(lVar1 + -8);
             if (0x1f < (lVar1 - lVar2) - 8U) {
                 // 内存块验证失败
-                _invalid_parameter_noinfo_noreturn(lVar1 - lVar2, _DAT_180bfc188 + 0x28);
+                _invalid_parameter_noinfo_noreturn(lVar1 - lVar2, system_control_config_data_c188 + 0x28);
             }
         }
         
@@ -640,8 +640,8 @@ void FUN_180942980(void)
     }
     
     // 重置内存管理器状态
-    _DAT_180bfc180 = 0;
-    _DAT_180bfc188 = 0xf;
+    system_control_config_data_c180 = 0;
+    system_control_config_data_c188 = 0xf;
 }
 
 /**
@@ -748,7 +748,7 @@ void FUN_180942a40(void)
 void FUN_180942a60(void)
 {
     // 设置全局变量
-    _DAT_180bf6048 = &unknown_var_720_ptr;
+    system_control_config_data_6048 = &unknown_var_720_ptr;
     return;
 }
 
@@ -762,7 +762,7 @@ void FUN_180942a60(void)
 void FUN_180942a80(void)
 {
     // 设置全局变量
-    _DAT_180bf6498 = &unknown_var_720_ptr;
+    system_control_config_data_6498 = &unknown_var_720_ptr;
     return;
 }
 
@@ -783,10 +783,10 @@ void FUN_180942aa0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     uint64_t *puVar1;
     
     // 获取系统参数上下文
-    puVar1 = _DAT_180d49e18;
-    if (_DAT_180d49e18 != (uint64_t *)0x0) {
+    puVar1 = system_config_config_data_9e18;
+    if (system_config_config_data_9e18 != (uint64_t *)0x0) {
         // 处理系统参数
-        FUN_1804a9b80(param_1, *_DAT_180d49e18, param_3, param_4, 0xfffffffffffffffe);
+        FUN_1804a9b80(param_1, *system_config_config_data_9e18, param_3, param_4, 0xfffffffffffffffe);
         // 错误处理（不返回）
         FUN_18064e900(puVar1);
     }
@@ -819,8 +819,8 @@ void FUN_180942b80(void)
 {
     // 检查同步状态
     if (system_memory_6008 != '\0') {
-        FUN_180552e70(_DAT_180c95ff0);
-        _DAT_180c95ff0 = 0;
+        FUN_180552e70(system_config_data_5ff0);
+        system_config_data_5ff0 = 0;
     }
 }
 
@@ -835,11 +835,11 @@ void FUN_180942bb0(void)
 {
     // 检查同步状态
     if (system_memory_6028 != '\0') {
-        if (_DAT_180c96010 != 0) {
+        if (system_config_data_6010 != 0) {
             // 同步验证失败
             FUN_18064e900();
         }
-        _DAT_180c96010 = 0;
+        system_config_data_6010 = 0;
     }
 }
 
@@ -854,8 +854,8 @@ void FUN_180942bf0(void)
 {
     // 检查同步状态
     if (system_memory_6048 != '\0') {
-        FUN_180555430(_DAT_180c96030);
-        _DAT_180c96030 = 0;
+        FUN_180555430(system_config_data_6030);
+        system_config_data_6030 = 0;
     }
 }
 
@@ -870,8 +870,8 @@ void FUN_180942c20(void)
 {
     // 检查资源状态
     if (system_memory_6068 != '\0') {
-        FUN_180555430(_DAT_180c96050);
-        _DAT_180c96050 = 0;
+        FUN_180555430(system_config_data_6050);
+        system_config_data_6050 = 0;
     }
 }
 
@@ -887,8 +887,8 @@ void FUN_180942c50(void)
     // 检查内存状态
     if (system_memory_6098 != '\0') {
         FUN_180057830();
-        if (_DAT_180c96070 != (longlong *)0x0) {
-            (**(code **)(*_DAT_180c96070 + 0x38))();
+        if (system_config_data_6070 != (longlong *)0x0) {
+            (**(code **)(*system_config_data_6070 + 0x38))();
         }
     }
 }
@@ -904,8 +904,8 @@ void FUN_180942cb0(void)
 {
     // 检查对象状态
     if (system_memory_60b8 != '\0') {
-        FUN_18055a350(_DAT_180c960a0);
-        _DAT_180c960a0 = 0;
+        FUN_18055a350(system_config_data_60a0);
+        system_config_data_60a0 = 0;
     }
 }
 
@@ -937,17 +937,17 @@ void FUN_180942d30(void)
     longlong lVar1;
     
     // 获取清理上下文
-    lVar1 = _DAT_180c96138;
+    lVar1 = system_config_data_6138;
     if (system_memory_6140 != '\0') {
-        if (_DAT_180c96120 != 0) {
+        if (system_config_data_6120 != 0) {
             // 清理验证失败
             FUN_18064e900();
         }
-        _DAT_180c96120 = 0;
+        system_config_data_6120 = 0;
         
         // 执行清理操作
-        if (_DAT_180c96138 != 0) {
-            FUN_1808fc8a8(_DAT_180c96138 + 0x360, 0xcc8, 8, FUN_1804aa030, 0xfffffffffffffffe);
+        if (system_config_data_6138 != 0) {
+            FUN_1808fc8a8(system_config_data_6138 + 0x360, 0xcc8, 8, FUN_1804aa030, 0xfffffffffffffffe);
             _Mtx_destroy_in_situ();
             _Cnd_destroy_in_situ();
             FUN_1804a9f00(lVar1 + 0x60);
@@ -955,7 +955,7 @@ void FUN_180942d30(void)
             // 清理完成
             FUN_18064e900(lVar1);
         }
-        _DAT_180c96138 = 0;
+        system_config_data_6138 = 0;
     }
 }
 
@@ -987,19 +987,19 @@ void FUN_180942e70(void)
     longlong *plVar1;
     
     // 获取线程上下文
-    plVar1 = _DAT_180c95f18;
+    plVar1 = system_config_data_5f18;
     if (system_memory_5f28 != '\0') {
-        _DAT_180c95f20 = 0xffffffff;
-        _DAT_180c95f18 = (longlong *)0x0;
+        system_config_data_5f20 = 0xffffffff;
+        system_config_data_5f18 = (longlong *)0x0;
         
         // 清理线程资源
         if (plVar1 != (longlong *)0x0) {
             (**(code **)(*plVar1 + 0x38))();
         }
-        if (_DAT_180c95f18 != (longlong *)0x0) {
-            (**(code **)(*_DAT_180c95f18 + 0x38))();
+        if (system_config_data_5f18 != (longlong *)0x0) {
+            (**(code **)(*system_config_data_5f18 + 0x38))();
         }
-        if (_DAT_180c95ef8 != 0) {
+        if (system_config_data_5ef8 != 0) {
             // 线程清理失败
             FUN_18064e900();
         }
@@ -1017,7 +1017,7 @@ void FUN_180942f00(void)
 {
     // 检查资源状态
     if (system_memory_5fe8 != '\0') {
-        if (_DAT_180c95fc8 != 0) {
+        if (system_config_data_5fc8 != 0) {
             // 资源释放失败
             FUN_18064e900();
         }
@@ -1049,7 +1049,7 @@ void FUN_180942f50(void)
 void FUN_180942fa0(void)
 {
     // 设置系统状态
-    _DAT_180bf64f8 = &unknown_var_720_ptr;
+    system_control_config_data_64f8 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1063,7 +1063,7 @@ void FUN_180942fa0(void)
 void FUN_180942fc0(void)
 {
     // 设置状态验证标志
-    _DAT_180bf6558 = &unknown_var_720_ptr;
+    system_control_config_data_6558 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1119,7 +1119,7 @@ void FUN_180943070(void)
 void FUN_180943090(void)
 {
     // 保存系统状态
-    _DAT_180d49f80 = &unknown_var_720_ptr;
+    system_config_config_data_9f80 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1133,7 +1133,7 @@ void FUN_180943090(void)
 void FUN_1809430b0(void)
 {
     // 加载系统状态
-    _DAT_180d49fe0 = &unknown_var_720_ptr;
+    system_config_config_data_9fe0 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1147,14 +1147,14 @@ void FUN_1809430b0(void)
 void FUN_1809430e0(void)
 {
     // 管理系统状态
-    _DAT_180d4a068 = &unknown_var_3456_ptr;
-    if (_DAT_180d4a070 != 0) {
+    system_config_config_data_a068 = &unknown_var_3456_ptr;
+    if (system_config_config_data_a070 != 0) {
         // 状态管理失败
         FUN_18064e900();
     }
-    _DAT_180d4a070 = 0;
-    _DAT_180d4a080 = 0;
-    _DAT_180d4a068 = &unknown_var_720_ptr;
+    system_config_config_data_a070 = 0;
+    system_config_config_data_a080 = 0;
+    system_config_config_data_a068 = &unknown_var_720_ptr;
     return;
 }
 
@@ -1203,10 +1203,10 @@ void FUN_180943180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     uint64_t *puVar1;
     
     // 获取数据上下文
-    puVar1 = _DAT_180c967a0;
-    if (_DAT_180c967a0 != (uint64_t *)0x0) {
+    puVar1 = system_config_data_67a0;
+    if (system_config_data_67a0 != (uint64_t *)0x0) {
         // 处理系统数据
-        FUN_180651560(&system_memory_6790, *_DAT_180c967a0, param_3, param_4, 0xfffffffffffffffe);
+        FUN_180651560(&system_memory_6790, *system_config_data_67a0, param_3, param_4, 0xfffffffffffffffe);
         FUN_18063cfe0(puVar1 + 5);
         // 数据处理完成
         FUN_18064e900(puVar1);
@@ -1257,13 +1257,13 @@ void FUN_180943200(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     uint64_t *puVar1;
     
     // 获取线程本地存储上下文
-    puVar1 = _DAT_180c967f0;
-    if (_DAT_180c967f0 == (uint64_t *)0x0) {
+    puVar1 = system_config_data_67f0;
+    if (system_config_data_67f0 == (uint64_t *)0x0) {
         return;
     }
     
     // 清理线程本地存储
-    FUN_180657620(&system_memory_67e0, *_DAT_180c967f0, param_3, param_4, 0xfffffffffffffffe);
+    FUN_180657620(&system_memory_67e0, *system_config_data_67f0, param_3, param_4, 0xfffffffffffffffe);
     puVar1[4] = &unknown_var_3456_ptr;
     if (puVar1[5] != 0) {
         // 线程本地存储清理失败

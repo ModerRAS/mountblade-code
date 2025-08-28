@@ -978,7 +978,7 @@ uint64_t * FUN_1806b1b20(uint64_t *param_1,uint64_t param_2)
   }
   param_1[5] = uVar6;
   __0MutexImpl_shdfnd_physx__QEAA_XZ(uVar6);
-  uVar6 = FUN_1806b21e0(_DAT_180be0050,0x1000);
+  uVar6 = FUN_1806b21e0(system_system_buffer_config,0x1000);
   param_1[6] = uVar6;
   return param_1;
 }

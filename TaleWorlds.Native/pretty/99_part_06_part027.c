@@ -1143,18 +1143,18 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     }
                     
                     // 数据管理处理
-                    temp_handle3 = SystemDataManager(_DAT_180c86930, &stack_resource_ptr1, 1);
-                    temp_data_block = _DAT_180c86930;
+                    temp_handle3 = SystemDataManager(system_resource_state, &stack_resource_ptr1, 1);
+                    temp_data_block = system_resource_state;
                     
                     if (temp_handle3 == SYSTEM_NULL_POINTER) {
-                        temp_handle3 = *(SystemHandle*)(_DAT_180c86898 + 0x2d8);
+                        temp_handle3 = *(SystemHandle*)(system_system_data_pointer + 0x2d8);
                         if (temp_handle3 == SYSTEM_NULL_POINTER) {
                             stack_resource_ptr3 = &unknown_var_3456_ptr;
                             stack_data_block1 = SYSTEM_NULL_POINTER;
                             stack_data_block_ptr1 = (SystemDataBlock*)SYSTEM_NULL_POINTER;
                             stack_param2 = SYSTEM_NULL_POINTER;
                             
-                            data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
+                            data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(system_memory_pool_ptr, 0x10, 0x13);
                             *(SystemFlag*)data_block_ptr1 = SYSTEM_NULL_POINTER;
                             stack_data_block_ptr1 = data_block_ptr1;
                             temp_param = SystemResourceCleaner(data_block_ptr1);
@@ -1180,7 +1180,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                         SystemDataProcessor(&unknown_var_2832_ptr, resource_ptr1);
                         
                         if (param_3 == (SystemHandlePtr)SYSTEM_NULL_POINTER) {
-                            temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, SYSTEM_DATA_BLOCK_SIZE, 8, 0x16);
+                            temp_data_block = SystemMemoryAllocator(system_memory_pool_ptr, SYSTEM_DATA_BLOCK_SIZE, 8, 0x16);
                             handle_ptr2 = (SystemHandlePtr)SystemObjectCreator(temp_data_block);
                             stack_handle_ptr15 = handle_ptr2;
                             
@@ -1242,7 +1242,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                                     if (temp_size2 == SYSTEM_NULL_POINTER) {
                                         data_block_ptr1 = (SystemDataBlock*)SYSTEM_NULL_POINTER;
                                     } else {
-                                        data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, temp_size2 * 8);
+                                        data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(system_memory_pool_ptr, temp_size2 * 8);
                                         data_block_ptr2 = (SystemDataBlock*)param_3[1];
                                         data_block_ptr3 = (SystemDataBlock*)*param_3;
                                     }
@@ -1290,7 +1290,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                             do {
                                 if ((*(uint*)(*handle_ptr2 + 0x100) & SYSTEM_FLAG_MASK) != SYSTEM_NULL_POINTER) {
                                     SystemSystemProcessor(temp_handle3, &stack_handle_ptr4);
-                                    temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, 200, 8, 3);
+                                    temp_data_block = SystemMemoryAllocator(system_memory_pool_ptr, 200, 8, 3);
                                     handle_ptr2 = (SystemHandlePtr)SystemAdvancedProcessor(temp_data_block, stack_handle_ptr4);
                                     stack_handle_ptr14 = handle_ptr2;
                                     
@@ -1323,7 +1323,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                         if ((param_3 == (SystemHandlePtr)SYSTEM_NULL_POINTER) || (*(SystemHandle*)(string_ptr4 + SYSTEM_FEATURE_OFFSET) != SYSTEM_NULL_POINTER)) {
                             // 配置处理分支
                             if ((*(SystemHandle*)(param_1 + 0x18) == SYSTEM_NULL_POINTER) || (param_6 == '\0')) {
-                                temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, SYSTEM_DATA_BLOCK_SIZE, 8, 0x16);
+                                temp_data_block = SystemMemoryAllocator(system_memory_pool_ptr, SYSTEM_DATA_BLOCK_SIZE, 8, 0x16);
                                 handle_ptr2 = (SystemHandlePtr)SystemObjectCreator(temp_data_block);
                                 stack_handle_ptr13 = handle_ptr2;
                                 
@@ -1399,7 +1399,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     stack_size1 = stack_size1 & SYSTEM_ITERATION_MASK;
                     stack_resource_ptr1 = &unknown_var_720_ptr;
                 } else if (temp_uint == SYSTEM_MODE_FAST) {
-                    temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, SYSTEM_CONFIG_BLOCK_SIZE, 8, 3, 1, 0, temp_int, temp_param);
+                    temp_data_block = SystemMemoryAllocator(system_memory_pool_ptr, SYSTEM_CONFIG_BLOCK_SIZE, 8, 3, 1, 0, temp_int, temp_param);
                     handle_ptr2 = (SystemHandlePtr)SystemConfigProcessor(temp_data_block, string_ptr4);
                     
                     if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
@@ -1409,7 +1409,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     
                     stack_handle_ptr8 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
                 } else if (temp_uint == SYSTEM_MODE_DEBUG) {
-                    temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, 200, 8, 3, 3, 0, temp_int, temp_param);
+                    temp_data_block = SystemMemoryAllocator(system_memory_pool_ptr, 200, 8, 3, 3, 0, temp_int, temp_param);
                     handle_ptr2 = (SystemHandlePtr)SystemAdvancedProcessor(temp_data_block, SYSTEM_NULL_POINTER);
                     
                     if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
@@ -1420,7 +1420,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     stack_handle_ptr7 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
                     ((code(**)(void))(*handle_ptr2 + 0x60))(handle_ptr2, string_ptr4);
                 } else if (temp_uint == SYSTEM_MODE_OPTIMIZED) {
-                    temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, 0x168, 8, 3, 4, 0, temp_int, temp_param);
+                    temp_data_block = SystemMemoryAllocator(system_memory_pool_ptr, 0x168, 8, 3, 4, 0, temp_int, temp_param);
                     handle_ptr2 = (SystemHandlePtr)SystemManager(temp_data_block);
                     stack_handle_ptr6 = handle_ptr2;
                     
@@ -1440,7 +1440,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                     handle_ptr2 = temp_handle_ptr;
                     
                     if (temp_uint == SYSTEM_MODE_LEGACY) {
-                        handle_ptr2 = (SystemHandlePtr)SystemMemoryAllocator(_DAT_180c8ed18, 0x298, 8, 0xd, 7, 0, temp_int, temp_param);
+                        handle_ptr2 = (SystemHandlePtr)SystemMemoryAllocator(system_memory_pool_ptr, 0x298, 8, 0xd, 7, 0, temp_int, temp_param);
                         
                         *handle_ptr2 = (SystemHandle)&unknown_var_3552_ptr;
                         *handle_ptr2 = (SystemHandle)&unknown_var_3696_ptr;
@@ -1508,7 +1508,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                         temp_handle3 = 1;
                         
                         // 内存分配
-                        data_block_ptr4 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, temp_handle3 * 8);
+                        data_block_ptr4 = (SystemDataBlock*)SystemMemoryAllocator(system_memory_pool_ptr, temp_handle3 * 8);
                         data_block_ptr2 = (SystemDataBlock*)param_2[1];
                         data_block_ptr1 = (SystemDataBlock*)*param_2;
                         data_block_ptr3 = data_block_ptr4;
@@ -1518,7 +1518,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                         
                         if (temp_handle3 != SYSTEM_NULL_POINTER) {
                             // 内存分配
-                            data_block_ptr4 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, temp_handle3 * 8);
+                            data_block_ptr4 = (SystemDataBlock*)SystemMemoryAllocator(system_memory_pool_ptr, temp_handle3 * 8);
                             data_block_ptr2 = (SystemDataBlock*)param_2[1];
                             data_block_ptr1 = (SystemDataBlock*)*param_2;
                         }
@@ -1576,7 +1576,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                             temp_handle3 = 1;
                             
                             // 内存分配
-                            data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, temp_handle3 * 8, (SystemFlag)param_3[3]);
+                            data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(system_memory_pool_ptr, temp_handle3 * 8, (SystemFlag)param_3[3]);
                             data_block_ptr2 = (SystemDataBlock*)param_3[1];
                             data_block_ptr3 = (SystemDataBlock*)*param_3;
                         } else {
@@ -1584,7 +1584,7 @@ void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHa
                             
                             if (temp_handle3 != SYSTEM_NULL_POINTER) {
                                 // 内存分配
-                                data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, temp_handle3 * 8, (SystemFlag)param_3[3]);
+                                data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(system_memory_pool_ptr, temp_handle3 * 8, (SystemFlag)param_3[3]);
                                 data_block_ptr2 = (SystemDataBlock*)param_3[1];
                                 data_block_ptr3 = (SystemDataBlock*)*param_3;
                             } else {

@@ -445,8 +445,8 @@ uint64_t FUN_1807f7430(longlong param_1)
     }
   }
   if (*(longlong *)(param_1 + 0x208) == 0) {
-    _DAT_180c2c740 = _DAT_180c2c740 + -1;
-    if ((_DAT_180c2c740 == 0) && (uVar1 = FUN_1807ff7f0(), (int)uVar1 != 0)) {
+    system_system_pointer = system_system_pointer + -1;
+    if ((system_system_pointer == 0) && (uVar1 = FUN_1807ff7f0(), (int)uVar1 != 0)) {
       return uVar1;
     }
     return 0;

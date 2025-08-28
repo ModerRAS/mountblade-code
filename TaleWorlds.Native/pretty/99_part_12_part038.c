@@ -107,8 +107,8 @@ void FUN_1807e3300(longlong param_1,int8_t (*param_2) [32],int param_3,int32_t *
     }
   }
   auVar4 = vpshufd_avx(ZEXT416((uint)(param_3 - iVar8)),0);
-  auVar3 = vpcmpgtd_avx(auVar4,_DAT_18097d850);
-  auVar4 = vpcmpgtd_avx(auVar4,_DAT_18097d840);
+  auVar3 = vpcmpgtd_avx(auVar4,system_system_config);
+  auVar4 = vpcmpgtd_avx(auVar4,system_system_config);
   lVar11 = (longlong)(iVar8 * 2);
   auVar23._16_16_ = auVar3;
   auVar23._0_16_ = auVar4;

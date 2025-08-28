@@ -665,7 +665,7 @@ void FUN_18009e9e0(uint64_t param_1,uint64_t param_2,longlong param_3)
   int8_t auStack_60 [72];
   ulonglong uStack_18;
   
-  uVar1 = _DAT_180c86930;
+  uVar1 = system_resource_state;
   uStack_90 = 0xfffffffffffffffe;
   uStack_18 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_b8;
   uStack_98 = 0;
@@ -769,7 +769,7 @@ uint64_t * FUN_18009ec20(uint64_t *param_1)
   *(int8_t *)((longlong)param_1 + 0x71) = 0;
   __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ();
   param_1[0x10] = 0;
-  *(uint64_t *)((longlong)param_1 + 0x74) = _DAT_180d48d38;
+  *(uint64_t *)((longlong)param_1 + 0x74) = core_system_config_config;
   param_1[0xd] = 0;
   return param_1;
 }

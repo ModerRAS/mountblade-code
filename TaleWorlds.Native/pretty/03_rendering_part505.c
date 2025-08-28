@@ -52,12 +52,12 @@ LAB_180537476:
   if (*(int *)(lVar7 + 0x18) != 0) {
     iVar2 = *(int *)(lVar7 + 0x18);
     aiStackX_18[0] = iVar2;
-    if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar2);
+    if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(iVar2);
     }
-    (**(code **)(_DAT_180c8ece0 + 0x88))(iVar2,param_2,uVar6);
-    if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(iVar2);
+    (**(code **)(render_system_data_config + 0x88))(iVar2,param_2,uVar6);
+    if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(iVar2);
     }
   }
   lVar5 = *(longlong *)(lVar7 + 0x6e0);
@@ -373,7 +373,7 @@ byte FUN_1805377e0(longlong param_1,int param_2,int param_3,char param_4,uint pa
         lVar8 = *(longlong *)(lVar10 + 0xd0);
         lVar9 = (longlong)*(int *)(lVar10 + 0xf0) * 0xa0;
         if (((*(uint *)(lVar9 + 0x50 + lVar8) >> 9 & 1) == 0) || (0 < *(short *)(lVar10 + 8))) {
-          bVar6 = *(byte *)((longlong)*(int *)(lVar9 + 100 + lVar8) * 0x170 + 0x140 + _DAT_180c95ff0
+          bVar6 = *(byte *)((longlong)*(int *)(lVar9 + 100 + lVar8) * 0x170 + 0x140 + render_system_config
                            );
           if ((*(int *)(lVar9 + 0x5c + lVar8) == 0xf) && ((param_5 >> 0x18 & 1) != 0)) {
             bVar6 = bVar6 & 0xfd;
@@ -393,7 +393,7 @@ byte FUN_1805377e0(longlong param_1,int param_2,int param_3,char param_4,uint pa
             do {
               lVar10 = (longlong)(iVar11 % iVar7) * 0xa0;
               bVar6 = *(byte *)((longlong)*(int *)(lVar10 + 100 + lVar8) * 0x170 + 0x140 +
-                               _DAT_180c95ff0);
+                               render_system_config);
               if ((bVar6 & 0x10) == 0) {
                 if (param_4 == '\0') {
                   if ((bVar6 & 1) == 0) goto LAB_180537a58;
@@ -506,7 +506,7 @@ ulonglong FUN_180537938(void)
     uVar1 = *(uint *)(lVar6 + 0x50 + lVar2);
     in_RAX = (ulonglong)uVar1;
     if (((uVar1 >> 9 & 1) == 0) || (0 < *(short *)(unaff_RBX + 8))) {
-      bVar5 = *(byte *)((longlong)*(int *)(lVar6 + 100 + lVar2) * 0x170 + 0x140 + _DAT_180c95ff0);
+      bVar5 = *(byte *)((longlong)*(int *)(lVar6 + 100 + lVar2) * 0x170 + 0x140 + render_system_config);
       if ((*(int *)(lVar6 + 0x5c + lVar2) == 0xf) && ((in_stack_00000060 >> 0x18 & 1) != 0)) {
         bVar5 = bVar5 & 0xfd;
       }
@@ -525,7 +525,7 @@ ulonglong FUN_180537938(void)
       if (0 < iVar4) {
         do {
           lVar6 = (longlong)(iVar7 % iVar4) * 0xa0;
-          bVar5 = *(byte *)((longlong)*(int *)(lVar6 + 100 + lVar2) * 0x170 + 0x140 + _DAT_180c95ff0
+          bVar5 = *(byte *)((longlong)*(int *)(lVar6 + 100 + lVar2) * 0x170 + 0x140 + render_system_config
                            );
           in_RAX = 0;
           if ((bVar5 & 0x10) == 0) {
@@ -602,13 +602,13 @@ void FUN_180537a80(int *param_1,int param_2,short param_3,int8_t param_4)
   if (*(int *)(lVar6 + 0x30b8) != 0) {
     iVar9 = *(int *)(lVar6 + 0x30b8);
     iStackX_20 = iVar9;
-    if ((iVar9 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar9);
+    if ((iVar9 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(iVar9);
     }
-    (**(code **)(_DAT_180c8ece0 + 0xa0))
-              (iVar9,param_2,param_3,*(code **)(_DAT_180c8ece0 + 0xa0),1,uVar11);
-    if ((iVar9 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(iVar9);
+    (**(code **)(render_system_data_config + 0xa0))
+              (iVar9,param_2,param_3,*(code **)(render_system_data_config + 0xa0),1,uVar11);
+    if ((iVar9 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(iVar9);
     }
   }
   puVar1 = (ushort *)(*(longlong *)(lVar6 + 0x3780) + 0x130);
@@ -674,7 +674,7 @@ void FUN_180537bd0(int *param_1,int param_2,int param_3,int8_t *param_4)
   *param_4 = 0;
   lVar4 = (longlong)iVar1 * 0xa0 + *(longlong *)(piVar3 + 0x36);
   if ((((*(uint *)(lVar4 + 0x58) & 0x80000) == 0) &&
-      ((*(byte *)((longlong)*(int *)(lVar4 + 100) * 0x170 + 0x140 + _DAT_180c95ff0) & 4) != 0)) &&
+      ((*(byte *)((longlong)*(int *)(lVar4 + 100) * 0x170 + 0x140 + render_system_config) & 4) != 0)) &&
      (param_1[0x279] < 0)) {
     *param_4 = -1 < param_1[0x288];
   }
@@ -684,12 +684,12 @@ void FUN_180537bd0(int *param_1,int param_2,int param_3,int8_t *param_4)
   lVar4 = (longlong)*param_1 * 0xa60 + *(longlong *)(param_1 + 0x286);
   if (*(int *)(lVar4 + 0x30b8) != 0) {
     iVar2 = *(int *)((longlong)*param_1 * 0xa60 + 0x30b8 + *(longlong *)(param_1 + 0x286));
-    if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar2);
+    if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(iVar2);
     }
-    (**(code **)(_DAT_180c8ece0 + 0xb8))(iVar2,param_2,param_3,*(code **)(_DAT_180c8ece0 + 0xb8),1);
-    if ((iVar2 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(iVar2);
+    (**(code **)(render_system_data_config + 0xb8))(iVar2,param_2,param_3,*(code **)(render_system_data_config + 0xb8),1);
+    if ((iVar2 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(iVar2);
     }
   }
   FUN_18050e340(lVar4 + 0x30a0);
@@ -722,12 +722,12 @@ void FUN_180537de0(int *param_1,int param_2,int16_t param_3)
                       ,0,0xfffffffffffffffe);
   if (*(int *)((longlong)*param_1 * 0xa60 + 0x30b8 + *(longlong *)(param_1 + 0x286)) != 0) {
     iVar1 = *(int *)((longlong)*param_1 * 0xa60 + 0x30b8 + *(longlong *)(param_1 + 0x286));
-    if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(iVar1);
+    if ((iVar1 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(iVar1);
     }
-    (**(code **)(_DAT_180c8ece0 + 0xa8))(iVar1,param_2,param_3,*(code **)(_DAT_180c8ece0 + 0xa8),1);
-    if ((iVar1 != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(iVar1);
+    (**(code **)(render_system_data_config + 0xa8))(iVar1,param_2,param_3,*(code **)(render_system_data_config + 0xa8),1);
+    if ((iVar1 != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(iVar1);
     }
   }
   return;

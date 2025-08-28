@@ -70,7 +70,7 @@ void FUN_1805cd0c1(void)
          (lVar6 = func_0x0001805b6e80(unaff_RSI + 1),
          (*(byte *)((longlong)
                     *(int *)((longlong)*(int *)(lVar6 + 0xf0) * 0xa0 + 100 +
-                            *(longlong *)(lVar6 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10)
+                            *(longlong *)(lVar6 + 0xd0)) * 0x170 + 0x140 + system_system_ui) & 0x10)
          == 0)) {
         cVar3 = func_0x0001805b7d30();
         if (cVar3 == '\0') {
@@ -177,7 +177,7 @@ LAB_1805cd41e:
              (lVar6 = func_0x0001805b6e80(unaff_RSI + 1),
              (*(byte *)((longlong)
                         *(int *)((longlong)*(int *)(lVar6 + 0xf0) * 0xa0 + 100 +
-                                *(longlong *)(lVar6 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) &
+                                *(longlong *)(lVar6 + 0xd0)) * 0x170 + 0x140 + system_system_ui) &
              0x10) == 0)) {
             if ((*(uint *)(unaff_RSI + 2) & 0x200) == 0) {
               func_0x0001805d4cd0(unaff_RSI + 1);
@@ -235,7 +235,7 @@ LAB_1805cd6a0:
                          *(int *)(lVar6 + 0x1fc) == 2)) {
                         plVar1 = *(longlong **)(lVar6 + 0x590);
                         if (((int)plVar1[0x493] != -1) &&
-                           (((*(int *)((longlong)(int)plVar1[0x493] * 0x68 + 0x58 + _DAT_180c96150)
+                           (((*(int *)((longlong)(int)plVar1[0x493] * 0x68 + 0x58 + system_system_ui)
                               == 0x14 &&
                              (uVar18 = (**(code **)(*plVar1 + 0x90))(plVar1,1), 0.1 <= (float)uVar18
                              )) && (uVar18 = (**(code **)(**(longlong **)(lVar6 + 0x590) + 0x90))
@@ -503,7 +503,7 @@ LAB_1805cde99:
         }
         if ((*(byte *)((longlong)
                        *(int *)((longlong)*(int *)(lVar6 + 0xf0) * 0xa0 + 100 +
-                               *(longlong *)(lVar6 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10
+                               *(longlong *)(lVar6 + 0xd0)) * 0x170 + 0x140 + system_system_ui) & 0x10
             ) == 0) goto LAB_1805cdb67;
 LAB_1805cdf8d:
         if (*(int *)((longlong)unaff_RSI + 0x178c) == 9) goto FUN_1805cdfb9;
@@ -527,10 +527,10 @@ FUN_1805cdfb9:
            >> 1 & 1) != 0) {
         lVar6 = FUN_1805b74c0(unaff_RSI + 1);
         iVar5 = *(int *)(*(longlong *)(lVar6 + 0x590) + 0x2498);
-        if ((iVar5 != -1) && (0xe < *(int *)((longlong)iVar5 * 0x68 + 0x58 + _DAT_180c96150))) {
+        if ((iVar5 != -1) && (0xe < *(int *)((longlong)iVar5 * 0x68 + 0x58 + system_system_ui))) {
           lVar6 = FUN_1805b74c0(unaff_RSI + 1);
           iVar5 = *(int *)(*(longlong *)(lVar6 + 0x590) + 0x2498);
-          if ((iVar5 == -1) || (*(int *)((longlong)iVar5 * 0x68 + 0x58 + _DAT_180c96150) < 0x12)) {
+          if ((iVar5 == -1) || (*(int *)((longlong)iVar5 * 0x68 + 0x58 + system_system_ui) < 0x12)) {
             if ((*(uint *)(unaff_RSI + 2) & 0x8000000) == 0) {
               bVar4 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RSI[1] + 0x564) >> 0x1f) ^ 1;
               *(byte *)((longlong)unaff_RSI + 0x11c) = bVar4;

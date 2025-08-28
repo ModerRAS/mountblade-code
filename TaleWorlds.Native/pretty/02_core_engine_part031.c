@@ -508,7 +508,7 @@ longlong * FUN_1800763c0(longlong *param_1,longlong *param_2)
   int32_t uVar21;
   
   plStackX_10 = param_2;
-  uVar18 = FUN_18062b1e0(_DAT_180c8ed18,0x300,0x10,9,0,0xfffffffffffffffe);
+  uVar18 = FUN_18062b1e0(system_memory_pool_ptr,0x300,0x10,9,0,0xfffffffffffffffe);
   plVar19 = (longlong *)FUN_180075030(uVar18,0,0);
   *param_2 = (longlong)plVar19;
   if (plVar19 != (longlong *)0x0) {

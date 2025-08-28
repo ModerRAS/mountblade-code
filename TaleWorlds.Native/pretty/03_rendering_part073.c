@@ -316,18 +316,18 @@ void FUN_18030aab0(longlong param_1,longlong param_2,longlong param_3,float *par
     fStack_6c = fVar33 * fVar13 + fVar30 * fVar9 + fVar28 * fVar17 + param_4[0xf];
     if (((*(char *)(param_3 + 0x3f61) != '\0') && ((*(byte *)(param_2 + 0x1bd8) & 0x20) != 0)) &&
        (*(int *)(SYSTEM_STATE_MANAGER + 0x620) != -1)) {
-      if (param_8 <= *(int *)(_DAT_180c8a980 + 0x2f8)) {
+      if (param_8 <= *(int *)(render_system_data_memory + 0x2f8)) {
         *(int8_t *)(param_1 + 0x44) = 1;
       }
       lVar27 = *(longlong *)(param_1 + 0x48);
-      if (*(int *)(lVar27 + 0x328) == *(int *)(_DAT_180c86870 + 0x224)) {
+      if (*(int *)(lVar27 + 0x328) == *(int *)(system_main_module_state + 0x224)) {
         if (((*(char *)(param_1 + 0xbc) == '\0') &&
             ((*(byte *)(*(longlong *)(lVar27 + 0x3c8) + 0x28) & 1) == 0)) &&
-           (*(int *)(_DAT_180c86870 + 0x224) + -1 != param_8)) {
+           (*(int *)(system_main_module_state + 0x224) + -1 != param_8)) {
           *(int8_t *)(param_1 + 0x44) = 1;
         }
         if (*(int *)(param_1 + 0x30) == *(int *)(*(longlong *)(lVar27 + 0x3c8) + 0x10)) {
-          fVar28 = (fStack_74 * 2.3 + fStack_78 * 1.7) * 8.0 + (float)_DAT_180c8ed30 * 8e-05;
+          fVar28 = (fStack_74 * 2.3 + fStack_78 * 1.7) * 8.0 + (float)system_error_code * 8e-05;
           uVar22 = (uint)fVar28;
           uVar23 = uVar22 & 0x800000ff;
           if ((int)uVar23 < 0) {
@@ -369,14 +369,14 @@ void FUN_18030aab0(longlong param_1,longlong param_2,longlong param_3,float *par
             _fStack_b0 = CONCAT44(fVar32 * fStack_7c + fStack_7c * fVar30 + fStack_7c * 0.0,fVar29);
           }
           uVar19 = _fStack_b0;
-          _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
-          _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
-          uVar22 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
-          _DAT_180bf65b8 = uVar22 << 0xd ^ uVar22;
-          _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
-          _DAT_180bf65b8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
+          system_memory_flags = system_memory_flags << 0xd ^ system_memory_flags;
+          system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
+          uVar22 = system_memory_flags << 5 ^ system_memory_flags;
+          system_memory_flags = uVar22 << 0xd ^ uVar22;
+          system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
+          system_memory_flags = system_memory_flags << 5 ^ system_memory_flags;
           fVar30 = SQRT(fVar31 * fVar31 + fVar33 * fVar33 + fVar29 * fVar29);
-          _fStack_b8 = CONCAT44(fVar31 + ((float)(_DAT_180bf65b8 - 1) * 4.656613e-11 - 0.1) * fVar30
+          _fStack_b8 = CONCAT44(fVar31 + ((float)(system_memory_flags - 1) * 4.656613e-11 - 0.1) * fVar30
                                 ,fVar33 + ((float)(uVar22 - 1) * 4.656613e-11 - 0.1) * fVar30);
           uVar18 = _fStack_b8;
           if (*(longlong *)(param_1 + 0x38) == 0) {
@@ -597,19 +597,19 @@ void FUN_18030aade(longlong *param_1)
   if (((cVar6 != '\0') && ((*(byte *)(unaff_R13 + 0x1bd8) & 0x20) != 0)) &&
      (*(int *)(SYSTEM_STATE_MANAGER + 0x620) != -1)) {
     iVar24 = *(int *)(unaff_RBP + 0x77);
-    if (iVar24 <= *(int *)(_DAT_180c8a980 + 0x2f8)) {
+    if (iVar24 <= *(int *)(render_system_data_memory + 0x2f8)) {
       *(int8_t *)(unaff_RDI + 0x44) = 1;
     }
     lVar31 = *(longlong *)(unaff_RDI + 0x48);
-    if (*(int *)(lVar31 + 0x328) == *(int *)(_DAT_180c86870 + 0x224)) {
+    if (*(int *)(lVar31 + 0x328) == *(int *)(system_main_module_state + 0x224)) {
       if (((*(char *)(unaff_RDI + 0xbc) == '\0') &&
           ((*(byte *)(*(longlong *)(lVar31 + 0x3c8) + 0x28) & 1) == 0)) &&
-         (*(int *)(_DAT_180c86870 + 0x224) + -1 != iVar24)) {
+         (*(int *)(system_main_module_state + 0x224) + -1 != iVar24)) {
         *(int8_t *)(unaff_RDI + 0x44) = 1;
       }
       if (*(int *)(unaff_RDI + 0x30) == *(int *)(*(longlong *)(lVar31 + 0x3c8) + 0x10)) {
         fVar32 = (*(float *)(unaff_RBP + -0x3d) * 2.3 + *(float *)(unaff_RBP + -0x41) * 1.7) * 8.0 +
-                 (float)_DAT_180c8ed30 * 8e-05;
+                 (float)system_error_code * 8e-05;
         uVar26 = (uint)fVar32;
         uVar27 = uVar26 & 0x800000ff;
         if ((int)uVar27 < 0) {
@@ -652,15 +652,15 @@ void FUN_18030aade(longlong *param_1)
           fVar33 = fVar33 * fVar39 + fVar38 * fVar32 + fVar40 * 0.0;
           fVar32 = *(float *)(unaff_RBP + -0x7d);
         }
-        _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
-        _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
-        _DAT_180bf65b8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
-        _DAT_180bf65b8 = _DAT_180bf65b8 << 0xd ^ _DAT_180bf65b8;
-        _DAT_180bf65b8 = _DAT_180bf65b8 >> 0x11 ^ _DAT_180bf65b8;
-        _DAT_180bf65b8 = _DAT_180bf65b8 << 5 ^ _DAT_180bf65b8;
+        system_memory_flags = system_memory_flags << 0xd ^ system_memory_flags;
+        system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
+        system_memory_flags = system_memory_flags << 5 ^ system_memory_flags;
+        system_memory_flags = system_memory_flags << 0xd ^ system_memory_flags;
+        system_memory_flags = system_memory_flags >> 0x11 ^ system_memory_flags;
+        system_memory_flags = system_memory_flags << 5 ^ system_memory_flags;
         lVar31 = *(longlong *)(unaff_RDI + 0x38);
         *(float *)(unaff_RBP + -0x7d) =
-             fVar32 + ((float)(_DAT_180bf65b8 - 1) * 4.656613e-11 - 0.1) *
+             fVar32 + ((float)(system_memory_flags - 1) * 4.656613e-11 - 0.1) *
                       SQRT(fVar32 * fVar32 + fVar34 * fVar34 + fVar33 * fVar33);
         if (lVar31 == 0) {
           bVar11 = true;

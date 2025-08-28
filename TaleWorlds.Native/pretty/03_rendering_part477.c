@@ -64,7 +64,7 @@ LAB_180522e20:
                                      *(float *)(lVar2 + 0x2c) * *(float *)(lVar2 + 0x2c));
     uVar5 = *(uint *)(lVar2 + 8);
   }
-  if ((((uVar5 & 0x20400000) != 0) && (_DAT_180c92514 != 1)) && (_DAT_180c92514 != 4)) {
+  if ((((uVar5 & 0x20400000) != 0) && (system_status_flag != 1)) && (system_status_flag != 4)) {
     bVar1 = *(byte *)(lVar2 + 0x40);
     lVar3 = *(longlong *)(unaff_RBX + 0x598);
     *(int32_t *)(unaff_RBP + -0x1c) = 0;
@@ -164,7 +164,7 @@ LAB_180522e20:
                                   *(float *)(unaff_RDI + 0x2c) * *(float *)(unaff_RDI + 0x2c));
     uVar4 = *(uint *)(unaff_RDI + 8);
   }
-  if ((((uVar4 & 0x20400000) != 0) && (_DAT_180c92514 != 1)) && (_DAT_180c92514 != 4)) {
+  if ((((uVar4 & 0x20400000) != 0) && (system_status_flag != 1)) && (system_status_flag != 4)) {
     bVar1 = *(byte *)(unaff_RDI + 0x40);
     lVar2 = *(longlong *)(unaff_RBX + 0x598);
     *(int32_t *)(unaff_RBP + -0x1c) = 0;
@@ -269,8 +269,8 @@ FUN_180522fd0(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   *(int32_t *)(param_1 + 0x1e) = 0xf149f2ca;
   *(int8_t *)(param_1 + 0x20) = 0xff;
   *(int32_t *)(param_1 + 0x22) = 1;
-  uVar1 = _DAT_180c8ed38;
-  param_1[0x21] = _DAT_180c8ed38;
+  uVar1 = render_system_data_config;
+  param_1[0x21] = render_system_data_config;
   *(int32_t *)(param_1 + 0x24) = 1;
   param_1[0x23] = uVar1;
   param_1[0x29] = 0;
@@ -464,8 +464,8 @@ void FUN_180523570(uint64_t *param_1)
   uVar6 = 0xfffffffffffffffe;
   *param_1 = &unknown_var_7216_ptr;
   uVar4 = 0;
-  if ((*(int *)(param_1 + 3) != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))();
+  if ((*(int *)(param_1 + 3) != 0) && (system_cache_buffer != 0)) {
+    (**(code **)(system_cache_buffer + 0x18))();
   }
   *(int32_t *)(param_1 + 3) = 0;
   if (param_1[0x11c] != 0) {
@@ -522,8 +522,8 @@ void FUN_180523570(uint64_t *param_1)
         if ((longlong *)param_1[0xbe] != (longlong *)0x0) {
           (**(code **)(*(longlong *)param_1[0xbe] + 0x38))();
         }
-        if ((*(int *)(param_1 + 3) != 0) && (_DAT_180c8f008 != 0)) {
-          (**(code **)(_DAT_180c8f008 + 0x18))();
+        if ((*(int *)(param_1 + 3) != 0) && (system_cache_buffer != 0)) {
+          (**(code **)(system_cache_buffer + 0x18))();
         }
         *param_1 = &unknown_var_4192_ptr;
         *param_1 = &unknown_var_3696_ptr;

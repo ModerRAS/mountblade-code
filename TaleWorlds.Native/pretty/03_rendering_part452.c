@@ -215,10 +215,10 @@ LAB_180512e2b:
     *(int32_t *)(unaff_RBP + -0xd) = uVar4;
     FUN_1801c1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
     lVar9 = *(longlong *)(unaff_RSI + 0x728);
-    fVar21 = *(float *)(unaff_RBP + -0x51) * _DAT_180c9642c;
-    fVar19 = *(float *)(unaff_RBP + -0x59) * _DAT_180c9642c;
+    fVar21 = *(float *)(unaff_RBP + -0x51) * render_system_ui;
+    fVar19 = *(float *)(unaff_RBP + -0x59) * render_system_ui;
     *(float *)(lVar9 + 0x558) =
-         *(float *)(unaff_RBP + -0x55) * _DAT_180c9642c + *(float *)(lVar9 + 0x558);
+         *(float *)(unaff_RBP + -0x55) * render_system_ui + *(float *)(lVar9 + 0x558);
     *(float *)(lVar9 + 0x55c) = fVar21 + *(float *)(lVar9 + 0x55c);
     *(float *)(lVar9 + 0x554) = fVar19 + *(float *)(lVar9 + 0x554);
   }
@@ -245,9 +245,9 @@ LAB_180512e2b:
   *(float *)(unaff_RBP + -0x51) = fVar13 * fVar21;
   pfVar7 = (float *)FUN_1801c0fb0(uVar6,unaff_RBP + -0x49,unaff_RBP + -0x59);
   lVar9 = *(longlong *)(unaff_RSI + 0x728);
-  fVar21 = pfVar7[1] * _DAT_180c96430;
-  fVar19 = pfVar7[2] * _DAT_180c96430;
-  *(float *)(lVar9 + 0x534) = _DAT_180c96430 * *pfVar7 + *(float *)(lVar9 + 0x534);
+  fVar21 = pfVar7[1] * render_system_ui;
+  fVar19 = pfVar7[2] * render_system_ui;
+  *(float *)(lVar9 + 0x534) = render_system_ui * *pfVar7 + *(float *)(lVar9 + 0x534);
   *(float *)(lVar9 + 0x538) = fVar21 + *(float *)(lVar9 + 0x538);
   *(float *)(lVar9 + 0x53c) = fVar19 + *(float *)(lVar9 + 0x53c);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x728) + 0x568) =
@@ -356,10 +356,10 @@ void FUN_180512eba(void)
     *(int32_t *)(unaff_RBP + -0xd) = uVar7;
     FUN_1801c1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
     lVar3 = *(longlong *)(unaff_RSI + 0x728);
-    fVar14 = *(float *)(unaff_RBP + -0x51) * _DAT_180c9642c;
-    fVar15 = *(float *)(unaff_RBP + -0x59) * _DAT_180c9642c;
+    fVar14 = *(float *)(unaff_RBP + -0x51) * render_system_ui;
+    fVar15 = *(float *)(unaff_RBP + -0x59) * render_system_ui;
     *(float *)(lVar3 + 0x558) =
-         *(float *)(unaff_RBP + -0x55) * _DAT_180c9642c + *(float *)(lVar3 + 0x558);
+         *(float *)(unaff_RBP + -0x55) * render_system_ui + *(float *)(lVar3 + 0x558);
     *(float *)(lVar3 + 0x55c) = fVar14 + *(float *)(lVar3 + 0x55c);
     *(float *)(lVar3 + 0x554) = fVar15 + *(float *)(lVar3 + 0x554);
   }
@@ -386,9 +386,9 @@ void FUN_180512eba(void)
   *(float *)(unaff_RBP + -0x51) = fVar15 * fVar1;
   pfVar10 = (float *)FUN_1801c0fb0(uVar9,unaff_RBP + -0x49,unaff_RBP + -0x59);
   lVar3 = *(longlong *)(unaff_RSI + 0x728);
-  fVar14 = pfVar10[1] * _DAT_180c96430;
-  fVar15 = pfVar10[2] * _DAT_180c96430;
-  *(float *)(lVar3 + 0x534) = _DAT_180c96430 * *pfVar10 + *(float *)(lVar3 + 0x534);
+  fVar14 = pfVar10[1] * render_system_ui;
+  fVar15 = pfVar10[2] * render_system_ui;
+  *(float *)(lVar3 + 0x534) = render_system_ui * *pfVar10 + *(float *)(lVar3 + 0x534);
   *(float *)(lVar3 + 0x538) = fVar14 + *(float *)(lVar3 + 0x538);
   *(float *)(lVar3 + 0x53c) = fVar15 + *(float *)(lVar3 + 0x53c);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x728) + 0x568) =
@@ -505,10 +505,10 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
     *(int32_t *)(unaff_RBP + -0xd) = uVar7;
     FUN_1801c1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
     lVar3 = *(longlong *)(unaff_RSI + 0x728);
-    fVar15 = *(float *)(unaff_RBP + -0x51) * _DAT_180c9642c;
-    fVar16 = *(float *)(unaff_RBP + -0x59) * _DAT_180c9642c;
+    fVar15 = *(float *)(unaff_RBP + -0x51) * render_system_ui;
+    fVar16 = *(float *)(unaff_RBP + -0x59) * render_system_ui;
     *(float *)(lVar3 + 0x558) =
-         *(float *)(unaff_RBP + -0x55) * _DAT_180c9642c + *(float *)(lVar3 + 0x558);
+         *(float *)(unaff_RBP + -0x55) * render_system_ui + *(float *)(lVar3 + 0x558);
     *(float *)(lVar3 + 0x55c) = fVar15 + *(float *)(lVar3 + 0x55c);
     *(float *)(lVar3 + 0x554) = fVar16 + *(float *)(lVar3 + 0x554);
   }
@@ -535,9 +535,9 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
   *(float *)(unaff_RBP + -0x51) = fVar16 * fVar15;
   pfVar10 = (float *)FUN_1801c0fb0(uVar9,unaff_RBP + -0x49,unaff_RBP + -0x59);
   lVar3 = *(longlong *)(unaff_RSI + 0x728);
-  fVar16 = pfVar10[1] * _DAT_180c96430;
-  fVar13 = pfVar10[2] * _DAT_180c96430;
-  *(float *)(lVar3 + 0x534) = _DAT_180c96430 * *pfVar10 + *(float *)(lVar3 + 0x534);
+  fVar16 = pfVar10[1] * render_system_ui;
+  fVar13 = pfVar10[2] * render_system_ui;
+  *(float *)(lVar3 + 0x534) = render_system_ui * *pfVar10 + *(float *)(lVar3 + 0x534);
   *(float *)(lVar3 + 0x538) = fVar16 + *(float *)(lVar3 + 0x538);
   *(float *)(lVar3 + 0x53c) = fVar13 + *(float *)(lVar3 + 0x53c);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x728) + 0x568) =
@@ -619,10 +619,10 @@ void FUN_180512f80(void)
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
   FUN_1801c1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
   lVar3 = *(longlong *)(unaff_RSI + 0x728);
-  fVar13 = *(float *)(unaff_RBP + -0x51) * _DAT_180c9642c;
-  fVar12 = *(float *)(unaff_RBP + -0x59) * _DAT_180c9642c;
+  fVar13 = *(float *)(unaff_RBP + -0x51) * render_system_ui;
+  fVar12 = *(float *)(unaff_RBP + -0x59) * render_system_ui;
   *(float *)(lVar3 + 0x558) =
-       *(float *)(unaff_RBP + -0x55) * _DAT_180c9642c + *(float *)(lVar3 + 0x558);
+       *(float *)(unaff_RBP + -0x55) * render_system_ui + *(float *)(lVar3 + 0x558);
   *(float *)(lVar3 + 0x55c) = fVar13 + *(float *)(lVar3 + 0x55c);
   *(float *)(lVar3 + 0x554) = fVar12 + *(float *)(lVar3 + 0x554);
   lVar3 = *(longlong *)(unaff_RSI + 0x658);
@@ -648,9 +648,9 @@ void FUN_180512f80(void)
   *(float *)(unaff_RBP + -0x51) = fVar12 * fVar1;
   pfVar10 = (float *)FUN_1801c0fb0(uVar9,unaff_RBP + -0x49,unaff_RBP + -0x59);
   lVar3 = *(longlong *)(unaff_RSI + 0x728);
-  fVar13 = pfVar10[1] * _DAT_180c96430;
-  fVar12 = pfVar10[2] * _DAT_180c96430;
-  *(float *)(lVar3 + 0x534) = _DAT_180c96430 * *pfVar10 + *(float *)(lVar3 + 0x534);
+  fVar13 = pfVar10[1] * render_system_ui;
+  fVar12 = pfVar10[2] * render_system_ui;
+  *(float *)(lVar3 + 0x534) = render_system_ui * *pfVar10 + *(float *)(lVar3 + 0x534);
   *(float *)(lVar3 + 0x538) = fVar13 + *(float *)(lVar3 + 0x538);
   *(float *)(lVar3 + 0x53c) = fVar12 + *(float *)(lVar3 + 0x53c);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x728) + 0x568) =
@@ -702,9 +702,9 @@ void FUN_1805130b0(longlong param_1,longlong param_2,longlong param_3,longlong p
   *(float *)(unaff_RBP + -0x51) = fVar5 * fVar1;
   pfVar4 = (float *)FUN_1801c0fb0(uVar3,unaff_RBP + -0x49,unaff_RBP + -0x59);
   lVar2 = *(longlong *)(unaff_RSI + 0x728);
-  fVar6 = pfVar4[1] * _DAT_180c96430;
-  fVar5 = pfVar4[2] * _DAT_180c96430;
-  *(float *)(lVar2 + 0x534) = _DAT_180c96430 * *pfVar4 + *(float *)(lVar2 + 0x534);
+  fVar6 = pfVar4[1] * render_system_ui;
+  fVar5 = pfVar4[2] * render_system_ui;
+  *(float *)(lVar2 + 0x534) = render_system_ui * *pfVar4 + *(float *)(lVar2 + 0x534);
   *(float *)(lVar2 + 0x538) = fVar6 + *(float *)(lVar2 + 0x538);
   *(float *)(lVar2 + 0x53c) = fVar5 + *(float *)(lVar2 + 0x53c);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x728) + 0x568) =

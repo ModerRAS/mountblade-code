@@ -164,7 +164,7 @@ void FUN_180535c60(longlong *param_1,uint64_t param_2,uint64_t param_3)
   // 步骤5：检查资源有效性，执行资源管理
   if ((((-1 < (int)stack_resource_id) && ((int)stack_resource_id < *(int *)(render_context + 0x52ed94))) &&
       (-1 < *(short *)(render_context + 0x52dda0 + resource_block_ptr * 2))) ||
-     ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+     ((system_status_flag != 1 && (system_status_flag != 4)))) {
     
     // 步骤5.1：计算资源地址和初始化资源池
     resource_address = render_context + 0x30a0 + resource_block_ptr * 0xa60;
@@ -214,10 +214,10 @@ void FUN_180535c60(longlong *param_1,uint64_t param_2,uint64_t param_3)
     // 步骤5.5：执行资源回调和管理
     (**(code **)(**(longlong **)(render_context + 0x98d250) + 0x18))
               (*(longlong **)(render_context + 0x98d250), resource_address);
-    resource_config_ptr = _DAT_180c92580;
+    resource_config_ptr = render_system_resource;
     
     // 步骤5.6：处理渲染系统特定的资源管理
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       resource_id = _Mtx_lock(0x180c95528);
       if (resource_id != 0) {
         __Throw_C_error_std__YAXH_Z(resource_id);
@@ -227,53 +227,53 @@ void FUN_180535c60(longlong *param_1,uint64_t param_2,uint64_t param_3)
          (resource_status_flag = FUN_180645c10(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
         FUN_180645c10(0x180c95578, resource_handle, &unknown_var_3424_ptr);
       }
-      _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-      resource_id = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+      render_system_resource = render_system_resource & 0xffffffff00000000;
+      resource_id = (int)(render_system_resource - render_system_resource >> 3);
       if (0 < resource_id) {
         resource_block_ptr = 0;
-        render_context = _DAT_180c92cd8;
+        render_context = render_system_resource;
         do {
           resource_config_ptr = *(longlong *)(render_context + resource_block_ptr * 8);
           if ((resource_config_ptr != 0) && (*(char *)(*(longlong *)(resource_config_ptr + 0x58f8) + 0x1c) != '\0')) {
             FUN_1805b59d0(resource_config_ptr, 0x180c95578);
-            render_context = _DAT_180c92cd8;
+            render_context = render_system_resource;
           }
           resource_block_ptr = resource_block_ptr + 1;
         } while (resource_block_ptr < resource_id);
       }
-      if (_DAT_180c96070 != 0) {
-        FUN_180567f30(_DAT_180c92580, 0x180c95578);
+      if (render_system_resource != 0) {
+        FUN_180567f30(render_system_resource, 0x180c95578);
       }
-      _DAT_180c95b3c = 0;
+      render_system_resource = 0;
       // WARNING: Subroutine does not return
-      memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+      memset(render_system_resource, 0, (longlong)(render_system_resource >> 3));
     }
     
     // 步骤5.7：执行资源批处理操作
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       resource_pool_size = 0;
       do {
         FUN_1805b32b0(&system_memory_25a0, resource_pool_size + resource_id * 0x10);
         resource_pool_size = resource_pool_size + 1;
       } while (resource_pool_size < 0x10);
-      if (_DAT_180c92ce0 - _DAT_180c92cd8 >> 3 != 0) {
+      if (render_system_resource - render_system_resource >> 3 != 0) {
         resource_config_ptr = 0;
         do {
-          FUN_180506ae0(*(longlong *)(resource_config_ptr + _DAT_180c92cd8) + 0x5940, resource_handle);
+          FUN_180506ae0(*(longlong *)(resource_config_ptr + render_system_resource) + 0x5940, resource_handle);
           resource_active_count = resource_active_count + 1;
           resource_config_ptr = resource_config_ptr + 8;
-        } while ((ulonglong)(longlong)resource_active_count < (ulonglong)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3));
+        } while ((ulonglong)(longlong)resource_active_count < (ulonglong)(render_system_resource - render_system_resource >> 3));
       }
-      if (_DAT_180c92580 != 0) {
-        FUN_180506ae0(_DAT_180c92580 + 0x5f8, resource_handle);
+      if (render_system_resource != 0) {
+        FUN_180506ae0(render_system_resource + 0x5f8, resource_handle);
       }
     }
-    else if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
+    else if ((system_status_flag == 1) || (system_status_flag == 4)) {
       // 步骤5.8：处理特定渲染模式的资源分配
-      performance_factor = (float)_DAT_180c8ed38 * 1e-05;
-      if (_DAT_180c92514 == 1) {
+      performance_factor = (float)render_system_data_resource * 1e-05;
+      if (system_status_flag == 1) {
         resource_active_count = 0;
-        resource_config_ptr = _DAT_180c92590 + 0x4c488;
+        resource_config_ptr = render_system_resource + 0x4c488;
         do {
           func_0x0001805697b0(resource_config_ptr, resource_active_count + resource_id * 0x10);
           resource_active_count = resource_active_count + 1;
@@ -291,7 +291,7 @@ void FUN_180535c60(longlong *param_1,uint64_t param_2,uint64_t param_3)
             if ((int)resource_handle < 0) {
               resource_handle = (resource_handle - 1 | 0xfffffff0) + 1;
             }
-            *(uint64_t *)(resource_pool_ptr + 0xd0 + resource_memory_ptr) = _DAT_180c966e8;
+            *(uint64_t *)(resource_pool_ptr + 0xd0 + resource_memory_ptr) = render_system_resource;
             *(float *)(resource_pool_ptr + 0xd8 + resource_memory_ptr) = performance_factor;
             *(int8_t *)(resource_pool_ptr + 0xdc + resource_memory_ptr) = 0;
             switch(resource_handle) {
@@ -343,16 +343,16 @@ void FUN_180535c60(longlong *param_1,uint64_t param_2,uint64_t param_3)
     }
     
     // 步骤5.9：执行资源清理和状态更新
-    resource_config_ptr = _DAT_180c8ece0;
+    resource_config_ptr = render_system_data_resource;
     resource_memory_ptr = render_context + 0x30a0;
     resource_active_count = *(int *)(resource_address + 0x18);
-    if ((resource_active_count != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(resource_active_count);
+    if ((resource_active_count != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(resource_active_count);
     }
     (**(code **)(resource_config_ptr + 0x228))(*(int32_t *)(render_context + 0x98d928), resource_active_count);
     resource_param = 0;
-    if ((resource_active_count != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(resource_active_count);
+    if ((resource_active_count != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(resource_active_count);
     }
     FUN_18051aff0(resource_address, 1, render_context + 0x87a948);
     FUN_180507360(resource_address, 0);
@@ -514,7 +514,7 @@ void FUN_180535c78(int32_t param_1)
   // 步骤4：检查资源有效性，执行资源管理
   if ((((-1 < stack_resource_id) && (stack_resource_id < *(int *)(render_context_base + 0x52ed94))) &&
       (-1 < *(short *)(render_context_base + 0x52dda0 + resource_block_ptr * 2))) ||
-     ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+     ((system_status_flag != 1 && (system_status_flag != 4)))) {
     
     // 步骤4.1：计算资源地址和初始化资源池
     resource_system_ptr = render_context_base + 0x30a0 + resource_block_ptr * 0xa60;
@@ -564,10 +564,10 @@ void FUN_180535c78(int32_t param_1)
     // 步骤4.5：执行资源回调和管理
     (**(code **)(**(longlong **)(render_context_base + 0x98d250) + 0x18))
               (*(longlong **)(render_context_base + 0x98d250), resource_system_ptr);
-    resource_config_ptr = _DAT_180c92580;
+    resource_config_ptr = render_system_resource;
     
     // 步骤4.6：处理渲染系统特定的资源管理
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       resource_id = _Mtx_lock(0x180c95528);
       if (resource_id != 0) {
         __Throw_C_error_std__YAXH_Z(resource_id);
@@ -577,53 +577,53 @@ void FUN_180535c78(int32_t param_1)
           (resource_status_flag = FUN_180645c10(0x180c95578, 0xd, &unknown_var_3472_ptr), resource_status_flag != '\0')) {
         FUN_180645c10(0x180c95578, resource_handle, &unknown_var_3424_ptr);
       }
-      _DAT_180c95b3c = _DAT_180c95b3c & 0xffffffff00000000;
-      resource_id = (int)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3);
+      render_system_resource = render_system_resource & 0xffffffff00000000;
+      resource_id = (int)(render_system_resource - render_system_resource >> 3);
       if (0 < resource_id) {
         resource_system_ptr = 0;
-        resource_block_ptr = _DAT_180c92cd8;
+        resource_block_ptr = render_system_resource;
         do {
           resource_config_ptr = *(longlong *)(resource_block_ptr + resource_system_ptr * 8);
           if ((resource_config_ptr != 0) && (*(char *)(*(longlong *)(resource_config_ptr + 0x58f8) + 0x1c) != '\0')) {
             FUN_1805b59d0(resource_config_ptr, 0x180c95578);
-            resource_block_ptr = _DAT_180c92cd8;
+            resource_block_ptr = render_system_resource;
           }
           resource_system_ptr = resource_system_ptr + 1;
         } while (resource_system_ptr < resource_id);
       }
-      if (_DAT_180c96070 != 0) {
-        FUN_180567f30(_DAT_180c92580, 0x180c95578);
+      if (render_system_resource != 0) {
+        FUN_180567f30(render_system_resource, 0x180c95578);
       }
-      _DAT_180c95b3c = 0;
+      render_system_resource = 0;
       // WARNING: Subroutine does not return
-      memset(_DAT_180c95b10, 0, (longlong)(_DAT_180c95b08 >> 3));
+      memset(render_system_resource, 0, (longlong)(render_system_resource >> 3));
     }
     
     // 步骤4.7：执行资源批处理操作
-    if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
+    if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       resource_pool_capacity = 0;
       do {
         FUN_1805b32b0(&system_memory_25a0, resource_pool_capacity + resource_id * 0x10);
         resource_pool_capacity = resource_pool_capacity + 1;
       } while (resource_pool_capacity < 0x10);
-      if (_DAT_180c92ce0 - _DAT_180c92cd8 >> 3 != 0) {
+      if (render_system_resource - render_system_resource >> 3 != 0) {
         resource_config_ptr = 0;
         do {
-          FUN_180506ae0(*(longlong *)(resource_config_ptr + _DAT_180c92cd8) + 0x5940, resource_handle);
+          FUN_180506ae0(*(longlong *)(resource_config_ptr + render_system_resource) + 0x5940, resource_handle);
           resource_active_count = resource_active_count + 1;
           resource_config_ptr = resource_config_ptr + 8;
-        } while ((ulonglong)(longlong)resource_active_count < (ulonglong)(_DAT_180c92ce0 - _DAT_180c92cd8 >> 3));
+        } while ((ulonglong)(longlong)resource_active_count < (ulonglong)(render_system_resource - render_system_resource >> 3));
       }
-      if (_DAT_180c92580 != 0) {
-        FUN_180506ae0(_DAT_180c92580 + 0x5f8, resource_handle);
+      if (render_system_resource != 0) {
+        FUN_180506ae0(render_system_resource + 0x5f8, resource_handle);
       }
     }
-    else if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
+    else if ((system_status_flag == 1) || (system_status_flag == 4)) {
       // 步骤4.8：处理特定渲染模式的资源分配
-      performance_factor = (float)_DAT_180c8ed38 * 1e-05;
-      if (_DAT_180c92514 == 1) {
+      performance_factor = (float)render_system_data_resource * 1e-05;
+      if (system_status_flag == 1) {
         resource_active_count = 0;
-        resource_config_ptr = _DAT_180c92590 + 0x4c488;
+        resource_config_ptr = render_system_resource + 0x4c488;
         do {
           func_0x0001805697b0(resource_config_ptr, resource_active_count + resource_id * 0x10);
           resource_active_count = resource_active_count + 1;
@@ -641,7 +641,7 @@ void FUN_180535c78(int32_t param_1)
             if ((int)resource_handle < 0) {
               resource_handle = (resource_handle - 1 | 0xfffffff0) + 1;
             }
-            *(uint64_t *)(resource_system_ptr + 0xd0 + resource_memory_ptr) = _DAT_180c966e8;
+            *(uint64_t *)(resource_system_ptr + 0xd0 + resource_memory_ptr) = render_system_resource;
             *(float *)(resource_system_ptr + 0xd8 + resource_memory_ptr) = performance_factor;
             *(int8_t *)(resource_system_ptr + 0xdc + resource_memory_ptr) = 0;
             switch(resource_handle) {
@@ -693,16 +693,16 @@ void FUN_180535c78(int32_t param_1)
     }
     
     // 步骤4.9：执行资源清理和状态更新
-    resource_config_ptr = _DAT_180c8ece0;
+    resource_config_ptr = render_system_data_resource;
     resource_memory_ptr = render_context_base + 0x30a0;
     resource_active_count = *(int *)(resource_system_ptr + 0x18);
-    if ((resource_active_count != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x30))(resource_active_count);
+    if ((resource_active_count != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x30))(resource_active_count);
     }
     (**(code **)(resource_config_ptr + 0x228))(*(int32_t *)(render_context_base + 0x98d928), resource_active_count);
     resource_param = 0;
-    if ((resource_active_count != 0) && (_DAT_180c8f008 != 0)) {
-      (**(code **)(_DAT_180c8f008 + 0x18))(resource_active_count);
+    if ((resource_active_count != 0) && (system_cache_buffer != 0)) {
+      (**(code **)(system_cache_buffer + 0x18))(resource_active_count);
     }
     FUN_18051aff0(resource_system_ptr, 1, render_context_base + 0x87a948);
     FUN_180507360(resource_system_ptr, 0);

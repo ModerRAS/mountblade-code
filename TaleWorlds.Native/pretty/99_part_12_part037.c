@@ -449,8 +449,8 @@ void FUN_1807e3020(longlong param_1,float *param_2,int param_3,float *param_4,ui
   }
   lVar15 = (longlong)iVar13;
   auVar4 = vpshufd_avx(ZEXT416((uint)(param_3 - iVar13)),0);
-  auVar3 = vpcmpgtd_avx(auVar4,_DAT_18097d870);
-  auVar4 = vpcmpgtd_avx(auVar4,_DAT_18097d860);
+  auVar3 = vpcmpgtd_avx(auVar4,system_system_config);
+  auVar4 = vpcmpgtd_avx(auVar4,system_system_config);
   auVar19._16_16_ = auVar3;
   auVar19._0_16_ = auVar4;
   auVar5 = vmaskmovps_avx(auVar19,*(int8_t (*) [32])(param_1 + lVar15 * 4));

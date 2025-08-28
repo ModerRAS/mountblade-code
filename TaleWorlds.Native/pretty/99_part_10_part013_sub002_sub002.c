@@ -1505,8 +1505,8 @@ FUN_1806ab8be:
     *(char *)(lVar6 + 0x69) = (char)auStackX_18[0];
     auStackX_18[0] = *(int32_t *)(param_1 + 0x90);
     puVar11 = (uint64_t *)
-              (**(code **)(*_DAT_180be0050 + 8))
-                        (_DAT_180be0050,0x68,&unknown_var_5536_ptr,&unknown_var_5360_ptr,0x36a);
+              (**(code **)(*system_system_buffer_config + 8))
+                        (system_system_buffer_config,0x68,&unknown_var_5536_ptr,&unknown_var_5360_ptr,0x36a);
     if (puVar11 != (uint64_t *)0x0) {
       plVar8 = *(longlong **)(param_1 + 0x98);
       *(int32_t *)(puVar11 + 3) = uVar5;

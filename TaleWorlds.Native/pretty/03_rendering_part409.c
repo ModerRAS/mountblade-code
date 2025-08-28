@@ -323,7 +323,7 @@ void FUN_180492418(void)
              ((int)uVar78 >= auVar82._8_4_) * uVar78;
     uVar45 = (uint)((int)uVar80 < auVar82._12_4_) * auVar82._12_4_ |
              ((int)uVar80 >= auVar82._12_4_) * uVar80;
-    auStack0000000000000060 = auVar41 & _DAT_180a40770;
+    auStack0000000000000060 = auVar41 & render_system_memory;
     uStack0000000000000070 = (uint)(0x167 < (int)uVar39) * 0x167 | (0x167 >= (int)uVar39) * uVar39;
     uStack0000000000000074 = (uint)(0x167 < (int)uVar43) * 0x167 | (0x167 >= (int)uVar43) * uVar43;
     uStack0000000000000078 = (uint)(0x167 < (int)uVar44) * 0x167 | (0x167 >= (int)uVar44) * uVar44;
@@ -463,7 +463,7 @@ void FUN_180492418(void)
               auVar50 = auVar64;
             } while (uVar34 != 0);
           }
-          if ((_DAT_180a40570 & auVar40) != (int8_t  [16])0x0) goto FUN_180492a07;
+          if ((render_system_memory & auVar40) != (int8_t  [16])0x0) goto FUN_180492a07;
           auVar84._0_4_ = auVar83._0_4_ + *(int *)unaff_RBP[3];
           auVar84._4_4_ = auVar83._4_4_ + *(int *)(unaff_RBP[3] + 4);
           auVar84._8_4_ = auVar83._8_4_ + *(int *)(unaff_RBP[3] + 8);
@@ -623,7 +623,7 @@ void FUN_180492a90(void *param_1)
   uStack_10c = 1;
   puStack_128 = param_1;
   FUN_18005c650(&puStack_128);
-  puVar4 = (uint64_t *)*_DAT_180c86960;
+  puVar4 = (uint64_t *)*render_system_data_memory;
   iVar3 = _Mtx_lock(0x180c91970);
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
@@ -692,7 +692,7 @@ void FUN_180492d60(longlong param_1,int param_2,int param_3,int param_4,int para
     lVar8 = *(longlong *)(param_1 + 0x200 + (ulonglong)param_6 * 8) + (longlong)(iVar3 * 0x1400) * 4
     ;
     do {
-      auVar1 = _DAT_180a400d0;
+      auVar1 = render_system_memory;
       if (iVar2 < iVar11) {
         uVar4 = (ulonglong)(uint)(iVar11 - iVar2);
         pauVar5 = (int8_t (*) [16])(lVar8 + ((longlong)(iVar2 << 4) + 0x504) * 4);

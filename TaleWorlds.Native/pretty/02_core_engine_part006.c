@@ -18,7 +18,7 @@ void FUN_180038450(void)
   auStack_88[0] = 0;
   uStack_90 = 0x15;
   strcpy_s(auStack_88,0x80,&unknown_var_4936_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f0c = FUN_180623800(&puStack_a0);
+  core_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -43,7 +43,7 @@ void FUN_1800384e0(void)
   auStack_88[0] = 0;
   uStack_90 = 0xe;
   strcpy_s(auStack_88,0x80,&unknown_var_7256_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f10 = FUN_180623800(&puStack_a0);
+  core_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -68,7 +68,7 @@ void FUN_180038570(void)
   auStack_88[0] = 0;
   uStack_90 = 0x1a;
   strcpy_s(auStack_88,0x80,&unknown_var_4504_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f14 = FUN_180623800(&puStack_a0);
+  core_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 
@@ -93,7 +93,7 @@ void FUN_180038610(void)
   auStack_88[0] = 0;
   uStack_90 = 0x13;
   strcpy_s(auStack_88,0x80,&unknown_var_2448_ptr,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f30 = FUN_180623800(&puStack_a0);
+  core_system_ui = FUN_180623800(&puStack_a0);
   return;
 }
 

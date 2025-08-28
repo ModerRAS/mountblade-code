@@ -179,7 +179,7 @@ LAB_1804b5106:
         puVar15 = (ulonglong *)0x0;
       }
       else {
-        puVar5 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar3 * 0x48 + 0x10,0x12);
+        puVar5 = (ulonglong *)FUN_18062b420(system_memory_pool_ptr,uVar3 * 0x48 + 0x10,0x12);
         *puVar5 = uVar3 << 0x20 | 0x48;
         puVar15 = puVar5 + 2;
         iVar8 = 0;
@@ -321,7 +321,7 @@ LAB_1804b5394:
             }
           }
         }
-        puVar6 = (uint64_t *)FUN_1800b30d0(_DAT_180c86930,&puStack_98,&puStack_90,1);
+        puVar6 = (uint64_t *)FUN_1800b30d0(system_resource_state,&puStack_98,&puStack_90,1);
         lVar12 = *(longlong *)(param_1 + 0x3a8);
         uVar2 = *puVar6;
         *puVar6 = 0;
@@ -724,7 +724,7 @@ LAB_1804b5a86:
     uVar10 = (ulonglong)(int)uVar13;
     puVar3 = puVar14;
     if (uVar13 != 0) {
-      puVar4 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar10 * 400 + 0x10,0x12);
+      puVar4 = (ulonglong *)FUN_18062b420(system_memory_pool_ptr,uVar10 * 400 + 0x10,0x12);
       *puVar4 = uVar10 << 0x20 | 400;
       puVar8 = puVar4 + 7;
       puVar9 = puVar14;

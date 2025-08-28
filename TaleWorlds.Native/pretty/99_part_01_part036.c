@@ -29,16 +29,16 @@ int FUN_1800c4620(uint64_t param_1,longlong param_2)
   int iVar9;
   
   iVar9 = 0;
-  lVar7 = *(longlong *)(_DAT_180c86978 + 200);
-  iVar6 = (int)(*(longlong *)(_DAT_180c86978 + 0xd0) - lVar7 >> 3);
+  lVar7 = *(longlong *)(system_system_data_config + 200);
+  iVar6 = (int)(*(longlong *)(system_system_data_config + 0xd0) - lVar7 >> 3);
   if (0 < iVar6) {
     do {
       if (iVar9 < 0) {
-        lVar7 = *(longlong *)(_DAT_180c86978 + 200);
+        lVar7 = *(longlong *)(system_system_data_config + 200);
         iVar2 = 0;
       }
       else {
-        lVar8 = *(longlong *)(_DAT_180c86978 + 0xd0) - lVar7 >> 3;
+        lVar8 = *(longlong *)(system_system_data_config + 0xd0) - lVar7 >> 3;
         iVar2 = (int)lVar8 + -1;
         if (iVar9 != lVar8) {
           iVar2 = iVar9;
@@ -157,7 +157,7 @@ FUN_1800c48e0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,int8_t param_4
 {
   longlong lVar1;
   
-  lVar1 = FUN_1800b6de0(_DAT_180c86930,param_3,param_4,param_4,0,0xfffffffffffffffe);
+  lVar1 = FUN_1800b6de0(system_resource_state,param_3,param_4,param_4,0,0xfffffffffffffffe);
   if (lVar1 == 0) {
     *param_2 = 0;
   }

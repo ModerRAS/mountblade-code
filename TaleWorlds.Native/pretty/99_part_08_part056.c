@@ -258,7 +258,7 @@ void FUN_1805afe90(int8_t *param_1)
   lVar2 = *(longlong *)(param_1 + 0xc08);
   iVar1 = *(int *)(*(longlong *)(lVar2 + 0x590) + 0x2498);
   if (iVar1 != -1) {
-    if (((((byte)(*(char *)((longlong)iVar1 * 0x68 + 0x60 + _DAT_180c96150) - 5U) < 2) &&
+    if (((((byte)(*(char *)((longlong)iVar1 * 0x68 + 0x60 + system_system_memory) - 5U) < 2) &&
          (*(int *)(lVar2 + 0x1fc) == 7)) && ((*(uint *)(lVar2 + 0x56c) & 0x4000) != 0)) &&
        (((lVar3 = *(longlong *)(*(longlong *)(lVar2 + 0x8f8) + 0x9f0), lVar3 != 0 &&
          (0 < *(int *)(lVar3 + 0x30))) &&

@@ -419,7 +419,7 @@ LAB_1805d185c:
     }
     fVar20 = *(float *)((longlong)param_1 + 0x21a4);
     *(float *)((longlong)param_1 + 0x21a4) = *(float *)(*param_1 + 0x324) * 0.1;
-    lStack_98 = (longlong)(fVar20 * 100000.0 + (float)_DAT_180c8ed38);
+    lStack_98 = (longlong)(fVar20 * 100000.0 + (float)system_system_data_config);
     *(uint *)(param_1 + 0x2b1) = *(uint *)(param_1 + 0x2b1) | *(uint *)(param_1 + 0x27a);
     FUN_1805d8a70(param_1 + 0x2b4);
   }
@@ -433,7 +433,7 @@ LAB_1805d185c:
                   *(float *)(*(longlong *)(*(longlong *)param_1[0x33] + 0x20) + 0x34));
   }
 LAB_1805d1a6a:
-  lVar13 = _DAT_180c8ed38;
+  lVar13 = system_system_data_config;
   bVar2 = false;
   if (param_1[0x2b6] == param_1[0x2ba]) {
 LAB_1805d1bc2:

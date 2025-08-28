@@ -543,7 +543,7 @@ void merge_data_structures(int32_t *data_ptr, uint64_t *key_ptr)
     *(int32_t *)(unaff_RBP + 0x1b) = uVar23;
     *(int32_t *)(unaff_RBP + 0x1f) = uVar24;
     *(int32_t *)(unaff_RBP + 0x23) = uVar25;
-    FUN_1800eac80(unaff_RBP + 0x17,unaff_RBP + 7);
+    move_memory_data(unaff_RBP + 0x17,unaff_RBP + 7);
   }
   else {
     uVar4 = *unaff_RSI;
@@ -556,7 +556,7 @@ void merge_data_structures(int32_t *data_ptr, uint64_t *key_ptr)
     *(int32_t *)(unaff_RBP + -5) = uVar23;
     *(int32_t *)(unaff_RBP + -1) = uVar24;
     *(int32_t *)(unaff_RBP + 3) = uVar25;
-    FUN_1800eac80(unaff_RBP + -9,unaff_RBP + -0x19);
+    move_memory_data(unaff_RBP + -9,unaff_RBP + -0x19);
     uVar9 = *(uint *)(unaff_R14 + 1);
     *(uint64_t *)(unaff_RBP + -0x59) = uVar4;
     *(uint *)(unaff_RBP + -0x51) = uVar18;
@@ -681,7 +681,7 @@ void insert_data_sorted(uint64_t data_param, uint64_t key_param)
   *(int *)(unaff_RBP + -5) = (int)((ulonglong)key_param >> 0x20);
   *(int32_t *)(unaff_RBP + -1) = in_XMM1_Dc;
   *(int32_t *)(unaff_RBP + 3) = in_XMM1_Dd;
-  FUN_1800eac80();
+  move_memory_data();
   uVar10 = *(uint *)(unaff_R14 + 8);
   *(uint64_t *)(unaff_RBP + -0x59) = unaff_RBX;
   *(uint *)(unaff_RBP + -0x51) = unaff_EDI;
@@ -786,7 +786,7 @@ void add_data_entry(uint64_t entry_param, uint64_t data_param)
   *(int32_t *)(unaff_RBP + 0x13) = uVar3;
   *(uint64_t *)(unaff_RBP + 0x17) = data_param;
   *(uint64_t *)(unaff_RBP + 0x1f) = in_XMM1_Qb;
-  FUN_1800eac80(unaff_RBP + 0x17,unaff_RBP + 7);
+  move_memory_data(unaff_RBP + 0x17,unaff_RBP + 7);
   return;
 }
 
@@ -849,7 +849,7 @@ ulonglong * create_array_structure(ulonglong size)
   if (size == 0) {
     return (ulonglong *)0x0;
   }
-  puVar1 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,size * 8 + MEMORY_ALLOC_BASE_SIZE,3);
+  puVar1 = (ulonglong *)allocate_system_memory(_DAT_180c8ed18,size * 8 + MEMORY_ALLOC_BASE_SIZE,3);
   *puVar1 = size << 0x20 | 8;
   iVar3 = 0;
   puVar2 = puVar1 + 2;

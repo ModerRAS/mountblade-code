@@ -197,7 +197,7 @@ void FUN_1802d1da0(longlong param_1,float param_2)
   
   *(float *)(param_1 + 0x304) = param_2 + *(float *)(param_1 + 0x304);
   if (*(longlong *)(param_1 + 0x388) - *(longlong *)(param_1 + 0x380) >> 3 != 0) {
-    FUN_18005e770(_DAT_180c82868,param_1 + 0x380,0);
+    FUN_18005e770(system_context_ptr,param_1 + 0x380,0);
     FUN_1800b8500(param_1 + 0x380);
   }
   FUN_1802d1f90(param_1);
@@ -314,7 +314,7 @@ void FUN_1802d1e30(longlong param_1)
   void *puStack_20;
   code *pcStack_18;
   
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3,0xfffffffffffffffe);
+  uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0xe0,8,3,0xfffffffffffffffe);
   puStack_20 = &unknown_var_8720_ptr;
   pcStack_18 = FUN_1802d95a0;
   alStack_30[0] = param_1;
@@ -446,7 +446,7 @@ LAB_1802d2023:
       UNLOCK();
       uVar8 = uVar4 >> 10;
       if (*(longlong *)(param_1 + 0x5f0 + (ulonglong)uVar8 * 8) == 0) {
-        lVar11 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x1b);
+        lVar11 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x1b);
         plVar3 = (longlong *)(param_1 + 0x5f0 + (ulonglong)uVar8 * 8);
         LOCK();
         bVar15 = *plVar3 == 0;
@@ -573,7 +573,7 @@ LAB_1802d2023:
     UNLOCK();
     uVar7 = uVar4 >> 10;
     if (*(longlong *)(unaff_RSI + 0x5f0 + (ulonglong)uVar7 * 8) == 0) {
-      lVar10 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x1b);
+      lVar10 = FUN_18062b420(system_memory_pool_ptr,0x2000,0x1b);
       plVar3 = (longlong *)(unaff_RSI + 0x5f0 + (ulonglong)uVar7 * 8);
       LOCK();
       bVar13 = *plVar3 == 0;
@@ -846,13 +846,13 @@ void FUN_1802d2180(longlong param_1,uint param_2)
     else {
       (**(code **)(*plStack_110 + 0x28))(plStack_110);
     }
-    uVar12 = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
+    uVar12 = FUN_18062b1e0(system_memory_pool_ptr,0x100,8,3);
     plVar7 = (longlong *)FUN_18005ce30(uVar12,&puStack_1b8);
     ppuStack_1c8 = (void **)plVar7;
     if (plVar7 != (longlong *)0x0) {
       (**(code **)(*plVar7 + 0x28))(plVar7);
     }
-    lVar2 = _DAT_180c82868;
+    lVar2 = system_context_ptr;
     pplStack_230 = &plStack_238;
     plStack_238 = plVar7;
     if (plVar7 != (longlong *)0x0) {
