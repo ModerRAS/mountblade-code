@@ -121,7 +121,7 @@ void RenderingSystem_ProcessResourceRequest(int param_1, uint param_2, float par
     } while (puVar7 != (uint64_t *)0x0);
   }
   if ((puVar4 == (uint64_t *)0x180c95e98) || (auStackX_8[0] < *(uint *)(puVar4 + 4))) {
-    puVar4 = (uint64_t *)FUN_1804c0610(0x180c95e98,auStack_70,in_R8,puVar4,auStackX_8);
+    puVar4 = (uint64_t *)RenderingSystem_DataBufferProcessor(0x180c95e98,auStack_70,in_R8,puVar4,auStackX_8);
     puVar4 = (uint64_t *)*puVar4;
   }
   lVar5 = puVar4[5];
