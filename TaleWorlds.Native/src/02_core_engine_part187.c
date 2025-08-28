@@ -301,255 +301,327 @@ undefined8 * initialize_engine_configuration(undefined8 *param_1)
 
 
 
+/**
+ * 创建引擎资源实例并初始化参数
+ * @param param_1 配置指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 配置指针
+ */
 undefined8 *
-FUN_18016e320(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+create_engine_resource_instance(undefined8 *param_1,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
-  undefined4 *puVar1;
-  undefined *puStack_38;
-  undefined1 *puStack_30;
-  undefined4 uStack_28;
-  undefined8 uStack_20;
+  undefined4 *instance_data;
+  undefined *resource_table;
+  undefined1 *resource_ptr;
+  undefined4 resource_size;
+  undefined8 resource_handle;
   
-  puStack_38 = &UNK_180a3c3e0;
-  uStack_20 = 0;
-  puStack_30 = (undefined1 *)0x0;
-  uStack_28 = 0;
-  FUN_1806277c0(&puStack_38,0,param_3,param_4,0,0xfffffffffffffffe);
-  uStack_28 = 0;
-  if (puStack_30 != (undefined1 *)0x0) {
-    *puStack_30 = 0;
+  resource_table = &engine_resource_table;
+  resource_handle = 0;
+  resource_ptr = (undefined1 *)0x0;
+  resource_size = 0;
+  initialize_resource_table(&resource_table,0,param3,param4,0,0xfffffffffffffffe);
+  resource_size = 0;
+  if (resource_ptr != (undefined1 *)0x0) {
+    *resource_ptr = 0;
   }
-  FUN_1801cb3e0();
-  *param_1 = &UNK_18098bcb0;
+  cleanup_resource_manager();
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x656e6f44;
-  *(undefined1 *)(puVar1 + 1) = 0;
+  create_engine_instance(param_1,4);
+  instance_data = (undefined4 *)param_1[1];
+  *instance_data = 0x656e6f44;
+  *(undefined1 *)(instance_data + 1) = 0;
   *(undefined4 *)(param_1 + 2) = 4;
   return param_1;
 }
 
 
 
+/**
+ * 初始化引擎系统并配置参数
+ * @param param_1 配置指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 配置指针
+ */
 undefined8 *
-FUN_18016e450(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_system_with_params(undefined8 *param_1,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
-  undefined4 *puVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
+  undefined4 *instance_data;
+  undefined4 init_status;
+  undefined8 stack_guard;
   
-  uVar3 = 0xfffffffffffffffe;
-  uVar2 = 0;
-  FUN_1801c9a40();
-  *param_1 = &UNK_18098bcb0;
+  stack_guard = 0xfffffffffffffffe;
+  init_status = 0;
+  prepare_engine_system();
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4,param_3,param_4,uVar2,uVar3);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x656e6f44;
-  *(undefined1 *)(puVar1 + 1) = 0;
+  create_engine_instance(param_1,4,param3,param4,init_status,stack_guard);
+  instance_data = (undefined4 *)param_1[1];
+  *instance_data = 0x656e6f44;
+  *(undefined1 *)(instance_data + 1) = 0;
   *(undefined4 *)(param_1 + 2) = 4;
   return param_1;
 }
 
 
 
-undefined8 FUN_18016e530(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 执行引擎系统初始化流程
+ * @param system_handle 系统句柄
+ * @param param2 参数2
+ * @param init_params 初始化参数
+ * @return 系统句柄
+ */
+undefined8 execute_engine_system_initialization(undefined8 system_handle,undefined8 param2,undefined8 init_params)
 
 {
-  FUN_1801681e0(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  initialize_engine_system_flow(system_handle,system_handle,init_params,init_params,0,0xfffffffffffffffe);
+  return system_handle;
 }
 
 
 
-undefined8 FUN_18016e5b0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 启动引擎核心服务
+ * @param service_handle 服务句柄
+ * @param param2 参数2
+ * @param startup_params 启动参数
+ * @return 服务句柄
+ */
+undefined8 start_engine_core_services(undefined8 service_handle,undefined8 param2,undefined8 startup_params)
 
 {
-  FUN_180167f80(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  initialize_core_services(service_handle,service_handle,startup_params,startup_params,0,0xfffffffffffffffe);
+  return service_handle;
 }
 
 
 
+/**
+ * 配置引擎环境并设置参数
+ * @param env_ptr 环境指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 环境指针
+ */
 undefined8
-FUN_18016e630(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+configure_engine_environment_params(undefined8 env_ptr,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
+  undefined8 config_handle;
+  undefined4 config_status;
+  undefined8 stack_guard;
   
-  uVar3 = 0xfffffffffffffffe;
-  uVar2 = 0;
-  uVar1 = FUN_180167a50();
-  FUN_180627910(param_1,uVar1,param_3,param_4,uVar2,uVar3);
-  return param_1;
+  stack_guard = 0xfffffffffffffffe;
+  config_status = 0;
+  config_handle = get_engine_config_handle();
+  setup_engine_configuration(env_ptr,config_handle,param3,param4,config_status,stack_guard);
+  return env_ptr;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 处理引擎事件并更新状态
+ * @param param_1 事件处理器指针
+ * @param param2 参数2
+ * @param param_3 事件参数指针
+ * @param param_4 事件数据指针
+ * @return 事件处理器指针
+ */
 undefined8 *
-FUN_18016e6a0(undefined8 *param_1,undefined8 param_2,undefined8 *param_3,longlong *param_4)
+process_engine_event_and_update_status(undefined8 *param_1,undefined8 param2,undefined8 *param_3,longlong *param_4)
 
 {
-  undefined4 *puVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  longlong *plStackX_20;
-  undefined *puStack_c8;
-  longlong lStack_c0;
-  undefined4 uStack_b0;
-  undefined *puStack_a8;
-  longlong lStack_a0;
-  undefined4 uStack_90;
-  undefined8 uStack_88;
-  undefined1 *puStack_80;
-  undefined8 *puStack_78;
-  undefined8 uStack_70;
-  undefined1 auStack_68 [32];
-  undefined1 auStack_48 [32];
+  undefined4 *instance_data;
+  undefined8 event_handler;
+  undefined8 event_context;
+  undefined8 event_data;
+  longlong *event_info;
+  undefined *event_buffer;
+  longlong buffer_status;
+  undefined4 buffer_size;
+  undefined *resource_ptr;
+  longlong resource_status;
+  undefined4 resource_size;
+  undefined8 resource_handle;
+  undefined1 *data_ptr;
+  undefined8 *data_buffer;
+  undefined8 buffer_length;
+  undefined1 temp_buffer_1 [32];
+  undefined1 temp_buffer_2 [32];
   
-  uVar4 = _DAT_180c8aa08;
-  uStack_88 = 0xfffffffffffffffe;
-  plStackX_20 = param_4;
-  FUN_1806279c0(&puStack_a8,*param_3,param_3,(char)param_4,0);
-  FUN_180627ae0(&puStack_c8,&puStack_a8);
-  uVar2 = _DAT_180c82868;
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0xe0,8,3);
-  puStack_80 = auStack_48;
-  puStack_78 = &uStack_70;
-  uStack_70 = uVar4;
-  FUN_180627ae0(auStack_68,&puStack_c8);
-  uVar4 = FUN_1801e77d0(auStack_48,&uStack_70);
-  plStackX_20 = (longlong *)FUN_18006b640(uVar3,uVar4);
-  if (plStackX_20 != (longlong *)0x0) {
-    (**(code **)(*plStackX_20 + 0x28))(plStackX_20);
+  event_data = engine_event_config;
+  resource_handle = 0xfffffffffffffffe;
+  event_info = param_4;
+  initialize_event_buffer(&resource_ptr,*param_3,param_3,(char)param_4,0);
+  process_event_data(&event_buffer,&resource_ptr);
+  event_handler = engine_memory_pool;
+  event_context = create_event_context(engine_event_database,0xe0,8,3);
+  data_ptr = temp_buffer_2;
+  data_buffer = &buffer_length;
+  buffer_length = event_data;
+  process_event_buffer(temp_buffer_1,&event_buffer);
+  event_data = handle_event_processing(temp_buffer_2,&buffer_length);
+  event_info = (longlong *)register_event_handler(event_context,event_data);
+  if (event_info != (longlong *)0x0) {
+    (**(code **)(*event_info + 0x28))(event_info);
   }
-  FUN_18005e300(uVar2,&plStackX_20);
-  puStack_c8 = &UNK_180a3c3e0;
-  if (lStack_c0 != 0) {
+  cleanup_event_handler(event_handler,&event_info);
+  event_buffer = &engine_resource_table;
+  if (buffer_status != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    handle_resource_error();
   }
-  lStack_c0 = 0;
-  uStack_b0 = 0;
-  puStack_c8 = &UNK_18098bcb0;
-  puStack_a8 = &UNK_180a3c3e0;
-  if (lStack_a0 != 0) {
+  buffer_status = 0;
+  buffer_size = 0;
+  event_buffer = &default_engine_config;
+  resource_ptr = &engine_resource_table;
+  if (resource_status != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    handle_resource_error();
   }
-  lStack_a0 = 0;
-  uStack_90 = 0;
-  puStack_a8 = &UNK_18098bcb0;
-  *param_1 = &UNK_18098bcb0;
+  resource_status = 0;
+  resource_size = 0;
+  resource_ptr = &default_engine_config;
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x656e6f44;
-  *(undefined1 *)(puVar1 + 1) = 0;
+  create_engine_instance(param_1,4);
+  instance_data = (undefined4 *)param_1[1];
+  *instance_data = 0x656e6f44;
+  *(undefined1 *)(instance_data + 1) = 0;
   *(undefined4 *)(param_1 + 2) = 4;
   return param_1;
 }
 
 
 
+/**
+ * 初始化引擎核心模块
+ * @param module_ptr 模块指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 模块指针
+ */
 undefined8
-FUN_18016e850(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+initialize_engine_core_module(undefined8 module_ptr,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
+  undefined8 core_handle;
+  undefined4 init_status;
+  undefined8 stack_guard;
   
-  uVar3 = 0xfffffffffffffffe;
-  uVar2 = 0;
-  uVar1 = FUN_1801676b0();
-  FUN_180627910(param_1,uVar1,param_3,param_4,uVar2,uVar3);
-  return param_1;
+  stack_guard = 0xfffffffffffffffe;
+  init_status = 0;
+  core_handle = get_engine_core_handle();
+  configure_core_module(module_ptr,core_handle,param3,param4,init_status,stack_guard);
+  return module_ptr;
 }
 
 
 
-undefined8 FUN_18016e8c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 启动引擎渲染系统
+ * @param render_ptr 渲染系统指针
+ * @param param2 参数2
+ * @param render_params 渲染参数
+ * @return 渲染系统指针
+ */
+undefined8 start_engine_rendering_system(undefined8 render_ptr,undefined8 param2,undefined8 render_params)
 
 {
-  FUN_1801672e0(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  initialize_rendering_system(render_ptr,render_ptr,render_params,render_params,0,0xfffffffffffffffe);
+  return render_ptr;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 遍历引擎组件并初始化每个组件
+ * @param param_1 组件管理器指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 组件管理器指针
+ */
 undefined8 *
-FUN_18016e940(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+traverse_and_initialize_engine_components(undefined8 *param_1,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
-  undefined4 *puVar1;
-  longlong lVar2;
-  longlong lVar3;
-  int iVar4;
-  undefined4 uVar5;
-  undefined8 uVar6;
+  undefined4 *instance_data;
+  longlong component_list;
+  longlong current_component;
+  int component_index;
+  undefined4 component_id;
+  undefined8 stack_guard;
   
-  lVar2 = _DAT_180c868e8;
-  uVar6 = 0xfffffffffffffffe;
-  uVar5 = 0;
-  for (lVar3 = *(longlong *)(_DAT_180c868e8 + 8); lVar3 != lVar2; lVar3 = func_0x00018066bd70(lVar3)
+  component_list = engine_component_list;
+  stack_guard = 0xfffffffffffffffe;
+  component_id = 0;
+  for (current_component = *(longlong *)(engine_component_list + 8); current_component != component_list; current_component = get_next_component(current_component)
       ) {
-    iVar4 = 0;
-    if (*(longlong *)(lVar3 + 0x30) - *(longlong *)(lVar3 + 0x28) >> 3 != 0) {
+    component_index = 0;
+    if (*(longlong *)(current_component + 0x30) - *(longlong *)(current_component + 0x28) >> 3 != 0) {
       do {
-        FUN_18020b790(lVar2,*(undefined4 *)(lVar3 + 0x20),iVar4,param_4,uVar5,uVar6);
-        iVar4 = iVar4 + 1;
-      } while ((ulonglong)(longlong)iVar4 <
-               (ulonglong)(*(longlong *)(lVar3 + 0x30) - *(longlong *)(lVar3 + 0x28) >> 3));
+        initialize_component(component_list,*(undefined4 *)(current_component + 0x20),component_index,param_4,component_id,stack_guard);
+        component_index = component_index + 1;
+      } while ((ulonglong)(longlong)component_index <
+               (ulonglong)(*(longlong *)(current_component + 0x30) - *(longlong *)(current_component + 0x28) >> 3));
     }
   }
-  *param_1 = &UNK_18098bcb0;
+  *param_1 = &default_engine_config;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
+  *param_1 = &engine_resource_table;
   param_1[3] = 0;
   param_1[1] = 0;
   *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x656e6f44;
-  *(undefined1 *)(puVar1 + 1) = 0;
+  create_engine_instance(param_1,4);
+  instance_data = (undefined4 *)param_1[1];
+  *instance_data = 0x656e6f44;
+  *(undefined1 *)(instance_data + 1) = 0;
   *(undefined4 *)(param_1 + 2) = 4;
   return param_1;
 }
 
 
 
-undefined8 FUN_18016eaa0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 执行引擎系统诊断
+ * @param system_ptr 系统指针
+ * @param param2 参数2
+ * @param diagnostic_params 诊断参数
+ * @return 系统指针
+ */
+undefined8 execute_engine_system_diagnostics(undefined8 system_ptr,undefined8 param2,undefined8 diagnostic_params)
 
 {
-  FUN_180166dd0(param_1,param_1,param_3,param_3,0,0xfffffffffffffffe);
-  return param_1;
+  run_system_diagnostics(system_ptr,system_ptr,diagnostic_params,diagnostic_params,0,0xfffffffffffffffe);
+  return system_ptr;
 }
 
 

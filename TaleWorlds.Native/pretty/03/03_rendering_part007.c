@@ -520,44 +520,464 @@ void process_render_batch(undefined4 *render_params)
   return;
 }
 
-// 函数: void process_extended_render_data(void)
-// 功能: 处理扩展渲染数据，执行复杂的渲染操作
-// 参数: 无
-// 返回: 无
-// 说明: 此函数负责处理扩展渲染数据，包括复杂的渲染操作和状态管理
-// 简化实现：原始函数包含复杂的渲染数据处理和状态管理
-void process_extended_render_data(void)
+// 函数: void serialize_vertex_attributes(void)
+// 功能: 序列化顶点属性数据，包括位置、纹理坐标、法线等信息
+void serialize_vertex_attributes(void)
 
 {
-  // 简化实现：扩展渲染数据处理核心逻辑
-  // 原始实现包含：
-  // 1. 渲染数据块处理
-  // 2. 状态标志检查
-  // 3. 缓冲区管理
-  // 4. 渲染参数计算
-  // 5. 性能优化和缓存管理
+  undefined1 byte_value;
+  undefined4 dword_value;
+  longlong temp_var;
+  undefined1 *byte_ptr;
+  undefined4 *dword_ptr;
+  int *int_ptr;
+  longlong *unaff_RBX;
+  uint unaff_EBP;
+  int loop_counter;
+  longlong data_count;
+  int item_count;
+  ulonglong uVar10;
+  longlong unaff_RDI;
+  longlong unaff_R14;
   
-  // 保持原始实现以确保功能完整性
-  // 详细代码转译见完整版本
+  uVar10 = (ulonglong)unaff_EBP;
+  do {
+    FUN_180639ec0();
+    dword_ptr = (undefined4 *)unaff_RBX[1];
+    dword_value = *(undefined4 *)(uVar10 + 0x58 + *(longlong *)(unaff_RDI + 0x128));
+    if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+      FUN_180639bf0();
+      dword_ptr = (undefined4 *)unaff_RBX[1];
+    }
+    *dword_ptr = dword_value;
+    unaff_RBX[1] = unaff_RBX[1] + 4;
+    dword_ptr = (undefined4 *)unaff_RBX[1];
+    dword_value = *(undefined4 *)(uVar10 + 0x5c + *(longlong *)(unaff_RDI + 0x128));
+    if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+      FUN_180639bf0();
+      dword_ptr = (undefined4 *)unaff_RBX[1];
+    }
+    *dword_ptr = dword_value;
+    unaff_RBX[1] = unaff_RBX[1] + 4;
+    uVar10 = uVar10 + 0x60;
+    unaff_R14 = unaff_R14 + -1;
+  } while (unaff_R14 != 0);
+  
+  // 填充空白字节
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  data_count = 0x10;
+  do {
+    FUN_180639ec0();
+    data_count = data_count + -1;
+  } while (data_count != 0);
+  
+  // 处理材质标识符
+  FUN_18025a940(&UNK_18098dfd0, *(undefined4 *)(unaff_RDI + 0x7c8));
+  byte_ptr = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x7cc);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+    FUN_180639bf0();
+    byte_ptr = (undefined1 *)unaff_RBX[1];
+  }
+  *byte_ptr = byte_value;
+  unaff_RBX[1] = unaff_RBX[1] + 1;
+  if (*(char *)(unaff_RDI + 0x7cc) == '\0') {
+    return;
+  }
+  
+  // 序列化材质属性
+  dword_ptr = (undefined4 *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    dword_ptr = (undefined4 *)unaff_RBX[1];
+  }
+  item_count = 0;
+  *dword_ptr = 0;
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  data_count = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  int_ptr = (int *)unaff_RBX[1];
+  data_count = data_count / 0x26 + (data_count >> 0x3f);
+  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_ptr = (int *)unaff_RBX[1];
+  }
+  *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  temp_var = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  data_count = temp_var >> 0x3f;
+  loop_counter = item_count;
+  if (temp_var / 0x98 + data_count != data_count) {
+    do {
+      FUN_180639ec0();
+      loop_counter = loop_counter + 1;
+    } while ((ulonglong)(longlong)loop_counter <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / 0x98));
+  }
+  FUN_180639ec0();
+  byte_ptr = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x8a8);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+    FUN_180639bf0();
+    byte_ptr = (undefined1 *)unaff_RBX[1];
+  }
+  *byte_ptr = byte_value;
+  unaff_RBX[1] = unaff_RBX[1] + 1;
+  dword_ptr = (undefined4 *)unaff_RBX[1];
+  dword_value = *(undefined4 *)(unaff_RDI + 0x8ac);
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    dword_ptr = (undefined4 *)unaff_RBX[1];
+  }
+  *dword_ptr = dword_value;
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  FUN_180639ec0();
+  
+  // 序列化纹理坐标数据
+  data_count = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  data_count = data_count / 0x26 + (data_count >> 0x3f);
+  int_ptr = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_ptr = (int *)unaff_RBX[1];
+  }
+  *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  temp_var = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  data_count = temp_var >> 0x3f;
+  loop_counter = item_count;
+  if (temp_var / 0x98 + data_count != data_count) {
+    do {
+      FUN_180639ec0();
+      loop_counter = loop_counter + 1;
+    } while ((ulonglong)(longlong)loop_counter <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948)) / 0x98));
+  }
+  
+  // 填充纹理数据间隔
+  data_count = 5;
+  do {
+    FUN_180639ec0();
+    data_count = data_count + -1;
+  } while (data_count != 0);
+  
+  // 序列化法线数据
+  data_count = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  data_count = data_count / 0x26 + (data_count >> 0x3f);
+  int_ptr = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_ptr = (int *)unaff_RBX[1];
+  }
+  *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  temp_var = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  data_count = temp_var >> 0x3f;
+  loop_counter = item_count;
+  if (temp_var / 0x98 + data_count != data_count) {
+    do {
+      FUN_180639ec0();
+      loop_counter = loop_counter + 1;
+    } while ((ulonglong)(longlong)loop_counter <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60)) / 0x98));
+  }
+  
+  // 填充法线数据间隔
+  data_count = 9;
+  do {
+    FUN_180639ec0();
+    data_count = data_count + -1;
+  } while (data_count != 0);
+  
+  FUN_180639ec0();
+  FUN_180639ec0();
+  
+  // 序列化颜色数据
+  data_count = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  data_count = data_count / 0x26 + (data_count >> 0x3f);
+  int_ptr = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_ptr = (int *)unaff_RBX[1];
+  }
+  *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  temp_var = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  data_count = temp_var >> 0x3f;
+  loop_counter = item_count;
+  if (temp_var / 0x98 + data_count != data_count) {
+    do {
+      FUN_180639ec0();
+      loop_counter = loop_counter + 1;
+    } while ((ulonglong)(longlong)loop_counter <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / 0x98));
+  }
+  FUN_180639ec0();
+  byte_ptr = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x18c9);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+    FUN_180639bf0();
+    byte_ptr = (undefined1 *)unaff_RBX[1];
+  }
+  *byte_ptr = byte_value;
+  unaff_RBX[1] = unaff_RBX[1] + 1;
+  dword_ptr = (undefined4 *)unaff_RBX[1];
+  if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    dword_ptr = (undefined4 *)unaff_RBX[1];
+  }
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    dword_ptr = (undefined4 *)unaff_RBX[1];
+  }
+  *dword_ptr = 0x10;
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 序列化额外的渲染属性
+  do {
+    int_ptr = (int *)unaff_RBX[1];
+    if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+      FUN_180639bf0();
+      int_ptr = (int *)unaff_RBX[1];
+    }
+    *int_ptr = item_count;
+    unaff_RBX[1] = unaff_RBX[1] + 4;
+    FUN_180639ec0();
+    item_count = item_count + 1;
+  } while (item_count < 0x10);
+  return;
 }
 
-// 函数: void finalize_render_operations(void)
-// 功能: 完成渲染操作，清理资源和状态
-// 参数: 无
-// 返回: 无
-// 说明: 此函数负责完成渲染操作，包括资源清理和状态重置
-// 简化实现：原始函数包含复杂的渲染操作完成逻辑
-void finalize_render_operations(void)
+
+
+// 函数: void serialize_material_properties(void)
+// 功能: 序列化材质属性数据，处理材质标识符和属性数组
+void serialize_material_properties(void)
 
 {
-  // 简化实现：渲染操作完成核心逻辑
-  // 原始实现包含：
-  // 1. 渲染状态检查
-  // 2. 资源清理
-  // 3. 缓冲区释放
-  // 4. 状态重置
-  // 5. 性能统计更新
+  undefined1 byte_value;
+  undefined4 dword_value;
+  longlong temp_var;
+  undefined1 *byte_ptr;
+  undefined4 *dword_ptr;
+  int *int_ptr;
+  longlong *unaff_RBX;
+  int loop_counter;
+  longlong data_count;
+  int item_count;
+  longlong unaff_RDI;
   
-  // 保持原始实现以确保功能完整性
-  // 详细代码转译见完整版本
+  // 填充空白字节
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  FUN_180639ec0();
+  data_count = 0x10;
+  do {
+    FUN_180639ec0();
+    data_count = data_count + -1;
+  } while (data_count != 0);
+  
+  // 处理材质标识符
+  FUN_18025a940(&UNK_18098dfd0, *(undefined4 *)(unaff_RDI + 0x7c8));
+  byte_ptr = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x7cc);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+    FUN_180639bf0();
+    byte_ptr = (undefined1 *)unaff_RBX[1];
+  }
+  *byte_ptr = byte_value;
+  unaff_RBX[1] = unaff_RBX[1] + 1;
+  if (*(char *)(unaff_RDI + 0x7cc) == '\0') {
+    return;
+  }
+  
+  // 序列化材质属性
+  dword_ptr = (undefined4 *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    dword_ptr = (undefined4 *)unaff_RBX[1];
+  }
+  item_count = 0;
+  *dword_ptr = 0;
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  data_count = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  int_ptr = (int *)unaff_RBX[1];
+  data_count = data_count / 0x26 + (data_count >> 0x3f);
+  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_ptr = (int *)unaff_RBX[1];
+  }
+  *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  temp_var = *(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0);
+  data_count = temp_var >> 0x3f;
+  loop_counter = item_count;
+  if (temp_var / 0x98 + data_count != data_count) {
+    do {
+      FUN_180639ec0();
+      loop_counter = loop_counter + 1;
+    } while ((ulonglong)(longlong)loop_counter <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / 0x98));
+  }
+  FUN_180639ec0();
+  byte_ptr = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x8a8);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+    FUN_180639bf0();
+    byte_ptr = (undefined1 *)unaff_RBX[1];
+  }
+  *byte_ptr = byte_value;
+  unaff_RBX[1] = unaff_RBX[1] + 1;
+  dword_ptr = (undefined4 *)unaff_RBX[1];
+  dword_value = *(undefined4 *)(unaff_RDI + 0x8ac);
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    dword_ptr = (undefined4 *)unaff_RBX[1];
+  }
+  *dword_ptr = dword_value;
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  FUN_180639ec0();
+  
+  // 序列化纹理坐标数据
+  data_count = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  data_count = data_count / 0x26 + (data_count >> 0x3f);
+  int_ptr = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_ptr = (int *)unaff_RBX[1];
+  }
+  *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  temp_var = *(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948);
+  data_count = temp_var >> 0x3f;
+  loop_counter = item_count;
+  if (temp_var / 0x98 + data_count != data_count) {
+    do {
+      FUN_180639ec0();
+      loop_counter = loop_counter + 1;
+    } while ((ulonglong)(longlong)loop_counter <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0x950) - *(longlong *)(unaff_RDI + 0x948)) / 0x98));
+  }
+  
+  // 填充纹理数据间隔
+  data_count = 5;
+  do {
+    FUN_180639ec0();
+    data_count = data_count + -1;
+  } while (data_count != 0);
+  
+  // 序列化法线数据
+  data_count = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  data_count = data_count / 0x26 + (data_count >> 0x3f);
+  int_ptr = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_ptr = (int *)unaff_RBX[1];
+  }
+  *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  temp_var = *(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60);
+  data_count = temp_var >> 0x3f;
+  loop_counter = item_count;
+  if (temp_var / 0x98 + data_count != data_count) {
+    do {
+      FUN_180639ec0();
+      loop_counter = loop_counter + 1;
+    } while ((ulonglong)(longlong)loop_counter <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0xc68) - *(longlong *)(unaff_RDI + 0xc60)) / 0x98));
+  }
+  
+  // 填充法线数据间隔
+  data_count = 9;
+  do {
+    FUN_180639ec0();
+    data_count = data_count + -1;
+  } while (data_count != 0);
+  
+  FUN_180639ec0();
+  FUN_180639ec0();
+  
+  // 序列化颜色数据
+  data_count = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  data_count = data_count / 0x26 + (data_count >> 0x3f);
+  int_ptr = (int *)unaff_RBX[1];
+  if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    int_ptr = (int *)unaff_RBX[1];
+  }
+  *int_ptr = (int)(data_count >> 2) - (int)(data_count >> 0x3f);
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  temp_var = *(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888);
+  data_count = temp_var >> 0x3f;
+  loop_counter = item_count;
+  if (temp_var / 0x98 + data_count != data_count) {
+    do {
+      FUN_180639ec0();
+      loop_counter = loop_counter + 1;
+    } while ((ulonglong)(longlong)loop_counter <
+             (ulonglong)
+             ((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / 0x98));
+  }
+  FUN_180639ec0();
+  byte_ptr = (undefined1 *)unaff_RBX[1];
+  byte_value = *(undefined1 *)(unaff_RDI + 0x18c9);
+  if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
+    FUN_180639bf0();
+    byte_ptr = (undefined1 *)unaff_RBX[1];
+  }
+  *byte_ptr = byte_value;
+  unaff_RBX[1] = unaff_RBX[1] + 1;
+  dword_ptr = (undefined4 *)unaff_RBX[1];
+  if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    FUN_180639ec0();
+    dword_ptr = (undefined4 *)unaff_RBX[1];
+  }
+  if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
+    FUN_180639bf0();
+    dword_ptr = (undefined4 *)unaff_RBX[1];
+  }
+  *dword_ptr = 0x10;
+  unaff_RBX[1] = unaff_RBX[1] + 4;
+  
+  // 序列化额外的渲染属性
+  do {
+    int_ptr = (int *)unaff_RBX[1];
+    if ((ulonglong)((*unaff_RBX - (longlong)int_ptr) + unaff_RBX[2]) < 5) {
+      FUN_180639bf0();
+      int_ptr = (int *)unaff_RBX[1];
+    }
+    *int_ptr = item_count;
+    unaff_RBX[1] = unaff_RBX[1] + 4;
+    FUN_180639ec0();
+    item_count = item_count + 1;
+  } while (item_count < 0x10);
+  return;
 }
