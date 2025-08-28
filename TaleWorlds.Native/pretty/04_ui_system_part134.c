@@ -746,7 +746,8 @@ ulonglong UISystem_DistanceBasedSearch_DistanceFilter(float param_1)
 
 
 
-ulonglong thunk_FUN_180747c73(void)
+// 函数: ulonglong thunk_FUN_180747c73(void) - UI组件搜索跳转函数
+ulonglong UISystem_ComponentSearchThunk_SearchJump(void)
 
 {
   uint uVar1;
@@ -781,7 +782,8 @@ ulonglong thunk_FUN_180747c73(void)
 
 
 
-ulonglong FUN_180747c5b(void)
+// 函数: ulonglong FUN_180747c5b(void) - UI组件简化搜索函数
+ulonglong UISystem_SimpleComponentSearch_SimpleSearch(void)
 
 {
   uint uVar1;

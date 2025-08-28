@@ -1021,7 +1021,7 @@ LAB_18085a6ac:
       if (iVar5 != 0) goto LAB_18085a91b;
       lVar10 = UISystem_ResourceCreator(*(longlong *)(param_1 + 0x160) + 0x3f8,param_2,0);
       if (lVar10 != 0) {
-        iVar5 = FUN_1808cab70(*(longlong *)(param_1 + 0x160) + 0x3f8,lVar10);
+        iVar5 = UISystem_ResourceReleaser(*(longlong *)(param_1 + 0x160) + 0x3f8,lVar10);
         goto joined_r0x00018085a8b5;
       }
       goto LAB_18085a742;
@@ -1222,7 +1222,7 @@ LAB_18085a6ac:
     uVar14 = *(uint64_t *)(unaff_RBP + 0x5f);
     lVar10 = UISystem_ResourceCreator(*(longlong *)(lVar17 + 0x160) + 0x3f8,uVar14,0);
     if (lVar10 != 0) {
-      iVar6 = FUN_1808cab70(*(longlong *)(lVar17 + 0x160) + 0x3f8,lVar10);
+      iVar6 = UISystem_ResourceReleaser(*(longlong *)(lVar17 + 0x160) + 0x3f8,lVar10);
       goto joined_r0x00018085a8b5;
     }
 LAB_18085a742:

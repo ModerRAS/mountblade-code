@@ -153,6 +153,67 @@ typedef struct {
 } InitializationSystemStringBuffer;
 
 // =============================================================================
+// 系统变量别名
+// =============================================================================
+
+#define InitializationSystemConfigBase unknown_var_3432_ptr
+#define InitializationSystemControlString init_system_control_string
+#define InitializationSystemString init_system_string
+#define InitializationSystemRegistryRoot FUN_18008d070
+#define InitializationSystemMemoryAllocator FUN_18008f0d0
+#define InitializationSystemMemoryInserter FUN_18008f140
+#define InitializationSystemStringProcessor FUN_180623800
+#define InitializationSystemNodeHandler1 FUN_18007fcd0
+#define InitializationSystemNodeHandler2 FUN_180073930
+#define InitializationSystemNodeHandler3 FUN_18025cc00
+#define InitializationSystemNodeHandler4 FUN_18025c000
+#define InitializationSystemNodeHandler5 FUN_18025d270
+#define InitializationSystemNodeHandler6 FUN_18025e330
+#define InitializationSystemConfigData1 unknown_var_7304_ptr
+#define InitializationSystemConfigData2 unknown_var_4992_ptr
+#define InitializationSystemConfigData3 unknown_var_6248_ptr
+#define InitializationSystemGlobalData1 unknown_var_3480_ptr
+#define InitializationSystemGlobalData2 system_memory_91c8
+#define InitializationSystemGlobalData3 system_memory_a368
+#define InitializationSystemNodeData1 unknown_var_3504_ptr
+#define InitializationSystemNodeData2 unknown_var_3520_ptr
+#define InitializationSystemNodeData3 unknown_var_3544_ptr
+#define InitializationSystemNodeData4 unknown_var_3560_ptr
+#define InitializationSystemNodeData5 unknown_var_3576_ptr
+#define InitializationSystemNodeData6 unknown_var_3600_ptr
+#define InitializationSystemNodeData7 unknown_var_3632_ptr
+#define InitializationSystemNodeData8 unknown_var_3728_ptr
+#define InitializationSystemNodeData9 unknown_var_3744_ptr
+#define InitializationSystemNodeData10 unknown_var_3768_ptr
+#define InitializationSystemNodeData11 unknown_var_7584_ptr
+#define InitializationSystemNodeData12 unknown_var_7608_ptr
+#define InitializationSystemNodeData13 unknown_var_7632_ptr
+#define InitializationSystemNodeData14 unknown_var_7656_ptr
+#define InitializationSystemNodeData15 unknown_var_7680_ptr
+#define InitializationSystemNodeData16 unknown_var_7704_ptr
+#define InitializationSystemNodeData17 unknown_var_7728_ptr
+#define InitializationSystemNodeData18 unknown_var_7824_ptr
+#define InitializationSystemHandlerData unknown_var_2048_ptr
+#define InitializationSystemMemoryKey1 system_memory_c740
+#define InitializationSystemMemoryKey2 system_memory_c768
+#define InitializationSystemMemoryKey3 system_memory_c9b8
+#define InitializationSystemMemoryKey4 system_memory_c940
+#define InitializationSystemMemoryKey5 system_memory_c918
+#define InitializationSystemMemoryKey6 system_memory_c968
+#define InitializationSystemMemoryKey7 system_memory_c990
+#define InitializationSystemMemoryKey8 system_memory_c9e0
+#define InitializationSystemMemoryKey9 system_memory_c8f0
+#define InitializationSystemMemoryKey10 system_memory_c8c8
+#define InitializationSystemMemoryKey11 system_memory_10a0
+#define InitializationSystemMemoryKey12 system_memory_1078
+#define InitializationSystemMemoryKey13 system_memory_1050
+#define InitializationSystemMemoryKey14 system_memory_1028
+#define InitializationSystemMemoryKey15 system_memory_1000
+#define InitializationSystemMemoryKey16 system_memory_0fd8
+#define InitializationSystemMemoryKey17 system_memory_0fb0
+#define InitializationSystemMemoryKey18 system_memory_0d48
+
+// =============================================================================
 // 函数别名
 // =============================================================================
 
@@ -210,7 +271,7 @@ void InitializationSystem_ConfigRegistrationManager1(void)
     uint8_t local_buffer[INITIALIZATION_SYSTEM_STRING_BUFFER_SIZE];
     
     // 初始化配置基础指针
-    config_base = &unknown_var_3432_ptr;
+    config_base = &InitializationSystemConfigBase;
     string_buffer = local_buffer;
     
     // 清空字符串缓冲区
@@ -218,10 +279,10 @@ void InitializationSystem_ConfigRegistrationManager1(void)
     buffer_size = 0x16;
     
     // 安全复制配置字符串
-    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &unknown_var_7304_ptr, register_value, 0xfffffffffffffffe);
+    strcpy_s(local_buffer, INITIALIZATION_SYSTEM_CONFIG_SIZE, &InitializationSystemConfigData1, register_value, 0xfffffffffffffffe);
     
     // 注册配置到系统
-    init_system_string = FUN_180623800(&config_base);
+    InitializationSystemString = InitializationSystemStringProcessor(&config_base);
     
     return;
 }
@@ -244,8 +305,8 @@ int InitializationSystem_GlobalDataInitializer1(void)
     uint64_t register_value;
     
     // 初始化全局数据指针
-    init_system_control_string = &unknown_var_3480_ptr;
-    init_system_control_string = &system_memory_91c8;
+    InitializationSystemControlString = &InitializationSystemGlobalData1;
+    InitializationSystemControlString = &InitializationSystemGlobalData2;
     
     // 返回初始化状态
     return 0;
@@ -277,16 +338,16 @@ void InitializationSystem_RegistrySearchAndInsert1(void)
     void* node_handler;
     
     // 获取注册表根节点
-    registry_root = (void**)FUN_18008d070();
+    registry_root = (void**)InitializationSystemRegistryRoot();
     root_node = (void*)*registry_root;
     node_flag = *(uint8_t*)((uint64_t)root_node[1] + 0x19);
-    node_handler = FUN_18007fcd0;
+    node_handler = InitializationSystemNodeHandler1;
     parent_node = root_node;
     current_node = (void*)root_node[1];
     
     // 搜索目标节点
     while (node_flag == 0) {
-        compare_result = memcmp(current_node + 4, &system_memory_c740, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
+        compare_result = memcmp(current_node + 4, &InitializationSystemMemoryKey1, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE);
         if (compare_result < 0) {
             child_node = (void*)current_node[2];
             current_node = parent_node;
@@ -299,16 +360,16 @@ void InitializationSystem_RegistrySearchAndInsert1(void)
     }
     
     // 插入新节点
-    if ((parent_node == root_node) || (compare_result = memcmp(&system_memory_c740, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
-        memory_size = FUN_18008f0d0(registry_root);
-        FUN_18008f140(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
+    if ((parent_node == root_node) || (compare_result = memcmp(&InitializationSystemMemoryKey1, parent_node + 4, INITIALIZATION_SYSTEM_REGISTRY_KEY_SIZE), compare_result < 0)) {
+        memory_size = InitializationSystemMemoryAllocator(registry_root);
+        InitializationSystemMemoryInserter(registry_root, &new_node, parent_node, memory_size + 0x20, memory_size);
         parent_node = new_node;
     }
     
     // 设置节点数据
     parent_node[6] = 0x4fc124d23d41985f;
     parent_node[7] = 0xe2f4a30d6e6ae482;
-    parent_node[8] = &unknown_var_3504_ptr;
+    parent_node[8] = &InitializationSystemNodeData1;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
