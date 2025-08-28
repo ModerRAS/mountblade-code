@@ -36,7 +36,7 @@
 typedef void* SystemHandle;
 typedef void* ResourceHandle;
 typedef void* StreamHandle;
-typypedef void* MemoryHandle;
+typedef void* MemoryHandle;
 
 // 系统状态枚举
 typedef enum {
