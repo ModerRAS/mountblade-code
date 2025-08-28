@@ -252,7 +252,7 @@ void FUN_1803ec310(int64_t param_1,int32_t *param_2)
       if (puStack_718 != (void *)0x0) {
         puVar17 = puStack_718;
       }
-      System_DataHandler(&puStack_6c8,&unknown_var_1000_ptr,puVar17,*(int32_t *)(param_1 + 0x438));
+      System_DataHandler(&puStack_6c8,&script_config_ptr,puVar17,*(int32_t *)(param_1 + 0x438));
       plStack_6a8 = (int64_t *)0x0;
       lStack_6a0 = 0;
       plStack_6d0 = alStack_3c0;

@@ -886,7 +886,7 @@ void RenderingSystem_ProcessStringLength(uint64_t param_1)
     // 检查系统状态
     if (render_system_memory == 0) {
         // 系统未初始化，执行初始化
-        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &unknown_var_704_ptr);
+        RenderingSystem_InitializePort(auStack_218, 0x200, &unknown_var_1952_ptr, &physics_control_ptr);
         RenderingSystem_ValidateIntegerParameter(auStack_218);
     } else {
         // 系统已初始化，处理字符串长度

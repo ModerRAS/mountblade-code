@@ -276,7 +276,7 @@ void FUN_180050b00(void)
     *pplVar9 = (int64_t *)&system_handler1_ptr;
     *pplVar9 = (int64_t *)&system_handler2_ptr;
     *(int32_t *)(pplVar9 + 1) = 0;
-    *pplVar9 = (int64_t *)&unknown_var_1000_ptr;
+    *pplVar9 = (int64_t *)&script_config_ptr;
     LOCK();
     *(int8_t *)(pplVar9 + 2) = 0;
     UNLOCK();
@@ -396,7 +396,7 @@ void FUN_180050b30(int64_t param_1)
     *pplVar8 = (int64_t *)&system_handler1_ptr;
     *pplVar8 = (int64_t *)&system_handler2_ptr;
     *(int32_t *)(pplVar8 + 1) = 0;
-    *pplVar8 = (int64_t *)&unknown_var_1000_ptr;
+    *pplVar8 = (int64_t *)&script_config_ptr;
     LOCK();
     *(int8_t *)(pplVar8 + 2) = 0;
     UNLOCK();

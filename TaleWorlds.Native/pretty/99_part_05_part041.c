@@ -771,7 +771,7 @@ LAB_1802f2dc5:
 LAB_1802f3a4a:
                 SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_4e8);
             }
-            lVar4 = (int64_t)&unknown_var_400_ptr - (int64_t)pcVar6;
+            lVar4 = (int64_t)&ui_config_ptr - (int64_t)pcVar6;
             while (*pcVar6 == pcVar6[lVar4]) {
                 pcVar6 = pcVar6 + 1;
                 if (pcVar2 <= pcVar6) goto LAB_1802f2c88;

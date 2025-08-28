@@ -183,7 +183,7 @@ void FUN_1805698e0(int64_t param_1)
   (**(code **)(param_1 + 0x100))(0x6f,&unknown_var_1264_ptr);
   (**(code **)(param_1 + 0x100))(0x70,&unknown_var_7792_ptr);
   (**(code **)(param_1 + 0x100))(0x71,&unknown_var_1248_ptr);
-  (**(code **)(param_1 + 0x100))(0x72,&unknown_var_800_ptr);
+  (**(code **)(param_1 + 0x100))(0x72,&animation_config_ptr);
   (**(code **)(param_1 + 0x100))(0x73,&unknown_var_7728_ptr);
   (**(code **)(param_1 + 0x100))(0x74,FUN_1805fef40);
   (**(code **)(param_1 + 0x100))(0x75,&unknown_var_2944_ptr);
@@ -262,7 +262,7 @@ void FUN_1805698e0(int64_t param_1)
   (**(code **)(param_1 + 0x100))(0xbe,FUN_1805ff540);
   (**(code **)(param_1 + 0x100))(0xbf,FUN_180600890);
   (**(code **)(param_1 + 0x100))(0xc0,&unknown_var_2672_ptr);
-  (**(code **)(param_1 + 0x100))(0xc1,&unknown_var_704_ptr);
+  (**(code **)(param_1 + 0x100))(0xc1,&physics_control_ptr);
   (**(code **)(param_1 + 0x100))(0xc2,FUN_1805ff8c0);
   (**(code **)(param_1 + 0x100))(0xc3,&unknown_var_7760_ptr);
   (**(code **)(param_1 + 0x100))(0xc4,&unknown_var_8368_ptr);
@@ -472,7 +472,7 @@ void FUN_1805698e0(int64_t param_1)
   (**(code **)(param_1 + 0x100))(400,&unknown_var_3856_ptr);
   (**(code **)(param_1 + 0x100))(0x191,&unknown_var_2640_ptr);
   (**(code **)(param_1 + 0x100))(0x192,FUN_180565b70);
-  (**(code **)(param_1 + 0x100))(0x193,&unknown_var_400_ptr);
+  (**(code **)(param_1 + 0x100))(0x193,&ui_config_ptr);
   (**(code **)(param_1 + 0x100))(0x194,FUN_1805659e0);
   (**(code **)(param_1 + 0x100))(0x195,&unknown_var_7232_ptr);
   (**(code **)(param_1 + 0x100))(0x196,RenderingSystemRenderer);

@@ -403,7 +403,7 @@ void FUN_1800466d0(int64_t param_1)
 void FUN_180046750(uint64_t *param_1)
 
 {
-  *param_1 = &unknown_var_1000_ptr;
+  *param_1 = &script_config_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   return;
@@ -415,7 +415,7 @@ uint64_t *
 FUN_180046790(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  *param_1 = &unknown_var_1000_ptr;
+  *param_1 = &script_config_ptr;
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
   if ((param_2 & 1) != 0) {

@@ -407,7 +407,7 @@ uint64_t * FUN_1801954d0(uint64_t *param_1,int64_t param_2)
   param_1[0xb94] = 0;
   param_1[0xb95] = 0;
   *(int32_t *)(param_1 + 0xb96) = 3;
-  FUN_1808fc838(param_1 + 0xb97,0x2408,1,&unknown_var_400_ptr,FUN_1801b99e0);
+  FUN_1808fc838(param_1 + 0xb97,0x2408,1,&ui_config_ptr,FUN_1801b99e0);
   *(int32_t *)(param_1 + 0x1018) = 0;
   _Mtx_init_in_situ(param_1 + 0x1019,2);
   param_1[0x1023] = 0;

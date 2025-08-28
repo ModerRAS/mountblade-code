@@ -778,7 +778,7 @@ void RenderSystem_Initialize(int64_t system_handle, uint64_t *output_data, int32
         texture_width = 0x676f7250;
         texture_height = 0x4150000000000000;
         resource_pointer = &system_state_ptr;
-        texture_manager = SystemResourceProcessor(system_handle, &unknown_var_704_ptr, param3, &texture_handle);
+        texture_manager = SystemResourceProcessor(system_handle, &physics_control_ptr, param3, &texture_handle);
         *(int32_t *)(texture_manager + 0xc) = 0x3f800000;
       }
       SystemStateManager(system_handle);
@@ -954,7 +954,7 @@ void RenderSystem_ConfigureParameters(int64_t system_handle, uint64_t *output_da
           resource_pointer = param13;
         }
         
-        resource_manager = SystemResourceProcessor(system_handle, &unknown_var_704_ptr, param3, &param6, resource_pointer);
+        resource_manager = SystemResourceProcessor(system_handle, &physics_control_ptr, param3, &param6, resource_pointer);
         *(int32_t *)(resource_manager + 0xc) = 0x3f800000;
       }
       
@@ -1134,7 +1134,7 @@ void RenderSystem_AdvancedConfigure(int64_t system_handle, uint64_t *output_data
           resource_pointer = param13;
         }
         
-        resource_manager = SystemResourceProcessor(texture_format, &unknown_var_704_ptr, param3, &param6, resource_pointer);
+        resource_manager = SystemResourceProcessor(texture_format, &physics_control_ptr, param3, &param6, resource_pointer);
         *(int32_t *)(resource_manager + 0xc) = 0x3f800000;
       }
       

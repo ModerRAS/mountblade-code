@@ -429,7 +429,7 @@ LAB_180316e53:
             *pplVar17 = (int64_t *)&system_handler1_ptr;
             *pplVar17 = (int64_t *)&system_handler2_ptr;
             *(int32_t *)(pplVar17 + 1) = 0;
-            *pplVar17 = (int64_t *)&unknown_var_1000_ptr;
+            *pplVar17 = (int64_t *)&script_config_ptr;
             LOCK();
             *(int8_t *)(pplVar17 + 2) = 0;
             UNLOCK();
@@ -869,7 +869,7 @@ LAB_180316799:
                   *ppuVar19 = &system_handler1_ptr;
                   *ppuVar19 = &system_handler2_ptr;
                   *(int32_t *)(ppuVar19 + 1) = 0;
-                  *ppuVar19 = &unknown_var_1000_ptr;
+                  *ppuVar19 = &script_config_ptr;
                   LOCK();
                   *(int8_t *)(ppuVar19 + 2) = 0;
                   UNLOCK();
@@ -979,7 +979,7 @@ LAB_180316799:
           *ppuVar19 = &system_handler1_ptr;
           *ppuVar19 = &system_handler2_ptr;
           *(int32_t *)(ppuVar19 + 1) = 0;
-          *ppuVar19 = &unknown_var_1000_ptr;
+          *ppuVar19 = &script_config_ptr;
           LOCK();
           *(int8_t *)(ppuVar19 + 2) = 0;
           UNLOCK();

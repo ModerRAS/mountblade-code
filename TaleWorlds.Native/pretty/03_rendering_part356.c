@@ -47,7 +47,7 @@ void FUN_18045e4f0(int64_t *param_1,uint64_t param_2,uint64_t param_3,int8_t par
   *plVar5 = (int64_t)&system_handler1_ptr;
   *plVar5 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar5 + 1) = 0;
-  *plVar5 = (int64_t)&unknown_var_1000_ptr;
+  *plVar5 = (int64_t)&script_config_ptr;
   LOCK();
   *(int8_t *)(plVar5 + 2) = 0;
   UNLOCK();
