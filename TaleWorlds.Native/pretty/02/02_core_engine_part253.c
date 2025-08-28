@@ -1,57 +1,57 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 02_core_engine_part253.c - 核心引擎模块第253部分
-// 本文件包含字符串处理、排序算法、内存管理、文件操作等功能
-// 主要功能模块：
-// 1. 字符串指针快速排序算法
-// 2. 字符串数据块复制和移动操作
-// 3. 堆排序算法实现
-// 4. 字符串容器管理
-// 5. 配置文件处理
-// 6. 系统初始化和清理函数
-// 转译状态：已完成所有函数命名和注释
+// 包含15个函数，主要负责字符串比较、内存管理和数据结构操作
 
-// 函数: void quick_sort_string_pointers(ulonglong *result_ptr,longlong *left_ptr,longlong *right_ptr)
-// 功能: 对字符串指针数组进行快速排序，使用三路分区优化
-// 参数: result_ptr - 排序结果指针数组, left_ptr - 左边界指针, right_ptr - 右边界指针
-// 算法特点：使用字符串比较进行排序，处理空字符串情况
-void quick_sort_string_pointers(ulonglong *result_ptr,longlong *left_ptr,longlong *right_ptr)
+/**
+ * 三路快速排序的分区函数
+ * 对三个指针指向的元素进行比较和交换
+ * @param param_1 输出参数，用于存储分区后的指针位置
+ * @param param_2 左边界指针
+ * @param param_3 右边界指针
+ */
+void quick_sort_three_way_partition(ulonglong *param_1, longlong *param_2, longlong *param_3)
 
 {
-  byte byte_cmp_result;
-  longlong offset_diff;
+  byte byte_temp;
+  longlong offset_temp;
   byte *string_ptr;
   uint char_val;
   longlong *pivot_ptr;
-  longlong *temp_ptr1;
-  longlong *temp_ptr2;
-  longlong *temp_ptr3;
-  longlong *temp_ptr4;
-  longlong string_val1;
-  longlong string_val2;
-  longlong *partition_ptr;
+  longlong *left_ptr;
+  longlong *right_ptr;
+  longlong *mid_ptr;
+  longlong compare_result;
+  longlong left_val;
+  longlong *current_ptr;
   
-  partition_ptr = left_ptr + ((longlong)right_ptr - (longlong)left_ptr >> 4);
-  offset_diff = (longlong)right_ptr + (-8 - (longlong)left_ptr) >> 3;
-  if (offset_diff < 0x29) {
-    temp_ptr4 = right_ptr + -1;
-    temp_ptr1 = left_ptr;
+  // 计算中点位置
+  current_ptr = param_2 + ((longlong)param_3 - (longlong)param_2 >> 4);
+  offset_temp = (longlong)param_3 + (-8 - (longlong)param_2) >> 3;
+  
+  if (offset_temp < 0x29) {
+    mid_ptr = param_3 + -1;
+    pivot_ptr = param_2;
   }
   else {
-    offset_diff = offset_diff + 1 >> 3;
-    swap_string_pointers(left_ptr,left_ptr + offset_diff,left_ptr + offset_diff * 2);
-    swap_string_pointers(partition_ptr + -offset_diff,partition_ptr,partition_ptr + offset_diff);
-    temp_ptr4 = right_ptr + (-1 - offset_diff);
-    swap_string_pointers(right_ptr + offset_diff * -2 + -1,temp_ptr4,right_ptr + -1);
-    temp_ptr1 = left_ptr + offset_diff;
+    offset_temp = offset_temp + 1 >> 3;
+    // 递归排序三个分区
+    quick_sort_three_way_partition(param_2, param_2 + offset_temp, param_2 + offset_temp * 2);
+    quick_sort_three_way_partition(current_ptr + -offset_temp, current_ptr, current_ptr + offset_temp);
+    mid_ptr = param_3 + (-1 - offset_temp);
+    quick_sort_three_way_partition(param_3 + offset_temp * -2 + -1, mid_ptr, param_3 + -1);
+    pivot_ptr = param_2 + offset_temp;
   }
-  swap_string_pointers(temp_ptr1,partition_ptr,temp_ptr4);
-  plVar5 = temp_ptr1 + 1;
-  if (left_ptr < temp_ptr1) {
-    lVar2 = *temp_ptr1;
+  // 执行三路分区
+  quick_sort_three_way_partition(pivot_ptr, current_ptr, mid_ptr);
+  pivot_ptr = current_ptr + 1;
+  
+  // 左分区处理
+  if (param_2 < current_ptr) {
+    compare_result = *current_ptr;
     do {
-      lVar10 = temp_ptr1[-1];
-      plVar8 = temp_ptr1 + -1;
+      left_val = current_ptr[-1];
+      mid_ptr = current_ptr + -1;
       if (*(int *)(lVar2 + 0x10) != 0) {
         if (*(int *)(lVar10 + 0x10) == 0) break;
         pbVar3 = *(byte **)(lVar2 + 8);
@@ -81,9 +81,9 @@ void quick_sort_string_pointers(ulonglong *result_ptr,longlong *left_ptr,longlon
     } while (param_2 < plVar8);
   }
   plVar8 = plVar5;
-  plVar7 = temp_ptr1;
-  if (plVar5 < right_ptr) {
-    lVar2 = *temp_ptr1;
+  plVar7 = plVar11;
+  if (plVar5 < param_3) {
+    lVar2 = *plVar11;
     do {
       lVar10 = *plVar5;
       plVar8 = plVar5;
@@ -118,9 +118,9 @@ void quick_sort_string_pointers(ulonglong *result_ptr,longlong *left_ptr,longlon
 joined_r0x000180219b69:
   do {
     plVar6 = plVar7;
-    if (right_ptr <= plVar5) goto joined_r0x000180219bf9;
+    if (param_3 <= plVar5) goto joined_r0x000180219bf9;
     lVar2 = *plVar5;
-    lVar10 = *temp_ptr1;
+    lVar10 = *plVar11;
     if (*(int *)(lVar2 + 0x10) == 0) {
 LAB_180219ba7:
       if (*(int *)(lVar10 + 0x10) != 0) {
@@ -136,9 +136,9 @@ LAB_180219ba7:
           if ((int)(bVar1 - uVar4) < 1) goto LAB_180219bd7;
         }
 joined_r0x000180219bf9:
-        for (; left_ptr < plVar7; plVar7 = plVar7 + -1) {
+        for (; param_2 < plVar7; plVar7 = plVar7 + -1) {
           plVar6 = plVar6 + -1;
-          lVar2 = *temp_ptr1;
+          lVar2 = *plVar11;
           lVar10 = *plVar6;
           if (*(int *)(lVar2 + 0x10) == 0) {
 LAB_180219c49:
@@ -154,10 +154,10 @@ LAB_180219c49:
               } while (uVar4 != 0);
               if (0 < (int)(bVar1 - uVar4)) break;
             }
-            temp_ptr1 = temp_ptr1 + -1;
-            if (temp_ptr1 != plVar6) {
-              lVar2 = *temp_ptr1;
-              *temp_ptr1 = lVar10;
+            plVar11 = plVar11 + -1;
+            if (plVar11 != plVar6) {
+              lVar2 = *plVar11;
+              *plVar11 = lVar10;
               *plVar6 = lVar2;
             }
           }
@@ -173,40 +173,40 @@ LAB_180219c49:
             if ((int)(bVar1 - uVar4) < 1) goto LAB_180219c49;
           }
         }
-        if (plVar7 == left_ptr) {
-          if (plVar5 == right_ptr) {
-            *result_ptr = (ulonglong)temp_ptr1;
-            result_ptr[1] = (ulonglong)plVar8;
+        if (plVar7 == param_2) {
+          if (plVar5 == param_3) {
+            *param_1 = (ulonglong)plVar11;
+            param_1[1] = (ulonglong)plVar8;
             return;
           }
           if (plVar8 != plVar5) {
-            lVar2 = *temp_ptr1;
-            *temp_ptr1 = *plVar8;
+            lVar2 = *plVar11;
+            *plVar11 = *plVar8;
             *plVar8 = lVar2;
           }
-          lVar2 = *temp_ptr1;
-          *temp_ptr1 = *plVar5;
-          temp_ptr1 = temp_ptr1 + 1;
+          lVar2 = *plVar11;
+          *plVar11 = *plVar5;
+          plVar11 = plVar11 + 1;
           *plVar5 = lVar2;
           plVar5 = plVar5 + 1;
           plVar8 = plVar8 + 1;
         }
         else {
           plVar7 = plVar7 + -1;
-          if (plVar5 == right_ptr) {
-            temp_ptr1 = temp_ptr1 + -1;
-            if (plVar7 == temp_ptr1) {
-              lVar2 = *temp_ptr1;
-              *temp_ptr1 = plVar8[-1];
+          if (plVar5 == param_3) {
+            plVar11 = plVar11 + -1;
+            if (plVar7 == plVar11) {
+              lVar2 = *plVar11;
+              *plVar11 = plVar8[-1];
               plVar8[-1] = lVar2;
               plVar8 = plVar8 + -1;
             }
             else {
               plVar8 = plVar8 + -1;
               lVar2 = *plVar7;
-              *plVar7 = *temp_ptr1;
-              *temp_ptr1 = lVar2;
-              *temp_ptr1 = *plVar8;
+              *plVar7 = *plVar11;
+              *plVar11 = lVar2;
+              *plVar11 = *plVar8;
               *plVar8 = lVar2;
             }
           }
@@ -244,90 +244,105 @@ LAB_180219bd7:
 
 
 
-// 函数: longlong copy_string_data_block(longlong dest_base,longlong src_base,longlong count)
-// 功能: 复制字符串数据块，处理内存分配和字符串终止符
-// 参数: dest_base - 目标基地址, src_base - 源基地址, count - 要处理的元素数量
-longlong copy_string_data_block(longlong dest_base,longlong src_base,longlong count)
-
-{
-  longlong element_count;
-  longlong *src_ptr;
-  ulonglong string_length;
-  longlong dest_offset;
-  
-  element_count = (src_base - dest_base) / 0x28;
-  if (0 < element_count) {
-    src_ptr = (longlong *)(dest_base + 8);
-    dest_offset = count - dest_base;
-    do {
-      string_length = *(uint *)(src_ptr + 1);
-      if (*src_ptr != 0) {
-        FUN_1806277c0(count,(ulonglong)string_length);
-      }
-      if (string_length != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(*(undefined8 *)(dest_offset + (longlong)src_ptr),*src_ptr,string_length);
-      }
-      *(undefined4 *)(dest_offset + 8 + (longlong)src_ptr) = 0;
-      if (*(longlong *)(dest_offset + (longlong)src_ptr) != 0) {
-        *(undefined1 *)(string_length + *(longlong *)(dest_offset + (longlong)src_ptr)) = 0;
-      }
-      element_count = element_count + -1;
-      *(undefined4 *)(dest_offset + 0x14 + (longlong)src_ptr) = *(undefined4 *)((longlong)src_ptr + 0x14);
-      count = count + 0x28;
-      *(int *)(dest_offset + 0x18 + (longlong)src_ptr) = (int)src_ptr[3];
-      src_ptr = src_ptr + 5;
-    } while (0 < element_count);
-  }
-  return count;
-}
-
-
-
-// 函数: longlong copy_string_data_block_reverse(longlong dest_base,undefined8 unused_param,longlong src_base)
-// 功能: 反向复制字符串数据块，处理内存分配和字符串终止符
-// 参数: dest_base - 目标基地址, unused_param - 未使用参数, src_base - 源基地址
-longlong copy_string_data_block_reverse(longlong dest_base,undefined8 unused_param,longlong src_base)
+/**
+ * 批量复制和清理数据结构
+ * @param param_1 源数据起始地址
+ * @param param_2 源数据结束地址
+ * @param param_3 目标地址
+ * @return 返回处理后的目标地址
+ */
+longlong batch_copy_and_cleanup(longlong param_1, longlong param_2, longlong param_3)
 
 {
   uint string_length;
-  longlong *src_ptr;
-  longlong next_dest;
-  ulonglong length;
-  longlong current_src;
+  longlong *data_ptr;
+  ulonglong buffer_size;
+  longlong item_count;
   
-  src_ptr = (longlong *)(dest_base + 8);
-  current_src = src_base - dest_base;
+  item_count = (param_2 - param_1) / 0x28;  // 每个结构体40字节
+  
+  if (0 < item_count) {
+    data_ptr = (longlong *)(param_1 + 8);
+    param_1 = param_3 - param_1;
+    
+    do {
+      string_length = *(uint *)(data_ptr + 1);
+      buffer_size = (ulonglong)string_length;
+      
+      if (*data_ptr != 0) {
+        release_memory_buffer(param_3, buffer_size);
+      }
+      
+      if (string_length != 0) {
+        // 复制字符串数据
+        memcpy(*(undefined8 *)(param_1 + (longlong)data_ptr), *data_ptr, buffer_size);
+      }
+      
+      *(undefined4 *)(param_1 + 8 + (longlong)data_ptr) = 0;
+      
+      if (*(longlong *)(param_1 + (longlong)data_ptr) != 0) {
+        *(undefined1 *)(buffer_size + *(longlong *)(param_1 + (longlong)data_ptr)) = 0;
+      }
+      
+      item_count = item_count + -1;
+      *(undefined4 *)(param_1 + 0x14 + (longlong)data_ptr) = *(undefined4 *)((longlong)data_ptr + 0x14);
+      param_3 = param_3 + 0x28;
+      *(int *)(param_1 + 0x18 + (longlong)data_ptr) = (int)data_ptr[3];
+      data_ptr = data_ptr + 5;
+    } while (0 < item_count);
+  }
+  return param_3;
+}
+
+
+
+/**
+ * 反向批量复制和清理数据结构
+ * @param param_1 源数据起始地址
+ * @param param_2 保留参数
+ * @param param_3 目标地址
+ * @return 返回处理后的目标地址
+ */
+longlong reverse_batch_copy_and_cleanup(longlong param_1, undefined8 param_2, longlong param_3)
+
+{
+  uint uVar1;
+  longlong *plVar2;
+  longlong unaff_RBP;
+  ulonglong uVar3;
+  longlong unaff_R14;
+  
+  plVar2 = (longlong *)(param_1 + 8);
+  param_3 = param_3 - param_1;
   do {
-    string_length = *(uint *)(src_ptr + 1);
-    length = (ulonglong)string_length;
-    if (*src_ptr != 0) {
-      FUN_1806277c0(next_dest,length);
+    uVar1 = *(uint *)(plVar2 + 1);
+    uVar3 = (ulonglong)uVar1;
+    if (*plVar2 != 0) {
+      FUN_1806277c0(unaff_RBP,uVar3);
     }
-    if (string_length != 0) {
+    if (uVar1 != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(*(undefined8 *)(current_src + (longlong)src_ptr),*src_ptr,length);
+      memcpy(*(undefined8 *)(param_3 + (longlong)plVar2),*plVar2,uVar3);
     }
-    *(undefined4 *)(current_src + 8 + (longlong)src_ptr) = 0;
-    if (*(longlong *)(current_src + (longlong)src_ptr) != 0) {
-      *(undefined1 *)(length + *(longlong *)(current_src + (longlong)src_ptr)) = 0;
+    *(undefined4 *)(param_3 + 8 + (longlong)plVar2) = 0;
+    if (*(longlong *)(param_3 + (longlong)plVar2) != 0) {
+      *(undefined1 *)(uVar3 + *(longlong *)(param_3 + (longlong)plVar2)) = 0;
     }
-    next_dest = next_dest + -1;
-    *(undefined4 *)(current_src + 0x14 + (longlong)src_ptr) = *(undefined4 *)((longlong)src_ptr + 0x14);
-    current_src = current_src + 0x28;
-    *(int *)(current_src + 0x18 + (longlong)src_ptr) = (int)src_ptr[3];
-    src_ptr = src_ptr + 5;
-  } while (0 < next_dest);
-  return current_src;
+    unaff_R14 = unaff_R14 + -1;
+    *(undefined4 *)(param_3 + 0x14 + (longlong)plVar2) = *(undefined4 *)((longlong)plVar2 + 0x14);
+    unaff_RBP = unaff_RBP + 0x28;
+    *(int *)(param_3 + 0x18 + (longlong)plVar2) = (int)plVar2[3];
+    plVar2 = plVar2 + 5;
+  } while (0 < unaff_R14);
+  return unaff_RBP;
 }
 
 
 
 
 
-// 函数: void initialize_string_data_structure(void)
-// 功能: 初始化字符串数据结构（空函数）
-void initialize_string_data_structure(void)
+// 函数: void FUN_180219e15(void)
+void FUN_180219e15(void)
 
 {
   return;
@@ -335,107 +350,102 @@ void initialize_string_data_structure(void)
 
 
 
-// 函数: longlong move_string_data_entries(longlong dest_start,longlong src_start,longlong dest_base)
-// 功能: 移动字符串数据条目，处理数据结构重新排列
-// 参数: dest_start - 目标起始地址, src_start - 源起始地址, dest_base - 目标基地址
-longlong move_string_data_entries(longlong dest_start,longlong src_start,longlong dest_base)
+longlong FUN_180219e30(longlong param_1,longlong param_2,longlong param_3)
 
 {
-  longlong current_dest;
-  longlong offset;
-  longlong current_src;
+  longlong lVar1;
+  longlong lVar2;
+  longlong lVar3;
   
-  if (dest_start != src_start) {
-    offset = dest_start - dest_base;
-    current_src = dest_base - dest_start;
+  if (param_1 != param_2) {
+    lVar3 = param_1 - param_3;
+    lVar2 = param_3 - param_1;
     do {
-      FUN_180627ae0(dest_base,dest_start);
-      current_dest = dest_start + current_src;
-      *(undefined4 *)(current_dest + 0x20) = *(undefined4 *)(current_dest + 0x20 + offset);
-      dest_base = dest_base + 0x28;
-      dest_start = dest_start + 0x28;
-    } while (dest_start != src_start);
+      FUN_180627ae0(param_3,param_1);
+      lVar1 = param_1 + lVar2;
+      *(undefined4 *)(lVar1 + 0x20) = *(undefined4 *)(lVar1 + 0x20 + lVar3);
+      param_3 = param_3 + 0x28;
+      param_1 = param_1 + 0x28;
+    } while (param_1 != param_2);
   }
-  return dest_base;
+  return param_3;
 }
 
 
 
 
 
-// 函数: void heapify_string_pointers(longlong heap_base,longlong start_index,ulonglong heap_size,longlong *element_ptr)
-// 功能: 对字符串指针数组进行堆化操作，用于堆排序
-// 参数: heap_base - 堆基地址, start_index - 起始索引, heap_size - 堆大小, element_ptr - 元素指针
-void heapify_string_pointers(longlong heap_base,longlong start_index,ulonglong heap_size,longlong *element_ptr)
+// 函数: void FUN_180219eb0(longlong param_1,longlong param_2,ulonglong param_3,longlong *param_4)
+void FUN_180219eb0(longlong param_1,longlong param_2,ulonglong param_3,longlong *param_4)
 
 {
-  byte cmp_result;
-  longlong left_child;
-  byte *left_string;
-  uint left_char;
-  longlong right_child;
-  longlong parent;
-  longlong current;
-  longlong element;
+  byte bVar1;
+  longlong lVar2;
+  byte *pbVar3;
+  uint uVar4;
+  longlong lVar5;
+  longlong lVar6;
+  longlong lVar7;
+  longlong lVar8;
   
-  parent = (longlong)(heap_size - 1) >> 1;
-  current = start_index;
-  element = start_index;
-  if (start_index < parent) {
+  lVar6 = (longlong)(param_3 - 1) >> 1;
+  lVar5 = param_2;
+  lVar8 = param_2;
+  if (param_2 < lVar6) {
     do {
-      left_child = *(longlong *)(heap_base + 8 + current * 0x10);
-      right_child = current * 2 + 2;
-      if (*(int *)(left_child + 0x10) != 0) {
-        parent = *(longlong *)(heap_base + right_child * 8);
-        if (*(int *)(parent + 0x10) != 0) {
-          left_string = *(byte **)(left_child + 8);
-          left_child = *(longlong *)(parent + 8) - (longlong)left_string;
+      lVar7 = *(longlong *)(param_1 + 8 + lVar8 * 0x10);
+      lVar5 = lVar8 * 2 + 2;
+      if (*(int *)(lVar7 + 0x10) != 0) {
+        lVar2 = *(longlong *)(param_1 + lVar5 * 8);
+        if (*(int *)(lVar2 + 0x10) != 0) {
+          pbVar3 = *(byte **)(lVar7 + 8);
+          lVar7 = *(longlong *)(lVar2 + 8) - (longlong)pbVar3;
           do {
-            cmp_result = *left_string;
-            left_char = (uint)left_string[left_child];
-            if (cmp_result != left_char) break;
-            left_string = left_string + 1;
-          } while (left_char != 0);
-          if ((int)(cmp_result - left_char) < 1) goto LAB_180219f3b;
+            bVar1 = *pbVar3;
+            uVar4 = (uint)pbVar3[lVar7];
+            if (bVar1 != uVar4) break;
+            pbVar3 = pbVar3 + 1;
+          } while (uVar4 != 0);
+          if ((int)(bVar1 - uVar4) < 1) goto LAB_180219f3b;
         }
-        right_child = current * 2 + 1;
+        lVar5 = lVar8 * 2 + 1;
       }
 LAB_180219f3b:
-      *(undefined8 *)(heap_base + current * 8) = *(undefined8 *)(heap_base + right_child * 8);
-      current = right_child;
-    } while (right_child < parent);
+      *(undefined8 *)(param_1 + lVar8 * 8) = *(undefined8 *)(param_1 + lVar5 * 8);
+      lVar8 = lVar5;
+    } while (lVar5 < lVar6);
   }
-  if ((right_child == parent) && ((heap_size & 1) == 0)) {
-    *(undefined8 *)(heap_base + right_child * 8) = *(undefined8 *)(heap_base + -8 + heap_size * 8);
-    right_child = heap_size - 1;
+  if ((lVar5 == lVar6) && ((param_3 & 1) == 0)) {
+    *(undefined8 *)(param_1 + lVar5 * 8) = *(undefined8 *)(param_1 + -8 + param_3 * 8);
+    lVar5 = param_3 - 1;
   }
-  if (start_index < right_child) {
+  if (param_2 < lVar5) {
     do {
-      current = *element_ptr;
-      left_child = right_child + -1 >> 1;
-      parent = *(longlong *)(heap_base + left_child * 8);
-      if (*(int *)(current + 0x10) == 0) goto LAB_180219fcf;
-      if (*(int *)(parent + 0x10) != 0) {
-        left_string = *(byte **)(current + 8);
-        current = *(longlong *)(parent + 8) - (longlong)left_string;
+      lVar8 = *param_4;
+      lVar7 = lVar5 + -1 >> 1;
+      lVar6 = *(longlong *)(param_1 + lVar7 * 8);
+      if (*(int *)(lVar8 + 0x10) == 0) goto LAB_180219fcf;
+      if (*(int *)(lVar6 + 0x10) != 0) {
+        pbVar3 = *(byte **)(lVar8 + 8);
+        lVar8 = *(longlong *)(lVar6 + 8) - (longlong)pbVar3;
         do {
-          cmp_result = *left_string;
-          left_char = (uint)left_string[current];
-          if (cmp_result != left_char) break;
-          left_string = left_string + 1;
-        } while (left_char != 0);
-        if ((int)(cmp_result - left_char) < 1) goto LAB_180219fcc;
+          bVar1 = *pbVar3;
+          uVar4 = (uint)pbVar3[lVar8];
+          if (bVar1 != uVar4) break;
+          pbVar3 = pbVar3 + 1;
+        } while (uVar4 != 0);
+        if ((int)(bVar1 - uVar4) < 1) goto LAB_180219fcc;
       }
-      *(longlong *)(heap_base + right_child * 8) = parent;
-      right_child = left_child;
-    } while (start_index < left_child);
-    *(longlong *)(heap_base + left_child * 8) = *element_ptr;
+      *(longlong *)(param_1 + lVar5 * 8) = lVar6;
+      lVar5 = lVar7;
+    } while (param_2 < lVar7);
+    *(longlong *)(param_1 + lVar7 * 8) = *param_4;
   }
   else {
 LAB_180219fcc:
-    current = *element_ptr;
+    lVar8 = *param_4;
 LAB_180219fcf:
-    *(longlong *)(heap_base + right_child * 8) = current;
+    *(longlong *)(param_1 + lVar5 * 8) = lVar8;
   }
   return;
 }
@@ -561,10 +571,8 @@ undefined8 FUN_18021a590(undefined8 param_1,ulonglong param_2,undefined8 param_3
 
 
 
-// 函数: void process_string_config_file(longlong config_ptr)
-// 功能: 处理字符串配置文件，读取和解析配置内容
-// 参数: config_ptr - 配置指针
-void process_string_config_file(longlong config_ptr)
+// 函数: void FUN_18021a600(longlong param_1)
+void FUN_18021a600(longlong param_1)
 
 {
   byte bVar1;
@@ -687,10 +695,8 @@ LAB_18021a863:
 
 
 
-// 函数: void load_string_data_from_file(longlong data_ptr,undefined8 unused1,undefined8 unused2,undefined8 unused3)
-// 功能: 从文件加载字符串数据，处理二进制数据格式
-// 参数: data_ptr - 数据指针, unused1 - 未使用参数1, unused2 - 未使用参数2, unused3 - 未使用参数3
-void load_string_data_from_file(longlong data_ptr,undefined8 unused1,undefined8 unused2,undefined8 unused3)
+// 函数: void FUN_18021aa60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_18021aa60(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   ulonglong uVar1;
@@ -832,82 +838,76 @@ void load_string_data_from_file(longlong data_ptr,undefined8 unused1,undefined8 
 
 
 
-// 函数: longlong * get_string_container_pointer(longlong container_ptr,longlong *result_ptr)
-// 功能: 获取字符串容器指针，并调用相关函数
-// 参数: container_ptr - 容器指针, result_ptr - 结果指针
-longlong * get_string_container_pointer(longlong container_ptr,longlong *result_ptr)
+longlong * FUN_18021ad90(longlong param_1,longlong *param_2)
 
 {
   longlong *plVar1;
   
-  container_data = *(longlong **)(container_ptr + 0x1e8);
-  *result_ptr = (longlong)container_data;
-  if (container_data != (longlong *)0x0) {
-    (**(code **)(*container_data + 0x28))();
+  plVar1 = *(longlong **)(param_1 + 0x1e8);
+  *param_2 = (longlong)plVar1;
+  if (plVar1 != (longlong *)0x0) {
+    (**(code **)(*plVar1 + 0x28))();
   }
-  return result_ptr;
+  return param_2;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int find_string_in_container(longlong container_ptr,longlong string_ptr)
-// 功能: 在字符串容器中查找指定字符串，返回索引
-// 参数: container_ptr - 容器指针, string_ptr - 字符串指针
-int find_string_in_container(longlong container_ptr,longlong string_ptr)
+int FUN_18021ade0(longlong param_1,longlong param_2)
 
 {
-  byte *search_char;
-  int search_length;
-  longlong cached_result;
-  byte *container_string;
-  undefined *error_handler;
-  int container_length;
-  int cmp_result;
-  int current_index;
-  longlong string_offset;
-  longlong *entry_ptr;
+  byte *pbVar1;
+  int iVar2;
+  longlong lVar3;
+  byte *pbVar4;
+  undefined *puVar5;
+  int iVar6;
+  int iVar7;
+  int iVar8;
+  longlong lVar9;
+  longlong *plVar10;
   
-  cached_result = FUN_18020fa10(*(undefined8 *)(container_ptr + 0x1f8));
-  if (cached_result != 0) {
-    return *(int *)(cached_result + 0x54);
+  lVar3 = FUN_18020fa10(*(undefined8 *)(param_1 + 0x1f8));
+  if (lVar3 != 0) {
+    return *(int *)(lVar3 + 0x54);
   }
-  current_index = 0;
-  search_length = (int)((*(longlong *)(container_ptr + 0x268) - *(longlong *)(container_ptr + 0x260)) / 0x98);
-  if (0 < search_length) {
-    search_length = *(int *)(string_ptr + 0x10);
-    cached_result = 0;
-    entry_ptr = (longlong *)(*(longlong *)(container_ptr + 0x260) + 8);
+  iVar8 = 0;
+  iVar6 = (int)((*(longlong *)(param_1 + 0x268) - *(longlong *)(param_1 + 0x260)) / 0x98);
+  if (0 < iVar6) {
+    iVar2 = *(int *)(param_2 + 0x10);
+    lVar3 = 0;
+    plVar10 = (longlong *)(*(longlong *)(param_1 + 0x260) + 8);
     do {
-      container_length = (int)entry_ptr[1];
-      if (search_length == container_length) {
-        if (search_length != 0) {
-          container_string = *(byte **)(string_ptr + 8);
-          string_offset = *entry_ptr - (longlong)container_string;
+      iVar7 = (int)plVar10[1];
+      if (iVar2 == iVar7) {
+        if (iVar2 != 0) {
+          pbVar4 = *(byte **)(param_2 + 8);
+          lVar9 = *plVar10 - (longlong)pbVar4;
           do {
-            search_char = container_string + string_offset;
-            container_length = (uint)*container_string - (uint)*search_char;
-            if (container_length != 0) break;
-            container_string = container_string + 1;
-          } while (*search_char != 0);
+            pbVar1 = pbVar4 + lVar9;
+            iVar7 = (uint)*pbVar4 - (uint)*pbVar1;
+            if (iVar7 != 0) break;
+            pbVar4 = pbVar4 + 1;
+          } while (*pbVar1 != 0);
         }
 LAB_18021ae8e:
-        if (container_length == 0) {
-          return current_index;
+        if (iVar7 == 0) {
+          return iVar8;
         }
       }
-      else if (search_length == 0) goto LAB_18021ae8e;
-      current_index = current_index + 1;
-      cached_result = cached_result + 1;
-      entry_ptr = entry_ptr + 0x13;
-    } while (cached_result < search_length);
+      else if (iVar2 == 0) goto LAB_18021ae8e;
+      iVar8 = iVar8 + 1;
+      lVar3 = lVar3 + 1;
+      plVar10 = plVar10 + 0x13;
+    } while (lVar3 < iVar6);
   }
-  error_handler = &DAT_18098bc73;
-  if (*(undefined **)(string_ptr + 8) != (undefined *)0x0) {
-    error_handler = *(undefined **)(string_ptr + 8);
+  puVar5 = &DAT_18098bc73;
+  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
+    puVar5 = *(undefined **)(param_2 + 8);
   }
-  FUN_1800623b0(_DAT_180c86928,0,0x1000000000000,3,&UNK_180a108d0,error_handler);
+  FUN_1800623b0(_DAT_180c86928,0,0x1000000000000,3,&UNK_180a108d0,puVar5);
   return -1;
 }
 
@@ -915,10 +915,7 @@ LAB_18021ae8e:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int find_string_in_container_ex(longlong size_param,undefined8 unused1,undefined8 unused2,longlong container_base)
-// 功能: 扩展版本的字符串查找函数，处理不同大小的容器
-// 参数: size_param - 大小参数, unused1 - 未使用参数1, unused2 - 未使用参数2, container_base - 容器基地址
-int find_string_in_container_ex(longlong size_param,undefined8 unused1,undefined8 unused2,longlong container_base)
+int FUN_18021ae2a(longlong param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
 
 {
   byte *pbVar1;
@@ -975,72 +972,67 @@ LAB_18021ae8e:
 
 
 
-// 函数: undefined4 get_string_container_state(void)
-// 功能: 获取字符串容器状态（返回寄存器值）
-undefined4 get_string_container_state(void)
+undefined4 FUN_18021aef5(void)
 
 {
-  undefined4 container_state;
+  undefined4 unaff_EBX;
   
-  return container_state;
+  return unaff_EBX;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int find_string_in_alternative_container(longlong container_ptr,longlong string_ptr)
-// 功能: 在替代容器中查找字符串，使用不同的容器结构
-// 参数: container_ptr - 容器指针, string_ptr - 字符串指针
-int find_string_in_alternative_container(longlong container_ptr,longlong string_ptr)
+int FUN_18021af10(longlong param_1,longlong param_2)
 
 {
-  byte *search_char;
-  int search_length;
-  byte *container_string;
-  undefined *error_handler;
-  int container_length;
-  int cmp_result;
-  int current_index;
-  longlong string_offset;
-  longlong *entry_ptr;
-  longlong entry_count;
+  byte *pbVar1;
+  int iVar2;
+  byte *pbVar3;
+  undefined *puVar4;
+  int iVar5;
+  int iVar6;
+  int iVar7;
+  longlong lVar8;
+  longlong *plVar9;
+  longlong lVar10;
   
-  current_index = 0;
-  entry_count = (int)((*(longlong *)(container_ptr + 0x288) - *(longlong *)(container_ptr + 0x280)) / 0x28);
-  if (0 < entry_count) {
-    search_length = *(int *)(string_ptr + 0x10);
-    string_offset = 0;
-    entry_ptr = (longlong *)(*(longlong *)(container_ptr + 0x280) + 8);
+  iVar7 = 0;
+  iVar5 = (int)((*(longlong *)(param_1 + 0x288) - *(longlong *)(param_1 + 0x280)) / 0x28);
+  if (0 < iVar5) {
+    iVar2 = *(int *)(param_2 + 0x10);
+    lVar10 = 0;
+    plVar9 = (longlong *)(*(longlong *)(param_1 + 0x280) + 8);
     do {
-      container_length = (int)entry_ptr[1];
-      if (search_length == container_length) {
-        if (search_length != 0) {
-          container_string = *(byte **)(string_ptr + 8);
-          string_offset = *entry_ptr - (longlong)container_string;
+      iVar6 = (int)plVar9[1];
+      if (iVar2 == iVar6) {
+        if (iVar2 != 0) {
+          pbVar3 = *(byte **)(param_2 + 8);
+          lVar8 = *plVar9 - (longlong)pbVar3;
           do {
-            search_char = container_string + string_offset;
-            container_length = (uint)*container_string - (uint)*search_char;
-            if (container_length != 0) break;
-            container_string = container_string + 1;
-          } while (*search_char != 0);
+            pbVar1 = pbVar3 + lVar8;
+            iVar6 = (uint)*pbVar3 - (uint)*pbVar1;
+            if (iVar6 != 0) break;
+            pbVar3 = pbVar3 + 1;
+          } while (*pbVar1 != 0);
         }
 LAB_18021af9e:
-        if (container_length == 0) {
-          return current_index;
+        if (iVar6 == 0) {
+          return iVar7;
         }
       }
-      else if (search_length == 0) goto LAB_18021af9e;
-      current_index = current_index + 1;
-      string_offset = string_offset + 1;
-      entry_ptr = entry_ptr + 5;
-    } while (string_offset < entry_count);
+      else if (iVar2 == 0) goto LAB_18021af9e;
+      iVar7 = iVar7 + 1;
+      lVar10 = lVar10 + 1;
+      plVar9 = plVar9 + 5;
+    } while (lVar10 < iVar5);
   }
-  error_handler = &DAT_18098bc73;
-  if (*(undefined **)(string_ptr + 8) != (undefined *)0x0) {
-    error_handler = *(undefined **)(string_ptr + 8);
+  puVar4 = &DAT_18098bc73;
+  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
+    puVar4 = *(undefined **)(param_2 + 8);
   }
-  FUN_1800623b0(_DAT_180c86928,0,0x1000000000000,3,&UNK_180a10988,error_handler);
+  FUN_1800623b0(_DAT_180c86928,0,0x1000000000000,3,&UNK_180a10988,puVar4);
   return -1;
 }
 
@@ -1048,9 +1040,8 @@ LAB_18021af9e:
 
 
 
-// 函数: void initialize_string_system_module(void)
-// 功能: 初始化字符串系统模块
-void initialize_string_system_module(void)
+// 函数: void FUN_18021b070(void)
+void FUN_18021b070(void)
 
 {
   FUN_1800f0e70();
@@ -1062,9 +1053,8 @@ void initialize_string_system_module(void)
 
 
 
-// 函数: void cleanup_string_system_module(void)
-// 功能: 清理字符串系统模块
-void cleanup_string_system_module(void)
+// 函数: void FUN_18021b090(void)
+void FUN_18021b090(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1075,9 +1065,8 @@ void cleanup_string_system_module(void)
 
 
 
-// 函数: void shutdown_string_system(void)
-// 功能: 关闭字符串系统
-void shutdown_string_system(void)
+// 函数: void FUN_18021b4f0(void)
+void FUN_18021b4f0(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1088,9 +1077,8 @@ void shutdown_string_system(void)
 
 
 
-// 函数: void terminate_string_services(void)
-// 功能: 终止字符串服务
-void terminate_string_services(void)
+// 函数: void FUN_18021b9c0(void)
+void FUN_18021b9c0(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1101,9 +1089,8 @@ void terminate_string_services(void)
 
 
 
-// 函数: void finalize_string_operations(void)
-// 功能: 完成字符串操作
-void finalize_string_operations(void)
+// 函数: void FUN_18021bc50(void)
+void FUN_18021bc50(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1116,9 +1103,8 @@ void finalize_string_operations(void)
 
 
 
-// 函数: void initialize_string_manager(void)
-// 功能: 初始化字符串管理器
-void initialize_string_manager(void)
+// 函数: void FUN_18021bff0(void)
+void FUN_18021bff0(void)
 
 {
   undefined4 uVar1;
@@ -1183,9 +1169,8 @@ void initialize_string_manager(void)
 
 
 
-// 函数: void deactivate_string_system(void)
-// 功能: 停用字符串系统
-void deactivate_string_system(void)
+// 函数: void FUN_18021cb50(void)
+void FUN_18021cb50(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -1196,9 +1181,8 @@ void deactivate_string_system(void)
 
 
 
-// 函数: void destroy_string_system(void)
-// 功能: 销毁字符串系统
-void destroy_string_system(void)
+// 函数: void FUN_18021cf80(void)
+void FUN_18021cf80(void)
 
 {
                     // WARNING: Subroutine does not return

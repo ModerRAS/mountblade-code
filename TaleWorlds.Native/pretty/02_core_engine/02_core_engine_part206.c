@@ -254,167 +254,167 @@ longlong array_insert_struct_element(longlong *array_info, longlong insert_pos, 
 
 
 
-// 函数: void FUN_180189190(undefined8 param_1,longlong param_2,longlong param_3,undefined8 param_4)
-void FUN_180189190(undefined8 param_1,longlong param_2,longlong param_3,undefined8 param_4)
-
+// 函数：复制结构体数据
+void copy_struct_data(undefined8 dest_ptr, longlong src_ptr, longlong param_3, undefined8 param_4)
 {
-  FUN_18018b350(param_2,param_3,param_3,param_4,0xfffffffffffffffe);
-  *(undefined1 *)(param_2 + 0x20) = *(undefined1 *)(param_3 + 0x20);
-  *(undefined4 *)(param_2 + 0x24) = *(undefined4 *)(param_3 + 0x24);
-  *(undefined4 *)(param_2 + 0x28) = *(undefined4 *)(param_3 + 0x28);
-  FUN_180189c50(param_2 + 0x30,param_3 + 0x30);
+  copy_memory_block(dest_ptr, src_ptr, src_ptr, param_4, 0xfffffffffffffffe);
+  *(undefined1 *)(dest_ptr + 0x20) = *(undefined1 *)(src_ptr + 0x20);
+  *(undefined4 *)(dest_ptr + 0x24) = *(undefined4 *)(src_ptr + 0x24);
+  *(undefined4 *)(dest_ptr + 0x28) = *(undefined4 *)(src_ptr + 0x28);
+  copy_linked_list_data(dest_ptr + 0x30, src_ptr + 0x30);
   return;
 }
 
 
 
-longlong FUN_1801891f0(longlong *param_1,longlong param_2,longlong param_3)
-
+// 函数：向64字节对齐数组中插入元素
+longlong array_insert_64byte_aligned(longlong *array_info, longlong insert_pos, longlong element_data)
 {
-  ulonglong uVar1;
-  code *pcVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  longlong lVar6;
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
-  ulonglong uVar10;
+  ulonglong new_element_count;
+  code *error_handler;
+  longlong array_start;
+  longlong current_count;
+  ulonglong new_capacity;
+  longlong new_array;
+  ulonglong offset;
+  longlong dest_ptr;
+  longlong src_ptr;
+  longlong temp_ptr;
+  longlong old_ptr;
+  ulonglong aligned_size;
   
-  lVar8 = *param_1;
-  lVar3 = param_1[1] - lVar8 >> 6;
-  if (lVar3 == 0x3ffffffffffffff) {
-    FUN_180189990();
-    pcVar2 = (code *)swi(3);
-    lVar8 = (*pcVar2)();
-    return lVar8;
+  array_start = *array_info;
+  current_count = array_info[1] - array_start >> 6;
+  if (current_count == 0x3ffffffffffffff) {
+    handle_array_size_error();
+    error_handler = (code *)swi(3);
+    array_start = (*error_handler)();
+    return array_start;
   }
-  uVar1 = lVar3 + 1;
-  uVar4 = param_1[2] - lVar8 >> 6;
-  uVar10 = uVar1;
-  if ((uVar4 <= 0x3ffffffffffffff - (uVar4 >> 1)) && (uVar10 = (uVar4 >> 1) + uVar4, uVar10 < uVar1)
-     ) {
-    uVar10 = uVar1;
+  new_element_count = current_count + 1;
+  current_count = array_info[2] - array_start >> 6;
+  new_capacity = new_element_count;
+  if ((current_count <= 0x3ffffffffffffff - (current_count >> 1)) && 
+     (new_capacity = (current_count >> 1) + current_count, new_capacity < new_element_count)) {
+    new_capacity = new_element_count;
   }
-  lVar3 = uVar10 << 6;
-  if (0x3ffffffffffffff < uVar10) {
-    lVar3 = -1;
+  current_count = new_capacity << 6;
+  if (0x3ffffffffffffff < new_capacity) {
+    current_count = -1;
   }
-  lVar3 = FUN_180067110(lVar3);
-  uVar4 = param_2 - lVar8 & 0xffffffffffffffc0;
-  lVar6 = uVar4 + lVar3;
-  FUN_18018b350(lVar6,param_3);
-  *(undefined1 *)(lVar6 + 0x20) = *(undefined1 *)(param_3 + 0x20);
-  *(undefined4 *)(lVar6 + 0x24) = *(undefined4 *)(param_3 + 0x24);
-  *(undefined4 *)(lVar6 + 0x28) = *(undefined4 *)(param_3 + 0x28);
-  FUN_180189c50(lVar6 + 0x30,param_3 + 0x30);
-  lVar8 = param_1[1];
-  if (param_2 == lVar8) {
-    lVar7 = lVar3;
-    for (lVar6 = *param_1; lVar9 = lVar7, lVar6 != lVar8; lVar6 = lVar6 + 0x40) {
-      FUN_18018b350(lVar7,lVar6);
-      *(undefined1 *)(lVar7 + 0x20) = *(undefined1 *)(lVar6 + 0x20);
-      *(undefined4 *)(lVar7 + 0x24) = *(undefined4 *)(lVar6 + 0x24);
-      *(undefined4 *)(lVar7 + 0x28) = *(undefined4 *)(lVar6 + 0x28);
-      FUN_180189c50(lVar7 + 0x30,lVar6 + 0x30);
-      lVar7 = lVar7 + 0x40;
+  new_array = allocate_memory(current_count);
+  offset = insert_pos - array_start & 0xffffffffffffffc0;
+  dest_ptr = offset + new_array;
+  copy_memory_block(dest_ptr, element_data);
+  *(undefined1 *)(dest_ptr + 0x20) = *(undefined1 *)(element_data + 0x20);
+  *(undefined4 *)(dest_ptr + 0x24) = *(undefined4 *)(element_data + 0x24);
+  *(undefined4 *)(dest_ptr + 0x28) = *(undefined4 *)(element_data + 0x28);
+  copy_linked_list_data(dest_ptr + 0x30, element_data + 0x30);
+  array_start = array_info[1];
+  if (insert_pos == array_start) {
+    temp_ptr = new_array;
+    for (src_ptr = *array_info; old_ptr = temp_ptr, src_ptr != array_start; src_ptr = src_ptr + 0x40) {
+      copy_memory_block(temp_ptr, src_ptr);
+      *(undefined1 *)(temp_ptr + 0x20) = *(undefined1 *)(src_ptr + 0x20);
+      *(undefined4 *)(temp_ptr + 0x24) = *(undefined4 *)(src_ptr + 0x24);
+      *(undefined4 *)(temp_ptr + 0x28) = *(undefined4 *)(src_ptr + 0x28);
+      copy_linked_list_data(temp_ptr + 0x30, src_ptr + 0x30);
+      temp_ptr = temp_ptr + 0x40;
     }
-    for (; lVar9 != lVar7; lVar9 = lVar9 + 0x40) {
-      FUN_180187950(lVar9);
+    for (; old_ptr != temp_ptr; old_ptr = old_ptr + 0x40) {
+      cleanup_memory_block(old_ptr);
     }
   }
   else {
-    FUN_1801899b0(param_1,*param_1,param_2,lVar3,lVar6);
-    FUN_1801899b0(param_1,param_2,param_1[1],lVar6 + 0x40,lVar3);
+    copy_array_segment_64bit(array_info, *array_info, insert_pos, new_array, dest_ptr);
+    copy_array_segment_64bit(array_info, insert_pos, array_info[1], dest_ptr + 0x40, new_array);
   }
-  lVar8 = *param_1;
-  if (lVar8 != 0) {
-    lVar6 = param_1[1];
-    if (lVar8 != lVar6) {
+  array_start = *array_info;
+  if (array_start != 0) {
+    dest_ptr = array_info[1];
+    if (array_start != dest_ptr) {
       do {
-        FUN_180187950(lVar8);
-        lVar8 = lVar8 + 0x40;
-      } while (lVar8 != lVar6);
-      lVar8 = *param_1;
+        cleanup_memory_block(array_start);
+        array_start = array_start + 0x40;
+      } while (array_start != dest_ptr);
+      array_start = *array_info;
     }
-    uVar5 = param_1[2] - lVar8 & 0xffffffffffffffc0;
-    lVar6 = lVar8;
-    if (0xfff < uVar5) {
-      lVar6 = *(longlong *)(lVar8 + -8);
-      if (0x1f < (lVar8 - lVar6) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(lVar6,uVar5 + 0x27);
+    aligned_size = array_info[2] - array_start & 0xffffffffffffffc0;
+    dest_ptr = array_start;
+    if (0xfff < aligned_size) {
+      dest_ptr = *(longlong *)(array_start + -8);
+      if (0x1f < (array_start - dest_ptr) - 8U) {
+        // WARNING: Subroutine does not return
+        invalid_parameter_no_info_no_return(dest_ptr, aligned_size + 0x27);
       }
     }
-    free(lVar6);
+    free(dest_ptr);
   }
-  *param_1 = lVar3;
-  param_1[1] = uVar1 * 0x40 + lVar3;
-  param_1[2] = uVar10 * 0x40 + lVar3;
-  return uVar4 + lVar3;
+  *array_info = new_array;
+  array_info[1] = new_element_count * 0x40 + new_array;
+  array_info[2] = new_capacity * 0x40 + new_array;
+  return offset + new_array;
 }
 
 
 
 
 
-// 函数: void FUN_180189470(longlong *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180189470(longlong *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+// 函数：调整8字节数组大小
+void resize_8byte_array(longlong *array_info, ulonglong new_size, undefined8 param_3, undefined8 param_4)
 {
-  code *pcVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  longlong lVar4;
-  undefined8 *puVar5;
-  ulonglong uVar6;
-  ulonglong uVar7;
-  undefined8 auStackX_18 [2];
-  undefined8 uVar8;
+  code *error_handler;
+  ulonglong current_size;
+  longlong array_end;
+  longlong array_start;
+  undefined8 *new_array;
+  ulonglong capacity;
+  ulonglong new_capacity;
+  undefined8 temp_stack[2];
+  undefined8 temp_var;
   
-  uVar8 = 0xfffffffffffffffe;
-  lVar3 = param_1[1];
-  lVar4 = *param_1;
-  uVar6 = lVar3 - lVar4 >> 3;
-  uVar2 = param_1[2] - lVar4 >> 3;
-  auStackX_18[0] = param_3;
-  if (uVar2 < param_2) {
-    if (0x1fffffffffffffff < param_2) {
-      FUN_180189990();
-      pcVar1 = (code *)swi(3);
-      (*pcVar1)();
+  temp_var = 0xfffffffffffffffe;
+  array_end = array_info[1];
+  array_start = *array_info;
+  current_size = array_end - array_start >> 3;
+  capacity = array_info[2] - array_start >> 3;
+  temp_stack[0] = param_3;
+  if (current_size < new_size) {
+    if (0x1fffffffffffffff < new_size) {
+      handle_array_size_error();
+      error_handler = (code *)swi(3);
+      (*error_handler)();
       return;
     }
-    uVar7 = param_2;
-    if ((uVar2 <= 0x1fffffffffffffff - (uVar2 >> 1)) &&
-       (uVar7 = (uVar2 >> 1) + uVar2, uVar7 < param_2)) {
-      uVar7 = param_2;
+    new_capacity = new_size;
+    if ((capacity <= 0x1fffffffffffffff - (capacity >> 1)) &&
+       (new_capacity = (capacity >> 1) + capacity, new_capacity < new_size)) {
+      new_capacity = new_size;
     }
-    lVar3 = uVar7 * 8;
-    if (0x1fffffffffffffff < uVar7) {
-      lVar3 = -1;
+    array_end = new_capacity * 8;
+    if (0x1fffffffffffffff < new_capacity) {
+      array_end = -1;
     }
-    lVar3 = FUN_180067110(lVar3);
-    puVar5 = (undefined8 *)(lVar3 + uVar6 * 8);
-    for (lVar4 = param_2 - uVar6; lVar4 != 0; lVar4 = lVar4 + -1) {
-      *puVar5 = 0;
-      puVar5 = puVar5 + 1;
+    array_end = allocate_memory(array_end);
+    new_array = (undefined8 *)(array_end + current_size * 8);
+    for (array_start = new_size - current_size; array_start != 0; array_start = array_start + -1) {
+      *new_array = 0;
+      new_array = new_array + 1;
     }
-    func_0x00018018a000(auStackX_18,*param_1,param_1[1],param_4,0,uVar8);
-                    // WARNING: Subroutine does not return
-    memmove(lVar3);
+    copy_array_data_with_callback(temp_stack, *array_info, array_info[1], param_4, 0, temp_var);
+    // WARNING: Subroutine does not return
+    memmove(array_end);
   }
-  if (uVar6 < param_2) {
-    if (param_2 - uVar6 == 0) {
-      param_1[1] = lVar3;
+  if (current_size < new_size) {
+    if (new_size - current_size == 0) {
+      array_info[1] = array_end;
       return;
     }
-                    // WARNING: Subroutine does not return
-    memset(lVar3,0,(param_2 - uVar6) * 8);
+    // WARNING: Subroutine does not return
+    memset(array_end, 0, (new_size - current_size) * 8);
   }
-  if (param_2 != uVar6) {
-    param_1[1] = lVar4 + param_2 * 8;
+  if (new_size != current_size) {
+    array_info[1] = array_start + new_size * 8;
   }
   return;
 }
@@ -423,103 +423,101 @@ void FUN_180189470(longlong *param_1,ulonglong param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180189600(longlong *param_1,longlong param_2,longlong param_3,undefined1 param_4)
-void FUN_180189600(longlong *param_1,longlong param_2,longlong param_3,undefined1 param_4)
-
+// 函数：复制4字节数据块
+void copy_4byte_data_block(longlong *array_info, longlong src_ptr, longlong dest_ptr, undefined1 param_4)
 {
-  code *pcVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  longlong lVar6;
-  undefined1 auStackX_20 [8];
+  code *error_handler;
+  ulonglong current_size;
+  longlong array_start;
+  ulonglong capacity;
+  ulonglong required_size;
+  longlong memory_ptr;
+  undefined1 temp_stack[8];
   
-  lVar3 = *param_1;
-  param_3 = param_3 - param_2;
-  uVar2 = param_1[1] - lVar3 >> 2;
-  uVar5 = param_3 >> 2;
-  uVar4 = param_1[2] - lVar3 >> 2;
-  auStackX_20[0] = param_4;
-  if (uVar5 <= uVar4) {
-    if (uVar5 <= uVar2) {
-                    // WARNING: Subroutine does not return
-      memmove(lVar3,param_2,param_3);
+  array_start = *array_info;
+  dest_ptr = dest_ptr - src_ptr;
+  current_size = array_info[1] - array_start >> 2;
+  required_size = dest_ptr >> 2;
+  capacity = array_info[2] - array_start >> 2;
+  temp_stack[0] = param_4;
+  if (required_size <= capacity) {
+    if (required_size <= current_size) {
+      // WARNING: Subroutine does not return
+      memmove(array_start, src_ptr, dest_ptr);
     }
-                    // WARNING: Subroutine does not return
-    memmove(lVar3,param_2,uVar2 * 4);
+    // WARNING: Subroutine does not return
+    memmove(array_start, src_ptr, current_size * 4);
   }
-  if (0x3fffffffffffffff < uVar5) {
+  if (0x3fffffffffffffff < required_size) {
 LAB_180189786:
-    FUN_180189990();
-    pcVar1 = (code *)swi(3);
-    (*pcVar1)();
+    handle_array_size_error();
+    error_handler = (code *)swi(3);
+    (*error_handler)();
     return;
   }
-  uVar2 = uVar5;
-  if ((uVar4 <= 0x3fffffffffffffff - (uVar4 >> 1)) && (uVar2 = (uVar4 >> 1) + uVar4, uVar2 < uVar5))
-  {
-    uVar2 = uVar5;
+  current_size = required_size;
+  if ((capacity <= 0x3fffffffffffffff - (capacity >> 1)) && 
+     (current_size = (capacity >> 1) + capacity, current_size < required_size)) {
+    current_size = required_size;
   }
-  if (lVar3 != 0) {
-    lVar6 = lVar3;
-    if (0xfff < uVar4 * 4) {
-      lVar6 = *(longlong *)(lVar3 + -8);
-      if (0x1f < (lVar3 - lVar6) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(lVar6,uVar4 * 4 + 0x27);
+  if (array_start != 0) {
+    memory_ptr = array_start;
+    if (0xfff < capacity * 4) {
+      memory_ptr = *(longlong *)(array_start + -8);
+      if (0x1f < (array_start - memory_ptr) - 8U) {
+        // WARNING: Subroutine does not return
+        invalid_parameter_no_info_no_return(memory_ptr, capacity * 4 + 0x27);
       }
     }
-    free(lVar6);
+    free(memory_ptr);
   }
-  lVar3 = 0;
-  *param_1 = 0;
-  param_1[1] = 0;
-  param_1[2] = 0;
-  if (uVar2 != 0) {
-    if (0x3fffffffffffffff < uVar2) goto LAB_180189786;
-    lVar3 = FUN_180067110(uVar2 * 4);
-    *param_1 = lVar3;
-    param_1[1] = lVar3;
-    param_1[2] = uVar2 * 4 + lVar3;
+  array_start = 0;
+  *array_info = 0;
+  array_info[1] = 0;
+  array_info[2] = 0;
+  if (current_size != 0) {
+    if (0x3fffffffffffffff < current_size) goto LAB_180189786;
+    array_start = allocate_memory(current_size * 4);
+    *array_info = array_start;
+    array_info[1] = array_start;
+    array_info[2] = current_size * 4 + array_start;
   }
-  func_0x00018018a000(auStackX_20);
-                    // WARNING: Subroutine does not return
-  memmove(lVar3,param_2,param_3);
+  copy_array_data_with_callback(temp_stack);
+  // WARNING: Subroutine does not return
+  memmove(array_start, src_ptr, dest_ptr);
 }
 
 
 
 
 
-// 函数: void FUN_180189900(longlong *param_1,longlong *param_2)
-void FUN_180189900(longlong *param_1,longlong *param_2)
-
+// 函数：释放数组内存块
+void free_array_memory_blocks(longlong *array_start, longlong *array_end)
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
+  longlong array_ptr;
+  longlong memory_ptr;
+  ulonglong block_size;
   
-  if (param_1 != param_2) {
+  if (array_start != array_end) {
     do {
-      lVar1 = *param_1;
-      if (lVar1 != 0) {
-        uVar3 = param_1[2] - lVar1 & 0xfffffffffffffff0;
-        lVar2 = lVar1;
-        if (0xfff < uVar3) {
-          lVar2 = *(longlong *)(lVar1 + -8);
-          if (0x1f < (lVar1 - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
-            _invalid_parameter_noinfo_noreturn(lVar1 - lVar2,uVar3 + 0x27);
+      array_ptr = *array_start;
+      if (array_ptr != 0) {
+        block_size = array_start[2] - array_ptr & 0xfffffffffffffff0;
+        memory_ptr = array_ptr;
+        if (0xfff < block_size) {
+          memory_ptr = *(longlong *)(array_ptr + -8);
+          if (0x1f < (array_ptr - memory_ptr) - 8U) {
+            // WARNING: Subroutine does not return
+            invalid_parameter_no_info_no_return(array_ptr - memory_ptr, block_size + 0x27);
           }
         }
-        free(lVar2);
-        *param_1 = 0;
-        param_1[1] = 0;
-        param_1[2] = 0;
+        free(memory_ptr);
+        *array_start = 0;
+        array_start[1] = 0;
+        array_start[2] = 0;
       }
-      param_1 = param_1 + 3;
-    } while (param_1 != param_2);
+      array_start = array_start + 3;
+    } while (array_start != array_end);
   }
   return;
 }
@@ -528,33 +526,32 @@ void FUN_180189900(longlong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_18018990f(longlong *param_1,longlong *param_2)
-void FUN_18018990f(longlong *param_1,longlong *param_2)
-
+// 函数：释放连续数组内存块
+void free_consecutive_array_blocks(longlong *array_start, longlong *array_end)
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
+  longlong array_ptr;
+  longlong memory_ptr;
+  ulonglong block_size;
   
   do {
-    lVar1 = *param_1;
-    if (lVar1 != 0) {
-      uVar3 = param_1[2] - lVar1 & 0xfffffffffffffff0;
-      lVar2 = lVar1;
-      if (0xfff < uVar3) {
-        lVar2 = *(longlong *)(lVar1 + -8);
-        if (0x1f < (lVar1 - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
-          _invalid_parameter_noinfo_noreturn(lVar1 - lVar2,uVar3 + 0x27);
+    array_ptr = *array_start;
+    if (array_ptr != 0) {
+      block_size = array_start[2] - array_ptr & 0xfffffffffffffff0;
+      memory_ptr = array_ptr;
+      if (0xfff < block_size) {
+        memory_ptr = *(longlong *)(array_ptr + -8);
+        if (0x1f < (array_ptr - memory_ptr) - 8U) {
+          // WARNING: Subroutine does not return
+          invalid_parameter_no_info_no_return(array_ptr - memory_ptr, block_size + 0x27);
         }
       }
-      free(lVar2);
-      *param_1 = 0;
-      param_1[1] = 0;
-      param_1[2] = 0;
+      free(memory_ptr);
+      *array_start = 0;
+      array_start[1] = 0;
+      array_start[2] = 0;
     }
-    param_1 = param_1 + 3;
-  } while (param_1 != param_2);
+    array_start = array_start + 3;
+  } while (array_start != array_end);
   return;
 }
 
@@ -562,9 +559,8 @@ void FUN_18018990f(longlong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_18018997c(void)
-void FUN_18018997c(void)
-
+// 函数：空函数
+void empty_function(void)
 {
   return;
 }
@@ -573,27 +569,25 @@ void FUN_18018997c(void)
 
 
 
-// 函数: void FUN_18018997d(void)
-void FUN_18018997d(void)
-
+// 函数：无效参数错误处理
+void invalid_parameter_error(void)
 {
-                    // WARNING: Subroutine does not return
-  _invalid_parameter_noinfo_noreturn();
+  // WARNING: Subroutine does not return
+  invalid_parameter_no_info_no_return();
 }
 
 
 
 
 
-// 函数: void FUN_180189990(void)
-void FUN_180189990(void)
-
+// 函数：长度错误处理
+void handle_length_error(void)
 {
-  code *pcVar1;
+  code *error_handler;
   
-  __Xlength_error_std__YAXPEBD_Z(&UNK_180a0aaa8);
-  pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  std_length_error(&error_message_string);
+  error_handler = (code *)swi(3);
+  (*error_handler)();
   return;
 }
 
