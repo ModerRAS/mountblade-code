@@ -77,22 +77,25 @@ int initialize_mutex(undefined8 mutex_id, undefined8 mutex_attr, undefined8 lock
 
 
 
-// 函数: void FUN_18002d550(void)
-void FUN_18002d550(void)
+// 函数：初始化字符串配置
+void initialize_string_config(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 config_param;
+  undefined *config_source;
+  undefined1 *buffer_ptr;
+  undefined4 buffer_size;
+  undefined1 config_buffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 7;
-  strcpy_s(auStack_88,0x80,&UNK_1809ffa30,in_R9,0xfffffffffffffffe);
-  _DAT_180c9190c = FUN_180623800(&puStack_a0);
+  // 设置配置参数和缓冲区
+  config_source = &GLOBAL_CONFIG_SOURCE;
+  buffer_ptr = config_buffer;
+  config_buffer[0] = 0;
+  buffer_size = 7;
+  // 安全复制字符串配置到缓冲区
+  strcpy_s(config_buffer,0x80,&GLOBAL_STRING_CONFIG,config_param,0xfffffffffffffffe);
+  // 初始化全局配置变量
+  GLOBAL_CONFIG_VAR_0c = initialize_config_manager(&config_source);
   return;
 }
 

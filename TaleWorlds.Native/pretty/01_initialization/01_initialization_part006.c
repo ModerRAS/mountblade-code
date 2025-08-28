@@ -1,7 +1,38 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part006.c - 28 个函数
+// 01_initialization_part006.c - 28 个函数（已完成翻译）
 // 简化实现：此文件包含游戏引擎初始化相关的函数注册代码
+// 
+// 翻译完成的函数列表：
+// 1. register_basic_rendering_components - 注册基础渲染系统组件
+// 2. register_render_pipeline_components - 注册渲染管线组件
+// 3. register_animation_system_components - 注册动画系统组件
+// 4. register_audio_system_components - 注册音频系统组件
+// 5. register_physics_system_components - 注册物理系统组件
+// 6. register_input_system_components - 注册输入系统组件
+// 7. register_network_system_components - 注册网络系统组件
+// 8. register_game_script_system_components - 注册游戏脚本系统组件
+// 9. register_game_world_management_components - 注册游戏世界管理组件
+// 10. register_game_entity_management_components - 注册游戏实体管理组件
+// 11. register_game_scene_management_components - 注册游戏场景管理组件
+// 12. register_game_resource_management_components - 注册游戏资源管理组件
+// 13. register_game_ui_management_components - 注册游戏UI管理组件
+// 14. register_game_save_management_components - 注册游戏存档管理组件
+// 15. register_game_log_management_components - 注册游戏日志管理组件
+// 16. register_game_module_loader_components - 注册游戏模块加载器组件
+// 17. initialize_game_debug_system - 初始化游戏调试系统
+// 18. register_game_debug_components - 注册游戏调试组件
+// 19. register_game_performance_monitoring_components - 注册游戏性能监控组件
+// 20. register_game_ai_management_components - 注册游戏AI管理组件
+// 21. register_game_combat_system_components - 注册游戏战斗系统组件
+// 22. register_game_mission_system_components - 注册游戏任务系统组件
+// 23. register_game_dialog_system_components - 注册游戏对话系统组件
+// 24. register_game_character_creation_system_components - 注册游戏角色创建系统组件
+// 25. register_game_save_load_system_components - 注册游戏存档加载系统组件
+// 26. register_game_configuration_system_components - 注册游戏配置系统组件
+// 27. register_game_multiplayer_system_components - 注册游戏多人游戏系统组件
+// 28. register_game_mod_system_components - 注册游戏模组系统组件
+// 29. register_game_tool_system_components - 注册游戏工具系统组件
 
 // 函数: 注册基础渲染系统组件
 void register_basic_rendering_components(void)
@@ -1485,50 +1516,58 @@ void register_game_mod_system_components(void)
 
 
 
-// 函数: void FUN_180037680(void)
-void FUN_180037680(void)
+// 函数: 注册游戏工具系统组件
+void register_game_tool_system_components(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char is_initialized;
+  void **global_table;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **next_node;
+  void **temp_node;
+  void **new_node;
+  void *tool_initializer;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18007fcd0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fc740,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  global_table = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)global_table[1] + 0x19);
+  tool_initializer = initialize_game_tool_system;
+  next_node = global_table;
+  current_node = (void **)global_table[1];
+  
+  // 遍历链表查找已存在的工具系统组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &GAME_TOOL_COMPONENT_ID, 0x10);
+    if (compare_result < 0) {
+      temp_node = (void **)current_node[2];
+      current_node = next_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      temp_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    next_node = current_node;
+    current_node = temp_node;
+    is_initialized = *(char *)((longlong)temp_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc740,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果工具系统组件不存在或需要插入，则创建新节点
+  if ((next_node == global_table) || 
+      (compare_result = memcmp(&GAME_TOOL_COMPONENT_ID, next_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_component_memory(system_manager);
+    insert_component_node(system_manager, &new_node, next_node, allocation_size + 0x20, allocation_size);
+    next_node = new_node;
   }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  
+  // 设置工具系统组件属性
+  next_node[6] = GAME_TOOL_COMPONENT_HASH_1;
+  next_node[7] = GAME_TOOL_COMPONENT_HASH_2;
+  next_node[8] = &GAME_TOOL_COMPONENT_VTABLE;
+  next_node[9] = 0;
+  next_node[10] = tool_initializer;
   return;
 }
 

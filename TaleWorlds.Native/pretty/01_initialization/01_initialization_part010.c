@@ -714,204 +714,232 @@ void register_scene_management_component(void)
 
 
 
-// 函数: void FUN_18003f090(void)
-void FUN_18003f090(void)
-
+/**
+ * 注册实体管理组件
+ * 在系统注册表中注册实体管理组件，处理游戏实体的创建和管理
+ */
+void register_entity_management_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &entity_management_identifier_c9b8, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&entity_management_identifier_c9b8, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4666df49b97e0f10;
-  puVar7[7] = 0x4e4b0d63a6ad1d8f;
-  puVar7[8] = &UNK_18098c7b8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置实体管理组件参数
+    previous_node[6] = 0x4666df49b97e0f10;  // 实体管理标识符
+    previous_node[7] = 0x4e4b0d63a6ad1d8f;  // 校验值
+    previous_node[8] = &entity_constant_c7b8;  // 实体常量指针
+    previous_node[9] = 0;                    // 优先级
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003f190(void)
-void FUN_18003f190(void)
-
+/**
+ * 注册动画系统组件
+ * 在系统注册表中注册动画系统组件，处理角色和对象的动画
+ */
+void register_animation_system_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &animation_system_identifier_c940, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&animation_system_identifier_c940, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x46ecbd4daf41613e;
-  puVar7[7] = 0xdc42c056bbde8482;
-  puVar7[8] = &UNK_18098c7c8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置动画系统组件参数
+    previous_node[6] = 0x46ecbd4daf41613e;  // 动画系统标识符
+    previous_node[7] = 0xdc42c056bbde8482;  // 校验值
+    previous_node[8] = &animation_constant_c7c8;  // 动画常量指针
+    previous_node[9] = 0;                    // 优先级
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003f290(void)
-void FUN_18003f290(void)
-
+/**
+ * 注册UI系统组件
+ * 在系统注册表中注册UI系统组件，处理用户界面的显示和交互
+ */
+void register_ui_system_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &ui_system_identifier_c918, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&ui_system_identifier_c918, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x4c868a42644030f6;
-  puVar7[7] = 0xc29193aa9d9b35b9;
-  puVar7[8] = &UNK_18098c7d8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置UI系统组件参数
+    previous_node[6] = 0x4c868a42644030f6;  // UI系统标识符
+    previous_node[7] = 0xc29193aa9d9b35b9;  // 校验值
+    previous_node[8] = &ui_constant_c7d8;    // UI常量指针
+    previous_node[9] = 0;                    // 优先级
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_18003f390(void)
-void FUN_18003f390(void)
-
+/**
+ * 注册脚本系统组件
+ * 在系统注册表中注册脚本系统组件，处理游戏脚本的执行和管理
+ */
+void register_script_system_component(void)
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
-  
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+    char component_flag;
+    uint64_t *registry_root;
+    int compare_result;
+    int64_t *system_manager;
+    int64_t allocation_size;
+    uint64_t *current_node;
+    uint64_t *previous_node;
+    uint64_t *next_node;
+    uint64_t *new_node;
+    uint64_t null_parameter;
+    
+    system_manager = (int64_t *)get_system_manager();
+    registry_root = (uint64_t *)*system_manager;
+    component_flag = *(char *)((int64_t)registry_root[1] + 0x19);
+    null_parameter = 0;
+    previous_node = registry_root;
+    current_node = (uint64_t *)registry_root[1];
+    
+    // 在注册表中查找合适的位置
+    while (component_flag == '\0') {
+        compare_result = memcmp(current_node + 4, &script_system_identifier_c968, 0x10);
+        if (compare_result < 0) {
+            next_node = (uint64_t *)current_node[2];
+            current_node = previous_node;
+        } else {
+            next_node = (uint64_t *)*current_node;
+        }
+        previous_node = current_node;
+        current_node = next_node;
+        component_flag = *(char *)((int64_t)next_node + 0x19);
     }
-    else {
-      puVar8 = (undefined8 *)*puVar6;
+    
+    // 如果需要创建新节点
+    if ((previous_node == registry_root) || (compare_result = memcmp(&script_system_identifier_c968, previous_node + 4, 0x10), compare_result < 0)) {
+        allocation_size = allocate_registry_node(system_manager);
+        insert_registry_node(system_manager, &new_node, previous_node, allocation_size + 0x20, allocation_size);
+        previous_node = new_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
-  }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
-  }
-  puVar7[6] = 0x40ea3a798283cbbb;
-  puVar7[7] = 0x7f74eb2c5a7fadae;
-  puVar7[8] = &UNK_18098c7f0;
-  puVar7[9] = 3;
-  puVar7[10] = uStackX_18;
-  return;
+    
+    // 设置脚本系统组件参数
+    previous_node[6] = 0x40ea3a798283cbbb;  // 脚本系统标识符
+    previous_node[7] = 0x7f74eb2c5a7fadae;  // 校验值
+    previous_node[8] = &script_constant_c7f0;  // 脚本常量指针
+    previous_node[9] = 3;                    // 脚本类型标识
+    previous_node[10] = null_parameter;     // 额外参数
+    return;
 }
 
 
