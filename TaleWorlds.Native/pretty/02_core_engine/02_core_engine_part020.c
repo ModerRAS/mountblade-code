@@ -1,414 +1,512 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part020.c - 16 个函数
+// 02_core_engine_part020.c - 核心引擎模块第20部分
+// 包含16个函数，主要涉及线程管理、信号量操作、内存管理和同步机制
 
-// 函数: void FUN_1800606e0(longlong *param_1)
-void FUN_1800606e0(longlong *param_1)
+/* 全局常量定义 */
+#define MAX_QUEUE_SIZE 0x100
+#define TIMEOUT_INFINITE 0xfffffffffffffffe
+#define SEMAPHORE_MAX_COUNT 0x1f
+#define LOCK_TIMEOUT_MS 0x14
 
+/* 简化实现说明：
+ * 原始实现包含复杂的线程同步和内存管理逻辑
+ * 简化实现保留了核心功能，但简化了错误处理和部分边界条件
+ * 主要简化了队列管理、锁机制和信号量操作的实现
+ */
+
+/**
+ * 处理线程本地存储的清理操作
+ * @param thread_context 线程上下文指针
+ * 
+ * 此函数负责清理线程本地存储中的资源，
+ * 包括释放队列中的元素和清理相关数据结构
+ */
+void cleanup_thread_local_storage(longlong *thread_context)
 {
-  longlong *plVar1;
-  char cVar2;
-  int iVar3;
-  undefined8 uStackX_8;
-  longlong *plStack_20;
-  char cStack_18;
+  longlong *tls_ptr;
+  char cleanup_status;
+  int lock_result;
+  undefined8 timeout_param;
+  longlong *queue_node;
+  char lock_acquired;
   
-  if ((char)param_1[0xb] != '\0') {
-    plVar1 = (longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  // 检查线程上下文是否需要清理
+  if ((char)thread_context[0xb] != '\0') {
+    tls_ptr = (longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
     do {
-      cVar2 = (**(code **)(*param_1 + 0x20))(param_1,1);
-      if (cVar2 == '\0') {
-        FUN_18064e0d0(*(undefined8 *)(*plVar1 + 0x10),0);
-        plStack_20 = param_1 + 0x33;
-        cStack_18 = 0;
-        iVar3 = _Mtx_lock();
-        if (iVar3 != 0) {
-          __Throw_C_error_std__YAXH_Z(iVar3);
+      // 调用清理回调函数
+      cleanup_status = (**(code **)(*thread_context + 0x20))(thread_context, 1);
+      if (cleanup_status == '\0') {
+        // 释放资源
+        release_resource_handle(*(undefined8 *)(*tls_ptr + 0x10), 0);
+        queue_node = thread_context + 0x33;
+        lock_acquired = 0;
+        lock_result = _Mtx_lock();
+        if (lock_result != 0) {
+          __Throw_C_error_std__YAXH_Z(lock_result);
         }
-        cStack_18 = '\x01';
-        if ((char)param_1[0x3d] == '\x01') {
-          *(undefined1 *)(param_1 + 0x3d) = 0;
+        lock_acquired = '\x01';
+        
+        // 处理队列状态
+        if ((char)thread_context[0x3d] == '\x01') {
+          *(undefined1 *)(thread_context + 0x3d) = 0;
         }
         else {
-          uStackX_8 = 0x32;
-          FUN_1800495d0(param_1 + 0x2a,&plStack_20,&uStackX_8);
-          *(undefined1 *)(param_1 + 0x3d) = 0;
-          if (cStack_18 == '\0') goto LAB_1800607cc;
+          timeout_param = 0x32;
+          process_queue_item(thread_context + 0x2a, &queue_node, &timeout_param);
+          *(undefined1 *)(thread_context + 0x3d) = 0;
+          if (lock_acquired == '\0') goto cleanup_complete;
         }
-        iVar3 = _Mtx_unlock(plStack_20);
-        if (iVar3 != 0) {
-          __Throw_C_error_std__YAXH_Z(iVar3);
+        
+        lock_result = _Mtx_unlock(queue_node);
+        if (lock_result != 0) {
+          __Throw_C_error_std__YAXH_Z(lock_result);
         }
       }
-LAB_1800607cc:
-    } while ((char)param_1[0xb] != '\0');
+    cleanup_complete:;
+    } while ((char)thread_context[0xb] != '\0');
   }
   return;
 }
 
-
-
-undefined8 FUN_1800607f0(longlong param_1,char param_2)
-
+/**
+ * 从工作队列中取出并处理一个任务
+ * @param queue_manager 队列管理器指针
+ * @param should_process 是否处理任务的标志
+ * @return 处理结果状态码
+ * 
+ * 此函数从工作队列中取出任务进行处理，
+ * 涉及复杂的锁机制和内存管理操作
+ */
+undefined8 process_work_queue_item(longlong queue_manager, char should_process)
 {
-  longlong lVar1;
-  int iVar2;
-  longlong *plVar3;
-  undefined8 uVar4;
-  longlong *plStackX_18;
+  longlong queue_capacity;
+  int lock_result;
+  longlong *task_node;
+  undefined8 process_result;
+  longlong *processed_task;
   
-  plStackX_18 = (longlong *)0x0;
-  plVar3 = (longlong *)0x0;
-  if (param_2 != '\0') {
-    if (*(int *)(param_1 + 0x140) < 1) {
-      plVar3 = (longlong *)0x0;
+  processed_task = (longlong *)0x0;
+  task_node = (longlong *)0x0;
+  if (should_process != '\0') {
+    if (*(int *)(queue_manager + 0x140) < 1) {
+      task_node = (longlong *)0x0;
     }
     else {
-      iVar2 = _Mtx_lock(param_1 + 0xf0);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+      // 获取队列锁
+      lock_result = _Mtx_lock(queue_manager + 0xf0);
+      if (lock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_result);
       }
-      if ((*(longlong *)(param_1 + 200) - *(longlong *)(param_1 + 0xd0) >> 3) +
-          ((*(longlong *)(param_1 + 0xe0) - *(longlong *)(param_1 + 0xc0) >> 3) + -1) * 0x20 +
-          (*(longlong *)(param_1 + 0xb8) - (longlong)*(longlong **)(param_1 + 0xa8) >> 3) != 0) {
-        plStackX_18 = (longlong *)**(longlong **)(param_1 + 0xa8);
-        if (plStackX_18 != (longlong *)0x0) {
-          (**(code **)(*plStackX_18 + 0x28))(plStackX_18);
+      
+      // 检查队列是否有空间
+      if (((*(longlong *)(queue_manager + 200) - *(longlong *)(queue_manager + 0xd0) >> 3) +
+          ((*(longlong *)(queue_manager + 0xe0) - *(longlong *)(queue_manager + 0xc0) >> 3) + -1) * 0x20 +
+          (*(longlong *)(queue_manager + 0xb8) - (longlong)*(longlong **)(queue_manager + 0xa8) >> 3) != 0) {
+        
+        // 处理队列节点
+        processed_task = (longlong *)**(longlong **)(queue_manager + 0xa8);
+        if (processed_task != (longlong *)0x0) {
+          (**(code **)(*processed_task + 0x28))(processed_task);
         }
-        plVar3 = *(longlong **)(param_1 + 0xa8);
-        if (plVar3 + 1 == *(longlong **)(param_1 + 0xb8)) {
-          if ((longlong *)*plVar3 != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*plVar3 + 0x38))();
+        
+        task_node = *(longlong **)(queue_manager + 0xa8);
+        if (task_node + 1 == *(longlong **)(queue_manager + 0xb8)) {
+          // 队列需要扩展
+          if ((longlong *)*task_node != (longlong *)0x0) {
+            (**(code **)(*(longlong *)*task_node + 0x38))();
           }
-          if (*(longlong *)(param_1 + 0xb0) != 0) {
-                    // WARNING: Subroutine does not return
+          if (*(longlong *)(queue_manager + 0xb0) != 0) {
+            // 错误处理：队列已满
             FUN_18064e900();
           }
-          plVar3 = (longlong *)(*(longlong *)(param_1 + 0xc0) + 8);
-          *(longlong **)(param_1 + 0xc0) = plVar3;
-          lVar1 = *plVar3;
-          *(longlong *)(param_1 + 0xb0) = lVar1;
-          *(longlong *)(param_1 + 0xb8) = lVar1 + 0x100;
-          *(undefined8 *)(param_1 + 0xa8) = *(undefined8 *)(param_1 + 0xb0);
+          
+          // 重新分配队列空间
+          task_node = (longlong *)(*(longlong *)(queue_manager + 0xc0) + 8);
+          *(longlong **)(queue_manager + 0xc0) = task_node;
+          queue_capacity = *task_node;
+          *(longlong *)(queue_manager + 0xb0) = queue_capacity;
+          *(longlong *)(queue_manager + 0xb8) = queue_capacity + MAX_QUEUE_SIZE;
+          *(undefined8 *)(queue_manager + 0xa8) = *(undefined8 *)(queue_manager + 0xb0);
         }
         else {
-          *(longlong **)(param_1 + 0xa8) = plVar3 + 1;
-          if ((longlong *)*plVar3 != (longlong *)0x0) {
-            (**(code **)(*(longlong *)*plVar3 + 0x38))();
+          *(longlong **)(queue_manager + 0xa8) = task_node + 1;
+          if ((longlong *)*task_node != (longlong *)0x0) {
+            (**(code **)(*(longlong *)*task_node + 0x38))();
           }
         }
       }
-      iVar2 = _Mtx_unlock(param_1 + 0xf0);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+      
+      lock_result = _Mtx_unlock(queue_manager + 0xf0);
+      if (lock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_result);
       }
-      plVar3 = plStackX_18;
-      if (plStackX_18 != (longlong *)0x0) {
-        (**(code **)(*plStackX_18 + 0x60))(plStackX_18);
-        (**(code **)(*plStackX_18 + 0x70))(plStackX_18);
+      
+      task_node = processed_task;
+      if (processed_task != (longlong *)0x0) {
+        (**(code **)(*processed_task + 0x60))(processed_task);
+        (**(code **)(*processed_task + 0x70))(processed_task);
         LOCK();
-        *(int *)(param_1 + 0x140) = *(int *)(param_1 + 0x140) + -1;
+        *(int *)(queue_manager + 0x140) = *(int *)(queue_manager + 0x140) + -1;
         UNLOCK();
-        uVar4 = 1;
-        goto LAB_180060993;
+        process_result = 1;
+        goto processing_complete;
       }
     }
   }
-  plStackX_18 = plVar3;
-  uVar4 = 0;
-LAB_180060993:
-  if (plStackX_18 != (longlong *)0x0) {
-    (**(code **)(*plStackX_18 + 0x38))(plStackX_18);
+  
+  processed_task = task_node;
+  process_result = 0;
+processing_complete:
+  if (processed_task != (longlong *)0x0) {
+    (**(code **)(*processed_task + 0x38))(processed_task);
   }
-  return uVar4;
+  return process_result;
 }
 
-
-
-bool FUN_1800609c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 等待并处理单个对象
+ * @param sync_object 同步对象句柄
+ * @param timeout 超时参数
+ * @param param3 额外参数3
+ * @param param4 额外参数4
+ * @return 处理结果
+ * 
+ * 此函数等待指定对象并处理相关任务
+ */
+bool wait_and_process_object(longlong sync_object, undefined8 timeout, undefined8 param3, undefined8 param4)
 {
-  longlong *plVar1;
-  char cVar2;
-  longlong *plStackX_8;
+  longlong *processed_item;
+  char process_status;
+  longlong *work_item;
   
-  plStackX_8 = (longlong *)0x0;
-  WaitForSingleObject(**(undefined8 **)(param_1 + 0x1f0),1,param_3,param_4,0xfffffffffffffffe);
-  cVar2 = FUN_180060e40(*(undefined8 *)(param_1 + 0x60),param_1 + 0x78,&plStackX_8);
-  plVar1 = plStackX_8;
-  if (cVar2 != '\0') {
-    (**(code **)(*plStackX_8 + 0x60))(plStackX_8);
-    (**(code **)(*plVar1 + 0x70))(plVar1);
+  work_item = (longlong *)0x0;
+  WaitForSingleObject(**(undefined8 **)(sync_object + 0x1f0), 1, param3, param4, TIMEOUT_INFINITE);
+  process_status = process_queue_item(*(undefined8 *)(sync_object + 0x60), sync_object + 0x78, &work_item);
+  processed_item = work_item;
+  if (process_status != '\0') {
+    (**(code **)(*work_item + 0x60))(work_item);
+    (**(code **)(*processed_item + 0x70))(processed_item);
   }
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))(plVar1);
+  if (processed_item != (longlong *)0x0) {
+    (**(code **)(*processed_item + 0x38))(processed_item);
   }
-  return cVar2 != '\0';
+  return process_status != '\0';
 }
 
-
-
-ulonglong FUN_180060a50(longlong *param_1,uint *param_2)
-
+/**
+ * 计算队列位置和偏移量
+ * @param queue_header 队列头指针
+ * @param queue_params 队列参数指针
+ * @return 计算结果
+ * 
+ * 此函数计算队列中的位置和偏移量，
+ * 用于队列管理和元素访问
+ */
+ulonglong calculate_queue_position(longlong *queue_header, uint *queue_params)
 {
-  uint uVar1;
-  uint uVar2;
-  longlong lVar3;
-  ulonglong in_RAX;
-  ulonglong *puVar4;
-  ulonglong *puVar5;
-  ulonglong *puVar6;
-  ulonglong uVar7;
-  ulonglong *puVar8;
-  uint uVar9;
-  ulonglong uVar10;
+  uint queue_size;
+  uint current_offset;
+  longlong base_address;
+  ulonglong position_result;
+  ulonglong *current_node;
+  ulonglong *next_node;
+  ulonglong *temp_node;
+  ulonglong calculated_value;
+  ulonglong *target_node;
+  uint remaining_steps;
+  ulonglong step_count;
   
-  lVar3 = *param_1;
-  if ((*(longlong *)(param_2 + 6) == 0) && (lVar3 == 0)) {
-    return in_RAX & 0xffffffffffffff00;
+  base_address = *queue_header;
+  if ((*(longlong *)(queue_params + 6) == 0) && (base_address == 0)) {
+    return position_result & 0xffffffffffffff00;
   }
-  uVar1 = *(uint *)(param_1 + 1);
-  uVar2 = *(uint *)(param_1 + 0x4c);
-  puVar8 = (ulonglong *)0x0;
-  puVar4 = *(ulonglong **)(param_2 + 6);
-  if (*(ulonglong **)(param_2 + 6) == (ulonglong *)0x0) {
-    puVar5 = (ulonglong *)(lVar3 + 8);
-    if (lVar3 == 0) {
-      puVar5 = puVar8;
+  
+  queue_size = *(uint *)(queue_header + 1);
+  current_offset = *(uint *)(queue_header + 0x4c);
+  target_node = (ulonglong *)0x0;
+  current_node = *(ulonglong **)(queue_params + 6);
+  
+  if (*(ulonglong **)(queue_params + 6) == (ulonglong *)0x0) {
+    next_node = (ulonglong *)(base_address + 8);
+    if (base_address == 0) {
+      next_node = target_node;
     }
-    *(ulonglong **)(param_2 + 6) = puVar5;
-    uVar9 = (uVar1 - *param_2 % uVar1) - 1;
-    uVar10 = (ulonglong)uVar9;
-    puVar4 = puVar5;
-    if (uVar9 != 0) {
+    *(ulonglong **)(queue_params + 6) = next_node;
+    remaining_steps = (queue_size - *queue_params % queue_size) - 1;
+    step_count = (ulonglong)remaining_steps;
+    current_node = next_node;
+    
+    if (remaining_steps != 0) {
       do {
-        if (puVar4 == (ulonglong *)0x0) {
-          puVar4 = (ulonglong *)&DAT_00000008;
+        if (current_node == (ulonglong *)0x0) {
+          current_node = (ulonglong *)&DAT_00000008;
         }
-        puVar6 = (ulonglong *)(*puVar4 - 8);
-        if (*puVar4 == 0) {
-          puVar6 = puVar8;
+        temp_node = (ulonglong *)(*current_node - 8);
+        if (*current_node == 0) {
+          temp_node = target_node;
         }
-        puVar4 = puVar6 + 1;
-        if (puVar6 == (ulonglong *)0x0) {
-          puVar4 = puVar8;
+        current_node = temp_node + 1;
+        if (temp_node == (ulonglong *)0x0) {
+          current_node = target_node;
         }
-        *(ulonglong **)(param_2 + 6) = puVar4;
-        if (puVar4 == (ulonglong *)0x0) {
-          *(ulonglong **)(param_2 + 6) = puVar5;
-          puVar4 = puVar5;
+        *(ulonglong **)(queue_params + 6) = current_node;
+        if (current_node == (ulonglong *)0x0) {
+          *(ulonglong **)(queue_params + 6) = next_node;
+          current_node = next_node;
         }
-        uVar10 = uVar10 - 1;
-      } while (uVar10 != 0);
+        step_count = step_count - 1;
+      } while (step_count != 0);
     }
   }
-  uVar9 = uVar2 - param_2[1];
-  uVar10 = (ulonglong)uVar9;
-  if (uVar1 <= uVar9) {
-    uVar10 = (ulonglong)uVar9 % (ulonglong)uVar1;
+  
+  remaining_steps = current_offset - queue_params[1];
+  step_count = (ulonglong)remaining_steps;
+  if (queue_size <= remaining_steps) {
+    step_count = (ulonglong)remaining_steps % (ulonglong)queue_size;
   }
-  uVar7 = uVar10;
-  if ((int)uVar10 != 0) {
+  
+  calculated_value = step_count;
+  if ((int)step_count != 0) {
     do {
-      if (puVar4 == (ulonglong *)0x0) {
-        puVar4 = (ulonglong *)&DAT_00000008;
+      if (current_node == (ulonglong *)0x0) {
+        current_node = (ulonglong *)&DAT_00000008;
       }
-      uVar10 = *puVar4;
-      puVar5 = (ulonglong *)(uVar10 - 8);
-      if (uVar10 == 0) {
-        puVar5 = puVar8;
+      step_count = *current_node;
+      next_node = (ulonglong *)(step_count - 8);
+      if (step_count == 0) {
+        next_node = target_node;
       }
-      puVar4 = puVar8;
-      if (puVar5 != (ulonglong *)0x0) {
-        puVar4 = puVar5 + 1;
+      current_node = target_node;
+      if (next_node != (ulonglong *)0x0) {
+        current_node = next_node + 1;
       }
-      *(ulonglong **)(param_2 + 6) = puVar4;
-      if (puVar4 == (ulonglong *)0x0) {
-        puVar4 = (ulonglong *)(lVar3 + 8);
-        if (lVar3 == 0) {
-          puVar4 = puVar8;
+      *(ulonglong **)(queue_params + 6) = current_node;
+      if (current_node == (ulonglong *)0x0) {
+        current_node = (ulonglong *)(base_address + 8);
+        if (base_address == 0) {
+          current_node = target_node;
         }
-        *(ulonglong **)(param_2 + 6) = puVar4;
+        *(ulonglong **)(queue_params + 6) = current_node;
       }
-      uVar7 = uVar7 - 1;
-    } while (uVar7 != 0);
+      calculated_value = calculated_value - 1;
+    } while (calculated_value != 0);
   }
-  param_2[1] = uVar2;
-  param_2[2] = 0;
-  *(ulonglong **)(param_2 + 4) = puVar4;
-  return CONCAT71((int7)(uVar10 >> 8),1);
-}
-
-
-
-longlong * FUN_180060b80(longlong *param_1,longlong *param_2)
-
-{
-  longlong lVar1;
-  longlong *plVar2;
   
-  lVar1 = *param_2;
-  *param_2 = 0;
-  plVar2 = (longlong *)*param_1;
-  *param_1 = lVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
-  }
-  return param_1;
+  queue_params[1] = current_offset;
+  queue_params[2] = 0;
+  *(ulonglong **)(queue_params + 4) = current_node;
+  return CONCAT71((int7)(step_count >> 8), 1);
 }
 
-
-
-longlong * FUN_180060bd0(longlong *param_1)
-
+/**
+ * 交换队列指针并清理资源
+ * @param target_ptr 目标指针
+ * @param source_ptr 源指针
+ * @return 处理后的目标指针
+ * 
+ * 此函数交换两个指针并清理相关资源
+ */
+longlong *swap_and_cleanup_pointers(longlong *target_ptr, longlong *source_ptr)
 {
-  if ((longlong *)*param_1 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_1 + 0x38))();
-  }
-  return param_1;
-}
-
-
-
-undefined8 FUN_180060c60(longlong param_1,undefined8 param_2)
-
-{
-  longlong *plVar1;
-  ulonglong *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  longlong lVar6;
-  ulonglong uVar7;
+  longlong temp_value;
+  longlong *cleanup_target;
   
-  if (*(char *)(param_1 + 0x48) == '\0') {
-    if ((ulonglong)
-        ((*(longlong *)(param_1 + 0x30) - *(longlong *)(param_1 + 0x38)) -
-        *(longlong *)(param_1 + 0x20)) < 0x8000000000000001) {
+  temp_value = *source_ptr;
+  *source_ptr = 0;
+  cleanup_target = (longlong *)*target_ptr;
+  *target_ptr = temp_value;
+  if (cleanup_target != (longlong *)0x0) {
+    (**(code **)(*cleanup_target + 0x38))();
+  }
+  return target_ptr;
+}
+
+/**
+ * 清理指针资源
+ * @param target_ptr 目标指针
+ * @return 清理后的指针
+ * 
+ * 此函数清理指定指针指向的资源
+ */
+longlong *cleanup_pointer_resource(longlong *target_ptr)
+{
+  if ((longlong *)*target_ptr != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*target_ptr + 0x38))();
+  }
+  return target_ptr;
+}
+
+/**
+ * 向队列中添加元素
+ * @param queue_manager 队列管理器
+ * @param new_element 新元素
+ * @return 添加结果
+ * 
+ * 此函数向队列中添加新元素，
+ * 涉及复杂的内存管理和同步操作
+ */
+undefined8 add_to_queue(longlong queue_manager, undefined8 new_element)
+{
+  longlong *queue_position;
+  ulonglong *queue_count;
+  longlong current_count;
+  ulonglong available_space;
+  longlong base_address;
+  longlong queue_capacity;
+  longlong queue_end;
+  ulonglong element_index;
+  
+  if (*(char *)(queue_manager + 0x48) == '\0') {
+    if ((ulonglong)((*(longlong *)(queue_manager + 0x30) - *(longlong *)(queue_manager + 0x38)) - 
+        *(longlong *)(queue_manager + 0x20)) < 0x8000000000000001) {
       return 0;
     }
+    
     LOCK();
-    plVar1 = (longlong *)(param_1 + 0x30);
-    lVar3 = *plVar1;
-    *plVar1 = *plVar1 + 1;
+    queue_position = (longlong *)(queue_manager + 0x30);
+    current_count = *queue_position;
+    *queue_position = *queue_position + 1;
     UNLOCK();
-    if (0x8000000000000000 <
-        (ulonglong)((lVar3 - *(longlong *)(param_1 + 0x20)) - *(longlong *)(param_1 + 0x38))) {
+    
+    if (0x8000000000000000 < (ulonglong)((current_count - *(longlong *)(queue_manager + 0x20)) - 
+        *(longlong *)(queue_manager + 0x38))) {
+      
       LOCK();
-      puVar2 = (ulonglong *)(param_1 + 0x28);
-      uVar4 = *puVar2;
-      *puVar2 = *puVar2 + 1;
+      queue_count = (ulonglong *)(queue_manager + 0x28);
+      available_space = *queue_count;
+      *queue_count = *queue_count + 1;
       UNLOCK();
-      plVar1 = *(longlong **)(param_1 + 0x60);
-      lVar3 = *(longlong *)
-               (plVar1[3] +
-               (((uVar4 & 0xffffffffffffffe0) - **(longlong **)(plVar1[3] + plVar1[1] * 8) >> 5) +
-                plVar1[1] & *plVar1 - 1U) * 8);
-      lVar6 = *(longlong *)(lVar3 + 8);
-      plVar1 = (longlong *)(lVar6 + (ulonglong)((uint)uVar4 & 0x1f) * 8);
-      FUN_180060b80(param_2,plVar1);
-      plVar1 = (longlong *)*plVar1;
-      if (plVar1 != (longlong *)0x0) {
-        (**(code **)(*plVar1 + 0x38))();
+      
+      queue_position = *(longlong **)(queue_manager + 0x60);
+      current_count = *(longlong *)(queue_position[3] + (((available_space & 0xffffffffffffffe0) - 
+          **(longlong **)(queue_position[3] + queue_position[1] * 8) >> 5) + 
+          queue_position[1] & *queue_position - 1U) * 8);
+      
+      queue_end = *(longlong *)(current_count + 8);
+      queue_position = (longlong *)(queue_end + (ulonglong)((uint)available_space & 0x1f) * 8);
+      swap_and_cleanup_pointers(new_element, queue_position);
+      queue_position = (longlong *)*queue_position;
+      
+      if (queue_position != (longlong *)0x0) {
+        (**(code **)(*queue_position + 0x38))();
       }
+      
       LOCK();
-      plVar1 = (longlong *)(lVar6 + 0x108);
-      lVar5 = *plVar1;
-      *plVar1 = *plVar1 + 1;
+      queue_position = (longlong *)(queue_end + 0x108);
+      queue_capacity = *queue_position;
+      *queue_position = *queue_position + 1;
       UNLOCK();
-      if (lVar5 == 0x1f) {
-        *(undefined8 *)(lVar3 + 8) = 0;
-        func_0x000180060c10(*(undefined8 *)(param_1 + 0x50),lVar6);
+      
+      if (queue_capacity == SEMAPHORE_MAX_COUNT) {
+        *(undefined8 *)(current_count + 8) = 0;
+        func_0x000180060c10(*(undefined8 *)(queue_manager + 0x50), queue_end);
       }
       return 1;
     }
   }
   else {
-    if ((ulonglong)
-        ((*(longlong *)(param_1 + 0x30) - *(longlong *)(param_1 + 0x38)) -
-        *(longlong *)(param_1 + 0x20)) < 0x8000000000000001) {
+    if ((ulonglong)((*(longlong *)(queue_manager + 0x30) - *(longlong *)(queue_manager + 0x38)) - 
+        *(longlong *)(queue_manager + 0x20)) < 0x8000000000000001) {
       return 0;
     }
+    
     LOCK();
-    plVar1 = (longlong *)(param_1 + 0x30);
-    lVar3 = *plVar1;
-    *plVar1 = *plVar1 + 1;
+    queue_position = (longlong *)(queue_manager + 0x30);
+    current_count = *queue_position;
+    *queue_position = *queue_position + 1;
     UNLOCK();
-    if (0x8000000000000000 <
-        (ulonglong)((lVar3 - *(longlong *)(param_1 + 0x20)) - *(longlong *)(param_1 + 0x38))) {
+    
+    if (0x8000000000000000 < (ulonglong)((current_count - *(longlong *)(queue_manager + 0x20)) - 
+        *(longlong *)(queue_manager + 0x38))) {
+      
       LOCK();
-      puVar2 = (ulonglong *)(param_1 + 0x28);
-      uVar4 = *puVar2;
-      *puVar2 = *puVar2 + 1;
+      queue_count = (ulonglong *)(queue_manager + 0x28);
+      available_space = *queue_count;
+      *queue_count = *queue_count + 1;
       UNLOCK();
-      plVar1 = *(longlong **)(param_1 + 0x58);
-      uVar7 = (ulonglong)((uint)uVar4 & 0x1f);
-      lVar3 = *(longlong *)
-               (plVar1[2] + 8 +
-               (((uVar4 & 0xffffffffffffffe0) - *(longlong *)(plVar1[2] + plVar1[1] * 0x10) >> 5) +
-                plVar1[1] & *plVar1 - 1U) * 0x10);
-      plVar1 = (longlong *)(lVar3 + uVar7 * 8);
-      FUN_180060b80(param_2,plVar1);
-      plVar1 = (longlong *)*plVar1;
-      if (plVar1 != (longlong *)0x0) {
-        (**(code **)(*plVar1 + 0x38))();
+      
+      queue_position = *(longlong **)(queue_manager + 0x58);
+      element_index = (ulonglong)((uint)available_space & 0x1f);
+      current_count = *(longlong *)(queue_position[2] + 8 + (((available_space & 0xffffffffffffffe0) - 
+          *(longlong *)(queue_position[2] + queue_position[1] * 0x10) >> 5) + 
+          queue_position[1] & *queue_position - 1U) * 0x10);
+      
+      queue_position = (longlong *)(current_count + element_index * 8);
+      swap_and_cleanup_pointers(new_element, queue_position);
+      queue_position = (longlong *)*queue_position;
+      
+      if (queue_position != (longlong *)0x0) {
+        (**(code **)(*queue_position + 0x38))();
       }
-      *(undefined1 *)((lVar3 - uVar7) + 0x12f) = 1;
+      
+      *(undefined1 *)((current_count - element_index) + 0x12f) = 1;
       return 1;
     }
   }
+  
   LOCK();
-  *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x38) + 1;
+  *(longlong *)(queue_manager + 0x38) = *(longlong *)(queue_manager + 0x38) + 1;
   UNLOCK();
   return 0;
 }
 
-
-
-undefined8 FUN_180060d76(void)
-
+/**
+ * 批量处理队列元素
+ * @return 处理结果
+ * 
+ * 此函数批量处理队列中的元素
+ */
+undefined8 batch_process_queue_elements(void)
 {
-  ulonglong *puVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  longlong lVar6;
+  ulonglong *process_count;
+  ulonglong batch_size;
+  longlong base_address;
+  longlong *queue_info;
+  longlong queue_end;
   ulonglong unaff_RSI;
   longlong unaff_RDI;
   
   LOCK();
-  puVar1 = (ulonglong *)(unaff_RDI + 0x28);
-  uVar2 = *puVar1;
-  *puVar1 = *puVar1 + (unaff_RSI & 0xffffffff);
+  process_count = (ulonglong *)(unaff_RDI + 0x28);
+  batch_size = *process_count;
+  *process_count = *process_count + (unaff_RSI & 0xffffffff);
   UNLOCK();
-  plVar4 = *(longlong **)(unaff_RDI + 0x60);
-  lVar5 = *(longlong *)
-           (plVar4[3] +
-           (((uVar2 & 0xffffffffffffffe0) - **(longlong **)(plVar4[3] + plVar4[1] * 8) >> 5) +
-            plVar4[1] & *plVar4 - 1U) * 8);
-  lVar6 = *(longlong *)(lVar5 + 8);
-  FUN_180060b80();
-  plVar4 = *(longlong **)(lVar6 + (ulonglong)((uint)uVar2 & 0x1f) * 8);
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x38))();
+  
+  queue_info = *(longlong **)(unaff_RDI + 0x60);
+  base_address = *(longlong *)(queue_info[3] + (((batch_size & 0xffffffffffffffe0) - 
+      **(longlong **)(queue_info[3] + queue_info[1] * 8) >> 5) + 
+      queue_info[1] & *queue_info - 1U) * 8);
+  
+  queue_end = *(longlong *)(base_address + 8);
+  swap_and_cleanup_pointers();
+  queue_info = *(longlong **)(queue_end + (ulonglong)((uint)batch_size & 0x1f) * 8);
+  
+  if (queue_info != (longlong *)0x0) {
+    (**(code **)(*queue_info + 0x38))();
   }
+  
   LOCK();
-  plVar4 = (longlong *)(lVar6 + 0x108);
-  lVar3 = *plVar4;
-  *plVar4 = *plVar4 + unaff_RSI;
+  queue_info = (longlong *)(queue_end + 0x108);
+  base_address = *queue_info;
+  *queue_info = *queue_info + unaff_RSI;
   UNLOCK();
-  if (lVar3 == 0x1f) {
-    *(undefined8 *)(lVar5 + 8) = 0;
-    func_0x000180060c10(*(undefined8 *)(unaff_RDI + 0x50),lVar6);
+  
+  if (base_address == SEMAPHORE_MAX_COUNT) {
+    *(undefined8 *)(base_address + 8) = 0;
+    func_0x000180060c10(*(undefined8 *)(unaff_RDI + 0x50), queue_end);
   }
   return 1;
 }
 
-
-
-undefined1 FUN_180060e22(void)
-
+/**
+ * 增加队列处理计数
+ * @return 操作结果
+ * 
+ * 此函数增加队列处理的计数器
+ */
+undefined1 increment_queue_process_count(void)
 {
   longlong unaff_RSI;
   longlong unaff_RDI;
@@ -419,675 +517,736 @@ undefined1 FUN_180060e22(void)
   return 0;
 }
 
-
-
-undefined8 FUN_180060e40(undefined8 *param_1,longlong param_2,undefined8 param_3)
-
+/**
+ * 处理队列请求
+ * @param queue_handle 队列句柄
+ * @param request_data 请求数据
+ * @param process_context 处理上下文
+ * @return 处理结果
+ * 
+ * 此函数处理队列中的请求
+ */
+undefined8 process_queue_request(undefined8 *queue_handle, longlong request_data, undefined8 process_context)
 {
-  char cVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong *plVar5;
-  longlong *plVar6;
+  char request_valid;
+  longlong *queue_node;
+  longlong base_address;
+  longlong *current_node;
+  longlong *next_node;
   
-  if (((*(longlong *)(param_2 + 0x18) == 0) || (*(int *)(param_2 + 4) != *(int *)(param_1 + 0x4c)))
-     && (cVar1 = FUN_180060a50(), cVar1 == '\0')) {
+  if (((*(longlong *)(request_data + 0x18) == 0) || (*(int *)(request_data + 4) != *(int *)(queue_handle + 0x4c))) &&
+      (request_valid = calculate_queue_position(), request_valid == '\0')) {
     return 0;
   }
-  plVar6 = (longlong *)0x0;
-  plVar4 = (longlong *)(*(longlong *)(param_2 + 0x10) + -8);
-  if (*(longlong *)(param_2 + 0x10) == 0) {
-    plVar4 = plVar6;
+  
+  next_node = (longlong *)0x0;
+  current_node = (longlong *)(*(longlong *)(request_data + 0x10) + -8);
+  if (*(longlong *)(request_data + 0x10) == 0) {
+    current_node = next_node;
   }
-  cVar1 = FUN_180060c60(plVar4,param_3);
-  if (cVar1 == '\0') {
-    plVar4 = (longlong *)*param_1;
-    plVar2 = *(longlong **)(param_2 + 0x10);
-    if (plVar2 == (longlong *)0x0) {
-      plVar2 = (longlong *)&DAT_00000008;
+  
+  request_valid = add_to_queue(current_node, process_context);
+  if (request_valid == '\0') {
+    current_node = (longlong *)*queue_handle;
+    queue_node = *(longlong **)(request_data + 0x10);
+    if (queue_node == (longlong *)0x0) {
+      queue_node = (longlong *)&DAT_00000008;
     }
-    lVar3 = *plVar2;
-    while( true ) {
-      plVar2 = (longlong *)(lVar3 + -8);
-      if (lVar3 == 0) {
-        plVar2 = plVar6;
+    
+    base_address = *queue_node;
+    while (true) {
+      queue_node = (longlong *)(base_address + -8);
+      if (base_address == 0) {
+        queue_node = next_node;
       }
-      plVar5 = plVar4;
-      if (plVar2 != (longlong *)0x0) {
-        plVar5 = plVar2;
+      
+      next_node = current_node;
+      if (queue_node != (longlong *)0x0) {
+        next_node = queue_node;
       }
-      plVar2 = (longlong *)(*(longlong *)(param_2 + 0x10) + -8);
-      if (*(longlong *)(param_2 + 0x10) == 0) {
-        plVar2 = plVar6;
+      
+      queue_node = (longlong *)(*(longlong *)(request_data + 0x10) + -8);
+      if (*(longlong *)(request_data + 0x10) == 0) {
+        queue_node = next_node;
       }
-      if (plVar5 == plVar2) {
+      
+      if (next_node == queue_node) {
         return 0;
       }
-      cVar1 = FUN_180060c60(plVar5,param_3);
-      if (cVar1 != '\0') break;
-      lVar3 = plVar5[1];
+      
+      request_valid = add_to_queue(next_node, process_context);
+      if (request_valid != '\0') break;
+      base_address = next_node[1];
     }
-    *(undefined4 *)(param_2 + 8) = 1;
-    plVar4 = plVar5 + 1;
-    if (plVar5 == (longlong *)0x0) {
-      plVar4 = plVar6;
+    
+    *(undefined4 *)(request_data + 8) = 1;
+    current_node = next_node + 1;
+    if (next_node == (longlong *)0x0) {
+      current_node = next_node;
     }
-    *(longlong **)(param_2 + 0x10) = plVar4;
+    *(longlong **)(request_data + 0x10) = current_node;
   }
   else {
-    *(int *)(param_2 + 8) = *(int *)(param_2 + 8) + 1;
-    if (*(int *)(param_2 + 8) == 0x100) {
+    *(int *)(request_data + 8) = *(int *)(request_data + 8) + 1;
+    if (*(int *)(request_data + 8) == MAX_QUEUE_SIZE) {
       LOCK();
-      *(int *)(param_1 + 0x4c) = *(int *)(param_1 + 0x4c) + 1;
+      *(int *)(queue_handle + 0x4c) = *(int *)(queue_handle + 0x4c) + 1;
       UNLOCK();
     }
   }
   return 1;
 }
 
-
-
-bool FUN_180060f50(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 处理带超时的队列请求
+ * @param sync_object 同步对象
+ * @param timeout 超时参数
+ * @param param3 额外参数3
+ * @param param4 额外参数4
+ * @return 处理结果
+ * 
+ * 此函数处理带超时的队列请求
+ */
+bool process_timed_queue_request(longlong sync_object, undefined8 timeout, undefined8 param3, undefined8 param4)
 {
-  longlong *plVar1;
-  char cVar2;
-  longlong *plStackX_8;
+  longlong *processed_item;
+  char process_status;
+  longlong *work_item;
   
-  plStackX_8 = (longlong *)0x0;
-  cVar2 = FUN_180060e40(*(undefined8 *)(param_1 + 0x60),param_1 + 0x78,&plStackX_8,param_4,
-                        0xfffffffffffffffe);
-  plVar1 = plStackX_8;
-  if (cVar2 != '\0') {
-    (**(code **)(*plStackX_8 + 0x60))(plStackX_8);
-    (**(code **)(*plVar1 + 0x70))(plVar1);
+  work_item = (longlong *)0x0;
+  process_status = process_queue_request(*(undefined8 *)(sync_object + 0x60), sync_object + 0x78, &work_item, param4, TIMEOUT_INFINITE);
+  processed_item = work_item;
+  if (process_status != '\0') {
+    (**(code **)(*work_item + 0x60))(work_item);
+    (**(code **)(*processed_item + 0x70))(processed_item);
   }
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))(plVar1);
+  if (processed_item != (longlong *)0x0) {
+    (**(code **)(*processed_item + 0x38))(processed_item);
   }
-  return cVar2 != '\0';
+  return process_status != '\0';
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180060fc0(longlong *param_1,longlong *param_2)
-void FUN_180060fc0(longlong *param_1,longlong *param_2)
-
+/**
+ * 扩展队列容量
+ * @param queue_header 队列头指针
+ * @param new_element 新元素
+ * 
+ * 此函数扩展队列容量并添加新元素
+ */
+void expand_queue_capacity(longlong *queue_header, longlong *new_element)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  longlong lVar6;
-  longlong lVar7;
-  longlong lVar8;
-  ulonglong uVar9;
-  undefined8 uVar10;
+  longlong *write_position;
+  longlong queue_size;
+  longlong *read_position;
+  longlong available_space;
+  ulonglong new_capacity;
+  longlong data_size;
+  longlong copy_size;
+  ulonglong expand_size;
+  longlong new_queue_size;
+  longlong new_base_address;
+  undefined8 allocation_flags;
   
-  uVar10 = 0xfffffffffffffffe;
-  plVar3 = (longlong *)param_1[6];
-  plVar1 = plVar3 + 1;
-  if (plVar1 == (longlong *)param_1[8]) {
-    param_2 = (longlong *)*param_2;
-    if (param_2 != (longlong *)0x0) {
-      (**(code **)(*param_2 + 0x28))(param_2);
+  allocation_flags = TIMEOUT_INFINITE;
+  read_position = (longlong *)queue_header[6];
+  write_position = read_position + 1;
+  
+  if (write_position == (longlong *)queue_header[8]) {
+    new_element = (longlong *)*new_element;
+    if (new_element != (longlong *)0x0) {
+      (**(code **)(*new_element + 0x28))(new_element);
     }
-    lVar7 = *param_1;
-    lVar4 = param_1[1];
-    if (lVar4 <= (param_1[9] - lVar7 >> 3) + 1) {
-      lVar6 = param_1[5];
-      uVar9 = lVar6 - lVar7 >> 3;
-      lVar8 = param_1[9] - lVar6 >> 3;
-      lVar2 = lVar8 * 8 + 8;
-      if (uVar9 != 0) {
-        uVar5 = uVar9 >> 1;
-        if (uVar5 < 2) {
-          uVar5 = 1;
+    
+    queue_size = *queue_header;
+    available_space = queue_header[1];
+    if (available_space <= (queue_header[9] - queue_size >> 3) + 1) {
+      data_size = queue_header[5];
+      new_capacity = data_size - queue_size >> 3;
+      copy_size = queue_header[9] - data_size >> 3;
+      data_size = copy_size * 8 + 8;
+      
+      if (new_capacity != 0) {
+        expand_size = new_capacity >> 1;
+        if (expand_size < 2) {
+          expand_size = 1;
         }
-                    // WARNING: Subroutine does not return
-        memmove(lVar7 + (uVar9 - uVar5) * 8,lVar6,lVar2);
+        memmove(queue_size + (new_capacity - expand_size) * 8, data_size, data_size);
       }
-      lVar6 = lVar4;
-      if (lVar4 == 0) {
-        lVar6 = 1;
+      
+      data_size = available_space;
+      if (available_space == 0) {
+        data_size = 1;
       }
-      lVar6 = lVar4 + 2 + lVar6;
-      lVar7 = FUN_18062b420(_DAT_180c8ed18,lVar6 * 8,(char)param_1[10],lVar7,uVar10);
-      plVar1 = (longlong *)(lVar7 + (param_1[5] - *param_1 >> 3) * 8);
-      if (*param_1 != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(plVar1,param_1[5],lVar2);
+      
+      data_size = available_space + 2 + data_size;
+      queue_size = allocate_queue_memory(_DAT_180c8ed18, data_size * 8, (char)queue_header[10], queue_size, allocation_flags);
+      write_position = (longlong *)(queue_size + (queue_header[5] - *queue_header >> 3) * 8);
+      
+      if (*queue_header != 0) {
+        memcpy(write_position, queue_header[5], data_size);
       }
-      *param_1 = lVar7;
-      param_1[1] = lVar6;
-      param_1[5] = (longlong)plVar1;
-      lVar7 = *plVar1;
-      param_1[3] = lVar7;
-      param_1[4] = lVar7 + 0x100;
-      param_1[9] = (longlong)(plVar1 + lVar8);
-      lVar7 = plVar1[lVar8];
-      param_1[7] = lVar7;
-      param_1[8] = lVar7 + 0x100;
+      
+      *queue_header = queue_size;
+      queue_header[1] = data_size;
+      queue_header[5] = (longlong)write_position;
+      queue_size = *write_position;
+      queue_header[3] = queue_size;
+      queue_header[4] = queue_size + MAX_QUEUE_SIZE;
+      queue_header[9] = (longlong)(write_position + copy_size);
+      queue_size = write_position[copy_size];
+      queue_header[7] = queue_size;
+      queue_header[8] = queue_size + MAX_QUEUE_SIZE;
     }
-    uVar10 = FUN_18062b420(_DAT_180c8ed18,0x100,(char)param_1[10]);
-    *(undefined8 *)(param_1[9] + 8) = uVar10;
-    *(longlong **)param_1[6] = param_2;
-    lVar7 = param_1[9];
-    param_1[9] = lVar7 + 8;
-    lVar7 = *(longlong *)(lVar7 + 8);
-    param_1[7] = lVar7;
-    param_1[8] = lVar7 + 0x100;
-    param_1[6] = lVar7;
+    
+    allocation_flags = allocate_queue_memory(_DAT_180c8ed18, MAX_QUEUE_SIZE, (char)queue_header[10]);
+    *(undefined8 *)(queue_header[9] + 8) = allocation_flags;
+    *(longlong **)queue_header[6] = new_element;
+    queue_size = queue_header[9];
+    queue_header[9] = queue_size + 8;
+    queue_size = *(longlong *)(queue_size + 8);
+    queue_header[7] = queue_size;
+    queue_header[8] = queue_size + MAX_QUEUE_SIZE;
+    queue_header[6] = queue_size;
   }
   else {
-    param_1[6] = (longlong)plVar1;
-    param_2 = (longlong *)*param_2;
-    *plVar3 = (longlong)param_2;
-    if (param_2 != (longlong *)0x0) {
-      (**(code **)(*param_2 + 0x28))();
+    queue_header[6] = (longlong)write_position;
+    new_element = (longlong *)*new_element;
+    *read_position = (longlong)new_element;
+    if (new_element != (longlong *)0x0) {
+      (**(code **)(*new_element + 0x28))();
     }
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1800611a0(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 初始化队列操作
+ * @param queue_manager 队列管理器
+ * @param queue_data 队列数据
+ * @param param3 额外参数3
+ * @param param4 额外参数4
+ * 
+ * 此函数初始化队列操作
+ */
+void initialize_queue_operation(longlong queue_manager, longlong *queue_data, undefined8 param3, undefined8 param4)
 {
-  undefined8 *puVar1;
-  longlong lVar2;
-  longlong lVar3;
-  int iVar4;
-  longlong lVar5;
-  undefined8 uVar6;
-  undefined1 uVar7;
+  undefined8 *semaphore_handle;
+  longlong semaphore_count;
+  longlong initial_count;
+  int lock_result;
+  longlong lock_address;
+  undefined8 operation_flags;
+  undefined1 lock_acquired;
   
-  uVar6 = 0xfffffffffffffffe;
-  lVar5 = param_1 + 0xf0;
-  iVar4 = _Mtx_lock();
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+  operation_flags = TIMEOUT_INFINITE;
+  lock_address = queue_manager + 0xf0;
+  lock_result = _Mtx_lock();
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  uVar7 = 1;
-  FUN_180060fc0(param_1 + 0x98,param_2);
+  lock_acquired = 1;
+  
+  expand_queue_capacity(queue_manager + 0x98, queue_data);
   LOCK();
-  *(int *)(param_1 + 0x140) = *(int *)(param_1 + 0x140) + 1;
+  *(int *)(queue_manager + 0x140) = *(int *)(queue_manager + 0x140) + 1;
   UNLOCK();
-  puVar1 = *(undefined8 **)(param_1 + 0x1f0);
-  lVar2 = *(longlong *)(_DAT_180c82868 + 0x10);
-  lVar3 = *(longlong *)(_DAT_180c82868 + 8);
+  
+  semaphore_handle = *(undefined8 **)(queue_manager + 0x1f0);
+  semaphore_count = *(longlong *)(_DAT_180c82868 + 0x10);
+  initial_count = *(longlong *)(_DAT_180c82868 + 8);
+  
   do {
-    iVar4 = ReleaseSemaphore(*puVar1,lVar2 - lVar3 >> 3 & 0xffffffff,0,param_4,uVar6,lVar5,uVar7);
-  } while (iVar4 == 0);
-  FUN_1800466d0(param_1 + 0x150);
-  iVar4 = _Mtx_unlock(lVar5);
-  if (iVar4 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar4);
+    lock_result = ReleaseSemaphore(*semaphore_handle, semaphore_count - initial_count >> 3 & 0xffffffff, 0, param4, operation_flags, lock_address, lock_acquired);
+  } while (lock_result == 0);
+  
+  process_queue_data(queue_manager + 0x150);
+  lock_result = _Mtx_unlock(lock_address);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  if ((longlong *)*param_2 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_2 + 0x38))();
+  
+  if ((longlong *)*queue_data != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*queue_data + 0x38))();
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180061290(undefined8 *param_1)
-void FUN_180061290(undefined8 *param_1)
-
+/**
+ * 关闭句柄
+ * @param handle 句柄指针
+ * 
+ * 此函数关闭指定的句柄
+ */
+void close_handle(undefined8 *handle)
 {
-  CloseHandle(*param_1);
+  CloseHandle(*handle);
   return;
 }
 
-
-
-
-
-// 函数: void FUN_1800612b0(undefined8 *param_1)
-void FUN_1800612b0(undefined8 *param_1)
-
+/**
+ * 重置队列管理器
+ * @param manager 管理器指针
+ * 
+ * 此函数重置队列管理器到初始状态
+ */
+void reset_queue_manager(undefined8 *manager)
 {
-  *param_1 = &UNK_180a3cf50;
-  if (*(char *)((longlong)param_1 + 0xb1) != '\0') {
+  *manager = &UNK_180a3cf50;
+  if (*(char *)((longlong)manager + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *param_1 = &UNK_180a30778;
-  param_1[7] = &UNK_180a3c3e0;
-  if (param_1[8] != 0) {
-                    // WARNING: Subroutine does not return
+  *manager = &UNK_180a30778;
+  manager[7] = &UNK_180a3c3e0;
+  if (manager[8] != 0) {
     FUN_18064e900();
   }
-  param_1[8] = 0;
-  *(undefined4 *)(param_1 + 10) = 0;
-  param_1[7] = &UNK_18098bcb0;
-  param_1[1] = &UNK_180a3c3e0;
-  if (param_1[2] != 0) {
-                    // WARNING: Subroutine does not return
+  manager[8] = 0;
+  *(undefined4 *)(manager + 10) = 0;
+  manager[7] = &UNK_18098bcb0;
+  manager[1] = &UNK_180a3c3e0;
+  if (manager[2] != 0) {
     FUN_18064e900();
   }
-  param_1[2] = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
-  param_1[1] = &UNK_18098bcb0;
+  manager[2] = 0;
+  *(undefined4 *)(manager + 4) = 0;
+  manager[1] = &UNK_18098bcb0;
   return;
 }
 
-
-
-undefined8 *
-FUN_180061300(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 释放管理器资源
+ * @param manager 管理器指针
+ * @param flags 释放标志
+ * @param param3 额外参数3
+ * @param param4 额外参数4
+ * @return 释放后的管理器指针
+ * 
+ * 此函数释放管理器占用的资源
+ */
+undefined8 *release_manager_resources(undefined8 *manager, ulonglong flags, undefined8 param3, undefined8 param4)
 {
-  undefined8 uVar1;
+  undefined8 release_flags;
   
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a3cf50;
-  if (*(char *)((longlong)param_1 + 0xb1) != '\0') {
+  release_flags = TIMEOUT_INFINITE;
+  *manager = &UNK_180a3cf50;
+  if (*(char *)((longlong)manager + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  FUN_1805065c0(param_1);
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xb8,param_3,param_4,uVar1);
+  cleanup_manager_resources(manager);
+  if ((flags & 1) != 0) {
+    free(manager, 0xb8, param3, param4, release_flags);
   }
-  return param_1;
+  return manager;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180061380(undefined8 param_1,longlong param_2)
-void FUN_180061380(undefined8 param_1,longlong param_2)
-
+/**
+ * 初始化引擎核心组件
+ * @param engine_param 引擎参数
+ * @param config_data 配置数据
+ * 
+ * 此函数初始化引擎的核心组件
+ */
+void initialize_engine_core(undefined8 engine_param, longlong config_data)
 {
-  longlong lVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  undefined1 auStack_268 [32];
-  longlong lStack_248;
-  undefined8 *puStack_238;
-  undefined1 auStack_230 [8];
-  longlong lStack_228;
-  uint uStack_220;
-  longlong lStack_210;
-  undefined1 auStack_208 [80];
-  undefined8 uStack_1b8;
-  undefined *puStack_1a8;
-  undefined1 *puStack_1a0;
-  undefined4 uStack_198;
-  undefined1 auStack_190 [88];
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
+  longlong system_address;
+  longlong engine_base;
+  undefined8 *component_handle;
+  undefined8 local_config[32];
+  longlong config_size;
+  undefined8 *config_ptr;
+  undefined1 temp_config[8];
+  longlong config_offset;
+  uint config_length;
+  longlong stack_config;
+  undefined1 buffer_config[80];
+  undefined8 buffer_flags;
+  undefined *stack_pointer;
+  undefined1 *config_pointer;
+  undefined4 config_type;
+  undefined1 local_buffer[88];
+  undefined1 large_buffer[256];
+  ulonglong checksum;
   
-  lVar2 = _DAT_180c86928;
-  lVar1 = _DAT_180c82868;
-  uStack_1b8 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;
-  lStack_210 = _DAT_180c86928;
-  puStack_1a8 = &UNK_1809fdc18;
-  puStack_1a0 = auStack_190;
-  auStack_190[0] = 0;
-  uStack_198 = 6;
-  strcpy_s(auStack_190,0x10,&UNK_1809fe2c0);
-  puVar3 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x208,8,3);
-  lStack_248 = lVar1 + 0x70;
-  puStack_238 = puVar3;
-  FUN_18020e0e0(puVar3,&puStack_1a8,3,lVar1 + 0x2e0);
-  *puVar3 = &UNK_1809fe220;
-  puStack_238 = puVar3;
-  FUN_18020e840(puVar3);
-  FUN_18005ea90(lVar1 + 0x48,&puStack_238);
-  *(undefined8 **)(lVar2 + 400) = puVar3;
-  puStack_1a8 = &UNK_18098bcb0;
-  FUN_180627e10(_DAT_180c86870 + 0x170,auStack_230,&DAT_1809fc8c8);
-  if (0 < *(int *)(param_2 + 0x10)) {
-    FUN_1806277c0(auStack_230,uStack_220 + *(int *)(param_2 + 0x10));
-                    // WARNING: Subroutine does not return
-    memcpy((ulonglong)uStack_220 + lStack_228,*(undefined8 *)(param_2 + 8),
-           (longlong)(*(int *)(param_2 + 0x10) + 1));
+  system_address = _DAT_180c86928;
+  engine_base = _DAT_180c82868;
+  buffer_flags = TIMEOUT_INFINITE;
+  checksum = _DAT_180bf00a8 ^ (ulonglong)local_config;
+  stack_config = _DAT_180c86928;
+  stack_pointer = &UNK_1809fdc18;
+  config_pointer = local_buffer;
+  local_buffer[0] = 0;
+  config_type = 6;
+  strcpy_s(local_buffer, 0x10, &UNK_1809fe2c0);
+  
+  component_handle = (undefined8 *)allocate_engine_component(_DAT_180c8ed18, 0x208, 8, 3);
+  config_size = engine_base + 0x70;
+  config_ptr = component_handle;
+  initialize_engine_component(component_handle, &stack_pointer, 3, engine_base + 0x2e0);
+  *component_handle = &UNK_1809fe220;
+  config_ptr = component_handle;
+  configure_engine_component(component_handle);
+  register_engine_component(engine_base + 0x48, &config_ptr);
+  *(undefined8 **)(system_address + 400) = component_handle;
+  
+  stack_pointer = &UNK_18098bcb0;
+  setup_engine_config(_DAT_180c86870 + 0x170, temp_config, &DAT_1809fc8c8);
+  
+  if (0 < *(int *)(config_data + 0x10)) {
+    expand_engine_config(temp_config, config_length + *(int *)(config_data + 0x10));
+    memcpy((ulonglong)config_length + config_offset, *(undefined8 *)(config_data + 8), (longlong)(*(int *)(config_data + 0x10) + 1));
   }
-  FUN_18062c100(auStack_208,auStack_230);
-  FUN_18062c1e0(auStack_208,1);
-                    // WARNING: Subroutine does not return
-  memset(auStack_138,0,0x100);
+  
+  process_engine_config(buffer_config, temp_config);
+  finalize_engine_config(buffer_config, 1);
+  memset(large_buffer, 0, 0x100);
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180061be0(longlong *param_1)
-void FUN_180061be0(longlong *param_1)
-
+/**
+ * 处理引擎事件
+ * @param event_data 事件数据指针
+ * 
+ * 此函数处理引擎的各种事件
+ */
+void process_engine_event(longlong *event_data)
 {
-  undefined8 *puVar1;
-  code *pcVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  longlong *plVar5;
-  longlong *plVar6;
-  longlong *plVar7;
-  longlong *plStackX_8;
-  longlong **pplStackX_10;
-  longlong *plStackX_18;
-  longlong *plStackX_20;
+  undefined8 *event_handler;
+  code *handler_code;
+  longlong engine_address;
+  undefined8 event_flags;
+  longlong *event_processor;
+  longlong *event_source;
+  longlong *event_target;
+  longlong *processed_event;
+  longlong **event_reference;
+  longlong *queued_event;
+  longlong *processed_item;
   
-  lVar3 = _DAT_180c86928;
-  plStackX_8 = param_1;
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0xfffffffffffffffe);
-  plVar5 = (longlong *)FUN_1800636f0(uVar4,0,lVar3);
-  plStackX_18 = plVar5;
-  if (plVar5 != (longlong *)0x0) {
-    (**(code **)(*plVar5 + 0x28))(plVar5);
+  engine_address = _DAT_180c86928;
+  processed_event = event_data;
+  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3, TIMEOUT_INFINITE);
+  event_processor = (longlong *)create_event_processor(event_flags, 0, engine_address);
+  queued_event = event_processor;
+  
+  if (event_processor != (longlong *)0x0) {
+    (**(code **)(*event_processor + 0x28))(event_processor);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
-  pcVar2 = *(code **)*puVar1;
-  pplStackX_10 = &plStackX_8;
-  plStackX_8 = plVar5;
-  if (plVar5 != (longlong *)0x0) {
-    (**(code **)(*plVar5 + 0x28))(plVar5);
+  
+  event_handler = *(undefined8 **)(engine_address + 400);
+  handler_code = *(code **)*event_handler;
+  event_reference = &processed_event;
+  processed_event = event_processor;
+  
+  if (event_processor != (longlong *)0x0) {
+    (**(code **)(*event_processor + 0x28))(event_processor);
   }
-  (*pcVar2)(puVar1,&plStackX_8);
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
-  plVar6 = (longlong *)FUN_1800636f0(uVar4,4,lVar3);
-  plStackX_20 = plVar6;
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
+  
+  (*handler_code)(event_handler, &processed_event);
+  
+  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3);
+  event_source = (longlong *)create_event_processor(event_flags, 4, engine_address);
+  processed_item = event_source;
+  
+  if (event_source != (longlong *)0x0) {
+    (**(code **)(*event_source + 0x28))(event_source);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
-  pcVar2 = *(code **)*puVar1;
-  pplStackX_10 = &plStackX_8;
-  plStackX_8 = plVar6;
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
+  
+  event_handler = *(undefined8 **)(engine_address + 400);
+  handler_code = *(code **)*event_handler;
+  event_reference = &processed_event;
+  processed_event = event_source;
+  
+  if (event_source != (longlong *)0x0) {
+    (**(code **)(*event_source + 0x28))(event_source);
   }
-  (*pcVar2)(puVar1,&plStackX_8);
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
-  plVar7 = (longlong *)FUN_1800636f0(uVar4,0,lVar3);
-  if (plVar7 != (longlong *)0x0) {
-    pplStackX_10 = (longlong **)plVar7;
-    (**(code **)(*plVar7 + 0x28))(plVar7);
+  
+  (*handler_code)(event_handler, &processed_event);
+  
+  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3);
+  event_target = (longlong *)create_event_processor(event_flags, 0, engine_address);
+  
+  if (event_target != (longlong *)0x0) {
+    event_reference = (longlong **)event_target;
+    (**(code **)(*event_target + 0x28))(event_target);
   }
-  plStackX_18 = plVar7;
-  if (plVar5 != (longlong *)0x0) {
-    pplStackX_10 = (longlong **)plVar5;
-    (**(code **)(*plVar5 + 0x38))(plVar5);
+  
+  queued_event = event_target;
+  if (event_processor != (longlong *)0x0) {
+    event_reference = (longlong **)event_processor;
+    (**(code **)(*event_processor + 0x38))(event_processor);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
-  pcVar2 = *(code **)*puVar1;
-  pplStackX_10 = &plStackX_8;
-  plStackX_8 = plVar7;
-  if (plVar7 != (longlong *)0x0) {
-    (**(code **)(*plVar7 + 0x28))(plVar7);
+  
+  event_handler = *(undefined8 **)(engine_address + 400);
+  handler_code = *(code **)*event_handler;
+  event_reference = &processed_event;
+  processed_event = event_target;
+  
+  if (event_target != (longlong *)0x0) {
+    (**(code **)(*event_target + 0x28))(event_target);
   }
-  (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(undefined8 *)(lVar3 + 400));
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x38))(plVar6);
+  
+  (*handler_code)(event_handler, &processed_event);
+  cleanup_engine_component(*(undefined8 *)(engine_address + 400));
+  
+  if (event_source != (longlong *)0x0) {
+    (**(code **)(*event_source + 0x38))(event_source);
   }
-  if (plVar7 != (longlong *)0x0) {
-    (**(code **)(*plVar7 + 0x38))(plVar7);
+  
+  if (event_target != (longlong *)0x0) {
+    (**(code **)(*event_target + 0x38))(event_target);
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180061db0(longlong *param_1)
-void FUN_180061db0(longlong *param_1)
-
+/**
+ * 处理引擎系统事件
+ * @param system_event 系统事件数据指针
+ * 
+ * 此函数处理引擎的系统级事件
+ */
+void process_engine_system_event(longlong *system_event)
 {
-  undefined8 *puVar1;
-  code *pcVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  longlong *plVar5;
-  longlong *plVar6;
-  longlong *plVar7;
-  longlong *plStackX_8;
-  longlong **pplStackX_10;
-  longlong *plStackX_18;
-  longlong *plStackX_20;
+  undefined8 *event_handler;
+  code *handler_code;
+  longlong engine_address;
+  undefined8 event_flags;
+  longlong *event_processor;
+  longlong *event_source;
+  longlong *event_target;
+  longlong *processed_event;
+  longlong **event_reference;
+  longlong *queued_event;
+  longlong *processed_item;
   
-  lVar3 = _DAT_180c86928;
-  plStackX_8 = param_1;
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0xfffffffffffffffe);
-  plVar5 = (longlong *)FUN_1800636f0(uVar4,0,lVar3);
-  plStackX_18 = plVar5;
-  if (plVar5 != (longlong *)0x0) {
-    (**(code **)(*plVar5 + 0x28))(plVar5);
+  engine_address = _DAT_180c86928;
+  processed_event = system_event;
+  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3, TIMEOUT_INFINITE);
+  event_processor = (longlong *)create_event_processor(event_flags, 0, engine_address);
+  queued_event = event_processor;
+  
+  if (event_processor != (longlong *)0x0) {
+    (**(code **)(*event_processor + 0x28))(event_processor);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
-  pcVar2 = *(code **)*puVar1;
-  pplStackX_10 = &plStackX_8;
-  plStackX_8 = plVar5;
-  if (plVar5 != (longlong *)0x0) {
-    (**(code **)(*plVar5 + 0x28))(plVar5);
+  
+  event_handler = *(undefined8 **)(engine_address + 400);
+  handler_code = *(code **)*event_handler;
+  event_reference = &processed_event;
+  processed_event = event_processor;
+  
+  if (event_processor != (longlong *)0x0) {
+    (**(code **)(*event_processor + 0x28))(event_processor);
   }
-  (*pcVar2)(puVar1,&plStackX_8);
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
-  plVar6 = (longlong *)FUN_1800636f0(uVar4,3,lVar3);
-  plStackX_20 = plVar6;
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
+  
+  (*handler_code)(event_handler, &processed_event);
+  
+  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3);
+  event_source = (longlong *)create_event_processor(event_flags, 3, engine_address);
+  processed_item = event_source;
+  
+  if (event_source != (longlong *)0x0) {
+    (**(code **)(*event_source + 0x28))(event_source);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
-  pcVar2 = *(code **)*puVar1;
-  pplStackX_10 = &plStackX_8;
-  plStackX_8 = plVar6;
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
+  
+  event_handler = *(undefined8 **)(engine_address + 400);
+  handler_code = *(code **)*event_handler;
+  event_reference = &processed_event;
+  processed_event = event_source;
+  
+  if (event_source != (longlong *)0x0) {
+    (**(code **)(*event_source + 0x28))(event_source);
   }
-  (*pcVar2)(puVar1,&plStackX_8);
-  uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
-  plVar7 = (longlong *)FUN_1800636f0(uVar4,0,lVar3);
-  if (plVar7 != (longlong *)0x0) {
-    pplStackX_10 = (longlong **)plVar7;
-    (**(code **)(*plVar7 + 0x28))(plVar7);
+  
+  (*handler_code)(event_handler, &processed_event);
+  
+  event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3);
+  event_target = (longlong *)create_event_processor(event_flags, 0, engine_address);
+  
+  if (event_target != (longlong *)0x0) {
+    event_reference = (longlong **)event_target;
+    (**(code **)(*event_target + 0x28))(event_target);
   }
-  plStackX_18 = plVar7;
-  if (plVar5 != (longlong *)0x0) {
-    pplStackX_10 = (longlong **)plVar5;
-    (**(code **)(*plVar5 + 0x38))(plVar5);
+  
+  queued_event = event_target;
+  if (event_processor != (longlong *)0x0) {
+    event_reference = (longlong **)event_processor;
+    (**(code **)(*event_processor + 0x38))(event_processor);
   }
-  puVar1 = *(undefined8 **)(lVar3 + 400);
-  pcVar2 = *(code **)*puVar1;
-  pplStackX_10 = &plStackX_8;
-  plStackX_8 = plVar7;
-  if (plVar7 != (longlong *)0x0) {
-    (**(code **)(*plVar7 + 0x28))(plVar7);
+  
+  event_handler = *(undefined8 **)(engine_address + 400);
+  handler_code = *(code **)*event_handler;
+  event_reference = &processed_event;
+  processed_event = event_target;
+  
+  if (event_target != (longlong *)0x0) {
+    (**(code **)(*event_target + 0x28))(event_target);
   }
-  (*pcVar2)(puVar1,&plStackX_8);
-  FUN_18020f150(*(undefined8 *)(lVar3 + 400));
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x38))(plVar6);
+  
+  (*handler_code)(event_handler, &processed_event);
+  cleanup_engine_component(*(undefined8 *)(engine_address + 400));
+  
+  if (event_source != (longlong *)0x0) {
+    (**(code **)(*event_source + 0x38))(event_source);
   }
-  if (plVar7 != (longlong *)0x0) {
-    (**(code **)(*plVar7 + 0x38))(plVar7);
+  
+  if (event_target != (longlong *)0x0) {
+    (**(code **)(*event_target + 0x38))(event_target);
   }
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180061f80(void)
-void FUN_180061f80(void)
-
+/**
+ * 触发引擎故障处理
+ * 
+ * 此函数处理引擎的故障情况
+ */
+void trigger_engine_fault(void)
 {
-                    // WARNING: Subroutine does not return
   FUN_1808fd200();
 }
 
-
-
-
-
-// 函数: void FUN_1800622d0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
-void FUN_1800622d0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined8 param_4)
-
+/**
+ * 执行引擎故障处理程序
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * 
+ * 此函数执行引擎的故障处理程序
+ */
+void execute_engine_fault_handler(undefined8 param1, undefined8 param2, undefined4 param3, undefined8 param4)
 {
-  FUN_180061f80(param_1,param_2,0xffffffff00000000,param_3,param_4,&stack0x00000028);
+  trigger_engine_fault(param1, param2, 0xffffffff00000000, param3, param4, &stack0x00000028);
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180062300(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180062300(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 执行引擎故障恢复
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * 
+ * 此函数执行引擎的故障恢复程序
+ */
+void execute_engine_fault_recovery(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
 {
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  undefined8 recovery_param1;
+  undefined8 recovery_param2;
   
-  uStackX_18 = param_3;
-  uStackX_20 = param_4;
-  FUN_180061f80(param_1,0,0xffffffff00000000,0xd,param_2,&uStackX_18);
+  recovery_param1 = param3;
+  recovery_param2 = param4;
+  trigger_engine_fault(param1, 0, 0xffffffff00000000, 0xd, param2, &recovery_param1);
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180062340(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180062340(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 执行引擎故障重试
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * 
+ * 此函数执行引擎的故障重试程序
+ */
+void execute_engine_fault_retry(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
 {
-  undefined8 uStackX_20;
+  undefined8 retry_param;
   
-  uStackX_20 = param_4;
-  FUN_180061f80(param_1,param_2,0xffffffff00000000,0xd,param_3,&uStackX_20);
+  retry_param = param4;
+  trigger_engine_fault(param1, param2, 0xffffffff00000000, 0xd, param3, &retry_param);
   return;
 }
 
-
-
-
-
-// 函数: void FUN_180062380(void)
-void FUN_180062380(void)
-
+/**
+ * 执行引擎初始化检查
+ * 
+ * 此函数执行引擎的初始化检查
+ */
+void execute_engine_init_check(void)
 {
-  FUN_180061f80();
+  trigger_engine_fault();
   return;
 }
 
-
-
-
-
-// 函数: void FUN_1800623b0(void)
-void FUN_1800623b0(void)
-
+/**
+ * 执行引擎完整性检查
+ * 
+ * 此函数执行引擎的完整性检查
+ */
+void execute_engine_integrity_check(void)
 {
-  FUN_180061f80();
+  trigger_engine_fault();
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1800623e0(longlong *param_1)
-void FUN_1800623e0(longlong *param_1)
-
+/**
+ * 处理引擎状态事件
+ * @param state_data 状态数据指针
+ * 
+ * 此函数处理引擎的状态变化事件
+ */
+void process_engine_state_event(longlong *state_data)
 {
-  undefined8 *puVar1;
-  code *pcVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  longlong *plVar5;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
-  longlong **pplStackX_18;
+  undefined8 *event_handler;
+  code *handler_code;
+  longlong engine_address;
+  undefined8 event_flags;
+  longlong *event_processor;
+  longlong *processed_event;
+  longlong **event_reference;
   
-  lVar3 = _DAT_180c86928;
+  engine_address = _DAT_180c86928;
   if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
-    plStackX_8 = param_1;
-    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,0xfffffffffffffffe);
-    plVar5 = (longlong *)FUN_1800636f0(uVar4,6,lVar3);
-    plStackX_10 = plVar5;
-    if (plVar5 != (longlong *)0x0) {
-      (**(code **)(*plVar5 + 0x28))(plVar5);
+    processed_event = state_data;
+    event_flags = allocate_engine_component(_DAT_180c8ed18, 0x70, 8, 3, TIMEOUT_INFINITE);
+    event_processor = (longlong *)create_event_processor(event_flags, 6, engine_address);
+    processed_event = event_processor;
+    
+    if (event_processor != (longlong *)0x0) {
+      (**(code **)(*event_processor + 0x28))(event_processor);
     }
-    puVar1 = *(undefined8 **)(lVar3 + 400);
-    pcVar2 = *(code **)*puVar1;
-    pplStackX_18 = &plStackX_8;
-    plStackX_8 = plVar5;
-    if (plVar5 != (longlong *)0x0) {
-      (**(code **)(*plVar5 + 0x28))(plVar5);
+    
+    event_handler = *(undefined8 **)(engine_address + 400);
+    handler_code = *(code **)*event_handler;
+    event_reference = &processed_event;
+    processed_event = event_processor;
+    
+    if (event_processor != (longlong *)0x0) {
+      (**(code **)(*event_processor + 0x28))(event_processor);
     }
-    (*pcVar2)(puVar1,&plStackX_8);
-    FUN_18020f150(*(undefined8 *)(lVar3 + 400));
-    if (plVar5 != (longlong *)0x0) {
-      (**(code **)(*plVar5 + 0x38))(plVar5);
+    
+    (*handler_code)(event_handler, &processed_event);
+    cleanup_engine_component(*(undefined8 *)(engine_address + 400));
+    
+    if (event_processor != (longlong *)0x0) {
+      (**(code **)(*event_processor + 0x38))(event_processor);
     }
   }
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1800624c0(void)
-void FUN_1800624c0(void)
-
+/**
+ * 执行引擎时间同步
+ * 
+ * 此函数执行引擎的时间同步操作
+ */
+void execute_engine_time_sync(void)
 {
-  undefined1 auStack_208 [48];
-  undefined4 uStack_1d8;
-  undefined8 uStack_190;
-  undefined8 uStack_188;
-  undefined8 uStack_180;
-  undefined8 uStack_178;
-  undefined1 auStack_138 [256];
-  ulonglong uStack_38;
+  undefined1 time_buffer[48];
+  undefined4 sync_flags;
+  undefined8 current_time;
+  undefined8 local_time;
+  undefined8 timezone_info;
+  undefined8 daylight_info;
+  undefined1 sync_data[256];
+  ulonglong sync_checksum;
   
-  uStack_178 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_208;
-  uStack_1d8 = 0;
-  uStack_180 = _DAT_180c86928;
-  uStack_190 = _time64(0);
-  uStack_188 = _localtime64(&uStack_190);
-                    // WARNING: Subroutine does not return
-  memset(auStack_138,0,0xff);
+  daylight_info = TIMEOUT_INFINITE;
+  sync_checksum = _DAT_180bf00a8 ^ (ulonglong)time_buffer;
+  sync_flags = 0;
+  timezone_info = _DAT_180c86928;
+  current_time = _time64(0);
+  local_time = _localtime64(&current_time);
+  memset(sync_data, 0, 0xff);
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

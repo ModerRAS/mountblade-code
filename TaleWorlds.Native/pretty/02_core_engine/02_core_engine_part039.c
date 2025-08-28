@@ -1,9 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part039.c - 1 个函数
+// 02_core_engine_part039.c - 3个函数
 
-// 函数: void FUN_18007959e(void)
-void FUN_18007959e(void)
+// 函数：空初始化函数
+// 功能：空函数，无实际操作
+void initialize_empty(void)
 
 {
   return;
@@ -11,30 +12,32 @@ void FUN_18007959e(void)
 
 
 
-undefined1 FUN_1800795a4(void)
+// 函数：状态检查函数
+// 功能：循环检查特定状态，最多检查16次，返回状态值
+undefined1 check_system_status(void)
 
 {
-  undefined1 *puVar1;
-  undefined1 uVar2;
-  longlong lVar3;
-  longlong unaff_RBX;
-  int unaff_ESI;
-  longlong unaff_RDI;
+  undefined1 *status_ptr;
+  undefined1 status_value;
+  longlong index_offset;
+  longlong base_ptr;
+  int counter;
+  longlong array_offset;
   
   do {
     Sleep(0);
-    while ((*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + unaff_RDI) != '\x02' &&
-           (*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + unaff_RDI) != '\x01'))) {
-      lVar3 = (longlong)unaff_ESI;
-      unaff_RDI = unaff_RDI + 0x18;
-      unaff_ESI = unaff_ESI + 1;
+    while ((*(char *)(*(longlong *)(base_ptr + 0x1e0) + 0x15 + array_offset) != '\x02' &&
+           (*(char *)(*(longlong *)(base_ptr + 0x1e0) + 0x15 + array_offset) != '\x01'))) {
+      index_offset = (longlong)counter;
+      array_offset = array_offset + 0x18;
+      counter = counter + 1;
       LOCK();
-      puVar1 = (undefined1 *)(*(longlong *)(unaff_RBX + 0x1e0) + lVar3 * 0x18 + 0x15);
-      uVar2 = *puVar1;
-      *puVar1 = 0;
+      status_ptr = (undefined1 *)(*(longlong *)(base_ptr + 0x1e0) + index_offset * 0x18 + 0x15);
+      status_value = *status_ptr;
+      *status_ptr = 0;
       UNLOCK();
-      if (0xf < unaff_ESI) {
-        return uVar2;
+      if (0xf < counter) {
+        return status_value;
       }
     }
   } while( true );
@@ -45,45 +48,47 @@ undefined1 FUN_1800795a4(void)
 // WARNING: Removing unreachable block (ram,0x000180079699)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-float * FUN_1800795b0(float *param_1)
+// 函数：边界框计算函数
+// 功能：计算并更新3D对象的边界框，包括最小最大坐标和中心点计算
+float * calculate_bounding_box(float *object_ptr)
 
 {
-  float *pfVar1;
-  byte bVar2;
-  longlong *plVar3;
-  float *pfVar4;
-  char cVar5;
-  float fVar6;
-  float *pfVar7;
-  uint uVar8;
-  ulonglong uVar9;
-  bool bVar10;
-  float fVar11;
-  float fStack_b8;
-  float fStack_b4;
-  float fStack_b0;
-  undefined4 uStack_ac;
-  float fStack_a8;
-  float fStack_a4;
-  float fStack_a0;
-  undefined4 uStack_9c;
-  float *pfStack_98;
-  undefined4 uStack_90;
-  longlong lStack_88;
-  undefined8 uStack_80;
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  undefined *puStack_58;
-  float fStack_50;
-  float fStack_4c;
-  undefined *puStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  undefined1 auStack_30 [8];
-  float *pfStack_28;
-  undefined4 uStack_20;
+  float *min_bounds_ptr;
+  byte byte_flag;
+  longlong *mesh_ptr;
+  float *transform_ptr;
+  char lock_status;
+  float time_value;
+  float *current_vertex;
+  uint vertex_count;
+  ulonglong remaining_vertices;
+  bool bool_flag;
+  float max_distance;
+  float stack_temp_b8;
+  float stack_temp_b4;
+  float stack_temp_b0;
+  undefined4 stack_temp_ac;
+  float stack_temp_a8;
+  float stack_temp_a4;
+  float stack_temp_a0;
+  undefined4 stack_temp_9c;
+  float *mesh_data_ptr;
+  undefined4 stack_temp_90;
+  longlong stack_temp_88;
+  undefined8 stack_temp_80;
+  undefined8 stack_temp_78;
+  undefined8 stack_temp_70;
+  undefined8 stack_temp_68;
+  undefined8 stack_temp_60;
+  undefined *stack_temp_58;
+  float stack_temp_50;
+  float stack_temp_4c;
+  undefined *stack_temp_48;
+  undefined8 stack_temp_40;
+  undefined8 stack_temp_38;
+  undefined1 stack_temp_30 [8];
+  float *vertex_array_ptr;
+  undefined4 stack_temp_20;
   
   uStack_38 = 0xfffffffffffffffe;
   if (((uint)param_1[0x40] & 0x10000) == 0) {

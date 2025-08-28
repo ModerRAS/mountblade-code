@@ -54,239 +54,251 @@ void update_transform_matrix_and_sync(void)
   longlong render_context;
   int matrix_index;
   int data_index;
-  longlong global_data_addr;
-  undefined4 *matrix_block_ptr;
-  uint *index_array_ptr;
-  ulonglong page_start;
-  ulonglong page_end;
-  bool is_allocated;
-  undefined4 xmm7_part_a;
-  undefined4 xmm7_part_b;
-  undefined8 stack_param_64;
-  undefined8 stack_param_58;
+  longlong global_data_base;
+  uint matrix_data_index;
+  int sync_flag_value;
+  longlong render_context_ptr;
+  int matrix_data_index;
+  int thread_data_index;
+  longlong global_engine_data;
+  undefined4 *matrix_block_data;
+  uint *index_array_data;
+  ulonglong memory_page_start;
+  ulonglong memory_page_end;
+  bool is_memory_allocated;
+  undefined4 matrix_register_a;
+  undefined4 matrix_register_b;
+  undefined8 thread_sync_param_64;
+  undefined8 thread_sync_param_58;
   
-  uVar35 = (int)*(char *)(unaff_RDI + 0xd) + *(int *)(unaff_RDI + 0x18);
-  pfVar15 = (float *)**(longlong **)(unaff_RBX + 600);
-  lVar43 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-  uVar33 = uVar35 >> 0xd;
-  lVar16 = *(longlong *)(lVar43 + 8 + (ulonglong)uVar33 * 8);
-  lVar31 = (ulonglong)(uVar35 + uVar33 * -0x2000) * 0x40;
-  uVar29 = ((undefined8 *)(lVar16 + lVar31))[1];
-  *(undefined8 *)pfVar15 = *(undefined8 *)(lVar16 + lVar31);
-  *(undefined8 *)(pfVar15 + 2) = uVar29;
-  puVar4 = (undefined8 *)(lVar16 + 0x10 + lVar31);
-  uVar29 = puVar4[1];
-  *(undefined8 *)(pfVar15 + 4) = *puVar4;
-  *(undefined8 *)(pfVar15 + 6) = uVar29;
-  puVar4 = (undefined8 *)(lVar16 + 0x20 + lVar31);
-  uVar29 = puVar4[1];
-  *(undefined8 *)(pfVar15 + 8) = *puVar4;
-  *(undefined8 *)(pfVar15 + 10) = uVar29;
-  puVar4 = (undefined8 *)(lVar16 + 0x30 + lVar31);
-  uVar29 = puVar4[1];
-  *(undefined8 *)(pfVar15 + 0xc) = *puVar4;
-  *(undefined8 *)(pfVar15 + 0xe) = uVar29;
-  lVar16 = *(longlong *)(unaff_RDI + 0x10);
-  fVar17 = pfVar15[8];
-  fVar18 = pfVar15[9];
-  fVar19 = pfVar15[10];
-  fVar20 = pfVar15[0xb];
-  fVar21 = *pfVar15;
-  fVar22 = pfVar15[1];
-  fVar23 = pfVar15[2];
-  fVar24 = pfVar15[3];
-  fVar25 = pfVar15[4];
-  fVar26 = pfVar15[5];
-  fVar27 = pfVar15[6];
-  fVar28 = pfVar15[7];
-  fVar5 = *(float *)(lVar16 + 0x374);
-  fVar6 = *(float *)(lVar16 + 0x370);
-  fVar7 = *(float *)(lVar16 + 0x378);
-  fVar8 = *(float *)(lVar16 + 900);
-  fVar9 = *(float *)(lVar16 + 0x394);
-  fVar10 = *(float *)(lVar16 + 0x380);
-  fVar11 = *(float *)(lVar16 + 0x388);
-  fVar12 = *(float *)(lVar16 + 0x390);
-  fVar13 = *(float *)(lVar16 + 0x398);
-  *pfVar15 = fVar5 * fVar25 + fVar6 * fVar21 + fVar7 * fVar17;
-  pfVar15[1] = fVar5 * fVar26 + fVar6 * fVar22 + fVar7 * fVar18;
-  pfVar15[2] = fVar5 * fVar27 + fVar6 * fVar23 + fVar7 * fVar19;
-  pfVar15[3] = fVar5 * fVar28 + fVar6 * fVar24 + fVar7 * fVar20;
-  pfVar15[4] = fVar8 * fVar25 + fVar10 * fVar21 + fVar11 * fVar17;
-  pfVar15[5] = fVar8 * fVar26 + fVar10 * fVar22 + fVar11 * fVar18;
-  pfVar15[6] = fVar8 * fVar27 + fVar10 * fVar23 + fVar11 * fVar19;
-  pfVar15[7] = fVar8 * fVar28 + fVar10 * fVar24 + fVar11 * fVar20;
-  pfVar15[8] = fVar9 * fVar25 + fVar12 * fVar21 + fVar13 * fVar17;
-  pfVar15[9] = fVar9 * fVar26 + fVar12 * fVar22 + fVar13 * fVar18;
-  pfVar15[10] = fVar9 * fVar27 + fVar12 * fVar23 + fVar13 * fVar19;
-  pfVar15[0xb] = fVar9 * fVar28 + fVar12 * fVar24 + fVar13 * fVar20;
-  lVar16 = *(longlong *)(unaff_RBX + 600);
-  if (*(int *)(lVar16 + 0x28) != *(int *)(_DAT_180c86870 + 0x224)) {
-    iVar40 = *(int *)(lVar16 + 0x1c) + *(int *)(lVar16 + 0x18);
-    *(int *)(lVar16 + 0x28) = *(int *)(_DAT_180c86870 + 0x224);
-    if (0 < iVar40) {
-      uStack0000000000000050 = in_stack_00000058;
-      lVar31 = (longlong)*(int *)(_DAT_180c86890 + 0xe78) * 0x128 + _DAT_180c86890 + 0xc28;
-      uVar30 = FUN_180080380(lVar31,iVar40,lVar43,pfVar15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
-      *(undefined4 *)(lVar16 + 0x30) = uVar30;
-      FUN_1800802e0(lVar31,uVar30);
-      if (*(longlong *)(lVar16 + 0x10) == 0) {
-        if (*(int *)(lVar16 + 0x18) != 0) {
-          *(undefined4 *)(lVar16 + 0x2c) = *(undefined4 *)(lVar16 + 0x30);
+  // 计算矩阵数据的哈希值
+  matrix_data_index = (int)*(char *)(render_context_ptr + 0xd) + *(int *)(render_context_ptr + 0x18);
+  matrix_data = (float *)**(longlong **)(context_ptr + 600);
+  global_engine_data = (longlong)*(int *)(GLOBAL_ENGINE_DATA + 0xe78) * 0x128 + GLOBAL_ENGINE_DATA + 0xc28;
+  index_array_data = matrix_data_index >> 0xd;
+  matrix_base_addr = *(longlong *)(global_engine_data + 8 + (ulonglong)index_array_data * 8);
+  offset_val = (ulonglong)(matrix_data_index + index_array_data * -0x2000) * 0x40;
+  temp_data_64 = ((undefined8 *)(matrix_base_addr + offset_val))[1];
+  *(undefined8 *)matrix_data = *(undefined8 *)(matrix_base_addr + offset_val);
+  *(undefined8 *)(matrix_data + 2) = temp_data_64;
+  data_block_ptr = (undefined8 *)(matrix_base_addr + 0x10 + offset_val);
+  temp_data_64 = data_block_ptr[1];
+  *(undefined8 *)(matrix_data + 4) = *data_block_ptr;
+  *(undefined8 *)(matrix_data + 6) = temp_data_64;
+  data_block_ptr = (undefined8 *)(matrix_base_addr + 0x20 + offset_val);
+  temp_data_64 = data_block_ptr[1];
+  *(undefined8 *)(matrix_data + 8) = *data_block_ptr;
+  *(undefined8 *)(matrix_data + 10) = temp_data_64;
+  data_block_ptr = (undefined8 *)(matrix_base_addr + 0x30 + offset_val);
+  temp_data_64 = data_block_ptr[1];
+  *(undefined8 *)(matrix_data + 0xc) = *data_block_ptr;
+  *(undefined8 *)(matrix_data + 0xe) = temp_data_64;
+  matrix_base_addr = *(longlong *)(render_context_ptr + 0x10);
+  matrix_val_17 = matrix_data[8];
+  matrix_val_18 = matrix_data[9];
+  matrix_val_19 = matrix_data[10];
+  matrix_val_20 = matrix_data[0xb];
+  matrix_val_21 = *matrix_data;
+  matrix_val_22 = matrix_data[1];
+  matrix_val_23 = matrix_data[2];
+  matrix_val_24 = matrix_data[3];
+  matrix_val_25 = matrix_data[4];
+  matrix_val_26 = matrix_data[5];
+  matrix_val_27 = matrix_data[6];
+  matrix_val_28 = matrix_data[7];
+  transform_x = *(float *)(matrix_base_addr + 0x374);
+  transform_y = *(float *)(matrix_base_addr + 0x370);
+  transform_z = *(float *)(matrix_base_addr + 0x378);
+  scale_x = *(float *)(matrix_base_addr + 900);
+  scale_y = *(float *)(matrix_base_addr + 0x394);
+  rotation_x = *(float *)(matrix_base_addr + 0x380);
+  rotation_y = *(float *)(matrix_base_addr + 0x388);
+  rotation_z = *(float *)(matrix_base_addr + 0x390);
+  // 矩阵变换计算
+  *matrix_data = transform_x * matrix_val_25 + transform_y * matrix_val_21 + transform_z * matrix_val_17;
+  matrix_data[1] = transform_x * matrix_val_26 + transform_y * matrix_val_22 + transform_z * matrix_val_18;
+  matrix_data[2] = transform_x * matrix_val_27 + transform_y * matrix_val_23 + transform_z * matrix_val_19;
+  matrix_data[3] = transform_x * matrix_val_28 + transform_y * matrix_val_24 + transform_z * matrix_val_20;
+  matrix_data[4] = scale_x * matrix_val_25 + rotation_x * matrix_val_21 + rotation_y * matrix_val_17;
+  matrix_data[5] = scale_x * matrix_val_26 + rotation_x * matrix_val_22 + rotation_y * matrix_val_18;
+  matrix_data[6] = scale_x * matrix_val_27 + rotation_x * matrix_val_23 + rotation_y * matrix_val_19;
+  matrix_data[7] = scale_x * matrix_val_28 + rotation_x * matrix_val_24 + rotation_y * matrix_val_20;
+  matrix_data[8] = scale_y * matrix_val_25 + rotation_z * matrix_val_21 + rotation_z * matrix_val_17;
+  matrix_data[9] = scale_y * matrix_val_26 + rotation_z * matrix_val_22 + rotation_z * matrix_val_18;
+  matrix_data[10] = scale_y * matrix_val_27 + rotation_z * matrix_val_23 + rotation_z * matrix_val_19;
+  matrix_data[0xb] = scale_y * matrix_val_28 + rotation_z * matrix_val_24 + rotation_z * matrix_val_20;
+  matrix_base_addr = *(longlong *)(context_ptr + 600);
+  // 检查是否需要更新同步状态
+  if (*(int *)(matrix_base_addr + 0x28) != *(int )(GLOBAL_SYNC_DATA + 0x224)) {
+    sync_flag_value = *(int )(matrix_base_addr + 0x1c) + *(int )(matrix_base_addr + 0x18);
+    *(int )(matrix_base_addr + 0x28) = *(int )(GLOBAL_SYNC_DATA + 0x224);
+    if (0 < sync_flag_value) {
+      thread_sync_param_64 = thread_sync_param_58;
+      global_data_base = (longlong)*(int )(GLOBAL_ENGINE_CONTEXT + 0xe78) * 0x128 + GLOBAL_ENGINE_CONTEXT + 0xc28;
+      temp_data_32 = process_matrix_sync(global_data_base, sync_flag_value, offset_val, matrix_data, CONCAT44(matrix_register_b, matrix_register_a));
+      *(undefined4 *)(matrix_base_addr + 0x30) = temp_data_32;
+      update_thread_sync(global_data_base, temp_data_32);
+      if (*(longlong *)(matrix_base_addr + 0x10) == 0) {
+        if (*(int *)(matrix_base_addr + 0x18) != 0) {
+          *(undefined4 *)(matrix_base_addr + 0x2c) = *(undefined4 *)(matrix_base_addr + 0x30);
           return;
         }
       }
       else {
-        cVar14 = *(char *)(lVar16 + 0x44);
-        uVar37 = (ulonglong)cVar14;
-        plVar1 = (longlong *)(lVar16 + 0x38);
-        iVar40 = (int)cVar14;
-        if (*(int *)(lVar16 + 0x40) == (int)cVar14) {
-          plVar32 = (longlong *)*plVar1;
+        // 处理线程数据同步
+        thread_count = *(char *)(matrix_base_addr + 0x44);
+        thread_count_ulong = (ulonglong)thread_count;
+        thread_array_ptr = (longlong *)(matrix_base_addr + 0x38);
+        sync_flag_value = (int)thread_count;
+        if (*(int *)(matrix_base_addr + 0x40) == (int)thread_count) {
+          thread_array_ptr = (longlong *)*thread_array_ptr;
         }
         else {
-          *(int *)(lVar16 + 0x40) = iVar40;
-          if (*plVar1 != 0) {
+          *(int *)(matrix_base_addr + 0x40) = sync_flag_value;
+          if (*thread_array_ptr != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            handle_memory_error();
           }
-          *plVar1 = 0;
-          if (cVar14 == '\0') {
-            plVar32 = (longlong *)0x0;
-            *plVar1 = 0;
+          *thread_array_ptr = 0;
+          if (thread_count == '\0') {
+            thread_array_ptr = (longlong *)0x0;
+            *thread_array_ptr = 0;
           }
           else {
-            plVar32 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,(longlong)cVar14 * 4);
-            *plVar1 = (longlong)plVar32;
+            thread_array_ptr = (longlong *)allocate_thread_buffer(GLOBAL_MEMORY_POOL, (longlong)thread_count * 4);
+            *thread_array_ptr = (longlong)thread_array_ptr;
           }
         }
-        if (plVar32 != (longlong *)0x0) {
-          iVar41 = 0;
-          uVar33 = (uint)cVar14;
-          iVar42 = iVar41;
-          if ((0 < iVar40) && (0xf < uVar33)) {
-            iVar36 = *(int *)(lVar16 + 0x2c);
-            plVar2 = (longlong *)((longlong)plVar32 + (longlong)(cVar14 + -1) * 4);
-            if ((((longlong *)(lVar16 + 0x2c) < plVar32) || (plVar2 < (longlong *)(lVar16 + 0x2c)))
-               && ((plVar1 < plVar32 || (iVar42 = 0, plVar2 < plVar1)))) {
-              uVar35 = uVar33 & 0x8000000f;
-              if ((int)uVar35 < 0) {
-                uVar35 = (uVar35 - 1 | 0xfffffff0) + 1;
+        if (thread_array_ptr != (longlong *)0x0) {
+          // 初始化线程数组数据
+          array_index = 0;
+          index_array_data = (uint)thread_count;
+          data_index = array_index;
+          if ((0 < sync_flag_value) && (0xf < index_array_data)) {
+            sync_flag_value = *(int *)(matrix_base_addr + 0x2c);
+            thread_array_ptr = (longlong *)((longlong)thread_array_ptr + (longlong)(thread_count + -1) * 4);
+            if ((((longlong *)(matrix_base_addr + 0x2c) < thread_array_ptr) || (thread_array_ptr < (longlong *)(matrix_base_addr + 0x2c)))
+               && ((thread_array_ptr < thread_array_ptr || (data_index = 0, thread_array_ptr < thread_array_ptr)))) {
+              index_array_data = index_array_data & 0x8000000f;
+              if ((int)index_array_data < 0) {
+                index_array_data = (index_array_data - 1 | 0xfffffff0) + 1;
               }
-              plVar32 = plVar32 + 4;
-              iVar34 = 8;
+              thread_array_ptr = thread_array_ptr + 4;
+              sync_flag_value = 8;
               do {
-                *(int *)(plVar32 + -4) = iVar41 + iVar36;
-                *(int *)((longlong)plVar32 + -0x1c) = iVar41 + 1 + iVar36;
-                *(int *)(plVar32 + -3) = iVar41 + 2 + iVar36;
-                *(int *)((longlong)plVar32 + -0x14) = iVar41 + 3 + iVar36;
-                iVar41 = iVar41 + 0x10;
-                *(int *)(plVar32 + -2) = iVar34 + -4 + iVar36;
-                *(int *)((longlong)plVar32 + -0xc) = iVar34 + -3 + iVar36;
-                *(int *)(plVar32 + -1) = iVar34 + -2 + iVar36;
-                *(int *)((longlong)plVar32 + -4) = iVar34 + -1 + iVar36;
-                *(int *)plVar32 = iVar34 + iVar36;
-                *(int *)((longlong)plVar32 + 4) = iVar34 + 1 + iVar36;
-                *(int *)(plVar32 + 1) = iVar34 + 2 + iVar36;
-                *(int *)((longlong)plVar32 + 0xc) = iVar34 + 3 + iVar36;
-                *(int *)(plVar32 + 2) = iVar34 + 4 + iVar36;
-                *(int *)((longlong)plVar32 + 0x14) = iVar34 + 5 + iVar36;
-                *(int *)(plVar32 + 3) = iVar34 + 6 + iVar36;
-                *(int *)((longlong)plVar32 + 0x1c) = iVar34 + 7 + iVar36;
-                plVar32 = plVar32 + 8;
-                iVar34 = iVar34 + 0x10;
-                iVar42 = iVar41;
-              } while (iVar41 < (int)(uVar33 - uVar35));
+                *(int *)(thread_array_ptr + -4) = array_index + sync_flag_value;
+                *(int *)((longlong)thread_array_ptr + -0x1c) = array_index + 1 + sync_flag_value;
+                *(int *)(thread_array_ptr + -3) = array_index + 2 + sync_flag_value;
+                *(int *)((longlong)thread_array_ptr + -0x14) = array_index + 3 + sync_flag_value;
+                array_index = array_index + 0x10;
+                *(int *)(thread_array_ptr + -2) = sync_flag_value + -4 + sync_flag_value;
+                *(int *)((longlong)thread_array_ptr + -0xc) = sync_flag_value + -3 + sync_flag_value;
+                *(int *)(thread_array_ptr + -1) = sync_flag_value + -2 + sync_flag_value;
+                *(int *)((longlong)thread_array_ptr + -4) = sync_flag_value + -1 + sync_flag_value;
+                *(int *)thread_array_ptr = sync_flag_value + sync_flag_value;
+                *(int *)((longlong)thread_array_ptr + 4) = sync_flag_value + 1 + sync_flag_value;
+                *(int *)(thread_array_ptr + 1) = sync_flag_value + 2 + sync_flag_value;
+                *(int *)((longlong)thread_array_ptr + 0xc) = sync_flag_value + 3 + sync_flag_value;
+                *(int *)(thread_array_ptr + 2) = sync_flag_value + 4 + sync_flag_value;
+                *(int *)((longlong)thread_array_ptr + 0x14) = sync_flag_value + 5 + sync_flag_value;
+                *(int *)(thread_array_ptr + 3) = sync_flag_value + 6 + sync_flag_value;
+                *(int *)((longlong)thread_array_ptr + 0x1c) = sync_flag_value + 7 + sync_flag_value;
+                thread_array_ptr = thread_array_ptr + 8;
+                sync_flag_value = sync_flag_value + 0x10;
+                data_index = array_index;
+              } while (array_index < (int)(index_array_data - index_array_data));
             }
           }
-          for (lVar31 = (longlong)iVar42; lVar31 < (longlong)uVar37; lVar31 = lVar31 + 1) {
-            iVar41 = *(int *)(lVar16 + 0x2c) + iVar42;
-            iVar42 = iVar42 + 1;
-            *(int *)(*plVar1 + lVar31 * 4) = iVar41;
+          for (global_data_base = (longlong)data_index; global_data_base < (longlong)thread_count_ulong; global_data_base = global_data_base + 1) {
+            array_index = *(int *)(matrix_base_addr + 0x2c) + data_index;
+            data_index = data_index + 1;
+            *(int *)(*thread_array_ptr + global_data_base * 4) = array_index;
           }
-          iVar42 = *(int *)(lVar16 + 0x18);
-          iVar41 = 0;
-          if (0 < (longlong)iVar42) {
-            lVar31 = 0;
+          data_index = *(int *)(matrix_base_addr + 0x18);
+          array_index = 0;
+          if (0 < (longlong)data_index) {
+            global_data_base = 0;
             do {
-              iVar36 = *(int *)(lVar16 + 0x30) + iVar41;
-              iVar41 = iVar41 + 1;
-              pbVar3 = (byte *)(*(longlong *)(lVar16 + 0x10) + lVar31);
-              lVar31 = lVar31 + 1;
-              *(int *)(*plVar1 + (ulonglong)*pbVar3 * 4) = iVar36;
-            } while (lVar31 < iVar42);
+              sync_flag_value = *(int *)(matrix_base_addr + 0x30) + array_index;
+              array_index = array_index + 1;
+              byte_data_ptr = (byte *)(*(longlong *)(matrix_base_addr + 0x10) + global_data_base);
+              global_data_base = global_data_base + 1;
+              *(int *)(*thread_array_ptr + (ulonglong)*byte_data_ptr * 4) = sync_flag_value;
+            } while (global_data_base < data_index);
           }
         }
-        puVar39 = (uint *)((longlong)*(int *)(_DAT_180c86890 + 0xc20) * 0x128 +
-                          _DAT_180c86890 + 0x9d0);
-        if (iVar40 == 0) {
-          uVar33 = (int)cVar14 - 1;
+        // 处理全局数据索引
+        global_counter_ptr = (uint *)((longlong)*(int )(GLOBAL_ENGINE_CONTEXT + 0xc20) * 0x128 +
+                          GLOBAL_ENGINE_CONTEXT + 0x9d0);
+        if (sync_flag_value == 0) {
+          index_array_data = (int)thread_count - 1;
         }
         else {
           LOCK();
-          uVar33 = *puVar39;
-          *puVar39 = *puVar39 + (int)cVar14;
+          index_array_data = *global_counter_ptr;
+          *global_counter_ptr = *global_counter_ptr + (int)thread_count;
           UNLOCK();
-          uVar46 = (ulonglong)(uVar33 >> 0xb);
-          uVar47 = (ulonglong)(cVar14 + -1 + uVar33 >> 0xb);
-          if (uVar46 <= uVar47) {
-            pcVar38 = (char *)((longlong)puVar39 + uVar46 + 0x108);
-            lVar31 = (uVar47 - uVar46) + 1;
-            puVar45 = puVar39 + uVar46 * 2 + 2;
+          memory_page_start = (ulonglong)(index_array_data >> 0xb);
+          memory_page_end = (ulonglong)(thread_count + -1 + index_array_data >> 0xb);
+          if (memory_page_start <= memory_page_end) {
+            thread_name_ptr = (char *)((longlong)global_counter_ptr + memory_page_start + 0x108);
+            global_data_base = (memory_page_end - memory_page_start) + 1;
+            index_array_ptr = global_counter_ptr + memory_page_start * 2 + 2;
             do {
-              iVar42 = (int)uVar46;
-              if (*(longlong *)puVar45 == 0) {
-                lVar43 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+              data_index = (int)memory_page_start;
+              if (*(longlong *)index_array_ptr == 0) {
+                offset_val = allocate_memory_page(GLOBAL_MEMORY_POOL, 0x2000, 0x25);
                 LOCK();
-                bVar48 = *(longlong *)(puVar39 + (longlong)iVar42 * 2 + 2) == 0;
-                if (bVar48) {
-                  *(longlong *)(puVar39 + (longlong)iVar42 * 2 + 2) = lVar43;
+                is_memory_allocated = *(longlong *)(global_counter_ptr + (longlong)data_index * 2 + 2) == 0;
+                if (is_memory_allocated) {
+                  *(longlong *)(global_counter_ptr + (longlong)data_index * 2 + 2) = offset_val;
                 }
                 UNLOCK();
-                if (bVar48) {
+                if (is_memory_allocated) {
                   LOCK();
-                  *(undefined1 *)((longlong)iVar42 + 0x108 + (longlong)puVar39) = 0;
+                  *(undefined1 *)((longlong)data_index + 0x108 + (longlong)global_counter_ptr) = 0;
                   UNLOCK();
                 }
                 else {
-                  if (lVar43 != 0) {
+                  if (offset_val != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    handle_memory_error();
                   }
                   do {
-                  } while (*pcVar38 != '\0');
+                  } while (*thread_name_ptr != '\0');
                 }
               }
               else {
                 do {
-                } while (*pcVar38 != '\0');
+                } while (*thread_name_ptr != '\0');
               }
-              uVar46 = (ulonglong)(iVar42 + 1);
-              puVar45 = puVar45 + 2;
-              pcVar38 = pcVar38 + 1;
-              lVar31 = lVar31 + -1;
-            } while (lVar31 != 0);
+              memory_page_start = (ulonglong)(data_index + 1);
+              index_array_ptr = index_array_ptr + 2;
+              thread_name_ptr = thread_name_ptr + 1;
+              global_data_base = global_data_base + -1;
+            } while (global_data_base != 0);
           }
         }
-        puVar44 = *(undefined4 **)(lVar16 + 0x38);
-        uVar35 = uVar33 >> 0xb;
-        *(uint *)(lVar16 + 0x2c) = uVar33;
-        if (uVar35 == (int)cVar14 + uVar33 >> 0xb) {
+        // 复制数据到内存页面
+        matrix_block_data = *(undefined4 **)(matrix_base_addr + 0x38);
+        index_array_data = index_array_data >> 0xb;
+        *(uint *)(matrix_base_addr + 0x2c) = index_array_data;
+        if (index_array_data == (int)thread_count + index_array_data >> 0xb) {
                     // WARNING: Subroutine does not return
-          memcpy(*(longlong *)(puVar39 + (ulonglong)uVar35 * 2 + 2) +
-                 (ulonglong)(uVar33 + uVar35 * -0x800) * 4,puVar44,(uVar37 & 0xffffffff) << 2);
+          memcpy(*(longlong *)(global_counter_ptr + (ulonglong)index_array_data * 2 + 2) +
+                 (ulonglong)(index_array_data + index_array_data * -0x800) * 4, matrix_block_data, (thread_count_ulong & 0xffffffff) << 2);
         }
-        if (iVar40 != 0) {
-          uVar37 = uVar37 & 0xffffffff;
+        if (sync_flag_value != 0) {
+          thread_count_ulong = thread_count_ulong & 0xffffffff;
           do {
-            uVar30 = *puVar44;
-            puVar44 = puVar44 + 1;
+            temp_data_32 = *matrix_block_data;
+            matrix_block_data = matrix_block_data + 1;
             *(undefined4 *)
-             (*(longlong *)(puVar39 + (ulonglong)(uVar33 >> 0xb) * 2 + 2) +
-             (ulonglong)(uVar33 + (uVar33 >> 0xb) * -0x800) * 4) = uVar30;
-            uVar37 = uVar37 - 1;
-            uVar33 = uVar33 + 1;
-          } while (uVar37 != 0);
+             (*(longlong *)(global_counter_ptr + (ulonglong)(index_array_data >> 0xb) * 2 + 2) +
+             (ulonglong)(index_array_data + (index_array_data >> 0xb) * -0x800) * 4) = temp_data_32;
+            thread_count_ulong = thread_count_ulong - 1;
+            index_array_data = index_array_data + 1;
+          } while (thread_count_ulong != 0);
         }
       }
     }
