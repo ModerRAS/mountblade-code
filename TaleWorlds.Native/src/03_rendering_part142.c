@@ -1,8 +1,88 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part142.c - 13 个函数
+//==============================================================================
+// 文件信息：03_rendering_part142.c
+// 模块功能：渲染系统核心功能模块 - 第142部分
+// 函数数量：13个函数
+// 主要功能：
+//   - 渲染对象初始化和配置
+//   - 数据处理和转换
+//   - 内存管理和资源分配
+//   - 渲染状态控制
+//   - 高级渲染操作
+//==============================================================================
 
-// 函数: void FUN_180352bf0(undefined8 *param_1)
+//------------------------------------------------------------------------------
+// 类型别名和常量定义
+//------------------------------------------------------------------------------
+
+// 渲染对象类型别名
+typedef undefined8* RenderObjectPtr;
+typedef undefined8* RenderConfigPtr;
+typedef undefined8* RenderDataPtr;
+typedef undefined8* RenderStatePtr;
+
+// 渲染状态常量
+#define RENDER_STATE_INIT          0x0
+#define RENDER_STATE_ACTIVE        0x1
+#define RENDER_STATE_INACTIVE      0x2
+#define RENDER_STATE_ERROR         0x3
+
+// 渲染对象大小常量
+#define RENDER_OBJECT_BASE_SIZE    0x98
+#define RENDER_CONFIG_SIZE         0x60
+#define RENDER_DATA_MIN_SIZE      0x10
+#define RENDER_HASH_TABLE_SIZE    0x80
+
+// 渲染标志位
+#define RENDER_FLAG_AUTO_CLEAN     0x1
+#define RENDER_FLAG_PERSISTENT     0x2
+#define RENDER_FLAG_DYNAMIC        0x4
+
+// 渲染操作码
+#define RENDER_OP_CREATE           0x0
+#define RENDER_OP_DESTROY          0x1
+#define RENDER_OP_UPDATE           0x2
+#define RENDER_OP_RENDER           0x3
+
+//------------------------------------------------------------------------------
+// 函数别名定义
+//------------------------------------------------------------------------------
+
+// 渲染对象初始化函数
+#define RenderObject_Initialize              FUN_180352bf0
+#define RenderObject_Cleanup                 FUN_180352dc0
+#define RenderObject_ProcessConfig           FUN_180352e50
+#define RenderObject_CreateData              FUN_180352ff0
+#define RenderObject_SetProperties           FUN_180353070
+
+// 渲染数据处理函数
+#define RenderData_Process                   FUN_1803530c0
+#define RenderData_Compare                   FUN_180353e50
+#define RenderData_Validate                  FUN_180354170
+#define RenderData_CreateFromConfig          FUN_1803543b0
+
+// 渲染内存管理函数
+#define RenderMemory_AllocateBuffer          FUN_1803549f0
+#define RenderMemory_AllocatePersistent      FUN_180354b70
+#define RenderMemory_CopyData                FUN_180354db0
+#define RenderMemory_CleanupArray            FUN_180354f20
+#define RenderMemory_CleanupArrayEx          FUN_180354f40
+
+// 渲染哈希表函数
+#define RenderHash_FindEntry                 FUN_180355030
+#define RenderHash_InsertEntry              FUN_180355140
+#define RenderHash_RemoveEntry               FUN_1803552e0
+#define RenderHash_CreateEntry               FUN_180355340
+#define RenderHash_ResizeTable               FUN_180355393
+#define RenderHash_RebuildTable              FUN_1803553e1
+
+//------------------------------------------------------------------------------
+// 渲染对象初始化函数
+// 功能：初始化渲染对象，设置基本配置和状态
+// 参数：param_1 - 渲染对象指针
+// 返回值：无
+//------------------------------------------------------------------------------
 void FUN_180352bf0(undefined8 *param_1)
 
 {

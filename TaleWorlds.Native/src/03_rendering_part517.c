@@ -1931,81 +1931,211 @@ undefined8 RenderSystem_GetData(longlong param_1)
 
 
 
-undefined4 FUN_180547bf0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/*==============================================================================
+ * 函数: RenderSystem_ExecuteDraw - 渲染系统绘制执行函数
+ * 
+ * 功能描述：
+ *   执行渲染系统的绘制操作，用于触发实际的渲染绘制
+ *   这是一个绘制执行函数，通过渲染队列异步执行绘制命令
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 绘制参数（64位）
+ *   param_3 - 附加参数1（64位）
+ *   param_4 - 附加参数2（64位）
+ * 
+ * 返回值：
+ *   undefined4 - 绘制执行结果
+ * 
+ * 处理流程：
+ *   1. 初始化返回值为0
+ *   2. 设置绘制处理回调函数
+ *   3. 准备绘制参数数组
+ *   4. 发送到渲染队列处理
+ *   5. 返回执行结果
+ * 
+ * 注意事项：
+ *   - 使用8字节的绘制参数数组
+ *   - 支持异步绘制执行
+ *   - 返回值在队列处理完成后更新
+ *   - 适用于各种绘制操作
+ * 
+ * 简化实现：
+ *   原始实现：简单的参数打包和队列发送逻辑
+ *   简化实现：保持原有绘制执行逻辑，添加了详细的参数说明
+ =============================================================================*/
+undefined4 RenderSystem_ExecuteDraw(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined4 auStackX_8 [2];
-  undefined4 **ppuStackX_10;
-  undefined4 *apuStack_30 [2];
-  undefined *puStack_20;
-  code *pcStack_18;
-  
-  auStackX_8[0] = 0;
-  ppuStackX_10 = apuStack_30;
-  puStack_20 = &UNK_18054a870;
-  pcStack_18 = FUN_18054a800;
-  apuStack_30[0] = auStackX_8;
-  FUN_18054a4b0(param_1 + 0xe0,apuStack_30,param_3,param_4,0xfffffffffffffffe);
-  return auStackX_8[0];
+    undefined4 auStackX_8 [2];     // 返回值存储区
+    undefined4 **ppuStackX_10;     // 参数结构体指针
+    undefined4 *apuStack_30 [2];   // 参数数组
+    undefined *puStack_20;          // 回调函数指针
+    code *pcStack_18;              // 绘制处理回调
+    
+    // 初始化返回值
+    auStackX_8[0] = 0;
+    
+    // 设置绘制处理回调函数
+    ppuStackX_10 = apuStack_30;
+    puStack_20 = &UNK_18054a870;
+    pcStack_18 = FUN_18054a800;
+    apuStack_30[0] = auStackX_8;
+    
+    // 发送到渲染队列处理
+    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
+    
+    // 返回执行结果
+    return auStackX_8[0];
 }
 
 
 
 
 
-// 函数: void FUN_180547c50(longlong param_1,undefined4 param_2,undefined4 param_3)
-void FUN_180547c50(longlong param_1,undefined4 param_2,undefined4 param_3)
-
+/*==============================================================================
+ * 函数: RenderSystem_BroadcastCommand - 渲染系统广播命令函数
+ * 
+ * 功能描述：
+ *   向渲染系统中的所有对象广播命令，用于批量操作
+ *   这是一个广播函数，遍历渲染队列中的所有对象并执行命令
+ * 
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 命令参数1（32位）
+ *   param_3 - 命令参数2（32位）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 计算渲染队列中的对象数量
+ *   2. 遍历队列中的每个对象
+ *   3. 对每个对象执行命令（偏移0x1c0）
+ *   4. 传递命令参数给每个对象
+ * 
+ * 注意事项：
+ *   - 使用渲染队列的起始和结束位置计算对象数量
+ *   - 每个对象通过虚函数调用执行命令
+ *   - 支持批量命令执行
+ *   - 适用于需要同时操作多个对象的场景
+ * 
+ * 简化实现：
+ *   原始实现：队列遍历和对象调用逻辑
+ *   简化实现：保持原有广播逻辑，添加了详细的遍历说明
+ =============================================================================*/
+void RenderSystem_BroadcastCommand(longlong param_1, undefined4 param_2, undefined4 param_3)
 {
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  
-  iVar2 = (int)(*(longlong *)(param_1 + 0xe8) - *(longlong *)(param_1 + 0xe0) >> 3);
-  if (0 < iVar2) {
-    lVar3 = 0;
+    longlong *plVar1;
+    int iVar2;
+    longlong lVar3;
+    
+    // 计算渲染队列中的对象数量
+    iVar2 = (int)(*(longlong *)(param_1 + 0xe8) - *(longlong *)(param_1 + 0xe0) >> 3);
+    
+    // 如果有对象，则遍历执行
+    if (0 < iVar2) {
+        lVar3 = 0;
+        do {
+            // 获取队列中的对象
+            plVar1 = *(longlong **)(*(longlong *)(param_1 + 0xe0) + lVar3 * 8);
+            
+            // 对对象执行命令
+            (**(code **)(*plVar1 + 0x1c0))(plVar1, param_2, param_3);
+            
+            lVar3 = lVar3 + 1;
+        } while (lVar3 < iVar2);
+    }
+    return;
+}
+
+
+
+
+
+/*==============================================================================
+ * 函数: RenderSystem_ProcessQueue - 渲染系统队列处理函数
+ * 
+ * 功能描述：
+ *   处理渲染系统队列中的命令，用于批量处理队列操作
+ *   这是一个队列处理函数，遍历队列中的所有对象并执行处理
+ * 
+ * 参数：
+ *   无（使用寄存器传递的参数）
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 使用寄存器中的参数遍历渲染队列
+ *   2. 对队列中的每个对象执行处理命令
+ *   3. 传递处理参数给每个对象
+ * 
+ * 注意事项：
+ *   - 使用未命名的寄存器参数（unaff_RDI, unaff_RSI, unaff_R14D, unaff_EBP）
+ *   - 这是一个优化的函数，使用寄存器传递参数以提高性能
+ *   - 适用于高性能队列处理场景
+ *   - 与BroadcastCommand类似但使用不同的参数传递方式
+ * 
+ * 简化实现：
+ *   原始实现：寄存器参数的队列处理逻辑
+ *   简化实现：保持原有寄存器参数处理逻辑，添加了详细的参数说明
+ =============================================================================*/
+void RenderSystem_ProcessQueue(void)
+{
+    longlong *plVar1;
+    longlong lVar2;
+    undefined4 unaff_EBP;
+    longlong unaff_RSI;
+    longlong unaff_RDI;
+    undefined4 unaff_R14D;
+    
+    // 使用寄存器参数遍历队列
+    lVar2 = 0;
     do {
-      plVar1 = *(longlong **)(*(longlong *)(param_1 + 0xe0) + lVar3 * 8);
-      (**(code **)(*plVar1 + 0x1c0))(plVar1,param_2,param_3);
-      lVar3 = lVar3 + 1;
-    } while (lVar3 < iVar2);
-  }
-  return;
+        // 获取队列中的对象
+        plVar1 = *(longlong **)(*(longlong *)(unaff_RDI + OFFSET_RENDER_QUEUE) + lVar2 * 8);
+        
+        // 对对象执行处理命令
+        (**(code **)(*plVar1 + 0x1c0))(plVar1, unaff_R14D, unaff_EBP);
+        
+        lVar2 = lVar2 + 1;
+    } while (lVar2 < unaff_RSI);
+    return;
 }
 
 
 
 
 
-// 函数: void FUN_180547c87(void)
-void FUN_180547c87(void)
-
+/*==============================================================================
+ * 函数: RenderSystem_EmptyFunction - 渲染系统空函数
+ * 
+ * 功能描述：
+ *   这是一个空函数，不执行任何操作
+ *   通常用作占位符函数或默认回调函数
+ * 
+ * 参数：
+ *   无
+ * 
+ * 返回值：
+ *   无
+ * 
+ * 处理流程：
+ *   1. 直接返回，不执行任何操作
+ * 
+ * 注意事项：
+ *   - 这是一个空函数，不执行任何操作
+ *   - 用作占位符或默认回调
+ *   - 在函数指针表中用作空操作
+ *   - 保持接口一致性
+ * 
+ * 简化实现：
+ *   原始实现：空函数体
+ *   简化实现：保持原有空函数实现，添加了详细的用途说明
+ =============================================================================*/
+void RenderSystem_EmptyFunction(void)
 {
-  longlong *plVar1;
-  longlong lVar2;
-  undefined4 unaff_EBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  undefined4 unaff_R14D;
-  
-  lVar2 = 0;
-  do {
-    plVar1 = *(longlong **)(*(longlong *)(unaff_RDI + 0xe0) + lVar2 * 8);
-    (**(code **)(*plVar1 + 0x1c0))(plVar1,unaff_R14D,unaff_EBP);
-    lVar2 = lVar2 + 1;
-  } while (lVar2 < unaff_RSI);
-  return;
-}
-
-
-
-
-
-// 函数: void FUN_180547cb7(void)
-void FUN_180547cb7(void)
-
-{
-  return;
+    return;
 }
 
 
