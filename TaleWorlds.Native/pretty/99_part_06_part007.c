@@ -371,7 +371,7 @@ void SystemCleanup(SystemHandle param_1)
                 // 调用对象析构函数
                 HashTableRemove(current_object + 0x10);
                 // 释放对象内存
-                FUN_18064e900(current_object);
+                CoreEngine_MemoryPoolManager(current_object);
             }
             // 清理对象引用
             *(ObjectPointer*)(object_array + current_index * HASH_TABLE_BUCKET_SIZE) = 0;
@@ -481,13 +481,13 @@ void SystemShutdown(SystemHandle param_1)
     // 检查系统状态是否有效
     if (*(int64_t*)(param_1 + 0x38) != 0) {
         // 系统状态无效，触发错误处理
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     // 检查资源是否已释放
     if (*(int64_t*)(param_1 + 0x18) != 0) {
         // 资源未释放，触发错误处理
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     // 调用系统关闭回调
@@ -521,13 +521,13 @@ void SystemDestroy(int64_t* param_1)
     // 检查对象标志是否有效
     if (param_1[5] != 0) {
         // 对象标志无效，触发错误处理
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     // 检查对象引用是否已清理
     if (param_1[1] != 0) {
         // 对象引用未清理，触发错误处理
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     // 调用对象析构函数
@@ -684,7 +684,7 @@ BUILD_STRING:
     }
     
     // 清理字符串内存
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -837,7 +837,7 @@ BUILD_STRING:
     }
     
     // 清理字符串内存
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 
@@ -871,7 +871,7 @@ BUILD_STRING:
  * 依赖项:
  * - FUN_1806277c0: 字符串处理函数
  * - FUN_18041adc0: 资源访问函数
- * - FUN_18064e900: 异常处理函数
+ * - CoreEngine_MemoryPoolManager: 异常处理函数
  * - FUN_18015b810: 系统操作函数
  * - FUN_18062b1e0: 内存分配函数
  * 
@@ -931,7 +931,7 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
     
     // 检查资源状态
     if (resource_ptr_1 != (int8_t *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     resource_ptr_1 = (int8_t *)0x0;
     resource_size_1 = resource_size_1 & 0xffffffff00000000;
@@ -969,7 +969,7 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
     
     // 检查第二个资源状态
     if (resource_buffer_3 != (int8_t *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     resource_buffer_3 = (int8_t *)0x0;
     resource_buffer_5 = resource_buffer_5 & 0xffffffff00000000;
@@ -1007,7 +1007,7 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
     
     // 检查第三个资源状态
     if (resource_ptr_1 != (int8_t *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     resource_ptr_1 = (int8_t *)0x0;
     resource_size_1 = resource_size_1 & 0xffffffff00000000;
@@ -1073,7 +1073,7 @@ void ResourceProcessor_ExecuteBatchOperations(int64_t param_1)
  * - FUN_1802705c0: 组件初始化函数
  * - FUN_1800b8300: 事件处理函数
  * - FUN_18062b420: 内存分配函数
- * - FUN_18064e900: 异常处理函数
+ * - CoreEngine_MemoryPoolManager: 异常处理函数
  * - FUN_1808fc050: 系统完整性检查函数
  * 
  * 线程安全:
@@ -1300,7 +1300,7 @@ void SystemManager_InitializeComplex(uint64_t *param_1)
                     }
                     
                     if (EVENT_REGISTRY_BASE != (uint64_t *)0x0) {
-                        FUN_18064e900(EVENT_REGISTRY_BASE);
+                        CoreEngine_MemoryPoolManager(EVENT_REGISTRY_BASE);
                     }
                     
                     EVENT_REGISTRY_LIMIT = memory_block + component_id * EVENT_ENTRY_SIZE;

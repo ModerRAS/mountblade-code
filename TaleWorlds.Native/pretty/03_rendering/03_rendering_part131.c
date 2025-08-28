@@ -119,7 +119,7 @@ void rendering_system_process_render_parameters(int64_t *render_context, uint64_
     error_handler_ptr = &system_data_buffer_ptr;
     if (error_handler_stack != 0) {
       // 错误处理：清理资源
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   else {
@@ -200,7 +200,7 @@ void rendering_system_process_render_parameters(int64_t *render_context, uint64_
           return;
         }
         // 错误处理：清理资源
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       // 4维向量参数处理（变体5）
       float_value_1 = param_data[4];
@@ -329,7 +329,7 @@ LAB_1803464ba:
       *pool_start_ptr = &system_data_buffer_ptr;
       if (pool_start_ptr[1] != 0) {
         // 错误处理：清理资源
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       pool_start_ptr[1] = 0;
       *(int32_t *)(pool_start_ptr + 3) = 0;
@@ -346,7 +346,7 @@ LAB_1803464ba:
     return;
   }
   // 错误处理：清理资源
-  FUN_18064e900(pool_start_ptr);
+  CoreEngine_MemoryPoolManager(pool_start_ptr);
 }
 
 /**
@@ -513,7 +513,7 @@ uint64_t * rendering_system_create_render_parameter_manager(uint64_t *manager_ob
   *manager_obj = &unknown_var_5664_ptr;
   if (manager_obj[0x11] != 0) {
     // 错误处理：清理资源
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   FUN_1803457d0(manager_obj);
   if ((manager_size & RENDER_FLAG_ALLOCATE_MEMORY) != 0) {
@@ -565,7 +565,7 @@ void rendering_system_initialize_render_parameter_system(uint64_t *system_ptr)
   FUN_1803460a0(system_ptr, &error_handler_ptr, system_ptr + 0xf, 1, init_param_2);
   error_handler_ptr = &system_data_buffer_ptr;
   // 错误处理：清理资源
-  FUN_18064e900(temp_ptr);
+  CoreEngine_MemoryPoolManager(temp_ptr);
 }
 
 /**
@@ -723,7 +723,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, int6
       error_handler_ptr = &system_data_buffer_ptr;
       if (string_buffer_ptr != (int8_t *)0x0) {
         // 错误处理：清理资源
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       string_buffer_ptr = (int8_t *)0x0;
       string_data = string_data & 0xffffffff00000000;
@@ -781,7 +781,7 @@ void rendering_system_process_render_parameter_queue(uint64_t render_param, int6
       temp_ptr = &system_data_buffer_ptr;
       if (string_ptr != (int8_t *)0x0) {
         // 错误处理：清理资源
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       string_ptr = (int8_t *)0x0;
       string_info = string_info & 0xffffffff00000000;

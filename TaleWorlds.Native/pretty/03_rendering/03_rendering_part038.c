@@ -96,7 +96,7 @@ void update_render_animation_time(int64_t render_context, uint64_t param_2, uint
     // 检查操作结果
     if (result_flag != 0) {
       // 错误处理
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   return;

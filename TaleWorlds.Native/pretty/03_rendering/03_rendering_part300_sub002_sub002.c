@@ -488,7 +488,7 @@ LABEL_COMPRESSION_DETECTED:
         if (((int)temp_stack_capacity < 0) || (data_offset < (int)temp_stack_capacity)) {
         LABEL_MEMORY_ERROR:
                     // WARNING: Subroutine does not return
-            FUN_18064e900(output_buffer);
+            CoreEngine_MemoryPoolManager(output_buffer);
         }
         data_offset = temp_stack_offset * temp_stack_capacity;
         temp_buffer = FUN_18062b420(system_memory_pool_ptr, (int64_t)data_offset, MEMORY_ALIGNMENT_4BYTE);
@@ -509,7 +509,7 @@ LABEL_COMPRESSION_DETECTED:
             data_offset = FUN_18041eef0(param_1, temp_buffer, data_offset);
             if (data_offset == 0) {
                     // WARNING: Subroutine does not return
-                FUN_18064e900(output_buffer);
+                CoreEngine_MemoryPoolManager(output_buffer);
             }
         }
     }
@@ -657,7 +657,7 @@ LABEL_COMPRESSION_DETECTED:
     output_buffer = temp_stack_buffer;
     if (temp_stack_long != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(temp_stack_long);
+        CoreEngine_MemoryPoolManager(temp_stack_long);
     }
     
 LABEL_PROCESSING_COMPLETE:
@@ -1021,7 +1021,7 @@ rendering_system_texture_processor(int64_t param_1, int *param_2, int *param_3, 
                                     pixel_format = rendering_system_pixel_reader(param_1, data_ptr, pixel_count);
                                     if (pixel_format == 0) {
                                         // WARNING: Subroutine does not return
-                                        FUN_18064e900(stack_buffer);
+                                        CoreEngine_MemoryPoolManager(stack_buffer);
                                     }
                                 }
                                 else if (0 < (int)pixel_count) {

@@ -741,7 +741,7 @@ void rendering_system_cleanup_render_data(int64_t *render_data_ptr)
         // 检查数据块是否正在使用
         if (data_current_ptr[1] != 0) {
             // 警告：子程序不返回
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         // 重置数据块
@@ -753,7 +753,7 @@ void rendering_system_cleanup_render_data(int64_t *render_data_ptr)
     // 检查渲染数据指针是否有效
     if (*render_data_ptr != 0) {
         // 警告：子程序不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     return;
@@ -780,7 +780,7 @@ void rendering_system_release_render_data(int64_t *render_data_ptr)
         // 检查数据块是否正在使用
         if (data_current_ptr[1] != 0) {
             // 警告：子程序不返回
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         // 重置数据块
@@ -792,7 +792,7 @@ void rendering_system_release_render_data(int64_t *render_data_ptr)
     // 检查渲染数据指针是否有效
     if (*render_data_ptr != 0) {
         // 警告：子程序不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     return;
@@ -809,7 +809,7 @@ uint64_t *rendering_system_initialize_render_data(uint64_t *render_data_ptr, uin
     // 检查数据结构是否有效
     if (render_data_ptr[1] != 0) {
         // 警告：子程序不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     // 根据内存标志释放内存

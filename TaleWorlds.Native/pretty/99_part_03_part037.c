@@ -442,7 +442,7 @@ void FUN_1801f08b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_60 = &system_data_buffer_ptr;
   if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   puStack_58 = (uint64_t *)0x0;
   uStack_48 = (uint64_t)uStack_48._4_4_ << 0x20;
@@ -462,7 +462,7 @@ void FUN_1801f08b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_40 = &system_data_buffer_ptr;
   if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   puStack_38 = (uint64_t *)0x0;
   uStack_28 = (uint64_t)uStack_28._4_4_ << 0x20;
@@ -483,7 +483,7 @@ void FUN_1801f08b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_60 = &system_data_buffer_ptr;
   if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   puStack_58 = (uint64_t *)0x0;
   uStack_48 = (uint64_t)uStack_48._4_4_ << 0x20;
@@ -504,7 +504,7 @@ void FUN_1801f08b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   puStack_40 = &system_data_buffer_ptr;
   if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return;
 }
@@ -649,7 +649,7 @@ LAB_1801f0db0:
   puStack_70 = &system_data_buffer_ptr;
   if (puStack_68 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   puStack_68 = (int32_t *)0x0;
   uStack_58 = (uint64_t)uStack_58._4_4_ << 0x20;
@@ -657,7 +657,7 @@ LAB_1801f0db0:
   puStack_90 = &system_data_buffer_ptr;
   if (puStack_88 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   puStack_88 = (int8_t *)0x0;
   uStack_78 = 0;
@@ -665,7 +665,7 @@ LAB_1801f0db0:
   puStack_b8 = &system_data_buffer_ptr;
   if (puStack_b0 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   puStack_b0 = (int32_t *)0x0;
   uStack_a0 = (uint64_t)uStack_a0._4_4_ << 0x20;

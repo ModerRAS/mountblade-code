@@ -1018,7 +1018,7 @@ int8_t SystemMessageProcessor(uint64_t param_1, int64_t param_2, uint64_t param_
   if (param_4[1] != 0) {
     // 如果输出参数异常，调用错误处理函数
     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 清理输出参数

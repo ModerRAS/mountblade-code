@@ -882,7 +882,7 @@ void FUN_1800ba100(int64_t pool_context)
         do {
             block_index = *(int64_t*)(pool_base + cleanup_index * 8);
             if (block_index != 0) {
-                FUN_18064e900(block_index);
+                CoreEngine_MemoryPoolManager(block_index);
             }
             *(uint64_t*)(pool_base + cleanup_index * 8) = 0;
             cleanup_index = cleanup_index + 1;
@@ -911,7 +911,7 @@ void FUN_1800ba129(void)
     do {
         resource_ptr = *(int64_t*)(resource_base + resource_index * 8);
         if (resource_ptr != 0) {
-            FUN_18064e900(resource_ptr);
+            CoreEngine_MemoryPoolManager(resource_ptr);
         }
         *(uint64_t*)(resource_base + resource_index * 8) = cleanup_flag;
         resource_index = resource_index + 1;

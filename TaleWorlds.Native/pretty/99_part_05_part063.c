@@ -409,7 +409,7 @@ int64_t * FUN_1802ffb00(uint64_t param_1,int64_t *param_2,int8_t param_3)
     return plVar3;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 

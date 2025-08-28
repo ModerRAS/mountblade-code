@@ -813,7 +813,7 @@ LAB_180553f50:
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   return;
@@ -997,7 +997,7 @@ LAB_18055424c:
     puStack_60 = &system_data_buffer_ptr;
     if (pbStack_58 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   pcVar13 = "movement_set";

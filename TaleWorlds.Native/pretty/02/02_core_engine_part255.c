@@ -8,7 +8,7 @@
 #define initialize_resource_manager     FUN_18021fbb0
 #define execute_system_shutdown         FUN_180220810
 #define get_system_context              FUN_1800b0a10
-#define trigger_cleanup_callback        FUN_1808fc050
+#define trigger_cleanup_callback        SystemSecurityChecker
 #define perform_system_termination      FUN_1808fd200
 
 // 常量定义

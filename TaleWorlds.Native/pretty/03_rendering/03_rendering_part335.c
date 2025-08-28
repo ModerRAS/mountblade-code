@@ -1872,7 +1872,7 @@ void RenderingSystem_ProcessRenderEffect(int64_t param_1,uint64_t param_2,uint64
   if (puStack_30 != (uint64_t *)0x0) {
     FUN_18004b790(auStack_40,*puStack_30);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puStack_30);
+    CoreEngine_MemoryPoolManager(puStack_30);
   }
   return;
 }
@@ -2051,7 +2051,7 @@ uint64_t * RenderingSystem_AllocateColorBuffer(uint64_t *param_1)
     puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   else {
@@ -2063,7 +2063,7 @@ uint64_t * RenderingSystem_AllocateColorBuffer(uint64_t *param_1)
     puStack_28 = &system_data_buffer_ptr;
     if (lStack_20 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   *param_1 = plStack_38;

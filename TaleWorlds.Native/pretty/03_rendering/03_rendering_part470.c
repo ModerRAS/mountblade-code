@@ -465,7 +465,7 @@ LABEL_TEXTURE_PROCESS:
             stack_param_2 = 5;
             render_system_config_material = FUN_180571e20(&system_memory_60c0, &stack_ptr);
             stack_ptr = &system_data_buffer_ptr;
-            FUN_18064e900(param_ptr);
+            CoreEngine_MemoryPoolManager(param_ptr);
         }
         
         context_data = 0;
@@ -662,7 +662,7 @@ LABEL_TEXTURE_PROCESS:
                 stack_param_2 = 5;
                 render_system_config_material = FUN_180571e20(&system_memory_60c0, &stack_ptr);
                 stack_ptr = &system_data_buffer_ptr;
-                FUN_18064e900(param_ptr);
+                CoreEngine_MemoryPoolManager(param_ptr);
             }
         } else {
             param_flag = render_system_config_material;
@@ -683,7 +683,7 @@ LABEL_TEXTURE_PROCESS:
                 stack_param_2 = 4;
                 render_system_config_material = FUN_180571e20(&system_memory_60c0, &stack_ptr);
                 stack_ptr = &system_data_buffer_ptr;
-                FUN_18064e900(param_ptr);
+                CoreEngine_MemoryPoolManager(param_ptr);
             }
         }
         

@@ -248,7 +248,7 @@ void FUN_18024cb50(int64_t param_1,int64_t param_2)
         do {
           iVar16 = (int)uVar15;
           if (*plVar19 == 0) {
-            lVar9 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
+            lVar9 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x8000,0x25);
             plVar6 = (int64_t *)(param_1 + 0x3268 + (int64_t)iVar16 * 8);
             LOCK();
             bVar20 = *plVar6 == 0;
@@ -272,7 +272,7 @@ void FUN_18024cb50(int64_t param_1,int64_t param_2)
             else {
               if (lVar9 != 0) {
                     // WARNING: Subroutine does not return
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
               }
               do {
               } while (*pcVar12 != '\0');
@@ -373,7 +373,7 @@ void FUN_18024cb72(int param_1)
       do {
         iVar15 = (int)uVar14;
         if (*plVar18 == 0) {
-          lVar8 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
+          lVar8 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x8000,0x25);
           plVar5 = (int64_t *)(unaff_R15 + 0x3268 + (int64_t)iVar15 * 8);
           LOCK();
           bVar19 = *plVar5 == 0;
@@ -397,7 +397,7 @@ void FUN_18024cb72(int param_1)
           else {
             if (lVar8 != 0) {
                     // WARNING: Subroutine does not return
-              FUN_18064e900();
+              CoreEngine_MemoryPoolManager();
             }
             do {
             } while (*pcVar11 != '\0');
@@ -492,7 +492,7 @@ void FUN_18024cb8b(int param_1)
     do {
       iVar16 = (int)uVar12;
       if (*plVar17 == 0) {
-        lVar9 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
+        lVar9 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x8000,0x25);
         plVar5 = (int64_t *)(unaff_R15 + 0x3268 + (int64_t)iVar16 * 8);
         LOCK();
         bVar18 = *plVar5 == 0;
@@ -516,7 +516,7 @@ void FUN_18024cb8b(int param_1)
         else {
           if (lVar9 != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           do {
           } while (*pcVar13 != '\0');
@@ -603,7 +603,7 @@ void FUN_18024cbbc(void)
   do {
     iVar13 = (int)unaff_RSI;
     if (*plVar14 == 0) {
-      lVar6 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
+      lVar6 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x8000,0x25);
       plVar3 = (int64_t *)(unaff_R15 + 0x3268 + (int64_t)iVar13 * 8);
       LOCK();
       bVar15 = *plVar3 == 0;
@@ -627,7 +627,7 @@ void FUN_18024cbbc(void)
       else {
         if (lVar6 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         do {
         } while (*pcVar10 != '\0');
@@ -852,7 +852,7 @@ char FUN_18024cd70(int64_t param_1,int param_2)
     } while (cVar3 != '\0');
     return cVar3;
   }
-  lVar4 = FUN_18062b420(system_memory_pool_ptr,0x8000,0x25);
+  lVar4 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x8000,0x25);
   plVar1 = (int64_t *)(param_1 + 8 + lVar5 * 8);
   LOCK();
   bVar6 = *plVar1 == 0;
@@ -876,7 +876,7 @@ char FUN_18024cd70(int64_t param_1,int param_2)
     return cVar3;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 
@@ -944,7 +944,7 @@ void FUN_18024ce80(uint64_t *param_1)
     plVar1 = plVar1 + 4;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 
@@ -964,7 +964,7 @@ void FUN_18024ced0(int64_t *param_1)
     *puVar2 = &system_data_buffer_ptr;
     if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     puVar2[1] = 0;
     *(int32_t *)(puVar2 + 3) = 0;
@@ -972,7 +972,7 @@ void FUN_18024ced0(int64_t *param_1)
   }
   if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return;
 }

@@ -28,7 +28,7 @@
 #define apply_render_settings         FUN_18027a810
 #define get_special_render_data      FUN_1800b6de0
 #define apply_special_render_settings FUN_180275a60
-#define trigger_render_error         FUN_18064e900
+#define trigger_render_error         CoreEngine_MemoryPoolManager
 #define trigger_render_update        FUN_180079520
 #define cleanup_render_internal_data FUN_180284500
 #define cleanup_render_buffers       FUN_1802841d0

@@ -227,7 +227,7 @@ void FUN_180348e60(uint64_t param_1,int64_t param_2,int64_t *param_3,uint64_t *p
     }
     if (plStack_d0 != (int64_t *)0x0) {
       // 释放批处理内存
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   else {
@@ -376,14 +376,14 @@ void FUN_1803490e0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       
       // 清理临时内存
       if (lStack_60 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
     }
   }
   
   // 清理调试信息
   puStack_80 = &system_data_buffer_ptr;
-  FUN_18064e900(puVar4);
+  CoreEngine_MemoryPoolManager(puVar4);
 }
 
 
@@ -568,7 +568,7 @@ void FUN_180349330(int64_t param_1)
   // 第三阶段：清理临时资源
   plVar6 = plStack_120;
   if (lStack_148 != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   lStack_148 = 0;
   for (plVar8 = plStack_120; plVar8 != plVar12; plVar8 = plVar8 + 1) {
@@ -577,7 +577,7 @@ void FUN_180349330(int64_t param_1)
     }
   }
   if (plVar6 != (int64_t *)0x0) {
-    FUN_18064e900(plVar6);
+    CoreEngine_MemoryPoolManager(plVar6);
   }
   FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_188);
 }
@@ -654,7 +654,7 @@ void FUN_180349780(uint64_t *param_1)
   // 应用材质参数
   FUN_1803460a0(param_1,&puStack_90,param_1 + 0xe,10,uVar3);
   puStack_90 = &system_data_buffer_ptr;
-  FUN_18064e900(puVar2);
+  CoreEngine_MemoryPoolManager(puVar2);
 }
 
 

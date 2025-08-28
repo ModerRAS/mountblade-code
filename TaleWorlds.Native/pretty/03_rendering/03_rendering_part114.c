@@ -73,7 +73,7 @@ extern void FUN_18063a050(int64_t param_1, int64_t param_2);
 extern void FUN_18063a110(int64_t param_1, int64_t param_2);
 extern void FUN_18063aca0(int64_t param_1, int64_t param_2);
 extern void FUN_18062b420(uint64_t param_1, int64_t param_2, int8_t param_3);
-extern void FUN_18064e900(uint64_t param_1);
+extern void CoreEngine_MemoryPoolManager(uint64_t param_1);
 extern void FUN_180284580(int64_t param_1, int64_t param_2);
 extern void FUN_180338100(int64_t param_1, int64_t param_2);
 extern void FUN_1803387a0(int64_t param_1, int64_t param_2);

@@ -184,7 +184,7 @@ void FUN_1800e4f90(int64_t param_1,uint64_t param_2,uint *param_3,int param_4)
           else {
             if (lVar4 != 0) {
                     // WARNING: Subroutine does not return
-              FUN_18064e900();
+              CoreEngine_MemoryPoolManager();
             }
             do {
             } while (*pcVar5 != '\0');
@@ -272,7 +272,7 @@ void FUN_1800e4fbe(int param_1)
         else {
           if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           do {
           } while (*pcVar4 != '\0');
@@ -351,7 +351,7 @@ void FUN_1800e4fef(void)
       else {
         if (lVar2 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         do {
         } while (*pcVar3 != '\0');
@@ -680,7 +680,7 @@ FUN_1800e545a:
                 else {
                   if (lVar13 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                   }
                   do {
                   } while (*pcVar17 != '\0');

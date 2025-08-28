@@ -457,10 +457,10 @@ void FUN_180341be0(void)
       FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_138);
     }
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 
@@ -786,10 +786,10 @@ void FUN_1803427a0(void)
       FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_f8);
     }
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 

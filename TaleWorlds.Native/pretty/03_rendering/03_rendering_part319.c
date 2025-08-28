@@ -753,7 +753,7 @@ void rendering_system_texture_processor(
     
     if (status_flag != 0) {
         // 处理错误情况
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     status_flag = 0;

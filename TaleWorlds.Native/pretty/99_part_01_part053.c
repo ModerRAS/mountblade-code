@@ -84,7 +84,7 @@
 #define MemoryManager FUN_1800e9540
 #define MemoryPoolInitializer FUN_1800e9360
 #define ResourceStateHandler FUN_180246810
-#define SystemErrorHandler FUN_18064e900
+#define SystemErrorHandler CoreEngine_MemoryPoolManager
 #define SecurityChecker FUN_1808fc050
 #define SystemContextInitializer FUN_18005e630
 #define SystemParameterProcessor FUN_18005c650

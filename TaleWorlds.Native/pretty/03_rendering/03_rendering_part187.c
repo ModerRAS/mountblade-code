@@ -769,7 +769,7 @@ void RenderingSystem_DataSearchProcessor(int64_t param_1, uint64_t *param_2, int
                     *ptr2 = *(uint64_t *)(temp_long6 + temp_long3);
                     
                     if (*param_2 != 0) {
-                        FUN_18064e900();
+                        CoreEngine_MemoryPoolManager();
                     }
                     
                     param_2[2] = (uint64_t)(ptr2 + temp_long1);
@@ -850,7 +850,7 @@ void RenderingSystem_AlternateDataSearch(uint64_t param_1, int64_t param_2, int 
                 *ptr2 = *(uint64_t *)(temp_long5 + param_2);
                 
                 if (*register_rbx != 0) {
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 
                 register_rbx[2] = (uint64_t)(ptr2 + temp_long1);

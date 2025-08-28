@@ -223,7 +223,7 @@ LAB_180103c39:
     puStack_30 = &system_data_buffer_ptr;
     if (puStack_28 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   return uVar8;
@@ -403,7 +403,7 @@ LAB_180103c39:
     puStack_8 = &system_data_buffer_ptr;
     if (unaff_retaddr != (void *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   return uVar6;

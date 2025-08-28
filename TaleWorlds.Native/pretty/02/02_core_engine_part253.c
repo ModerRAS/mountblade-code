@@ -319,7 +319,7 @@ int64_t reverse_batch_copy_and_cleanup(int64_t param_1, uint64_t param_2, int64_
     uVar1 = *(uint *)(plVar2 + 1);
     uVar3 = (uint64_t)uVar1;
     if (*plVar2 != 0) {
-      FUN_1806277c0(unaff_RBP,uVar3);
+      CoreMemoryPoolProcessor(unaff_RBP,uVar3);
     }
     if (uVar1 != 0) {
                     // WARNING: Subroutine does not return
@@ -482,7 +482,7 @@ void initialize_data_structure(uint64_t *param_1)
   *param_1 = &system_data_buffer_ptr;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   param_1[1] = 0;
   *(int32_t *)(param_1 + 3) = 0;
@@ -671,7 +671,7 @@ void process_configuration_file(int64_t param_1)
         line_length = char_index;
       } while (line_buffer[index] != '\0');
       if (char_index != 0) {
-        FUN_18010cbc0(line_buffer, &system_param1_ptr, temp_buffer2, processed_line + 1);
+        AdvancedSystemOptimizer(line_buffer, &system_param1_ptr, temp_buffer2, processed_line + 1);
         string_len = 0xffffffffffffffff;
         do {
           config_name_len = string_len;
@@ -721,7 +721,7 @@ LAB_18021a863:
     }
   }
   FUN_180217db0(param_1 + 0x260);
-  allocated_buffer = FUN_18062b1e0(system_memory_pool_ptr, 0x58, 8, 3);
+  allocated_buffer = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x58, 8, 3);
                     // WARNING: Subroutine does not return
   memset(allocated_buffer, 0, 0x58);
 }
@@ -785,7 +785,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
   if (temp_long2 == 0) {
     file_handle = FUN_1801595d0(alloc_result, &string_ptr);
     string_size = buffer_size2 + 0x13;
-    FUN_1806277c0(&string_ptr, string_size);
+    CoreMemoryPoolProcessor(&string_ptr, string_size);
     header_ptr = (int32_t *)((uint64_t)buffer_size2 + data_offset);
     *header_ptr = 0x6e756f53;
     header_ptr[1] = 0x74614464;
@@ -801,7 +801,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
     string_ptr = &system_data_buffer_ptr;
     if (data_offset != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     data_offset = 0;
     stack_flag = 0;
@@ -857,7 +857,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
         temp_data_ptr = &system_data_buffer_ptr;
         if (temp_long != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         temp_long = 0;
         entry_index = entry_index & 0xffffffff00000000;
@@ -868,13 +868,13 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
     FUN_1802187b0(param_1 + 0x280);
     if (((char)file_mode == '\0') && (buffer_size != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   cleanup_ptr = &system_data_buffer_ptr;
   if (file_ptr != (void *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return;
 }
@@ -1216,7 +1216,7 @@ void initialize_message_system(void)
   stack_cookie = 0xfffffffffffffffe;
   security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
   queue_size = 0;
-  core_system_data_config = FUN_18062b1e0(system_memory_pool_ptr, 0x30, 8, 3);
+  core_system_data_config = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x30, 8, 3);
   *(int32_t *)(core_system_data_config + 0x19) = 0;
   *(int16_t *)(core_system_data_config + 0x1d) = 0;
   *(int8_t *)(core_system_data_config + 0x1f) = 0;
@@ -1237,10 +1237,10 @@ void initialize_message_system(void)
     message_timeout = 0;
     message_buffer = (uint64_t *)0x0;
     message_count = 0;
-    message_handler = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+    message_handler = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)message_handler = 0;
     message_buffer = message_handler;
-    message_flags = FUN_18064e990(message_handler);
+    message_flags = CoreMemoryPoolCleaner(message_handler);
     message_timeout = CONCAT44(message_timeout._4_4_, message_flags);
     *message_handler = 0x506873654d76614e;  // "NevMeshP"
     *(int32_t *)(message_handler + 1) = 0x61666572;  // "refa"
@@ -1250,10 +1250,10 @@ void initialize_message_system(void)
     FUN_180627ce0(queue_start, stack_buffer2, &message_ptr);
     message_ptr = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-    FUN_18064e900(message_handler);
+    CoreEngine_MemoryPoolManager(message_handler);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer1);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer1);
 }
 
 

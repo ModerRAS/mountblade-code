@@ -356,7 +356,7 @@ void FUN_180713470(int64_t *param_1,float *param_2,int param_3,int param_4,int32
   fStack_30 = fStack_1c * 0.6560999 * 0.8;
   FUN_180712c50(param_2,&fStack_40,param_2,param_3);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_98);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_98);
 }
 
 

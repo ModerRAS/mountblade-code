@@ -587,7 +587,7 @@ LAB_1806311d1:
       puStack_30 = &system_data_buffer_ptr;
       if (pcStack_28 != (char *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       return 0;
     }
@@ -613,7 +613,7 @@ LAB_18063123e:
   puStack_30 = &system_data_buffer_ptr;
   if (pcStack_28 != (char *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return lVar6;
 }
@@ -790,7 +790,7 @@ void FUN_180631420(uint64_t param_1,uint64_t param_2,int64_t *param_3)
       }
       if (*param_3 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       *param_3 = lVar5;
       param_3[1] = lVar5;

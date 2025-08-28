@@ -102,11 +102,11 @@ void Rendering_NodeCleanup(uint64_t node_handle, uint64_t *child_ptr, uint64_t c
     // 清理子节点数组
     if (child_ptr[5] != 0) {
         // 释放子节点数组内存
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     // 释放节点本身
-    FUN_18064e900(child_ptr);
+    CoreEngine_MemoryPoolManager(child_ptr);
 }
 
 /**
@@ -326,7 +326,7 @@ int64_t Rendering_HashTableRemove(int64_t hash_table_ptr, uint *key_ptr)
         // 释放被移除的节点
         if (removed_node != (uint *)0x0) {
             FUN_18004b730();
-            FUN_18064e900(removed_node);
+            CoreEngine_MemoryPoolManager(removed_node);
         }
     }
     
@@ -598,7 +598,7 @@ void Rendering_TreeBalance(uint64_t new_count, uint64_t container_base, uint64_t
     
     // 检查是否需要释放旧内存
     if ((1 < new_count) && (*(int64_t *)(container_base + 8) != 0)) {
-        FUN_18064e900(*(int64_t *)(container_base + 8));
+        CoreEngine_MemoryPoolManager(*(int64_t *)(container_base + 8));
     }
     
     // 更新容器信息

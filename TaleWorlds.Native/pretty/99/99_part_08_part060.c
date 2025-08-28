@@ -58,7 +58,7 @@ extern int global_config_6496_ptr;           // 偏移量表
 #define ProcessSystemCleanup FUN_1805b3a7f
 #define InitializeSystemContext FUN_1805b3b20
 #define ConfigureSystemParametersEx FUN_1805b3b47
-#define MemoryDeallocateWrapper FUN_18064e900
+#define MemoryDeallocateWrapper CoreEngine_MemoryPoolManager
 #define EmptySystemFunction FUN_1805b3d91
 #define ProcessMemoryManagement FUN_1805b3da0
 #define ProcessMemoryManagementEx FUN_1805b3dbb
@@ -66,7 +66,7 @@ extern int global_config_6496_ptr;           // 偏移量表
 // 函数声明
 void FUN_1805b3190(void);
 void FUN_1805b31e0(int64_t *param_1,uint param_2,uint param_3,char param_4);
-void FUN_18064e900(void);
+void CoreEngine_MemoryPoolManager(void);
 void FUN_1805fab40(void);
 void FUN_1805b62d0(int64_t param_1);
 void FUN_18005ea90(int64_t param_1,void *param_2);
@@ -112,7 +112,7 @@ void ProcessResourceCleanup(int64_t *resource_manager)
     }
     if (resource_handle != 0) {
       // 释放资源内存
-      FUN_18064e900(resource_handle);
+      CoreEngine_MemoryPoolManager(resource_handle);
     }
   }
   return;
@@ -149,7 +149,7 @@ void ExecuteSystemLoop(void)
     return;
   }
   // 释放系统资源
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 // 函数: void ProcessSystemLoop(void)
@@ -180,7 +180,7 @@ void ProcessSystemLoop(void)
     return;
   }
   // 释放系统资源
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 // 函数: void CheckResourceStatus(void)
@@ -197,7 +197,7 @@ void CheckResourceStatus(void)
   
   if (system_resource != 0) {
     // 释放系统资源
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return;
 }
@@ -212,7 +212,7 @@ void TriggerSystemExit(void)
 
 {
   // 执行系统退出操作
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 // 函数: void EmptyOperationPlaceholder(void)
@@ -661,7 +661,7 @@ void InitializeSystemContext(int32_t *system_context, int64_t *resource_manager,
     do {
       if (*memory_pointer != 0) {
         // 释放内存资源
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       memory_pointer = memory_pointer + 1;
       memory_offset = memory_offset + -1;
@@ -672,7 +672,7 @@ void InitializeSystemContext(int32_t *system_context, int64_t *resource_manager,
       do {
         if (*(int64_t *)(memory_size + memory_handle) != 0) {
           // 释放内存资源
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         resource_id = (int)allocated_size + 1;
         allocated_size = (uint64_t)resource_id;
@@ -686,7 +686,7 @@ void InitializeSystemContext(int32_t *system_context, int64_t *resource_manager,
     *(uint64_t *)(system_context + 0x12e6) = TIMER_PRECISION_MULTIPLIER;
     if (*(int64_t *)(system_context + 0x1c) != 0) {
       // 释放内存资源
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     memory_handle = FUN_1805fab40();
     context_id = system_context[0x12e0];
@@ -764,7 +764,7 @@ void ConfigureSystemParametersEx(int32_t *system_context, uint64_t config_param,
   do {
     if (*memory_pointer != 0) {
       // 释放内存资源
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     memory_pointer = memory_pointer + 1;
     memory_offset = memory_offset + -1;
@@ -775,7 +775,7 @@ void ConfigureSystemParametersEx(int32_t *system_context, uint64_t config_param,
     do {
       if (*(int64_t *)(memory_size + memory_handle) != 0) {
         // 释放内存资源
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       resource_id = (int)memory_size + 1;
       memory_size = (uint64_t)resource_id;
@@ -811,7 +811,7 @@ void ConfigureSystemParametersEx(int32_t *system_context, uint64_t config_param,
     return;
   }
   // 释放内存资源
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 // 函数: void MemoryDeallocateWrapper(void)
@@ -824,7 +824,7 @@ void MemoryDeallocateWrapper(void)
 
 {
   // 执行内存释放操作
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 // 函数: void EmptySystemFunction(void)

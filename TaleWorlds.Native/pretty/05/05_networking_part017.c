@@ -615,7 +615,7 @@ void process_network_connection_state(uint64_t *network_context, uint64_t connec
   
 handle_connection_error:
   // 处理连接错误
-  FUN_1808fc050(security_checksum ^ (uint64_t)encryption_buffer);
+  SystemSecurityChecker(security_checksum ^ (uint64_t)encryption_buffer);
 }
 
 // 函数别名：保持向后兼容性
@@ -1075,7 +1075,7 @@ void optimize_network_data_transfer(int64_t transfer_context)
   }
   
   // 处理优化错误
-  FUN_1808fc050(performance_checksum);
+  SystemSecurityChecker(performance_checksum);
 }
 
 // 函数别名：保持向后兼容性
@@ -1138,7 +1138,7 @@ void cleanup_network_connection_resources(void)
   }
   
   // 执行最终清理
-  FUN_1808fc050(*(uint64_t *)(context_base + -8) ^ (uint64_t)&resource_flag1);
+  SystemSecurityChecker(*(uint64_t *)(context_base + -8) ^ (uint64_t)&resource_flag1);
 }
 
 // 函数别名：保持向后兼容性

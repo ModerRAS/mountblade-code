@@ -52,7 +52,7 @@ void Cleanup_Render_Objects_And_Resources(void)
       if (*(char *)(render_obj + 0xf9) != '\0') {
         if (*(int64_t *)(render_obj + 0x1d8) != 0) {
           // 如果对象仍有引用，这是一个错误情况
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         // 清理对象的引用
         *(uint64_t *)(render_obj + 0x1d8) = 0;
@@ -146,7 +146,7 @@ void Process_Render_Object_Array_With_State(int64_t render_context)
         *(int16_t *)(temp_obj + 0x18) = 0;
         // 检查临时对象是否有错误
         if (temp_obj[0x17] != 0) {
-          FUN_18064e900();  // 错误处理
+          CoreEngine_MemoryPoolManager();  // 错误处理
         }
         temp_obj[0x17] = 0;
         FUN_180085530(temp_obj[0x16]);  // 清理资源
@@ -348,7 +348,7 @@ LAB_180277c31:
             }
           }
           if (new_array_ptr != (int64_t *)0x0) {
-            FUN_18064e900(new_array_ptr);
+            CoreEngine_MemoryPoolManager(new_array_ptr);
           }
           new_array_ptr = object_ptr + array_offset * 2;
           current_flag = current_flag;
@@ -382,7 +382,7 @@ LAB_180277c31:
     }
   }
   if (temp_array_ptr != (int64_t *)0x0) {
-    FUN_18064e900(temp_array_ptr);
+    CoreEngine_MemoryPoolManager(temp_array_ptr);
   }
   return;
 }
@@ -435,7 +435,7 @@ LAB_180277eb2:
           }
           *new_array_ptr = object_data;
           if (*result_array != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           *result_array = (uint64_t)new_array_ptr;
           result_array[2] = (uint64_t)(new_array_ptr + array_size);
@@ -497,7 +497,7 @@ LAB_180277eb2:
         }
         *new_array_ptr = object_data;
         if (*result_array != 0) {
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         *result_array = (uint64_t)new_array_ptr;
         result_array[2] = (uint64_t)(new_array_ptr + array_size);
@@ -582,7 +582,7 @@ LAB_180277fef:
           }
           *new_array_ptr = render_obj;
           if (*result_array != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           result_array[2] = (uint64_t)(new_array_ptr + array_size);
           *result_array = (uint64_t)new_array_ptr;
@@ -688,7 +688,7 @@ LAB_1802781a7:
           matrix_elements[14] = obj_y;
           matrix_elements[15] = obj_z;
           if (*transform_array != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           *transform_array = (uint64_t)matrix_elements;
           transform_array[2] = (uint64_t)(matrix_elements + array_size * 0x10);
@@ -784,7 +784,7 @@ LAB_180277fef:
         }
         *new_array_ptr = render_obj;
         if (*result_array != 0) {
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         result_array[2] = (uint64_t)(new_array_ptr + array_size);
         *result_array = (uint64_t)new_array_ptr;
@@ -891,7 +891,7 @@ LAB_1802781a7:
         matrix_elements[14] = obj_y;
         matrix_elements[15] = obj_z;
         if (*transform_array != 0) {
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         *transform_array = (uint64_t)matrix_elements;
         transform_array[2] = (uint64_t)(matrix_elements + array_size * 0x10);

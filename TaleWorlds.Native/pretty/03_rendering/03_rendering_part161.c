@@ -240,7 +240,7 @@ void FUN_1803692d0(uint64_t *param_1)
     resource_registry_ptr = &RENDERING_MATERIAL_REGISTRY;
     
     // 清理资源并返回
-    FUN_18064e900(texture_data_ptr);
+    CoreEngine_MemoryPoolManager(texture_data_ptr);
 }
 
 /**
@@ -345,7 +345,7 @@ void FUN_1803697f0(uint64_t param_1, uint64_t param_2)
     resource_registry_ptr = &RENDERING_MATERIAL_REGISTRY;
     
     // 清理资源
-    FUN_18064e900(texture_object_ptr);
+    CoreEngine_MemoryPoolManager(texture_object_ptr);
 }
 
 /**
@@ -845,7 +845,7 @@ void FUN_180369ef0(uint64_t *param_1)
     
     // 清理资源
     if (context_data_ptr != (uint64_t *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     context_data_ptr = (uint64_t *)0x0;
@@ -891,7 +891,7 @@ void FUN_180369ef0(uint64_t *param_1)
     resource_registry_ptr = &RENDERING_MATERIAL_REGISTRY;
     
     // 清理资源
-    FUN_18064e900(resource_handle_ptr);
+    CoreEngine_MemoryPoolManager(resource_handle_ptr);
 }
 
 /**
@@ -947,7 +947,7 @@ uint64_t * FUN_18036a6a0(uint64_t *param_1, uint64_t param_2)
     // 重置资源指针
     param_1[0x16] = &RENDERING_MATERIAL_REGISTRY;
     if (param_1[0x17] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0x17] = 0;
     *(int32_t *)(param_1 + 0x19) = 0;
@@ -955,7 +955,7 @@ uint64_t * FUN_18036a6a0(uint64_t *param_1, uint64_t param_2)
     param_1[0xe] = &RENDERING_MATERIAL_REGISTRY;
     
     if (param_1[0xf] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0xf] = 0;
     *(int32_t *)(param_1 + 0x11) = 0;
@@ -1029,7 +1029,7 @@ void FUN_18036a7e0(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t
     
     // 清理资源
     if (resource_data_ptr != (int32_t *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     resource_data_ptr = (int32_t *)0x0;
@@ -1293,7 +1293,7 @@ void FUN_18036ab70(uint64_t param_1, uint64_t param_2)
     
     // 清理资源
     if (context_data_ptr != (uint64_t *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     context_data_ptr = (uint64_t *)0x0;
@@ -1339,7 +1339,7 @@ void FUN_18036ab70(uint64_t param_1, uint64_t param_2)
     resource_registry_ptr = &RENDERING_MATERIAL_REGISTRY;
     
     // 清理资源
-    FUN_18064e900(texture_handle_ptr);
+    CoreEngine_MemoryPoolManager(texture_handle_ptr);
 }
 
 /**

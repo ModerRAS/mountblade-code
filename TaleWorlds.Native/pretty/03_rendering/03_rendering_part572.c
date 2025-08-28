@@ -879,7 +879,7 @@ LAB_FOUND_ITEM:
   }
   
   // 释放资源
-  FUN_18064e900(ptr_var_7);
+  CoreEngine_MemoryPoolManager(ptr_var_7);
 }
 
 /**
@@ -934,7 +934,7 @@ void RenderingSystem_ResourceCleaner(int64_t *resource_manager)
   }
   
   // 释放资源
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -1050,7 +1050,7 @@ void RenderingSystem_MemoryManager(int64_t memory_context)
     do {
       temp_var_2 = *(int64_t *)(temp_var_7 + temp_var_6 * 8);
       if (temp_var_2 != 0) {
-        FUN_18064e900(temp_var_2);
+        CoreEngine_MemoryPoolManager(temp_var_2);
       }
       *(uint64_t *)(temp_var_7 + temp_var_6 * 8) = 0;
       temp_var_6 = temp_var_6 + 1;
@@ -1126,7 +1126,7 @@ void RenderingSystem_MemoryCleaner(int64_t memory_manager)
     do {
       temp_var_2 = *(int64_t *)(temp_var_4 + temp_var_5 * 8);
       if (temp_var_2 != 0) {
-        FUN_18064e900(temp_var_2);
+        CoreEngine_MemoryPoolManager(temp_var_2);
       }
       *(uint64_t *)(temp_var_4 + temp_var_5 * 8) = 0;
       temp_var_5 = temp_var_5 + 1;

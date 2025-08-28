@@ -139,7 +139,7 @@ typedef enum {
  */
 #define RenderSystem_AddCommandToQueue FUN_18022cd30
 #define RenderSystem_ExecuteRenderQueue FUN_180076c50
-#define RenderSystem_TriggerErrorHandler FUN_18064e900
+#define RenderSystem_TriggerErrorHandler CoreEngine_MemoryPoolManager
 #define RenderSystem_ReleaseStringBuffer FUN_180244780
 #define RenderSystem_AllocateTextureBuffer FUN_1806277c0
 #define RenderSystem_GetDeviceHandle FUN_1800daa50
@@ -1428,7 +1428,7 @@ int32_t GetRenderStateFlags(void)
 // 原始函数声明，保持兼容性
 void FUN_18022cd30(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t param5);
 int64_t FUN_180076c50(uint64_t param1, uint64_t *param2);
-void FUN_18064e900(void);
+void CoreEngine_MemoryPoolManager(void);
 void FUN_180244780(uint64_t *param1);
 void FUN_1806277c0(uint64_t *param1, uint64_t param2, uint64_t param3, uint64_t param4, uint64_t param5, uint64_t param6);
 uint64_t FUN_1800daa50(void);

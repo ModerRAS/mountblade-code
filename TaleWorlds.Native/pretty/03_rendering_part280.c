@@ -264,7 +264,7 @@ uint64_t FUN_18041ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
         *(int8_t *)(lVar13 + uVar12) = *(int8_t *)(uVar11 + 1 + lVar13 * 2);
       }
                     // WARNING: Subroutine does not return
-      FUN_18064e900(uVar11);
+      CoreEngine_MemoryPoolManager(uVar11);
     }
   }
   if (render_system_data_string != 0) {
@@ -491,7 +491,7 @@ uint64_t FUN_18041ec8c(void)
     *(int8_t *)(lVar12 + uVar11) = *(int8_t *)(unaff_RBX + 1 + lVar12 * 2);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 

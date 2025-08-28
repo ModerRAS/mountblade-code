@@ -454,7 +454,7 @@ void FUN_1800ba100(int64_t param_1)
       lVar3 = *(int64_t *)(lVar2 + uVar4 * 8);
       if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar3);
+        CoreEngine_MemoryPoolManager(lVar3);
       }
       *(uint64_t *)(lVar2 + uVar4 * 8) = 0;
       uVar4 = uVar4 + 1;
@@ -484,7 +484,7 @@ void FUN_1800ba129(void)
     lVar1 = *(int64_t *)(unaff_R14 + unaff_RDI * 8);
     if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar1);
+      CoreEngine_MemoryPoolManager(lVar1);
     }
     *(uint64_t *)(unaff_R14 + unaff_RDI * 8) = unaff_R15;
     unaff_RDI = unaff_RDI + 1;

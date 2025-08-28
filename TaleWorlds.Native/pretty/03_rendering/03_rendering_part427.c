@@ -272,7 +272,7 @@ void rendering_system_host_interface_initializer(uint64_t param_1, uint64_t para
   FUN_1803460a0(puVar2, &puStack_40, puVar2 + 0xe, 4);
   puStack_40 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar3);
+  CoreEngine_MemoryPoolManager(puVar3);
 }
 
 /**
@@ -413,7 +413,7 @@ void rendering_system_name_manager(uint64_t param_1, uint64_t param_2)
   FUN_1803460a0(puVar2, &puStack_a0, puVar4, 0, uVar5);
   puStack_a0 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar3);
+  CoreEngine_MemoryPoolManager(puVar3);
 }
 
 /**
@@ -453,7 +453,7 @@ void rendering_system_grid_handler(uint64_t param_1, uint64_t param_2)
   FUN_1803460a0(puVar2, &puStack_40, 0, 0xb);
   puStack_40 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar3);
+  CoreEngine_MemoryPoolManager(puVar3);
 }
 
 /**
@@ -594,7 +594,7 @@ void rendering_system_shader_manager(uint64_t *param_1)
   puStack_88 = &system_data_buffer_ptr;
   if (puStack_80 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   puStack_80 = (int8_t *)0x0;
   uStack_70 = (uint64_t)uStack_70._4_4_ << 0x20;
@@ -648,7 +648,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     puStack_58 = (uint64_t *)0x0;
     uStack_48 = (uint64_t)uStack_48._4_4_ << 0x20;
@@ -669,7 +669,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     puStack_38 = (uint64_t *)0x0;
     uStack_28 = (uint64_t)uStack_28._4_4_ << 0x20;
@@ -690,7 +690,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     puStack_58 = (uint64_t *)0x0;
     uStack_48 = (uint64_t)uStack_48._4_4_ << 0x20;
@@ -710,7 +710,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     puStack_38 = (uint64_t *)0x0;
     uStack_28 = (uint64_t)uStack_28._4_4_ << 0x20;
@@ -732,7 +732,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     puStack_60 = &system_data_buffer_ptr;
     if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     puStack_58 = (uint64_t *)0x0;
     uStack_48 = (uint64_t)uStack_48._4_4_ << 0x20;
@@ -753,7 +753,7 @@ void rendering_system_material_processor(uint64_t param_1, int64_t *param_2, uin
     puStack_40 = &system_data_buffer_ptr;
     if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   return;

@@ -434,7 +434,7 @@ void RenderingSystem_ObjectCleaner(uint64_t *param_1)
   }
   
   // 调用最终清理函数
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -713,7 +713,7 @@ LAB_180339fdc:
         
         // 更新指针
         if (*(int64_t *)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XB8) != 0) {
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         *(uint64_t **)(param_1 + RENDERING_SYSTEM_BUFFER_SIZE_0XB8) = puVar4;
         *(uint64_t **)(param_1 + 200) = puVar4 + lVar3;
@@ -785,7 +785,7 @@ LAB_180339fdc:
       
       // 更新指针
       if (*(int64_t *)(unaff_RBX + RENDERING_SYSTEM_BUFFER_SIZE_0XB8) != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       *(uint64_t **)(unaff_RBX + RENDERING_SYSTEM_BUFFER_SIZE_0XB8) = puVar3;
       *(uint64_t **)(unaff_RBX + 200) = puVar3 + lVar2;
@@ -883,7 +883,7 @@ void RenderingSystem_ResourceCleaner(int64_t param_1)
         lVar3 = __RTCastToVoid(puVar1);
         (**(code **)*puVar1)(puVar1, 0);
         if (lVar3 != 0) {
-          FUN_18064e900(lVar3);
+          CoreEngine_MemoryPoolManager(lVar3);
         }
       }
       
@@ -927,7 +927,7 @@ void RenderingSystem_BatchCleaner(void)
       lVar2 = __RTCastToVoid(puVar1);
       (**(code **)*puVar1)(puVar1, 0);
       if (lVar2 != 0) {
-        FUN_18064e900(lVar2);
+        CoreEngine_MemoryPoolManager(lVar2);
       }
     }
     
@@ -1000,7 +1000,7 @@ uint64_t * RenderingSystem_ObjectReleaser(uint64_t *param_1, uint64_t param_2)
   
   // 检查对象状态
   if (param_1[0x18] != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 调用释放函数
@@ -1040,7 +1040,7 @@ void RenderingSystem_MemoryCleaner(int64_t param_1)
       // 释放每个内存块
       if (lVar1 != 0) {
         FUN_180320da0(lVar1);
-        FUN_18064e900(lVar1);
+        CoreEngine_MemoryPoolManager(lVar1);
       }
       
       uVar2 = (int)uVar3 + 1;
@@ -1080,7 +1080,7 @@ void RenderingSystem_BatchReleaser(uint64_t param_1, int64_t param_2)
     // 释放每个资源
     if (lVar1 != 0) {
       FUN_180320da0(lVar1);
-      FUN_18064e900(lVar1);
+      CoreEngine_MemoryPoolManager(lVar1);
     }
     
     unaff_EBP = unaff_EBP + 1;
@@ -1440,7 +1440,7 @@ void RenderingSystem_VectorExpander(int64_t *param_1, uint64_t param_2)
   
   // 释放旧内存
   if (*param_1 != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 更新指针
@@ -1527,7 +1527,7 @@ void RenderingSystem_VectorResizer(int64_t param_1, uint64_t *param_2)
   }
   
   // 释放旧内存
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -1604,7 +1604,7 @@ void RenderingSystem_IteratorCleaner(int64_t *param_1)
   }
   
   // 调用最终清理函数
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -1632,5 +1632,5 @@ void RenderingSystem_ContextCleaner(int64_t *param_1)
   }
   
   // 调用最终清理函数
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }

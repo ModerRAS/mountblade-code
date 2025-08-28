@@ -155,7 +155,7 @@ void ProcessResourcePoolCleanup(int64_t *param_1)
       puStack_48 = &global_state_3456_ptr;
       if (puStack_40 != (int8_t *)0x0) {
         // 释放资源清理缓冲区（不返回的函数调用）
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       
       // 更新资源索引
@@ -385,7 +385,7 @@ void CopyResourcePoolData(int64_t *param_1, uint64_t param_2, uint64_t param_3, 
   
   if (puVar3 != (uint64_t *)0x0) {
     // 释放原始资源池内存（不返回的函数调用）
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return;
 }
@@ -499,7 +499,7 @@ void RehashResourceTable(void)
   // 清理旧的哈希表内存
   if ((1 < *(uint64_t *)(unaff_RDI + 0x10)) && (*(int64_t *)(unaff_RDI + 8) != 0)) {
     // 释放旧的哈希表内存（不返回的函数调用）
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 更新哈希表管理器
@@ -529,7 +529,7 @@ void ResizeResourceTable(uint64_t param_1)
   // 如果哈希表中有多个元素且已分配内存，则释放内存
   if ((1 < param_1) && (*(int64_t *)(unaff_RDI + 8) != 0)) {
     // 释放哈希表内存（不返回的函数调用）
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 更新哈希表管理器
@@ -558,7 +558,7 @@ void DestroyResourceTable(void)
   // 释放哈希表内存
   if (*(int64_t *)(unaff_RDI + 8) != 0) {
     // 释放哈希表内存（不返回的函数调用）
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 重置哈希表管理器
@@ -679,7 +679,7 @@ LAB_18055bcdc:
     return;
   }
   // 释放旧的资源池内存（不返回的函数调用）
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 // 函数: 性能计数器初始化器
@@ -780,7 +780,7 @@ InitializePerformanceCounter(uint64_t *param_1, uint64_t param_2, uint64_t param
     
     if (*plVar1 != 0) {
       // 释放旧的性能数据内存（不返回的函数调用）
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     *plVar1 = (int64_t)puVar5;
     param_1[2] = puVar5 + 8;

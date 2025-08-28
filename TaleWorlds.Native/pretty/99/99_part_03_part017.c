@@ -453,7 +453,7 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                             stack_ptr_58 = &stack_ptr_a8;
                             stack_ptr_a8 = &system_data_buffer_ptr;
                             if (stack_value_a0 != 0) {
-                                FUN_18064e900();
+                                CoreEngine_MemoryPoolManager();
                             }
                             stack_value_a0 = 0;
                             stack_value_90 = 0;
@@ -528,7 +528,7 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
                             }
                             stack_ptr_d0 = &system_data_buffer_ptr;
                             if (stack_ptr_c8 != (byte *)0x0) {
-                                FUN_18064e900();
+                                CoreEngine_MemoryPoolManager();
                             }
                             stack_ptr_c8 = (byte *)0x0;
                             stack_value_b8 = stack_value_b8 & 0xffffffff00000000;
@@ -548,7 +548,7 @@ void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource
         } while ((uint64_t)(int64_t)stack_index_18 < resource_size);
     }
     if (stack_ptr_80 != (int64_t *)0x0) {
-        FUN_18064e900(stack_ptr_80);
+        CoreEngine_MemoryPoolManager(stack_ptr_80);
     }
     return;
 }

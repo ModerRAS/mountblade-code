@@ -428,7 +428,7 @@ RenderingSystemParameterPtr RenderingSystemAdvancedPipelineManager(
             data_ptr = &system_data_buffer_ptr;
             if (stack_handle_1 != 0) {
                 // 处理错误情况
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
             }
             goto LAB_18043f5c3;
         }
@@ -438,7 +438,7 @@ LAB_18043f597:
     stack_state_1 = RENDERING_SYSTEM_HANDLE_NULL;
     data_ptr = &system_data_buffer_ptr;
     if (stack_handle_1 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
 LAB_18043f5c3:
     *param_1 = (RenderingSystemHandle)stack_handle;
@@ -538,7 +538,7 @@ RenderingSystemHandlePtr RenderingSystemMemoryCleaner(
             (**(RenderingSystemCallback)(*memory_ptr + 0x38))(memory_ptr);
             stack_param_1 = &system_data_buffer_ptr;
             if (stack_handle_1 != 0) {
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
             }
             goto LAB_18043f737;
         }
@@ -547,7 +547,7 @@ RenderingSystemHandlePtr RenderingSystemMemoryCleaner(
     stack_state_1 = RENDERING_SYSTEM_HANDLE_NULL;
     stack_param_1 = &system_data_buffer_ptr;
     if (stack_handle_1 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
 LAB_18043f737:
     *param_1 = (RenderingSystemHandle)stack_handle;
@@ -614,7 +614,7 @@ RenderingSystemState RenderingSystemStateUpdater(
         (system_cache_buffer, &data_ptr);
     data_ptr = &system_data_buffer_ptr;
     if (memory_handle != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return result_state;
 }
@@ -1301,7 +1301,7 @@ void RenderingSystemAdvancedRenderer(
     
     data_ptr = &system_data_buffer_ptr;
     if (memory_handle != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     memory_handle = 0;
     stack_state_2 = 0;

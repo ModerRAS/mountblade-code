@@ -822,7 +822,7 @@ LAB_1802ff4b0:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 
@@ -920,7 +920,7 @@ LAB_1802ff5d0:
               return;
             }
                     // WARNING: Subroutine does not return
-            FUN_18064e900(plVar2);
+            CoreEngine_MemoryPoolManager(plVar2);
           }
           plVar7 = (int64_t *)(*(int64_t *)(lVar6 + 0x260) + 0x1a8);
           lVar9 = *(int64_t *)(param_1 + 0x1b0) - *(int64_t *)(param_1 + 0x1a8) >> 3;

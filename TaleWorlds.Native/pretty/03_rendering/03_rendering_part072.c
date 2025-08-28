@@ -57,7 +57,7 @@ void AcquireSRWLockExclusive(int64_t lock_handle);
 void ReleaseSRWLockExclusive(int64_t lock_handle);
 void FUN_1800571e0(int64_t param1, int *param2, uint64_t param3, uint64_t param4, uint64_t param5, int64_t param6, int param7);
 void FUN_1800f89b0(void);
-void FUN_18064e900(void *ptr);
+void CoreEngine_MemoryPoolManager(void *ptr);
 void *FUN_18062b1e0(void *allocator, int size, int alignment, int flags, uint64_t memory_flags);
 void free(void *ptr, int size);
 void func_0x00018030a230(void);
@@ -844,7 +844,7 @@ int *rendering_system_memory_manager(
                     }
                     
                     // 释放内存块
-                    FUN_18064e900(next_block);
+                    CoreEngine_MemoryPoolManager(next_block);
                 }
                 
                 // 分割内存块
@@ -1045,7 +1045,7 @@ unlock_and_return:
                         }
                         
                         // 释放当前块
-                        FUN_18064e900(current_block);
+                        CoreEngine_MemoryPoolManager(current_block);
                     }
                     
                     *(int *)(next_block + 2) = block_capacity + size_high;

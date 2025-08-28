@@ -265,7 +265,7 @@ void process_rendering_materials(int64_t *render_context, int64_t *material_data
     // 重置材质资源
     material_resource = &system_data_buffer_ptr;
     if (second_material_handle != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     second_material_handle = 0;
     material_data_size = material_data_size & 0xffffffff00000000;
@@ -626,7 +626,7 @@ void process_rendering_materials(int64_t *render_context, int64_t *material_data
             // 清理处理数据
             texture_data[0] = &system_data_buffer_ptr;
             if (texture_data[2] != 0) {
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
             }
             texture_data[2] = 0;
             color_data[0] = color_data[0] & 0xffffffff00000000;
@@ -798,7 +798,7 @@ final_processing:
                         
                         data_processor = &system_data_buffer_ptr;
                         if (data_buffer != 0) {
-                            FUN_18064e900();
+                            CoreEngine_MemoryPoolManager();
                         }
                         data_buffer = 0;
                         material_data_size = material_data_size & 0xffffffff00000000;
@@ -806,7 +806,7 @@ final_processing:
                         texture_manager = &system_data_buffer_ptr;
                         
                         if (name_buffer_ptr != 0) {
-                            FUN_18064e900();
+                            CoreEngine_MemoryPoolManager();
                         }
                         name_buffer_ptr = 0;
                         render_state = render_state & 0xffffffff00000000;
@@ -1054,16 +1054,16 @@ void load_mdm_model_data(int64_t model_context, int64_t file_data)
                     
                     // 清理缓冲区
                     if (mesh_buffer != 0) {
-                        FUN_18064e900(mesh_buffer);
+                        CoreEngine_MemoryPoolManager(mesh_buffer);
                     }
                     
                     if (material_buffer != 0) {
-                        FUN_18064e900(material_buffer);
+                        CoreEngine_MemoryPoolManager(material_buffer);
                     }
                     
                     texture_manager = &system_data_buffer_ptr;
                     if (string_buffer != 0) {
-                        FUN_18064e900();
+                        CoreEngine_MemoryPoolManager();
                     }
                     string_buffer = 0;
                     buffer_flags = 0;
@@ -1125,16 +1125,16 @@ void load_mdm_model_data(int64_t model_context, int64_t file_data)
                 
                 // 清理缓冲区
                 if (material_buffer != 0) {
-                    FUN_18064e900(material_buffer);
+                    CoreEngine_MemoryPoolManager(material_buffer);
                 }
                 
                 if (mesh_buffer != 0) {
-                    FUN_18064e900(mesh_buffer);
+                    CoreEngine_MemoryPoolManager(mesh_buffer);
                 }
                 
                 texture_manager = &system_data_buffer_ptr;
                 if (string_buffer != 0) {
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 string_buffer = 0;
                 buffer_flags = 0;
@@ -1154,7 +1154,7 @@ void load_mdm_model_data(int64_t model_context, int64_t file_data)
     }
     
     // 最终清理
-    FUN_18064e900(file_handle);
+    CoreEngine_MemoryPoolManager(file_handle);
 }
 
 // 全局变量和符号警告

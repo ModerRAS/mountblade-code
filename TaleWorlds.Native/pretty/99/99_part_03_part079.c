@@ -505,7 +505,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, uint64_t param_2)
         /* 验证资源状态 */
         if (param_1[0x19] != 0) {
             // 资源状态异常，执行错误处理
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         /* 重置资源参数 */
@@ -528,7 +528,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, uint64_t param_2)
     if (*(char *)((int64_t)plVar1 + 0x11) == '\0') {
         if (((char)plVar1[2] == '\0') && (*plVar1 != 0)) {
             /* 资源完整性检查失败 */
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         /* 重置资源数据 */
@@ -538,7 +538,7 @@ uint64_t * FUN_180244f00(uint64_t *param_1, uint64_t param_2)
     }
     
     /* 执行资源管理操作 */
-    FUN_18064e900(plVar1);
+    CoreEngine_MemoryPoolManager(plVar1);
 }
 
 /**

@@ -819,7 +819,7 @@ LAB_1805c2e62:
     *(int32_t *)(param_1 + 0x285) = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_50 ^ (uint64_t)auStack_c8);
+  SystemSecurityChecker(uStack_50 ^ (uint64_t)auStack_c8);
 }
 
 

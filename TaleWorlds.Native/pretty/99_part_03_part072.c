@@ -198,7 +198,7 @@ SceneObject* CreateSceneObjectInternal(SceneManager* manager, SceneObjectType ty
                    manager->object_count * sizeof(SceneObject));
             
             // 释放旧内存
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         manager->objects = new_objects;
@@ -233,7 +233,7 @@ void DestroySceneObjectInternal(SceneManager* manager, SceneObject* object)
     
     // 清理对象资源
     if (object->user_data) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     // 从活跃列表中移除
@@ -300,7 +300,7 @@ void OptimizeSceneObjectMemory(SceneManager* manager)
         
         // 更新管理器
         if (manager->objects) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         manager->objects = new_objects;

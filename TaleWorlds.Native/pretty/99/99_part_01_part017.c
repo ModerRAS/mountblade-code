@@ -390,7 +390,7 @@ expand_queue:
                     long_ptr3 = (void*)*long_ptr4;
                 }
                 if (long_ptr3 != (void*)0x0) {
-                    ((void(*)(void*))FUN_18064e900)(long_ptr3);
+                    ((void(*)(void*))CoreEngine_MemoryPoolManager)(long_ptr3);
                 }
                 *long_ptr4 = (long long)stack_ptr2;
                 long_ptr4[1] = (long long)stack_long_ptr5;

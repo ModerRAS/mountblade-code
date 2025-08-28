@@ -545,21 +545,21 @@ void FUN_1803f94b0(int64_t param_1, int64_t param_2) {
         puStack_188 = &global_state_720_ptr;
         puStack_228 = &global_state_3456_ptr;
         if (puStack_220 != (uint64_t *)0x0) {
-            FUN_18064e900();  // 资源清理
+            CoreEngine_MemoryPoolManager();  // 资源清理
         }
         puStack_220 = (uint64_t *)0x0;
         uStack_210 = uStack_210 & 0xffffffff00000000;
         puStack_228 = &global_state_720_ptr;
         puStack_208 = &global_state_3456_ptr;
         if (puStack_200 != (uint64_t *)0x0) {
-            FUN_18064e900();  // 资源清理
+            CoreEngine_MemoryPoolManager();  // 资源清理
         }
         puStack_200 = (uint64_t *)0x0;
         uStack_1f0 = uStack_1f0 & 0xffffffff00000000;
         puStack_208 = &global_state_720_ptr;
         puStack_1e8 = &global_state_3456_ptr;
         if (puStack_1e0 != (uint64_t *)0x0) {
-            FUN_18064e900();  // 资源清理
+            CoreEngine_MemoryPoolManager();  // 资源清理
         }
         puStack_1e0 = (uint64_t *)0x0;
         uStack_1d0 = uStack_1d0 & 0xffffffff00000000;
@@ -908,7 +908,7 @@ void FUN_1803f9a40(uint64_t *param_1, uint64_t param_2, int64_t param_3, int32_t
         ppuStack_1a0 = &puStack_240;
         puStack_240 = &global_state_3456_ptr;
         if (lStack_238 != 0) {
-            FUN_18064e900();  // 错误处理
+            CoreEngine_MemoryPoolManager();  // 错误处理
         }
         lStack_238 = 0;
         uStack_228 = uStack_228 & 0xffffffff00000000;

@@ -90,7 +90,7 @@ void FUN_1803786b0(int64_t param_1,int64_t param_2,int param_3,uint64_t param_4,
           }
           if (lVar21 != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900(lVar21);
+            CoreEngine_MemoryPoolManager(lVar21);
           }
         }
         iStackX_20 = iStackX_20 + 1;
@@ -171,7 +171,7 @@ LAB_180378a14:
           puVar12[4] = *(uint64_t *)(lVar14 + 0x28 + lVar10 * 0x48);
           if (*(int64_t *)(lVar21 + 0x80) != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           *(uint64_t **)(lVar21 + 0x80) = puVar12;
           *(uint64_t **)(lVar21 + 0x88) = puVar12 + 5;
@@ -185,7 +185,7 @@ LAB_180378a14:
     FUN_18037ecf0(plVar1);
     if (piVar11 != (int *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(piVar11);
+      CoreEngine_MemoryPoolManager(piVar11);
     }
   }
   if (param_2 != 0) {
@@ -264,7 +264,7 @@ void FUN_180378b60(int64_t param_1,int64_t param_2,int32_t param_3,int8_t param_
       FUN_18015b810();
       if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar1);
+        CoreEngine_MemoryPoolManager(lVar1);
       }
     }
     aiStackX_20[0] = aiStackX_20[0] + 1;
@@ -607,7 +607,7 @@ LAB_180379446:
                     }
                     if (plVar13 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-                      FUN_18064e900(plVar13);
+                      CoreEngine_MemoryPoolManager(plVar13);
                     }
                     *(uint64_t **)(param_1 + 0x20d0) = puVar5;
                     *(int32_t ***)(param_1 + 0x20d8) = ppuStack_268;
@@ -621,7 +621,7 @@ LAB_180379446:
                   puStack_220 = (int32_t *)&system_data_buffer_ptr;
                   if (lStack_218 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                   }
                   lStack_218 = 0;
                   uStack_208 = uStack_208 & 0xffffffff00000000;

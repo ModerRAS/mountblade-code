@@ -279,7 +279,7 @@ void system_resource_allocator_and_initializer(uint64_t system_handle, int64_t r
     local_stack_ptr_ptr = &system_data_buffer_ptr;
     if (local_stack_value3 != 0) {
         // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     local_stack_value3 = 0;
     local_stack_value4 = 0;
@@ -745,7 +745,7 @@ void system_memory_allocator_and_resource_manager(int64_t system_handle)
     *(int32_t *)(local_var1 + 0x468) = 0xffffffff;
     local_stack_ptr1 = &system_data_buffer_ptr;
     // WARNING: Subroutine does not return
-    FUN_18064e900(local_var4);
+    CoreEngine_MemoryPoolManager(local_var4);
 }
 
 /**

@@ -129,30 +129,30 @@ uint64_t * FUN_18007f3b0(uint64_t *param_1,uint64_t param_2)
   *param_1 = &unknown_var_6648_ptr;
   if (param_1[0x1a] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   FUN_180085530(param_1[0x16]);
   param_1[0x16] = 0;
   if (param_1[0x17] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   param_1[0x17] = 0;
   if (param_1[0x12] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   if (param_1[0xd] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   if (param_1[8] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   if (param_1[3] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   *param_1 = &system_handler2_ptr;
   *param_1 = &system_handler1_ptr;
@@ -568,7 +568,7 @@ void FUN_18007f8f0(int64_t param_1)
           *(int *)(param_1 + 0x40) = iVar15;
           if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           *plVar1 = 0;
           if (cVar4 == '\0') {
@@ -671,7 +671,7 @@ void FUN_18007f8f0(int64_t param_1)
                 else {
                   if (lVar8 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                   }
                   do {
                   } while (*pcVar13 != '\0');
@@ -774,7 +774,7 @@ void FUN_18007f90f(int32_t param_1)
         *(int *)(unaff_RDI + 0x40) = iVar15;
         if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         *plVar1 = 0;
         if (cVar4 == '\0') {
@@ -878,7 +878,7 @@ void FUN_18007f90f(int32_t param_1)
               else {
                 if (lVar8 != 0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  CoreEngine_MemoryPoolManager();
                 }
                 do {
                 } while (*pcVar13 != '\0');

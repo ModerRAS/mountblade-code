@@ -234,7 +234,7 @@ LAB_18028834f:
           }
           
           if (resourceArray != (int64_t *)0x0) {
-            FUN_18064e900(resourceArray);
+            CoreEngine_MemoryPoolManager(resourceArray);
           }
           
           *bufferManager = (int64_t)deviceInterface;
@@ -267,7 +267,7 @@ LAB_18028843a:
         
         vertexData = &system_data_buffer_ptr;
         if (frameTime != 0) {
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         frameTime = 0;
         clearColor[0] = 0;
@@ -294,7 +294,7 @@ LAB_18028843a:
     textureCache = constantBufferData;
     
     if (constantBufferData[0] != 0) {
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     
     if (shaderCache != (int64_t *)0x0) {
@@ -385,7 +385,7 @@ LAB_18028843a:
     }
     FUN_1808fc050(stackCookie ^ (uint64_t)tempBuffer);
   }
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -825,9 +825,9 @@ int64_t RenderFrame(int64_t renderContext, int64_t frameData)
     if (viewportData == 0) {
       return frameTime;
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -926,7 +926,7 @@ uint64_t CleanupRenderResources(int64_t renderContext)
   cleanupFlags = *(byte *)(resourceSize + 0xf9);
   if (cleanupFlags != 0) {
     if (*(int64_t *)(resourceSize + 0x1d8) != 0) {
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     *(uint64_t *)(resourceSize + 0x1d8) = 0;
     LOCK();

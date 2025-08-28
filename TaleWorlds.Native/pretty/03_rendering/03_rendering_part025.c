@@ -19,7 +19,7 @@
 
 // 函数别名定义
 #define cleanup_render_resource        FUN_180285080
-#define release_render_memory          FUN_18064e900
+#define release_render_memory          CoreEngine_MemoryPoolManager
 #define cleanup_render_resources_internal FUN_18027f4d0
 #define cleanup_render_resources_extended  FUN_18027f4f0
 

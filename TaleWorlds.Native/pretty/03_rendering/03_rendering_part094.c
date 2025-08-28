@@ -558,7 +558,7 @@ void *rendering_system_memory_allocator(int64_t param_1, int64_t param_2)
   // 返回渲染内存分配结果
   puStack_58 = &global_state_3456_ptr;
   if (lStack_50 != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return &global_state_545_ptr;
 }
@@ -1009,7 +1009,7 @@ LAB_180322c61:
             }
             *plVar10 = lVar11;
             if (*puVar1 != 0) {
-              FUN_18064e900();
+              CoreEngine_MemoryPoolManager();
             }
             *puVar1 = (uint64_t)plVar10;
             *(int64_t **)(puVar7 + 0x66) = plVar10 + 1;
@@ -1063,7 +1063,7 @@ LAB_180322d80:
             }
             *piVar12 = iVar5;
             if (*puVar1 != 0) {
-              FUN_18064e900();
+              CoreEngine_MemoryPoolManager();
             }
             *puVar1 = (uint64_t)piVar12;
             *(int **)(puVar22 + 0x5e) = piVar12 + 1;

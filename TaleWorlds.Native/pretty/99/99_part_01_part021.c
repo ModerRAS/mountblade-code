@@ -277,7 +277,7 @@ void SystemResourceBatchProcessor(uint64_t param_1, char param_2, char param_3) 
             
             // 释放旧内存池
             if (plVar9 != (int64_t *)0x0) {
-                FUN_18064e900(plVar9);
+                CoreEngine_MemoryPoolManager(plVar9);
             }
             
             // 更新内存池指针
@@ -411,7 +411,7 @@ LAB_1800b5291:
                 
                 // 释放旧内存池
                 if (plVar9 != (int64_t *)0x0) {
-                    FUN_18064e900(plVar9);
+                    CoreEngine_MemoryPoolManager(plVar9);
                 }
                 
                 // 更新内存池指针
@@ -790,7 +790,7 @@ LAB_1800b5909:
                 
                 // 释放旧的内存池
                 if (puVar3 != (uint64_t *)0x0) {
-                    FUN_18064e900(puVar3);
+                    CoreEngine_MemoryPoolManager(puVar3);
                 }
                 
                 // 更新内存池指针
@@ -913,7 +913,7 @@ void SystemStatusMonitor(uint64_t param_1, int64_t *param_2, float param_3) {
         
         puStack_90 = &system_data_buffer_ptr;
         if (lStack_88 != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         lStack_88 = 0;
         uStack_78 = uStack_78 & 0xffffffff00000000;
@@ -1038,7 +1038,7 @@ LAB_1802abea0:
     
     // 释放旧的注册表
     if (plVar7 != (int64_t *)0x0) {
-        FUN_18064e900(plVar7);
+        CoreEngine_MemoryPoolManager(plVar7);
     }
     
     // 更新注册表指针
@@ -1158,7 +1158,7 @@ LAB_1800b5da5:
                 
                 // 释放旧的清理队列
                 if (plVar5 != (int64_t *)0x0) {
-                    FUN_18064e900(plVar5);
+                    CoreEngine_MemoryPoolManager(plVar5);
                 }
                 
                 // 更新清理队列指针

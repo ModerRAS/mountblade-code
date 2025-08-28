@@ -354,7 +354,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
             uStack_3a8 = uStack_3e0;
             if (puStack_3b0 != (void *)0x0) {
                 // 清理临时资源
-                FUN_18064e900(puStack_3b0);
+                CoreEngine_MemoryPoolManager(puStack_3b0);
             }
             puStack_3b0 = puStack_3e8;
             uStack_3a0 = uStack_3d8;
@@ -400,7 +400,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
         puStack_e8 = &system_state_ptr;
         puStack_3b8 = &system_data_buffer_ptr;
         if (puStack_3b0 != (void *)0x0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         puStack_3b0 = (void *)0x0;
         uStack_3a0 = uStack_3a0 & 0xffffffff00000000;
@@ -735,7 +735,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
                 plVar8 = plStack_388;
                 plVar12 = plStack_390;
                 if (lStack_238 != 0) {
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
             }
         }
@@ -747,7 +747,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
     // 清理资源
     plStack_328 = alStack_270;
     if (alStack_270[0] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     plStack_328 = alStack_2c0;
     if (alStack_2c0[0] == 0) {
@@ -764,7 +764,7 @@ void RenderingSystemAdvancedPipelineManager(int64_t param_1, int64_t *param_2, i
         }
         FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_418);
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 /**

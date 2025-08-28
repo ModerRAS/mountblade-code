@@ -154,7 +154,7 @@ LAB_1806588f2:
         // 释放旧的内存块
         if (puVar10 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(puVar10);
+          CoreEngine_MemoryPoolManager(puVar10);
         }
         puVar8 = puVar7 + lVar6;
         puStack_60 = puVar7;
@@ -192,7 +192,7 @@ LAB_1806588f2:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar7);
+  CoreEngine_MemoryPoolManager(puVar7);
 }
 
 /**

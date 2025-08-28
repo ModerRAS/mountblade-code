@@ -242,7 +242,7 @@ static void exception_context_cleaner(uint64_t context, int64_t exception_data, 
   }
   
   // 清理未完成，调用错误处理
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -260,7 +260,7 @@ static void exception_resource_manager(uint64_t context, int64_t exception_data)
   // 检查资源状态
   if (*(int64_t *)(exception_data + 0x180) != 0) {
     // 资源异常，调用错误处理
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 重置资源状态
@@ -349,7 +349,7 @@ static void memory_allocator_controller(uint64_t context, int64_t memory_data)
   // 检查内存分配器状态
   if (*(int64_t *)(memory_data + 0x160) != 0) {
     // 分配器异常，调用错误处理
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 重置分配器状态
@@ -392,7 +392,7 @@ static void memory_state_manager(uint64_t context, int64_t memory_data)
   // 检查内存状态
   if (*(int64_t *)(memory_data + 0x180) != 0) {
     // 状态异常，调用错误处理
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 重置内存状态
@@ -431,7 +431,7 @@ static void thread_sync_manager(uint64_t context, int64_t thread_data)
   // 检查线程同步状态
   if (*(int64_t *)(thread_data + 0x160) != 0) {
     // 同步异常，调用错误处理
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 重置线程同步状态

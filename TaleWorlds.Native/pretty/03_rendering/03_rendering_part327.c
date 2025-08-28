@@ -403,7 +403,7 @@ void FUN_18043c160(int32_t *param_1, uint64_t param_2, int32_t param_3, int32_t 
     puStack_30 = &global_state_3456_ptr;
     if (lStack_28 != 0) {
         // WARNING: 子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return;
 }
@@ -428,7 +428,7 @@ void FUN_18043c230(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     puStack_30 = &global_state_3456_ptr;
     if (lStack_28 != 0) {
         // WARNING: 子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return;
 }
@@ -790,7 +790,7 @@ void FUN_18043c740(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
     puStack_30 = &global_state_3456_ptr;
     if (lStack_28 != 0) {
         // WARNING: 子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return;
 }

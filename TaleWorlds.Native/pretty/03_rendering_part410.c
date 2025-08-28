@@ -165,25 +165,25 @@ void FUN_180492fe0(int64_t param_1)
   uVar14 = (int)uVar3 + 1;
   uVar13 = uVar10;
   if (uVar14 != 0) {
-    uVar13 = FUN_18062b420(system_memory_pool_ptr,(uint64_t)uVar14 * 4,CONCAT71((int7)(uVar3 >> 8),3));
+    uVar13 = CoreMemoryPoolAllocator(system_memory_pool_ptr,(uint64_t)uVar14 * 4,CONCAT71((int7)(uVar3 >> 8),3));
     uVar3 = (uint64_t)*(uint *)(param_1 + 0x88);
   }
   *(uint64_t *)(param_1 + 0x98) = uVar13;
   uVar14 = (int)uVar3 + 1;
   uVar13 = uVar10;
   if (uVar14 != 0) {
-    uVar13 = FUN_18062b420(system_memory_pool_ptr,(uint64_t)uVar14 * 4,CONCAT71((int7)(uVar3 >> 8),3));
+    uVar13 = CoreMemoryPoolAllocator(system_memory_pool_ptr,(uint64_t)uVar14 * 4,CONCAT71((int7)(uVar3 >> 8),3));
     uVar3 = (uint64_t)*(uint *)(param_1 + 0x88);
   }
   *(uint64_t *)(param_1 + 0xa0) = uVar13;
   uVar13 = uVar10;
   if ((int)uVar3 != 0) {
-    uVar13 = FUN_18062b420(system_memory_pool_ptr,uVar3 * 4,CONCAT71((int7)(uVar3 >> 8),3));
+    uVar13 = CoreMemoryPoolAllocator(system_memory_pool_ptr,uVar3 * 4,CONCAT71((int7)(uVar3 >> 8),3));
   }
   *(uint64_t *)(param_1 + 0x230) = uVar13;
   uVar3 = uVar10;
   if ((uint64_t)*(uint *)(param_1 + 0x88) != 0) {
-    uVar3 = FUN_18062b420(system_memory_pool_ptr,(uint64_t)*(uint *)(param_1 + 0x88) * 4,3);
+    uVar3 = CoreMemoryPoolAllocator(system_memory_pool_ptr,(uint64_t)*(uint *)(param_1 + 0x88) * 4,3);
   }
   *(uint64_t *)(param_1 + 0x238) = uVar3;
   uVar3 = uVar10;
@@ -205,10 +205,10 @@ void FUN_180492fe0(int64_t param_1)
   }
   *(int32_t *)(uVar3 * 4 + *(int64_t *)(param_1 + 0x98)) = *(int32_t *)(param_1 + 0xa8);
   *(int32_t *)(uVar3 * 4 + *(int64_t *)(param_1 + 0xa0)) = *(int32_t *)(param_1 + 0xac);
-  uVar4 = FUN_18062b1e0(system_memory_pool_ptr,(uint64_t)*(uint *)(param_1 + 0xa8) << 4,0x10,3);
+  uVar4 = CoreMemoryPoolReallocator(system_memory_pool_ptr,(uint64_t)*(uint *)(param_1 + 0xa8) << 4,0x10,3);
   uVar5 = system_memory_pool_ptr;
   *(uint64_t *)(param_1 + 0x1b0) = uVar4;
-  uVar5 = FUN_18062b1e0(uVar5,(uint64_t)*(uint *)(param_1 + 0xa8) << 4,0x10,3);
+  uVar5 = CoreMemoryPoolReallocator(uVar5,(uint64_t)*(uint *)(param_1 + 0xa8) << 4,0x10,3);
   *(uint64_t *)(param_1 + 0x1b8) = uVar5;
   if (*(int *)(param_1 + 0x88) == 0) {
     *(int8_t *)(param_1 + 0x60) = 0;

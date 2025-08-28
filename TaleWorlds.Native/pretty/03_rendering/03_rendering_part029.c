@@ -454,17 +454,17 @@ void create_render_object_context(uint64_t *render_object, uint64_t context_data
           string_ptr_ptr = (void **)texture_offsets;
           if (texture_offsets[0] != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           string_ptr_ptr = (void **)index_offsets;
           if (index_offsets[0] != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           string_ptr_ptr = (void **)vertex_offsets;
           if (vertex_offsets[0] != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           
           // 清理着色器缓冲区
@@ -472,7 +472,7 @@ void create_render_object_context(uint64_t *render_object, uint64_t context_data
           shader_buffer_ptr = &RENDER_DATA_PTR_2;
           if (shader_offset != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           shader_offset = 0;
           shader_buffer_size = 0;
@@ -483,17 +483,17 @@ void create_render_object_context(uint64_t *render_object, uint64_t context_data
           string_ptr_ptr = (void **)material_offsets;
           if (material_offsets[0] != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           string_ptr_ptr = (void **)normal_offsets;
           if (normal_offsets[0] != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           string_ptr_ptr = (void **)normal_offsets_2;
           if (normal_offsets_2[0] != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           
           // 清理法线数据
@@ -501,7 +501,7 @@ void create_render_object_context(uint64_t *render_object, uint64_t context_data
           normal_buffer_ptr = &RENDER_DATA_PTR_2;
           if (normal_offset != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           normal_offset = 0;
           normal_buffer_size = 0;
@@ -559,7 +559,7 @@ LAB_180281d06:
   name_buffer_ptr = &RENDER_DATA_PTR_2;
   if (texture_buffer_ptr != (void *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   texture_buffer_ptr = (void *)0x0;
   texture_buffer_size = 0;
@@ -580,22 +580,22 @@ void cleanup_render_object_memory(uint64_t *render_object)
   // 检查并清理各种资源指针
   if (render_object[0x2e] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   if (render_object[0x2a] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   if (render_object[0x26] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 重置主要指针
   render_object[0x22] = &RENDER_DATA_PTR_2;
   if (render_object[0x23] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   render_object[0x23] = 0;
   *(int32_t *)(render_object + 0x25) = 0;

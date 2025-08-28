@@ -116,7 +116,7 @@ void FUN_1802786d0(int64_t param_1,uint64_t param_2,uint64_t param_3,int8_t para
     (**(code **)(*plVar1 + 0x38))(plVar1,0,param_3,param_4,0xfffffffffffffffe);
   }
   *(int32_t *)(param_1 + 0x248) = 0xffffffff;
-  plVar2 = (int64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x30,8,0x1e);
+  plVar2 = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,0x1e);
   *plVar2 = (int64_t)&system_handler1_ptr;
   *plVar2 = (int64_t)&system_handler2_ptr;
   *(int32_t *)(plVar2 + 1) = 0;
@@ -261,7 +261,7 @@ LAB_18027916b:
              (puVar10 = &unknown_var_5412_ptr, (pcVar14[1] + 0xa8U & 0xdf) != 0)) {
             puVar10 = &unknown_var_2208_ptr;
           }
-          FUN_18010cbc0(pcVar14,puVar10,&uStack_334);
+          AdvancedSystemOptimizer(pcVar14,puVar10,&uStack_334);
           puVar4 = (int32_t *)FUN_18039ffc0(param_1);
           *puVar4 = 0;
           puVar4[2] = uStack_334;
@@ -437,7 +437,7 @@ LAB_18027916b:
         }
         puStack_228 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_e8 ^ (uint64_t)auStack_358);
+        SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_358);
       }
       puStack_188 = &unknown_var_3432_ptr;
       puStack_180 = auStack_170;
@@ -546,7 +546,7 @@ LAB_180278d28:
               if (puVar12[1] != 0) {
                 lVar8 = puVar12[1];
               }
-              FUN_18010cbc0(lVar8,&unknown_var_2208_ptr,&uStack_338);
+              AdvancedSystemOptimizer(lVar8,&unknown_var_2208_ptr,&uStack_338);
               plVar2 = *(int64_t **)(param_1 + 0x50);
               LOCK();
               plVar6 = plVar2 + 1;
@@ -590,7 +590,7 @@ LAB_180278e70:
               if (puVar12[1] != 0) {
                 lVar8 = puVar12[1];
               }
-              FUN_18010cbc0(lVar8,&unknown_var_2208_ptr,&uStack_338);
+              AdvancedSystemOptimizer(lVar8,&unknown_var_2208_ptr,&uStack_338);
               plVar2 = *(int64_t **)(param_1 + 0x50);
               LOCK();
               plVar6 = plVar2 + 1;

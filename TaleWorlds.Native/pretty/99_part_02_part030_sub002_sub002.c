@@ -889,11 +889,11 @@ void FUN_1801a0860(uint64_t param_1,uint64_t *param_2,int64_t *param_3)
         fVar24 = pfVar2[3];
         if (lStack_1c8 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         if (lStack_228 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         uStack_428 = uStack_428 + 1;
         uVar21 = (uint64_t)uStack_428;
@@ -993,7 +993,7 @@ LAB_1801a2330:
         puVar7[1] = CONCAT44(0x7f7fffff,fVar12);
         if (*param_2 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         *param_2 = (uint64_t)puVar7;
         param_2[1] = (uint64_t)(puVar7 + 2);

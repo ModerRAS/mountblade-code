@@ -276,7 +276,7 @@ void FUN_180348e60(uint64_t param_1,int64_t param_2,int64_t *param_3,uint64_t *p
     }
     if (plStack_d0 != (int64_t *)0x0) {
       // 释放批处理内存
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   else {
@@ -353,10 +353,10 @@ void FUN_1803490e0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   uStack_70 = 0;
   
   // 创建调试信息字符串 "_usemesh_begin_design"
-  puVar4 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x11,0x13,param_4,uVar11);
+  puVar4 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x11,0x13,param_4,uVar11);
   *(int8_t *)puVar4 = 0;
   puStack_78 = puVar4;
-  uVar3 = FUN_18064e990(puVar4);
+  uVar3 = CoreMemoryPoolCleaner(puVar4);
   uStack_68 = CONCAT44(uStack_68._4_4_,uVar3);
   *puVar4 = 0x5f657375;        // "_use"
   puVar4[1] = 0x6873656d;     // "mesh"
@@ -425,14 +425,14 @@ void FUN_1803490e0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       
       // 清理临时内存
       if (lStack_60 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
     }
   }
   
   // 清理调试信息
   puStack_80 = &system_data_buffer_ptr;
-  FUN_18064e900(puVar4);
+  CoreEngine_MemoryPoolManager(puVar4);
 }
 
 
@@ -617,7 +617,7 @@ void FUN_180349330(int64_t param_1)
   // 第三阶段：清理临时资源
   plVar6 = plStack_120;
   if (lStack_148 != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   lStack_148 = 0;
   for (plVar8 = plStack_120; plVar8 != plVar12; plVar8 = plVar8 + 1) {
@@ -626,9 +626,9 @@ void FUN_180349330(int64_t param_1)
     }
   }
   if (plVar6 != (int64_t *)0x0) {
-    FUN_18064e900(plVar6);
+    CoreEngine_MemoryPoolManager(plVar6);
   }
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_188);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_188);
 }
 
 
@@ -691,10 +691,10 @@ void FUN_180349780(uint64_t *param_1)
   uStack_80 = 0;
   
   // 创建材质名称 "Material"
-  puVar2 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
+  puVar2 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar2 = 0;
   puStack_88 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
+  uVar1 = CoreMemoryPoolCleaner(puVar2);
   uStack_78 = CONCAT44(uStack_78._4_4_,uVar1);
   *puVar2 = 0x6c6169726574614d;  // "Material"
   *(int8_t *)(puVar2 + 1) = 0;
@@ -703,7 +703,7 @@ void FUN_180349780(uint64_t *param_1)
   // 应用材质参数
   FUN_1803460a0(param_1,&puStack_90,param_1 + 0xe,10,uVar3);
   puStack_90 = &system_data_buffer_ptr;
-  FUN_18064e900(puVar2);
+  CoreEngine_MemoryPoolManager(puVar2);
 }
 
 
@@ -929,7 +929,7 @@ void FUN_180349a50(uint64_t param_1)
   appuStack_1c0[0] = apuStack_1a8;
   apuStack_1a8[0] = &system_state_ptr;
   puStack_88 = &system_state_ptr;
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_1e8);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_1e8);
 }
 
 
@@ -1074,7 +1074,7 @@ void FUN_180349ce0(uint64_t *param_1,int64_t param_2)
   strcpy_s(auStack_50,0x20,&unknown_var_6408_ptr);
   FUN_1803460a0(param_1,&puStack_68,param_1 + 0xf,5);
   puStack_68 = &system_state_ptr;
-  FUN_1808fc050(uStack_30 ^ (uint64_t)auStack_168);
+  SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_168);
 }
 
 

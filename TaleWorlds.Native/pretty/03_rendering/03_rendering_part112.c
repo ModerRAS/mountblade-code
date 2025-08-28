@@ -105,7 +105,7 @@ void RenderingSystem_DataTransformer(int64_t param_1, int64_t param_2, int64_t p
     
     // 清理资源
     if (((char)uStack_58 == '\0') && (lVar8 != 0)) {
-        FUN_18064e900(lVar8);
+        CoreEngine_MemoryPoolManager(lVar8);
     }
     return;
 }
@@ -149,7 +149,7 @@ void RenderingSystem_MatrixProcessor(int64_t param_1, int64_t param_2, uint64_t 
     do {
         if (lVar10 == 0) {
             if (((char)uStack_58 == '\0') && (lVar7 != 0)) {
-                FUN_18064e900(lVar7);
+                CoreEngine_MemoryPoolManager(lVar7);
             }
             return;
         }
@@ -277,7 +277,7 @@ void RenderingSystem_ResourceManager(int64_t param_1, int64_t param_2, int64_t p
     
     // 清理资源
     if (((char)uStack_58 == '\0') && (lVar9 != 0)) {
-        FUN_18064e900(lVar9);
+        CoreEngine_MemoryPoolManager(lVar9);
     }
     return;
 }
@@ -322,7 +322,7 @@ void RenderingSystem_MemoryProcessor(int64_t param_1, int64_t param_2, uint64_t 
     do {
         if (lVar10 == 0) {
             if (((char)uStack_50 == '\0') && (lVar8 != 0)) {
-                FUN_18064e900(lVar8);
+                CoreEngine_MemoryPoolManager(lVar8);
             }
             return;
         }
@@ -467,7 +467,7 @@ void RenderingSystem_DataSerializer(int64_t param_1, uint param_2)
     
     // 清理序列化资源
     if (puStack_88 != (uint *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     // 解锁同步
@@ -486,5 +486,5 @@ void RenderingSystem_DataSerializer(int64_t param_1, uint param_2)
         (**(code **)(*plVar6 + 0x38))();
         return;
     }
-    FUN_18064e900(puVar7);
+    CoreEngine_MemoryPoolManager(puVar7);
 }

@@ -100,7 +100,7 @@ void RenderingSystemAdvancedResourceCleaner(void)
         (**(code **)*puVar1)(puVar1,0);
         if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(lVar3);
+          CoreEngine_MemoryPoolManager(lVar3);
         }
       }
       *(uint64_t *)(lVar2 + 0x18 + uVar4) = 0;
@@ -119,10 +119,10 @@ void RenderingSystemAdvancedResourceCleaner(void)
       if (lVar3 != 0) {
         if (*(int64_t *)(lVar3 + 0x18) == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(lVar3);
+          CoreEngine_MemoryPoolManager(lVar3);
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       *(uint64_t *)(lVar2 + uVar4 * 8) = 0;
       uVar5 = (int)uVar4 + 1;
@@ -168,7 +168,7 @@ void RenderingSystemMemoryManager(void)
       (**(code **)*puVar1)(puVar1,0);
       if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar3);
+        CoreEngine_MemoryPoolManager(lVar3);
       }
     }
     *(uint64_t *)(unaff_RSI + 0x18 + uVar5) = unaff_R15;
@@ -186,10 +186,10 @@ void RenderingSystemMemoryManager(void)
       if (lVar4 != 0) {
         if (*(int64_t *)(lVar4 + 0x18) == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(lVar4);
+          CoreEngine_MemoryPoolManager(lVar4);
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       *(uint64_t *)(lVar3 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
@@ -232,10 +232,10 @@ void RenderingSystemObjectLifecycleManager(void)
         plStack0000000000000040 = (int64_t *)(lVar1 + 0x18);
         if (*plStack0000000000000040 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(lVar1);
+          CoreEngine_MemoryPoolManager(lVar1);
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       *(uint64_t *)(lVar2 + uVar4 * 8) = 0;
       uVar4 = uVar4 + 1;
@@ -288,5 +288,5 @@ void RenderingSystemResourceRecycler(void)
   FUN_1801614d0(uVar2,&puStack_288);
   puStack_288 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar3);
+  CoreEngine_MemoryPoolManager(puVar3);
 }

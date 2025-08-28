@@ -709,7 +709,7 @@ void FUN_180565d50(int64_t param_1,int64_t *param_2,int64_t param_3)
   if (uStack_c8._1_1_ == '\0') {
     if (((char)uStack_c8 == '\0') && (alStack_d8[0] != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     alStack_d8[0] = 0;
     uStack_c8 = 0;
@@ -932,7 +932,7 @@ void FUN_1805661a0(int64_t param_1,int64_t *param_2)
   if (uStack_c8._1_1_ == '\0') {
     if (((char)uStack_c8 == '\0') && (lStack_d8 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     lStack_d8 = 0;
     uStack_c8 = 0;

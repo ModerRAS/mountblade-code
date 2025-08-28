@@ -134,7 +134,7 @@ memory_allocation_complete:
     render_context[2] = batch_size * RENDER_OBJECT_POOL_SIZE + allocated_memory;
     return;
   }
-  FUN_18064e900(context_end);
+  CoreEngine_MemoryPoolManager(context_end);
 }
 
 
@@ -296,7 +296,7 @@ memory_allocation_complete:
     *(uint64_t **)(temp_var + 0x28) = temp_ptr2 + loop_var;
     return controller_ptr;
   }
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 
@@ -368,13 +368,13 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
     data_ptr = temp_ptr[6];
     if (data_ptr != 0) {
       FUN_180057830(data_ptr);
-      FUN_18064e900(data_ptr);
+      CoreEngine_MemoryPoolManager(data_ptr);
     }
   }
   temp_ptr = (uint64_t *)controller_ptr[0x39];
   if (temp_ptr != (uint64_t *)0x0) {
     FUN_18004b790(object_ptr, *temp_ptr);
-    FUN_18064e900(temp_ptr);
+    CoreEngine_MemoryPoolManager(temp_ptr);
   }
   *object_ptr = object_ptr;
   controller_ptr[0x38] = object_ptr;
@@ -390,9 +390,9 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
       if (data_ptr != 0) {
         *(int64_t *)(data_ptr + 0x10) = *(int64_t *)(data_ptr + 8);
         if (*(int64_t *)(data_ptr + 8) != 0) {
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
-        FUN_18064e900(data_ptr);
+        CoreEngine_MemoryPoolManager(data_ptr);
       }
       loop_counter = (int)index + 1;
       index = (uint64_t)loop_counter;
@@ -403,9 +403,9 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
   }
   if (temp_ptr2 != (int64_t *)0x0) {
     if (*temp_ptr2 != 0) {
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
-    FUN_18064e900(temp_ptr2);
+    CoreEngine_MemoryPoolManager(temp_ptr2);
   }
   controller_ptr[0x22] = 0;
   FUN_18004b730(object_ptr);
@@ -416,7 +416,7 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
   FUN_1808fc8a8(controller_ptr + 0x26, 0x20, 2, FUN_18004c030);
   controller_ptr[0x1e] = &system_data_buffer_ptr;
   if (controller_ptr[0x1f] != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   controller_ptr[0x1f] = 0;
   *(int32_t *)(controller_ptr + 0x21) = 0;
@@ -424,14 +424,14 @@ void rendering_system_cleanup_render_object_controller(uint64_t *controller_ptr)
   *controller_ptr = &unknown_var_9896_ptr;
   controller_ptr[0x15] = &system_data_buffer_ptr;
   if (controller_ptr[0x16] != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   controller_ptr[0x16] = 0;
   *(int32_t *)(controller_ptr + 0x18) = 0;
   controller_ptr[0x15] = &system_state_ptr;
   controller_ptr[0x11] = &system_data_buffer_ptr;
   if (controller_ptr[0x12] != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   controller_ptr[0x12] = 0;
   *(int32_t *)(controller_ptr + 0x14) = 0;
@@ -777,7 +777,7 @@ LAB_18030d7a4:
   }
   *new_entry = (int64_t)temp_ptr;
   if (*array_ptr != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   *array_ptr = (uint64_t)new_entry;
   array_ptr[1] = (uint64_t)(new_entry + 1);
@@ -826,9 +826,9 @@ LAB_18030d811:
     if (stack_data_70[0] == 0) {
       return;
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 
@@ -941,7 +941,7 @@ void rendering_system_render_objects_with_parameters(uint64_t render_context, in
     stack_data_50 = 0;
     FUN_18022d470(*render_data, &stack_data_98);
     if (stack_data_70 != 0) {
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
   }
   return;

@@ -812,7 +812,7 @@ void FUN_1803415f0(uint64_t param_1, int64_t param_2, int64_t param_3, uint64_t 
 // 内存管理函数别名
 #define FUN_18062b420              MemoryAllocator
 #define FUN_18064e990              MemoryInitializer
-#define FUN_18064e900              MemoryDeallocator
+#define CoreEngine_MemoryPoolManager              MemoryDeallocator
 
 // 缓冲区管理函数别名
 #define FUN_1806279c0              BufferAllocator

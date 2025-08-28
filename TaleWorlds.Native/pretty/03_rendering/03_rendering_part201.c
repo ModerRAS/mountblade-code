@@ -121,7 +121,7 @@ void rendering_data_processor(int64_t param_1, uint64_t param_2, int64_t param_3
 #define rendering_event_handler          FUN_18024fb60
 
 /** 渲染清理器 */
-#define rendering_cleaner                FUN_18064e900
+#define rendering_cleaner                CoreEngine_MemoryPoolManager
 
 // ===========================================
 // 核心函数实现

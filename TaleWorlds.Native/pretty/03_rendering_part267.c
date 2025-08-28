@@ -185,7 +185,7 @@ LAB_18041637c:
                     puVar11[4] = uStack_38;
                     if (*(int64_t *)(param_1 + 200) != 0) {
                     // WARNING: Subroutine does not return
-                      FUN_18064e900();
+                      CoreEngine_MemoryPoolManager();
                     }
                     *(int32_t **)(param_1 + 200) = puVar11;
                     *(int32_t **)(param_1 + 0xca) = puVar11 + 5;
@@ -385,7 +385,7 @@ LAB_180416750:
                       *puVar12 = CONCAT44(uStack_54,uStack_58);
                       if (*(int64_t *)(param_1 + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
-                        FUN_18064e900();
+                        CoreEngine_MemoryPoolManager();
                       }
                       *(uint64_t **)(param_1 + 0xd0) = puVar12;
                       *(uint64_t **)(param_1 + 0xd4) = puVar12 + lVar16;

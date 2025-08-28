@@ -896,7 +896,7 @@ void destroy_memory_allocator(int64_t allocator_ptr)
   }
   
   // 释放分配器内存
-  FUN_18064e900(allocator_ptr + -ARRAY_HEADER_SIZE);
+  CoreEngine_MemoryPoolManager(allocator_ptr + -ARRAY_HEADER_SIZE);
 }
 
 /**
@@ -935,7 +935,7 @@ void destroy_memory_allocator_alt(int64_t allocator_ptr)
   }
   
   // 释放分配器内存
-  FUN_18064e900(allocator_ptr + -ARRAY_HEADER_SIZE);
+  CoreEngine_MemoryPoolManager(allocator_ptr + -ARRAY_HEADER_SIZE);
 }
 
 /**
@@ -971,7 +971,7 @@ void cleanup_memory_block_array(void)
   } while (array_size != 0);
   
   // 释放数组内存
-  FUN_18064e900(array_base + -ARRAY_HEADER_SIZE);
+  CoreEngine_MemoryPoolManager(array_base + -ARRAY_HEADER_SIZE);
 }
 
 // ============================================================================

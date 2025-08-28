@@ -52,7 +52,7 @@ void cleanup_render_object_states(void)
       if (*(char *)(render_obj_ptr + 0xf9) != '\0') {
         if (*(int64_t *)(render_obj_ptr + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         *(uint64_t *)(render_obj_ptr + 0x1d8) = 0;
         LOCK();
@@ -147,7 +147,7 @@ void process_render_object_destruction(int64_t render_context_ptr)
         *(int16_t *)(destructor_ptr + 0x18) = 0;
         if (destructor_ptr[0x17] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         destructor_ptr[0x17] = 0;
         FUN_180085530(destructor_ptr[0x16]);
@@ -351,7 +351,7 @@ LAB_180277c31:
           }
           if (target_end != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900(target_end);
+            CoreEngine_MemoryPoolManager(target_end);
           }
           filtered_ptr = object_ptr + list_size * 2;
           filtered_count = current_mask;
@@ -386,7 +386,7 @@ LAB_180277c31:
   }
   if (source_start != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(source_start);
+    CoreEngine_MemoryPoolManager(source_start);
   }
   return;
 }
@@ -443,7 +443,7 @@ LAB_180277eb2:
           *new_array_ptr = object_data;
           if (*output_array != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           *output_array = (uint64_t)new_array_ptr;
           output_array[2] = (uint64_t)(new_array_ptr + array_size);
@@ -509,7 +509,7 @@ LAB_180277eb2:
         *new_array_ptr = object_data;
         if (*output_array != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         *output_array = (uint64_t)new_array_ptr;
         output_array[2] = (uint64_t)(new_array_ptr + array_size);
@@ -599,7 +599,7 @@ LAB_180277fef:
           *array_ptr = object_ptr;
           if (*object_array != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           object_array[2] = (uint64_t)(array_ptr + list_size);
           *object_array = (uint64_t)array_ptr;
@@ -712,7 +712,7 @@ LAB_1802781a7:
           result_ptr[15] = nz;
           if (*matrix_array != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           *matrix_array = (uint64_t)result_ptr;
           matrix_array[2] = (uint64_t)(result_ptr + object_ptr * 0x10);
@@ -827,7 +827,7 @@ LAB_180277fef:
         *array_ptr = obj_ptr;
         if (*object_array != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         object_array[2] = (uint64_t)(array_ptr + list_size);
         *object_array = (uint64_t)array_ptr;
@@ -941,7 +941,7 @@ LAB_1802781a7:
         result_ptr[15] = nw;
         if (*matrix_array != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         *matrix_array = (uint64_t)result_ptr;
         matrix_array[2] = (uint64_t)(result_ptr + obj_ptr * 0x10);

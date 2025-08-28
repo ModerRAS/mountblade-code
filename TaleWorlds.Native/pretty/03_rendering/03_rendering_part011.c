@@ -333,7 +333,7 @@ LAB_180273eb0:
         }
         if (puVar18 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(puVar18);
+          CoreEngine_MemoryPoolManager(puVar18);
         }
         *(uint64_t **)(param_1 + 0x120) = puVar14;
         *(uint64_t **)(param_1 + 0x128) = puVar17 + 0xb;

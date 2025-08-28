@@ -198,7 +198,7 @@ void RenderingSystemDataCollector(int64_t render_context, int64_t *data_buffer, 
                 
                 // 更新缓冲区指针
                 if (*data_buffer != 0) {
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 *data_buffer = (int64_t)temp_buffer;
                 data_buffer[1] = (int64_t)(temp_buffer + 1);
@@ -214,7 +214,7 @@ void RenderingSystemDataCollector(int64_t render_context, int64_t *data_buffer, 
     data_container = container_current;
     if ((int64_t *****)container_current != (int64_t *****)0x0) {
         FUN_18004b790(&container_head, *container_current);
-        FUN_18064e900(data_container);
+        CoreEngine_MemoryPoolManager(data_container);
     }
     
     return;
@@ -341,7 +341,7 @@ void RenderingSystemAdvancedDataProcessor(int64_t render_context, int64_t *data_
                 
                 // 更新缓冲区指针
                 if (*data_buffer != 0) {
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 *data_buffer = (int64_t)temp_buffer;
                 data_buffer[1] = (int64_t)(temp_buffer + 1);
@@ -366,7 +366,7 @@ void RenderingSystemAdvancedDataProcessor(int64_t render_context, int64_t *data_
     }
     
     FUN_18004b790(&processor_head, *processor_current);
-    FUN_18064e900(data_handler);
+    CoreEngine_MemoryPoolManager(data_handler);
 }
 
 /**
@@ -739,7 +739,7 @@ void RenderingSystemFileWriter(int64_t render_context, uint64_t file_handle)
     // 设置文件栈信息
     file_stack = &system_data_buffer_ptr;
     if (file_offset != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     file_offset = 0;
     write_count = 0;
@@ -764,7 +764,7 @@ void RenderingSystemFileWriter(int64_t render_context, uint64_t file_handle)
     fwrite(format_data, 1, 1, file_header[1]);
     
     // 清理临时缓冲区
-    FUN_18064e900(temp_buffer);
+    CoreEngine_MemoryPoolManager(temp_buffer);
 }
 
 /**
@@ -819,7 +819,7 @@ void RenderingSystemResourceLoader(int64_t render_context, int64_t file_handle)
     resource_buffer = *(uint64_t **)(render_context + 0x968);
     if (resource_buffer != (uint64_t *)0x0) {
         FUN_18004b790(mutex_handle, *resource_buffer);
-        FUN_18064e900(resource_buffer);
+        CoreEngine_MemoryPoolManager(resource_buffer);
     }
     *(int64_t *)mutex_handle = mutex_handle;
     *(int64_t *)(render_context + 0x960) = mutex_handle;
@@ -905,7 +905,7 @@ void RenderingSystemResourceLoader(int64_t render_context, int64_t file_handle)
             SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
             UNLOCK();
         }
-        FUN_18064e900(resource_buffer);
+        CoreEngine_MemoryPoolManager(resource_buffer);
     }
     
     // 注册资源缓冲区
@@ -953,7 +953,7 @@ void RenderingSystemResourceLoader(int64_t render_context, int64_t file_handle)
                 // 写入新数据
                 *temp_buffer = resource_offset;
                 if (*resource_pointer != 0) {
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 *resource_pointer = (uint64_t)temp_buffer;
                 *(uint64_t **)(render_context + 0x268) = temp_buffer + 1;
@@ -1038,7 +1038,7 @@ void RenderingSystemResourceLoader(int64_t render_context, int64_t file_handle)
     }
     
     // 清理资源缓冲区
-    FUN_18064e900(resource_buffer);
+    CoreEngine_MemoryPoolManager(resource_buffer);
 }
 
 /**
@@ -1095,7 +1095,7 @@ void RenderingSystemDataSerializer(int64_t render_context, int64_t file_handle, 
     
     // 清理缓冲区
     if (buffer_start != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     // 处理资源数据
@@ -1117,7 +1117,7 @@ void RenderingSystemDataSerializer(int64_t render_context, int64_t file_handle, 
     
     // 清理资源缓冲区
     if (resource_buffer != (uint64_t *)0x0) {
-        FUN_18064e900(resource_buffer);
+        CoreEngine_MemoryPoolManager(resource_buffer);
     }
     
     // 处理高级数据
@@ -1208,12 +1208,12 @@ void RenderingSystemDataSerializer(int64_t render_context, int64_t file_handle, 
     
     // 清理资源缓冲区
     if (resource_buffer != (uint64_t *)0x0) {
-        FUN_18064e900(resource_buffer);
+        CoreEngine_MemoryPoolManager(resource_buffer);
     }
     
     // 清理压缩缓冲区
     if (((char)buffer_info == '\0') && (buffer_start != 0)) {
-        FUN_18064e900(buffer_start);
+        CoreEngine_MemoryPoolManager(buffer_start);
     }
     
     // 写入元数据

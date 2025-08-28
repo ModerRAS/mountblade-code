@@ -88,7 +88,7 @@ extern uint64_t global_var_720;
 extern void FUN_18023a940(uint64_t param_1);
 extern void FUN_1806279c0(void *param_1);
 extern void FUN_1800b2a30(void);
-extern void FUN_18064e900(uint64_t param_1);
+extern void CoreEngine_MemoryPoolManager(uint64_t param_1);
 extern void FUN_1808fc050(uint64_t param_1);
 extern void FUN_1802a8080(uint64_t param_1, int64_t param_2, int param_3);
 extern uint64_t FUN_18032ba60(uint64_t param_1, int32_t param_2, int32_t param_3);

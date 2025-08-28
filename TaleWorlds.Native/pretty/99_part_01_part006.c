@@ -377,7 +377,7 @@ void AdvancedDataProcessor(int64_t param_1, int param_2, int param_3, char param
                   (*(int64_t **)(param_1 + 0x1d78), stackPointer1, 0, &stackUlong1);
         
         // 分配资源
-        tempUlong = FUN_18062b1e0(system_memory_pool_ptr, 0x3b0, 0x10, 3);
+        tempUlong = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x3b0, 0x10, 3);
         dataPointer = (int64_t *)FUN_18023a2e0(tempUlong, 4);
         
         if (dataPointer != (int64_t *)0x0) {
@@ -410,7 +410,7 @@ void AdvancedDataProcessor(int64_t param_1, int param_2, int param_3, char param
         *(int64_t *)(*(int64_t *)(param_1 + 0x121e0) + 0x168) = *(int64_t *)(param_1 + 0x121e0);
         
         // 分配和初始化资源块
-        resourcePointer = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 3);
+        resourcePointer = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 3);
         tempUlong1 = resourcePointer;
         
         // 清零资源块
@@ -487,7 +487,7 @@ void AdvancedDataProcessor(int64_t param_1, int param_2, int param_3, char param
     }
     
     // 清理栈并返回
-    FUN_1808fc050(stackUlong6 ^ (uint64_t)stackBuffer1);
+    SystemSecurityChecker(stackUlong6 ^ (uint64_t)stackBuffer1);
 }
 
 /**
@@ -805,7 +805,7 @@ void ComplexAlgorithmHandler(int64_t param_1, uint param_2, int param_3, int par
     
 LAB_1800a4380:
     // 清理栈并返回
-    FUN_1808fc050(stackUlong4 ^ (uint64_t)stackBuffer1);
+    SystemSecurityChecker(stackUlong4 ^ (uint64_t)stackBuffer1);
 }
 
 /**
@@ -1044,7 +1044,7 @@ void ResourceDataManager(void **param_1, uint *param_2, int64_t param_3)
         resourcePtr1 = (uint64_t *)0x0;
     }
     else {
-        resourcePtr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (uint64_t)tempUint6 << 4, 5);
+        resourcePtr1 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, (uint64_t)tempUint6 << 4, 5);
         tempInt1 = 0;
         resourcePtr2 = resourcePtr1;
         
@@ -1171,7 +1171,7 @@ LAB_1800a46f5:
         }
         
         if (tempUint3 * tempUshort != 0) {
-            tempUlong2 = FUN_18062b420(system_memory_pool_ptr, (uint64_t)(tempUint3 * tempUshort) * 8,
+            tempUlong2 = CoreMemoryPoolAllocator(system_memory_pool_ptr, (uint64_t)(tempUint3 * tempUshort) * 8,
                                      CONCAT71((uint7)(byte)(tempUshort >> 8), 3));
             tempUint7 = (uint)*(byte *)(param_3 + 0x335);
             tempUint6 = *(uint *)(param_3 + 0x35c);
@@ -1260,7 +1260,7 @@ LAB_1800a46f5:
             tempUlong2 = 0;
         }
         else {
-            tempUlong2 = FUN_18062b420(system_memory_pool_ptr, (uint64_t)(tempUint3 * tempUshort) * 8,
+            tempUlong2 = CoreMemoryPoolAllocator(system_memory_pool_ptr, (uint64_t)(tempUint3 * tempUshort) * 8,
                                      CONCAT71((uint7)(byte)(tempUshort >> 8), 3));
             tempUint7 = (uint)*(byte *)(param_3 + 0x335);
             tempUint6 = *(uint *)(param_3 + 0x35c);
@@ -1372,7 +1372,7 @@ LAB_1800a46f5:
     tempPtrPtr1 = &stackPtr3;
     
     // 清理栈并返回
-    FUN_1808fc050(stackUlong9 ^ (uint64_t)stackBuffer1);
+    SystemSecurityChecker(stackUlong9 ^ (uint64_t)stackBuffer1);
 }
 
 //==============================================================================

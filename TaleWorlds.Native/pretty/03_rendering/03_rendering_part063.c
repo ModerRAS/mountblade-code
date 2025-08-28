@@ -537,7 +537,7 @@ void rendering_system_memory_cleaner(int64_t memory_manager_ptr)
         // 检查块状态
         if (*(char *)(memory_block_ptr + 0xa1) != '\0') {
           if (*(int64_t *)(memory_block_ptr + 0xa8) != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           *(uint64_t *)(memory_block_ptr + 0xa8) = 0;
         }
@@ -556,7 +556,7 @@ void rendering_system_memory_cleaner(int64_t memory_manager_ptr)
     
     // 释放主内存块
     if (memory_block_ptr != 0) {
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     
     *(uint64_t *)(memory_manager_ptr + 0x18) = 0;
@@ -1112,7 +1112,7 @@ LAB_1803007a9:
     
     *new_array_ptr = mutex_context_ptr;
     if (*(int64_t *)(tls_data_ptr + 0x29f0) != 0) {
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     
     *(int64_t **)(tls_data_ptr + 0x29f0) = new_array_ptr;

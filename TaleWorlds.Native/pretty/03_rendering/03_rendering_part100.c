@@ -59,7 +59,7 @@ void rendering_system_resource_processor(int64_t render_context, int64_t *resour
     stack_pointer = &system_data_buffer_ptr;
     if (stack_value != 0) {
       // 严重错误：系统无法恢复
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     
     stack_value = 0;
@@ -311,12 +311,12 @@ uint64_t rendering_system_advanced_data_sorter(int64_t render_context)
   
   if (sort_array3 != (uint *)0x0) {
     // 内存错误：无法释放资源
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   if (sort_array1 != (uint *)0x0) {
     // 内存错误：无法释放资源
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 重置并准备下一轮处理
@@ -468,12 +468,12 @@ uint64_t rendering_system_advanced_data_sorter(int64_t render_context)
   
   if (data_ptr2 != (uint *)0x0) {
     // 资源清理错误
-    FUN_18064e900(data_ptr2);
+    CoreEngine_MemoryPoolManager(data_ptr2);
   }
   
   if (data_ptr1 != (uint *)0x0) {
     // 资源清理错误
-    FUN_18064e900(data_ptr1);
+    CoreEngine_MemoryPoolManager(data_ptr1);
   }
   
   // 重置所有指针和状态
@@ -490,12 +490,12 @@ uint64_t rendering_system_advanced_data_sorter(int64_t render_context)
   
   if (stack_value != 0) {
     // 系统错误：无法恢复
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   if (sort_array3 != (uint *)0x0) {
     // 内存错误：无法释放资源
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   return result & 0xffffffffffffff00;

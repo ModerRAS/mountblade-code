@@ -577,7 +577,7 @@ void RenderingSystem_CoordinateTransformer(int64_t param_1, int64_t param_2)
                     transform_param_1 = 5.60519e-45;
                     render_system_config_config = FUN_180571e20(&system_memory_60c0, &transform_output_1);
                     transform_output_1 = &system_data_buffer_ptr;
-                    FUN_18064e900(pixel_data);
+                    CoreEngine_MemoryPoolManager(pixel_data);
                 }
                 FUN_180508510(param_1, render_system_config_config, 2, 0);
             }
@@ -751,7 +751,7 @@ void RenderingSystem_CoordinateTransformer(int64_t param_1, int64_t param_2)
                     transform_param_1 = 5.60519e-45;
                     render_system_config_config = FUN_180571e20(&system_memory_60c0, &transform_output_1);
                     transform_output_1 = &system_data_buffer_ptr;
-                    FUN_18064e900(pixel_data);
+                    CoreEngine_MemoryPoolManager(pixel_data);
                 }
                 FUN_180508510(param_1, render_system_config_config, 2);
             }

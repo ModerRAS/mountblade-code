@@ -2196,7 +2196,7 @@ int32_t FUN_18076dc00(short *param_1,int64_t param_2,short *param_3)
   lVar3 = *(int64_t *)(param_1 + 4);
   if ((lVar3 != 0) && ((int)*param_1 * (int)param_1[1] != (int)param_3[1] * (int)*param_3)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(param_2 + 0x10bd0,lVar3,&system_buffer_ptr,0,1);
+    SystemInitializer(param_2 + 0x10bd0,lVar3,&system_buffer_ptr,0,1);
   }
   if (lVar3 == 0) {
     if (*(int64_t *)(param_3 + 4) == 0) {

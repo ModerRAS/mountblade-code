@@ -431,7 +431,7 @@ void process_render_objects_batch(int64_t****** render_context, int64_t******* m
     }
     
     // 释放材质缓存内存
-    FUN_18064e900(material_cache);
+    CoreEngine_MemoryPoolManager(material_cache);
 }
 
 // 函数：从渲染系统中移除指定对象
@@ -722,7 +722,7 @@ void process_material_batch_update(int64_t material_system, int64_t* texture_dat
         stack_source = &system_data_buffer_ptr;
         
         if (system_handle != 0) {
-            FUN_18064e900(system_handle);
+            CoreEngine_MemoryPoolManager(system_handle);
         }
         
         stack_offset = 0;
@@ -735,7 +735,7 @@ void process_material_batch_update(int64_t material_system, int64_t* texture_dat
         stack_buffer = &system_data_buffer_ptr;
         
         if (stack_value != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         stack_value = 0;
@@ -929,7 +929,7 @@ void process_render_system_component_update(int64_t render_system, int64_t compo
         stack_buffer = &system_data_buffer_ptr;
         
         if (stack_value != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         stack_value = 0;
@@ -1055,7 +1055,7 @@ void process_render_system_component_update(int64_t render_system, int64_t compo
             stack_buffer = &system_data_buffer_ptr;
             
             if (stack_value != 0) {
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
             }
             
             stack_value = 0;
@@ -1064,7 +1064,7 @@ void process_render_system_component_update(int64_t render_system, int64_t compo
             stack_params[0] = &system_data_buffer_ptr;
             
             if (stack_params[1] != 0) {
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
             }
             
             stack_params[1] = 0;
@@ -1083,5 +1083,5 @@ void process_render_system_component_update(int64_t render_system, int64_t compo
         return;
     }
     
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }

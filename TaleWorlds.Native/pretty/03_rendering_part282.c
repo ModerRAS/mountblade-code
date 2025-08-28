@@ -594,7 +594,7 @@ void FUN_180420680(int64_t param_1,int param_2,int64_t param_3)
   } while (lStack_158 != 0);
   iStack_150 = param_2;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)aiStack_168);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)aiStack_168);
 }
 
 

@@ -184,7 +184,7 @@ final_mismatch:
     
     // 执行最终处理
     if (stack_long2 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     stack_long2 = 0;
     stack_uint2 = 0;
@@ -193,7 +193,7 @@ final_mismatch:
     stack_ptr4 = &global_config_3456_ptr;
     
     if (stack_long1 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     stack_long1 = 0;
     stack_uint1 = 0;
@@ -238,7 +238,7 @@ void memory_cleanup_handler(int64_t param_1)
     // 重置内存块指针
     *(uint64_t *)(param_1 + 0x10) = &global_config_3456_ptr;
     if (*(int64_t *)(param_1 + 0x18) != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     *(uint64_t *)(param_1 + 0x18) = 0;
     *(int32_t *)(param_1 + 0x28) = 0;
@@ -619,13 +619,13 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
         ReleaseSRWLockExclusive(temp_long1);
         stack_ptr3 = &global_config_3456_ptr;
         if (stack_long2 != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         stack_long2 = 0;
         stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
         stack_ptr3 = &global_config_720_ptr;
         if (((char)stack_var2 == '\0') && (stack_long1 != 0)) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
     }
     
@@ -646,7 +646,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
         stack_ptr1 = &global_config_720_ptr;
         FUN_1808fc050(stack_ulong3 ^ (uint64_t)temp_buffer1);
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -769,7 +769,7 @@ bool file_validator(int64_t param_1)
     if (stack_ptr2 == (void *)0x0) {
         return validation_result;
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -883,7 +883,7 @@ void shader_cache_processor(uint64_t param_1)
         stack_ptr1 = &global_config_720_ptr;
         FUN_1808fc050(stack_ulong2 ^ (uint64_t)temp_buffer1);
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -1006,14 +1006,14 @@ void configuration_file_handler(void)
         // 清理资源
         stack_ptr1 = &global_config_3456_ptr;
         if (stack_ptr2 != (int8_t *)0x0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         stack_ptr2 = (int8_t *)0x0;
         stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
         stack_ptr1 = &global_config_720_ptr;
         stack_ptr3 = &global_config_3456_ptr;
         if (stack_long1 != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         stack_long1 = 0;
         stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
@@ -1127,7 +1127,7 @@ int64_t string_constructor(int64_t param_1, int64_t param_2)
         FUN_18005d190(param_1, temp_var1);
         stack_ptr1 = &global_config_3456_ptr;
         if (stack_long1 != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         stack_long1 = 0;
         stack_var1 = 0;

@@ -312,7 +312,7 @@ void FUN_1802dd2b0(int64_t param_1,int64_t param_2)
       uStack_c8 = &system_data_buffer_ptr;
       if (uStack_c0 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       uStack_c0 = 0;
       uStack_b0._0_4_ = 0;
@@ -323,7 +323,7 @@ void FUN_1802dd2b0(int64_t param_1,int64_t param_2)
       uStack_c8 = &system_data_buffer_ptr;
       if (uStack_c0 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       uStack_c0 = 0;
       uStack_b0 = (uint64_t)uStack_b0._4_4_ << 0x20;

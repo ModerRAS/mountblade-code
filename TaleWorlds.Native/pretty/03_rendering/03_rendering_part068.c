@@ -287,7 +287,7 @@ LAB_1803066f9:
           UNLOCK();
           if ((!allocation_success) && (allocated_memory != 0)) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
         }
         *(int64_t **)
@@ -416,7 +416,7 @@ LAB_1803066f9:
         UNLOCK();
         if ((!allocation_success) && (allocated_memory != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
       }
       *(int64_t **)

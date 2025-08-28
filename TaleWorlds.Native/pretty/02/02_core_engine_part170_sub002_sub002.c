@@ -118,7 +118,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
     stack_value_58 = 0;
     stack_ptr_68 = (uint64_t*)0x0;
     stack_value_60 = 0;
-    FUN_1806277c0(&stack_ptr_70, 0x2b);
+    CoreMemoryPoolProcessor(&stack_ptr_70, 0x2b);
     
     // 配置资源路径：\life\griver\\resource\last\data\
     *stack_ptr_68 = 0x6c69666c67725c5c;    // "\life\gr"
@@ -144,7 +144,7 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
         stack_ptr_38 = (void*)0x0;
         stack_ptr_48 = (uint64_t*)0x0;
         function_ptr = (code*)((uint64_t)function_ptr & 0xffffffff00000000);
-        FUN_1806277c0(&stack_ptr_50, 0x2b);
+        CoreMemoryPoolProcessor(&stack_ptr_50, 0x2b);
         
         // 重复配置备用路径
         *stack_ptr_48 = 0x6c69666c67725c5c;
@@ -169,10 +169,10 @@ void initialize_engine_configuration(int64_t engine_context, uint64_t param2, ui
             return;
         }
         // 错误处理函数调用（不返回）
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     // 错误处理函数调用（不返回）
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 // 警告：以'_'开头的全局变量与同一地址的较小符号重叠

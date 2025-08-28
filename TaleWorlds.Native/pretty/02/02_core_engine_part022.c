@@ -147,7 +147,7 @@ void process_and_add_path_to_container(int64_t *container_ptr, int64_t source_pa
         stack_ulong3 = 0xf;
         stack_byte1 = 0;
         // 警告：子函数不返回
-        FUN_1808fc050(stack_ulong9 ^ (uint64_t)stack_buffer1);
+        SystemSecurityChecker(stack_ulong9 ^ (uint64_t)stack_buffer1);
     }
     stack_ulong7 = 0;
     stack_ulong8 = 0xf;
@@ -184,7 +184,7 @@ void process_and_add_path_to_container(int64_t *container_ptr, int64_t source_pa
     stack_ulong4._0_4_ = (int)temp_ulong2;
     temp_int = (int)stack_ulong4;
     stack_ulong4 = temp_ulong2;
-    FUN_1806277c0(&stack_ptr1, temp_ulong2 & 0xffffffff);
+    CoreMemoryPoolProcessor(&stack_ptr1, temp_ulong2 & 0xffffffff);
     if (temp_int != 0) {
         temp_ptr5 = &stack_uint3;
         if (0xf < stack_ulong5) {
@@ -222,7 +222,7 @@ void process_and_add_path_to_container(int64_t *container_ptr, int64_t source_pa
         if (temp_long1 == 0) {
             temp_long1 = 1;
 EXPAND_CONTAINER:
-            temp_long2 = FUN_18062b420(system_memory_pool_ptr, temp_long1 << 5, (char)container_ptr[3]);
+            temp_long2 = CoreMemoryPoolAllocator(system_memory_pool_ptr, temp_long1 << 5, (char)container_ptr[3]);
             temp_ptr2 = (uint64_t *)container_ptr[1];
             temp_long3 = *container_ptr;
         }
@@ -257,7 +257,7 @@ EXPAND_CONTAINER:
         }
         if (temp_ptr2 != (uint64_t *)0x0) {
             // 警告：子函数不返回
-            FUN_18064e900(temp_ptr2);
+            CoreEngine_MemoryPoolManager(temp_ptr2);
         }
         *container_ptr = temp_long2;
         container_ptr[1] = (int64_t)temp_ptr6;
@@ -268,7 +268,7 @@ EXPAND_CONTAINER:
     stack_ptr1 = &system_data_buffer_ptr;
     if (stack_ptr2 != (int8_t *)0x0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     stack_ptr2 = (int8_t *)0x0;
     stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
@@ -417,7 +417,7 @@ void generate_system_info_report(uint64_t report_param)
             temp_ptr4 = *(void **)(temp_long1 + 8);
         }
     }
-    FUN_180627910(&stack_ptr18, temp_ptr4);
+    CoreMemoryPoolValidator(&stack_ptr18, temp_ptr4);
     if ((system_cache_buffer == (int64_t *)0x0) ||
        (temp_char = (**(code **)(*system_cache_buffer + 0x28))(), temp_char == '\0')) {
         temp_ptr4 = &unknown_var_856_ptr;
@@ -429,7 +429,7 @@ void generate_system_info_report(uint64_t report_param)
             temp_ptr4 = *(void **)(temp_long1 + 8);
         }
     }
-    FUN_180627910(&stack_ptr16, temp_ptr4);
+    CoreMemoryPoolValidator(&stack_ptr16, temp_ptr4);
     stack_ptr28 = &unknown_var_672_ptr;
     stack_ptr29 = stack_buffer4;
     stack_uint16 = 0;
@@ -460,7 +460,7 @@ void generate_system_info_report(uint64_t report_param)
     stack_ptr16 = &system_data_buffer_ptr;
     if (stack_ptr16 != (void *)0x0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     stack_ptr16 = (void *)0x0;
     stack_uint10 = 0;
@@ -468,7 +468,7 @@ void generate_system_info_report(uint64_t report_param)
     stack_ptr18 = &system_data_buffer_ptr;
     if (stack_ptr18 != (void *)0x0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     stack_ptr18 = (void *)0x0;
     stack_uint9 = 0;
@@ -511,7 +511,7 @@ void generate_system_info_report(uint64_t report_param)
     stack_ptr3 = &system_data_buffer_ptr;
     if (stack_ptr4 != (void *)0x0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     stack_ptr4 = (void *)0x0;
     stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
@@ -519,7 +519,7 @@ void generate_system_info_report(uint64_t report_param)
     stack_ptr5 = &system_data_buffer_ptr;
     if (stack_ptr6 != (void *)0x0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     stack_ptr6 = (void *)0x0;
     stack_ulong3 = stack_ulong3 & 0xffffffff00000000;
@@ -573,7 +573,7 @@ void generate_system_info_report(uint64_t report_param)
     }
     if (temp_ptr8 != (uint64_t *)0x0) {
         // 警告：子函数不返回
-        FUN_18064e900(temp_ptr8);
+        CoreEngine_MemoryPoolManager(temp_ptr8);
     }
     temp_ulong1 = (int64_t)stack_ptr13 - (int64_t)temp_ptr2 >> 5;
     if (temp_ulong1 != 0) {
@@ -588,7 +588,7 @@ void generate_system_info_report(uint64_t report_param)
                 temp_ptr4 = *(void **)(temp_long1 + 8);
             }
         }
-        FUN_180627910(&stack_ptr11, temp_ptr4);
+        CoreMemoryPoolValidator(&stack_ptr11, temp_ptr4);
         stack_ptr9 = (uint64_t *)0x0;
         stack_ptr10 = (uint64_t *)0x0;
         stack_ulong8 = 0;
@@ -674,7 +674,7 @@ STRING_MATCH_FOUND:
                     stack_ptr8 = &system_data_buffer_ptr;
                     if (char_ptr != (char *)0x0) {
                         // 警告：子函数不返回
-                        FUN_18064e900();
+                        CoreEngine_MemoryPoolManager();
                     }
                     char_ptr = (char *)0x0;
                     stack_uint5 = 0;
@@ -690,7 +690,7 @@ STRING_MATCH_FOUND:
                 }
                 if (temp_ptr5 != (uint64_t *)0x0) {
                     // 警告：子函数不返回
-                    FUN_18064e900(temp_ptr5);
+                    CoreEngine_MemoryPoolManager(temp_ptr5);
                 }
                 temp_ptr8 = temp_ptr8 + 4;
                 stack_ulong4 = stack_ulong4 - 1;
@@ -713,14 +713,14 @@ STRING_MATCH_FOUND:
             stack_ptr9 = temp_ptr7;
             stack_ptr10 = temp_ptr5;
             // 警告：子函数不返回
-            FUN_18064e900(temp_ptr3);
+            CoreEngine_MemoryPoolManager(temp_ptr3);
         }
         stack_ptr11 = &system_data_buffer_ptr;
         if (stack_long4 != 0) {
             stack_ptr9 = temp_ptr7;
             stack_ptr10 = temp_ptr5;
             // 警告：子函数不返回
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         stack_long4 = 0;
         stack_uint7 = 0;
@@ -740,7 +740,7 @@ STRING_MATCH_FOUND:
         if (*(void **)(temp_long1 + 8) != (void *)0x0) {
             temp_ptr4 = *(void **)(temp_long1 + 8);
         }
-        FUN_180627910(&stack_ptr14, temp_ptr4);
+        CoreMemoryPoolValidator(&stack_ptr14, temp_ptr4);
         temp_ptr4 = &system_buffer_ptr;
         if (stack_ptr19 != (void *)0x0) {
             temp_ptr4 = stack_ptr19;
@@ -749,7 +749,7 @@ STRING_MATCH_FOUND:
         stack_ptr14 = &system_data_buffer_ptr;
         if (stack_ptr19 != (void *)0x0) {
             // 警告：子函数不返回
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         stack_ptr19 = (void *)0x0;
         stack_uint11 = 0;
@@ -779,13 +779,13 @@ STRING_MATCH_FOUND:
     if (temp_ptr7 != (uint64_t *)0x0) {
         stack_ptr13 = temp_ptr8;
         // 警告：子函数不返回
-        FUN_18064e900(temp_ptr7);
+        CoreEngine_MemoryPoolManager(temp_ptr7);
     }
     stack_ptr15 = &system_data_buffer_ptr;
     if (stack_ptr15 != (void *)0x0) {
         stack_ptr13 = temp_ptr8;
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     stack_ptr15 = (void *)0x0;
     stack_uint9 = 0;
@@ -809,14 +809,14 @@ STRING_MATCH_FOUND:
             stack_uint8 = 0;
             stack_ptr19 = &system_state_ptr;
             // 警告：子函数不返回
-            FUN_1808fc050(stack_ulong14 ^ (uint64_t)stack_buffer1);
+            SystemSecurityChecker(stack_ulong14 ^ (uint64_t)stack_buffer1);
         }
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     stack_ptr13 = temp_ptr8;
     // 警告：子函数不返回
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 // 警告：以'_'开头的全局变量与同一地址的较小符号重叠
@@ -884,7 +884,7 @@ void execute_engine_core_operation(uint64_t operation_type, int64_t operation_pa
     long_ptr_ptr = *(int64_t **)(core_system_data_pointer + 0x18);
     FUN_180627ae0(&ptr1, system_main_module_state + 0x170, extra_data1, extra_data2, 0);
     temp_int = stack_uint + 3;
-    FUN_1806277c0(&ptr1, temp_int);
+    CoreMemoryPoolProcessor(&ptr1, temp_int);
     *(int32_t *)((uint64_t)stack_uint + stack_long1) = 0x706d74;
     stack_uint = temp_int;
     temp_char = FUN_180624a00(&ptr1);
@@ -901,7 +901,7 @@ void execute_engine_core_operation(uint64_t operation_type, int64_t operation_pa
     ptr_ptr = (void **)&system_data_buffer_ptr;
     if (long_ptr_ptr_ptr != (int64_t **)0x0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     long_ptr_ptr_ptr = (int64_t **)0x0;
     stack_uint2 = 0;
@@ -912,7 +912,7 @@ void execute_engine_core_operation(uint64_t operation_type, int64_t operation_pa
     ptr2 = &system_data_buffer_ptr;
     if (stack_long2 != 0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     stack_long2 = 0;
     stack_uint1 = 0;
@@ -923,12 +923,12 @@ void execute_engine_core_operation(uint64_t operation_type, int64_t operation_pa
     }
     else {
         code_ptr = *(code **)(*long_ptr_ptr + 0x10);
-        temp_ulong = FUN_180627910(&ptr2, operation_param);
+        temp_ulong = CoreMemoryPoolValidator(&ptr2, operation_param);
         (*code_ptr)(long_ptr_ptr, operation_type, temp_ulong);
         ptr2 = &system_data_buffer_ptr;
         if (stack_long2 != 0) {
             // 警告：子函数不返回
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         stack_long2 = 0;
         stack_uint1 = 0;
@@ -938,7 +938,7 @@ void execute_engine_core_operation(uint64_t operation_type, int64_t operation_pa
     ptr1 = &system_data_buffer_ptr;
     if (stack_long1 != 0) {
         // 警告：子函数不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return;
 }

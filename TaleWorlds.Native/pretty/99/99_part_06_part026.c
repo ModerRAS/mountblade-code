@@ -322,7 +322,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
                         // 清理属性数据
                         prefab_attr_data = &system_data_buffer_ptr;
                         if (attr_value != NULL) {
-                            FUN_18064e900();
+                            CoreEngine_MemoryPoolManager();
                         }
                         
                         attr_value = NULL;
@@ -343,7 +343,7 @@ void PrefabConfigManager(void* prefab_data, void* config_data, uint64_t config_f
         // 清理属性数据
         prefab_attr_data = &system_data_buffer_ptr;
         if (attr_value != NULL) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         attr_value = NULL;
@@ -754,7 +754,7 @@ config_complete:
                             
                             // 清理掩码数据
                             if (mask_data != NULL) {
-                                FUN_18064e900();
+                                CoreEngine_MemoryPoolManager();
                             }
                             
                             temp_mask = scene_upgrade_mask;
@@ -816,7 +816,7 @@ config_complete:
                 // 清理属性数据
                 guid_attr_data = &system_data_buffer_ptr;
                 if (guid_attr_value != NULL) {
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 
                 guid_attr_value = NULL;
@@ -825,7 +825,7 @@ config_complete:
                 
                 name_attr_data = &system_data_buffer_ptr;
                 if (name_attr_value != NULL) {
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 
                 name_attr_value = NULL;

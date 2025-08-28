@@ -535,7 +535,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
     if (*(int64_t *)(render_system_data_config + 8) == 0) {
         *parameter_ptr = &system_data_buffer_ptr;
         if (parameter_ptr[1] != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         parameter_ptr[1] = 0;
         *(int32_t *)(parameter_ptr + 3) = 0;
@@ -569,7 +569,7 @@ void FUN_180443b80(uint64_t param_1, int8_t param_2)
         *parameter_ptr = &system_data_buffer_ptr;
         
         if (parameter_ptr[1] != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         parameter_ptr[1] = 0;
         *(int32_t *)(parameter_ptr + 3) = 0;
@@ -667,7 +667,7 @@ void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
             if (data_processor_2 == (int64_t *)0x0) {
                 return;
             }
-            FUN_18064e900(data_processor_2);
+            CoreEngine_MemoryPoolManager(data_processor_2);
         }
         
         if (data_processor_6 < data_processor_5) {
@@ -691,7 +691,7 @@ void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_
             
             *data_processor_3 = data_chunk;
             if (data_processor_2 != (int64_t *)0x0) {
-                FUN_18064e900(data_processor_2);
+                CoreEngine_MemoryPoolManager(data_processor_2);
             }
             
             data_processor_5 = data_processor_3 + data_capacity;
@@ -1431,7 +1431,7 @@ int32_t FUN_180445180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint
     validation_ptr_30 = &system_data_buffer_ptr;
     
     if (validation_data_28 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return validation_result;
 }

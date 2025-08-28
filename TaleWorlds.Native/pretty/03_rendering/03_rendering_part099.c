@@ -369,7 +369,7 @@ void rendering_system_parameter_processor(int64_t param_1, int64_t param_2, int6
             }
             puStack_108 = &system_data_buffer_ptr;
             if (lStack_100 != 0) {
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
             }
             lStack_100 = 0;
             plStack_f0 = (int64_t *)((uint64_t)plStack_f0 & MEMORY_ALIGNMENT_MASK);

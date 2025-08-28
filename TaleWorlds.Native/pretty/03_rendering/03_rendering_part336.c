@@ -153,7 +153,7 @@ void RenderingSystem_StateUpdater(int64_t param_1, uint64_t param_2, int8_t para
     // 清理资源
     puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return;
 }
@@ -283,7 +283,7 @@ void RenderingSystem_ObjectCleaner(int64_t param_1)
         // 清理资源
         puStack_28 = &system_data_buffer_ptr;
         if (lStack_20 != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
     }
     return;
@@ -412,7 +412,7 @@ uint64_t RenderingSystem_StateChecker(int64_t param_1, uint64_t param_2, uint64_
     // 清理资源
     puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return (uint64_t)bVar1;
 }
@@ -499,7 +499,7 @@ LAB_180447540:
     }
     puStack_48 = &system_data_buffer_ptr;
     if (lStack_40 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return param_1;
 }
@@ -758,7 +758,7 @@ int32_t * RenderingSystem_ResourceAllocator(int32_t *param_1, uint64_t param_2, 
     if (lStack_38 == 0) {
         return param_1;
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -870,7 +870,7 @@ int32_t * RenderingSystem_DataProcessor3(int32_t *param_1, uint64_t param_2, uin
     if (lStack_68 == 0) {
         return param_1;
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -1001,7 +1001,7 @@ void RenderingSystem_ObjectInitializer(int64_t param_1, uint64_t param_2, uint64
     // 清理资源
     puStack_30 = &system_data_buffer_ptr;
     if (puStack_28 != (void *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return;
 }

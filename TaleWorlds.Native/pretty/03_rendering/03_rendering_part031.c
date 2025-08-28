@@ -43,7 +43,7 @@ void serialize_rendering_data(int64_t *render_obj, int64_t *output_buf, uint64_t
     
     // 检查数据完整性
     if (stack_str_ptr != (int8_t *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     stack_str_ptr = (int8_t *)0x0;
@@ -363,7 +363,7 @@ int64_t filter_rendering_objects(int64_t filter_ctx, uint filter_flags, uint64_t
                     
                     *obj_ptr = obj_handle;
                     if (*result_array != 0) {
-                        FUN_18064e900();
+                        CoreEngine_MemoryPoolManager();
                     }
                     *result_array = (uint64_t)obj_ptr;
                     result_array[2] = (uint64_t)(obj_ptr + array_size);
@@ -426,7 +426,7 @@ int64_t count_rendering_objects(void)
                 }
                 *obj_ptr = obj_handle;
                 if (*result_array != 0) {
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 *result_array = (uint64_t)obj_ptr;
                 result_array[2] = (uint64_t)(obj_ptr + array_size);
@@ -564,7 +564,7 @@ void resize_rendering_buffer(int64_t *buffer_ptr, uint64_t new_size)
         }
         
         if (current_size != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         *buffer_ptr = new_buffer;
@@ -596,7 +596,7 @@ void reallocate_rendering_buffer(int64_t buffer_ptr, int64_t new_size)
     
     if (buffer_ptr == old_buffer[1]) {
         if (buffer_ptr != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         *old_buffer = new_buffer;
         old_buffer[1] = new_buffer;
@@ -637,7 +637,7 @@ void cleanup_rendering_resources(int64_t *resource_ptr)
     if (*resource_ptr == 0) {
         return;
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -769,7 +769,7 @@ LAB_180284385:
         return;
     }
     
-    FUN_18064e900(iter_ptr);
+    CoreEngine_MemoryPoolManager(iter_ptr);
 }
 
 /**
@@ -900,7 +900,7 @@ void expand_rendering_queue(int64_t *queue_ptr, uint64_t expand_size, uint64_t p
             }
             
             if (base_ptr != 0) {
-                FUN_18064e900(base_ptr);
+                CoreEngine_MemoryPoolManager(base_ptr);
             }
             
             *queue_ptr = new_buffer;
@@ -980,7 +980,7 @@ void reallocate_rendering_queue(int64_t queue_ptr, int64_t new_size)
     }
     
     if (end_ptr != 0) {
-        FUN_18064e900(end_ptr);
+        CoreEngine_MemoryPoolManager(end_ptr);
     }
     
     *queue_data = new_buffer;
@@ -1051,7 +1051,7 @@ void cleanup_rendering_hash_table(int64_t hash_table)
             iter_ptr = *(int64_t *)(base_ptr + iter_count * 8);
             if (iter_ptr != 0) {
                 FUN_180285080();
-                FUN_18064e900(iter_ptr);
+                CoreEngine_MemoryPoolManager(iter_ptr);
             }
             *(uint64_t *)(base_ptr + iter_count * 8) = 0;
             iter_count = iter_count + 1;
@@ -1061,7 +1061,7 @@ void cleanup_rendering_hash_table(int64_t hash_table)
     
     *(uint64_t *)(hash_table + 0x18) = 0;
     if ((1 < table_size) && (*(int64_t *)(hash_table + 8) != 0)) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
 }
 

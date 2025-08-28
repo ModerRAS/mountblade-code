@@ -291,7 +291,7 @@ LAB_180209f34:
                   puStack_c8 = &system_data_buffer_ptr;
                   if (lStack_c0 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                   }
                   lStack_c0 = 0;
                   uStack_b0 = uStack_b0 & 0xffffffff00000000;
@@ -357,7 +357,7 @@ LAB_18020a094:
                     puStack_a8 = &system_data_buffer_ptr;
                     if (lStack_a0 != 0) {
                     // WARNING: Subroutine does not return
-                      FUN_18064e900();
+                      CoreEngine_MemoryPoolManager();
                     }
                     lStack_a0 = 0;
                     uStack_90 = uStack_90 & 0xffffffff00000000;
@@ -423,7 +423,7 @@ LAB_18020a1f4:
                       puStack_128 = &system_data_buffer_ptr;
                       if (lStack_120 != 0) {
                     // WARNING: Subroutine does not return
-                        FUN_18064e900();
+                        CoreEngine_MemoryPoolManager();
                       }
                       lStack_120 = 0;
                       pcStack_110 = (code *)((uint64_t)pcStack_110 & 0xffffffff00000000);
@@ -461,7 +461,7 @@ LAB_18020a31a:
                 puStack_e8 = &system_data_buffer_ptr;
                 if (lStack_e0 != 0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  CoreEngine_MemoryPoolManager();
                 }
                 lStack_e0 = 0;
                 uStack_d0 = uStack_d0 & 0xffffffff00000000;
@@ -621,7 +621,7 @@ LAB_18020a5e9:
                 puStack_108 = &system_data_buffer_ptr;
                 if (lStack_100 != 0) {
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  CoreEngine_MemoryPoolManager();
                 }
                 lStack_100 = 0;
                 uStack_f0 = uStack_f0 & 0xffffffff00000000;

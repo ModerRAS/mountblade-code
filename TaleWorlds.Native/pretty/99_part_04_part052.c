@@ -305,7 +305,7 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
     puVar30 = puVar16;
   }
   else {
-    puVar16 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,uVar33 * 0x70,(char)param_1[0xe]);
+    puVar16 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,uVar33 * 0x70,(char)param_1[0xe]);
     puVar21 = (uint64_t *)*plVar1;
     puVar27 = (uint64_t *)param_1[0xc];
     puVar30 = puVar16;
@@ -340,7 +340,7 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
   }
   if (*plVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   *plVar1 = (int64_t)puVar30;
   param_1[0xd] = (int64_t)(puVar30 + uVar33 * 0xe);

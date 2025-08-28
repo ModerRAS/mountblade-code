@@ -327,7 +327,7 @@ void RenderingSystemAdvancedDataProcessor(int64_t *param_1, int64_t param_2)
                     
                     if (tempVar6 != 0) {
                         // 执行资源清理操作
-                        FUN_18064e900(tempVar6);
+                        CoreEngine_MemoryPoolManager(tempVar6);
                     }
                     
                     // 完成数据交换
@@ -390,7 +390,7 @@ void RenderingSystemAdvancedDataProcessor(int64_t *param_1, int64_t param_2)
                 *(int *)(tempPtr1 + 3) = (int)tempVar7;
                 
                 if (tempVar2 != 0) {
-                    FUN_18064e900(tempVar2);
+                    CoreEngine_MemoryPoolManager(tempVar2);
                 }
                 
                 // 完成数据结构的最终重组
@@ -420,7 +420,7 @@ void RenderingSystemAdvancedDataProcessor(int64_t *param_1, int64_t param_2)
             tempPtr1[9] = tempVar7;
             
             if (tempVar6 != 0) {
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
             }
         }
     }
@@ -1084,7 +1084,7 @@ void RenderingSystemAdvancedFunctionCallProcessor(int64_t *param_1, int64_t *par
     // 清理临时资源
     tempPtr2 = &system_data_buffer_ptr;
     if (tempVar2 != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     tempVar2 = 0;
     tempVar3 = 0;
@@ -1103,7 +1103,7 @@ void RenderingSystemAdvancedFunctionCallProcessor(int64_t *param_1, int64_t *par
         // 再次清理临时资源
         tempPtr2 = &system_data_buffer_ptr;
         if (tempVar2 != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         tempVar2 = 0;
         tempVar3 = 0;

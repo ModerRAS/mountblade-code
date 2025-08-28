@@ -473,7 +473,7 @@ EFFECT_PROCESSOR_LABEL3:
   // 清理特效处理资源
   stack_pointer3 = &system_data_buffer_ptr;
   if (stack_long_value != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   stack_long_value = 0;
   stack_value3 = 0;
@@ -523,7 +523,7 @@ EFFECT_PROCESSOR_LABEL4:
     return;
   }
   
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -547,7 +547,7 @@ int rendering_system_data_comparator(uint64_t data_item1, uint64_t data_item2, u
   stack_pointer = &system_data_buffer_ptr;
   
   if (stack_long_value != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   return (int)comparison_result;

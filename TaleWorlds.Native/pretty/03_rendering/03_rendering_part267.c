@@ -679,7 +679,7 @@ static void free_animation_memory(void* ptr)
 {
     /* 实现动画内存释放 */
     if (ptr != NULL) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
 }
 

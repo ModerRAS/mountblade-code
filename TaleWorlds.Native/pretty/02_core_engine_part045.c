@@ -1027,13 +1027,13 @@ LAB_180086316:
 }
 
 /**
- * thunk_FUN_18064e900 - 内存释放函数的thunk包装
+ * thunk_CoreEngine_MemoryPoolManager - 内存释放函数的thunk包装
  * 
  * 内存释放函数的间接调用包装，用于函数指针跳转。
  * 
- * 原始实现：thunk_FUN_18064e900
+ * 原始实现：thunk_CoreEngine_MemoryPoolManager
  */
-void thunk_FUN_18064e900(void)
+void thunk_CoreEngine_MemoryPoolManager(void)
 {
     Memory_FreeBlock();
 }

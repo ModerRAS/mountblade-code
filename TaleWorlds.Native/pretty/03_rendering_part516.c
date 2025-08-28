@@ -889,7 +889,7 @@ LAB_180545f12:
     puStack_50 = &system_data_buffer_ptr;
     if (puStack_48 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     sVar3 = *psVar1;
 LAB_180545ff5:

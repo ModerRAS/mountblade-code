@@ -213,7 +213,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
                     texture_list = (int64_t *)*buffer_ptr;
                 }
                 if (texture_list != (int64_t *)0x0) {
-                    FUN_18064e900(texture_list);
+                    CoreEngine_MemoryPoolManager(texture_list);
                 }
                 *buffer_ptr = (int64_t)resource_ptr;
                 render_manager[0x20] = material_ptr + 1;
@@ -245,7 +245,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
             
             stack_data_ptr = &system_data_buffer_ptr;
             if (stack_data_size != 0) {
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
             }
             stack_data_size = 0;
             stack_param2 = 0;
@@ -271,7 +271,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
     FUN_180076c50(render_manager[0x24], &stack_render_ptr);
     stack_material_ptr = stack_buffer_array2;
     if (stack_buffer_array2[0] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     if (stack_texture_ptr != (int64_t *)0x0) {
         (**(code **)(*stack_texture_ptr + 0x38))();
@@ -357,7 +357,7 @@ void initialize_rendering_manager(uint64_t *render_manager)
         }
         FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -787,9 +787,9 @@ int64_t create_rendering_scene(int64_t scene_param, int64_t renderer_ptr)
         if (stack_scene_id == 0) {
             return scene_id;
         }
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 /**
@@ -877,7 +877,7 @@ uint64_t process_rendering_events(int64_t event_data)
     event_flag = *(byte *)(event_base + 0xf9);
     if (event_flag != 0) {
         if (*(int64_t *)(event_base + 0x1d8) != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         *(uint64_t *)(event_base + 0x1d8) = 0;
         LOCK();

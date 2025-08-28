@@ -128,7 +128,7 @@ void FUN_1802edfe0(int64_t param_1,uint64_t param_2,int32_t *param_3,uint64_t *p
 LAB_1802ee368:
       iStack_f8 = uVar21;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_c8 ^ (uint64_t)auStack_2a8);
+      SystemSecurityChecker(uStack_c8 ^ (uint64_t)auStack_2a8);
     }
     lVar17 = (int64_t)cVar4 * 0x1b0;
     lVar20 = *(int64_t *)(lVar5 + 0x140);

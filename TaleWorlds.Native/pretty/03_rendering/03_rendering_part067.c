@@ -161,7 +161,7 @@ void rendering_system_find_and_remove_object(int64_t render_context, int64_t obj
             
             // 释放对象资源（该操作可能不会返回）
             if (current_object != 0) {
-                FUN_18064e900(current_object);
+                CoreEngine_MemoryPoolManager(current_object);
             }
         }
     }
@@ -305,7 +305,7 @@ void rendering_system_initialize_render_context(uint64_t *render_context)
     stack_pointer_208 = &system_data_buffer_ptr;
     
     // 清理临时资源（该操作可能不会返回）
-    FUN_18064e900(context_pointer);
+    CoreEngine_MemoryPoolManager(context_pointer);
 }
 
 /*
@@ -648,7 +648,7 @@ void rendering_system_process_render_parameters(int64_t render_context, int64_t 
                 buffer_pointer = &system_data_buffer_ptr;
                 if (string_buffer != 0) {
                     // 清理字符串缓冲区（该操作可能不会返回）
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 string_buffer = 0;
                 buffer_size = 0;
@@ -1228,7 +1228,7 @@ void rendering_system_manage_render_resources(int64_t render_context)
         buffer_pointer = &system_data_buffer_ptr;
         if (resource_pointer != (uint64_t *)0x0) {
             // 释放资源（该操作可能不会返回）
-            FUN_18064e900(resource_pointer);
+            CoreEngine_MemoryPoolManager(resource_pointer);
         }
         stack_pointer_1a0 = (uint64_t *)0x0;
         stack_value_190 = (uint64_t)stack_value_190._4_4_ << 0x20;
@@ -1242,7 +1242,7 @@ void rendering_system_manage_render_resources(int64_t render_context)
         }
         if (array_pointer != (int64_t *)0x0) {
             // 释放数组内存（该操作可能不会返回）
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
     }
     

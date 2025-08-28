@@ -1282,7 +1282,7 @@ void RenderingSystemSystemCaller(int64_t param_1, int param_2)
     *(uint64_t *)(lVar2 + 0x818) = uVar6 - 8;
     FUN_180506660(plVar3);
     // WARNING: Subroutine does not return
-    FUN_18064e900(plVar3);
+    CoreEngine_MemoryPoolManager(plVar3);
 }
 
 /**
@@ -1713,7 +1713,7 @@ RenderingSystemQueryHandler(uint64_t param_1, uint64_t param_2, uint64_t param_3
     puStack_30 = &system_data_buffer_ptr;
     if (lStack_28 != 0) {
         // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     return uVar1;
 }

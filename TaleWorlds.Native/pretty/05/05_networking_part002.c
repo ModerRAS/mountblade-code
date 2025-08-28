@@ -106,10 +106,10 @@ void process_network_connection_init(uint64_t connection_handle)
                     *(uint*)(format_pointers[0] + 1) = NETWORK_HEADER_SIZE;
                     func_0x00018088e0d0(*(uint64_t*)(connection_info[0] + 0x98));
                     // 注意：此子函数不返回
-                    FUN_18088c790(connection_info + 1);
+                    AdvancedSystemProcessor(connection_info + 1);
                 }
                 // 注意：此子函数不返回
-                FUN_18088c790(connection_info + 1);
+                AdvancedSystemProcessor(connection_info + 1);
             }
             goto success_handler;
         }
@@ -121,18 +121,18 @@ void process_network_connection_init(uint64_t connection_handle)
         buffer_ptr = large_buffer;
         large_buffer[0] = 0;
         // 注意：此子函数不返回
-        FUN_180749ef0(result, 0xb, connection_handle, NETWORK_FORMAT_EXTENDED);
+        DataTransformer(result, 0xb, connection_handle, NETWORK_FORMAT_EXTENDED);
     }
 
 success_handler:
     // 注意：此子函数不返回
-    FUN_1808fc050(stack_guard ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(stack_guard ^ (uint64_t)stack_buffer);
     return;
 
 error_handler:
     if (result == 0) goto success_handler;
     // 错误处理逻辑
-    FUN_1808fc050(stack_guard ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(stack_guard ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -153,7 +153,7 @@ int process_basic_network_data(int64_t data_ptr, int64_t buffer, int length)
     
     header_field1 = *(uint*)(data_ptr + 0x18);
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, header_field1);
     return remaining_length + processed_length;
@@ -201,17 +201,17 @@ int process_extended_network_data(int64_t data_ptr, int64_t buffer, int length)
     
     // 处理头部
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     
     // 处理扩展数据
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, header_field);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074b650(processed_length + buffer, length - processed_length, stack_fields);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, tail_field);
     
@@ -236,7 +236,7 @@ int process_64bit_network_data(int64_t data_ptr, int64_t buffer, int length)
     
     extended_field = *(uint64_t*)(data_ptr + 0x18);
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074bda0(processed_length + buffer, length - processed_length, extended_field);
     return remaining_length + processed_length;
@@ -260,7 +260,7 @@ int process_byte_network_data(int64_t data_ptr, int64_t buffer, int length)
     
     byte_field = *(byte*)(data_ptr + 0x18);
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, byte_field);
     return remaining_length + processed_length;
@@ -284,7 +284,7 @@ int process_standard_network_data(int64_t data_ptr, int64_t buffer, int length)
     
     standard_field = *(uint*)(data_ptr + 0x18);
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b830(processed_length + buffer, length - processed_length, standard_field);
     return remaining_length + processed_length;
@@ -309,11 +309,11 @@ int process_dual_field_network_data(int64_t data_ptr, int64_t buffer, int length
     field1 = *(uint*)(data_ptr + 0x1c);
     field2 = *(uint*)(data_ptr + 0x18);
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, field2);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, field1);
     return remaining_length + processed_length;
@@ -338,11 +338,11 @@ int process_mixed_field_network_data(int64_t data_ptr, int64_t buffer, int lengt
     field1 = *(uint*)(data_ptr + 0x1c);
     field2 = *(uint*)(data_ptr + 0x18);
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, field2);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, field1);
     return remaining_length + processed_length;
@@ -378,7 +378,7 @@ int process_complex_network_data(int64_t data_ptr, int64_t buffer, int length)
     
     // 处理基础数据
     result1 = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    result2 = FUN_18074b880(buffer + result1, length - result1, NETWORK_SEPARATOR);
+    result2 = DataProcessor(buffer + result1, length - result1, NETWORK_SEPARATOR);
     result1 += result2;
     
     // 处理扩展数据
@@ -404,7 +404,7 @@ int process_simple_network_data(int64_t data_ptr, int64_t buffer, int length)
     
     data_field = *(uint*)(data_ptr + 0x18);
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, data_field);
     return remaining_length + processed_length;
@@ -433,15 +433,15 @@ int process_mixed_type_network_data(int64_t data_ptr, int64_t buffer, int length
     field1 = *(uint*)(data_ptr + 0x20);
     
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18088ece0(processed_length + buffer, length - processed_length, &extended_field);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b830(processed_length + buffer, length - processed_length, field1);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
     
@@ -469,15 +469,15 @@ int process_dynamic_field_network_data(int64_t data_ptr, int64_t buffer, int len
     flag_byte = *(byte*)(data_ptr + 0x24);
     
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18088ece0(processed_length + buffer, length - processed_length, &extended_field);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, data_ptr + 0x25);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, data_ptr + 0x25);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
     
@@ -505,15 +505,15 @@ int process_multi_segment_network_data(int64_t data_ptr, int64_t buffer, int len
     field1 = *(uint*)(data_ptr + 0x18);
     
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, data_ptr + 0x28);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, data_ptr + 0x28);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b830(processed_length + buffer, length - processed_length, field1);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
     
@@ -539,15 +539,15 @@ int process_extended_multi_segment_network_data(int64_t data_ptr, int64_t buffer
     flag_byte = *(byte*)(data_ptr + 0x1c);
     
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, data_ptr + 0x28);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, data_ptr + 0x28);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, data_ptr + 0xa8);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, data_ptr + 0xa8);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
     
@@ -574,11 +574,11 @@ int process_combined_field_network_data(int64_t data_ptr, int64_t buffer, int le
     field1 = *(uint*)(data_ptr + 0x1c);
     
     processed_length = func_0x00018074b800(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, field2);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b830(processed_length + buffer, length - processed_length, field1);
     
@@ -609,7 +609,7 @@ int process_quad_field_network_data(int64_t data_ptr, int64_t buffer, int length
     tail_field = *(uint*)(data_ptr + 0x20);
     
     processed_length = FUN_18074b650(buffer, length, header_fields);
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, tail_field);
     
@@ -635,7 +635,7 @@ int process_dual_validation_network_data(int64_t data_ptr, int64_t buffer, int l
     validation_field = *(uint*)(data_ptr + 0x14);
     
     processed_length = func_0x00018074b7d0(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, validation_field);
     
@@ -661,7 +661,7 @@ int process_mixed_validation_network_data(int64_t data_ptr, int64_t buffer, int 
     validation_field = *(uint*)(data_ptr + 0x14);
     
     processed_length = func_0x00018074b7d0(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, validation_field);
     
@@ -698,11 +698,11 @@ int process_complex_structure_network_data(int64_t data_ptr, int64_t buffer, int
     extended_fields[3] = *(uint*)(data_ptr + 0x3c);
     
     processed_length = func_0x00018088ecd0(buffer, length, extended_data);
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, field2);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, field1);
     
@@ -728,12 +728,12 @@ int process_custom_format_network_data(int64_t data_ptr, int64_t buffer, int len
     format_field1 = *(uint*)(data_ptr + 0x10);
     format_field2 = *(uint*)(data_ptr + 0x14);
     
-    processed_length = FUN_18074b880(buffer, length, data_ptr + 0x18);
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    processed_length = DataProcessor(buffer, length, data_ptr + 0x18);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, format_field2);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, format_field1);
     
@@ -762,19 +762,19 @@ int process_multi_layer_network_data(int64_t data_ptr, int64_t buffer, int lengt
     field4 = *(uint*)(data_ptr + 0x18);
     
     processed_length = func_0x00018074bda0(buffer, length, *(uint64_t*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, field4);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, field3);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, field2);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, field1);
     
@@ -812,15 +812,15 @@ int process_advanced_network_data(int64_t data_ptr, int64_t buffer, int length)
     compression_fields[7] = *(uint*)(data_ptr + 0x3c);
     
     processed_length = func_0x00018074b7d0(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18088ebb0(processed_length + buffer, length - processed_length, compression_data + 1);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074b6f0(processed_length + buffer, length - processed_length, compression_data);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, compression_flag);
     
@@ -846,7 +846,7 @@ int process_standardized_network_data(int64_t data_ptr, int64_t buffer, int leng
     standard_field = *(uint*)(data_ptr + 0x14);
     
     processed_length = func_0x00018074b7d0(buffer, length, *(uint*)(data_ptr + 0x10));
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b830(processed_length + buffer, length - processed_length, standard_field);
     
@@ -876,11 +876,11 @@ int process_extended_validation_network_data(int64_t data_ptr, int64_t buffer, i
     field1 = *(uint*)(data_ptr + 0x18);
     
     processed_length = FUN_18088ece0(buffer, length, &extended_field);
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b830(processed_length + buffer, length - processed_length, field1);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
     
@@ -908,11 +908,11 @@ int process_dynamic_validation_network_data(int64_t data_ptr, int64_t buffer, in
     flag_byte = *(byte*)(data_ptr + 0x1c);
     
     processed_length = FUN_18088ece0(buffer, length, &extended_field);
-    remaining_length = FUN_18074b880(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(buffer + processed_length, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, data_ptr + 0x1d);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, data_ptr + 0x1d);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
     
@@ -939,12 +939,12 @@ int process_smart_routing_network_data(int64_t data_ptr, int64_t buffer, int len
     flag_byte = *(byte*)(data_ptr + 0x14);
     field1 = *(uint*)(data_ptr + 0x10);
     
-    processed_length = FUN_18074b880(buffer, length, data_ptr + 0x20);
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    processed_length = DataProcessor(buffer, length, data_ptr + 0x20);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b830(processed_length + buffer, length - processed_length, field1);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
     
@@ -969,12 +969,12 @@ int process_adaptive_routing_network_data(int64_t data_ptr, int64_t buffer, int 
     
     flag_byte = *(byte*)(data_ptr + 0x14);
     
-    processed_length = FUN_18074b880(buffer, length, data_ptr + 0x20);
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    processed_length = DataProcessor(buffer, length, data_ptr + 0x20);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, data_ptr + 0xa0);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, data_ptr + 0xa0);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074be90(processed_length + buffer, length - processed_length, flag_byte);
     
@@ -1035,20 +1035,20 @@ int process_custom_format_v1_network_data(int64_t data_ptr, int64_t buffer, int 
     field2 = *(uint*)(data_ptr + 0x18);
     field3 = *(uint*)(data_ptr + 0x10);
     
-    processed_length = FUN_18074b880(buffer, length, NETWORK_FORMAT_CUSTOM_3);
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    processed_length = DataProcessor(buffer, length, NETWORK_FORMAT_CUSTOM_3);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, field3);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, field2);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074b650(processed_length + buffer, length - processed_length, extended_fields);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, field1);
     
@@ -1109,20 +1109,20 @@ int process_custom_format_v2_network_data(int64_t data_ptr, int64_t buffer, int 
     field2 = *(uint*)(data_ptr + 0x18);
     field3 = *(uint*)(data_ptr + 0x10);
     
-    processed_length = FUN_18074b880(buffer, length, NETWORK_FORMAT_ALT_3);
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    processed_length = DataProcessor(buffer, length, NETWORK_FORMAT_ALT_3);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, field3);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b7d0(processed_length + buffer, length - processed_length, field2);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = FUN_18074b650(processed_length + buffer, length - processed_length, extended_fields);
     processed_length += remaining_length;
-    remaining_length = FUN_18074b880(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
+    remaining_length = DataProcessor(processed_length + buffer, length - processed_length, NETWORK_SEPARATOR);
     processed_length += remaining_length;
     remaining_length = func_0x00018074b800(processed_length + buffer, length - processed_length, field1);
     

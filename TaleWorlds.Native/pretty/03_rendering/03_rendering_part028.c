@@ -548,7 +548,7 @@ void calculate_render_transform(int64_t *param_1, int64_t *param_2)
         
         // 释放内存
         if (temp_matrix_3 != (int64_t *)0x0) {
-          FUN_18064e900(temp_matrix_3);
+          CoreEngine_MemoryPoolManager(temp_matrix_3);
         }
         
         // 更新指针

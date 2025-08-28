@@ -296,7 +296,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             fragment_resource = (code *)&system_data_buffer_ptr;
             if (fragment_offset != 0) {
                 // WARNING: Subroutine does not return
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
             }
             fragment_offset = 0;
             checksum_value = checksum_value & 0xffffffff00000000;
@@ -332,7 +332,7 @@ void rendering_system_cleanup_handler(int64_t render_context)
     if (resource_handle != 0) {
         FUN_18045fb80(resource_handle);
         // WARNING: Subroutine does not return
-        FUN_18064e900(resource_handle);
+        CoreEngine_MemoryPoolManager(resource_handle);
     }
     *(uint64_t *)(render_context + 0x3c8) = 0;
     
@@ -822,7 +822,7 @@ texture_resource_allocation:
     texture_reference = &system_data_buffer_ptr;
     if (data_pointer != (uint64_t *)0x0) {
         // WARNING: Subroutine does not return
-        FUN_18064e900(data_pointer);
+        CoreEngine_MemoryPoolManager(data_pointer);
     }
     texture_data = (uint64_t *)0x0;
     texture_resource = (uint64_t)texture_resource._4_4_ << 0x20;
@@ -950,7 +950,7 @@ invalid_block_detected:
     // 释放主资源块
     if (resource_cache != (uint64_t *)0x0) {
         // WARNING: Subroutine does not return
-        FUN_18064e900(resource_cache);
+        CoreEngine_MemoryPoolManager(resource_cache);
     }
     return;
 }

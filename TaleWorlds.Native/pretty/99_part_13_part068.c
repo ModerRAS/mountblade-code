@@ -10,7 +10,7 @@ void FUN_1808d6c72(void)
   uint64_t in_stack_000000b8;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b8 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_000000b8 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -739,7 +739,7 @@ void FUN_1808d77c0(uint64_t *param_1,int64_t *param_2)
     *param_2 = lVar2;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (uint64_t)auStack_58);
+  SystemSecurityChecker(uStack_10 ^ (uint64_t)auStack_58);
 }
 
 
@@ -764,7 +764,7 @@ void FUN_1808d77e6(int64_t *param_1)
   }
   *unaff_RBX = lVar1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -779,7 +779,7 @@ void FUN_1808d7822(void)
   uint64_t in_stack_00000048;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000048 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -809,7 +809,7 @@ void FUN_1808d7840(int64_t *param_1,uint64_t param_2,int32_t param_3)
     param_1[1] = (int64_t)param_1;
     *param_1 = (int64_t)param_1;
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_2,param_3,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_2,param_3,1);
   }
   if (plVar1 == plVar2) {
     plVar1 = (int64_t *)0x0;
@@ -826,7 +826,7 @@ void FUN_1808d7840(int64_t *param_1,uint64_t param_2,int32_t param_3)
   plVar2[1] = (int64_t)plVar2;
   *plVar2 = (int64_t)plVar2;
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar2,&unknown_var_7344_ptr,0xc0,1);
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar2,&unknown_var_7344_ptr,0xc0,1);
 }
 
 

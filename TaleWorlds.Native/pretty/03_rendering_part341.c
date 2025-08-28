@@ -575,11 +575,11 @@ void FUN_18044d570(int64_t param_1,uint64_t param_2)
     if (lVar2 != 0) {
       if (*(int64_t *)(lVar2 + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       *(uint64_t *)(lVar2 + 0xd0) = 0;
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar2);
+      CoreEngine_MemoryPoolManager(lVar2);
     }
     *(uint64_t *)(lVar4 + *(int64_t *)(param_1 + 0xd0)) = 0;
     uVar3 = *(uint64_t *)(param_1 + 0xd8);
@@ -627,11 +627,11 @@ void FUN_18044d583(int64_t param_1)
   }
   if (*(int64_t *)(lVar2 + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   *(uint64_t *)(lVar2 + 0xd0) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(lVar2);
+  CoreEngine_MemoryPoolManager(lVar2);
 }
 
 
@@ -666,7 +666,7 @@ FUN_18044d680(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return uVar1;
 }
@@ -741,7 +741,7 @@ joined_r0x00018044d87d:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(plVar5);
+  CoreEngine_MemoryPoolManager(plVar5);
 }
 
 
@@ -808,7 +808,7 @@ FUN_18044d910(int32_t *param_1,char param_2,uint64_t param_3,int32_t param_4,
     return param_1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 
@@ -850,7 +850,7 @@ FUN_18044da90(int32_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
     return param_1;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 
@@ -875,7 +875,7 @@ void FUN_18044db70(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   puStack_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return;
 }
@@ -1011,7 +1011,7 @@ void FUN_18044dd10(uint64_t *param_1,int64_t param_2,uint64_t param_3)
   } while ((int)uVar5 < 0x400);
   if (((uStack_c8._1_1_ == '\0') && ((char)uStack_c8 == '\0')) && (lStack_d8 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return;
 }

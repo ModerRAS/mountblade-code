@@ -406,7 +406,7 @@ void FUN_1803fdcd0(int64_t *param_1,int64_t param_2,int64_t param_3,int32_t para
     puStack_250 = &system_data_buffer_ptr;
     if (lStack_248 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     lStack_248 = 0;
     uStack_238 = uStack_238 & 0xffffffff00000000;

@@ -185,7 +185,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
         lVar2 = __RTCastToVoid(puVar1);
         (**(code **)*puVar1)(puVar1, 0);
         if (lVar2 != 0) {
-            FUN_18064e900(lVar2);
+            CoreEngine_MemoryPoolManager(lVar2);
         }
     }
     param_1[0x66c] = 0;
@@ -215,7 +215,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     FUN_18004b730();
     param_1[0xc169] = &system_data_buffer_ptr;
     if (param_1[0xc16a] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0xc16a] = 0;
     *(int32_t *)(param_1 + 0xc16c) = 0;
@@ -254,7 +254,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     /* 清理线程局部存储 */
     param_1[0x103a] = &system_data_buffer_ptr;
     if (param_1[0x103b] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0x103b] = 0;
     *(int32_t *)(param_1 + 0x103d) = 0;
@@ -266,23 +266,23 @@ void ObjectManagerDestructor(uint64_t *param_1)
     
     /* 清理资源管理器 */
     if (param_1[0x1023] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     _Mtx_destroy_in_situ();
     FUN_1808fc8a8(param_1 + 0xb97, 0x2408, 1, FUN_1801b99e0);
     if (param_1[0xb93] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     _Mtx_destroy_in_situ();
     if (param_1[0xb7f] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     if (param_1[0xb75] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     _Mtx_destroy_in_situ();
     if (param_1[0xb65] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     /* 清理渲染资源 */
@@ -292,13 +292,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     FUN_1800e7c40(param_1 + 0x7ed);
     param_1[0x7da] = &system_data_buffer_ptr;
     if (param_1[0x7db] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0x7db] = 0;
     *(int32_t *)(param_1 + 0x7dd) = 0;
     param_1[0x7da] = &system_state_ptr;
     if (param_1[0x7ce] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     /* 清理渲染管道 */
@@ -308,13 +308,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     FUN_18038bfe0(param_1 + 0x54d);
     _Mtx_destroy_in_situ();
     if (param_1[0x53e] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     if (param_1[0x53a] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     if (param_1[0x536] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     /* 清理渲染状态 */
@@ -327,13 +327,13 @@ void ObjectManagerDestructor(uint64_t *param_1)
     FUN_1801c0df0(param_1 + 0x519);
     param_1[0x512] = &system_data_buffer_ptr;
     if (param_1[0x513] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0x513] = 0;
     *(int32_t *)(param_1 + 0x515) = 0;
     param_1[0x512] = &system_state_ptr;
     if (param_1[0x50e] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     /* 清理系统回调 */
@@ -344,17 +344,17 @@ void ObjectManagerDestructor(uint64_t *param_1)
         (*(code *)param_1[0x50a])(param_1 + 0x508, 0, 0);
     }
     if (param_1[0x502] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     if (param_1[0x4fe] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     if ((int64_t *)param_1[0x4fd] != (int64_t *)0x0) {
         (**(code **)(*(int64_t *)param_1[0x4fd] + 0x38))();
     }
     param_1[0x4f9] = &system_data_buffer_ptr;
     if (param_1[0x4fa] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0x4fa] = 0;
     *(int32_t *)(param_1 + 0x4fc) = 0;
@@ -372,32 +372,32 @@ void ObjectManagerDestructor(uint64_t *param_1)
     /* 清理系统资源 */
     FUN_18024f2c0(param_1 + 0xae);
     if (param_1[0xa8] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0xa4] = &system_data_buffer_ptr;
     if (param_1[0xa5] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0xa5] = 0;
     *(int32_t *)(param_1 + 0xa7) = 0;
     param_1[0xa4] = &system_state_ptr;
     param_1[0xa0] = &system_data_buffer_ptr;
     if (param_1[0xa1] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0xa1] = 0;
     *(int32_t *)(param_1 + 0xa3) = 0;
     param_1[0xa0] = &system_state_ptr;
     param_1[0x9b] = &system_data_buffer_ptr;
     if (param_1[0x9c] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0x9c] = 0;
     *(int32_t *)(param_1 + 0x9e) = 0;
     param_1[0x9b] = &system_state_ptr;
     param_1[0x91] = &system_data_buffer_ptr;
     if (param_1[0x92] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0x92] = 0;
     *(int32_t *)(param_1 + 0x94) = 0;
@@ -427,7 +427,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     /* 清理系统事件 */
     FUN_1808fc8a8(param_1 + 0x5e, 8, 4, FUN_180045af0);
     if (param_1[0x5a] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     FUN_180195450(param_1 + 0x4d);
     FUN_180383570(param_1 + 0x24);
@@ -435,17 +435,17 @@ void ObjectManagerDestructor(uint64_t *param_1)
         (*(code *)param_1[0x22])(param_1 + 0x20, 0, 0);
     }
     if (param_1[0x1c] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     FUN_1801ba340();
     if ((int64_t *)param_1[0x12] != (int64_t *)0x0) {
         (**(code **)(*(int64_t *)param_1[0x12] + 0x38))();
     }
     if (param_1[0xe] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     if (param_1[0xb] != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     param_1[0xb] = 0;
     if ((int64_t *)param_1[8] != (int64_t *)0x0) {
@@ -717,7 +717,7 @@ LAB_180198693:
     puVar2[6] = uStack_18;
     puVar2[7] = uStack_14;
     if (*(int64_t *)(param_1 + 0x5b28) != 0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     *(int32_t **)(param_1 + 0x5b28) = puVar2;
     *(int32_t **)(param_1 + 0x5b30) = puVar2 + 8;
@@ -827,7 +827,7 @@ LAB_180198827:
             lVar8 = __RTCastToVoid(puVar2);
             (**(code **)*puVar2)(puVar2, 0);
             if (lVar8 != 0) {
-                FUN_18064e900(lVar8);
+                CoreEngine_MemoryPoolManager(lVar8);
             }
         }
         *(uint64_t *)(param_1 + 0x28c0) = 0;
@@ -1159,7 +1159,7 @@ uint64_t ObjectRegistrar(int64_t param_1, int64_t *param_2, int8_t param_3, int8
         if (*(int64_t **)(lVar6 + 0x20) != (int64_t *)0x0) {
             (**(code **)(**(int64_t **)(lVar6 + 0x20) + 0x38))();
         }
-        FUN_18064e900(lVar6);
+        CoreEngine_MemoryPoolManager(lVar6);
     }
 LAB_180198da7:
     if ((puVar10 == puVar1) || (*(uint64_t *)(lVar6 + 0x20) < (uint64_t)puVar10[4])) {

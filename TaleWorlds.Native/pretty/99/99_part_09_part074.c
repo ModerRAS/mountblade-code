@@ -949,7 +949,7 @@ void system_deinitializer(uint64_t *param_1)
   }
   
   /* 系统错误处理 - 处理系统错误 */
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 /**

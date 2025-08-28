@@ -423,7 +423,7 @@ LAB_18027c306:
             temp_buffer = &system_data_buffer_ptr;
             if (texture_path != (char *)0x0) {
                     // WARNING: Subroutine does not return
-              FUN_18064e900();
+              CoreEngine_MemoryPoolManager();
             }
             texture_path = (char *)0x0;
             texture_size = texture_size & 0xffffffff00000000;
@@ -438,16 +438,16 @@ LAB_18027c306:
         }
         if (material_params != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(material_params);
+          CoreEngine_MemoryPoolManager(material_params);
         }
         if (temp_ptr2 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         ptr1 = &system_data_buffer_ptr;
         if (ptr2 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         ptr2 = (void *)0x0;
         param_value = 0;
@@ -545,11 +545,11 @@ LAB_18027c306:
       }
       if (material_params != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(material_params);
+        CoreEngine_MemoryPoolManager(material_params);
       }
       if (array_index != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(array_index);
+        CoreEngine_MemoryPoolManager(array_index);
       }
       file_position = file_position + 0x10;
       texture_offset = texture_offset + -1;
@@ -563,5 +563,5 @@ LAB_18027c306:
     UNLOCK();
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(file_handle);
+  CoreEngine_MemoryPoolManager(file_handle);
 }

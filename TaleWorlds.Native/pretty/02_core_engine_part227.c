@@ -310,7 +310,7 @@ LAB_18019e833:
               uStack_168 = 0;
               if (alStack_148[0] != 0) {
                     // WARNING: Subroutine does not return
-                FUN_18064e900();
+                CoreEngine_MemoryPoolManager();
               }
               alStack_148[0] = 0;
               if ((*(char *)(lStack_118 + 0x60c1c) != '\0') &&

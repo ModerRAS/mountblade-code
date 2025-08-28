@@ -759,7 +759,7 @@ void FUN_1804f6330(int64_t param_1,uint64_t param_2,uint64_t param_3)
   *(int32_t *)(param_1 + 0x87b760) = 0;
   if (*(int64_t *)(param_1 + 0x87b768) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   *(uint64_t *)(param_1 + 0x87b768) = 0;
   *(int32_t *)(param_1 + 0x87b770) = 0;

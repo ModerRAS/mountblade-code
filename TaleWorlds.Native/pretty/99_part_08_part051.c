@@ -743,7 +743,7 @@ void FUN_1805ac830(int64_t *param_1,int64_t *param_2,char param_3,uint64_t param
     }
     if (plVar2 != (int64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(plVar2);
+      CoreEngine_MemoryPoolManager(plVar2);
     }
   }
   (**(code **)(*plVar14 + 0x38))(plVar14);

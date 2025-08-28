@@ -521,14 +521,14 @@ void FUN_1805369a0(int32_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     if (plVar1 != (int64_t *)0x0) {
       if (plVar1[0x11] != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       if (*plVar1 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(plVar1);
+        CoreEngine_MemoryPoolManager(plVar1);
       }
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     plVar4[5] = 0;
     plVar4[0x1c] = 0;
@@ -537,7 +537,7 @@ void FUN_1805369a0(int32_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     if (lVar3 != 0) {
       FUN_18058f420(lVar3);
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar3);
+      CoreEngine_MemoryPoolManager(lVar3);
     }
     plVar4[-3] = 0;
     lVar3 = plVar4[-1];
@@ -549,7 +549,7 @@ void FUN_1805369a0(int32_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
         if (lVar2 != 0) {
           FUN_18058f420(lVar2,lVar3,param_3,param_4,uVar9);
                     // WARNING: Subroutine does not return
-          FUN_18064e900(lVar2);
+          CoreEngine_MemoryPoolManager(lVar2);
         }
         *(uint64_t *)(uVar7 + plVar4[-1]) = 0;
         uVar5 = (int)uVar6 + 1;

@@ -193,7 +193,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         stack_buffer_60 = &system_data_buffer_ptr;
         if (stack_buffer_58 != (void*)0x0) {
             // 释放缓冲区
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         // 准备下一个输出
@@ -224,7 +224,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 清理第二个缓冲区
         if (stack_buffer_38 != (void*)0x0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         // 准备第三个输出
@@ -256,7 +256,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 清理第三个缓冲区
         if (stack_buffer_58 != (void*)0x0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
         
         // 准备第四个输出
@@ -291,7 +291,7 @@ void rendering_system_object_state_validator(void* context, int64_t state_data,
         
         // 清理第四个缓冲区
         if (stack_buffer_38 != (void*)0x0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
     }
     

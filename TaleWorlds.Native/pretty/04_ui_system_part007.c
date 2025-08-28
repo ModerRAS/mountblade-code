@@ -429,7 +429,7 @@ LAB_1806579e7:
   validation_result = 0;
 LAB_1806579f0:
   // 分配内存并处理数据
-  memory_allocation_result = FUN_18062b420(system_memory_pool_ptr,MAX_DATA_BLOCK_SIZE,system_memory_6808,validation_flag,0xfffffffffffffffe);
+  memory_allocation_result = CoreMemoryPoolAllocator(system_memory_pool_ptr,MAX_DATA_BLOCK_SIZE,system_memory_6808,validation_flag,0xfffffffffffffffe);
   FUN_180627ae0(memory_allocation_result + 0x20,processing_context);
   *(uint64_t *)(memory_allocation_result + 0x40) = 0;
   // 调用系统处理函数
@@ -599,7 +599,7 @@ void UISystem_DataProcessor(int64_t data_source, int64_t data_target, uint64_t p
       buffer_size = 0;
       string_buffer_ptr = (int8_t *)0x0;
       string_length = 0;
-      FUN_1806277c0(&stack_data_buffer,*(int32_t *)(current_offset + 0x10 + source_data_ptr));
+      CoreMemoryPoolProcessor(&stack_data_buffer,*(int32_t *)(current_offset + 0x10 + source_data_ptr));
       data_length = *(int *)(current_offset + 0x10 + source_data_ptr);
       if (data_length != 0) {
         memcpy(string_buffer_ptr,*(uint64_t *)(current_offset + 8 + source_data_ptr),data_length + 1,validation_flag,memory_management_flag);
@@ -621,7 +621,7 @@ void UISystem_DataProcessor(int64_t data_source, int64_t data_target, uint64_t p
         data_structure_ptr[3] = 0;
         data_structure_ptr[1] = 0;
         *(int32_t *)(data_structure_ptr + 2) = 0;
-        FUN_1806277c0(data_structure_ptr,string_length);
+        CoreMemoryPoolProcessor(data_structure_ptr,string_length);
         if (string_length != 0) {
           memcpy(data_structure_ptr[1],string_buffer_ptr,string_length + 1,validation_flag,memory_management_flag);
         }
@@ -638,7 +638,7 @@ void UISystem_DataProcessor(int64_t data_source, int64_t data_target, uint64_t p
       }
       stack_data_buffer = &system_data_buffer_ptr;
       if (string_buffer_ptr != (int8_t *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       data_item_id = (int)item_count + 1;
       current_offset = current_offset + DATA_ELEMENT_SIZE;

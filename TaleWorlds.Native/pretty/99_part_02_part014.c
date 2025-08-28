@@ -806,7 +806,7 @@ LAB_1800f3b9f:
           *puVar13 = plVar9;
           if (*(int64_t *)(param_2 + 0x50) != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           *(uint64_t **)(param_2 + 0x50) = puVar13;
           *(uint64_t **)(param_2 + 0x58) = puVar13 + 1;

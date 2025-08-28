@@ -563,7 +563,7 @@ void rendering_system_initialize_render_context(int64_t render_context, unsigned
             resource_handle = FUN_1801f20c0(0x69626d61, &stack_pointer, adjusted_flags);
             FUN_180056f10(render_context + 0x538, resource_handle);
             stack_pointer = &global_state_3456_ptr;
-            FUN_18064e900(string_buffer);
+            CoreEngine_MemoryPoolManager(string_buffer);
         }
         
         // 初始化反射系统
@@ -583,7 +583,7 @@ void rendering_system_initialize_render_context(int64_t render_context, unsigned
             resource_handle = FUN_1801f20c0(0x68, &stack_pointer_2, adjusted_flags);
             FUN_180056f10(render_context + 0x540, resource_handle);
             stack_pointer_2 = &global_state_3456_ptr;
-            FUN_18064e900(string_buffer_64);
+            CoreEngine_MemoryPoolManager(string_buffer_64);
         }
         
         // 初始化曲面细分系统
@@ -607,7 +607,7 @@ void rendering_system_initialize_render_context(int64_t render_context, unsigned
             resource_handle = FUN_1801f20c0(0x68, &stack_pointer_3, adjusted_flags);
             FUN_180056f10(render_context + 0x550, resource_handle);
             stack_pointer_3 = &global_state_3456_ptr;
-            FUN_18064e900(string_buffer);
+            CoreEngine_MemoryPoolManager(string_buffer);
         }
         
         // 设置所有系统的渲染标志
@@ -637,7 +637,7 @@ void rendering_system_initialize_render_context(int64_t render_context, unsigned
         resource_handle = FUN_1801f20c0(0x725f7476, &stack_pointer_4, adjusted_flags);
         FUN_180056f10(render_context + 0x558, resource_handle);
         stack_pointer_4 = &global_state_3456_ptr;
-        FUN_18064e900(string_buffer);
+        CoreEngine_MemoryPoolManager(string_buffer);
     }
     
     // 初始化后处理系统
@@ -673,7 +673,7 @@ void rendering_system_initialize_render_context(int64_t render_context, unsigned
     }
     
     stack_pointer_5 = &global_state_3456_ptr;
-    FUN_18064e900(string_buffer);
+    CoreEngine_MemoryPoolManager(string_buffer);
 }
 
 /**
@@ -1232,7 +1232,7 @@ void rendering_system_cleanup_render_resources(int64_t *resource_manager)
         resource_data = __RTCastToVoid(resource_handle);
         (**(code **)*resource_handle)(resource_handle, 0);
         if (resource_data != 0) {
-            FUN_18064e900(resource_data);
+            CoreEngine_MemoryPoolManager(resource_data);
         }
     }
     return;
@@ -1250,7 +1250,7 @@ void rendering_system_release_render_memory(void)
     memory_handle = __RTCastToVoid();
     (**(code **)*resource_pointer)();
     if (memory_handle != 0) {
-        FUN_18064e900(memory_handle);
+        CoreEngine_MemoryPoolManager(memory_handle);
     }
     return;
 }

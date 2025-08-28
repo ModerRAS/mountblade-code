@@ -237,7 +237,7 @@ void FUN_180431380(int64_t param_1)
         *puVar2 = uVar1;
         if (puVar4 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(puVar4);
+          CoreEngine_MemoryPoolManager(puVar4);
         }
         puVar6 = puVar2 + lVar5;
         puVar10 = puVar2;
@@ -254,7 +254,7 @@ void FUN_180431380(int64_t param_1)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar2);
+  CoreEngine_MemoryPoolManager(puVar2);
 }
 
 
@@ -349,7 +349,7 @@ void FUN_1804315b0(int64_t *param_1)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 

@@ -357,7 +357,7 @@ LAB_18046745b:
                   puStack_278 = &system_data_buffer_ptr;
                   if (lStack_270 != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                   }
                   lStack_270 = 0;
                   uStack_260 = uStack_260 & 0xffffffff00000000;
@@ -367,7 +367,7 @@ LAB_18046745b:
                     return;
                   }
                     // WARNING: Subroutine does not return
-                  FUN_18064e900();
+                  CoreEngine_MemoryPoolManager();
                 }
                 pcVar10 = *(char **)pcVar16;
                 if (pcVar10 == (char *)0x0) {

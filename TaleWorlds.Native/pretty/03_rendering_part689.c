@@ -22,7 +22,7 @@ void FUN_18065edd0(void)
     unaff_RDI = unaff_RDI + 1;
   } while (unaff_EBX < 0x12);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0xfb0) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xfb0) ^ (uint64_t)&stack0x00000000);
 }
 
 

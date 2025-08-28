@@ -696,32 +696,32 @@ void render_memory_cleanup(int64_t *memory_pool)
   }
   if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   *param_1 = 0;
   if (param_1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   param_1[1] = 0;
   if (param_1[2] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   param_1[2] = 0;
   if (param_1[5] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   param_1[5] = 0;
   if (param_1[4] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   param_1[4] = 0;
   if (param_1[3] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   *(int8_t *)((int64_t)param_1 + 0x81) = 0;
   param_1[3] = 0;
@@ -779,7 +779,7 @@ uint64_t render_cache_clear(int64_t cache_manager)
       lVar3 = *(int64_t *)(lVar5 + uVar6 * 8);
       if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar3);
+        CoreEngine_MemoryPoolManager(lVar3);
       }
       *(uint64_t *)(lVar5 + uVar6 * 8) = 0;
       uVar6 = uVar6 + 1;
@@ -787,7 +787,7 @@ uint64_t render_cache_clear(int64_t cache_manager)
   }
   if ((1 < uVar2) && (lVar5 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lVar5);
+    CoreEngine_MemoryPoolManager(lVar5);
   }
   ReleaseSRWLockExclusive(0x180c91dc8);
   return 1;
@@ -989,7 +989,7 @@ void render_hash_table_resize(uint64_t new_size)
   
   if ((1 < param_1) && (*(int64_t *)(unaff_RDI + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(*(int64_t *)(unaff_RDI + 8));
+    CoreEngine_MemoryPoolManager(*(int64_t *)(unaff_RDI + 8));
   }
   *(uint64_t *)(unaff_RDI + 0x10) = unaff_RBP;
   *(int64_t *)(unaff_RDI + 8) = unaff_R14;

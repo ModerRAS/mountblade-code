@@ -1,5 +1,5 @@
 #define SystemInitializer FUN_1808fcb90  // 系统初始化器
-#define ResourceReleaser FUN_18064e900  // 资源释放器
+#define ResourceReleaser CoreEngine_MemoryPoolManager  // 资源释放器
 #define AdvancedMemoryAllocator FUN_18062b420  // 高级内存分配器
 #define MemoryPoolAllocator FUN_18062b1e0  // 内存池分配器
 #define StateQueryProcessor FUN_180080380  // 状态查询处理器

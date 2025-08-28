@@ -1694,7 +1694,7 @@ void ArrayProcessor_ProcessArrays(uint64_t* param_1, int param_2, int param_3)
                 
                 if (stack_array[0] != 0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 
                 if (stack_ptr != (int64_t*)0x0) {

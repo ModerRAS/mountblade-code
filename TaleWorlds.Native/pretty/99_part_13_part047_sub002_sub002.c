@@ -25,7 +25,7 @@ int32_t FUN_1808c4080(void)
   
   if (unaff_RBP != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180768400();
+    SystemConfigManager();
   }
   func_0x0001807d2ed0();
   if (unaff_RBX == 0) {
@@ -33,7 +33,7 @@ int32_t FUN_1808c4080(void)
   }
   FUN_1808bbe80();
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
 
 
@@ -101,7 +101,7 @@ int FUN_1808c41f0(int64_t param_1,uint64_t *param_2)
   
   lVar1 = *(int64_t *)(param_1 + 0x28);
   if (lVar1 != 0) {
-    FUN_180768360(lVar1);
+    SystemStateManager(lVar1);
   }
   lVar4 = (**(code **)*param_2)(param_2);
   plVar5 = (int64_t *)func_0x000180851be0(param_1 + 0x30,lVar4 + 0x10);
@@ -152,12 +152,12 @@ int FUN_1808c41f0(int64_t param_1,uint64_t *param_2)
   if (iVar2 == 0) {
     FUN_1808bbe80(plVar5);
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar5,&unknown_var_2080_ptr,0xe1,1);
+    SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar5,&unknown_var_2080_ptr,0xe1,1);
   }
 LAB_1808c433a:
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180768400(lVar1);
+    SystemConfigManager(lVar1);
   }
   return iVar2;
 }
@@ -183,7 +183,7 @@ LAB_1808c43ca:
       plVar3[1] = (int64_t)plVar3;
       *plVar3 = (int64_t)plVar3;
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar3,&unknown_var_1696_ptr,0xe1,1);
+      SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar3,&unknown_var_1696_ptr,0xe1,1);
     }
   }
   else {
@@ -229,7 +229,7 @@ uint64_t FUN_1808c4440(int64_t param_1,int64_t param_2)
   plVar2[1] = (int64_t)plVar2;
   *plVar2 = (int64_t)plVar2;
                     // WARNING: Subroutine does not return
-  FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar2,&unknown_var_1696_ptr,0xe1,1);
+  SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar2,&unknown_var_1696_ptr,0xe1,1);
 }
 
 

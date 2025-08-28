@@ -734,7 +734,7 @@ void rendering_system_advanced_render_control(int64_t render_engine, int64_t ren
     stack_pointer = &global_state_3456_ptr;
     
     // 函数在此处结束（不返回）
-    FUN_18064e900(texture_ptr);
+    CoreEngine_MemoryPoolManager(texture_ptr);
 }
 
 // =============================================================================

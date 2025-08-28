@@ -62,7 +62,7 @@ extern code *global_state_5648_ptr;        // 渲染跳转表1
 extern void FUN_1801a3620(uint64_t param1, void *param2, uint64_t param3, uint64_t param4, uint64_t param5);
 extern void FUN_1801c2360(int64_t param1, int64_t **param2);
 extern void FUN_1800b6620(void);
-extern void FUN_18064e900(void);
+extern void CoreEngine_MemoryPoolManager(void);
 extern uint64_t FUN_180302c30(int64_t param1);
 extern int64_t FUN_18062b420(int64_t param1, int64_t param2, int8_t param3);
 extern int64_t func_0x00018066b9a0(void *param1);
@@ -171,7 +171,7 @@ void RenderingSystem_AdvancedParameterControl(int64_t render_context, uint64_t p
     FUN_1800b6620();
     if (cleanup_counter != 0) {
       // 执行内存清理
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     
     // 更新渲染时间

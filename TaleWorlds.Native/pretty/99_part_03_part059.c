@@ -813,17 +813,17 @@ void FUN_180235ca0(int64_t *param_1,int64_t param_2,int8_t (*param_3) [16],byte 
     if (plStack_2b8 != (int64_t *)0x0) {
       FUN_18007f840(plStack_2b8);
                     // WARNING: Subroutine does not return
-      FUN_18064e900(plVar26);
+      CoreEngine_MemoryPoolManager(plVar26);
     }
     if (plStack_2b0 != (int64_t *)0x0) {
       FUN_18007f840(plStack_2b0);
                     // WARNING: Subroutine does not return
-      FUN_18064e900(plVar27);
+      CoreEngine_MemoryPoolManager(plVar27);
     }
     if (plStack_2a8 != (int64_t *)0x0) {
       FUN_18007f840(plStack_2a8);
                     // WARNING: Subroutine does not return
-      FUN_18064e900(plVar28);
+      CoreEngine_MemoryPoolManager(plVar28);
     }
   }
                     // WARNING: Subroutine does not return

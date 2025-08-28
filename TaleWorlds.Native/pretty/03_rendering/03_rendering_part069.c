@@ -241,7 +241,7 @@ void rendering_system_cleanup_resources(uint64_t *context, uint64_t param2, uint
     
     // 释放资源内存
     if (resource_size != 0) {
-        FUN_18064e900(resource_size);
+        CoreEngine_MemoryPoolManager(resource_size);
     }
     
     // 调用清理回调函数
@@ -272,9 +272,9 @@ void rendering_system_cleanup_resources(uint64_t *context, uint64_t param2, uint
         if (context[1] == 0) {
             return;
         }
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 // 数据处理函数
@@ -394,7 +394,7 @@ LAB_1803075e0:
                 
                 // 更新缓冲区指针
                 if (*(int64_t *)(context + 0x1b90) != 0) {
-                    FUN_18064e900();
+                    CoreEngine_MemoryPoolManager();
                 }
                 *(uint64_t **)(context + 0x1b90) = temp_ptr1;
                 *(uint64_t **)(context + 0x1b98) = temp_ptr1 + 1;

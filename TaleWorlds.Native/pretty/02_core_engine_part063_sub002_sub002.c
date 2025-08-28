@@ -1026,10 +1026,10 @@ int64_t * FUN_18009bb60(uint64_t param_1,int64_t *param_2,uint64_t param_3,int32
   uStack_30 = 0;
   puStack_40 = (int32_t *)0x0;
   uStack_38 = 0;
-  puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x1d,0x13,param_4,0,0xfffffffffffffffe);
+  puVar3 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,0x1d,0x13,param_4,0,0xfffffffffffffffe);
   *(int8_t *)puVar3 = 0;
   puStack_40 = puVar3;
-  uVar2 = FUN_18064e990(puVar3);
+  uVar2 = CoreMemoryPoolCleaner(puVar3);
   *puVar3 = 0x6f736552;
   puVar3[1] = 0x65637275;
   puVar3[2] = 0x66754220;
@@ -1043,7 +1043,7 @@ int64_t * FUN_18009bb60(uint64_t param_1,int64_t *param_2,uint64_t param_3,int32
   puStack_48 = &system_data_buffer_ptr;
   if (puStack_40 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   puStack_40 = (int32_t *)0x0;
   uStack_30 = (uint64_t)uStack_30._4_4_ << 0x20;
@@ -1209,7 +1209,7 @@ LAB_18009be87:
   }
   uVar10 = 0;
 LAB_18009bed0:
-  lVar7 = FUN_18062b420(system_memory_pool_ptr,0x48,(char)param_1[5]);
+  lVar7 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x48,(char)param_1[5]);
   FUN_180627ae0(lVar7 + 0x20,param_5);
   *(int32_t *)(lVar7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
@@ -1441,7 +1441,7 @@ LAB_18009c267:
   }
   uVar10 = 0;
 LAB_18009c2b0:
-  lVar7 = FUN_18062b420(system_memory_pool_ptr,0x48,(char)param_1[5]);
+  lVar7 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x48,(char)param_1[5]);
   FUN_180627ae0(lVar7 + 0x20,param_5);
   *(int8_t *)(lVar7 + 0x40) = 0;
                     // WARNING: Subroutine does not return
@@ -1601,7 +1601,7 @@ LAB_18009c4f7:
   }
   uVar10 = 0;
 LAB_18009c540:
-  lVar7 = FUN_18062b420(system_memory_pool_ptr,0x1c0,(char)param_1[5]);
+  lVar7 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x1c0,(char)param_1[5]);
   FUN_180627ae0(lVar7 + 0x20,param_5);
   FUN_18009ad10(lVar7 + 0x40);
                     // WARNING: Subroutine does not return
@@ -1680,7 +1680,7 @@ FUN_18009c68a:
   else {
     uVar6 = 1;
   }
-  lVar5 = FUN_18062b420(system_memory_pool_ptr,0x28,(char)param_1[5]);
+  lVar5 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x28,(char)param_1[5]);
   *(int *)(lVar5 + 0x20) = *param_5;
   *(int32_t *)(lVar5 + 0x24) = 0;
                     // WARNING: Subroutine does not return

@@ -1452,7 +1452,7 @@ void resource_chain_traverse(int64_t *resource_chain)
     }
     
     // 如果链不为空，调用系统终止函数（此函数不返回）
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
 }
 
 // 函数别名

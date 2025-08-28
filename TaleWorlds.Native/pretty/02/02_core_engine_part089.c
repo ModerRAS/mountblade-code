@@ -142,7 +142,7 @@ void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3
   }
   
   // 安全检查清理
-  FUN_1808fc050(security_token ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_token ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -320,7 +320,7 @@ skip_format_conversion:
   }
   
 cleanup_and_exit:
-  FUN_1808fc050(security_token ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_token ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -457,7 +457,7 @@ skip_format:
     FUN_18012e4e0();
   }
   
-  FUN_1808fc050(security_token ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(security_token ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -543,7 +543,7 @@ void execute_core_engine_operation(void)
   *render_counter = *render_counter + -1;
   FUN_18012e4e0();
   
-  FUN_1808fc050(security_token ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(security_token ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -579,7 +579,7 @@ void execute_addition_operation(void)
   *render_counter = *render_counter + -1;
   FUN_18012e4e0();
   
-  FUN_1808fc050(security_token ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(security_token ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -588,7 +588,7 @@ void execute_addition_operation(void)
 void cleanup_operation(void)
 {
   uint64_t security_token;
-  FUN_1808fc050(security_token ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(security_token ^ (uint64_t)&stack0x00000000);
 }
 
 /**

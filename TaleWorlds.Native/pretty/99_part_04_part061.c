@@ -616,7 +616,7 @@ void FUN_1802bdf30(int64_t *param_1,uint64_t param_2)
     }
     if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     *param_1 = lVar1;
     param_1[2] = lVar1 + uVar6 * 0xc;
@@ -694,7 +694,7 @@ void FUN_1802bdf82(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 

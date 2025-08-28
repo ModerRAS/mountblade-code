@@ -818,7 +818,7 @@ void FUN_180246810(int32_t *param_1)
   }
   plStack_4e0 = plVar9;
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 

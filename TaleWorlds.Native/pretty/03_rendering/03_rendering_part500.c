@@ -964,7 +964,7 @@ int64_t * rendering_system_manage_render_queue(int64_t *queue_ptr, int64_t *item
     // 释放旧队列内存
     if (old_queue_ptr != (int64_t *)0x0) {
       // WARNING: Subroutine does not return
-      FUN_18064e900(old_queue_ptr);
+      CoreEngine_MemoryPoolManager(old_queue_ptr);
     }
     
     // 更新队列指针

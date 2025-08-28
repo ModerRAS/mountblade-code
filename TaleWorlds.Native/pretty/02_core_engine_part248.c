@@ -118,7 +118,7 @@ void FUN_1802147c0(uint64_t *param_1)
     puStack_140 = puVar2;
     if (puVar2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(puVar2);
+      CoreEngine_MemoryPoolManager(puVar2);
     }
   }
   else {
@@ -677,7 +677,7 @@ LAB_180211e24:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 

@@ -341,7 +341,7 @@ apply_final_colors:
     FUN_1808fc050(security_cookie ^ (uint64_t)stack_canary_check);
   }
   // 错误处理：不返回的函数调用
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 
@@ -471,7 +471,7 @@ void rendering_system_batch_process_and_apply(uint64_t *param_1, int64_t param_2
     FUN_1808fc050(security_cookie ^ (uint64_t)stack_canary_check);
   }
   // 错误处理：不返回的函数调用
-  FUN_18064e900();
+  CoreEngine_MemoryPoolManager();
 }
 
 
@@ -597,7 +597,7 @@ void rendering_system_texture_generation_and_coord_calculation(uint64_t *param_1
   if (texture_width._1_1_ == '\0') {
     if (((char)texture_width == '\0') && (pixel_data != (float *)0x0)) {
       // 错误处理：不返回的函数调用
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     pixel_data = (float *)0x0;
     texture_size = 0;

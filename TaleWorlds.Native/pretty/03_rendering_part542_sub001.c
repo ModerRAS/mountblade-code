@@ -928,7 +928,7 @@ void FUN_180565300(int64_t param_1)
   puStack_80 = &system_data_buffer_ptr;
   if (lStack_78 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   lStack_78 = 0;
   uStack_68 = 0;
@@ -940,7 +940,7 @@ void FUN_180565300(int64_t param_1)
     (**(code **)*puVar1)(puVar1,0);
     if (lVar4 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar4);
+      CoreEngine_MemoryPoolManager(lVar4);
     }
   }
   *(uint64_t *)(param_1 + 0x3360) = uVar2;

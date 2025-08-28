@@ -952,7 +952,7 @@ void Reset_Rendering_Flags(int64_t render_context, uint flags_to_reset)
         if (*(char *)(lVar3 + 0xf9) != '\0') {
           if (*(int64_t *)(lVar3 + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           *(uint64_t *)(lVar3 + 0x1d8) = 0;
           LOCK();

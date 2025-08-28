@@ -505,10 +505,10 @@ void UISystem_DataStructureInitializer(int64_t structure_context, uint64_t opera
   int32_t validation_result;
   
   memory_management_flag = 0xfffffffffffffffe;
-  FUN_180627910(&stack_data_buffer);
+  CoreMemoryPoolValidator(&stack_data_buffer);
   data_length = (uint64_t)string_length;
   if (string_buffer_ptr != 0) {
-    FUN_1806277c0(structure_context + 0x10,data_length);
+    CoreMemoryPoolProcessor(structure_context + 0x10,data_length);
   }
   if (string_length != 0) {
     memcpy(*(uint64_t *)(structure_context + 0x18),string_buffer_ptr,data_length,validation_flag,memory_management_flag);
@@ -520,7 +520,7 @@ void UISystem_DataStructureInitializer(int64_t structure_context, uint64_t opera
   *(int32_t *)(structure_context + 0x2c) = validation_result;
   stack_data_buffer = &system_data_buffer_ptr;
   if (string_buffer_ptr != 0) {
-    FUN_18064e900(string_buffer_ptr,string_buffer_ptr);
+    CoreEngine_MemoryPoolManager(string_buffer_ptr,string_buffer_ptr);
   }
   return;
 }
@@ -545,7 +545,7 @@ uint64_t * UISystem_StringFormatter(int64_t string_source)
   uint64_t string_length;
   uint64_t char_index;
   
-  formatted_string_ptr = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,MEMORY_ALLOCATION_SIZE,8,3);
+  formatted_string_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,MEMORY_ALLOCATION_SIZE,8,3);
   *formatted_string_ptr = &system_state_ptr;
   formatted_string_ptr[1] = 0;
   *(int32_t *)(formatted_string_ptr + 2) = 0;
@@ -559,7 +559,7 @@ uint64_t * UISystem_StringFormatter(int64_t string_source)
       char_index = string_length;
       string_length = char_index + 1;
     } while (*(char *)(string_source + string_length) != '\0');
-    FUN_1806277c0(formatted_string_ptr,string_length & 0xffffffff);
+    CoreMemoryPoolProcessor(formatted_string_ptr,string_length & 0xffffffff);
     if ((int)string_length != 0) {
       memcpy(formatted_string_ptr[1],string_source,(int)char_index + 2);
     }
@@ -742,7 +742,7 @@ void UISystem_DataStructureProcessor(int64_t *data_context)
         buffer_size = 0;
         string_buffer_ptr = (int8_t *)0x0;
         buffer_length = 0;
-        FUN_1806277c0(&stack_buffer,*(int32_t *)(processed_count + 0x10 + (int64_t)memory_ptr1));
+        CoreMemoryPoolProcessor(&stack_buffer,*(int32_t *)(processed_count + 0x10 + (int64_t)memory_ptr1));
         data_item_count = *(int *)(processed_count + 0x10 + (int64_t)structure_array_ptr);
         if (data_item_count != 0) {
           memcpy(string_buffer_ptr,*(uint64_t *)(processed_count + 8 + (int64_t)structure_array_ptr),data_item_count + 1);
@@ -758,7 +758,7 @@ void UISystem_DataStructureProcessor(int64_t *data_context)
         data_buffer_size = 0;
         data_string_ptr = (int8_t *)0x0;
         string_data_length = 0;
-        FUN_1806277c0(&data_buffer,buffer_length);
+        CoreMemoryPoolProcessor(&data_buffer,buffer_length);
         if (buffer_length != 0) {
           memcpy(data_string_ptr,string_buffer_ptr,buffer_length + 1);
         }
@@ -770,7 +770,7 @@ void UISystem_DataStructureProcessor(int64_t *data_context)
           data_buffer_size = data_buffer_size & 0xffffffff;
         }
         data_item_count = string_data_length + 0xe;
-        FUN_1806277c0(&data_buffer,data_item_count);
+        CoreMemoryPoolProcessor(&data_buffer,data_item_count);
         structure_array_ptr = (uint64_t *)(data_string_ptr + string_data_length);
         *structure_array_ptr = 0x75646f4d6275532f;
         *(int32_t *)(structure_array_ptr + 1) = 0x782e656c;
@@ -793,7 +793,7 @@ void UISystem_DataStructureProcessor(int64_t *data_context)
             if (array_size == 0) {
               array_size = 1;
 LAB_180656abd:
-              data_item_ptr = (int64_t *)FUN_18062b420(system_memory_pool_ptr,array_size * 8,(int8_t)allocation_flag);
+              data_item_ptr = (int64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,array_size * 8,(int8_t)allocation_flag);
             }
             else {
               array_size = array_size * 2;
@@ -807,7 +807,7 @@ LAB_180656abd:
             data_array_ptr = data_item_ptr + 1;
             stack_data_ptr = data_array_ptr;
             if (data_ptr_array != (int64_t *)0x0) {
-              FUN_18064e900();
+              CoreEngine_MemoryPoolManager();
             }
             temp_data_ptr = data_item_ptr + array_size;
             data_ptr_array = data_item_ptr;
@@ -817,14 +817,14 @@ LAB_180656abd:
         }
         data_buffer = &system_data_buffer_ptr;
         if (data_string_ptr != (int8_t *)0x0) {
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         data_string_ptr = (int8_t *)0x0;
         data_buffer_size = data_buffer_size & 0xffffffff00000000;
         data_buffer = &system_state_ptr;
         stack_buffer = &system_data_buffer_ptr;
         if (string_buffer_ptr != (int8_t *)0x0) {
-          FUN_18064e900();
+          CoreEngine_MemoryPoolManager();
         }
         string_buffer_ptr = (byte *)0x0;
         buffer_size = buffer_size & 0xffffffff00000000;
@@ -846,7 +846,7 @@ LAB_180656abd:
     }
     if (memory_ptr1 != (uint64_t *)0x0) {
       memory_ptr2 = next_structure_ptr;
-      FUN_18064e900();
+      CoreEngine_MemoryPoolManager();
     }
     memory_ptr1 = (uint64_t *)0x0;
     memory_ptr2 = next_structure_ptr;
@@ -863,7 +863,7 @@ LAB_180656abd:
       buffer_size = 0;
       string_buffer_ptr = (int8_t *)0x0;
       buffer_length = 0;
-      FUN_1806277c0(&stack_buffer,*(int32_t *)(string_length + 0x10));
+      CoreMemoryPoolProcessor(&stack_buffer,*(int32_t *)(string_length + 0x10));
       if (*(int *)(string_length + 0x10) != 0) {
         memcpy(string_buffer_ptr,*(uint64_t *)(string_length + 8),*(int *)(string_length + 0x10) + 1);
       }
@@ -999,7 +999,7 @@ LAB_180656d07:
 LAB_180656e1e:
       stack_buffer = &system_data_buffer_ptr;
       if (string_buffer_ptr != (byte *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       string_buffer_ptr = (byte *)0x0;
       buffer_size = buffer_size & 0xffffffff00000000;
@@ -1009,7 +1009,7 @@ LAB_180656e1e:
     } while ((uint64_t)(int64_t)data_item_count < processed_count);
   }
   if (data_ptr_array != (int64_t *)0x0) {
-    FUN_18064e900(data_ptr_array);
+    CoreEngine_MemoryPoolManager(data_ptr_array);
   }
   return;
 }
@@ -1075,7 +1075,7 @@ void UISystem_ResourceManager(uint64_t *resource_context)
   buffer_flag = 0;
   context_ptr = &system_state_ptr;
   resource_count = data_size + 8;
-  FUN_1806277c0(&data_buffer,resource_count);
+  CoreMemoryPoolProcessor(&data_buffer,resource_count);
   *(uint64_t *)((uint64_t)data_size + data_length) = 0x2f73656c75646f4d;
   *(int8_t *)((uint64_t *)((uint64_t)data_size + data_length) + 1) = 0;
   memory_ptr1 = (uint64_t *)0x0;
@@ -1096,7 +1096,7 @@ void UISystem_ResourceManager(uint64_t *resource_context)
       context_buffer[0] = 0;
       context_array = (uint64_t *)0x0;
       context_size = 0;
-      FUN_1806277c0(&context_ptr,*resource_id_ptr);
+      CoreMemoryPoolProcessor(&context_ptr,*resource_id_ptr);
       if (*resource_id_ptr != 0) {
         memcpy(context_array,*(uint64_t *)(resource_id_ptr + -2),*resource_id_ptr + 1);
       }
@@ -1111,7 +1111,7 @@ void UISystem_ResourceManager(uint64_t *resource_context)
       buffer_size = 0;
       string_buffer_ptr = (int8_t *)0x0;
       buffer_length = 0;
-      FUN_1806277c0(&stack_buffer,context_size);
+      CoreMemoryPoolProcessor(&stack_buffer,context_size);
       if (context_size != 0) {
         memcpy(string_buffer_ptr,context_array,context_size + 1);
       }
@@ -1123,7 +1123,7 @@ void UISystem_ResourceManager(uint64_t *resource_context)
         buffer_size = buffer_size & 0xffffffff;
       }
       resource_count = buffer_length + 0xe;
-      FUN_1806277c0(&stack_buffer,resource_count);
+      CoreMemoryPoolProcessor(&stack_buffer,resource_count);
       resource_ptr3 = (uint64_t *)(string_buffer_ptr + buffer_length);
       *resource_ptr3 = 0x75646f4d6275532f;
       *(int32_t *)(resource_ptr3 + 1) = 0x782e656c;
@@ -1144,7 +1144,7 @@ void UISystem_ResourceManager(uint64_t *resource_context)
           if (resource_length == 0) {
             resource_length = 1;
 LAB_1806572f9:
-            resource_ptr5 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,resource_length * 8,(char)resource_context[3]);
+            resource_ptr5 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr,resource_length * 8,(char)resource_context[3]);
             resource_ptr3 = (uint64_t *)resource_context[1];
             resource_ptr4 = (uint64_t *)*resource_context;
           }
@@ -1158,7 +1158,7 @@ LAB_1806572f9:
           }
           *resource_ptr5 = formatted_result;
           if (*resource_context != 0) {
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
           }
           *resource_context = (uint64_t)resource_ptr5;
           resource_context[1] = (uint64_t)(resource_ptr5 + 1);
@@ -1168,14 +1168,14 @@ LAB_1806572f9:
       }
       stack_buffer = &system_data_buffer_ptr;
       if (string_buffer_ptr != (int8_t *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       string_buffer_ptr = (int8_t *)0x0;
       buffer_size = buffer_size & 0xffffffff00000000;
       stack_buffer = &system_state_ptr;
       context_ptr = &system_data_buffer_ptr;
       if (context_array != (uint64_t *)0x0) {
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       context_array = (uint64_t *)0x0;
       context_buffer[0] = context_buffer[0] & 0xffffffff00000000;
@@ -1199,20 +1199,20 @@ LAB_1806572f9:
   if (memory_ptr1 != (uint64_t *)0x0) {
     memory_ptr1 = resource_ptr4;
     memory_ptr2 = resource_ptr5;
-    FUN_18064e900(resource_ptr1);
+    CoreEngine_MemoryPoolManager(resource_ptr1);
   }
   data_buffer = &system_data_buffer_ptr;
   if (data_length != 0) {
     memory_ptr1 = resource_ptr4;
     memory_ptr2 = resource_ptr5;
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   data_length = 0;
   data_flag = 0;
   data_buffer = &system_state_ptr;
   memory_ptr1 = resource_ptr4;
   memory_ptr2 = resource_ptr5;
-  FUN_1808fc050(security_cookie ^ (uint64_t)format_buffer);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)format_buffer);
 }
 
 /**
@@ -1263,7 +1263,7 @@ UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64
   }
   stack_buffer = &system_data_buffer_ptr;
   if (string_buffer_ptr != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return memory_management_flag;
 }
@@ -1401,12 +1401,12 @@ void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resour
   FUN_180657620(&system_memory_67e0,*resource_type,operation_flag,validation_flag,0xfffffffffffffffe);
   resource_type[4] = &system_data_buffer_ptr;
   if (resource_type[5] != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   resource_type[5] = 0;
   *(int32_t *)(resource_type + 7) = 0;
   resource_type[4] = &system_state_ptr;
-  FUN_18064e900(resource_type);
+  CoreEngine_MemoryPoolManager(resource_type);
 }
 
 /**
@@ -1575,7 +1575,7 @@ LAB_1806578a7:
   }
   conversion_flag = 0;
 LAB_1806578f0:
-  string_length = FUN_18062b420(system_memory_pool_ptr,0x48,system_memory_6808);
+  string_length = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x48,system_memory_6808);
   FUN_180627ae0(string_length + 0x20,param_5);
   *(uint64_t *)(string_length + 0x40) = 0;
   FUN_18066bdc0(string_length,conversion_result,&system_memory_67e0,conversion_flag);

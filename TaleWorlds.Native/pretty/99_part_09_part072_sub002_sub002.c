@@ -923,7 +923,7 @@ LAB_1805ec1f3:
   *(float *)((int64_t)param_2 + 0x3c) = fStack_54c;
 LAB_1805ec2e6:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_f8 ^ (uint64_t)auStack_6c8);
+  SystemSecurityChecker(uStack_f8 ^ (uint64_t)auStack_6c8);
 }
 
 

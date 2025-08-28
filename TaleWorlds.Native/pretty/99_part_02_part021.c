@@ -89,7 +89,7 @@ LAB_1800fa3e0:
       puStack_40 = &system_data_buffer_ptr;
       if (pbStack_38 != (byte *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
       }
       return param_2;
     }

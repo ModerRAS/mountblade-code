@@ -36,7 +36,7 @@ void FUN_1804c60b0(uint64_t param_1,uint64_t param_2)
   FUN_1803460a0(puVar2,&puStack_40,puVar2 + 0xe,0xb);
   puStack_40 = &system_data_buffer_ptr;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar3);
+  CoreEngine_MemoryPoolManager(puVar3);
 }
 
 

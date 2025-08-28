@@ -261,7 +261,7 @@ uint64_t *rendering_system_release_render_object_ext(
     // 检查对象状态
     if (render_object_ptr[10] != 0) {
         // 警告：子程序不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     // 清理相关资源
@@ -517,7 +517,7 @@ name_found:
         resource_cleanup = &cloth_string_constants;
         if (cleanup_flag != 0) {
             // 警告：子程序不返回
-            FUN_18064e900();
+            CoreEngine_MemoryPoolManager();
         }
     }
     
@@ -676,7 +676,7 @@ void rendering_system_update_cloth_parameters(
     resource_cleanup = &cloth_string_constants;
     if (cleanup_flag != 0) {
         // 警告：子程序不返回
-        FUN_18064e900();
+        CoreEngine_MemoryPoolManager();
     }
     
     return;
@@ -730,7 +730,7 @@ void rendering_system_process_cloth_texture(
     texture_cleanup = &cloth_string_constants;
     
     // 警告：子程序不返回
-    FUN_18064e900(texture_ptr);
+    CoreEngine_MemoryPoolManager(texture_ptr);
 }
 
 /**

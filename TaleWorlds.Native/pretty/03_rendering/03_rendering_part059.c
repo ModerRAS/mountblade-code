@@ -39,7 +39,7 @@ extern void FUN_1800f74f0(uint64_t *param_1, uint64_t param_2);
 extern void FUN_180058370(uint64_t *param_1, uint64_t param_2);
 extern void FUN_1808fc8a8(uint64_t *param_1, int param_2, int param_3, code *param_4);
 extern void FUN_180152b00(int64_t *param_1);
-extern void FUN_18064e900(uint64_t *param_1);
+extern void CoreEngine_MemoryPoolManager(uint64_t *param_1);
 extern uint64_t FUN_18062b1e0(uint64_t *param_1, int param_2, int param_3, int param_4);
 extern uint64_t *FUN_18005ce30(uint64_t *param_1, uint64_t **param_2);
 extern void FUN_18005e370(uint64_t *param_1, uint64_t **param_2);
@@ -258,7 +258,7 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
         
         // 重置资源指针并释放内存
         *resource_ptr = &global_state_720_ptr;
-        FUN_18064e900(resource_ptr);
+        CoreEngine_MemoryPoolManager(resource_ptr);
       }
       *(uint64_t *)(resource_index * 8 + *resource_array) = 0;
       resource_index = (uint64_t)((int)resource_index + 1);
@@ -274,7 +274,7 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
   if (resource_ptr != (uint64_t *)0x0) {
     FUN_1800f74f0(context_ptr + 0x1041,*resource_ptr);
     resource_ptr[4] = &global_state_720_ptr;
-    FUN_18064e900(resource_ptr);
+    CoreEngine_MemoryPoolManager(resource_ptr);
   }
   
   // 清理渲染缓存和缓冲区
@@ -285,7 +285,7 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
   
   // 释放资源数组内存
   if (*resource_array != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   
   // 清理其他系统
@@ -295,7 +295,7 @@ void render_resource_manager_destroy(uint64_t *context_ptr)
     FUN_180152b00(array_end);
   }
   if (context_ptr[0xff9] != 0) {
-    FUN_18064e900();
+    CoreEngine_MemoryPoolManager();
   }
   return;
 }
