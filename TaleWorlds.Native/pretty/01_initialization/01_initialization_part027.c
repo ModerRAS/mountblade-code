@@ -1,169 +1,195 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part027.c - 14 个函数
+// 01_initialization_part027.c - 初始化组件管理器 - 14 个函数
 
-// 函数: void FUN_18005b560(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005b560(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 初始化组件管理器
+ * 设置管理器的基本结构并初始化各个组件
+ * 
+ * @param manager 管理器指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+void initialize_component_manager(undefined8 *manager, undefined8 param2, undefined8 param3, undefined8 param4)
 {
-  *param_1 = &UNK_1809fde10;
-  FUN_18005d580();
-  FUN_18005d580();
-  FUN_18005b7c0(param_1 + 0x262);
-  FUN_18005b7c0(param_1 + 0x254);
-  FUN_18005b7c0(param_1 + 0x246);
-  FUN_18005b7c0(param_1 + 0x238);
-  FUN_18005b7c0(param_1 + 0x22a);
-  FUN_18005b7c0(param_1 + 0x21c);
-  FUN_18005b7c0(param_1 + 0x20e);
-  FUN_18005b960(param_1 + 0x1f6);
-  FUN_18005b960(param_1 + 0x1de);
-  FUN_18005b960(param_1 + 0x1c6);
-  FUN_18005b7c0(param_1 + 0x1b8);
-  FUN_18005b7c0(param_1 + 0x1aa);
-  FUN_18005b7c0(param_1 + 0x19c);
-  FUN_18005b960(param_1 + 0x184);
-  FUN_18005b960(param_1 + 0x16c);
-  FUN_18005b960(param_1 + 0x154);
-  FUN_18005b960(param_1 + 0x13c);
-  FUN_18005b960(param_1 + 0x124);
-  FUN_18005b960(param_1 + 0x10c);
-  FUN_18005b960(param_1 + 0xf4);
-  FUN_18005b960(param_1 + 0xdc);
-  FUN_18005b960(param_1 + 0xc4);
-  FUN_18005b960(param_1 + 0xac);
-  FUN_18005b960(param_1 + 0x94);
-  FUN_18005b960(param_1 + 0x7c);
-  FUN_18005b960(param_1 + 100);
-  FUN_18005b960(param_1 + 0x4c);
-  FUN_18005b960(param_1 + 0x34);
-  FUN_18005b960(param_1 + 0x1c);
-  *param_1 = &UNK_180a02968;
-  param_1[0x18] = &UNK_180a3c3e0;
-  if (param_1[0x19] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *manager = &COMPONENT_MANAGER_VTABLE;
+  initialize_subsystem();
+  initialize_subsystem();
+  setup_component_slot(manager + 0x262);
+  setup_component_slot(manager + 0x254);
+  setup_component_slot(manager + 0x246);
+  setup_component_slot(manager + 0x238);
+  setup_component_slot(manager + 0x22a);
+  setup_component_slot(manager + 0x21c);
+  setup_component_slot(manager + 0x20e);
+  register_component_handler(manager + 0x1f6);
+  register_component_handler(manager + 0x1de);
+  register_component_handler(manager + 0x1c6);
+  setup_component_slot(manager + 0x1b8);
+  setup_component_slot(manager + 0x1aa);
+  setup_component_slot(manager + 0x19c);
+  register_component_handler(manager + 0x184);
+  register_component_handler(manager + 0x16c);
+  register_component_handler(manager + 0x154);
+  register_component_handler(manager + 0x13c);
+  register_component_handler(manager + 0x124);
+  register_component_handler(manager + 0x10c);
+  register_component_handler(manager + 0xf4);
+  register_component_handler(manager + 0xdc);
+  register_component_handler(manager + 0xc4);
+  register_component_handler(manager + 0xac);
+  register_component_handler(manager + 0x94);
+  register_component_handler(manager + 0x7c);
+  register_component_handler(manager + 100);
+  register_component_handler(manager + 0x4c);
+  register_component_handler(manager + 0x34);
+  register_component_handler(manager + 0x1c);
+  *manager = &COMPONENT_MANAGER_VTABLE_SECONDARY;
+  manager[0x18] = &COMPONENT_DESTROYER_VTABLE;
+  if (manager[0x19] != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  param_1[0x19] = 0;
-  *(undefined4 *)(param_1 + 0x1b) = 0;
-  param_1[0x18] = &UNK_18098bcb0;
-  FUN_18005d260(param_1 + 0x12,param_1[0x14],param_3,param_4,0xfffffffffffffffe);
-  if (param_1[0xd] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  manager[0x19] = 0;
+  *(undefined4 *)(manager + 0x1b) = 0;
+  manager[0x18] = &COMPONENT_DESTROYER_VTABLE;
+  process_manager_callbacks(manager + 0x12, manager[0x14], param3, param4, 0xfffffffffffffffe);
+  if (manager[0xd] != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  if (param_1[9] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  if (manager[9] != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  if (param_1[5] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  if (manager[5] != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  if (manager[1] != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
   return;
 }
 
 
 
-longlong FUN_18005b730(longlong param_1)
-
+/**
+ * 初始化组件池
+ * 为组件池设置初始状态和虚函数表
+ * 
+ * @param pool 组件池指针
+ * @return 初始化后的组件池指针
+ */
+longlong initialize_component_pool(longlong pool)
 {
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 0x28) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x30) = 0;
-  *(undefined4 *)(param_1 + 0x38) = 0;
-  *(undefined8 *)(param_1 + 0x28) = &UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x40) = 0;
-  *(undefined8 *)(param_1 + 0x30) = 0;
-  *(undefined4 *)(param_1 + 0x38) = 0;
-  *(undefined8 *)(param_1 + 0x60) = 0;
-  *(code **)(param_1 + 0x68) = _guard_check_icall;
-  return param_1;
+  *(undefined8 *)(pool + 8) = &COMPONENT_DESTROYER_VTABLE;
+  *(undefined8 *)(pool + 0x10) = 0;
+  *(undefined4 *)(pool + 0x18) = 0;
+  *(undefined8 *)(pool + 8) = &COMPONENT_FACTORY_VTABLE;
+  *(undefined8 *)(pool + 0x20) = 0;
+  *(undefined8 *)(pool + 0x10) = 0;
+  *(undefined4 *)(pool + 0x18) = 0;
+  *(undefined8 *)(pool + 0x28) = &COMPONENT_DESTROYER_VTABLE;
+  *(undefined8 *)(pool + 0x30) = 0;
+  *(undefined4 *)(pool + 0x38) = 0;
+  *(undefined8 *)(pool + 0x28) = &COMPONENT_FACTORY_VTABLE;
+  *(undefined8 *)(pool + 0x40) = 0;
+  *(undefined8 *)(pool + 0x30) = 0;
+  *(undefined4 *)(pool + 0x38) = 0;
+  *(undefined8 *)(pool + 0x60) = 0;
+  *(code **)(pool + 0x68) = _guard_check_icall;
+  return pool;
 }
 
 
 
 
 
-// 函数: void FUN_18005b7c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18005b7c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 设置组件槽位
+ * 为指定的组件槽位进行初始化设置
+ * 
+ * @param slot 槽位指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ */
+void setup_component_slot(longlong slot, undefined8 param2, undefined8 param3, undefined8 param4)
 {
-  if (*(code **)(param_1 + 0x60) != (code *)0x0) {
-    (**(code **)(param_1 + 0x60))(param_1 + 0x50,0,0,param_4,0xfffffffffffffffe);
+  if (*(code **)(slot + 0x60) != (code *)0x0) {
+    (**(code **)(slot + 0x60))(slot + 0x50, 0, 0, param4, 0xfffffffffffffffe);
   }
-  *(undefined8 *)(param_1 + 0x28) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *(undefined8 *)(slot + 0x28) = &COMPONENT_FACTORY_VTABLE;
+  if (*(longlong *)(slot + 0x30) != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  *(undefined8 *)(param_1 + 0x30) = 0;
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  *(undefined8 *)(param_1 + 0x28) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *(undefined8 *)(slot + 0x30) = 0;
+  *(undefined4 *)(slot + 0x40) = 0;
+  *(undefined8 *)(slot + 0x28) = &COMPONENT_DESTROYER_VTABLE;
+  *(undefined8 *)(slot + 8) = &COMPONENT_FACTORY_VTABLE;
+  if (*(longlong *)(slot + 0x10) != 0) {
+    // 警告：子程序不返回
+    handle_critical_error();
   }
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(slot + 0x10) = 0;
+  *(undefined4 *)(slot + 0x20) = 0;
+  *(undefined8 *)(slot + 8) = &COMPONENT_DESTROYER_VTABLE;
   return;
 }
 
 
 
-undefined8 * FUN_18005b870(undefined8 *param_1)
-
+/**
+ * 初始化组件数组
+ * 为组件数组设置初始状态和虚函数表
+ * 
+ * @param array 组件数组指针
+ * @return 初始化后的组件数组指针
+ */
+undefined8 * initialize_component_array(undefined8 *array)
 {
-  *param_1 = &UNK_18098bcb0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
-  param_1[3] = 0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  param_1[4] = &UNK_18098bcb0;
-  param_1[5] = 0;
-  *(undefined4 *)(param_1 + 6) = 0;
-  param_1[4] = &UNK_180a3c3e0;
-  param_1[7] = 0;
-  param_1[5] = 0;
-  *(undefined4 *)(param_1 + 6) = 0;
-  param_1[8] = &UNK_18098bcb0;
-  param_1[9] = 0;
-  *(undefined4 *)(param_1 + 10) = 0;
-  param_1[8] = &UNK_180a3c3e0;
-  param_1[0xb] = 0;
-  param_1[9] = 0;
-  *(undefined4 *)(param_1 + 10) = 0;
-  param_1[0xc] = &UNK_18098bcb0;
-  param_1[0xd] = 0;
-  *(undefined4 *)(param_1 + 0xe) = 0;
-  param_1[0xc] = &UNK_180a3c3e0;
-  param_1[0xf] = 0;
-  param_1[0xd] = 0;
-  *(undefined4 *)(param_1 + 0xe) = 0;
-  param_1[0x10] = &UNK_18098bcb0;
-  param_1[0x11] = 0;
-  *(undefined4 *)(param_1 + 0x12) = 0;
-  param_1[0x10] = &UNK_180a3c3e0;
-  param_1[0x13] = 0;
-  param_1[0x11] = 0;
-  *(undefined4 *)(param_1 + 0x12) = 0;
-  param_1[0x16] = 0;
-  param_1[0x17] = _guard_check_icall;
-  return param_1;
+  *array = &COMPONENT_DESTROYER_VTABLE;
+  array[1] = 0;
+  *(undefined4 *)(array + 2) = 0;
+  *array = &COMPONENT_FACTORY_VTABLE;
+  array[3] = 0;
+  array[1] = 0;
+  *(undefined4 *)(array + 2) = 0;
+  array[4] = &COMPONENT_DESTROYER_VTABLE;
+  array[5] = 0;
+  *(undefined4 *)(array + 6) = 0;
+  array[4] = &COMPONENT_FACTORY_VTABLE;
+  array[7] = 0;
+  array[5] = 0;
+  *(undefined4 *)(array + 6) = 0;
+  array[8] = &COMPONENT_DESTROYER_VTABLE;
+  array[9] = 0;
+  *(undefined4 *)(array + 10) = 0;
+  array[8] = &COMPONENT_FACTORY_VTABLE;
+  array[0xb] = 0;
+  array[9] = 0;
+  *(undefined4 *)(array + 10) = 0;
+  array[0xc] = &COMPONENT_DESTROYER_VTABLE;
+  array[0xd] = 0;
+  *(undefined4 *)(array + 0xe) = 0;
+  array[0xc] = &COMPONENT_FACTORY_VTABLE;
+  array[0xf] = 0;
+  array[0xd] = 0;
+  *(undefined4 *)(array + 0xe) = 0;
+  array[0x10] = &COMPONENT_DESTROYER_VTABLE;
+  array[0x11] = 0;
+  *(undefined4 *)(array + 0x12) = 0;
+  array[0x10] = &COMPONENT_FACTORY_VTABLE;
+  array[0x13] = 0;
+  array[0x11] = 0;
+  *(undefined4 *)(array + 0x12) = 0;
+  array[0x16] = 0;
+  array[0x17] = _guard_check_icall;
+  return array;
 }
 
 

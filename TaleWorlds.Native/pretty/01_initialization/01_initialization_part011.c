@@ -1300,50 +1300,58 @@ void register_game_system_type22(void)
 
 
 
-// 函数: void FUN_1800417e0(void)
-void FUN_1800417e0(void)
+// 函数: 注册游戏系统组件类型23
+void register_game_system_type23(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char is_initialized;
+  void **system_root;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **parent_node;
+  void **next_node;
+  void **new_component;
+  longlong component_flags;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  system_root = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  component_flags = 0;
+  parent_node = system_root;
+  current_node = (void **)system_root[1];
+  
+  // 遍历系统树查找目标组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &SYSTEM_ID_GAME_TYPE23, 0x10);
+    if (compare_result < 0) {
+      next_node = (void **)current_node[2];
+      current_node = parent_node;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      next_node = (void **)*current_node;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    parent_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  
+  // 如果需要则创建新组件
+  if ((parent_node == system_root) || 
+      (compare_result = memcmp(&SYSTEM_ID_GAME_TYPE23, parent_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_system_component(system_manager);
+    insert_system_component(system_manager, &new_component, parent_node, allocation_size + 0x20, allocation_size);
+    parent_node = new_component;
   }
-  puVar7[6] = 0x41ffd0b76c1e136f;
-  puVar7[7] = 0x25db30365f277abb;
-  puVar7[8] = &UNK_180a2cab0;
-  puVar7[9] = 2;
-  puVar7[10] = uStackX_18;
+  
+  // 设置组件属性
+  parent_node[6] = 0x41ffd0b76c1e136f;  // 组件唯一标识符高64位
+  parent_node[7] = 0x25db30365f277abb;  // 组件唯一标识符低64位
+  parent_node[8] = &COMPONENT_VTABLE_TYPE23;  // 组件虚函数表
+  parent_node[9] = 2;                     // 组件优先级
+  parent_node[10] = component_flags;      // 组件标志
   return;
 }
 
@@ -1351,52 +1359,161 @@ void FUN_1800417e0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1800418e0(void)
+// 函数: 初始化游戏系统数据结构
+int initialize_game_system_data_structures(void)
 
 {
-  longlong lVar1;
+  longlong init_result;
   
-  FUN_1808fc838(&DAT_180c96220,8,5,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(0x180c96248,8,5,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(0x180c96298,8,5,&SUB_18005d5f0,FUN_180045af0);
-  _Mtx_init_in_situ(0x180c962c0,2);
-  _DAT_180c96310 = 0;
-  _DAT_180c96318 = 0;
-  _DAT_180c96320 = 0;
-  _DAT_180c96328 = 3;
-  _DAT_180c96330 = 0;
-  _DAT_180c96338 = 0;
-  _DAT_180c96340 = 0;
-  _DAT_180c96348 = 3;
-  _DAT_180c96350 = 0;
-  uRam0000000180c96358 = 0;
-  _DAT_180c96360 = 0;
-  _DAT_180c96368 = 3;
-  FUN_1804ac640();
-  lVar1 = FUN_1808fc7d0(&UNK_180942f90);
-  return (lVar1 != 0) - 1;
+  // 初始化系统数据结构
+  register_system_data_structure(&SYSTEM_DATA_TABLE_1, 8, 5, &SYSTEM_INITIALIZER_1, SYSTEM_SETUP_FUNCTION);
+  register_system_data_structure(0x180c96248, 8, 5, &SYSTEM_INITIALIZER_1, SYSTEM_SETUP_FUNCTION);
+  register_system_data_structure(0x180c96298, 8, 5, &SYSTEM_INITIALIZER_1, SYSTEM_SETUP_FUNCTION);
+  initialize_mutex(MUTEX_ADDRESS_1, 2);
+  SYSTEM_COUNTER_1 = 0;
+  SYSTEM_COUNTER_2 = 0;
+  SYSTEM_COUNTER_3 = 0;
+  SYSTEM_PRIORITY_LEVEL = 3;
+  SYSTEM_STATE_FLAG_1 = 0;
+  SYSTEM_STATE_FLAG_2 = 0;
+  SYSTEM_STATE_FLAG_3 = 0;
+  SYSTEM_PRIORITY_LEVEL_2 = 3;
+  SYSTEM_RESOURCE_COUNTER = 0;
+  SYSTEM_GLOBAL_FLAG = 0;
+  SYSTEM_PRIORITY_LEVEL_3 = 0;
+  SYSTEM_PRIORITY_LEVEL_4 = 3;
+  initialize_core_system();
+  init_result = verify_system_initialization(&SYSTEM_VERIFICATION_TABLE);
+  return (init_result != 0) - 1;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180041a10(void)
+// 函数: 初始化游戏系统指针
+int initialize_game_system_pointers(void)
 
 {
-  longlong lVar1;
-  undefined8 in_R9;
+  longlong init_result;
+  undefined8 param;
   
-  _DAT_180bf64f8 = &UNK_18098bc80;
-  _DAT_180bf6500 = &DAT_180bf6510;
+  // 设置系统指针
+  SYSTEM_POINTER_1 = &SYSTEM_TABLE_ADDRESS_1;
+  SYSTEM_POINTER_2 = &SYSTEM_DATA_ADDRESS_1;
 
 
-// 函数: void FUN_180041af0(void)
-void FUN_180041af0(void)
+// 函数: 注册游戏系统组件类型24
+void register_game_system_type24(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
+  char is_initialized;
+  void **system_root;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **parent_node;
+  void **next_node;
+  void **new_component;
+  longlong component_flags;
+  
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  system_root = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  component_flags = 0;
+  parent_node = system_root;
+  current_node = (void **)system_root[1];
+  
+  // 遍历系统树查找目标组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &SYSTEM_ID_GAME_TYPE24, 0x10);
+    if (compare_result < 0) {
+      next_node = (void **)current_node[2];
+      current_node = parent_node;
+    }
+    else {
+      next_node = (void **)*current_node;
+    }
+    parent_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + 0x19);
+  }
+  
+  // 如果需要则创建新组件
+  if ((parent_node == system_root) || 
+      (compare_result = memcmp(&SYSTEM_ID_GAME_TYPE24, parent_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_system_component(system_manager);
+    insert_system_component(system_manager, &new_component, parent_node, allocation_size + 0x20, allocation_size);
+    parent_node = new_component;
+  }
+  
+  // 设置组件属性
+  parent_node[6] = 0x46c54bc98fc3fc2a;  // 组件唯一标识符高64位
+  parent_node[7] = 0x727b256e3af32585;  // 组件唯一标识符低64位
+  parent_node[8] = &COMPONENT_VTABLE_TYPE24;  // 组件虚函数表
+  parent_node[9] = 2;                     // 组件优先级
+  parent_node[10] = component_flags;      // 组件标志
+  return;
+}
+
+
+
+// 函数: 注册游戏系统组件类型25
+void register_game_system_type25(void)
+
+{
+  char is_initialized;
+  void **system_root;
+  int compare_result;
+  longlong *system_manager;
+  longlong allocation_size;
+  void **current_node;
+  void **parent_node;
+  void **next_node;
+  void **new_component;
+  longlong component_flags;
+  
+  // 获取系统管理器实例
+  system_manager = (longlong *)get_system_manager();
+  system_root = (void **)*system_manager;
+  is_initialized = *(char *)((longlong)system_root[1] + 0x19);
+  component_flags = 0;
+  parent_node = system_root;
+  current_node = (void **)system_root[1];
+  
+  // 遍历系统树查找目标组件
+  while (is_initialized == '\0') {
+    compare_result = memcmp(current_node + 4, &SYSTEM_ID_GAME_TYPE25, 0x10);
+    if (compare_result < 0) {
+      next_node = (void **)current_node[2];
+      current_node = parent_node;
+    }
+    else {
+      next_node = (void **)*current_node;
+    }
+    parent_node = current_node;
+    current_node = next_node;
+    is_initialized = *(char *)((longlong)next_node + 0x19);
+  }
+  
+  // 如果需要则创建新组件
+  if ((parent_node == system_root) || 
+      (compare_result = memcmp(&SYSTEM_ID_GAME_TYPE25, parent_node + 4, 0x10), compare_result < 0)) {
+    allocation_size = allocate_system_component(system_manager);
+    insert_system_component(system_manager, &new_component, parent_node, allocation_size + 0x20, allocation_size);
+    parent_node = new_component;
+  }
+  
+  // 设置组件属性
+  parent_node[6] = 0x41ffd0b76c1e136f;  // 组件唯一标识符高64位
+  parent_node[7] = 0x25db30365f277abb;  // 组件唯一标识符低64位
+  parent_node[8] = &COMPONENT_VTABLE_TYPE25;  // 组件虚函数表
+  parent_node[9] = 2;                     // 组件优先级
+  parent_node[10] = component_flags;      // 组件标志
+  return;
+}
   int iVar3;
   longlong *plVar4;
   longlong lVar5;

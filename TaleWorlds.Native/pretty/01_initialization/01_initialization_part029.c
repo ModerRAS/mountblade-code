@@ -1,46 +1,49 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part029.c - 5 个函数
+// 01_initialization_part029.c - 初始化模块第29部分
+// 包含6个函数，主要涉及对象引用管理、线程同步和内存分配
 
-// 函数: void FUN_18005e57a(longlong param_1,longlong *param_2)
-void FUN_18005e57a(longlong param_1,longlong *param_2)
+// 函数: 从容器中移除并释放对象引用
+// 参数: container_ptr - 容器对象指针, object_ptr - 要移除的对象指针
+// 功能: 从容器中查找并移除指定对象，然后释放其资源
+void remove_and_release_object_reference(longlong container_ptr, longlong *object_ptr)
 
 {
-  longlong *plVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  int iVar5;
-  ulonglong uVar6;
+  longlong *current_item;
+  ulonglong item_count;
+  longlong target_address;
+  longlong *array_ptr;
+  int index;
+  ulonglong container_end;
   
-  iVar5 = 0;
-  plVar1 = *(longlong **)(param_1 + 0x48);
-  uVar6 = *(longlong *)(param_1 + 0x50) - (longlong)plVar1 >> 3;
-  plVar4 = plVar1;
-  if (uVar6 != 0) {
+  index = 0;
+  current_item = *(longlong **)(container_ptr + 0x48);
+  item_count = *(longlong *)(container_ptr + 0x50) - (longlong)current_item >> 3;
+  array_ptr = current_item;
+  if (item_count != 0) {
     do {
-      if ((longlong *)*plVar4 == param_2) {
-        FUN_18020e7b0(plVar1[iVar5]);
-        uVar2 = *(ulonglong *)(param_1 + 0x50);
-        lVar3 = *(longlong *)(param_1 + 0x48) + (longlong)iVar5 * 8;
-        uVar6 = lVar3 + 8;
-        if (uVar6 < uVar2) {
+      if ((longlong *)*array_ptr == object_ptr) {
+        FUN_18020e7b0(current_item[index]);
+        container_end = *(ulonglong *)(container_ptr + 0x50);
+        target_address = *(longlong *)(container_ptr + 0x48) + (longlong)index * 8;
+        item_count = target_address + 8;
+        if (item_count < container_end) {
                     // WARNING: Subroutine does not return
-          memmove(lVar3,uVar6,uVar2 - uVar6);
+          memmove(target_address, item_count, container_end - item_count);
         }
-        *(ulonglong *)(param_1 + 0x50) = uVar2 - 8;
+        *(ulonglong *)(container_ptr + 0x50) = container_end - 8;
         break;
       }
-      iVar5 = iVar5 + 1;
-      plVar4 = plVar4 + 1;
-    } while ((ulonglong)(longlong)iVar5 < uVar6);
+      index = index + 1;
+      array_ptr = array_ptr + 1;
+    } while ((ulonglong)(longlong)index < item_count);
   }
-  if (param_2 != (longlong *)0x0) {
-    lVar3 = __RTCastToVoid(param_2);
-    (**(code **)(*param_2 + 0x28))(param_2,0);
-    if (lVar3 != 0) {
+  if (object_ptr != (longlong *)0x0) {
+    target_address = __RTCastToVoid(object_ptr);
+    (**(code **)(*object_ptr + 0x28))(object_ptr, 0);
+    if (target_address != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar3);
+      FUN_18064e900(target_address);
     }
   }
   return;
@@ -50,18 +53,19 @@ void FUN_18005e57a(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_18005e5ff(void)
-void FUN_18005e5ff(void)
+// 函数: 全局对象引用清理
+// 功能: 清理全局对象引用，释放相关资源
+void cleanup_global_object_references(void)
 
 {
-  longlong lVar1;
-  longlong *unaff_RDI;
+  longlong object_handle;
+  longlong *global_object_ptr;
   
-  lVar1 = __RTCastToVoid();
-  (**(code **)(*unaff_RDI + 0x28))();
-  if (lVar1 != 0) {
+  object_handle = __RTCastToVoid();
+  (**(code **)(*global_object_ptr + 0x28))();
+  if (object_handle != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lVar1);
+    FUN_18064e900(object_handle);
   }
   return;
 }
@@ -72,24 +76,26 @@ void FUN_18005e5ff(void)
 
 
 
-// 函数: void FUN_18005e630(longlong param_1)
-void FUN_18005e630(longlong param_1)
+// 函数: 释放资源并解锁互斥锁
+// 参数: object_ptr - 包含资源的对象指针
+// 功能: 释放指定对象的资源，并解锁相关互斥锁
+void release_resource_and_unlock_mutex(longlong object_ptr)
 
 {
-  int iVar1;
-  longlong lVar2;
+  int lock_result;
+  longlong mutex_address;
   
-  FUN_18020f150(*(undefined8 *)(*(longlong *)(param_1 + 8) + 8));
-  lVar2 = _DAT_180c86938 + 0x20;
-  iVar1 = _Mtx_lock(lVar2);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  FUN_18020f150(*(undefined8 *)(*(longlong *)(object_ptr + 8) + 8));
+  mutex_address = _DAT_180c86938 + 0x20;
+  lock_result = _Mtx_lock(mutex_address);
+  if (lock_result != 0) {
+    __Throw_C_error_std__YAXH_Z(lock_result);
   }
-  iVar1 = _Mtx_unlock(lVar2);
-  if (iVar1 != 0) {
+  lock_result = _Mtx_unlock(mutex_address);
+  if (lock_result != 0) {
                     // WARNING: Could not recover jumptable at 0x00018005e68f. Too many branches
                     // WARNING: Treating indirect jump as call
-    __Throw_C_error_std__YAXH_Z(iVar1);
+    __Throw_C_error_std__YAXH_Z(lock_result);
     return;
   }
   return;
@@ -99,39 +105,42 @@ void FUN_18005e630(longlong param_1)
 
 
 
-// 函数: void FUN_18005e6a0(undefined8 param_1,longlong *param_2,undefined1 param_3,undefined8 param_4)
-void FUN_18005e6a0(undefined8 param_1,longlong *param_2,undefined1 param_3,undefined8 param_4)
+// 函数: 处理对象状态并执行回调
+// 参数: context_ptr - 上下文指针, object_ptr - 对象指针, 
+//        status_flag - 状态标志, callback_param - 回调参数
+// 功能: 检查对象状态，根据状态执行相应的回调函数
+void process_object_state_and_callbacks(undefined8 context_ptr, longlong *object_ptr, undefined1 status_flag, undefined8 callback_param)
 
 {
-  code *pcVar1;
-  longlong *plVar2;
-  char cVar3;
-  undefined8 uVar4;
+  code *status_check_func;
+  longlong *thread_context;
+  char is_ready;
+  undefined8 retry_count;
   
-  uVar4 = 0xfffffffffffffffe;
+  retry_count = 0xfffffffffffffffe;
   while( true ) {
-    pcVar1 = *(code **)(*(longlong *)*param_2 + 0x68);
-    if (pcVar1 == (code *)&UNK_1800467f0) {
-      cVar3 = (char)((longlong *)*param_2)[2] != '\0';
+    status_check_func = *(code **)(*(longlong *)*object_ptr + 0x68);
+    if (status_check_func == (code *)&DEFAULT_STATUS_CHECKER) {
+      is_ready = (char)((longlong *)*object_ptr)[2] != '\0';
     }
     else {
-      cVar3 = (*pcVar1)();
+      is_ready = (*status_check_func)();
     }
-    if (cVar3 != '\0') break;
-    plVar2 = (longlong *)FUN_18005e890(param_1);
-    cVar3 = (**(code **)(*plVar2 + 0x20))(plVar2,param_3,*(code **)(*plVar2 + 0x20),param_4,uVar4);
-    if (cVar3 == '\0') {
-      pcVar1 = *(code **)(*(longlong *)*param_2 + 0x80);
-      if (pcVar1 == (code *)&UNK_180049760) {
-        FUN_1800496b0((longlong *)*param_2 + 4);
+    if (is_ready != '\0') break;
+    thread_context = (longlong *)get_thread_local_context(context_ptr);
+    is_ready = (**(code **)(*thread_context + 0x20))(thread_context, status_flag, *(code **)(*thread_context + 0x20), callback_param, retry_count);
+    if (is_ready == '\0') {
+      status_check_func = *(code **)(*(longlong *)*object_ptr + 0x80);
+      if (status_check_func == (code *)&DEFAULT_CLEANUP_HANDLER) {
+        cleanup_object_resources((longlong *)*object_ptr + 4);
       }
       else {
-        (*pcVar1)();
+        (*status_check_func)();
       }
     }
   }
-  if ((longlong *)*param_2 != (longlong *)0x0) {
-    (**(code **)(*(longlong *)*param_2 + 0x38))();
+  if ((longlong *)*object_ptr != (longlong *)0x0) {
+    (**(code **)(*(longlong *)*object_ptr + 0x38))();
   }
   return;
 }

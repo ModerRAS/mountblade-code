@@ -701,12 +701,17 @@ void initialize_system_core(void)
 
 
 
-// 函数: void FUN_180055e10(longlong *param_1)
-void FUN_180055e10(longlong *param_1)
+/**
+ * 清理模块资源
+ * 遍历模块链表并释放所有分配的资源
+ * 原函数名：FUN_180055e10
+ */
+void cleanup_module_resources(longlong *module_list)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  // 模块清理变量
+  longlong current_module;     // 当前模块
+  longlong end_module;         // 结束模块
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x48) {
@@ -723,8 +728,12 @@ void FUN_180055e10(longlong *param_1)
 
 
 
-// 函数: void FUN_180055e30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180055e30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 初始化模块句柄
+ * 创建并初始化模块的句柄结构
+ * 原函数名：FUN_180055e30
+ */
+void initialize_module_handle(longlong module_base, undefined8 handle_size, undefined8 init_flags, undefined8 context_data)
 
 {
   FUN_180058210(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -735,8 +744,12 @@ void FUN_180055e30(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180055e60(longlong param_1)
-void FUN_180055e60(longlong param_1)
+/**
+ * 释放模块资源数组
+ * 释放模块资源数组中的所有元素并清理相关数据
+ * 原函数名：FUN_180055e60
+ */
+void free_module_resource_array(longlong resource_array)
 
 {
   longlong lVar1;
