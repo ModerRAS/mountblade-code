@@ -1,269 +1,273 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part266.c - 4 个函数
+// 02_core_engine_part266.c - 核心引擎模块第266部分
+// 本文件包含场景管理、材质处理和哈希计算相关功能
 
-// 函数: void FUN_18022d860(longlong param_1)
-void FUN_18022d860(longlong param_1)
+// 函数: 处理场景材质初始化
+// 功能: 初始化场景中的材质系统，设置各种材质参数和属性
+void initialize_scene_materials(longlong scene_context)
 
 {
-  undefined *puVar1;
-  undefined8 uVar2;
-  int iVar3;
-  uint uVar4;
-  ulonglong uVar5;
-  ulonglong uVar6;
-  undefined8 uVar7;
-  ulonglong uVar8;
-  undefined *puVar9;
-  undefined *puVar10;
-  undefined *puVar11;
-  longlong lVar12;
-  undefined1 auStack_248 [32];
-  undefined8 uStack_228;
-  undefined *puStack_218;
-  undefined1 *puStack_210;
-  undefined4 uStack_208;
-  undefined1 auStack_200 [72];
-  undefined *puStack_1b8;
-  undefined1 *puStack_1b0;
-  undefined4 uStack_1a8;
-  undefined1 auStack_1a0 [72];
-  undefined *puStack_158;
-  undefined1 *puStack_150;
-  undefined4 uStack_148;
-  undefined1 auStack_140 [72];
-  undefined *puStack_f8;
-  undefined1 *puStack_f0;
-  undefined4 uStack_e8;
-  undefined1 auStack_e0 [72];
-  undefined *puStack_98;
-  undefined1 *puStack_90;
-  undefined4 uStack_88;
-  undefined1 auStack_80 [72];
-  ulonglong uStack_38;
+  undefined *material_name_ptr;
+  undefined8 material_handle;
+  int material_count;
+  uint material_flags;
+  ulonglong material_id;
+  ulonglong texture_offset;
+  undefined8 base_texture;
+  ulonglong material_index;
+  undefined *texture_name1;
+  undefined *texture_name2;
+  undefined *texture_name3;
+  longlong iteration_count;
+  undefined1 stack_buffer1 [32];
+  undefined8 guard_value1;
+  undefined *stack_ptr1;
+  undefined1 *stack_ptr2;
+  undefined4 stack_size1;
+  undefined1 stack_buffer2 [72];
+  undefined *stack_ptr3;
+  undefined1 *stack_ptr4;
+  undefined4 stack_size2;
+  undefined1 stack_buffer3 [72];
+  undefined *stack_ptr5;
+  undefined1 *stack_ptr6;
+  undefined4 stack_size3;
+  undefined1 stack_buffer4 [72];
+  undefined *stack_ptr7;
+  undefined1 *stack_ptr8;
+  undefined4 stack_size4;
+  undefined1 stack_buffer5 [72];
+  undefined *stack_ptr9;
+  undefined1 *stack_ptr10;
+  undefined4 stack_size5;
+  undefined1 stack_buffer6 [72];
+  ulonglong stack_guard_value;
   
-  uStack_228 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
-  uVar8 = 0;
-  *(undefined8 *)(param_1 + 0x140) = 0;
-  iVar3 = (int)((*(longlong *)(param_1 + 0x370) - *(longlong *)(param_1 + 0x368)) / 0x58);
-  lVar12 = (longlong)iVar3;
-  uVar6 = uVar8;
-  if (0 < iVar3) {
+  guard_value1 = 0xfffffffffffffffe;
+  stack_guard_value = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
+  material_index = 0;
+  *(undefined8 *)(scene_context + 0x140) = 0;
+  material_count = (int)((*(longlong *)(scene_context + 0x370) - *(longlong *)(scene_context + 0x368)) / 0x58);
+  iteration_count = (longlong)material_count;
+  texture_offset = material_index;
+  if (0 < material_count) {
     do {
-      uVar5 = FUN_180240430(*(undefined8 *)(param_1 + 0x1e0),
-                            (longlong)(int)uVar8 * 0x58 + *(longlong *)(param_1 + 0x368),0);
-      if (uVar5 == 0) {
-        puVar11 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x18) != (undefined *)0x0) {
-          puVar11 = *(undefined **)(param_1 + 0x18);
+      material_id = get_material_handle(*(undefined8 *)(scene_context + 0x1e0),
+                            (longlong)(int)material_index * 0x58 + *(longlong *)(scene_context + 0x368),0);
+      if (material_id == 0) {
+        texture_name3 = &DAT_18098bc73; // 默认材质名称
+        if (*(undefined **)(scene_context + 0x18) != (undefined *)0x0) {
+          texture_name3 = *(undefined **)(scene_context + 0x18);
         }
-        puVar1 = *(undefined **)(*(longlong *)(param_1 + 0x1e0) + 0x18);
-        puVar10 = &DAT_18098bc73;
-        if (puVar1 != (undefined *)0x0) {
-          puVar10 = puVar1;
+        material_name_ptr = *(undefined **)(*(longlong *)(scene_context + 0x1e0) + 0x18);
+        texture_name2 = &DAT_18098bc73; // 默认纹理名称
+        if (material_name_ptr != (undefined *)0x0) {
+          texture_name2 = material_name_ptr;
         }
-        puVar1 = *(undefined **)(uVar6 + 8 + *(longlong *)(param_1 + 0x368));
-        puVar9 = &DAT_18098bc73;
-        if (puVar1 != (undefined *)0x0) {
-          puVar9 = puVar1;
+        material_name_ptr = *(undefined **)(texture_offset + 8 + *(longlong *)(scene_context + 0x368));
+        texture_name1 = &DAT_18098bc73; // 默认材质名称
+        if (material_name_ptr != (undefined *)0x0) {
+          texture_name1 = material_name_ptr;
         }
-        FUN_180626f80(&UNK_180a13b70,puVar9,puVar10,puVar11);
+        log_material_error(&UNK_180a13b70,texture_name1,texture_name2,texture_name3);
       }
-      *(ulonglong *)(param_1 + 0x140) = *(ulonglong *)(param_1 + 0x140) | uVar5;
-      uVar8 = (ulonglong)((int)uVar8 + 1);
-      lVar12 = lVar12 + -1;
-      uVar6 = uVar6 + 0x58;
-    } while (lVar12 != 0);
+      *(ulonglong *)(scene_context + 0x140) = *(ulonglong *)(scene_context + 0x140) | material_id;
+      material_index = (ulonglong)((int)material_index + 1);
+      iteration_count = iteration_count + -1;
+      texture_offset = texture_offset + 0x58;
+    } while (iteration_count != 0);
   }
-  if ((*(longlong *)(param_1 + 0xb8) != 0) &&
-     ((*(uint *)(*(longlong *)(param_1 + 0xb8) + 0x328) >> 0xf & 1) == 0)) {
-    uVar7 = *(undefined8 *)(param_1 + 0x1e0);
-    puStack_218 = &UNK_18098bc80;
-    puStack_210 = auStack_200;
-    auStack_200[0] = 0;
-    uStack_208 = 0x10;
-    strcpy_s(auStack_200,0x20,&DAT_180a13c30);
-    uVar6 = FUN_180240430(uVar7,&puStack_218,0);
-    *(ulonglong *)(param_1 + 0x140) = *(ulonglong *)(param_1 + 0x140) | uVar6;
+  if ((*(longlong *)(scene_context + 0xb8) != 0) &&
+     ((*(uint *)(*(longlong *)(scene_context + 0xb8) + 0x328) >> 0xf & 1) == 0)) {
+    base_texture = *(undefined8 *)(scene_context + 0x1e0);
+    stack_ptr1 = &UNK_18098bc80;
+    stack_ptr2 = stack_buffer2;
+    stack_buffer2[0] = 0;
+    stack_size1 = 0x10;
+    strcpy_s(stack_buffer2,0x20,&DAT_180a13c30); // 基础纹理名称
+    texture_offset = get_material_handle(base_texture,&stack_ptr1,0);
+    *(ulonglong *)(scene_context + 0x140) = *(ulonglong *)(scene_context + 0x140) | texture_offset;
   }
-  uVar7 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_218 = &UNK_18098bc80;
-  puStack_210 = auStack_200;
-  auStack_200[0] = 0;
-  uStack_208 = 10;
-  strcpy_s(auStack_200,0x20,&DAT_180a0d648);
-  uVar6 = FUN_180240430(uVar7,&puStack_218,0);
-  if ((((uVar6 & *(ulonglong *)(param_1 + 0x140)) != 0) && (-0.001 < *(float *)(param_1 + 600))) &&
-     (*(float *)(param_1 + 600) < 0.001)) {
-    *(ulonglong *)(param_1 + 0x140) = ~uVar6 & *(ulonglong *)(param_1 + 0x140);
+  base_texture = *(undefined8 *)(scene_context + 0x1e0);
+  stack_ptr1 = &UNK_18098bc80;
+  stack_ptr2 = stack_buffer2;
+  stack_buffer2[0] = 0;
+  stack_size1 = 10;
+  strcpy_s(stack_buffer2,0x20,&DAT_180a0d648); // 漫反射纹理
+  texture_offset = get_material_handle(base_texture,&stack_ptr1,0);
+  if ((((texture_offset & *(ulonglong *)(scene_context + 0x140)) != 0) && (-0.001 < *(float *)(scene_context + 600))) &&
+     (*(float *)(scene_context + 600) < 0.001)) {
+    *(ulonglong *)(scene_context + 0x140) = ~texture_offset & *(ulonglong *)(scene_context + 0x140);
   }
-  uVar7 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_218 = &UNK_1809fcc58;
-  puStack_210 = auStack_200;
-  auStack_200[0] = 0;
-  uStack_208 = 0xf;
-  strcpy_s(auStack_200,0x40,&DAT_180a0ba58);
-  uVar7 = FUN_180240430(uVar7,&puStack_218,0);
-  *(undefined8 *)(param_1 + 0x390) = uVar7;
-  puStack_218 = &UNK_18098bcb0;
-  uVar7 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_1b8 = &UNK_1809fcc58;
-  puStack_1b0 = auStack_1a0;
-  auStack_1a0[0] = 0;
-  uStack_1a8 = 9;
-  strcpy_s(auStack_1a0,0x40,&UNK_180a13aa8);
-  uVar2 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_218 = &UNK_1809fcc58;
-  puStack_210 = auStack_200;
-  auStack_200[0] = 0;
-  uStack_208 = 0x17;
-  strcpy_s(auStack_200,0x40,&UNK_180a13ab8);
-  uVar6 = FUN_180240430(uVar2,&puStack_218,0);
-  uVar8 = FUN_180240430(uVar7,&puStack_1b8,0);
-  *(ulonglong *)(param_1 + 0x3a8) = uVar6 | uVar8;
-  puStack_218 = &UNK_18098bcb0;
-  puStack_1b8 = &UNK_18098bcb0;
-  uVar7 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_158 = &UNK_1809fcc58;
-  puStack_150 = auStack_140;
-  auStack_140[0] = 0;
-  uStack_148 = 0x10;
-  strcpy_s(auStack_140,0x40,&DAT_180a0d580);
-  uVar7 = FUN_180240430(uVar7,&puStack_158,0);
-  *(undefined8 *)(param_1 + 0x3b0) = uVar7;
-  puStack_158 = &UNK_18098bcb0;
-  uVar7 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_f8 = &UNK_1809fcc58;
-  puStack_f0 = auStack_e0;
-  auStack_e0[0] = 0;
-  uStack_e8 = 0x14;
-  strcpy_s(auStack_e0,0x40,&DAT_180a0d5b8);
-  uVar7 = FUN_180240430(uVar7,&puStack_f8,0);
-  *(undefined8 *)(param_1 + 0x3b8) = uVar7;
-  puStack_f8 = &UNK_18098bcb0;
-  uVar7 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_98 = &UNK_1809fcc58;
-  puStack_90 = auStack_80;
-  auStack_80[0] = 0;
-  uStack_88 = 0x1d;
-  strcpy_s(auStack_80,0x40,&UNK_180a13bb8);
-  uVar7 = FUN_180240430(uVar7,&puStack_98,0);
-  *(undefined8 *)(param_1 + 0x398) = uVar7;
-  puStack_98 = &UNK_18098bcb0;
-  uVar4 = FUN_18022d6c0(param_1);
-  *(ulonglong *)(param_1 + 0x3a0) = (ulonglong)uVar4;
+  base_texture = *(undefined8 *)(scene_context + 0x1e0);
+  stack_ptr1 = &UNK_1809fcc58;
+  stack_ptr2 = stack_buffer2;
+  stack_buffer2[0] = 0;
+  stack_size1 = 0xf;
+  strcpy_s(stack_buffer2,0x40,&DAT_180a0ba58); // 法线纹理
+  base_texture = get_material_handle(base_texture,&stack_ptr1,0);
+  *(undefined8 *)(scene_context + 0x390) = base_texture;
+  stack_ptr1 = &UNK_18098bcb0;
+  base_texture = *(undefined8 *)(scene_context + 0x1e0);
+  stack_ptr3 = &UNK_1809fcc58;
+  stack_ptr4 = stack_buffer3;
+  stack_buffer3[0] = 0;
+  stack_size2 = 9;
+  strcpy_s(stack_buffer3,0x40,&UNK_180a13aa8); // 高光纹理
+  material_handle = *(undefined8 *)(scene_context + 0x1e0);
+  stack_ptr1 = &UNK_1809fcc58;
+  stack_ptr2 = stack_buffer2;
+  stack_buffer2[0] = 0;
+  stack_size1 = 0x17;
+  strcpy_s(stack_buffer2,0x40,&UNK_180a13ab8); // 环境光遮蔽纹理
+  texture_offset = get_material_handle(material_handle,&stack_ptr1,0);
+  material_index = get_material_handle(base_texture,&stack_ptr3,0);
+  *(ulonglong *)(scene_context + 0x3a8) = texture_offset | material_index;
+  stack_ptr1 = &UNK_18098bcb0;
+  stack_ptr3 = &UNK_18098bcb0;
+  base_texture = *(undefined8 *)(scene_context + 0x1e0);
+  stack_ptr5 = &UNK_1809fcc58;
+  stack_ptr6 = stack_buffer4;
+  stack_buffer4[0] = 0;
+  stack_size3 = 0x10;
+  strcpy_s(stack_buffer4,0x40,&DAT_180a0d580); // 金属度纹理
+  base_texture = get_material_handle(base_texture,&stack_ptr5,0);
+  *(undefined8 *)(scene_context + 0x3b0) = base_texture;
+  stack_ptr5 = &UNK_18098bcb0;
+  base_texture = *(undefined8 *)(scene_context + 0x1e0);
+  stack_ptr7 = &UNK_1809fcc58;
+  stack_ptr8 = stack_buffer5;
+  stack_buffer5[0] = 0;
+  stack_size4 = 0x14;
+  strcpy_s(stack_buffer5,0x40,&DAT_180a0d5b8); // 粗糙度纹理
+  base_texture = get_material_handle(base_texture,&stack_ptr7,0);
+  *(undefined8 *)(scene_context + 0x3b8) = base_texture;
+  stack_ptr7 = &UNK_18098bcb0;
+  base_texture = *(undefined8 *)(scene_context + 0x1e0);
+  stack_ptr9 = &UNK_1809fcc58;
+  stack_ptr10 = stack_buffer6;
+  stack_buffer6[0] = 0;
+  stack_size5 = 0x1d;
+  strcpy_s(stack_buffer6,0x40,&UNK_180a13bb8); // 发光纹理
+  base_texture = get_material_handle(base_texture,&stack_ptr9,0);
+  *(undefined8 *)(scene_context + 0x398) = base_texture;
+  stack_ptr9 = &UNK_18098bcb0;
+  material_flags = get_scene_material_flags(scene_context);
+  *(ulonglong *)(scene_context + 0x3a0) = (ulonglong)material_flags;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_248);
+  security_check(stack_guard_value ^ (ulonglong)stack_buffer1);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18022dd60(longlong param_1)
+// 函数: 处理材质缓存系统
+// 功能: 管理材质的缓存和加载，确保材质正确加载到内存中
+longlong manage_material_cache(longlong material_system)
 
 {
-  ulonglong *puVar1;
-  undefined *puVar2;
-  undefined8 *puVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  longlong lVar7;
-  undefined8 *puVar8;
-  undefined8 *puVar9;
-  undefined *puVar10;
-  ulonglong uVar11;
-  uint uVar12;
-  ulonglong uVar13;
-  ulonglong uVar14;
-  longlong lVar15;
-  undefined8 uVar16;
+  ulonglong *cache_ptr;
+  undefined *material_data;
+  undefined8 *cache_entry;
+  longlong *cache_count;
+  longlong cache_size;
+  undefined8 *cache_start;
+  longlong cache_capacity;
+  undefined8 *cache_end;
+  undefined8 *cache_current;
+  undefined *cache_item;
+  ulonglong cache_index;
+  uint material_bit;
+  ulonglong material_offset;
+  ulonglong cache_position;
+  longlong material_slot;
+  undefined8 material_info;
   
-  uVar16 = 0xfffffffffffffffe;
-  puVar1 = (ulonglong *)(param_1 + 0x368);
-  FUN_18022ebe0(puVar1);
-  plVar4 = (longlong *)FUN_180240a60(*(undefined8 *)(param_1 + 0x1e0));
-  uVar11 = 0;
-  lVar15 = *plVar4;
-  lVar7 = plVar4[1] - lVar15;
-  lVar5 = lVar7 * 0x2aaaaaaaaaaaaaab;
-  uVar13 = uVar11;
-  if (lVar7 / 0x60 + (lVar7 >> 0x3f) != lVar7 >> 0x3f) {
+  material_info = 0xfffffffffffffffe;
+  cache_ptr = (ulonglong *)(material_system + 0x368);
+  initialize_cache_system(cache_ptr);
+  cache_count = (longlong *)get_cache_manager(*(undefined8 *)(material_system + 0x1e0));
+  cache_index = 0;
+  cache_position = *cache_count;
+  cache_size = cache_count[1] - cache_position;
+  cache_capacity = cache_size * 0x2aaaaaaaaaaaaaab;
+  material_offset = cache_index;
+  if (cache_size / 0x60 + (cache_size >> 0x3f) != cache_size >> 0x3f) {
     do {
-      puVar6 = (undefined8 *)0x0;
-      if ((*(ulonglong *)(param_1 + 0x140) >> (uVar13 & 0x3f) & 1) != 0) {
-        lVar5 = uVar11 * 0x60 + lVar15;
-        uVar11 = *(ulonglong *)(param_1 + 0x370);
-        if (uVar11 < *(ulonglong *)(param_1 + 0x378)) {
-          *(ulonglong *)(param_1 + 0x370) = uVar11 + 0x58;
-          FUN_1800b8300(uVar11,lVar5);
+      cache_start = (undefined8 *)0x0;
+      if ((*(ulonglong *)(material_system + 0x140) >> (material_offset & 0x3f) & 1) != 0) {
+        cache_capacity = cache_index * 0x60 + cache_position;
+        cache_index = *(ulonglong *)(material_system + 0x370);
+        if (cache_index < *(ulonglong *)(material_system + 0x378)) {
+          *(ulonglong *)(material_system + 0x370) = cache_index + 0x58;
+          load_material_data(cache_index,cache_capacity);
         }
         else {
-          uVar14 = *puVar1;
-          lVar7 = (longlong)(uVar11 - uVar14) / 0x58;
-          if (lVar7 == 0) {
-            lVar7 = 1;
-LAB_18022de69:
-            puVar6 = (undefined8 *)
-                     FUN_18062b420(_DAT_180c8ed18,lVar7 * 0x58,*(undefined1 *)(param_1 + 0x380),
-                                   lVar15,uVar16);
-            uVar11 = *(ulonglong *)(param_1 + 0x370);
-            uVar14 = *puVar1;
+          material_offset = *cache_ptr;
+          cache_size = (longlong)(cache_index - material_offset) / 0x58;
+          if (cache_size == 0) {
+            cache_size = 1;
+LAB_cache_allocate:
+            cache_start = (undefined8 *)
+                     allocate_cache_memory(_DAT_180c8ed18,cache_size * 0x58,*(undefined1 *)(material_system + 0x380),
+                                   cache_position,material_info);
+            cache_index = *(ulonglong *)(material_system + 0x370);
+            material_offset = *cache_ptr;
           }
           else {
-            lVar7 = lVar7 * 2;
-            if (lVar7 != 0) goto LAB_18022de69;
+            cache_size = cache_size * 2;
+            if (cache_size != 0) goto LAB_cache_allocate;
           }
-          puVar8 = puVar6;
-          if (uVar14 != uVar11) {
-            lVar15 = uVar14 - (longlong)puVar6;
+          cache_current = cache_start;
+          if (material_offset != cache_index) {
+            cache_position = material_offset - (longlong)cache_start;
             do {
-              *puVar8 = &UNK_18098bcb0;
-              puVar8[1] = 0;
-              *(undefined4 *)(puVar8 + 2) = 0;
-              *puVar8 = &UNK_1809fcc58;
-              puVar8[1] = puVar8 + 3;
-              *(undefined4 *)(puVar8 + 2) = 0;
-              *(undefined1 *)(puVar8 + 3) = 0;
-              *(undefined4 *)(puVar8 + 2) = *(undefined4 *)(lVar15 + 0x10 + (longlong)puVar8);
-              puVar2 = *(undefined **)(lVar15 + 8 + (longlong)puVar8);
-              puVar10 = &DAT_18098bc73;
-              if (puVar2 != (undefined *)0x0) {
-                puVar10 = puVar2;
+              *cache_current = &UNK_18098bcb0;
+              cache_current[1] = 0;
+              *(undefined4 *)(cache_current + 2) = 0;
+              *cache_current = &UNK_1809fcc58;
+              cache_current[1] = cache_current + 3;
+              *(undefined4 *)(cache_current + 2) = 0;
+              *(undefined1 *)(cache_current + 3) = 0;
+              *(undefined4 *)(cache_current + 2) = *(undefined4 *)(cache_position + 0x10 + (longlong)cache_current);
+              material_data = *(undefined **)(cache_position + 8 + (longlong)cache_current);
+              material_item = &DAT_18098bc73;
+              if (material_data != (undefined *)0x0) {
+                material_item = material_data;
               }
-              strcpy_s(puVar8[1],0x40,puVar10);
-              puVar8 = puVar8 + 0xb;
-            } while (lVar15 + (longlong)puVar8 != uVar11);
+              strcpy_s(cache_current[1],0x40,material_item);
+              cache_current = cache_current + 0xb;
+            } while (cache_position + (longlong)cache_current != cache_index);
           }
-          FUN_1800b8300(puVar8,lVar5);
-          puVar3 = *(undefined8 **)(param_1 + 0x370);
-          puVar9 = (undefined8 *)*puVar1;
-          if (puVar9 != puVar3) {
+          load_material_data(cache_current,cache_capacity);
+          cache_entry = *(undefined8 **)(material_system + 0x370);
+          cache_end = (undefined8 *)*cache_ptr;
+          if (cache_end != cache_entry) {
             do {
-              (**(code **)*puVar9)(puVar9,0);
-              puVar9 = puVar9 + 0xb;
-            } while (puVar9 != puVar3);
-            puVar9 = (undefined8 *)*puVar1;
+              (**(code **)*cache_end)(cache_end,0);
+              cache_end = cache_end + 0xb;
+            } while (cache_end != cache_entry);
+            cache_end = (undefined8 *)*cache_ptr;
           }
-          if (puVar9 != (undefined8 *)0x0) {
+          if (cache_end != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900(puVar9);
+            free_cache_memory(cache_end);
           }
-          *puVar1 = (ulonglong)puVar6;
-          *(undefined8 **)(param_1 + 0x370) = puVar8 + 0xb;
-          *(undefined8 **)(param_1 + 0x378) = puVar6 + lVar7 * 0xb;
+          *cache_ptr = (ulonglong)cache_start;
+          *(undefined8 **)(material_system + 0x370) = cache_current + 0xb;
+          *(undefined8 **)(material_system + 0x378) = cache_start + cache_size * 0xb;
         }
       }
-      uVar12 = (int)uVar13 + 1;
-      lVar15 = *plVar4;
-      uVar11 = (ulonglong)(int)uVar12;
-      lVar5 = -(plVar4[1] - lVar15 >> 0x3f);
-      uVar13 = (ulonglong)uVar12;
-    } while (uVar11 < (ulonglong)((plVar4[1] - lVar15) / 0x60));
+      material_bit = (int)material_offset + 1;
+      cache_position = *cache_count;
+      cache_index = (ulonglong)(int)material_bit;
+      cache_capacity = -(cache_count[1] - cache_position >> 0x3f);
+      material_offset = (ulonglong)material_bit;
+    } while (cache_index < (ulonglong)((cache_count[1] - cache_position) / 0x60));
   }
-  return lVar5;
+  return cache_capacity;
 }
 
 
@@ -272,489 +276,478 @@ LAB_18022de69:
 
 
 
-// 函数: void FUN_18022dfe0(longlong param_1,undefined8 param_2,longlong param_3)
-void FUN_18022dfe0(longlong param_1,undefined8 param_2,longlong param_3)
+// 函数: 切换场景材质系统
+// 功能: 在不同场景间切换时，更新和管理材质系统的状态
+void switch_scene_materials(longlong scene_context,undefined8 new_scene,longlong scene_data)
 
 {
-  uint uVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  longlong lVar7;
-  byte bVar8;
-  int iVar9;
-  longlong lVar10;
-  longlong lVar11;
-  undefined8 *puVar12;
-  undefined *puVar13;
-  undefined *puVar14;
-  longlong *plVar15;
-  undefined8 *puVar16;
-  undefined8 *puVar17;
-  longlong *plVar18;
-  longlong lVar19;
-  longlong lVar20;
-  undefined8 *puVar21;
-  undefined4 extraout_XMM0_Da;
-  undefined1 auStack_118 [32];
-  longlong *plStack_f8;
-  undefined8 uStack_f0;
-  undefined8 uStack_e8;
-  code *pcStack_e0;
-  code *pcStack_d8;
-  longlong *plStack_d0;
-  longlong *plStack_c8;
-  longlong *plStack_c0;
-  undefined8 uStack_b8;
-  undefined *puStack_a8;
-  undefined *puStack_a0;
-  int iStack_98;
-  undefined auStack_90 [72];
-  ulonglong uStack_48;
+  uint texture_format;
+  undefined8 old_material;
+  undefined8 new_material;
+  undefined4 material_param1;
+  undefined4 material_param2;
+  undefined4 material_param3;
+  longlong material_handle;
+  byte material_type;
+  int material_index;
+  longlong texture_offset;
+  longlong material_slot;
+  undefined8 *material_manager;
+  undefined *material_name;
+  undefined *texture_ptr;
+  longlong *material_list;
+  undefined8 *material_cache;
+  undefined8 *texture_cache;
+  longlong *texture_count;
+  longlong scene_offset;
+  longlong render_offset;
+  undefined8 *texture_system;
+  undefined4 texture_flags;
+  undefined1 material_buffer [72];
+  ulonglong stack_guard;
   
-  uStack_b8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_118;
-  lVar10 = FUN_180255f80(*(undefined8 *)(param_1 + 0xa8),&DAT_180a01228,param_3 + 0x20);
-  if (lVar10 == 0) {
-    plStack_f8 = *(longlong **)(param_1 + 0x1e0);
-    *(undefined8 *)(param_1 + 0x1e0) = 0;
-    if (plStack_f8 != (longlong *)0x0) {
-      (**(code **)(*plStack_f8 + 0x38))();
+  texture_system = 0xfffffffffffffffe;
+  stack_guard = _DAT_180bf00a8 ^ (ulonglong)material_buffer;
+  texture_offset = find_scene_material(*(undefined8 *)(scene_context + 0xa8),&DAT_180a01228,scene_data + 0x20);
+  if (texture_offset == 0) {
+    material_list = *(longlong **)(scene_context + 0x1e0);
+    *(undefined8 *)(scene_context + 0x1e0) = 0;
+    if (material_list != (longlong *)0x0) {
+      (**(code **)(*material_list + 0x38))();
     }
-    (**(code **)(*(longlong *)(param_1 + 0x2d0) + 0x10))
-              ((longlong *)(param_1 + 0x2d0),&DAT_18098bc73);
-    puVar13 = &DAT_18098bc73;
-    if (*(undefined **)(param_1 + 0x18) != (undefined *)0x0) {
-      puVar13 = *(undefined **)(param_1 + 0x18);
+    (**(code **)(*(longlong *)(scene_context + 0x2d0) + 0x10))
+              ((longlong *)(scene_context + 0x2d0),&DAT_18098bc73);
+    material_name = &DAT_18098bc73;
+    if (*(undefined **)(scene_context + 0x18) != (undefined *)0x0) {
+      material_name = *(undefined **)(scene_context + 0x18);
     }
-    FUN_180627020(&UNK_180a13c48,puVar13);
+    log_scene_switch_error(&UNK_180a13c48,material_name);
   }
   else {
-    plVar15 = *(longlong **)(lVar10 + 0xb0);
-    if (plVar15 != (longlong *)0x0) {
-      plStack_f8 = plVar15;
-      (**(code **)(*plVar15 + 0x28))(plVar15);
+    material_list = *(longlong **)(texture_offset + 0xb0);
+    if (material_list != (longlong *)0x0) {
+      material_cache = material_list;
+      (**(code **)(*material_list + 0x28))(material_list);
     }
-    plStack_f8 = *(longlong **)(param_1 + 0x1e0);
-    *(longlong **)(param_1 + 0x1e0) = plVar15;
-    if (plStack_f8 != (longlong *)0x0) {
-      (**(code **)(*plStack_f8 + 0x38))();
+    material_cache = *(longlong **)(scene_context + 0x1e0);
+    *(longlong **)(scene_context + 0x1e0) = material_list;
+    if (material_cache != (longlong *)0x0) {
+      (**(code **)(*material_cache + 0x38))();
     }
-    *(undefined4 *)(param_1 + 0x2e0) = *(undefined4 *)(*(longlong *)(param_1 + 0x1e0) + 0x20);
-    puVar13 = *(undefined **)(*(longlong *)(param_1 + 0x1e0) + 0x18);
-    puVar14 = &DAT_18098bc73;
-    if (puVar13 != (undefined *)0x0) {
-      puVar14 = puVar13;
+    *(undefined4 *)(scene_context + 0x2e0) = *(undefined4 *)(*(longlong *)(scene_context + 0x1e0) + 0x20);
+    material_name = *(undefined **)(*(longlong *)(scene_context + 0x1e0) + 0x18);
+    texture_ptr = &DAT_18098bc73;
+    if (material_name != (undefined *)0x0) {
+      texture_ptr = material_name;
     }
-    strcpy_s(*(undefined8 *)(param_1 + 0x2d8),0x80,puVar14);
+    strcpy_s(*(undefined8 *)(scene_context + 0x2d8),0x80,texture_ptr);
   }
-  lVar19 = 0;
-  plVar15 = (longlong *)(param_1 + 0xb8);
-  plStack_f8 = (longlong *)0x10;
-  lVar10 = lVar19;
-  lVar20 = lVar19;
+  scene_offset = 0;
+  material_list = (longlong *)(scene_context + 0xb8);
+  material_cache = (longlong *)0x10;
+  texture_offset = scene_offset;
+  render_offset = scene_offset;
   do {
-    plStack_d0 = (longlong *)*plVar15;
-    *plVar15 = 0;
-    if (plStack_d0 != (longlong *)0x0) {
-      (**(code **)(*plStack_d0 + 0x38))();
+    texture_count = (longlong *)*material_list;
+    *material_list = 0;
+    if (texture_count != (longlong *)0x0) {
+      (**(code **)(*texture_count + 0x38))();
     }
-    plVar18 = (longlong *)(param_3 + 0x30 + lVar19);
-    if (((*plVar18 != 0) || (plVar18[1] != 0)) &&
-       (*(int *)(*(longlong *)(param_1 + 0x1e0) + 0x1c40 + lVar10) != 0)) {
-      lVar11 = FUN_180255f80(*(undefined8 *)(param_1 + 0xa8),&UNK_180a01170);
-      lVar7 = _DAT_180c86898;
-      if (lVar11 == 0) {
+    material_list = (longlong *)(scene_data + 0x30 + scene_offset);
+    if (((*material_list != 0) || (material_list[1] != 0)) &&
+       (*(int *)(*(longlong *)(scene_context + 0x1e0) + 0x1c40 + texture_offset) != 0)) {
+      material_slot = find_scene_material(*(undefined8 *)(scene_context + 0xa8),&UNK_180a01170);
+      material_handle = _DAT_180c86898;
+      if (material_slot == 0) {
         if (*(longlong *)(_DAT_180c86898 + 0x98) == 0) {
-          puVar12 = (undefined8 *)FUN_1800c1420(extraout_XMM0_Da,&plStack_c0,&UNK_180a03108,1);
-          uVar2 = *puVar12;
-          *puVar12 = 0;
-          plStack_c8 = *(longlong **)(lVar7 + 0x98);
-          *(undefined8 *)(lVar7 + 0x98) = uVar2;
-          if (plStack_c8 != (longlong *)0x0) {
-            (**(code **)(*plStack_c8 + 0x38))();
+          texture_system = (undefined8 *)create_texture_manager(texture_flags,&texture_count,&UNK_180a03108,1);
+          old_material = *texture_system;
+          *texture_system = 0;
+          texture_cache = *(longlong **)(material_handle + 0x98);
+          *(undefined8 *)(material_handle + 0x98) = old_material;
+          if (texture_cache != (longlong *)0x0) {
+            (**(code **)(*texture_cache + 0x38))();
           }
-          if (plStack_c0 != (longlong *)0x0) {
-            (**(code **)(*plStack_c0 + 0x38))();
+          if (texture_count != (longlong *)0x0) {
+            (**(code **)(*texture_count + 0x38))();
           }
         }
-        uStack_f0 = 0;
-        uStack_e8 = 0;
-        pcStack_e0 = (code *)0x0;
-        pcStack_d8 = _guard_check_icall;
-        FUN_18023c450(*(undefined8 *)(lVar7 + 0x98),0,*(undefined4 *)(lVar7 + 0x468),&uStack_f0);
-        if (pcStack_e0 != (code *)0x0) {
-          (*pcStack_e0)(&uStack_f0,0,0);
+        texture_system = 0;
+        old_material = 0;
+        new_material = 0;
+        texture_system = (undefined8 *)0x0;
+        texture_cache = _guard_check_icall;
+        initialize_texture_system(*(undefined8 *)(material_handle + 0x98),0,*(undefined4 *)(material_handle + 0x468),&texture_system);
+        if (new_material != (undefined8 *)0x0) {
+          (*new_material)(&texture_system,0,0);
         }
-        FUN_180056f10(param_1 + 0xb8 + lVar20,*(undefined8 *)(lVar7 + 0x98));
-        puStack_a8 = &UNK_1809fcc58;
-        puStack_a0 = auStack_90;
-        auStack_90[0] = 0;
-        iStack_98 = *(int *)(lVar10 + 0x1c40 + *(longlong *)(param_1 + 0x1e0));
-        puVar13 = *(undefined **)(lVar10 + 0x1c38 + *(longlong *)(param_1 + 0x1e0));
-        puVar14 = &DAT_18098bc73;
-        if (puVar13 != (undefined *)0x0) {
-          puVar14 = puVar13;
+        apply_texture_to_scene(scene_context + 0xb8 + render_offset,*(undefined8 *)(material_handle + 0x98));
+        material_name = &UNK_1809fcc58;
+        texture_ptr = material_buffer;
+        material_buffer[0] = 0;
+        material_index = *(int *)(texture_offset + 0x1c40 + *(longlong *)(scene_context + 0x1e0));
+        material_name = *(undefined **)(texture_offset + 0x1c38 + *(longlong *)(scene_context + 0x1e0));
+        texture_ptr = &DAT_18098bc73;
+        if (material_name != (undefined *)0x0) {
+          texture_ptr = material_name;
         }
-        strcpy_s(auStack_90,0x40,puVar14);
-        puVar13 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x18) != (undefined *)0x0) {
-          puVar13 = *(undefined **)(param_1 + 0x18);
+        strcpy_s(material_buffer,0x40,texture_ptr);
+        material_name = &DAT_18098bc73;
+        if (*(undefined **)(scene_context + 0x18) != (undefined *)0x0) {
+          material_name = *(undefined **)(scene_context + 0x18);
         }
-        if (iStack_98 == 0) {
-          puVar14 = &DAT_180a0e8a0;
+        if (material_index == 0) {
+          texture_ptr = &DAT_180a0e8a0;
         }
         else {
-          puVar14 = &DAT_18098bc73;
-          if (puStack_a0 != (undefined *)0x0) {
-            puVar14 = puStack_a0;
+          texture_ptr = &DAT_18098bc73;
+          if (texture_ptr != (undefined *)0x0) {
+            texture_ptr = texture_ptr;
           }
         }
-        FUN_180627020(&UNK_180a13c08,puVar14,puVar13);
-        puStack_a8 = &UNK_18098bcb0;
+        log_material_assignment(&UNK_180a13c08,texture_ptr,material_name);
+        material_name = &UNK_18098bcb0;
       }
       else {
-        FUN_180080810(param_1 + 0xb8 + lVar20,lVar11 + 0xb0);
+        apply_material_to_scene(scene_context + 0xb8 + render_offset,material_slot + 0xb0);
       }
     }
-    lVar19 = lVar19 + 0x10;
-    lVar20 = lVar20 + 8;
-    plVar15 = plVar15 + 1;
-    lVar10 = lVar10 + 0x58;
-    plStack_f8 = (longlong *)((longlong)plStack_f8 + -1);
-  } while (plStack_f8 != (longlong *)0x0);
-  if ((undefined8 *)(param_1 + 0x368) != (undefined8 *)(param_3 + 0x138)) {
-    FUN_18022ec40((undefined8 *)(param_1 + 0x368),*(undefined8 *)(param_3 + 0x138),
-                  *(undefined8 *)(param_3 + 0x140));
+    scene_offset = scene_offset + 0x10;
+    render_offset = render_offset + 8;
+    material_list = material_list + 1;
+    texture_offset = texture_offset + 0x58;
+    material_cache = (longlong *)((longlong)material_cache + -1);
+  } while (material_cache != (longlong *)0x0);
+  if ((undefined8 *)(scene_context + 0x368) != (undefined8 *)(scene_data + 0x138)) {
+    update_scene_materials((undefined8 *)(scene_context + 0x368),*(undefined8 *)(scene_data + 0x138),
+                  *(undefined8 *)(scene_data + 0x140));
   }
-  *(undefined4 *)(param_1 + 0x138) = *(undefined4 *)(param_3 + 0x18);
-  *(undefined4 *)(param_1 + 0x388) = *(undefined4 *)(param_3 + 0x1c);
-  *(undefined4 *)(param_1 + 600) = *(undefined4 *)(param_3 + 0x130);
-  *(undefined1 *)(param_1 + 0x13c) = *(undefined1 *)(param_3 + 0x134);
-  *(undefined4 *)(param_1 + 0x25c) = *(undefined4 *)(param_3 + 0x158);
-  *(undefined4 *)(param_1 + 0x260) = *(undefined4 *)(param_3 + 0x15c);
-  *(undefined4 *)(param_1 + 0x264) = *(undefined4 *)(param_3 + 0x160);
-  *(undefined4 *)(param_1 + 0x268) = *(undefined4 *)(param_3 + 0x164);
-  uVar2 = *(undefined8 *)(param_3 + 0x170);
-  *(undefined8 *)(param_1 + 0x288) = *(undefined8 *)(param_3 + 0x168);
-  *(undefined8 *)(param_1 + 0x290) = uVar2;
-  uVar2 = *(undefined8 *)(param_3 + 0x180);
-  *(undefined8 *)(param_1 + 0x298) = *(undefined8 *)(param_3 + 0x178);
-  *(undefined8 *)(param_1 + 0x2a0) = uVar2;
-  uVar2 = *(undefined8 *)(param_3 + 400);
-  *(undefined8 *)(param_1 + 0x2a8) = *(undefined8 *)(param_3 + 0x188);
-  *(undefined8 *)(param_1 + 0x2b0) = uVar2;
-  uVar4 = *(undefined4 *)(param_3 + 0x19c);
-  uVar5 = *(undefined4 *)(param_3 + 0x1a0);
-  uVar6 = *(undefined4 *)(param_3 + 0x1a4);
-  *(undefined4 *)(param_1 + 0x2b8) = *(undefined4 *)(param_3 + 0x198);
-  *(undefined4 *)(param_1 + 700) = uVar4;
-  *(undefined4 *)(param_1 + 0x2c0) = uVar5;
-  *(undefined4 *)(param_1 + 0x2c4) = uVar6;
-  *(undefined4 *)(param_1 + 0x2c8) = *(undefined4 *)(param_3 + 0x1a8);
-  *(undefined4 *)(param_1 + 0x26c) = *(undefined4 *)(param_3 + 0x1ac);
-  *(undefined4 *)(param_1 + 0x270) = *(undefined4 *)(param_3 + 0x1b0);
-  *(undefined4 *)(param_1 + 0x274) = *(undefined4 *)(param_3 + 0x1b4);
-  *(undefined4 *)(param_1 + 0x278) = *(undefined4 *)(param_3 + 0x1b8);
-  *(undefined4 *)(param_1 + 0x27c) = *(undefined4 *)(param_3 + 0x1bc);
-  *(undefined4 *)(param_1 + 0x280) = *(undefined4 *)(param_3 + 0x1c0);
-  *(undefined4 *)(param_1 + 0x284) = *(undefined4 *)(param_3 + 0x1c4);
-  lVar10 = *(longlong *)(param_1 + 0xa8);
-  puVar21 = (undefined8 *)(_DAT_180c8a9d0 + 0x180);
-  puVar12 = puVar21;
-  puVar16 = *(undefined8 **)(_DAT_180c8a9d0 + 400);
+  *(undefined4 *)(scene_context + 0x138) = *(undefined4 *)(scene_data + 0x18);
+  *(undefined4 *)(scene_context + 0x388) = *(undefined4 *)(scene_data + 0x1c);
+  *(undefined4 *)(scene_context + 600) = *(undefined4 *)(scene_data + 0x130);
+  *(undefined1 *)(scene_context + 0x13c) = *(undefined1 *)(scene_data + 0x134);
+  *(undefined4 *)(scene_context + 0x25c) = *(undefined4 *)(scene_data + 0x158);
+  *(undefined4 *)(scene_context + 0x260) = *(undefined4 *)(scene_data + 0x15c);
+  *(undefined4 *)(scene_context + 0x264) = *(undefined4 *)(scene_data + 0x160);
+  *(undefined4 *)(scene_context + 0x268) = *(undefined4 *)(scene_data + 0x164);
+  old_material = *(undefined8 *)(scene_data + 0x170);
+  *(undefined8 *)(scene_context + 0x288) = *(undefined8 *)(scene_data + 0x168);
+  *(undefined8 *)(scene_context + 0x290) = old_material;
+  old_material = *(undefined8 *)(scene_data + 0x180);
+  *(undefined8 *)(scene_context + 0x298) = *(undefined8 *)(scene_data + 0x178);
+  *(undefined8 *)(scene_context + 0x2a0) = old_material;
+  old_material = *(undefined8 *)(scene_data + 400);
+  *(undefined8 *)(scene_context + 0x2a8) = *(undefined8 *)(scene_data + 0x188);
+  *(undefined8 *)(scene_context + 0x2b0) = old_material;
+  material_param1 = *(undefined4 *)(scene_data + 0x19c);
+  material_param2 = *(undefined4 *)(scene_data + 0x1a0);
+  material_param3 = *(undefined4 *)(scene_data + 0x1a4);
+  *(undefined4 *)(scene_context + 0x2b8) = *(undefined4 *)(scene_data + 0x198);
+  *(undefined4 *)(scene_context + 700) = material_param1;
+  *(undefined4 *)(scene_context + 0x2c0) = material_param2;
+  *(undefined4 *)(scene_context + 0x2c4) = material_param3;
+  *(undefined4 *)(scene_context + 0x2c8) = *(undefined4 *)(scene_data + 0x1a8);
+  *(undefined4 *)(scene_context + 0x26c) = *(undefined4 *)(scene_data + 0x1ac);
+  *(undefined4 *)(scene_context + 0x270) = *(undefined4 *)(scene_data + 0x1b0);
+  *(undefined4 *)(scene_context + 0x274) = *(undefined4 *)(scene_data + 0x1b4);
+  *(undefined4 *)(scene_context + 0x278) = *(undefined4 *)(scene_data + 0x1b8);
+  *(undefined4 *)(scene_context + 0x27c) = *(undefined4 *)(scene_data + 0x1bc);
+  *(undefined4 *)(scene_context + 0x280) = *(undefined4 *)(scene_data + 0x1c0);
+  *(undefined4 *)(scene_context + 0x284) = *(undefined4 *)(scene_data + 0x1c4);
+  texture_offset = *(longlong *)(scene_context + 0xa8);
+  texture_system = (undefined8 *)(_DAT_180c8a9d0 + 0x180);
+  texture_cache = texture_system;
+  texture_system = *(undefined8 **)(_DAT_180c8a9d0 + 400);
   if (*(undefined8 **)(_DAT_180c8a9d0 + 400) != (undefined8 *)0x0) {
     do {
-      iVar9 = memcmp(puVar16 + 4,lVar10 + 0xc,0x10);
-      if (iVar9 < 0) {
-        puVar17 = (undefined8 *)*puVar16;
+      material_index = memcmp(texture_system + 4,texture_offset + 0xc,0x10);
+      if (material_index < 0) {
+        texture_system = (undefined8 *)*texture_system;
       }
       else {
-        puVar17 = (undefined8 *)puVar16[1];
-        puVar12 = puVar16;
+        texture_system = (undefined8 *)texture_system[1];
+        texture_cache = texture_system;
       }
-      puVar16 = puVar17;
-    } while (puVar17 != (undefined8 *)0x0);
-    if (puVar12 != puVar21) {
-      iVar9 = memcmp(lVar10 + 0xc,puVar12 + 4,0x10);
-      if (-1 < iVar9) goto LAB_18022e4c7;
+      texture_system = texture_system;
+    } while (texture_system != (undefined8 *)0x0);
+    if (texture_cache != texture_system) {
+      material_index = memcmp(texture_offset + 0xc,texture_cache + 4,0x10);
+      if (-1 < material_index) goto LAB_texture_found;
     }
   }
-  puVar12 = puVar21;
-LAB_18022e4c7:
-  if (puVar12 != puVar21) {
-    uVar2 = puVar12[6];
-    uVar3 = puVar12[7];
-    *(undefined4 *)(param_1 + 0x170) = 0;
-    **(undefined1 **)(param_1 + 0x168) = 0;
-    FUN_18004b860(param_1 + 0x160,&UNK_180a02954,uVar2);
-    *(undefined8 *)(param_1 + 0x148) = uVar2;
-    *(undefined4 *)(param_1 + 0x1a8) = 0;
-    **(undefined1 **)(param_1 + 0x1a0) = 0;
-    FUN_18004b860(param_1 + 0x198,&UNK_180a02954,uVar3);
-    *(undefined8 *)(param_1 + 0x150) = uVar3;
+  texture_cache = texture_system;
+LAB_texture_found:
+  if (texture_cache != texture_system) {
+    old_material = texture_cache[6];
+    new_material = texture_cache[7];
+    *(undefined4 *)(scene_context + 0x170) = 0;
+    **(undefined1 **)(scene_context + 0x168) = 0;
+    setup_material_properties(scene_context + 0x160,&UNK_180a02954,old_material);
+    *(undefined8 *)(scene_context + 0x148) = old_material;
+    *(undefined4 *)(scene_context + 0x1a8) = 0;
+    **(undefined1 **)(scene_context + 0x1a0) = 0;
+    setup_material_properties(scene_context + 0x198,&UNK_180a02954,new_material);
+    *(undefined8 *)(scene_context + 0x150) = new_material;
   }
-  uVar1 = *(uint *)(param_1 + 0x388);
-  if ((uVar1 >> 0x1e & 1) == 0) {
-    if ((uVar1 >> 0x1c & 1) == 0) {
-      bVar8 = (byte)(uVar1 >> 0x18);
-      if ((int)uVar1 < 0) {
-        if ((uVar1 >> 0x1b & 1) == 0) {
-          bVar8 = bVar8 & 1 | 0xc;
+  texture_format = *(uint *)(scene_context + 0x388);
+  if ((texture_format >> 0x1e & 1) == 0) {
+    if ((texture_format >> 0x1c & 1) == 0) {
+      material_type = (byte)(texture_format >> 0x18);
+      if ((int)texture_format < 0) {
+        if ((texture_format >> 0x1b & 1) == 0) {
+          material_type = material_type & 1 | 0xc;
         }
         else {
-          bVar8 = bVar8 & 1 | 0xe;
+          material_type = material_type & 1 | 0xe;
         }
       }
-      else if ((uVar1 >> 0x19 & 1) == 0) {
-        bVar8 = bVar8 & 1;
+      else if ((texture_format >> 0x19 & 1) == 0) {
+        material_type = material_type & 1;
       }
-      else if ((uVar1 >> 0x1b & 1) == 0) {
-        bVar8 = bVar8 & 1 | 2;
+      else if ((texture_format >> 0x1b & 1) == 0) {
+        material_type = material_type & 1 | 2;
       }
       else {
-        bVar8 = ((uVar1 >> 0x18 & 1) != 0) + 7;
+        material_type = ((texture_format >> 0x18 & 1) != 0) + 7;
       }
     }
     else {
-      bVar8 = 4;
+      material_type = 4;
     }
   }
   else {
-    bVar8 = 9;
+    material_type = 9;
   }
-  *(byte *)(param_1 + 0x38c) = bVar8;
-  FUN_18022d860(param_1);
-  FUN_18022ce40(param_1);
+  *(byte *)(scene_context + 0x38c) = material_type;
+  initialize_scene_materials(scene_context);
+  update_scene_render_state(scene_context);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_118);
+  security_check(stack_guard ^ (ulonglong)material_buffer);
 }
 
 
 
-ulonglong FUN_18022e5d0(longlong param_1)
+ulonglong check_material_compatibility(longlong scene_context)
 
 {
-  bool bVar1;
-  ulonglong in_RAX;
-  longlong lVar2;
-  undefined *puVar3;
+  bool is_compatible;
+  ulonglong compatibility_flags;
+  longlong string_search_result;
+  undefined *scene_name;
   
-  if ((*(uint *)(param_1 + 0x138) & 0x200) == 0) {
-    puVar3 = &DAT_18098bc73;
-    if (*(undefined **)(param_1 + 0x2d8) != (undefined *)0x0) {
-      puVar3 = *(undefined **)(param_1 + 0x2d8);
+  if ((*(uint *)(scene_context + 0x138) & 0x200) == 0) {
+    scene_name = &DAT_18098bc73;
+    if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+      scene_name = *(undefined **)(scene_context + 0x2d8);
     }
-    lVar2 = strstr(puVar3,&UNK_180a13c2c);
-    if (lVar2 == 0) {
-      puVar3 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x2d8) != (undefined *)0x0) {
-        puVar3 = *(undefined **)(param_1 + 0x2d8);
+    string_search_result = strstr(scene_name,&UNK_180a13c2c);
+    if (string_search_result == 0) {
+      scene_name = &DAT_18098bc73;
+      if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+        scene_name = *(undefined **)(scene_context + 0x2d8);
       }
-      lVar2 = strstr(puVar3,&UNK_180a13c94);
-      if (lVar2 == 0) {
-        puVar3 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x2d8) != (undefined *)0x0) {
-          puVar3 = *(undefined **)(param_1 + 0x2d8);
+      string_search_result = strstr(scene_name,&UNK_180a13c94);
+      if (string_search_result == 0) {
+        scene_name = &DAT_18098bc73;
+        if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+          scene_name = *(undefined **)(scene_context + 0x2d8);
         }
-        lVar2 = strstr(puVar3,&UNK_180a13ca0);
-        if (lVar2 == 0) {
-          puVar3 = &DAT_18098bc73;
-          if (*(undefined **)(param_1 + 0x2d8) != (undefined *)0x0) {
-            puVar3 = *(undefined **)(param_1 + 0x2d8);
+        string_search_result = strstr(scene_name,&UNK_180a13ca0);
+        if (string_search_result == 0) {
+          scene_name = &DAT_18098bc73;
+          if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+            scene_name = *(undefined **)(scene_context + 0x2d8);
           }
-          lVar2 = strstr(puVar3,&UNK_180a12ea0);
-          if (lVar2 == 0) {
-            puVar3 = &DAT_18098bc73;
-            if (*(undefined **)(param_1 + 0x2d8) != (undefined *)0x0) {
-              puVar3 = *(undefined **)(param_1 + 0x2d8);
+          string_search_result = strstr(scene_name,&UNK_180a12ea0);
+          if (string_search_result == 0) {
+            scene_name = &DAT_18098bc73;
+            if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+              scene_name = *(undefined **)(scene_context + 0x2d8);
             }
-            lVar2 = strstr(puVar3,&UNK_180a13c70);
-            if (lVar2 == 0) {
-              puVar3 = &DAT_18098bc73;
-              if (*(undefined **)(param_1 + 0x2d8) != (undefined *)0x0) {
-                puVar3 = *(undefined **)(param_1 + 0x2d8);
+            string_search_result = strstr(scene_name,&UNK_180a13c70);
+            if (string_search_result == 0) {
+              scene_name = &DAT_18098bc73;
+              if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+                scene_name = *(undefined **)(scene_context + 0x2d8);
               }
-              lVar2 = strstr(puVar3,&UNK_180a13c88);
-              if (lVar2 == 0) {
-                puVar3 = &DAT_18098bc73;
-                if (*(undefined **)(param_1 + 0x2d8) != (undefined *)0x0) {
-                  puVar3 = *(undefined **)(param_1 + 0x2d8);
+              string_search_result = strstr(scene_name,&UNK_180a13c88);
+              if (string_search_result == 0) {
+                scene_name = &DAT_18098bc73;
+                if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+                  scene_name = *(undefined **)(scene_context + 0x2d8);
                 }
-                lVar2 = strstr(puVar3,&UNK_180a13cac);
-                if (lVar2 == 0) {
-                  puVar3 = &DAT_18098bc73;
-                  if (*(undefined **)(param_1 + 0x2d8) != (undefined *)0x0) {
-                    puVar3 = *(undefined **)(param_1 + 0x2d8);
+                string_search_result = strstr(scene_name,&UNK_180a13cac);
+                if (string_search_result == 0) {
+                  scene_name = &DAT_18098bc73;
+                  if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+                    scene_name = *(undefined **)(scene_context + 0x2d8);
                   }
-                  lVar2 = strstr(puVar3,&UNK_180a04998);
-                  if (lVar2 == 0) {
-                    puVar3 = &DAT_18098bc73;
-                    if (*(undefined **)(param_1 + 0x2d8) != (undefined *)0x0) {
-                      puVar3 = *(undefined **)(param_1 + 0x2d8);
+                  string_search_result = strstr(scene_name,&UNK_180a04998);
+                  if (string_search_result == 0) {
+                    scene_name = &DAT_18098bc73;
+                    if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+                      scene_name = *(undefined **)(scene_context + 0x2d8);
                     }
-                    lVar2 = strstr(puVar3,&DAT_180a1388c);
-                    bVar1 = false;
-                    if (lVar2 != 0) {
-                      bVar1 = true;
+                    string_search_result = strstr(scene_name,&DAT_180a1388c);
+                    is_compatible = false;
+                    if (string_search_result != 0) {
+                      is_compatible = true;
                     }
                   }
                   else {
-                    bVar1 = true;
+                    is_compatible = true;
                   }
                 }
                 else {
-                  bVar1 = true;
+                  is_compatible = true;
                 }
               }
               else {
-                bVar1 = true;
+                is_compatible = true;
               }
             }
             else {
-              bVar1 = true;
+              is_compatible = true;
             }
           }
           else {
-            bVar1 = true;
+            is_compatible = true;
           }
         }
         else {
-          bVar1 = true;
+          is_compatible = true;
         }
       }
       else {
-        bVar1 = true;
+        is_compatible = true;
       }
     }
     else {
-      bVar1 = true;
+      is_compatible = true;
     }
-    in_RAX = (ulonglong)(*(uint *)(param_1 + 0x138) >> 0x13) & 0xffffffffffffff01;
-    if ((bVar1) &&
-       ((((char)in_RAX != '\0' || ((*(uint *)(param_1 + 0x138) >> 0x12 & 1) != 0)) ||
-        (*(char *)(param_1 + 0x13c) == '\x06' || *(char *)(param_1 + 0x13c) == '\0')))) {
-      return CONCAT71((int7)(in_RAX >> 8),1);
+    compatibility_flags = (ulonglong)(*(uint *)(scene_context + 0x138) >> 0x13) & 0xffffffffffffff01;
+    if ((is_compatible) &&
+       ((((char)compatibility_flags != '\0' || ((*(uint *)(scene_context + 0x138) >> 0x12 & 1) != 0)) ||
+        (*(char *)(scene_context + 0x13c) == '\x06' || *(char *)(scene_context + 0x13c) == '\0')))) {
+      return CONCAT71((int7)(compatibility_flags >> 8),1);
     }
   }
-  return in_RAX & 0xffffffffffffff00;
+  return compatibility_flags & 0xffffffffffffff00;
 }
 
 
 
-longlong FUN_18022e5f7(void)
+longlong verify_material_loading(void)
 
 {
-  bool bVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  uint7 uVar4;
-  undefined *puVar5;
-  longlong unaff_RBX;
+  bool is_loaded;
+  longlong search_result;
+  ulonglong load_flags;
+  uint7 load_status;
+  undefined *material_name;
+  longlong scene_context;
   
-  lVar2 = strstr();
-  if (lVar2 == 0) {
-    puVar5 = &DAT_18098bc73;
-    if (*(undefined **)(unaff_RBX + 0x2d8) != (undefined *)0x0) {
-      puVar5 = *(undefined **)(unaff_RBX + 0x2d8);
+  search_result = strstr();
+  if (search_result == 0) {
+    material_name = &DAT_18098bc73;
+    if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+      material_name = *(undefined **)(scene_context + 0x2d8);
     }
-    lVar2 = strstr(puVar5,&UNK_180a13c94);
-    if (lVar2 == 0) {
-      puVar5 = &DAT_18098bc73;
-      if (*(undefined **)(unaff_RBX + 0x2d8) != (undefined *)0x0) {
-        puVar5 = *(undefined **)(unaff_RBX + 0x2d8);
+    search_result = strstr(material_name,&UNK_180a13c94);
+    if (search_result == 0) {
+      material_name = &DAT_18098bc73;
+      if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+        material_name = *(undefined **)(scene_context + 0x2d8);
       }
-      lVar2 = strstr(puVar5,&UNK_180a13ca0);
-      if (lVar2 == 0) {
-        puVar5 = &DAT_18098bc73;
-        if (*(undefined **)(unaff_RBX + 0x2d8) != (undefined *)0x0) {
-          puVar5 = *(undefined **)(unaff_RBX + 0x2d8);
+      search_result = strstr(material_name,&UNK_180a13ca0);
+      if (search_result == 0) {
+        material_name = &DAT_18098bc73;
+        if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+          material_name = *(undefined **)(scene_context + 0x2d8);
         }
-        lVar2 = strstr(puVar5,&UNK_180a12ea0);
-        if (lVar2 == 0) {
-          puVar5 = &DAT_18098bc73;
-          if (*(undefined **)(unaff_RBX + 0x2d8) != (undefined *)0x0) {
-            puVar5 = *(undefined **)(unaff_RBX + 0x2d8);
+        search_result = strstr(material_name,&UNK_180a12ea0);
+        if (search_result == 0) {
+          material_name = &DAT_18098bc73;
+          if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+            material_name = *(undefined **)(scene_context + 0x2d8);
           }
-          lVar2 = strstr(puVar5,&UNK_180a13c70);
-          if (lVar2 == 0) {
-            puVar5 = &DAT_18098bc73;
-            if (*(undefined **)(unaff_RBX + 0x2d8) != (undefined *)0x0) {
-              puVar5 = *(undefined **)(unaff_RBX + 0x2d8);
+          search_result = strstr(material_name,&UNK_180a13c70);
+          if (search_result == 0) {
+            material_name = &DAT_18098bc73;
+            if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+              material_name = *(undefined **)(scene_context + 0x2d8);
             }
-            lVar2 = strstr(puVar5,&UNK_180a13c88);
-            if (lVar2 == 0) {
-              puVar5 = &DAT_18098bc73;
-              if (*(undefined **)(unaff_RBX + 0x2d8) != (undefined *)0x0) {
-                puVar5 = *(undefined **)(unaff_RBX + 0x2d8);
+            search_result = strstr(material_name,&UNK_180a13c88);
+            if (search_result == 0) {
+              material_name = &DAT_18098bc73;
+              if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+                material_name = *(undefined **)(scene_context + 0x2d8);
               }
-              lVar2 = strstr(puVar5,&UNK_180a13cac);
-              if (lVar2 == 0) {
-                puVar5 = &DAT_18098bc73;
-                if (*(undefined **)(unaff_RBX + 0x2d8) != (undefined *)0x0) {
-                  puVar5 = *(undefined **)(unaff_RBX + 0x2d8);
+              search_result = strstr(material_name,&UNK_180a13cac);
+              if (search_result == 0) {
+                material_name = &DAT_18098bc73;
+                if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+                  material_name = *(undefined **)(scene_context + 0x2d8);
                 }
-                lVar2 = strstr(puVar5,&UNK_180a04998);
-                if (lVar2 == 0) {
-                  puVar5 = &DAT_18098bc73;
-                  if (*(undefined **)(unaff_RBX + 0x2d8) != (undefined *)0x0) {
-                    puVar5 = *(undefined **)(unaff_RBX + 0x2d8);
+                search_result = strstr(material_name,&UNK_180a04998);
+                if (search_result == 0) {
+                  material_name = &DAT_18098bc73;
+                  if (*(undefined **)(scene_context + 0x2d8) != (undefined *)0x0) {
+                    material_name = *(undefined **)(scene_context + 0x2d8);
                   }
-                  lVar2 = strstr(puVar5,&DAT_180a1388c);
-                  bVar1 = false;
-                  if (lVar2 != 0) {
-                    bVar1 = true;
+                  search_result = strstr(material_name,&DAT_180a1388c);
+                  is_loaded = false;
+                  if (search_result != 0) {
+                    is_loaded = true;
                   }
                 }
                 else {
-                  bVar1 = true;
+                  is_loaded = true;
                 }
               }
               else {
-                bVar1 = true;
+                is_loaded = true;
               }
             }
             else {
-              bVar1 = true;
+              is_loaded = true;
             }
           }
           else {
-            bVar1 = true;
+            is_loaded = true;
           }
         }
         else {
-          bVar1 = true;
+          is_loaded = true;
         }
       }
       else {
-        bVar1 = true;
+        is_loaded = true;
       }
     }
     else {
-      bVar1 = true;
+      is_loaded = true;
     }
   }
   else {
-    bVar1 = true;
+    is_loaded = true;
   }
-  uVar3 = (ulonglong)(*(uint *)(unaff_RBX + 0x138) >> 0x13) & 0xffffffffffffff01;
-  uVar4 = (uint7)(uVar3 >> 8);
-  if ((bVar1) &&
-     ((((char)uVar3 != '\0' || ((*(uint *)(unaff_RBX + 0x138) >> 0x12 & 1) != 0)) ||
-      (*(char *)(unaff_RBX + 0x13c) == '\x06' || *(char *)(unaff_RBX + 0x13c) == '\0')))) {
-    return CONCAT71(uVar4,1);
+  load_flags = (ulonglong)(*(uint *)(scene_context + 0x138) >> 0x13) & 0xffffffffffffff01;
+  load_status = (uint7)(load_flags >> 8);
+  if ((is_loaded) &&
+     ((((char)load_flags != '\0' || ((*(uint *)(scene_context + 0x138) >> 0x12 & 1) != 0)) ||
+      (*(char *)(scene_context + 0x13c) == '\x06' || *(char *)(scene_context + 0x13c) == '\0')))) {
+    return CONCAT71(load_status,1);
   }
-  return (ulonglong)uVar4 << 8;
+  return (ulonglong)load_status << 8;
 }
 
 
 
-undefined1 FUN_18022e79c(char param_1)
+undefined1 is_valid_material_character(char material_char)
 
 {
-  if (param_1 != '\0') {
+  if (material_char != '\0') {
     return 1;
   }
   return 0;
@@ -764,69 +757,70 @@ undefined1 FUN_18022e79c(char param_1)
 
 
 
-// 函数: void FUN_18022e7d0(ulonglong *param_1,longlong param_2)
-void FUN_18022e7d0(ulonglong *param_1,longlong param_2)
+// 函数: 计算材质哈希值
+// 功能: 为材质系统计算哈希值，用于快速查找和缓存管理
+void calculate_material_hash(ulonglong *hash_result,longlong scene_context)
 
 {
-  ulonglong uVar1;
-  ulonglong uVar2;
+  ulonglong hash_value1;
+  ulonglong hash_value2;
   
-  uVar2 = 0;
-  *param_1 = 0;
-  param_1[1] = 0;
-  if (*(longlong *)(param_2 + 0xb8) != 0) {
-    uVar2 = *(ulonglong *)(*(longlong *)(param_2 + 0xb8) + 0x278);
-    uVar2 = (((((((uVar2 >> 8 & 0xff ^ (uVar2 & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3) *
-                  0x100000001b3 ^ uVar2 >> 0x10 & 0xff) * 0x100000001b3 ^ uVar2 >> 0x18 & 0xff) *
-                0x100000001b3 ^ uVar2 >> 0x20 & 0xff) * 0x100000001b3 ^ uVar2 >> 0x28 & 0xff) *
-              0x100000001b3 ^ uVar2 >> 0x30 & 0xff) * 0x100000001b3 ^ uVar2 >> 0x38) *
+  hash_value2 = 0;
+  *hash_result = 0;
+  hash_result[1] = 0;
+  if (*(longlong *)(scene_context + 0xb8) != 0) {
+    hash_value2 = *(ulonglong *)(*(longlong *)(scene_context + 0xb8) + 0x278);
+    hash_value2 = (((((((hash_value2 >> 8 & 0xff ^ (hash_value2 & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3) *
+                  0x100000001b3 ^ hash_value2 >> 0x10 & 0xff) * 0x100000001b3 ^ hash_value2 >> 0x18 & 0xff) *
+                0x100000001b3 ^ hash_value2 >> 0x20 & 0xff) * 0x100000001b3 ^ hash_value2 >> 0x28 & 0xff) *
+              0x100000001b3 ^ hash_value2 >> 0x30 & 0xff) * 0x100000001b3 ^ hash_value2 >> 0x38) *
             0x7ba81627b075296b;
-    uVar2 = (uVar2 >> 0x2f ^ uVar2) * -0x622015f714c7d297;
-    uVar2 = (uVar2 >> 0x2f ^ uVar2) * -0x622015f714c7d297;
-    *param_1 = uVar2;
+    hash_value2 = (hash_value2 >> 0x2f ^ hash_value2) * -0x622015f714c7d297;
+    hash_value2 = (hash_value2 >> 0x2f ^ hash_value2) * -0x622015f714c7d297;
+    *hash_result = hash_value2;
   }
-  if (*(longlong *)(param_2 + 200) != 0) {
-    uVar1 = *(ulonglong *)(*(longlong *)(param_2 + 200) + 0x278);
-    uVar1 = (uVar2 ^ (((((((uVar1 >> 8 & 0xff ^ (uVar1 & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3)
-                           * 0x100000001b3 ^ uVar1 >> 0x10 & 0xff) * 0x100000001b3 ^
-                         uVar1 >> 0x18 & 0xff) * 0x100000001b3 ^ uVar1 >> 0x20 & 0xff) *
-                        0x100000001b3 ^ uVar1 >> 0x28 & 0xff) * 0x100000001b3 ^ uVar1 >> 0x30 & 0xff
-                      ) * 0x100000001b3 ^ uVar1 >> 0x38) * 0x100000001b3) * -0x622015f714c7d297;
-    uVar2 = (uVar1 >> 0x2f ^ uVar2 ^ uVar1) * -0x622015f714c7d297;
-    uVar2 = (uVar2 >> 0x2f ^ uVar2) * -0x622015f714c7d297;
-    *param_1 = uVar2;
+  if (*(longlong *)(scene_context + 200) != 0) {
+    hash_value1 = *(ulonglong *)(*(longlong *)(scene_context + 200) + 0x278);
+    hash_value1 = (hash_value2 ^ (((((((hash_value1 >> 8 & 0xff ^ (hash_value1 & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3)
+                           * 0x100000001b3 ^ hash_value1 >> 0x10 & 0xff) * 0x100000001b3 ^
+                         hash_value1 >> 0x18 & 0xff) * 0x100000001b3 ^ hash_value1 >> 0x20 & 0xff) *
+                        0x100000001b3 ^ hash_value1 >> 0x28 & 0xff) * 0x100000001b3 ^ hash_value1 >> 0x30 & 0xff
+                      ) * 0x100000001b3 ^ hash_value1 >> 0x38) * 0x100000001b3) * -0x622015f714c7d297;
+    hash_value2 = (hash_value1 >> 0x2f ^ hash_value2 ^ hash_value1) * -0x622015f714c7d297;
+    hash_value2 = (hash_value2 >> 0x2f ^ hash_value2) * -0x622015f714c7d297;
+    *hash_result = hash_value2;
   }
-  if (*(longlong *)(param_2 + 0xd8) != 0) {
-    uVar1 = *(ulonglong *)(*(longlong *)(param_2 + 0xd8) + 0x278);
-    uVar1 = (uVar2 ^ (((((((uVar1 >> 8 & 0xff ^ (uVar1 & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3)
-                           * 0x100000001b3 ^ uVar1 >> 0x10 & 0xff) * 0x100000001b3 ^
-                         uVar1 >> 0x18 & 0xff) * 0x100000001b3 ^ uVar1 >> 0x20 & 0xff) *
-                        0x100000001b3 ^ uVar1 >> 0x28 & 0xff) * 0x100000001b3 ^ uVar1 >> 0x30 & 0xff
-                      ) * 0x100000001b3 ^ uVar1 >> 0x38) * 0x100000001b3) * -0x622015f714c7d297;
-    uVar2 = (uVar1 >> 0x2f ^ uVar2 ^ uVar1) * -0x622015f714c7d297;
-    *param_1 = (uVar2 >> 0x2f ^ uVar2) * -0x622015f714c7d297;
+  if (*(longlong *)(scene_context + 0xd8) != 0) {
+    hash_value1 = *(ulonglong *)(*(longlong *)(scene_context + 0xd8) + 0x278);
+    hash_value1 = (hash_value2 ^ (((((((hash_value1 >> 8 & 0xff ^ (hash_value1 & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3)
+                           * 0x100000001b3 ^ hash_value1 >> 0x10 & 0xff) * 0x100000001b3 ^
+                         hash_value1 >> 0x18 & 0xff) * 0x100000001b3 ^ hash_value1 >> 0x20 & 0xff) *
+                        0x100000001b3 ^ hash_value1 >> 0x28 & 0xff) * 0x100000001b3 ^ hash_value1 >> 0x30 & 0xff
+                      ) * 0x100000001b3 ^ hash_value1 >> 0x38) * 0x100000001b3) * -0x622015f714c7d297;
+    hash_value2 = (hash_value1 >> 0x2f ^ hash_value2 ^ hash_value1) * -0x622015f714c7d297;
+    *hash_result = (hash_value2 >> 0x2f ^ hash_value2) * -0x622015f714c7d297;
   }
-  if (*(longlong *)(param_2 + 0xc0) != 0) {
-    uVar2 = *(ulonglong *)(*(longlong *)(param_2 + 0xc0) + 0x278);
-    uVar2 = (param_1[1] ^
-            (((((((uVar2 >> 8 & 0xff ^ (uVar2 & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3) *
-                  0x100000001b3 ^ uVar2 >> 0x10 & 0xff) * 0x100000001b3 ^ uVar2 >> 0x18 & 0xff) *
-                0x100000001b3 ^ uVar2 >> 0x20 & 0xff) * 0x100000001b3 ^ uVar2 >> 0x28 & 0xff) *
-              0x100000001b3 ^ uVar2 >> 0x30 & 0xff) * 0x100000001b3 ^ uVar2 >> 0x38) * 0x100000001b3
+  if (*(longlong *)(scene_context + 0xc0) != 0) {
+    hash_value2 = *(ulonglong *)(*(longlong *)(scene_context + 0xc0) + 0x278);
+    hash_value2 = (hash_result[1] ^
+            (((((((hash_value2 >> 8 & 0xff ^ (hash_value2 & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3) *
+                  0x100000001b3 ^ hash_value2 >> 0x10 & 0xff) * 0x100000001b3 ^ hash_value2 >> 0x18 & 0xff) *
+                0x100000001b3 ^ hash_value2 >> 0x20 & 0xff) * 0x100000001b3 ^ hash_value2 >> 0x28 & 0xff) *
+              0x100000001b3 ^ hash_value2 >> 0x30 & 0xff) * 0x100000001b3 ^ hash_value2 >> 0x38) * 0x100000001b3
             ) * -0x622015f714c7d297;
-    uVar2 = (uVar2 >> 0x2f ^ param_1[1] ^ uVar2) * -0x622015f714c7d297;
-    param_1[1] = (uVar2 >> 0x2f ^ uVar2) * -0x622015f714c7d297;
+    hash_value2 = (hash_value2 >> 0x2f ^ hash_result[1] ^ hash_value2) * -0x622015f714c7d297;
+    hash_result[1] = (hash_value2 >> 0x2f ^ hash_value2) * -0x622015f714c7d297;
   }
-  if (*(longlong *)(param_2 + 0xd0) != 0) {
-    uVar2 = *(ulonglong *)(*(longlong *)(param_2 + 0xd0) + 0x278);
-    uVar2 = (param_1[1] ^
-            (((((((uVar2 >> 8 & 0xff ^ (uVar2 & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3) *
-                  0x100000001b3 ^ uVar2 >> 0x10 & 0xff) * 0x100000001b3 ^ uVar2 >> 0x18 & 0xff) *
-                0x100000001b3 ^ uVar2 >> 0x20 & 0xff) * 0x100000001b3 ^ uVar2 >> 0x28 & 0xff) *
-              0x100000001b3 ^ uVar2 >> 0x30 & 0xff) * 0x100000001b3 ^ uVar2 >> 0x38) * 0x100000001b3
+  if (*(longlong *)(scene_context + 0xd0) != 0) {
+    hash_value2 = *(ulonglong *)(*(longlong *)(scene_context + 0xd0) + 0x278);
+    hash_value2 = (hash_result[1] ^
+            (((((((hash_value2 >> 8 & 0xff ^ (hash_value2 & 0xff ^ 0xcbf29ce484222325) * 0x100000001b3) *
+                  0x100000001b3 ^ hash_value2 >> 0x10 & 0xff) * 0x100000001b3 ^ hash_value2 >> 0x18 & 0xff) *
+                0x100000001b3 ^ hash_value2 >> 0x20 & 0xff) * 0x100000001b3 ^ hash_value2 >> 0x28 & 0xff) *
+              0x100000001b3 ^ hash_value2 >> 0x30 & 0xff) * 0x100000001b3 ^ hash_value2 >> 0x38) * 0x100000001b3
             ) * -0x622015f714c7d297;
-    uVar2 = (uVar2 >> 0x2f ^ param_1[1] ^ uVar2) * -0x622015f714c7d297;
-    param_1[1] = (uVar2 >> 0x2f ^ uVar2) * -0x622015f714c7d297;
+    hash_value2 = (hash_value2 >> 0x2f ^ hash_result[1] ^ hash_value2) * -0x622015f714c7d297;
+    hash_result[1] = (hash_value2 >> 0x2f ^ hash_value2) * -0x622015f714c7d297;
   }
   return;
 }
@@ -835,30 +829,30 @@ void FUN_18022e7d0(ulonglong *param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18022ebe0(longlong *param_1)
-void FUN_18022ebe0(longlong *param_1)
+// 函数: 清理材质缓存
+// 功能: 释放材质缓存中的资源，确保内存正确释放
+void cleanup_material_cache(longlong *cache_ptr)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *cache_start;
+  undefined8 *cache_end;
   
-  puVar1 = (undefined8 *)param_1[1];
-  puVar2 = (undefined8 *)*param_1;
-  if (puVar2 != puVar1) {
+  cache_start = (undefined8 *)cache_ptr[1];
+  cache_end = (undefined8 *)*cache_ptr;
+  if (cache_end != cache_start) {
     do {
-      (**(code **)*puVar2)(puVar2,0);
-      puVar2 = puVar2 + 0xb;
-    } while (puVar2 != puVar1);
-    param_1[1] = *param_1;
+      (**(code **)*cache_end)(cache_end,0);
+      cache_end = cache_end + 0xb;
+    } while (cache_end != cache_start);
+    cache_ptr[1] = *cache_ptr;
     return;
   }
-  param_1[1] = (longlong)puVar2;
+  cache_ptr[1] = (longlong)cache_end;
   return;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 
 

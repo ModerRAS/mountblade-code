@@ -1,920 +1,902 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part264.c - 7 个函数
+// 02_core_engine_part264.c - 核心引擎模块第264部分
+// 包含7个函数，主要处理引擎变换矩阵、资源管理和初始化
 
-// 函数: void FUN_18022aff8(void)
-void FUN_18022aff8(void)
+// 函数: 触发引擎崩溃
+void trigger_engine_crash(void)
 
 {
-  ulonglong in_stack_00000040;
+  ulonglong stack_protection;
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000040 ^ (ulonglong)&stack0x00000000);
+                    // WARNING: 此函数不会返回
+  // 调用崩溃处理函数，传入栈保护参数
+  crash_handler(stack_protection ^ (ulonglong)&stack0x00000000);
 }
 
 
 
-float * FUN_18022b050(longlong param_1,float *param_2,int param_3,longlong param_4)
+// 函数: 计算变换矩阵
+float * calculate_transformation_matrix(longlong context_ptr,float *result_matrix,int bone_index,longlong skeleton_ptr)
 
 {
-  float *pfVar1;
-  undefined8 *puVar2;
-  ulonglong uVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  undefined8 uVar8;
-  int iVar9;
-  char cVar10;
-  int iVar11;
-  char cVar12;
-  longlong lVar13;
-  float fVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
+  float *bone_matrix;
+  undefined8 *temp_ptr;
+  ulonglong bone_mask;
+  float x1, y1, z1, w1;
+  float x2, y2, z2, w2;
+  float x3, y3, z3, w3;
+  float x4, y4, z4, w4;
+  undefined8 temp_value;
+  int current_index;
+  char parent_index;
+  int target_index;
+  char current_bone;
+  longlong bone_offset;
+  float result_x, result_y, result_z, result_w;
+  float temp_x, temp_y, temp_z, temp_w;
   
-  uVar3 = *(ulonglong *)(param_1 + 0x800);
-  lVar13 = (longlong)(char)param_3;
-  if (((*(ulonglong *)(param_1 + 0x810) & uVar3) != 0) &&
-     ((*(ulonglong *)(lVar13 * 0x1b0 + 0xe0 + *(longlong *)(param_4 + 0x140)) & uVar3) != 0)) {
-    iVar11 = -1;
+  bone_mask = *(ulonglong *)(context_ptr + 0x800);
+  bone_offset = (longlong)(char)bone_index;
+  if (((*(ulonglong *)(context_ptr + 0x810) & bone_mask) != 0) &&
+     ((*(ulonglong *)(bone_offset * 0x1b0 + 0xe0 + *(longlong *)(skeleton_ptr + 0x140)) & bone_mask) != 0)) {
+    target_index = -1;
     do {
-      cVar12 = (char)param_3;
-      cVar10 = *(char *)((longlong)cVar12 + 0x100 + param_4);
-      param_3 = (int)cVar10;
-      iVar9 = param_3;
-      if ((*(ulonglong *)((longlong)cVar12 * 0x1b0 + 0xe0 + *(longlong *)(param_4 + 0x140)) & uVar3)
+      current_bone = (char)bone_index;
+      parent_index = *(char *)((longlong)current_bone + 0x100 + skeleton_ptr);
+      bone_index = (int)parent_index;
+      current_index = bone_index;
+      if ((*(ulonglong *)((longlong)current_bone * 0x1b0 + 0xe0 + *(longlong *)(skeleton_ptr + 0x140)) & bone_mask)
           == 0) {
-        iVar9 = iVar11;
+        current_index = target_index;
       }
-      iVar11 = iVar9;
-    } while (-1 < cVar10);
-    pfVar1 = (float *)(param_1 + (lVar13 + 0x82) * 0x10);
-    fVar23 = *pfVar1;
-    fVar17 = pfVar1[1];
-    fVar19 = pfVar1[2];
-    fVar21 = pfVar1[3];
-    cVar10 = *(char *)(lVar13 + 0x100 + param_4);
-    if (-1 < cVar10) {
-      while (cVar10 != iVar9) {
-        lVar13 = (longlong)cVar10;
-        cVar10 = *(char *)(lVar13 + 0x100 + param_4);
-        pfVar1 = (float *)(param_1 + (lVar13 + 0x82) * 0x10);
-        fVar4 = *pfVar1;
-        fVar5 = pfVar1[1];
-        fVar6 = pfVar1[2];
-        fVar7 = pfVar1[3];
-        fVar18 = fVar7 * fVar17;
-        fVar20 = fVar5 * fVar19;
-        fVar22 = fVar7 * fVar21;
-        fVar14 = fVar6 * fVar19;
-        fVar15 = fVar6 * fVar17;
-        fVar16 = fVar5 * fVar17;
-        fVar17 = fVar6 * fVar21 * 1.0 + fVar4 * fVar17 * 1.0 + (fVar23 * fVar5 - fVar7 * fVar19);
-        fVar19 = fVar18 * 1.0 + fVar4 * fVar19 * 1.0 + (fVar23 * fVar6 - fVar5 * fVar21);
-        fVar21 = fVar20 * 1.0 + fVar4 * fVar21 * 1.0 + (fVar23 * fVar7 - fVar15);
-        fVar23 = fVar22 * -1.0 + fVar14 * -1.0 + (fVar23 * fVar4 - fVar16);
-        if (cVar10 < '\0') {
-          *param_2 = fVar23;
-          param_2[1] = fVar17;
-          param_2[2] = fVar19;
-          param_2[3] = fVar21;
-          return param_2;
+      target_index = current_index;
+    } while (-1 < parent_index);
+    bone_matrix = (float *)(context_ptr + (bone_offset + 0x82) * 0x10);
+    result_w = *bone_matrix;
+    result_z = bone_matrix[1];
+    result_x = bone_matrix[2];
+    result_y = bone_matrix[3];
+    parent_index = *(char *)(bone_offset + 0x100 + skeleton_ptr);
+    if (-1 < parent_index) {
+      while (parent_index != target_index) {
+        bone_offset = (longlong)parent_index;
+        parent_index = *(char *)(bone_offset + 0x100 + skeleton_ptr);
+        bone_matrix = (float *)(context_ptr + (bone_offset + 0x82) * 0x10);
+        x1 = *bone_matrix;
+        y1 = bone_matrix[1];
+        z1 = bone_matrix[2];
+        w1 = bone_matrix[3];
+        z4 = w1 * result_z;
+        x4 = y1 * result_x;
+        y4 = w1 * result_y;
+        z3 = z1 * result_x;
+        y3 = z1 * result_z;
+        x3 = y1 * result_z;
+        result_z = z1 * result_y * 1.0 + x1 * result_z * 1.0 + (result_w * y1 - w1 * result_x);
+        result_x = z4 * 1.0 + x1 * result_x * 1.0 + (result_w * z1 - y1 * result_y);
+        result_y = x4 * 1.0 + x1 * result_y * 1.0 + (result_w * w1 - y3);
+        result_w = y4 * -1.0 + z3 * -1.0 + (result_w * x1 - x3);
+        if (parent_index < '\0') {
+          *result_matrix = result_w;
+          result_matrix[1] = result_z;
+          result_matrix[2] = result_x;
+          result_matrix[3] = result_y;
+          return result_matrix;
         }
       }
-      if ((-1 < cVar10) && (cVar10 == iVar9)) {
-        pfVar1 = (float *)(param_1 + (longlong)cVar10 * 0x10);
-        fVar4 = *pfVar1;
-        fVar5 = pfVar1[1];
-        fVar6 = pfVar1[2];
-        fVar7 = pfVar1[3];
-        fVar17 = fVar6 * fVar21 * 1.0 + fVar4 * fVar17 * 1.0 + (fVar23 * fVar5 - fVar7 * fVar19);
-        fVar19 = fVar7 * fVar17 * 1.0 + fVar4 * fVar19 * 1.0 + (fVar23 * fVar6 - fVar5 * fVar21);
-        fVar21 = fVar5 * fVar19 * 1.0 + fVar4 * fVar21 * 1.0 + (fVar23 * fVar7 - fVar6 * fVar17);
-        fVar23 = fVar7 * fVar21 * -1.0 + fVar6 * fVar19 * -1.0 + (fVar23 * fVar4 - fVar5 * fVar17);
+      if ((-1 < parent_index) && (parent_index == target_index)) {
+        bone_matrix = (float *)(context_ptr + (longlong)parent_index * 0x10);
+        x1 = *bone_matrix;
+        y1 = bone_matrix[1];
+        z1 = bone_matrix[2];
+        w1 = bone_matrix[3];
+        result_z = z1 * result_y * 1.0 + x1 * result_z * 1.0 + (result_w * y1 - w1 * result_x);
+        result_x = w1 * result_z * 1.0 + x1 * result_x * 1.0 + (result_w * z1 - y1 * result_y);
+        result_y = y1 * result_x * 1.0 + x1 * result_y * 1.0 + (result_w * w1 - z1 * result_z);
+        result_w = w1 * result_y * -1.0 + z1 * result_x * -1.0 + (result_w * x1 - y1 * result_z);
       }
     }
-    *param_2 = fVar23;
-    param_2[1] = fVar17;
-    param_2[2] = fVar19;
-    param_2[3] = fVar21;
-    return param_2;
+    *result_matrix = result_w;
+    result_matrix[1] = result_z;
+    result_matrix[2] = result_x;
+    result_matrix[3] = result_y;
+    return result_matrix;
   }
-  puVar2 = (undefined8 *)(param_1 + lVar13 * 0x10);
-  uVar8 = puVar2[1];
-  *(undefined8 *)param_2 = *puVar2;
-  *(undefined8 *)(param_2 + 2) = uVar8;
-  return param_2;
+  temp_ptr = (undefined8 *)(context_ptr + bone_offset * 0x10);
+  temp_value = temp_ptr[1];
+  *(undefined8 *)result_matrix = *temp_ptr;
+  *(undefined8 *)(result_matrix + 2) = temp_value;
+  return result_matrix;
 }
 
 
 
-
-
-// 函数: void FUN_18022b240(undefined8 *param_1,char param_2,float *param_3,longlong param_4)
-void FUN_18022b240(undefined8 *param_1,char param_2,float *param_3,longlong param_4)
+// 函数: 设置骨骼变换
+void set_bone_transformation(undefined8 *context,char bone_index,float *transform_matrix,longlong skeleton_ptr)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  undefined8 uVar9;
-  float *pfVar10;
-  longlong lVar11;
-  ulonglong uVar12;
+  float x1, y1, z1, w1;
+  float x2, y2, z2, w2;
+  float x3, y3, z3, w3;
+  float x4, y4, z4, w4;
+  undefined8 temp_value;
+  float *bone_matrix;
+  longlong bone_offset;
+  ulonglong bone_index_ulong;
   
-  uVar12 = (ulonglong)param_2;
-  lVar11 = uVar12 * 0x1b0 + *(longlong *)(param_4 + 0x140);
-  param_1[0x100] = param_1[0x100] | *(ulonglong *)(lVar11 + 0xe8);
-  if (param_2 == '\0') {
-    uVar9 = *(undefined8 *)(param_3 + 2);
-    param_1[0x104] = *(undefined8 *)param_3;
-    param_1[0x105] = uVar9;
-    uVar9 = *(undefined8 *)(param_3 + 2);
-    *param_1 = *(undefined8 *)param_3;
-    param_1[1] = uVar9;
-    param_1[0x100] = param_1[0x100] & 0xfffffffffffffffe;
+  bone_index_ulong = (ulonglong)bone_index;
+  bone_offset = bone_index_ulong * 0x1b0 + *(longlong *)(skeleton_ptr + 0x140);
+  context[0x100] = context[0x100] | *(ulonglong *)(bone_offset + 0xe8);
+  if (bone_index == '\0') {
+    temp_value = *(undefined8 *)(transform_matrix + 2);
+    context[0x104] = *(undefined8 *)transform_matrix;
+    context[0x105] = temp_value;
+    temp_value = *(undefined8 *)(transform_matrix + 2);
+    *context = *(undefined8 *)transform_matrix;
+    context[1] = temp_value;
+    context[0x100] = context[0x100] & 0xfffffffffffffffe;
   }
   else {
-    pfVar10 = (float *)FUN_18022a890(param_1,*(undefined1 *)(lVar11 + 0xf0),param_4);
-    fVar1 = *param_3;
-    fVar2 = param_3[1];
-    fVar3 = param_3[2];
-    fVar4 = param_3[3];
-    fVar5 = *pfVar10;
-    fVar6 = pfVar10[1];
-    fVar7 = pfVar10[2];
-    fVar8 = pfVar10[3];
-    pfVar10 = (float *)(param_1 + (uVar12 + 0x82) * 2);
-    *pfVar10 = fVar8 * fVar4 * 1.0 + fVar1 * fVar5 * 1.0 + fVar7 * fVar3 + fVar6 * fVar2;
-    pfVar10[1] = fVar7 * fVar4 * -1.0 + fVar1 * fVar6 * -1.0 + fVar5 * fVar2 + fVar8 * fVar3;
-    pfVar10[2] = fVar8 * fVar2 * -1.0 + fVar1 * fVar7 * -1.0 + fVar5 * fVar3 + fVar6 * fVar4;
-    pfVar10[3] = fVar6 * fVar3 * -1.0 + fVar1 * fVar8 * -1.0 + fVar5 * fVar4 + fVar7 * fVar2;
-    uVar9 = *(undefined8 *)(param_3 + 2);
-    param_1[uVar12 * 2] = *(undefined8 *)param_3;
-    (param_1 + uVar12 * 2)[1] = uVar9;
+    bone_matrix = (float *)get_bone_matrix_ptr(context,*(undefined1 *)(bone_offset + 0xf0),skeleton_ptr);
+    x1 = *transform_matrix;
+    y1 = transform_matrix[1];
+    z1 = transform_matrix[2];
+    w1 = transform_matrix[3];
+    x2 = *bone_matrix;
+    y2 = bone_matrix[1];
+    z2 = bone_matrix[2];
+    w2 = bone_matrix[3];
+    bone_matrix = (float *)(context + (bone_index_ulong + 0x82) * 2);
+    *bone_matrix = w2 * w1 * 1.0 + x1 * x2 * 1.0 + z2 * z1 + y2 * y1;
+    bone_matrix[1] = z2 * w1 * -1.0 + x1 * y2 * -1.0 + x2 * y1 + w2 * z1;
+    bone_matrix[2] = w2 * y1 * -1.0 + x1 * z2 * -1.0 + x2 * z1 + y2 * w1;
+    bone_matrix[3] = y2 * z1 * -1.0 + x1 * w2 * -1.0 + x2 * w1 + z2 * y1;
+    temp_value = *(undefined8 *)(transform_matrix + 2);
+    context[bone_index_ulong * 2] = *(undefined8 *)transform_matrix;
+    (context + bone_index_ulong * 2)[1] = temp_value;
   }
-  param_1[0x101] = param_1[0x101] | 1L << (uVar12 & 0x3f);
+  context[0x101] = context[0x101] | 1L << (bone_index_ulong & 0x3f);
   return;
 }
 
 
 
+// 函数: 初始化字符串资源
 undefined8 *
-FUN_18022b510(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+initialize_string_resource(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  *param_2 = &UNK_18098bcb0;
+  *param_2 = &STRING_TABLE_18098bcb0;
   param_2[1] = 0;
   *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_1809fcc28;
+  *param_2 = &STRING_HANDLE_1809fcc28;
   param_2[1] = param_2 + 3;
   *(undefined1 *)(param_2 + 3) = 0;
   *(undefined4 *)(param_2 + 2) = 0xb;
-  strcpy_s(param_2[1],0x80,&UNK_180a13a98,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1],0x80,&DEFAULT_STRING_180a13a98,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
 
 
 
-undefined8 * FUN_18022b590(undefined8 *param_1)
+// 函数: 初始化引擎核心数据结构
+undefined8 * initialize_engine_core_data(undefined8 *engine_context)
 
 {
-  longlong *plVar1;
-  undefined8 *puVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  longlong lVar5;
-  longlong *plVar6;
-  undefined8 *puVar7;
+  longlong *resource_ptr;
+  undefined8 *data_ptr;
+  longlong *system_ptr;
+  longlong resource_count;
+  longlong system_count;
+  longlong *resource_array;
+  undefined8 *status_ptr;
   
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
-  param_1[3] = 0;
-  *(undefined4 *)(param_1 + 4) = 0;
-  param_1[2] = &UNK_1809fcc28;
-  param_1[3] = param_1 + 5;
-  *(undefined4 *)(param_1 + 4) = 0;
-  *(undefined1 *)(param_1 + 5) = 0;
-  *(undefined1 *)((longlong)param_1 + 0xb2) = 0;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *(undefined2 *)(param_1 + 0x16) = 0;
-  param_1[0x15] = 0;
-  *param_1 = &UNK_180a13cc0;
-  plVar3 = param_1 + 0x17;
-  lVar4 = 0x10;
-  FUN_1808fc838(plVar3,8,0x10,&SUB_18005d5f0,FUN_180045af0);
-  puVar2 = param_1 + 0x29;
-  plVar1 = param_1 + 0x2c;
-  FUN_1808fc838(plVar1,0x38,2,FUN_180046480,FUN_180044a30);
-  puVar7 = param_1 + 0x2b;
-  lVar5 = 2;
-  plVar6 = plVar1;
+  *engine_context = &RESOURCE_TABLE_180a21690;
+  *engine_context = &SYSTEM_TABLE_180a21720;
+  *(undefined4 *)(engine_context + 1) = 0;
+  *engine_context = &MEMORY_POOL_180a02e68;
+  engine_context[2] = &STRING_TABLE_18098bcb0;
+  engine_context[3] = 0;
+  *(undefined4 *)(engine_context + 4) = 0;
+  engine_context[2] = &STRING_HANDLE_1809fcc28;
+  engine_context[3] = engine_context + 5;
+  *(undefined4 *)(engine_context + 4) = 0;
+  *(undefined1 *)(engine_context + 5) = 0;
+  *(undefined1 *)((longlong)engine_context + 0xb2) = 0;
+  *(undefined4 *)(engine_context + 1) = 0;
+  *(undefined2 *)(engine_context + 0x16) = 0;
+  engine_context[0x15] = 0;
+  *engine_context = &RESOURCE_HANDLE_180a13cc0;
+  system_ptr = engine_context + 0x17;
+  resource_count = 0x10;
+  initialize_resource_pool(system_ptr,8,0x10,&SUB_18005d5f0,FUN_180045af0);
+  data_ptr = engine_context + 0x29;
+  resource_ptr = engine_context + 0x2c;
+  initialize_resource_pool(resource_ptr,0x38,2,FUN_180046480,FUN_180044a30);
+  status_ptr = engine_context + 0x2b;
+  system_count = 2;
+  resource_array = resource_ptr;
   do {
-    *(undefined1 *)puVar7 = 0;
-    *puVar2 = 0xffffffffffffffff;
-    (**(code **)(*plVar6 + 0x10))(plVar1,&DAT_18098bc73);
-    plVar1 = plVar1 + 7;
-    puVar7 = (undefined8 *)((longlong)puVar7 + 1);
-    puVar2 = puVar2 + 1;
-    plVar6 = plVar6 + 7;
-    lVar5 = lVar5 + -1;
-  } while (lVar5 != 0);
-  param_1[0x3c] = 0;
-  _Mtx_init_in_situ(param_1 + 0x3d,2);
-  param_1[0x47] = 0;
-  param_1[0x48] = 0;
-  param_1[0x49] = 0;
-  *(undefined4 *)(param_1 + 0x4a) = 3;
-  param_1[0x5a] = &UNK_18098bcb0;
-  param_1[0x5b] = 0;
-  *(undefined4 *)(param_1 + 0x5c) = 0;
-  param_1[0x5a] = &UNK_1809fcc28;
-  param_1[0x5b] = param_1 + 0x5d;
-  *(undefined4 *)(param_1 + 0x5c) = 0;
-  *(undefined1 *)(param_1 + 0x5d) = 0;
-  param_1[0x6d] = 0;
-  param_1[0x6e] = 0;
-  param_1[0x6f] = 0;
-  *(undefined4 *)(param_1 + 0x70) = 0x11;
-  puVar7 = param_1 + 0x7b;
-  plVar1 = param_1 + 0x7c;
-  FUN_1808fc838(plVar1,8,0x10,&SUB_18005d5f0,FUN_180045af0);
-  lVar5 = 5;
+    *(undefined1 *)status_ptr = 0;
+    *data_ptr = 0xffffffffffffffff;
+    (**(code **)(*resource_array + 0x10))(resource_ptr,&DEFAULT_RESOURCE_18098bc73);
+    resource_ptr = resource_ptr + 7;
+    status_ptr = (undefined8 *)((longlong)status_ptr + 1);
+    data_ptr = data_ptr + 1;
+    resource_array = resource_array + 7;
+    system_count = system_count + -1;
+  } while (system_count != 0);
+  engine_context[0x3c] = 0;
+  initialize_mutex(engine_context + 0x3d,2);
+  engine_context[0x47] = 0;
+  engine_context[0x48] = 0;
+  engine_context[0x49] = 0;
+  *(undefined4 *)(engine_context + 0x4a) = 3;
+  engine_context[0x5a] = &STRING_TABLE_18098bcb0;
+  engine_context[0x5b] = 0;
+  *(undefined4 *)(engine_context + 0x5c) = 0;
+  engine_context[0x5a] = &STRING_HANDLE_1809fcc28;
+  engine_context[0x5b] = engine_context + 0x5d;
+  *(undefined4 *)(engine_context + 0x5c) = 0;
+  *(undefined1 *)(engine_context + 0x5d) = 0;
+  engine_context[0x6d] = 0;
+  engine_context[0x6e] = 0;
+  engine_context[0x6f] = 0;
+  *(undefined4 *)(engine_context + 0x70) = 0x11;
+  status_ptr = engine_context + 0x7b;
+  resource_ptr = engine_context + 0x7c;
+  initialize_resource_pool(resource_ptr,8,0x10,&SUB_18005d5f0,FUN_180045af0);
+  system_count = 5;
   do {
-    plVar6 = (longlong *)*plVar1;
-    *plVar1 = 0;
-    if (plVar6 != (longlong *)0x0) {
-      (**(code **)(*plVar6 + 0x38))();
+    resource_array = (longlong *)*resource_ptr;
+    *resource_ptr = 0;
+    if (resource_array != (longlong *)0x0) {
+      (**(code **)(*resource_array + 0x38))();
     }
-    plVar1 = plVar1 + 1;
-    lVar5 = lVar5 + -1;
-  } while (lVar5 != 0);
-  *(undefined1 *)puVar7 = 0;
-  FUN_18040f650(puVar7);
-  param_1[0x79] = 0;
-  param_1[0x7a] = 0;
-  FUN_18040f650(puVar7);
-  param_1[0x3a] = 0xffffffffffffffff;
-  *(undefined1 *)(param_1 + 0x3b) = 0;
-  *(undefined4 *)(param_1 + 0x27) = 0;
+    resource_ptr = resource_ptr + 1;
+    system_count = system_count + -1;
+  } while (system_count != 0);
+  *(undefined1 *)status_ptr = 0;
+  cleanup_resource(status_ptr);
+  engine_context[0x79] = 0;
+  engine_context[0x7a] = 0;
+  cleanup_resource(status_ptr);
+  engine_context[0x3a] = 0xffffffffffffffff;
+  *(undefined1 *)(engine_context + 0x3b) = 0;
+  *(undefined4 *)(engine_context + 0x27) = 0;
   do {
-    plVar1 = (longlong *)*plVar3;
-    *plVar3 = 0;
-    if (plVar1 != (longlong *)0x0) {
-      (**(code **)(*plVar1 + 0x38))();
+    resource_ptr = (longlong *)*system_ptr;
+    *system_ptr = 0;
+    if (resource_ptr != (longlong *)0x0) {
+      (**(code **)(*resource_ptr + 0x38))();
     }
-    plVar3 = plVar3 + 1;
-    lVar4 = lVar4 + -1;
-  } while (lVar4 != 0);
-  plVar1 = (longlong *)param_1[0x3c];
-  param_1[0x3c] = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+    system_ptr = system_ptr + 1;
+    resource_count = resource_count + -1;
+  } while (resource_count != 0);
+  resource_ptr = (longlong *)engine_context[0x3c];
+  engine_context[0x3c] = 0;
+  if (resource_ptr != (longlong *)0x0) {
+    (**(code **)(*resource_ptr + 0x38))();
   }
-  param_1[0x72] = 0;
-  param_1[0x73] = 0;
-  param_1[0x74] = 0;
-  param_1[0x75] = 0;
-  param_1[0x76] = 0;
-  param_1[0x77] = 0;
-  *(undefined1 *)((longlong)param_1 + 0x1d9) = 0;
-  param_1[0x28] = 0;
-  FUN_18022ebe0(param_1 + 0x6d);
-  *(undefined4 *)((longlong)param_1 + 0x25c) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x4c) = 0x3f266666;
-  *(undefined4 *)((longlong)param_1 + 0x264) = 0x3f800000;
-  param_1[0x4d] = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x50) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x4f) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x27c) = 0x3f000000;
-  *(undefined4 *)((longlong)param_1 + 0x284) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x4b) = 0;
-  *(undefined4 *)(param_1 + 0x4e) = 0x3f800000;
-  *(undefined4 *)((longlong)param_1 + 0x274) = 0x3f800000;
-  *(undefined1 *)((longlong)param_1 + 0x13c) = 0;
-  param_1[0x51] = 0;
-  param_1[0x52] = 0;
-  param_1[0x53] = 0;
-  param_1[0x54] = 0;
-  param_1[0x55] = 0x3f8000003f800000;
-  param_1[0x56] = 0x3f8000003f800000;
-  param_1[0x57] = 0x3f8000003f800000;
-  param_1[0x58] = 0x3f8000003f800000;
-  *(undefined4 *)(param_1 + 0x59) = 0;
-  *(undefined4 *)(param_1 + 0x71) = 0;
-  *(undefined1 *)((longlong)param_1 + 0x38c) = 9;
-  *(undefined2 *)(param_1 + 0x78) = 0xffff;
-  return param_1;
+  engine_context[0x72] = 0;
+  engine_context[0x73] = 0;
+  engine_context[0x74] = 0;
+  engine_context[0x75] = 0;
+  engine_context[0x76] = 0;
+  engine_context[0x77] = 0;
+  *(undefined1 *)((longlong)engine_context + 0x1d9) = 0;
+  engine_context[0x28] = 0;
+  initialize_render_system(engine_context + 0x6d);
+  *(undefined4 *)((longlong)engine_context + 0x25c) = 0x3f800000;
+  *(undefined4 *)(engine_context + 0x4c) = 0x3f266666;
+  *(undefined4 *)((longlong)engine_context + 0x264) = 0x3f800000;
+  engine_context[0x4d] = 0x3f800000;
+  *(undefined4 *)(engine_context + 0x50) = 0x3f800000;
+  *(undefined4 *)(engine_context + 0x4f) = 0;
+  *(undefined4 *)((longlong)engine_context + 0x27c) = 0x3f000000;
+  *(undefined4 *)((longlong)engine_context + 0x284) = 0x3f800000;
+  *(undefined4 *)(engine_context + 0x4b) = 0;
+  *(undefined4 *)(engine_context + 0x4e) = 0x3f800000;
+  *(undefined4 *)((longlong)engine_context + 0x274) = 0x3f800000;
+  *(undefined1 *)((longlong)engine_context + 0x13c) = 0;
+  engine_context[0x51] = 0;
+  engine_context[0x52] = 0;
+  engine_context[0x53] = 0;
+  engine_context[0x54] = 0;
+  engine_context[0x55] = 0x3f8000003f800000;
+  engine_context[0x56] = 0x3f8000003f800000;
+  engine_context[0x57] = 0x3f8000003f800000;
+  engine_context[0x58] = 0x3f8000003f800000;
+  *(undefined4 *)(engine_context + 0x59) = 0;
+  *(undefined4 *)(engine_context + 0x71) = 0;
+  *(undefined1 *)((longlong)engine_context + 0x38c) = 9;
+  *(undefined2 *)(engine_context + 0x78) = 0xffff;
+  return engine_context;
 }
 
 
 
-undefined8 FUN_18022b980(undefined8 param_1,ulonglong param_2)
+// 函数: 释放引擎资源
+undefined8 release_engine_resources(undefined8 engine_ptr,ulonglong flags)
 
 {
-  FUN_18022ba40();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x470);
+  cleanup_engine_internal();
+  if ((flags & 1) != 0) {
+    free(engine_ptr,0x470);
   }
-  return param_1;
+  return engine_ptr;
 }
 
 
 
-
-
-// 函数: void FUN_18022b9c0(longlong param_1)
-void FUN_18022b9c0(longlong param_1)
+// 函数: 清理资源池
+void cleanup_resource_pool(longlong resource_ptr)
 
 {
-  FUN_1808fc8a8(param_1 + 0x18,0x38,2,FUN_180044a30,0xfffffffffffffffe);
+  cleanup_memory_pool(resource_ptr + 0x18,0x38,2,FUN_180044a30,0xfffffffffffffffe);
   return;
 }
 
 
 
-
-
-// 函数: void FUN_18022ba00(longlong param_1)
-void FUN_18022ba00(longlong param_1)
+// 函数: 清理内存池
+void cleanup_memory_pool(longlong memory_ptr)
 
 {
-  FUN_1808fc8a8(param_1 + 8,8,0x10,FUN_180045af0,0xfffffffffffffffe);
+  cleanup_memory_pool(memory_ptr + 8,8,0x10,FUN_180045af0,0xfffffffffffffffe);
   return;
 }
 
 
 
-
-
-// 函数: void FUN_18022ba40(undefined8 *param_1)
-void FUN_18022ba40(undefined8 *param_1)
+// 函数: 清理引擎内部资源
+void cleanup_engine_internal(undefined8 *engine_context)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  longlong lVar3;
-  undefined8 uVar4;
+  longlong *resource_ptr;
+  longlong *system_ptr;
+  longlong resource_count;
+  undefined8 cleanup_flag;
   
-  uVar4 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a13cc0;
-  plVar2 = param_1 + 0x17;
-  lVar3 = 0x10;
+  cleanup_flag = 0xfffffffffffffffe;
+  *engine_context = &RESOURCE_HANDLE_180a13cc0;
+  system_ptr = engine_context + 0x17;
+  resource_count = 0x10;
   do {
-    plVar1 = (longlong *)*plVar2;
-    *plVar2 = 0;
-    if (plVar1 != (longlong *)0x0) {
-      (**(code **)(*plVar1 + 0x38))();
+    resource_ptr = (longlong *)*system_ptr;
+    *system_ptr = 0;
+    if (resource_ptr != (longlong *)0x0) {
+      (**(code **)(*resource_ptr + 0x38))();
     }
-    plVar2 = plVar2 + 1;
-    lVar3 = lVar3 + -1;
-  } while (lVar3 != 0);
-  plVar2 = (longlong *)param_1[0x3c];
-  param_1[0x3c] = 0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+    system_ptr = system_ptr + 1;
+    resource_count = resource_count + -1;
+  } while (resource_count != 0);
+  system_ptr = (longlong *)engine_context[0x3c];
+  engine_context[0x3c] = 0;
+  if (system_ptr != (longlong *)0x0) {
+    (**(code **)(*system_ptr + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0x7c,8,0x10,FUN_180045af0,uVar4);
-  FUN_180057170();
-  param_1[0x5a] = &UNK_18098bcb0;
-  if (param_1[0x47] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  cleanup_memory_pool(engine_context + 0x7c,8,0x10,FUN_180045af0,cleanup_flag);
+  cleanup_global_resources();
+  engine_context[0x5a] = &STRING_TABLE_18098bcb0;
+  if (engine_context[0x47] != 0) {
+                    // WARNING: 此函数不会返回
+    trigger_critical_error();
   }
-  _Mtx_destroy_in_situ();
-  if ((longlong *)param_1[0x3c] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)param_1[0x3c] + 0x38))();
+  destroy_mutex();
+  if ((longlong *)engine_context[0x3c] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)engine_context[0x3c] + 0x38))();
   }
-  FUN_1808fc8a8(param_1 + 0x2c,0x38,2,FUN_180044a30);
-  FUN_1808fc8a8(param_1 + 0x17,8,0x10,FUN_180045af0);
-  *param_1 = &UNK_180a02e68;
-  param_1[2] = &UNK_18098bcb0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
+  cleanup_memory_pool(engine_context + 0x2c,0x38,2,FUN_180044a30);
+  cleanup_memory_pool(engine_context + 0x17,8,0x10,FUN_180045af0);
+  *engine_context = &MEMORY_POOL_180a02e68;
+  engine_context[2] = &STRING_TABLE_18098bcb0;
+  *engine_context = &SYSTEM_TABLE_180a21720;
+  *engine_context = &RESOURCE_TABLE_180a21690;
   return;
 }
 
 
 
-undefined8 FUN_18022bbe0(longlong param_1,int param_2)
+undefined8 get_resource_handler(longlong base_ptr,int resource_index)
 
 {
-  longlong lVar1;
+  longlong resource_ptr;
   
-  param_1 = param_1 + (longlong)param_2 * 8;
-  lVar1 = *(longlong *)(param_1 + 0x3c8);
-  if (lVar1 != 0) {
-    (**(code **)(**(longlong **)(lVar1 + 0x20) + 0x80))(*(longlong **)(lVar1 + 0x20),lVar1,0);
-    return *(undefined8 *)(param_1 + 0x3c8);
+  base_ptr = base_ptr + (longlong)resource_index * 8;
+  resource_ptr = *(longlong *)(base_ptr + 0x3c8);
+  if (resource_ptr != 0) {
+    (**(code **)(**(longlong **)(resource_ptr + 0x20) + 0x80))(*(longlong **)(resource_ptr + 0x20),resource_ptr,0);
+    return *(undefined8 *)(base_ptr + 0x3c8);
   }
-  return 0x180d49658;
+  return DEFAULT_HANDLER_180d49658;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: 全局变量以下划线开头可能与较小符号重叠地址
 
 
 
-// 函数: void FUN_18022bc30(longlong param_1)
-void FUN_18022bc30(longlong param_1)
+// 函数: 初始化骨骼系统
+void initialize_skeleton_system(longlong skeleton_context)
 
 {
-  undefined4 *puVar1;
-  longlong lVar2;
-  int iVar3;
-  undefined8 uVar4;
-  longlong *plVar5;
-  undefined8 *puVar6;
-  longlong lVar7;
-  undefined8 *puVar8;
-  undefined8 *puVar9;
-  undefined8 *puVar10;
-  uint uVar11;
-  longlong *plVar12;
-  undefined1 auStack_d8 [32];
-  undefined1 *puStack_b8;
-  longlong lStack_a8;
-  int iStack_a0;
-  uint uStack_9c;
-  longlong *plStack_98;
-  longlong *plStack_90;
-  longlong lStack_88;
-  undefined1 auStack_80 [16];
-  code *pcStack_70;
-  code *pcStack_68;
-  undefined8 uStack_60;
-  undefined1 auStack_58 [16];
-  undefined4 uStack_48;
-  undefined4 uStack_44;
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  longlong *plStack_38;
-  ulonglong uStack_30;
+  undefined4 *texture_ptr;
+  longlong bone_offset;
+  int texture_count;
+  undefined8 texture_data;
+  longlong *resource_ptr;
+  undefined8 *data_ptr;
+  longlong bone_index;
+  undefined8 *texture_table;
+  undefined8 *texture_entry;
+  undefined8 *next_texture;
+  uint texture_flags;
+  longlong *texture_array;
+  undefined1 stack_buffer_d8 [32];
+  undefined1 *stack_ptr_b8;
+  longlong stack_value_a8;
+  int stack_value_a0;
+  uint stack_flags_9c;
+  longlong *stack_ptr_98;
+  longlong *stack_ptr_90;
+  longlong stack_value_88;
+  undefined1 stack_buffer_80 [16];
+  code *callback_70;
+  code *guard_check;
+  undefined8 stack_value_60;
+  undefined1 stack_buffer_58 [16];
+  undefined4 stack_value_48;
+  undefined4 stack_value_44;
+  undefined4 stack_value_40;
+  undefined4 stack_value_3c;
+  longlong *stack_ptr_38;
+  ulonglong stack_protection_30;
   
-  uStack_60 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_d8;
-  uStack_9c = 0;
-  iVar3 = *(int *)(_DAT_180c86870 + 0x224);
-  *(undefined1 *)(param_1 + 0x460) = 1;
-  uVar11 = 0;
+  stack_value_60 = 0xfffffffffffffffe;
+  stack_protection_30 = GLOBAL_PROTECTION_180bf00a8 ^ (ulonglong)stack_buffer_d8;
+  stack_flags_9c = 0;
+  texture_count = *(int *)(GLOBAL_TEXTURE_TABLE_180c86870 + 0x224);
+  *(undefined1 *)(skeleton_context + 0x460) = 1;
+  texture_flags = 0;
   do {
-    uVar11 = uVar11 + 8;
-  } while (uVar11 < 0x10);
-  plVar12 = (longlong *)(param_1 + 0x3e0);
-  lStack_a8 = 0x10;
-  iStack_a0 = iVar3;
-  lStack_88 = param_1;
+    texture_flags = texture_flags + 8;
+  } while (texture_flags < 0x10);
+  texture_array = (longlong *)(skeleton_context + 0x3e0);
+  stack_value_a8 = 0x10;
+  stack_value_a0 = texture_count;
+  stack_value_88 = skeleton_context;
   do {
-    lVar2 = plVar12[-0x65];
-    lVar7 = lStack_a8;
-    if (lVar2 != 0) {
-      if ((*plVar12 == 0) && (lVar7 = *(longlong *)(lVar2 + 0xa8), lVar7 != 0)) {
-        puVar1 = (undefined4 *)(lVar7 + 0xc);
-        puVar8 = (undefined8 *)(_DAT_180c8a9d0 + 0x1f8);
-        puVar6 = puVar8;
-        puVar9 = *(undefined8 **)(_DAT_180c8a9d0 + 0x208);
-        if (*(undefined8 **)(_DAT_180c8a9d0 + 0x208) == (undefined8 *)0x0) {
+    bone_offset = texture_array[-0x65];
+    bone_index = stack_value_a8;
+    if (bone_offset != 0) {
+      if ((*texture_array == 0) && (bone_index = *(longlong *)(bone_offset + 0xa8), bone_index != 0)) {
+        texture_ptr = (undefined4 *)(bone_index + 0xc);
+        data_ptr = (undefined8 *)(GLOBAL_TEXTURE_MANAGER_180c8a9d0 + 0x1f8);
+        texture_table = data_ptr;
+        next_texture = *(undefined8 **)(GLOBAL_TEXTURE_MANAGER_180c8a9d0 + 0x208);
+        if (*(undefined8 **)(GLOBAL_TEXTURE_MANAGER_180c8a9d0 + 0x208) == (undefined8 *)0x0) {
 LAB_18022bda0:
-          puVar6 = puVar8;
+          texture_table = data_ptr;
         }
         else {
           do {
-            iVar3 = memcmp(puVar9 + 4,puVar1,0x10);
-            if (iVar3 < 0) {
-              puVar10 = (undefined8 *)*puVar9;
+            texture_count = memcmp(next_texture + 4,texture_ptr,0x10);
+            if (texture_count < 0) {
+              texture_entry = (undefined8 *)*next_texture;
             }
             else {
-              puVar10 = (undefined8 *)puVar9[1];
-              puVar6 = puVar9;
+              texture_entry = (undefined8 *)next_texture[1];
+              texture_table = next_texture;
             }
-            puVar9 = puVar10;
-          } while (puVar10 != (undefined8 *)0x0);
-          if ((puVar6 == puVar8) || (iVar3 = memcmp(puVar1,puVar6 + 4,0x10), iVar3 < 0))
+            next_texture = texture_entry;
+          } while (texture_entry != (undefined8 *)0x0);
+          if ((texture_table == data_ptr) || (texture_count = memcmp(texture_ptr,texture_table + 4,0x10), texture_count < 0))
           goto LAB_18022bda0;
         }
-        if (puVar6 == puVar8) {
-          uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x3b0,0x10,3);
-          plVar5 = (longlong *)FUN_18023a2e0(uVar4,0);
-          if (plVar5 != (longlong *)0x0) {
-            plStack_90 = plVar5;
-            (**(code **)(*plVar5 + 0x28))(plVar5);
+        if (texture_table == data_ptr) {
+          texture_data = allocate_texture_resource(GLOBAL_RESOURCE_POOL_180c8ed18,0x3b0,0x10,3);
+          resource_ptr = (longlong *)initialize_texture_resource(texture_data,0);
+          if (resource_ptr != (longlong *)0x0) {
+            stack_ptr_90 = resource_ptr;
+            (**(code **)(*resource_ptr + 0x28))(resource_ptr);
           }
-          plStack_90 = (longlong *)*plVar12;
-          *plVar12 = (longlong)plVar5;
-          if (plStack_90 != (longlong *)0x0) {
-            (**(code **)(*plStack_90 + 0x38))();
+          stack_ptr_90 = (longlong *)*texture_array;
+          *texture_array = (longlong)resource_ptr;
+          if (stack_ptr_90 != (longlong *)0x0) {
+            (**(code **)(*stack_ptr_90 + 0x38))();
           }
-          (**(code **)(*(longlong *)(*plVar12 + 0x10) + 0x10))
-                    ((longlong *)(*plVar12 + 0x10),&UNK_180a13ad0);
-          *(undefined8 *)(*plVar12 + 0xa8) = *(undefined8 *)(lVar2 + 0xa8);
-          lVar2 = _DAT_180c8a9d0;
-          uStack_48 = *puVar1;
-          uStack_44 = *(undefined4 *)(lVar7 + 0x10);
-          uStack_40 = *(undefined4 *)(lVar7 + 0x14);
-          uStack_3c = *(undefined4 *)(lVar7 + 0x18);
-          plStack_38 = (longlong *)*plVar12;
-          if (plStack_38 != (longlong *)0x0) {
-            (**(code **)(*plStack_38 + 0x28))();
+          (**(code **)(*(longlong *)(*texture_array + 0x10) + 0x10))
+                    ((longlong *)(*texture_array + 0x10),&DEFAULT_TEXTURE_180a13ad0);
+          *(undefined8 *)(*texture_array + 0xa8) = *(undefined8 *)(bone_offset + 0xa8);
+          bone_offset = GLOBAL_TEXTURE_MANAGER_180c8a9d0;
+          stack_value_48 = *texture_ptr;
+          stack_value_44 = *(undefined4 *)(bone_index + 0x10);
+          stack_value_40 = *(undefined4 *)(bone_index + 0x14);
+          stack_value_3c = *(undefined4 *)(bone_index + 0x18);
+          stack_ptr_38 = (longlong *)*texture_array;
+          if (stack_ptr_38 != (longlong *)0x0) {
+            (**(code **)(*stack_ptr_38 + 0x28))();
           }
-          uVar11 = uStack_9c;
-          uStack_9c = uStack_9c | 1;
-          FUN_18022edb0(lVar2 + 0x1f8,auStack_58);
-          uStack_9c = uVar11 & 0xfffffffe;
-          plVar5 = plStack_38;
+          texture_flags = stack_flags_9c;
+          stack_flags_9c = stack_flags_9c | 1;
+          load_texture_data(bone_offset + 0x1f8,stack_buffer_58);
+          stack_flags_9c = texture_flags & 0xfffffffe;
+          resource_ptr = stack_ptr_38;
         }
         else {
-          plVar5 = (longlong *)puVar6[6];
-          if (plVar5 != (longlong *)0x0) {
-            plStack_98 = plVar5;
-            (**(code **)(*plVar5 + 0x28))(plVar5);
+          resource_ptr = (longlong *)texture_table[6];
+          if (resource_ptr != (longlong *)0x0) {
+            stack_ptr_98 = resource_ptr;
+            (**(code **)(*resource_ptr + 0x28))(resource_ptr);
           }
-          plStack_98 = (longlong *)*plVar12;
-          *plVar12 = (longlong)plVar5;
-          plVar5 = plStack_98;
+          stack_ptr_98 = (longlong *)*texture_array;
+          *texture_array = (longlong)resource_ptr;
+          resource_ptr = stack_ptr_98;
         }
-        iVar3 = iStack_a0;
-        if (plVar5 != (longlong *)0x0) {
-          (**(code **)(*plVar5 + 0x38))();
-          iVar3 = iStack_a0;
+        texture_count = stack_value_a0;
+        if (resource_ptr != (longlong *)0x0) {
+          (**(code **)(*resource_ptr + 0x38))();
+          texture_count = stack_value_a0;
         }
       }
-      lVar7 = lStack_a8;
-      if (*plVar12 != 0) {
-        pcStack_70 = (code *)0x0;
-        pcStack_68 = _guard_check_icall;
-        puStack_b8 = auStack_80;
-        FUN_18023baa0();
-        if (pcStack_70 != (code *)0x0) {
-          (*pcStack_70)(auStack_80,0,0);
+      bone_index = stack_value_a8;
+      if (*texture_array != 0) {
+        callback_70 = (code *)0x0;
+        guard_check = _guard_check_icall;
+        stack_ptr_b8 = stack_buffer_80;
+        initialize_texture_system();
+        if (callback_70 != (code *)0x0) {
+          (*callback_70)(stack_buffer_80,0,0);
         }
-        *(longlong *)(*plVar12 + 0x340) = (longlong)iVar3;
+        *(longlong *)(*texture_array + 0x340) = (longlong)texture_count;
       }
     }
-    plVar12 = plVar12 + 1;
-    lStack_a8 = lVar7 + -1;
-    if (lStack_a8 == 0) {
-      FUN_18022f080(lStack_88);
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_d8);
+    texture_array = texture_array + 1;
+    stack_value_a8 = bone_index + -1;
+    if (stack_value_a8 == 0) {
+      finalize_skeleton_system(stack_value_88);
+                    // WARNING: 此函数不会返回
+      crash_handler(stack_protection_30 ^ (ulonglong)stack_buffer_d8);
     }
   } while( true );
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// WARNING: 全局变量以下划线开头可能与较小符号重叠地址
 
 
 
-// 函数: void FUN_18022bf70(longlong param_1,char param_2)
-void FUN_18022bf70(longlong param_1,char param_2)
+// 函数: 初始化骨骼渲染系统
+void initialize_bone_render_system(longlong render_context,char render_flag)
 
 {
-  byte *pbVar1;
-  char cVar2;
-  char cVar3;
-  int iVar4;
-  longlong lVar5;
-  longlong *plVar6;
-  undefined8 uVar7;
-  uint uVar8;
-  longlong *plVar9;
-  longlong *plVar10;
-  longlong *plVar11;
-  byte *pbVar12;
-  char *pcVar13;
-  undefined8 uVar14;
-  ulonglong uVar15;
-  undefined *puVar16;
-  int iVar17;
-  longlong lVar18;
-  longlong lVar19;
-  longlong lVar20;
-  longlong lVar21;
-  undefined *puVar22;
-  longlong lVar23;
-  int iVar24;
-  int iVar25;
-  longlong lVar26;
-  ulonglong uVar27;
-  undefined1 auStack_2c8 [32];
-  code *pcStack_2a8;
-  longlong *plStack_298;
-  longlong *plStack_290;
-  longlong *plStack_288;
-  longlong lStack_280;
-  longlong *plStack_278;
-  longlong *plStack_268;
-  longlong *plStack_260;
-  longlong *plStack_258;
-  longlong *plStack_250;
-  uint uStack_248;
-  undefined8 uStack_240;
-  undefined *puStack_238;
-  undefined1 *puStack_230;
-  undefined4 uStack_228;
-  undefined1 auStack_220 [72];
-  undefined *puStack_1d8;
-  undefined1 *puStack_1d0;
-  undefined4 uStack_1c8;
-  undefined1 auStack_1c0 [72];
-  undefined *puStack_178;
-  undefined1 *puStack_170;
-  undefined4 uStack_168;
-  undefined1 auStack_160 [72];
-  undefined *puStack_118;
-  undefined1 *puStack_110;
-  undefined4 uStack_108;
-  undefined1 auStack_100 [72];
-  undefined1 *apuStack_b8 [2];
-  undefined4 uStack_a8;
-  undefined1 auStack_a0 [104];
-  ulonglong uStack_38;
+  byte *texture_data;
+  char bone_index1;
+  char bone_index2;
+  int texture_id;
+  longlong bone_offset;
+  longlong *resource_ptr;
+  undefined8 resource_data;
+  uint texture_size;
+  longlong *texture_ptr;
+  longlong *texture_array;
+  longlong *texture_entry;
+  byte *texture_buffer;
+  char *texture_name;
+  undefined8 texture_handle;
+  ulonglong bone_index_ulong;
+  undefined *texture_info;
+  int texture_format;
+  longlong texture_addr;
+  longlong texture_size2;
+  longlong texture_pitch;
+  undefined *texture_format_ptr;
+  longlong texture_offset;
+  int texture_width;
+  int texture_height;
+  longlong texture_data_ptr;
+  ulonglong texture_flags;
+  undefined1 stack_buffer_2c8 [32];
+  code *render_callback;
+  longlong *stack_ptr_298;
+  longlong *stack_ptr_290;
+  longlong *stack_ptr_288;
+  longlong stack_value_280;
+  longlong *stack_ptr_278;
+  longlong *stack_ptr_268;
+  longlong *stack_ptr_260;
+  longlong *stack_ptr_258;
+  longlong *stack_ptr_250;
+  uint stack_flags_248;
+  undefined8 stack_value_240;
+  undefined *stack_ptr_238;
+  undefined1 *stack_ptr_230;
+  undefined4 stack_value_228;
+  undefined1 stack_buffer_220 [72];
+  undefined *stack_ptr_1d8;
+  undefined1 *stack_ptr_1d0;
+  undefined4 stack_value_1c8;
+  undefined1 stack_buffer_1c0 [72];
+  undefined *stack_ptr_178;
+  undefined1 *stack_ptr_170;
+  undefined4 stack_value_168;
+  undefined1 stack_buffer_160 [72];
+  undefined *stack_ptr_118;
+  undefined1 *stack_ptr_110;
+  undefined4 stack_value_108;
+  undefined1 stack_buffer_100 [72];
+  undefined1 *stack_ptr_array_b8 [2];
+  undefined4 stack_value_a8;
+  undefined1 stack_buffer_a0 [104];
+  ulonglong stack_protection_38;
   
-  uStack_240 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2c8;
-  lStack_280 = param_1;
-  plVar9 = (longlong *)FUN_1800b31f0(_DAT_180c86930,&plStack_268,param_1 + 0x2d0,0);
-  plVar9 = (longlong *)*plVar9;
-  plStack_288 = plVar9;
-  if (plStack_268 != (longlong *)0x0) {
-    (**(code **)(*plStack_268 + 0x38))();
+  stack_value_240 = 0xfffffffffffffffe;
+  stack_protection_38 = GLOBAL_PROTECTION_180bf00a8 ^ (ulonglong)stack_buffer_2c8;
+  stack_value_280 = render_context;
+  texture_ptr = (longlong *)get_render_context_data(GLOBAL_RENDER_CONTEXT_180c86930,&stack_ptr_268,render_context + 0x2d0,0);
+  texture_ptr = (longlong *)*texture_ptr;
+  stack_ptr_288 = texture_ptr;
+  if (stack_ptr_268 != (longlong *)0x0) {
+    (**(code **)(*stack_ptr_268 + 0x38))();
   }
-  if ((param_2 == '\0') || (*(longlong **)(param_1 + 0x1e0) == (longlong *)0x0)) {
+  if ((render_flag == '\0') || (*(longlong **)(render_context + 0x1e0) == (longlong *)0x0)) {
 LAB_18022c3ff:
-    if (plVar9 != (longlong *)0x0) goto LAB_18022c460;
+    if (texture_ptr != (longlong *)0x0) goto LAB_18022c460;
   }
-  else if (plVar9 != (longlong *)0x0) {
-    if (*(longlong **)(param_1 + 0x1e0) != plVar9) {
-      plVar9 = (longlong *)(param_1 + 0x368);
-      lVar5 = (*(longlong *)(param_1 + 0x370) - *plVar9) / 0x58;
-      uStack_248 = *(uint *)(param_1 + 0x380);
-      plStack_298 = plVar9;
-      if (lVar5 == 0) {
-        plVar10 = (longlong *)0x0;
+  else if (texture_ptr != (longlong *)0x0) {
+    if (*(longlong **)(render_context + 0x1e0) != texture_ptr) {
+      texture_ptr = (longlong *)(render_context + 0x368);
+      bone_offset = (*(longlong *)(render_context + 0x370) - *texture_ptr) / 0x58;
+      stack_flags_248 = *(uint *)(render_context + 0x380);
+      stack_ptr_298 = texture_ptr;
+      if (bone_offset == 0) {
+        texture_array = (longlong *)0x0;
       }
       else {
-        plVar10 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar5 * 0x58,uStack_248 & 0xff);
+        texture_array = (longlong *)allocate_texture_array(GLOBAL_RESOURCE_POOL_180c8ed18,bone_offset * 0x58,stack_flags_248 & 0xff);
       }
-      plStack_250 = plVar10 + lVar5 * 0xb;
-      lVar5 = *(longlong *)(param_1 + 0x370);
-      plVar11 = plVar10;
-      plStack_278 = plVar10;
-      plStack_260 = plVar10;
-      if (*plVar9 != lVar5) {
-        lVar19 = *plVar9 - (longlong)plVar10;
-        plStack_258 = plVar10;
+      stack_ptr_250 = texture_array + bone_offset * 0xb;
+      bone_offset = *(longlong *)(render_context + 0x370);
+      texture_entry = texture_array;
+      stack_ptr_278 = texture_array;
+      stack_ptr_260 = texture_array;
+      if (*texture_ptr != bone_offset) {
+        texture_pitch = *texture_ptr - (longlong)texture_array;
+        stack_ptr_258 = texture_array;
         do {
-          *plVar11 = (longlong)&UNK_18098bcb0;
-          plVar11[1] = 0;
-          *(undefined4 *)(plVar11 + 2) = 0;
-          *plVar11 = (longlong)&UNK_1809fcc58;
-          plVar11[1] = (longlong)(plVar11 + 3);
-          *(undefined4 *)(plVar11 + 2) = 0;
-          *(undefined1 *)(plVar11 + 3) = 0;
-          *(undefined4 *)(plVar11 + 2) = *(undefined4 *)((longlong)plVar11 + lVar19 + 0x10);
-          puVar22 = *(undefined **)((longlong)plVar11 + lVar19 + 8);
-          puVar16 = &DAT_18098bc73;
-          if (puVar22 != (undefined *)0x0) {
-            puVar16 = puVar22;
+          *texture_entry = (longlong)&STRING_TABLE_18098bcb0;
+          texture_entry[1] = 0;
+          *(undefined4 *)(texture_entry + 2) = 0;
+          *texture_entry = (longlong)&STRING_HANDLE_1809fcc58;
+          texture_entry[1] = (longlong)(texture_entry + 3);
+          *(undefined4 *)(texture_entry + 2) = 0;
+          *(undefined1 *)(texture_entry + 3) = 0;
+          *(undefined4 *)(texture_entry + 2) = *(undefined4 *)((longlong)texture_entry + texture_pitch + 0x10);
+          texture_format_ptr = *(undefined **)((longlong)texture_entry + texture_pitch + 8);
+          texture_info = &DEFAULT_TEXTURE_INFO_18098bc73;
+          if (texture_format_ptr != (undefined *)0x0) {
+            texture_info = texture_format_ptr;
           }
-          plStack_290 = plVar11;
-          strcpy_s(plVar11[1],0x40,puVar16);
-          plVar11 = plVar11 + 0xb;
-          plVar9 = plStack_298;
-          param_1 = lStack_280;
-        } while ((longlong)plVar11 + lVar19 != lVar5);
+          stack_ptr_290 = texture_entry;
+          strcpy_s(texture_entry[1],0x40,texture_info);
+          texture_entry = texture_entry + 0xb;
+          texture_ptr = stack_ptr_298;
+          render_context = stack_value_280;
+        } while ((longlong)texture_entry + texture_pitch != bone_offset);
       }
-      plStack_290 = plVar11;
-      plStack_258 = plVar11;
-      FUN_18022ebe0(plVar9);
-      lVar5 = (longlong)plVar11 - (longlong)plVar10 >> 0x3f;
-      lVar19 = ((longlong)plVar11 - (longlong)plVar10) / 0x58 + lVar5;
-      iVar25 = 0;
-      if (lVar19 != lVar5) {
-        uVar27 = 0;
-        plVar10 = plVar10 + 2;
+      stack_ptr_290 = texture_entry;
+      stack_ptr_258 = texture_entry;
+      initialize_texture_system_internal(texture_ptr);
+      bone_offset = (longlong)texture_entry - (longlong)texture_array >> 0x3f;
+      texture_pitch = ((longlong)texture_entry - (longlong)texture_array) / 0x58 + bone_offset;
+      texture_height = 0;
+      if (texture_pitch != bone_offset) {
+        texture_flags = 0;
+        texture_array = texture_array + 2;
         do {
-          plVar11 = (longlong *)FUN_180240a60(plStack_288);
-          iVar24 = 0;
-          lVar26 = *plVar11;
-          lVar18 = (plVar11[1] - lVar26) / 6 + (plVar11[1] - lVar26 >> 0x3f);
-          lVar20 = lVar18 >> 4;
-          lVar18 = lVar18 >> 0x3f;
-          if (lVar20 != lVar18) {
-            iVar4 = (int)*plVar10;
-            lVar23 = 0;
+          texture_entry = (longlong *)get_texture_data(stack_ptr_288);
+          texture_width = 0;
+          texture_data_ptr = *texture_entry;
+          texture_addr = (texture_entry[1] - texture_data_ptr) / 6 + (texture_entry[1] - texture_data_ptr >> 0x3f);
+          texture_size2 = texture_addr >> 4;
+          texture_addr = texture_addr >> 0x3f;
+          if (texture_size2 != texture_addr) {
+            texture_format = (int)*texture_array;
+            texture_offset = 0;
             do {
-              iVar17 = *(int *)(lVar23 + 0x10 + lVar26);
-              if (iVar4 == iVar17) {
-                if (iVar4 != 0) {
-                  pbVar12 = (byte *)plVar10[-1];
-                  lVar21 = *(longlong *)(lVar23 + 8 + lVar26) - (longlong)pbVar12;
+              texture_id = *(int *)(texture_offset + 0x10 + texture_data_ptr);
+              if (texture_format == texture_id) {
+                if (texture_format != 0) {
+                  texture_buffer = (byte *)texture_array[-1];
+                  texture_pitch = *(longlong *)(texture_offset + 8 + texture_data_ptr) - (longlong)texture_buffer;
                   do {
-                    pbVar1 = pbVar12 + lVar21;
-                    iVar17 = (uint)*pbVar12 - (uint)*pbVar1;
-                    if (iVar17 != 0) break;
-                    pbVar12 = pbVar12 + 1;
-                  } while (*pbVar1 != 0);
+                    texture_data = texture_buffer + texture_pitch;
+                    texture_id = (uint)*texture_buffer - (uint)*texture_data;
+                    if (texture_id != 0) break;
+                    texture_buffer = texture_buffer + 1;
+                  } while (*texture_data != 0);
                 }
 LAB_18022c20f:
-                if (iVar17 == 0) {
-                  FUN_1800b8370(plVar9,plStack_278 + uVar27 * 0xb);
+                if (texture_id == 0) {
+                  register_texture(texture_ptr,stack_ptr_278 + texture_flags * 0xb);
                   break;
                 }
               }
-              else if (iVar4 == 0) goto LAB_18022c20f;
-              iVar24 = iVar24 + 1;
-              lVar23 = lVar23 + 0x60;
-            } while ((ulonglong)(longlong)iVar24 < (ulonglong)(lVar20 - lVar18));
+              else if (texture_format == 0) goto LAB_18022c20f;
+              texture_width = texture_width + 1;
+              texture_offset = texture_offset + 0x60;
+            } while ((ulonglong)(longlong)texture_width < (ulonglong)(texture_size2 - texture_addr));
           }
-          iVar25 = iVar25 + 1;
-          plVar10 = plVar10 + 0xb;
-          uVar27 = (ulonglong)iVar25;
-          plVar11 = plStack_290;
-          param_1 = lStack_280;
-        } while (uVar27 < (ulonglong)(lVar19 - lVar5));
+          texture_height = texture_height + 1;
+          texture_array = texture_array + 0xb;
+          texture_flags = (ulonglong)texture_height;
+          texture_entry = stack_ptr_290;
+          render_context = stack_value_280;
+        } while (texture_flags < (ulonglong)(texture_pitch - bone_offset));
       }
-      lVar5 = *(longlong *)(param_1 + 0x1e0);
-      pcStack_2a8 = FUN_180045af0;
-      FUN_1808fc838(apuStack_b8,8,0x10,&SUB_18005d5f0);
-      lVar26 = 0;
-      lVar19 = lVar26;
+      bone_offset = *(longlong *)(render_context + 0x1e0);
+      render_callback = FUN_180045af0;
+      initialize_resource_pool(stack_ptr_array_b8,8,0x10,&SUB_18005d5f0);
+      texture_data_ptr = 0;
+      texture_pitch = texture_data_ptr;
       do {
-        plVar9 = *(longlong **)(param_1 + 0xb8 + lVar19 * 8);
-        if (plVar9 != (longlong *)0x0) {
-          plStack_298 = plVar9;
-          (**(code **)(*plVar9 + 0x28))(plVar9);
+        texture_ptr = *(longlong **)(render_context + 0xb8 + texture_pitch * 8);
+        if (texture_ptr != (longlong *)0x0) {
+          stack_ptr_298 = texture_ptr;
+          (**(code **)(*texture_ptr + 0x28))(texture_ptr);
         }
-        plStack_298 = (longlong *)apuStack_b8[lVar19];
-        apuStack_b8[lVar19] = (undefined1 *)plVar9;
-        if (plStack_298 != (longlong *)0x0) {
-          (**(code **)(*plStack_298 + 0x38))();
+        stack_ptr_298 = (longlong *)stack_ptr_array_b8[texture_pitch];
+        stack_ptr_array_b8[texture_pitch] = (undefined1 *)texture_ptr;
+        if (stack_ptr_298 != (longlong *)0x0) {
+          (**(code **)(*stack_ptr_298 + 0x38))();
         }
-        lVar19 = lVar19 + 1;
-      } while (lVar19 < 0x10);
-      plVar10 = (longlong *)(param_1 + 0xb8);
-      plVar9 = plStack_288 + 0x388;
-      lVar19 = 0x10;
+        texture_pitch = texture_pitch + 1;
+      } while (texture_pitch < 0x10);
+      texture_array = (longlong *)(render_context + 0xb8);
+      texture_ptr = stack_ptr_288 + 0x388;
+      texture_pitch = 0x10;
       do {
-        iVar25 = (int)*plVar9;
-        lVar18 = lVar26;
-        lVar20 = lVar26;
+        texture_height = (int)*texture_ptr;
+        texture_addr = texture_data_ptr;
+        texture_size2 = texture_data_ptr;
         do {
-          if (((iVar25 != 0) && (iVar25 == *(int *)(lVar20 + 0x1c40 + lVar5))) && (iVar25 != 0)) {
-            pcVar13 = (char *)plVar9[-1];
-            lVar23 = *(longlong *)(lVar20 + 0x1c38 + lVar5) - (longlong)pcVar13;
+          if (((texture_height != 0) && (texture_height == *(int *)(texture_size2 + 0x1c40 + bone_offset))) && (texture_height != 0)) {
+            texture_name = (char *)texture_ptr[-1];
+            texture_offset = *(longlong *)(texture_size2 + 0x1c38 + bone_offset) - (longlong)texture_name;
             do {
-              cVar2 = *pcVar13;
-              cVar3 = pcVar13[lVar23];
-              if (cVar2 != cVar3) break;
-              pcVar13 = pcVar13 + 1;
-            } while (cVar3 != '\0');
-            if (cVar2 == cVar3) {
-              plVar6 = (longlong *)apuStack_b8[lVar18];
-              if (plVar6 != (longlong *)0x0) {
-                plStack_298 = plVar6;
-                (**(code **)(*plVar6 + 0x28))(plVar6);
+              bone_index1 = *texture_name;
+              bone_index2 = texture_name[texture_offset];
+              if (bone_index1 != bone_index2) break;
+              texture_name = texture_name + 1;
+            } while (bone_index2 != '\0');
+            if (bone_index1 == bone_index2) {
+              resource_ptr = (longlong *)stack_ptr_array_b8[texture_addr];
+              if (resource_ptr != (longlong *)0x0) {
+                stack_ptr_298 = resource_ptr;
+                (**(code **)(*resource_ptr + 0x28))(resource_ptr);
               }
-              plStack_298 = (longlong *)*plVar10;
-              *plVar10 = (longlong)plVar6;
-              if (plStack_298 != (longlong *)0x0) {
-                (**(code **)(*plStack_298 + 0x38))();
+              stack_ptr_298 = (longlong *)*texture_array;
+              *texture_array = (longlong)resource_ptr;
+              if (stack_ptr_298 != (longlong *)0x0) {
+                (**(code **)(*stack_ptr_298 + 0x38))();
               }
               break;
             }
           }
-          lVar18 = lVar18 + 1;
-          lVar20 = lVar20 + 0x58;
-        } while (lVar20 < 0x580);
-        plVar10 = plVar10 + 1;
-        plVar9 = plVar9 + 0xb;
-        lVar19 = lVar19 + -1;
-      } while (lVar19 != 0);
-      FUN_1808fc8a8(apuStack_b8,8,0x10,FUN_180045af0);
-      plVar6 = plStack_278;
-      plVar9 = plStack_288;
-      param_1 = lStack_280;
-      for (plVar10 = plStack_278; plStack_288 = plVar9, lStack_280 = param_1, plVar10 != plVar11;
-          plVar10 = plVar10 + 0xb) {
-        (**(code **)*plVar10)(plVar10,0);
-        plVar9 = plStack_288;
-        param_1 = lStack_280;
+          texture_addr = texture_addr + 1;
+          texture_size2 = texture_size2 + 0x58;
+        } while (texture_size2 < 0x580);
+        texture_array = texture_array + 1;
+        texture_ptr = texture_ptr + 0xb;
+        texture_pitch = texture_pitch + -1;
+      } while (texture_pitch != 0);
+      cleanup_resource_pool(stack_ptr_array_b8,8,0x10,FUN_180045af0);
+      resource_ptr = stack_ptr_278;
+      texture_ptr = stack_ptr_288;
+      render_context = stack_value_280;
+      for (texture_array = stack_ptr_278; stack_ptr_288 = texture_ptr, stack_value_280 = render_context, texture_array != texture_entry;
+          texture_array = texture_array + 0xb) {
+        (**(code **)*texture_array)(texture_array,0);
+        texture_ptr = stack_ptr_288;
+        render_context = stack_value_280;
       }
-      if (plVar6 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(plVar6);
+      if (resource_ptr != (longlong *)0x0) {
+                    // WARNING: 此函数不会返回
+        trigger_critical_error(resource_ptr);
       }
     }
     goto LAB_18022c3ff;
   }
-  puVar22 = &DAT_18098bc73;
-  if (*(undefined **)(param_1 + 0x18) != (undefined *)0x0) {
-    puVar22 = *(undefined **)(param_1 + 0x18);
+  texture_format_ptr = &DEFAULT_TEXTURE_INFO_18098bc73;
+  if (*(undefined **)(render_context + 0x18) != (undefined *)0x0) {
+    texture_format_ptr = *(undefined **)(render_context + 0x18);
   }
-  puVar16 = &DAT_18098bc73;
-  if (*(undefined **)(param_1 + 0x2d8) != (undefined *)0x0) {
-    puVar16 = *(undefined **)(param_1 + 0x2d8);
+  texture_info = &DEFAULT_TEXTURE_INFO_18098bc73;
+  if (*(undefined **)(render_context + 0x2d8) != (undefined *)0x0) {
+    texture_info = *(undefined **)(render_context + 0x2d8);
   }
-  FUN_180627020(&UNK_180a13ae8,puVar16,puVar22);
-  FUN_1800be9a0(_DAT_180c86898,&plStack_290,0);
-  plVar9 = (longlong *)plStack_290[0x3c];
-  if (plStack_290 != (longlong *)0x0) {
-    (**(code **)(*plStack_290 + 0x38))();
+  initialize_texture_manager(&TEXTURE_HANDLE_180a13ae8,texture_info,texture_format_ptr);
+  get_render_device_data(GLOBAL_RENDER_DEVICE_180c86898,&stack_ptr_290,0);
+  texture_ptr = (longlong *)stack_ptr_290[0x3c];
+  if (stack_ptr_290 != (longlong *)0x0) {
+    (**(code **)(*stack_ptr_290 + 0x38))();
   }
 LAB_18022c460:
-  if (plVar9 != (longlong *)0x0) {
-    plStack_298 = plVar9;
-    (**(code **)(*plVar9 + 0x28))(plVar9);
+  if (texture_ptr != (longlong *)0x0) {
+    stack_ptr_298 = texture_ptr;
+    (**(code **)(*texture_ptr + 0x28))(texture_ptr);
   }
-  plStack_298 = *(longlong **)(param_1 + 0x1e0);
-  *(longlong **)(param_1 + 0x1e0) = plVar9;
-  if (plStack_298 != (longlong *)0x0) {
-    (**(code **)(*plStack_298 + 0x38))();
+  stack_ptr_298 = *(longlong **)(render_context + 0x1e0);
+  *(longlong **)(render_context + 0x1e0) = texture_ptr;
+  if (stack_ptr_298 != (longlong *)0x0) {
+    (**(code **)(*stack_ptr_298 + 0x38))();
   }
-  FUN_18022d860(param_1);
-  uVar14 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_238 = &UNK_1809fcc58;
-  puStack_230 = auStack_220;
-  auStack_220[0] = 0;
-  uStack_228 = 0xf;
-  strcpy_s(auStack_220,0x40,&DAT_180a0ba58);
-  uVar14 = FUN_180240430(uVar14,&puStack_238,0);
-  *(undefined8 *)(param_1 + 0x390) = uVar14;
-  puStack_238 = &UNK_18098bcb0;
-  uVar14 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_1d8 = &UNK_1809fcc58;
-  puStack_1d0 = auStack_1c0;
-  auStack_1c0[0] = 0;
-  uStack_1c8 = 9;
-  strcpy_s(auStack_1c0,0x40,&UNK_180a13aa8);
-  uVar7 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_238 = &UNK_1809fcc58;
-  puStack_230 = auStack_220;
-  auStack_220[0] = 0;
-  uStack_228 = 0x17;
-  strcpy_s(auStack_220,0x40,&UNK_180a13ab8);
-  uVar27 = FUN_180240430(uVar7,&puStack_238,0);
-  uVar15 = FUN_180240430(uVar14,&puStack_1d8,0);
-  *(ulonglong *)(param_1 + 0x3a8) = uVar27 | uVar15;
-  puStack_238 = &UNK_18098bcb0;
-  puStack_1d8 = &UNK_18098bcb0;
-  uVar14 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_178 = &UNK_1809fcc58;
-  puStack_170 = auStack_160;
-  auStack_160[0] = 0;
-  uStack_168 = 0x10;
-  strcpy_s(auStack_160,0x40,&DAT_180a0d580);
-  uVar14 = FUN_180240430(uVar14,&puStack_178,0);
-  *(undefined8 *)(param_1 + 0x3b0) = uVar14;
-  puStack_178 = &UNK_18098bcb0;
-  uVar14 = *(undefined8 *)(param_1 + 0x1e0);
-  puStack_118 = &UNK_1809fcc58;
-  puStack_110 = auStack_100;
-  auStack_100[0] = 0;
-  uStack_108 = 0x14;
-  strcpy_s(auStack_100,0x40,&DAT_180a0d5b8);
-  uVar14 = FUN_180240430(uVar14,&puStack_118,0);
-  *(undefined8 *)(param_1 + 0x3b8) = uVar14;
-  puStack_118 = &UNK_18098bcb0;
-  uVar14 = *(undefined8 *)(param_1 + 0x1e0);
-  apuStack_b8[0] = &UNK_1809fcc58;
-  apuStack_b8[1] = auStack_a0;
-  auStack_a0[0] = 0;
-  uStack_a8 = 0x1d;
-  strcpy_s(auStack_a0,0x40,&UNK_180a13bb8);
-  uVar14 = FUN_180240430(uVar14,apuStack_b8,0);
-  *(undefined8 *)(param_1 + 0x398) = uVar14;
-  apuStack_b8[0] = &UNK_18098bcb0;
-  uVar8 = FUN_18022d6c0(param_1);
-  *(ulonglong *)(param_1 + 0x3a0) = (ulonglong)uVar8;
-  *(undefined2 *)(param_1 + 0x3c0) = 0xffff;
-  FUN_18022ce40(param_1);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_2c8);
+  initialize_render_pipeline(render_context);
+  resource_data = *(undefined8 *)(render_context + 0x1e0);
+  stack_ptr_238 = &STRING_HANDLE_1809fcc58;
+  stack_ptr_230 = stack_buffer_220;
+  stack_buffer_220[0] = 0;
+  stack_value_228 = 0xf;
+  strcpy_s(stack_buffer_220,0x40,&DEFAULT_TEXTURE_NAME_180a0ba58);
+  resource_data = get_texture_resource(resource_data,&stack_ptr_238,0);
+  *(undefined8 *)(render_context + 0x390) = resource_data;
+  stack_ptr_238 = &STRING_TABLE_18098bcb0;
+  resource_data = *(undefined8 *)(render_context + 0x1e0);
+  stack_ptr_1d8 = &STRING_HANDLE_1809fcc58;
+  stack_ptr_1d0 = stack_buffer_1c0;
+  stack_buffer_1c0[0] = 0;
+  stack_value_1c8 = 9;
+  strcpy_s(stack_buffer_1c0,0x40,&TEXTURE_ID_180a13aa8);
+  bone_index_ulong = *(undefined8 *)(render_context + 0x1e0);
+  stack_ptr_238 = &STRING_HANDLE_1809fcc58;
+  stack_ptr_230 = stack_buffer_220;
+  stack_buffer_220[0] = 0;
+  stack_value_228 = 0x17;
+  strcpy_s(stack_buffer_220,0x40,&TEXTURE_PATH_180a13ab8);
+  texture_flags = get_texture_resource(bone_index_ulong,&stack_ptr_238,0);
+  bone_index_ulong = get_texture_resource(resource_data,&stack_ptr_1d8,0);
+  *(ulonglong *)(render_context + 0x3a8) = texture_flags | bone_index_ulong;
+  stack_ptr_238 = &STRING_TABLE_18098bcb0;
+  stack_ptr_1d8 = &STRING_TABLE_18098bcb0;
+  resource_data = *(undefined8 *)(render_context + 0x1e0);
+  stack_ptr_178 = &STRING_HANDLE_1809fcc58;
+  stack_ptr_170 = stack_buffer_160;
+  stack_buffer_160[0] = 0;
+  stack_value_168 = 0x10;
+  strcpy_s(stack_buffer_160,0x40,&TEXTURE_FORMAT_180a0d580);
+  resource_data = get_texture_resource(resource_data,&stack_ptr_178,0);
+  *(undefined8 *)(render_context + 0x3b0) = resource_data;
+  stack_ptr_178 = &STRING_TABLE_18098bcb0;
+  resource_data = *(undefined8 *)(render_context + 0x1e0);
+  stack_ptr_118 = &STRING_HANDLE_1809fcc58;
+  stack_ptr_110 = stack_buffer_100;
+  stack_buffer_100[0] = 0;
+  stack_value_108 = 0x14;
+  strcpy_s(stack_buffer_100,0x40,&TEXTURE_SIZE_180a0d5b8);
+  resource_data = get_texture_resource(resource_data,&stack_ptr_118,0);
+  *(undefined8 *)(render_context + 0x3b8) = resource_data;
+  stack_ptr_118 = &STRING_TABLE_18098bcb0;
+  resource_data = *(undefined8 *)(render_context + 0x1e0);
+  stack_ptr_array_b8[0] = &STRING_HANDLE_1809fcc58;
+  stack_ptr_array_b8[1] = stack_buffer_a0;
+  stack_buffer_a0[0] = 0;
+  stack_value_a8 = 0x1d;
+  strcpy_s(stack_buffer_a0,0x40,&TEXTURE_TYPE_180a13bb8);
+  resource_data = get_texture_resource(resource_data,stack_ptr_array_b8,0);
+  *(undefined8 *)(render_context + 0x398) = resource_data;
+  stack_ptr_array_b8[0] = &STRING_TABLE_18098bcb0;
+  bone_index_ulong = initialize_render_targets(render_context);
+  *(ulonglong *)(render_context + 0x3a0) = (ulonglong)bone_index_ulong;
+  *(undefined2 *)(render_context + 0x3c0) = 0xffff;
+  initialize_render_shaders(render_context);
+                    // WARNING: 此函数不会返回
+  crash_handler(stack_protection_38 ^ (ulonglong)stack_buffer_2c8);
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+// WARNING: 全局变量以下划线开头可能与较小符号重叠地址
