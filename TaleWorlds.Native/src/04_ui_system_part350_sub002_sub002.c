@@ -524,7 +524,24 @@ LAB_18085a4fd:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18085a550(longlong param_1,int *param_2,uint param_3,uint param_4,uint param_5,uint param_6)
+/**
+ * UI系统状态管理器 - 管理UI系统状态变化和控制
+ * 
+ * 功能：
+ * - 管理UI系统状态变化和转换
+ * - 控制状态标志和属性设置
+ * - 处理状态同步和更新操作
+ * - 执行状态验证和清理工作
+ * 
+ * @param system_context 系统上下文指针
+ * @param state_array 状态数组指针
+ * @param start_pos 开始位置
+ * @param end_pos 结束位置
+ * @param time_scale 时间缩放因子
+ * @param frequency 频率参数
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+int UISystem_StateManager(longlong system_context, int *state_array, uint start_pos, uint end_pos, uint time_scale, uint frequency)
 
 {
   int *piVar1;
@@ -731,7 +748,18 @@ LAB_18085a91b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18085a5e5(void)
+/**
+ * UI系统状态检查器 - 检查和验证UI系统状态
+ * 
+ * 功能：
+ * - 检查UI系统当前状态
+ * - 验证状态有效性和一致性
+ * - 处理状态转换和更新
+ * - 执行状态监控和报告
+ * 
+ * @return 检查状态码（0表示成功，非0表示错误）
+ */
+int UISystem_StateChecker(void)
 
 {
   int *piVar1;
@@ -932,7 +960,20 @@ LAB_18085a91b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_18085a934(undefined8 param_1,longlong param_2)
+/**
+ * UI系统资源清理器 - 清理和管理UI系统资源
+ * 
+ * 功能：
+ * - 清理UI系统占用的资源
+ * - 管理资源生命周期
+ * - 处理资源释放和回收
+ * - 执行资源状态更新
+ * 
+ * @param resource_handle 资源句柄
+ * @param cleanup_context 清理上下文指针
+ * @return 清理状态码（0表示成功，非0表示错误）
+ */
+undefined4 UISystem_ResourceCleaner(undefined8 resource_handle, longlong cleanup_context)
 
 {
   int *piVar1;
@@ -951,7 +992,19 @@ undefined4 FUN_18085a934(undefined8 param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18085a980(longlong param_1)
+/**
+ * UI系统初始化器 - 初始化UI系统组件和配置
+ * 
+ * 功能：
+ * - 初始化UI系统核心组件
+ * - 配置系统参数和属性
+ * - 设置资源管理器
+ * - 执行系统完整性检查
+ * 
+ * @param system_context 系统上下文指针
+ * @return 初始化状态码（0表示成功，非0表示错误）
+ */
+undefined8 UISystem_Initializer(longlong system_context)
 
 {
   int *piVar1;
@@ -1041,7 +1094,19 @@ undefined8 FUN_18085a980(longlong param_1)
 
 
 
-ulonglong FUN_18085ab70(longlong param_1)
+/**
+ * UI系统时间计算器 - 计算和管理UI系统时间参数
+ * 
+ * 功能：
+ * - 计算UI系统时间参数
+ * - 管理时间同步和频率控制
+ * - 处理时间缩放和转换
+ * - 执行时间验证和调整
+ * 
+ * @param system_context 系统上下文指针
+ * @return 时间计算结果
+ */
+ulonglong UISystem_TimeCalculator(longlong system_context)
 
 {
   char cVar1;
@@ -1091,7 +1156,19 @@ LAB_18085abe3:
 
 
 
-longlong FUN_18085abf2(longlong param_1)
+/**
+ * UI系统数据处理器 - 处理UI系统数据操作
+ * 
+ * 功能：
+ * - 处理UI系统数据操作
+ * - 管理数据转换和验证
+ * - 执行数据格式化
+ * - 处理数据生命周期
+ * 
+ * @param data_context 数据上下文指针
+ * @return 数据处理结果
+ */
+longlong UISystem_DataHandler(longlong data_context)
 
 {
   char cVar1;
@@ -1123,7 +1200,18 @@ longlong FUN_18085abf2(longlong param_1)
 
 
 
-longlong FUN_18085ac39(void)
+/**
+ * UI系统空操作处理器 - 执行空操作和占位功能
+ * 
+ * 功能：
+ * - 执行空操作和占位功能
+ * - 处理系统空闲状态
+ * - 提供默认返回值
+ * - 维护系统稳定性
+ * 
+ * @return 空操作结果
+ */
+longlong UISystem_EmptyOperationProcessor(void)
 
 {
   longlong lVar1;
@@ -1147,7 +1235,19 @@ longlong FUN_18085ac39(void)
 // WARNING: Removing unreachable block (ram,0x000180857ea9)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18085aca0(longlong param_1)
+/**
+ * UI系统高级控制器 - 控制UI系统高级功能和操作
+ * 
+ * 功能：
+ * - 控制UI系统高级功能
+ * - 管理系统操作流程
+ * - 处理复杂业务逻辑
+ * - 执行系统协调和同步
+ * 
+ * @param system_context 系统上下文指针
+ * @return 控制操作结果
+ */
+ulonglong UISystem_AdvancedController(longlong system_context)
 
 {
   int *piVar1;
@@ -2027,9 +2127,27 @@ LAB_180858e04:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * UI系统配置管理器 - 管理UI系统配置和参数
+ * 
+ * 功能：
+ * - 管理UI系统配置参数
+ * - 处理配置验证和更新
+ * - 控制系统行为设置
+ * - 执行配置同步和保存
+ * 
+ * @param system_context 系统上下文指针
+ * @param config_data 配置数据指针
+ * @param time_params 时间参数指针
+ * @param resource_data 资源数据指针
+ * @param operation_flag 操作标志
+ * @param sync_flag 同步标志
+ * @param extra_param 额外参数
+ * @return 配置管理结果
+ */
 undefined8
-FUN_18085acd0(longlong param_1,longlong *param_2,uint *param_3,ulonglong *param_4,char param_5,
-             char param_6,undefined1 param_7)
+UISystem_ConfigManager(longlong system_context, longlong *config_data, uint *time_params, 
+                      ulonglong *resource_data, char operation_flag, char sync_flag, undefined1 extra_param)
 
 {
   longlong *plVar1;
@@ -2169,9 +2287,29 @@ LAB_18085add0:
 
 
 
+/**
+ * UI系统缓冲区管理器 - 管理UI系统缓冲区和内存
+ * 
+ * 功能：
+ * - 管理UI系统缓冲区操作
+ * - 处理内存分配和释放
+ * - 控制数据缓冲和同步
+ * - 执行缓冲区优化和清理
+ * 
+ * @param system_context 系统上下文指针
+ * @param buffer_data 缓冲区数据指针
+ * @param size_params 大小参数指针
+ * @param offset_params 偏移参数指针
+ * @param resource_params 资源参数指针
+ * @param extra_context 额外上下文
+ * @param operation_flag 操作标志
+ * @param sync_flag 同步标志
+ * @return 缓冲区管理结果
+ */
 undefined8
-FUN_18085b050(longlong param_1,undefined8 param_2,uint *param_3,uint *param_4,uint *param_5,
-             longlong param_6,undefined1 param_7,undefined1 param_8)
+UISystem_BufferManager(longlong system_context, undefined8 buffer_data, uint *size_params, 
+                      uint *offset_params, uint *resource_params, longlong extra_context, 
+                      undefined1 operation_flag, undefined1 sync_flag)
 
 {
   uint *puVar1;
@@ -2228,7 +2366,21 @@ FUN_18085b050(longlong param_1,undefined8 param_2,uint *param_3,uint *param_4,ui
 
 
 
-undefined8 FUN_18085b200(longlong param_1,uint *param_2,longlong *param_3)
+/**
+ * UI系统高级数据验证器 - 执行高级数据验证和处理
+ * 
+ * 功能：
+ * - 验证UI系统数据有效性
+ * - 处理数据转换和格式化
+ * - 执行数据完整性检查
+ * - 管理数据同步和更新
+ * 
+ * @param system_context 系统上下文指针
+ * @param time_params 时间参数指针
+ * @param resource_params 资源参数指针
+ * @return 验证处理结果
+ */
+undefined8 UISystem_AdvancedDataValidator(longlong system_context, uint *time_params, longlong *resource_params)
 
 {
   uint uVar1;
@@ -2348,7 +2500,22 @@ undefined8 FUN_18085b200(longlong param_1,uint *param_2,longlong *param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18085b580(longlong param_1,uint param_2,longlong param_3,longlong param_4)
+/**
+ * UI系统高级数据处理器 - 执行高级数据处理操作
+ * 
+ * 功能：
+ * - 处理UI系统高级数据操作
+ * - 管理数据流和缓冲区
+ * - 执行数据同步和验证
+ * - 控制数据生命周期
+ * 
+ * @param system_context 系统上下文指针
+ * @param data_size 数据大小
+ * @param extra_context 额外上下文
+ * @param resource_context 资源上下文
+ * @return 数据处理结果
+ */
+int UISystem_AdvancedDataProcessor(longlong system_context, uint data_size, longlong extra_context, longlong resource_context)
 
 {
   longlong *plVar1;
@@ -2530,7 +2697,22 @@ LAB_18085b8b5:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18085b595(longlong param_1,uint param_2,longlong param_3,longlong param_4)
+/**
+ * UI系统数据流处理器 - 处理UI系统数据流操作
+ * 
+ * 功能：
+ * - 处理UI系统数据流
+ * - 管理数据传输和同步
+ * - 执行数据流控制
+ * - 处理数据流状态
+ * 
+ * @param system_context 系统上下文指针
+ * @param stream_size 数据流大小
+ * @param stream_context 数据流上下文
+ * @param resource_context 资源上下文
+ * @return 数据流处理结果
+ */
+int UISystem_DataStreamProcessor(longlong system_context, uint stream_size, longlong stream_context, longlong resource_context)
 
 {
   longlong *plVar1;

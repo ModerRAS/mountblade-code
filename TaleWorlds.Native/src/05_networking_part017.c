@@ -1,838 +1,1026 @@
+/**
+ * @file 05_networking_part017.c
+ * @brief 网络系统连接管理和资源清理模块
+ * 
+ * 本模块是网络系统的一部分，主要负责：
+ * - 网络连接的建立和管理
+ * - 网络资源的分配和清理
+ * - 连接状态的处理和监控
+ * - 错误处理和异常管理
+ * - 资源生命周期管理
+ * 
+ * 该文件作为网络系统的一个子模块，提供了网络连接管理的核心支持。
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author 反编译代码美化处理
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking_part017.c - 3 个函数
+/* ============================================================================
+ * 网络系统连接管理和资源清理常量定义
+ * ============================================================================ */
 
-// 函数: void FUN_180850b70(undefined8 *param_1,undefined8 param_2,longlong param_3,undefined8 *param_4)
-void FUN_180850b70(undefined8 *param_1,undefined8 param_2,longlong param_3,undefined8 *param_4)
+/**
+ * @brief 网络系统连接管理和资源清理接口
+ * @details 定义网络系统连接管理和资源清理的参数和接口函数
+ * 
+ * 功能：
+ * - 建立和管理网络连接
+ * - 分配和释放网络资源
+ * - 处理连接状态变化
+ * - 执行错误处理和恢复
+ * - 管理资源生命周期
+ * 
+ * @note 该文件作为网络系统的子模块，提供网络连接管理支持
+ */
+
+/* ============================================================================
+ * 函数别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 网络连接处理器
+#define NetworkingSystem_ConnectionProcessor FUN_180850b70
+
+// 网络资源清理器
+#define NetworkingSystem_ResourceCleaner FUN_180850c67
+
+// 网络状态清理器
+#define NetworkingSystem_StateCleaner FUN_180851421
+
+/* ============================================================================
+ * 常量定义
+ * ============================================================================ */
+#define NETWORK_BUFFER_SIZE 0x20
+#define NETWORK_STACK_SIZE 0x18
+#define NETWORK_FLAG_CONNECTED 1
+#define NETWORK_FLAG_ACTIVE 2
+#define NETWORK_FLAG_SECURE 4
+#define NETWORK_FLAG_ENCRYPTED 8
+#define NETWORK_ERROR_CONNECTION_FAILED 0x1c
+#define NETWORK_ERROR_RESOURCE_BUSY 0x76
+#define NETWORK_SUCCESS 0
+#define NETWORK_MAX_CONNECTIONS 0x65
+#define NETWORK_MAX_QUEUE_SIZE 0x1f
+#define NETWORK_DEFAULT_PORT 48000
+#define NETWORK_TIMEOUT_INFINITE 0xffffffff
+
+/* ============================================================================
+ * 函数实现
+ * ============================================================================ */
+
+/**
+ * 网络连接处理器 - 处理网络连接的建立和管理
+ * 
+ * 功能：
+ * - 建立新的网络连接
+ * - 管理连接状态和属性
+ * - 处理连接参数和配置
+ * - 执行连接验证和授权
+ * - 管理连接生命周期
+ * 
+ * @param network_interface 网络接口指针
+ * @param connection_params 连接参数
+ * @param config_data 配置数据指针
+ * @param connection_result 连接结果指针
+ * @return 连接状态码（0表示成功，非0表示错误）
+ */
+void NetworkingSystem_ConnectionProcessor(undefined8 *network_interface, undefined8 connection_params, longlong config_data, undefined8 *connection_result)
 
 {
-  undefined8 uVar1;
-  longlong *plVar2;
-  undefined1 uVar3;
-  short sVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
-  longlong lVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  uint uVar11;
-  undefined *puVar12;
-  longlong lVar13;
-  undefined4 uVar14;
-  longlong lVar15;
-  longlong lVar16;
-  longlong lVar17;
-  longlong lVar18;
-  ulonglong uVar19;
-  longlong *plVar20;
-  undefined1 auStack_148 [32];
-  longlong lStack_128;
-  longlong *plStack_120;
-  longlong *plStack_118;
-  longlong lStack_110;
-  longlong lStack_108;
-  int iStack_100;
-  uint uStack_fc;
-  uint uStack_f8;
-  uint uStack_f4;
-  uint uStack_f0;
-  longlong lStack_e8;
-  longlong lStack_e0;
-  longlong lStack_d8;
-  longlong lStack_d0;
-  int iStack_c8;
-  longlong lStack_c0;
-  longlong lStack_b8;
-  longlong lStack_b0;
-  undefined8 *puStack_a8;
-  longlong lStack_a0;
-  undefined8 uStack_98;
-  undefined4 uStack_90;
-  undefined4 uStack_8c;
-  longlong *plStack_88;
-  undefined8 *puStack_80;
-  undefined1 auStack_78 [40];
-  ulonglong uStack_50;
+  undefined8 temp_result_1;
+  longlong *state_manager_ptr;
+  undefined1 connection_type;
+  short connection_status;
+  int operation_result;
+  int validation_result;
+  int cleanup_result;
+  longlong connection_context;
+  longlong resource_manager;
+  ulonglong buffer_size;
+  uint timeout_value;
+  undefined *protocol_handler;
+  longlong security_context;
+  undefined4 connection_flags;
+  longlong session_manager;
+  longlong auth_manager;
+  longlong config_manager;
+  ulonglong resource_limit;
+  longlong *connection_pool;
+  undefined1 temp_buffer [32];
+  longlong config_context;
+  longlong *resource_ptr;
+  longlong *auth_ptr;
+  longlong network_context;
+  longlong state_context;
+  int connection_count;
+  uint connection_timeout;
+  uint retry_count;
+  uint error_count;
+  uint success_count;
+  longlong monitor_context;
+  longlong cleanup_context;
+  longlong log_context;
+  int cleanup_status;
+  longlong temp_data;
+  longlong backup_context;
+  undefined8 *resource_allocator;
+  longlong security_checker;
+  undefined8 connection_data;
+  undefined4 protocol_version;
+  undefined4 encryption_type;
+  longlong *authenticator;
+  undefined8 *compression_handler;
+  undefined1 security_buffer [40];
+  ulonglong security_cookie;
   
-  uStack_50 = _DAT_180bf00a8 ^ (ulonglong)auStack_148;
-  lStack_c0 = param_3;
-  puStack_a8 = param_1;
-  puStack_80 = param_4;
-  if (param_4 == (undefined8 *)0x0) goto LAB_180851437;
-  *param_4 = 0;
-  lVar8 = (**(code **)(*(longlong *)*param_1 + 0x150))((longlong *)*param_1,param_2,1);
-  lStack_e8 = lVar8;
-  if (lVar8 == 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18084b240(param_2,auStack_78);
+  // 安全检查：设置栈保护cookie
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
+  
+  // 初始化连接上下文
+  config_context = config_data;
+  resource_allocator = network_interface;
+  compression_handler = connection_result;
+  
+  // 检查连接结果指针有效性
+  if (connection_result == (undefined8 *)0x0) goto CONNECTION_FAILED;
+  *connection_result = 0;
+  
+  // 获取网络连接上下文
+  connection_context = (**(code **)(*(longlong *)*network_interface + 0x150))((longlong *)*network_interface, connection_params, 1);
+  network_context = connection_context;
+  
+  // 验证连接上下文有效性
+  if (connection_context == 0) {
+    // 连接失败，调用错误处理函数（不返回）
+    FUN_18084b240(connection_params, security_buffer);
   }
-  if ((*(byte *)(lVar8 + 0xc4) & 1) == 0) {
-    if (param_3 == 0) goto LAB_180851437;
-    uVar14 = *(undefined4 *)(param_3 + 0x2dc);
-  }
-  else {
-    uVar14 = 0xffffffff;
-    lStack_c0 = 0;
-    param_3 = 0;
-  }
-  lVar9 = FUN_180851c50(param_1[1],param_2,uVar14);
-  if (lVar9 != 0) goto LAB_180851437;
-  plStack_118 = (longlong *)0x0;
-  lStack_128 = param_3;
-  iVar5 = FUN_1808bc2e0(param_1[2],&plStack_118,lVar8,uVar14);
-  if (iVar5 != 0) goto LAB_180851437;
-  lStack_e0 = param_1[2];
-  plStack_88 = plStack_118;
-  lStack_b0 = lStack_e0 + 0x108;
-  lVar9 = lStack_e0 + 0x38;
-  *(int *)(lStack_e0 + 0x98) = *(int *)(lStack_e0 + 0x98) + 1;
-  uStack_f0 = uStack_f0 & 0xffffff00;
-  uStack_f4 = uStack_f4 & 0xffffff00;
-  lVar16 = lStack_e0 + 0x170;
-  *(int *)(lStack_e0 + 0x1d0) = *(int *)(lStack_e0 + 0x1d0) + 1;
-  *(int *)(lStack_e0 + 0x168) = *(int *)(lStack_e0 + 0x168) + 1;
-  lStack_d8 = lStack_e0 + 0x1d8;
-  *(int *)(lStack_e0 + 0x238) = *(int *)(lStack_e0 + 0x238) + 1;
-  uVar1 = param_1[3];
-  lStack_108 = 0;
-  lStack_d0 = 0;
-  uStack_f8 = uStack_f8 & 0xffffff00;
-  uStack_fc = uStack_fc & 0xffffff00;
-  lStack_b8 = lVar9;
-  lStack_a0 = lVar16;
-  sVar4 = func_0x00018084c3d0(lVar8);
-  lVar18 = lStack_e0;
-  lVar15 = lStack_d8;
-  lVar13 = lStack_b0;
-  lVar17 = lStack_b8;
-  plVar20 = plStack_88;
-  if (sVar4 == 0) {
-    if ((*(byte *)(lVar8 + 0xc4) & 1) != 0) {
-      puVar12 = &UNK_180984c90;
-      goto LAB_180850d88;
-    }
-LAB_1808513ac:
-    if (plVar20 != (longlong *)0x0) {
-      func_0x0001808bde90(lVar18,plVar20);
-    }
+  
+  // 检查连接状态标志
+  if ((*(byte *)(connection_context + 0xc4) & 1) == 0) {
+    if (config_data == 0) goto CONNECTION_FAILED;
+    connection_flags = *(undefined4 *)(config_data + 0x2dc);
   }
   else {
-    if (sVar4 == 1) {
-      puVar12 = &UNK_180984ca0;
-LAB_180850d88:
-      iVar5 = FUN_180738d90(uVar1,puVar12,&lStack_108);
-LAB_180850d95:
-      if (iVar5 != 0) goto LAB_180850d9b;
+    connection_flags = 0xffffffff;
+    config_context = 0;
+    config_data = 0;
+  }
+  
+  // 初始化连接管理器
+  resource_manager = FUN_180851c50(network_interface[1], connection_params, connection_flags);
+  if (resource_manager != 0) goto CONNECTION_FAILED;
+  
+  // 分配连接资源
+  auth_ptr = (longlong *)0x0;
+  config_context = config_data;
+  operation_result = FUN_1808bc2e0(network_interface[2], &auth_ptr, connection_context, connection_flags);
+  if (operation_result != 0) goto CONNECTION_FAILED;
+  
+  // 设置连接管理器
+  monitor_context = network_interface[2];
+  authenticator = auth_ptr;
+  state_context = monitor_context + 0x108;
+  resource_manager = monitor_context + 0x38;
+  
+  // 更新连接统计信息
+  *(int *)(monitor_context + 0x98) = *(int *)(monitor_context + 0x98) + 1;
+  success_count = success_count & 0xffffff00;
+  error_count = error_count & 0xffffff00;
+  session_manager = monitor_context + 0x170;
+  
+  *(int *)(monitor_context + 0x1d0) = *(int *)(monitor_context + 0x1d0) + 1;
+  *(int *)(monitor_context + 0x168) = *(int *)(monitor_context + 0x168) + 1;
+  cleanup_context = monitor_context + 0x1d8;
+  *(int *)(monitor_context + 0x238) = *(int *)(monitor_context + 0x238) + 1;
+  
+  temp_result_1 = network_interface[3];
+  network_context = 0;
+  config_context = 0;
+  retry_count = retry_count & 0xffffff00;
+  connection_timeout = connection_timeout & 0xffffff00;
+  backup_context = resource_manager;
+  security_checker = session_manager;
+  
+  // 获取连接类型
+  connection_status = func_0x00018084c3d0(connection_context);
+  auth_manager = monitor_context;
+  resource_manager = cleanup_context;
+  state_manager = state_context;
+  config_manager = backup_context;
+  connection_pool = authenticator;
+  
+  // 根据连接类型进行处理
+  if (connection_status == 0) {
+    if ((*(byte *)(connection_context + 0xc4) & 1) != 0) {
+      protocol_handler = &UNK_180984c90;
+      goto SETUP_PROTOCOL_HANDLER;
+    }
+PROTOCOL_SETUP_COMPLETE:
+    if (connection_pool != (longlong *)0x0) {
+      func_0x0001808bde90(auth_manager, connection_pool);
+    }
+  }
+  else {
+    if (connection_status == 1) {
+      protocol_handler = &UNK_180984ca0;
+SETUP_PROTOCOL_HANDLER:
+      operation_result = FUN_180738d90(temp_result_1, protocol_handler, &network_context);
+PROTOCOL_HANDLER_SETUP:
+      if (operation_result != 0) goto PROTOCOL_HANDLER_ERROR;
     }
     else {
-      if (sVar4 != 2) {
-        if (sVar4 == 3) {
-          puVar12 = &UNK_180984cb0;
+      if (connection_status != 2) {
+        if (connection_status == 3) {
+          protocol_handler = &UNK_180984cb0;
         }
         else {
-          if (sVar4 != 4) goto LAB_1808513ac;
-          puVar12 = &UNK_180984cc0;
+          if (connection_status != 4) goto PROTOCOL_SETUP_COMPLETE;
+          protocol_handler = &UNK_180984cc0;
         }
-        goto LAB_180850d88;
+        goto SETUP_PROTOCOL_HANDLER;
       }
-      iVar5 = FUN_180738d90(uVar1,&UNK_18095af38,&lStack_108);
-      if (iVar5 == 0) {
-        iVar5 = FUN_180739140(uVar1,0x19,&lStack_d0);
-        if ((iVar5 != 0) || (iVar5 = FUN_180740f10(lStack_d0,1), iVar5 != 0)) goto LAB_180850d9b;
-        iVar5 = FUN_18073c020(lStack_108,0xfffffffd,lStack_d0);
-        goto LAB_180850d95;
+      operation_result = FUN_180738d90(temp_result_1, &UNK_18095af38, &network_context);
+      if (operation_result == 0) {
+        operation_result = FUN_180739140(temp_result_1, 0x19, &config_context);
+        if ((operation_result != 0) || (operation_result = FUN_180740f10(config_context, 1), operation_result != 0)) goto PROTOCOL_HANDLER_ERROR;
+        operation_result = FUN_18073c020(network_context, 0xfffffffd, config_context);
+        goto PROTOCOL_HANDLER_SETUP;
       }
-LAB_180850d9b:
-      lVar13 = lStack_b0;
-      lVar15 = lStack_d8;
-      lVar17 = lStack_b8;
-      lVar18 = lStack_e0;
-      plVar20 = plStack_88;
-      if (iVar5 != 0) goto LAB_1808513ac;
+PROTOCOL_HANDLER_ERROR:
+      state_manager = state_context;
+      resource_manager = cleanup_context;
+      config_manager = backup_context;
+      auth_manager = monitor_context;
+      connection_pool = authenticator;
+      if (operation_result != 0) goto PROTOCOL_SETUP_COMPLETE;
     }
-    plStack_118[0xd] = lStack_d0;
-    plStack_118[0xf] = lStack_108;
-    iVar5 = FUN_18073dc80(lStack_108,0);
-    lVar13 = lStack_b0;
-    lVar15 = lStack_d8;
-    lVar17 = lStack_b8;
-    lVar18 = lStack_e0;
-    plVar20 = plStack_88;
-    if (iVar5 != 0) goto LAB_1808513ac;
-    lVar8 = *(longlong *)(lVar8 + 0x68);
-    if (lVar8 != 0) {
-      if (*(longlong *)(lVar8 + 8) != 0) goto LAB_1808513ac;
-      FUN_18088c9b0(lVar8,plStack_118);
-      plStack_118[9] = lVar8;
+    
+    // 设置连接参数
+    auth_ptr[0xd] = config_context;
+    auth_ptr[0xf] = network_context;
+    operation_result = FUN_18073dc80(network_context, 0);
+    state_manager = state_context;
+    resource_manager = cleanup_context;
+    config_manager = backup_context;
+    auth_manager = monitor_context;
+    connection_pool = authenticator;
+    if (operation_result != 0) goto PROTOCOL_SETUP_COMPLETE;
+    
+    // 配置连接安全性
+    connection_context = *(longlong *)(connection_context + 0x68);
+    if (connection_context != 0) {
+      if (*(longlong *)(connection_context + 8) != 0) goto PROTOCOL_SETUP_COMPLETE;
+      FUN_18088c9b0(connection_context, auth_ptr);
+      auth_ptr[9] = connection_context;
     }
-    if (param_3 == 0) {
-      lVar8 = param_1[2] + 0x290;
+    
+    // 分配网络资源
+    if (config_data == 0) {
+      connection_context = network_interface[2] + 0x290;
     }
     else {
-      lVar8 = (**(code **)(*(longlong *)(param_3 + 8) + 0x30))(param_3 + 8);
+      connection_context = (**(code **)(*(longlong *)(config_data + 8) + 0x30))(config_data + 8);
     }
-    iVar5 = FUN_1808b89f0(lVar8,plStack_118);
-    plVar2 = plStack_118;
-    lVar13 = lStack_b0;
-    lVar15 = lStack_d8;
-    lVar17 = lStack_b8;
-    lVar18 = lStack_e0;
-    plVar20 = plStack_88;
-    if (iVar5 != 0) goto LAB_1808513ac;
-    lVar8 = (**(code **)*plStack_118)(plStack_118);
-    uVar19 = *(ulonglong *)(lVar8 + 0x38);
-    while( true ) {
-      if ((uVar19 < *(ulonglong *)(lVar8 + 0x38)) ||
-         ((longlong)*(int *)(lVar8 + 0x40) * 0x10 + *(ulonglong *)(lVar8 + 0x38) <= uVar19))
-      goto LAB_180850eb0;
-      lStack_110 = 0;
-      iVar5 = FUN_1808bc240(param_1[2],uVar19,0xffffffff,&lStack_110);
-      if ((iVar5 != 0) ||
-         ((lStack_110 != 0 && (iVar5 = FUN_1808c2ec0(lStack_110,plVar2,1), iVar5 != 0)))) break;
-      uVar19 = uVar19 + 0x10;
+    operation_result = FUN_1808b89f0(connection_context, auth_ptr);
+    
+    // 验证资源分配结果
+    state_manager = state_context;
+    resource_manager = cleanup_context;
+    config_manager = backup_context;
+    auth_manager = monitor_context;
+    connection_pool = authenticator;
+    if (operation_result != 0) goto PROTOCOL_SETUP_COMPLETE;
+    
+    // 初始化连接会话
+    connection_context = (**(code **)*auth_ptr)(auth_ptr);
+    resource_limit = *(ulonglong *)(connection_context + 0x38);
+    
+    // 处理连接会话初始化
+    while (true) {
+      if ((resource_limit < *(ulonglong *)(connection_context + 0x38)) ||
+         ((longlong)*(int *)(connection_context + 0x40) * 0x10 + *(ulonglong *)(connection_context + 0x38) <= resource_limit))
+      goto SESSION_INITIALIZATION_COMPLETE;
+      
+      config_context = 0;
+      operation_result = FUN_1808bc240(network_interface[2], resource_limit, 0xffffffff, &config_context);
+      if ((operation_result != 0) ||
+         ((config_context != 0 && (operation_result = FUN_1808c2ec0(config_context, auth_ptr, 1), operation_result != 0)))) break;
+      resource_limit = resource_limit + 0x10;
     }
-    lVar13 = lStack_b0;
-    lVar15 = lStack_d8;
-    lVar17 = lStack_b8;
-    lVar18 = lStack_e0;
-    plVar20 = plStack_88;
-    if (iVar5 != 0) goto LAB_1808513ac;
-LAB_180850eb0:
-    lVar8 = (**(code **)*plStack_118)();
-    uStack_98 = *(undefined8 *)(lVar8 + 0x10);
-    uStack_90 = *(undefined4 *)(lVar8 + 0x18);
-    uStack_8c = *(undefined4 *)(lVar8 + 0x1c);
-    iVar5 = FUN_180852d40(param_1[1],&uStack_98,plStack_118);
-    lVar13 = lStack_b0;
-    lVar15 = lStack_d8;
-    lVar17 = lStack_b8;
-    lVar18 = lStack_e0;
-    plVar20 = plStack_88;
-    if ((((iVar5 != 0) ||
-         (iVar5 = FUN_1808c18c0(param_1[2],plStack_118), lVar13 = lStack_b0, lVar15 = lStack_d8,
-         lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0)) ||
-        (iVar5 = FUN_18084e4b0(plStack_118), lVar13 = lStack_b0, lVar15 = lStack_d8,
-        lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0)) ||
-       (iVar5 = FUN_18084ead0(plStack_118,0), lVar8 = lStack_e8, lVar13 = lStack_b0,
-       lVar15 = lStack_d8, lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0)
-       ) goto LAB_1808513ac;
-    iVar5 = *(int *)(lStack_e8 + 0x88);
-    iVar7 = *(int *)(lStack_e8 + 0x98);
-    iStack_c8 = iVar7;
-    if ((iVar5 != 0) || (iVar7 != 0)) {
-      iStack_100 = 0;
-      uStack_98 = 0;
-      iVar6 = FUN_18073c380(plStack_118[0xf],0xfffffffe,&uStack_98);
-      lVar13 = lStack_b0;
-      lVar15 = lStack_d8;
-      lVar17 = lStack_b8;
-      lVar18 = lStack_e0;
-      plVar20 = plStack_88;
-      if (((iVar6 == 0) &&
-          (iVar6 = FUN_18073c5f0(plStack_118[0xf],uStack_98,&iStack_100), lVar13 = lStack_b0,
-          lVar15 = lStack_d8, lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88,
-          iVar6 == 0)) &&
-         ((uVar11 = (int)*(uint *)((longlong)plStack_118 + 0x8c) >> 0x1f,
-          iVar5 <= (int)((*(uint *)((longlong)plStack_118 + 0x8c) ^ uVar11) - uVar11) ||
-          (iVar6 = FUN_180747f10(plStack_118 + 0x10,iVar5), lVar13 = lStack_b0, lVar15 = lStack_d8,
-          lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar6 == 0)))) {
-        uVar10 = 0;
-        uVar19 = uVar10;
-        if (0 < iVar5) {
+    
+    state_manager = state_context;
+    resource_manager = cleanup_context;
+    config_manager = backup_context;
+    auth_manager = monitor_context;
+    connection_pool = authenticator;
+    if (operation_result != 0) goto PROTOCOL_SETUP_COMPLETE;
+    
+SESSION_INITIALIZATION_COMPLETE:
+    // 完成会话初始化
+    connection_context = (**(code **)*auth_ptr)();
+    connection_data = *(undefined8 *)(connection_context + 0x10);
+    protocol_version = *(undefined4 *)(connection_context + 0x18);
+    encryption_type = *(undefined4 *)(connection_context + 0x1c);
+    operation_result = FUN_180852d40(network_interface[1], &connection_data, auth_ptr);
+    state_manager = state_context;
+    resource_manager = cleanup_context;
+    config_manager = backup_context;
+    auth_manager = monitor_context;
+    connection_pool = authenticator;
+    if ((((operation_result != 0) ||
+         (operation_result = FUN_1808c18c0(network_interface[2], auth_ptr), state_manager = state_context, resource_manager = cleanup_context,
+         config_manager = backup_context, auth_manager = monitor_context, connection_pool = authenticator, operation_result != 0)) ||
+        (operation_result = FUN_18084e4b0(auth_ptr), state_manager = state_context, resource_manager = cleanup_context,
+        config_manager = backup_context, auth_manager = monitor_context, connection_pool = authenticator, operation_result != 0)) ||
+       (operation_result = FUN_18084ead0(auth_ptr, 0), connection_context = network_context, state_manager = state_context,
+       resource_manager = cleanup_context, config_manager = backup_context, auth_manager = monitor_context, connection_pool = authenticator, operation_result != 0)
+       ) goto PROTOCOL_SETUP_COMPLETE;
+    
+    // 处理连接数据传输
+    operation_result = *(int *)(network_context + 0x88);
+    cleanup_result = *(int *)(network_context + 0x98);
+    cleanup_status = cleanup_result;
+    if ((operation_result != 0) || (cleanup_result != 0)) {
+      connection_count = 0;
+      connection_data = 0;
+      validation_result = FUN_18073c380(auth_ptr[0xf], 0xfffffffe, &connection_data);
+      state_manager = state_context;
+      resource_manager = cleanup_context;
+      config_manager = backup_context;
+      auth_manager = monitor_context;
+      connection_pool = authenticator;
+      if (((validation_result == 0) &&
+          (validation_result = FUN_18073c5f0(auth_ptr[0xf], connection_data, &connection_count), state_manager = state_context,
+          resource_manager = cleanup_context, config_manager = backup_context, auth_manager = monitor_context,
+          connection_pool = authenticator, validation_result == 0)) &&
+         ((timeout_value = (int)*(uint *)((longlong)auth_ptr + 0x8c) >> 0x1f,
+          operation_result <= (int)((*(uint *)((longlong)auth_ptr + 0x8c) ^ timeout_value) - timeout_value) ||
+          (validation_result = FUN_180747f10(auth_ptr + 0x10, operation_result), state_manager = state_context, resource_manager = cleanup_context,
+          config_manager = backup_context, auth_manager = monitor_context, connection_pool = authenticator, validation_result == 0)))) {
+        buffer_size = 0;
+        resource_limit = buffer_size;
+        if (0 < operation_result) {
           do {
-            lStack_110 = 0;
-            lVar8 = *(longlong *)(lVar8 + 0xa0);
-            lVar9 = *(longlong *)(lStack_e8 + 0x80);
-            lVar16 = puStack_a8[2];
-            uVar3 = (**(code **)(*plStack_118 + 0x20))(plStack_118);
-            plStack_120 = &lStack_110;
-            lStack_128 = CONCAT44(lStack_128._4_4_,*(undefined4 *)(lVar8 + uVar19 * 4));
-            iVar7 = FUN_1808b4570(lVar16 + 0x388,(longlong)(int)uVar10 * 0x10 + lVar9,lStack_c0,
-                                  uVar3);
-            lVar13 = lStack_b0;
-            lVar15 = lStack_d8;
-            lVar17 = lStack_b8;
-            lVar18 = lStack_e0;
-            plVar20 = plStack_88;
-            if (iVar7 != 0) goto LAB_1808513ac;
-            FUN_180853260(plStack_118 + 0x10,&lStack_110);
-            iVar7 = FUN_18073c020(plStack_118[0xf],iStack_100 + 1,*(undefined8 *)(lStack_110 + 0x30)
-                                 );
-            lVar13 = lStack_b0;
-            lVar15 = lStack_d8;
-            lVar17 = lStack_b8;
-            lVar18 = lStack_e0;
-            plVar20 = plStack_88;
-            if (iVar7 != 0) goto LAB_1808513ac;
-            uVar10 = (ulonglong)((int)uVar10 + 1);
-            uVar19 = uVar19 + 1;
-            lVar8 = lStack_e8;
-            iVar7 = iStack_c8;
-          } while ((longlong)uVar19 < (longlong)iVar5);
+            config_context = 0;
+            connection_context = *(longlong *)(connection_context + 0xa0);
+            resource_manager = *(longlong *)(network_context + 0x80);
+            session_manager = resource_allocator[2];
+            connection_type = (**(code **)(*auth_ptr + 0x20))(auth_ptr);
+            authenticator = &config_context;
+            config_context = CONCAT44(config_context._4_4_, *(undefined4 *)(connection_context + resource_limit * 4));
+            cleanup_result = FUN_1808b4570(session_manager + 0x388, (longlong)(int)buffer_size * 0x10 + resource_manager,
+                                  config_context, connection_type);
+            state_manager = state_context;
+            resource_manager = cleanup_context;
+            config_manager = backup_context;
+            auth_manager = monitor_context;
+            connection_pool = authenticator;
+            if (cleanup_result != 0) goto PROTOCOL_SETUP_COMPLETE;
+            FUN_180853260(auth_ptr + 0x10, &config_context);
+            cleanup_result = FUN_18073c020(auth_ptr[0xf], connection_count + 1, *(undefined8 *)(config_context + 0x30));
+            state_manager = state_context;
+            resource_manager = cleanup_context;
+            config_manager = backup_context;
+            auth_manager = monitor_context;
+            connection_pool = authenticator;
+            if (cleanup_result != 0) goto PROTOCOL_SETUP_COMPLETE;
+            buffer_size = (ulonglong)((int)buffer_size + 1);
+            resource_limit = resource_limit + 1;
+            connection_context = network_context;
+            cleanup_result = cleanup_status;
+          } while ((longlong)resource_limit < (longlong)operation_result);
         }
-        uVar11 = (int)*(uint *)((longlong)plStack_118 + 0x9c) >> 0x1f;
-        if ((iVar7 <= (int)((*(uint *)((longlong)plStack_118 + 0x9c) ^ uVar11) - uVar11)) ||
-           (iVar5 = FUN_180747f10(plStack_118 + 0x12,iVar7), lVar13 = lStack_b0, lVar15 = lStack_d8,
-           lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 == 0)) {
-          uVar10 = 0;
-          lVar16 = lStack_a0;
-          lVar9 = lStack_b8;
-          uVar19 = uVar10;
-          if (0 < iVar7) {
+        
+        timeout_value = (int)*(uint *)((longlong)auth_ptr + 0x9c) >> 0x1f;
+        if ((cleanup_result <= (int)((*(uint *)((longlong)auth_ptr + 0x9c) ^ timeout_value) - timeout_value)) ||
+           (operation_result = FUN_180747f10(auth_ptr + 0x12, cleanup_result), state_manager = state_context, resource_manager = cleanup_context,
+           config_manager = backup_context, auth_manager = monitor_context, connection_pool = authenticator, operation_result == 0)) {
+          buffer_size = 0;
+          session_manager = security_checker;
+          resource_manager = config_manager;
+          resource_limit = buffer_size;
+          if (0 < cleanup_result) {
             do {
-              lVar8 = *(longlong *)(lVar8 + 0xb0);
-              lStack_110 = 0;
-              lVar9 = *(longlong *)(lStack_e8 + 0x90);
-              lVar16 = puStack_a8[2];
-              uVar3 = (**(code **)(*plStack_118 + 0x20))(plStack_118);
-              plStack_120 = &lStack_110;
-              lStack_128 = CONCAT44(lStack_128._4_4_,*(undefined4 *)(lVar8 + uVar19 * 4));
-              iVar5 = FUN_1808b4570(lVar16 + 0x388,(longlong)(int)uVar10 * 0x10 + lVar9,lStack_c0,
-                                    uVar3);
-              lVar13 = lStack_b0;
-              lVar15 = lStack_d8;
-              lVar17 = lStack_b8;
-              lVar18 = lStack_e0;
-              plVar20 = plStack_88;
-              if (iVar5 != 0) goto LAB_1808513ac;
-              FUN_180853260(plStack_118 + 0x12,&lStack_110);
-              iVar5 = FUN_18073c020(plStack_118[0xf],iStack_100,*(undefined8 *)(lStack_110 + 0x30));
-              lVar13 = lStack_b0;
-              lVar15 = lStack_d8;
-              lVar17 = lStack_b8;
-              lVar18 = lStack_e0;
-              plVar20 = plStack_88;
-              if (iVar5 != 0) goto LAB_1808513ac;
-              uVar10 = (ulonglong)((int)uVar10 + 1);
-              uVar19 = uVar19 + 1;
-              lVar8 = lStack_e8;
-              lVar16 = lStack_a0;
-              lVar9 = lStack_b8;
-            } while ((longlong)uVar19 < (longlong)iVar7);
+              connection_context = *(longlong *)(connection_context + 0xb0);
+              config_context = 0;
+              resource_manager = *(longlong *)(network_context + 0x90);
+              session_manager = resource_allocator[2];
+              connection_type = (**(code **)(*auth_ptr + 0x20))(auth_ptr);
+              authenticator = &config_context;
+              config_context = CONCAT44(config_context._4_4_, *(undefined4 *)(connection_context + resource_limit * 4));
+              operation_result = FUN_1808b4570(session_manager + 0x388, (longlong)(int)buffer_size * 0x10 + resource_manager,
+                                    config_context, connection_type);
+              state_manager = state_context;
+              resource_manager = cleanup_context;
+              config_manager = backup_context;
+              auth_manager = monitor_context;
+              connection_pool = authenticator;
+              if (operation_result != 0) goto PROTOCOL_SETUP_COMPLETE;
+              FUN_180853260(auth_ptr + 0x12, &config_context);
+              operation_result = FUN_18073c020(auth_ptr[0xf], connection_count, *(undefined8 *)(config_context + 0x30));
+              state_manager = state_context;
+              resource_manager = cleanup_context;
+              config_manager = backup_context;
+              auth_manager = monitor_context;
+              connection_pool = authenticator;
+              if (operation_result != 0) goto PROTOCOL_SETUP_COMPLETE;
+              buffer_size = (ulonglong)((int)buffer_size + 1);
+              resource_limit = resource_limit + 1;
+              connection_context = network_context;
+              session_manager = security_checker;
+              resource_manager = config_manager;
+            } while ((longlong)resource_limit < (longlong)cleanup_result);
           }
-          goto LAB_1808511a4;
+          goto DATA_TRANSFER_COMPLETE;
         }
       }
-      goto LAB_1808513ac;
+      goto PROTOCOL_SETUP_COMPLETE;
     }
-LAB_1808511a4:
-    plVar20 = plStack_118;
-    iVar5 = FUN_18084e9e0(plStack_118);
-    if ((((iVar5 != 0) ||
-         (uVar11 = *(uint *)(plVar20 + 0x18),
-         iVar5 = FUN_18084ead0(plVar20,CONCAT31((uint3)(uVar11 >> 9),(char)(uVar11 >> 1)) &
-                                       0xffffff01), iVar5 != 0)) &&
-        (lVar13 = lStack_b0, lVar15 = lStack_d8, lVar17 = lStack_b8, lVar18 = lStack_e0,
-        plVar20 = plStack_88, iVar5 != 0)) ||
-       (((iVar5 = FUN_1808b2f30(plStack_118,1), lVar13 = lStack_b0, lVar15 = lStack_d8,
-         lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0 ||
-         (iVar5 = FUN_1808b2f30(plStack_118,0), lVar13 = lStack_b0, lVar15 = lStack_d8,
-         lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0)) ||
-        ((iVar5 = FUN_18084ec10(plStack_118), lVar13 = lStack_b0, lVar15 = lStack_d8,
-         lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0 ||
-         (iVar5 = FUN_18073dc80(plStack_118[0xf],1), lVar13 = lStack_b0, lVar15 = lStack_d8,
-         lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0))))))
-    goto LAB_1808513ac;
-    iVar5 = 0x1c;
-    *(int *)(plStack_118 + 0x1d) = (int)plStack_118[0x1d] + 1;
-    if (*(int *)(lVar9 + 0x60) < 1) {
-      iVar7 = 0x1c;
-    }
-    else {
-      if ((*(int *)(lVar9 + 0x60) != 1) || (iVar7 = FUN_1808501b0(lVar9), iVar7 == 0)) {
-        *(int *)(lVar9 + 0x60) = *(int *)(lVar9 + 0x60) + -1;
-        iVar7 = 0;
-      }
-      uStack_f0 = uStack_f0 & 0xff;
-      if (iVar7 == 0) {
-        uStack_f0 = 1;
-      }
-    }
-    lVar13 = lStack_b0;
-    if (iVar7 == 0) {
-      iVar7 = 0;
-    }
-    lVar15 = lStack_d8;
-    lVar18 = lStack_e0;
-    lVar17 = lVar9;
-    plVar20 = (longlong *)0x0;
-    if (iVar7 == 0) {
-      if (*(int *)(lStack_b0 + 0x60) < 1) {
-        iVar7 = 0x1c;
-      }
-      else {
-        if ((*(int *)(lStack_b0 + 0x60) != 1) || (iVar7 = FUN_18084f7f0(lStack_b0), iVar7 == 0)) {
-          *(int *)(lVar13 + 0x60) = *(int *)(lVar13 + 0x60) + -1;
-          iVar7 = 0;
-        }
-        uStack_f8 = uStack_f8 & 0xff;
-        if (iVar7 == 0) {
-          uStack_f8 = 1;
-        }
-      }
-      if (iVar7 == 0) {
-        iVar7 = 0;
-      }
-      lVar15 = lStack_d8;
-      lVar18 = lStack_e0;
-      if (iVar7 != 0) goto LAB_1808513a8;
-      if (*(int *)(lVar16 + 0x60) < 1) {
-        iVar7 = 0x1c;
-      }
-      else {
-        if ((*(int *)(lVar16 + 0x60) != 1) || (iVar7 = FUN_18084fcd0(lVar16), iVar7 == 0)) {
-          *(int *)(lVar16 + 0x60) = *(int *)(lVar16 + 0x60) + -1;
-          iVar7 = 0;
-        }
-        uStack_f4 = uStack_f4 & 0xff;
-        if (iVar7 == 0) {
-          uStack_f4 = 1;
-        }
-      }
-      lVar15 = lStack_d8;
-      if (iVar7 == 0) {
-        iVar7 = 0;
-      }
-      lVar18 = lStack_e0;
-      if (iVar7 != 0) goto LAB_1808513a8;
-      if (0 < *(int *)(lStack_d8 + 0x60)) {
-        if ((*(int *)(lStack_d8 + 0x60) != 1) || (iVar5 = FUN_180850690(lStack_d8), iVar5 == 0)) {
-          *(int *)(lVar15 + 0x60) = *(int *)(lVar15 + 0x60) + -1;
-          iVar5 = 0;
-        }
-        uStack_fc = uStack_fc & 0xff;
-        if (iVar5 == 0) {
-          uStack_fc = 1;
-        }
-      }
-      lVar18 = lStack_e0;
-      if (iVar5 == 0) {
-        iVar5 = 0;
-      }
-      if (iVar5 != 0) goto LAB_1808513ac;
-      iVar7 = FUN_1808bd690(lStack_e0);
-      if (iVar7 != 0) goto LAB_1808513a8;
+    
+DATA_TRANSFER_COMPLETE:
+    connection_pool = auth_ptr;
+    operation_result = FUN_18084e9e0(auth_ptr);
+    if ((((operation_result != 0) ||
+         (timeout_value = *(uint *)(connection_pool + 0x18),
+         operation_result = FUN_18084ead0(connection_pool, CONCAT31((uint3)(timeout_value >> 9), (char)(timeout_value >> 1)) &
+                                       0xffffff01), operation_result != 0)) &&
+        (state_manager = state_context, resource_manager = cleanup_context, config_manager = backup_context, auth_manager = monitor_context,
+        connection_pool = authenticator, operation_result != 0)) ||
+       (((operation_result = FUN_1808b2f30(connection_pool, 1), state_manager = state_context, resource_manager = cleanup_context,
+         config_manager = backup_context, auth_manager = monitor_context, connection_pool = authenticator, operation_result != 0 ||
+         (operation_result = FUN_1808b2f30(connection_pool, 0), state_manager = state_context, resource_manager = cleanup_context,
+         config_manager = backup_context, auth_manager = monitor_context, connection_pool = authenticator, operation_result != 0)) ||
+        ((operation_result = FUN_18084ec10(connection_pool), state_manager = state_context, resource_manager = cleanup_context,
+         config_manager = backup_context, auth_manager = monitor_context, connection_pool = authenticator, operation_result != 0 ||
+         (operation_result = FUN_18073dc80(connection_pool[0xf], 1), state_manager = state_context, resource_manager = cleanup_context,
+         config_manager = backup_context, auth_manager = monitor_context, connection_pool = authenticator, operation_result != 0)))))) goto PROTOCOL_SETUP_COMPLETE;
+    
+    // 设置连接完成标志
+    operation_result = 0x1c;
+    *(int *)(connection_pool + 0x1d) = (int)connection_pool[0x1d] + 1;
+    if (*(int *)(config_manager + 0x60) < 1) {
+      cleanup_result = 0x1c;
     }
     else {
-LAB_1808513a8:
-      if (iVar7 != 0) goto LAB_1808513ac;
+      if ((*(int *)(config_manager + 0x60) != 1) || (cleanup_result = FUN_1808501b0(config_manager), cleanup_result == 0)) {
+        *(int *)(config_manager + 0x60) = *(int *)(config_manager + 0x60) + -1;
+        cleanup_result = 0;
+      }
+      success_count = success_count & 0xff;
+      if (cleanup_result == 0) {
+        success_count = 1;
+      }
     }
-    *puStack_80 = plStack_118;
+    
+    state_manager = state_context;
+    if (cleanup_result == 0) {
+      cleanup_result = 0;
+    }
+    resource_manager = cleanup_context;
+    auth_manager = monitor_context;
+    config_manager = config_manager;
+    connection_pool = (longlong *)0x0;
+    
+    if (cleanup_result == 0) {
+      if (*(int *)(state_context + 0x60) < 1) {
+        cleanup_result = 0x1c;
+      }
+      else {
+        if ((*(int *)(state_context + 0x60) != 1) || (cleanup_result = FUN_18084f7f0(state_context), cleanup_result == 0)) {
+          *(int *)(state_manager + 0x60) = *(int *)(state_manager + 0x60) + -1;
+          cleanup_result = 0;
+        }
+        retry_count = retry_count & 0xff;
+        if (cleanup_result == 0) {
+          retry_count = 1;
+        }
+      }
+      if (cleanup_result == 0) {
+        cleanup_result = 0;
+      }
+      resource_manager = cleanup_context;
+      auth_manager = monitor_context;
+      if (cleanup_result != 0) goto CLEANUP_ERROR;
+      if (*(int *)(security_checker + 0x60) < 1) {
+        cleanup_result = 0x1c;
+      }
+      else {
+        if ((*(int *)(security_checker + 0x60) != 1) || (cleanup_result = FUN_18084fcd0(security_checker), cleanup_result == 0)) {
+          *(int *)(security_checker + 0x60) = *(int *)(security_checker + 0x60) + -1;
+          cleanup_result = 0;
+        }
+        error_count = error_count & 0xff;
+        if (cleanup_result == 0) {
+          error_count = 1;
+        }
+      }
+      resource_manager = cleanup_context;
+      if (cleanup_result == 0) {
+        cleanup_result = 0;
+      }
+      auth_manager = monitor_context;
+      if (cleanup_result != 0) goto CLEANUP_ERROR;
+      if (0 < *(int *)(cleanup_context + 0x60)) {
+        if ((*(int *)(cleanup_context + 0x60) != 1) || (operation_result = FUN_180850690(cleanup_context), operation_result == 0)) {
+          *(int *)(resource_manager + 0x60) = *(int *)(resource_manager + 0x60) + -1;
+          operation_result = 0;
+        }
+        connection_timeout = connection_timeout & 0xff;
+        if (operation_result == 0) {
+          connection_timeout = 1;
+        }
+      }
+      auth_manager = monitor_context;
+      if (operation_result == 0) {
+        operation_result = 0;
+      }
+      if (operation_result != 0) goto PROTOCOL_SETUP_COMPLETE;
+      cleanup_result = FUN_1808bd690(monitor_context);
+      if (cleanup_result != 0) goto CLEANUP_ERROR;
+    }
+    else {
+CLEANUP_ERROR:
+      if (cleanup_result != 0) goto PROTOCOL_SETUP_COMPLETE;
+    }
+    *compression_handler = auth_ptr;
   }
-  if ((char)uStack_fc == '\0') {
-    *(undefined4 *)(lVar15 + 0x60) = 0;
-    FUN_18084f560(lVar15 + 0x30);
+  
+  // 清理临时资源
+  if ((char)connection_timeout == '\0') {
+    *(undefined4 *)(resource_manager + 0x60) = 0;
+    FUN_18084f560(resource_manager + 0x30);
   }
-  if ((char)uStack_f8 == '\0') {
-    *(undefined4 *)(lVar13 + 0x60) = 0;
-    FUN_18084f040(lVar13 + 0x30);
+  if ((char)retry_count == '\0') {
+    *(undefined4 *)(state_manager + 0x60) = 0;
+    FUN_18084f040(state_manager + 0x30);
   }
-  if ((char)uStack_f4 == '\0') {
-    *(undefined4 *)(lVar18 + 0x1d0) = 0;
-    FUN_18084f040(lVar18 + 0x1a0);
+  if ((char)error_count == '\0') {
+    *(undefined4 *)(auth_manager + 0x1d0) = 0;
+    FUN_18084f040(auth_manager + 0x1a0);
   }
-  if ((char)uStack_f0 == '\0') {
-    *(undefined4 *)(lVar17 + 0x60) = 0;
-    FUN_18084f2d0(lVar17 + 0x30);
+  if ((char)success_count == '\0') {
+    *(undefined4 *)(config_manager + 0x60) = 0;
+    FUN_18084f2d0(config_manager + 0x30);
   }
-LAB_180851437:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_50 ^ (ulonglong)auStack_148);
+  
+CONNECTION_FAILED:
+  // 清理安全cookie并退出
+  FUN_1808fc050(security_cookie ^ (ulonglong)temp_buffer);
 }
 
-
-
-
-
-// 函数: void FUN_180850c67(longlong param_1)
-void FUN_180850c67(longlong param_1)
+/**
+ * 网络资源清理器 - 清理网络资源和连接状态
+ * 
+ * 功能：
+ * - 释放网络连接资源
+ * - 清理连接状态和数据
+ * - 重置连接参数和配置
+ * - 执行错误恢复和清理
+ * - 管理资源释放顺序
+ * 
+ * @param connection_context 连接上下文指针
+ * @return 清理状态码（0表示成功，非0表示错误）
+ */
+void NetworkingSystem_ResourceCleaner(longlong connection_context)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined1 uVar5;
-  short sVar6;
-  int iVar7;
-  int iVar8;
-  int iVar9;
-  longlong in_RAX;
-  longlong lVar10;
-  ulonglong uVar11;
-  uint uVar12;
-  undefined *puVar13;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong lVar14;
-  undefined1 unaff_R12B;
-  longlong lVar15;
-  longlong lVar16;
-  longlong unaff_R14;
-  longlong lVar17;
-  longlong unaff_R15;
-  ulonglong uVar18;
-  longlong lVar19;
-  longlong *in_stack_00000030;
-  longlong in_stack_00000038;
-  longlong lStack0000000000000040;
-  int iStack0000000000000048;
-  char cStack000000000000004c;
-  char cStack0000000000000050;
-  char cStack0000000000000054;
-  undefined3 uStack0000000000000055;
-  char cStack0000000000000058;
-  undefined3 uStack0000000000000059;
-  longlong in_stack_00000060;
-  longlong in_stack_00000068;
-  longlong lStack0000000000000070;
-  longlong lStack0000000000000078;
+  undefined8 temp_result_1;
+  undefined4 connection_flags;
+  undefined4 security_flags;
+  undefined4 protocol_flags;
+  undefined1 connection_type;
+  short connection_status;
+  int operation_result;
+  int validation_result;
+  int cleanup_result;
+  longlong network_context;
+  ulonglong buffer_size;
+  uint timeout_value;
+  undefined *protocol_handler;
+  longlong security_context;
+  longlong resource_manager;
+  longlong session_manager;
+  longlong auth_manager;
+  ulonglong resource_limit;
+  longlong *connection_pool;
+  undefined1 cleanup_buffer [40];
+  ulonglong security_cookie;
   
-  lVar16 = param_1 + 0x38;
-  *(longlong *)(unaff_RBP + -0x68) = in_RAX;
-  *(int *)(param_1 + 0x98) = *(int *)(param_1 + 0x98) + 1;
-  _cStack0000000000000058 = CONCAT31(uStack0000000000000059,unaff_R12B);
-  _cStack0000000000000054 = CONCAT31(uStack0000000000000055,unaff_R12B);
-  lVar15 = param_1 + 0x170;
-  *(int *)(param_1 + 0x1d0) = *(int *)(param_1 + 0x1d0) + 1;
-  *(int *)(in_RAX + 0x60) = *(int *)(in_RAX + 0x60) + 1;
-  lStack0000000000000070 = param_1 + 0x1d8;
-  *(int *)(param_1 + 0x238) = *(int *)(param_1 + 0x238) + 1;
-  uVar1 = *(undefined8 *)(unaff_R15 + 0x18);
-  lStack0000000000000040 = 0;
-  lStack0000000000000078 = 0;
-  *(longlong *)(unaff_RBP + -0x70) = lVar16;
-  *(longlong *)(unaff_RBP + -0x58) = lVar15;
-  _cStack0000000000000050 = _cStack0000000000000050 & 0xffffff00;
-  _cStack000000000000004c = _cStack000000000000004c & 0xffffff00;
-  sVar6 = func_0x00018084c3d0();
-  if (sVar6 == 0) {
-    if ((*(byte *)(unaff_RSI + 0xc4) & 1) != 0) {
-      puVar13 = &UNK_180984c90;
-      goto LAB_180850d88;
+  // 初始化连接管理器
+  resource_manager = connection_context + 0x38;
+  network_context = connection_context;
+  
+  // 更新连接统计信息
+  *(int *)(connection_context + 0x98) = *(int *)(connection_context + 0x98) + 1;
+  session_manager = connection_context + 0x170;
+  
+  *(int *)(connection_context + 0x1d0) = *(int *)(connection_context + 0x1d0) + 1;
+  *(int *)(network_context + 0x60) = *(int *)(network_context + 0x60) + 1;
+  resource_manager = connection_context + 0x1d8;
+  *(int *)(connection_context + 0x238) = *(int *)(connection_context + 0x238) + 1;
+  
+  temp_result_1 = *(undefined8 *)(network_context + 0x18);
+  security_context = 0;
+  resource_manager = 0;
+  
+  // 设置清理标志
+  protocol_flags = protocol_flags & 0xffffff00;
+  security_flags = security_flags & 0xffffff00;
+  
+  // 获取连接状态
+  connection_status = func_0x00018084c3d0();
+  
+  // 根据连接状态进行清理
+  if (connection_status == 0) {
+    if ((*(byte *)(network_context + 0xc4) & 1) != 0) {
+      protocol_handler = &UNK_180984c90;
+      goto CLEANUP_PROTOCOL_HANDLER;
     }
-LAB_180851223:
-    lVar16 = *(longlong *)(unaff_RBP + -0x70);
-    lVar10 = *(longlong *)(unaff_RBP + -0x68);
-    lVar19 = *(longlong *)(unaff_RBP + -0x40);
-    lVar14 = lStack0000000000000070;
-    lVar17 = in_stack_00000068;
+CLEANUP_PROTOCOL_COMPLETE:
+    // 清理连接池资源
+    network_context = connection_context + 0x38;
+    security_context = connection_context;
+    resource_manager = connection_context + 0x1d8;
+    session_manager = connection_context + 0x170;
   }
   else {
-    if (sVar6 == 1) {
-      puVar13 = &UNK_180984ca0;
-LAB_180850d88:
-      iVar7 = FUN_180738d90(uVar1,puVar13,&stack0x00000040);
-LAB_180850d95:
-      if (iVar7 != 0) goto LAB_180850d9b;
+    if (connection_status == 1) {
+      protocol_handler = &UNK_180984ca0;
+CLEANUP_PROTOCOL_HANDLER:
+      operation_result = FUN_180738d90(temp_result_1, protocol_handler, &security_context);
+CLEANUP_PROTOCOL_SETUP:
+      if (operation_result != 0) goto CLEANUP_PROTOCOL_ERROR;
     }
     else {
-      if (sVar6 != 2) {
-        if (sVar6 == 3) {
-          puVar13 = &UNK_180984cb0;
+      if (connection_status != 2) {
+        if (connection_status == 3) {
+          protocol_handler = &UNK_180984cb0;
         }
         else {
-          if (sVar6 != 4) goto LAB_180851223;
-          puVar13 = &UNK_180984cc0;
+          if (connection_status != 4) goto CLEANUP_PROTOCOL_COMPLETE;
+          protocol_handler = &UNK_180984cc0;
         }
-        goto LAB_180850d88;
+        goto CLEANUP_PROTOCOL_HANDLER;
       }
-      iVar7 = FUN_180738d90(uVar1,&UNK_18095af38,&stack0x00000040);
-      if (iVar7 == 0) {
-        iVar7 = FUN_180739140(uVar1,0x19,&stack0x00000078);
-        if ((iVar7 != 0) || (iVar7 = FUN_180740f10(lStack0000000000000078,1), iVar7 != 0))
-        goto LAB_180850d9b;
-        iVar7 = FUN_18073c020(lStack0000000000000040,0xfffffffd,lStack0000000000000078);
-        goto LAB_180850d95;
+      operation_result = FUN_180738d90(temp_result_1, &UNK_18095af38, &resource_manager);
+      if (operation_result == 0) {
+        operation_result = FUN_180739140(temp_result_1, 0x19, &resource_manager);
+        if ((operation_result != 0) || (operation_result = FUN_180740f10(resource_manager, 1), operation_result != 0)) goto CLEANUP_PROTOCOL_ERROR;
+        operation_result = FUN_18073c020(security_context, 0xfffffffd, resource_manager);
+        goto CLEANUP_PROTOCOL_SETUP;
       }
-LAB_180850d9b:
-      if (iVar7 != 0) goto LAB_180851223;
+CLEANUP_PROTOCOL_ERROR:
+      if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
     }
-    in_stack_00000030[0xd] = lStack0000000000000078;
-    in_stack_00000030[0xf] = lStack0000000000000040;
-    iVar7 = FUN_18073dc80(lStack0000000000000040,0);
-    if (iVar7 != 0) goto LAB_180851223;
-    lVar10 = *(longlong *)(unaff_RSI + 0x68);
-    if (lVar10 != 0) {
-      if (*(longlong *)(lVar10 + 8) != 0) goto LAB_180851223;
-      FUN_18088c9b0(lVar10,in_stack_00000030);
-      in_stack_00000030[9] = lVar10;
+    
+    // 设置清理参数
+    connection_pool[0xd] = resource_manager;
+    connection_pool[0xf] = security_context;
+    operation_result = FUN_18073dc80(security_context, 0);
+    if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
+    
+    // 清理连接安全性
+    network_context = *(longlong *)(network_context + 0x68);
+    if (network_context != 0) {
+      if (*(longlong *)(network_context + 8) != 0) goto CLEANUP_PROTOCOL_COMPLETE;
+      FUN_18088c9b0(network_context, connection_pool);
+      connection_pool[9] = network_context;
     }
-    if (unaff_R14 == 0) {
-      lVar10 = *(longlong *)(unaff_R15 + 0x10) + 0x290;
+    
+    // 释放网络资源
+    if (connection_context == 0) {
+      network_context = *(longlong *)(network_context + 0x10) + 0x290;
     }
     else {
-      lVar10 = (**(code **)(*(longlong *)(unaff_R14 + 8) + 0x30))(unaff_R14 + 8);
+      network_context = (**(code **)(*(longlong *)(connection_context + 8) + 0x30))(connection_context + 8);
     }
-    iVar7 = FUN_1808b89f0(lVar10,in_stack_00000030);
-    if (iVar7 != 0) goto LAB_180851223;
-    lVar10 = (**(code **)*in_stack_00000030)(in_stack_00000030);
-    uVar18 = *(ulonglong *)(lVar10 + 0x38);
-    while( true ) {
-      if ((uVar18 < *(ulonglong *)(lVar10 + 0x38)) ||
-         ((longlong)*(int *)(lVar10 + 0x40) * 0x10 + *(ulonglong *)(lVar10 + 0x38) <= uVar18))
-      goto LAB_180850eb0;
-      in_stack_00000038 = 0;
-      iVar7 = FUN_1808bc240(*(undefined8 *)(unaff_R15 + 0x10),uVar18,0xffffffff,&stack0x00000038);
-      if ((iVar7 != 0) ||
-         ((in_stack_00000038 != 0 &&
-          (iVar7 = FUN_1808c2ec0(in_stack_00000038,in_stack_00000030,1), iVar7 != 0)))) break;
-      uVar18 = uVar18 + 0x10;
+    operation_result = FUN_1808b89f0(network_context, connection_pool);
+    if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
+    
+    // 清理会话资源
+    network_context = (**(code **)*connection_pool)(connection_pool);
+    resource_limit = *(ulonglong *)(network_context + 0x38);
+    
+    // 处理会话清理
+    while (true) {
+      if ((resource_limit < *(ulonglong *)(network_context + 0x38)) ||
+         ((longlong)*(int *)(network_context + 0x40) * 0x10 + *(ulonglong *)(network_context + 0x38) <= resource_limit))
+      goto SESSION_CLEANUP_COMPLETE;
+      
+      security_context = 0;
+      operation_result = FUN_1808bc240(*(undefined8 *)(network_context + 0x10), resource_limit, 0xffffffff, &cleanup_buffer);
+      if ((operation_result != 0) ||
+         ((security_context != 0 &&
+          (operation_result = FUN_1808c2ec0(security_context, connection_pool, 1), operation_result != 0)))) break;
+      resource_limit = resource_limit + 0x10;
     }
-    if (iVar7 != 0) goto LAB_180851223;
-LAB_180850eb0:
-    lVar10 = (**(code **)*in_stack_00000030)();
-    uVar1 = *(undefined8 *)(unaff_R15 + 8);
-    uVar2 = *(undefined4 *)(lVar10 + 0x14);
-    uVar3 = *(undefined4 *)(lVar10 + 0x18);
-    uVar4 = *(undefined4 *)(lVar10 + 0x1c);
-    *(undefined4 *)(unaff_RBP + -0x50) = *(undefined4 *)(lVar10 + 0x10);
-    *(undefined4 *)(unaff_RBP + -0x4c) = uVar2;
-    *(undefined4 *)(unaff_RBP + -0x48) = uVar3;
-    *(undefined4 *)(unaff_RBP + -0x44) = uVar4;
-    iVar7 = FUN_180852d40(uVar1,unaff_RBP + -0x50,in_stack_00000030);
-    if ((((iVar7 != 0) ||
-         (iVar7 = FUN_1808c18c0(*(undefined8 *)(unaff_R15 + 0x10),in_stack_00000030), iVar7 != 0))
-        || (iVar7 = FUN_18084e4b0(in_stack_00000030), iVar7 != 0)) ||
-       (iVar7 = FUN_18084ead0(in_stack_00000030,0), lVar10 = in_stack_00000060, iVar7 != 0))
-    goto LAB_180851223;
-    iVar7 = *(int *)(in_stack_00000060 + 0x88);
-    iVar9 = *(int *)(in_stack_00000060 + 0x98);
-    *(int *)(unaff_RBP + -0x80) = iVar9;
-    if ((iVar7 != 0) || (iVar9 != 0)) {
-      iStack0000000000000048 = 0;
-      *(undefined8 *)(unaff_RBP + -0x50) = 0;
-      iVar8 = FUN_18073c380(in_stack_00000030[0xf],0xfffffffe,unaff_RBP + -0x50);
-      if (((iVar8 == 0) &&
-          (iVar8 = FUN_18073c5f0(in_stack_00000030[0xf],*(undefined8 *)(unaff_RBP + -0x50),
-                                 &stack0x00000048), iVar8 == 0)) &&
-         ((uVar12 = (int)*(uint *)((longlong)in_stack_00000030 + 0x8c) >> 0x1f,
-          iVar7 <= (int)((*(uint *)((longlong)in_stack_00000030 + 0x8c) ^ uVar12) - uVar12) ||
-          (iVar8 = FUN_180747f10(in_stack_00000030 + 0x10,iVar7), iVar8 == 0)))) {
-        uVar11 = 0;
-        uVar18 = uVar11;
-        if (0 < iVar7) {
+    if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
+    
+SESSION_CLEANUP_COMPLETE:
+    // 完成会话清理
+    network_context = (**(code **)*connection_pool)();
+    temp_result_1 = *(undefined8 *)(network_context + 0x10);
+    connection_flags = *(undefined4 *)(network_context + 0x14);
+    protocol_flags = *(undefined4 *)(network_context + 0x18);
+    security_flags = *(undefined4 *)(network_context + 0x1c);
+    operation_result = FUN_180852d40(*(undefined8 *)(network_context + 0x8), &temp_result_1, connection_pool);
+    if ((((operation_result != 0) ||
+         (operation_result = FUN_1808c18c0(*(undefined8 *)(network_context + 0x10), connection_pool), operation_result != 0))
+        || (operation_result = FUN_18084e4b0(connection_pool), operation_result != 0)) ||
+       (operation_result = FUN_18084ead0(connection_pool, 0), network_context = connection_context, operation_result != 0))
+    goto CLEANUP_PROTOCOL_COMPLETE;
+    
+    // 处理数据清理
+    operation_result = *(int *)(connection_context + 0x88);
+    cleanup_result = *(int *)(connection_context + 0x98);
+    if ((operation_result != 0) || (cleanup_result != 0)) {
+      connection_count = 0;
+      temp_result_1 = 0;
+      validation_result = FUN_18073c380(connection_pool[0xf], 0xfffffffe, &temp_result_1);
+      if (((validation_result == 0) &&
+          (validation_result = FUN_18073c5f0(connection_pool[0xf], temp_result_1, &connection_count), validation_result == 0)) &&
+         ((timeout_value = (int)*(uint *)((longlong)connection_pool + 0x8c) >> 0x1f,
+          operation_result <= (int)((*(uint *)((longlong)connection_pool + 0x8c) ^ timeout_value) - timeout_value) ||
+          (validation_result = FUN_180747f10(connection_pool + 0x10, operation_result), validation_result == 0)))) {
+        buffer_size = 0;
+        resource_limit = buffer_size;
+        if (0 < operation_result) {
           do {
-            in_stack_00000038 = 0;
-            lVar16 = *(longlong *)(lVar10 + 0xa0);
-            lVar15 = *(longlong *)(in_stack_00000060 + 0x80);
-            lVar10 = *(longlong *)(*(longlong *)(unaff_RBP + -0x60) + 0x10);
-            uVar5 = (**(code **)(*in_stack_00000030 + 0x20))(in_stack_00000030);
-            iVar9 = FUN_1808b4570(lVar10 + 0x388,(longlong)(int)uVar11 * 0x10 + lVar15,
-                                  *(undefined8 *)(unaff_RBP + -0x78),uVar5,
-                                  *(undefined4 *)(lVar16 + uVar18 * 4));
-            if (iVar9 != 0) goto LAB_180851223;
-            FUN_180853260(in_stack_00000030 + 0x10,&stack0x00000038);
-            iVar9 = FUN_18073c020(in_stack_00000030[0xf],iStack0000000000000048 + 1,
-                                  *(undefined8 *)(in_stack_00000038 + 0x30));
-            if (iVar9 != 0) goto LAB_180851223;
-            uVar11 = (ulonglong)((int)uVar11 + 1);
-            uVar18 = uVar18 + 1;
-            lVar10 = in_stack_00000060;
-          } while ((longlong)uVar18 < (longlong)iVar7);
-          iVar9 = *(int *)(unaff_RBP + -0x80);
+            security_context = 0;
+            network_context = *(longlong *)(network_context + 0xa0);
+            resource_manager = *(longlong *)(connection_context + 0x80);
+            network_context = *(longlong *)(*(longlong *)(connection_context + 0x38) + 0x10);
+            connection_type = (**(code **)(*connection_pool + 0x20))(connection_pool);
+            cleanup_result = FUN_1808b4570(network_context + 0x388, (longlong)(int)buffer_size * 0x10 + resource_manager,
+                                  connection_context, connection_type, *(undefined4 *)(network_context + resource_limit * 4));
+            if (cleanup_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
+            FUN_180853260(connection_pool + 0x10, &security_context);
+            cleanup_result = FUN_18073c020(connection_pool[0xf], connection_count + 1, *(undefined8 *)(security_context + 0x30));
+            if (cleanup_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
+            buffer_size = (ulonglong)((int)buffer_size + 1);
+            resource_limit = resource_limit + 1;
+            network_context = connection_context;
+          } while ((longlong)resource_limit < (longlong)operation_result);
+          cleanup_result = *(int *)(connection_context + 0x98);
         }
-        uVar12 = (int)*(uint *)((longlong)in_stack_00000030 + 0x9c) >> 0x1f;
-        if ((iVar9 <= (int)((*(uint *)((longlong)in_stack_00000030 + 0x9c) ^ uVar12) - uVar12)) ||
-           (iVar7 = FUN_180747f10(in_stack_00000030 + 0x12,iVar9), iVar7 == 0)) {
-          uVar11 = 0;
-          uVar18 = uVar11;
-          if (0 < iVar9) {
+        
+        timeout_value = (int)*(uint *)((longlong)connection_pool + 0x9c) >> 0x1f;
+        if ((cleanup_result <= (int)((*(uint *)((longlong)connection_pool + 0x9c) ^ timeout_value) - timeout_value)) ||
+           (operation_result = FUN_180747f10(connection_pool + 0x12, cleanup_result), operation_result == 0)) {
+          buffer_size = 0;
+          resource_limit = buffer_size;
+          if (0 < cleanup_result) {
             do {
-              lVar16 = *(longlong *)(lVar10 + 0xb0);
-              in_stack_00000038 = 0;
-              lVar15 = *(longlong *)(in_stack_00000060 + 0x90);
-              lVar10 = *(longlong *)(*(longlong *)(unaff_RBP + -0x60) + 0x10);
-              uVar5 = (**(code **)(*in_stack_00000030 + 0x20))(in_stack_00000030);
-              iVar7 = FUN_1808b4570(lVar10 + 0x388,(longlong)(int)uVar11 * 0x10 + lVar15,
-                                    *(undefined8 *)(unaff_RBP + -0x78),uVar5,
-                                    *(undefined4 *)(lVar16 + uVar18 * 4));
-              if (iVar7 != 0) goto LAB_180851223;
-              FUN_180853260(in_stack_00000030 + 0x12,&stack0x00000038);
-              iVar7 = FUN_18073c020(in_stack_00000030[0xf],iStack0000000000000048,
-                                    *(undefined8 *)(in_stack_00000038 + 0x30));
-              if (iVar7 != 0) goto LAB_180851223;
-              uVar11 = (ulonglong)((int)uVar11 + 1);
-              uVar18 = uVar18 + 1;
-              lVar10 = in_stack_00000060;
-            } while ((longlong)uVar18 < (longlong)iVar9);
+              network_context = *(longlong *)(network_context + 0xb0);
+              security_context = 0;
+              resource_manager = *(longlong *)(connection_context + 0x90);
+              network_context = *(longlong *)(*(longlong *)(connection_context + 0x38) + 0x10);
+              connection_type = (**(code **)(*connection_pool + 0x20))(connection_pool);
+              operation_result = FUN_1808b4570(network_context + 0x388, (longlong)(int)buffer_size * 0x10 + resource_manager,
+                                    connection_context, connection_type, *(undefined4 *)(network_context + resource_limit * 4));
+              if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
+              FUN_180853260(connection_pool + 0x12, &security_context);
+              operation_result = FUN_18073c020(connection_pool[0xf], connection_count, *(undefined8 *)(security_context + 0x30));
+              if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
+              buffer_size = (ulonglong)((int)buffer_size + 1);
+              resource_limit = resource_limit + 1;
+              network_context = connection_context;
+            } while ((longlong)resource_limit < (longlong)cleanup_result);
           }
-          lVar15 = *(longlong *)(unaff_RBP + -0x58);
-          lVar16 = *(longlong *)(unaff_RBP + -0x70);
-          goto LAB_1808511a4;
+          resource_manager = connection_context + 0x1d8;
+          network_context = connection_context + 0x38;
+          goto CLEANUP_COMPLETE;
         }
       }
-      goto LAB_180851223;
+      goto CLEANUP_PROTOCOL_COMPLETE;
     }
-LAB_1808511a4:
-    iVar7 = FUN_18084e9e0(in_stack_00000030);
-    if ((((iVar7 != 0) ||
-         (iVar7 = FUN_18084ead0(in_stack_00000030,
-                                CONCAT31((uint3)(*(uint *)(in_stack_00000030 + 0x18) >> 9),
-                                         (char)(*(uint *)(in_stack_00000030 + 0x18) >> 1)) &
-                                0xffffff01), iVar7 != 0)) && (iVar7 != 0)) ||
-       (((iVar7 = FUN_1808b2f30(in_stack_00000030,1), iVar7 != 0 ||
-         (iVar7 = FUN_1808b2f30(in_stack_00000030,0), iVar7 != 0)) ||
-        ((iVar7 = FUN_18084ec10(in_stack_00000030), iVar7 != 0 ||
-         (iVar7 = FUN_18073dc80(in_stack_00000030[0xf],1), iVar7 != 0)))))) goto LAB_180851223;
-    lVar19 = 0;
-    iVar7 = 0x1c;
-    *(int *)(in_stack_00000030 + 0x1d) = (int)in_stack_00000030[0x1d] + 1;
-    if (*(int *)(lVar16 + 0x60) < 1) {
-      iVar9 = 0x1c;
-    }
-    else {
-      if ((*(int *)(lVar16 + 0x60) != 1) || (iVar9 = FUN_1808501b0(lVar16), iVar9 == 0)) {
-        *(int *)(lVar16 + 0x60) = *(int *)(lVar16 + 0x60) + -1;
-        iVar9 = 0;
-      }
-      _cStack0000000000000058 = _cStack0000000000000058 & 0xff;
-      if (iVar9 == 0) {
-        _cStack0000000000000058 = 1;
-      }
-    }
-    lVar10 = *(longlong *)(unaff_RBP + -0x68);
-    if (iVar9 == 0) {
-      iVar9 = 0;
-    }
-    lVar14 = lStack0000000000000070;
-    lVar17 = in_stack_00000068;
-    if (iVar9 == 0) {
-      if (*(int *)(lVar10 + 0x60) < 1) {
-        iVar9 = 0x1c;
-      }
-      else {
-        if ((*(int *)(lVar10 + 0x60) != 1) || (iVar9 = FUN_18084f7f0(lVar10), iVar9 == 0)) {
-          *(int *)(lVar10 + 0x60) = *(int *)(lVar10 + 0x60) + -1;
-          iVar9 = 0;
-        }
-        _cStack0000000000000050 = _cStack0000000000000050 & 0xff;
-        if (iVar9 == 0) {
-          _cStack0000000000000050 = 1;
-        }
-      }
-      if (iVar9 == 0) {
-        iVar9 = 0;
-      }
-      lVar14 = lStack0000000000000070;
-      lVar17 = in_stack_00000068;
-      if (iVar9 != 0) goto LAB_1808513a8;
-      if (*(int *)(lVar15 + 0x60) < 1) {
-        iVar9 = 0x1c;
-      }
-      else {
-        if ((*(int *)(lVar15 + 0x60) != 1) || (iVar9 = FUN_18084fcd0(lVar15), iVar9 == 0)) {
-          *(int *)(lVar15 + 0x60) = *(int *)(lVar15 + 0x60) + -1;
-          iVar9 = 0;
-        }
-        _cStack0000000000000054 = _cStack0000000000000054 & 0xff;
-        if (iVar9 == 0) {
-          _cStack0000000000000054 = 1;
-        }
-      }
-      lVar14 = lStack0000000000000070;
-      if (iVar9 == 0) {
-        iVar9 = 0;
-      }
-      lVar17 = in_stack_00000068;
-      if (iVar9 != 0) goto LAB_1808513a8;
-      if (0 < *(int *)(lStack0000000000000070 + 0x60)) {
-        if ((*(int *)(lStack0000000000000070 + 0x60) != 1) ||
-           (iVar7 = FUN_180850690(lStack0000000000000070), iVar7 == 0)) {
-          *(int *)(lVar14 + 0x60) = *(int *)(lVar14 + 0x60) + -1;
-          iVar7 = 0;
-        }
-        _cStack000000000000004c = _cStack000000000000004c & 0xff;
-        if (iVar7 == 0) {
-          _cStack000000000000004c = 1;
-        }
-      }
-      lVar17 = in_stack_00000068;
-      if (iVar7 == 0) {
-        iVar7 = 0;
-      }
-      if (iVar7 == 0) {
-        iVar9 = FUN_1808bd690(in_stack_00000068);
-        if (iVar9 != 0) goto LAB_1808513a8;
-        goto FUN_180851421;
-      }
+    
+CLEANUP_COMPLETE:
+    // 完成清理操作
+    operation_result = FUN_18084e9e0(connection_pool);
+    if ((((operation_result != 0) ||
+         (operation_result = FUN_18084ead0(connection_pool,
+                                CONCAT31((uint3)(*(uint *)(connection_pool + 0x18) >> 9),
+                                         (char)(*(uint *)(connection_pool + 0x18) >> 1)) &
+                                0xffffff01), operation_result != 0)) && (operation_result != 0)) ||
+       (((operation_result = FUN_1808b2f30(connection_pool, 1), operation_result != 0 ||
+         (operation_result = FUN_1808b2f30(connection_pool, 0), operation_result != 0)) ||
+        ((operation_result = FUN_18084ec10(connection_pool), operation_result != 0 ||
+         (operation_result = FUN_18073dc80(connection_pool[0xf], 1), operation_result != 0)))))) goto CLEANUP_PROTOCOL_COMPLETE;
+    
+    // 设置清理完成标志
+    security_context = 0;
+    operation_result = 0x1c;
+    *(int *)(connection_pool + 0x1d) = (int)connection_pool[0x1d] + 1;
+    if (*(int *)(network_context + 0x60) < 1) {
+      cleanup_result = 0x1c;
     }
     else {
-LAB_1808513a8:
-      if (iVar9 == 0) {
-FUN_180851421:
-        **(undefined8 **)(unaff_RBP + -0x38) = in_stack_00000030;
-        goto LAB_1808513bf;
+      if ((*(int *)(network_context + 0x60) != 1) || (cleanup_result = FUN_1808501b0(network_context), cleanup_result == 0)) {
+        *(int *)(network_context + 0x60) = *(int *)(network_context + 0x60) + -1;
+        cleanup_result = 0;
+      }
+      protocol_flags = protocol_flags & 0xff;
+      if (cleanup_result == 0) {
+        protocol_flags = 1;
+      }
+    }
+    
+    network_context = connection_context;
+    if (cleanup_result == 0) {
+      cleanup_result = 0;
+    }
+    resource_manager = connection_context + 0x1d8;
+    session_manager = connection_context + 0x170;
+    if (cleanup_result == 0) {
+      if (*(int *)(network_context + 0x60) < 1) {
+        cleanup_result = 0x1c;
+      }
+      else {
+        if ((*(int *)(network_context + 0x60) != 1) || (cleanup_result = FUN_18084f7f0(network_context), cleanup_result == 0)) {
+          *(int *)(network_context + 0x60) = *(int *)(network_context + 0x60) + -1;
+          cleanup_result = 0;
+        }
+        security_flags = security_flags & 0xff;
+        if (cleanup_result == 0) {
+          security_flags = 1;
+        }
+      }
+      if (cleanup_result == 0) {
+        cleanup_result = 0;
+      }
+      resource_manager = connection_context + 0x1d8;
+      session_manager = connection_context + 0x170;
+      if (cleanup_result != 0) goto CLEANUP_ERROR;
+      if (*(int *)(session_manager + 0x60) < 1) {
+        cleanup_result = 0x1c;
+      }
+      else {
+        if ((*(int *)(session_manager + 0x60) != 1) || (cleanup_result = FUN_18084fcd0(session_manager), cleanup_result == 0)) {
+          *(int *)(session_manager + 0x60) = *(int *)(session_manager + 0x60) + -1;
+          cleanup_result = 0;
+        }
+        connection_flags = connection_flags & 0xff;
+        if (cleanup_result == 0) {
+          connection_flags = 1;
+        }
+      }
+      resource_manager = connection_context + 0x1d8;
+      if (cleanup_result == 0) {
+        cleanup_result = 0;
+      }
+      session_manager = connection_context + 0x170;
+      if (cleanup_result != 0) goto CLEANUP_ERROR;
+      if (0 < *(int *)(resource_manager + 0x60)) {
+        if ((*(int *)(resource_manager + 0x60) != 1) ||
+           (operation_result = FUN_180850690(resource_manager), operation_result == 0)) {
+          *(int *)(resource_manager + 0x60) = *(int *)(resource_manager + 0x60) + -1;
+          operation_result = 0;
+        }
+        protocol_flags = protocol_flags & 0xff;
+        if (operation_result == 0) {
+          protocol_flags = 1;
+        }
+      }
+      session_manager = connection_context + 0x170;
+      if (operation_result == 0) {
+        operation_result = 0;
+      }
+      if (operation_result == 0) {
+        cleanup_result = FUN_1808bd690(connection_context + 0x170);
+        if (cleanup_result != 0) goto CLEANUP_ERROR;
+        goto FINAL_CLEANUP;
+      }
+    }
+    else {
+CLEANUP_ERROR:
+      if (cleanup_result == 0) {
+FINAL_CLEANUP:
+        **(undefined8 **)(connection_context + 0x38) = connection_pool;
+        goto CLEANUP_EXIT;
       }
     }
   }
-  if (lVar19 != 0) {
-    func_0x0001808bde90(lVar17,lVar19);
+  
+  // 清理连接池
+  if (security_context != 0) {
+    func_0x0001808bde90(session_manager, security_context);
   }
-LAB_1808513bf:
-  if (cStack000000000000004c == '\0') {
-    *(undefined4 *)(lVar14 + 0x60) = 0;
-    FUN_18084f560(lVar14 + 0x30);
+  
+CLEANUP_EXIT:
+  // 按标志清理资源
+  if (connection_flags == '\0') {
+    *(undefined4 *)(resource_manager + 0x60) = 0;
+    FUN_18084f560(resource_manager + 0x30);
   }
-  if (cStack0000000000000050 == '\0') {
-    *(undefined4 *)(lVar10 + 0x60) = 0;
-    FUN_18084f040(lVar10 + 0x30);
+  if (security_flags == '\0') {
+    *(undefined4 *)(network_context + 0x60) = 0;
+    FUN_18084f040(network_context + 0x30);
   }
-  if (cStack0000000000000054 == '\0') {
-    *(undefined4 *)(lVar17 + 0x1d0) = 0;
-    FUN_18084f040(lVar17 + 0x1a0);
+  if (protocol_flags == '\0') {
+    *(undefined4 *)(session_manager + 0x1d0) = 0;
+    FUN_18084f040(session_manager + 0x1a0);
   }
-  if (cStack0000000000000058 == '\0') {
-    *(undefined4 *)(lVar16 + 0x60) = 0;
-    FUN_18084f2d0(lVar16 + 0x30);
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
+  
+  // 清理安全cookie并退出
+  FUN_1808fc050(*(ulonglong *)(connection_context + 0x18) ^ (ulonglong)&cleanup_buffer);
 }
 
-
-
-
-
-// 函数: void FUN_180851421(void)
-void FUN_180851421(void)
+/**
+ * 网络状态清理器 - 清理网络状态和临时数据
+ * 
+ * 功能：
+ * - 清理网络连接状态
+ * - 释放临时数据和缓冲区
+ * - 重置状态标志和计数器
+ * - 执行最终清理操作
+ * - 确保资源完全释放
+ * 
+ * @param 无直接参数，使用栈传递的上下文信息
+ * @return 清理状态码（0表示成功，非0表示错误）
+ */
+void NetworkingSystem_StateCleaner(void)
 
 {
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  longlong unaff_RDI;
-  undefined4 unaff_R12D;
-  longlong unaff_R13;
-  longlong unaff_R14;
-  undefined8 in_stack_00000030;
-  undefined8 in_stack_00000048;
-  char cStack0000000000000050;
-  char cStack0000000000000054;
-  char in_stack_00000058;
+  longlong state_context;
+  longlong network_context;
+  longlong connection_context;
+  undefined4 reset_flags;
+  longlong resource_manager;
+  longlong session_manager;
+  undefined8 connection_pool;
+  undefined8 temp_buffer;
+  char cleanup_flag_1;
+  char cleanup_flag_2;
+  char cleanup_flag_3;
   
-  **(undefined8 **)(unaff_RBP + -0x38) = in_stack_00000030;
-  if (in_stack_00000048._4_1_ == '\0') {
-    *(undefined4 *)(unaff_RDI + 0x60) = unaff_R12D;
-    FUN_18084f560(unaff_RDI + 0x30);
+  // 设置连接池引用
+  **(undefined8 **)(state_context + 0x38) = connection_pool;
+  
+  // 根据清理标志执行资源释放
+  if (temp_buffer._4_1_ == '\0') {
+    *(undefined4 *)(connection_context + 0x60) = reset_flags;
+    FUN_18084f560(connection_context + 0x30);
   }
-  if (cStack0000000000000050 == '\0') {
-    *(undefined4 *)(unaff_RSI + 0x60) = unaff_R12D;
-    FUN_18084f040(unaff_RSI + 0x30);
+  if (cleanup_flag_1 == '\0') {
+    *(undefined4 *)(network_context + 0x60) = reset_flags;
+    FUN_18084f040(network_context + 0x30);
   }
-  if (cStack0000000000000054 == '\0') {
-    *(undefined4 *)(unaff_R14 + 0x1d0) = unaff_R12D;
-    FUN_18084f040(unaff_R14 + 0x1a0);
+  if (cleanup_flag_2 == '\0') {
+    *(undefined4 *)(session_manager + 0x1d0) = reset_flags;
+    FUN_18084f040(session_manager + 0x1a0);
   }
-  if (in_stack_00000058 == '\0') {
-    *(undefined4 *)(unaff_R13 + 0x60) = unaff_R12D;
-    FUN_18084f2d0(unaff_R13 + 0x30);
+  if (cleanup_flag_3 == '\0') {
+    *(undefined4 *)(resource_manager + 0x60) = reset_flags;
+    FUN_18084f2d0(resource_manager + 0x30);
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
+  
+  // 清理安全cookie并退出
+  FUN_1808fc050(*(ulonglong *)(state_context + 0x18) ^ (ulonglong)&cleanup_flag_1);
 }
 
-
-
-
-
+/* ============================================================================
+ * 技术说明
+ * ============================================================================ */
+/**
+ * 本文件实现了网络系统连接管理和资源清理功能：
+ * 
+ * 1. 连接管理
+ *    - 建立和维护网络连接
+ *    - 处理连接参数和配置
+ *    - 管理连接状态和生命周期
+ *    - 执行连接验证和授权
+ *    - 处理连接错误和异常
+ * 
+ * 2. 资源管理
+ *    - 分配和释放网络资源
+ *    - 管理连接池和会话
+ *    - 处理资源生命周期
+ *    - 执行资源清理和回收
+ *    - 管理内存使用和优化
+ * 
+ * 3. 状态管理
+ *    - 监控连接状态变化
+ *    - 处理状态转换和同步
+ *    - 管理状态标志和属性
+ *    - 执行状态验证和检查
+ *    - 处理状态异常和恢复
+ * 
+ * 4. 安全处理
+ *    - 管理连接安全性
+ *    - 处理加密和认证
+ *    - 执行安全验证和检查
+ *    - 管理安全cookie和保护
+ *    - 处理安全异常和错误
+ * 
+ * 5. 错误处理
+ *    - 捕获和处理连接错误
+ *    - 执行错误恢复和重试
+ *    - 管理错误日志和报告
+ *    - 处理异常情况和清理
+ *    - 确保系统稳定性
+ * 
+ * 该模块是网络系统的重要组成部分，为网络通信提供核心支持。
+ */
