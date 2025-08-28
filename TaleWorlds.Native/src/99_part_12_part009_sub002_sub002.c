@@ -1851,21 +1851,30 @@ undefined8 SystemConfigurationProcessor(longlong system_context, longlong config
   undefined1 temp_buffer4 [16];
   undefined4 temp_result;
   
-  acStackX_18[0] = '\0';
-  bVar4 = *(byte *)(param_3 + 0x3c);
-  if (*(int *)(param_3 + 0x40) + *(int *)(param_3 + 0x50) == 0) {
-    bVar4 = bVar4 & 0xfe;
-    *(byte *)(param_3 + 0x3c) = bVar4;
+  /* 初始化操作状态 */
+  operation_status[0] = '\0';
+  status_flags = *(byte *)(state_object + 0x3c);
+  
+  /* 检查处理状态，如果为空则清除相关标志 */
+  if (*(int )(state_object + 0x40) + *(int )(state_object + 0x50) == 0) {
+    status_flags = status_flags & 0xfe; /* 清除处理标志 */
+    *(byte *)(state_object + 0x3c) = status_flags;
   }
-  if ((bVar4 & 8) != 0) {
-    FUN_18080d310(param_1,param_4,param_3,0,0);
+  
+  /* 处理系统状态更新请求 */
+  if ((status_flags & 8) != 0) {
+    FUN_18080d310(system_context, processor_handle, state_object, 0, 0);
   }
-  plVar1 = *(longlong **)(param_3 + 0x20);
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0xa8))(plVar1,acStackX_18);
+  
+  /* 获取处理器指针并执行回调 */
+  processor_ptr = *(longlong **)(state_object + 0x20);
+  if (processor_ptr != (longlong *)0x0) {
+    (**(code **)(*processor_ptr + 0xa8))(processor_ptr, operation_status);
   }
-  if (acStackX_18[0] != '\0') {
-    bVar4 = *(byte *)(param_3 + 0x3c);
+  
+  /* 根据操作状态进行相应处理 */
+  if (operation_status[0] != '\0') {
+    status_flags = *(byte *)(state_object + 0x3c);
     if ((bVar4 & 2) != 0) {
       (**(code **)(**(longlong **)(param_3 + 0x20) + 0x20))
                 (*(longlong **)(param_3 + 0x20),
