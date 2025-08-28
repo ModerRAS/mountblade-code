@@ -1,6 +1,107 @@
 # 代码转译报告
 
-## 最新转译：01_initialization_part010.c
+## 最新转译：01_initialization_part007.c
+
+### 转译概述
+成功转译了 `/root/WorkSpace/CSharp/mountblade-code/TaleWorlds.Native/pretty/01/01_initialization_part007.c` 文件，该文件包含31个函数，主要负责组件节点注册和系统字符串注册。
+
+### 转译内容统计
+- **函数名转译**: 31个 `FUN_18003*` 函数全部转译为语义化名称
+- **变量名转译**: 24个 `DAT_180*` 变量转译为描述性名称
+- **常量名转译**: 32个 `UNK_180*` 常量转译为有意义名称
+- **添加注释**: 为每个函数添加详细的中文功能说明
+- **代码格式**: 统一了代码格式和缩进
+
+### 函数分类
+1. **组件节点注册函数** (21个): 
+   - 基础类型注册函数：`register_component_node_type1` 到 `register_component_node_type11`
+   - 带回调的注册函数：`register_component_node_with_callback1` 到 `register_component_node_with_callback5`
+   - 特殊回调函数：`register_component_node_with_special_callback`
+   - 副本函数：5个重复的函数（标记为_duplicate）
+
+2. **系统字符串注册函数** (9个):
+   - `register_system_string_type1` 到 `register_system_string_type9`
+   - 不同长度的字符串注册（8-28字节）
+
+### 转译规则 (针对本文件)
+
+#### 函数名转译规则
+- `FUN_180037*` → `register_component_node_*` (注册组件节点)
+- `FUN_180038*` → `register_system_string_*` (注册系统字符串)
+
+#### 变量名转译规则
+- `DAT_1809fc*` → `component_guid_*` (组件GUID)
+- `DAT_18098c*` → `component_guid_*` (组件GUID)
+- `DAT_180a00*` → `component_guid_*` (组件GUID)
+- `DAT_180c91*` → `global_string_ptr_*` (全局字符串指针)
+
+#### 常量名转译规则
+- `UNK_18098c*` → `component_interface_*` (组件接口)
+- `UNK_180a00*` → `component_interface_*` (组件接口)
+- `UNK_1809fc*` → `system_string_table_*` (系统字符串表)
+- `UNK_180a19*` → `system_string_data_*` (系统字符串数据)
+- `UNK_18008*` → `special_callback_*` / `component_callback_*` (回调函数)
+
+### 主要改进
+1. **可读性大幅提升**: 所有函数名都有明确的功能含义
+2. **中文注释**: 每个函数都有详细的功能说明和参数描述
+3. **分类清晰**: 不同类型的组件和函数有明确的命名模式
+4. **维护性**: 便于后续开发和维护
+5. **完整性**: 涵盖了组件注册和字符串注册的完整流程
+
+### 代码结构特点
+
+#### 组件节点注册函数
+所有组件节点注册函数都遵循相同的模式：
+1. 获取树管理器
+2. 在树中搜索合适的插入位置
+3. 如果需要，创建新节点
+4. 设置节点属性（类型标识符、版本信息、接口指针、标志、回调函数）
+
+#### 系统字符串注册函数
+所有系统字符串注册函数都遵循相同的模式：
+1. 准备本地缓冲区
+2. 设置字符串长度
+3. 复制字符串数据
+4. 注册到全局字符串表
+
+### 技术细节
+- **树操作**: 使用二叉树搜索算法找到合适的插入位置
+- **内存管理**: 动态分配节点内存，使用固定大小的缓冲区
+- **回调机制**: 支持不同类型的回调函数设置
+- **字符串处理**: 使用安全的字符串复制函数
+
+### 示例对比
+
+#### 原始代码
+```c
+void FUN_180037780(void)
+{
+  char cVar1;
+  undefined8 *puVar2;
+  int iVar3;
+  longlong *plVar4;
+  // ... 复杂的初始化逻辑
+}
+```
+
+#### 转译后代码
+```c
+/**
+ * 注册组件节点 - 类型1
+ * 在组件树中搜索特定位置并插入新节点，设置相关属性
+ */
+void register_component_node_type1(void)
+{
+    char node_flag;
+    uint64_t *root_node;
+    int compare_result;
+    int64_t *tree_manager;
+    // ... 清晰的初始化逻辑
+}
+```
+
+## 上次转译：01_initialization_part010.c
 
 ### 转译概述
 成功转译了 `/root/WorkSpace/CSharp/mountblade-code/TaleWorlds.Native/pretty/01_initialization/01_initialization_part010.c` 文件，该文件包含28个函数，主要负责系统组件的注册和初始化。
