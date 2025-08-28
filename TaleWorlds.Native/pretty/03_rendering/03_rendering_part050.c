@@ -94,7 +94,7 @@ void release_batch_render_resources(void *render_context)
                 if (SYSTEM_DATA_MANAGER_A != NULL) {
                     *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
                 }
-                FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
+                RenderingSystem_ResourceReleaser(resource_array, SYSTEM_DATA_MANAGER_B);
             }
             current_count = (uint32_t)resource_offset + 1;
             resource_offset = (uint64_t)current_count;
@@ -131,7 +131,7 @@ void release_batch_render_resources(void *render_context)
             if (resource_manager != NULL) {
                 *(int *)((uint8_t *)resource_manager + 0x3a8) = *(int *)((uint8_t *)resource_manager + 0x3a8) - 1;
             }
-            FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
+            RenderingSystem_ResourceReleaser(resource_array, SYSTEM_DATA_MANAGER_B);
         }
         
         *(uint32_t *)((uint8_t *)render_context + 0x70) = 0xffffffff;
@@ -146,11 +146,11 @@ void release_batch_render_resources(void *render_context)
             do {
                 resource_manager = *(void **)(resource_offset + *(uint64_t *)((uint8_t *)render_context + 0x48));
                 if (resource_manager != NULL) {
-                    FUN_180296ad0(resource_manager);
+                    RenderingSystem_ResourceCleaner(resource_manager);
                     if (SYSTEM_DATA_MANAGER_A != NULL) {
                         *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
                     }
-                    FUN_180059ba0(resource_manager, SYSTEM_DATA_MANAGER_B);
+                    RenderingSystem_ResourceReleaser(resource_manager, SYSTEM_DATA_MANAGER_B);
                 }
                 current_count = (uint32_t)array_offset + 1;
                 array_offset = (uint64_t)current_count;
@@ -168,14 +168,14 @@ void release_batch_render_resources(void *render_context)
             resource_count_ptr = (int *)((uint8_t *)resource_array + 0x3a8);
             *resource_count_ptr = *resource_count_ptr - 1;
         }
-        FUN_180059ba0(resource_manager, SYSTEM_DATA_MANAGER_B);
+        RenderingSystem_ResourceReleaser(resource_manager, SYSTEM_DATA_MANAGER_B);
     }
     
     *(uint64_t *)((uint8_t *)render_context + 0x60) = 0;
     if (resource_manager != NULL) {
         *(int *)((uint8_t *)resource_manager + 0x3a8) = *(int *)((uint8_t *)resource_manager + 0x3a8) - 1;
     }
-    FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
+    RenderingSystem_ResourceReleaser(resource_array, SYSTEM_DATA_MANAGER_B);
 }
 
 /**
@@ -209,7 +209,7 @@ void release_selective_render_resources(void *render_context, int index)
                 if (SYSTEM_DATA_MANAGER_A != NULL) {
                     *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
                 }
-                FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
+                RenderingSystem_ResourceReleaser(resource_array, SYSTEM_DATA_MANAGER_B);
             }
             counter = (uint32_t)index_value + 1;
             index_value = (uint64_t)counter;
@@ -245,7 +245,7 @@ void release_selective_render_resources(void *render_context, int index)
             if (resource_manager != NULL) {
                 *(int *)((uint8_t *)resource_manager + 0x3a8) = *(int *)((uint8_t *)resource_manager + 0x3a8) - 1;
             }
-            FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
+            RenderingSystem_ResourceReleaser(resource_array, SYSTEM_DATA_MANAGER_B);
         }
         
         *(uint32_t *)((uint8_t *)render_context + 0x70) = 0xffffffff;
@@ -260,11 +260,11 @@ void release_selective_render_resources(void *render_context, int index)
             do {
                 resource_manager = *(void **)(index_value + *(uint64_t *)((uint8_t *)render_context + 0x48));
                 if (resource_manager != NULL) {
-                    FUN_180296ad0(resource_manager);
+                    RenderingSystem_ResourceCleaner(resource_manager);
                     if (SYSTEM_DATA_MANAGER_A != NULL) {
                         *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
                     }
-                    FUN_180059ba0(resource_manager, SYSTEM_DATA_MANAGER_B);
+                    RenderingSystem_ResourceReleaser(resource_manager, SYSTEM_DATA_MANAGER_B);
                 }
                 counter = (uint32_t)array_index + 1;
                 array_index = (uint64_t)counter;
@@ -282,14 +282,14 @@ void release_selective_render_resources(void *render_context, int index)
             resource_count_ptr = (int *)((uint8_t *)resource_array + 0x3a8);
             *resource_count_ptr = *resource_count_ptr - 1;
         }
-        FUN_180059ba0(resource_manager, SYSTEM_DATA_MANAGER_B);
+        RenderingSystem_ResourceReleaser(resource_manager, SYSTEM_DATA_MANAGER_B);
     }
     
     *(uint64_t *)((uint8_t *)render_context + 0x60) = index_value;
     if (resource_manager != NULL) {
         *(int *)((uint8_t *)resource_manager + 0x3a8) = *(int *)((uint8_t *)resource_manager + 0x3a8) - 1;
     }
-    FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
+    RenderingSystem_ResourceReleaser(resource_array, SYSTEM_DATA_MANAGER_B);
 }
 
 /**
@@ -315,11 +315,11 @@ void release_loop_render_resources(void *render_context, int start_index, int en
     do {
         resource_array = *(void **)(current_index + *(uint64_t *)((uint8_t *)render_context + 0x48));
         if (resource_array != NULL) {
-            FUN_180296ad0(resource_array);
+            RenderingSystem_ResourceCleaner(resource_array);
             if (SYSTEM_DATA_MANAGER_A != NULL) {
                 *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)((uint8_t *)SYSTEM_DATA_MANAGER_A + 0x3a8) - 1;
             }
-            FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
+            RenderingSystem_ResourceReleaser(resource_array, SYSTEM_DATA_MANAGER_B);
         }
         start_index = start_index + 1;
         current_index = current_index + 8;
@@ -332,7 +332,7 @@ void release_loop_render_resources(void *render_context, int start_index, int en
             resource_count_ptr = (int *)((uint8_t *)resource_manager + 0x3a8);
             *resource_count_ptr = *resource_count_ptr - 1;
         }
-        FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
+        RenderingSystem_ResourceReleaser(resource_array, SYSTEM_DATA_MANAGER_B);
     }
 }
 
@@ -357,7 +357,7 @@ void release_fast_render_resources(void *render_context, uint64_t reset_value)
             resource_count_ptr = (int *)((uint8_t *)resource_manager + 0x3a8);
             *resource_count_ptr = *resource_count_ptr - 1;
         }
-        FUN_180059ba0(resource_array, SYSTEM_DATA_MANAGER_B);
+        RenderingSystem_ResourceReleaser(resource_array, SYSTEM_DATA_MANAGER_B);
     }
 }
 
@@ -380,7 +380,7 @@ void release_single_render_resource(void *render_context, void *resource, uint64
         resource_count_ptr = (int *)((uint8_t *)resource_manager + 0x3a8);
         *resource_count_ptr = *resource_count_ptr - 1;
     }
-    FUN_180059ba0(resource, SYSTEM_DATA_MANAGER_B);
+    RenderingSystem_ResourceReleaser(resource, SYSTEM_DATA_MANAGER_B);
 }
 
 /**
