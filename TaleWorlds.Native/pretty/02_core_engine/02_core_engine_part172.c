@@ -58,7 +58,7 @@ void EngineResourceManager_Destroy(uint64_t *param_1)
       }
       ResourceTable_AllocateSlot(param_1 + 10,&plStackX_10,(uint64_t)*(uint *)(param_1 + 8),
                                        *(int32_t *)(param_1 + 9),1);  // 分配资源表槽位 (原: FUN_18066c220)
-      piVar6 = (int *)MemoryPool_Allocate(g_pMemoryPool,0x18,*(int8_t *)((int64_t)param_1 + 0x5c));  // 从内存池分配 (原: FUN_18062b420)
+      piVar6 = (int *)MemoryPool_Allocate(g_pMemoryPool,0x18,*(int8_t *)((int64_t)param_1 + 0x5c));  // 从内存池分配 (原: CoreEngineMemoryPoolAllocator)
       *piVar6 = iVar5;
       piVar6[2] = 0;
       piVar6[3] = 0;
@@ -122,7 +122,7 @@ LAB_1801571ef:
   plStackX_10 = param_1 + 0x16;
   if (*plStackX_10 != 0) {
                     // WARNING: Subroutine does not return
-    Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
+    Assertion_Failure();  // 断言失败 (原: CoreEngineMemoryPoolCleaner)
   }
   plStackX_10 = param_1 + 0xc;
   _Mtx_destroy_in_situ();
@@ -130,7 +130,7 @@ LAB_1801571ef:
   ResourceTable_Release(plVar1);  // 释放资源表 (原: FUN_18015b450)
   if ((1 < (uint64_t)param_1[8]) && (param_1[7] != 0)) {
                     // WARNING: Subroutine does not return
-    Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
+    Assertion_Failure();  // 断言失败 (原: CoreEngineMemoryPoolCleaner)
   }
   if ((code *)param_1[3] != (code *)0x0) {
     (*(code *)param_1[3])(param_1 + 1,0,0);
@@ -351,7 +351,7 @@ LAB_180157862:
     puStack_c8 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
     if (puStack_c0 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
+      Assertion_Failure();  // 断言失败 (原: CoreEngineMemoryPoolCleaner)
     }
     puStack_c0 = (uint64_t *)0x0;
     uStack_b0 = (uint64_t)uStack_b0._4_4_ << 0x20;
@@ -433,7 +433,7 @@ LAB_180157a6e:
   puStack_98 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
   if (lStack_90 != 0) {
                     // WARNING: Subroutine does not return
-    Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
+    Assertion_Failure();  // 断言失败 (原: CoreEngineMemoryPoolCleaner)
   }
   lStack_90 = 0;
   uStack_80 = uStack_80 & 0xffffffff00000000;
@@ -582,7 +582,7 @@ LAB_180157e02:
     puStack_b0 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
     if (puStack_a8 != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
-      Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
+      Assertion_Failure();  // 断言失败 (原: CoreEngineMemoryPoolCleaner)
     }
     puStack_a8 = (int32_t *)0x0;
     uStack_98 = (uint64_t)uStack_98._4_4_ << 0x20;
@@ -594,7 +594,7 @@ LAB_180157e02:
   puStack_80 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
   if (lStack_78 != 0) {
                     // WARNING: Subroutine does not return
-    Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
+    Assertion_Failure();  // 断言失败 (原: CoreEngineMemoryPoolCleaner)
   }
   lStack_78 = 0;
   uStack_68 = uStack_68 & 0xffffffff00000000;
@@ -680,7 +680,7 @@ EngineRenderEvent_Create(int64_t *param_1,int64_t *param_2,uint64_t param_3,int6
     puStack_a8 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
     if (lStack_a0 != 0) {
                     // WARNING: Subroutine does not return
-      Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
+      Assertion_Failure();  // 断言失败 (原: CoreEngineMemoryPoolCleaner)
     }
     lStack_a0 = 0;
     uStack_90 = uStack_90 & 0xffffffff00000000;
@@ -773,7 +773,7 @@ EngineResourceEvent_Create(int64_t *param_1,int64_t *param_2,uint64_t param_3,in
     puStack_a8 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
     if (lStack_a0 != 0) {
                     // WARNING: Subroutine does not return
-      Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
+      Assertion_Failure();  // 断言失败 (原: CoreEngineMemoryPoolCleaner)
     }
     lStack_a0 = 0;
     uStack_90 = uStack_90 & 0xffffffff00000000;
@@ -931,7 +931,7 @@ LAB_18015860c:
   puStack_60 = &g_sEmptyStringBuffer;  // 空字符串缓冲区
   if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-    Assertion_Failure();  // 断言失败 (原: FUN_18064e900)
+    Assertion_Failure();  // 断言失败 (原: CoreEngineMemoryPoolCleaner)
   }
   puStack_58 = (uint64_t *)0x0;
   uStack_48 = (uint64_t)uStack_48._4_4_ << 0x20;

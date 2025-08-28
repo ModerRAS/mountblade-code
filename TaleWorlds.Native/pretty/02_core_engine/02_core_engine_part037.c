@@ -221,7 +221,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                     *(int *)(material_data + 0x40) = index_count;
                     if (*render_data != 0) {
                         // 内存分配错误处理
-                        FUN_18064e900();
+                        CoreEngineMemoryPoolCleaner();
                     }
                     *render_data = 0;
                     
@@ -230,7 +230,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                         *render_data = 0;
                     }
                     else {
-                        vertex_buffer = (long long *)FUN_18062b1e0(system_memory_pool_ptr, (long long)texture_index * 4);
+                        vertex_buffer = (long long *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, (long long)texture_index * 4);
                         *render_data = (long long)vertex_buffer;
                     }
                 }
@@ -330,7 +330,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                         do {
                             material_id = (int)page_index;
                             if (*(long long *)index_ptr == 0) {
-                                long long new_buffer = FUN_18062b420(system_memory_pool_ptr, MEMORY_BLOCK_SIZE_8K, 0x25);
+                                long long new_buffer = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, MEMORY_BLOCK_SIZE_8K, 0x25);
                                 LOCK();
                                 allocation_success = *(long long *)(index_buffer + (long long)material_id * 2 + 2) == 0;
                                 if (allocation_success) {
@@ -345,7 +345,7 @@ void process_render_pipeline_data(long long render_context, long long pipeline_d
                                 }
                                 else {
                                     if (new_buffer != 0) {
-                                        FUN_18064e900();
+                                        CoreEngineMemoryPoolCleaner();
                                     }
                                     do {
                                     } while (*buffer_ptr != '\0');
@@ -585,7 +585,7 @@ void process_render_pipeline_optimized(long long render_context)
                 else {
                     *(int *)(material_data + 0x40) = index_count;
                     if (*render_data != 0) {
-                        FUN_18064e900();
+                        CoreEngineMemoryPoolCleaner();
                     }
                     *render_data = 0;
                     
@@ -594,7 +594,7 @@ void process_render_pipeline_optimized(long long render_context)
                         *render_data = 0;
                     }
                     else {
-                        vertex_buffer = (long long *)FUN_18062b1e0(system_memory_pool_ptr, (long long)texture_index * 4);
+                        vertex_buffer = (long long *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, (long long)texture_index * 4);
                         *render_data = (long long)vertex_buffer;
                     }
                 }
@@ -694,7 +694,7 @@ void process_render_pipeline_optimized(long long render_context)
                         do {
                             material_id = (int)page_index;
                             if (*(long long *)index_ptr == 0) {
-                                long long new_buffer = FUN_18062b420(system_memory_pool_ptr, MEMORY_BLOCK_SIZE_8K, 0x25);
+                                long long new_buffer = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, MEMORY_BLOCK_SIZE_8K, 0x25);
                                 LOCK();
                                 allocation_success = *(long long *)(index_buffer + (long long)material_id * 2 + 2) == 0;
                                 if (allocation_success) {
@@ -709,7 +709,7 @@ void process_render_pipeline_optimized(long long render_context)
                                 }
                                 else {
                                     if (new_buffer != 0) {
-                                        FUN_18064e900();
+                                        CoreEngineMemoryPoolCleaner();
                                     }
                                     do {
                                     } while (*buffer_ptr != '\0');

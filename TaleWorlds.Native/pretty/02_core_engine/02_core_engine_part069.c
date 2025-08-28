@@ -110,7 +110,7 @@ void initialize_engine_core_structure(uint64_t *engine_context, uint64_t param2,
   // 检查并初始化关键组件
   if (engine_context[0x19] != 0) {
     // 警告：子函数不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   engine_context[0x19] = 0;
   *(int32_t *)(engine_context + 0x1b) = 0;
@@ -122,19 +122,19 @@ void initialize_engine_core_structure(uint64_t *engine_context, uint64_t param2,
   // 验证关键组件状态
   if (engine_context[0xd] != 0) {
     // 警告：子函数不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   if (engine_context[9] != 0) {
     // 警告：子函数不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   if (engine_context[5] != 0) {
     // 警告：子函数不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   if (engine_context[1] != 0) {
     // 警告：子函数不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   return;
 }

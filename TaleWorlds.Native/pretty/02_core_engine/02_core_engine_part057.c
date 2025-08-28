@@ -228,7 +228,7 @@ LAB_180092e59:
                         
                         if (*(int64_t *)(temp_long2 + 0x98) != 0) {
                             // 警告：子程序不返回
-                            FUN_18064e900();
+                            CoreEngineMemoryPoolCleaner();
                         }
                         *(uint64_t **)(temp_long2 + 0x98) = temp_ptr3;
                         *(uint64_t **)(temp_long2 + 0xa0) = temp_ptr4 + 6;
@@ -282,7 +282,7 @@ LAB_180092e59:
         return;
     }
     // 警告：子程序不返回
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 

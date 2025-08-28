@@ -749,16 +749,16 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
     int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x1810);
     break;
   case 0x17:
-    FUN_180171f10(*(uint64_t *)(system_main_module_state + 8), &stack_data);
+    SystemRenderObjectHandler(*(uint64_t *)(system_main_module_state + 8), &stack_data);
     if (((float)stack_data == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1d50)) &&
        (stack_data._4_4_ == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1dc0))) {
-      int_value = FUN_180438350();
+      int_value = SystemValueGetter();
       break;
     }
-    temp_value1 = FUN_180438350();
+    temp_value1 = SystemValueGetter();
     int_value = 0;
     float_result = (float)(temp_value1 + 1);
-    temp_value1 = FUN_180438350();
+    temp_value1 = SystemValueGetter();
     if (0 < temp_value1) {
       do {
         temp_data = FUN_1804386b0(int_value);
@@ -768,7 +768,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
            stack_data._4_4_ == (float)*(int *)(SYSTEM_STATE_MANAGER + 0x1dc0))) goto code_r0x00018043b12e;
         int_value = int_value + 1;
         stack_data = temp_data;
-        temp_value1 = FUN_180438350();
+        temp_value1 = SystemValueGetter();
       } while (int_value < temp_value1);
     }
     goto code_r0x00018043b131;

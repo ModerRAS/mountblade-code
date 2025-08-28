@@ -107,7 +107,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     param_2[1] = ppuVar2 + 0xf;
     ppuStack_198 = ppuVar2;
     FUN_1800b8300(ppuVar2);
-    FUN_180627ae0(ppuVar2 + 0xb,&puStack_f0);
+    CoreEngineDataTransformer(ppuVar2 + 0xb,&puStack_f0);
   }
   else {
     FUN_180226020(param_2,&puStack_148);
@@ -119,7 +119,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     param_2[1] = ppuVar2 + 0xf;
     ppuStack_198 = ppuVar2;
     FUN_1800b8300(ppuVar2);
-    FUN_180627ae0(ppuVar2 + 0xb,&puStack_f0);
+    CoreEngineDataTransformer(ppuVar2 + 0xb,&puStack_f0);
   }
   else {
     FUN_180226020(param_2,&puStack_148);
@@ -144,7 +144,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     param_2[1] = ppuVar2 + 0xf;
     ppuStack_198 = ppuVar2;
     FUN_1800b8300(ppuVar2);
-    FUN_180627ae0(ppuVar2 + 0xb,&puStack_f0);
+    CoreEngineDataTransformer(ppuVar2 + 0xb,&puStack_f0);
   }
   else {
     FUN_180226020(param_2,&puStack_148);
@@ -157,7 +157,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     param_2[1] = uVar7 + 0x78;
     ppuStack_198 = (void **)uVar7;
     FUN_1800b8300(uVar7);
-    FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+    CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
   }
   else {
     FUN_180226020(param_2,&puStack_148);
@@ -166,7 +166,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   puStack_f0 = &system_data_buffer_ptr;
   if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   if (0 < *(int *)(param_4 + 0x10)) {
     puStack_148 = &unknown_var_3480_ptr;
@@ -189,7 +189,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -198,7 +198,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 >> 0x15 & 1) != 0) {
@@ -218,7 +218,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -227,7 +227,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 & 2) != 0) {
@@ -247,7 +247,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -256,7 +256,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 >> 0x16 & 1) != 0) {
@@ -276,7 +276,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -285,7 +285,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((int)param_7 < 0) {
@@ -305,7 +305,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -314,7 +314,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 >> 0x14 & 1) != 0) {
@@ -334,7 +334,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -343,7 +343,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 & 0x20) != 0) {
@@ -363,7 +363,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -372,7 +372,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((char)param_7 < '\0') {
@@ -392,7 +392,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -401,7 +401,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 & 0x10) != 0) {
@@ -421,7 +421,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -430,7 +430,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 & 4) != 0) {
@@ -450,7 +450,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -459,7 +459,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 & 8) != 0) {
@@ -479,7 +479,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -488,7 +488,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 & 1) != 0) {
@@ -508,7 +508,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -517,7 +517,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 & 0x40) != 0) {
@@ -537,7 +537,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -546,7 +546,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 >> 0xd & 1) != 0) {
@@ -566,7 +566,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -575,7 +575,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 >> 0x17 & 1) != 0) {
@@ -595,7 +595,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -604,7 +604,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
   }
   if ((param_7 >> 10 & 1) == 0) {
@@ -625,7 +625,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
         param_2[1] = uVar7 + 0x78;
         ppuStack_198 = (void **)uVar7;
         FUN_1800b8300(uVar7);
-        FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+        CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
       }
       else {
         FUN_180226020(param_2,&puStack_148);
@@ -634,7 +634,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       puStack_f0 = &system_data_buffer_ptr;
       if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       uStack_d8 = uStack_d8 & 0xffffffff00000000;
     }
@@ -655,7 +655,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
         param_2[1] = uVar7 + 0x78;
         ppuStack_198 = (void **)uVar7;
         FUN_1800b8300(uVar7);
-        FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+        CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
       }
       else {
         FUN_180226020(param_2,&puStack_148);
@@ -664,7 +664,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       puStack_f0 = &system_data_buffer_ptr;
       if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       uStack_d8 = uStack_d8 & 0xffffffff00000000;
     }
@@ -686,7 +686,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -695,7 +695,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     uStack_d8 = uStack_d8 & 0xffffffff00000000;
   }
@@ -716,7 +716,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -725,7 +725,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     uStack_d8 = uStack_d8 & 0xffffffff00000000;
   }
@@ -746,7 +746,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -755,7 +755,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     uStack_d8 = uStack_d8 & 0xffffffff00000000;
   }
@@ -776,7 +776,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -785,7 +785,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     uStack_d8 = uStack_d8 & 0xffffffff00000000;
   }
@@ -806,7 +806,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -815,7 +815,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     uStack_d8 = uStack_d8 & 0xffffffff00000000;
   }
@@ -836,7 +836,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -845,7 +845,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     uStack_d8 = uStack_d8 & 0xffffffff00000000;
   }
@@ -866,7 +866,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -875,7 +875,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     uStack_d8 = uStack_d8 & 0xffffffff00000000;
   }
@@ -896,7 +896,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -905,7 +905,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     uStack_d8 = uStack_d8 & 0xffffffff00000000;
   }
@@ -926,7 +926,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
       param_2[1] = uVar7 + 0x78;
       ppuStack_198 = (void **)uVar7;
       FUN_1800b8300(uVar7);
-      FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+      CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
     }
     else {
       FUN_180226020(param_2,&puStack_148);
@@ -935,7 +935,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     puStack_f0 = &system_data_buffer_ptr;
     if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     uStack_d8 = uStack_d8 & 0xffffffff00000000;
   }
@@ -955,7 +955,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
         uStack_178 = 0;
         puStack_188 = (int8_t *)0x0;
         uStack_180 = 0;
-        FUN_1806277c0(&puStack_190,*(int32_t *)(lVar9 + 0x10));
+        CoreEngineDataBufferProcessor(&puStack_190,*(int32_t *)(lVar9 + 0x10));
         if (0 < *(int *)(lVar9 + 0x10)) {
           puVar6 = &system_buffer_ptr;
           if (*(void **)(lVar9 + 8) != (void *)0x0) {
@@ -1002,7 +1002,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
           param_2[1] = uVar7 + 0x78;
           ppuStack_198 = (void **)uVar7;
           FUN_1800b8300(uVar7);
-          FUN_180627ae0(uVar7 + 0x58,&puStack_f0);
+          CoreEngineDataTransformer(uVar7 + 0x58,&puStack_f0);
         }
         else {
           FUN_180226020(param_2,&puStack_148);
@@ -1011,7 +1011,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
         puStack_f0 = &system_data_buffer_ptr;
         if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         lStack_e8 = 0;
         uStack_d8 = uStack_d8 & 0xffffffff00000000;
@@ -1021,7 +1021,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
         puStack_190 = &system_data_buffer_ptr;
         if (puStack_188 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         puStack_188 = (int8_t *)0x0;
         uStack_178 = uStack_178 & 0xffffffff00000000;
@@ -1089,7 +1089,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
     param_2[1] = uVar7 + 0x78;
     ppuStack_198 = (void **)uVar7;
     FUN_1800b8300(uVar7);
-    FUN_180627ae0(uVar7 + 0x58,&puStack_70);
+    CoreEngineDataTransformer(uVar7 + 0x58,&puStack_70);
   }
   else {
     FUN_180226020(param_2,&puStack_c8);
@@ -1098,7 +1098,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   puStack_70 = &system_data_buffer_ptr;
   if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   lStack_68 = 0;
   uStack_58 = uStack_58 & 0xffffffff00000000;
@@ -1106,7 +1106,7 @@ void 处理复杂数据流配置(uint64_t 上下文参数, uint64_t *数据结�
   ppuStack_198 = &puStack_c8;
   puStack_c8 = &system_state_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_1b8);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_1b8);
 }
 
 

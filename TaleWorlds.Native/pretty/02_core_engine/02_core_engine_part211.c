@@ -72,7 +72,7 @@ void process_string_search_and_scoring(uint64_t param_1, int64_t param_2, int64_
       uStack_148 = 0;
       puStack_158 = (int8_t *)0x0;
       uStack_150 = 0;
-      FUN_1806277c0(&puStack_160, *(int32_t *)(lVar12 + 0x18));
+      CoreEngineDataBufferProcessor(&puStack_160, *(int32_t *)(lVar12 + 0x18));
       if (*(int *)(lVar12 + 0x18) != 0) {
         // 复制字符串数据
         memcpy(puStack_158, *(uint64_t *)(lVar12 + 0x10), *(int *)(lVar12 + 0x18) + 1);
@@ -109,7 +109,7 @@ void process_string_search_and_scoring(uint64_t param_1, int64_t param_2, int64_
         puStack_160 = &system_data_buffer_ptr;
         if (puStack_158 != (int8_t *)0x0) {
           // 内存分配失败处理
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
       }
       else {
@@ -149,7 +149,7 @@ void process_string_search_and_scoring(uint64_t param_1, int64_t param_2, int64_
             lVar8 = 1;
 LAB_18018e486:
             // 动态内存分配
-            puVar6 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, lVar8 * 8, 3);
+            puVar6 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, lVar8 * 8, 3);
           }
           else {
             lVar8 = lVar8 * 2;
@@ -173,7 +173,7 @@ LAB_18018e486:
           *puVar7 = (uint64_t)uStack_168;
           if (puVar11 != (uint64_t *)0x0) {
             // 释放内存
-            FUN_18064e900(puVar11);
+            CoreEngineMemoryPoolCleaner(puVar11);
           }
           puVar14 = puVar6 + lVar8;
           lVar8 = alStack_e8[0];
@@ -186,7 +186,7 @@ LAB_18018e486:
         puStack_118 = puVar7;
         if (puStack_158 != (int8_t *)0x0) {
           // 内存分配失败处理
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
       }
       puVar11 = puStack_120;
@@ -275,7 +275,7 @@ LAB_18018e486:
     *(int *)(param_2 + 0x340) = iVar1 + 5;
   }
   // 释放内存
-  FUN_18064e900(puVar11);
+  CoreEngineMemoryPoolCleaner(puVar11);
 }
 
 
@@ -296,7 +296,7 @@ initialize_data_structure_copy(uint64_t *param_1, int64_t param_2, uint64_t para
   *param_1 = &unknown_var_5912_ptr;
   *param_1 = &unknown_var_5880_ptr;
   // 初始化数据结构
-  FUN_180627ae0(param_1 + 1, param_2 + 8, param_3, param_4, 0xfffffffffffffffe);
+  CoreEngineDataTransformer(param_1 + 1, param_2 + 8, param_3, param_4, 0xfffffffffffffffe);
   *(int32_t *)(param_1 + 5) = *(int32_t *)(param_2 + 0x28);
   *(int32_t *)((int64_t)param_1 + 0x2c) = *(int32_t *)(param_2 + 0x2c);
   *(int32_t *)(param_1 + 6) = *(int32_t *)(param_2 + 0x30);
@@ -304,13 +304,13 @@ initialize_data_structure_copy(uint64_t *param_1, int64_t param_2, uint64_t para
   *(int32_t *)(param_1 + 7) = *(int32_t *)(param_2 + 0x38);
   *(int32_t *)((int64_t)param_1 + 0x3c) = *(int32_t *)(param_2 + 0x3c);
   *(int32_t *)(param_1 + 8) = *(int32_t *)(param_2 + 0x40);
-  FUN_180627ae0(param_1 + 9, param_2 + 0x48);
+  CoreEngineDataTransformer(param_1 + 9, param_2 + 0x48);
   plVar1 = *(int64_t **)(param_2 + 0x68);
   param_1[0xd] = plVar1;
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))();
   }
-  FUN_180627ae0(param_1 + 0xe, param_2 + 0x70, param_3, param_4, uVar5);
+  CoreEngineDataTransformer(param_1 + 0xe, param_2 + 0x70, param_3, param_4, uVar5);
   plVar1 = *(int64_t **)(param_2 + 0x90);
   param_1[0x12] = plVar1;
   if (plVar1 != (int64_t *)0x0) {
@@ -353,20 +353,20 @@ initialize_data_structure_copy(uint64_t *param_1, int64_t param_2, uint64_t para
   *(int32_t *)((int64_t)param_1 + 0x124) = *(int32_t *)(param_2 + 0x124);
   *(int32_t *)(param_1 + 0x25) = *(int32_t *)(param_2 + 0x128);
   *(int32_t *)((int64_t)param_1 + 300) = *(int32_t *)(param_2 + 300);
-  FUN_180627ae0(param_1 + 0x26, param_2 + 0x130);
+  CoreEngineDataTransformer(param_1 + 0x26, param_2 + 0x130);
   plVar1 = *(int64_t **)(param_2 + 0x150);
   param_1[0x2a] = plVar1;
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))();
   }
-  FUN_180627ae0(param_1 + 0x2b, param_2 + 0x158);
+  CoreEngineDataTransformer(param_1 + 0x2b, param_2 + 0x158);
   plVar1 = *(int64_t **)(param_2 + 0x178);
   param_1[0x2f] = plVar1;
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))();
   }
   *(int32_t *)(param_1 + 0x30) = *(int32_t *)(param_2 + 0x180);
-  FUN_180627ae0(param_1 + 0x31, param_2 + 0x188);
+  CoreEngineDataTransformer(param_1 + 0x31, param_2 + 0x188);
   plVar1 = *(int64_t **)(param_2 + 0x1a8);
   param_1[0x35] = plVar1;
   if (plVar1 != (int64_t *)0x0) {
@@ -412,13 +412,13 @@ initialize_data_structure_copy(uint64_t *param_1, int64_t param_2, uint64_t para
   *(int32_t *)((int64_t)param_1 + 0x22c) = *(int32_t *)(param_2 + 0x22c);
   *(int32_t *)(param_1 + 0x46) = *(int32_t *)(param_2 + 0x230);
   *(int32_t *)((int64_t)param_1 + 0x234) = *(int32_t *)(param_2 + 0x234);
-  FUN_180627ae0(param_1 + 0x47, param_2 + 0x238);
+  CoreEngineDataTransformer(param_1 + 0x47, param_2 + 0x238);
   plVar1 = *(int64_t **)(param_2 + 600);
   param_1[0x4b] = plVar1;
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))();
   }
-  FUN_180627ae0(param_1 + 0x4c, param_2 + 0x260);
+  CoreEngineDataTransformer(param_1 + 0x4c, param_2 + 0x260);
   plVar1 = *(int64_t **)(param_2 + 0x280);
   param_1[0x50] = plVar1;
   if (plVar1 != (int64_t *)0x0) {
@@ -466,7 +466,7 @@ initialize_data_structure_copy(uint64_t *param_1, int64_t param_2, uint64_t para
   *(int32_t *)(param_1 + 0x62) = *(int32_t *)(param_2 + 0x310);
   *(int32_t *)((int64_t)param_1 + 0x314) = *(int32_t *)(param_2 + 0x314);
   *(int8_t *)(param_1 + 99) = *(int8_t *)(param_2 + 0x318);
-  FUN_180627ae0(param_1 + 100, param_2 + 800);
+  CoreEngineDataTransformer(param_1 + 100, param_2 + 800);
   *(int32_t *)(param_1 + 0x68) = *(int32_t *)(param_2 + 0x340);
   return param_1;
 }

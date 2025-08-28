@@ -154,7 +154,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     *data_ptr = &global_var_3456_ptr;
     if (data_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     data_ptr[1] = 0;
     *(int32_t *)(data_ptr + 3) = 0;
@@ -223,14 +223,14 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     *data_ptr = &global_var_3456_ptr;
     if (data_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     data_ptr[1] = 0;
     *(int32_t *)(data_ptr + 3) = 0;
   }
   *data_ptr = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_xor ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_xor ^ (uint64_t)security_buffer);
 }
 
 
@@ -311,7 +311,7 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
     *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     first_data[1] = 0;
     *(int32_t *)(first_data + 3) = 0;
@@ -319,7 +319,7 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
     *second_data = &global_var_3456_ptr;
     if (second_data[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     second_data[1] = 0;
     *(int32_t *)(second_data + 3) = 0;
@@ -360,7 +360,7 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
     *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     first_data[1] = 0;
     *(int32_t *)(first_data + 3) = 0;
@@ -368,14 +368,14 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
     *second_data = &global_var_3456_ptr;
     if (second_data[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     second_data[1] = 0;
     *(int32_t *)(second_data + 3) = 0;
   }
   *second_data = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_xor ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_xor ^ (uint64_t)security_buffer);
 }
 
 
@@ -448,7 +448,7 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
     *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     first_data[1] = 0;
     *(int32_t *)(first_data + 3) = 0;
@@ -456,7 +456,7 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
     *second_data = &global_var_3456_ptr;
     if (second_data[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     second_data[1] = 0;
     *(int32_t *)(second_data + 3) = 0;
@@ -499,7 +499,7 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
     *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     first_data[1] = 0;
     *(int32_t *)(first_data + 3) = 0;
@@ -507,14 +507,14 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
     *second_data = &global_var_3456_ptr;
     if (second_data[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     second_data[1] = 0;
     *(int32_t *)(second_data + 3) = 0;
   }
   *second_data = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_xor ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_xor ^ (uint64_t)security_buffer);
 }
 
 
@@ -617,7 +617,7 @@ void process_array_data_formatting(uint64_t context, int64_t array_data, uint64_
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_xor ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_xor ^ (uint64_t)security_buffer);
 }
 
 
@@ -636,7 +636,7 @@ void initialize_memory_pool_structure(void)
 {
   int64_t pool_memory;
   
-  pool_memory = FUN_18062b1e0(system_memory_pool_ptr,0x88,8,3,0xfffffffffffffffe);
+  pool_memory = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x88,8,3,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
   memset(pool_memory + 0x14,0,0x74);
 }
@@ -692,7 +692,7 @@ ENTRY_FOUND:
           if (map_entry != (uint64_t *)0x0) {
             if (map_entry[0xd] != 0) {
                     // WARNING: Subroutine does not return
-              FUN_18064e900();
+              CoreEngineMemoryPoolCleaner();
             }
             map_entry[4] = &global_var_3456_ptr;
             if (map_entry[5] == 0) {
@@ -705,13 +705,13 @@ ENTRY_FOUND:
                 *(int32_t *)(map_entry + 3) = 0;
                 *map_entry = &global_var_720_ptr;
                     // WARNING: Subroutine does not return
-                FUN_18064e900(map_entry);
+                CoreEngineMemoryPoolCleaner(map_entry);
               }
                     // WARNING: Subroutine does not return
-              FUN_18064e900();
+              CoreEngineMemoryPoolCleaner();
             }
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
           }
           *map_start = 0;
           map_entry = map_start + 1;
@@ -737,7 +737,7 @@ ENTRY_FOUND:
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 
@@ -1003,7 +1003,7 @@ INSERT_NEW:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_xor ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_xor ^ (uint64_t)security_buffer);
 }
 
 

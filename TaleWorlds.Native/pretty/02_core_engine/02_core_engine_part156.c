@@ -380,7 +380,7 @@ int64_t read_clipboard_unicode_text(void)
   if (SYSTEM_DATA_MANAGER_A != 0) {
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
-  FUN_180059ba0(clipboard_data,SYSTEM_DATA_MANAGER_B);
+  SystemResourceCleaner(clipboard_data,SYSTEM_DATA_MANAGER_B);
 }
 
 /**
@@ -556,7 +556,7 @@ void release_object_resources(uint64_t *object_ptr,uint64_t param2,uint64_t para
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
+    SystemResourceCleaner(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   resource_ptr = object_ptr[1];
   if (resource_ptr != 0) {
@@ -564,7 +564,7 @@ void release_object_resources(uint64_t *object_ptr,uint64_t param2,uint64_t para
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
+    SystemResourceCleaner(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   *(int32_t *)(object_ptr + 4) = 0;
   resource_ptr = object_ptr[3];
@@ -572,14 +572,14 @@ void release_object_resources(uint64_t *object_ptr,uint64_t param2,uint64_t para
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
+    SystemResourceCleaner(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   resource_ptr = object_ptr[1];
   if (resource_ptr != 0) {
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
+    SystemResourceCleaner(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   return;
 }
@@ -945,7 +945,7 @@ void release_container_resources(uint64_t *container_ptr,uint64_t param2,uint64_
         if (SYSTEM_DATA_MANAGER_A != 0) {
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
-        FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
+        SystemResourceCleaner(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
       }
       current_index = (int)max_index + 1;
       offset = offset + 0x10;
@@ -959,7 +959,7 @@ void release_container_resources(uint64_t *container_ptr,uint64_t param2,uint64_
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
+    SystemResourceCleaner(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   resource_ptr = container_ptr[1];
   if (resource_ptr == 0) {
@@ -969,7 +969,7 @@ void release_container_resources(uint64_t *container_ptr,uint64_t param2,uint64_
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
       }
-      FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
+      SystemResourceCleaner(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
     }
     resource_ptr = container_ptr[1];
     if (resource_ptr == 0) {
@@ -978,13 +978,13 @@ void release_container_resources(uint64_t *container_ptr,uint64_t param2,uint64_
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-    FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
+    SystemResourceCleaner(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
   }
   *container_ptr = 0;
   if (SYSTEM_DATA_MANAGER_A != 0) {
     *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
   }
-  FUN_180059ba0(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
+  SystemResourceCleaner(resource_ptr,SYSTEM_DATA_MANAGER_B,param3,param4,0xfffffffffffffffe);
 }
 
 /**

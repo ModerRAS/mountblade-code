@@ -294,7 +294,7 @@ void update_game_object_and_render(uint64_t param_1, int64_t param_2)
     *(int8_t *)(in_stack_00000040 + 0xb4) = effect_type;
     
     // 调用最终的渲染函数
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x24) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x24) ^ (uint64_t)&stack0x00000000);
 }
 
 

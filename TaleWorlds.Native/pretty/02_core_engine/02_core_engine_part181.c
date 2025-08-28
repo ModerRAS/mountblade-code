@@ -162,7 +162,7 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
     param_2[3] = 0;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
-    FUN_1806277c0(param_2, 5);
+    CoreEngineDataBufferProcessor(param_2, 5);
     format_ptr = (int32_t *)param_2[1];
     *format_ptr = 0x656e6f44;  // "Done"
     *(int16_t *)(format_ptr + 1) = 0x2e;
@@ -186,7 +186,7 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
     temp_ptr7 = &system_data_buffer_ptr;
     if (byte_ptr != (byte *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     byte_ptr = (byte *)0x0;
     temp_flag1 = 0;
@@ -194,7 +194,7 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
     temp_ptr6 = &system_data_buffer_ptr;
     if (temp_ptr7 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_ptr7 = (void *)0x0;
     temp_flag5 = 0;
@@ -202,7 +202,7 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
     temp_ptr5 = &system_data_buffer_ptr;
     if (temp_ptr3 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_ptr3 = (void *)0x0;
     temp_flag2 = 0;
@@ -210,7 +210,7 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
     temp_ptr4 = &system_data_buffer_ptr;
     if (temp_ptr5 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_ptr5 = (void *)0x0;
     temp_flag4 = 0;
@@ -224,7 +224,7 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
     param_2[3] = 0;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
-    FUN_1806277c0(param_2, 0x62);
+    CoreEngineDataBufferProcessor(param_2, 0x62);
     buffer_ptr = (uint64_t *)param_2[1];
     *buffer_ptr = 0x636572726f636e49;  // "Incorrect number of"
     buffer_ptr[1] = 0x7265626d756e2074;  // "umber of argu"
@@ -246,7 +246,7 @@ void process_engine_string_formatting(uint64_t param_1, uint64_t *param_2, uint6
     format_flag = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_cookie ^ (uint64_t)local_buffer1);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)local_buffer1);
 }
 
 
@@ -308,7 +308,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     temp_ptr1 = &system_data_buffer_ptr;
     if (temp_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_ptr2 = (uint64_t *)0x0;
     local_var1 = (uint64_t)local_var1._4_4_ << 0x20;
@@ -330,7 +330,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     temp_ptr3 = &system_data_buffer_ptr;
     if (temp_ptr4 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_ptr4 = (uint64_t *)0x0;
     local_var2 = (uint64_t)local_var2._4_4_ << 0x20;
@@ -339,10 +339,10 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     local_var1 = 0;
     temp_ptr2 = (uint64_t *)0x0;
     buffer_size1 = 0;
-    data_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+    data_ptr = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)data_ptr = 0;
     temp_ptr2 = data_ptr;
-    temp_flag = FUN_18064e990(data_ptr);
+    temp_flag = CoreEngineSystemCleanup(data_ptr);
     *data_ptr = 0x325f6c6576656c;  // "level2"
     buffer_size1 = 7;
     local_var1._0_4_ = temp_flag;
@@ -350,7 +350,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     temp_ptr1 = &system_data_buffer_ptr;
     if (temp_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_ptr2 = (uint64_t *)0x0;
     local_var1 = (uint64_t)local_var1._4_4_ << 0x20;
@@ -359,10 +359,10 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     local_var2 = 0;
     temp_ptr4 = (uint64_t *)0x0;
     buffer_size2 = 0;
-    data_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+    data_ptr = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)data_ptr = 0;
     temp_ptr4 = data_ptr;
-    temp_flag = FUN_18064e990(data_ptr);
+    temp_flag = CoreEngineSystemCleanup(data_ptr);
     *data_ptr = 0x335f6c6576656c;  // "level3"
     buffer_size2 = 7;
     local_var2._0_4_ = temp_flag;
@@ -370,7 +370,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     temp_ptr3 = &system_data_buffer_ptr;
     if (temp_ptr4 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_ptr4 = (uint64_t *)0x0;
     local_var2 = (uint64_t)local_var2._4_4_ << 0x20;
@@ -379,10 +379,10 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     local_var1 = 0;
     temp_ptr2 = (uint64_t *)0x0;
     buffer_size1 = 0;
-    data_ptr = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+    data_ptr = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
     *(int8_t *)data_ptr = 0;
     temp_ptr2 = data_ptr;
-    temp_flag = FUN_18064e990(data_ptr);
+    temp_flag = CoreEngineSystemCleanup(data_ptr);
     *data_ptr = 0x6e61696c69766963;  // "civilian"
     *(int8_t *)(data_ptr + 1) = 0;
     buffer_size1 = 8;
@@ -391,7 +391,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
     temp_ptr1 = &system_data_buffer_ptr;
     if (temp_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_ptr2 = (uint64_t *)0x0;
     local_var1 = (uint64_t)local_var1._4_4_ << 0x20;
@@ -418,7 +418,7 @@ process_engine_version_info(uint64_t param_1, uint64_t *param_2, uint64_t param_
   param_2[3] = 0;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
-  FUN_1806277c0(param_2, 0x27);
+  CoreEngineDataBufferProcessor(param_2, 0x27);
   data_ptr = (uint64_t *)param_2[1];
   *data_ptr = 0x6f66207475706e49;  // "Input format of "
   data_ptr[1] = 0x6d3c203a74616d72;  // "m< :marmat" -> "format <marmat"
@@ -514,7 +514,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, int64_t 
     }
     local_var1 = CONCAT44(*(int32_t *)(temp_long + 0x1c), (int32_t)local_var1);
     buffer_size1 = temp_uint;
-    FUN_1806277c0(&temp_ptr3, 0xf);
+    CoreEngineDataBufferProcessor(&temp_ptr3, 0xf);
     temp_ptr1 = (int32_t *)((uint64_t)buffer_size1 + (int64_t)temp_ptr4);
     *temp_ptr1 = 0x72726554;  // "Trra"
     temp_ptr1[1] = 0x536e6961;  // "Sina"
@@ -530,7 +530,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, int64_t 
     temp_uint = *(uint *)(temp_long + 0x10);
     temp_ulong = (uint64_t)temp_uint;
     if (*(int64_t *)(temp_long + 8) != 0) {
-      FUN_1806277c0(&temp_ptr5, temp_ulong);
+      CoreEngineDataBufferProcessor(&temp_ptr5, temp_ulong);
     }
     if (temp_uint != 0) {
                     // WARNING: Subroutine does not return
@@ -542,13 +542,13 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, int64_t 
     local_var2 = CONCAT44(*(int32_t *)(temp_long + 0x1c), (int32_t)local_var2);
     temp_var2 = 1;
     buffer_size2 = temp_uint;
-    FUN_1806277c0(&temp_ptr5, 1);
+    CoreEngineDataBufferProcessor(&temp_ptr5, 1);
     *(int16_t *)((uint64_t)buffer_size2 + temp_long1) = 0x2f;  // "/"
     temp_ptr7 = &system_data_buffer_ptr;
     buffer_size2 = temp_var2;
     if (temp_long3 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_long3 = 0;
     temp_flag2 = 0;
@@ -557,7 +557,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, int64_t 
     temp_ptr3 = &system_data_buffer_ptr;
     if (temp_ptr4 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_ptr4 = (void *)0x0;
     local_var1 = local_var1 & 0xffffffff00000000;
@@ -565,7 +565,7 @@ void process_engine_file_operations(uint64_t param_1, uint64_t param_2, int64_t 
     temp_ptr6 = &system_data_buffer_ptr;
     if (temp_long2 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_long2 = 0;
     local_var3 = (uint64_t)local_var3._4_4_ << 0x20;
@@ -607,7 +607,7 @@ LAB_180167a3b:
       temp_ptr3 = &system_data_buffer_ptr;
       if (temp_ptr4 != (void *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
       temp_ptr4 = (void *)0x0;
       local_var1 = local_var1 & 0xffffffff00000000;
@@ -617,7 +617,7 @@ LAB_180167a3b:
     temp_ptr5 = &system_data_buffer_ptr;
     if (temp_long1 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      CoreEngineMemoryPoolCleaner();
     }
     temp_long1 = 0;
     local_var2 = local_var2 & 0xffffffff00000000;
@@ -625,7 +625,7 @@ LAB_180167a3b:
   }
   temp_flag1 = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_cookie ^ (uint64_t)local_buffer1);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)local_buffer1);
 }
 
 

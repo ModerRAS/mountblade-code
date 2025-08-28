@@ -284,7 +284,7 @@ void FUN_18009f170(int64_t param_1)
     __Gninc___basic_streambuf_DU__char_traits_D_std___std__IEAAPEADXZ(param_1);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (uint64_t)auStack_98);
+  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_98);
 }
 
 

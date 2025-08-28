@@ -48,7 +48,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 3);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化UI系统参数
   func_0x00018010bf80(auStack_148, 0);
   
@@ -70,7 +70,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 获取物理系统组件指针并初始化物理参数
   component_ptr = engine_context + 0x17a0;
   (**(code **)(*(int64_t *)(engine_context + 0x17a8) + 0x10))((int64_t *)(engine_context + 0x17a8), &unknown_var_8584_ptr);
@@ -81,7 +81,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x3f000000);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 0x28, &uStackX_8);
+  SystemInitializer(engine_context + 0x28, &uStackX_8);
   // 初始化音频系统参数
   func_0x00018010bfa0(auStack_148, 0);
   
@@ -103,7 +103,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化动画系统参数
   func_0x00018010bfc0(auStack_148, 0);
   
@@ -126,7 +126,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化场景系统参数
   func_0x00018010bfe0(auStack_148, 0);
   
@@ -149,7 +149,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化特效系统参数
   func_0x00018010c000(auStack_148, 0);
   
@@ -172,7 +172,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 获取光照系统组件指针并初始化光照参数
   component_ptr = engine_context + 0x1810;
   (**(code **)(*(int64_t *)(engine_context + 0x1818) + 0x10))
@@ -184,7 +184,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化阴影系统参数
   func_0x00018010c020(auStack_148, 0);
   
@@ -208,7 +208,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 获取后处理系统组件指针并初始化后处理参数
   component_ptr = engine_context + 0x1ab0;
   (**(code **)(*(int64_t *)(engine_context + 0x1ab8) + 0x10))
@@ -220,7 +220,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 获取材质系统组件指针并初始化材质参数
   component_ptr = engine_context + 0x380;
   (**(code **)(*(int64_t *)(engine_context + 0x388) + 0x10))((int64_t *)(engine_context + 0x388), &unknown_var_8760_ptr);
@@ -231,7 +231,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 获取纹理系统组件指针并初始化纹理参数
   component_ptr = engine_context + 0x3f0;
   (**(code **)(*(int64_t *)(engine_context + 0x3f8) + 0x10))((int64_t *)(engine_context + 0x3f8), &unknown_var_8816_ptr);
@@ -242,7 +242,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化粒子系统参数
   func_0x00018010c040(auStack_148, 0);
   
@@ -266,7 +266,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 获取天气系统组件指针并初始化天气参数
   component_ptr = engine_context + 0x1b90;
   (**(code **)(*(int64_t *)(engine_context + 0x1b98) + 0x10))
@@ -278,7 +278,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 200);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化水面系统参数
   func_0x00018010c060(auStack_148, 0);
   
@@ -302,7 +302,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化地形系统参数
   func_0x00018010c080(auStack_148, 0);
   
@@ -326,7 +326,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化植被系统参数
   func_0x00018010c0a0(auStack_148, 0);
   
@@ -349,7 +349,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 获取天空系统组件指针并初始化天空参数
   component_ptr = engine_context + 0x1d50;
   (**(code **)(*(int64_t *)(engine_context + 0x1d58) + 0x10))
@@ -361,7 +361,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x500);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 获取云层系统组件指针并初始化云层参数
   component_ptr = engine_context + 0x1dc0;
   (**(code **)(*(int64_t *)(engine_context + 0x1dc8) + 0x10))
@@ -373,7 +373,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x2d0);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 获取雾效系统组件指针并初始化雾效参数
   component_ptr = engine_context + 0x1e30;
   (**(code **)(*(int64_t *)(engine_context + 0x1e38) + 0x10))
@@ -385,7 +385,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 0x42700000);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 0x28, &uStackX_8);
+  SystemInitializer(engine_context + 0x28, &uStackX_8);
   // 获取时间系统组件指针并初始化时间参数
   component_ptr = engine_context + 0x1ea0;
   (**(code **)(*(int64_t *)(engine_context + 0x1ea8) + 0x10))
@@ -397,7 +397,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 获取风系统组件指针并初始化风参数
   component_ptr = engine_context + 0x1f10;
   (**(code **)(*(int64_t *)(engine_context + 0x1f18) + 0x10))
@@ -409,7 +409,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化反射系统参数
   func_0x00018010c0c0(auStack_148, 0);
   
@@ -433,7 +433,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化碰撞系统参数
   func_0x00018010c0e0(auStack_148, 0);
   
@@ -457,7 +457,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化传感器系统参数
   func_0x00018010c100(auStack_148, 0);
   
@@ -481,7 +481,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化触发器系统参数
   func_0x00018010c120(auStack_148, 0);
   
@@ -505,7 +505,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化关节系统参数
   func_0x00018010c140(auStack_148, 0);
   
@@ -529,7 +529,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化约束系统参数
   func_0x00018010c160(auStack_148, 0);
   
@@ -553,7 +553,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   func_0x00018010c180(auStack_148,0);
   *(int32_t *)(param_1 + 0x828) = 0;
   FUN_18010bd10(param_1 + 0x830,auStack_148);
@@ -568,7 +568,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c1a0(auStack_148,0);
   *(int32_t *)(param_1 + 0x908) = 0;
   FUN_18010bd10(param_1 + 0x910,auStack_148);
@@ -583,7 +583,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c1c0(auStack_148,0);
   *(int32_t *)(param_1 + 0x978) = 0;
   FUN_18010bd10(param_1 + 0x980,auStack_148);
@@ -598,7 +598,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c1e0(auStack_148,0);
   *(int32_t *)(param_1 + 0xf98) = 0;
   FUN_18010bd10(param_1 + 4000,auStack_148);
@@ -613,7 +613,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c200(auStack_148,0);
   *(int32_t *)(param_1 + 0x1078) = 0;
   FUN_18010bd10(param_1 + 0x1080,auStack_148);
@@ -628,7 +628,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c220(auStack_148,0);
   *(int32_t *)(param_1 + 0x10e8) = 0;
   FUN_18010bd10(param_1 + 0x10f0,auStack_148);
@@ -643,7 +643,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c240(auStack_148,0);
   *(int32_t *)(param_1 + 0x9e8) = 0;
   FUN_18010bd10(param_1 + 0x9f0,auStack_148);
@@ -658,7 +658,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c260(auStack_148,0);
   *(int32_t *)(param_1 + 0xf28) = 0;
   FUN_18010bd10(param_1 + 0xf30,auStack_148);
@@ -673,7 +673,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c280(auStack_148,0);
   *(int32_t *)(param_1 + 0x1008) = 0;
   FUN_18010bd10(param_1 + 0x1010,auStack_148);
@@ -688,7 +688,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c2a0(auStack_148,0);
   *(int32_t *)(param_1 + 0xa58) = 0;
   FUN_18010bd10(param_1 + 0xa60,auStack_148);
@@ -703,7 +703,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c2c0(auStack_148,0);
   *(int32_t *)(param_1 + 0xac8) = 0;
   FUN_18010bd10(param_1 + 0xad0,auStack_148);
@@ -718,7 +718,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   func_0x00018010c2e0(auStack_148,0);
   *(int32_t *)(param_1 + 0xba8) = 0;
   FUN_18010bd10(param_1 + 0xbb0,auStack_148);
@@ -733,7 +733,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010bd80(auStack_148,0);
   uVar1 = param_1 + 0xaf0;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -745,7 +745,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010bdb0(auStack_148,0);
   uVar1 = param_1 + 0xe70;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -757,7 +757,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0xc40;
   func_0x00018010bc90(uVar1,&render_data_ptr);
   uStackX_8._0_4_ = 2;
@@ -765,7 +765,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0xd20;
   func_0x00018010bc90(uVar1,&unknown_var_9432_ptr);
   uStackX_8._0_4_ = 1;
@@ -773,7 +773,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0xcb0;
   func_0x00018010bc90(uVar1,&unknown_var_9408_ptr);
   uStackX_8._0_4_ = 1;
@@ -781,7 +781,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   FUN_18010bde0(auStack_120,0);
   uVar1 = param_1 + 0x1ce0;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -793,7 +793,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x1340;
   func_0x00018010bc90(uVar1,&unknown_var_9456_ptr);
   uStackX_8._0_4_ = 0x3f800000;
@@ -801,7 +801,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x13b0;
   func_0x00018010bc90(uVar1,&unknown_var_9512_ptr);
   uStackX_8._0_4_ = 0x3f266666;
@@ -809,7 +809,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f266666);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1420;
   func_0x00018010bc90(uVar1,&unknown_var_9488_ptr);
   uStackX_8._0_4_ = 0x3f800000;
@@ -817,7 +817,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1500;
   func_0x00018010bc90(uVar1,&system_string1_ptr);
   uStackX_8._0_4_ = 0x3f800000;
@@ -825,7 +825,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1490;
   func_0x00018010bc90(uVar1,&unknown_var_9528_ptr);
   uStackX_8._0_4_ = 0x3f800000;
@@ -833,7 +833,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1570;
   func_0x00018010bc90(uVar1,&system_pattern2_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -841,7 +841,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x15e0;
   func_0x00018010bc90(uVar1,&unknown_var_9568_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -849,7 +849,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x16c0;
   func_0x00018010bc90(uVar1,&unknown_var_9608_ptr);
   uStackX_8._0_4_ = 0x3f000000;
@@ -857,7 +857,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f000000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1880;
   func_0x00018010bc90(uVar1,&unknown_var_9600_ptr);
   uStackX_8._0_4_ = 0x400ccccd;
@@ -865,7 +865,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x400ccccd);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x2060;
   func_0x00018010bc90(uVar1,&unknown_var_9672_ptr);
   uStackX_8._0_4_ = 0x42200000;
@@ -873,7 +873,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42200000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x18f0;
   func_0x00018010bc90(uVar1,&unknown_var_9640_ptr);
   uStackX_8._0_4_ = 0x3fc00000;
@@ -881,7 +881,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3fc00000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1960;
   func_0x00018010bc90(uVar1,&unknown_var_9736_ptr);
   uStackX_8._0_4_ = 0x42200000;
@@ -889,7 +889,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42200000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x19d0;
   func_0x00018010bc90(uVar1,&unknown_var_9688_ptr);
   uStackX_8._0_4_ = 0x42c80000;
@@ -897,7 +897,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42c80000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1110;
   func_0x00018010bc90(uVar1,&unknown_var_9792_ptr);
   uStackX_8._0_4_ = 0x42480000;
@@ -905,7 +905,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42480000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1180;
   func_0x00018010bc90(uVar1,&system_string2_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -913,7 +913,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x11f0;
   func_0x00018010bc90(uVar1,&unknown_var_9832_ptr);
   uStackX_8._0_4_ = 0x3f800000;
@@ -921,7 +921,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3f800000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x1260;
   func_0x00018010bc90(uVar1,&unknown_var_9808_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -929,7 +929,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x20d0;
   func_0x00018010bc90(uVar1,&unknown_var_9880_ptr);
   uStackX_8._0_4_ = 0x42c80000;
@@ -937,7 +937,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42c80000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   uVar1 = param_1 + 0x2140;
   func_0x00018010bc90(uVar1,&unknown_var_9848_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -945,7 +945,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x21b0;
   func_0x00018010bc90(uVar1,&unknown_var_9936_ptr);
   uStackX_8._0_4_ = 0x3c;
@@ -953,7 +953,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x3c);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   uVar1 = param_1 + 0x2220;
   func_0x00018010bc90(uVar1,&unknown_var_9904_ptr);
   uStackX_8._0_4_ = 0x42480000;
@@ -961,7 +961,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_,0x42480000);
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 0x28,&uStackX_8);
+  SystemInitializer(param_1 + 0x28,&uStackX_8);
   // 获取网络系统组件指针并初始化网络参数
   component_ptr = engine_context + 0xbd0;
   func_0x00018010bc90(component_ptr, &unknown_var_9992_ptr);
@@ -972,7 +972,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 初始化输入系统参数
   FUN_18010be10(auStack_100, 0);
   component_ptr = engine_context + 0x4d0;
@@ -987,7 +987,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   FUN_18010be40(auStack_e0,0);
   uVar1 = param_1 + 0x540;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -999,7 +999,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(uVar1,&uStackX_8);
   uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  SystemInitializer(param_1 + 8,&uStackX_8);
   component_ptr = engine_context + 0xd90;
   func_0x00018010bc90(component_ptr, &unknown_var_9968_ptr);
   uStackX_8._0_4_ = 4;
@@ -1007,7 +1007,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 4);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   component_ptr = engine_context + 0xe00;
   func_0x00018010bc90(component_ptr, &unknown_var_48_ptr);
   uStackX_8._0_4_ = 4;
@@ -1015,7 +1015,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 4);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   FUN_18010be70(auStack_c0,0);
   component_ptr = engine_context + 0x1c0;
   uStackX_8._0_4_ = 1;
@@ -1027,7 +1027,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   component_ptr = engine_context + 0x230;
   func_0x00018010bc90(component_ptr, &unknown_var_88_ptr);
   uStackX_8._0_4_ = 2;
@@ -1035,7 +1035,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   FUN_18010bea0(auStack_a0,0);
   component_ptr = engine_context + 0x2290;
   uStackX_8._0_4_ = 1;
@@ -1047,7 +1047,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   FUN_18010bed0(auStack_80,0);
   component_ptr = engine_context + 0x2300;
   uStackX_8._0_4_ = 1;
@@ -1059,7 +1059,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   component_ptr = engine_context + 0x24c0;
   func_0x00018010bc90(component_ptr, &unknown_var_104_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -1067,7 +1067,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 0x28, &uStackX_8);
+  SystemInitializer(engine_context + 0x28, &uStackX_8);
   FUN_18010bf00(auStack_60,0);
   component_ptr = engine_context + 0x2530;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -1079,7 +1079,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   FUN_18010bf30(auStack_40,0);
   component_ptr = engine_context + 0x25a0;
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -1091,7 +1091,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   component_ptr = engine_context + 0x2370;
   func_0x00018010bc90(component_ptr, &unknown_var_224_ptr);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
@@ -1099,7 +1099,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   component_ptr = engine_context + 0x23e0;
   func_0x00018010bc90(component_ptr, &unknown_var_208_ptr);
   uStackX_8._0_4_ = 1;
@@ -1107,7 +1107,7 @@ void initialize_engine_parameters(int64_t engine_context)
   uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
-  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  SystemInitializer(engine_context + 8, &uStackX_8);
   // 设置引擎初始化完成标志
   *(int32_t *)(engine_context + 0x88) = 1;
   

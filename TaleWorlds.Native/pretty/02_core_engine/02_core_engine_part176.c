@@ -34,7 +34,7 @@ void 清理容器元素(int64_t 容器指针)
       元素指针 = *(int64_t *)(元素指针 + 索引 * 8);
       if (元素指针 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(元素指针);
+        CoreEngineMemoryPoolCleaner(元素指针);
       }
       *(uint64_t *)(元素指针 + 索引 * 8) = 0;
       索引 = 索引 + 1;
@@ -53,7 +53,7 @@ void 清理容器元素(int64_t 容器指针)
         引用计数指针 = (int *)(偏移量 + 0x18);
         *引用计数指针 = *引用计数指针 + -1;
         if (*引用计数指针 == 0) {
-          FUN_18064d630();
+          SystemDataCleaner();
           return;
         }
       }
@@ -92,7 +92,7 @@ void 销毁容器结构(int64_t 容器指针)
       元素指针 = *(int64_t *)(元素指针 + 索引 * 8);
       if (元素指针 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900(元素指针);
+        CoreEngineMemoryPoolCleaner(元素指针);
       }
       *(uint64_t *)(元素指针 + 索引 * 8) = 0;
       索引 = 索引 + 1;
@@ -111,7 +111,7 @@ void 销毁容器结构(int64_t 容器指针)
         引用计数指针 = (int *)(偏移量 + 0x18);
         *引用计数指针 = *引用计数指针 + -1;
         if (*引用计数指针 == 0) {
-          FUN_18064d630();
+          SystemDataCleaner();
           return;
         }
       }

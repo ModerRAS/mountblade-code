@@ -169,7 +169,7 @@ LAB_id_found:
       new_record = current_record;
       if (current_record == (uint64_t *)0x0) {
 LAB_create_new_record:
-        new_record = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x48,8,3);
+        new_record = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x48,8,3);
         *new_record = &system_state_ptr;
         new_record[1] = 0;
         *(int32_t *)(new_record + 2) = 0;
@@ -253,7 +253,7 @@ LAB_insert_position:
             name_offset = 1;
 LAB_resize_array:
             temp_record = (uint64_t *)
-                      FUN_18062b420(system_memory_pool_ptr,name_offset * 8,*(int8_t *)(node_index + 0x48));
+                      CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,name_offset * 8,*(int8_t *)(node_index + 0x48));
             current_record = *(uint64_t **)(node_index + 0x38);
             new_record = *(uint64_t **)(node_index + 0x30);
           }
@@ -269,7 +269,7 @@ LAB_resize_array:
           *temp_record = new_record;
           if (*(int64_t *)(node_index + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
           }
           *(uint64_t **)(node_index + 0x30) = temp_record;
           *(uint64_t **)(node_index + 0x38) = temp_record + 1;
@@ -418,7 +418,7 @@ LAB_next_record:
       stack_pointer = &system_data_buffer_ptr;
       if (name_buffer != (byte *)0x0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
       }
     } while (*animation_records_ptr != 0);
   }
@@ -650,8 +650,8 @@ LAB_creation_complete:
   }
   search_param = 1;
 LAB_skip_validation:
-  string_length = FUN_18062b420(system_memory_pool_ptr,0x68,*(int8_t *)(record_manager + 5));
-  FUN_180627ae0(string_length + 0x20,search_criteria);
+  string_length = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x68,*(int8_t *)(record_manager + 5));
+  CoreEngineDataTransformer(string_length + 0x20,search_criteria);
   parent_node = (uint64_t *)(string_length + 0x40);
   *parent_node = 0;
   *(uint64_t *)(string_length + 0x48) = 0;
@@ -699,9 +699,9 @@ void insert_animation_record(int64_t record_manager, uint64_t param_2, int64_t r
   }
   insert_param = 1;
 LAB_skip_duplicate_check:
-  string_length = FUN_18062b420(system_memory_pool_ptr,0x68,*(int8_t *)(record_manager + 0x28),param_4,
+  string_length = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x68,*(int8_t *)(record_manager + 0x28),param_4,
                         0xfffffffffffffffe);
-  FUN_180627ae0(string_length + 0x20,search_criteria);
+  CoreEngineDataTransformer(string_length + 0x20,search_criteria);
   record_node = (uint64_t *)(string_length + 0x40);
   *record_node = 0;
   *(uint64_t *)(string_length + 0x48) = 0;

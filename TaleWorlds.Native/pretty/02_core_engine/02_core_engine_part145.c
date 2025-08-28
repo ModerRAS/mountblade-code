@@ -132,7 +132,7 @@ void process_game_object_batch(int64_t context, int64_t data_ptr, int count, uin
     loop_counter = loop_counter + -1;
   } while (loop_counter != 0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_param ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(stack_param ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -600,7 +600,7 @@ void cleanup_game_object_resources(int64_t obj_ptr, uint64_t param2, uint64_t pa
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resource_ptr, SYSTEM_DATA_MANAGER_B, param3, param4, cleanup_flag);
+    SystemResourceCleaner(resource_ptr, SYSTEM_DATA_MANAGER_B, param3, param4, cleanup_flag);
   }
   return;
 }
@@ -879,7 +879,7 @@ void remove_game_object_from_container(int *container, int64_t obj_ptr, int32_t 
             *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
           }
                     // WARNING: Subroutine does not return
-          FUN_180059ba0(puVar9,SYSTEM_DATA_MANAGER_B);
+          SystemResourceCleaner(puVar9,SYSTEM_DATA_MANAGER_B);
         }
         FUN_180122160(*(uint64_t *)(lVar7 + 0x2df8),*puVar8,0);
         FUN_180136ab0(puVar8);
@@ -887,7 +887,7 @@ void remove_game_object_from_container(int *container, int64_t obj_ptr, int32_t 
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(puVar8,SYSTEM_DATA_MANAGER_B);
+        SystemResourceCleaner(puVar8,SYSTEM_DATA_MANAGER_B);
       }
       FUN_180122160(uVar5,*param_1,0,uVar5,0xfffffffffffffffe);
       FUN_18013ea00(*(uint64_t *)(param_1 + 0xc));
@@ -903,7 +903,7 @@ void remove_game_object_from_container(int *container, int64_t obj_ptr, int32_t 
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(lVar15,SYSTEM_DATA_MANAGER_B);
+        SystemResourceCleaner(lVar15,SYSTEM_DATA_MANAGER_B);
       }
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
@@ -919,7 +919,7 @@ void remove_game_object_from_container(int *container, int64_t obj_ptr, int32_t 
             piVar19 = (int *)(lVar15 + 0x18);
             *piVar19 = *piVar19 + -1;
             if (*piVar19 == 0) {
-              FUN_18064d630();
+              SystemDataCleaner();
               return;
             }
           }
@@ -1036,7 +1036,7 @@ void link_game_objects(int64_t obj1, int64_t obj2)
     *piVar1 = *piVar1 + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(lVar2,SYSTEM_DATA_MANAGER_B);
+  SystemResourceCleaner(lVar2,SYSTEM_DATA_MANAGER_B);
 }
 
 

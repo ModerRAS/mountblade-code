@@ -160,13 +160,13 @@ typedef uint64_t ResourceCleanupFlags;         // 资源清理标志
  * @brief 动态内存分配器
  * 动态分配内存资源
  */
-#define DynamicMemoryAllocator FUN_18062b420
+#define DynamicMemoryAllocator CoreEngineMemoryPoolAllocator
 
 /**
  * @brief 全局清理函数
  * 执行全局清理操作
  */
-#define GlobalCleanup FUN_18064e900
+#define GlobalCleanup CoreEngineMemoryPoolCleaner
 
 /**
  * @brief 场景管理器
@@ -178,7 +178,7 @@ typedef uint64_t ResourceCleanupFlags;         // 资源清理标志
  * @brief 对象创建器
  * 创建系统对象和资源
  */
-#define ObjectCreator FUN_18062b1e0
+#define ObjectCreator CoreEngineMemoryPoolReallocator
 
 /**
  * @brief 对象初始化器
@@ -364,7 +364,7 @@ typedef uint64_t ResourceCleanupFlags;         // 资源清理标志
  * @brief 系统安全检查器
  * 执行系统安全检查
  */
-#define SystemSecurityChecker FUN_1808fc050
+#define SystemSecurityChecker SystemSecurityChecker
 
 /**
  * @brief 数据处理器

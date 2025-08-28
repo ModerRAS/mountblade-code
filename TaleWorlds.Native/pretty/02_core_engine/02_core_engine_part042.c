@@ -680,7 +680,7 @@ void expand_dynamic_array_4byte_typeA(int64_t source_array, int64_t *target_ptr)
     stack_ptr1 = &system_state_ptr;
     
     // 分配新内存
-    allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, array_size, 0x10, 0x1e);
+    allocated_memory = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, array_size, 0x10, 0x1e);
     FUN_180082aa0(system_data, &temp_buffer);
     new_buffer = temp_buffer;
     temp_buffer[2] = allocated_memory;
@@ -708,7 +708,7 @@ void expand_dynamic_array_4byte_typeA(int64_t source_array, int64_t *target_ptr)
     (**(code **)(*old_buffer + 0x38))();
   }
   // 执行缓冲区操作（该函数不会返回）
-  FUN_1808fc050(stack_guard ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(stack_guard ^ (uint64_t)stack_buffer);
 }
 
 
@@ -758,7 +758,7 @@ void expand_dynamic_array_4byte_typeB(int64_t source_array, int64_t *target_ptr)
     stack_ptr1 = &system_state_ptr;
     
     // 分配新内存
-    allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, array_size, 0x10, 0x1e);
+    allocated_memory = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, array_size, 0x10, 0x1e);
     FUN_1800828d0(system_data, &temp_buffer);
     new_buffer = temp_buffer;
     temp_buffer[2] = allocated_memory;
@@ -786,7 +786,7 @@ void expand_dynamic_array_4byte_typeB(int64_t source_array, int64_t *target_ptr)
     (**(code **)(*old_buffer + 0x38))();
   }
   // 执行缓冲区操作（该函数不会返回）
-  FUN_1808fc050(stack_guard ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(stack_guard ^ (uint64_t)stack_buffer);
 }
 
 
@@ -837,7 +837,7 @@ void expand_dynamic_array_2byte(int64_t source_array, int64_t *target_ptr)
     stack_ptr1 = &system_state_ptr;
     
     // 分配新内存
-    allocated_memory = FUN_18062b1e0(system_memory_pool_ptr, array_size, 0x10, 0x1e);
+    allocated_memory = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, array_size, 0x10, 0x1e);
     FUN_180082c20(system_data, &temp_buffer);
     new_buffer = temp_buffer;
     temp_buffer[2] = allocated_memory;
@@ -865,7 +865,7 @@ void expand_dynamic_array_2byte(int64_t source_array, int64_t *target_ptr)
     (**(code **)(*old_buffer + 0x38))();
   }
   // 执行缓冲区操作（该函数不会返回）
-  FUN_1808fc050(stack_guard ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(stack_guard ^ (uint64_t)stack_buffer);
 }
 
 
@@ -918,7 +918,7 @@ void expand_and_manage_array_typeA(int64_t *array_info, uint64_t required_space,
     if (new_capacity != 0) {
       // 分配新的内存空间
       new_memory = (uint64_t *)
-               FUN_18062b420(system_memory_pool_ptr, new_capacity << 5, (char)array_info[3], memory_flags, 0xfffffffffffffffe);
+               CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity << 5, (char)array_info[3], memory_flags, 0xfffffffffffffffe);
       old_end = (uint64_t *)array_info[1];
       old_start = (uint64_t *)*array_info;
     }
@@ -969,7 +969,7 @@ void expand_and_manage_array_typeA(int64_t *array_info, uint64_t required_space,
       do {
         if (*current_ptr != 0) {
           // 触发错误处理（该函数不会返回）
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         current_ptr = current_ptr + 4;
       } while (current_ptr != (int64_t *)array_info[1]);
@@ -977,7 +977,7 @@ void expand_and_manage_array_typeA(int64_t *array_info, uint64_t required_space,
     }
     if (current_ptr != (int64_t *)0x0) {
       // 释放旧内存（该函数不会返回）
-      FUN_18064e900(current_ptr);
+      CoreEngineMemoryPoolCleaner(current_ptr);
     }
     // 更新数组信息
     *array_info = (int64_t)new_memory;
@@ -1054,7 +1054,7 @@ void expand_and_manage_array_typeB(int64_t *array_info, uint64_t required_space,
     if (new_capacity != 0) {
       // 分配新的内存空间
       new_memory = (uint64_t *)
-               FUN_18062b420(system_memory_pool_ptr, new_capacity << 5, (char)array_info[3], memory_flags, 0xfffffffffffffffe);
+               CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity << 5, (char)array_info[3], memory_flags, 0xfffffffffffffffe);
       old_end = (uint64_t *)array_info[1];
       old_start = (uint64_t *)*array_info;
     }
@@ -1105,7 +1105,7 @@ void expand_and_manage_array_typeB(int64_t *array_info, uint64_t required_space,
       do {
         if (*current_ptr != 0) {
           // 触发错误处理（该函数不会返回）
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         current_ptr = current_ptr + 4;
       } while (current_ptr != (int64_t *)array_info[1]);
@@ -1113,7 +1113,7 @@ void expand_and_manage_array_typeB(int64_t *array_info, uint64_t required_space,
     }
     if (current_ptr != (int64_t *)0x0) {
       // 释放旧内存（该函数不会返回）
-      FUN_18064e900(current_ptr);
+      CoreEngineMemoryPoolCleaner(current_ptr);
     }
     // 更新数组信息
     *array_info = (int64_t)new_memory;

@@ -1,5 +1,64 @@
 #define SystemInitializer FUN_1808fcb90  // 系统初始化器
 
+// 渲染系统数据处理相关函数
+#define RenderDataProcessor FUN_180570190  // 渲染数据处理器
+#define RenderDataAllocator FUN_1805707a0  // 渲染数据分配器
+#define RenderDataValidator FUN_180573020  // 渲染数据验证器
+
+// 渲染系统内存管理相关函数
+#define RenderMemoryManager FUN_1804bca40  // 渲染内存管理器
+#define RenderMemoryAllocator FUN_1804bd030  // 渲染内存分配器
+#define RenderMemoryCleaner FUN_1804bd2b0  // 渲染内存清理器
+#define RenderMemoryInitializer FUN_1804bce70  // 渲染内存初始化器
+
+// 渲染系统资源管理相关函数
+#define RenderResourceManager FUN_1804c0610  // 渲染资源管理器
+#define RenderResourceInitializer FUN_1804bc4f0  // 渲染资源初始化器
+#define RenderResourceOptimizer FUN_1804bc380  // 渲染资源优化器
+#define RenderResourceProcessor FUN_1804bc2d0  // 渲染资源处理器
+#define RenderResourceValidator FUN_1804bc420  // 渲染资源验证器
+
+// 渲染系统颜色和材质相关函数
+#define RenderColorProcessor FUN_1804bba40  // 渲染颜色处理器
+#define RenderColorExtractor FUN_1804bbc50  // 渲染颜色提取器
+
+// 渲染系统对象管理相关函数
+#define RenderObjectManager FUN_180275090  // 渲染对象管理器
+#define RenderObjectInitializer FUN_1802759e0  // 渲染对象初始化器
+#define RenderObjectProcessor FUN_180275a60  // 渲染对象处理器
+
+// 渲染系统状态管理相关函数
+#define RenderStateManager FUN_1802fc0f0  // 渲染状态管理器
+#define RenderStateCleaner FUN_1802f3c20  // 渲染状态清理器
+
+// 渲染系统高级功能相关函数
+#define RenderAdvancedProcessor FUN_180546fa0  // 渲染高级处理器
+#define RenderAdvancedInitializer FUN_180543290  // 渲染高级初始化器
+#define RenderAdvancedOptimizer FUN_1805435c0  // 渲染高级优化器
+#define RenderAdvancedValidator FUN_1805439d0  // 渲染高级验证器
+
+// 渲染系统缓冲区管理相关函数
+#define RenderBufferManager FUN_180544860  // 渲染缓冲区管理器
+#define RenderBufferCleaner FUN_180544ac0  // 渲染缓冲区清理器
+
+// 渲染系统控制相关函数
+#define RenderSystemController FUN_180548880  // 渲染系统控制器
+#define RenderSystemFinalizer FUN_18054a3b0  // 渲染系统终结器
+
+// 渲染系统几何处理相关函数
+#define RenderGeometryProcessor FUN_1805ec620  // 渲染几何处理器
+
+// 系统核心功能相关函数
+#define SystemCoreProcessor FUN_1800e8140  // 系统核心处理器
+
+// 主要渲染功能函数
+#define RenderMainProcessor FUN_180541920  // 渲染主处理器
+#define RenderSceneProcessor FUN_180542260  // 渲染场景处理器
+#define RenderWorldProcessor FUN_180542286  // 渲染世界处理器
+#define RenderNullProcessor FUN_1805422e2  // 渲染空处理器
+#define RenderComplexProcessor FUN_1805422f0  // 渲染复杂处理器
+#define RenderFinalProcessor FUN_180542ed0  // 渲染最终处理器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 

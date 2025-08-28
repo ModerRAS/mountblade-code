@@ -77,7 +77,7 @@ void release_engine_resources(int64_t *resource_ptr)
             resource_cache[0] = 0;
             operation_type = 0x24;
             resource_id = ref_count;
-            resource_handle = FUN_18062b1e0(system_memory_pool_ptr, ENGINE_RESOURCE_TABLE_SIZE, 8, 3);
+            resource_handle = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, ENGINE_RESOURCE_TABLE_SIZE, 8, 3);
             resource_interface = (void **)FUN_18005ce30(resource_handle, &resource_type);
             temp_interface = resource_interface;
             if (resource_interface != (void **)0x0) {
@@ -104,7 +104,7 @@ void release_engine_resources(int64_t *resource_ptr)
             metadata_size = 0;
             metadata_buffer[0] = 0;
             alloc_size = 0x26;
-            resource_handle = FUN_18062b1e0(system_memory_pool_ptr, ENGINE_RESOURCE_TABLE_SIZE, 8, 3);
+            resource_handle = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, ENGINE_RESOURCE_TABLE_SIZE, 8, 3);
             resource_data = (int64_t *)FUN_18005ce30(resource_handle, &resource_properties);
             temp_resource = resource_data;
             if (resource_data != (int64_t *)0x0) {
@@ -128,7 +128,7 @@ void release_engine_resources(int64_t *resource_ptr)
         UNLOCK();
     }
 LAB_1800802aa:
-    FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -237,7 +237,7 @@ uint allocate_memory_page_8k(uint *allocator_ptr, int request_size)
         do {
             page_index = (int)start_page;
             if (*(int64_t *)page_entry == 0) {
-                new_page = FUN_18062b420(system_memory_pool_ptr, ENGINE_PAGE_SIZE_32K, 0x25);
+                new_page = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, ENGINE_PAGE_SIZE_32K, 0x25);
                 LOCK();
                 page_allocated = *(int64_t *)(allocator_ptr + (int64_t)page_index * 2 + 2) == 0;
                 if (page_allocated) {
@@ -251,7 +251,7 @@ uint allocate_memory_page_8k(uint *allocator_ptr, int request_size)
                 }
                 else {
                     if (new_page != 0) {
-                        FUN_18064e900();
+                        CoreEngineMemoryPoolCleaner();
                     }
                     do {
                     } while (*page_flag != '\0');
@@ -301,7 +301,7 @@ int32_t initialize_memory_pages_8k(int64_t allocator_base)
     do {
         page_idx = (int)page_counter;
         if (*current_entry == 0) {
-            new_page = FUN_18062b420(system_memory_pool_ptr, ENGINE_PAGE_SIZE_32K, 0x25);
+            new_page = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, ENGINE_PAGE_SIZE_32K, 0x25);
             page_entry = (int64_t *)(allocator_ptr + 8 + (int64_t)page_idx * 8);
             LOCK();
             page_ready = *page_entry == 0;
@@ -316,7 +316,7 @@ int32_t initialize_memory_pages_8k(int64_t allocator_base)
             }
             else {
                 if (new_page != 0) {
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                 }
                 do {
                 } while (*page_flag != '\0');
@@ -388,7 +388,7 @@ uint allocate_memory_page_2k(uint *allocator_ptr, int request_size)
         do {
             page_index = (int)end_page;
             if (*(int64_t *)page_entry == 0) {
-                new_page = FUN_18062b420(system_memory_pool_ptr, ENGINE_PAGE_SIZE_16K, 0x25);
+                new_page = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, ENGINE_PAGE_SIZE_16K, 0x25);
                 LOCK();
                 page_allocated = *(int64_t *)(allocator_ptr + (int64_t)page_index * 2 + 2) == 0;
                 if (page_allocated) {
@@ -409,7 +409,7 @@ uint allocate_memory_page_2k(uint *allocator_ptr, int request_size)
                 }
                 else {
                     if (new_page != 0) {
-                        FUN_18064e900();
+                        CoreEngineMemoryPoolCleaner();
                     }
                     do {
                     } while (*page_flag != '\0');
@@ -461,7 +461,7 @@ int32_t initialize_memory_pages_2k(int64_t allocator_base)
     do {
         page_index = (int)page_counter;
         if (*current_entry == 0) {
-            new_page = FUN_18062b420(system_memory_pool_ptr, ENGINE_PAGE_SIZE_16K, 0x25);
+            new_page = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, ENGINE_PAGE_SIZE_16K, 0x25);
             page_entry = (int64_t *)(allocator_ptr + 8 + (int64_t)page_index * 8);
             LOCK();
             page_ready = *page_entry == 0;
@@ -483,7 +483,7 @@ int32_t initialize_memory_pages_2k(int64_t allocator_base)
             }
             else {
                 if (new_page != 0) {
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                 }
                 do {
                 } while (*page_flag != '\0');
@@ -557,7 +557,7 @@ void cleanup_resource_handle(uint64_t *resource_handle)
     FUN_180085530(*resource_handle);
     *resource_handle = 0;
     if (resource_handle[1] != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     resource_handle[1] = 0;
     return;
@@ -780,7 +780,7 @@ void cleanup_system_a(int64_t *system_ptr)
         if ((int64_t *)*resource_ptr != (int64_t *)0x0) {
             (**(code **)(*(int64_t *)*resource_ptr + 0x38))();
         }
-        FUN_18064e900(resource_ptr);
+        CoreEngineMemoryPoolCleaner(resource_ptr);
     }
     *system_ptr = 0;
     system_id = core_system_data_resource;
@@ -832,7 +832,7 @@ void cleanup_system_b(int64_t *system_ptr)
     resource_id = *system_ptr;
     if (resource_id != 0) {
         FUN_180083f10(resource_id);
-        FUN_18064e900(resource_id);
+        CoreEngineMemoryPoolCleaner(resource_id);
     }
     *system_ptr = 0;
     resource_flag = core_system_data_resource;
@@ -890,7 +890,7 @@ void expand_dynamic_array(int64_t *array_info, uint64_t required_size)
                 current_end = 0;
             }
             else {
-                current_end = FUN_18062b420(system_memory_pool_ptr, growth_factor << 4, (char)array_info[3]);
+                current_end = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, growth_factor << 4, (char)array_info[3]);
                 array_start = *array_info;
                 new_capacity = array_info[1];
             }
@@ -901,7 +901,7 @@ void expand_dynamic_array(int64_t *array_info, uint64_t required_size)
                 memset(current_end, 0, required_size * 0x10);
             }
             if (*array_info != 0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
             *array_info = current_end;
             array_info[2] = growth_factor * 0x10 + current_end;
@@ -947,7 +947,7 @@ void reallocate_dynamic_array(int64_t element_count, int64_t array_info)
         new_buffer = 0;
     }
     else {
-        new_buffer = FUN_18062b420(system_memory_pool_ptr, new_capacity << 4, (char)array_info[3]);
+        new_buffer = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity << 4, (char)array_info[3]);
         array_start = *array_info;
         current_end = array_info[1];
     }
@@ -958,7 +958,7 @@ void reallocate_dynamic_array(int64_t element_count, int64_t array_info)
         memset(new_buffer, 0, current_end << 4);
     }
     if (*array_info != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     *array_info = new_buffer;
     array_info[2] = new_capacity * 0x10 + new_buffer;
@@ -1001,7 +1001,7 @@ void verify_memory_block(int64_t memory_block)
     // 原始实现包含复杂的内存验证和错误处理逻辑
     
     if (*(int64_t *)(memory_block + 8) != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     return;
 }
@@ -1105,7 +1105,7 @@ void expand_buffer_capacity(int64_t *buffer_info, uint64_t required_size)
         new_buffer = 0;
     }
     else {
-        new_buffer = FUN_18062b420(system_memory_pool_ptr, new_capacity * 4, (char)buffer_info[3]);
+        new_buffer = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, new_capacity * 4, (char)buffer_info[3]);
         buffer_start = *buffer_info;
         current_end = buffer_info[1];
     }
@@ -1116,7 +1116,7 @@ void expand_buffer_capacity(int64_t *buffer_info, uint64_t required_size)
         memset(new_buffer, 0, additional_size * 4);
     }
     if (*buffer_info != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     *buffer_info = new_buffer;
     buffer_info[2] = new_buffer + new_capacity * 4;
@@ -1165,7 +1165,7 @@ void reallocate_buffer(int64_t old_size, uint64_t new_size, uint64_t alignment, 
         new_buffer = 0;
     }
     else {
-        new_buffer = FUN_18062b420(system_memory_pool_ptr, size_difference * 4, (char)buffer_ptr[3]);
+        new_buffer = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, size_difference * 4, (char)buffer_ptr[3]);
         buffer_start = *buffer_ptr;
         buffer_info = buffer_ptr[1];
     }
@@ -1176,7 +1176,7 @@ void reallocate_buffer(int64_t old_size, uint64_t new_size, uint64_t alignment, 
         memset(new_buffer, 0, calculated_capacity * 4);
     }
     if (*buffer_ptr != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     *buffer_ptr = new_buffer;
     buffer_ptr[2] = new_buffer + size_difference * 4;
@@ -1246,14 +1246,14 @@ void cleanup_resource_handles(int64_t *resource_array)
     for (end_handle = (uint64_t *)*resource_array; end_handle != current_handle; end_handle = end_handle + 6) {
         *end_handle = &system_data_buffer_ptr;
         if (end_handle[1] != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
         end_handle[1] = 0;
         *(int32_t *)(end_handle + 3) = 0;
         *end_handle = &system_state_ptr;
     }
     if (*resource_array != 0) {
-        FUN_18064e900();
+        CoreEngineMemoryPoolCleaner();
     }
     return;
 }
@@ -1288,7 +1288,7 @@ void map_resource_to_location(uint *resource_id, int *resource_data, int64_t *re
     resource_index = current_id >> 0xb;
     page_offset = (uint64_t)resource_index;
     if (*(int64_t *)(resource_id + (uint64_t)resource_index * 2 + 2) == 0) {
-        page_address = FUN_18062b420(system_memory_pool_ptr, ENGINE_PAGE_SIZE_32K, 0x25);
+        page_address = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, ENGINE_PAGE_SIZE_32K, 0x25);
         LOCK();
         page_mapped = *(int64_t *)(resource_id + page_offset * 2 + 2) == 0;
         if (page_mapped) {
@@ -1306,7 +1306,7 @@ void map_resource_to_location(uint *resource_id, int *resource_data, int64_t *re
         }
         else {
             if (page_address != 0) {
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
             do {
             } while (*(char *)(page_offset + 0x108 + (int64_t)resource_id) != '\0');
@@ -1340,13 +1340,13 @@ void validate_resource_array(int64_t *resource_array)
     
     for (current_resource = (int64_t *)*resource_array; current_resource != (int64_t *)resource_array[1]; current_resource = current_resource + 4) {
         if (*current_resource != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
         }
     }
     if (*resource_array == 0) {
         return;
     }
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -1380,7 +1380,7 @@ void reserve_array_space(int64_t *array_info, uint64_t required_size, uint64_t p
         if (resize_target != array_end) {
             do {
                 if (*resize_target != 0) {
-                    FUN_18064e900();
+                    CoreEngineMemoryPoolCleaner();
                 }
                 resize_target = resize_target + 4;
             } while (resize_target != array_end);

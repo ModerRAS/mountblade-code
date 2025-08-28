@@ -611,7 +611,7 @@ void free_render_resources(int64_t resource_handle, uint64_t param_2, uint64_t p
       *(int *)(_DAT + 0x3a8) = *(int *)(_DAT + 0x3a8) + -1;
     }
     // 警告：子函数不返回
-    FUN_180059ba0(resource_data, _DAT, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(resource_data, _DAT, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }

@@ -99,9 +99,9 @@ uint64_t process_event_trigger(int64_t event_context, int64_t trigger_data, char
   if (*(int *)(core_system_data_buffer + 0x9a0) == 0) goto skip_debug_logging;
   
   // 创建调试消息缓冲区
-  message_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+  message_buffer = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)message_buffer = 0;
-  buffer_size = FUN_18064e990(message_buffer);
+  buffer_size = CoreEngineSystemCleanup(message_buffer);
   
   // 设置调试消息格式
   *message_buffer = 0x5f746567;  // "_teg"
@@ -113,7 +113,7 @@ uint64_t process_event_trigger(int64_t event_context, int64_t trigger_data, char
   if (0 < string_length) {
     if ((string_length != -0xf) && (buffer_size < string_length + 0x10U)) {
       message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, string_length + 0x10U, 0x10, 0x13);
-      FUN_18064e990(message_buffer);
+      CoreEngineSystemCleanup(message_buffer);
       string_length = *(int *)(trigger_data + 0x10);
     }
     // 复制触发器名称到消息缓冲区
@@ -121,10 +121,10 @@ uint64_t process_event_trigger(int64_t event_context, int64_t trigger_data, char
   }
   
   if (message_buffer == (int32_t *)0x0) {
-    message_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x11, 0x13);
+    message_buffer = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x11, 0x13);
     *(int8_t *)message_buffer = 0;
 build_message:
-    FUN_18064e990(message_buffer);
+    CoreEngineSystemCleanup(message_buffer);
   }
   else if (buffer_size < 0x11) {
     message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, 0x11, 0x10, 0x13);
@@ -141,7 +141,7 @@ build_message:
   // 输出调试消息
   FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, temp_buffer);
   if (message_buffer != (int32_t *)0x0) {
-    FUN_18064e900(message_buffer);
+    CoreEngineMemoryPoolCleaner(message_buffer);
   }
 
 skip_debug_logging:
@@ -212,9 +212,9 @@ int64_t process_event_type(int64_t event_context, int event_type, char is_enable
   temp_size = 0;
   
   // 创建调试消息缓冲区
-  temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+  temp_buffer = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)temp_buffer = 0;
-  buffer_size = FUN_18064e990(temp_buffer);
+  buffer_size = CoreEngineSystemCleanup(temp_buffer);
   
   // 设置调试消息格式
   *temp_buffer = 0x5f746567;  // "_teg"
@@ -233,14 +233,14 @@ int64_t process_event_type(int64_t event_context, int event_type, char is_enable
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)buffer_size, 0x13);
+      temp_buffer = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)(int)buffer_size, 0x13);
       *(int8_t *)temp_buffer = 0;
     }
     else {
       if (buffer_size <= (uint)result_code) goto buffer_ready;
       temp_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, temp_buffer, buffer_size, 0x10, 0x13);
     }
-    result_code._0_4_ = FUN_18064e990(temp_buffer);
+    result_code._0_4_ = CoreEngineSystemCleanup(temp_buffer);
   }
   
 buffer_ready:
@@ -256,7 +256,7 @@ buffer_ready:
   FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, message_buffer);
   string_data = &system_data_buffer_ptr;
   if (temp_buffer != (int32_t *)0x0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   temp_buffer = (int32_t *)0x0;
   result_code = (uint64_t)result_code._4_4_ << 0x20;
@@ -302,9 +302,9 @@ uint64_t check_event_system_state(int64_t event_context, int64_t state_data)
   if (*(int *)(core_system_data_buffer + 0x9a0) == 0) goto skip_debug_logging;
   
   // 创建调试消息缓冲区
-  message_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x16, 0x13);
+  message_buffer = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x16, 0x13);
   *(int8_t *)message_buffer = 0;
-  buffer_size = FUN_18064e990(message_buffer);
+  buffer_size = CoreEngineSystemCleanup(message_buffer);
   
   // 设置调试消息格式
   *message_buffer = 0x61657263;  // "acre"
@@ -318,7 +318,7 @@ uint64_t check_event_system_state(int64_t event_context, int64_t state_data)
   if (0 < string_length) {
     if ((string_length != -0x15) && (buffer_size < string_length + 0x16U)) {
       message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, string_length + 0x16U, 0x10, 0x13);
-      FUN_18064e990(message_buffer);
+      CoreEngineSystemCleanup(message_buffer);
       string_length = *(int *)(state_data + 0x10);
     }
     // 复制状态信息到消息缓冲区
@@ -327,10 +327,10 @@ uint64_t check_event_system_state(int64_t event_context, int64_t state_data)
   }
   
   if (message_buffer == (int32_t *)0x0) {
-    message_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x17, 0x13);
+    message_buffer = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x17, 0x13);
     *(int8_t *)message_buffer = 0;
 build_message:
-    FUN_18064e990(message_buffer);
+    CoreEngineSystemCleanup(message_buffer);
   }
   else if (buffer_size < 0x17) {
     message_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, message_buffer, 0x17, 0x10, 0x13);
@@ -347,7 +347,7 @@ build_message:
   // 输出调试消息
   FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, temp_buffer);
   if (message_buffer != (int32_t *)0x0) {
-    FUN_18064e900(message_buffer);
+    CoreEngineMemoryPoolCleaner(message_buffer);
   }
 
 skip_debug_logging:
@@ -404,9 +404,9 @@ uint64_t process_thread_safe_event_operation(int64_t event_context, int32_t oper
   temp_size = 0;
   
   // 创建调试消息缓冲区
-  temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, 0x16, 0x13);
+  temp_buffer = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x16, 0x13);
   *(int8_t *)temp_buffer = 0;
-  buffer_size = FUN_18064e990(temp_buffer);
+  buffer_size = CoreEngineSystemCleanup(temp_buffer);
   
   // 设置调试消息格式
   *temp_buffer = 0x61657263;  // "acre"
@@ -427,14 +427,14 @@ uint64_t process_thread_safe_event_operation(int64_t event_context, int32_t oper
       if ((int)buffer_size < 0x10) {
         buffer_size = 0x10;
       }
-      temp_buffer = (int32_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)buffer_size, 0x13);
+      temp_buffer = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)(int)buffer_size, 0x13);
       *(int8_t *)temp_buffer = 0;
     }
     else {
       if (buffer_size <= (uint)debug_result) goto buffer_ready;
       temp_buffer = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr, temp_buffer, buffer_size, 0x10, 0x13);
     }
-    debug_result._0_4_ = FUN_18064e990(temp_buffer);
+    debug_result._0_4_ = CoreEngineSystemCleanup(temp_buffer);
   }
 
 buffer_ready:
@@ -450,7 +450,7 @@ buffer_ready:
   FUN_1800623b0(system_message_context, 0, 0x1000000000000, 3, message_buffer);
   string_data = &system_data_buffer_ptr;
   if (temp_buffer != (int32_t *)0x0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   temp_buffer = (int32_t *)0x0;
   debug_result = (uint64_t)debug_result._4_4_ << 0x20;
@@ -532,7 +532,7 @@ void add_event_to_queue(int64_t event_context, uint64_t event_data)
     if (temp_string != (void *)0x0) {
       string_ptr = temp_string;
     }
-    FUN_180626f80(&unknown_var_3704_ptr, string_ptr);
+    SystemDataInitializer(&unknown_var_3704_ptr, string_ptr);
     goto cleanup_and_exit;
   }
   
@@ -582,7 +582,7 @@ process_special_event:
   if (search_result == 0) {
     search_result = 1;
 calculate_new_size:
-    new_queue = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, search_result * 8, *(int8_t *)(event_context + 0x390));
+    new_queue = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, search_result * 8, *(int8_t *)(event_context + 0x390));
     queue_end = *(uint64_t **)(event_context + 0x380);
     queue_start = *(uint64_t **)(event_context + 0x378);
   }
@@ -599,7 +599,7 @@ calculate_new_size:
   
   *new_queue = debug_handle;
   if (*(int64_t *)(event_context + 0x378) != 0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   
   // 更新队列指针
@@ -610,7 +610,7 @@ calculate_new_size:
 cleanup_and_exit:
   temp_string = &system_data_buffer_ptr;
   if (temp_string != (void *)0x0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   temp_string = (void *)0x0;
   format_result = 0;
@@ -623,7 +623,7 @@ cleanup_and_exit:
   }
   
   // 安全检查
-  FUN_1808fc050(security_check ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_check ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -703,12 +703,12 @@ void initialize_event_system_config(int64_t event_context, uint64_t *config_data
     // 验证配置参数
     check_result = FUN_180849990(*(uint64_t *)(event_context + 0x368), 0, &config_params_copy[0], &u_stack_54);
     if (check_result != 0) {
-      FUN_180626f80(&unknown_var_3632_ptr);
+      SystemDataInitializer(&unknown_var_3632_ptr);
     }
   }
   
   // 安全检查
-  FUN_1808fc050(security_check ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_check ^ (uint64_t)security_buffer);
 }
 
 /**
@@ -767,7 +767,7 @@ remove_handler:
         if (*(int64_t **)(current_handler + 2) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(current_handler + 2) + 0x38))();
         }
-        FUN_18064e900(current_handler);
+        CoreEngineMemoryPoolCleaner(current_handler);
       }
       return;
     }
@@ -890,5 +890,5 @@ void update_event_rendering_params(int64_t event_context)
   FUN_18010f010(&unknown_var_4184_ptr);
   
   // 安全检查
-  FUN_1808fc050(security_check ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_check ^ (uint64_t)security_buffer);
 }

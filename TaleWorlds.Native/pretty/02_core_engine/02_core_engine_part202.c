@@ -192,7 +192,7 @@ LAB_180183f13:
     param_3[7] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_buffer);
 }
 
 
@@ -267,7 +267,7 @@ LAB_180184089:
     param_2[7] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_buffer);
 }
 
 
@@ -338,7 +338,7 @@ void process_permission_callback(uint64_t param_1,int param_2,int64_t *param_3,i
   }
   free(param_4,0x48);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_buffer);
 }
 
 
@@ -503,7 +503,7 @@ LAB_180184411:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_buffer);
 }
 
 
@@ -900,7 +900,7 @@ LAB_180184aa5:
     param_3[7] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_buffer);
 }
 
 
@@ -975,7 +975,7 @@ LAB_180184d09:
     param_2[7] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stack_checksum ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_buffer);
 }
 
 

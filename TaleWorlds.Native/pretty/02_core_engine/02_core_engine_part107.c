@@ -548,7 +548,7 @@ void cleanup_multiple_entity_structures(int64_t param_1, uint64_t param_2, uint6
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0xe0 处的实体
@@ -558,7 +558,7 @@ void cleanup_multiple_entity_structures(int64_t param_1, uint64_t param_2, uint6
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0xd0 处的实体
@@ -568,7 +568,7 @@ void cleanup_multiple_entity_structures(int64_t param_1, uint64_t param_2, uint6
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0xc0 处的实体
@@ -578,7 +578,7 @@ void cleanup_multiple_entity_structures(int64_t param_1, uint64_t param_2, uint6
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0x90 处的实体
@@ -588,7 +588,7 @@ void cleanup_multiple_entity_structures(int64_t param_1, uint64_t param_2, uint6
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }
@@ -617,7 +617,7 @@ void cleanup_all_entities_in_complex_structure(int64_t *param_1, uint64_t param_
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理数组中的实体
@@ -631,7 +631,7 @@ void cleanup_all_entities_in_complex_structure(int64_t *param_1, uint64_t param_
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
         // 调用清理函数（不返回）
-        FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+        SystemResourceCleaner(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
       }
       iVar3 = iVar3 + 1;
       lVar2 = lVar2 + 0x40;
@@ -648,7 +648,7 @@ void cleanup_all_entities_in_complex_structure(int64_t *param_1, uint64_t param_
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, uVar4);
+    SystemResourceCleaner(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, uVar4);
   }
   
   // 清理位置 0x58 处的实体
@@ -658,7 +658,7 @@ void cleanup_all_entities_in_complex_structure(int64_t *param_1, uint64_t param_
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, uVar4);
+    SystemResourceCleaner(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, uVar4);
   }
   
   // 清理位置 0x44 处的实体
@@ -668,7 +668,7 @@ void cleanup_all_entities_in_complex_structure(int64_t *param_1, uint64_t param_
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, uVar4);
+    SystemResourceCleaner(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, uVar4);
   }
   
   // 清理位置 0x3e 处的实体
@@ -678,7 +678,7 @@ void cleanup_all_entities_in_complex_structure(int64_t *param_1, uint64_t param_
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0x3c 处的实体
@@ -688,7 +688,7 @@ void cleanup_all_entities_in_complex_structure(int64_t *param_1, uint64_t param_
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0x3a 处的实体
@@ -698,7 +698,7 @@ void cleanup_all_entities_in_complex_structure(int64_t *param_1, uint64_t param_
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0x38 处的实体
@@ -708,7 +708,7 @@ void cleanup_all_entities_in_complex_structure(int64_t *param_1, uint64_t param_
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   
   // 清理位置 0x32 处的实体
@@ -718,7 +718,7 @@ void cleanup_all_entities_in_complex_structure(int64_t *param_1, uint64_t param_
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar2, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }
@@ -742,7 +742,7 @@ void cleanup_single_entity_structure(int64_t param_1, uint64_t param_2, uint64_t
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
     // 调用清理函数（不返回）
-    FUN_180059ba0(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
+    SystemResourceCleaner(lVar1, SYSTEM_DATA_MANAGER_B, param_3, param_4, 0xfffffffffffffffe);
   }
   return;
 }

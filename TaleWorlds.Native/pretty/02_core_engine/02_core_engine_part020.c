@@ -120,7 +120,7 @@ uint64_t process_work_queue_item(int64_t queue_manager, char should_process)
           }
           if (*(int64_t *)(queue_manager + 0xb0) != 0) {
             // 错误处理：队列已满
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
           }
           
           // 重新分配队列空间
@@ -800,14 +800,14 @@ void reset_queue_manager(uint64_t *manager)
   *manager = &unknown_var_5224_ptr;
   manager[7] = &system_data_buffer_ptr;
   if (manager[8] != 0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   manager[8] = 0;
   *(int32_t *)(manager + 10) = 0;
   manager[7] = &system_state_ptr;
   manager[1] = &system_data_buffer_ptr;
   if (manager[2] != 0) {
-    FUN_18064e900();
+    CoreEngineMemoryPoolCleaner();
   }
   manager[2] = 0;
   *(int32_t *)(manager + 4) = 0;

@@ -362,7 +362,7 @@ void initialize_data_structure(uint64_t *data_ptr)
   FUN_180048980();  // 调用初始化函数
   *data_ptr = &system_data_buffer_ptr;  // 设置初始值
   if (data_ptr[1] != 0) {
-    FUN_18064e900();  // 错误处理
+    CoreEngineMemoryPoolCleaner();  // 错误处理
   }
   data_ptr[1] = 0;
   *(int32_t *)(data_ptr + 3) = 0;
@@ -398,7 +398,7 @@ int64_t *create_data_buffer(int64_t context, int64_t *buffer_ptr, uint64_t param
   
   // 分配缓冲区内存
   if (current_pos != 0) {
-    data_length = FUN_18062b420(system_memory_pool_ptr, current_pos * 0x98, buffer_size & 0xff, param4, 0, 0xfffffffffffffffe);
+    data_length = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, current_pos * 0x98, buffer_size & 0xff, param4, 0, 0xfffffffffffffffe);
   }
   
   // 设置缓冲区指针
@@ -517,9 +517,9 @@ void format_error_message(int error_code, int64_t error_message)
   buffer_info = 0;
   buffer_data = (uint64_t *)0x0;
   buffer_capacity = 0;
-  buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 0x13);
+  buffer_data = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
   *(int8_t *)buffer_data = 0;
-  format_result = FUN_18064e990(buffer_data);
+  format_result = CoreEngineSystemCleanup(buffer_data);
   buffer_info = CONCAT44(buffer_info._4_4_, format_result);
   
   // 设置错误消息前缀
@@ -541,14 +541,14 @@ void format_error_message(int error_code, int64_t error_message)
       if ((int)temp_size < 0x10) {
         temp_size = 0x10;
       }
-      buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)temp_size, 0x13);
+      buffer_data = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)(int)temp_size, 0x13);
       *(int8_t *)buffer_data = 0;
     }
     else {
       if (temp_size <= (uint)buffer_info) goto LAB_180211b66;
       buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, temp_size, 0x10, 0x13);
     }
-    format_result = FUN_18064e990(buffer_data);
+    format_result = CoreEngineSystemCleanup(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
   }
   
@@ -565,14 +565,14 @@ LAB_180211b66:
       if ((int)temp_size < 0x10) {
         temp_size = 0x10;
       }
-      buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)temp_size, 0x13);
+      buffer_data = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)(int)temp_size, 0x13);
       *(int8_t *)buffer_data = 0;
     }
     else {
       if (temp_size <= (uint)buffer_info) goto LAB_180211be9;
       buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, temp_size, 0x10, 0x13);
     }
-    format_result = FUN_18064e990(buffer_data);
+    format_result = CoreEngineSystemCleanup(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
   }
   
@@ -596,14 +596,14 @@ LAB_180211be9:
           if ((int)message_length < 0x10) {
             message_length = 0x10;
           }
-          buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)message_length, 0x13);
+          buffer_data = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)(int)message_length, 0x13);
           *(int8_t *)buffer_data = 0;
         }
         else {
           if (message_length <= (uint)buffer_info) goto LAB_180211c85;
           buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
         }
-        format_result = FUN_18064e990(buffer_data);
+        format_result = CoreEngineSystemCleanup(buffer_data);
         buffer_info = CONCAT44(buffer_info._4_4_, format_result);
       }
       
@@ -621,14 +621,14 @@ LAB_180211c85:
       if ((int)message_length < 0x10) {
         message_length = 0x10;
       }
-      buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)message_length, 0x13);
+      buffer_data = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)(int)message_length, 0x13);
       *(int8_t *)buffer_data = 0;
     }
     else {
       if (message_length <= (uint)buffer_info) goto LAB_180211d03;
       buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
     }
-    format_result = FUN_18064e990(buffer_data);
+    format_result = CoreEngineSystemCleanup(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
   }
   
@@ -655,14 +655,14 @@ LAB_180211d03:
           if ((int)message_length < 0x10) {
             message_length = 0x10;
           }
-          buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)message_length, 0x13);
+          buffer_data = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)(int)message_length, 0x13);
           *(int8_t *)buffer_data = 0;
         }
         else {
           if (message_length <= (uint)buffer_info) goto LAB_180211da7;
           buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
         }
-        format_result = FUN_18064e990(buffer_data);
+        format_result = CoreEngineSystemCleanup(buffer_data);
         buffer_info = CONCAT44(buffer_info._4_4_, format_result);
       }
       
@@ -680,14 +680,14 @@ LAB_180211da7:
       if ((int)message_length < 0x10) {
         message_length = 0x10;
       }
-      buffer_data = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, (int64_t)(int)message_length, 0x13);
+      buffer_data = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, (int64_t)(int)message_length, 0x13);
       *(int8_t *)buffer_data = 0;
     }
     else {
       if (message_length <= (uint)buffer_info) goto LAB_180211e24;
       buffer_data = (uint64_t *)FUN_18062b8b0(system_memory_pool_ptr, buffer_data, message_length, 0x10, 0x13);
     }
-    format_result = FUN_18064e990(buffer_data);
+    format_result = CoreEngineSystemCleanup(buffer_data);
     buffer_info = CONCAT44(buffer_info._4_4_, format_result);
   }
   
@@ -707,7 +707,7 @@ LAB_180211e24:
   if (buffer_data == (uint64_t *)0x0) {
     return;
   }
-  FUN_18064e900();
+  CoreEngineMemoryPoolCleaner();
 }
 
 /**
@@ -731,7 +731,7 @@ uint64_t process_parameter_data(uint64_t param1, int param2, uint64_t param3, ui
     FUN_180623fd0(param3, &temp_ptr);
     temp_ptr = &system_data_buffer_ptr;
     if (temp_value != 0) {
-      FUN_18064e900();  // 错误处理
+      CoreEngineMemoryPoolCleaner();  // 错误处理
     }
   }
   return 0;
@@ -873,21 +873,21 @@ void cleanup_thread_manager(uint64_t *manager_ptr)
   FUN_1808fc8a8(manager_ptr + 0x87, 8, 9, FUN_180045af0, cleanup_param);
   temp_resource = manager_ptr + 0x82;
   if (*temp_resource != 0) {
-    FUN_18064e900();  // 错误处理
+    CoreEngineMemoryPoolCleaner();  // 错误处理
   }
   
   temp_resource = manager_ptr + 0x7b;
   FUN_180048980();
   temp_resource = manager_ptr + 0x77;
   if (*temp_resource != 0) {
-    FUN_18064e900();  // 错误处理
+    CoreEngineMemoryPoolCleaner();  // 错误处理
   }
   
   temp_resource = manager_ptr + 0x73;
   FUN_18006b6f0();
   temp_resource = manager_ptr + 0x6f;
   if (*temp_resource != 0) {
-    FUN_18064e900();  // 错误处理
+    CoreEngineMemoryPoolCleaner();  // 错误处理
   }
   
   temp_resource = manager_ptr + 99;
@@ -928,7 +928,7 @@ void cleanup_thread_manager(uint64_t *manager_ptr)
       // 创建新资源
       FUN_18066c220(manager_ptr + 10, &temp_resource, (uint64_t)*(uint *)(manager_ptr + 8),
                     *(int32_t *)(manager_ptr + 9), 1);
-      data_ptr = (int *)FUN_18062b420(system_memory_pool_ptr, 0x18, *(int8_t *)((int64_t)manager_ptr + 0x5c));
+      data_ptr = (int *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x18, *(int8_t *)((int64_t)manager_ptr + 0x5c));
       *data_ptr = lock_result;
       data_ptr[2] = 0;
       data_ptr[3] = 0;
@@ -1003,7 +1003,7 @@ LAB_1801571ef:
   _Mtx_destroy_in_situ(resource_ptr2);
   temp_resource = manager_ptr + 0x16;
   if (*temp_resource != 0) {
-    FUN_18064e900();  // 错误处理
+    CoreEngineMemoryPoolCleaner();  // 错误处理
   }
   
   temp_resource = manager_ptr + 0xc;
@@ -1012,7 +1012,7 @@ LAB_1801571ef:
   FUN_18015b450(resource_ptr);
   
   if ((1 < (uint64_t)manager_ptr[8]) && (manager_ptr[7] != 0)) {
-    FUN_18064e900();  // 错误处理
+    CoreEngineMemoryPoolCleaner();  // 错误处理
   }
   
   // 执行最终的清理回调
@@ -1044,7 +1044,7 @@ void cleanup_resource_array(int64_t *resource_array)
   if (*resource_array == 0) {
     return;
   }
-  FUN_18064e900();  // 错误处理
+  CoreEngineMemoryPoolCleaner();  // 错误处理
 }
 
 /**
@@ -1075,7 +1075,7 @@ void initialize_processing_context(int64_t *context_ptr, uint64_t param2, int pa
   temp_value = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
   *(bool *)(context_ptr + 0x42) = *(int *)(SYSTEM_STATE_MANAGER + 0x1ce0) != 0;
   config_param1 = 0xffffffff;
-  callback_func = FUN_180059ba0;
+  callback_func = SystemResourceCleaner;
   FUN_180738730(0, 0, &unknown_var_1648_ptr, FUN_180211f70);
   FUN_180840330(context_ptr + 0x6d, 0x20214);
   config_param4 = 0;
@@ -1128,9 +1128,9 @@ void cleanup_pointer_array(int64_t param1)
           pointer_ptr[1] = 0;
           *(int32_t *)(pointer_ptr + 3) = 0;
           *pointer_ptr = &system_state_ptr;
-          FUN_18064e900(pointer_ptr);
+          CoreEngineMemoryPoolCleaner(pointer_ptr);
         }
-        FUN_18064e900();  // 错误处理
+        CoreEngineMemoryPoolCleaner();  // 错误处理
       }
       
       *(uint64_t *)(array_ptr + pointer_index * 8) = 0;
@@ -1141,7 +1141,7 @@ void cleanup_pointer_array(int64_t param1)
   
   *(uint64_t *)(param1 + 0x18) = 0;
   if ((1 < pointer_count) && (*(int64_t *)(param1 + 8) != 0)) {
-    FUN_18064e900();  // 错误处理
+    CoreEngineMemoryPoolCleaner();  // 错误处理
   }
   
   return;
@@ -1166,7 +1166,7 @@ void cleanup_data_block_array(int64_t *data_array_ptr)
   if (*data_array_ptr == 0) {
     return;
   }
-  FUN_18064e900();  // 错误处理
+  CoreEngineMemoryPoolCleaner();  // 错误处理
 }
 
 /**
@@ -1199,9 +1199,9 @@ void cleanup_object_array(int64_t param1)
           object_ptr[1] = 0;
           *(int32_t *)(object_ptr + 3) = 0;
           *object_ptr = &system_state_ptr;
-          FUN_18064e900(object_ptr);
+          CoreEngineMemoryPoolCleaner(object_ptr);
         }
-        FUN_18064e900();  // 错误处理
+        CoreEngineMemoryPoolCleaner();  // 错误处理
       }
       
       *(uint64_t *)(array_ptr + object_index * 8) = 0;
@@ -1212,7 +1212,7 @@ void cleanup_object_array(int64_t param1)
   
   *(uint64_t *)(param1 + 0x18) = 0;
   if ((1 < object_count) && (*(int64_t *)(param1 + 8) != 0)) {
-    FUN_18064e900();  // 错误处理
+    CoreEngineMemoryPoolCleaner();  // 错误处理
   }
   
   return;

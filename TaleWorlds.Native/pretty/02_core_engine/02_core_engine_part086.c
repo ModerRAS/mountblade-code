@@ -932,7 +932,7 @@ void process_advanced_text_and_render_operations(char *param_1,float *param_2,ui
   }
 LAB_180112f8f:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d0 ^ (uint64_t)auStack_178);
+  SystemSecurityChecker(uStack_d0 ^ (uint64_t)auStack_178);
 }
 
 

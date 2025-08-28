@@ -481,7 +481,7 @@ void process_spatial_partition_data(long long *spatial_data, unsigned long long 
             if ((unsigned long long)node_ptr[4] < key_value) {
             insert_new_node_1:
                 // 分配新节点内存
-                start_addr = FUN_18062b420(MEMORY_POOL_MANAGER, SPATIAL_INDEX_BLOCK_SIZE, *(unsigned char *)(tree_node + SPATIAL_NODE_TYPE_OFFSET));
+                start_addr = CoreEngineMemoryPoolAllocator(MEMORY_POOL_MANAGER, SPATIAL_INDEX_BLOCK_SIZE, *(unsigned char *)(tree_node + SPATIAL_NODE_TYPE_OFFSET));
                 *(unsigned long long *)(start_addr + SPATIAL_NODE_KEY_OFFSET) = key_value;  // 设置键值
                 
                 // 确定插入位置（左子树还是右子树）
@@ -539,7 +539,7 @@ void process_spatial_partition_data(long long *spatial_data, unsigned long long 
             if ((unsigned long long)node_ptr[4] < key_value) {
             insert_new_node_2:
                 // 分配新节点内存
-                start_addr = FUN_18062b420(MEMORY_POOL_MANAGER, SPATIAL_INDEX_BLOCK_SIZE, *(unsigned char *)(tree_node + SPATIAL_NODE_TYPE_OFFSET));
+                start_addr = CoreEngineMemoryPoolAllocator(MEMORY_POOL_MANAGER, SPATIAL_INDEX_BLOCK_SIZE, *(unsigned char *)(tree_node + SPATIAL_NODE_TYPE_OFFSET));
                 *(unsigned long long *)(start_addr + SPATIAL_NODE_KEY_OFFSET) = key_value;  // 设置键值
                 
                 // 确定插入位置（左子树还是右子树）
@@ -608,7 +608,7 @@ void process_spatial_partition_data(long long *spatial_data, unsigned long long 
                     if ((unsigned long long)node_ptr[4] < key_value) {
                     insert_new_node_3:
                         // 分配新节点内存
-                        start_addr = FUN_18062b420(MEMORY_POOL_MANAGER, SPATIAL_INDEX_BLOCK_SIZE, *(unsigned char *)(tree_node + SPATIAL_NODE_TYPE_OFFSET));
+                        start_addr = CoreEngineMemoryPoolAllocator(MEMORY_POOL_MANAGER, SPATIAL_INDEX_BLOCK_SIZE, *(unsigned char *)(tree_node + SPATIAL_NODE_TYPE_OFFSET));
                         *(unsigned long long *)(start_addr + SPATIAL_NODE_KEY_OFFSET) = key_value;  // 设置键值
                         
                         // 确定插入位置（左子树还是右子树）
@@ -640,7 +640,7 @@ void process_spatial_partition_data(long long *spatial_data, unsigned long long 
 
 // 函数说明：
 // FUN_1800b9f60 - 边界框处理函数，用于处理计算出的边界框数据
-// FUN_18062b420 - 内存分配函数，从内存池中分配指定大小的内存块
+// CoreEngineMemoryPoolAllocator - 内存分配函数，从内存池中分配指定大小的内存块
 // FUN_18066b9a0 - 树节点操作函数，获取树节点的前驱或后继节点
 // FUN_18066bdc0 - 树节点插入函数，将新节点插入到二叉搜索树中
 // 
