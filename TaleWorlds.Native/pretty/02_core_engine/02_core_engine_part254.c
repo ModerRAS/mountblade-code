@@ -875,8 +875,8 @@ InitializeObjectManager(undefined8 *objectManager, undefined8 param2, undefined8
 
 
 
-// 函数: void FUN_18021f910(longlong param_1)
-void FUN_18021f910(longlong param_1)
+// 函数16: 处理游戏对象相关操作
+void ProcessGameObjectOperations(longlong gameObjectHandle)
 
 {
   undefined4 *puVar1;
