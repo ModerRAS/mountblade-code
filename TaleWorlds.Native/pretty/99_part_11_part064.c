@@ -71,6 +71,43 @@
 #define resource_initializer FUN_1807c48c6
 #define stack_cleanup FUN_1807c4ae8
 
+/* 系统函数别名定义 */
+#define SystemSecurityChecker FUN_1808fc050
+#define SystemInitializer FUN_180819040
+#define DataProcessorFunction data_processor_function
+#define StringArrayFunction get_string_array_function
+#define StringLengthFunction get_string_length_function
+#define CleanupStringFunction cleanup_string_function
+#define ProcessStringFunction process_string_function
+#define DataValidationFunction data_validation_function
+#define DataMultiplicationFunction data_multiplication_function
+#define DataProcessingFunction data_processing_function
+#define DataIncrementFunction data_increment_function
+#define AdvancedDataProcessingFunction advanced_data_processing_function
+#define ReadCharFunction read_char_function
+#define SetParserStateFunction set_parser_state_function
+#define XmlTagProcessingFunction xml_tag_processing_function
+#define ReadTokenFunction read_token_function
+#define StringCompareFunction string_compare_function
+#define SystemInitFunction1 system_init_function1
+#define SystemInitFunction2 system_init_function2
+#define SystemInitFunction3 system_init_function3
+#define SystemInitFunction4 system_init_function4
+#define SystemInitFunction5 system_init_function5
+#define SystemInitFunction6 system_init_function6
+#define ReadStringFunction read_string_function
+#define SystemCheckFunction system_check_function
+#define SystemDataProcessingFunction system_data_processing_function
+#define ResourceInitFunction1 resource_init_function1
+#define ResourceInitFunction2 resource_init_function2
+#define ResourceInitFunction3 resource_init_function3
+#define ResourceInitFunction4 resource_init_function4
+#define ResourceInitFunction5 resource_init_function5
+#define ResourceInitFunction6 resource_init_function6
+#define ResourceCheckFunction resource_check_function
+#define ResourceProcessingFunction resource_processing_function
+#define StackCleanupFunction stack_cleanup_function
+
 /**
  * 高级数据处理器 - 初始化和处理高级数据
  * 
