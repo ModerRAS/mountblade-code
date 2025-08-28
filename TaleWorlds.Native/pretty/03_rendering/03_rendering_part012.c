@@ -353,66 +353,71 @@ void serialize_render_object_data(longlong render_object, longlong *buffer)
 
 
 
-undefined8 * FUN_180274db0(undefined8 *param_1)
+/**
+ * 初始化渲染状态对象
+ * @param render_state 渲染状态对象指针
+ * @return 初始化后的渲染状态对象指针
+ */
+undefined8 * initialize_render_state(undefined8 *render_state)
 
 {
-  *param_1 = &UNK_18098bcb0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809fcc58;
-  param_1[1] = param_1 + 3;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *(undefined1 *)(param_1 + 3) = 0;
-  param_1[0x22] = &UNK_18098bcb0;
-  param_1[0x23] = 0;
-  *(undefined4 *)(param_1 + 0x24) = 0;
-  param_1[0x22] = &UNK_180a3c3e0;
-  param_1[0x25] = 0;
-  param_1[0x23] = 0;
-  *(undefined4 *)(param_1 + 0x24) = 0;
-  param_1[0x26] = 0;
-  param_1[0x27] = 0;
-  param_1[0x28] = 0;
-  *(undefined4 *)(param_1 + 0x29) = 3;
-  param_1[0x2a] = 0;
-  param_1[0x2b] = 0;
-  param_1[0x2c] = 0;
-  *(undefined4 *)(param_1 + 0x2d) = 3;
-  param_1[0x2e] = 0;
-  param_1[0x2f] = 0;
-  param_1[0x30] = 0;
-  *(undefined4 *)(param_1 + 0x31) = 3;
-  *(undefined8 *)((longlong)param_1 + 0x5c) = 0;
-  *(undefined4 *)((longlong)param_1 + 100) = 0;
-  *(undefined4 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x84) = 0;
-  *(undefined4 *)(param_1 + 0x11) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x8c) = 0x3f800000;
-  *(undefined4 *)(param_1 + 0x12) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x94) = 0;
-  *(undefined4 *)(param_1 + 0x13) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x9c) = 0x3f800000;
-  param_1[0x14] = 0;
-  param_1[0x15] = 0;
-  param_1[0x16] = 0;
-  param_1[0x17] = 0;
-  param_1[0x18] = 0;
-  param_1[0x19] = 0;
-  param_1[0x1a] = 0x3f800000;
-  param_1[0x1b] = 0;
-  param_1[0x1c] = 0x3f80000000000000;
-  param_1[0x1d] = 0;
-  param_1[0x1e] = 0;
-  param_1[0x1f] = 0x3f800000;
-  param_1[0x20] = 0;
-  param_1[0x21] = 0x3f80000000000000;
-  *(undefined4 *)(param_1 + 0xb) = 0;
-  param_1[0xd] = 0;
-  param_1[0xe] = 0;
-  param_1[0xf] = 0;
-  *(undefined4 *)(param_1 + 0x33) = 0xffffffff;
-  param_1[0x32] = 0;
-  return param_1;
+  *render_state = &RENDER_STATE_NULL;
+  render_state[1] = 0;
+  *(undefined4 *)(render_state + 2) = 0;
+  *render_state = &RENDER_SHADER_TABLE;
+  render_state[1] = render_state + 3;
+  *(undefined4 *)(render_state + 2) = 0;
+  *(undefined1 *)(render_state + 3) = 0;
+  render_state[0x22] = &RENDER_STATE_NULL;
+  render_state[0x23] = 0;
+  *(undefined4 *)(render_state + 0x24) = 0;
+  render_state[0x22] = &RENDER_MATERIAL_TABLE;
+  render_state[0x25] = 0;
+  render_state[0x23] = 0;
+  *(undefined4 *)(render_state + 0x24) = 0;
+  render_state[0x26] = 0;
+  render_state[0x27] = 0;
+  render_state[0x28] = 0;
+  *(undefined4 *)(render_state + 0x29) = 3;
+  render_state[0x2a] = 0;
+  render_state[0x2b] = 0;
+  render_state[0x2c] = 0;
+  *(undefined4 *)(render_state + 0x2d) = 3;
+  render_state[0x2e] = 0;
+  render_state[0x2f] = 0;
+  render_state[0x30] = 0;
+  *(undefined4 *)(render_state + 0x31) = 3;
+  *(undefined8 *)((longlong)render_state + 0x5c) = 0;
+  *(undefined4 *)((longlong)render_state + 100) = 0;
+  *(undefined4 *)(render_state + 0x10) = 0;
+  *(undefined4 *)((longlong)render_state + 0x84) = 0;
+  *(undefined4 *)(render_state + 0x11) = 0;
+  *(undefined4 *)((longlong)render_state + 0x8c) = 0x3f800000;
+  *(undefined4 *)(render_state + 0x12) = 0;
+  *(undefined4 *)((longlong)render_state + 0x94) = 0;
+  *(undefined4 *)(render_state + 0x13) = 0;
+  *(undefined4 *)((longlong)render_state + 0x9c) = 0x3f800000;
+  render_state[0x14] = 0;
+  render_state[0x15] = 0;
+  render_state[0x16] = 0;
+  render_state[0x17] = 0;
+  render_state[0x18] = 0;
+  render_state[0x19] = 0;
+  render_state[0x1a] = 0x3f800000;
+  render_state[0x1b] = 0;
+  render_state[0x1c] = 0x3f80000000000000;
+  render_state[0x1d] = 0;
+  render_state[0x1e] = 0;
+  render_state[0x1f] = 0x3f800000;
+  render_state[0x20] = 0;
+  render_state[0x21] = 0x3f80000000000000;
+  *(undefined4 *)(render_state + 0xb) = 0;
+  render_state[0xd] = 0;
+  render_state[0xe] = 0;
+  render_state[0xf] = 0;
+  *(undefined4 *)(render_state + 0x33) = 0xffffffff;
+  render_state[0x32] = 0;
+  return render_state;
 }
 
 
