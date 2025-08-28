@@ -163,8 +163,9 @@ create_steam_context(undefined8 *param_1,ulonglong param_2,undefined8 param_3,un
 
 
 
-// 函数: void FUN_180657b70(void)
-void FUN_180657b70(void)
+// 函数: void execute_ui_system_call(void)
+// 执行UI系统调用，调用底层系统功能
+void execute_ui_system_call(void)
 
 {
                     // WARNING: Subroutine does not return
