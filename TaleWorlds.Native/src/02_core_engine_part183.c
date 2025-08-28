@@ -85,6 +85,44 @@
 #define core_engine_parameter_handler FUN_18016a740
 
 /* ============================================================================
+ * 类型别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 基础数据类型别名
+typedef undefined8 CoreEngineHandle;        // 核心引擎句柄
+typedef undefined8 DataBlockHandle;          // 数据块句柄
+typedef undefined8 StringHandle;            // 字符串句柄
+typedef undefined8 ConfigHandle;            // 配置句柄
+typedef undefined4 CoreStatus;              // 核心状态
+typedef undefined4 DataFlags;               // 数据标志
+typedef undefined1 CoreByte;                // 核心字节
+typedef void* CoreContext;                  // 核心上下文
+
+// 指针类型别名
+typedef undefined* DataPointer;            // 数据指针
+typedef undefined8* DataBlockPointer;       // 数据块指针
+typedef undefined1* StringPointer;          // 字符串指针
+
+// 枚举类型别名
+typedef enum {
+    CORE_STATE_UNINITIALIZED = 0,
+    CORE_STATE_INITIALIZING = 1,
+    CORE_STATE_INITIALIZED = 2,
+    CORE_STATE_RUNNING = 3,
+    CORE_STATE_ERROR = 4
+} CoreEngineState;
+
+// 结构体类型别名
+typedef struct {
+    CoreEngineHandle handle;
+    DataBlockHandle data_block;
+    StringHandle string_handle;
+    CoreStatus status;
+    DataFlags flags;
+    void* user_data;
+} CoreEngineInfo;
+
+/* ============================================================================
  * 技术说明
  * ============================================================================ */
 /**
