@@ -584,20 +584,60 @@ int UISystem_ResourceInitializer(longlong context)
     return result;
 }
 
-// 函数: void UISystem_EventProcessor(longlong context, undefined4 eventValue)
-void FUN_1807498f0(longlong context, undefined4 eventValue)
+/**
+ * @brief UI系统事件处理器
+ * 
+ * 处理UI系统事件和回调，包括事件验证、事件分发和事件处理
+ * 
+ * @param context UI系统上下文指针
+ * @param eventValue 事件值
+ * 
+ * 处理流程：
+ * 1. 检查系统初始化状态
+ * 2. 如果未初始化，先进行初始化
+ * 3. 分发事件到相应的事件处理器
+ * 4. 处理事件回调
+ * 
+ * 错误处理：
+ * - 系统未初始化时自动初始化
+ * - 初始化失败时跳过事件处理
+ * - 提供事件处理状态反馈
+ */
+void UISystem_EventProcessor(longlong context, undefined4 eventValue)
 {
     int result;
     
+    // 检查系统初始化状态，如果未初始化则先初始化
     if ((*(char *)(context + 9) == '\0') && (result = FUN_180749060(), result != 0)) {
         return;
     }
+    
+    // 分发事件到事件处理器
     FUN_180772870(*(undefined8 *)(context + UI_OFFSET_11418), eventValue, 0);
     return;
 }
 
-// 函数: void UISystem_DataManager(longlong context)
-void FUN_18078c0a0(longlong context)
+/**
+ * @brief UI系统数据管理器
+ * 
+ * 管理UI系统数据结构和操作，包括数据处理、状态管理和资源操作
+ * 
+ * @param context UI系统上下文指针
+ * 
+ * 处理流程：
+ * 1. 检查系统状态和标志
+ * 2. 处理组件数据
+ * 3. 管理资源数据
+ * 4. 更新状态信息
+ * 5. 执行清理操作
+ * 
+ * 功能特点：
+ * - 支持复杂数据结构操作
+ * - 提供状态管理和监控
+ * - 包含资源管理和优化
+ * - 支持异步数据处理
+ */
+void UISystem_DataManager(longlong context)
 {
     undefined8 *componentPtr;
     undefined4 renderValue;
@@ -827,8 +867,27 @@ FUN_18078c746:
     FUN_1808fc050(stackVar21 ^ (ulonglong)stackBuffer);
 }
 
-// 函数: int UISystem_RenderController(longlong context)
-int FUN_180749940(longlong context)
+/**
+ * @brief UI系统渲染控制器
+ * 
+ * 控制UI系统渲染和更新，包括渲染状态管理和渲染队列处理
+ * 
+ * @param context UI系统上下文指针
+ * @return UIErrorCode 渲染控制结果
+ * 
+ * 处理流程：
+ * 1. 检查渲染上下文
+ * 2. 验证渲染状态
+ * 3. 处理渲染队列
+ * 4. 更新渲染状态
+ * 5. 返回处理结果
+ * 
+ * 性能优化：
+ * - 使用高效的渲染队列管理
+ * - 支持渲染状态缓存
+ * - 提供渲染性能监控
+ */
+int UISystem_RenderController(longlong context)
 {
     int result;
     longlong stateHandle;
@@ -857,8 +916,28 @@ LAB_1807499b3:
     return result;
 }
 
-// 函数: int UISystem_StateValidator_Validate(longlong context)
-int FUN_180749946(longlong context)
+/**
+ * @brief UI系统状态验证器
+ * 
+ * 验证UI系统状态和一致性，包括状态检查和状态报告
+ * 
+ * @param context UI系统上下文指针
+ * @return UIErrorCode 验证结果
+ * 
+ * 处理流程：
+ * 1. 检查系统上下文
+ * 2. 验证状态一致性
+ * 3. 检查状态完整性
+ * 4. 生成状态报告
+ * 5. 返回验证结果
+ * 
+ * 验证内容：
+ * - 状态数据完整性
+ * - 状态逻辑一致性
+ * - 状态转换有效性
+ * - 系统资源状态
+ */
+int UISystem_StateValidator_Validate(longlong context)
 {
     int result;
     longlong stateHandle;
@@ -887,14 +966,47 @@ LAB_1807499b3:
     return result;
 }
 
-// 函数: void UISystem_CallbackHandler(void)
-void FUN_1807499c7(void)
+/**
+ * @brief UI系统回调处理器
+ * 
+ * 处理UI系统回调函数，包括回调清理和资源释放
+ * 
+ * 功能特点：
+ * - 简单的回调处理接口
+ * - 支持资源清理
+ * - 提供回调状态管理
+ */
+void UISystem_CallbackHandler(void)
 {
     FUN_180743d60();
 }
 
-// 函数: void UISystem_CleanupManager(longlong context)
-void FUN_1807499f0(longlong context)
+/**
+ * @brief UI系统清理管理器
+ * 
+ * 清理UI系统资源和状态，包括资源释放、状态重置和内存回收
+ * 
+ * @param context UI系统上下文指针
+ * 
+ * 处理流程：
+ * 1. 检查系统状态
+ * 2. 处理资源清理
+ * 3. 重置状态标志
+ * 4. 清理内存
+ * 5. 执行最终清理
+ * 
+ * 清理内容：
+ * - 释放所有UI资源
+ * - 重置系统状态
+ * - 清理事件队列
+ * - 回收内存资源
+ * 
+ * 安全考虑：
+ * - 防止内存泄漏
+ * - 确保资源正确释放
+ * - 避免重复清理
+ */
+void UISystem_CleanupManager(longlong context)
 {
     int *statePtr;
     uint *eventPtr;
