@@ -1,10 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part043.c - 3 个函数
+// 01_initialization_part043.c - 初始化模块第43部分
+// 包含4个函数：参数处理、事件处理、状态检查和日志记录
 
-// 函数: void FUN_180072000(undefined8 param_1,longlong param_2,undefined4 param_3,longlong param_4,
-void FUN_180072000(undefined8 param_1,longlong param_2,undefined4 param_3,longlong param_4,
-                  undefined1 param_5,char param_6)
+// 函数：处理初始化参数和配置
+// 原始函数名：FUN_180072000
+void process_initialization_parameters(undefined8 param_1, longlong param_2, undefined4 param_3, longlong param_4,
+                                      undefined1 param_5, char param_6)
 
 {
   code *pcVar1;
@@ -60,14 +62,19 @@ void FUN_180072000(undefined8 param_1,longlong param_2,undefined4 param_3,longlo
   undefined8 uStack_50;
   ulonglong uStack_48;
   
+  // 初始化栈变量
   uStack_60 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  uStack_48 = _GLOBAL_DEBUG_FLAG ^ (ulonglong)auStack_168;
   puVar10 = (undefined1 *)0x0;
   uStack_114 = 0;
   uStack_116 = 0;
   uStack_b0 = param_3;
   lStack_88 = param_4;
-  if ((DAT_180c82860 != '\0') || (DAT_180c82850 != '\0')) goto LAB_180072d7b;
+  
+  // 检查全局状态标志
+  if ((_GLOBAL_INIT_FLAG_1 != '\0') || (_GLOBAL_INIT_FLAG_2 != '\0')) {
+    goto LAB_180072d7b;
+  }
   uStack_58 = 0;
   uStack_50 = 0;
   FUN_1800634b0(&uStack_58,0x10,&UNK_1809fd0a0,param_3);

@@ -274,13 +274,16 @@ ACQUIRE_LOCK_SUCCESS:
 
 
 
-// 函数: void FUN_18007f660(longlong param_1)
-void FUN_18007f660(longlong param_1)
+/**
+ * 资源释放函数 - 释放资源并调用清理函数
+ * 功能：调用资源清理函数，并执行相关资源的释放操作
+ */
+void ReleaseResource(longlong resource_handle)
 
 {
-  FUN_18007f6a0();
-  if (*(longlong **)(param_1 + 0x18) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_1 + 0x18) + 0x38))();
+  CleanupResourceContext();
+  if (*(longlong **)(resource_handle + 0x18) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(resource_handle + 0x18) + 0x38))();
   }
   return;
 }
@@ -289,62 +292,65 @@ void FUN_18007f660(longlong param_1)
 
 
 
-// 函数: void FUN_18007f6a0(char *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18007f6a0(char *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 资源上下文清理函数 - 清理资源上下文和相关数据
+ * 功能：释放资源，清理上下文数据，重置状态标志
+ */
+void CleanupResourceContext(char *context_ptr,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  undefined8 uVar5;
+  longlong context_data;
+  longlong *current_resource;
+  longlong *next_resource;
+  longlong resource_base;
+  undefined8 timeout_value;
   
-  uVar5 = 0xfffffffffffffffe;
-  lVar1 = *(longlong *)(param_1 + 8);
-  if (lVar1 != 0) {
-    plVar2 = *(longlong **)(param_1 + 0x18);
-    if (plVar2 != (longlong *)0x0) {
-      (**(code **)(*plVar2 + 0x28))(plVar2);
+  timeout_value = 0xfffffffffffffffe;
+  context_data = *(longlong *)(context_ptr + 8);
+  if (context_data != 0) {
+    current_resource = *(longlong **)(context_ptr + 0x18);
+    if (current_resource != (longlong *)0x0) {
+      (**(code **)(*current_resource + 0x28))(current_resource);
     }
-    plVar3 = *(longlong **)(lVar1 + 0x210);
-    *(longlong **)(lVar1 + 0x210) = plVar2;
-    if (plVar3 != (longlong *)0x0) {
-      (**(code **)(*plVar3 + 0x38))();
+    next_resource = *(longlong **)(context_data + 0x210);
+    *(longlong **)(context_data + 0x210) = current_resource;
+    if (next_resource != (longlong *)0x0) {
+      (**(code **)(*next_resource + 0x38))();
     }
-    lVar1 = *(longlong *)(param_1 + 8);
-    if (*param_1 != '\0') {
-      lVar4 = lVar1;
-      if ((param_1[0x10] & 2U) == 0) {
-        FUN_180079520(lVar1);
-        FUN_180079520(*(undefined8 *)(param_1 + 8));
-        lVar4 = *(longlong *)(param_1 + 8);
+    context_data = *(longlong *)(context_ptr + 8);
+    if (*context_ptr != '\0') {
+      resource_base = context_data;
+      if ((context_ptr[0x10] & 2U) == 0) {
+        ReleaseMemoryBlock(context_data);
+        ReleaseMemoryBlock(*(undefined8 *)(context_ptr + 8));
+        resource_base = *(longlong *)(context_ptr + 8);
       }
-      FUN_18007edd0(lVar4,1,param_3,param_4,uVar5);
-      *(undefined4 *)(lVar1 + 0xf0) = 0;
+      FinalizeResource(resource_base,1,param_3,param_4,timeout_value);
+      *(undefined4 *)(context_data + 0xf0) = 0;
       LOCK();
-      *(undefined1 *)(lVar1 + 0xec) = 0;
+      *(undefined1 *)(context_data + 0xec) = 0;
       UNLOCK();
     }
   }
-  param_1[8] = '\0';
-  param_1[9] = '\0';
-  param_1[10] = '\0';
-  param_1[0xb] = '\0';
-  param_1[0xc] = '\0';
-  param_1[0xd] = '\0';
-  param_1[0xe] = '\0';
-  param_1[0xf] = '\0';
-  plVar2 = *(longlong **)(param_1 + 0x18);
-  param_1[0x18] = '\0';
-  param_1[0x19] = '\0';
-  param_1[0x1a] = '\0';
-  param_1[0x1b] = '\0';
-  param_1[0x1c] = '\0';
-  param_1[0x1d] = '\0';
-  param_1[0x1e] = '\0';
-  param_1[0x1f] = '\0';
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  context_ptr[8] = '\0';
+  context_ptr[9] = '\0';
+  context_ptr[10] = '\0';
+  context_ptr[0xb] = '\0';
+  context_ptr[0xc] = '\0';
+  context_ptr[0xd] = '\0';
+  context_ptr[0xe] = '\0';
+  context_ptr[0xf] = '\0';
+  current_resource = *(longlong **)(context_ptr + 0x18);
+  context_ptr[0x18] = '\0';
+  context_ptr[0x19] = '\0';
+  context_ptr[0x1a] = '\0';
+  context_ptr[0x1b] = '\0';
+  context_ptr[0x1c] = '\0';
+  context_ptr[0x1d] = '\0';
+  context_ptr[0x1e] = '\0';
+  context_ptr[0x1f] = '\0';
+  if (current_resource != (longlong *)0x0) {
+    (**(code **)(*current_resource + 0x38))();
   }
   return;
 }
@@ -353,44 +359,47 @@ void FUN_18007f6a0(char *param_1,undefined8 param_2,undefined8 param_3,undefined
 
 
 
-// 函数: void FUN_18007f770(longlong *param_1)
-void FUN_18007f770(longlong *param_1)
+/**
+ * 资源引用计数增加函数 - 增加资源引用计数并处理线程同步
+ * 功能：获取资源锁，增加引用计数，处理资源标志
+ */
+void IncrementResourceReference(longlong *resource_ptr)
 
 {
-  longlong lVar1;
-  char cVar2;
-  int iVar3;
-  bool bVar4;
+  longlong resource_handle;
+  char lock_status;
+  int thread_id;
+  bool lock_acquired;
   
-  lVar1 = *param_1;
-  iVar3 = _Thrd_id();
+  resource_handle = *resource_ptr;
+  thread_id = _Thrd_id();
   while( true ) {
     LOCK();
-    cVar2 = *(char *)(lVar1 + 0xec);
-    bVar4 = cVar2 == '\0';
-    if (bVar4) {
-      *(char *)(lVar1 + 0xec) = '\x01';
-      cVar2 = '\0';
+    lock_status = *(char *)(resource_handle + 0xec);
+    lock_acquired = lock_status == '\0';
+    if (lock_acquired) {
+      *(char *)(resource_handle + 0xec) = '\x01';
+      lock_status = '\0';
     }
     UNLOCK();
-    if (bVar4) break;
-    if (*(int *)(lVar1 + 0xf0) == iVar3) goto LAB_18007f7cf;
+    if (lock_acquired) break;
+    if (*(int *)(resource_handle + 0xf0) == thread_id) goto LOCK_ACQUIRED;
     Sleep(0);
   }
-  cVar2 = '\0';
-LAB_18007f7cf:
+  lock_status = '\0';
+LOCK_ACQUIRED:
   LOCK();
-  *(int *)(lVar1 + 0xe8) = *(int *)(lVar1 + 0xe8) + 1;
+  *(int *)(resource_handle + 0xe8) = *(int *)(resource_handle + 0xe8) + 1;
   UNLOCK();
-  if ((*(uint *)(param_1 + 1) & 1) == 0) {
-    FUN_18007eb80(*param_1,(byte)(*(uint *)(param_1 + 1) >> 2) & 1);
+  if ((*(uint *)(resource_ptr + 1) & 1) == 0) {
+    ProcessResourceFlags(*resource_ptr,(byte)(*(uint *)(resource_ptr + 1) >> 2) & 1);
   }
-  if (cVar2 == '\0') {
+  if (lock_status == '\0') {
     LOCK();
-    *(undefined1 *)(lVar1 + 0xec) = 0;
+    *(undefined1 *)(resource_handle + 0xec) = 0;
     UNLOCK();
   }
-  param_1[2] = *(longlong *)(*param_1 + 0x210);
+  resource_ptr[2] = *(longlong *)(*resource_ptr + 0x210);
   return;
 }
 
@@ -398,11 +407,14 @@ LAB_18007f7cf:
 
 
 
-// 函数: void FUN_18007f820(void)
-void FUN_18007f820(void)
+/**
+ * 资源释放包装函数 - 包装资源释放功能
+ * 功能：调用资源释放处理函数
+ */
+void ReleaseResourceWrapper(void)
 
 {
-  FUN_18007f840();
+  HandleResourceRelease();
   return;
 }
 
@@ -410,121 +422,132 @@ void FUN_18007f820(void)
 
 
 
-// 函数: void FUN_18007f840(longlong *param_1)
-void FUN_18007f840(longlong *param_1)
+/**
+ * 资源引用计数减少函数 - 减少资源引用计数并处理释放
+ * 功能：获取资源锁，减少引用计数，当计数为0时释放资源
+ */
+void HandleResourceRelease(longlong *resource_ptr)
 
 {
-  int *piVar1;
-  longlong lVar2;
-  char cVar3;
-  int iVar4;
-  bool bVar5;
+  int *reference_count;
+  longlong resource_handle;
+  char lock_status;
+  int thread_id;
+  bool lock_acquired;
   
-  lVar2 = *param_1;
-  if (lVar2 != 0) {
+  resource_handle = *resource_ptr;
+  if (resource_handle != 0) {
     while( true ) {
       LOCK();
-      cVar3 = *(char *)(lVar2 + 0xec);
-      bVar5 = cVar3 == '\0';
-      if (bVar5) {
-        *(char *)(lVar2 + 0xec) = '\x01';
-        cVar3 = '\0';
+      lock_status = *(char *)(resource_handle + 0xec);
+      lock_acquired = lock_status == '\0';
+      if (lock_acquired) {
+        *(char *)(resource_handle + 0xec) = '\x01';
+        lock_status = '\0';
       }
       UNLOCK();
-      if (bVar5) break;
-      iVar4 = _Thrd_id();
-      if ((*(int *)(lVar2 + 0xf0) == iVar4) || (*(int *)(lVar2 + 0xf0) != 0)) goto LAB_18007f89f;
+      if (lock_acquired) break;
+      thread_id = _Thrd_id();
+      if ((*(int *)(resource_handle + 0xf0) == thread_id) || (*(int *)(resource_handle + 0xf0) != 0)) goto LOCK_ACQUIRED;
       Sleep();
     }
-    cVar3 = '\0';
-LAB_18007f89f:
+    lock_status = '\0';
+LOCK_ACQUIRED:
     LOCK();
-    piVar1 = (int *)(lVar2 + 0xe8);
-    iVar4 = *piVar1;
-    *piVar1 = *piVar1 + -1;
+    reference_count = (int *)(resource_handle + 0xe8);
+    thread_id = *reference_count;
+    *reference_count = *reference_count + -1;
     UNLOCK();
-    if (cVar3 == '\0') {
-      if (iVar4 == 1) {
-        FUN_18007edd0(*param_1,0);
+    if (lock_status == '\0') {
+      if (thread_id == 1) {
+        FinalizeResource(*resource_ptr,0);
       }
       LOCK();
-      *(undefined1 *)(lVar2 + 0xec) = 0;
+      *(undefined1 *)(resource_handle + 0xec) = 0;
       UNLOCK();
     }
-    *param_1 = 0;
+    *resource_ptr = 0;
   }
   return;
 }
 
 
 
-uint FUN_18007f859(void)
+/**
+ * 资源引用计数减少函数（返回值版本）- 减少引用计数并返回状态
+ * 功能：线程安全地减少资源引用计数，返回操作状态
+ */
+uint DecrementResourceReference(void)
 
 {
-  uint *puVar1;
-  byte bVar2;
-  char cVar3;
-  int iVar4;
-  uint uVar5;
-  longlong unaff_RBX;
-  undefined8 *unaff_RSI;
-  bool bVar6;
+  uint *reference_count;
+  byte lock_status;
+  char status_flag;
+  int thread_id;
+  uint return_value;
+  longlong resource_handle;
+  undefined8 *resource_ptr;
+  bool lock_acquired;
   
   while( true ) {
     LOCK();
-    cVar3 = *(char *)(unaff_RBX + 0xec);
-    bVar6 = cVar3 == '\0';
-    if (bVar6) {
-      *(char *)(unaff_RBX + 0xec) = '\x01';
-      cVar3 = '\0';
+    status_flag = *(char *)(resource_handle + 0xec);
+    lock_acquired = status_flag == '\0';
+    if (lock_acquired) {
+      *(char *)(resource_handle + 0xec) = '\x01';
+      status_flag = '\0';
     }
     UNLOCK();
-    if (bVar6) break;
-    iVar4 = _Thrd_id();
-    if ((*(int *)(unaff_RBX + 0xf0) == iVar4) || (*(int *)(unaff_RBX + 0xf0) != 0))
-    goto LAB_18007f89f;
+    if (lock_acquired) break;
+    thread_id = _Thrd_id();
+    if ((*(int *)(resource_handle + 0xf0) == thread_id) || (*(int *)(resource_handle + 0xf0) != 0))
+    goto LOCK_ACQUIRED;
     Sleep();
   }
-  cVar3 = '\0';
-LAB_18007f89f:
+  status_flag = '\0';
+LOCK_ACQUIRED:
   LOCK();
-  puVar1 = (uint *)(unaff_RBX + 0xe8);
-  uVar5 = *puVar1;
-  *puVar1 = *puVar1 - 1;
+  reference_count = (uint *)(resource_handle + 0xe8);
+  return_value = *reference_count;
+  *reference_count = *reference_count - 1;
   UNLOCK();
-  if (cVar3 == '\0') {
-    if (uVar5 == 1) {
-      FUN_18007edd0(*unaff_RSI,0);
+  if (status_flag == '\0') {
+    if (return_value == 1) {
+      FinalizeResource(*resource_ptr,0);
     }
     LOCK();
-    bVar2 = *(byte *)(unaff_RBX + 0xec);
-    *(byte *)(unaff_RBX + 0xec) = 0;
-    uVar5 = (uint)bVar2;
+    lock_status = *(byte *)(resource_handle + 0xec);
+    *(byte *)(resource_handle + 0xec) = 0;
+    return_value = (uint)lock_status;
     UNLOCK();
   }
-  *unaff_RSI = 0;
-  return uVar5;
+  *resource_ptr = 0;
+  return return_value;
 }
 
 
 
-undefined1 FUN_18007f8bb(void)
+/**
+ * 资源状态重置函数 - 重置资源状态并清理指针
+ * 功能：根据条件释放资源，重置锁状态，清理资源指针
+ */
+undefined1 ResetResourceStatus(void)
 
 {
-  undefined1 uVar1;
-  int in_EAX;
-  longlong unaff_RBX;
-  undefined8 *unaff_RSI;
+  undefined1 previous_status;
+  int release_condition;
+  longlong resource_handle;
+  undefined8 *resource_ptr;
   
-  if (in_EAX == 1) {
-    FUN_18007edd0(*unaff_RSI,0);
+  if (release_condition == 1) {
+    FinalizeResource(*resource_ptr,0);
   }
   LOCK();
-  uVar1 = *(undefined1 *)(unaff_RBX + 0xec);
-  *(undefined1 *)(unaff_RBX + 0xec) = 0;
+  previous_status = *(undefined1 *)(resource_handle + 0xec);
+  *(undefined1 *)(resource_handle + 0xec) = 0;
   UNLOCK();
-  *unaff_RSI = 0;
-  return uVar1;
+  *resource_ptr = 0;
+  return previous_status;
 }
 
 

@@ -160,57 +160,6 @@ float * calculate_bounding_box(float *mesh_ptr)
   
   return pfVar6;
 }
-          fStack_a8 = *pfVar1;
-        }
-        fStack_a4 = pfVar6[1];
-        if (param_1[0x9e] < fStack_a4) {
-          fStack_a4 = param_1[0x9e];
-        }
-        fStack_a0 = pfVar6[2];
-        if (param_1[0x9f] < fStack_a0) {
-          fStack_a0 = param_1[0x9f];
-        }
-        *(ulonglong *)pfVar1 = CONCAT44(fStack_a4,fStack_a8);
-        *(ulonglong *)(param_1 + 0x9f) = CONCAT44(uStack_9c,fStack_a0);
-        fStack_b8 = *pfVar6;
-        if (fStack_b8 < param_1[0xa1]) {
-          fStack_b8 = param_1[0xa1];
-        }
-        fStack_b4 = pfVar6[1];
-        if (fStack_b4 < param_1[0xa2]) {
-          fStack_b4 = param_1[0xa2];
-        }
-        fStack_b0 = pfVar6[2];
-        if (fStack_b0 < param_1[0xa3]) {
-          fStack_b0 = param_1[0xa3];
-        }
-        *(ulonglong *)(param_1 + 0xa1) = CONCAT44(fStack_b4,fStack_b8);
-        *(ulonglong *)(param_1 + 0xa3) = CONCAT44(uStack_ac,fStack_b0);
-        uVar7 = uVar7 + 1;
-      } while (uVar7 < *(uint *)(lStack_88 + 0x10));
-    }
-    pfVar6 = *(float **)(param_1 + 0x6e);
-    if ((pfVar6 != (float *)0x0) && (((uint)pfVar6[0x4e] & 0x3000) != 0)) {
-      uStack_78 = *(undefined8 *)(param_1 + 0x48);
-      uStack_70 = *(undefined8 *)(param_1 + 0x4a);
-      uStack_68 = *(undefined8 *)(param_1 + 0x4c);
-      uStack_60 = *(undefined8 *)(param_1 + 0x4e);
-      fStack_58 = param_1[0x50];
-      fStack_54 = param_1[0x51];
-      fStack_50 = param_1[0x52];
-      fStack_4c = param_1[0x53];
-      uStack_48 = *(undefined8 *)(param_1 + 0x54);
-      uStack_40 = *(undefined8 *)(param_1 + 0x56);
-      FUN_180085c10(&uStack_78);
-      FUN_18063a240(pfVar1,pfVar1,&uStack_78);
-      pfVar6 = *(float **)(param_1 + 0x6e);
-      if (((uint)pfVar6[0x4e] & 0x3000) == 0x2000) {
-        uStack_78 = *(undefined8 *)(param_1 + 0x48);
-        uStack_70 = *(undefined8 *)(param_1 + 0x4a);
-        uStack_68 = *(undefined8 *)(param_1 + 0x4c);
-        uStack_60 = *(undefined8 *)(param_1 + 0x4e);
-        fStack_58 = param_1[0x50];
-        fStack_54 = param_1[0x51];
         fStack_50 = param_1[0x52];
         fStack_4c = param_1[0x53];
         uStack_48 = *(undefined8 *)(param_1 + 0x54);

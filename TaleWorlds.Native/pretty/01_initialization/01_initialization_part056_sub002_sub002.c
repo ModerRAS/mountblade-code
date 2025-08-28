@@ -1,9 +1,25 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization_part056_sub002_sub002.c - 1 个函数
+// 01_initialization_part056_sub002_sub002.c - 初始化模块：骨骼动画系统初始化
+// 
+// 本文件包含骨骼动画系统的核心初始化函数，负责：
+// 1. 分配和管理骨骼动画数据结构
+// 2. 计算骨骼变换矩阵和法线
+// 3. 处理骨骼权重和顶点变形
+// 4. 设置骨骼绑定姿势
 
-// 函数: void FUN_1800796b0(longlong param_1)
-void FUN_1800796b0(longlong param_1)
+/**
+ * 初始化骨骼动画系统
+ * 
+ * 该函数是骨骼动画系统的核心初始化函数，负责：
+ * - 创建和管理骨骼数据结构
+ * - 计算骨骼变换矩阵
+ * - 处理顶点蒙皮和变形
+ * - 设置骨骼绑定姿势
+ * 
+ * @param animation_context 指向动画系统上下文结构的指针
+ */
+void initialize_skeletal_animation_system(longlong animation_context)
 
 {
   int *piVar1;
