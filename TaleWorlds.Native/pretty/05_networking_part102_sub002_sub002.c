@@ -323,7 +323,7 @@ LAB_18089c300:
     return (uint64_t)uVar5;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(param_2,auStack_68);
+  AdvancedSystemManager(param_2,auStack_68);
 }
 
 
@@ -578,7 +578,7 @@ LAB_18089c300:
     return (uint64_t *)(uint64_t)uVar8;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar21,unaff_RBP + -9);
+  AdvancedSystemManager(fVar21,unaff_RBP + -9);
 }
 
 
@@ -825,7 +825,7 @@ LAB_18089c300:
     return (uint64_t *)(uint64_t)uVar8;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar21,unaff_RBP + -9);
+  AdvancedSystemManager(fVar21,unaff_RBP + -9);
 }
 
 
@@ -1038,7 +1038,7 @@ LAB_18089c300:
     return (uint64_t)uVar8;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar20,unaff_RBP + -9);
+  AdvancedSystemManager(fVar20,unaff_RBP + -9);
 }
 
 

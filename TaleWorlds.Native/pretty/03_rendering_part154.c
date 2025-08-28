@@ -1713,7 +1713,7 @@ ADVANCED_PARAM_PROCESSOR:
         shader_pointer = (uint64_t *)(param_1 + 0x100);
         resource_size = 4;
         do {
-            FUN_180627910(&config_pointer, *shader_pointer);
+            CoreMemoryPoolValidator(&config_pointer, *shader_pointer);
             if ((uint64_t)param_3[1] < (uint64_t)param_3[2]) {
                 param_3[1] = param_3[1] + 0x20;
                 CoreEngineDataTransformer();

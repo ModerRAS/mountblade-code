@@ -284,7 +284,7 @@ LAB_1800a7660:
     // COM组件初始化
     CoInitializeEx(0, 6);
     uVar5 = FUN_1800ade00(param_9);
-    FUN_180627910(auStack_730, uVar5);
+    CoreMemoryPoolValidator(auStack_730, uVar5);
     
     // 初始化字符串缓冲区
     puStack_988 = &system_data_buffer_ptr;

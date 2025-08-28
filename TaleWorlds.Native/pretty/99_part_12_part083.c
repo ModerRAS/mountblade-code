@@ -583,7 +583,7 @@ LAB_1808a3163:
     uVar3 = uVar7;
     if (uVar3 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,auStack_40);
+      AdvancedSystemManager(param_2,auStack_40);
     }
   }
   return (uint64_t)uVar3;
@@ -822,7 +822,7 @@ LAB_1808a3163:
     uVar3 = uVar7;
     if (uVar3 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80();
+      AdvancedSystemManager();
     }
   }
   return (uint64_t)uVar3;
@@ -979,7 +979,7 @@ LAB_1808a3163:
     uVar5 = uVar6;
     if (uVar5 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80();
+      AdvancedSystemManager();
     }
   }
   return (uint64_t)uVar5;

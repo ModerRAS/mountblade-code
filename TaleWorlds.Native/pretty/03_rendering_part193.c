@@ -338,7 +338,7 @@ LAB_18037de35:
            (puVar6 = &unknown_var_5412_ptr, (pcVar9[1] + 0xa8U & 0xdf) != 0)) {
           puVar6 = &unknown_var_2208_ptr;
         }
-        FUN_18010cbc0(pcVar9,puVar6,auStackX_20);
+        AdvancedSystemOptimizer(pcVar9,puVar6,auStackX_20);
 LAB_18037de7b:
         pcVar9 = "density";
         do {
@@ -363,7 +363,7 @@ LAB_18037dee0:
               if (puVar8[1] != 0) {
                 lVar5 = puVar8[1];
               }
-              FUN_18010cbc0(lVar5,&system_data_6430,afStackX_18);
+              AdvancedSystemOptimizer(lVar5,&system_data_6430,afStackX_18);
               if (0.0 <= afStackX_18[0]) {
                 if (2000.0 <= afStackX_18[0]) {
                   afStackX_18[0] = 2000.0;
@@ -412,7 +412,7 @@ LAB_18037dfa4:
                  (puVar6 = &unknown_var_5412_ptr, (pcVar9[1] + 0xa8U & 0xdf) != 0)) {
                 puVar6 = &unknown_var_2208_ptr;
               }
-              FUN_18010cbc0(pcVar9,puVar6,aiStack_b8);
+              AdvancedSystemOptimizer(pcVar9,puVar6,aiStack_b8);
               param_1[2] = aiStack_b8[0];
               break;
             }
@@ -446,7 +446,7 @@ LAB_18037e056:
               if (puVar8[1] != 0) {
                 lVar5 = puVar8[1];
               }
-              FUN_18010cbc0(lVar5,&system_data_6430,&iStack_90);
+              AdvancedSystemOptimizer(lVar5,&system_data_6430,&iStack_90);
               param_1[3] = iStack_90;
               break;
             }
@@ -480,7 +480,7 @@ LAB_18037e0f4:
               if (puVar8[1] != 0) {
                 lVar5 = puVar8[1];
               }
-              FUN_18010cbc0(lVar5,&system_data_6430,&iStack_8c);
+              AdvancedSystemOptimizer(lVar5,&system_data_6430,&iStack_8c);
               param_1[4] = iStack_8c;
               break;
             }
@@ -544,7 +544,7 @@ LAB_18037e1f0:
               if (puVar8[1] != 0) {
                 lVar5 = puVar8[1];
               }
-              FUN_18010cbc0(lVar5,&system_data_6430,aiStack_88);
+              AdvancedSystemOptimizer(lVar5,&system_data_6430,aiStack_88);
               param_1[5] = aiStack_88[0];
               goto LAB_18037e219;
             }

@@ -1587,7 +1587,7 @@ LAB_1800d2eb0:
                     else if ((uint)uStack_958 < uVar10) {
                       uVar31 = (uint64_t)ppuStack_9a8 >> 8;
                       ppuStack_9a8 = (void **)CONCAT71((int7)uVar31,0x13);
-                      puStack_968 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar18,uVar10,0x10);
+                      puStack_968 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar18,uVar10,0x10);
                       uVar31 = (uint64_t)puStack_968 & 0xffffffffffc00000;
                       if (uVar31 == 0) {
                         uStack_958 = uStack_958 & 0xffffffff00000000;

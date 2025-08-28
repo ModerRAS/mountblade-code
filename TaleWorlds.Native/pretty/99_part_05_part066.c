@@ -82,7 +82,7 @@ void FUN_1803a2b10(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         }
       }
       else if (iVar6 == 0) {
-        FUN_180627910(&puStack_60,param_2);
+        CoreMemoryPoolValidator(&puStack_60,param_2);
         FUN_1800b2cd0();
         puStack_60 = &system_data_buffer_ptr;
         if (lStack_58 != 0) {

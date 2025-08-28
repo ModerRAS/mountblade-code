@@ -441,7 +441,7 @@ LAB_1803777ad:
                 uVar14 = uVar14 ^ uVar14 >> 0x11;
                 uVar17 = (uVar14 ^ uVar14 << 5) - 1;
                     // WARNING: Subroutine does not return
-                FUN_1808fd400(uVar17,(float)uVar17 * 1.4629181e-09);
+                AdvancedSystemController(uVar17,(float)uVar17 * 1.4629181e-09);
               }
               *(float *)(unaff_RBP + 0x88) = fVar30;
               *(float *)(unaff_RBP + 0x8c) = fVar24;

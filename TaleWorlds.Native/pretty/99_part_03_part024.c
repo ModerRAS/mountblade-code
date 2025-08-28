@@ -327,7 +327,7 @@ LAB_1801e39f8:
         else {
           if (uVar7 <= (uint)plStack_150) goto LAB_1801e3a9e;
           puStack_1a8 = (uint *)CONCAT71(puStack_1a8._1_7_,0x13);
-          puVar10 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar10,uVar7,0x10);
+          puVar10 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar10,uVar7,0x10);
         }
         puStack_118 = puVar10;
         plStack_150 = (int64_t *)CoreEngineSystemCleanup(puVar10);

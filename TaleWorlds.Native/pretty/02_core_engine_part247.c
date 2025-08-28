@@ -92,7 +92,7 @@ uint64_t FUN_180213440(int64_t param_1,int64_t param_2,char param_3)
   iVar2 = *(int *)(param_2 + 0x10);
   if (0 < iVar2) {
     if ((iVar2 != -0xf) && (uVar1 < iVar2 + 0x10U)) {
-      puVar4 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar4,iVar2 + 0x10U,0x10,0x13);
+      puVar4 = (int32_t *)DataValidator(system_memory_pool_ptr,puVar4,iVar2 + 0x10U,0x10,0x13);
       CoreEngineSystemCleanup(puVar4);
       iVar2 = *(int *)(param_2 + 0x10);
     }
@@ -107,7 +107,7 @@ LAB_1802135b0:
     CoreEngineSystemCleanup(puVar4);
   }
   else if (uVar1 < 0x11) {
-    puVar4 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar4,0x11,0x10,0x13);
+    puVar4 = (int32_t *)DataValidator(system_memory_pool_ptr,puVar4,0x11,0x10,0x13);
     goto LAB_1802135b0;
   }
   *(int16_t *)((int64_t)puVar4 + 0xf) = 10;
@@ -201,7 +201,7 @@ int64_t FUN_180213700(int64_t param_1,int param_2,char param_3)
     }
     else {
       if (uVar1 <= (uint)uStack_38) goto LAB_180213823;
-      puStack_48 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_48,uVar1,0x10,0x13);
+      puStack_48 = (int32_t *)DataValidator(system_memory_pool_ptr,puStack_48,uVar1,0x10,0x13);
     }
     uStack_38._0_4_ = CoreEngineSystemCleanup(puStack_48);
   }
@@ -267,7 +267,7 @@ uint64_t FUN_180213920(int64_t param_1,int64_t param_2)
   iVar2 = *(int *)(param_2 + 0x10);
   if (0 < iVar2) {
     if ((iVar2 != -0x15) && (uVar1 < iVar2 + 0x16U)) {
-      puVar3 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar3,iVar2 + 0x16U,0x10,0x13);
+      puVar3 = (int32_t *)DataValidator(system_memory_pool_ptr,puVar3,iVar2 + 0x16U,0x10,0x13);
       CoreEngineSystemCleanup(puVar3);
       iVar2 = *(int *)(param_2 + 0x10);
     }
@@ -282,7 +282,7 @@ LAB_180213aaa:
     CoreEngineSystemCleanup(puVar3);
   }
   else if (uVar1 < 0x17) {
-    puVar3 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar3,0x17,0x10,0x13);
+    puVar3 = (int32_t *)DataValidator(system_memory_pool_ptr,puVar3,0x17,0x10,0x13);
     goto LAB_180213aaa;
   }
   *(int16_t *)((int64_t)puVar3 + 0x15) = 10;
@@ -363,7 +363,7 @@ uint64_t FUN_180213bb0(int64_t param_1,int32_t param_2)
     }
     else {
       if (uVar2 <= (uint)uStack_48) goto LAB_180213d0d;
-      puStack_58 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_58,uVar2,0x10,0x13);
+      puStack_58 = (int32_t *)DataValidator(system_memory_pool_ptr,puStack_58,uVar2,0x10,0x13);
     }
     uStack_48._0_4_ = CoreEngineSystemCleanup(puStack_58);
   }

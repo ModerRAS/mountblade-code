@@ -258,7 +258,7 @@ LAB_1805d5448:
       if (*(int *)(lVar8 + 0x570) != 1) {
         FUN_1805b6920(param_1);
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(*(int32_t *)(lVar8 + 0x4ac));
+        AdvancedSystemController(*(int32_t *)(lVar8 + 0x4ac));
       }
       if ((*(int *)(lVar8 + 0x50c) == *(int *)(lVar7 + 0x10)) &&
          (fVar13 = *(float *)(lVar8 + 0x4f8), pfVar10 = (float *)FUN_1805b6980(param_1),
@@ -329,7 +329,7 @@ void FUN_1805d54d2(void)
     if (*(int *)(lVar5 + 0x570) != 1) {
       FUN_1805b6920();
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(*(int32_t *)(lVar5 + 0x4ac));
+      AdvancedSystemController(*(int32_t *)(lVar5 + 0x4ac));
     }
     if ((*(int *)(lVar5 + 0x50c) == *(int *)(lVar4 + 0x10)) &&
        (fVar1 = *(float *)(lVar5 + 0x4f8), pfVar7 = (float *)FUN_1805b6980(),

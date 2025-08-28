@@ -284,7 +284,7 @@ LAB_18021573d:
       }
       else {
         if (uVar4 <= uVar11) goto LAB_1802157dc;
-        puVar8 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar8,uVar4,0x10,0x13);
+        puVar8 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar8,uVar4,0x10,0x13);
       }
       CoreEngineSystemCleanup(puVar8);
     }
@@ -438,7 +438,7 @@ LAB_180215380:
     }
     else {
       if (uVar4 <= uVar11) goto LAB_18021541f;
-      puVar8 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar8,uVar4,0x10,0x13);
+      puVar8 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar8,uVar4,0x10,0x13);
     }
     CoreEngineSystemCleanup(puVar8);
   }

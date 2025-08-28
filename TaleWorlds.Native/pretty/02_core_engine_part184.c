@@ -157,8 +157,8 @@
 /* FUN_180059820 - 配置处理函数 */
 #define ConfigProcessor FUN_180059820
 
-/* FUN_180627910 - 上下文初始化函数 */
-#define ContextInitializer FUN_180627910
+/* CoreMemoryPoolValidator - 上下文初始化函数 */
+#define ContextInitializer CoreMemoryPoolValidator
 
 /* FUN_180169f60 - 数据管理器 */
 #define DataManager FUN_180169f60
@@ -166,8 +166,8 @@
 /* FUN_180629b30 - 字符串处理函数 */
 #define StringHandler FUN_180629b30
 
-/* FUN_18062b8b0 - 内存重分配函数 */
-#define MemoryReallocator FUN_18062b8b0
+/* DataValidator - 内存重分配函数 */
+#define MemoryReallocator DataValidator
 
 /* CoreEngineDataBufferProcessor - 配置块初始化函数 */
 #define ConfigBlockInitializer CoreEngineDataBufferProcessor

@@ -489,7 +489,7 @@ void FUN_180524310(int64_t param_1)
   cVar1 = func_0x000180522f60();
   if (cVar1 != '\0') {
                     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(int32_t *)(lVar5 + 0x34));
+    AdvancedSystemController(*(int32_t *)(lVar5 + 0x34));
   }
   if (-0.6 <= *(float *)(lVar5 + 0x20)) {
     if (0.7 < *(float *)(lVar5 + 0x20)) {
@@ -692,7 +692,7 @@ void FUN_180524930(int64_t param_1,int8_t param_2,char param_3)
 LAB_180524a5a:
       if (((*(uint *)(param_1 + 0x56c) & 0x800) != 0) && (iVar11 == -1)) {
                     // WARNING: Subroutine does not return
-        FUN_1808fd400(*(int32_t *)(*(int64_t *)(param_1 + 0x20) + 0x34));
+        AdvancedSystemController(*(int32_t *)(*(int64_t *)(param_1 + 0x20) + 0x34));
       }
       fVar1 = *(float *)(*(int64_t *)(param_1 + 0x20) + 0x20);
       fVar2 = *(float *)(*(int64_t *)(param_1 + 0x20) + 0x1c);
@@ -831,7 +831,7 @@ void FUN_180524955(int64_t param_1)
 LAB_180524a5a:
     if (((*(uint *)(unaff_RSI + 0x56c) & 0x800) != 0) && (iVar6 == -1)) {
                     // WARNING: Subroutine does not return
-      FUN_1808fd400(*(int32_t *)(*(int64_t *)(unaff_RSI + 0x20) + 0x34));
+      AdvancedSystemController(*(int32_t *)(*(int64_t *)(unaff_RSI + 0x20) + 0x34));
     }
     if (*(int *)(unaff_RSI + 0x564) == -1) {
       uVar12 = 0xffffffff;
