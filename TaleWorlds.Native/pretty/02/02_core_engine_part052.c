@@ -199,10 +199,12 @@ void Engine_ExpandDataStructure(void)
 
 
 
-// 函数: void FUN_18008e454(void)
-void FUN_18008e454(void)
+// 函数：引擎空操作函数
+// 功能：执行空操作，用作占位符
+void Engine_NoOperation(void)
 
 {
+  // 空操作函数
   return;
 }
 
@@ -210,8 +212,12 @@ void FUN_18008e454(void)
 
 
 
-// 函数: void FUN_18008e460(longlong *param_1,longlong *param_2)
-void FUN_18008e460(longlong *param_1,longlong *param_2)
+// 函数：数据结构排序函数
+// 功能：对数据结构中的元素进行排序和整理
+// 参数：
+//   param_1 - 数据结构起始指针
+//   param_2 - 数据结构结束指针
+void Engine_SortDataStructure(longlong *data_start, longlong *data_end)
 
 {
   byte bVar1;

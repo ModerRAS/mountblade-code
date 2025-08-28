@@ -41,45 +41,62 @@ int initialize_system_core(void)
 
 
 
-int FUN_1800435a0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 初始化第一个互斥锁
+ * 功能：初始化系统中的第一个互斥锁用于线程同步
+ * 参数：param_1 - 互斥锁标识符，param_2 - 类型，param_3 - 属性，param_4 - 标志
+ * 返回值：初始化成功返回0，失败返回-1
+ */
+int initialize_first_mutex(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  longlong lVar1;
-  
-  _Mtx_init_in_situ(0x180c966f0,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180943140);
-  return (lVar1 != 0) - 1;
+    longlong result;
+    
+    // 在指定位置初始化互斥锁
+    _Mtx_init_in_situ(0x180c966f0, 2, param_3, param_4, 0xfffffffffffffffe);
+    result = FUN_1808fc7d0(FUN_180943140);
+    return (result != 0) - 1;
 }
 
 
 
-int FUN_1800435e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 初始化第二个互斥锁
+ * 功能：初始化系统中的第二个互斥锁用于线程同步
+ * 参数：param_1 - 互斥锁标识符，param_2 - 类型，param_3 - 属性，param_4 - 标志
+ * 返回值：初始化成功返回0，失败返回-1
+ */
+int initialize_second_mutex(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  longlong lVar1;
-  
-  _Mtx_init_in_situ(0x180c96740,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180943160);
-  return (lVar1 != 0) - 1;
+    longlong result;
+    
+    // 在指定位置初始化互斥锁
+    _Mtx_init_in_situ(0x180c96740, 2, param_3, param_4, 0xfffffffffffffffe);
+    result = FUN_1808fc7d0(FUN_180943160);
+    return (result != 0) - 1;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180043610(void)
-
+/**
+ * 初始化全局数据结构
+ * 功能：初始化系统的全局数据结构和指针
+ * 返回值：初始化成功返回0，失败返回-1
+ */
+int initialize_global_data_structure(void)
 {
-  longlong lVar1;
-  
-  _DAT_180c967b8 = 3;
-  _DAT_180c96790 = &DAT_180c96790;
-  _DAT_180c96798 = &DAT_180c96790;
-  _DAT_180c967a0 = 0;
-  _DAT_180c967a8 = 0;
-  _DAT_180c967b0 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180943180);
-  return (lVar1 != 0) - 1;
+    longlong result;
+    
+    // 设置全局数据结构初始值
+    _DAT_180c967b8 = 3;
+    _DAT_180c96790 = &DAT_180c96790;
+    _DAT_180c96798 = &DAT_180c96790;
+    _DAT_180c967a0 = 0;
+    _DAT_180c967a8 = 0;
+    _DAT_180c967b0 = 0;
+    result = FUN_1808fc7d0(FUN_180943180);
+    return (result != 0) - 1;
 }
 
 
@@ -91,22 +108,25 @@ int FUN_180043610(void)
 
 
 // 函数: void FUN_180043690(void)
-void FUN_180043690(void)
-
+/**
+ * 初始化字符串处理系统1
+ * 功能：初始化第一个字符串处理系统
+ */
+void initialize_string_system_1(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
-  
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x10;
-  strcpy_s(auStack_88,0x80,&UNK_180a3def0,in_R9,0xfffffffffffffffe);
-  _DAT_180c967d0 = FUN_180623800(&puStack_a0);
-  return;
+    undefined8 in_R9;
+    undefined *puStack_a0;
+    undefined1 *puStack_98;
+    undefined4 uStack_90;
+    undefined1 auStack_88 [136];
+    
+    puStack_a0 = &UNK_1809fcc28;
+    puStack_98 = auStack_88;
+    auStack_88[0] = 0;
+    uStack_90 = 0x10;
+    strcpy_s(auStack_88, 0x80, &UNK_180a3def0, in_R9, 0xfffffffffffffffe);
+    _DAT_180c967d0 = FUN_180623800(&puStack_a0);
+    return;
 }
 
 

@@ -373,37 +373,37 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
   undefined8 thread_sync_param_64;
   undefined8 thread_sync_param_58;
   
-  param_1 = (longlong)*(int *)(param_1 + 0x250) * 0x128 + param_1;
-  matrix_base_addr = *(longlong *)(param_1 + 8 + (ulonglong)(param_2 >> 0xd) * 8);
-  memory_addr = (ulonglong)(param_2 + (param_2 >> 0xd) * -0x2000) * 0x40;
+  context_base = (longlong)*(int *)(context_base + 0x250) * 0x128 + context_base;
+  matrix_base_addr = *(longlong *)(context_base + 8 + (ulonglong)(sync_param >> 0xd) * 8);
+  memory_addr = (ulonglong)(sync_param + (sync_param >> 0xd) * -0x2000) * 0x40;
   temp_data_64 = ((undefined8 *)(matrix_base_addr + memory_addr))[1];
-  *(undefined8 *)param_4 = *(undefined8 *)(matrix_base_addr + memory_addr);
-  *(undefined8 *)(param_4 + 2) = temp_data_64;
+  *(undefined8 *)data_param = *(undefined8 *)(matrix_base_addr + memory_addr);
+  *(undefined8 *)(data_param + 2) = temp_data_64;
   data_block_ptr = (undefined8 *)(matrix_base_addr + 0x10 + memory_addr);
   temp_data_64 = data_block_ptr[1];
-  *(undefined8 *)(param_4 + 4) = *data_block_ptr;
-  *(undefined8 *)(param_4 + 6) = temp_data_64;
+  *(undefined8 *)(data_param + 4) = *data_block_ptr;
+  *(undefined8 *)(data_param + 6) = temp_data_64;
   data_block_ptr = (undefined8 *)(matrix_base_addr + 0x20 + memory_addr);
   temp_data_64 = data_block_ptr[1];
-  *(undefined8 *)(param_4 + 8) = *data_block_ptr;
-  *(undefined8 *)(param_4 + 10) = temp_data_64;
+  *(undefined8 *)(data_param + 8) = *data_block_ptr;
+  *(undefined8 *)(data_param + 10) = temp_data_64;
   data_block_ptr = (undefined8 *)(matrix_base_addr + 0x30 + memory_addr);
   temp_data_64 = data_block_ptr[1];
-  *(undefined8 *)(param_4 + 0xc) = *data_block_ptr;
-  *(undefined8 *)(param_4 + 0xe) = temp_data_64;
+  *(undefined8 *)(data_param + 0xc) = *data_block_ptr;
+  *(undefined8 *)(data_param + 0xe) = temp_data_64;
   matrix_base_addr = *(longlong *)(unaff_RDI + 0x10);
-  matrix_val_1 = param_4[8];
-  matrix_val_2 = param_4[9];
-  matrix_val_3 = param_4[10];
-  matrix_val_4 = param_4[0xb];
-  matrix_val_5 = *param_4;
-  matrix_val_6 = param_4[1];
-  matrix_val_7 = param_4[2];
-  matrix_val_8 = param_4[3];
-  matrix_val_9 = param_4[4];
-  matrix_val_10 = param_4[5];
-  matrix_val_11 = param_4[6];
-  matrix_val_12 = param_4[7];
+  matrix_val_1 = data_param[8];
+  matrix_val_2 = data_param[9];
+  matrix_val_3 = data_param[10];
+  matrix_val_4 = data_param[0xb];
+  matrix_val_5 = *data_param;
+  matrix_val_6 = data_param[1];
+  matrix_val_7 = data_param[2];
+  matrix_val_8 = data_param[3];
+  matrix_val_9 = data_param[4];
+  matrix_val_10 = data_param[5];
+  matrix_val_11 = data_param[6];
+  matrix_val_12 = data_param[7];
   transform_x = *(float *)(matrix_base_addr + 0x374);
   transform_y = *(float *)(matrix_base_addr + 0x370);
   transform_z = *(float *)(matrix_base_addr + 0x378);
@@ -413,26 +413,26 @@ void process_matrix_transform_and_sync(longlong render_context, uint matrix_inde
   rotation_y = *(float *)(matrix_base_addr + 0x388);
   rotation_z = *(float *)(matrix_base_addr + 0x390);
   extra_param = *(float *)(matrix_base_addr + 0x398);
-  *param_4 = transform_x * matrix_val_9 + transform_y * matrix_val_5 + transform_z * matrix_val_1;
-  param_4[1] = transform_x * matrix_val_10 + transform_y * matrix_val_6 + transform_z * matrix_val_2;
-  param_4[2] = transform_x * matrix_val_11 + transform_y * matrix_val_7 + transform_z * matrix_val_3;
-  param_4[3] = transform_x * matrix_val_12 + transform_y * matrix_val_8 + transform_z * matrix_val_4;
-  param_4[4] = scale_x * matrix_val_9 + rotation_x * matrix_val_5 + rotation_y * matrix_val_1;
-  param_4[5] = scale_x * matrix_val_10 + rotation_x * matrix_val_6 + rotation_y * matrix_val_2;
-  param_4[6] = scale_x * matrix_val_11 + rotation_x * matrix_val_7 + rotation_y * matrix_val_3;
-  param_4[7] = scale_x * matrix_val_12 + rotation_x * matrix_val_8 + rotation_y * matrix_val_4;
-  param_4[8] = scale_y * matrix_val_9 + rotation_z * matrix_val_5 + extra_param * matrix_val_1;
-  param_4[9] = scale_y * matrix_val_10 + rotation_z * matrix_val_6 + extra_param * matrix_val_2;
-  param_4[10] = scale_y * matrix_val_11 + rotation_z * matrix_val_7 + extra_param * matrix_val_3;
-  param_4[0xb] = scale_y * matrix_val_12 + rotation_z * matrix_val_8 + extra_param * matrix_val_4;
-  matrix_base_addr = *(longlong *)(unaff_RBX + 600);
+  *data_param = transform_x * matrix_val_9 + transform_y * matrix_val_5 + transform_z * matrix_val_1;
+  data_param[1] = transform_x * matrix_val_10 + transform_y * matrix_val_6 + transform_z * matrix_val_2;
+  data_param[2] = transform_x * matrix_val_11 + transform_y * matrix_val_7 + transform_z * matrix_val_3;
+  data_param[3] = transform_x * matrix_val_12 + transform_y * matrix_val_8 + transform_z * matrix_val_4;
+  data_param[4] = scale_x * matrix_val_9 + rotation_x * matrix_val_5 + rotation_y * matrix_val_1;
+  data_param[5] = scale_x * matrix_val_10 + rotation_x * matrix_val_6 + rotation_y * matrix_val_2;
+  data_param[6] = scale_x * matrix_val_11 + rotation_x * matrix_val_7 + rotation_y * matrix_val_3;
+  data_param[7] = scale_x * matrix_val_12 + rotation_x * matrix_val_8 + rotation_y * matrix_val_4;
+  data_param[8] = scale_y * matrix_val_9 + rotation_z * matrix_val_5 + extra_param * matrix_val_1;
+  data_param[9] = scale_y * matrix_val_10 + rotation_z * matrix_val_6 + extra_param * matrix_val_2;
+  data_param[10] = scale_y * matrix_val_11 + rotation_z * matrix_val_7 + extra_param * matrix_val_3;
+  data_param[0xb] = scale_y * matrix_val_12 + rotation_z * matrix_val_8 + extra_param * matrix_val_4;
+  matrix_base_addr = *(longlong *)(thread_context + 600);
   if (*(int *)(matrix_base_addr + 0x28) != *(int *)(GLOBAL_SYNC_DATA + 0x224)) {
     sync_flag = *(int *)(matrix_base_addr + 0x1c) + *(int *)(matrix_base_addr + 0x18);
     *(int *)(matrix_base_addr + 0x28) = *(int *)(GLOBAL_SYNC_DATA + 0x224);
     if (0 < sync_flag) {
       uStack0000000000000050 = thread_sync_param_58;
       memory_addr = (longlong)*(int *)(GLOBAL_ENGINE_CONTEXT + 0xe78) * 0x128 + GLOBAL_ENGINE_CONTEXT + 0xc28;
-      temp_data_32 = process_matrix_sync(memory_addr,sync_flag,param_1,param_4,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
+      temp_data_32 = process_matrix_sync(memory_addr,sync_flag,context_base,data_param,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(undefined4 *)(matrix_base_addr + 0x30) = temp_data_32;
       update_thread_sync(memory_addr,temp_data_32);
       if (*(longlong *)(matrix_base_addr + 0x10) == 0) {
@@ -623,7 +623,7 @@ void execute_thread_synchronization(void)
   longlong offset_val;
   int loop_counter;
   int array_index;
-  longlong unaff_RBX;
+  longlong thread_context;
   longlong memory_addr;
   ulonglong thread_count_ulong;
   char *pthread_count;
@@ -640,7 +640,7 @@ void execute_thread_synchronization(void)
   undefined8 uStack0000000000000050;
   undefined8 thread_sync_param_58;
   
-  context_base = *(longlong *)(unaff_RBX + 600);
+  context_base = *(longlong *)(thread_context + 600);
   if (*(int *)(context_base + 0x28) != *(int *)(GLOBAL_SYNC_DATA + 0x224)) {
     sync_flag = *(int *)(context_base + 0x1c) + *(int *)(context_base + 0x18);
     *(int *)(context_base + 0x28) = *(int *)(GLOBAL_SYNC_DATA + 0x224);
@@ -822,14 +822,14 @@ void execute_thread_synchronization(void)
  * 获取变换矩阵指针
  * 根据参数计算并返回变换矩阵的指针地址
  */
-undefined * get_transform_matrix_pointer(longlong context_base, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+undefined * get_transform_matrix_pointer(longlong context_base, undefined8 sync_param, undefined8 matrix_param, undefined8 data_param)
 
 {
-  undefined8 uVar1;
+  undefined8 result_code;
   
-  uVar1 = 0xfffffffffffffffe;
-  if (*(longlong *)(param_1 + 0x1b8) != 0) {
-    return (undefined *)(*(longlong *)(param_1 + 0x1b8) + 0x10);
+  result_code = 0xfffffffffffffffe;
+  if (*(longlong *)(context_base + 0x1b8) != 0) {
+    return (undefined *)(*(longlong *)(context_base + 0x1b8) + 0x10);
   }
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _GLOBAL_THREAD_LIMIT) {
@@ -850,19 +850,19 @@ void reset_thread_status_flags(longlong thread_context)
   int thread_index;
   longlong thread_offset;
   
-  if (((*(byte *)(param_1 + 0xfd) & 0x20) != 0) && (*(longlong *)(param_1 + 0x1e0) != 0)) {
+  if (((*(byte *)(context_base + 0xfd) & 0x20) != 0) && (*(longlong *)(context_base + 0x1e0) != 0)) {
     thread_index = 0;
     thread_offset = 0;
     do {
-      while ((*(char *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + thread_offset) == '\x02' ||
-             (*(char *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + thread_offset) == '\x01'))) {
+      while ((*(char *)(*(longlong *)(context_base + 0x1e0) + 0x15 + thread_offset) == '\x02' ||
+             (*(char *)(*(longlong *)(context_base + 0x1e0) + 0x15 + thread_offset) == '\x01'))) {
         thread_sleep(0);
       }
       thread_offset = (longlong)thread_index;
       thread_offset = thread_offset + 0x18;
       thread_index = thread_index + 1;
       LOCK();
-      *(undefined1 *)(*(longlong *)(param_1 + 0x1e0) + thread_offset * 0x18 + 0x15) = 0;
+      *(undefined1 *)(*(longlong *)(context_base + 0x1e0) + thread_offset * 0x18 + 0x15) = 0;
       UNLOCK();
     } while (thread_index < 0x10);
   }
@@ -878,30 +878,30 @@ void reset_thread_status_flags(longlong thread_context)
 undefined1 get_and_clear_thread_status(void)
 
 {
-  undefined1 *puVar1;
-  undefined1 uVar2;
+  undefined1 *status_ptr;
+  undefined1 status_value;
   longlong thread_offset;
-  longlong unaff_RBX;
+  longlong thread_context;
   int thread_index;
   longlong context_base;
   
   thread_index = 0;
   context_base = 0;
   do {
-    while ((*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + context_base) == '\x02' ||
-           (*(char *)(*(longlong *)(unaff_RBX + 0x1e0) + 0x15 + context_base) == '\x01'))) {
+    while ((*(char *)(*(longlong *)(thread_context + 0x1e0) + 0x15 + context_base) == '\x02' ||
+           (*(char *)(*(longlong *)(thread_context + 0x1e0) + 0x15 + context_base) == '\x01'))) {
       thread_sleep(0);
     }
     thread_offset = (longlong)thread_index;
     context_base = context_base + 0x18;
     thread_index = thread_index + 1;
     LOCK();
-    puVar1 = (undefined1 *)(*(longlong *)(unaff_RBX + 0x1e0) + thread_offset * 0x18 + 0x15);
-    uVar2 = *puVar1;
-    *puVar1 = 0;
+    status_ptr = (undefined1 *)(*(longlong *)(thread_context + 0x1e0) + thread_offset * 0x18 + 0x15);
+    status_value = *status_ptr;
+    *status_ptr = 0;
     UNLOCK();
   } while (thread_index < 0x10);
-  return uVar2;
+  return status_value;
 }
 
 
