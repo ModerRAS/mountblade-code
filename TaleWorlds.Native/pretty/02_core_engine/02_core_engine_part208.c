@@ -1,288 +1,342 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part208.c - 8 个函数
+// 02_core_engine_part208.c - 核心引擎模块第208部分
+// 本文件包含8个函数，主要处理内存管理、数据结构和资源释放等功能
 
-// 函数: void FUN_18018b590(longlong param_1)
-void FUN_18018b590(longlong param_1)
+// 函数: 释放纹理资源并重置相关状态
+// 原函数名: FUN_18018b590
+void release_texture_resources(longlong texture_context)
 
 {
-  int iVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined *puVar4;
-  longlong lVar5;
-  longlong *plVar6;
-  undefined8 uVar7;
-  undefined *puVar8;
-  int aiStackX_8 [2];
-  longlong lStack_30;
-  int *piStack_28;
-  code *pcStack_20;
-  code *pcStack_18;
+  int texture_width;
+  int texture_height;
+  int texture_depth;
+  longlong texture_manager;
+  undefined *texture_data;
+  longlong texture_info;
+  longlong *resource_pool;
+  undefined8 new_buffer;
+  undefined *default_texture;
+  int dimensions[2];
+  longlong cleanup_context;
+  int *buffer_ptr;
+  code *cleanup_callback;
+  code *texture_callback;
   
-  lVar3 = *(longlong *)(param_1 + 0xb0);
-  puVar4 = *(undefined **)(*(longlong *)(lVar3 + 0xa8) + 0x70);
-  puVar8 = &DAT_18098bc73;
-  if (puVar4 != (undefined *)0x0) {
-    puVar8 = puVar4;
+  // 获取纹理管理器
+  texture_manager = *(longlong *)(texture_context + 0xb0);
+  texture_data = *(undefined **)(*(longlong *)(texture_manager + 0xa8) + 0x70);
+  default_texture = &DAT_18098bc73;
+  if (texture_data != (undefined *)0x0) {
+    default_texture = texture_data;
   }
-  (**(code **)(*(longlong *)(lVar3 + 0x10) + 0x10))((longlong *)(lVar3 + 0x10),puVar8);
-  lVar5 = *(longlong *)(*(longlong *)(lVar3 + 0xa8) + 0x20);
-  if (*(longlong *)(lVar3 + 0xb0) != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 调用纹理清理回调
+  (**(code **)(*(longlong *)(texture_manager + 0x10) + 0x10))((longlong *)(texture_manager + 0x10),default_texture);
+  
+  texture_info = *(longlong *)(*(longlong *)(texture_manager + 0xa8) + 0x20);
+  if (*(longlong *)(texture_manager + 0xb0) != 0) {
+    // 释放纹理资源
+    free_texture_memory();
   }
-  *(undefined8 *)(lVar3 + 0xb0) = 0;
-  aiStackX_8[0] = *(int *)(lVar5 + 0x24);
-  *(int *)(lVar3 + 0xb8) = aiStackX_8[0];
-  iVar1 = *(int *)(lVar5 + 0x28);
-  *(int *)(lVar3 + 0xbc) = iVar1;
-  iVar2 = *(int *)(lVar5 + 0x2c);
-  *(int *)(lVar3 + 0xc0) = iVar2;
-  *(float *)(lVar3 + 0xc4) = 1.0 / (float)aiStackX_8[0];
-  *(float *)(lVar3 + 200) = 1.0 / (float)iVar1;
-  *(float *)(lVar3 + 0xcc) = 1.0 / (float)iVar2;
-  aiStackX_8[0] = iVar2 * iVar1 * aiStackX_8[0];
-  if (aiStackX_8[0] * 3 == 0) {
-    uVar7 = 0;
+  
+  // 重置纹理状态
+  *(undefined8 *)(texture_manager + 0xb0) = 0;
+  dimensions[0] = *(int *)(texture_info + 0x24);
+  *(int *)(texture_manager + 0xb8) = dimensions[0];
+  texture_width = *(int *)(texture_info + 0x28);
+  *(int *)(texture_manager + 0xbc) = texture_width;
+  texture_depth = *(int *)(texture_info + 0x2c);
+  *(int *)(texture_manager + 0xc0) = texture_depth;
+  
+  // 计算纹理缩放因子
+  *(float *)(texture_manager + 0xc4) = 1.0 / (float)dimensions[0];
+  *(float *)(texture_manager + 200) = 1.0 / (float)texture_width;
+  *(float *)(texture_manager + 0xcc) = 1.0 / (float)texture_depth;
+  
+  // 计算总像素数
+  dimensions[0] = texture_depth * texture_width * dimensions[0];
+  if (dimensions[0] * 3 == 0) {
+    new_buffer = 0;
   }
   else {
-    uVar7 = FUN_18062b420(_DAT_180c8ed18,(longlong)(aiStackX_8[0] * 3) * 4,3);
+    // 分配新的纹理缓冲区
+    new_buffer = allocate_texture_buffer(_DAT_180c8ed18,(longlong)(dimensions[0] * 3) * 4,3);
   }
-  *(undefined8 *)(lVar3 + 0xb0) = uVar7;
-  plVar6 = *(longlong **)(*(longlong *)(lVar3 + 0xa8) + 0x88);
-  piStack_28 = aiStackX_8;
-  pcStack_20 = (code *)&UNK_18018c0a0;
-  pcStack_18 = FUN_18018c050;
-  lStack_30 = lVar3;
-  (**(code **)(*plVar6 + 0x60))
-            (plVar6,&DAT_1809fe0d0,*(longlong *)(lVar3 + 0xa8) + 0xc,0,&lStack_30);
-  if (pcStack_20 != (code *)0x0) {
-    (*pcStack_20)(&lStack_30,0,0);
+  
+  *(undefined8 *)(texture_manager + 0xb0) = new_buffer;
+  resource_pool = *(longlong **)(*(longlong *)(texture_manager + 0xa8) + 0x88);
+  buffer_ptr = dimensions;
+  cleanup_callback = (code *)&UNK_18018c0a0;
+  texture_callback = cleanup_texture_resources;
+  cleanup_context = texture_manager;
+  
+  // 执行资源清理
+  (**(code **)(*resource_pool + 0x60))
+            (resource_pool,&DAT_1809fe0d0,*(longlong *)(texture_manager + 0xa8) + 0xc,0,&cleanup_context);
+  
+  if (cleanup_callback != (code *)0x0) {
+    (*cleanup_callback)(&cleanup_context,0,0);
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 全局变量重叠警告已忽略
 
 
 
-// 函数: void FUN_18018b740(longlong param_1)
-void FUN_18018b740(longlong param_1)
+// 函数: 初始化纹理对象并设置相关属性
+// 原函数名: FUN_18018b740
+void initialize_texture_object(longlong render_context)
 
 {
-  longlong *plVar1;
-  longlong *plVar2;
-  undefined *puVar3;
-  longlong alStack_30 [3];
+  longlong *texture_object;
+  longlong *texture_methods;
+  undefined *texture_format;
+  longlong init_params[3];
   
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0xd0,8,3);
-  *plVar2 = (longlong)&UNK_180a21690;
-  *plVar2 = (longlong)&UNK_180a21720;
-  *(undefined4 *)(plVar2 + 1) = 0;
-  *plVar2 = (longlong)&UNK_180a0ad90;
-  plVar1 = plVar2 + 2;
-  *plVar1 = (longlong)&UNK_18098bcb0;
-  plVar2[3] = 0;
-  *(undefined4 *)(plVar2 + 4) = 0;
-  *plVar1 = (longlong)&UNK_1809fcc28;
-  plVar2[3] = (longlong)(plVar2 + 5);
-  *(undefined4 *)(plVar2 + 4) = 0;
-  *(undefined1 *)(plVar2 + 5) = 0;
-  plVar2[0x16] = 0;
-  plVar2[0x15] = param_1;
-  if (param_1 != 0) {
-    puVar3 = &DAT_18098bc73;
-    if (*(undefined **)(param_1 + 0x70) != (undefined *)0x0) {
-      puVar3 = *(undefined **)(param_1 + 0x70);
+  // 分配纹理对象内存
+  texture_object = (longlong *)allocate_texture_object(_DAT_180c8ed18,0xd0,8,3);
+  *texture_object = (longlong)&texture_vtable_base;
+  *texture_object = (longlong)&texture_vtable_extended;
+  *(undefined4 *)(texture_object + 1) = 0;
+  *texture_object = (longlong)&texture_methods_table;
+  texture_methods = texture_object + 2;
+  *texture_methods = (longlong)&texture_resource_manager;
+  texture_object[3] = 0;
+  *(undefined4 *)(texture_object + 4) = 0;
+  *texture_methods = (longlong)&texture_shader_interface;
+  texture_object[3] = (longlong)(texture_object + 5);
+  *(undefined4 *)(texture_object + 4) = 0;
+  *(undefined1 *)(texture_object + 5) = 0;
+  texture_object[0x16] = 0;
+  texture_object[0x15] = render_context;
+  
+  // 设置渲染上下文
+  if (render_context != 0) {
+    texture_format = &DAT_18098bc73;
+    if (*(undefined **)(render_context + 0x70) != (undefined *)0x0) {
+      texture_format = *(undefined **)(render_context + 0x70);
     }
-    (**(code **)(*plVar1 + 0x10))(plVar1,puVar3);
+    (**(code **)(*texture_methods + 0x10))(texture_methods,texture_format);
   }
-  plVar2[0x17] = 0;
-  *(undefined4 *)(plVar2 + 0x18) = 0;
-  *(undefined4 *)((longlong)plVar2 + 0xc4) = 0x7f7fffff;
-  *(undefined4 *)(plVar2 + 0x19) = 0x7f7fffff;
-  *(undefined4 *)((longlong)plVar2 + 0xcc) = 0x7f7fffff;
-  (**(code **)(*plVar2 + 0x28))(plVar2);
-  plVar1 = *(longlong **)(param_1 + 0xb0);
-  *(longlong **)(param_1 + 0xb0) = plVar2;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  
+  // 初始化纹理属性
+  texture_object[0x17] = 0;
+  *(undefined4 *)(texture_object + 0x18) = 0;
+  *(undefined4 *)((longlong)texture_object + 0xc4) = 0x7f7fffff;  // 最大浮点值
+  *(undefined4 *)(texture_object + 0x19) = 0x7f7fffff;
+  *(undefined4 *)((longlong)texture_object + 0xcc) = 0x7f7fffff;
+  
+  // 调用纹理初始化方法
+  (**(code **)(*texture_object + 0x28))(texture_object);
+  texture_methods = *(longlong **)(render_context + 0xb0);
+  *(longlong **)(render_context + 0xb0) = texture_object;
+  
+  // 释放旧的纹理对象
+  if (texture_methods != (longlong *)0x0) {
+    (**(code **)(*texture_methods + 0x38))();
   }
-  plVar1 = *(longlong **)(param_1 + 0xb0);
-  FUN_18018be60(_DAT_180c8a9e8,alStack_30);
-  (**(code **)(*plVar1 + 0x28))(plVar1);
-  plVar2 = *(longlong **)(alStack_30[0] + 0x10);
-  *(longlong **)(alStack_30[0] + 0x10) = plVar1;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  
+  texture_methods = *(longlong **)(render_context + 0xb0);
+  setup_texture_resources(_DAT_180c8a9e8,init_params);
+  (**(code **)(*texture_methods + 0x28))(texture_methods);
+  
+  // 更新资源链表
+  texture_object = *(longlong **)(init_params[0] + 0x10);
+  *(longlong **)(init_params[0] + 0x10) = texture_methods;
+  if (texture_object != (longlong *)0x0) {
+    (**(code **)(*texture_object + 0x38))();
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 全局变量重叠警告已忽略
 
 
 
-// 函数: void FUN_18018b8c0(longlong param_1)
-void FUN_18018b8c0(longlong param_1)
+// 函数: 从哈希表中移除纹理资源
+// 原函数名: FUN_18018b8c0
+void remove_texture_from_hash_table(longlong texture_context)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong *plVar3;
-  longlong lVar4;
-  longlong *plVar5;
-  longlong *plVar6;
+  longlong hash_table;
+  longlong *current_entry;
+  longlong *previous_entry;
+  longlong hash_key1;
+  longlong *next_entry;
+  longlong *temp_entry;
   
-  lVar4 = *(longlong *)(*(longlong *)(param_1 + 0xb0) + 0xa8);
-  lVar1 = *(longlong *)(_DAT_180c8a9e8 + 8);
-  plVar5 = (longlong *)
-           (lVar1 + ((*(ulonglong *)(lVar4 + 0x14) ^ *(ulonglong *)(lVar4 + 0xc)) %
+  // 获取哈希表信息
+  hash_table = *(longlong *)(*(longlong *)(texture_context + 0xb0) + 0xa8);
+  hash_key1 = *(longlong *)(_DAT_180c8a9e8 + 8);
+  current_entry = (longlong *)
+           (hash_key1 + ((*(ulonglong *)(hash_table + 0x14) ^ *(ulonglong *)(hash_table + 0xc)) %
                     (ulonglong)*(uint *)(_DAT_180c8a9e8 + 0x10)) * 8);
-  plVar6 = (longlong *)*plVar5;
+  next_entry = (longlong *)*current_entry;
+  
   do {
-    if (plVar6 == (longlong *)0x0) {
+    if (next_entry == (longlong *)0x0) {
 LAB_18018b92f:
-      lVar4 = *(longlong *)(_DAT_180c8a9e8 + 0x10);
-      plVar5 = (longlong *)(lVar1 + lVar4 * 8);
-      plVar6 = (longlong *)*plVar5;
+      hash_table = *(longlong *)(_DAT_180c8a9e8 + 0x10);
+      current_entry = (longlong *)(hash_key1 + hash_table * 8);
+      next_entry = (longlong *)*current_entry;
 LAB_18018b93a:
-      if (plVar6 == *(longlong **)(lVar1 + lVar4 * 8)) {
+      if (next_entry == *(longlong **)(hash_key1 + hash_table * 8)) {
         return;
       }
-      lVar4 = plVar6[3];
-      plVar2 = plVar5;
-      while (lVar4 == 0) {
-        plVar2 = plVar2 + 1;
-        lVar4 = *plVar2;
+      hash_table = next_entry[3];
+      previous_entry = current_entry;
+      
+      // 查找链表中的下一个条目
+      while (hash_table == 0) {
+        previous_entry = previous_entry + 1;
+        hash_table = *previous_entry;
       }
-      plVar2 = (longlong *)*plVar5;
-      plVar3 = (longlong *)plVar2[3];
-      if (plVar2 == plVar6) {
-        *plVar5 = (longlong)plVar3;
+      
+      temp_entry = (longlong *)*current_entry;
+      previous_entry = (longlong *)temp_entry[3];
+      if (temp_entry == next_entry) {
+        *current_entry = (longlong)previous_entry;
       }
       else {
-        for (; plVar3 != plVar6; plVar3 = (longlong *)plVar3[3]) {
-          plVar2 = plVar3;
+        // 从链表中移除条目
+        for (; previous_entry != next_entry; previous_entry = (longlong *)previous_entry[3]) {
+          temp_entry = previous_entry;
         }
-        plVar2[3] = plVar3[3];
+        temp_entry[3] = previous_entry[3];
       }
-      if ((longlong *)plVar6[2] != (longlong *)0x0) {
-        (**(code **)(*(longlong *)plVar6[2] + 0x38))();
+      
+      // 释放条目资源
+      if ((longlong *)next_entry[2] != (longlong *)0x0) {
+        (**(code **)(*(longlong *)next_entry[2] + 0x38))();
       }
-                    // WARNING: Subroutine does not return
-      FUN_18064e900(plVar6);
+      // 释放条目内存
+      free_memory_block(next_entry);
     }
-    if ((*(longlong *)(lVar4 + 0xc) == *plVar6) && (*(longlong *)(lVar4 + 0x14) == plVar6[1])) {
-      if (plVar6 != (longlong *)0x0) {
-        lVar4 = *(longlong *)(_DAT_180c8a9e8 + 0x10);
+    
+    // 检查是否找到目标条目
+    if ((*(longlong *)(hash_table + 0xc) == *next_entry) && (*(longlong *)(hash_table + 0x14) == next_entry[1])) {
+      if (next_entry != (longlong *)0x0) {
+        hash_table = *(longlong *)(_DAT_180c8a9e8 + 0x10);
         goto LAB_18018b93a;
       }
       goto LAB_18018b92f;
     }
-    plVar6 = (longlong *)plVar6[3];
+    next_entry = (longlong *)next_entry[3];
   } while( true );
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 全局变量重叠警告已忽略
 
 
 
-// 函数: void FUN_18018b9e0(longlong param_1,longlong param_2)
-void FUN_18018b9e0(longlong param_1,longlong param_2)
+// 函数: 解析纹理数据并创建纹理对象
+// 原函数名: FUN_18018b9e0
+void parse_texture_data_and_create(longlong texture_params,longlong data_stream)
 
 {
-  uint *puVar1;
-  byte *pbVar2;
-  uint uVar3;
-  longlong lVar4;
-  byte *pbVar5;
-  undefined4 *puVar6;
-  int iVar7;
-  int iVar8;
-  longlong *plVar9;
-  undefined1 auStack_488 [32];
-  undefined8 uStack_468;
-  undefined *puStack_458;
-  byte *pbStack_450;
-  int iStack_448;
-  byte abStack_440 [1032];
-  ulonglong uStack_38;
+  uint *texture_type_ptr;
+  byte *texture_name;
+  uint texture_type;
+  longlong name_length;
+  byte *current_char;
+  undefined4 *texture_flags;
+  int texture_format;
+  int texture_quality;
+  longlong *texture_table;
+  undefined1 name_buffer[32];
+  undefined8 stream_position;
+  undefined *texture_data_ptr;
+  byte *texture_name_buffer;
+  int name_length_int;
+  byte texture_full_name[1032];
+  ulonglong checksum;
   
-  uStack_468 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_488;
-  *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
-  iVar8 = 0;
-  puStack_458 = &UNK_18098bb30;
-  pbStack_450 = abStack_440;
-  iStack_448 = 0;
-  abStack_440[0] = 0;
-  uVar3 = **(uint **)(param_2 + 8);
-  puVar1 = *(uint **)(param_2 + 8) + 1;
-  *(uint **)(param_2 + 8) = puVar1;
-  if (uVar3 != 0) {
-    FUN_180045f60(&puStack_458,puVar1,uVar3);
-    *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + (ulonglong)uVar3;
+  stream_position = 0xfffffffffffffffe;
+  checksum = _DAT_180bf00a8 ^ (ulonglong)name_buffer;
+  *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
+  texture_quality = 0;
+  texture_data_ptr = &UNK_18098bb30;
+  texture_name_buffer = texture_full_name;
+  name_length_int = 0;
+  texture_full_name[0] = 0;
+  texture_type = **(uint **)(data_stream + 8);
+  texture_type_ptr = *(uint **)(data_stream + 8) + 1;
+  *(uint **)(data_stream + 8) = texture_type_ptr;
+  
+  // 读取纹理名称
+  if (texture_type != 0) {
+    read_texture_name(&texture_data_ptr,texture_type_ptr,texture_type);
+    *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + (ulonglong)texture_type;
   }
-  plVar9 = (longlong *)0x180bf6740;
+  
+  // 查找纹理类型
+  texture_table = (longlong *)0x180bf6740;
   do {
-    lVar4 = -1;
+    name_length = -1;
     do {
-      lVar4 = lVar4 + 1;
-    } while (*(char *)(*plVar9 + lVar4) != '\0');
-    iVar7 = (int)lVar4;
-    if (iStack_448 == iVar7) {
-      if (iStack_448 != 0) {
-        pbVar5 = pbStack_450;
+      name_length = name_length + 1;
+    } while (*(char *)(*texture_table + name_length) != '\0');
+    texture_format = (int)name_length;
+    
+    // 比较纹理名称
+    if (name_length_int == texture_format) {
+      if (name_length_int != 0) {
+        current_char = texture_name_buffer;
         do {
-          pbVar2 = pbVar5 + (*plVar9 - (longlong)pbStack_450);
-          iVar7 = (uint)*pbVar5 - (uint)*pbVar2;
-          if (iVar7 != 0) break;
-          pbVar5 = pbVar5 + 1;
-        } while (*pbVar2 != 0);
+          texture_name = current_char + (*texture_table - (longlong)texture_name_buffer);
+          texture_format = (uint)*current_char - (uint)*texture_name;
+          if (texture_format != 0) break;
+          current_char = current_char + 1;
+        } while (*texture_name != 0);
       }
 LAB_18018baee:
-      if (iVar7 == 0) {
-        *(undefined4 *)(param_1 + 8) = *(undefined4 *)((longlong)iVar8 * 0x10 + 0x180bf6748);
+      // 设置纹理类型
+      if (texture_format == 0) {
+        *(undefined4 *)(texture_params + 8) = *(undefined4 *)((longlong)texture_quality * 0x10 + 0x180bf6748);
         goto LAB_18018baff;
       }
     }
-    else if (iStack_448 == 0) goto LAB_18018baee;
-    iVar8 = iVar8 + 1;
-    plVar9 = plVar9 + 2;
-    if (0x180bf674f < (longlong)plVar9) {
+    else if (name_length_int == 0) goto LAB_18018baee;
+    texture_quality = texture_quality + 1;
+    texture_table = texture_table + 2;
+    if (0x180bf674f < (longlong)texture_table) {
 LAB_18018baff:
-      puStack_458 = &UNK_18098bcb0;
-      *(undefined4 *)(param_1 + 0x24) = **(undefined4 **)(param_2 + 8);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
-      *(undefined4 *)(param_1 + 0x28) = **(undefined4 **)(param_2 + 8);
-      *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
-      *(undefined4 *)(param_1 + 0x2c) = **(undefined4 **)(param_2 + 8);
-      puVar6 = (undefined4 *)(*(longlong *)(param_2 + 8) + 4);
-      *(undefined4 **)(param_2 + 8) = puVar6;
-      if (*(int *)(param_1 + 8) == 0) {
-        *(undefined4 *)(param_1 + 0x20) = *puVar6;
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
-        *(undefined4 *)(param_1 + 0x1c) = **(undefined4 **)(param_2 + 8);
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
-        *(undefined4 *)(param_1 + 0xc) = **(undefined4 **)(param_2 + 8);
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
-        *(undefined4 *)(param_1 + 0x10) = **(undefined4 **)(param_2 + 8);
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
-        *(undefined4 *)(param_1 + 0x14) = **(undefined4 **)(param_2 + 8);
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
-        *(undefined4 *)(param_1 + 0x18) = **(undefined4 **)(param_2 + 8);
-        *(longlong *)(param_2 + 8) = *(longlong *)(param_2 + 8) + 4;
+      texture_data_ptr = &UNK_18098bcb0;
+      
+      // 读取纹理属性
+      *(undefined4 *)(texture_params + 0x24) = **(undefined4 **)(data_stream + 8);
+      *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
+      *(undefined4 *)(texture_params + 0x28) = **(undefined4 **)(data_stream + 8);
+      *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
+      *(undefined4 *)(texture_params + 0x2c) = **(undefined4 **)(data_stream + 8);
+      texture_flags = (undefined4 *)(*(longlong *)(data_stream + 8) + 4);
+      *(undefined4 **)(data_stream + 8) = texture_flags;
+      
+      // 处理特殊纹理类型
+      if (*(int *)(texture_params + 8) == 0) {
+        *(undefined4 *)(texture_params + 0x20) = *texture_flags;
+        *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
+        *(undefined4 *)(texture_params + 0x1c) = **(undefined4 **)(data_stream + 8);
+        *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
+        *(undefined4 *)(texture_params + 0xc) = **(undefined4 **)(data_stream + 8);
+        *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
+        *(undefined4 *)(texture_params + 0x10) = **(undefined4 **)(data_stream + 8);
+        *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
+        *(undefined4 *)(texture_params + 0x14) = **(undefined4 **)(data_stream + 8);
+        *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
+        *(undefined4 *)(texture_params + 0x18) = **(undefined4 **)(data_stream + 8);
+        *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
       }
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_488);
+      // 清理并返回
+      cleanup_texture_parser(checksum ^ (ulonglong)name_buffer);
     }
   } while( true );
 }
@@ -291,105 +345,121 @@ LAB_18018baff:
 
 
 
-// 函数: void FUN_18018bbd0(longlong param_1,longlong *param_2)
-void FUN_18018bbd0(longlong param_1,longlong *param_2)
+// 函数: 序列化纹理数据到数据流
+// 原函数名: FUN_18018bbd0
+void serialize_texture_data(longlong texture_params,longlong *data_stream)
 
 {
-  undefined4 uVar1;
-  int *piVar2;
-  int iVar3;
-  undefined4 *puVar4;
+  undefined4 texture_value;
+  int *texture_type_table;
+  int texture_index;
+  undefined4 *stream_ptr;
   
-  puVar4 = (undefined4 *)param_2[1];
-  if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
-    puVar4 = (undefined4 *)param_2[1];
+  stream_ptr = (undefined4 *)data_stream[1];
+  if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
+    expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
+    stream_ptr = (undefined4 *)data_stream[1];
   }
-  iVar3 = 0;
-  piVar2 = (int *)0x180bf6748;
-  *puVar4 = 0;
-  param_2[1] = param_2[1] + 4;
+  
+  // 写入纹理类型
+  texture_index = 0;
+  texture_type_table = (int *)0x180bf6748;
+  *stream_ptr = 0;
+  data_stream[1] = data_stream[1] + 4;
+  
+  // 查找并写入纹理类型数据
   do {
-    if (*piVar2 == *(int *)(param_1 + 8)) {
-      FUN_180639de0(param_2,*(undefined8 *)((longlong)iVar3 * 0x10 + 0x180bf6740));
+    if (*texture_type_table == *(int *)(texture_params + 8)) {
+      write_texture_type_data(data_stream,*(undefined8 *)((longlong)texture_index * 0x10 + 0x180bf6740));
       break;
     }
-    iVar3 = iVar3 + 1;
-    piVar2 = piVar2 + 4;
-  } while ((longlong)piVar2 < 0x180bf6758);
-  puVar4 = (undefined4 *)param_2[1];
-  uVar1 = *(undefined4 *)(param_1 + 0x24);
-  if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
-    puVar4 = (undefined4 *)param_2[1];
+    texture_index = texture_index + 1;
+    texture_type_table = texture_type_table + 4;
+  } while ((longlong)texture_type_table < 0x180bf6758);
+  
+  // 写入纹理属性
+  stream_ptr = (undefined4 *)data_stream[1];
+  texture_value = *(undefined4 *)(texture_params + 0x24);
+  if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
+    expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
+    stream_ptr = (undefined4 *)data_stream[1];
   }
-  *puVar4 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar4 = (undefined4 *)param_2[1];
-  uVar1 = *(undefined4 *)(param_1 + 0x28);
-  if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
-    puVar4 = (undefined4 *)param_2[1];
+  *stream_ptr = texture_value;
+  data_stream[1] = data_stream[1] + 4;
+  
+  stream_ptr = (undefined4 *)data_stream[1];
+  texture_value = *(undefined4 *)(texture_params + 0x28);
+  if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
+    expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
+    stream_ptr = (undefined4 *)data_stream[1];
   }
-  *puVar4 = uVar1;
-  param_2[1] = param_2[1] + 4;
-  puVar4 = (undefined4 *)param_2[1];
-  uVar1 = *(undefined4 *)(param_1 + 0x2c);
-  if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
-    puVar4 = (undefined4 *)param_2[1];
+  *stream_ptr = texture_value;
+  data_stream[1] = data_stream[1] + 4;
+  
+  stream_ptr = (undefined4 *)data_stream[1];
+  texture_value = *(undefined4 *)(texture_params + 0x2c);
+  if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
+    expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
+    stream_ptr = (undefined4 *)data_stream[1];
   }
-  *puVar4 = uVar1;
-  puVar4 = (undefined4 *)(param_2[1] + 4);
-  param_2[1] = (longlong)puVar4;
-  if (*(int *)(param_1 + 8) == 0) {
-    uVar1 = *(undefined4 *)(param_1 + 0x20);
-    if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-      FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
-      puVar4 = (undefined4 *)param_2[1];
+  *stream_ptr = texture_value;
+  stream_ptr = (undefined4 *)(data_stream[1] + 4);
+  data_stream[1] = (longlong)stream_ptr;
+  
+  // 处理特殊纹理类型的额外数据
+  if (*(int *)(texture_params + 8) == 0) {
+    texture_value = *(undefined4 *)(texture_params + 0x20);
+    if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
+      expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
+      stream_ptr = (undefined4 *)data_stream[1];
     }
-    *puVar4 = uVar1;
-    param_2[1] = param_2[1] + 4;
-    puVar4 = (undefined4 *)param_2[1];
-    uVar1 = *(undefined4 *)(param_1 + 0x1c);
-    if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-      FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
-      puVar4 = (undefined4 *)param_2[1];
+    *stream_ptr = texture_value;
+    data_stream[1] = data_stream[1] + 4;
+    
+    stream_ptr = (undefined4 *)data_stream[1];
+    texture_value = *(undefined4 *)(texture_params + 0x1c);
+    if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
+      expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
+      stream_ptr = (undefined4 *)data_stream[1];
     }
-    *puVar4 = uVar1;
-    param_2[1] = param_2[1] + 4;
-    puVar4 = (undefined4 *)param_2[1];
-    uVar1 = *(undefined4 *)(param_1 + 0xc);
-    if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-      FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
-      puVar4 = (undefined4 *)param_2[1];
+    *stream_ptr = texture_value;
+    data_stream[1] = data_stream[1] + 4;
+    
+    stream_ptr = (undefined4 *)data_stream[1];
+    texture_value = *(undefined4 *)(texture_params + 0xc);
+    if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
+      expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
+      stream_ptr = (undefined4 *)data_stream[1];
     }
-    *puVar4 = uVar1;
-    param_2[1] = param_2[1] + 4;
-    puVar4 = (undefined4 *)param_2[1];
-    uVar1 = *(undefined4 *)(param_1 + 0x10);
-    if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-      FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
-      puVar4 = (undefined4 *)param_2[1];
+    *stream_ptr = texture_value;
+    data_stream[1] = data_stream[1] + 4;
+    
+    stream_ptr = (undefined4 *)data_stream[1];
+    texture_value = *(undefined4 *)(texture_params + 0x10);
+    if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
+      expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
+      stream_ptr = (undefined4 *)data_stream[1];
     }
-    *puVar4 = uVar1;
-    param_2[1] = param_2[1] + 4;
-    puVar4 = (undefined4 *)param_2[1];
-    uVar1 = *(undefined4 *)(param_1 + 0x14);
-    if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-      FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
-      puVar4 = (undefined4 *)param_2[1];
+    *stream_ptr = texture_value;
+    data_stream[1] = data_stream[1] + 4;
+    
+    stream_ptr = (undefined4 *)data_stream[1];
+    texture_value = *(undefined4 *)(texture_params + 0x14);
+    if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
+      expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
+      stream_ptr = (undefined4 *)data_stream[1];
     }
-    *puVar4 = uVar1;
-    param_2[1] = param_2[1] + 4;
-    puVar4 = (undefined4 *)param_2[1];
-    uVar1 = *(undefined4 *)(param_1 + 0x18);
-    if ((ulonglong)((*param_2 - (longlong)puVar4) + param_2[2]) < 5) {
-      FUN_180639bf0(param_2,(longlong)puVar4 + (4 - *param_2));
-      puVar4 = (undefined4 *)param_2[1];
+    *stream_ptr = texture_value;
+    data_stream[1] = data_stream[1] + 4;
+    
+    stream_ptr = (undefined4 *)data_stream[1];
+    texture_value = *(undefined4 *)(texture_params + 0x18);
+    if ((ulonglong)((*data_stream - (longlong)stream_ptr) + data_stream[2]) < 5) {
+      expand_data_buffer(data_stream,(longlong)stream_ptr + (4 - *data_stream));
+      stream_ptr = (undefined4 *)data_stream[1];
     }
-    *puVar4 = uVar1;
-    param_2[1] = param_2[1] + 4;
+    *stream_ptr = texture_value;
+    data_stream[1] = data_stream[1] + 4;
   }
   return;
 }
@@ -398,63 +468,64 @@ void FUN_18018bbd0(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_18018bd0d(undefined4 *param_1)
-void FUN_18018bd0d(undefined4 *param_1)
+// 函数: 写入纹理数据到数据流
+// 原函数名: FUN_18018bd0d
+void write_texture_data_to_stream(undefined4 *stream_position)
 
 {
-  undefined4 uVar1;
-  longlong in_RAX;
-  undefined4 *puVar2;
-  longlong *unaff_RBX;
-  longlong unaff_RDI;
+  undefined4 texture_data;
+  longlong buffer_size;
+  undefined4 *current_position;
+  longlong *stream_info;
+  longlong texture_context;
   
-  uVar1 = *(undefined4 *)(unaff_RDI + 0x20);
-  if ((ulonglong)((in_RAX - (longlong)param_1) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    param_1 = (undefined4 *)unaff_RBX[1];
+  texture_data = *(undefined4 *)(texture_context + 0x20);
+  if ((ulonglong)((buffer_size - (longlong)stream_position) + stream_info[2]) < 5) {
+    expand_data_buffer();
+    stream_position = (undefined4 *)stream_info[1];
   }
-  *param_1 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar2 = (undefined4 *)unaff_RBX[1];
-  uVar1 = *(undefined4 *)(unaff_RDI + 0x1c);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar2) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar2 = (undefined4 *)unaff_RBX[1];
+  *stream_position = texture_data;
+  stream_info[1] = stream_info[1] + 4;
+  current_position = (undefined4 *)stream_info[1];
+  texture_data = *(undefined4 *)(texture_context + 0x1c);
+  if ((ulonglong)((*stream_info - (longlong)current_position) + stream_info[2]) < 5) {
+    expand_data_buffer();
+    current_position = (undefined4 *)stream_info[1];
   }
-  *puVar2 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar2 = (undefined4 *)unaff_RBX[1];
-  uVar1 = *(undefined4 *)(unaff_RDI + 0xc);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar2) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar2 = (undefined4 *)unaff_RBX[1];
+  *current_position = texture_data;
+  stream_info[1] = stream_info[1] + 4;
+  current_position = (undefined4 *)stream_info[1];
+  texture_data = *(undefined4 *)(texture_context + 0xc);
+  if ((ulonglong)((*stream_info - (longlong)current_position) + stream_info[2]) < 5) {
+    expand_data_buffer();
+    current_position = (undefined4 *)stream_info[1];
   }
-  *puVar2 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar2 = (undefined4 *)unaff_RBX[1];
-  uVar1 = *(undefined4 *)(unaff_RDI + 0x10);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar2) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar2 = (undefined4 *)unaff_RBX[1];
+  *current_position = texture_data;
+  stream_info[1] = stream_info[1] + 4;
+  current_position = (undefined4 *)stream_info[1];
+  texture_data = *(undefined4 *)(texture_context + 0x10);
+  if ((ulonglong)((*stream_info - (longlong)current_position) + stream_info[2]) < 5) {
+    expand_data_buffer();
+    current_position = (undefined4 *)stream_info[1];
   }
-  *puVar2 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar2 = (undefined4 *)unaff_RBX[1];
-  uVar1 = *(undefined4 *)(unaff_RDI + 0x14);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar2) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar2 = (undefined4 *)unaff_RBX[1];
+  *current_position = texture_data;
+  stream_info[1] = stream_info[1] + 4;
+  current_position = (undefined4 *)stream_info[1];
+  texture_data = *(undefined4 *)(texture_context + 0x14);
+  if ((ulonglong)((*stream_info - (longlong)current_position) + stream_info[2]) < 5) {
+    expand_data_buffer();
+    current_position = (undefined4 *)stream_info[1];
   }
-  *puVar2 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar2 = (undefined4 *)unaff_RBX[1];
-  uVar1 = *(undefined4 *)(unaff_RDI + 0x18);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar2) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar2 = (undefined4 *)unaff_RBX[1];
+  *current_position = texture_data;
+  stream_info[1] = stream_info[1] + 4;
+  current_position = (undefined4 *)stream_info[1];
+  texture_data = *(undefined4 *)(texture_context + 0x18);
+  if ((ulonglong)((*stream_info - (longlong)current_position) + stream_info[2]) < 5) {
+    expand_data_buffer();
+    current_position = (undefined4 *)stream_info[1];
   }
-  *puVar2 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
+  *current_position = texture_data;
+  stream_info[1] = stream_info[1] + 4;
   return;
 }
 
@@ -462,115 +533,127 @@ void FUN_18018bd0d(undefined4 *param_1)
 
 
 
-// 函数: void FUN_18018bd5f(void)
-void FUN_18018bd5f(void)
+// 函数: 写入部分纹理数据到数据流
+// 原函数名: FUN_18018bd5f
+void write_partial_texture_data(void)
 
 {
-  undefined4 uVar1;
-  undefined4 *puVar2;
-  longlong *unaff_RBX;
-  undefined4 unaff_ESI;
-  longlong unaff_RDI;
+  undefined4 texture_data;
+  undefined4 *stream_position;
+  longlong *stream_info;
+  undefined4 texture_flags;
+  longlong texture_context;
   
-  FUN_180639bf0();
-  *(undefined4 *)unaff_RBX[1] = unaff_ESI;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar2 = (undefined4 *)unaff_RBX[1];
-  uVar1 = *(undefined4 *)(unaff_RDI + 0xc);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar2) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar2 = (undefined4 *)unaff_RBX[1];
+  expand_data_buffer();
+  *(undefined4 *)stream_info[1] = texture_flags;
+  stream_info[1] = stream_info[1] + 4;
+  stream_position = (undefined4 *)stream_info[1];
+  texture_data = *(undefined4 *)(texture_context + 0xc);
+  if ((ulonglong)((*stream_info - (longlong)stream_position) + stream_info[2]) < 5) {
+    expand_data_buffer();
+    stream_position = (undefined4 *)stream_info[1];
   }
-  *puVar2 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar2 = (undefined4 *)unaff_RBX[1];
-  uVar1 = *(undefined4 *)(unaff_RDI + 0x10);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar2) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar2 = (undefined4 *)unaff_RBX[1];
+  *stream_position = texture_data;
+  stream_info[1] = stream_info[1] + 4;
+  stream_position = (undefined4 *)stream_info[1];
+  texture_data = *(undefined4 *)(texture_context + 0x10);
+  if ((ulonglong)((*stream_info - (longlong)stream_position) + stream_info[2]) < 5) {
+    expand_data_buffer();
+    stream_position = (undefined4 *)stream_info[1];
   }
-  *puVar2 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar2 = (undefined4 *)unaff_RBX[1];
-  uVar1 = *(undefined4 *)(unaff_RDI + 0x14);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar2) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar2 = (undefined4 *)unaff_RBX[1];
+  *stream_position = texture_data;
+  stream_info[1] = stream_info[1] + 4;
+  stream_position = (undefined4 *)stream_info[1];
+  texture_data = *(undefined4 *)(texture_context + 0x14);
+  if ((ulonglong)((*stream_info - (longlong)stream_position) + stream_info[2]) < 5) {
+    expand_data_buffer();
+    stream_position = (undefined4 *)stream_info[1];
   }
-  *puVar2 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  puVar2 = (undefined4 *)unaff_RBX[1];
-  uVar1 = *(undefined4 *)(unaff_RDI + 0x18);
-  if ((ulonglong)((*unaff_RBX - (longlong)puVar2) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar2 = (undefined4 *)unaff_RBX[1];
+  *stream_position = texture_data;
+  stream_info[1] = stream_info[1] + 4;
+  stream_position = (undefined4 *)stream_info[1];
+  texture_data = *(undefined4 *)(texture_context + 0x18);
+  if ((ulonglong)((*stream_info - (longlong)stream_position) + stream_info[2]) < 5) {
+    expand_data_buffer();
+    stream_position = (undefined4 *)stream_info[1];
   }
-  *puVar2 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
+  *stream_position = texture_data;
+  stream_info[1] = stream_info[1] + 4;
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 全局变量重叠警告已忽略
 
 undefined8 *
-FUN_18018be60(longlong param_1,undefined8 *param_2,undefined8 param_3,longlong *param_4,
-             ulonglong param_5)
+add_texture_to_hash_table(longlong hash_table,undefined8 *texture_entry,undefined8 entry_key,longlong *texture_data,
+             ulonglong hash_value)
 
 {
-  undefined8 *puVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 *puVar6;
-  undefined8 uVar7;
-  longlong *plVar8;
+  undefined8 *existing_entry;
+  longlong hash_index;
+  ulonglong table_size;
+  undefined4 texture_format;
+  undefined4 texture_quality;
+  undefined4 *new_texture;
+  undefined8 new_texture_id;
+  longlong *texture_properties;
   
-  uVar3 = param_5 % (ulonglong)*(uint *)(param_1 + 0x10);
-  puVar1 = (undefined8 *)(*(longlong *)(param_1 + 8) + uVar3 * 8);
-  plVar8 = (longlong *)*puVar1;
+  // 计算哈希索引
+  table_size = hash_value % (ulonglong)*(uint *)(hash_table + 0x10);
+  existing_entry = (undefined8 *)(*(longlong *)(hash_table + 8) + table_size * 8);
+  texture_properties = (longlong *)*existing_entry;
+  
   do {
-    if (plVar8 == (longlong *)0x0) {
+    if (texture_properties == (longlong *)0x0) {
 LAB_18018bee2:
-      FUN_18066c220(param_1 + 0x20,&param_5,(ulonglong)*(uint *)(param_1 + 0x10),
-                    *(undefined4 *)(param_1 + 0x18),1);
-      puVar6 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x20,*(undefined1 *)(param_1 + 0x2c));
-      uVar4 = *(undefined4 *)((longlong)param_4 + 4);
-      lVar2 = param_4[1];
-      uVar5 = *(undefined4 *)((longlong)param_4 + 0xc);
-      *puVar6 = (int)*param_4;
-      puVar6[1] = uVar4;
-      puVar6[2] = (int)lVar2;
-      puVar6[3] = uVar5;
-      *(undefined8 *)(puVar6 + 4) = 0;
-      *(undefined8 *)(puVar6 + 6) = 0;
-      if ((char)param_5 == '\0') {
-        *(undefined8 *)(puVar6 + 6) = *(undefined8 *)(*(longlong *)(param_1 + 8) + uVar3 * 8);
-        *(undefined4 **)(*(longlong *)(param_1 + 8) + uVar3 * 8) = puVar6;
-        *(longlong *)(param_1 + 0x18) = *(longlong *)(param_1 + 0x18) + 1;
-        lVar2 = *(longlong *)(param_1 + 8);
-        *param_2 = puVar6;
-        param_2[1] = lVar2 + uVar3 * 8;
-        *(undefined1 *)(param_2 + 2) = 1;
-        return param_2;
+      // 扩展哈希表
+      expand_hash_table(hash_table + 0x20,&hash_value,(ulonglong)*(uint *)(hash_table + 0x10),
+                    *(undefined4 *)(hash_table + 0x18),1);
+      
+      // 创建新的纹理条目
+      new_texture = (undefined4 *)create_texture_entry(_DAT_180c8ed18,0x20,*(undefined1 *)(hash_table + 0x2c));
+      texture_format = *(undefined4 *)((longlong)texture_data + 4);
+      hash_index = texture_data[1];
+      texture_quality = *(undefined4 *)((longlong)texture_data + 0xc);
+      *new_texture = (int)*texture_data;
+      new_texture[1] = texture_format;
+      new_texture[2] = (int)hash_index;
+      new_texture[3] = texture_quality;
+      *(undefined8 *)(new_texture + 4) = 0;
+      *(undefined8 *)(new_texture + 6) = 0;
+      
+      // 插入到哈希表
+      if ((char)hash_value == '\0') {
+        *(undefined8 *)(new_texture + 6) = *(undefined8 *)(*(longlong *)(hash_table + 8) + table_size * 8);
+        *(undefined4 **)(*(longlong *)(hash_table + 8) + table_size * 8) = new_texture;
+        *(longlong *)(hash_table + 0x18) = *(longlong *)(hash_table + 0x18) + 1;
+        hash_index = *(longlong *)(hash_table + 8);
+        *texture_entry = new_texture;
+        texture_entry[1] = hash_index + table_size * 8;
+        *(undefined1 *)(texture_entry + 2) = 1;
+        return texture_entry;
       }
-      uVar7 = FUN_18062b1e0(_DAT_180c8ed18,(ulonglong)param_5._4_4_ * 8 + 8,8,
-                            *(undefined1 *)(param_1 + 0x2c));
-                    // WARNING: Subroutine does not return
-      memset(uVar7,0,(ulonglong)param_5._4_4_ * 8);
+      
+      // 处理哈希冲突
+      new_texture_id = create_collision_list(_DAT_180c8ed18,(ulonglong)hash_value._4_4_ * 8 + 8,8,
+                            *(undefined1 *)(hash_table + 0x2c));
+      // 初始化冲突列表
+      memset(new_texture_id,0,(ulonglong)hash_value._4_4_ * 8);
     }
-    if ((*param_4 == *plVar8) && (param_4[1] == plVar8[1])) {
-      if (plVar8 != (longlong *)0x0) {
-        *param_2 = plVar8;
-        param_2[1] = puVar1;
-        *(undefined1 *)(param_2 + 2) = 0;
-        return param_2;
+    
+    // 检查是否已存在相同条目
+    if ((*texture_data == *texture_properties) && (texture_data[1] == texture_properties[1])) {
+      if (texture_properties != (longlong *)0x0) {
+        *texture_entry = texture_properties;
+        texture_entry[1] = existing_entry;
+        *(undefined1 *)(texture_entry + 2) = 0;
+        return texture_entry;
       }
       goto LAB_18018bee2;
     }
-    plVar8 = (longlong *)plVar8[3];
+    texture_properties = (longlong *)texture_properties[3];
   } while( true );
 }
 
@@ -578,120 +661,131 @@ LAB_18018bee2:
 
 
 
-// 函数: void FUN_18018c050(longlong param_1,undefined8 param_2,undefined8 param_3,longlong *param_4)
-void FUN_18018c050(longlong param_1,undefined8 param_2,undefined8 param_3,longlong *param_4)
+// 函数: 复制纹理数据到目标缓冲区
+// 原函数名: FUN_18018c050
+void copy_texture_data_to_buffer(longlong source_context,undefined8 data_offset,undefined8 data_size,longlong *target_context)
 
 {
-                    // WARNING: Subroutine does not return
-  memcpy(*(undefined8 *)(*param_4 + 0xb0),*(undefined8 *)(param_1 + 8),
-         (longlong)(*(int *)param_4[1] * 0xc));
+  // 复制纹理数据
+  memcpy(*(undefined8 *)(*target_context + 0xb0),*(undefined8 *)(source_context + 8),
+         (longlong)(*(int *)target_context[1] * 0xc));
 }
 
 
 
-longlong * FUN_18018c160(longlong *param_1,undefined8 *param_2)
+
+
+// 函数: 处理纹理资源并更新引用计数
+// 原函数名: FUN_18018c160
+longlong * process_texture_resources(longlong *resource_manager,undefined8 *texture_handle)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
-  longlong lVar4;
-  longlong lVar5;
-  char cVar6;
-  longlong *plVar7;
-  undefined4 uVar8;
-  longlong *plStackX_8;
-  undefined8 *puStackX_10;
-  longlong lStack_40;
-  longlong lStack_38;
-  longlong lStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_20;
+  longlong old_ref_count;
+  longlong old_data_ptr;
+  longlong old_texture_id;
+  longlong old_texture_data;
+  longlong new_ref_count;
+  char is_valid;
+  longlong *texture_object;
+  undefined4 texture_flags;
+  longlong *stack_resource;
+  undefined8 *stack_handle;
+  longlong stack_context;
+  longlong stack_data;
+  undefined4 stack_format;
+  undefined4 stack_quality;
   
-  plStackX_8 = &lStack_40;
-  lStack_40 = 0;
-  lStack_30 = 0;
-  uStack_28 = 3;
-  lStack_38 = 0;
-  uStack_20 = 0;
-  puStackX_10 = param_2;
-  plVar7 = (longlong *)FUN_18018ca20();
-  if (plVar7 != &lStack_40) {
-    plVar7[1] = *plVar7;
-    lVar1 = *plVar7;
-    *plVar7 = 0;
-    lVar2 = plVar7[1];
-    plVar7[1] = 0;
-    lVar3 = plVar7[2];
-    plVar7[2] = 0;
-    lVar5 = plVar7[3];
-    *(int *)(plVar7 + 3) = (int)plVar7[3];
-    lVar4 = *plVar7;
-    *plVar7 = lVar1;
-    plVar7[1] = lVar2;
-    plVar7[2] = lVar3;
-    *(int *)(plVar7 + 3) = (int)lVar5;
-    if (lVar4 != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+  stack_resource = &stack_context;
+  stack_context = 0;
+  stack_data = 0;
+  stack_format = 3;
+  stack_quality = 0;
+  stack_handle = texture_handle;
+  texture_object = (longlong *)get_texture_object_cache();
+  
+  // 交换纹理对象数据
+  if (texture_object != &stack_context) {
+    texture_object[1] = *texture_object;
+    old_ref_count = *texture_object;
+    *texture_object = 0;
+    old_data_ptr = texture_object[1];
+    texture_object[1] = 0;
+    old_texture_id = texture_object[2];
+    texture_object[2] = 0;
+    new_ref_count = texture_object[3];
+    *(int *)(texture_object + 3) = (int)texture_object[3];
+    old_texture_data = *texture_object;
+    *texture_object = old_ref_count;
+    texture_object[1] = old_data_ptr;
+    texture_object[2] = old_texture_id;
+    *(int *)(texture_object + 3) = (int)new_ref_count;
+    
+    if (old_texture_data != 0) {
+      // 释放旧纹理数据
+      free_texture_memory();
     }
-    lVar1 = *plVar7;
-    *plVar7 = lStack_40;
-    lVar2 = plVar7[1];
-    plVar7[1] = lStack_38;
-    lVar3 = plVar7[2];
-    plVar7[2] = lStack_30;
-    lVar4 = plVar7[3];
-    *(undefined4 *)(plVar7 + 3) = uStack_28;
-    lStack_40 = lVar1;
-    lStack_38 = lVar2;
-    lStack_30 = lVar3;
-    uStack_28 = (int)lVar4;
+    
+    old_ref_count = *texture_object;
+    *texture_object = stack_context;
+    old_data_ptr = texture_object[1];
+    texture_object[1] = stack_quality;
+    old_texture_id = texture_object[2];
+    texture_object[2] = stack_data;
+    old_texture_data = texture_object[3];
+    *(undefined4 *)(texture_object + 3) = stack_format;
+    stack_context = old_ref_count;
+    stack_quality = old_data_ptr;
+    stack_data = old_texture_id;
+    stack_format = (int)old_texture_data;
   }
-  *(undefined4 *)(plVar7 + 4) = uStack_20;
-  plStackX_8 = &lStack_40;
-  if (lStack_40 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  *(undefined4 *)(texture_object + 4) = stack_quality;
+  stack_resource = &stack_context;
+  
+  if (stack_context != 0) {
+    // 释放纹理资源
+    free_texture_memory();
   }
-  FUN_180058080(param_1,&plStackX_8,param_2);
-  plVar7 = plStackX_8;
-  cVar6 = FUN_180371c60(plStackX_8 + 8,param_2);
-  if (cVar6 == '\0') {
-    FUN_180058080(param_1,&plStackX_8,param_2);
-    plVar7 = plStackX_8;
-    if (plStackX_8 != param_1) {
-      param_1[4] = param_1[4] + -1;
-      func_0x00018066bd70(plStackX_8);
-      uVar8 = FUN_18066ba00(plVar7,param_1);
-      FUN_180058830(uVar8,plVar7);
+  
+  // 处理纹理资源
+  process_resource_manager(resource_manager,&stack_resource,texture_handle);
+  texture_object = stack_resource;
+  is_valid = validate_texture_resource(stack_resource + 8,texture_handle);
+  
+  if (is_valid == '\0') {
+    process_resource_manager(resource_manager,&stack_resource,texture_handle);
+    texture_object = stack_resource;
+    if (stack_resource != resource_manager) {
+      resource_manager[4] = resource_manager[4] + -1;
+      release_resource_object(stack_resource);
+      texture_flags = remove_resource_reference(texture_object,resource_manager);
+      update_resource_references(texture_flags,texture_object);
     }
-    *param_2 = &UNK_180a3c3e0;
-    if (param_2[1] != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    *texture_handle = &default_texture_resource;
+    if (texture_handle[1] != 0) {
+      // 释放纹理内存
+      free_texture_memory();
     }
-    param_2[1] = 0;
-    *(undefined4 *)(param_2 + 3) = 0;
-    plVar7 = (longlong *)0x0;
+    texture_handle[1] = 0;
+    *(undefined4 *)(texture_handle + 3) = 0;
+    texture_object = (longlong *)0x0;
   }
   else {
-    *param_2 = &UNK_180a3c3e0;
-    if (param_2[1] != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+    *texture_handle = &default_texture_resource;
+    if (texture_handle[1] != 0) {
+      // 释放纹理内存
+      free_texture_memory();
     }
-    param_2[1] = 0;
-    *(undefined4 *)(param_2 + 3) = 0;
-    plVar7 = plVar7 + 8;
+    texture_handle[1] = 0;
+    *(undefined4 *)(texture_handle + 3) = 0;
+    texture_object = texture_object + 8;
   }
-  *param_2 = &UNK_18098bcb0;
-  return plVar7;
+  *texture_handle = &texture_resource_manager;
+  return texture_object;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+// 全局变量重叠警告已忽略
 
 

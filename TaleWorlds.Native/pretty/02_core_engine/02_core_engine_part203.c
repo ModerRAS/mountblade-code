@@ -1,177 +1,177 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part203.c - 11 个函数
+// 02_core_engine_part203.c - 高亮和截图功能模块 (11个函数)
 
-// 函数: void FUN_180184da0(undefined8 param_1,int param_2,longlong *param_3,longlong *param_4)
-void FUN_180184da0(undefined8 param_1,int param_2,longlong *param_3,longlong *param_4)
+// 函数: 处理高亮组的异步回调
+// 原始实现: void FUN_180184da0(undefined8 param_1,int param_2,longlong *param_3,longlong *param_4)
+void process_highlight_group_callback(undefined8 context_handle, int status_code, longlong *result_data, longlong *callback_data)
 
 {
-  longlong *plVar1;
-  code *pcVar2;
-  uint *puVar3;
-  ulonglong uVar4;
-  uint *puVar5;
-  longlong lVar6;
-  ulonglong uVar7;
-  undefined1 auStack_b8 [32];
-  int aiStack_98 [2];
-  uint *puStack_90;
-  longlong *plStack_88;
-  uint *puStack_80;
-  uint *puStack_78;
-  uint *puStack_70;
-  uint **ppuStack_68;
-  undefined8 uStack_60;
-  uint uStack_58;
-  uint uStack_54;
-  uint uStack_50;
-  uint uStack_4c;
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined1 uStack_38;
-  ulonglong uStack_30;
+  longlong *highlight_manager;
+  code *error_handler;
+  uint *highlight_item;
+  ulonglong item_index;
+  uint *temp_item;
+  longlong string_length;
+  ulonglong total_items;
+  uint *item_start;
+  longlong *data_pointer;
+  uint *next_item;
+  uint *current_item;
+  uint *item_end;
+  uint **item_collection;
+  undefined8 field_1;
+  uint item_flags;
+  uint item_type;
+  uint item_subtype;
+  uint item_id;
+  undefined8 field_2;
+  undefined8 field_3;
+  undefined1 item_property;
+  ulonglong stack_cookie;
   
-  uStack_60 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
-  plVar1 = (longlong *)param_4[7];
-  uVar4 = 0;
-  plStack_88 = param_4;
-  if (plVar1 != (longlong *)0x0) {
-    aiStack_98[0] = param_2;
-    if (param_2 < 0) {
-      ppuStack_68 = (uint **)param_4[8];
-      puStack_90 = (uint *)0x0;
-      if (plVar1 == (longlong *)0x0) {
+  field_1 = 0xfffffffffffffffe;
+  stack_cookie = _DAT_180bf00a8 ^ (ulonglong)&field_1;
+  highlight_manager = (longlong *)callback_data[7];
+  item_index = 0;
+  data_pointer = callback_data;
+  if (highlight_manager != (longlong *)0x0) {
+    item_collection[0] = status_code;
+    if (status_code < 0) {
+      item_collection = (uint **)callback_data[8];
+      item_start = (uint *)0x0;
+      if (highlight_manager == (longlong *)0x0) {
         __Xbad_function_call_std__YAXXZ();
-        pcVar2 = (code *)swi(3);
-        (*pcVar2)();
+        error_handler = (code *)swi(3);
+        (*error_handler)();
         return;
       }
-      (**(code **)(*plVar1 + 0x10))(plVar1,aiStack_98,&puStack_90,&ppuStack_68);
+      (**(code **)(*highlight_manager + 0x10))(highlight_manager, item_collection, &item_start, &item_collection);
     }
     else {
-      puStack_80 = (uint *)0x0;
-      puStack_78 = (uint *)0x0;
-      puStack_70 = (uint *)0x0;
-      uVar7 = uVar4;
-      if (param_3[1] != 0) {
+      next_item = (uint *)0x0;
+      current_item = (uint *)0x0;
+      item_end = (uint *)0x0;
+      total_items = item_index;
+      if (result_data[1] != 0) {
         do {
-          uStack_48 = 0;
-          uStack_40 = 0xf;
-          uStack_58 = uStack_58 & 0xffffff00;
-          lVar6 = -1;
+          field_2 = 0;
+          field_3 = 0xf;
+          item_flags = item_flags & 0xffffff00;
+          string_length = -1;
           do {
-            lVar6 = lVar6 + 1;
-          } while (*(char *)(*(longlong *)(uVar4 + *param_3) + lVar6) != '\0');
-          FUN_1800671b0(&uStack_58);
-          uStack_38 = *(undefined1 *)(*param_3 + 8 + uVar4);
-          if (puStack_70 == puStack_78) {
-            FUN_180188d20(&puStack_80,puStack_78,&uStack_58);
+            string_length = string_length + 1;
+          } while (*(char *)(*(longlong *)(item_index + *result_data) + string_length) != '\0');
+          process_string_data(&item_flags);
+          item_property = *(undefined1 *)(*result_data + 8 + item_index);
+          if (item_end == current_item) {
+            expand_item_collection(&next_item, current_item, &item_flags);
           }
           else {
-            puStack_90 = puStack_78;
-            puStack_78[4] = 0;
-            puStack_78[5] = 0;
-            puStack_78[6] = 0;
-            puStack_78[7] = 0;
-            *puStack_78 = uStack_58;
-            puStack_78[1] = uStack_54;
-            puStack_78[2] = uStack_50;
-            puStack_78[3] = uStack_4c;
-            *(undefined8 *)(puStack_78 + 4) = uStack_48;
-            *(undefined8 *)(puStack_78 + 6) = uStack_40;
-            uStack_48 = 0;
-            uStack_40 = 0xf;
-            uStack_58 = uStack_58 & 0xffffff00;
-            *(undefined1 *)(puStack_78 + 8) = uStack_38;
-            puStack_78 = puStack_78 + 10;
+            item_start = current_item;
+            current_item[4] = 0;
+            current_item[5] = 0;
+            current_item[6] = 0;
+            current_item[7] = 0;
+            *current_item = item_flags;
+            current_item[1] = item_type;
+            current_item[2] = item_subtype;
+            current_item[3] = item_id;
+            *(undefined8 *)(current_item + 4) = field_2;
+            *(undefined8 *)(current_item + 6) = field_3;
+            field_2 = 0;
+            field_3 = 0xf;
+            item_flags = item_flags & 0xffffff00;
+            *(undefined1 *)(current_item + 8) = item_property;
+            current_item = current_item + 10;
           }
-          FUN_180067070(&uStack_58);
-          uVar7 = uVar7 + 1;
-          uVar4 = uVar4 + 0x10;
-        } while (uVar7 < (ulonglong)param_3[1]);
+          cleanup_string_data(&item_flags);
+          total_items = total_items + 1;
+          item_index = item_index + 0x10;
+        } while (total_items < (ulonglong)result_data[1]);
       }
-      puStack_90 = (uint *)param_4[8];
-      ppuStack_68 = &puStack_80;
-      plVar1 = (longlong *)param_4[7];
-      if (plVar1 == (longlong *)0x0) {
+      item_start = (uint *)callback_data[8];
+      item_collection = &next_item;
+      highlight_manager = (longlong *)callback_data[7];
+      if (highlight_manager == (longlong *)0x0) {
         __Xbad_function_call_std__YAXXZ();
-        pcVar2 = (code *)swi(3);
-        (*pcVar2)();
+        error_handler = (code *)swi(3);
+        (*error_handler)();
         return;
       }
-      (**(code **)(*plVar1 + 0x10))(plVar1,aiStack_98,&ppuStack_68,&puStack_90);
-      puVar3 = puStack_78;
-      puVar5 = puStack_80;
-      if (puStack_80 != (uint *)0x0) {
-        for (; puStack_90 = puVar5, puVar5 != puVar3; puVar5 = puVar5 + 10) {
-          FUN_180067070(puVar5);
+      (**(code **)(*highlight_manager + 0x10))(highlight_manager, item_collection, &item_collection, &item_start);
+      temp_item = current_item;
+      next_item = next_item;
+      if (next_item != (uint *)0x0) {
+        for (; item_start = next_item, next_item != temp_item; next_item = next_item + 10) {
+          cleanup_string_data(next_item);
         }
-        uVar4 = (((longlong)puStack_70 - (longlong)puStack_80) / 0x28) * 0x28;
-        puVar5 = puStack_80;
-        if (0xfff < uVar4) {
-          uVar4 = uVar4 + 0x27;
-          puVar5 = *(uint **)(puStack_80 + -2);
-          if (0x1f < (ulonglong)((longlong)puStack_80 + (-8 - (longlong)puVar5))) {
+        item_index = (((longlong)item_end - (longlong)next_item) / 0x28) * 0x28;
+        temp_item = next_item;
+        if (0xfff < item_index) {
+          item_index = item_index + 0x27;
+          temp_item = *(uint **)(next_item + -2);
+          if (0x1f < (ulonglong)((longlong)next_item + (-8 - (longlong)temp_item))) {
                     // WARNING: Subroutine does not return
             _invalid_parameter_noinfo_noreturn();
           }
         }
-        free(puVar5,uVar4);
-        puStack_80 = (uint *)0x0;
-        puStack_78 = (uint *)0x0;
-        puStack_70 = (uint *)0x0;
+        free(temp_item, item_index);
+        next_item = (uint *)0x0;
+        current_item = (uint *)0x0;
+        item_end = (uint *)0x0;
       }
     }
   }
-  plVar1 = (longlong *)param_4[7];
-  plStack_88 = param_4;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x20))(plVar1,plVar1 != param_4);
-    param_4[7] = 0;
+  highlight_manager = (longlong *)callback_data[7];
+  data_pointer = callback_data;
+  if (highlight_manager != (longlong *)0x0) {
+    (**(code **)(*highlight_manager + 0x20))(highlight_manager, highlight_manager != callback_data);
+    callback_data[7] = 0;
   }
-  free(param_4,0x48);
+  free(callback_data, 0x48);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_b8);
+  cleanup_stack_protection(stack_cookie ^ (ulonglong)&field_1);
 }
 
 
 
 
 
-// 函数: void FUN_180185040(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180185040(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 释放高亮项资源
+// 原始实现: void FUN_180185040(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void free_highlight_items(longlong *item_array, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  ulonglong uVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 uVar4;
+  ulonglong total_size;
+  longlong current_item;
+  longlong end_item;
+  undefined8 unused_param;
   
-  uVar4 = 0xfffffffffffffffe;
-  lVar2 = *param_1;
-  if (lVar2 != 0) {
-    lVar3 = param_1[1];
-    if (lVar2 != lVar3) {
+  unused_param = 0xfffffffffffffffe;
+  current_item = *item_array;
+  if (current_item != 0) {
+    end_item = item_array[1];
+    if (current_item != end_item) {
       do {
-        FUN_180067070(lVar2);
-        lVar2 = lVar2 + 0x28;
-      } while (lVar2 != lVar3);
-      lVar2 = *param_1;
+        cleanup_string_data(current_item);
+        current_item = current_item + 0x28;
+      } while (current_item != end_item);
+      current_item = *item_array;
     }
-    uVar1 = ((param_1[2] - lVar2) / 0x28) * 0x28;
-    lVar3 = lVar2;
-    if (0xfff < uVar1) {
-      lVar3 = *(longlong *)(lVar2 + -8);
-      if (0x1f < (lVar2 - lVar3) - 8U) {
+    total_size = ((item_array[2] - current_item) / 0x28) * 0x28;
+    end_item = current_item;
+    if (0xfff < total_size) {
+      end_item = *(longlong *)(current_item + -8);
+      if (0x1f < (current_item - end_item) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(param_1[2] - lVar2,uVar1 + 0x27,param_3,param_4,uVar4);
+        _invalid_parameter_noinfo_noreturn(item_array[2] - current_item, total_size + 0x27, param_3, param_4, unused_param);
       }
     }
-    free(lVar3);
-    *param_1 = 0;
-    param_1[1] = 0;
-    param_1[2] = 0;
+    free(end_item);
+    *item_array = 0;
+    item_array[1] = 0;
+    item_array[2] = 0;
   }
   return;
 }

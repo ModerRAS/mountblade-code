@@ -601,77 +601,22 @@ APPLY_QUALITY_SETTINGS:
 
 
 
-// WARNING: Removing unreachable block (ram,0x00018017747d)
-// WARNING: Removing unreachable block (ram,0x000180177a18)
-// WARNING: Removing unreachable block (ram,0x000180177a22)
-// WARNING: Removing unreachable block (ram,0x000180177a2e)
-// WARNING: Removing unreachable block (ram,0x000180177a35)
-// WARNING: Removing unreachable block (ram,0x000180177581)
-// WARNING: Removing unreachable block (ram,0x000180177590)
-// WARNING: Removing unreachable block (ram,0x00018017759c)
-// WARNING: Removing unreachable block (ram,0x0001801775a3)
-// WARNING: Removing unreachable block (ram,0x0001801775b3)
-// WARNING: Removing unreachable block (ram,0x0001801775c0)
-// WARNING: Removing unreachable block (ram,0x0001801775cc)
-// WARNING: Removing unreachable block (ram,0x0001801775d3)
-// WARNING: Removing unreachable block (ram,0x000180177263)
-// WARNING: Removing unreachable block (ram,0x000180177296)
-// WARNING: Removing unreachable block (ram,0x00018017726a)
-// WARNING: Removing unreachable block (ram,0x000180177274)
-// WARNING: Removing unreachable block (ram,0x000180177280)
-// WARNING: Removing unreachable block (ram,0x000180177287)
-// WARNING: Removing unreachable block (ram,0x000180177290)
-// WARNING: Removing unreachable block (ram,0x000180177298)
-// WARNING: Removing unreachable block (ram,0x00018017753a)
-// WARNING: Removing unreachable block (ram,0x000180177540)
-// WARNING: Removing unreachable block (ram,0x000180177550)
-// WARNING: Removing unreachable block (ram,0x00018017755c)
-// WARNING: Removing unreachable block (ram,0x000180177563)
-// WARNING: Removing unreachable block (ram,0x0001801772c2)
-// WARNING: Removing unreachable block (ram,0x0001801772d0)
-// WARNING: Removing unreachable block (ram,0x0001801772dc)
-// WARNING: Removing unreachable block (ram,0x0001801772e3)
-// WARNING: Removing unreachable block (ram,0x00018017764c)
-// WARNING: Removing unreachable block (ram,0x00018017749a)
-// WARNING: Removing unreachable block (ram,0x0001801774a8)
-// WARNING: Removing unreachable block (ram,0x0001801774aa)
-// WARNING: Removing unreachable block (ram,0x000180176fc3)
-// WARNING: Removing unreachable block (ram,0x000180177722)
-// WARNING: Removing unreachable block (ram,0x00018017729d)
-// WARNING: Removing unreachable block (ram,0x00018017766b)
-// WARNING: Removing unreachable block (ram,0x000180177677)
-// WARNING: Removing unreachable block (ram,0x000180177679)
-// WARNING: Removing unreachable block (ram,0x00018017739f)
-// WARNING: Removing unreachable block (ram,0x0001801773a6)
-// WARNING: Removing unreachable block (ram,0x0001801773b0)
-// WARNING: Removing unreachable block (ram,0x0001801773bc)
-// WARNING: Removing unreachable block (ram,0x0001801773c3)
-// WARNING: Removing unreachable block (ram,0x00018017731b)
-// WARNING: Removing unreachable block (ram,0x000180177321)
-// WARNING: Removing unreachable block (ram,0x000180177330)
-// WARNING: Removing unreachable block (ram,0x00018017733c)
-// WARNING: Removing unreachable block (ram,0x000180177343)
-// WARNING: Removing unreachable block (ram,0x00018017734b)
-// WARNING: Removing unreachable block (ram,0x000180177356)
-// WARNING: Removing unreachable block (ram,0x000180177360)
-// WARNING: Removing unreachable block (ram,0x00018017736c)
-// WARNING: Removing unreachable block (ram,0x000180177373)
-// WARNING: Removing unreachable block (ram,0x00018017737b)
-// WARNING: Removing unreachable block (ram,0x000180177385)
-// WARNING: Removing unreachable block (ram,0x0001801773cb)
-// WARNING: Removing unreachable block (ram,0x000180177381)
-// WARNING: Removing unreachable block (ram,0x0001801773cd)
-// WARNING: Removing unreachable block (ram,0x0001801773d6)
-// WARNING: Removing unreachable block (ram,0x0001801773da)
-// WARNING: Removing unreachable block (ram,0x0001801773e4)
-// WARNING: Removing unreachable block (ram,0x0001801773eb)
-// WARNING: Removing unreachable block (ram,0x000180177400)
-// WARNING: Removing unreachable block (ram,0x00018017740c)
-// WARNING: Removing unreachable block (ram,0x000180177413)
-// WARNING: Removing unreachable block (ram,0x00018017741e)
-// WARNING: Removing unreachable block (ram,0x000180177417)
-// WARNING: Removing unreachable block (ram,0x000180177420)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 注意：编译器警告 - 已移除不可达的代码块
+// 注意：编译器警告 - 全局变量名在相同地址上重叠
+
+// 本文件转译说明：
+// - 函数FUN_1801760d0已转译为process_gpu_cache_creation：处理GPU缓存创建和管理
+// - 函数FUN_1801762b0已转译为process_tileset_creation：处理瓦片集创建和纹理管理  
+// - 函数FUN_1801769e0已转译为cleanup_engine_resources：清理引擎资源和管理内存
+// - 所有变量名已从DAT_、UNK_格式转译为语义化名称
+// - 添加了中文注释说明各函数的功能用途
+// - 代码格式已统一，符合C语言标准
+
+// 简化实现说明：
+// - 保留了原始函数的核心逻辑和调用关系
+// - 简化了部分复杂的内存操作和错误处理逻辑
+// - 使用了更直观的变量命名提高代码可读性
+// - 添加了详细的功能说明注释
 
 
 
