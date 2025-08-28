@@ -2044,23 +2044,24 @@ undefined8 SystemErrorHandler(longlong system_context, char error_flag)
         if (((byte)(*system_data - 1U) < 0xfe) && (!error_detected)) {
           *(char )(error_context + 0xd1) = *system_data + -1;
         }
-        if ((int)(uint)*(byte *)(lVar4 + 0xd0) < *(int *)(param_1 + 0x8f8)) {
-          lStack_70 = (ulonglong)*(byte *)(lVar4 + 0xd0) * 0x618 + *(longlong *)(param_1 + 0x900);
-          bVar9 = *(byte *)((ulonglong)*(byte *)(lVar4 + 0xd1) + 0x3a0 + lStack_70);
-          if (bVar9 < 0x10) {
-            puStack_60 = (undefined *)(lStack_70 + 0x20 + (ulonglong)bVar9 * 0x38);
+        /* 获取错误处理资源 */
+        if ((int)(uint)*(byte )(error_context + 0xd0) < *(int )(system_context + 0x8f8)) {
+          resource_addr = (ulonglong)*(byte )(error_context + 0xd0) * 0x618 + *(longlong )(system_context + 0x900);
+          error_code = *(byte )((ulonglong)*(byte )(error_context + 0xd1) + 0x3a0 + resource_addr);
+          if (error_code < 0x10) {
+            resource_handle = (undefined *)(resource_addr + 0x20 + (ulonglong)error_code * 0x38);
           }
           else {
-            puStack_60 = &DAT_180be7a80;
+            resource_handle = &DAT_180be7a80; /* 默认资源 */
           }
-          if (!bVar6) {
-            *(undefined **)(lStack_68 + 0x28) = puStack_60;
+          if (!error_detected) {
+            *(undefined **)(context_data + 0x28) = resource_handle;
           }
         }
         else {
-          lStack_70 = 0x180be7b90;
-          puStack_60 = &DAT_180be7a80;
-          _DAT_180be7a80 = 0;
+          resource_addr = 0x180be7b90; /* 默认资源地址 */
+          resource_handle = &DAT_180be7a80;
+          _DAT_180be7a80 = 0; /* 重置错误数据 */
         }
         uVar2 = *(undefined4 *)(lStack_68 + 0x40);
         iVar18 = *(int *)(lStack_68 + 0x44);
