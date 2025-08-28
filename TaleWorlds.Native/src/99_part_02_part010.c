@@ -605,42 +605,71 @@ void container_integrity_verify(longlong *container_info)
 
 
 
-// 函数: void FUN_1800ee1b1(longlong param_1)
-void FUN_1800ee1b1(longlong param_1)
-
+/**
+ * @brief 容器状态清理函数
+ * @param container_context 容器上下文指针
+ * @return 无返回值
+ * 
+ * 该函数用于清理容器状态，主要功能包括：
+ * - 验证容器中的所有块都已释放
+ * - 重置容器状态
+ * - 处理清理失败情况
+ */
+void container_state_cleanup(longlong container_context)
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong *unaff_RSI;
-  
-  plVar2 = (longlong *)unaff_RSI[5];
-  if (plVar2 < (longlong *)(unaff_RSI[9] + 8)) {
-    do {
-      lVar1 = *plVar2;
-      plVar2 = plVar2 + 1;
-      if (lVar1 != 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900();
-      }
-    } while (plVar2 < (longlong *)(unaff_RSI[9] + 8));
-    param_1 = *unaff_RSI;
-  }
-  if (param_1 != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
-  }
-  *unaff_RSI = 0;
-  return;
+    longlong block_state;
+    longlong *block_ptr;
+    longlong *container_ptr;
+    
+    // 获取容器指针
+    block_ptr = (longlong *)container_ptr[5];
+    
+    // 验证所有块都已释放
+    if (block_ptr < (longlong *)(container_ptr[9] + 8)) {
+        do {
+            block_state = *block_ptr;
+            block_ptr = block_ptr + 1;
+            if (block_state != 0) {
+                // 如果还有未释放的块，调用错误处理函数
+                error_handler_critical();
+            }
+        } while (block_ptr < (longlong *)(container_ptr[9] + 8));
+        container_context = *container_ptr;
+    }
+    
+    // 最终验证容器状态
+    if (container_context != 0) {
+        // 如果容器未正确清理，调用错误处理函数
+        error_handler_critical();
+    }
+    
+    // 重置容器状态
+    *container_ptr = 0;
+    
+    return;
 }
 
+// 函数别名
+#define container_clean_state      container_state_cleanup
 
 
-void thunk_FUN_18064e900(void)
 
+/**
+ * @brief 错误处理函数
+ * @return 无返回值
+ * 
+ * 该函数用于处理系统错误，主要功能包括：
+ * - 调用底层错误处理机制
+ * - 终止程序执行
+ */
+void error_handler_critical(void)
 {
-                    // WARNING: Subroutine does not return
-  FUN_18064e900();
+    // 调用底层错误处理函数
+    system_error_handler();
 }
+
+// 函数别名
+#define error_handler              error_handler_critical
 
 
 
