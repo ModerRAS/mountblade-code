@@ -1,4 +1,4 @@
-#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+#define SystemInitializer System_Initializer2  // 系统初始化器
 
 /**
  * @file 04_ui_system_part350_sub002_sub002.c
@@ -232,7 +232,7 @@
 #define UISystem_EventManager FUN_180856570
 
 // UI系统缓冲区检查器 - 检查缓冲区状态
-#define UISystem_BufferChecker FUN_1808fcb90
+#define UISystem_BufferChecker System_Initializer2
 
 // UI系统缓冲区清理器 - 清理缓冲区
 #define UISystem_BufferCleaner FUN_1808fcb30

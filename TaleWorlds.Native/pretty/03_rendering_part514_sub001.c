@@ -1,4 +1,4 @@
-#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+#define SystemInitializer System_Initializer2  // 系统初始化器
 
 // 渲染系统数据处理相关函数
 #define RenderDataProcessor FUN_180570190  // 渲染数据处理器

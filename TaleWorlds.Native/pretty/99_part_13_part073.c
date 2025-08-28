@@ -1,5 +1,5 @@
 // 系统初始化和清理函数
-#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+#define SystemInitializer System_Initializer2  // 系统初始化器
 #define SystemStateCleaner FUN_1808fcb30  // 系统状态清理器
 
 // 资源管理函数

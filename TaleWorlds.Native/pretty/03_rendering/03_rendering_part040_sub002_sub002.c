@@ -439,7 +439,7 @@ int32_t * process_rendering_resource_block(int32_t *output_resource, int64_t *in
         index_2 = *(int *)((int64_t)input_data + 0xc);
       }
       *(int *)(input_data + 1) = index_2;
-      resource_ptr = (int32_t *)FUN_18028b000(temp_buffer_3, input_data);
+      resource_ptr = (int32_t *)data_parser(temp_buffer_3, input_data);
       temp_buffer_1._0_4_ = *resource_ptr;
       temp_buffer_1._4_4_ = resource_ptr[1];
       temp_buffer_2._0_4_ = resource_ptr[2];
@@ -583,8 +583,8 @@ uint64_t initialize_rendering_resource_manager(int64_t resource_manager, int64_t
   temp_value_2 = 0x20000000;
   
   // 处理资源数据
-  FUN_18028b000(&temp_address, &temp_buffer_5);
-  data_ptr = (int64_t *)FUN_18028b000(&temp_address, &temp_buffer_5);
+  data_parser(&temp_address, &temp_buffer_5);
+  data_ptr = (int64_t *)data_parser(&temp_address, &temp_buffer_5);
   temp_address = *data_ptr;
   temp_buffer_2 = data_ptr[1];
   
@@ -594,8 +594,8 @@ uint64_t initialize_rendering_resource_manager(int64_t resource_manager, int64_t
   temp_buffer_3 = (int32_t)resource_ptr[1];
   temp_buffer_4 = (int32_t)((uint64_t)resource_ptr[1] >> 0x20);
   
-  FUN_18028b000(&temp_address, &temp_buffer_5);
-  resource_ptr = (uint64_t *)FUN_18028b000(&temp_address, &temp_buffer_5);
+  data_parser(&temp_address, &temp_buffer_5);
+  resource_ptr = (uint64_t *)data_parser(&temp_address, &temp_buffer_5);
   init_result = resource_ptr[1];
   *(uint64_t *)(resource_manager + 0x60) = *resource_ptr;
   *(uint64_t *)(resource_manager + 0x68) = init_result;

@@ -769,7 +769,7 @@ void FUN_180076910(int64_t param_1,int64_t *param_2)
                     // WARNING: Subroutine does not return
       FUN_1808fd200();
     }
-    FUN_180080810(param_1 + 0x1b8);
+    RenderingSystem_ResourceAllocator(param_1 + 0x1b8);
     lVar2 = *(int64_t *)(param_1 + 0x1b8);
     if (lVar2 != 0) {
       lVar6 = 0;
