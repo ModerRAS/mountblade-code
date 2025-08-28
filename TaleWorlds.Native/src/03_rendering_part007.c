@@ -252,56 +252,78 @@ void FUN_1802719da(undefined4 *param_1,longlong *param_2)
       lVar6 = lVar6 + -1;                // 减少循环计数器
     } while (lVar6 != 0);                 // 循环直到处理完所有数据块
   }
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  FUN_180639ec0();
-  lVar6 = 0x10;
+  /* 执行额外的同步操作 */
+  FUN_180639ec0();  // 同步10
+  FUN_180639ec0();  // 同步11
+  FUN_180639ec0();  // 同步12
+  FUN_180639ec0();  // 同步13
+  FUN_180639ec0();  // 同步14
+  FUN_180639ec0();  // 同步15
+  FUN_180639ec0();  // 同步16
+  FUN_180639ec0();  // 同步17
+  
+  /* 执行固定数量的同步操作 - 优化循环 */
+  lVar6 = RENDERING_ARRAY_SIZE_16;
   do {
-    FUN_180639ec0();
-    lVar6 = lVar6 + -1;
-  } while (lVar6 != 0);
-  FUN_18025a940(&UNK_18098dfd0,param_1[0x1f2]);
+    FUN_180639ec0();                    // 执行同步操作
+    lVar6 = lVar6 + -1;                 // 减少计数器
+  } while (lVar6 != 0);                  // 循环16次
+  
+  /* 调用资源管理函数 */
+  FUN_18025a940(&UNK_18098dfd0,param_1[RENDERING_OFFSET_1F2]); // 处理资源数据
+  
+  /* 处理状态字节 */
   puVar3 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(param_1 + 499);
+  uVar1 = *(undefined1 *)(param_1 + 499); // 获取状态字节
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
-    FUN_180639bf0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
+    FUN_180639bf0();                     // 缓冲区扩展处理
+    puVar3 = (undefined1 *)unaff_RBX[1]; // 更新缓冲区指针
   }
-  *puVar3 = uVar1;
-  unaff_RBX[1] = unaff_RBX[1] + 1;
+  *puVar3 = uVar1;                        // 写入状态字节
+  unaff_RBX[1] = unaff_RBX[1] + 1;       // 移动缓冲区指针
+  
+  /* 检查状态字节是否为0，如果是则返回 */
   if (*(char *)(param_1 + 499) == '\0') {
-    return;
+    return;                              // 状态为0，直接返回
   }
+  
+  /* 初始化数据块处理 */
   puVar4 = (undefined4 *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    FUN_180639bf0();                     // 缓冲区扩展处理
+    puVar4 = (undefined4 *)unaff_RBX[1]; // 更新缓冲区指针
   }
-  iVar8 = 0;
-  *puVar4 = 0;
-  unaff_RBX[1] = unaff_RBX[1] + 4;
+  iVar8 = 0;                              // 初始化计数器
+  *puVar4 = 0;                            // 写入初始值0
+  unaff_RBX[1] = unaff_RBX[1] + 4;       // 移动缓冲区指针
+  
+  /* 计算数据块大小 - 使用位运算优化除法 */
   piVar5 = (int *)unaff_RBX[1];
-  lVar6 = (*(longlong *)(param_1 + 0x1fe) - *(longlong *)(param_1 + 0x1fc)) / 0x26 +
-          (*(longlong *)(param_1 + 0x1fe) - *(longlong *)(param_1 + 0x1fc) >> 0x3f);
+  lVar6 = (*(longlong *)(param_1 + RENDERING_OFFSET_1FE) - 
+          *(longlong *)(param_1 + RENDERING_OFFSET_1FC)) / RENDERING_DIVISION_CONSTANT +
+          (*(longlong *)(param_1 + RENDERING_OFFSET_1FE) - 
+          *(longlong *)(param_1 + RENDERING_OFFSET_1FC) >> SIGN_BIT_SHIFT);
   if ((ulonglong)((*unaff_RBX - (longlong)piVar5) + unaff_RBX[2]) < 5) {
-    FUN_180639bf0();
-    piVar5 = (int *)unaff_RBX[1];
+    FUN_180639bf0();                     // 缓冲区扩展处理
+    piVar5 = (int *)unaff_RBX[1];         // 更新缓冲区指针
   }
-  *piVar5 = (int)(lVar6 >> 2) - (int)(lVar6 >> 0x3f);
-  unaff_RBX[1] = unaff_RBX[1] + 4;
-  lVar6 = *(longlong *)(param_1 + 0x1fe) - *(longlong *)(param_1 + 0x1fc) >> 0x3f;
-  iVar7 = iVar8;
-  if ((*(longlong *)(param_1 + 0x1fe) - *(longlong *)(param_1 + 0x1fc)) / 0x98 + lVar6 != lVar6) {
+  *piVar5 = (int)(lVar6 >> LARGE_DIVISION_SHIFT) - (int)(lVar6 >> SIGN_BIT_SHIFT);
+  unaff_RBX[1] = unaff_RBX[1] + 4;       // 移动缓冲区指针
+  
+  /* 计算符号位和循环条件 */
+  lVar6 = *(longlong *)(param_1 + RENDERING_OFFSET_1FE) - 
+          *(longlong *)(param_1 + RENDERING_OFFSET_1FC) >> SIGN_BIT_SHIFT;
+  iVar7 = iVar8;                          // 初始化循环变量
+  
+  /* 条件循环处理 */
+  if ((*(longlong *)(param_1 + RENDERING_OFFSET_1FE) - 
+       *(longlong *)(param_1 + RENDERING_OFFSET_1FC)) / RENDERING_LARGE_DIVISION + lVar6 != lVar6) {
     do {
-      FUN_180639ec0();
-      iVar7 = iVar7 + 1;
+      FUN_180639ec0();                   // 执行同步操作
+      iVar7 = iVar7 + 1;                // 增加循环计数器
     } while ((ulonglong)(longlong)iVar7 <
-             (ulonglong)((*(longlong *)(param_1 + 0x1fe) - *(longlong *)(param_1 + 0x1fc)) / 0x98));
+             (ulonglong)((*(longlong *)(param_1 + RENDERING_OFFSET_1FE) - 
+                         *(longlong *)(param_1 + RENDERING_OFFSET_1FC)) / RENDERING_LARGE_DIVISION));
   }
   FUN_180639ec0();
   puVar3 = (undefined1 *)unaff_RBX[1];
