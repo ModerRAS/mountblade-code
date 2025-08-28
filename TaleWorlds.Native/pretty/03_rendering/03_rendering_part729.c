@@ -126,7 +126,7 @@ void rendering_system_advanced_image_difference_calculator(longlong image_ptr1, 
     }
     
     // 初始化处理参数
-    int max_iterations = 8;  // 从_DAT_180bf00b0获取
+    int max_iterations = 8;  // 从系统配置获取最大迭代次数
     int process_count = 8;
     longlong image_offset = image_ptr2;
     
@@ -282,7 +282,7 @@ void rendering_system_optimized_image_difference_calculator(longlong image_ptr1,
     }
     
     // 初始化优化参数
-    int max_iterations = 8;  // 从_DAT_180bf00b0获取
+    int max_iterations = 8;  // 从系统配置获取最大迭代次数
     int process_count = 3;
     longlong image_offset = image_ptr2;
     

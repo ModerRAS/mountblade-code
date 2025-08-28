@@ -178,6 +178,31 @@ typedef float (*MATH_CALCULATOR)(MATH_CALCULATION_PARAMS* params);
 typedef UI_SYSTEM_RESULT (*CONTROL_PROCESSOR)(CONTROL_STATE* control, void* user_data);
 
 // =============================================================================
+// 系统函数别名定义
+// =============================================================================
+
+/** 系统清理函数 */
+#define SystemCleanupFunction FUN_1807c41d0
+
+/** 系统内存分配函数 */
+#define SystemMemoryAllocator FUN_1807c4200
+
+/** 系统数据处理函数 */
+#define SystemDataProcessor FUN_1807c4170
+
+/** 系统安全检查函数 */
+#define SystemSecurityChecker FUN_1808fc050
+
+/** 系统索引查找函数 */
+#define SystemIndexFinder FUN_18082f650
+
+/** 系统数据变换函数 */
+#define SystemDataTransformer FUN_18082d710
+
+/** 系统错误处理函数 */
+#define SystemErrorHandler FUN_18082d690
+
+// =============================================================================
 // 内部函数声明
 // =============================================================================
 
@@ -221,13 +246,13 @@ UI_SYSTEM_RESULT UIControlStateCleaner(UI_SYSTEM_CONTEXT* context, CONTROL_STATE
         // 如果有挂起的操作，清理相关资源
         if (control->user_data != NULL) {
             // 调用系统清理函数
-            FUN_1807c41d0();
+            SystemCleanupFunction();
         }
         
         // 如果有绑定的上下文数据，进行清理
         if (context != NULL) {
             // 使用上下文进行清理
-            FUN_1807c41d0(context);
+            SystemCleanupFunction(context);
         }
         
         // 重置控件状态
@@ -271,7 +296,7 @@ UI_SYSTEM_RESULT UIControlStateResetter(UI_SYSTEM_CONTEXT* context, CONTROL_STAT
     // 清理挂起的操作
     if (control->user_data != NULL) {
         // 调用系统清理函数
-        FUN_1807c41d0();
+        SystemCleanupFunction();
     }
     
     // 清理绑定的上下文数据

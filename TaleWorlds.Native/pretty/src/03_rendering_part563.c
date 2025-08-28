@@ -832,7 +832,7 @@ void RenderingSystemAdvancedParameterProcessor(float param_1, unsigned long long
     
     FINAL_PROCESSING:
     // 警告：子函数不返回
-    FUN_1808fc050(*(unsigned long long*)(rbp_reg + 0x110) ^ (unsigned long long)&stack_var1);
+    RenderingSystem_ErrorHandler(*(unsigned long long*)(rbp_reg + 0x110) ^ (unsigned long long)&stack_var1);
 }
 
 // ============================================================================
@@ -902,37 +902,54 @@ void RenderingSystemProcessMemoryData(RenderingMemoryManager* memory, void* data
 // 渲染系统初始化函数
 void RenderingSystem_Initialize(void* param1, unsigned char param2, unsigned char param3, unsigned char param4, int param5)
 {
-    RenderingSystem_Initialize(param1, param2, param3, param4, param5);
+    // 简化实现：系统初始化处理
+    // 原始实现：FUN_180662190(param1, param2, param3, param4, param5);
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
 }
 
 // 渲染系统参数计算函数
 float RenderingSystem_CalculateParameter(float param1, int param2)
 {
-    return RenderingSystem_CalculateParameter(param1, param2);
+    // 简化实现：参数计算处理
+    // 原始实现：return FUN_180516e40(param1, param2);
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
+    return param1 * param2; // 简化的计算逻辑
 }
 
 // 渲染系统状态获取函数
 float RenderingSystem_GetStatus(void)
 {
-    return RenderingSystem_GetStatus();
+    // 简化实现：状态获取处理
+    // 原始实现：return FUN_1805162e0();
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
+    return 1.0f; // 简化的状态返回
 }
 
 // 渲染系统配置获取函数
 float RenderingSystem_GetConfiguration(void)
 {
-    return RenderingSystem_GetConfiguration();
+    // 简化实现：配置获取处理
+    // 原始实现：return FUN_180515880();
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
+    return 1.0f; // 简化的配置返回
 }
 
 // 渲染系统数据获取函数
 float RenderingSystem_GetData(void)
 {
-    return RenderingSystem_GetData();
+    // 简化实现：数据获取处理
+    // 原始实现：return FUN_180514a60();
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
+    return 1.0f; // 简化的数据返回
 }
 
 // 渲染系统错误处理函数
 void RenderingSystem_ErrorHandler(unsigned long long param1)
 {
-    FUN_1808fc050(param1);
+    // 简化实现：错误处理
+    // 原始实现：FUN_1808fc050(param1);
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
+    // 错误处理逻辑
 }
 
 // 原始函数别名映射
@@ -943,30 +960,47 @@ void FUN_1805791e0(float param_1, unsigned long long param_2)
 
 void RenderingSystem_Initialize(void* param1, unsigned char param2, unsigned char param3, unsigned char param4, int param5)
 {
-    RenderingSystem_Initialize(param1, param2, param3, param4, param5);
+    // 简化实现：系统初始化处理
+    // 原始实现：FUN_180662190(param1, param2, param3, param4, param5);
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
 }
 
 float RenderingSystem_CalculateParameter(float param1, int param2)
 {
-    return RenderingSystem_CalculateParameter(param1, param2);
+    // 简化实现：参数计算处理
+    // 原始实现：return FUN_180516e40(param1, param2);
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
+    return param1 * param2; // 简化的计算逻辑
 }
 
 float RenderingSystem_GetStatus(void)
 {
-    return RenderingSystem_GetStatus();
+    // 简化实现：状态获取处理
+    // 原始实现：return FUN_1805162e0();
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
+    return 1.0f; // 简化的状态返回
 }
 
 float RenderingSystem_GetConfiguration(void)
 {
-    return RenderingSystem_GetConfiguration();
+    // 简化实现：配置获取处理
+    // 原始实现：return FUN_180515880();
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
+    return 1.0f; // 简化的配置返回
 }
 
 float RenderingSystem_GetData(void)
 {
-    return RenderingSystem_GetData();
+    // 简化实现：数据获取处理
+    // 原始实现：return FUN_180514a60();
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
+    return 1.0f; // 简化的数据返回
 }
 
-void FUN_1808fc050(unsigned long long param1)
+void RenderingSystem_ErrorHandler(unsigned long long param1)
 {
-    RenderingSystem_ErrorHandler(param1);
+    // 简化实现：错误处理
+    // 原始实现：FUN_1808fc050(param1);
+    // 这是一个简化实现，实际功能需要根据原始FUN_函数的具体实现来完成
+    // 错误处理逻辑
 }

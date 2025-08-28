@@ -1151,7 +1151,7 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 设置特殊指针为UNK_1800868c0
+ * - 设置特殊指针为系统保留地址
  * 
  * 注意事项：
  * - 配置数据指向系统数据地址6
@@ -1218,7 +1218,7 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 配置数据指向DAT_180a00fb0
+ * - 配置数据指向系统数据地址7
  * 
  * 注意事项：
  * - 用于系统扩展功能注册
@@ -1320,7 +1320,7 @@ int InitializationSystem_GlobalDataInitializer2(void)
  * - 设置函数指针为FUN_18025e330
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a00d48
+ * - 配置数据指向系统数据地址8
  * - 用于系统高级功能注册
  */
 void InitializationSystem_RegistrySearchAndInsert17(void)
@@ -1719,7 +1719,7 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 设置特殊指针为UNK_1800868c0
+ * - 设置特殊指针为系统保留地址
  * 
  * 注意事项：
  * - 配置数据指向系统数据地址6
@@ -1786,10 +1786,10 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
  * - 使用链表遍历算法搜索注册表
  * - 通过memcmp比较配置数据
  * - 动态分配内存并插入新项
- * - 配置数据指向DAT_180a00fb0
+ * - 配置数据指向系统数据地址7
  * 
  * 注意事项：
- * - 配置数据指向DAT_180a00fb0
+ * - 配置数据指向系统数据地址7
  * - 与RegistrySearchAndInsert16功能相同
  */
 void InitializationSystem_RegistrySearchAndInsert24(void)

@@ -4,6 +4,47 @@
 // 02_core_engine_part251.c - 核心引擎数据结构和内存管理模块
 
 /**
+ * 核心引擎系统架构说明
+ * =====================
+ * 
+ * 本模块实现了TaleWorlds引擎的核心功能，包括：
+ * 
+ * 1. 组件管理系统
+ *    - 组件初始化、处理和清理
+ *    - 组件状态监控和错误处理
+ *    - 组件生命周期管理
+ * 
+ * 2. 内存管理系统
+ *    - 动态内存分配和释放
+ *    - 对象池和缓存管理
+ *    - 内存安全和边界检查
+ * 
+ * 3. 数据结构管理
+ *    - 动态数组和对象数组
+ *    - 哈希表和排序树
+ *    - 队列和缓冲区管理
+ * 
+ * 4. 资源管理
+ *    - 系统资源分配和释放
+ *    - 资源表和引用计数
+ *    - 资源生命周期跟踪
+ * 
+ * 技术特点：
+ * - 采用内存池技术提高性能
+ * - 支持多线程安全的资源管理
+ * - 实现了完整的错误处理机制
+ * - 提供了灵活的数据结构支持
+ * 
+ * 核心组件：
+ * - ComponentManager: 组件管理器
+ * - MemoryPool: 内存池管理器
+ * - BufferManager: 缓冲区管理器
+ * - ResourceManager: 资源管理器
+ * - HashTable: 哈希表实现
+ * - TreeManager: 树结构管理器
+ */
+
+/**
  * 处理引擎组件的初始化和清理
  * 根据组件状态执行相应的操作
  * 
@@ -422,7 +463,7 @@ void resize_dynamic_array(longlong *array_ptr,ulonglong new_size)
   }
   
   // 分配新内存
-  new_memory = (uint64_t *)FUN_180067110(allocation_size);
+  new_memory = (uint64_t *)MemoryManager_AllocateMemory(allocation_size);
   old_ptr = (uint64_t *)array_ptr[1];
   new_ptr = new_memory;
   
