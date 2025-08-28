@@ -468,7 +468,7 @@ void SystemConfigurator(int64_t param_1)
 
 
 
-// 函数: void FUN_180056b30(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemDataValidator(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 void FUN_180056b30(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
@@ -514,7 +514,7 @@ void FUN_180056b30(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-// 函数: void FUN_180056c50(uint64_t param_1,uint64_t *param_2,int32_t param_3)
+// 函数: void SystemDataProcessor(uint64_t param_1,uint64_t *param_2,int32_t param_3)
 void FUN_180056c50(uint64_t param_1,uint64_t *param_2,int32_t param_3)
 
 {
@@ -605,7 +605,7 @@ uint64_t * FUN_180056e10(uint64_t *param_1)
 
 
 
-// 函数: void FUN_180056e40(void)
+// 函数: void SystemCleanup(void)
 void FUN_180056e40(void)
 
 {
@@ -671,7 +671,7 @@ int64_t * FUN_180056f10(int64_t *param_1,int64_t *param_2)
 
 
 
-// 函数: void FUN_180056f70(int64_t param_1,int64_t param_2)
+// 函数: void SystemStateManager(int64_t param_1,int64_t param_2)
 void FUN_180056f70(int64_t param_1,int64_t param_2)
 
 {
@@ -708,7 +708,7 @@ void FUN_180056f70(int64_t param_1,int64_t param_2)
 
 
 
-// 函数: void FUN_180057010(int64_t *param_1)
+// 函数: void SystemMemoryAllocator(int64_t *param_1)
 void FUN_180057010(int64_t *param_1)
 
 {
