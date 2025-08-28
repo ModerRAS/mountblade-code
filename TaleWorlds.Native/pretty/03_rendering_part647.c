@@ -1033,7 +1033,7 @@ void FUN_1806341f0(void)
     __Throw_C_error_std__YAXH_Z(iVar1);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(0);
+  AdvancedSystemController(0);
 }
 
 
@@ -1051,7 +1051,7 @@ void FUN_1806345f0(void)
     __Throw_C_error_std__YAXH_Z(iVar1);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(0xbff1463a);
+  AdvancedSystemController(0xbff1463a);
 }
 
 

@@ -301,7 +301,7 @@ LAB_18020ada0:
     uStack_4a8 = (int64_t *)((uint64_t)uStack_4a8 & 0xffffffff00000000);
     pcStack_4c0 = &system_state_ptr;
   }
-  uVar7 = FUN_180627910(&pcStack_4c0,param_2);
+  uVar7 = CoreMemoryPoolValidator(&pcStack_4c0,param_2);
   cVar3 = FUN_180624af0(uVar7);
   pcStack_4c0 = &system_data_buffer_ptr;
   if (puStack_4b8 != (uint64_t *)0x0) {

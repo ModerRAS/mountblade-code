@@ -308,7 +308,7 @@ void FUN_1805fd490(int32_t *param_1,int64_t param_2)
             }
             else {
               if (uVar7 <= uVar6) goto LAB_1805fdbd2;
-              puStack_b0 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_b0,uVar7,0x10,0x13);
+              puStack_b0 = (int32_t *)DataValidator(system_memory_pool_ptr,puStack_b0,uVar7,0x10,0x13);
             }
             uVar5 = CoreEngineSystemCleanup(puStack_b0);
             uStack_a0 = CONCAT44(uStack_a0._4_4_,uVar5);
@@ -329,7 +329,7 @@ LAB_1805fdbd2:
           }
           else {
             if (uVar7 <= uVar6) goto LAB_1805fd9f0;
-            puStack_88 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_88,uVar7,0x10,0x13);
+            puStack_88 = (int32_t *)DataValidator(system_memory_pool_ptr,puStack_88,uVar7,0x10,0x13);
           }
           uVar5 = CoreEngineSystemCleanup(puStack_88);
           uStack_78 = CONCAT44(uStack_78._4_4_,uVar5);
@@ -350,7 +350,7 @@ LAB_1805fd9f0:
         }
         else {
           if (uVar7 <= uVar6) goto LAB_1805fd8aa;
-          puStack_b0 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_b0,uVar7,0x10,0x13);
+          puStack_b0 = (int32_t *)DataValidator(system_memory_pool_ptr,puStack_b0,uVar7,0x10,0x13);
         }
         uVar5 = CoreEngineSystemCleanup(puStack_b0);
         uStack_a0 = CONCAT44(uStack_a0._4_4_,uVar5);
@@ -371,7 +371,7 @@ LAB_1805fd8aa:
       }
       else {
         if (uVar7 <= uVar6) goto LAB_1805fd764;
-        puStack_88 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_88,uVar7,0x10,0x13);
+        puStack_88 = (int32_t *)DataValidator(system_memory_pool_ptr,puStack_88,uVar7,0x10,0x13);
       }
       uVar5 = CoreEngineSystemCleanup(puStack_88);
       uStack_78 = CONCAT44(uStack_78._4_4_,uVar5);
@@ -392,7 +392,7 @@ LAB_1805fd764:
     }
     else {
       if (uVar7 <= uVar6) goto LAB_1805fd61f;
-      puStack_b0 = (int32_t *)FUN_18062b8b0(system_memory_pool_ptr,puStack_b0,uVar7,0x10,0x13);
+      puStack_b0 = (int32_t *)DataValidator(system_memory_pool_ptr,puStack_b0,uVar7,0x10,0x13);
     }
     uVar5 = CoreEngineSystemCleanup(puStack_b0);
     uStack_a0 = CONCAT44(uStack_a0._4_4_,uVar5);

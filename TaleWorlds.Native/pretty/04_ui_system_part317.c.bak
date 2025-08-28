@@ -949,14 +949,14 @@ uint64_t FUN_18083e040(uint64_t param_1,int *param_2,int param_3)
     *(int **)(param_2 + 4) = piVar7;
     if (0 < iVar3) {
                     // WARNING: Subroutine does not return
-      AdvancedSystemController(iVar10,(3.1415927 / fVar19) * 0.0);
+      FUN_1808fd400(iVar10,(3.1415927 / fVar19) * 0.0);
     }
     iVar3 = (int)(param_3 + (param_3 >> 0x1f & 7U)) >> 3;
     if (0 < iVar3) {
       auVar2._4_8_ = SUB128(ZEXT812(0x40000000),4);
       auVar2._0_4_ = (3.1415927 / fVar19) * 2.0;
                     // WARNING: Subroutine does not return
-      AdvancedSystemController(iVar10,auVar2._0_8_);
+      FUN_1808fd400(iVar10,auVar2._0_8_);
     }
     cVar1 = (char)(int)auVar15._0_4_;
     uVar13 = 0;
@@ -1010,14 +1010,14 @@ uint64_t FUN_18083e119(uint64_t param_1)
   *(int **)(unaff_R12 + 4) = unaff_RDI;
   if (0 < unaff_R15D) {
                     // WARNING: Subroutine does not return
-    AdvancedSystemController(param_1,(3.1415927 / unaff_XMM11_Da) * 0.0);
+    FUN_1808fd400(param_1,(3.1415927 / unaff_XMM11_Da) * 0.0);
   }
   iVar2 = (int)(unaff_ESI + (unaff_ESI >> 0x1f & 7U)) >> 3;
   if (0 < iVar2) {
     auVar1._4_8_ = SUB128(ZEXT812(0x40000000),4);
     auVar1._0_4_ = (3.1415927 / unaff_XMM11_Da) * 2.0;
                     // WARNING: Subroutine does not return
-    AdvancedSystemController(param_1,auVar1._0_8_);
+    FUN_1808fd400(param_1,auVar1._0_8_);
   }
   uVar7 = 0;
   uVar6 = 1 << (unaff_R13B - 2U & 0x1f);

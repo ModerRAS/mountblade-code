@@ -141,7 +141,7 @@ LAB_18039a5e7:
      (puVar10 = &unknown_var_5412_ptr, (pcVar16[1] + 0xa8U & 0xdf) != 0)) {
     puVar10 = &unknown_var_2208_ptr;
   }
-  AdvancedSystemOptimizer(pcVar16,puVar10);
+  FUN_18010cbc0(pcVar16,puVar10);
 LAB_18039a635:
   pcVar16 = "idy";
   do {
@@ -174,7 +174,7 @@ LAB_18039a6a1:
            (puVar10 = &unknown_var_5412_ptr, (pcVar16[1] + 0xa8U & 0xdf) != 0)) {
           puVar10 = &unknown_var_2208_ptr;
         }
-        AdvancedSystemOptimizer(pcVar16,puVar10);
+        FUN_18010cbc0(pcVar16,puVar10);
         break;
       }
       lVar9 = (int64_t)&unknown_var_6884_ptr - (int64_t)pcVar16;
@@ -228,7 +228,7 @@ LAB_18039a820:
     lVar11 = 0;
 LAB_18039a83f:
     if ((puVar1 != (uint *)0x0) && (lVar11 != 0)) {
-      AdvancedSystemOptimizer(lVar11,&unknown_var_2208_ptr,puVar1);
+      FUN_18010cbc0(lVar11,&unknown_var_2208_ptr,puVar1);
     }
     *puVar1 = *puVar1 >> 1;
     uVar2 = *puVar1;
@@ -272,7 +272,7 @@ LAB_18039a8d0:
     lVar11 = 0;
 LAB_18039a8ef:
     if ((lVar9 + 0x4c != 0) && (lVar11 != 0)) {
-      AdvancedSystemOptimizer(lVar11,&unknown_var_2208_ptr,lVar9 + 0x4c);
+      FUN_18010cbc0(lVar11,&unknown_var_2208_ptr,lVar9 + 0x4c);
     }
     pcVar16 = "layer_is_used_mask_fall";
     do {
@@ -309,7 +309,7 @@ LAB_18039a960:
     lVar11 = 0;
 LAB_18039a97f:
     if ((lVar9 + 0x50 != 0) && (lVar11 != 0)) {
-      AdvancedSystemOptimizer(lVar11,&unknown_var_2208_ptr,lVar9 + 0x50);
+      FUN_18010cbc0(lVar11,&unknown_var_2208_ptr,lVar9 + 0x50);
     }
     pcVar16 = "layer_is_used_mask_winter";
     do {
@@ -346,7 +346,7 @@ LAB_18039a9f0:
     lVar11 = 0;
 LAB_18039aa0f:
     if ((lVar9 + 0x54 != 0) && (lVar11 != 0)) {
-      AdvancedSystemOptimizer(lVar11,&unknown_var_2208_ptr,lVar9 + 0x54);
+      FUN_18010cbc0(lVar11,&unknown_var_2208_ptr,lVar9 + 0x54);
     }
     pcVar16 = "layer_is_used_mask_spring";
     do {
@@ -383,7 +383,7 @@ LAB_18039aa80:
     lVar11 = 0;
 LAB_18039aa9f:
     if ((lVar9 + 0x58 != 0) && (lVar11 != 0)) {
-      AdvancedSystemOptimizer(lVar11,&unknown_var_2208_ptr,lVar9 + 0x58);
+      FUN_18010cbc0(lVar11,&unknown_var_2208_ptr,lVar9 + 0x58);
     }
   }
   pcVar16 = "height_complexity";
@@ -421,7 +421,7 @@ LAB_18039ab10:
   lVar11 = 0;
 LAB_18039ab2f:
   if ((lVar9 + 0x5c != 0) && (lVar11 != 0)) {
-    AdvancedSystemOptimizer(lVar11,&system_data_6430,lVar9 + 0x5c);
+    FUN_18010cbc0(lVar11,&system_data_6430,lVar9 + 0x5c);
   }
   pcVar16 = "min_height";
   do {
@@ -458,7 +458,7 @@ LAB_18039abb0:
   lVar11 = 0;
 LAB_18039abcf:
   if ((lVar9 + 0x60 != 0) && (lVar11 != 0)) {
-    AdvancedSystemOptimizer(lVar11,&system_data_6430,lVar9 + 0x60);
+    FUN_18010cbc0(lVar11,&system_data_6430,lVar9 + 0x60);
   }
   pcVar16 = "max_height";
   do {
@@ -495,7 +495,7 @@ LAB_18039ac50:
   lVar11 = 0;
 LAB_18039ac68:
   if ((lVar9 + 100 != 0) && (lVar11 != 0)) {
-    AdvancedSystemOptimizer(lVar11,&system_data_6430,lVar9 + 100);
+    FUN_18010cbc0(lVar11,&system_data_6430,lVar9 + 100);
   }
   pcVar16 = "texture_levels";
   do {
@@ -622,7 +622,7 @@ LAB_18039aead:
                       puVar10 = &unknown_var_5412_ptr;
                     }
 LAB_18039aeb4:
-                    AdvancedSystemOptimizer(pcVar16,puVar10,lVar11);
+                    FUN_18010cbc0(pcVar16,puVar10,lVar11);
                   }
                 }
                 else {
@@ -744,7 +744,7 @@ LAB_18039b05f:
                        (puVar10 = &unknown_var_5412_ptr, (pcVar16[1] + 0xa8U & 0xdf) != 0)) {
                       puVar10 = &unknown_var_2208_ptr;
                     }
-                    AdvancedSystemOptimizer(pcVar16,puVar10,aiStack_68);
+                    FUN_18010cbc0(pcVar16,puVar10,aiStack_68);
                   }
                   FUN_180631330(puVar8,&unknown_var_3692_ptr,lVar9 + ((int64_t)aiStack_68[0] + 3) * 4);
                   pcVar16 = "variable";

@@ -587,7 +587,7 @@ LAB_18057b795:
   in_stack_00000050 = fVar15;
   FUN_18063b470(&stack0x00000030);
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(fVar15 * *(float *)(unaff_RBX + 0x58) * 0.5);
+  AdvancedSystemController(fVar15 * *(float *)(unaff_RBX + 0x58) * 0.5);
 }
 
 

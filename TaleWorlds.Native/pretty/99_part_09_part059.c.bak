@@ -67,7 +67,7 @@ void FUN_1805dd320(int64_t param_1,uint64_t *param_2,int8_t param_3,uint64_t par
                       *(float *)(lVar13 + 0x10) - *(float *)(*(int64_t *)(lVar12 + 0x20) + 0x10));
     }
                     // WARNING: Subroutine does not return
-    AdvancedSystemController(uVar18);
+    FUN_1808fd400(uVar18);
   }
   fVar19 = *(float *)(lVar14 + 0xc) - *(float *)(lVar11 + 0xc);
   fVar17 = *(float *)(lVar14 + 0x10) - *(float *)(lVar11 + 0x10);
@@ -193,7 +193,7 @@ void FUN_1805dd487(void)
                    *(float *)(lVar1 + 0x10) - *(float *)(*(int64_t *)(unaff_RDI + 0x20) + 0x10));
   }
                     // WARNING: Subroutine does not return
-  AdvancedSystemController(uVar2);
+  FUN_1808fd400(uVar2);
 }
 
 
@@ -700,7 +700,7 @@ void FUN_1805ddbc0(int64_t param_1,uint64_t *param_2)
       lVar15 = lVar16 + 0x30a0 + lVar11 * 0xa60;
       if (-1 < *(int *)(lVar19 + 0x2134)) {
                     // WARNING: Subroutine does not return
-        AdvancedSystemController(lVar11,(float)*(int *)(lVar19 + 0x2134) * 0.19634955);
+        FUN_1808fd400(lVar11,(float)*(int *)(lVar19 + 0x2134) * 0.19634955);
       }
       lVar16 = *(int64_t *)(lVar15 + 0x20);
       fVar24 = *(float *)(lVar16 + 0xc) - *pfVar14;
@@ -926,7 +926,7 @@ FUN_1805de4c2:
     FUN_180534b00(lVar18,auStack_e8,&fStack_148,0x3fc90fdb,plVar29,uVar30,lVar16);
   }
                     // WARNING: Subroutine does not return
-  AdvancedSystemController();
+  FUN_1808fd400();
 }
 
 

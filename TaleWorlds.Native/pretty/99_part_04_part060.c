@@ -613,7 +613,7 @@ LAB_1802bca83:
     param_1[0xc] = uVar14 * 0x70 + lVar22;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_2d8);
+  SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_2d8);
 }
 
 

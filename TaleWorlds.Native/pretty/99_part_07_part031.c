@@ -407,7 +407,7 @@ LAB_1804b932b:
           }
           else {
             if (uVar5 <= (uint)pcVar10) goto LAB_1804b93b7;
-            puVar9 = (int8_t *)FUN_18062b8b0(system_memory_pool_ptr,puVar9,uVar5,0x10,0x13);
+            puVar9 = (int8_t *)DataValidator(system_memory_pool_ptr,puVar9,uVar5,0x10,0x13);
           }
           puStack_88 = puVar9;
           uVar6 = CoreEngineSystemCleanup(puVar9);
