@@ -454,7 +454,7 @@ void cleanup_render_hash_table(render_hash_table_t* hash_table) {
                             uint64_t entry_size_ext = (uint64_t)entry_size;
                             
                             if (*(uint64_t*)((uintptr_t)table_end - 0x18) != 0) {
-                                void (*cleanup_func)(void*, uint64_t) = callback;
+                                void (*cleanup_func)(void*, uint64_t) = *(void (**)(void*, uint64_t))callback;
                                 cleanup_func(entry_end, entry_size_ext);
                             }
                             
@@ -506,7 +506,7 @@ void cleanup_render_hash_table(render_hash_table_t* hash_table) {
                         uint64_t entry_size_ext = (uint64_t)entry_size;
                         
                         if (*(uint64_t*)((uintptr_t)table_end - 0x18) != 0) {
-                            void (*cleanup_func)(void*, uint64_t) = callback;
+                            void (*cleanup_func)(void*, uint64_t) = *(void (**)(void*, uint64_t))callback;
                             cleanup_func(entry_end, entry_size_ext);
                         }
                         
