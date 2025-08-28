@@ -73,20 +73,18 @@
 #define MAX_SHADER_STAGES 5                      // 最大着色器阶段数
 
 //============================================================================
-// 函数别名定义
+// 函数声明
 //============================================================================
 
-// 主要纹理映射函数
-#define RenderingSystemAdvancedTextureMapper FUN_1807a1000
-#define RenderingSystemTextureCoordinateTransformer FUN_1807a1100
-#define RenderingSystemUVMappingProcessor FUN_1807a1200
-#define RenderingSystemTextureSampler FUN_1807a1300
-
-// 几何变换函数
-#define RenderingSystemGeometryTransformer FUN_1807a1400
-#define RenderingSystemMatrixCalculator FUN_1807a1500
-#define RenderingSystemVectorTransformer FUN_1807a1600
-#define RenderingSystemProjectionProcessor FUN_1807a1700
+// 函数声明（无需别名，直接使用实际函数名）
+void RenderingSystemAdvancedTextureMapper(longlong texture_data, longlong mapping_params, float *transform_matrix, uint flags);
+void RenderingSystemTextureCoordinateTransformer(longlong coord_data, longlong transform_params, longlong matrix_stack, float *output_coords);
+void RenderingSystemUVMappingProcessor(longlong uv_data, longlong mesh_data, longlong mapping_config, float *output_data);
+void RenderingSystemTextureSampler(longlong sampler_data, longlong texture_data, float *sample_coords, float *output_color);
+void RenderingSystemGeometryTransformer(longlong geometry_data, longlong transform_params, longlong matrix_data, float *output_data);
+void RenderingSystemMatrixCalculator(longlong matrix_data, longlong operation_params, float *input_matrices, float *output_matrix);
+void RenderingSystemVectorTransformer(longlong vector_data, longlong transform_params, longlong operation_data, float *output_vectors);
+void RenderingSystemProjectionProcessor(longlong projection_data, longlong camera_params, longlong scene_data, float *output_matrix);
 
 //============================================================================
 // 1. 渲染系统高级纹理映射器 (RenderingSystemAdvancedTextureMapper)
