@@ -1,322 +1,479 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part154.c - 10 个函数
+// 02_core_engine_part154.c - 核心引擎模块第154部分
+// 
+// 本文件包含字符串处理、哈希计算、内存管理和文件操作相关函数
+// 主要功能：
+// - 字符串解析和处理
+// - 哈希值计算（使用查表法）
+// - 动态数组管理
+// - 配置文件解析
+// - 文件写入操作
+// 
+// 简化实现说明：
+// - 原始实现：反编译的C代码，包含FUN_*函数名和地址引用
+// - 简化实现：重命名函数和变量，添加中文注释，保持功能一致性
 
-// 函数: void FUN_18013c800(longlong param_1,char *param_2,char *param_3)
-void FUN_18013c800(longlong param_1,char *param_2,char *param_3)
+// 全局变量引用
+extern longlong _DAT_180c8a9b0;      // 核心引擎全局数据结构指针
+extern undefined8 _DAT_180c8a9a8;     // 内存分配器相关
+extern uint UNK_18098d290[256];       // 哈希计算查找表
+extern undefined8 UNK_180a06770;      // 字符串处理相关
+extern undefined8 UNK_180a06768;      // 字符串处理相关
+extern char DAT_18098bc73;            // 字符常量
+extern char UNK_180a06474;            // 默认字符串常量
 
+// 函数声明
+void FUN_18013c760(undefined8 *param_1, int param_2, ...);
+undefined8 FUN_1801210b0(byte *param_1);
+undefined8 func_0x000180120ce0(longlong param_1, undefined8 param_2);
+void FUN_180059ba0(undefined8 param_1, undefined8 param_2);
+longlong FUN_180121300(longlong param_1, undefined8 *param_2);
+undefined8 FUN_18013ce40(undefined8 *param_1);
+
+/**
+ * 处理字符串并写入缓冲区
+ * 支持跳过注释标记(##)和按行处理
+ * 
+ * @param param_1 上下文参数，包含浮点数值
+ * @param param_2 输入字符串起始位置
+ * @param param_3 输入字符串结束位置，如果为NULL则使用param_2
+ */
+void process_string_and_write_buffer(longlong context, char *input_start, char *input_end)
 {
-  longlong lVar1;
-  bool bVar2;
-  longlong lVar3;
-  int iVar4;
-  char *pcVar5;
-  int iVar6;
-  char *pcVar7;
-  char *pcVar8;
-  int iVar9;
+  longlong global_data;
+  bool should_use_alternative_format;
+  longlong buffer_manager;
+  int current_count;
+  int max_count;
+  int write_index;
+  char *current_pos;
+  int line_length;
+  char *line_end;
+  char *next_line_start;
   
-  lVar3 = _DAT_180c8a9b0;
-  lVar1 = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
-  if ((param_3 == (char *)0x0) && (param_3 = param_2, param_2 != (char *)0xffffffffffffffff)) {
-    while (*param_3 != '\0') {
-      if (((*param_3 == '#') && (param_3[1] == '#')) ||
-         (param_3 = param_3 + 1, param_3 == (char *)0xffffffffffffffff)) break;
+  global_data = _DAT_180c8a9b0;
+  buffer_manager = *(longlong *)(_DAT_180c8a9b0 + 0x1af8);
+  
+  // 如果结束位置为NULL，则使用起始位置作为结束位置
+  if ((input_end == (char *)0x0) && (input_end = input_start, input_start != (char *)0xffffffffffffffff)) {
+    // 跳过注释标记(##)
+    while (*input_end != '\0') {
+      if (((*input_end == '#') && (input_end[1] == '#')) ||
+         (input_end = input_end + 1, input_end == (char *)0xffffffffffffffff)) break;
     }
   }
-  if ((param_1 == 0) || (*(float *)(param_1 + 4) <= *(float *)(lVar1 + 0x138) + 1.0)) {
-    bVar2 = false;
+  
+  // 检查是否需要使用替代格式
+  if ((context == 0) || (*(float *)(context + 4) <= *(float *)(buffer_manager + 0x138) + 1.0)) {
+    should_use_alternative_format = false;
   }
   else {
-    bVar2 = true;
+    should_use_alternative_format = true;
   }
-  if (param_1 != 0) {
-    *(undefined4 *)(lVar1 + 0x138) = *(undefined4 *)(param_1 + 4);
+  
+  // 更新缓冲区管理器中的数值
+  if (context != 0) {
+    *(undefined4 *)(buffer_manager + 0x138) = *(undefined4 *)(context + 4);
   }
-  iVar4 = *(int *)(lVar3 + 0x2e58);
-  iVar9 = *(int *)(lVar1 + 0x13c);
-  iVar6 = iVar9;
-  if (iVar9 < iVar4) {
-    *(int *)(lVar3 + 0x2e58) = iVar9;
-    iVar6 = *(int *)(lVar1 + 0x13c);
-    iVar4 = iVar9;
+  
+  current_count = *(int *)(global_data + 0x2e58);
+  max_count = *(int *)(buffer_manager + 0x13c);
+  write_index = max_count;
+  
+  // 更新计数器
+  if (max_count < current_count) {
+    *(int *)(global_data + 0x2e58) = max_count;
+    write_index = *(int *)(buffer_manager + 0x13c);
+    current_count = max_count;
   }
-  pcVar8 = param_2;
+  
+  current_pos = input_start;
+  
+  // 逐行处理字符串
   while( true ) {
-    pcVar5 = (char *)memchr(pcVar8,10,(longlong)param_3 - (longlong)pcVar8);
-    pcVar7 = param_3;
-    if (pcVar5 != (char *)0x0) {
-      pcVar7 = pcVar5;
+    // 查找换行符
+    line_end = (char *)memchr(current_pos, 10, (longlong)input_end - (longlong)current_pos);
+    next_line_start = input_end;
+    
+    if (line_end != (char *)0x0) {
+      next_line_start = line_end;
     }
-    if ((pcVar7 != param_3) || (pcVar8 != pcVar7)) {
-      iVar9 = (int)pcVar7 - (int)pcVar8;
-      if ((bVar2) || (pcVar8 != param_2)) {
-        FUN_18013c760(&UNK_180a06770,(iVar6 - iVar4) * 4,&DAT_18098bc73,iVar9,pcVar8);
+    
+    // 如果找到有效行内容
+    if ((next_line_start != input_end) || (current_pos != next_line_start)) {
+      line_length = (int)next_line_start - (int)current_pos;
+      
+      // 根据格式选择写入方式
+      if ((should_use_alternative_format) || (current_pos != input_start)) {
+        // 使用替代格式写入
+        FUN_18013c760(&UNK_180a06770, (write_index - current_count) * 4, &DAT_18098bc73, line_length, current_pos);
       }
       else {
-        FUN_18013c760(&UNK_180a06768,iVar9,pcVar8);
+        // 使用标准格式写入
+        FUN_18013c760(&UNK_180a06768, line_length, current_pos);
       }
     }
-    if (pcVar7 == param_3) break;
-    pcVar8 = pcVar7 + 1;
+    
+    // 如果到达字符串末尾，退出循环
+    if (next_line_start == input_end) break;
+    current_pos = next_line_start + 1;
   }
   return;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 * FUN_18013c940(byte *param_1)
-
+/**
+ * 创建并初始化字符串哈希条目
+ * 动态扩展数组容量，计算字符串哈希值
+ * 
+ * @param param_1 输入字符串指针
+ * @return 新创建的哈希条目指针
+ */
+undefined8 *create_string_hash_entry(byte *input_string)
 {
-  undefined4 *puVar1;
-  byte bVar2;
-  int iVar3;
-  longlong lVar4;
-  byte *pbVar5;
-  longlong lVar6;
-  int iVar7;
-  undefined8 uVar8;
-  int iVar9;
-  longlong lVar10;
-  int iVar11;
-  undefined8 *puVar12;
-  uint uVar13;
-  undefined5 uStack_15;
+  undefined4 *data_fields;
+  byte current_char;
+  int capacity;
+  int count;
+  longlong array_base;
+  byte *char_ptr;
+  longlong global_data;
+  int new_capacity;
+  undefined8 new_array;
+  int new_size;
+  longlong entry_offset;
+  int current_count;
+  undefined8 *entry_ptr;
+  uint hash_value;
+  undefined5 stack_temp;
   
-  lVar6 = _DAT_180c8a9b0;
-  uVar8 = _DAT_180c8a9a8;
-  iVar3 = *(int *)(_DAT_180c8a9b0 + 0x2e2c);
-  iVar9 = *(int *)(_DAT_180c8a9b0 + 0x2e28);
-  if (iVar9 == iVar3) {
-    if (iVar3 == 0) {
-      iVar7 = 8;
+  global_data = _DAT_180c8a9b0;
+  new_array = _DAT_180c8a9a8;
+  capacity = *(int *)(_DAT_180c8a9b0 + 0x2e2c);
+  count = *(int *)(_DAT_180c8a9b0 + 0x2e28);
+  
+  // 检查是否需要扩展数组
+  if (count == capacity) {
+    if (capacity == 0) {
+      new_size = 8;
     }
     else {
-      iVar7 = iVar3 / 2 + iVar3;
+      new_size = capacity / 2 + capacity;  // 扩展1.5倍
     }
-    iVar11 = iVar9 + 1;
-    if (iVar9 + 1 < iVar7) {
-      iVar11 = iVar7;
+    
+    new_capacity = count + 1;
+    if (count + 1 < new_size) {
+      new_capacity = new_size;
     }
-    if (iVar3 < iVar11) {
+    
+    // 执行数组扩展
+    if (capacity < new_capacity) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
-      uVar8 = func_0x000180120ce0((longlong)iVar11 * 0x38,uVar8);
-      if (*(longlong *)(lVar6 + 0x2e30) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(uVar8,*(longlong *)(lVar6 + 0x2e30),(longlong)*(int *)(lVar6 + 0x2e28) * 0x38);
+      new_array = func_0x000180120ce0((longlong)new_capacity * 0x38, new_array);
+      
+      // 复制现有数据
+      if (*(longlong *)(global_data + 0x2e30) != 0) {
+        memcpy(new_array, *(longlong *)(global_data + 0x2e30), 
+               (longlong)*(int *)(global_data + 0x2e28) * 0x38);
       }
-      iVar9 = *(int *)(lVar6 + 0x2e28);
-      *(undefined8 *)(lVar6 + 0x2e30) = uVar8;
-      *(int *)(lVar6 + 0x2e2c) = iVar11;
+      
+      count = *(int *)(global_data + 0x2e28);
+      *(undefined8 *)(global_data + 0x2e30) = new_array;
+      *(int *)(global_data + 0x2e2c) = new_capacity;
     }
   }
-  lVar10 = (longlong)iVar9 * 0x38;
-  lVar4 = *(longlong *)(lVar6 + 0x2e30);
-  *(undefined8 *)(lVar10 + lVar4) = 0;
-  ((undefined8 *)(lVar10 + lVar4))[1] = 0;
-  puVar12 = (undefined8 *)(lVar10 + 0x10 + lVar4);
-  *puVar12 = 0;
-  puVar12[1] = 0;
-  puVar1 = (undefined4 *)(lVar10 + 0x20 + lVar4);
-  *puVar1 = 0;
-  puVar1[1] = 0;
-  puVar1[2] = 0;
-  puVar1[3] = 0;
-  *(ulonglong *)(lVar10 + 0x30 + lVar4) = CONCAT53(uStack_15,0xffff);
-  iVar3 = *(int *)(lVar6 + 0x2e28);
-  *(int *)(lVar6 + 0x2e28) = iVar3 + 1;
-  puVar12 = (undefined8 *)((longlong)iVar3 * 0x38 + *(longlong *)(lVar6 + 0x2e30));
-  uVar8 = FUN_1801210b0(param_1);
-  *puVar12 = uVar8;
-  uVar13 = 0xffffffff;
-  bVar2 = *param_1;
-  pbVar5 = param_1 + 1;
-  while (bVar2 != 0) {
-    if (((bVar2 == 0x23) && (*pbVar5 == 0x23)) && (pbVar5[1] == 0x23)) {
-      uVar13 = 0xffffffff;
+  
+  // 计算新条目的偏移量
+  entry_offset = (longlong)count * 0x38;
+  array_base = *(longlong *)(global_data + 0x2e30);
+  
+  // 初始化新条目的各个字段
+  *(undefined8 *)(entry_offset + array_base) = 0;                    // 字段1
+  ((undefined8 *)(entry_offset + array_base))[1] = 0;               // 字段2
+  
+  entry_ptr = (undefined8 *)(entry_offset + 0x10 + array_base);
+  *entry_ptr = 0;                                                   // 字段3
+  entry_ptr[1] = 0;                                                 // 字段4
+  
+  data_fields = (undefined4 *)(entry_offset + 0x20 + array_base);
+  *data_fields = 0;                                                // 数据字段1
+  data_fields[1] = 0;                                              // 数据字段2
+  data_fields[2] = 0;                                              // 数据字段3
+  data_fields[3] = 0;                                              // 数据字段4
+  
+  *(ulonglong *)(entry_offset + 0x30 + array_base) = CONCAT53(stack_temp, 0xffff);  // 标志字段
+  
+  // 更新计数器
+  current_count = *(int *)(global_data + 0x2e28);
+  *(int *)(global_data + 0x2e28) = current_count + 1;
+  
+  // 获取新条目指针
+  entry_ptr = (undefined8 *)((longlong)current_count * 0x38 + *(longlong *)(global_data + 0x2e30));
+  
+  // 存储字符串指针
+  new_array = FUN_1801210b0(input_string);
+  *entry_ptr = new_array;
+  
+  // 计算字符串哈希值
+  hash_value = 0xffffffff;
+  current_char = *input_string;
+  char_ptr = input_string + 1;
+  
+  while (current_char != 0) {
+    // 遇到###标记时重置哈希值
+    if (((current_char == 0x23) && (*char_ptr == 0x23)) && (char_ptr[1] == 0x23)) {
+      hash_value = 0xffffffff;
     }
-    uVar13 = *(uint *)(&UNK_18098d290 + ((ulonglong)(uVar13 & 0xff) ^ (ulonglong)bVar2) * 4) ^
-             uVar13 >> 8;
-    bVar2 = *pbVar5;
-    pbVar5 = pbVar5 + 1;
+    
+    // 使用查找表计算哈希值
+    hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+               hash_value >> 8;
+    
+    current_char = *char_ptr;
+    char_ptr = char_ptr + 1;
   }
-  *(uint *)(puVar12 + 1) = ~uVar13;
-  return puVar12;
+  
+  // 存储哈希值（取反）
+  *(uint *)(entry_ptr + 1) = ~hash_value;
+  return entry_ptr;
 }
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 * FUN_18013c94a(byte *param_1)
-
+/**
+ * 创建带参数的字符串哈希条目
+ * 与create_string_hash_entry类似，但接受额外的栈参数
+ * 
+ * @param param_1 输入字符串指针
+ * @return 新创建的哈希条目指针
+ * 
+ * 注意：此函数使用栈传递的额外参数来初始化条目字段
+ */
+undefined8 *create_string_hash_entry_with_params(byte *input_string)
 {
-  undefined4 *puVar1;
-  byte bVar2;
-  int iVar3;
-  longlong lVar4;
-  byte *pbVar5;
-  longlong lVar6;
-  undefined4 uVar7;
-  int iVar8;
-  undefined8 in_RAX;
-  undefined8 uVar9;
-  int iVar10;
-  longlong lVar11;
-  undefined8 unaff_RBX;
-  int iVar12;
-  undefined8 *puVar13;
-  uint uVar14;
-  longlong in_R11;
-  undefined8 unaff_R14;
-  undefined8 uStackX_20;
-  undefined8 in_stack_00000028;
-  undefined8 in_stack_00000030;
-  undefined8 in_stack_00000038;
-  undefined4 in_stack_00000040;
-  undefined4 uStack0000000000000044;
-  undefined4 uStack0000000000000048;
-  undefined4 uStack000000000000004c;
-  undefined8 in_stack_00000050;
+  undefined4 *data_fields;
+  byte current_char;
+  int capacity;
+  int count;
+  longlong array_base;
+  byte *char_ptr;
+  longlong global_data;
+  undefined4 param_value;
+  int new_capacity;
+  undefined8 new_array;
+  int new_size;
+  longlong entry_offset;
+  undefined8 register_rax;
+  undefined8 array_ptr;
+  int current_count;
+  undefined8 *entry_ptr;
+  uint hash_value;
+  longlong frame_ptr;
+  undefined8 register_r14;
+  undefined8 stack_param1;
+  undefined8 stack_param2;
+  undefined8 stack_param3;
+  undefined8 stack_param4;
+  undefined4 stack_param5;
+  undefined4 stack_param6;
+  undefined4 stack_param7;
+  undefined4 stack_param8;
+  undefined8 stack_param9;
   
-  *(undefined8 *)(in_R11 + 8) = unaff_RBX;
-  lVar6 = _DAT_180c8a9b0;
-  *(undefined8 *)(in_R11 + -0x48) = in_RAX;
-  *(undefined8 *)(in_R11 + -0x40) = in_RAX;
-  *(undefined8 *)(in_R11 + -0x2c) = in_RAX;
-  iVar3 = *(int *)(lVar6 + 0x2e2c);
-  *(undefined8 *)(in_R11 + -0x34) = in_RAX;
-  uVar7 = (undefined4)in_RAX;
-  *(undefined8 *)(in_R11 + -0x20) = in_RAX;
-  *(undefined8 *)(in_R11 + 0x18) = unaff_R14;
-  uVar9 = _DAT_180c8a9a8;
-  iVar10 = *(int *)(lVar6 + 0x2e28);
-  uStack0000000000000044 = uVar7;
-  if (iVar10 == iVar3) {
-    if (iVar3 == 0) {
-      iVar8 = 8;
+  // 保存寄存器值到栈帧
+  *(undefined8 *)(frame_ptr + 8) = register_rbx;
+  global_data = _DAT_180c8a9b0;
+  *(undefined8 *)(frame_ptr + -0x48) = register_rax;
+  *(undefined8 *)(frame_ptr + -0x40) = register_rax;
+  *(undefined8 *)(frame_ptr + -0x2c) = register_rax;
+  capacity = *(int *)(global_data + 0x2e2c);
+  *(undefined8 *)(frame_ptr + -0x34) = register_rax;
+  param_value = (undefined4)register_rax;
+  *(undefined8 *)(frame_ptr + -0x20) = register_rax;
+  *(undefined8 *)(frame_ptr + 0x18) = register_r14;
+  array_ptr = _DAT_180c8a9a8;
+  count = *(int *)(global_data + 0x2e28);
+  stack_param6 = param_value;
+  
+  // 检查是否需要扩展数组（与create_string_hash_entry相同的逻辑）
+  if (count == capacity) {
+    if (capacity == 0) {
+      new_size = 8;
     }
     else {
-      iVar8 = iVar3 / 2 + iVar3;
+      new_size = capacity / 2 + capacity;
     }
-    iVar12 = iVar10 + 1;
-    if (iVar10 + 1 < iVar8) {
-      iVar12 = iVar8;
+    
+    new_capacity = count + 1;
+    if (count + 1 < new_size) {
+      new_capacity = new_size;
     }
-    if (iVar3 < iVar12) {
-      *(int *)(lVar6 + 0x3a8) = *(int *)(lVar6 + 0x3a8) + 1;
-      uVar9 = func_0x000180120ce0((longlong)iVar12 * 0x38,uVar9);
-      if (*(longlong *)(lVar6 + 0x2e30) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(uVar9,*(longlong *)(lVar6 + 0x2e30),(longlong)*(int *)(lVar6 + 0x2e28) * 0x38);
+    
+    if (capacity < new_capacity) {
+      *(int *)(global_data + 0x3a8) = *(int *)(global_data + 0x3a8) + 1;
+      array_ptr = func_0x000180120ce0((longlong)new_capacity * 0x38, array_ptr);
+      
+      if (*(longlong *)(global_data + 0x2e30) != 0) {
+        memcpy(array_ptr, *(longlong *)(global_data + 0x2e30), 
+               (longlong)*(int *)(global_data + 0x2e28) * 0x38);
       }
-      iVar10 = *(int *)(lVar6 + 0x2e28);
-      *(undefined8 *)(lVar6 + 0x2e30) = uVar9;
-      *(int *)(lVar6 + 0x2e2c) = iVar12;
+      
+      count = *(int *)(global_data + 0x2e28);
+      *(undefined8 *)(global_data + 0x2e30) = array_ptr;
+      *(int *)(global_data + 0x2e2c) = new_capacity;
     }
   }
-  lVar11 = (longlong)iVar10 * 0x38;
-  lVar4 = *(longlong *)(lVar6 + 0x2e30);
-  *(undefined8 *)(lVar11 + lVar4) = uStackX_20;
-  ((undefined8 *)(lVar11 + lVar4))[1] = in_stack_00000028;
-  puVar13 = (undefined8 *)(lVar11 + 0x10 + lVar4);
-  *puVar13 = CONCAT44(in_stack_00000030._4_4_,uVar7);
-  puVar13[1] = in_stack_00000038;
-  puVar1 = (undefined4 *)(lVar11 + 0x20 + lVar4);
-  *puVar1 = in_stack_00000040;
-  puVar1[1] = uStack0000000000000044;
-  puVar1[2] = uStack0000000000000048;
-  puVar1[3] = uStack000000000000004c;
-  *(ulonglong *)(lVar11 + 0x30 + lVar4) = CONCAT53(in_stack_00000050._3_5_,0xffff);
-  iVar3 = *(int *)(lVar6 + 0x2e28);
-  *(int *)(lVar6 + 0x2e28) = iVar3 + 1;
-  puVar13 = (undefined8 *)((longlong)iVar3 * 0x38 + *(longlong *)(lVar6 + 0x2e30));
-  uVar9 = FUN_1801210b0(param_1);
-  *puVar13 = uVar9;
-  uVar14 = 0xffffffff;
-  bVar2 = *param_1;
-  pbVar5 = param_1 + 1;
-  while (bVar2 != 0) {
-    if (((bVar2 == 0x23) && (*pbVar5 == 0x23)) && (pbVar5[1] == 0x23)) {
-      uVar14 = 0xffffffff;
+  
+  // 计算新条目的偏移量
+  entry_offset = (longlong)count * 0x38;
+  array_base = *(longlong *)(global_data + 0x2e30);
+  
+  // 使用栈参数初始化条目字段
+  *(undefined8 *)(entry_offset + array_base) = stack_param1;         // 字段1（来自栈参数）
+  ((undefined8 *)(entry_offset + array_base))[1] = stack_param2;    // 字段2（来自栈参数）
+  
+  entry_ptr = (undefined8 *)(entry_offset + 0x10 + array_base);
+  *entry_ptr = CONCAT44(stack_param3._4_4_, param_value);              // 字段3（组合参数）
+  entry_ptr[1] = stack_param4;                                        // 字段4（来自栈参数）
+  
+  data_fields = (undefined4 *)(entry_offset + 0x20 + array_base);
+  *data_fields = stack_param5;                                       // 数据字段1（来自栈参数）
+  data_fields[1] = stack_param6;                                      // 数据字段2（来自栈参数）
+  data_fields[2] = stack_param7;                                      // 数据字段3（来自栈参数）
+  data_fields[3] = stack_param8;                                      // 数据字段4（来自栈参数）
+  
+  *(ulonglong *)(entry_offset + 0x30 + array_base) = CONCAT53(stack_param9._3_5_, 0xffff);  // 标志字段
+  
+  // 更新计数器
+  current_count = *(int *)(global_data + 0x2e28);
+  *(int *)(global_data + 0x2e28) = current_count + 1;
+  
+  // 获取新条目指针
+  entry_ptr = (undefined8 *)((longlong)current_count * 0x38 + *(longlong *)(global_data + 0x2e30));
+  
+  // 存储字符串指针并计算哈希值（与create_string_hash_entry相同的逻辑）
+  array_ptr = FUN_1801210b0(input_string);
+  *entry_ptr = array_ptr;
+  
+  hash_value = 0xffffffff;
+  current_char = *input_string;
+  char_ptr = input_string + 1;
+  
+  while (current_char != 0) {
+    if (((current_char == 0x23) && (*char_ptr == 0x23)) && (char_ptr[1] == 0x23)) {
+      hash_value = 0xffffffff;
     }
-    uVar14 = *(uint *)(&UNK_18098d290 + ((ulonglong)(uVar14 & 0xff) ^ (ulonglong)bVar2) * 4) ^
-             uVar14 >> 8;
-    bVar2 = *pbVar5;
-    pbVar5 = pbVar5 + 1;
+    
+    hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+               hash_value >> 8;
+    
+    current_char = *char_ptr;
+    char_ptr = char_ptr + 1;
   }
-  *(uint *)(puVar13 + 1) = ~uVar14;
-  return puVar13;
+  
+  *(uint *)(entry_ptr + 1) = ~hash_value;
+  return entry_ptr;
 }
 
 
 
-undefined8 * FUN_18013c9d9(void)
-
+/**
+ * 创建默认字符串哈希条目
+ * 使用寄存器中的默认值创建新的哈希条目
+ * 
+ * @return 新创建的哈希条目指针
+ * 
+ * 注意：此函数使用寄存器中的值来初始化条目，而不是参数
+ */
+undefined8 *create_default_string_hash_entry(void)
 {
-  undefined4 *puVar1;
-  byte bVar2;
-  int iVar3;
-  longlong lVar4;
-  byte *pbVar5;
-  undefined8 uVar6;
-  longlong lVar7;
-  longlong unaff_RBX;
-  undefined4 unaff_EDI;
-  undefined8 *puVar8;
-  uint uVar9;
-  byte *unaff_R14;
-  undefined8 uStackX_20;
-  undefined8 in_stack_00000028;
-  undefined8 in_stack_00000030;
-  undefined8 in_stack_00000038;
-  undefined4 uStack0000000000000040;
-  undefined4 uStack0000000000000044;
-  undefined4 uStack0000000000000048;
-  undefined4 uStack000000000000004c;
-  undefined8 in_stack_00000050;
+  undefined4 *data_fields;
+  byte current_char;
+  int current_count;
+  longlong array_base;
+  byte *char_ptr;
+  undefined8 new_array;
+  longlong entry_offset;
+  longlong global_base;
+  undefined4 capacity_param;
+  undefined8 *entry_ptr;
+  uint hash_value;
+  byte *string_ptr;
+  undefined8 stack_param1;
+  undefined8 stack_param2;
+  undefined8 stack_param3;
+  undefined8 stack_param4;
+  undefined4 stack_param5;
+  undefined4 stack_param6;
+  undefined4 stack_param7;
+  undefined4 stack_param8;
+  undefined8 stack_param9;
   
-  uVar6 = func_0x000180120ce0();
-  if (*(longlong *)(unaff_RBX + 0x2e30) != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(uVar6,*(longlong *)(unaff_RBX + 0x2e30),(longlong)*(int *)(unaff_RBX + 0x2e28) * 0x38);
+  // 分配新数组
+  new_array = func_0x000180120ce0();
+  
+  // 复制现有数据到新数组
+  if (*(longlong *)(global_base + 0x2e30) != 0) {
+    memcpy(new_array, *(longlong *)(global_base + 0x2e30), 
+           (longlong)*(int *)(global_base + 0x2e28) * 0x38);
   }
-  *(undefined8 *)(unaff_RBX + 0x2e30) = uVar6;
-  *(undefined4 *)(unaff_RBX + 0x2e2c) = unaff_EDI;
-  lVar7 = (longlong)*(int *)(unaff_RBX + 0x2e28) * 0x38;
-  lVar4 = *(longlong *)(unaff_RBX + 0x2e30);
-  *(undefined8 *)(lVar7 + lVar4) = uStackX_20;
-  ((undefined8 *)(lVar7 + lVar4))[1] = in_stack_00000028;
-  puVar8 = (undefined8 *)(lVar7 + 0x10 + lVar4);
-  *puVar8 = in_stack_00000030;
-  puVar8[1] = in_stack_00000038;
-  puVar1 = (undefined4 *)(lVar7 + 0x20 + lVar4);
-  *puVar1 = uStack0000000000000040;
-  puVar1[1] = uStack0000000000000044;
-  puVar1[2] = uStack0000000000000048;
-  puVar1[3] = uStack000000000000004c;
-  *(undefined8 *)(lVar7 + 0x30 + lVar4) = in_stack_00000050;
-  iVar3 = *(int *)(unaff_RBX + 0x2e28);
-  *(int *)(unaff_RBX + 0x2e28) = iVar3 + 1;
-  puVar8 = (undefined8 *)((longlong)iVar3 * 0x38 + *(longlong *)(unaff_RBX + 0x2e30));
-  uVar6 = FUN_1801210b0();
-  *puVar8 = uVar6;
-  uVar9 = 0xffffffff;
-  bVar2 = *unaff_R14;
-  pbVar5 = unaff_R14 + 1;
-  while (bVar2 != 0) {
-    if (((bVar2 == 0x23) && (*pbVar5 == 0x23)) && (pbVar5[1] == 0x23)) {
-      uVar9 = 0xffffffff;
+  
+  // 更新全局指针
+  *(undefined8 *)(global_base + 0x2e30) = new_array;
+  *(undefined4 *)(global_base + 0x2e2c) = capacity_param;
+  
+  // 计算新条目偏移量
+  entry_offset = (longlong)*(int *)(global_base + 0x2e28) * 0x38;
+  array_base = *(longlong *)(global_base + 0x2e30);
+  
+  // 使用默认值初始化条目字段
+  *(undefined8 *)(entry_offset + array_base) = stack_param1;          // 字段1
+  ((undefined8 *)(entry_offset + array_base))[1] = stack_param2;     // 字段2
+  
+  entry_ptr = (undefined8 *)(entry_offset + 0x10 + array_base);
+  *entry_ptr = stack_param3;                                         // 字段3
+  entry_ptr[1] = stack_param4;                                       // 字段4
+  
+  data_fields = (undefined4 *)(entry_offset + 0x20 + array_base);
+  *data_fields = stack_param5;                                       // 数据字段1
+  data_fields[1] = stack_param6;                                      // 数据字段2
+  data_fields[2] = stack_param7;                                      // 数据字段3
+  data_fields[3] = stack_param8;                                      // 数据字段4
+  
+  *(undefined8 *)(entry_offset + 0x30 + array_base) = stack_param9;  // 标志字段
+  
+  // 更新计数器
+  current_count = *(int *)(global_base + 0x2e28);
+  *(int *)(global_base + 0x2e28) = current_count + 1;
+  
+  // 获取新条目指针
+  entry_ptr = (undefined8 *)((longlong)current_count * 0x38 + *(longlong *)(global_base + 0x2e30));
+  
+  // 存储默认字符串指针
+  new_array = FUN_1801210b0();
+  *entry_ptr = new_array;
+  
+  // 计算默认字符串的哈希值
+  hash_value = 0xffffffff;
+  current_char = *string_ptr;
+  char_ptr = string_ptr + 1;
+  
+  while (current_char != 0) {
+    if (((current_char == 0x23) && (*char_ptr == 0x23)) && (char_ptr[1] == 0x23)) {
+      hash_value = 0xffffffff;
     }
-    uVar9 = *(uint *)(&UNK_18098d290 + ((ulonglong)(uVar9 & 0xff) ^ (ulonglong)bVar2) * 4) ^
-            uVar9 >> 8;
-    bVar2 = *pbVar5;
-    pbVar5 = pbVar5 + 1;
+    
+    hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)current_char) * 4) ^
+               hash_value >> 8;
+    
+    current_char = *char_ptr;
+    char_ptr = char_ptr + 1;
   }
-  *(uint *)(puVar8 + 1) = ~uVar9;
-  return puVar8;
+  
+  *(uint *)(entry_ptr + 1) = ~hash_value;
+  return entry_ptr;
 }
 
 

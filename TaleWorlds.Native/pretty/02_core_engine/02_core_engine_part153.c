@@ -2,6 +2,25 @@
 
 // 02_core_engine_part153.c - 14 个函数
 
+// 全局常量定义
+#define DEFAULT_ENTITY_TYPE "default_entity"
+#define COLLISION_CREATE_CMD "collision_"
+#define COLLISION_UPDATE_CMD "update_coll"
+#define ENTITY_TYPE_TOKEN "entity_type"
+#define ENTITY_ID_TOKEN "entity_id"
+#define POSITION_TOKEN "position"
+#define POSITION_Z_TOKEN "position_z"
+#define ROTATION_TOKEN "rotation"
+#define AXIS_TOKEN "axis"
+#define DYNAMIC_FLAG "dynamic"
+#define SCALE_FLAG "scale"
+#define VELOCITY_TOKEN "velocity"
+
+// 全局变量
+extern longlong g_engine_context;      // 引擎上下文
+extern longlong g_engine_base;         // 引擎基地址
+extern longlong g_security_cookie;     // 安全Cookie
+
 // 函数: void process_entity_collision(longlong entity_data)
 // 处理实体碰撞检测和响应
 void process_entity_collision(longlong entity_data)
@@ -468,63 +487,63 @@ void process_collision_entities(longlong collision_system, undefined4 *entity_da
   undefined2 velocity_flags;
   
   while( true ) {
-    uVar11 = *param_2;
-    if (*(undefined4 **)(param_2 + 2) == (undefined4 *)0x0) {
-      uStack_44 = 0;
+    entity_id = *entity_data;
+    if (*(undefined4 **)(entity_data + 2) == (undefined4 *)0x0) {
+      collision_flags = 0;
     }
     else {
-      uStack_44 = **(undefined4 **)(param_2 + 2);
+      collision_flags = **(undefined4 **)(entity_data + 2);
     }
-    uVar12 = param_2[0x26];
-    if (*(longlong *)(param_2 + 4) == 0) {
-      uVar9 = 0xff;
+    entity_type = entity_data[0x26];
+    if (*(longlong *)(entity_data + 4) == 0) {
+      collision_type = 0xff;
     }
     else {
-      uVar9 = *(undefined1 *)(param_2 + 0x14);
+      collision_type = *(undefined1 *)(entity_data + 0x14);
     }
-    bVar10 = *(byte *)(param_2 + 0x28);
-    iVar14 = *(int *)(param_1 + 0x24);
-    uStack_3c._0_2_ = CONCAT11((char)param_3,uVar9);
-    uStack_3c = CONCAT13(bVar10 >> 5,CONCAT12(bVar10 >> 4,(undefined2)uStack_3c)) & 0x101ffff;
-    fVar3 = (float)param_2[0xe];
-    fVar4 = (float)param_2[0xf];
-    fVar5 = (float)param_2[0x10];
-    fVar6 = (float)param_2[0x11];
-    fVar7 = (float)param_2[0x12];
-    fVar8 = (float)param_2[0x13];
-    iVar15 = *(int *)(param_1 + 0x20);
-    if (iVar15 == iVar14) {
-      if (iVar14 == 0) {
-        iVar14 = 8;
+    entity_flags = *(byte *)(entity_data + 0x28);
+    current_count = *(int *)(collision_system + 0x24);
+    entity_properties._0_2_ = CONCAT11((char)entity_index,collision_type);
+    entity_properties = CONCAT13(entity_flags >> 5,CONCAT12(entity_flags >> 4,(undefined2)entity_properties)) & 0x101ffff;
+    position_x = (float)entity_data[0xe];
+    position_y = (float)entity_data[0xf];
+    position_z = (float)entity_data[0x10];
+    velocity_x = (float)entity_data[0x11];
+    velocity_y = (float)entity_data[0x12];
+    velocity_z = (float)entity_data[0x13];
+    max_count = *(int *)(collision_system + 0x20);
+    if (max_count == current_count) {
+      if (current_count == 0) {
+        current_count = 8;
       }
       else {
-        iVar14 = iVar14 / 2 + iVar14;
+        current_count = current_count / 2 + current_count;
       }
-      iVar16 = iVar15 + 1;
-      if (iVar15 + 1 < iVar14) {
-        iVar16 = iVar14;
+      new_capacity = max_count + 1;
+      if (max_count + 1 < current_count) {
+        new_capacity = current_count;
       }
-      FUN_18013da40(param_1 + 0x20,iVar16);
-      iVar15 = *(int *)(param_1 + 0x20);
+      resize_collision_array(collision_system + 0x20,new_capacity);
+      max_count = *(int *)(collision_system + 0x20);
     }
-    lVar13 = *(longlong *)(param_1 + 0x28);
-    puVar1 = (undefined4 *)((longlong)iVar15 * 0x20 + lVar13);
-    *puVar1 = uVar11;
-    puVar1[1] = uStack_44;
-    puVar1[2] = uVar12;
-    puVar1[3] = uStack_3c;
-    puVar2 = (uint *)((longlong)iVar15 * 0x20 + 0x10 + lVar13);
-    *puVar2 = CONCAT22((short)(int)fVar3,CONCAT11(uStack_37,bVar10 >> 6)) & 0xffffff01;
-    puVar2[1] = CONCAT22((short)(int)fVar5,(short)(int)fVar4);
-    puVar2[2] = CONCAT22((short)(int)fVar7,(short)(int)fVar6);
-    puVar2[3] = CONCAT22(uStack_2a,(short)(int)fVar8);
-    *(int *)(param_1 + 0x20) = *(int *)(param_1 + 0x20) + 1;
-    if (*(longlong *)(param_2 + 4) != 0) {
-      FUN_18013c380(param_1,*(longlong *)(param_2 + 4),param_3 + 1);
+    array_offset = *(longlong *)(collision_system + 0x28);
+    data_ptr1 = (undefined4 *)((longlong)max_count * 0x20 + array_offset);
+    *data_ptr1 = entity_id;
+    data_ptr1[1] = collision_flags;
+    data_ptr1[2] = entity_type;
+    data_ptr1[3] = entity_properties;
+    data_ptr2 = (uint *)((longlong)max_count * 0x20 + 0x10 + array_offset);
+    *data_ptr2 = CONCAT22((short)(int)position_x,CONCAT11(reserved_byte,entity_flags >> 6)) & 0xffffff01;
+    data_ptr2[1] = CONCAT22((short)(int)position_z,(short)(int)position_y);
+    data_ptr2[2] = CONCAT22((short)(int)velocity_y,(short)(int)velocity_x);
+    data_ptr2[3] = CONCAT22(velocity_flags,(short)(int)velocity_z);
+    *(int *)(collision_system + 0x20) = *(int *)(collision_system + 0x20) + 1;
+    if (*(longlong *)(entity_data + 4) != 0) {
+      process_collision_entities(collision_system,*(longlong *)(entity_data + 4),entity_index + 1);
     }
-    param_2 = *(undefined4 **)(param_2 + 6);
-    if (param_2 == (undefined4 *)0x0) break;
-    param_3 = param_3 + 1;
+    entity_data = *(undefined4 **)(entity_data + 6);
+    if (entity_data == (undefined4 *)0x0) break;
+    entity_index = entity_index + 1;
   }
   return;
 }
@@ -533,22 +552,23 @@ void process_collision_entities(longlong collision_system, undefined4 *entity_da
 
 
 
-// 函数: void FUN_18013c4e0(longlong param_1,undefined8 *param_2,undefined8 param_3)
-void FUN_18013c4e0(longlong param_1,undefined8 *param_2,undefined8 param_3)
+// 函数: void generate_collision_report(longlong report_context, undefined8 *collision_data, undefined8 output_buffer)
+// 生成碰撞报告
+void generate_collision_report(longlong report_context, undefined8 *collision_data, undefined8 output_buffer)
 
 {
-  char cVar1;
-  int *piVar2;
-  longlong lVar3;
-  int iVar4;
-  undefined *puVar5;
-  char *pcVar6;
-  int iVar7;
-  longlong lVar8;
-  int iVar9;
-  undefined4 uVar10;
-  int iVar11;
-  undefined *puVar12;
+  char report_flag;
+  int *entity_table;
+  longlong collision_entry;
+  int entity_count;
+  undefined *format_ptr;
+  char *data_ptr;
+  int collision_index;
+  longlong table_offset;
+  int max_collisions;
+  undefined4 collision_id;
+  int entity_id;
+  undefined *format_ptr2;
   
   piVar2 = *(int **)(param_1 + 0x2df8);
   if ((*(byte *)(param_1 + 8) & 0x40) != 0) {
@@ -642,17 +662,18 @@ void FUN_18013c4e0(longlong param_1,undefined8 *param_2,undefined8 param_3)
 
 
 
-// 函数: void FUN_18013c504(int param_1)
-void FUN_18013c504(int param_1)
+// 函数: void reset_collision_system(int reset_flag)
+// 重置碰撞系统
+void reset_collision_system(int reset_flag)
 
 {
-  char cVar1;
-  longlong lVar2;
-  char *pcVar3;
-  int iVar4;
-  char cVar5;
-  longlong lVar6;
-  int *unaff_R14;
+  char system_flag;
+  longlong collision_data;
+  char *data_ptr;
+  int entity_count;
+  char max_priority;
+  longlong table_offset;
+  int *system_table;
   
   if (param_1 < 0) {
     param_1 = param_1 / 2 + param_1;
@@ -728,17 +749,18 @@ void FUN_18013c504(int param_1)
 
 
 
-// 函数: void FUN_18013c5c1(void)
-void FUN_18013c5c1(void)
+// 函数: void update_collision_statistics(void)
+// 更新碰撞统计信息
+void update_collision_statistics(void)
 
 {
-  longlong lVar1;
-  int unaff_EBP;
-  int unaff_ESI;
-  longlong lVar2;
-  longlong unaff_R14;
-  int iStack0000000000000028;
-  undefined *puStack0000000000000030;
+  longlong collision_data;
+  int stat_index;
+  int entity_type;
+  longlong table_offset;
+  longlong system_context;
+  int collision_count;
+  undefined *format_data;
   
   lVar2 = 0;
   do {
@@ -778,11 +800,12 @@ void FUN_18013c5c1(void)
 
 
 
-// 函数: void FUN_18013c732(void)
-void FUN_18013c732(void)
+// 函数: void cleanup_collision_debug(void)
+// 清理碰撞调试信息
+void cleanup_collision_debug(void)
 
 {
-  FUN_180122210();
+  cleanup_debug_data();
   return;
 }
 
@@ -790,8 +813,9 @@ void FUN_18013c732(void)
 
 
 
-// 函数: void FUN_18013c750(void)
-void FUN_18013c750(void)
+// 函数: void initialize_collision_debug(void)
+// 初始化碰撞调试
+void initialize_collision_debug(void)
 
 {
   return;
@@ -803,15 +827,16 @@ void FUN_18013c750(void)
 
 
 
-// 函数: void FUN_18013c760(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18013c760(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void log_collision_event(undefined8 log_format, undefined8 param2, undefined8 param3, undefined8 param4)
+// 记录碰撞事件日志
+void log_collision_event(undefined8 log_format, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
-  longlong lVar1;
-  undefined8 *puVar2;
-  undefined8 uStackX_10;
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  longlong log_handle;
+  undefined8 *format_ptr;
+  undefined8 log_param1;
+  undefined8 log_param2;
+  undefined8 log_param3;
   
   if (*(char *)(_DAT_180c8a9b0 + 0x2e38) != '\0') {
     lVar1 = *(longlong *)(_DAT_180c8a9b0 + 0x2e40);
@@ -832,15 +857,16 @@ void FUN_18013c760(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_18013c78b(longlong param_1)
-void FUN_18013c78b(longlong param_1)
+// 函数: void flush_collision_log(longlong log_context)
+// 刷新碰撞日志
+void flush_collision_log(longlong log_context)
 
 {
-  longlong lVar1;
-  longlong in_RAX;
-  undefined8 *puVar2;
-  undefined8 unaff_RSI;
-  undefined8 unaff_RDI;
+  longlong log_file;
+  longlong stack_ptr;
+  undefined8 *format_ptr;
+  undefined8 log_param1;
+  undefined8 log_param2;
   
   *(undefined8 *)(in_RAX + -0x10) = unaff_RSI;
   *(undefined8 *)(in_RAX + -0x18) = unaff_RDI;
@@ -858,11 +884,12 @@ void FUN_18013c78b(longlong param_1)
 
 
 
-// 函数: void FUN_18013c7cf(longlong param_1)
-void FUN_18013c7cf(longlong param_1)
+// 函数: void close_collision_log(longlong log_context)
+// 关闭碰撞日志
+void close_collision_log(longlong log_context)
 
 {
-  FUN_180122240(param_1 + 0x2e48);
+  close_log_file(log_context + 0x2e48);
   return;
 }
 
@@ -870,8 +897,9 @@ void FUN_18013c7cf(longlong param_1)
 
 
 
-// 函数: void FUN_18013c7eb(void)
-void FUN_18013c7eb(void)
+// 函数: void initialize_collision_log(void)
+// 初始化碰撞日志
+void initialize_collision_log(void)
 
 {
   return;

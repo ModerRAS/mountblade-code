@@ -19,106 +19,129 @@ extern undefined8 UNK_18098d290;    // 哈希表数据
 void process_game_object_batch(longlong context, longlong data_ptr, int count, ulonglong stack_param)
 
 {
-  byte bVar1;
-  short sVar2;
-  undefined4 *puVar3;
-  undefined4 *puVar4;
-  byte *pbVar5;
-  undefined4 *puVar6;
-  undefined4 *puVar7;
-  longlong lVar8;
-  undefined8 uVar9;
-  byte bVar10;
-  byte bVar11;
-  uint uVar12;
-  undefined8 unaff_RBX;
-  longlong lVar13;
-  undefined8 unaff_RDI;
-  short *psVar14;
-  longlong in_R11;
-  undefined8 unaff_R14;
-  undefined8 unaff_R15;
-  byte bStackX_20;
-  byte abStackX_21 [7];
-  ulonglong in_stack_00000038;
+  byte temp_flag;                    // 临时标志位
+  short coord_y;                     // Y坐标值
+  undefined4 *game_obj_ptr;          // 游戏对象指针
+  undefined4 *next_obj_ptr;          // 下一个对象指针
+  byte *hash_data_ptr;               // 哈希数据指针
+  undefined4 *link_ptr;              // 链接指针
+  undefined4 *current_obj_ptr;       // 当前对象指针
+  longlong context_data;             // 上下文数据
+  undefined8 hash_result;            // 哈希计算结果
+  byte flag_bit1;                    // 标志位1
+  byte flag_bit2;                    // 标志位2
+  uint hash_value;                   // 哈希值
+  undefined8 saved_rbx;              // 保存的RBX寄存器值
+  longlong loop_counter;             // 循环计数器
+  undefined8 saved_rdi;              // 保存的RDI寄存器值
+  short *data_ptr;                   // 数据指针
+  longlong stack_ptr;                // 栈指针
+  undefined8 saved_r14;              // 保存的R14寄存器值
+  undefined8 saved_r15;              // 保存的R15寄存器值
+  byte stack_byte1;                 // 栈字节1
+  byte stack_bytes[7];               // 栈字节数组
+  ulonglong stack_param;             // 栈参数
   
-  *(undefined8 *)(in_R11 + -0x18) = unaff_RDI;
-  *(undefined8 *)(in_R11 + -0x20) = unaff_R14;
-  psVar14 = (short *)(param_2 + 0x12);
-  *(undefined8 *)(in_R11 + -0x28) = unaff_R15;
-  *(undefined8 *)(in_R11 + 0x18) = unaff_RBX;
-  lVar13 = (longlong)param_3;
+  // 保存寄存器值到栈
+  *(undefined8 *)(stack_ptr + -0x18) = saved_rdi;
+  *(undefined8 *)(stack_ptr + -0x20) = saved_r14;
+  data_ptr = (short *)(data_ptr + 0x12);
+  *(undefined8 *)(stack_ptr + -0x28) = saved_r15;
+  *(undefined8 *)(stack_ptr + 0x18) = saved_rbx;
+  loop_counter = (longlong)count;
   do {
-    if (*(int *)(psVar14 + -9) != 0) {
-      puVar7 = (undefined4 *)FUN_180135960();
-      if (*(int *)(psVar14 + -7) == 0) {
-        lVar8 = 0;
+    // 检查对象是否有效
+    if (*(int *)(data_ptr + -9) != 0) {
+      game_obj_ptr = (undefined4 *)FUN_180135960();  // 创建新游戏对象
+      // 获取对象上下文数据
+      if (*(int *)(data_ptr + -7) == 0) {
+        context_data = 0;
       }
       else {
-        lVar8 = FUN_180121fa0(*(undefined8 *)(param_1 + 0x2df8));
+        context_data = FUN_180121fa0(*(undefined8 *)(context + 0x2df8));
       }
-      *(longlong *)(puVar7 + 2) = lVar8;
-      sVar2 = psVar14[1];
-      puVar7[0xe] = (float)(int)*psVar14;
-      puVar7[0xf] = (float)(int)sVar2;
-      sVar2 = psVar14[3];
-      puVar7[0x10] = (float)(int)psVar14[2];
-      puVar7[0x11] = (float)(int)sVar2;
-      sVar2 = psVar14[5];
-      puVar7[0x12] = (float)(int)psVar14[4];
-      puVar7[0x13] = (float)(int)sVar2;
-      if (lVar8 != 0) {
-        if (*(longlong *)(lVar8 + 0x10) == 0) {
-          *(undefined4 **)(lVar8 + 0x10) = puVar7;
+      *(longlong *)(game_obj_ptr + 2) = context_data;
+      
+      // 设置坐标数据
+      coord_y = data_ptr[1];
+      game_obj_ptr[0xe] = (float)(int)*data_ptr;      // X坐标
+      game_obj_ptr[0xf] = (float)(int)coord_y;       // Y坐标
+      coord_y = data_ptr[3];
+      game_obj_ptr[0x10] = (float)(int)data_ptr[2];    // Z坐标
+      game_obj_ptr[0x11] = (float)(int)coord_y;       // W坐标
+      coord_y = data_ptr[5];
+      game_obj_ptr[0x12] = (float)(int)data_ptr[4];    // U坐标
+      game_obj_ptr[0x13] = (float)(int)coord_y;       // V坐标
+      
+      // 链接对象到上下文
+      if (context_data != 0) {
+        if (*(longlong *)(context_data + 0x10) == 0) {
+          *(undefined4 **)(context_data + 0x10) = game_obj_ptr;
         }
-        else if ((lVar8 != 0) && (*(longlong *)(lVar8 + 0x18) == 0)) {
-          *(undefined4 **)(lVar8 + 0x18) = puVar7;
+        else if ((context_data != 0) && (*(longlong *)(context_data + 0x18) == 0)) {
+          *(undefined4 **)(context_data + 0x18) = game_obj_ptr;
         }
       }
-      puVar7[0x26] = *(undefined4 *)(psVar14 + -5);
-      puVar7[0x14] = (int)(char)psVar14[-3];
-      bVar1 = *(byte *)(puVar7 + 0x28);
-      bVar10 = -((char)psVar14[-2] != '\0') & 0x10;
-      *(byte *)(puVar7 + 0x28) = bVar10 | bVar1 & 0xef;
-      bVar11 = -(*(char *)((longlong)psVar14 + -3) != '\0') & 0x20;
-      *(byte *)(puVar7 + 0x28) = bVar11 | bVar10 | bVar1 & 0xcf;
-      *(byte *)(puVar7 + 0x28) =
-           -((char)psVar14[-1] != '\0') & 0x40U | bVar11 | bVar10 | bVar1 & 0x8f;
-      puVar6 = *(undefined4 **)(puVar7 + 2);
-      puVar4 = puVar7;
-      while (puVar3 = puVar6, puVar3 != (undefined4 *)0x0) {
-        puVar4 = puVar3;
-        puVar6 = *(undefined4 **)(puVar3 + 2);
+      
+      // 设置对象属性
+      game_obj_ptr[0x26] = *(undefined4 *)(data_ptr + -5);
+      game_obj_ptr[0x14] = (int)(char)data_ptr[-3];
+      
+      // 设置对象状态标志位
+      temp_flag = *(byte *)(game_obj_ptr + 0x28);
+      flag_bit1 = -((char)data_ptr[-2] != '\0') & 0x10;  // 标志位1设置
+      *(byte *)(game_obj_ptr + 0x28) = flag_bit1 | temp_flag & 0xef;
+      
+      flag_bit2 = -(*(char *)((longlong)data_ptr + -3) != '\0') & 0x20;  // 标志位2设置
+      *(byte *)(game_obj_ptr + 0x28) = flag_bit2 | flag_bit1 | temp_flag & 0xcf;
+      
+      *(byte *)(game_obj_ptr + 0x28) =
+           -((char)data_ptr[-1] != '\0') & 0x40U | flag_bit2 | flag_bit1 | temp_flag & 0x8f;
+      
+      // 遍历对象链表
+      link_ptr = *(undefined4 **)(game_obj_ptr + 2);
+      current_obj_ptr = game_obj_ptr;
+      while (next_obj_ptr = link_ptr, next_obj_ptr != (undefined4 *)0x0) {
+        current_obj_ptr = next_obj_ptr;
+        link_ptr = *(undefined4 **)(next_obj_ptr + 2);
       }
-      FUN_180121200(&bStackX_20,0x14,&UNK_180a06578,*puVar4);
-      uVar12 = 0xffffffff;
-      pbVar5 = abStackX_21;
-      bVar1 = bStackX_20;
-      while (bVar1 != 0) {
-        if (((bVar1 == 0x23) && (*pbVar5 == 0x23)) && (pbVar5[1] == 0x23)) {
-          uVar12 = 0xffffffff;
+      
+      // 计算对象哈希值
+      FUN_180121200(&stack_byte1,0x14,&UNK_180a06578,*current_obj_ptr);
+      hash_value = 0xffffffff;
+      hash_data_ptr = stack_bytes;
+      temp_flag = stack_byte1;
+      while (temp_flag != 0) {
+        if (((temp_flag == 0x23) && (*hash_data_ptr == 0x23)) && (hash_data_ptr[1] == 0x23)) {
+          hash_value = 0xffffffff;
         }
-        uVar12 = *(uint *)(&UNK_18098d290 + ((ulonglong)(uVar12 & 0xff) ^ (ulonglong)bVar1) * 4) ^
-                 uVar12 >> 8;
-        bVar1 = *pbVar5;
-        pbVar5 = pbVar5 + 1;
+        hash_value = *(uint *)(&UNK_18098d290 + ((ulonglong)(hash_value & 0xff) ^ (ulonglong)temp_flag) * 4) ^
+                 hash_value >> 8;
+        temp_flag = *hash_data_ptr;
+        hash_data_ptr = hash_data_ptr + 1;
       }
-      uVar9 = FUN_180121fa0(_DAT_180c8a9b0 + 0x1ae0,~uVar12);
-      *(undefined8 *)(puVar7 + 0x1a) = uVar9;
+      
+      // 设置对象哈希值
+      hash_result = FUN_180121fa0(_DAT_180c8a9b0 + 0x1ae0,~hash_value);
+      *(undefined8 *)(game_obj_ptr + 0x1a) = hash_result;
     }
-    psVar14 = psVar14 + 0x10;
-    lVar13 = lVar13 + -1;
-  } while (lVar13 != 0);
+    
+    // 移动到下一个数据块
+    data_ptr = data_ptr + 0x10;
+    loop_counter = loop_counter + -1;
+  } while (loop_counter != 0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000038 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(stack_param ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
 
-// 函数: void FUN_18013643d(void)
-void FUN_18013643d(void)
+/**
+ * 空函数 - 可能是占位符或调试用的空实现
+ */
+void empty_function_placeholder(void)
 
 {
   return;
