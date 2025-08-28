@@ -1503,13 +1503,13 @@ LAB_18085abe3:
         afStackX_8[0] = 1.0;
         cVar1 = *(char *)(lVar2 + 0x782);
         if (*(longlong *)(lVar5 + 200) != 0) {
-          iVar3 = FUN_18073ca90(*(uint64_t *)(*(longlong *)(lVar5 + 200) + 0x78),afStackX_8);
+          iVar3 = UISystem_MemoryManager(*(uint64_t *)(*(longlong *)(lVar5 + 200) + 0x78),afStackX_8);
           if (iVar3 != 0) {
             return 0;
           }
         }
         auStackX_10[0] = 0;
-        uVar6 = FUN_180739a50(*(uint64_t *)(lVar2 + 0x4c0),auStackX_10,0);
+        uVar6 = UISystem_DataGetter(*(uint64_t *)(lVar2 + 0x4c0),auStackX_10,0);
         if ((int)uVar6 == 0) {
           uVar6 = (ulonglong)
                   ((float)(int)(2 - (uint)(cVar1 != '\0')) * afStackX_8[0] * (float)auStackX_10[0]);
@@ -1555,13 +1555,13 @@ longlong UISystem_DataHandler(longlong data_context)
   cVar1 = *(char *)(lVar3 + 0x782);
   fStack0000000000000030 = in_XMM0_Da;
   if (param_1 != 0) {
-    iVar2 = FUN_18073ca90(*(uint64_t *)(param_1 + 0x78),&stack0x00000030);
+    iVar2 = UISystem_MemoryManager(*(uint64_t *)(param_1 + 0x78),&stack0x00000030);
     if (iVar2 != 0) {
       return 0;
     }
   }
   in_stack_00000038 = 0;
-  lVar3 = FUN_180739a50(*(uint64_t *)(lVar3 + 0x4c0),&stack0x00000038,0);
+  lVar3 = UISystem_DataGetter(*(uint64_t *)(lVar3 + 0x4c0),&stack0x00000038,0);
   if ((int)lVar3 == 0) {
     lVar3 = (longlong)
             ((float)(int)(2 - (uint)(cVar1 != '\0')) * fStack0000000000000030 *

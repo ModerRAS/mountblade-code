@@ -171,6 +171,7 @@ static uint32_t g_system_flags = 0;
 #define system_empty_function_3       FUN_1801ba6cc
 #define pointer_offset_calculator     FUN_1801ba6f6
 #define system_empty_function_4       FUN_1801ba708
+#define resource_release_handler      FUN_180080060
 
 /*============================================================================
   核心函数实现

@@ -198,8 +198,9 @@ void UI_System_EventHandler_Register(void)
 
 
 
-uint64_t FUN_180745e75(void)
-
+// 函数: uint64_t FUN_180745e75(void)
+// UI系统错误代码获取函数
+uint64_t UI_System_Get_Error_Code(void)
 {
   return 0x1f;
 }
@@ -209,8 +210,8 @@ uint64_t FUN_180745e75(void)
 
 
 // 函数: void FUN_180745e80(longlong param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
-void FUN_180745e80(longlong param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
-
+// UI系统事件分发函数
+void UI_System_Event_Dispatch(longlong param_1,uint64_t param_2,int32_t param_3,uint64_t param_4)
 {
   FUN_180769ed0(*(uint64_t *)(param_1 + 0x170),param_2,1,param_3,param_4);
   return;
@@ -221,8 +222,8 @@ void FUN_180745e80(longlong param_1,uint64_t param_2,int32_t param_3,uint64_t pa
 
 
 // 函数: void FUN_180745ed0(longlong param_1,int *param_2)
-void FUN_180745ed0(longlong param_1,int *param_2)
-
+// UI系统回调执行函数
+void UI_System_Callback_Execute(longlong param_1,int *param_2)
 {
   (**(code **)(**(longlong **)(param_1 + 0x170) + 0x10))();
   if (param_2 != (int *)0x0) {
