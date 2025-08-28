@@ -46,12 +46,12 @@ void quick_sort_string_pointers(ulonglong *result_ptr,longlong *left_ptr,longlon
     temp_ptr1 = left_ptr + offset_diff;
   }
   swap_string_pointers(temp_ptr1,partition_ptr,temp_ptr4);
-  plVar5 = plVar11 + 1;
-  if (param_2 < plVar11) {
-    lVar2 = *plVar11;
+  plVar5 = temp_ptr1 + 1;
+  if (left_ptr < temp_ptr1) {
+    lVar2 = *temp_ptr1;
     do {
-      lVar10 = plVar11[-1];
-      plVar8 = plVar11 + -1;
+      lVar10 = temp_ptr1[-1];
+      plVar8 = temp_ptr1 + -1;
       if (*(int *)(lVar2 + 0x10) != 0) {
         if (*(int *)(lVar10 + 0x10) == 0) break;
         pbVar3 = *(byte **)(lVar2 + 8);
@@ -81,9 +81,9 @@ void quick_sort_string_pointers(ulonglong *result_ptr,longlong *left_ptr,longlon
     } while (param_2 < plVar8);
   }
   plVar8 = plVar5;
-  plVar7 = plVar11;
-  if (plVar5 < param_3) {
-    lVar2 = *plVar11;
+  plVar7 = temp_ptr1;
+  if (plVar5 < right_ptr) {
+    lVar2 = *temp_ptr1;
     do {
       lVar10 = *plVar5;
       plVar8 = plVar5;
@@ -118,9 +118,9 @@ void quick_sort_string_pointers(ulonglong *result_ptr,longlong *left_ptr,longlon
 joined_r0x000180219b69:
   do {
     plVar6 = plVar7;
-    if (param_3 <= plVar5) goto joined_r0x000180219bf9;
+    if (right_ptr <= plVar5) goto joined_r0x000180219bf9;
     lVar2 = *plVar5;
-    lVar10 = *plVar11;
+    lVar10 = *temp_ptr1;
     if (*(int *)(lVar2 + 0x10) == 0) {
 LAB_180219ba7:
       if (*(int *)(lVar10 + 0x10) != 0) {
@@ -136,9 +136,9 @@ LAB_180219ba7:
           if ((int)(bVar1 - uVar4) < 1) goto LAB_180219bd7;
         }
 joined_r0x000180219bf9:
-        for (; param_2 < plVar7; plVar7 = plVar7 + -1) {
+        for (; left_ptr < plVar7; plVar7 = plVar7 + -1) {
           plVar6 = plVar6 + -1;
-          lVar2 = *plVar11;
+          lVar2 = *temp_ptr1;
           lVar10 = *plVar6;
           if (*(int *)(lVar2 + 0x10) == 0) {
 LAB_180219c49:
@@ -154,10 +154,10 @@ LAB_180219c49:
               } while (uVar4 != 0);
               if (0 < (int)(bVar1 - uVar4)) break;
             }
-            plVar11 = plVar11 + -1;
-            if (plVar11 != plVar6) {
-              lVar2 = *plVar11;
-              *plVar11 = lVar10;
+            temp_ptr1 = temp_ptr1 + -1;
+            if (temp_ptr1 != plVar6) {
+              lVar2 = *temp_ptr1;
+              *temp_ptr1 = lVar10;
               *plVar6 = lVar2;
             }
           }
