@@ -1,11 +1,93 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_01_part010_sub002_sub002.c - 1 个函数
+// 99_part_01_part010_sub002_sub002.c - 文件路径构建和处理模块
+// 
+// 功能描述：
+// 该函数是一个高级文件路径构建和处理函数，主要用于生成和处理各种文件路径。
+// 支持多种文件格式和路径构建模式，包括：
+// - 文件路径的动态构建和拼接
+// - 不同文件格式的处理（如资源文件、纹理文件、配置文件等）
+// - 文件内容的读取和处理
+// - 路径参数的动态生成和配置
+//
+// 主要处理流程：
+// 1. 初始化各种参数和状态
+// 2. 根据不同的条件构建文件路径
+// 3. 处理文件内容和参数
+// 4. 生成最终的文件路径字符串
+// 5. 输出处理结果
 
-// 函数: void FUN_1800a73e0(longlong param_1,undefined8 param_2,longlong param_3,undefined1 param_4,
-void FUN_1800a73e0(longlong param_1,undefined8 param_2,longlong param_3,undefined1 param_4,
-                  undefined4 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
-                  undefined4 param_9,undefined8 param_10,longlong param_11)
+// 常量定义
+#define MAX_PATH_LENGTH           0x100    // 最大路径长度
+#define MIN_BUFFER_SIZE           0x10     // 最小缓冲区大小
+#define PATH_SEPARATOR           0x5F     // 路径分隔符 '_'
+#define DIRECTORY_SEPARATOR       0x2F     // 目录分隔符 '/'
+#define DOT_CHARACTER            0x2E     // 点字符 '.'
+#define NULL_TERMINATOR          0x00     // 空字符终止符
+#define FILE_EXTENSION_TXT       0x747874 // 文件扩展名 ".txt"
+#define FILE_EXTENSION_O         0x6F2E   // 文件扩展名 ".o"
+#define FILE_EXTENSION_LOG       0x676F6C // 文件扩展名 ".log"
+#define FILE_EXTENSION_GLO       0x6F6C67 // 文件扩展名 ".glo"
+#define FILE_EXTENSION_GL        0x6C67   // 文件扩展名 ".gl"
+
+// 内存分配类型常量
+#define MEMORY_TYPE_STRING       0x13     // 字符串内存类型
+#define MEMORY_TYPE_BINARY       0x03     // 二进制内存类型
+
+// 路径构建模式常量
+#define PATH_MODE_STANDARD       0x00     // 标准路径模式
+#define PATH_MODE_RESOURCE       0x01     // 资源路径模式
+#define PATH_MODE_TEXTURE        0x02     // 纹理路径模式
+#define PATH_MODE_CONFIG         0x03     // 配置路径模式
+#define PATH_MODE_SHADER         0x04     // 着色器路径模式
+#define PATH_MODE_ANIMATION      0x05     // 动画路径模式
+
+// 文件类型常量
+#define FILE_TYPE_RESOURCE       0x0B     // 资源文件类型
+#define FILE_TYPE_TEXTURE        0x0D     // 纹理文件类型
+#define FILE_TYPE_SHADER         0x0E     // 着色器文件类型
+#define FILE_TYPE_CONFIG         0x0C     // 配置文件类型
+
+// 字符串常量
+#define STRING_PREFIX_OPTION     0x2D20   // "- "
+#define STRING_PREFIX_EQUALS     0x3D20   // "= "
+#define STRING_PREFIX_SLASH      0x2F20   // "/ "
+#define STRING_PREFIX_BACKSLASH  0x5C20   // "\\ "
+
+// 路径构建偏移量
+#define PATH_OFFSET_NAME         0x08     // 名称偏移量
+#define PATH_OFFSET_TYPE         0x10     // 类型偏移量
+#define PATH_OFFSET_DATA         0x60     // 数据偏移量
+#define PATH_OFFSET_LENGTH       0x68     // 长度偏移量
+
+// 结构体大小
+#define STRUCTURE_SIZE          0x78     // 结构体大小（120字节）
+
+// 函数别名定义
+typedef void* (*FileProcessor)(void* context, void* data);
+typedef int (*StringComparator)(const char* str1, const char* str2);
+typedef void* (*MemoryAllocator)(size_t size, int type);
+
+/**
+ * 高级文件路径构建和处理函数
+ * 
+ * @param param_1  上下文指针，包含系统状态和配置信息
+ * @param param_2  文件路径基础字符串
+ * @param param_3  输出文件路径指针
+ * @param param_4  文件类型标识符
+ * @param param_5  路径构建模式
+ * @param param_6  附加路径参数1
+ * @param param_7  附加路径参数2
+ * @param param_8  文件扩展名参数
+ * @param param_9  文件处理选项
+ * @param param_10 配置参数
+ * @param param_11 文件系统参数
+ * 
+ * @return 无返回值，结果通过param_3参数返回
+ */
+void FUN_1800a73e0(longlong param_1, undefined8 param_2, longlong param_3, undefined1 param_4,
+                  undefined4 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8,
+                  undefined4 param_9, undefined8 param_10, longlong param_11)
 
 {
   int *piVar1;

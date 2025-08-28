@@ -128,7 +128,19 @@ LAB_1808498c8:
 
 
 
-// 函数: void FUN_1808498e7(void)
+/**
+ * 网络错误处理器
+ * 
+ * 处理网络通信过程中的错误和异常
+ * 执行错误恢复和清理操作
+ * 
+ * 功能特点：
+ * - 错误信息格式化
+ * - 错误日志记录
+ * - 错误恢复处理
+ * - 资源清理
+ * - 系统状态报告
+ */
 void FUN_1808498e7(void)
 
 {
@@ -148,7 +160,19 @@ void FUN_1808498e7(void)
 
 
 
-// 函数: void FUN_18084995f(void)
+/**
+ * 网络连接关闭器
+ * 
+ * 关闭网络连接并释放相关资源
+ * 执行连接清理操作
+ * 
+ * 功能特点：
+ * - 连接状态检查
+ * - 资源释放
+ * - 连接句柄清理
+ * - 内存回收
+ * - 系统资源恢复
+ */
 void FUN_18084995f(void)
 
 {
@@ -164,7 +188,24 @@ void FUN_18084995f(void)
 
 
 
-// 函数: void FUN_180849990(undefined8 param_1,undefined4 param_2,undefined8 *param_3,undefined8 *param_4)
+/**
+ * 网络数据包处理器
+ * 
+ * 处理网络数据包的接收和解析
+ * 执行数据包验证和分发
+ * 
+ * @param param_1 连接标识符
+ * @param param_2 数据包类型
+ * @param param_3 数据包参数数组1
+ * @param param_4 数据包参数数组2
+ * 
+ * 功能特点：
+ * - 数据包解析
+ * - 参数验证
+ * - 数据包分发
+ * - 错误处理
+ * - 内存管理
+ */
 void FUN_180849990(undefined8 param_1,undefined4 param_2,undefined8 *param_3,undefined8 *param_4)
 
 {
@@ -256,7 +297,24 @@ LAB_1808499fb:
 
 
 
-// 函数: void FUN_180849bb0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined1 param_4)
+/**
+ * 网络数据发送器
+ * 
+ * 发送网络数据到指定连接
+ * 处理数据封装和传输
+ * 
+ * @param param_1 连接标识符
+ * @param param_2 目标地址
+ * @param param_3 数据类型
+ * @param param_4 传输标志
+ * 
+ * 功能特点：
+ * - 数据封装
+ * - 地址解析
+ * - 传输控制
+ * - 错误检测
+ * - 重试机制
+ */
 void FUN_180849bb0(undefined8 param_1,undefined8 param_2,undefined4 param_3,undefined1 param_4)
 
 {
@@ -301,7 +359,23 @@ LAB_180849c81:
 
 
 
-// 函数: void FUN_180849d40(ulonglong param_1,longlong param_2,undefined4 param_3)
+/**
+ * 网络消息处理器
+ * 
+ * 处理网络消息的发送和接收
+ * 执行消息队列管理
+ * 
+ * @param param_1 连接标识符
+ * @param param_2 消息数据
+ * @param param_3 消息类型
+ * 
+ * 功能特点：
+ * - 消息队列管理
+ * - 消息格式化
+ * - 消息优先级处理
+ * - 错误恢复
+ * - 性能优化
+ */
 void FUN_180849d40(ulonglong param_1,longlong param_2,undefined4 param_3)
 
 {

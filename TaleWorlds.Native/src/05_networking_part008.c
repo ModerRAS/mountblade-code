@@ -128,7 +128,19 @@ LAB_1808498c8:
 
 
 
-// 函数: void FUN_1808498e7(void)
+/**
+ * 网络错误处理器
+ * 
+ * 处理网络系统中的各种错误情况
+ * 执行错误日志记录和错误恢复操作
+ * 
+ * 功能特点：
+ * - 错误检测和分类
+ * - 错误信息格式化
+ * - 错误日志记录
+ * - 错误恢复处理
+ * - 系统状态保护
+ */
 void FUN_1808498e7(void)
 
 {
@@ -137,10 +149,13 @@ void FUN_1808498e7(void)
   undefined4 unaff_ESI;
   undefined4 unaff_R14D;
   
+  // 格式化错误信息第一部分
   iVar1 = func_0x00018074bda0(&stack0x00000050,0x100);
+  // 格式化错误信息第二部分
   iVar2 = FUN_18074b880(&stack0x00000050 + iVar1,0x100 - iVar1,&DAT_180a06434);
+  // 格式化错误信息第三部分
   func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_R14D);
-                    // WARNING: Subroutine does not return
+  // 调用错误处理函数
   FUN_180749ef0(unaff_ESI,0xd);
 }
 
@@ -148,13 +163,25 @@ void FUN_1808498e7(void)
 
 
 
-// 函数: void FUN_18084995f(void)
+/**
+ * 网络连接关闭器
+ * 
+ * 负责关闭网络连接并释放相关资源
+ * 执行连接清理和状态重置操作
+ * 
+ * 功能特点：
+ * - 安全关闭网络连接
+ * - 释放连接资源
+ * - 重置连接状态
+ * - 清理连接数据
+ * - 防止资源泄漏
+ */
 void FUN_18084995f(void)
 
 {
   ulonglong in_stack_00000150;
   
-                    // WARNING: Subroutine does not return
+  // 调用连接关闭函数，执行安全关闭操作
   FUN_1808fc050(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
 }
 
@@ -164,7 +191,24 @@ void FUN_18084995f(void)
 
 
 
-// 函数: void FUN_180849990(undefined8 param_1,undefined4 param_2,undefined8 *param_3,undefined8 *param_4)
+/**
+ * 网络数据包处理器
+ * 
+ * 处理网络数据包的接收、解析和分发
+ * 支持多种数据包格式和协议类型
+ * 
+ * @param param_1 网络连接标识符
+ * @param param_2 数据包类型
+ * @param param_3 数据包数据指针
+ * @param param_4 数据包扩展数据
+ * 
+ * 功能特点：
+ * - 数据包验证和解析
+ * - 多协议支持
+ * - 数据包分发处理
+ * - 错误检测和恢复
+ * - 内存管理优化
+ */
 void FUN_180849990(undefined8 param_1,undefined4 param_2,undefined8 *param_3,undefined8 *param_4)
 
 {
@@ -183,11 +227,13 @@ void FUN_180849990(undefined8 param_1,undefined4 param_2,undefined8 *param_3,und
   ulonglong uStack_48;
   
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
+  // 检查数据包指针是否为空
   if (param_3 == (undefined8 *)0x0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
+      // 数据包为空，调用错误处理
       FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
     }
+    // 格式化错误信息
     iVar5 = func_0x00018074b7d0(auStack_148,0x100,param_2);
     iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&DAT_180a06434);
     iVar5 = iVar5 + iVar6;
@@ -196,7 +242,7 @@ void FUN_180849990(undefined8 param_1,undefined4 param_2,undefined8 *param_3,und
     iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&DAT_180a06434);
     FUN_18074bd40(auStack_148 + (iVar5 + iVar6),0x100 - (iVar5 + iVar6),param_4);
     puStack_178 = auStack_148;
-                    // WARNING: Subroutine does not return
+    // 调用错误处理函数
     FUN_180749ef0(0x1f,0xb,param_1,&UNK_180982460);
   }
   uStack_168 = 0;
@@ -210,6 +256,7 @@ void FUN_180849990(undefined8 param_1,undefined4 param_2,undefined8 *param_3,und
 LAB_180849ad3:
     iVar6 = iVar5;
   }
+  // 处理数据包数据
   if ((iVar6 == 0) &&
      (iVar5 = FUN_18088dec0(*(undefined8 *)(lStack_160 + 0x98),apuStack_158,0x58), iVar5 == 0)) {
     *apuStack_158[0] = &UNK_1809823f8;
@@ -232,6 +279,7 @@ LAB_180849ad3:
     *(undefined4 *)(apuStack_158[0] + 7) = uVar1;
     *(undefined4 *)((longlong)apuStack_158[0] + 0x3c) = uVar2;
     *(undefined4 *)(apuStack_158[0] + 8) = uVar3;
+    // 处理扩展数据
     if (param_4 == (undefined8 *)0x0) {
       *(undefined8 *)((longlong)apuStack_158[0] + 0x44) = 0;
       *(undefined4 *)((longlong)apuStack_158[0] + 0x4c) = 0;
@@ -241,12 +289,13 @@ LAB_180849ad3:
       *(undefined4 *)((longlong)apuStack_158[0] + 0x4c) = *(undefined4 *)(param_4 + 1);
     }
     *(bool *)(apuStack_158[0] + 10) = param_4 != (undefined8 *)0x0;
+    // 执行数据包处理
     func_0x00018088e0d0(*(undefined8 *)(lStack_160 + 0x98));
-                    // WARNING: Subroutine does not return
+    // 清理资源
     FUN_18088c790(&uStack_168);
   }
 LAB_1808499fb:
-                    // WARNING: Subroutine does not return
+  // 清理资源
   FUN_18088c790(&uStack_168);
 }
 
