@@ -153,9 +153,9 @@ typedef struct {
 
 /* 全局变量声明 */
 extern uint64_t GET_SECURITY_COOKIE();
-extern uint64_t _DAT_180c8ed18;
-extern uint64_t _DAT_180c86870;
-extern uint64_t _DAT_180d48d28;
+extern uint64_t system_memory_pool_ptr;
+extern uint64_t system_main_module_state;
+extern uint64_t system_system_config_ui;
 extern pointer global_state_3448_ptr;
 extern pointer global_state_3584_ptr;
 extern pointer global_state_3528_ptr;
@@ -365,7 +365,7 @@ void SystemDataStreamProcessor(int64_t param_1, int64_t *param_2, int32_t param_
     if (local_ulong1 == 0) {
         local_stack_158 = 0;
     } else {
-        local_stack_158 = FUN_18062b420(_DAT_180c8ed18, local_ulong1 << 8);
+        local_stack_158 = FUN_18062b420(system_memory_pool_ptr, local_ulong1 << 8);
     }
     local_int1 = FUN_1800ad760(local_ulong1 << 4);
     
@@ -518,7 +518,7 @@ resource_cleanup_handler:
                     if (*(uint16_t *)((int64_t)param_2 + 0x62) < 2) {
                         local_stack_144 = 4;
                         if (local_uint2 != 0) {
-                            local_ulong3 = FUN_18062b420(_DAT_180c8ed18, (uint64_t)local_uint2 * 8, 3);
+                            local_ulong3 = FUN_18062b420(system_memory_pool_ptr, (uint64_t)local_uint2 * 8, 3);
                         }
                         local_int4 = local_stack_128;
                         local_ulong2 = 0;
@@ -591,11 +591,11 @@ resource_cleanup_handler:
             
             /* 更新系统状态 */
             LOCK();
-            _DAT_180d48d28 = 0;
+            system_system_config_ui = 0;
             UNLOCK();
             local_result = (local_result >> 0x1f & 1U) + 2;
             if (local_result == 2) {
-                *(int64_t *)(param_5 + 0x340) = (int64_t)*(int32_t *)(_DAT_180c86870 + 0x224);
+                *(int64_t *)(param_5 + 0x340) = (int64_t)*(int32_t *)(system_main_module_state + 0x224);
             }
             
             LOCK();

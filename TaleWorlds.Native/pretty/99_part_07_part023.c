@@ -681,7 +681,7 @@ LAB_1804b2fc9:
   }
   auStackX_8[0] = func_0x0001804bb950(param_2);
   puVar6 = (uint64_t *)0x180c95e98;
-  puVar3 = _DAT_180c95ea8;
+  puVar3 = system_system_config;
   while (puVar3 != (uint64_t *)0x0) {
     if (*(uint *)(puVar3 + 4) < auStackX_8[0]) {
       puVar3 = (uint64_t *)*puVar3;

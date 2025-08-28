@@ -214,7 +214,7 @@ void FUN_18058e430(longlong *param_1,longlong param_2,longlong param_3,uint para
     *param_1 = 0;
   }
   else {
-    uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0x1f8,8,3);
+    uVar4 = FUN_18062b1e0(system_memory_pool_ptr,0x1f8,8,3);
     lVar5 = FUN_18058f390(uVar4);
     *param_1 = lVar5;
     pplStack_230 = &plStack_228;

@@ -576,7 +576,7 @@ LAB_180519e0e:
       lVar16 = (longlong)*(int *)(lVar17 + 0xf0) * 0xa0;
       if (((*(byte *)(lVar16 + 0x50 + *(longlong *)(lVar17 + 0xd0)) & 0x40) != 0) &&
          (*(char *)((longlong)*(int *)(lVar16 + 100 + *(longlong *)(lVar17 + 0xd0)) * 0x170 + 0x135
-                   + _DAT_180c95ff0) != '\0')) {
+                   + render_system_memory) != '\0')) {
         lVar16 = (longlong)*(char *)(*(longlong *)(param_1 + 0x590) + 0x25fb);
         FUN_18063b5f0(&fStack_188,(lVar16 + 0x82) * 0x10 + param_2);
         lVar17 = *(longlong *)(param_1 + 0x728);

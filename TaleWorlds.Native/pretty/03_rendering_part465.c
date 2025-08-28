@@ -512,7 +512,7 @@ void FUN_180518970(longlong param_1,longlong param_2)
                      (*(longlong *)(*(longlong *)(*(longlong *)(param_1 + 0x6d8) + 0x8a8) + 0x260) +
                      0x210) + 0xe3);
   FUN_18022a890(param_2,cVar2,*(uint64_t *)(*(longlong *)(param_1 + 0x658) + 0x208));
-  fVar17 = (float)_DAT_180c8ed38;
+  fVar17 = (float)render_system_data_memory;
   pfVar1 = (float *)(param_2 + ((longlong)cVar2 + 0x40) * 0x10);
   fVar15 = *pfVar1;
   fVar6 = pfVar1[1];

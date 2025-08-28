@@ -129,7 +129,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
         do {
           resource_manager = *resource_pool;
           if (*(longlong *)(resource_manager + 0x90) - *(longlong *)(resource_manager + 0x88) >> 3 != 0) {
-            resource_manager = *(longlong *)(_DAT_180c86870 + 0x3d8);
+            resource_manager = *(longlong *)(system_main_module_state + 0x3d8);
             if ((resource_manager == 0) ||
                ((*(int *)(resource_manager + 0x110) != 2 && ((resource_manager == 0 || (*(int *)(resource_manager + 0x110) != 3))))))
             {
@@ -143,7 +143,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
             LOCK();
             *(int32_t *)(resource_manager + 0xa8) = 0;
             UNLOCK();
-            resource_manager = *(longlong *)(_DAT_180c86870 + 0x3d8);
+            resource_manager = *(longlong *)(system_main_module_state + 0x3d8);
             
             // 设置渲染质量参数
             if ((resource_manager == 0) || (*(int *)(resource_manager + 0x110) != 1)) {
@@ -207,7 +207,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
             cleanup_callback = FUN_1803089a0;
             global_data = &unknown_var_1888_ptr;
             context_offset = param_1;
-            resource_array[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, system_allocation_flags);
+            resource_array[0] = (longlong *)FUN_18062b1e0(system_memory_pool_ptr, 0x38, 8, system_allocation_flags);
             
             // 设置资源参数
             *resource_array[0] = (longlong)batch_processor;
@@ -235,7 +235,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
       }
       
       // 执行最终初始化步骤
-      if (*(char *)(_DAT_180c86870 + 0xf9) == '\0') {
+      if (*(char *)(system_main_module_state + 0xf9) == '\0') {
         *(int32_t *)(context_size + 0x124b8) = 0;
       }
       else {
@@ -357,7 +357,7 @@ LAB_1803066f9:
         
         // 检查是否需要分配新内存
         if (*(longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8) == 0) {
-          memory_block = FUN_18062b420(_DAT_180c8ed18, 0x4000, 0x25);
+          memory_block = FUN_18062b420(system_memory_pool_ptr, 0x4000, 0x25);
           resource_manager = (longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8);
           LOCK();
           allocation_success = *resource_manager == 0;
@@ -518,7 +518,7 @@ LAB_1803066f9:
       
       // 检查是否需要分配新内存
       if (*(longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8) == 0) {
-        memory_block = FUN_18062b420(_DAT_180c8ed18, 0x4000, 0x25);
+        memory_block = FUN_18062b420(system_memory_pool_ptr, 0x4000, 0x25);
         state_manager = (longlong *)(system_context + 0x80 + (ulonglong)batch_index * 8);
         LOCK();
         allocation_success = *state_manager == 0;

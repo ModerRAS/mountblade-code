@@ -27,7 +27,7 @@ void FUN_1805963cb(float param_1,char param_2,uint64_t param_3,float param_4)
     if (fVar2 <= 0.001) {
       fVar2 = 0.001;
     }
-    *(float *)(unaff_RBX + 0x4c) = fVar2 * _DAT_180c963b4;
+    *(float *)(unaff_RBX + 0x4c) = fVar2 * render_system_config;
   }
   fVar2 = *(float *)(unaff_RDI + 0xe8);
   if (unaff_XMM14_Da < fVar2) {
@@ -162,7 +162,7 @@ void FUN_180596510(ulonglong param_1,float param_2,longlong param_3,uint *param_
     }
   }
   if (*(int *)(param_3 + 0x28) != 0) {
-    if ((*(int *)(param_3 + 0x178) == 2) || ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+    if ((*(int *)(param_3 + 0x178) == 2) || ((system_status_flag != 1 && (system_status_flag != 4)))) {
       param_4[0xc] = 0;
       param_4[0xd] = 0;
     }
@@ -214,7 +214,7 @@ void FUN_180596510(ulonglong param_1,float param_2,longlong param_3,uint *param_
   }
   if ((((*(uint *)(param_3 + 0x68) | *(uint *)(param_3 + 0x60)) >> 0x18 & 1) != 0) ||
      (0x21 < *(int *)(param_3 + 0x90))) {
-    if ((*(int *)(param_3 + 0x178) == 2) || ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+    if ((*(int *)(param_3 + 0x178) == 2) || ((system_status_flag != 1 && (system_status_flag != 4)))) {
       param_4[0xc] = 0;
       param_4[0xd] = 0;
     }
@@ -231,7 +231,7 @@ void FUN_180596510(ulonglong param_1,float param_2,longlong param_3,uint *param_
   }
   if (((param_4[0xe] & 3) != 0) && (0.0 < (float)param_4[0xf] || (float)param_4[0xf] == 0.0)) {
     fVar12 = -1.0;
-    if ((*(int *)(param_3 + 0x178) == 2) || ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+    if ((*(int *)(param_3 + 0x178) == 2) || ((system_status_flag != 1 && (system_status_flag != 4)))) {
       param_4[0xc] = 0;
       param_4[0xd] = 0;
       if (*(char *)(param_3 + 0x9a) == '\0') {
@@ -342,13 +342,13 @@ LAB_180596aa5:
       uStackX_18._0_4_ = (float)uStackX_20 * fVar5;
       uStackX_18._4_4_ = uStackX_20._4_4_ * fVar5;
     }
-    fVar9 = *(float *)(param_3 + 200) * _DAT_180c96390;
+    fVar9 = *(float *)(param_3 + 200) * render_system_config;
     fVar13 = fVar11 * fVar8 + (float)param_4[5] * fVar13;
     if (fVar13 <= 0.0) {
       fVar13 = 0.0;
     }
-    fVar11 = (_DAT_180c9638c * (float)param_4[0x1f]) / fVar9 - fVar5;
-    if (fVar13 < (1.0 - _DAT_180c9638c) * (float)param_4[0x1f]) {
+    fVar11 = (render_system_config * (float)param_4[0x1f]) / fVar9 - fVar5;
+    if (fVar13 < (1.0 - render_system_config) * (float)param_4[0x1f]) {
       fVar13 = ((fVar11 + fVar11) / (*(float *)(param_3 + 200) - fVar9)) * fVar13 + fVar5 * fVar5;
       if (fVar13 <= 0.0) {
         fVar13 = 0.0;
@@ -402,7 +402,7 @@ LAB_180596aa5:
     }
     param_1 = (ulonglong)uVar2;
     *param_4 = uVar2;
-    if ((((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) || (*(int *)(param_3 + 0x178) == 2)) &&
+    if ((((system_status_flag != 1) && (system_status_flag != 4)) || (*(int *)(param_3 + 0x178) == 2)) &&
        (((uVar2 >> 4 & 1) == 0 &&
         (*(float *)(param_3 + 0x15c) <= ABS((float)param_4[5]) &&
          ABS((float)param_4[5]) != *(float *)(param_3 + 0x15c))))) {
@@ -487,7 +487,7 @@ void FUN_180596607(ulonglong param_1,uint64_t param_2,longlong param_3,uint *par
   uint64_t uStack0000000000000030;
   
   if (!in_ZF) {
-    if ((*(int *)(param_3 + 0x178) == 2) || ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+    if ((*(int *)(param_3 + 0x178) == 2) || ((system_status_flag != 1 && (system_status_flag != 4)))) {
       param_4[0xc] = 0;
       param_4[0xd] = 0;
       param_2 = 0;
@@ -549,7 +549,7 @@ void FUN_180596607(ulonglong param_1,uint64_t param_2,longlong param_3,uint *par
   }
   if ((((*(uint *)(param_3 + 0x68) | *(uint *)(param_3 + 0x60)) >> 0x18 & 1) != 0) ||
      (0x21 < *(int *)(param_3 + 0x90))) {
-    if ((*(int *)(param_3 + 0x178) == 2) || ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+    if ((*(int *)(param_3 + 0x178) == 2) || ((system_status_flag != 1 && (system_status_flag != 4)))) {
       param_4[0xc] = 0;
       param_4[0xd] = 0;
       param_2 = 0;
@@ -568,7 +568,7 @@ void FUN_180596607(ulonglong param_1,uint64_t param_2,longlong param_3,uint *par
   }
   if (((param_4[0xe] & 3) != 0) && (0.0 < (float)param_4[0xf] || (float)param_4[0xf] == 0.0)) {
     fVar8 = -1.0;
-    if ((*(int *)(param_3 + 0x178) == 2) || ((_DAT_180c92514 != 1 && (_DAT_180c92514 != 4)))) {
+    if ((*(int *)(param_3 + 0x178) == 2) || ((system_status_flag != 1 && (system_status_flag != 4)))) {
       param_4[0xc] = 0;
       param_4[0xd] = 0;
       if (*(char *)(param_3 + 0x9a) == '\0') {
@@ -681,13 +681,13 @@ LAB_180596c90:
       *(float *)(unaff_RBP + 0x73) = fVar9;
       *(uint64_t *)(unaff_RBP + 0x6f) = *(uint64_t *)(unaff_RBP + 0x6f);
     }
-    fVar17 = *(float *)(unaff_RDI + 200) * _DAT_180c96390;
+    fVar17 = *(float *)(unaff_RDI + 200) * render_system_config;
     fVar10 = fVar10 * fVar15 * fVar2 + (float)unaff_RBX[5] * *(float *)(unaff_RBP + 0x67);
     if (fVar10 <= 0.0) {
       fVar10 = 0.0;
     }
-    fVar15 = (_DAT_180c9638c * (float)unaff_RBX[0x1f]) / fVar17 - fVar7;
-    if (fVar10 < (1.0 - _DAT_180c9638c) * (float)unaff_RBX[0x1f]) {
+    fVar15 = (render_system_config * (float)unaff_RBX[0x1f]) / fVar17 - fVar7;
+    if (fVar10 < (1.0 - render_system_config) * (float)unaff_RBX[0x1f]) {
       fVar10 = ((fVar15 + fVar15) / (*(float *)(unaff_RDI + 200) - fVar17)) * fVar10 + fVar7 * fVar7
       ;
       if (fVar10 <= 0.0) {
@@ -741,7 +741,7 @@ LAB_180596c90:
     }
     param_1 = (ulonglong)uVar3;
     *unaff_RBX = uVar3;
-    if ((((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) || (*(int *)(unaff_RDI + 0x178) == 2)) &&
+    if ((((system_status_flag != 1) && (system_status_flag != 4)) || (*(int *)(unaff_RDI + 0x178) == 2)) &&
        (((uVar3 >> 4 & 1) == 0 &&
         (*(float *)(unaff_RDI + 0x15c) <= ABS((float)unaff_RBX[5]) &&
          ABS((float)unaff_RBX[5]) != *(float *)(unaff_RDI + 0x15c))))) {

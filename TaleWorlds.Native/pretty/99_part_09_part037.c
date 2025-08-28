@@ -66,7 +66,7 @@ void FUN_1805ce220(longlong *param_1)
          (lVar3 = func_0x0001805b6e80(plVar1),
          (*(byte *)((longlong)
                     *(int *)((longlong)*(int *)(lVar3 + 0xf0) * 0xa0 + 100 +
-                            *(longlong *)(lVar3 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10)
+                            *(longlong *)(lVar3 + 0xd0)) * 0x170 + 0x140 + system_system_config) & 0x10)
          == 0)))))) {
       fVar7 = *(float *)(*param_1 + 0x2e8);
       uVar5 = *(uint *)(param_1 + 0x272) << 0xd ^ *(uint *)(param_1 + 0x272);
@@ -107,7 +107,7 @@ void FUN_1805ce220(longlong *param_1)
          (lVar3 = func_0x0001805b6e80(plVar1),
          (*(byte *)((longlong)
                     *(int *)((longlong)*(int *)(lVar3 + 0xf0) * 0xa0 + 100 +
-                            *(longlong *)(lVar3 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10)
+                            *(longlong *)(lVar3 + 0xd0)) * 0x170 + 0x140 + system_system_config) & 0x10)
          == 0)))))) {
       if (0.0 < (float)(*(longlong *)(&system_error_code + (longlong)(int)param_1[0x2df] * 8) -
                        param_1[0x2de]) * 1e-05) {
@@ -219,7 +219,7 @@ void FUN_1805ce3c5(void)
          (lVar4 = func_0x0001805b6e80(),
          (*(byte *)((longlong)
                     *(int *)((longlong)*(int *)(lVar4 + 0xf0) * 0xa0 + 100 +
-                            *(longlong *)(lVar4 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10)
+                            *(longlong *)(lVar4 + 0xd0)) * 0x170 + 0x140 + system_system_config) & 0x10)
          == 0)))))) {
       fVar7 = *(float *)(*unaff_RDI + 0x2e8);
       uVar5 = *(uint *)(unaff_RDI + 0x272) << 0xd ^ *(uint *)(unaff_RDI + 0x272);
@@ -261,7 +261,7 @@ void FUN_1805ce3c5(void)
          (lVar4 = func_0x0001805b6e80(),
          (*(byte *)((longlong)
                     *(int *)((longlong)*(int *)(lVar4 + 0xf0) * 0xa0 + 100 +
-                            *(longlong *)(lVar4 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10)
+                            *(longlong *)(lVar4 + 0xd0)) * 0x170 + 0x140 + system_system_config) & 0x10)
          == 0)))))) {
       if (unaff_XMM8_Da <
           (float)(*(longlong *)(unaff_R14 + (longlong)(int)unaff_RDI[0x2df] * 8) - unaff_RDI[0x2de])
@@ -423,7 +423,7 @@ void FUN_1805ce8c0(longlong *param_1)
       cVar2 = -1;
     }
     else {
-      cVar2 = *(char *)((longlong)iVar1 * 0x68 + 0x60 + _DAT_180c96150);
+      cVar2 = *(char *)((longlong)iVar1 * 0x68 + 0x60 + system_system_config);
     }
     if (cVar2 == '\x06') {
       if ((*(char *)((longlong)param_1 + 0x16d7) == '\0') &&
@@ -465,14 +465,14 @@ void FUN_1805ce8c0(longlong *param_1)
       fVar9 = 0.0;
       lVar3 = FUN_1805b74c0(param_1 + 1);
       iVar1 = *(int *)(*(longlong *)(lVar3 + 0x590) + 0x2450);
-      if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150) < 0x2f)) {
+      if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config) < 0x2f)) {
 LAB_1805ceb8f:
         lVar3 = FUN_1805b74c0(param_1 + 1);
         iVar1 = *(int *)(*(longlong *)(lVar3 + 0x590) + 0x2498);
-        if ((iVar1 != -1) && (0x2e < *(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150))) {
+        if ((iVar1 != -1) && (0x2e < *(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config))) {
           lVar3 = FUN_1805b74c0(param_1 + 1);
           iVar1 = *(int *)(*(longlong *)(lVar3 + 0x590) + 0x2498);
-          if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150) < 0x33)) {
+          if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config) < 0x33)) {
             lVar3 = FUN_1805b74c0(param_1 + 1);
             uVar7 = 1;
             goto LAB_1805cebf9;
@@ -482,7 +482,7 @@ LAB_1805ceb8f:
       else {
         lVar3 = FUN_1805b74c0(param_1 + 1);
         iVar1 = *(int *)(*(longlong *)(lVar3 + 0x590) + 0x2450);
-        if ((iVar1 != -1) && (0x32 < *(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150)))
+        if ((iVar1 != -1) && (0x32 < *(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config)))
         goto LAB_1805ceb8f;
         lVar3 = FUN_1805b74c0(param_1 + 1);
         uVar4 = func_0x000180534e20(*(uint64_t *)(lVar3 + 0x590),0);
@@ -517,7 +517,7 @@ LAB_1805cebf9:
     cVar2 = -1;
   }
   else {
-    cVar2 = *(char *)((longlong)iVar1 * 0x68 + 0x60 + _DAT_180c96150);
+    cVar2 = *(char *)((longlong)iVar1 * 0x68 + 0x60 + system_system_config);
   }
   if (cVar2 == '\x06') {
     if (*(char *)((longlong)param_1 + 0x16d5) == '\0') {
@@ -567,9 +567,9 @@ LAB_1805cebf9:
   }
   plVar6 = *(longlong **)(lVar3 + 0x590);
   iVar1 = (int)plVar6[0x48a];
-  lVar3 = _DAT_180c96150;
-  if ((((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150) < 0x2f)) ||
-      (0x32 < *(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150))) ||
+  lVar3 = system_system_config;
+  if ((((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config) < 0x2f)) ||
+      (0x32 < *(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config))) ||
      (uVar4 = func_0x000180534e20(plVar6,0), fVar8 = extraout_XMM0_Da, (uVar4 & 0x2000000000) == 0))
   {
     iVar1 = (int)plVar6[0x493];
@@ -626,7 +626,7 @@ void FUN_1805ce8f7(void)
       cVar2 = -1;
     }
     else {
-      cVar2 = *(char *)((longlong)iVar1 * 0x68 + 0x60 + _DAT_180c96150);
+      cVar2 = *(char *)((longlong)iVar1 * 0x68 + 0x60 + system_system_config);
     }
     if (cVar2 == '\x06') {
       if ((*(char *)((longlong)unaff_RBX + 0x16d7) == '\0') &&
@@ -668,14 +668,14 @@ void FUN_1805ce8f7(void)
       fVar9 = 0.0;
       lVar3 = FUN_1805b74c0(unaff_RBX + 1);
       iVar1 = *(int *)(*(longlong *)(lVar3 + 0x590) + 0x2450);
-      if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150) < 0x2f)) {
+      if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config) < 0x2f)) {
 LAB_1805ceb8f:
         lVar3 = FUN_1805b74c0(unaff_RBX + 1);
         iVar1 = *(int *)(*(longlong *)(lVar3 + 0x590) + 0x2498);
-        if ((iVar1 != -1) && (0x2e < *(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150))) {
+        if ((iVar1 != -1) && (0x2e < *(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config))) {
           lVar3 = FUN_1805b74c0(unaff_RBX + 1);
           iVar1 = *(int *)(*(longlong *)(lVar3 + 0x590) + 0x2498);
-          if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150) < 0x33)) {
+          if ((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config) < 0x33)) {
             lVar3 = FUN_1805b74c0(unaff_RBX + 1);
             uVar7 = 1;
             goto LAB_1805cebf9;
@@ -685,7 +685,7 @@ LAB_1805ceb8f:
       else {
         lVar3 = FUN_1805b74c0(unaff_RBX + 1);
         iVar1 = *(int *)(*(longlong *)(lVar3 + 0x590) + 0x2450);
-        if ((iVar1 != -1) && (0x32 < *(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150)))
+        if ((iVar1 != -1) && (0x32 < *(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config)))
         goto LAB_1805ceb8f;
         lVar3 = FUN_1805b74c0(unaff_RBX + 1);
         uVar4 = func_0x000180534e20(*(uint64_t *)(lVar3 + 0x590),0);
@@ -720,7 +720,7 @@ LAB_1805cebf9:
     cVar2 = -1;
   }
   else {
-    cVar2 = *(char *)((longlong)iVar1 * 0x68 + 0x60 + _DAT_180c96150);
+    cVar2 = *(char *)((longlong)iVar1 * 0x68 + 0x60 + system_system_config);
   }
   if (cVar2 == '\x06') {
     if (*(char *)((longlong)unaff_RBX + 0x16d5) == '\0') {
@@ -770,9 +770,9 @@ LAB_1805cebf9:
   }
   plVar6 = *(longlong **)(lVar3 + 0x590);
   iVar1 = (int)plVar6[0x48a];
-  lVar3 = _DAT_180c96150;
-  if ((((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150) < 0x2f)) ||
-      (0x32 < *(int *)((longlong)iVar1 * 0x68 + 0x58 + _DAT_180c96150))) ||
+  lVar3 = system_system_config;
+  if ((((iVar1 == -1) || (*(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config) < 0x2f)) ||
+      (0x32 < *(int *)((longlong)iVar1 * 0x68 + 0x58 + system_system_config))) ||
      (uVar4 = func_0x000180534e20(plVar6,0), fVar8 = extraout_XMM0_Da, (uVar4 & 0x2000000000) == 0))
   {
     iVar1 = (int)plVar6[0x493];

@@ -610,7 +610,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
     if ((RenderDataSize)(*(RenderStateHandle *)(target_ptr + RENDERING_STATE_OFFSET_22) - state_handle_3 >> 3) < data_size_2) {
         state_handle_1 = state_handle_3;
         if (param_count_1 != 0) {
-            state_handle_1 = RenderingSystem_MemoryReallocator(_DAT_180c8ed18, data_size_2 * 8, *(RenderFlagPointer)(target_ptr + RENDERING_STATE_OFFSET_23));
+            state_handle_1 = RenderingSystem_MemoryReallocator(system_memory_pool_ptr, data_size_2 * 8, *(RenderFlagPointer)(target_ptr + RENDERING_STATE_OFFSET_23));
             state_handle_3 = *state_handle_2;
             state_handle_1 = *(RenderStateHandle *)(target_ptr + RENDERING_STATE_OFFSET_21);
         }
@@ -653,7 +653,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                 comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &unknown_var_7328_ptr);
                 if (comparison_result == 0) {
                     // 类型1处理
-                    object_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_1, MEMORY_ALLOCATION_SIZE_7, 3);
+                    object_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_1, MEMORY_ALLOCATION_SIZE_7, 3);
                     object_ptr_1[1] = 0;
                     object_ptr_1[2] = 0;
                     object_ptr_1[3] = 0;
@@ -680,7 +680,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                         if (state_handle_1 == 0) {
                             state_handle_1 = 1;
                             object_ptr_1 = (RenderObjectPointer)
-                                      RenderingSystem_MemoryReallocator(_DAT_180c8ed18, state_handle_1 * 8, *(RenderFlagPointer)(target_ptr + RENDERING_STATE_OFFSET_23));
+                                      RenderingSystem_MemoryReallocator(system_memory_pool_ptr, state_handle_1 * 8, *(RenderFlagPointer)(target_ptr + RENDERING_STATE_OFFSET_23));
                             object_ptr_2 = *(RenderObjectPointer **)(target_ptr + RENDERING_STATE_OFFSET_21);
                             object_ptr_3 = (RenderObjectPointer)*state_handle_2;
                         }
@@ -688,7 +688,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                             state_handle_1 = state_handle_1 * 2;
                             if (state_handle_1 != 0) {
                                 object_ptr_1 = (RenderObjectPointer)
-                                          RenderingSystem_MemoryReallocator(_DAT_180c8ed18, state_handle_1 * 8, *(RenderFlagPointer)(target_ptr + RENDERING_STATE_OFFSET_23));
+                                          RenderingSystem_MemoryReallocator(system_memory_pool_ptr, state_handle_1 * 8, *(RenderFlagPointer)(target_ptr + RENDERING_STATE_OFFSET_23));
                                 object_ptr_2 = *(RenderObjectPointer **)(target_ptr + RENDERING_STATE_OFFSET_21);
                                 object_ptr_3 = (RenderObjectPointer)*state_handle_2;
                             }
@@ -713,7 +713,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                     comparison_result = RenderingSystem_StringComparator(flag_ptr_1, &unknown_var_7656_ptr);
                     if (comparison_result == 0) {
                         // 类型2处理
-                        stack_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_2, MEMORY_ALLOCATION_SIZE_7, 3);
+                        stack_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_2, MEMORY_ALLOCATION_SIZE_7, 3);
                         stack_ptr_1[1] = 0;
                         *stack_ptr_1 = &unknown_var_7904_ptr;
                         *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) = *(RenderStateHandle *)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) + RENDERING_SYSTEM_DATA_ALIGNMENT;
@@ -727,7 +727,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                 comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &unknown_var_7640_ptr);
                 if (comparison_result == 0) {
                     // 类型3处理
-                    object_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_3, MEMORY_ALLOCATION_SIZE_7, 3);
+                    object_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_3, MEMORY_ALLOCATION_SIZE_7, 3);
                     object_ptr_1[1] = 0;
                     object_ptr_1[2] = 0;
                     *object_ptr_1 = &unknown_var_8128_ptr;
@@ -746,7 +746,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                         if (state_handle_1 == 0) {
                             state_handle_1 = 1;
                             object_ptr_1 = (RenderObjectPointer)
-                                      RenderingSystem_MemoryReallocator(_DAT_180c8ed18, state_handle_1 * 8, *(RenderFlagPointer)(target_ptr + RENDERING_STATE_OFFSET_23));
+                                      RenderingSystem_MemoryReallocator(system_memory_pool_ptr, state_handle_1 * 8, *(RenderFlagPointer)(target_ptr + RENDERING_STATE_OFFSET_23));
                             object_ptr_2 = *(RenderObjectPointer **)(target_ptr + RENDERING_STATE_OFFSET_21);
                             object_ptr_3 = (RenderObjectPointer)*state_handle_2;
                         }
@@ -754,7 +754,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                             state_handle_1 = state_handle_1 * 2;
                             if (state_handle_1 != 0) {
                                 object_ptr_1 = (RenderObjectPointer)
-                                          RenderingSystem_MemoryReallocator(_DAT_180c8ed18, state_handle_1 * 8, *(RenderFlagPointer)(target_ptr + RENDERING_STATE_OFFSET_23));
+                                          RenderingSystem_MemoryReallocator(system_memory_pool_ptr, state_handle_1 * 8, *(RenderFlagPointer)(target_ptr + RENDERING_STATE_OFFSET_23));
                                 object_ptr_2 = *(RenderObjectPointer **)(target_ptr + RENDERING_STATE_OFFSET_21);
                                 object_ptr_3 = (RenderObjectPointer)*state_handle_2;
                             }
@@ -782,7 +782,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                 comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &unknown_var_7624_ptr);
                 if (comparison_result == 0) {
                     // 类型4处理
-                    stack_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_4, MEMORY_ALLOCATION_SIZE_7, 3);
+                    stack_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_4, MEMORY_ALLOCATION_SIZE_7, 3);
                     *stack_ptr_1 = &unknown_var_8496_ptr;
                     stack_ptr_1[1] = 0;
                     stack_ptr_1[2] = 0;
@@ -815,7 +815,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                         state_handle_1 = state_handle_3 + 1;
                     } while (state_handle_3 + 1 != DATA_PROCESSING_THRESHOLD_9);
                     stack_ptr_1 = (RenderObjectPointer)
-                              RenderingSystem_MemoryAllocator(_DAT_180c8ed18, (int)state_handle_1 + MEMORY_ALLOCATION_SIZE_5, (int)state_handle_1 + MEMORY_ALLOCATION_SIZE_6, 3);
+                              RenderingSystem_MemoryAllocator(system_memory_pool_ptr, (int)state_handle_1 + MEMORY_ALLOCATION_SIZE_5, (int)state_handle_1 + MEMORY_ALLOCATION_SIZE_6, 3);
                     stack_ptr_1[1] = 0;
                     *stack_ptr_1 = &unknown_var_8008_ptr;
                     *(RenderStateHandle)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) = *(RenderStateHandle)(source_ptr + RENDERING_SYSTEM_BASE_OFFSET) + RENDERING_SYSTEM_DATA_ALIGNMENT;
@@ -825,7 +825,7 @@ void RenderingSystem_AdvancedDataFlowProcessor(longlong target_ptr, longlong sou
                 }
                 if ((stack_value_2 == DATA_PROCESSING_THRESHOLD_7) && 
                     (comparison_result = RenderingSystem_StringComparator(stack_ptr_3, &unknown_var_7608_ptr), comparison_result == 0)) {
-                    stack_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_3, MEMORY_ALLOCATION_SIZE_7, 3);
+                    stack_ptr_1 = (RenderObjectPointer)RenderingSystem_MemoryAllocator(system_memory_pool_ptr, MEMORY_ALLOCATION_SIZE_3, MEMORY_ALLOCATION_SIZE_7, 3);
                     stack_ptr_1[1] = 0;
                     stack_ptr_1[2] = 0;
                     *stack_ptr_1 = &unknown_var_7752_ptr;

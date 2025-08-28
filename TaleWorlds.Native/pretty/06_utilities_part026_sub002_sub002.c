@@ -367,20 +367,20 @@ void Unwind_1809020f0(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49140 = 0;
+  system_config_config_data_9140 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (system_data_config_data_2240 != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(system_data_config_data_2240);
     return;
   }
   bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
-            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ system_data_config_data_2250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ system_data_config_data_2250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -394,20 +394,20 @@ void Unwind_180902100(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49148 = 0;
+  system_config_config_data_9148 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (system_data_config_data_2240 != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(system_data_config_data_2240);
     return;
   }
   bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
-            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ system_data_config_data_2250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ system_data_config_data_2250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -13934,7 +13934,7 @@ void Unwind_1809057b0(uint64_t param_1,longlong param_2)
       }
       FUN_18066c220(puVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(puVar5 + 8),
                     *(int32_t *)(puVar5 + 9),1);
-      piVar7 = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(int8_t *)((longlong)puVar5 + 0x5c));
+      piVar7 = (int *)FUN_18062b420(system_memory_pool_ptr,0x18,*(int8_t *)((longlong)puVar5 + 0x5c));
       *piVar7 = iVar6;
       piVar7[2] = 0;
       piVar7[3] = 0;
@@ -14531,7 +14531,7 @@ void Unwind_180905950(uint64_t param_1,longlong param_2)
       }
       FUN_18066c220(puVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(puVar5 + 8),
                     *(int32_t *)(puVar5 + 9),1);
-      piVar7 = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(int8_t *)((longlong)puVar5 + 0x5c));
+      piVar7 = (int *)FUN_18062b420(system_memory_pool_ptr,0x18,*(int8_t *)((longlong)puVar5 + 0x5c));
       *piVar7 = iVar6;
       piVar7[2] = 0;
       piVar7[3] = 0;
@@ -16732,7 +16732,7 @@ void Unwind_1809061f0(uint64_t param_1,longlong param_2)
 void Unwind_180906210(void)
 
 {
-  CloseHandle(_DAT_180c91900);
+  CloseHandle(system_config_data_1900);
   return;
 }
 
@@ -18518,20 +18518,20 @@ void Unwind_180906c00(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49158 = 0;
+  system_config_config_data_9158 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (system_data_config_data_2240 != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(system_data_config_data_2240);
     return;
   }
   bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
-            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ system_data_config_data_2250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ system_data_config_data_2250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -18542,7 +18542,7 @@ void Unwind_180906c00(void)
 void Unwind_180906c10(void)
 
 {
-  _DAT_180d49160 = &unknown_var_720_ptr;
+  system_config_config_data_9160 = &unknown_var_720_ptr;
   return;
 }
 
@@ -20042,18 +20042,18 @@ void Unwind_180907130(void)
   EnterCriticalSection(0x180c82210);
   uRam0000000180d49150 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (system_data_config_data_2240 != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(system_data_config_data_2240);
     return;
   }
   bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
-            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ system_data_config_data_2250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ system_data_config_data_2250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -21206,7 +21206,7 @@ void Unwind_180907750(uint64_t param_1,longlong param_2)
 void Unwind_180907770(void)
 
 {
-  _DAT_180bf64d0 = &unknown_var_720_ptr;
+  system_control_config_data_64d0 = &unknown_var_720_ptr;
   return;
 }
 
@@ -21217,7 +21217,7 @@ void Unwind_180907770(void)
 void Unwind_180907780(void)
 
 {
-  _DAT_180bf6530 = &unknown_var_720_ptr;
+  system_control_config_data_6530 = &unknown_var_720_ptr;
   return;
 }
 
@@ -21228,7 +21228,7 @@ void Unwind_180907780(void)
 void Unwind_180907790(void)
 
 {
-  _DAT_180bf6590 = &unknown_var_720_ptr;
+  system_control_config_data_6590 = &unknown_var_720_ptr;
   return;
 }
 
@@ -21239,7 +21239,7 @@ void Unwind_180907790(void)
 void Unwind_1809077a0(void)
 
 {
-  _DAT_180bf65c0 = &unknown_var_720_ptr;
+  system_control_config_data_65c0 = &unknown_var_720_ptr;
   return;
 }
 
@@ -21250,7 +21250,7 @@ void Unwind_1809077a0(void)
 void Unwind_1809077b0(void)
 
 {
-  _DAT_180bf65f0 = &unknown_var_720_ptr;
+  system_control_config_data_65f0 = &unknown_var_720_ptr;
   return;
 }
 
@@ -21261,7 +21261,7 @@ void Unwind_1809077b0(void)
 void Unwind_1809077c0(void)
 
 {
-  _DAT_180bf6620 = &unknown_var_720_ptr;
+  system_control_config_data_6620 = &unknown_var_720_ptr;
   return;
 }
 
@@ -21272,7 +21272,7 @@ void Unwind_1809077c0(void)
 void Unwind_1809077d0(void)
 
 {
-  _DAT_180bf6650 = &unknown_var_720_ptr;
+  system_control_config_data_6650 = &unknown_var_720_ptr;
   return;
 }
 
@@ -21283,7 +21283,7 @@ void Unwind_1809077d0(void)
 void Unwind_1809077e0(void)
 
 {
-  _DAT_180bf6680 = &unknown_var_720_ptr;
+  system_control_config_data_6680 = &unknown_var_720_ptr;
   return;
 }
 
@@ -21294,7 +21294,7 @@ void Unwind_1809077e0(void)
 void Unwind_1809077f0(void)
 
 {
-  _DAT_180bf66b0 = &unknown_var_720_ptr;
+  system_control_config_data_66b0 = &unknown_var_720_ptr;
   return;
 }
 
@@ -23198,20 +23198,20 @@ void Unwind_180908040(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d491f8 = 0;
+  system_config_config_data_91f8 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (system_data_config_data_2240 != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(system_data_config_data_2240);
     return;
   }
   bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
-            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ system_data_config_data_2250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ system_data_config_data_2250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -23224,15 +23224,15 @@ void Unwind_180908050(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_
 {
   longlong *plVar1;
   
-  plVar1 = _DAT_180d49200;
-  FUN_18008d1f0(&system_state_9200,_DAT_180d49200[1],param_3,param_4,0xfffffffffffffffe);
-  _DAT_180d49200[1] = (longlong)plVar1;
-  *_DAT_180d49200 = (longlong)plVar1;
-  _DAT_180d49200[2] = (longlong)plVar1;
-  _DAT_180d49208 = 0;
+  plVar1 = system_config_config_data_9200;
+  FUN_18008d1f0(&system_state_9200,system_config_config_data_9200[1],param_3,param_4,0xfffffffffffffffe);
+  system_config_config_data_9200[1] = (longlong)plVar1;
+  *system_config_config_data_9200 = (longlong)plVar1;
+  system_config_config_data_9200[2] = (longlong)plVar1;
+  system_config_config_data_9208 = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(system_config_config_data_9200,0x58);
   return;
 }
 
@@ -23245,7 +23245,7 @@ void Unwind_180908060(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(system_config_config_data_9200,0x58);
   return;
 }
 
@@ -23258,7 +23258,7 @@ void Unwind_180908070(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(system_config_config_data_9200,0x58);
   return;
 }
 
@@ -23864,7 +23864,7 @@ void Unwind_180908570(uint64_t param_1,longlong param_2)
 void Unwind_1809085a0(void)
 
 {
-  _DAT_180bf52e8 = &unknown_var_720_ptr;
+  system_control_config_data_52e8 = &unknown_var_720_ptr;
   return;
 }
 
@@ -23875,7 +23875,7 @@ void Unwind_1809085a0(void)
 void Unwind_1809085b0(void)
 
 {
-  _DAT_180bf5738 = &unknown_var_720_ptr;
+  system_control_config_data_5738 = &unknown_var_720_ptr;
   return;
 }
 
@@ -25546,20 +25546,20 @@ void Unwind_180908d30(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49210 = 0;
+  system_config_config_data_9210 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (system_data_config_data_2240 != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(system_data_config_data_2240);
     return;
   }
   bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
-            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ system_data_config_data_2250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ system_data_config_data_2250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -25570,7 +25570,7 @@ void Unwind_180908d30(void)
 void Unwind_180908d40(void)
 
 {
-  _DAT_180d49218 = &unknown_var_720_ptr;
+  system_config_config_data_9218 = &unknown_var_720_ptr;
   return;
 }
 
@@ -28779,10 +28779,10 @@ void Unwind_180909c30(uint64_t param_1,longlong param_2)
   int iVar1;
   int iVar2;
   
-  iVar1 = *(int *)(**(longlong **)(_DAT_180c82868 + 8) + 0x48);
+  iVar1 = *(int *)(**(longlong **)(system_context_ptr + 8) + 0x48);
   iVar2 = _Thrd_id();
   if (iVar2 != iVar1) {
-    _DAT_180c9105c = *(int32_t *)(param_2 + 0x90);
+    system_config_data_105c = *(int32_t *)(param_2 + 0x90);
   }
   return;
 }
@@ -30075,7 +30075,7 @@ void Unwind_18090a6a0(uint64_t param_1,longlong param_2)
 void Unwind_18090a6d0(void)
 
 {
-  _DAT_180d49240 = &unknown_var_720_ptr;
+  system_config_config_data_9240 = &unknown_var_720_ptr;
   return;
 }
 
@@ -30089,20 +30089,20 @@ void Unwind_18090a6e0(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49238 = 0;
+  system_config_config_data_9238 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (system_data_config_data_2240 != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(system_data_config_data_2240);
     return;
   }
   bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
-            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ system_data_config_data_2250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ system_data_config_data_2250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -34537,8 +34537,8 @@ void Unwind_18090c470(uint64_t param_1,longlong param_2)
 void Unwind_18090c480(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -34556,8 +34556,8 @@ void Unwind_18090c490(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x150)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -34779,8 +34779,8 @@ void Unwind_18090c540(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x180)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -34825,8 +34825,8 @@ void Unwind_18090c550(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x240)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -34873,8 +34873,8 @@ void Unwind_18090c560(uint64_t param_1,longlong param_2)
 void Unwind_18090c570(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -34901,8 +34901,8 @@ void Unwind_18090c590(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x1e0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -34949,8 +34949,8 @@ void Unwind_18090c5a0(uint64_t param_1,longlong param_2)
 void Unwind_18090c5b0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -34968,8 +34968,8 @@ void Unwind_18090c5c0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x120)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -35014,8 +35014,8 @@ void Unwind_18090c5d0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x2a0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -35053,8 +35053,8 @@ void Unwind_18090c5d0(uint64_t param_1,longlong param_2)
 void Unwind_18090c5e0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -35072,8 +35072,8 @@ void Unwind_18090c5f0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x300)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -35118,8 +35118,8 @@ void Unwind_18090c600(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x360)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -35776,8 +35776,8 @@ void Unwind_18090c9d0(uint64_t param_1,longlong param_2)
 void Unwind_18090ca00(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -35788,8 +35788,8 @@ void Unwind_18090ca00(void)
 void Unwind_18090ca10(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -35807,8 +35807,8 @@ void Unwind_18090ca20(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0xd0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -35846,8 +35846,8 @@ void Unwind_18090ca20(uint64_t param_1,longlong param_2)
 void Unwind_18090ca30(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -35865,8 +35865,8 @@ void Unwind_18090ca40(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x130)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -35904,8 +35904,8 @@ void Unwind_18090ca40(uint64_t param_1,longlong param_2)
 void Unwind_18090ca50(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -35916,8 +35916,8 @@ void Unwind_18090ca50(void)
 void Unwind_18090ca60(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -35935,8 +35935,8 @@ void Unwind_18090ca70(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 400)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -35983,8 +35983,8 @@ void Unwind_18090ca80(uint64_t param_1,longlong param_2)
 void Unwind_18090ca90(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -36002,8 +36002,8 @@ void Unwind_18090caa0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x1f0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -36050,8 +36050,8 @@ void Unwind_18090cab0(uint64_t param_1,longlong param_2)
 void Unwind_18090cac0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -36069,8 +36069,8 @@ void Unwind_18090cad0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x250)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -36117,8 +36117,8 @@ void Unwind_18090cae0(uint64_t param_1,longlong param_2)
 void Unwind_18090caf0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -36136,8 +36136,8 @@ void Unwind_18090cb00(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x2b0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -36191,8 +36191,8 @@ void Unwind_18090cb20(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x310)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -36246,8 +36246,8 @@ void Unwind_18090cb40(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x4f0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -36285,8 +36285,8 @@ void Unwind_18090cb40(uint64_t param_1,longlong param_2)
 void Unwind_18090cb50(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -36304,8 +36304,8 @@ void Unwind_18090cb60(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x370)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -36359,8 +36359,8 @@ void Unwind_18090cb80(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x3d0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -36398,8 +36398,8 @@ void Unwind_18090cb80(uint64_t param_1,longlong param_2)
 void Unwind_18090cb90(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -36419,8 +36419,8 @@ void Unwind_18090cba0(uint64_t param_1,longlong param_2)
 void Unwind_18090cbb0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -36431,8 +36431,8 @@ void Unwind_18090cbb0(void)
 void Unwind_18090cbc0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -36450,8 +36450,8 @@ void Unwind_18090cbd0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x430)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -36498,8 +36498,8 @@ void Unwind_18090cbe0(uint64_t param_1,longlong param_2)
 void Unwind_18090cbf0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -36517,8 +36517,8 @@ void Unwind_18090cc00(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x490)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -36664,8 +36664,8 @@ void Unwind_18090ccc0(uint64_t param_1,longlong param_2)
 void Unwind_18090ccd0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -36683,8 +36683,8 @@ void Unwind_18090cce0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x50)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -41956,8 +41956,8 @@ void Unwind_18090e760(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x70)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42014,8 +42014,8 @@ void Unwind_18090e7a0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x1a0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42060,8 +42060,8 @@ void Unwind_18090e7b0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0xa0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42106,8 +42106,8 @@ void Unwind_18090e7c0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x100)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42152,8 +42152,8 @@ void Unwind_18090e7d0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x60)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42198,8 +42198,8 @@ void Unwind_18090e7e0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x90)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42244,8 +42244,8 @@ void Unwind_18090e7f0(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0xf0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42290,8 +42290,8 @@ void Unwind_18090e800(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x1b0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42329,8 +42329,8 @@ void Unwind_18090e800(uint64_t param_1,longlong param_2)
 void Unwind_18090e810(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -42348,8 +42348,8 @@ void Unwind_18090e820(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x210)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42387,8 +42387,8 @@ void Unwind_18090e820(uint64_t param_1,longlong param_2)
 void Unwind_18090e830(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -42406,8 +42406,8 @@ void Unwind_18090e840(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x270)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42445,8 +42445,8 @@ void Unwind_18090e840(uint64_t param_1,longlong param_2)
 void Unwind_18090e850(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -42464,8 +42464,8 @@ void Unwind_18090e860(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x2d0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -42503,8 +42503,8 @@ void Unwind_18090e860(uint64_t param_1,longlong param_2)
 void Unwind_18090e870(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -42770,8 +42770,8 @@ void Unwind_18090e9a0(uint64_t param_1,longlong param_2)
 void Unwind_18090e9b0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  system_data_config_data_695c = system_data_config_data_695c + -1;
+  (**(code **)(*system_data_config_data_6968 + 0x20))();
   return;
 }
 
@@ -42903,8 +42903,8 @@ void Unwind_18090eb00(uint64_t param_1,longlong param_2)
   longlong lVar5;
   
   if (0 < *(int *)(param_2 + 0x140)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    lVar5 = *(longlong *)(system_message_buffer + 0x1cd8);
+    if ((*(char *)(system_parameter_buffer + 0x12e3) != '\0') || (*(char *)(system_parameter_buffer + 0x12dd) != '\0')
        ) {
       plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
       lVar1 = *plVar4;
@@ -55486,20 +55486,20 @@ void Unwind_1809127d0(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49270 = 0;
+  system_config_config_data_9270 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (system_data_config_data_2240 != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(system_data_config_data_2240);
     return;
   }
   bVar1 = (byte)GET_SECURITY_COOKIE() & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((GET_SECURITY_COOKIE() ^ _DAT_180c82250) >> bVar1 |
-            (GET_SECURITY_COOKIE() ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((GET_SECURITY_COOKIE() ^ system_data_config_data_2250) >> bVar1 |
+            (GET_SECURITY_COOKIE() ^ system_data_config_data_2250) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 

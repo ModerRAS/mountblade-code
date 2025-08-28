@@ -38,7 +38,7 @@ void FUN_18058d360(longlong *param_1)
   else {
     cVar5 = (**(code **)(*param_1 + 0xe8))();
   }
-  if ((cVar5 != '\0') && (*(char *)(_DAT_180c86878 + 0x210) == '\0')) {
+  if ((cVar5 != '\0') && (*(char *)(render_system_data_config + 0x210) == '\0')) {
     iVar9 = 0;
     plVar7 = param_1 + 0x1f;
     do {
@@ -370,7 +370,7 @@ void FUN_18058d930(longlong *param_1,longlong param_2)
   }
   else {
     if (param_1[8] == 0) {
-      lVar25 = FUN_18062b1e0(_DAT_180c8ed18,0xa8,8,3);
+      lVar25 = FUN_18062b1e0(system_memory_pool_ptr,0xa8,8,3);
                     // WARNING: Subroutine does not return
       memset(lVar25 + 0x18,0,0x90);
     }

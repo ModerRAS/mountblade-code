@@ -282,7 +282,7 @@ uint64_t * FUN_180190630(longlong *param_1,longlong param_2,uint64_t param_3,uin
       goto joined_r0x0001801906da;
     }
   }
-  lVar8 = FUN_18062b420(_DAT_180c8ed18,lVar9 * 0x348,(char)param_1[3]);
+  lVar8 = FUN_18062b420(system_memory_pool_ptr,lVar9 * 0x348,(char)param_1[3]);
   puVar6 = (uint64_t *)param_1[1];
   puVar7 = (uint64_t *)*param_1;
   lVar10 = lVar8;
@@ -345,7 +345,7 @@ void FUN_18019067c(longlong param_1)
       goto joined_r0x0001801906da;
     }
   }
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,lVar2 * 0x348,(char)unaff_RSI[3]);
+  lVar4 = FUN_18062b420(system_memory_pool_ptr,lVar2 * 0x348,(char)unaff_RSI[3]);
   unaff_RBP = unaff_RSI[1];
   unaff_RBX = *unaff_RSI;
   lVar5 = lVar4;

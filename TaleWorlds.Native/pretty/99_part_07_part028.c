@@ -364,7 +364,7 @@ LAB_1804b6fde:
       puVar7 = puVar22;
       if (uVar21 != 0) {
         puVar8 = (ulonglong *)
-                 FUN_18062b420(_DAT_180c8ed18,uVar16 * 0xa8 + 0x10,
+                 FUN_18062b420(system_memory_pool_ptr,uVar16 * 0xa8 + 0x10,
                                CONCAT71((int7)((ulonglong)pcVar18 >> 8),0x12));
         *puVar8 = uVar16 << 0x20 | 0xa8;
         puVar10 = puVar8 + 7;

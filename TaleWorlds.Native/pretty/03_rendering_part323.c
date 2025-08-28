@@ -283,7 +283,7 @@ void FUN_180438f65(void)
   *(int *)(lVar2 + 0x1570) = iVar4;
                     // WARNING: Could not recover jumptable at 0x000180438ff3. Too many branches
                     // WARNING: Treating indirect jump as call
-  (**(code **)(*_DAT_180c86878 + 0xa8))(_DAT_180c86878,iVar6);
+  (**(code **)(*render_system_data_pointer + 0xa8))(render_system_data_pointer,iVar6);
   return;
 }
 

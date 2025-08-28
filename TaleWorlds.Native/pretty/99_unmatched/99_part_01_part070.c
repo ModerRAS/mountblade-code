@@ -61,6 +61,16 @@
 #define cleanup_memory_handlers      FUN_1800e9b50    /**< 内存处理器清理函数 */
 #define cleanup_memory_handlers_fast FUN_1800e9b5a   /**< 快速内存处理器清理函数 */
 #define cleanup_memory_pool          FUN_1800e9b7d    /**< 内存池清理函数 */
+
+/**
+ * @defgroup external_functions 外部函数别名
+ * @{
+ */
+#define process_memory_data          FUN_180245b90    /**< 内存数据处理函数 */
+#define copy_memory_data             FUN_1800ea950    /**< 内存数据复制函数 */
+#define move_memory_data             FUN_1800eac80    /**< 内存数据移动函数 */
+#define allocate_system_memory       FUN_18062b420    /**< 系统内存分配函数 */
+#define free_system_memory           FUN_18064e900    /**< 系统内存释放函数 */
 /* @} */
 
 /**
@@ -125,109 +135,144 @@ void clear_memory_block_fast(void)
 
 
 
-// 函数: void empty_function(void)
-// 空函数
-// 参数: 无参数
-// 功能: 空实现函数，可能用作占位符或接口兼容
+/**
+ * @brief 空函数
+ * 
+ * 这是一个空函数，可能用于占位或作为函数指针的默认值。
+ * 在某些架构中，空函数可以用于填充函数表或作为默认回调。
+ * 
+ * @return void
+ */
 void empty_function(void)
-
 {
-  return;
+    return;
 }
 
 
 
 
 
-// 函数: void initialize_memory_structure(longlong memory_ptr, uint block_index)
-// 内存结构初始化函数
-// 参数: memory_ptr - 内存指针, block_index - 块索引
-// 功能: 初始化复杂的内存结构，设置默认值和状态标志
+/**
+ * @brief 内存结构初始化函数
+ * 
+ * 初始化复杂的内存结构，设置默认值和状态标志。
+ * 此函数负责初始化内存块的各个字段，包括状态标志、配置参数等。
+ * 
+ * @param memory_ptr 内存指针，指向内存管理结构
+ * @param block_index 块索引，指定要初始化的内存块
+ * @return void
+ * 
+ * @note 此函数使用循环初始化多个内存块
+ * @warning 初始化过程涉及大量内存操作，需要确保内存指针有效
+ * @see clear_memory_block
+ */
 void initialize_memory_structure(longlong memory_ptr, uint block_index)
-
 {
-  longlong lVar1;
-  uint64_t *puVar2;
-  uint64_t *puVar3;
-  uint uVar4;
-  ulonglong uVar5;
-  
-  uVar5 = (ulonglong)block_index;
-  if ((int)block_index < (int)(block_index + MEMORY_CHUNK_SIZE)) {
-    do {
-      puVar3 = (uint64_t *)
-               (*(longlong *)(memory_ptr + 8 + (uVar5 >> 9) * 8) +
-               (longlong)((int)uVar5 + (int)(uVar5 >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_LARGE_BLOCK_SIZE);
-      puVar3[0x11] = 0;
-      *(int32_t *)(puVar3 + 0x12) = 0x1060101;
-      *(int32_t *)((longlong)puVar3 + 0x94) = 0xff000000;
-      *(int32_t *)(puVar3 + 0x13) = 0x40300ff;
-      *(uint64_t *)((longlong)puVar3 + 0x9c) = 0x30503;
-      *(uint64_t *)((longlong)puVar3 + 0xa4) = 0;
-      *(uint64_t *)((longlong)puVar3 + 0xac) = 0;
-      *(uint64_t *)((longlong)puVar3 + 0xb4) = 0;
-      *(int32_t *)((longlong)puVar3 + 0xbc) = 0;
-      puVar3[0x18] = 0x900;
-      puVar3[0x33] = 0;
-      puVar3[0x34] = 0;
-      puVar3[0x35] = 0;
-      puVar3[0x36] = 0;
-      puVar3[0x37] = 0;
-      puVar3[0x3b] = 0;
-      puVar3[0x3c] = 0;
-      puVar3[0x3d] = 0;
-      *(int32_t *)(puVar3 + 0x3e) = 0xc;
-      puVar3[0x55] = 0;
-      puVar3[0x56] = 0;
-      puVar3[0x3f] = 0;
-      puVar3[0x40] = 0;
-      *(int32_t *)(puVar3 + 0x5c) = 0;
-      puVar3[0x50] = 0;
-      *(int32_t *)(puVar3 + 0x10) = 0;
-      puVar2 = puVar3;
-      for (lVar1 = MEMORY_ALLOC_BASE_SIZE; lVar1 != 0; lVar1 = lVar1 + -1) {
-        *puVar2 = 0;
-        puVar2 = puVar2 + 1;
-      }
-      *(int8_t *)((longlong)puVar3 + 0x321) = 0;
-      *(int32_t *)(puVar3 + 0x62) = 0;
-      *(int32_t *)(puVar3 + 0x5a) = 0;
-      puVar3[0x19] = 0x3f800000;
-      puVar3[0x1a] = 0;
-      puVar3[0x1b] = 0x3f80000000000000;
-      puVar3[0x1c] = 0;
-      puVar3[0x1d] = 0;
-      puVar3[0x1e] = 0x3f800000;
-      puVar3[0x1f] = 0;
-      puVar3[0x20] = 0x3f80000000000000;
-      puVar3[0x21] = 0x3f800000;
-      puVar3[0x22] = 0;
-      puVar3[0x23] = 0x3f80000000000000;
-      puVar3[0x24] = 0;
-      puVar3[0x25] = 0;
-      puVar3[0x26] = 0x3f800000;
-      puVar3[0x27] = 0;
-      puVar3[0x28] = 0x3f80000000000000;
-      puVar3[0x5d] = 0;
-      puVar3[0x5e] = 0;
-      puVar3[0x5b] = 0;
-      puVar3[0x51] = 0;
-      puVar3[0x52] = 0;
-      puVar3[0x53] = 0;
-      *(int32_t *)((longlong)puVar3 + 0x314) = 0;
-      puVar3[0x41] = 0;
-      puVar3[0x54] = 0;
-      puVar3[0x57] = 0;
-      *(int32_t *)((longlong)puVar3 + 0x30c) = 0xffffffff;
-      puVar3[0x58] = 0;
-      puVar3[0x59] = 0;
-      *(int8_t *)(puVar3 + 100) = 0;
-      *(int8_t *)((longlong)puVar3 + 0x322) = 0;
-      uVar4 = (int)uVar5 + 1;
-      uVar5 = (ulonglong)uVar4;
-    } while ((int)uVar4 < (int)(block_index + MEMORY_CHUNK_SIZE));
-  }
-  return;
+    longlong lVar1;
+    uint64_t *puVar2;
+    uint64_t *puVar3;
+    uint uVar4;
+    ulonglong uVar5;
+    
+    uVar5 = (ulonglong)block_index;
+    if ((int)block_index < (int)(block_index + MEMORY_CHUNK_SIZE)) {
+        do {
+            // 计算内存块地址
+            puVar3 = (uint64_t *)
+                     (*(longlong *)(memory_ptr + 8 + (uVar5 >> 9) * 8) +
+                     (longlong)((int)uVar5 + (int)(uVar5 >> 9) * -MEMORY_CHUNK_SIZE) * MEMORY_LARGE_BLOCK_SIZE);
+            
+            // 初始化基本状态字段
+            puVar3[0x11] = 0;
+            *(int32_t *)(puVar3 + 0x12) = 0x1060101;
+            *(int32_t *)((longlong)puVar3 + 0x94) = 0xff000000;
+            *(int32_t *)(puVar3 + 0x13) = 0x40300ff;
+            
+            // 初始化配置参数
+            *(uint64_t *)((longlong)puVar3 + 0x9c) = 0x30503;
+            *(uint64_t *)((longlong)puVar3 + 0xa4) = 0;
+            *(uint64_t *)((longlong)puVar3 + 0xac) = 0;
+            *(uint64_t *)((longlong)puVar3 + 0xb4) = 0;
+            *(int32_t *)((longlong)puVar3 + 0xbc) = 0;
+            
+            // 初始化数组大小字段
+            puVar3[0x18] = 0x900;
+            
+            // 清零多个数组字段
+            puVar3[0x33] = 0;
+            puVar3[0x34] = 0;
+            puVar3[0x35] = 0;
+            puVar3[0x36] = 0;
+            puVar3[0x37] = 0;
+            puVar3[0x3b] = 0;
+            puVar3[0x3c] = 0;
+            puVar3[0x3d] = 0;
+            *(int32_t *)(puVar3 + 0x3e) = 0xc;
+            puVar3[0x55] = 0;
+            puVar3[0x56] = 0;
+            puVar3[0x3f] = 0;
+            puVar3[0x40] = 0;
+            *(int32_t *)(puVar3 + 0x5c) = 0;
+            puVar3[0x50] = 0;
+            
+            // 初始化状态标志
+            *(int32_t *)(puVar3 + 0x10) = 0;
+            
+            // 批量清零内存区域
+            puVar2 = puVar3;
+            for (lVar1 = MEMORY_ALLOC_BASE_SIZE; lVar1 != 0; lVar1 = lVar1 + -1) {
+                *puVar2 = 0;
+                puVar2 = puVar2 + 1;
+            }
+            
+            // 初始化浮点参数和特殊标志
+            *(int8_t *)((longlong)puVar3 + 0x321) = 0;
+            *(int32_t *)(puVar3 + 0x62) = 0;
+            *(int32_t *)(puVar3 + 0x5a) = 0;
+            
+            // 设置浮点默认值
+            puVar3[0x19] = 0x3f800000;  // 1.0f
+            puVar3[0x1a] = 0;
+            puVar3[0x1b] = 0x3f80000000000000;  // 1.0
+            puVar3[0x1c] = 0;
+            puVar3[0x1d] = 0;
+            puVar3[0x1e] = 0x3f800000;  // 1.0f
+            puVar3[0x1f] = 0;
+            puVar3[0x20] = 0x3f80000000000000;  // 1.0
+            puVar3[0x21] = 0x3f800000;  // 1.0f
+            puVar3[0x22] = 0;
+            puVar3[0x23] = 0x3f80000000000000;  // 1.0
+            puVar3[0x24] = 0;
+            puVar3[0x25] = 0;
+            puVar3[0x26] = 0x3f800000;  // 1.0f
+            puVar3[0x27] = 0;
+            puVar3[0x28] = 0x3f80000000000000;  // 1.0
+            
+            // 清零剩余字段
+            puVar3[0x5d] = 0;
+            puVar3[0x5e] = 0;
+            puVar3[0x5b] = 0;
+            puVar3[0x51] = 0;
+            puVar3[0x52] = 0;
+            puVar3[0x53] = 0;
+            *(int32_t *)((longlong)puVar3 + 0x314) = 0;
+            puVar3[0x41] = 0;
+            puVar3[0x54] = 0;
+            puVar3[0x57] = 0;
+            
+            // 设置特殊标志位
+            *(int32_t *)((longlong)puVar3 + 0x30c) = 0xffffffff;
+            puVar3[0x58] = 0;
+            puVar3[0x59] = 0;
+            *(int8_t *)(puVar3 + 100) = 0;
+            *(int8_t *)((longlong)puVar3 + 0x322) = 0;
+            
+            // 更新循环计数器
+            uVar4 = (int)uVar5 + 1;
+            uVar5 = (ulonglong)uVar4;
+        } while ((int)uVar4 < (int)(block_index + MEMORY_CHUNK_SIZE));
+    }
+    return;
 }
 
 

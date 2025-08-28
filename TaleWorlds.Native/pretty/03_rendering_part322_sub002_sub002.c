@@ -149,7 +149,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(float *)(lVar1 + 0x1570) = fVar3;
                     // WARNING: Could not recover jumptable at 0x000180438ff3. Too many branches
                     // WARNING: Treating indirect jump as call
-      (**(code **)(*_DAT_180c86878 + 0xa8))(_DAT_180c86878,fVar11);
+      (**(code **)(*render_system_data_state + 0xa8))(render_system_data_state,fVar11);
       return;
     case 6:
       if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1330) != 0) &&
@@ -453,7 +453,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       if (param_2 <= (float)iVar6) {
         iVar6 = FUN_180438350();
         if (param_2 == (float)iVar6) {
-          FUN_180171f10(*(uint64_t *)(_DAT_180c86870 + 8),&stack0x00000018);
+          FUN_180171f10(*(uint64_t *)(system_main_module_state + 8),&stack0x00000018);
           FUN_18006b4c0(SYSTEM_STATE_MANAGER,in_stack_00000018 & 0xffffffff);
           iVar6 = (int)(in_stack_00000018 >> 0x20);
         }
@@ -983,7 +983,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
           uVar13 = *(int32_t *)(lVar1 + 0xe70);
         }
         FUN_18010d2f0(lVar1,uVar13);
-        if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != 0) {
+        if (*(int *)(render_system_data_state + 0xcb0) != 0) {
           if ((iVar6 == 0) || (iVar6 == 1)) {
             uVar9 = 0;
           }
@@ -995,7 +995,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
           }
           FUN_18010d270(lVar1,uVar9);
         }
-        if (*(int *)(_DAT_180c8a9c8 + 0xd20) != 0) {
+        if (*(int *)(render_system_data_state + 0xd20) != 0) {
           if ((iVar6 == 0) || (iVar6 == 1)) {
             uVar9 = 0;
           }
@@ -1007,7 +1007,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
           }
           FUN_18010d1f0(lVar1,uVar9);
         }
-        if (*(int *)(_DAT_180c8a9c8 + 0xd90) != 0) {
+        if (*(int *)(render_system_data_state + 0xd90) != 0) {
           if ((iVar6 == 0) || (iVar6 == 1)) {
             uVar9 = 0;
           }
@@ -1019,7 +1019,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
           }
           FUN_18010d170(lVar1,uVar9);
         }
-        if (*(int *)(_DAT_180c8a9c8 + 0xe00) != 0) {
+        if (*(int *)(render_system_data_state + 0xe00) != 0) {
           uVar9 = 1;
           if (((iVar6 != 0) && (iVar6 != 1)) &&
              ((uVar9 = uVar8, iVar6 != 2 && ((iVar6 != 3 && (iVar6 == 5)))))) {
@@ -1027,7 +1027,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
           }
           FUN_18010d0f0(lVar1,uVar9);
         }
-        if (*(int *)(_DAT_180c8a9c8 + 0xe70) != 0) {
+        if (*(int *)(render_system_data_state + 0xe70) != 0) {
           uVar9 = 0;
           if ((((iVar6 != 0) && (uVar9 = uVar10, iVar6 != 1)) && (iVar6 != 2)) &&
              ((iVar6 != 3 && (iVar6 == 5)))) {
@@ -1518,7 +1518,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(float *)(lVar1 + 0x2060) = param_2;
       return;
     case 0x3e:
-      if (*(int *)(_DAT_180c8a9c8 + 0xcb0) != 0) {
+      if (*(int *)(render_system_data_state + 0xcb0) != 0) {
         if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xf40) != 0) &&
            (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xf48))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
@@ -1536,7 +1536,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       }
       break;
     case 0x3f:
-      if (*(int *)(_DAT_180c8a9c8 + 0xd20) != 0) {
+      if (*(int *)(render_system_data_state + 0xd20) != 0) {
         if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0xfb0) != 0) &&
            (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xfb8))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
@@ -1554,7 +1554,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       }
       break;
     case 0x40:
-      if (*(int *)(_DAT_180c8a9c8 + 0xd90) != 0) {
+      if (*(int *)(render_system_data_state + 0xd90) != 0) {
         if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1020) != 0) &&
            (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1028))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
@@ -1572,7 +1572,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       }
       break;
     case 0x41:
-      if (*(int *)(_DAT_180c8a9c8 + 0xe70) != 0) {
+      if (*(int *)(render_system_data_state + 0xe70) != 0) {
         if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1100) != 0) &&
            (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1108))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
@@ -1590,7 +1590,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       }
       break;
     case 0x42:
-      if (*(int *)(_DAT_180c8a9c8 + 0xe00) != 0) {
+      if (*(int *)(render_system_data_state + 0xe00) != 0) {
         if ((*(longlong *)(SYSTEM_STATE_MANAGER + 0x1090) != 0) &&
            (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1098))(&stack0x00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {

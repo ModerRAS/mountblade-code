@@ -41,7 +41,7 @@ longlong * FUN_18039dbd0(longlong param_1,longlong *param_2,longlong param_3,uin
   uint64_t *puStackX_8;
   uint64_t *puStackX_10;
   
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x48,*(int8_t *)(param_1 + 0x28),param_4,
+  lVar3 = FUN_18062b420(system_memory_pool_ptr,0x48,*(int8_t *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
   puStackX_8 = (uint64_t *)(lVar3 + 0x20);
   *puStackX_8 = &unknown_var_720_ptr;
@@ -314,7 +314,7 @@ longlong * FUN_18039e0a0(longlong param_1,longlong *param_2)
   
   uVar9 = 0;
   plStackX_10 = param_2;
-  uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0xf0,8,3,0,0xfffffffffffffffe);
+  uVar5 = FUN_18062b1e0(system_memory_pool_ptr,0xf0,8,3,0,0xfffffffffffffffe);
   plVar6 = (longlong *)FUN_18039dda0(uVar5);
   *param_2 = (longlong)plVar6;
   if (plVar6 != (longlong *)0x0) {

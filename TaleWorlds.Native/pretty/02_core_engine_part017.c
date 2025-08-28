@@ -330,7 +330,7 @@ void FUN_1800584e0(uint64_t *param_1,longlong param_2)
     if (lVar5 == 0) goto LAB_18005856a;
   }
   puVar2 = (uint64_t *)
-           FUN_18062b420(_DAT_180c8ed18,lVar5 * 0x28,*(int8_t *)(param_1 + 3),puVar4,
+           FUN_18062b420(system_memory_pool_ptr,lVar5 * 0x28,*(int8_t *)(param_1 + 3),puVar4,
                          0xfffffffffffffffe);
   puVar7 = (uint64_t *)param_1[1];
   puVar4 = (uint64_t *)*param_1;
@@ -538,7 +538,7 @@ void FUN_1800588c0(longlong *param_1,longlong param_2,longlong param_3)
       lVar2 = 0;
     }
     else {
-      lVar2 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 5,(char)param_1[3]);
+      lVar2 = FUN_18062b420(system_memory_pool_ptr,uVar6 << 5,(char)param_1[3]);
     }
     if (param_2 != param_3) {
       lVar7 = lVar2 - param_2;
@@ -608,7 +608,7 @@ void FUN_1800588fc(longlong param_1)
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,unaff_RSI << 5,*(int8_t *)(param_1 + 0x18));
+    lVar2 = FUN_18062b420(system_memory_pool_ptr,unaff_RSI << 5,*(int8_t *)(param_1 + 0x18));
   }
   if (unaff_RBX != unaff_R15) {
     lVar4 = lVar2 - unaff_RBX;
@@ -783,7 +783,7 @@ void FUN_180058a20(longlong *param_1,longlong param_2,longlong param_3,longlong 
       uVar1 = 0;
     }
     else {
-      uVar1 = FUN_18062b420(_DAT_180c8ed18,uVar4 * 8,(char)param_1[3]);
+      uVar1 = FUN_18062b420(system_memory_pool_ptr,uVar4 * 8,(char)param_1[3]);
       lVar3 = *param_1;
     }
     if (lVar3 != param_2) {
@@ -848,7 +848,7 @@ void FUN_180058a31(longlong *param_1,longlong param_2,longlong param_3,longlong 
       uVar1 = 0;
     }
     else {
-      uVar1 = FUN_18062b420(_DAT_180c8ed18,uVar4 * 8,(char)param_1[3]);
+      uVar1 = FUN_18062b420(system_memory_pool_ptr,uVar4 * 8,(char)param_1[3]);
       lVar3 = *param_1;
     }
     if (lVar3 != param_2) {
@@ -909,7 +909,7 @@ void FUN_180058b3e(longlong param_1,longlong param_2)
     uVar1 = 0;
   }
   else {
-    uVar1 = FUN_18062b420(_DAT_180c8ed18,uVar2 * 8,(char)unaff_RDI[3]);
+    uVar1 = FUN_18062b420(system_memory_pool_ptr,uVar2 * 8,(char)unaff_RDI[3]);
     param_2 = *unaff_RDI;
   }
   if (param_2 != unaff_RSI) {

@@ -776,7 +776,7 @@ LAB_1805bc215:
               lVar13 = (longlong)*(int *)(lVar7 + 0xf0) * 0xa0;
               if ((*(byte *)(lVar13 + 0x50 + *(longlong *)(lVar7 + 0xd0)) & 0x40) != 0) {
                 if ((*(byte *)((longlong)*(int *)(lVar13 + 100 + *(longlong *)(lVar7 + 0xd0)) *
-                               0x170 + 0x140 + _DAT_180c95ff0) & 0x10) == 0) {
+                               0x170 + 0x140 + system_system_memory) & 0x10) == 0) {
                   fVar36 = fVar36 * 0.25;
                 }
                 else {
@@ -1696,7 +1696,7 @@ LAB_1805bc215:
         lVar14 = (longlong)*(int *)(lVar9 + 0xf0) * 0xa0;
         if ((*(byte *)(lVar14 + 0x50 + *(longlong *)(lVar9 + 0xd0)) & 0x40) != 0) {
           if ((*(byte *)((longlong)*(int *)(lVar14 + 100 + *(longlong *)(lVar9 + 0xd0)) * 0x170 +
-                         0x140 + _DAT_180c95ff0) & 0x10) == 0) {
+                         0x140 + system_system_memory) & 0x10) == 0) {
             fVar29 = fVar29 * 0.25;
           }
           else {
@@ -2628,7 +2628,7 @@ LAB_1805bc215:
         lVar14 = (longlong)*(int *)(lVar9 + 0xf0) * 0xa0;
         if ((*(byte *)(lVar14 + 0x50 + *(longlong *)(lVar9 + 0xd0)) & 0x40) != 0) {
           if ((*(byte *)((longlong)*(int *)(lVar14 + 100 + *(longlong *)(lVar9 + 0xd0)) * 0x170 +
-                         0x140 + _DAT_180c95ff0) & 0x10) == 0) {
+                         0x140 + system_system_memory) & 0x10) == 0) {
             fVar29 = fVar29 * 0.25;
           }
           else {

@@ -860,7 +860,7 @@ void FUN_18003ed10(void)
     strcpy_s(system_data, 0x80, &unknown_var_1824_ptr, system_config, 0xfffffffffffffffe);
     
     // 初始化系统配置
-    _DAT_180c9246c = FUN_180623800(&system_service);
+    init_system_file = FUN_180623800(&system_service);
     return;
 }
 

@@ -158,21 +158,21 @@ void * FUN_1808c7170(void)
   uint uStack_c;
   
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _DAT_180c4f4f0) {
+              0x48) < system_system_config) {
     FUN_1808fcb90(&system_ptr_f4f0);
-    if (_DAT_180c4f4f0 == -1) {
+    if (system_system_config == -1) {
       puVar2 = (int32_t *)FUN_18084da10();
       uVar1 = *puVar2;
       puVar2 = (int32_t *)FUN_18084da10();
       lRam0000000180c4f4b8 = (ulonglong)uStack_c << 0x20;
-      _DAT_180c4f4a8 = *puVar2;
-      _DAT_180c4f4b0 = 0;
-      _DAT_180c4f4c0 = 0;
-      _DAT_180c4f4d0 = 0;
+      system_system_config = *puVar2;
+      system_system_config = 0;
+      system_system_config = 0;
+      system_system_config = 0;
       uRam0000000180c4f4d8 = 0;
-      _DAT_180c4f4a0 = 0;
-      _DAT_180c4f4c8 = 0;
-      _DAT_180c4f4e0 = 0;
+      system_system_config = 0;
+      system_system_config = 0;
+      system_system_config = 0;
 
 
 
@@ -459,7 +459,7 @@ uint64_t FUN_1808c79d0(longlong param_1)
   puVar1[3] = 0;
   puVar1[4] = 0;
   puVar1[5] = 0;
-  puVar1[6] = _DAT_180bef7b8;
+  puVar1[6] = system_system_buffer_config;
   puVar1[7] = 0;
   puVar1[8] = 0;
   puVar1[9] = 0;
@@ -513,7 +513,7 @@ uint64_t FUN_1808c7a01(longlong param_1,uint64_t param_2,uint64_t param_3)
   puVar1[3] = 0;
   puVar1[4] = 0;
   puVar1[5] = 0;
-  puVar1[6] = _DAT_180bef7b8;
+  puVar1[6] = system_system_buffer_config;
   puVar1[7] = 0;
   puVar1[8] = 0;
   puVar1[9] = 0;
@@ -562,7 +562,7 @@ uint64_t FUN_1808c7a3a(uint64_t param_1,longlong param_2)
   in_RAX[3] = unaff_RDI;
   in_RAX[4] = unaff_RDI;
   in_RAX[5] = unaff_RDI;
-  *(uint64_t *)(param_2 + 0x30) = _DAT_180bef7b8;
+  *(uint64_t *)(param_2 + 0x30) = system_system_buffer_config;
   *(uint64_t *)(param_2 + 0x38) = unaff_RDI;
   *(uint64_t *)(param_2 + 0x40) = unaff_RDI;
   *(uint64_t *)(param_2 + 0x48) = unaff_RDI;

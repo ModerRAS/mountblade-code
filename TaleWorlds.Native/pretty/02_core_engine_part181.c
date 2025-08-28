@@ -269,7 +269,7 @@ FUN_1801672e0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,longlong *para
     uStack_70 = 0;
     puStack_80 = (uint64_t *)0x0;
     uStack_78 = 0;
-    puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param_4,0,0xfffffffffffffffe);
+    puVar3 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13,param_4,0,0xfffffffffffffffe);
     *(int8_t *)puVar3 = 0;
     puStack_80 = (uint64_t *)puVar3;
     uVar2 = FUN_18064e990(puVar3);
@@ -290,7 +290,7 @@ FUN_1801672e0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,longlong *para
     uStack_50 = 0;
     puStack_60 = (uint64_t *)0x0;
     uStack_58 = 0;
-    puVar4 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    puVar4 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)puVar4 = 0;
     puStack_60 = puVar4;
     uVar2 = FUN_18064e990(puVar4);
@@ -310,7 +310,7 @@ FUN_1801672e0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,longlong *para
     uStack_70 = 0;
     puStack_80 = (uint64_t *)0x0;
     uStack_78 = 0;
-    puVar4 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    puVar4 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)puVar4 = 0;
     puStack_80 = puVar4;
     uVar2 = FUN_18064e990(puVar4);
@@ -330,7 +330,7 @@ FUN_1801672e0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,longlong *para
     uStack_50 = 0;
     puStack_60 = (uint64_t *)0x0;
     uStack_58 = 0;
-    puVar4 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    puVar4 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)puVar4 = 0;
     puStack_60 = puVar4;
     uVar2 = FUN_18064e990(puVar4);
@@ -350,7 +350,7 @@ FUN_1801672e0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,longlong *para
     uStack_70 = 0;
     puStack_80 = (uint64_t *)0x0;
     uStack_78 = 0;
-    puVar4 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    puVar4 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr,0x10,0x13);
     *(int8_t *)puVar4 = 0;
     puStack_80 = puVar4;
     uVar2 = FUN_18064e990(puVar4);

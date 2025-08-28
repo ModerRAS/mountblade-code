@@ -203,7 +203,7 @@ LAB_1807c2b00:
     *(uint *)(*(longlong *)(unaff_RBX + 8) + 0x14) = uStack0000000000000034;
     *(int32_t *)(*(longlong *)(unaff_RBX + 8) + 0xc) = uStack000000000000003c;
     if (system_data_e030 == (char)unaff_R15) {
-      _DAT_180c2e978 = 0x180c2e040;
+      system_system_ui = 0x180c2e040;
       iVar4 = FUN_1807c1ec0(1);
       if ((iVar4 == 0) && (iVar4 = FUN_18080e440(), iVar4 == 0)) {
         FUN_180813210(0x20);

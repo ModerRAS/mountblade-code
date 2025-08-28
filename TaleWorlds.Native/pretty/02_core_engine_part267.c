@@ -145,7 +145,7 @@ static uint32_t g_allocation_flags = 0;        // 分配标志
 static ContainerInfo* g_active_containers = NULL; // 活动容器列表
 
 /* 函数别名定义 */
-#define AllocateMemory(size) FUN_18062b420(_DAT_180c8ed18, size, (char)g_allocation_flags)
+#define AllocateMemory(size) FUN_18062b420(system_memory_pool_ptr, size, (char)g_allocation_flags)
 #define FreeMemory(ptr) FUN_18064e900(ptr)
 #define CopyElements(dest, src, count) FUN_18022ef00(dest, src, count)
 #define MoveElements(dest, src, count) FUN_18022efb0(dest, src, count)

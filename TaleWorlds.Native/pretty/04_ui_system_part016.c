@@ -538,23 +538,23 @@ void FUN_18065cc10(longlong param_1)
   apuStack_78[7] = &unknown_var_3136_ptr;
   apuStack_78[8] = &unknown_var_3056_ptr;
   apuStack_78[9] = &unknown_var_3048_ptr;
-  plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&unknown_var_1840_ptr);
+  plVar1 = (longlong *)(**(code **)(*ui_system_data_config + 0x70))(ui_system_data_config,&unknown_var_1840_ptr);
   plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x38));
   (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
-  plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&unknown_var_1864_ptr);
+  plVar1 = (longlong *)(**(code **)(*ui_system_data_config + 0x70))(ui_system_data_config,&unknown_var_1864_ptr);
   plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x3c));
   (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
-  plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&unknown_var_1936_ptr);
+  plVar1 = (longlong *)(**(code **)(*ui_system_data_config + 0x70))(ui_system_data_config,&unknown_var_1936_ptr);
   plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x40));
   (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
-  plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&unknown_var_1952_ptr);
+  plVar1 = (longlong *)(**(code **)(*ui_system_data_config + 0x70))(ui_system_data_config,&unknown_var_1952_ptr);
   plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 0x44));
   (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
   uVar2 = 0;
   uVar4 = uVar2;
   if (0 < *(int *)(param_1 + 0x60)) {
     do {
-      plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&unknown_var_1896_ptr);
+      plVar1 = (longlong *)(**(code **)(*ui_system_data_config + 0x70))(ui_system_data_config,&unknown_var_1896_ptr);
       plVar1 = (longlong *)(**(code **)(*plVar1 + 0x28))(plVar1,*(int32_t *)(param_1 + 4));
       (**(code **)(*plVar1 + 0x70))(plVar1,&system_data_fd38);
       uVar3 = (int)uVar4 + 1;
@@ -563,7 +563,7 @@ void FUN_18065cc10(longlong param_1)
   }
   do {
     if (0.0 < *(float *)(param_1 + 0x6150 + uVar2 * 4)) {
-      plVar1 = (longlong *)(**(code **)(*_DAT_180c8ed00 + 0x70))(_DAT_180c8ed00,&unknown_var_1912_ptr);
+      plVar1 = (longlong *)(**(code **)(*ui_system_data_config + 0x70))(ui_system_data_config,&unknown_var_1912_ptr);
       plVar1 = (longlong *)(**(code **)(*plVar1 + 0x70))(plVar1,apuStack_78[uVar2]);
       plVar1 = (longlong *)(**(code **)(*plVar1 + 0x70))(plVar1,&unknown_var_1880_ptr);
       if (uVar2 == 0) {

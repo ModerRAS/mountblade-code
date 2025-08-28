@@ -113,7 +113,7 @@ void FUN_1805115e5(void)
     bVar8 = true;
 LAB_1805117e1:
     iVar10 = *(int *)(*(longlong *)(unaff_RBX + 0x590) + 0x2498);
-    if ((iVar10 == -1) || (*(int *)((longlong)iVar10 * 0x68 + 0x58 + _DAT_180c96150) != 0x21)) {
+    if ((iVar10 == -1) || (*(int *)((longlong)iVar10 * 0x68 + 0x58 + render_system_ui) != 0x21)) {
       iVar10 = *(int *)(lVar5 + 0xf0);
       iVar11 = FUN_180590480(lVar5,iVar10 + 1,uVar4,*(uint *)(unaff_RBX + 0x564) >> 0x1f ^ 1,
                              CONCAT31((int3)((uint)in_stack_00000020 >> 8),
@@ -139,7 +139,7 @@ LAB_18051181d:
     if (((-1 < *(int *)(*(longlong *)(unaff_RBX + 0x8f8) + 0xa14)) &&
         ((*(byte *)((longlong)
                     *(int *)((longlong)*(int *)(lVar5 + 0xf0) * 0xa0 + 100 +
-                            *(longlong *)(lVar5 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10)
+                            *(longlong *)(lVar5 + 0xd0)) * 0x170 + 0x140 + render_system_ui) & 0x10)
          == 0)) && (cVar9 = FUN_1805a3b20(unaff_RBX + 0x28,&stack0x000000a0), cVar9 != '\0')) {
       uVar20 = *(int32_t *)(*(longlong *)(unaff_RBX + 0x8f8) + 0xa14);
       iVar10 = func_0x000180590580(lVar5,uVar20,*(uint *)(unaff_RBX + 0x564) >> 0x1f ^ 1,

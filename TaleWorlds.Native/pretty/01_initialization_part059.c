@@ -73,7 +73,7 @@ void FUN_18007cbb0(uint param_1,longlong param_2,longlong *param_3,uint64_t para
   }
   iVar2 = *(int *)(param_2 + 0x60);
   lVar27 = (longlong)iVar2;
-  plVar10 = (longlong *)FUN_180081480(_DAT_180c8a998,&plStackX_20,iVar2 * iVar8);
+  plVar10 = (longlong *)FUN_180081480(init_system_data_config,&plStackX_20,iVar2 * iVar8);
   plVar10 = (longlong *)*plVar10;
   if (plVar10 != (longlong *)0x0) {
     (**(code **)(*plVar10 + 0x28))(plVar10);

@@ -725,7 +725,7 @@ void FUN_1802a7680(longlong param_1,uint64_t *param_2)
         uVar11 = uVar10 + 1;
         if (*(char *)(lStack_3a8 + uVar10) != (&system_data_2bf0)[uVar10]) {
           if (*pcVar1 != *pcVar2) goto LAB_1802a796e;
-          puVar7 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,&unknown_var_7715_ptr);
+          puVar7 = (uint64_t *)FUN_18062b1e0(system_memory_pool_ptr,0x18,8,&unknown_var_7715_ptr);
           *puVar7 = 0;
           puVar7[1] = 0;
           puVar12 = &system_buffer_ptr;
@@ -792,11 +792,11 @@ LAB_1802a796e:
       }
       uStack_3b8 = uVar11;
       if (uVar11 != 0) {
-        uStack_368 = _DAT_180bf5c18;
+        uStack_368 = system_system_control_memory;
         uStack_364 = uRam0000000180bf5c1c;
         uStack_360 = uRam0000000180bf5c20;
         uStack_35c = uRam0000000180bf5c24;
-        uStack_358 = _DAT_180bf5c28;
+        uStack_358 = system_system_control_memory;
         uStack_344 = 0x80;
         uStack_348 = 1;
         puStack_2b0 = auStack_340;

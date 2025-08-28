@@ -155,7 +155,7 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
     }
   }
   iVar31 = param_2 >> 2;
-  auVar6 = _DAT_180980640;
+  auVar6 = ui_system_memory_config;
                     // WARNING: Read-only address (ram,0x000180980640) is written
   for (iVar24 = (int)in_stack_00000190 >> 3; iVar24 != 0; iVar24 = iVar24 + -1) {
     auVar7 = *(int8_t (*) [32])(unaff_RDI + -0x20);
@@ -169,7 +169,7 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
     fVar23 = unaff_RBX[6];
     unaff_RDI = unaff_RDI + -0x20;
     param_4 = param_4 + -8;
-    _DAT_180980640 = auVar6;
+    ui_system_memory_config = auVar6;
     if (iVar31 != 0) {
       iVar38 = 0x800;
       iVar34 = 0x400;
@@ -298,9 +298,9 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
     in_R11 = in_R11 + iVar35;
     in_R10 = in_R10 + 8;
     in_stack_00000168 = unaff_RBX;
-    auVar6 = _DAT_180980640;
+    auVar6 = ui_system_memory_config;
   }
-  for (in_stack_00000190 = in_stack_00000190 & 7; _DAT_180980640 = auVar6, in_stack_00000190 != 0;
+  for (in_stack_00000190 = in_stack_00000190 & 7; ui_system_memory_config = auVar6, in_stack_00000190 != 0;
       in_stack_00000190 = in_stack_00000190 - 1) {
     uVar30 = *(uint *)(unaff_RDI + -4);
     fVar5 = *unaff_RBX;
@@ -319,7 +319,7 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
     }
     in_R10 = in_R10 + 1;
     unaff_RBX = unaff_RBX + 1;
-    auVar6 = _DAT_180980640;
+    auVar6 = ui_system_memory_config;
     in_stack_00000168 = unaff_RBX;
   }
   for (iVar24 = (int)in_stack_00000198 >> 3; iVar24 != 0; iVar24 = iVar24 + -1) {

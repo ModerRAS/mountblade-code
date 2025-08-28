@@ -736,7 +736,7 @@ void rendering_system_advanced_image_compressor(uint64_t param_1, uint64_t param
           FUN_18042eb70(uStack_80,uVar9,iStack_90,iStack_98);
           uVar6 = uVar5;
           iVar20 = 0;
-          if (((0 < (int)uVar9) && (iVar20 = 0, 7 < uVar9)) && (uVar6 = 0, 1 < _DAT_180bf00b0)) {
+          if (((0 < (int)uVar9) && (iVar20 = 0, 7 < uVar9)) && (uVar6 = 0, 1 < render_system_control_config)) {
             uVar7 = uVar9 & 0x80000007;
             if ((int)uVar7 < 0) {
               uVar7 = (uVar7 - 1 | 0xfffffff8) + 1;
@@ -944,7 +944,7 @@ void rendering_system_simd_optimizer(void) {
             total_sum = base_offset;
             
             // SIMD优化处理
-            if (((0 < (int)data_size) && (7 < data_size)) && (1 < _DAT_180bf00b0)) {
+            if (((0 < (int)data_size) && (7 < data_size)) && (1 < render_system_control_config)) {
                 alignment_value = data_size & 0x80000007;
                 if ((int)alignment_value < 0) {
                     alignment_value = (alignment_value - 1 | 0xfffffff8) + 1;

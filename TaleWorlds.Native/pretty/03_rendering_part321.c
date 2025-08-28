@@ -122,11 +122,11 @@ void FUN_180438c50(void)
   int32_t uStackX_c;
   
   FUN_18004a640();
-  lVar2 = _DAT_180c86938;
-  if (*(longlong *)(_DAT_180c86938 + 0x1d78) == 0) {
+  lVar2 = system_message_buffer;
+  if (*(longlong *)(system_message_buffer + 0x1d78) == 0) {
     return;
   }
-  plVar5 = (longlong *)(_DAT_180c86938 + 0x1e08);
+  plVar5 = (longlong *)(system_message_buffer + 0x1e08);
   lVar6 = 9;
   do {
     if ((longlong *)*plVar5 != (longlong *)0x0) {

@@ -358,7 +358,7 @@ void AdvancedDataAlgorithmProcessor(longlong param_1, ulonglong param_2, int *pa
     if (tempUint1 * tempInt1 == 0) {
         stackUlong7 = 0;
     } else {
-        stackUlong7 = FUN_18062b420(_DAT_180c8ed18, (ulonglong)(tempUint1 * tempInt1) << 4);
+        stackUlong7 = FUN_18062b420(system_memory_pool_ptr, (ulonglong)(tempUint1 * tempInt1) << 4);
         tempLongPtr5 = stackLongPtr3;
         param_2 = stackUlong6;
     }
@@ -421,7 +421,7 @@ void AdvancedDataAlgorithmProcessor(longlong param_1, ulonglong param_2, int *pa
                         // 执行复杂算法
                         tempInt1 = func_0x0001802a0ec0(tempInt1, tempInt1, *(ushort *)(param_2 + 0x32e), tempUlong2);
                         stackUlong4 = (ulonglong)(tempInt1 * tempUint1 + 7 >> 3);
-                        stackLong2 = FUN_18062b420(_DAT_180c8ed18, tempUlong2 * stackUlong4, 3);
+                        stackLong2 = FUN_18062b420(system_memory_pool_ptr, tempUlong2 * stackUlong4, 3);
                         *(longlong *)(tempUintPtr1 + -3) = stackLong2;
                         
                         if (tempLongPtr5 < tempLongPtr4) {
@@ -433,11 +433,11 @@ void AdvancedDataAlgorithmProcessor(longlong param_1, ulonglong param_2, int *pa
                             tempLong1 = (longlong)tempLongPtr5 - (longlong)tempLongPtr2 >> 3;
                             if (tempLong1 == 0) {
                                 tempLong1 = 1;
-                                tempLongPtr1 = (longlong *)FUN_18062b420(_DAT_180c8ed18, tempLong1 * 8, 3);
+                                tempLongPtr1 = (longlong *)FUN_18062b420(system_memory_pool_ptr, tempLong1 * 8, 3);
                             } else {
                                 tempLong1 = tempLong1 * 2;
                                 if (tempLong1 != 0) {
-                                    tempLongPtr1 = (longlong *)FUN_18062b420(_DAT_180c8ed18, tempLong1 * 8, 3);
+                                    tempLongPtr1 = (longlong *)FUN_18062b420(system_memory_pool_ptr, tempLong1 * 8, 3);
                                 } else {
                                     tempLongPtr1 = (longlong *)0x0;
                                 }
@@ -841,7 +841,7 @@ void SystemStateManager(longlong param_1)
     stackUlong3 = GET_SECURITY_COOKIE() ^ (ulonglong)stackBuffer1;
     
     // 获取线程信息
-    tempInt2 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
+    tempInt2 = *(int *)(*(longlong *)(*(longlong *)(system_context_ptr + 8) + 8) + 0x48);
     tempInt1 = _Thrd_id();
     tempInt3 = 0;
     
@@ -859,7 +859,7 @@ void SystemStateManager(longlong param_1)
         FUN_18029c9d0(*(uint64_t *)(param_1 + 0x1cd8));
     } else {
         // 子线程处理
-        FUN_18005e630(_DAT_180c82868);
+        FUN_18005e630(system_context_ptr);
         stackLongPtr1 = stackLongArray;
         stackPtr1 = &unknown_var_2816_ptr;
         stackCodePtr = FUN_1800adc50;
@@ -903,7 +903,7 @@ void SystemStateManager(longlong param_1)
                   (*(longlong **)(param_1 + 0x1d78), stackLongPtrArray[0], 0, &stackUlong1);
         
         // 分配资源
-        tempUlong = FUN_18062b1e0(_DAT_180c8ed18, 0x3b0, 0x10, 3);
+        tempUlong = FUN_18062b1e0(system_memory_pool_ptr, 0x3b0, 0x10, 3);
         tempLongPtr1 = (longlong *)FUN_18023a2e0(tempUlong, 4);
         
         if (tempLongPtr1 != (longlong *)0x0) {
@@ -936,7 +936,7 @@ void SystemStateManager(longlong param_1)
         *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x168) = *(longlong *)(param_1 + 0x121e0);
         
         // 分配和初始化资源块
-        tempUlongPtr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 3);
+        tempUlongPtr1 = (uint64_t *)FUN_18062b420(system_memory_pool_ptr, 0x10, 3);
         tempUlongPtr2 = tempUlongPtr1;
         
         // 清零资源块
@@ -955,14 +955,14 @@ void SystemStateManager(longlong param_1)
         *(int32_t *)(tempLong2 + 0x35c) = 1;
         
         // 更新系统配置
-        tempLong1 = _DAT_180c86870;
+        tempLong1 = system_main_module_state;
         tempLong2 = *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x1d8);
         
         if (tempLong2 == 0) {
             tempLong2 = 0;
-        } else if (_DAT_180c86870 != 0) {
+        } else if (system_main_module_state != 0) {
             *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x340) =
-                 (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                 (longlong)*(int *)(system_main_module_state + 0x224);
         }
         
         *(uint64_t *)(tempLong2 + 8) = stackUlong1;
@@ -981,9 +981,9 @@ void SystemStateManager(longlong param_1)
         // 执行系统初始化
         FUN_18023ce10(*(uint64_t *)(param_1 + 0x121e0));
         
-        if ((*(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x1d8) != 0) && (_DAT_180c86870 != 0)) {
+        if ((*(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x1d8) != 0) && (system_main_module_state != 0)) {
             *(longlong *)(*(longlong *)(param_1 + 0x121e0) + 0x340) =
-                 (longlong)*(int *)(_DAT_180c86870 + 0x224);
+                 (longlong)*(int *)(system_main_module_state + 0x224);
         }
         
         // 更新资源信息
@@ -1001,8 +1001,8 @@ void SystemStateManager(longlong param_1)
         
         if (tempLongPtr1 == (longlong *)0x0) {
             tempLongPtr1 = (longlong *)0x0;
-        } else if (_DAT_180c86870 != 0) {
-            *(longlong *)(tempLong2 + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
+        } else if (system_main_module_state != 0) {
+            *(longlong *)(tempLong2 + 0x340) = (longlong)*(int *)(system_main_module_state + 0x224);
             tempLong2 = *(longlong *)(param_1 + 0x121e0);
         }
         
@@ -1202,9 +1202,9 @@ void AlgorithmExecutionController(longlong param_1, int8_t *param_2)
         }
     } else {
         tempUint1 = 0;
-        if ((*(char *)(*(longlong *)(_DAT_180c86890 + 0x7ab8) + 0xd9) != '\0') && (tempInt1 - 1U < 4)) {
+        if ((*(char *)(*(longlong *)(system_parameter_buffer + 0x7ab8) + 0xd9) != '\0') && (tempInt1 - 1U < 4)) {
             tempUint1 = (int32_t)
-                    *(uint64_t *)(*(longlong *)(_DAT_180c86890 + 0x7ab8) + -8 + (longlong)tempInt1 * 0x10);
+                    *(uint64_t *)(*(longlong *)(system_parameter_buffer + 0x7ab8) + -8 + (longlong)tempInt1 * 0x10);
         }
         tempDouble = (double)log(tempUint1);
         stackFloat1 = -(float)(tempDouble * 1.4426950408889634);
