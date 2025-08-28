@@ -36,27 +36,38 @@ void render_scene_update(void)
   float fVar24;
   float unaff_XMM8_Da;
   
+  // 获取游戏场景对象指针
   lVar11 = *(longlong *)(unaff_RSI + 0x3a0);
+  // 获取场景对象计数
   iVar12 = *(int *)(lVar11 + 0x188) + -1;
+  // 如果有场景对象需要处理
   if (-1 < iVar12) {
+    // 获取对象数组指针
     plVar13 = (longlong *)(*(longlong *)(lVar11 + 400) + (longlong)iVar12 * 8);
     lVar10 = (longlong)iVar12;
     do {
+      // 检查对象状态标志：对象已激活但未完成
       if ((*(char *)(*plVar13 + 0xaf) != '\0') && (*(char *)(*plVar13 + 0xb6) == '\0')) {
+        // 找到符合条件的对象，调用处理函数
         lVar11 = func_0x000180126de0(*(undefined8 *)
                                       (*(longlong *)(lVar11 + 400) + (longlong)iVar12 * 8));
         break;
       }
+      // 移动到前一个对象
       iVar12 = iVar12 + -1;
       plVar13 = plVar13 + -1;
       bVar4 = 0 < lVar10;
       lVar10 = lVar10 + -1;
-    } while (bVar4);
+    } while (bVar4);  // 继续遍历直到处理完所有对象
   }
+  // 获取渲染上下文
   lVar11 = *(longlong *)(lVar11 + 0x2e8);
+  // 调用渲染初始化函数
   FUN_180291b40(lVar11,*(undefined8 *)(*(longlong *)(lVar11 + 0x38) + 0x18),
                 *(undefined8 *)(*(longlong *)(lVar11 + 0x38) + 0x20),0);
+  // 获取相机对象指针
   lVar10 = *(longlong *)(unaff_RSI + 0x3a8);
+  // 检查相机是否启用且与场景对象不同
   if (((*(byte *)(lVar10 + 0x432) & 1) != 0) &&
      (lVar3 = *(longlong *)(unaff_RSI + 0x3a0), lVar3 != lVar10)) {
     fVar19 = *(float *)(lVar10 + 0x40);
