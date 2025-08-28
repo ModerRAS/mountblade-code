@@ -465,7 +465,7 @@ LAB_1801732bb:
   DefWindowProcW(param_2,uStack_888,param_4,param_5);
 LAB_1801732ce:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_8d8);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_8d8);
 }
 
 
@@ -532,7 +532,7 @@ void process_mouse_movement_events(void)
   *(int32_t *)(unaff_RSI + 0xa0) = uVar4;
   DefWindowProcW();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x780) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x780) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -611,7 +611,7 @@ void process_mouse_position_delta(int64_t window_context, uint64_t window_handle
   }
   DefWindowProcW();
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x780) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x780) ^ (uint64_t)&stack0x00000000);
 }
 
 

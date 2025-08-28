@@ -1408,7 +1408,7 @@ int format_string_to_buffer(uint64_t buffer, uint64_t format, uint64_t param3, u
 // 10. FUN_1800599df - 执行内存复制操作
 // 11. FUN_180059a04 - 重置对象数据，清空相关字段
 // 12. FUN_180059a20 - 执行字符串替换操作，查找并替换子串
-// 13. FUN_180059ba0 - 释放对象引用，更新引用计数
+// 13. SystemResourceCleaner - 释放对象引用，更新引用计数
 // 14. FUN_180059bc0 - 初始化内存池结构，设置各种缓冲区
 // 15. FUN_180059ee0 - 清理对象管理器，管理器生命周期管理
 // 16. FUN_180059ee4 - 清理对象管理器变体版本
