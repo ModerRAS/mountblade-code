@@ -413,7 +413,7 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
         puVar13 = puStack_1d8;
     }
     uStack_1d0 = iVar15;
-    iVar15 = FUN_18062dee0(&uStack_160,puVar13,&UNK_180a01ff0);
+    iVar15 = SystemValidator(&uStack_160,puVar13,&UNK_180a01ff0);
     lVar17 = lStack_158;
     if (iVar15 == 0) {
         uVar7 = _ftelli64(lStack_158);
@@ -425,7 +425,7 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
         uStack_1f0 = 0;
         uStack_1e8 = 0;
         uStack_1e6 = 3;
-        FUN_180639bf0(&lStack_200,lVar8);
+        SystemBufferManager(&lStack_200,lVar8);
         fread(lStack_200,lVar8,1,lVar17);
         puStack_1a0 = &UNK_180a3c3e0;
         uStack_188 = 0;
@@ -435,7 +435,7 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
         puVar18 = (uint *)((longlong)puStack_1f8 + 8);
         if (uVar2 != 0) {
             puStack_1f8 = puVar18;
-            FUN_180628f30(&puStack_1a0,puVar18,uVar2);
+            SystemDataProcessor(&puStack_1a0,puVar18,uVar2);
             puVar18 = (uint *)((longlong)puVar18 + (ulonglong)uVar2);
         }
         iVar15 = iStack_190 + 8;
@@ -502,14 +502,14 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
                                  ((uStack_3c <= *(uint *)((longlong)puVar10 + 0x2c) &&
                                   (uStack_38._2_1_ < *(byte *)((longlong)puVar10 + 0x32))))))))))))))))))))) {
                         uStack_38 = uVar2;
-                        lVar16 = FUN_1801ea180(puVar1,puVar10,&uStack_208,&uStack_48);
+                        lVar16 = SystemSearchHandler(puVar1,puVar10,&uStack_208,&uStack_48);
                         if (lVar16 == 0) {
-                            puVar10 = (uint64_t *)FUN_1801ea730(puVar1,acStack_207,&uStack_48);
+                            puVar10 = (uint64_t *)SystemDataFinder(puVar1,acStack_207,&uStack_48);
                             puVar4 = puVar10;
                             uVar2 = uStack_38;
                             if (acStack_207[0] != '\0') {
                                 puStack_218 = &uStack_48;
-                                FUN_1801ea0a0(puVar1,&puStack_148,puVar10,0);
+                                SystemDataInserter(puVar1,&puStack_148,puVar10,0);
                                 puVar10 = puStack_148;
                                 puVar4 = puStack_148;
                                 uVar2 = uStack_38;
@@ -517,7 +517,7 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
                         }
                         else {
                             puStack_218 = &uStack_48;
-                            FUN_1801ea0a0(puVar1,&puStack_180,lVar16,uStack_208);
+                            SystemDataInserter(puVar1,&puStack_180,lVar16,uStack_208);
                             puVar10 = puStack_180;
                             puVar4 = puStack_180;
                             uVar2 = uStack_38;
@@ -589,7 +589,7 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
                     if (puVar9 == puVar1) {
                     LAB_1801c4b08:
                         puStack_218 = &uStack_1c0;
-                        puVar9 = (uint64_t *)FUN_1801e8280(puVar1,&lStack_168);
+                        puVar9 = (uint64_t *)SystemNodeManager(puVar1,&lStack_168);
                         puVar9 = (uint64_t *)*puVar9;
                     }
                     else {
