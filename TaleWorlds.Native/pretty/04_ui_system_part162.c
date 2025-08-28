@@ -759,7 +759,7 @@ static void ui_system_set_control_property(uint32_t control_id, int32_t property
         property_id = property_id;
         
         if ((*(int32_t*)(g_ui_system_context->controls[control_id].control_data + 0x100) - 0x1eU & 0xfffffffd) == 0) {
-            FUN_18075e390(control_id, 0, &temp_data);
+            UISystem_ControlPropertyHandler(control_id, 0, &temp_data);
         }
         else {
             // 创建属性设置事件
