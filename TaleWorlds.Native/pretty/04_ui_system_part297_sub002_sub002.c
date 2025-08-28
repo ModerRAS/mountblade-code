@@ -1985,7 +1985,7 @@ uint64_t FUN_180831300(uint64_t param_1,int64_t param_2)
     UISystem_MemoryDeallocator(param_1,**(uint64_t **)(param_2 + 0x70));
   }
   if (*(int *)(param_2 + 0x68) != 0) {
-    lVar1 = FUN_1807c4260(param_1,*(uint64_t *)(param_2 + 0x58),
+    lVar1 = UISystem_MemoryReallocator(param_1,*(uint64_t *)(param_2 + 0x58),
                           *(int *)(param_2 + 100) + *(int *)(param_2 + 0x68));
     *(int64_t *)(param_2 + 0x58) = lVar1;
     *(int *)(param_2 + 100) = *(int *)(param_2 + 100) + *(int *)(param_2 + 0x68);
@@ -2015,7 +2015,7 @@ uint64_t FUN_180831311(uint64_t param_1,int64_t param_2)
     UISystem_MemoryDeallocator(param_1,**(uint64_t **)(param_2 + 0x70));
   }
   if (*(int *)(param_2 + 0x68) != 0) {
-    lVar1 = FUN_1807c4260(param_1,*(uint64_t *)(param_2 + 0x58),
+    lVar1 = UISystem_MemoryReallocator(param_1,*(uint64_t *)(param_2 + 0x58),
                           *(int *)(param_2 + 100) + *(int *)(param_2 + 0x68));
     *(int64_t *)(param_2 + 0x58) = lVar1;
     *(int *)(param_2 + 100) = *(int *)(param_2 + 100) + *(int *)(param_2 + 0x68);
