@@ -91,14 +91,14 @@
 // ============================================================================
 
 typedef longlong RenderingHandle;             // 渲染句柄类型
-typedef undefined8 RenderingResourceHandle;   // 渲染资源句柄类型
-typedef undefined1 RenderingStateFlag;        // 渲染状态标志类型
+typedef uint64_t RenderingResourceHandle;   // 渲染资源句柄类型
+typedef int8_t RenderingStateFlag;        // 渲染状态标志类型
 typedef byte RenderingStatusCode;             // 渲染状态码类型
 typedef uint RenderingParamID;               // 渲染参数ID类型
 typedef ulonglong RenderingMemoryAddress;     // 渲染内存地址类型
-typedef undefined8* RenderingPointer;        // 渲染指针类型
+typedef uint64_t* RenderingPointer;        // 渲染指针类型
 typedef longlong* RenderingLongPointer;      // 渲染长整型指针类型
-typedef undefined4* RenderingFloatPointer;   // 渲染浮点型指针类型
+typedef int32_t* RenderingFloatPointer;   // 渲染浮点型指针类型
 typedef int* RenderingIntPointer;             // 渲染整型指针类型
 typedef void* RenderingVoidPointer;           // 渲染空指针类型
 
@@ -248,14 +248,14 @@ typedef struct {
 // ============================================================================
 
 // 主要函数别名
-typedef void (*RenderingSystemParameterProcessorFunc)(RenderingHandle system_handle, int param_index, int param_offset, undefined4 param_value_1, undefined4 param_value_2);
-typedef undefined1 (*RenderingSystemStateValidatorFunc)(undefined8 resource_handle, undefined4* param_data, longlong param_offset);
+typedef void (*RenderingSystemParameterProcessorFunc)(RenderingHandle system_handle, int param_index, int param_offset, int32_t param_value_1, int32_t param_value_2);
+typedef int8_t (*RenderingSystemStateValidatorFunc)(uint64_t resource_handle, int32_t* param_data, longlong param_offset);
 typedef longlong (*RenderingSystemDataProcessorFunc)(longlong data_ptr, longlong start_ptr, longlong end_ptr);
-typedef ulonglong (*RenderingSystemOptimizationEngineFunc)(longlong* state_ptr, undefined8 resource_handle, uint param_value, int threshold);
-typedef ulonglong (*RenderingSystemAdvancedProcessorFunc)(longlong* state_ptr, undefined8 resource_handle, uint param_value, longlong data_offset);
-typedef uint (*RenderingSystemResourceHandlerFunc)(int current_param, undefined8 resource_handle, int threshold, longlong data_offset);
-typedef int (*RenderingSystemMemoryManagerFunc)(int min_param, undefined8 resource_handle, longlong data_offset);
-typedef int (*RenderingSystemStateInitializerFunc)(int current_param, undefined8 resource_handle, longlong data_offset);
+typedef ulonglong (*RenderingSystemOptimizationEngineFunc)(longlong* state_ptr, uint64_t resource_handle, uint param_value, int threshold);
+typedef ulonglong (*RenderingSystemAdvancedProcessorFunc)(longlong* state_ptr, uint64_t resource_handle, uint param_value, longlong data_offset);
+typedef uint (*RenderingSystemResourceHandlerFunc)(int current_param, uint64_t resource_handle, int threshold, longlong data_offset);
+typedef int (*RenderingSystemMemoryManagerFunc)(int min_param, uint64_t resource_handle, longlong data_offset);
+typedef int (*RenderingSystemStateInitializerFunc)(int current_param, uint64_t resource_handle, longlong data_offset);
 
 // 辅助函数别名
 typedef int (*RenderingParamValidatorFunc)(RenderingParameterData* param_data);
@@ -298,13 +298,13 @@ typedef int (*RenderingOptimizationFunc)(RenderingOptimizationData* opt_data);
  * - 处理内存分配失败
  * - 恢复参数到安全值
  */
-void RenderingSystemParameterProcessor(RenderingHandle system_handle, int param_index, int param_offset, undefined4 param_value_1, undefined4 param_value_2)
+void RenderingSystemParameterProcessor(RenderingHandle system_handle, int param_index, int param_offset, int32_t param_value_1, int32_t param_value_2)
 {
     // 局部变量声明
     int validation_result;
     longlong* param_ptr;
-    undefined8 resource_value;
-    undefined4* param_data_ptr;
+    uint64_t resource_value;
+    int32_t* param_data_ptr;
     longlong current_data;
     int required_capacity;
     
@@ -328,13 +328,13 @@ void RenderingSystemParameterProcessor(RenderingHandle system_handle, int param_
     resource_value = _DAT_180c966e8;
     
     // 计算参数数据指针
-    param_data_ptr = (undefined4*)((longlong)param_offset * 0xe0 + current_data);
+    param_data_ptr = (int32_t*)((longlong)param_offset * 0xe0 + current_data);
     
     // 设置参数值
     param_data_ptr[0x36] = param_value_1;
     *param_data_ptr = param_value_2;
-    *(undefined8*)(param_data_ptr + 0x34) = resource_value;
-    *(undefined1*)(param_data_ptr + 0x37) = 1;
+    *(uint64_t*)(param_data_ptr + 0x34) = resource_value;
+    *(int8_t*)(param_data_ptr + 0x37) = 1;
     
     return;
 }
@@ -358,7 +358,7 @@ void RenderingSystemParameterProcessor(RenderingHandle system_handle, int param_
  * - param_offset: 参数偏移，用于定位特定参数
  * 
  * 返回值：
- * - undefined1: 验证结果，1表示验证成功，0表示验证失败
+ * - int8_t: 验证结果，1表示验证成功，0表示验证失败
  * 
  * 错误处理：
  * - 检查资源句柄有效性
@@ -366,10 +366,10 @@ void RenderingSystemParameterProcessor(RenderingHandle system_handle, int param_
  * - 处理验证过程中的异常
  * - 返回适当的验证结果
  */
-undefined1 RenderingSystemStateValidator(undefined8 resource_handle, undefined4* param_data, longlong param_offset)
+int8_t RenderingSystemStateValidator(uint64_t resource_handle, int32_t* param_data, longlong param_offset)
 {
     // 局部变量声明
-    undefined1 validation_result;
+    int8_t validation_result;
     
     // 执行第一级验证
     validation_result = FUN_180645fa0(resource_handle, *param_data);
@@ -467,7 +467,7 @@ longlong RenderingSystemDataProcessor(longlong data_ptr, longlong start_ptr, lon
  * - 处理优化过程中的异常
  * - 返回适当的优化结果
  */
-ulonglong RenderingSystemOptimizationEngine(longlong* state_ptr, undefined8 resource_handle, uint param_value, int threshold)
+ulonglong RenderingSystemOptimizationEngine(longlong* state_ptr, uint64_t resource_handle, uint param_value, int threshold)
 {
     // 局部变量声明
     int iVar1, iVar2, iVar3, iVar4, iVar5, iVar6, iVar7;
@@ -595,7 +595,7 @@ ulonglong RenderingSystemOptimizationEngine(longlong* state_ptr, undefined8 reso
  * - 处理计算过程中的异常
  * - 返回适当的处理结果
  */
-ulonglong RenderingSystemAdvancedProcessor(longlong* state_ptr, undefined8 resource_handle, uint param_value, int threshold)
+ulonglong RenderingSystemAdvancedProcessor(longlong* state_ptr, uint64_t resource_handle, uint param_value, int threshold)
 {
     // 局部变量声明
     int iVar1, iVar2, iVar3, iVar4, iVar5, iVar6, iVar7;
@@ -706,7 +706,7 @@ ulonglong RenderingSystemAdvancedProcessor(longlong* state_ptr, undefined8 resou
  * - 处理资源管理异常
  * - 返回适当的处理结果
  */
-uint RenderingSystemResourceHandler(int current_param, undefined8 resource_handle, int threshold, longlong data_offset)
+uint RenderingSystemResourceHandler(int current_param, uint64_t resource_handle, int threshold, longlong data_offset)
 {
     // 局部变量声明
     int iVar1, iVar2, iVar3, iVar4, iVar5, iVar6, iVar7;
@@ -808,7 +808,7 @@ uint RenderingSystemResourceHandler(int current_param, undefined8 resource_handl
  * - 处理内存管理异常
  * - 返回适当的管理结果
  */
-int RenderingSystemMemoryManager(int min_param, undefined8 resource_handle, longlong data_offset)
+int RenderingSystemMemoryManager(int min_param, uint64_t resource_handle, longlong data_offset)
 {
     // 局部变量声明
     int iVar1;
@@ -862,7 +862,7 @@ int RenderingSystemMemoryManager(int min_param, undefined8 resource_handle, long
  * - 处理状态初始化异常
  * - 返回适当的初始化结果
  */
-int RenderingSystemStateInitializer(int current_param, undefined8 resource_handle, longlong data_offset)
+int RenderingSystemStateInitializer(int current_param, uint64_t resource_handle, longlong data_offset)
 {
     // 局部变量声明
     int iVar1;

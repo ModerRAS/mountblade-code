@@ -28,27 +28,27 @@ static void* g_memory_allocator_180c8a9a8 = NULL; // 内存分配器指针
  * @param param9 额外参数3
  * @param param10 额外参数4
  */
-void process_rendering_data_advanced(undefined8 render_context, longlong data_buffer, int* count_array, 
-                                  uint element_count, float scale_x, float scale_y, undefined8 param7, 
-                                  undefined8 param8, undefined4 param9, undefined4 param10)
+void process_rendering_data_advanced(uint64_t render_context, longlong data_buffer, int* count_array, 
+                                  uint element_count, float scale_x, float scale_y, uint64_t param7, 
+                                  uint64_t param8, int32_t param9, int32_t param10)
 {
   int* piVar1;
   longlong lVar2;
-  undefined4 uVar3;
-  undefined8 uVar4;
+  int32_t uVar3;
+  uint64_t uVar4;
   longlong lVar5;
-  undefined8* puVar6;
+  uint64_t* puVar6;
   uint uVar7;
   longlong lVar8;
   longlong lVar9;
-  undefined8* puVar10;
+  uint64_t* puVar10;
   longlong lVar11;
   longlong lVar12;
-  undefined4* puVar13;
+  int32_t* puVar13;
   int iVar14;
   longlong lVar15;
   float* pfVar16;
-  undefined8* puVar17;
+  uint64_t* puVar17;
   ulonglong uVar18;
   int iVar19;
   int iVar20;
@@ -58,13 +58,13 @@ void process_rendering_data_advanced(undefined8 render_context, longlong data_bu
   int iVar24;
   int iVar25;
   int iVar26;
-  undefined1 auStack_b8[32];
-  undefined4 uStack_98;
-  undefined4 uStack_90;
+  int8_t auStack_b8[32];
+  int32_t uStack_98;
+  int32_t uStack_90;
   longlong lStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
+  uint64_t uStack_70;
+  uint64_t uStack_68;
+  uint64_t uStack_60;
   ulonglong uStack_50;
   
   // 栈保护
@@ -139,8 +139,8 @@ void process_rendering_data_advanced(undefined8 render_context, longlong data_bu
   uStack_70 = render_context;
   
   // 分配渲染处理内存
-  puVar6 = (undefined8*)func_0x000180120ce0(((longlong)iVar20 + 1) * 0x14);
-  if (puVar6 == (undefined8*)0x0) {
+  puVar6 = (uint64_t*)func_0x000180120ce0(((longlong)iVar20 + 1) * 0x14);
+  if (puVar6 == (uint64_t*)0x0) {
     // 内存分配失败处理
     FUN_1808fc050(uStack_50 ^ (ulonglong)auStack_b8);
   }
@@ -158,7 +158,7 @@ void process_rendering_data_advanced(undefined8 render_context, longlong data_bu
       iVar19 = iVar19 + iVar14;
       if (0 < iVar14) {
         pfVar16 = (float*)(lVar2 + 4);
-        puVar13 = (undefined4*)(lVar15 * 0x14 + 0x10 + (longlong)puVar6);
+        puVar13 = (int32_t*)(lVar15 * 0x14 + 0x10 + (longlong)puVar6);
         lVar8 = (longlong)(iVar14 + -1);
         lVar11 = 0;
         // 内部数据处理
@@ -200,10 +200,10 @@ void process_rendering_data_advanced(undefined8 render_context, longlong data_bu
   puVar10 = puVar6;
   if (1 < (longlong)iVar20) {
     do {
-      puVar17 = (undefined8*)((longlong)puVar10 + 0x14);
-      uVar3 = *(undefined4*)((longlong)puVar10 + 0x24);
+      puVar17 = (uint64_t*)((longlong)puVar10 + 0x14);
+      uVar3 = *(int32_t*)((longlong)puVar10 + 0x24);
       uVar4 = *puVar17;
-      uStack_60 = *(undefined8*)((longlong)puVar10 + 0x1c);
+      uStack_60 = *(uint64_t*)((longlong)puVar10 + 0x1c);
       if (0 < lVar5) {
         uStack_68._4_4_ = (float)((ulonglong)uVar4 >> 0x20);
         lVar15 = lVar5;
@@ -211,16 +211,16 @@ void process_rendering_data_advanced(undefined8 render_context, longlong data_bu
         do {
           if (*(float*)((longlong)puVar10 + 4) <= uStack_68._4_4_) break;
           lVar15 = lVar15 + -1;
-          *(undefined8*)((longlong)puVar10 + 0x14) = *puVar10;
-          *(undefined8*)((longlong)puVar10 + 0x1c) = puVar10[1];
-          *(undefined4*)((longlong)puVar10 + 0x24) = *(undefined4*)(puVar10 + 2);
-          puVar10 = (undefined8*)((longlong)puVar10 + -0x14);
+          *(uint64_t*)((longlong)puVar10 + 0x14) = *puVar10;
+          *(uint64_t*)((longlong)puVar10 + 0x1c) = puVar10[1];
+          *(int32_t*)((longlong)puVar10 + 0x24) = *(int32_t*)(puVar10 + 2);
+          puVar10 = (uint64_t*)((longlong)puVar10 + -0x14);
         } while (0 < lVar15);
         if (lVar5 != lVar15) {
-          puVar10 = (undefined8*)((longlong)puVar6 + lVar15 * 0x14);
+          puVar10 = (uint64_t*)((longlong)puVar6 + lVar15 * 0x14);
           *puVar10 = uVar4;
           puVar10[1] = uStack_60;
-          *(undefined4*)((longlong)puVar6 + lVar15 * 0x14 + 0x10) = uVar3;
+          *(int32_t*)((longlong)puVar6 + lVar15 * 0x14 + 0x10) = uVar3;
         }
       }
       lVar5 = lVar5 + 1;
@@ -256,10 +256,10 @@ void process_rendering_data_advanced(undefined8 render_context, longlong data_bu
 void process_rendering_data_variant1(float param_1)
 {
   longlong lVar1;
-  undefined8* puVar2;
+  uint64_t* puVar2;
   int iVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
+  uint64_t uVar4;
+  uint64_t uVar5;
   longlong lVar6;
   longlong lVar7;
   longlong lVar8;
@@ -268,18 +268,18 @@ void process_rendering_data_variant1(float param_1)
   longlong unaff_RSI;
   longlong lVar10;
   int* unaff_RDI;
-  undefined4* puVar11;
+  int32_t* puVar11;
   float* pfVar12;
-  undefined8* puVar13;
+  uint64_t* puVar13;
   int iVar14;
   int iVar15;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   longlong lVar16;
   int iVar17;
-  undefined4 uVar18;
+  int32_t uVar18;
   float unaff_XMM6_Da;
   longlong in_stack_00000040;
-  undefined8 in_stack_00000048;
+  uint64_t in_stack_00000048;
   float fStack0000000000000054;
   float in_stack_000000e0;
   
@@ -296,7 +296,7 @@ void process_rendering_data_variant1(float param_1)
       iVar15 = iVar15 + iVar3;
       if (0 < iVar3) {
         pfVar12 = (float*)(lVar1 + 4);
-        puVar11 = (undefined4*)(lVar16 * 0x14 + 0x10 + unaff_RBP);
+        puVar11 = (int32_t*)(lVar16 * 0x14 + 0x10 + unaff_RBP);
         lVar6 = (longlong)(iVar3 + -1);
         lVar8 = 0;
         // 内部数据处理循环
@@ -338,9 +338,9 @@ void process_rendering_data_variant1(float param_1)
   
   // 排序处理
   if (1 < (longlong)iVar17) {
-    puVar13 = (undefined8*)(unaff_RBP + 0x14);
+    puVar13 = (uint64_t*)(unaff_RBP + 0x14);
     do {
-      uVar18 = *(undefined4*)(puVar13 + 2);
+      uVar18 = *(int32_t*)(puVar13 + 2);
       uVar4 = *puVar13;
       uVar5 = puVar13[1];
       if (0 < lVar9) {
@@ -351,22 +351,22 @@ void process_rendering_data_variant1(float param_1)
         do {
           if (*(float*)(puVar2 + -2) <= fStack0000000000000054) break;
           lVar16 = lVar16 + -1;
-          *(undefined4*)puVar2 = *(undefined4*)((longlong)puVar2 + -0x14);
-          *(undefined4*)((longlong)puVar2 + 4) = *(undefined4*)(puVar2 + -2);
-          *(undefined4*)((longlong)puVar2 + 1) = *(undefined4*)((longlong)puVar2 + -0xc);
-          *(undefined4*)((longlong)puVar2 + 0xc) = *(undefined4*)(puVar2 + -1);
-          *(undefined4*)((longlong)puVar2 + 2) = *(undefined4*)((longlong)puVar2 + -4);
-          puVar2 = (undefined8*)((longlong)puVar2 + -0x14);
+          *(int32_t*)puVar2 = *(int32_t*)((longlong)puVar2 + -0x14);
+          *(int32_t*)((longlong)puVar2 + 4) = *(int32_t*)(puVar2 + -2);
+          *(int32_t*)((longlong)puVar2 + 1) = *(int32_t*)((longlong)puVar2 + -0xc);
+          *(int32_t*)((longlong)puVar2 + 0xc) = *(int32_t*)(puVar2 + -1);
+          *(int32_t*)((longlong)puVar2 + 2) = *(int32_t*)((longlong)puVar2 + -4);
+          puVar2 = (uint64_t*)((longlong)puVar2 + -0x14);
         } while (0 < lVar16);
         if (lVar9 != lVar16) {
-          puVar2 = (undefined8*)(unaff_RBP + lVar16 * 0x14);
+          puVar2 = (uint64_t*)(unaff_RBP + lVar16 * 0x14);
           *puVar2 = uVar4;
           puVar2[1] = uVar5;
-          *(undefined4*)(unaff_RBP + 0x10 + lVar16 * 0x14) = uVar18;
+          *(int32_t*)(unaff_RBP + 0x10 + lVar16 * 0x14) = uVar18;
         }
       }
       lVar9 = lVar9 + 1;
-      puVar13 = (undefined8*)((longlong)puVar13 + 0x14);
+      puVar13 = (uint64_t*)((longlong)puVar13 + 0x14);
     } while (lVar9 < iVar17);
   }
   
@@ -391,10 +391,10 @@ void process_rendering_data_variant1(float param_1)
 void process_rendering_data_variant2(float param_1)
 {
   longlong lVar1;
-  undefined8* puVar2;
+  uint64_t* puVar2;
   int iVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
+  uint64_t uVar4;
+  uint64_t uVar5;
   longlong lVar6;
   longlong lVar7;
   longlong lVar8;
@@ -403,18 +403,18 @@ void process_rendering_data_variant2(float param_1)
   longlong unaff_RSI;
   longlong lVar10;
   int* unaff_RDI;
-  undefined4* puVar11;
+  int32_t* puVar11;
   float* pfVar12;
-  undefined8* puVar13;
+  uint64_t* puVar13;
   int iVar14;
   int iVar15;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   longlong lVar16;
   int iVar17;
-  undefined4 uVar18;
+  int32_t uVar18;
   float unaff_XMM6_Da;
   longlong in_stack_00000040;
-  undefined8 in_stack_00000048;
+  uint64_t in_stack_00000048;
   float fStack0000000000000054;
   float in_stack_000000e0;
   
@@ -431,7 +431,7 @@ void process_rendering_data_variant2(float param_1)
       iVar15 = iVar15 + iVar3;
       if (0 < iVar3) {
         pfVar12 = (float*)(lVar1 + 4);
-        puVar11 = (undefined4*)(lVar16 * 0x14 + 0x10 + unaff_RBP);
+        puVar11 = (int32_t*)(lVar16 * 0x14 + 0x10 + unaff_RBP);
         lVar6 = (longlong)(iVar3 + -1);
         lVar8 = 0;
         // 内部数据处理循环
@@ -473,9 +473,9 @@ void process_rendering_data_variant2(float param_1)
   
   // 排序处理
   if (1 < (longlong)iVar17) {
-    puVar13 = (undefined8*)(unaff_RBP + 0x14);
+    puVar13 = (uint64_t*)(unaff_RBP + 0x14);
     do {
-      uVar18 = *(undefined4*)(puVar13 + 2);
+      uVar18 = *(int32_t*)(puVar13 + 2);
       uVar4 = *puVar13;
       uVar5 = puVar13[1];
       if (0 < lVar9) {
@@ -486,22 +486,22 @@ void process_rendering_data_variant2(float param_1)
         do {
           if (*(float*)(puVar2 + -2) <= fStack0000000000000054) break;
           lVar16 = lVar16 + -1;
-          *(undefined4*)puVar2 = *(undefined4*)((longlong)puVar2 + -0x14);
-          *(undefined4*)((longlong)puVar2 + 4) = *(undefined4*)(puVar2 + -2);
-          *(undefined4*)((longlong)puVar2 + 1) = *(undefined4*)((longlong)puVar2 + -0xc);
-          *(undefined4*)((longlong)puVar2 + 0xc) = *(undefined4*)(puVar2 + -1);
-          *(undefined4*)((longlong)puVar2 + 2) = *(undefined4*)((longlong)puVar2 + -4);
-          puVar2 = (undefined8*)((longlong)puVar2 + -0x14);
+          *(int32_t*)puVar2 = *(int32_t*)((longlong)puVar2 + -0x14);
+          *(int32_t*)((longlong)puVar2 + 4) = *(int32_t*)(puVar2 + -2);
+          *(int32_t*)((longlong)puVar2 + 1) = *(int32_t*)((longlong)puVar2 + -0xc);
+          *(int32_t*)((longlong)puVar2 + 0xc) = *(int32_t*)(puVar2 + -1);
+          *(int32_t*)((longlong)puVar2 + 2) = *(int32_t*)((longlong)puVar2 + -4);
+          puVar2 = (uint64_t*)((longlong)puVar2 + -0x14);
         } while (0 < lVar16);
         if (lVar9 != lVar16) {
-          puVar2 = (undefined8*)(unaff_RBP + lVar16 * 0x14);
+          puVar2 = (uint64_t*)(unaff_RBP + lVar16 * 0x14);
           *puVar2 = uVar4;
           puVar2[1] = uVar5;
-          *(undefined4*)(unaff_RBP + 0x10 + lVar16 * 0x14) = uVar18;
+          *(int32_t*)(unaff_RBP + 0x10 + lVar16 * 0x14) = uVar18;
         }
       }
       lVar9 = lVar9 + 1;
-      puVar13 = (undefined8*)((longlong)puVar13 + 0x14);
+      puVar13 = (uint64_t*)((longlong)puVar13 + 0x14);
     } while (lVar9 < iVar17);
   }
   
@@ -525,12 +525,12 @@ void process_rendering_data_variant2(float param_1)
  * @param param_2 几何数据上下文
  * @param param_3 几体缩放因子
  */
-void process_geometric_data(float param_1, undefined8 param_2, float param_3)
+void process_geometric_data(float param_1, uint64_t param_2, float param_3)
 {
-  undefined8* puVar1;
+  uint64_t* puVar1;
   int iVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
+  uint64_t uVar3;
+  uint64_t uVar4;
   longlong in_RCX;
   longlong lVar5;
   longlong lVar6;
@@ -541,17 +541,17 @@ void process_geometric_data(float param_1, undefined8 param_2, float param_3)
   longlong unaff_RSI;
   longlong lVar9;
   int* unaff_RDI;
-  undefined4* puVar10;
+  int32_t* puVar10;
   float* pfVar11;
-  undefined8* puVar12;
+  uint64_t* puVar12;
   int iVar13;
   int unaff_R12D;
   longlong unaff_R14;
   int unaff_R15D;
-  undefined4 uVar14;
+  int32_t uVar14;
   float unaff_XMM6_Da;
   longlong in_stack_00000040;
-  undefined8 in_stack_00000048;
+  uint64_t in_stack_00000048;
   float fStack0000000000000054;
   
   // 几何数据处理循环
@@ -562,7 +562,7 @@ void process_geometric_data(float param_1, undefined8 param_2, float param_3)
     unaff_R12D = unaff_R12D + iVar2;
     if (0 < iVar2) {
       pfVar11 = (float*)(lVar8 + 4);
-      puVar10 = (undefined4*)(unaff_R14 * 0x14 + 0x10 + unaff_RBP);
+      puVar10 = (int32_t*)(unaff_R14 * 0x14 + 0x10 + unaff_RBP);
       lVar5 = (longlong)(iVar2 + -1);
       lVar7 = 0;
       // 几何顶点处理
@@ -603,9 +603,9 @@ void process_geometric_data(float param_1, undefined8 param_2, float param_3)
   
   // 几何数据排序
   if (unaff_RBX < unaff_R15D) {
-    puVar12 = (undefined8*)(unaff_RBP + 0x14);
+    puVar12 = (uint64_t*)(unaff_RBP + 0x14);
     do {
-      uVar14 = *(undefined4*)(puVar12 + 2);
+      uVar14 = *(int32_t*)(puVar12 + 2);
       uVar3 = *puVar12;
       uVar4 = puVar12[1];
       if (0 < unaff_RBX) {
@@ -616,22 +616,22 @@ void process_geometric_data(float param_1, undefined8 param_2, float param_3)
         do {
           if (*(float*)(puVar1 + -2) <= fStack0000000000000054) break;
           lVar8 = lVar8 + -1;
-          *(undefined4*)puVar1 = *(undefined4*)((longlong)puVar1 + -0x14);
-          *(undefined4*)((longlong)puVar1 + 4) = *(undefined4*)(puVar1 + -2);
-          *(undefined4*)((longlong)puVar1 + 1) = *(undefined4*)((longlong)puVar1 + -0xc);
-          *(undefined4*)((longlong)puVar1 + 0xc) = *(undefined4*)(puVar1 + -1);
-          *(undefined4*)((longlong)puVar1 + 2) = *(undefined4*)((longlong)puVar1 + -4);
-          puVar1 = (undefined8*)((longlong)puVar1 + -0x14);
+          *(int32_t*)puVar1 = *(int32_t*)((longlong)puVar1 + -0x14);
+          *(int32_t*)((longlong)puVar1 + 4) = *(int32_t*)(puVar1 + -2);
+          *(int32_t*)((longlong)puVar1 + 1) = *(int32_t*)((longlong)puVar1 + -0xc);
+          *(int32_t*)((longlong)puVar1 + 0xc) = *(int32_t*)(puVar1 + -1);
+          *(int32_t*)((longlong)puVar1 + 2) = *(int32_t*)((longlong)puVar1 + -4);
+          puVar1 = (uint64_t*)((longlong)puVar1 + -0x14);
         } while (0 < lVar8);
         if (unaff_RBX != lVar8) {
-          puVar1 = (undefined8*)(unaff_RBP + lVar8 * 0x14);
+          puVar1 = (uint64_t*)(unaff_RBP + lVar8 * 0x14);
           *puVar1 = uVar3;
           puVar1[1] = uVar4;
-          *(undefined4*)(unaff_RBP + 0x10 + lVar8 * 0x14) = uVar14;
+          *(int32_t*)(unaff_RBP + 0x10 + lVar8 * 0x14) = uVar14;
         }
       }
       unaff_RBX = unaff_RBX + 1;
-      puVar12 = (undefined8*)((longlong)puVar12 + 0x14);
+      puVar12 = (uint64_t*)((longlong)puVar12 + 0x14);
     } while (unaff_RBX < unaff_R15D);
   }
   
@@ -653,17 +653,17 @@ void process_geometric_data(float param_1, undefined8 param_2, float param_3)
  * 
  * @param param_1 排序参数
  */
-void process_data_sorting(undefined4 param_1)
+void process_data_sorting(int32_t param_1)
 {
-  undefined8* puVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
+  uint64_t* puVar1;
+  uint64_t uVar2;
+  uint64_t uVar3;
   longlong lVar4;
   longlong unaff_RBX;
   longlong unaff_RBP;
-  undefined8* puVar5;
+  uint64_t* puVar5;
   int unaff_R15D;
-  undefined4 uVar6;
+  int32_t uVar6;
   float fStack0000000000000054;
   
   // 预处理数据
@@ -671,9 +671,9 @@ void process_data_sorting(undefined4 param_1)
   
   // 排序处理
   if (unaff_RBX < unaff_R15D) {
-    puVar5 = (undefined8*)(unaff_RBP + 0x14);
+    puVar5 = (uint64_t*)(unaff_RBP + 0x14);
     do {
-      uVar6 = *(undefined4*)(puVar5 + 2);
+      uVar6 = *(int32_t*)(puVar5 + 2);
       uVar2 = *puVar5;
       uVar3 = puVar5[1];
       if (0 < unaff_RBX) {
@@ -684,22 +684,22 @@ void process_data_sorting(undefined4 param_1)
         do {
           if (*(float*)(puVar1 + -2) <= fStack0000000000000054) break;
           lVar4 = lVar4 + -1;
-          *(undefined4*)puVar1 = *(undefined4*)((longlong)puVar1 + -0x14);
-          *(undefined4*)((longlong)puVar1 + 4) = *(undefined4*)(puVar1 + -2);
-          *(undefined4*)((longlong)puVar1 + 1) = *(undefined4*)((longlong)puVar1 + -0xc);
-          *(undefined4*)((longlong)puVar1 + 0xc) = *(undefined4*)(puVar1 + -1);
-          *(undefined4*)((longlong)puVar1 + 2) = *(undefined4*)((longlong)puVar1 + -4);
-          puVar1 = (undefined8*)((longlong)puVar1 + -0x14);
+          *(int32_t*)puVar1 = *(int32_t*)((longlong)puVar1 + -0x14);
+          *(int32_t*)((longlong)puVar1 + 4) = *(int32_t*)(puVar1 + -2);
+          *(int32_t*)((longlong)puVar1 + 1) = *(int32_t*)((longlong)puVar1 + -0xc);
+          *(int32_t*)((longlong)puVar1 + 0xc) = *(int32_t*)(puVar1 + -1);
+          *(int32_t*)((longlong)puVar1 + 2) = *(int32_t*)((longlong)puVar1 + -4);
+          puVar1 = (uint64_t*)((longlong)puVar1 + -0x14);
         } while (0 < lVar4);
         if (unaff_RBX != lVar4) {
-          puVar1 = (undefined8*)(unaff_RBP + lVar4 * 0x14);
+          puVar1 = (uint64_t*)(unaff_RBP + lVar4 * 0x14);
           *puVar1 = uVar2;
           puVar1[1] = uVar3;
-          *(undefined4*)(unaff_RBP + 0x10 + lVar4 * 0x14) = uVar6;
+          *(int32_t*)(unaff_RBP + 0x10 + lVar4 * 0x14) = uVar6;
         }
       }
       unaff_RBX = unaff_RBX + 1;
-      puVar5 = (undefined8*)((longlong)puVar5 + 0x14);
+      puVar5 = (uint64_t*)((longlong)puVar5 + 0x14);
     } while (unaff_RBX < unaff_R15D);
   }
   
@@ -722,25 +722,25 @@ void process_data_sorting(undefined4 param_1)
  * @param param_1 数据流参数
  * @param param_2 处理参数（可能是缩放因子）
  */
-void process_data_stream(undefined4 param_1, float param_2)
+void process_data_stream(int32_t param_1, float param_2)
 {
-  undefined4* puVar1;
+  int32_t* puVar1;
   longlong lVar2;
   longlong unaff_RBX;
   longlong unaff_RBP;
-  undefined4* puVar3;
+  int32_t* puVar3;
   longlong in_R11;
-  undefined4 unaff_R15D;
-  undefined4 uVar4;
-  undefined4 uStack0000000000000028;
-  undefined4 uStack0000000000000050;
+  int32_t unaff_R15D;
+  int32_t uVar4;
+  int32_t uStack0000000000000028;
+  int32_t uStack0000000000000050;
   float fStack0000000000000054;
-  undefined4 uStack0000000000000058;
-  undefined4 uStack000000000000005c;
-  undefined4 in_stack_00000100;
-  undefined4 in_stack_00000108;
+  int32_t uStack0000000000000058;
+  int32_t uStack000000000000005c;
+  int32_t in_stack_00000100;
+  int32_t in_stack_00000108;
   
-  puVar3 = (undefined4*)(unaff_RBP + 0x14);
+  puVar3 = (int32_t*)(unaff_RBP + 0x14);
   // 数据流处理循环
   do {
     uVar4 = puVar3[4];
@@ -765,12 +765,12 @@ void process_data_stream(undefined4 param_1, float param_2)
       } while (0 < lVar2);
       param_2 = fStack0000000000000054;
       if (unaff_RBX != lVar2) {
-        puVar1 = (undefined4*)(unaff_RBP + lVar2 * 0x14);
+        puVar1 = (int32_t*)(unaff_RBP + lVar2 * 0x14);
         *puVar1 = uStack0000000000000050;
         puVar1[1] = fStack0000000000000054;
         puVar1[2] = uStack0000000000000058;
         puVar1[3] = uStack000000000000005c;
-        *(undefined4*)(unaff_RBP + 0x10 + lVar2 * 0x14) = uVar4;
+        *(int32_t*)(unaff_RBP + 0x10 + lVar2 * 0x14) = uVar4;
       }
     }
     unaff_RBX = unaff_RBX + 1;
@@ -823,7 +823,7 @@ void cleanup_rendering_resources(void)
  * @param param_10 递归深度
  * @return 处理状态
  */
-undefined8 recursive_geometric_subdivision(longlong param_1, int* param_2, float param_3, float param_4, 
+uint64_t recursive_geometric_subdivision(longlong param_1, int* param_2, float param_3, float param_4, 
                                          float param_5, float param_6, float param_7, float param_8, 
                                          float param_9, int param_10)
 {
@@ -877,20 +877,20 @@ undefined8 recursive_geometric_subdivision(longlong param_1, int* param_2, float
  * @param param_3 几何参数
  * @return 处理状态
  */
-undefined8 perform_geometric_calculation(float param_1, int* param_2, float param_3)
+uint64_t perform_geometric_calculation(float param_1, int* param_2, float param_3)
 {
   int iVar1;
   longlong in_RAX;
   int unaff_EBX;
   longlong unaff_RDI;
   float in_XMM4_Da;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
   float unaff_XMM7_Da;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM10_Da;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM10_Da;
   float unaff_XMM14_Da;
   float fStack0000000000000028;
   float fStack0000000000000040;
@@ -898,17 +898,17 @@ undefined8 perform_geometric_calculation(float param_1, int* param_2, float para
   float in_stack_00000140;
   
   // 设置几何参数
-  *(undefined4*)(in_RAX + -0x18) = unaff_XMM6_Da;
-  *(undefined4*)(in_RAX + -0x14) = unaff_XMM6_Db;
-  *(undefined4*)(in_RAX + -0x10) = unaff_XMM6_Dc;
-  *(undefined4*)(in_RAX + -0xc) = unaff_XMM6_Dd;
+  *(int32_t*)(in_RAX + -0x18) = unaff_XMM6_Da;
+  *(int32_t*)(in_RAX + -0x14) = unaff_XMM6_Db;
+  *(int32_t*)(in_RAX + -0x10) = unaff_XMM6_Dc;
+  *(int32_t*)(in_RAX + -0xc) = unaff_XMM6_Dd;
   
   // 条件判断
   if (param_1 + param_3 <= in_stack_00000140) {
     iVar1 = *param_2;
     if (unaff_RDI != 0) {
-      *(undefined4*)(unaff_RDI + (longlong)iVar1 * 8) = unaff_XMM9_Da;
-      *(undefined4*)(unaff_RDI + 4 + (longlong)iVar1 * 8) = unaff_XMM10_Da;
+      *(int32_t*)(unaff_RDI + (longlong)iVar1 * 8) = unaff_XMM9_Da;
+      *(int32_t*)(unaff_RDI + 4 + (longlong)iVar1 * 8) = unaff_XMM10_Da;
     }
     *param_2 = iVar1 + 1;
   }
@@ -933,7 +933,7 @@ undefined8 perform_geometric_calculation(float param_1, int* param_2, float para
  * 
  * @return 固定返回值1，表示操作成功
  */
-undefined8 check_operation_status(void)
+uint64_t check_operation_status(void)
 {
   return 1;
 }
@@ -1044,7 +1044,7 @@ void advanced_geometric_processor(longlong param_1, int* param_2, float param_3,
  * @param param_1 几何处理上下文
  * @param param_2 容差参数
  */
-void ultimate_geometric_processor(undefined8 param_1, float param_2)
+void ultimate_geometric_processor(uint64_t param_1, float param_2)
 {
   int iVar1;
   longlong in_RAX;
@@ -1059,10 +1059,10 @@ void ultimate_geometric_processor(undefined8 param_1, float param_2)
   float fVar4;
   float unaff_XMM11_Da;
   float fVar5;
-  undefined4 unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Db;
-  undefined4 unaff_XMM12_Dc;
-  undefined4 unaff_XMM12_Dd;
+  int32_t unaff_XMM12_Da;
+  int32_t unaff_XMM12_Db;
+  int32_t unaff_XMM12_Dc;
+  int32_t unaff_XMM12_Dd;
   float unaff_XMM13_Da;
   float unaff_XMM14_Da;
   float unaff_XMM15_Da;
@@ -1077,10 +1077,10 @@ void ultimate_geometric_processor(undefined8 param_1, float param_2)
   float fStack0000000000000148;
   
   // 设置几何参数
-  *(undefined4*)(in_RAX + -0x78) = unaff_XMM12_Da;
-  *(undefined4*)(in_RAX + -0x74) = unaff_XMM12_Db;
-  *(undefined4*)(in_RAX + -0x70) = unaff_XMM12_Dc;
-  *(undefined4*)(in_RAX + -0x6c) = unaff_XMM12_Dd;
+  *(int32_t*)(in_RAX + -0x78) = unaff_XMM12_Da;
+  *(int32_t*)(in_RAX + -0x74) = unaff_XMM12_Db;
+  *(int32_t*)(in_RAX + -0x70) = unaff_XMM12_Dc;
+  *(int32_t*)(in_RAX + -0x6c) = unaff_XMM12_Dd;
   
   // 终极几何处理循环
   do {
@@ -1135,9 +1135,9 @@ void ultimate_geometric_processor(undefined8 param_1, float param_2)
 }
 
 // 兼容性包装函数 - 保持与原始代码的兼容性
-void FUN_18028f350(undefined8 param_1, longlong param_2, int* param_3, uint param_4, float param_5,
-                   float param_6, undefined8 param_7, undefined8 param_8, undefined4 param_9,
-                   undefined4 param_10)
+void FUN_18028f350(uint64_t param_1, longlong param_2, int* param_3, uint param_4, float param_5,
+                   float param_6, uint64_t param_7, uint64_t param_8, int32_t param_9,
+                   int32_t param_10)
 {
     process_rendering_data_advanced(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10);
 }
@@ -1152,17 +1152,17 @@ void FUN_18028f4a1(float param_1)
     process_rendering_data_variant2(param_1);
 }
 
-void FUN_18028f4d4(float param_1, undefined8 param_2, float param_3)
+void FUN_18028f4d4(float param_1, uint64_t param_2, float param_3)
 {
     process_geometric_data(param_1, param_2, param_3);
 }
 
-void FUN_18028f5d1(undefined4 param_1)
+void FUN_18028f5d1(int32_t param_1)
 {
     process_data_sorting(param_1);
 }
 
-void FUN_18028f5ec(undefined4 param_1, float param_2)
+void FUN_18028f5ec(int32_t param_1, float param_2)
 {
     process_data_stream(param_1, param_2);
 }
@@ -1172,18 +1172,18 @@ void FUN_18028f68e(void)
     cleanup_rendering_resources();
 }
 
-undefined8 FUN_18028f6d0(longlong param_1, int* param_2, float param_3, float param_4, float param_5, float param_6,
+uint64_t FUN_18028f6d0(longlong param_1, int* param_2, float param_3, float param_4, float param_5, float param_6,
                        float param_7, float param_8, float param_9, int param_10)
 {
     return recursive_geometric_subdivision(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10);
 }
 
-undefined8 FUN_18028f7d7(float param_1, int* param_2, float param_3)
+uint64_t FUN_18028f7d7(float param_1, int* param_2, float param_3)
 {
     return perform_geometric_calculation(param_1, param_2, param_3);
 }
 
-undefined8 FUN_18028f898(void)
+uint64_t FUN_18028f898(void)
 {
     return check_operation_status();
 }
@@ -1194,7 +1194,7 @@ void FUN_18028f8f0(longlong param_1, int* param_2, float param_3, float param_4,
     advanced_geometric_processor(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9, param_10, param_11, param_12);
 }
 
-void FUN_18028fa3b(undefined8 param_1, float param_2)
+void FUN_18028fa3b(uint64_t param_1, float param_2)
 {
     ultimate_geometric_processor(param_1, param_2);
 }

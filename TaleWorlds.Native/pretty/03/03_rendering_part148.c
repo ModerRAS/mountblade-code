@@ -130,41 +130,41 @@ static undefined resource_tracker;
 /**
  * 渲染系统函数
  */
-static void rendering_system_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void graphics_state_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void string_comparator(undefined8 context, undefined8 param1, undefined8 param2);
-static void memory_allocator(undefined8 context, undefined8 param1, undefined8 param2);
-static void shader_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void texture_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void render_target_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void camera_controller(undefined8 context, undefined8 param1, undefined8 param2);
-static void light_system(undefined8 context, undefined8 param1, undefined8 param2);
-static void material_processor(undefined8 context, undefined8 param1, undefined8 param2);
+static void rendering_system_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void graphics_state_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void string_comparator(uint64_t context, uint64_t param1, uint64_t param2);
+static void memory_allocator(uint64_t context, uint64_t param1, uint64_t param2);
+static void shader_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void texture_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void render_target_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void camera_controller(uint64_t context, uint64_t param1, uint64_t param2);
+static void light_system(uint64_t context, uint64_t param1, uint64_t param2);
+static void material_processor(uint64_t context, uint64_t param1, uint64_t param2);
 
 /**
  * 图形处理系统函数
  */
-static void graphics_pipeline(undefined8 context, undefined8 param1, undefined8 param2);
-static void vertex_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void fragment_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void geometry_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void tessellation_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void compute_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void rasterizer(undefined8 context, undefined8 param1, undefined8 param2);
-static void output_merger(undefined8 context, undefined8 param1, undefined8 param2);
-static void resource_manager(undefined8 context, undefined8 param1, undefined8 param2);
+static void graphics_pipeline(uint64_t context, uint64_t param1, uint64_t param2);
+static void vertex_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void fragment_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void geometry_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void tessellation_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void compute_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void rasterizer(uint64_t context, uint64_t param1, uint64_t param2);
+static void output_merger(uint64_t context, uint64_t param1, uint64_t param2);
+static void resource_manager(uint64_t context, uint64_t param1, uint64_t param2);
 
 /**
  * 状态管理系统函数
  */
-static void state_machine(undefined8 context, undefined8 param1, undefined8 param2);
-static void transition_handler(undefined8 context, undefined8 param1, undefined8 param2);
-static void event_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void callback_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void synchronization_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void thread_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void memory_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void resource_tracker(undefined8 context, undefined8 param1, undefined8 param2);
+static void state_machine(uint64_t context, uint64_t param1, uint64_t param2);
+static void transition_handler(uint64_t context, uint64_t param1, uint64_t param2);
+static void event_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void callback_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void synchronization_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void thread_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void memory_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void resource_tracker(uint64_t context, uint64_t param1, uint64_t param2);
 
 /*==========================================
 =            函数定义            =
@@ -179,7 +179,7 @@ static void resource_tracker(undefined8 context, undefined8 param1, undefined8 p
  * @param param_3 上下文参数
  * @param param_4 附加参数
  */
-void FUN_18035cdb0(longlong *param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+void FUN_18035cdb0(longlong *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong lVar1;
   int iVar2;
@@ -189,7 +189,7 @@ void FUN_18035cdb0(longlong *param_1, longlong param_2, undefined8 param_3, unde
   // 检查参数类型是否为字符串处理
   if (*(int *)(param_2 + 0x10) == 0xe) {
     // 执行字符串比较
-    iVar2 = _stricmp(*(undefined8 *)(param_2 + 8), &DAT_180a1ef48, param_3, param_4, 0xfffffffffffffffe);
+    iVar2 = _stricmp(*(uint64_t *)(param_2 + 8), &DAT_180a1ef48, param_3, param_4, 0xfffffffffffffffe);
     
     // 如果字符串匹配，执行相应处理
     if (iVar2 == 0) {
@@ -217,18 +217,18 @@ void FUN_18035cdb0(longlong *param_1, longlong param_2, undefined8 param_3, unde
  * @param param_3 附加参数
  * @param param_4 控制标志
  */
-void FUN_18035ce30(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_18035ce30(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong lVar1;
   code *pcVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
+  int32_t uVar3;
+  int32_t uVar4;
   int iVar5;
-  undefined4 uVar6;
-  undefined8 uVar7;
+  int32_t uVar6;
+  uint64_t uVar7;
   longlong *plVar8;
   longlong *plVar9;
-  undefined8 *puVar10;
+  uint64_t *puVar10;
   longlong lVar11;
   longlong *plVar12;
   longlong *plStackX_8;
@@ -250,7 +250,7 @@ void FUN_18035ce30(longlong param_1, undefined8 param_2, undefined8 param_3, und
     // 分配渲染资源
     uVar7 = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_664, 8, 3);
     plVar9 = (longlong *)FUN_1802f5f70(uVar7);
-    plVar8 = (longlong *)FUN_1802ed2b0(*(undefined8 *)(param_1 + 0x18), &plStackX_8, 0, 0);
+    plVar8 = (longlong *)FUN_1802ed2b0(*(uint64_t *)(param_1 + 0x18), &plStackX_8, 0, 0);
     plVar8 = (longlong *)*plVar8;
     
     // 执行清理操作
@@ -275,11 +275,11 @@ void FUN_18035ce30(longlong param_1, undefined8 param_2, undefined8 param_3, und
         return;
       }
       lVar11 = FUN_180275820(plVar8);
-      *(undefined8 *)(param_1 + 0x78) = *(undefined8 *)(lVar11 + 0x1b8);
+      *(uint64_t *)(param_1 + 0x78) = *(uint64_t *)(lVar11 + 0x1b8);
       
       // 更新渲染状态
-      FUN_1802ed990(*(undefined8 *)(param_1 + 0x18), 1);
-      FUN_1802ee610(*(undefined8 *)(param_1 + 0x18), plVar8);
+      FUN_1802ed990(*(uint64_t *)(param_1 + 0x18), 1);
+      FUN_1802ee610(*(uint64_t *)(param_1 + 0x18), plVar8);
     }
     
     // 处理状态更新
@@ -290,8 +290,8 @@ void FUN_18035ce30(longlong param_1, undefined8 param_2, undefined8 param_3, und
     
     // 清理状态标志
     if (*(longlong *)(param_1 + 0x70) != 0) {
-      *(undefined1 *)(*(longlong *)(param_1 + 0x70) + 0x39) = 1;
-      *(undefined8 *)(param_1 + 0x70) = 0;
+      *(int8_t *)(*(longlong *)(param_1 + 0x70) + 0x39) = 1;
+      *(uint64_t *)(param_1 + 0x70) = 0;
     }
     
     // 执行渲染配置
@@ -308,13 +308,13 @@ void FUN_18035ce30(longlong param_1, undefined8 param_2, undefined8 param_3, und
     // 更新渲染参数
     (**(code **)(*plVar9 + FUNCTION_OFFSET_LIGHT))(plVar9, *(longlong *)(param_1 + 0x78) + RENDER_OFFSET_SCALE);
     lVar1 = *(longlong *)(param_1 + 0x78);
-    uVar6 = *(undefined4 *)(lVar1 + RENDER_OFFSET_Y);
-    uVar3 = *(undefined4 *)(lVar1 + RENDER_OFFSET_Z);
-    uVar4 = *(undefined4 *)(lVar1 + RENDER_OFFSET_W);
-    *(undefined4 *)(plVar9 + 0xc) = *(undefined4 *)(lVar1 + RENDER_OFFSET_X);
-    *(undefined4 *)((longlong)plVar9 + 100) = uVar6;
-    *(undefined4 *)(plVar9 + 0xd) = uVar3;
-    *(undefined4 *)((longlong)plVar9 + 0x6c) = uVar4;
+    uVar6 = *(int32_t *)(lVar1 + RENDER_OFFSET_Y);
+    uVar3 = *(int32_t *)(lVar1 + RENDER_OFFSET_Z);
+    uVar4 = *(int32_t *)(lVar1 + RENDER_OFFSET_W);
+    *(int32_t *)(plVar9 + 0xc) = *(int32_t *)(lVar1 + RENDER_OFFSET_X);
+    *(int32_t *)((longlong)plVar9 + 100) = uVar6;
+    *(int32_t *)(plVar9 + 0xd) = uVar3;
+    *(int32_t *)((longlong)plVar9 + 0x6c) = uVar4;
   }
   else {
     // 处理已初始化状态
@@ -332,7 +332,7 @@ void FUN_18035ce30(longlong param_1, undefined8 param_2, undefined8 param_3, und
     // 分配渲染资源
     uVar7 = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_664, 8, 3);
     plVar8 = (longlong *)FUN_1802f5f70(uVar7);
-    plVar9 = (longlong *)FUN_1802ed2b0(*(undefined8 *)(param_1 + 0x18), &plStackX_8, 0, 0);
+    plVar9 = (longlong *)FUN_1802ed2b0(*(uint64_t *)(param_1 + 0x18), &plStackX_8, 0, 0);
     plVar9 = (longlong *)*plVar9;
     
     // 执行清理操作
@@ -342,7 +342,7 @@ void FUN_18035ce30(longlong param_1, undefined8 param_2, undefined8 param_3, und
     
     // 处理材质状态
     if (*(code **)(*plVar9 + FUNCTION_OFFSET_TEXTURE) == (code *)&UNK_180276a30) {
-      uVar6 = (undefined4)plVar9[0x42];
+      uVar6 = (int32_t)plVar9[0x42];
     }
     else {
       uVar6 = (**(code **)(*plVar9 + FUNCTION_OFFSET_TEXTURE))(plVar9);
@@ -358,17 +358,17 @@ void FUN_18035ce30(longlong param_1, undefined8 param_2, undefined8 param_3, und
       plVar12 = (longlong *)(**(code **)(*plVar9 + FUNCTION_OFFSET_MATERIAL))(plVar9);
     }
     (*pcVar2)(plVar8, plVar12);
-    FUN_1802ee610(*(undefined8 *)(param_1 + 0x18), plVar9);
+    FUN_1802ee610(*(uint64_t *)(param_1 + 0x18), plVar9);
     FUN_1802edcd0(lVar1, plVar8, 1);
     
     // 验证更新状态
-    iVar5 = FUN_1802ed190(*(undefined8 *)(param_1 + 0x18), 7);
+    iVar5 = FUN_1802ed190(*(uint64_t *)(param_1 + 0x18), 7);
     if (iVar5 == 0) {
       return;
     }
     
     // 处理最终状态
-    puVar10 = (undefined8 *)FUN_1802ed2b0(*(undefined8 *)(param_1 + 0x18), &plStackX_10, 7);
+    puVar10 = (uint64_t *)FUN_1802ed2b0(*(uint64_t *)(param_1 + 0x18), &plStackX_10, 7);
     plVar9 = (longlong *)*puVar10;
     if (plStackX_10 != (longlong *)0x0) {
       (**(code **)(*plStackX_10 + FUNCTION_OFFSET_CLEANUP))();
@@ -391,7 +391,7 @@ void FUN_18035ce30(longlong param_1, undefined8 param_2, undefined8 param_3, und
     
     // 清理状态标志
     if (*(longlong *)(param_1 + 0x70) != 0) {
-      *(undefined1 *)(*(longlong *)(param_1 + 0x70) + 0x39) = 1;
+      *(int8_t *)(*(longlong *)(param_1 + 0x70) + 0x39) = 1;
     }
   }
   
@@ -410,18 +410,18 @@ void FUN_18035ce30(longlong param_1, undefined8 param_2, undefined8 param_3, und
  * @param param_3 附加参数
  * @param param_4 控制标志
  */
-void FUN_18035d190(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_18035d190(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong lVar1;
   longlong *plStackX_8;
   longlong **pplStackX_10;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
   
   // 更新状态标志
-  *(undefined1 *)(*(longlong *)(param_1 + 0x70) + 0x38) = 0;
-  *(undefined1 *)(*(longlong *)(param_1 + 0x70) + 0x3a) = 1;
+  *(int8_t *)(*(longlong *)(param_1 + 0x70) + 0x38) = 0;
+  *(int8_t *)(*(longlong *)(param_1 + 0x70) + 0x3a) = 1;
   
   // 获取渲染处理器
   lVar1 = *(longlong *)(*(longlong *)(param_1 + 0x18) + 0x20);
@@ -449,11 +449,11 @@ void FUN_18035d190(longlong param_1, undefined8 param_2, undefined8 param_3, und
  * @param param_3 上下文参数
  * @param param_4 控制标志
  */
-void FUN_18035d200(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_18035d200(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong lVar1;
   longlong *plStackX_8;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
   
@@ -469,7 +469,7 @@ void FUN_18035d200(longlong *param_1, undefined8 param_2, undefined8 param_3, un
     FUN_1802f0080(lVar1, &plStackX_8, 7, param_4, uVar2);
     
     // 更新处理状态
-    *(undefined1 *)(param_1 + 0x10) = 1;
+    *(int8_t *)(param_1 + 0x10) = 1;
   }
   return;
 }
@@ -480,18 +480,18 @@ void FUN_18035d200(longlong *param_1, undefined8 param_2, undefined8 param_3, un
  * 
  * @param param_1 渲染上下文
  */
-void FUN_18035d260(undefined8 param_1)
+void FUN_18035d260(uint64_t param_1)
 {
-  undefined1 auStack_118 [32];
-  undefined4 uStack_f8;
-  undefined8 uStack_f0;
-  undefined **appuStack_e8 [2];
-  undefined *puStack_d8;
-  undefined1 *puStack_d0;
-  undefined4 uStack_c8;
-  undefined1 auStack_c0 [72];
-  undefined *apuStack_78 [11];
-  undefined4 uStack_20;
+  int8_t auStack_118 [32];
+  int32_t uStack_f8;
+  uint64_t uStack_f0;
+  void **appuStack_e8 [2];
+  void *puStack_d8;
+  int8_t *puStack_d0;
+  int32_t uStack_c8;
+  int8_t auStack_c0 [72];
+  void *apuStack_78 [11];
+  int32_t uStack_20;
   ulonglong uStack_18;
   
   // 初始化栈保护变量
@@ -531,26 +531,26 @@ void FUN_18035d260(undefined8 param_1)
  * @param param_3 上下文参数
  * @param param_4 控制标志
  */
-void FUN_18035d370(undefined8 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_18035d370(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong lVar1;
   code *pcVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
+  int32_t uVar3;
+  int32_t uVar4;
   int iVar5;
-  undefined4 uVar6;
-  undefined8 uVar7;
+  int32_t uVar6;
+  uint64_t uVar7;
   longlong *plVar8;
   longlong *plVar9;
-  undefined8 *puVar10;
+  uint64_t *puVar10;
   longlong lVar11;
   longlong *plVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
   
   // 检查渲染状态
-  if ((undefined *)*param_1 != &UNK_180a1ef60) {
-    (**(code **)((undefined *)*param_1 + 0x70))();
+  if ((void *)*param_1 != &UNK_180a1ef60) {
+    (**(code **)((void *)*param_1 + 0x70))();
     return;
   }
   
@@ -596,7 +596,7 @@ void FUN_18035d370(undefined8 *param_1, undefined8 param_2, undefined8 param_3, 
         return;
       }
       lVar11 = FUN_180275820(plVar8);
-      param_1[0xf] = *(undefined8 *)(lVar11 + 0x1b8);
+      param_1[0xf] = *(uint64_t *)(lVar11 + 0x1b8);
       
       // 更新渲染状态
       FUN_1802ed990(param_1[3], 1);
@@ -611,7 +611,7 @@ void FUN_18035d370(undefined8 *param_1, undefined8 param_2, undefined8 param_3, 
     
     // 清理状态标志
     if (param_1[0xe] != 0) {
-      *(undefined1 *)(param_1[0xe] + 0x39) = 1;
+      *(int8_t *)(param_1[0xe] + 0x39) = 1;
       param_1[0xe] = 0;
     }
     
@@ -629,13 +629,13 @@ void FUN_18035d370(undefined8 *param_1, undefined8 param_2, undefined8 param_3, 
     // 更新渲染参数
     (**(code **)(*plVar9 + FUNCTION_OFFSET_LIGHT))(plVar9, param_1[0xf] + RENDER_OFFSET_SCALE);
     lVar1 = param_1[0xf];
-    uVar6 = *(undefined4 *)(lVar1 + RENDER_OFFSET_Y);
-    uVar3 = *(undefined4 *)(lVar1 + RENDER_OFFSET_Z);
-    uVar4 = *(undefined4 *)(lVar1 + RENDER_OFFSET_W);
-    *(undefined4 *)(plVar9 + 0xc) = *(undefined4 *)(lVar1 + RENDER_OFFSET_X);
-    *(undefined4 *)((longlong)plVar9 + 100) = uVar6;
-    *(undefined4 *)(plVar9 + 0xd) = uVar3;
-    *(undefined4 *)((longlong)plVar9 + 0x6c) = uVar4;
+    uVar6 = *(int32_t *)(lVar1 + RENDER_OFFSET_Y);
+    uVar3 = *(int32_t *)(lVar1 + RENDER_OFFSET_Z);
+    uVar4 = *(int32_t *)(lVar1 + RENDER_OFFSET_W);
+    *(int32_t *)(plVar9 + 0xc) = *(int32_t *)(lVar1 + RENDER_OFFSET_X);
+    *(int32_t *)((longlong)plVar9 + 100) = uVar6;
+    *(int32_t *)(plVar9 + 0xd) = uVar3;
+    *(int32_t *)((longlong)plVar9 + 0x6c) = uVar4;
   }
   else {
     // 处理已初始化状态
@@ -663,7 +663,7 @@ void FUN_18035d370(undefined8 *param_1, undefined8 param_2, undefined8 param_3, 
     
     // 处理材质状态
     if (*(code **)(*plVar9 + FUNCTION_OFFSET_TEXTURE) == (code *)&UNK_180276a30) {
-      uVar6 = (undefined4)plVar9[0x42];
+      uVar6 = (int32_t)plVar9[0x42];
     }
     else {
       uVar6 = (**(code **)(*plVar9 + FUNCTION_OFFSET_TEXTURE))(plVar9);
@@ -689,7 +689,7 @@ void FUN_18035d370(undefined8 *param_1, undefined8 param_2, undefined8 param_3, 
     }
     
     // 处理最终状态
-    puVar10 = (undefined8 *)FUN_1802ed2b0(param_1[3], &plStackX_10, 7);
+    puVar10 = (uint64_t *)FUN_1802ed2b0(param_1[3], &plStackX_10, 7);
     plVar9 = (longlong *)*puVar10;
     if (plStackX_10 != (longlong *)0x0) {
       (**(code **)(*plStackX_10 + FUNCTION_OFFSET_CLEANUP))();
@@ -712,7 +712,7 @@ void FUN_18035d370(undefined8 *param_1, undefined8 param_2, undefined8 param_3, 
     
     // 清理状态标志
     if (param_1[0xe] != 0) {
-      *(undefined1 *)(param_1[0xe] + 0x39) = 1;
+      *(int8_t *)(param_1[0xe] + 0x39) = 1;
     }
   }
   
@@ -732,9 +732,9 @@ void FUN_18035d370(undefined8 *param_1, undefined8 param_2, undefined8 param_3, 
  * @param param_4 控制标志
  * @return 分配的内存指针
  */
-undefined8 *FUN_18035d3a0(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
+uint64_t *FUN_18035d3a0(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &UNK_180a1ef60;
@@ -753,16 +753,16 @@ undefined8 *FUN_18035d3a0(undefined8 *param_1, ulonglong param_2, undefined8 par
  * 
  * @param param_1 渲染上下文指针
  */
-void FUN_18035d3f0(undefined8 *param_1)
+void FUN_18035d3f0(uint64_t *param_1)
 {
-  undefined8 *puVar1;
-  undefined4 uVar2;
-  undefined8 *puVar3;
-  undefined8 uVar4;
-  undefined *puStack_80;
-  undefined8 *puStack_78;
-  undefined4 uStack_70;
-  undefined8 uStack_68;
+  uint64_t *puVar1;
+  int32_t uVar2;
+  uint64_t *puVar3;
+  uint64_t uVar4;
+  void *puStack_80;
+  uint64_t *puStack_78;
+  int32_t uStack_70;
+  uint64_t uStack_68;
   
   uVar4 = 0xfffffffffffffffe;
   puVar3 = param_1;
@@ -773,39 +773,39 @@ void FUN_18035d3f0(undefined8 *param_1)
   puVar1 = puVar3 + 0xf;
   *puVar1 = &UNK_18098bcb0;
   puVar3[0x10] = 0;
-  *(undefined4 *)(puVar3 + 0x11) = 0;
+  *(int32_t *)(puVar3 + 0x11) = 0;
   *puVar1 = &UNK_180a3c3e0;
   puVar3[0x12] = 0;
   puVar3[0x10] = 0;
-  *(undefined4 *)(puVar3 + 0x11) = 0;
+  *(int32_t *)(puVar3 + 0x11) = 0;
   puVar3[0x13] = &UNK_18098bcb0;
   puVar3[0x14] = 0;
-  *(undefined4 *)(puVar3 + 0x15) = 0;
+  *(int32_t *)(puVar3 + 0x15) = 0;
   puVar3[0x13] = &UNK_180a3c3e0;
   puVar3[0x16] = 0;
   puVar3[0x14] = 0;
-  *(undefined4 *)(puVar3 + 0x15) = 0;
+  *(int32_t *)(puVar3 + 0x15) = 0;
   puVar3[0x17] = 0;
-  *(undefined1 *)(puVar3 + 0xe) = 0;
-  *(undefined4 *)(puVar3 + 0x18) = 0;
+  *(int8_t *)(puVar3 + 0xe) = 0;
+  *(int32_t *)(puVar3 + 0x18) = 0;
   
   // 初始化字符串处理
   puStack_80 = &UNK_180a3c3e0;
   uStack_68 = 0;
-  puStack_78 = (undefined8 *)0x0;
+  puStack_78 = (uint64_t *)0x0;
   uStack_70 = 0;
   
   // 分配字符串资源
-  puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
-  *(undefined1 *)puVar3 = 0;
+  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
+  *(int8_t *)puVar3 = 0;
   puStack_78 = puVar3;
   uVar2 = FUN_18064e990(puVar3);
   uStack_68 = CONCAT44(uStack_68._4_4_, uVar2);
   
   // 设置字符串数据
   *puVar3 = 0x746f687370616e53;
-  *(undefined4 *)(puVar3 + 1) = 0x6d614e20;
-  *(undefined2 *)((longlong)puVar3 + 0xc) = 0x65;
+  *(int32_t *)(puVar3 + 1) = 0x6d614e20;
+  *(int16_t *)((longlong)puVar3 + 0xc) = 0x65;
   uStack_70 = 0xd;
   
   // 执行渲染初始化
@@ -826,7 +826,7 @@ void FUN_18035d3f0(undefined8 *param_1)
  * @param param_4 控制标志
  * @return 清理后的内存指针
  */
-undefined8 *FUN_18035d5e0(undefined8 *param_1, uint param_2, undefined8 param_3, undefined8 param_4)
+uint64_t *FUN_18035d5e0(uint64_t *param_1, uint param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong *plVar1;
   
@@ -834,7 +834,7 @@ undefined8 *FUN_18035d5e0(undefined8 *param_1, uint param_2, undefined8 param_3,
   
   // 清理渲染资源
   if (param_1[0x17] != 0) {
-    FUN_1801584c0(param_1, *(undefined4 *)(param_1[0x17] + 0x50), param_3, param_4, 0xfffffffffffffffe);
+    FUN_1801584c0(param_1, *(int32_t *)(param_1[0x17] + 0x50), param_3, param_4, 0xfffffffffffffffe);
     plVar1 = (longlong *)param_1[0x17];
     param_1[0x17] = 0;
     if (plVar1 != (longlong *)0x0) {
@@ -853,7 +853,7 @@ undefined8 *FUN_18035d5e0(undefined8 *param_1, uint param_2, undefined8 param_3,
     FUN_18064e900();
   }
   param_1[0x14] = 0;
-  *(undefined4 *)(param_1 + 0x16) = 0;
+  *(int32_t *)(param_1 + 0x16) = 0;
   param_1[0x13] = &UNK_18098bcb0;
   
   // 清理纹理资源
@@ -862,7 +862,7 @@ undefined8 *FUN_18035d5e0(undefined8 *param_1, uint param_2, undefined8 param_3,
     FUN_18064e900();
   }
   param_1[0x10] = 0;
-  *(undefined4 *)(param_1 + 0x12) = 0;
+  *(int32_t *)(param_1 + 0x12) = 0;
   param_1[0xf] = &UNK_18098bcb0;
   
   // 执行最终清理
@@ -880,20 +880,20 @@ undefined8 *FUN_18035d5e0(undefined8 *param_1, uint param_2, undefined8 param_3,
  * @param param_1 渲染上下文
  * @param param_2 资源参数
  */
-void FUN_18035d710(undefined8 param_1, undefined8 param_2)
+void FUN_18035d710(uint64_t param_1, uint64_t param_2)
 {
-  undefined8 *puVar1;
-  undefined4 uVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  undefined8 uVar5;
-  undefined *puStack_80;
-  undefined8 *puStack_78;
-  undefined4 uStack_70;
-  undefined8 uStack_68;
+  uint64_t *puVar1;
+  int32_t uVar2;
+  uint64_t *puVar3;
+  uint64_t *puVar4;
+  uint64_t uVar5;
+  void *puStack_80;
+  uint64_t *puStack_78;
+  int32_t uStack_70;
+  uint64_t uStack_68;
   
   // 分配渲染资源
-  puVar4 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_200, 8, 3);
+  puVar4 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_200, 8, 3);
   uVar5 = 0xfffffffffffffffe;
   puVar3 = puVar4;
   FUN_1803456e0(puVar4, param_2, param_1);
@@ -903,39 +903,39 @@ void FUN_18035d710(undefined8 param_1, undefined8 param_2)
   puVar1 = puVar3 + 0xf;
   *puVar1 = &UNK_18098bcb0;
   puVar3[0x10] = 0;
-  *(undefined4 *)(puVar3 + 0x11) = 0;
+  *(int32_t *)(puVar3 + 0x11) = 0;
   *puVar1 = &UNK_180a3c3e0;
   puVar3[0x12] = 0;
   puVar3[0x10] = 0;
-  *(undefined4 *)(puVar3 + 0x11) = 0;
+  *(int32_t *)(puVar3 + 0x11) = 0;
   puVar3[0x13] = &UNK_18098bcb0;
   puVar3[0x14] = 0;
-  *(undefined4 *)(puVar3 + 0x15) = 0;
+  *(int32_t *)(puVar3 + 0x15) = 0;
   puVar3[0x13] = &UNK_180a3c3e0;
   puVar3[0x16] = 0;
   puVar3[0x14] = 0;
-  *(undefined4 *)(puVar3 + 0x15) = 0;
+  *(int32_t *)(puVar3 + 0x15) = 0;
   puVar3[0x17] = 0;
-  *(undefined1 *)(puVar3 + 0xe) = 0;
-  *(undefined4 *)(puVar3 + 0x18) = 0;
+  *(int8_t *)(puVar3 + 0xe) = 0;
+  *(int32_t *)(puVar3 + 0x18) = 0;
   
   // 初始化字符串处理
   puStack_80 = &UNK_180a3c3e0;
   uStack_68 = 0;
-  puStack_78 = (undefined8 *)0x0;
+  puStack_78 = (uint64_t *)0x0;
   uStack_70 = 0;
   
   // 分配字符串资源
-  puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
-  *(undefined1 *)puVar3 = 0;
+  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19);
+  *(int8_t *)puVar3 = 0;
   puStack_78 = puVar3;
   uVar2 = FUN_18064e990(puVar3);
   uStack_68 = CONCAT44(uStack_68._4_4_, uVar2);
   
   // 设置字符串数据
   *puVar3 = 0x746f687370616e53;
-  *(undefined4 *)(puVar3 + 1) = 0x6d614e20;
-  *(undefined2 *)((longlong)puVar3 + 0xc) = 0x65;
+  *(int32_t *)(puVar3 + 1) = 0x6d614e20;
+  *(int16_t *)((longlong)puVar3 + 0xc) = 0x65;
   uStack_70 = 0xd;
   
   // 执行渲染初始化
@@ -952,22 +952,22 @@ void FUN_18035d710(undefined8 param_1, undefined8 param_2)
  * 
  * @param param_1 渲染上下文
  */
-void FUN_18035d760(undefined8 param_1)
+void FUN_18035d760(uint64_t param_1)
 {
-  undefined1 auStack_188 [32];
-  undefined4 uStack_168;
-  undefined **appuStack_160 [2];
-  undefined8 uStack_150;
-  undefined *puStack_148;
-  undefined1 *puStack_140;
-  undefined4 uStack_138;
-  undefined1 auStack_130 [72];
-  undefined *puStack_e8;
-  undefined1 *puStack_e0;
-  undefined4 uStack_d8;
-  undefined1 auStack_d0 [72];
-  undefined *apuStack_88 [11];
-  undefined4 uStack_30;
+  int8_t auStack_188 [32];
+  int32_t uStack_168;
+  void **appuStack_160 [2];
+  uint64_t uStack_150;
+  void *puStack_148;
+  int8_t *puStack_140;
+  int32_t uStack_138;
+  int8_t auStack_130 [72];
+  void *puStack_e8;
+  int8_t *puStack_e0;
+  int32_t uStack_d8;
+  int8_t auStack_d0 [72];
+  void *apuStack_88 [11];
+  int32_t uStack_30;
   ulonglong uStack_28;
   
   // 初始化栈保护变量
@@ -1029,9 +1029,9 @@ void FUN_18035d760(undefined8 param_1)
 void FUN_18035d8f0(longlong param_1, longlong param_2)
 {
   int iVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   int iVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar4;
   longlong *plVar5;
   longlong lVar6;
   longlong lVar7;
@@ -1041,7 +1041,7 @@ void FUN_18035d8f0(longlong param_1, longlong param_2)
   iVar1 = *(int *)(param_2 + 0x10);
   
   // 检查字符串类型
-  if ((iVar1 != 0xd) || (iVar3 = strcmp(*(undefined8 *)(param_2 + 8), &DAT_180a1f0d0), iVar3 != 0)) {
+  if ((iVar1 != 0xd) || (iVar3 = strcmp(*(uint64_t *)(param_2 + 8), &DAT_180a1f0d0), iVar3 != 0)) {
     if (iVar1 == 5) {
       lVar7 = 0;
       lVar8 = lVar7;
@@ -1064,7 +1064,7 @@ void FUN_18035d8f0(longlong param_1, longlong param_2)
                 *(char *)(*(longlong *)(param_1 + 0xa0) + lVar8) == (&DAT_180a1f0e4)[lVar8]) {
             lVar8 = lVar6;
             if (lVar6 == 7) {
-              *(undefined4 *)(param_1 + 0xc0) = 0;
+              *(int32_t *)(param_1 + 0xc0) = 0;
               return;
             }
           }
@@ -1077,7 +1077,7 @@ void FUN_18035d8f0(longlong param_1, longlong param_2)
             }
             lVar7 = lVar8;
           } while (lVar8 != 4);
-          *(undefined4 *)(param_1 + 0xc0) = 1;
+          *(int32_t *)(param_1 + 0xc0) = 1;
         }
       }
     }
@@ -1093,7 +1093,7 @@ void FUN_18035d8f0(longlong param_1, longlong param_2)
     }
     FUN_1801584c0(plVar5, (int)plVar5[10]);
     plVar5 = *(longlong **)(param_1 + 0xb8);
-    *(undefined8 *)(param_1 + 0xb8) = 0;
+    *(uint64_t *)(param_1 + 0xb8) = 0;
     if (plVar5 != (longlong *)0x0) {
       (**(code **)(*plVar5 + FUNCTION_OFFSET_CLEANUP))();
     }
@@ -1105,11 +1105,11 @@ void FUN_18035d8f0(longlong param_1, longlong param_2)
   }
   
   // 获取渲染队列资源
-  puVar4 = (undefined8 *)FUN_180157390();
+  puVar4 = (uint64_t *)FUN_180157390();
   uVar2 = *puVar4;
   *puVar4 = 0;
   plVar5 = *(longlong **)(param_1 + 0xb8);
-  *(undefined8 *)(param_1 + 0xb8) = uVar2;
+  *(uint64_t *)(param_1 + 0xb8) = uVar2;
   if (plVar5 != (longlong *)0x0) {
     (**(code **)(*plVar5 + FUNCTION_OFFSET_CLEANUP))();
   }
@@ -1129,21 +1129,21 @@ void FUN_18035d8f0(longlong param_1, longlong param_2)
  * @param param_3 上下文参数
  * @param param_4 控制标志
  */
-void FUN_18035dac0(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+void FUN_18035dac0(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong lVar1;
-  undefined4 uVar2;
+  int32_t uVar2;
   longlong lVar3;
-  undefined4 *puVar4;
-  undefined8 uVar5;
-  undefined *puStack_60;
-  undefined4 *puStack_58;
-  undefined4 uStack_50;
-  undefined8 uStack_48;
-  undefined *puStack_40;
-  undefined4 *puStack_38;
-  undefined4 uStack_30;
-  undefined8 uStack_28;
+  int32_t *puVar4;
+  uint64_t uVar5;
+  void *puStack_60;
+  int32_t *puStack_58;
+  int32_t uStack_50;
+  uint64_t uStack_48;
+  void *puStack_40;
+  int32_t *puStack_38;
+  int32_t uStack_30;
+  uint64_t uStack_28;
   
   uVar5 = 0xfffffffffffffffe;
   
@@ -1163,20 +1163,20 @@ void FUN_18035dac0(undefined8 param_1, longlong param_2, undefined8 param_3, und
     // 初始化参数处理
     puStack_60 = &UNK_180a3c3e0;
     uStack_48 = 0;
-    puStack_58 = (undefined4 *)0x0;
+    puStack_58 = (int32_t *)0x0;
     uStack_50 = 0;
     
     // 分配参数资源
-    puVar4 = (undefined4 *)
+    puVar4 = (int32_t *)
              FUN_18062b420(_DAT_180c8ed18, (int)lVar3 + 0xb, &UNK_180a1f013, param_4, 0xfffffffffffffffe);
-    *(undefined1 *)puVar4 = 0;
+    *(int8_t *)puVar4 = 0;
     puStack_58 = puVar4;
     uVar2 = FUN_18064e990(puVar4);
     
     // 设置参数数据
     *puVar4 = 0x65687053;
-    *(undefined2 *)(puVar4 + 1) = 0x6572;
-    *(undefined1 *)((longlong)puVar4 + 6) = 0;
+    *(int16_t *)(puVar4 + 1) = 0x6572;
+    *(int8_t *)((longlong)puVar4 + 6) = 0;
     uStack_50 = 6;
     uStack_48._0_4_ = uVar2;
     
@@ -1185,20 +1185,20 @@ void FUN_18035dac0(undefined8 param_1, longlong param_2, undefined8 param_3, und
     puStack_60 = &UNK_180a3c3e0;
     
     // 清理参数资源
-    if (puStack_58 != (undefined4 *)0x0) {
+    if (puStack_58 != (int32_t *)0x0) {
       FUN_18064e900();
     }
-    puStack_58 = (undefined4 *)0x0;
+    puStack_58 = (int32_t *)0x0;
     uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
     puStack_60 = &UNK_18098bcb0;
     puStack_40 = &UNK_180a3c3e0;
     uStack_28 = 0;
-    puStack_38 = (undefined4 *)0x0;
+    puStack_38 = (int32_t *)0x0;
     uStack_30 = 0;
     
     // 分配第二组参数资源
-    puVar4 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19, param_4, uVar5);
-    *(undefined1 *)puVar4 = 0;
+    puVar4 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, MEMORY_ALLOCATION_SIZE_16, MEMORY_ALLOCATION_SIZE_19, param_4, uVar5);
+    *(int8_t *)puVar4 = 0;
     puStack_38 = puVar4;
     uVar2 = FUN_18064e990(puVar4);
     uStack_28 = CONCAT44(uStack_28._4_4_, uVar2);
@@ -1212,7 +1212,7 @@ void FUN_18035dac0(undefined8 param_1, longlong param_2, undefined8 param_3, und
     puStack_40 = &UNK_180a3c3e0;
     
     // 清理第二组参数资源
-    if (puStack_38 != (undefined4 *)0x0) {
+    if (puStack_38 != (int32_t *)0x0) {
       FUN_18064e900();
     }
   }
@@ -1228,22 +1228,22 @@ void FUN_18035dac0(undefined8 param_1, longlong param_2, undefined8 param_3, und
 void FUN_18035dc50(longlong param_1)
 {
   int iVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   longlong *plVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar4;
   longlong lVar5;
   longlong lVar6;
   longlong *plStackX_10;
   
   // 处理渲染队列
   if (0 < *(int *)(param_1 + 0x88)) {
-    puVar4 = (undefined8 *)
+    puVar4 = (uint64_t *)
              FUN_180157390(param_1, &plStackX_10, param_1 + 0x78,
-                           *(undefined8 *)(*(longlong *)(param_1 + 0x18) + 0x20), 1);
+                           *(uint64_t *)(*(longlong *)(param_1 + 0x18) + 0x20), 1);
     uVar2 = *puVar4;
     *puVar4 = 0;
     plVar3 = *(longlong **)(param_1 + 0xb8);
-    *(undefined8 *)(param_1 + 0xb8) = uVar2;
+    *(uint64_t *)(param_1 + 0xb8) = uVar2;
     if (plVar3 != (longlong *)0x0) {
       (**(code **)(*plVar3 + FUNCTION_OFFSET_CLEANUP))();
     }
@@ -1261,7 +1261,7 @@ void FUN_18035dc50(longlong param_1)
             *(char *)(*(longlong *)(param_1 + 0xa0) + lVar5) == (&DAT_180a1f0e4)[lVar5]) {
         lVar5 = lVar6;
         if (lVar6 == 7) {
-          *(undefined4 *)(param_1 + 0xc0) = 0;
+          *(int32_t *)(param_1 + 0xc0) = 0;
           return;
         }
       }
@@ -1275,7 +1275,7 @@ void FUN_18035dc50(longlong param_1)
         }
         lVar5 = lVar6;
       } while (lVar6 != 4);
-      *(undefined4 *)(param_1 + 0xc0) = 1;
+      *(int32_t *)(param_1 + 0xc0) = 1;
     }
   }
   return;
@@ -1292,7 +1292,7 @@ void FUN_18035dd60(longlong param_1)
   longlong lVar1;
   float fVar2;
   float fVar3;
-  undefined8 uVar4;
+  uint64_t uVar4;
   longlong *plVar5;
   char cVar6;
   float fVar7;
@@ -1301,47 +1301,47 @@ void FUN_18035dd60(longlong param_1)
   float fStack_b8;
   float fStack_b4;
   float fStack_b0;
-  undefined4 uStack_ac;
-  undefined8 uStack_a8;
-  undefined8 uStack_a0;
-  undefined8 uStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined8 uStack_80;
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
+  int32_t uStack_ac;
+  uint64_t uStack_a8;
+  uint64_t uStack_a0;
+  uint64_t uStack_98;
+  uint64_t uStack_90;
+  uint64_t uStack_88;
+  uint64_t uStack_80;
+  uint64_t uStack_78;
+  uint64_t uStack_70;
+  uint64_t uStack_68;
   ulonglong uStack_60;
-  undefined8 uStack_58;
+  uint64_t uStack_58;
   ulonglong uStack_50;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   ulonglong uStack_40;
   float fStack_38;
   float fStack_34;
   float fStack_30;
-  undefined4 uStack_2c;
+  int32_t uStack_2c;
   
   // 获取渲染参数
   lVar1 = *(longlong *)(param_1 + 0x18);
   plVar5 = *(longlong **)(param_1 + 0xb8);
-  uVar4 = *(undefined8 *)(lVar1 + 0x30);
-  uStack_a0 = *(undefined8 *)(lVar1 + 0x38);
-  uStack_98 = *(undefined8 *)(lVar1 + 0x40);
-  uStack_90 = *(undefined8 *)(lVar1 + 0x48);
-  uStack_88 = *(undefined8 *)(lVar1 + 0x50);
-  uStack_80 = *(undefined8 *)(lVar1 + 0x58);
-  uStack_78 = *(undefined8 *)(lVar1 + 0x60);
-  uStack_70 = *(undefined8 *)(lVar1 + 0x68);
-  uStack_68 = *(undefined8 *)(lVar1 + 0x70);
+  uVar4 = *(uint64_t *)(lVar1 + 0x30);
+  uStack_a0 = *(uint64_t *)(lVar1 + 0x38);
+  uStack_98 = *(uint64_t *)(lVar1 + 0x40);
+  uStack_90 = *(uint64_t *)(lVar1 + 0x48);
+  uStack_88 = *(uint64_t *)(lVar1 + 0x50);
+  uStack_80 = *(uint64_t *)(lVar1 + 0x58);
+  uStack_78 = *(uint64_t *)(lVar1 + 0x60);
+  uStack_70 = *(uint64_t *)(lVar1 + 0x68);
+  uStack_68 = *(uint64_t *)(lVar1 + 0x70);
   uStack_60 = *(ulonglong *)(lVar1 + 0x78);
-  uStack_58 = *(undefined8 *)(lVar1 + 0x80);
+  uStack_58 = *(uint64_t *)(lVar1 + 0x80);
   uStack_50 = *(ulonglong *)(lVar1 + 0x88);
-  uStack_48 = *(undefined8 *)(lVar1 + 0x90);
+  uStack_48 = *(uint64_t *)(lVar1 + 0x90);
   uStack_40 = *(ulonglong *)(lVar1 + 0x98);
   fStack_b8 = *(float *)(lVar1 + 0xa0);
   fStack_b4 = *(float *)(lVar1 + 0xa4);
   fStack_b0 = *(float *)(lVar1 + 0xa8);
-  uStack_ac = *(undefined4 *)(lVar1 + 0xac);
+  uStack_ac = *(int32_t *)(lVar1 + 0xac);
   
   // 获取渲染参数
   fVar7 = *(float *)(_DAT_180c86878 + 0x1b8);
@@ -1403,7 +1403,7 @@ void FUN_18035dd60(longlong param_1)
     if (*(char *)(param_1 + 0x70) == '\0') {
       (**(code **)(*plVar5 + FUNCTION_OFFSET_SHADER))(plVar5, &fStack_b8);
       (**(code **)(**(longlong **)(param_1 + 0xb8) + FUNCTION_OFFSET_TEXTURE))();
-      *(undefined1 *)(param_1 + 0x70) = 1;
+      *(int8_t *)(param_1 + 0x70) = 1;
       return;
     }
   }
@@ -1417,7 +1417,7 @@ void FUN_18035dd60(longlong param_1)
   LAB_18035de70:
   if (*(char *)(param_1 + 0x70) != '\0') {
     (**(code **)(*plVar5 + FUNCTION_OFFSET_RENDER))(plVar5);
-    *(undefined1 *)(param_1 + 0x70) = 0;
+    *(int8_t *)(param_1 + 0x70) = 0;
   }
   return;
 }
@@ -1513,7 +1513,7 @@ void module_cleanup(void)
  * 导出函数：渲染系统字符串比较处理器
  * 对应原始函数：FUN_18035cdb0
  */
-void RenderingSystemStringComparator(longlong *param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+void RenderingSystemStringComparator(longlong *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_18035cdb0(param_1, param_2, param_3, param_4);
 }
@@ -1522,7 +1522,7 @@ void RenderingSystemStringComparator(longlong *param_1, longlong param_2, undefi
  * 导出函数：渲染系统状态管理器
  * 对应原始函数：FUN_18035ce30
  */
-void RenderingSystemStateManager(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderingSystemStateManager(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_18035ce30(param_1, param_2, param_3, param_4);
 }
@@ -1531,7 +1531,7 @@ void RenderingSystemStateManager(longlong param_1, undefined8 param_2, undefined
  * 导出函数：渲染系统状态更新器
  * 对应原始函数：FUN_18035d190
  */
-void RenderingSystemStateUpdater(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderingSystemStateUpdater(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_18035d190(param_1, param_2, param_3, param_4);
 }
@@ -1540,7 +1540,7 @@ void RenderingSystemStateUpdater(longlong param_1, undefined8 param_2, undefined
  * 导出函数：渲染系统参数处理器
  * 对应原始函数：FUN_18035d200
  */
-void RenderingSystemParameterProcessor(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderingSystemParameterProcessor(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_18035d200(param_1, param_2, param_3, param_4);
 }
@@ -1549,7 +1549,7 @@ void RenderingSystemParameterProcessor(longlong *param_1, undefined8 param_2, un
  * 导出函数：渲染系统字符串处理器
  * 对应原始函数：FUN_18035d260
  */
-void RenderingSystemStringProcessor(undefined8 param_1)
+void RenderingSystemStringProcessor(uint64_t param_1)
 {
   FUN_18035d260(param_1);
 }
@@ -1558,7 +1558,7 @@ void RenderingSystemStringProcessor(undefined8 param_1)
  * 导出函数：渲染系统高级状态管理器
  * 对应原始函数：FUN_18035d370
  */
-void RenderingSystemAdvancedStateManager(undefined8 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderingSystemAdvancedStateManager(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_18035d370(param_1, param_2, param_3, param_4);
 }
@@ -1567,7 +1567,7 @@ void RenderingSystemAdvancedStateManager(undefined8 *param_1, undefined8 param_2
  * 导出函数：渲染系统内存分配器
  * 对应原始函数：FUN_18035d3a0
  */
-undefined8 *RenderingSystemMemoryAllocator(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
+uint64_t *RenderingSystemMemoryAllocator(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
   return FUN_18035d3a0(param_1, param_2, param_3, param_4);
 }
@@ -1576,7 +1576,7 @@ undefined8 *RenderingSystemMemoryAllocator(undefined8 *param_1, ulonglong param_
  * 导出函数：渲染系统初始化器
  * 对应原始函数：FUN_18035d3f0
  */
-void RenderingSystemInitializer(undefined8 *param_1)
+void RenderingSystemInitializer(uint64_t *param_1)
 {
   FUN_18035d3f0(param_1);
 }
@@ -1585,7 +1585,7 @@ void RenderingSystemInitializer(undefined8 *param_1)
  * 导出函数：渲染系统资源清理器
  * 对应原始函数：FUN_18035d5e0
  */
-undefined8 *RenderingSystemResourceCleaner(undefined8 *param_1, uint param_2, undefined8 param_3, undefined8 param_4)
+uint64_t *RenderingSystemResourceCleaner(uint64_t *param_1, uint param_2, uint64_t param_3, uint64_t param_4)
 {
   return FUN_18035d5e0(param_1, param_2, param_3, param_4);
 }
@@ -1594,7 +1594,7 @@ undefined8 *RenderingSystemResourceCleaner(undefined8 *param_1, uint param_2, un
  * 导出函数：渲染系统高级资源管理器
  * 对应原始函数：FUN_18035d710
  */
-void RenderingSystemAdvancedResourceManager(undefined8 param_1, undefined8 param_2)
+void RenderingSystemAdvancedResourceManager(uint64_t param_1, uint64_t param_2)
 {
   FUN_18035d710(param_1, param_2);
 }
@@ -1603,7 +1603,7 @@ void RenderingSystemAdvancedResourceManager(undefined8 param_1, undefined8 param
  * 导出函数：渲染系统配置处理器
  * 对应原始函数：FUN_18035d760
  */
-void RenderingSystemConfigurationProcessor(undefined8 param_1)
+void RenderingSystemConfigurationProcessor(uint64_t param_1)
 {
   FUN_18035d760(param_1);
 }
@@ -1621,7 +1621,7 @@ void RenderingSystemStringValidator(longlong param_1, longlong param_2)
  * 导出函数：渲染系统参数处理器
  * 对应原始函数：FUN_18035dac0
  */
-void RenderingSystemParameterHandler(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+void RenderingSystemParameterHandler(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
 {
   FUN_18035dac0(param_1, param_2, param_3, param_4);
 }

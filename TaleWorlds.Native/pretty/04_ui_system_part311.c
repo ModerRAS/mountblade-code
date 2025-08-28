@@ -8,13 +8,13 @@ void FUN_180839a23(void)
 {
   longlong in_RAX;
   longlong in_R11;
-  undefined8 unaff_R15;
-  undefined8 unaff_XMM6_Qa;
-  undefined8 unaff_XMM6_Qb;
+  uint64_t unaff_R15;
+  uint64_t unaff_XMM6_Qa;
+  uint64_t unaff_XMM6_Qb;
   
-  *(undefined8 *)(in_R11 + 0x18) = unaff_R15;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_XMM6_Qa;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_XMM6_Qb;
+  *(uint64_t *)(in_R11 + 0x18) = unaff_R15;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_XMM6_Qa;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_XMM6_Qb;
                     // WARNING: Could not recover jumptable at 0x000180839a3d. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((ulonglong)*(uint *)(&UNK_180839d30 + in_RAX * 4) + 0x180000000))
@@ -24,7 +24,7 @@ void FUN_180839a23(void)
 
 
 
-undefined8 FUN_180839b20(void)
+uint64_t FUN_180839b20(void)
 
 {
   float *unaff_RBX;
@@ -35,9 +35,9 @@ undefined8 FUN_180839b20(void)
   uint extraout_XMM0_Db;
   uint extraout_XMM0_Dc;
   uint extraout_XMM0_Dd;
-  undefined1 auVar1 [16];
-  undefined1 auVar2 [16];
-  undefined1 auVar3 [16];
+  int8_t auVar1 [16];
+  int8_t auVar2 [16];
+  int8_t auVar3 [16];
   uint unaff_XMM7_Da;
   uint unaff_XMM7_Db;
   uint unaff_XMM7_Dc;
@@ -97,15 +97,15 @@ undefined8 FUN_180839b20(void)
 
 
 
-undefined8 FUN_180839c06(void)
+uint64_t FUN_180839c06(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   float *unaff_RBX;
   int unaff_ESI;
   int iVar2;
   float *unaff_RDI;
-  undefined8 uVar3;
+  uint64_t uVar3;
   uint unaff_XMM7_Da;
   uint unaff_XMM7_Db;
   uint unaff_XMM7_Dc;
@@ -134,7 +134,7 @@ undefined8 FUN_180839c06(void)
   uint uStack0000000000000054;
   uint uStack0000000000000058;
   uint uStack000000000000005c;
-  undefined8 in_stack_000000f0;
+  uint64_t in_stack_000000f0;
   
   uVar1 = in_stack_000000f0;
   for (iVar2 = unaff_ESI >> 1; iVar2 != 0; iVar2 = iVar2 + -1) {
@@ -194,7 +194,7 @@ undefined8 FUN_180839c06(void)
 
 
 
-undefined8 FUN_180839d09(void)
+uint64_t FUN_180839d09(void)
 
 {
   return 0;
@@ -204,7 +204,7 @@ undefined8 FUN_180839d09(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180839dc0(longlong *param_1,longlong param_2,int *param_3,longlong param_4)
+uint64_t FUN_180839dc0(longlong *param_1,longlong param_2,int *param_3,longlong param_4)
 
 {
   longlong lVar1;
@@ -327,7 +327,7 @@ undefined8 FUN_180839dc0(longlong *param_1,longlong param_2,int *param_3,longlon
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180839dfd(undefined8 param_1,undefined8 param_2,int *param_3)
+uint64_t FUN_180839dfd(uint64_t param_1,uint64_t param_2,int *param_3)
 
 {
   longlong lVar1;
@@ -447,7 +447,7 @@ undefined8 FUN_180839dfd(undefined8 param_1,undefined8 param_2,int *param_3)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180839e32(undefined8 param_1,undefined8 param_2,longlong param_3,uint param_4)
+uint64_t FUN_180839e32(uint64_t param_1,uint64_t param_2,longlong param_3,uint param_4)
 
 {
   longlong lVar1;
@@ -562,7 +562,7 @@ undefined8 FUN_180839e32(undefined8 param_1,undefined8 param_2,longlong param_3,
 
 
 
-undefined8 FUN_18083a016(void)
+uint64_t FUN_18083a016(void)
 
 {
   longlong lVar1;
@@ -608,7 +608,7 @@ undefined8 FUN_18083a016(void)
 
 
 
-undefined8 FUN_18083a02f(longlong param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
+uint64_t FUN_18083a02f(longlong param_1,uint64_t param_2,uint64_t param_3,longlong param_4)
 
 {
   longlong lVar1;
@@ -662,15 +662,15 @@ void FUN_18083a0df(void)
 
 
 
-// 函数: void FUN_18083a100(int param_1,undefined8 param_2)
-void FUN_18083a100(int param_1,undefined8 param_2)
+// 函数: void FUN_18083a100(int param_1,uint64_t param_2)
+void FUN_18083a100(int param_1,uint64_t param_2)
 
 {
-  undefined1 auStack_98 [4];
-  undefined4 uStack_94;
+  int8_t auStack_98 [4];
+  int32_t uStack_94;
   ulonglong uStack_88;
-  undefined8 uStack_78;
-  undefined8 uStack_68;
+  uint64_t uStack_78;
+  uint64_t uStack_68;
   ulonglong uStack_58;
   
   uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
@@ -678,7 +678,7 @@ void FUN_18083a100(int param_1,undefined8 param_2)
   if (param_1 != 0) {
     uStack_88 = 0x800;
   }
-  uStack_94 = (undefined4)uStack_88;
+  uStack_94 = (int32_t)uStack_88;
   uStack_78 = 0x180beee40;
   if (param_1 != 0) {
     uStack_78 = 0x180beef40;

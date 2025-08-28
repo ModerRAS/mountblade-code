@@ -4,15 +4,15 @@
 // 本文件包含9个函数，主要处理渲染数据结构管理、缓冲区操作和资源清理
 
 // 全局变量声明
-undefined8 _DAT_180c8ed18;  // 内存分配器
-undefined8 _DAT_180c8ed60;  // 渲染上下文
-undefined8 _DAT_180c8a9b0;  // 引擎状态数据
-undefined8 UNK_180a3c3e0;   // 渲染资源管理器
-undefined8 UNK_18098bcb0;   // 纹理管理器
-undefined8 UNK_1809fcc58;   // 缓冲区管理器
-undefined8 UNK_180a21720;   // 渲染状态管理器
-undefined8 UNK_180a21690;   // 渲染队列管理器
-undefined8 DAT_18098bc73;   // 默认渲染数据
+uint64_t _DAT_180c8ed18;  // 内存分配器
+uint64_t _DAT_180c8ed60;  // 渲染上下文
+uint64_t _DAT_180c8a9b0;  // 引擎状态数据
+uint64_t UNK_180a3c3e0;   // 渲染资源管理器
+uint64_t UNK_18098bcb0;   // 纹理管理器
+uint64_t UNK_1809fcc58;   // 缓冲区管理器
+uint64_t UNK_180a21720;   // 渲染状态管理器
+uint64_t UNK_180a21690;   // 渲染队列管理器
+uint64_t DAT_18098bc73;   // 默认渲染数据
 
 /**
  * 渲染数据插入函数
@@ -23,21 +23,21 @@ undefined8 DAT_18098bc73;   // 默认渲染数据
  * @param data_struct_ptr 渲染数据结构指针
  * @param data_item_ptr 要插入的数据项指针
  */
-void insert_rendering_data_item(ulonglong *data_struct_ptr, undefined8 *data_item_ptr)
+void insert_rendering_data_item(ulonglong *data_struct_ptr, uint64_t *data_item_ptr)
 
 {
-  undefined4 data_field1;
-  undefined4 data_field2;
-  undefined4 data_field3;
-  undefined8 data_value1;
-  undefined8 *buffer_ptr;
-  undefined8 *source_ptr;
-  undefined8 *dest_ptr;
+  int32_t data_field1;
+  int32_t data_field2;
+  int32_t data_field3;
+  uint64_t data_value1;
+  uint64_t *buffer_ptr;
+  uint64_t *source_ptr;
+  uint64_t *dest_ptr;
   longlong capacity;
-  undefined8 *current_ptr;
+  uint64_t *current_ptr;
   
-  current_ptr = (undefined8 *)data_struct_ptr[1];
-  if (current_ptr < (undefined8 *)data_struct_ptr[2]) {
+  current_ptr = (uint64_t *)data_struct_ptr[1];
+  if (current_ptr < (uint64_t *)data_struct_ptr[2]) {
     // 有足够空间，直接插入
     data_struct_ptr[1] = (ulonglong)(current_ptr + 2);
     data_value1 = data_item_ptr[1];
@@ -47,7 +47,7 @@ void insert_rendering_data_item(ulonglong *data_struct_ptr, undefined8 *data_ite
   }
   
   // 空间不足，需要扩容
-  source_ptr = (undefined8 *)*data_struct_ptr;
+  source_ptr = (uint64_t *)*data_struct_ptr;
   capacity = (longlong)current_ptr - (longlong)source_ptr >> 4;
   if (capacity == 0) {
     capacity = 1;
@@ -55,16 +55,16 @@ void insert_rendering_data_item(ulonglong *data_struct_ptr, undefined8 *data_ite
   else {
     capacity = capacity * 2;
     if (capacity == 0) {
-      dest_ptr = (undefined8 *)0x0;
+      dest_ptr = (uint64_t *)0x0;
       buffer_ptr = dest_ptr;
       goto copy_data;
     }
   }
   
   // 分配新内存
-  dest_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, capacity << 4, (char)data_struct_ptr[3]);
-  current_ptr = (undefined8 *)data_struct_ptr[1];
-  source_ptr = (undefined8 *)*data_struct_ptr;
+  dest_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, capacity << 4, (char)data_struct_ptr[3]);
+  current_ptr = (uint64_t *)data_struct_ptr[1];
+  source_ptr = (uint64_t *)*data_struct_ptr;
   buffer_ptr = dest_ptr;
   
 copy_data:
@@ -77,13 +77,13 @@ copy_data:
   }
   
   // 插入新数据
-  data_field1 = *(undefined4 *)((longlong)data_item_ptr + 4);
-  data_field2 = *(undefined4 *)(data_item_ptr + 1);
-  data_field3 = *(undefined4 *)((longlong)data_item_ptr + 0xc);
-  *(undefined4 *)buffer_ptr = *(undefined4 *)data_item_ptr;
-  *(undefined4 *)((longlong)buffer_ptr + 4) = data_field1;
-  *(undefined4 *)(buffer_ptr + 1) = data_field2;
-  *(undefined4 *)((longlong)buffer_ptr + 0xc) = data_field3;
+  data_field1 = *(int32_t *)((longlong)data_item_ptr + 4);
+  data_field2 = *(int32_t *)(data_item_ptr + 1);
+  data_field3 = *(int32_t *)((longlong)data_item_ptr + 0xc);
+  *(int32_t *)buffer_ptr = *(int32_t *)data_item_ptr;
+  *(int32_t *)((longlong)buffer_ptr + 4) = data_field1;
+  *(int32_t *)(buffer_ptr + 1) = data_field2;
+  *(int32_t *)((longlong)buffer_ptr + 0xc) = data_field3;
   
   if (*data_struct_ptr == 0) {
     *data_struct_ptr = (ulonglong)buffer_ptr;
@@ -107,21 +107,21 @@ copy_data:
 void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
 
 {
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   longlong *size_ptr;
-  undefined8 *buffer_start;
-  undefined8 *buffer_end;
-  undefined8 *new_buffer;
+  uint64_t *buffer_start;
+  uint64_t *buffer_end;
+  uint64_t *new_buffer;
   longlong current_size;
-  undefined8 *temp_ptr;
+  uint64_t *temp_ptr;
   ulonglong new_size;
   longlong *iter_ptr;
   ulonglong required_size;
   longlong offset;
   
-  buffer_end = (undefined8 *)buffer_ptr[1];
+  buffer_end = (uint64_t *)buffer_ptr[1];
   if ((ulonglong)(buffer_ptr[2] - (longlong)buffer_end >> 4) < reserve_size) {
-    buffer_start = (undefined8 *)*buffer_ptr;
+    buffer_start = (uint64_t *)*buffer_ptr;
     current_size = (longlong)buffer_end - (longlong)buffer_start >> 4;
     required_size = current_size * 2;
     if (current_size == 0) {
@@ -132,9 +132,9 @@ void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
     }
     
     // 分配新缓冲区
-    new_buffer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, required_size << 4, (char)buffer_ptr[3]);
-    buffer_end = (undefined8 *)buffer_ptr[1];
-    buffer_start = (undefined8 *)*buffer_ptr;
+    new_buffer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, required_size << 4, (char)buffer_ptr[3]);
+    buffer_end = (uint64_t *)buffer_ptr[1];
+    buffer_start = (uint64_t *)*buffer_ptr;
     temp_ptr = new_buffer;
     
     // 复制数据并清理旧数据
@@ -144,8 +144,8 @@ void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
       do {
         *temp_ptr = *buffer_start;
         *buffer_start = 0;
-        data_ptr = (undefined4 *)((longlong)new_buffer + current_size + (longlong)buffer_start);
-        *data_ptr = *(undefined4 *)((longlong)data_ptr + offset);
+        data_ptr = (int32_t *)((longlong)new_buffer + current_size + (longlong)buffer_start);
+        *data_ptr = *(int32_t *)((longlong)data_ptr + offset);
         buffer_start = buffer_start + 2;
         temp_ptr = temp_ptr + 2;
       } while (buffer_start != buffer_end);
@@ -194,7 +194,7 @@ void reserve_rendering_buffer(longlong *buffer_ptr, ulonglong reserve_size)
         buffer_end = buffer_end + 2;
         new_size = new_size - 1;
       } while (new_size != 0);
-      buffer_end = (undefined8 *)buffer_ptr[1];
+      buffer_end = (uint64_t *)buffer_ptr[1];
     }
     buffer_ptr[1] = (longlong)(buffer_end + reserve_size * 2);
   }
@@ -235,10 +235,10 @@ void cleanup_rendering_data(longlong *data_start_ptr, longlong *data_end_ptr)
  * @param dest_ptr 目标数据指针
  * @return 移动后的目标指针
  */
-undefined8 * move_rendering_data(undefined8 *source_ptr, undefined8 *source_end_ptr, undefined8 *dest_ptr)
+uint64_t * move_rendering_data(uint64_t *source_ptr, uint64_t *source_end_ptr, uint64_t *dest_ptr)
 
 {
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   longlong offset;
   longlong dest_offset;
   
@@ -248,8 +248,8 @@ undefined8 * move_rendering_data(undefined8 *source_ptr, undefined8 *source_end_
     do {
       *dest_ptr = *source_ptr;
       *source_ptr = 0;
-      data_ptr = (undefined4 *)(dest_offset + (longlong)source_ptr);
-      *data_ptr = *(undefined4 *)((longlong)data_ptr + offset);
+      data_ptr = (int32_t *)(dest_offset + (longlong)source_ptr);
+      *data_ptr = *(int32_t *)((longlong)data_ptr + offset);
       source_ptr = source_ptr + 2;
       dest_ptr = dest_ptr + 2;
     } while (source_ptr != source_end_ptr);
@@ -269,7 +269,7 @@ void cleanup_rendering_resources_type1(longlong resource_ptr)
 
 {
   longlong resource_array_ptr;
-  undefined8 *current_resource;
+  uint64_t *current_resource;
   ulonglong resource_count;
   ulonglong resource_index;
   
@@ -278,26 +278,26 @@ void cleanup_rendering_resources_type1(longlong resource_ptr)
   resource_index = 0;
   if (resource_count != 0) {
     do {
-      current_resource = *(undefined8 **)(resource_array_ptr + resource_index * 8);
-      if (current_resource != (undefined8 *)0x0) {
+      current_resource = *(uint64_t **)(resource_array_ptr + resource_index * 8);
+      if (current_resource != (uint64_t *)0x0) {
         if (current_resource[4] != 0) {
           FUN_18064e900();
         }
         *current_resource = &UNK_180a3c3e0;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
-          *(undefined4 *)(current_resource + 3) = 0;
+          *(int32_t *)(current_resource + 3) = 0;
           *current_resource = &UNK_18098bcb0;
           FUN_18064e900(current_resource);
         }
         FUN_18064e900();
       }
-      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
     resource_count = *(ulonglong *)(resource_ptr + 0x10);
   }
-  *(undefined8 *)(resource_ptr + 0x18) = 0;
+  *(uint64_t *)(resource_ptr + 0x18) = 0;
   if ((1 < resource_count) && (*(longlong *)(resource_ptr + 8) != 0)) {
     FUN_18064e900();
   }
@@ -316,7 +316,7 @@ void cleanup_rendering_resources_type2(longlong resource_ptr)
 
 {
   longlong resource_array_ptr;
-  undefined8 *current_resource;
+  uint64_t *current_resource;
   ulonglong resource_count;
   ulonglong resource_index;
   
@@ -325,26 +325,26 @@ void cleanup_rendering_resources_type2(longlong resource_ptr)
   resource_index = 0;
   if (resource_count != 0) {
     do {
-      current_resource = *(undefined8 **)(resource_array_ptr + resource_index * 8);
-      if (current_resource != (undefined8 *)0x0) {
+      current_resource = *(uint64_t **)(resource_array_ptr + resource_index * 8);
+      if (current_resource != (uint64_t *)0x0) {
         if (current_resource[4] != 0) {
           FUN_18064e900();
         }
         *current_resource = &UNK_180a3c3e0;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
-          *(undefined4 *)(current_resource + 3) = 0;
+          *(int32_t *)(current_resource + 3) = 0;
           *current_resource = &UNK_18098bcb0;
           FUN_18064e900(current_resource);
         }
         FUN_18064e900();
       }
-      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
     resource_count = *(ulonglong *)(resource_ptr + 0x10);
   }
-  *(undefined8 *)(resource_ptr + 0x18) = 0;
+  *(uint64_t *)(resource_ptr + 0x18) = 0;
   if ((1 < resource_count) && (*(longlong *)(resource_ptr + 8) != 0)) {
     FUN_18064e900();
   }
@@ -363,7 +363,7 @@ void cleanup_rendering_resources_type3(longlong resource_ptr)
 
 {
   longlong resource_array_ptr;
-  undefined8 *current_resource;
+  uint64_t *current_resource;
   ulonglong resource_count;
   ulonglong resource_index;
   
@@ -372,26 +372,26 @@ void cleanup_rendering_resources_type3(longlong resource_ptr)
   resource_index = 0;
   if (resource_count != 0) {
     do {
-      current_resource = *(undefined8 **)(resource_array_ptr + resource_index * 8);
-      if (current_resource != (undefined8 *)0x0) {
+      current_resource = *(uint64_t **)(resource_array_ptr + resource_index * 8);
+      if (current_resource != (uint64_t *)0x0) {
         if (current_resource[4] != 0) {
           FUN_18064e900();
         }
         *current_resource = &UNK_180a3c3e0;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
-          *(undefined4 *)(current_resource + 3) = 0;
+          *(int32_t *)(current_resource + 3) = 0;
           *current_resource = &UNK_18098bcb0;
           FUN_18064e900(current_resource);
         }
         FUN_18064e900();
       }
-      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
     resource_count = *(ulonglong *)(resource_ptr + 0x10);
   }
-  *(undefined8 *)(resource_ptr + 0x18) = 0;
+  *(uint64_t *)(resource_ptr + 0x18) = 0;
   if ((1 < resource_count) && (*(longlong *)(resource_ptr + 8) != 0)) {
     FUN_18064e900();
   }
@@ -410,43 +410,43 @@ void cleanup_rendering_resources_type3(longlong resource_ptr)
 void initialize_rendering_data(longlong data_ptr, longlong init_count)
 
 {
-  undefined4 *data_field_ptr;
+  int32_t *data_field_ptr;
   
   if (init_count != 0) {
-    data_field_ptr = (undefined4 *)(data_ptr + 0x168);
+    data_field_ptr = (int32_t *)(data_ptr + 0x168);
     do {
       // 初始化渲染数据结构
-      *(undefined **)(data_field_ptr + -0x5a) = &UNK_18098bcb0;
-      *(undefined8 *)(data_field_ptr + -0x58) = 0;
+      *(void **)(data_field_ptr + -0x5a) = &UNK_18098bcb0;
+      *(uint64_t *)(data_field_ptr + -0x58) = 0;
       data_field_ptr[-0x56] = 0;
-      *(undefined **)(data_field_ptr + -0x5a) = &UNK_1809fcc58;
-      *(undefined4 **)(data_field_ptr + -0x58) = data_field_ptr + -0x54;
+      *(void **)(data_field_ptr + -0x5a) = &UNK_1809fcc58;
+      *(int32_t **)(data_field_ptr + -0x58) = data_field_ptr + -0x54;
       data_field_ptr[-0x56] = 0;
-      *(undefined1 *)(data_field_ptr + -0x54) = 0;
+      *(int8_t *)(data_field_ptr + -0x54) = 0;
       
       // 设置渲染状态
-      *(undefined **)(data_field_ptr + -0x16) = &UNK_18098bcb0;
-      *(undefined8 *)(data_field_ptr + -0x14) = 0;
+      *(void **)(data_field_ptr + -0x16) = &UNK_18098bcb0;
+      *(uint64_t *)(data_field_ptr + -0x14) = 0;
       data_field_ptr[-0x12] = 0;
-      *(undefined **)(data_field_ptr + -0x16) = &UNK_180a3c3e0;
-      *(undefined8 *)(data_field_ptr + -0x10) = 0;
-      *(undefined8 *)(data_field_ptr + -0x14) = 0;
+      *(void **)(data_field_ptr + -0x16) = &UNK_180a3c3e0;
+      *(uint64_t *)(data_field_ptr + -0x10) = 0;
+      *(uint64_t *)(data_field_ptr + -0x14) = 0;
       data_field_ptr[-0x12] = 0;
-      *(undefined8 *)(data_field_ptr + -0xe) = 0;
-      *(undefined8 *)(data_field_ptr + -0xc) = 0;
-      *(undefined8 *)(data_field_ptr + -10) = 0;
+      *(uint64_t *)(data_field_ptr + -0xe) = 0;
+      *(uint64_t *)(data_field_ptr + -0xc) = 0;
+      *(uint64_t *)(data_field_ptr + -10) = 0;
       data_field_ptr[-8] = 3;
-      *(undefined8 *)(data_field_ptr + -6) = 0;
-      *(undefined8 *)(data_field_ptr + -4) = 0;
-      *(undefined8 *)(data_field_ptr + -2) = 0;
+      *(uint64_t *)(data_field_ptr + -6) = 0;
+      *(uint64_t *)(data_field_ptr + -4) = 0;
+      *(uint64_t *)(data_field_ptr + -2) = 0;
       *data_field_ptr = 3;
-      *(undefined8 *)(data_field_ptr + 2) = 0;
-      *(undefined8 *)(data_field_ptr + 4) = 0;
-      *(undefined8 *)(data_field_ptr + 6) = 0;
+      *(uint64_t *)(data_field_ptr + 2) = 0;
+      *(uint64_t *)(data_field_ptr + 4) = 0;
+      *(uint64_t *)(data_field_ptr + 6) = 0;
       data_field_ptr[8] = 3;
       
       // 设置渲染参数
-      *(undefined8 *)(data_field_ptr + -0x43) = 0;
+      *(uint64_t *)(data_field_ptr + -0x43) = 0;
       data_field_ptr[-0x41] = 0;
       data_field_ptr[-0x3a] = 0;
       data_field_ptr[-0x39] = 0;
@@ -456,28 +456,28 @@ void initialize_rendering_data(longlong data_ptr, longlong init_count)
       data_field_ptr[-0x35] = 0;
       data_field_ptr[-0x34] = 0;
       data_field_ptr[-0x33] = 0x3f800000;  // 1.0f
-      *(undefined8 *)(data_field_ptr + -0x32) = 0;
-      *(undefined8 *)(data_field_ptr + -0x30) = 0;
-      *(undefined8 *)(data_field_ptr + -0x2e) = 0;
-      *(undefined8 *)(data_field_ptr + -0x2c) = 0;
-      *(undefined8 *)(data_field_ptr + -0x2a) = 0;
-      *(undefined8 *)(data_field_ptr + -0x28) = 0;
-      *(undefined8 *)(data_field_ptr + -0x26) = 0x3f800000;  // 1.0f
-      *(undefined8 *)(data_field_ptr + -0x24) = 0;
-      *(undefined8 *)(data_field_ptr + -0x22) = 0x3f80000000000000;  // 1.0
-      *(undefined8 *)(data_field_ptr + -0x20) = 0;
-      *(undefined8 *)(data_field_ptr + -0x1e) = 0;
-      *(undefined8 *)(data_field_ptr + -0x1c) = 0x3f800000;  // 1.0f
-      *(undefined8 *)(data_field_ptr + -0x1a) = 0;
-      *(undefined8 *)(data_field_ptr + -0x18) = 0x3f80000000000000;  // 1.0
+      *(uint64_t *)(data_field_ptr + -0x32) = 0;
+      *(uint64_t *)(data_field_ptr + -0x30) = 0;
+      *(uint64_t *)(data_field_ptr + -0x2e) = 0;
+      *(uint64_t *)(data_field_ptr + -0x2c) = 0;
+      *(uint64_t *)(data_field_ptr + -0x2a) = 0;
+      *(uint64_t *)(data_field_ptr + -0x28) = 0;
+      *(uint64_t *)(data_field_ptr + -0x26) = 0x3f800000;  // 1.0f
+      *(uint64_t *)(data_field_ptr + -0x24) = 0;
+      *(uint64_t *)(data_field_ptr + -0x22) = 0x3f80000000000000;  // 1.0
+      *(uint64_t *)(data_field_ptr + -0x20) = 0;
+      *(uint64_t *)(data_field_ptr + -0x1e) = 0;
+      *(uint64_t *)(data_field_ptr + -0x1c) = 0x3f800000;  // 1.0f
+      *(uint64_t *)(data_field_ptr + -0x1a) = 0;
+      *(uint64_t *)(data_field_ptr + -0x18) = 0x3f80000000000000;  // 1.0
       
       // 设置渲染标志
       data_field_ptr[-0x44] = 0;
-      *(undefined8 *)(data_field_ptr + -0x40) = 0;
-      *(undefined8 *)(data_field_ptr + -0x3e) = 0;
-      *(undefined8 *)(data_field_ptr + -0x3c) = 0;
+      *(uint64_t *)(data_field_ptr + -0x40) = 0;
+      *(uint64_t *)(data_field_ptr + -0x3e) = 0;
+      *(uint64_t *)(data_field_ptr + -0x3c) = 0;
       data_field_ptr[0xc] = 0xffffffff;  // 最大无符号整数
-      *(undefined8 *)(data_field_ptr + 10) = 0;
+      *(uint64_t *)(data_field_ptr + 10) = 0;
       data_field_ptr = data_field_ptr + 0x68;
       init_count = init_count - 1;
     } while (init_count != 0);
@@ -497,7 +497,7 @@ void cleanup_rendering_resources_type4(longlong resource_ptr)
 
 {
   longlong resource_array_ptr;
-  undefined8 *current_resource;
+  uint64_t *current_resource;
   ulonglong resource_count;
   ulonglong resource_index;
   
@@ -506,26 +506,26 @@ void cleanup_rendering_resources_type4(longlong resource_ptr)
   resource_index = 0;
   if (resource_count != 0) {
     do {
-      current_resource = *(undefined8 **)(resource_array_ptr + resource_index * 8);
-      if (current_resource != (undefined8 *)0x0) {
+      current_resource = *(uint64_t **)(resource_array_ptr + resource_index * 8);
+      if (current_resource != (uint64_t *)0x0) {
         if (current_resource[4] != 0) {
           FUN_18064e900();
         }
         *current_resource = &UNK_180a3c3e0;
         if (current_resource[1] == 0) {
           current_resource[1] = 0;
-          *(undefined4 *)(current_resource + 3) = 0;
+          *(int32_t *)(current_resource + 3) = 0;
           *current_resource = &UNK_18098bcb0;
           FUN_18064e900(current_resource);
         }
         FUN_18064e900();
       }
-      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
     resource_count = *(ulonglong *)(resource_ptr + 0x18);
   }
-  *(undefined8 *)(resource_ptr + 0x20) = 0;
+  *(uint64_t *)(resource_ptr + 0x20) = 0;
   if ((1 < resource_count) && (*(longlong *)(resource_ptr + 0x10) != 0)) {
     FUN_18064e900();
   }
@@ -544,17 +544,17 @@ void cleanup_rendering_resources_type4(longlong resource_ptr)
  * @param dest_data_ptr 目标数据指针
  * @return 创建后的数据指针
  */
-longlong * create_rendering_data(longlong *data_ptr, undefined4 *src_data_ptr, undefined4 *src_data_end_ptr, undefined8 *dest_data_ptr)
+longlong * create_rendering_data(longlong *data_ptr, int32_t *src_data_ptr, int32_t *src_data_end_ptr, uint64_t *dest_data_ptr)
 
 {
-  undefined8 *new_data_ptr;
-  undefined4 *src_field_ptr;
-  undefined4 data_field1;
-  undefined8 data_value1;
-  undefined4 data_field2;
-  undefined4 data_field3;
-  undefined4 *temp_ptr;
-  undefined *name_ptr;
+  uint64_t *new_data_ptr;
+  int32_t *src_field_ptr;
+  int32_t data_field1;
+  uint64_t data_value1;
+  int32_t data_field2;
+  int32_t data_field3;
+  int32_t *temp_ptr;
+  void *name_ptr;
   
   *data_ptr = (longlong)dest_data_ptr;
   if (src_data_ptr != src_data_end_ptr) {
@@ -563,104 +563,104 @@ longlong * create_rendering_data(longlong *data_ptr, undefined4 *src_data_ptr, u
       // 初始化数据结构
       *dest_data_ptr = &UNK_18098bcb0;
       dest_data_ptr[1] = 0;
-      *(undefined4 *)(dest_data_ptr + 2) = 0;
+      *(int32_t *)(dest_data_ptr + 2) = 0;
       *dest_data_ptr = &UNK_1809fcc58;
       dest_data_ptr[1] = dest_data_ptr + 3;
-      *(undefined4 *)(dest_data_ptr + 2) = 0;
-      *(undefined1 *)(dest_data_ptr + 3) = 0;
+      *(int32_t *)(dest_data_ptr + 2) = 0;
+      *(int8_t *)(dest_data_ptr + 3) = 0;
       
       // 复制数据字段
-      *(undefined4 *)(dest_data_ptr + 2) = src_field_ptr[-0x56];
+      *(int32_t *)(dest_data_ptr + 2) = src_field_ptr[-0x56];
       name_ptr = &DAT_18098bc73;
-      if (*(undefined **)(src_field_ptr + -0x58) != (undefined *)0x0) {
-        name_ptr = *(undefined **)(src_field_ptr + -0x58);
+      if (*(void **)(src_field_ptr + -0x58) != (void *)0x0) {
+        name_ptr = *(void **)(src_field_ptr + -0x58);
       }
       strcpy_s(dest_data_ptr[1], 0x40, name_ptr);
       
       // 复制渲染参数
-      *(undefined4 *)(dest_data_ptr + 0xb) = src_field_ptr[-0x44];
-      *(undefined4 *)((longlong)dest_data_ptr + 0x5c) = src_field_ptr[-0x43];
-      *(undefined4 *)(dest_data_ptr + 0xc) = src_field_ptr[-0x42];
-      *(undefined4 *)((longlong)dest_data_ptr + 100) = src_field_ptr[-0x41];
-      *(undefined4 *)(dest_data_ptr + 0xd) = src_field_ptr[-0x40];
-      *(undefined4 *)((longlong)dest_data_ptr + 0x6c) = src_field_ptr[-0x3f];
-      *(undefined4 *)(dest_data_ptr + 0xe) = src_field_ptr[-0x3e];
-      *(undefined4 *)((longlong)dest_data_ptr + 0x74) = src_field_ptr[-0x3d];
-      *(undefined4 *)(dest_data_ptr + 0xf) = src_field_ptr[-0x3c];
-      *(undefined4 *)((longlong)dest_data_ptr + 0x7c) = src_field_ptr[-0x3b];
+      *(int32_t *)(dest_data_ptr + 0xb) = src_field_ptr[-0x44];
+      *(int32_t *)((longlong)dest_data_ptr + 0x5c) = src_field_ptr[-0x43];
+      *(int32_t *)(dest_data_ptr + 0xc) = src_field_ptr[-0x42];
+      *(int32_t *)((longlong)dest_data_ptr + 100) = src_field_ptr[-0x41];
+      *(int32_t *)(dest_data_ptr + 0xd) = src_field_ptr[-0x40];
+      *(int32_t *)((longlong)dest_data_ptr + 0x6c) = src_field_ptr[-0x3f];
+      *(int32_t *)(dest_data_ptr + 0xe) = src_field_ptr[-0x3e];
+      *(int32_t *)((longlong)dest_data_ptr + 0x74) = src_field_ptr[-0x3d];
+      *(int32_t *)(dest_data_ptr + 0xf) = src_field_ptr[-0x3c];
+      *(int32_t *)((longlong)dest_data_ptr + 0x7c) = src_field_ptr[-0x3b];
       
       // 复制变换矩阵
-      data_value1 = *(undefined8 *)(src_field_ptr + -0x38);
-      dest_data_ptr[0x10] = *(undefined8 *)(src_field_ptr + -0x3a);
+      data_value1 = *(uint64_t *)(src_field_ptr + -0x38);
+      dest_data_ptr[0x10] = *(uint64_t *)(src_field_ptr + -0x3a);
       dest_data_ptr[0x11] = data_value1;
-      data_value1 = *(undefined8 *)(src_field_ptr + -0x34);
-      dest_data_ptr[0x12] = *(undefined8 *)(src_field_ptr + -0x36);
+      data_value1 = *(uint64_t *)(src_field_ptr + -0x34);
+      dest_data_ptr[0x12] = *(uint64_t *)(src_field_ptr + -0x36);
       dest_data_ptr[0x13] = data_value1;
-      data_value1 = *(undefined8 *)(src_field_ptr + -0x30);
-      dest_data_ptr[0x14] = *(undefined8 *)(src_field_ptr + -0x32);
+      data_value1 = *(uint64_t *)(src_field_ptr + -0x30);
+      dest_data_ptr[0x14] = *(uint64_t *)(src_field_ptr + -0x32);
       dest_data_ptr[0x15] = data_value1;
-      data_value1 = *(undefined8 *)(src_field_ptr + -0x2c);
-      dest_data_ptr[0x16] = *(undefined8 *)(src_field_ptr + -0x2e);
+      data_value1 = *(uint64_t *)(src_field_ptr + -0x2c);
+      dest_data_ptr[0x16] = *(uint64_t *)(src_field_ptr + -0x2e);
       dest_data_ptr[0x17] = data_value1;
-      data_value1 = *(undefined8 *)(src_field_ptr + -0x28);
-      dest_data_ptr[0x18] = *(undefined8 *)(src_field_ptr + -0x2a);
+      data_value1 = *(uint64_t *)(src_field_ptr + -0x28);
+      dest_data_ptr[0x18] = *(uint64_t *)(src_field_ptr + -0x2a);
       dest_data_ptr[0x19] = data_value1;
-      data_value1 = *(undefined8 *)(src_field_ptr + -0x24);
-      dest_data_ptr[0x1a] = *(undefined8 *)(src_field_ptr + -0x26);
+      data_value1 = *(uint64_t *)(src_field_ptr + -0x24);
+      dest_data_ptr[0x1a] = *(uint64_t *)(src_field_ptr + -0x26);
       dest_data_ptr[0x1b] = data_value1;
-      data_value1 = *(undefined8 *)(src_field_ptr + -0x20);
-      dest_data_ptr[0x1c] = *(undefined8 *)(src_field_ptr + -0x22);
+      data_value1 = *(uint64_t *)(src_field_ptr + -0x20);
+      dest_data_ptr[0x1c] = *(uint64_t *)(src_field_ptr + -0x22);
       dest_data_ptr[0x1d] = data_value1;
       
       // 复制颜色值
       data_field1 = src_field_ptr[-0x1d];
       data_field2 = src_field_ptr[-0x1c];
       data_field3 = src_field_ptr[-0x1b];
-      *(undefined4 *)(dest_data_ptr + 0x1e) = src_field_ptr[-0x1e];
-      *(undefined4 *)((longlong)dest_data_ptr + 0xf4) = data_field1;
-      *(undefined4 *)(dest_data_ptr + 0x1f) = data_field2;
-      *(undefined4 *)((longlong)dest_data_ptr + 0xfc) = data_field3;
+      *(int32_t *)(dest_data_ptr + 0x1e) = src_field_ptr[-0x1e];
+      *(int32_t *)((longlong)dest_data_ptr + 0xf4) = data_field1;
+      *(int32_t *)(dest_data_ptr + 0x1f) = data_field2;
+      *(int32_t *)((longlong)dest_data_ptr + 0xfc) = data_field3;
       data_field1 = src_field_ptr[-0x19];
       data_field2 = src_field_ptr[-0x18];
       data_field3 = src_field_ptr[-0x17];
-      *(undefined4 *)(dest_data_ptr + 0x20) = src_field_ptr[-0x1a];
-      *(undefined4 *)((longlong)dest_data_ptr + 0x104) = data_field1;
-      *(undefined4 *)(dest_data_ptr + 0x21) = data_field2;
-      *(undefined4 *)((longlong)dest_data_ptr + 0x10c) = data_field3;
+      *(int32_t *)(dest_data_ptr + 0x20) = src_field_ptr[-0x1a];
+      *(int32_t *)((longlong)dest_data_ptr + 0x104) = data_field1;
+      *(int32_t *)(dest_data_ptr + 0x21) = data_field2;
+      *(int32_t *)((longlong)dest_data_ptr + 0x10c) = data_field3;
       
       // 设置渲染状态
       dest_data_ptr[0x22] = &UNK_18098bcb0;
       dest_data_ptr[0x23] = 0;
-      *(undefined4 *)(dest_data_ptr + 0x24) = 0;
+      *(int32_t *)(dest_data_ptr + 0x24) = 0;
       dest_data_ptr[0x22] = &UNK_180a3c3e0;
       dest_data_ptr[0x25] = 0;
       dest_data_ptr[0x23] = 0;
-      *(undefined4 *)(dest_data_ptr + 0x24) = 0;
-      *(undefined4 *)(dest_data_ptr + 0x24) = src_field_ptr[-0x12];
-      dest_data_ptr[0x23] = *(undefined8 *)(src_field_ptr + -0x14);
-      *(undefined4 *)((longlong)dest_data_ptr + 300) = src_field_ptr[-0xf];
-      *(undefined4 *)(dest_data_ptr + 0x25) = src_field_ptr[-0x10];
+      *(int32_t *)(dest_data_ptr + 0x24) = 0;
+      *(int32_t *)(dest_data_ptr + 0x24) = src_field_ptr[-0x12];
+      dest_data_ptr[0x23] = *(uint64_t *)(src_field_ptr + -0x14);
+      *(int32_t *)((longlong)dest_data_ptr + 300) = src_field_ptr[-0xf];
+      *(int32_t *)(dest_data_ptr + 0x25) = src_field_ptr[-0x10];
       src_field_ptr[-0x12] = 0;
-      *(undefined8 *)(src_field_ptr + -0x14) = 0;
-      *(undefined8 *)(src_field_ptr + -0x10) = 0;
+      *(uint64_t *)(src_field_ptr + -0x14) = 0;
+      *(uint64_t *)(src_field_ptr + -0x10) = 0;
       
       // 交换数据
       new_data_ptr = dest_data_ptr + 0x26;
       *new_data_ptr = 0;
       dest_data_ptr[0x27] = 0;
       dest_data_ptr[0x28] = 0;
-      *(undefined4 *)(dest_data_ptr + 0x29) = src_field_ptr[-8];
+      *(int32_t *)(dest_data_ptr + 0x29) = src_field_ptr[-8];
       data_value1 = *new_data_ptr;
-      *new_data_ptr = *(undefined8 *)(src_field_ptr + -0xe);
-      *(undefined8 *)(src_field_ptr + -0xe) = data_value1;
+      *new_data_ptr = *(uint64_t *)(src_field_ptr + -0xe);
+      *(uint64_t *)(src_field_ptr + -0xe) = data_value1;
       data_value1 = dest_data_ptr[0x27];
-      dest_data_ptr[0x27] = *(undefined8 *)(src_field_ptr + -0xc);
-      *(undefined8 *)(src_field_ptr + -0xc) = data_value1;
+      dest_data_ptr[0x27] = *(uint64_t *)(src_field_ptr + -0xc);
+      *(uint64_t *)(src_field_ptr + -0xc) = data_value1;
       data_value1 = dest_data_ptr[0x28];
-      dest_data_ptr[0x28] = *(undefined8 *)(src_field_ptr + -10);
-      *(undefined8 *)(src_field_ptr + -10) = data_value1;
-      data_field1 = *(undefined4 *)(dest_data_ptr + 0x29);
-      *(undefined4 *)(dest_data_ptr + 0x29) = src_field_ptr[-8];
+      dest_data_ptr[0x28] = *(uint64_t *)(src_field_ptr + -10);
+      *(uint64_t *)(src_field_ptr + -10) = data_value1;
+      data_field1 = *(int32_t *)(dest_data_ptr + 0x29);
+      *(int32_t *)(dest_data_ptr + 0x29) = src_field_ptr[-8];
       src_field_ptr[-8] = data_field1;
       
       // 交换更多数据
@@ -668,18 +668,18 @@ longlong * create_rendering_data(longlong *data_ptr, undefined4 *src_data_ptr, u
       *new_data_ptr = 0;
       dest_data_ptr[0x2b] = 0;
       dest_data_ptr[0x2c] = 0;
-      *(undefined4 *)(dest_data_ptr + 0x2d) = *src_field_ptr;
+      *(int32_t *)(dest_data_ptr + 0x2d) = *src_field_ptr;
       data_value1 = *new_data_ptr;
-      *new_data_ptr = *(undefined8 *)(src_field_ptr + -6);
-      *(undefined8 *)(src_field_ptr + -6) = data_value1;
+      *new_data_ptr = *(uint64_t *)(src_field_ptr + -6);
+      *(uint64_t *)(src_field_ptr + -6) = data_value1;
       data_value1 = dest_data_ptr[0x2b];
-      dest_data_ptr[0x2b] = *(undefined8 *)(src_field_ptr + -4);
-      *(undefined8 *)(src_field_ptr + -4) = data_value1;
+      dest_data_ptr[0x2b] = *(uint64_t *)(src_field_ptr + -4);
+      *(uint64_t *)(src_field_ptr + -4) = data_value1;
       data_value1 = dest_data_ptr[0x2c];
-      dest_data_ptr[0x2c] = *(undefined8 *)(src_field_ptr + -2);
-      *(undefined8 *)(src_field_ptr + -2) = data_value1;
-      data_field1 = *(undefined4 *)(dest_data_ptr + 0x2d);
-      *(undefined4 *)(dest_data_ptr + 0x2d) = *src_field_ptr;
+      dest_data_ptr[0x2c] = *(uint64_t *)(src_field_ptr + -2);
+      *(uint64_t *)(src_field_ptr + -2) = data_value1;
+      data_field1 = *(int32_t *)(dest_data_ptr + 0x2d);
+      *(int32_t *)(dest_data_ptr + 0x2d) = *src_field_ptr;
       *src_field_ptr = data_field1;
       
       // 交换最后的数据
@@ -687,25 +687,25 @@ longlong * create_rendering_data(longlong *data_ptr, undefined4 *src_data_ptr, u
       *new_data_ptr = 0;
       dest_data_ptr[0x2f] = 0;
       dest_data_ptr[0x30] = 0;
-      *(undefined4 *)(dest_data_ptr + 0x31) = src_field_ptr[8];
+      *(int32_t *)(dest_data_ptr + 0x31) = src_field_ptr[8];
       data_value1 = *new_data_ptr;
-      *new_data_ptr = *(undefined8 *)(src_field_ptr + 2);
-      *(undefined8 *)(src_field_ptr + 2) = data_value1;
+      *new_data_ptr = *(uint64_t *)(src_field_ptr + 2);
+      *(uint64_t *)(src_field_ptr + 2) = data_value1;
       data_value1 = dest_data_ptr[0x2f];
-      dest_data_ptr[0x2f] = *(undefined8 *)(src_field_ptr + 4);
-      *(undefined8 *)(src_field_ptr + 4) = data_value1;
+      dest_data_ptr[0x2f] = *(uint64_t *)(src_field_ptr + 4);
+      *(uint64_t *)(src_field_ptr + 4) = data_value1;
       data_value1 = dest_data_ptr[0x30];
-      dest_data_ptr[0x30] = *(undefined8 *)(src_field_ptr + 6);
-      *(undefined8 *)(src_field_ptr + 6) = data_value1;
-      data_field1 = *(undefined4 *)(dest_data_ptr + 0x31);
-      *(undefined4 *)(dest_data_ptr + 0x31) = src_field_ptr[8];
+      dest_data_ptr[0x30] = *(uint64_t *)(src_field_ptr + 6);
+      *(uint64_t *)(src_field_ptr + 6) = data_value1;
+      data_field1 = *(int32_t *)(dest_data_ptr + 0x31);
+      *(int32_t *)(dest_data_ptr + 0x31) = src_field_ptr[8];
       src_field_ptr[8] = data_field1;
       
       // 完成数据创建
-      dest_data_ptr[0x32] = *(undefined8 *)(src_field_ptr + 10);
-      *(undefined4 *)(dest_data_ptr + 0x33) = src_field_ptr[0xc];
+      dest_data_ptr[0x32] = *(uint64_t *)(src_field_ptr + 10);
+      *(int32_t *)(dest_data_ptr + 0x33) = src_field_ptr[0xc];
       *data_ptr = *data_ptr + 0x1a0;
-      dest_data_ptr = (undefined8 *)*data_ptr;
+      dest_data_ptr = (uint64_t *)*data_ptr;
       new_data_ptr = src_field_ptr + 0xe;
       src_field_ptr = src_field_ptr + 0x68;
     } while (new_data_ptr != src_data_end_ptr);
@@ -744,15 +744,15 @@ void allocate_rendering_memory(longlong memory_ptr, longlong allocation_size)
  * @param update_flag 更新标志
  * @return 更新结果
  */
-undefined1 update_rendering_state(longlong state_ptr, undefined1 update_flag)
+int8_t update_rendering_state(longlong state_ptr, int8_t update_flag)
 
 {
   uint state_flags;
   longlong state_data_ptr;
   char state_char;
-  undefined1 update_result;
+  int8_t update_result;
   uint flag_mask;
-  undefined1 temp_flag;
+  int8_t temp_flag;
   longlong list_offset;
   longlong list_start;
   int list_index;
@@ -824,14 +824,14 @@ undefined1 update_rendering_state(longlong state_ptr, undefined1 update_flag)
  * @param param3 参数3
  * @return 更新结果
  */
-undefined1 update_rendering_state_variant(undefined8 param1, undefined8 param2, longlong param3)
+int8_t update_rendering_state_variant(uint64_t param1, uint64_t param2, longlong param3)
 
 {
   uint state_flags;
   longlong state_data_ptr;
   longlong list_offset;
   char state_char;
-  undefined1 update_result;
+  int8_t update_result;
   uint flag_mask;
   longlong list_start;
   int list_index;
@@ -894,10 +894,10 @@ undefined1 update_rendering_state_variant(undefined8 param1, undefined8 param2, 
  * 
  * @return 当前状态
  */
-undefined1 get_rendering_state(void)
+int8_t get_rendering_state(void)
 
 {
-  undefined1 current_state;
+  int8_t current_state;
   
   return current_state;
 }
@@ -914,10 +914,10 @@ undefined1 get_rendering_state(void)
  * @param param4 参数4
  * @return 释放后的资源指针
  */
-undefined8 * release_rendering_resource(undefined8 *resource_ptr, ulonglong release_flags, undefined8 param3, undefined8 param4)
+uint64_t * release_rendering_resource(uint64_t *resource_ptr, ulonglong release_flags, uint64_t param3, uint64_t param4)
 
 {
-  undefined8 free_flag;
+  uint64_t free_flag;
   
   free_flag = 0xfffffffffffffffe;
   if ((longlong *)resource_ptr[4] != (longlong *)0x0) {
@@ -997,13 +997,13 @@ float * calculate_rendering_vector(float *vector_ptr1, float *result_ptr, float 
  * @param position_ptr 位置指针
  * @return 计算结果
  */
-undefined8 calculate_rendering_distance(longlong param1, undefined8 param2, float *position_ptr)
+uint64_t calculate_rendering_distance(longlong param1, uint64_t param2, float *position_ptr)
 
 {
   float distance_x;
   float distance_y;
   float distance_z;
-  undefined4 max_distance;
+  int32_t max_distance;
   
   distance_x = *position_ptr - *(float *)(param1 + 0x10);
   distance_y = position_ptr[1] - *(float *)(param1 + 0x14);
@@ -1014,9 +1014,9 @@ undefined8 calculate_rendering_distance(longlong param1, undefined8 param2, floa
 }
 
 // 辅助函数声明（在其他文件中实现）
-void FUN_18062b420(undefined8 allocator, ulonglong size, char flags);
+void FUN_18062b420(uint64_t allocator, ulonglong size, char flags);
 void FUN_18064e900(void);
-void FUN_18007b240(longlong param1, longlong param2, char param3, undefined1 param4);
+void FUN_18007b240(longlong param1, longlong param2, char param3, int8_t param4);
 void memset(void *ptr, int value, size_t num);
-void free(void *ptr, size_t size, undefined8 param3, undefined8 param4, undefined8 param5);
+void free(void *ptr, size_t size, uint64_t param3, uint64_t param4, uint64_t param5);
 void strcpy_s(char *dest, size_t dest_size, const char *src);

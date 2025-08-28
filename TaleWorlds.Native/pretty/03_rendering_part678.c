@@ -2,15 +2,15 @@
 
 // 03_rendering_part678.c - 6 个函数
 
-// 函数: void FUN_180657970(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
-void FUN_180657970(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
+// 函数: void FUN_180657970(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t param_4,
+void FUN_180657970(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t param_4,
                   longlong param_5)
 
 {
   byte bVar1;
   byte *pbVar2;
   uint uVar3;
-  undefined4 uVar4;
+  int32_t uVar4;
   longlong lVar5;
   
   if (((char)param_4 == '\0') && (param_3 != &DAT_180c967e0)) {
@@ -35,14 +35,14 @@ LAB_1806579e7:
 LAB_1806579f0:
   lVar5 = FUN_18062b420(_DAT_180c8ed18,0x48,DAT_180c96808,param_4,0xfffffffffffffffe);
   FUN_180627ae0(lVar5 + 0x20,param_5);
-  *(undefined8 *)(lVar5 + 0x40) = 0;
+  *(uint64_t *)(lVar5 + 0x40) = 0;
                     // WARNING: Subroutine does not return
   FUN_18066bdc0(lVar5,param_3,&DAT_180c967e0,uVar4);
 }
 
 
 
-undefined8 * FUN_180657a70(undefined8 *param_1,ulonglong param_2)
+uint64_t * FUN_180657a70(uint64_t *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_180a3e470;
@@ -56,12 +56,12 @@ undefined8 * FUN_180657a70(undefined8 *param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_180657aa0(undefined8 *param_1)
-void FUN_180657aa0(undefined8 *param_1)
+// 函数: void FUN_180657aa0(uint64_t *param_1)
+void FUN_180657aa0(uint64_t *param_1)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
+  uint64_t uVar1;
+  int32_t uVar2;
   
   uVar2 = SteamAPI_GetHSteamUser();
   uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&UNK_180a3e408);
@@ -73,12 +73,12 @@ void FUN_180657aa0(undefined8 *param_1)
 
 
 
-// 函数: void FUN_180657ad0(undefined8 *param_1)
-void FUN_180657ad0(undefined8 *param_1)
+// 函数: void FUN_180657ad0(uint64_t *param_1)
+void FUN_180657ad0(uint64_t *param_1)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
+  uint64_t uVar1;
+  int32_t uVar2;
   
   uVar2 = SteamAPI_GetHSteamUser();
   uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&UNK_180a3e418);
@@ -88,11 +88,11 @@ void FUN_180657ad0(undefined8 *param_1)
 
 
 
-undefined8 *
-FUN_180657b00(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+FUN_180657b00(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &UNK_180a3e440;
@@ -120,19 +120,19 @@ void FUN_180657b70(void)
 
 
 
-// 函数: void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_180657dd0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
+void FUN_180657dd0(longlong param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int iVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   longlong lVar3;
   ulonglong uVar4;
   uint uVar5;
   ulonglong uVar6;
-  undefined8 uVar7;
-  undefined *puStack_50;
-  undefined1 *puStack_48;
+  uint64_t uVar7;
+  void *puStack_50;
+  int8_t *puStack_48;
   int iStack_40;
   ulonglong uStack_38;
   
@@ -144,49 +144,49 @@ void FUN_180657dd0(longlong param_1,longlong param_2,undefined8 param_3,undefine
     do {
       puStack_50 = &UNK_180a3c3e0;
       uStack_38 = 0;
-      puStack_48 = (undefined1 *)0x0;
+      puStack_48 = (int8_t *)0x0;
       iStack_40 = 0;
-      FUN_1806277c0(&puStack_50,*(undefined4 *)(uVar4 + 0x10 + lVar3));
+      FUN_1806277c0(&puStack_50,*(int32_t *)(uVar4 + 0x10 + lVar3));
       iVar1 = *(int *)(uVar4 + 0x10 + lVar3);
       if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(puStack_48,*(undefined8 *)(uVar4 + 8 + lVar3),iVar1 + 1,param_4,uVar7);
+        memcpy(puStack_48,*(uint64_t *)(uVar4 + 8 + lVar3),iVar1 + 1,param_4,uVar7);
       }
       if (*(longlong *)(uVar4 + 8 + lVar3) != 0) {
         iStack_40 = 0;
-        if (puStack_48 != (undefined1 *)0x0) {
+        if (puStack_48 != (int8_t *)0x0) {
           *puStack_48 = 0;
         }
         uStack_38 = uStack_38 & 0xffffffff;
       }
-      puVar2 = *(undefined8 **)(param_2 + 8);
-      if (puVar2 < *(undefined8 **)(param_2 + 0x10)) {
-        *(undefined8 **)(param_2 + 8) = puVar2 + 4;
+      puVar2 = *(uint64_t **)(param_2 + 8);
+      if (puVar2 < *(uint64_t **)(param_2 + 0x10)) {
+        *(uint64_t **)(param_2 + 8) = puVar2 + 4;
         *puVar2 = &UNK_18098bcb0;
         puVar2[1] = 0;
-        *(undefined4 *)(puVar2 + 2) = 0;
+        *(int32_t *)(puVar2 + 2) = 0;
         *puVar2 = &UNK_180a3c3e0;
         puVar2[3] = 0;
         puVar2[1] = 0;
-        *(undefined4 *)(puVar2 + 2) = 0;
+        *(int32_t *)(puVar2 + 2) = 0;
         FUN_1806277c0(puVar2,iStack_40);
         if (iStack_40 != 0) {
                     // WARNING: Subroutine does not return
           memcpy(puVar2[1],puStack_48,iStack_40 + 1,param_4,uVar7);
         }
-        if (puStack_48 != (undefined1 *)0x0) {
-          *(undefined4 *)(puVar2 + 2) = 0;
-          if ((undefined1 *)puVar2[1] != (undefined1 *)0x0) {
-            *(undefined1 *)puVar2[1] = 0;
+        if (puStack_48 != (int8_t *)0x0) {
+          *(int32_t *)(puVar2 + 2) = 0;
+          if ((int8_t *)puVar2[1] != (int8_t *)0x0) {
+            *(int8_t *)puVar2[1] = 0;
           }
-          *(undefined4 *)((longlong)puVar2 + 0x1c) = 0;
+          *(int32_t *)((longlong)puVar2 + 0x1c) = 0;
         }
       }
       else {
         FUN_180059820(param_2,&puStack_50);
       }
       puStack_50 = &UNK_180a3c3e0;
-      if (puStack_48 != (undefined1 *)0x0) {
+      if (puStack_48 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }

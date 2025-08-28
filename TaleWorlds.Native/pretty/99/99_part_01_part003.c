@@ -89,11 +89,11 @@
 void system_data_processor(void)
 {
   longlong system_status;
-  undefined4 *data_buffer;
-  undefined4 vector_component_1;
-  undefined4 vector_component_2;
-  undefined4 vector_component_3;
-  undefined4 vector_component_4;
+  int32_t *data_buffer;
+  int32_t vector_component_1;
+  int32_t vector_component_2;
+  int32_t vector_component_3;
+  int32_t vector_component_4;
   
   // 执行系统初始化和状态检查
   system_initialize_phase1();
@@ -131,18 +131,18 @@ void system_data_processor(void)
  * @param search_key 要搜索的字符串键
  * @return 找到的数据项指针，未找到返回NULL
  */
-undefined8 * string_hash_table_searcher(longlong data_structure, char *search_key)
+uint64_t * string_hash_table_searcher(longlong data_structure, char *search_key)
 {
   char *key_pointer;
   char current_char;
-  undefined8 *hash_entry;
+  uint64_t *hash_entry;
   char *entry_key;
   longlong key_length;
   char *compare_pointer;
   
   // 处理空键值情况
   if (search_key == (char *)0x0) {
-    return *(undefined8 **)(data_structure + 0x40);
+    return *(uint64_t **)(data_structure + 0x40);
   }
   
   // 计算搜索键的长度
@@ -154,10 +154,10 @@ undefined8 * string_hash_table_searcher(longlong data_structure, char *search_ke
   }
   
   // 遍历哈希表进行搜索
-  hash_entry = *(undefined8 **)(data_structure + 0x40);
+  hash_entry = *(uint64_t **)(data_structure + 0x40);
   do {
-    if (hash_entry == (undefined8 *)0x0) {
-      return (undefined8 *)0x0;
+    if (hash_entry == (uint64_t *)0x0) {
+      return (uint64_t *)0x0;
     }
     
     // 获取哈希表项的键
@@ -187,7 +187,7 @@ undefined8 * string_hash_table_searcher(longlong data_structure, char *search_ke
       }
     }
     
-    hash_entry = (undefined8 *)hash_entry[6];
+    hash_entry = (uint64_t *)hash_entry[6];
   } while( true );
 }
 
@@ -204,7 +204,7 @@ undefined8 * string_hash_table_searcher(longlong data_structure, char *search_ke
  * @param string_list 字符串链表
  * @return 比较结果指针
  */
-undefined8 * string_comparator(undefined8 param1, undefined8 *string_list)
+uint64_t * string_comparator(uint64_t param1, uint64_t *string_list)
 {
   char *string1;
   char *string2;
@@ -212,7 +212,7 @@ undefined8 * string_comparator(undefined8 param1, undefined8 *string_list)
   longlong compare_length1;
   longlong compare_length2;
   
-  if (string_list != (undefined8 *)0x0) {
+  if (string_list != (uint64_t *)0x0) {
     do {
       string2 = (char *)*string_list;
       if (string2 == (char *)0x0) {
@@ -240,11 +240,11 @@ undefined8 * string_comparator(undefined8 param1, undefined8 *string_list)
         }
       }
       
-      string_list = (undefined8 *)string_list[6];
-    } while (string_list != (undefined8 *)0x0);
+      string_list = (uint64_t *)string_list[6];
+    } while (string_list != (uint64_t *)0x0);
   }
   
-  return (undefined8 *)0x0;
+  return (uint64_t *)0x0;
 }
 
 /**
@@ -260,7 +260,7 @@ undefined8 * string_comparator(undefined8 param1, undefined8 *string_list)
  * @param string_list 字符串链表
  * @return 匹配的字符串指针
  */
-undefined8 * string_matcher(undefined8 param1, undefined8 *string_list)
+uint64_t * string_matcher(uint64_t param1, uint64_t *string_list)
 {
   char *string1;
   char *string2;
@@ -271,9 +271,9 @@ undefined8 * string_matcher(undefined8 param1, undefined8 *string_list)
   
   while( true ) {
     do {
-      string_list = (undefined8 *)string_list[6];
-      if (string_list == (undefined8 *)0x0) {
-        return (undefined8 *)0x0;
+      string_list = (uint64_t *)string_list[6];
+      if (string_list == (uint64_t *)0x0) {
+        return (uint64_t *)0x0;
       }
       
       if ((char *)*string_list == (char *)0x0) {
@@ -313,9 +313,9 @@ undefined8 * string_matcher(undefined8 param1, undefined8 *string_list)
  * @param data_structure 数据结构指针
  * @return 访问到的数据元素
  */
-undefined8 data_structure_accessor(longlong data_structure)
+uint64_t data_structure_accessor(longlong data_structure)
 {
-  return *(undefined8 *)(data_structure + 0x40);
+  return *(uint64_t *)(data_structure + 0x40);
 }
 
 /**
@@ -340,7 +340,7 @@ longlong * html_escape_processor(longlong *output_buffer, char *input_start, cha
   longlong buffer_data1;
   longlong buffer_data2;
   char current_char;
-  undefined8 escape_char;
+  uint64_t escape_char;
   
   if (input_start != input_end) {
     buffer_data1 = *context_buffer;
@@ -466,7 +466,7 @@ void html_escape_processor_advanced(void)
   longlong context_data1;
   longlong context_data2;
   char current_char;
-  undefined8 escape_char;
+  uint64_t escape_char;
   char *input_pointer;
   char *input_end;
   longlong *output_buffer;
@@ -589,9 +589,9 @@ NORMAL_CHAR_OUTPUT_ADVANCED:
  */
 void data_copy_manager(void)
 {
-  undefined8 source_data;
-  undefined8 *destination_ptr;
-  undefined8 *source_ptr;
+  uint64_t source_data;
+  uint64_t *destination_ptr;
+  uint64_t *source_ptr;
   
   source_data = source_ptr[1];
   *destination_ptr = *source_ptr;
@@ -615,36 +615,36 @@ void data_copy_manager(void)
  */
 longlong * html_attribute_formatter(longlong *output_buffer, longlong *context_buffer, longlong data_structure)
 {
-  undefined1 current_char;
+  int8_t current_char;
   char string_char;
-  undefined1 *string_ptr;
+  int8_t *string_ptr;
   char *attr_name;
-  undefined4 output_data[4];
-  undefined4 temp_data1;
-  undefined4 temp_data2;
-  undefined4 temp_data3;
+  int32_t output_data[4];
+  int32_t temp_data1;
+  int32_t temp_data2;
+  int32_t temp_data3;
   bool has_quotes;
   char *name_start;
   char *name_end;
-  undefined4 *result_buffer;
-  undefined1 *temp_ptr;
+  int32_t *result_buffer;
+  int8_t *temp_ptr;
   longlong name_length;
   longlong value_length;
   undefined7 name_suffix;
   longlong temp_long;
-  undefined8 quote_char;
+  uint64_t quote_char;
   longlong temp_long2;
   longlong temp_long3;
-  undefined1 *search_ptr;
+  int8_t *search_ptr;
   longlong temp_long4;
-  undefined8 *attr_list;
+  uint64_t *attr_list;
   longlong local_buffer1;
   longlong local_buffer2;
-  undefined1 local_stack1 [16];
-  undefined1 local_stack2 [32];
+  int8_t local_stack1 [16];
+  int8_t local_stack2 [32];
   
-  attr_list = *(undefined8 **)(data_structure + 0x40);
-  if (attr_list != (undefined8 *)0x0) {
+  attr_list = *(uint64_t **)(data_structure + 0x40);
+  if (attr_list != (uint64_t *)0x0) {
     temp_long3 = context_buffer[1];
     temp_long4 = *context_buffer;
     
@@ -656,12 +656,12 @@ longlong * html_attribute_formatter(longlong *output_buffer, longlong *context_b
       }
       
       // 处理属性名称
-      string_ptr = (undefined1 *)*attr_list;
+      string_ptr = (int8_t *)*attr_list;
       temp_long4 = *context_buffer;
       temp_long3 = context_buffer[1];
       
-      if (string_ptr == (undefined1 *)0x0) {
-        temp_ptr = (undefined1 *)0x180d48d24;
+      if (string_ptr == (int8_t *)0x0) {
+        temp_ptr = (int8_t *)0x180d48d24;
         value_length = 0;
       }
       else {
@@ -669,11 +669,11 @@ longlong * html_attribute_formatter(longlong *output_buffer, longlong *context_b
         temp_ptr = string_ptr;
       }
       
-      search_ptr = (undefined1 *)0x180d48d24;
+      search_ptr = (int8_t *)0x180d48d24;
       local_buffer1 = temp_long4;
       local_buffer2 = temp_long3;
       
-      if (string_ptr != (undefined1 *)0x0) {
+      if (string_ptr != (int8_t *)0x0) {
         search_ptr = string_ptr;
       }
       
@@ -753,7 +753,7 @@ QUOTE_CHECK_DONE:
         
         local_buffer1 = temp_long4;
         local_buffer2 = temp_long3;
-        result_buffer = (undefined4 *)html_escape_processor(
+        result_buffer = (int32_t *)html_escape_processor(
           local_stack1, temp_long3, temp_long4 + name_length, '\"', &local_buffer1
         );
         quote_char = '\'';
@@ -782,7 +782,7 @@ QUOTE_CHECK_DONE:
         
         local_buffer1 = temp_long4;
         local_buffer2 = temp_long3;
-        result_buffer = (undefined4 *)html_escape_processor(
+        result_buffer = (int32_t *)html_escape_processor(
           local_stack2, temp_long3, temp_long4 + name_length, '\'', &local_buffer1
         );
         quote_char = '\"';
@@ -792,10 +792,10 @@ QUOTE_CHECK_DONE:
       temp_data1 = result_buffer[1];
       temp_data2 = result_buffer[2];
       temp_data3 = result_buffer[3];
-      *(undefined4 *)context_buffer = *result_buffer;
-      *(undefined4 *)((longlong)context_buffer + 4) = temp_data1;
-      *(undefined4 *)(context_buffer + 1) = temp_data2;
-      *(undefined4 *)((longlong)context_buffer + 0xc) = temp_data3;
+      *(int32_t *)context_buffer = *result_buffer;
+      *(int32_t *)((longlong)context_buffer + 4) = temp_data1;
+      *(int32_t *)(context_buffer + 1) = temp_data2;
+      *(int32_t *)((longlong)context_buffer + 0xc) = temp_data3;
       
       temp_long3 = context_buffer[1];
       output_character(temp_long3, quote_char);
@@ -804,7 +804,7 @@ QUOTE_CHECK_DONE:
         output_character_with_context(temp_long3, temp_long4);
       }
     } while ((attr_list[4] != 0) && 
-             (attr_list = (undefined8 *)attr_list[6], attr_list != (undefined8 *)0x0));
+             (attr_list = (uint64_t *)attr_list[6], attr_list != (uint64_t *)0x0));
   }
   
   temp_long3 = context_buffer[1];
@@ -823,54 +823,54 @@ QUOTE_CHECK_DONE:
  * - 提供上下文相关的格式化
  * - 优化内存使用和性能
  */
-void html_attribute_formatter_advanced(undefined8 param1, longlong *context_buffer)
+void html_attribute_formatter_advanced(uint64_t param1, longlong *context_buffer)
 {
-  undefined1 current_char;
+  int8_t current_char;
   char string_char;
-  undefined1 *string_ptr;
+  int8_t *string_ptr;
   char *attr_name;
-  undefined4 output_data[4];
-  undefined4 temp_data1;
-  undefined4 temp_data2;
-  undefined4 temp_data3;
+  int32_t output_data[4];
+  int32_t temp_data1;
+  int32_t temp_data2;
+  int32_t temp_data3;
   bool has_quotes;
   longlong stack_data;
   char *name_start;
   char *name_end;
-  undefined4 *result_buffer;
-  undefined1 *temp_ptr;
+  int32_t *result_buffer;
+  int8_t *temp_ptr;
   longlong name_length;
   longlong value_length;
   undefined7 name_suffix;
   longlong temp_long;
-  undefined8 quote_char;
+  uint64_t quote_char;
   longlong temp_long2;
   longlong temp_long3;
-  undefined1 *search_ptr;
+  int8_t *search_ptr;
   longlong temp_long4;
-  undefined8 *attr_data;
-  undefined8 *attr_list;
+  uint64_t *attr_data;
+  uint64_t *attr_list;
   longlong local_buffer1;
   longlong local_buffer2;
-  undefined4 vector_component_1;
-  undefined4 vector_component_2;
-  undefined4 vector_component_3;
-  undefined4 vector_component_4;
+  int32_t vector_component_1;
+  int32_t vector_component_2;
+  int32_t vector_component_3;
+  int32_t vector_component_4;
   longlong stack_param1;
   longlong stack_param2;
   
   // 初始化堆栈数据
-  *(undefined8 *)(stack_data + 8) = stack_data;
+  *(uint64_t *)(stack_data + 8) = stack_data;
   temp_long4 = context_buffer[1];
-  *(undefined8 *)(stack_data + 0x10) = stack_param1;
-  *(undefined8 *)(stack_data + 0x18) = stack_param2;
+  *(uint64_t *)(stack_data + 0x10) = stack_param1;
+  *(uint64_t *)(stack_data + 0x18) = stack_param2;
   temp_long3 = *context_buffer;
-  *(undefined8 *)(stack_data + -0x20) = attr_data;
-  *(undefined8 *)(stack_data + -0x28) = attr_list;
-  *(undefined4 *)(stack_data + -0x38) = vector_component_1;
-  *(undefined4 *)(stack_data + -0x34) = vector_component_2;
-  *(undefined4 *)(stack_data + -0x30) = vector_component_3;
-  *(undefined4 *)(stack_data + -0x2c) = vector_component_4;
+  *(uint64_t *)(stack_data + -0x20) = attr_data;
+  *(uint64_t *)(stack_data + -0x28) = attr_list;
+  *(int32_t *)(stack_data + -0x38) = vector_component_1;
+  *(int32_t *)(stack_data + -0x34) = vector_component_2;
+  *(int32_t *)(stack_data + -0x30) = vector_component_3;
+  *(int32_t *)(stack_data + -0x2c) = vector_component_4;
   
   do {
     // 输出属性分隔符
@@ -880,12 +880,12 @@ void html_attribute_formatter_advanced(undefined8 param1, longlong *context_buff
     }
     
     // 处理属性名称
-    string_ptr = (undefined1 *)*attr_list;
+    string_ptr = (int8_t *)*attr_list;
     temp_long4 = *context_buffer;
     temp_long3 = context_buffer[1];
     
-    if (string_ptr == (undefined1 *)0x0) {
-      temp_ptr = (undefined1 *)0x180d48d24;
+    if (string_ptr == (int8_t *)0x0) {
+      temp_ptr = (int8_t *)0x180d48d24;
       value_length = 0;
     }
     else {
@@ -893,10 +893,10 @@ void html_attribute_formatter_advanced(undefined8 param1, longlong *context_buff
       temp_ptr = string_ptr;
     }
     
-    search_ptr = (undefined1 *)0x180d48d24;
+    search_ptr = (int8_t *)0x180d48d24;
     local_buffer1 = temp_long4;
     local_buffer2 = temp_long3;
-    if (string_ptr != (undefined1 *)0x0) {
+    if (string_ptr != (int8_t *)0x0) {
       search_ptr = string_ptr;
     }
     
@@ -976,7 +976,7 @@ QUOTE_CHECK_DONE_ADVANCED:
       
       local_buffer1 = temp_long4;
       local_buffer2 = temp_long3;
-      result_buffer = (undefined4 *)html_escape_processor(
+      result_buffer = (int32_t *)html_escape_processor(
         &stack0x00000040, temp_long3, temp_long4 + name_length, '\"', &stack0x00000030
       );
       quote_char = '\'';
@@ -1005,7 +1005,7 @@ QUOTE_CHECK_DONE_ADVANCED:
       
       local_buffer1 = temp_long4;
       local_buffer2 = temp_long3;
-      result_buffer = (undefined4 *)html_escape_processor(
+      result_buffer = (int32_t *)html_escape_processor(
         &stack0x00000050, temp_long3, temp_long4 + name_length, '\'', &stack0x00000030
       );
       quote_char = '\"';
@@ -1015,10 +1015,10 @@ QUOTE_CHECK_DONE_ADVANCED:
     temp_data1 = result_buffer[1];
     temp_data2 = result_buffer[2];
     temp_data3 = result_buffer[3];
-    *(undefined4 *)context_buffer = *result_buffer;
-    *(undefined4 *)((longlong)context_buffer + 4) = temp_data1;
-    *(undefined4 *)(context_buffer + 1) = temp_data2;
-    *(undefined4 *)((longlong)context_buffer + 0xc) = temp_data3;
+    *(int32_t *)context_buffer = *result_buffer;
+    *(int32_t *)((longlong)context_buffer + 4) = temp_data1;
+    *(int32_t *)(context_buffer + 1) = temp_data2;
+    *(int32_t *)((longlong)context_buffer + 0xc) = temp_data3;
     
     temp_long4 = context_buffer[1];
     output_character(temp_long4, quote_char);
@@ -1028,7 +1028,7 @@ QUOTE_CHECK_DONE_ADVANCED:
     }
     
     if ((attr_list[4] == 0) ||
-        (attr_list = (undefined8 *)attr_list[6], attr_list == (undefined8 *)0x0)) {
+        (attr_list = (uint64_t *)attr_list[6], attr_list == (uint64_t *)0x0)) {
       temp_long4 = context_buffer[1];
       *output_buffer = *context_buffer;
       output_buffer[1] = temp_long4;
@@ -1048,9 +1048,9 @@ QUOTE_CHECK_DONE_ADVANCED:
  */
 void system_resource_manager(void)
 {
-  undefined8 resource_data;
-  undefined8 *destination_ptr;
-  undefined8 *source_ptr;
+  uint64_t resource_data;
+  uint64_t *destination_ptr;
+  uint64_t *source_ptr;
   
   resource_data = source_ptr[1];
   *destination_ptr = *source_ptr;
@@ -1082,15 +1082,15 @@ longlong * html_comment_generator(
   uint indent_level
 )
 {
-  undefined1 current_char;
+  int8_t current_char;
   longlong buffer_data1;
   longlong buffer_data2;
-  undefined1 *string_ptr;
+  int8_t *string_ptr;
   longlong string_length;
-  undefined1 *temp_ptr;
+  int8_t *temp_ptr;
   longlong temp_length;
   ulonglong loop_counter;
-  undefined1 *search_ptr;
+  int8_t *search_ptr;
   
   // 根据标志决定是否处理缩进
   if ((flags & 1) == 0) {
@@ -1143,12 +1143,12 @@ longlong * html_comment_generator(
   }
   
   // 处理注释内容字符串
-  string_ptr = *(undefined1 **)(data_structure + 8);
+  string_ptr = *(int8_t **)(data_structure + 8);
   buffer_data1 = *context_buffer;
   buffer_data2 = context_buffer[1];
   
-  if (string_ptr == (undefined1 *)0x0) {
-    temp_ptr = (undefined1 *)0x180d48d24;
+  if (string_ptr == (int8_t *)0x0) {
+    temp_ptr = (int8_t *)0x180d48d24;
     temp_length = 0;
   }
   else {
@@ -1156,8 +1156,8 @@ longlong * html_comment_generator(
     temp_ptr = string_ptr;
   }
   
-  search_ptr = (undefined1 *)0x180d48d24;
-  if (string_ptr != (undefined1 *)0x0) {
+  search_ptr = (int8_t *)0x180d48d24;
+  if (string_ptr != (int8_t *)0x0) {
     search_ptr = string_ptr;
   }
   
@@ -1208,21 +1208,21 @@ longlong * html_comment_generator(
  * - 优化性能和内存使用
  */
 void html_comment_generator_advanced(
-  undefined8 param1, 
+  uint64_t param1, 
   longlong *context_buffer, 
   longlong data_structure, 
   byte flags
 )
 {
-  undefined1 current_char;
+  int8_t current_char;
   longlong buffer_data1;
   longlong buffer_data2;
-  undefined1 *string_ptr;
+  int8_t *string_ptr;
   longlong string_length;
-  undefined1 *temp_ptr;
+  int8_t *temp_ptr;
   longlong temp_length;
   ulonglong loop_counter;
-  undefined1 *search_ptr;
+  int8_t *search_ptr;
   longlong *output_buffer;
   uint indent_level;
   
@@ -1277,12 +1277,12 @@ void html_comment_generator_advanced(
   }
   
   // 处理注释内容字符串
-  string_ptr = *(undefined1 **)(data_structure + 8);
+  string_ptr = *(int8_t **)(data_structure + 8);
   buffer_data1 = *context_buffer;
   buffer_data2 = context_buffer[1];
   
-  if (string_ptr == (undefined1 *)0x0) {
-    temp_ptr = (undefined1 *)0x180d48d24;
+  if (string_ptr == (int8_t *)0x0) {
+    temp_ptr = (int8_t *)0x180d48d24;
     temp_length = 0;
   }
   else {
@@ -1290,8 +1290,8 @@ void html_comment_generator_advanced(
     temp_ptr = string_ptr;
   }
   
-  search_ptr = (undefined1 *)0x180d48d24;
-  if (string_ptr != (undefined1 *)0x0) {
+  search_ptr = (int8_t *)0x180d48d24;
+  if (string_ptr != (int8_t *)0x0) {
     search_ptr = string_ptr;
   }
   
@@ -1356,14 +1356,14 @@ longlong * html_doctype_generator(
   uint indent_level
 )
 {
-  undefined1 current_char;
+  int8_t current_char;
   longlong buffer_data1;
   longlong buffer_data2;
-  undefined1 *string_ptr;
-  undefined1 *temp_ptr;
+  int8_t *string_ptr;
+  int8_t *temp_ptr;
   longlong string_length;
   ulonglong loop_counter;
-  undefined1 *search_ptr;
+  int8_t *search_ptr;
   
   // 根据标志决定是否处理缩进
   if ((flags & 1) == 0) {
@@ -1442,12 +1442,12 @@ longlong * html_doctype_generator(
   }
   
   // 处理文档类型内容
-  string_ptr = *(undefined1 **)(data_structure + 8);
+  string_ptr = *(int8_t **)(data_structure + 8);
   buffer_data1 = *context_buffer;
   buffer_data2 = context_buffer[1];
   
-  if (string_ptr == (undefined1 *)0x0) {
-    temp_ptr = (undefined1 *)0x180d48d24;
+  if (string_ptr == (int8_t *)0x0) {
+    temp_ptr = (int8_t *)0x180d48d24;
     string_length = 0;
   }
   else {
@@ -1455,8 +1455,8 @@ longlong * html_doctype_generator(
     temp_ptr = string_ptr;
   }
   
-  search_ptr = (undefined1 *)0x180d48d24;
-  if (string_ptr != (undefined1 *)0x0) {
+  search_ptr = (int8_t *)0x180d48d24;
+  if (string_ptr != (int8_t *)0x0) {
     search_ptr = string_ptr;
   }
   
@@ -1496,20 +1496,20 @@ longlong * html_doctype_generator(
  * - 优化性能和内存使用
  */
 void html_doctype_generator_advanced(
-  undefined8 param1, 
+  uint64_t param1, 
   longlong *context_buffer, 
   longlong data_structure, 
   byte flags
 )
 {
-  undefined1 current_char;
+  int8_t current_char;
   longlong buffer_data1;
   longlong buffer_data2;
-  undefined1 *string_ptr;
-  undefined1 *temp_ptr;
+  int8_t *string_ptr;
+  int8_t *temp_ptr;
   longlong string_length;
   ulonglong loop_counter;
-  undefined1 *search_ptr;
+  int8_t *search_ptr;
   longlong *output_buffer;
   uint indent_level;
   
@@ -1590,12 +1590,12 @@ void html_doctype_generator_advanced(
   }
   
   // 处理文档类型内容
-  string_ptr = *(undefined1 **)(data_structure + 8);
+  string_ptr = *(int8_t **)(data_structure + 8);
   buffer_data1 = *context_buffer;
   buffer_data2 = context_buffer[1];
   
-  if (string_ptr == (undefined1 *)0x0) {
-    temp_ptr = (undefined1 *)0x180d48d24;
+  if (string_ptr == (int8_t *)0x0) {
+    temp_ptr = (int8_t *)0x180d48d24;
     string_length = 0;
   }
   else {
@@ -1603,8 +1603,8 @@ void html_doctype_generator_advanced(
     temp_ptr = string_ptr;
   }
   
-  search_ptr = (undefined1 *)0x180d48d24;
-  if (string_ptr != (undefined1 *)0x0) {
+  search_ptr = (int8_t *)0x180d48d24;
+  if (string_ptr != (int8_t *)0x0) {
     search_ptr = string_ptr;
   }
   
@@ -1646,11 +1646,11 @@ void html_doctype_generator_advanced(
 void system_cleanup_handler(void)
 {
   longlong system_status;
-  undefined4 *data_buffer;
-  undefined4 vector_component_1;
-  undefined4 vector_component_2;
-  undefined4 vector_component_3;
-  undefined4 vector_component_4;
+  int32_t *data_buffer;
+  int32_t vector_component_1;
+  int32_t vector_component_2;
+  int32_t vector_component_3;
+  int32_t vector_component_4;
   
   // 执行系统清理操作
   system_cleanup_phase1();

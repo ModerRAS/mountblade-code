@@ -107,40 +107,40 @@ static undefined pipeline_manager;
 /**
  * 渲染系统核心功能函数
  */
-static void rendering_system_geometry_calculator(undefined8 context, undefined8 param1, undefined8 param2);
-static void rendering_system_edge_detector(undefined8 context, undefined8 param1, undefined8 param2);
-static void rendering_system_vector_normalizer(undefined8 context, undefined8 param1, undefined8 param2);
-static void rendering_system_distance_calculator(undefined8 context, undefined8 param1, undefined8 param2);
-static void rendering_system_path_optimizer(undefined8 context, undefined8 param1, undefined8 param2);
-static void rendering_system_collision_detector(undefined8 context, undefined8 param1, undefined8 param2);
-static void rendering_system_visibility_calculator(undefined8 context, undefined8 param1, undefined8 param2);
-static void rendering_system_mesh_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void rendering_system_transform_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void rendering_system_state_validator(undefined8 context, undefined8 param1, undefined8 param2);
+static void rendering_system_geometry_calculator(uint64_t context, uint64_t param1, uint64_t param2);
+static void rendering_system_edge_detector(uint64_t context, uint64_t param1, uint64_t param2);
+static void rendering_system_vector_normalizer(uint64_t context, uint64_t param1, uint64_t param2);
+static void rendering_system_distance_calculator(uint64_t context, uint64_t param1, uint64_t param2);
+static void rendering_system_path_optimizer(uint64_t context, uint64_t param1, uint64_t param2);
+static void rendering_system_collision_detector(uint64_t context, uint64_t param1, uint64_t param2);
+static void rendering_system_visibility_calculator(uint64_t context, uint64_t param1, uint64_t param2);
+static void rendering_system_mesh_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void rendering_system_transform_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void rendering_system_state_validator(uint64_t context, uint64_t param1, uint64_t param2);
 
 /**
  * 几何计算系统函数
  */
-static void geometry_processor_buffer(undefined8 context, undefined8 param1, undefined8 param2);
-static void edge_detection_handler(undefined8 context, undefined8 param1, undefined8 param2);
-static void vector_calculation_engine(undefined8 context, undefined8 param1, undefined8 param2);
-static void distance_measurement_system(undefined8 context, undefined8 param1, undefined8 param2);
-static void path_finding_algorithm(undefined8 context, undefined8 param1, undefined8 param2);
-static void collision_detection_system(undefined8 context, undefined8 param1, undefined8 param2);
-static void visibility_culling_engine(undefined8 context, undefined8 param1, undefined8 param2);
-static void mesh_optimization_processor(undefined8 context, undefined8 param1, undefined8 param2);
+static void geometry_processor_buffer(uint64_t context, uint64_t param1, uint64_t param2);
+static void edge_detection_handler(uint64_t context, uint64_t param1, uint64_t param2);
+static void vector_calculation_engine(uint64_t context, uint64_t param1, uint64_t param2);
+static void distance_measurement_system(uint64_t context, uint64_t param1, uint64_t param2);
+static void path_finding_algorithm(uint64_t context, uint64_t param1, uint64_t param2);
+static void collision_detection_system(uint64_t context, uint64_t param1, uint64_t param2);
+static void visibility_culling_engine(uint64_t context, uint64_t param1, uint64_t param2);
+static void mesh_optimization_processor(uint64_t context, uint64_t param1, uint64_t param2);
 
 /**
  * 数据处理系统函数
  */
-static void data_structure_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void memory_allocation_handler(undefined8 context, undefined8 param1, undefined8 param2);
-static void stack_frame_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void register_optimizer(undefined8 context, undefined8 param1, undefined8 param2);
-static void cache_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void buffer_controller(undefined8 context, undefined8 param1, undefined8 param2);
-static void stream_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void pipeline_manager(undefined8 context, undefined8 param1, undefined8 param2);
+static void data_structure_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void memory_allocation_handler(uint64_t context, uint64_t param1, uint64_t param2);
+static void stack_frame_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void register_optimizer(uint64_t context, uint64_t param1, uint64_t param2);
+static void cache_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void buffer_controller(uint64_t context, uint64_t param1, uint64_t param2);
+static void stream_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void pipeline_manager(uint64_t context, uint64_t param1, uint64_t param2);
 
 /*==========================================
 =            函数定义            =
@@ -158,9 +158,9 @@ static void pipeline_manager(undefined8 context, undefined8 param1, undefined8 p
 void FUN_180391980(longlong param_1, int param_2, int param_3, int param_4)
 {
   byte bVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   float *pfVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar4;
   longlong lVar5;
   longlong lVar6;
   longlong lVar7;
@@ -174,17 +174,17 @@ void FUN_180391980(longlong param_1, int param_2, int param_3, int param_4)
   uint uVar15;
   uint uVar16;
   ulonglong uVar17;
-  undefined8 *puVar18;
+  uint64_t *puVar18;
   int iVar19;
   ulonglong uVar20;
   uint uVar21;
   ulonglong uVar22;
   ulonglong uVar23;
-  undefined8 *puVar24;
+  uint64_t *puVar24;
   bool bVar25;
   ulonglong uVar26;
   longlong *plVar27;
-  undefined8 *puVar28;
+  uint64_t *puVar28;
   longlong *plVar29;
   int iVar30;
   uint uVar31;
@@ -196,9 +196,9 @@ void FUN_180391980(longlong param_1, int param_2, int param_3, int param_4)
   longlong *plVar38;
   ulonglong uVar39;
   char cVar40;
-  undefined4 uVar41;
+  int32_t uVar41;
   float fVar42;
-  undefined1 auVar43 [16];
+  int8_t auVar43 [16];
   float fVar44;
   float fVar45;
   float fVar46;
@@ -269,12 +269,12 @@ void FUN_180391980(longlong param_1, int param_2, int param_3, int param_4)
       
       // 处理边缘检测和向量计算
       if (bVar1 != 0) {
-        puVar18 = (undefined8 *)(uVar23 + RENDERING_DEFAULT_STACK_OFFSET);
+        puVar18 = (uint64_t *)(uVar23 + RENDERING_DEFAULT_STACK_OFFSET);
         uVar12 = uVar22;
         uVar17 = uVar22;
         do {
           uVar16 = (uint)uVar12;
-          puVar2 = (undefined8 *)*puVar18;
+          puVar2 = (uint64_t *)*puVar18;
           
           // 检查数据结构类型
           if (*(char *)(puVar2 + 4) == DATA_STRUCTURE_TYPE_EDGE) {
@@ -315,17 +315,17 @@ void FUN_180391980(longlong param_1, int param_2, int param_3, int param_4)
             
             // 递归处理相邻边缘
             if (*(byte *)(uVar12 + RENDERING_PROPERTY_OFFSET_A8) != 0) {
-              puVar24 = (undefined8 *)(uVar12 + RENDERING_DEFAULT_STACK_OFFSET);
+              puVar24 = (uint64_t *)(uVar12 + RENDERING_DEFAULT_STACK_OFFSET);
               uVar32 = uVar22;
               do {
-                puVar28 = (undefined8 *)*puVar24;
+                puVar28 = (uint64_t *)*puVar24;
                 if (((*(char *)(puVar28 + 4) == DATA_STRUCTURE_TYPE_EDGE) && (puVar28 != puVar2)) &&
                    (((puVar28[2] == uVar39 || (puVar28[3] == uVar39)) &&
                     (*(byte *)(uVar26 + RENDERING_PROPERTY_OFFSET_A8) != 0)))) {
-                  puVar28 = (undefined8 *)(uVar26 + RENDERING_DEFAULT_STACK_OFFSET);
+                  puVar28 = (uint64_t *)(uVar26 + RENDERING_DEFAULT_STACK_OFFSET);
                   uVar17 = uVar22;
                   do {
-                    puVar4 = (undefined8 *)*puVar28;
+                    puVar4 = (uint64_t *)*puVar28;
                     if (*(char *)(puVar4 + 4) != DATA_STRUCTURE_TYPE_EDGE) {
                       pfVar3 = (float *)puVar4[1];
                       fVar42 = *(float *)*puVar4;
@@ -465,9 +465,9 @@ void FUN_180391980(longlong param_1, int param_2, int param_3, int param_4)
                               plVar27[2] = plVar27[3];
                             }
                             plVar27[3] = 0;
-                            *(undefined1 *)(plVar27 + 4) = 0;
+                            *(int8_t *)(plVar27 + 4) = 0;
                             if (plVar27[2] != 0) {
-                              *(undefined1 *)(plVar27 + 4) = 1;
+                              *(int8_t *)(plVar27 + 4) = 1;
                             }
                             FUN_18038b160(plVar27[2]);
                           }
@@ -498,7 +498,7 @@ void FUN_180391980(longlong param_1, int param_2, int param_3, int param_4)
                           }
                           
                           // 更新渲染系统状态
-                          puVar18 = *(undefined8 **)(param_1 + RENDERING_PROPERTY_OFFSET_458);
+                          puVar18 = *(uint64_t **)(param_1 + RENDERING_PROPERTY_OFFSET_458);
                           uVar35 = *(longlong *)(param_1 + RENDERING_PROPERTY_OFFSET_460) - (longlong)puVar18 >> 3;
                           uVar17 = uVar22;
                           if (uVar35 != 0) {
@@ -506,7 +506,7 @@ void FUN_180391980(longlong param_1, int param_2, int param_3, int param_4)
                               plVar11 = (longlong *)*puVar18;
                               if (((*plVar11 == *plVar38) && (plVar11[1] == lVar33)) ||
                                  ((*plVar11 == lVar33 && (plVar11[1] == *plVar38)))) {
-                                *(undefined1 *)(plVar11 + 4) = 2;
+                                *(int8_t *)(plVar11 + 4) = 2;
                                 plVar11[3] = uStack_108;
                                 *plVar29 = (longlong)plVar11;
                                 FUN_18038b160(plVar11[2]);
@@ -545,7 +545,7 @@ void FUN_180391980(longlong param_1, int param_2, int param_3, int param_4)
                           plVar11 = (longlong *)FUN_18038c180(param_1);
                           plVar11[1] = lVar33;
                           *plVar11 = lVar9;
-                          *(undefined1 *)(plVar11 + 4) = 1;
+                          *(int8_t *)(plVar11 + 4) = 1;
                           plVar11[2] = uStack_108;
                           *plVar29 = (longlong)plVar11;
                           lVar33 = lVar7;
@@ -563,11 +563,11 @@ LAB_1803922c3:
                   }
                   plVar11[2] = uVar39;
                 }
-                *(undefined1 *)(plVar11 + 4) = 1;
+                *(int8_t *)(plVar11 + 4) = 1;
                 plVar11[3] = 0;
                 func_0x00018038ac80(plVar11);
                 *plVar29 = lVar6;
-                *(undefined1 *)(lVar6 + 0x20) = 2;
+                *(int8_t *)(lVar6 + 0x20) = 2;
                 *(ulonglong *)(lVar6 + 0x18) = uVar17;
               }
 LAB_180392028:
@@ -585,10 +585,10 @@ LAB_180392028:
             uVar12 = uVar22;
             do {
               lVar5 = *plVar29;
-              *(undefined1 *)(lVar5 + 0x20) = 0;
+              *(int8_t *)(lVar5 + 0x20) = 0;
               cVar40 = *(longlong *)(lVar5 + 0x10) != 0;
               if ((bool)cVar40) {
-                *(undefined1 *)(lVar5 + 0x20) = 1;
+                *(int8_t *)(lVar5 + 0x20) = 1;
               }
               if (*(longlong *)(lVar5 + 0x18) != 0) {
                 cVar40 = cVar40 + '\x01';
@@ -596,7 +596,7 @@ LAB_180392028:
               }
               if ((cVar40 == '\x01') && (*(longlong *)(lVar5 + 0x18) != 0)) {
                 *(longlong *)(lVar5 + 0x10) = *(longlong *)(lVar5 + 0x18);
-                *(undefined8 *)(lVar5 + 0x18) = 0;
+                *(uint64_t *)(lVar5 + 0x18) = 0;
               }
               bVar1 = *(byte *)(uVar17 + RENDERING_PROPERTY_OFFSET_A8);
               uVar36 = (int)uVar12 + 1;
@@ -630,8 +630,8 @@ LAB_180392028:
               if (iVar14 == 0) {
                 uVar12 = RENDERING_COORDINATE_SCALE_FACTOR;
               }
-              *(undefined8 *)(uStack_108 + 0x80 + uVar35 * 8) =
-                   *(undefined8 *)(uVar12 + (longlong)plVar29);
+              *(uint64_t *)(uStack_108 + 0x80 + uVar35 * 8) =
+                   *(uint64_t *)(uVar12 + (longlong)plVar29);
               bVar1 = *(byte *)(uStack_108 + RENDERING_PROPERTY_OFFSET_A8);
               uVar12 = (ulonglong)uVar36;
               uVar35 = uVar35 + 1;
@@ -729,9 +729,9 @@ LAB_180392028:
           uVar41 = FUN_18038ee20(uVar41, uVar26, RENDERING_MAX_ITERATION_COUNT);
           uVar41 = FUN_18038ee20(uVar41, uStack_108, RENDERING_MAX_ITERATION_COUNT);
           *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) = *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) + 1;
-          uVar41 = FUN_18038ee20(uVar41, uVar23, *(undefined4 *)(param_1 + RENDERING_PROPERTY_OFFSET_530));
+          uVar41 = FUN_18038ee20(uVar41, uVar23, *(int32_t *)(param_1 + RENDERING_PROPERTY_OFFSET_530));
           *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) = *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) + 1;
-          FUN_18038ee20(uVar41, uVar39, *(undefined4 *)(param_1 + RENDERING_PROPERTY_OFFSET_530));
+          FUN_18038ee20(uVar41, uVar39, *(int32_t *)(param_1 + RENDERING_PROPERTY_OFFSET_530));
         }
       }
     }

@@ -18,14 +18,15 @@ for file in $(find pretty/ -name "*.c" -exec grep -l "undefined" {} \;); do
     # 创建临时文件
     temp_file="${file}.tmp"
     
-    # 替换 undefined 类型
-    sed -e 's/undefined1/int8_t/g' \
-        -e 's/undefined2/int16_t/g' \
-        -e 's/undefined4/int32_t/g' \
-        -e 's/undefined8/uint64_t/g' \
-        -e 's/undefined\*/void\*/g' \
-        -e 's/undefined \*/void \*/g' \
-        -e 's/undefined$/void/g' \
+    # 替换 undefined 类型 - 使用更精确的替换规则
+    sed -e 's/\bundefined1\b/int8_t/g' \
+        -e 's/\bundefined2\b/int16_t/g' \
+        -e 's/\bundefined4\b/int32_t/g' \
+        -e 's/\bundefined8\b/uint64_t/g' \
+        -e 's/\bundefined\s*\*\b/void*/g' \
+        -e 's/\bundefined\b\s*\*/void*/g' \
+        -e 's/\bundefined\b$/void/g' \
+        -e 's/\bundefined\b(?=\s*[);,])/void/g' \
         "$file" > "$temp_file"
     
     # 替换文件
@@ -40,3 +41,9 @@ echo "总共处理了 $count 个文件"
 # 验证替换结果
 remaining=$(find pretty/ -name "*.c" -exec grep -c "undefined" {} \; | awk '{sum += $1} END {print sum}')
 echo "剩余 undefined 类型数量: $remaining"
+
+# 显示剩余的undefined类型（如果有）
+if [ "$remaining" -gt 0 ]; then
+    echo "剩余的undefined类型分布："
+    find pretty/ -name "*.c" -exec grep -n "undefined" {} \; | head -20
+fi

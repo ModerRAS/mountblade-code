@@ -9,7 +9,7 @@ float render_param_cache[16];
 // 渲染内存池
 longlong *render_memory_pool[8];
 // 渲染数据缓冲区
-undefined4 render_data_buffer[32];
+int32_t render_data_buffer[32];
 // 渲染状态标志
 int render_state_flags[8];
 // 渲染处理队列
@@ -17,7 +17,7 @@ int render_processing_queue[10];
 // 渲染资源索引
 int render_resource_indices[8];
 // 渲染临时数据
-undefined4 render_temp_data[20];
+int32_t render_temp_data[20];
 // 渲染系统配置
 int render_system_config[6];
 // 渲染调试信息
@@ -25,13 +25,13 @@ int render_debug_info[4];
 
 // 函数：渲染系统参数设置器
 // 功能：设置渲染系统的各种参数，包括颜色、深度、混合等渲染参数
-void rendering_system_set_parameters_8args(longlong render_context, undefined8 param_2, undefined8 param_3, undefined4 param_4,
-                                          undefined4 param_5, undefined4 param_6, undefined8 param_7, undefined4 param_8)
+void rendering_system_set_parameters_8args(longlong render_context, uint64_t param_2, uint64_t param_3, int32_t param_4,
+                                          int32_t param_5, int32_t param_6, uint64_t param_7, int32_t param_8)
 
 {
   // 调用渲染参数设置函数，设置默认的渲染参数值
   (**(code **)(**(longlong **)(render_context + 0x210) + 0x70))
-          (*(longlong **)(render_context + 0x210),0x3f800000,param_3,*(undefined8 *)(render_context + 0x208),
+          (*(longlong **)(render_context + 0x210),0x3f800000,param_3,*(uint64_t *)(render_context + 0x208),
            0x3f800000,param_8,param_4,param_5,param_6,0,1,0,0);
   return;
 }
@@ -41,7 +41,7 @@ void rendering_system_set_parameters_8args(longlong render_context, undefined8 p
 void rendering_system_initialize_memory(longlong render_context)
 
 {
-  undefined8 memory_ptr;
+  uint64_t memory_ptr;
   
   // 检查内存池是否已经初始化
   if (*(longlong *)(render_context + 0xd0) == 0) {
@@ -55,10 +55,10 @@ void rendering_system_initialize_memory(longlong render_context)
 
 // 函数：渲染系统内存分配和清理器
 // 功能：分配渲染系统内存并清理内存空间
-void rendering_system_allocate_and_clear_memory(undefined8 memory_source)
+void rendering_system_allocate_and_clear_memory(uint64_t memory_source)
 
 {
-  undefined8 memory_ptr;
+  uint64_t memory_ptr;
   
   // 分配指定大小的内存空间
   memory_ptr = allocate_render_memory(memory_source,0x1028);
@@ -76,13 +76,13 @@ void rendering_system_empty_operation(void)
 
 // 函数：渲染系统数据块复制器
 // 功能：复制渲染系统的数据块，支持批量数据复制和内存管理
-void rendering_system_copy_data_blocks(longlong data_source, undefined8 *data_target, uint start_index, uint data_size)
+void rendering_system_copy_data_blocks(longlong data_source, uint64_t *data_target, uint start_index, uint data_size)
 
 {
-  undefined8 *data_ptr;
+  uint64_t *data_ptr;
   longlong source_offset;
   ulonglong data_counter;
-  undefined8 temp_data;
+  uint64_t temp_data;
   longlong target_offset;
   uint index;
   ulonglong remaining_data;
@@ -103,18 +103,18 @@ void rendering_system_copy_data_blocks(longlong data_source, undefined8 *data_ta
       remaining_data = (ulonglong)(index + 1);
       source_offset = *(longlong *)(data_source + 8 + data_counter * 8);
       target_offset = (ulonglong)(uint)(index + (int)data_counter * -0x2000) * 0x40;
-      temp_data = ((undefined8 *)(source_offset + target_offset))[1];
-      *data_target = *(undefined8 *)(source_offset + target_offset);
+      temp_data = ((uint64_t *)(source_offset + target_offset))[1];
+      *data_target = *(uint64_t *)(source_offset + target_offset);
       data_target[1] = temp_data;
-      data_ptr = (undefined8 *)(source_offset + 0x10 + target_offset);
+      data_ptr = (uint64_t *)(source_offset + 0x10 + target_offset);
       temp_data = data_ptr[1];
       data_target[2] = *data_ptr;
       data_target[3] = temp_data;
-      data_ptr = (undefined8 *)(source_offset + 0x20 + target_offset);
+      data_ptr = (uint64_t *)(source_offset + 0x20 + target_offset);
       temp_data = data_ptr[1];
       data_target[4] = *data_ptr;
       data_target[5] = temp_data;
-      data_ptr = (undefined8 *)(source_offset + 0x30 + target_offset);
+      data_ptr = (uint64_t *)(source_offset + 0x30 + target_offset);
       temp_data = data_ptr[1];
       data_target[6] = *data_ptr;
       data_target[7] = temp_data;
@@ -136,9 +136,9 @@ float * rendering_system_quaternion_multiply(float *quat1, float *result, float 
   float fStack_28;
   float fStack_24;
   float fStack_20;
-  undefined4 uStack_1c;
-  undefined8 uStack_18;
-  undefined8 uStack_10;
+  int32_t uStack_1c;
+  uint64_t uStack_18;
+  uint64_t uStack_10;
   
   // 计算四元数差值
   fStack_28 = quat2[4] - quat1[4];
@@ -154,8 +154,8 @@ float * rendering_system_quaternion_multiply(float *quat1, float *result, float 
   x1 = quat1[1];
   y1 = quat1[2];
   z1 = quat1[3];
-  *(undefined8 *)(result + 4) = uStack_18;
-  *(undefined8 *)(result + 6) = uStack_10;
+  *(uint64_t *)(result + 4) = uStack_18;
+  *(uint64_t *)(result + 6) = uStack_10;
   // 执行四元数乘法计算
   *result = z1 * z2 * 1.0 + w1 * w2 * 1.0 + y1 * y2 + x1 * x2;
   result[1] = y1 * z2 * -1.0 + w1 * x2 * -1.0 + w2 * x1 + z1 * y2;
@@ -174,7 +174,7 @@ float * rendering_system_quaternion_add(float *quat1, float *result, float *quat
   float w3, x3, y3, z3;
   float temp_w, temp_x, temp_y, temp_z;
   float *normalized_quat;
-  undefined1 temp_buffer[88];
+  int8_t temp_buffer[88];
   
   // 归一化第一个四元数
   normalized_quat = (float *)normalize_quaternion_vector(quat1,temp_buffer,quat2 + 4);
@@ -225,8 +225,8 @@ longlong rendering_system_clear_buffers(longlong buffer_ptr)
     current_ptr = current_ptr + 0x10;
     cleanup_counter_1 = cleanup_counter_1 - 1;
   } while (cleanup_counter_1 != 0);
-  *(undefined1 *)(buffer_ptr + 0x1040) = 0;
-  *(undefined8 *)(buffer_ptr + 0x810) = 0;
+  *(int8_t *)(buffer_ptr + 0x1040) = 0;
+  *(uint64_t *)(buffer_ptr + 0x810) = 0;
   return buffer_ptr;
 }
 
@@ -327,17 +327,17 @@ void rendering_system_find_or_add_character(longlong string_ptr, char target_cha
     } while ((ulonglong)(longlong)char_index < string_length);
   }
   temp_buffer[0] = target_char;
-  add_string_to_render_buffer((undefined8 *)(string_ptr + 0xb0),temp_buffer);
+  add_string_to_render_buffer((uint64_t *)(string_ptr + 0xb0),temp_buffer);
   return;
 }
 
 // 函数：渲染系统对象销毁器
 // 功能：销毁渲染系统对象，释放相关资源
-undefined8 * rendering_system_destroy_object(undefined8 *object_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
+uint64_t * rendering_system_destroy_object(uint64_t *object_ptr, ulonglong flags, uint64_t param_3, uint64_t param_4)
 
 {
   longlong *sub_object_ptr;
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   *object_ptr = &render_system_destroy_flag;
@@ -358,16 +358,16 @@ undefined8 * rendering_system_destroy_object(undefined8 *object_ptr, ulonglong f
 
 // 函数：渲染系统对象初始化器
 // 功能：初始化渲染系统对象，设置默认参数
-undefined8 * rendering_system_initialize_object(undefined8 param_1, undefined8 *object_ptr, undefined8 param_3, undefined8 param_4)
+uint64_t * rendering_system_initialize_object(uint64_t param_1, uint64_t *object_ptr, uint64_t param_3, uint64_t param_4)
 
 {
   *object_ptr = &render_system_init_flag;
   object_ptr[1] = 0;
-  *(undefined4 *)(object_ptr + 2) = 0;
+  *(int32_t *)(object_ptr + 2) = 0;
   *object_ptr = &render_system_config_data;
   object_ptr[1] = object_ptr + 3;
-  *(undefined1 *)(object_ptr + 3) = 0;
-  *(undefined4 *)(object_ptr + 2) = 0xd;
+  *(int8_t *)(object_ptr + 3) = 0;
+  *(int32_t *)(object_ptr + 2) = 0xd;
   initialize_render_object_string(object_ptr[1],0x80,&render_system_default_string,param_4,0,0xfffffffffffffffe);
   return object_ptr;
 }
@@ -379,7 +379,7 @@ longlong * rendering_system_initialize_context(longlong *context_ptr)
 {
   int config_value;
   longlong *resource_ptr;
-  undefined1 *flag_ptr;
+  int8_t *flag_ptr;
   longlong *sub_resource_ptr;
   int temp_index;
   int buffer_size;
@@ -398,16 +398,16 @@ longlong * rendering_system_initialize_context(longlong *context_ptr)
   context_ptr[0xab] = 0;
   context_ptr[0xae] = 0;
   context_ptr[0xaf] = 0;
-  *(undefined4 *)(context_ptr + 0xb7) = 0x44000000;
-  *(undefined4 *)((longlong)context_ptr + 0x5bc) = 0x44400000;
-  *(undefined4 *)(context_ptr + 0xb8) = 0x44800000;
-  *(undefined4 *)((longlong)context_ptr + 0x5c4) = 0x44c00000;
-  *(undefined4 *)((longlong)context_ptr + 0x5cc) = 0xab3abdf1;
-  *(undefined4 *)((longlong)context_ptr + 0x5d4) = 1;
-  *(undefined4 *)(context_ptr + 0xbb) = 1;
-  *(undefined4 *)((longlong)context_ptr + 0x5dc) = 1;
+  *(int32_t *)(context_ptr + 0xb7) = 0x44000000;
+  *(int32_t *)((longlong)context_ptr + 0x5bc) = 0x44400000;
+  *(int32_t *)(context_ptr + 0xb8) = 0x44800000;
+  *(int32_t *)((longlong)context_ptr + 0x5c4) = 0x44c00000;
+  *(int32_t *)((longlong)context_ptr + 0x5cc) = 0xab3abdf1;
+  *(int32_t *)((longlong)context_ptr + 0x5d4) = 1;
+  *(int32_t *)(context_ptr + 0xbb) = 1;
+  *(int32_t *)((longlong)context_ptr + 0x5dc) = 1;
   context_ptr[0xbc] = 1;
-  *(undefined1 *)(context_ptr + 0xb9) = 0;
+  *(int8_t *)(context_ptr + 0xb9) = 0;
   resource_ptr = (longlong *)context_ptr[0xae];
   context_ptr[0xae] = 0;
   if (resource_ptr != (longlong *)0x0) {
@@ -423,13 +423,13 @@ longlong * rendering_system_initialize_context(longlong *context_ptr)
   context_ptr[0xbf] = 0;
   context_ptr[0xc0] = 0;
   context_ptr[0xc1] = 0;
-  *(undefined4 *)(context_ptr + 0xba) = 2;
+  *(int32_t *)(context_ptr + 0xba) = 2;
   context_ptr[0xb1] = 0;
-  *(undefined4 *)(context_ptr + 0xb6) = 0x3f800000;
-  *(undefined4 *)((longlong)context_ptr + 0x5b4) = 0x3f800000;
-  *(undefined4 *)(context_ptr + 0xb0) = 0x400;
+  *(int32_t *)(context_ptr + 0xb6) = 0x3f800000;
+  *(int32_t *)((longlong)context_ptr + 0x5b4) = 0x3f800000;
+  *(int32_t *)(context_ptr + 0xb0) = 0x400;
   buffer_size = 0;
-  *(undefined4 *)((longlong)context_ptr + 0x56c) = 0;
+  *(int32_t *)((longlong)context_ptr + 0x56c) = 0;
   config_offset = render_system_config_base;
   config_value = *(int *)(render_system_config_base + 0xc40);
   temp_index = buffer_size;
@@ -448,7 +448,7 @@ longlong * rendering_system_initialize_context(longlong *context_ptr)
     buffer_size = 2;
   }
   *(int *)(context_ptr + 0xad) = buffer_size;
-  *(undefined2 *)(context_ptr + 0xc2) = 0;
+  *(int16_t *)(context_ptr + 0xc2) = 0;
   context_ptr[0xc6] = 0;
   context_ptr[199] = 0;
   context_ptr[200] = 0;
@@ -462,21 +462,21 @@ longlong * rendering_system_initialize_context(longlong *context_ptr)
   initialize_render_data_buffer(context_ptr + 0xdc);
   context_ptr[0x106] = (longlong)&render_system_buffer_init;
   context_ptr[0x107] = 0;
-  *(undefined4 *)(context_ptr + 0x108) = 0;
+  *(int32_t *)(context_ptr + 0x108) = 0;
   context_ptr[0x106] = (longlong)&render_system_buffer_config;
   context_ptr[0x109] = 0;
   context_ptr[0x107] = 0;
-  *(undefined4 *)(context_ptr + 0x108) = 0;
+  *(int32_t *)(context_ptr + 0x108) = 0;
   resource_ptr = context_ptr + 0x10b;
   *resource_ptr = (longlong)&render_system_buffer_init;
   context_ptr[0x10c] = 0;
-  *(undefined4 *)(context_ptr + 0x10d) = 0;
+  *(int32_t *)(context_ptr + 0x10d) = 0;
   *resource_ptr = (longlong)&render_system_buffer_config;
   context_ptr[0x10e] = 0;
   context_ptr[0x10c] = 0;
-  *(undefined4 *)(context_ptr + 0x10d) = 0;
-  flag_ptr = *(undefined1 **)(render_system_global_flags + 0x7ab8);
-  if (flag_ptr != (undefined1 *)0x0) {
+  *(int32_t *)(context_ptr + 0x10d) = 0;
+  flag_ptr = *(int8_t **)(render_system_global_flags + 0x7ab8);
+  if (flag_ptr != (int8_t *)0x0) {
     *flag_ptr = 1;
   }
   memory_offset = 0x3ff0000000000000;
@@ -492,8 +492,8 @@ longlong * rendering_system_initialize_context(longlong *context_ptr)
   if (sub_resource_ptr != (longlong *)0x0) {
     (**(code **)(*sub_resource_ptr + 0x38))();
   }
-  *(undefined4 *)(context_ptr + 0x1e) = 0;
-  *(undefined1 *)(context_ptr + 0x105) = 1;
+  *(int32_t *)(context_ptr + 0x1e) = 0;
+  *(int8_t *)(context_ptr + 0x105) = 1;
   sub_resource_ptr = (longlong *)context_ptr[0xcb];
   context_ptr[0xcb] = 0;
   if (sub_resource_ptr != (longlong *)0x0) {
@@ -504,43 +504,43 @@ longlong * rendering_system_initialize_context(longlong *context_ptr)
   if (sub_resource_ptr != (longlong *)0x0) {
     (**(code **)(*sub_resource_ptr + 0x38))();
   }
-  *(undefined4 *)(context_ptr + 0x104) = 0;
-  *(undefined1 *)((longlong)context_ptr + 0xdc) = 1;
-  *(undefined4 *)((longlong)context_ptr + 0x829) = 0;
-  *(undefined4 *)((longlong)context_ptr + 0xfc) = 5;
-  *(undefined4 *)(context_ptr + 0x1f) = 5;
-  *(undefined4 *)((longlong)context_ptr + 0x824) = 0x1000101;
-  *(undefined4 *)(context_ptr + 0x1a) = 0xff000000;
-  *(undefined4 *)(context_ptr + 0xc5) = 0xffffffff;
-  *(undefined2 *)(context_ptr + 0xd8) = 0x100;
-  *(undefined4 *)(context_ptr + 0x10a) = 0;
-  *(undefined4 *)(context_ptr + 0x21) = 0;
-  *(undefined1 *)(context_ptr + 0x20) = 1;
-  *(undefined1 *)((longlong)context_ptr + 0x10c) = 1;
+  *(int32_t *)(context_ptr + 0x104) = 0;
+  *(int8_t *)((longlong)context_ptr + 0xdc) = 1;
+  *(int32_t *)((longlong)context_ptr + 0x829) = 0;
+  *(int32_t *)((longlong)context_ptr + 0xfc) = 5;
+  *(int32_t *)(context_ptr + 0x1f) = 5;
+  *(int32_t *)((longlong)context_ptr + 0x824) = 0x1000101;
+  *(int32_t *)(context_ptr + 0x1a) = 0xff000000;
+  *(int32_t *)(context_ptr + 0xc5) = 0xffffffff;
+  *(int16_t *)(context_ptr + 0xd8) = 0x100;
+  *(int32_t *)(context_ptr + 0x10a) = 0;
+  *(int32_t *)(context_ptr + 0x21) = 0;
+  *(int8_t *)(context_ptr + 0x20) = 1;
+  *(int8_t *)((longlong)context_ptr + 0x10c) = 1;
   sub_resource_ptr = (longlong *)context_ptr[0xcc];
   context_ptr[0xcc] = 0;
   if (sub_resource_ptr != (longlong *)0x0) {
     (**(code **)(*sub_resource_ptr + 0x38))();
   }
   (**(code **)(*resource_ptr + 0x10))(resource_ptr,&render_system_data_config);
-  *(undefined1 *)(context_ptr + 0x10f) = 0;
+  *(int8_t *)(context_ptr + 0x10f) = 0;
   context_ptr[0xa3] = 0;
-  *(undefined4 *)((longlong)context_ptr + 0xf4) = 0x3f800000;
+  *(int32_t *)((longlong)context_ptr + 0xf4) = 0x3f800000;
   context_ptr[0xd9] = 0;
-  *(undefined1 *)((longlong)context_ptr + 0x81) = 0;
+  *(int8_t *)((longlong)context_ptr + 0x81) = 0;
   context_ptr[0xc] = context_ptr[0xb];
   if ((*(float *)(context_ptr + 0xb) != 1.0) || (*(float *)((longlong)context_ptr + 0x5c) != 1.0)) {
     context_ptr[0xb] = 0x3f8000003f800000;
     (**(code **)(*context_ptr + 0x70))(context_ptr);
   }
-  *(undefined4 *)((longlong)context_ptr + 0x87c) = 0;
-  *(undefined1 *)((longlong)context_ptr + 0x10d) = 0;
+  *(int32_t *)((longlong)context_ptr + 0x87c) = 0;
+  *(int8_t *)((longlong)context_ptr + 0x10d) = 0;
   return context_ptr;
 }
 
 // 函数：渲染系统内存释放器
 // 功能：释放渲染系统的内存和资源
-undefined8 rendering_system_free_memory(undefined8 memory_ptr, ulonglong flags)
+uint64_t rendering_system_free_memory(uint64_t memory_ptr, ulonglong flags)
 
 {
   cleanup_render_system_memory();
@@ -563,56 +563,56 @@ void rendering_system_update_parameters(longlong render_context)
   longlong temp_resource;
   byte render_flag;
   bool update_needed;
-  undefined8 extraout_XMM0_Qa;
-  undefined8 extraout_XMM0_Qa_00;
-  undefined8 extraout_XMM0_Qa_01;
-  undefined8 extraout_XMM0_Qa_02;
-  undefined8 extraout_XMM0_Qa_03;
-  undefined8 extraout_XMM0_Qa_04;
+  uint64_t extraout_XMM0_Qa;
+  uint64_t extraout_XMM0_Qa_00;
+  uint64_t extraout_XMM0_Qa_01;
+  uint64_t extraout_XMM0_Qa_02;
+  uint64_t extraout_XMM0_Qa_03;
+  uint64_t extraout_XMM0_Qa_04;
   double param_value_1;
   double param_value_2;
   
   if (*(char *)(render_context + 0x10b) != '\0') {
     resource_ptr = (longlong *)(render_context + 0x530);
     if ((*resource_ptr != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
-      temp_resource = create_render_resource(extraout_XMM0_Qa,*resource_ptr + 0x18,*(undefined4 *)(*resource_ptr + 0x94));
-      *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-      *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+      temp_resource = create_render_resource(extraout_XMM0_Qa,*resource_ptr + 0x18,*(int32_t *)(*resource_ptr + 0x94));
+      *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+      *(int32_t *)(temp_resource + 0x40) = 0x40000000;
       update_render_resource(resource_ptr,temp_resource);
     }
     if ((*(longlong *)(render_context + 0x538) != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
       temp_resource = create_render_resource(extraout_XMM0_Qa_00,*(longlong *)(render_context + 0x538) + 0x18,
-                            *(undefined4 *)(*(longlong *)(render_context + 0x538) + 0x94));
-      *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-      *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+                            *(int32_t *)(*(longlong *)(render_context + 0x538) + 0x94));
+      *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+      *(int32_t *)(temp_resource + 0x40) = 0x40000000;
       update_render_resource(render_context + 0x538,temp_resource);
     }
     if ((*(longlong *)(render_context + 0x540) != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
       temp_resource = create_render_resource(extraout_XMM0_Qa_01,*(longlong *)(render_context + 0x540) + 0x18,
-                            *(undefined4 *)(*(longlong *)(render_context + 0x540) + 0x94));
-      *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-      *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+                            *(int32_t *)(*(longlong *)(render_context + 0x540) + 0x94));
+      *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+      *(int32_t *)(temp_resource + 0x40) = 0x40000000;
       update_render_resource(render_context + 0x540,temp_resource);
     }
     if ((*(longlong *)(render_context + 0x550) != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
       temp_resource = create_render_resource(extraout_XMM0_Qa_02,*(longlong *)(render_context + 0x550) + 0x18,
-                            *(undefined4 *)(*(longlong *)(render_context + 0x550) + 0x94));
-      *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-      *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+                            *(int32_t *)(*(longlong *)(render_context + 0x550) + 0x94));
+      *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+      *(int32_t *)(temp_resource + 0x40) = 0x40000000;
       update_render_resource(render_context + 0x550,temp_resource);
     }
     if ((*(longlong *)(render_context + 0x558) != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
       temp_resource = create_render_resource(extraout_XMM0_Qa_03,*(longlong *)(render_context + 0x558) + 0x18,
-                            *(undefined4 *)(*(longlong *)(render_context + 0x558) + 0x94));
-      *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-      *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+                            *(int32_t *)(*(longlong *)(render_context + 0x558) + 0x94));
+      *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+      *(int32_t *)(temp_resource + 0x40) = 0x40000000;
       update_render_resource(render_context + 0x558,temp_resource);
     }
     if ((*(longlong *)(render_context + 0x548) != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
       temp_resource = create_render_resource(extraout_XMM0_Qa_04,*(longlong *)(render_context + 0x548) + 0x18,
-                            *(undefined4 *)(*(longlong *)(render_context + 0x548) + 0x94));
-      *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-      *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+                            *(int32_t *)(*(longlong *)(render_context + 0x548) + 0x94));
+      *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+      *(int32_t *)(temp_resource + 0x40) = 0x40000000;
       update_render_resource(render_context + 0x548,temp_resource);
     }
     temp_resource = *resource_ptr;
@@ -656,7 +656,7 @@ void rendering_system_update_parameters(longlong render_context)
           update_render_resource_flags(resource_offset,*resource_ptr,0x80000000,0,1);
         }
       }
-      *(undefined1 *)(render_context + 0x10a) = 0;
+      *(int8_t *)(render_context + 0x10a) = 0;
     }
   }
   return;
@@ -676,55 +676,55 @@ void rendering_system_update_parameters_extended(longlong render_context)
   longlong global_context;
   byte render_flag;
   bool update_needed;
-  undefined8 extraout_XMM0_Qa;
-  undefined8 extraout_XMM0_Qa_00;
-  undefined8 extraout_XMM0_Qa_01;
-  undefined8 extraout_XMM0_Qa_02;
-  undefined8 extraout_XMM0_Qa_03;
-  undefined8 extraout_XMM0_Qa_04;
+  uint64_t extraout_XMM0_Qa;
+  uint64_t extraout_XMM0_Qa_00;
+  uint64_t extraout_XMM0_Qa_01;
+  uint64_t extraout_XMM0_Qa_02;
+  uint64_t extraout_XMM0_Qa_03;
+  uint64_t extraout_XMM0_Qa_04;
   double param_value_1;
   double param_value_2;
   
   resource_ptr = (longlong *)(render_context + 0x530);
   if ((*resource_ptr != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
-    temp_resource = create_render_resource(extraout_XMM0_Qa,*resource_ptr + 0x18,*(undefined4 *)(*resource_ptr + 0x94));
-    *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-    *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+    temp_resource = create_render_resource(extraout_XMM0_Qa,*resource_ptr + 0x18,*(int32_t *)(*resource_ptr + 0x94));
+    *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+    *(int32_t *)(temp_resource + 0x40) = 0x40000000;
     update_render_resource(resource_ptr,temp_resource);
   }
   if ((*(longlong *)(global_context + 0x538) != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
     temp_resource = create_render_resource(extraout_XMM0_Qa_00,*(longlong *)(global_context + 0x538) + 0x18,
-                          *(undefined4 *)(*(longlong *)(global_context + 0x538) + 0x94));
-    *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-    *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+                          *(int32_t *)(*(longlong *)(global_context + 0x538) + 0x94));
+    *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+    *(int32_t *)(temp_resource + 0x40) = 0x40000000;
     update_render_resource(global_context + 0x538,temp_resource);
   }
   if ((*(longlong *)(global_context + 0x540) != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
     temp_resource = create_render_resource(extraout_XMM0_Qa_01,*(longlong *)(global_context + 0x540) + 0x18,
-                          *(undefined4 *)(*(longlong *)(global_context + 0x540) + 0x94));
-    *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-    *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+                          *(int32_t *)(*(longlong *)(global_context + 0x540) + 0x94));
+    *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+    *(int32_t *)(temp_resource + 0x40) = 0x40000000;
     update_render_resource(global_context + 0x540,temp_resource);
   }
   if ((*(longlong *)(global_context + 0x550) != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
     temp_resource = create_render_resource(extraout_XMM0_Qa_02,*(longlong *)(global_context + 0x550) + 0x18,
-                          *(undefined4 *)(*(longlong *)(global_context + 0x550) + 0x94));
-    *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-    *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+                          *(int32_t *)(*(longlong *)(global_context + 0x550) + 0x94));
+    *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+    *(int32_t *)(temp_resource + 0x40) = 0x40000000;
     update_render_resource(global_context + 0x550,temp_resource);
   }
   if ((*(longlong *)(global_context + 0x558) != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
     temp_resource = create_render_resource(extraout_XMM0_Qa_03,*(longlong *)(global_context + 0x558) + 0x18,
-                          *(undefined4 *)(*(longlong *)(global_context + 0x558) + 0x94));
-    *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-    *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+                          *(int32_t *)(*(longlong *)(global_context + 0x558) + 0x94));
+    *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+    *(int32_t *)(temp_resource + 0x40) = 0x40000000;
     update_render_resource(global_context + 0x558,temp_resource);
   }
   if ((*(longlong *)(global_context + 0x548) != 0) && (status_flag = check_render_system_status(), status_flag != '\0')) {
     temp_resource = create_render_resource(extraout_XMM0_Qa_04,*(longlong *)(global_context + 0x548) + 0x18,
-                          *(undefined4 *)(*(longlong *)(global_context + 0x548) + 0x94));
-    *(undefined4 *)(temp_resource + 0x90) = 0x3c888889;
-    *(undefined4 *)(temp_resource + 0x40) = 0x40000000;
+                          *(int32_t *)(*(longlong *)(global_context + 0x548) + 0x94));
+    *(int32_t *)(temp_resource + 0x90) = 0x3c888889;
+    *(int32_t *)(temp_resource + 0x40) = 0x40000000;
     update_render_resource(global_context + 0x548,temp_resource);
   }
   temp_resource = *resource_ptr;
@@ -770,7 +770,7 @@ void rendering_system_update_parameters_extended(longlong render_context)
           update_render_resource_flags(resource_offset,*resource_ptr,0x80000000,0,1);
         }
       }
-      *(undefined1 *)(global_context + 0x10a) = 0;
+      *(int8_t *)(global_context + 0x10a) = 0;
       return;
     }
     return;
@@ -788,34 +788,34 @@ void rendering_system_empty_operation_3(void)
 
 // 函数：渲染系统对象创建器
 // 功能：创建渲染系统对象，初始化对象数据
-undefined8 *
-rendering_system_create_object(longlong param_1, undefined8 *object_ptr, undefined8 param_3, undefined8 param_4)
+uint64_t *
+rendering_system_create_object(longlong param_1, uint64_t *object_ptr, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined4 *data_ptr;
+  int32_t *data_ptr;
   longlong context_offset;
-  undefined4 buffer_size;
+  int32_t buffer_size;
   
   *object_ptr = &render_system_object_init;
   object_ptr[1] = 0;
-  *(undefined4 *)(object_ptr + 2) = 0;
+  *(int32_t *)(object_ptr + 2) = 0;
   *object_ptr = &render_system_object_config;
   object_ptr[3] = 0;
   object_ptr[1] = 0;
-  *(undefined4 *)(object_ptr + 2) = 0;
+  *(int32_t *)(object_ptr + 2) = 0;
   initialize_render_object_data(object_ptr,0xf,param_3,param_4,0,0xfffffffffffffffe);
-  data_ptr = (undefined4 *)object_ptr[1];
+  data_ptr = (int32_t *)object_ptr[1];
   *data_ptr = 0x536c6772;
   data_ptr[1] = 0x656e6563;
   data_ptr[2] = 0x6569765f;
   data_ptr[3] = 0x3a3a77;
-  *(undefined4 *)(object_ptr + 2) = 0xf;
+  *(int32_t *)(object_ptr + 2) = 0xf;
   buffer_size = 1;
   context_offset = *(longlong *)(param_1 + 0x6d0);
   if ((context_offset != 0) && (0 < *(int *)(context_offset + 0x4e8))) {
     initialize_render_object_data(object_ptr,*(int *)(object_ptr + 2) + *(int *)(context_offset + 0x4e8));
     // 复制渲染对象数据
-    memcpy((ulonglong)*(uint *)(object_ptr + 2) + object_ptr[1],*(undefined8 *)(context_offset + 0x4e0),
+    memcpy((ulonglong)*(uint *)(object_ptr + 2) + object_ptr[1],*(uint64_t *)(context_offset + 0x4e0),
            (longlong)(*(int *)(context_offset + 0x4e8) + 1),param_4,buffer_size);
   }
   return object_ptr;
@@ -823,89 +823,89 @@ rendering_system_create_object(longlong param_1, undefined8 *object_ptr, undefin
 
 // 函数：渲染系统资源管理器
 // 功能：管理渲染系统的资源，包括资源分配、释放和状态检查
-longlong rendering_system_resource_manager(longlong *param_1, undefined8 param_2)
+longlong rendering_system_resource_manager(longlong *param_1, uint64_t param_2)
 
 {
   longlong *resource_ptr;
   uint resource_id;
   int param_index;
   longlong context_offset;
-  undefined4 *data_buffer;
+  int32_t *data_buffer;
   longlong resource_handle;
-  undefined8 uStack_d8;
-  undefined4 uStack_d0;
-  undefined4 uStack_cc;
-  undefined2 uStack_c8;
-  undefined1 uStack_c6;
-  undefined4 uStack_c4;
-  undefined1 uStack_c0;
-  undefined8 uStack_b8;
+  uint64_t uStack_d8;
+  int32_t uStack_d0;
+  int32_t uStack_cc;
+  int16_t uStack_c8;
+  int8_t uStack_c6;
+  int32_t uStack_c4;
+  int8_t uStack_c0;
+  uint64_t uStack_b8;
   longlong lStack_b0;
-  undefined8 uStack_a8;
-  undefined8 uStack_a0;
-  undefined4 uStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined4 uStack_80;
-  undefined4 uStack_7c;
-  undefined2 uStack_78;
-  undefined1 uStack_76;
-  undefined4 uStack_74;
-  undefined1 uStack_70;
-  undefined8 uStack_68;
+  uint64_t uStack_a8;
+  uint64_t uStack_a0;
+  int32_t uStack_98;
+  uint64_t uStack_90;
+  uint64_t uStack_88;
+  int32_t uStack_80;
+  int32_t uStack_7c;
+  int16_t uStack_78;
+  int8_t uStack_76;
+  int32_t uStack_74;
+  int8_t uStack_70;
+  uint64_t uStack_68;
   longlong lStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined4 uStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
+  uint64_t uStack_58;
+  uint64_t uStack_50;
+  int32_t uStack_48;
+  uint64_t uStack_40;
+  uint64_t uStack_38;
   
   uStack_38 = 0xfffffffffffffffe;
   if ((char)param_1[0x10f] == '\0') {
     context_offset = initialize_render_context();
     param_1[0xa3] = context_offset;
   }
-  *(undefined1 *)(param_1 + 0x10f) = 0;
+  *(int8_t *)(param_1 + 0x10f) = 0;
   context_offset = param_1[0xa3];
   resource_handle = 0;
   if ((context_offset != 0) && (*(longlong *)(context_offset + 0x99b8) != 0)) {
     resource_ptr = *(longlong **)(context_offset + 0x96a0);
-    *(undefined8 *)(context_offset + 0x96a0) = 0;
+    *(uint64_t *)(context_offset + 0x96a0) = 0;
     if (resource_ptr != (longlong *)0x0) {
       (**(code **)(*resource_ptr + 0x38))();
     }
   }
   if (param_1[0xda] == 0) goto LAB_180301ce4;
-  data_buffer = (undefined4 *)allocate_render_buffer(render_system_memory_pool,0x18,0x13);
-  *(undefined1 *)data_buffer = 0;
+  data_buffer = (int32_t *)allocate_render_buffer(render_system_memory_pool,0x18,0x13);
+  *(int8_t *)data_buffer = 0;
   resource_id = get_render_resource_id(data_buffer);
   *data_buffer = 0x536c6772;
   data_buffer[1] = 0x656e6563;
   data_buffer[2] = 0x6569765f;
   data_buffer[3] = 0x723a3a77;
-  *(undefined8 *)(data_buffer + 4) = 0x3a3a7265646e65;
+  *(uint64_t *)(data_buffer + 4) = 0x3a3a7265646e65;
   context_offset = param_1[0xda];
   param_index = *(int *)(context_offset + 0x4e8);
   if (0 < param_index) {
     if ((param_index != -0x17) && (resource_id < param_index + 0x18U)) {
-      data_buffer = (undefined4 *)reallocate_render_buffer(render_system_memory_pool,data_buffer,param_index + 0x18U,0x10,0x13);
+      data_buffer = (int32_t *)reallocate_render_buffer(render_system_memory_pool,data_buffer,param_index + 0x18U,0x10,0x13);
       get_render_resource_id(data_buffer);
       param_index = *(int *)(context_offset + 0x4e8);
     }
     // 复制渲染资源数据
-    memcpy((undefined1 *)((longlong)data_buffer + 0x17),*(undefined8 *)(context_offset + 0x4e0),
+    memcpy((int8_t *)((longlong)data_buffer + 0x17),*(uint64_t *)(context_offset + 0x4e0),
            (longlong)(param_index + 1));
   }
   resource_handle = process_render_resource_request(param_1,param_2);
   if ((*(char *)((longlong)param_1 + 0x827) == '\0') ||
      (((char)param_1[0x104] != '\0' && ((int)param_1[0x1f] < 0)))) {
     if (*(char *)((longlong)param_1 + 0x829) == '\0') {
-      *(undefined2 *)(param_1 + 0x104) = 0x101;
-      *(undefined1 *)(param_1[0xda] + 0x60b90) = 1;
-      *(undefined1 *)(param_1[0xda] + 0x60b91) = 1;
+      *(int16_t *)(param_1 + 0x104) = 0x101;
+      *(int8_t *)(param_1[0xda] + 0x60b90) = 1;
+      *(int8_t *)(param_1[0xda] + 0x60b91) = 1;
     }
     else {
-      *(undefined1 *)((longlong)param_1 + 0xdd) = 0;
+      *(int8_t *)((longlong)param_1 + 0xdd) = 0;
       (**(code **)(*param_1 + 0xc0))(param_1);
       update_render_resource_status(param_1,1,1);
     }
@@ -942,7 +942,7 @@ longlong rendering_system_resource_manager(longlong *param_1, undefined8 param_2
         uStack_48 = 3;
         uStack_40 = 0;
         process_render_request(param_1[0xda],&uStack_88);
-        *(undefined4 *)(param_1 + 0x10a) = 0;
+        *(int32_t *)(param_1 + 0x10a) = 0;
         if (lStack_60 != 0) {
           // 执行渲染系统错误处理
           execute_render_system_error_handler();
@@ -952,18 +952,18 @@ LAB_180301bf4:
       if (*(int *)((longlong)param_1 + 0xfc) != (int)param_1[0x1f]) goto LAB_180301c02;
     }
     else {
-      *(undefined1 *)((longlong)param_1 + 0x821) = 1;
-      *(undefined1 *)(param_1[0xda] + 0x60b91) = 1;
+      *(int8_t *)((longlong)param_1 + 0x821) = 1;
+      *(int8_t *)(param_1[0xda] + 0x60b91) = 1;
       if ((*(int *)(param_1[0xda] + 0x27c0) < 7) ||
          ((*(int *)(resource_handle + 0x124e8) != 0 || (*(int *)(resource_handle + 0x124ec) != 0)))) goto LAB_180301bf4;
 LAB_180301c02:
       if ((int)param_1[0x1f] == 0) {
-        *(undefined1 *)(render_system_status_flags + 0x15f8) = 0;
+        *(int8_t *)(render_system_status_flags + 0x15f8) = 0;
       }
       else {
-        *(undefined2 *)(param_1 + 0x104) = 0x101;
-        *(undefined1 *)(param_1[0xda] + 0x60b90) = 1;
-        *(undefined1 *)(param_1[0xda] + 0x60b91) = 1;
+        *(int16_t *)(param_1 + 0x104) = 0x101;
+        *(int8_t *)(param_1[0xda] + 0x60b90) = 1;
+        *(int8_t *)(param_1[0xda] + 0x60b91) = 1;
       }
       *(int *)(param_1 + 0x1f) = (int)param_1[0x1f] + -1;
     }
@@ -972,7 +972,7 @@ LAB_180301c02:
       execute_render_system_error_handler();
     }
   }
-  if (data_buffer != (undefined4 *)0x0) {
+  if (data_buffer != (int32_t *)0x0) {
     // 执行渲染系统错误处理
     execute_render_system_error_handler();
   }

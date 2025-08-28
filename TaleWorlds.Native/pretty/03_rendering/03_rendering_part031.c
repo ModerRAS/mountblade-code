@@ -12,28 +12,28 @@
  * @param param3 序列化参数3
  * @param param4 序列化参数4
  */
-void serialize_rendering_data(longlong *render_obj, longlong *output_buf, undefined8 param3, undefined8 param4)
+void serialize_rendering_data(longlong *render_obj, longlong *output_buf, uint64_t param3, uint64_t param4)
 {
     ulonglong data_size;
-    undefined4 render_flags;
+    int32_t render_flags;
     longlong data_offset;
     int item_count;
-    undefined8 resource_handle;
-    undefined4 *buffer_ptr;
+    uint64_t resource_handle;
+    int32_t *buffer_ptr;
     int *counter_ptr;
     uint *uint_ptr;
-    undefined *data_ptr;
-    undefined1 *str_ptr;
+    void *data_ptr;
+    int8_t *str_ptr;
     longlong string_len;
     longlong *array_ptr;
     uint buffer_size;
     int item_index;
     longlong array_size;
     ulonglong total_size;
-    undefined *stack_data_ptr;
-    undefined1 *stack_str_ptr;
+    void *stack_data_ptr;
+    int8_t *stack_str_ptr;
     uint stack_str_size;
-    undefined8 stack_data_handle;
+    uint64_t stack_data_handle;
     
     // 获取渲染对象数据
     resource_handle = (**(code **)(*render_obj + 0x90))(render_obj, &stack_data_ptr, param3, param4, 0xfffffffffffffffe);
@@ -41,36 +41,36 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, undefi
     stack_data_ptr = &UNK_180a3c3e0;
     
     // 检查数据完整性
-    if (stack_str_ptr != (undefined1 *)0x0) {
+    if (stack_str_ptr != (int8_t *)0x0) {
         FUN_18064e900();
     }
     
-    stack_str_ptr = (undefined1 *)0x0;
+    stack_str_ptr = (int8_t *)0x0;
     stack_data_handle = (ulonglong)stack_data_handle._4_4_ << 0x20;
     stack_data_ptr = &UNK_18098bcb0;
     FUN_180639ec0(output_buf, render_obj + 0x3e);
     
     // 获取渲染标志
-    render_flags = *(undefined4 *)((longlong)render_obj + 0x324);
-    buffer_ptr = (undefined4 *)output_buf[1];
+    render_flags = *(int32_t *)((longlong)render_obj + 0x324);
+    buffer_ptr = (int32_t *)output_buf[1];
     
     // 检查缓冲区空间
     if ((ulonglong)((*output_buf - (longlong)buffer_ptr) + output_buf[2]) < 5) {
         FUN_180639bf0(output_buf, (longlong)buffer_ptr + (4 - *output_buf));
-        buffer_ptr = (undefined4 *)output_buf[1];
+        buffer_ptr = (int32_t *)output_buf[1];
     }
     
     *buffer_ptr = render_flags;
-    buffer_ptr = (undefined4 *)(output_buf[1] + 4);
+    buffer_ptr = (int32_t *)(output_buf[1] + 4);
     output_buf[1] = (longlong)buffer_ptr;
     
     // 获取数据数组指针
-    if ((undefined *)*render_obj == &UNK_180a169b8) {
+    if ((void *)*render_obj == &UNK_180a169b8) {
         array_ptr = render_obj + 0x66;
     }
     else {
-        array_ptr = (longlong *)(**(code **)((undefined *)*render_obj + 0x158))(render_obj);
-        buffer_ptr = (undefined4 *)output_buf[1];
+        array_ptr = (longlong *)(**(code **)((void *)*render_obj + 0x158))(render_obj);
+        buffer_ptr = (int32_t *)output_buf[1];
     }
     
     // 序列化数据数组
@@ -81,10 +81,10 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, undefi
             string_len = *array_ptr;
             if ((ulonglong)((*output_buf - (longlong)buffer_ptr) + output_buf[2]) < 5) {
                 FUN_180639bf0(output_buf, (longlong)buffer_ptr + (4 - *output_buf));
-                buffer_ptr = (undefined4 *)output_buf[1];
+                buffer_ptr = (int32_t *)output_buf[1];
             }
             *buffer_ptr = (int)string_len;
-            buffer_ptr = (undefined4 *)(output_buf[1] + 4);
+            buffer_ptr = (int32_t *)(output_buf[1] + 4);
             output_buf[1] = (longlong)buffer_ptr;
             array_ptr = (longlong *)((longlong)array_ptr + 4);
             data_offset = data_offset + -1;
@@ -96,7 +96,7 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, undefi
     array_size = render_obj[0x77];
     if ((ulonglong)((*output_buf - (longlong)buffer_ptr) + output_buf[2]) < 2) {
         FUN_180639bf0(output_buf, (longlong)buffer_ptr + (1 - *output_buf));
-        buffer_ptr = (undefined4 *)output_buf[1];
+        buffer_ptr = (int32_t *)output_buf[1];
     }
     *(bool *)buffer_ptr = array_size != 0;
     output_buf[1] = output_buf[1] + 1;
@@ -124,13 +124,13 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, undefi
         array_size = FUN_180079430(array_size);
         stack_data_ptr = &UNK_180a3c3e0;
         stack_data_handle = 0;
-        stack_str_ptr = (undefined1 *)0x0;
+        stack_str_ptr = (int8_t *)0x0;
         stack_str_size = 0;
         
         // 处理字符串数据
-        FUN_1806277c0(&stack_data_ptr, *(undefined4 *)(array_size + 0x10));
+        FUN_1806277c0(&stack_data_ptr, *(int32_t *)(array_size + 0x10));
         if (*(int *)(array_size + 0x10) < 1) {
-            if ((*(longlong *)(array_size + 8) != 0) && (stack_str_size = 0, stack_str_ptr != (undefined1 *)0x0)) {
+            if ((*(longlong *)(array_size + 8) != 0) && (stack_str_size = 0, stack_str_ptr != (int8_t *)0x0)) {
                 *stack_str_ptr = 0;
             }
             
@@ -166,15 +166,15 @@ void serialize_rendering_data(longlong *render_obj, longlong *output_buf, undefi
             array_size = output_buf[1];
             output_buf[1] = array_size + 4;
             str_ptr = &DAT_18098bc73;
-            if (stack_str_ptr != (undefined1 *)0x0) {
+            if (stack_str_ptr != (int8_t *)0x0) {
                 str_ptr = stack_str_ptr;
             }
             memcpy(array_size + 4, str_ptr, total_size);
         }
         
         data_ptr = &DAT_18098bc73;
-        if (*(undefined **)(array_size + 8) != (undefined *)0x0) {
-            data_ptr = *(undefined **)(array_size + 8);
+        if (*(void **)(array_size + 8) != (void *)0x0) {
+            data_ptr = *(void **)(array_size + 8);
         }
         memcpy(stack_str_ptr, data_ptr, (longlong)(*(int *)(array_size + 0x10) + 1));
     }
@@ -196,9 +196,9 @@ void update_rendering_state(longlong render_ctx, char state_flag)
     longlong *state_ptr;
     longlong iter_count;
     longlong *temp_ptr;
-    undefined1 state_array[8];
+    int8_t state_array[8];
     longlong context_handle;
-    undefined4 state_id;
+    int32_t state_id;
     longlong *stack_ptr;
     
     // 获取对象数量
@@ -318,41 +318,41 @@ void increment_rendering_counter(longlong counter_ptr)
  */
 longlong filter_rendering_objects(longlong filter_ctx, uint filter_flags, ulonglong *result_array)
 {
-    undefined8 obj_handle;
+    uint64_t obj_handle;
     longlong array_size;
-    undefined8 *obj_ptr;
-    undefined8 *result_ptr;
-    undefined8 *temp_ptr;
+    uint64_t *obj_ptr;
+    uint64_t *result_ptr;
+    uint64_t *temp_ptr;
     
     // 遍历渲染对象
-    obj_ptr = *(undefined8 **)(filter_ctx + 0x38);
-    if (obj_ptr < *(undefined8 **)(filter_ctx + 0x40)) {
+    obj_ptr = *(uint64_t **)(filter_ctx + 0x38);
+    if (obj_ptr < *(uint64_t **)(filter_ctx + 0x40)) {
         do {
             // 检查对象是否匹配过滤标志
             if ((*(uint *)(obj_ptr + 1) & filter_flags) != 0) {
-                result_ptr = (undefined8 *)result_array[1];
+                result_ptr = (uint64_t *)result_array[1];
                 obj_handle = *obj_ptr;
                 
                 // 将匹配的对象添加到结果数组
-                if (result_ptr < (undefined8 *)result_array[2]) {
+                if (result_ptr < (uint64_t *)result_array[2]) {
                     result_array[1] = (ulonglong)(result_ptr + 1);
                     *result_ptr = obj_handle;
                 }
                 else {
                     // 重新分配结果数组
-                    temp_ptr = (undefined8 *)*result_array;
+                    temp_ptr = (uint64_t *)*result_array;
                     array_size = (longlong)result_ptr - (longlong)temp_ptr >> 3;
                     if (array_size == 0) {
                         array_size = 1;
                     LAB_180283f92:
-                    obj_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, (char)result_array[3]);
-                    temp_ptr = (undefined8 *)*result_array;
-                    result_ptr = (undefined8 *)result_array[1];
+                    obj_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, (char)result_array[3]);
+                    temp_ptr = (uint64_t *)*result_array;
+                    result_ptr = (uint64_t *)result_array[1];
                     }
                     else {
                         array_size = array_size * 2;
                         if (array_size != 0) goto LAB_180283f92;
-                        obj_ptr = (undefined8 *)0x0;
+                        obj_ptr = (uint64_t *)0x0;
                     }
                     
                     // 移动现有数据
@@ -370,7 +370,7 @@ longlong filter_rendering_objects(longlong filter_ctx, uint filter_flags, ulongl
                 }
             }
             obj_ptr = obj_ptr + 2;
-        } while (obj_ptr < *(undefined8 **)(filter_ctx + 0x40));
+        } while (obj_ptr < *(uint64_t **)(filter_ctx + 0x40));
     }
     
     return (longlong)(result_array[1] - *result_array) >> 3;
@@ -384,40 +384,40 @@ longlong filter_rendering_objects(longlong filter_ctx, uint filter_flags, ulongl
  */
 longlong count_rendering_objects(void)
 {
-    undefined8 obj_handle;
+    uint64_t obj_handle;
     longlong array_size;
-    undefined8 *obj_ptr;
-    undefined8 *result_ptr;
-    undefined8 *temp_ptr;
+    uint64_t *obj_ptr;
+    uint64_t *result_ptr;
+    uint64_t *temp_ptr;
     ulonglong *result_array;
-    undefined8 *iter_ptr;
+    uint64_t *iter_ptr;
     uint filter_flags;
     longlong iter_count;
-    undefined8 *obj_iter;
+    uint64_t *obj_iter;
     
     // 遍历渲染对象并统计数量
     do {
         if ((*(uint *)(iter_ptr + 1) & filter_flags) != 0) {
-            obj_iter = (undefined8 *)result_array[1];
+            obj_iter = (uint64_t *)result_array[1];
             obj_handle = *iter_ptr;
-            if (obj_iter < (undefined8 *)result_array[2]) {
+            if (obj_iter < (uint64_t *)result_array[2]) {
                 result_array[1] = (ulonglong)(obj_iter + 1);
                 *obj_iter = obj_handle;
             }
             else {
-                temp_ptr = (undefined8 *)*result_array;
+                temp_ptr = (uint64_t *)*result_array;
                 array_size = (longlong)obj_iter - (longlong)temp_ptr >> 3;
                 if (array_size == 0) {
                     array_size = 1;
                 LAB_180283f92:
-                obj_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, (char)result_array[3]);
-                temp_ptr = (undefined8 *)*result_array;
-                obj_iter = (undefined8 *)result_array[1];
+                obj_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, (char)result_array[3]);
+                temp_ptr = (uint64_t *)*result_array;
+                obj_iter = (uint64_t *)result_array[1];
                 }
                 else {
                     array_size = array_size * 2;
                     if (array_size != 0) goto LAB_180283f92;
-                    obj_ptr = (undefined8 *)0x0;
+                    obj_ptr = (uint64_t *)0x0;
                 }
                 
                 if (temp_ptr != obj_iter) {
@@ -433,7 +433,7 @@ longlong count_rendering_objects(void)
             }
         }
         iter_ptr = iter_ptr + 2;
-        if (*(undefined8 **)(iter_count + 0x40) <= iter_ptr) {
+        if (*(uint64_t **)(iter_count + 0x40) <= iter_ptr) {
             return (longlong)(result_array[1] - *result_array) >> 3;
         }
     } while( true );
@@ -461,7 +461,7 @@ longlong get_rendering_object_count(void)
  * @param param3 操作参数3
  * @param param4 操作参数4
  */
-void operate_rendering_bitmap(longlong bitmap_ptr, byte bit_pos, undefined8 param3, undefined8 param4)
+void operate_rendering_bitmap(longlong bitmap_ptr, byte bit_pos, uint64_t param3, uint64_t param4)
 {
     longlong *base_ptr;
     uint *uint_ptr;
@@ -500,7 +500,7 @@ void operate_rendering_bitmap(longlong bitmap_ptr, byte bit_pos, undefined8 para
                 if (obj_ptr != (longlong *)0x0) {
                     (**(code **)(*obj_ptr + 0x38))();
                 }
-                *(undefined4 *)(iter_count + 8 + obj_offset) = *(undefined4 *)(total_count + 8 + obj_offset);
+                *(int32_t *)(iter_count + 8 + obj_offset) = *(int32_t *)(total_count + 8 + obj_offset);
                 remaining_count = (ulonglong)((int)remaining_count - 1);
                 iter_count = iter_count + -1;
                 total_count = total_count + -0x10;
@@ -648,7 +648,7 @@ void cleanup_rendering_resources(longlong *resource_ptr)
  * @param param3 插入参数3
  * @param param4 插入参数4
  */
-void insert_rendering_data(longlong *data_ptr, ulonglong insert_count, undefined8 param3, undefined8 param4)
+void insert_rendering_data(longlong *data_ptr, ulonglong insert_count, uint64_t param3, uint64_t param4)
 {
     longlong *iter_ptr;
     ulonglong current_count;
@@ -686,9 +686,9 @@ void insert_rendering_data(longlong *data_ptr, ulonglong insert_count, undefined
  * @param param3 添加参数3
  * @param param4 添加参数4
  */
-void add_rendering_data(longlong *data_ptr, longlong *item_ptr, undefined8 param3, undefined8 param4)
+void add_rendering_data(longlong *data_ptr, longlong *item_ptr, uint64_t param3, uint64_t param4)
 {
-    undefined4 *uint_ptr;
+    int32_t *uint_ptr;
     longlong offset;
     longlong *iter_ptr;
     longlong *end_ptr;
@@ -735,8 +735,8 @@ LAB_180284385:
         do {
             *temp_ptr = *iter_ptr;
             *iter_ptr = 0;
-            uint_ptr = (undefined4 *)((longlong)new_ptr + offset + (longlong)iter_ptr);
-            *uint_ptr = *(undefined4 *)((longlong)uint_ptr + copy_size);
+            uint_ptr = (int32_t *)((longlong)new_ptr + offset + (longlong)iter_ptr);
+            *uint_ptr = *(int32_t *)((longlong)uint_ptr + copy_size);
             iter_ptr = iter_ptr + 2;
             temp_ptr = temp_ptr + 2;
         } while (iter_ptr != end_ptr);
@@ -781,14 +781,14 @@ LAB_180284385:
  */
 longlong remove_rendering_data(longlong data_ptr, longlong remove_ptr)
 {
-    undefined8 data_handle;
+    uint64_t data_handle;
     longlong *item_ptr;
-    undefined8 *iter_ptr;
-    undefined8 *end_ptr;
+    uint64_t *iter_ptr;
+    uint64_t *end_ptr;
     longlong item_size;
     
-    end_ptr = (undefined8 *)(remove_ptr + 0x10);
-    iter_ptr = *(undefined8 **)(data_ptr + 8);
+    end_ptr = (uint64_t *)(remove_ptr + 0x10);
+    iter_ptr = *(uint64_t **)(data_ptr + 8);
     
     if ((end_ptr < iter_ptr) && (item_size = (longlong)iter_ptr - (longlong)end_ptr >> 4, 0 < item_size)) {
         do {
@@ -801,14 +801,14 @@ longlong remove_rendering_data(longlong data_ptr, longlong remove_ptr)
                 (**(code **)(*item_ptr + 0x38))();
             }
             
-            *(undefined4 *)(end_ptr + -1) = *(undefined4 *)(end_ptr + 1);
+            *(int32_t *)(end_ptr + -1) = *(int32_t *)(end_ptr + 1);
             item_size = item_size + -1;
             end_ptr = end_ptr + 2;
         } while (0 < item_size);
-        iter_ptr = *(undefined8 **)(data_ptr + 8);
+        iter_ptr = *(uint64_t **)(data_ptr + 8);
     }
     
-    *(undefined8 **)(data_ptr + 8) = iter_ptr + -2;
+    *(uint64_t **)(data_ptr + 8) = iter_ptr + -2;
     item_ptr = (longlong *)iter_ptr[-2];
     if (item_ptr != (longlong *)0x0) {
         (**(code **)(*item_ptr + 0x38))();
@@ -853,7 +853,7 @@ void clear_rendering_data(longlong *data_ptr)
  * @param param3 扩展参数3
  * @param param4 扩展参数4
  */
-void expand_rendering_queue(longlong *queue_ptr, ulonglong expand_size, undefined8 param3, undefined8 param4)
+void expand_rendering_queue(longlong *queue_ptr, ulonglong expand_size, uint64_t param3, uint64_t param4)
 {
     ulonglong current_size;
     longlong base_ptr;
@@ -1052,13 +1052,13 @@ void cleanup_rendering_hash_table(longlong hash_table)
                 FUN_180285080();
                 FUN_18064e900(iter_ptr);
             }
-            *(undefined8 *)(base_ptr + iter_count * 8) = 0;
+            *(uint64_t *)(base_ptr + iter_count * 8) = 0;
             iter_count = iter_count + 1;
         } while (iter_count < table_size);
         table_size = *(ulonglong *)(hash_table + 0x10);
     }
     
-    *(undefined8 *)(hash_table + 0x18) = 0;
+    *(uint64_t *)(hash_table + 0x18) = 0;
     if ((1 < table_size) && (*(longlong *)(hash_table + 8) != 0)) {
         FUN_18064e900();
     }
@@ -1075,17 +1075,17 @@ void cleanup_rendering_hash_table(longlong hash_table)
  * @param param5 查找参数5
  * @return 结果指针
  */
-undefined8 *
-find_in_rendering_hash_table(longlong hash_table, undefined8 *result_ptr, undefined8 param3, int *key_ptr, ulonglong param5)
+uint64_t *
+find_in_rendering_hash_table(longlong hash_table, uint64_t *result_ptr, uint64_t param3, int *key_ptr, ulonglong param5)
 {
-    undefined8 *bucket_ptr;
+    uint64_t *bucket_ptr;
     longlong bucket_index;
     ulonglong hash_value;
     int *item_ptr;
-    undefined8 data_value;
+    uint64_t data_value;
     
     hash_value = param5 % (ulonglong)*(uint *)(hash_table + 0x10);
-    bucket_ptr = (undefined8 *)(*(longlong *)(hash_table + 8) + hash_value * 8);
+    bucket_ptr = (uint64_t *)(*(longlong *)(hash_table + 8) + hash_value * 8);
     item_ptr = (int *)*bucket_ptr;
     
     if (item_ptr != (int *)0x0) {
@@ -1093,7 +1093,7 @@ find_in_rendering_hash_table(longlong hash_table, undefined8 *result_ptr, undefi
             if (*key_ptr == *item_ptr) {
                 *result_ptr = item_ptr;
                 result_ptr[1] = bucket_ptr;
-                *(undefined1 *)(result_ptr + 2) = 0;
+                *(int8_t *)(result_ptr + 2) = 0;
                 return result_ptr;
             }
             item_ptr = *(int **)(item_ptr + 0xe);
@@ -1102,8 +1102,8 @@ find_in_rendering_hash_table(longlong hash_table, undefined8 *result_ptr, undefi
     
     // 创建新的哈希表项
     FUN_18066c220(hash_table + 0x20, &param5, (ulonglong)*(uint *)(hash_table + 0x10),
-                  *(undefined4 *)(hash_table + 0x18), 1);
-    item_ptr = (int *)FUN_18062b420(_DAT_180c8ed18, 0x40, *(undefined1 *)(hash_table + 0x2c));
+                  *(int32_t *)(hash_table + 0x18), 1);
+    item_ptr = (int *)FUN_18062b420(_DAT_180c8ed18, 0x40, *(int8_t *)(hash_table + 0x2c));
     *item_ptr = *key_ptr;
     item_ptr[10] = 0x3f800000;
     item_ptr[0xb] = 0x40000000;
@@ -1111,7 +1111,7 @@ find_in_rendering_hash_table(longlong hash_table, undefined8 *result_ptr, undefi
     item_ptr[0xd] = 3;
     item_ptr[6] = 1;
     item_ptr[7] = 0;
-    *(undefined **)(item_ptr + 4) = &DAT_180be0000;
+    *(void **)(item_ptr + 4) = &DAT_180be0000;
     item_ptr[8] = 0;
     item_ptr[9] = 0;
     item_ptr[0xc] = 0;
@@ -1119,18 +1119,18 @@ find_in_rendering_hash_table(longlong hash_table, undefined8 *result_ptr, undefi
     item_ptr[0xf] = 0;
     
     if ((char)param5 == '\0') {
-        *(undefined8 *)(item_ptr + 0xe) = *(undefined8 *)(*(longlong *)(hash_table + 8) + hash_value * 8);
+        *(uint64_t *)(item_ptr + 0xe) = *(uint64_t *)(*(longlong *)(hash_table + 8) + hash_value * 8);
         *(int **)(*(longlong *)(hash_table + 8) + hash_value * 8) = item_ptr;
         *(longlong *)(hash_table + 0x18) = *(longlong *)(hash_table + 0x18) + 1;
         bucket_index = *(longlong *)(hash_table + 8);
         *result_ptr = item_ptr;
         result_ptr[1] = bucket_index + hash_value * 8;
-        *(undefined1 *)(result_ptr + 2) = 1;
+        *(int8_t *)(result_ptr + 2) = 1;
         return result_ptr;
     }
     
     data_value = FUN_18062b1e0(_DAT_180c8ed18, (ulonglong)param5._4_4_ * 8 + 8, 8,
-                                *(undefined1 *)(hash_table + 0x2c));
+                                *(int8_t *)(hash_table + 0x2c));
     memset(data_value, 0, (ulonglong)param5._4_4_ * 8);
 }
 
@@ -1146,7 +1146,7 @@ find_in_rendering_hash_table(longlong hash_table, undefined8 *result_ptr, undefi
  * @return 结果指针
  */
 longlong *
-find_in_rendering_string_hash(longlong hash_table, longlong *result_ptr, undefined8 param3, longlong string_ptr,
+find_in_rendering_string_hash(longlong hash_table, longlong *result_ptr, uint64_t param3, longlong string_ptr,
                                ulonglong param5)
 {
     longlong *bucket_ptr;
@@ -1155,7 +1155,7 @@ find_in_rendering_string_hash(longlong hash_table, longlong *result_ptr, undefin
     ulonglong hash_value;
     byte *str_ptr2;
     longlong str_diff;
-    undefined8 data_value;
+    uint64_t data_value;
     int str_len2;
     longlong string_data;
     
@@ -1182,7 +1182,7 @@ find_in_rendering_string_hash(longlong hash_table, longlong *result_ptr, undefin
                 if (str_len2 == 0) {
                     *result_ptr = string_data;
                     result_ptr[1] = (longlong)bucket_ptr;
-                    *(undefined1 *)(result_ptr + 2) = 0;
+                    *(int8_t *)(result_ptr + 2) = 0;
                     return result_ptr;
                 }
             }
@@ -1192,27 +1192,27 @@ find_in_rendering_string_hash(longlong hash_table, longlong *result_ptr, undefin
     }
     
     // 创建新的字符串哈希表项
-    FUN_18066c220(hash_table + 0x20, &param5, *(uint *)(hash_table + 0x10), *(undefined4 *)(hash_table + 0x18), 1);
-    string_data = FUN_18062b420(_DAT_180c8ed18, 0x48, *(undefined1 *)(hash_table + 0x2c));
+    FUN_18066c220(hash_table + 0x20, &param5, *(uint *)(hash_table + 0x10), *(int32_t *)(hash_table + 0x18), 1);
+    string_data = FUN_18062b420(_DAT_180c8ed18, 0x48, *(int8_t *)(hash_table + 0x2c));
     FUN_180627ae0(string_data, string_ptr);
-    *(undefined8 *)(string_data + 0x20) = 0;
-    *(undefined8 *)(string_data + 0x28) = 0;
-    *(undefined8 *)(string_data + 0x30) = 0;
-    *(undefined4 *)(string_data + 0x38) = 3;
-    *(undefined8 *)(string_data + 0x40) = 0;
+    *(uint64_t *)(string_data + 0x20) = 0;
+    *(uint64_t *)(string_data + 0x28) = 0;
+    *(uint64_t *)(string_data + 0x30) = 0;
+    *(int32_t *)(string_data + 0x38) = 3;
+    *(uint64_t *)(string_data + 0x40) = 0;
     
     if ((char)param5 == '\0') {
-        *(undefined8 *)(string_data + 0x40) = *(undefined8 *)(*(longlong *)(hash_table + 8) + hash_value * 8);
+        *(uint64_t *)(string_data + 0x40) = *(uint64_t *)(*(longlong *)(hash_table + 8) + hash_value * 8);
         *(longlong *)(*(longlong *)(hash_table + 8) + hash_value * 8) = string_data;
         *(longlong *)(hash_table + 0x18) = *(longlong *)(hash_table + 0x18) + 1;
         str_diff = *(longlong *)(hash_table + 8);
         *result_ptr = string_data;
         result_ptr[1] = str_diff + hash_value * 8;
-        *(undefined1 *)(result_ptr + 2) = 1;
+        *(int8_t *)(result_ptr + 2) = 1;
         return result_ptr;
     }
     
     data_value = FUN_18062b1e0(_DAT_180c8ed18, (ulonglong)param5._4_4_ * 8 + 8, 8,
-                                *(undefined1 *)(hash_table + 0x2c));
+                                *(int8_t *)(hash_table + 0x2c));
     memset(data_value, 0, (ulonglong)param5._4_4_ * 8);
 }

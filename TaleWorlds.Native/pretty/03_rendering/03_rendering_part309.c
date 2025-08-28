@@ -349,7 +349,7 @@ extern void* UNK_180a28e60;                              /**< 未知数据指针
 /** 主要功能函数 */
 void RenderingAdvancedImageProcessor(void);                              /**< 渲染高级图像处理器 */
 void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3); /**< 图像颜色空间转换器 */
-void ImageDataEncoder(undefined8 param_1, undefined8 param_2, uint param_3); /**< 图像数据编码器 */
+void ImageDataEncoder(uint64_t param_1, uint64_t param_2, uint param_3); /**< 图像数据编码器 */
 
 /** 质量处理函数 */
 int CalculateImageQuality(int qualityValue, int qualityLevel);           /**< 计算图像质量 */
@@ -426,39 +426,39 @@ void RenderingAdvancedImageProcessor(void)
     int encodingStep;
     longlong dataOffset;
     float *coefficientPointer;
-    undefined8 contextParam1;
+    uint64_t contextParam1;
     longlong contextParam2;
-    undefined8 *contextPointer;
+    uint64_t *contextPointer;
     float sampleValue1, sampleValue2, sampleValue3;
-    undefined4 controlParam1;
+    int32_t controlParam1;
     longlong stackParam1;
     int stackParam2;
     uint stackParam3;
     int stackParam4, stackParam5, stackParam6;
-    undefined4 controlParam2;
-    undefined4 stackControl1, stackControl2;
+    int32_t controlParam2;
+    int32_t stackControl1, stackControl2;
     int stackParam7, stackParam8, stackParam9;
-    undefined8 *stackPointer;
+    uint64_t *stackPointer;
     
     // 保存上下文寄存器状态
-    *(undefined8 *)(contextParam2 + -0x30) = contextPointer[1];
-    *(undefined8 *)(contextParam2 + -0x38) = contextPointer[2];
-    *(undefined4 *)(contextParam2 + -0x48) = controlParam1;
-    *(undefined4 *)(contextParam2 + -0x44) = controlParam1 + 1;
-    *(undefined4 *)(contextParam2 + -0x40) = controlParam1 + 2;
-    *(undefined4 *)(contextParam2 + -0x3c) = controlParam1 + 3;
-    *(undefined4 *)(contextParam2 + -0x58) = controlParam1 + 4;
-    *(undefined4 *)(contextParam2 + -0x54) = controlParam1 + 5;
-    *(undefined4 *)(contextParam2 + -0x50) = controlParam1 + 6;
-    *(undefined4 *)(contextParam2 + -0x4c) = controlParam1 + 7;
-    *(undefined4 *)(contextParam2 + -0x68) = controlParam1 + 8;
-    *(undefined4 *)(contextParam2 + -100) = controlParam1 + 9;
-    *(undefined4 *)(contextParam2 + -0x60) = controlParam1 + 10;
-    *(undefined4 *)(contextParam2 + -0x5c) = controlParam1 + 11;
-    *(undefined4 *)(contextParam2 + -0x78) = controlParam1 + 12;
-    *(undefined4 *)(contextParam2 + -0x74) = controlParam1 + 13;
-    *(undefined4 *)(contextParam2 + -0x70) = controlParam1 + 14;
-    *(undefined4 *)(contextParam2 + -0x6c) = controlParam1 + 15;
+    *(uint64_t *)(contextParam2 + -0x30) = contextPointer[1];
+    *(uint64_t *)(contextParam2 + -0x38) = contextPointer[2];
+    *(int32_t *)(contextParam2 + -0x48) = controlParam1;
+    *(int32_t *)(contextParam2 + -0x44) = controlParam1 + 1;
+    *(int32_t *)(contextParam2 + -0x40) = controlParam1 + 2;
+    *(int32_t *)(contextParam2 + -0x3c) = controlParam1 + 3;
+    *(int32_t *)(contextParam2 + -0x58) = controlParam1 + 4;
+    *(int32_t *)(contextParam2 + -0x54) = controlParam1 + 5;
+    *(int32_t *)(contextParam2 + -0x50) = controlParam1 + 6;
+    *(int32_t *)(contextParam2 + -0x4c) = controlParam1 + 7;
+    *(int32_t *)(contextParam2 + -0x68) = controlParam1 + 8;
+    *(int32_t *)(contextParam2 + -100) = controlParam1 + 9;
+    *(int32_t *)(contextParam2 + -0x60) = controlParam1 + 10;
+    *(int32_t *)(contextParam2 + -0x5c) = controlParam1 + 11;
+    *(int32_t *)(contextParam2 + -0x78) = controlParam1 + 12;
+    *(int32_t *)(contextParam2 + -0x74) = controlParam1 + 13;
+    *(int32_t *)(contextParam2 + -0x70) = controlParam1 + 14;
+    *(int32_t *)(contextParam2 + -0x6c) = controlParam1 + 15;
     
     // 初始化质量参数计算循环
     dataOffset = 0;
@@ -576,17 +576,17 @@ void RenderingAdvancedImageProcessor(void)
     
     // 设置控制码
     contextParam1 = stackPointer[1];
-    *(undefined4 *)(contextParam2 + BUFFER_OFFSET_CONTROL_DATA) = CONTROL_CODE_PATTERN_1;
+    *(int32_t *)(contextParam2 + BUFFER_OFFSET_CONTROL_DATA) = CONTROL_CODE_PATTERN_1;
     *(char *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_1) = (char)((uint)controlParam1 >> CONTROL_CODE_BIT_SHIFT);
     *(char *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_2) = (char)((uint)stackParam2 >> CONTROL_CODE_BIT_SHIFT);
-    *(undefined1 *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_3) = DATA_PROCESSING_CHUNK_SIZE;
+    *(int8_t *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_3) = DATA_PROCESSING_CHUNK_SIZE;
     *(char *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_4) = (char)controlParam1;
     *(char *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_5) = (char)stackParam2;
-    *(undefined4 *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_6) = CONTROL_CODE_PATTERN_2;
-    *(undefined4 *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_7) = CONTROL_CODE_PATTERN_3;
-    *(undefined4 *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_8) = CONTROL_CODE_PATTERN_4;
-    *(undefined2 *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_9) = CONTROL_CODE_PATTERN_5;
-    *(undefined1 *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_10) = 0;
+    *(int32_t *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_6) = CONTROL_CODE_PATTERN_2;
+    *(int32_t *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_7) = CONTROL_CODE_PATTERN_3;
+    *(int32_t *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_8) = CONTROL_CODE_PATTERN_4;
+    *(int16_t *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_9) = CONTROL_CODE_PATTERN_5;
+    *(int8_t *)(contextParam2 + CONTROL_CODE_BYTE_OFFSET_10) = 0;
     
     // 执行编码器控制函数
     ((ImageControlFunction)*stackPointer)(contextParam1, &UNK_180a28e70, 0x19);
@@ -809,8 +809,8 @@ void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3)
     int stackParam1, stackParam2, stackParam3, stackParam4;
     int stackParam5, stackParam6, stackParam7, stackParam8, stackParam9;
     uint stackParam10;
-    undefined4 stackControl1, stackControl2, stackControl3;
-    undefined8 *stackPointer;
+    int32_t stackControl1, stackControl2, stackControl3;
+    uint64_t *stackPointer;
     
     // 主要处理循环
     do {
@@ -980,7 +980,7 @@ void ImageColorSpaceConverter(int param_1, int param_2, longlong param_3)
  * @param param_2 数据源参数
  * @param param_3 数据大小参数
  */
-void ImageDataEncoder(undefined8 param_1, undefined8 param_2, uint param_3)
+void ImageDataEncoder(uint64_t param_1, uint64_t param_2, uint param_3)
 {
     // 变量声明
     int tempInt;
@@ -989,7 +989,7 @@ void ImageDataEncoder(undefined8 param_1, undefined8 param_2, uint param_3)
     longlong contextPointer;
     char tempChar2;
     ImageMemoryOffset memoryOffset;
-    undefined8 *stackPointer;
+    uint64_t *stackPointer;
     char stackChar;
     
     // 执行数据编码处理

@@ -71,16 +71,16 @@ void FUN_1804d13d0(longlong param_1,longlong param_2,uint param_3)
   uint uStack_134;
   float fStack_130;
   uint uStack_128;
-  undefined1 uStack_124;
-  undefined8 uStack_120;
+  int8_t uStack_124;
+  uint64_t uStack_120;
   longlong *plStack_118;
-  undefined4 uStack_110;
+  int32_t uStack_110;
   uint uStack_108;
-  undefined1 uStack_104;
+  int8_t uStack_104;
   longlong *plStack_100;
   longlong *plStack_f8;
-  undefined4 uStack_f0;
-  undefined8 uStack_e8;
+  int32_t uStack_f0;
+  uint64_t uStack_e8;
   uint uStack_e0;
   longlong *plStack_d8;
   uint uStack_d0;
@@ -520,8 +520,8 @@ void FUN_1804d13d0(longlong param_1,longlong param_2,uint param_3)
                     plVar10 = *(longlong **)(lVar14 + (longlong)plStack_220);
                     iVar3 = (**(code **)(*plVar10 + 0x98))(plVar10);
                     if (iVar3 == 0) {
-                      if ((undefined *)*plVar9 != &UNK_180a22558) {
-                        (**(code **)((undefined *)*plVar9 + 0x158))(plVar9);
+                      if ((void *)*plVar9 != &UNK_180a22558) {
+                        (**(code **)((void *)*plVar9 + 0x158))(plVar9);
                       }
                       if (*(code **)(*plVar10 + 0x158) != (code *)&UNK_18027d980) {
                         (**(code **)(*plVar10 + 0x158))(plVar10);

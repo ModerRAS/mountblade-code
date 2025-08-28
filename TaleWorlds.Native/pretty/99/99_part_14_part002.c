@@ -1251,64 +1251,64 @@ void CreateObjectTypeT(PoolHandle handle, ObjectParams* params, ObjectType type,
  * 原始函数别名映射
  * ============================================================================ */
 
-void FUN_1808e7860(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e7860(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeA")));
 
-void FUN_1808e7930(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e7930(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeB")));
 
-void FUN_1808e7a00(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e7a00(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeC")));
 
-void FUN_1808e7ad0(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e7ad0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeD")));
 
-void FUN_1808e7bb0(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e7bb0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeE")));
 
-void FUN_1808e7c80(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e7c80(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeF")));
 
-void FUN_1808e7d60(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e7d60(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeG")));
 
-void FUN_1808e7e40(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e7e40(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeH")));
 
-void FUN_1808e7f20(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e7f20(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeI")));
 
-void FUN_1808e8000(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e8000(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeJ")));
 
-void FUN_1808e80d0(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e80d0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeK")));
 
-void FUN_1808e81b0(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e81b0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeL")));
 
-void FUN_1808e8290(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e8290(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeM")));
 
-void FUN_1808e8370(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e8370(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeN")));
 
-void FUN_1808e8450(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e8450(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeO")));
 
-void FUN_1808e8530(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e8530(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeP")));
 
-void FUN_1808e8600(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e8600(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeQ")));
 
-void FUN_1808e86d0(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e86d0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeR")));
 
-void FUN_1808e87a0(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e87a0(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeS")));
 
-void FUN_1808e8880(undefined8 param_1, undefined8 param_2, undefined4 param_3, longlong *param_4) 
+void FUN_1808e8880(uint64_t param_1, uint64_t param_2, int32_t param_3, longlong *param_4) 
     __attribute__((alias("CreateObjectTypeT")));
 
 /* ============================================================================

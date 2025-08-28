@@ -2,8 +2,8 @@
 
 // 99_part_04_part034_sub002.c - 1 个函数
 
-// 函数: void FUN_1802a4fa0(longlong *param_1,float *param_2,undefined8 param_3,undefined4 *param_4)
-void FUN_1802a4fa0(longlong *param_1,float *param_2,undefined8 param_3,undefined4 *param_4)
+// 函数: void FUN_1802a4fa0(longlong *param_1,float *param_2,uint64_t param_3,int32_t *param_4)
+void FUN_1802a4fa0(longlong *param_1,float *param_2,uint64_t param_3,int32_t *param_4)
 
 {
   ushort uVar1;
@@ -77,14 +77,14 @@ void FUN_1802a4fa0(longlong *param_1,float *param_2,undefined8 param_3,undefined
   lVar2 = *param_1;
   uVar12 = (ulonglong)(iVar11 * (uint)uVar1 + iVar13);
   uVar6 = (ulonglong)(iVar5 * (uint)uVar1 + iVar13);
-  *param_4 = *(undefined4 *)(lVar2 + uVar10 * 6);
-  *(undefined2 *)(param_4 + 1) = *(undefined2 *)(lVar2 + 4 + uVar10 * 6);
-  *(undefined4 *)((longlong)param_4 + 6) = *(undefined4 *)(lVar2 + uVar12 * 6);
-  *(undefined2 *)((longlong)param_4 + 10) = *(undefined2 *)(lVar2 + 4 + uVar12 * 6);
-  param_4[3] = *(undefined4 *)(lVar2 + uVar8 * 6);
-  *(undefined2 *)(param_4 + 4) = *(undefined2 *)(lVar2 + 4 + uVar8 * 6);
-  *(undefined4 *)((longlong)param_4 + 0x12) = *(undefined4 *)(lVar2 + uVar6 * 6);
-  *(undefined2 *)((longlong)param_4 + 0x16) = *(undefined2 *)(lVar2 + 4 + uVar6 * 6);
+  *param_4 = *(int32_t *)(lVar2 + uVar10 * 6);
+  *(int16_t *)(param_4 + 1) = *(int16_t *)(lVar2 + 4 + uVar10 * 6);
+  *(int32_t *)((longlong)param_4 + 6) = *(int32_t *)(lVar2 + uVar12 * 6);
+  *(int16_t *)((longlong)param_4 + 10) = *(int16_t *)(lVar2 + 4 + uVar12 * 6);
+  param_4[3] = *(int32_t *)(lVar2 + uVar8 * 6);
+  *(int16_t *)(param_4 + 4) = *(int16_t *)(lVar2 + 4 + uVar8 * 6);
+  *(int32_t *)((longlong)param_4 + 0x12) = *(int32_t *)(lVar2 + uVar6 * 6);
+  *(int16_t *)((longlong)param_4 + 0x16) = *(int16_t *)(lVar2 + 4 + uVar6 * 6);
   return;
 }
 

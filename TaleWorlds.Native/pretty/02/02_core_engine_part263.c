@@ -10,10 +10,10 @@
  * @param offset1 偏移量1
  * @param offset2 偏移量2
  */
-void process_memory_allocation(undefined8 context, undefined8 data_ptr, longlong offset1, longlong offset2)
+void process_memory_allocation(uint64_t context, uint64_t data_ptr, longlong offset1, longlong offset2)
 {
   longlong calculated_offset;
-  undefined8 new_pointer;
+  uint64_t new_pointer;
   longlong current_ptr;
   ulonglong required_size;
   longlong temp_ptr;
@@ -29,7 +29,7 @@ void process_memory_allocation(undefined8 context, undefined8 data_ptr, longlong
   if (required_size < max_capacity) {
     allocate_memory_block();
     new_pointer = reallocate_memory(required_size * 0x60 + temp_ptr);
-    *(undefined8 *)(base_ptr + 8) = new_pointer;
+    *(uint64_t *)(base_ptr + 8) = new_pointer;
   }
   else {
     // 释放现有内存块
@@ -71,17 +71,17 @@ longlong batch_memory_copy(longlong dest, longlong src, longlong size)
  * @param target_ptr 目标指针
  * @return 返回处理后的指针
  */
-undefined8 * process_structure_copy(longlong start_ptr, longlong end_ptr, undefined8 *target_ptr)
+uint64_t * process_structure_copy(longlong start_ptr, longlong end_ptr, uint64_t *target_ptr)
 {
-  undefined8 *result_ptr;
-  undefined4 *data_ptr;
+  uint64_t *result_ptr;
+  int32_t *data_ptr;
   uint data_size;
   longlong source_block;
   longlong target_block;
-  undefined4 temp_data;
-  undefined4 temp_data2;
-  undefined4 temp_data3;
-  undefined8 temp_value;
+  int32_t temp_data;
+  int32_t temp_data2;
+  int32_t temp_data3;
+  uint64_t temp_value;
   longlong block_count;
   ulonglong copy_size;
   
@@ -103,75 +103,75 @@ undefined8 * process_structure_copy(longlong start_ptr, longlong end_ptr, undefi
       }
       if (data_size != 0) {
         // 执行内存复制
-        memcpy(*(undefined8 *)(target_block + 8), *(undefined8 *)(source_block + 8), copy_size);
+        memcpy(*(uint64_t *)(target_block + 8), *(uint64_t *)(source_block + 8), copy_size);
       }
-      *(undefined4 *)(target_block + 0x10) = 0;
+      *(int32_t *)(target_block + 0x10) = 0;
       if (*(longlong *)(target_block + 8) != 0) {
-        *(undefined1 *)(copy_size + *(longlong *)(target_block + 8)) = 0;
+        *(int8_t *)(copy_size + *(longlong *)(target_block + 8)) = 0;
       }
       
       // 复制其他数据块
-      *(undefined4 *)(target_block + 0x1c) = *(undefined4 *)(source_block + 0x1c);
+      *(int32_t *)(target_block + 0x1c) = *(int32_t *)(source_block + 0x1c);
       data_size = *(uint *)(source_block + 0x30);
       copy_size = (ulonglong)data_size;
       if (*(longlong *)(source_block + 0x28) != 0) {
         allocate_buffer_memory(target_block + 0x20, copy_size);
       }
       if (data_size != 0) {
-        memcpy(*(undefined8 *)(target_block + 0x28), *(undefined8 *)(source_block + 0x28), copy_size);
+        memcpy(*(uint64_t *)(target_block + 0x28), *(uint64_t *)(source_block + 0x28), copy_size);
       }
-      *(undefined4 *)(target_block + 0x30) = 0;
+      *(int32_t *)(target_block + 0x30) = 0;
       if (*(longlong *)(target_block + 0x28) != 0) {
-        *(undefined1 *)(copy_size + *(longlong *)(target_block + 0x28)) = 0;
+        *(int8_t *)(copy_size + *(longlong *)(target_block + 0x28)) = 0;
       }
       
-      *(undefined4 *)(target_block + 0x3c) = *(undefined4 *)(source_block + 0x3c);
+      *(int32_t *)(target_block + 0x3c) = *(int32_t *)(source_block + 0x3c);
       data_size = *(uint *)(source_block + 0x50);
       copy_size = (ulonglong)data_size;
       if (*(longlong *)(source_block + 0x48) != 0) {
         allocate_buffer_memory(target_block + 0x40, copy_size);
       }
       if (data_size != 0) {
-        memcpy(*(undefined8 *)(target_block + 0x48), *(undefined8 *)(source_block + 0x48), copy_size);
+        memcpy(*(uint64_t *)(target_block + 0x48), *(uint64_t *)(source_block + 0x48), copy_size);
       }
-      *(undefined4 *)(target_block + 0x50) = 0;
+      *(int32_t *)(target_block + 0x50) = 0;
       if (*(longlong *)(target_block + 0x48) != 0) {
-        *(undefined1 *)(copy_size + *(longlong *)(target_block + 0x48)) = 0;
+        *(int8_t *)(copy_size + *(longlong *)(target_block + 0x48)) = 0;
       }
       
       block_count = block_count + -1;
-      *(undefined4 *)(target_block + 0x5c) = *(undefined4 *)(source_block + 0x5c);
-      temp_value = ((undefined8 *)(start_ptr + (longlong)target_ptr))[1];
-      *target_ptr = *(undefined8 *)(start_ptr + (longlong)target_ptr);
+      *(int32_t *)(target_block + 0x5c) = *(int32_t *)(source_block + 0x5c);
+      temp_value = ((uint64_t *)(start_ptr + (longlong)target_ptr))[1];
+      *target_ptr = *(uint64_t *)(start_ptr + (longlong)target_ptr);
       target_ptr[1] = temp_value;
-      result_ptr = (undefined8 *)(start_ptr + 0x10 + (longlong)target_ptr);
+      result_ptr = (uint64_t *)(start_ptr + 0x10 + (longlong)target_ptr);
       temp_value = result_ptr[1];
       target_ptr[2] = *result_ptr;
       target_ptr[3] = temp_value;
-      result_ptr = (undefined8 *)(start_ptr + 0x20 + (longlong)target_ptr);
+      result_ptr = (uint64_t *)(start_ptr + 0x20 + (longlong)target_ptr);
       temp_value = result_ptr[1];
       target_ptr[4] = *result_ptr;
       target_ptr[5] = temp_value;
-      result_ptr = (undefined8 *)(start_ptr + 0x30 + (longlong)target_ptr);
+      result_ptr = (uint64_t *)(start_ptr + 0x30 + (longlong)target_ptr);
       temp_value = result_ptr[1];
       target_ptr[6] = *result_ptr;
       target_ptr[7] = temp_value;
-      data_ptr = (undefined4 *)(start_ptr + 0x40 + (longlong)target_ptr);
+      data_ptr = (int32_t *)(start_ptr + 0x40 + (longlong)target_ptr);
       temp_data = data_ptr[1];
       temp_data2 = data_ptr[2];
       temp_data3 = data_ptr[3];
-      *(undefined4 *)(target_ptr + 8) = *data_ptr;
-      *(undefined4 *)((longlong)target_ptr + 0x44) = temp_data;
-      *(undefined4 *)(target_ptr + 9) = temp_data2;
-      *(undefined4 *)((longlong)target_ptr + 0x4c) = temp_data3;
-      data_ptr = (undefined4 *)(start_ptr + 0x50 + (longlong)target_ptr);
+      *(int32_t *)(target_ptr + 8) = *data_ptr;
+      *(int32_t *)((longlong)target_ptr + 0x44) = temp_data;
+      *(int32_t *)(target_ptr + 9) = temp_data2;
+      *(int32_t *)((longlong)target_ptr + 0x4c) = temp_data3;
+      data_ptr = (int32_t *)(start_ptr + 0x50 + (longlong)target_ptr);
       temp_data = data_ptr[1];
       temp_data2 = data_ptr[2];
       temp_data3 = data_ptr[3];
-      *(undefined4 *)(target_ptr + 10) = *data_ptr;
-      *(undefined4 *)((longlong)target_ptr + 0x54) = temp_data;
-      *(undefined4 *)(target_ptr + 0xb) = temp_data2;
-      *(undefined4 *)((longlong)target_ptr + 0x5c) = temp_data3;
+      *(int32_t *)(target_ptr + 10) = *data_ptr;
+      *(int32_t *)((longlong)target_ptr + 0x54) = temp_data;
+      *(int32_t *)(target_ptr + 0xb) = temp_data2;
+      *(int32_t *)((longlong)target_ptr + 0x5c) = temp_data3;
       target_ptr[0xb] = target_block;
       target_ptr = target_ptr + 0xc;
     } while (0 < block_count);
@@ -186,20 +186,20 @@ undefined8 * process_structure_copy(longlong start_ptr, longlong end_ptr, undefi
  * @param param3 参数3
  * @return 返回处理结果
  */
-undefined8 * batch_process_structures(undefined8 param1, undefined8 param2, longlong param3)
+uint64_t * batch_process_structures(uint64_t param1, uint64_t param2, longlong param3)
 {
-  undefined8 *result_ptr;
-  undefined4 *data_ptr;
+  uint64_t *result_ptr;
+  int32_t *data_ptr;
   uint data_size;
   longlong source_block;
   longlong target_block;
-  undefined4 temp_data;
-  undefined4 temp_data2;
-  undefined4 temp_data3;
-  undefined8 temp_value;
+  int32_t temp_data;
+  int32_t temp_data2;
+  int32_t temp_data3;
+  uint64_t temp_value;
   ulonglong copy_size;
   longlong iteration_count;
-  undefined8 *source_ptr;
+  uint64_t *source_ptr;
   longlong base_offset;
   
   param3 = base_offset - param3;
@@ -213,14 +213,14 @@ undefined8 * batch_process_structures(undefined8 param1, undefined8 param2, long
       allocate_buffer_memory(target_block, copy_size);
     }
     if (data_size != 0) {
-      memcpy(*(undefined8 *)(target_block + 8), *(undefined8 *)(source_block + 8), copy_size);
+      memcpy(*(uint64_t *)(target_block + 8), *(uint64_t *)(source_block + 8), copy_size);
     }
-    *(undefined4 *)(target_block + 0x10) = 0;
+    *(int32_t *)(target_block + 0x10) = 0;
     if (*(longlong *)(target_block + 8) != 0) {
-      *(undefined1 *)(copy_size + *(longlong *)(target_block + 8)) = 0;
+      *(int8_t *)(copy_size + *(longlong *)(target_block + 8)) = 0;
     }
     
-    *(undefined4 *)(target_block + 0x1c) = *(undefined4 *)(source_block + 0x1c);
+    *(int32_t *)(target_block + 0x1c) = *(int32_t *)(source_block + 0x1c);
     data_size = *(uint *)(source_block + 0x30);
     copy_size = (ulonglong)data_size;
     if (*(longlong *)(source_block + 0x28) != 0) {
@@ -228,65 +228,65 @@ undefined8 * batch_process_structures(undefined8 param1, undefined8 param2, long
     }
     if (data_size != 0) break;
     
-    *(undefined4 *)(target_block + 0x30) = 0;
+    *(int32_t *)(target_block + 0x30) = 0;
     if (*(longlong *)(target_block + 0x28) != 0) {
-      *(undefined1 *)(copy_size + *(longlong *)(target_block + 0x28)) = 0;
+      *(int8_t *)(copy_size + *(longlong *)(target_block + 0x28)) = 0;
     }
     
-    *(undefined4 *)(target_block + 0x3c) = *(undefined4 *)(source_block + 0x3c);
+    *(int32_t *)(target_block + 0x3c) = *(int32_t *)(source_block + 0x3c);
     data_size = *(uint *)(source_block + 0x50);
     copy_size = (ulonglong)data_size;
     if (*(longlong *)(source_block + 0x48) != 0) {
       allocate_buffer_memory(target_block + 0x40, copy_size);
     }
     if (data_size != 0) {
-      memcpy(*(undefined8 *)(target_block + 0x48), *(undefined8 *)(source_block + 0x48), copy_size);
+      memcpy(*(uint64_t *)(target_block + 0x48), *(uint64_t *)(source_block + 0x48), copy_size);
     }
-    *(undefined4 *)(target_block + 0x50) = 0;
+    *(int32_t *)(target_block + 0x50) = 0;
     if (*(longlong *)(target_block + 0x48) != 0) {
-      *(undefined1 *)(copy_size + *(longlong *)(target_block + 0x48)) = 0;
+      *(int8_t *)(copy_size + *(longlong *)(target_block + 0x48)) = 0;
     }
     
     iteration_count = iteration_count + -1;
-    *(undefined4 *)(target_block + 0x5c) = *(undefined4 *)(source_block + 0x5c);
-    temp_value = ((undefined8 *)(param3 + (longlong)source_ptr))[1];
-    *source_ptr = *(undefined8 *)(param3 + (longlong)source_ptr);
+    *(int32_t *)(target_block + 0x5c) = *(int32_t *)(source_block + 0x5c);
+    temp_value = ((uint64_t *)(param3 + (longlong)source_ptr))[1];
+    *source_ptr = *(uint64_t *)(param3 + (longlong)source_ptr);
     source_ptr[1] = temp_value;
-    result_ptr = (undefined8 *)(param3 + 0x10 + (longlong)source_ptr);
+    result_ptr = (uint64_t *)(param3 + 0x10 + (longlong)source_ptr);
     temp_value = result_ptr[1];
     source_ptr[2] = *result_ptr;
     source_ptr[3] = temp_value;
-    result_ptr = (undefined8 *)(param3 + 0x20 + (longlong)source_ptr);
+    result_ptr = (uint64_t *)(param3 + 0x20 + (longlong)source_ptr);
     temp_value = result_ptr[1];
     source_ptr[4] = *result_ptr;
     source_ptr[5] = temp_value;
-    result_ptr = (undefined8 *)(param3 + 0x30 + (longlong)source_ptr);
+    result_ptr = (uint64_t *)(param3 + 0x30 + (longlong)source_ptr);
     temp_value = result_ptr[1];
     source_ptr[6] = *result_ptr;
     source_ptr[7] = temp_value;
-    data_ptr = (undefined4 *)(param3 + 0x40 + (longlong)source_ptr);
+    data_ptr = (int32_t *)(param3 + 0x40 + (longlong)source_ptr);
     temp_data = data_ptr[1];
     temp_data2 = data_ptr[2];
     temp_data3 = data_ptr[3];
-    *(undefined4 *)(source_ptr + 8) = *data_ptr;
-    *(undefined4 *)((longlong)source_ptr + 0x44) = temp_data;
-    *(undefined4 *)(source_ptr + 9) = temp_data2;
-    *(undefined4 *)((longlong)source_ptr + 0x4c) = temp_data3;
-    data_ptr = (undefined4 *)(param3 + 0x50 + (longlong)source_ptr);
+    *(int32_t *)(source_ptr + 8) = *data_ptr;
+    *(int32_t *)((longlong)source_ptr + 0x44) = temp_data;
+    *(int32_t *)(source_ptr + 9) = temp_data2;
+    *(int32_t *)((longlong)source_ptr + 0x4c) = temp_data3;
+    data_ptr = (int32_t *)(param3 + 0x50 + (longlong)source_ptr);
     temp_data = data_ptr[1];
     temp_data2 = data_ptr[2];
     temp_data3 = data_ptr[3];
-    *(undefined4 *)(source_ptr + 10) = *data_ptr;
-    *(undefined4 *)((longlong)source_ptr + 0x54) = temp_data;
-    *(undefined4 *)(source_ptr + 0xb) = temp_data2;
-    *(undefined4 *)((longlong)source_ptr + 0x5c) = temp_data3;
+    *(int32_t *)(source_ptr + 10) = *data_ptr;
+    *(int32_t *)((longlong)source_ptr + 0x54) = temp_data;
+    *(int32_t *)(source_ptr + 0xb) = temp_data2;
+    *(int32_t *)((longlong)source_ptr + 0x5c) = temp_data3;
     source_ptr[0xb] = target_block;
     source_ptr = source_ptr + 0xc;
     if (iteration_count < 1) {
       return source_ptr;
     }
   }
-  memcpy(*(undefined8 *)(target_block + 0x28), *(undefined8 *)(source_block + 0x28), copy_size);
+  memcpy(*(uint64_t *)(target_block + 0x28), *(uint64_t *)(source_block + 0x28), copy_size);
 }
 
 /**
@@ -303,11 +303,11 @@ void initialize_placeholder(void)
  * @param src 源结构
  * @return 返回目标结构指针
  */
-undefined8 * copy_structure_content(undefined8 *dest, undefined8 *src)
+uint64_t * copy_structure_content(uint64_t *dest, uint64_t *src)
 {
   longlong dest_data;
   longlong src_data;
-  undefined8 temp_value;
+  uint64_t temp_value;
   
   dest_data = dest[0xb];
   src_data = src[0xb];
@@ -345,8 +345,8 @@ undefined8 * copy_structure_content(undefined8 *dest, undefined8 *src)
  * @param param4 参数4
  * @return 返回初始化后的数据指针
  */
-undefined8 *
-initialize_data_structure(undefined8 *data_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
+uint64_t *
+initialize_data_structure(uint64_t *data_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
 {
   *data_ptr = &GLOBAL_DATA_TABLE_001;
   data_ptr[2] = &GLOBAL_DATA_TABLE_002;
@@ -369,13 +369,13 @@ initialize_data_structure(undefined8 *data_ptr, ulonglong flags, undefined8 para
  */
 longlong process_matrix_transform(longlong transform_matrix, char index, longlong data_ptr)
 {
-  undefined8 *vector_ptr;
+  uint64_t *vector_ptr;
   float *matrix_ptr;
   float x_component, y_component, z_component, w_component;
   char flag;
   float temp_float;
-  undefined8 temp_value;
-  undefined8 *source_ptr;
+  uint64_t temp_value;
+  uint64_t *source_ptr;
   longlong row_index, col_index;
   ulonglong bitmask;
   ulonglong processed_mask;
@@ -383,7 +383,7 @@ longlong process_matrix_transform(longlong transform_matrix, char index, longlon
   bool continue_processing;
   float result_x, result_y, result_z;
   float stack_data1, stack_data2, stack_data3;
-  undefined8 stack_value1, stack_value2, stack_value3, stack_value4;
+  uint64_t stack_value1, stack_value2, stack_value3, stack_value4;
   
   iteration_flag = '\0';
   processed_mask = *(ulonglong *)((longlong)index * 0x1b0 + 0xe0 + *(longlong *)(data_ptr + 0x140)) &
@@ -396,13 +396,13 @@ longlong process_matrix_transform(longlong transform_matrix, char index, longlon
         flag = *(char *)(bitmask + 0x100 + data_ptr);
         
         if (*(char *)(transform_matrix + 0x1042) == '\0') {
-          vector_ptr = (undefined8 *)(bitmask * 0x1b0 + 0x80 + *(longlong *)(data_ptr + 0x140));
+          vector_ptr = (uint64_t *)(bitmask * 0x1b0 + 0x80 + *(longlong *)(data_ptr + 0x140));
           source_ptr = &stack_value3;
           stack_value3 = *vector_ptr;
           stack_value4 = vector_ptr[1];
         }
         else {
-          vector_ptr = (undefined8 *)(transform_matrix + (bitmask + 0xc2) * 0x10);
+          vector_ptr = (uint64_t *)(transform_matrix + (bitmask + 0xc2) * 0x10);
           source_ptr = &stack_value1;
           stack_value1 = *vector_ptr;
           stack_value2 = vector_ptr[1];
@@ -413,9 +413,9 @@ longlong process_matrix_transform(longlong transform_matrix, char index, longlon
         stack_data3 = (float)source_ptr[1];
         
         if (flag < '\0') {
-          source_ptr = (undefined8 *)(transform_matrix + (bitmask + 0x82) * 0x10);
+          source_ptr = (uint64_t *)(transform_matrix + (bitmask + 0x82) * 0x10);
           temp_value = source_ptr[1];
-          vector_ptr = (undefined8 *)(transform_matrix + bitmask * 0x10);
+          vector_ptr = (uint64_t *)(transform_matrix + bitmask * 0x10);
           *vector_ptr = *source_ptr;
           vector_ptr[1] = temp_value;
           
@@ -486,13 +486,13 @@ longlong process_matrix_transform(longlong transform_matrix, char index, longlon
  */
 longlong optimized_matrix_transform(void)
 {
-  undefined8 *vector_ptr;
+  uint64_t *vector_ptr;
   float *matrix_ptr;
   float x_component, y_component, z_component, w_component;
   char flag;
   float temp_float;
-  undefined8 temp_value;
-  undefined8 *source_ptr;
+  uint64_t temp_value;
+  uint64_t *source_ptr;
   longlong row_index, col_index;
   longlong base_offset, data_offset;
   ulonglong bitmask;
@@ -502,7 +502,7 @@ longlong optimized_matrix_transform(void)
   bool continue_processing;
   float result_x, result_y, result_z, result_w;
   float stack_data_x, stack_data_y, stack_data_z;
-  undefined8 stack_value1, stack_value2, stack_value3, stack_value4;
+  uint64_t stack_value1, stack_value2, stack_value3, stack_value4;
   
   do {
     if ((iteration_mask & 1) != 0) {
@@ -510,13 +510,13 @@ longlong optimized_matrix_transform(void)
       flag = *(char *)(bitmask + 0x100 + base_offset);
       
       if (*(char *)(matrix_base + 0x1042) == '\0') {
-        vector_ptr = (undefined8 *)(bitmask * 0x1b0 + 0x80 + *(longlong *)(base_offset + 0x140));
+        vector_ptr = (uint64_t *)(bitmask * 0x1b0 + 0x80 + *(longlong *)(base_offset + 0x140));
         source_ptr = &stack_value4;
         stack_value4 = *vector_ptr;
         stack_value1 = vector_ptr[1];
       }
       else {
-        vector_ptr = (undefined8 *)(matrix_base + (bitmask + 0xc2) * 0x10);
+        vector_ptr = (uint64_t *)(matrix_base + (bitmask + 0xc2) * 0x10);
         source_ptr = &stack_value2;
         stack_value2 = *vector_ptr;
         stack_value3 = vector_ptr[1];
@@ -527,9 +527,9 @@ longlong optimized_matrix_transform(void)
       stack_data_z = (float)source_ptr[1];
       
       if (flag < '\0') {
-        source_ptr = (undefined8 *)(matrix_base + (bitmask + 0x82) * 0x10);
+        source_ptr = (uint64_t *)(matrix_base + (bitmask + 0x82) * 0x10);
         temp_value = source_ptr[1];
-        vector_ptr = (undefined8 *)(matrix_base + bitmask * 0x10);
+        vector_ptr = (uint64_t *)(matrix_base + bitmask * 0x10);
         *vector_ptr = *source_ptr;
         vector_ptr[1] = temp_value;
         
@@ -615,21 +615,21 @@ void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char 
 {
   longlong temp_offset;
   char current_axis;
-  undefined1 axis_vector [16];
-  undefined1 temp_vector [16];
-  undefined1 result_vector [16];
-  undefined1 normalized_vector [16];
+  int8_t axis_vector [16];
+  int8_t temp_vector [16];
+  int8_t result_vector [16];
+  int8_t normalized_vector [16];
   uint mask_result;
   ulonglong bitmask;
   float qx, qy, qz, qw;
   float rx, ry, rz, rw;
   float nx, ny, nz, nw;
   float temp_x, temp_y, temp_z, temp_w;
-  undefined1 temp_storage [16];
+  int8_t temp_storage [16];
   float scale_x, scale_y, scale_z, scale_w;
   float final_x, final_y, final_z, final_w;
-  undefined1 stack_data [32];
-  undefined8 stack_value1, stack_value2, stack_value3, stack_value4;
+  int8_t stack_data [32];
+  uint64_t stack_value1, stack_value2, stack_value3, stack_value4;
   ulonglong security_key;
   
   // 安全检查
@@ -640,7 +640,7 @@ void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char 
   stack_value4 = 0xbf800000bf800000;
   
   temp_offset = (longlong)axis_index + 0x82;
-  normalized_vector = *(undefined1 (*) [16])(matrix_ptr + temp_offset * 0x10);
+  normalized_vector = *(int8_t (*) [16])(matrix_ptr + temp_offset * 0x10);
   
   scale_x = normalized_vector._8_4_ * 0.0;
   scale_y = normalized_vector._12_4_ * 0.0;
@@ -716,7 +716,7 @@ void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char 
     stack_value4 = 0xbf800000bf800000;
     
     temp_offset = (longlong)current_axis + 0x82;
-    normalized_vector = *(undefined1 (*) [16])(matrix_ptr + temp_offset * 0x10);
+    normalized_vector = *(int8_t (*) [16])(matrix_ptr + temp_offset * 0x10);
     
     final_w = normalized_vector._8_4_ * 0.0;
     rx = normalized_vector._12_4_ * 0.0;
@@ -805,8 +805,8 @@ void process_quaternion_rotation(longlong matrix_ptr, float *rotation_ptr, char 
 void batch_process_rotations(void)
 {
   longlong temp_offset;
-  undefined1 axis_vector [16];
-  undefined1 temp_vector [16];
+  int8_t axis_vector [16];
+  int8_t temp_vector [16];
   char current_axis;
   uint mask_result;
   ulonglong bitmask;
@@ -814,7 +814,7 @@ void batch_process_rotations(void)
   float rx, ry, rz, rw;
   float nx, ny, nz, nw;
   float temp_x, temp_y, temp_z, temp_w;
-  undefined1 normalized_vector [16];
+  int8_t normalized_vector [16];
   float scale_factor;
   uint comparison_mask;
   float threshold;
@@ -826,7 +826,7 @@ void batch_process_rotations(void)
   
   do {
     temp_offset = (longlong)current_axis + 0x82;
-    normalized_vector = *(undefined1 (*) [16])(base_ptr + temp_offset * 0x10);
+    normalized_vector = *(int8_t (*) [16])(base_ptr + temp_offset * 0x10);
     
     qw = normalized_vector._8_4_ * 0.0;
     rx = normalized_vector._12_4_ * 0.0;
@@ -918,8 +918,8 @@ void batch_process_rotations(void)
 
 // 全局变量定义
 // 注意：这些变量在原始代码中具有特定的内存地址和用途
-static const undefined8 GLOBAL_DATA_TABLE_001 = 0x180a02e68;
-static const undefined8 GLOBAL_DATA_TABLE_002 = 0x18098bcb0;
-static const undefined8 GLOBAL_DATA_TABLE_003 = 0x180a21720;
-static const undefined8 GLOBAL_DATA_TABLE_004 = 0x180a21690;
+static const uint64_t GLOBAL_DATA_TABLE_001 = 0x180a02e68;
+static const uint64_t GLOBAL_DATA_TABLE_002 = 0x18098bcb0;
+static const uint64_t GLOBAL_DATA_TABLE_003 = 0x180a21720;
+static const uint64_t GLOBAL_DATA_TABLE_004 = 0x180a21690;
 static const ulonglong GLOBAL_SECURITY_KEY = 0x180bf00a8;

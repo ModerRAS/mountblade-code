@@ -7,22 +7,22 @@
 void serialize_render_object_data(longlong render_context, longlong *buffer_context)
 
 {
-  undefined1 byte_value;
-  undefined4 dword_value;
+  int8_t byte_value;
+  int32_t dword_value;
   longlong range_size;
   longlong temp_range;
-  undefined1 *byte_ptr;
-  undefined4 *dword_ptr;
+  int8_t *byte_ptr;
+  int32_t *dword_ptr;
   int *int_ptr;
   uint counter;
   ulonglong loop_index;
   ulonglong start_addr;
   ulonglong current_index;
   
-  dword_ptr = (undefined4 *)buffer_context[1];
+  dword_ptr = (int32_t *)buffer_context[1];
   if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   start_addr = 0;
   *dword_ptr = 0;
@@ -50,19 +50,19 @@ void serialize_render_object_data(longlong render_context, longlong *buffer_cont
              (ulonglong)((*(longlong *)(render_context + 0x28) - *(longlong *)(render_context + 0x20)) / 0x98));
   }
   serialize_data_block(buffer_context, render_context + 0x40);
-  byte_ptr = (undefined1 *)buffer_context[1];
-  byte_value = *(undefined1 *)(render_context + 0xd8);
+  byte_ptr = (int8_t *)buffer_context[1];
+  byte_value = *(int8_t *)(render_context + 0xd8);
   if ((ulonglong)((*buffer_context - (longlong)byte_ptr) + buffer_context[2]) < 2) {
     ensure_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
-    byte_ptr = (undefined1 *)buffer_context[1];
+    byte_ptr = (int8_t *)buffer_context[1];
   }
   *byte_ptr = byte_value;
   buffer_context[1] = buffer_context[1] + 1;
-  dword_ptr = (undefined4 *)buffer_context[1];
-  dword_value = *(undefined4 *)(render_context + 0xdc);
+  dword_ptr = (int32_t *)buffer_context[1];
+  dword_value = *(int32_t *)(render_context + 0xdc);
   if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = dword_value;
   buffer_context[1] = buffer_context[1] + 4;
@@ -151,15 +151,15 @@ void serialize_render_object_data(longlong render_context, longlong *buffer_cont
             );
   }
   serialize_data_block(buffer_context, render_context + 0x10d8);
-  byte_ptr = (undefined1 *)buffer_context[1];
-  byte_value = *(undefined1 *)(render_context + 0x10f9);
+  byte_ptr = (int8_t *)buffer_context[1];
+  byte_value = *(int8_t *)(render_context + 0x10f9);
   if ((ulonglong)((*buffer_context - (longlong)byte_ptr) + buffer_context[2]) < 2) {
     ensure_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
-    byte_ptr = (undefined1 *)buffer_context[1];
+    byte_ptr = (int8_t *)buffer_context[1];
   }
   *byte_ptr = byte_value;
   buffer_context[1] = buffer_context[1] + 1;
-  dword_ptr = (undefined4 *)buffer_context[1];
+  dword_ptr = (int32_t *)buffer_context[1];
   if (*(char *)(render_context + 0x10f9) != '\0') {
     serialize_data_block(buffer_context, render_context + 0x1100);
     serialize_data_block(buffer_context, render_context + 0x1198);
@@ -167,11 +167,11 @@ void serialize_render_object_data(longlong render_context, longlong *buffer_cont
     serialize_data_block(buffer_context, render_context + 0x12c8);
     serialize_data_block(buffer_context, render_context + 0x1360);
     serialize_data_block(buffer_context, render_context + 0x13f8);
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = 0x10;
   buffer_context[1] = buffer_context[1] + 4;
@@ -195,151 +195,151 @@ void serialize_render_object_data(longlong render_context, longlong *buffer_cont
 
 // 函数: 初始化渲染资源管理器
 // 原始函数名: FUN_180272880
-undefined4 * initialize_render_resource_manager(undefined4 *resource_manager)
+int32_t * initialize_render_resource_manager(int32_t *resource_manager)
 
 {
-  *(undefined **)(resource_manager + 2) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 4) = 0;
+  *(void **)(resource_manager + 2) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 4) = 0;
   resource_manager[6] = 0;
-  *(undefined **)(resource_manager + 2) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 8) = 0;
-  *(undefined8 *)(resource_manager + 4) = 0;
+  *(void **)(resource_manager + 2) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 8) = 0;
+  *(uint64_t *)(resource_manager + 4) = 0;
   resource_manager[6] = 0;
-  *(undefined **)(resource_manager + 10) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0xc) = 0;
+  *(void **)(resource_manager + 10) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0xc) = 0;
   resource_manager[0xe] = 0;
-  *(undefined **)(resource_manager + 10) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x10) = 0;
-  *(undefined8 *)(resource_manager + 0xc) = 0;
+  *(void **)(resource_manager + 10) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x10) = 0;
+  *(uint64_t *)(resource_manager + 0xc) = 0;
   resource_manager[0xe] = 0;
-  *(undefined **)(resource_manager + 0x12) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x14) = 0;
+  *(void **)(resource_manager + 0x12) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x14) = 0;
   resource_manager[0x16] = 0;
-  *(undefined **)(resource_manager + 0x12) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x18) = 0;
-  *(undefined8 *)(resource_manager + 0x14) = 0;
+  *(void **)(resource_manager + 0x12) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x18) = 0;
+  *(uint64_t *)(resource_manager + 0x14) = 0;
   resource_manager[0x16] = 0;
-  *(undefined **)(resource_manager + 0x1a) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x1c) = 0;
+  *(void **)(resource_manager + 0x1a) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x1c) = 0;
   resource_manager[0x1e] = 0;
-  *(undefined **)(resource_manager + 0x1a) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x20) = 0;
-  *(undefined8 *)(resource_manager + 0x1c) = 0;
+  *(void **)(resource_manager + 0x1a) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x20) = 0;
+  *(uint64_t *)(resource_manager + 0x1c) = 0;
   resource_manager[0x1e] = 0;
-  *(undefined **)(resource_manager + 0x22) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x24) = 0;
+  *(void **)(resource_manager + 0x22) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x24) = 0;
   resource_manager[0x26] = 0;
-  *(undefined **)(resource_manager + 0x22) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x28) = 0;
-  *(undefined8 *)(resource_manager + 0x24) = 0;
+  *(void **)(resource_manager + 0x22) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x28) = 0;
+  *(uint64_t *)(resource_manager + 0x24) = 0;
   resource_manager[0x26] = 0;
-  *(undefined **)(resource_manager + 0x2a) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x2c) = 0;
+  *(void **)(resource_manager + 0x2a) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x2c) = 0;
   resource_manager[0x2e] = 0;
-  *(undefined **)(resource_manager + 0x2a) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x30) = 0;
-  *(undefined8 *)(resource_manager + 0x2c) = 0;
+  *(void **)(resource_manager + 0x2a) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x30) = 0;
+  *(uint64_t *)(resource_manager + 0x2c) = 0;
   resource_manager[0x2e] = 0;
-  *(undefined **)(resource_manager + 0x32) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x34) = 0;
+  *(void **)(resource_manager + 0x32) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x34) = 0;
   resource_manager[0x36] = 0;
-  *(undefined **)(resource_manager + 0x32) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x38) = 0;
-  *(undefined8 *)(resource_manager + 0x34) = 0;
+  *(void **)(resource_manager + 0x32) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x38) = 0;
+  *(uint64_t *)(resource_manager + 0x34) = 0;
   resource_manager[0x36] = 0;
-  *(undefined **)(resource_manager + 0x3a) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x3c) = 0;
+  *(void **)(resource_manager + 0x3a) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x3c) = 0;
   resource_manager[0x3e] = 0;
-  *(undefined **)(resource_manager + 0x3a) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x40) = 0;
-  *(undefined8 *)(resource_manager + 0x3c) = 0;
+  *(void **)(resource_manager + 0x3a) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x40) = 0;
+  *(uint64_t *)(resource_manager + 0x3c) = 0;
   resource_manager[0x3e] = 0;
-  *(undefined **)(resource_manager + 0x42) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x44) = 0;
+  *(void **)(resource_manager + 0x42) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x44) = 0;
   resource_manager[0x46] = 0;
-  *(undefined **)(resource_manager + 0x42) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x48) = 0;
-  *(undefined8 *)(resource_manager + 0x44) = 0;
+  *(void **)(resource_manager + 0x42) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x48) = 0;
+  *(uint64_t *)(resource_manager + 0x44) = 0;
   resource_manager[0x46] = 0;
-  *(undefined8 *)(resource_manager + 0x4a) = 0;
-  *(undefined8 *)(resource_manager + 0x4c) = 0;
-  *(undefined8 *)(resource_manager + 0x4e) = 0;
+  *(uint64_t *)(resource_manager + 0x4a) = 0;
+  *(uint64_t *)(resource_manager + 0x4c) = 0;
+  *(uint64_t *)(resource_manager + 0x4e) = 0;
   resource_manager[0x50] = 3;
-  *(undefined **)(resource_manager + 0x52) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x54) = 0;
+  *(void **)(resource_manager + 0x52) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x54) = 0;
   resource_manager[0x56] = 0;
-  *(undefined **)(resource_manager + 0x52) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x58) = 0;
-  *(undefined8 *)(resource_manager + 0x54) = 0;
+  *(void **)(resource_manager + 0x52) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x58) = 0;
+  *(uint64_t *)(resource_manager + 0x54) = 0;
   resource_manager[0x56] = 0;
-  *(undefined **)(resource_manager + 0x5a) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x5c) = 0;
+  *(void **)(resource_manager + 0x5a) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x5c) = 0;
   resource_manager[0x5e] = 0;
-  *(undefined **)(resource_manager + 0x5a) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x60) = 0;
-  *(undefined8 *)(resource_manager + 0x5c) = 0;
+  *(void **)(resource_manager + 0x5a) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x60) = 0;
+  *(uint64_t *)(resource_manager + 0x5c) = 0;
   resource_manager[0x5e] = 0;
-  *(undefined **)(resource_manager + 0x62) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 100) = 0;
+  *(void **)(resource_manager + 0x62) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 100) = 0;
   resource_manager[0x66] = 0;
-  *(undefined **)(resource_manager + 0x62) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x68) = 0;
-  *(undefined8 *)(resource_manager + 100) = 0;
+  *(void **)(resource_manager + 0x62) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x68) = 0;
+  *(uint64_t *)(resource_manager + 100) = 0;
   resource_manager[0x66] = 0;
-  *(undefined **)(resource_manager + 0x6a) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x6c) = 0;
+  *(void **)(resource_manager + 0x6a) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x6c) = 0;
   resource_manager[0x6e] = 0;
-  *(undefined **)(resource_manager + 0x6a) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x70) = 0;
-  *(undefined8 *)(resource_manager + 0x6c) = 0;
+  *(void **)(resource_manager + 0x6a) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x70) = 0;
+  *(uint64_t *)(resource_manager + 0x6c) = 0;
   resource_manager[0x6e] = 0;
-  *(undefined **)(resource_manager + 0x72) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x74) = 0;
+  *(void **)(resource_manager + 0x72) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x74) = 0;
   resource_manager[0x76] = 0;
-  *(undefined **)(resource_manager + 0x72) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x78) = 0;
-  *(undefined8 *)(resource_manager + 0x74) = 0;
+  *(void **)(resource_manager + 0x72) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x78) = 0;
+  *(uint64_t *)(resource_manager + 0x74) = 0;
   resource_manager[0x76] = 0;
-  *(undefined **)(resource_manager + 0x7a) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x7c) = 0;
+  *(void **)(resource_manager + 0x7a) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x7c) = 0;
   resource_manager[0x7e] = 0;
-  *(undefined **)(resource_manager + 0x7a) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x80) = 0;
-  *(undefined8 *)(resource_manager + 0x7c) = 0;
+  *(void **)(resource_manager + 0x7a) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x80) = 0;
+  *(uint64_t *)(resource_manager + 0x7c) = 0;
   resource_manager[0x7e] = 0;
-  *(undefined **)(resource_manager + 0x82) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x84) = 0;
+  *(void **)(resource_manager + 0x82) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x84) = 0;
   resource_manager[0x86] = 0;
-  *(undefined **)(resource_manager + 0x82) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x88) = 0;
-  *(undefined8 *)(resource_manager + 0x84) = 0;
+  *(void **)(resource_manager + 0x82) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x88) = 0;
+  *(uint64_t *)(resource_manager + 0x84) = 0;
   resource_manager[0x86] = 0;
-  *(undefined **)(resource_manager + 0x8a) = &RENDER_RESOURCE_TABLE_BASE;
-  *(undefined8 *)(resource_manager + 0x8c) = 0;
+  *(void **)(resource_manager + 0x8a) = &RENDER_RESOURCE_TABLE_BASE;
+  *(uint64_t *)(resource_manager + 0x8c) = 0;
   resource_manager[0x8e] = 0;
-  *(undefined **)(resource_manager + 0x8a) = &RENDER_RESOURCE_TABLE_EXTENDED;
-  *(undefined8 *)(resource_manager + 0x90) = 0;
-  *(undefined8 *)(resource_manager + 0x8c) = 0;
+  *(void **)(resource_manager + 0x8a) = &RENDER_RESOURCE_TABLE_EXTENDED;
+  *(uint64_t *)(resource_manager + 0x90) = 0;
+  *(uint64_t *)(resource_manager + 0x8c) = 0;
   resource_manager[0x8e] = 0;
   initialize_render_component(resource_manager + 0x92, 0x58, 0x10, create_render_component, destroy_render_component);
   initialize_render_state(resource_manager + 500);
   *resource_manager = 0;
   resource_manager[0x1f2] = 0;
-  *(undefined1 *)(resource_manager + 499) = 0;
+  *(int8_t *)(resource_manager + 499) = 0;
   return resource_manager;
 }
 
 
 // 函数: 序列化高级渲染数据
 // 原始函数名: FUN_180272b60
-void serialize_advanced_render_data(longlong render_context, longlong *buffer_context, undefined8 param_3, undefined8 param_4)
+void serialize_advanced_render_data(longlong render_context, longlong *buffer_context, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined1 byte_value;
-  undefined4 dword_value;
+  int8_t byte_value;
+  int32_t dword_value;
   longlong range_size;
-  undefined1 *byte_ptr;
-  undefined4 *dword_ptr;
+  int8_t *byte_ptr;
+  int32_t *dword_ptr;
   int *int_ptr;
   int int_counter;
   uint uint_counter;
@@ -347,26 +347,26 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
   int temp_int;
   longlong temp_long;
   ulonglong current_index;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   ulonglong start_addr;
-  undefined8 unaff_R14;
-  undefined8 unaff_R15;
+  uint64_t unaff_R14;
+  uint64_t unaff_R15;
   
-  dword_ptr = (undefined4 *)buffer_context[1];
+  dword_ptr = (int32_t *)buffer_context[1];
   if ((ulonglong)((buffer_context[2] - (longlong)dword_ptr) + *buffer_context) < 5) {
     ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = 0;
   buffer_context[1] = buffer_context[1] + 4;
-  dword_ptr = (undefined4 *)buffer_context[1];
+  dword_ptr = (int32_t *)buffer_context[1];
   if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = 1;
   buffer_context[1] = buffer_context[1] + 4;
-  serialize_render_feature_flags(&RENDER_FEATURE_FLAG_TABLE, *(undefined4 *)(render_context + 8), buffer_context);
+  serialize_render_feature_flags(&RENDER_FEATURE_FLAG_TABLE, *(int32_t *)(render_context + 8), buffer_context);
   serialize_data_block(buffer_context, render_context + 0x10);
   serialize_data_block(buffer_context, render_context + 0x30);
   serialize_data_block(buffer_context, render_context + 0x50);
@@ -392,19 +392,19 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
     temp_long = 0;
     do {
       serialize_data_block(buffer_context, (longlong)int_counter * 0x60 + *(longlong *)(render_context + 0x130));
-      dword_ptr = (undefined4 *)buffer_context[1];
-      dword_value = *(undefined4 *)(temp_long + 0x58 + *(longlong *)(render_context + 0x130));
+      dword_ptr = (int32_t *)buffer_context[1];
+      dword_value = *(int32_t *)(temp_long + 0x58 + *(longlong *)(render_context + 0x130));
       if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
         ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-        dword_ptr = (undefined4 *)buffer_context[1];
+        dword_ptr = (int32_t *)buffer_context[1];
       }
       *dword_ptr = dword_value;
       buffer_context[1] = buffer_context[1] + 4;
-      dword_ptr = (undefined4 *)buffer_context[1];
-      dword_value = *(undefined4 *)(temp_long + 0x5c + *(longlong *)(render_context + 0x130));
+      dword_ptr = (int32_t *)buffer_context[1];
+      dword_value = *(int32_t *)(temp_long + 0x5c + *(longlong *)(render_context + 0x130));
       if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
         ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-        dword_ptr = (undefined4 *)buffer_context[1];
+        dword_ptr = (int32_t *)buffer_context[1];
       }
       *dword_ptr = dword_value;
       int_counter = int_counter + 1;
@@ -428,22 +428,22 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
     range_size = range_size + 0x58;
     temp_long = temp_long + -1;
   } while (temp_long != 0);
-  serialize_render_shader_params(&RENDER_SHADER_PARAM_TABLE, *(undefined4 *)(render_context + 2000), buffer_context);
-  byte_ptr = (undefined1 *)buffer_context[1];
-  byte_value = *(undefined1 *)(render_context + 0x7d4);
+  serialize_render_shader_params(&RENDER_SHADER_PARAM_TABLE, *(int32_t *)(render_context + 2000), buffer_context);
+  byte_ptr = (int8_t *)buffer_context[1];
+  byte_value = *(int8_t *)(render_context + 0x7d4);
   if ((ulonglong)((*buffer_context - (longlong)byte_ptr) + buffer_context[2]) < 2) {
     ensure_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
-    byte_ptr = (undefined1 *)buffer_context[1];
+    byte_ptr = (int8_t *)buffer_context[1];
   }
   *byte_ptr = byte_value;
   buffer_context[1] = buffer_context[1] + 1;
   if (*(char *)(render_context + 0x7d4) == '\0') {
     return;
   }
-  dword_ptr = (undefined4 *)buffer_context[1];
+  dword_ptr = (int32_t *)buffer_context[1];
   if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   start_addr = 0;
   *dword_ptr = 0;
@@ -472,19 +472,19 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
              (ulonglong)((*(longlong *)(render_context + 0x800) - *(longlong *)(render_context + 0x7f8)) / 0x98));
   }
   serialize_data_block(buffer_context, render_context + 0x818);
-  byte_ptr = (undefined1 *)buffer_context[1];
-  byte_value = *(undefined1 *)(render_context + 0x8b0);
+  byte_ptr = (int8_t *)buffer_context[1];
+  byte_value = *(int8_t *)(render_context + 0x8b0);
   if ((ulonglong)((*buffer_context - (longlong)byte_ptr) + buffer_context[2]) < 2) {
     ensure_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
-    byte_ptr = (undefined1 *)buffer_context[1];
+    byte_ptr = (int8_t *)buffer_context[1];
   }
   *byte_ptr = byte_value;
   buffer_context[1] = buffer_context[1] + 1;
-  dword_ptr = (undefined4 *)buffer_context[1];
-  dword_value = *(undefined4 *)(render_context + 0x8b4);
+  dword_ptr = (int32_t *)buffer_context[1];
+  dword_value = *(int32_t *)(render_context + 0x8b4);
   if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = dword_value;
   buffer_context[1] = buffer_context[1] + 4;
@@ -573,15 +573,15 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
             );
   }
   serialize_data_block(buffer_context, render_context + 0x18b0);
-  byte_ptr = (undefined1 *)buffer_context[1];
-  byte_value = *(undefined1 *)(render_context + 0x18d1);
+  byte_ptr = (int8_t *)buffer_context[1];
+  byte_value = *(int8_t *)(render_context + 0x18d1);
   if ((ulonglong)((*buffer_context - (longlong)byte_ptr) + buffer_context[2]) < 2) {
     ensure_buffer_capacity(buffer_context, byte_ptr + (1 - *buffer_context));
-    byte_ptr = (undefined1 *)buffer_context[1];
+    byte_ptr = (int8_t *)buffer_context[1];
   }
   *byte_ptr = byte_value;
   buffer_context[1] = buffer_context[1] + 1;
-  dword_ptr = (undefined4 *)buffer_context[1];
+  dword_ptr = (int32_t *)buffer_context[1];
   if (*(char *)(render_context + 0x18d1) != '\0') {
     serialize_data_block(buffer_context, render_context + 0x18d8);
     serialize_data_block(buffer_context, render_context + 0x1970);
@@ -589,11 +589,11 @@ void serialize_advanced_render_data(longlong render_context, longlong *buffer_co
     serialize_data_block(buffer_context, render_context + 0x1aa0);
     serialize_data_block(buffer_context, render_context + 0x1b38);
     serialize_data_block(buffer_context, render_context + 0x1bd0);
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   *dword_ptr = 0x10;
   buffer_context[1] = buffer_context[1] + 4;
@@ -634,9 +634,9 @@ void process_render_string_hash_table(longlong *hash_table, longlong data_offset
   byte *temp_ptr;
   int comparison_result;
   longlong *current_entry;
-  undefined1 stack_buffer [32];
-  undefined8 stack_guard;
-  undefined *vtable_ptr;
+  int8_t stack_buffer [32];
+  uint64_t stack_guard;
+  void *vtable_ptr;
   byte *work_buffer;
   int work_index;
   byte temp_buffer [1032];
@@ -701,19 +701,19 @@ HASH_MATCH_FOUND:
 
 // 函数: 序列化渲染特性标志
 // 原始函数名: FUN_180272d60
-void serialize_render_feature_flags(undefined8 *feature_table, uint feature_mask, longlong *buffer_context)
+void serialize_render_feature_flags(uint64_t *feature_table, uint feature_mask, longlong *buffer_context)
 
 {
-  undefined4 *dword_ptr;
+  int32_t *dword_ptr;
   longlong buffer_size;
   longlong buffer_pos;
   int feature_count;
   longlong buffer_offset;
   
-  dword_ptr = (undefined4 *)buffer_context[1];
+  dword_ptr = (int32_t *)buffer_context[1];
   if ((ulonglong)((*buffer_context - (longlong)dword_ptr) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (longlong)dword_ptr + (4 - *buffer_context));
-    dword_ptr = (undefined4 *)buffer_context[1];
+    dword_ptr = (int32_t *)buffer_context[1];
   }
   feature_count = 0;
   *dword_ptr = 0;
@@ -751,21 +751,21 @@ void serialize_render_feature_flags(undefined8 *feature_table, uint feature_mask
 void resize_render_object_array(longlong *array_manager, ulonglong new_size)
 
 {
-  undefined *vtable_ptr;
-  undefined8 *current_ptr;
+  void *vtable_ptr;
+  uint64_t *current_ptr;
   ulonglong current_size;
-  undefined8 *end_ptr;
+  uint64_t *end_ptr;
   ulonglong size_diff;
-  undefined8 *new_ptr;
-  undefined8 *alloc_ptr;
-  undefined *destructor_vtable;
+  uint64_t *new_ptr;
+  uint64_t *alloc_ptr;
+  void *destructor_vtable;
   longlong offset;
   
-  current_ptr = (undefined8 *)array_manager[1];
+  current_ptr = (uint64_t *)array_manager[1];
   offset = *array_manager;
   current_size = ((longlong)current_ptr - offset) / 0x98;
   if (new_size <= current_size) {
-    end_ptr = (undefined8 *)(new_size * 0x98 + offset);
+    end_ptr = (uint64_t *)(new_size * 0x98 + offset);
     if (end_ptr != current_ptr) {
       do {
         (**(code **)*end_ptr)(end_ptr, 0);
@@ -777,9 +777,9 @@ void resize_render_object_array(longlong *array_manager, ulonglong new_size)
     return;
   }
   new_size = new_size - current_size;
-  current_ptr = (undefined8 *)array_manager[1];
+  current_ptr = (uint64_t *)array_manager[1];
   if ((ulonglong)((array_manager[2] - (longlong)current_ptr) / 0x98) < new_size) {
-    end_ptr = (undefined8 *)*array_manager;
+    end_ptr = (uint64_t *)*array_manager;
     offset = ((longlong)current_ptr - (longlong)end_ptr) / 0x98;
     current_size = offset * 2;
     if (offset == 0) {
@@ -788,13 +788,13 @@ void resize_render_object_array(longlong *array_manager, ulonglong new_size)
     if (current_size < offset + new_size) {
       current_size = offset + new_size;
     }
-    alloc_ptr = (undefined8 *)0x0;
+    alloc_ptr = (uint64_t *)0x0;
     if (current_size != 0) {
-      alloc_ptr = (undefined8 *)
+      alloc_ptr = (uint64_t *)
                allocate_render_memory(DATA_MEMORY_POOL_BASE, current_size * 0x98, (char)array_manager[3], 0x6bca1af286bca1b,
                              0xfffffffffffffffe);
-      current_ptr = (undefined8 *)array_manager[1];
-      end_ptr = (undefined8 *)*array_manager;
+      current_ptr = (uint64_t *)array_manager[1];
+      end_ptr = (uint64_t *)*array_manager;
     }
     new_ptr = alloc_ptr;
     if (end_ptr != current_ptr) {
@@ -802,20 +802,20 @@ void resize_render_object_array(longlong *array_manager, ulonglong new_size)
       do {
         *new_ptr = &RENDER_RESOURCE_TABLE_BASE;
         new_ptr[1] = 0;
-        *(undefined4 *)(new_ptr + 2) = 0;
+        *(int32_t *)(new_ptr + 2) = 0;
         *new_ptr = &RENDER_DESTRUCTOR_VTABLE;
         new_ptr[1] = new_ptr + 3;
-        *(undefined4 *)(new_ptr + 2) = 0;
-        *(undefined1 *)(new_ptr + 3) = 0;
-        *(undefined4 *)(new_ptr + 2) = *(undefined4 *)((longlong)new_ptr + offset + 0x10);
-        vtable_ptr = *(undefined **)((longlong)new_ptr + offset + 8);
+        *(int32_t *)(new_ptr + 2) = 0;
+        *(int8_t *)(new_ptr + 3) = 0;
+        *(int32_t *)(new_ptr + 2) = *(int32_t *)((longlong)new_ptr + offset + 0x10);
+        vtable_ptr = *(void **)((longlong)new_ptr + offset + 8);
         destructor_vtable = &RENDER_DEFAULT_DESTRUCTOR;
-        if (vtable_ptr != (undefined *)0x0) {
+        if (vtable_ptr != (void *)0x0) {
           destructor_vtable = vtable_ptr;
         }
         strcpy_s(new_ptr[1], 0x80, destructor_vtable);
         new_ptr = new_ptr + 0x13;
-      } while ((undefined8 *)((longlong)new_ptr + offset) != current_ptr);
+      } while ((uint64_t *)((longlong)new_ptr + offset) != current_ptr);
     }
     if (new_size != 0) {
       current_ptr = new_ptr + 1;
@@ -823,25 +823,25 @@ void resize_render_object_array(longlong *array_manager, ulonglong new_size)
       do {
         current_ptr[-1] = &RENDER_RESOURCE_TABLE_BASE;
         *current_ptr = 0;
-        *(undefined4 *)(current_ptr + 1) = 0;
+        *(int32_t *)(current_ptr + 1) = 0;
         current_ptr[-1] = &RENDER_DESTRUCTOR_VTABLE;
         *current_ptr = current_ptr + 2;
-        *(undefined4 *)(current_ptr + 1) = 0;
-        *(undefined1 *)(current_ptr + 2) = 0;
+        *(int32_t *)(current_ptr + 1) = 0;
+        *(int8_t *)(current_ptr + 2) = 0;
         current_ptr = current_ptr + 0x13;
         size_diff = size_diff - 1;
       } while (size_diff != 0);
     }
-    current_ptr = (undefined8 *)array_manager[1];
-    end_ptr = (undefined8 *)*array_manager;
+    current_ptr = (uint64_t *)array_manager[1];
+    end_ptr = (uint64_t *)*array_manager;
     if (end_ptr != current_ptr) {
       do {
         (**(code **)*end_ptr)(end_ptr, 0);
         end_ptr = end_ptr + 0x13;
       } while (end_ptr != current_ptr);
-      end_ptr = (undefined8 *)*array_manager;
+      end_ptr = (uint64_t *)*array_manager;
     }
-    if (end_ptr != (undefined8 *)0x0) {
+    if (end_ptr != (uint64_t *)0x0) {
                     // 警告: 子函数不返回
       free_render_memory(end_ptr);
     }
@@ -855,15 +855,15 @@ void resize_render_object_array(longlong *array_manager, ulonglong new_size)
       do {
         *current_ptr = &RENDER_RESOURCE_TABLE_BASE;
         current_ptr[1] = 0;
-        *(undefined4 *)(current_ptr + 2) = 0;
+        *(int32_t *)(current_ptr + 2) = 0;
         *current_ptr = &RENDER_DESTRUCTOR_VTABLE;
         current_ptr[1] = current_ptr + 3;
-        *(undefined4 *)(current_ptr + 2) = 0;
-        *(undefined1 *)(current_ptr + 3) = 0;
+        *(int32_t *)(current_ptr + 2) = 0;
+        *(int8_t *)(current_ptr + 3) = 0;
         current_ptr = current_ptr + 0x13;
         current_size = current_size - 1;
       } while (current_size != 0);
-      current_ptr = (undefined8 *)array_manager[1];
+      current_ptr = (uint64_t *)array_manager[1];
     }
     array_manager[1] = (longlong)(current_ptr + new_size * 0x13);
   }

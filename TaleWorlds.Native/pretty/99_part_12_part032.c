@@ -266,16 +266,16 @@ typedef int Int32;                           // 32位有符号整数
 typedef bool Bool;                           // 布尔类型
 typedef ulonglong UInt64;                    // 64位无符号整数
 typedef longlong Int64;                      // 64位有符号整数
-typedef undefined1 UInt8;                    // 8位无符号整数
-typedef undefined4 UInt32_undefined;        // 32位无符号整数（未定义类型）
-typedef undefined8 UInt64_undefined;        // 64位无符号整数（未定义类型）
+typedef int8_t UInt8;                    // 8位无符号整数
+typedef int32_t UInt32_undefined;        // 32位无符号整数（未定义类型）
+typedef uint64_t UInt64_undefined;        // 64位无符号整数（未定义类型）
 
 // 指针类型别名
 typedef float* Float32Ptr;                   // 32位浮点数指针
 typedef UInt32* UInt32Ptr;                   // 32位无符号整数指针
 typedef UInt8* UInt8Ptr;                     // 8位无符号整数指针
 typedef void* VoidPtr;                       // 空指针
-typedef UInt64_undefined* UInt64UndefinedPtr; // 64位未定义类型指针
+typedef UInt64_void* UInt64UndefinedPtr; // 64位未定义类型指针
 
 // 数组类型别名
 typedef Float32 Float32Array2[2];            // 2元素浮点数组
@@ -477,7 +477,7 @@ typedef struct {
  * @return void 无返回值
  */
 void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, float *param_4, 
-                              undefined4 param_5, uint param_6, int param_7)
+                              int32_t param_5, uint param_6, int param_7)
 {
     // 局部变量声明
     Float32 fVar1, fVar2, fVar3, fVar4, fVar5, fVar6, fVar7, fVar8, fVar9, fVar10;
@@ -1176,7 +1176,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
     }
     
     // 系统清理和返回
-    *(UInt64_undefined *)(puVar20 - INDEX_8) = 0x1807e06c3;
+    *(UInt64_void *)(puVar20 - INDEX_8) = 0x1807e06c3;
     SystemCleanupHandler(auStack_38[0] ^ (UInt64)auStack_38);
 }
 
@@ -1196,7 +1196,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
  * @return void 无返回值
  */
 void AdvancedFloatProcessor(float *param_1, float *param_2, uint param_3, float *param_4,
-                           undefined8 param_5, undefined8 param_6, int param_7)
+                           uint64_t param_5, uint64_t param_6, int param_7)
 {
     // 局部变量声明
     Float32 fVar1, fVar2, fVar3, fVar4, fVar5, fVar6, fVar7, fVar8, fVar9;

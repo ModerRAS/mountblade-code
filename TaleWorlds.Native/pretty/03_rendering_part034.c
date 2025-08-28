@@ -172,12 +172,12 @@ void RenderingSystemMatrixVectorNormalizer(float *param_1)
     param_1[0x23] = in_XMM0_Dd;
     
     // 复制矩阵数据
-    *(undefined8 *)(param_1 + 0x28) = *(undefined8 *)(param_1 + 0x3c);
-    *(undefined8 *)(param_1 + 0x2a) = *(undefined8 *)(param_1 + 0x3e);
-    *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(param_1 + 0x3c);
-    *(undefined8 *)(param_1 + 0x1a) = *(undefined8 *)(param_1 + 0x3e);
-    *(undefined8 *)(param_1 + 0x10) = *(undefined8 *)(param_1 + 0x3c);
-    *(undefined8 *)(param_1 + 0x12) = *(undefined8 *)(param_1 + 0x3e);
+    *(uint64_t *)(param_1 + 0x28) = *(uint64_t *)(param_1 + 0x3c);
+    *(uint64_t *)(param_1 + 0x2a) = *(uint64_t *)(param_1 + 0x3e);
+    *(uint64_t *)(param_1 + 0x18) = *(uint64_t *)(param_1 + 0x3c);
+    *(uint64_t *)(param_1 + 0x1a) = *(uint64_t *)(param_1 + 0x3e);
+    *(uint64_t *)(param_1 + 0x10) = *(uint64_t *)(param_1 + 0x3c);
+    *(uint64_t *)(param_1 + 0x12) = *(uint64_t *)(param_1 + 0x3e);
     
     fVar5 = param_1[0x45];
     fVar3 = param_1[0x43];
@@ -219,7 +219,7 @@ void RenderingSystemMatrixVectorNormalizer(float *param_1)
     fVar8 = -(fVar5 * fVar1) - fVar3 * param_1[0x38];
     fVar4 = -(fVar5 * fVar2) - fVar3 * param_1[0x39];
     fVar1 = param_1[0x3a];
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar9 = *(float *)(unaff_RBP + -0x34);
     fVar7 = -(fVar5 * fVar7) - fVar3 * fVar1;
     param_1[0x1c] = fVar8;
@@ -246,7 +246,7 @@ void RenderingSystemMatrixVectorNormalizer(float *param_1)
     fVar2 = fVar3 * fVar3 + fVar5 * fVar5 + fVar1 * fVar1;
     auVar6 = rsqrtss(ZEXT416((uint)fVar2),ZEXT416((uint)fVar2));
     fVar7 = auVar6._0_4_;
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar2 = fVar7 * 0.5 * (3.0 - fVar2 * fVar7 * fVar7);
     param_1[0x2c] = fVar3 * fVar2;
     param_1[0x2d] = fVar5 * fVar2;
@@ -296,7 +296,7 @@ void RenderingSystemMatrixVectorNormalizer(float *param_1)
     *(float *)(unaff_RBP + -0x3c) = fVar4;
     *(float *)(unaff_RBP + -0x38) = fVar7;
     *(float *)(unaff_RBP + -0x34) = fVar2;
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar2 = *(float *)(unaff_RBP + -0x34);
     fVar3 = param_1[0x3c] - fVar5 * fVar3;
     fVar5 = param_1[0x3e] - fVar5 * fVar1;
@@ -310,12 +310,12 @@ void RenderingSystemMatrixVectorNormalizer(float *param_1)
     *(float *)(unaff_RBP + -0x34) = fVar2;
     
     // 复制矩阵数据
-    *(undefined8 *)(param_1 + 0xc) = *(undefined8 *)(param_1 + 0x38);
-    *(undefined8 *)(param_1 + 0xe) = *(undefined8 *)(param_1 + 0x3a);
+    *(uint64_t *)(param_1 + 0xc) = *(uint64_t *)(param_1 + 0x38);
+    *(uint64_t *)(param_1 + 0xe) = *(uint64_t *)(param_1 + 0x3a);
     fVar1 = param_1[0x38];
     fVar2 = param_1[0x39];
     fVar5 = param_1[0x3a];
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar3 = *(float *)(unaff_RBP + -0x34);
     param_1[4] = -fVar1;
     param_1[5] = -fVar2;
@@ -338,8 +338,8 @@ void RenderingSystemMatrixVectorNormalizer(float *param_1)
  */
 void RenderingSystemMatrixTransformer(float *param_1)
 {
-    undefined8 uVar1;
-    undefined8 uVar2;
+    uint64_t uVar1;
+    uint64_t uVar2;
     longlong unaff_RBP;
     float fVar3;
     float fVar4;
@@ -352,7 +352,7 @@ void RenderingSystemMatrixTransformer(float *param_1)
     
     // 提取矩阵参数
     fVar9 = param_1[0x43];
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar6 = fVar9 * param_1[0x34] + param_1[0x3c];
     fVar8 = *(float *)(unaff_RBP + -0x34);
     fVar5 = fVar9 * param_1[0x35] + param_1[0x3d];
@@ -368,7 +368,7 @@ void RenderingSystemMatrixTransformer(float *param_1)
     *(float *)(unaff_RBP + -0x3c) = fVar5;
     *(float *)(unaff_RBP + -0x38) = fVar10;
     *(float *)(unaff_RBP + -0x34) = fVar8;
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar10 = fVar9 * param_1[0x36] + param_1[0x3e];
     fVar6 = fVar9 * param_1[0x35] + param_1[0x3d];
     fVar8 = *(float *)(unaff_RBP + -0x34);
@@ -384,7 +384,7 @@ void RenderingSystemMatrixTransformer(float *param_1)
     *(float *)(unaff_RBP + -0x3c) = fVar6;
     *(float *)(unaff_RBP + -0x38) = fVar10;
     *(float *)(unaff_RBP + -0x34) = fVar8;
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar10 = fVar9 * param_1[0x32] + param_1[0x3e];
     fVar6 = fVar9 * param_1[0x31] + param_1[0x3d];
     fVar8 = *(float *)(unaff_RBP + -0x34);
@@ -400,7 +400,7 @@ void RenderingSystemMatrixTransformer(float *param_1)
     *(float *)(unaff_RBP + -0x3c) = fVar6;
     *(float *)(unaff_RBP + -0x38) = fVar10;
     *(float *)(unaff_RBP + -0x34) = fVar8;
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar7 = fVar9 * param_1[0x32] + param_1[0x3e];
     fVar10 = fVar9 * param_1[0x31] + param_1[0x3d];
     fVar5 = *(float *)(unaff_RBP + -0x34);
@@ -420,7 +420,7 @@ void RenderingSystemMatrixTransformer(float *param_1)
     fVar8 = fVar8 - fVar9 * param_1[0x38];
     fVar5 = param_1[0x3d];
     fVar6 = param_1[0x3a];
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar5 = fVar5 - fVar9 * param_1[0x39];
     fVar10 = param_1[0x3e] - fVar9 * fVar6;
     fVar6 = *(float *)(unaff_RBP + -0x34);
@@ -435,7 +435,7 @@ void RenderingSystemMatrixTransformer(float *param_1)
     *(float *)(unaff_RBP + -0x3c) = fVar5;
     *(float *)(unaff_RBP + -0x38) = fVar10;
     *(float *)(unaff_RBP + -0x34) = fVar6;
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar8 = param_1[0x45];
     fVar9 = fVar9 - fVar8 * param_1[0x38];
     fVar3 = param_1[0x3d] - fVar8 * param_1[0x39];
@@ -455,7 +455,7 @@ void RenderingSystemMatrixTransformer(float *param_1)
     *(float *)(unaff_RBP + -0x3c) = fVar3;
     *(float *)(unaff_RBP + -0x38) = fVar4;
     *(float *)(unaff_RBP + -0x34) = fVar8;
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar9 = param_1[0x36];
     fVar8 = *(float *)(unaff_RBP + -0x34);
     param_1[0x24] = -fVar5;
@@ -464,16 +464,16 @@ void RenderingSystemMatrixTransformer(float *param_1)
     param_1[0x27] = fVar8;
     
     // 复制矩阵数据
-    uVar1 = *(undefined8 *)(param_1 + 0x34);
-    uVar2 = *(undefined8 *)(param_1 + 0x36);
+    uVar1 = *(uint64_t *)(param_1 + 0x34);
+    uVar2 = *(uint64_t *)(param_1 + 0x36);
     *(float *)(unaff_RBP + -0x40) = -fVar10;
     *(float *)(unaff_RBP + -0x3c) = -fVar7;
     *(float *)(unaff_RBP + -0x38) = -fVar9;
     *(float *)(unaff_RBP + -0x34) = fVar8;
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar8 = *(float *)(unaff_RBP + -0x34);
-    *(undefined8 *)(param_1 + 0x2c) = uVar1;
-    *(undefined8 *)(param_1 + 0x2e) = uVar2;
+    *(uint64_t *)(param_1 + 0x2c) = uVar1;
+    *(uint64_t *)(param_1 + 0x2e) = uVar2;
     
     // 设置矩阵参数
     fVar5 = param_1[0x31];
@@ -482,20 +482,20 @@ void RenderingSystemMatrixTransformer(float *param_1)
     param_1[0x1d] = -param_1[0x31];
     param_1[0x1e] = -fVar9;
     param_1[0x1f] = fVar8;
-    uVar1 = *(undefined8 *)(param_1 + 0x30);
-    uVar2 = *(undefined8 *)(param_1 + 0x32);
+    uVar1 = *(uint64_t *)(param_1 + 0x30);
+    uVar2 = *(uint64_t *)(param_1 + 0x32);
     *(float *)(unaff_RBP + -0x40) = -param_1[0x30];
     *(float *)(unaff_RBP + -0x3c) = -fVar5;
     *(float *)(unaff_RBP + -0x38) = -fVar9;
     *(float *)(unaff_RBP + -0x34) = fVar8;
-    *(undefined8 *)(param_1 + 0x14) = uVar1;
-    *(undefined8 *)(param_1 + 0x16) = uVar2;
-    *(undefined8 *)(param_1 + 0xc) = *(undefined8 *)(param_1 + 0x38);
-    *(undefined8 *)(param_1 + 0xe) = *(undefined8 *)(param_1 + 0x3a);
+    *(uint64_t *)(param_1 + 0x14) = uVar1;
+    *(uint64_t *)(param_1 + 0x16) = uVar2;
+    *(uint64_t *)(param_1 + 0xc) = *(uint64_t *)(param_1 + 0x38);
+    *(uint64_t *)(param_1 + 0xe) = *(uint64_t *)(param_1 + 0x3a);
     fVar5 = param_1[0x38];
     fVar6 = param_1[0x39];
     fVar9 = param_1[0x3a];
-    *(undefined4 *)(unaff_RBP + -0x34) = 0x7f7fffff;
+    *(int32_t *)(unaff_RBP + -0x34) = 0x7f7fffff;
     fVar8 = *(float *)(unaff_RBP + -0x34);
     param_1[4] = -fVar5;
     param_1[5] = -fVar6;
@@ -527,11 +527,11 @@ void RenderingSystemProjectionMatrixSetup(float *param_1, float param_2, float p
     float fVar3;
     float fVar4;
     float fVar5;
-    undefined1 auVar6[16];
+    int8_t auVar6[16];
     
     // 设置投影参数
     param_1[0x47] = param_2;
-    *(undefined1 *)(param_1 + 0x40) = 1;
+    *(int8_t *)(param_1 + 0x40) = 1;
     param_1[0x46] = param_5;
     param_1[0x45] = param_4;
     param_1[0x48] = param_3;
@@ -581,30 +581,30 @@ void RenderingSystemProjectionMatrixSetup(float *param_1, float param_2, float p
         param_1[0x25] = -param_1[0x35];
         param_1[0x26] = -param_1[0x36];
         param_1[0x27] = 3.4028235e+38;
-        *(undefined8 *)(param_1 + 0x2c) = *(undefined8 *)(param_1 + 0x34);
-        *(undefined8 *)(param_1 + 0x2e) = *(undefined8 *)(param_1 + 0x36);
+        *(uint64_t *)(param_1 + 0x2c) = *(uint64_t *)(param_1 + 0x34);
+        *(uint64_t *)(param_1 + 0x2e) = *(uint64_t *)(param_1 + 0x36);
         param_1[0x1c] = -param_1[0x30];
         param_1[0x1d] = -param_1[0x31];
         param_1[0x1e] = -param_1[0x32];
         param_1[0x1f] = 3.4028235e+38;
-        *(undefined8 *)(param_1 + 0x14) = *(undefined8 *)(param_1 + 0x30);
-        *(undefined8 *)(param_1 + 0x16) = *(undefined8 *)(param_1 + 0x32);
-        *(undefined8 *)(param_1 + 0xc) = *(undefined8 *)(param_1 + 0x38);
-        *(undefined8 *)(param_1 + 0xe) = *(undefined8 *)(param_1 + 0x3a);
+        *(uint64_t *)(param_1 + 0x14) = *(uint64_t *)(param_1 + 0x30);
+        *(uint64_t *)(param_1 + 0x16) = *(uint64_t *)(param_1 + 0x32);
+        *(uint64_t *)(param_1 + 0xc) = *(uint64_t *)(param_1 + 0x38);
+        *(uint64_t *)(param_1 + 0xe) = *(uint64_t *)(param_1 + 0x3a);
         fVar1 = param_1[0x38];
         fVar2 = param_1[0x39];
         fVar3 = param_1[0x3a];
     }
     else {
         // 正交投影模式
-        *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(param_1 + 0x3c);
-        *(undefined8 *)(param_1 + 0x22) = *(undefined8 *)(param_1 + 0x3e);
-        *(undefined8 *)(param_1 + 0x28) = *(undefined8 *)(param_1 + 0x3c);
-        *(undefined8 *)(param_1 + 0x2a) = *(undefined8 *)(param_1 + 0x3e);
-        *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(param_1 + 0x3c);
-        *(undefined8 *)(param_1 + 0x1a) = *(undefined8 *)(param_1 + 0x3e);
-        *(undefined8 *)(param_1 + 0x10) = *(undefined8 *)(param_1 + 0x3c);
-        *(undefined8 *)(param_1 + 0x12) = *(undefined8 *)(param_1 + 0x3e);
+        *(uint64_t *)(param_1 + 0x20) = *(uint64_t *)(param_1 + 0x3c);
+        *(uint64_t *)(param_1 + 0x22) = *(uint64_t *)(param_1 + 0x3e);
+        *(uint64_t *)(param_1 + 0x28) = *(uint64_t *)(param_1 + 0x3c);
+        *(uint64_t *)(param_1 + 0x2a) = *(uint64_t *)(param_1 + 0x3e);
+        *(uint64_t *)(param_1 + 0x18) = *(uint64_t *)(param_1 + 0x3c);
+        *(uint64_t *)(param_1 + 0x1a) = *(uint64_t *)(param_1 + 0x3e);
+        *(uint64_t *)(param_1 + 0x10) = *(uint64_t *)(param_1 + 0x3c);
+        *(uint64_t *)(param_1 + 0x12) = *(uint64_t *)(param_1 + 0x3e);
         fVar3 = param_1[0x45];
         fVar1 = param_1[0x43];
         param_1[0x24] = -(fVar3 * param_1[0x34]) - fVar1 * param_1[0x38];
@@ -689,8 +689,8 @@ void RenderingSystemProjectionMatrixSetup(float *param_1, float param_2, float p
         param_1[1] = param_1[0x3d] - fVar3 * param_1[0x39];
         param_1[2] = param_1[0x3e] - fVar3 * param_1[0x3a];
         param_1[3] = 3.4028235e+38;
-        *(undefined8 *)(param_1 + 0xc) = *(undefined8 *)(param_1 + 0x38);
-        *(undefined8 *)(param_1 + 0xe) = *(undefined8 *)(param_1 + 0x3a);
+        *(uint64_t *)(param_1 + 0xc) = *(uint64_t *)(param_1 + 0x38);
+        *(uint64_t *)(param_1 + 0xe) = *(uint64_t *)(param_1 + 0x3a);
         fVar1 = param_1[0x38];
         fVar2 = param_1[0x39];
         fVar3 = param_1[0x3a];
@@ -719,39 +719,39 @@ void RenderingSystemProjectionMatrixSetup(float *param_1, float param_2, float p
  * @note 此函数处理矩阵数据的格式转换
  * @note 支持不同的矩阵布局和精度
  */
-undefined8 *RenderingSystemMatrixExtractor(longlong param_1, undefined8 *param_2)
+uint64_t *RenderingSystemMatrixExtractor(longlong param_1, uint64_t *param_2)
 {
     float fVar1;
-    undefined4 uVar2;
-    undefined4 uVar3;
-    undefined4 uVar4;
-    undefined8 uVar5;
-    undefined8 *puVar6;
-    undefined1 auStack_48[72];
+    int32_t uVar2;
+    int32_t uVar3;
+    int32_t uVar4;
+    uint64_t uVar5;
+    uint64_t *puVar6;
+    int8_t auStack_48[72];
     
     // 根据渲染状态选择矩阵数据源
     if (*(char *)(param_1 + 0x124) == '\0') {
-        puVar6 = (undefined8 *)(param_1 + 0xc0);
+        puVar6 = (uint64_t *)(param_1 + 0xc0);
     }
     else {
         // 提取并转换矩阵数据
-        uVar5 = *(undefined8 *)(param_1 + 200);
-        *param_2 = *(undefined8 *)(param_1 + 0xc0);
+        uVar5 = *(uint64_t *)(param_1 + 200);
+        *param_2 = *(uint64_t *)(param_1 + 0xc0);
         param_2[1] = uVar5;
-        uVar5 = *(undefined8 *)(param_1 + 0xd8);
-        param_2[2] = *(undefined8 *)(param_1 + 0xd0);
+        uVar5 = *(uint64_t *)(param_1 + 0xd8);
+        param_2[2] = *(uint64_t *)(param_1 + 0xd0);
         param_2[3] = uVar5;
-        uVar5 = *(undefined8 *)(param_1 + 0xe8);
-        param_2[4] = *(undefined8 *)(param_1 + 0xe0);
+        uVar5 = *(uint64_t *)(param_1 + 0xe8);
+        param_2[4] = *(uint64_t *)(param_1 + 0xe0);
         param_2[5] = uVar5;
         fVar1 = *(float *)(param_1 + 0xf0);
-        uVar2 = *(undefined4 *)(param_1 + 0xf4);
-        uVar3 = *(undefined4 *)(param_1 + 0xf8);
-        uVar4 = *(undefined4 *)(param_1 + 0xfc);
+        uVar2 = *(int32_t *)(param_1 + 0xf4);
+        uVar3 = *(int32_t *)(param_1 + 0xf8);
+        uVar4 = *(int32_t *)(param_1 + 0xfc);
         *(float *)(param_2 + 6) = fVar1;
-        *(undefined4 *)((longlong)param_2 + 0x34) = uVar2;
-        *(undefined4 *)(param_2 + 7) = uVar3;
-        *(undefined4 *)((longlong)param_2 + 0x3c) = uVar4;
+        *(int32_t *)((longlong)param_2 + 0x34) = uVar2;
+        *(int32_t *)(param_2 + 7) = uVar3;
+        *(int32_t *)((longlong)param_2 + 0x3c) = uVar4;
         *(float *)(param_2 + 6) = fVar1 + *(float *)(param_1 + 0x128);
         *(float *)((longlong)param_2 + 0x34) =
              *(float *)(param_1 + 300) + *(float *)((longlong)param_2 + 0x34);
@@ -760,7 +760,7 @@ undefined8 *RenderingSystemMatrixExtractor(longlong param_1, undefined8 *param_2
     }
     
     // 处理矩阵数据
-    puVar6 = (undefined8 *)FUN_180287b30(puVar6, auStack_48);
+    puVar6 = (uint64_t *)FUN_180287b30(puVar6, auStack_48);
     uVar5 = puVar6[1];
     *param_2 = *puVar6;
     param_2[1] = uVar5;
@@ -775,10 +775,10 @@ undefined8 *RenderingSystemMatrixExtractor(longlong param_1, undefined8 *param_2
     param_2[7] = uVar5;
     
     // 设置矩阵默认值
-    *(undefined4 *)((longlong)param_2 + 0xc) = 0;
-    *(undefined4 *)((longlong)param_2 + 0x1c) = 0;
-    *(undefined4 *)((longlong)param_2 + 0x2c) = 0;
-    *(undefined4 *)((longlong)param_2 + 0x3c) = 0x3f800000;
+    *(int32_t *)((longlong)param_2 + 0xc) = 0;
+    *(int32_t *)((longlong)param_2 + 0x1c) = 0;
+    *(int32_t *)((longlong)param_2 + 0x2c) = 0;
+    *(int32_t *)((longlong)param_2 + 0x3c) = 0x3f800000;
     
     return param_2;
 }
@@ -799,10 +799,10 @@ undefined8 *RenderingSystemMatrixExtractor(longlong param_1, undefined8 *param_2
  */
 void RenderingSystemViewMatrixCalculator(longlong param_1, float *param_2, float *param_3, float *param_4)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     float fVar2;
     float fVar3;
-    undefined1 auVar4[16];
+    int8_t auVar4[16];
     float fVar5;
     float fVar6;
     float fVar7;
@@ -850,26 +850,26 @@ void RenderingSystemViewMatrixCalculator(longlong param_1, float *param_2, float
     *(float *)(param_1 + 0xc0) = fVar12;
     *(float *)(param_1 + 0xc4) = fVar11;
     *(float *)(param_1 + 200) = fVar10;
-    *(undefined4 *)(param_1 + 0xcc) = 0x7f7fffff;
+    *(int32_t *)(param_1 + 0xcc) = 0x7f7fffff;
     *(float *)(param_1 + 0xe0) = -fVar6;
     *(float *)(param_1 + 0xe4) = -fVar5;
     *(float *)(param_1 + 0xe8) = -fVar13;
-    *(undefined4 *)(param_1 + 0xec) = 0x7f7fffff;
+    *(int32_t *)(param_1 + 0xec) = 0x7f7fffff;
     
     // 复制摄像机位置
-    uVar1 = *(undefined8 *)(param_2 + 2);
-    *(undefined8 *)(param_1 + 0xf0) = *(undefined8 *)param_2;
-    *(undefined8 *)(param_1 + 0xf8) = uVar1;
+    uVar1 = *(uint64_t *)(param_2 + 2);
+    *(uint64_t *)(param_1 + 0xf0) = *(uint64_t *)param_2;
+    *(uint64_t *)(param_1 + 0xf8) = uVar1;
     
     // 设置视图矩阵的其他参数
     *(float *)(param_1 + 0xd0) = fVar9 * fVar2;
     *(float *)(param_1 + 0xd4) = fVar8 * fVar2;
     *(float *)(param_1 + 0xd8) = fVar7 * fVar2;
-    *(undefined4 *)(param_1 + 0xdc) = 0x7f7fffff;
-    *(undefined4 *)(param_1 + 0xcc) = 0;
-    *(undefined4 *)(param_1 + 0xdc) = 0;
-    *(undefined4 *)(param_1 + 0xec) = 0;
-    *(undefined4 *)(param_1 + 0xfc) = 0x3f800000;
+    *(int32_t *)(param_1 + 0xdc) = 0x7f7fffff;
+    *(int32_t *)(param_1 + 0xcc) = 0;
+    *(int32_t *)(param_1 + 0xdc) = 0;
+    *(int32_t *)(param_1 + 0xec) = 0;
+    *(int32_t *)(param_1 + 0xfc) = 0x3f800000;
     
     return;
 }

@@ -11,11 +11,11 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
   int *piVar2;
   int *piVar3;
   longlong lVar4;
-  undefined1 uVar5;
-  undefined1 uVar6;
-  undefined1 uVar7;
-  undefined1 uVar8;
-  undefined1 uVar9;
+  int8_t uVar5;
+  int8_t uVar6;
+  int8_t uVar7;
+  int8_t uVar8;
+  int8_t uVar9;
   char cVar10;
   char cVar11;
   int iVar12;
@@ -24,53 +24,53 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
   int iVar15;
   int iVar16;
   int iVar17;
-  undefined4 uVar18;
+  int32_t uVar18;
   uint3 uVar19;
-  undefined8 uVar20;
+  uint64_t uVar20;
   int iVar21;
   int iVar22;
   int iVar23;
   undefined6 uVar24;
-  undefined1 auVar25 [12];
-  undefined1 auVar26 [12];
-  undefined1 auVar27 [12];
-  undefined1 auVar28 [12];
+  int8_t auVar25 [12];
+  int8_t auVar26 [12];
+  int8_t auVar27 [12];
+  int8_t auVar28 [12];
   uint uVar29;
   uint uVar30;
   uint uVar31;
   ulonglong uVar32;
-  undefined1 *puVar33;
+  int8_t *puVar33;
   int iVar34;
   ulonglong uVar35;
   uint uVar36;
   ulonglong uVar37;
   longlong lVar38;
   ulonglong uVar39;
-  undefined1 *puVar40;
+  int8_t *puVar40;
   int iVar41;
   int iVar42;
   ulonglong uVar43;
   short sVar44;
   short sVar45;
   short sVar46;
-  undefined1 auVar47 [16];
-  undefined1 auVar50 [16];
-  undefined1 auVar53 [16];
-  undefined1 auVar56 [16];
+  int8_t auVar47 [16];
+  int8_t auVar50 [16];
+  int8_t auVar53 [16];
+  int8_t auVar56 [16];
   float fVar61;
   float fVar62;
   float fVar63;
   float fVar64;
-  undefined1 auVar48 [16];
-  undefined1 auVar49 [16];
-  undefined1 auVar51 [16];
-  undefined1 auVar52 [16];
-  undefined1 auVar54 [16];
-  undefined1 auVar55 [16];
-  undefined1 auVar57 [16];
-  undefined1 auVar58 [16];
-  undefined1 uVar59;
-  undefined2 uVar60;
+  int8_t auVar48 [16];
+  int8_t auVar49 [16];
+  int8_t auVar51 [16];
+  int8_t auVar52 [16];
+  int8_t auVar54 [16];
+  int8_t auVar55 [16];
+  int8_t auVar57 [16];
+  int8_t auVar58 [16];
+  int8_t uVar59;
+  int16_t uVar60;
   
   uVar32 = param_2 & 0xffffffff;
   uVar36 = (uint)param_2;
@@ -98,12 +98,12 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
             iVar41 = (*(uint *)((longlong)param_5 + 4) - iVar41) * param_7;
             do {
               iVar34 = iVar34 + 8;
-              uVar18 = *(undefined4 *)((ulonglong)(iVar41 + uVar31) + param_3);
-              uVar59 = (undefined1)((uint)uVar18 >> 0x18);
+              uVar18 = *(int32_t *)((ulonglong)(iVar41 + uVar31) + param_3);
+              uVar59 = (int8_t)((uint)uVar18 >> 0x18);
               uVar60 = CONCAT11(uVar59,uVar59);
-              uVar59 = (undefined1)((uint)uVar18 >> 0x10);
+              uVar59 = (int8_t)((uint)uVar18 >> 0x10);
               uVar20 = CONCAT35(CONCAT21(uVar60,uVar59),CONCAT14(uVar59,uVar18));
-              uVar59 = (undefined1)((uint)uVar18 >> 8);
+              uVar59 = (int8_t)((uint)uVar18 >> 8);
               uVar24 = CONCAT51(CONCAT41((int)((ulonglong)uVar20 >> 0x20),uVar59),uVar59);
               sVar44 = CONCAT11((char)uVar18,(char)uVar18);
               uVar35 = CONCAT62(uVar24,sVar44);
@@ -111,7 +111,7 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
               auVar49._0_8_ = uVar35;
               auVar49._12_2_ = uVar60;
               auVar49._14_2_ = uVar60;
-              uVar60 = (undefined2)((ulonglong)uVar20 >> 0x20);
+              uVar60 = (int16_t)((ulonglong)uVar20 >> 0x20);
               auVar48._12_4_ = auVar49._12_4_;
               auVar48._8_2_ = 0;
               auVar48._0_8_ = uVar35;
@@ -119,16 +119,16 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
               auVar47._10_6_ = auVar48._10_6_;
               auVar47._8_2_ = uVar60;
               auVar47._0_8_ = uVar35;
-              uVar60 = (undefined2)uVar24;
+              uVar60 = (int16_t)uVar24;
               auVar25._4_8_ = auVar47._8_8_;
               auVar25._2_2_ = uVar60;
               auVar25._0_2_ = uVar60;
-              uVar18 = *(undefined4 *)((ulonglong)uVar31 + param_3);
-              uVar59 = (undefined1)((uint)uVar18 >> 0x18);
+              uVar18 = *(int32_t *)((ulonglong)uVar31 + param_3);
+              uVar59 = (int8_t)((uint)uVar18 >> 0x18);
               uVar60 = CONCAT11(uVar59,uVar59);
-              uVar59 = (undefined1)((uint)uVar18 >> 0x10);
+              uVar59 = (int8_t)((uint)uVar18 >> 0x10);
               uVar20 = CONCAT35(CONCAT21(uVar60,uVar59),CONCAT14(uVar59,uVar18));
-              uVar59 = (undefined1)((uint)uVar18 >> 8);
+              uVar59 = (int8_t)((uint)uVar18 >> 8);
               uVar24 = CONCAT51(CONCAT41((int)((ulonglong)uVar20 >> 0x20),uVar59),uVar59);
               sVar45 = CONCAT11((char)uVar18,(char)uVar18);
               uVar35 = CONCAT62(uVar24,sVar45);
@@ -136,7 +136,7 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
               auVar52._0_8_ = uVar35;
               auVar52._12_2_ = uVar60;
               auVar52._14_2_ = uVar60;
-              uVar60 = (undefined2)((ulonglong)uVar20 >> 0x20);
+              uVar60 = (int16_t)((ulonglong)uVar20 >> 0x20);
               auVar51._12_4_ = auVar52._12_4_;
               auVar51._8_2_ = 0;
               auVar51._0_8_ = uVar35;
@@ -144,16 +144,16 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
               auVar50._10_6_ = auVar51._10_6_;
               auVar50._8_2_ = uVar60;
               auVar50._0_8_ = uVar35;
-              uVar60 = (undefined2)uVar24;
+              uVar60 = (int16_t)uVar24;
               auVar26._4_8_ = auVar50._8_8_;
               auVar26._2_2_ = uVar60;
               auVar26._0_2_ = uVar60;
-              uVar18 = *(undefined4 *)((ulonglong)(iVar41 + 4 + uVar31) + param_3);
-              uVar59 = (undefined1)((uint)uVar18 >> 0x18);
+              uVar18 = *(int32_t *)((ulonglong)(iVar41 + 4 + uVar31) + param_3);
+              uVar59 = (int8_t)((uint)uVar18 >> 0x18);
               uVar60 = CONCAT11(uVar59,uVar59);
-              uVar59 = (undefined1)((uint)uVar18 >> 0x10);
+              uVar59 = (int8_t)((uint)uVar18 >> 0x10);
               uVar20 = CONCAT35(CONCAT21(uVar60,uVar59),CONCAT14(uVar59,uVar18));
-              uVar59 = (undefined1)((uint)uVar18 >> 8);
+              uVar59 = (int8_t)((uint)uVar18 >> 8);
               uVar24 = CONCAT51(CONCAT41((int)((ulonglong)uVar20 >> 0x20),uVar59),uVar59);
               sVar46 = CONCAT11((char)uVar18,(char)uVar18);
               uVar35 = CONCAT62(uVar24,sVar46);
@@ -162,7 +162,7 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
               auVar55._0_8_ = uVar35;
               auVar55._12_2_ = uVar60;
               auVar55._14_2_ = uVar60;
-              uVar60 = (undefined2)((ulonglong)uVar20 >> 0x20);
+              uVar60 = (int16_t)((ulonglong)uVar20 >> 0x20);
               auVar54._12_4_ = auVar55._12_4_;
               auVar54._8_2_ = 0;
               auVar54._0_8_ = uVar35;
@@ -170,7 +170,7 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
               auVar53._10_6_ = auVar54._10_6_;
               auVar53._8_2_ = uVar60;
               auVar53._0_8_ = uVar35;
-              uVar60 = (undefined2)uVar24;
+              uVar60 = (int16_t)uVar24;
               auVar27._4_8_ = auVar53._8_8_;
               auVar27._2_2_ = uVar60;
               auVar27._0_2_ = uVar60;
@@ -183,12 +183,12 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
                            (float)(auVar50._8_4_ >> 0x18) * 0.0078125 * fVar61;
               param_1[3] = (float)(auVar48._12_4_ >> 0x18) * 0.0078125 * (1.0 - fVar61) +
                            (float)(auVar51._12_4_ >> 0x18) * 0.0078125 * fVar61;
-              uVar18 = *(undefined4 *)((ulonglong)uVar29 + param_3);
-              uVar59 = (undefined1)((uint)uVar18 >> 0x18);
+              uVar18 = *(int32_t *)((ulonglong)uVar29 + param_3);
+              uVar59 = (int8_t)((uint)uVar18 >> 0x18);
               uVar60 = CONCAT11(uVar59,uVar59);
-              uVar59 = (undefined1)((uint)uVar18 >> 0x10);
+              uVar59 = (int8_t)((uint)uVar18 >> 0x10);
               uVar20 = CONCAT35(CONCAT21(uVar60,uVar59),CONCAT14(uVar59,uVar18));
-              uVar59 = (undefined1)((uint)uVar18 >> 8);
+              uVar59 = (int8_t)((uint)uVar18 >> 8);
               uVar24 = CONCAT51(CONCAT41((int)((ulonglong)uVar20 >> 0x20),uVar59),uVar59);
               sVar44 = CONCAT11((char)uVar18,(char)uVar18);
               uVar35 = CONCAT62(uVar24,sVar44);
@@ -196,7 +196,7 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
               auVar58._0_8_ = uVar35;
               auVar58._12_2_ = uVar60;
               auVar58._14_2_ = uVar60;
-              uVar60 = (undefined2)((ulonglong)uVar20 >> 0x20);
+              uVar60 = (int16_t)((ulonglong)uVar20 >> 0x20);
               auVar57._12_4_ = auVar58._12_4_;
               auVar57._8_2_ = 0;
               auVar57._0_8_ = uVar35;
@@ -204,7 +204,7 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
               auVar56._10_6_ = auVar57._10_6_;
               auVar56._8_2_ = uVar60;
               auVar56._0_8_ = uVar35;
-              uVar60 = (undefined2)uVar24;
+              uVar60 = (int16_t)uVar24;
               auVar28._4_8_ = auVar56._8_8_;
               auVar28._2_2_ = uVar60;
               auVar28._0_2_ = uVar60;
@@ -306,15 +306,15 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
           uVar36 = *(uint *)((longlong)param_5 + 4);
           uVar39 = (ulonglong)uVar36;
           lVar38 = param_3 + (ulonglong)uVar36 * 2;
-          uVar59 = *(undefined1 *)(uVar39 + 2 + lVar38);
+          uVar59 = *(int8_t *)(uVar39 + 2 + lVar38);
           uVar43 = (ulonglong)(uVar36 + 1);
           lVar4 = param_3 + (ulonglong)(uVar36 + 1) * 2;
           fVar61 = (float)(uVar35 & 0xffffffff) * 2.3283064e-10;
-          uVar5 = *(undefined1 *)(uVar39 + 1 + lVar38);
-          uVar6 = *(undefined1 *)(uVar39 + lVar38);
-          uVar7 = *(undefined1 *)(uVar43 + 1 + lVar4);
-          uVar8 = *(undefined1 *)(uVar43 + 2 + lVar4);
-          uVar9 = *(undefined1 *)(uVar43 + lVar4);
+          uVar5 = *(int8_t *)(uVar39 + 1 + lVar38);
+          uVar6 = *(int8_t *)(uVar39 + lVar38);
+          uVar7 = *(int8_t *)(uVar43 + 1 + lVar4);
+          uVar8 = *(int8_t *)(uVar43 + 2 + lVar4);
+          uVar9 = *(int8_t *)(uVar43 + lVar4);
           *param_5 = uVar37;
           *param_1 = (float)((int)((uint)CONCAT21(CONCAT11(uVar59,uVar5),uVar6) << 8) >> 8) *
                      1.1920929e-07 * (1.0 - fVar61) +
@@ -343,7 +343,7 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
             iVar34 = uVar36 * 4;
             do {
               uVar36 = uVar31 + iVar42 + 1;
-              puVar40 = (undefined1 *)
+              puVar40 = (int8_t *)
                         ((ulonglong)(uVar31 + 1) + param_3 + (ulonglong)(uVar31 + 1) * 2);
               uVar19 = *(uint3 *)((ulonglong)uVar36 + param_3 + (ulonglong)uVar36 * 2);
               uVar59 = puVar40[1];
@@ -353,7 +353,7 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
                          (float)((int)((uint)*(uint3 *)(param_3 + (ulonglong)uVar31 * 3) << 8) >> 8)
                          * 1.1920929e-07 * fVar61;
               uVar36 = uVar31 + 2 + iVar42;
-              puVar33 = (undefined1 *)((ulonglong)uVar36 + param_3 + (ulonglong)uVar36 * 2);
+              puVar33 = (int8_t *)((ulonglong)uVar36 + param_3 + (ulonglong)uVar36 * 2);
               uVar36 = uVar31 + 2;
               uVar5 = puVar33[2];
               param_1[1] = (float)((int)((uint)uVar19 << 8) >> 8) * 1.1920929e-07 * fVar62 +
@@ -362,7 +362,7 @@ void FUN_18081e5c0(float *param_1,ulonglong param_2,longlong param_3,int param_4
               uVar29 = uVar31 + 3 + iVar42;
               uVar30 = uVar31 + 3;
               uVar31 = uVar31 + 4;
-              puVar40 = (undefined1 *)((ulonglong)uVar30 + param_3 + (ulonglong)uVar30 * 2);
+              puVar40 = (int8_t *)((ulonglong)uVar30 + param_3 + (ulonglong)uVar30 * 2);
               uVar19 = *(uint3 *)((ulonglong)uVar29 + param_3 + (ulonglong)uVar29 * 2);
               uVar59 = puVar40[1];
               param_1[2] = (float)((int)((uint)CONCAT21(CONCAT11(uVar5,puVar33[1]),*puVar33) << 8)

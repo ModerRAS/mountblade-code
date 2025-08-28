@@ -42,17 +42,17 @@ bool FUN_1804d2a50(longlong param_1,longlong param_2,int param_3,uint param_4)
   float fVar24;
   float fVar25;
   float fVar26;
-  undefined1 auVar27 [16];
+  int8_t auVar27 [16];
   float fVar28;
-  undefined1 auVar29 [16];
+  int8_t auVar29 [16];
   float fVar30;
-  undefined1 auVar31 [16];
-  undefined1 auVar32 [16];
-  undefined1 auVar33 [16];
+  int8_t auVar31 [16];
+  int8_t auVar32 [16];
+  int8_t auVar33 [16];
   float fVar34;
-  undefined1 auVar35 [16];
-  undefined1 auVar36 [16];
-  undefined1 auVar37 [16];
+  int8_t auVar35 [16];
+  int8_t auVar36 [16];
+  int8_t auVar37 [16];
   float fStack_a8;
   float fStack_a4;
   float fStack_98;
@@ -73,14 +73,14 @@ bool FUN_1804d2a50(longlong param_1,longlong param_2,int param_3,uint param_4)
   }
   else {
     if (*(int *)(lVar2 + 0x178) == 0) {
-      *(undefined1 *)(lVar19 + 0x90 + lVar3) = 1;
-      *(undefined1 *)
+      *(int8_t *)(lVar19 + 0x90 + lVar3) = 1;
+      *(int8_t *)
        ((longlong)(int)(*(uint *)(param_1 + 0x2b18) & param_4) * 0xd8 + 0x91 +
        *(longlong *)(*(longlong *)(param_1 + 11000) + lVar17 * 8)) = 1;
-      *(undefined1 *)
+      *(int8_t *)
        ((longlong)(int)(*(uint *)(param_1 + 0x2b18) & param_4) * 0xd8 + 0x92 +
        *(longlong *)(*(longlong *)(param_1 + 11000) + lVar17 * 8)) = 1;
-      *(undefined1 *)
+      *(int8_t *)
        ((longlong)(int)(*(uint *)(param_1 + 0x2b18) & param_4) * 0xd8 + 0x93 +
        *(longlong *)(*(longlong *)(param_1 + 11000) + lVar17 * 8)) = 1;
       lVar15 = *(longlong *)(param_1 + 11000);
@@ -199,7 +199,7 @@ bool FUN_1804d2a50(longlong param_1,longlong param_2,int param_3,uint param_4)
                 for (lVar15 = (longlong)(iVar1 + 1); lVar15 < 4; lVar15 = lVar15 + 1) {
                     // WARNING: Read-only address (ram,0x000180a400e0) is written
                     // WARNING: Read-only address (ram,0x000180a40110) is written
-                  *(undefined1 *)
+                  *(int8_t *)
                    ((longlong)(int)(*(uint *)(param_1 + 0x2b18) & param_4) * 0xd8 +
                     *(longlong *)(*(longlong *)(param_1 + 11000) + lVar17 * 8) + 0x90 + lVar15) = 0;
                 }
@@ -218,7 +218,7 @@ bool FUN_1804d2a50(longlong param_1,longlong param_2,int param_3,uint param_4)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-bool FUN_1804d2a94(longlong param_1,longlong param_2,undefined8 param_3,uint param_4)
+bool FUN_1804d2a94(longlong param_1,longlong param_2,uint64_t param_3,uint param_4)
 
 {
   int iVar1;
@@ -250,16 +250,16 @@ bool FUN_1804d2a94(longlong param_1,longlong param_2,undefined8 param_3,uint par
   float fVar24;
   float fVar25;
   float fVar26;
-  undefined1 auVar27 [16];
+  int8_t auVar27 [16];
   float fVar28;
-  undefined1 auVar29 [16];
+  int8_t auVar29 [16];
   float fVar30;
-  undefined1 auVar31 [16];
-  undefined1 auVar32 [16];
-  undefined1 auVar33 [16];
-  undefined1 auVar34 [16];
-  undefined1 auVar35 [16];
-  undefined1 auVar36 [16];
+  int8_t auVar31 [16];
+  int8_t auVar32 [16];
+  int8_t auVar33 [16];
+  int8_t auVar34 [16];
+  int8_t auVar35 [16];
+  int8_t auVar36 [16];
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000050;
@@ -275,14 +275,14 @@ bool FUN_1804d2a94(longlong param_1,longlong param_2,undefined8 param_3,uint par
   }
   else {
     if (*(int *)(lVar15 + 0x178) == 0) {
-      *(undefined1 *)(lVar18 + 0x90 + lVar13) = 1;
-      *(undefined1 *)
+      *(int8_t *)(lVar18 + 0x90 + lVar13) = 1;
+      *(int8_t *)
        ((longlong)(int)(*(uint *)(unaff_RBX + 0x2b18) & param_4) * 0xd8 + 0x91 +
        *(longlong *)(*(longlong *)(unaff_RBX + 11000) + lVar16 * 8)) = 1;
-      *(undefined1 *)
+      *(int8_t *)
        ((longlong)(int)(*(uint *)(unaff_RBX + 0x2b18) & param_4) * 0xd8 + 0x92 +
        *(longlong *)(*(longlong *)(unaff_RBX + 11000) + lVar16 * 8)) = 1;
-      *(undefined1 *)
+      *(int8_t *)
        ((longlong)(int)(*(uint *)(unaff_RBX + 0x2b18) & param_4) * 0xd8 + 0x93 +
        *(longlong *)(*(longlong *)(unaff_RBX + 11000) + lVar16 * 8)) = 1;
       param_2 = *(longlong *)(unaff_RBX + 11000);
@@ -396,7 +396,7 @@ bool FUN_1804d2a94(longlong param_1,longlong param_2,undefined8 param_3,uint par
           for (lVar15 = (longlong)(iVar1 + 1); lVar15 < 4; lVar15 = lVar15 + 1) {
                     // WARNING: Read-only address (ram,0x000180a400e0) is written
                     // WARNING: Read-only address (ram,0x000180a40110) is written
-            *(undefined1 *)
+            *(int8_t *)
              ((longlong)(int)(*(uint *)(unaff_RBX + 0x2b18) & param_4) * 0xd8 +
               *(longlong *)(*(longlong *)(unaff_RBX + 11000) + lVar16 * 8) + 0x90 + lVar15) = 0;
           }
@@ -444,30 +444,30 @@ bool FUN_1804d2ae7(int param_1,longlong param_2,longlong param_3)
   float fVar20;
   float fVar21;
   float fVar22;
-  undefined1 auVar23 [16];
+  int8_t auVar23 [16];
   float fVar24;
-  undefined1 auVar25 [16];
+  int8_t auVar25 [16];
   float fVar26;
-  undefined1 auVar27 [16];
-  undefined1 auVar28 [16];
-  undefined1 auVar29 [16];
-  undefined1 auVar30 [16];
-  undefined1 auVar31 [16];
-  undefined1 auVar32 [16];
+  int8_t auVar27 [16];
+  int8_t auVar28 [16];
+  int8_t auVar29 [16];
+  int8_t auVar30 [16];
+  int8_t auVar31 [16];
+  int8_t auVar32 [16];
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000050;
   float fStack0000000000000054;
   
   if (in_ZF) {
-    *(undefined1 *)(param_3 + 0x90 + in_RAX) = 1;
-    *(undefined1 *)
+    *(int8_t *)(param_3 + 0x90 + in_RAX) = 1;
+    *(int8_t *)
      (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 + 0x91 +
      *(longlong *)(*(longlong *)(unaff_RBX + 11000) + unaff_RBP * 8)) = 1;
-    *(undefined1 *)
+    *(int8_t *)
      (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 + 0x92 +
      *(longlong *)(*(longlong *)(unaff_RBX + 11000) + unaff_RBP * 8)) = 1;
-    *(undefined1 *)
+    *(int8_t *)
      (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 + 0x93 +
      *(longlong *)(*(longlong *)(unaff_RBX + 11000) + unaff_RBP * 8)) = 1;
     param_2 = *(longlong *)(unaff_RBX + 11000);
@@ -581,7 +581,7 @@ bool FUN_1804d2ae7(int param_1,longlong param_2,longlong param_3)
         for (lVar14 = (longlong)(iVar2 + 1); lVar14 < 4; lVar14 = lVar14 + 1) {
                     // WARNING: Read-only address (ram,0x000180a400e0) is written
                     // WARNING: Read-only address (ram,0x000180a40110) is written
-          *(undefined1 *)
+          *(int8_t *)
            (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 +
             *(longlong *)(*(longlong *)(unaff_RBX + 11000) + unaff_RBP * 8) + 0x90 + lVar14) = 0;
         }
@@ -627,30 +627,30 @@ bool FUN_1804d2aef(int param_1,longlong param_2,longlong param_3)
   float fVar20;
   float fVar21;
   float fVar22;
-  undefined1 auVar23 [16];
+  int8_t auVar23 [16];
   float fVar24;
-  undefined1 auVar25 [16];
+  int8_t auVar25 [16];
   float fVar26;
-  undefined1 auVar27 [16];
-  undefined1 auVar28 [16];
-  undefined1 auVar29 [16];
-  undefined1 auVar30 [16];
-  undefined1 auVar31 [16];
-  undefined1 auVar32 [16];
+  int8_t auVar27 [16];
+  int8_t auVar28 [16];
+  int8_t auVar29 [16];
+  int8_t auVar30 [16];
+  int8_t auVar31 [16];
+  int8_t auVar32 [16];
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000050;
   float fStack0000000000000054;
   
   if (in_ZF) {
-    *(undefined1 *)(param_3 + 0x90 + in_RAX) = 1;
-    *(undefined1 *)
+    *(int8_t *)(param_3 + 0x90 + in_RAX) = 1;
+    *(int8_t *)
      (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 + 0x91 +
      *(longlong *)(*(longlong *)(unaff_RBX + 11000) + unaff_RBP * 8)) = 1;
-    *(undefined1 *)
+    *(int8_t *)
      (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 + 0x92 +
      *(longlong *)(*(longlong *)(unaff_RBX + 11000) + unaff_RBP * 8)) = 1;
-    *(undefined1 *)
+    *(int8_t *)
      (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 + 0x93 +
      *(longlong *)(*(longlong *)(unaff_RBX + 11000) + unaff_RBP * 8)) = 1;
     param_2 = *(longlong *)(unaff_RBX + 11000);
@@ -764,7 +764,7 @@ bool FUN_1804d2aef(int param_1,longlong param_2,longlong param_3)
         for (lVar14 = (longlong)(iVar2 + 1); lVar14 < 4; lVar14 = lVar14 + 1) {
                     // WARNING: Read-only address (ram,0x000180a400e0) is written
                     // WARNING: Read-only address (ram,0x000180a40110) is written
-          *(undefined1 *)
+          *(int8_t *)
            (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 +
             *(longlong *)(*(longlong *)(unaff_RBX + 11000) + unaff_RBP * 8) + 0x90 + lVar14) = 0;
         }
@@ -797,7 +797,7 @@ bool FUN_1804d2c61(void)
   longlong unaff_RBX;
   longlong unaff_RBP;
   int iVar14;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   longlong unaff_RDI;
   int in_R9D;
   ulonglong unaff_R14;
@@ -809,16 +809,16 @@ bool FUN_1804d2c61(void)
   float fVar19;
   float fVar20;
   float fVar21;
-  undefined1 auVar22 [16];
+  int8_t auVar22 [16];
   float fVar23;
-  undefined1 auVar24 [16];
+  int8_t auVar24 [16];
   float fVar25;
-  undefined1 auVar26 [16];
-  undefined1 auVar27 [16];
-  undefined1 auVar28 [16];
-  undefined1 auVar29 [16];
-  undefined1 auVar30 [16];
-  undefined1 auVar31 [16];
+  int8_t auVar26 [16];
+  int8_t auVar27 [16];
+  int8_t auVar28 [16];
+  int8_t auVar29 [16];
+  int8_t auVar30 [16];
+  int8_t auVar31 [16];
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000050;
@@ -925,7 +925,7 @@ bool FUN_1804d2c61(void)
       for (lVar13 = (longlong)(iVar2 + 1); lVar13 < 4; lVar13 = lVar13 + 1) {
                     // WARNING: Read-only address (ram,0x000180a400e0) is written
                     // WARNING: Read-only address (ram,0x000180a40110) is written
-        *(undefined1 *)
+        *(int8_t *)
          (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 +
           *(longlong *)(*(longlong *)(unaff_RBX + 11000) + unaff_RBP * 8) + 0x90 + lVar13) = 0;
       }
@@ -936,7 +936,7 @@ bool FUN_1804d2c61(void)
 
 
 
-undefined8 FUN_1804d2ccd(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
+uint64_t FUN_1804d2ccd(uint64_t param_1,uint64_t param_2,int param_3,int param_4)
 
 {
   float *pfVar1;
@@ -949,7 +949,7 @@ undefined8 FUN_1804d2ccd(undefined8 param_1,undefined8 param_2,int param_3,int p
   longlong lVar7;
   longlong unaff_RBX;
   longlong unaff_RBP;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   longlong unaff_RDI;
   ulonglong unaff_R14;
   float *unaff_R15;
@@ -966,18 +966,18 @@ undefined8 FUN_1804d2ccd(undefined8 param_1,undefined8 param_2,int param_3,int p
   float in_XMM1_Dd;
   float fVar16;
   float fVar17;
-  undefined1 auVar18 [16];
+  int8_t auVar18 [16];
   float fVar19;
-  undefined1 in_XMM4 [16];
-  undefined1 auVar20 [16];
+  int8_t in_XMM4 [16];
+  int8_t auVar20 [16];
   float fVar21;
-  undefined1 auVar22 [16];
-  undefined1 auVar23 [16];
-  undefined1 auVar24 [16];
-  undefined1 unaff_XMM6 [16];
-  undefined1 auVar25 [16];
-  undefined1 auVar26 [16];
-  undefined1 auVar27 [16];
+  int8_t auVar22 [16];
+  int8_t auVar23 [16];
+  int8_t auVar24 [16];
+  int8_t unaff_XMM6 [16];
+  int8_t auVar25 [16];
+  int8_t auVar26 [16];
+  int8_t auVar27 [16];
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000050;
@@ -1074,7 +1074,7 @@ undefined8 FUN_1804d2ccd(undefined8 param_1,undefined8 param_2,int param_3,int p
           uVar6 = (ulonglong)(param_3 + 1U);
           for (lVar7 = (longlong)(int)(param_3 + 1U); lVar7 < 4; lVar7 = lVar7 + 1) {
             uVar6 = *(ulonglong *)(unaff_RBX + 11000);
-            *(undefined1 *)
+            *(int8_t *)
              (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 +
               *(longlong *)(uVar6 + unaff_RBP * 8) + 0x90 + lVar7) = 0;
           }
@@ -1087,7 +1087,7 @@ undefined8 FUN_1804d2ccd(undefined8 param_1,undefined8 param_2,int param_3,int p
 
 
 
-undefined8 FUN_1804d2ef8(undefined8 param_1,float param_2,float param_3,float param_4)
+uint64_t FUN_1804d2ef8(uint64_t param_1,float param_2,float param_3,float param_4)
 
 {
   undefined7 uVar1;
@@ -1096,12 +1096,12 @@ undefined8 FUN_1804d2ef8(undefined8 param_1,float param_2,float param_3,float pa
   longlong lVar4;
   longlong unaff_RBX;
   longlong unaff_RBP;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   int in_R8D;
   int in_R9D;
   ulonglong unaff_R14;
   float in_XMM4_Da;
-  undefined8 in_stack_00000040;
+  uint64_t in_stack_00000040;
   float fStack0000000000000050;
   float fStack0000000000000054;
   
@@ -1116,7 +1116,7 @@ undefined8 FUN_1804d2ef8(undefined8 param_1,float param_2,float param_3,float pa
     uVar3 = (ulonglong)(in_R8D + 1U);
     for (lVar4 = (longlong)(int)(in_R8D + 1U); lVar4 < 4; lVar4 = lVar4 + 1) {
       uVar3 = *(ulonglong *)(unaff_RBX + 11000);
-      *(undefined1 *)
+      *(int8_t *)
        (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 +
         *(longlong *)(uVar3 + unaff_RBP * 8) + 0x90 + lVar4) = 0;
     }
@@ -1126,7 +1126,7 @@ undefined8 FUN_1804d2ef8(undefined8 param_1,float param_2,float param_3,float pa
 
 
 
-undefined1 FUN_1804d2f9f(void)
+int8_t FUN_1804d2f9f(void)
 
 {
   return 0;
@@ -1136,7 +1136,7 @@ undefined1 FUN_1804d2f9f(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-bool FUN_1804d2fc2(undefined8 param_1,code *param_2)
+bool FUN_1804d2fc2(uint64_t param_1,code *param_2)
 
 {
   float *pfVar1;
@@ -1165,16 +1165,16 @@ bool FUN_1804d2fc2(undefined8 param_1,code *param_2)
   float fVar19;
   float fVar20;
   float fVar21;
-  undefined1 auVar22 [16];
+  int8_t auVar22 [16];
   float fVar23;
-  undefined1 auVar24 [16];
+  int8_t auVar24 [16];
   float fVar25;
-  undefined1 auVar26 [16];
-  undefined1 auVar27 [16];
-  undefined1 auVar28 [16];
-  undefined1 auVar29 [16];
-  undefined1 auVar30 [16];
-  undefined1 auVar31 [16];
+  int8_t auVar26 [16];
+  int8_t auVar27 [16];
+  int8_t auVar28 [16];
+  int8_t auVar29 [16];
+  int8_t auVar30 [16];
+  int8_t auVar31 [16];
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000050;
@@ -1279,7 +1279,7 @@ bool FUN_1804d2fc2(undefined8 param_1,code *param_2)
               for (lVar13 = (longlong)(iVar2 + 1); lVar13 < 4; lVar13 = lVar13 + 1) {
                     // WARNING: Read-only address (ram,0x000180a400e0) is written
                     // WARNING: Read-only address (ram,0x000180a40110) is written
-                *(undefined1 *)
+                *(int8_t *)
                  (((longlong)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 +
                   *(longlong *)(*(longlong *)(unaff_RBX + 11000) + unaff_RBP * 8) + 0x90 + lVar13) =
                      0;

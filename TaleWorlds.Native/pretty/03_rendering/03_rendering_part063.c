@@ -3,9 +3,9 @@
 // 03_rendering_part063.c - 17个函数
 // 渲染系统高级处理和控制模块，包含位标志处理、树结构搜索、资源管理、线程同步等核心渲染功能
 
-// 函数: void rendering_system_bit_flag_processor(longlong param_1, undefined4 param_2, longlong param_3, uint param_4, undefined8 param_5, undefined4 param_6)
+// 函数: void rendering_system_bit_flag_processor(longlong param_1, int32_t param_2, longlong param_3, uint param_4, uint64_t param_5, int32_t param_6)
 // 渲染系统位标志处理器 - 根据不同的位标志调用相应的渲染处理函数
-void rendering_system_bit_flag_processor(longlong rendering_context_ptr, undefined4 render_param, longlong result_buffer_ptr, uint bit_flags, undefined8 process_data, undefined4 config_param)
+void rendering_system_bit_flag_processor(longlong rendering_context_ptr, int32_t render_param, longlong result_buffer_ptr, uint bit_flags, uint64_t process_data, int32_t config_param)
 
 {
   longlong *render_device_ptr;        // 渲染设备指针
@@ -18,43 +18,43 @@ void rendering_system_bit_flag_processor(longlong rendering_context_ptr, undefin
   if ((bit_flags & 1) != 0) {
     render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x38);
-    *(undefined4 *)(result_buffer_ptr + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 4) != 0) {
     render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x1f0);
-    *(undefined4 *)(result_buffer_ptr + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 2) != 0) {
     render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x210);
-    *(undefined4 *)(result_buffer_ptr + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 0x10) != 0) {
     render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x80);
-    *(undefined4 *)(result_buffer_ptr + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   if ((bit_flags & 0x20) != 0) {
     render_device_ptr = *(longlong **)(rendering_context_ptr + 0x8400);
     render_function_ptr = *(code **)(*render_device_ptr + 0x238);
-    *(undefined4 *)(result_buffer_ptr + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     (*render_function_ptr)(render_device_ptr, render_param, 1, result_buffer_ptr + 0x10);
   }
   return;
 }
 
-// 函数: void rendering_system_flag_based_executor(longlong param_1, ulonglong param_2, undefined8 param_3, uint param_4)
+// 函数: void rendering_system_flag_based_executor(longlong param_1, ulonglong param_2, uint64_t param_3, uint param_4)
 // 渲染系统基于标志的执行器 - 根据标志位执行不同的渲染操作
-void rendering_system_flag_based_executor(longlong rendering_context_ptr, ulonglong execution_flags, undefined8 process_data, uint operation_mask)
+void rendering_system_flag_based_executor(longlong rendering_context_ptr, ulonglong execution_flags, uint64_t process_data, uint operation_mask)
 
 {
   ulonglong processed_flag;            // 处理后的标志
-  undefined8 data_buffer[2];          // 数据缓冲区
+  uint64_t data_buffer[2];          // 数据缓冲区
   
   processed_flag = execution_flags & 0xffffffff;
   data_buffer[0] = process_data;
@@ -87,20 +87,20 @@ void rendering_system_flag_based_executor(longlong rendering_context_ptr, ulongl
   return;
 }
 
-// 函数: void rendering_system_parameter_initializer(longlong param_1, longlong param_2, undefined8 param_3, undefined4 param_4)
+// 函数: void rendering_system_parameter_initializer(longlong param_1, longlong param_2, uint64_t param_3, int32_t param_4)
 // 渲染系统参数初始化器 - 初始化渲染参数并处理异常
-void rendering_system_parameter_initializer(longlong rendering_context_ptr, longlong result_buffer_ptr, undefined8 source_data, undefined4 data_size)
+void rendering_system_parameter_initializer(longlong rendering_context_ptr, longlong result_buffer_ptr, uint64_t source_data, int32_t data_size)
 
 {
   int init_result;                     // 初始化结果
-  undefined8 temp_buffer[2];           // 临时缓冲区
+  uint64_t temp_buffer[2];           // 临时缓冲区
   
   // 设置结果缓冲区的状态
-  *(undefined4 *)(result_buffer_ptr + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)(result_buffer_ptr + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
   
   // 调用渲染设备的初始化函数
   init_result = (**(code **)(**(longlong **)(rendering_context_ptr + 0x8400) + 0x70))
-                    (*(longlong **)(rendering_context_ptr + 0x8400), *(undefined8 *)(result_buffer_ptr + 0x10), 0, 4, 0, temp_buffer);
+                    (*(longlong **)(rendering_context_ptr + 0x8400), *(uint64_t *)(result_buffer_ptr + 0x10), 0, 4, 0, temp_buffer);
   
   // 处理初始化错误
   if (init_result < 0) {
@@ -111,9 +111,9 @@ void rendering_system_parameter_initializer(longlong rendering_context_ptr, long
   memcpy(temp_buffer[0], source_data, data_size);
 }
 
-// 函数: undefined8 * rendering_system_tree_searcher(undefined8 *param_1, longlong param_2)
+// 函数: uint64_t * rendering_system_tree_searcher(uint64_t *param_1, longlong param_2)
 // 渲染系统树结构搜索器 - 在树结构中搜索特定节点
-undefined8 * rendering_system_tree_searcher(undefined8 *tree_root_ptr, longlong search_criteria_ptr)
+uint64_t * rendering_system_tree_searcher(uint64_t *tree_root_ptr, longlong search_criteria_ptr)
 
 {
   byte comparison_result;               // 比较结果
@@ -122,21 +122,21 @@ undefined8 * rendering_system_tree_searcher(undefined8 *tree_root_ptr, longlong 
   longlong *current_node_ptr;           // 当前节点指针
   uint char_comparison_result;         // 字符比较结果
   int string_comparison_result;        // 字符串比较结果
-  undefined8 *left_child_ptr;           // 左子节点指针
-  undefined8 *right_child_ptr;          // 右子节点指针
-  undefined8 *parent_node_ptr;          // 父节点指针
+  uint64_t *left_child_ptr;           // 左子节点指针
+  uint64_t *right_child_ptr;          // 右子节点指针
+  uint64_t *parent_node_ptr;          // 父节点指针
   longlong key_offset;                  // 键偏移量
-  undefined1 temp_buffer[8];            // 临时缓冲区
+  int8_t temp_buffer[8];            // 临时缓冲区
   
-  right_child_ptr = (undefined8 *)tree_root_ptr[2];
+  right_child_ptr = (uint64_t *)tree_root_ptr[2];
   parent_node_ptr = tree_root_ptr;
   
   // 遍历树结构
-  if (right_child_ptr != (undefined8 *)0x0) {
+  if (right_child_ptr != (uint64_t *)0x0) {
     do {
       // 检查搜索条件是否有键值
       if (*(int *)(search_criteria_ptr + 0x10) == 0) {
-        left_child_ptr = (undefined8 *)right_child_ptr[1];
+        left_child_ptr = (uint64_t *)right_child_ptr[1];
         traversal_direction = false;
       }
       else {
@@ -158,11 +158,11 @@ undefined8 * rendering_system_tree_searcher(undefined8 *tree_root_ptr, longlong 
           
           traversal_direction = 0 < string_comparison_result;
           if (string_comparison_result < 1) {
-            left_child_ptr = (undefined8 *)right_child_ptr[1];
+            left_child_ptr = (uint64_t *)right_child_ptr[1];
             goto LAB_18029fd67;
           }
         }
-        left_child_ptr = (undefined8 *)*right_child_ptr;
+        left_child_ptr = (uint64_t *)*right_child_ptr;
       }
 LAB_18029fd67:
       if (traversal_direction) {
@@ -170,8 +170,8 @@ LAB_18029fd67:
       }
       parent_node_ptr = right_child_ptr;
       right_child_ptr = left_child_ptr;
-    } while (left_child_ptr != (undefined8 *)0x0);
-    right_child_ptr = (undefined8 *)0x0;
+    } while (left_child_ptr != (uint64_t *)0x0);
+    right_child_ptr = (uint64_t *)0x0;
   }
   
   // 检查找到的节点
@@ -184,7 +184,7 @@ LAB_18029fdb7:
     // 验证键值匹配
     if (*(int *)(search_criteria_ptr + 0x10) != 0) {
       key_data_ptr = (byte *)parent_node_ptr[5];
-      right_child_ptr = (undefined8 *)(*(longlong *)(search_criteria_ptr + 8) - (longlong)key_data_ptr);
+      right_child_ptr = (uint64_t *)(*(longlong *)(search_criteria_ptr + 8) - (longlong)key_data_ptr);
       
       do {
         comparison_result = *key_data_ptr;
@@ -199,13 +199,13 @@ LAB_18029fdb7:
   
   // 调用资源管理器处理结果
   current_node_ptr = (longlong *)rendering_system_resource_manager(tree_root_ptr, temp_buffer, right_child_ptr, parent_node_ptr, search_criteria_ptr);
-  return (undefined8 *)(*current_node_ptr + 0x138);
+  return (uint64_t *)(*current_node_ptr + 0x138);
 }
 
-// 函数: undefined8 * rendering_system_node_traverser(undefined8 param_1, longlong param_2, undefined8 *param_3, undefined8 *param_4)
+// 函数: uint64_t * rendering_system_node_traverser(uint64_t param_1, longlong param_2, uint64_t *param_3, uint64_t *param_4)
 // 渲染系统节点遍历器 - 遍历树节点并处理数据
-undefined8 *
-rendering_system_node_traverser(undefined8 traversal_context, longlong traversal_data, undefined8 *current_node, undefined8 *parent_node)
+uint64_t *
+rendering_system_node_traverser(uint64_t traversal_context, longlong traversal_data, uint64_t *current_node, uint64_t *parent_node)
 
 {
   byte comparison_result;               // 比较结果
@@ -215,12 +215,12 @@ rendering_system_node_traverser(undefined8 traversal_context, longlong traversal
   uint char_comparison_result;         // 字符比较结果
   int string_comparison_result;        // 字符串比较结果
   longlong traversal_offset;            // 遍历偏移量
-  undefined8 *next_node_ptr;           // 下一个节点指针
+  uint64_t *next_node_ptr;           // 下一个节点指针
   
   // 遍历节点
   do {
     if (*(int *)(traversal_data + 0x10) == 0) {
-      next_node_ptr = (undefined8 *)current_node[1];
+      next_node_ptr = (uint64_t *)current_node[1];
       traversal_direction = false;
     }
     else {
@@ -240,11 +240,11 @@ rendering_system_node_traverser(undefined8 traversal_context, longlong traversal
         
         traversal_direction = 0 < string_comparison_result;
         if (string_comparison_result < 1) {
-          next_node_ptr = (undefined8 *)current_node[1];
+          next_node_ptr = (uint64_t *)current_node[1];
           goto LAB_18029fd67;
         }
       }
-      next_node_ptr = (undefined8 *)*current_node;
+      next_node_ptr = (uint64_t *)*current_node;
     }
 LAB_18029fd67:
     if (traversal_direction) {
@@ -252,7 +252,7 @@ LAB_18029fd67:
     }
     parent_node = current_node;
     current_node = next_node_ptr;
-  } while (next_node_ptr != (undefined8 *)0x0);
+  } while (next_node_ptr != (uint64_t *)0x0);
   
   // 检查最终节点
   if (parent_node != traversal_context) {
@@ -279,7 +279,7 @@ LAB_18029fdb7:
   
   // 调用资源管理器处理结果
   result_node_ptr = (longlong *)rendering_system_resource_manager();
-  return (undefined8 *)(*result_node_ptr + 0x138);
+  return (uint64_t *)(*result_node_ptr + 0x138);
 }
 
 // 函数: longlong rendering_system_address_calculator(void)
@@ -322,10 +322,10 @@ LAB_18029fdb7:
   return *result_ptr + 0x138;
 }
 
-// 函数: undefined8 * rendering_system_resource_manager(longlong *param_1, undefined8 *param_2, undefined8 param_3, longlong *param_4, longlong param_5)
+// 函数: uint64_t * rendering_system_resource_manager(longlong *param_1, uint64_t *param_2, uint64_t param_3, longlong *param_4, longlong param_5)
 // 渲染系统资源管理器 - 管理渲染资源的分配和释放
-undefined8 *
-rendering_system_resource_manager(longlong *resource_manager_ptr, undefined8 *result_buffer_ptr, undefined8 resource_handle, longlong *target_node_ptr, longlong resource_data_ptr)
+uint64_t *
+rendering_system_resource_manager(longlong *resource_manager_ptr, uint64_t *result_buffer_ptr, uint64_t resource_handle, longlong *target_node_ptr, longlong resource_data_ptr)
 
 {
   byte comparison_result;               // 比较结果
@@ -337,7 +337,7 @@ rendering_system_resource_manager(longlong *resource_manager_ptr, undefined8 *re
   longlong key_offset;                  // 键偏移量
   longlong *comparison_node_ptr;        // 比较节点指针
   ulonglong resource_flags;             // 资源标志
-  undefined8 allocation_result;         // 分配结果
+  uint64_t allocation_result;         // 分配结果
   
   source_node_ptr = (longlong *)*resource_manager_ptr;
   
@@ -501,10 +501,10 @@ LAB_18029ffc7:
 LAB_1802a0010:
   key_offset = FUN_18062b420(_DAT_180c8ed18, 0x158, (char)resource_manager_ptr[5]);
   FUN_180068ff0(key_offset + 0x20, resource_data_ptr);
-  *(undefined8 *)(key_offset + 0x138) = 0;
-  *(undefined8 *)(key_offset + 0x140) = 0;
-  *(undefined8 *)(key_offset + 0x148) = 0;
-  *(undefined8 *)(key_offset + 0x150) = 0;
+  *(uint64_t *)(key_offset + 0x138) = 0;
+  *(uint64_t *)(key_offset + 0x140) = 0;
+  *(uint64_t *)(key_offset + 0x148) = 0;
+  *(uint64_t *)(key_offset + 0x150) = 0;
   
   // 调用资源分配函数
   FUN_18066bdc0(key_offset, comparison_node_ptr, resource_manager_ptr, allocation_result);
@@ -536,10 +536,10 @@ void rendering_system_memory_cleaner(longlong memory_manager_ptr)
           if (*(longlong *)(memory_block_ptr + 0xa8) != 0) {
             FUN_18064e900();
           }
-          *(undefined8 *)(memory_block_ptr + 0xa8) = 0;
+          *(uint64_t *)(memory_block_ptr + 0xa8) = 0;
         }
         
-        *(undefined8 *)(memory_block_ptr + 0xf0) = 0;
+        *(uint64_t *)(memory_block_ptr + 0xf0) = 0;
         FUN_180057830();
         FUN_180057830();
         
@@ -556,13 +556,13 @@ void rendering_system_memory_cleaner(longlong memory_manager_ptr)
       FUN_18064e900();
     }
     
-    *(undefined8 *)(memory_manager_ptr + 0x18) = 0;
-    *(undefined1 *)(memory_manager_ptr + 0x20) = 0;
+    *(uint64_t *)(memory_manager_ptr + 0x18) = 0;
+    *(int8_t *)(memory_manager_ptr + 0x20) = 0;
   }
   
   // 处理浮点参数
   if (*(float *)(memory_manager_ptr + 0x3c) < 0.0) {
-    *(undefined4 *)(memory_manager_ptr + 0x34) = 0x3dcccccd;
+    *(int32_t *)(memory_manager_ptr + 0x34) = 0x3dcccccd;
     return;
   }
   
@@ -570,100 +570,100 @@ void rendering_system_memory_cleaner(longlong memory_manager_ptr)
   return;
 }
 
-// 函数: void rendering_system_batch_processor(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4)
+// 函数: void rendering_system_batch_processor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4)
 // 渲染系统批处理器 - 批量处理渲染操作
-void rendering_system_batch_processor(longlong batch_context_ptr, undefined8 process_data, undefined8 render_target, undefined4 batch_config)
+void rendering_system_batch_processor(longlong batch_context_ptr, uint64_t process_data, uint64_t render_target, int32_t batch_config)
 
 {
   uint *thread_lock_ptr;                // 线程锁指针
-  undefined4 *data_source_ptr;          // 数据源指针
-  undefined8 *extended_data_ptr;        // 扩展数据指针
+  int32_t *data_source_ptr;          // 数据源指针
+  uint64_t *extended_data_ptr;        // 扩展数据指针
   uint lock_status;                     // 锁状态
   longlong *batch_item_ptr;             // 批处理项指针
-  undefined8 data_value1;               // 数据值1
-  undefined8 data_value2;               // 数据值2
-  undefined8 data_value3;               // 数据值3
+  uint64_t data_value1;               // 数据值1
+  uint64_t data_value2;               // 数据值2
+  uint64_t data_value3;               // 数据值3
   longlong item_offset;                  // 项偏移量
   longlong base_address;                 // 基地址
   int processed_count;                  // 已处理计数
   longlong list_start_ptr;               // 列表起始指针
   longlong list_end_ptr;                 // 列表结束指针
   int item_index;                       // 项索引
-  undefined1 stack_canary[32];           // 栈保护变量
+  int8_t stack_canary[32];           // 栈保护变量
   int stack_guard;                      // 栈保护
-  undefined8 stack_data1;               // 栈数据1
-  undefined4 stack_data2;               // 栈数据2
-  undefined4 stack_data3;               // 栈数据3
-  undefined4 stack_data4;               // 栈数据4
-  undefined4 stack_data5;               // 栈数据5
-  undefined4 stack_data6;               // 栈数据6
-  undefined4 stack_data7;               // 栈数据7
-  undefined4 stack_data8;               // 栈数据8
-  undefined4 stack_data9;               // 栈数据9
-  undefined4 stack_data10;              // 栈数据10
-  undefined4 stack_data11;              // 栈数据11
-  undefined4 stack_data12;              // 栈数据12
-  undefined4 stack_data13;              // 栈数据13
-  undefined8 stack_data14;               // 栈数据14
-  undefined8 stack_data15;               // 栈数据15
-  undefined4 stack_data16;              // 栈数据16
-  undefined1 stack_data17;               // 栈数据17
-  undefined4 stack_data18;               // 栈数据18
-  undefined4 stack_data19;               // 栈数据19
-  undefined4 stack_data20;              // 栈数据20
-  undefined4 stack_data21;              // 栈数据21
-  undefined4 stack_data22;              // 栈数据22
-  undefined4 stack_data23;              // 栈数据23
-  undefined4 stack_data24;              // 栈数据24
-  undefined4 stack_data25;              // 栈数据25
-  undefined4 stack_data26;              // 栈数据26
-  undefined4 stack_data27;              // 栈数据27
-  undefined4 stack_data28;              // 栈数据28
-  undefined4 stack_data29;              // 栈数据29
-  undefined4 stack_data30;              // 栈数据30
-  undefined4 stack_data31;              // 栈数据31
-  undefined4 stack_data32;              // 栈数据32
-  undefined4 stack_data33;              // 栈数据33
-  undefined8 stack_data34;              // 栈数据34
-  undefined8 stack_data35;              // 栈数据35
-  undefined4 stack_data36;              // 栈数据36
-  undefined4 stack_data37;              // 栈数据37
-  undefined4 stack_data38;              // 栈数据38
-  undefined4 stack_data39;              // 栈数据39
-  undefined4 stack_data40;              // 栈数据40
-  undefined4 stack_data41;              // 栈数据41
-  undefined4 stack_data42;              // 栈数据42
-  undefined4 stack_data43;              // 栈数据43
-  undefined4 stack_data44;              // 栈数据44
-  undefined4 stack_data45;              // 栈数据45
-  undefined4 stack_data46;              // 栈数据46
-  undefined4 stack_data47;              // 栈数据47
-  undefined4 stack_data48;              // 栈数据48
-  undefined4 stack_data49;              // 栈数据49
-  undefined4 stack_data50;              // 栈数据50
-  undefined4 stack_data51;              // 栈数据51
-  undefined4 stack_data52;              // 栈数据52
-  undefined4 stack_data53;              // 栈数据53
-  undefined4 stack_data54;              // 栈数据54
-  undefined4 stack_data55;              // 栈数据55
-  undefined4 stack_data56;              // 栈数据56
-  undefined4 stack_data57;              // 栈数据57
-  undefined4 stack_data58;              // 栈数据58
-  undefined4 stack_data59;              // 栈数据59
-  undefined4 stack_data60;              // 栈数据60
-  undefined4 stack_data61;              // 栈数据61
-  undefined4 stack_data62;              // 栈数据62
-  undefined4 stack_data63;              // 栈数据63
-  undefined4 stack_data64;              // 栈数据64
-  undefined4 stack_data65;              // 栈数据65
-  undefined4 stack_data66;              // 栈数据66
-  undefined4 stack_data67;              // 栈数据67
-  undefined4 stack_data68;              // 栈数据68
-  undefined4 stack_data69;              // 栈数据69
-  undefined4 stack_data70;              // 栈数据70
-  undefined4 stack_data71;              // 栈数据71
-  undefined8 stack_data72;              // 栈数据72
-  undefined8 stack_data73;              // 栈数据73
+  uint64_t stack_data1;               // 栈数据1
+  int32_t stack_data2;               // 栈数据2
+  int32_t stack_data3;               // 栈数据3
+  int32_t stack_data4;               // 栈数据4
+  int32_t stack_data5;               // 栈数据5
+  int32_t stack_data6;               // 栈数据6
+  int32_t stack_data7;               // 栈数据7
+  int32_t stack_data8;               // 栈数据8
+  int32_t stack_data9;               // 栈数据9
+  int32_t stack_data10;              // 栈数据10
+  int32_t stack_data11;              // 栈数据11
+  int32_t stack_data12;              // 栈数据12
+  int32_t stack_data13;              // 栈数据13
+  uint64_t stack_data14;               // 栈数据14
+  uint64_t stack_data15;               // 栈数据15
+  int32_t stack_data16;              // 栈数据16
+  int8_t stack_data17;               // 栈数据17
+  int32_t stack_data18;               // 栈数据18
+  int32_t stack_data19;               // 栈数据19
+  int32_t stack_data20;              // 栈数据20
+  int32_t stack_data21;              // 栈数据21
+  int32_t stack_data22;              // 栈数据22
+  int32_t stack_data23;              // 栈数据23
+  int32_t stack_data24;              // 栈数据24
+  int32_t stack_data25;              // 栈数据25
+  int32_t stack_data26;              // 栈数据26
+  int32_t stack_data27;              // 栈数据27
+  int32_t stack_data28;              // 栈数据28
+  int32_t stack_data29;              // 栈数据29
+  int32_t stack_data30;              // 栈数据30
+  int32_t stack_data31;              // 栈数据31
+  int32_t stack_data32;              // 栈数据32
+  int32_t stack_data33;              // 栈数据33
+  uint64_t stack_data34;              // 栈数据34
+  uint64_t stack_data35;              // 栈数据35
+  int32_t stack_data36;              // 栈数据36
+  int32_t stack_data37;              // 栈数据37
+  int32_t stack_data38;              // 栈数据38
+  int32_t stack_data39;              // 栈数据39
+  int32_t stack_data40;              // 栈数据40
+  int32_t stack_data41;              // 栈数据41
+  int32_t stack_data42;              // 栈数据42
+  int32_t stack_data43;              // 栈数据43
+  int32_t stack_data44;              // 栈数据44
+  int32_t stack_data45;              // 栈数据45
+  int32_t stack_data46;              // 栈数据46
+  int32_t stack_data47;              // 栈数据47
+  int32_t stack_data48;              // 栈数据48
+  int32_t stack_data49;              // 栈数据49
+  int32_t stack_data50;              // 栈数据50
+  int32_t stack_data51;              // 栈数据51
+  int32_t stack_data52;              // 栈数据52
+  int32_t stack_data53;              // 栈数据53
+  int32_t stack_data54;              // 栈数据54
+  int32_t stack_data55;              // 栈数据55
+  int32_t stack_data56;              // 栈数据56
+  int32_t stack_data57;              // 栈数据57
+  int32_t stack_data58;              // 栈数据58
+  int32_t stack_data59;              // 栈数据59
+  int32_t stack_data60;              // 栈数据60
+  int32_t stack_data61;              // 栈数据61
+  int32_t stack_data62;              // 栈数据62
+  int32_t stack_data63;              // 栈数据63
+  int32_t stack_data64;              // 栈数据64
+  int32_t stack_data65;              // 栈数据65
+  int32_t stack_data66;              // 栈数据66
+  int32_t stack_data67;              // 栈数据67
+  int32_t stack_data68;              // 栈数据68
+  int32_t stack_data69;              // 栈数据69
+  int32_t stack_data70;              // 栈数据70
+  int32_t stack_data71;              // 栈数据71
+  uint64_t stack_data72;              // 栈数据72
+  uint64_t stack_data73;              // 栈数据73
   ulonglong stack_canary_value;         // 栈保护值
   
   // 初始化栈保护
@@ -750,17 +750,17 @@ void rendering_system_batch_processor(longlong batch_context_ptr, undefined8 pro
           } while ((lock_status & 1) != 0);
           
           // 读取数据
-          data_source_ptr = (undefined4 *)(list_start_ptr + 4 + base_address);
+          data_source_ptr = (int32_t *)(list_start_ptr + 4 + base_address);
           stack_data38 = *data_source_ptr;
           stack_data39 = data_source_ptr[1];
           stack_data40 = data_source_ptr[2];
           stack_data41 = data_source_ptr[3];
-          extended_data_ptr = (undefined8 *)(list_start_ptr + 0x14 + base_address);
+          extended_data_ptr = (uint64_t *)(list_start_ptr + 0x14 + base_address);
           data_value1 = *extended_data_ptr;
           data_value2 = extended_data_ptr[1];
           
           // 清除锁标志
-          *(undefined4 *)(list_start_ptr + base_address) = 0;
+          *(int32_t *)(list_start_ptr + base_address) = 0;
           stack_data72 = data_value1;
           stack_data73 = data_value2;
           
@@ -818,38 +818,38 @@ void rendering_system_thread_synchronizer(void)
 
 {
   uint *thread_lock_ptr;                // 线程锁指针
-  undefined4 *data_source_ptr;          // 数据源指针
-  undefined8 *extended_data_ptr;        // 扩展数据指针
+  int32_t *data_source_ptr;          // 数据源指针
+  uint64_t *extended_data_ptr;        // 扩展数据指针
   uint lock_status;                     // 锁状态
   longlong *batch_item_ptr;             // 批处理项指针
-  undefined4 data_value1;               // 数据值1
-  undefined4 data_value2;               // 数据值2
-  undefined4 data_value3;               // 数据值3
-  undefined4 data_value4;               // 数据值4
-  undefined8 data_value5;               // 数据值5
-  undefined8 data_value6;               // 数据值6
+  int32_t data_value1;               // 数据值1
+  int32_t data_value2;               // 数据值2
+  int32_t data_value3;               // 数据值3
+  int32_t data_value4;               // 数据值4
+  uint64_t data_value5;               // 数据值5
+  uint64_t data_value6;               // 数据值6
   longlong item_offset;                  // 项偏移量
   longlong base_address;                 // 基地址
   longlong list_start_ptr;               // 列表起始指针
   longlong list_end_ptr;                 // 列表结束指针
   int processed_count;                  // 已处理计数
-  undefined4 *stack_buffer_ptr;         // 栈缓冲区指针
+  int32_t *stack_buffer_ptr;         // 栈缓冲区指针
   longlong memory_offset;               // 内存偏移量
   int item_index;                       // 项索引
-  undefined4 stack_param1;              // 栈参数1
-  undefined4 stack_param2;              // 栈参数2
-  undefined4 stack_param3;              // 栈参数3
-  undefined4 stack_param4;              // 栈参数4
-  undefined4 stack_param5;              // 栈参数5
-  undefined4 stack_param6;              // 栈参数6
-  undefined4 stack_param7;              // 栈参数7
-  undefined4 stack_param8;              // 栈参数8
-  undefined4 stack_param9;              // 栈参数9
-  undefined4 stack_param10;             // 栈参数10
-  undefined4 stack_param11;             // 栈参数11
-  undefined4 stack_param12;             // 栈参数12
-  undefined8 stack_param13;             // 栈参数13
-  undefined8 stack_param14;             // 栈参数14
+  int32_t stack_param1;              // 栈参数1
+  int32_t stack_param2;              // 栈参数2
+  int32_t stack_param3;              // 栈参数3
+  int32_t stack_param4;              // 栈参数4
+  int32_t stack_param5;              // 栈参数5
+  int32_t stack_param6;              // 栈参数6
+  int32_t stack_param7;              // 栈参数7
+  int32_t stack_param8;              // 栈参数8
+  int32_t stack_param9;              // 栈参数9
+  int32_t stack_param10;             // 栈参数10
+  int32_t stack_param11;             // 栈参数11
+  int32_t stack_param12;             // 栈参数12
+  uint64_t stack_param13;             // 栈参数13
+  uint64_t stack_param14;             // 栈参数14
   
   list_end_ptr = 0;
   
@@ -873,12 +873,12 @@ void rendering_system_thread_synchronizer(void)
         } while ((lock_status & 1) != 0);
         
         // 读取数据
-        data_source_ptr = (undefined4 *)(list_start_ptr + 4 + base_address);
+        data_source_ptr = (int32_t *)(list_start_ptr + 4 + base_address);
         data_value1 = *data_source_ptr;
         data_value2 = data_source_ptr[1];
         data_value3 = data_source_ptr[2];
         data_value4 = data_source_ptr[3];
-        extended_data_ptr = (undefined8 *)(list_start_ptr + 0x14 + base_address);
+        extended_data_ptr = (uint64_t *)(list_start_ptr + 0x14 + base_address);
         data_value5 = *extended_data_ptr;
         data_value6 = extended_data_ptr[1];
         
@@ -887,17 +887,17 @@ void rendering_system_thread_synchronizer(void)
         stack_buffer_ptr[9] = data_value2;
         stack_buffer_ptr[10] = data_value3;
         stack_buffer_ptr[11] = data_value4;
-        *(undefined8 *)(stack_buffer_ptr + 0xc) = data_value5;
-        *(undefined8 *)(stack_buffer_ptr + 0xe) = data_value6;
+        *(uint64_t *)(stack_buffer_ptr + 0xc) = data_value5;
+        *(uint64_t *)(stack_buffer_ptr + 0xe) = data_value6;
         
         // 清除锁标志
-        *(undefined4 *)(list_start_ptr + base_address) = 0;
+        *(int32_t *)(list_start_ptr + base_address) = 0;
         stack_buffer_ptr[-0xc] = data_value1;
         stack_buffer_ptr[-0xb] = data_value2;
         stack_buffer_ptr[-10] = data_value3;
         stack_buffer_ptr[-9] = data_value4;
-        *(undefined8 *)(stack_buffer_ptr + -8) = data_value5;
-        *(undefined8 *)(stack_buffer_ptr + -6) = data_value6;
+        *(uint64_t *)(stack_buffer_ptr + -8) = data_value5;
+        *(uint64_t *)(stack_buffer_ptr + -6) = data_value6;
         
         // 处理数据
         FUN_18063b5f0(stack_buffer_ptr + -4, stack_buffer_ptr + -0xc);
@@ -957,7 +957,7 @@ void rendering_system_resource_remover(longlong resource_manager_ptr, char resou
 {
   longlong *resource_list_ptr;          // 资源列表指针
   char removal_status;                  // 移除状态
-  undefined8 *resource_array_ptr;       // 资源数组指针
+  uint64_t *resource_array_ptr;       // 资源数组指针
   longlong *current_resource_ptr;      // 当前资源指针
   longlong resource_offset;             // 资源偏移量
   
@@ -980,8 +980,8 @@ void rendering_system_resource_remover(longlong resource_manager_ptr, char resou
       
       if (removal_status != '\0') {
         // 从资源数组中移除
-        for (resource_array_ptr = *(undefined8 **)(resource_offset + 0xd0);
-            (resource_array_ptr != *(undefined8 **)(resource_offset + 0xd8) && 
+        for (resource_array_ptr = *(uint64_t **)(resource_offset + 0xd0);
+            (resource_array_ptr != *(uint64_t **)(resource_offset + 0xd8) && 
              ((longlong *)*resource_array_ptr != target_resource_ptr));
             resource_array_ptr = resource_array_ptr + 1) {
         }
@@ -1092,7 +1092,7 @@ void rendering_system_mutex_manager(longlong mutex_context_ptr, longlong target_
     if (array_size == 0) {
       array_size = 1;
 LAB_1803007a9:
-      new_array_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, *(undefined1 *)(tls_data_ptr + 0x2a08));
+      new_array_ptr = (longlong *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, *(int8_t *)(tls_data_ptr + 0x2a08));
       mutex_array_ptr = *(longlong **)(tls_data_ptr + 0x29f8);
       old_array_ptr = *(longlong **)(tls_data_ptr + 0x29f0);
     }
@@ -1135,8 +1135,8 @@ LAB_1803007a9:
       tls_index = current_index;
       do {
         if (*(longlong *)(array_size + current_index * 8) == mutex_context_ptr) {
-          *(undefined8 *)(array_size + (longlong)(int)tls_index * 8) =
-               *(undefined8 *)(array_size + -8 + (longlong)mutex_status * 8);
+          *(uint64_t *)(array_size + (longlong)(int)tls_index * 8) =
+               *(uint64_t *)(array_size + -8 + (longlong)mutex_status * 8);
           *(longlong *)(tls_data_ptr + 0x29f8) = *(longlong *)(tls_data_ptr + 0x29f8) + -8;
           break;
         }
@@ -1158,17 +1158,17 @@ LAB_18030083c:
   
   if (target_mutex_ptr != 0) {
     if (*(float *)(target_mutex_ptr + 0x3c) < 0.0) {
-      *(undefined4 *)(target_mutex_ptr + 0x34) = 0x3dcccccd;
+      *(int32_t *)(target_mutex_ptr + 0x34) = 0x3dcccccd;
     }
     else {
       *(float *)(target_mutex_ptr + 0x34) = *(float *)(target_mutex_ptr + 0x3c) + 1.1920929e-07;
     }
-    *(undefined1 *)(*(longlong *)(mutex_context_ptr + 0x28) + 0xaa) = 1;
+    *(int8_t *)(*(longlong *)(mutex_context_ptr + 0x28) + 0xaa) = 1;
   }
   
   // 更新上下文浮点参数
   if (*(float *)(mutex_context_ptr + 0x3c) < 0.0) {
-    *(undefined4 *)(mutex_context_ptr + 0x34) = 0x3dcccccd;
+    *(int32_t *)(mutex_context_ptr + 0x34) = 0x3dcccccd;
   }
   else {
     *(float *)(mutex_context_ptr + 0x34) = *(float *)(mutex_context_ptr + 0x3c) + 1.1920929e-07;
@@ -1229,12 +1229,12 @@ uint rendering_system_matcher(void)
   return match_count;
 }
 
-// 函数: undefined4 rendering_system_value_returner(void)
+// 函数: int32_t rendering_system_value_returner(void)
 // 渲染系统值返回器 - 返回渲染系统值
-undefined4 rendering_system_value_returner(void)
+int32_t rendering_system_value_returner(void)
 
 {
-  undefined4 return_value;               // 返回值
+  int32_t return_value;               // 返回值
   
   return return_value;
 }

@@ -7,30 +7,30 @@ void FUN_180036850(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -58,30 +58,30 @@ void FUN_180036950(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  void *puStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -109,30 +109,30 @@ void FUN_180036a50(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -161,11 +161,11 @@ void FUN_180036a50(void)
 void FUN_180036b50(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -184,7 +184,7 @@ int FUN_180036be0(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   
   _DAT_180bf90b0 = &UNK_18098bc80;
   _DAT_180bf90b8 = &DAT_180bf90c8;
@@ -194,11 +194,11 @@ int FUN_180036be0(void)
 void FUN_180036cc0(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -219,11 +219,11 @@ void FUN_180036cc0(void)
 void FUN_180036d50(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -243,30 +243,30 @@ void FUN_180036df0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -294,30 +294,30 @@ void FUN_180036ef0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -345,30 +345,30 @@ void FUN_180036ff0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -396,30 +396,30 @@ void FUN_1800370f0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -447,30 +447,30 @@ void FUN_1800371f0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -498,30 +498,30 @@ void FUN_1800372f0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  void *puStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -549,30 +549,30 @@ void FUN_1800373f0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -600,30 +600,30 @@ void FUN_1800374f0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -652,11 +652,11 @@ void FUN_1800374f0(void)
 void FUN_1800375f0(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -676,30 +676,30 @@ void FUN_180037680(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18007fcd0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fc740,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -727,30 +727,30 @@ void FUN_180037780(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -778,30 +778,30 @@ void FUN_180037880(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -829,30 +829,30 @@ void FUN_180037980(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -880,30 +880,30 @@ void FUN_180037a80(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -931,30 +931,30 @@ void FUN_180037b80(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -982,30 +982,30 @@ void FUN_180037c80(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1033,30 +1033,30 @@ void FUN_180037d80(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1084,30 +1084,30 @@ void FUN_180037e80(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_180073930;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1135,30 +1135,30 @@ void FUN_180037f80(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1186,30 +1186,30 @@ void FUN_180038080(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1238,11 +1238,11 @@ void FUN_180038080(void)
 void FUN_180038180(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -1263,11 +1263,11 @@ void FUN_180038180(void)
 void FUN_180038210(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -1288,11 +1288,11 @@ void FUN_180038210(void)
 void FUN_1800382a0(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -1313,11 +1313,11 @@ void FUN_1800382a0(void)
 void FUN_180038330(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -1338,11 +1338,11 @@ void FUN_180038330(void)
 void FUN_1800383c0(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;

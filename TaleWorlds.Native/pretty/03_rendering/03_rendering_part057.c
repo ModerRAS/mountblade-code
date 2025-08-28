@@ -93,33 +93,33 @@
  * @warning 需要确保输入参数的有效性
  */
 void rendering_system_advanced_texture_mapper(
-    undefined8 param_1,           // 渲染上下文指针
-    undefined8 param_2,           // 纹理映射参数
+    uint64_t param_1,           // 渲染上下文指针
+    uint64_t param_2,           // 纹理映射参数
     uint param_3,                  // 纹理坐标数量
     longlong param_4,              // 纹理数据偏移量
-    undefined8 *param_5,          // 输出数据缓冲区指针
+    uint64_t *param_5,          // 输出数据缓冲区指针
     code *param_6,                 // 数据处理回调函数
-    undefined8 *param_7,          // 输入数据缓冲区指针
+    uint64_t *param_7,          // 输入数据缓冲区指针
     int param_8,                   // 数据处理维度
     float param_9,                 // 最小值参数
     float param_10,                // 最大值参数
-    undefined8 param_11           // 渲染控制参数
+    uint64_t param_11           // 渲染控制参数
 ) {
     // 局部变量声明
     float *pfVar1;                 // 浮点指针变量
     longlong lVar2;                // 长整型变量
     uint uVar3;                   // 无符号整型变量
     char cVar4;                   // 字符型变量
-    undefined4 uVar5;             // 未定义4字节变量
+    int32_t uVar5;             // 未定义4字节变量
     uint uVar6;                   // 无符号整型变量
     char *pcVar7;                 // 字符指针变量
     int iVar8;                    // 整型变量
     longlong lVar9;                // 长整型变量
-    undefined8 *puVar10;          // 未定义8字节指针变量
+    uint64_t *puVar10;          // 未定义8字节指针变量
     longlong lVar11;               // 长整型变量
     ulonglong uVar12;             // 无符号长整型变量
     uint uVar13;                  // 无符号整型变量
-    undefined8 *puVar14;          // 未定义8字节指针变量
+    uint64_t *puVar14;          // 未定义8字节指针变量
     longlong lVar15;               // 长整型变量
     ulonglong uVar16;             // 无符号长整型变量
     longlong lVar17;               // 长整型变量
@@ -135,13 +135,13 @@ void rendering_system_advanced_texture_mapper(
     float fVar27;                 // 浮点变量
     
     // 栈变量声明
-    undefined8 uStackX_10;         // 栈变量
+    uint64_t uStackX_10;         // 栈变量
     uint uStackX_18;              // 栈变量
     longlong lStackX_20;          // 栈变量
-    undefined8 in_stack_fffffffffffffe98; // 栈变量
-    undefined4 uVar29;            // 栈变量
-    undefined8 uVar28;            // 栈变量
-    undefined8 uStack_148;        // 栈变量
+    uint64_t in_stack_fffffffffffffe98; // 栈变量
+    int32_t uVar29;            // 栈变量
+    uint64_t uVar28;            // 栈变量
+    uint64_t uStack_148;        // 栈变量
     float fStack_140;             // 栈变量
     float fStack_13c;             // 栈变量
     int iStack_138;               // 栈变量
@@ -169,7 +169,7 @@ void rendering_system_advanced_texture_mapper(
     lStack_120 = _DAT_180c8a9b0;
     
     // 设置渲染状态标志
-    *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
+    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
     lStack_f0 = *(longlong *)(lVar9 + 0x1af8);
     
     // 检查渲染状态
@@ -247,9 +247,9 @@ void rendering_system_advanced_texture_mapper(
     fStack_fc = fVar26;
     
     // 执行渲染操作
-    func_0x000180124080(&fStack_128, *(undefined4 *)(lVar15 + 0x1660));
+    func_0x000180124080(&fStack_128, *(int32_t *)(lVar15 + 0x1660));
     lVar11 = *(longlong *)(lVar9 + 0x1af8);
-    *(undefined8 *)(lVar11 + 0x144) = 0;
+    *(uint64_t *)(lVar11 + 0x144) = 0;
     *(float *)(lVar11 + 0x14c) = fVar18;
     *(float *)(lVar11 + 0x150) = fVar22;
     *(float *)(lVar11 + 0x154) = fVar20;
@@ -269,7 +269,7 @@ void rendering_system_advanced_texture_mapper(
     fStack_140 = fVar20;
     fStack_13c = param_11._4_4_;
     cVar4 = FUN_180128040(&uStack_148, &fStack_140, 1);
-    uVar29 = (undefined4)((ulonglong)in_stack_fffffffffffffe98 >> 0x20);
+    uVar29 = (int32_t)((ulonglong)in_stack_fffffffffffffe98 >> 0x20);
     if (cVar4 != '\0') {
         *(uint *)(lVar11 + 0x148) = *(uint *)(lVar11 + 0x148) | 1;
     }
@@ -295,7 +295,7 @@ void rendering_system_advanced_texture_mapper(
                         iVar8 = iVar8 + 1;
                     } while (iVar8 < param_8);
                 }
-                uVar29 = (undefined4)((ulonglong)in_stack_fffffffffffffe98 >> 0x20);
+                uVar29 = (int32_t)((ulonglong)in_stack_fffffffffffffe98 >> 0x20);
                 lVar11 = lVar11 + -1;
                 lVar9 = _DAT_180c8a9b0;
                 puVar14 = puVar14 + 1;
@@ -311,11 +311,11 @@ void rendering_system_advanced_texture_mapper(
     }
     
     // 执行渲染变换操作
-    uStack_148 = *(undefined8 *)(lVar9 + 0x1738);
+    uStack_148 = *(uint64_t *)(lVar9 + 0x1738);
     fStack_140 = *(float *)(lVar9 + 0x1740);
     fStack_13c = *(float *)(lVar9 + 0x1744) * *(float *)(lVar9 + 0x1628);
     uVar5 = func_0x000180121e20(&uStack_148);
-    uVar28 = CONCAT44(uVar29, *(undefined4 *)(lVar15 + 0x1664));
+    uVar28 = CONCAT44(uVar29, *(int32_t *)(lVar15 + 0x1664));
     FUN_180122960(CONCAT44(fStack_114, fStack_118), CONCAT44(fStack_10c, fStack_110), uVar5, 1, uVar28);
     
     // 处理渲染数据
@@ -389,7 +389,7 @@ void rendering_system_advanced_texture_mapper(
             uStack_148 = *puVar14;
             fStack_140 = *(float *)(puVar14 + 1);
             fStack_13c = *(float *)((longlong)puVar14 + 0xc);
-            uVar28 = *(undefined8 *)(lVar9 + (longlong)puVar10);
+            uVar28 = *(uint64_t *)(lVar9 + (longlong)puVar10);
             FUN_18010f0d0(&uStack_148, &UNK_180a16f58, (double)fVar22, (double)fVar20, uVar28);
             puVar14 = puVar14 + 2;
             puVar10 = puVar10 + 1;
@@ -468,7 +468,7 @@ LAB_180299abc:
                 fVar25 = fStack_104 - fVar19;
                 uVar12 = (ulonglong)uVar13;
                 do {
-                    uVar29 = (undefined4)((ulonglong)uVar28 >> 0x20);
+                    uVar29 = (int32_t)((ulonglong)uVar28 >> 0x20);
                     fVar22 = (float)(param_8 + -1) * fVar18;
                     fVar18 = fVar18 + fStack_128;
                     iVar8 = (int)(fVar22 + 0.5);
@@ -494,7 +494,7 @@ LAB_180299abc:
                     fStack_118 = fStack_134 * fVar23 + (float)uStackX_10;
                     fStack_f4 = fVar20 * fVar25 + fVar19;
                     fStack_f8 = fVar18 * fVar23 + (float)uStackX_10;
-                    FUN_180293d20(*(undefined8 *)(lStack_f0 + 0x2e8), &fStack_118, &fStack_f8, uVar13, uVar28);
+                    FUN_180293d20(*(uint64_t *)(lStack_f0 + 0x2e8), &fStack_118, &fStack_f8, uVar13, uVar28);
                     uVar12 = uVar12 - 1;
                     puVar14 = param_5;
                     uVar16 = uStack_148;
@@ -537,20 +537,20 @@ void rendering_system_advanced_coordinate_transformer(void) {
     longlong lVar2;                // 长整型变量
     code *pcVar3;                  // 代码指针变量
     longlong lVar4;                // 长整型变量
-    undefined8 uVar5;             // 未定义8字节变量
+    uint64_t uVar5;             // 未定义8字节变量
     char cVar6;                   // 字符型变量
-    undefined4 uVar7;             // 未定义4字节变量
-    undefined4 uVar8;             // 未定义4字节变量
+    int32_t uVar7;             // 未定义4字节变量
+    int32_t uVar8;             // 未定义4字节变量
     uint uVar9;                   // 无符号整型变量
     char *pcVar10;                // 字符指针变量
     int iVar11;                   // 整型变量
     longlong unaff_RBX;           // 未使用的寄存器变量
-    undefined8 *puVar12;          // 未定义8字节指针变量
+    uint64_t *puVar12;          // 未定义8字节指针变量
     longlong unaff_RBP;           // 未使用的寄存器变量
     ulonglong uVar13;             // 无符号长整型变量
     uint uVar14;                  // 无符号整型变量
     int iVar15;                   // 整型变量
-    undefined8 *puVar16;          // 未定义8字节指针变量
+    uint64_t *puVar16;          // 未定义8字节指针变量
     longlong in_R9;               // 输入寄存器变量
     longlong lVar17;               // 长整型变量
     longlong in_R11;              // 输入寄存器变量
@@ -567,8 +567,8 @@ void rendering_system_advanced_coordinate_transformer(void) {
     float fVar27;                 // 浮点变量
     
     // 栈变量声明
-    undefined8 in_stack_00000020; // 栈变量
-    undefined8 uVar28;            // 栈变量
+    uint64_t in_stack_00000020; // 栈变量
+    uint64_t uVar28;            // 栈变量
     ulonglong in_stack_00000040;  // 栈变量
     float in_stack_00000048;      // 栈变量
     float fStack000000000000004c; // 栈变量
@@ -583,8 +583,8 @@ void rendering_system_advanced_coordinate_transformer(void) {
     float fStack0000000000000074; // 栈变量
     float in_stack_00000078;      // 栈变量
     float fStack000000000000007c; // 栈变量
-    undefined8 in_stack_000000b0; // 栈变量
-    undefined8 in_stack_000000b8; // 栈变量
+    uint64_t in_stack_000000b0; // 栈变量
+    uint64_t in_stack_000000b8; // 栈变量
     
     // 处理字符串参数
     pcVar10 = "";
@@ -651,9 +651,9 @@ void rendering_system_advanced_coordinate_transformer(void) {
     fStack000000000000007c = fVar21;
     
     // 执行坐标变换
-    func_0x000180124080(&stack0x00000060, *(undefined4 *)(in_R11 + 0x1660));
+    func_0x000180124080(&stack0x00000060, *(int32_t *)(in_R11 + 0x1660));
     lVar17 = *(longlong *)(unaff_RBX + 0x1af8);
-    *(undefined8 *)(lVar17 + 0x144) = 0;
+    *(uint64_t *)(lVar17 + 0x144) = 0;
     *(float *)(lVar17 + 0x14c) = fVar23;
     *(float *)(lVar17 + 0x150) = fVar24;
     *(float *)(lVar17 + 0x154) = fVar22;
@@ -673,7 +673,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
     in_stack_00000048 = fVar22;
     fStack000000000000004c = fVar21;
     cVar6 = FUN_180128040(&stack0x00000040, &stack0x00000048, 1);
-    uVar8 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
+    uVar8 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
     if (cVar6 != '\0') {
         *(uint *)(lVar17 + 0x148) = *(uint *)(lVar17 + 0x148) | 1;
     }
@@ -687,7 +687,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
         fVar21 = RENDERING_MIN_FLOAT_VALUE;
         fVar23 = RENDERING_MAX_FLOAT_VALUE;
         if (0 < (int)unaff_R14) {
-            puVar16 = *(undefined8 **)(unaff_RBP + 0xc0);
+            puVar16 = *(uint64_t **)(unaff_RBP + 0xc0);
             uVar13 = unaff_R14;
             do {
                 iVar11 = 0;
@@ -703,7 +703,7 @@ void rendering_system_advanced_coordinate_transformer(void) {
                         iVar11 = iVar11 + 1;
                     } while (iVar11 < iVar18);
                 }
-                uVar8 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
+                uVar8 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
                 puVar16 = puVar16 + 1;
                 uVar13 = uVar13 - 1;
                 unaff_RBX = _DAT_180c8a9b0;
@@ -720,11 +720,11 @@ void rendering_system_advanced_coordinate_transformer(void) {
     }
     
     // 执行矩阵变换
-    in_stack_00000040 = *(undefined8 *)(unaff_RBX + 0x1738);
+    in_stack_00000040 = *(uint64_t *)(unaff_RBX + 0x1738);
     in_stack_00000048 = *(float *)(unaff_RBX + 0x1740);
     fStack000000000000004c = *(float *)(unaff_RBX + 0x1744) * *(float *)(unaff_RBX + 0x1628);
     uVar7 = func_0x000180121e20(&stack0x00000040);
-    uVar28 = CONCAT44(uVar8, *(undefined4 *)(in_R11 + 0x1664));
+    uVar28 = CONCAT44(uVar8, *(int32_t *)(in_R11 + 0x1664));
     FUN_180122960(CONCAT44(fStack0000000000000074, in_stack_00000070),
                   CONCAT44(fStack000000000000007c, in_stack_00000078), uVar7, 1, uVar28);
     
@@ -790,17 +790,17 @@ void rendering_system_advanced_coordinate_transformer(void) {
     
     // 处理变换数据
     if (0 < (longlong)unaff_R14) {
-        puVar12 = *(undefined8 **)(unaff_RBP + 0xc0);
+        puVar12 = *(uint64_t **)(unaff_RBP + 0xc0);
         *(longlong *)(unaff_RBP + 0xa8) = *(longlong *)(unaff_RBP + 0xa8) - (longlong)puVar12;
         lVar17 = *(longlong *)(unaff_RBP + 0xa8);
-        puVar16 = *(undefined8 **)(unaff_RBP + 0xb0);
+        puVar16 = *(uint64_t **)(unaff_RBP + 0xb0);
         do {
             fVar19 = (float)(*pcVar3)(*puVar12, (longlong)iVar11 % (longlong)iVar18 & 0xffffffff);
             fVar21 = (float)(*pcVar3)(*puVar12, (longlong)(iVar11 + 1) % (longlong)iVar18 & 0xffffffff);
             in_stack_00000040 = *puVar16;
             in_stack_00000048 = *(float *)(puVar16 + 1);
             fStack000000000000004c = *(float *)((longlong)puVar16 + 0xc);
-            uVar28 = *(undefined8 *)(lVar17 + (longlong)puVar12);
+            uVar28 = *(uint64_t *)(lVar17 + (longlong)puVar12);
             FUN_18010f0d0(&stack0x00000040, &UNK_180a16f58, (double)fVar19, (double)fVar21, uVar28);
             puVar16 = puVar16 + 2;
             puVar12 = puVar12 + 1;
@@ -819,7 +819,7 @@ LAB_180299abc:
     // 最终变换处理
     if (0 < (int)unaff_R14) {
         uVar13 = unaff_R14 & 0xffffffff;
-        puVar16 = *(undefined8 **)(unaff_RBP + 0xc0);
+        puVar16 = *(uint64_t **)(unaff_RBP + 0xc0);
         fVar22 = 1.0 / (fVar22 - fVar24);
         in_stack_00000060 = 1.0 / (float)(int)uVar14;
         in_stack_00000058 = fVar22;
@@ -839,7 +839,7 @@ LAB_180299abc:
             fStack0000000000000054 = 0.0;
             fVar19 = 1.0 - fVar19;
             uVar8 = func_0x000180121e20(lVar17);
-            *(undefined4 *)(unaff_RBP + -0x78) = uVar8;
+            *(int32_t *)(unaff_RBP + -0x78) = uVar8;
             uVar9 = func_0x000180121e20();
             fVar25 = 1.0 - (float)(uVar9 >> 8 & 0xff) * RENDERING_COLOR_COMPONENT_SCALE;
             fVar23 = (float)(uVar9 >> 0x18) * *(float *)(_DAT_180c8a9b0 + 0x1628) * RENDERING_COLOR_COMPONENT_SCALE;
@@ -883,7 +883,7 @@ LAB_180299abc:
                 uVar9 = *(uint *)(unaff_RBP + -0x78);
                 uVar13 = (ulonglong)uVar14;
                 do {
-                    uVar8 = (undefined4)((ulonglong)uVar28 >> 0x20);
+                    uVar8 = (int32_t)((ulonglong)uVar28 >> 0x20);
                     fVar27 = (float)iVar11 * fVar21;
                     fVar21 = fVar21 + in_stack_00000060;
                     iVar15 = (int)(fVar27 + 0.5);
@@ -906,7 +906,7 @@ LAB_180299abc:
                                  (int)(fVar20 * 255.0 + 0.5) << 0x10;
                     }
                     fStack0000000000000074 = fStack0000000000000074 + *(float *)(unaff_RBP + 0x90);
-                    uVar5 = *(undefined8 *)(*(longlong *)(unaff_RBP + -0x68) + 0x2e8);
+                    uVar5 = *(uint64_t *)(*(longlong *)(unaff_RBP + -0x68) + 0x2e8);
                     in_stack_00000070 = fStack0000000000000054 * fVar24 + *(float *)(unaff_RBP + 0x98);
                     *(float *)(unaff_RBP + -0x6c) = fVar19 * fVar22 + *(float *)(unaff_RBP + 0x90);
                     *(float *)(unaff_RBP + -0x70) = fVar21 * fVar24 + *(float *)(unaff_RBP + 0x98);
@@ -930,7 +930,7 @@ LAB_180299abc:
     }
     
     // 完成坐标变换操作
-    FUN_180122320(CONCAT44(*(undefined4 *)(unaff_RBP + 0x90),
+    FUN_180122320(CONCAT44(*(int32_t *)(unaff_RBP + 0x90),
                           fVar26 + *(float *)(in_stack_00000068 + 0x1674)), &DAT_18098bc73, 0, 1);
     return;
 }

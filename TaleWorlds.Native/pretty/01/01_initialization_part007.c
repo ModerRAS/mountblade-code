@@ -316,32 +316,32 @@ void register_component_node_type1(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_768,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -374,32 +374,32 @@ void register_component_node_type2(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_9b8,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -432,32 +432,32 @@ void register_component_node_type3(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_940,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -490,32 +490,32 @@ void register_component_node_type4(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_918,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -548,32 +548,32 @@ void register_component_node_type5(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_968,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -606,32 +606,32 @@ void register_component_node_type6(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_990,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -664,32 +664,32 @@ void register_component_node_type7(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_9e0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -722,32 +722,32 @@ void register_component_node_with_callback1(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
   code *callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = component_callback_73930;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_8f0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -780,32 +780,32 @@ void register_component_node_type8(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_8c8,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -838,32 +838,32 @@ void register_component_node_with_callback2(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
   code *callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = component_callback_25e330;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_d48,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -897,11 +897,11 @@ void register_component_node_with_callback2(void)
 void register_system_string_type1(void)
 
 {
-  undefined8 in_R9;
-  undefined *string_table_ptr;
-  undefined1 *string_buffer;
-  undefined4 string_length;
-  undefined1 local_buffer [136];
+  uint64_t in_R9;
+  void *string_table_ptr;
+  int8_t *string_buffer;
+  int32_t string_length;
+  int8_t local_buffer [136];
   
   string_table_ptr = &system_string_table_cc28;
   string_buffer = local_buffer;
@@ -923,11 +923,11 @@ void register_system_string_type1(void)
 void register_system_string_type2(void)
 
 {
-  undefined8 in_R9;
-  undefined *string_table_ptr;
-  undefined1 *string_buffer;
-  undefined4 string_length;
-  undefined1 local_buffer [136];
+  uint64_t in_R9;
+  void *string_table_ptr;
+  int8_t *string_buffer;
+  int32_t string_length;
+  int8_t local_buffer [136];
   
   string_table_ptr = &system_string_table_cc28;
   string_buffer = local_buffer;
@@ -949,11 +949,11 @@ void register_system_string_type2(void)
 void register_system_string_type3(void)
 
 {
-  undefined8 in_R9;
-  undefined *string_table_ptr;
-  undefined1 *string_buffer;
-  undefined4 string_length;
-  undefined1 local_buffer [136];
+  uint64_t in_R9;
+  void *string_table_ptr;
+  int8_t *string_buffer;
+  int32_t string_length;
+  int8_t local_buffer [136];
   
   string_table_ptr = &system_string_table_cc28;
   string_buffer = local_buffer;
@@ -975,11 +975,11 @@ void register_system_string_type3(void)
 void register_system_string_type4(void)
 
 {
-  undefined8 in_R9;
-  undefined *string_table_ptr;
-  undefined1 *string_buffer;
-  undefined4 string_length;
-  undefined1 local_buffer [136];
+  uint64_t in_R9;
+  void *string_table_ptr;
+  int8_t *string_buffer;
+  int32_t string_length;
+  int8_t local_buffer [136];
   
   string_table_ptr = &system_string_table_cc28;
   string_buffer = local_buffer;
@@ -1001,11 +1001,11 @@ void register_system_string_type4(void)
 void register_system_string_type5(void)
 
 {
-  undefined8 in_R9;
-  undefined *string_table_ptr;
-  undefined1 *string_buffer;
-  undefined4 string_length;
-  undefined1 local_buffer [136];
+  uint64_t in_R9;
+  void *string_table_ptr;
+  int8_t *string_buffer;
+  int32_t string_length;
+  int8_t local_buffer [136];
   
   string_table_ptr = &system_string_table_cc28;
   string_buffer = local_buffer;
@@ -1027,11 +1027,11 @@ void register_system_string_type5(void)
 void register_system_string_type6(void)
 
 {
-  undefined8 in_R9;
-  undefined *string_table_ptr;
-  undefined1 *string_buffer;
-  undefined4 string_length;
-  undefined1 local_buffer [136];
+  uint64_t in_R9;
+  void *string_table_ptr;
+  int8_t *string_buffer;
+  int32_t string_length;
+  int8_t local_buffer [136];
   
   string_table_ptr = &system_string_table_cc28;
   string_buffer = local_buffer;
@@ -1053,11 +1053,11 @@ void register_system_string_type6(void)
 void register_system_string_type7(void)
 
 {
-  undefined8 in_R9;
-  undefined *string_table_ptr;
-  undefined1 *string_buffer;
-  undefined4 string_length;
-  undefined1 local_buffer [136];
+  uint64_t in_R9;
+  void *string_table_ptr;
+  int8_t *string_buffer;
+  int32_t string_length;
+  int8_t local_buffer [136];
   
   string_table_ptr = &system_string_table_cc28;
   string_buffer = local_buffer;
@@ -1079,11 +1079,11 @@ void register_system_string_type7(void)
 void register_system_string_type8(void)
 
 {
-  undefined8 in_R9;
-  undefined *string_table_ptr;
-  undefined1 *string_buffer;
-  undefined4 string_length;
-  undefined1 local_buffer [136];
+  uint64_t in_R9;
+  void *string_table_ptr;
+  int8_t *string_buffer;
+  int32_t string_length;
+  int8_t local_buffer [136];
   
   string_table_ptr = &system_string_table_cc28;
   string_buffer = local_buffer;
@@ -1105,11 +1105,11 @@ void register_system_string_type8(void)
 void register_system_string_type9(void)
 
 {
-  undefined8 in_R9;
-  undefined *string_table_ptr;
-  undefined1 *string_buffer;
-  undefined4 string_length;
-  undefined1 local_buffer [136];
+  uint64_t in_R9;
+  void *string_table_ptr;
+  int8_t *string_buffer;
+  int32_t string_length;
+  int8_t local_buffer [136];
   
   string_table_ptr = &system_string_table_cc28;
   string_buffer = local_buffer;
@@ -1130,32 +1130,32 @@ void register_component_node_with_callback3(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
   code *callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = component_callback_25cc00;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_10a0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1188,32 +1188,32 @@ void register_component_node_with_callback4(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
   code *callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = component_callback_25c000;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_1078,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1246,32 +1246,32 @@ void register_component_node_type9(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_1050,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1304,32 +1304,32 @@ void register_component_node_with_callback5(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
   code *callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = component_callback_25d270;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_1028,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1362,32 +1362,32 @@ void register_component_node_type10(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_1000,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1420,32 +1420,32 @@ void register_component_node_with_special_callback(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined *special_callback;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  void *special_callback;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   special_callback = &special_callback_868c0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_fd8,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1478,32 +1478,32 @@ void register_component_node_type11(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_fb0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1536,32 +1536,32 @@ void register_component_node_with_callback3_duplicate(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
   code *callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = component_callback_25cc00;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_10a0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1594,32 +1594,32 @@ void register_component_node_with_callback4_duplicate(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
   code *callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = component_callback_25c000;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_1078,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1652,32 +1652,32 @@ void register_component_node_type9_duplicate(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_1050,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1710,32 +1710,32 @@ void register_component_node_with_callback5_duplicate(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
   code *callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = component_callback_25d270;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_1028,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1768,32 +1768,32 @@ void register_component_node_type10_duplicate(void)
 
 {
   char node_flag;
-  undefined8 *root_node;
+  uint64_t *root_node;
   int compare_result;
   longlong *tree_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_node;
-  undefined8 callback_function;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_node;
+  uint64_t callback_function;
   
   tree_manager = (longlong *)get_tree_manager();
-  root_node = (undefined8 *)*tree_manager;
+  root_node = (uint64_t *)*tree_manager;
   node_flag = *(char *)((longlong)root_node[1] + 0x19);
   callback_function = 0;
   previous_node = root_node;
-  current_node = (undefined8 *)root_node[1];
+  current_node = (uint64_t *)root_node[1];
   
   // 在树中搜索合适的插入位置
   while (node_flag == '\0') {
     compare_result = memcmp(current_node + 4,&component_guid_1000,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;

@@ -16,10 +16,10 @@
 //------------------------------------------------------------------------------
 
 // 文件系统子模块句柄类型
-typedef undefined8 FileSystemSubModuleHandle;      // 文件系统子模块句柄
-typedef undefined8 StorageSubModuleHandle;         // 存储子模块句柄
-typedef undefined8 FileSubModuleHandle;            // 文件子模块句柄
-typedef undefined8 PersistenceSubModuleHandle;     // 持久化子模块句柄
+typedef uint64_t FileSystemSubModuleHandle;      // 文件系统子模块句柄
+typedef uint64_t StorageSubModuleHandle;         // 存储子模块句柄
+typedef uint64_t FileSubModuleHandle;            // 文件子模块句柄
+typedef uint64_t PersistenceSubModuleHandle;     // 持久化子模块句柄
 
 // 子模块状态常量
 #define SUBMODULE_STATE_READY       0x00000001     // 子模块就绪状态
@@ -64,7 +64,7 @@ typedef undefined8 PersistenceSubModuleHandle;     // 持久化子模块句柄
 //   param_2 - 操作类型或参数，标识要执行的子模块操作
 //
 // 返回值：
-//   undefined8 - 操作结果或状态码
+//   uint64_t - 操作结果或状态码
 //
 // 处理流程：
 //   1. 验证输入参数的有效性
@@ -91,13 +91,13 @@ typedef undefined8 PersistenceSubModuleHandle;     // 持久化子模块句柄
 //   简化实现：基于文件系统子模块架构，创建完整的子模块管理功能
 //   优化点：添加完整的子模块初始化、配置、监控功能
 //------------------------------------------------------------------------------
-undefined8 FUN_18001234a(undefined8 param_1, undefined8 param_2)
+uint64_t FUN_18001234a(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
-    undefined8 uVar1;                            // 操作结果
+    uint64_t uVar1;                            // 操作结果
     longlong lVar2;                              // 上下文指针
     int iVar3;                                  // 状态标志
-    undefined8 auStack_28 [4];                   // 栈缓冲区 (32字节)
+    uint64_t auStack_28 [4];                   // 栈缓冲区 (32字节)
     ulonglong uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制
@@ -195,8 +195,8 @@ undefined8 FUN_18001234a(undefined8 param_1, undefined8 param_2)
 //------------------------------------------------------------------------------
 // 子模块操作函数声明
 //------------------------------------------------------------------------------
-undefined8 SubModuleOperation(longlong context, undefined8 operation, undefined8 *buffer);
-undefined8 ConfigureSubModule(longlong context, undefined8 *buffer);
-undefined8 MonitorSubModule(longlong context, undefined8 *buffer);
+uint64_t SubModuleOperation(longlong context, uint64_t operation, uint64_t *buffer);
+uint64_t ConfigureSubModule(longlong context, uint64_t *buffer);
+uint64_t MonitorSubModule(longlong context, uint64_t *buffer);
 
 

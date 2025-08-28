@@ -49,8 +49,8 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
   longlong index_buffer_ptr;
   
   // SIMD操作寄存器
-  undefined4 simd_reg1;
-  undefined4 simd_reg2;
+  int32_t simd_reg1;
+  int32_t simd_reg2;
   
   // 浮点数变量
   float texture_value1;
@@ -63,18 +63,18 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
   float interpolated_value4;
   
   // SIMD数据数组
-  undefined1 simd_data_array1[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array2[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array3[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array4[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array5[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array6[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array7[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array8[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array9[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array10[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array11[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 simd_data_array12[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array1[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array2[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array3[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array4[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array5[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array6[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array7[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array8[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array9[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array10[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array11[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t simd_data_array12[RENDERING_MAX_TEXTURE_COORDINATES];
   
   // 像素处理变量
   uint pixel_batch_count;
@@ -91,31 +91,31 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
   uint stack_var1;
   uint stack_var2;
   uint stack_var3;
-  undefined4 stack_var4;
+  int32_t stack_var4;
   uint stack_var5;
   uint stack_var6;
-  undefined8 stack_var7;
+  uint64_t stack_var7;
   float stack_float1;
   float stack_float2;
-  undefined8 stack_var8;
+  uint64_t stack_var8;
   float stack_float3;
   float stack_float4;
-  undefined8 stack_var9;
+  uint64_t stack_var9;
   float stack_float5;
   float stack_float6;
   longlong stack_long1;
-  undefined8 stack_var10;
+  uint64_t stack_var10;
   float stack_float7;
   float stack_float8;
-  undefined1 stack_array1[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t stack_array1[RENDERING_MAX_TEXTURE_COORDINATES];
   longlong stack_long2;
   int stack_int_array1[RENDERING_PIXEL_PROCESSING_BATCH_SIZE];
   uint stack_uint_array1[RENDERING_PIXEL_PROCESSING_BATCH_SIZE];
   int stack_int_array2[RENDERING_PIXEL_PROCESSING_BATCH_SIZE];
   uint stack_uint_array2[RENDERING_PIXEL_PROCESSING_BATCH_SIZE];
-  undefined1 stack_array2[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 stack_array3[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 stack_array4[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t stack_array2[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t stack_array3[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t stack_array4[RENDERING_MAX_TEXTURE_COORDINATES];
   float stack_float_array1[RENDERING_PIXEL_PROCESSING_BATCH_SIZE];
   float stack_float_array2[RENDERING_PIXEL_PROCESSING_BATCH_SIZE];
   float stack_float_array3[RENDERING_PIXEL_PROCESSING_BATCH_SIZE];
@@ -136,10 +136,10 @@ void rendering_advanced_texture_mapper_process_pixel_batches(longlong rendering_
   // 临时变量
   float temp_float1;
   float temp_float2;
-  undefined1 temp_array1[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 temp_array2[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 temp_array3[RENDERING_MAX_TEXTURE_COORDINATES];
-  undefined1 temp_array4[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t temp_array1[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t temp_array2[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t temp_array3[RENDERING_MAX_TEXTURE_COORDINATES];
+  int8_t temp_array4[RENDERING_MAX_TEXTURE_COORDINATES];
   
   // 初始化安全栈保护
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)&iteration_count;
@@ -295,9 +295,9 @@ static void rendering_execute_simd_pixel_processing(
   char rendering_mode
 ) {
   // SIMD寄存器准备
-  undefined1 simd_src1[16];
-  undefined1 simd_src2[16];
-  undefined1 simd_dest[16];
+  int8_t simd_src1[16];
+  int8_t simd_src2[16];
+  int8_t simd_dest[16];
   
   // 检查是否启用SIMD混合模式
   if ((*(byte *)(texture_coords + 0x18) & RENDERING_STATE_FLAG_SIMD_BLENDING) != 0) {

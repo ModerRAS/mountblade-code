@@ -59,45 +59,45 @@
 ===================================================================================*/
 
 // 渲染系统高级控制和数据处理函数
-void RenderingSystem_RemoveRenderObject(longlong *render_context, undefined8 param_2, undefined8 param_3, undefined8 param_4);
-void RenderingSystem_ProcessDataTransform(longlong param_1, undefined1 param_2, undefined8 *param_3, undefined8 *param_4, char param_5);
-void RenderingSystem_UpdateRenderState(longlong param_1, undefined4 param_2);
+void RenderingSystem_RemoveRenderObject(longlong *render_context, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void RenderingSystem_ProcessDataTransform(longlong param_1, int8_t param_2, uint64_t *param_3, uint64_t *param_4, char param_5);
+void RenderingSystem_UpdateRenderState(longlong param_1, int32_t param_2);
 void RenderingSystem_ExecuteRenderBatch(void);
 void RenderingSystem_EmptyFunction_1(void);
 longlong * RenderingSystem_GetRenderResource(longlong *resource_manager, longlong param_2);
-undefined8 * RenderingSystem_AcquireRenderResource(undefined8 *resource_manager, longlong *param_2);
+uint64_t * RenderingSystem_AcquireRenderResource(uint64_t *resource_manager, longlong *param_2);
 void RenderingSystem_InitializeRenderContext(void);
-void RenderingSystem_ProcessRenderCommand(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
-void RenderingSystem_SetRenderParameters(undefined8 param_1, undefined1 param_2);
-void RenderingSystem_ReleaseRenderResource(undefined8 param_1);
-void RenderingSystem_DestroyRenderObject(undefined8 param_1);
-void RenderingSystem_ProcessRenderData(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
-void RenderingSystem_UpdateRenderQueue(undefined8 param_1);
+void RenderingSystem_ProcessRenderCommand(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void RenderingSystem_SetRenderParameters(uint64_t param_1, int8_t param_2);
+void RenderingSystem_ReleaseRenderResource(uint64_t param_1);
+void RenderingSystem_DestroyRenderObject(uint64_t param_1);
+void RenderingSystem_ProcessRenderData(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+void RenderingSystem_UpdateRenderQueue(uint64_t param_1);
 void RenderingSystem_LockRenderMutex(void);
-void RenderingSystem_SetRenderConfig(undefined8 param_1, undefined8 *param_2);
+void RenderingSystem_SetRenderConfig(uint64_t param_1, uint64_t *param_2);
 void RenderingSystem_UnlockRenderMutex(void);
-void RenderingSystem_ExecuteRenderOperation(undefined8 param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4, undefined8 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8, undefined4 param_9, undefined4 param_10);
-void RenderingSystem_ProcessRenderTransform(undefined8 param_1);
-void RenderingSystem_UpdateRenderGeometry(undefined8 param_1);
+void RenderingSystem_ExecuteRenderOperation(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t param_4, uint64_t param_5, int32_t param_6, int32_t param_7, int32_t param_8, int32_t param_9, int32_t param_10);
+void RenderingSystem_ProcessRenderTransform(uint64_t param_1);
+void RenderingSystem_UpdateRenderGeometry(uint64_t param_1);
 void RenderingSystem_ToggleRenderState(void);
-void RenderingSystem_ProcessRenderString(undefined8 param_1, undefined8 param_2, char *param_3);
-void RenderingSystem_ExecuteRenderBatch(undefined8 param_1, undefined8 param_2);
-void RenderingSystem_UpdateRenderMaterial(undefined8 param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4);
-void RenderingSystem_ReleaseRenderTexture(undefined8 param_1);
-void RenderingSystem_UpdateRenderParameters(undefined8 param_1, undefined8 param_2, float param_3, float param_4, int param_5);
-void RenderingSystem_SetRenderShader(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, int param_4);
-void RenderingSystem_UpdateRenderEffects(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4, int param_5);
-void RenderingSystem_ProcessRenderBuffer(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4, undefined4 *param_5, int param_6);
+void RenderingSystem_ProcessRenderString(uint64_t param_1, uint64_t param_2, char *param_3);
+void RenderingSystem_ExecuteRenderBatch(uint64_t param_1, uint64_t param_2);
+void RenderingSystem_UpdateRenderMaterial(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t param_4);
+void RenderingSystem_ReleaseRenderTexture(uint64_t param_1);
+void RenderingSystem_UpdateRenderParameters(uint64_t param_1, uint64_t param_2, float param_3, float param_4, int param_5);
+void RenderingSystem_SetRenderShader(uint64_t param_1, int32_t *param_2, int32_t *param_3, int param_4);
+void RenderingSystem_UpdateRenderEffects(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t *param_4, int param_5);
+void RenderingSystem_ProcessRenderBuffer(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t *param_4, int32_t *param_5, int param_6);
 float RenderingSystem_CalculateRenderExponent(void);
-void RenderingSystem_CopyRenderData(undefined8 param_1, undefined8 param_2, int param_3, undefined8 param_4, undefined8 param_5, undefined1 param_6);
-void RenderingSystem_TransferRenderData(undefined8 param_1, undefined8 param_2, undefined8 param_3, int param_4);
+void RenderingSystem_CopyRenderData(uint64_t param_1, uint64_t param_2, int param_3, uint64_t param_4, uint64_t param_5, int8_t param_6);
+void RenderingSystem_TransferRenderData(uint64_t param_1, uint64_t param_2, uint64_t param_3, int param_4);
 void RenderingSystem_UpdateRenderColor(char param_1, char param_2, char param_3, char param_4, char param_5, char param_6);
 void RenderingSystem_SetRenderColor(float param_1, float param_2, float param_3);
-undefined8 RenderingSystem_CheckKeyState(ulonglong param_1);
+uint64_t RenderingSystem_CheckKeyState(ulonglong param_1);
 void RenderingSystem_ProcessKeyInput(uint param_1);
-undefined4 RenderingSystem_ValidateRenderData(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
-undefined4 * RenderingSystem_UpdateRenderParameter(undefined4 *param_1, float param_2);
-void RenderingSystem_CopyRenderBuffers(undefined8 *param_1, undefined8 *param_2);
+int32_t RenderingSystem_ValidateRenderData(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+int32_t * RenderingSystem_UpdateRenderParameter(int32_t *param_1, float param_2);
+void RenderingSystem_CopyRenderBuffers(uint64_t *param_1, uint64_t *param_2);
 
 /*===================================================================================
     核心函数实现
@@ -120,15 +120,15 @@ void RenderingSystem_CopyRenderBuffers(undefined8 *param_1, undefined8 *param_2)
  * 5. 更新渲染状态标志
  * 6. 从列表中移除对象引用
  */
-void FUN_180443820(longlong *render_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180443820(longlong *render_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong *object_list;
     longlong context_data;
     longlong resource_manager;
-    undefined8 *current_object;
+    uint64_t *current_object;
     ulonglong object_count;
     int object_index;
-    undefined8 removal_flag;
+    uint64_t removal_flag;
     
     removal_flag = RENDERING_SYSTEM_FLAG_FFFFFFFE;
     context_data = render_context[4];
@@ -141,7 +141,7 @@ void FUN_180443820(longlong *render_context, undefined8 param_2, undefined8 para
         (**(code **)(*render_context + 0x28))();
         
         object_index = 0;
-        current_object = (undefined8 *)*object_list;
+        current_object = (uint64_t *)*object_list;
         object_count = *(longlong *)(context_data + RENDERING_SYSTEM_OFFSET_60D18) - (longlong)current_object >> 3;
         
         // 查找目标对象
@@ -192,12 +192,12 @@ LAB_18044388e:
  * @param param_4 输出数据指针2
  * @param param_5 变换模式标志
  */
-void FUN_180443930(longlong param_1, undefined1 param_2, undefined8 *param_3, undefined8 *param_4, char param_5)
+void FUN_180443930(longlong param_1, int8_t param_2, uint64_t *param_3, uint64_t *param_4, char param_5)
 {
-    undefined8 transform_data_1;
-    undefined8 transform_data_2;
-    undefined8 transform_data_3;
-    undefined8 transform_data_4;
+    uint64_t transform_data_1;
+    uint64_t transform_data_2;
+    uint64_t transform_data_3;
+    uint64_t transform_data_4;
     
     if (param_1 != 0) {
         // 执行基础变换操作
@@ -225,7 +225,7 @@ void FUN_180443930(longlong param_1, undefined1 param_2, undefined8 *param_3, un
  * @param param_1 渲染对象指针
  * @param param_2 新的状态值
  */
-void FUN_1804439b0(longlong param_1, undefined4 param_2)
+void FUN_1804439b0(longlong param_1, int32_t param_2)
 {
     ulonglong child_index;
     uint child_count;
@@ -238,7 +238,7 @@ void FUN_1804439b0(longlong param_1, undefined4 param_2)
     // 递归处理所有子对象
     if (*(longlong *)(param_1 + RENDERING_SYSTEM_OFFSET_1C8) - *(longlong *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) >> 3 != 0) {
         do {
-            FUN_1804439b0(*(undefined8 *)(*(longlong *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) + child_index), param_2);
+            FUN_1804439b0(*(uint64_t *)(*(longlong *)(param_1 + RENDERING_SYSTEM_OFFSET_1C0) + child_index), param_2);
             child_index = child_index + 8;
             child_count = (int)total_children + 1;
             total_children = (ulonglong)child_count;
@@ -255,7 +255,7 @@ void FUN_1804439b0(longlong param_1, undefined4 param_2)
 void FUN_1804439e4(void)
 {
     longlong render_context;
-    undefined4 render_state;
+    int32_t render_state;
     ulonglong object_index;
     uint object_count;
     
@@ -263,7 +263,7 @@ void FUN_1804439e4(void)
     object_index = (ulonglong)object_count;
     
     do {
-        FUN_1804439b0(*(undefined8 *)(*(longlong *)(render_context + RENDERING_SYSTEM_OFFSET_1C0) + object_index), render_state);
+        FUN_1804439b0(*(uint64_t *)(*(longlong *)(render_context + RENDERING_SYSTEM_OFFSET_1C0) + object_index), render_state);
         object_index = object_index + 8;
         object_count = object_count + 1;
     } while ((ulonglong)(longlong)(int)object_count <
@@ -291,8 +291,8 @@ void FUN_180443a27(void)
 longlong * FUN_180443a40(longlong *resource_manager, longlong param_2)
 {
     longlong *resource_ptr;
-    undefined4 resource_status;
-    undefined4 resource_data;
+    int32_t resource_status;
+    int32_t resource_data;
     
     resource_ptr = *(longlong **)(param_2 + 0x28);
     if (resource_ptr == (longlong *)0x0) {
@@ -316,11 +316,11 @@ longlong * FUN_180443a40(longlong *resource_manager, longlong param_2)
  * @param param_2 资源参数
  * @return 资源容器指针
  */
-undefined8 * FUN_180443aa0(undefined8 *resource_container, longlong *param_2)
+uint64_t * FUN_180443aa0(uint64_t *resource_container, longlong *param_2)
 {
-    undefined4 resource_status;
+    int32_t resource_status;
     longlong *resource_ptr;
-    undefined4 resource_data;
+    int32_t resource_data;
     
     resource_ptr = (longlong *)(**(code **)(*param_2 + 0xb0))(param_2);
     if (resource_ptr == (longlong *)0x0) {
@@ -343,48 +343,48 @@ undefined8 * FUN_180443aa0(undefined8 *resource_container, longlong *param_2)
 void FUN_180443b00(void)
 {
     char *string_ptr;
-    undefined8 *resource_ptr;
+    uint64_t *resource_ptr;
     longlong *context_manager;
-    undefined8 config_data;
+    uint64_t config_data;
     longlong system_data;
-    undefined *texture_ptr;
-    undefined *texture_data;
-    undefined1 stack_buffer_278 [96];
-    undefined8 stack_data_218;
+    void *texture_ptr;
+    void *texture_data;
+    int8_t stack_buffer_278 [96];
+    uint64_t stack_data_218;
     int stack_array_1d0 [2];
-    undefined1 stack_data_1c8;
-    undefined8 stack_data_1b8;
-    undefined8 stack_data_1b0;
-    undefined8 stack_data_1a8;
-    undefined8 stack_data_1a0;
-    undefined8 *stack_ptr_198;
-    undefined4 stack_data_190;
-    undefined1 stack_array_18c [4];
+    int8_t stack_data_1c8;
+    uint64_t stack_data_1b8;
+    uint64_t stack_data_1b0;
+    uint64_t stack_data_1a8;
+    uint64_t stack_data_1a0;
+    uint64_t *stack_ptr_198;
+    int32_t stack_data_190;
+    int8_t stack_array_18c [4];
     longlong *stack_ptr_188;
-    undefined1 stack_array_178 [16];
-    undefined8 stack_data_168;
-    undefined8 stack_data_160;
-    undefined8 stack_data_158;
-    undefined8 stack_data_150;
-    undefined8 stack_data_148;
-    undefined1 stack_data_140;
-    undefined8 stack_array_138 [7];
-    undefined8 stack_data_100;
-    undefined8 stack_data_f8;
-    undefined4 stack_data_f0;
-    undefined1 stack_data_e8;
-    undefined8 stack_data_d8;
-    undefined8 stack_data_d0;
-    undefined *stack_ptr_c8;
-    undefined *stack_ptr_c0;
-    undefined4 stack_data_b8;
+    int8_t stack_array_178 [16];
+    uint64_t stack_data_168;
+    uint64_t stack_data_160;
+    uint64_t stack_data_158;
+    uint64_t stack_data_150;
+    uint64_t stack_data_148;
+    int8_t stack_data_140;
+    uint64_t stack_array_138 [7];
+    uint64_t stack_data_100;
+    uint64_t stack_data_f8;
+    int32_t stack_data_f0;
+    int8_t stack_data_e8;
+    uint64_t stack_data_d8;
+    uint64_t stack_data_d0;
+    void *stack_ptr_c8;
+    void *stack_ptr_c0;
+    int32_t stack_data_b8;
     undefined stack_array_b0 [128];
-    undefined8 stack_data_30;
+    uint64_t stack_data_30;
     ulonglong stack_data_28;
     
     // 清理现有资源
-    resource_ptr = (undefined8 *)*_DAT_180c8a9e0;
-    if (resource_ptr != (undefined8 *)0x0) {
+    resource_ptr = (uint64_t *)*_DAT_180c8a9e0;
+    if (resource_ptr != (uint64_t *)0x0) {
         *_DAT_180c8a9e0 = 0;
         stack_data_30 = 0x180443b24;
         (**(code **)*resource_ptr)(resource_ptr, 1);
@@ -402,11 +402,11 @@ void FUN_180443b00(void)
     stack_ptr_c8 = &UNK_1809fcc28;
     stack_ptr_c0 = stack_array_b0;
     stack_array_b0[0] = 0;
-    stack_data_b8 = *(undefined4 *)(system_data + 0x20);
-    texture_ptr = *(undefined **)(system_data + 0x18);
+    stack_data_b8 = *(int32_t *)(system_data + 0x20);
+    texture_ptr = *(void **)(system_data + 0x18);
     texture_data = &DAT_18098bc73;
     
-    if (texture_ptr != (undefined *)0x0) {
+    if (texture_ptr != (void *)0x0) {
         texture_data = texture_ptr;
     }
     
@@ -414,7 +414,7 @@ void FUN_180443b00(void)
     strcpy_s(stack_array_b0, 0x80, texture_data);
     texture_ptr = &DAT_18098bc73;
     
-    if (stack_ptr_c0 != (undefined *)0x0) {
+    if (stack_ptr_c0 != (void *)0x0) {
         texture_ptr = stack_ptr_c0;
     }
     
@@ -446,10 +446,10 @@ void FUN_180443b00(void)
         
         FUN_1800671b0(stack_array_178, &DAT_1809fd0f8);
         stack_data_140 = 1;
-        stack_ptr_198 = (undefined8 *)0x100000000;
+        stack_ptr_198 = (uint64_t *)0x100000000;
         stack_data_190 = 2;
         FUN_180189600(&stack_data_158, &stack_ptr_198, stack_array_18c);
-        stack_ptr_198 = (undefined8 *)&UNK_180186550;
+        stack_ptr_198 = (uint64_t *)&UNK_180186550;
         stack_ptr_188 = context_manager;
         FUN_180188620(stack_array_138, &stack_ptr_198);
         stack_data_1b8 = 0;
@@ -484,9 +484,9 @@ void FUN_180443b00(void)
  * @param param_3 命令参数2
  * @param param_4 命令参数3
  */
-void FUN_180443b40(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180443b40(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined1 command_buffer_30 [48];
+    int8_t command_buffer_30 [48];
     
     // 准备命令缓冲区
     FUN_180627910(command_buffer_30, param_1, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
@@ -503,31 +503,31 @@ void FUN_180443b40(undefined8 param_1, undefined8 param_2, undefined8 param_3, u
  * @param param_1 参数类型
  * @param param_2 参数值
  */
-void FUN_180443b80(undefined8 param_1, undefined1 param_2)
+void FUN_180443b80(uint64_t param_1, int8_t param_2)
 {
     longlong *parameter_manager;
     longlong system_context;
-    undefined8 *parameter_ptr;
-    undefined *parameter_data;
+    uint64_t *parameter_ptr;
+    void *parameter_data;
     longlong string_length;
-    undefined1 parameter_buffer_d8 [32];
-    undefined **parameter_ptr_b8;
-    undefined8 parameter_data_b0;
-    undefined8 *parameter_ptr_a8;
-    undefined *parameter_ptr_a0;
+    int8_t parameter_buffer_d8 [32];
+    void **parameter_ptr_b8;
+    uint64_t parameter_data_b0;
+    uint64_t *parameter_ptr_a8;
+    void *parameter_ptr_a0;
     longlong parameter_data_98;
-    undefined **parameter_ptr_68;
-    undefined *parameter_array_60 [4];
-    undefined1 parameter_buffer_40 [16];
-    undefined8 parameter_data_30;
-    undefined8 parameter_data_28;
-    undefined1 parameter_flag_20;
+    void **parameter_ptr_68;
+    void *parameter_array_60 [4];
+    int8_t parameter_buffer_40 [16];
+    uint64_t parameter_data_30;
+    uint64_t parameter_data_28;
+    int8_t parameter_flag_20;
     ulonglong parameter_data_18;
     
     parameter_data_b0 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
     parameter_data_18 = _DAT_180bf00a8 ^ (ulonglong)parameter_buffer_d8;
     parameter_ptr_b8 = parameter_array_60;
-    parameter_ptr = (undefined8 *)FUN_180627910(parameter_array_60, param_1);
+    parameter_ptr = (uint64_t *)FUN_180627910(parameter_array_60, param_1);
     system_context = _DAT_180c8a9e0;
     parameter_ptr_a8 = parameter_ptr;
     
@@ -537,7 +537,7 @@ void FUN_180443b80(undefined8 param_1, undefined1 param_2)
             FUN_18064e900();
         }
         parameter_ptr[1] = 0;
-        *(undefined4 *)(parameter_ptr + 3) = 0;
+        *(int32_t *)(parameter_ptr + 3) = 0;
     }
     else {
         // 初始化参数数据结构
@@ -546,8 +546,8 @@ void FUN_180443b80(undefined8 param_1, undefined1 param_2)
         parameter_buffer_40[0] = 0;
         parameter_data = &DAT_18098bc73;
         
-        if ((undefined *)parameter_ptr[1] != (undefined *)0x0) {
-            parameter_data = (undefined *)parameter_ptr[1];
+        if ((void *)parameter_ptr[1] != (void *)0x0) {
+            parameter_data = (void *)parameter_ptr[1];
         }
         
         string_length = -1;
@@ -571,7 +571,7 @@ void FUN_180443b80(undefined8 param_1, undefined1 param_2)
             FUN_18064e900();
         }
         parameter_ptr[1] = 0;
-        *(undefined4 *)(parameter_ptr + 3) = 0;
+        *(int32_t *)(parameter_ptr + 3) = 0;
     }
     
     *parameter_ptr = &UNK_18098bcb0;
@@ -584,10 +584,10 @@ void FUN_180443b80(undefined8 param_1, undefined1 param_2)
  * 
  * @param param_1 资源指针
  */
-void FUN_180443d10(undefined8 param_1)
+void FUN_180443d10(uint64_t param_1)
 {
-    undefined1 resource_buffer_50 [32];
-    undefined1 resource_buffer_30 [40];
+    int8_t resource_buffer_50 [32];
+    int8_t resource_buffer_30 [40];
     
     // 初始化资源缓冲区
     FUN_180627910(resource_buffer_50);
@@ -604,10 +604,10 @@ void FUN_180443d10(undefined8 param_1)
  * 
  * @param param_1 资源指针
  */
-void FUN_180443d70(undefined8 param_1)
+void FUN_180443d70(uint64_t param_1)
 {
-    undefined1 resource_buffer_50 [32];
-    undefined1 resource_buffer_30 [40];
+    int8_t resource_buffer_50 [32];
+    int8_t resource_buffer_30 [40];
     
     // 初始化资源缓冲区
     FUN_180627910(resource_buffer_50);
@@ -627,10 +627,10 @@ void FUN_180443d70(undefined8 param_1)
  * @param param_3 数据目标
  * @param param_4 处理标志
  */
-void FUN_180443df0(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180443df0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong *data_processor_1;
-    undefined4 data_status;
+    int32_t data_status;
     longlong *data_processor_2;
     longlong data_chunk;
     longlong *data_processor_3;
@@ -639,9 +639,9 @@ void FUN_180443df0(undefined8 param_1, undefined8 param_2, undefined8 param_3, u
     longlong *data_processor_5;
     longlong *data_processor_6;
     longlong data_capacity;
-    undefined4 extra_data;
-    undefined4 extra_data_00;
-    undefined8 processing_flag;
+    int32_t extra_data;
+    int32_t extra_data_00;
+    uint64_t processing_flag;
     longlong *data_processor_7;
     longlong *data_processor_8;
     longlong *data_processor_9;
@@ -714,10 +714,10 @@ void FUN_180443df0(undefined8 param_1, undefined8 param_2, undefined8 param_3, u
  * 
  * @param param_1 对象指针
  */
-void FUN_180443f80(undefined8 param_1)
+void FUN_180443f80(uint64_t param_1)
 {
-    undefined1 object_buffer_50 [32];
-    undefined1 object_buffer_30 [40];
+    int8_t object_buffer_50 [32];
+    int8_t object_buffer_30 [40];
     
     // 初始化对象缓冲区
     FUN_180627910(object_buffer_50);
@@ -737,9 +737,9 @@ void FUN_180443f80(undefined8 param_1)
  * @param param_3 处理参数2
  * @param param_4 处理标志
  */
-void FUN_180443ff0(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180443ff0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined1 process_buffer_30 [48];
+    int8_t process_buffer_30 [48];
     
     // 准备处理缓冲区
     FUN_180627910(process_buffer_30, param_1, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
@@ -761,7 +761,7 @@ void FUN_180444030(void)
     if (lock_result != 0) {
         __Throw_C_error_std__YAXH_Z(lock_result);
     }
-    _DAT_180c8a9b0 = *(undefined8 *)*_DAT_180c86960;
+    _DAT_180c8a9b0 = *(uint64_t *)*_DAT_180c86960;
     return;
 }
 
@@ -772,29 +772,29 @@ void FUN_180444030(void)
  * @param param_1 配置类型
  * @param param_2 配置数据指针
  */
-void FUN_180444070(undefined8 param_1, undefined8 *param_2)
+void FUN_180444070(uint64_t param_1, uint64_t *param_2)
 {
-    undefined8 config_data_1;
-    undefined8 config_data_2;
+    uint64_t config_data_1;
+    uint64_t config_data_2;
     longlong config_context;
-    undefined4 config_buffer_28;
-    undefined4 config_buffer_24;
-    undefined4 config_buffer_20;
-    undefined4 config_buffer_18;
-    undefined4 config_buffer_16;
+    int32_t config_buffer_28;
+    int32_t config_buffer_24;
+    int32_t config_buffer_20;
+    int32_t config_buffer_18;
+    int32_t config_buffer_16;
     
     config_context = _DAT_180c8a9b0;
     config_data_1 = *param_2;
     config_data_2 = param_2[1];
     config_buffer_28 = 0;
-    config_buffer_24 = *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16C8);
-    config_buffer_20 = *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16CC);
-    config_buffer_18 = *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16D0);
-    config_buffer_16 = *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16D4);
+    config_buffer_24 = *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16C8);
+    config_buffer_20 = *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16CC);
+    config_buffer_18 = *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16D0);
+    config_buffer_16 = *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_16D4);
     
     FUN_18013e100(_DAT_180c8a9b0 + 0x1b80, &config_buffer_28);
-    *(undefined8 *)(config_context + RENDERING_SYSTEM_OFFSET_16C8) = config_data_1;
-    *(undefined8 *)(config_context + RENDERING_SYSTEM_OFFSET_16D0) = config_data_2;
+    *(uint64_t *)(config_context + RENDERING_SYSTEM_OFFSET_16C8) = config_data_1;
+    *(uint64_t *)(config_context + RENDERING_SYSTEM_OFFSET_16D0) = config_data_2;
     return;
 }
 
@@ -829,12 +829,12 @@ void FUN_180444100(void)
  * @param param_9 操作参数8
  * @param param_10 操作参数9
  */
-void FUN_180444200(undefined8 param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4,
-                  undefined8 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8,
-                  undefined4 param_9, undefined4 param_10)
+void FUN_180444200(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t param_4,
+                  uint64_t param_5, int32_t param_6, int32_t param_7, int32_t param_8,
+                  int32_t param_9, int32_t param_10)
 {
-    undefined8 operation_data_18;
-    undefined4 operation_data_10;
+    uint64_t operation_data_18;
+    int32_t operation_data_10;
     
     operation_data_10 = param_10;
     operation_data_18 = param_2;
@@ -849,10 +849,10 @@ void FUN_180444200(undefined8 param_1, undefined8 param_2, undefined4 param_3, u
  * 
  * @param param_1 对象指针
  */
-void FUN_180444280(undefined8 param_1)
+void FUN_180444280(uint64_t param_1)
 {
-    undefined4 transform_data_10;
-    undefined4 transform_data_14;
+    int32_t transform_data_10;
+    int32_t transform_data_14;
     
     transform_data_10 = 0xbf800000;
     transform_data_14 = 0;
@@ -866,9 +866,9 @@ void FUN_180444280(undefined8 param_1)
  * 
  * @param param_1 对象指针
  */
-void FUN_1804442c0(undefined8 param_1)
+void FUN_1804442c0(uint64_t param_1)
 {
-    undefined8 geometry_data_10 [3];
+    uint64_t geometry_data_10 [3];
     
     geometry_data_10[0] = 0;
     FUN_18010f6f0(param_1, geometry_data_10, 0);
@@ -883,16 +883,16 @@ void FUN_1804442e0(void)
 {
     longlong render_context;
     longlong object_data;
-    undefined4 original_state;
+    int32_t original_state;
     longlong stack_array_8 [4];
     
     render_context = _DAT_180c8a9b0;
-    *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1AF8) + 0xb1) = RENDERING_SYSTEM_STATE_ACTIVE;
+    *(int8_t *)(*(longlong *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1AF8) + 0xb1) = RENDERING_SYSTEM_STATE_ACTIVE;
     object_data = *(longlong *)(render_context + RENDERING_SYSTEM_OFFSET_1AF8);
     
     if (*(char *)(object_data + 0xb4) == '\0') {
-        original_state = *(undefined4 *)(object_data + RENDERING_SYSTEM_OFFSET_1A0);
-        *(undefined4 *)(object_data + RENDERING_SYSTEM_OFFSET_1A0) = RENDERING_SYSTEM_STATE_ACTIVE;
+        original_state = *(int32_t *)(object_data + RENDERING_SYSTEM_OFFSET_1A0);
+        *(int32_t *)(object_data + RENDERING_SYSTEM_OFFSET_1A0) = RENDERING_SYSTEM_STATE_ACTIVE;
         
         if (*(float *)(object_data + RENDERING_SYSTEM_OFFSET_124) <= 0.0) {
             stack_array_8[0] = (ulonglong)*(uint *)(render_context + RENDERING_SYSTEM_OFFSET_19F8) << 0x20;
@@ -902,7 +902,7 @@ void FUN_1804442e0(void)
         }
         
         func_0x000180124080(stack_array_8);
-        *(undefined4 *)(object_data + RENDERING_SYSTEM_OFFSET_1A0) = original_state;
+        *(int32_t *)(object_data + RENDERING_SYSTEM_OFFSET_1A0) = original_state;
     }
     return;
 }
@@ -915,7 +915,7 @@ void FUN_1804442e0(void)
  * @param param_2 处理参数
  * @param param_3 字符串指针
  */
-void FUN_180444370(undefined8 param_1, undefined8 param_2, char *param_3)
+void FUN_180444370(uint64_t param_1, uint64_t param_2, char *param_3)
 {
     char current_char;
     longlong string_length;
@@ -942,10 +942,10 @@ void FUN_180444370(undefined8 param_1, undefined8 param_2, char *param_3)
  * @param param_1 批处理类型
  * @param param_2 批处理参数
  */
-void FUN_1804443c0(undefined8 param_1, undefined8 param_2)
+void FUN_1804443c0(uint64_t param_1, uint64_t param_2)
 {
-    undefined4 batch_data_18 [2];
-    undefined4 batch_data_20 [2];
+    int32_t batch_data_18 [2];
+    int32_t batch_data_20 [2];
     
     batch_data_18[0] = 100;
     batch_data_20[0] = 1;
@@ -962,10 +962,10 @@ void FUN_1804443c0(undefined8 param_1, undefined8 param_2)
  * @param param_3 材质参数2
  * @param param_4 材质参数3
  */
-void FUN_180444410(undefined8 param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4)
+void FUN_180444410(uint64_t param_1, uint64_t param_2, int32_t param_3, int32_t param_4)
 {
-    undefined4 material_data_18 [2];
-    undefined4 material_data_20 [2];
+    int32_t material_data_18 [2];
+    int32_t material_data_20 [2];
     
     material_data_18[0] = param_4;
     material_data_20[0] = param_3;
@@ -979,18 +979,18 @@ void FUN_180444410(undefined8 param_1, undefined8 param_2, undefined4 param_3, u
  * 
  * @param param_1 纹理指针
  */
-void FUN_1804445b0(undefined8 param_1)
+void FUN_1804445b0(uint64_t param_1)
 {
-    undefined4 original_state;
+    int32_t original_state;
     longlong render_context;
-    undefined8 texture_data_10 [3];
+    uint64_t texture_data_10 [3];
     
     render_context = _DAT_180c8a9b0;
     texture_data_10[0] = 0;
-    original_state = *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1660);
-    *(undefined4 *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1660) = 0;
+    original_state = *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1660);
+    *(int32_t *)(_DAT_180c8a9b0 + RENDERING_SYSTEM_OFFSET_1660) = 0;
     FUN_18010f6f0(param_1, texture_data_10, 0x200);
-    *(undefined4 *)(render_context + RENDERING_SYSTEM_OFFSET_1660) = original_state;
+    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1660) = original_state;
     return;
 }
 
@@ -1004,20 +1004,20 @@ void FUN_1804445b0(undefined8 param_1)
  * @param param_4 浮点参数2
  * @param param_5 更新标志
  */
-void FUN_180444600(undefined8 param_1, undefined8 param_2, float param_3, float param_4, int param_5)
+void FUN_180444600(uint64_t param_1, uint64_t param_2, float param_3, float param_4, int param_5)
 {
     float *float_param_1;
-    undefined1 parameter_buffer_98 [32];
+    int8_t parameter_buffer_98 [32];
     float *float_param_2;
-    undefined2 *parameter_ptr_70;
-    undefined4 parameter_data_68;
+    int16_t *parameter_ptr_70;
+    int32_t parameter_data_68;
     float float_array_58 [2];
     float float_array_50 [2];
-    undefined2 parameter_flag_48;
-    undefined1 parameter_flag_46;
-    undefined8 parameter_data_45;
-    undefined4 parameter_data_3d;
-    undefined1 parameter_flag_39;
+    int16_t parameter_flag_48;
+    int8_t parameter_flag_46;
+    uint64_t parameter_data_45;
+    int32_t parameter_data_3d;
+    int8_t parameter_flag_39;
     ulonglong parameter_data_38;
     
     parameter_data_38 = _DAT_180bf00a8 ^ (ulonglong)parameter_buffer_98;
@@ -1059,17 +1059,17 @@ void FUN_180444600(undefined8 param_1, undefined8 param_2, float param_3, float 
  * @param param_3 着色器参数2
  * @param param_4 设置标志
  */
-void FUN_180444700(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, int param_4)
+void FUN_180444700(uint64_t param_1, int32_t *param_2, int32_t *param_3, int param_4)
 {
-    undefined1 shader_buffer_78 [48];
-    undefined2 *shader_ptr_48;
-    undefined4 shader_data_38;
-    undefined4 shader_data_34;
-    undefined2 shader_flag_30;
-    undefined1 shader_flag_2e;
-    undefined8 shader_data_2d;
-    undefined4 shader_data_25;
-    undefined1 shader_flag_21;
+    int8_t shader_buffer_78 [48];
+    int16_t *shader_ptr_48;
+    int32_t shader_data_38;
+    int32_t shader_data_34;
+    int16_t shader_flag_30;
+    int8_t shader_flag_2e;
+    uint64_t shader_data_2d;
+    int32_t shader_data_25;
+    int8_t shader_flag_21;
     ulonglong shader_data_20;
     
     shader_data_20 = _DAT_180bf00a8 ^ (ulonglong)shader_buffer_78;
@@ -1102,18 +1102,18 @@ void FUN_180444700(undefined8 param_1, undefined4 *param_2, undefined4 *param_3,
  * @param param_4 效果参数3
  * @param param_5 更新标志
  */
-void FUN_1804447c0(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4, int param_5)
+void FUN_1804447c0(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t *param_4, int param_5)
 {
-    undefined1 effect_buffer_98 [48];
-    undefined2 *effect_ptr_68;
-    undefined4 effect_data_58;
-    undefined4 effect_data_54;
-    undefined4 effect_data_50;
-    undefined2 effect_flag_48;
-    undefined1 effect_flag_46;
-    undefined8 effect_data_45;
-    undefined4 effect_data_3d;
-    undefined1 effect_flag_39;
+    int8_t effect_buffer_98 [48];
+    int16_t *effect_ptr_68;
+    int32_t effect_data_58;
+    int32_t effect_data_54;
+    int32_t effect_data_50;
+    int16_t effect_flag_48;
+    int8_t effect_flag_46;
+    uint64_t effect_data_45;
+    int32_t effect_data_3d;
+    int8_t effect_flag_39;
     ulonglong effect_data_38;
     
     effect_data_38 = _DAT_180bf00a8 ^ (ulonglong)effect_buffer_98;
@@ -1149,19 +1149,19 @@ void FUN_1804447c0(undefined8 param_1, undefined4 *param_2, undefined4 *param_3,
  * @param param_5 缓冲区参数4
  * @param param_6 处理标志
  */
-void FUN_1804448a0(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, undefined4 *param_4, undefined4 *param_5, int param_6)
+void FUN_1804448a0(uint64_t param_1, int32_t *param_2, int32_t *param_3, int32_t *param_4, int32_t *param_5, int param_6)
 {
-    undefined1 buffer_data_98 [48];
-    undefined2 *buffer_ptr_68;
-    undefined4 buffer_data_58;
-    undefined4 buffer_data_54;
-    undefined4 buffer_data_50;
-    undefined4 buffer_data_4c;
-    undefined2 buffer_flag_48;
-    undefined1 buffer_flag_46;
-    undefined8 buffer_data_45;
-    undefined4 buffer_data_3d;
-    undefined1 buffer_flag_39;
+    int8_t buffer_data_98 [48];
+    int16_t *buffer_ptr_68;
+    int32_t buffer_data_58;
+    int32_t buffer_data_54;
+    int32_t buffer_data_50;
+    int32_t buffer_data_4c;
+    int16_t buffer_flag_48;
+    int8_t buffer_flag_46;
+    uint64_t buffer_data_45;
+    int32_t buffer_data_3d;
+    int8_t buffer_flag_39;
     ulonglong buffer_data_38;
     
     buffer_data_38 = _DAT_180bf00a8 ^ (ulonglong)buffer_data_98;
@@ -1213,16 +1213,16 @@ float FUN_1804449a0(void)
  * @param param_5 复制标志2
  * @param param_6 复制模式
  */
-void FUN_180444a20(undefined8 param_1, undefined8 param_2, int param_3, undefined8 param_4, undefined8 param_5, undefined1 param_6)
+void FUN_180444a20(uint64_t param_1, uint64_t param_2, int param_3, uint64_t param_4, uint64_t param_5, int8_t param_6)
 {
-    undefined1 copy_buffer_168 [32];
-    undefined1 copy_flag_148;
-    undefined1 copy_flag_147;
-    undefined1 copy_buffer_144 [268];
+    int8_t copy_buffer_168 [32];
+    int8_t copy_flag_148;
+    int8_t copy_flag_147;
+    int8_t copy_buffer_144 [268];
     ulonglong copy_data_38;
     
     copy_data_38 = _DAT_180bf00a8 ^ (ulonglong)copy_buffer_168;
-    copy_flag_148 = (undefined1)param_3;
+    copy_flag_148 = (int8_t)param_3;
     copy_flag_147 = param_6;
     memcpy(copy_buffer_144, param_1, (longlong)param_3 << 2);
 }
@@ -1236,17 +1236,17 @@ void FUN_180444a20(undefined8 param_1, undefined8 param_2, int param_3, undefine
  * @param param_3 传输标志
  * @param param_4 数据大小
  */
-void FUN_180444b70(undefined8 param_1, undefined8 param_2, undefined8 param_3, int param_4)
+void FUN_180444b70(uint64_t param_1, uint64_t param_2, uint64_t param_3, int param_4)
 {
-    undefined1 transfer_flag_40;
-    undefined1 transfer_buffer_1f8 [32];
-    undefined1 transfer_flag_1d8;
-    undefined1 transfer_flag_1d7;
-    undefined1 transfer_buffer_1d4 [396];
+    int8_t transfer_flag_40;
+    int8_t transfer_buffer_1f8 [32];
+    int8_t transfer_flag_1d8;
+    int8_t transfer_flag_1d7;
+    int8_t transfer_buffer_1d4 [396];
     ulonglong transfer_data_48;
     
     transfer_data_48 = _DAT_180bf00a8 ^ (ulonglong)transfer_buffer_1f8;
-    transfer_flag_1d8 = (undefined1)param_4;
+    transfer_flag_1d8 = (int8_t)param_4;
     transfer_flag_1d7 = transfer_flag_40;
     memcpy(transfer_buffer_1d4, param_1, (longlong)param_4 << 2);
 }
@@ -1265,25 +1265,25 @@ void FUN_180444b70(undefined8 param_1, undefined8 param_2, undefined8 param_3, i
 void FUN_180444dd0(char param_1, char param_2, char param_3, char param_4, char param_5, char param_6)
 {
     longlong color_context;
-    undefined4 color_data_18;
-    undefined2 color_data_14;
+    int32_t color_data_18;
+    int16_t color_data_14;
     
     color_context = *(longlong *)(_DAT_180c868d0 + 0x2018);
     color_data_18._0_2_ = CONCAT11(param_2, param_1);
-    color_data_18 = CONCAT13(param_4, CONCAT12(param_3, (undefined2)color_data_18));
+    color_data_18 = CONCAT13(param_4, CONCAT12(param_3, (int16_t)color_data_18));
     color_data_14 = CONCAT11(param_6, param_5);
     
     if ((*(int *)(color_context + 799) != color_data_18) || (*(short *)(color_context + 0x323) != color_data_14)) {
         *(int *)(color_context + 799) = color_data_18;
         *(short *)(color_context + 0x323) = color_data_14;
-        *(undefined2 *)(color_context + 0x194) = 0;
+        *(int16_t *)(color_context + 0x194) = 0;
         
         if (((param_1 == '\0') && (((param_2 == '\0' && (param_3 == '\0')) && (param_4 == '\0')))) &&
             ((param_5 == '\0' && (param_6 == '\0')))) {
-            *(undefined1 *)(color_context + 0x192) = 0;
+            *(int8_t *)(color_context + 0x192) = 0;
             return;
         }
-        *(undefined1 *)(color_context + 0x192) = 1;
+        *(int8_t *)(color_context + 0x192) = 1;
     }
     return;
 }
@@ -1299,9 +1299,9 @@ void FUN_180444dd0(char param_1, char param_2, char param_3, char param_4, char 
 void FUN_180444e90(float param_1, float param_2, float param_3)
 {
     float blue_component;
-    undefined1 color_data_8;
-    undefined1 color_data_9;
-    undefined1 color_data_a;
+    int8_t color_data_8;
+    int8_t color_data_9;
+    int8_t color_data_a;
     
     // 标准化红色分量
     if (0.0 <= param_1) {
@@ -1330,11 +1330,11 @@ void FUN_180444e90(float param_1, float param_2, float param_3)
     }
     
     // 转换为8位颜色值
-    color_data_8 = (undefined1)(int)(param_1 * RENDERING_SYSTEM_FLOAT_256_0);
-    color_data_9 = (undefined1)(int)(param_2 * RENDERING_SYSTEM_FLOAT_256_0);
-    color_data_a = (undefined1)(int)(blue_component * RENDERING_SYSTEM_FLOAT_256_0);
+    color_data_8 = (int8_t)(int)(param_1 * RENDERING_SYSTEM_FLOAT_256_0);
+    color_data_9 = (int8_t)(int)(param_2 * RENDERING_SYSTEM_FLOAT_256_0);
+    color_data_a = (int8_t)(int)(blue_component * RENDERING_SYSTEM_FLOAT_256_0);
     
-    FUN_1808eea10(*(undefined4 *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 0x32c), &color_data_8);
+    FUN_1808eea10(*(int32_t *)(*(longlong *)(_DAT_180c868d0 + 0x2018) + 0x32c), &color_data_8);
     return;
 }
 
@@ -1345,7 +1345,7 @@ void FUN_180444e90(float param_1, float param_2, float param_3)
  * @param param_1 按键代码
  * @return 按键状态 (1=按下, 0=未按下)
  */
-undefined8 FUN_180445060(ulonglong param_1)
+uint64_t FUN_180445060(ulonglong param_1)
 {
     short key_state;
     uint key_code;
@@ -1389,14 +1389,14 @@ undefined8 FUN_180445060(ulonglong param_1)
  */
 void FUN_180445110(uint param_1)
 {
-    undefined4 key_data_18;
-    undefined1 key_data_14;
-    undefined8 key_data_10;
+    int32_t key_data_18;
+    int8_t key_data_14;
+    uint64_t key_data_10;
     
     if (param_1 < 0x100) {
         key_data_10 = 0;
         key_data_18 = 4;
-        key_data_14 = (undefined1)param_1;
+        key_data_14 = (int8_t)param_1;
         FUN_1801edeb0(param_1, &key_data_18);
     }
     return;
@@ -1412,20 +1412,20 @@ void FUN_180445110(uint param_1)
  * @param param_4 验证标志
  * @return 验证结果
  */
-undefined4 FUN_180445180(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int32_t FUN_180445180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined4 validation_result;
-    undefined *validation_ptr_30;
+    int32_t validation_result;
+    void *validation_ptr_30;
     longlong validation_data_28;
-    undefined4 validation_data_20;
-    undefined8 validation_data_18;
+    int32_t validation_data_20;
+    uint64_t validation_data_18;
     
     validation_ptr_30 = &UNK_180a3c3e0;
     validation_data_18 = 0;
     validation_data_28 = 0;
     validation_data_20 = 0;
     
-    FUN_1801717e0(*(undefined8 *)(_DAT_180c86870 + 8), &validation_ptr_30, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
+    FUN_1801717e0(*(uint64_t *)(_DAT_180c86870 + 8), &validation_ptr_30, param_3, param_4, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     validation_result = (**(code **)(*_DAT_180c8f008 + 0x78))(_DAT_180c8f008, &validation_ptr_30);
     validation_ptr_30 = &UNK_180a3c3e0;
     
@@ -1443,15 +1443,15 @@ undefined4 FUN_180445180(undefined8 param_1, undefined8 param_2, undefined8 para
  * @param param_2 新的参数值
  * @return 更新后的参数指针
  */
-undefined4 * FUN_180445390(undefined4 *param_1, float param_2)
+int32_t * FUN_180445390(int32_t *param_1, float param_2)
 {
     longlong parameter_context;
-    undefined4 parameter_status;
-    undefined8 parameter_handle;
+    int32_t parameter_status;
+    uint64_t parameter_handle;
     longlong *parameter_manager;
-    undefined4 parameter_data_30;
-    undefined4 parameter_data_2c;
-    undefined4 parameter_data_24;
+    int32_t parameter_data_30;
+    int32_t parameter_data_2c;
+    int32_t parameter_data_24;
     
     parameter_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x468, 8, 3, RENDERING_SYSTEM_FLAG_FFFFFFFE);
     parameter_manager = (longlong *)FUN_1803dd0f0(parameter_handle);
@@ -1461,8 +1461,8 @@ undefined4 * FUN_180445390(undefined4 *param_1, float param_2)
     }
     
     if (param_2 != *(float *)(parameter_manager + 6)) {
-        *(undefined1 *)(parameter_manager + 0x7d) = 0;
-        *(undefined1 *)((longlong)parameter_manager + 0x3a1) = 1;
+        *(int8_t *)(parameter_manager + 0x7d) = 0;
+        *(int8_t *)((longlong)parameter_manager + 0x3a1) = 1;
         *(float *)(parameter_manager + 6) = param_2;
         parameter_context = parameter_manager[5];
         
@@ -1477,7 +1477,7 @@ undefined4 * FUN_180445390(undefined4 *param_1, float param_2)
     parameter_status = (**(code **)(*parameter_manager + 8))(parameter_manager);
     (**(code **)(*parameter_manager + 0x28))(parameter_manager);
     parameter_data_30 = SUB84(parameter_manager, 0);
-    parameter_data_2c = (undefined4)((ulonglong)parameter_manager >> 0x20);
+    parameter_data_2c = (int32_t)((ulonglong)parameter_manager >> 0x20);
     *param_1 = parameter_data_30;
     param_1[1] = parameter_data_2c;
     param_1[2] = parameter_status;
@@ -1493,15 +1493,15 @@ undefined4 * FUN_180445390(undefined4 *param_1, float param_2)
  * @param param_1 源缓冲区指针
  * @param param_2 目标缓冲区指针
  */
-void FUN_180445480(undefined8 *param_1, undefined8 *param_2)
+void FUN_180445480(uint64_t *param_1, uint64_t *param_2)
 {
-    undefined8 buffer_data_1;
+    uint64_t buffer_data_1;
     
-    if ((undefined *)*param_1 == &UNK_180a249c0) {
+    if ((void *)*param_1 == &UNK_180a249c0) {
         param_1 = param_1 + 8;
     }
     else {
-        param_1 = (undefined8 *)(**(code **)((undefined *)*param_1 + 0x158))();
+        param_1 = (uint64_t *)(**(code **)((void *)*param_1 + 0x158))();
     }
     
     buffer_data_1 = param_1[1];

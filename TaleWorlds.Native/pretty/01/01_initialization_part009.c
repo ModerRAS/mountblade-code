@@ -73,11 +73,11 @@
  */
 void InitializationSystem_ConfigRegistrationManager1(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -112,7 +112,7 @@ void InitializationSystem_ConfigRegistrationManager1(void)
 int InitializationSystem_GlobalDataInitializer1(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   
   _DAT_180bf91b0 = &UNK_1809fcc58;
   _DAT_180bf91b8 = &DAT_180bf91c8;
@@ -145,30 +145,30 @@ int InitializationSystem_GlobalDataInitializer1(void)
 void InitializationSystem_RegistrySearchAndInsert1(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18007fcd0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fc740,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -212,30 +212,30 @@ void InitializationSystem_RegistrySearchAndInsert1(void)
 void InitializationSystem_RegistrySearchAndInsert2(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fc768,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -279,30 +279,30 @@ void InitializationSystem_RegistrySearchAndInsert2(void)
 void InitializationSystem_RegistrySearchAndInsert3(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9b8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -346,30 +346,30 @@ void InitializationSystem_RegistrySearchAndInsert3(void)
 void InitializationSystem_RegistrySearchAndInsert4(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -413,30 +413,30 @@ void InitializationSystem_RegistrySearchAndInsert4(void)
 void InitializationSystem_RegistrySearchAndInsert5(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -480,30 +480,30 @@ void InitializationSystem_RegistrySearchAndInsert5(void)
 void InitializationSystem_RegistrySearchAndInsert6(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -547,30 +547,30 @@ void InitializationSystem_RegistrySearchAndInsert6(void)
 void InitializationSystem_RegistrySearchAndInsert7(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -614,30 +614,30 @@ void InitializationSystem_RegistrySearchAndInsert7(void)
 void InitializationSystem_RegistrySearchAndInsert8(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_180073930;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -681,30 +681,30 @@ void InitializationSystem_RegistrySearchAndInsert8(void)
 void InitializationSystem_RegistrySearchAndInsert9(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -746,11 +746,11 @@ void InitializationSystem_RegistrySearchAndInsert9(void)
  */
 void InitializationSystem_ConfigRegistrationManager2(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -784,11 +784,11 @@ void InitializationSystem_ConfigRegistrationManager2(void)
  */
 void InitializationSystem_ConfigRegistrationManager3(void)
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -824,30 +824,30 @@ void InitializationSystem_ConfigRegistrationManager3(void)
 void InitializationSystem_RegistrySearchAndInsert10(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -891,30 +891,30 @@ void InitializationSystem_RegistrySearchAndInsert10(void)
 void InitializationSystem_RegistrySearchAndInsert11(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -958,30 +958,30 @@ void InitializationSystem_RegistrySearchAndInsert11(void)
 void InitializationSystem_RegistrySearchAndInsert12(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1025,30 +1025,30 @@ void InitializationSystem_RegistrySearchAndInsert12(void)
 void InitializationSystem_RegistrySearchAndInsert13(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1092,30 +1092,30 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
 void InitializationSystem_RegistrySearchAndInsert14(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1159,30 +1159,30 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
 void InitializationSystem_RegistrySearchAndInsert15(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  void *puStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1226,30 +1226,30 @@ void InitializationSystem_RegistrySearchAndInsert15(void)
 void InitializationSystem_RegistrySearchAndInsert16(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1292,7 +1292,7 @@ void InitializationSystem_RegistrySearchAndInsert16(void)
 int InitializationSystem_GlobalDataInitializer2(void)
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   
   _DAT_180bfa350 = &UNK_1809fcc28;
   _DAT_180bfa358 = &DAT_180bfa368;
@@ -1325,30 +1325,30 @@ int InitializationSystem_GlobalDataInitializer2(void)
 void InitializationSystem_RegistrySearchAndInsert17(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1392,30 +1392,30 @@ void InitializationSystem_RegistrySearchAndInsert17(void)
 void InitializationSystem_RegistrySearchAndInsert18(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1459,30 +1459,30 @@ void InitializationSystem_RegistrySearchAndInsert18(void)
 void InitializationSystem_RegistrySearchAndInsert19(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1526,30 +1526,30 @@ void InitializationSystem_RegistrySearchAndInsert19(void)
 void InitializationSystem_RegistrySearchAndInsert20(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1593,30 +1593,30 @@ void InitializationSystem_RegistrySearchAndInsert20(void)
 void InitializationSystem_RegistrySearchAndInsert21(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1660,30 +1660,30 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
 void InitializationSystem_RegistrySearchAndInsert22(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1727,30 +1727,30 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
 void InitializationSystem_RegistrySearchAndInsert23(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  void *puStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1794,30 +1794,30 @@ void InitializationSystem_RegistrySearchAndInsert23(void)
 void InitializationSystem_RegistrySearchAndInsert24(void)
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;

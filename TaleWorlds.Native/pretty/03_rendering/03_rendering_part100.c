@@ -31,13 +31,13 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
 {
   longlong temp_resource;
   longlong *resource_manager;
-  undefined *error_handler;
+  void *error_handler;
   longlong *stack_resource_ptr;
   longlong *allocated_resource;
-  undefined8 resource_flag;
-  undefined *stack_pointer;
+  uint64_t resource_flag;
+  void *stack_pointer;
   longlong stack_value;
-  undefined4 status_flag;
+  int32_t status_flag;
   
   resource_flag = RENDERING_RESOURCE_FLAG_INVALID;
   
@@ -47,8 +47,8 @@ void rendering_system_resource_processor(longlong render_context, longlong *reso
   if (stack_resource_ptr == (longlong *)0x0) {
     // 资源管理器为空时的错误处理
     error_handler = &DAT_18098bc73;
-    if (*(undefined **)(process_param + 8) != (undefined *)0x0) {
-      error_handler = *(undefined **)(process_param + 8);
+    if (*(void **)(process_param + 8) != (void *)0x0) {
+      error_handler = *(void **)(process_param + 8);
     }
     FUN_180627910(&stack_pointer, error_handler);
     FUN_180058080(render_context + RENDERING_PARAM_OFFSET_BF8, &allocated_resource, &stack_pointer);
@@ -123,24 +123,24 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   uint *swap_ptr;
   longlong data_range;
   uint *compare_ptr;
-  undefined8 stack_param1;
-  undefined4 param_value;
-  undefined8 stack_param2;
-  undefined8 resource_flag;
+  uint64_t stack_param1;
+  int32_t param_value;
+  uint64_t stack_param2;
+  uint64_t resource_flag;
   uint *sort_array1;
   uint *sort_array2;
-  undefined8 sort_context1;
-  undefined4 sort_size1;
+  uint64_t sort_context1;
+  int32_t sort_size1;
   uint *sort_array3;
   uint *sort_array4;
-  undefined8 sort_context2;
-  undefined4 sort_size2;
+  uint64_t sort_context2;
+  int32_t sort_size2;
   longlong stack_value;
   uint **callback_ptr;
-  undefined *callback_func;
+  void *callback_func;
   code *sort_function;
   
-  param_value = (undefined4)((ulonglong)stack_param1 >> 0x20);
+  param_value = (int32_t)((ulonglong)stack_param1 >> 0x20);
   resource_flag = RENDERING_RESOURCE_FLAG_INVALID;
   sort_array1 = (uint *)0x0;
   sort_array2 = (uint *)0x0;
@@ -152,7 +152,7 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   sort_size2 = 3;
   
   // 初始化排序数组
-  FUN_18032b1c0(0, &sort_array1, *(undefined4 *)(render_context + RENDERING_PARAM_OFFSET_150), 0);
+  FUN_18032b1c0(0, &sort_array1, *(int32_t *)(render_context + RENDERING_PARAM_OFFSET_150), 0);
   FUN_18032b1c0(render_context, &sort_array3, *(int *)(render_context + RENDERING_PARAM_OFFSET_150) + -1, 0);
   
   data_ptr2 = sort_array2;
@@ -297,7 +297,7 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   // 批量数据处理
   result = CONCAT71((int7)((ulonglong)stack_param2 >> 8), 1);
   FUN_18032bd90(render_context, &sort_array3, &sort_array1, *(int *)(render_context + RENDERING_PARAM_OFFSET_150) + -1, CONCAT44(param_value, 4), result, resource_flag);
-  FUN_18032bd90(render_context, &sort_array1, &sort_array3, *(undefined4 *)(render_context + RENDERING_PARAM_OFFSET_150), 2, result & 0xffffffffffffff00);
+  FUN_18032bd90(render_context, &sort_array1, &sort_array3, *(int32_t *)(render_context + RENDERING_PARAM_OFFSET_150), 2, result & 0xffffffffffffff00);
   
   callback_ptr = &sort_array1;
   callback_func = &UNK_18033d030;
@@ -326,7 +326,7 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   sort_context1 = 0;
   sort_size1 = 3;
   
-  FUN_18032afa0(render_context, &sort_array3, *(undefined4 *)(render_context + RENDERING_PARAM_OFFSET_150));
+  FUN_18032afa0(render_context, &sort_array3, *(int32_t *)(render_context + RENDERING_PARAM_OFFSET_150));
   FUN_18032afa0(render_context, &sort_array1, *(int *)(render_context + RENDERING_PARAM_OFFSET_150) + -1);
   
   data_ptr2 = sort_array4;
@@ -480,7 +480,7 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
   sort_size2 = 3;
   stack_value = 0;
   callback_ptr = (uint **)0x0;
-  callback_func = (undefined *)0x0;
+  callback_func = (void *)0x0;
   sort_function = (code *)CONCAT44(sort_function._4_4_, 3);
   
   result = FUN_180328540(render_context, &stack_value, &sort_array3);
@@ -508,7 +508,7 @@ ulonglong rendering_system_advanced_data_sorter(longlong render_context)
  * @param validation_flag 验证标志
  * @return 比较结果的状态码
  */
-ulonglong rendering_system_data_comparator(longlong render_context, undefined8 compare_data, longlong *reference_data, char validation_flag)
+ulonglong rendering_system_data_comparator(longlong render_context, uint64_t compare_data, longlong *reference_data, char validation_flag)
 
 {
   char validation_result;
@@ -518,16 +518,16 @@ ulonglong rendering_system_data_comparator(longlong render_context, undefined8 c
   ulonglong element_count;
   longlong loop_counter;
   float float_value;
-  undefined8 stack_param;
-  undefined4 temp_params[8];
-  undefined *callback_ptr;
+  uint64_t stack_param;
+  int32_t temp_params[8];
+  void *callback_ptr;
   code *callback_function;
   
   process_result = CONCAT71((int7)((ulonglong)stack_param >> 8), 1);
   
   // 执行数据比较处理
   FUN_18032bd90(render_context, compare_data, reference_data, *(int *)(render_context + RENDERING_PARAM_OFFSET_150) + -1, 4, process_result, RENDERING_RESOURCE_FLAG_INVALID);
-  FUN_18032bd90(render_context, reference_data, compare_data, *(undefined4 *)(render_context + RENDERING_PARAM_OFFSET_150), 2, process_result & 0xffffffffffffff00);
+  FUN_18032bd90(render_context, reference_data, compare_data, *(int32_t *)(render_context + RENDERING_PARAM_OFFSET_150), 2, process_result & 0xffffffffffffff00);
   
   process_result = reference_data[1] - *reference_data >> 2;
   
@@ -538,8 +538,8 @@ ulonglong rendering_system_data_comparator(longlong render_context, undefined8 c
       
       do {
         // 获取数据元素进行比较
-        data_element = (uint *)FUN_18032ba60(render_context, *(undefined4 *)(element_count + *reference_data), *(undefined4 *)(render_context + RENDERING_PARAM_OFFSET_150));
-        element_offset = FUN_18032ba60(render_context, *(undefined4 *)(element_count + *reference_data), *(int *)(render_context + RENDERING_PARAM_OFFSET_150) + -1);
+        data_element = (uint *)FUN_18032ba60(render_context, *(int32_t *)(element_count + *reference_data), *(int32_t *)(render_context + RENDERING_PARAM_OFFSET_150));
+        element_offset = FUN_18032ba60(render_context, *(int32_t *)(element_count + *reference_data), *(int *)(render_context + RENDERING_PARAM_OFFSET_150) + -1);
         
         // 执行数据验证
         validation_result = func_0x000180285f10(element_offset + 4, data_element + 1, 0x38d1b717);
@@ -585,10 +585,10 @@ ulonglong rendering_system_data_comparator(longlong render_context, undefined8 c
     // 验证模式下的回调处理
     callback_ptr = &UNK_18033d030;
     callback_function = FUN_18033ced0;
-    temp_params[0] = (undefined4)render_context;
-    temp_params[1] = (undefined4)((ulonglong)render_context >> 0x20);
+    temp_params[0] = (int32_t)render_context;
+    temp_params[1] = (int32_t)((ulonglong)render_context >> 0x20);
     temp_params[2] = SUB84(reference_data, 0);
-    temp_params[3] = (undefined4)((ulonglong)reference_data >> 0x20);
+    temp_params[3] = (int32_t)((ulonglong)reference_data >> 0x20);
     temp_params[4] = temp_params[0];
     temp_params[5] = temp_params[1];
     temp_params[6] = temp_params[2];
@@ -611,7 +611,7 @@ ulonglong rendering_system_data_comparator(longlong render_context, undefined8 c
  * @param target_data 目标数据指针
  * @return 处理结果的状态码
  */
-ulonglong rendering_system_resource_data_processor(undefined8 process_param, int *source_data, int *target_data)
+ulonglong rendering_system_resource_data_processor(uint64_t process_param, int *source_data, int *target_data)
 
 {
   byte *source_ptr;
@@ -619,7 +619,7 @@ ulonglong rendering_system_resource_data_processor(undefined8 process_param, int
   ulonglong process_status;
   int source_length;
   int target_length;
-  undefined *temp_ptr;
+  void *temp_ptr;
   uint *data_element;
   ulonglong temp_result;
   int comparison_result;

@@ -88,8 +88,8 @@ typedef longlong** SystemHandlePtrPtr;            ///< 系统句柄指针的指�
  */
 typedef uint ResourceID;                          ///< 资源ID
 typedef uint* ResourceIDPtr;                      ///< 资源ID指针
-typedef undefined8* ResourceDataPtr;               ///< 资源数据指针
-typedef undefined8** ResourceDataPtrPtr;           ///< 资源数据指针的指针
+typedef uint64_t* ResourceDataPtr;               ///< 资源数据指针
+typedef uint64_t** ResourceDataPtrPtr;           ///< 资源数据指针的指针
 
 /**
  * @brief 系统状态类型
@@ -105,8 +105,8 @@ typedef byte SystemByte;                          ///< 系统字节
 typedef ulonglong MemorySize;                     ///< 内存大小
 typedef void* MemoryPtr;                          ///< 内存指针
 typedef void** MemoryPtrPtr;                      ///< 内存指针的指针
-typedef undefined* UndefinedPtr;                  ///< 未定义指针
-typedef undefined** UndefinedPtrPtr;              ///< 未定义指针的指针
+typedef void* UndefinedPtr;                  ///< 未定义指针
+typedef void** UndefinedPtrPtr;              ///< 未定义指针的指针
 
 /**
  * @brief 线程管理类型
@@ -126,10 +126,10 @@ typedef ushort DataWord;                          ///< 数据字
 /**
  * @brief 配置管理类型
  */
-typedef undefined4 ConfigValue;                   ///< 配置值
-typedef undefined4* ConfigValuePtr;               ///< 配置值指针
-typedef undefined8 ConfigData;                    ///< 配置数据
-typedef undefined8* ConfigDataPtr;                ///< 配置数据指针
+typedef int32_t ConfigValue;                   ///< 配置值
+typedef int32_t* ConfigValuePtr;               ///< 配置值指针
+typedef uint64_t ConfigData;                    ///< 配置数据
+typedef uint64_t* ConfigDataPtr;                ///< 配置数据指针
 
 // ================================ 结构体定义 ================================
 
@@ -214,9 +214,9 @@ typedef struct {
 // ================================ 函数声明 ================================
 
 void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char flags);
-undefined8 SystemResourceManager(SystemHandle handle, undefined8 *config_data);
-void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int param2, uint param3, undefined4 config, longlong data1, longlong data2);
-void SystemStateSynchronizer(undefined **resource_ptrs, uint *resource_ids, longlong sync_handle);
+uint64_t SystemResourceManager(SystemHandle handle, uint64_t *config_data);
+void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int param2, uint param3, int32_t config, longlong data1, longlong data2);
+void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, longlong sync_handle);
 
 // ================================ 函数实现 ================================
 
@@ -247,36 +247,36 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
     SystemStatus status1, status2;                 ///< 状态变量
     ConfigValue config_val1, config_val2;          ///< 配置值变量
     ResourceDataPtr resource_ptr1, resource_ptr2;  ///< 资源指针变量
-    undefined8 temp_data1, temp_data2;             ///< 临时数据变量
+    uint64_t temp_data1, temp_data2;             ///< 临时数据变量
     uint index_var;                                ///< 索引变量
     MemorySize memory_size1, memory_size2;         ///< 内存大小变量
     DataValue data_val3, data_val4;                ///< 数据值变量
     
     // 堆栈变量定义
-    undefined1 stack_buffer1[32];                  ///< 堆栈缓冲区1
-    undefined4 stack_val1, stack_val2;             ///< 堆栈值变量
+    int8_t stack_buffer1[32];                  ///< 堆栈缓冲区1
+    int32_t stack_val1, stack_val2;             ///< 堆栈值变量
     SystemHandlePtr stack_handle_ptr1, stack_handle_ptr2; ///< 堆栈句柄指针
-    undefined8 stack_data1;                        ///< 堆栈数据1
+    uint64_t stack_data1;                        ///< 堆栈数据1
     SystemHandlePtr stack_handle_ptr3, stack_handle_ptr4; ///< 堆栈句柄指针
     SystemHandlePtr stack_handle_ptr5, stack_handle_ptr6; ///< 堆栈句柄指针
     UndefinedPtrPtr stack_ptr_ptr1, stack_ptr_ptr2; ///< 堆栈指针指针
     SystemHandle stack_handle_array[2];            ///< 堆栈句柄数组
     UndefinedPtr stack_ptr1;                       ///< 堆栈指针1
     code *code_ptr;                                ///< 代码指针
-    undefined8 stack_data2;                        ///< 堆栈数据2
+    uint64_t stack_data2;                        ///< 堆栈数据2
     UndefinedPtr stack_ptr2;                       ///< 堆栈指针2
-    undefined1 *stack_byte_ptr1;                  ///< 堆栈字节指针1
-    undefined4 stack_val3;                        ///< 堆栈值3
-    undefined1 stack_buffer2[128];                ///< 堆栈缓冲区2
+    int8_t *stack_byte_ptr1;                  ///< 堆栈字节指针1
+    int32_t stack_val3;                        ///< 堆栈值3
+    int8_t stack_buffer2[128];                ///< 堆栈缓冲区2
     UndefinedPtr stack_ptr3;                       ///< 堆栈指针3
-    undefined1 *stack_byte_ptr2;                  ///< 堆栈字节指针2
-    undefined4 stack_val4;                        ///< 堆栈值4
-    undefined1 stack_buffer3[128];                ///< 堆栈缓冲区3
-    undefined8 stack_data3;                        ///< 堆栈数据3
+    int8_t *stack_byte_ptr2;                  ///< 堆栈字节指针2
+    int32_t stack_val4;                        ///< 堆栈值4
+    int8_t stack_buffer3[128];                ///< 堆栈缓冲区3
+    uint64_t stack_data3;                        ///< 堆栈数据3
     MemorySize stack_memory_size1;                 ///< 堆栈内存大小1
-    undefined8 stack_data4;                        ///< 堆栈数据4
+    uint64_t stack_data4;                        ///< 堆栈数据4
     int stack_int1, stack_int2, stack_int3, stack_int4; ///< 堆栈整数变量
-    undefined4 stack_val5, stack_val6, stack_val7; ///< 堆栈值变量
+    int32_t stack_val5, stack_val6, stack_val7; ///< 堆栈值变量
     MemorySize stack_memory_size2;                 ///< 堆栈内存大小2
     MemorySize temp_memory_size;                   ///< 临时内存大小
     
@@ -295,13 +295,13 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         if (*(longlong *)(handle + 0x121e0) != 0) {
             FUN_18023b050();  // 执行资源清理函数
             stack_handle_ptr5 = *(longlong **)(handle + 0x121e0);
-            *(undefined8 *)(handle + 0x121e0) = 0;
+            *(uint64_t *)(handle + 0x121e0) = 0;
             
             if (stack_handle_ptr5 != (longlong *)0x0) {
                 (**(code **)(*stack_handle_ptr5 + 0x38))();  // 调用资源释放函数
             }
         }
-        FUN_18029c9d0(*(undefined8 *)(handle + 0x1cd8));  // 执行系统配置更新
+        FUN_18029c9d0(*(uint64_t *)(handle + 0x1cd8));  // 执行系统配置更新
     }
     else {
         // 子线程处理逻辑
@@ -353,7 +353,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
             }
             
             // 设置资源管理参数
-            stack_val5 = *(undefined4 *)(handle + 0x1d80);
+            stack_val5 = *(int32_t *)(handle + 0x1d80);
             stack_val6 = 0;
             stack_val7 = 0;
             stack_int1 = param1;
@@ -369,15 +369,15 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
                 stack_data4 = CONCAT44(stack_val6, stack_val5);
                 stack_val3 = stack_val7;
                 
-                (**(code **)**(undefined8 **)(handle + 0x1d78))
-                          (*(undefined8 **)(handle + 0x1d78), &UNK_180a026d0, &stack_handle_ptr6);
+                (**(code **)**(uint64_t **)(handle + 0x1d78))
+                          (*(uint64_t **)(handle + 0x1d78), &UNK_180a026d0, &stack_handle_ptr6);
                 (**(code **)(*stack_handle_ptr6 + 0x30))(stack_handle_ptr6, &UNK_180a026c0, &stack_handle_ptr5);
                 (**(code **)(*stack_handle_ptr5 + 0x38))(stack_handle_ptr5, 0, &stack_handle_ptr2);
             }
             else {
                 // 使用现有的资源管理器
                 (**(code **)(*stack_handle_ptr2 + 0x48))
-                          (stack_handle_ptr2, &stack_int1, &stack_data3, *(undefined8 *)(handle + 0x1d78));
+                          (stack_handle_ptr2, &stack_int1, &stack_data3, *(uint64_t *)(handle + 0x1d78));
             }
             
             // 执行资源分配和配置
@@ -462,7 +462,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         *(longlong *)(*(longlong *)(handle + 0x121e0) + 0x168) = *(longlong *)(handle + 0x121e0);
         
         // 分配和初始化资源数据
-        resource_ptr1 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, MEMORY_ALLOC_TYPE_3);
+        resource_ptr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, MEMORY_ALLOC_TYPE_3);
         resource_ptr2 = resource_ptr1;
         
         do {
@@ -473,11 +473,11 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
             resource_ptr2 = resource_ptr2 + 2;
         } while (index_var == 0);
         
-        *(undefined8 **)(*(longlong *)(handle + 0x121e0) + 0x1d8) = resource_ptr1;
-        *(undefined2 *)(*(longlong *)(handle + 0x121e0) + 0x332) = 1;
+        *(uint64_t **)(*(longlong *)(handle + 0x121e0) + 0x1d8) = resource_ptr1;
+        *(int16_t *)(*(longlong *)(handle + 0x121e0) + 0x332) = 1;
         temp_handle2 = *(longlong *)(handle + 0x121e0);
-        *(undefined1 *)(temp_handle2 + 0x335) = 1;
-        *(undefined4 *)(temp_handle2 + 0x35c) = 1;
+        *(int8_t *)(temp_handle2 + 0x335) = 1;
+        *(int32_t *)(temp_handle2 + 0x35c) = 1;
         temp_handle1 = _DAT_180c86870;
         temp_handle2 = *(longlong *)(*(longlong *)(handle + 0x121e0) + 0x1d8);
         
@@ -489,20 +489,20 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
                  (longlong)*(int *)(_DAT_180c86870 + 0x224);
         }
         
-        *(undefined8 *)(temp_handle2 + 8) = stack_data1;
+        *(uint64_t *)(temp_handle2 + 8) = stack_data1;
         temp_handle2 = *(longlong *)(handle + 0x121e0);
         *(longlong *)(temp_handle2 + 0x340) = (longlong)*(int *)(temp_handle1 + 0x224);
         
         // 设置系统状态
         LOCK();
-        *(undefined4 *)(temp_handle2 + 0x380) = 2;
+        *(int32_t *)(temp_handle2 + 0x380) = 2;
         UNLOCK();
         LOCK();
-        *(undefined1 *)(temp_handle2 + 900) = 1;
+        *(int8_t *)(temp_handle2 + 900) = 1;
         UNLOCK();
         
         // 执行系统初始化
-        FUN_18023ce10(*(undefined8 *)(handle + 0x121e0));
+        FUN_18023ce10(*(uint64_t *)(handle + 0x121e0));
         
         if ((*(longlong *)(*(longlong *)(handle + 0x121e0) + 0x1d8) != 0) && (_DAT_180c86870 != 0)) {
             *(longlong *)(*(longlong *)(handle + 0x121e0) + 0x340) =
@@ -549,18 +549,18 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
  * @param handle 系统句柄，用于标识系统实例
  * @param config_data 配置数据指针，包含资源管理配置信息
  * 
- * @return undefined8 返回操作结果状态码
+ * @return uint64_t 返回操作结果状态码
  * 
  * @note 该函数是系统资源管理的核心组件，负责协调资源的分配和释放
  */
-undefined8 SystemResourceManager(SystemHandle handle, undefined8 *config_data)
+uint64_t SystemResourceManager(SystemHandle handle, uint64_t *config_data)
 {
     // 局部变量定义
     SystemStatus status1, status2;                 ///< 系统状态变量
     ConfigValue config_val;                        ///< 配置值变量
     SystemHandlePtr resource_ptr;                  ///< 资源指针变量
     int priority_level;                            ///< 优先级级别
-    undefined8 result_code;                        ///< 结果代码
+    uint64_t result_code;                        ///< 结果代码
     int config_array[2];                           ///< 配置数组
     
     // 执行系统初始化
@@ -573,7 +573,7 @@ undefined8 SystemResourceManager(SystemHandle handle, undefined8 *config_data)
     }
     
     // 判断是否需要特殊处理
-    if ((((config_data != (undefined8 *)0x0) || (*(char *)(handle + 0x121b8) == '\0')) ||
+    if ((((config_data != (uint64_t *)0x0) || (*(char *)(handle + 0x121b8) == '\0')) ||
         ((**(code **)(**(longlong **)(handle + 0x1d70) + 0x58))
                    (*(longlong **)(handle + 0x1d70), config_array, 0), config_array[0] != 0)) ||
        (result_code = 0x200, status2 != 0)) {
@@ -587,7 +587,7 @@ undefined8 SystemResourceManager(SystemHandle handle, undefined8 *config_data)
     }
     
     // 选择资源管理器
-    if (config_data == (undefined8 *)0x0) {
+    if (config_data == (uint64_t *)0x0) {
         resource_ptr = *(longlong **)(handle + 0x1d70);
     }
     else {
@@ -635,41 +635,41 @@ undefined8 SystemResourceManager(SystemHandle handle, undefined8 *config_data)
  * 
  * @note 该函数是系统数据初始化的核心组件，负责初始化各种数据结构
  */
-void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int param2, uint param3, undefined4 config, longlong data1, longlong data2)
+void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int param2, uint param3, int32_t config, longlong data1, longlong data2)
 {
     // 局部变量定义
     uint flag_var1;                                ///< 标志变量1
     int temp_int1;                                 ///< 临时整数1
     SystemHandle temp_handle1;                     ///< 临时句柄1
-    undefined8 *data_ptr1, *data_ptr2;             ///< 数据指针
-    undefined *temp_ptr1, *temp_ptr2;              ///< 临时指针
+    uint64_t *data_ptr1, *data_ptr2;             ///< 数据指针
+    void *temp_ptr1, *temp_ptr2;              ///< 临时指针
     bool condition_flag;                           ///< 条件标志
-    undefined1 stack_buffer1[32];                  ///< 堆栈缓冲区1
-    undefined4 stack_val1;                         ///< 堆栈值1
-    undefined8 stack_data1;                        ///< 堆栈数据1
+    int8_t stack_buffer1[32];                  ///< 堆栈缓冲区1
+    int32_t stack_val1;                         ///< 堆栈值1
+    uint64_t stack_data1;                        ///< 堆栈数据1
     int stack_int1;                                ///< 堆栈整数1
     uint stack_uint1;                              ///< 堆栈无符号整数1
-    undefined8 *stack_ptr1;                        ///< 堆栈指针1
+    uint64_t *stack_ptr1;                        ///< 堆栈指针1
     uint stack_uint2, stack_uint3;                 ///< 堆栈无符号整数变量
     SystemHandle stack_handle1;                    ///< 堆栈句柄1
-    undefined8 *stack_ptr2, *stack_ptr3;           ///< 堆栈指针
-    undefined8 stack_data2;                        ///< 堆栈数据2
-    undefined8 *stack_ptr4;                        ///< 堆栈指针4
-    undefined8 stack_data3;                        ///< 堆栈数据3
+    uint64_t *stack_ptr2, *stack_ptr3;           ///< 堆栈指针
+    uint64_t stack_data2;                        ///< 堆栈数据2
+    uint64_t *stack_ptr4;                        ///< 堆栈指针4
+    uint64_t stack_data3;                        ///< 堆栈数据3
     int stack_int2;                                ///< 堆栈整数2
     uint stack_uint4, stack_uint5;                 ///< 堆栈无符号整数变量
-    undefined4 stack_val2;                         ///< 堆栈值2
+    int32_t stack_val2;                         ///< 堆栈值2
     uint stack_uint6, stack_uint7;                 ///< 堆栈无符号整数变量
-    undefined *stack_ptr5;                         ///< 堆栈指针5
-    undefined1 *stack_byte_ptr1;                   ///< 堆栈字节指针1
-    undefined4 stack_val3;                         ///< 堆栈值3
-    undefined1 stack_buffer2[136];                 ///< 堆栈缓冲区2
+    void *stack_ptr5;                         ///< 堆栈指针5
+    int8_t *stack_byte_ptr1;                   ///< 堆栈字节指针1
+    int32_t stack_val3;                         ///< 堆栈值3
+    int8_t stack_buffer2[136];                 ///< 堆栈缓冲区2
     MemorySize stack_memory_size;                  ///< 堆栈内存大小
     
     // 初始化堆栈数据
     stack_data3 = SPECIAL_ADDRESS_1;
     stack_memory_size = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
-    data_ptr2 = (undefined8 *)0x0;
+    data_ptr2 = (uint64_t *)0x0;
     stack_uint5 = 0;
     stack_val2 = 0;
     stack_uint2 = flags & 1;
@@ -745,7 +745,7 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
     
     data_ptr1 = data_ptr2;
     if (data1 != 0) {
-        stack_data2 = *(undefined8 *)(data1 + 0x10);
+        stack_data2 = *(uint64_t *)(data1 + 0x10);
         data_ptr1 = &stack_data2;
         stack_ptr4 = data_ptr2;
     }
@@ -817,16 +817,16 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
         }
         
         // 设置输出数据
-        *(undefined8 **)(data2 + 0x10) = stack_ptr1;
-        *(undefined8 **)(data2 + 0x18) = stack_ptr2;
-        *(undefined8 **)(data2 + 0x20) = stack_ptr3;
+        *(uint64_t **)(data2 + 0x10) = stack_ptr1;
+        *(uint64_t **)(data2 + 0x18) = stack_ptr2;
+        *(uint64_t **)(data2 + 0x20) = stack_ptr3;
         stack_ptr5 = &UNK_1809fcc28;
         stack_byte_ptr1 = stack_buffer2;
         stack_buffer2[0] = 0;
-        stack_val3 = *(undefined4 *)(data2 + 0x60);
+        stack_val3 = *(int32_t *)(data2 + 0x60);
         temp_ptr1 = &DAT_18098bc73;
-        if (*(undefined **)(data2 + 0x58) != (undefined *)0x0) {
-            temp_ptr1 = *(undefined **)(data2 + 0x58);
+        if (*(void **)(data2 + 0x58) != (void *)0x0) {
+            temp_ptr1 = *(void **)(data2 + 0x58);
         }
         strcpy_s(stack_buffer2, 0x80, temp_ptr1);
         stack_ptr5 = &UNK_18098bcb0;
@@ -855,7 +855,7 @@ LAB_1800a4380:
  * 
  * @note 该函数是系统状态同步的核心组件，负责确保各个子系统状态一致
  */
-void SystemStateSynchronizer(undefined **resource_ptrs, uint *resource_ids, longlong sync_handle)
+void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, longlong sync_handle)
 {
     // 局部变量定义
     DataByte data_byte1;                            ///< 数据字节1
@@ -867,55 +867,55 @@ void SystemStateSynchronizer(undefined **resource_ptrs, uint *resource_ids, long
     ConfigValue config_val;                        ///< 配置值
     SystemStatus status1;                           ///< 系统状态1
     uint uint_var2;                                ///< 无符号整数变量2
-    undefined8 *data_ptr1;                          ///< 数据指针1
-    undefined8 temp_data1;                         ///< 临时数据1
+    uint64_t *data_ptr1;                          ///< 数据指针1
+    uint64_t temp_data1;                         ///< 临时数据1
     SystemHandlePtr handle_ptr1;                   ///< 句柄指针1
     DataWord data_word1;                           ///< 数据字1
-    undefined8 *data_ptr2;                         ///< 数据指针2
+    uint64_t *data_ptr2;                         ///< 数据指针2
     uint uint_var3;                                ///< 无符号整数变量3
-    undefined *temp_ptr1;                          ///< 临时指针1
+    void *temp_ptr1;                          ///< 临时指针1
     uint uint_var4, uint_var5, uint_var6;          ///< 无符号整数变量
     SystemHandlePtr handle_ptr2;                   ///< 句柄指针2
-    undefined1 stack_buffer1[32];                  ///< 堆栈缓冲区1
+    int8_t stack_buffer1[32];                  ///< 堆栈缓冲区1
     char stack_char1, stack_char2;                 ///< 堆栈字符变量
     UndefinedPtrPtr stack_ptr_ptr1;                ///< 堆栈指针指针1
-    undefined8 stack_data1;                        ///< 堆栈数据1
-    undefined4 stack_val1, stack_val2;             ///< 堆栈值变量
-    undefined8 stack_data2, stack_data3;           ///< 堆栈数据变量
-    undefined4 stack_val3, stack_val4;             ///< 堆栈值变量
+    uint64_t stack_data1;                        ///< 堆栈数据1
+    int32_t stack_val1, stack_val2;             ///< 堆栈值变量
+    uint64_t stack_data2, stack_data3;           ///< 堆栈数据变量
+    int32_t stack_val3, stack_val4;             ///< 堆栈值变量
     int stack_int1;                                ///< 堆栈整数1
     uint stack_uint1;                              ///< 堆栈无符号整数1
-    undefined4 stack_val5;                          ///< 堆栈值5
+    int32_t stack_val5;                          ///< 堆栈值5
     int stack_int2;                                ///< 堆栈整数2
     uint stack_uint2;                              ///< 堆栈无符号整数2
-    undefined4 stack_val6;                         ///< 堆栈值6
+    int32_t stack_val6;                         ///< 堆栈值6
     int stack_int3;                                ///< 堆栈整数3
     uint stack_uint3;                              ///< 堆栈无符号整数3
-    undefined4 stack_val7;                         ///< 堆栈值7
+    int32_t stack_val7;                         ///< 堆栈值7
     int stack_int4;                                ///< 堆栈整数4
-    undefined4 stack_val8;                         ///< 堆栈值8
+    int32_t stack_val8;                         ///< 堆栈值8
     uint stack_uint4;                              ///< 堆栈无符号整数4
-    undefined4 stack_val9;                         ///< 堆栈值9
+    int32_t stack_val9;                         ///< 堆栈值9
     SystemHandle stack_handle1;                    ///< 堆栈句柄1
-    undefined8 stack_data4;                        ///< 堆栈数据4
+    uint64_t stack_data4;                        ///< 堆栈数据4
     UndefinedPtrPtr stack_ptr_ptr2;                ///< 堆栈指针指针2
-    undefined4 stack_val10;                         ///< 堆栈值10
-    undefined8 stack_data5;                        ///< 堆栈数据5
-    undefined8 stack_data6;                        ///< 堆栈数据6
-    undefined *stack_ptr1;                         ///< 堆栈指针1
-    undefined1 *stack_byte_ptr1;                   ///< 堆栈字节指针1
-    undefined4 stack_val11;                        ///< 堆栈值11
-    undefined1 stack_buffer2[128];                 ///< 堆栈缓冲区2
-    undefined *stack_ptr2;                         ///< 堆栈指针2
-    undefined1 *stack_byte_ptr2;                   ///< 堆栈字节指针2
-    undefined4 stack_val12;                        ///< 堆栈值12
-    undefined1 stack_buffer3[128];                 ///< 堆栈缓冲区3
-    undefined1 stack_buffer4[152];                 ///< 堆栈缓冲区4
+    int32_t stack_val10;                         ///< 堆栈值10
+    uint64_t stack_data5;                        ///< 堆栈数据5
+    uint64_t stack_data6;                        ///< 堆栈数据6
+    void *stack_ptr1;                         ///< 堆栈指针1
+    int8_t *stack_byte_ptr1;                   ///< 堆栈字节指针1
+    int32_t stack_val11;                        ///< 堆栈值11
+    int8_t stack_buffer2[128];                 ///< 堆栈缓冲区2
+    void *stack_ptr2;                         ///< 堆栈指针2
+    int8_t *stack_byte_ptr2;                   ///< 堆栈字节指针2
+    int32_t stack_val12;                        ///< 堆栈值12
+    int8_t stack_buffer3[128];                 ///< 堆栈缓冲区3
+    int8_t stack_buffer4[152];                 ///< 堆栈缓冲区4
     uint stack_uint5, stack_uint6, stack_uint7, stack_uint8; ///< 堆栈无符号整数变量
-    undefined4 stack_val13;                        ///< 堆栈值13
-    undefined8 stack_data7;                        ///< 堆栈数据7
-    undefined4 stack_val14;                        ///< 堆栈值14
-    undefined8 stack_data8;                        ///< 堆栈数据8
+    int32_t stack_val13;                        ///< 堆栈值13
+    uint64_t stack_data7;                        ///< 堆栈数据7
+    int32_t stack_val14;                        ///< 堆栈值14
+    uint64_t stack_data8;                        ///< 堆栈数据8
     uint stack_uint9;                              ///< 堆栈无符号整数9
     MemorySize stack_memory_size;                  ///< 堆栈内存大小
     MemorySize temp_memory_size;                   ///< 临时内存大小
@@ -925,12 +925,12 @@ void SystemStateSynchronizer(undefined **resource_ptrs, uint *resource_ids, long
     stack_memory_size = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
     
     // 复制资源数据到同步句柄
-    temp_data1 = *(undefined8 *)(resource_ids + 2);
-    *(undefined8 *)(sync_handle + 0x108) = *(undefined8 *)resource_ids;
-    *(undefined8 *)(sync_handle + 0x110) = temp_data1;
-    temp_data1 = *(undefined8 *)(resource_ids + 6);
-    *(undefined8 *)(sync_handle + 0x118) = *(undefined8 *)(resource_ids + 4);
-    *(undefined8 *)(sync_handle + 0x120) = temp_data1;
+    temp_data1 = *(uint64_t *)(resource_ids + 2);
+    *(uint64_t *)(sync_handle + 0x108) = *(uint64_t *)resource_ids;
+    *(uint64_t *)(sync_handle + 0x110) = temp_data1;
+    temp_data1 = *(uint64_t *)(resource_ids + 6);
+    *(uint64_t *)(sync_handle + 0x118) = *(uint64_t *)(resource_ids + 4);
+    *(uint64_t *)(sync_handle + 0x120) = temp_data1;
     uint_var5 = resource_ids[9];
     uint_var6 = resource_ids[10];
     uint_var2 = resource_ids[0xb];
@@ -938,7 +938,7 @@ void SystemStateSynchronizer(undefined **resource_ptrs, uint *resource_ids, long
     *(uint *)(sync_handle + 300) = uint_var5;
     *(uint *)(sync_handle + 0x130) = uint_var6;
     *(uint *)(sync_handle + 0x134) = uint_var2;
-    *(undefined8 *)(sync_handle + 0x138) = *(undefined8 *)(resource_ids + 0xc);
+    *(uint64_t *)(sync_handle + 0x138) = *(uint64_t *)(resource_ids + 0xc);
     uint_var5 = resource_ids[1];
     *(short *)(sync_handle + 0x32c) = (short)*resource_ids;
     *(short *)(sync_handle + 0x32e) = (short)uint_var5;
@@ -957,7 +957,7 @@ void SystemStateSynchronizer(undefined **resource_ptrs, uint *resource_ids, long
     
     data_byte1 = (char)resource_ids[9];
     if (data_byte1 != '\0') {
-        *(undefined1 *)(sync_handle + 0x355) = 1;
+        *(int8_t *)(sync_handle + 0x355) = 1;
     }
     
     uint_var3 = 0;
@@ -1015,7 +1015,7 @@ void SystemStateSynchronizer(undefined **resource_ptrs, uint *resource_ids, long
         }
         *(char *)(sync_handle + 0x335) = (char)(uint_var6 + 1);
         *(uint *)(sync_handle + 0x35c) = uint_var6 + 1;
-        *(undefined1 *)(sync_handle + 0x355) = 1;
+        *(int8_t *)(sync_handle + 0x355) = 1;
     }
     
     if ((char)uint_var2 != '\0') {
@@ -1038,8 +1038,8 @@ void SystemStateSynchronizer(undefined **resource_ptrs, uint *resource_ids, long
         FUN_180220810(status1, &UNK_180a01a28);
     }
     
-    *(undefined8 *)(sync_handle + 0x170) = stack_data4;
-    stack_ptr_ptr1 = (undefined **)FUN_180049b30(stack_buffer4, sync_handle + 0x10);
+    *(uint64_t *)(sync_handle + 0x170) = stack_data4;
+    stack_ptr_ptr1 = (void **)FUN_180049b30(stack_buffer4, sync_handle + 0x10);
     *stack_ptr_ptr1 = &UNK_18098bcb0;
     *(longlong *)(sync_handle + 0x168) = sync_handle;
     data_word1 = *(ushort *)(sync_handle + 0x332);
@@ -1051,10 +1051,10 @@ void SystemStateSynchronizer(undefined **resource_ptrs, uint *resource_ids, long
     
     uint_var5 = uint_var5 * data_word1;
     if (uint_var5 == 0) {
-        data_ptr1 = (undefined8 *)0x0;
+        data_ptr1 = (uint64_t *)0x0;
     }
     else {
-        data_ptr1 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, (ulonglong)uint_var5 << 4, MEMORY_ALLOC_TYPE_5);
+        data_ptr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, (ulonglong)uint_var5 << 4, MEMORY_ALLOC_TYPE_5);
         status1 = 0;
         data_ptr2 = data_ptr1;
         do {
@@ -1067,7 +1067,7 @@ void SystemStateSynchronizer(undefined **resource_ptrs, uint *resource_ids, long
     }
     
     uint_var5 = 0;
-    *(undefined8 **)(sync_handle + 0x1d8) = data_ptr1;
+    *(uint64_t **)(sync_handle + 0x1d8) = data_ptr1;
     if (data_word1 != 0) {
         handle_ptr2 = (longlong *)0x0;
         do {
@@ -1095,7 +1095,7 @@ LAB_1800a46f5:
                     }
                     stack_handle1 = 0;
                     (**(code **)(*(longlong *)temp_ptr_ptr1[0x3af] + 0x48))
-                            (temp_ptr_ptr1[0x3af], *(undefined8 *)(sync_handle + 0x170), &stack_val1, &stack_handle1);
+                            (temp_ptr_ptr1[0x3af], *(uint64_t *)(sync_handle + 0x170), &stack_val1, &stack_handle1);
                     temp_handle1 = _DAT_180c86870;
                     handle_ptr1 = handle_ptr2;
                     if (*(longlong *)(sync_handle + 0x1d8) != 0) {
@@ -1114,10 +1114,10 @@ LAB_1800a46f5:
                     stack_ptr1 = &UNK_1809fcc28;
                     stack_byte_ptr1 = stack_buffer2;
                     stack_buffer2[0] = 0;
-                    stack_val11 = *(undefined4 *)(sync_handle + 0x20);
+                    stack_val11 = *(int32_t *)(sync_handle + 0x20);
                     temp_ptr1 = &DAT_18098bc73;
-                    if (*(undefined **)(sync_handle + 0x18) != (undefined *)0x0) {
-                        temp_ptr1 = *(undefined **)(sync_handle + 0x18);
+                    if (*(void **)(sync_handle + 0x18) != (void *)0x0) {
+                        temp_ptr1 = *(void **)(sync_handle + 0x18);
                     }
                     strcpy_s(stack_buffer2, 0x80, temp_ptr1);
                     stack_ptr1 = &UNK_18098bcb0;
@@ -1140,7 +1140,7 @@ LAB_1800a46f5:
             }
             uint_var5 = uint_var5 + 1;
         } while (uint_var5 < *(ushort *)(sync_handle + 0x332));
-        config_val = (undefined4)stack_data1;
+        config_val = (int32_t)stack_data1;
     }
     
     temp_data1 = 0;
@@ -1159,13 +1159,13 @@ LAB_1800a46f5:
             uint_var5 = *(uint *)(sync_handle + 0x35c);
             data_word1 = *(ushort *)(sync_handle + 0x332);
         }
-        *(undefined8 *)(sync_handle + 0x180) = temp_data1;
+        *(uint64_t *)(sync_handle + 0x180) = temp_data1;
         if ((int)uint_var5 < (int)uint_var6) {
             uint_var6 = uint_var5;
         }
         *(uint *)(sync_handle + 0x188) = uint_var6 * data_word1;
         (**(code **)(*(longlong *)temp_ptr_ptr1[0x3af] + 0x38))
-                  (temp_ptr_ptr1[0x3af], *(undefined8 *)(sync_handle + 0x170), 0, sync_handle + 0x178);
+                  (temp_ptr_ptr1[0x3af], *(uint64_t *)(sync_handle + 0x170), 0, sync_handle + 0x178);
         uint_var5 = 0;
         if (*(short *)(sync_handle + 0x332) != 0) {
             do {
@@ -1194,8 +1194,8 @@ LAB_1800a46f5:
                         stack_val10 = config_val;
                         stack_int4 = status1;
                         (**(code **)(*(longlong *)temp_ptr_ptr1[0x3af] + 0x38))
-                                  (temp_ptr_ptr1[0x3af], *(undefined8 *)(sync_handle + 0x170), &stack_val10, &stack_data1);
-                        *(undefined8 *)
+                                  (temp_ptr_ptr1[0x3af], *(uint64_t *)(sync_handle + 0x170), &stack_val10, &stack_data1);
+                        *(uint64_t *)
                          (*(longlong *)(sync_handle + 0x180) + (longlong)(int)(uint_var3 * uint_var5 + status1) * 8) =
                              stack_data1;
                         status1 = status1 + 1;
@@ -1231,7 +1231,7 @@ LAB_1800a46f5:
             uint_var5 = *(uint *)(sync_handle + 0x35c);
             data_word1 = *(ushort *)(sync_handle + 0x332);
         }
-        *(undefined8 *)(sync_handle + 0x210) = temp_data1;
+        *(uint64_t *)(sync_handle + 0x210) = temp_data1;
         if ((int)uint_var5 < (int)uint_var6) {
             uint_var6 = uint_var5;
         }
@@ -1239,7 +1239,7 @@ LAB_1800a46f5:
         stack_data5 = 4;
         stack_val10 = config_val;
         (**(code **)(*(longlong *)temp_ptr_ptr1[0x3af] + 0x40))
-                  (temp_ptr_ptr1[0x3af], *(undefined8 *)(sync_handle + 0x170), &stack_val10, sync_handle + 0x208);
+                  (temp_ptr_ptr1[0x3af], *(uint64_t *)(sync_handle + 0x170), &stack_val10, sync_handle + 0x208);
         *(longlong *)(sync_handle + 0x200) = sync_handle;
         uint_var5 = 0;
         if (*(short *)(sync_handle + 0x332) != 0) {
@@ -1256,7 +1256,7 @@ LAB_1800a46f5:
                         if ((int)uint_var5 < (int)uint_var3) {
                             uint_var3 = uint_var5;
                         }
-                        stack_ptr_ptr1 = (undefined **)0x0;
+                        stack_ptr_ptr1 = (void **)0x0;
                         if (*(short *)(sync_handle + 0x332) == 1) {
                             stack_val4 = 4;
                         }
@@ -1268,8 +1268,8 @@ LAB_1800a46f5:
                         stack_val6 = config_val;
                         stack_int1 = status1;
                         (**(code **)(*(longlong *)temp_ptr_ptr1[0x3af] + 0x40))
-                                  (temp_ptr_ptr1[0x3af], *(undefined8 *)(sync_handle + 0x170), &stack_val6, &stack_ptr_ptr1);
-                        *(undefined ***)
+                                  (temp_ptr_ptr1[0x3af], *(uint64_t *)(sync_handle + 0x170), &stack_val6, &stack_ptr_ptr1);
+                        *(void ***)
                          (*(longlong *)(sync_handle + 0x210) + (longlong)(int)(uint_var3 * uint_var5 + status1) * 8) =
                              stack_ptr_ptr1;
                         status1 = status1 + 1;
@@ -1294,20 +1294,20 @@ LAB_1800a46f5:
     UNLOCK();
     *(longlong *)(sync_handle + 0x340) = (longlong)*(int *)(_DAT_180c86870 + 0x224);
     LOCK();
-    *(undefined4 *)(sync_handle + 0x380) = 2;
+    *(int32_t *)(sync_handle + 0x380) = 2;
     UNLOCK();
     LOCK();
-    *(undefined1 *)(sync_handle + 900) = 1;
+    *(int8_t *)(sync_handle + 900) = 1;
     UNLOCK();
     FUN_18023a940(sync_handle);
     stack_ptr_ptr2 = &stack_ptr2;
     stack_ptr2 = &UNK_1809fcc28;
     stack_byte_ptr2 = stack_buffer3;
     stack_buffer3[0] = 0;
-    stack_val12 = *(undefined4 *)(sync_handle + 0x20);
+    stack_val12 = *(int32_t *)(sync_handle + 0x20);
     temp_ptr1 = &DAT_18098bc73;
-    if (*(undefined **)(sync_handle + 0x18) != (undefined *)0x0) {
-        temp_ptr1 = *(undefined **)(sync_handle + 0x18);
+    if (*(void **)(sync_handle + 0x18) != (void *)0x0) {
+        temp_ptr1 = *(void **)(sync_handle + 0x18);
     }
     strcpy_s(stack_buffer3, 0x80, temp_ptr1);
     stack_ptr_ptr1 = &stack_ptr2;

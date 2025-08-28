@@ -134,20 +134,20 @@ typedef struct {
 /*=============================================
             外部函数声明
 =============================================*/
-extern void FUN_180593b40(longlong, undefined8, undefined4, undefined8, bool);
+extern void FUN_180593b40(longlong, uint64_t, int32_t, uint64_t, bool);
 extern char func_0x000180522f60(longlong);
 extern char func_0x000180522f60(void);
 extern void FUN_180511990(longlong, int, int, bool, char, int);
 extern void FUN_18052e450(longlong, int, int, int);
 extern void FUN_18052e130(longlong, int);
-extern void FUN_1805d1c80(longlong, undefined8*, int);
+extern void FUN_1805d1c80(longlong, uint64_t*, int);
 extern void func_0x0001805da580(void);
 
 /*=============================================
             全局变量声明
 =============================================*/
-extern undefined8 UNK_1809f89f0;
-extern undefined8 DAT_180c8ed30;
+extern uint64_t UNK_1809f89f0;
+extern uint64_t DAT_180c8ed30;
 
 /**
  * @brief 渲染参数处理器 - 主要参数处理函数
@@ -169,14 +169,14 @@ void FUN_18051f1ed(longlong param_1, float *param_2)
     /* 局部变量定义 */
     float fVar1, fVar10, fVar11, fVar12, fVar13, fVar14, fVar15;
     longlong lVar2, lVar7, lVar9;
-    undefined8 uVar3, uVar4;
+    uint64_t uVar3, uVar4;
     char cVar5;
     uint uVar6;
     ulonglong uVar8;
     byte bRenderFlag;
     float fStack40, fStack44, fStack48, fStack50, fStack54, fStack58, fStack70;
     longlong lStack60;
-    undefined8 uStack68;
+    uint64_t uStack68;
     char cStack74;
     
     /* 获取渲染上下文和状态 */
@@ -204,7 +204,7 @@ void FUN_18051f1ed(longlong param_1, float *param_2)
             /* 检查备用状态的第9位标志位 */
             if (((*(ulonglong *)(lVar7 + 0x24b8) | uVar8) >> 9 & 1) == 0) {
                 /* 提取渲染标志位 */
-                bRenderFlag = (byte)((uint)*(undefined4 *)(param_1 + OFFSET_RENDER_FLAGS) >> 8) & 1;
+                bRenderFlag = (byte)((uint)*(int32_t *)(param_1 + OFFSET_RENDER_FLAGS) >> 8) & 1;
                 
                 /* 初始化堆栈变量 */
                 fStack50 = 0.0f;
@@ -215,7 +215,7 @@ void FUN_18051f1ed(longlong param_1, float *param_2)
                 uStack68 = 0;
                 
                 /* 调用渲染处理函数 */
-                FUN_180593b40(lVar2, *(undefined8 *)(*(longlong *)(param_1 + OFFSET_RENDER_DATA) + 0x18), 
+                FUN_180593b40(lVar2, *(uint64_t *)(*(longlong *)(param_1 + OFFSET_RENDER_DATA) + 0x18), 
                              &fStack40, param_2, *(int *)(param_1 + OFFSET_RENDER_MODE) != 1);
                 
                 /* 检查处理结果 */
@@ -292,8 +292,8 @@ FUN_18051f4c1:
         (*(float *)(lVar2 + 0xc) - *param_2) + *(float *)(param_1 + OFFSET_RENDER_POSITION);
     
     /* 保存渲染参数 */
-    uVar3 = *(undefined8 *)param_2;
-    uVar4 = *(undefined8 *)(param_2 + 2);
+    uVar3 = *(uint64_t *)param_2;
+    uVar4 = *(uint64_t *)(param_2 + 2);
     
     /* 更新渲染变换和缩放 */
     *(float *)(param_1 + OFFSET_RENDER_TRANSFORM) = 
@@ -302,8 +302,8 @@ FUN_18051f4c1:
         (fVar1 - fVar11) + *(float *)(param_1 + OFFSET_RENDER_SCALE);
     
     /* 更新渲染上下文 */
-    *(undefined8 *)(lVar2 + 0xc) = uVar3;
-    *(undefined8 *)(lVar2 + 0x14) = uVar4;
+    *(uint64_t *)(lVar2 + 0xc) = uVar3;
+    *(uint64_t *)(lVar2 + 0x14) = uVar4;
     
     /* 更新渲染数据 */
     if (-1 < *(int *)(param_1 + OFFSET_RENDER_INDEX)) {
@@ -312,11 +312,11 @@ FUN_18051f4c1:
         lVar7 = *(longlong *)(lVar9 + RENDER_STATE_OFFSET + lVar2);
         
         /* 更新渲染数据状态 */
-        *(undefined8 *)(lVar7 + 0xc) = uVar3;
-        *(undefined8 *)(lVar7 + 0x14) = uVar4;
-        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + lVar2) = 0;
-        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + 8 + lVar2) = 0;
-        *(undefined4 *)(lVar9 + RENDER_DATA_OFFSET + 16 + lVar2) = 0;
+        *(uint64_t *)(lVar7 + 0xc) = uVar3;
+        *(uint64_t *)(lVar7 + 0x14) = uVar4;
+        *(uint64_t *)(lVar9 + RENDER_DATA_OFFSET + lVar2) = 0;
+        *(uint64_t *)(lVar9 + RENDER_DATA_OFFSET + 8 + lVar2) = 0;
+        *(int32_t *)(lVar9 + RENDER_DATA_OFFSET + 16 + lVar2) = 0;
     }
     
     return;
@@ -343,18 +343,18 @@ FUN_18051f4c1:
  * 
  * @note 该函数使用非受影响寄存器变量，适用于特定的渲染场景
  */
-void FUN_18051f289(undefined8 param_1, longlong param_2, undefined4 param_3, undefined8 param_4)
+void FUN_18051f289(uint64_t param_1, longlong param_2, int32_t param_3, uint64_t param_4)
 {
     /* 局部变量定义 */
     longlong lVar1, lVar6, lVar7;
-    undefined8 uVar2, uVar3;
+    uint64_t uVar2, uVar3;
     char cVar4;
     uint uVar5;
     float fVar8, fVar9, fVar10, fVar11, fVar12, fVar13;
-    undefined1 uStack28;
+    int8_t uStack28;
     float fStack40, fStack44, fStack48, fStack50, fStack54, fStack58, fStack70;
     longlong lStack60;
-    undefined8 uStack68;
+    uint64_t uStack68;
     char cStack74;
     
     /* 从参数1中提取浮点数据 */
@@ -370,7 +370,7 @@ void FUN_18051f289(undefined8 param_1, longlong param_2, undefined4 param_3, und
     fStack58 = in_XMM0_Dc;                           // 浮点寄存器数据
     
     /* 调用渲染处理函数 */
-    FUN_180593b40(0, *(undefined8 *)(param_2 + 0x18), param_3, param_4, 
+    FUN_180593b40(0, *(uint64_t *)(param_2 + 0x18), param_3, param_4, 
                  *(int *)(unaff_RBX + OFFSET_RENDER_MODE) != 1);
     
     /* 检查处理结果状态 */
@@ -450,8 +450,8 @@ LAB_18051f4b9:
         (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + OFFSET_RENDER_POSITION);
     
     /* 保存渲染参数 */
-    uVar2 = *(undefined8 *)unaff_RDI;
-    uVar3 = *(undefined8 *)(unaff_RDI + 2);
+    uVar2 = *(uint64_t *)unaff_RDI;
+    uVar3 = *(uint64_t *)(unaff_RDI + 2);
     
     /* 更新渲染变换和缩放 */
     *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM) = 
@@ -460,8 +460,8 @@ LAB_18051f4b9:
         (fVar8 - fVar11) + *(float *)(unaff_RBX + OFFSET_RENDER_SCALE);
     
     /* 更新渲染上下文 */
-    *(undefined8 *)(unaff_RSI + 0xc) = uVar2;
-    *(undefined8 *)(unaff_RSI + 0x14) = uVar3;
+    *(uint64_t *)(unaff_RSI + 0xc) = uVar2;
+    *(uint64_t *)(unaff_RSI + 0x14) = uVar3;
     
     /* 更新渲染数据 */
     if (-1 < *(int *)(unaff_RBX + OFFSET_RENDER_INDEX)) {
@@ -470,11 +470,11 @@ LAB_18051f4b9:
         lVar1 = *(longlong *)(lVar7 + RENDER_STATE_OFFSET + lVar6);
         
         /* 更新渲染数据状态 */
-        *(undefined8 *)(lVar1 + 0xc) = uVar2;
-        *(undefined8 *)(lVar1 + 0x14) = uVar3;
-        *(undefined8 *)(lVar7 + RENDER_DATA_OFFSET + lVar6) = 0;
-        *(undefined8 *)(lVar7 + RENDER_DATA_OFFSET + 8 + lVar6) = 0;
-        *(undefined4 *)(lVar7 + RENDER_DATA_OFFSET + 16 + lVar6) = 0;
+        *(uint64_t *)(lVar1 + 0xc) = uVar2;
+        *(uint64_t *)(lVar1 + 0x14) = uVar3;
+        *(uint64_t *)(lVar7 + RENDER_DATA_OFFSET + lVar6) = 0;
+        *(uint64_t *)(lVar7 + RENDER_DATA_OFFSET + 8 + lVar6) = 0;
+        *(int32_t *)(lVar7 + RENDER_DATA_OFFSET + 16 + lVar6) = 0;
     }
     
     return;
@@ -501,12 +501,12 @@ LAB_18051f4b9:
  * 
  * @note 该函数使用优化的数学计算，适用于高性能渲染场景
  */
-void FUN_18051f339(float param_1, undefined8 param_2, undefined8 param_3, float param_4)
+void FUN_18051f339(float param_1, uint64_t param_2, uint64_t param_3, float param_4)
 {
     /* 局部变量定义 */
     float fVar1, fVar7, fVar8, fVar9, fVar10, fVar11;
     longlong lVar2, lVar3, lVar6;
-    undefined8 uVar4, uVar5;
+    uint64_t uVar4, uVar5;
     float in_XMM4_Da;
     float fStack50, fStack54;
     float in_stack48;
@@ -546,8 +546,8 @@ void FUN_18051f339(float param_1, undefined8 param_2, undefined8 param_3, float 
         (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + OFFSET_RENDER_POSITION);
     
     /* 保存渲染参数 */
-    uVar4 = *(undefined8 *)unaff_RDI;
-    uVar5 = *(undefined8 *)(unaff_RDI + 2);
+    uVar4 = *(uint64_t *)unaff_RDI;
+    uVar5 = *(uint64_t *)(unaff_RDI + 2);
     
     /* 更新渲染变换和缩放 */
     *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM) = 
@@ -556,8 +556,8 @@ void FUN_18051f339(float param_1, undefined8 param_2, undefined8 param_3, float 
         (fVar7 - fVar9) + *(float *)(unaff_RBX + OFFSET_RENDER_SCALE);
     
     /* 更新渲染上下文 */
-    *(undefined8 *)(unaff_RSI + 0xc) = uVar4;
-    *(undefined8 *)(unaff_RSI + 0x14) = uVar5;
+    *(uint64_t *)(unaff_RSI + 0xc) = uVar4;
+    *(uint64_t *)(unaff_RSI + 0x14) = uVar5;
     
     /* 更新渲染数据 */
     if (-1 < *(int *)(unaff_RBX + OFFSET_RENDER_INDEX)) {
@@ -566,11 +566,11 @@ void FUN_18051f339(float param_1, undefined8 param_2, undefined8 param_3, float 
         lVar3 = *(longlong *)(lVar6 + RENDER_STATE_OFFSET + lVar2);
         
         /* 更新渲染数据状态 */
-        *(undefined8 *)(lVar3 + 0xc) = uVar4;
-        *(undefined8 *)(lVar3 + 0x14) = uVar5;
-        *(undefined8 *)(lVar6 + RENDER_DATA_OFFSET + lVar2) = 0;
-        *(undefined8 *)(lVar6 + RENDER_DATA_OFFSET + 8 + lVar2) = 0;
-        *(undefined4 *)(lVar6 + RENDER_DATA_OFFSET + 16 + lVar2) = 0;
+        *(uint64_t *)(lVar3 + 0xc) = uVar4;
+        *(uint64_t *)(lVar3 + 0x14) = uVar5;
+        *(uint64_t *)(lVar6 + RENDER_DATA_OFFSET + lVar2) = 0;
+        *(uint64_t *)(lVar6 + RENDER_DATA_OFFSET + 8 + lVar2) = 0;
+        *(int32_t *)(lVar6 + RENDER_DATA_OFFSET + 16 + lVar2) = 0;
     }
     
     return;
@@ -599,7 +599,7 @@ void FUN_18051f485(void)
     /* 局部变量定义 */
     float fVar1, fVar2, fVar3, fVar10;
     longlong lVar4, lVar5, lVar9;
-    undefined8 uVar6, uVar7;
+    uint64_t uVar6, uVar7;
     char cVar8;
     float in_stack70;
     
@@ -630,8 +630,8 @@ LAB_18051f4b9:
         (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + OFFSET_RENDER_POSITION);
     
     /* 保存渲染参数 */
-    uVar6 = *(undefined8 *)unaff_RDI;
-    uVar7 = *(undefined8 *)(unaff_RDI + 2);
+    uVar6 = *(uint64_t *)unaff_RDI;
+    uVar7 = *(uint64_t *)(unaff_RDI + 2);
     
     /* 更新渲染变换和缩放 */
     *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM) = 
@@ -640,8 +640,8 @@ LAB_18051f4b9:
         (fVar1 - fVar3) + *(float *)(unaff_RBX + OFFSET_RENDER_SCALE);
     
     /* 更新渲染上下文 */
-    *(undefined8 *)(unaff_RSI + 0xc) = uVar6;
-    *(undefined8 *)(unaff_RSI + 0x14) = uVar7;
+    *(uint64_t *)(unaff_RSI + 0xc) = uVar6;
+    *(uint64_t *)(unaff_RSI + 0x14) = uVar7;
     
     /* 更新渲染数据 */
     if (-1 < *(int *)(unaff_RBX + OFFSET_RENDER_INDEX)) {
@@ -650,11 +650,11 @@ LAB_18051f4b9:
         lVar5 = *(longlong *)(lVar9 + RENDER_STATE_OFFSET + lVar4);
         
         /* 更新渲染数据状态 */
-        *(undefined8 *)(lVar5 + 0xc) = uVar6;
-        *(undefined8 *)(lVar5 + 0x14) = uVar7;
-        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + lVar4) = 0;
-        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + 8 + lVar4) = 0;
-        *(undefined4 *)(lVar9 + RENDER_DATA_OFFSET + 16 + lVar4) = 0;
+        *(uint64_t *)(lVar5 + 0xc) = uVar6;
+        *(uint64_t *)(lVar5 + 0x14) = uVar7;
+        *(uint64_t *)(lVar9 + RENDER_DATA_OFFSET + lVar4) = 0;
+        *(uint64_t *)(lVar9 + RENDER_DATA_OFFSET + 8 + lVar4) = 0;
+        *(int32_t *)(lVar9 + RENDER_DATA_OFFSET + 16 + lVar4) = 0;
     }
     
     return;
@@ -683,7 +683,7 @@ void FUN_18051f4c1(void)
     /* 局部变量定义 */
     float fVar1, fVar2, fVar3, fVar4;
     longlong lVar5, lVar6, lVar9;
-    undefined8 uVar7, uVar8;
+    uint64_t uVar7, uVar8;
     
     /* 获取渲染状态数据 */
     fVar1 = *(float *)(unaff_RSI + 0x10);
@@ -696,8 +696,8 @@ void FUN_18051f4c1(void)
         (*(float *)(unaff_RSI + 0xc) - *unaff_RDI) + *(float *)(unaff_RBX + OFFSET_RENDER_POSITION);
     
     /* 保存渲染参数 */
-    uVar7 = *(undefined8 *)unaff_RDI;
-    uVar8 = *(undefined8 *)(unaff_RDI + 2);
+    uVar7 = *(uint64_t *)unaff_RDI;
+    uVar8 = *(uint64_t *)(unaff_RDI + 2);
     
     /* 更新渲染变换和缩放 */
     *(float *)(unaff_RBX + OFFSET_RENDER_TRANSFORM) = 
@@ -706,8 +706,8 @@ void FUN_18051f4c1(void)
         (fVar2 - fVar4) + *(float *)(unaff_RBX + OFFSET_RENDER_SCALE);
     
     /* 更新渲染上下文 */
-    *(undefined8 *)(unaff_RSI + 0xc) = uVar7;
-    *(undefined8 *)(unaff_RSI + 0x14) = uVar8;
+    *(uint64_t *)(unaff_RSI + 0xc) = uVar7;
+    *(uint64_t *)(unaff_RSI + 0x14) = uVar8;
     
     /* 更新渲染数据 */
     if (-1 < *(int *)(unaff_RBX + OFFSET_RENDER_INDEX)) {
@@ -716,11 +716,11 @@ void FUN_18051f4c1(void)
         lVar6 = *(longlong *)(lVar9 + RENDER_STATE_OFFSET + lVar5);
         
         /* 更新渲染数据状态 */
-        *(undefined8 *)(lVar6 + 0xc) = uVar7;
-        *(undefined8 *)(lVar6 + 0x14) = uVar8;
-        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + lVar5) = 0;
-        *(undefined8 *)(lVar9 + RENDER_DATA_OFFSET + 8 + lVar5) = 0;
-        *(undefined4 *)(lVar9 + RENDER_DATA_OFFSET + 16 + lVar5) = 0;
+        *(uint64_t *)(lVar6 + 0xc) = uVar7;
+        *(uint64_t *)(lVar6 + 0x14) = uVar8;
+        *(uint64_t *)(lVar9 + RENDER_DATA_OFFSET + lVar5) = 0;
+        *(uint64_t *)(lVar9 + RENDER_DATA_OFFSET + 8 + lVar5) = 0;
+        *(int32_t *)(lVar9 + RENDER_DATA_OFFSET + 16 + lVar5) = 0;
     }
     
     return;
@@ -744,11 +744,11 @@ void FUN_18051f4c1(void)
  * 
  * @note 该函数使用寄存器变量进行高效的数据更新
  */
-void FUN_18051f528(undefined8 param_1)
+void FUN_18051f528(uint64_t param_1)
 {
     /* 局部变量定义 */
     longlong lVar1, lVar2, lVar3;
-    undefined8 in_XMM0_Qb;
+    uint64_t in_XMM0_Qb;
     
     /* 获取渲染数据指针 */
     lVar1 = *(longlong *)(unaff_RBX + OFFSET_RENDER_DATA);
@@ -756,13 +756,13 @@ void FUN_18051f528(undefined8 param_1)
     lVar2 = *(longlong *)(lVar3 + RENDER_STATE_OFFSET + lVar1);
     
     /* 更新渲染数据 */
-    *(undefined8 *)(lVar2 + 0xc) = param_1;
-    *(undefined8 *)(lVar2 + 0x14) = in_XMM0_Qb;
+    *(uint64_t *)(lVar2 + 0xc) = param_1;
+    *(uint64_t *)(lVar2 + 0x14) = in_XMM0_Qb;
     
     /* 清理渲染数据状态 */
-    *(undefined8 *)(lVar3 + RENDER_DATA_OFFSET + lVar1) = 0;
-    *(undefined8 *)(lVar3 + RENDER_DATA_OFFSET + 8 + lVar1) = 0;
-    *(undefined4 *)(lVar3 + RENDER_DATA_OFFSET + 16 + lVar1) = 0;
+    *(uint64_t *)(lVar3 + RENDER_DATA_OFFSET + lVar1) = 0;
+    *(uint64_t *)(lVar3 + RENDER_DATA_OFFSET + 8 + lVar1) = 0;
+    *(int32_t *)(lVar3 + RENDER_DATA_OFFSET + 16 + lVar1) = 0;
     
     return;
 }
@@ -804,7 +804,7 @@ void FUN_18051f570(longlong param_1, float *param_2)
             if (ABS(fVar2) <= ABS(fVar1)) {
                 *(float *)(param_1 + OFFSET_RENDER_POSITION) = fVar1 - fVar2;
             } else {
-                *(undefined4 *)(param_1 + OFFSET_RENDER_POSITION) = 0;
+                *(int32_t *)(param_1 + OFFSET_RENDER_POSITION) = 0;
             }
         }
         
@@ -813,7 +813,7 @@ void FUN_18051f570(longlong param_1, float *param_2)
         fVar2 = param_2[1];
         if (0.0 < fVar1 * fVar2) {
             if (ABS(fVar1) < ABS(fVar2)) {
-                *(undefined4 *)(param_1 + OFFSET_RENDER_TRANSFORM) = 0;
+                *(int32_t *)(param_1 + OFFSET_RENDER_TRANSFORM) = 0;
                 return;
             }
             *(float *)(param_1 + OFFSET_RENDER_TRANSFORM) = fVar1 - fVar2;
@@ -842,19 +842,19 @@ void FUN_18051f570(longlong param_1, float *param_2)
  * 
  * @note 该函数是渲染系统模式管理的核心函数
  */
-void FUN_18051f700(longlong param_1, undefined4 param_2)
+void FUN_18051f700(longlong param_1, int32_t param_2)
 {
     /* 局部变量定义 */
     ushort *puVar1;
     int iVar2, iVar3, iVar9;
     longlong lVar4, lVar5, lVar8, lVar11;
-    undefined4 uVar6;
+    int32_t uVar6;
     uint uVar7;
     ulonglong uVar10;
     
     /* 保存当前渲染模式并设置新模式 */
     iVar2 = *(int *)(param_1 + 0x980);
-    *(undefined4 *)(param_1 + 0x980) = param_2;
+    *(int32_t *)(param_1 + 0x980) = param_2;
     
     /* 检查渲染状态有效性 */
     if (*(char *)(param_1 + 0x984) == '\0') goto LAB_18051f7bf;
@@ -863,12 +863,12 @@ void FUN_18051f700(longlong param_1, undefined4 param_2)
     if (*(char *)(*(longlong *)(param_1 + 0x738) + 0x99) != '\0') {
         lVar11 = (longlong)*(int *)(param_1 + OFFSET_RENDER_INDEX) * MEMORY_ALIGNMENT_SIZE;
         if (*(int *)(lVar11 + 0x3608 + *(longlong *)(param_1 + OFFSET_RENDER_DATA)) == 1) {
-            param_2 = *(undefined4 *)(lVar11 + 0x3a20 + *(longlong *)(param_1 + OFFSET_RENDER_DATA));
+            param_2 = *(int32_t *)(lVar11 + 0x3a20 + *(longlong *)(param_1 + OFFSET_RENDER_DATA));
         }
     }
     
     /* 更新渲染配置 */
-    *(undefined4 *)(*(longlong *)(param_1 + 0x738) + 0x1dc) = param_2;
+    *(int32_t *)(*(longlong *)(param_1 + 0x738) + 0x1dc) = param_2;
     
     if (*(int *)(param_1 + 0x564) < 0) goto LAB_18051f7bf;
     
@@ -876,15 +876,15 @@ void FUN_18051f700(longlong param_1, undefined4 param_2)
     lVar11 = (longlong)*(int *)(param_1 + 0x564) * MEMORY_ALIGNMENT_SIZE + *(longlong *)(param_1 + OFFSET_RENDER_DATA);
     if (*(char *)(*(longlong *)(lVar11 + 0x37d8) + 0x99) == '\0') {
 LAB_18051f7b2:
-        uVar6 = *(undefined4 *)(lVar11 + 0x3a20);
+        uVar6 = *(int32_t *)(lVar11 + 0x3a20);
     } else {
         lVar8 = (longlong)*(int *)(lVar11 + 0x3600) * MEMORY_ALIGNMENT_SIZE;
         if (*(int *)(lVar8 + 0x3608 + *(longlong *)(lVar11 + 0x3978)) != 1) goto LAB_18051f7b2;
-        uVar6 = *(undefined4 *)(lVar8 + 0x3a20 + *(longlong *)(lVar11 + 0x3978));
+        uVar6 = *(int32_t *)(lVar8 + 0x3a20 + *(longlong *)(lVar11 + 0x3978));
     }
     
     /* 更新渲染数据配置 */
-    *(undefined4 *)(*(longlong *)(lVar11 + 0x37d8) + 0x1dc) = uVar6;
+    *(int32_t *)(*(longlong *)(lVar11 + 0x37d8) + 0x1dc) = uVar6;
     
 LAB_18051f7bf:
     /* 处理渲染状态更新 */
@@ -936,21 +936,21 @@ LAB_18051f7bf:
                                       *(longlong *)(lVar4 + 0x87b768)) & (&UNK_1809f89f0)[uVar7 & 7]) == 0)) {
                             
                             /* 重置渲染对象状态 */
-                            *(undefined4 *)(lVar5 + 0x1b6c) = 0;
-                            *(undefined1 *)(lVar5 + 0x17a8) = 0;
-                            *(undefined8 *)(lVar5 + 0x1798) =
-                                *(undefined8 *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar5 + 0x17a0) * 8);
+                            *(int32_t *)(lVar5 + 0x1b6c) = 0;
+                            *(int8_t *)(lVar5 + 0x17a8) = 0;
+                            *(uint64_t *)(lVar5 + 0x1798) =
+                                *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar5 + 0x17a0) * 8);
                             
                             /* 设置渲染对象属性 */
-                            *(undefined4 *)(lVar5 + 0x1c0c) = 0xffffffff;
-                            *(undefined4 *)(lVar5 + 0x1c14) = 0xffffffff;
-                            *(undefined4 *)(lVar5 + 0x1c1c) = 0xffffffff;
-                            *(undefined4 *)(lVar5 + 0x1c24) = 0xffffffff;
-                            *(undefined4 *)(lVar5 + 0x1c2c) = 0;
-                            *(undefined4 *)(lVar5 + 0x200c) = 0;
-                            *(undefined1 *)(lVar5 + 0x1c48) = 0;
-                            *(undefined8 *)(lVar5 + 0x1c38) =
-                                *(undefined8 *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar5 + 0x1c40) * 8);
+                            *(int32_t *)(lVar5 + 0x1c0c) = 0xffffffff;
+                            *(int32_t *)(lVar5 + 0x1c14) = 0xffffffff;
+                            *(int32_t *)(lVar5 + 0x1c1c) = 0xffffffff;
+                            *(int32_t *)(lVar5 + 0x1c24) = 0xffffffff;
+                            *(int32_t *)(lVar5 + 0x1c2c) = 0;
+                            *(int32_t *)(lVar5 + 0x200c) = 0;
+                            *(int8_t *)(lVar5 + 0x1c48) = 0;
+                            *(uint64_t *)(lVar5 + 0x1c38) =
+                                *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar5 + 0x1c40) * 8);
                         }
                     }
                     
@@ -1017,19 +1017,19 @@ void FUN_18051f7cd(void)
                            *(longlong *)(lVar3 + 0x87b768)) & (&UNK_1809f89f0)[uVar5 & 7]) != 0) &&
                ((*(byte *)((longlong)(iVar7 * iVar2 + ((int)uVar5 >> 3)) +
                           *(longlong *)(lVar3 + 0x87b768)) & (&UNK_1809f89f0)[uVar5 & 7]) == 0)) {
-              *(undefined4 *)(lVar4 + 0x1b6c) = 0;
-              *(undefined1 *)(lVar4 + 0x17a8) = 0;
-              *(undefined8 *)(lVar4 + 0x1798) =
-                   *(undefined8 *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar4 + 0x17a0) * 8);
-              *(undefined4 *)(lVar4 + 0x1c0c) = 0xffffffff;
-              *(undefined4 *)(lVar4 + 0x1c14) = 0xffffffff;
-              *(undefined4 *)(lVar4 + 0x1c1c) = 0xffffffff;
-              *(undefined4 *)(lVar4 + 0x1c24) = 0xffffffff;
-              *(undefined4 *)(lVar4 + 0x1c2c) = 0;
-              *(undefined4 *)(lVar4 + 0x200c) = 0;
-              *(undefined1 *)(lVar4 + 0x1c48) = 0;
-              *(undefined8 *)(lVar4 + 0x1c38) =
-                   *(undefined8 *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar4 + 0x1c40) * 8);
+              *(int32_t *)(lVar4 + 0x1b6c) = 0;
+              *(int8_t *)(lVar4 + 0x17a8) = 0;
+              *(uint64_t *)(lVar4 + 0x1798) =
+                   *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar4 + 0x17a0) * 8);
+              *(int32_t *)(lVar4 + 0x1c0c) = 0xffffffff;
+              *(int32_t *)(lVar4 + 0x1c14) = 0xffffffff;
+              *(int32_t *)(lVar4 + 0x1c1c) = 0xffffffff;
+              *(int32_t *)(lVar4 + 0x1c24) = 0xffffffff;
+              *(int32_t *)(lVar4 + 0x1c2c) = 0;
+              *(int32_t *)(lVar4 + 0x200c) = 0;
+              *(int8_t *)(lVar4 + 0x1c48) = 0;
+              *(uint64_t *)(lVar4 + 0x1c38) =
+                   *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar4 + 0x1c40) * 8);
             }
           }
           lVar9 = lVar9 + 8;
@@ -1078,19 +1078,19 @@ void FUN_18051f839(void)
                      *(longlong *)(lVar2 + 0x87b768)) & (&UNK_1809f89f0)[uVar1 & 7]) != 0) &&
          ((*(byte *)((longlong)(iVar5 * unaff_ESI + ((int)uVar1 >> 3)) +
                     *(longlong *)(lVar2 + 0x87b768)) & (&UNK_1809f89f0)[uVar1 & 7]) == 0)) {
-        *(undefined4 *)(lVar3 + 0x1b6c) = 0;
-        *(undefined1 *)(lVar3 + 0x17a8) = 0;
-        *(undefined8 *)(lVar3 + 0x1798) =
-             *(undefined8 *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar3 + 0x17a0) * 8);
-        *(undefined4 *)(lVar3 + 0x1c0c) = 0xffffffff;
-        *(undefined4 *)(lVar3 + 0x1c14) = 0xffffffff;
-        *(undefined4 *)(lVar3 + 0x1c1c) = 0xffffffff;
-        *(undefined4 *)(lVar3 + 0x1c24) = 0xffffffff;
-        *(undefined4 *)(lVar3 + 0x1c2c) = 0;
-        *(undefined4 *)(lVar3 + 0x200c) = 0;
-        *(undefined1 *)(lVar3 + 0x1c48) = 0;
-        *(undefined8 *)(lVar3 + 0x1c38) =
-             *(undefined8 *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar3 + 0x1c40) * 8);
+        *(int32_t *)(lVar3 + 0x1b6c) = 0;
+        *(int8_t *)(lVar3 + 0x17a8) = 0;
+        *(uint64_t *)(lVar3 + 0x1798) =
+             *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar3 + 0x17a0) * 8);
+        *(int32_t *)(lVar3 + 0x1c0c) = 0xffffffff;
+        *(int32_t *)(lVar3 + 0x1c14) = 0xffffffff;
+        *(int32_t *)(lVar3 + 0x1c1c) = 0xffffffff;
+        *(int32_t *)(lVar3 + 0x1c24) = 0xffffffff;
+        *(int32_t *)(lVar3 + 0x1c2c) = 0;
+        *(int32_t *)(lVar3 + 0x200c) = 0;
+        *(int8_t *)(lVar3 + 0x1c48) = 0;
+        *(uint64_t *)(lVar3 + 0x1c38) =
+             *(uint64_t *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar3 + 0x1c40) * 8);
       }
     }
     lVar7 = lVar7 + 8;
@@ -1168,7 +1168,7 @@ void RenderSwitchMode(RenderHandle param_1, int param_2) {
     /* 局部变量定义 */
     longlong lVar1, lVar2, lVar7, lVar9, lVar10;
     char cVar3;
-    undefined1 uVar4;
+    int8_t uVar4;
     uint uVar5;
     int iVar6;
     ulonglong uVar8;

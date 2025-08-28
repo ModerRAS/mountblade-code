@@ -255,8 +255,8 @@ LAB_18076c6e6:
 
 
 
-// 函数: void FUN_18076c4de(undefined8 param_1,ulonglong param_2,uint *param_3,ulonglong param_4)
-void FUN_18076c4de(undefined8 param_1,ulonglong param_2,uint *param_3,ulonglong param_4)
+// 函数: void FUN_18076c4de(uint64_t param_1,ulonglong param_2,uint *param_3,ulonglong param_4)
+void FUN_18076c4de(uint64_t param_1,ulonglong param_2,uint *param_3,ulonglong param_4)
 
 {
   ulonglong *puVar1;

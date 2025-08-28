@@ -207,24 +207,24 @@
 // =============================================================================
 
 void FUN_18028fc51(void);
-ulonglong FUN_18028fca0(longlong param_1,int param_2,undefined8 param_3,longlong *param_4,
+ulonglong FUN_18028fca0(longlong param_1,int param_2,uint64_t param_3,longlong *param_4,
                        int *param_5);
 longlong FUN_18028fd52(void);
 void FUN_18028fffa(void);
 void FUN_180290020(void);
-void FUN_180290070(longlong param_1,undefined8 param_2,int param_3,int param_4,undefined4 param_5,
-                  float param_6,float param_7,undefined8 param_8,undefined8 param_9,
-                  undefined4 param_10);
-void FUN_18029007b(longlong param_1,undefined8 param_2,int param_3,int param_4);
-void FUN_180290091(undefined8 param_1,undefined8 param_2,int param_3,int param_4);
+void FUN_180290070(longlong param_1,uint64_t param_2,int param_3,int param_4,int32_t param_5,
+                  float param_6,float param_7,uint64_t param_8,uint64_t param_9,
+                  int32_t param_10);
+void FUN_18029007b(longlong param_1,uint64_t param_2,int param_3,int param_4);
+void FUN_180290091(uint64_t param_1,uint64_t param_2,int param_3,int param_4);
 void FUN_180290247(void);
 void FUN_180290353(void);
-void FUN_180290380(undefined8 param_1,undefined8 param_2,int param_3,undefined8 param_4,
-                  undefined4 param_5);
+void FUN_180290380(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_4,
+                  int32_t param_5);
 void FUN_1802903aa(void);
 void FUN_180290628(void);
-void FUN_180290630(undefined8 param_1,int param_2,undefined8 param_3,undefined8 param_4,
-                  undefined4 param_5);
+void FUN_180290630(uint64_t param_1,int param_2,uint64_t param_3,uint64_t param_4,
+                  int32_t param_5);
 void FUN_18029065d(void);
 
 // =============================================================================
@@ -232,7 +232,7 @@ void FUN_18029065d(void);
 // =============================================================================
 
 // 渲染数据解析和处理实现
-ulonglong FUN_18028fca0(longlong param_1,int param_2,undefined8 param_3,longlong *param_4,
+ulonglong FUN_18028fca0(longlong param_1,int param_2,uint64_t param_3,longlong *param_4,
                        int *param_5)
 {
     // 渲染数据解析的核心实现
@@ -242,9 +242,9 @@ ulonglong FUN_18028fca0(longlong param_1,int param_2,undefined8 param_3,longlong
 }
 
 // 渲染参数处理和初始化实现
-void FUN_180290070(longlong param_1,undefined8 param_2,int param_3,int param_4,undefined4 param_5,
-                  float param_6,float param_7,undefined8 param_8,undefined8 param_9,
-                  undefined4 param_10)
+void FUN_180290070(longlong param_1,uint64_t param_2,int param_3,int param_4,int32_t param_5,
+                  float param_6,float param_7,uint64_t param_8,uint64_t param_9,
+                  int32_t param_10)
 {
     // 复杂的渲染参数处理实现
     // 多参数验证和转换

@@ -19,8 +19,8 @@ void FUN_1807a8535(void)
   float fVar10;
   float fVar11;
   float fVar12;
-  undefined1 auVar8 [16];
-  undefined1 auVar9 [16];
+  int8_t auVar8 [16];
+  int8_t auVar9 [16];
   float fVar13;
   float fVar14;
   float fVar15;
@@ -112,7 +112,7 @@ void FUN_1807a8535(void)
 
 
 
-float FUN_1807a8660(undefined8 param_1,undefined4 param_2)
+float FUN_1807a8660(uint64_t param_1,int32_t param_2)
 
 {
   float fVar1;
@@ -139,8 +139,8 @@ void FUN_1807a86a0(void)
 
 
 
-// 函数: void FUN_1807a8820(undefined8 param_1,float param_2,float param_3,undefined8 param_4,int param_5,
-void FUN_1807a8820(undefined8 param_1,float param_2,float param_3,undefined8 param_4,int param_5,
+// 函数: void FUN_1807a8820(uint64_t param_1,float param_2,float param_3,uint64_t param_4,int param_5,
+void FUN_1807a8820(uint64_t param_1,float param_2,float param_3,uint64_t param_4,int param_5,
                   longlong param_6)
 
 {
@@ -193,8 +193,8 @@ void FUN_1807a88f6(void)
 
 
 
-// 函数: void FUN_1807a8a32(undefined8 param_1,ulonglong param_2)
-void FUN_1807a8a32(undefined8 param_1,ulonglong param_2)
+// 函数: void FUN_1807a8a32(uint64_t param_1,ulonglong param_2)
+void FUN_1807a8a32(uint64_t param_1,ulonglong param_2)
 
 {
   longlong unaff_RSI;
@@ -240,8 +240,8 @@ void FUN_1807a8a7c(void)
 
 
 
-// 函数: void FUN_1807a8ac0(longlong *param_1,undefined8 param_2,float param_3,float param_4,float param_5,
-void FUN_1807a8ac0(longlong *param_1,undefined8 param_2,float param_3,float param_4,float param_5,
+// 函数: void FUN_1807a8ac0(longlong *param_1,uint64_t param_2,float param_3,float param_4,float param_5,
+void FUN_1807a8ac0(longlong *param_1,uint64_t param_2,float param_3,float param_4,float param_5,
                   float *param_6,float *param_7)
 
 {
@@ -259,8 +259,8 @@ void FUN_1807a8ac0(longlong *param_1,undefined8 param_2,float param_3,float para
   float fVar12;
   float in_XMM1_Da;
   float fVar13;
-  undefined1 auVar14 [16];
-  undefined1 auVar15 [16];
+  int8_t auVar14 [16];
+  int8_t auVar15 [16];
   float fVar16;
   float fVar17;
   float fVar18;
@@ -369,8 +369,8 @@ void FUN_1807a8ac0(longlong *param_1,undefined8 param_2,float param_3,float para
 
 
 
-// 函数: void FUN_1807a8add(longlong *param_1,undefined8 param_2,float param_3,float param_4)
-void FUN_1807a8add(longlong *param_1,undefined8 param_2,float param_3,float param_4)
+// 函数: void FUN_1807a8add(longlong *param_1,uint64_t param_2,float param_3,float param_4)
+void FUN_1807a8add(longlong *param_1,uint64_t param_2,float param_3,float param_4)
 
 {
   float fVar1;
@@ -386,53 +386,53 @@ void FUN_1807a8add(longlong *param_1,undefined8 param_2,float param_3,float para
   int iVar10;
   ulonglong uVar11;
   int iVar12;
-  undefined8 unaff_RBX;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RBX;
+  uint64_t unaff_RDI;
   float in_XMM1_Da;
   float fVar13;
-  undefined1 auVar14 [16];
-  undefined1 auVar15 [16];
+  int8_t auVar14 [16];
+  int8_t auVar15 [16];
   float fVar16;
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
   float fVar17;
-  undefined4 unaff_XMM8_Da;
+  int32_t unaff_XMM8_Da;
   float fVar18;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
+  int32_t unaff_XMM9_Da;
   float fVar19;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
+  int32_t unaff_XMM9_Db;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM9_Dd;
   float fVar20;
   float fVar21;
-  undefined4 unaff_XMM13_Da;
-  undefined4 unaff_XMM13_Db;
-  undefined4 unaff_XMM13_Dc;
-  undefined4 unaff_XMM13_Dd;
+  int32_t unaff_XMM13_Da;
+  int32_t unaff_XMM13_Db;
+  int32_t unaff_XMM13_Dc;
+  int32_t unaff_XMM13_Dd;
   float in_stack_000000d0;
   float *in_stack_000000d8;
   float *in_stack_000000e0;
   
-  *(undefined8 *)(in_RAX + 8) = unaff_RBX;
+  *(uint64_t *)(in_RAX + 8) = unaff_RBX;
   iVar12 = (int)param_1[1];
-  *(undefined8 *)(in_RAX + -8) = unaff_RDI;
-  *(undefined4 *)(in_RAX + -0x38) = unaff_XMM8_Da;
-  *(undefined4 *)(in_RAX + -0x34) = unaff_XMM8_Db;
-  *(undefined4 *)(in_RAX + -0x30) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_RAX + -0x48) = unaff_XMM9_Da;
-  *(undefined4 *)(in_RAX + -0x44) = unaff_XMM9_Db;
-  *(undefined4 *)(in_RAX + -0x40) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM9_Dd;
+  *(uint64_t *)(in_RAX + -8) = unaff_RDI;
+  *(int32_t *)(in_RAX + -0x38) = unaff_XMM8_Da;
+  *(int32_t *)(in_RAX + -0x34) = unaff_XMM8_Db;
+  *(int32_t *)(in_RAX + -0x30) = unaff_XMM8_Dc;
+  *(int32_t *)(in_RAX + -0x2c) = unaff_XMM8_Dd;
+  *(int32_t *)(in_RAX + -0x48) = unaff_XMM9_Da;
+  *(int32_t *)(in_RAX + -0x44) = unaff_XMM9_Db;
+  *(int32_t *)(in_RAX + -0x40) = unaff_XMM9_Dc;
+  *(int32_t *)(in_RAX + -0x3c) = unaff_XMM9_Dd;
   fVar20 = unaff_XMM6_Da;
   if (iVar12 != 0) {
-    *(undefined4 *)(in_RAX + -0x78) = unaff_XMM13_Da;
-    *(undefined4 *)(in_RAX + -0x74) = unaff_XMM13_Db;
-    *(undefined4 *)(in_RAX + -0x70) = unaff_XMM13_Dc;
-    *(undefined4 *)(in_RAX + -0x6c) = unaff_XMM13_Dd;
+    *(int32_t *)(in_RAX + -0x78) = unaff_XMM13_Da;
+    *(int32_t *)(in_RAX + -0x74) = unaff_XMM13_Db;
+    *(int32_t *)(in_RAX + -0x70) = unaff_XMM13_Dc;
+    *(int32_t *)(in_RAX + -0x6c) = unaff_XMM13_Dd;
     if (param_3 < 80.0) {
       fVar18 = (float)powf(param_1,param_2,param_3 * -0.1);
     }
@@ -525,8 +525,8 @@ void FUN_1807a8add(longlong *param_1,undefined8 param_2,float param_3,float para
 
 
 
-// 函数: void FUN_1807a8b0d(undefined8 param_1,undefined8 param_2,float param_3)
-void FUN_1807a8b0d(undefined8 param_1,undefined8 param_2,float param_3)
+// 函数: void FUN_1807a8b0d(uint64_t param_1,uint64_t param_2,float param_3)
+void FUN_1807a8b0d(uint64_t param_1,uint64_t param_2,float param_3)
 
 {
   float fVar1;
@@ -546,8 +546,8 @@ void FUN_1807a8b0d(undefined8 param_1,undefined8 param_2,float param_3)
   longlong *unaff_RDI;
   bool in_CF;
   float fVar13;
-  undefined1 auVar14 [16];
-  undefined1 auVar15 [16];
+  int8_t auVar14 [16];
+  int8_t auVar15 [16];
   float fVar16;
   float fVar17;
   float unaff_XMM6_Da;
@@ -558,18 +558,18 @@ void FUN_1807a8b0d(undefined8 param_1,undefined8 param_2,float param_3)
   float unaff_XMM9_Da;
   float fVar20;
   float fVar21;
-  undefined4 unaff_XMM13_Da;
-  undefined4 unaff_XMM13_Db;
-  undefined4 unaff_XMM13_Dc;
-  undefined4 unaff_XMM13_Dd;
+  int32_t unaff_XMM13_Da;
+  int32_t unaff_XMM13_Db;
+  int32_t unaff_XMM13_Dc;
+  int32_t unaff_XMM13_Dd;
   float in_stack_000000d0;
   float *in_stack_000000d8;
   float *in_stack_000000e0;
   
-  *(undefined4 *)(in_RAX + -0x78) = unaff_XMM13_Da;
-  *(undefined4 *)(in_RAX + -0x74) = unaff_XMM13_Db;
-  *(undefined4 *)(in_RAX + -0x70) = unaff_XMM13_Dc;
-  *(undefined4 *)(in_RAX + -0x6c) = unaff_XMM13_Dd;
+  *(int32_t *)(in_RAX + -0x78) = unaff_XMM13_Da;
+  *(int32_t *)(in_RAX + -0x74) = unaff_XMM13_Db;
+  *(int32_t *)(in_RAX + -0x70) = unaff_XMM13_Dc;
+  *(int32_t *)(in_RAX + -0x6c) = unaff_XMM13_Dd;
   if (in_CF) {
     fVar19 = (float)powf(param_1,param_2,param_3 * -0.1);
   }
@@ -663,8 +663,8 @@ void FUN_1807a8b0d(undefined8 param_1,undefined8 param_2,float param_3)
 
 
 
-// 函数: void FUN_1807a8b8f(undefined8 param_1,int param_2)
-void FUN_1807a8b8f(undefined8 param_1,int param_2)
+// 函数: void FUN_1807a8b8f(uint64_t param_1,int param_2)
+void FUN_1807a8b8f(uint64_t param_1,int param_2)
 
 {
   float fVar1;
@@ -678,8 +678,8 @@ void FUN_1807a8b8f(undefined8 param_1,int param_2)
   longlong *unaff_RDI;
   float in_XMM1_Da;
   float fVar8;
-  undefined1 auVar9 [16];
-  undefined1 auVar10 [16];
+  int8_t auVar9 [16];
+  int8_t auVar10 [16];
   float fVar11;
   float fVar12;
   float unaff_XMM6_Da;
@@ -759,15 +759,15 @@ void FUN_1807a8b8f(undefined8 param_1,int param_2)
 
 
 
-undefined8 FUN_1807a8cdd(void)
+uint64_t FUN_1807a8cdd(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   float unaff_XMM6_Da;
   float fVar2;
-  undefined4 unaff_XMM6_Db;
+  int32_t unaff_XMM6_Db;
   float unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
+  int32_t unaff_XMM7_Db;
   float unaff_XMM8_Da;
   float unaff_XMM13_Da;
   float unaff_XMM14_Da;
@@ -778,7 +778,7 @@ undefined8 FUN_1807a8cdd(void)
   if (unaff_XMM7_Da < unaff_XMM6_Da - 0.691) {
     if (unaff_XMM14_Da < unaff_XMM8_Da) {
       uVar1 = log10f();
-      unaff_XMM6_Db = (undefined4)((ulonglong)uVar1 >> 0x20);
+      unaff_XMM6_Db = (int32_t)((ulonglong)uVar1 >> 0x20);
       unaff_XMM6_Da = (float)uVar1 * unaff_XMM13_Da;
     }
     fVar2 = unaff_XMM6_Da - 0.691;
@@ -831,7 +831,7 @@ float FUN_1807a8d56(void)
 
 
 
-undefined8 FUN_1807a8d90(undefined8 param_1,longlong *param_2,float *param_3,float param_4)
+uint64_t FUN_1807a8d90(uint64_t param_1,longlong *param_2,float *param_3,float param_4)
 
 {
   float *pfVar1;
@@ -927,12 +927,12 @@ undefined8 FUN_1807a8d90(undefined8 param_1,longlong *param_2,float *param_3,flo
 
 
 
-// 函数: void FUN_1807a8f00(undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,int param_5
-void FUN_1807a8f00(undefined8 param_1,undefined8 param_2,undefined8 param_3,uint param_4,int param_5
+// 函数: void FUN_1807a8f00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint param_4,int param_5
+void FUN_1807a8f00(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint param_4,int param_5
                   )
 
 {
-  undefined1 auStack_268 [368];
+  int8_t auStack_268 [368];
   ulonglong uStack_f8;
   
   uStack_f8 = _DAT_180bf00a8 ^ (ulonglong)auStack_268;

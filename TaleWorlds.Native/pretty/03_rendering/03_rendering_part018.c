@@ -351,7 +351,7 @@ void RenderingSystemParameterInitializer(render_context_t context, render_resour
 }
 
 // 函数别名：保持与原代码的兼容性
-void initialize_material_parameters(longlong material_context, undefined8 resource_manager, undefined8 texture_data, undefined1 flags)
+void initialize_material_parameters(longlong material_context, uint64_t resource_manager, uint64_t texture_data, int8_t flags)
 {
     RenderingSystemParameterInitializer((render_context_t)material_context, (render_resource_t)resource_manager, (render_resource_t)texture_data, (render_byte_t)flags);
 }
@@ -368,16 +368,16 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
 {
     char *temp_char;
     longlong *resource_ptr;
-    undefined4 temp_value;
-    undefined4 *material_data;
-    undefined8 *attribute_list;
+    int32_t temp_value;
+    int32_t *material_data;
+    uint64_t *attribute_list;
     longlong *node_ptr;
     longlong result1;
     longlong result2;
     ulonglong buffer_size;
-    undefined *default_value;
+    void *default_value;
     longlong *temp_ptr;
-    undefined8 *current_node;
+    uint64_t *current_node;
     char *string_ptr;
     char *attribute_name;
     float factor1, factor2, factor3;
@@ -388,32 +388,32 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
     float texture_scale;
     
     // 栈变量定义 - 用于存储解析过程中的临时数据
-    undefined1 temp_buffer[32];      // 临时缓冲区
-    undefined4 factor_value;        // 因子值
-    undefined4 material_id;         // 材质ID
+    int8_t temp_buffer[32];      // 临时缓冲区
+    int32_t factor_value;        // 因子值
+    int32_t material_id;         // 材质ID
     longlong context_ptr;          // 上下文指针
-    undefined8 vec4_data[4];       // 4D向量数据
-    undefined8 vec3_data[3];       // 3D向量数据
-    undefined8 vec2_data[2];       // 2D向量数据
+    uint64_t vec4_data[4];       // 4D向量数据
+    uint64_t vec3_data[3];       // 3D向量数据
+    uint64_t vec2_data[2];       // 2D向量数据
     float color_values[3];         // 颜色值数组
-    undefined4 blend_mode;         // 混合模式
+    int32_t blend_mode;         // 混合模式
     longlong texture_handle;       // 纹理句柄
-    undefined8 uv_coords[2];      // UV坐标
-    undefined4 texture_flags[4];   // 纹理标志
+    uint64_t uv_coords[2];      // UV坐标
+    int32_t texture_flags[4];   // 纹理标志
     float texture_factors[3];      // 纹理因子
     longlong *resource_array[2];   // 资源数组
     longlong *stack_resource;      // 栈资源指针
-    undefined4 color_values_rgba[4]; // RGBA颜色值
-    undefined8 matrix_data[4];     // 矩阵数据
-    undefined8 transform_data[4];  // 变换数据
-    undefined4 vertex_attribs[4];  // 顶点属性
-    undefined *string_handler;     // 字符串处理器
-    undefined1 *string_buffer;     // 字符串缓冲区
-    undefined4 string_length;      // 字符串长度
-    undefined1 name_buffer[136];   // 名称缓冲区
-    undefined *mesh_handler;       // 网格处理器
-    undefined *texture_handler;    // 纹理处理器
-    undefined4 mesh_id;            // 网格ID
+    int32_t color_values_rgba[4]; // RGBA颜色值
+    uint64_t matrix_data[4];     // 矩阵数据
+    uint64_t transform_data[4];  // 变换数据
+    int32_t vertex_attribs[4];  // 顶点属性
+    void *string_handler;     // 字符串处理器
+    int8_t *string_buffer;     // 字符串缓冲区
+    int32_t string_length;      // 字符串长度
+    int8_t name_buffer[136];   // 名称缓冲区
+    void *mesh_handler;       // 网格处理器
+    void *texture_handler;    // 纹理处理器
+    int32_t mesh_id;            // 网格ID
     undefined temp_stack[136];     // 临时栈空间
     ulonglong security_hash;       // 安全哈希值
     
@@ -434,19 +434,19 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
     } while (*attribute_name != '\0');
     
     // 获取属性列表
-    attribute_list = *(undefined8 **)(data_source + 0x40);
+    attribute_list = *(uint64_t **)(data_source + 0x40);
     
     do {
         context_ptr = data_source;
         uv_coords[0] = material_manager;
         
-        if (attribute_list == (undefined8 *)0x0) {
+        if (attribute_list == (uint64_t *)0x0) {
             // 处理空属性列表的情况
             goto process_next_attribute;
         }
         
         // 处理材质属性
-        if (attribute_list == (undefined8 *)0x0) {
+        if (attribute_list == (uint64_t *)0x0) {
             // 处理材质标识符
             result2 = context_ptr;
             material_id = 0;
@@ -475,7 +475,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
                 convert_material_id(string_ptr, default_value, &material_id);
                 
                 // 创建材质数据条目
-                material_data = (undefined4 *)create_material_entry(render_context);
+                material_data = (int32_t *)create_material_entry(render_context);
                 *material_data = 0;  // 设置材质类型
                 material_data[2] = material_id;  // 设置材质ID
                 
@@ -496,10 +496,10 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
                 (**(code **)(string_handler + 0x10))(&string_handler, result2);
                 
                 // 创建材质数据条目
-                material_data = (undefined4 *)create_material_entry(render_context);
+                material_data = (int32_t *)create_material_entry(render_context);
                 *material_data = 2;  // 设置材质类型为路径
-                attribute_list = (undefined8 *)create_texture_resource(_DAT_180c86930, &stack_resource, &string_handler, 1);
-                *(undefined8 *)(material_data + 2) = *attribute_list;
+                attribute_list = (uint64_t *)create_texture_resource(_DAT_180c86930, &stack_resource, &string_handler, 1);
+                *(uint64_t *)(material_data + 2) = *attribute_list;
                 
                 // 释放临时资源
                 if (stack_resource != (longlong *)0x0) {
@@ -540,8 +540,8 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
             } while (*attribute_name != '\0');
             
             // 查找名称属性
-            for (current_node = (undefined8 *)attribute_list[8]; current_node != (undefined8 *)0x0;
-                current_node = (undefined8 *)current_node[6]) {
+            for (current_node = (uint64_t *)attribute_list[8]; current_node != (uint64_t *)0x0;
+                current_node = (uint64_t *)current_node[6]) {
                 string_ptr = (char *)*current_node;
                 if (string_ptr == (char *)0x0) {
                     string_ptr = (char *)0x180d48d24;
@@ -582,8 +582,8 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
             } while (*attribute_name != '\0');
             
             // 查找材质属性
-            for (current_node = (undefined8 *)attribute_list[8]; current_node != (undefined8 *)0x0;
-                current_node = (undefined8 *)current_node[6]) {
+            for (current_node = (uint64_t *)attribute_list[8]; current_node != (uint64_t *)0x0;
+                current_node = (uint64_t *)current_node[6]) {
                 string_ptr = (char *)*current_node;
                 if (string_ptr == (char *)0x0) {
                     string_ptr = (char *)0x180d48d24;
@@ -626,8 +626,8 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
             } while (*attribute_name != '\0');
             
             // 查找因子属性
-            for (current_node = (undefined8 *)attribute_list[8]; current_node != (undefined8 *)0x0;
-                current_node = (undefined8 *)current_node[6]) {
+            for (current_node = (uint64_t *)attribute_list[8]; current_node != (uint64_t *)0x0;
+                current_node = (uint64_t *)current_node[6]) {
                 string_ptr = (char *)*current_node;
                 if (string_ptr == (char *)0x0) {
                     string_ptr = (char *)0x180d48d24;
@@ -670,8 +670,8 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
             } while (*attribute_name != '\0');
             
             // 查找第二因子属性
-            for (current_node = (undefined8 *)attribute_list[8]; current_node != (undefined8 *)0x0;
-                current_node = (undefined8 *)current_node[6]) {
+            for (current_node = (uint64_t *)attribute_list[8]; current_node != (uint64_t *)0x0;
+                current_node = (uint64_t *)current_node[6]) {
                 string_ptr = (char *)*current_node;
                 if (string_ptr == (char *)0x0) {
                     string_ptr = (char *)0x180d48d24;
@@ -718,7 +718,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
             result2 = find_texture_attribute(attribute_list, &UNK_180a167f0, &color_values_rgba[0]);
             if (result2 != 0) {
                 // 创建材质数据条目
-                material_data = (undefined4 *)create_material_entry(render_context);
+                material_data = (int32_t *)create_material_entry(render_context);
                 *material_data = 9;  // 设置材质类型为法线贴图
                 material_data[0x42] = color_values_rgba[0];
                 material_data[0x43] = color_values_rgba[1];
@@ -727,7 +727,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
                 
                 // 设置纹理路径
                 default_value = &DAT_18098bc73;
-                if (texture_handler != (undefined *)0x0) {
+                if (texture_handler != (void *)0x0) {
                     default_value = texture_handler;
                 }
                 strcpy_s(material_data + 2, 0x80, default_value);
@@ -746,8 +746,8 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
             // 查找网格属性
             while (true) {
                 do {
-                    attribute_list = (undefined8 *)attribute_list[0xb];
-                    if (attribute_list == (undefined8 *)0x0) {
+                    attribute_list = (uint64_t *)attribute_list[0xb];
+                    if (attribute_list == (uint64_t *)0x0) {
                         mesh_handler = &UNK_18098bcb0;
                         goto process_next_attribute;
                     }
@@ -794,10 +794,10 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
                 process_material_reference(&string_handler, result2);
                 
                 // 创建材质数据条目
-                material_data = (undefined4 *)create_material_entry(render_context);
+                material_data = (int32_t *)create_material_entry(render_context);
                 *material_data = 1;  // 设置材质类型为引用
-                attribute_list = (undefined8 *)create_texture_resource(_DAT_180c86930, resource_array, &string_handler, 1);
-                *(undefined8 *)(material_data + 2) = *attribute_list;
+                attribute_list = (uint64_t *)create_texture_resource(_DAT_180c86930, resource_array, &string_handler, 1);
+                *(uint64_t *)(material_data + 2) = *attribute_list;
                 
                 // 释放临时资源
                 if (resource_array[0] != (longlong *)0x0) {
@@ -818,7 +818,7 @@ void parse_material_data(longlong render_context, longlong material_manager, lon
         }
         
         // 移动到下一个属性
-        attribute_list = (undefined8 *)attribute_list[6];
+        attribute_list = (uint64_t *)attribute_list[6];
     } while (true);
     
     // 标签跳转定义
@@ -866,10 +866,10 @@ process_material_reference:
         result2 = attribute_list[1];
     }
     process_material_reference(&string_handler, result2);
-    material_data = (undefined4 *)create_material_entry(render_context);
+    material_data = (int32_t *)create_material_entry(render_context);
     *material_data = 1;
-    attribute_list = (undefined8 *)create_texture_resource(_DAT_180c86930, resource_array, &string_handler, 1);
-    *(undefined8 *)(material_data + 2) = *attribute_list;
+    attribute_list = (uint64_t *)create_texture_resource(_DAT_180c86930, resource_array, &string_handler, 1);
+    *(uint64_t *)(material_data + 2) = *attribute_list;
     if (resource_array[0] != (longlong *)0x0) {
         (**(code **)(*resource_array[0] + 0x38))();
     }
@@ -882,8 +882,8 @@ continue_processing:
     
 process_next_attribute:
     // 处理下一个属性
-    attribute_list = *(undefined8 **)(context_ptr + 0x30);
-    if (attribute_list == (undefined8 *)0x0) {
+    attribute_list = *(uint64_t **)(context_ptr + 0x30);
+    if (attribute_list == (uint64_t *)0x0) {
         // 材质处理完成
         material_processing_complete:
         string_handler = &UNK_18098bcb0;
@@ -911,7 +911,7 @@ void process_material_normal_map(longlong context) {
     // 原实现：法线贴图参数设置和验证
 }
 
-void add_to_material_manager(longlong manager, undefined4 *data) {
+void add_to_material_manager(longlong manager, int32_t *data) {
     // 简化实现：添加数据到材质管理器
     // 原实现：线程安全的内存分配和链表操作
 }

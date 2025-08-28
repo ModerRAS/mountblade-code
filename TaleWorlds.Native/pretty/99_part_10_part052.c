@@ -7,9 +7,9 @@ void FUN_1806c9800(longlong param_1,longlong param_2)
 
 {
   int *piVar1;
-  undefined1 auStack_110 [232];
+  int8_t auStack_110 [232];
   
-  FUN_1806d7000(param_2,*(undefined8 *)(param_1 + 0x208));
+  FUN_1806d7000(param_2,*(uint64_t *)(param_1 + 0x208));
   piVar1 = *(int **)(param_2 + 0x58);
   if (piVar1 != (int *)0x0) {
     *piVar1 = *piVar1 + 1;

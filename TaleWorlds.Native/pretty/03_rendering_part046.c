@@ -188,14 +188,14 @@ void RenderSystemEmptyFunction(void)
  * @return int 返回处理状态标志
  */
 int TextureCoordinateCalculator(longlong param_1, longlong param_2, float *param_3, 
-                               undefined8 param_4, longlong param_5)
+                               uint64_t param_4, longlong param_5)
 {
     byte bVar1;
     byte bVar2;
     byte bVar3;
     byte bVar4;
-    undefined4 uVar5;
-    undefined4 uVar6;
+    int32_t uVar5;
+    int32_t uVar6;
     ulonglong uVar7;
     ulonglong uVar8;
     int iVar9;
@@ -208,34 +208,34 @@ int TextureCoordinateCalculator(longlong param_1, longlong param_2, float *param
     longlong lVar16;
     short sVar17;
     uint uVar18;
-    undefined4 uVar19;
+    int32_t uVar19;
     longlong lVar20;
     longlong lVar21;
     ushort uVar22;
     uint uVar23;
     ushort uVar24;
-    undefined1 auVar25 [16];
-    undefined1 auVar26 [16];
+    int8_t auVar25 [16];
+    int8_t auVar26 [16];
     float fVar27;
     float fVar28;
     float fVar29;
     ushort uStackX_8;
-    undefined4 uStack_114;
+    int32_t uStack_114;
     int iStack_110;
     longlong lStack_e8;
-    undefined8 uStack_e0;
-    undefined8 uStack_d8;
-    undefined8 uStack_d0;
-    undefined8 uStack_c8;
-    undefined8 uStack_c0;
-    undefined8 uStack_b8;
-    undefined4 uStack_b0;
+    uint64_t uStack_e0;
+    uint64_t uStack_d8;
+    uint64_t uStack_d0;
+    uint64_t uStack_c8;
+    uint64_t uStack_c0;
+    uint64_t uStack_b8;
+    int32_t uStack_b0;
     
     // 初始化纹理坐标处理参数
     fVar28 = FLOAT_ZERO_VALUE;
-    uVar5 = *(undefined4 *)(param_1 + MEMORY_OFFSET_0X20);
+    uVar5 = *(int32_t *)(param_1 + MEMORY_OFFSET_0X20);
     fVar27 = *param_3;
-    uVar6 = *(undefined4 *)(param_1 + MEMORY_OFFSET_0X24);
+    uVar6 = *(int32_t *)(param_1 + MEMORY_OFFSET_0X24);
     uStack_114 = 1;
     
     // 计算纹理坐标缩放因子
@@ -438,8 +438,8 @@ LAB_180290cc2:
     }
     
     // 恢复原始参数
-    *(undefined4 *)(param_1 + MEMORY_OFFSET_0X20) = uVar5;
-    *(undefined4 *)(param_1 + MEMORY_OFFSET_0X24) = uVar6;
+    *(int32_t *)(param_1 + MEMORY_OFFSET_0X20) = uVar5;
+    *(int32_t *)(param_1 + MEMORY_OFFSET_0X24) = uVar6;
     return uVar19;
 }
 
@@ -462,7 +462,7 @@ LAB_180290cc2:
  * @param param_4 渲染标志
  * @return int 返回处理状态
  */
-int UVCoordinateProcessor(longlong param_1, longlong param_2, undefined8 param_3, undefined4 param_4)
+int UVCoordinateProcessor(longlong param_1, longlong param_2, uint64_t param_3, int32_t param_4)
 {
     byte bVar1;
     byte bVar2;
@@ -486,25 +486,25 @@ int UVCoordinateProcessor(longlong param_1, longlong param_2, undefined8 param_3
     longlong unaff_R14;
     ushort uVar18;
     float in_XMM1_Da;
-    undefined1 auVar19 [16];
-    undefined1 auVar20 [16];
+    int8_t auVar19 [16];
+    int8_t auVar20 [16];
     float unaff_XMM7_Da;
     float unaff_XMM9_Da;
     float fVar21;
     float unaff_XMM11_Da;
     float unaff_XMM12_Da;
-    undefined8 in_stack_00000050;
+    uint64_t in_stack_00000050;
     int iStack0000000000000058;
-    undefined8 in_stack_00000060;
-    undefined4 in_stack_00000068;
+    uint64_t in_stack_00000060;
+    int32_t in_stack_00000068;
     longlong lStack0000000000000080;
-    undefined8 in_stack_00000088;
-    undefined8 in_stack_00000090;
-    undefined8 in_stack_00000098;
+    uint64_t in_stack_00000088;
+    uint64_t in_stack_00000090;
+    uint64_t in_stack_00000098;
     int iStack00000000000000a0;
-    undefined8 in_stack_000000a8;
-    undefined8 in_stack_000000b0;
-    undefined4 in_stack_000000b8;
+    uint64_t in_stack_000000a8;
+    uint64_t in_stack_000000b0;
+    int32_t in_stack_000000b8;
     ushort uStack0000000000000170;
     longlong in_stack_00000178;
     ushort uStack0000000000000188;
@@ -691,8 +691,8 @@ LAB_180290cc2:
     }
     
     // 恢复UV参数
-    *(undefined4 *)(unaff_RDI + MEMORY_OFFSET_0X20) = in_stack_00000060._4_4_;
-    *(undefined4 *)(unaff_RDI + MEMORY_OFFSET_0X24) = in_stack_00000068;
+    *(int32_t *)(unaff_RDI + MEMORY_OFFSET_0X20) = in_stack_00000060._4_4_;
+    *(int32_t *)(unaff_RDI + MEMORY_OFFSET_0X24) = in_stack_00000068;
     return param_4;
 }
 
@@ -737,25 +737,25 @@ int PixelCoordinateTransformer(int param_1, longlong param_2)
     longlong unaff_R13;
     longlong unaff_R14;
     ushort uVar18;
-    undefined1 auVar19 [16];
-    undefined1 auVar20 [16];
+    int8_t auVar19 [16];
+    int8_t auVar20 [16];
     float unaff_XMM7_Da;
     float unaff_XMM9_Da;
     float unaff_XMM10_Da;
     float unaff_XMM11_Da;
     float unaff_XMM12_Da;
-    undefined8 in_stack_00000050;
+    uint64_t in_stack_00000050;
     int in_stack_00000058;
-    undefined8 in_stack_00000060;
-    undefined4 in_stack_00000068;
+    uint64_t in_stack_00000060;
+    int32_t in_stack_00000068;
     longlong lStack0000000000000080;
-    undefined8 in_stack_00000088;
-    undefined8 in_stack_00000090;
-    undefined8 in_stack_00000098;
+    uint64_t in_stack_00000088;
+    uint64_t in_stack_00000090;
+    uint64_t in_stack_00000098;
     int iStack00000000000000a0;
-    undefined8 in_stack_000000a8;
-    undefined8 in_stack_000000b0;
-    undefined4 in_stack_000000b8;
+    uint64_t in_stack_000000a8;
+    uint64_t in_stack_000000b0;
+    int32_t in_stack_000000b8;
     ushort uStack0000000000000170;
     longlong in_stack_00000178;
     ushort uStack0000000000000188;
@@ -921,8 +921,8 @@ LAB_180290cc2:
         lVar12 = lVar12 + STRUCTURE_SIZE_0X1C;
         in_stack_00000058 = param_1;
         if (*(int *)(unaff_R14 + 0x10) <= param_1) {
-            *(undefined4 *)(unaff_RDI + MEMORY_OFFSET_0X20) = in_stack_00000060._4_4_;
-            *(undefined4 *)(unaff_RDI + MEMORY_OFFSET_0X24) = in_stack_00000068;
+            *(int32_t *)(unaff_RDI + MEMORY_OFFSET_0X20) = in_stack_00000060._4_4_;
+            *(int32_t *)(unaff_RDI + MEMORY_OFFSET_0X24) = in_stack_00000068;
             return in_stack_00000050._4_4_;
         }
     } while (true);
@@ -946,13 +946,13 @@ LAB_180290cc2:
 int RenderStateManager(void)
 {
     longlong unaff_RDI;
-    undefined4 in_R9D;
-    undefined8 in_stack_00000060;
-    undefined4 in_stack_00000068;
+    int32_t in_R9D;
+    uint64_t in_stack_00000060;
+    int32_t in_stack_00000068;
     
     // 保存渲染状态
-    *(undefined4 *)(unaff_RDI + MEMORY_OFFSET_0X20) = in_stack_00000060._4_4_;
-    *(undefined4 *)(unaff_RDI + MEMORY_OFFSET_0X24) = in_stack_00000068;
+    *(int32_t *)(unaff_RDI + MEMORY_OFFSET_0X20) = in_stack_00000060._4_4_;
+    *(int32_t *)(unaff_RDI + MEMORY_OFFSET_0X24) = in_stack_00000068;
     return in_R9D;
 }
 

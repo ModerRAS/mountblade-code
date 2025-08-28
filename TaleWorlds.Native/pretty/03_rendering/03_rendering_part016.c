@@ -10,21 +10,21 @@
  * @param flags 渲染标志
  * @param extra_param 附加参数
  */
-void Calculate_Rendering_Boundary_Distance(longlong *source_obj, longlong *target_obj, undefined8 flags, undefined8 extra_param)
+void Calculate_Rendering_Boundary_Distance(longlong *source_obj, longlong *target_obj, uint64_t flags, uint64_t extra_param)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   longlong lVar3;
   longlong *plVar4;
   longlong *local_obj_ptr;
   longlong *target_data;
   char has_render_flag;
-  undefined4 uVar5;
-  undefined4 extraout_XMM0_Da;
-  undefined8 in_XMM1_Qa;
-  undefined4 in_XMM1_Dc;
-  undefined4 in_XMM1_Dd;
+  int32_t uVar5;
+  int32_t extraout_XMM0_Da;
+  uint64_t in_XMM1_Qa;
+  int32_t in_XMM1_Dc;
+  int32_t in_XMM1_Dd;
   float fVar6;
   float fVar7;
   float fVar8;
@@ -32,36 +32,36 @@ void Calculate_Rendering_Boundary_Distance(longlong *source_obj, longlong *targe
   float fVar10;
   float fVar11;
   float fVar12;
-  undefined4 in_stack_00000070;
-  undefined4 in_stack_00000078;
-  undefined4 in_stack_00000080;
-  undefined4 in_stack_00000088;
-  undefined4 in_stack_00000090;
-  undefined4 in_stack_00000098;
-  undefined4 in_stack_000000a0;
-  undefined4 in_stack_000000a8;
-  undefined4 in_stack_000000b0;
-  undefined4 in_stack_000000b8;
-  undefined4 in_stack_000000c0;
-  undefined4 in_stack_000000c8;
-  undefined4 in_stack_000000d0;
-  undefined4 in_stack_000000d8;
-  undefined4 in_stack_000000e0;
-  undefined4 in_stack_000000e8;
-  undefined4 in_stack_000000f0;
-  undefined4 in_stack_000000f8;
-  undefined4 in_stack_00000100;
-  undefined4 in_stack_00000108;
+  int32_t in_stack_00000070;
+  int32_t in_stack_00000078;
+  int32_t in_stack_00000080;
+  int32_t in_stack_00000088;
+  int32_t in_stack_00000090;
+  int32_t in_stack_00000098;
+  int32_t in_stack_000000a0;
+  int32_t in_stack_000000a8;
+  int32_t in_stack_000000b0;
+  int32_t in_stack_000000b8;
+  int32_t in_stack_000000c0;
+  int32_t in_stack_000000c8;
+  int32_t in_stack_000000d0;
+  int32_t in_stack_000000d8;
+  int32_t in_stack_000000e0;
+  int32_t in_stack_000000e8;
+  int32_t in_stack_000000f0;
+  int32_t in_stack_000000f8;
+  int32_t in_stack_00000100;
+  int32_t in_stack_00000108;
   
   uVar5 = 0;
-  *(undefined4 *)(target_obj + 0x20) = 0;
-  *(undefined4 *)(target_obj + 0x24) = 0;
-  *(undefined4 *)(target_obj + 0x28) = 0;
-  *(undefined4 *)(target_obj + 0x2c) = 0x7f7fffff;
+  *(int32_t *)(target_obj + 0x20) = 0;
+  *(int32_t *)(target_obj + 0x24) = 0;
+  *(int32_t *)(target_obj + 0x28) = 0;
+  *(int32_t *)(target_obj + 0x2c) = 0x7f7fffff;
   *(int *)(target_obj + 0x10) = (int)in_XMM1_Qa;
   *(int *)(target_obj + 0x14) = (int)((ulonglong)in_XMM1_Qa >> 0x20);
-  *(undefined4 *)(target_obj + 0x18) = in_XMM1_Dc;
-  *(undefined4 *)(target_obj + 0x1c) = in_XMM1_Dd;
+  *(int32_t *)(target_obj + 0x18) = in_XMM1_Dc;
+  *(int32_t *)(target_obj + 0x1c) = in_XMM1_Dd;
   plVar4 = *(longlong **)(source_obj + 0x38);
   if (plVar4 < *(longlong **)(source_obj + 0x40)) {
     do {
@@ -84,10 +84,10 @@ void Calculate_Rendering_Boundary_Distance(longlong *source_obj, longlong *targe
   if (((*(longlong *)(local_obj_ptr + 0x40) - (longlong)*(longlong **)(local_obj_ptr + 0x38) &
        0xfffffffffffffff0U) == 0x10) &&
      (lVar1 = **(longlong **)(local_obj_ptr + 0x38), (*(uint *)(lVar1 + 0x100) & 0x4000000) == 0)) {
-    uVar2 = *(undefined8 *)(lVar1 + 0x29c);
-    *(undefined8 *)(target_data + 0x20) = *(undefined8 *)(lVar1 + 0x294);
-    *(undefined8 *)(target_data + 0x28) = uVar2;
-    *(undefined4 *)(target_data + 0x30) = *(undefined4 *)(**(longlong **)(local_obj_ptr + 0x38) + 0x2a4);
+    uVar2 = *(uint64_t *)(lVar1 + 0x29c);
+    *(uint64_t *)(target_data + 0x20) = *(uint64_t *)(lVar1 + 0x294);
+    *(uint64_t *)(target_data + 0x28) = uVar2;
+    *(int32_t *)(target_data + 0x30) = *(int32_t *)(**(longlong **)(local_obj_ptr + 0x38) + 0x2a4);
   }
   else {
     FUN_1800b9f60();
@@ -167,18 +167,18 @@ void Calculate_Rendering_Boundary_Distance(longlong *source_obj, longlong *targe
  * 对渲染距离进行优化计算，处理边界条件和精度优化
  * @param render_flags 渲染标志位
  */
-void Optimize_Rendering_Distance_Calculation(undefined4 render_flags)
+void Optimize_Rendering_Distance_Calculation(int32_t render_flags)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   longlong lVar3;
   longlong *plVar4;
   longlong *local_obj_ptr;
   longlong *obj_array_ptr;
   longlong *target_data;
   char has_render_flag;
-  undefined4 extraout_XMM0_Da;
+  int32_t extraout_XMM0_Da;
   float fVar5;
   float fVar6;
   float fVar7;
@@ -186,26 +186,26 @@ void Optimize_Rendering_Distance_Calculation(undefined4 render_flags)
   float fVar9;
   float fVar10;
   float fVar11;
-  undefined4 in_stack_00000070;
-  undefined4 in_stack_00000078;
-  undefined4 in_stack_00000080;
-  undefined4 in_stack_00000088;
-  undefined4 in_stack_00000090;
-  undefined4 in_stack_00000098;
-  undefined4 in_stack_000000a0;
-  undefined4 in_stack_000000a8;
-  undefined4 in_stack_000000b0;
-  undefined4 in_stack_000000b8;
-  undefined4 in_stack_000000c0;
-  undefined4 in_stack_000000c8;
-  undefined4 in_stack_000000d0;
-  undefined4 in_stack_000000d8;
-  undefined4 in_stack_000000e0;
-  undefined4 in_stack_000000e8;
-  undefined4 in_stack_000000f0;
-  undefined4 in_stack_000000f8;
-  undefined4 in_stack_00000100;
-  undefined4 in_stack_00000108;
+  int32_t in_stack_00000070;
+  int32_t in_stack_00000078;
+  int32_t in_stack_00000080;
+  int32_t in_stack_00000088;
+  int32_t in_stack_00000090;
+  int32_t in_stack_00000098;
+  int32_t in_stack_000000a0;
+  int32_t in_stack_000000a8;
+  int32_t in_stack_000000b0;
+  int32_t in_stack_000000b8;
+  int32_t in_stack_000000c0;
+  int32_t in_stack_000000c8;
+  int32_t in_stack_000000d0;
+  int32_t in_stack_000000d8;
+  int32_t in_stack_000000e0;
+  int32_t in_stack_000000e8;
+  int32_t in_stack_000000f0;
+  int32_t in_stack_000000f8;
+  int32_t in_stack_00000100;
+  int32_t in_stack_00000108;
   
   do {
     lVar1 = *obj_array_ptr;
@@ -225,10 +225,10 @@ void Optimize_Rendering_Distance_Calculation(undefined4 render_flags)
   if (((*(longlong *)(local_obj_ptr + 0x40) - (longlong)*(longlong **)(local_obj_ptr + 0x38) &
        0xfffffffffffffff0U) == 0x10) &&
      (lVar1 = **(longlong **)(local_obj_ptr + 0x38), (*(uint *)(lVar1 + 0x100) & 0x4000000) == 0)) {
-    uVar2 = *(undefined8 *)(lVar1 + 0x29c);
-    *(undefined8 *)(target_data + 0x20) = *(undefined8 *)(lVar1 + 0x294);
-    *(undefined8 *)(target_data + 0x28) = uVar2;
-    *(undefined4 *)(target_data + 0x30) = *(undefined4 *)(**(longlong **)(local_obj_ptr + 0x38) + 0x2a4);
+    uVar2 = *(uint64_t *)(lVar1 + 0x29c);
+    *(uint64_t *)(target_data + 0x20) = *(uint64_t *)(lVar1 + 0x294);
+    *(uint64_t *)(target_data + 0x28) = uVar2;
+    *(int32_t *)(target_data + 0x30) = *(int32_t *)(**(longlong **)(local_obj_ptr + 0x38) + 0x2a4);
   }
   else {
     FUN_1800b9f60();
@@ -311,7 +311,7 @@ void Rendering_Distance_Calculator(void)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   longlong *plVar3;
   longlong *local_obj_ptr;
   longlong *target_data;
@@ -326,10 +326,10 @@ void Rendering_Distance_Calculator(void)
   if (((*(longlong *)(local_obj_ptr + 0x40) - (longlong)*(longlong **)(local_obj_ptr + 0x38) &
        0xfffffffffffffff0U) == 0x10) &&
      (lVar1 = **(longlong **)(local_obj_ptr + 0x38), (*(uint *)(lVar1 + 0x100) & 0x4000000) == 0)) {
-    uVar2 = *(undefined8 *)(lVar1 + 0x29c);
-    *(undefined8 *)(target_data + 0x20) = *(undefined8 *)(lVar1 + 0x294);
-    *(undefined8 *)(target_data + 0x28) = uVar2;
-    *(undefined4 *)(target_data + 0x30) = *(undefined4 *)(**(longlong **)(local_obj_ptr + 0x38) + 0x2a4);
+    uVar2 = *(uint64_t *)(lVar1 + 0x29c);
+    *(uint64_t *)(target_data + 0x20) = *(uint64_t *)(lVar1 + 0x294);
+    *(uint64_t *)(target_data + 0x28) = uVar2;
+    *(int32_t *)(target_data + 0x30) = *(int32_t *)(**(longlong **)(local_obj_ptr + 0x38) + 0x2a4);
   }
   else {
     FUN_1800b9f60();
@@ -413,7 +413,7 @@ void Process_Render_Object_Distance(longlong *render_obj)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   longlong *plVar3;
   longlong *local_obj_ptr;
   longlong *target_data;
@@ -427,10 +427,10 @@ void Process_Render_Object_Distance(longlong *render_obj)
   
   lVar1 = *render_obj;
   if ((*(uint *)(lVar1 + 0x100) & 0x4000000) == 0) {
-    uVar2 = *(undefined8 *)(lVar1 + 0x29c);
-    *(undefined8 *)(target_data + 0x20) = *(undefined8 *)(lVar1 + 0x294);
-    *(undefined8 *)(target_data + 0x28) = uVar2;
-    *(undefined4 *)(target_data + 0x30) = *(undefined4 *)(**(longlong **)(local_obj_ptr + 0x38) + 0x2a4);
+    uVar2 = *(uint64_t *)(lVar1 + 0x29c);
+    *(uint64_t *)(target_data + 0x20) = *(uint64_t *)(lVar1 + 0x294);
+    *(uint64_t *)(target_data + 0x28) = uVar2;
+    *(int32_t *)(target_data + 0x30) = *(int32_t *)(**(longlong **)(local_obj_ptr + 0x38) + 0x2a4);
   }
   else {
     FUN_1800b9f60();
@@ -762,7 +762,7 @@ void Cleanup_Render_Object_References(longlong render_context)
             (*(char *)(lVar2 + 0xf4) == '\0')) &&
            (((*(byte *)(lVar2 + 0xfd) & 0x20) == 0 || ((*(byte *)(lVar2 + 0xfe) & 1) == 0)))) {
           plVar3 = *(longlong **)(lVar2 + 0x210);
-          *(undefined8 *)(lVar2 + 0x210) = 0;
+          *(uint64_t *)(lVar2 + 0x210) = 0;
           if (plVar3 != (longlong *)0x0) {
             (**(code **)(*plVar3 + 0x38))();
           }
@@ -797,19 +797,19 @@ int Calculate_Rendering_Priority(longlong render_context, longlong render_obj)
 
 {
   int iVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   
-  puVar2 = *(undefined8 **)(render_context + 0x38);
+  puVar2 = *(uint64_t **)(render_context + 0x38);
   iVar3 = 0;
-  if (puVar2 < *(undefined8 **)(render_context + 0x40)) {
+  if (puVar2 < *(uint64_t **)(render_context + 0x40)) {
     do {
       if ((*(uint *)(render_obj + 0xc) & *(uint *)(puVar2 + 1)) != 0) {
         iVar1 = FUN_180076c50(*puVar2,render_obj);
         iVar3 = iVar3 + iVar1;
       }
       puVar2 = puVar2 + 2;
-    } while (puVar2 < *(undefined8 **)(render_context + 0x40));
+    } while (puVar2 < *(uint64_t **)(render_context + 0x40));
   }
   return iVar3;
 }
@@ -824,16 +824,16 @@ int Calculate_Rendering_Priority(longlong render_context, longlong render_obj)
  * @param render_context 渲染上下文指针
  * @return 验证结果，1表示有效，0表示无效
  */
-undefined8 Validate_Render_Object_State(longlong render_context)
+uint64_t Validate_Render_Object_State(longlong render_context)
 
 {
   longlong *plVar1;
   byte bVar2;
   longlong *plVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
+  uint64_t *puVar4;
+  uint64_t *puVar5;
   longlong lVar6;
-  undefined8 *puVar7;
+  uint64_t *puVar7;
   ulonglong uVar8;
   longlong lVar9;
   longlong *plVar10;
@@ -852,26 +852,26 @@ undefined8 Validate_Render_Object_State(longlong render_context)
     }
     uVar8 = *(ulonglong *)(_DAT_180c86870 + 0x98);
     if (uVar8 != 0) {
-      puVar7 = (undefined8 *)(uVar8 + 0x30);
+      puVar7 = (uint64_t *)(uVar8 + 0x30);
       if (plVar3 != (longlong *)0x0) {
         (**(code **)(*plVar3 + 0x28))(plVar3);
       }
-      puVar5 = *(undefined8 **)(uVar8 + 0x40);
+      puVar5 = *(uint64_t **)(uVar8 + 0x40);
       puVar4 = puVar7;
-      if (puVar5 == (undefined8 *)0x0) {
+      if (puVar5 == (uint64_t *)0x0) {
 LAB_1802775f0:
         puVar4 = puVar7;
       }
       else {
         do {
           if ((longlong *)puVar5[4] < plVar3) {
-            puVar5 = (undefined8 *)*puVar5;
+            puVar5 = (uint64_t *)*puVar5;
           }
           else {
             puVar4 = puVar5;
-            puVar5 = (undefined8 *)puVar5[1];
+            puVar5 = (uint64_t *)puVar5[1];
           }
-        } while (puVar5 != (undefined8 *)0x0);
+        } while (puVar5 != (uint64_t *)0x0);
         if ((puVar4 == puVar7) || (plVar3 < (longlong *)puVar4[4])) goto LAB_1802775f0;
       }
       uVar8 = (ulonglong)(puVar4 != puVar7);
@@ -953,14 +953,14 @@ void Reset_Rendering_Flags(longlong render_context, uint flags_to_reset)
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
-          *(undefined8 *)(lVar3 + 0x1d8) = 0;
+          *(uint64_t *)(lVar3 + 0x1d8) = 0;
           LOCK();
-          *(undefined1 *)(lVar3 + 0xf9) = 0;
+          *(int8_t *)(lVar3 + 0xf9) = 0;
           UNLOCK();
         }
         if (*(longlong *)(lVar3 + 0x1e8) != 0) {
           FUN_180080060();
-          *(undefined8 *)(lVar3 + 0x1e8) = 0;
+          *(uint64_t *)(lVar3 + 0x1e8) = 0;
           if (*(longlong *)(lVar3 + 0x1f0) != 0) {
             pbVar2 = (byte *)(*(longlong *)(lVar3 + 0x1f0) + 0xfe);
             *pbVar2 = *pbVar2 & 0xfb;

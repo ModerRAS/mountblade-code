@@ -199,7 +199,7 @@ void RenderSystem_Init(void)
  *   param_1 - 指向渲染对象数组的指针，包含多个渲染对象
  * 
  * 返回值：
- *   undefined8 - 操作结果状态码
+ *   uint64_t - 操作结果状态码
  * 
  * 处理流程：
  *   1. 从输入数组中提取最多4个渲染对象
@@ -219,11 +219,11 @@ void RenderSystem_Init(void)
  *   原始实现：复杂的对象提取和批处理逻辑
  *   简化实现：保持原有批处理逻辑，添加了详细的注释和错误处理
  =============================================================================*/
-undefined8 RenderSystem_ProcessBatch(longlong *param_1)
+uint64_t RenderSystem_ProcessBatch(longlong *param_1)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong *plVar2;
-    undefined1 uVar3;
+    int8_t uVar3;
     longlong *plVar4;
     longlong *plVar5;
     longlong *plVar6;
@@ -231,7 +231,7 @@ undefined8 RenderSystem_ProcessBatch(longlong *param_1)
     longlong *plStackX_18;
     longlong *plStackX_20;
     longlong *plStack_88;
-    undefined8 uStack_80;
+    uint64_t uStack_80;
     longlong *plStack_78;
     longlong *plStack_70;
     longlong *plStack_68;
@@ -376,7 +376,7 @@ undefined8 RenderSystem_ProcessBatch(longlong *param_1)
  *   无
  * 
  * 返回值：
- *   undefined8* - 指向新创建的渲染上下文的指针
+ *   uint64_t* - 指向新创建的渲染上下文的指针
  * 
  * 初始化内容：
  *   - 分配0x6d0字节的上下文内存
@@ -401,12 +401,12 @@ undefined8 RenderSystem_ProcessBatch(longlong *param_1)
  *   原始实现：直接内存分配和初始化
  *   简化实现：保持原有初始化逻辑，添加了详细的内存布局说明
  =============================================================================*/
-undefined8 * RenderSystem_CreateContext(void)
+uint64_t * RenderSystem_CreateContext(void)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     
     // 分配渲染上下文内存（0x6d0字节，8字节对齐）
-    puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_6D0, MEMORY_ALIGN_8, 3);
+    puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_6D0, MEMORY_ALIGN_8, 3);
     
     // 调用系统配置函数
     FUN_180320470();
@@ -415,31 +415,31 @@ undefined8 * RenderSystem_CreateContext(void)
     *puVar1 = &UNK_180a34440;
     
     // 初始化各种状态指针为NULL
-    *(undefined8 *)((longlong)puVar1 + 0xf4) = 0;    // 状态指针1
-    *(undefined8 *)((longlong)puVar1 + 0xfc) = 0;    // 状态指针2
-    *(undefined8 *)((longlong)puVar1 + 0x104) = 0;   // 状态指针3
-    *(undefined8 *)((longlong)puVar1 + 0x10c) = 0;   // 状态指针4
-    *(undefined8 *)((longlong)puVar1 + 0x114) = 0;   // 状态指针5
-    *(undefined8 *)((longlong)puVar1 + 0x11c) = 0;   // 状态指针6
+    *(uint64_t *)((longlong)puVar1 + 0xf4) = 0;    // 状态指针1
+    *(uint64_t *)((longlong)puVar1 + 0xfc) = 0;    // 状态指针2
+    *(uint64_t *)((longlong)puVar1 + 0x104) = 0;   // 状态指针3
+    *(uint64_t *)((longlong)puVar1 + 0x10c) = 0;   // 状态指针4
+    *(uint64_t *)((longlong)puVar1 + 0x114) = 0;   // 状态指针5
+    *(uint64_t *)((longlong)puVar1 + 0x11c) = 0;   // 状态指针6
     
     // 初始化状态标志
-    *(undefined4 *)((longlong)puVar1 + 0x124) = 0;   // 主状态标志
+    *(int32_t *)((longlong)puVar1 + 0x124) = 0;   // 主状态标志
     
     // 设置随机种子（用于渲染系统的随机数生成）
-    *(undefined4 *)((longlong)puVar1 + 0x694) = MAGIC_RENDER_SEED;
+    *(int32_t *)((longlong)puVar1 + 0x694) = MAGIC_RENDER_SEED;
     
     // 初始化各种标志位
-    *(undefined1 *)(puVar1 + 0xd3) = 0;   // 标志位1
+    *(int8_t *)(puVar1 + 0xd3) = 0;   // 标志位1
     puVar1[0xd5] = 0;                     // 标志位2
     puVar1[0xd6] = 0;                     // 标志位3
     puVar1[0xd7] = 0;                     // 标志位4
     puVar1[0xd8] = 0;                     // 标志位5
     
     // 设置默认参数值
-    *(undefined4 *)((longlong)puVar1 + 0x8c) = 6;    // 默认参数值
+    *(int32_t *)((longlong)puVar1 + 0x8c) = 6;    // 默认参数值
     
     // 初始化最终标志位
-    *(undefined1 *)(puVar1 + 0xd9) = 0;   // 最终标志位
+    *(int8_t *)(puVar1 + 0xd9) = 0;   // 最终标志位
     
     return puVar1;
 }
@@ -467,7 +467,7 @@ undefined8 * RenderSystem_CreateContext(void)
  *   param_8 - 标志位2
  * 
  * 返回值：
- *   undefined8* - 初始化后的渲染上下文指针
+ *   uint64_t* - 初始化后的渲染上下文指针
  * 
  * 初始化步骤：
  *   1. 设置虚函数表指针
@@ -486,21 +486,21 @@ undefined8 * RenderSystem_CreateContext(void)
  *   原始实现：复杂的初始化逻辑，包含多个步骤
  *   简化实现：保持原有初始化流程，添加了详细的步骤说明和注释
  =============================================================================*/
-undefined8 *
-RenderSystem_InitializeContext(undefined8 *param_1, longlong *param_2, longlong *param_3, longlong *param_4,
-                               longlong *param_5, undefined8 param_6, undefined1 param_7, undefined1 param_8)
+uint64_t *
+RenderSystem_InitializeContext(uint64_t *param_1, longlong *param_2, longlong *param_3, longlong *param_4,
+                               longlong *param_5, uint64_t param_6, int8_t param_7, int8_t param_8)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     longlong *plVar2;
     longlong lVar3;
     char cVar4;
-    undefined8 uVar5;
+    uint64_t uVar5;
     longlong *plVar6;
-    undefined8 *apuStack_80 [2];
-    undefined *puStack_70;
+    uint64_t *apuStack_80 [2];
+    void *puStack_70;
     code *pcStack_68;
-    undefined8 uStack_60;
-    undefined8 *puStack_58;
+    uint64_t uStack_60;
+    uint64_t *puStack_58;
     
     // 设置内存对齐标志
     uStack_60 = 0xfffffffffffffffe;
@@ -508,12 +508,12 @@ RenderSystem_InitializeContext(undefined8 *param_1, longlong *param_2, longlong 
     // 步骤1：初始化虚函数表指针
     *param_1 = &UNK_180a21690;
     *param_1 = &UNK_180a21720;
-    *(undefined4 *)(param_1 + 1) = 0;
+    *(int32_t *)(param_1 + 1) = 0;
     *param_1 = &UNK_180a14860;
-    *(undefined4 *)(param_1 + 2) = 4;
+    *(int32_t *)(param_1 + 2) = 4;
     param_1[3] = 0;
     param_1[4] = 0;
-    *(undefined4 *)(param_1 + 1) = 0;
+    *(int32_t *)(param_1 + 1) = 0;
     param_1[5] = 0;
     *param_1 = &UNK_180a34228;
     
@@ -523,11 +523,11 @@ RenderSystem_InitializeContext(undefined8 *param_1, longlong *param_2, longlong 
     _Mtx_init_in_situ(param_1 + OFFSET_RENDER_MUTEX, 2);
     
     // 步骤3：初始化状态标志
-    *(undefined1 *)(param_1 + 0x19) = 0;
+    *(int8_t *)(param_1 + 0x19) = 0;
     param_1[0x1c] = 0;
     param_1[0x1d] = 0;
     param_1[0x1e] = 0;
-    *(undefined4 *)(param_1 + 0x1f) = 3;
+    *(int32_t *)(param_1 + 0x1f) = 3;
     param_1[0x20] = 0;    // 渲染对象1槽位
     param_1[0x21] = 0;    // 渲染对象2槽位
     param_1[0x22] = 0;    // 渲染对象3槽位
@@ -535,7 +535,7 @@ RenderSystem_InitializeContext(undefined8 *param_1, longlong *param_2, longlong 
     
     // 步骤4：初始化上下文数据区域
     puVar1 = param_1 + 0x24;
-    *(undefined4 *)(param_1 + 0x2a) = 0;
+    *(int32_t *)(param_1 + 0x2a) = 0;
     *puVar1 = 0;
     param_1[0x25] = 0;
     param_1[0x26] = 0;
@@ -545,7 +545,7 @@ RenderSystem_InitializeContext(undefined8 *param_1, longlong *param_2, longlong 
     param_1[0x33] = 0;    // 扩展对象槽位
     param_1[0x34] = 0;    // 额外资源槽位
     param_1[0x31] = 0;
-    *(undefined1 *)(param_1 + 0x32) = 0;
+    *(int8_t *)(param_1 + 0x32) = 0;
     
     // 步骤5：绑定渲染对象1
     plVar6 = (longlong *)*param_2;
@@ -613,7 +613,7 @@ RenderSystem_InitializeContext(undefined8 *param_1, longlong *param_2, longlong 
             
             // 设置额外资源参数
             lVar3 = param_1[0x34];
-            *(undefined8 *)(lVar3 + 0x28) = param_1[5];
+            *(uint64_t *)(lVar3 + 0x28) = param_1[5];
             plVar6 = *(longlong **)(lVar3 + 0x48);
             if (plVar6 != (longlong *)0x0) {
                 (**(code **)(*plVar6 + 0x1e0))();
@@ -622,14 +622,14 @@ RenderSystem_InitializeContext(undefined8 *param_1, longlong *param_2, longlong 
     }
     
     // 步骤10：设置渲染状态
-    *(undefined4 *)((longlong)param_1 + 0x154) = 0;
+    *(int32_t *)((longlong)param_1 + 0x154) = 0;
     FUN_18054a180(param_1);
     param_1[0x1b] = param_6;
-    *(undefined1 *)((longlong)param_1 + 0x191) = param_8;
-    *(undefined1 *)((longlong)param_1 + 0x192) = param_7;
+    *(int8_t *)((longlong)param_1 + 0x191) = param_8;
+    *(int8_t *)((longlong)param_1 + 0x192) = param_7;
     
     // 步骤11：重置上下文状态
-    *(undefined4 *)(param_1 + 0x2a) = 0;
+    *(int32_t *)(param_1 + 0x2a) = 0;
     *puVar1 = 0;
     param_1[0x25] = 0;
     param_1[0x26] = 0;
@@ -645,7 +645,7 @@ RenderSystem_InitializeContext(undefined8 *param_1, longlong *param_2, longlong 
     FUN_1800b9f60(puVar1);
     
     // 步骤13：最终状态设置
-    *(undefined1 *)(param_1 + 0x1a) = 0;
+    *(int8_t *)(param_1 + 0x1a) = 0;
     
     // 步骤14：清理扩展对象
     plVar6 = (longlong *)param_1[0x33];
@@ -685,7 +685,7 @@ RenderSystem_InitializeContext(undefined8 *param_1, longlong *param_2, longlong 
  *            - 其他位：保留
  * 
  * 返回值：
- *   undefined8 - 清理后的对象指针（通常与输入相同）
+ *   uint64_t - 清理后的对象指针（通常与输入相同）
  * 
  * 处理流程：
  *   1. 调用销毁函数执行对象清理
@@ -701,10 +701,10 @@ RenderSystem_InitializeContext(undefined8 *param_1, longlong *param_2, longlong 
  *   原始实现：简单的条件清理逻辑
  *   简化实现：保持原有条件清理逻辑，添加了详细的标志位说明
  =============================================================================*/
-undefined8 RenderSystem_CleanupObject(undefined8 param_1, ulonglong param_2)
+uint64_t RenderSystem_CleanupObject(uint64_t param_1, ulonglong param_2)
 {
     // 步骤1：调用销毁函数执行对象清理
-    RenderSystem_DestroyContext((undefined8 *)param_1);
+    RenderSystem_DestroyContext((uint64_t *)param_1);
     
     // 步骤2：检查标志位决定是否释放内存
     if ((param_2 & 1) != 0) {
@@ -750,7 +750,7 @@ undefined8 RenderSystem_CleanupObject(undefined8 param_1, ulonglong param_2)
  *   原始实现：完整的上下文销毁逻辑
  *   简化实现：保持原有销毁流程，添加了详细的步骤说明和错误处理
  =============================================================================*/
-void RenderSystem_DestroyContext(undefined8 *param_1)
+void RenderSystem_DestroyContext(uint64_t *param_1)
 {
     longlong *plVar1;
     
@@ -850,7 +850,7 @@ void RenderSystem_DestroyContext(undefined8 *param_1)
  *   param_3 - 附加参数（64位）
  * 
  * 返回值：
- *   undefined4 - 命令执行结果
+ *   int32_t - 命令执行结果
  * 
  * 处理流程：
  *   1. 初始化返回值为0
@@ -869,10 +869,10 @@ void RenderSystem_DestroyContext(undefined8 *param_1)
  *   原始实现：命令参数打包和队列发送
  *   简化实现：保持原有命令处理逻辑，添加了详细的参数说明
  =============================================================================*/
-undefined4 RenderSystem_ExecuteCommand(longlong param_1, undefined4 param_2, longlong param_3)
+int32_t RenderSystem_ExecuteCommand(longlong param_1, int32_t param_2, longlong param_3)
 {
-    undefined4 auStackX_8 [2];     // 返回值存储区
-    undefined4 auStackX_10 [2];    // 命令参数存储区
+    int32_t auStackX_8 [2];     // 返回值存储区
+    int32_t auStackX_10 [2];    // 命令参数存储区
     longlong **pplStackX_18;       // 参数结构体指针
     longlong *aplStack_28 [2];      // 参数数组
     code *pcStack_18;              // 命令处理回调1
@@ -918,7 +918,7 @@ undefined4 RenderSystem_ExecuteCommand(longlong param_1, undefined4 param_2, lon
  *   param_4 - 附加参数2（64位）
  * 
  * 返回值：
- *   undefined1 - 状态设置结果（1=成功，0=失败）
+ *   int8_t - 状态设置结果（1=成功，0=失败）
  * 
  * 处理流程：
  *   1. 初始化返回值为1（成功）
@@ -936,12 +936,12 @@ undefined4 RenderSystem_ExecuteCommand(longlong param_1, undefined4 param_2, lon
  *   原始实现：简单的状态参数打包和队列发送
  *   简化实现：保持原有状态设置逻辑，添加了详细的功能说明
  =============================================================================*/
-undefined1 RenderSystem_SetState(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int8_t RenderSystem_SetState(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined1 auStackX_8 [8];     // 状态参数数组
-    undefined1 **ppuStackX_10;     // 参数指针
-    undefined1 *apuStack_30 [2];    // 参数数组
-    undefined *puStack_20;           // 回调函数指针
+    int8_t auStackX_8 [8];     // 状态参数数组
+    int8_t **ppuStackX_10;     // 参数指针
+    int8_t *apuStack_30 [2];    // 参数数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 状态处理回调
     
     // 初始化状态参数（默认成功）
@@ -993,11 +993,11 @@ undefined1 RenderSystem_SetState(longlong param_1, undefined8 param_2, undefined
  *   原始实现：简单的参数打包和队列发送
  *   简化实现：保持原有参数设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetParameter(longlong param_1, undefined1 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetParameter(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined1 auStackX_10 [24];    // 参数数组
-    undefined1 *apuStack_30 [2];    // 参数指针数组
-    undefined *puStack_20;           // 回调函数指针
+    int8_t auStackX_10 [24];    // 参数数组
+    int8_t *apuStack_30 [2];    // 参数指针数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 参数处理回调
     
     // 设置参数处理回调函数
@@ -1047,10 +1047,10 @@ void RenderSystem_SetParameter(longlong param_1, undefined1 param_2, undefined8 
  *   原始实现：两次矩阵更新操作
  *   简化实现：保持原有矩阵更新逻辑，添加了详细的操作说明
  =============================================================================*/
-void RenderSystem_UpdateMatrix(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_UpdateMatrix(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined1 auStack_30 [16];     // 矩阵参数数组
-    undefined *puStack_20;           // 回调函数指针
+    int8_t auStack_30 [16];     // 矩阵参数数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 矩阵处理回调
     
     // 设置第一个矩阵处理回调函数
@@ -1101,10 +1101,10 @@ void RenderSystem_UpdateMatrix(longlong param_1, undefined8 param_2, undefined8 
  *   原始实现：简单的变换参数打包和队列发送
  *   简化实现：保持原有变换设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetTransform(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetTransform(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 auStack_30 [2];      // 变换参数数组
-    undefined *puStack_20;           // 回调函数指针
+    uint64_t auStack_30 [2];      // 变换参数数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 变换处理回调
     
     // 设置变换处理回调函数
@@ -1151,11 +1151,11 @@ void RenderSystem_SetTransform(longlong param_1, undefined8 param_2, undefined8 
  *   原始实现：简单的视口参数打包和队列发送
  *   简化实现：保持原有视口设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetViewport(longlong param_1, undefined1 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetViewport(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined1 auStackX_10 [24];    // 视口参数数组
-    undefined1 *apuStack_30 [2];    // 参数指针数组
-    undefined *puStack_20;           // 回调函数指针
+    int8_t auStackX_10 [24];    // 视口参数数组
+    int8_t *apuStack_30 [2];    // 参数指针数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 视口处理回调
     
     // 设置视口处理回调函数
@@ -1205,10 +1205,10 @@ void RenderSystem_SetViewport(longlong param_1, undefined1 param_2, undefined8 p
  *   原始实现：简单的裁剪参数打包和队列发送
  *   简化实现：保持原有裁剪设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetScissor(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetScissor(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 auStack_30 [2];      // 裁剪参数数组
-    undefined *puStack_20;           // 回调函数指针
+    uint64_t auStack_30 [2];      // 裁剪参数数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 裁剪处理回调
     
     // 设置裁剪处理回调函数
@@ -1255,11 +1255,11 @@ void RenderSystem_SetScissor(longlong param_1, undefined8 param_2, undefined8 pa
  *   原始实现：简单的混合模式参数打包和队列发送
  *   简化实现：保持原有混合模式设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetBlendMode(longlong param_1, undefined4 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetBlendMode(longlong param_1, int32_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined4 auStackX_10 [6];    // 混合模式参数数组
-    undefined4 *apuStack_30 [2];   // 参数指针数组
-    undefined *puStack_20;           // 回调函数指针
+    int32_t auStackX_10 [6];    // 混合模式参数数组
+    int32_t *apuStack_30 [2];   // 参数指针数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 混合模式处理回调
     
     // 设置混合模式处理回调函数
@@ -1309,10 +1309,10 @@ void RenderSystem_SetBlendMode(longlong param_1, undefined4 param_2, undefined8 
  *   原始实现：简单的深度模式参数打包和队列发送
  *   简化实现：保持原有深度模式设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetDepthMode(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetDepthMode(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 auStack_30 [2];      // 深度模式参数数组
-    undefined *puStack_20;           // 回调函数指针
+    uint64_t auStack_30 [2];      // 深度模式参数数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 深度模式处理回调
     
     // 设置深度模式处理回调函数
@@ -1359,11 +1359,11 @@ void RenderSystem_SetDepthMode(longlong param_1, undefined8 param_2, undefined8 
  *   原始实现：简单的模板模式参数打包和队列发送
  *   简化实现：保持原有模板模式设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetStencilMode(longlong param_1, undefined4 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetStencilMode(longlong param_1, int32_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined4 auStackX_10 [6];    // 模板模式参数数组
-    undefined4 *apuStack_30 [2];   // 参数指针数组
-    undefined *puStack_20;           // 回调函数指针
+    int32_t auStackX_10 [6];    // 模板模式参数数组
+    int32_t *apuStack_30 [2];   // 参数指针数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 模板模式处理回调
     
     // 设置模板模式处理回调函数
@@ -1411,10 +1411,10 @@ void RenderSystem_SetStencilMode(longlong param_1, undefined4 param_2, undefined
  *   原始实现：简单的剔除模式参数打包和队列发送
  *   简化实现：保持原有剔除模式设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetCullMode(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetCullMode(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 auStack_30 [2];      // 剔除模式参数数组
-    undefined *puStack_20;           // 回调函数指针
+    uint64_t auStack_30 [2];      // 剔除模式参数数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 剔除模式处理回调
     
     // 设置剔除模式处理回调函数
@@ -1460,16 +1460,16 @@ void RenderSystem_SetCullMode(longlong param_1, undefined8 param_2, undefined8 p
  =============================================================================*/
 ulonglong RenderSystem_GetState(longlong param_1)
 {
-    undefined *puVar1;
+    void *puVar1;
     ulonglong uVar2;
     
     // 获取状态对象指针
-    puVar1 = (undefined *)**(undefined8 **)(param_1 + 0x100);
+    puVar1 = (void *)**(uint64_t **)(param_1 + 0x100);
     
     // 检查是否为默认状态对象
     if (puVar1 == &UNK_180a169b8) {
         // 默认状态对象，直接返回状态值
-        return (ulonglong)*(uint *)(*(undefined8 **)(param_1 + 0x100) + 0x42);
+        return (ulonglong)*(uint *)(*(uint64_t **)(param_1 + 0x100) + 0x42);
     }
     
     // 动态状态对象，调用获取函数
@@ -1508,10 +1508,10 @@ ulonglong RenderSystem_GetState(longlong param_1)
  *   原始实现：简单的纹理参数打包和队列发送
  *   简化实现：保持原有纹理设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetTexture(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetTexture(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 auStack_30 [2];      // 纹理参数数组
-    undefined *puStack_20;           // 回调函数指针
+    uint64_t auStack_30 [2];      // 纹理参数数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 纹理处理回调
     
     // 设置纹理处理回调函数
@@ -1538,7 +1538,7 @@ void RenderSystem_SetTexture(longlong param_1, undefined8 param_2, undefined8 pa
  *   param_1 - 渲染上下文指针
  * 
  * 返回值：
- *   undefined8* - 纹理数据指针
+ *   uint64_t* - 纹理数据指针
  * 
  * 处理流程：
  *   1. 从上下文中获取纹理对象指针
@@ -1555,22 +1555,22 @@ void RenderSystem_SetTexture(longlong param_1, undefined8 param_2, undefined8 pa
  *   原始实现：条件分支的纹理查询逻辑
  *   简化实现：保持原有纹理查询逻辑，添加了详细的对象类型说明
  =============================================================================*/
-undefined8 * RenderSystem_GetTexture(longlong param_1)
+uint64_t * RenderSystem_GetTexture(longlong param_1)
 {
-    undefined *puVar1;
-    undefined8 *puVar2;
+    void *puVar1;
+    uint64_t *puVar2;
     
     // 获取纹理对象指针
-    puVar1 = (undefined *)**(undefined8 **)(param_1 + 0x100);
+    puVar1 = (void *)**(uint64_t **)(param_1 + 0x100);
     
     // 检查是否为默认纹理对象
     if (puVar1 == &UNK_180a169b8) {
         // 默认纹理对象，返回固定偏移量的纹理数据
-        return *(undefined8 **)(param_1 + 0x100) + 0x66;
+        return *(uint64_t **)(param_1 + 0x100) + 0x66;
     }
     
     // 动态纹理对象，调用获取函数
-    puVar2 = (undefined8 *)(**(code **)(puVar1 + 0x158))();
+    puVar2 = (uint64_t *)(**(code **)(puVar1 + 0x158))();
     return puVar2;
 }
 
@@ -1607,26 +1607,26 @@ undefined8 * RenderSystem_GetTexture(longlong param_1)
  *   原始实现：包含距离计算的缓冲区设置逻辑
  *   简化实现：保持原有缓冲区设置逻辑，添加了详细的数学计算说明
  =============================================================================*/
-void RenderSystem_SetBuffer(longlong param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4)
+void RenderSystem_SetBuffer(longlong param_1, uint64_t param_2, int32_t param_3, int32_t param_4)
 {
     float *pfVar1;
     float fVar2;
     float fVar3;
     float fVar4;
     longlong alStack_30 [2];
-    undefined *puStack_20;
+    void *puStack_20;
     code *pcStack_18;
     
     // 获取浮点数指针并初始化渲染状态
     pfVar1 = (float *)(param_1 + 0x120);
-    *(undefined4 *)(param_1 + 0x150) = 0;
+    *(int32_t *)(param_1 + 0x150) = 0;
     pfVar1[0] = 0.0;
     pfVar1[1] = 0.0;
-    *(undefined8 *)(param_1 + 0x128) = 0;
-    *(undefined8 *)(param_1 + 0x130) = 0;
-    *(undefined8 *)(param_1 + 0x138) = 0;
-    *(undefined8 *)(param_1 + 0x140) = 0;
-    *(undefined8 *)(param_1 + 0x148) = 0;
+    *(uint64_t *)(param_1 + 0x128) = 0;
+    *(uint64_t *)(param_1 + 0x130) = 0;
+    *(uint64_t *)(param_1 + 0x138) = 0;
+    *(uint64_t *)(param_1 + 0x140) = 0;
+    *(uint64_t *)(param_1 + 0x148) = 0;
     
     // 设置缓冲区处理回调函数
     puStack_20 = &UNK_18054ab80;
@@ -1643,7 +1643,7 @@ void RenderSystem_SetBuffer(longlong param_1, undefined8 param_2, undefined4 par
         *(float *)(param_1 + 0x140) = fVar3;               // 设置X坐标中点
         *(float *)(param_1 + 0x144) = (*(float *)(param_1 + 0x134) + *(float *)(param_1 + 0x124)) * 0.5;  // Y坐标中点
         *(float *)(param_1 + 0x148) = (*(float *)(param_1 + 0x138) + *(float *)(param_1 + 0x128)) * 0.5;  // Z坐标中点
-        *(undefined4 *)(param_1 + 0x14c) = MAGIC_FLOAT_MAX; // 设置最大浮点数
+        *(int32_t *)(param_1 + 0x14c) = MAGIC_FLOAT_MAX; // 设置最大浮点数
         fVar4 = fVar4 - fVar3;                             // 计算X距离
         fVar3 = *(float *)(param_1 + 0x138) - *(float *)(param_1 + 0x148);  // 计算Z距离
         fVar2 = *(float *)(param_1 + 0x134) - *(float *)(param_1 + 0x144);  // 计算Y距离
@@ -1652,14 +1652,14 @@ void RenderSystem_SetBuffer(longlong param_1, undefined8 param_2, undefined4 par
     }
     
     // 重置所有参数
-    *(undefined4 *)(param_1 + 0x150) = 0;
+    *(int32_t *)(param_1 + 0x150) = 0;
     pfVar1[0] = 0.0;
     pfVar1[1] = 0.0;
-    *(undefined8 *)(param_1 + 0x128) = 0;
-    *(undefined8 *)(param_1 + 0x130) = 0;
-    *(undefined8 *)(param_1 + 0x138) = 0;
-    *(undefined8 *)(param_1 + 0x140) = 0;
-    *(undefined8 *)(param_1 + 0x148) = 0;
+    *(uint64_t *)(param_1 + 0x128) = 0;
+    *(uint64_t *)(param_1 + 0x130) = 0;
+    *(uint64_t *)(param_1 + 0x138) = 0;
+    *(uint64_t *)(param_1 + 0x140) = 0;
+    *(uint64_t *)(param_1 + 0x148) = 0;
     return;
 }
 
@@ -1695,13 +1695,13 @@ void RenderSystem_SetBuffer(longlong param_1, undefined8 param_2, undefined4 par
  *   原始实现：着色器参数打包和队列发送
  *   简化实现：保持原有着色器设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetShader(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetShader(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined4 uStack_40;
-    undefined4 uStack_3c;
-    undefined4 uStack_38;
-    undefined4 uStack_34;
-    undefined4 *apuStack_28 [2];
+    int32_t uStack_40;
+    int32_t uStack_3c;
+    int32_t uStack_38;
+    int32_t uStack_34;
+    int32_t *apuStack_28 [2];
     code *pcStack_18;
     code *pcStack_10;
     
@@ -1710,18 +1710,18 @@ void RenderSystem_SetShader(longlong param_1, undefined8 param_2, undefined8 par
     pcStack_10 = FUN_18054a960;
     
     // 分配着色器参数结构体内存（0x18字节，8字节对齐）
-    apuStack_28[0] = (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_18, MEMORY_ALIGN_8, DAT_180bf65bc, 0xfffffffffffffffe);
+    apuStack_28[0] = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_18, MEMORY_ALIGN_8, DAT_180bf65bc, 0xfffffffffffffffe);
     
     // 打包着色器参数
-    uStack_40 = (undefined4)param_2;                    // 着色器参数低32位
-    uStack_3c = (undefined4)((ulonglong)param_2 >> 0x20); // 着色器参数高32位
-    uStack_38 = (undefined4)param_3;                    // 附加参数1低32位
-    uStack_34 = (undefined4)((ulonglong)param_3 >> 0x20); // 附加参数1高32位
+    uStack_40 = (int32_t)param_2;                    // 着色器参数低32位
+    uStack_3c = (int32_t)((ulonglong)param_2 >> 0x20); // 着色器参数高32位
+    uStack_38 = (int32_t)param_3;                    // 附加参数1低32位
+    uStack_34 = (int32_t)((ulonglong)param_3 >> 0x20); // 附加参数1高32位
     *apuStack_28[0] = uStack_40;
     apuStack_28[0][1] = uStack_3c;
     apuStack_28[0][2] = uStack_38;
     apuStack_28[0][3] = uStack_34;
-    *(undefined8 *)(apuStack_28[0] + 4) = param_4;     // 附加参数2
+    *(uint64_t *)(apuStack_28[0] + 4) = param_4;     // 附加参数2
     
     // 发送到渲染队列处理
     FUN_18054a4b0(param_1 + 0xe0, apuStack_28);
@@ -1760,15 +1760,15 @@ void RenderSystem_SetShader(longlong param_1, undefined8 param_2, undefined8 par
  *   原始实现：统一变量参数打包和队列发送
  *   简化实现：保持原有统一变量设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetUniform(longlong param_1, undefined8 param_2, undefined4 param_3, undefined8 param_4)
+void RenderSystem_SetUniform(longlong param_1, uint64_t param_2, int32_t param_3, uint64_t param_4)
 {
-    undefined4 auStackX_18 [4];
-    undefined4 uStack_40;
-    undefined4 uStack_3c;
-    undefined4 uStack_30;
-    undefined4 uStack_2c;
-    undefined4 *puStack_28;
-    undefined *puStack_20;
+    int32_t auStackX_18 [4];
+    int32_t uStack_40;
+    int32_t uStack_3c;
+    int32_t uStack_30;
+    int32_t uStack_2c;
+    int32_t *puStack_28;
+    void *puStack_20;
     code *pcStack_18;
     
     // 设置统一变量处理回调函数
@@ -1777,8 +1777,8 @@ void RenderSystem_SetUniform(longlong param_1, undefined8 param_2, undefined4 pa
     pcStack_18 = FUN_18054a8b0;
     
     // 准备统一变量参数
-    uStack_40 = (undefined4)param_2;                    // 统一变量参数低32位
-    uStack_3c = (undefined4)((ulonglong)param_2 >> 0x20); // 统一变量参数高32位
+    uStack_40 = (int32_t)param_2;                    // 统一变量参数低32位
+    uStack_3c = (int32_t)((ulonglong)param_2 >> 0x20); // 统一变量参数高32位
     uStack_30 = uStack_40;
     uStack_2c = uStack_3c;
     auStackX_18[0] = param_3;                           // 统一变量值
@@ -1799,7 +1799,7 @@ void RenderSystem_SetUniform(longlong param_1, undefined8 param_2, undefined4 pa
  *   param_1 - 渲染上下文指针
  * 
  * 返回值：
- *   undefined8 - 获取的数据值
+ *   uint64_t - 获取的数据值
  * 
  * 处理流程：
  *   1. 从上下文中获取数据对象指针
@@ -1817,7 +1817,7 @@ void RenderSystem_SetUniform(longlong param_1, undefined8 param_2, undefined4 pa
  *   原始实现：条件分支的数据查询逻辑
  *   简化实现：保持原有数据查询逻辑，添加了详细的对象类型说明
  =============================================================================*/
-undefined8 RenderSystem_GetData(longlong param_1)
+uint64_t RenderSystem_GetData(longlong param_1)
 {
     longlong *plVar1;
     char cVar2;
@@ -1837,7 +1837,7 @@ undefined8 RenderSystem_GetData(longlong param_1)
     
     // 根据类型返回数据
     if (cVar2 == '\0') {
-        return *(undefined8 *)plVar1[7];
+        return *(uint64_t *)plVar1[7];
     }
     return 0;
 }
@@ -1856,7 +1856,7 @@ undefined8 RenderSystem_GetData(longlong param_1)
  *   param_4 - 附加参数2（64位）
  * 
  * 返回值：
- *   undefined4 - 绘制执行结果
+ *   int32_t - 绘制执行结果
  * 
  * 处理流程：
  *   1. 初始化返回值为0
@@ -1875,12 +1875,12 @@ undefined8 RenderSystem_GetData(longlong param_1)
  *   原始实现：绘制参数打包和队列发送
  *   简化实现：保持原有绘制执行逻辑，添加了详细的参数说明
  =============================================================================*/
-undefined4 RenderSystem_ExecuteDraw(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int32_t RenderSystem_ExecuteDraw(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined4 auStackX_8 [2];     // 返回值存储区
-    undefined4 **ppuStackX_10;     // 参数指针
-    undefined4 *apuStack_30 [2];   // 参数数组
-    undefined *puStack_20;           // 回调函数指针
+    int32_t auStackX_8 [2];     // 返回值存储区
+    int32_t **ppuStackX_10;     // 参数指针
+    int32_t *apuStack_30 [2];   // 参数数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 绘制处理回调
     
     // 初始化返回值
@@ -1930,7 +1930,7 @@ undefined4 RenderSystem_ExecuteDraw(longlong param_1, undefined8 param_2, undefi
  *   原始实现：队列遍历和命令广播逻辑
  *   简化实现：保持原有广播逻辑，添加了详细的遍历说明
  =============================================================================*/
-void RenderSystem_BroadcastCommand(longlong param_1, undefined4 param_2, undefined4 param_3)
+void RenderSystem_BroadcastCommand(longlong param_1, int32_t param_2, int32_t param_3)
 {
     longlong *plVar1;
     int iVar2;
@@ -1985,10 +1985,10 @@ void RenderSystem_ProcessQueue(void)
 {
     longlong *plVar1;
     longlong lVar2;
-    undefined4 unaff_EBP;
+    int32_t unaff_EBP;
     longlong unaff_RSI;
     longlong unaff_RDI;
-    undefined4 unaff_R14D;
+    int32_t unaff_R14D;
     
     // 遍历队列中的所有项目
     lVar2 = 0;
@@ -2062,10 +2062,10 @@ void RenderSystem_EmptyFunction(void)
  *   原始实现：渲染目标参数打包和队列发送
  *   简化实现：保持原有渲染目标设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetRenderTarget(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetRenderTarget(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 auStack_30 [2];      // 渲染目标参数数组
-    undefined *puStack_20;           // 回调函数指针
+    uint64_t auStack_30 [2];      // 渲染目标参数数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 渲染目标处理回调
     
     // 设置渲染目标处理回调函数
@@ -2110,11 +2110,11 @@ void RenderSystem_SetRenderTarget(longlong param_1, undefined8 param_2, undefine
  *   原始实现：清除标志参数打包和队列发送
  *   简化实现：保持原有清除标志设置逻辑，添加了详细的参数说明
  =============================================================================*/
-void RenderSystem_SetClearFlags(longlong param_1, undefined1 param_2, undefined8 param_3, undefined8 param_4)
+void RenderSystem_SetClearFlags(longlong param_1, int8_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined1 auStackX_10 [24];    // 清除标志参数数组
-    undefined1 *apuStack_30 [2];    // 参数指针数组
-    undefined *puStack_20;           // 回调函数指针
+    int8_t auStackX_10 [24];    // 清除标志参数数组
+    int8_t *apuStack_30 [2];    // 参数指针数组
+    void *puStack_20;           // 回调函数指针
     code *pcStack_18;               // 清除标志处理回调
     
     // 设置清除标志处理回调函数
@@ -2164,17 +2164,17 @@ void RenderSystem_SetClearFlags(longlong param_1, undefined1 param_2, undefined8
  *   原始实现：包含条件检查的帧执行逻辑
  *   简化实现：保持原有帧执行逻辑，添加了详细的条件检查说明
  =============================================================================*/
-int RenderSystem_ExecuteFrame(longlong param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+int RenderSystem_ExecuteFrame(longlong param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
 {
     int iVar1;
     int aiStackX_8 [2];
     int **ppiStackX_10;
-    undefined4 uStack_38;
-    undefined4 uStack_34;
+    int32_t uStack_38;
+    int32_t uStack_34;
     int *piStack_30;
-    undefined4 uStack_28;
-    undefined4 uStack_24;
-    undefined *puStack_20;
+    int32_t uStack_28;
+    int32_t uStack_24;
+    void *puStack_20;
     code *pcStack_18;
     
     // 初始化返回值
@@ -2187,8 +2187,8 @@ int RenderSystem_ExecuteFrame(longlong param_1, longlong param_2, undefined8 par
     pcStack_18 = FUN_18054a5f0;
     
     // 准备帧参数
-    uStack_38 = (undefined4)param_2;                    // 帧参数低32位
-    uStack_34 = (undefined4)((ulonglong)param_2 >> 0x20); // 帧参数高32位
+    uStack_38 = (int32_t)param_2;                    // 帧参数低32位
+    uStack_34 = (int32_t)((ulonglong)param_2 >> 0x20); // 帧参数高32位
     uStack_28 = uStack_38;
     uStack_24 = uStack_34;
     
@@ -2202,7 +2202,7 @@ int RenderSystem_ExecuteFrame(longlong param_1, longlong param_2, undefined8 par
            ((*(longlong *)(_DAT_180c86870 + 0x3d8) == 0 ||
             (*(int *)(*(longlong *)(_DAT_180c86870 + 0x3d8) + 0x110) != 2)))) {
             // 调用状态更新函数
-            FUN_180548880(param_1, *(undefined1 *)(param_1 + 0x191));
+            FUN_180548880(param_1, *(int8_t *)(param_1 + 0x191));
             iVar1 = *(int *)(param_1 + 0x154);
         }
         if (iVar1 != 2) {

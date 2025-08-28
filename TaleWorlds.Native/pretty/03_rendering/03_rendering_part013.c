@@ -10,19 +10,19 @@
  * @param param_3 序列化标志
  * @param param_4 附加参数
  */
-void Material_Serialize(longlong *source_material, longlong *target_material, undefined8 serialize_flag, undefined8 extra_param)
+void Material_Serialize(longlong *source_material, longlong *target_material, uint64_t serialize_flag, uint64_t extra_param)
 
 {
   longlong *texture_ptr1;
   longlong *texture_ptr2;
   longlong material_data;
-  undefined8 texture_data;
-  undefined4 color_r;
-  undefined4 color_g;
-  undefined4 color_b;
-  undefined8 *shader_param;
+  uint64_t texture_data;
+  int32_t color_r;
+  int32_t color_g;
+  int32_t color_b;
+  uint64_t *shader_param;
   int material_count;
-  undefined *material_name;
+  void *material_name;
   longlong texture_offset;
   longlong texture_size;
   longlong *temp_stack_ptr;
@@ -30,36 +30,36 @@ void Material_Serialize(longlong *source_material, longlong *target_material, un
   // 复制材质参数
   FUN_180627be0(target_material + 0x3e, source_material + 0x1f0, serialize_flag, extra_param, 0xfffffffffffffffe);
   target_material[6] = *(longlong *)(source_material + 0x30);
-  *(undefined4 *)(target_material + 0xb) = *(undefined4 *)(source_material + 0x58);
+  *(int32_t *)(target_material + 0xb) = *(int32_t *)(source_material + 0x58);
   
   // 复制纹理数据
-  texture_data = *(undefined8 *)(source_material + 0x21c);
-  *(undefined8 *)((longlong)target_material + 0x214) = *(undefined8 *)(source_material + 0x214);
-  *(undefined8 *)((longlong)target_material + 0x21c) = texture_data;
+  texture_data = *(uint64_t *)(source_material + 0x21c);
+  *(uint64_t *)((longlong)target_material + 0x214) = *(uint64_t *)(source_material + 0x214);
+  *(uint64_t *)((longlong)target_material + 0x21c) = texture_data;
   
   // 复制颜色数据
-  color_r = *(undefined4 *)(source_material + 0x228);
-  color_g = *(undefined4 *)(source_material + 0x22c);
-  color_b = *(undefined4 *)(source_material + 0x230);
-  *(undefined4 *)((longlong)target_material + 0x224) = *(undefined4 *)(source_material + 0x224);
-  *(undefined4 *)(target_material + 0x45) = color_r;
-  *(undefined4 *)((longlong)target_material + 0x22c) = color_g;
-  *(undefined4 *)(target_material + 0x46) = color_b;
+  color_r = *(int32_t *)(source_material + 0x228);
+  color_g = *(int32_t *)(source_material + 0x22c);
+  color_b = *(int32_t *)(source_material + 0x230);
+  *(int32_t *)((longlong)target_material + 0x224) = *(int32_t *)(source_material + 0x224);
+  *(int32_t *)(target_material + 0x45) = color_r;
+  *(int32_t *)((longlong)target_material + 0x22c) = color_g;
+  *(int32_t *)(target_material + 0x46) = color_b;
   
   // 复制额外颜色数据
-  color_r = *(undefined4 *)(source_material + 0x238);
-  color_g = *(undefined4 *)(source_material + 0x23c);
-  color_b = *(undefined4 *)(source_material + 0x240);
-  *(undefined4 *)((longlong)target_material + 0x234) = *(undefined4 *)(source_material + 0x234);
-  *(undefined4 *)(target_material + 0x47) = color_r;
-  *(undefined4 *)((longlong)target_material + 0x23c) = color_g;
-  *(undefined4 *)(target_material + 0x48) = color_b;
+  color_r = *(int32_t *)(source_material + 0x238);
+  color_g = *(int32_t *)(source_material + 0x23c);
+  color_b = *(int32_t *)(source_material + 0x240);
+  *(int32_t *)((longlong)target_material + 0x234) = *(int32_t *)(source_material + 0x234);
+  *(int32_t *)(target_material + 0x47) = color_r;
+  *(int32_t *)((longlong)target_material + 0x23c) = color_g;
+  *(int32_t *)(target_material + 0x48) = color_b;
   
   // 复制其他材质属性
-  *(undefined4 *)((longlong)target_material + 0x244) = *(undefined4 *)(source_material + 0x244);
-  *(undefined1 *)(target_material + 0x78) = *(undefined1 *)(source_material + 0x3c0);
-  *(undefined4 *)((longlong)target_material + 0x3c4) = *(undefined4 *)(source_material + 0x3c4);
-  *(undefined4 *)(target_material + 0x42) = *(undefined4 *)(source_material + 0x210);
+  *(int32_t *)((longlong)target_material + 0x244) = *(int32_t *)(source_material + 0x244);
+  *(int8_t *)(target_material + 0x78) = *(int8_t *)(source_material + 0x3c0);
+  *(int32_t *)((longlong)target_material + 0x3c4) = *(int32_t *)(source_material + 0x3c4);
+  *(int32_t *)(target_material + 0x42) = *(int32_t *)(source_material + 0x210);
   
   // 处理纹理引用
   texture_ptr1 = *(longlong **)(source_material + 0x3b8);
@@ -73,31 +73,31 @@ void Material_Serialize(longlong *source_material, longlong *target_material, un
   }
   
   // 复制材质属性
-  *(undefined4 *)(target_material + 0xd) = *(undefined4 *)(source_material + 0x68);
-  color_r = *(undefined4 *)(source_material + 0x70);
-  color_g = *(undefined4 *)(source_material + 0x74);
-  color_b = *(undefined4 *)(source_material + 0x78);
-  *(undefined4 *)((longlong)target_material + 0x6c) = *(undefined4 *)(source_material + 0x6c);
-  *(undefined4 *)(target_material + 0xe) = color_r;
-  *(undefined4 *)((longlong)target_material + 0x74) = color_g;
-  *(undefined4 *)(target_material + 0xf) = color_b;
+  *(int32_t *)(target_material + 0xd) = *(int32_t *)(source_material + 0x68);
+  color_r = *(int32_t *)(source_material + 0x70);
+  color_g = *(int32_t *)(source_material + 0x74);
+  color_b = *(int32_t *)(source_material + 0x78);
+  *(int32_t *)((longlong)target_material + 0x6c) = *(int32_t *)(source_material + 0x6c);
+  *(int32_t *)(target_material + 0xe) = color_r;
+  *(int32_t *)((longlong)target_material + 0x74) = color_g;
+  *(int32_t *)(target_material + 0xf) = color_b;
   
   // 复制更多材质属性
-  *(undefined4 *)((longlong)target_material + 0x7c) = *(undefined4 *)(source_material + 0x7c);
-  *(undefined4 *)(target_material + 0x12) = *(undefined4 *)(source_material + 0x90);
+  *(int32_t *)((longlong)target_material + 0x7c) = *(int32_t *)(source_material + 0x7c);
+  *(int32_t *)(target_material + 0x12) = *(int32_t *)(source_material + 0x90);
   
   // 复制材质名称
   material_name = &DAT_18098bc73;
-  if (*(undefined **)(source_material + 0x88) != (undefined *)0x0) {
-    material_name = *(undefined **)(source_material + 0x88);
+  if (*(void **)(source_material + 0x88) != (void *)0x0) {
+    material_name = *(void **)(source_material + 0x88);
   }
   strcpy_s(target_material[0x11], 0x80, material_name);
   
   // 复制着色器参数
-  *(undefined4 *)(target_material + 0x25) = *(undefined4 *)(source_material + 0x128);
+  *(int32_t *)(target_material + 0x25) = *(int32_t *)(source_material + 0x128);
   material_name = &DAT_18098bc73;
-  if (*(undefined **)(source_material + 0x120) != (undefined *)0x0) {
-    material_name = *(undefined **)(source_material + 0x120);
+  if (*(void **)(source_material + 0x120) != (void *)0x0) {
+    material_name = *(void **)(source_material + 0x120);
   }
   strcpy_s(target_material[0x24], 0x80, material_name);
   
@@ -117,7 +117,7 @@ void Material_Serialize(longlong *source_material, longlong *target_material, un
   }
   
   // 复制渲染状态
-  *(undefined4 *)((longlong)target_material + 0x5c) = *(undefined4 *)(source_material + 0x5c);
+  *(int32_t *)((longlong)target_material + 0x5c) = *(int32_t *)(source_material + 0x5c);
   
   // 处理材质数组
   if ((char)serialize_flag != '\0') {
@@ -128,14 +128,14 @@ void Material_Serialize(longlong *source_material, longlong *target_material, un
     if (0 < material_count) {
       texture_size = 0;
       do {
-        shader_param = (undefined8 *)
-                 FUN_1800763c0(*(undefined8 *)(texture_size + *(longlong *)(source_material + 0x38)), &temp_stack_ptr)
+        shader_param = (uint64_t *)
+                 FUN_1800763c0(*(uint64_t *)(texture_size + *(longlong *)(source_material + 0x38)), &temp_stack_ptr)
         ;
         material_data = target_material[7];
         texture_data = *shader_param;
         *shader_param = 0;
         texture_ptr1 = *(longlong **)(texture_size + material_data);
-        *(undefined8 *)(texture_size + material_data) = texture_data;
+        *(uint64_t *)(texture_size + material_data) = texture_data;
         if (texture_ptr1 != (longlong *)0x0) {
           (**(code **)(*texture_ptr1 + 0x38))();
         }
@@ -143,8 +143,8 @@ void Material_Serialize(longlong *source_material, longlong *target_material, un
           (**(code **)(*temp_stack_ptr + 0x38))();
         }
         *(longlong **)(*(longlong *)(texture_size + target_material[7]) + 0x1c8) = target_material;
-        *(undefined4 *)(texture_size + 8 + target_material[7]) =
-             *(undefined4 *)(texture_size + 8 + *(longlong *)(source_material + 0x38));
+        *(int32_t *)(texture_size + 8 + target_material[7]) =
+             *(int32_t *)(texture_size + 8 + *(longlong *)(source_material + 0x38));
         texture_size = texture_size + 0x10;
         texture_offset = texture_offset + -1;
       } while (texture_offset != 0);
@@ -319,8 +319,8 @@ void Add_Rendering_Element_By_Bitmask(longlong *render_context, uint bitmask, lo
  * @param render_params 渲染参数数组
  * @return 处理结果标志
  */
-ulonglong Process_Rendering_Data(undefined8 *render_context, uint *render_flags, undefined8 render_mode, float *position_data,
-                       undefined8 *render_params)
+ulonglong Process_Rendering_Data(uint64_t *render_context, uint *render_flags, uint64_t render_mode, float *position_data,
+                       uint64_t *render_params)
 
 {
   float distance_x;
@@ -340,7 +340,7 @@ ulonglong Process_Rendering_Data(undefined8 *render_context, uint *render_flags,
   float matrix_22;
   float matrix_23;
   float matrix_24;
-  undefined8 param_data;
+  uint64_t param_data;
   byte render_result;
   ulonglong result_flag;
   int element_index;
@@ -353,28 +353,28 @@ ulonglong Process_Rendering_Data(undefined8 *render_context, uint *render_flags,
   float camera_y;
   float camera_z;
   float max_distance;
-  undefined8 stack_param_1;
+  uint64_t stack_param_1;
   undefined5 stack_param_2;
-  undefined1 stack_param_3;
-  undefined2 stack_param_4;
-  undefined8 *stack_param_ptr;
-  undefined8 stack_param_5;
-  undefined4 stack_param_6;
-  undefined4 stack_param_7;
-  undefined4 stack_param_8;
+  int8_t stack_param_3;
+  int16_t stack_param_4;
+  uint64_t *stack_param_ptr;
+  uint64_t stack_param_5;
+  int32_t stack_param_6;
+  int32_t stack_param_7;
+  int32_t stack_param_8;
   int stack_param_9;
-  undefined8 stack_param_10;
-  undefined8 stack_param_11;
-  undefined8 stack_param_12;
-  undefined8 stack_param_13;
-  undefined4 stack_param_14;
-  undefined4 stack_param_15;
-  undefined4 stack_param_16;
-  undefined4 stack_param_17;
-  undefined4 stack_param_18;
-  undefined4 stack_param_19;
-  undefined4 stack_param_20;
-  undefined4 stack_param_21;
+  uint64_t stack_param_10;
+  uint64_t stack_param_11;
+  uint64_t stack_param_12;
+  uint64_t stack_param_13;
+  int32_t stack_param_14;
+  int32_t stack_param_15;
+  int32_t stack_param_16;
+  int32_t stack_param_17;
+  int32_t stack_param_18;
+  int32_t stack_param_19;
+  int32_t stack_param_20;
+  int32_t stack_param_21;
   float transformed_x;
   float transformed_y;
   float transformed_z;
@@ -402,30 +402,30 @@ PROCESSING_FAILED:
     stack_param_1 = *render_params;
     param_data = render_params[1];
     stack_param_5 = render_params[3];
-    stack_param_6 = *(undefined4 *)(render_params + 4);
-    stack_param_7 = *(undefined4 *)((longlong)render_params + 0x24);
-    stack_param_8 = *(undefined4 *)(render_params + 5);
+    stack_param_6 = *(int32_t *)(render_params + 4);
+    stack_param_7 = *(int32_t *)((longlong)render_params + 0x24);
+    stack_param_8 = *(int32_t *)(render_params + 5);
     stack_param_9 = *(int *)((longlong)render_params + 0x2c);
     stack_param_10 = render_params[6];
     stack_param_11 = render_params[7];
     stack_param_12 = render_params[8];
     stack_param_13 = render_params[9];
-    stack_param_14 = *(undefined4 *)(render_params + 10);
-    stack_param_15 = *(undefined4 *)((longlong)render_params + 0x54);
-    stack_param_16 = *(undefined4 *)(render_params + 0xb);
-    stack_param_17 = *(undefined4 *)((longlong)render_params + 0x5c);
-    stack_param_18 = *(undefined4 *)(render_params + 0xc);
-    stack_param_19 = *(undefined4 *)((longlong)render_params + 100);
-    stack_param_20 = *(undefined4 *)(render_params + 0xd);
-    stack_param_21 = *(undefined4 *)((longlong)render_params + 0x6c);
+    stack_param_14 = *(int32_t *)(render_params + 10);
+    stack_param_15 = *(int32_t *)((longlong)render_params + 0x54);
+    stack_param_16 = *(int32_t *)(render_params + 0xb);
+    stack_param_17 = *(int32_t *)((longlong)render_params + 0x5c);
+    stack_param_18 = *(int32_t *)(render_params + 0xc);
+    stack_param_19 = *(int32_t *)((longlong)render_params + 100);
+    stack_param_20 = *(int32_t *)(render_params + 0xd);
+    stack_param_21 = *(int32_t *)((longlong)render_params + 0x6c);
     stack_param_2._0_4_ = (int)param_data;
     element_index = (int)stack_param_2 + *(int *)((longlong)render_context + 0x5c);
-    stack_param_4 = (undefined2)((ulonglong)param_data >> 0x30);
-    _stack_param_2 = CONCAT15(*(undefined1 *)(render_context + 0x76),(int5)param_data);
+    stack_param_4 = (int16_t)((ulonglong)param_data >> 0x30);
+    _stack_param_2 = CONCAT15(*(int8_t *)(render_context + 0x76),(int5)param_data);
     _stack_param_2 = CONCAT44(stack0xffffffffffffff24,element_index);
     if (stack_param_9 == 0) {
       stack_param_9 = *(int *)(render_context + 0x62);
-      stack_param_8 = *(undefined4 *)(render_context + 99);
+      stack_param_8 = *(int32_t *)(render_context + 99);
     }
     loop_counter = 0;
     if (*(char *)(render_context + 0xc) == '\0') {
@@ -497,11 +497,11 @@ PROCESSING_FAILED:
       
       // 距离检查
       if ((result_flag != 0) && (max_distance = *(float *)(render_context + 0xd), max_distance != 3.4028235e+38)) {
-        if ((undefined *)*render_context == &STANDARD_RENDER_CONTEXT) {
+        if ((void *)*render_context == &STANDARD_RENDER_CONTEXT) {
           context_ptr = (longlong)render_context + 0x214;
         }
         else {
-          context_ptr = (**(code **)((undefined *)*render_context + 0x198))(render_context);
+          context_ptr = (**(code **)((void *)*render_context + 0x198))(render_context);
           max_distance = *(float *)(render_context + 0xd);
           result_flag = *(ulonglong *)(render_flags + 10);
         }
@@ -521,7 +521,7 @@ PROCESSING_FAILED:
           element_ptr = *(longlong *)(loop_counter + render_context[7]);
           if ((element_ptr != 0) && ((*(uint *)(loop_counter + 8 + render_context[7]) & element_bitmask) != 0)) {
             if (((render_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
-              *(undefined4 *)(render_context + 0x65) = *(undefined4 *)(GLOBAL_RENDER_DATA + 0x224);
+              *(int32_t *)(render_context + 0x65) = *(int32_t *)(GLOBAL_RENDER_DATA + 0x224);
             }
             render_result = process_render_element(element_ptr,render_flags,&transformed_x,render_mode,&stack_param_1);
             success_flag = success_flag & render_result;
@@ -536,11 +536,11 @@ PROCESSING_FAILED:
       // 简化距离检查
       result_flag = *(ulonglong *)(render_flags + 10);
       if ((result_flag != 0) && (max_distance = *(float *)(render_context + 0xd), max_distance != 3.4028235e+38)) {
-        if ((undefined *)*render_context == &STANDARD_RENDER_CONTEXT) {
+        if ((void *)*render_context == &STANDARD_RENDER_CONTEXT) {
           context_ptr = (longlong)render_context + 0x214;
         }
         else {
-          context_ptr = (**(code **)((undefined *)*render_context + 0x198))(render_context);
+          context_ptr = (**(code **)((void *)*render_context + 0x198))(render_context);
           max_distance = *(float *)(render_context + 0xd);
           result_flag = *(ulonglong *)(render_flags + 10);
         }
@@ -560,7 +560,7 @@ PROCESSING_FAILED:
           element_ptr = *(longlong *)(loop_counter + render_context[7]);
           if ((element_ptr != 0) && ((*(uint *)(loop_counter + 8 + render_context[7]) & element_bitmask) != 0)) {
             if (((render_flags[0x6f6] & 0x20) != 0) && ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
-              *(undefined4 *)(render_context + 0x65) = *(undefined4 *)(GLOBAL_RENDER_DATA + 0x224);
+              *(int32_t *)(render_context + 0x65) = *(int32_t *)(GLOBAL_RENDER_DATA + 0x224);
             }
             if ((*(byte *)(element_ptr + 0x100) & 0x20) == 0) {
               render_result = process_render_element(element_ptr,render_flags,position_data,render_mode,&stack_param_1);
@@ -593,7 +593,7 @@ PROCESSING_FAILED:
  * @param transform_param_4 变换参数4
  * @return 处理结果标志
  */
-ulonglong Calculate_Render_Parameters(undefined8 transform_param_1, undefined8 transform_param_2, undefined8 transform_param_3, undefined8 transform_param_4)
+ulonglong Calculate_Render_Parameters(uint64_t transform_param_1, uint64_t transform_param_2, uint64_t transform_param_3, uint64_t transform_param_4)
 
 {
   float matrix_scale;
@@ -615,7 +615,7 @@ ulonglong Calculate_Render_Parameters(undefined8 transform_param_1, undefined8 t
   int element_count;
   ulonglong context_data;
   ulonglong result_flag;
-  undefined8 *render_context;
+  uint64_t *render_context;
   longlong stack_base;
   longlong render_state;
   longlong element_array;
@@ -694,11 +694,11 @@ ulonglong Calculate_Render_Parameters(undefined8 transform_param_1, undefined8 t
   
   // 距离检查
   if ((context_data != 0) && (matrix_value_1 = *(float *)(render_context + 0xd), matrix_value_1 != 3.4028235e+38)) {
-    if ((undefined *)*render_context == &STANDARD_RENDER_CONTEXT) {
+    if ((void *)*render_context == &STANDARD_RENDER_CONTEXT) {
       distance_context = (longlong)render_context + 0x214;
     }
     else {
-      distance_context = (**(code **)((undefined *)*render_context + 0x198))();
+      distance_context = (**(code **)((void *)*render_context + 0x198))();
       matrix_value_1 = *(float *)(render_context + 0xd);
       context_data = *(ulonglong *)(render_state + 0x28);
     }
@@ -724,7 +724,7 @@ ulonglong Calculate_Render_Parameters(undefined8 transform_param_1, undefined8 t
       if ((element_ptr != 0) && ((*(uint *)(element_array + 8 + render_context[7]) & element_bitmask) != 0)) {
         if (((*(byte *)(render_state + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
-          *(undefined4 *)(render_context + 0x65) = *(undefined4 *)(GLOBAL_RENDER_DATA + 0x224);
+          *(int32_t *)(render_context + 0x65) = *(int32_t *)(GLOBAL_RENDER_DATA + 0x224);
         }
         render_result = process_render_element();
         success_flag = success_flag & render_result;
@@ -751,7 +751,7 @@ ulonglong Calculate_Render_Parameters(undefined8 transform_param_1, undefined8 t
  * @param success_flag 成功标志（通过寄存器传递）
  * @return 处理结果标志
  */
-ulonglong Check_Render_Distance(undefined8 *render_context, longlong render_state, longlong element_array, uint element_bitmask, byte success_flag)
+ulonglong Check_Render_Distance(uint64_t *render_context, longlong render_state, longlong element_array, uint element_bitmask, byte success_flag)
 
 {
   longlong element_ptr;
@@ -772,11 +772,11 @@ ulonglong Check_Render_Distance(undefined8 *render_context, longlong render_stat
   max_distance = *(float *)(render_context + 0xd);
   if (max_distance != 3.4028235e+38) {
     // 获取距离检查上下文
-    if ((undefined *)*render_context == &STANDARD_RENDER_CONTEXT) {
+    if ((void *)*render_context == &STANDARD_RENDER_CONTEXT) {
       distance_context = (longlong)render_context + 0x214;
     }
     else {
-      distance_context = (**(code **)((undefined *)*render_context + 0x198))();
+      distance_context = (**(code **)((void *)*render_context + 0x198))();
       max_distance = *(float *)(render_context + 0xd);
       context_data = *(ulonglong *)(render_state + 0x28);
     }
@@ -804,7 +804,7 @@ ulonglong Check_Render_Distance(undefined8 *render_context, longlong render_stat
         // 检查渲染状态标志
         if (((*(byte *)(render_state + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(element_ptr + 0x100) & 0x400000) != 0)) {
-          *(undefined4 *)(render_context + 0x65) = *(undefined4 *)(GLOBAL_RENDER_DATA + 0x224);
+          *(int32_t *)(render_context + 0x65) = *(int32_t *)(GLOBAL_RENDER_DATA + 0x224);
         }
         // 处理渲染元素
         render_result = process_render_element();
@@ -833,7 +833,7 @@ ulonglong Check_Render_Distance(undefined8 *render_context, longlong render_stat
  * @param success_flag 成功标志（通过寄存器传递）
  * @return 处理结果标志
  */
-byte Process_Render_Elements(int element_count, undefined8 *render_context, longlong render_state, longlong element_ptr, uint element_bitmask, byte success_flag)
+byte Process_Render_Elements(int element_count, uint64_t *render_context, longlong render_state, longlong element_ptr, uint element_bitmask, byte success_flag)
 
 {
   longlong render_element;
@@ -849,7 +849,7 @@ byte Process_Render_Elements(int element_count, undefined8 *render_context, long
         // 检查渲染状态标志
         if (((*(byte *)(render_state + 0x1bd8) & 0x20) != 0) &&
            ((*(uint *)(render_element + 0x100) & 0x400000) != 0)) {
-          *(undefined4 *)(render_context + 0x328) = *(undefined4 *)(GLOBAL_RENDER_DATA + 0x224);
+          *(int32_t *)(render_context + 0x328) = *(int32_t *)(GLOBAL_RENDER_DATA + 0x224);
         }
         // 根据元素类型选择处理方式
         if ((*(byte *)(render_element + 0x100) & 0x20) == 0) {
@@ -877,7 +877,7 @@ byte Process_Render_Elements(int element_count, undefined8 *render_context, long
  * @param return_value 返回值（通过寄存器传递）
  * @return 传入的参数值
  */
-undefined1 Return_Parameter_Value(undefined1 return_value)
+int8_t Return_Parameter_Value(int8_t return_value)
 
 {
   return return_value;
@@ -894,7 +894,7 @@ undefined1 Return_Parameter_Value(undefined1 return_value)
  * @param transform_params 变换参数数组
  * @return 处理结果标志
  */
-ulonglong Update_Render_Context(longlong render_context, longlong render_data, int element_index, undefined8 *transform_params)
+ulonglong Update_Render_Context(longlong render_context, longlong render_data, int element_index, uint64_t *transform_params)
 
 {
   float max_distance;
@@ -904,7 +904,7 @@ ulonglong Update_Render_Context(longlong render_context, longlong render_data, i
   int loop_counter;
   longlong array_offset;
   float new_distance;
-  undefined8 stack_params[8];
+  uint64_t stack_params[8];
   
   // 检查渲染上下文是否有效
   if (*(int *)(render_context + 0x58) != 0) {
@@ -949,7 +949,7 @@ ulonglong Update_Render_Context(longlong render_context, longlong render_data, i
         if (*(longlong *)(array_offset + element_data) != 0) {
           // 处理单个渲染元素
           process_single_element(*(longlong *)(array_offset + element_data), render_data, element_index, &stack_params[0],
-                        *(undefined4 *)(array_offset + 8 + element_data), *(undefined4 *)(render_context + 0x58));
+                        *(int32_t *)(array_offset + 8 + element_data), *(int32_t *)(render_context + 0x58));
         }
         element_data = *(longlong *)(render_context + 0x38);
         loop_counter = loop_counter + 1;
@@ -972,19 +972,19 @@ ulonglong Update_Render_Context(longlong render_context, longlong render_data, i
  * @param element_index 元素索引（通过寄存器传递）
  * @return 处理结果标志
  */
-undefined8 Process_Render_Loop(undefined8 render_context, longlong element_offset, uint element_index)
+uint64_t Process_Render_Loop(uint64_t render_context, longlong element_offset, uint element_index)
 
 {
-  undefined8 *context_ptr;
+  uint64_t *context_ptr;
   ulonglong array_index;
-  undefined4 render_flag;
+  int32_t render_flag;
   
-  context_ptr = (undefined8 *)render_context;
+  context_ptr = (uint64_t *)render_context;
   array_index = (ulonglong)element_index;
   
   do {
     if (*(longlong *)(array_index + element_offset) != 0) {
-      render_flag = *(undefined4 *)(context_ptr + 0x58);
+      render_flag = *(int32_t *)(context_ptr + 0x58);
       process_single_element();
     }
     element_offset = *(longlong *)(context_ptr + 0x38);
@@ -1003,7 +1003,7 @@ undefined8 Process_Render_Loop(undefined8 render_context, longlong element_offse
  * 返回成功标志常量值1，表示操作成功
  * @return 成功标志值1
  */
-undefined1 Return_Success_Flag(void)
+int8_t Return_Success_Flag(void)
 
 {
   return 1;
@@ -1023,7 +1023,7 @@ undefined1 Return_Success_Flag(void)
  * @param render_state 渲染状态指针
  * @param state_value 状态值
  */
-void Update_Render_State(longlong render_state, undefined4 state_value)
+void Update_Render_State(longlong render_state, int32_t state_value)
 
 {
   longlong *element_ptr;
@@ -1033,11 +1033,11 @@ void Update_Render_State(longlong render_state, undefined4 state_value)
   ulonglong state_index;
   longlong *temp_ptr;
   longlong *cleanup_ptr;
-  undefined1 resource_data[8];
+  int8_t resource_data[8];
   longlong *resource_handle;
-  undefined4 resource_flag;
+  int32_t resource_flag;
   longlong *element_data;
-  undefined2 cleanup_flag;
+  int16_t cleanup_flag;
   char process_flag;
   
   // 遍历渲染状态数组
@@ -1084,7 +1084,7 @@ void Update_Render_State(longlong render_state, undefined4 state_value)
       // 更新元素状态
       if (0 < (int)resource_ptr[0xc]) {
         do {
-          *(undefined4 *)(resource_ptr[0xd] + 0x54 + array_index) = state_value;
+          *(int32_t *)(resource_ptr[0xd] + 0x54 + array_index) = state_value;
           element_count = (int)state_index + 1;
           array_index = array_index + 0x5c;
           state_index = (ulonglong)element_count;

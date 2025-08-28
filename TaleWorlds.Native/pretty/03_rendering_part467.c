@@ -2,17 +2,17 @@
 
 // 03_rendering_part467.c - 1 个函数
 
-// 函数: void FUN_1805194e2(undefined4 param_1)
-void FUN_1805194e2(undefined4 param_1)
+// 函数: void FUN_1805194e2(int32_t param_1)
+void FUN_1805194e2(int32_t param_1)
 
 {
   float *pfVar1;
   char cVar2;
   char cVar3;
   longlong lVar4;
-  undefined8 uVar5;
-  undefined1 auVar6 [16];
-  undefined1 auVar7 [16];
+  uint64_t uVar5;
+  int8_t auVar6 [16];
+  int8_t auVar7 [16];
   uint uVar8;
   longlong in_RAX;
   float *pfVar9;
@@ -30,11 +30,11 @@ void FUN_1805194e2(undefined4 param_1)
   float fVar15;
   float fVar16;
   float fVar21;
-  undefined1 auVar17 [16];
+  int8_t auVar17 [16];
   float fVar22;
-  undefined1 auVar18 [16];
-  undefined1 auVar19 [16];
-  undefined1 auVar20 [16];
+  int8_t auVar18 [16];
+  int8_t auVar19 [16];
+  int8_t auVar20 [16];
   float fVar23;
   float unaff_XMM6_Da;
   float fVar24;
@@ -290,7 +290,7 @@ void FUN_1805194e2(undefined4 param_1)
     unaff_RBP[-0x12] = fVar21;
     fVar35 = 0.0;
 LAB_180519855:
-    uVar5 = *(undefined8 *)(unaff_R15 + 0x590);
+    uVar5 = *(uint64_t *)(unaff_R15 + 0x590);
     FUN_18022a890(fVar15,cVar2,lVar4);
     fStack000000000000007c = 3.4028235e+38;
     pfVar9 = (float *)(unaff_R14 + ((longlong)cVar2 + 0x40) * 0x10);
@@ -689,7 +689,7 @@ LAB_180519e0e:
       }
     }
     cVar2 = cStack0000000000000061;
-    uVar5 = *(undefined8 *)(unaff_R15 + 0x590);
+    uVar5 = *(uint64_t *)(unaff_R15 + 0x590);
     lVar14 = (longlong)cStack0000000000000061;
     FUN_18022a890(fStack0000000000000070,cStack0000000000000061,lVar4);
     pfVar9 = (float *)(unaff_R14 + (lVar14 + 0x40) * 0x10);

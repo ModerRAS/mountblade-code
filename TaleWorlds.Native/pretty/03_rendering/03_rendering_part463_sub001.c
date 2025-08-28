@@ -237,7 +237,7 @@
 // =============================================================================
 // 渲染系统高级矩阵变换器
 // =============================================================================
-// 函数: void FUN_180515a6e(undefined8 param_1,float *param_2,longlong param_3,longlong param_4)
+// 函数: void FUN_180515a6e(uint64_t param_1,float *param_2,longlong param_3,longlong param_4)
 // 功能: 执行高级矩阵变换操作，包括矩阵乘法、向量变换、投影变换等
 // 参数: 
 //   param_1 - 渲染上下文指针
@@ -328,7 +328,7 @@ void rendering_system_advanced_matrix_transformer(void* render_context, float* i
 // =============================================================================
 // 渲染系统向量运算器
 // =============================================================================
-// 函数: void FUN_180515e40(undefined8 param_1,undefined8 param_2,longlong param_3)
+// 函数: void FUN_180515e40(uint64_t param_1,uint64_t param_2,longlong param_3)
 // 功能: 执行向量运算操作，包括向量加法、减法、点积、叉积等
 // 参数: 
 //   param_1 - 渲染上下文指针

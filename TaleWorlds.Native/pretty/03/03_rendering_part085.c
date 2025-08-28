@@ -105,7 +105,7 @@ void rendering_system_cleanup_render_objects(longlong *render_context)
 void rendering_system_advanced_data_processor(longlong data_processor, char process_flag)
 {
   float *vertex_ptr;
-  undefined8 *matrix_ptr;
+  uint64_t *matrix_ptr;
   float texcoord_u;
   float texcoord_v;
   float normal_u;
@@ -126,7 +126,7 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
   longlong loop_counter;
   int current_index;
   bool should_process;
-  undefined8 temp_data;
+  uint64_t temp_data;
   longlong *output_buffer_1;
   longlong *output_buffer_2;
   
@@ -182,8 +182,8 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
             *(float *)(vertex_object + OFFSET_NORMAL_DATA - 4);
         *(float *)(buffer_ptr_1 + 4 + offset_calc * 4) = texcoord_u + normal_u;
         *(float *)(buffer_ptr_1 + 8 + offset_calc * 4) = texcoord_v + normal_v;
-        *(undefined4 *)(buffer_ptr_1 + 0xc + offset_calc * 4) = 
-            *(undefined4 *)(vertex_object + OFFSET_FLAG_DATA);
+        *(int32_t *)(buffer_ptr_1 + 0xc + offset_calc * 4) = 
+            *(int32_t *)(vertex_object + OFFSET_FLAG_DATA);
         
         // 重新读取纹理坐标
         texcoord_u = *(float *)(vertex_object + OFFSET_TEXCOORD_DATA);
@@ -239,40 +239,40 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
                                      loop_counter * 8);
         
         // 复制矩阵数据
-        temp_data = *(undefined8 *)(vertex_object + OFFSET_MATRIX_DATA + 8);
-        *(undefined8 *)(offset_calc + buffer_ptr_2) = 
-            *(undefined8 *)(vertex_object + OFFSET_MATRIX_DATA);
-        ((undefined8 *)(offset_calc + buffer_ptr_2))[1] = temp_data;
+        temp_data = *(uint64_t *)(vertex_object + OFFSET_MATRIX_DATA + 8);
+        *(uint64_t *)(offset_calc + buffer_ptr_2) = 
+            *(uint64_t *)(vertex_object + OFFSET_MATRIX_DATA);
+        ((uint64_t *)(offset_calc + buffer_ptr_2))[1] = temp_data;
         
-        temp_data = *(undefined8 *)(vertex_object + OFFSET_MATRIX_DATA + 24);
-        matrix_ptr = (undefined8 *)(offset_calc + 0x10 + buffer_ptr_2);
-        *matrix_ptr = *(undefined8 *)(vertex_object + OFFSET_MATRIX_DATA + 16);
+        temp_data = *(uint64_t *)(vertex_object + OFFSET_MATRIX_DATA + 24);
+        matrix_ptr = (uint64_t *)(offset_calc + 0x10 + buffer_ptr_2);
+        *matrix_ptr = *(uint64_t *)(vertex_object + OFFSET_MATRIX_DATA + 16);
         matrix_ptr[1] = temp_data;
         
-        temp_data = *(undefined8 *)(vertex_object + OFFSET_MATRIX_DATA + 40);
-        matrix_ptr = (undefined8 *)(offset_calc + 0x20 + buffer_ptr_2);
-        *matrix_ptr = *(undefined8 *)(vertex_object + OFFSET_MATRIX_DATA + 32);
+        temp_data = *(uint64_t *)(vertex_object + OFFSET_MATRIX_DATA + 40);
+        matrix_ptr = (uint64_t *)(offset_calc + 0x20 + buffer_ptr_2);
+        *matrix_ptr = *(uint64_t *)(vertex_object + OFFSET_MATRIX_DATA + 32);
         matrix_ptr[1] = temp_data;
         
-        temp_data = *(undefined8 *)(vertex_object + OFFSET_MATRIX_DATA + 56);
-        matrix_ptr = (undefined8 *)(offset_calc + 0x30 + buffer_ptr_2);
-        *matrix_ptr = *(undefined8 *)(vertex_object + OFFSET_MATRIX_DATA + 48);
+        temp_data = *(uint64_t *)(vertex_object + OFFSET_MATRIX_DATA + 56);
+        matrix_ptr = (uint64_t *)(offset_calc + 0x30 + buffer_ptr_2);
+        *matrix_ptr = *(uint64_t *)(vertex_object + OFFSET_MATRIX_DATA + 48);
         matrix_ptr[1] = temp_data;
         
         // 复制标志数据
-        *(undefined4 *)(offset_calc + 0xc + buffer_ptr_2) =
-             *(undefined4 *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+        *(int32_t *)(offset_calc + 0xc + buffer_ptr_2) =
+             *(int32_t *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                                loop_counter * 8) + OFFSET_FLAG_DATA);
-        *(undefined4 *)(offset_calc + 0x1c + buffer_ptr_2) =
-             *(undefined4 *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+        *(int32_t *)(offset_calc + 0x1c + buffer_ptr_2) =
+             *(int32_t *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                                loop_counter * 8) + 0x144);
         
         // 清理顶点对象状态
-        *(undefined1 *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+        *(int8_t *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                        loop_counter * 8) + 0x50) = 0;
-        *(undefined4 *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
+        *(int32_t *)(*(longlong *)(*(longlong *)(data_processor + OFFSET_DATA_ARRAY_START) + 
                        loop_counter * 8) + 0x58) =
-             *(undefined4 *)(data_processor + 4);
+             *(int32_t *)(data_processor + 4);
         
         current_index = current_index + 1;
         loop_counter = loop_counter + 1;
@@ -280,11 +280,11 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
     }
     
     // 调用数据处理函数
-    FUN_18029b390(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 
-                  *(undefined8 *)(data_processor + OFFSET_DATA_PROCESSOR_2),
+    FUN_18029b390(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 
+                  *(uint64_t *)(data_processor + OFFSET_DATA_PROCESSOR_2),
                   output_buffer_2);
-    FUN_18029b390(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 
-                  *(undefined8 *)(data_processor + OFFSET_DATA_PROCESSOR_3),
+    FUN_18029b390(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 
+                  *(uint64_t *)(data_processor + OFFSET_DATA_PROCESSOR_3),
                   output_buffer_1);
     
     // 释放缓冲区
@@ -319,12 +319,12 @@ void rendering_system_advanced_data_processor(longlong data_processor, char proc
 void rendering_system_initialize_state(longlong render_context)
 {
   longlong context_data;
-  undefined1 security_stack_1 [32];
-  undefined8 security_cookie;
-  undefined *security_ptr_1;
-  undefined1 *security_ptr_2;
-  undefined4 security_param;
-  undefined1 security_stack_2 [32];
+  int8_t security_stack_1 [32];
+  uint64_t security_cookie;
+  void *security_ptr_1;
+  int8_t *security_ptr_2;
+  int32_t security_param;
+  int8_t security_stack_2 [32];
   ulonglong security_hash;
   
   // 设置安全栈检查
@@ -368,43 +368,43 @@ void rendering_system_initialize_state(longlong render_context)
  * - 清理渲染资源
  */
 void rendering_system_advanced_render_control(longlong render_context, longlong render_params, 
-                                              longlong *render_data, undefined8 data_format,
-                                              longlong *texture_data, undefined8 shader_data, 
-                                              undefined4 render_mode)
+                                              longlong *render_data, uint64_t data_format,
+                                              longlong *texture_data, uint64_t shader_data, 
+                                              int32_t render_mode)
 {
   int *state_ptr;
   int state_value;
-  undefined4 texture_param_1;
-  undefined4 texture_param_2;
-  undefined8 *matrix_data;
-  undefined1 render_flag;
-  undefined4 mode_param;
-  undefined4 *shader_params;
+  int32_t texture_param_1;
+  int32_t texture_param_2;
+  uint64_t *matrix_data;
+  int8_t render_flag;
+  int32_t mode_param;
+  int32_t *shader_params;
   longlong *render_object;
-  undefined8 *vertex_data;
-  undefined8 *normal_data;
-  undefined8 *texcoord_data;
+  uint64_t *vertex_data;
+  uint64_t *normal_data;
+  uint64_t *texcoord_data;
   longlong resource_manager;
   byte resource_flag;
-  undefined8 global_data;
-  undefined1 security_stack [32];
-  undefined8 *security_ptr;
-  undefined1 security_flag;
+  uint64_t global_data;
+  int8_t security_stack [32];
+  uint64_t *security_ptr;
+  int8_t security_flag;
   longlong *render_buffer;
-  undefined *buffer_ptr;
-  undefined8 *data_ptr;
-  undefined4 buffer_param;
-  undefined8 buffer_data;
-  undefined4 buffer_size_1;
-  undefined4 buffer_size_2;
-  undefined4 buffer_size_3;
-  undefined8 buffer_offset;
-  undefined4 buffer_size_4;
-  undefined4 buffer_size_5;
-  undefined4 buffer_size_6;
-  undefined4 buffer_size_7;
-  undefined4 buffer_size_8;
-  undefined4 buffer_size_9;
+  void *buffer_ptr;
+  uint64_t *data_ptr;
+  int32_t buffer_param;
+  uint64_t buffer_data;
+  int32_t buffer_size_1;
+  int32_t buffer_size_2;
+  int32_t buffer_size_3;
+  uint64_t buffer_offset;
+  int32_t buffer_size_4;
+  int32_t buffer_size_5;
+  int32_t buffer_size_6;
+  int32_t buffer_size_7;
+  int32_t buffer_size_8;
+  int32_t buffer_size_9;
   longlong *resource_chain_1;
   longlong *resource_chain_2;
   longlong *resource_chain_3;
@@ -413,24 +413,24 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   longlong *resource_chain_6;
   longlong *resource_chain_7;
   longlong *resource_chain_8;
-  undefined8 resource_data_1;
-  undefined4 resource_data_2;
-  undefined2 resource_data_3;
-  undefined8 resource_data_4;
-  undefined8 resource_data_5;
-  undefined4 resource_data_6;
-  undefined1 resource_data_7;
-  undefined4 resource_data_8;
-  undefined8 resource_data_9;
-  undefined8 resource_data_10;
-  undefined8 resource_data_11;
+  uint64_t resource_data_1;
+  int32_t resource_data_2;
+  int16_t resource_data_3;
+  uint64_t resource_data_4;
+  uint64_t resource_data_5;
+  int32_t resource_data_6;
+  int8_t resource_data_7;
+  int32_t resource_data_8;
+  uint64_t resource_data_9;
+  uint64_t resource_data_10;
+  uint64_t resource_data_11;
   longlong render_param_1;
   longlong render_param_2;
-  undefined *render_ptr;
-  undefined1 *render_data_ptr;
-  undefined4 render_data_param;
-  undefined1 render_stack [136];
-  undefined8 render_buffer_data [40];
+  void *render_ptr;
+  int8_t *render_data_ptr;
+  int32_t render_data_param;
+  int8_t render_stack [136];
+  uint64_t render_buffer_data [40];
   ulonglong security_hash;
   
   // 设置安全栈检查
@@ -439,7 +439,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   
   // 设置渲染数据
   render_buffer = render_data;
-  shader_params = (undefined4 *)FUN_1800daa50();
+  shader_params = (int32_t *)FUN_1800daa50();
   
   // 根据渲染模式选择着色器
   switch(render_mode) {
@@ -481,7 +481,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   
   // 设置渲染状态
   *shader_params = RENDER_STATE_ACTIVE;
-  *(undefined8 *)(shader_params + 0x4706) = 0;
+  *(uint64_t *)(shader_params + 0x4706) = 0;
   shader_params[0x4708] = (float)*(ushort *)((longlong)texture_data + 0x32c);
   shader_params[0x4709] = (float)*(ushort *)((longlong)texture_data + 0x32e);
   shader_params[0x470a] = 0;
@@ -492,13 +492,13 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   shader_params[0xd65] = (uint)*(ushort *)((longlong)texture_data + 0x32e);
   shader_params[1] = RENDER_STATE_FLAG_1;
   shader_params[0x473c] = 0;
-  *(undefined1 *)((longlong)shader_params + 0x11c37) = 1;
+  *(int8_t *)((longlong)shader_params + 0x11c37) = 1;
   *(byte *)((longlong)shader_params + 0x1bd9) = 
       *(byte *)((longlong)shader_params + 0x1bd9) | RENDER_FLAG_MODIFIED;
   *(byte *)(shader_params + 0x6f6) = 
       *(byte *)(shader_params + 0x6f6) | RENDER_FLAG_ACTIVE_1;
-  *(undefined2 *)((longlong)shader_params + 0x9a31) = 0;
-  *(undefined1 *)(shader_params + 0x4931) = 1;
+  *(int16_t *)((longlong)shader_params + 0x9a31) = 0;
+  *(int8_t *)(shader_params + 0x4931) = 1;
   
   // 检查是否需要高级渲染
   if (*(longlong *)(shader_params + 0x2674) != 0) {
@@ -508,7 +508,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     buffer_offset = 0x2f;
     buffer_size_1 = 0x80;
     buffer_size_2 = 0x80;
-    buffer_size_6 = *(undefined4 *)(render_params + 0x1bd4);
+    buffer_size_6 = *(int32_t *)(render_params + 0x1bd4);
     render_ptr = &UNK_1809fcc28;
     render_data_ptr = render_stack;
     render_stack[0] = 0;
@@ -520,8 +520,8 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     render_object = resource_chain_1;
     render_ptr = &UNK_18098bcb0;
     shader_params[1] = shader_params[1] | RENDER_FLAG_MODIFIED;
-    *(undefined8 *)(shader_params + 0x2684) = 0;
-    *(undefined8 *)(shader_params + 0x2686) = 0;
+    *(uint64_t *)(shader_params + 0x2684) = 0;
+    *(uint64_t *)(shader_params + 0x2686) = 0;
     resource_chain_3 = resource_chain_1;
     
     if (resource_chain_1 != (longlong *)0x0) {
@@ -550,7 +550,7 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     
     // 清理资源链
     resource_chain_5 = *(longlong **)(shader_params + 0x265c);
-    *(undefined8 *)(shader_params + 0x265c) = 0;
+    *(uint64_t *)(shader_params + 0x265c) = 0;
     if (resource_chain_5 != (longlong *)0x0) {
       (**(code **)(*resource_chain_5 + FUNCTION_POINTER_OFFSET))();
     }
@@ -575,22 +575,22 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
       buffer_size_8 = FLOAT_ONE;
       global_data = 0x3f8000003f800000;
     } else {
-      global_data = *(undefined8 *)(resource_manager + 0x20);
+      global_data = *(uint64_t *)(resource_manager + 0x20);
     }
     
-    *(undefined8 *)(shader_params + 0x4932) = global_data;
+    *(uint64_t *)(shader_params + 0x4932) = global_data;
     FUN_180094c20(render_buffer_data);
     
     // 设置渲染参数
     render_param_1 = *render_buffer;
     render_param_2 = render_buffer[1];
     security_flag = 1;
-    security_ptr = (undefined8 *)CONCAT44(security_ptr._4_4_, 0x447a0000);
+    security_ptr = (uint64_t *)CONCAT44(security_ptr._4_4_, 0x447a0000);
     FUN_180286300(render_buffer_data, render_mode, &render_param_1);
     
     // 处理渲染数据
     resource_manager = 2;
-    vertex_data = (undefined8 *)(shader_params + 0xc);
+    vertex_data = (uint64_t *)(shader_params + 0xc);
     matrix_data = render_buffer_data;
     
     do {
@@ -635,27 +635,27 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     normal_data[0x14] = texcoord_data[0x14];
     normal_data[0x15] = global_data;
     
-    mode_param = *(undefined4 *)((longlong)texcoord_data + 0xb4);
-    texture_param_1 = *(undefined4 *)(texcoord_data + 0x17);
-    texture_param_2 = *(undefined4 *)((longlong)texcoord_data + 0xbc);
-    *(undefined4 *)(normal_data + 0x16) = *(undefined4 *)(texcoord_data + 0x16);
-    *(undefined4 *)((longlong)normal_data + 0xb4) = mode_param;
-    *(undefined4 *)(normal_data + 0x17) = texture_param_1;
-    *(undefined4 *)((longlong)normal_data + 0xbc) = texture_param_2;
+    mode_param = *(int32_t *)((longlong)texcoord_data + 0xb4);
+    texture_param_1 = *(int32_t *)(texcoord_data + 0x17);
+    texture_param_2 = *(int32_t *)((longlong)texcoord_data + 0xbc);
+    *(int32_t *)(normal_data + 0x16) = *(int32_t *)(texcoord_data + 0x16);
+    *(int32_t *)((longlong)normal_data + 0xb4) = mode_param;
+    *(int32_t *)(normal_data + 0x17) = texture_param_1;
+    *(int32_t *)((longlong)normal_data + 0xbc) = texture_param_2;
     
     // 执行渲染操作
     FUN_18024b8d0(shader_params);
     
     // 检查渲染上下文
     if (*(longlong *)(render_context + 0x38) == -14000) {
-      *(undefined1 *)(shader_params + 0x473d) = 0;
+      *(int8_t *)(shader_params + 0x473d) = 0;
     } else {
       FUN_1801c1c40(shader_params + 0x4740);
-      *(undefined1 *)(shader_params + 0x473d) = 1;
+      *(int8_t *)(shader_params + 0x473d) = 1;
     }
     
     // 设置渲染标志
-    *(undefined1 *)(shader_params + 0x268c) = 1;
+    *(int8_t *)(shader_params + 0x268c) = 1;
     *(byte *)(shader_params + 0x6f6) = 
         *(byte *)(shader_params + 0x6f6) | RENDER_FLAG_ACTIVE_2;
     
@@ -673,14 +673,14 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     }
     
     // 设置渲染参数
-    shader_params[0x4a7d] = *(undefined4 *)(*(longlong *)(render_context + 0x38) + 0x3ec4);
+    shader_params[0x4a7d] = *(int32_t *)(*(longlong *)(render_context + 0x38) + 0x3ec4);
     shader_params[0x4a7e] = *(float *)(*(longlong *)(render_context + 0x38) + 0x3ec8) * 0.05 *
                                *(float *)(*(longlong *)(*(longlong *)(render_context + 0x38) + 0x81f0) + 0xc);
-    *(undefined1 *)(shader_params + 0x718) = 1;
+    *(int8_t *)(shader_params + 0x718) = 1;
     
     // 执行渲染函数
     render_flag = func_0x0001800e2bf0(_DAT_180c86890, shader_params);
-    *(undefined1 *)((longlong)shader_params + 0x1c61) = render_flag;
+    *(int8_t *)((longlong)shader_params + 0x1c61) = render_flag;
     
     // 检查渲染状态
     if (shader_params[2] != -1) {
@@ -711,12 +711,12 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     // 检查是否需要特殊渲染处理
     if (*(char *)(*(longlong *)(render_context + 0x38) + 0x27b8) != '\0') {
       render_object = (longlong *)
-               **(undefined8 **)(*(longlong *)(*(longlong *)(render_context + 0x38) + 0x81f8) + 0xf0);
+               **(uint64_t **)(*(longlong *)(*(longlong *)(render_context + 0x38) + 0x81f8) + 0xf0);
       (**(code **)(*render_object + 0xa8))(render_object, &render_buffer);
       
       if (render_buffer != (longlong *)0x0) {
         resource_manager = (**(code **)(*render_buffer + 0x178))();
-        *(undefined4 *)(resource_manager + 0x2c4) = FLOAT_ONE;
+        *(int32_t *)(resource_manager + 0x2c4) = FLOAT_ONE;
         security_ptr = &resource_data_1;
         (**(code **)(*render_buffer + 0x1c8))
                   (render_buffer, shader_params, *(longlong *)(render_context + 0x38),
@@ -741,10 +741,10 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
     UNLOCK();
     
     // 存储渲染结果
-    *(undefined4 **)(render_params + 0x9a48 + (longlong)state_value * 8) = shader_params;
-    global_data = *(undefined8 *)(render_params + 0x9a3c);
-    *(undefined8 *)(shader_params + 0x268d) = *(undefined8 *)(render_params + 0x9a34);
-    *(undefined8 *)(shader_params + 0x268f) = global_data;
+    *(int32_t **)(render_params + 0x9a48 + (longlong)state_value * 8) = shader_params;
+    global_data = *(uint64_t *)(render_params + 0x9a3c);
+    *(uint64_t *)(shader_params + 0x268d) = *(uint64_t *)(render_params + 0x9a34);
+    *(uint64_t *)(shader_params + 0x268f) = global_data;
     
     if (resource_chain_1 != (longlong *)0x0) {
       (**(code **)(*resource_chain_1 + FUNCTION_POINTER_OFFSET))();
@@ -757,11 +757,11 @@ void rendering_system_advanced_render_control(longlong render_context, longlong 
   // 清理渲染资源
   buffer_ptr = &UNK_180a3c3e0;
   buffer_data = 0;
-  data_ptr = (undefined8 *)0x0;
+  data_ptr = (uint64_t *)0x0;
   buffer_param = 0;
   
-  vertex_data = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-  *(undefined1 *)vertex_data = 0;
+  vertex_data = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+  *(int8_t *)vertex_data = 0;
   data_ptr = vertex_data;
   mode_param = FUN_18064e990(vertex_data);
   buffer_data = CONCAT44(buffer_data._4_4_, mode_param);

@@ -9,28 +9,28 @@
 // ============================================================================
 
 // 网络系统安全密钥
-undefined8 network_security_key;
+uint64_t network_security_key;
 
 // 网络连接状态标志
-undefined8 connection_status_flags;
+uint64_t connection_status_flags;
 
 // 网络数据缓冲区
-undefined8 network_data_buffer;
+uint64_t network_data_buffer;
 
 // 网络会话管理器
-undefined8 network_session_manager;
+uint64_t network_session_manager;
 
 // 网络错误处理状态
-undefined8 network_error_state;
+uint64_t network_error_state;
 
 // 网络配置参数
-undefined8 network_config_params;
+uint64_t network_config_params;
 
 // 网络性能监控数据
-undefined8 network_performance_data;
+uint64_t network_performance_data;
 
 // 网络调试信息
-undefined8 network_debug_info;
+uint64_t network_debug_info;
 
 // ============================================================================
 // 函数定义
@@ -51,21 +51,21 @@ undefined8 network_debug_info;
  * 
  * 返回值：void - 无返回值
  */
-void network_connection_initialize(ulonglong connection_id, undefined8 *connection_status)
+void network_connection_initialize(ulonglong connection_id, uint64_t *connection_status)
 {
   int status_code;
-  undefined1 security_key [32];
-  undefined1 *session_data;
-  undefined8 connection_handle;
-  undefined8 session_id;
+  int8_t security_key [32];
+  int8_t *session_data;
+  uint64_t connection_handle;
+  uint64_t session_id;
   longlong timeout_value;
   longlong connection_info;
-  undefined1 data_buffer [256];
+  int8_t data_buffer [256];
   ulonglong security_check;
   
   // 安全验证：使用XOR操作验证连接密钥
   security_check = network_security_key ^ (ulonglong)security_key;
-  if (connection_status == (undefined8 *)0x0) {
+  if (connection_status == (uint64_t *)0x0) {
     if ((*(byte *)(connection_status_flags + 0x10) & 0x80) == 0) {
       // 安全验证失败，终止连接
       network_security_failure_handler(security_check ^ (ulonglong)security_key);
@@ -92,7 +92,7 @@ void network_connection_initialize(ulonglong connection_id, undefined8 *connecti
     // 连接失败，清理资源
     network_connection_cleanup(&connection_handle);
   }
-  *connection_status = *(undefined8 *)(timeout_value + 0x30);
+  *connection_status = *(uint64_t *)(timeout_value + 0x30);
   // 清理连接资源
   network_connection_cleanup(&connection_handle);
 }
@@ -113,14 +113,14 @@ void network_connection_initialize(ulonglong connection_id, undefined8 *connecti
  * 
  * 返回值：void - 无返回值
  */
-void network_data_transmit(undefined8 destination, undefined8 data_ptr, undefined8 data_length)
+void network_data_transmit(uint64_t destination, uint64_t data_ptr, uint64_t data_length)
 {
   int status_code;
   int buffer_offset1;
   int buffer_offset2;
-  undefined1 security_key [32];
-  undefined1 *transmission_buffer;
-  undefined1 data_buffer [256];
+  int8_t security_key [32];
+  int8_t *transmission_buffer;
+  int8_t data_buffer [256];
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
@@ -153,7 +153,7 @@ void network_connection_status_check(void)
 {
   int status_code;
   int buffer_offset;
-  undefined4 connection_flags;
+  int32_t connection_flags;
   
   status_code = network_buffer_copy(&network_status_buffer, 0x100);
   buffer_offset = network_buffer_copy(&network_status_buffer + status_code, 0x100 - status_code, &network_data_buffer);
@@ -197,14 +197,14 @@ void network_connection_terminate(void)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_receive(undefined8 source, undefined8 data_ptr, undefined8 data_length)
+void network_data_receive(uint64_t source, uint64_t data_ptr, uint64_t data_length)
 {
   int status_code;
   int buffer_offset1;
   int buffer_offset2;
-  undefined1 security_key [32];
-  undefined1 *receive_buffer;
-  undefined1 data_buffer [256];
+  int8_t security_key [32];
+  int8_t *receive_buffer;
+  int8_t data_buffer [256];
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
@@ -237,7 +237,7 @@ void network_data_validate(void)
 {
   int status_code;
   int buffer_offset;
-  undefined4 validation_flags;
+  int32_t validation_flags;
   
   status_code = network_buffer_copy(&network_validation_buffer, 0x100);
   buffer_offset = network_buffer_copy(&network_validation_buffer + status_code, 0x100 - status_code, &network_data_buffer);
@@ -281,21 +281,21 @@ void network_session_cleanup(void)
  * 
  * 返回值：void - 无返回值
  */
-void network_address_resolve(undefined4 address_id, undefined4 *result_ptr1, undefined4 *result_ptr2)
+void network_address_resolve(int32_t address_id, int32_t *result_ptr1, int32_t *result_ptr2)
 {
   int status_code;
-  undefined1 security_key [48];
-  undefined8 address_handle;
-  undefined8 resolve_buffer;
+  int8_t security_key [48];
+  uint64_t address_handle;
+  uint64_t resolve_buffer;
   longlong address_info;
   longlong address_data [33];
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
-  if (result_ptr1 != (undefined4 *)0x0) {
+  if (result_ptr1 != (int32_t *)0x0) {
     *result_ptr1 = 0;
   }
-  if (result_ptr2 != (undefined4 *)0x0) {
+  if (result_ptr2 != (int32_t *)0x0) {
     *result_ptr2 = 0;
   }
   address_info = 0;
@@ -331,22 +331,22 @@ cleanup_handler:
  * 
  * 返回值：void - 无返回值
  */
-void network_connection_info_get(longlong connection_handle, undefined8 *info_ptr, undefined1 info_flag)
+void network_connection_info_get(longlong connection_handle, uint64_t *info_ptr, int8_t info_flag)
 {
-  undefined4 info_field1;
-  undefined4 info_field2;
-  undefined4 info_field3;
+  int32_t info_field1;
+  int32_t info_field2;
+  int32_t info_field3;
   char validation_result;
   byte status_byte;
-  undefined *data_ptr;
-  undefined8 processed_data;
+  void *data_ptr;
+  uint64_t processed_data;
   uint status_flag1;
   uint status_flag2;
-  undefined1 security_key [32];
-  undefined4 buffer_field1;
-  undefined4 buffer_field2;
-  undefined4 buffer_field3;
-  undefined4 buffer_field4;
+  int8_t security_key [32];
+  int32_t buffer_field1;
+  int32_t buffer_field2;
+  int32_t buffer_field3;
+  int32_t buffer_field4;
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
@@ -354,27 +354,27 @@ void network_connection_info_get(longlong connection_handle, undefined8 *info_pt
     data_ptr = &network_default_address;
   }
   else {
-    data_ptr = *(undefined **)(connection_handle + 0x50);
+    data_ptr = *(void **)(connection_handle + 0x50);
   }
   *info_ptr = data_ptr;
-  buffer_field1 = *(undefined4 *)(connection_handle + 0x10);
-  buffer_field2 = *(undefined4 *)(connection_handle + 0x14);
-  buffer_field3 = *(undefined4 *)(connection_handle + 0x18);
-  buffer_field4 = *(undefined4 *)(connection_handle + 0x1c);
+  buffer_field1 = *(int32_t *)(connection_handle + 0x10);
+  buffer_field2 = *(int32_t *)(connection_handle + 0x14);
+  buffer_field3 = *(int32_t *)(connection_handle + 0x18);
+  buffer_field4 = *(int32_t *)(connection_handle + 0x1c);
   processed_data = network_data_process(&buffer_field1);
   info_ptr[1] = processed_data;
-  *(undefined4 *)(info_ptr + 2) = *(undefined4 *)(connection_handle + 0x38);
-  *(undefined4 *)((longlong)info_ptr + 0x14) = *(undefined4 *)(connection_handle + 0x3c);
-  *(undefined4 *)(info_ptr + 3) = *(undefined4 *)(connection_handle + 0x4c);
-  *(undefined4 *)((longlong)info_ptr + 0x1c) = *(undefined4 *)(connection_handle + 0x30);
-  *(undefined4 *)(info_ptr + 4) = 0;
-  info_field1 = *(undefined4 *)(connection_handle + 0x14);
-  info_field2 = *(undefined4 *)(connection_handle + 0x18);
-  info_field3 = *(undefined4 *)(connection_handle + 0x1c);
-  *(undefined4 *)((longlong)info_ptr + 0x24) = *(undefined4 *)(connection_handle + 0x10);
-  *(undefined4 *)(info_ptr + 5) = info_field1;
-  *(undefined4 *)((longlong)info_ptr + 0x2c) = info_field2;
-  *(undefined4 *)(info_ptr + 6) = info_field3;
+  *(int32_t *)(info_ptr + 2) = *(int32_t *)(connection_handle + 0x38);
+  *(int32_t *)((longlong)info_ptr + 0x14) = *(int32_t *)(connection_handle + 0x3c);
+  *(int32_t *)(info_ptr + 3) = *(int32_t *)(connection_handle + 0x4c);
+  *(int32_t *)((longlong)info_ptr + 0x1c) = *(int32_t *)(connection_handle + 0x30);
+  *(int32_t *)(info_ptr + 4) = 0;
+  info_field1 = *(int32_t *)(connection_handle + 0x14);
+  info_field2 = *(int32_t *)(connection_handle + 0x18);
+  info_field3 = *(int32_t *)(connection_handle + 0x1c);
+  *(int32_t *)((longlong)info_ptr + 0x24) = *(int32_t *)(connection_handle + 0x10);
+  *(int32_t *)(info_ptr + 5) = info_field1;
+  *(int32_t *)((longlong)info_ptr + 0x2c) = info_field2;
+  *(int32_t *)(info_ptr + 6) = info_field3;
   validation_result = network_connection_validate(connection_handle, info_flag);
   status_flag1 = ((uint)(validation_result != '\0') | *(uint *)(info_ptr + 4)) & ~(uint)(validation_result == '\0');
   *(uint *)(info_ptr + 4) = status_flag1;
@@ -413,23 +413,23 @@ void network_connection_info_get(longlong connection_handle, undefined8 *info_pt
  * 
  * 返回值：void - 无返回值
  */
-void network_packet_send(undefined8 destination, undefined4 data_type, undefined4 data_length, undefined4 data_flag,
-                       undefined8 data_ptr)
+void network_packet_send(uint64_t destination, int32_t data_type, int32_t data_length, int32_t data_flag,
+                       uint64_t data_ptr)
 {
   int status_code;
   int buffer_offset1;
   int buffer_offset2;
   int buffer_offset3;
-  undefined1 security_key [32];
-  undefined1 *send_buffer;
-  undefined8 packet_header [2];
-  undefined1 data_buffer [256];
+  int8_t security_key [32];
+  int8_t *send_buffer;
+  uint64_t packet_header [2];
+  int8_t data_buffer [256];
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
   status_code = network_handle_create(destination, packet_header);
   if (status_code == 0) {
-    send_buffer = (undefined1 *)data_ptr;
+    send_buffer = (int8_t *)data_ptr;
     status_code = network_packet_validate(packet_header[0], data_type, data_length, data_flag);
     if (status_code == 0) goto send_complete;
   }
@@ -470,10 +470,10 @@ void network_packet_process(void)
 {
   int status_code;
   int buffer_offset;
-  undefined4 packet_type;
-  undefined4 packet_length;
-  undefined4 packet_flags;
-  undefined4 packet_data;
+  int32_t packet_type;
+  int32_t packet_length;
+  int32_t packet_flags;
+  int32_t packet_data;
   
   status_code = network_buffer_format(&network_packet_buffer, 0x100, packet_type);
   buffer_offset = network_buffer_copy(&network_packet_buffer + status_code, 0x100 - status_code, &network_data_buffer);
@@ -520,9 +520,9 @@ void network_session_reset(void)
  * 
  * 参数：无
  * 
- * 返回值：undefined* - 线程本地存储指针
+ * 返回值：void* - 线程本地存储指针
  */
-undefined * network_thread_local_storage_get(void)
+void * network_thread_local_storage_get(void)
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < network_storage_limit) {
@@ -552,20 +552,20 @@ undefined * network_thread_local_storage_get(void)
  * 
  * 返回值：void - 无返回值
  */
-void network_status_query(ulonglong status_id, undefined1 *status_result)
+void network_status_query(ulonglong status_id, int8_t *status_result)
 {
   int status_code;
-  undefined1 security_key [32];
-  undefined1 *query_buffer;
-  undefined8 status_handle;
+  int8_t security_key [32];
+  int8_t *query_buffer;
+  uint64_t status_handle;
   longlong timeout_value;
-  undefined8 session_handle;
+  uint64_t session_handle;
   longlong status_info;
-  undefined1 data_buffer [256];
+  int8_t data_buffer [256];
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
-  if (status_result == (undefined1 *)0x0) {
+  if (status_result == (int8_t *)0x0) {
     if ((*(byte *)(connection_status_flags + 0x10) & 0x80) == 0) {
       // 安全验证失败，终止查询
       network_security_failure_handler(security_check ^ (ulonglong)security_key);
@@ -582,13 +582,13 @@ void network_status_query(ulonglong status_id, undefined1 *status_result)
   status_code = network_handle_create(0, &timeout_value);
   if (((status_code == 0) && (status_code = network_session_validate(&status_handle, timeout_value), status_code == 0)) &&
      (status_code = network_status_info_get(status_id & 0xffffffff, &status_info), status_code == 0)) {
-    session_handle = *(undefined8 *)(status_info + 8);
+    session_handle = *(uint64_t *)(status_info + 8);
   }
   else if (status_code != 0) {
     // 查询失败，清理资源
     network_query_cleanup(&status_handle);
   }
-  network_status_process(session_handle, *(undefined8 *)(timeout_value + 800), status_result);
+  network_status_process(session_handle, *(uint64_t *)(timeout_value + 800), status_result);
   // 清理查询资源
   network_query_cleanup(&status_handle);
 }
@@ -616,10 +616,10 @@ void network_status_process(longlong status_handle, longlong *status_data, byte 
   longlong data_pointer;
   ulonglong iterator;
   byte validation_result;
-  undefined1 security_key [32];
-  undefined *process_ptr;
+  int8_t security_key [32];
+  void *process_ptr;
   char process_flag;
-  undefined *cleanup_ptr;
+  void *cleanup_ptr;
   char cleanup_flag;
   longlong *data_ptr;
   ulonglong security_check;
@@ -709,18 +709,18 @@ process_complete:
  */
 void network_connection_validate(longlong connection_handle, longlong *connection_data, byte *validation_result)
 {
-  undefined8 *data_ptr;
+  uint64_t *data_ptr;
   int validate_code;
   uint status_flag;
   longlong connection_info;
   longlong *info_ptr;
   longlong temp_data;
   byte connection_status;
-  undefined1 security_key [32];
-  undefined *error_ptr;
-  undefined2 error_code;
+  int8_t security_key [32];
+  void *error_ptr;
+  int16_t error_code;
   longlong *error_data;
-  undefined1 error_buffer [40];
+  int8_t error_buffer [40];
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
@@ -742,15 +742,15 @@ void network_connection_validate(longlong connection_handle, longlong *connectio
         }
         info_ptr = (longlong *)(connection_info + 0x58);
         if (((longlong *)*info_ptr == info_ptr) && (*(longlong **)(connection_info + 0x60) == info_ptr)) {
-          for (data_ptr = *(undefined8 **)(connection_info + 0x68); data_ptr != (undefined8 *)(connection_info + 0x68);
-              data_ptr = (undefined8 *)*data_ptr) {
+          for (data_ptr = *(uint64_t **)(connection_info + 0x68); data_ptr != (uint64_t *)(connection_info + 0x68);
+              data_ptr = (uint64_t *)*data_ptr) {
             if ((((*(int *)(data_ptr + 4) != 0) || (*(int *)((longlong)data_ptr + 0x24) != 0)) ||
                 (*(int *)(data_ptr + 5) != 0)) || (*(int *)((longlong)data_ptr + 0x2c) != 0)) {
               temp_data = network_connection_info_get(connection_info);
               if (temp_data == 0) goto validation_failed;
               if (*(uint *)(temp_data + 0x20) < *(uint *)((longlong)data_ptr + 0x34)) goto connection_invalid;
             }
-            if (data_ptr == (undefined8 *)(connection_info + 0x68)) break;
+            if (data_ptr == (uint64_t *)(connection_info + 0x68)) break;
           }
           connection_status = 1;
         }
@@ -789,20 +789,20 @@ validation_failed:
  * 
  * 返回值：void - 无返回值
  */
-void network_connection_status_update(ulonglong connection_id, undefined1 *status_result)
+void network_connection_status_update(ulonglong connection_id, int8_t *status_result)
 {
   int status_code;
-  undefined1 security_key [32];
-  undefined1 *update_buffer;
-  undefined8 status_handle;
+  int8_t security_key [32];
+  int8_t *update_buffer;
+  uint64_t status_handle;
   longlong timeout_value;
-  undefined8 session_handle;
+  uint64_t session_handle;
   longlong status_info;
-  undefined1 data_buffer [256];
+  int8_t data_buffer [256];
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
-  if (status_result == (undefined1 *)0x0) {
+  if (status_result == (int8_t *)0x0) {
     if ((*(byte *)(connection_status_flags + 0x10) & 0x80) == 0) {
       // 安全验证失败，终止更新
       network_security_failure_handler(security_check ^ (ulonglong)security_key);
@@ -819,13 +819,13 @@ void network_connection_status_update(ulonglong connection_id, undefined1 *statu
   status_code = network_handle_create(0, &timeout_value);
   if (((status_code == 0) && (status_code = network_session_validate(&status_handle, timeout_value), status_code == 0)) &&
      (status_code = network_status_info_get(connection_id & 0xffffffff, &status_info), status_code == 0)) {
-    session_handle = *(undefined8 *)(status_info + 8);
+    session_handle = *(uint64_t *)(status_info + 8);
   }
   else if (status_code != 0) {
     // 更新失败，清理资源
     network_update_cleanup(&status_handle);
   }
-  network_connection_validate(session_handle, *(undefined8 *)(timeout_value + 800), status_result);
+  network_connection_validate(session_handle, *(uint64_t *)(timeout_value + 800), status_result);
   // 清理更新资源
   network_update_cleanup(&status_handle);
 }
@@ -843,10 +843,10 @@ void network_connection_status_update(ulonglong connection_id, undefined1 *statu
  * 
  * 返回值：bool - 连接是否存在
  */
-bool network_connection_exists(undefined8 connection_id)
+bool network_connection_exists(uint64_t connection_id)
 {
   int status_code;
-  undefined1 connection_info [32];
+  int8_t connection_info [32];
   
   status_code = network_connection_info_get(connection_id, connection_info);
   return status_code == 0;
@@ -865,13 +865,13 @@ bool network_connection_exists(undefined8 connection_id)
  * 
  * 返回值：void - 无返回值
  */
-void network_connection_disconnect(undefined8 connection_id)
+void network_connection_disconnect(uint64_t connection_id)
 {
   int status_code;
   int disconnect_code;
-  undefined1 security_key [48];
+  int8_t security_key [48];
   longlong connection_info [2];
-  undefined8 *disconnect_data [34];
+  uint64_t *disconnect_data [34];
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
@@ -887,12 +887,12 @@ disconnect_handler:
     disconnect_code = status_code;
   }
   if ((disconnect_code == 0) &&
-     (status_code = network_disconnect_prepare(*(undefined8 *)(connection_info[0] + 0x98), disconnect_data, 0x18), status_code == 0))
+     (status_code = network_disconnect_prepare(*(uint64_t *)(connection_info[0] + 0x98), disconnect_data, 0x18), status_code == 0))
   {
     *disconnect_data[0] = &network_disconnect_handler;
-    *(undefined4 *)(disconnect_data[0] + 1) = 0x18;
+    *(int32_t *)(disconnect_data[0] + 1) = 0x18;
     *(int *)(disconnect_data[0] + 2) = (int)connection_id;
-    network_execute_disconnect(*(undefined8 *)(connection_info[0] + 0x98));
+    network_execute_disconnect(*(uint64_t *)(connection_info[0] + 0x98));
   }
 disconnect_complete:
   // 清理断开连接资源
@@ -915,25 +915,25 @@ disconnect_complete:
  * 
  * 返回值：void - 无返回值
  */
-void network_data_send(ulonglong destination, longlong data_length, undefined4 data_type, undefined8 *data_ptr)
+void network_data_send(ulonglong destination, longlong data_length, int32_t data_type, uint64_t *data_ptr)
 {
-  undefined4 processed_type;
+  int32_t processed_type;
   int status_code;
   int buffer_offset1;
   int buffer_offset2;
   int buffer_offset3;
-  undefined1 security_key [32];
-  undefined1 *send_buffer;
-  undefined4 send_length;
-  undefined8 send_handle;
+  int8_t security_key [32];
+  int8_t *send_buffer;
+  int32_t send_length;
+  uint64_t send_handle;
   longlong destination_info;
-  undefined8 *packet_data;
-  undefined1 data_buffer [256];
+  uint64_t *packet_data;
+  int8_t data_buffer [256];
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
   send_length = data_type;
-  if (((data_ptr == (undefined8 *)0x0) || (*data_ptr = 0, data_length == 0)) ||
+  if (((data_ptr == (uint64_t *)0x0) || (*data_ptr = 0, data_length == 0)) ||
      (status_code = network_data_validate_length(data_length), 0x1ff < status_code)) {
     processed_type = send_length;
     if ((*(byte *)(connection_status_flags + 0x10) & 0x80) == 0) {
@@ -963,11 +963,11 @@ send_handler:
     buffer_offset3 = buffer_offset2;
   }
   if ((buffer_offset3 == 0) &&
-     (buffer_offset2 = network_packet_prepare(*(undefined8 *)(destination_info + 0x98), &packet_data, 0x218), buffer_offset2 == 0)) {
+     (buffer_offset2 = network_packet_prepare(*(uint64_t *)(destination_info + 0x98), &packet_data, 0x218), buffer_offset2 == 0)) {
     *packet_data = &network_packet_handler;
-    *(undefined4 *)(packet_data + 2) = 0;
-    *(undefined4 *)(packet_data + 1) = 0x218;
-    *(undefined4 *)((longlong)packet_data + 0x14) = send_length;
+    *(int32_t *)(packet_data + 2) = 0;
+    *(int32_t *)(packet_data + 1) = 0x218;
+    *(int32_t *)((longlong)packet_data + 0x14) = send_length;
     // 复制数据到数据包
     memcpy(packet_data + 3, data_length, (longlong)(status_code + 1));
   }
@@ -989,13 +989,13 @@ send_complete:
  * 
  * 返回值：void - 无返回值
  */
-void network_connection_close(undefined8 connection_id)
+void network_connection_close(uint64_t connection_id)
 {
   int status_code;
   int close_code;
-  undefined1 security_key [48];
+  int8_t security_key [48];
   longlong connection_info [2];
-  undefined8 *close_data [34];
+  uint64_t *close_data [34];
   ulonglong security_check;
   
   security_check = network_security_key ^ (ulonglong)security_key;
@@ -1011,12 +1011,12 @@ close_handler:
     close_code = status_code;
   }
   if ((close_code == 0) &&
-     (status_code = network_close_prepare(*(undefined8 *)(connection_info[0] + 0x98), close_data, 0x18), status_code == 0))
+     (status_code = network_close_prepare(*(uint64_t *)(connection_info[0] + 0x98), close_data, 0x18), status_code == 0))
   {
     *close_data[0] = &network_close_handler;
-    *(undefined4 *)(close_data[0] + 1) = 0x18;
+    *(int32_t *)(close_data[0] + 1) = 0x18;
     *(int *)(close_data[0] + 2) = (int)connection_id;
-    network_execute_close(*(undefined8 *)(connection_info[0] + 0x98));
+    network_execute_close(*(uint64_t *)(connection_info[0] + 0x98));
   }
 close_complete:
   // 清理关闭连接资源
@@ -1037,7 +1037,7 @@ close_complete:
  * 
  * 返回值：void - 无返回值
  */
-void network_data_read(longlong connection_handle, undefined8 data_ptr)
+void network_data_read(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1062,7 +1062,7 @@ void network_data_read(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_write(longlong connection_handle, undefined8 data_ptr)
+void network_data_write(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1090,7 +1090,7 @@ void network_data_write(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_flush(longlong connection_handle, undefined8 data_ptr)
+void network_data_flush(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1119,18 +1119,18 @@ void network_data_flush(longlong connection_handle, undefined8 data_ptr)
  * - param_1: 连接句柄
  * - param_2: 数据指针
  * 
- * 返回值：undefined8 - 获取的数据
+ * 返回值：uint64_t - 获取的数据
  */
-undefined8 network_data_get(longlong connection_handle, undefined8 data_ptr)
+uint64_t network_data_get(longlong connection_handle, uint64_t data_ptr)
 {
-  undefined8 result;
-  undefined4 data_buffer [2];
+  uint64_t result;
+  int32_t data_buffer [2];
   
   result = network_data_validate(data_ptr, connection_handle + 0x10);
   if ((int)result == 0) {
     result = network_data_execute(data_ptr, data_buffer);
     if ((int)result == 0) {
-      *(undefined4 *)(connection_handle + 0x18) = data_buffer[0];
+      *(int32_t *)(connection_handle + 0x18) = data_buffer[0];
       result = 0;
     }
   }
@@ -1151,7 +1151,7 @@ undefined8 network_data_get(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_send_ack(longlong connection_handle, undefined8 data_ptr)
+void network_data_send_ack(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1176,7 +1176,7 @@ void network_data_send_ack(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_receive_ack(longlong connection_handle, undefined8 data_ptr)
+void network_data_receive_ack(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1201,7 +1201,7 @@ void network_data_receive_ack(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_sync(longlong connection_handle, undefined8 data_ptr)
+void network_data_sync(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1226,7 +1226,7 @@ void network_data_sync(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_reset(longlong connection_handle, undefined8 data_ptr)
+void network_data_reset(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1251,7 +1251,7 @@ void network_data_reset(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_copy(longlong connection_handle, undefined8 data_ptr)
+void network_data_copy(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1276,7 +1276,7 @@ void network_data_copy(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_move(longlong connection_handle, undefined8 data_ptr)
+void network_data_move(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1304,7 +1304,7 @@ void network_data_move(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_swap(longlong connection_handle, undefined8 data_ptr)
+void network_data_swap(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1329,7 +1329,7 @@ void network_data_swap(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_compare(longlong connection_handle, undefined8 data_ptr)
+void network_data_compare(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1360,7 +1360,7 @@ void network_data_compare(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_merge(longlong connection_handle, undefined8 data_ptr)
+void network_data_merge(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   
@@ -1391,7 +1391,7 @@ void network_data_merge(longlong connection_handle, undefined8 data_ptr)
  * 
  * 返回值：void - 无返回值
  */
-void network_data_split(longlong connection_handle, undefined8 data_ptr)
+void network_data_split(longlong connection_handle, uint64_t data_ptr)
 {
   int status_code;
   

@@ -12,7 +12,7 @@ void FUN_18041fdfd(void)
 
 
 
-undefined8 FUN_18041ffb9(void)
+uint64_t FUN_18041ffb9(void)
 
 {
   int iVar1;
@@ -29,14 +29,14 @@ undefined8 FUN_18041ffb9(void)
   *(int *)(unaff_RBX + 0x4820) = iVar1 * 2;
   *(int *)(unaff_RBX + 0x4824) = iVar2 + -1;
   if (iVar1 < 0) {
-    *unaff_RSI = *unaff_RSI + (1 << ((byte)*(undefined4 *)(unaff_RBX + 0x4840) & 0x1f));
+    *unaff_RSI = *unaff_RSI + (1 << ((byte)*(int32_t *)(unaff_RBX + 0x4840) & 0x1f));
   }
   return 1;
 }
 
 
 
-undefined8 FUN_180420020(longlong param_1,longlong param_2,longlong param_3,longlong param_4)
+uint64_t FUN_180420020(longlong param_1,longlong param_2,longlong param_3,longlong param_4)
 
 {
   uint *puVar1;
@@ -67,7 +67,7 @@ undefined8 FUN_180420020(longlong param_1,longlong param_2,longlong param_3,long
     return 0;
   }
   iVar17 = *(int *)(param_1 + 0x4844);
-  bVar6 = (byte)*(undefined4 *)(param_1 + 0x4840);
+  bVar6 = (byte)*(int32_t *)(param_1 + 0x4840);
   if (*(int *)(param_1 + 0x483c) != 0) {
     uVar20 = 1 << (bVar6 & 0x1f);
     uVar19 = uVar14;
@@ -357,7 +357,7 @@ void FUN_180420680(longlong param_1,int param_2,longlong param_3)
   int iVar9;
   int iVar10;
   int iVar11;
-  undefined1 *puVar12;
+  int8_t *puVar12;
   int iVar13;
   int iVar14;
   int iVar15;
@@ -482,7 +482,7 @@ void FUN_180420680(longlong param_1,int param_2,longlong param_3)
     piStack_160 = (int *)((longlong)piStack_160 + -1);
   } while (piStack_160 != (int *)0x0);
   piStack_160 = aiStack_130;
-  puVar12 = (undefined1 *)(param_1 + 1);
+  puVar12 = (int8_t *)(param_1 + 1);
   lStack_158 = 8;
   do {
     iVar10 = piStack_160[1];

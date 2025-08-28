@@ -69,33 +69,33 @@ void register_render_system_components(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
   code *component_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   component_handler = render_component_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&RENDER_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -119,7 +119,7 @@ void register_render_system_components(void)
 }
 
 // 函数：初始化互斥锁
-int initialize_mutex(undefined8 mutex_id, undefined8 mutex_attr, undefined8 lock_func, undefined8 unlock_func)
+int initialize_mutex(uint64_t mutex_id, uint64_t mutex_attr, uint64_t lock_func, uint64_t unlock_func)
 
 {
   longlong init_result;
@@ -134,11 +134,11 @@ int initialize_mutex(undefined8 mutex_id, undefined8 mutex_attr, undefined8 lock
 void initialize_string_config(void)
 
 {
-  undefined8 config_param;
-  undefined *config_source;
-  undefined1 *buffer_ptr;
-  undefined4 buffer_size;
-  undefined1 config_buffer [136];
+  uint64_t config_param;
+  void *config_source;
+  int8_t *buffer_ptr;
+  int32_t buffer_size;
+  int8_t config_buffer [136];
   
   // 设置配置参数和缓冲区
   config_source = &GLOBAL_CONFIG_SOURCE;
@@ -157,33 +157,33 @@ void register_audio_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
   code *audio_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   audio_handler = audio_component_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&AUDIO_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -211,33 +211,33 @@ void register_input_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
   code *input_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   input_handler = input_component_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&INPUT_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -265,33 +265,33 @@ void register_physics_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
-  undefined8 physics_handler;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
+  uint64_t physics_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   physics_handler = 0;  // 物理系统处理函数为空
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&PHYSICS_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -319,33 +319,33 @@ void register_network_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
   code *network_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   network_handler = network_component_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&NETWORK_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -373,33 +373,33 @@ void register_ai_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
-  undefined8 ai_handler;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
+  uint64_t ai_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   ai_handler = 0;  // AI系统处理函数为空
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&AI_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -427,33 +427,33 @@ void register_ui_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
-  undefined *ui_handler;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
+  void *ui_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   ui_handler = &ui_system_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&UI_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -481,33 +481,33 @@ void register_animation_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
-  undefined8 animation_handler;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
+  uint64_t animation_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   animation_handler = 0;  // 动画系统处理函数为空
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&ANIMATION_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -535,33 +535,33 @@ void register_scene_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
   code *scene_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   scene_handler = scene_component_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&SCENE_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -589,33 +589,33 @@ void register_script_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
   code *script_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   script_handler = script_component_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&SCRIPT_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -643,33 +643,33 @@ void register_resource_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
   code *resource_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   resource_handler = resource_component_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&RESOURCE_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -697,33 +697,33 @@ void register_debug_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
   code *debug_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   debug_handler = debug_component_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&DEBUG_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -751,33 +751,33 @@ void register_save_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
-  undefined8 save_handler;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
+  uint64_t save_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   save_handler = 0;  // 存档系统处理函数为空
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&SAVE_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -805,33 +805,33 @@ void register_module_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
   code *module_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   module_handler = module_component_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&MODULE_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -859,33 +859,33 @@ void register_game_logic_system_component(void)
 
 {
   char component_flag;
-  undefined8 *component_root;
+  uint64_t *component_root;
   int compare_result;
   longlong *system_manager;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *next_node;
-  undefined8 *temp_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *next_node;
+  uint64_t *temp_node;
+  uint64_t *new_component;
   code *game_logic_handler;
   
   // 获取系统管理器指针
   system_manager = (longlong *)get_system_manager();
-  component_root = (undefined8 *)*system_manager;
+  component_root = (uint64_t *)*system_manager;
   component_flag = *(char *)((longlong)component_root[1] + 0x19);
   game_logic_handler = game_logic_component_handler;
   next_node = component_root;
-  current_node = (undefined8 *)component_root[1];
+  current_node = (uint64_t *)component_root[1];
   
   // 遍历组件树查找合适位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4,&GAME_LOGIC_COMPONENT_ID,0x10);
     if (compare_result < 0) {
-      temp_node = (undefined8 *)current_node[2];
+      temp_node = (uint64_t *)current_node[2];
       current_node = next_node;
     }
     else {
-      temp_node = (undefined8 *)*current_node;
+      temp_node = (uint64_t *)*current_node;
     }
     next_node = current_node;
     current_node = temp_node;
@@ -913,7 +913,7 @@ int FUN_18002e3e0(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   
   _DAT_180bf64d0 = &UNK_1809fdc18;
   _DAT_180bf64d8 = &DAT_180bf64e8;
@@ -924,11 +924,11 @@ int FUN_18002e3e0(void)
 void FUN_18002e8e0(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  uint64_t in_R9;
+  void *puStack_a0;
+  int8_t *puStack_98;
+  int32_t uStack_90;
+  int8_t auStack_88 [136];
   
   puStack_a0 = &UNK_1809fcc28;
   puStack_98 = auStack_88;
@@ -944,30 +944,30 @@ void FUN_18002e970(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -991,30 +991,30 @@ void FUN_18002ea70(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1038,30 +1038,30 @@ void FUN_18002eb70(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1085,30 +1085,30 @@ void FUN_18002ec70(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1132,30 +1132,30 @@ void FUN_18002ed70(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1179,30 +1179,30 @@ void FUN_18002ee70(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  void *puStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1226,30 +1226,30 @@ void FUN_18002ef70(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1273,30 +1273,30 @@ void FUN_18002f070(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1320,30 +1320,30 @@ void FUN_18002f170(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;

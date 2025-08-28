@@ -58,10 +58,10 @@ typedef struct {
 
 // 曲线处理器上下文
 typedef struct {
-    undefined8 *curve_nodes;  // 曲线节点指针
-    undefined8 *key_nodes;    // 关键节点指针
-    undefined8 *time_nodes;   // 时间节点指针
-    undefined8 *value_nodes;  // 数值节点指针
+    uint64_t *curve_nodes;  // 曲线节点指针
+    uint64_t *key_nodes;    // 关键节点指针
+    uint64_t *time_nodes;   // 时间节点指针
+    uint64_t *value_nodes;  // 数值节点指针
     float *output_buffer;     // 输出缓冲区
     int buffer_size;          // 缓冲区大小
     int processing_mode;      // 处理模式
@@ -111,7 +111,7 @@ void rendering_curve_processor_and_animation_interpolator(float *param_1, longlo
     // 局部变量声明
     float *curve_ptr;                    // 曲线指针
     float temp_float1;                    // 临时浮点数1
-    undefined8 temp_undefined1;           // 临时未定义数1
+    uint64_t temp_int8_t;           // 临时未定义数1
     float temp_float2;                    // 临时浮点数2
     float temp_float3;                    // 临时浮点数3
     float temp_float4;                    // 临时浮点数4
@@ -121,21 +121,21 @@ void rendering_curve_processor_and_animation_interpolator(float *param_1, longlo
     float temp_float8;                    // 临时浮点数8
     longlong temp_long1;                  // 临时长整数1
     char *string_ptr1;                    // 字符串指针1
-    undefined4 *uint_ptr1;               // 无符号整数指针1
-    undefined8 *undefined_ptr1;          // 未定义指针1
+    int32_t *uint_ptr1;               // 无符号整数指针1
+    uint64_t *undefined_ptr1;          // 未定义指针1
     float *float_ptr1;                   // 浮点指针1
     float *float_ptr2;                   // 浮点指针2
     float *float_ptr3;                   // 浮点指针3
     longlong temp_long2;                  // 临时长整数2
-    undefined8 *undefined_ptr2;          // 未定义指针2
-    undefined8 *undefined_ptr3;          // 未定义指针3
-    undefined8 *undefined_ptr4;          // 未定义指针4
-    undefined4 *uint_ptr2;               // 无符号整数指针2
+    uint64_t *undefined_ptr2;          // 未定义指针2
+    uint64_t *undefined_ptr3;          // 未定义指针3
+    uint64_t *undefined_ptr4;          // 未定义指针4
+    int32_t *uint_ptr2;               // 无符号整数指针2
     int temp_int1;                       // 临时整数1
     longlong temp_long3;                  // 临时长整数3
     ulonglong temp_ulong1;                // 临时无符号长整数1
     char *string_ptr2;                    // 字符串指针2
-    undefined4 *uint_ptr3;               // 无符号整数指针3
+    int32_t *uint_ptr3;               // 无符号整数指针3
     char *string_ptr3;                    // 字符串指针3
     int temp_int2;                       // 临时整数2
     float *float_ptr4;                   // 浮点指针4
@@ -145,17 +145,17 @@ void rendering_curve_processor_and_animation_interpolator(float *param_1, longlo
     // 栈变量声明
     float stack_float1;                   // 栈浮点数1
     float stack_float2;                   // 栈浮点数2
-    undefined4 stack_uint1;               // 栈无符号整数1
-    undefined4 stack_uint2;               // 栈无符号整数2
-    undefined4 stack_uint3;               // 栈无符号整数3
-    undefined4 stack_uint4;               // 栈无符号整数4
-    undefined4 stack_uint5;               // 栈无符号整数5
-    undefined4 stack_uint6;               // 栈无符号整数6
-    undefined4 stack_uint7;               // 栈无符号整数7
+    int32_t stack_uint1;               // 栈无符号整数1
+    int32_t stack_uint2;               // 栈无符号整数2
+    int32_t stack_uint3;               // 栈无符号整数3
+    int32_t stack_uint4;               // 栈无符号整数4
+    int32_t stack_uint5;               // 栈无符号整数5
+    int32_t stack_uint6;               // 栈无符号整数6
+    int32_t stack_uint7;               // 栈无符号整数7
     
     // 初始化渲染参数
-    *(undefined8 *)(param_1 + 0xd2) = *(undefined8 *)(param_1 + 0xd0);
-    *(undefined8 *)(param_1 + 0xca) = *(undefined8 *)(param_1 + 200);
+    *(uint64_t *)(param_1 + 0xd2) = *(uint64_t *)(param_1 + 0xd0);
+    *(uint64_t *)(param_1 + 0xca) = *(uint64_t *)(param_1 + 200);
     
     // 处理颜色曲线数据
     string_ptr1 = "color";
@@ -164,8 +164,8 @@ void rendering_curve_processor_and_animation_interpolator(float *param_1, longlo
         string_ptr1 = string_ptr2 + 1;
     } while (*string_ptr1 != '\0');
     
-    undefined_ptr2 = *(undefined8 **)(param_2 + 0x30);
-    if (undefined_ptr2 != (undefined8 *)0x0) {
+    undefined_ptr2 = *(uint64_t **)(param_2 + 0x30);
+    if (undefined_ptr2 != (uint64_t *)0x0) {
 color_curve_processing:
         // 处理颜色曲线节点
         string_ptr1 = (char *)*undefined_ptr2;
@@ -198,8 +198,8 @@ color_curve_key_processing:
         } while (*string_ptr1 != '\0');
         
         // 遍历关键帧节点
-        for (undefined_ptr2 = (undefined8 *)undefined_ptr2[6]; undefined_ptr2 != (undefined8 *)0x0;
-             undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb]) {
+        for (undefined_ptr2 = (uint64_t *)undefined_ptr2[6]; undefined_ptr2 != (uint64_t *)0x0;
+             undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb]) {
             string_ptr1 = (char *)*undefined_ptr2;
             if (string_ptr1 == (char *)0x0) {
                 string_ptr3 = (char *)0x0;
@@ -221,8 +221,8 @@ color_curve_time_processing:
                         string_ptr1 = string_ptr2 + 1;
                     } while (*string_ptr1 != '\0');
                     
-                    undefined_ptr2 = (undefined8 *)undefined_ptr2[6];
-                    if (undefined_ptr2 == (undefined8 *)0x0) break;
+                    undefined_ptr2 = (uint64_t *)undefined_ptr2[6];
+                    if (undefined_ptr2 == (uint64_t *)0x0) break;
                     
                     // 遍历时间节点
                     do {
@@ -248,8 +248,8 @@ color_curve_value_extraction:
                                 } while (*string_ptr1 != '\0');
                                 
                                 // 遍历时间节点获取数值
-                                for (undefined_ptr4 = (undefined8 *)undefined_ptr2[8]; undefined_ptr4 != (undefined8 *)0x0;
-                                     undefined_ptr4 = (undefined8 *)undefined_ptr4[6]) {
+                                for (undefined_ptr4 = (uint64_t *)undefined_ptr2[8]; undefined_ptr4 != (uint64_t *)0x0;
+                                     undefined_ptr4 = (uint64_t *)undefined_ptr4[6]) {
                                     string_ptr1 = (char *)*undefined_ptr4;
                                     if (string_ptr1 == (char *)0x0) {
                                         string_ptr3 = (char *)0x0;
@@ -284,10 +284,10 @@ time_value_processing:
                                 
                                 // 清理颜色数据
                                 FUN_180631960(undefined_ptr2);
-                                uint_ptr2 = *(undefined4 **)(param_1 + 0xca);
-                                if (uint_ptr2 < *(undefined4 **)(param_1 + 0xcc)) {
+                                uint_ptr2 = *(int32_t **)(param_1 + 0xca);
+                                if (uint_ptr2 < *(int32_t **)(param_1 + 0xcc)) {
                                     // 直接写入颜色数据
-                                    *(undefined4 **)(param_1 + 0xca) = uint_ptr2 + 5;
+                                    *(int32_t **)(param_1 + 0xca) = uint_ptr2 + 5;
                                     *uint_ptr2 = stack_uint1;
                                     uint_ptr2[1] = stack_uint2;
                                     uint_ptr2[2] = stack_uint3;
@@ -296,19 +296,19 @@ time_value_processing:
                                 }
                                 else {
                                     // 扩展颜色数据缓冲区
-                                    uint_ptr3 = *(undefined4 **)(param_1 + 200);
+                                    uint_ptr3 = *(int32_t **)(param_1 + 200);
                                     temp_long2 = ((longlong)uint_ptr2 - (longlong)uint_ptr3) / ANIMATION_CURVE_SEGMENT_SIZE;
                                     if (temp_long2 == 0) {
                                         temp_long2 = 1;
 curve_buffer_expansion:
-                                        uint_ptr1 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18);
-                                        uint_ptr3 = *(undefined4 **)(param_1 + 200);
-                                        uint_ptr2 = *(undefined4 **)(param_1 + 0xca);
+                                        uint_ptr1 = (int32_t *)FUN_18062b420(_DAT_180c8ed18);
+                                        uint_ptr3 = *(int32_t **)(param_1 + 200);
+                                        uint_ptr2 = *(int32_t **)(param_1 + 0xca);
                                     }
                                     else {
                                         temp_long2 = temp_long2 * 2;
                                         if (temp_long2 != 0) goto curve_buffer_expansion;
-                                        uint_ptr1 = (undefined4 *)0x0;
+                                        uint_ptr1 = (int32_t *)0x0;
                                     }
                                     
                                     // 移动现有数据
@@ -327,9 +327,9 @@ curve_buffer_expansion:
                                     if (*(longlong *)(param_1 + 200) != 0) {
                                         FUN_18064e900();
                                     }
-                                    *(undefined4 **)(param_1 + 200) = uint_ptr1;
-                                    *(undefined4 **)(param_1 + 0xca) = uint_ptr1 + 5;
-                                    *(undefined4 **)(param_1 + 0xcc) = uint_ptr1 + temp_long2 * 5;
+                                    *(int32_t **)(param_1 + 200) = uint_ptr1;
+                                    *(int32_t **)(param_1 + 0xca) = uint_ptr1 + 5;
+                                    *(int32_t **)(param_1 + 0xcc) = uint_ptr1 + temp_long2 * 5;
                                 }
                                 
                                 // 继续处理关键帧
@@ -339,8 +339,8 @@ curve_buffer_expansion:
                                     string_ptr1 = string_ptr2 + 1;
                                 } while (*string_ptr1 != '\0');
                                 
-                                for (undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb]; undefined_ptr2 != (undefined8 *)0x0;
-                                     undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb]) {
+                                for (undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb]; undefined_ptr2 != (uint64_t *)0x0;
+                                     undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb]) {
                                     string_ptr1 = (char *)*undefined_ptr2;
                                     if (string_ptr1 == (char *)0x0) {
                                         string_ptr3 = (char *)0x0;
@@ -363,7 +363,7 @@ curve_buffer_expansion:
                                         }
                                     }
                                 }
-                                undefined_ptr2 = (undefined8 *)0x0;
+                                undefined_ptr2 = (uint64_t *)0x0;
                                 
 alpha_channel_processing:
                                 // 处理透明度通道
@@ -374,8 +374,8 @@ alpha_channel_processing:
                                         string_ptr1 = string_ptr2 + 1;
                                     } while (*string_ptr1 != '\0');
                                     
-                                    for (undefined_ptr4 = (undefined8 *)undefined_ptr2[8]; undefined_ptr4 != (undefined8 *)0x0;
-                                         undefined_ptr4 = (undefined8 *)undefined_ptr4[6]) {
+                                    for (undefined_ptr4 = (uint64_t *)undefined_ptr2[8]; undefined_ptr4 != (uint64_t *)0x0;
+                                         undefined_ptr4 = (uint64_t *)undefined_ptr4[6]) {
                                         string_ptr1 = (char *)*undefined_ptr4;
                                         if (string_ptr1 == (char *)0x0) {
                                             string_ptr3 = (char *)0x0;
@@ -411,8 +411,8 @@ alpha_value_processing:
                                         string_ptr1 = string_ptr2 + 1;
                                     } while (*string_ptr1 != '\0');
                                     
-                                    for (undefined_ptr4 = (undefined8 *)undefined_ptr2[8]; undefined_ptr4 != (undefined8 *)0x0;
-                                         undefined_ptr4 = (undefined8 *)undefined_ptr4[6]) {
+                                    for (undefined_ptr4 = (uint64_t *)undefined_ptr2[8]; undefined_ptr4 != (uint64_t *)0x0;
+                                         undefined_ptr4 = (uint64_t *)undefined_ptr4[6]) {
                                         string_ptr1 = (char *)*undefined_ptr4;
                                         if (string_ptr1 == (char *)0x0) {
                                             string_ptr3 = (char *)0x0;
@@ -442,26 +442,26 @@ value_processing:
                                     }
                                     
                                     // 写入透明度数据
-                                    undefined_ptr4 = *(undefined8 **)(param_1 + 0xd2);
-                                    if (undefined_ptr4 < *(undefined8 **)(param_1 + 0xd4)) {
-                                        *(undefined8 **)(param_1 + 0xd2) = undefined_ptr4 + 1;
+                                    undefined_ptr4 = *(uint64_t **)(param_1 + 0xd2);
+                                    if (undefined_ptr4 < *(uint64_t **)(param_1 + 0xd4)) {
+                                        *(uint64_t **)(param_1 + 0xd2) = undefined_ptr4 + 1;
                                         *undefined_ptr4 = CONCAT44(stack_uint2, stack_uint1);
                                     }
                                     else {
                                         // 扩展透明度数据缓冲区
-                                        undefined_ptr3 = *(undefined8 **)(param_1 + 0xd0);
+                                        undefined_ptr3 = *(uint64_t **)(param_1 + 0xd0);
                                         temp_long2 = (longlong)undefined_ptr4 - (longlong)undefined_ptr3 >> 3;
                                         if (temp_long2 == 0) {
                                             temp_long2 = 1;
 alpha_buffer_expansion:
-                                            undefined_ptr1 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, temp_long2 * 8);
-                                            undefined_ptr3 = *(undefined8 **)(param_1 + 0xd0);
-                                            undefined_ptr4 = *(undefined8 **)(param_1 + 0xd2);
+                                            undefined_ptr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, temp_long2 * 8);
+                                            undefined_ptr3 = *(uint64_t **)(param_1 + 0xd0);
+                                            undefined_ptr4 = *(uint64_t **)(param_1 + 0xd2);
                                         }
                                         else {
                                             temp_long2 = temp_long2 * 2;
                                             if (temp_long2 != 0) goto alpha_buffer_expansion;
-                                            undefined_ptr1 = (undefined8 *)0x0;
+                                            undefined_ptr1 = (uint64_t *)0x0;
                                         }
                                         
                                         // 移动现有数据
@@ -476,9 +476,9 @@ alpha_buffer_expansion:
                                         if (*(longlong *)(param_1 + 0xd0) != 0) {
                                             FUN_18064e900();
                                         }
-                                        *(undefined8 **)(param_1 + 0xd0) = undefined_ptr1;
-                                        *(undefined8 **)(param_1 + 0xd4) = undefined_ptr1 + temp_long2;
-                                        *(undefined8 **)(param_1 + 0xd2) = undefined_ptr1 + 1;
+                                        *(uint64_t **)(param_1 + 0xd0) = undefined_ptr1;
+                                        *(uint64_t **)(param_1 + 0xd4) = undefined_ptr1 + temp_long2;
+                                        *(uint64_t **)(param_1 + 0xd2) = undefined_ptr1 + 1;
                                     }
                                     
                                     // 继续处理关键帧
@@ -488,8 +488,8 @@ alpha_buffer_expansion:
                                         string_ptr1 = string_ptr2 + 1;
                                     } while (*string_ptr1 != '\0');
                                     
-                                    undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb];
-                                    if (undefined_ptr2 != (undefined8 *)0x0) {
+                                    undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb];
+                                    if (undefined_ptr2 != (uint64_t *)0x0) {
                                         do {
                                             string_ptr1 = (char *)*undefined_ptr2;
                                             if (string_ptr1 == (char *)0x0) {
@@ -512,8 +512,8 @@ alpha_buffer_expansion:
                                                     if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
                                                 }
                                             }
-                                            undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb];
-                                            if (undefined_ptr2 == (undefined8 *)0x0) break;
+                                            undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb];
+                                            if (undefined_ptr2 == (uint64_t *)0x0) break;
                                         } while (true);
                                     }
                                     break;
@@ -526,8 +526,8 @@ alpha_buffer_expansion:
                                     if (string_ptr3 <= string_ptr1) goto alpha_channel_processing;
                                 }
                             }
-                            undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb];
-                        } while (undefined_ptr2 != (undefined8 *)0x0);
+                            undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb];
+                        } while (undefined_ptr2 != (uint64_t *)0x0);
                         break;
                     }
                     
@@ -539,8 +539,8 @@ alpha_buffer_expansion:
                     }
                 }
             }
-            undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb];
-        } while (undefined_ptr2 != (undefined8 *)0x0);
+            undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb];
+        } while (undefined_ptr2 != (uint64_t *)0x0);
         
         // 清理资源
         FUN_18026f850;
@@ -554,9 +554,9 @@ alpha_curve_processing:
         string_ptr1 = string_ptr2 + 1;
     } while (*string_ptr1 != '\0');
     
-    undefined_ptr2 = *(undefined8 **)(param_2 + 0x30);
+    undefined_ptr2 = *(uint64_t **)(param_2 + 0x30);
     do {
-        if (undefined_ptr2 == (undefined8 *)0x0) goto animation_data_optimization;
+        if (undefined_ptr2 == (uint64_t *)0x0) goto animation_data_optimization;
         
         string_ptr1 = (char *)*undefined_ptr2;
         if (string_ptr1 == (char *)0x0) {
@@ -579,8 +579,8 @@ alpha_curve_key_processing:
                     string_ptr1 = string_ptr2 + 1;
                 } while (*string_ptr1 != '\0');
                 
-                undefined_ptr2 = (undefined8 *)undefined_ptr2[6];
-                if (undefined_ptr2 == (undefined8 *)0x0) goto animation_data_optimization;
+                undefined_ptr2 = (uint64_t *)undefined_ptr2[6];
+                if (undefined_ptr2 == (uint64_t *)0x0) goto animation_data_optimization;
                 
                 do {
                     string_ptr1 = (char *)*undefined_ptr2;
@@ -604,8 +604,8 @@ alpha_curve_time_processing:
                                 string_ptr1 = string_ptr2 + 1;
                             } while (*string_ptr1 != '\0');
                             
-                            undefined_ptr2 = (undefined8 *)undefined_ptr2[6];
-                            if (undefined_ptr2 == (undefined8 *)0x0) break;
+                            undefined_ptr2 = (uint64_t *)undefined_ptr2[6];
+                            if (undefined_ptr2 == (uint64_t *)0x0) break;
                             
                             do {
                                 string_ptr1 = (char *)*undefined_ptr2;
@@ -629,8 +629,8 @@ alpha_curve_value_extraction:
                                             string_ptr1 = string_ptr2 + 1;
                                         } while (*string_ptr1 != '\0');
                                         
-                                        for (undefined_ptr4 = (undefined8 *)undefined_ptr2[8]; undefined_ptr4 != (undefined8 *)0x0;
-                                             undefined_ptr4 = (undefined8 *)undefined_ptr4[6]) {
+                                        for (undefined_ptr4 = (uint64_t *)undefined_ptr2[8]; undefined_ptr4 != (uint64_t *)0x0;
+                                             undefined_ptr4 = (uint64_t *)undefined_ptr4[6]) {
                                             string_ptr1 = (char *)*undefined_ptr4;
                                             if (string_ptr1 == (char *)0x0) {
                                                 string_ptr3 = (char *)0x0;
@@ -666,8 +666,8 @@ alpha_time_processing:
                                             string_ptr1 = string_ptr2 + 1;
                                         } while (*string_ptr1 != '\0');
                                         
-                                        for (undefined_ptr4 = (undefined8 *)undefined_ptr2[8]; undefined_ptr4 != (undefined8 *)0x0;
-                                             undefined_ptr4 = (undefined8 *)undefined_ptr4[6]) {
+                                        for (undefined_ptr4 = (uint64_t *)undefined_ptr2[8]; undefined_ptr4 != (uint64_t *)0x0;
+                                             undefined_ptr4 = (uint64_t *)undefined_ptr4[6]) {
                                             string_ptr1 = (char *)*undefined_ptr4;
                                             if (string_ptr1 == (char *)0x0) {
                                                 string_ptr3 = (char *)0x0;
@@ -697,26 +697,26 @@ alpha_value_extraction:
                                         }
                                         
                                         // 写入透明度数据
-                                        undefined_ptr4 = *(undefined8 **)(param_1 + 0xd2);
-                                        if (undefined_ptr4 < *(undefined8 **)(param_1 + 0xd4)) {
-                                            *(undefined8 **)(param_1 + 0xd2) = undefined_ptr4 + 1;
+                                        undefined_ptr4 = *(uint64_t **)(param_1 + 0xd2);
+                                        if (undefined_ptr4 < *(uint64_t **)(param_1 + 0xd4)) {
+                                            *(uint64_t **)(param_1 + 0xd2) = undefined_ptr4 + 1;
                                             *undefined_ptr4 = CONCAT44(stack_uint2, stack_uint1);
                                         }
                                         else {
                                             // 扩展透明度缓冲区
-                                            undefined_ptr3 = *(undefined8 **)(param_1 + 0xd0);
+                                            undefined_ptr3 = *(uint64_t **)(param_1 + 0xd0);
                                             temp_long2 = (longlong)undefined_ptr4 - (longlong)undefined_ptr3 >> 3;
                                             if (temp_long2 == 0) {
                                                 temp_long2 = 1;
 alpha_buffer_processing:
-                                                undefined_ptr1 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, temp_long2 * 8);
-                                                undefined_ptr3 = *(undefined8 **)(param_1 + 0xd0);
-                                                undefined_ptr4 = *(undefined8 **)(param_1 + 0xd2);
+                                                undefined_ptr1 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, temp_long2 * 8);
+                                                undefined_ptr3 = *(uint64_t **)(param_1 + 0xd0);
+                                                undefined_ptr4 = *(uint64_t **)(param_1 + 0xd2);
                                             }
                                             else {
                                                 temp_long2 = temp_long2 * 2;
                                                 if (temp_long2 != 0) goto alpha_buffer_processing;
-                                                undefined_ptr1 = (undefined8 *)0x0;
+                                                undefined_ptr1 = (uint64_t *)0x0;
                                             }
                                             
                                             // 移动现有数据
@@ -731,9 +731,9 @@ alpha_buffer_processing:
                                             if (*(longlong *)(param_1 + 0xd0) != 0) {
                                                 FUN_18064e900();
                                             }
-                                            *(undefined8 **)(param_1 + 0xd0) = undefined_ptr1;
-                                            *(undefined8 **)(param_1 + 0xd4) = undefined_ptr1 + temp_long2;
-                                            *(undefined8 **)(param_1 + 0xd2) = undefined_ptr1 + 1;
+                                            *(uint64_t **)(param_1 + 0xd0) = undefined_ptr1;
+                                            *(uint64_t **)(param_1 + 0xd4) = undefined_ptr1 + temp_long2;
+                                            *(uint64_t **)(param_1 + 0xd2) = undefined_ptr1 + 1;
                                         }
                                         
                                         // 继续处理关键帧
@@ -743,8 +743,8 @@ alpha_buffer_processing:
                                             string_ptr1 = string_ptr2 + 1;
                                         } while (*string_ptr1 != '\0');
                                         
-                                        undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb];
-                                        if (undefined_ptr2 != (undefined8 *)0x0) {
+                                        undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb];
+                                        if (undefined_ptr2 != (uint64_t *)0x0) {
                                             do {
                                                 string_ptr1 = (char *)*undefined_ptr2;
                                                 if (string_ptr1 == (char *)0x0) {
@@ -767,8 +767,8 @@ alpha_buffer_processing:
                                                         if (string_ptr3 <= string_ptr1) goto alpha_curve_value_extraction;
                                                     }
                                                 }
-                                                undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb];
-                                                if (undefined_ptr2 == (undefined8 *)0x0) break;
+                                                undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb];
+                                                if (undefined_ptr2 == (uint64_t *)0x0) break;
                                             } while (true);
                                         }
                                         break;
@@ -781,8 +781,8 @@ alpha_buffer_processing:
                                         if (string_ptr3 <= string_ptr1) goto alpha_curve_time_processing;
                                     }
                                 }
-                                undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb];
-                            } while (undefined_ptr2 != (undefined8 *)0x0);
+                                undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb];
+                            } while (undefined_ptr2 != (uint64_t *)0x0);
                             break;
                         }
                         
@@ -793,8 +793,8 @@ alpha_buffer_processing:
                             if (string_ptr3 <= string_ptr1) goto alpha_curve_time_processing;
                         }
                     }
-                    undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb];
-                } while (undefined_ptr2 != (undefined8 *)0x0);
+                    undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb];
+                } while (undefined_ptr2 != (uint64_t *)0x0);
                 
 animation_data_optimization:
                 // 优化动画数据
@@ -879,9 +879,9 @@ animation_data_optimization:
                             
                             // 插入排序算法
                             while (temp_float10 < temp_float2) {
-                                temp_undefined1 = *(undefined8 *)float_ptr1;
+                                temp_int8_t = *(uint64_t *)float_ptr1;
                                 float_ptr1 = float_ptr1 + -2;
-                                *(undefined8 *)float_ptr2 = temp_undefined1;
+                                *(uint64_t *)float_ptr2 = temp_int8_t;
                                 float_ptr2 = float_ptr2 + -2;
                                 temp_float2 = *float_ptr1;
                             }
@@ -1011,12 +1011,12 @@ alpha_interpolation_complete:
                 if (string_ptr3 <= string_ptr1) goto alpha_curve_key_processing;
             }
         }
-        undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb];
+        undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb];
     } while (true);
     
 color_curve_node_validation:
-    undefined_ptr2 = (undefined8 *)undefined_ptr2[0xb];
-    if (undefined_ptr2 == (undefined8 *)0x0) goto alpha_curve_processing;
+    undefined_ptr2 = (uint64_t *)undefined_ptr2[0xb];
+    if (undefined_ptr2 == (uint64_t *)0x0) goto alpha_curve_processing;
     goto color_curve_processing;
 }
 
@@ -1046,8 +1046,8 @@ void animation_data_batch_processor(longlong *param_1, longlong *param_2)
             temp_long1 = *param_2;
             // 批量处理动画数据
             (**(code **)(*param_1 + 8))
-                (param_1, *(undefined4 *)(temp_long2 + temp_long1), *(undefined4 *)(temp_long2 + 4 + temp_long1),
-                 *(undefined8 *)(temp_long2 + 8 + temp_long1), 0);
+                (param_1, *(int32_t *)(temp_long2 + temp_long1), *(int32_t *)(temp_long2 + 4 + temp_long1),
+                 *(uint64_t *)(temp_long2 + 8 + temp_long1), 0);
             temp_long2 = temp_long2 + 0x10;
             temp_long3 = temp_long3 + -1;
         } while (temp_long3 != 0);
@@ -1092,7 +1092,7 @@ void null_operation_processor(void)
  * @param param_3 内存分配器
  * @param param_4 数据存储指针
  */
-void animation_parameter_configurator(longlong param_1, undefined8 param_2, longlong param_3, longlong param_4)
+void animation_parameter_configurator(longlong param_1, uint64_t param_2, longlong param_3, longlong param_4)
 {
     int temp_int1;
     float temp_float1;
@@ -1100,9 +1100,9 @@ void animation_parameter_configurator(longlong param_1, undefined8 param_2, long
     int temp_int3;
     float temp_float2;
     int temp_int4;
-    undefined8 *undefined_ptr1;
+    uint64_t *undefined_ptr1;
     char *string_ptr1;
-    undefined8 *undefined_ptr2;
+    uint64_t *undefined_ptr2;
     char *string_ptr2;
     int *int_ptr1;
     float stack_float1;
@@ -1110,11 +1110,11 @@ void animation_parameter_configurator(longlong param_1, undefined8 param_2, long
     
     // 检查并创建动画曲线
     if (*(longlong *)(param_1 + 8) != *(longlong *)(param_1 + 0x10)) {
-        undefined_ptr1 = (undefined8 *)FUN_1804c1300(param_3 + 0x60, 0x60);
+        undefined_ptr1 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
         *undefined_ptr1 = 0;
         undefined_ptr1[1] = 0;
         undefined_ptr1[4] = 0;
-        *(undefined4 *)(undefined_ptr1 + 5) = 1;
+        *(int32_t *)(undefined_ptr1 + 5) = 1;
         undefined_ptr1[6] = 0;
         undefined_ptr1[8] = 0;
         
@@ -1135,22 +1135,22 @@ void animation_parameter_configurator(longlong param_1, undefined8 param_2, long
         // 链接曲线节点
         if (*(longlong *)(param_4 + 0x30) == 0) {
             undefined_ptr1[10] = 0;
-            *(undefined8 **)(param_4 + 0x30) = undefined_ptr1;
+            *(uint64_t **)(param_4 + 0x30) = undefined_ptr1;
         }
         else {
-            undefined_ptr1[10] = *(undefined8 *)(param_4 + 0x38);
-            *(undefined8 **)(*(longlong *)(param_4 + 0x38) + 0x58) = undefined_ptr1;
+            undefined_ptr1[10] = *(uint64_t *)(param_4 + 0x38);
+            *(uint64_t **)(*(longlong *)(param_4 + 0x38) + 0x58) = undefined_ptr1;
         }
-        *(undefined8 **)(param_4 + 0x38) = undefined_ptr1;
+        *(uint64_t **)(param_4 + 0x38) = undefined_ptr1;
         undefined_ptr1[4] = param_4;
         undefined_ptr1[0xb] = 0;
         
         // 创建关键帧容器
-        undefined_ptr2 = (undefined8 *)FUN_1804c1300(param_3 + 0x60, 0x60);
+        undefined_ptr2 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
         *undefined_ptr2 = 0;
         undefined_ptr2[1] = 0;
         undefined_ptr2[4] = 0;
-        *(undefined4 *)(undefined_ptr2 + 5) = 1;
+        *(int32_t *)(undefined_ptr2 + 5) = 1;
         undefined_ptr2[6] = 0;
         undefined_ptr2[8] = 0;
         
@@ -1171,7 +1171,7 @@ void animation_parameter_configurator(longlong param_1, undefined8 param_2, long
         }
         else {
             undefined_ptr2[10] = undefined_ptr1[7];
-            *(undefined8 **)(undefined_ptr1[7] + 0x58) = undefined_ptr2;
+            *(uint64_t **)(undefined_ptr1[7] + 0x58) = undefined_ptr2;
         }
         undefined_ptr1[7] = undefined_ptr2;
         undefined_ptr2[4] = undefined_ptr1;
@@ -1189,11 +1189,11 @@ void animation_parameter_configurator(longlong param_1, undefined8 param_2, long
                 temp_int4 = int_ptr1[7];
                 
                 // 创建时间关键帧
-                undefined_ptr1 = (undefined8 *)FUN_1804c1300(param_3 + 0x60, 0x60);
+                undefined_ptr1 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
                 *undefined_ptr1 = 0;
                 undefined_ptr1[1] = 0;
                 undefined_ptr1[4] = 0;
-                *(undefined4 *)(undefined_ptr1 + 5) = 1;
+                *(int32_t *)(undefined_ptr1 + 5) = 1;
                 undefined_ptr1[6] = 0;
                 undefined_ptr1[8] = 0;
                 
@@ -1217,18 +1217,18 @@ void animation_parameter_configurator(longlong param_1, undefined8 param_2, long
                 }
                 else {
                     undefined_ptr1[10] = undefined_ptr2[7];
-                    *(undefined8 **)(undefined_ptr2[7] + 0x58) = undefined_ptr1;
+                    *(uint64_t **)(undefined_ptr2[7] + 0x58) = undefined_ptr1;
                 }
                 undefined_ptr2[7] = undefined_ptr1;
                 undefined_ptr1[4] = undefined_ptr2;
                 undefined_ptr1[0xb] = 0;
                 
                 // 创建数值关键帧
-                undefined_ptr1 = (undefined8 *)FUN_1804c1300(param_3 + 0x60, 0x60);
+                undefined_ptr1 = (uint64_t *)FUN_1804c1300(param_3 + 0x60, 0x60);
                 *undefined_ptr1 = 0;
                 undefined_ptr1[1] = 0;
                 undefined_ptr1[4] = 0;
-                *(undefined4 *)(undefined_ptr1 + 5) = 1;
+                *(int32_t *)(undefined_ptr1 + 5) = 1;
                 undefined_ptr1[6] = 0;
                 undefined_ptr1[8] = 0;
                 
@@ -1252,7 +1252,7 @@ void animation_parameter_configurator(longlong param_1, undefined8 param_2, long
                 }
                 else {
                     undefined_ptr1[10] = undefined_ptr2[7];
-                    *(undefined8 **)(undefined_ptr2[7] + 0x58) = undefined_ptr1;
+                    *(uint64_t **)(undefined_ptr2[7] + 0x58) = undefined_ptr1;
                 }
                 undefined_ptr2[7] = undefined_ptr1;
                 int_ptr1 = int_ptr1 + 8;
@@ -1311,7 +1311,7 @@ void animation_sync_handler(void) __attribute__((alias("FUN_1804168ee")));
  * 
  * @see FUN_180416900
  */
-void animation_setup_manager(longlong param_1, undefined8 param_2, longlong param_3, longlong param_4) __attribute__((alias("FUN_180416900")));
+void animation_setup_manager(longlong param_1, uint64_t param_2, longlong param_3, longlong param_4) __attribute__((alias("FUN_180416900")));
 
 // =============================================================================
 // 模块说明和版本信息

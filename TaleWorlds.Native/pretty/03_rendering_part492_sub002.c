@@ -2,9 +2,9 @@
 
 // 03_rendering_part492_sub002.c - 1 个函数
 
-// 函数: void FUN_18052f6f0(longlong param_1,longlong param_2,undefined4 *param_3,undefined4 *param_4,
-void FUN_18052f6f0(longlong param_1,longlong param_2,undefined4 *param_3,undefined4 *param_4,
-                  undefined1 *param_5,undefined1 *param_6,float *param_7)
+// 函数: void FUN_18052f6f0(longlong param_1,longlong param_2,int32_t *param_3,int32_t *param_4,
+void FUN_18052f6f0(longlong param_1,longlong param_2,int32_t *param_3,int32_t *param_4,
+                  int8_t *param_5,int8_t *param_6,float *param_7)
 
 {
   float fVar1;
@@ -12,12 +12,12 @@ void FUN_18052f6f0(longlong param_1,longlong param_2,undefined4 *param_3,undefin
   float fVar3;
   int iVar4;
   char cVar5;
-  undefined4 uVar6;
-  undefined1 uVar7;
+  int32_t uVar6;
+  int8_t uVar7;
   uint uVar8;
   uint uVar9;
   ulonglong uVar10;
-  undefined4 extraout_XMM0_Da;
+  int32_t extraout_XMM0_Da;
   float fVar11;
   float fVar12;
   float fVar13;
@@ -68,15 +68,15 @@ void FUN_18052f6f0(longlong param_1,longlong param_2,undefined4 *param_3,undefin
           }
           fVar13 = *(float *)(*(longlong *)(param_1 + 0x20) + 0x20);
           fVar11 = *(float *)(*(longlong *)(param_1 + 0x20) + 0x1c);
-          uVar6 = FUN_180557850(*(undefined8 *)(param_1 + 0x598),0xffffffff,uVar7,0xff,
-                                *(undefined1 *)(*(longlong *)(param_1 + 0x590) + 0x34bc),
+          uVar6 = FUN_180557850(*(uint64_t *)(param_1 + 0x598),0xffffffff,uVar7,0xff,
+                                *(int8_t *)(*(longlong *)(param_1 + 0x590) + 0x34bc),
                                 ((float)*(int *)(param_2 + 0x88) / *(float *)(param_2 + 0xc0)) * 0.1
                                 < (float)*(int *)(param_2 + 0x88),0,
                                 1.0 < fVar11 * fVar11 + fVar13 * fVar13);
           *param_3 = uVar6;
           *param_5 = 1;
                     // WARNING: Subroutine does not return
-          FUN_1808fd400(*(undefined4 *)(*(longlong *)(param_1 + 0x20) + 0x34));
+          FUN_1808fd400(*(int32_t *)(*(longlong *)(param_1 + 0x20) + 0x34));
         }
       }
       uVar6 = func_0x00018051cd90(extraout_XMM0_Da,param_2);

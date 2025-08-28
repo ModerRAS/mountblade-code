@@ -2,9 +2,9 @@
 
 // 99_part_12_part033.c - 5 个函数
 
-// 函数: void FUN_1807e0930(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-void FUN_1807e0930(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-                  undefined8 param_6,int param_7)
+// 函数: void FUN_1807e0930(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void FUN_1807e0930(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+                  uint64_t param_6,int param_7)
 
 {
   float fVar1;
@@ -167,9 +167,9 @@ void FUN_1807e0930(float *param_1,float *param_2,uint param_3,float *param_4,und
 
 
 
-// 函数: void FUN_1807e0cf0(float *param_1,longlong param_2,uint param_3,float *param_4,undefined8 param_5,
-void FUN_1807e0cf0(float *param_1,longlong param_2,uint param_3,float *param_4,undefined8 param_5,
-                  undefined8 param_6,int param_7)
+// 函数: void FUN_1807e0cf0(float *param_1,longlong param_2,uint param_3,float *param_4,uint64_t param_5,
+void FUN_1807e0cf0(float *param_1,longlong param_2,uint param_3,float *param_4,uint64_t param_5,
+                  uint64_t param_6,int param_7)
 
 {
   float fVar1;
@@ -328,8 +328,8 @@ void FUN_1807e0cf0(float *param_1,longlong param_2,uint param_3,float *param_4,u
 
 
 
-// 函数: void FUN_1807e0d55(float *param_1,undefined8 param_2,undefined8 param_3)
-void FUN_1807e0d55(float *param_1,undefined8 param_2,undefined8 param_3)
+// 函数: void FUN_1807e0d55(float *param_1,uint64_t param_2,uint64_t param_3)
+void FUN_1807e0d55(float *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   float fVar1;
@@ -364,9 +364,9 @@ void FUN_1807e0d55(float *param_1,undefined8 param_2,undefined8 param_3)
   longlong unaff_RSI;
   uint unaff_EDI;
   int in_R8D;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   bool in_ZF;
-  undefined4 in_XMM0_Da;
+  int32_t in_XMM0_Da;
   float fVar27;
   float in_XMM2_Dc;
   float in_XMM2_Dd;
@@ -392,7 +392,7 @@ void FUN_1807e0d55(float *param_1,undefined8 param_2,undefined8 param_3)
   float unaff_XMM11_Dd;
   
   fVar27 = (float)((ulonglong)param_3 >> 0x20);
-  *(undefined8 *)(in_RAX + 8) = unaff_R14;
+  *(uint64_t *)(in_RAX + 8) = unaff_R14;
   if (!in_ZF) {
                     // WARNING: Subroutine does not return
     memset(in_XMM0_Da,0,(ulonglong)(uint)(in_R8D * 6) << 2);
@@ -574,9 +574,9 @@ void FUN_1807e0f64(void)
 
 
 
-// 函数: void FUN_1807e11a0(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-void FUN_1807e11a0(float *param_1,float *param_2,uint param_3,float *param_4,undefined8 param_5,
-                  undefined8 param_6,int param_7)
+// 函数: void FUN_1807e11a0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void FUN_1807e11a0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+                  uint64_t param_6,int param_7)
 
 {
   float fVar1;

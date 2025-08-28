@@ -208,69 +208,69 @@ void rendering_system_parameter_processor(
     // 局部变量声明
     byte *buffer_ptr;
     code *function_ptr;
-    undefined4 param_values[6];
+    int32_t param_values[6];
     longlong temp_value1;
     longlong temp_value2;
     longlong temp_value3;
     byte *string_ptr;
     longlong *resource_ptr;
     int compare_result;
-    undefined4 *param_array_ptr;
+    int32_t *param_array_ptr;
     longlong array_value;
     longlong *next_resource_ptr;
-    undefined *resource_data;
-    undefined *stack_data;
+    void *resource_data;
+    void *stack_data;
     ulonglong checksum_value;
     ulonglong loop_counter;
     uint param_value;
     ulonglong array_index;
     
     // 栈缓冲区声明（用于临时数据存储）
-    undefined1 stack_buffer_488[32];
+    int8_t stack_buffer_488[32];
     longlong *stack_context_468;
     longlong *stack_context_460;
     char stack_flag_458;
     longlong *stack_resource_440;
     longlong *stack_resource_438;
     longlong *stack_resource_430;
-    undefined8 stack_guard_428;
-    undefined *stack_data_418;
+    uint64_t stack_guard_428;
+    void *stack_data_418;
     byte *stack_string_410;
     int stack_length_408;
     byte stack_buffer_400[72];
-    undefined *stack_data_3b8;
+    void *stack_data_3b8;
     byte *stack_string_3b0;
     int stack_length_3a8;
     byte stack_buffer_3a0[72];
-    undefined *stack_data_358;
+    void *stack_data_358;
     byte *stack_string_350;
     int stack_length_348;
     byte stack_buffer_340[72];
-    undefined *stack_data_2f8;
+    void *stack_data_2f8;
     byte *stack_string_2f0;
     int stack_length_2e8;
     byte stack_buffer_2e0[72];
-    undefined *stack_data_298;
+    void *stack_data_298;
     byte *stack_string_290;
     int stack_length_288;
     byte stack_buffer_280[72];
-    undefined *stack_data_238;
+    void *stack_data_238;
     byte *stack_string_230;
     int stack_length_228;
     byte stack_buffer_220[72];
-    undefined *stack_data_1d8;
+    void *stack_data_1d8;
     byte *stack_string_1d0;
     int stack_length_1c8;
     byte stack_buffer_1c0[72];
-    undefined *stack_data_178;
+    void *stack_data_178;
     byte *stack_string_170;
     int stack_length_168;
     byte stack_buffer_160[72];
-    undefined *stack_data_118;
+    void *stack_data_118;
     byte *stack_string_110;
     int stack_length_108;
     byte stack_buffer_100[72];
-    undefined *stack_data_b8;
+    void *stack_data_b8;
     byte *stack_string_b0;
     int stack_length_a8;
     byte stack_buffer_a0[72];
@@ -292,19 +292,19 @@ void rendering_system_parameter_processor(
     if (next_resource_ptr != param_context + 1) {
         do {
             loop_counter = 0;
-            param_array_ptr = (undefined4 *)next_resource_ptr[2];
+            param_array_ptr = (int32_t *)next_resource_ptr[2];
             
             // 根据参数类型进行处理
             switch(*param_array_ptr) {
                 case RENDERING_PARAM_TYPE_BASIC:
                     // 基础参数处理
                     if (is_initialization == '\0') {
-                        *(undefined4 *)((longlong)render_context + 0x324) = param_array_ptr[2];
-                        *(undefined1 *)((longlong)render_context + 0x32c) = 0;
+                        *(int32_t *)((longlong)render_context + 0x324) = param_array_ptr[2];
+                        *(int8_t *)((longlong)render_context + 0x32c) = 0;
                     }
                     else {
-                        *(undefined4 *)((longlong)render_context + 0x324) = *(undefined4 *)(*param_context + 0x324);
-                        *(undefined1 *)((longlong)render_context + 0x32c) = *(undefined1 *)(*param_context + 0x32c);
+                        *(int32_t *)((longlong)render_context + 0x324) = *(int32_t *)(*param_context + 0x324);
+                        *(int8_t *)((longlong)render_context + 0x32c) = *(int8_t *)(*param_context + 0x32c);
                     }
                     break;
                     
@@ -362,7 +362,7 @@ void rendering_system_parameter_processor(
                         param_array_ptr = param_array_ptr + 2;
                     }
                     else {
-                        param_array_ptr = (undefined4 *)(*param_context + 0x330);
+                        param_array_ptr = (int32_t *)(*param_context + 0x330);
                     }
                     (**(code **)(*render_context + 0x148))(render_context, param_array_ptr);
                     FUN_180276f30(render_context, (longlong)render_context + 0x214, 1);
@@ -379,10 +379,10 @@ void rendering_system_parameter_processor(
                                 param_values[0] = param_array_ptr[3];
                                 param_values[1] = param_array_ptr[4];
                                 param_values[2] = param_array_ptr[5];
-                                *(undefined4 *)(temp_value1 + 0x2b8) = param_array_ptr[2];
-                                *(undefined4 *)(temp_value1 + 700) = param_values[0];
-                                *(undefined4 *)(temp_value1 + 0x2c0) = param_values[1];
-                                *(undefined4 *)(temp_value1 + 0x2c4) = param_values[2];
+                                *(int32_t *)(temp_value1 + 0x2b8) = param_array_ptr[2];
+                                *(int32_t *)(temp_value1 + 700) = param_values[0];
+                                *(int32_t *)(temp_value1 + 0x2c0) = param_values[1];
+                                *(int32_t *)(temp_value1 + 0x2c4) = param_values[2];
                                 resource_ptr = resource_ptr + 2;
                             } while (resource_ptr < (longlong *)render_context[8]);
                         }
@@ -397,13 +397,13 @@ void rendering_system_parameter_processor(
                             if (resource_ptr < (longlong *)render_context[8]) {
                                 do {
                                     temp_value2 = *resource_ptr;
-                                    param_values[0] = *(undefined4 *)(temp_value1 + 700);
-                                    param_values[1] = *(undefined4 *)(temp_value1 + 0x2c0);
-                                    param_values[2] = *(undefined4 *)(temp_value1 + 0x2c4);
-                                    *(undefined4 *)(temp_value2 + 0x2b8) = *(undefined4 *)(temp_value1 + 0x2b8);
-                                    *(undefined4 *)(temp_value2 + 700) = param_values[0];
-                                    *(undefined4 *)(temp_value2 + 0x2c0) = param_values[1];
-                                    *(undefined4 *)(temp_value2 + 0x2c4) = param_values[2];
+                                    param_values[0] = *(int32_t *)(temp_value1 + 700);
+                                    param_values[1] = *(int32_t *)(temp_value1 + 0x2c0);
+                                    param_values[2] = *(int32_t *)(temp_value1 + 0x2c4);
+                                    *(int32_t *)(temp_value2 + 0x2b8) = *(int32_t *)(temp_value1 + 0x2b8);
+                                    *(int32_t *)(temp_value2 + 700) = param_values[0];
+                                    *(int32_t *)(temp_value2 + 0x2c0) = param_values[1];
+                                    *(int32_t *)(temp_value2 + 0x2c4) = param_values[2];
                                     resource_ptr = resource_ptr + 2;
                                 } while (resource_ptr < (longlong *)render_context[8]);
                             }
@@ -433,8 +433,8 @@ void rendering_system_parameter_processor(
                                 stack_buffer_3a0[0] = 0;
                                 stack_length_3a8 = *(int *)(temp_value2 + 0x10);
                                 resource_data = &DAT_18098bc73;
-                                if (*(undefined **)(temp_value2 + 8) != (undefined *)0x0) {
-                                    resource_data = *(undefined **)(temp_value2 + 8);
+                                if (*(void **)(temp_value2 + 8) != (void *)0x0) {
+                                    resource_data = *(void **)(temp_value2 + 8);
                                 }
                                 stack_data_3b8 = stack_data;
                                 strcpy_s(stack_buffer_3a0, 0x40, resource_data);
@@ -517,8 +517,8 @@ void rendering_system_parameter_processor(
                                 stack_buffer_400[0] = 0;
                                 stack_length_408 = *(int *)(temp_value2 + 0x10);
                                 resource_data = &DAT_18098bc73;
-                                if (*(undefined **)(temp_value2 + 8) != (undefined *)0x0) {
-                                    resource_data = *(undefined **)(temp_value2 + 8);
+                                if (*(void **)(temp_value2 + 8) != (void *)0x0) {
+                                    resource_data = *(void **)(temp_value2 + 8);
                                 }
                                 stack_data_418 = stack_data;
                                 strcpy_s(stack_buffer_400, 0x40, resource_data);
@@ -594,8 +594,8 @@ void rendering_system_parameter_processor(
                                 stack_buffer_2e0[0] = 0;
                                 stack_length_2e8 = *(int *)(temp_value2 + 0x10);
                                 resource_data = &DAT_18098bc73;
-                                if (*(undefined **)(temp_value2 + 8) != (undefined *)0x0) {
-                                    resource_data = *(undefined **)(temp_value2 + 8);
+                                if (*(void **)(temp_value2 + 8) != (void *)0x0) {
+                                    resource_data = *(void **)(temp_value2 + 8);
                                 }
                                 stack_data_2f8 = stack_data;
                                 strcpy_s(stack_buffer_2e0, 0x40, resource_data);
@@ -667,8 +667,8 @@ void rendering_system_parameter_processor(
                                 stack_buffer_340[0] = 0;
                                 stack_length_348 = *(int *)(temp_value2 + 0x10);
                                 resource_data = &DAT_18098bc73;
-                                if (*(undefined **)(temp_value2 + 8) != (undefined *)0x0) {
-                                    resource_data = *(undefined **)(temp_value2 + 8);
+                                if (*(void **)(temp_value2 + 8) != (void *)0x0) {
+                                    resource_data = *(void **)(temp_value2 + 8);
                                 }
                                 stack_data_358 = stack_data;
                                 strcpy_s(stack_buffer_340, 0x40, resource_data);
@@ -693,13 +693,13 @@ void rendering_system_parameter_processor(
                                     }
                                     if (compare_result == 0) {
                                         temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
-                                        param_values[0] = *(undefined4 *)(temp_value2 + 0x23c);
-                                        param_values[1] = *(undefined4 *)(temp_value2 + 0x240);
-                                        param_values[2] = *(undefined4 *)(temp_value2 + 0x244);
-                                        *(undefined4 *)(temp_value1 + 0x238) = *(undefined4 *)(temp_value2 + 0x238);
-                                        *(undefined4 *)(temp_value1 + 0x23c) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x240) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x244) = param_values[2];
+                                        param_values[0] = *(int32_t *)(temp_value2 + 0x23c);
+                                        param_values[1] = *(int32_t *)(temp_value2 + 0x240);
+                                        param_values[2] = *(int32_t *)(temp_value2 + 0x244);
+                                        *(int32_t *)(temp_value1 + 0x238) = *(int32_t *)(temp_value2 + 0x238);
+                                        *(int32_t *)(temp_value1 + 0x23c) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x240) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x244) = param_values[2];
                                         stack_data_358 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -707,13 +707,13 @@ void rendering_system_parameter_processor(
                                 else if (stack_length_348 == 0) {
                                     if (compare_result == 0) {
                                         temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
-                                        param_values[0] = *(undefined4 *)(temp_value2 + 0x23c);
-                                        param_values[1] = *(undefined4 *)(temp_value2 + 0x240);
-                                        param_values[2] = *(undefined4 *)(temp_value2 + 0x244);
-                                        *(undefined4 *)(temp_value1 + 0x238) = *(undefined4 *)(temp_value2 + 0x238);
-                                        *(undefined4 *)(temp_value1 + 0x23c) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x240) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x244) = param_values[2];
+                                        param_values[0] = *(int32_t *)(temp_value2 + 0x23c);
+                                        param_values[1] = *(int32_t *)(temp_value2 + 0x240);
+                                        param_values[2] = *(int32_t *)(temp_value2 + 0x244);
+                                        *(int32_t *)(temp_value1 + 0x238) = *(int32_t *)(temp_value2 + 0x238);
+                                        *(int32_t *)(temp_value1 + 0x23c) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x240) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x244) = param_values[2];
                                         stack_data_358 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -750,8 +750,8 @@ void rendering_system_parameter_processor(
                                 stack_buffer_220[0] = 0;
                                 stack_length_228 = *(int *)(temp_value2 + 0x10);
                                 resource_data = &DAT_18098bc73;
-                                if (*(undefined **)(temp_value2 + 8) != (undefined *)0x0) {
-                                    resource_data = *(undefined **)(temp_value2 + 8);
+                                if (*(void **)(temp_value2 + 8) != (void *)0x0) {
+                                    resource_data = *(void **)(temp_value2 + 8);
                                 }
                                 stack_data_238 = stack_data;
                                 strcpy_s(stack_buffer_220, 0x40, resource_data);
@@ -823,8 +823,8 @@ void rendering_system_parameter_processor(
                                 stack_buffer_280[0] = 0;
                                 stack_length_288 = *(int *)(temp_value2 + 0x10);
                                 resource_data = &DAT_18098bc73;
-                                if (*(undefined **)(temp_value2 + 8) != (undefined *)0x0) {
-                                    resource_data = *(undefined **)(temp_value2 + 8);
+                                if (*(void **)(temp_value2 + 8) != (void *)0x0) {
+                                    resource_data = *(void **)(temp_value2 + 8);
                                 }
                                 stack_data_298 = stack_data;
                                 strcpy_s(stack_buffer_280, 0x40, resource_data);
@@ -849,13 +849,13 @@ void rendering_system_parameter_processor(
                                     }
                                     if (compare_result == 0) {
                                         temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
-                                        param_values[0] = *(undefined4 *)(temp_value2 + 0x24c);
-                                        param_values[1] = *(undefined4 *)(temp_value2 + 0x250);
-                                        param_values[2] = *(undefined4 *)(temp_value2 + 0x254);
-                                        *(undefined4 *)(temp_value1 + 0x248) = *(undefined4 *)(temp_value2 + 0x248);
-                                        *(undefined4 *)(temp_value1 + 0x24c) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x250) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x254) = param_values[2];
+                                        param_values[0] = *(int32_t *)(temp_value2 + 0x24c);
+                                        param_values[1] = *(int32_t *)(temp_value2 + 0x250);
+                                        param_values[2] = *(int32_t *)(temp_value2 + 0x254);
+                                        *(int32_t *)(temp_value1 + 0x248) = *(int32_t *)(temp_value2 + 0x248);
+                                        *(int32_t *)(temp_value1 + 0x24c) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x250) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x254) = param_values[2];
                                         stack_data_298 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -863,13 +863,13 @@ void rendering_system_parameter_processor(
                                 else if (stack_length_288 == 0) {
                                     if (compare_result == 0) {
                                         temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
-                                        param_values[0] = *(undefined4 *)(temp_value2 + 0x24c);
-                                        param_values[1] = *(undefined4 *)(temp_value2 + 0x250);
-                                        param_values[2] = *(undefined4 *)(temp_value2 + 0x254);
-                                        *(undefined4 *)(temp_value1 + 0x248) = *(undefined4 *)(temp_value2 + 0x248);
-                                        *(undefined4 *)(temp_value1 + 0x24c) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x250) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x254) = param_values[2];
+                                        param_values[0] = *(int32_t *)(temp_value2 + 0x24c);
+                                        param_values[1] = *(int32_t *)(temp_value2 + 0x250);
+                                        param_values[2] = *(int32_t *)(temp_value2 + 0x254);
+                                        *(int32_t *)(temp_value1 + 0x248) = *(int32_t *)(temp_value2 + 0x248);
+                                        *(int32_t *)(temp_value1 + 0x24c) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x250) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x254) = param_values[2];
                                         stack_data_298 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -906,8 +906,8 @@ void rendering_system_parameter_processor(
                                 stack_buffer_160[0] = 0;
                                 stack_length_168 = *(int *)(temp_value2 + 0x10);
                                 resource_data = &DAT_18098bc73;
-                                if (*(undefined **)(temp_value2 + 8) != (undefined *)0x0) {
-                                    resource_data = *(undefined **)(temp_value2 + 8);
+                                if (*(void **)(temp_value2 + 8) != (void *)0x0) {
+                                    resource_data = *(void **)(temp_value2 + 8);
                                 }
                                 stack_data_178 = stack_data;
                                 strcpy_s(stack_buffer_160, 0x40, resource_data);
@@ -934,10 +934,10 @@ void rendering_system_parameter_processor(
                                         param_values[0] = param_array_ptr[0x43];
                                         param_values[1] = param_array_ptr[0x44];
                                         param_values[2] = param_array_ptr[0x45];
-                                        *(undefined4 *)(temp_value1 + 0x2a8) = param_array_ptr[0x42];
-                                        *(undefined4 *)(temp_value1 + 0x2ac) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x2b0) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x2b4) = param_values[2];
+                                        *(int32_t *)(temp_value1 + 0x2a8) = param_array_ptr[0x42];
+                                        *(int32_t *)(temp_value1 + 0x2ac) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x2b0) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x2b4) = param_values[2];
                                         stack_data_178 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -947,10 +947,10 @@ void rendering_system_parameter_processor(
                                         param_values[0] = param_array_ptr[0x43];
                                         param_values[1] = param_array_ptr[0x44];
                                         param_values[2] = param_array_ptr[0x45];
-                                        *(undefined4 *)(temp_value1 + 0x2a8) = param_array_ptr[0x42];
-                                        *(undefined4 *)(temp_value1 + 0x2ac) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x2b0) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x2b4) = param_values[2];
+                                        *(int32_t *)(temp_value1 + 0x2a8) = param_array_ptr[0x42];
+                                        *(int32_t *)(temp_value1 + 0x2ac) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x2b0) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x2b4) = param_values[2];
                                         stack_data_178 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -982,8 +982,8 @@ void rendering_system_parameter_processor(
                                 stack_buffer_1c0[0] = 0;
                                 stack_length_1c8 = *(int *)(temp_value2 + 0x10);
                                 resource_data = &DAT_18098bc73;
-                                if (*(undefined **)(temp_value2 + 8) != (undefined *)0x0) {
-                                    resource_data = *(undefined **)(temp_value2 + 8);
+                                if (*(void **)(temp_value2 + 8) != (void *)0x0) {
+                                    resource_data = *(void **)(temp_value2 + 8);
                                 }
                                 stack_data_1d8 = stack_data;
                                 strcpy_s(stack_buffer_1c0, 0x40, resource_data);
@@ -1008,13 +1008,13 @@ void rendering_system_parameter_processor(
                                     }
                                     if (compare_result == 0) {
                                         temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
-                                        param_values[0] = *(undefined4 *)(temp_value2 + 0x2ac);
-                                        param_values[1] = *(undefined4 *)(temp_value2 + 0x2b0);
-                                        param_values[2] = *(undefined4 *)(temp_value2 + 0x2b4);
-                                        *(undefined4 *)(temp_value1 + 0x2a8) = *(undefined4 *)(temp_value2 + 0x2a8);
-                                        *(undefined4 *)(temp_value1 + 0x2ac) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x2b0) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x2b4) = param_values[2];
+                                        param_values[0] = *(int32_t *)(temp_value2 + 0x2ac);
+                                        param_values[1] = *(int32_t *)(temp_value2 + 0x2b0);
+                                        param_values[2] = *(int32_t *)(temp_value2 + 0x2b4);
+                                        *(int32_t *)(temp_value1 + 0x2a8) = *(int32_t *)(temp_value2 + 0x2a8);
+                                        *(int32_t *)(temp_value1 + 0x2ac) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x2b0) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x2b4) = param_values[2];
                                         stack_data_1d8 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -1022,13 +1022,13 @@ void rendering_system_parameter_processor(
                                 else if (stack_length_1c8 == 0) {
                                     if (compare_result == 0) {
                                         temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
-                                        param_values[0] = *(undefined4 *)(temp_value2 + 0x2ac);
-                                        param_values[1] = *(undefined4 *)(temp_value2 + 0x2b0);
-                                        param_values[2] = *(undefined4 *)(temp_value2 + 0x2b4);
-                                        *(undefined4 *)(temp_value1 + 0x2a8) = *(undefined4 *)(temp_value2 + 0x2a8);
-                                        *(undefined4 *)(temp_value1 + 0x2ac) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x2b0) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x2b4) = param_values[2];
+                                        param_values[0] = *(int32_t *)(temp_value2 + 0x2ac);
+                                        param_values[1] = *(int32_t *)(temp_value2 + 0x2b0);
+                                        param_values[2] = *(int32_t *)(temp_value2 + 0x2b4);
+                                        *(int32_t *)(temp_value1 + 0x2a8) = *(int32_t *)(temp_value2 + 0x2a8);
+                                        *(int32_t *)(temp_value1 + 0x2ac) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x2b0) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x2b4) = param_values[2];
                                         stack_data_1d8 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -1065,8 +1065,8 @@ void rendering_system_parameter_processor(
                                 stack_buffer_a0[0] = 0;
                                 stack_length_a8 = *(int *)(temp_value2 + 0x10);
                                 resource_data = &DAT_18098bc73;
-                                if (*(undefined **)(temp_value2 + 8) != (undefined *)0x0) {
-                                    resource_data = *(undefined **)(temp_value2 + 8);
+                                if (*(void **)(temp_value2 + 8) != (void *)0x0) {
+                                    resource_data = *(void **)(temp_value2 + 8);
                                 }
                                 stack_data_b8 = stack_data;
                                 strcpy_s(stack_buffer_a0, 0x40, resource_data);
@@ -1093,10 +1093,10 @@ void rendering_system_parameter_processor(
                                         param_values[0] = param_array_ptr[0x43];
                                         param_values[1] = param_array_ptr[0x44];
                                         param_values[2] = param_array_ptr[0x45];
-                                        *(undefined4 *)(temp_value1 + 0x2b8) = param_array_ptr[0x42];
-                                        *(undefined4 *)(temp_value1 + 700) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x2c0) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x2c4) = param_values[2];
+                                        *(int32_t *)(temp_value1 + 0x2b8) = param_array_ptr[0x42];
+                                        *(int32_t *)(temp_value1 + 700) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x2c0) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x2c4) = param_values[2];
                                         stack_data_b8 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -1106,10 +1106,10 @@ void rendering_system_parameter_processor(
                                         param_values[0] = param_array_ptr[0x43];
                                         param_values[1] = param_array_ptr[0x44];
                                         param_values[2] = param_array_ptr[0x45];
-                                        *(undefined4 *)(temp_value1 + 0x2b8) = param_array_ptr[0x42];
-                                        *(undefined4 *)(temp_value1 + 700) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x2c0) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x2c4) = param_values[2];
+                                        *(int32_t *)(temp_value1 + 0x2b8) = param_array_ptr[0x42];
+                                        *(int32_t *)(temp_value1 + 700) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x2c0) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x2c4) = param_values[2];
                                         stack_data_b8 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -1141,8 +1141,8 @@ void rendering_system_parameter_processor(
                                 stack_buffer_100[0] = 0;
                                 stack_length_108 = *(int *)(temp_value2 + 0x10);
                                 resource_data = &DAT_18098bc73;
-                                if (*(undefined **)(temp_value2 + 8) != (undefined *)0x0) {
-                                    resource_data = *(undefined **)(temp_value2 + 8);
+                                if (*(void **)(temp_value2 + 8) != (void *)0x0) {
+                                    resource_data = *(void **)(temp_value2 + 8);
                                 }
                                 stack_data_118 = stack_data;
                                 strcpy_s(stack_buffer_100, 0x40, resource_data);
@@ -1167,13 +1167,13 @@ void rendering_system_parameter_processor(
                                     }
                                     if (compare_result == 0) {
                                         temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
-                                        param_values[0] = *(undefined4 *)(temp_value2 + 700);
-                                        param_values[1] = *(undefined4 *)(temp_value2 + 0x2c0);
-                                        param_values[2] = *(undefined4 *)(temp_value2 + 0x2c4);
-                                        *(undefined4 *)(temp_value1 + 0x2b8) = *(undefined4 *)(temp_value2 + 0x2b8);
-                                        *(undefined4 *)(temp_value1 + 700) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x2c0) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x2c4) = param_values[2];
+                                        param_values[0] = *(int32_t *)(temp_value2 + 700);
+                                        param_values[1] = *(int32_t *)(temp_value2 + 0x2c0);
+                                        param_values[2] = *(int32_t *)(temp_value2 + 0x2c4);
+                                        *(int32_t *)(temp_value1 + 0x2b8) = *(int32_t *)(temp_value2 + 0x2b8);
+                                        *(int32_t *)(temp_value1 + 700) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x2c0) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x2c4) = param_values[2];
                                         stack_data_118 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -1181,13 +1181,13 @@ void rendering_system_parameter_processor(
                                 else if (stack_length_108 == 0) {
                                     if (compare_result == 0) {
                                         temp_value2 = *(longlong *)(*(longlong *)(*stack_context_468 + 0x38) + loop_counter * 0x10);
-                                        param_values[0] = *(undefined4 *)(temp_value2 + 700);
-                                        param_values[1] = *(undefined4 *)(temp_value2 + 0x2c0);
-                                        param_values[2] = *(undefined4 *)(temp_value2 + 0x2c4);
-                                        *(undefined4 *)(temp_value1 + 0x2b8) = *(undefined4 *)(temp_value2 + 0x2b8);
-                                        *(undefined4 *)(temp_value1 + 700) = param_values[0];
-                                        *(undefined4 *)(temp_value1 + 0x2c0) = param_values[1];
-                                        *(undefined4 *)(temp_value1 + 0x2c4) = param_values[2];
+                                        param_values[0] = *(int32_t *)(temp_value2 + 700);
+                                        param_values[1] = *(int32_t *)(temp_value2 + 0x2c0);
+                                        param_values[2] = *(int32_t *)(temp_value2 + 0x2c4);
+                                        *(int32_t *)(temp_value1 + 0x2b8) = *(int32_t *)(temp_value2 + 0x2b8);
+                                        *(int32_t *)(temp_value1 + 700) = param_values[0];
+                                        *(int32_t *)(temp_value1 + 0x2c0) = param_values[1];
+                                        *(int32_t *)(temp_value1 + 0x2c4) = param_values[2];
                                         stack_data_118 = &UNK_18098bcb0;
                                         break;
                                     }
@@ -1225,12 +1225,12 @@ void rendering_system_process_basic_parameters(
     uint32_t *param_values
 ) {
     if (is_initialization == '\0') {
-        *(undefined4 *)((longlong)render_context + 0x324) = param_values[0];
-        *(undefined1 *)((longlong)render_context + 0x32c) = 0;
+        *(int32_t *)((longlong)render_context + 0x324) = param_values[0];
+        *(int8_t *)((longlong)render_context + 0x32c) = 0;
     }
     else {
-        *(undefined4 *)((longlong)render_context + 0x324) = *(undefined4 *)(*param_context + 0x324);
-        *(undefined1 *)((longlong)render_context + 0x32c) = *(undefined1 *)(*param_context + 0x32c);
+        *(int32_t *)((longlong)render_context + 0x324) = *(int32_t *)(*param_context + 0x324);
+        *(int8_t *)((longlong)render_context + 0x32c) = *(int8_t *)(*param_context + 0x32c);
     }
 }
 
@@ -1302,7 +1302,7 @@ void rendering_system_process_shader_configuration(
         param_values = param_values + 2;
     }
     else {
-        param_values = (undefined4 *)(*param_context + 0x330);
+        param_values = (int32_t *)(*param_context + 0x330);
     }
     (**(code **)(*render_context + 0x148))(render_context, param_values);
     FUN_180276f30(render_context, (longlong)render_context + 0x214, 1);
@@ -1328,10 +1328,10 @@ void rendering_system_process_texture_configuration(
                 values[0] = param_values[3];
                 values[1] = param_values[4];
                 values[2] = param_values[5];
-                *(undefined4 *)(temp_value1 + 0x2b8) = param_values[2];
-                *(undefined4 *)(temp_value1 + 700) = values[0];
-                *(undefined4 *)(temp_value1 + 0x2c0) = values[1];
-                *(undefined4 *)(temp_value1 + 0x2c4) = values[2];
+                *(int32_t *)(temp_value1 + 0x2b8) = param_values[2];
+                *(int32_t *)(temp_value1 + 700) = values[0];
+                *(int32_t *)(temp_value1 + 0x2c0) = values[1];
+                *(int32_t *)(temp_value1 + 0x2c4) = values[2];
                 resource_ptr = resource_ptr + 2;
             } while (resource_ptr < (longlong *)render_context[8]);
         }
@@ -1345,13 +1345,13 @@ void rendering_system_process_texture_configuration(
             if (resource_ptr < (longlong *)render_context[8]) {
                 do {
                     temp_value2 = *resource_ptr;
-                    values[0] = *(undefined4 *)(temp_value1 + 700);
-                    values[1] = *(undefined4 *)(temp_value1 + 0x2c0);
-                    values[2] = *(undefined4 *)(temp_value1 + 0x2c4);
-                    *(undefined4 *)(temp_value2 + 0x2b8) = *(undefined4 *)(temp_value1 + 0x2b8);
-                    *(undefined4 *)(temp_value2 + 700) = values[0];
-                    *(undefined4 *)(temp_value2 + 0x2c0) = values[1];
-                    *(undefined4 *)(temp_value2 + 0x2c4) = values[2];
+                    values[0] = *(int32_t *)(temp_value1 + 700);
+                    values[1] = *(int32_t *)(temp_value1 + 0x2c0);
+                    values[2] = *(int32_t *)(temp_value1 + 0x2c4);
+                    *(int32_t *)(temp_value2 + 0x2b8) = *(int32_t *)(temp_value1 + 0x2b8);
+                    *(int32_t *)(temp_value2 + 700) = values[0];
+                    *(int32_t *)(temp_value2 + 0x2c0) = values[1];
+                    *(int32_t *)(temp_value2 + 0x2c4) = values[2];
                     resource_ptr = resource_ptr + 2;
                 } while (resource_ptr < (longlong *)render_context[8]);
             }

@@ -36,17 +36,17 @@ void system_resource_cleanup_and_state_reset_manager(longlong *system_context)
         // 处理资源释放和内存清理
         if ((0 < (int)resource_count) && (system_context[0xc] != 0)) {
           // 调用系统资源清理函数
-          system_memory_cleanup_function(*(undefined8 *)(SYSTEM_MEMORY_BASE + 0x1a0), system_context[0xc], &MEMORY_CLEANUP_TARGET, 0x100, 1);
+          system_memory_cleanup_function(*(uint64_t *)(SYSTEM_MEMORY_BASE + 0x1a0), system_context[0xc], &MEMORY_CLEANUP_TARGET, 0x100, 1);
         }
         
         // 重置系统状态
         system_context[0xc] = 0;
-        *(undefined4 *)((longlong)system_context + 0x6c) = 0;
+        *(int32_t *)((longlong)system_context + 0x6c) = 0;
         resource_count = 0;
       }
       
       // 清理系统状态计数器
-      *(undefined4 *)(system_context + 0xd) = 0;
+      *(int32_t *)(system_context + 0xd) = 0;
       if (0 < (int)((resource_count ^ (int)resource_count >> 0x1f) - ((int)resource_count >> 0x1f))) {
         system_memory_deallocator(system_context + 0xc, 0);
       }
@@ -115,7 +115,7 @@ LAB_1808d7a63:
     *resource_ptr = (longlong)resource_ptr;
     
     // 调用系统内存释放函数
-    system_memory_deallocator_extended(*(undefined8 *)(SYSTEM_MEMORY_BASE + 0x1a0), resource_ptr, &MEMORY_DEALLOC_TARGET, 0x18d, 1);
+    system_memory_deallocator_extended(*(uint64_t *)(SYSTEM_MEMORY_BASE + 0x1a0), resource_ptr, &MEMORY_DEALLOC_TARGET, 0x18d, 1);
   }
   
   // 处理状态指针重置
@@ -137,12 +137,12 @@ LAB_1808d7a63:
   *cleanup_ptr = (longlong)cleanup_ptr;
   
   // 调用系统内存清理函数
-  system_memory_deallocator_extended(*(undefined8 *)(SYSTEM_MEMORY_BASE + 0x1a0), cleanup_ptr, &MEMORY_DEALLOC_TARGET, 0xc0, 1);
+  system_memory_deallocator_extended(*(uint64_t *)(SYSTEM_MEMORY_BASE + 0x1a0), cleanup_ptr, &MEMORY_DEALLOC_TARGET, 0xc0, 1);
 }
 
 // 函数：系统对象初始化和内存管理器
 // 功能：初始化系统对象，管理内存分配，设置对象状态，处理资源清理
-undefined8 * system_object_initializer_and_memory_manager(undefined8 *object_ptr, ulonglong init_flags)
+uint64_t * system_object_initializer_and_memory_manager(uint64_t *object_ptr, ulonglong init_flags)
 
 {
   longlong *context_ptr;
@@ -160,11 +160,11 @@ undefined8 * system_object_initializer_and_memory_manager(undefined8 *object_ptr
   // 设置对象上下文链接
   context_ptr = object_ptr + 4;
   *(longlong *)object_ptr[5] = *context_ptr;
-  *(undefined8 *)(*context_ptr + 8) = object_ptr[5];
+  *(uint64_t *)(*context_ptr + 8) = object_ptr[5];
   object_ptr[5] = context_ptr;
   *context_ptr = (longlong)context_ptr;
   *(longlong **)object_ptr[5] = context_ptr;
-  *(undefined8 *)(*context_ptr + 8) = object_ptr[5];
+  *(uint64_t *)(*context_ptr + 8) = object_ptr[5];
   object_ptr[5] = context_ptr;
   *context_ptr = (longlong)context_ptr;
   
@@ -178,11 +178,11 @@ undefined8 * system_object_initializer_and_memory_manager(undefined8 *object_ptr
 
 // 函数：高级系统状态验证和数据比较器
 // 功能：验证系统状态，比较数据结构，处理状态转换，管理资源分配
-undefined8 advanced_system_state_validator_and_data_comparator(longlong source_context, longlong target_context)
+uint64_t advanced_system_state_validator_and_data_comparator(longlong source_context, longlong target_context)
 
 {
   longlong *state_ptr;
-  undefined8 validation_result;
+  uint64_t validation_result;
   longlong *context_ptr;
   longlong *resource_ptr;
   uint state_flag;
@@ -190,7 +190,7 @@ undefined8 advanced_system_state_validator_and_data_comparator(longlong source_c
   longlong *compare_ptr;
   
   // 执行系统状态验证
-  validation_result = system_state_validator_function(*(undefined8 *)(target_context + 0x50));
+  validation_result = system_state_validator_function(*(uint64_t *)(target_context + 0x50));
   if ((int)validation_result != 0) {
     return validation_result;
   }
@@ -268,7 +268,7 @@ undefined8 advanced_system_state_validator_and_data_comparator(longlong source_c
   }
   
   // 设置状态数据链接
-  *(undefined8 *)(target_context + 0x28) = *(undefined8 *)(source_context + 0x28);
+  *(uint64_t *)(target_context + 0x28) = *(uint64_t *)(source_context + 0x28);
   *context_ptr = (longlong)state_ptr;
   *(longlong **)(source_context + 0x28) = context_ptr;
   
@@ -294,7 +294,7 @@ LAB_1808d7e33:
     
     // 验证状态数据结构
     if ((context_ptr != (longlong *)0x0) && (context_ptr + 4 != (longlong *)0x0)) {
-      *(undefined8 *)(target_context + 0x28) = context_ptr[5];
+      *(uint64_t *)(target_context + 0x28) = context_ptr[5];
       *state_ptr = (longlong)(context_ptr + 4);
       context_ptr[5] = (longlong)state_ptr;
       goto LAB_1808d7de6;
@@ -306,7 +306,7 @@ LAB_1808d7e33:
 
 // 函数：系统资源分配器和状态管理器
 // 功能：分配系统资源，管理对象状态，处理内存分配，验证资源有效性
-longlong * system_resource_allocator_and_state_manager(longlong resource_context, longlong allocation_param, undefined8 *result_ptr)
+longlong * system_resource_allocator_and_state_manager(longlong resource_context, longlong allocation_param, uint64_t *result_ptr)
 
 {
   longlong base_address;
@@ -319,7 +319,7 @@ longlong * system_resource_allocator_and_state_manager(longlong resource_context
   
   // 初始化资源指针
   state_ptr = (longlong *)0x0;
-  if (result_ptr != (undefined8 *)0x0) {
+  if (result_ptr != (uint64_t *)0x0) {
     *result_ptr = 0;
   }
   
@@ -379,7 +379,7 @@ LAB_1808d7f9e:
 LAB_1808d7fa7:
   // 执行最终资源分配
   state_ptr = (longlong *)
-           system_memory_allocator_function(*(undefined8 *)(SYSTEM_MEMORY_BASE + 0x1a0), 0x20, &MEMORY_ALLOC_TARGET, 300, 0, 0, 1);
+           system_memory_allocator_function(*(uint64_t *)(SYSTEM_MEMORY_BASE + 0x1a0), 0x20, &MEMORY_ALLOC_TARGET, 300, 0, 0, 1);
   
   if (state_ptr != (longlong *)0x0) {
     *state_ptr = (longlong)state_ptr;
@@ -391,7 +391,7 @@ LAB_1808d7fa7:
     *(longlong **)(resource_context + 0x28) = state_ptr;
     *(longlong **)state_ptr[1] = state_ptr;
     
-    if (result_ptr != (undefined8 *)0x0) {
+    if (result_ptr != (uint64_t *)0x0) {
       *result_ptr = state_ptr;
     }
     
@@ -403,32 +403,32 @@ LAB_1808d7fa7:
 
 // 函数：系统对象注册器和状态控制器
 // 功能：注册系统对象，控制对象状态，管理对象生命周期，处理对象验证
-int system_object_registrar_and_state_controller(undefined8 *registry_root, longlong object_id, undefined8 object_type, longlong context_param, undefined8 *result_ptr)
+int system_object_registrar_and_state_controller(uint64_t *registry_root, longlong object_id, uint64_t object_type, longlong context_param, uint64_t *result_ptr)
 
 {
-  undefined8 *registry_ptr;
-  undefined8 *object_ptr;
-  undefined8 *context_ptr;
-  undefined8 registration_result;
-  undefined8 *iterator_ptr;
+  uint64_t *registry_ptr;
+  uint64_t *object_ptr;
+  uint64_t *context_ptr;
+  uint64_t registration_result;
+  uint64_t *iterator_ptr;
   int status_code;
   
   // 初始化注册指针
-  context_ptr = (undefined8 *)0x0;
+  context_ptr = (uint64_t *)0x0;
   
   // 查找现有对象注册
-  for (iterator_ptr = (undefined8 *)*registry_root;
+  for (iterator_ptr = (uint64_t *)*registry_root;
       ((registry_ptr = context_ptr, iterator_ptr != registry_root && (registry_ptr = iterator_ptr, iterator_ptr[2] != object_id)) &&
-      (registry_ptr = context_ptr, iterator_ptr != registry_root)); iterator_ptr = (undefined8 *)*iterator_ptr) {
+      (registry_ptr = context_ptr, iterator_ptr != registry_root)); iterator_ptr = (uint64_t *)*iterator_ptr) {
   }
   
-  iterator_ptr = (undefined8 *)0x0;
-  if (registry_ptr == (undefined8 *)0x0) {
+  iterator_ptr = (uint64_t *)0x0;
+  if (registry_ptr == (uint64_t *)0x0) {
     // 创建新对象注册
-    registry_ptr = (undefined8 *)
-             system_memory_allocator_function(*(undefined8 *)(SYSTEM_MEMORY_BASE + 0x1a0), 0x30, &MEMORY_ALLOC_TARGET, 0xfd, 0, 0, 1);
+    registry_ptr = (uint64_t *)
+             system_memory_allocator_function(*(uint64_t *)(SYSTEM_MEMORY_BASE + 0x1a0), 0x30, &MEMORY_ALLOC_TARGET, 0xfd, 0, 0, 1);
     
-    if (registry_ptr == (undefined8 *)0x0) {
+    if (registry_ptr == (uint64_t *)0x0) {
       status_code = 0x26;
       iterator_ptr = context_ptr;
       goto LAB_1808d824e;
@@ -436,7 +436,7 @@ int system_object_registrar_and_state_controller(undefined8 *registry_root, long
     
     // 初始化对象注册结构
     *registry_ptr = registry_ptr;
-    context_ptr = (undefined8 *)(object_id + 0x30);
+    context_ptr = (uint64_t *)(object_id + 0x30);
     registry_ptr[1] = registry_ptr;
     registry_ptr[2] = object_id;
     registry_ptr[3] = registry_root;
@@ -446,7 +446,7 @@ int system_object_registrar_and_state_controller(undefined8 *registry_root, long
     registry_ptr[5] = object_ptr;
     
     // 处理对象子组件注册
-    for (object_ptr = (undefined8 *)*context_ptr; object_ptr != context_ptr; object_ptr = (undefined8 *)*object_ptr) {
+    for (object_ptr = (uint64_t *)*context_ptr; object_ptr != context_ptr; object_ptr = (uint64_t *)*object_ptr) {
       status_code = system_resource_allocator_and_state_manager(registry_ptr, object_ptr, 0);
       if (status_code != 0) {
         system_object_cleanup_function(registry_ptr, &OBJECT_CLEANUP_TARGET, 0xc6);
@@ -457,10 +457,10 @@ int system_object_registrar_and_state_controller(undefined8 *registry_root, long
     
     // 验证对象注册完整性
     status_code = 0;
-    iterator_ptr = (undefined8 *)*registry_ptr;
+    iterator_ptr = (uint64_t *)*registry_ptr;
     if (iterator_ptr != registry_ptr) {
       do {
-        iterator_ptr = (undefined8 *)*iterator_ptr;
+        iterator_ptr = (uint64_t *)*iterator_ptr;
         status_code = status_code + 1;
       } while (iterator_ptr != registry_ptr);
       if (status_code != 0) {
@@ -474,15 +474,15 @@ int system_object_registrar_and_state_controller(undefined8 *registry_root, long
     registry_ptr[1] = registry_root[1];
     *registry_ptr = registry_root;
     registry_root[1] = registry_ptr;
-    *(undefined8 **)registry_ptr[1] = registry_ptr;
+    *(uint64_t **)registry_ptr[1] = registry_ptr;
     context_ptr = registry_ptr;
   }
   
   iterator_ptr = context_ptr;
-  context_ptr = (undefined8 *)
-           system_memory_allocator_function(*(undefined8 *)(SYSTEM_MEMORY_BASE + 0x1a0), 0x88, &MEMORY_ALLOC_TARGET, 0x1a4, 0, 0, 1);
+  context_ptr = (uint64_t *)
+           system_memory_allocator_function(*(uint64_t *)(SYSTEM_MEMORY_BASE + 0x1a0), 0x88, &MEMORY_ALLOC_TARGET, 0x1a4, 0, 0, 1);
   
-  if (context_ptr == (undefined8 *)0x0) {
+  if (context_ptr == (uint64_t *)0x0) {
     status_code = 0x26;
   }
   else {
@@ -501,12 +501,12 @@ int system_object_registrar_and_state_controller(undefined8 *registry_root, long
     context_ptr[9] = registry_root;
     context_ptr[10] = registry_ptr;
     context_ptr[0xb] = context_param;
-    *(undefined4 *)(context_ptr + 0xc) = 0x42c80000;
-    *(undefined4 *)((longlong)context_ptr + 100) = 0x42c80000;
-    *(undefined4 *)(context_ptr + 0xd) = 0x42c80000;
+    *(int32_t *)(context_ptr + 0xc) = 0x42c80000;
+    *(int32_t *)((longlong)context_ptr + 100) = 0x42c80000;
+    *(int32_t *)(context_ptr + 0xd) = 0x42c80000;
     context_ptr[0xe] = 0;
     context_ptr[0xf] = 0;
-    *(undefined4 *)(context_ptr + 0x10) = 2;
+    *(int32_t *)(context_ptr + 0x10) = 2;
     
     // 执行对象初始化
     registration_result = (**(code **)(*(longlong *)(context_param + 8) + 0x30))();
@@ -520,7 +520,7 @@ int system_object_registrar_and_state_controller(undefined8 *registry_root, long
   
 LAB_1808d824e:
   // 处理错误情况
-  if (iterator_ptr != (undefined8 *)0x0) {
+  if (iterator_ptr != (uint64_t *)0x0) {
     system_object_cleanup_function(iterator_ptr, &OBJECT_CLEANUP_TARGET, 0xc6);
   }
   
@@ -529,12 +529,12 @@ LAB_1808d824e:
 
 // 函数：系统数据链表管理器和状态同步器
 // 功能：管理系统数据链表，同步对象状态，处理数据结构操作，验证数据完整性
-undefined8 system_data_linked_list_manager_and_state_synchronizer(longlong data_context, longlong *list_header)
+uint64_t system_data_linked_list_manager_and_state_synchronizer(longlong data_context, longlong *list_header)
 
 {
   char validation_flag;
   longlong *list_ptr;
-  undefined8 sync_result;
+  uint64_t sync_result;
   longlong *data_ptr;
   uint iteration_count;
   longlong *iterator_ptr;
@@ -633,14 +633,14 @@ longlong * advanced_data_query_and_search_processor(longlong query_param, longlo
   longlong *iterator_ptr;
   longlong stack_param_1;
   longlong stack_param_2;
-  undefined4 stack_param_3;
-  undefined4 stack_param_4;
-  undefined4 stack_param_5;
-  undefined4 stack_param_6;
-  undefined4 stack_param_7;
-  undefined4 stack_param_8;
-  undefined4 stack_param_9;
-  undefined4 stack_param_10;
+  int32_t stack_param_3;
+  int32_t stack_param_4;
+  int32_t stack_param_5;
+  int32_t stack_param_6;
+  int32_t stack_param_7;
+  int32_t stack_param_8;
+  int32_t stack_param_9;
+  int32_t stack_param_10;
   
   // 初始化搜索指针
   result_ptr = (longlong *)0x0;
@@ -667,13 +667,13 @@ longlong * advanced_data_query_and_search_processor(longlong query_param, longlo
       }
       
       search_result = *context_ptr;
-      context_ptr = (longlong *)(*(code *)**(undefined8 **)*iterator_ptr)();
+      context_ptr = (longlong *)(*(code *)**(uint64_t **)*iterator_ptr)();
       
       // 设置搜索参数
-      stack_param_3 = *(undefined4 *)(query_param + 0x18);
-      stack_param_4 = *(undefined4 *)(query_param + 0x1c);
-      stack_param_5 = *(undefined4 *)(query_param + 0x20);
-      stack_param_6 = *(undefined4 *)(query_param + 0x24);
+      stack_param_3 = *(int32_t *)(query_param + 0x18);
+      stack_param_4 = *(int32_t *)(query_param + 0x1c);
+      stack_param_5 = *(int32_t *)(query_param + 0x20);
+      stack_param_6 = *(int32_t *)(query_param + 0x24);
       stack_param_7 = stack_param_3;
       stack_param_8 = stack_param_4;
       stack_param_9 = stack_param_5;
@@ -713,13 +713,13 @@ longlong * advanced_data_query_and_search_processor(longlong query_param, longlo
 
 // 函数：系统状态管理器和资源控制器
 // 功能：管理系统状态，控制资源分配，处理状态转换，管理系统配置
-undefined8 system_state_manager_and_resource_controller(longlong state_context, undefined8 resource_param)
+uint64_t system_state_manager_and_resource_controller(longlong state_context, uint64_t resource_param)
 
 {
   longlong *state_ptr;
   longlong *resource_ptr;
   char control_flag;
-  undefined8 control_result;
+  uint64_t control_result;
   longlong *context_ptr;
   longlong *iterator_ptr;
   
@@ -782,10 +782,10 @@ LAB_1808d856d:
           *resource_ptr = (longlong)resource_ptr;
           
           // 调用资源清理函数
-          system_resource_cleanup_function(*(undefined8 *)(SYSTEM_MEMORY_BASE + 0x1a0), resource_ptr, &RESOURCE_CLEANUP_TARGET, 0xe1, 1);
+          system_resource_cleanup_function(*(uint64_t *)(SYSTEM_MEMORY_BASE + 0x1a0), resource_ptr, &RESOURCE_CLEANUP_TARGET, 0xe1, 1);
         }
         
-        control_result = system_state_validator_function(*(undefined8 *)(state_context + 0x50));
+        control_result = system_state_validator_function(*(uint64_t *)(state_context + 0x50));
       } while ((int)control_result == 0);
     }
   }
@@ -795,13 +795,13 @@ LAB_1808d856d:
 
 // 函数：系统全局状态管理器
 // 功能：管理系统全局状态，处理全局资源，执行系统初始化，管理系统配置
-undefined8 system_global_state_manager(void)
+uint64_t system_global_state_manager(void)
 
 {
   longlong *state_ptr;
   longlong *resource_ptr;
   char control_flag;
-  undefined8 control_result;
+  uint64_t control_result;
   longlong *context_ptr;
   longlong *iterator_ptr;
   longlong global_context;
@@ -861,10 +861,10 @@ LAB_1808d856d:
         *resource_ptr = (longlong)resource_ptr;
         
         // 调用全局资源清理函数
-        system_global_resource_cleanup_function(*(undefined8 *)(SYSTEM_MEMORY_BASE + 0x1a0), resource_ptr, &GLOBAL_RESOURCE_CLEANUP_TARGET, 0xe1, 1);
+        system_global_resource_cleanup_function(*(uint64_t *)(SYSTEM_MEMORY_BASE + 0x1a0), resource_ptr, &GLOBAL_RESOURCE_CLEANUP_TARGET, 0xe1, 1);
       }
       
-      control_result = system_global_state_validator_function(*(undefined8 *)(global_context + 0x50));
+      control_result = system_global_state_validator_function(*(uint64_t *)(global_context + 0x50));
     } while ((int)control_result == 0);
   }
   

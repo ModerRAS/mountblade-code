@@ -13,22 +13,22 @@
 void serialize_rendering_material_data(longlong material_context, longlong *data_buffer)
 
 {
-  undefined1 material_flag;
-  undefined4 texture_id;
+  int8_t material_flag;
+  int32_t texture_id;
   longlong range_size;
   longlong texture_count;
-  undefined1 *buffer_ptr;
-  undefined4 *data_ptr;
+  int8_t *buffer_ptr;
+  int32_t *data_ptr;
   int *count_ptr;
   uint texture_index;
   ulonglong loop_counter;
   ulonglong start_offset;
   ulonglong current_offset;
   
-  data_ptr = (undefined4 *)data_buffer[1];
+  data_ptr = (int32_t *)data_buffer[1];
   if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
     ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
-    data_ptr = (undefined4 *)data_buffer[1];
+    data_ptr = (int32_t *)data_buffer[1];
   }
   current_offset = 0;
   *data_ptr = 0;
@@ -56,19 +56,19 @@ void serialize_rendering_material_data(longlong material_context, longlong *data
              (ulonglong)((*(longlong *)(material_context + 0x28) - *(longlong *)(material_context + 0x20)) / 0x98));
   }
   serialize_texture_data(data_buffer,material_context + 0x40);
-  buffer_ptr = (undefined1 *)data_buffer[1];
-  material_flag = *(undefined1 *)(material_context + 0xd8);
+  buffer_ptr = (int8_t *)data_buffer[1];
+  material_flag = *(int8_t *)(material_context + 0xd8);
   if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 2) {
     ensure_buffer_capacity(data_buffer,buffer_ptr + (1 - *data_buffer));
-    buffer_ptr = (undefined1 *)data_buffer[1];
+    buffer_ptr = (int8_t *)data_buffer[1];
   }
   *buffer_ptr = material_flag;
   data_buffer[1] = data_buffer[1] + 1;
-  data_ptr = (undefined4 *)data_buffer[1];
-  texture_id = *(undefined4 *)(material_context + 0xdc);
+  data_ptr = (int32_t *)data_buffer[1];
+  texture_id = *(int32_t *)(material_context + 0xdc);
   if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
     ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
-    data_ptr = (undefined4 *)data_buffer[1];
+    data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = texture_id;
   data_buffer[1] = data_buffer[1] + 4;
@@ -157,15 +157,15 @@ void serialize_rendering_material_data(longlong material_context, longlong *data
             );
   }
   serialize_texture_data(data_buffer,material_context + 0x10d8);
-  buffer_ptr = (undefined1 *)data_buffer[1];
-  material_flag = *(undefined1 *)(material_context + 0x10f9);
+  buffer_ptr = (int8_t *)data_buffer[1];
+  material_flag = *(int8_t *)(material_context + 0x10f9);
   if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 2) {
     ensure_buffer_capacity(data_buffer,buffer_ptr + (1 - *data_buffer));
-    buffer_ptr = (undefined1 *)data_buffer[1];
+    buffer_ptr = (int8_t *)data_buffer[1];
   }
   *buffer_ptr = material_flag;
   data_buffer[1] = data_buffer[1] + 1;
-  data_ptr = (undefined4 *)data_buffer[1];
+  data_ptr = (int32_t *)data_buffer[1];
   if (*(char *)(material_context + 0x10f9) != '\0') {
     serialize_texture_data(data_buffer,material_context + 0x1100);
     serialize_texture_data(data_buffer,material_context + 0x1198);
@@ -173,11 +173,11 @@ void serialize_rendering_material_data(longlong material_context, longlong *data
     serialize_texture_data(data_buffer,material_context + 0x12c8);
     serialize_texture_data(data_buffer,material_context + 0x1360);
     serialize_texture_data(data_buffer,material_context + 0x13f8);
-    data_ptr = (undefined4 *)data_buffer[1];
+    data_ptr = (int32_t *)data_buffer[1];
   }
   if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
     ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
-    data_ptr = (undefined4 *)data_buffer[1];
+    data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = 0x10;
   data_buffer[1] = data_buffer[1] + 4;
@@ -199,137 +199,137 @@ void serialize_rendering_material_data(longlong material_context, longlong *data
 }
 
 
-undefined4 * initialize_rendering_resource_pool(undefined4 *resource_pool)
+int32_t * initialize_rendering_resource_pool(int32_t *resource_pool)
 
 {
-  *(undefined **)(resource_pool + 2) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 4) = 0;
+  *(void **)(resource_pool + 2) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 4) = 0;
   resource_pool[6] = 0;
-  *(undefined **)(resource_pool + 2) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 8) = 0;
-  *(undefined8 *)(resource_pool + 4) = 0;
+  *(void **)(resource_pool + 2) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 8) = 0;
+  *(uint64_t *)(resource_pool + 4) = 0;
   resource_pool[6] = 0;
-  *(undefined **)(resource_pool + 10) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0xc) = 0;
+  *(void **)(resource_pool + 10) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0xc) = 0;
   resource_pool[0xe] = 0;
-  *(undefined **)(resource_pool + 10) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x10) = 0;
-  *(undefined8 *)(resource_pool + 0xc) = 0;
+  *(void **)(resource_pool + 10) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x10) = 0;
+  *(uint64_t *)(resource_pool + 0xc) = 0;
   resource_pool[0xe] = 0;
-  *(undefined **)(resource_pool + 0x12) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x14) = 0;
+  *(void **)(resource_pool + 0x12) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x14) = 0;
   resource_pool[0x16] = 0;
-  *(undefined **)(resource_pool + 0x12) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x18) = 0;
-  *(undefined8 *)(resource_pool + 0x14) = 0;
+  *(void **)(resource_pool + 0x12) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x18) = 0;
+  *(uint64_t *)(resource_pool + 0x14) = 0;
   resource_pool[0x16] = 0;
-  *(undefined **)(resource_pool + 0x1a) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x1c) = 0;
+  *(void **)(resource_pool + 0x1a) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x1c) = 0;
   resource_pool[0x1e] = 0;
-  *(undefined **)(resource_pool + 0x1a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x20) = 0;
-  *(undefined8 *)(resource_pool + 0x1c) = 0;
+  *(void **)(resource_pool + 0x1a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x20) = 0;
+  *(uint64_t *)(resource_pool + 0x1c) = 0;
   resource_pool[0x1e] = 0;
-  *(undefined **)(resource_pool + 0x22) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x24) = 0;
+  *(void **)(resource_pool + 0x22) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x24) = 0;
   resource_pool[0x26] = 0;
-  *(undefined **)(resource_pool + 0x22) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x28) = 0;
-  *(undefined8 *)(resource_pool + 0x24) = 0;
+  *(void **)(resource_pool + 0x22) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x28) = 0;
+  *(uint64_t *)(resource_pool + 0x24) = 0;
   resource_pool[0x26] = 0;
-  *(undefined **)(resource_pool + 0x2a) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x2c) = 0;
+  *(void **)(resource_pool + 0x2a) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x2c) = 0;
   resource_pool[0x2e] = 0;
-  *(undefined **)(resource_pool + 0x2a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x30) = 0;
-  *(undefined8 *)(resource_pool + 0x2c) = 0;
+  *(void **)(resource_pool + 0x2a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x30) = 0;
+  *(uint64_t *)(resource_pool + 0x2c) = 0;
   resource_pool[0x2e] = 0;
-  *(undefined **)(resource_pool + 0x32) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x34) = 0;
+  *(void **)(resource_pool + 0x32) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x34) = 0;
   resource_pool[0x36] = 0;
-  *(undefined **)(resource_pool + 0x32) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x38) = 0;
-  *(undefined8 *)(resource_pool + 0x34) = 0;
+  *(void **)(resource_pool + 0x32) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x38) = 0;
+  *(uint64_t *)(resource_pool + 0x34) = 0;
   resource_pool[0x36] = 0;
-  *(undefined **)(resource_pool + 0x3a) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x3c) = 0;
+  *(void **)(resource_pool + 0x3a) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x3c) = 0;
   resource_pool[0x3e] = 0;
-  *(undefined **)(resource_pool + 0x3a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x40) = 0;
-  *(undefined8 *)(resource_pool + 0x3c) = 0;
+  *(void **)(resource_pool + 0x3a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x40) = 0;
+  *(uint64_t *)(resource_pool + 0x3c) = 0;
   resource_pool[0x3e] = 0;
-  *(undefined **)(resource_pool + 0x42) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x44) = 0;
+  *(void **)(resource_pool + 0x42) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x44) = 0;
   resource_pool[0x46] = 0;
-  *(undefined **)(resource_pool + 0x42) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x48) = 0;
-  *(undefined8 *)(resource_pool + 0x44) = 0;
+  *(void **)(resource_pool + 0x42) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x48) = 0;
+  *(uint64_t *)(resource_pool + 0x44) = 0;
   resource_pool[0x46] = 0;
-  *(undefined8 *)(resource_pool + 0x4a) = 0;
-  *(undefined8 *)(resource_pool + 0x4c) = 0;
-  *(undefined8 *)(resource_pool + 0x4e) = 0;
+  *(uint64_t *)(resource_pool + 0x4a) = 0;
+  *(uint64_t *)(resource_pool + 0x4c) = 0;
+  *(uint64_t *)(resource_pool + 0x4e) = 0;
   resource_pool[0x50] = 3;
-  *(undefined **)(resource_pool + 0x52) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x54) = 0;
+  *(void **)(resource_pool + 0x52) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x54) = 0;
   resource_pool[0x56] = 0;
-  *(undefined **)(resource_pool + 0x52) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x58) = 0;
-  *(undefined8 *)(resource_pool + 0x54) = 0;
+  *(void **)(resource_pool + 0x52) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x58) = 0;
+  *(uint64_t *)(resource_pool + 0x54) = 0;
   resource_pool[0x56] = 0;
-  *(undefined **)(resource_pool + 0x5a) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x5c) = 0;
+  *(void **)(resource_pool + 0x5a) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x5c) = 0;
   resource_pool[0x5e] = 0;
-  *(undefined **)(resource_pool + 0x5a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x60) = 0;
-  *(undefined8 *)(resource_pool + 0x5c) = 0;
+  *(void **)(resource_pool + 0x5a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x60) = 0;
+  *(uint64_t *)(resource_pool + 0x5c) = 0;
   resource_pool[0x5e] = 0;
-  *(undefined **)(resource_pool + 0x62) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 100) = 0;
+  *(void **)(resource_pool + 0x62) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 100) = 0;
   resource_pool[0x66] = 0;
-  *(undefined **)(resource_pool + 0x62) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x68) = 0;
-  *(undefined8 *)(resource_pool + 100) = 0;
+  *(void **)(resource_pool + 0x62) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x68) = 0;
+  *(uint64_t *)(resource_pool + 100) = 0;
   resource_pool[0x66] = 0;
-  *(undefined **)(resource_pool + 0x6a) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x6c) = 0;
+  *(void **)(resource_pool + 0x6a) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x6c) = 0;
   resource_pool[0x6e] = 0;
-  *(undefined **)(resource_pool + 0x6a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x70) = 0;
-  *(undefined8 *)(resource_pool + 0x6c) = 0;
+  *(void **)(resource_pool + 0x6a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x70) = 0;
+  *(uint64_t *)(resource_pool + 0x6c) = 0;
   resource_pool[0x6e] = 0;
-  *(undefined **)(resource_pool + 0x72) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x74) = 0;
+  *(void **)(resource_pool + 0x72) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x74) = 0;
   resource_pool[0x76] = 0;
-  *(undefined **)(resource_pool + 0x72) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x78) = 0;
-  *(undefined8 *)(resource_pool + 0x74) = 0;
+  *(void **)(resource_pool + 0x72) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x78) = 0;
+  *(uint64_t *)(resource_pool + 0x74) = 0;
   resource_pool[0x76] = 0;
-  *(undefined **)(resource_pool + 0x7a) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x7c) = 0;
+  *(void **)(resource_pool + 0x7a) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x7c) = 0;
   resource_pool[0x7e] = 0;
-  *(undefined **)(resource_pool + 0x7a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x80) = 0;
-  *(undefined8 *)(resource_pool + 0x7c) = 0;
+  *(void **)(resource_pool + 0x7a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x80) = 0;
+  *(uint64_t *)(resource_pool + 0x7c) = 0;
   resource_pool[0x7e] = 0;
-  *(undefined **)(resource_pool + 0x82) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x84) = 0;
+  *(void **)(resource_pool + 0x82) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x84) = 0;
   resource_pool[0x86] = 0;
-  *(undefined **)(resource_pool + 0x82) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x88) = 0;
-  *(undefined8 *)(resource_pool + 0x84) = 0;
+  *(void **)(resource_pool + 0x82) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x88) = 0;
+  *(uint64_t *)(resource_pool + 0x84) = 0;
   resource_pool[0x86] = 0;
-  *(undefined **)(resource_pool + 0x8a) = &RENDERING_RESOURCE_BASE_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x8c) = 0;
+  *(void **)(resource_pool + 0x8a) = &RENDERING_RESOURCE_BASE_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x8c) = 0;
   resource_pool[0x8e] = 0;
-  *(undefined **)(resource_pool + 0x8a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
-  *(undefined8 *)(resource_pool + 0x90) = 0;
-  *(undefined8 *)(resource_pool + 0x8c) = 0;
+  *(void **)(resource_pool + 0x8a) = &RENDERING_RESOURCE_EXTENDED_ADDRESS;
+  *(uint64_t *)(resource_pool + 0x90) = 0;
+  *(uint64_t *)(resource_pool + 0x8c) = 0;
   resource_pool[0x8e] = 0;
   initialize_rendering_texture_array(resource_pool + 0x92,0x58,0x10,initialize_texture_descriptor,initialize_texture_sampler);
   initialize_rendering_buffer_pool(resource_pool + 500);
   *resource_pool = 0;
   resource_pool[0x1f2] = 0;
-  *(undefined1 *)(resource_pool + 499) = 0;
+  *(int8_t *)(resource_pool + 499) = 0;
   return resource_pool;
 }
 
@@ -343,14 +343,14 @@ undefined4 * initialize_rendering_resource_pool(undefined4 *resource_pool)
  * @param flags 序列化标志，控制序列化行为
  * @param config 配置参数，影响序列化过程
  */
-void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,undefined8 flags,undefined8 config)
+void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,uint64_t flags,uint64_t config)
 
 {
-  undefined1 scene_flag;
-  undefined4 object_id;
+  int8_t scene_flag;
+  int32_t object_id;
   longlong data_size;
-  undefined1 *buffer_ptr;
-  undefined4 *data_ptr;
+  int8_t *buffer_ptr;
+  int32_t *data_ptr;
   int *count_ptr;
   int object_count;
   uint object_index;
@@ -358,26 +358,26 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,un
   int array_size;
   longlong array_start;
   ulonglong uVar12;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   ulonglong uVar13;
-  undefined8 unaff_R14;
-  undefined8 unaff_R15;
+  uint64_t unaff_R14;
+  uint64_t unaff_R15;
   
-  data_ptr = (undefined4 *)data_buffer[1];
+  data_ptr = (int32_t *)data_buffer[1];
   if ((ulonglong)((data_buffer[2] - (longlong)data_ptr) + *data_buffer) < 5) {
     ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
-    data_ptr = (undefined4 *)data_buffer[1];
+    data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = 0;
   data_buffer[1] = data_buffer[1] + 4;
-  data_ptr = (undefined4 *)data_buffer[1];
+  data_ptr = (int32_t *)data_buffer[1];
   if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
     ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
-    data_ptr = (undefined4 *)data_buffer[1];
+    data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = 1;
   data_buffer[1] = data_buffer[1] + 4;
-  serialize_rendering_shader_data(&RENDERING_SHADER_TABLE,*(undefined4 *)(scene_data + 8),data_buffer);
+  serialize_rendering_shader_data(&RENDERING_SHADER_TABLE,*(int32_t *)(scene_data + 8),data_buffer);
   serialize_texture_data(data_buffer,scene_data + 0x10);
   serialize_texture_data(data_buffer,scene_data + 0x30);
   serialize_texture_data(data_buffer,scene_data + 0x50);
@@ -403,19 +403,19 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,un
     array_start = 0;
     do {
       serialize_texture_data(data_buffer,(longlong)object_count * 0x60 + *(longlong *)(scene_data + 0x130));
-      data_ptr = (undefined4 *)data_buffer[1];
-      object_id = *(undefined4 *)(array_start + 0x58 + *(longlong *)(scene_data + 0x130));
+      data_ptr = (int32_t *)data_buffer[1];
+      object_id = *(int32_t *)(array_start + 0x58 + *(longlong *)(scene_data + 0x130));
       if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
         ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
-        data_ptr = (undefined4 *)data_buffer[1];
+        data_ptr = (int32_t *)data_buffer[1];
       }
       *data_ptr = object_id;
       data_buffer[1] = data_buffer[1] + 4;
-      data_ptr = (undefined4 *)data_buffer[1];
-      object_id = *(undefined4 *)(array_start + 0x5c + *(longlong *)(scene_data + 0x130));
+      data_ptr = (int32_t *)data_buffer[1];
+      object_id = *(int32_t *)(array_start + 0x5c + *(longlong *)(scene_data + 0x130));
       if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
         ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
-        data_ptr = (undefined4 *)data_buffer[1];
+        data_ptr = (int32_t *)data_buffer[1];
       }
       *data_ptr = object_id;
       object_count = object_count + 1;
@@ -439,22 +439,22 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,un
     data_size = data_size + 0x58;
     array_start = array_start + -1;
   } while (array_start != 0);
-  serialize_rendering_light_data(&RENDERING_LIGHT_TABLE,*(undefined4 *)(scene_data + 2000),data_buffer);
-  buffer_ptr = (undefined1 *)data_buffer[1];
-  scene_flag = *(undefined1 *)(scene_data + 0x7d4);
+  serialize_rendering_light_data(&RENDERING_LIGHT_TABLE,*(int32_t *)(scene_data + 2000),data_buffer);
+  buffer_ptr = (int8_t *)data_buffer[1];
+  scene_flag = *(int8_t *)(scene_data + 0x7d4);
   if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 2) {
     ensure_buffer_capacity(data_buffer,buffer_ptr + (1 - *data_buffer));
-    buffer_ptr = (undefined1 *)data_buffer[1];
+    buffer_ptr = (int8_t *)data_buffer[1];
   }
   *buffer_ptr = scene_flag;
   data_buffer[1] = data_buffer[1] + 1;
   if (*(char *)(scene_data + 0x7d4) == '\0') {
     return;
   }
-  data_ptr = (undefined4 *)data_buffer[1];
+  data_ptr = (int32_t *)data_buffer[1];
   if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
     ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
-    data_ptr = (undefined4 *)data_buffer[1];
+    data_ptr = (int32_t *)data_buffer[1];
   }
   uVar12 = 0;
   *data_ptr = 0;
@@ -483,19 +483,19 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,un
              (ulonglong)((*(longlong *)(scene_data + 0x800) - *(longlong *)(scene_data + 0x7f8)) / 0x98));
   }
   serialize_texture_data(data_buffer,scene_data + 0x818);
-  buffer_ptr = (undefined1 *)data_buffer[1];
-  scene_flag = *(undefined1 *)(scene_data + 0x8b0);
+  buffer_ptr = (int8_t *)data_buffer[1];
+  scene_flag = *(int8_t *)(scene_data + 0x8b0);
   if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 2) {
     ensure_buffer_capacity(data_buffer,buffer_ptr + (1 - *data_buffer));
-    buffer_ptr = (undefined1 *)data_buffer[1];
+    buffer_ptr = (int8_t *)data_buffer[1];
   }
   *buffer_ptr = scene_flag;
   data_buffer[1] = data_buffer[1] + 1;
-  data_ptr = (undefined4 *)data_buffer[1];
-  object_id = *(undefined4 *)(scene_data + 0x8b4);
+  data_ptr = (int32_t *)data_buffer[1];
+  object_id = *(int32_t *)(scene_data + 0x8b4);
   if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
     ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
-    data_ptr = (undefined4 *)data_buffer[1];
+    data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = object_id;
   data_buffer[1] = data_buffer[1] + 4;
@@ -584,15 +584,15 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,un
             );
   }
   serialize_texture_data(data_buffer,scene_data + 0x18b0);
-  buffer_ptr = (undefined1 *)data_buffer[1];
-  scene_flag = *(undefined1 *)(scene_data + 0x18d1);
+  buffer_ptr = (int8_t *)data_buffer[1];
+  scene_flag = *(int8_t *)(scene_data + 0x18d1);
   if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 2) {
     ensure_buffer_capacity(data_buffer,buffer_ptr + (1 - *data_buffer));
-    buffer_ptr = (undefined1 *)data_buffer[1];
+    buffer_ptr = (int8_t *)data_buffer[1];
   }
   *buffer_ptr = scene_flag;
   data_buffer[1] = data_buffer[1] + 1;
-  data_ptr = (undefined4 *)data_buffer[1];
+  data_ptr = (int32_t *)data_buffer[1];
   if (*(char *)(scene_data + 0x18d1) != '\0') {
     serialize_texture_data(data_buffer,scene_data + 0x18d8);
     serialize_texture_data(data_buffer,scene_data + 0x1970);
@@ -600,11 +600,11 @@ void serialize_rendering_scene_data(longlong scene_data,longlong *data_buffer,un
     serialize_texture_data(data_buffer,scene_data + 0x1aa0);
     serialize_texture_data(data_buffer,scene_data + 0x1b38);
     serialize_texture_data(data_buffer,scene_data + 0x1bd0);
-    data_ptr = (undefined4 *)data_buffer[1];
+    data_ptr = (int32_t *)data_buffer[1];
   }
   if ((ulonglong)((*data_buffer - (longlong)data_ptr) + data_buffer[2]) < 5) {
     ensure_buffer_capacity(data_buffer,(longlong)data_ptr + (4 - *data_buffer));
-    data_ptr = (undefined4 *)data_buffer[1];
+    data_ptr = (int32_t *)data_buffer[1];
   }
   *data_ptr = 0x10;
   data_buffer[1] = data_buffer[1] + 4;
@@ -649,9 +649,9 @@ void parse_rendering_object_identifier(longlong *object_table,longlong stream_of
   ulonglong object_count;
   longlong object_size;
   longlong *current_object;
-  undefined1 local_stack_buffer [32];
-  undefined8 stack_guard_1;
-  undefined *stack_guard_2;
+  int8_t local_stack_buffer [32];
+  uint64_t stack_guard_1;
+  void *stack_guard_2;
   byte *temp_buffer;
   int temp_int;
   byte comparison_buffer [1032];
@@ -722,19 +722,19 @@ LAB_180272cfe:
  * @param shader_flags 着色器标志，用于筛选需要序列化的着色器
  * @param data_buffer 数据缓冲区，用于存储序列化结果
  */
-void serialize_rendering_shader_data(undefined8 *shader_table,uint shader_flags,longlong *data_buffer)
+void serialize_rendering_shader_data(uint64_t *shader_table,uint shader_flags,longlong *data_buffer)
 
 {
-  undefined4 *buffer_ptr;
+  int32_t *buffer_ptr;
   longlong buffer_offset;
   longlong buffer_position;
   int shader_count;
   longlong array_start;
   
-  buffer_ptr = (undefined4 *)data_buffer[1];
+  buffer_ptr = (int32_t *)data_buffer[1];
   if ((ulonglong)((*data_buffer - (longlong)buffer_ptr) + data_buffer[2]) < 5) {
     ensure_buffer_capacity(data_buffer,(longlong)buffer_ptr + (4 - *data_buffer));
-    buffer_ptr = (undefined4 *)data_buffer[1];
+    buffer_ptr = (int32_t *)data_buffer[1];
   }
   shader_count = 0;
   *buffer_ptr = 0;
@@ -777,20 +777,20 @@ void serialize_rendering_shader_data(undefined8 *shader_table,uint shader_flags,
 void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
 
 {
-  undefined *destructor_ptr;
-  undefined8 *array_start;
+  void *destructor_ptr;
+  uint64_t *array_start;
   ulonglong current_size;
-  undefined8 *array_end;
-  undefined8 *current_object;
-  undefined8 *new_object;
-  undefined *object_data;
+  uint64_t *array_end;
+  uint64_t *current_object;
+  uint64_t *new_object;
+  void *object_data;
   longlong array_capacity;
   
-  array_start = (undefined8 *)object_array[1];
+  array_start = (uint64_t *)object_array[1];
   array_capacity = *object_array;
   current_size = ((longlong)array_start - array_capacity) / 0x98;
   if (new_size <= current_size) {
-    new_object = (undefined8 *)(new_size * 0x98 + array_capacity);
+    new_object = (uint64_t *)(new_size * 0x98 + array_capacity);
     if (new_object != array_start) {
       do {
         (**(code **)*new_object)(new_object,0);
@@ -802,9 +802,9 @@ void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
     return;
   }
   new_size = new_size - current_size;
-  array_start = (undefined8 *)object_array[1];
+  array_start = (uint64_t *)object_array[1];
   if ((ulonglong)((object_array[2] - (longlong)array_start) / 0x98) < new_size) {
-    new_object = (undefined8 *)*object_array;
+    new_object = (uint64_t *)*object_array;
     array_capacity = ((longlong)array_start - (longlong)new_object) / 0x98;
     current_size = array_capacity * 2;
     if (array_capacity == 0) {
@@ -813,13 +813,13 @@ void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
     if (current_size < array_capacity + new_size) {
       current_size = array_capacity + new_size;
     }
-    array_end = (undefined8 *)0x0;
+    array_end = (uint64_t *)0x0;
     if (current_size != 0) {
-      array_end = (undefined8 *)
+      array_end = (uint64_t *)
                allocate_rendering_memory(MEMORY_POOL_HANDLE,current_size * 0x98,(char)object_array[3],MEMORY_ALLOCATOR_FLAGS,
                              MEMORY_PROTECTION_MASK);
-      array_start = (undefined8 *)object_array[1];
-      new_object = (undefined8 *)*object_array;
+      array_start = (uint64_t *)object_array[1];
+      new_object = (uint64_t *)*object_array;
     }
     current_object = array_end;
     if (new_object != array_start) {
@@ -827,20 +827,20 @@ void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
       do {
         *current_object = &RENDERING_RESOURCE_BASE_ADDRESS;
         current_object[1] = 0;
-        *(undefined4 *)(current_object + 2) = 0;
+        *(int32_t *)(current_object + 2) = 0;
         *current_object = &RENDERING_OBJECT_CONSTRUCTOR;
         current_object[1] = current_object + 3;
-        *(undefined4 *)(current_object + 2) = 0;
-        *(undefined1 *)(current_object + 3) = 0;
-        *(undefined4 *)(current_object + 2) = *(undefined4 *)((longlong)current_object + array_capacity + 0x10);
-        destructor_ptr = *(undefined **)((longlong)current_object + array_capacity + 8);
+        *(int32_t *)(current_object + 2) = 0;
+        *(int8_t *)(current_object + 3) = 0;
+        *(int32_t *)(current_object + 2) = *(int32_t *)((longlong)current_object + array_capacity + 0x10);
+        destructor_ptr = *(void **)((longlong)current_object + array_capacity + 8);
         object_data = &DEFAULT_OBJECT_NAME;
-        if (destructor_ptr != (undefined *)0x0) {
+        if (destructor_ptr != (void *)0x0) {
           object_data = destructor_ptr;
         }
         strcpy_s(current_object[1],0x80,object_data);
         current_object = current_object + 0x13;
-      } while ((undefined8 *)((longlong)current_object + array_capacity) != array_start);
+      } while ((uint64_t *)((longlong)current_object + array_capacity) != array_start);
     }
     if (new_size != 0) {
       array_start = current_object + 1;
@@ -848,25 +848,25 @@ void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
       do {
         array_start[-1] = &RENDERING_RESOURCE_BASE_ADDRESS;
         *array_start = 0;
-        *(undefined4 *)(array_start + 1) = 0;
+        *(int32_t *)(array_start + 1) = 0;
         array_start[-1] = &RENDERING_OBJECT_CONSTRUCTOR;
         *array_start = array_start + 2;
-        *(undefined4 *)(array_start + 1) = 0;
-        *(undefined1 *)(array_start + 2) = 0;
+        *(int32_t *)(array_start + 1) = 0;
+        *(int8_t *)(array_start + 2) = 0;
         array_start = array_start + 0x13;
         current_size = current_size - 1;
       } while (current_size != 0);
     }
-    array_start = (undefined8 *)object_array[1];
-    new_object = (undefined8 *)*object_array;
+    array_start = (uint64_t *)object_array[1];
+    new_object = (uint64_t *)*object_array;
     if (new_object != array_start) {
       do {
         (**(code **)*new_object)(new_object,0);
         new_object = new_object + 0x13;
       } while (new_object != array_start);
-      new_object = (undefined8 *)*object_array;
+      new_object = (uint64_t *)*object_array;
     }
-    if (new_object != (undefined8 *)0x0) {
+    if (new_object != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       free_rendering_memory(new_object);
     }
@@ -880,15 +880,15 @@ void resize_rendering_object_array(longlong *object_array,ulonglong new_size)
       do {
         *array_start = &RENDERING_RESOURCE_BASE_ADDRESS;
         array_start[1] = 0;
-        *(undefined4 *)(array_start + 2) = 0;
+        *(int32_t *)(array_start + 2) = 0;
         *array_start = &RENDERING_OBJECT_CONSTRUCTOR;
         array_start[1] = array_start + 3;
-        *(undefined4 *)(array_start + 2) = 0;
-        *(undefined1 *)(array_start + 3) = 0;
+        *(int32_t *)(array_start + 2) = 0;
+        *(int8_t *)(array_start + 3) = 0;
         array_start = array_start + 0x13;
         current_size = current_size - 1;
       } while (current_size != 0);
-      array_start = (undefined8 *)object_array[1];
+      array_start = (uint64_t *)object_array[1];
     }
     object_array[1] = (longlong)(array_start + new_size * 0x13);
   }

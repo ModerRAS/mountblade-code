@@ -62,7 +62,7 @@ void rendering_system_cleanup_resources(longlong render_context)
   // 清理指针数组资源（从0x100到0x128，步长为0x08）
   for (i = 0; i < 6; i++) {
     resource_pointer_array = *(longlong ***)(render_context + OFFSET_POINTER_ARRAY_START + i * OFFSET_POINTER_ARRAY_STEP);
-    *(undefined8 *)(render_context + OFFSET_POINTER_ARRAY_START + i * OFFSET_POINTER_ARRAY_STEP) = 0;
+    *(uint64_t *)(render_context + OFFSET_POINTER_ARRAY_START + i * OFFSET_POINTER_ARRAY_STEP) = 0;
     
     if (resource_pointer_array != (longlong **)0x0) {
       // 调用资源对象的清理函数（函数指针位于对象地址+0x38）
@@ -115,7 +115,7 @@ void rendering_system_cleanup_resources(longlong render_context)
   }
   
   // 重置状态标志
-  *(undefined4 *)(render_context + OFFSET_STATUS_FLAG) = 0;
+  *(int32_t *)(render_context + OFFSET_STATUS_FLAG) = 0;
   
   return;
 }

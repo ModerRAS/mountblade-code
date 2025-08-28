@@ -26,7 +26,7 @@
  * - 简化版本专注于核心参数处理功能
  * - 保留了主要的数据处理流程
  */
-void RenderingSystem_ParameterProcessor(undefined8 render_context, longlong param_buffer, longlong data_buffer)
+void RenderingSystem_ParameterProcessor(uint64_t render_context, longlong param_buffer, longlong data_buffer)
 
 {
   // 资源管理和初始化
@@ -96,7 +96,7 @@ void RenderingSystem_ParameterProcessor(undefined8 render_context, longlong para
  * - 简化版本专注于核心材质处理功能
  * - 保留了主要的材质参数计算流程
  */
-void RenderingSystem_AdvancedMaterialProcessor(undefined8 render_context, longlong param_buffer, longlong data_buffer)
+void RenderingSystem_AdvancedMaterialProcessor(uint64_t render_context, longlong param_buffer, longlong data_buffer)
 
 {
   // 材质参数初始化
@@ -156,7 +156,7 @@ void RenderingSystem_AdvancedMaterialProcessor(undefined8 render_context, longlo
  * - 简化版本专注于核心材质优化功能
  * - 保留了主要的优化处理流程
  */
-void RenderingSystem_MaterialOptimizer(undefined8 material_context, undefined8 texture_data, uint optimization_flags)
+void RenderingSystem_MaterialOptimizer(uint64_t material_context, uint64_t texture_data, uint optimization_flags)
 
 {
   // 材质优化参数

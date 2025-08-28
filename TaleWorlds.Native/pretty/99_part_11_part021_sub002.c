@@ -6,7 +6,7 @@
 void FUN_1806f0db4(void)
 
 {
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   uint unaff_EBP;
   uint uVar1;
   longlong *unaff_R12;

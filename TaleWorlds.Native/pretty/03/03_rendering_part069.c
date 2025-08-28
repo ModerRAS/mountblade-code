@@ -74,26 +74,26 @@ static RenderContext* g_render_context = NULL;
  */
 // 函数：渲染系统高级初始化
 // 功能：初始化渲染系统的各个组件，设置互斥锁、分配内存、初始化参数
-void rendering_system_advanced_initialize(undefined8 *render_context, int init_param)
+void rendering_system_advanced_initialize(uint64_t *render_context, int init_param)
 
 {
-  undefined1 local_var_1;
+  int8_t local_var_1;
   longlong local_long_1;
   uint local_uint_1;
   uint local_uint_2;
-  undefined *local_ptr_1;
-  undefined1 local_stack_array_1 [32];
-  undefined8 *local_stack_ptr_1;
-  undefined8 local_stack_var_1;
-  undefined8 *local_stack_ptr_2;
-  undefined *local_stack_ptr_3;
-  undefined *local_stack_ptr_4;
-  undefined4 local_stack_var_2;
+  void *local_ptr_1;
+  int8_t local_stack_array_1 [32];
+  uint64_t *local_stack_ptr_1;
+  uint64_t local_stack_var_1;
+  uint64_t *local_stack_ptr_2;
+  void *local_stack_ptr_3;
+  void *local_stack_ptr_4;
+  int32_t local_stack_var_2;
   undefined local_stack_array_2 [32];
-  undefined *local_stack_ptr_5;
-  undefined1 *local_stack_ptr_6;
-  undefined4 local_stack_var_3;
-  undefined1 local_stack_array_3 [32];
+  void *local_stack_ptr_5;
+  int8_t *local_stack_ptr_6;
+  int32_t local_stack_var_3;
+  int8_t local_stack_array_3 [32];
   ulonglong local_stack_var_4;
   longlong local_long_2;
   
@@ -107,14 +107,14 @@ void rendering_system_advanced_initialize(undefined8 *render_context, int init_p
   render_context[1] = 0;
   render_context[2] = 0;
   render_context[3] = 0;
-  *(undefined4 *)(render_context + 4) = 3;
+  *(int32_t *)(render_context + 4) = 3;
   *render_context = &UNK_180a1a278;
   render_context[0xd] = 0;
   render_context[0xe] = 0;
   
   // 初始化互斥锁
   LOCK();
-  *(undefined4 *)(render_context + 0xf) = 0;
+  *(int32_t *)(render_context + 0xf) = 0;
   UNLOCK();
   
   // 初始化渲染状态数组 (256个元素)
@@ -122,32 +122,32 @@ void rendering_system_advanced_initialize(undefined8 *render_context, int init_p
   do {
     render_context[(longlong)(int)local_uint_1 + 0x10] = 0;
     LOCK();
-    *(undefined1 *)((longlong)render_context + (longlong)(int)local_uint_1 + 0x880) = 1;
+    *(int8_t *)((longlong)render_context + (longlong)(int)local_uint_1 + 0x880) = 1;
     UNLOCK();
     local_uint_1 = local_uint_1 + 1;
   } while (local_uint_1 < 0x100);
   
   // 初始化渲染参数数组 (256个元素)
   LOCK();
-  *(undefined4 *)(render_context + 0x130) = 0;
+  *(int32_t *)(render_context + 0x130) = 0;
   UNLOCK();
   local_uint_1 = local_uint_2;
   do {
     render_context[(longlong)(int)local_uint_1 + 0x131] = 0;
     LOCK();
-    *(undefined1 *)((longlong)render_context + (longlong)(int)local_uint_1 + 0x1188) = 1;
+    *(int8_t *)((longlong)render_context + (longlong)(int)local_uint_1 + 0x1188) = 1;
     UNLOCK();
     local_uint_1 = local_uint_1 + 1;
   } while (local_uint_1 < 0x100);
   
   // 初始化渲染资源数组 (256个元素)
   LOCK();
-  *(undefined4 *)(render_context + 0x251) = 0;
+  *(int32_t *)(render_context + 0x251) = 0;
   UNLOCK();
   do {
     render_context[(longlong)(int)local_uint_2 + 0x252] = 0;
     LOCK();
-    *(undefined1 *)((longlong)render_context + (longlong)(int)local_uint_2 + 0x1a90) = 1;
+    *(int8_t *)((longlong)render_context + (longlong)(int)local_uint_2 + 0x1a90) = 1;
     UNLOCK();
     local_uint_2 = local_uint_2 + 1;
   } while (local_uint_2 < 0x100);
@@ -156,7 +156,7 @@ void rendering_system_advanced_initialize(undefined8 *render_context, int init_p
   render_context[0x372] = 0;
   render_context[0x373] = 0;
   render_context[0x374] = 0;
-  *(undefined4 *)(render_context + 0x375) = 3;
+  *(int32_t *)(render_context + 0x375) = 3;
   
   // 初始化互斥锁结构
   local_stack_ptr_1 = render_context + 0x376;
@@ -167,12 +167,12 @@ void rendering_system_advanced_initialize(undefined8 *render_context, int init_p
   local_stack_ptr_1 = render_context + 0x380;
   *local_stack_ptr_1 = &UNK_18098bcb0;
   render_context[0x381] = 0;
-  *(undefined4 *)(render_context + 0x382) = 0;
+  *(int32_t *)(render_context + 0x382) = 0;
   *local_stack_ptr_1 = &UNK_18098bc80;
   render_context[0x381] = render_context + 899;
-  *(undefined4 *)(render_context + 0x382) = 0;
-  *(undefined1 *)(render_context + 899) = 0;
-  *(undefined8 *)((longlong)render_context + 0x1c3c) = 0;
+  *(int32_t *)(render_context + 0x382) = 0;
+  *(int8_t *)(render_context + 899) = 0;
+  *(uint64_t *)((longlong)render_context + 0x1c3c) = 0;
   render_context[0x389] = 0;
   
   // 初始化渲染字符串处理
@@ -182,7 +182,7 @@ void rendering_system_advanced_initialize(undefined8 *render_context, int init_p
   local_stack_var_3 = 0x15;
   strcpy_s(local_stack_array_3, 0x20, &UNK_180a1a258);
   local_var_1 = FUN_180051f00(_DAT_180c86870, &local_stack_ptr_5);
-  *(undefined1 *)(render_context + 0x38a) = local_var_1;
+  *(int8_t *)(render_context + 0x38a) = local_var_1;
   
   // 初始化渲染资源处理器
   local_stack_ptr_5 = &UNK_18098bcb0;
@@ -195,11 +195,11 @@ void rendering_system_advanced_initialize(undefined8 *render_context, int init_p
   local_stack_array_2[0] = 0;
   local_stack_var_2 = 0xc;
   strcpy_s(local_stack_array_2, 0x20, &UNK_180a1a248);
-  *(undefined4 *)(render_context + 0x382) = local_stack_var_2;
+  *(int32_t *)(render_context + 0x382) = local_stack_var_2;
   
   // 处理渲染字符串配置
   local_ptr_1 = &DAT_18098bc73;
-  if (local_stack_ptr_4 != (undefined *)0x0) {
+  if (local_stack_ptr_4 != (void *)0x0) {
     local_ptr_1 = local_stack_ptr_4;
   }
   strcpy_s(render_context[0x381], 0x20, local_ptr_1);
@@ -219,7 +219,7 @@ void rendering_system_advanced_initialize(undefined8 *render_context, int init_p
   }
   
   // 清理初始化状态
-  *(undefined8 *)((longlong)render_context + 0x1c3c) = 0;
+  *(uint64_t *)((longlong)render_context + 0x1c3c) = 0;
   FUN_1808fc050(local_stack_var_4 ^ (ulonglong)local_stack_array_1);
 }
 
@@ -234,7 +234,7 @@ void rendering_system_advanced_initialize(undefined8 *render_context, int init_p
  */
 // 函数：渲染系统资源清理器
 // 功能：清理渲染系统资源，释放内存，处理资源释放逻辑
-undefined8 rendering_system_cleanup_resources(undefined8 render_context, ulonglong cleanup_flags)
+uint64_t rendering_system_cleanup_resources(uint64_t render_context, ulonglong cleanup_flags)
 
 {
   // 调用资源清理函数
@@ -259,13 +259,13 @@ undefined8 rendering_system_cleanup_resources(undefined8 render_context, ulonglo
  */
 // 函数：渲染系统高级资源清理
 // 功能：执行高级资源清理操作，包括内存释放、互斥锁销毁、状态重置
-void rendering_system_advanced_cleanup(undefined8 *render_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void rendering_system_advanced_cleanup(uint64_t *render_context, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   longlong *local_ptr_1;
   longlong local_long_1;
   longlong local_long_2;
-  undefined8 local_var_1;
+  uint64_t local_var_1;
   
   local_var_1 = 0xfffffffffffffffe;
   *render_context = &UNK_180a1a278;
@@ -336,32 +336,32 @@ void rendering_system_advanced_cleanup(undefined8 *render_context, undefined8 pa
  */
 // 函数：渲染系统高级数据处理
 // 功能：处理渲染系统的高级数据操作，包括数据转换、内存管理、队列处理
-void rendering_system_advanced_data_processor(longlong render_context, undefined8 param_2, undefined8 param_3, undefined1 param_4)
+void rendering_system_advanced_data_processor(longlong render_context, uint64_t param_2, uint64_t param_3, int8_t param_4)
 
 {
-  undefined4 *local_ptr_1;
-  undefined4 *local_ptr_2;
+  int32_t *local_ptr_1;
+  int32_t *local_ptr_2;
   longlong local_long_1;
-  undefined8 local_var_1;
-  undefined8 *local_ptr_3;
-  undefined8 *local_ptr_4;
+  uint64_t local_var_1;
+  uint64_t *local_ptr_3;
+  uint64_t *local_ptr_4;
   longlong local_long_2;
-  undefined8 *local_ptr_5;
-  undefined4 *local_ptr_6;
+  uint64_t *local_ptr_5;
+  int32_t *local_ptr_6;
   int local_int_1;
   longlong local_stack_var_1;
-  undefined4 local_var_2;
+  int32_t local_var_2;
   longlong local_stack_var_2;
   longlong local_stack_var_3;
   longlong local_stack_var_4;
   uint local_stack_var_5;
-  undefined1 local_stack_array_1 [32];
-  undefined4 local_stack_var_6;
-  undefined4 local_stack_var_7;
-  undefined4 local_stack_var_8;
-  undefined1 local_stack_var_9;
-  undefined1 local_stack_var_10;
-  undefined8 local_stack_var_11;
+  int8_t local_stack_array_1 [32];
+  int32_t local_stack_var_6;
+  int32_t local_stack_var_7;
+  int32_t local_stack_var_8;
+  int8_t local_stack_var_9;
+  int8_t local_stack_var_10;
+  uint64_t local_stack_var_11;
   
   // 计算数据块大小
   local_long_2 = ((longlong)_DAT_180bfaea8 - (longlong)_DAT_180bfaea0) / 0x38;
@@ -384,12 +384,12 @@ void rendering_system_advanced_data_processor(longlong render_context, undefined
     do {
       // 复制数据块
       FUN_180627ae0(local_long_1, local_ptr_6 + -9);
-      *(undefined4 *)(local_long_1 + 0x20) = local_ptr_6[-1];
-      *(undefined4 *)(local_long_1 + 0x24) = *local_ptr_6;
-      *(undefined4 *)(local_long_1 + 0x28) = local_ptr_6[1];
-      *(undefined1 *)(local_long_1 + 0x2c) = *(undefined1 *)(local_ptr_6 + 2);
-      *(undefined1 *)(local_long_1 + 0x2d) = *(undefined1 *)((longlong)local_ptr_6 + 9);
-      *(undefined8 *)(local_long_1 + 0x30) = *(undefined8 *)(local_ptr_6 + 3);
+      *(int32_t *)(local_long_1 + 0x20) = local_ptr_6[-1];
+      *(int32_t *)(local_long_1 + 0x24) = *local_ptr_6;
+      *(int32_t *)(local_long_1 + 0x28) = local_ptr_6[1];
+      *(int8_t *)(local_long_1 + 0x2c) = *(int8_t *)(local_ptr_6 + 2);
+      *(int8_t *)(local_long_1 + 0x2d) = *(int8_t *)((longlong)local_ptr_6 + 9);
+      *(uint64_t *)(local_long_1 + 0x30) = *(uint64_t *)(local_ptr_6 + 3);
       local_long_1 = local_long_1 + 0x38;
       local_ptr_1 = local_ptr_6 + 5;
       local_ptr_6 = local_ptr_6 + 0xe;
@@ -409,38 +409,38 @@ void rendering_system_advanced_data_processor(longlong render_context, undefined
       
       // 处理队列数据
       FUN_180627ae0(local_stack_array_1, local_long_2);
-      local_stack_var_6 = *(undefined4 *)(local_long_2 + 0x20);
-      local_stack_var_7 = *(undefined4 *)(local_long_2 + 0x24);
-      local_stack_var_8 = *(undefined4 *)(local_long_2 + 0x28);
-      local_stack_var_9 = *(undefined1 *)(local_long_2 + 0x2c);
-      local_stack_var_10 = *(undefined1 *)(local_long_2 + 0x2d);
-      local_stack_var_11 = *(undefined8 *)(local_long_2 + 0x30);
+      local_stack_var_6 = *(int32_t *)(local_long_2 + 0x20);
+      local_stack_var_7 = *(int32_t *)(local_long_2 + 0x24);
+      local_stack_var_8 = *(int32_t *)(local_long_2 + 0x28);
+      local_stack_var_9 = *(int8_t *)(local_long_2 + 0x2c);
+      local_stack_var_10 = *(int8_t *)(local_long_2 + 0x2d);
+      local_stack_var_11 = *(uint64_t *)(local_long_2 + 0x30);
       
       // 处理数据项
       local_var_1 = FUN_1803a6710(local_var_1, local_stack_array_1);
-      local_ptr_5 = *(undefined8 **)(render_context + 0x1b98);
+      local_ptr_5 = *(uint64_t **)(render_context + 0x1b98);
       
       // 管理队列空间
-      if (local_ptr_5 < *(undefined8 **)(render_context + 0x1ba0)) {
-        *(undefined8 **)(render_context + 0x1b98) = local_ptr_5 + 1;
+      if (local_ptr_5 < *(uint64_t **)(render_context + 0x1ba0)) {
+        *(uint64_t **)(render_context + 0x1b98) = local_ptr_5 + 1;
         *local_ptr_5 = local_var_1;
       }
       else {
         // 扩展队列空间
-        local_ptr_4 = *(undefined8 **)(render_context + 0x1b90);
+        local_ptr_4 = *(uint64_t **)(render_context + 0x1b90);
         local_long_2 = (longlong)local_ptr_5 - (longlong)local_ptr_4 >> 3;
         if (local_long_2 == 0) {
           local_long_2 = 1;
         LAB_1803075e0:
-          local_ptr_3 = (undefined8 *)
-                   FUN_18062b420(_DAT_180c8ed18, local_long_2 * 8, *(undefined1 *)(render_context + 0x1ba8));
-          local_ptr_5 = *(undefined8 **)(render_context + 0x1b98);
-          local_ptr_4 = *(undefined8 **)(render_context + 0x1b90);
+          local_ptr_3 = (uint64_t *)
+                   FUN_18062b420(_DAT_180c8ed18, local_long_2 * 8, *(int8_t *)(render_context + 0x1ba8));
+          local_ptr_5 = *(uint64_t **)(render_context + 0x1b98);
+          local_ptr_4 = *(uint64_t **)(render_context + 0x1b90);
         }
         else {
           local_long_2 = local_long_2 * 2;
           if (local_long_2 != 0) goto LAB_1803075e0;
-          local_ptr_3 = (undefined8 *)0x0;
+          local_ptr_3 = (uint64_t *)0x0;
         }
         
         // 移动队列数据
@@ -451,9 +451,9 @@ void rendering_system_advanced_data_processor(longlong render_context, undefined
         if (*(longlong *)(render_context + 0x1b90) != 0) {
           FUN_18064e900();
         }
-        *(undefined8 **)(render_context + 0x1b90) = local_ptr_3;
-        *(undefined8 **)(render_context + 0x1b98) = local_ptr_3 + 1;
-        *(undefined8 **)(render_context + 0x1ba0) = local_ptr_3 + local_long_2;
+        *(uint64_t **)(render_context + 0x1b90) = local_ptr_3;
+        *(uint64_t **)(render_context + 0x1b98) = local_ptr_3 + 1;
+        *(uint64_t **)(render_context + 0x1ba0) = local_ptr_3 + local_long_2;
       }
       
       local_int_1 = local_int_1 + 1;
@@ -479,7 +479,7 @@ void rendering_system_advanced_data_processor(longlong render_context, undefined
  * 该函数计算渲染系统的参数和数据
  * 处理复杂的参数计算、数据转换、状态更新等操作
  */
-void render_system_parameter_calculator(longlong param_1, longlong *param_2, undefined8 *param_3, undefined8 *param_4,
+void render_system_parameter_calculator(longlong param_1, longlong *param_2, uint64_t *param_3, uint64_t *param_4,
                                       longlong param_5, float param_6, float param_7) {
     if (!param_1 || !param_2 || !param_3 || !param_4) {
         return;
@@ -492,7 +492,7 @@ void render_system_parameter_calculator(longlong param_1, longlong *param_2, und
     float param_x = *(float *)(render_data + 2);
     float param_y = *(float *)((longlong)render_data + 0x14);
     float param_z = *(float *)(render_data + 3);
-    uint32_t param_flags = *(undefined4 *)((longlong)render_data + 0x1c);
+    uint32_t param_flags = *(int32_t *)((longlong)render_data + 0x1c);
     
     // 提取扩展参数
     uint64_t extended_param1 = render_data[6];
@@ -542,7 +542,7 @@ void render_system_parameter_calculator(longlong param_1, longlong *param_2, und
     *(float *)(param_3 + 10) = param_x;
     *(float *)((longlong)param_3 + 0x54) = param_y;
     *(float *)(param_3 + 0xb) = param_z;
-    *(undefined4 *)((longlong)param_3 + 0x5c) = param_flags;
+    *(int32_t *)((longlong)param_3 + 0x5c) = param_flags;
     
     // 设置扩展参数到输出
     param_3[2] = object_params[2];
@@ -585,20 +585,20 @@ void render_system_parameter_calculator(longlong param_1, longlong *param_2, und
         longlong state_data = *(longlong *)(*(longlong *)(render_state + 0xb8) + 0x280);
         
         if (*(char *)(state_data + state_index * 0x14) != '\0') {
-            uint64_t state_value1 = *(undefined8 *)(state_data + 4 + state_index * 0x14);
-            uint64_t state_value2 = *(undefined8 *)(state_data + 0xc + state_index * 0x14);
-            state_params[0] = (undefined4)state_value1;
-            state_params[1] = (undefined4)((ulonglong)state_value1 >> 0x20);
-            state_params[2] = (undefined4)state_value2;
-            state_params[3] = (undefined4)((ulonglong)state_value2 >> 0x20);
+            uint64_t state_value1 = *(uint64_t *)(state_data + 4 + state_index * 0x14);
+            uint64_t state_value2 = *(uint64_t *)(state_data + 0xc + state_index * 0x14);
+            state_params[0] = (int32_t)state_value1;
+            state_params[1] = (int32_t)((ulonglong)state_value1 >> 0x20);
+            state_params[2] = (int32_t)state_value2;
+            state_params[3] = (int32_t)((ulonglong)state_value2 >> 0x20);
         }
     }
     
     // 设置状态参数到输出
-    *(undefined4 *)(param_3 + 0x12) = state_params[0];
-    *(undefined4 *)((longlong)param_3 + 0x94) = state_params[1];
-    *(undefined4 *)(param_3 + 0x13) = state_params[2];
-    *(undefined4 *)((longlong)param_3 + 0x9c) = state_params[3];
+    *(int32_t *)(param_3 + 0x12) = state_params[0];
+    *(int32_t *)((longlong)param_3 + 0x94) = state_params[1];
+    *(int32_t *)(param_3 + 0x13) = state_params[2];
+    *(int32_t *)((longlong)param_3 + 0x9c) = state_params[3];
     
     // 处理附加参数
     uint64_t additional_params[2];
@@ -610,8 +610,8 @@ void render_system_parameter_calculator(longlong param_1, longlong *param_2, und
         longlong add_data = *(longlong *)(*(longlong *)(render_state + 200) + 0x280);
         
         if (*(char *)(add_data + add_index * 0x14) != '\0') {
-            additional_params[1] = *(undefined8 *)(add_data + 4 + add_index * 0x14);
-            additional_params[0] = *(undefined8 *)(add_data + 0xc + add_index * 0x14);
+            additional_params[1] = *(uint64_t *)(add_data + 4 + add_index * 0x14);
+            additional_params[0] = *(uint64_t *)(add_data + 0xc + add_index * 0x14);
         }
     }
     
@@ -625,8 +625,8 @@ void render_system_parameter_calculator(longlong param_1, longlong *param_2, und
         longlong ext_data = *(longlong *)(*(longlong *)(render_state + 0xd8) + 0x280);
         
         if (*(char *)(ext_data + ext_index * 0x14) != '\0') {
-            extended_params[1] = *(undefined8 *)(ext_data + 4 + ext_index * 0x14);
-            extended_params[0] = *(undefined8 *)(ext_data + 0xc + ext_index * 0x14);
+            extended_params[1] = *(uint64_t *)(ext_data + 4 + ext_index * 0x14);
+            extended_params[0] = *(uint64_t *)(ext_data + 0xc + ext_index * 0x14);
         }
     } else {
         extended_params[0] = 0;
@@ -648,7 +648,7 @@ void render_system_parameter_calculator(longlong param_1, longlong *param_2, und
     *(float *)(param_3 + 0x1a) = *(float *)((longlong)param_2 + 0x284) * *(float *)(render_state + 0x2a8);
     *(float *)((longlong)param_3 + 0xd4) = render_param1 * scale_param1;
     *(float *)(param_3 + 0x1b) = render_param2 * scale_param2;
-    *(undefined4 *)((longlong)param_3 + 0xdc) = 0x7f7fffff;
+    *(int32_t *)((longlong)param_3 + 0xdc) = 0x7f7fffff;
     *(float *)((longlong)param_3 + 0xdc) = *(float *)(param_2 + 0x52) * *(float *)(render_state + 0x2b4);
     
     // 计算透明度参数
@@ -696,10 +696,10 @@ void render_system_parameter_calculator(longlong param_1, longlong *param_2, und
     }
     
     // 设置渲染状态参数
-    *(undefined4 *)(param_3 + 0x19) = *(undefined4 *)(render_state + 0x278);
-    *(undefined4 *)((longlong)param_3 + 0xcc) = *(undefined4 *)(render_state + 0x268);
-    *(undefined4 *)(param_3 + 0x18) = *(undefined4 *)(render_state + 0x270);
-    *(undefined4 *)((longlong)param_3 + 0xe4) = *(undefined4 *)(render_state + 0x274);
+    *(int32_t *)(param_3 + 0x19) = *(int32_t *)(render_state + 0x278);
+    *(int32_t *)((longlong)param_3 + 0xcc) = *(int32_t *)(render_state + 0x268);
+    *(int32_t *)(param_3 + 0x18) = *(int32_t *)(render_state + 0x270);
+    *(int32_t *)((longlong)param_3 + 0xe4) = *(int32_t *)(render_state + 0x274);
     
     // 处理渲染对象更新
     if (param_2[0x2d] != *(longlong *)(param_2[0x2b] + 0x140)) {
@@ -714,9 +714,9 @@ void render_system_parameter_calculator(longlong param_1, longlong *param_2, und
     // 处理可见性参数
     uint32_t visibility_param = 0;
     if (*(char *)((longlong)param_2 + 0x74) != '\0') {
-        visibility_param = *(undefined4 *)(param_2 + 0x15);
+        visibility_param = *(int32_t *)(param_2 + 0x15);
     }
-    *(undefined4 *)((longlong)param_3 + 0xfc) = visibility_param;
+    *(int32_t *)((longlong)param_3 + 0xfc) = visibility_param;
     
     // 处理渲染标志
     uint32_t render_flags = *(uint *)(param_2 + 0xe);
@@ -787,22 +787,22 @@ static void acquire_render_lock(void);
 static void release_render_lock(void);
 static void initialize_render_mutex(void* mutex_ptr, int type);
 static void destroy_render_mutex(void);
-static void configure_render_name(undefined8* context);
-static void configure_render_system(undefined8* context);
-static void validate_render_initialization(undefined8* context);
+static void configure_render_name(uint64_t* context);
+static void configure_render_system(uint64_t* context);
+static void validate_render_initialization(uint64_t* context);
 static void cleanup_temporary_initialization_resources(uint64_t security_key);
 static void cleanup_render_resources(void);
 static void cleanup_render_system_state(void);
-static void* allocate_render_resource_data(size_t size, uint8_t flags, undefined8 param, undefined8 security_key);
+static void* allocate_render_resource_data(size_t size, uint8_t flags, uint64_t param, uint64_t security_key);
 static void release_render_resource_data(void* data);
-static void execute_render_callback(undefined8 callback_ptr);
-static void cleanup_render_parameter_block(undefined8* param_block);
+static void execute_render_callback(uint64_t callback_ptr);
+static void cleanup_render_parameter_block(uint64_t* param_block);
 static void* get_render_data_from_context(longlong context);
 static void process_render_config_data(void* config_data, void* source_data);
-static void* allocate_render_config_data(size_t size, uint8_t flags, undefined8 param, undefined8 param2, undefined8 security_key);
+static void* allocate_render_config_data(size_t size, uint8_t flags, uint64_t param, uint64_t param2, uint64_t security_key);
 static void process_render_config_item_data(void* config_data, void* item_data);
 static void* process_render_config_item(void* config_item, void* config_data);
-static void insert_config_item_to_context(undefined8 context, void* config_item);
+static void insert_config_item_to_context(uint64_t context, void* config_item);
 static void cleanup_render_config_data(void* config_data);
 static void* get_render_object_data(longlong* context);
 static void* get_global_render_config(void);

@@ -20,7 +20,7 @@ void update_render_object_status(longlong render_context, longlong *object_list)
   longlong object_data;
   longlong *object_ptr;
   longlong temp_data;
-  undefined1 render_mode;
+  int8_t render_mode;
   byte attribute_byte;
   uint attribute_mask;
   longlong *list_iterator;
@@ -51,21 +51,21 @@ void update_render_object_status(longlong render_context, longlong *object_list)
           temp_data = *(longlong *)(object_data + 0x1b8);
           if (temp_data != 0) {
             // 设置状态标志位
-            status_flag = (byte)((uint)*(undefined4 *)(*(longlong *)(temp_data + 0x1e0) + 0x1588) >> 0x1b) << 7;
+            status_flag = (byte)((uint)*(int32_t *)(*(longlong *)(temp_data + 0x1e0) + 0x1588) >> 0x1b) << 7;
             attribute_byte = *(byte *)(object_data + 0xfd);
             *(byte *)(object_data + 0xfd) = status_flag | attribute_byte & 0x7f;
             
             // 处理属性掩码
             attribute_mask = *(uint *)(temp_data + 0x138) & 0x3000;
             if (attribute_mask == 0x1000) {
-              *(undefined1 *)(object_data + 0xf7) = 1;
+              *(int8_t *)(object_data + 0xf7) = 1;
             }
             else {
               render_mode = 0;
               if (attribute_mask == 0x2000) {
                 render_mode = 2;
               }
-              *(undefined1 *)(object_data + 0xf7) = render_mode;
+              *(int8_t *)(object_data + 0xf7) = render_mode;
             }
             
             // 更新状态字节
@@ -118,11 +118,11 @@ void update_render_object_status(longlong render_context, longlong *object_list)
  * - 位置计算
  * - 渲染状态设置
  */
-void perform_render_transform(undefined8 *transform_matrix, longlong transform_type, float *input_position, float *output_position,
-                             undefined4 render_flags, int blend_mode, longlong shader_data, char texture_slot)
+void perform_render_transform(uint64_t *transform_matrix, longlong transform_type, float *input_position, float *output_position,
+                             int32_t render_flags, int blend_mode, longlong shader_data, char texture_slot)
 {
   uint *lock_ptr;
-  undefined8 *data_ptr;
+  uint64_t *data_ptr;
   float transform_value;
   uint lock_status;
   longlong shader_offset;
@@ -130,12 +130,12 @@ void perform_render_transform(undefined8 *transform_matrix, longlong transform_t
   float input_coords[4];
   float output_coords[4];
   float temp_values[16];
-  undefined4 max_float;
+  int32_t max_float;
   float *shader_params;
   longlong transform_offset;
   float distance_values[4];
   float stack_vars[64];
-  undefined8 stack_data[4];
+  uint64_t stack_data[4];
   float transform_result[4];
   
   // 栈保护检查
@@ -144,11 +144,11 @@ void perform_render_transform(undefined8 *transform_matrix, longlong transform_t
   // 检查渲染标志
   if (*(int *)(transform_matrix + 0x42) != 0) {
     // 获取着色器参数
-    if ((undefined *)*transform_matrix == &UNK_180a169b8) {
+    if ((void *)*transform_matrix == &UNK_180a169b8) {
       shader_params = (float *)(transform_matrix + 0x66);
     }
     else {
-      shader_params = (float *)(**(code **)((undefined *)*transform_matrix + 0x158))(transform_matrix);
+      shader_params = (float *)(**(code **)((void *)*transform_matrix + 0x158))(transform_matrix);
     }
     
     // 提取变换矩阵数据
@@ -225,7 +225,7 @@ void perform_render_transform(undefined8 *transform_matrix, longlong transform_t
     } while ((lock_status & 1) != 0);
     
     // 读取变换数据
-    data_ptr = (undefined8 *)(transform_offset + 4 + shader_offset);
+    data_ptr = (uint64_t *)(transform_offset + 4 + shader_offset);
     stack_data[1] = *data_ptr;
     stack_data[2] = data_ptr[1];
     shader_params = (float *)(transform_offset + 0x14 + shader_offset);
@@ -236,7 +236,7 @@ void perform_render_transform(undefined8 *transform_matrix, longlong transform_t
     
     // 更新变换结果
     stack_vars[13] = stack_vars[13] - stack_vars[16];
-    *(undefined4 *)(transform_offset + shader_offset) = 0;
+    *(int32_t *)(transform_offset + shader_offset) = 0;
     max_float = 0x7f7fffff;
     stack_vars[12] = stack_vars[12] - stack_vars[17];
     stack_vars[11] = stack_vars[11] - stack_vars[18];
@@ -282,7 +282,7 @@ void perform_render_transform(undefined8 *transform_matrix, longlong transform_t
     } while ((lock_status & 1) != 0);
     
     // 读取更多数据
-    data_ptr = (undefined8 *)(transform_offset + 4 + shader_offset);
+    data_ptr = (uint64_t *)(transform_offset + 4 + shader_offset);
     stack_data[5] = *data_ptr;
     stack_data[6] = data_ptr[1];
     shader_params = (float *)(transform_offset + 0x14 + shader_offset);
@@ -292,7 +292,7 @@ void perform_render_transform(undefined8 *transform_matrix, longlong transform_t
     stack_vars[30] = shader_params[3];
     
     stack_vars[22] = stack_vars[26] - stack_vars[27];
-    *(undefined4 *)(transform_offset + shader_offset) = 0;
+    *(int32_t *)(transform_offset + shader_offset) = 0;
     stack_vars[21] = 0x7f7fffff;
     stack_vars[20] = stack_vars[25] - stack_vars[28];
     stack_vars[19] = stack_vars[24] - stack_vars[29];
@@ -319,11 +319,11 @@ void perform_render_transform(undefined8 *transform_matrix, longlong transform_t
       
       // 设置渲染状态
       if (*(int *)(transform_matrix + 99) == -1) {
-        *(undefined4 *)((longlong)transform_matrix + 0x314) = render_flags;
+        *(int32_t *)((longlong)transform_matrix + 0x314) = render_flags;
         render_flags = FUN_1801b9a40(object_list + 0x1218);
-        *(undefined4 *)(transform_matrix + 99) = render_flags;
+        *(int32_t *)(transform_matrix + 99) = render_flags;
         LOCK();
-        *(undefined4 *)(transform_matrix + 0x62) = 0;
+        *(int32_t *)(transform_matrix + 0x62) = 0;
         UNLOCK();
       }
       
@@ -356,46 +356,46 @@ void perform_render_transform(undefined8 *transform_matrix, longlong transform_t
 void perform_advanced_render_transform(longlong render_params)
 {
   uint *lock_ptr;
-  undefined8 *data_ptr;
+  uint64_t *data_ptr;
   float transform_value;
   float matrix_values[16];
   float shader_params[16];
   uint lock_status;
   longlong shader_offset;
   float transform_result[16];
-  undefined8 u_var1;
-  undefined8 u_var2;
-  undefined4 render_flags;
+  uint64_t u_var1;
+  uint64_t u_var2;
+  int32_t render_flags;
   longlong register_data;
   float *shader_ptr;
   longlong temp_register;
   char texture_slot;
   longlong register_14;
   float stack_vars[64];
-  undefined4 xmm_regs[16];
+  int32_t xmm_regs[16];
   float final_result[4];
   
   // 保存寄存器状态
-  *(undefined4 *)(register_11 + -0x38) = xmm_regs[0];
-  *(undefined4 *)(register_11 + -0x34) = xmm_regs[1];
-  *(undefined4 *)(register_11 + -0x30) = xmm_regs[2];
-  *(undefined4 *)(register_11 + -0x2c) = xmm_regs[3];
-  *(undefined4 *)(register_11 + -0x48) = xmm_regs[4];
-  *(undefined4 *)(register_11 + -0x44) = xmm_regs[5];
-  *(undefined4 *)(register_11 + -0x40) = xmm_regs[6];
-  *(undefined4 *)(register_11 + -0x3c) = xmm_regs[7];
-  *(undefined4 *)(register_11 + -0x58) = xmm_regs[8];
-  *(undefined4 *)(register_11 + -0x54) = xmm_regs[9];
-  *(undefined4 *)(register_11 + -0x50) = xmm_regs[10];
-  *(undefined4 *)(register_11 + -0x4c) = xmm_regs[11];
-  *(undefined4 *)(register_11 + -0x68) = xmm_regs[12];
-  *(undefined4 *)(register_11 + -100) = xmm_regs[13];
-  *(undefined4 *)(register_11 + -0x60) = xmm_regs[14];
-  *(undefined4 *)(register_11 + -0x5c) = xmm_regs[15];
-  *(undefined4 *)(register_11 + -0x78) = xmm_regs[16];
-  *(undefined4 *)(register_11 + -0x74) = xmm_regs[17];
-  *(undefined4 *)(register_11 + -0x70) = xmm_regs[18];
-  *(undefined4 *)(register_11 + -0x6c) = xmm_regs[19];
+  *(int32_t *)(register_11 + -0x38) = xmm_regs[0];
+  *(int32_t *)(register_11 + -0x34) = xmm_regs[1];
+  *(int32_t *)(register_11 + -0x30) = xmm_regs[2];
+  *(int32_t *)(register_11 + -0x2c) = xmm_regs[3];
+  *(int32_t *)(register_11 + -0x48) = xmm_regs[4];
+  *(int32_t *)(register_11 + -0x44) = xmm_regs[5];
+  *(int32_t *)(register_11 + -0x40) = xmm_regs[6];
+  *(int32_t *)(register_11 + -0x3c) = xmm_regs[7];
+  *(int32_t *)(register_11 + -0x58) = xmm_regs[8];
+  *(int32_t *)(register_11 + -0x54) = xmm_regs[9];
+  *(int32_t *)(register_11 + -0x50) = xmm_regs[10];
+  *(int32_t *)(register_11 + -0x4c) = xmm_regs[11];
+  *(int32_t *)(register_11 + -0x68) = xmm_regs[12];
+  *(int32_t *)(register_11 + -100) = xmm_regs[13];
+  *(int32_t *)(register_11 + -0x60) = xmm_regs[14];
+  *(int32_t *)(register_11 + -0x5c) = xmm_regs[15];
+  *(int32_t *)(register_11 + -0x78) = xmm_regs[16];
+  *(int32_t *)(register_11 + -0x74) = xmm_regs[17];
+  *(int32_t *)(register_11 + -0x70) = xmm_regs[18];
+  *(int32_t *)(register_11 + -0x6c) = xmm_regs[19];
   
   // 检查渲染参数
   if (register_data == render_params) {
@@ -507,7 +507,7 @@ void perform_advanced_render_transform(longlong render_params)
   } while ((lock_status & 1) != 0);
   
   // 读取变换数据
-  data_ptr = (undefined8 *)(register_data + 4 + shader_offset);
+  data_ptr = (uint64_t *)(register_data + 4 + shader_offset);
   u_var1 = *data_ptr;
   u_var2 = data_ptr[1];
   shader_ptr = (float *)(register_data + 0x14 + shader_offset);
@@ -533,7 +533,7 @@ void perform_advanced_render_transform(longlong render_params)
   *(float *)(register_rbp + -1) = transform_result[11];
   *(float *)((longlong)register_rbp + -4) = transform_result[0];
   
-  *(undefined4 *)(register_data + shader_offset) = 0;
+  *(int32_t *)(register_data + shader_offset) = 0;
   stack_vars[5] = 0x7f7fffff;
   stack_vars[1] = stack_vars[1] - transform_result[10];
   stack_vars[2] = stack_vars[2] - transform_result[11];
@@ -562,7 +562,7 @@ void perform_advanced_render_transform(longlong render_params)
   } while ((lock_status & 1) != 0);
   
   // 读取最终数据
-  data_ptr = (undefined8 *)(register_data + 4 + shader_offset);
+  data_ptr = (uint64_t *)(register_data + 4 + shader_offset);
   u_var1 = *data_ptr;
   u_var2 = data_ptr[1];
   shader_ptr = (float *)(register_data + 0x14 + shader_offset);
@@ -587,7 +587,7 @@ void perform_advanced_render_transform(longlong render_params)
   *(float *)(register_rbp + 3) = transform_result[11];
   *(float *)((longlong)register_rbp + 0x1c) = transform_result[0];
   
-  *(undefined4 *)(register_data + shader_offset) = 0;
+  *(int32_t *)(register_data + shader_offset) = 0;
   stack_vars[12] = 0x7f7fffff;
   stack_vars[13] = stack_vars[8] - transform_result[10];
   stack_vars[14] = stack_vars[9] - transform_result[11];
@@ -606,23 +606,23 @@ void perform_advanced_render_transform(longlong render_params)
     
     // 设置渲染状态
     if (*(int *)(temp_register + 0x318) == -1) {
-      *(undefined4 *)(temp_register + 0x314) = *(undefined4 *)(register_rbp + 0x26);
+      *(int32_t *)(temp_register + 0x314) = *(int32_t *)(register_rbp + 0x26);
       render_flags = FUN_1801b9a40(register_14 + 0x1218);
-      *(undefined4 *)(temp_register + 0x318) = render_flags;
+      *(int32_t *)(temp_register + 0x318) = render_flags;
       LOCK();
-      *(undefined4 *)(temp_register + 0x310) = 0;
+      *(int32_t *)(temp_register + 0x310) = 0;
       UNLOCK();
     }
     
     // 设置最终渲染参数
-    *(undefined4 *)(register_rbp + 6) = stack_vars[15];
-    *(undefined4 *)((longlong)register_rbp + 0x34) = stack_vars[16];
-    *(undefined4 *)(register_rbp + 7) = stack_vars[17];
+    *(int32_t *)(register_rbp + 6) = stack_vars[15];
+    *(int32_t *)((longlong)register_rbp + 0x34) = stack_vars[16];
+    *(int32_t *)(register_rbp + 7) = stack_vars[17];
     *(float *)((longlong)register_rbp + 0x3c) = (float)*(int *)(register_rbp + 0x27);
     *(float *)(register_rbp + 4) = stack_vars[6];
     *(float *)((longlong)register_rbp + 0x24) = stack_vars[7];
     *(float *)(register_rbp + 5) = stack_vars[8];
-    *(undefined4 *)((longlong)register_rbp + 0x2c) = 0x3e19999a;
+    *(int32_t *)((longlong)register_rbp + 0x2c) = 0x3e19999a;
     FUN_18020a7b0(temp_register + 0x308, stack_vars[16], register_rbp + 4);
   }
   

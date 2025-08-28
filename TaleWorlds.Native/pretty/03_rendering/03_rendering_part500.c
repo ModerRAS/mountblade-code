@@ -37,7 +37,7 @@
  * @param render_context 渲染上下文指针
  * @param transform_params 变换参数数组
  */
-void rendering_system_update_transform_parameters(longlong render_context, undefined8 *transform_params)
+void rendering_system_update_transform_parameters(longlong render_context, uint64_t *transform_params)
 
 {
   float matrix_element_1;
@@ -66,20 +66,20 @@ void rendering_system_update_transform_parameters(longlong render_context, undef
   float position_y;
   float position_z;
   float position_w;
-  undefined4 param_offset_1;
-  undefined4 param_offset_2;
-  undefined4 param_offset_3;
-  undefined8 param_data;
+  int32_t param_offset_1;
+  int32_t param_offset_2;
+  int32_t param_offset_3;
+  uint64_t param_data;
   bool is_transform_active;
   char system_status;
   int object_count;
-  undefined8 *render_data_ptr;
+  uint64_t *render_data_ptr;
   longlong context_data;
   longlong iteration_count;
   
   // 获取渲染上下文数据
   context_data = *(longlong *)(render_context + 0x8a8);
-  render_data_ptr = (undefined8 *)(context_data + 0x30);
+  render_data_ptr = (uint64_t *)(context_data + 0x30);
   system_status = func_0x000180285980();  // 检查系统状态
   
   if (system_status != '\0') {
@@ -92,22 +92,22 @@ void rendering_system_update_transform_parameters(longlong render_context, undef
     render_data_ptr[3] = param_data;
     
     // 复制参数偏移量
-    param_offset_1 = *(undefined4 *)((longlong)transform_params + 0x24);
-    param_offset_2 = *(undefined4 *)(transform_params + 5);
-    param_offset_3 = *(undefined4 *)((longlong)transform_params + 0x2c);
-    *(undefined4 *)(render_data_ptr + 4) = *(undefined4 *)(transform_params + 4);
-    *(undefined4 *)((longlong)render_data_ptr + 0x24) = param_offset_1;
-    *(undefined4 *)(render_data_ptr + 5) = param_offset_2;
-    *(undefined4 *)((longlong)render_data_ptr + 0x2c) = param_offset_3;
+    param_offset_1 = *(int32_t *)((longlong)transform_params + 0x24);
+    param_offset_2 = *(int32_t *)(transform_params + 5);
+    param_offset_3 = *(int32_t *)((longlong)transform_params + 0x2c);
+    *(int32_t *)(render_data_ptr + 4) = *(int32_t *)(transform_params + 4);
+    *(int32_t *)((longlong)render_data_ptr + 0x24) = param_offset_1;
+    *(int32_t *)(render_data_ptr + 5) = param_offset_2;
+    *(int32_t *)((longlong)render_data_ptr + 0x2c) = param_offset_3;
     
     // 复制额外的参数数据
-    param_offset_1 = *(undefined4 *)((longlong)transform_params + 0x34);
-    param_offset_2 = *(undefined4 *)(transform_params + 7);
-    param_offset_3 = *(undefined4 *)((longlong)transform_params + 0x3c);
-    *(undefined4 *)(render_data_ptr + 6) = *(undefined4 *)(transform_params + 6);
-    *(undefined4 *)((longlong)render_data_ptr + 0x34) = param_offset_1;
-    *(undefined4 *)(render_data_ptr + 7) = param_offset_2;
-    *(undefined4 *)((longlong)render_data_ptr + 0x3c) = param_offset_3;
+    param_offset_1 = *(int32_t *)((longlong)transform_params + 0x34);
+    param_offset_2 = *(int32_t *)(transform_params + 7);
+    param_offset_3 = *(int32_t *)((longlong)transform_params + 0x3c);
+    *(int32_t *)(render_data_ptr + 6) = *(int32_t *)(transform_params + 6);
+    *(int32_t *)((longlong)render_data_ptr + 0x34) = param_offset_1;
+    *(int32_t *)(render_data_ptr + 7) = param_offset_2;
+    *(int32_t *)((longlong)render_data_ptr + 0x3c) = param_offset_3;
     
     // 调用渲染更新函数
     FUN_180254610();
@@ -212,13 +212,13 @@ void rendering_system_update_transform_parameters(longlong render_context, undef
  * @param state_context 状态上下文
  * @return 渲染状态码，0xffffffff表示失败
  */
-undefined4 rendering_system_get_render_status(undefined8 render_object, longlong state_context)
+int32_t rendering_system_get_render_status(uint64_t render_object, longlong state_context)
 
 {
   longlong *state_ptr;
-  undefined *error_msg_ptr;
+  void *error_msg_ptr;
   longlong base_address;
-  undefined8 object_param;
+  uint64_t object_param;
   
   // 检查状态上下文是否有效
   if (*(int *)(state_context + 0x10) != 0) {
@@ -228,13 +228,13 @@ undefined4 rendering_system_get_render_status(undefined8 render_object, longlong
     
     // 如果状态指针有效，返回状态码
     if (*state_ptr != base_address) {
-      return *(undefined4 *)(*state_ptr + 0x40);
+      return *(int32_t *)(*state_ptr + 0x40);
     }
     
     // 处理错误信息
     error_msg_ptr = &DAT_18098bc73;
-    if (*(undefined **)(state_context + 8) != (undefined *)0x0) {
-      error_msg_ptr = *(undefined **)(state_context + 8);
+    if (*(void **)(state_context + 8) != (void *)0x0) {
+      error_msg_ptr = *(void **)(state_context + 8);
     }
     FUN_180627020(&UNK_180a30f00, error_msg_ptr);
   }
@@ -266,7 +266,7 @@ longlong * rendering_system_initialize_render_context(longlong *context_ptr)
   }
   
   // 初始化上下文状态
-  *(undefined4 *)(context_ptr + 1) = 0;
+  *(int32_t *)(context_ptr + 1) = 0;
   return context_ptr;
 }
 
@@ -309,7 +309,7 @@ void rendering_system_cleanup_render_context(longlong *context_ptr)
  * 
  * @return 全局渲染数据指针
  */
-undefined8 rendering_system_get_global_render_data(void)
+uint64_t rendering_system_get_global_render_data(void)
 
 {
   // 检查线程本地存储中的数据是否需要初始化
@@ -343,7 +343,7 @@ void rendering_system_process_render_parameters(longlong render_context, uint *p
 {
   uint param_value;
   uint *param_source;
-  undefined1 stack_data [32];
+  int8_t stack_data [32];
   uint stack_param_1;
   uint stack_param_2;
   uint stack_param_3;
@@ -477,28 +477,28 @@ float * rendering_system_multiply_matrix_vectors(float *matrix_ptr, float *resul
  * @param source_coords 源坐标
  * @return 变换后的坐标指针
  */
-float * rendering_system_transform_3d_coordinates(undefined4 *transform_matrix, float *result_coords, float *source_coords)
+float * rendering_system_transform_3d_coordinates(int32_t *transform_matrix, float *result_coords, float *source_coords)
 
 {
   float coord_z;
   float coord_y;
   float coord_x;
-  undefined4 matrix_elem_1;
-  undefined4 matrix_elem_2;
-  undefined4 matrix_elem_3;
-  undefined4 matrix_elem_4;
-  undefined4 matrix_elem_5;
-  undefined4 matrix_elem_6;
-  undefined4 matrix_elem_7;
-  undefined4 matrix_elem_8;
-  undefined4 matrix_elem_9;
-  undefined4 matrix_elem_10;
-  undefined4 matrix_elem_11;
-  undefined4 matrix_elem_12;
-  undefined4 matrix_elem_13;
-  undefined4 matrix_elem_14;
-  undefined4 matrix_elem_15;
-  undefined4 matrix_elem_16;
+  int32_t matrix_elem_1;
+  int32_t matrix_elem_2;
+  int32_t matrix_elem_3;
+  int32_t matrix_elem_4;
+  int32_t matrix_elem_5;
+  int32_t matrix_elem_6;
+  int32_t matrix_elem_7;
+  int32_t matrix_elem_8;
+  int32_t matrix_elem_9;
+  int32_t matrix_elem_10;
+  int32_t matrix_elem_11;
+  int32_t matrix_elem_12;
+  int32_t matrix_elem_13;
+  int32_t matrix_elem_14;
+  int32_t matrix_elem_15;
+  int32_t matrix_elem_16;
   float transformed_x;
   float transformed_y;
   float transformed_z;
@@ -558,7 +558,7 @@ float * rendering_system_transform_3d_coordinates(undefined4 *transform_matrix, 
 void rendering_system_empty_function_placeholder(void)
 
 {
-  undefined4 unused_param;
+  int32_t unused_param;
   
   // 调用底层系统函数
   FUN_1808fd400(unused_param);
@@ -576,7 +576,7 @@ void rendering_system_empty_function_placeholder(void)
  * @param flags 锁标志
  * @return 锁状态
  */
-undefined8 rendering_system_acquire_render_lock(longlong lock_context, undefined8 lock_data, ulonglong timeout, undefined8 flags)
+uint64_t rendering_system_acquire_render_lock(longlong lock_context, uint64_t lock_data, ulonglong timeout, uint64_t flags)
 
 {
   int lock_result;
@@ -616,7 +616,7 @@ undefined8 rendering_system_acquire_render_lock(longlong lock_context, undefined
  * @param debug_context 调试上下文
  * @param debug_param 调试参数
  */
-void rendering_system_debug_render_function(undefined8 debug_context, undefined4 debug_param)
+void rendering_system_debug_render_function(uint64_t debug_context, int32_t debug_param)
 
 {
   // 调用底层调试函数
@@ -722,7 +722,7 @@ void rendering_system_calculate_matrix_inverse(float *matrix_ptr, float *result_
  * @param result_matrix 结果矩阵指针
  * @param transform_matrix 变换矩阵指针
  */
-void rendering_system_apply_matrix_transform(float *result_matrix, undefined4 *transform_matrix)
+void rendering_system_apply_matrix_transform(float *result_matrix, int32_t *transform_matrix)
 
 {
   float matrix_element_1;
@@ -744,22 +744,22 @@ void rendering_system_apply_matrix_transform(float *result_matrix, undefined4 *t
   float inverse_matrix_13;
   float inverse_matrix_14;
   float inverse_matrix_15;
-  undefined4 transform_elem_0;
-  undefined4 transform_elem_1;
-  undefined4 transform_elem_2;
-  undefined4 transform_elem_3;
-  undefined4 transform_elem_4;
-  undefined4 transform_elem_5;
-  undefined4 transform_elem_6;
-  undefined4 transform_elem_7;
-  undefined4 transform_elem_8;
-  undefined4 transform_elem_9;
-  undefined4 transform_elem_10;
-  undefined4 transform_elem_11;
-  undefined4 transform_elem_12;
-  undefined4 transform_elem_13;
-  undefined4 transform_elem_14;
-  undefined4 transform_elem_15;
+  int32_t transform_elem_0;
+  int32_t transform_elem_1;
+  int32_t transform_elem_2;
+  int32_t transform_elem_3;
+  int32_t transform_elem_4;
+  int32_t transform_elem_5;
+  int32_t transform_elem_6;
+  int32_t transform_elem_7;
+  int32_t transform_elem_8;
+  int32_t transform_elem_9;
+  int32_t transform_elem_10;
+  int32_t transform_elem_11;
+  int32_t transform_elem_12;
+  int32_t transform_elem_13;
+  int32_t transform_elem_14;
+  int32_t transform_elem_15;
   
   // 复制变换矩阵到栈变量
   transform_elem_0 = *transform_matrix;
@@ -874,7 +874,7 @@ float * rendering_system_scale_vector_coordinates(float *source_vector, float *r
 longlong * rendering_system_manage_render_queue(longlong *queue_ptr, longlong *item_ptr)
 
 {
-  undefined8 allocation_result;
+  uint64_t allocation_result;
   longlong *new_item;
   longlong *result_ptr;
   longlong current_size;
@@ -986,10 +986,10 @@ longlong * rendering_system_manage_render_queue(longlong *queue_ptr, longlong *i
  * @param param_1 参数1
  * @param param_2 参数2
  */
-void rendering_system_process_render_state(longlong *state_ptr, undefined8 param_1, undefined8 param_2)
+void rendering_system_process_render_state(longlong *state_ptr, uint64_t param_1, uint64_t param_2)
 
 {
-  undefined4 state_flag;
+  int32_t state_flag;
   longlong resource_handle;
   char system_status;
   int lock_result;
@@ -1021,7 +1021,7 @@ void rendering_system_process_render_state(longlong *state_ptr, undefined8 param
         }
         
         // 获取状态值
-        state_flag = *(undefined4 *)(state_data + 0xc);
+        state_flag = *(int32_t *)(state_data + 0xc);
         system_status = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
         
         // 处理状态清理
@@ -1057,7 +1057,7 @@ void rendering_system_process_render_state(longlong *state_ptr, undefined8 param
       }
       
       // 重置状态标志
-      *(undefined2 *)(state_data + 0x3d1) = 0;
+      *(int16_t *)(state_data + 0x3d1) = 0;
       
       // 检查并清理渲染上下文
       if (*(longlong *)(*(longlong *)(state_data + 0xe0) + 0x20) != 0) {
@@ -1066,13 +1066,13 @@ void rendering_system_process_render_state(longlong *state_ptr, undefined8 param
       
       // 清理上下文指针
       stack_pointer = *(longlong **)(state_data + 0xe0);
-      *(undefined8 *)(state_data + 0xe0) = 0;
+      *(uint64_t *)(state_data + 0xe0) = 0;
       
       if (stack_pointer != (longlong *)0x0) {
         (**(code **)(*stack_pointer + 0x38))();
       }
       
-      *(undefined8 *)(state_data + 0xe8) = 0;
+      *(uint64_t *)(state_data + 0xe8) = 0;
       return;
     }
   }
@@ -1092,7 +1092,7 @@ void rendering_system_process_render_state(longlong *state_ptr, undefined8 param
 void rendering_system_cleanup_render_resources(void)
 
 {
-  undefined4 status_flag;
+  int32_t status_flag;
   longlong resource_handle;
   char system_status;
   int lock_result;
@@ -1128,7 +1128,7 @@ void rendering_system_cleanup_render_resources(void)
         }
         
         // 处理状态标志
-        status_flag = *(undefined4 *)(state_data + 0xc);
+        status_flag = *(int32_t *)(state_data + 0xc);
         system_status = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
         
         // 验证系统状态
@@ -1164,7 +1164,7 @@ void rendering_system_cleanup_render_resources(void)
       }
       
       // 重置状态标志
-      *(undefined2 *)(state_data + 0x3d1) = 0;
+      *(int16_t *)(state_data + 0x3d1) = 0;
       
       // 处理资源释放
       if (*(longlong *)(*(longlong *)(state_data + 0xe0) + 0x20) != 0) {
@@ -1173,11 +1173,11 @@ void rendering_system_cleanup_render_resources(void)
       
       // 清理指针
       stack_pointer = *(longlong **)(state_data + 0xe0);
-      *(undefined8 *)(state_data + 0xe0) = 0;
+      *(uint64_t *)(state_data + 0xe0) = 0;
       if (stack_pointer != (longlong *)0x0) {
         (**(code **)(*stack_pointer + 0x38))();
       }
-      *(undefined8 *)(state_data + 0xe8) = 0;
+      *(uint64_t *)(state_data + 0xe8) = 0;
       return;
     }
   }
@@ -1199,7 +1199,7 @@ void rendering_system_cleanup_render_resources(void)
 void rendering_system_reset_render_state(uint context_param)
 
 {
-  undefined4 status_flag;
+  int32_t status_flag;
   longlong resource_handle;
   char system_status;
   int lock_result;
@@ -1226,7 +1226,7 @@ void rendering_system_reset_render_state(uint context_param)
       }
       
       // 处理状态标志
-      status_flag = *(undefined4 *)(state_data + 0xc);
+      status_flag = *(int32_t *)(state_data + 0xc);
       system_status = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
       
       // 验证系统状态
@@ -1262,7 +1262,7 @@ void rendering_system_reset_render_state(uint context_param)
     }
     
     // 重置状态标志
-    *(undefined2 *)(state_data + 0x3d1) = 0;
+    *(int16_t *)(state_data + 0x3d1) = 0;
     
     // 处理资源释放
     if (*(longlong *)(*(longlong *)(state_data + 0xe0) + 0x20) != 0) {
@@ -1271,11 +1271,11 @@ void rendering_system_reset_render_state(uint context_param)
     
     // 清理指针
     resource_ptr = *(longlong **)(state_data + 0xe0);
-    *(undefined8 *)(state_data + 0xe0) = 0;
+    *(uint64_t *)(state_data + 0xe0) = 0;
     if (resource_ptr != (longlong *)0x0) {
       (**(code **)(*resource_ptr + 0x38))();
     }
-    *(undefined8 *)(state_data + 0xe8) = 0;
+    *(uint64_t *)(state_data + 0xe8) = 0;
     return;
   }
   return;

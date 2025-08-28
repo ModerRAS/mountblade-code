@@ -163,12 +163,12 @@
 // ============================================================================
 
 /** 渲染系统全局数据引用 */
-extern undefined8 _DAT_180c8ed30;
-extern undefined8 _DAT_180c8ed18;
-extern undefined8 _DAT_180bf00a8;
-extern undefined8 _DAT_180c8aa00;
-extern undefined8 _DAT_180c92514;
-extern undefined8 _DAT_180c8ece0;
+extern uint64_t _DAT_180c8ed30;
+extern uint64_t _DAT_180c8ed18;
+extern uint64_t _DAT_180bf00a8;
+extern uint64_t _DAT_180c8aa00;
+extern uint64_t _DAT_180c92514;
+extern uint64_t _DAT_180c8ece0;
 
 // ============================================================================
 // 外部函数声明
@@ -176,22 +176,22 @@ extern undefined8 _DAT_180c8ece0;
 
 extern void FUN_180585590(void);
 extern void FUN_180588680(longlong param_1, float *param_2);
-extern void FUN_1805815f0(longlong param_1, undefined8 *param_2, longlong param_3);
+extern void FUN_1805815f0(longlong param_1, uint64_t *param_2, longlong param_3);
 extern void FUN_1802ee720(longlong param_1, int param_2);
-extern void FUN_1802e5ad0(longlong param_1, int param_2, undefined8 *param_3, float *param_4);
+extern void FUN_1802e5ad0(longlong param_1, int param_2, uint64_t *param_3, float *param_4);
 extern void FUN_1805817b0(longlong param_1, float *param_2);
 extern void FUN_18057f420(longlong param_1, float *param_2, longlong param_3);
 extern void FUN_1805800a0(longlong param_1, float *param_2, longlong param_3);
-extern void FUN_180587800(longlong param_1, longlong param_2, longlong param_3, undefined1 param_4);
-extern undefined8 FUN_1801b4cd0(undefined8 param_1);
-extern char FUN_18063e7e0(undefined8 param_1, undefined8 *param_2);
-extern float FUN_1801a5620(undefined8 param_1, longlong param_2, undefined1 param_3);
+extern void FUN_180587800(longlong param_1, longlong param_2, longlong param_3, int8_t param_4);
+extern uint64_t FUN_1801b4cd0(uint64_t param_1);
+extern char FUN_18063e7e0(uint64_t param_1, uint64_t *param_2);
+extern float FUN_1801a5620(uint64_t param_1, longlong param_2, int8_t param_3);
 extern code *FUN_18004a130(void);
-extern void FUN_1808fc838(undefined1 *param_1, int param_2, int param_3, code *param_4);
-extern void FUN_1801594d0(undefined1 *param_1, float *param_2);
-extern void FUN_1804f83f0(undefined8 param_1, int param_2, undefined8 *param_3, int param_4);
-extern void FUN_1808fc8a8(undefined1 *param_1, int param_2, int param_3, code *param_4);
-extern void FUN_1808fc050(undefined8 param_1);
+extern void FUN_1808fc838(int8_t *param_1, int param_2, int param_3, code *param_4);
+extern void FUN_1801594d0(int8_t *param_1, float *param_2);
+extern void FUN_1804f83f0(uint64_t param_1, int param_2, uint64_t *param_3, int param_4);
+extern void FUN_1808fc8a8(int8_t *param_1, int param_2, int param_3, code *param_4);
+extern void FUN_1808fc050(uint64_t param_1);
 
 // ============================================================================
 // 函数声明

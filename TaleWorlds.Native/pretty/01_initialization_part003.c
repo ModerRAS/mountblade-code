@@ -71,8 +71,8 @@
 /** 系统句柄类型别名 */
 typedef longlong* SystemHandle;
 typedef const longlong* ConstSystemHandle;
-typedef undefined8* ComponentPointer;
-typedef const undefined8* ConstComponentPointer;
+typedef uint64_t* ComponentPointer;
+typedef const uint64_t* ConstComponentPointer;
 
 /** 状态标志类型别名 */
 typedef uint8_t StatusFlag;
@@ -1481,7 +1481,7 @@ void FUN_180030770(void)
  */
 void FUN_180030870(void)
 {
-    undefined8 register_value;
+    uint64_t register_value;
     void* config_data_ptr;
     uint8_t* local_buffer;
     uint32_t buffer_size;
@@ -1510,7 +1510,7 @@ void FUN_180030870(void)
 int FUN_180030900(void)
 {
     longlong status_result;
-    undefined8 register_value;
+    uint64_t register_value;
     
     // 设置系统状态指针
     _DAT_180bf6750 = &UNK_1809fcc58;

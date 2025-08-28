@@ -9,17 +9,17 @@ void FUN_180579974(void)
   longlong unaff_RBX;
   longlong unaff_RBP;
   longlong unaff_RDI;
-  undefined4 unaff_R15D;
-  undefined4 uVar1;
+  int32_t unaff_R15D;
+  int32_t uVar1;
   float unaff_XMM7_Da;
   
-  uVar1 = *(undefined4 *)(unaff_RBX + 0xa608);
-  *(undefined4 *)(unaff_RBX + 0xa608) = uVar1;
-  *(undefined4 *)(unaff_RBX + 0xa604) = unaff_R15D;
+  uVar1 = *(int32_t *)(unaff_RBX + 0xa608);
+  *(int32_t *)(unaff_RBX + 0xa608) = uVar1;
+  *(int32_t *)(unaff_RBX + 0xa604) = unaff_R15D;
   if ((*(ushort *)(*(longlong *)(unaff_RDI + 0x728) + 0x5aa) & 0x1000) == 0) {
-    uVar1 = *(undefined4 *)(unaff_RBX + 43000);
-    *(undefined4 *)(unaff_RBX + 43000) = uVar1;
-    *(undefined4 *)(unaff_RBX + 0xa7f4) = unaff_R15D;
+    uVar1 = *(int32_t *)(unaff_RBX + 43000);
+    *(int32_t *)(unaff_RBX + 43000) = uVar1;
+    *(int32_t *)(unaff_RBX + 0xa7f4) = unaff_R15D;
   }
   if ((*(float *)(unaff_RBX + 0xa600) <= unaff_XMM7_Da) &&
      (unaff_XMM7_Da == *(float *)(unaff_RBX + 0xa604))) {
@@ -37,13 +37,13 @@ void FUN_180579974(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180579c90(undefined8 param_1,longlong param_2,float *param_3,char param_4,int param_5,
-                 float *param_6,float *param_7,float *param_8,longlong param_9,undefined1 *param_10,
+int FUN_180579c90(uint64_t param_1,longlong param_2,float *param_3,char param_4,int param_5,
+                 float *param_6,float *param_7,float *param_8,longlong param_9,int8_t *param_10,
                  float *param_11)
 
 {
   float *pfVar1;
-  undefined1 uVar2;
+  int8_t uVar2;
   char cVar3;
   longlong lVar4;
   uint uVar5;
@@ -55,11 +55,11 @@ int FUN_180579c90(undefined8 param_1,longlong param_2,float *param_3,char param_
   longlong lVar11;
   float fVar12;
   float fVar13;
-  undefined4 uVar15;
-  undefined4 uVar16;
-  undefined4 uVar17;
-  undefined1 auVar14 [16];
-  undefined1 auVar18 [16];
+  int32_t uVar15;
+  int32_t uVar16;
+  int32_t uVar17;
+  int8_t auVar14 [16];
+  int8_t auVar18 [16];
   float fVar19;
   float fVar20;
   float fVar21;
@@ -70,7 +70,7 @@ int FUN_180579c90(undefined8 param_1,longlong param_2,float *param_3,char param_
   int iStackX_20;
   float fStack_e8;
   float fStack_e4;
-  undefined4 uStack_e0;
+  int32_t uStack_e0;
   float fStack_dc;
   
   lVar10 = 0;
@@ -164,7 +164,7 @@ LAB_180579e93:
       fStack_dc = param_3[3];
       fStack_e8 = fVar25 * fVar23 * *(float *)(lVar6 + (longlong)pfVar7) + *param_3;
       fStack_e4 = fVar24 * fVar23 * *(float *)(lVar6 + (longlong)pfVar7) + param_3[1];
-      uStack_e0 = *(undefined4 *)(lVar11 + (longlong)param_8);
+      uStack_e0 = *(int32_t *)(lVar11 + (longlong)param_8);
       if ((*(char *)(param_6 + 5) == '\0') ||
          (0.0004 < (fStack_e4 - param_6[-7]) * (fStack_e4 - param_6[-7]) +
                    (fStack_e8 - param_6[-8]) * (fStack_e8 - param_6[-8]))) {
@@ -263,8 +263,8 @@ LAB_180579e93:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180579cdc(undefined8 param_1,longlong param_2,undefined8 param_3,char param_4,
-                 undefined8 param_5,undefined8 param_6,undefined8 param_7)
+int FUN_180579cdc(uint64_t param_1,longlong param_2,uint64_t param_3,char param_4,
+                 uint64_t param_5,uint64_t param_6,uint64_t param_7)
 
 {
   float *pfVar1;
@@ -281,41 +281,41 @@ int FUN_180579cdc(undefined8 param_1,longlong param_2,undefined8 param_3,char pa
   longlong unaff_RSI;
   longlong unaff_RDI;
   longlong lVar10;
-  undefined8 in_R10;
-  undefined8 unaff_R13;
+  uint64_t in_R10;
+  uint64_t unaff_R13;
   longlong lVar11;
   float fVar12;
-  undefined1 auVar13 [16];
+  int8_t auVar13 [16];
   float in_XMM1_Da;
-  undefined1 auVar14 [16];
+  int8_t auVar14 [16];
   float fVar15;
   float in_XMM5_Da;
   float unaff_XMM6_Da;
   float fVar16;
-  undefined4 unaff_XMM7_Da;
+  int32_t unaff_XMM7_Da;
   float fVar17;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
+  int32_t unaff_XMM7_Db;
+  int32_t unaff_XMM7_Dc;
+  int32_t unaff_XMM7_Dd;
   float unaff_XMM8_Da;
   float fVar18;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Db;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM10_Dd;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM9_Db;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM9_Dd;
+  int32_t unaff_XMM10_Da;
+  int32_t unaff_XMM10_Db;
+  int32_t unaff_XMM10_Dc;
+  int32_t unaff_XMM10_Dd;
   float fVar19;
-  undefined4 in_stack_00000070;
-  undefined4 in_stack_00000078;
-  undefined4 in_stack_00000080;
-  undefined4 in_stack_00000088;
-  undefined8 in_stack_00000120;
+  int32_t in_stack_00000070;
+  int32_t in_stack_00000078;
+  int32_t in_stack_00000080;
+  int32_t in_stack_00000088;
+  uint64_t in_stack_00000120;
   float *in_stack_00000130;
   int iStack0000000000000138;
   int in_stack_00000140;
@@ -326,21 +326,21 @@ int FUN_180579cdc(undefined8 param_1,longlong param_2,undefined8 param_3,char pa
   char *in_stack_00000168;
   float *in_stack_00000170;
   
-  *(undefined8 *)(in_RAX + -0x30) = unaff_R13;
-  *(undefined4 *)(in_RAX + -0x58) = unaff_XMM7_Da;
-  *(undefined4 *)(in_RAX + -0x54) = unaff_XMM7_Db;
-  *(undefined4 *)(in_RAX + -0x50) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_RAX + -0x4c) = unaff_XMM7_Dd;
+  *(uint64_t *)(in_RAX + -0x30) = unaff_R13;
+  *(int32_t *)(in_RAX + -0x58) = unaff_XMM7_Da;
+  *(int32_t *)(in_RAX + -0x54) = unaff_XMM7_Db;
+  *(int32_t *)(in_RAX + -0x50) = unaff_XMM7_Dc;
+  *(int32_t *)(in_RAX + -0x4c) = unaff_XMM7_Dd;
   fVar17 = *(float *)(param_2 + 0x20);
-  *(undefined4 *)(in_RAX + -0x78) = unaff_XMM9_Da;
-  *(undefined4 *)(in_RAX + -0x74) = unaff_XMM9_Db;
-  *(undefined4 *)(in_RAX + -0x70) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_RAX + -0x6c) = unaff_XMM9_Dd;
+  *(int32_t *)(in_RAX + -0x78) = unaff_XMM9_Da;
+  *(int32_t *)(in_RAX + -0x74) = unaff_XMM9_Db;
+  *(int32_t *)(in_RAX + -0x70) = unaff_XMM9_Dc;
+  *(int32_t *)(in_RAX + -0x6c) = unaff_XMM9_Dd;
   fStack0000000000000158 = in_stack_00000150[1];
-  *(undefined4 *)(in_RAX + -0x88) = unaff_XMM10_Da;
-  *(undefined4 *)(in_RAX + -0x84) = unaff_XMM10_Db;
-  *(undefined4 *)(in_RAX + -0x80) = unaff_XMM10_Dc;
-  *(undefined4 *)(in_RAX + -0x7c) = unaff_XMM10_Dd;
+  *(int32_t *)(in_RAX + -0x88) = unaff_XMM10_Da;
+  *(int32_t *)(in_RAX + -0x84) = unaff_XMM10_Db;
+  *(int32_t *)(in_RAX + -0x80) = unaff_XMM10_Dc;
+  *(int32_t *)(in_RAX + -0x7c) = unaff_XMM10_Dd;
   fStack0000000000000158 = fStack0000000000000158 - in_XMM5_Da;
   fVar9 = (float)unaff_RSI;
   fVar19 = *in_stack_00000150 - unaff_XMM6_Da;
@@ -435,7 +435,7 @@ LAB_180579e93:
       param_6._0_4_ = fVar19 * fVar18 * *(float *)(lVar5 + (longlong)pfVar6) + *in_stack_00000130;
       param_6._4_4_ =
            fStack0000000000000158 * *(float *)(lVar5 + (longlong)pfVar6) + in_stack_00000130[1];
-      param_7._0_4_ = *(undefined4 *)(lVar11 + (longlong)unaff_RBX);
+      param_7._0_4_ = *(int32_t *)(lVar11 + (longlong)unaff_RBX);
       cVar8 = (char)unaff_RSI;
       if ((*(char *)(in_stack_00000148 + 5) == cVar8) ||
          (0.0004 < (param_6._4_4_ - in_stack_00000148[-7]) * (param_6._4_4_ - in_stack_00000148[-7])
@@ -541,8 +541,8 @@ LAB_180579e93:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180579ec7(longlong param_1,undefined8 param_2,longlong param_3,undefined8 param_4,
-                 undefined8 param_5,undefined8 param_6,undefined8 param_7)
+int FUN_180579ec7(longlong param_1,uint64_t param_2,longlong param_3,uint64_t param_4,
+                 uint64_t param_5,uint64_t param_6,uint64_t param_7)
 
 {
   float *pfVar1;
@@ -557,7 +557,7 @@ int FUN_180579ec7(longlong param_1,undefined8 param_2,longlong param_3,undefined
   longlong unaff_RSI;
   longlong *plVar8;
   longlong lVar9;
-  undefined8 in_R10;
+  uint64_t in_R10;
   char *pcVar10;
   float *unaff_R13;
   longlong lVar11;
@@ -571,7 +571,7 @@ int FUN_180579ec7(longlong param_1,undefined8 param_2,longlong param_3,undefined
   float unaff_XMM13_Da;
   float unaff_XMM14_Da;
   float unaff_XMM15_Da;
-  undefined8 in_stack_00000120;
+  uint64_t in_stack_00000120;
   float *in_stack_00000130;
   int in_stack_00000138;
   longlong lStack0000000000000150;
@@ -618,7 +618,7 @@ int FUN_180579ec7(longlong param_1,undefined8 param_2,longlong param_3,undefined
     param_6._4_4_ =
          in_stack_00000158 * *(float *)(lStack0000000000000150 + (longlong)pfVar3) +
          in_stack_00000130[1];
-    param_7._0_4_ = *(undefined4 *)(lVar11 + (longlong)unaff_RBX);
+    param_7._0_4_ = *(int32_t *)(lVar11 + (longlong)unaff_RBX);
     cVar6 = (char)unaff_RSI;
     if ((*(char *)((longlong)plVar8 + 0x14) == cVar6) ||
        (fVar12 = param_6._4_4_ - *(float *)((longlong)plVar8 + -0x1c),
@@ -725,7 +725,7 @@ int FUN_180579ec7(longlong param_1,undefined8 param_2,longlong param_3,undefined
 
 
 
-int FUN_18057a15f(undefined8 param_1,int param_2,float *param_3)
+int FUN_18057a15f(uint64_t param_1,int param_2,float *param_3)
 
 {
   float *pfVar1;
@@ -813,7 +813,7 @@ int FUN_18057a15f(undefined8 param_1,int param_2,float *param_3)
 
 
 
-undefined4 FUN_18057a1a8(undefined8 param_1,undefined8 param_2,float *param_3)
+int32_t FUN_18057a1a8(uint64_t param_1,uint64_t param_2,float *param_3)
 
 {
   float *pfVar1;
@@ -831,7 +831,7 @@ undefined4 FUN_18057a1a8(undefined8 param_1,undefined8 param_2,float *param_3)
   float in_XMM5_Da;
   float unaff_XMM6_Da;
   float unaff_XMM8_Da;
-  undefined4 in_stack_00000138;
+  int32_t in_stack_00000138;
   longlong in_stack_00000160;
   float *in_stack_00000170;
   

@@ -54,15 +54,15 @@ void Cleanup_Render_Objects_And_Resources(void)
           FUN_18064e900();
         }
         // 清理对象的引用
-        *(undefined8 *)(render_obj + 0x1d8) = 0;
+        *(uint64_t *)(render_obj + 0x1d8) = 0;
         LOCK();  // 获取线程锁
-        *(undefined1 *)(render_obj + 0xf9) = 0;  // 清除活动标志
+        *(int8_t *)(render_obj + 0xf9) = 0;  // 清除活动标志
         UNLOCK();  // 释放线程锁
       }
       // 检查对象是否有额外的渲染数据
       if (*(longlong *)(render_obj + 0x1e8) != 0) {
         FUN_180080060();  // 清理渲染数据
-        *(undefined8 *)(render_obj + 0x1e8) = 0;
+        *(uint64_t *)(render_obj + 0x1e8) = 0;
         // 清理相关标志位
         if (*(longlong *)(render_obj + 0x1f0) != 0) {
           flag_byte_ptr = (byte *)(*(longlong *)(render_obj + 0x1f0) + 0xfe);
@@ -99,11 +99,11 @@ void Process_Render_Object_Array_With_State(longlong render_context)
   longlong *temp_obj;               // 临时对象指针
   longlong *obj_iterator;           // 对象迭代器
   longlong *stack_obj_70;            // 栈对象70（用于状态管理）
-  undefined1 context_buffer[8];     // 上下文缓冲区
+  int8_t context_buffer[8];     // 上下文缓冲区
   longlong *stack_obj_60;            // 栈对象60（用于上下文管理）
-  undefined4 process_flag;         // 处理标志
+  int32_t process_flag;         // 处理标志
   longlong *stack_obj_50;            // 栈对象50（用于临时存储）
-  undefined2 status_flag;           // 状态标志
+  int16_t status_flag;           // 状态标志
   char cleanup_flag;                 // 清理标志
   
   // 获取渲染对象数组迭代器
@@ -116,7 +116,7 @@ void Process_Render_Object_Array_With_State(longlong render_context)
         // 重置对象状态
         render_obj[0x3f] = 0;
         render_obj[0x40] = 0;
-        *(undefined4 *)(render_obj + 0x41) = 0;
+        *(int32_t *)(render_obj + 0x41) = 0;
         FUN_180079520(render_obj);  // 执行对象清理
       }
       else {
@@ -138,11 +138,11 @@ void Process_Render_Object_Array_With_State(longlong render_context)
         cleanup_flag = '\0';
         (**(code **)(*render_obj + 0x38))(render_obj);  // 调用对象的处理函数
         // 重置临时对象的状态
-        *(undefined4 *)(temp_obj + 2) = 0;
-        *(undefined4 *)(temp_obj + 7) = 0;
-        *(undefined4 *)(temp_obj + 0x11) = 0;
-        *(undefined4 *)(temp_obj + 0xc) = 0;
-        *(undefined2 *)(temp_obj + 0x18) = 0;
+        *(int32_t *)(temp_obj + 2) = 0;
+        *(int32_t *)(temp_obj + 7) = 0;
+        *(int32_t *)(temp_obj + 0x11) = 0;
+        *(int32_t *)(temp_obj + 0xc) = 0;
+        *(int16_t *)(temp_obj + 0x18) = 0;
         // 检查临时对象是否有错误
         if (temp_obj[0x17] != 0) {
           FUN_18064e900();  // 错误处理
@@ -150,7 +150,7 @@ void Process_Render_Object_Array_With_State(longlong render_context)
         temp_obj[0x17] = 0;
         FUN_180085530(temp_obj[0x16]);  // 清理资源
         temp_obj[0x16] = 0;
-        *(undefined4 *)(temp_obj + 0x19) = 0;
+        *(int32_t *)(temp_obj + 0x19) = 0;
         status_flag = 0x101;
         // 执行对象的状态更新和清理
         if ((render_obj != (longlong *)0x0) && (temp_obj != (longlong *)0x0)) {
@@ -194,18 +194,18 @@ void Process_Render_Object_Bitmap(longlong render_context,byte flag_mask)
 
 {
   uint bitmap_flag;                 // 位图标志
-  undefined8 temp_data;            // 临时数据
+  uint64_t temp_data;            // 临时数据
   longlong *object_ptr;             // 对象指针
-  undefined8 *array_start;         // 数组起始指针
-  undefined8 *array_current;       // 数组当前指针
-  undefined8 *array_end;           // 数组结束指针
-  undefined8 *array_next;          // 数组下一个指针
+  uint64_t *array_start;         // 数组起始指针
+  uint64_t *array_current;       // 数组当前指针
+  uint64_t *array_end;           // 数组结束指针
+  uint64_t *array_next;          // 数组下一个指针
   longlong array_size;             // 数组大小
   uint bit_mask;                   // 位掩码
   
   bit_mask = 1 << (flag_mask & 0x1f);  // 计算位掩码
-  array_current = *(undefined8 **)(render_context + 0x38);
-  array_end = *(undefined8 **)(render_context + 0x40);
+  array_current = *(uint64_t **)(render_context + 0x38);
+  array_end = *(uint64_t **)(render_context + 0x40);
   if (array_current != array_end) {
     array_next = array_current + 2;
     do {
@@ -222,13 +222,13 @@ void Process_Render_Object_Bitmap(longlong render_context,byte flag_mask)
             if (object_ptr != (longlong *)0x0) {
               (**(code **)(*object_ptr + 0x38))();
             }
-            *(undefined4 *)(array_start + -1) = *(undefined4 *)(array_start + 1);
+            *(int32_t *)(array_start + -1) = *(int32_t *)(array_start + 1);
             array_size = array_size + -1;
             array_start = array_start + 2;
           } while (0 < array_size);
-          array_end = *(undefined8 **)(render_context + 0x40);
+          array_end = *(uint64_t **)(render_context + 0x40);
         }
-        *(undefined8 **)(render_context + 0x40) = array_end + -2;
+        *(uint64_t **)(render_context + 0x40) = array_end + -2;
         object_ptr = (longlong *)array_end[-2];
         if (object_ptr != (longlong *)0x0) {
           (**(code **)(*object_ptr + 0x38))();
@@ -242,7 +242,7 @@ void Process_Render_Object_Bitmap(longlong render_context,byte flag_mask)
         array_current = array_current + 2;
         array_next = array_next + 2;
       }
-      array_end = *(undefined8 **)(render_context + 0x40);
+      array_end = *(uint64_t **)(render_context + 0x40);
     } while (array_current != array_end);
   }
   FUN_180278270(render_context);
@@ -266,7 +266,7 @@ void Process_Render_Object_Bitmap(longlong render_context,byte flag_mask)
 void Process_Render_Object_Bitmap_Memory(longlong render_context,uint bit_mask)
 
 {
-  undefined4 *flag_ptr;            // 标志指针
+  int32_t *flag_ptr;            // 标志指针
   longlong array_offset;           // 数组偏移量
   longlong *object_ptr;            // 对象指针
   longlong *new_array_ptr;         // 新数组指针
@@ -304,8 +304,8 @@ void Process_Render_Object_Bitmap_Memory(longlong render_context,uint bit_mask)
             (**(code **)(*new_array_ptr + 0x28))();
             current_flag = current_flag;
           }
-          *(undefined4 *)(array_ptr2 + 1) =
-               *(undefined4 *)((longlong)(temp_array_ptr + 1) + (longlong)array_ptr3);
+          *(int32_t *)(array_ptr2 + 1) =
+               *(int32_t *)((longlong)(temp_array_ptr + 1) + (longlong)array_ptr3);
         }
         else {
           array_offset = (longlong)array_ptr2 - (longlong)new_array_ptr >> 4;
@@ -327,8 +327,8 @@ LAB_180277c31:
             do {
               *dest_array_ptr = *new_array_ptr;
               *new_array_ptr = 0;
-              flag_ptr = (undefined4 *)((longlong)object_ptr + (8 - (longlong)new_array_ptr) + (longlong)new_array_ptr);
-              *flag_ptr = *(undefined4 *)((longlong)flag_ptr + ((longlong)new_array_ptr - (longlong)object_ptr));
+              flag_ptr = (int32_t *)((longlong)object_ptr + (8 - (longlong)new_array_ptr) + (longlong)new_array_ptr);
+              *flag_ptr = *(int32_t *)((longlong)flag_ptr + ((longlong)new_array_ptr - (longlong)object_ptr));
               new_array_ptr = new_array_ptr + 2;
               dest_array_ptr = dest_array_ptr + 2;
             } while (new_array_ptr != array_ptr2);
@@ -338,7 +338,7 @@ LAB_180277c31:
           if (new_array_ptr != (longlong *)0x0) {
             (**(code **)(*new_array_ptr + 0x28))();
           }
-          *(undefined4 *)(dest_array_ptr + 1) = *(undefined4 *)((longlong)(temp_array_ptr + 1) + (longlong)array_ptr3)
+          *(int32_t *)(dest_array_ptr + 1) = *(int32_t *)((longlong)(temp_array_ptr + 1) + (longlong)array_ptr3)
           ;
           dest_array_ptr = dest_array_ptr + 2;
           for (temp_array_ptr = new_array_ptr; temp_array_ptr != array_ptr2; temp_array_ptr = temp_array_ptr + 2) {
@@ -366,7 +366,7 @@ LAB_180277c31:
   object_ptr = *(longlong **)(render_context + 0x40);
   *(longlong **)(render_context + 0x40) = dest_array_ptr;
   *(longlong **)(render_context + 0x48) = new_array_ptr;
-  *(undefined4 *)(render_context + 0x50) = 0x16;
+  *(int32_t *)(render_context + 0x50) = 0x16;
   FUN_180278270(render_context);
   array_offset = *(longlong *)(render_context + 0x28);
   dest_array_ptr = temp_array_ptr;
@@ -397,37 +397,37 @@ LAB_180277c31:
 void Collect_Render_Object_Array(longlong render_context,ulonglong *result_array,uint render_flag)
 
 {
-  undefined8 object_data;           // 对象数据
+  uint64_t object_data;           // 对象数据
   longlong array_size;              // 数组大小
-  undefined8 *new_array_ptr;        // 新数组指针
-  undefined8 *old_array_ptr;        // 旧数组指针
-  undefined8 *temp_array_ptr;       // 临时数组指针
-  undefined8 *array_current;        // 数组当前指针
+  uint64_t *new_array_ptr;        // 新数组指针
+  uint64_t *old_array_ptr;        // 旧数组指针
+  uint64_t *temp_array_ptr;       // 临时数组指针
+  uint64_t *array_current;        // 数组当前指针
   
-  temp_array_ptr = *(undefined8 **)(render_context + 0x38);
-  if (temp_array_ptr < *(undefined8 **)(render_context + 0x40)) {
+  temp_array_ptr = *(uint64_t **)(render_context + 0x38);
+  if (temp_array_ptr < *(uint64_t **)(render_context + 0x40)) {
     do {
       if ((*(uint *)(temp_array_ptr + 1) & render_flag) != 0) {
-        array_current = (undefined8 *)result_array[1];
+        array_current = (uint64_t *)result_array[1];
         object_data = *temp_array_ptr;
-        if (array_current < (undefined8 *)result_array[2]) {
+        if (array_current < (uint64_t *)result_array[2]) {
           result_array[1] = (ulonglong)(array_current + 1);
           *array_current = object_data;
         }
         else {
-          old_array_ptr = (undefined8 *)*result_array;
+          old_array_ptr = (uint64_t *)*result_array;
           array_size = (longlong)array_current - (longlong)old_array_ptr >> 3;
           if (array_size == 0) {
             array_size = 1;
 LAB_180277eb2:
-            new_array_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
-            old_array_ptr = (undefined8 *)*result_array;
-            array_current = (undefined8 *)result_array[1];
+            new_array_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
+            old_array_ptr = (uint64_t *)*result_array;
+            array_current = (uint64_t *)result_array[1];
           }
           else {
             array_size = array_size * 2;
             if (array_size != 0) goto LAB_180277eb2;
-            new_array_ptr = (undefined8 *)0x0;
+            new_array_ptr = (uint64_t *)0x0;
           }
           if (old_array_ptr != array_current) {
             memmove(new_array_ptr,old_array_ptr,(longlong)array_current - (longlong)old_array_ptr);
@@ -442,7 +442,7 @@ LAB_180277eb2:
         }
       }
       temp_array_ptr = temp_array_ptr + 2;
-    } while (temp_array_ptr < *(undefined8 **)(render_context + 0x40));
+    } while (temp_array_ptr < *(uint64_t **)(render_context + 0x40));
   }
   return;
 }
@@ -458,38 +458,38 @@ LAB_180277eb2:
 void Collect_Render_Object_Array_Empty(void)
 
 {
-  undefined8 object_data;           // 对象数据
+  uint64_t object_data;           // 对象数据
   longlong array_size;              // 数组大小
-  undefined8 *new_array_ptr;        // 新数组指针
-  undefined8 *old_array_ptr;        // 旧数组指针
-  undefined8 *temp_array_ptr;       // 临时数组指针
+  uint64_t *new_array_ptr;        // 新数组指针
+  uint64_t *old_array_ptr;        // 旧数组指针
+  uint64_t *temp_array_ptr;       // 临时数组指针
   ulonglong *result_array;          // 结果数组指针
-  undefined8 *array_current;        // 数组当前指针
+  uint64_t *array_current;        // 数组当前指针
   uint render_flag;                 // 渲染标志
   longlong render_context;          // 渲染上下文
   
   do {
     if ((*(uint *)(array_current + 1) & render_flag) != 0) {
-      temp_array_ptr = (undefined8 *)result_array[1];
+      temp_array_ptr = (uint64_t *)result_array[1];
       object_data = *array_current;
-      if (temp_array_ptr < (undefined8 *)result_array[2]) {
+      if (temp_array_ptr < (uint64_t *)result_array[2]) {
         result_array[1] = (ulonglong)(temp_array_ptr + 1);
         *temp_array_ptr = object_data;
       }
       else {
-        old_array_ptr = (undefined8 *)*result_array;
+        old_array_ptr = (uint64_t *)*result_array;
         array_size = (longlong)temp_array_ptr - (longlong)old_array_ptr >> 3;
         if (array_size == 0) {
           array_size = 1;
 LAB_180277eb2:
-          new_array_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
-          old_array_ptr = (undefined8 *)*result_array;
-          temp_array_ptr = (undefined8 *)result_array[1];
+          new_array_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,array_size * 8,(char)result_array[3]);
+          old_array_ptr = (uint64_t *)*result_array;
+          temp_array_ptr = (uint64_t *)result_array[1];
         }
         else {
           array_size = array_size * 2;
           if (array_size != 0) goto LAB_180277eb2;
-          new_array_ptr = (undefined8 *)0x0;
+          new_array_ptr = (uint64_t *)0x0;
         }
         if (old_array_ptr != temp_array_ptr) {
           memmove(new_array_ptr,old_array_ptr,(longlong)temp_array_ptr - (longlong)old_array_ptr);
@@ -504,7 +504,7 @@ LAB_180277eb2:
       }
     }
     array_current = array_current + 2;
-    if (*(undefined8 **)(render_context + 0x40) <= array_current) {
+    if (*(uint64_t **)(render_context + 0x40) <= array_current) {
       return;
     }
   } while( true );
@@ -735,26 +735,26 @@ void Transform_Render_Object_Matrix_Empty(void)
   float *stack_matrix_ptr;          // 栈矩阵指针
   
   // 保存寄存器状态到栈
-  *(undefined8 *)(stack_ptr + 8) = stack_ptr;
-  *(undefined8 *)(stack_ptr + 0x10) = stack_ptr;
-  *(undefined8 *)(stack_ptr + 0x18) = stack_ptr;
-  *(undefined8 *)(stack_ptr + -0x28) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x38) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x34) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x30) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x2c) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x48) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x44) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x40) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x3c) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x58) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x54) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x50) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x4c) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x68) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -100) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x60) = stack_ptr;
-  *(undefined4 *)(stack_ptr + -0x5c) = stack_ptr;
+  *(uint64_t *)(stack_ptr + 8) = stack_ptr;
+  *(uint64_t *)(stack_ptr + 0x10) = stack_ptr;
+  *(uint64_t *)(stack_ptr + 0x18) = stack_ptr;
+  *(uint64_t *)(stack_ptr + -0x28) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x38) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x34) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x30) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x2c) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x48) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x44) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x40) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x3c) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x58) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x54) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x50) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x4c) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x68) = stack_ptr;
+  *(int32_t *)(stack_ptr + -100) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x60) = stack_ptr;
+  *(int32_t *)(stack_ptr + -0x5c) = stack_ptr;
   do {
     if (((uint)matrix_data[0x10] & *(uint *)(obj_iterator + 1)) != 0) {
       array_ptr = (longlong *)result_array[1];

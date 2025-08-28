@@ -13,11 +13,11 @@
  * @param param_4 参数4
  * @return void
  */
-void process_rendering_index_buffer(longlong render_context, undefined8 *data_ptr, uint vertex_count, uint param_4)
+void process_rendering_index_buffer(longlong render_context, uint64_t *data_ptr, uint vertex_count, uint param_4)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
+  int32_t uVar1;
+  int32_t uVar2;
+  uint64_t uVar3;
   longlong lVar4;
   ulonglong uVar5;
   short sVar6;
@@ -30,13 +30,13 @@ void process_rendering_index_buffer(longlong render_context, undefined8 *data_pt
   uStack_80 = _DAT_180bf00a8 ^ (ulonglong)&uStack_88;
   uVar5 = (ulonglong)vertex_count;
   if (2 < (int)vertex_count) {
-    uVar1 = **(undefined4 **)(render_context + 0x38);
-    uVar2 = (*(undefined4 **)(render_context + 0x38))[1];
+    uVar1 = **(int32_t **)(render_context + 0x38);
+    uVar2 = (*(int32_t **)(render_context + 0x38))[1];
     if ((*(byte *)(render_context + 0x30) & 2) != 0) {
       uStack_88 = param_4 & 0xffffff;
       iStack_84 = vertex_count * 2;
       FUN_1802921e0(render_context, vertex_count * 9 + -6, iStack_84);
-      uVar1 = *(undefined4 *)(render_context + 0x48);
+      uVar1 = *(int32_t *)(render_context + 0x48);
       iVar7 = 2;
       if (2 < (int)vertex_count) {
         do {
@@ -62,10 +62,10 @@ void process_rendering_index_buffer(longlong render_context, undefined8 *data_pt
       do {
         uVar3 = *data_ptr;
         data_ptr = data_ptr + 1;
-        **(undefined8 **)(render_context + 0x50) = uVar3;
+        **(uint64_t **)(render_context + 0x50) = uVar3;
         lVar4 = *(longlong *)(render_context + 0x50);
-        *(undefined4 *)(lVar4 + 8) = uVar1;
-        *(undefined4 *)(lVar4 + 0xc) = uVar2;
+        *(int32_t *)(lVar4 + 8) = uVar1;
+        *(int32_t *)(lVar4 + 0xc) = uVar2;
         *(uint *)(*(longlong *)(render_context + 0x50) + 0x10) = param_4;
         *(longlong *)(render_context + 0x50) = *(longlong *)(render_context + 0x50) + 0x14;
         uVar5 = uVar5 - 1;
@@ -74,7 +74,7 @@ void process_rendering_index_buffer(longlong render_context, undefined8 *data_pt
     iVar7 = 2;
     if (2 < (int)vertex_count) {
       do {
-        **(undefined2 **)(render_context + 0x58) = *(undefined2 *)(render_context + 0x48);
+        **(int16_t **)(render_context + 0x58) = *(int16_t *)(render_context + 0x48);
         sVar6 = (short)iVar7;
         *(short *)(*(longlong *)(render_context + 0x58) + 2) = sVar6 + -1 + *(short *)(render_context + 0x48);
         iVar7 = iVar7 + 1;
@@ -155,7 +155,7 @@ void process_rendering_coordinate_transform(longlong render_context, float *coor
  * @param param_4 参数4
  * @return void
  */
-void process_rendering_advanced_transform(longlong param_1, int param_2, undefined8 param_3, int param_4)
+void process_rendering_advanced_transform(longlong param_1, int param_2, uint64_t param_3, int param_4)
 {
   int *piVar1;
   float fVar2;
@@ -226,7 +226,7 @@ void cleanup_rendering_data_buffer(longlong render_context)
  * @param param_6 参数6
  * @return void
  */
-void initialize_rendering_data_buffer(longlong render_context, undefined8 param_2, float scale_factor, undefined8 param_4, undefined8 param_5, int param_6)
+void initialize_rendering_data_buffer(longlong render_context, uint64_t param_2, float scale_factor, uint64_t param_4, uint64_t param_5, int param_6)
 {
   if (scale_factor == 0.0) {
     FUN_18011d9a0();
@@ -416,7 +416,7 @@ void process_rendering_coordinate_interpolation(longlong render_context, float *
  * @param param_1 参数1
  * @return void
  */
-void process_rendering_advanced_coordinate_transform(undefined4 param_1)
+void process_rendering_advanced_coordinate_transform(int32_t param_1)
 {
   float *unaff_RBP;
   float *unaff_RSI;
@@ -466,16 +466,16 @@ void process_rendering_advanced_coordinate_transform(undefined4 param_1)
  */
 void process_rendering_batch_data(void)
 {
-  undefined4 uVar1;
+  int32_t uVar1;
   int iVar2;
   int iVar3;
   int iVar4;
   longlong unaff_RBX;
   int *piVar5;
-  undefined4 *unaff_RBP;
-  undefined4 *unaff_RSI;
+  int32_t *unaff_RBP;
+  int32_t *unaff_RSI;
   int iVar6;
-  undefined4 uStack000000000000008c;
+  int32_t uStack000000000000008c;
   
   piVar5 = (int *)(unaff_RBX + 0x80);
   FUN_18011d9a0(piVar5);
@@ -530,15 +530,15 @@ void process_rendering_batch_data(void)
  */
 void process_rendering_data_stream(void)
 {
-  undefined4 uVar1;
+  int32_t uVar1;
   int iVar2;
   int iVar3;
   int iVar4;
   int *unaff_RBX;
-  undefined4 *unaff_RBP;
-  undefined4 *unaff_RSI;
+  int32_t *unaff_RBP;
+  int32_t *unaff_RSI;
   int iVar5;
-  undefined4 uStack000000000000008c;
+  int32_t uStack000000000000008c;
   
   FUN_18011d9a0();
   uVar1 = *unaff_RSI;
@@ -605,7 +605,7 @@ void empty_rendering_function_3(void)
  * @param param_5 参数5
  * @return void
  */
-void process_rendering_coordinate_offset(longlong render_context, float *coord_start, float *coord_end, uint flags, undefined4 param_5)
+void process_rendering_coordinate_offset(longlong render_context, float *coord_start, float *coord_end, uint flags, int32_t param_5)
 {
   int *piVar1;
   float fVar2;
@@ -657,7 +657,7 @@ void process_rendering_coordinate_offset(longlong render_context, float *coord_s
     *(ulonglong *)(*(longlong *)(render_context + 0x88) + (longlong)iVar5 * 8) =
          CONCAT44(fVar3 + 0.5, fVar2 + 0.5);
     *piVar1 = *piVar1 + 1;
-    FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *piVar1, flags, 0, param_5);
+    FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *piVar1, flags, 0, param_5);
     *piVar1 = 0;
   }
   return;
@@ -674,7 +674,7 @@ void process_rendering_coordinate_offset(longlong render_context, float *coord_s
  * @param param_6 参数6
  * @return void
  */
-void process_rendering_float_calculation(float param_1, longlong param_2, float *param_3, undefined8 param_4, undefined8 param_5, undefined8 param_6)
+void process_rendering_float_calculation(float param_1, longlong param_2, float *param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6)
 {
   int *piVar1;
   float fVar2;
@@ -684,23 +684,23 @@ void process_rendering_float_calculation(float param_1, longlong param_2, float 
   int iVar6;
   longlong in_RAX;
   longlong in_RCX;
-  undefined4 unaff_EBP;
+  int32_t unaff_EBP;
   longlong unaff_RSI;
   int iVar7;
-  undefined8 unaff_RDI;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 in_stack_00000080;
+  uint64_t unaff_RDI;
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
+  int32_t in_stack_00000080;
   
-  *(undefined8 *)(in_RAX + 0x10) = unaff_RDI;
+  *(uint64_t *)(in_RAX + 0x10) = unaff_RDI;
   piVar1 = (int *)(in_RCX + 0x80);
   iVar5 = *(int *)(in_RCX + 0x84);
-  *(undefined4 *)(in_RAX + -0x18) = unaff_XMM6_Da;
-  *(undefined4 *)(in_RAX + -0x14) = unaff_XMM6_Db;
-  *(undefined4 *)(in_RAX + -0x10) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_RAX + -0xc) = unaff_XMM6_Dd;
+  *(int32_t *)(in_RAX + -0x18) = unaff_XMM6_Da;
+  *(int32_t *)(in_RAX + -0x14) = unaff_XMM6_Db;
+  *(int32_t *)(in_RAX + -0x10) = unaff_XMM6_Dc;
+  *(int32_t *)(in_RAX + -0xc) = unaff_XMM6_Dd;
   iVar7 = 8;
   *(float *)(in_RAX + -0x28) = param_1 + 0.5;
   *(float *)(in_RAX + -0x24) = *(float *)(param_2 + 4) + 0.5;
@@ -719,7 +719,7 @@ void process_rendering_float_calculation(float param_1, longlong param_2, float 
     FUN_18011dc70(piVar1, iVar4);
     iVar6 = *piVar1;
   }
-  *(undefined8 *)(*(longlong *)(in_RCX + 0x88) + (longlong)iVar6 * 8) = param_6;
+  *(uint64_t *)(*(longlong *)(in_RCX + 0x88) + (longlong)iVar6 * 8) = param_6;
   *piVar1 = *piVar1 + 1;
   fVar2 = *param_3;
   fVar3 = param_3[1];
@@ -739,7 +739,7 @@ void process_rendering_float_calculation(float param_1, longlong param_2, float 
   *(ulonglong *)(*(longlong *)(in_RCX + 0x88) + (longlong)iVar5 * 8) =
        CONCAT44(fVar3 + 0.5, fVar2 + 0.5);
   *piVar1 = *piVar1 + 1;
-  FUN_1802923e0(in_stack_00000080, *(undefined8 *)(unaff_RSI + 0x88), *piVar1, unaff_EBP, 0);
+  FUN_1802923e0(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *piVar1, unaff_EBP, 0);
   *piVar1 = 0;
   return;
 }
@@ -759,22 +759,22 @@ void process_rendering_transform_calculation(float param_1, longlong param_2)
   int in_ECX;
   int iVar3;
   int *unaff_RBX;
-  undefined4 unaff_EBP;
+  int32_t unaff_EBP;
   longlong unaff_RSI;
   int iVar4;
   float *unaff_R14;
   float fVar5;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined8 in_stack_00000030;
-  undefined4 in_stack_00000080;
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
+  uint64_t in_stack_00000030;
+  int32_t in_stack_00000080;
   
-  *(undefined4 *)(in_RAX + -0x18) = unaff_XMM6_Da;
-  *(undefined4 *)(in_RAX + -0x14) = unaff_XMM6_Db;
-  *(undefined4 *)(in_RAX + -0x10) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_RAX + -0xc) = unaff_XMM6_Dd;
+  *(int32_t *)(in_RAX + -0x18) = unaff_XMM6_Da;
+  *(int32_t *)(in_RAX + -0x14) = unaff_XMM6_Db;
+  *(int32_t *)(in_RAX + -0x10) = unaff_XMM6_Dc;
+  *(int32_t *)(in_RAX + -0xc) = unaff_XMM6_Dd;
   iVar4 = 8;
   *(float *)(in_RAX + -0x28) = param_1 + 0.5;
   fVar5 = *(float *)(param_2 + 4) + 0.5;
@@ -794,7 +794,7 @@ void process_rendering_transform_calculation(float param_1, longlong param_2)
     FUN_18011dc70(fVar5, iVar3);
     iVar2 = *unaff_RBX;
   }
-  *(undefined8 *)(*(longlong *)(unaff_RBX + 2) + (longlong)iVar2 * 8) = in_stack_00000030;
+  *(uint64_t *)(*(longlong *)(unaff_RBX + 2) + (longlong)iVar2 * 8) = in_stack_00000030;
   *unaff_RBX = *unaff_RBX + 1;
   fVar5 = *unaff_R14;
   fVar1 = unaff_R14[1];
@@ -814,7 +814,7 @@ void process_rendering_transform_calculation(float param_1, longlong param_2)
   *(ulonglong *)(*(longlong *)(unaff_RBX + 2) + (longlong)iVar2 * 8) =
        CONCAT44(fVar1 + 0.5, fVar5 + 0.5);
   *unaff_RBX = *unaff_RBX + 1;
-  FUN_1802923e0(in_stack_00000080, *(undefined8 *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
+  FUN_1802923e0(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
   *unaff_RBX = 0;
   return;
 }
@@ -830,15 +830,15 @@ void process_rendering_transform_calculation(float param_1, longlong param_2)
  * @param param_6 参数6
  * @return void
  */
-void process_rendering_array_operations(undefined4 param_1, undefined8 param_2, int param_3, undefined8 param_4, undefined8 param_5, undefined8 param_6)
+void process_rendering_array_operations(int32_t param_1, uint64_t param_2, int param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6)
 {
   int in_EAX;
   int iVar1;
   int *unaff_RBX;
-  undefined4 unaff_EBP;
+  int32_t unaff_EBP;
   longlong unaff_RSI;
   int unaff_EDI;
-  undefined4 in_stack_00000080;
+  int32_t in_stack_00000080;
   
   if (param_3 != 0) {
     unaff_EDI = param_3 + param_3 / 2;
@@ -848,9 +848,9 @@ void process_rendering_array_operations(undefined4 param_1, undefined8 param_2, 
     iVar1 = unaff_EDI;
   }
   FUN_18011dc70(param_1, iVar1);
-  *(undefined8 *)(*(longlong *)(unaff_RBX + 2) + (longlong)*unaff_RBX * 8) = param_6;
+  *(uint64_t *)(*(longlong *)(unaff_RBX + 2) + (longlong)*unaff_RBX * 8) = param_6;
   *unaff_RBX = *unaff_RBX + 1;
-  FUN_1802923e0(in_stack_00000080, *(undefined8 *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
+  FUN_1802923e0(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
   *unaff_RBX = 0;
   return;
 }
@@ -877,7 +877,7 @@ void empty_rendering_function_4(void)
  * @param param_7 参数7
  * @return void
  */
-void process_rendering_boundary_calculation(longlong render_context, float *coord_start, float *coord_end, undefined4 param_4, undefined4 param_5, undefined4 param_6, undefined4 param_7)
+void process_rendering_boundary_calculation(longlong render_context, float *coord_start, float *coord_end, int32_t param_4, int32_t param_5, int32_t param_6, int32_t param_7)
 {
   float fStackX_8;
   float fStackX_c;
@@ -895,8 +895,8 @@ void process_rendering_boundary_calculation(longlong render_context, float *coor
     fStackX_c = coord_end[1] - 0.5;
   }
   FUN_1802939e0(0x3f000000, &fStack_18, &fStackX_8, param_5, param_6);
-  FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), param_4, 1, param_7);
-  *(undefined4 *)(render_context + 0x80) = 0;
+  FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), param_4, 1, param_7);
+  *(int32_t *)(render_context + 0x80) = 0;
   return;
 }
 
@@ -911,14 +911,14 @@ void process_rendering_boundary_calculation(longlong render_context, float *coor
  * @param param_6 参数6
  * @return void
  */
-void process_rendering_batch_operations(longlong render_context, undefined8 *data_ptr1, undefined8 *data_ptr2, uint flags, float scale_factor, undefined4 param_6)
+void process_rendering_batch_operations(longlong render_context, uint64_t *data_ptr1, uint64_t *data_ptr2, uint flags, float scale_factor, int32_t param_6)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
+  int32_t uVar1;
+  int32_t uVar2;
+  int32_t uVar3;
+  int32_t uVar4;
+  int32_t uVar5;
+  int32_t uVar6;
   short sVar7;
   longlong lVar8;
   
@@ -926,41 +926,41 @@ void process_rendering_batch_operations(longlong render_context, undefined8 *dat
     if (scale_factor <= 0.0) {
       FUN_1802921e0(0, 6, 4);
       sVar7 = *(short *)(render_context + 0x48);
-      uVar1 = *(undefined4 *)data_ptr2;
-      uVar2 = *(undefined4 *)((longlong)data_ptr1 + 4);
-      uVar3 = *(undefined4 *)data_ptr1;
-      uVar4 = (*(undefined4 **)(render_context + 0x38))[1];
-      uVar5 = **(undefined4 **)(render_context + 0x38);
-      uVar6 = *(undefined4 *)((longlong)data_ptr2 + 4);
+      uVar1 = *(int32_t *)data_ptr2;
+      uVar2 = *(int32_t *)((longlong)data_ptr1 + 4);
+      uVar3 = *(int32_t *)data_ptr1;
+      uVar4 = (*(int32_t **)(render_context + 0x38))[1];
+      uVar5 = **(int32_t **)(render_context + 0x38);
+      uVar6 = *(int32_t *)((longlong)data_ptr2 + 4);
       **(short **)(render_context + 0x58) = sVar7;
       *(short *)(*(longlong *)(render_context + 0x58) + 2) = sVar7 + 1;
       *(short *)(*(longlong *)(render_context + 0x58) + 4) = sVar7 + 2;
       *(short *)(*(longlong *)(render_context + 0x58) + 6) = sVar7;
       *(short *)(*(longlong *)(render_context + 0x58) + 8) = sVar7 + 2;
       *(short *)(*(longlong *)(render_context + 0x58) + 10) = sVar7 + 3;
-      **(undefined8 **)(render_context + 0x50) = *data_ptr1;
+      **(uint64_t **)(render_context + 0x50) = *data_ptr1;
       lVar8 = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(lVar8 + 8) = uVar5;
-      *(undefined4 *)(lVar8 + 0xc) = uVar4;
+      *(int32_t *)(lVar8 + 8) = uVar5;
+      *(int32_t *)(lVar8 + 0xc) = uVar4;
       *(uint *)(*(longlong *)(render_context + 0x50) + 0x10) = flags;
       lVar8 = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(lVar8 + 0x14) = uVar1;
-      *(undefined4 *)(lVar8 + 0x18) = uVar2;
+      *(int32_t *)(lVar8 + 0x14) = uVar1;
+      *(int32_t *)(lVar8 + 0x18) = uVar2;
       lVar8 = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(lVar8 + 0x1c) = uVar5;
-      *(undefined4 *)(lVar8 + 0x20) = uVar4;
+      *(int32_t *)(lVar8 + 0x1c) = uVar5;
+      *(int32_t *)(lVar8 + 0x20) = uVar4;
       *(uint *)(*(longlong *)(render_context + 0x50) + 0x24) = flags;
-      *(undefined8 *)(*(longlong *)(render_context + 0x50) + 0x28) = *data_ptr2;
+      *(uint64_t *)(*(longlong *)(render_context + 0x50) + 0x28) = *data_ptr2;
       lVar8 = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(lVar8 + 0x30) = uVar5;
-      *(undefined4 *)(lVar8 + 0x34) = uVar4;
+      *(int32_t *)(lVar8 + 0x30) = uVar5;
+      *(int32_t *)(lVar8 + 0x34) = uVar4;
       *(uint *)(*(longlong *)(render_context + 0x50) + 0x38) = flags;
       lVar8 = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(lVar8 + 0x3c) = uVar3;
-      *(undefined4 *)(lVar8 + 0x40) = uVar6;
+      *(int32_t *)(lVar8 + 0x3c) = uVar3;
+      *(int32_t *)(lVar8 + 0x40) = uVar6;
       lVar8 = *(longlong *)(render_context + 0x50);
-      *(undefined4 *)(lVar8 + 0x44) = uVar5;
-      *(undefined4 *)(lVar8 + 0x48) = uVar4;
+      *(int32_t *)(lVar8 + 0x44) = uVar5;
+      *(int32_t *)(lVar8 + 0x48) = uVar4;
       *(uint *)(*(longlong *)(render_context + 0x50) + 0x4c) = flags;
       *(longlong *)(render_context + 0x50) = *(longlong *)(render_context + 0x50) + 0x50;
       *(int *)(render_context + 0x48) = *(int *)(render_context + 0x48) + 4;
@@ -968,8 +968,8 @@ void process_rendering_batch_operations(longlong render_context, undefined8 *dat
     }
     else {
       FUN_1802939e0(0, data_ptr1, data_ptr2, scale_factor, param_6);
-      FUN_180293190(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), flags);
-      *(undefined4 *)(render_context + 0x80) = 0;
+      FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags);
+      *(int32_t *)(render_context + 0x80) = 0;
     }
   }
   return;
@@ -982,59 +982,59 @@ void process_rendering_batch_operations(longlong render_context, undefined8 *dat
  * @param param_2 参数2
  * @return void
  */
-void process_rendering_advanced_index(undefined8 param_1, undefined8 param_2)
+void process_rendering_advanced_index(uint64_t param_1, uint64_t param_2)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
+  int32_t uVar1;
+  int32_t uVar2;
+  int32_t uVar3;
+  int32_t uVar4;
+  int32_t uVar5;
+  int32_t uVar6;
   short sVar7;
   longlong lVar8;
   longlong unaff_RBX;
-  undefined8 *unaff_RBP;
-  undefined8 *unaff_RSI;
-  undefined4 unaff_EDI;
+  uint64_t *unaff_RBP;
+  uint64_t *unaff_RSI;
+  int32_t unaff_EDI;
   
   FUN_1802921e0(param_1, param_2, (int)param_2 + -2);
   sVar7 = *(short *)(unaff_RBX + 0x48);
-  uVar1 = *(undefined4 *)unaff_RSI;
-  uVar2 = *(undefined4 *)((longlong)unaff_RBP + 4);
-  uVar3 = *(undefined4 *)unaff_RBP;
-  uVar4 = (*(undefined4 **)(unaff_RBX + 0x38))[1];
-  uVar5 = **(undefined4 **)(unaff_RBX + 0x38);
-  uVar6 = *(undefined4 *)((longlong)unaff_RSI + 4);
+  uVar1 = *(int32_t *)unaff_RSI;
+  uVar2 = *(int32_t *)((longlong)unaff_RBP + 4);
+  uVar3 = *(int32_t *)unaff_RBP;
+  uVar4 = (*(int32_t **)(unaff_RBX + 0x38))[1];
+  uVar5 = **(int32_t **)(unaff_RBX + 0x38);
+  uVar6 = *(int32_t *)((longlong)unaff_RSI + 4);
   **(short **)(unaff_RBX + 0x58) = sVar7;
   *(short *)(*(longlong *)(unaff_RBX + 0x58) + 2) = sVar7 + 1;
   *(short *)(*(longlong *)(unaff_RBX + 0x58) + 4) = sVar7 + 2;
   *(short *)(*(longlong *)(unaff_RBX + 0x58) + 6) = sVar7;
   *(short *)(*(longlong *)(unaff_RBX + 0x58) + 8) = sVar7 + 2;
   *(short *)(*(longlong *)(unaff_RBX + 0x58) + 10) = sVar7 + 3;
-  **(undefined8 **)(unaff_RBX + 0x50) = *unaff_RBP;
+  **(uint64_t **)(unaff_RBX + 0x50) = *unaff_RBP;
   lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 8) = uVar5;
-  *(undefined4 *)(lVar8 + 0xc) = uVar4;
-  *(undefined4 *)(*(longlong *)(unaff_RBX + 0x50) + 0x10) = unaff_EDI;
+  *(int32_t *)(lVar8 + 8) = uVar5;
+  *(int32_t *)(lVar8 + 0xc) = uVar4;
+  *(int32_t *)(*(longlong *)(unaff_RBX + 0x50) + 0x10) = unaff_EDI;
   lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 0x14) = uVar1;
-  *(undefined4 *)(lVar8 + 0x18) = uVar2;
+  *(int32_t *)(lVar8 + 0x14) = uVar1;
+  *(int32_t *)(lVar8 + 0x18) = uVar2;
   lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 0x1c) = uVar5;
-  *(undefined4 *)(lVar8 + 0x20) = uVar4;
-  *(undefined4 *)(*(longlong *)(unaff_RBX + 0x50) + 0x24) = unaff_EDI;
-  *(undefined8 *)(*(longlong *)(unaff_RBX + 0x50) + 0x28) = *unaff_RSI;
+  *(int32_t *)(lVar8 + 0x1c) = uVar5;
+  *(int32_t *)(lVar8 + 0x20) = uVar4;
+  *(int32_t *)(*(longlong *)(unaff_RBX + 0x50) + 0x24) = unaff_EDI;
+  *(uint64_t *)(*(longlong *)(unaff_RBX + 0x50) + 0x28) = *unaff_RSI;
   lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 0x30) = uVar5;
-  *(undefined4 *)(lVar8 + 0x34) = uVar4;
-  *(undefined4 *)(*(longlong *)(unaff_RBX + 0x50) + 0x38) = unaff_EDI;
+  *(int32_t *)(lVar8 + 0x30) = uVar5;
+  *(int32_t *)(lVar8 + 0x34) = uVar4;
+  *(int32_t *)(*(longlong *)(unaff_RBX + 0x50) + 0x38) = unaff_EDI;
   lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 0x3c) = uVar3;
-  *(undefined4 *)(lVar8 + 0x40) = uVar6;
+  *(int32_t *)(lVar8 + 0x3c) = uVar3;
+  *(int32_t *)(lVar8 + 0x40) = uVar6;
   lVar8 = *(longlong *)(unaff_RBX + 0x50);
-  *(undefined4 *)(lVar8 + 0x44) = uVar5;
-  *(undefined4 *)(lVar8 + 0x48) = uVar4;
-  *(undefined4 *)(*(longlong *)(unaff_RBX + 0x50) + 0x4c) = unaff_EDI;
+  *(int32_t *)(lVar8 + 0x44) = uVar5;
+  *(int32_t *)(lVar8 + 0x48) = uVar4;
+  *(int32_t *)(*(longlong *)(unaff_RBX + 0x50) + 0x4c) = unaff_EDI;
   *(longlong *)(unaff_RBX + 0x50) = *(longlong *)(unaff_RBX + 0x50) + 0x50;
   *(int *)(unaff_RBX + 0x48) = *(int *)(unaff_RBX + 0x48) + 4;
   *(longlong *)(unaff_RBX + 0x58) = *(longlong *)(unaff_RBX + 0x58) + 0xc;
@@ -1061,14 +1061,14 @@ void empty_rendering_function_5(void)
  * @param flags 标志位
  * @return void
  */
-void process_rendering_multisampling(longlong render_context, undefined8 param_2, undefined8 param_3, undefined8 param_4, uint flags)
+void process_rendering_multisampling(longlong render_context, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint flags)
 {
   if ((flags & 0xff000000) != 0) {
     FUN_18011d9a0(render_context + 0x80);
     FUN_18011d9a0(render_context + 0x80, param_3);
     FUN_18011d9a0(render_context + 0x80, param_4);
-    FUN_180293190(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), flags);
-    *(undefined4 *)(render_context + 0x80) = 0;
+    FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags);
+    *(int32_t *)(render_context + 0x80) = 0;
   }
   return;
 }
@@ -1086,7 +1086,7 @@ void process_rendering_texture_mapping(void)
   FUN_18011d9a0(unaff_RSI + 0x80);
   FUN_18011d9a0(unaff_RSI + 0x80);
   FUN_180293190();
-  *(undefined4 *)(unaff_RSI + 0x80) = 0;
+  *(int32_t *)(unaff_RSI + 0x80) = 0;
   return;
 }
 
@@ -1111,12 +1111,12 @@ void empty_rendering_function_6(void)
  * @param param_6 参数6
  * @return void
  */
-void process_rendering_material_blending(longlong render_context, undefined8 param_2, float param_3, uint flags, undefined8 param_5, undefined4 param_6)
+void process_rendering_material_blending(longlong render_context, uint64_t param_2, float param_3, uint flags, uint64_t param_5, int32_t param_6)
 {
   if ((flags & 0xff000000) != 0) {
     FUN_180293860(0x40bc7edd, param_2, param_3 - 0.5, 0, 0x40bc7edd, 0xf);
-    FUN_1802923e0(render_context, *(undefined8 *)(render_context + 0x88), *(undefined4 *)(render_context + 0x80), flags, 1, param_6);
-    *(undefined4 *)(render_context + 0x80) = 0;
+    FUN_1802923e0(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags, 1, param_6);
+    *(int32_t *)(render_context + 0x80) = 0;
   }
   return;
 }
@@ -1135,11 +1135,11 @@ void process_rendering_material_blending(longlong render_context, undefined8 par
  * @param param_9 参数9
  * @return void
  */
-void process_rendering_string_operations(longlong render_context, longlong param_2, float param_3, undefined8 *data_ptr, uint flags, longlong param_6, longlong param_7, undefined4 param_8, float *param_9)
+void process_rendering_string_operations(longlong render_context, longlong param_2, float param_3, uint64_t *data_ptr, uint flags, longlong param_6, longlong param_7, int32_t param_8, float *param_9)
 {
-  undefined8 *puVar1;
-  undefined8 uStack_18;
-  undefined8 uStack_10;
+  uint64_t *puVar1;
+  uint64_t uStack_18;
+  uint64_t uStack_10;
   
   if ((flags & 0xff000000) != 0) {
     if (param_7 == 0) {
@@ -1156,7 +1156,7 @@ void process_rendering_string_operations(longlong render_context, longlong param
       if (param_3 == 0.0) {
         param_3 = *(float *)(*(longlong *)(render_context + 0x38) + 0x10);
       }
-      puVar1 = (undefined8 *)
+      puVar1 = (uint64_t *)
                (*(longlong *)(render_context + 0x68) + -0x10 + (longlong)*(int *)(render_context + 0x60) * 0x10);
       uStack_18 = *puVar1;
       uStack_10 = puVar1[1];
@@ -1191,14 +1191,14 @@ void process_rendering_string_operations(longlong render_context, longlong param
  * @param param_4 参数4
  * @return void
  */
-void process_rendering_buffer_management(longlong render_context, undefined8 *data_ptr, uint flags, longlong param_4)
+void process_rendering_buffer_management(longlong render_context, uint64_t *data_ptr, uint flags, longlong param_4)
 {
-  undefined4 *puVar1;
+  int32_t *puVar1;
   longlong lVar2;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_10;
+  int32_t uStack_c;
   
   if ((flags & 0xff000000) != 0) {
     lVar2 = -1;
@@ -1206,14 +1206,14 @@ void process_rendering_buffer_management(longlong render_context, undefined8 *da
       lVar2 = lVar2 + 1;
     } while (*(char *)(param_4 + lVar2) != '\0');
     if (param_4 != lVar2 + param_4) {
-      puVar1 = (undefined4 *)
+      puVar1 = (int32_t *)
                (*(longlong *)(render_context + 0x68) + -0x10 + (longlong)*(int *)(render_context + 0x60) * 0x10);
       uStack_18 = *puVar1;
       uStack_14 = puVar1[1];
       uStack_10 = puVar1[2];
       uStack_c = puVar1[3];
-      FUN_180297590(*(undefined8 *)(*(longlong *)(render_context + 0x38) + 8), render_context,
-                    *(undefined4 *)(*(longlong *)(render_context + 0x38) + 0x10), *data_ptr, flags,
+      FUN_180297590(*(uint64_t *)(*(longlong *)(render_context + 0x38) + 8), render_context,
+                    *(int32_t *)(*(longlong *)(render_context + 0x38) + 0x10), *data_ptr, flags,
                     &uStack_18, param_4, lVar2 + param_4, 0, 0);
     }
   }

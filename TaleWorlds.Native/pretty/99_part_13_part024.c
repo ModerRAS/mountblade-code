@@ -325,7 +325,7 @@ typedef SystemError (*SystemLogFunc)(SystemObject* object, SystemString message,
 
 // 函数1: 系统高级数据处理器和状态管理器
 // 功能：处理系统高级数据操作和状态管理，包括数据验证、状态转换、错误处理等
-SystemError SystemAdvancedDataProcessorAndStateManager(undefined8 param_1, undefined8 param_2)
+SystemError SystemAdvancedDataProcessorAndStateManager(uint64_t param_1, uint64_t param_2)
 {
     SystemObject* object = (SystemObject*)param_1;
     SystemDataProcessor* processor = (SystemDataProcessor*)param_2;
@@ -491,7 +491,7 @@ SystemError SystemErrorHandlerAndRecoverer(void)
 
 // 函数4: 系统数据验证器和参数处理器
 // 功能：验证系统数据和处理参数，包括数据完整性检查、参数验证、格式转换等
-SystemError SystemDataValidatorAndParameterProcessor(undefined8 param_1, undefined8* param_2)
+SystemError SystemDataValidatorAndParameterProcessor(uint64_t param_1, uint64_t* param_2)
 {
     SystemValidator* validator = (SystemValidator*)param_1;
     SystemParameterProcessor* processor = (SystemParameterProcessor*)param_2;
@@ -540,7 +540,7 @@ SystemError SystemDataValidatorAndParameterProcessor(undefined8 param_1, undefin
 
 // 函数5: 系统对象管理器和内存分配器
 // 功能：管理系统对象和内存分配，包括对象生命周期管理、内存分配/释放、引用计数等
-SystemError SystemObjectManagerAndMemoryAllocator(undefined8 param_1)
+SystemError SystemObjectManagerAndMemoryAllocator(uint64_t param_1)
 {
     SystemObjectManager* manager = (SystemObjectManager*)param_1;
     SystemMemoryAllocator* allocator = GetSystemMemoryAllocator();
@@ -590,7 +590,7 @@ SystemError SystemObjectManagerAndMemoryAllocator(undefined8 param_1)
 
 // 函数6: 系统同步器和并发控制器
 // 功能：管理系统同步和并发控制，包括线程同步、互斥锁、信号量、条件变量等
-SystemError SystemSynchronizerAndConcurrencyController(undefined8 param_1, undefined8 param_2)
+SystemError SystemSynchronizerAndConcurrencyController(uint64_t param_1, uint64_t param_2)
 {
     SystemSynchronizer* synchronizer = (SystemSynchronizer*)param_1;
     SystemConcurrencyController* controller = (SystemConcurrencyController*)param_2;
@@ -643,7 +643,7 @@ SystemError SystemSynchronizerAndConcurrencyController(undefined8 param_1, undef
 
 // 函数7: 系统配置管理器和参数优化器
 // 功能：管理系统配置和参数优化，包括配置加载、参数验证、性能优化等
-SystemError SystemConfigurationManagerAndParameterOptimizer(undefined8 param_1, undefined8 param_2, undefined8 param_3)
+SystemError SystemConfigurationManagerAndParameterOptimizer(uint64_t param_1, uint64_t param_2, uint64_t param_3)
 {
     SystemConfigurationManager* config_manager = (SystemConfigurationManager*)param_1;
     SystemParameterOptimizer* param_optimizer = (SystemParameterOptimizer*)param_2;
@@ -701,7 +701,7 @@ SystemError SystemConfigurationManagerAndParameterOptimizer(undefined8 param_1, 
 
 // 函数8: 系统事件处理器和回调管理器
 // 功能：处理系统事件和管理回调，包括事件分发、回调注册、异步处理等
-SystemError SystemEventHandlerAndCallbackManager(undefined8 param_1, undefined8* param_2)
+SystemError SystemEventHandlerAndCallbackManager(uint64_t param_1, uint64_t* param_2)
 {
     SystemEventHandler* event_handler = (SystemEventHandler*)param_1;
     SystemCallbackManager* callback_manager = (SystemCallbackManager*)param_2;

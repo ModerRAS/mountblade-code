@@ -52,17 +52,17 @@ void ui_system_initializer(void)
  * @param param_2 UI系统参数数组
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-ulonglong ui_system_processor_type1(longlong param_1,undefined8 *param_2)
+ulonglong ui_system_processor_type1(longlong param_1,uint64_t *param_2)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   uint uVar2;
   ulonglong uVar3;
   ulonglong uVar4;
-  undefined1 auStackX_18 [4];
-  undefined1 auStackX_1c [12];
-  undefined1 auStack_58 [32];
-  undefined1 auStack_38 [32];
+  int8_t auStackX_18 [4];
+  int8_t auStackX_1c [12];
+  int8_t auStack_58 [32];
+  int8_t auStack_38 [32];
   
   uVar3 = FUN_1808ddc20(param_2,auStack_38,1,0x54495053);
   if ((((int)uVar3 == 0) &&
@@ -81,7 +81,7 @@ ulonglong ui_system_processor_type1(longlong param_1,undefined8 *param_2)
       if (uVar2 == 0) {
         if (((*(uint *)(param_2 + 8) < 0x8a) && (*(int *)(param_1 + 0xf8) == 0)) ||
            ((*(uint *)(param_2 + 8) < 0x8e && (*(int *)(param_1 + 0xf8) == 0x7fffffff)))) {
-          *(undefined4 *)(param_1 + 0xf8) = 0x21;
+          *(int32_t *)(param_1 + 0xf8) = 0x21;
         }
         uVar3 = FUN_180898ef0(param_2,param_1 + 0x100);
         if ((int)uVar3 == 0) {
@@ -155,11 +155,11 @@ ulonglong ui_system_processor_type1(longlong param_1,undefined8 *param_2)
 ulonglong ui_system_processor_type2(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   uint uVar2;
   longlong in_RAX;
   ulonglong uVar3;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   longlong unaff_RSI;
   ulonglong uVar4;
   
@@ -174,7 +174,7 @@ ulonglong ui_system_processor_type2(void)
       if (uVar2 == 0) {
         if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
            ((*(uint *)(unaff_RBX + 8) < 0x8e && (*(int *)(unaff_RSI + 0xf8) == 0x7fffffff)))) {
-          *(undefined4 *)(unaff_RSI + 0xf8) = 0x21;
+          *(int32_t *)(unaff_RSI + 0xf8) = 0x21;
         }
         uVar3 = FUN_180898ef0();
         if ((int)uVar3 == 0) {
@@ -249,10 +249,10 @@ ulonglong ui_system_processor_type2(void)
 ulonglong ui_system_processor_type3(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   uint uVar2;
   ulonglong uVar3;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   longlong unaff_RSI;
   ulonglong uVar4;
   
@@ -266,7 +266,7 @@ ulonglong ui_system_processor_type3(void)
     if (uVar2 == 0) {
       if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
          ((*(uint *)(unaff_RBX + 8) < 0x8e && (*(int *)(unaff_RSI + 0xf8) == 0x7fffffff)))) {
-        *(undefined4 *)(unaff_RSI + 0xf8) = 0x21;
+        *(int32_t *)(unaff_RSI + 0xf8) = 0x21;
       }
       uVar3 = FUN_180898ef0();
       if ((int)uVar3 == 0) {
@@ -338,10 +338,10 @@ ulonglong ui_system_processor_type3(void)
 ulonglong ui_system_processor_type4(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   uint uVar2;
   ulonglong uVar3;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   longlong unaff_RSI;
   ulonglong uVar4;
   
@@ -351,7 +351,7 @@ ulonglong ui_system_processor_type4(void)
     if (uVar2 == 0) {
       if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
          ((*(uint *)(unaff_RBX + 8) < 0x8e && (*(int *)(unaff_RSI + 0xf8) == 0x7fffffff)))) {
-        *(undefined4 *)(unaff_RSI + 0xf8) = 0x21;
+        *(int32_t *)(unaff_RSI + 0xf8) = 0x21;
       }
       uVar3 = FUN_180898ef0();
       if ((int)uVar3 == 0) {
@@ -423,9 +423,9 @@ ulonglong ui_system_processor_type4(void)
 ulonglong ui_system_processor_type5(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   ulonglong uVar2;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   longlong unaff_RSI;
   uint unaff_EDI;
   
@@ -482,7 +482,7 @@ ulonglong ui_system_processor_type6(void)
 
 {
   ulonglong uVar1;
-  undefined8 *unaff_RBX;
+  uint64_t *unaff_RBX;
   longlong unaff_RSI;
   uint unaff_EDI;
   
@@ -553,13 +553,13 @@ void ui_system_cleaner_type1(void)
  * @param param_2 UI数据参数数组
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-undefined8 ui_system_data_processor_type1(longlong param_1,undefined8 *param_2)
+uint64_t ui_system_data_processor_type1(longlong param_1,uint64_t *param_2)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  uint64_t uVar1;
+  uint64_t uVar2;
+  int8_t auStack_48 [32];
+  int8_t auStack_28 [32];
   
   uVar2 = FUN_1808ddc20(param_2,auStack_28,1,0x46464553);
   if (((((int)uVar2 == 0) &&
@@ -615,13 +615,13 @@ undefined8 ui_system_data_processor_type1(longlong param_1,undefined8 *param_2)
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-undefined8 ui_system_data_processor_type2(void)
+uint64_t ui_system_data_processor_type2(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   longlong in_RAX;
-  undefined8 uVar2;
-  undefined8 *unaff_RBX;
+  uint64_t uVar2;
+  uint64_t *unaff_RBX;
   longlong unaff_RDI;
   
   if (*(int *)(in_RAX + 0x18) != 0) {
@@ -671,12 +671,12 @@ undefined8 ui_system_data_processor_type2(void)
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-undefined8 ui_system_data_processor_type3(void)
+uint64_t ui_system_data_processor_type3(void)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
-  undefined8 *unaff_RBX;
+  uint64_t uVar1;
+  uint64_t uVar2;
+  uint64_t *unaff_RBX;
   longlong unaff_RDI;
   
   uVar1 = *unaff_RBX;
@@ -728,11 +728,11 @@ undefined8 ui_system_data_processor_type3(void)
  * 
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-undefined8 ui_system_data_processor_type4(void)
+uint64_t ui_system_data_processor_type4(void)
 
 {
-  undefined8 uVar1;
-  undefined8 *unaff_RBX;
+  uint64_t uVar1;
+  uint64_t *unaff_RBX;
   longlong unaff_RDI;
   
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
@@ -795,12 +795,12 @@ void ui_system_cleaner_type2(void)
  * @param param_2 UI高级数据参数数组
  * @return 处理结果状态码，0表示成功，非0表示错误
  */
-undefined8 ui_system_advanced_data_processor(longlong param_1,undefined8 *param_2)
+uint64_t ui_system_advanced_data_processor(longlong param_1,uint64_t *param_2)
 
 {
-  undefined8 uVar1;
-  undefined1 auStack_48 [32];
-  undefined1 auStack_28 [32];
+  uint64_t uVar1;
+  int8_t auStack_48 [32];
+  int8_t auStack_28 [32];
   
   if ((0x87 < *(uint *)(param_2 + 8)) &&
      (uVar1 = FUN_1808ddc20(param_2,auStack_28,1,0x46464353), (int)uVar1 != 0)) {
@@ -866,8 +866,8 @@ ulonglong ui_system_resource_manager(longlong param_1,longlong *param_2)
   ulonglong uVar7;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
-  undefined1 auStack_68 [32];
-  undefined1 auStack_48 [32];
+  int8_t auStack_68 [32];
+  int8_t auStack_48 [32];
   ulonglong uVar5;
   
   uVar2 = FUN_1808ddc20(param_2,auStack_48,1,0x50414e53);

@@ -78,25 +78,25 @@ extern void *SYSTEM_CONTEXT_POINTER;     // UNK_1809fcc58
 void initialize_resource_manager(longlong engine_context)
 {
   // 堆栈保护变量
-  undefined8 stack_guard_value;
-  undefined8 *context_pointer;
-  undefined1 resource_name_buffer[MAX_RESOURCE_NAME_LENGTH];
-  undefined4 resource_size;
-  undefined4 resource_flags;
-  undefined4 resource_type;
-  undefined4 resource_priority;
-  undefined4 resource_alignment;
-  undefined8 resource_handle;
-  undefined1 is_volatile;
-  undefined4 access_mode;
+  uint64_t stack_guard_value;
+  uint64_t *context_pointer;
+  int8_t resource_name_buffer[MAX_RESOURCE_NAME_LENGTH];
+  int32_t resource_size;
+  int32_t resource_flags;
+  int32_t resource_type;
+  int32_t resource_priority;
+  int32_t resource_alignment;
+  uint64_t resource_handle;
+  int8_t is_volatile;
+  int32_t access_mode;
   longlong *resource_callback;
   longlong *cleanup_handler;
   longlong *temp_resource_ptr;
-  undefined8 cleanup_context;
-  undefined *system_state_ptr;
-  undefined1 *name_buffer_ptr;
-  undefined4 name_length;
-  undefined1 temp_buffer[MAX_RESOURCE_NAME_LENGTH];
+  uint64_t cleanup_context;
+  void *system_state_ptr;
+  int8_t *name_buffer_ptr;
+  int32_t name_length;
+  int8_t temp_buffer[MAX_RESOURCE_NAME_LENGTH];
   ulonglong checksum_value;
   
   // 初始化堆栈保护
@@ -119,13 +119,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置纹理资源回调
   resource_callback = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET) = stack_guard_value;
   if (resource_callback != (longlong *)0x0) {
     (**(code **)(*resource_callback + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -150,13 +150,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置缓冲区资源回调
   resource_callback = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x48);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x48) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x48) = stack_guard_value;
   if (resource_callback != (longlong *)0x0) {
     (**(code **)(*resource_callback + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -181,13 +181,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置内存资源回调
   cleanup_handler = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x8);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x8) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x8) = stack_guard_value;
   if (cleanup_handler != (longlong *)0x0) {
     (**(code **)(*cleanup_handler + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -212,13 +212,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置着色器资源回调
   temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x40);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x40) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x40) = stack_guard_value;
   if (temp_resource_ptr != (longlong *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -243,13 +243,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置网格资源回调
   temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x10);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x10) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x10) = stack_guard_value;
   if (temp_resource_ptr != (longlong *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -274,13 +274,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置音频资源回调
   temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x18);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x18) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x18) = stack_guard_value;
   if (temp_resource_ptr != (longlong *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -305,13 +305,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置大缓冲区资源回调
   temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x20);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x20) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x20) = stack_guard_value;
   if (temp_resource_ptr != (longlong *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -336,13 +336,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置小缓冲区资源回调
   temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x30);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x30) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x30) = stack_guard_value;
   if (temp_resource_ptr != (longlong *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -367,13 +367,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置流资源回调
   temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x28);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x28) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x28) = stack_guard_value;
   if (temp_resource_ptr != (longlong *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -398,13 +398,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置配置资源回调
   temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x58);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x58) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x58) = stack_guard_value;
   if (temp_resource_ptr != (longlong *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -429,13 +429,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置临时资源回调
   temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x50);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x50) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x50) = stack_guard_value;
   if (temp_resource_ptr != (longlong *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -460,13 +460,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置缓存资源回调
   temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x60);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x60) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x60) = stack_guard_value;
   if (temp_resource_ptr != (longlong *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }
@@ -491,13 +491,13 @@ void initialize_resource_manager(longlong engine_context)
   resource_size = DEFAULT_RESOURCE_SIZE;
   
   // 获取系统上下文并设置资源
-  context_pointer = (undefined8 *)get_system_context();
+  context_pointer = (uint64_t *)get_system_context();
   stack_guard_value = *context_pointer;
   *context_pointer = 0;
   
   // 设置堆资源回调
   temp_resource_ptr = *(longlong **)(engine_context + RESOURCE_HANDLE_OFFSET + 0x68);
-  *(undefined8 *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x68) = stack_guard_value;
+  *(uint64_t *)(engine_context + RESOURCE_HANDLE_OFFSET + 0x68) = stack_guard_value;
   if (temp_resource_ptr != (longlong *)0x0) {
     (**(code **)(*temp_resource_ptr + RESOURCE_CALLBACK_OFFSET))();
   }

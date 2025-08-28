@@ -14,16 +14,16 @@ void rendering_system_advanced_pipeline_processor(longlong render_context, longl
     longlong *resource_ptr;
     float float_var1;
     longlong stack_params[3];
-    undefined1 stack_buffer[32];
-    undefined8 stack_guard1;
+    int8_t stack_buffer[32];
+    uint64_t stack_guard1;
     longlong **resource_ptr_ptr;
-    undefined1 padding[8];
+    int8_t padding[8];
     longlong context_data;
     longlong manager_data;
     float stack_float1;
     float stack_float2;
     longlong *stack_ptr1;
-    undefined1 *stack_ptr2;
+    int8_t *stack_ptr2;
     float *stack_float_ptr1;
     float *stack_float_ptr2;
     longlong *stack_ptr3;
@@ -31,8 +31,8 @@ void rendering_system_advanced_pipeline_processor(longlong render_context, longl
     longlong *stack_ptr4;
     longlong *stack_array[2];
     code *callback_func;
-    undefined *stack_ptr5;
-    undefined8 stack_guard2;
+    void *stack_ptr5;
+    uint64_t stack_guard2;
     longlong **stack_ptr_ptr;
     int stack_params_array[6];
     ulonglong stack_guard3;
@@ -40,13 +40,13 @@ void rendering_system_advanced_pipeline_processor(longlong render_context, longl
     stack_guard2 = 0xfffffffffffffffe;
     stack_guard3 = render_system_checksum_table ^ (ulonglong)stack_buffer;
     LOCK();
-    *(undefined4 *)(render_context + 0x78) = 0;
+    *(int32_t *)(render_context + 0x78) = 0;
     UNLOCK();
     LOCK();
-    *(undefined4 *)(render_context + 0x980) = 0;
+    *(int32_t *)(render_context + 0x980) = 0;
     UNLOCK();
     LOCK();
-    *(undefined4 *)(render_context + 0x1288) = 0;
+    *(int32_t *)(render_context + 0x1288) = 0;
     UNLOCK();
     stack_params[0] = resource_manager;
     context_data = state_manager;
@@ -54,8 +54,8 @@ void rendering_system_advanced_pipeline_processor(longlong render_context, longl
         status_var = _Mtx_trylock(render_context + 0x1bb0);
         if (status_var == 0) {
             if (*(longlong *)(stack_params[0] + 0x60b80) != 0) {
-                *(undefined8 *)(context_data + 0x124c8) =
-                     *(undefined8 *)(*(longlong *)(stack_params[0] + 0x60b80) + 0x20);
+                *(uint64_t *)(context_data + 0x124c8) =
+                     *(uint64_t *)(*(longlong *)(stack_params[0] + 0x60b80) + 0x20);
             }
             resource_ptr = *(longlong **)(render_context + 0x1b90);
             if (resource_ptr != *(longlong **)(render_context + 0x1b98)) {
@@ -72,7 +72,7 @@ void rendering_system_advanced_pipeline_processor(longlong render_context, longl
                             stack_buffer[0] = 1;
                         }
                         LOCK();
-                        *(undefined4 *)(manager_data + 0xa8) = 0;
+                        *(int32_t *)(manager_data + 0xa8) = 0;
                         UNLOCK();
                         temp_var1 = *(longlong *)(render_system_global_data + 0x3d8);
                         if ((temp_var1 == 0) || (*(int *)(temp_var1 + 0x110) != 1)) {
@@ -151,7 +151,7 @@ void rendering_system_advanced_pipeline_processor(longlong render_context, longl
                 render_system_throw_error(status_var);
             }
             if (*(char *)(render_system_global_data + 0xf9) == '\0') {
-                *(undefined4 *)(context_data + 0x124b8) = 0;
+                *(int32_t *)(context_data + 0x124b8) = 0;
             }
             else {
                 render_system_process_resources(render_context, context_data);
@@ -168,7 +168,7 @@ void rendering_system_advanced_pipeline_processor(longlong render_context, longl
 
 // 函数：渲染系统批量数据处理器
 // 功能：批量处理渲染数据，包括数据转换、状态更新、资源分配等
-void rendering_system_batch_data_processor(undefined8 *data_array, int start_index, int end_index)
+void rendering_system_batch_data_processor(uint64_t *data_array, int start_index, int end_index)
 {
     uint *index_ptr;
     longlong *data_ptr;
@@ -202,7 +202,7 @@ void rendering_system_batch_data_processor(undefined8 *data_array, int start_ind
                     context_data = *(longlong *)*data_array;
                 }
                 render_system_clear_data(context_data + 0xa8);
-                *(undefined1 *)((longlong)resource_ptr + 0x39) = 1;
+                *(int8_t *)((longlong)resource_ptr + 0x39) = 1;
             }
 LAB_CONTINUE_PROCESSING:
             if ((*(char *)((longlong)resource_ptr + 0x39) == '\0') && (status_flag = render_system_check_status(), status_flag != '\0')) {
@@ -222,7 +222,7 @@ LAB_CONTINUE_PROCESSING:
             }
             else {
                 size_val = resource_ptr[0x2b];
-                *(undefined4 *)((longlong)resource_ptr + 0x34) = 0;
+                *(int32_t *)((longlong)resource_ptr + 0x34) = 0;
                 if (size_val != 0) {
                     size_val = (ulonglong)(byte)(*(char *)(size_val + 0x2c8) + 8);
                 }
@@ -261,7 +261,7 @@ LAB_CONTINUE_PROCESSING:
 
 // 函数：渲染系统高级数据处理器
 // 功能：高级渲染数据处理，包括复杂数据转换、状态同步和资源管理
-void rendering_system_advanced_data_processor(undefined8 *data_array, int start_index, int end_index)
+void rendering_system_advanced_data_processor(uint64_t *data_array, int start_index, int end_index)
 {
     uint *index_ptr;
     longlong *data_ptr;
@@ -275,34 +275,34 @@ void rendering_system_advanced_data_processor(undefined8 *data_array, int start_
     longlong register_data;
     ulonglong size_val;
     longlong alloc_data;
-    undefined8 unused_reg1;
-    undefined8 unused_reg2;
-    undefined8 unused_reg3;
-    undefined8 unused_reg4;
+    uint64_t unused_reg1;
+    uint64_t unused_reg2;
+    uint64_t unused_reg3;
+    uint64_t unused_reg4;
     bool alloc_success;
-    undefined4 unused_simd1;
-    undefined4 unused_simd2;
-    undefined4 unused_simd3;
-    undefined4 unused_simd4;
-    undefined4 unused_simd5;
-    undefined4 unused_simd6;
-    undefined4 unused_simd7;
-    undefined4 unused_simd8;
+    int32_t unused_simd1;
+    int32_t unused_simd2;
+    int32_t unused_simd3;
+    int32_t unused_simd4;
+    int32_t unused_simd5;
+    int32_t unused_simd6;
+    int32_t unused_simd7;
+    int32_t unused_simd8;
     int stack_param;
     
-    *(undefined8 *)(register_data + 8) = unused_reg1;
-    *(undefined8 *)(register_data + 0x20) = unused_reg2;
-    *(undefined8 *)(register_data + -0x20) = unused_reg3;
-    *(undefined4 *)(register_data + -0x38) = unused_simd1;
-    *(undefined4 *)(register_data + -0x34) = unused_simd2;
-    *(undefined4 *)(register_data + -0x30) = unused_simd3;
-    *(undefined4 *)(register_data + -0x2c) = unused_simd4;
-    *(undefined4 *)(register_data + -0x48) = unused_simd5;
-    *(undefined4 *)(register_data + -0x44) = unused_simd6;
-    *(undefined4 *)(register_data + -0x40) = unused_simd7;
-    *(undefined4 *)(register_data + -0x3c) = unused_simd8;
-    *(undefined8 *)(register_data + 0x18) = unused_reg4;
-    *(undefined8 *)(register_data + -0x28) = unused_reg4;
+    *(uint64_t *)(register_data + 8) = unused_reg1;
+    *(uint64_t *)(register_data + 0x20) = unused_reg2;
+    *(uint64_t *)(register_data + -0x20) = unused_reg3;
+    *(int32_t *)(register_data + -0x38) = unused_simd1;
+    *(int32_t *)(register_data + -0x34) = unused_simd2;
+    *(int32_t *)(register_data + -0x30) = unused_simd3;
+    *(int32_t *)(register_data + -0x2c) = unused_simd4;
+    *(int32_t *)(register_data + -0x48) = unused_simd5;
+    *(int32_t *)(register_data + -0x44) = unused_simd6;
+    *(int32_t *)(register_data + -0x40) = unused_simd7;
+    *(int32_t *)(register_data + -0x3c) = unused_simd8;
+    *(uint64_t *)(register_data + 0x18) = unused_reg4;
+    *(uint64_t *)(register_data + -0x28) = unused_reg4;
     *(int *)(register_data + 0x10) = start_index;
     do {
         context_data = *(longlong *)*data_array;
@@ -320,7 +320,7 @@ void rendering_system_advanced_data_processor(undefined8 *data_array, int start_
                 context_data = *(longlong *)*data_array;
             }
             render_system_clear_data(context_data + 0xa8);
-            *(undefined1 *)((longlong)resource_ptr + 0x39) = 1;
+            *(int8_t *)((longlong)resource_ptr + 0x39) = 1;
             start_index = stack_param;
         }
 LAB_CONTINUE_PROCESSING:
@@ -341,7 +341,7 @@ LAB_CONTINUE_PROCESSING:
         }
         else {
             size_val = resource_ptr[0x2b];
-            *(undefined4 *)((longlong)resource_ptr + 0x34) = 0;
+            *(int32_t *)((longlong)resource_ptr + 0x34) = 0;
             if (size_val != 0) {
                 size_val = (ulonglong)(byte)(*(char *)(size_val + 0x2c8) + 8);
             }
@@ -390,7 +390,7 @@ void rendering_system_empty_operation(void)
 
 // 函数：渲染系统碰撞检测处理器
 // 功能：处理渲染系统中的碰撞检测，包括空间计算、距离检测等
-bool rendering_system_collision_detection_processor(undefined8 render_object, longlong *object_data, longlong transform_data, longlong geometry_data, undefined8 material_data, float detection_threshold)
+bool rendering_system_collision_detection_processor(uint64_t render_object, longlong *object_data, longlong transform_data, longlong geometry_data, uint64_t material_data, float detection_threshold)
 {
     float distance_val1;
     float distance_val2;
@@ -401,23 +401,23 @@ bool rendering_system_collision_detection_processor(undefined8 render_object, lo
     float matrix_stack[3];
     float matrix_stack1[3];
     float matrix_stack2[3];
-    undefined4 padding1;
+    int32_t padding1;
     float matrix_stack3[3];
     float matrix_stack4[3];
     float matrix_stack5[3];
-    undefined4 padding2;
+    int32_t padding2;
     float matrix_stack6[3];
     float matrix_stack7[3];
     float matrix_stack8[3];
-    undefined4 padding3;
+    int32_t padding3;
     
     (**(code **)(*object_data + 0x218))(object_data);
     (**(code **)(*object_data + 0x218))(object_data);
-    if ((undefined *)*object_data == &render_system_collision_object) {
+    if ((void *)*object_data == &render_system_collision_object) {
         mask_val = *(uint *)((longlong)object_data + 0x174);
     }
     else {
-        mask_val = (**(code **)((undefined *)*object_data + 0x130))(object_data);
+        mask_val = (**(code **)((void *)*object_data + 0x130))(object_data);
     }
     if (((mask_val & 1) != 0) &&
        ((mask_val = *(uint *)(transform_data + 0x60300) & 0xfffffffe,
@@ -481,15 +481,15 @@ bool rendering_system_simplified_collision_detection(void)
     float matrix_stack1[3];
     float matrix_stack2[3];
     float stack_param1;
-    undefined4 padding1;
+    int32_t padding1;
     float matrix_stack3[3];
     float matrix_stack4[3];
     float stack_param2;
-    undefined4 padding2;
+    int32_t padding2;
     float matrix_stack5[3];
     float matrix_stack6[3];
     float stack_param3;
-    undefined4 padding3;
+    int32_t padding3;
     float matrix_stack7[3];
     float matrix_stack8[3];
     float stack_param4;
@@ -564,19 +564,19 @@ bool rendering_system_advanced_collision_detection(void)
     float matrix_stack1[3];
     float matrix_stack2[3];
     float stack_param1;
-    undefined4 padding1;
+    int32_t padding1;
     float matrix_stack3[3];
     float matrix_stack4[3];
     float stack_param2;
-    undefined4 padding2;
+    int32_t padding2;
     float matrix_stack5[3];
     float matrix_stack6[3];
     float stack_param3;
-    undefined4 padding3;
-    undefined4 stack_param4;
-    undefined4 stack_param5;
-    undefined4 stack_param6;
-    undefined4 stack_param7;
+    int32_t padding3;
+    int32_t stack_param4;
+    int32_t stack_param5;
+    int32_t stack_param6;
+    int32_t stack_param7;
     float matrix_stack7[3];
     float matrix_stack8[3];
     float stack_param8;
@@ -645,7 +645,7 @@ void rendering_system_resource_releaser(longlong render_context)
         flag_ptr = (uint *)(*(longlong *)(render_context + 0x1c48) + 0x328);
         *flag_ptr = *flag_ptr & 0xdfffffff;
         resource_ptr = *(longlong **)(render_context + 0x1c48);
-        *(undefined8 *)(render_context + 0x1c48) = 0;
+        *(uint64_t *)(render_context + 0x1c48) = 0;
         if (resource_ptr != (longlong *)0x0) {
             (**(code **)(*resource_ptr + 0x38))();
             return;
@@ -826,13 +826,13 @@ longlong *render_system_collision_object;
 // 高级管线处理器别名
 void render_system_pipeline_processor(longlong render_context, longlong resource_manager, longlong state_manager) { rendering_system_advanced_pipeline_processor(render_context, resource_manager, state_manager); }
 // 批量数据处理器别名
-void render_system_batch_processor(undefined8 *data_array, int start_index, int end_index) { rendering_system_batch_data_processor(data_array, start_index, end_index); }
+void render_system_batch_processor(uint64_t *data_array, int start_index, int end_index) { rendering_system_batch_data_processor(data_array, start_index, end_index); }
 // 高级数据处理器别名
-void render_system_advanced_processor(undefined8 *data_array, int start_index, int end_index) { rendering_system_advanced_data_processor(data_array, start_index, end_index); }
+void render_system_advanced_processor(uint64_t *data_array, int start_index, int end_index) { rendering_system_advanced_data_processor(data_array, start_index, end_index); }
 // 空操作别名
 void render_system_nop(void) { rendering_system_empty_operation(); }
 // 碰撞检测处理器别名
-bool render_system_collision_processor(undefined8 render_object, longlong *object_data, longlong transform_data, longlong geometry_data, undefined8 material_data, float detection_threshold) { return rendering_system_collision_detection_processor(render_object, object_data, transform_data, geometry_data, material_data, detection_threshold); }
+bool render_system_collision_processor(uint64_t render_object, longlong *object_data, longlong transform_data, longlong geometry_data, uint64_t material_data, float detection_threshold) { return rendering_system_collision_detection_processor(render_object, object_data, transform_data, geometry_data, material_data, detection_threshold); }
 // 简化碰撞检测别名
 bool render_system_simple_collision(void) { return rendering_system_simplified_collision_detection(); }
 // 高级碰撞检测别名

@@ -221,7 +221,7 @@ void rendering_system_release_render_data(longlong *render_data_ptr)
 // 渲染数据初始化函数 (简化版)
 // 原始实现：复杂的初始化和内存分配
 // 简化实现：简单的初始化逻辑
-undefined8 *rendering_system_initialize_render_data(undefined8 *render_data_ptr, ulonglong memory_flags, undefined8 param_3, undefined8 param_4)
+uint64_t *rendering_system_initialize_render_data(uint64_t *render_data_ptr, ulonglong memory_flags, uint64_t param_3, uint64_t param_4)
 {
     // 简化的初始化逻辑
     if (render_data_ptr) {
@@ -230,7 +230,7 @@ undefined8 *rendering_system_initialize_render_data(undefined8 *render_data_ptr,
         // 简单的内存标志检查
         if (memory_flags & 1) {
             // 模拟内存分配
-            *render_data_ptr = (undefined8)0x1000; // 模拟分配的内存地址
+            *render_data_ptr = (uint64_t)0x1000; // 模拟分配的内存地址
         }
     }
     
@@ -240,7 +240,7 @@ undefined8 *rendering_system_initialize_render_data(undefined8 *render_data_ptr,
 // 渲染数据销毁函数 (简化版)
 // 原始实现：复杂的销毁和资源清理
 // 简化实现：简单的销毁逻辑
-void rendering_system_destroy_render_data(undefined8 *render_data_ptr)
+void rendering_system_destroy_render_data(uint64_t *render_data_ptr)
 {
     // 简化的销毁逻辑
     rendering_system_cleanup_render_data(render_data_ptr);
@@ -272,7 +272,7 @@ void rendering_system_process_render_queue(longlong render_queue_handle)
 // 渲染对象创建函数 (简化版)
 // 原始实现：复杂的对象创建和资源管理
 // 简化实现：简化的对象创建
-undefined8 *rendering_system_create_render_object(undefined8 *render_object_ptr, int object_type, undefined4 param_3, undefined4 param_4, undefined4 param_5)
+uint64_t *rendering_system_create_render_object(uint64_t *render_object_ptr, int object_type, int32_t param_3, int32_t param_4, int32_t param_5)
 {
     // 简化的对象创建逻辑
     if (render_object_ptr) {
@@ -295,7 +295,7 @@ undefined8 *rendering_system_create_render_object(undefined8 *render_object_ptr,
 // 渲染对象释放函数 (简化版)
 // 原始实现：复杂的对象释放和资源清理
 // 简化实现：简化的对象释放
-undefined8 rendering_system_free_render_object(undefined8 render_object, ulonglong memory_flags)
+uint64_t rendering_system_free_render_object(uint64_t render_object, ulonglong memory_flags)
 {
     // 简化的对象释放逻辑
     rendering_system_cleanup_render_object(&render_object);
@@ -312,7 +312,7 @@ undefined8 rendering_system_free_render_object(undefined8 render_object, ulonglo
 // 渲染对象清理函数 (简化版)
 // 原始实现：复杂的对象清理和资源引用管理
 // 简化实现：简化的对象清理
-void rendering_system_cleanup_render_object(undefined8 *render_object_ptr)
+void rendering_system_cleanup_render_object(uint64_t *render_object_ptr)
 {
     // 简化的对象清理逻辑
     if (render_object_ptr) {

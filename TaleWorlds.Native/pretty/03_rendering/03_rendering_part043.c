@@ -261,11 +261,11 @@ void initialize_rendering_resources(int* resource_config, longlong render_target
                                    void* unused_param1, void* unused_param2, int additional_param)
 {
     int config_size;
-    undefined1 local_stack[48];
-    undefined1* resource_buffer;
-    undefined8 buffer_size;
-    undefined1* data_ptr;
-    undefined1 local_data[528];
+    int8_t local_stack[48];
+    int8_t* resource_buffer;
+    uint64_t buffer_size;
+    int8_t* data_ptr;
+    int8_t local_data[528];
     ulonglong security_cookie;
     
     // 安全检查
@@ -282,7 +282,7 @@ void initialize_rendering_resources(int* resource_config, longlong render_target
         if (g_reference_counter != NULL) {
             *(int*)(g_reference_counter + 0x3a8) = *(int*)(g_reference_counter + 0x3a8) + 1;
         }
-        resource_buffer = (undefined1*)allocate_rendering_memory((longlong)(config_size * 2 + 1) << 2, g_memory_allocator);
+        resource_buffer = (int8_t*)allocate_rendering_memory((longlong)(config_size * 2 + 1) << 2, g_memory_allocator);
     }
     
     // 设置数据指针
@@ -297,7 +297,7 @@ void initialize_rendering_resources(int* resource_config, longlong render_target
             // 栈溢出保护
             handle_stack_overflow(security_cookie ^ (ulonglong)local_stack);
         }
-        if ((resource_buffer != (undefined1*)0x0) && (g_reference_counter != NULL)) {
+        if ((resource_buffer != (int8_t*)0x0) && (g_reference_counter != NULL)) {
             *(int*)(g_reference_counter + 0x3a8) = *(int*)(g_reference_counter + 0x3a8) + -1;
         }
         // 内存释放
@@ -315,21 +315,21 @@ void initialize_rendering_resources(int* resource_config, longlong render_target
 void extended_initialize_rendering_resources(int* resource_config, longlong render_target, int target_id)
 {
     int config_size;
-    undefined1* resource_buffer;
+    int8_t* resource_buffer;
     longlong context_base;
-    undefined8 context_data;
-    undefined8 render_context;
-    undefined8 additional_context;
+    uint64_t context_data;
+    uint64_t render_context;
+    uint64_t additional_context;
     longlong stack_pointer;
-    undefined8 stack_data;
+    uint64_t stack_data;
     ulonglong security_cookie;
     int stack_param;
     
     // 设置渲染上下文
-    *(undefined8*)(stack_pointer + 0x20) = context_base;
-    *(undefined8*)(stack_pointer + -8) = context_data;
-    *(undefined8*)(stack_pointer + -0x10) = render_context;
-    *(undefined8*)(stack_pointer + -0x18) = additional_context;
+    *(uint64_t*)(stack_pointer + 0x20) = context_base;
+    *(uint64_t*)(stack_pointer + -8) = context_data;
+    *(uint64_t*)(stack_pointer + -0x10) = render_context;
+    *(uint64_t*)(stack_pointer + -0x18) = additional_context;
     stack_data = 0;
     
     // 获取配置大小
@@ -343,7 +343,7 @@ void extended_initialize_rendering_resources(int* resource_config, longlong rend
         if (g_reference_counter != NULL) {
             *(int*)(g_reference_counter + 0x3a8) = *(int*)(g_reference_counter + 0x3a8) + 1;
         }
-        resource_buffer = (undefined1*)allocate_rendering_memory((longlong)(config_size * 2 + 1) << 2, g_memory_allocator);
+        resource_buffer = (int8_t*)allocate_rendering_memory((longlong)(config_size * 2 + 1) << 2, g_memory_allocator);
     }
     
     // 配置渲染目标
@@ -354,7 +354,7 @@ void extended_initialize_rendering_resources(int* resource_config, longlong rend
         if (resource_buffer == &local_stack_buffer) {
             handle_stack_overflow(security_cookie ^ (ulonglong)&global_stack_base);
         }
-        if ((resource_buffer != (undefined1*)0x0) && (g_reference_counter != NULL)) {
+        if ((resource_buffer != (int8_t*)0x0) && (g_reference_counter != NULL)) {
             *(int*)(g_reference_counter + 0x3a8) = *(int*)(g_reference_counter + 0x3a8) + -1;
         }
         release_rendering_memory(resource_buffer, g_memory_allocator);
@@ -371,20 +371,20 @@ void extended_initialize_rendering_resources(int* resource_config, longlong rend
 void advanced_initialize_rendering_resources(int* resource_config, longlong render_target, int target_id)
 {
     int config_size;
-    undefined1* resource_buffer;
+    int8_t* resource_buffer;
     int threshold_param;
     longlong context_base;
-    undefined8 render_context;
-    undefined8 additional_context;
+    uint64_t render_context;
+    uint64_t additional_context;
     longlong stack_pointer;
-    undefined8 stack_data;
+    uint64_t stack_data;
     ulonglong security_cookie;
     int stack_param;
     
     // 设置渲染上下文
-    *(undefined8*)(stack_pointer + -8) = context_base;
-    *(undefined8*)(stack_pointer + -0x10) = render_context;
-    *(undefined8*)(stack_pointer + -0x18) = additional_context;
+    *(uint64_t*)(stack_pointer + -8) = context_base;
+    *(uint64_t*)(stack_pointer + -0x10) = render_context;
+    *(uint64_t*)(stack_pointer + -0x18) = additional_context;
     
     // 分配资源缓冲区
     if (config_size < g_stack_threshold) {
@@ -394,7 +394,7 @@ void advanced_initialize_rendering_resources(int* resource_config, longlong rend
         if (g_reference_counter != NULL) {
             *(int*)(g_reference_counter + 0x3a8) = *(int*)(g_reference_counter + 0x3a8) + 1;
         }
-        resource_buffer = (undefined1*)allocate_rendering_memory((longlong)(config_size * 2 + 1) << 2, g_memory_allocator);
+        resource_buffer = (int8_t*)allocate_rendering_memory((longlong)(config_size * 2 + 1) << 2, g_memory_allocator);
     }
     
     // 配置渲染目标
@@ -405,7 +405,7 @@ void advanced_initialize_rendering_resources(int* resource_config, longlong rend
         if (resource_buffer == &local_stack_buffer) {
             handle_stack_overflow(security_cookie ^ (ulonglong)&global_stack_base);
         }
-        if ((resource_buffer != (undefined1*)0x0) && (g_reference_counter != NULL)) {
+        if ((resource_buffer != (int8_t*)0x0) && (g_reference_counter != NULL)) {
             *(int*)(g_reference_counter + 0x3a8) = *(int*)(g_reference_counter + 0x3a8) + -1;
         }
         release_rendering_memory(resource_buffer, g_memory_allocator);
@@ -431,7 +431,7 @@ void fast_clear_rendering_data(void)
 void release_rendering_resource(void* resource_context)
 {
     longlong resource_handle;
-    undefined1* resource_buffer;
+    int8_t* resource_buffer;
     ulonglong security_cookie;
     
     if (resource_handle != 0) {
@@ -442,7 +442,7 @@ void release_rendering_resource(void* resource_context)
     }
     
     if (resource_buffer != &local_stack_buffer) {
-        if ((resource_buffer != (undefined1*)0x0) && (g_reference_counter != NULL)) {
+        if ((resource_buffer != (int8_t*)0x0) && (g_reference_counter != NULL)) {
             *(int*)(g_reference_counter + 0x3a8) = *(int*)(g_reference_counter + 0x3a8) + -1;
         }
         release_rendering_memory(resource_buffer, g_memory_allocator);
@@ -480,31 +480,31 @@ void conditional_release_rendering_resource(longlong resource_handle)
  * 实现渲染数据的快速排序算法，优化渲染性能
  * 使用递归分治策略，支持大规模数据排序
  */
-void quick_sort_rendering_data(undefined8* data_array, int array_size)
+void quick_sort_rendering_data(uint64_t* data_array, int array_size)
 {
-    undefined4* element_ptr;
+    int32_t* element_ptr;
     float* float_ptr;
     float pivot_value;
     float compare_value;
-    undefined4 temp_data1;
-    undefined4 temp_data2;
-    undefined4 temp_data3;
-    undefined4 temp_data4;
-    undefined4 temp_data5;
-    undefined8 temp_data6;
-    undefined8 temp_data7;
-    undefined8 temp_data8;
+    int32_t temp_data1;
+    int32_t temp_data2;
+    int32_t temp_data3;
+    int32_t temp_data4;
+    int32_t temp_data5;
+    uint64_t temp_data6;
+    uint64_t temp_data7;
+    uint64_t temp_data8;
     int left_count;
     longlong mid_index;
     longlong right_index;
     float* scan_ptr;
     int element_count;
-    undefined8* swap_ptr;
+    uint64_t* swap_ptr;
     int temp_index;
     longlong scan_start;
     longlong scan_end;
     int swap_index;
-    undefined8* temp_swap_ptr;
+    uint64_t* temp_swap_ptr;
     
     // 递归终止条件
     if (0xc < array_size) {
@@ -517,47 +517,47 @@ void quick_sort_rendering_data(undefined8* data_array, int array_size)
             
             // 选择中轴元素
             if (*(float*)((longlong)data_array + 4) < pivot_value != pivot_value < compare_value) {
-                swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+                swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
                 temp_data6 = swap_ptr[1];
                 swap_index = 0;
                 if (*(float*)((longlong)data_array + 4) < compare_value != pivot_value < compare_value) {
                     swap_index = temp_index;
                 }
                 mid_index = (longlong)swap_index;
-                temp_swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+                temp_swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
                 temp_data7 = *temp_swap_ptr;
                 temp_data8 = temp_swap_ptr[1];
-                temp_data1 = *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10);
-                temp_swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+                temp_data1 = *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10);
+                temp_swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
                 *temp_swap_ptr = *swap_ptr;
                 temp_swap_ptr[1] = temp_data6;
-                *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10) =
-                    *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10);
-                swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+                *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10) =
+                    *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10);
+                swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
                 *swap_ptr = temp_data7;
                 swap_ptr[1] = temp_data8;
-                *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10) = temp_data1;
+                *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10) = temp_data1;
             }
             
             // 交换元素到正确位置
-            swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+            swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
             temp_data6 = swap_ptr[1];
-            temp_data1 = *(undefined4*)(data_array + 2);
+            temp_data1 = *(int32_t*)(data_array + 2);
             swap_index = 1;
-            temp_data2 = *(undefined4*)data_array;
-            temp_data3 = *(undefined4*)((longlong)data_array + 4);
-            temp_data4 = *(undefined4*)(data_array + 1);
-            temp_data5 = *(undefined4*)((longlong)data_array + 0xc);
+            temp_data2 = *(int32_t*)data_array;
+            temp_data3 = *(int32_t*)((longlong)data_array + 4);
+            temp_data4 = *(int32_t*)(data_array + 1);
+            temp_data5 = *(int32_t*)((longlong)data_array + 0xc);
             mid_index = 1;
             *data_array = *swap_ptr;
             data_array[1] = temp_data6;
-            *(undefined4*)(data_array + 2) = *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10);
-            element_ptr = (undefined4*)((longlong)data_array + mid_index * 0x14);
+            *(int32_t*)(data_array + 2) = *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10);
+            element_ptr = (int32_t*)((longlong)data_array + mid_index * 0x14);
             *element_ptr = temp_data2;
             element_ptr[1] = temp_data3;
             element_ptr[2] = temp_data4;
             element_ptr[3] = temp_data5;
-            *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10) = temp_data1;
+            *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10) = temp_data1;
             
             // 分区处理
             while (true) {
@@ -593,28 +593,28 @@ void quick_sort_rendering_data(undefined8* data_array, int array_size)
                 if (scan_end <= mid_index) break;
                 
                 swap_index = swap_index + 1;
-                swap_ptr = (undefined8*)((longlong)data_array + scan_end * 0x14);
+                swap_ptr = (uint64_t*)((longlong)data_array + scan_end * 0x14);
                 temp_data6 = swap_ptr[1];
                 temp_index = temp_index + -1;
-                element_ptr = (undefined4*)((longlong)data_array + mid_index * 0x14);
+                element_ptr = (int32_t*)((longlong)data_array + mid_index * 0x14);
                 temp_data2 = *element_ptr;
                 temp_data3 = element_ptr[1];
                 temp_data4 = element_ptr[2];
                 temp_data5 = element_ptr[3];
-                temp_data1 = *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10);
+                temp_data1 = *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10);
                 mid_index = mid_index + 1;
-                temp_swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+                temp_swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
                 *temp_swap_ptr = *swap_ptr;
                 temp_swap_ptr[1] = temp_data6;
                 right_index = scan_end + -1;
-                *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10) =
-                    *(undefined4*)((longlong)data_array + scan_end * 0x14 + 0x10);
-                element_ptr = (undefined4*)((longlong)data_array + scan_end * 0x14);
+                *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10) =
+                    *(int32_t*)((longlong)data_array + scan_end * 0x14 + 0x10);
+                element_ptr = (int32_t*)((longlong)data_array + scan_end * 0x14);
                 *element_ptr = temp_data2;
                 element_ptr[1] = temp_data3;
                 element_ptr[2] = temp_data4;
                 element_ptr[3] = temp_data5;
-                *(undefined4*)((longlong)data_array + scan_end * 0x14 + 0x10) = temp_data1;
+                *(int32_t*)((longlong)data_array + scan_end * 0x14 + 0x10) = temp_data1;
             }
             
             element_count = array_size - swap_index;
@@ -626,7 +626,7 @@ void quick_sort_rendering_data(undefined8* data_array, int array_size)
                 left_count = element_count;
             }
             
-            swap_ptr = (undefined8*)((longlong)data_array + (longlong)swap_index * 0x14);
+            swap_ptr = (uint64_t*)((longlong)data_array + (longlong)swap_index * 0x14);
             temp_swap_ptr = data_array;
             
             if (element_count <= temp_index) {
@@ -651,31 +651,31 @@ void quick_sort_rendering_data(undefined8* data_array, int array_size)
  * 渲染数据迭代排序函数
  * 迭代版本的快速排序，避免递归栈溢出
  */
-void iterative_sort_rendering_data(undefined8* data_array, int array_size)
+void iterative_sort_rendering_data(uint64_t* data_array, int array_size)
 {
-    undefined4* element_ptr;
+    int32_t* element_ptr;
     float* float_ptr;
     float pivot_value;
     float compare_value;
-    undefined4 temp_data1;
-    undefined4 temp_data2;
-    undefined4 temp_data3;
-    undefined4 temp_data4;
-    undefined4 temp_data5;
-    undefined8 temp_data6;
-    undefined8 temp_data7;
-    undefined8 temp_data8;
+    int32_t temp_data1;
+    int32_t temp_data2;
+    int32_t temp_data3;
+    int32_t temp_data4;
+    int32_t temp_data5;
+    uint64_t temp_data6;
+    uint64_t temp_data7;
+    uint64_t temp_data8;
     int left_count;
     longlong mid_index;
     longlong right_index;
     float* scan_ptr;
     int element_count;
-    undefined8* swap_ptr;
+    uint64_t* swap_ptr;
     int temp_index;
     longlong scan_start;
     longlong scan_end;
     int swap_index;
-    undefined8* temp_swap_ptr;
+    uint64_t* temp_swap_ptr;
     
     // 迭代处理
     do {
@@ -687,47 +687,47 @@ void iterative_sort_rendering_data(undefined8* data_array, int array_size)
         
         // 选择中轴元素
         if (*(float*)((longlong)data_array + 4) < pivot_value != pivot_value < compare_value) {
-            swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+            swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
             temp_data6 = swap_ptr[1];
             swap_index = 0;
             if (*(float*)((longlong)data_array + 4) < compare_value != pivot_value < compare_value) {
                 swap_index = temp_index;
             }
             mid_index = (longlong)swap_index;
-            temp_swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+            temp_swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
             temp_data7 = *temp_swap_ptr;
             temp_data8 = temp_swap_ptr[1];
-            temp_data1 = *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10);
-            temp_swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+            temp_data1 = *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10);
+            temp_swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
             *temp_swap_ptr = *swap_ptr;
             temp_swap_ptr[1] = temp_data6;
-            *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10) =
-                *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10);
-            swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+            *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10) =
+                *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10);
+            swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
             *swap_ptr = temp_data7;
             swap_ptr[1] = temp_data8;
-            *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10) = temp_data1;
+            *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10) = temp_data1;
         }
         
         // 交换元素到正确位置
-        swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+        swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
         temp_data6 = swap_ptr[1];
-        temp_data1 = *(undefined4*)(data_array + 2);
+        temp_data1 = *(int32_t*)(data_array + 2);
         swap_index = 1;
-        temp_data2 = *(undefined4*)data_array;
-        temp_data3 = *(undefined4*)((longlong)data_array + 4);
-        temp_data4 = *(undefined4*)(data_array + 1);
-        temp_data5 = *(undefined4*)((longlong)data_array + 0xc);
+        temp_data2 = *(int32_t*)data_array;
+        temp_data3 = *(int32_t*)((longlong)data_array + 4);
+        temp_data4 = *(int32_t*)(data_array + 1);
+        temp_data5 = *(int32_t*)((longlong)data_array + 0xc);
         mid_index = 1;
         *data_array = *swap_ptr;
         data_array[1] = temp_data6;
-        *(undefined4*)(data_array + 2) = *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10);
-        element_ptr = (undefined4*)((longlong)data_array + mid_index * 0x14);
+        *(int32_t*)(data_array + 2) = *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10);
+        element_ptr = (int32_t*)((longlong)data_array + mid_index * 0x14);
         *element_ptr = temp_data2;
         element_ptr[1] = temp_data3;
         element_ptr[2] = temp_data4;
         element_ptr[3] = temp_data5;
-        *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10) = temp_data1;
+        *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10) = temp_data1;
         
         // 分区处理
         while (true) {
@@ -763,28 +763,28 @@ void iterative_sort_rendering_data(undefined8* data_array, int array_size)
             if (scan_end <= mid_index) break;
             
             swap_index = swap_index + 1;
-            swap_ptr = (undefined8*)((longlong)data_array + scan_end * 0x14);
+            swap_ptr = (uint64_t*)((longlong)data_array + scan_end * 0x14);
             temp_data6 = swap_ptr[1];
             temp_index = temp_index + -1;
-            element_ptr = (undefined4*)((longlong)data_array + mid_index * 0x14);
+            element_ptr = (int32_t*)((longlong)data_array + mid_index * 0x14);
             temp_data2 = *element_ptr;
             temp_data3 = element_ptr[1];
             temp_data4 = element_ptr[2];
             temp_data5 = element_ptr[3];
-            temp_data1 = *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10);
+            temp_data1 = *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10);
             mid_index = mid_index + 1;
-            temp_swap_ptr = (undefined8*)((longlong)data_array + mid_index * 0x14);
+            temp_swap_ptr = (uint64_t*)((longlong)data_array + mid_index * 0x14);
             *temp_swap_ptr = *swap_ptr;
             temp_swap_ptr[1] = temp_data6;
             right_index = scan_end + -1;
-            *(undefined4*)((longlong)data_array + mid_index * 0x14 + 0x10) =
-                *(undefined4*)((longlong)data_array + scan_end * 0x14 + 0x10);
-            element_ptr = (undefined4*)((longlong)data_array + scan_end * 0x14);
+            *(int32_t*)((longlong)data_array + mid_index * 0x14 + 0x10) =
+                *(int32_t*)((longlong)data_array + scan_end * 0x14 + 0x10);
+            element_ptr = (int32_t*)((longlong)data_array + scan_end * 0x14);
             *element_ptr = temp_data2;
             element_ptr[1] = temp_data3;
             element_ptr[2] = temp_data4;
             element_ptr[3] = temp_data5;
-            *(undefined4*)((longlong)data_array + scan_end * 0x14 + 0x10) = temp_data1;
+            *(int32_t*)((longlong)data_array + scan_end * 0x14 + 0x10) = temp_data1;
         }
         
         element_count = array_size - swap_index;
@@ -796,7 +796,7 @@ void iterative_sort_rendering_data(undefined8* data_array, int array_size)
             left_count = element_count;
         }
         
-        swap_ptr = (undefined8*)((longlong)data_array + (longlong)swap_index * 0x14);
+        swap_ptr = (uint64_t*)((longlong)data_array + (longlong)swap_index * 0x14);
         temp_swap_ptr = data_array;
         
         if (element_count <= temp_index) {

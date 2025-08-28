@@ -62,7 +62,7 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
  * @param data_item4 数据项4
  * @return 比较结果
  */
-int rendering_system_data_comparator(undefined8 data_item1, undefined8 data_item2, undefined8 data_item3, undefined8 data_item4);
+int rendering_system_data_comparator(uint64_t data_item1, uint64_t data_item2, uint64_t data_item3, uint64_t data_item4);
 
 /**
  * 渲染系统资源查找器
@@ -116,9 +116,9 @@ void rendering_system_state_switcher(char state_flag);
  * @param texture_data 纹理数据
  * @param processing_flag 处理标志
  */
-void rendering_system_advanced_effect_processor(undefined8 *effect_params, undefined8 render_context, longlong transform_data, longlong output_data,
-                                             undefined8 control_flags, longlong additional_params, longlong resource_data, undefined8 texture_data,
-                                             undefined1 processing_flag);
+void rendering_system_advanced_effect_processor(uint64_t *effect_params, uint64_t render_context, longlong transform_data, longlong output_data,
+                                             uint64_t control_flags, longlong additional_params, longlong resource_data, uint64_t texture_data,
+                                             int8_t processing_flag);
 
 /**
  * 渲染系统资源定位器
@@ -137,7 +137,7 @@ longlong rendering_system_resource_locator(longlong *resource_handle);
  * @param resource_type 资源类型
  * @param processing_flag 处理标志
  */
-void rendering_system_resource_manager(longlong *resource_handle, undefined4 resource_type, undefined1 processing_flag);
+void rendering_system_resource_manager(longlong *resource_handle, int32_t resource_type, int8_t processing_flag);
 
 /**
  * 渲染系统对象管理器
@@ -148,7 +148,7 @@ void rendering_system_resource_manager(longlong *resource_handle, undefined4 res
  * @param transform_params 变换参数
  * @param render_params 渲染参数
  */
-void rendering_system_object_manager(longlong object_handle, char visibility_flag, undefined8 transform_params, undefined8 render_params);
+void rendering_system_object_manager(longlong object_handle, char visibility_flag, uint64_t transform_params, uint64_t render_params);
 
 /**
  * 渲染系统对象销毁器
@@ -156,7 +156,7 @@ void rendering_system_object_manager(longlong object_handle, char visibility_fla
  * 
  * @param object_context 对象上下文
  */
-void rendering_system_object_destroyer(undefined8 object_context);
+void rendering_system_object_destroyer(uint64_t object_context);
 
 /**
  * 渲染系统对象处理器
@@ -164,7 +164,7 @@ void rendering_system_object_destroyer(undefined8 object_context);
  * 
  * @param object_handle 对象句柄
  */
-void rendering_system_object_processor(undefined8 object_handle);
+void rendering_system_object_processor(uint64_t object_handle);
 
 /**
  * 渲染系统特效查询器
@@ -176,7 +176,7 @@ void rendering_system_object_processor(undefined8 object_handle);
  * @param output_data 输出数据
  * @return 查询结果
  */
-undefined4 rendering_system_effect_query(undefined8 query_params, undefined8 render_context, undefined8 effect_data, undefined8 output_data);
+int32_t rendering_system_effect_query(uint64_t query_params, uint64_t render_context, uint64_t effect_data, uint64_t output_data);
 
 /**
  * 渲染系统特效验证器
@@ -188,7 +188,7 @@ undefined4 rendering_system_effect_query(undefined8 query_params, undefined8 ren
  * @param output_data 输出数据
  * @return 验证结果
  */
-byte rendering_system_effect_validator(undefined8 query_params, undefined8 render_context, undefined8 effect_data, undefined8 output_data);
+byte rendering_system_effect_validator(uint64_t query_params, uint64_t render_context, uint64_t effect_data, uint64_t output_data);
 
 /**
  * 渲染系统材质处理器
@@ -200,7 +200,7 @@ byte rendering_system_effect_validator(undefined8 query_params, undefined8 rende
  * @param output_data 输出数据
  * @return 处理结果
  */
-undefined4 rendering_system_material_processor(undefined8 material_params, undefined4 render_context, undefined1 effect_flag, undefined4 output_data, undefined1 processing_flag);
+int32_t rendering_system_material_processor(uint64_t material_params, int32_t render_context, int8_t effect_flag, int32_t output_data, int8_t processing_flag);
 
 /**
  * 渲染系统材质查询器
@@ -212,7 +212,7 @@ undefined4 rendering_system_material_processor(undefined8 material_params, undef
  * @param output_data 输出数据
  * @return 查询结果
  */
-int rendering_system_material_query(undefined8 material_params, undefined4 render_context, undefined1 effect_flag, undefined4 output_data, undefined1 processing_flag);
+int rendering_system_material_query(uint64_t material_params, int32_t render_context, int8_t effect_flag, int32_t output_data, int8_t processing_flag);
 
 /**
  * 渲染系统数据提取器
@@ -221,7 +221,7 @@ int rendering_system_material_query(undefined8 material_params, undefined4 rende
  * @param resource_handle 资源句柄
  * @param output_data 输出数据
  */
-void rendering_system_data_extractor(int resource_handle, undefined8 *output_data);
+void rendering_system_data_extractor(int resource_handle, uint64_t *output_data);
 
 /**
  * 渲染系统资源属性获取器
@@ -233,7 +233,7 @@ void rendering_system_data_extractor(int resource_handle, undefined8 *output_dat
  * @param output_data 输出数据
  * @return 属性值
  */
-ulonglong rendering_system_resource_property_getter(undefined8 query_params, undefined8 render_context, undefined8 effect_data, undefined8 output_data);
+ulonglong rendering_system_resource_property_getter(uint64_t query_params, uint64_t render_context, uint64_t effect_data, uint64_t output_data);
 
 /**
  * 渲染系统材质属性获取器
@@ -245,7 +245,7 @@ ulonglong rendering_system_resource_property_getter(undefined8 query_params, und
  * @param output_data 输出数据
  * @return 属性值
  */
-undefined4 rendering_system_material_property_getter(undefined8 material_params, undefined4 render_context, undefined1 effect_flag, undefined4 output_data, undefined1 processing_flag);
+int32_t rendering_system_material_property_getter(uint64_t material_params, int32_t render_context, int8_t effect_flag, int32_t output_data, int8_t processing_flag);
 
 /**
  * 渲染系统事件处理器
@@ -256,7 +256,7 @@ undefined4 rendering_system_material_property_getter(undefined8 material_params,
  * @param effect_data 特效数据
  * @param output_data 输出数据
  */
-void rendering_system_event_handler(undefined8 event_params, undefined8 render_context, undefined8 effect_data, undefined8 output_data);
+void rendering_system_event_handler(uint64_t event_params, uint64_t render_context, uint64_t effect_data, uint64_t output_data);
 
 //==========================================================
 // 函数实现
@@ -282,28 +282,28 @@ void rendering_system_empty_function(void)
  */
 void rendering_system_effect_processor(int effect_context, uint effect_type, float effect_intensity, longlong output_buffer)
 {
-  undefined8 temp_value1;
-  undefined4 temp_value2;
+  uint64_t temp_value1;
+  int32_t temp_value2;
   uint temp_value3;
-  undefined8 *pointer_value1;
+  uint64_t *pointer_value1;
   longlong long_value1;
   ulonglong ulong_value1;
-  undefined8 *pointer_value2;
-  undefined4 *pointer_value3;
+  uint64_t *pointer_value2;
+  int32_t *pointer_value3;
   uint effect_level;
   ulonglong temp_value4;
   uint temp_value5;
   int int_value1;
-  undefined8 register_value;
+  uint64_t register_value;
   uint stack_array[2];
-  undefined1 stack_buffer1[8];
-  undefined *stack_pointer1;
-  undefined4 *stack_pointer2;
+  int8_t stack_buffer1[8];
+  void *stack_pointer1;
+  int32_t *stack_pointer2;
   uint stack_value1;
-  undefined8 stack_value2;
-  undefined *stack_pointer3;
+  uint64_t stack_value2;
+  void *stack_pointer3;
   longlong stack_long_value;
-  undefined4 stack_value3;
+  int32_t stack_value3;
   
   ulong_value1 = 0;
   effect_level = 0;
@@ -325,26 +325,26 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   
   // 构建特效标识符
   stack_array[0] = (effect_context << 8 | effect_type) << 8 | effect_level;
-  pointer_value1 = (undefined8 *)0x180c95e98;
+  pointer_value1 = (uint64_t *)0x180c95e98;
   pointer_value2 = _DAT_180c95ea8;
   
   // 在特效链表中查找合适的位置
-  if (_DAT_180c95ea8 != (undefined8 *)0x0) {
+  if (_DAT_180c95ea8 != (uint64_t *)0x0) {
     do {
       if (*(uint *)(pointer_value2 + 4) < stack_array[0]) {
-        pointer_value2 = (undefined8 *)*pointer_value2;
+        pointer_value2 = (uint64_t *)*pointer_value2;
       }
       else {
         pointer_value1 = pointer_value2;
-        pointer_value2 = (undefined8 *)pointer_value2[1];
+        pointer_value2 = (uint64_t *)pointer_value2[1];
       }
-    } while (pointer_value2 != (undefined8 *)0x0);
+    } while (pointer_value2 != (uint64_t *)0x0);
   }
   
   // 插入新的特效节点
-  if ((pointer_value1 == (undefined8 *)0x180c95e98) || (stack_array[0] < *(uint *)(pointer_value1 + 4))) {
-    pointer_value1 = (undefined8 *)FUN_1804c0610(0x180c95e98, stack_buffer1, register_value, pointer_value1, stack_array);
-    pointer_value1 = (undefined8 *)*pointer_value1;
+  if ((pointer_value1 == (uint64_t *)0x180c95e98) || (stack_array[0] < *(uint *)(pointer_value1 + 4))) {
+    pointer_value1 = (uint64_t *)FUN_1804c0610(0x180c95e98, stack_buffer1, register_value, pointer_value1, stack_array);
+    pointer_value1 = (uint64_t *)*pointer_value1;
   }
   
   long_value1 = pointer_value1[5];
@@ -356,10 +356,10 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
     
     // 处理特效数据
     do {
-      pointer_value2 = (undefined8 *)(ulong_value1 + *(longlong *)(long_value1 + 0x5c8));
+      pointer_value2 = (uint64_t *)(ulong_value1 + *(longlong *)(long_value1 + 0x5c8));
       temp_value1 = pointer_value2[1];
-      *(undefined8 *)(ulong_value1 + output_buffer) = *pointer_value2;
-      ((undefined8 *)(ulong_value1 + output_buffer))[1] = temp_value1;
+      *(uint64_t *)(ulong_value1 + output_buffer) = *pointer_value2;
+      ((uint64_t *)(ulong_value1 + output_buffer))[1] = temp_value1;
       effect_level = (int)temp_value4 + 1;
       ulong_value1 = ulong_value1 + 0x10;
       temp_value4 = (ulonglong)effect_level;
@@ -370,10 +370,10 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   // 初始化特效处理缓冲区
   stack_pointer1 = &UNK_180a3c3e0;
   stack_value2 = 0;
-  stack_pointer2 = (undefined4 *)0x0;
+  stack_pointer2 = (int32_t *)0x0;
   stack_value1 = 0;
-  stack_pointer2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x17, 0x13);
-  *(undefined1 *)stack_pointer2 = 0;
+  stack_pointer2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x17, 0x13);
+  *(int8_t *)stack_pointer2 = 0;
   temp_value2 = FUN_18064e990(stack_pointer2);
   stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
   
@@ -383,8 +383,8 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   stack_pointer2[2] = 0x636e6174;  // "tanc"
   stack_pointer2[3] = 0x6f662065;  // "e fo"
   stack_pointer2[4] = 0x61722072;  // "r ra"
-  *(undefined2 *)(stack_pointer2 + 5) = 0x6563;  // "ce"
-  *(undefined1 *)((longlong)stack_pointer2 + 0x16) = 0;
+  *(int16_t *)(stack_pointer2 + 5) = 0x6563;  // "ce"
+  *(int8_t *)((longlong)stack_pointer2 + 0x16) = 0;
   stack_value1 = 0x16;
   
   // 处理特效上下文
@@ -392,26 +392,26 @@ void rendering_system_effect_processor(int effect_context, uint effect_type, flo
   temp_value5 = stack_value1 + 0xc;
   if (temp_value5 != 0) {
     temp_value3 = stack_value1 + 0xd;
-    if (stack_pointer2 == (undefined4 *)0x0) {
+    if (stack_pointer2 == (int32_t *)0x0) {
       if ((int)temp_value3 < 0x10) {
         temp_value3 = 0x10;
       }
-      stack_pointer2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)temp_value3, 0x13);
-      *(undefined1 *)stack_pointer2 = 0;
+      stack_pointer2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)temp_value3, 0x13);
+      *(int8_t *)stack_pointer2 = 0;
     }
     else {
       if (temp_value3 <= (uint)stack_value2) goto EFFECT_PROCESSOR_LABEL1;
-      stack_pointer2 = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, temp_value3, 0x10, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, temp_value3, 0x10, 0x13);
     }
     temp_value2 = FUN_18064e990(stack_pointer2);
     stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
   }
   
 EFFECT_PROCESSOR_LABEL1:
-  pointer_value2 = (undefined8 *)((ulonglong)stack_value1 + (longlong)stack_pointer2);
+  pointer_value2 = (uint64_t *)((ulonglong)stack_value1 + (longlong)stack_pointer2);
   *pointer_value2 = 0x6e656720726f6620;  // " for render"
-  *(undefined4 *)(pointer_value2 + 1) = 0x20726564;  // "der "
-  *(undefined1 *)((longlong)pointer_value2 + 0xc) = 0;
+  *(int32_t *)(pointer_value2 + 1) = 0x20726564;  // "der "
+  *(int8_t *)((longlong)pointer_value2 + 0xc) = 0;
   stack_value1 = temp_value5;
   
   // 处理特效类型
@@ -419,23 +419,23 @@ EFFECT_PROCESSOR_LABEL1:
   temp_value5 = stack_value1 + 0x13;
   if (temp_value5 != 0) {
     temp_value3 = stack_value1 + 0x14;
-    if (stack_pointer2 == (undefined4 *)0x0) {
+    if (stack_pointer2 == (int32_t *)0x0) {
       if ((int)temp_value3 < 0x10) {
         temp_value3 = 0x10;
       }
-      stack_pointer2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)temp_value3, 0x13);
-      *(undefined1 *)stack_pointer2 = 0;
+      stack_pointer2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)temp_value3, 0x13);
+      *(int8_t *)stack_pointer2 = 0;
     }
     else {
       if (temp_value3 <= (uint)stack_value2) goto EFFECT_PROCESSOR_LABEL2;
-      stack_pointer2 = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, temp_value3, 0x10, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, temp_value3, 0x10, 0x13);
     }
     temp_value2 = FUN_18064e990(stack_pointer2);
     stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
   }
   
 EFFECT_PROCESSOR_LABEL2:
-  pointer_value3 = (undefined4 *)((ulonglong)stack_value1 + (longlong)stack_pointer2);
+  pointer_value3 = (int32_t *)((ulonglong)stack_value1 + (longlong)stack_pointer2);
   *pointer_value3 = 0x726f6620;  // " for"
   pointer_value3[1] = 0x74616d20;  // " mat"
   pointer_value3[2] = 0x74697275;  // "urit"
@@ -448,16 +448,16 @@ EFFECT_PROCESSOR_LABEL2:
     int_value1 = stack_value1 + *(int *)(long_value1 + 0x10);
     if (int_value1 != 0) {
       effect_level = int_value1 + 1;
-      if (stack_pointer2 == (undefined4 *)0x0) {
+      if (stack_pointer2 == (int32_t *)0x0) {
         if ((int)effect_level < 0x10) {
           effect_level = 0x10;
         }
-        stack_pointer2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)effect_level, 0x13);
-        *(undefined1 *)stack_pointer2 = 0;
+        stack_pointer2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)effect_level, 0x13);
+        *(int8_t *)stack_pointer2 = 0;
       }
       else {
         if (effect_level <= (uint)stack_value2) goto EFFECT_PROCESSOR_LABEL3;
-        stack_pointer2 = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, effect_level, 0x10, 0x13);
+        stack_pointer2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, effect_level, 0x10, 0x13);
       }
       temp_value2 = FUN_18064e990(stack_pointer2);
       stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
@@ -465,7 +465,7 @@ EFFECT_PROCESSOR_LABEL2:
     
 EFFECT_PROCESSOR_LABEL3:
     // 复制特效数据
-    memcpy((undefined1 *)((ulonglong)stack_value1 + (longlong)stack_pointer2), *(undefined8 *)(long_value1 + 8),
+    memcpy((int8_t *)((ulonglong)stack_value1 + (longlong)stack_pointer2), *(uint64_t *)(long_value1 + 8),
            (longlong)(*(int *)(long_value1 + 0x10) + 1));
   }
   
@@ -481,36 +481,36 @@ EFFECT_PROCESSOR_LABEL3:
   
   if (int_value1 != 0) {
     effect_level = stack_value1 + 0x30;
-    if (stack_pointer2 == (undefined4 *)0x0) {
+    if (stack_pointer2 == (int32_t *)0x0) {
       if ((int)effect_level < 0x10) {
         effect_level = 0x10;
       }
-      stack_pointer2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)effect_level, 0x13);
-      *(undefined1 *)stack_pointer2 = 0;
+      stack_pointer2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)effect_level, 0x13);
+      *(int8_t *)stack_pointer2 = 0;
     }
     else {
       if (effect_level <= (uint)stack_value2) goto EFFECT_PROCESSOR_LABEL4;
-      stack_pointer2 = (undefined4 *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, effect_level, 0x10, 0x13);
+      stack_pointer2 = (int32_t *)FUN_18062b8b0(_DAT_180c8ed18, stack_pointer2, effect_level, 0x10, 0x13);
     }
     temp_value2 = FUN_18064e990(stack_pointer2);
     stack_value2 = CONCAT44(stack_value2._4_4_, temp_value2);
   }
   
 EFFECT_PROCESSOR_LABEL4:
-  pointer_value2 = (undefined8 *)((ulonglong)stack_value1 + (longlong)stack_pointer2);
+  pointer_value2 = (uint64_t *)((ulonglong)stack_value1 + (longlong)stack_pointer2);
   *pointer_value2 = 0x6620746f6e207369;  // "f to not si"
   pointer_value2[1] = 0x206e6920646e756f;  // " n in undo"
-  *(undefined4 *)(pointer_value2 + 2) = 0x5f746567;  // "_teg"
-  *(undefined4 *)((longlong)pointer_value2 + 0x14) = 0x6e696b73;  // "skin"
-  *(undefined4 *)(pointer_value2 + 3) = 0x6c6f635f;  // "loc_"
-  *(undefined4 *)((longlong)pointer_value2 + 0x1c) = 0x675f726f;  // "g_ro"
-  *(undefined4 *)(pointer_value2 + 4) = 0x69646172;  // "idar"
-  *(undefined4 *)((longlong)pointer_value2 + 0x24) = 0x5f746e65;  // "_tne"
-  *(undefined4 *)(pointer_value2 + 5) = 0x6e696f70;  // "niop"
-  *(undefined4 *)((longlong)pointer_value2 + 0x2c) = 0x217374;  // "!st"
-  pointer_value3 = (undefined4 *)&DAT_18098bc73;
+  *(int32_t *)(pointer_value2 + 2) = 0x5f746567;  // "_teg"
+  *(int32_t *)((longlong)pointer_value2 + 0x14) = 0x6e696b73;  // "skin"
+  *(int32_t *)(pointer_value2 + 3) = 0x6c6f635f;  // "loc_"
+  *(int32_t *)((longlong)pointer_value2 + 0x1c) = 0x675f726f;  // "g_ro"
+  *(int32_t *)(pointer_value2 + 4) = 0x69646172;  // "idar"
+  *(int32_t *)((longlong)pointer_value2 + 0x24) = 0x5f746e65;  // "_tne"
+  *(int32_t *)(pointer_value2 + 5) = 0x6e696f70;  // "niop"
+  *(int32_t *)((longlong)pointer_value2 + 0x2c) = 0x217374;  // "!st"
+  pointer_value3 = (int32_t *)&DAT_18098bc73;
   
-  if (stack_pointer2 != (undefined4 *)0x0) {
+  if (stack_pointer2 != (int32_t *)0x0) {
     pointer_value3 = stack_pointer2;
   }
   
@@ -518,7 +518,7 @@ EFFECT_PROCESSOR_LABEL4:
   FUN_180626f80(pointer_value3);
   stack_pointer1 = &UNK_180a3c3e0;
   
-  if (stack_pointer2 == (undefined4 *)0x0) {
+  if (stack_pointer2 == (int32_t *)0x0) {
     return;
   }
   
@@ -535,10 +535,10 @@ EFFECT_PROCESSOR_LABEL4:
  * @param data_item4 数据项4
  * @return 比较结果
  */
-int rendering_system_data_comparator(undefined8 data_item1, undefined8 data_item2, undefined8 data_item3, undefined8 data_item4)
+int rendering_system_data_comparator(uint64_t data_item1, uint64_t data_item2, uint64_t data_item3, uint64_t data_item4)
 {
   short comparison_result;
-  undefined *stack_pointer;
+  void *stack_pointer;
   longlong stack_long_value;
   
   FUN_180627910(&stack_pointer, data_item1, data_item3, data_item4, 0xfffffffffffffffe);
@@ -567,7 +567,7 @@ int rendering_system_resource_finder(longlong resource_name)
   longlong string_length;
   char *string_pointer;
   longlong resource_index;
-  undefined8 *resource_pointer;
+  uint64_t *resource_pointer;
   int temp_index;
   bool is_match;
   
@@ -576,7 +576,7 @@ int rendering_system_resource_finder(longlong resource_name)
   resource_index = (longlong)temp_index;
   
   if (0 < temp_index) {
-    resource_pointer = (undefined8 *)(_DAT_180c960e0 + RENDER_RESOURCE_OFFSET_DATA);
+    resource_pointer = (uint64_t *)(_DAT_180c960e0 + RENDER_RESOURCE_OFFSET_DATA);
     do {
       string_length = -1;
       do {
@@ -751,11 +751,11 @@ void rendering_system_time_initializer(void)
   _DAT_180c92510 = 0;
   
   // 检查是否启用时间同步
-  if (*(undefined **)*_DAT_180c8ed08 == &UNK_18098bb88) {
+  if (*(void **)*_DAT_180c8ed08 == &UNK_18098bb88) {
     is_enabled = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
   }
   else {
-    is_enabled = (**(code **)(*(undefined **)*_DAT_180c8ed08 + 0x48))();
+    is_enabled = (**(code **)(*(void **)*_DAT_180c8ed08 + 0x48))();
   }
   
   if (is_enabled != '\0') {

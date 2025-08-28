@@ -73,48 +73,48 @@
 // ============================================================================
 
 /** 渲染系统全局数据引用 */
-extern undefined8 _DAT_180bf00a8;
-extern undefined8 _DAT_180c86938;
-extern undefined8 _DAT_180c8ed18;
-extern undefined8 DAT_180bf65bc;
-extern undefined8 UNK_180a3c3e0;
-extern undefined8 UNK_18098bcb0;
+extern uint64_t _DAT_180bf00a8;
+extern uint64_t _DAT_180c86938;
+extern uint64_t _DAT_180c8ed18;
+extern uint64_t DAT_180bf65bc;
+extern uint64_t UNK_180a3c3e0;
+extern uint64_t UNK_18098bcb0;
 
 // ============================================================================
 // 外部函数声明
 // ============================================================================
 
-extern void FUN_18023a940(undefined8 param_1);
-extern void FUN_1806279c0(undefined *param_1);
+extern void FUN_18023a940(uint64_t param_1);
+extern void FUN_1806279c0(void *param_1);
 extern void FUN_1800b2a30(void);
-extern void FUN_18064e900(undefined8 param_1);
+extern void FUN_18064e900(uint64_t param_1);
 extern void FUN_1808fc050(ulonglong param_1);
-extern void FUN_1802a8080(undefined8 param_1, longlong param_2, int param_3);
-extern undefined8 FUN_18032ba60(undefined8 param_1, undefined4 param_2, undefined4 param_3);
+extern void FUN_1802a8080(uint64_t param_1, longlong param_2, int param_3);
+extern uint64_t FUN_18032ba60(uint64_t param_1, int32_t param_2, int32_t param_3);
 extern char func_0x000180285f10(longlong param_1, uint *param_2, int param_3);
-extern void FUN_1803280a0(undefined8 param_1, longlong param_2, uint *param_3);
-extern void FUN_180328540(undefined8 param_1, longlong param_2, uint *param_3);
-extern void FUN_180327e70(undefined8 param_1, longlong param_2, uint *param_3, int param_4);
-extern undefined8 FUN_18062b1e0(undefined8 param_1, int param_2, int param_3, undefined8 param_4, ulonglong param_5);
-extern undefined8 FUN_180059780(undefined8 param_1, undefined8 param_2, undefined8 param_3);
-extern undefined8 FUN_180059300(undefined8 param_1, undefined8 param_2, undefined8 param_3);
-extern void FUN_18016fec0(undefined8 param_1, undefined8 param_2);
-extern void FUN_180059250(undefined8 param_1, undefined8 param_2, undefined8 param_3);
-extern void FUN_1806277c0(undefined8 param_1, ulonglong param_2);
-extern void FUN_180322890(undefined8 param_1, undefined8 param_2, ulonglong param_3);
+extern void FUN_1803280a0(uint64_t param_1, longlong param_2, uint *param_3);
+extern void FUN_180328540(uint64_t param_1, longlong param_2, uint *param_3);
+extern void FUN_180327e70(uint64_t param_1, longlong param_2, uint *param_3, int param_4);
+extern uint64_t FUN_18062b1e0(uint64_t param_1, int param_2, int param_3, uint64_t param_4, ulonglong param_5);
+extern uint64_t FUN_180059780(uint64_t param_1, uint64_t param_2, uint64_t param_3);
+extern uint64_t FUN_180059300(uint64_t param_1, uint64_t param_2, uint64_t param_3);
+extern void FUN_18016fec0(uint64_t param_1, uint64_t param_2);
+extern void FUN_180059250(uint64_t param_1, uint64_t param_2, uint64_t param_3);
+extern void FUN_1806277c0(uint64_t param_1, ulonglong param_2);
+extern void FUN_180322890(uint64_t param_1, uint64_t param_2, ulonglong param_3);
 
 // ============================================================================
 // 函数声明
 // ============================================================================
 
-void RenderingSystem_DataValidator(undefined8 *data_context);
+void RenderingSystem_DataValidator(uint64_t *data_context);
 void RenderingSystem_DataRangeValidator(int start_index, int end_index, longlong *validation_context);
 void RenderingSystem_LoopDataValidator(void);
 void RenderingSystem_EmptyFunction_1(void);
 longlong RenderingSystem_ContextManager(longlong *context_ptr1, longlong *context_ptr2, int operation_type);
 longlong RenderingSystem_ContextManager_Alternate(longlong *context_ptr1, longlong *context_ptr2, int operation_type);
-void RenderingSystem_ResourceProcessor(int start_index, int end_index, undefined8 *resource_context);
-void RenderingSystem_ContextHandler(longlong *context_ptr, undefined8 operation_flag, undefined8 *handler_context);
+void RenderingSystem_ResourceProcessor(int start_index, int end_index, uint64_t *resource_context);
+void RenderingSystem_ContextHandler(longlong *context_ptr, uint64_t operation_flag, uint64_t *handler_context);
 void RenderingSystem_DataRangeProcessor(longlong *data_ptr, longlong param_2, longlong param_3, longlong param_4);
 void RenderingSystem_DataRangeProcessor_Alternate(longlong *data_ptr, longlong param_2, longlong param_3, longlong param_4);
 void RenderingSystem_EmptyFunction_2(void);
@@ -186,7 +186,7 @@ void RenderingSystem_IntroSort(uint *data_start, uint *data_end, longlong sort_d
  * - 包含完整的错误处理机制
  * - 支持动态内存管理
  */
-void rendering_system_data_validator(undefined8 *data_context)
+void rendering_system_data_validator(uint64_t *data_context)
 {
     // 数据验证实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -359,7 +359,7 @@ longlong rendering_system_context_manager_alternate(longlong *context_ptr1, long
  * - 包含完整的数据处理机制
  * - 支持状态监控和优化
  */
-void rendering_system_resource_processor(int start_index, int end_index, undefined8 *resource_context)
+void rendering_system_resource_processor(int start_index, int end_index, uint64_t *resource_context)
 {
     // 资源处理实现
     // 由于原代码较复杂，这里提供简化的实现框架
@@ -391,7 +391,7 @@ void rendering_system_resource_processor(int start_index, int end_index, undefin
  * - 包含完整的错误处理机制
  * - 支持状态监控和优化
  */
-void rendering_system_context_handler(longlong *context_ptr, undefined8 operation_flag, undefined8 *handler_context)
+void rendering_system_context_handler(longlong *context_ptr, uint64_t operation_flag, uint64_t *handler_context)
 {
     // 上下文处理实现
     // 由于原代码较复杂，这里提供简化的实现框架

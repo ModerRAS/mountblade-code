@@ -291,52 +291,52 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
 // 参数：context_ptr - 上下文指针
 //        compare_value - 比较值
 //        string_data - 字符串数据指针
-void process_string_comparison(undefined8 context_ptr, int compare_value, longlong string_data)
+void process_string_comparison(uint64_t context_ptr, int compare_value, longlong string_data)
 {
   byte char_diff;
   bool is_greater;
-  undefined8 *hash_table_ptr;
-  undefined8 *current_node;
+  uint64_t *hash_table_ptr;
+  uint64_t *current_node;
   int *result_ptr;
   byte *string_ptr;
   uint string_length;
   longlong table_base;
-  undefined8 *node_ptr;
+  uint64_t *node_ptr;
   int temp_int;
-  undefined *temp_ptr;
-  undefined8 *next_node;
-  undefined1 stack_buffer1[32];
-  undefined8 stack_guard1;
-  undefined *stack_ptr1;
+  void *temp_ptr;
+  uint64_t *next_node;
+  int8_t stack_buffer1[32];
+  uint64_t stack_guard1;
+  void *stack_ptr1;
   byte *stack_string_ptr1;
   int stack_int1;
   byte stack_string_buffer1[72];
-  undefined *stack_ptr2;
-  undefined1 *stack_ptr3;
-  undefined4 stack_uint1;
-  undefined1 stack_string_buffer2[72];
+  void *stack_ptr2;
+  int8_t *stack_ptr3;
+  int32_t stack_uint1;
+  int8_t stack_string_buffer2[72];
   ulonglong stack_checksum;
   
   table_base = global_string_table;
   stack_guard1 = 0xfffffffffffffffe;
   stack_checksum = global_checksum ^ (ulonglong)stack_buffer1;
-  node_ptr = (undefined8 *)(global_string_table + 0x28);
+  node_ptr = (uint64_t *)(global_string_table + 0x28);
   stack_ptr1 = &global_string_start;
   stack_string_ptr1 = stack_string_buffer1;
   stack_string_buffer1[0] = 0;
   stack_int1 = *(int *)(string_data + 0x10);
   temp_ptr = &default_string_data;
-  if (*(undefined **)(string_data + 8) != (undefined *)0x0) {
-    temp_ptr = *(undefined **)(string_data + 8);
+  if (*(void **)(string_data + 8) != (void *)0x0) {
+    temp_ptr = *(void **)(string_data + 8);
   }
   strcpy_s(stack_string_buffer1, 0x40, temp_ptr);
-  next_node = *(undefined8 **)(table_base + 0x38);
+  next_node = *(uint64_t **)(table_base + 0x38);
   current_node = node_ptr;
-  if (next_node != (undefined8 *)0x0) {
+  if (next_node != (uint64_t *)0x0) {
     do {
       if (stack_int1 == 0) {
         is_greater = false;
-        hash_table_ptr = (undefined8 *)next_node[1];
+        hash_table_ptr = (uint64_t *)next_node[1];
       }
       else {
         if (*(int *)(next_node + 6) == 0) {
@@ -352,11 +352,11 @@ void process_string_comparison(undefined8 context_ptr, int compare_value, longlo
           } while (string_length != 0);
           is_greater = 0 < temp_int;
           if (temp_int < 1) {
-            hash_table_ptr = (undefined8 *)next_node[1];
+            hash_table_ptr = (uint64_t *)next_node[1];
             goto NODE_FOUND;
           }
         }
-        hash_table_ptr = (undefined8 *)*next_node;
+        hash_table_ptr = (uint64_t *)*next_node;
       }
 NODE_FOUND:
       current_node = next_node;
@@ -365,7 +365,7 @@ NODE_FOUND:
       }
       node_ptr = current_node;
       next_node = hash_table_ptr;
-    } while (hash_table_ptr != (undefined8 *)0x0);
+    } while (hash_table_ptr != (uint64_t *)0x0);
     if (current_node != node_ptr) {
       if (*(int *)(current_node + 6) == 0) goto MATCH_FOUND;
       if (stack_int1 != 0) {
@@ -388,10 +388,10 @@ MATCH_FOUND:
     stack_ptr2 = &global_string_start;
     stack_ptr3 = stack_string_buffer2;
     stack_string_buffer2[0] = 0;
-    stack_uint1 = *(undefined4 *)(string_data + 0x10);
+    stack_uint1 = *(int32_t *)(string_data + 0x10);
     temp_ptr = &default_string_data;
-    if (*(undefined **)(string_data + 8) != (undefined *)0x0) {
-      temp_ptr = *(undefined **)(string_data + 8);
+    if (*(void **)(string_data + 8) != (void *)0x0) {
+      temp_ptr = *(void **)(string_data + 8);
     }
     strcpy_s(stack_string_buffer2, 0x40, temp_ptr);
     result_ptr = (int *)find_hash_entry(node_ptr, &stack_ptr2);
@@ -401,10 +401,10 @@ MATCH_FOUND:
     stack_ptr2 = &global_string_start;
     stack_ptr3 = stack_string_buffer2;
     stack_string_buffer2[0] = 0;
-    stack_uint1 = *(undefined4 *)(string_data + 0x10);
+    stack_uint1 = *(int32_t *)(string_data + 0x10);
     temp_ptr = &default_string_data;
-    if (*(undefined **)(string_data + 8) != (undefined *)0x0) {
-      temp_ptr = *(undefined **)(string_data + 8);
+    if (*(void **)(string_data + 8) != (void *)0x0) {
+      temp_ptr = *(void **)(string_data + 8);
     }
     strcpy_s(stack_string_buffer2, 0x40, temp_ptr);
     result_ptr = (int *)find_hash_entry(node_ptr, &stack_ptr2);
@@ -414,8 +414,8 @@ MATCH_FOUND:
     stack_string_buffer1[0] = 0;
     stack_int1 = *(int *)(string_data + 0x10);
     temp_ptr = &default_string_data;
-    if (*(undefined **)(string_data + 8) != (undefined *)0x0) {
-      temp_ptr = *(undefined **)(string_data + 8);
+    if (*(void **)(string_data + 8) != (void *)0x0) {
+      temp_ptr = *(void **)(string_data + 8);
     }
     strcpy_s(stack_string_buffer1, 0x40, temp_ptr);
     result_ptr = (int *)find_hash_entry(node_ptr, &stack_ptr1);
@@ -432,7 +432,7 @@ MATCH_FOUND:
 // 参数：hash_table - 哈希表指针
 //        search_key - 搜索键指针
 // 返回值：找到的条目指针
-undefined8 * find_hash_entry(undefined8 *hash_table, longlong search_key)
+uint64_t * find_hash_entry(uint64_t *hash_table, longlong search_key)
 {
   byte char_diff;
   bool is_greater;
@@ -440,18 +440,18 @@ undefined8 * find_hash_entry(undefined8 *hash_table, longlong search_key)
   longlong *entry_ptr;
   uint key_length;
   int compare_result;
-  undefined8 *current_entry;
-  undefined8 *next_entry;
-  undefined8 *prev_entry;
+  uint64_t *current_entry;
+  uint64_t *next_entry;
+  uint64_t *prev_entry;
   longlong key_offset;
-  undefined1 stack_buffer[8];
+  int8_t stack_buffer[8];
   
-  next_entry = (undefined8 *)hash_table[2];
+  next_entry = (uint64_t *)hash_table[2];
   prev_entry = hash_table;
-  if (next_entry != (undefined8 *)0x0) {
+  if (next_entry != (uint64_t *)0x0) {
     do {
       if (*(int *)(search_key + 0x10) == 0) {
-        current_entry = (undefined8 *)next_entry[1];
+        current_entry = (uint64_t *)next_entry[1];
         is_greater = false;
       }
       else {
@@ -469,11 +469,11 @@ undefined8 * find_hash_entry(undefined8 *hash_table, longlong search_key)
           } while (key_length != 0);
           is_greater = 0 < compare_result;
           if (compare_result < 1) {
-            current_entry = (undefined8 *)next_entry[1];
+            current_entry = (uint64_t *)next_entry[1];
             goto ENTRY_FOUND;
           }
         }
-        current_entry = (undefined8 *)*next_entry;
+        current_entry = (uint64_t *)*next_entry;
       }
 ENTRY_FOUND:
       if (is_greater) {
@@ -481,8 +481,8 @@ ENTRY_FOUND:
       }
       prev_entry = next_entry;
       next_entry = current_entry;
-    } while (current_entry != (undefined8 *)0x0);
-    next_entry = (undefined8 *)0x0;
+    } while (current_entry != (uint64_t *)0x0);
+    next_entry = (uint64_t *)0x0;
   }
   if (prev_entry != hash_table) {
     if (*(int *)(prev_entry + 6) == 0) {
@@ -491,7 +491,7 @@ ENTRY_RETURN:
     }
     if (*(int *)(search_key + 0x10) != 0) {
       key_ptr = (byte *)prev_entry[5];
-      next_entry = (undefined8 *)(*(longlong *)(search_key + 8) - (longlong)key_ptr);
+      next_entry = (uint64_t *)(*(longlong *)(search_key + 8) - (longlong)key_ptr);
       do {
         char_diff = *key_ptr;
         key_length = (uint)key_ptr[(longlong)next_entry];
@@ -502,7 +502,7 @@ ENTRY_RETURN:
     }
   }
   entry_ptr = (longlong *)create_hash_entry(hash_table, stack_buffer, next_entry, prev_entry, search_key);
-  return (undefined8 *)(*entry_ptr + 0x78);
+  return (uint64_t *)(*entry_ptr + 0x78);
 }
 
 // 函数：search_hash_chain
@@ -512,8 +512,8 @@ ENTRY_RETURN:
 //        current_node - 当前节点指针
 //        prev_node - 前一个节点指针
 // 返回值：找到的条目指针
-undefined8 *
-search_hash_chain(undefined8 search_param, longlong key_data, undefined8 *current_node, undefined8 *prev_node)
+uint64_t *
+search_hash_chain(uint64_t search_param, longlong key_data, uint64_t *current_node, uint64_t *prev_node)
 {
   byte char_diff;
   bool is_greater;
@@ -522,12 +522,12 @@ search_hash_chain(undefined8 search_param, longlong key_data, undefined8 *curren
   uint key_length;
   int compare_result;
   longlong key_offset;
-  undefined8 *next_node;
-  undefined8 *found_node;
+  uint64_t *next_node;
+  uint64_t *found_node;
   
   do {
     if (*(int *)(key_data + 0x10) == 0) {
-      next_node = (undefined8 *)current_node[1];
+      next_node = (uint64_t *)current_node[1];
       is_greater = false;
     }
     else {
@@ -545,11 +545,11 @@ search_hash_chain(undefined8 search_param, longlong key_data, undefined8 *curren
         } while (key_length != 0);
         is_greater = 0 < compare_result;
         if (compare_result < 1) {
-          next_node = (undefined8 *)current_node[1];
+          next_node = (uint64_t *)current_node[1];
           goto ENTRY_FOUND;
         }
       }
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
 ENTRY_FOUND:
     if (is_greater) {
@@ -557,7 +557,7 @@ ENTRY_FOUND:
     }
     prev_node = current_node;
     current_node = next_node;
-  } while (next_node != (undefined8 *)0x0);
+  } while (next_node != (uint64_t *)0x0);
   if (prev_node != found_node) {
     if (*(int *)(prev_node + 6) == 0) {
 ENTRY_RETURN:
@@ -576,7 +576,7 @@ ENTRY_RETURN:
     }
   }
   entry_ptr = (longlong *)create_hash_entry();
-  return (undefined8 *)(*entry_ptr + 0x78);
+  return (uint64_t *)(*entry_ptr + 0x78);
 }
 
 // 函数：get_hash_entry_offset
@@ -622,8 +622,8 @@ ENTRY_RETURN:
 //        node_ptr - 节点指针
 //        key_data - 键数据指针
 // 返回值：创建的条目指针
-undefined8 *
-create_hash_entry(longlong *table_ptr, undefined8 *buffer_ptr, undefined8 entry_param, longlong *node_ptr,
+uint64_t *
+create_hash_entry(longlong *table_ptr, uint64_t *buffer_ptr, uint64_t entry_param, longlong *node_ptr,
              longlong key_data)
 {
   byte char_diff;
@@ -635,7 +635,7 @@ create_hash_entry(longlong *table_ptr, undefined8 *buffer_ptr, undefined8 entry_
   longlong key_offset;
   longlong *temp_ptr;
   ulonglong entry_flags;
-  undefined8 entry_value;
+  uint64_t entry_value;
   
   temp_ptr = (longlong *)*table_ptr;
   if ((node_ptr == temp_ptr) || (node_ptr == table_ptr)) {
@@ -772,7 +772,7 @@ ALLOCATE_ENTRY:
 SETUP_ENTRY:
   key_offset = allocate_memory_block(global_memory_allocator, 0x80, (char)table_ptr[5]);
   initialize_memory_block(key_offset + 0x20, key_data);
-  *(undefined4 *)(key_offset + 0x78) = 0;
+  *(int32_t *)(key_offset + 0x78) = 0;
   // 注意：此函数不返回
   insert_into_hash_table(key_offset, search_ptr, table_ptr, entry_value);
 }

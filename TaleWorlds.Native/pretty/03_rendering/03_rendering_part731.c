@@ -191,7 +191,7 @@ uint64_t RenderingSystemMemoryManager(void* param1, void* param2) {
         // 这里模拟了原始代码中的资源释放逻辑
         if (memory_block->flags & 0x01) {
             // 执行资源释放操作
-            // func_0x00018066e940(*(undefined8 *)(param_1 + 0x58));
+            // func_0x00018066e940(*(uint64_t *)(param_1 + 0x58));
         }
     }
     

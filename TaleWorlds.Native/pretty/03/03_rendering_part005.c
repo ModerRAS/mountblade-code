@@ -12,26 +12,26 @@ void process_animation_curve_data(longlong animation_context, longlong name_offs
   char *string_ptr1;
   ulonglong ulong_counter;
   longlong long_offset;
-  undefined *undefined_ptr1;
-  undefined8 *node_ptr1;
+  void *undefined_ptr1;
+  uint64_t *node_ptr1;
   char *string_ptr2;
-  undefined8 *node_ptr2;
+  uint64_t *node_ptr2;
   char *string_ptr3;
   int version_array[2];
   float time_array[2];
   float value_array[2];
-  undefined8 stack_guard1;
+  uint64_t stack_guard1;
   int int_stack1;
   float float_stack1;
-  undefined8 stack_guard2;
+  uint64_t stack_guard2;
   int int_stack2;
   float float_stack2;
-  undefined8 stack_guard3;
+  uint64_t stack_guard3;
   
   // 初始化曲线处理
   initialize_curve_parser(animation_context, curve_data);
   stack_guard1 = 0xfffffffffffffffe;
-  *(undefined8 *)(animation_context + 0x18) = *(undefined8 *)(animation_context + 0x10);
+  *(uint64_t *)(animation_context + 0x18) = *(uint64_t *)(animation_context + 0x10);
   
   // 查找"curve"属性
   string_ptr2 = "curve";
@@ -40,9 +40,9 @@ void process_animation_curve_data(longlong animation_context, longlong name_offs
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  node_ptr1 = *(undefined8 **)(curve_data + 0x30);
+  node_ptr1 = *(uint64_t **)(curve_data + 0x30);
   do {
-    if (node_ptr1 == (undefined8 *)0x0) {
+    if (node_ptr1 == (uint64_t *)0x0) {
       return;
     }
     string_ptr2 = (char *)*node_ptr1;
@@ -64,7 +64,7 @@ void process_animation_curve_data(longlong animation_context, longlong name_offs
         if (string_ptr1 <= string_ptr2) goto FOUND_CURVE_SECTION;
       }
     }
-    node_ptr1 = (undefined8 *)node_ptr1[0xb];
+    node_ptr1 = (uint64_t *)node_ptr1[0xb];
   } while( true );
   
 FOUND_CURVE_SECTION:
@@ -75,8 +75,8 @@ FOUND_CURVE_SECTION:
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-      node_ptr2 = (undefined8 *)node_ptr2[6]) {
+  for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+      node_ptr2 = (uint64_t *)node_ptr2[6]) {
     string_ptr2 = (char *)*node_ptr2;
     if (string_ptr2 == (char *)0x0) {
       string_ptr1 = (char *)0x0;
@@ -125,8 +125,8 @@ FOUND_CURVE_SECTION:
     
     while( true ) {
       do {
-        node_ptr1 = (undefined8 *)node_ptr1[0xb];
-        if (node_ptr1 == (undefined8 *)0x0) {
+        node_ptr1 = (uint64_t *)node_ptr1[0xb];
+        if (node_ptr1 == (uint64_t *)0x0) {
           return;
         }
         string_ptr2 = (char *)*node_ptr1;
@@ -160,9 +160,9 @@ FOUND_CURVE_SECTION:
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  node_ptr2 = (undefined8 *)node_ptr1[8];
+  node_ptr2 = (uint64_t *)node_ptr1[8];
   do {
-    if (node_ptr2 == (undefined8 *)0x0) goto PROCESS_DEFAULT_SECTION;
+    if (node_ptr2 == (uint64_t *)0x0) goto PROCESS_DEFAULT_SECTION;
     string_ptr2 = (char *)*node_ptr2;
     if (string_ptr2 == (char *)0x0) {
       string_ptr1 = (char *)0x0;
@@ -200,7 +200,7 @@ FOUND_CURVE_SECTION:
         if (string_ptr1 <= string_ptr2) goto FOUND_VERSION_VALUE;
       }
     }
-    node_ptr2 = (undefined8 *)node_ptr2[6];
+    node_ptr2 = (uint64_t *)node_ptr2[6];
   } while( true );
   
 PROCESS_DEFAULT_SECTION:
@@ -211,8 +211,8 @@ PROCESS_DEFAULT_SECTION:
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-      node_ptr2 = (undefined8 *)node_ptr2[6]) {
+  for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+      node_ptr2 = (uint64_t *)node_ptr2[6]) {
     string_ptr2 = (char *)*node_ptr2;
     if (string_ptr2 == (char *)0x0) {
       string_ptr1 = (char *)0x0;
@@ -255,8 +255,8 @@ PROCESS_DEFAULT_VALUE:
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-      node_ptr2 = (undefined8 *)node_ptr2[6]) {
+  for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+      node_ptr2 = (uint64_t *)node_ptr2[6]) {
     string_ptr2 = (char *)*node_ptr2;
     if (string_ptr2 == (char *)0x0) {
       string_ptr1 = (char *)0x0;
@@ -300,9 +300,9 @@ PROCESS_MULTIPLIER_VALUE:
       string_ptr2 = string_ptr3 + 1;
     } while (*string_ptr2 != '\0');
     
-    node_ptr1 = (undefined8 *)node_ptr1[6];
+    node_ptr1 = (uint64_t *)node_ptr1[6];
     do {
-      if (node_ptr1 == (undefined8 *)0x0) {
+      if (node_ptr1 == (uint64_t *)0x0) {
         return;
       }
       string_ptr2 = (char *)*node_ptr1;
@@ -326,9 +326,9 @@ PROCESS_MULTIPLIER_VALUE:
             string_ptr2 = string_ptr3 + 1;
           } while (*string_ptr2 != '\0');
           
-          node_ptr1 = (undefined8 *)node_ptr1[6];
+          node_ptr1 = (uint64_t *)node_ptr1[6];
           do {
-            if (node_ptr1 == (undefined8 *)0x0) {
+            if (node_ptr1 == (uint64_t *)0x0) {
               return;
             }
             string_ptr2 = (char *)*node_ptr1;
@@ -352,8 +352,8 @@ PROCESS_MULTIPLIER_VALUE:
                   string_ptr2 = string_ptr3 + 1;
                 } while (*string_ptr2 != '\0');
                 
-                for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-                    node_ptr2 = (undefined8 *)node_ptr2[6]) {
+                for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+                    node_ptr2 = (uint64_t *)node_ptr2[6]) {
                   string_ptr2 = (char *)*node_ptr2;
                   if (string_ptr2 == (char *)0x0) {
                     string_ptr1 = (char *)0x0;
@@ -390,8 +390,8 @@ PROCESS_MULTIPLIER_VALUE:
                   string_ptr2 = string_ptr3 + 1;
                 } while (*string_ptr2 != '\0');
                 
-                for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-                    node_ptr2 = (undefined8 *)node_ptr2[6]) {
+                for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+                    node_ptr2 = (uint64_t *)node_ptr2[6]) {
                   string_ptr2 = (char *)*node_ptr2;
                   if (string_ptr2 == (char *)0x0) {
                     string_ptr1 = (char *)0x0;
@@ -433,8 +433,8 @@ PROCESS_MULTIPLIER_VALUE:
                   string_ptr2 = string_ptr3 + 1;
                 } while (*string_ptr2 != '\0');
                 
-                node_ptr1 = (undefined8 *)node_ptr1[0xb];
-                if (node_ptr1 == (undefined8 *)0x0) {
+                node_ptr1 = (uint64_t *)node_ptr1[0xb];
+                if (node_ptr1 == (uint64_t *)0x0) {
                   return;
                 }
                 
@@ -456,8 +456,8 @@ PROCESS_MULTIPLIER_VALUE:
                       if (string_ptr1 <= string_ptr2) goto PROCESS_SINGLE_KEY;
                     }
                   }
-                  node_ptr1 = (undefined8 *)node_ptr1[0xb];
-                  if (node_ptr1 == (undefined8 *)0x0) {
+                  node_ptr1 = (uint64_t *)node_ptr1[0xb];
+                  if (node_ptr1 == (uint64_t *)0x0) {
                     return;
                   }
                 } while( true );
@@ -468,7 +468,7 @@ PROCESS_MULTIPLIER_VALUE:
                 if (string_ptr1 <= string_ptr2) goto PROCESS_SINGLE_KEY;
               }
             }
-            node_ptr1 = (undefined8 *)node_ptr1[0xb];
+            node_ptr1 = (uint64_t *)node_ptr1[0xb];
           } while( true );
         }
         long_offset = (longlong)&KEYS_CONSTANT_180a180c4 - (longlong)string_ptr2;
@@ -477,7 +477,7 @@ PROCESS_MULTIPLIER_VALUE:
           if (string_ptr1 <= string_ptr2) goto PROCESS_KEYS_SECTION;
         }
       }
-      node_ptr1 = (undefined8 *)node_ptr1[0xb];
+      node_ptr1 = (uint64_t *)node_ptr1[0xb];
     } while( true );
   }
   
@@ -487,9 +487,9 @@ PROCESS_MULTIPLIER_VALUE:
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  node_ptr1 = (undefined8 *)node_ptr1[6];
+  node_ptr1 = (uint64_t *)node_ptr1[6];
   do {
-    if (node_ptr1 == (undefined8 *)0x0) {
+    if (node_ptr1 == (uint64_t *)0x0) {
       return;
     }
     string_ptr2 = (char *)*node_ptr1;
@@ -513,8 +513,8 @@ PROCESS_MULTIPLIER_VALUE:
           string_ptr2 = string_ptr3 + 1;
         } while (*string_ptr2 != '\0');
         
-        for (node_ptr1 = (undefined8 *)node_ptr1[6]; node_ptr1 != (undefined8 *)0x0;
-            node_ptr1 = (undefined8 *)node_ptr1[0xb]) {
+        for (node_ptr1 = (uint64_t *)node_ptr1[6]; node_ptr1 != (uint64_t *)0x0;
+            node_ptr1 = (uint64_t *)node_ptr1[0xb]) {
           string_ptr2 = (char *)*node_ptr1;
           if (string_ptr2 == (char *)0x0) {
             string_ptr1 = (char *)0x0;
@@ -535,7 +535,7 @@ PROCESS_MULTIPLIER_VALUE:
             }
           }
         }
-        node_ptr1 = (undefined8 *)0x0;
+        node_ptr1 = (uint64_t *)0x0;
         
       PROCESS_LEGACY_KEY:
         // 处理旧版本的关键帧数据
@@ -545,8 +545,8 @@ PROCESS_MULTIPLIER_VALUE:
           string_ptr2 = string_ptr3 + 1;
         } while (*string_ptr2 != '\0');
         
-        for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-            node_ptr2 = (undefined8 *)node_ptr2[6]) {
+        for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+            node_ptr2 = (uint64_t *)node_ptr2[6]) {
           string_ptr2 = (char *)*node_ptr2;
           if (string_ptr2 == (char *)0x0) {
             string_ptr1 = (char *)0x0;
@@ -583,8 +583,8 @@ PROCESS_MULTIPLIER_VALUE:
           string_ptr2 = string_ptr3 + 1;
         } while (*string_ptr2 != '\0');
         
-        for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-            node_ptr2 = (undefined8 *)node_ptr2[6]) {
+        for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+            node_ptr2 = (uint64_t *)node_ptr2[6]) {
           string_ptr2 = (char *)*node_ptr2;
           if (string_ptr2 == (char *)0x0) {
             string_ptr1 = (char *)0x0;
@@ -627,8 +627,8 @@ PROCESS_MULTIPLIER_VALUE:
           string_ptr2 = string_ptr3 + 1;
         } while (*string_ptr2 != '\0');
         
-        for (node_ptr1 = (undefined8 *)node_ptr1[0xb]; node_ptr1 != (undefined8 *)0x0;
-            node_ptr1 = (undefined8 *)node_ptr1[0xb]) {
+        for (node_ptr1 = (uint64_t *)node_ptr1[0xb]; node_ptr1 != (uint64_t *)0x0;
+            node_ptr1 = (uint64_t *)node_ptr1[0xb]) {
           string_ptr2 = (char *)*node_ptr1;
           if (string_ptr2 == (char *)0x0) {
             string_ptr1 = (char *)0x0;
@@ -647,7 +647,7 @@ PROCESS_MULTIPLIER_VALUE:
             }
           }
         }
-        node_ptr1 = (undefined8 *)0x0;
+        node_ptr1 = (uint64_t *)0x0;
         
       PROCESS_SECOND_LEGACY_KEY:
         // 处理第二个关键帧
@@ -657,8 +657,8 @@ PROCESS_MULTIPLIER_VALUE:
           string_ptr2 = string_ptr3 + 1;
         } while (*string_ptr2 != '\0');
         
-        for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-            node_ptr2 = (undefined8 *)node_ptr2[6]) {
+        for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+            node_ptr2 = (uint64_t *)node_ptr2[6]) {
           string_ptr2 = (char *)*node_ptr2;
           if (string_ptr2 == (char *)0x0) {
             string_ptr1 = (char *)0x0;
@@ -695,8 +695,8 @@ PROCESS_MULTIPLIER_VALUE:
           string_ptr2 = string_ptr3 + 1;
         } while (*string_ptr2 != '\0');
         
-        for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-            node_ptr2 = (undefined8 *)node_ptr2[6]) {
+        for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+            node_ptr2 = (uint64_t *)node_ptr2[6]) {
           string_ptr2 = (char *)*node_ptr2;
           if (string_ptr2 == (char *)0x0) {
             string_ptr1 = (char *)0x0;
@@ -744,8 +744,8 @@ PROCESS_MULTIPLIER_VALUE:
         
         while( true ) {
           do {
-            node_ptr1 = (undefined8 *)node_ptr1[0xb];
-            if (node_ptr1 == (undefined8 *)0x0) {
+            node_ptr1 = (uint64_t *)node_ptr1[0xb];
+            if (node_ptr1 == (uint64_t *)0x0) {
               return;
             }
             string_ptr2 = (char *)*node_ptr1;
@@ -774,19 +774,19 @@ PROCESS_MULTIPLIER_VALUE:
       if (string_ptr1 <= string_ptr2) goto PROCESS_LEGACY_KEYS;
     }
   }
-  node_ptr1 = (undefined8 *)node_ptr1[0xb];
+  node_ptr1 = (uint64_t *)node_ptr1[0xb];
 } while( true );
 }
 
 
 
-// 函数: undefined8 * FUN_180270dd0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: uint64_t * FUN_180270dd0(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 // 清理动画曲线资源，释放内存
-undefined8 * 
-cleanup_animation_curve(undefined8 *curve_context, ulonglong cleanup_flags, undefined8 reserved1, undefined8 reserved2)
+uint64_t * 
+cleanup_animation_curve(uint64_t *curve_context, ulonglong cleanup_flags, uint64_t reserved1, uint64_t reserved2)
 
 {
-  undefined8 cleanup_marker;
+  uint64_t cleanup_marker;
   
   cleanup_marker = 0xfffffffffffffffe;
   cleanup_curve_resources(curve_context + 1);

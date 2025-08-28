@@ -180,13 +180,13 @@ void FUN_180821bb0(float *param_1,int param_2,longlong param_3,int param_4,ulong
           fVar16 = (float)(uint)*param_5 * 2.3283064e-10;
           fVar15 = (float)((int)((uint)*(uint3 *)(param_3 + (uVar6 - 2) * 3) << 8) >> 8) *
                    1.1920929e-07;
-          fVar14 = (float)((int)((uint)CONCAT21(CONCAT11(*(undefined1 *)((uVar6 - 1) + lVar7),
-                                                         *(undefined1 *)((uVar6 - 2) + lVar7)),
-                                                *(undefined1 *)((uVar6 - 3) + lVar7)) << 8) >> 8) *
+          fVar14 = (float)((int)((uint)CONCAT21(CONCAT11(*(int8_t *)((uVar6 - 1) + lVar7),
+                                                         *(int8_t *)((uVar6 - 2) + lVar7)),
+                                                *(int8_t *)((uVar6 - 3) + lVar7)) << 8) >> 8) *
                    1.1920929e-07;
-          fVar13 = (float)((int)((uint)CONCAT21(CONCAT11(*(undefined1 *)(uVar6 + 2 + lVar7),
-                                                         *(undefined1 *)(uVar6 + 1 + lVar7)),
-                                                *(undefined1 *)(uVar6 + lVar7)) << 8) >> 8) *
+          fVar13 = (float)((int)((uint)CONCAT21(CONCAT11(*(int8_t *)(uVar6 + 2 + lVar7),
+                                                         *(int8_t *)(uVar6 + 1 + lVar7)),
+                                                *(int8_t *)(uVar6 + lVar7)) << 8) >> 8) *
                    1.1920929e-07;
           fVar12 = (float)((int)((uint)*(uint3 *)((ulonglong)(uVar1 + 1) +
                                                  param_3 + (ulonglong)(uVar1 + 1) * 2) << 8) >> 8) *

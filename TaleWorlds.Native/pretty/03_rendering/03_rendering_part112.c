@@ -50,22 +50,22 @@
  * @param param_4 变换参数
  * @return void 无返回值
  */
-void RenderingSystem_DataTransformer(longlong param_1, longlong param_2, longlong param_3, undefined8 param_4)
+void RenderingSystem_DataTransformer(longlong param_1, longlong param_2, longlong param_3, uint64_t param_4)
 {
     // 简化实现：数据变换处理
     longlong lStack_70 = 0;
     uint *puStack_68 = (uint *)0x0;
     longlong lStack_60 = 0;
-    undefined2 uStack_58 = 0;
-    undefined1 uStack_56 = 3;
+    int16_t uStack_58 = 0;
+    int8_t uStack_56 = 3;
     
     // 初始化数据变换器
-    undefined8 uVar2 = *(undefined8 *)(param_1 + 0x898);
+    uint64_t uVar2 = *(uint64_t *)(param_1 + 0x898);
     longlong lStackX_18 = param_3;
     
     // 执行数据变换操作
     FUN_180639bf0(&lStack_70, 8, param_3, param_4, 0xfffffffffffffffe);
-    *(undefined8 *)puStack_68 = uVar2;
+    *(uint64_t *)puStack_68 = uVar2;
     uint *puVar10 = (uint *)((longlong)puStack_68 + 8);
     longlong lStackX_20 = param_1 + 0x878;
     
@@ -99,8 +99,8 @@ void RenderingSystem_DataTransformer(longlong param_1, longlong param_2, longlon
     
     // 写入变换结果
     lStackX_18 = lStack_60;
-    fwrite(&lStackX_18, 8, 1, *(undefined8 *)(param_2 + 8));
-    fwrite(lVar8, lStackX_18, 1, *(undefined8 *)(param_2 + 8));
+    fwrite(&lStackX_18, 8, 1, *(uint64_t *)(param_2 + 8));
+    fwrite(lVar8, lStackX_18, 1, *(uint64_t *)(param_2 + 8));
     
     // 清理资源
     if (((char)uStack_58 == '\0') && (lVar8 != 0)) {
@@ -120,19 +120,19 @@ void RenderingSystem_DataTransformer(longlong param_1, longlong param_2, longlon
  * @param param_3 矩阵处理参数
  * @return void 无返回值
  */
-void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, undefined8 param_3)
+void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, uint64_t param_3)
 {
     // 简化实现：矩阵处理
     longlong lStackX_10 = 0;
-    undefined8 uStackX_18 = param_3;
+    uint64_t uStackX_18 = param_3;
     
     // 读取矩阵数据
-    fread(&lStackX_10, 8, 1, *(undefined8 *)(param_2 + 8));
+    fread(&lStackX_10, 8, 1, *(uint64_t *)(param_2 + 8));
     longlong lStack_70 = 0;
     longlong *plStack_68 = (longlong *)0x0;
-    undefined8 uStack_60 = 0;
-    undefined2 uStack_58 = 0;
-    undefined1 uStack_56 = 3;
+    uint64_t uStack_60 = 0;
+    int16_t uStack_58 = 0;
+    int8_t uStack_56 = 3;
     
     // 分配矩阵内存
     if (lStackX_10 != 0) {
@@ -140,7 +140,7 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, undefin
     }
     
     longlong lVar7 = lStack_70;
-    fread(lStack_70, lStackX_10, 1, *(undefined8 *)(param_2 + 8));
+    fread(lStack_70, lStackX_10, 1, *(uint64_t *)(param_2 + 8));
     longlong lVar10 = *plStack_68;
     plStack_68 = plStack_68 + 1;
     
@@ -160,7 +160,7 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, undefin
         
         if (0 < (int)*puVar4) {
             // 创建矩阵对象
-            undefined8 *puVar1 = (undefined8 *)(param_1 + 0x878);
+            uint64_t *puVar1 = (uint64_t *)(param_1 + 0x878);
             int iVar12 = (int)lVar7;
             ulonglong uVar3 = (ulonglong)uStackX_18 >> 0x20;
             uStackX_18 = CONCAT44((int)uVar3, iVar12);
@@ -168,7 +168,7 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, undefin
             
             do {
                 // 矩阵初始化和处理
-                undefined4 *puVar5 = (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18, 0xa8, 8, 3);
+                int32_t *puVar5 = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, 0xa8, 8, 3);
                 longlong *plVar2 = (longlong *)(puVar5 + 0x22);
                 *plVar2 = (longlong)&UNK_18098bcb0;
                 
@@ -180,24 +180,24 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, undefin
                 FUN_18033a3f0(puVar5, &lStack_70);
                 
                 // 矩阵管理
-                undefined8 *puVar6 = puVar1;
-                undefined8 *puVar11 = *(undefined8 **)(param_1 + 0x888);
+                uint64_t *puVar6 = puVar1;
+                uint64_t *puVar11 = *(uint64_t **)(param_1 + 0x888);
                 
                 // 查找合适的矩阵位置
-                while (puVar11 != (undefined8 *)0x0) {
+                while (puVar11 != (uint64_t *)0x0) {
                     if (*(int *)(puVar11 + 4) < iVar12) {
-                        puVar11 = (undefined8 *)*puVar11;
+                        puVar11 = (uint64_t *)*puVar11;
                     }
                     else {
                         puVar6 = puVar11;
-                        puVar11 = (undefined8 *)puVar11[1];
+                        puVar11 = (uint64_t *)puVar11[1];
                     }
                 }
                 
                 // 插入矩阵到管理器
                 if ((puVar6 == puVar1) || (iVar12 < *(int *)(puVar6 + 4))) {
-                    puVar6 = (undefined8 *)FUN_18020d730(puVar1, &lVar7);
-                    puVar6 = (undefined8 *)*puVar6;
+                    puVar6 = (uint64_t *)FUN_18020d730(puVar1, &lVar7);
+                    puVar6 = (uint64_t *)*puVar6;
                 }
                 
                 uStackX_20 = uStackX_20 - 1;
@@ -222,22 +222,22 @@ void RenderingSystem_MatrixProcessor(longlong param_1, longlong param_2, undefin
  * @param param_4 资源选项
  * @return void 无返回值
  */
-void RenderingSystem_ResourceManager(longlong param_1, longlong param_2, longlong param_3, undefined8 param_4)
+void RenderingSystem_ResourceManager(longlong param_1, longlong param_2, longlong param_3, uint64_t param_4)
 {
     // 简化实现：资源管理
     longlong lStack_70 = 0;
     uint *puStack_68 = (uint *)0x0;
     longlong lStack_60 = 0;
-    undefined2 uStack_58 = 0;
-    undefined1 uStack_56 = 3;
+    int16_t uStack_58 = 0;
+    int8_t uStack_56 = 3;
     
     // 初始化资源管理器
-    undefined8 uVar2 = *(undefined8 *)(param_1 + 0x8c8);
+    uint64_t uVar2 = *(uint64_t *)(param_1 + 0x8c8);
     longlong lStackX_18 = param_3;
     
     // 执行资源管理操作
     FUN_180639bf0(&lStack_70, 8, param_3, param_4, 0xfffffffffffffffe);
-    *(undefined8 *)puStack_68 = uVar2;
+    *(uint64_t *)puStack_68 = uVar2;
     uint *puVar8 = (uint *)((longlong)puStack_68 + 8);
     longlong lStackX_20 = param_1 + 0x8a8;
     
@@ -271,8 +271,8 @@ void RenderingSystem_ResourceManager(longlong param_1, longlong param_2, longlon
     
     // 写入资源管理结果
     lStackX_18 = lStack_60;
-    fwrite(&lStackX_18, 8, 1, *(undefined8 *)(param_2 + 8));
-    fwrite(lVar9, lStackX_18, 1, *(undefined8 *)(param_2 + 8));
+    fwrite(&lStackX_18, 8, 1, *(uint64_t *)(param_2 + 8));
+    fwrite(lVar9, lStackX_18, 1, *(uint64_t *)(param_2 + 8));
     
     // 清理资源
     if (((char)uStack_58 == '\0') && (lVar9 != 0)) {
@@ -292,19 +292,19 @@ void RenderingSystem_ResourceManager(longlong param_1, longlong param_2, longlon
  * @param param_3 内存处理参数
  * @return void 无返回值
  */
-void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, undefined8 param_3)
+void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, uint64_t param_3)
 {
     // 简化实现：内存处理
     longlong lStackX_10 = 0;
-    undefined8 uStackX_18 = param_3;
+    uint64_t uStackX_18 = param_3;
     
     // 读取内存数据
-    fread(&lStackX_10, 8, 1, *(undefined8 *)(param_2 + 8));
+    fread(&lStackX_10, 8, 1, *(uint64_t *)(param_2 + 8));
     longlong lStack_68 = 0;
     uint *puStack_60 = (uint *)0x0;
-    undefined8 uStack_58 = 0;
-    undefined2 uStack_50 = 0;
-    undefined1 uStack_4e = 3;
+    uint64_t uStack_58 = 0;
+    int16_t uStack_50 = 0;
+    int8_t uStack_4e = 3;
     
     // 分配内存
     if (lStackX_10 != 0) {
@@ -312,7 +312,7 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, undefin
     }
     
     longlong lVar8 = lStack_68;
-    fread(lStack_68, lStackX_10, 1, *(undefined8 *)(param_2 + 8));
+    fread(lStack_68, lStackX_10, 1, *(uint64_t *)(param_2 + 8));
     longlong lVar10 = *(longlong *)puStack_60;
     uint *puVar12 = (uint *)((longlong)puStack_60 + 8);
     puStack_60 = puVar12;
@@ -327,14 +327,14 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, undefin
         }
         
         // 内存处理逻辑
-        undefined8 uVar4 = *(undefined8 *)puVar12;
+        uint64_t uVar4 = *(uint64_t *)puVar12;
         uint *puVar15 = puVar12 + 2;
         puVar12 = puVar12 + 3;
         puStack_60 = puVar12;
         
         if (0 < (int)*puVar15) {
             // 创建内存对象
-            undefined8 *puVar2 = (undefined8 *)(param_1 + 0x8a8);
+            uint64_t *puVar2 = (uint64_t *)(param_1 + 0x8a8);
             int iVar14 = (int)uVar4;
             ulonglong uVar5 = (ulonglong)uStackX_18 >> 0x20;
             uStackX_18 = CONCAT44((int)uVar5, iVar14);
@@ -342,7 +342,7 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, undefin
             
             do {
                 // 内存初始化和处理
-                undefined4 *puVar6 = (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
+                int32_t *puVar6 = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
                 longlong *plVar1 = (longlong *)(puVar6 + 10);
                 *plVar1 = (longlong)&UNK_18098bcb0;
                 
@@ -351,7 +351,7 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, undefin
                 (**(code **)(*plVar1 + 0x10))(plVar1, &DAT_18098bc73);
                 
                 // 内存处理
-                undefined4 uVar16 = 0;
+                int32_t uVar16 = 0;
                 puVar6[5] = 0;
                 puVar6[6] = 0;
                 puVar6[7] = 0;
@@ -370,24 +370,24 @@ void RenderingSystem_MemoryProcessor(longlong param_1, longlong param_2, undefin
                 *puVar6 = uVar16;
                 
                 // 内存管理
-                undefined8 *puVar7 = puVar2;
-                undefined8 *puVar13 = *(undefined8 **)(param_1 + 0x8b8);
+                uint64_t *puVar7 = puVar2;
+                uint64_t *puVar13 = *(uint64_t **)(param_1 + 0x8b8);
                 
                 // 查找合适的内存位置
-                while (puVar13 != (undefined8 *)0x0) {
+                while (puVar13 != (uint64_t *)0x0) {
                     if (*(int *)(puVar13 + 4) < iVar14) {
-                        puVar13 = (undefined8 *)*puVar13;
+                        puVar13 = (uint64_t *)*puVar13;
                     }
                     else {
                         puVar7 = puVar13;
-                        puVar13 = (undefined8 *)puVar13[1];
+                        puVar13 = (uint64_t *)puVar13[1];
                     }
                 }
                 
                 // 插入内存到管理器
                 if ((puVar7 == puVar2) || (iVar14 < *(int *)(puVar7 + 4))) {
-                    puVar7 = (undefined8 *)FUN_18020d730(puVar2, &lVar8);
-                    puVar7 = (undefined8 *)*puVar7;
+                    puVar7 = (uint64_t *)FUN_18020d730(puVar2, &lVar8);
+                    puVar7 = (uint64_t *)*puVar7;
                 }
                 
                 uStackX_20 = uStackX_20 - 1;
@@ -415,7 +415,7 @@ void RenderingSystem_DataSerializer(longlong param_1, uint param_2)
 {
     // 简化实现：数据序列化
     ulonglong uVar18 = (ulonglong)param_2;
-    undefined8 uStack_68 = 0xfffffffffffffffe;
+    uint64_t uStack_68 = 0xfffffffffffffffe;
     longlong *plVar6 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0xe0, 8, 3);
     
     // 初始化序列化器
@@ -425,7 +425,7 @@ void RenderingSystem_DataSerializer(longlong param_1, uint param_2)
     *puVar1 = 0;
     plVar6[0x19] = 0;
     plVar6[0x1a] = 0;
-    *(undefined4 *)(plVar6 + 0x1b) = 3;
+    *(int32_t *)(plVar6 + 0x1b) = 3;
     
     // 执行序列化操作
     (**(code **)(*plVar6 + 0x28))(plVar6);
@@ -439,8 +439,8 @@ void RenderingSystem_DataSerializer(longlong param_1, uint param_2)
     // 序列化处理
     uint *puStack_88 = (uint *)0x0;
     uint *puStack_80 = (uint *)0x0;
-    undefined8 uStack_78 = 0;
-    undefined4 uStack_70 = 3;
+    uint64_t uStack_78 = 0;
+    int32_t uStack_70 = 3;
     
     FUN_18032b1c0(param_1, &puStack_88, uVar18, 1);
     
@@ -476,7 +476,7 @@ void RenderingSystem_DataSerializer(longlong param_1, uint param_2)
     }
     
     // 完成序列化
-    undefined8 uVar17 = _DAT_180c82868;
+    uint64_t uVar17 = _DAT_180c82868;
     (**(code **)(*plVar6 + 0x28))(plVar6);
     FUN_18005e110(uVar17, &puVar1);
     

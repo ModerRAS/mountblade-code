@@ -134,140 +134,140 @@ void rendering_system_string_comparator_and_config_processor(
     char comparison_result_2;
     int string_length;
     char *string_pointer;
-    undefined8 *config_data;
+    uint64_t *config_data;
     longlong offset_value;
     bool match_result;
     
     // 栈缓冲区 - 用于字符串处理和配置数据
-    undefined1 string_buffer_1[STRING_BUFFER_SIZE_SMALL];
+    int8_t string_buffer_1[STRING_BUFFER_SIZE_SMALL];
     longlong *stack_pointer_1;
-    undefined8 stack_value_1;
-    undefined *pointer_1;
-    undefined1 *pointer_2;
-    undefined4 config_value_1;
-    undefined1 config_buffer_1[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_3;
-    undefined1 *pointer_4;
-    undefined4 config_value_2;
-    undefined1 config_buffer_2[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_5;
-    undefined1 *pointer_6;
-    undefined4 config_value_3;
-    undefined1 config_buffer_3[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_7;
-    undefined1 *pointer_8;
-    undefined4 config_value_4;
-    undefined1 config_buffer_4[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_9;
-    undefined1 *pointer_10;
-    undefined4 config_value_5;
-    undefined1 config_buffer_5[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_11;
-    undefined1 *pointer_12;
-    undefined4 config_value_6;
-    undefined1 config_buffer_6[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_13;
-    undefined1 *pointer_14;
-    undefined4 config_value_7;
-    undefined1 config_buffer_7[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_15;
-    undefined1 *pointer_16;
-    undefined4 config_value_8;
-    undefined1 config_buffer_8[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_17;
-    undefined1 *pointer_18;
-    undefined4 config_value_9;
-    undefined1 config_buffer_9[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_19;
-    undefined1 *pointer_20;
-    undefined4 config_value_10;
-    undefined1 config_buffer_10[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_21;
-    undefined1 *pointer_22;
-    undefined4 config_value_11;
-    undefined1 config_buffer_11[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_23;
-    undefined1 *pointer_24;
-    undefined4 config_value_12;
-    undefined1 config_buffer_12[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_25;
-    undefined1 *pointer_26;
-    undefined4 config_value_13;
-    undefined1 config_buffer_13[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_27;
-    undefined1 *pointer_28;
-    undefined4 config_value_14;
-    undefined1 config_buffer_14[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_29;
-    undefined1 *pointer_30;
-    undefined4 config_value_15;
-    undefined1 config_buffer_15[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_31;
-    undefined1 *pointer_32;
-    undefined4 config_value_16;
-    undefined1 config_buffer_16[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_33;
-    undefined1 *pointer_34;
-    undefined4 config_value_17;
-    undefined1 config_buffer_17[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_35;
-    undefined1 *pointer_36;
-    undefined4 config_value_18;
-    undefined1 config_buffer_18[STRING_BUFFER_SIZE_LARGE];
+    uint64_t stack_value_1;
+    void *pointer_1;
+    int8_t *pointer_2;
+    int32_t config_value_1;
+    int8_t config_buffer_1[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_3;
+    int8_t *pointer_4;
+    int32_t config_value_2;
+    int8_t config_buffer_2[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_5;
+    int8_t *pointer_6;
+    int32_t config_value_3;
+    int8_t config_buffer_3[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_7;
+    int8_t *pointer_8;
+    int32_t config_value_4;
+    int8_t config_buffer_4[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_9;
+    int8_t *pointer_10;
+    int32_t config_value_5;
+    int8_t config_buffer_5[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_11;
+    int8_t *pointer_12;
+    int32_t config_value_6;
+    int8_t config_buffer_6[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_13;
+    int8_t *pointer_14;
+    int32_t config_value_7;
+    int8_t config_buffer_7[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_15;
+    int8_t *pointer_16;
+    int32_t config_value_8;
+    int8_t config_buffer_8[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_17;
+    int8_t *pointer_18;
+    int32_t config_value_9;
+    int8_t config_buffer_9[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_19;
+    int8_t *pointer_20;
+    int32_t config_value_10;
+    int8_t config_buffer_10[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_21;
+    int8_t *pointer_22;
+    int32_t config_value_11;
+    int8_t config_buffer_11[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_23;
+    int8_t *pointer_24;
+    int32_t config_value_12;
+    int8_t config_buffer_12[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_25;
+    int8_t *pointer_26;
+    int32_t config_value_13;
+    int8_t config_buffer_13[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_27;
+    int8_t *pointer_28;
+    int32_t config_value_14;
+    int8_t config_buffer_14[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_29;
+    int8_t *pointer_30;
+    int32_t config_value_15;
+    int8_t config_buffer_15[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_31;
+    int8_t *pointer_32;
+    int32_t config_value_16;
+    int8_t config_buffer_16[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_33;
+    int8_t *pointer_34;
+    int32_t config_value_17;
+    int8_t config_buffer_17[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_35;
+    int8_t *pointer_36;
+    int32_t config_value_18;
+    int8_t config_buffer_18[STRING_BUFFER_SIZE_LARGE];
     int buffer_size;
-    undefined1 config_buffer_19[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_37;
-    undefined1 *pointer_38;
-    undefined4 config_value_19;
-    undefined1 config_buffer_20[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_39;
-    undefined1 *pointer_40;
-    undefined4 config_value_20;
-    undefined1 config_buffer_21[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_41;
-    undefined1 *pointer_42;
-    undefined4 config_value_21;
-    undefined1 config_buffer_22[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_43;
-    undefined1 *pointer_44;
-    undefined4 config_value_22;
-    undefined1 config_buffer_23[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_45;
-    undefined1 *pointer_46;
-    undefined4 config_value_23;
-    undefined1 config_buffer_24[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_47;
-    undefined1 *pointer_48;
-    undefined4 config_value_24;
-    undefined1 config_buffer_25[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_49;
-    undefined1 *pointer_50;
-    undefined4 config_value_25;
-    undefined1 config_buffer_26[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_51;
-    undefined1 *pointer_52;
-    undefined4 config_value_26;
-    undefined1 config_buffer_27[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_53;
-    undefined1 *pointer_54;
-    undefined4 config_value_27;
-    undefined1 config_buffer_28[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_55;
-    undefined1 *pointer_56;
-    undefined4 config_value_28;
-    undefined1 config_buffer_29[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_57;
-    undefined1 *pointer_58;
-    undefined4 config_value_29;
-    undefined1 config_buffer_30[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_59;
-    undefined1 *pointer_60;
-    undefined4 config_value_30;
-    undefined1 config_buffer_31[STRING_BUFFER_SIZE_LARGE];
-    undefined *pointer_61;
-    undefined1 *pointer_62;
-    undefined4 config_value_31;
-    undefined1 config_buffer_32[STRING_BUFFER_SIZE_LARGE];
+    int8_t config_buffer_19[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_37;
+    int8_t *pointer_38;
+    int32_t config_value_19;
+    int8_t config_buffer_20[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_39;
+    int8_t *pointer_40;
+    int32_t config_value_20;
+    int8_t config_buffer_21[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_41;
+    int8_t *pointer_42;
+    int32_t config_value_21;
+    int8_t config_buffer_22[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_43;
+    int8_t *pointer_44;
+    int32_t config_value_22;
+    int8_t config_buffer_23[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_45;
+    int8_t *pointer_46;
+    int32_t config_value_23;
+    int8_t config_buffer_24[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_47;
+    int8_t *pointer_48;
+    int32_t config_value_24;
+    int8_t config_buffer_25[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_49;
+    int8_t *pointer_50;
+    int32_t config_value_25;
+    int8_t config_buffer_26[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_51;
+    int8_t *pointer_52;
+    int32_t config_value_26;
+    int8_t config_buffer_27[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_53;
+    int8_t *pointer_54;
+    int32_t config_value_27;
+    int8_t config_buffer_28[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_55;
+    int8_t *pointer_56;
+    int32_t config_value_28;
+    int8_t config_buffer_29[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_57;
+    int8_t *pointer_58;
+    int32_t config_value_29;
+    int8_t config_buffer_30[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_59;
+    int8_t *pointer_60;
+    int32_t config_value_30;
+    int8_t config_buffer_31[STRING_BUFFER_SIZE_LARGE];
+    void *pointer_61;
+    int8_t *pointer_62;
+    int32_t config_value_31;
+    int8_t config_buffer_32[STRING_BUFFER_SIZE_LARGE];
     ulonglong checksum_value;
     
     // 初始化栈值
@@ -454,11 +454,11 @@ SECONDARY_COMPARE_FAILED:
     
 FINALIZE_RENDER_PROCESS:
     // 执行渲染管线处理
-    config_data = (undefined8 *)
+    config_data = (uint64_t *)
         FUN_180389090(*(longlong *)(*(longlong *)(render_context + 0x18) + 0x20) + 0x2970, 
                      &stack_pointer_1, render_context + STACK_OFFSET_0x70);
     
-    *(undefined8 *)(render_context + 0x108) = *config_data;
+    *(uint64_t *)(render_context + 0x108) = *config_data;
     
     // 执行栈指针回调
     if (stack_pointer_1 != (longlong *)0x0) {
@@ -490,9 +490,9 @@ void rendering_system_advanced_initializer_and_state_manager(
     // 局部变量声明
     uint state_flags;
     longlong render_data;
-    undefined8 memory_block;
+    uint64_t memory_block;
     int allocation_size;
-    undefined8 temp_value;
+    uint64_t temp_value;
     longlong *memory_pointer;
     longlong context_data;
     byte state_bit;
@@ -504,7 +504,7 @@ void rendering_system_advanced_initializer_and_state_manager(
     longlong **stack_pointer_4;
     
     // 获取渲染数据指针
-    render_data = *(undefined8 *)(*(longlong *)(render_context + 0x18) + 0x20);
+    render_data = *(uint64_t *)(*(longlong *)(render_context + 0x18) + 0x20);
     
     // 内存分配操作
     temp_value = FUN_18062b1e0(_DAT_180c8ed18, MEMORY_ALLOC_SIZE_0x2f0, MEMORY_ALLOC_SIZE_0x10, MEMORY_ALLOC_SIZE_0xd);
@@ -545,7 +545,7 @@ void rendering_system_advanced_initializer_and_state_manager(
     }
     
     // 应用新的渲染配置
-    FUN_180170ac0(*(undefined8 *)(render_context + STACK_OFFSET_0x118), &UNK_180a1ed48);
+    FUN_180170ac0(*(uint64_t *)(render_context + STACK_OFFSET_0x118), &UNK_180a1ed48);
     
     // 获取新的上下文数据
     context_data = *(longlong *)(render_context + STACK_OFFSET_0x118);
@@ -601,13 +601,13 @@ void rendering_system_advanced_initializer_and_state_manager(
  * 设置渲染配置组1
  */
 static inline void set_render_configuration_group_1(
-    undefined **p1, undefined1 **p2, undefined4 v1, undefined1 *b1,
-    undefined **p3, undefined1 **p4, undefined4 v2, undefined1 *b2,
-    undefined **p5, undefined1 **p6, undefined4 v3, undefined1 *b3,
-    undefined **p7, undefined1 **p8, undefined4 v4, undefined1 *b4,
-    undefined **p9, undefined1 **p10, undefined4 v5, undefined1 *b5,
-    undefined **p11, undefined1 **p12, undefined4 v6, undefined1 *b6,
-    undefined **p13, undefined1 **p14, undefined4 v7, undefined1 *b7
+    void **p1, int8_t **p2, int32_t v1, int8_t *b1,
+    void **p3, int8_t **p4, int32_t v2, int8_t *b2,
+    void **p5, int8_t **p6, int32_t v3, int8_t *b3,
+    void **p7, int8_t **p8, int32_t v4, int8_t *b4,
+    void **p9, int8_t **p10, int32_t v5, int8_t *b5,
+    void **p11, int8_t **p12, int32_t v6, int8_t *b6,
+    void **p13, int8_t **p14, int32_t v7, int8_t *b7
 ) {
     // 第一组配置设置
     *p1 = &UNK_1809fcc58;

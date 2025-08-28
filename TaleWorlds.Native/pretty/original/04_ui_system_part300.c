@@ -483,7 +483,7 @@ void UISystem_AdvancedTextureSampler(float *param_1, uint param_2, longlong para
  * - 循环展开优化
  * - 内存预取技术
  */
-void UISystem_VertexBatchTransformer(undefined8 param_1, int param_2)
+void UISystem_VertexBatchTransformer(uint64_t param_1, int param_2)
 {
     char cVar1;
     char cVar2;
@@ -505,7 +505,7 @@ void UISystem_VertexBatchTransformer(undefined8 param_1, int param_2)
     uint uVar18;
     longlong in_RAX;
     ulonglong *unaff_RBX;
-    undefined8 unaff_RBP;
+    uint64_t unaff_RBP;
     longlong *unaff_RSI;
     uint unaff_EDI;
     uint uVar19;
@@ -517,36 +517,36 @@ void UISystem_VertexBatchTransformer(undefined8 param_1, int param_2)
     float fVar23;
     float fVar24;
     float fVar25;
-    undefined8 unaff_XMM6_Qa;
-    undefined8 unaff_XMM6_Qb;
-    undefined8 unaff_XMM7_Qa;
-    undefined8 unaff_XMM7_Qb;
-    undefined8 unaff_XMM8_Qa;
-    undefined8 unaff_XMM8_Qb;
-    undefined8 unaff_XMM9_Qa;
-    undefined8 unaff_XMM9_Qb;
-    undefined8 unaff_XMM10_Qa;
-    undefined8 unaff_XMM10_Qb;
+    uint64_t unaff_XMM6_Qa;
+    uint64_t unaff_XMM6_Qb;
+    uint64_t unaff_XMM7_Qa;
+    uint64_t unaff_XMM7_Qb;
+    uint64_t unaff_XMM8_Qa;
+    uint64_t unaff_XMM8_Qb;
+    uint64_t unaff_XMM9_Qa;
+    uint64_t unaff_XMM9_Qb;
+    uint64_t unaff_XMM10_Qa;
+    uint64_t unaff_XMM10_Qb;
     float unaff_XMM11_Da;
     float unaff_XMM12_Da;
     float unaff_XMM13_Da;
     
     // 保存SIMD寄存器状态
-    *(undefined8 *)(in_RAX + 8) = unaff_RBP;
+    *(uint64_t *)(in_RAX + 8) = unaff_RBP;
     param_2 = param_2 >> 2;
     
     if (param_2 != 0) {
         // 保存SIMD寄存器到栈
-        *(undefined8 *)(in_RAX + -0x18) = unaff_XMM6_Qa;
-        *(undefined8 *)(in_RAX + -0x10) = unaff_XMM6_Qb;
-        *(undefined8 *)(in_RAX + -0x28) = unaff_XMM7_Qa;
-        *(undefined8 *)(in_RAX + -0x20) = unaff_XMM7_Qb;
-        *(undefined8 *)(in_RAX + -0x38) = unaff_XMM8_Qa;
-        *(undefined8 *)(in_RAX + -0x30) = unaff_XMM8_Qb;
-        *(undefined8 *)(in_RAX + -0x48) = unaff_XMM9_Qa;
-        *(undefined8 *)(in_RAX + -0x40) = unaff_XMM9_Qb;
-        *(undefined8 *)(in_RAX + -0x58) = unaff_XMM10_Qa;
-        *(undefined8 *)(in_RAX + -0x50) = unaff_XMM10_Qb;
+        *(uint64_t *)(in_RAX + -0x18) = unaff_XMM6_Qa;
+        *(uint64_t *)(in_RAX + -0x10) = unaff_XMM6_Qb;
+        *(uint64_t *)(in_RAX + -0x28) = unaff_XMM7_Qa;
+        *(uint64_t *)(in_RAX + -0x20) = unaff_XMM7_Qb;
+        *(uint64_t *)(in_RAX + -0x38) = unaff_XMM8_Qa;
+        *(uint64_t *)(in_RAX + -0x30) = unaff_XMM8_Qb;
+        *(uint64_t *)(in_RAX + -0x48) = unaff_XMM9_Qa;
+        *(uint64_t *)(in_RAX + -0x40) = unaff_XMM9_Qb;
+        *(uint64_t *)(in_RAX + -0x58) = unaff_XMM10_Qa;
+        *(uint64_t *)(in_RAX + -0x50) = unaff_XMM10_Qb;
         
         // 批量变换主循环
         do {
@@ -675,31 +675,31 @@ void UISystem_OptimizedVertexProcessor(void)
     float fVar23;
     float fVar24;
     float fVar25;
-    undefined8 unaff_XMM6_Qa;
-    undefined8 unaff_XMM6_Qb;
-    undefined8 unaff_XMM7_Qa;
-    undefined8 unaff_XMM7_Qb;
-    undefined8 unaff_XMM8_Qa;
-    undefined8 unaff_XMM8_Qb;
-    undefined8 unaff_XMM9_Qa;
-    undefined8 unaff_XMM9_Qb;
-    undefined8 unaff_XMM10_Qa;
-    undefined8 unaff_XMM10_Qb;
+    uint64_t unaff_XMM6_Qa;
+    uint64_t unaff_XMM6_Qb;
+    uint64_t unaff_XMM7_Qa;
+    uint64_t unaff_XMM7_Qb;
+    uint64_t unaff_XMM8_Qa;
+    uint64_t unaff_XMM8_Qb;
+    uint64_t unaff_XMM9_Qa;
+    uint64_t unaff_XMM9_Qb;
+    uint64_t unaff_XMM10_Qa;
+    uint64_t unaff_XMM10_Qb;
     float unaff_XMM11_Da;
     float unaff_XMM12_Da;
     float unaff_XMM13_Da;
     
     // 保存SIMD寄存器状态
-    *(undefined8 *)(in_RAX + -0x18) = unaff_XMM6_Qa;
-    *(undefined8 *)(in_RAX + -0x10) = unaff_XMM6_Qb;
-    *(undefined8 *)(in_RAX + -0x28) = unaff_XMM7_Qa;
-    *(undefined8 *)(in_RAX + -0x20) = unaff_XMM7_Qb;
-    *(undefined8 *)(in_RAX + -0x38) = unaff_XMM8_Qa;
-    *(undefined8 *)(in_RAX + -0x30) = unaff_XMM8_Qb;
-    *(undefined8 *)(in_RAX + -0x48) = unaff_XMM9_Qa;
-    *(undefined8 *)(in_RAX + -0x40) = unaff_XMM9_Qb;
-    *(undefined8 *)(in_RAX + -0x58) = unaff_XMM10_Qa;
-    *(undefined8 *)(in_RAX + -0x50) = unaff_XMM10_Qb;
+    *(uint64_t *)(in_RAX + -0x18) = unaff_XMM6_Qa;
+    *(uint64_t *)(in_RAX + -0x10) = unaff_XMM6_Qb;
+    *(uint64_t *)(in_RAX + -0x28) = unaff_XMM7_Qa;
+    *(uint64_t *)(in_RAX + -0x20) = unaff_XMM7_Qb;
+    *(uint64_t *)(in_RAX + -0x38) = unaff_XMM8_Qa;
+    *(uint64_t *)(in_RAX + -0x30) = unaff_XMM8_Qb;
+    *(uint64_t *)(in_RAX + -0x48) = unaff_XMM9_Qa;
+    *(uint64_t *)(in_RAX + -0x40) = unaff_XMM9_Qb;
+    *(uint64_t *)(in_RAX + -0x58) = unaff_XMM10_Qa;
+    *(uint64_t *)(in_RAX + -0x50) = unaff_XMM10_Qb;
     
     // 优化处理主循环
     do {
@@ -936,16 +936,16 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
     uint uVar37;
     uint uVar38;
     int iVar40;
-    undefined1 auVar39 [16];
+    int8_t auVar39 [16];
     int iVar42;
     longlong lVar41;
     int iVar44;
-    undefined1 auVar43 [16];
+    int8_t auVar43 [16];
     int iVar45;
     float fVar46;
-    undefined1 auStack_e8 [8];
-    undefined8 uStack_e0;
-    undefined8 uStack_d8;
+    int8_t auStack_e8 [8];
+    uint64_t uStack_e0;
+    uint64_t uStack_d8;
     ulonglong auStack_b8 [22];
     
     puVar30 = auStack_b8;
@@ -1154,7 +1154,7 @@ void UISystem_AdvancedGraphicsRenderer(float *param_1, uint param_2, longlong pa
     }
     
     // 清理和返回
-    *(undefined8 *)((longlong)puVar30 + -8) = 0x180833afc;
+    *(uint64_t *)((longlong)puVar30 + -8) = 0x180833afc;
     FUN_1808fc050(auStack_b8[0] ^ (ulonglong)auStack_b8);
 }
 

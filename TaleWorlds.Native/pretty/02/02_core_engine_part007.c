@@ -22,33 +22,33 @@ void register_render_system_component(void)
 {
   // 变量声明
   char component_flag;           // 组件标志位
-  undefined8 *engine_context;   // 引擎上下文指针
+  uint64_t *engine_context;   // 引擎上下文指针
   int compare_result;           // 内存比较结果
   longlong *global_engine;      // 全局引擎指针
   longlong allocation_size;     // 内存分配大小
-  undefined8 *current_node;     // 当前链表节点
-  undefined8 *previous_node;    // 前一个链表节点
-  undefined8 *next_node;        // 下一个链表节点
-  undefined8 *new_component;    // 新创建的组件
+  uint64_t *current_node;     // 当前链表节点
+  uint64_t *previous_node;    // 前一个链表节点
+  uint64_t *next_node;        // 下一个链表节点
+  uint64_t *new_component;    // 新创建的组件
   code *component_callback;     // 组件回调函数
   
   // 获取全局引擎上下文
   global_engine = (longlong *)FUN_18008d070();
-  engine_context = (undefined8 *)*global_engine;
+  engine_context = (uint64_t *)*global_engine;
   component_flag = *(char *)((longlong)engine_context[1] + 0x19);
   component_callback = FUN_18025d270;  // 设置渲染系统回调
   previous_node = engine_context;
-  current_node = (undefined8 *)engine_context[1];
+  current_node = (uint64_t *)engine_context[1];
   
   // 遍历组件链表，查找合适的位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_node + 4, &DAT_180a01028, 0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -81,30 +81,30 @@ void register_audio_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -133,30 +133,30 @@ void register_physics_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c940,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -185,30 +185,30 @@ void register_input_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c918,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -237,30 +237,30 @@ void register_network_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c968,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -289,30 +289,30 @@ void register_scripting_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c990,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -341,30 +341,30 @@ void register_resource_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c9e0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -393,30 +393,30 @@ void register_animation_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_180073930;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8f0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -445,30 +445,30 @@ void register_ui_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -497,30 +497,30 @@ void register_ai_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -549,30 +549,30 @@ void register_scene_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -601,30 +601,30 @@ void register_camera_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025e330;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00d48,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -653,30 +653,30 @@ void register_lighting_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d510;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00e28,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -705,30 +705,30 @@ void register_particle_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_1802281a0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9e8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -757,30 +757,30 @@ void register_material_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_1802285e0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809ff9c0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -809,30 +809,30 @@ void register_shader_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -861,30 +861,30 @@ void register_texture_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -913,30 +913,30 @@ void register_mesh_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -965,30 +965,30 @@ void register_collision_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1017,30 +1017,30 @@ void register_navigation_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1069,30 +1069,30 @@ void register_sound_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  void *puStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1121,30 +1121,30 @@ void register_music_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1173,30 +1173,30 @@ void register_effect_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1225,30 +1225,30 @@ void register_entity_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d660,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1277,30 +1277,30 @@ void register_component_system_component(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a2d590,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -1361,7 +1361,7 @@ int setup_engine_globals(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   
   _DAT_180bf64f8 = &UNK_18098bc80;
   _DAT_180bf6500 = &DAT_180bf6510;

@@ -17,10 +17,10 @@
 //------------------------------------------------------------------------------
 
 // 配置解析器句柄类型
-typedef undefined8 ConfigParserHandle;              // 配置解析器句柄
-typedef undefined8 StreamHandle;                   // 数据流句柄
-typedef undefined8 TokenHandle;                    // 标记处理句柄
-typedef undefined8 ErrorHandlerHandle;            // 错误处理句柄
+typedef uint64_t ConfigParserHandle;              // 配置解析器句柄
+typedef uint64_t StreamHandle;                   // 数据流句柄
+typedef uint64_t TokenHandle;                    // 标记处理句柄
+typedef uint64_t ErrorHandlerHandle;            // 错误处理句柄
 
 // 解析器状态常量
 #define PARSER_STATE_INIT           0x00000001     // 解析器初始化状态
@@ -103,8 +103,8 @@ typedef struct {
     int maxTokenLength;                             // 最大标记长度
     int timeout;                                   // 超时时间
     int flags;                                     // 标志位
-    undefined8 *streamHandle;                       // 数据流句柄
-    undefined8 *errorHandler;                      // 错误处理器
+    uint64_t *streamHandle;                       // 数据流句柄
+    uint64_t *errorHandler;                      // 错误处理器
 } ParserConfig;
 
 // 标记信息结构体
@@ -130,20 +130,20 @@ typedef struct {
 //------------------------------------------------------------------------------
 
 // 核心解析函数
-undefined8 ConfigFileParser(undefined8 context, undefined8 config);
-undefined8 StreamProcessor(undefined8 stream, undefined8 buffer);
-undefined8 TokenAnalyzer(undefined8 token, undefined8 context);
+uint64_t ConfigFileParser(uint64_t context, uint64_t config);
+uint64_t StreamProcessor(uint64_t stream, uint64_t buffer);
+uint64_t TokenAnalyzer(uint64_t token, uint64_t context);
 
 // 辅助处理函数
-undefined8 SkipWhitespace(undefined8 stream, undefined8 *position);
-undefined8 ParseIdentifier(undefined8 stream, char *buffer, int maxLength);
-undefined8 ParseStringLiteral(undefined8 stream, char *buffer, int maxLength);
-undefined8 ParseComment(undefined8 stream, undefined8 *position);
+uint64_t SkipWhitespace(uint64_t stream, uint64_t *position);
+uint64_t ParseIdentifier(uint64_t stream, char *buffer, int maxLength);
+uint64_t ParseStringLiteral(uint64_t stream, char *buffer, int maxLength);
+uint64_t ParseComment(uint64_t stream, uint64_t *position);
 
 // 错误处理函数
-undefined8 HandleParseError(undefined8 context, int errorCode);
-undefined8 ValidateSyntax(undefined8 context, undefined8 token);
-undefined8 RecoverFromError(undefined8 context, undefined8 *position);
+uint64_t HandleParseError(uint64_t context, int errorCode);
+uint64_t ValidateSyntax(uint64_t context, uint64_t token);
+uint64_t RecoverFromError(uint64_t context, uint64_t *position);
 
 //------------------------------------------------------------------------------
 // 函数别名定义
@@ -223,7 +223,7 @@ void FUN_1807c5c8d(void)
     // 主解析循环
     do {
         // 读取下一个字符到缓冲区
-        parseResult = StreamReadChar(*(undefined8 *)(contextPtr + 0x170), 
+        parseResult = StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
                                       (longlong)&tempBuffer + 1);
         if (parseResult != PARSER_SUCCESS) {
             // 处理致命错误，安全退出
@@ -235,10 +235,10 @@ void FUN_1807c5c8d(void)
             (nextChar != XML_NEWLINE)) && (nextChar != XML_CARRIAGE_RETURN)) {
             
             // 执行标记化处理
-            parseResult = TokenizeInput(*(undefined8 *)(contextPtr + 0x170), 
+            parseResult = TokenizeInput(*(uint64_t *)(contextPtr + 0x170), 
                                         0xffffffff, 1);
             if ((parseResult != PARSER_SUCCESS) ||
-                (parseResult = StreamReadChar(*(undefined8 *)(contextPtr + 0x170), 
+                (parseResult = StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
                                               &tempBuffer), parseResult != PARSER_SUCCESS)) {
                 // 处理解析错误
                 HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
@@ -249,7 +249,7 @@ void FUN_1807c5c8d(void)
                 // 处理注释或节标记
                 do {
                     do {
-                        parseResult = StreamReadChar(*(undefined8 *)(contextPtr + 0x170), 
+                        parseResult = StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
                                                       &tempBuffer);
                         if (parseResult != PARSER_SUCCESS) {
                             HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
@@ -261,15 +261,15 @@ void FUN_1807c5c8d(void)
                     } while (currentChar != XML_CARRIAGE_RETURN);
                     
                     // 处理回车换行
-                    StreamReadChar(*(undefined8 *)(contextPtr + 0x170), 
+                    StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
                                    (longlong)&tempBuffer + 2);
-                    TokenizeInput(*(undefined8 *)(contextPtr + 0x170), 
+                    TokenizeInput(*(uint64_t *)(contextPtr + 0x170), 
                                   0xffffffff, 1);
                 } while (lookAheadChar == XML_NEWLINE);
             }
             else {
                 // 处理常规标记
-                parseResult = TokenizeInput(*(undefined8 *)(contextPtr + 0x170), 
+                parseResult = TokenizeInput(*(uint64_t *)(contextPtr + 0x170), 
                                             0xffffffff, 1);
                 if (parseResult != PARSER_SUCCESS) {
                     HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
@@ -278,7 +278,7 @@ void FUN_1807c5c8d(void)
                 tokenCount = 0;
                 do {
                     // 跳过空白字符
-                    parseResult = StreamReadChar(*(undefined8 *)(contextPtr + 0x170), 
+                    parseResult = StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
                                                   (longlong)&tempBuffer + 3);
                     if (parseResult != PARSER_SUCCESS) {
                         HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
@@ -288,7 +288,7 @@ void FUN_1807c5c8d(void)
                         ((lookAheadChar == XML_NEWLINE || 
                           (lookAheadChar == XML_CARRIAGE_RETURN))));
                 
-                parseResult = TokenizeInput(*(undefined8 *)(contextPtr + 0x170), 
+                parseResult = TokenizeInput(*(uint64_t *)(contextPtr + 0x170), 
                                             0xffffffff, 1);
                 if (parseResult != PARSER_SUCCESS) {
                     HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
@@ -296,7 +296,7 @@ void FUN_1807c5c8d(void)
                 
                 // 解析标记内容
                 do {
-                    parseResult = StreamReadChar(*(undefined8 *)(contextPtr + 0x170), 
+                    parseResult = StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
                                                   (longlong)&tempBuffer + 4);
                     if (parseResult != PARSER_SUCCESS) {
                         HandleFatalError(stackGuard ^ (ulonglong)&tempBuffer);
@@ -314,9 +314,9 @@ void FUN_1807c5c8d(void)
                     }
                     
                     // 处理回车换行序列
-                    StreamReadChar(*(undefined8 *)(contextPtr + 0x170), 
+                    StreamReadChar(*(uint64_t *)(contextPtr + 0x170), 
                                    (longlong)&tempBuffer + 5);
-                    TokenizeInput(*(undefined8 *)(contextPtr + 0x170), 
+                    TokenizeInput(*(uint64_t *)(contextPtr + 0x170), 
                                   0xffffffff, 1);
                 } while (tempBuffer[PARSER_BUFFER_SIZE + 5] == XML_NEWLINE);
                 
@@ -385,17 +385,17 @@ void FUN_1807c5ed0(longlong param_1)
     code *exceptionHandler;                         // 异常处理器指针
     int parseStatus;                                // 解析状态
     ulonglong tagLength;                            // 标记长度
-    undefined8 attributeValue;                     // 属性值
+    uint64_t attributeValue;                     // 属性值
     char currentChar;                              // 当前字符
     char *tagBuffer;                               // 标记缓冲区指针
     ulonglong contentLength;                       // 内容长度
     ulonglong maxLength;                           // 最大长度
     ulonglong readPosition;                        // 读取位置
     int attributeCount;                            // 属性计数器
-    undefined8 securityBuffer[4];                   // 安全缓冲区
-    undefined8 streamControl;                      // 流控制变量
-    undefined4 bufferSize;                          // 缓冲区大小
-    undefined1 parseFlags;                         // 解析标志
+    uint64_t securityBuffer[4];                   // 安全缓冲区
+    uint64_t streamControl;                      // 流控制变量
+    int32_t bufferSize;                          // 缓冲区大小
+    int8_t parseFlags;                         // 解析标志
     char tagName[PARSER_BUFFER_SIZE];               // 标记名称缓冲区
     char contentBuffer[512];                        // 内容缓冲区
     ulonglong stackGuard;                          // 栈保护值
@@ -405,7 +405,7 @@ void FUN_1807c5ed0(longlong param_1)
     
     // 初始化解析器参数
     bufferSize = PARSER_BUFFER_SIZE;
-    parseStatus = StreamReadChar(*(undefined8 *)(param_1 + 0x170), 0, 0);
+    parseStatus = StreamReadChar(*(uint64_t *)(param_1 + 0x170), 0, 0);
     if (parseStatus == PARSER_SUCCESS) {
         tagLength = 0;
         streamControl = 0;
@@ -429,7 +429,7 @@ void FUN_1807c5ed0(longlong param_1)
                 // 初始化内容处理
                 currentChar = '\0';
                 do {
-                    parseStatus = StreamReadChar(*(undefined8 *)(param_1 + 0x170), 
+                    parseStatus = StreamReadChar(*(uint64_t *)(param_1 + 0x170), 
                                                   &tagName[tagLength]);
                     if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
                 } while ((((tagName[tagLength] == XML_WHITESPACE) || 
@@ -437,13 +437,13 @@ void FUN_1807c5ed0(longlong param_1)
                          (tagName[tagLength] == XML_NEWLINE)) || 
                         (tagName[tagLength] == XML_CARRIAGE_RETURN));
                 
-                parseStatus = TokenizeInput(*(undefined8 *)(param_1 + 0x170), 
+                parseStatus = TokenizeInput(*(uint64_t *)(param_1 + 0x170), 
                                             0xffffffff, 1);
                 if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
                 
                 // 解析XML开始标记
                 do {
-                    parseStatus = StreamReadChar(*(undefined8 *)(param_1 + 0x170), 
+                    parseStatus = StreamReadChar(*(uint64_t *)(param_1 + 0x170), 
                                                   &currentChar);
                     if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
                 } while (currentChar != XML_TAG_START);
@@ -451,7 +451,7 @@ void FUN_1807c5ed0(longlong param_1)
                 tagBuffer = tagName;
                 maxLength = tagLength;
                 do {
-                    parseStatus = StreamReadChar(*(undefined8 *)(param_1 + 0x170), 
+                    parseStatus = StreamReadChar(*(uint64_t *)(param_1 + 0x170), 
                                                   &currentChar);
                     if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
                     if ((int)maxLength < PARSER_BUFFER_SIZE) {
@@ -469,7 +469,7 @@ void FUN_1807c5ed0(longlong param_1)
                 
                 // 读取标记内容
                 do {
-                    parseStatus = StreamReadChar(*(undefined8 *)(param_1 + 0x170), 
+                    parseStatus = StreamReadChar(*(uint64_t *)(param_1 + 0x170), 
                                                   &currentChar);
                     if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
                     if ((longlong)contentLength < PARSER_BUFFER_SIZE) {
@@ -480,20 +480,20 @@ void FUN_1807c5ed0(longlong param_1)
                 } while (currentChar != XML_TAG_START);
                 
                 attributeCount = (int)maxLength + -1;
-                parseStatus = StreamReadChar(*(undefined8 *)(param_1 + 0x170), 
+                parseStatus = StreamReadChar(*(uint64_t *)(param_1 + 0x170), 
                                               &currentChar);
                 if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
                 
                 // 检查结束标记
                 if (currentChar == XML_TAG_CLOSE) {
                     do {
-                        parseStatus = StreamReadChar(*(undefined8 *)(param_1 + 0x170), 
+                        parseStatus = StreamReadChar(*(uint64_t *)(param_1 + 0x170), 
                                                       &currentChar);
                         if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
                     } while (currentChar != XML_TAG_END);
                 }
                 else {
-                    parseStatus = TokenizeInput(*(undefined8 *)(param_1 + 0x170), 
+                    parseStatus = TokenizeInput(*(uint64_t *)(param_1 + 0x170), 
                                                 0xfffffffe, 1);
                     if (parseStatus != PARSER_SUCCESS) goto ParseErrorHandler;
                 }
@@ -594,7 +594,7 @@ void FUN_1807c5f17(void)
     int attributeCount;                            // 属性计数器
     char currentStreamChar;                         // 当前流字符
     char nextStreamChar;                            // 下一个流字符
-    undefined4 bufferSize;                          // 缓冲区大小
+    int32_t bufferSize;                          // 缓冲区大小
     ulonglong stackGuard;                          // 栈保护值
     
     // 初始化流位置
@@ -621,7 +621,7 @@ void FUN_1807c5f17(void)
     while (true) {
         currentStreamChar = '\0';
         do {
-            parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+            parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                          (longlong)&tempBuffer + 1);
             if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
         } while ((((nextStreamChar == XML_WHITESPACE) || 
@@ -629,13 +629,13 @@ void FUN_1807c5f17(void)
                  (nextStreamChar == XML_NEWLINE)) || 
                 (nextStreamChar == XML_CARRIAGE_RETURN));
         
-        parseStatus = TokenizeInput(*(undefined8 *)(sourceIndex + 0x170), 
+        parseStatus = TokenizeInput(*(uint64_t *)(sourceIndex + 0x170), 
                                     0xffffffff, 1);
         if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
         
         // 解析XML标记
         do {
-            parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+            parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                          &tempBuffer);
             if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
         } while (currentStreamChar != XML_TAG_START);
@@ -643,7 +643,7 @@ void FUN_1807c5f17(void)
         bufferPointer = &tempBuffer;
         maxLength = streamPosition;
         do {
-            parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+            parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                          &tempBuffer);
             if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
             if ((int)maxLength < PARSER_BUFFER_SIZE) {
@@ -660,7 +660,7 @@ void FUN_1807c5f17(void)
         
         // 读取标记内容
         do {
-            parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+            parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                          &tempBuffer);
             if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
             if ((longlong)readPosition < PARSER_BUFFER_SIZE) {
@@ -671,20 +671,20 @@ void FUN_1807c5f17(void)
         } while (currentStreamChar != XML_TAG_START);
         
         attributeCount = (int)maxLength + -1;
-        parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+        parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                       &tempBuffer);
         if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
         
         // 处理结束标记
         if (currentStreamChar == XML_TAG_CLOSE) {
             do {
-                parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+                parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                               &tempBuffer);
                 if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
             } while (currentStreamChar != XML_TAG_END);
         }
         else {
-            parseStatus = TokenizeInput(*(undefined8 *)(sourceIndex + 0x170), 
+            parseStatus = TokenizeInput(*(uint64_t *)(sourceIndex + 0x170), 
                                         0xfffffffe, 1);
             if (parseStatus != PARSER_SUCCESS) goto StreamErrorHandler;
         }
@@ -694,7 +694,7 @@ void FUN_1807c5f17(void)
         if (PARSER_MAX_TOKEN_LENGTH < maxLength) break;
         (&tempBuffer)[maxLength] = 0;
         if (PARSER_MAX_TOKEN_LENGTH < (ulonglong)(longlong)attributeCount) break;
-        *(undefined1 *)(framePointer + 0x350 + (longlong)attributeCount) = 0;
+        *(int8_t *)(framePointer + 0x350 + (longlong)attributeCount) = 0;
         
         // 处理属性
         if (attributeCount == 0) {
@@ -717,7 +717,7 @@ void FUN_1807c5f17(void)
                 readPosition = readPosition + 1;
             } while ((longlong)maxLength < PARSER_MAX_TOKEN_LENGTH);
             
-            *(undefined1 *)(framePointer + 0x150 + readPosition) = 0;
+            *(int8_t *)(framePointer + 0x150 + readPosition) = 0;
             parseStatus = ValidateSectionHeader(&UNK_18097c7a0, &tempBuffer, 8);
             if (parseStatus == PARSER_SUCCESS) {
                 ProcessConfigurationData();
@@ -763,7 +763,7 @@ void FUN_1807c5fb3(void)
     longlong sourceIndex;                           // 源索引
     ulonglong readPosition;                        // 读取位置
     int attributeCount;                            // 属性计数器
-    undefined1 fillChar;                           // 填充字符
+    int8_t fillChar;                           // 填充字符
     ulonglong registerValue;                        // 寄存器值
     char currentStreamChar;                         // 当前流字符
     char nextStreamChar;                            // 下一个流字符
@@ -773,7 +773,7 @@ void FUN_1807c5fb3(void)
         maxLength = registerValue & 0xffffffff;
         currentStreamChar = (char)maxLength;
         do {
-            parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+            parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                          (longlong)&tempBuffer + 1);
             if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
         } while ((((nextStreamChar == XML_WHITESPACE) || 
@@ -781,7 +781,7 @@ void FUN_1807c5fb3(void)
                  (nextStreamChar == XML_NEWLINE)) || 
                 (nextStreamChar == XML_CARRIAGE_RETURN));
         
-        parseStatus = TokenizeInput(*(undefined8 *)(sourceIndex + 0x170), 
+        parseStatus = TokenizeInput(*(uint64_t *)(sourceIndex + 0x170), 
                                     0xffffffff, 1);
         if (parseStatus != PARSER_SUCCESS) {
         EnhancedErrorHandler:
@@ -791,14 +791,14 @@ void FUN_1807c5fb3(void)
         
         // 解析XML标记
         do {
-            parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+            parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                          &tempBuffer);
             if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
         } while (currentStreamChar != XML_TAG_START);
         
         bufferPointer = &tempBuffer;
         do {
-            parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+            parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                          &tempBuffer);
             if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
             if ((int)maxLength < PARSER_BUFFER_SIZE) {
@@ -815,7 +815,7 @@ void FUN_1807c5fb3(void)
         
         // 读取标记内容
         do {
-            parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+            parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                          &tempBuffer);
             if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
             if ((longlong)readPosition < PARSER_BUFFER_SIZE) {
@@ -826,20 +826,20 @@ void FUN_1807c5fb3(void)
         } while (currentStreamChar != XML_TAG_START);
         
         attributeCount = (int)contentLength + -1;
-        parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+        parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                       &tempBuffer);
         if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
         
         // 处理结束标记
         if (currentStreamChar == XML_TAG_CLOSE) {
             do {
-                parseStatus = StreamReadChar(*(undefined8 *)(sourceIndex + 0x170), 
+                parseStatus = StreamReadChar(*(uint64_t *)(sourceIndex + 0x170), 
                                               &tempBuffer);
                 if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
             } while (currentStreamChar != XML_TAG_END);
         }
         else {
-            parseStatus = TokenizeInput(*(undefined8 *)(sourceIndex + 0x170), 
+            parseStatus = TokenizeInput(*(uint64_t *)(sourceIndex + 0x170), 
                                         0xfffffffe, 1);
             if (parseStatus != PARSER_SUCCESS) goto EnhancedErrorHandler;
         }
@@ -854,10 +854,10 @@ void FUN_1807c5fb3(void)
             return;
         }
         
-        fillChar = (undefined1)registerValue;
+        fillChar = (int8_t)registerValue;
         (&tempBuffer)[maxLength] = fillChar;
         if (PARSER_MAX_TOKEN_LENGTH < (ulonglong)(longlong)attributeCount) goto EnhancedCleanup;
-        *(undefined1 *)(framePointer + 0x350 + (longlong)attributeCount) = fillChar;
+        *(int8_t *)(framePointer + 0x350 + (longlong)attributeCount) = fillChar;
         
         // 处理属性内容
         if (attributeCount == 0) {
@@ -880,7 +880,7 @@ void FUN_1807c5fb3(void)
                 readPosition = readPosition + 1;
             } while ((longlong)maxLength < PARSER_MAX_TOKEN_LENGTH);
             
-            *(undefined1 *)(framePointer + 0x150 + readPosition) = fillChar;
+            *(int8_t *)(framePointer + 0x150 + readPosition) = fillChar;
             parseStatus = ValidateSectionHeader(&UNK_18097c7a0, &tempBuffer, 8);
             if (parseStatus == PARSER_SUCCESS) {
                 ProcessConfigurationData();
@@ -933,11 +933,11 @@ void FUN_1807c62aa(void)
 //   param_2 - 空白计数指针
 //
 // 返回值：
-//   undefined8 - 操作结果状态
+//   uint64_t - 操作结果状态
 //------------------------------------------------------------------------------
-undefined8 FUN_1807c62b0(longlong param_1, int *param_2)
+uint64_t FUN_1807c62b0(longlong param_1, int *param_2)
 {
-    undefined8 result;                              // 操作结果
+    uint64_t result;                              // 操作结果
     int charCount;                                  // 字符计数器
     int whitespaceCount;                            // 空白计数器
     char readBuffer[8];                             // 读取缓冲区
@@ -945,7 +945,7 @@ undefined8 FUN_1807c62b0(longlong param_1, int *param_2)
     whitespaceCount = 0;
     do {
         charCount = whitespaceCount;
-        result = StreamReadChar(*(undefined8 *)(param_1 + 0x170), readBuffer);
+        result = StreamReadChar(*(uint64_t *)(param_1 + 0x170), readBuffer);
         if ((int)result != 0) {
             return result;
         }
@@ -955,7 +955,7 @@ undefined8 FUN_1807c62b0(longlong param_1, int *param_2)
                (readBuffer[0] == XML_NEWLINE)) || 
               (readBuffer[0] == XML_CARRIAGE_RETURN));
     
-    result = TokenizeInput(*(undefined8 *)(param_1 + 0x170), 0xffffffff, 1);
+    result = TokenizeInput(*(uint64_t *)(param_1 + 0x170), 0xffffffff, 1);
     if ((int)result == 0) {
         if (param_2 != (int *)0x0) {
             *param_2 = charCount;
@@ -975,38 +975,38 @@ undefined8 FUN_1807c62b0(longlong param_1, int *param_2)
 //   param_3 - 初始化数据
 //
 // 返回值：
-//   undefined8 - 初始化结果状态
+//   uint64_t - 初始化结果状态
 //------------------------------------------------------------------------------
-undefined8 FUN_1807c6400(longlong param_1, undefined8 param_2, longlong param_3)
+uint64_t FUN_1807c6400(longlong param_1, uint64_t param_2, longlong param_3)
 {
     int initStatus;                                 // 初始化状态
     longlong dataPointer;                           // 数据指针
-    undefined1 alignmentData [16];                  // 对齐数据
-    undefined8 streamResult;                        // 流操作结果
+    int8_t alignmentData [16];                  // 对齐数据
+    uint64_t streamResult;                        // 流操作结果
     ulonglong elementSize;                          // 元素大小
     
     // 设置解析器状态
-    *(undefined4 *)(param_1 + 0x28) = 0xc;
-    *(undefined8 *)(param_1 + 0x120) = 0;
+    *(int32_t *)(param_1 + 0x28) = 0xc;
+    *(uint64_t *)(param_1 + 0x120) = 0;
     *(longlong *)(param_1 + 8) = param_1 + 0x178;
-    *(undefined8 *)(param_1 + 0x128) = 0;
-    *(undefined8 *)(param_1 + 0x130) = 0;
-    *(undefined8 *)(param_1 + 0x148) = 0;
-    *(undefined8 *)(param_1 + 0x138) = 0;
-    *(undefined8 *)(param_1 + 0x168) = 0;
-    *(undefined4 *)(param_1 + 0x18) = 0;
+    *(uint64_t *)(param_1 + 0x128) = 0;
+    *(uint64_t *)(param_1 + 0x130) = 0;
+    *(uint64_t *)(param_1 + 0x148) = 0;
+    *(uint64_t *)(param_1 + 0x138) = 0;
+    *(uint64_t *)(param_1 + 0x168) = 0;
+    *(int32_t *)(param_1 + 0x18) = 0;
     
     // 初始化流处理器
     streamResult = (**(code **)(**(longlong **)(param_1 + 0x170) + 0x10))
                    (*(longlong **)(param_1 + 0x170), param_1 + 0x18c);
     
     if ((int)streamResult == 0) {
-        *(undefined4 *)(param_1 + 0x110) = 0;
+        *(int32_t *)(param_1 + 0x110) = 0;
         if (*(int *)(param_3 + 0x14) - 1U < 5) {
             // 配置数据类型处理
             *(int *)(*(longlong *)(param_1 + 8) + 8) = *(int *)(param_3 + 0x14);
-            *(undefined4 *)(*(longlong *)(param_1 + 8) + 0xc) = *(undefined4 *)(param_3 + 0xc);
-            *(undefined4 *)(*(longlong *)(param_1 + 8) + 0x10) = *(undefined4 *)(param_3 + 0x10);
+            *(int32_t *)(*(longlong *)(param_1 + 8) + 0xc) = *(int32_t *)(param_3 + 0xc);
+            *(int32_t *)(*(longlong *)(param_1 + 8) + 0x10) = *(int32_t *)(param_3 + 0x10);
             dataPointer = *(longlong *)(param_1 + 8);
             
             if (*(uint *)(param_3 + 0xc) != 0) {
@@ -1023,7 +1023,7 @@ undefined8 FUN_1807c6400(longlong param_1, undefined8 param_2, longlong param_3)
                 else {
                     if ((initStatus != 4) && (initStatus != 5)) {
                         *(uint *)(dataPointer + 0x18) = *(uint *)(dataPointer + 0x14);
-                        *(undefined4 *)(param_1 + 0x18) = 0;
+                        *(int32_t *)(param_1 + 0x18) = 0;
                         return 0;
                     }
                     elementSize = 0x20;
@@ -1036,7 +1036,7 @@ undefined8 FUN_1807c6400(longlong param_1, undefined8 param_2, longlong param_3)
                      (int)((SUB168((ZEXT416(*(uint *)(dataPointer + 0x14)) << 3) / alignmentData, 0) & 0xffffffff) /
                           (ulonglong)*(uint *)(param_3 + 0xc));
             }
-            *(undefined4 *)(param_1 + 0x18) = 0;
+            *(int32_t *)(param_1 + 0x18) = 0;
             return 0;
         }
         streamResult = 0x13;
@@ -1055,13 +1055,13 @@ undefined8 FUN_1807c6400(longlong param_1, undefined8 param_2, longlong param_3)
 //   param_4 - 处理结果指针
 //
 // 返回值：
-//   undefined4 - 处理结果状态
+//   int32_t - 处理结果状态
 //------------------------------------------------------------------------------
-undefined4 FUN_1807c6550(longlong param_1, byte *param_2, uint param_3, uint *param_4)
+int32_t FUN_1807c6550(longlong param_1, byte *param_2, uint param_3, uint *param_4)
 {
     int processStatus;                              // 处理状态
     longlong dataPointer;                           // 数据指针
-    undefined4 result;                              // 结果值
+    int32_t result;                              // 结果值
     longlong sizePointer;                           // 大小指针
     ulonglong processedBytes;                      // 已处理字节数
     uint elementSize;                               // 元素大小
@@ -1079,14 +1079,14 @@ undefined4 FUN_1807c6550(longlong param_1, byte *param_2, uint param_3, uint *pa
             if (*(int *)(param_1 + 0x28) == 0) {
                 return 0;
             }
-            result = ProcessDataStream(*(undefined8 *)(param_1 + 0x170), param_2, 2,
+            result = ProcessDataStream(*(uint64_t *)(param_1 + 0x170), param_2, 2,
                                        *(int *)(dataPointer + 0xc) * param_3, param_4);
             sizeResult[0] = *param_4 / *(uint *)(*(longlong *)(param_1 + 8) + 0xc);
             goto DataProcessComplete;
         }
         
         // 处理数据类型1
-        result = ProcessDataStream(*(undefined8 *)(param_1 + 0x170), param_2, 1, 
+        result = ProcessDataStream(*(uint64_t *)(param_1 + 0x170), param_2, 1, 
                                     *(int *)(dataPointer + 0xc) * param_3, sizeResult);
         processedBytes = (ulonglong)sizeResult[0];
         
@@ -1149,7 +1149,7 @@ undefined4 FUN_1807c6550(longlong param_1, byte *param_2, uint param_3, uint *pa
             }
         }
         
-        result = ProcessDataStream(*(undefined8 *)(param_1 + 0x170), param_2, 1, 
+        result = ProcessDataStream(*(uint64_t *)(param_1 + 0x170), param_2, 1, 
                                     *(int *)(dataPointer + 0xc) * param_3, sizeResult);
         elementSize = *(uint *)(*(longlong *)(param_1 + 8) + 0xc);
         if (elementSize == 0) {

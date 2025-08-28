@@ -2,9 +2,9 @@
 
 // 03_rendering_part297.c - 5 个函数
 
-// 函数: void FUN_1804266c0(undefined8 *param_1,longlong param_2,int param_3,int param_4,int param_5,
-void FUN_1804266c0(undefined8 *param_1,longlong param_2,int param_3,int param_4,int param_5,
-                  undefined4 param_6,int param_7)
+// 函数: void FUN_1804266c0(uint64_t *param_1,longlong param_2,int param_3,int param_4,int param_5,
+void FUN_1804266c0(uint64_t *param_1,longlong param_2,int param_3,int param_4,int param_5,
+                  int32_t param_6,int param_7)
 
 {
   uint *puVar1;
@@ -15,11 +15,11 @@ void FUN_1804266c0(undefined8 *param_1,longlong param_2,int param_3,int param_4,
   uint uVar6;
   int iVar7;
   longlong lVar8;
-  undefined1 auStack_158 [32];
+  int8_t auStack_158 [32];
   uint uStack_138;
   uint uStack_130;
   int iStack_128;
-  undefined4 uStack_120;
+  int32_t uStack_120;
   int iStack_118;
   int iStack_114;
   int iStack_110;
@@ -172,8 +172,8 @@ FUN_180426a43:
 
 
 
-// 函数: void FUN_18042674c(int param_1,undefined8 param_2,int param_3)
-void FUN_18042674c(int param_1,undefined8 param_2,int param_3)
+// 函数: void FUN_18042674c(int param_1,uint64_t param_2,int param_3)
+void FUN_18042674c(int param_1,uint64_t param_2,int param_3)
 
 {
   int iVar1;
@@ -186,16 +186,16 @@ void FUN_18042674c(int param_1,undefined8 param_2,int param_3)
   int iVar8;
   uint uVar9;
   ulonglong unaff_RBX;
-  undefined8 *unaff_RBP;
+  uint64_t *unaff_RBP;
   int unaff_EDI;
   ulonglong uVar10;
   int in_R11D;
-  undefined8 *unaff_R13;
+  uint64_t *unaff_R13;
   longlong unaff_R14;
   ulonglong uVar11;
   int in_stack_00000040;
   uint uStack000000000000004c;
-  undefined4 in_stack_00000058;
+  int32_t in_stack_00000058;
   uint uStack000000000000005c;
   uint uStack0000000000000064;
   int iStack000000000000006c;
@@ -216,27 +216,27 @@ void FUN_18042674c(int param_1,undefined8 param_2,int param_3)
     piVar3 = (int *)*unaff_R13;
     unaff_RBP[-10] = 0x400000000;
     unaff_RBP[-9] = 0x200000000;
-    *(undefined4 *)(unaff_RBP + -0xc) = 2;
+    *(int32_t *)(unaff_RBP + -0xc) = 2;
     unaff_RBP[-2] = 0;
     unaff_RBP[-1] = 4;
-    *(undefined4 *)((longlong)unaff_RBP + -0x5c) = 2;
+    *(int32_t *)((longlong)unaff_RBP + -0x5c) = 2;
     unaff_RBP[-0xe] = 0x800000008;
     unaff_RBP[-0xd] = 0x400000004;
-    *(undefined4 *)(unaff_RBP + -0xb) = 1;
+    *(int32_t *)(unaff_RBP + -0xb) = 1;
     uStack0000000000000064 = *(uint *)((longlong)unaff_RBP + (uVar11 - 0x70));
     *(int *)(unaff_RBP + -8) = (int)unaff_RBX;
-    *(undefined8 *)((longlong)unaff_RBP + -0x3c) = 1;
+    *(uint64_t *)((longlong)unaff_RBP + -0x3c) = 1;
     iVar1 = *(int *)((longlong)unaff_RBP + (uVar11 - 0x50));
     iVar2 = *piVar3;
-    *(undefined4 *)(unaff_RBP + -4) = 4;
-    *(undefined4 *)((longlong)unaff_RBP + -0x1c) = 2;
+    *(int32_t *)(unaff_RBP + -4) = 4;
+    *(int32_t *)((longlong)unaff_RBP + -0x1c) = 2;
     uVar4 = (iVar2 + -1 + (uStack0000000000000064 - iVar1)) / uStack0000000000000064;
     unaff_RBP[-6] = 0x800000008;
     unaff_RBP[-5] = 0x400000008;
-    *(undefined4 *)(unaff_RBP + -3) = 2;
+    *(int32_t *)(unaff_RBP + -3) = 2;
     uStack000000000000005c = *(uint *)((longlong)unaff_RBP + (uVar11 - 0x30));
     *unaff_RBP = 2;
-    *(undefined4 *)(unaff_RBP + 1) = 1;
+    *(int32_t *)(unaff_RBP + 1) = 1;
     uVar9 = (uint)uVar10;
     if (uVar4 != 0) {
       iVar2 = *(int *)((longlong)unaff_RBP + (uVar11 - 0x10));
@@ -338,7 +338,7 @@ void FUN_180426a80(void)
 
 
 
-undefined4 FUN_1804276f0(int *param_1,int *param_2)
+int32_t FUN_1804276f0(int *param_1,int *param_2)
 
 {
   char cVar1;

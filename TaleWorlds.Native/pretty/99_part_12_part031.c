@@ -551,8 +551,8 @@ void FUN_1807dfb97(void)
 
 
 
-// 函数: void FUN_1807dfbe0(float *param_1,float *param_2,uint param_3,longlong param_4,undefined8 param_5,
-void FUN_1807dfbe0(float *param_1,float *param_2,uint param_3,longlong param_4,undefined8 param_5,
+// 函数: void FUN_1807dfbe0(float *param_1,float *param_2,uint param_3,longlong param_4,uint64_t param_5,
+void FUN_1807dfbe0(float *param_1,float *param_2,uint param_3,longlong param_4,uint64_t param_5,
                   int param_6,int param_7)
 
 {

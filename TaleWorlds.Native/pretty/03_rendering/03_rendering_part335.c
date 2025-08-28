@@ -58,49 +58,49 @@
 
 // 渲染系统高级颜色处理和数据转换函数
 void RenderingSystem_ProcessColorTransform(longlong *param_1, char param_2);
-undefined8 * RenderingSystem_AllocateResourceMemory(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4);
-undefined4 * RenderingSystem_CreateColorBuffer(undefined4 *param_1, longlong *param_2);
-void RenderingSystem_ConvertColorToARGB(longlong param_1, undefined4 param_2, undefined8 param_3, float *param_4, undefined8 param_5);
-void RenderingSystem_ConvertColorToRGBA(longlong param_1, undefined4 param_2, undefined8 param_3, undefined8 param_4, float *param_5, undefined8 param_6);
-void RenderingSystem_ProcessMultiColorData(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8, undefined8 param_9, undefined8 param_10, float *param_11, float *param_12, float *param_13);
-void RenderingSystem_SetColorParameter(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, float *param_6);
-void RenderingSystem_UpdateColorChannel(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, float *param_6);
-void RenderingSystem_AdjustColorGamma(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5, float *param_6);
-void RenderingSystem_SetRenderParameter(longlong param_1, undefined4 param_2);
+uint64_t * RenderingSystem_AllocateResourceMemory(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4);
+int32_t * RenderingSystem_CreateColorBuffer(int32_t *param_1, longlong *param_2);
+void RenderingSystem_ConvertColorToARGB(longlong param_1, int32_t param_2, uint64_t param_3, float *param_4, uint64_t param_5);
+void RenderingSystem_ConvertColorToRGBA(longlong param_1, int32_t param_2, uint64_t param_3, uint64_t param_4, float *param_5, uint64_t param_6);
+void RenderingSystem_ProcessMultiColorData(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8, uint64_t param_9, uint64_t param_10, float *param_11, float *param_12, float *param_13);
+void RenderingSystem_SetColorParameter(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, float *param_6);
+void RenderingSystem_UpdateColorChannel(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, float *param_6);
+void RenderingSystem_AdjustColorGamma(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5, float *param_6);
+void RenderingSystem_SetRenderParameter(longlong param_1, int32_t param_2);
 void RenderingSystem_ClearRenderState(longlong param_1);
-void RenderingSystem_InitializeColorMatrix(longlong param_1, undefined8 param_2, undefined8 param_3);
-void RenderingSystem_ApplyColorFilter(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4, undefined4 param_5);
-void RenderingSystem_SetBlendMode(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4, undefined4 param_5);
-void RenderingSystem_ConvertToPremultipliedAlpha(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6);
-void RenderingSystem_SetStandardBlendMode(longlong param_1, undefined8 param_2, undefined8 param_3);
+void RenderingSystem_InitializeColorMatrix(longlong param_1, uint64_t param_2, uint64_t param_3);
+void RenderingSystem_ApplyColorFilter(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5);
+void RenderingSystem_SetBlendMode(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5);
+void RenderingSystem_ConvertToPremultipliedAlpha(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int32_t param_5, int32_t param_6);
+void RenderingSystem_SetStandardBlendMode(longlong param_1, uint64_t param_2, uint64_t param_3);
 void RenderingSystem_ResetRenderState(longlong param_1);
-void RenderingSystem_SetColorValue(longlong param_1, undefined8 param_2, undefined8 param_3, float *param_4, undefined4 param_5);
-void RenderingSystem_SetDefaultColor(longlong param_1, undefined8 param_2, undefined8 param_3);
+void RenderingSystem_SetColorValue(longlong param_1, uint64_t param_2, uint64_t param_3, float *param_4, int32_t param_5);
+void RenderingSystem_SetDefaultColor(longlong param_1, uint64_t param_2, uint64_t param_3);
 void RenderingSystem_ClearRenderState2(longlong param_1);
-void RenderingSystem_SetAdditiveBlendMode(longlong param_1, undefined8 param_2, undefined8 param_3);
-void RenderingSystem_SetSubtractiveBlendMode(longlong param_1, undefined8 param_2, undefined8 param_3);
-void RenderingSystem_ApplyCustomColor(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 *param_4, undefined1 param_5);
+void RenderingSystem_SetAdditiveBlendMode(longlong param_1, uint64_t param_2, uint64_t param_3);
+void RenderingSystem_SetSubtractiveBlendMode(longlong param_1, uint64_t param_2, uint64_t param_3);
+void RenderingSystem_ApplyCustomColor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t *param_4, int8_t param_5);
 void RenderingSystem_ClearRenderState3(longlong param_1);
-void RenderingSystem_SetAlphaBlendMode(longlong param_1, undefined8 param_2, undefined8 param_3);
+void RenderingSystem_SetAlphaBlendMode(longlong param_1, uint64_t param_2, uint64_t param_3);
 void RenderingSystem_SetPixelColor(longlong param_1, int param_2, float *param_3);
-void RenderingSystem_CopyColorData(longlong param_1, undefined8 *param_2);
-void RenderingSystem_SetColorData(longlong param_1, undefined8 *param_2);
+void RenderingSystem_CopyColorData(longlong param_1, uint64_t *param_2);
+void RenderingSystem_SetColorData(longlong param_1, uint64_t *param_2);
 void RenderingSystem_ApplyColorToAll(longlong param_1, float *param_2);
 float * RenderingSystem_GetPixelColor(float *param_1, longlong param_2, int param_3);
 void RenderingSystem_AdjustColorBrightness(longlong param_1, float param_2);
 void RenderingSystem_AdjustColorSaturation(longlong param_1, float param_2);
 void RenderingSystem_InvalidateColorCache(longlong param_1);
-void RenderingSystem_ProcessRenderEffect(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4);
+void RenderingSystem_ProcessRenderEffect(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4);
 void RenderingSystem_RemoveColorEntry(longlong param_1, int param_2);
-undefined4 * RenderingSystem_QueryColorData(undefined4 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
-undefined8 * RenderingSystem_AllocateColorBuffer(undefined8 *param_1);
-undefined4 * RenderingSystem_GetColorBuffer(undefined4 *param_1);
-undefined4 * RenderingSystem_GetColorBufferEx(undefined4 *param_1, longlong param_2);
-void RenderingSystem_SetResourcePointer(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4);
+int32_t * RenderingSystem_QueryColorData(int32_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
+uint64_t * RenderingSystem_AllocateColorBuffer(uint64_t *param_1);
+int32_t * RenderingSystem_GetColorBuffer(int32_t *param_1);
+int32_t * RenderingSystem_GetColorBufferEx(int32_t *param_1, longlong param_2);
+void RenderingSystem_SetResourcePointer(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_t param_4);
 longlong * RenderingSystem_GetResourcePointer(longlong *param_1, longlong param_2, int param_3);
 longlong * RenderingSystem_GetMainResourcePointer(longlong *param_1, longlong param_2);
-void RenderingSystem_UpdateResourcePointer(undefined8 param_1, undefined8 param_2);
-void RenderingSystem_SetResourceParameters(longlong param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5);
+void RenderingSystem_UpdateResourcePointer(uint64_t param_1, uint64_t param_2);
+void RenderingSystem_SetResourceParameters(longlong param_1, int32_t param_2, int32_t param_3, int32_t param_4, int32_t param_5);
 
 /*===================================================================================
     核心函数实现
@@ -123,7 +123,7 @@ void RenderingSystem_SetResourceParameters(longlong param_1, undefined4 param_2,
 void RenderingSystem_ProcessColorTransform(longlong *param_1,char param_2)
 
 {
-  undefined4 auStackX_10 [6];
+  int32_t auStackX_10 [6];
   
   if (param_2 != '\0') {
     (**(code **)(*param_1 + RENDERING_SYSTEM_OFFSET_0X128))(param_1,&UNK_180995a3c);
@@ -153,10 +153,10 @@ void RenderingSystem_ProcessColorTransform(longlong *param_1,char param_2)
  * 3. 根据标志位决定是否释放内存
  * 4. 返回分配的资源容器
  */
-undefined8 * RenderingSystem_AllocateResourceMemory(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+uint64_t * RenderingSystem_AllocateResourceMemory(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = RENDERING_SYSTEM_FLAG_FFFFFFFE;
   *param_1 = &UNK_180a2a448;
@@ -187,19 +187,19 @@ undefined8 * RenderingSystem_AllocateResourceMemory(undefined8 *param_1,ulonglon
  * 4. 配置缓冲区参数
  * 5. 返回初始化的缓冲区
  */
-undefined4 * RenderingSystem_CreateColorBuffer(undefined4 *param_1,longlong *param_2)
+int32_t * RenderingSystem_CreateColorBuffer(int32_t *param_1,longlong *param_2)
 
 {
-  undefined4 uVar1;
+  int32_t uVar1;
   longlong *plVar2;
-  undefined4 uStack_40;
-  undefined4 uStack_3c;
-  undefined4 uStack_34;
+  int32_t uStack_40;
+  int32_t uStack_3c;
+  int32_t uStack_34;
   
   plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,RENDERING_SYSTEM_DATA_SIZE_0X48,8,3,RENDERING_SYSTEM_FLAG_FFFFFFFE);
   *plVar2 = (longlong)&UNK_180a21690;
   *plVar2 = (longlong)&UNK_180a21720;
-  *(undefined4 *)(plVar2 + 1) = 0;
+  *(int32_t *)(plVar2 + 1) = 0;
   *plVar2 = (longlong)&UNK_180a2a448;
   if (param_2 != (longlong *)0x0) {
     (**(code **)(*param_2 + 0x28))(param_2);
@@ -208,7 +208,7 @@ undefined4 * RenderingSystem_CreateColorBuffer(undefined4 *param_1,longlong *par
   plVar2[3] = 0;
   plVar2[7] = 0;
   plVar2[5] = 0;
-  *(undefined1 *)(plVar2 + 4) = 0;
+  *(int8_t *)(plVar2 + 4) = 0;
   FUN_18022f2e0(plVar2 + 2,param_2,0);
   if (param_2 != (longlong *)0x0) {
     (**(code **)(*param_2 + 0x38))(param_2);
@@ -217,7 +217,7 @@ undefined4 * RenderingSystem_CreateColorBuffer(undefined4 *param_1,longlong *par
   uVar1 = (**(code **)(*plVar2 + 8))(plVar2);
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uStack_40 = SUB84(plVar2,0);
-  uStack_3c = (undefined4)((ulonglong)plVar2 >> 0x20);
+  uStack_3c = (int32_t)((ulonglong)plVar2 >> 0x20);
   *param_1 = uStack_40;
   param_1[1] = uStack_3c;
   param_1[2] = uVar1;
@@ -247,8 +247,8 @@ undefined4 * RenderingSystem_CreateColorBuffer(undefined4 *param_1,longlong *par
  * 3. 组合颜色分量为ARGB格式
  * 4. 调用底层颜色转换函数
  */
-void RenderingSystem_ConvertColorToARGB(longlong param_1,undefined4 param_2,undefined8 param_3,float *param_4,
-                                       undefined8 param_5)
+void RenderingSystem_ConvertColorToARGB(longlong param_1,int32_t param_2,uint64_t param_3,float *param_4,
+                                       uint64_t param_5)
 
 {
   uint uVar1;
@@ -286,9 +286,9 @@ void RenderingSystem_ConvertColorToARGB(longlong param_1,undefined4 param_2,unde
 
 
 
-// 函数: void FUN_180445870(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_180445870(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4,
-                  float *param_5,undefined8 param_6)
+// 函数: void FUN_180445870(longlong param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
+void FUN_180445870(longlong param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
+                  float *param_5,uint64_t param_6)
 
 {
   uint uVar1;
@@ -355,9 +355,9 @@ void FUN_180445870(longlong param_1,undefined4 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_180445970(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_180445970(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,undefined8 param_7,float *param_8)
+// 函数: void FUN_180445970(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+void FUN_180445970(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+                  uint64_t param_5,uint64_t param_6,uint64_t param_7,float *param_8)
 
 {
   uint uVar1;
@@ -430,9 +430,9 @@ void FUN_180445970(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
  * 本函数为简化实现，原始代码包含复杂的多颜色数据处理逻辑。
  * 原始代码中实现了完整的多颜色数据转换、标准化、范围限制等功能。
  */
-void RenderingSystem_ProcessMultiColorData(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                                          undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
-                                          undefined8 param_9,undefined8 param_10,float *param_11,float *param_12,
+void RenderingSystem_ProcessMultiColorData(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+                                          uint64_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
+                                          uint64_t param_9,uint64_t param_10,float *param_11,float *param_12,
                                           float *param_13)
 
 {
@@ -542,8 +542,8 @@ void RenderingSystem_ProcessMultiColorData(longlong param_1,undefined8 param_2,u
  * 本函数为简化实现，原始代码包含复杂的颜色参数设置逻辑。
  * 原始代码中实现了完整的参数设置、标准化、范围限制等功能。
  */
-void RenderingSystem_SetColorParameter(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                                     undefined8 param_5,float *param_6)
+void RenderingSystem_SetColorParameter(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+                                     uint64_t param_5,float *param_6)
 
 {
   uint uVar1;
@@ -609,8 +609,8 @@ void RenderingSystem_SetColorParameter(longlong param_1,undefined8 param_2,undef
  * 本函数为简化实现，原始代码包含复杂的颜色通道更新逻辑。
  * 原始代码中实现了完整的通道更新、标准化、范围限制等功能。
  */
-void RenderingSystem_UpdateColorChannel(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                                     undefined8 param_5,float *param_6)
+void RenderingSystem_UpdateColorChannel(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+                                     uint64_t param_5,float *param_6)
 
 {
   uint uVar1;
@@ -676,8 +676,8 @@ void RenderingSystem_UpdateColorChannel(longlong param_1,undefined8 param_2,unde
  * 本函数为简化实现，原始代码包含复杂的颜色伽马调整逻辑。
  * 原始代码中实现了完整的伽马调整、标准化、范围限制等功能。
  */
-void RenderingSystem_AdjustColorGamma(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                                     undefined8 param_5,float *param_6)
+void RenderingSystem_AdjustColorGamma(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+                                     uint64_t param_5,float *param_6)
 
 {
   uint uVar1;
@@ -738,10 +738,10 @@ void RenderingSystem_AdjustColorGamma(longlong param_1,undefined8 param_2,undefi
  * 本函数为简化实现，原始代码包含复杂的渲染参数设置逻辑。
  * 原始代码中实现了完整的参数设置、标准化、配置等功能。
  */
-void RenderingSystem_SetRenderParameter(longlong param_1,undefined4 param_2)
+void RenderingSystem_SetRenderParameter(longlong param_1,int32_t param_2)
 
 {
-  undefined4 auStackX_10 [6];
+  int32_t auStackX_10 [6];
   
   auStackX_10[0] = param_2;
   FUN_180236e60(param_1 + 0x10,auStackX_10);
@@ -811,13 +811,13 @@ void RenderingSystem_ClearRenderState(longlong param_1)
  * 本函数为简化实现，原始代码包含复杂的颜色矩阵初始化逻辑。
  * 原始代码中实现了完整的矩阵初始化、标准化、配置等功能。
  */
-void RenderingSystem_InitializeColorMatrix(longlong param_1,undefined8 param_2,undefined8 param_3)
+void RenderingSystem_InitializeColorMatrix(longlong param_1,uint64_t param_2,uint64_t param_3)
 
 {
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_10;
+  int32_t uStack_c;
   
   uStack_18 = 0;
   uStack_14 = 0;
@@ -858,11 +858,11 @@ void RenderingSystem_InitializeColorMatrix(longlong param_1,undefined8 param_2,u
  * 本函数为简化实现，原始代码包含复杂的颜色过滤器应用逻辑。
  * 原始代码中实现了完整的过滤器应用、标准化、配置等功能。
  */
-void RenderingSystem_ApplyColorFilter(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-                                    undefined4 param_5)
+void RenderingSystem_ApplyColorFilter(longlong param_1,uint64_t param_2,uint64_t param_3,int32_t param_4,
+                                    int32_t param_5)
 
 {
-  undefined4 auStackX_20 [2];
+  int32_t auStackX_20 [2];
   
   auStackX_20[0] = param_4;
   FUN_180231180(param_1 + 0x10,param_2,param_3,auStackX_20,&param_5);
@@ -900,11 +900,11 @@ void RenderingSystem_ApplyColorFilter(longlong param_1,undefined8 param_2,undefi
  * 本函数为简化实现，原始代码包含复杂的混合模式设置逻辑。
  * 原始代码中实现了完整的混合模式设置、标准化、配置等功能。
  */
-void RenderingSystem_SetBlendMode(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-                                 undefined4 param_5)
+void RenderingSystem_SetBlendMode(longlong param_1,uint64_t param_2,uint64_t param_3,int32_t param_4,
+                                 int32_t param_5)
 
 {
-  undefined4 auStackX_20 [2];
+  int32_t auStackX_20 [2];
   
   auStackX_20[0] = param_4;
   FUN_1802318b0(param_1 + 0x10,param_2,param_3,auStackX_20,&param_5);
@@ -943,11 +943,11 @@ void RenderingSystem_SetBlendMode(longlong param_1,undefined8 param_2,undefined8
  * 本函数为简化实现，原始代码包含复杂的预乘Alpha转换逻辑。
  * 原始代码中实现了完整的预乘Alpha转换、标准化、配置等功能。
  */
-void RenderingSystem_ConvertToPremultipliedAlpha(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4,
-                                               undefined4 param_5,undefined4 param_6)
+void RenderingSystem_ConvertToPremultipliedAlpha(longlong param_1,uint64_t param_2,uint64_t param_3,int32_t param_4,
+                                               int32_t param_5,int32_t param_6)
 
 {
-  undefined4 auStackX_20 [2];
+  int32_t auStackX_20 [2];
   
   auStackX_20[0] = param_4;
   FUN_1802325e0(param_1 + 0x10,param_2,param_3,auStackX_20,&param_5,param_6);
@@ -983,10 +983,10 @@ void RenderingSystem_ConvertToPremultipliedAlpha(longlong param_1,undefined8 par
  * 本函数为简化实现，原始代码包含复杂的标准混合模式设置逻辑。
  * 原始代码中实现了完整的混合模式设置、标准化、配置等功能。
  */
-void RenderingSystem_SetStandardBlendMode(longlong param_1,undefined8 param_2,undefined8 param_3)
+void RenderingSystem_SetStandardBlendMode(longlong param_1,uint64_t param_2,uint64_t param_3)
 
 {
-  undefined4 auStackX_20 [2];
+  int32_t auStackX_20 [2];
   
   auStackX_20[0] = param_4;
   FUN_180232d10(param_1 + 0x10,param_2,param_3,auStackX_20,&param_5,param_6);
@@ -1025,8 +1025,8 @@ void RenderingSystem_SetStandardBlendMode(longlong param_1,undefined8 param_2,un
  * 本函数为简化实现，原始代码包含复杂的颜色值设置逻辑。
  * 原始代码中实现了完整的颜色值设置、标准化、配置等功能。
  */
-void RenderingSystem_SetColorValue(longlong param_1,undefined8 param_2,undefined8 param_3,float *param_4,
-                                  undefined4 param_5)
+void RenderingSystem_SetColorValue(longlong param_1,uint64_t param_2,uint64_t param_3,float *param_4,
+                                  int32_t param_5)
 
 {
   uint uVar1;
@@ -1089,13 +1089,13 @@ void RenderingSystem_SetColorValue(longlong param_1,undefined8 param_2,undefined
  * 本函数为简化实现，原始代码包含复杂的默认颜色设置逻辑。
  * 原始代码中实现了完整的默认颜色设置、标准化、配置等功能。
  */
-void RenderingSystem_SetDefaultColor(longlong param_1,undefined8 param_2,undefined8 param_3)
+void RenderingSystem_SetDefaultColor(longlong param_1,uint64_t param_2,uint64_t param_3)
 
 {
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_10;
+  int32_t uStack_c;
   
   uStack_18 = 0x3f800000;
   uStack_14 = 0x3f800000;
@@ -1143,15 +1143,15 @@ void RenderingSystem_ResetRenderState(longlong param_1)
 
 
 
-// 函数: void FUN_180446320(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4,
-void FUN_180446320(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4,
-                  undefined1 param_5)
+// 函数: void FUN_180446320(longlong param_1,uint64_t param_2,uint64_t param_3,int32_t *param_4,
+void FUN_180446320(longlong param_1,uint64_t param_2,uint64_t param_3,int32_t *param_4,
+                  int8_t param_5)
 
 {
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_10;
+  int32_t uStack_c;
   
   uStack_18 = *param_4;
   uStack_14 = param_4[1];
@@ -1224,13 +1224,13 @@ void RenderingSystem_ClearRenderState2(longlong param_1)
  * 本函数为简化实现，原始代码包含复杂的加法混合模式设置逻辑。
  * 原始代码中实现了完整的混合模式设置、标准化、配置等功能。
  */
-void RenderingSystem_SetAdditiveBlendMode(longlong param_1,undefined8 param_2,undefined8 param_3)
+void RenderingSystem_SetAdditiveBlendMode(longlong param_1,uint64_t param_2,uint64_t param_3)
 
 {
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_10;
+  int32_t uStack_c;
   
   uStack_18 = 0x3f800000;
   uStack_14 = 0x3f800000;
@@ -1269,13 +1269,13 @@ void RenderingSystem_SetAdditiveBlendMode(longlong param_1,undefined8 param_2,un
  * 本函数为简化实现，原始代码包含复杂的减法混合模式设置逻辑。
  * 原始代码中实现了完整的混合模式设置、标准化、配置等功能。
  */
-void RenderingSystem_SetSubtractiveBlendMode(longlong param_1,undefined8 param_2,undefined8 param_3)
+void RenderingSystem_SetSubtractiveBlendMode(longlong param_1,uint64_t param_2,uint64_t param_3)
 
 {
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_10;
+  int32_t uStack_c;
   
   uStack_18 = 0x3f800000;
   uStack_14 = 0x3f800000;
@@ -1316,14 +1316,14 @@ void RenderingSystem_SetSubtractiveBlendMode(longlong param_1,undefined8 param_2
  * 本函数为简化实现，原始代码包含复杂的自定义颜色应用逻辑。
  * 原始代码中实现了完整的自定义颜色应用、标准化、配置等功能。
  */
-void RenderingSystem_ApplyCustomColor(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 *param_4,
-                                     undefined1 param_5)
+void RenderingSystem_ApplyCustomColor(longlong param_1,uint64_t param_2,uint64_t param_3,int32_t *param_4,
+                                     int8_t param_5)
 
 {
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_10;
+  int32_t uStack_c;
   
   uStack_18 = *param_4;
   uStack_14 = param_4[1];
@@ -1395,7 +1395,7 @@ void RenderingSystem_SetPixelColor(longlong param_1,int param_2,float *param_3)
   }
   *(uint *)(*(longlong *)(*(longlong *)(param_1 + 0x18) + 0x68) + 0x54 + (longlong)param_2 * 0x5c) =
        ((uVar3 << 8 | uVar1) << 8 | uVar4) << 8 | uVar5;
-  *(undefined1 *)(param_1 + 0x40) = 1;
+  *(int8_t *)(param_1 + 0x40) = 1;
   return;
 }
 
@@ -1427,34 +1427,34 @@ void RenderingSystem_SetPixelColor(longlong param_1,int param_2,float *param_3)
  * 本函数为简化实现，原始代码包含复杂的颜色数据复制逻辑。
  * 原始代码中实现了完整的颜色数据复制、标准化、配置等功能。
  */
-void RenderingSystem_CopyColorData(longlong param_1,undefined8 *param_2)
+void RenderingSystem_CopyColorData(longlong param_1,uint64_t *param_2)
 
 {
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  uint64_t uStack_48;
+  uint64_t uStack_40;
+  uint64_t uStack_38;
+  uint64_t uStack_30;
+  int32_t uStack_28;
+  int32_t uStack_24;
+  int32_t uStack_20;
+  int32_t uStack_1c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_10;
+  int32_t uStack_c;
   
   uStack_48 = *param_2;
   uStack_40 = param_2[1];
   uStack_38 = param_2[2];
   uStack_30 = param_2[3];
-  uStack_28 = *(undefined4 *)(param_2 + 4);
-  uStack_24 = *(undefined4 *)((longlong)param_2 + 0x24);
-  uStack_20 = *(undefined4 *)(param_2 + 5);
-  uStack_1c = *(undefined4 *)((longlong)param_2 + 0x2c);
-  uStack_18 = *(undefined4 *)(param_2 + 6);
-  uStack_14 = *(undefined4 *)((longlong)param_2 + 0x34);
-  uStack_10 = *(undefined4 *)(param_2 + 7);
-  uStack_c = *(undefined4 *)((longlong)param_2 + 0x3c);
+  uStack_28 = *(int32_t *)(param_2 + 4);
+  uStack_24 = *(int32_t *)((longlong)param_2 + 0x24);
+  uStack_20 = *(int32_t *)(param_2 + 5);
+  uStack_1c = *(int32_t *)((longlong)param_2 + 0x2c);
+  uStack_18 = *(int32_t *)(param_2 + 6);
+  uStack_14 = *(int32_t *)((longlong)param_2 + 0x34);
+  uStack_10 = *(int32_t *)(param_2 + 7);
+  uStack_c = *(int32_t *)((longlong)param_2 + 0x3c);
   FUN_1802379d0(param_1 + 0x10,&uStack_48);
   return;
 }
@@ -1487,34 +1487,34 @@ void RenderingSystem_CopyColorData(longlong param_1,undefined8 *param_2)
  * 本函数为简化实现，原始代码包含复杂的颜色数据设置逻辑。
  * 原始代码中实现了完整的颜色数据设置、标准化、配置等功能。
  */
-void RenderingSystem_SetColorData(longlong param_1,undefined8 *param_2)
+void RenderingSystem_SetColorData(longlong param_1,uint64_t *param_2)
 
 {
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  uint64_t uStack_48;
+  uint64_t uStack_40;
+  uint64_t uStack_38;
+  uint64_t uStack_30;
+  int32_t uStack_28;
+  int32_t uStack_24;
+  int32_t uStack_20;
+  int32_t uStack_1c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_10;
+  int32_t uStack_c;
   
   uStack_48 = *param_2;
   uStack_40 = param_2[1];
   uStack_38 = param_2[2];
   uStack_30 = param_2[3];
-  uStack_28 = *(undefined4 *)(param_2 + 4);
-  uStack_24 = *(undefined4 *)((longlong)param_2 + 0x24);
-  uStack_20 = *(undefined4 *)(param_2 + 5);
-  uStack_1c = *(undefined4 *)((longlong)param_2 + 0x2c);
-  uStack_18 = *(undefined4 *)(param_2 + 6);
-  uStack_14 = *(undefined4 *)((longlong)param_2 + 0x34);
-  uStack_10 = *(undefined4 *)(param_2 + 7);
-  uStack_c = *(undefined4 *)((longlong)param_2 + 0x3c);
+  uStack_28 = *(int32_t *)(param_2 + 4);
+  uStack_24 = *(int32_t *)((longlong)param_2 + 0x24);
+  uStack_20 = *(int32_t *)(param_2 + 5);
+  uStack_1c = *(int32_t *)((longlong)param_2 + 0x2c);
+  uStack_18 = *(int32_t *)(param_2 + 6);
+  uStack_14 = *(int32_t *)((longlong)param_2 + 0x34);
+  uStack_10 = *(int32_t *)(param_2 + 7);
+  uStack_c = *(int32_t *)((longlong)param_2 + 0x3c);
   FUN_180237b10(param_1 + 0x10,&uStack_48);
   return;
 }
@@ -1590,7 +1590,7 @@ void RenderingSystem_ApplyColorToAll(longlong param_1,float *param_2)
            ((uVar1 << 8 | uVar3) << 8 | uVar5) << 8 | uVar7;
     } while (iVar4 < *(int *)(*(longlong *)(param_1 + 0x18) + 0x60));
   }
-  *(undefined1 *)(param_1 + 0x40) = 1;
+  *(int8_t *)(param_1 + 0x40) = 1;
   return;
 }
 
@@ -1719,7 +1719,7 @@ void RenderingSystem_AdjustColorBrightness(longlong param_1,float param_2)
       lVar3 = *(longlong *)(param_1 + 0x18);
     } while (iVar7 < *(int *)(lVar3 + 0x60));
   }
-  *(undefined1 *)(param_1 + 0x40) = 1;
+  *(int8_t *)(param_1 + 0x40) = 1;
   return;
 }
 
@@ -1793,7 +1793,7 @@ void RenderingSystem_AdjustColorSaturation(longlong param_1,float param_2)
          ((uVar6 | uVar4 << 8) << 8 | uVar3) << 8 | uVar1;
     param_1 = *(longlong *)(in_R11 + 0x18);
   } while ((int)unaff_EDI < *(int *)(param_1 + 0x60));
-  *(undefined1 *)(in_R11 + 0x40) = 1;
+  *(int8_t *)(in_R11 + 0x40) = 1;
   return;
 }
 
@@ -1827,7 +1827,7 @@ void RenderingSystem_InvalidateColorCache(void)
 {
   longlong in_R11;
   
-  *(undefined1 *)(in_R11 + 0x40) = 1;
+  *(int8_t *)(in_R11 + 0x40) = 1;
   return;
 }
 
@@ -1861,14 +1861,14 @@ void RenderingSystem_InvalidateColorCache(void)
  * 本函数为简化实现，原始代码包含复杂的渲染效果处理逻辑。
  * 原始代码中实现了完整的效果处理、标准化、配置等功能。
  */
-void RenderingSystem_ProcessRenderEffect(longlong param_1,undefined8 param_2,undefined8 param_3,undefined4 param_4)
+void RenderingSystem_ProcessRenderEffect(longlong param_1,uint64_t param_2,uint64_t param_3,int32_t param_4)
 
 {
-  undefined1 auStack_40 [16];
-  undefined8 *puStack_30;
+  int8_t auStack_40 [16];
+  uint64_t *puStack_30;
   
   FUN_180233690(param_1 + 0x10,auStack_40,param_2,param_3,param_4);
-  if (puStack_30 != (undefined8 *)0x0) {
+  if (puStack_30 != (uint64_t *)0x0) {
     FUN_18004b790(auStack_40,*puStack_30);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puStack_30);
@@ -1919,8 +1919,8 @@ void RenderingSystem_RemoveColorEntry(longlong param_1,int param_2)
   piVar2 = *(int **)(*(longlong *)(param_1 + 0x18) + 0x90);
   iVar1 = *(int *)(*(longlong *)(param_1 + 0x18) + 0x88);
   if (0 < iVar1) {
-    iStack_14 = (int)((ulonglong)*(undefined8 *)(piVar2 + (longlong)param_2 * 3) >> 0x20);
-    iStack_18 = (int)*(undefined8 *)(piVar2 + (longlong)param_2 * 3);
+    iStack_14 = (int)((ulonglong)*(uint64_t *)(piVar2 + (longlong)param_2 * 3) >> 0x20);
+    iStack_18 = (int)*(uint64_t *)(piVar2 + (longlong)param_2 * 3);
     piVar3 = piVar2;
     while (((*piVar3 != iStack_18 || (piVar3[1] != iStack_14)) ||
            (piVar3[2] != piVar2[(longlong)param_2 * 3 + 2]))) {
@@ -1941,7 +1941,7 @@ void RenderingSystem_RemoveColorEntry(longlong param_1,int param_2)
 
 
 
-undefined4 *
+int32_t *
 /**
  * 渲染系统颜色数据查询器
  * 
@@ -1970,15 +1970,15 @@ undefined4 *
  * 本函数为简化实现，原始代码包含复杂的颜色数据查询逻辑。
  * 原始代码中实现了完整的查询、标准化、配置等功能。
  */
-undefined4 * RenderingSystem_QueryColorData(undefined4 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int32_t * RenderingSystem_QueryColorData(int32_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong *plVar1;
-  undefined4 uVar2;
+  int32_t uVar2;
   longlong *plStackX_8;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_14;
+  int32_t uStack_20;
+  int32_t uStack_1c;
+  int32_t uStack_14;
   
   FUN_18022cb40(param_2,&plStackX_8,param_3,param_4,0xfffffffffffffffe);
   plVar1 = plStackX_8;
@@ -1990,7 +1990,7 @@ undefined4 * RenderingSystem_QueryColorData(undefined4 *param_1,undefined8 param
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
   uStack_20 = SUB84(plVar1,0);
-  uStack_1c = (undefined4)((ulonglong)plVar1 >> 0x20);
+  uStack_1c = (int32_t)((ulonglong)plVar1 >> 0x20);
   *param_1 = uStack_20;
   param_1[1] = uStack_1c;
   param_1[2] = uVar2;
@@ -2030,15 +2030,15 @@ undefined4 * RenderingSystem_QueryColorData(undefined4 *param_1,undefined8 param
  * 本函数为简化实现，原始代码包含复杂的颜色缓冲区分配逻辑。
  * 原始代码中实现了完整的缓冲区分配、标准化、配置等功能。
  */
-undefined8 * RenderingSystem_AllocateColorBuffer(undefined8 *param_1)
+uint64_t * RenderingSystem_AllocateColorBuffer(uint64_t *param_1)
 
 {
-  undefined4 uVar1;
+  int32_t uVar1;
   longlong *plStackX_8;
   longlong *plStack_38;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
-  undefined *puStack_28;
+  int32_t uStack_30;
+  int32_t uStack_2c;
+  void *puStack_28;
   longlong lStack_20;
   
   uVar1 = FUN_180627910(&puStack_28);
@@ -2097,15 +2097,15 @@ undefined8 * RenderingSystem_AllocateColorBuffer(undefined8 *param_1)
  * 本函数为简化实现，原始代码包含复杂的颜色缓冲区获取逻辑。
  * 原始代码中实现了完整的缓冲区获取、标准化、配置等功能。
  */
-undefined4 * RenderingSystem_GetColorBuffer(undefined4 *param_1)
+int32_t * RenderingSystem_GetColorBuffer(int32_t *param_1)
 
 {
   longlong *plVar1;
-  undefined4 uVar2;
+  int32_t uVar2;
   longlong *plStackX_8;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_c;
   
   FUN_1800b5e80(param_1,&plStackX_8);
   plVar1 = plStackX_8;
@@ -2117,7 +2117,7 @@ undefined4 * RenderingSystem_GetColorBuffer(undefined4 *param_1)
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
   uStack_18 = SUB84(plVar1,0);
-  uStack_14 = (undefined4)((ulonglong)plVar1 >> 0x20);
+  uStack_14 = (int32_t)((ulonglong)plVar1 >> 0x20);
   *param_1 = uStack_18;
   param_1[1] = uStack_14;
   param_1[2] = uVar2;
@@ -2157,18 +2157,18 @@ undefined4 * RenderingSystem_GetColorBuffer(undefined4 *param_1)
  * 本函数为简化实现，原始代码包含复杂的颜色缓冲区获取逻辑。
  * 原始代码中实现了完整的缓冲区获取、标准化、配置等功能。
  */
-undefined4 * RenderingSystem_GetColorBufferEx(undefined4 *param_1,longlong param_2)
+int32_t * RenderingSystem_GetColorBufferEx(int32_t *param_1,longlong param_2)
 
 {
   longlong *plVar1;
   char cVar2;
-  undefined4 uVar3;
-  undefined4 in_XMM0_Da;
-  undefined4 extraout_XMM0_Da;
+  int32_t uVar3;
+  int32_t in_XMM0_Da;
+  int32_t extraout_XMM0_Da;
   longlong *plStackX_8;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_c;
+  int32_t uStack_18;
+  int32_t uStack_14;
+  int32_t uStack_c;
   
   cVar2 = *(char *)(param_2 + 0x38c);
   if (cVar2 == '\t') {
@@ -2186,7 +2186,7 @@ undefined4 * RenderingSystem_GetColorBufferEx(undefined4 *param_1,longlong param
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
   uStack_18 = SUB84(plVar1,0);
-  uStack_14 = (undefined4)((ulonglong)plVar1 >> 0x20);
+  uStack_14 = (int32_t)((ulonglong)plVar1 >> 0x20);
   *param_1 = uStack_18;
   param_1[1] = uStack_14;
   param_1[2] = uVar3;
@@ -2227,11 +2227,11 @@ undefined4 * RenderingSystem_GetColorBufferEx(undefined4 *param_1,longlong param
  * 本函数为简化实现，原始代码包含复杂的资源指针设置逻辑。
  * 原始代码中实现了完整的资源指针设置、标准化、配置等功能。
  */
-void RenderingSystem_SetResourcePointer(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void RenderingSystem_SetResourcePointer(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 uVar1;
-  undefined1 auStack_60 [88];
+  uint64_t uVar1;
+  int8_t auStack_60 [88];
   
   uVar1 = FUN_1800b8300(auStack_60,param_2 + 0x10,param_3,param_4,0xfffffffffffffffe);
   FUN_18022ccc0(param_1,uVar1);
@@ -2271,8 +2271,8 @@ longlong * RenderingSystem_GetResourcePointer(longlong *param_1,longlong param_2
 
 {
   longlong *plStack_20;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
+  int32_t uStack_18;
+  int32_t uStack_14;
   
   plStack_20 = *(longlong **)(param_2 + 0xb8 + (longlong)param_3 * 8);
   if (plStack_20 == (longlong *)0x0) {
@@ -2322,8 +2322,8 @@ longlong * RenderingSystem_GetMainResourcePointer(longlong *param_1,longlong par
 
 {
   longlong *plStack_20;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
+  int32_t uStack_18;
+  int32_t uStack_14;
   
   plStack_20 = *(longlong **)(param_2 + 0x1e0);
   if (plStack_20 == (longlong *)0x0) {
@@ -2369,12 +2369,12 @@ longlong * RenderingSystem_GetMainResourcePointer(longlong *param_1,longlong par
  * 本函数为简化实现，原始代码包含复杂的资源指针更新逻辑。
  * 原始代码中实现了完整的资源指针更新、标准化、配置等功能。
  */
-void RenderingSystem_UpdateResourcePointer(undefined8 param_1,undefined8 param_2)
+void RenderingSystem_UpdateResourcePointer(uint64_t param_1,uint64_t param_2)
 
 {
-  *(undefined8 *)(param_1 + 0x140) = param_2;
+  *(uint64_t *)(param_1 + 0x140) = param_2;
   FUN_18022dd60();
-  *(undefined2 *)(param_1 + 0x3c0) = 0xffff;
+  *(int16_t *)(param_1 + 0x3c0) = 0xffff;
   return;
 }
 
@@ -2409,14 +2409,14 @@ void RenderingSystem_UpdateResourcePointer(undefined8 param_1,undefined8 param_2
  * 本函数为简化实现，原始代码包含复杂的资源参数设置逻辑。
  * 原始代码中实现了完整的资源参数设置、标准化、配置等功能。
  */
-void RenderingSystem_SetResourceParameters(longlong param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-                                          undefined4 param_5)
+void RenderingSystem_SetResourceParameters(longlong param_1,int32_t param_2,int32_t param_3,int32_t param_4,
+                                          int32_t param_5)
 
 {
-  *(undefined4 *)(param_1 + 0x288) = param_2;
-  *(undefined4 *)(param_1 + 0x28c) = param_3;
-  *(undefined4 *)(param_1 + 0x290) = param_4;
-  *(undefined4 *)(param_1 + 0x294) = param_5;
+  *(int32_t *)(param_1 + 0x288) = param_2;
+  *(int32_t *)(param_1 + 0x28c) = param_3;
+  *(int32_t *)(param_1 + 0x290) = param_4;
+  *(int32_t *)(param_1 + 0x294) = param_5;
   return;
 }
 

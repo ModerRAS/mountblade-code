@@ -71,24 +71,24 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
   longlong *resource_pool;
   float quality_factor;
   longlong *stack_resources[3];
-  undefined1 alignment_buffer[32];
-  undefined8 stack_guard;
+  int8_t alignment_buffer[32];
+  uint64_t stack_guard;
   longlong **resource_manager_ptr;
-  undefined1 temp_buffer[8];
+  int8_t temp_buffer[8];
   longlong context_size;
   longlong context_offset;
   float quality_scale;
   float quality_threshold;
   longlong *resource_allocator;
-  undefined1 *string_processor;
+  int8_t *string_processor;
   float *quality_param1;
   float *quality_param2;
   longlong *batch_processor;
   longlong resource_size2;
   longlong *resource_array[2];
   code *cleanup_callback;
-  undefined *global_data;
-  undefined8 resource_config;
+  void *global_data;
+  uint64_t resource_config;
   longlong **manager_pointer;
   int quality_params[6];
   ulonglong memory_guard;
@@ -99,13 +99,13 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
   
   // 初始化系统状态计数器
   LOCK();
-  *(undefined4 *)(param_1 + 0x78) = 0;
+  *(int32_t *)(param_1 + 0x78) = 0;
   UNLOCK();
   LOCK();
-  *(undefined4 *)(param_1 + 0x980) = 0;
+  *(int32_t *)(param_1 + 0x980) = 0;
   UNLOCK();
   LOCK();
-  *(undefined4 *)(param_1 + 0x1288) = 0;
+  *(int32_t *)(param_1 + 0x1288) = 0;
   UNLOCK();
   
   // 设置资源参数
@@ -118,8 +118,8 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
     if (iteration_count == 0) {
       // 处理高级资源初始化
       if (*(longlong *)(stack_resources[0] + 0x60b80) != 0) {
-        *(undefined8 *)(context_size + 0x124c8) =
-             *(undefined8 *)(*(longlong *)(stack_resources[0] + 0x60b80) + 0x20);
+        *(uint64_t *)(context_size + 0x124c8) =
+             *(uint64_t *)(*(longlong *)(stack_resources[0] + 0x60b80) + 0x20);
       }
       
       // 遍历资源池进行初始化
@@ -140,7 +140,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
             
             // 初始化资源状态
             LOCK();
-            *(undefined4 *)(resource_manager + 0xa8) = 0;
+            *(int32_t *)(resource_manager + 0xa8) = 0;
             UNLOCK();
             resource_manager = *(longlong *)(_DAT_180c86870 + 0x3d8);
             
@@ -235,7 +235,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
       
       // 执行最终初始化步骤
       if (*(char *)(_DAT_180c86870 + 0xf9) == '\0') {
-        *(undefined4 *)(context_size + 0x124b8) = 0;
+        *(int32_t *)(context_size + 0x124b8) = 0;
       }
       else {
         FUN_180307ca0(param_1, context_size);
@@ -270,7 +270,7 @@ void rendering_system_advanced_initializer(longlong param_1, longlong param_2, l
  * 4. 更新资源状态
  * 5. 应用质量调整
  */
-void rendering_system_resource_optimizer(undefined8 *param_1, int param_2, int param_3)
+void rendering_system_resource_optimizer(uint64_t *param_1, int param_2, int param_3)
 
 {
   uint *resource_counter;
@@ -311,7 +311,7 @@ void rendering_system_resource_optimizer(undefined8 *param_1, int param_2, int p
         
         // 批处理优化
         FUN_180308500(system_context + 0xa8);
-        *(undefined1 *)((longlong)resource_data + 0x39) = 1;
+        *(int8_t *)((longlong)resource_data + 0x39) = 1;
       }
       
 LAB_1803066f9:
@@ -337,7 +337,7 @@ LAB_1803066f9:
       else {
         // 处理资源容量调整
         resource_capacity = resource_data[0x2b];
-        *(undefined4 *)((longlong)resource_data + 0x34) = 0;
+        *(int32_t *)((longlong)resource_data + 0x34) = 0;
         if (resource_capacity != 0) {
           resource_capacity = (ulonglong)(byte)(*(char *)(resource_capacity + 0x2c8) + 8);
         }
@@ -398,7 +398,7 @@ LAB_1803066f9:
  * 4. 更新状态信息
  * 5. 应用参数调整
  */
-void rendering_system_state_controller(undefined8 *param_1, int param_2, int param_3)
+void rendering_system_state_controller(uint64_t *param_1, int param_2, int param_3)
 
 {
   uint *state_counter;
@@ -413,40 +413,40 @@ void rendering_system_state_controller(undefined8 *param_1, int param_2, int par
   longlong stack_context;
   ulonglong resource_capacity;
   longlong memory_block;
-  undefined8 stack_frame;
-  undefined8 context_base;
-  undefined8 temp_data;
-  undefined8 frame_pointer;
-  undefined8 register_rbx;
-  undefined8 register_rbp;
-  undefined8 register_r12;
-  undefined8 register_r13;
-  undefined8 register_r14;
+  uint64_t stack_frame;
+  uint64_t context_base;
+  uint64_t temp_data;
+  uint64_t frame_pointer;
+  uint64_t register_rbx;
+  uint64_t register_rbp;
+  uint64_t register_r12;
+  uint64_t register_r13;
+  uint64_t register_r14;
   bool allocation_success;
-  undefined4 xmm6_reg_a;
-  undefined4 xmm6_reg_b;
-  undefined4 xmm6_reg_c;
-  undefined4 xmm6_reg_d;
-  undefined4 xmm7_reg_a;
-  undefined4 xmm7_reg_b;
-  undefined4 xmm7_reg_c;
-  undefined4 xmm7_reg_d;
+  int32_t xmm6_reg_a;
+  int32_t xmm6_reg_b;
+  int32_t xmm6_reg_c;
+  int32_t xmm6_reg_d;
+  int32_t xmm7_reg_a;
+  int32_t xmm7_reg_b;
+  int32_t xmm7_reg_c;
+  int32_t xmm7_reg_d;
   int stack_param;
   
   // 设置栈帧和寄存器状态
-  *(undefined8 *)(stack_context + 8) = register_rbx;
-  *(undefined8 *)(stack_context + 0x20) = register_r12;
-  *(undefined8 *)(stack_context + -0x20) = register_r13;
-  *(undefined4 *)(stack_context + -0x38) = xmm6_reg_a;
-  *(undefined4 *)(stack_context + -0x34) = xmm6_reg_b;
-  *(undefined4 *)(stack_context + -0x30) = xmm6_reg_c;
-  *(undefined4 *)(stack_context + -0x2c) = xmm6_reg_d;
-  *(undefined4 *)(stack_context + -0x48) = xmm7_reg_a;
-  *(undefined4 *)(stack_context + -0x44) = xmm7_reg_b;
-  *(undefined4 *)(stack_context + -0x40) = xmm7_reg_c;
-  *(undefined4 *)(stack_context + -0x3c) = xmm7_reg_d;
-  *(undefined8 *)(stack_context + 0x18) = register_rbp;
-  *(undefined8 *)(stack_context + -0x28) = register_r14;
+  *(uint64_t *)(stack_context + 8) = register_rbx;
+  *(uint64_t *)(stack_context + 0x20) = register_r12;
+  *(uint64_t *)(stack_context + -0x20) = register_r13;
+  *(int32_t *)(stack_context + -0x38) = xmm6_reg_a;
+  *(int32_t *)(stack_context + -0x34) = xmm6_reg_b;
+  *(int32_t *)(stack_context + -0x30) = xmm6_reg_c;
+  *(int32_t *)(stack_context + -0x2c) = xmm6_reg_d;
+  *(int32_t *)(stack_context + -0x48) = xmm7_reg_a;
+  *(int32_t *)(stack_context + -0x44) = xmm7_reg_b;
+  *(int32_t *)(stack_context + -0x40) = xmm7_reg_c;
+  *(int32_t *)(stack_context + -0x3c) = xmm7_reg_d;
+  *(uint64_t *)(stack_context + 0x18) = register_rbp;
+  *(uint64_t *)(stack_context + -0x28) = register_r14;
   *(int *)(stack_context + 0x10) = param_2;
   
   // 执行状态控制循环
@@ -471,7 +471,7 @@ void rendering_system_state_controller(undefined8 *param_1, int param_2, int par
       
       // 批处理状态转换
       FUN_180308500(system_context + 0xa8);
-      *(undefined1 *)((longlong)state_data + 0x39) = 1;
+      *(int8_t *)((longlong)state_data + 0x39) = 1;
       param_2 = stack_param;
     }
     
@@ -498,7 +498,7 @@ LAB_1803066f9:
     else {
       // 处理状态容量调整
       resource_capacity = state_data[0x2b];
-      *(undefined4 *)((longlong)state_data + 0x34) = 0;
+      *(int32_t *)((longlong)state_data + 0x34) = 0;
       if (resource_capacity != 0) {
         resource_capacity = (ulonglong)(byte)(*(char *)(resource_capacity + 0x2c8) + 8);
       }
@@ -584,8 +584,8 @@ void rendering_system_empty_operation(void)
  * 4. 应用距离优化
  * 5. 更新可见性状态
  */
-bool rendering_system_visibility_checker(undefined8 param_1, longlong *param_2, longlong param_3,
-                                         undefined8 param_4, float param_5)
+bool rendering_system_visibility_checker(uint64_t param_1, longlong *param_2, longlong param_3,
+                                         uint64_t param_4, float param_5)
 
 {
   float distance_factor1;
@@ -597,30 +597,30 @@ bool rendering_system_visibility_checker(undefined8 param_1, longlong *param_2, 
   float stack_param1;
   float stack_param2;
   float stack_param3;
-  undefined4 stack_param4;
+  int32_t stack_param4;
   float stack_param5;
   float stack_param6;
   float stack_param7;
-  undefined4 stack_param8;
+  int32_t stack_param8;
   float stack_param9;
   float stack_param10;
   float stack_param11;
-  undefined4 stack_param12;
+  int32_t stack_param12;
   float stack_param13;
   float stack_param14;
   float stack_param15;
-  undefined4 stack_param16;
+  int32_t stack_param16;
   
   // 执行可见性检查预处理
   (**(code **)(*param_2 + 0x218))(param_2);
   (**(code **)(*param_2 + 0x218))(param_2);
   
   // 获取可见性掩码
-  if ((undefined *)*param_2 == &UNK_180a19770) {
+  if ((void *)*param_2 == &UNK_180a19770) {
     visibility_mask = *(uint *)((longlong)param_2 + 0x174);
   }
   else {
-    visibility_mask = (**(code **)((undefined *)*param_2 + 0x130))(param_2);
+    visibility_mask = (**(code **)((void *)*param_2 + 0x130))(param_2);
   }
   
   // 检查可见性条件
@@ -708,23 +708,23 @@ bool rendering_system_occlusion_tester(void)
   float stack_param1;
   float stack_param2;
   float stack_param3;
-  undefined4 stack_param4;
+  int32_t stack_param4;
   float stack_param5;
   float stack_param6;
   float stack_param7;
-  undefined4 stack_param8;
+  int32_t stack_param8;
   float stack_param9;
   float stack_param10;
   float stack_param11;
-  undefined4 stack_param12;
+  int32_t stack_param12;
   float stack_param13;
   float stack_param14;
   float stack_param15;
-  undefined4 stack_param16;
+  int32_t stack_param16;
   float stack_param17;
   float stack_param18;
   float stack_param19;
-  undefined4 stack_param20;
+  int32_t stack_param20;
   
   // 执行遮挡测试预处理
   if (((visibility_mask & 1) != 0) &&
@@ -818,26 +818,26 @@ bool rendering_system_depth_optimizer(void)
   float stack_param1;
   float stack_param2;
   float stack_param3;
-  undefined4 stack_param4;
+  int32_t stack_param4;
   float stack_param5;
   float stack_param6;
   float stack_param7;
-  undefined4 stack_param8;
+  int32_t stack_param8;
   float stack_param9;
   float stack_param10;
   float stack_param11;
-  undefined4 stack_param12;
+  int32_t stack_param12;
   float stack_param13;
   float stack_param14;
   float stack_param15;
-  undefined4 stack_param16;
-  undefined4 stack_param17;
-  undefined4 stack_param18;
-  undefined4 stack_param19;
+  int32_t stack_param16;
+  int32_t stack_param17;
+  int32_t stack_param18;
+  int32_t stack_param19;
   float stack_param20;
   float stack_param21;
   float stack_param22;
-  undefined4 stack_param23;
+  int32_t stack_param23;
   
   // 执行深度优化预处理
   visibility_mask = (**(code **)(stack_context + 0x130))();
@@ -927,7 +927,7 @@ void rendering_system_resource_cleaner(longlong param_1)
     resource_counter = (uint *)(*(longlong *)(param_1 + 0x1c48) + 0x328);
     *resource_counter = *resource_counter & 0xdfffffff;
     resource_manager = *(longlong **)(param_1 + 0x1c48);
-    *(undefined8 *)(param_1 + 0x1c48) = 0;
+    *(uint64_t *)(param_1 + 0x1c48) = 0;
     
     // 执行资源清理
     if (resource_manager != (longlong *)0x0) {

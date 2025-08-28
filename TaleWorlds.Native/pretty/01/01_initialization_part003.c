@@ -1197,11 +1197,11 @@ void register_system_module_type6_duplicate2(void)
 // 原始函数名: FUN_180030870
 void initialize_system_config(void)
 {
-  undefined8 config_param;
+  uint64_t config_param;
   void *config_handler;
-  undefined1 *config_buffer;
-  undefined4 buffer_size;
-  undefined1 buffer_data[136];
+  int8_t *config_buffer;
+  int32_t buffer_size;
+  int8_t buffer_data[136];
   
   config_handler = &SYSTEM_CONFIG_HANDLER;
   config_buffer = buffer_data;
@@ -1219,7 +1219,7 @@ void initialize_system_config(void)
 int initialize_system_globals(void)
 {
   longlong init_result;
-  undefined8 init_param;
+  uint64_t init_param;
   
   system_global_ptr = &SYSTEM_GLOBAL_DATA;
   system_global_data_ptr = &SYSTEM_GLOBAL_DATA_ARRAY;

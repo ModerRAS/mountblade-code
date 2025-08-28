@@ -2,14 +2,14 @@
 
 // 02_core_engine_part151.c - 8 个函数
 
-// 函数: void FUN_18013a860(longlong param_1,int param_2,int param_3,undefined8 param_4)
+// 函数: void FUN_18013a860(longlong param_1,int param_2,int param_3,uint64_t param_4)
 // 功能: 递归遍历节点树，根据条件处理节点
 // 参数: 
 //   param_1 - 当前节点指针
 //   param_2 - 比较参数1
 //   param_3 - 比较参数2 (0或1)
 //   param_4 - 回调函数参数
-void traverse_node_tree_recursive(longlong current_node, int compare_param1, int compare_param2, undefined8 callback_param)
+void traverse_node_tree_recursive(longlong current_node, int compare_param1, int compare_param2, uint64_t callback_param)
 
 {
   longlong next_node;
@@ -52,11 +52,11 @@ void traverse_node_tree_recursive(longlong current_node, int compare_param1, int
 
 
 
-// 函数: void FUN_18013a920(undefined4 *param_1)
+// 函数: void FUN_18013a920(int32_t *param_1)
 // 功能: 处理节点对，执行碰撞检测和响应处理
 // 参数: 
 //   param_1 - 节点对结构体指针
-void process_node_pair_collision(undefined4 *node_pair)
+void process_node_pair_collision(int32_t *node_pair)
 
 {
   byte *node_flags;
@@ -64,11 +64,11 @@ void process_node_pair_collision(undefined4 *node_pair)
   float distance_threshold;
   int iteration_count;
   longlong global_context;
-  undefined4 *first_node;
-  undefined4 *second_node;
-  undefined4 *temp_node;
+  int32_t *first_node;
+  int32_t *second_node;
+  int32_t *temp_node;
   char collision_detected;
-  undefined4 temp_value;
+  int32_t temp_value;
   int callback_id;
   ulonglong iteration_index;
   longlong *node_pointer;
@@ -77,20 +77,20 @@ void process_node_pair_collision(undefined4 *node_pair)
   longlong list_node;
   ulonglong temp_ulong;
   longlong array_element;
-  undefined4 out_xmm0;
+  int32_t out_xmm0;
   float calculated_value;
   float adjustment_factor;
-  undefined4 *stack_pointer;
+  int32_t *stack_pointer;
   float coordinate_pair[2];
   float *float_array_ptr;
-  undefined4 packed_float;
+  int32_t packed_float;
   float extended_coords[2];
-  undefined8 packed_coords;
+  uint64_t packed_coords;
   float bounding_coords[4];
   float coord1;
   float coord2;
   float extended_bounds[4];
-  undefined4 stack_value;
+  int32_t stack_value;
   float scale_factor;
   uint counters[2];
   longlong *pointer_array;
@@ -105,9 +105,9 @@ void process_node_pair_collision(undefined4 *node_pair)
       return;
     }
     
-    packed_float = (undefined4)((ulonglong)float_array_ptr >> 0x20);
-    first_node = *(undefined4 **)(node_pair + 4);
-    second_node = *(undefined4 **)(node_pair + 6);
+    packed_float = (int32_t)((ulonglong)float_array_ptr >> 0x20);
+    first_node = *(int32_t **)(node_pair + 4);
+    second_node = *(int32_t **)(node_pair + 6);
     GLOBAL_ENGINE_CONTEXT = node_data;
     
     // 检查两个节点是否都激活了碰撞处理
@@ -119,7 +119,7 @@ void process_node_pair_collision(undefined4 *node_pair)
         // 提取节点坐标
         extended_coords[0] = (float)first_node[0xe];
         extended_coords[1] = (float)first_node[0xf];
-        packed_coords = *(undefined8 *)(second_node + 0xe);
+        packed_coords = *(uint64_t *)(second_node + 0xe);
         
         // 扩展坐标计算
         global_context = coordinate_index * 4;
@@ -213,11 +213,11 @@ void process_node_pair_collision(undefined4 *node_pair)
           
           // 执行碰撞响应计算
           global_context = GLOBAL_ENGINE_CONTEXT;
-          stack_pointer = (undefined4 *)CONCAT44(stack_pointer._4_4_, first_node[coordinate_index + 0x10]);
+          stack_pointer = (int32_t *)CONCAT44(stack_pointer._4_4_, first_node[coordinate_index + 0x10]);
           coordinate_pair[0] = (float)second_node[coordinate_index + 0x10];
           distance_threshold = (float)first_node[coordinate_index + 0xe];
           callback_id = calculate_collision_response((coordinate_pair[0] + (float)second_node[coordinate_index + 0xe]) - calculated_value, 0,
-                                 *(undefined4 *)
+                                 *(int32_t *)
                                   (*(longlong *)(*(longlong *)(GLOBAL_ENGINE_CONTEXT + 0x1af8) + 0x220) +
                                    -4 + (longlong)
                                         *(int *)(*(longlong *)(GLOBAL_ENGINE_CONTEXT + 0x1af8) + 0x218) * 4
@@ -227,7 +227,7 @@ void process_node_pair_collision(undefined4 *node_pair)
             *(int *)(global_context + 0x1b34) = callback_id;
           }
           if (*(int *)(global_context + 0x1b30) == callback_id) {
-            *(undefined1 *)(global_context + 0x1b3f) = 1;
+            *(int8_t *)(global_context + 0x1b3f) = 1;
           }
           
           float_array_ptr = coordinate_pair;
@@ -252,7 +252,7 @@ void process_node_pair_collision(undefined4 *node_pair)
                 array_element = 0;
                 do {
                   list_node = *(longlong *)(array_element + *(longlong *)(temp_counters + node_data * 4 + -2));
-                  temp_node = *(undefined4 **)(list_node + 8);
+                  temp_node = *(int32_t **)(list_node + 8);
                   while (temp_node != node_pair) {
                     node_pointer = (longlong *)(list_node + 8);
                     list_node = *node_pointer;
@@ -261,7 +261,7 @@ void process_node_pair_collision(undefined4 *node_pair)
                       *node_flags = *node_flags | 4;
                       list_node = *node_pointer;
                     }
-                    temp_node = *(undefined4 **)(list_node + 8);
+                    temp_node = *(int32_t **)(list_node + 8);
                   }
                   callback_id = callback_id + 1;
                   array_element = array_element + 8;
@@ -273,7 +273,7 @@ void process_node_pair_collision(undefined4 *node_pair)
                 array_element = 0;
                 do {
                   list_node = *(longlong *)(array_element + (longlong)node_pointer_array[node_data * 2]);
-                  temp_node = *(undefined4 **)(list_node + 8);
+                  temp_node = *(int32_t **)(list_node + 8);
                   while (temp_node != node_pair) {
                     node_pointer = (longlong *)(list_node + 8);
                     list_node = *node_pointer;
@@ -282,7 +282,7 @@ void process_node_pair_collision(undefined4 *node_pair)
                       *node_flags = *node_flags | 4;
                       list_node = *node_pointer;
                     }
-                    temp_node = *(undefined4 **)(list_node + 8);
+                    temp_node = *(int32_t **)(list_node + 8);
                   }
                   callback_id = callback_id + 1;
                   array_element = array_element + 8;
@@ -292,11 +292,11 @@ void process_node_pair_collision(undefined4 *node_pair)
             } while (node_data < 2);
             
             // 执行碰撞后处理
-            update_node_after_collision(first_node, *(undefined8 *)(first_node + 0xe), *(undefined8 *)(first_node + 0x10));
-            update_node_after_collision(second_node, *(undefined8 *)(second_node + 0xe), *(undefined8 *)(second_node + 0x10));
+            update_node_after_collision(first_node, *(uint64_t *)(first_node + 0xe), *(uint64_t *)(first_node + 0x10));
+            update_node_after_collision(second_node, *(uint64_t *)(second_node + 0xe), *(uint64_t *)(second_node + 0x10));
             
             if (*(float *)(global_context + 0x2e04) <= 0.0) {
-              *(undefined4 *)(global_context + 0x2e04) = *(undefined4 *)(global_context + 0x1c);
+              *(int32_t *)(global_context + 0x2e04) = *(int32_t *)(global_context + 0x1c);
             }
           }
           
@@ -309,11 +309,11 @@ void process_node_pair_collision(undefined4 *node_pair)
           // 简化的碰撞处理路径
           extended_bounds[2] = *(float *)(node_data + 0x1878);
           extended_bounds[3] = *(float *)(node_data + 0x187c);
-          stack_value = *(undefined4 *)(node_data + 0x1880);
+          stack_value = *(int32_t *)(node_data + 0x1880);
           scale_factor = *(float *)(node_data + 0x1884) * *(float *)(node_data + 0x1628);
           temp_value = calculate_collision_parameters(extended_bounds + 2);
-          float_array_ptr = (float *)CONCAT44(packed_float, *(undefined4 *)(node_data + 0x1664));
-          process_simple_collision(*(undefined8 *)(*(longlong *)(node_data + 0x1af8) + 0x2e8), extended_coords,
+          float_array_ptr = (float *)CONCAT44(packed_float, *(int32_t *)(node_data + 0x1664));
+          process_simple_collision(*(uint64_t *)(*(longlong *)(node_data + 0x1af8) + 0x2e8), extended_coords,
                         &packed_coords, temp_value, float_array_ptr, 0xf);
         }
       }
@@ -361,13 +361,13 @@ longlong find_matching_node_in_tree(longlong start_node)
 
 // 全局变量警告: 以'_'开头的全局变量与同一地址的较小符号重叠
 
-// 函数: longlong FUN_18013af10(longlong param_1,undefined8 param_2)
+// 函数: longlong FUN_18013af10(longlong param_1,uint64_t param_2)
 // 功能: 在指定区域内查找包含给定坐标的节点
 // 参数: 
 //   param_1 - 当前节点指针
 //   param_2 - 坐标参数 (包含x和y坐标)
 // 返回: 找到的节点指针，未找到返回0
-longlong find_node_containing_coordinate(longlong current_node, undefined8 coordinate_param)
+longlong find_node_containing_coordinate(longlong current_node, uint64_t coordinate_param)
 
 {
   longlong child_result;
@@ -399,7 +399,7 @@ longlong find_node_containing_coordinate(longlong current_node, undefined8 coord
       }
       
       // 搜索兄弟节点
-      child_result = find_node_containing_coordinate(*(undefined8 *)(current_node + 0x18), coordinate_param);
+      child_result = find_node_containing_coordinate(*(uint64_t *)(current_node + 0x18), coordinate_param);
       if (child_result != 0) {
         return child_result;
       }
@@ -416,7 +416,7 @@ longlong find_node_containing_coordinate(longlong current_node, undefined8 coord
         if (child_result != 0) {
           return child_result;
         }
-        child_result = find_matching_node_in_tree(*(undefined8 *)(current_node + 0x18));
+        child_result = find_matching_node_in_tree(*(uint64_t *)(current_node + 0x18));
         return child_result;
       }
     }
@@ -449,7 +449,7 @@ void update_node_material_id(longlong node_ptr, int new_material_id, uint proper
      *(int *)(node_ptr + 0x418) != new_material_id)) {
     
     // 获取材质管理器
-    material_chain = get_material_manager_instance(*(undefined8 *)(GLOBAL_ENGINE_CONTEXT + 0x2df8));
+    material_chain = get_material_manager_instance(*(uint64_t *)(GLOBAL_ENGINE_CONTEXT + 0x2df8));
     if ((material_chain != 0) && (*(longlong *)(material_chain + 0x10) != 0)) {
       material_instance = *(longlong *)(material_chain + 8);
       
@@ -500,24 +500,24 @@ void cleanup_node_system(int cleanup_mode)
   bool needs_flag_update;
   uint flag_mask;
   int *temp_node_ptr;
-  undefined8 *node_array;
+  uint64_t *node_array;
   ulonglong array_index;
-  undefined8 *temp_array;
+  uint64_t *temp_array;
   uint temp_count;
   int node_index;
   ulonglong loop_counter;
   uint new_capacity;
-  undefined8 *expanded_array;
+  uint64_t *expanded_array;
   int temp_int;
-  undefined8 *array_pointer;
+  uint64_t *array_pointer;
   longlong chain_node;
-  undefined8 temp_value1;
-  undefined8 temp_value2;
-  undefined8 *temp_pointer;
+  uint64_t temp_value1;
+  uint64_t temp_value2;
+  uint64_t *temp_pointer;
   longlong stack_var;
-  undefined8 temp_var1;
-  undefined8 temp_var2;
-  undefined8 *allocation_ptr;
+  uint64_t temp_var1;
+  uint64_t temp_var2;
+  uint64_t *allocation_ptr;
   
   global_context = GLOBAL_ENGINE_CONTEXT;
   temp_var1 = 0xfffffffffffffffe;
@@ -534,12 +534,12 @@ void cleanup_node_system(int cleanup_mode)
   }
   
   // 初始化清理变量
-  array_pointer = (undefined8 *)0x0;
+  array_pointer = (uint64_t *)0x0;
   needs_flag_update = false;
   needs_deep_cleanup = false;
   temp_var2 = 0;
   temp_count = 0;
-  allocation_ptr = (undefined8 *)0x0;
+  allocation_ptr = (uint64_t *)0x0;
   temp_array = array_pointer;
   expanded_array = array_pointer;
   temp_pointer = array_pointer;
@@ -566,7 +566,7 @@ LAB_DEEP_CLEANUP:
              (chain_node = *(longlong *)(global_context + 0x2df8), loop_counter = array_index, 0 < *(int *)(chain_node + 0x10))) {
             do {
               if (*(int **)(array_index + 0x10 + *(longlong *)(chain_node + 0x18)) == current_node) {
-                *(undefined4 *)(array_index + *(longlong *)(chain_node + 0x18)) = 0;
+                *(int32_t *)(array_index + *(longlong *)(chain_node + 0x18)) = 0;
               }
               temp_count = (int)loop_counter + 1;
               array_index = array_index + 0x40;
@@ -600,12 +600,12 @@ LAB_DEEP_CLEANUP:
               if (GLOBAL_ENGINE_CONTEXT != 0) {
                 *(int *)(GLOBAL_ENGINE_CONTEXT + 0x3a8) = *(int *)(GLOBAL_ENGINE_CONTEXT + 0x3a8) + 1;
               }
-              array_pointer = (undefined8 *)allocate_array_memory((longlong)(int)flag_mask << 3, GLOBAL_MEMORY_POOL);
-              if (expanded_array != (undefined8 *)0x0) {
+              array_pointer = (uint64_t *)allocate_array_memory((longlong)(int)flag_mask << 3, GLOBAL_MEMORY_POOL);
+              if (expanded_array != (uint64_t *)0x0) {
                     // 警告: 子程序不返回
                 memcpy(array_pointer, expanded_array, (longlong)temp_int << 3);
               }
-              expanded_array = (undefined8 *)(ulonglong)flag_mask;
+              expanded_array = (uint64_t *)(ulonglong)flag_mask;
               allocation_ptr = array_pointer;
               temp_count = flag_mask;
             }
@@ -613,7 +613,7 @@ LAB_DEEP_CLEANUP:
           
           // 添加节点到清理数组
           array_pointer[temp_int] = current_node;
-          temp_array = (undefined8 *)(ulonglong)(temp_int + 1U);
+          temp_array = (uint64_t *)(ulonglong)(temp_int + 1U);
           temp_var2 = CONCAT44(temp_count, temp_int + 1U);
           needs_flag_update = needs_deep_cleanup;
         }
@@ -636,7 +636,7 @@ LAB_DEEP_CLEANUP:
       
       temp_count = (uint)temp_array;
       flag_mask = (int)array_pointer + 1;
-      array_pointer = (undefined8 *)(ulonglong)flag_mask;
+      array_pointer = (uint64_t *)(ulonglong)flag_mask;
       temp_pointer = temp_pointer + 2;
       expanded_array = array_pointer;
     } while ((int)flag_mask < *node_counter);
@@ -713,7 +713,7 @@ LAB_DEEP_CLEANUP:
   }
   
   // 释放分配的数组内存
-  if (array_pointer == (undefined8 *)0x0) {
+  if (array_pointer == (uint64_t *)0x0) {
     return;
   }
   if (GLOBAL_ENGINE_CONTEXT != 0) {
@@ -729,12 +729,12 @@ LAB_DEEP_CLEANUP:
 
 
 
-// 函数: void FUN_18013b490(undefined8 param_1,char param_2)
+// 函数: void FUN_18013b490(uint64_t param_1,char param_2)
 // 功能: 重置节点系统状态
 // 参数: 
 //   param_1 - 重置标志
 //   param_2 - 重置模式 (0=软重置, 非0=硬重置)
-void reset_node_system(undefined8 reset_flags, char reset_mode)
+void reset_node_system(uint64_t reset_flags, char reset_mode)
 
 {
   int *system_manager;
@@ -754,7 +754,7 @@ void reset_node_system(undefined8 reset_flags, char reset_mode)
   if ((reset_mode != '\0') && (cleanup_index = cleanup_counter, temp_index = cleanup_counter, 0 < *(int *)(GLOBAL_ENGINE_CONTEXT + 0x2e28))) {
     do {
       node_count = (int)temp_index + 1;
-      *(undefined4 *)(cleanup_index + 0x28 + *(longlong *)(current_node + 0x2e30)) = 0;
+      *(int32_t *)(cleanup_index + 0x28 + *(longlong *)(current_node + 0x2e30)) = 0;
       cleanup_index = cleanup_index + 0x38;
       temp_index = (ulonglong)node_count;
     } while ((int)node_count < *(int *)(current_node + 0x2e28));
@@ -769,7 +769,7 @@ void reset_node_system(undefined8 reset_flags, char reset_mode)
     do {
       current_node = *(longlong *)(cleanup_index + *node_array);
       if (*(longlong *)(current_node + 0x408) == 0) {
-        *(undefined4 *)(current_node + 0x418) = 0;
+        *(int32_t *)(current_node + 0x418) = 0;
       }
       else {
         iteration_index = cleanup_counter;
@@ -782,11 +782,11 @@ void reset_node_system(undefined8 reset_flags, char reset_mode)
       
       // 重置节点状态
       *(byte *)(current_node + 0x432) = *(byte *)(current_node + 0x432) & 0xfc;
-      *(undefined1 *)(current_node + 0xb2) = 0;
+      *(int8_t *)(current_node + 0xb2) = 0;
       
       // 更新系统计时器
       if (*(float *)(current_node + 0x2e04) <= 0.0) {
-        *(undefined4 *)(current_node + 0x2e04) = *(undefined4 *)(current_node + 0x1c);
+        *(int32_t *)(current_node + 0x2e04) = *(int32_t *)(current_node + 0x1c);
       }
       
       node_count = (int)temp_index + 1;
@@ -843,7 +843,7 @@ void batch_update_node_materials(longlong system_context)
     
     // 更新系统计时器
     if (*(float *)(system_context + 0x2e04) <= 0.0) {
-      *(undefined4 *)(system_context + 0x2e04) = *(undefined4 *)(system_context + 0x1c);
+      *(int32_t *)(system_context + 0x2e04) = *(int32_t *)(system_context + 0x1c);
     }
     
     node_count = node_count + 1;
@@ -870,12 +870,12 @@ void empty_function_placeholder(void)
 
 
 
-// 函数: void FUN_18013b5a0(undefined8 *param_1,undefined1 *param_2)
+// 函数: void FUN_18013b5a0(uint64_t *param_1,int8_t *param_2)
 // 功能: 处理节点的材质分配和属性设置
 // 参数: 
 //   param_1 - 节点指针
 //   param_2 - 输出标志 (可选)
-void process_node_material_assignment(undefined8 *node_ptr, undefined1 *output_flag)
+void process_node_material_assignment(uint64_t *node_ptr, int8_t *output_flag)
 
 {
   uint node_flags;
@@ -884,8 +884,8 @@ void process_node_material_assignment(undefined8 *node_ptr, undefined1 *output_f
   longlong global_context;
   bool use_alternate_path;
   byte special_flag;
-  undefined2 temp_short;
-  undefined4 material_id;
+  int16_t temp_short;
+  int32_t material_id;
   longlong material_chain;
   int *property_array;
   uint property_index;
@@ -915,12 +915,12 @@ void process_node_material_assignment(undefined8 *node_ptr, undefined1 *output_f
       special_flag = 1;
     }
     
-    *(undefined1 *)(GLOBAL_ENGINE_CONTEXT + 0x1c14) = 0;
+    *(int8_t *)(GLOBAL_ENGINE_CONTEXT + 0x1c14) = 0;
     
     if (special_flag != 0) {
       // 快速材质分离路径
       if (node_ptr[0x81] == 0) {
-        *(undefined4 *)(node_ptr + 0x83) = 0;
+        *(int32_t *)(node_ptr + 0x83) = 0;
       }
       else {
         detach_material_from_node(node_ptr[0x81], node_ptr, 0);
@@ -929,13 +929,13 @@ void process_node_material_assignment(undefined8 *node_ptr, undefined1 *output_f
       
       // 重置节点状态
       *(byte *)((longlong)node_ptr + 0x432) = *(byte *)((longlong)node_ptr + 0x432) & 0xfc;
-      *(undefined1 *)((longlong)node_ptr + 0xb2) = 0;
+      *(int8_t *)((longlong)node_ptr + 0xb2) = 0;
       
       // 检查系统计时器
       if (0.0 < *(float *)(global_context + 0x2e04)) {
         return;
       }
-      *(undefined4 *)(global_context + 0x2e04) = *(undefined4 *)(global_context + 0x1c);
+      *(int32_t *)(global_context + 0x2e04) = *(int32_t *)(global_context + 0x1c);
       return;
     }
   }
@@ -943,7 +943,7 @@ void process_node_material_assignment(undefined8 *node_ptr, undefined1 *output_f
     use_alternate_path = true;
     if (*(int *)(node_ptr + 0x83) == 0) {
       material_id = generate_unique_material_id(GLOBAL_ENGINE_CONTEXT);
-      *(undefined4 *)(node_ptr + 0x83) = material_id;
+      *(int32_t *)(node_ptr + 0x83) = material_id;
     }
   }
   
@@ -953,23 +953,23 @@ void process_node_material_assignment(undefined8 *node_ptr, undefined1 *output_f
   
   // 材质实例获取和处理
   if ((*(int *)(node_ptr + 0x83) != 0) && (material_chain == 0)) {
-    material_chain = get_material_manager_instance(*(undefined8 *)(global_context + 0x2df8), *(undefined4 *)(node_ptr + 0x83));
+    material_chain = get_material_manager_instance(*(uint64_t *)(global_context + 0x2df8), *(int32_t *)(node_ptr + 0x83));
     if (material_chain == 0) {
-      material_chain = create_new_material_instance(global_context, *(undefined4 *)(node_ptr + 0x83));
+      material_chain = create_new_material_instance(global_context, *(int32_t *)(node_ptr + 0x83));
       if (use_alternate_path) {
-        *(undefined4 *)(material_chain + 0x88) = *(undefined4 *)(global_context + 0x1a90);
+        *(int32_t *)(material_chain + 0x88) = *(int32_t *)(global_context + 0x1a90);
       }
     }
     else if (*(longlong *)(material_chain + 0x10) != 0) {
       // 处理现有材质链的冲突
       if (node_ptr[0x81] == 0) {
-        *(undefined4 *)(node_ptr + 0x83) = 0;
-        *(undefined1 *)((longlong)node_ptr + 0xb2) = 0;
+        *(int32_t *)(node_ptr + 0x83) = 0;
+        *(int8_t *)((longlong)node_ptr + 0xb2) = 0;
       }
       else {
         detach_material_from_node(node_ptr[0x81], node_ptr, 0);
         global_context = GLOBAL_ENGINE_CONTEXT;
-        *(undefined1 *)((longlong)node_ptr + 0xb2) = 0;
+        *(int8_t *)((longlong)node_ptr + 0xb2) = 0;
       }
       goto LAB_FINALIZE_PROCESSING;
     }
@@ -977,13 +977,13 @@ void process_node_material_assignment(undefined8 *node_ptr, undefined1 *output_f
     // 初始化新材质链
     initialize_material_chain(material_chain, node_ptr, 1);
     node_data = GLOBAL_ENGINE_CONTEXT;
-    *(undefined8 *)(GLOBAL_ENGINE_CONTEXT + 0x1bf4) = node_ptr[8];
-    *(undefined8 *)(node_data + 0x1bfc) = 0;
-    *(undefined4 *)(node_data + 0x1bd0) = 1;
-    *(undefined1 *)(node_data + 0x1c14) = 1;
-    *(undefined8 *)(node_data + 0x1c04) = node_ptr[10];
-    *(undefined4 *)(node_data + 0x1bd4) = 1;
-    *(undefined1 *)(global_context + 0x1c14) = 0;
+    *(uint64_t *)(GLOBAL_ENGINE_CONTEXT + 0x1bf4) = node_ptr[8];
+    *(uint64_t *)(node_data + 0x1bfc) = 0;
+    *(int32_t *)(node_data + 0x1bd0) = 1;
+    *(int8_t *)(node_data + 0x1c14) = 1;
+    *(uint64_t *)(node_data + 0x1c04) = node_ptr[10];
+    *(int32_t *)(node_data + 0x1bd4) = 1;
+    *(int8_t *)(global_context + 0x1c14) = 0;
   }
   
   // 检查材质链状态
@@ -1010,13 +1010,13 @@ LAB_SET_INACTIVE_FLAG:
       // 检查材质优先级
       if (*(short *)(material_instance + 0xbc) <= *(short *)((longlong)node_ptr + 0xbc)) {
         if (material_instance != 0) {
-          *(undefined8 *)(node_data + 0x1bf4) = *(undefined8 *)(material_chain + 0x38);
-          *(undefined8 *)(node_data + 0x1bfc) = 0;
-          *(undefined4 *)(node_data + 0x1bd0) = 1;
-          *(undefined1 *)(node_data + 0x1c14) = 1;
-          *(undefined8 *)(node_data + 0x1c04) = *(undefined8 *)(material_chain + 0x40);
-          *(undefined4 *)(node_data + 0x1bd4) = 1;
-          *(undefined1 *)(global_context + 0x1c14) = 0;
+          *(uint64_t *)(node_data + 0x1bf4) = *(uint64_t *)(material_chain + 0x38);
+          *(uint64_t *)(node_data + 0x1bfc) = 0;
+          *(int32_t *)(node_data + 0x1bd0) = 1;
+          *(int8_t *)(node_data + 0x1c14) = 1;
+          *(uint64_t *)(node_data + 0x1c04) = *(uint64_t *)(material_chain + 0x40);
+          *(int32_t *)(node_data + 0x1bd4) = 1;
+          *(int8_t *)(global_context + 0x1c14) = 0;
           
           final_flag = *(byte *)((longlong)node_ptr + 0x432) & 0xfd;
           final_flag = final_flag | 1;
@@ -1035,7 +1035,7 @@ LAB_SET_INACTIVE_FLAG:
           
           if ((((final_flag & 2) == 0) && (material_instance != 0)) &&
              (*(int *)(material_instance + 0x18) == *(int *)(node_ptr + 1))) {
-            *(undefined4 *)((longlong)node_ptr + 0xdc) = 2;
+            *(int32_t *)((longlong)node_ptr + 0xdc) = 2;
           }
           
           node_flags = *(uint *)((longlong)node_ptr + 0xc);
@@ -1057,7 +1057,7 @@ LAB_SET_INACTIVE_FLAG:
                 array_index = (int)temp_ulong;
                 if (*material_id_ptr == *(int *)(node_ptr + 1)) {
                   if (*(int **)(property_array + 2) + (longlong)array_index * 10 != (int *)0x0) {
-                    temp_short = (undefined2)(((longlong)array_index * 0x28) / 0x28);
+                    temp_short = (int16_t)(((longlong)array_index * 0x28) / 0x28);
                     goto LAB_SET_PROPERTY_INDEX;
                   }
                   break;
@@ -1069,17 +1069,17 @@ LAB_SET_INACTIVE_FLAG:
             }
             temp_short = 0xffff;
 LAB_SET_PROPERTY_INDEX:
-            *(undefined2 *)(node_ptr + 0x86) = temp_short;
+            *(int16_t *)(node_ptr + 0x86) = temp_short;
           }
           
           // 检查材质特殊属性
           if ((((*(byte *)(material_chain + 0xa1) & 2) != 0) ||
-              (*(int *)(material_chain + 0x9c) == *(int *)(node_ptr + 1))) && (output_flag != (undefined1 *)0x0)) {
+              (*(int *)(material_chain + 0x9c) == *(int *)(node_ptr + 1))) && (output_flag != (int8_t *)0x0)) {
             *output_flag = 0;
           }
           
-          material_id = calculate_material_properties(*(undefined8 *)(node_ptr[0x81] + 0x68), *node_ptr);
-          *(undefined4 *)(node_ptr + 0x11) = material_id;
+          material_id = calculate_material_properties(*(uint64_t *)(node_ptr[0x81] + 0x68), *node_ptr);
+          *(int32_t *)(node_ptr + 0x11) = material_id;
           return;
         }
         goto LAB_SET_INACTIVE_FLAG;
@@ -1089,7 +1089,7 @@ LAB_SET_PROPERTY_INDEX:
   
   // 清理无效材质引用
   if (node_ptr[0x81] == 0) {
-    *(undefined4 *)(node_ptr + 0x83) = 0;
+    *(int32_t *)(node_ptr + 0x83) = 0;
     global_context = node_data;
   }
   else {
@@ -1097,7 +1097,7 @@ LAB_SET_PROPERTY_INDEX:
     global_context = GLOBAL_ENGINE_CONTEXT;
   }
   
-  *(undefined1 *)((longlong)node_ptr + 0xb2) = 0;
+  *(int8_t *)((longlong)node_ptr + 0xb2) = 0;
 LAB_FINALIZE_PROCESSING:
   *(byte *)((longlong)node_ptr + 0x432) = *(byte *)((longlong)node_ptr + 0x432) & 0xfc;
   
@@ -1105,7 +1105,7 @@ LAB_FINALIZE_PROCESSING:
   if (0.0 < *(float *)(global_context + 0x2e04)) {
     return;
   }
-  *(undefined4 *)(global_context + 0x2e04) = *(undefined4 *)(global_context + 0x1c);
+  *(int32_t *)(global_context + 0x2e04) = *(int32_t *)(global_context + 0x1c);
   return;
 }
 

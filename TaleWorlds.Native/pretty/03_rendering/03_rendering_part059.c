@@ -20,29 +20,29 @@
 #define render_thread_operation_alt FUN_18029b390
 
 // 全局变量声明
-extern undefined8 _DAT_180c86920;
-extern undefined8 _DAT_180c86938;
-extern undefined8 _DAT_180c82868;
-extern undefined8 _DAT_180c8ed18;
-extern undefined8 _DAT_180bf00a8;
-extern undefined8 UNK_180a17010;
-extern undefined8 UNK_180a17458;
-extern undefined8 UNK_18098bcb0;
-extern undefined8 UNK_1809fcc28;
+extern uint64_t _DAT_180c86920;
+extern uint64_t _DAT_180c86938;
+extern uint64_t _DAT_180c82868;
+extern uint64_t _DAT_180c8ed18;
+extern uint64_t _DAT_180bf00a8;
+extern uint64_t UNK_180a17010;
+extern uint64_t UNK_180a17458;
+extern uint64_t UNK_18098bcb0;
+extern uint64_t UNK_1809fcc28;
 
 // 外部函数声明
-extern void func_0x000180074f10(undefined8 *param_1);
-extern void FUN_18029c700(undefined8 *param_1);
-extern void FUN_18029c460(undefined8 *param_1);
-extern void FUN_1800f74f0(undefined8 *param_1, undefined8 param_2);
-extern void FUN_180058370(undefined8 *param_1, undefined8 param_2);
-extern void FUN_1808fc8a8(undefined8 *param_1, int param_2, int param_3, code *param_4);
+extern void func_0x000180074f10(uint64_t *param_1);
+extern void FUN_18029c700(uint64_t *param_1);
+extern void FUN_18029c460(uint64_t *param_1);
+extern void FUN_1800f74f0(uint64_t *param_1, uint64_t param_2);
+extern void FUN_180058370(uint64_t *param_1, uint64_t param_2);
+extern void FUN_1808fc8a8(uint64_t *param_1, int param_2, int param_3, code *param_4);
 extern void FUN_180152b00(longlong *param_1);
-extern void FUN_18064e900(undefined8 *param_1);
-extern undefined8 FUN_18062b1e0(undefined8 *param_1, int param_2, int param_3, int param_4);
-extern undefined8 *FUN_18005ce30(undefined8 *param_1, undefined8 **param_2);
-extern void FUN_18005e370(undefined8 *param_1, undefined8 **param_2);
-extern void FUN_1808fc050(undefined8 *param_1);
+extern void FUN_18064e900(uint64_t *param_1);
+extern uint64_t FUN_18062b1e0(uint64_t *param_1, int param_2, int param_3, int param_4);
+extern uint64_t *FUN_18005ce30(uint64_t *param_1, uint64_t **param_2);
+extern void FUN_18005e370(uint64_t *param_1, uint64_t **param_2);
+extern void FUN_1808fc050(uint64_t *param_1);
 extern void LOCK(void);
 extern void UNLOCK(void);
 extern uint _Thrd_id(void);
@@ -63,7 +63,7 @@ void render_node_link_operation(void)
   longlong *target_ptr;
   
   // 将节点插入到链表头部
-  *(undefined8 *)(node_ptr + 0x18) = *(undefined8 *)(*(longlong *)(render_context + 8) + node_offset * 8);
+  *(uint64_t *)(node_ptr + 0x18) = *(uint64_t *)(*(longlong *)(render_context + 8) + node_offset * 8);
   *(longlong *)(*(longlong *)(render_context + 8) + node_offset * 8) = node_ptr;
   list_head_ptr = *(longlong *)(render_context + 8);
   
@@ -73,7 +73,7 @@ void render_node_link_operation(void)
   // 设置目标指针信息
   *target_ptr = node_ptr;
   target_ptr[1] = list_head_ptr + node_offset * 8;
-  *(undefined1 *)(target_ptr + 2) = 1;
+  *(int8_t *)(target_ptr + 2) = 1;
   return;
 }
 
@@ -87,12 +87,12 @@ void render_node_link_operation(void)
  * @param context_ptr 渲染上下文指针
  * @return 初始化完成的上下文指针
  */
-undefined8 * render_context_initialize(undefined8 *context_ptr)
+uint64_t * render_context_initialize(uint64_t *context_ptr)
 
 {
   longlong *resource_ptr;
   longlong loop_counter;
-  undefined8 *init_ptr;
+  uint64_t *init_ptr;
   
   // 设置虚函数表指针
   *context_ptr = &UNK_180a17010;
@@ -135,7 +135,7 @@ undefined8 * render_context_initialize(undefined8 *context_ptr)
   context_ptr[0x1051] = 0xffffffffffffffff;
   context_ptr[0x1052] = 0xffffffffffffffff;
   context_ptr[0x1054] = 0xffffffffffffffff;
-  *(undefined1 *)(context_ptr + 0x104e) = 9;
+  *(int8_t *)(context_ptr + 0x104e) = 9;
   
   // 初始化资源管理器
   context_ptr[0x107e] = 0;
@@ -156,7 +156,7 @@ undefined8 * render_context_initialize(undefined8 *context_ptr)
   context_ptr[0x1075] = 0xffffffffdeadfeee;
   
   // 清零其他字段
-  *(undefined4 *)(context_ptr + 0x1011) = 0;
+  *(int32_t *)(context_ptr + 0x1011) = 0;
   context_ptr[0x1016] = 0;
   context_ptr[0x1017] = 0;
   context_ptr[0x1018] = 0;
@@ -174,11 +174,11 @@ undefined8 * render_context_initialize(undefined8 *context_ptr)
 
 
 
-undefined8 *
-render_context_cleanup(undefined8 *context_ptr,ulonglong cleanup_flags,undefined8 param_3,undefined8 param_4)
+uint64_t *
+render_context_cleanup(uint64_t *context_ptr,ulonglong cleanup_flags,uint64_t param_3,uint64_t param_4)
 
 {
-  undefined8 cleanup_result;
+  uint64_t cleanup_result;
   
   cleanup_result = 0xfffffffffffffffe;
   *context_ptr = &UNK_180a17010;
@@ -209,11 +209,11 @@ render_context_cleanup(undefined8 *context_ptr,ulonglong cleanup_flags,undefined
  * 
  * @param context_ptr 渲染上下文指针
  */
-void render_resource_manager_destroy(undefined8 *context_ptr)
+void render_resource_manager_destroy(uint64_t *context_ptr)
 
 {
   longlong *resource_array;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   longlong array_start;
   longlong array_end;
   ulonglong resource_index;
@@ -231,8 +231,8 @@ void render_resource_manager_destroy(undefined8 *context_ptr)
   array_start = *resource_array;
   if (context_ptr[0x1013] - array_start >> 3 != 0) {
     do {
-      resource_ptr = *(undefined8 **)(resource_index * 8 + array_start);
-      if (resource_ptr != (undefined8 *)0x0) {
+      resource_ptr = *(uint64_t **)(resource_index * 8 + array_start);
+      if (resource_ptr != (uint64_t *)0x0) {
         // 清理资源的各个组件
         if ((longlong *)resource_ptr[0xd] != (longlong *)0x0) {
           (**(code **)(*(longlong *)resource_ptr[0xd] + 0x10))();
@@ -259,7 +259,7 @@ void render_resource_manager_destroy(undefined8 *context_ptr)
         *resource_ptr = &UNK_18098bcb0;
         FUN_18064e900(resource_ptr);
       }
-      *(undefined8 *)(resource_index * 8 + *resource_array) = 0;
+      *(uint64_t *)(resource_index * 8 + *resource_array) = 0;
       resource_index = (ulonglong)((int)resource_index + 1);
       array_start = *resource_array;
     } while (resource_index < (ulonglong)(context_ptr[0x1013] - array_start >> 3));
@@ -269,8 +269,8 @@ void render_resource_manager_destroy(undefined8 *context_ptr)
   context_ptr[0x1013] = array_start;
   
   // 清理其他资源
-  resource_ptr = (undefined8 *)context_ptr[0x1043];
-  if (resource_ptr != (undefined8 *)0x0) {
+  resource_ptr = (uint64_t *)context_ptr[0x1043];
+  if (resource_ptr != (uint64_t *)0x0) {
     FUN_1800f74f0(context_ptr + 0x1041,*resource_ptr);
     resource_ptr[4] = &UNK_18098bcb0;
     FUN_18064e900(resource_ptr);
@@ -383,9 +383,9 @@ void render_state_initialize(longlong *render_context)
   int array_size;
   longlong *array_ptr;
   float param_value;
-  undefined4 param_uint;
+  int32_t param_uint;
   float clamped_value;
-  undefined8 uStackX_8;
+  uint64_t uStackX_8;
   
   // 初始化状态数组
   array_size = 0;
@@ -398,7 +398,7 @@ void render_state_initialize(longlong *render_context)
   } while (state_index < 9);
   
   // 根据渲染器类型进行特定初始化
-  if ((undefined *)*render_context == &UNK_180a17458) {
+  if ((void *)*render_context == &UNK_180a17458) {
     state_array = render_context + 0x1147;
     array_ptr = render_context + 0x1087;
     do {
@@ -419,26 +419,26 @@ void render_state_initialize(longlong *render_context)
       *array_ptr = 0;
       array_ptr = array_ptr + 1;
       array_size = array_size + 1;
-      *(undefined4 *)(state_array + -0x40) = 0xffffffff;
-      *(undefined4 *)state_array = 0xffffffff;
+      *(int32_t *)(state_array + -0x40) = 0xffffffff;
+      *(int32_t *)state_array = 0xffffffff;
       state_array = (longlong *)((longlong)state_array + 4);
     } while (array_size < 0x80);
   }
   else {
     // 通用渲染器初始化
-    (**(code **)((undefined *)*render_context + 0x58))(render_context);
+    (**(code **)((void *)*render_context + 0x58))(render_context);
   }
   
   // 设置默认渲染状态
-  (**(code **)(*render_context + 0x110))(render_context,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
-  (**(code **)(*render_context + 0x110))(render_context,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
-  (**(code **)(*render_context + 0x110))(render_context,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
-  (**(code **)(*render_context + 0x110))(render_context,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
-  (**(code **)(*render_context + 0x110))(render_context,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
-  (**(code **)(*render_context + 0x110))(render_context,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
-  (**(code **)(*render_context + 0x110))(render_context,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_context + 0x110))(render_context,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_context + 0x110))(render_context,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
+  (**(code **)(*render_context + 0x110))(render_context,0,0x37,*(uint64_t *)(_DAT_180c86938 + 0x1c70));
+  (**(code **)(*render_context + 0x110))(render_context,9,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1cb8));
+  (**(code **)(*render_context + 0x110))(render_context,1,0x13,*(uint64_t *)(_DAT_180c86938 + 0x1c80));
+  (**(code **)(*render_context + 0x110))(render_context,2,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1c88));
+  (**(code **)(*render_context + 0x110))(render_context,3,1,*(uint64_t *)(_DAT_180c86938 + 0x1c78));
+  (**(code **)(*render_context + 0x110))(render_context,4,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1c90));
+  (**(code **)(*render_context + 0x110))(render_context,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
+  (**(code **)(*render_context + 0x110))(render_context,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
+  (**(code **)(*render_context + 0x110))(render_context,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
   
   // 加载配置参数
   config_base = _DAT_180c86920;
@@ -468,8 +468,8 @@ void render_state_initialize(longlong *render_context)
   *(float *)((longlong)render_context + 0x17a4) = clamped_value;
   
   // 计算并设置参数
-  param_uint = powf(0x40000000,*(undefined4 *)(config_base + 0x1260));
-  *(undefined4 *)(render_context + 0x2f7) = param_uint;
+  param_uint = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
+  *(int32_t *)(render_context + 0x2f7) = param_uint;
   
   // 清空资源槽位
   render_context[0x1077] = 0;
@@ -504,16 +504,16 @@ void render_state_initialize_alt(longlong *render_context)
 {
   longlong config_base;
   ulonglong init_param;
-  undefined8 init_value;
+  uint64_t init_value;
   longlong *state_array;
   uint state_index;
   ulonglong array_index;
   ulonglong *array_ptr;
   float param_value;
-  undefined4 param_uint;
+  int32_t param_uint;
   float clamped_value;
   ulonglong in_stack_00000040;
-  undefined8 in_stack_00000048;
+  uint64_t in_stack_00000048;
   
   // 设置初始参数
   render_context[0x1048] = init_param;
@@ -528,7 +528,7 @@ void render_state_initialize_alt(longlong *render_context)
   } while ((int)state_index < 9);
   
   // 根据渲染器类型进行特定初始化
-  if ((undefined *)*render_context == &UNK_180a17458) {
+  if ((void *)*render_context == &UNK_180a17458) {
     array_index = init_param & 0xffffffff;
     state_array = render_context + 0x1147;
     array_ptr = (ulonglong *)(render_context + 0x1087);
@@ -552,26 +552,26 @@ void render_state_initialize_alt(longlong *render_context)
       array_ptr = array_ptr + 1;
       state_index = (int)array_index + 1;
       array_index = (ulonglong)state_index;
-      *(undefined4 *)(state_array + -0x40) = 0xffffffff;
-      *(undefined4 *)state_array = 0xffffffff;
+      *(int32_t *)(state_array + -0x40) = 0xffffffff;
+      *(int32_t *)state_array = 0xffffffff;
       state_array = (longlong *)((longlong)state_array + 4);
     } while ((int)state_index < 0x80);
   }
   else {
     // 通用渲染器初始化
-    (**(code **)((undefined *)*render_context + 0x58))(render_context);
+    (**(code **)((void *)*render_context + 0x58))(render_context);
   }
   
   // 设置默认渲染状态
-  (**(code **)(*render_context + 0x110))(render_context,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
-  (**(code **)(*render_context + 0x110))(render_context,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
-  (**(code **)(*render_context + 0x110))(render_context,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
-  (**(code **)(*render_context + 0x110))(render_context,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
-  (**(code **)(*render_context + 0x110))(render_context,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
-  (**(code **)(*render_context + 0x110))(render_context,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
-  (**(code **)(*render_context + 0x110))(render_context,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_context + 0x110))(render_context,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_context + 0x110))(render_context,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
+  (**(code **)(*render_context + 0x110))(render_context,0,0x37,*(uint64_t *)(_DAT_180c86938 + 0x1c70));
+  (**(code **)(*render_context + 0x110))(render_context,9,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1cb8));
+  (**(code **)(*render_context + 0x110))(render_context,1,0x13,*(uint64_t *)(_DAT_180c86938 + 0x1c80));
+  (**(code **)(*render_context + 0x110))(render_context,2,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1c88));
+  (**(code **)(*render_context + 0x110))(render_context,3,1,*(uint64_t *)(_DAT_180c86938 + 0x1c78));
+  (**(code **)(*render_context + 0x110))(render_context,4,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1c90));
+  (**(code **)(*render_context + 0x110))(render_context,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
+  (**(code **)(*render_context + 0x110))(render_context,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
+  (**(code **)(*render_context + 0x110))(render_context,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
   
   // 加载配置参数
   config_base = _DAT_180c86920;
@@ -601,8 +601,8 @@ void render_state_initialize_alt(longlong *render_context)
   *(float *)((longlong)render_context + 0x17a4) = clamped_value;
   
   // 计算并设置参数
-  param_uint = powf(0x40000000,*(undefined4 *)(config_base + 0x1260));
-  *(undefined4 *)(render_context + 0x2f7) = param_uint;
+  param_uint = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
+  *(int32_t *)(render_context + 0x2f7) = param_uint;
   
   // 清空资源槽位
   render_context[0x1077] = init_param;
@@ -640,7 +640,7 @@ void render_state_update_batch(void)
   uint state_index;
   ulonglong array_index;
   ulonglong *array_ptr;
-  undefined4 update_result;
+  int32_t update_result;
   float param_value;
   float clamped_value;
   
@@ -666,21 +666,21 @@ void render_state_update_batch(void)
     array_ptr = array_ptr + 1;
     state_index = (int)array_index + 1;
     array_index = (ulonglong)state_index;
-    *(undefined4 *)(state_array + -0x40) = 0xffffffff;
-    *(undefined4 *)state_array = 0xffffffff;
+    *(int32_t *)(state_array + -0x40) = 0xffffffff;
+    *(int32_t *)state_array = 0xffffffff;
     state_array = (longlong *)((longlong)state_array + 4);
   } while ((int)state_index < 0x80);
   
   // 批量设置渲染状态
-  update_result = (**(code **)(*render_context + 0x110))(update_result,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_context + 0x110))(update_result,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_context + 0x110))(update_result,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,0,0x37,*(uint64_t *)(_DAT_180c86938 + 0x1c70));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,9,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1cb8));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,1,0x13,*(uint64_t *)(_DAT_180c86938 + 0x1c80));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,2,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1c88));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,3,1,*(uint64_t *)(_DAT_180c86938 + 0x1c78));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,4,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1c90));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
+  (**(code **)(*render_context + 0x110))(update_result,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
+  (**(code **)(*render_context + 0x110))(update_result,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
   
   // 加载配置参数
   config_base = _DAT_180c86920;
@@ -710,8 +710,8 @@ void render_state_update_batch(void)
   *(float *)((longlong)render_context + 0x17a4) = clamped_value;
   
   // 计算并设置参数
-  update_result = powf(0x40000000,*(undefined4 *)(config_base + 0x1260));
-  *(undefined4 *)(render_context + 0x2f7) = update_result;
+  update_result = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
+  *(int32_t *)(render_context + 0x2f7) = update_result;
   
   // 清空资源槽位
   render_context[0x1077] = update_param;
@@ -741,26 +741,26 @@ void render_state_update_batch(void)
  * 
  * @param update_param 更新参数
  */
-void render_parameter_update(undefined4 update_param)
+void render_parameter_update(int32_t update_param)
 
 {
   longlong config_base;
   longlong *render_context;
   longlong param_value;
-  undefined4 update_result;
+  int32_t update_result;
   float param_float;
   float clamped_value;
   
   // 设置渲染状态
-  update_result = (**(code **)(*render_context + 0x110))(update_param,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
-  update_result = (**(code **)(*render_context + 0x110))(update_result,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_context + 0x110))(update_result,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_context + 0x110))(update_result,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
+  update_result = (**(code **)(*render_context + 0x110))(update_param,0,0x37,*(uint64_t *)(_DAT_180c86938 + 0x1c70));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,9,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1cb8));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,1,0x13,*(uint64_t *)(_DAT_180c86938 + 0x1c80));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,2,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1c88));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,3,1,*(uint64_t *)(_DAT_180c86938 + 0x1c78));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,4,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1c90));
+  update_result = (**(code **)(*render_context + 0x110))(update_result,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
+  (**(code **)(*render_context + 0x110))(update_result,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
+  (**(code **)(*render_context + 0x110))(update_result,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
   
   // 加载配置参数
   config_base = _DAT_180c86920;
@@ -790,8 +790,8 @@ void render_parameter_update(undefined4 update_param)
   *(float *)((longlong)render_context + 0x17a4) = clamped_value;
   
   // 计算并设置参数
-  update_result = powf(0x40000000,*(undefined4 *)(config_base + 0x1260));
-  *(undefined4 *)(render_context + 0x2f7) = update_result;
+  update_result = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
+  *(int32_t *)(render_context + 0x2f7) = update_result;
   
   // 清空资源槽位
   render_context[0x1077] = param_value;
@@ -820,17 +820,17 @@ void render_parameter_update(undefined4 update_param)
  * @param param_3 浮点参数3
  * @param param_4 浮点参数4
  */
-void render_parameter_set_values(undefined8 param_1,undefined8 param_2,float param_3,float param_4)
+void render_parameter_set_values(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
 
 {
   float max_value;
   longlong config_base;
   longlong *render_context;
   longlong param_value;
-  undefined4 calc_result;
+  int32_t calc_result;
   
   // 重置状态
-  *(undefined4 *)(render_context + 0x2f4) = 0;
+  *(int32_t *)(render_context + 0x2f4) = 0;
   max_value = *(float *)(config_base + 0x11f0);
   
   // 选择合适的参数值
@@ -840,8 +840,8 @@ void render_parameter_set_values(undefined8 param_1,undefined8 param_2,float par
   *(float *)((longlong)render_context + 0x17a4) = param_3;
   
   // 计算并设置参数
-  calc_result = powf(0x40000000,*(undefined4 *)(config_base + 0x1260));
-  *(undefined4 *)(render_context + 0x2f7) = calc_result;
+  calc_result = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
+  *(int32_t *)(render_context + 0x2f7) = calc_result;
   
   // 清空资源槽位
   render_context[0x1077] = param_value;
@@ -872,29 +872,29 @@ void render_parameter_set_values(undefined8 param_1,undefined8 param_2,float par
  * @param param_1 参数1
  * @param callback_ptr 回调函数指针
  */
-void render_callback_execute(undefined8 param_1,code *callback_ptr)
+void render_callback_execute(uint64_t param_1,code *callback_ptr)
 
 {
   longlong config_base;
   longlong *render_context;
   longlong param_value;
   float param_float;
-  undefined4 callback_result;
+  int32_t callback_result;
   float clamped_value;
   
   // 执行回调函数
   callback_result = (*callback_ptr)();
   
   // 设置渲染状态
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,0,0x37,*(undefined8 *)(_DAT_180c86938 + 0x1c70));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,9,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1cb8));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,1,0x13,*(undefined8 *)(_DAT_180c86938 + 0x1c80));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,2,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1c88));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,3,1,*(undefined8 *)(_DAT_180c86938 + 0x1c78));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,4,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1c90));
-  callback_result = (**(code **)(*render_context + 0x110))(callback_result,5,1,*(undefined8 *)(_DAT_180c86938 + 0x1c98));
-  (**(code **)(*render_context + 0x110))(callback_result,6,0x17,*(undefined8 *)(_DAT_180c86938 + 0x1ca0));
-  (**(code **)(*render_context + 0x110))(callback_result,7,0x11,*(undefined8 *)(_DAT_180c86938 + 0x1ca8));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,0,0x37,*(uint64_t *)(_DAT_180c86938 + 0x1c70));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,9,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1cb8));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,1,0x13,*(uint64_t *)(_DAT_180c86938 + 0x1c80));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,2,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1c88));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,3,1,*(uint64_t *)(_DAT_180c86938 + 0x1c78));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,4,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1c90));
+  callback_result = (**(code **)(*render_context + 0x110))(callback_result,5,1,*(uint64_t *)(_DAT_180c86938 + 0x1c98));
+  (**(code **)(*render_context + 0x110))(callback_result,6,0x17,*(uint64_t *)(_DAT_180c86938 + 0x1ca0));
+  (**(code **)(*render_context + 0x110))(callback_result,7,0x11,*(uint64_t *)(_DAT_180c86938 + 0x1ca8));
   
   // 加载配置参数
   config_base = _DAT_180c86920;
@@ -924,8 +924,8 @@ void render_callback_execute(undefined8 param_1,code *callback_ptr)
   *(float *)((longlong)render_context + 0x17a4) = clamped_value;
   
   // 计算并设置参数
-  callback_result = powf(0x40000000,*(undefined4 *)(config_base + 0x1260));
-  *(undefined4 *)(render_context + 0x2f7) = callback_result;
+  callback_result = powf(0x40000000,*(int32_t *)(config_base + 0x1260));
+  *(int32_t *)(render_context + 0x2f7) = callback_result;
   
   // 清空资源槽位
   render_context[0x1077] = param_value;
@@ -960,29 +960,29 @@ void render_callback_execute(undefined8 param_1,code *callback_ptr)
  * @param data_flag 数据标志
  * @param operation_type 操作类型
  */
-void render_thread_safe_operation(longlong *render_context,undefined8 operation_param,undefined4 operation_data,longlong *resource_ptr,
-                                  undefined4 data_flag,byte operation_type)
+void render_thread_safe_operation(longlong *render_context,uint64_t operation_param,int32_t operation_data,longlong *resource_ptr,
+                                  int32_t data_flag,byte operation_type)
 
 {
   int main_thread_id;
   longlong task_data;
   int current_thread_id;
-  undefined8 task_handle;
-  undefined **task_ptr;
-  undefined1 auStack_178 [32];
-  undefined4 operation_flag;
+  uint64_t task_handle;
+  void **task_ptr;
+  int8_t auStack_178 [32];
+  int32_t operation_flag;
   byte stack_operation_type;
-  undefined **ppuStack_148;
-  undefined ***pppuStack_140;
-  undefined8 security_cookie;
-  undefined **ppuStack_130;
-  undefined *puStack_128;
-  undefined1 *puStack_120;
-  undefined4 stack_data_flag;
-  undefined1 auStack_110 [128];
-  undefined4 task_priority;
-  undefined8 task_param;
-  undefined4 task_data_2;
+  void **ppuStack_148;
+  void ***pppuStack_140;
+  uint64_t security_cookie;
+  void **ppuStack_130;
+  void *puStack_128;
+  int8_t *puStack_120;
+  int32_t stack_data_flag;
+  int8_t auStack_110 [128];
+  int32_t task_priority;
+  uint64_t task_param;
+  int32_t task_data_2;
   uint task_type;
   longlong *task_resource;
   ulonglong stack_cookie;
@@ -1025,9 +1025,9 @@ void render_thread_safe_operation(longlong *render_context,undefined8 operation_
     
     // 创建任务
     task_handle = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
-    task_ptr = (undefined **)FUN_18005ce30(task_handle,&puStack_128);
+    task_ptr = (void **)FUN_18005ce30(task_handle,&puStack_128);
     ppuStack_130 = task_ptr;
-    if (task_ptr != (undefined **)0x0) {
+    if (task_ptr != (void **)0x0) {
       (**(code **)(*task_ptr + 0x28))(task_ptr);
     }
     
@@ -1035,16 +1035,16 @@ void render_thread_safe_operation(longlong *render_context,undefined8 operation_
     task_data = _DAT_180c82868;
     pppuStack_140 = &ppuStack_148;
     ppuStack_148 = task_ptr;
-    if (task_ptr != (undefined **)0x0) {
+    if (task_ptr != (void **)0x0) {
       (**(code **)(*task_ptr + 0x28))(task_ptr);
     }
     FUN_18005e370(task_data,&ppuStack_148);
     
     // 清理任务资源
-    if (task_ptr != (undefined **)0x0) {
+    if (task_ptr != (void **)0x0) {
       (**(code **)(*task_ptr + 0x38))(task_ptr);
     }
-    pppuStack_140 = (undefined ***)&puStack_128;
+    pppuStack_140 = (void ***)&puStack_128;
     puStack_128 = &UNK_18098bcb0;
   }
   
@@ -1067,27 +1067,27 @@ void render_thread_safe_operation(longlong *render_context,undefined8 operation_
  * @param operation_param 操作参数
  * @param resource_ptr 资源指针
  */
-void render_thread_operation_alt(longlong *render_context,undefined8 operation_param,longlong *resource_ptr)
+void render_thread_operation_alt(longlong *render_context,uint64_t operation_param,longlong *resource_ptr)
 
 {
   int main_thread_id;
   longlong task_data;
   int current_thread_id;
-  undefined8 task_handle;
-  undefined **task_ptr;
-  undefined1 auStack_148 [32];
-  undefined **ppuStack_128;
-  undefined ***pppuStack_120;
-  undefined8 security_cookie;
-  undefined **ppuStack_110;
-  undefined *puStack_108;
-  undefined1 *puStack_100;
-  undefined4 stack_data;
-  undefined1 auStack_f0 [128];
-  undefined4 task_priority;
-  undefined8 task_param;
+  uint64_t task_handle;
+  void **task_ptr;
+  int8_t auStack_148 [32];
+  void **ppuStack_128;
+  void ***pppuStack_120;
+  uint64_t security_cookie;
+  void **ppuStack_110;
+  void *puStack_108;
+  int8_t *puStack_100;
+  int32_t stack_data;
+  int8_t auStack_f0 [128];
+  int32_t task_priority;
+  uint64_t task_param;
   longlong *task_resource;
-  undefined4 task_data_2;
+  int32_t task_data_2;
   ulonglong stack_cookie;
   
   // 设置安全cookie
@@ -1100,7 +1100,7 @@ void render_thread_operation_alt(longlong *render_context,undefined8 operation_p
   if (current_thread_id == main_thread_id) {
     // 主线程直接执行操作
     (**(code **)(*render_context + 0x1e8))
-              (render_context,operation_param,resource_ptr[2],*(undefined4 *)((longlong)resource_ptr + 0x1c));
+              (render_context,operation_param,resource_ptr[2],*(int32_t *)((longlong)resource_ptr + 0x1c));
   }
   else {
     // 工作线程创建任务
@@ -1110,7 +1110,7 @@ void render_thread_operation_alt(longlong *render_context,undefined8 operation_p
     stack_data = 0;
     auStack_f0[0] = 0;
     task_priority = 9;
-    task_data_2 = *(undefined4 *)((longlong)resource_ptr + 0x1c);
+    task_data_2 = *(int32_t *)((longlong)resource_ptr + 0x1c);
     task_param = operation_param;
     task_resource = resource_ptr;
     
@@ -1126,9 +1126,9 @@ void render_thread_operation_alt(longlong *render_context,undefined8 operation_p
     
     // 创建任务
     task_handle = FUN_18062b1e0(_DAT_180c8ed18,0x100,8,3);
-    task_ptr = (undefined **)FUN_18005ce30(task_handle,&puStack_108);
+    task_ptr = (void **)FUN_18005ce30(task_handle,&puStack_108);
     ppuStack_110 = task_ptr;
-    if (task_ptr != (undefined **)0x0) {
+    if (task_ptr != (void **)0x0) {
       (**(code **)(*task_ptr + 0x28))(task_ptr);
     }
     
@@ -1136,16 +1136,16 @@ void render_thread_operation_alt(longlong *render_context,undefined8 operation_p
     task_data = _DAT_180c82868;
     pppuStack_120 = &ppuStack_128;
     ppuStack_128 = task_ptr;
-    if (task_ptr != (undefined **)0x0) {
+    if (task_ptr != (void **)0x0) {
       (**(code **)(*task_ptr + 0x28))(task_ptr);
     }
     FUN_18005e370(task_data,&ppuStack_128);
     
     // 清理任务资源
-    if (task_ptr != (undefined **)0x0) {
+    if (task_ptr != (void **)0x0) {
       (**(code **)(*task_ptr + 0x38))(task_ptr);
     }
-    pppuStack_120 = (undefined ***)&puStack_108;
+    pppuStack_120 = (void ***)&puStack_108;
     puStack_108 = &UNK_18098bcb0;
   }
   

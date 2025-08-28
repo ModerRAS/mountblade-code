@@ -32,11 +32,11 @@
 #define BUFFER_SIZE_48 48                      // 48字节缓冲区
 
 // 全局变量引用
-extern undefined8 _DAT_180c8ed18;     // 内存管理器实例
-extern undefined8 _DAT_180c8ed48;     // 性能计数器基准时间
+extern uint64_t _DAT_180c8ed18;     // 内存管理器实例
+extern uint64_t _DAT_180c8ed48;     // 性能计数器基准时间
 extern double _DAT_180c8ed50;          // 性能计数器频率
-extern undefined8 _DAT_180c8ed58;     // 性能计数器状态
-extern undefined8 _DAT_180bf00a8;     // 安全检查cookie
+extern uint64_t _DAT_180c8ed58;     // 性能计数器状态
+extern uint64_t _DAT_180bf00a8;     // 安全检查cookie
 
 // 函数别名定义
 #define ProcessResourcePoolCleanup FUN_18055b600
@@ -58,19 +58,19 @@ extern undefined8 _DAT_180bf00a8;     // 安全检查cookie
 #define ProcessResourceUpdateLoop FUN_18055c1c0
 
 // 函数声明
-longlong * FindResourceInHashTable(longlong param_1, longlong *param_2, undefined8 param_3, longlong param_4);
+longlong * FindResourceInHashTable(longlong param_1, longlong *param_2, uint64_t param_3, longlong param_4);
 void ProcessResourcePoolCleanup(longlong *param_1);
-void CopyResourcePoolData(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
+void CopyResourcePoolData(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
 void InitializeResourcePool(longlong param_1, longlong param_2);
-void AllocateResourceMemory(undefined8 param_1, longlong param_2);
+void AllocateResourceMemory(uint64_t param_1, longlong param_2);
 void RehashResourceTable(void);
 void ResizeResourceTable(ulonglong param_1);
 void DestroyResourceTable(void);
-void InsertResourceIntoPool(undefined8 *param_1, longlong param_2, undefined8 param_3, undefined8 param_4);
-undefined8 * InitializePerformanceCounter(undefined8 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4);
+void InsertResourceIntoPool(uint64_t *param_1, longlong param_2, uint64_t param_3, uint64_t param_4);
+uint64_t * InitializePerformanceCounter(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
 void UpdatePerformanceMetrics(longlong param_1, int *param_2, double param_3);
-void UpdatePerformanceMetricsEx(undefined8 param_1, longlong param_2, double param_3);
-void UpdatePerformanceMetricsAlt(undefined8 param_1, undefined8 param_2, longlong param_3);
+void UpdatePerformanceMetricsEx(uint64_t param_1, longlong param_2, double param_3);
+void UpdatePerformanceMetricsAlt(uint64_t param_1, uint64_t param_2, longlong param_3);
 void CalculateTimeDelta(double param_1, double param_2, double param_3);
 void ResetPerformanceState(void);
 void EmptyFunctionPlaceholder(void);
@@ -89,19 +89,19 @@ void ProcessResourceUpdateLoop(longlong param_1);
 void ProcessResourcePoolCleanup(longlong *param_1)
 
 {
-  undefined4 uVar1;
+  int32_t uVar1;
   longlong *plVar2;
-  undefined *puVar3;
+  void *puVar3;
   int iVar4;
   longlong lVar5;
   longlong lVar6;
   ulonglong uVar7;
   ulonglong uVar8;
-  undefined1 auStack_60 [24];
-  undefined *puStack_48;
-  undefined1 *puStack_40;
-  undefined4 uStack_38;
-  undefined8 uStack_30;
+  int8_t auStack_60 [24];
+  void *puStack_48;
+  int8_t *puStack_40;
+  int32_t uStack_38;
+  uint64_t uStack_30;
   
   // 计算资源池中的资源数量
   uVar8 = (param_1[1] - *param_1) / RESOURCE_POOL_SIZE;
@@ -125,24 +125,24 @@ void ProcessResourcePoolCleanup(longlong *param_1)
       // 初始化资源清理上下文
       puStack_48 = &UNK_180a3c3e0;
       uStack_30 = 0;
-      puStack_40 = (undefined1 *)0x0;
+      puStack_40 = (int8_t *)0x0;
       uStack_38 = 0;
       
       // 分配资源清理缓冲区
-      FUN_1806277c0(&puStack_48, *(undefined4 *)(lVar5 + 0x10));
+      FUN_1806277c0(&puStack_48, *(int32_t *)(lVar5 + 0x10));
       
       // 复制资源名称数据
       if (0 < *(int *)(lVar5 + 0x10)) {
         puVar3 = &DAT_18098bc73;
-        if (*(undefined **)(lVar5 + 8) != (undefined *)0x0) {
-          puVar3 = *(undefined **)(lVar5 + 8);
+        if (*(void **)(lVar5 + 8) != (void *)0x0) {
+          puVar3 = *(void **)(lVar5 + 8);
         }
         // 安全复制资源名称（不返回的函数调用）
         memcpy(puStack_40, puVar3, (longlong)(*(int *)(lVar5 + 0x10) + 1));
       }
       
       // 确保字符串以null结尾
-      if ((*(longlong *)(lVar5 + 8) != 0) && (uStack_38 = 0, puStack_40 != (undefined1 *)0x0)) {
+      if ((*(longlong *)(lVar5 + 8) != 0) && (uStack_38 = 0, puStack_40 != (int8_t *)0x0)) {
         *puStack_40 = 0;
       }
       
@@ -152,7 +152,7 @@ void ProcessResourcePoolCleanup(longlong *param_1)
       
       // 重置资源清理上下文
       puStack_48 = &UNK_180a3c3e0;
-      if (puStack_40 != (undefined1 *)0x0) {
+      if (puStack_40 != (int8_t *)0x0) {
         // 释放资源清理缓冲区（不返回的函数调用）
         FUN_18064e900();
       }
@@ -181,7 +181,7 @@ void ProcessResourcePoolCleanup(longlong *param_1)
 // 冲突处理: 链地址法，支持动态插入和查找
 // 性能优化: 哈希表自动扩容，减少哈希冲突
 // 应用场景: 资源查找、缓存管理、符号表处理
-longlong * FindResourceInHashTable(longlong param_1, longlong *param_2, undefined8 param_3, longlong param_4)
+longlong * FindResourceInHashTable(longlong param_1, longlong *param_2, uint64_t param_3, longlong param_4)
 
 {
   longlong *plVar1;
@@ -227,14 +227,14 @@ longlong * FindResourceInHashTable(longlong param_1, longlong *param_2, undefine
     if (lVar7 == 0) {
       // 哈希表中不存在该资源，执行插入操作
       FUN_18066c220(param_1 + 0x20, acStackX_8, (ulonglong)*(uint *)(param_1 + 0x10),
-                    *(undefined4 *)(param_1 + 0x18), 1);
-      lVar7 = FUN_18062b420(_DAT_180c8ed18, 0x30, *(undefined1 *)(param_1 + 0x2c));
+                    *(int32_t *)(param_1 + 0x18), 1);
+      lVar7 = FUN_18062b420(_DAT_180c8ed18, 0x30, *(int8_t *)(param_1 + 0x2c));
       lStackX_10 = lVar7;
       FUN_180627ae0(lVar7);
       
       // 初始化新资源节点
-      *(undefined4 *)(lVar7 + 0x20) = 0;
-      *(undefined8 *)(lVar7 + 0x28) = 0;
+      *(int32_t *)(lVar7 + 0x20) = 0;
+      *(uint64_t *)(lVar7 + 0x28) = 0;
       
       if (acStackX_8[0] != '\0') {
         uVar10 = uVar8 % (ulonglong)uStackX_c;
@@ -242,7 +242,7 @@ longlong * FindResourceInHashTable(longlong param_1, longlong *param_2, undefine
       }
       
       // 将新节点插入哈希表
-      *(undefined8 *)(lVar7 + 0x28) = *(undefined8 *)(*(longlong *)(param_1 + 8) + uVar10 * 8);
+      *(uint64_t *)(lVar7 + 0x28) = *(uint64_t *)(*(longlong *)(param_1 + 8) + uVar10 * 8);
       *(longlong *)(*(longlong *)(param_1 + 8) + uVar10 * 8) = lVar7;
       *(longlong *)(param_1 + 0x18) = *(longlong *)(param_1 + 0x18) + 1;
       
@@ -250,7 +250,7 @@ longlong * FindResourceInHashTable(longlong param_1, longlong *param_2, undefine
       lVar5 = *(longlong *)(param_1 + 8);
       *param_2 = lVar7;
       param_2[1] = lVar5 + uVar10 * 8;
-      *(undefined1 *)(param_2 + 2) = 1;
+      *(int8_t *)(param_2 + 2) = 1;
       return param_2;
     }
     
@@ -271,7 +271,7 @@ LAB_18055b85f:
         // 找到匹配的资源
         *param_2 = lVar7;
         param_2[1] = (longlong)plVar1;
-        *(undefined1 *)(param_2 + 2) = 0;
+        *(int8_t *)(param_2 + 2) = 0;
         return param_2;
       }
     }
@@ -296,20 +296,20 @@ LAB_18055b85f:
 // 数据完整性: 保持资源属性和关系的完整性
 // 性能优化: 批量内存分配，减少内存碎片
 // 应用场景: 资源池克隆、数据备份、资源迁移
-void CopyResourcePoolData(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void CopyResourcePoolData(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   uint uVar1;
   longlong lVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar3;
+  uint64_t *puVar4;
   longlong lVar5;
-  undefined8 *puVar6;
+  uint64_t *puVar6;
   longlong lVar7;
-  undefined4 *puVar8;
-  undefined *puVar9;
+  int32_t *puVar8;
+  void *puVar9;
   longlong lVar10;
-  undefined8 uVar11;
+  uint64_t uVar11;
   longlong lVar12;
   longlong lVar13;
   longlong lVar14;
@@ -334,35 +334,35 @@ void CopyResourcePoolData(longlong *param_1, undefined8 param_2, undefined8 para
   
   // 复制资源池数据
   if (lVar7 != lVar2) {
-    puVar8 = (undefined4 *)(lVar5 + 0x10);
+    puVar8 = (int32_t *)(lVar5 + 0x10);
     lVar12 = lVar5;
     lVar13 = lVar10;
     lVar14 = lVar10;
     
     do {
       // 初始化资源节点头部
-      *(undefined **)(puVar8 + -4) = &UNK_18098bcb0;
-      *(undefined8 *)(puVar8 + -2) = 0;
+      *(void **)(puVar8 + -4) = &UNK_18098bcb0;
+      *(uint64_t *)(puVar8 + -2) = 0;
       *puVar8 = 0;
-      *(undefined **)(puVar8 + -4) = &UNK_1809fcc58;
-      *(undefined4 **)(puVar8 + -2) = puVar8 + 2;
+      *(void **)(puVar8 + -4) = &UNK_1809fcc58;
+      *(int32_t **)(puVar8 + -2) = puVar8 + 2;
       *puVar8 = 0;
-      *(undefined1 *)(puVar8 + 2) = 0;
+      *(int8_t *)(puVar8 + 2) = 0;
       
       // 复制资源属性
-      *puVar8 = *(undefined4 *)(lVar7 + 0x10);
+      *puVar8 = *(int32_t *)(lVar7 + 0x10);
       puVar9 = &DAT_18098bc73;
-      if (*(undefined **)(lVar7 + 8) != (undefined *)0x0) {
-        puVar9 = *(undefined **)(lVar7 + 8);
+      if (*(void **)(lVar7 + 8) != (void *)0x0) {
+        puVar9 = *(void **)(lVar7 + 8);
       }
       
       // 安全复制资源名称
-      strcpy_s(*(undefined8 *)(puVar8 + -2), MAX_RESOURCE_NAME_LENGTH, puVar9, param_4, uVar11, lVar12, lVar13, lVar14);
+      strcpy_s(*(uint64_t *)(puVar8 + -2), MAX_RESOURCE_NAME_LENGTH, puVar9, param_4, uVar11, lVar12, lVar13, lVar14);
       
       // 复制资源扩展属性
-      puVar8[0x12] = *(undefined4 *)(lVar7 + 0x58);
-      puVar8[0x13] = *(undefined4 *)(lVar7 + 0x5c);
-      *(undefined1 *)(puVar8 + 0x14) = *(undefined1 *)(lVar7 + 0x60);
+      puVar8[0x12] = *(int32_t *)(lVar7 + 0x58);
+      puVar8[0x13] = *(int32_t *)(lVar7 + 0x5c);
+      *(int8_t *)(puVar8 + 0x14) = *(int8_t *)(lVar7 + 0x60);
       
       lVar7 = lVar7 + RESOURCE_POOL_SIZE;
       puVar8 = puVar8 + 0x1a;
@@ -370,9 +370,9 @@ void CopyResourcePoolData(longlong *param_1, undefined8 param_2, undefined8 para
   }
   
   // 更新资源池管理器指针
-  puVar3 = (undefined8 *)*param_1;
+  puVar3 = (uint64_t *)*param_1;
   *param_1 = lVar5;
-  puVar4 = (undefined8 *)param_1[1];
+  puVar4 = (uint64_t *)param_1[1];
   param_1[1] = lVar10;
   param_1[2] = lVar10;
   *(uint *)(param_1 + 3) = uVar1;
@@ -382,7 +382,7 @@ void CopyResourcePoolData(longlong *param_1, undefined8 param_2, undefined8 para
     *puVar6 = &UNK_18098bcb0;
   }
   
-  if (puVar3 != (undefined8 *)0x0) {
+  if (puVar3 != (uint64_t *)0x0) {
     // 释放原始资源池内存（不返回的函数调用）
     FUN_18064e900();
   }
@@ -404,10 +404,10 @@ void CopyResourcePoolData(longlong *param_1, undefined8 param_2, undefined8 para
 void InitializeResourcePool(longlong param_1, longlong param_2)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   // 分配资源池内存（8字节对齐）
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18, param_2 * 8 + 8, 8, *(undefined1 *)(param_1 + 0x2c));
+  uVar1 = FUN_18062b1e0(_DAT_180c8ed18, param_2 * 8 + 8, 8, *(int8_t *)(param_1 + 0x2c));
   // 零初始化分配的内存（不返回的函数调用）
   memset(uVar1, 0, param_2 * 8);
 }
@@ -424,10 +424,10 @@ void InitializeResourcePool(longlong param_1, longlong param_2)
 // 安全机制: 确保分配的内存被正确初始化
 // 性能优化: 批量内存清零，提高初始化效率
 // 应用场景: 资源创建、内存预分配、批量数据处理
-void AllocateResourceMemory(undefined8 param_1, longlong param_2)
+void AllocateResourceMemory(uint64_t param_1, longlong param_2)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   // 分配内存（8字节对齐）
   uVar1 = FUN_18062b1e0(_DAT_180c8ed18, param_2 * 8 + 8, 8);
@@ -485,8 +485,8 @@ void RehashResourceTable(void)
         uVar2 = uVar2 % (unaff_RBP & 0xffffffff);
         
         // 更新哈希表链表
-        *(undefined8 *)(*(longlong *)(unaff_RDI + 8) + in_R11 * 8) = *(undefined8 *)(lVar5 + 0x28);
-        *(undefined8 *)(lVar5 + 0x28) = *(undefined8 *)(unaff_RSI + uVar2 * 8);
+        *(uint64_t *)(*(longlong *)(unaff_RDI + 8) + in_R11 * 8) = *(uint64_t *)(lVar5 + 0x28);
+        *(uint64_t *)(lVar5 + 0x28) = *(uint64_t *)(unaff_RSI + uVar2 * 8);
         *(longlong *)(unaff_RSI + uVar2 * 8) = lVar5;
         
         lVar5 = *(longlong *)(*(longlong *)(unaff_RDI + 8) + in_R11 * 8);
@@ -521,8 +521,8 @@ void RehashResourceTable(void)
 void ResizeResourceTable(ulonglong param_1)
 
 {
-  undefined8 unaff_RBP;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RBP;
+  uint64_t unaff_RSI;
   longlong unaff_RDI;
   
   // 如果哈希表中有多个元素且已分配内存，则释放内存
@@ -532,8 +532,8 @@ void ResizeResourceTable(ulonglong param_1)
   }
   
   // 更新哈希表管理器
-  *(undefined8 *)(unaff_RDI + 0x10) = unaff_RBP;
-  *(undefined8 *)(unaff_RDI + 8) = unaff_RSI;
+  *(uint64_t *)(unaff_RDI + 0x10) = unaff_RBP;
+  *(uint64_t *)(unaff_RDI + 8) = unaff_RSI;
   return;
 }
 
@@ -550,8 +550,8 @@ void ResizeResourceTable(ulonglong param_1)
 void DestroyResourceTable(void)
 
 {
-  undefined8 unaff_RBP;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RBP;
+  uint64_t unaff_RSI;
   longlong unaff_RDI;
   
   // 释放哈希表内存
@@ -561,8 +561,8 @@ void DestroyResourceTable(void)
   }
   
   // 重置哈希表管理器
-  *(undefined8 *)(unaff_RDI + 0x10) = unaff_RBP;
-  *(undefined8 *)(unaff_RDI + 8) = unaff_RSI;
+  *(uint64_t *)(unaff_RDI + 0x10) = unaff_RBP;
+  *(uint64_t *)(unaff_RDI + 8) = unaff_RSI;
   return;
 }
 
@@ -581,24 +581,24 @@ void DestroyResourceTable(void)
 // 数据完整性: 确保插入的资源数据完整
 // 性能优化: 批量处理和内存对齐优化
 // 应用场景: 资源添加、动态扩容、资源管理
-void InsertResourceIntoPool(undefined8 *param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+void InsertResourceIntoPool(uint64_t *param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined1 *puVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  undefined *puVar6;
-  undefined8 *puVar7;
+  uint64_t *puVar1;
+  uint64_t *puVar2;
+  int8_t *puVar3;
+  uint64_t *puVar4;
+  uint64_t *puVar5;
+  void *puVar6;
+  uint64_t *puVar7;
   longlong lVar8;
   longlong lVar9;
   
   // 获取当前资源池信息
-  puVar7 = (undefined8 *)param_1[1];
-  puVar4 = (undefined8 *)*param_1;
+  puVar7 = (uint64_t *)param_1[1];
+  puVar4 = (uint64_t *)*param_1;
   lVar9 = ((longlong)puVar7 - (longlong)puVar4) / RESOURCE_POOL_SIZE;
-  puVar2 = (undefined8 *)0x0;
+  puVar2 = (uint64_t *)0x0;
   
   // 计算新的资源池大小
   if (lVar9 == 0) {
@@ -610,12 +610,12 @@ void InsertResourceIntoPool(undefined8 *param_1, longlong param_2, undefined8 pa
   }
   
   // 分配新的资源池内存
-  puVar2 = (undefined8 *)
-           FUN_18062b420(_DAT_180c8ed18, lVar9 * RESOURCE_POOL_SIZE, *(undefined1 *)(param_1 + 3), param_4,
+  puVar2 = (uint64_t *)
+           FUN_18062b420(_DAT_180c8ed18, lVar9 * RESOURCE_POOL_SIZE, *(int8_t *)(param_1 + 3), param_4,
                          0xfffffffffffffffe);
   
-  puVar7 = (undefined8 *)param_1[1];
-  puVar4 = (undefined8 *)*param_1;
+  puVar7 = (uint64_t *)param_1[1];
+  puVar4 = (uint64_t *)*param_1;
 LAB_18055bcdc:
   puVar5 = puVar2;
   
@@ -627,26 +627,26 @@ LAB_18055bcdc:
     do {
       // 初始化新资源节点
       *puVar5 = &UNK_18098bcb0;
-      *(undefined8 *)(lVar8 + (longlong)puVar4) = 0;
-      *(undefined4 *)(lVar8 + 8 + (longlong)puVar4) = 0;
+      *(uint64_t *)(lVar8 + (longlong)puVar4) = 0;
+      *(int32_t *)(lVar8 + 8 + (longlong)puVar4) = 0;
       *puVar5 = &UNK_1809fcc58;
-      puVar3 = (undefined1 *)((longlong)puVar4 + lVar8 + 0x10);
-      *(undefined1 **)(lVar8 + (longlong)puVar4) = puVar3;
-      *(undefined4 *)(lVar8 + 8 + (longlong)puVar4) = 0;
+      puVar3 = (int8_t *)((longlong)puVar4 + lVar8 + 0x10);
+      *(int8_t **)(lVar8 + (longlong)puVar4) = puVar3;
+      *(int32_t *)(lVar8 + 8 + (longlong)puVar4) = 0;
       *puVar3 = 0;
-      *(undefined4 *)(lVar8 + 8 + (longlong)puVar4) = *(undefined4 *)(puVar4 + 1);
+      *(int32_t *)(lVar8 + 8 + (longlong)puVar4) = *(int32_t *)(puVar4 + 1);
       
       // 复制资源名称
       puVar6 = &DAT_18098bc73;
-      if ((undefined *)*puVar4 != (undefined *)0x0) {
-        puVar6 = (undefined *)*puVar4;
+      if ((void *)*puVar4 != (void *)0x0) {
+        puVar6 = (void *)*puVar4;
       }
-      strcpy_s(*(undefined8 *)(lVar8 + (longlong)puVar4), MAX_RESOURCE_NAME_LENGTH, puVar6);
+      strcpy_s(*(uint64_t *)(lVar8 + (longlong)puVar4), MAX_RESOURCE_NAME_LENGTH, puVar6);
       
       // 复制资源扩展属性
-      *(undefined4 *)(lVar8 + 0x50 + (longlong)puVar4) = *(undefined4 *)(puVar4 + 10);
-      *(undefined4 *)(lVar8 + 0x54 + (longlong)puVar4) = *(undefined4 *)((longlong)puVar4 + 0x54);
-      *(undefined1 *)(lVar8 + 0x58 + (longlong)puVar4) = *(undefined1 *)(puVar4 + 0xb);
+      *(int32_t *)(lVar8 + 0x50 + (longlong)puVar4) = *(int32_t *)(puVar4 + 10);
+      *(int32_t *)(lVar8 + 0x54 + (longlong)puVar4) = *(int32_t *)((longlong)puVar4 + 0x54);
+      *(int8_t *)(lVar8 + 0x58 + (longlong)puVar4) = *(int8_t *)(puVar4 + 0xb);
       
       puVar5 = puVar5 + 0xd;
       puVar1 = puVar4 + 0xc;
@@ -656,22 +656,22 @@ LAB_18055bcdc:
   
   // 添加新资源到资源池
   FUN_1800b8300(puVar5, param_2);
-  *(undefined4 *)(puVar5 + 0xb) = *(undefined4 *)(param_2 + 0x58);
-  *(undefined4 *)((longlong)puVar5 + 0x5c) = *(undefined4 *)(param_2 + 0x5c);
-  *(undefined1 *)(puVar5 + 0xc) = *(undefined1 *)(param_2 + 0x60);
+  *(int32_t *)(puVar5 + 0xb) = *(int32_t *)(param_2 + 0x58);
+  *(int32_t *)((longlong)puVar5 + 0x5c) = *(int32_t *)(param_2 + 0x5c);
+  *(int8_t *)(puVar5 + 0xc) = *(int8_t *)(param_2 + 0x60);
   
   // 更新资源池管理器
-  puVar7 = (undefined8 *)param_1[1];
-  puVar4 = (undefined8 *)*param_1;
+  puVar7 = (uint64_t *)param_1[1];
+  puVar4 = (uint64_t *)*param_1;
   if (puVar4 != puVar7) {
     do {
       *puVar4 = &UNK_18098bcb0;
       puVar4 = puVar4 + 0xd;
     } while (puVar4 != puVar7);
-    puVar4 = (undefined8 *)*param_1;
+    puVar4 = (uint64_t *)*param_1;
   }
   
-  if (puVar4 == (undefined8 *)0x0) {
+  if (puVar4 == (uint64_t *)0x0) {
     *param_1 = puVar2;
     param_1[1] = puVar5 + 0xd;
     param_1[2] = puVar2 + lVar9 * 0xd;
@@ -696,17 +696,17 @@ LAB_18055bcdc:
 // 性能监控: 提供性能统计和监控功能
 // 内存管理: 高效的内存分配和管理策略
 // 应用场景: 性能分析、系统监控、优化调优
-undefined8 *
-InitializePerformanceCounter(undefined8 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+uint64_t *
+InitializePerformanceCounter(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   longlong *plVar1;
   double dVar2;
   double dVar3;
   longlong lVar4;
-  undefined4 *puVar5;
-  undefined4 *puVar6;
-  undefined4 *puVar7;
+  int32_t *puVar5;
+  int32_t *puVar6;
+  int32_t *puVar7;
   longlong lVar8;
   longlong *plStackX_10;
   longlong alStackX_18 [2];
@@ -714,17 +714,17 @@ InitializePerformanceCounter(undefined8 *param_1, undefined8 param_2, undefined8
   
   // 初始化性能计数器管理器
   plVar1 = param_1 + 1;
-  puVar5 = (undefined4 *)0x0;
+  puVar5 = (int32_t *)0x0;
   *plVar1 = 0;
   param_1[2] = 0;
   param_1[3] = 0;
-  *(undefined4 *)(param_1 + 4) = 3;
+  *(int32_t *)(param_1 + 4) = 3;
   param_1[5] = 0;
   param_1[6] = 0x3ff0000000000000;  // 1.0
   param_1[7] = 0;
   *param_1 = 0;
   
-  puVar7 = (undefined4 *)*plVar1;
+  puVar7 = (int32_t *)*plVar1;
   param_1[2] = puVar7;
   lVar8 = _DAT_180c8ed58;
   
@@ -732,7 +732,7 @@ InitializePerformanceCounter(undefined8 *param_1, undefined8 param_2, undefined8
   if (_DAT_180c8ed58 == 0) {
     plStackX_10 = plVar1;
     QueryPerformanceCounter(alStackX_18, param_2, param_3, param_4, 0xfffffffffffffffe);
-    puVar7 = (undefined4 *)param_1[2];
+    puVar7 = (int32_t *)param_1[2];
     lVar8 = alStackX_18[0];
   }
   
@@ -744,7 +744,7 @@ InitializePerformanceCounter(undefined8 *param_1, undefined8 param_2, undefined8
   lVar8 = 1;
   
   // 添加性能采样点
-  if (puVar7 < (undefined4 *)param_1[3]) {
+  if (puVar7 < (int32_t *)param_1[3]) {
     param_1[2] = puVar7 + 8;
     *puVar7 = 0xffffff87;
     puVar7[1] = 0x1000;
@@ -755,12 +755,12 @@ InitializePerformanceCounter(undefined8 *param_1, undefined8 param_2, undefined8
     puVar7[7] = uStack_44;
   }
   else {
-    puVar6 = (undefined4 *)*plVar1;
+    puVar6 = (int32_t *)*plVar1;
     lVar4 = (longlong)puVar7 - (longlong)puVar6 >> 5;
     if ((lVar4 == 0) || (lVar8 = lVar4 * 2, lVar8 != 0)) {
-      puVar5 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, lVar8 << 5, *(undefined1 *)(param_1 + 4));
-      puVar7 = (undefined4 *)param_1[2];
-      puVar6 = (undefined4 *)*plVar1;
+      puVar5 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, lVar8 << 5, *(int8_t *)(param_1 + 4));
+      puVar7 = (int32_t *)param_1[2];
+      puVar6 = (int32_t *)*plVar1;
     }
     
     if (puVar6 != puVar7) {
@@ -890,7 +890,7 @@ LAB_18055c15a:
            *(double *)(param_1 + 0x30);
   *(double *)(param_1 + 0x30) = dVar11;
   if (1.0 < dVar11) {
-    *(undefined8 *)(param_1 + 0x30) = 0x3ff0000000000000;  // 1.0
+    *(uint64_t *)(param_1 + 0x30) = 0x3ff0000000000000;  // 1.0
   }
   
   // 更新动画参数
@@ -912,7 +912,7 @@ LAB_18055c15a:
 // 性能优化: 使用寄存器变量提高执行效率
 // 寄存器使用: 优化寄存器分配，减少内存访问
 // 应用场景: 高性能监控、实时系统、关键路径优化
-void UpdatePerformanceMetricsEx(undefined8 param_1, longlong param_2, double param_3)
+void UpdatePerformanceMetricsEx(uint64_t param_1, longlong param_2, double param_3)
 
 {
   double dVar1;
@@ -987,7 +987,7 @@ LAB_18055c15a:
           *(double *)(unaff_RDI + 0x30);
   *(double *)(unaff_RDI + 0x30) = dVar9;
   if (1.0 < dVar9) {
-    *(undefined8 *)(unaff_RDI + 0x30) = 0x3ff0000000000000;  // 1.0
+    *(uint64_t *)(unaff_RDI + 0x30) = 0x3ff0000000000000;  // 1.0
   }
   
   // 更新动画参数
@@ -1009,7 +1009,7 @@ LAB_18055c15a:
 // 参数灵活性: 支持不同的参数格式和数据类型
 // 数据处理: 灵活处理不同格式的性能数据
 // 应用场景: 多样化性能监控、不同数据源处理
-void UpdatePerformanceMetricsAlt(undefined8 param_1, undefined8 param_2, longlong param_3)
+void UpdatePerformanceMetricsAlt(uint64_t param_1, uint64_t param_2, longlong param_3)
 
 {
   double dVar1;
@@ -1069,7 +1069,7 @@ LAB_18055c15a:
           *(double *)(unaff_RDI + 0x30);
   *(double *)(unaff_RDI + 0x30) = dVar7;
   if (1.0 < dVar7) {
-    *(undefined8 *)(unaff_RDI + 0x30) = 0x3ff0000000000000;  // 1.0
+    *(uint64_t *)(unaff_RDI + 0x30) = 0x3ff0000000000000;  // 1.0
   }
   
   // 更新动画参数
@@ -1151,7 +1151,7 @@ LAB_18055c15a:
           *(double *)(unaff_RDI + 0x30);
   *(double *)(unaff_RDI + 0x30) = dVar7;
   if (1.0 < dVar7) {
-    *(undefined8 *)(unaff_RDI + 0x30) = 0x3ff0000000000000;  // 1.0
+    *(uint64_t *)(unaff_RDI + 0x30) = 0x3ff0000000000000;  // 1.0
   }
   
   // 更新动画参数
@@ -1177,7 +1177,7 @@ void ResetPerformanceState(void)
   longlong unaff_RDI;
   
   // 重置性能参数到默认值
-  *(undefined8 *)(unaff_RDI + 0x30) = 0x3ff0000000000000;  // 1.0
+  *(uint64_t *)(unaff_RDI + 0x30) = 0x3ff0000000000000;  // 1.0
   *(double *)(unaff_RDI + 0x48) = *(double *)(unaff_RDI + 0x40);
   *(double *)(unaff_RDI + 0x50) = *(double *)(unaff_RDI + 0x40) * ANIMATION_SPEED_FACTOR;
   
@@ -1226,10 +1226,10 @@ void ProcessResourceUpdateLoop(longlong param_1)
   ulonglong uVar9;
   ulonglong uVar10;
   ulonglong uVar11;
-  undefined1 auStack_178 [48];
+  int8_t auStack_178 [48];
   longlong lStack_148;
   longlong lStack_140;
-  undefined1 auStack_138 [256];
+  int8_t auStack_138 [256];
   ulonglong uStack_38;
   
   // 安全检查cookie
@@ -1342,7 +1342,7 @@ LAB_18055c268:
     
     // 更新资源队列状态
     *puVar5 = uVar11 & uVar9 + 1;
-    *(undefined4 *)(lVar6 + 0x5c4) = 0;
+    *(int32_t *)(lVar6 + 0x5c4) = 0;
     
     // 处理资源更新
     cVar1 = FUN_18055cde0(param_1, lVar6, lVar6 + 0x5d0);

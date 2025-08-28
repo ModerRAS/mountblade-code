@@ -139,17 +139,17 @@ typedef struct {
  */
 void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2, longlong param_3)
 {
-    undefined1 uVar1;
-    undefined4 uVar2;
+    int8_t uVar1;
+    int32_t uVar2;
     longlong *plVar3;
     longlong *plVar4;
     int iVar5;
     int iVar6;
-    undefined4 uVar7;
+    int32_t uVar7;
     longlong *plVar8;
     ulonglong uVar9;
-    undefined8 *puVar10;
-    undefined8 uVar11;
+    uint64_t *puVar10;
+    uint64_t uVar11;
     longlong *plVar12;
     longlong *plVar13;
     longlong lVar14;
@@ -157,22 +157,22 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     ulonglong uVar16;
     uint uVar17;
     longlong lVar18;
-    undefined *puVar19;
+    void *puVar19;
     longlong *plVar20;
     longlong *plVar21;
     ulonglong uVar22;
     ulonglong uVar23;
-    undefined1 auStack_418 [32];
+    int8_t auStack_418 [32];
     uint uStack_3f8;
-    undefined *puStack_3f0;
-    undefined *puStack_3e8;
+    void *puStack_3f0;
+    void *puStack_3e8;
     uint uStack_3e0;
     ulonglong uStack_3d8;
     longlong **pplStack_3d0;
     longlong *plStack_3c8;
-    undefined4 uStack_3c0;
-    undefined *puStack_3b8;
-    undefined *puStack_3b0;
+    int32_t uStack_3c0;
+    void *puStack_3b8;
+    void *puStack_3b0;
     uint uStack_3a8;
     ulonglong uStack_3a0;
     longlong *plStack_398;
@@ -183,88 +183,88 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     longlong *plStack_370;
     uint uStack_368;
     uint uStack_364;
-    undefined4 uStack_360;
-    undefined4 uStack_35c;
-    undefined4 uStack_358;
-    undefined4 uStack_354;
-    undefined4 uStack_350;
-    undefined4 uStack_34c;
-    undefined4 uStack_348;
-    undefined4 uStack_344;
-    undefined4 uStack_340;
+    int32_t uStack_360;
+    int32_t uStack_35c;
+    int32_t uStack_358;
+    int32_t uStack_354;
+    int32_t uStack_350;
+    int32_t uStack_34c;
+    int32_t uStack_348;
+    int32_t uStack_344;
+    int32_t uStack_340;
     uint uStack_33c;
-    undefined4 uStack_338;
+    int32_t uStack_338;
     uint uStack_334;
     longlong lStack_330;
     longlong *plStack_328;
-    undefined4 uStack_320;
-    undefined4 uStack_31c;
-    undefined4 uStack_318;
-    undefined4 uStack_314;
-    undefined4 uStack_310;
-    undefined8 uStack_30c;
-    undefined8 uStack_304;
-    undefined1 uStack_2fc;
-    undefined8 uStack_2fb;
-    undefined4 uStack_2f0;
-    undefined1 uStack_2ec;
-    undefined8 uStack_2e8;
-    undefined4 uStack_2e0;
-    undefined4 uStack_2dc;
-    undefined2 uStack_2d8;
-    undefined1 uStack_2d6;
-    undefined4 uStack_2d4;
-    undefined1 uStack_2d0;
+    int32_t uStack_320;
+    int32_t uStack_31c;
+    int32_t uStack_318;
+    int32_t uStack_314;
+    int32_t uStack_310;
+    uint64_t uStack_30c;
+    uint64_t uStack_304;
+    int8_t uStack_2fc;
+    uint64_t uStack_2fb;
+    int32_t uStack_2f0;
+    int8_t uStack_2ec;
+    uint64_t uStack_2e8;
+    int32_t uStack_2e0;
+    int32_t uStack_2dc;
+    int16_t uStack_2d8;
+    int8_t uStack_2d6;
+    int32_t uStack_2d4;
+    int8_t uStack_2d0;
     int *piStack_2c8;
     longlong alStack_2c0 [3];
-    undefined4 uStack_2a8;
-    undefined8 uStack_2a0;
-    undefined8 uStack_298;
-    undefined4 uStack_290;
-    undefined4 uStack_28c;
-    undefined2 uStack_288;
-    undefined1 uStack_286;
-    undefined4 uStack_284;
-    undefined1 uStack_280;
-    undefined8 uStack_278;
+    int32_t uStack_2a8;
+    uint64_t uStack_2a0;
+    uint64_t uStack_298;
+    int32_t uStack_290;
+    int32_t uStack_28c;
+    int16_t uStack_288;
+    int8_t uStack_286;
+    int32_t uStack_284;
+    int8_t uStack_280;
+    uint64_t uStack_278;
     longlong alStack_270 [3];
-    undefined4 uStack_258;
-    undefined8 uStack_250;
+    int32_t uStack_258;
+    uint64_t uStack_250;
     longlong *plStack_248;
     longlong *plStack_240;
     longlong lStack_238;
     longlong lStack_230;
-    undefined8 uStack_228;
-    undefined4 uStack_220;
-    undefined8 uStack_218;
-    undefined8 uStack_208;
-    undefined8 uStack_200;
-    undefined8 uStack_1f8;
-    undefined8 uStack_1f0;
-    undefined4 uStack_1e8;
-    undefined4 uStack_1e4;
-    undefined4 uStack_1e0;
+    uint64_t uStack_228;
+    int32_t uStack_220;
+    uint64_t uStack_218;
+    uint64_t uStack_208;
+    uint64_t uStack_200;
+    uint64_t uStack_1f8;
+    uint64_t uStack_1f0;
+    int32_t uStack_1e8;
+    int32_t uStack_1e4;
+    int32_t uStack_1e0;
     uint uStack_1dc;
-    undefined8 uStack_1d8;
-    undefined *puStack_1c8;
-    undefined1 *puStack_1c0;
-    undefined4 uStack_1b8;
-    undefined1 auStack_1b0 [128];
-    undefined4 uStack_130;
-    undefined8 uStack_128;
-    undefined8 uStack_120;
-    undefined8 uStack_118;
-    undefined8 uStack_110;
-    undefined4 uStack_108;
-    undefined4 uStack_104;
-    undefined4 uStack_100;
+    uint64_t uStack_1d8;
+    void *puStack_1c8;
+    int8_t *puStack_1c0;
+    int32_t uStack_1b8;
+    int8_t auStack_1b0 [128];
+    int32_t uStack_130;
+    uint64_t uStack_128;
+    uint64_t uStack_120;
+    uint64_t uStack_118;
+    uint64_t uStack_110;
+    int32_t uStack_108;
+    int32_t uStack_104;
+    int32_t uStack_100;
     uint uStack_fc;
-    undefined8 uStack_f8;
-    undefined8 *puStack_f0;
-    undefined *puStack_e8;
-    undefined1 *puStack_e0;
+    uint64_t uStack_f8;
+    uint64_t *puStack_f0;
+    void *puStack_e8;
+    int8_t *puStack_e0;
     uint uStack_d8;
-    undefined1 auStack_d0 [136];
+    int8_t auStack_d0 [136];
     ulonglong uStack_48;
     
     // 初始化内存对齐和状态标志
@@ -314,13 +314,13 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         uStack_314 = RENDERING_STATUS_FLAG_ACTIVE;
         uStack_2fb = RENDERING_STATUS_FLAG_ACTIVE;
         uStack_2ec = 0;
-        uStack_320 = (undefined4)param_2[0xe];
-        uStack_31c = *(undefined4 *)((longlong)param_2 + 0x74);
+        uStack_320 = (int32_t)param_2[0xe];
+        uStack_31c = *(int32_t *)((longlong)param_2 + 0x74);
         uStack_310 = RENDERING_STATUS_FLAG_ACTIVE;
         uStack_2fc = RENDERING_STATUS_FLAG_ACTIVE;
         uStack_30c = 0;
         uStack_304 = 0;
-        uStack_2f0 = (undefined4)param_2[0xf];
+        uStack_2f0 = (int32_t)param_2[0xf];
         
         // 处理字符串资源
         FUN_180627ae0(&puStack_3b8, param_2 + 10);
@@ -328,7 +328,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             // 处理长字符串资源
             puStack_3f0 = &UNK_180a3c3e0;
             uStack_3d8 = 0;
-            puStack_3e8 = (undefined *)0x0;
+            puStack_3e8 = (void *)0x0;
             uStack_3e0 = 0;
             uStack_3c0 = 1;
             uVar17 = uStack_3a8;
@@ -351,7 +351,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
                 uVar23 = uVar23 + 1;
             } while ((longlong)uVar23 < RENDERING_MAX_STRING_LENGTH);
             uStack_3a8 = uStack_3e0;
-            if (puStack_3b0 != (undefined *)0x0) {
+            if (puStack_3b0 != (void *)0x0) {
                 // 清理临时资源
                 FUN_18064e900(puStack_3b0);
             }
@@ -359,7 +359,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             uStack_3a0 = uStack_3d8;
             uStack_3e0 = 0;
             uStack_3c0 = 0;
-            puStack_3e8 = (undefined *)0x0;
+            puStack_3e8 = (void *)0x0;
             uStack_3d8 = 0;
             puStack_3f0 = &UNK_18098bcb0;
             plVar12 = plStack_3c8;
@@ -372,13 +372,13 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         auStack_d0[0] = 0;
         uStack_d8 = uStack_3a8;
         puVar19 = &DAT_18098bc73;
-        if (puStack_3b0 != (undefined *)0x0) {
+        if (puStack_3b0 != (void *)0x0) {
             puVar19 = puStack_3b0;
         }
         strcpy_s(auStack_d0, 0x80, puVar19);
         
         // 初始化渲染管线
-        puVar10 = (undefined8 *)FUN_1800b1230(_DAT_180c86930, &plStack_240, &puStack_e8, &uStack_320);
+        puVar10 = (uint64_t *)FUN_1800b1230(_DAT_180c86930, &plStack_240, &puStack_e8, &uStack_320);
         plStack_3c8 = (longlong *)*puVar10;
         if (plStack_3c8 != (longlong *)0x0) {
             plStack_248 = plStack_3c8;
@@ -398,10 +398,10 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         // 清理临时资源
         puStack_e8 = &UNK_18098bcb0;
         puStack_3b8 = &UNK_180a3c3e0;
-        if (puStack_3b0 != (undefined *)0x0) {
+        if (puStack_3b0 != (void *)0x0) {
             FUN_18064e900();
         }
-        puStack_3b0 = (undefined *)0x0;
+        puStack_3b0 = (void *)0x0;
         uStack_3a0 = uStack_3a0 & 0xffffffff00000000;
         puStack_3b8 = &UNK_18098bcb0;
         lVar18 = param_2[2];
@@ -412,7 +412,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
          plVar12 = plStack_390, *(int *)(lVar18 + 0x380) == 0)) {
         // 线程安全状态同步
         LOCK();
-        *(undefined4 *)(param_2[2] + 0x380) = RENDERING_STATUS_FLAG_ACTIVE;
+        *(int32_t *)(param_2[2] + 0x380) = RENDERING_STATUS_FLAG_ACTIVE;
         UNLOCK();
         
         // 配置渲染参数
@@ -424,13 +424,13 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
         lVar18 = param_2[2];
         uStack_368 = (uint)*(ushort *)(lVar18 + 0x32c);
         uStack_364 = (uint)*(ushort *)(lVar18 + 0x32e);
-        uStack_358 = *(undefined4 *)(lVar18 + 0x324);
+        uStack_358 = *(int32_t *)(lVar18 + 0x324);
         uStack_354 = 0;
         uStack_350 = 0;
         uStack_34c = 0;
         uStack_348 = 0;
         uStack_344 = RENDERING_THREAD_SAFE_FLAG;
-        uStack_338 = (undefined4)param_2[0xf];
+        uStack_338 = (int32_t)param_2[0xf];
         
         // 线程ID检查和处理
         iVar6 = *(int *)(*(longlong *)(*(longlong *)(_DAT_180c82868 + 8) + 8) + 0x48);
@@ -469,14 +469,14 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             uStack_100 = uStack_340;
             uStack_fc = uStack_33c;
             uStack_f8 = CONCAT44(uStack_334, uStack_338);
-            puStack_f0 = (undefined8 *)param_2[2];
-            if ((undefined *)*puStack_f0 == &UNK_180a14060) {
+            puStack_f0 = (uint64_t *)param_2[2];
+            if ((void *)*puStack_f0 == &UNK_180a14060) {
                 LOCK();
                 *(int *)(puStack_f0 + 1) = *(int *)(puStack_f0 + 1) + 1;
                 UNLOCK();
             }
             else {
-                (**(code **)((undefined *)*puStack_f0 + 0x28))();
+                (**(code **)((void *)*puStack_f0 + 0x28))();
             }
             
             // 创建跨线程通信
@@ -507,13 +507,13 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     
     // 资源管理和清理
     uVar22 = RENDERING_DEFAULT_BUFFER_SIZE;
-    *(undefined1 *)((longlong)plVar20 + 0x2e6) = 0;
+    *(int8_t *)((longlong)plVar20 + 0x2e6) = 0;
     uVar9 = uVar16;
     uVar23 = uVar16;
     if (plVar20[0x39] - plVar20[0x38] >> 3 != 0) {
         do {
             iVar6 = (int)uVar23;
-            FUN_1804439b0(*(undefined8 *)(uVar9 + plVar20[0x38]), 0);
+            FUN_1804439b0(*(uint64_t *)(uVar9 + plVar20[0x38]), 0);
             uVar9 = uVar9 + 8;
             uVar23 = (ulonglong)(iVar6 + 1U);
         } while ((ulonglong)(longlong)(int)(iVar6 + 1U) < (ulonglong)(plVar20[0x39] - plVar20[0x38] >> 3));
@@ -593,7 +593,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
     if (uStack_3f8 == 0) {
         if ((int)pplStack_3d0 == 0) {
             // 配置渲染状态
-            *(undefined4 *)(plVar20[4] + 0x27c0) = 7;
+            *(int32_t *)(plVar20[4] + 0x27c0) = 7;
             FUN_1802ee720(plVar20, RENDERING_STATUS_FLAG_ACTIVE);
             lVar18 = 2;
             plVar3 = plVar21 + 2;
@@ -638,31 +638,31 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             lVar18 = plVar13[0x13];
             plVar15[0x12] = plVar13[0x12];
             plVar15[0x13] = lVar18;
-            uVar7 = *(undefined4 *)((longlong)plVar13 + 0xa4);
+            uVar7 = *(int32_t *)((longlong)plVar13 + 0xa4);
             lVar18 = plVar13[0x15];
-            uVar2 = *(undefined4 *)((longlong)plVar13 + 0xac);
+            uVar2 = *(int32_t *)((longlong)plVar13 + 0xac);
             *(int *)(plVar15 + 0x14) = (int)plVar13[0x14];
-            *(undefined4 *)((longlong)plVar15 + 0xa4) = uVar7;
+            *(int32_t *)((longlong)plVar15 + 0xa4) = uVar7;
             *(int *)(plVar15 + 0x15) = (int)lVar18;
-            *(undefined4 *)((longlong)plVar15 + 0xac) = uVar2;
-            uVar7 = *(undefined4 *)((longlong)plVar13 + 0xb4);
+            *(int32_t *)((longlong)plVar15 + 0xac) = uVar2;
+            uVar7 = *(int32_t *)((longlong)plVar13 + 0xb4);
             lVar18 = plVar13[0x17];
-            uVar2 = *(undefined4 *)((longlong)plVar13 + 0xbc);
+            uVar2 = *(int32_t *)((longlong)plVar13 + 0xbc);
             *(int *)(plVar15 + 0x16) = (int)plVar13[0x16];
-            *(undefined4 *)((longlong)plVar15 + 0xb4) = uVar7;
+            *(int32_t *)((longlong)plVar15 + 0xb4) = uVar7;
             *(int *)(plVar15 + 0x17) = (int)lVar18;
-            *(undefined4 *)((longlong)plVar15 + 0xbc) = uVar2;
+            *(int32_t *)((longlong)plVar15 + 0xbc) = uVar2;
             
             // 更新渲染状态
             (**(code **)(*plVar8 + 0x68))(plVar8, param_2[2]);
             if (plVar8[0xa6] != 0) {
-                *(undefined4 *)(plVar8[0xa6] + 0x40) = RENDERING_RESOURCE_MANAGEMENT_FLAG;
+                *(int32_t *)(plVar8[0xa6] + 0x40) = RENDERING_RESOURCE_MANAGEMENT_FLAG;
             }
             
             // 执行渲染操作
             lVar18 = (**(code **)(*plVar8 + 0xd8))(plVar8, param_3);
             plStack_370 = *(longlong **)(lVar18 + 0x96a8);
-            *(undefined8 *)(lVar18 + 0x96a8) = 0;
+            *(uint64_t *)(lVar18 + 0x96a8) = 0;
             if (plStack_370 != (longlong *)0x0) {
                 (**(code **)(*plStack_370 + 0x38))();
             }
@@ -670,8 +670,8 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
             // 设置渲染标志
             *(uint *)(lVar18 + 4) = *(uint *)(lVar18 + 4) | 0x80;
             puVar19 = &DAT_18098bc73;
-            if ((undefined *)plVar20[0x52] != (undefined *)0x0) {
-                puVar19 = (undefined *)plVar20[0x52];
+            if ((void *)plVar20[0x52] != (void *)0x0) {
+                puVar19 = (void *)plVar20[0x52];
             }
             (**(code **)(*(longlong *)(lVar18 + 0x3520) + 0x10))((longlong *)(lVar18 + 0x3520), puVar19);
             
@@ -684,14 +684,14 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
                 if (*(code **)(lVar14 + 0x98) != (code *)0x0) {
                     (**(code **)(lVar14 + 0x98))(lVar14 + 0x88, 0, 0);
                 }
-                *(undefined **)(lVar14 + 0x98) = &UNK_1802e4bc0;
-                *(undefined **)(lVar14 + 0xa0) = &UNK_1800ee4c0;
+                *(void **)(lVar14 + 0x98) = &UNK_1802e4bc0;
+                *(void **)(lVar14 + 0xa0) = &UNK_1800ee4c0;
                 *(code **)(lVar14 + 0x88) = FUN_180489700;
                 if (*(code **)(lVar18 + 0x9640) != (code *)0x0) {
                     (**(code **)(lVar18 + 0x9640))(lVar18 + 0x9630, 0, 0);
                 }
-                *(undefined **)(lVar18 + 0x9640) = &UNK_1800ee4d0;
-                *(undefined **)(lVar18 + 0x9648) = &UNK_1800ee4c0;
+                *(void **)(lVar18 + 0x9640) = &UNK_1800ee4d0;
+                *(void **)(lVar18 + 0x9648) = &UNK_1800ee4c0;
                 *(code **)(lVar18 + 0x9630) = FUN_180489990;
                 *(longlong *)(lVar18 + 0x9658) = lVar14;
                 *(uint *)(lVar18 + 4) = *(uint *)(lVar18 + 4) | 0x4000;
@@ -710,7 +710,7 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
                     uVar23 = uVar23 & 0xffffffff;
                     uVar22 = uVar16;
                     do {
-                        FUN_180246810(*(undefined8 *)(uVar22 + lStack_238));
+                        FUN_180246810(*(uint64_t *)(uVar22 + lStack_238));
                         uVar22 = uVar22 + 8;
                         uVar23 = uVar23 - 1;
                     } while (uVar23 != 0);
@@ -719,8 +719,8 @@ void RenderingSystemAdvancedPipelineManager(longlong param_1, longlong *param_2,
                 // 清理渲染资源
                 while (plVar20 = plStack_398, iVar6 = (int)uVar9, iVar6 < *(int *)(lStack_330 + 0x11a48)) {
                     if (*(longlong *)(uVar16 + 0x9a48 + lStack_330) == lVar18) {
-                        *(undefined8 *)(lStack_330 + 0x9a48 + (longlong)iVar6 * 8) =
-                             *(undefined8 *)(lStack_330 + 0x9a40 + (longlong)*(int *)(lStack_330 + 0x11a48) * 8);
+                        *(uint64_t *)(lStack_330 + 0x9a48 + (longlong)iVar6 * 8) =
+                             *(uint64_t *)(lStack_330 + 0x9a40 + (longlong)*(int *)(lStack_330 + 0x11a48) * 8);
                         LOCK();
                         *(int *)(lStack_330 + 0x11a48) = *(int *)(lStack_330 + 0x11a48) + -1;
                         UNLOCK();
@@ -859,9 +859,9 @@ longlong * RenderingSystemResourceStateSynchronizer(longlong *param_1, longlong 
     
     // 同步配置参数
     *(int *)(param_1 + 0xe) = (int)param_2[0xe];
-    *(undefined4 *)((longlong)param_1 + 0x74) = *(undefined4 *)((longlong)param_2 + 0x74);
+    *(int32_t *)((longlong)param_1 + 0x74) = *(int32_t *)((longlong)param_2 + 0x74);
     *(int *)(param_1 + 0xf) = (int)param_2[0xf];
-    *(undefined1 *)((longlong)param_1 + 0x7c) = *(undefined1 *)((longlong)param_2 + 0x7c);
+    *(int8_t *)((longlong)param_1 + 0x7c) = *(int8_t *)((longlong)param_2 + 0x7c);
     *(int *)(param_1 + 0x10) = (int)param_2[0x10];
     
     // 同步额外资源

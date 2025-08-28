@@ -104,14 +104,14 @@
  * @param packet_context 数据包上下文指针
  * @return void
  */
-void NetworkInitializePacket(undefined8 packet_context)
+void NetworkInitializePacket(uint64_t packet_context)
 {
     int status_code;
-    undefined1 buffer_area[32];           // 缓冲区区域
-    undefined1 *packet_buffer;            // 数据包缓冲区指针
+    int8_t buffer_area[32];           // 缓冲区区域
+    int8_t *packet_buffer;            // 数据包缓冲区指针
     longlong network_handles[2];         // 网络句柄数组
-    undefined8 *data_pointers[2];         // 数据指针数组
-    undefined1 stack_buffer[256];         // 栈缓冲区
+    uint64_t *data_pointers[2];         // 数据指针数组
+    int8_t stack_buffer[256];         // 栈缓冲区
     ulonglong security_key;               // 安全密钥
     
     // 安全密钥初始化（用于数据包验证）
@@ -127,7 +127,7 @@ void NetworkInitializePacket(undefined8 packet_context)
     }
     else if (status_code == 0) {
         // 执行网络连接初始化
-        status_code = FUN_18088e0f0(*(undefined8 *)(network_handles[0] + 0x98), 1);
+        status_code = FUN_18088e0f0(*(uint64_t *)(network_handles[0] + 0x98), 1);
         
         if (status_code == 0) {
             // 检查网络配置是否有效
@@ -137,12 +137,12 @@ void NetworkInitializePacket(undefined8 packet_context)
                 status_code = FUN_18088c740(network_handles + 1);
                 
                 if ((status_code == 0) &&
-                    (status_code = FUN_18088dec0(*(undefined8 *)(network_handles[0] + 0x98), 
+                    (status_code = FUN_18088dec0(*(uint64_t *)(network_handles[0] + 0x98), 
                                                data_pointers, 0x10), status_code == 0)) {
                     // 设置数据包处理器
                     *data_pointers[0] = &UNK_180982b30;
-                    *(undefined4 *)(data_pointers[0] + 1) = 0x10;
-                    func_0x00018088e0d0(*(undefined8 *)(network_handles[0] + 0x98));
+                    *(int32_t *)(data_pointers[0] + 1) = 0x10;
+                    func_0x00018088e0d0(*(uint64_t *)(network_handles[0] + 0x98));
                     // 数据包处理器激活（不返回）
                     FUN_18088c790(network_handles + 1);
                 }
@@ -183,16 +183,16 @@ error_handling:
  */
 int SerializeInt32Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 header_value;
+    int32_t header_value;
     int serialized_bytes;
     int processed_bytes;
     
     // 获取数据头信息
-    header_value = *(undefined4 *)(data_ptr + 0x18);
+    header_value = *(int32_t *)(data_ptr + 0x18);
     
     // 序列化主要数据部分
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符数据
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -220,11 +220,11 @@ int SerializeInt32Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  * @param packet_size 数据包大小
  * @return void
  */
-void SerializePacketHeader(longlong header_ptr, undefined8 target_ptr, undefined4 packet_size)
+void SerializePacketHeader(longlong header_ptr, uint64_t target_ptr, int32_t packet_size)
 {
     // 调用底层发送函数传输包头
-    FUN_18083faf0(target_ptr, packet_size, *(undefined4 *)(header_ptr + 0x10),
-                 *(undefined4 *)(header_ptr + 0x18), *(undefined4 *)(header_ptr + 0x1c));
+    FUN_18083faf0(target_ptr, packet_size, *(int32_t *)(header_ptr + 0x10),
+                 *(int32_t *)(header_ptr + 0x18), *(int32_t *)(header_ptr + 0x1c));
     return;
 }
 
@@ -243,24 +243,24 @@ void SerializePacketHeader(longlong header_ptr, undefined8 target_ptr, undefined
  */
 int SerializeInt64Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 config_values[4];  // 配置值数组
-    undefined4 main_header;       // 主头部信息
-    undefined4 secondary_header;  // 次要头部信息
+    int32_t config_values[4];  // 配置值数组
+    int32_t main_header;       // 主头部信息
+    int32_t secondary_header;  // 次要头部信息
     int serialized_bytes;         // 已序列化字节数
     int processed_bytes;          // 已处理字节数
     
     // 获取配置参数
-    config_values[0] = *(undefined4 *)(data_ptr + 0x1c);
-    config_values[1] = *(undefined4 *)(data_ptr + 0x20);
-    config_values[2] = *(undefined4 *)(data_ptr + 0x24);
-    config_values[3] = *(undefined4 *)(data_ptr + 0x28);
+    config_values[0] = *(int32_t *)(data_ptr + 0x1c);
+    config_values[1] = *(int32_t *)(data_ptr + 0x20);
+    config_values[2] = *(int32_t *)(data_ptr + 0x24);
+    config_values[3] = *(int32_t *)(data_ptr + 0x28);
     
-    main_header = *(undefined4 *)(data_ptr + 0x2c);
-    secondary_header = *(undefined4 *)(data_ptr + 0x18);
+    main_header = *(int32_t *)(data_ptr + 0x2c);
+    secondary_header = *(int32_t *)(data_ptr + 0x18);
     
     // 序列化主数据部分
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
@@ -309,16 +309,16 @@ int SerializeInt64Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeStringData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined8 string_config;   // 字符串配置信息
+    uint64_t string_config;   // 字符串配置信息
     int serialized_bytes;       // 已序列化字节数
     int processed_bytes;        // 已处理字节数
     
     // 获取字符串配置
-    string_config = *(undefined8 *)(data_ptr + 0x18);
+    string_config = *(uint64_t *)(data_ptr + 0x18);
     
     // 序列化字符串数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -347,16 +347,16 @@ int SerializeStringData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeFloatData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined1 float_config;    // 浮点数配置
+    int8_t float_config;    // 浮点数配置
     int serialized_bytes;       // 已序列化字节数
     int processed_bytes;        // 已处理字节数
     
     // 获取浮点数配置
-    float_config = *(undefined1 *)(data_ptr + 0x18);
+    float_config = *(int8_t *)(data_ptr + 0x18);
     
     // 序列化浮点数数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -385,16 +385,16 @@ int SerializeFloatData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeBooleanData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 bool_config;     // 布尔值配置
+    int32_t bool_config;     // 布尔值配置
     int serialized_bytes;       // 已序列化字节数
     int processed_bytes;        // 已处理字节数
     
     // 获取布尔值配置
-    bool_config = *(undefined4 *)(data_ptr + 0x18);
+    bool_config = *(int32_t *)(data_ptr + 0x18);
     
     // 序列化布尔值数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -423,16 +423,16 @@ int SerializeBooleanData(longlong data_ptr, longlong buffer_ptr, int buffer_size
  */
 int SerializeArrayData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 array_config;    // 数组配置
+    int32_t array_config;    // 数组配置
     int serialized_bytes;       // 已序列化字节数
     int processed_bytes;        // 已处理字节数
     
     // 获取数组配置
-    array_config = *(undefined4 *)(data_ptr + 0x18);
+    array_config = *(int32_t *)(data_ptr + 0x18);
     
     // 序列化数组数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -461,17 +461,17 @@ int SerializeArrayData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeStructData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 struct_config[2]; // 结构体配置
+    int32_t struct_config[2]; // 结构体配置
     int serialized_bytes;        // 已序列化字节数
     int processed_bytes;         // 已处理字节数
     
     // 获取结构体配置
-    struct_config[0] = *(undefined4 *)(data_ptr + 0x1c);
-    struct_config[1] = *(undefined4 *)(data_ptr + 0x18);
+    struct_config[0] = *(int32_t *)(data_ptr + 0x1c);
+    struct_config[1] = *(int32_t *)(data_ptr + 0x18);
     
     // 序列化结构体数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
@@ -510,17 +510,17 @@ int SerializeStructData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeVector2Data(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 vector_config[2]; // 向量配置
+    int32_t vector_config[2]; // 向量配置
     int serialized_bytes;        // 已序列化字节数
     int processed_bytes;         // 已处理字节数
     
     // 获取向量配置
-    vector_config[0] = *(undefined4 *)(data_ptr + 0x1c);
-    vector_config[1] = *(undefined4 *)(data_ptr + 0x18);
+    vector_config[0] = *(int32_t *)(data_ptr + 0x1c);
+    vector_config[1] = *(int32_t *)(data_ptr + 0x18);
     
     // 序列化向量数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(serialized_bytes + buffer_ptr, 
@@ -561,23 +561,23 @@ int SerializeComplexData(longlong data_ptr, longlong buffer_ptr, int buffer_size
 {
     int serialized_bytes;        // 已序列化字节数
     int processed_bytes;         // 已处理字节数
-    undefined8 complex_params[6]; // 复杂数据参数
+    uint64_t complex_params[6]; // 复杂数据参数
     
     // 获取复杂数据参数
-    complex_params[0] = *(undefined8 *)(data_ptr + 0x18);
-    complex_params[1] = *(undefined8 *)(data_ptr + 0x20);
-    complex_params[2] = *(undefined4 *)(data_ptr + 0x28);
-    complex_params[3] = *(undefined4 *)(data_ptr + 0x2c);
-    complex_params[4] = *(undefined4 *)(data_ptr + 0x30);
-    complex_params[5] = *(undefined4 *)(data_ptr + 0x34);
-    complex_params[6] = *(undefined4 *)(data_ptr + 0x38);
-    complex_params[7] = *(undefined4 *)(data_ptr + 0x3c);
-    complex_params[8] = *(undefined4 *)(data_ptr + 0x40);
-    complex_params[9] = *(undefined4 *)(data_ptr + 0x44);
+    complex_params[0] = *(uint64_t *)(data_ptr + 0x18);
+    complex_params[1] = *(uint64_t *)(data_ptr + 0x20);
+    complex_params[2] = *(int32_t *)(data_ptr + 0x28);
+    complex_params[3] = *(int32_t *)(data_ptr + 0x2c);
+    complex_params[4] = *(int32_t *)(data_ptr + 0x30);
+    complex_params[5] = *(int32_t *)(data_ptr + 0x34);
+    complex_params[6] = *(int32_t *)(data_ptr + 0x38);
+    complex_params[7] = *(int32_t *)(data_ptr + 0x3c);
+    complex_params[8] = *(int32_t *)(data_ptr + 0x40);
+    complex_params[9] = *(int32_t *)(data_ptr + 0x44);
     
     // 序列化主要数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -606,16 +606,16 @@ int SerializeComplexData(longlong data_ptr, longlong buffer_ptr, int buffer_size
  */
 int SerializeMatrixData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 matrix_config;    // 矩阵配置
+    int32_t matrix_config;    // 矩阵配置
     int serialized_bytes;        // 已序列化字节数
     int processed_bytes;         // 已处理字节数
     
     // 获取矩阵配置
-    matrix_config = *(undefined4 *)(data_ptr + 0x18);
+    matrix_config = *(int32_t *)(data_ptr + 0x18);
     
     // 序列化矩阵数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -644,20 +644,20 @@ int SerializeMatrixData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeTransformData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 transform_config[2]; // 变换配置
-    undefined1 transform_type;      // 变换类型
+    int32_t transform_config[2]; // 变换配置
+    int8_t transform_type;      // 变换类型
     int serialized_bytes;           // 已序列化字节数
     int processed_bytes;            // 已处理字节数
-    undefined8 transform_params;    // 变换参数
+    uint64_t transform_params;    // 变换参数
     
     // 获取变换参数
-    transform_params = *(undefined8 *)(data_ptr + 0x18);
-    transform_type = *(undefined1 *)(data_ptr + 0x24);
-    transform_config[0] = *(undefined4 *)(data_ptr + 0x20);
+    transform_params = *(uint64_t *)(data_ptr + 0x18);
+    transform_type = *(int8_t *)(data_ptr + 0x24);
+    transform_config[0] = *(int32_t *)(data_ptr + 0x20);
     
     // 序列化变换数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -706,18 +706,18 @@ int SerializeTransformData(longlong data_ptr, longlong buffer_ptr, int buffer_si
  */
 int SerializeAnimationData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined1 animation_type;    // 动画类型
+    int8_t animation_type;    // 动画类型
     int serialized_bytes;         // 已序列化字节数
     int processed_bytes;          // 已处理字节数
-    undefined8 animation_params;  // 动画参数
+    uint64_t animation_params;  // 动画参数
     
     // 获取动画参数
-    animation_params = *(undefined8 *)(data_ptr + 0x18);
-    animation_type = *(undefined1 *)(data_ptr + 0x24);
+    animation_params = *(uint64_t *)(data_ptr + 0x18);
+    animation_type = *(int8_t *)(data_ptr + 0x24);
     
     // 序列化动画数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -766,18 +766,18 @@ int SerializeAnimationData(longlong data_ptr, longlong buffer_ptr, int buffer_si
  */
 int SerializeAudioData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 audio_config[2];   // 音频配置
-    undefined1 audio_type;        // 音频类型
+    int32_t audio_config[2];   // 音频配置
+    int8_t audio_type;        // 音频类型
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取音频配置
-    audio_type = *(undefined1 *)(data_ptr + 0x1c);
-    audio_config[0] = *(undefined4 *)(data_ptr + 0x18);
+    audio_type = *(int8_t *)(data_ptr + 0x1c);
+    audio_config[0] = *(int32_t *)(data_ptr + 0x18);
     
     // 序列化音频数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -826,16 +826,16 @@ int SerializeAudioData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeVideoData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined1 video_type;        // 视频类型
+    int8_t video_type;        // 视频类型
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取视频类型
-    video_type = *(undefined1 *)(data_ptr + 0x1c);
+    video_type = *(int8_t *)(data_ptr + 0x1c);
     
     // 序列化视频数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -884,17 +884,17 @@ int SerializeVideoData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeImageData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 image_config[2];   // 图像配置
+    int32_t image_config[2];   // 图像配置
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取图像配置
-    image_config[0] = *(undefined4 *)(data_ptr + 0x18);
-    image_config[1] = *(undefined4 *)(data_ptr + 0x1c);
+    image_config[0] = *(int32_t *)(data_ptr + 0x18);
+    image_config[1] = *(int32_t *)(data_ptr + 0x1c);
     
     // 序列化图像数据
     serialized_bytes = func_0x00018074b800(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -933,17 +933,17 @@ int SerializeImageData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeNetworkConfig(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 config_params[4];  // 配置参数
-    undefined4 main_config;       // 主配置
+    int32_t config_params[4];  // 配置参数
+    int32_t main_config;       // 主配置
     int serialized_bytes;         // 已序列化字节数
     int processed_bytes;          // 已处理字节数
     
     // 获取配置参数
-    config_params[0] = *(undefined4 *)(data_ptr + 0x10);
-    config_params[1] = *(undefined4 *)(data_ptr + 0x14);
-    config_params[2] = *(undefined4 *)(data_ptr + 0x18);
-    config_params[3] = *(undefined4 *)(data_ptr + 0x1c);
-    main_config = *(undefined4 *)(data_ptr + 0x20);
+    config_params[0] = *(int32_t *)(data_ptr + 0x10);
+    config_params[1] = *(int32_t *)(data_ptr + 0x14);
+    config_params[2] = *(int32_t *)(data_ptr + 0x18);
+    config_params[3] = *(int32_t *)(data_ptr + 0x1c);
+    main_config = *(int32_t *)(data_ptr + 0x20);
     
     // 序列化配置数据
     serialized_bytes = FUN_18074b650(buffer_ptr, buffer_size, &config_params[0]);
@@ -975,16 +975,16 @@ int SerializeNetworkConfig(longlong data_ptr, longlong buffer_ptr, int buffer_si
  */
 int SerializeConnectionInfo(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 connection_config;  // 连接配置
+    int32_t connection_config;  // 连接配置
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取连接配置
-    connection_config = *(undefined4 *)(data_ptr + 0x14);
+    connection_config = *(int32_t *)(data_ptr + 0x14);
     
     // 序列化连接数据
     serialized_bytes = func_0x00018074b7d0(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -1013,16 +1013,16 @@ int SerializeConnectionInfo(longlong data_ptr, longlong buffer_ptr, int buffer_s
  */
 int SerializePlayerState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 player_config;     // 玩家配置
+    int32_t player_config;     // 玩家配置
     int serialized_bytes;         // 已序列化字节数
     int processed_bytes;          // 已处理字节数
     
     // 获取玩家配置
-    player_config = *(undefined4 *)(data_ptr + 0x14);
+    player_config = *(int32_t *)(data_ptr + 0x14);
     
     // 序列化玩家数据
     serialized_bytes = func_0x00018074b7d0(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -1051,23 +1051,23 @@ int SerializePlayerState(longlong data_ptr, longlong buffer_ptr, int buffer_size
  */
 int SerializeGameState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 game_config[2];     // 游戏配置
+    int32_t game_config[2];     // 游戏配置
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
-    undefined8 game_params[5];     // 游戏参数
+    uint64_t game_params[5];     // 游戏参数
     
     // 获取游戏参数
-    game_params[0] = *(undefined8 *)(data_ptr + 0x10);
-    game_params[1] = *(undefined8 *)(data_ptr + 0x18);
-    game_config[0] = *(undefined4 *)(data_ptr + 0x4c);
-    game_params[2] = *(undefined8 *)(data_ptr + 0x20);
-    game_params[3] = *(undefined8 *)(data_ptr + 0x28);
-    game_config[1] = *(undefined4 *)(data_ptr + 0x48);
-    game_params[4] = *(undefined4 *)(data_ptr + 0x30);
-    game_params[5] = *(undefined4 *)(data_ptr + 0x34);
-    game_params[6] = *(undefined4 *)(data_ptr + 0x38);
-    game_params[7] = *(undefined4 *)(data_ptr + 0x3c);
-    game_params[8] = *(undefined8 *)(data_ptr + 0x40);
+    game_params[0] = *(uint64_t *)(data_ptr + 0x10);
+    game_params[1] = *(uint64_t *)(data_ptr + 0x18);
+    game_config[0] = *(int32_t *)(data_ptr + 0x4c);
+    game_params[2] = *(uint64_t *)(data_ptr + 0x20);
+    game_params[3] = *(uint64_t *)(data_ptr + 0x28);
+    game_config[1] = *(int32_t *)(data_ptr + 0x48);
+    game_params[4] = *(int32_t *)(data_ptr + 0x30);
+    game_params[5] = *(int32_t *)(data_ptr + 0x34);
+    game_params[6] = *(int32_t *)(data_ptr + 0x38);
+    game_params[7] = *(int32_t *)(data_ptr + 0x3c);
+    game_params[8] = *(uint64_t *)(data_ptr + 0x40);
     
     // 序列化游戏数据
     serialized_bytes = func_0x00018088ecd0(buffer_ptr, buffer_size, &game_params[0]);
@@ -1109,13 +1109,13 @@ int SerializeGameState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeEntityData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 entity_config[2];   // 实体配置
+    int32_t entity_config[2];   // 实体配置
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取实体配置
-    entity_config[0] = *(undefined4 *)(data_ptr + 0x10);
-    entity_config[1] = *(undefined4 *)(data_ptr + 0x14);
+    entity_config[0] = *(int32_t *)(data_ptr + 0x10);
+    entity_config[1] = *(int32_t *)(data_ptr + 0x14);
     
     // 序列化实体数据
     serialized_bytes = FUN_18074b880(buffer_ptr, buffer_size, data_ptr + 0x18);
@@ -1157,19 +1157,19 @@ int SerializeEntityData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeWorldState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 world_config[4];   // 世界配置
+    int32_t world_config[4];   // 世界配置
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取世界配置
-    world_config[0] = *(undefined4 *)(data_ptr + 0x24);
-    world_config[1] = *(undefined4 *)(data_ptr + 0x20);
-    world_config[2] = *(undefined4 *)(data_ptr + 0x1c);
-    world_config[3] = *(undefined4 *)(data_ptr + 0x18);
+    world_config[0] = *(int32_t *)(data_ptr + 0x24);
+    world_config[1] = *(int32_t *)(data_ptr + 0x20);
+    world_config[2] = *(int32_t *)(data_ptr + 0x1c);
+    world_config[3] = *(int32_t *)(data_ptr + 0x18);
     
     // 序列化世界数据
     serialized_bytes = func_0x00018074bda0(buffer_ptr, buffer_size, 
-                                         *(undefined8 *)(data_ptr + 0x10));
+                                         *(uint64_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -1228,29 +1228,29 @@ int SerializeWorldState(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializePhysicsData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined1 physics_type;       // 物理类型
+    int8_t physics_type;       // 物理类型
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
-    undefined8 physics_params[6]; // 物理参数
+    uint64_t physics_params[6]; // 物理参数
     
     // 获取物理参数
-    physics_params[0] = *(undefined8 *)(data_ptr + 0x44);
-    physics_params[1] = *(undefined4 *)(data_ptr + 0x24);
-    physics_params[2] = *(undefined4 *)(data_ptr + 0x28);
-    physics_params[3] = *(undefined4 *)(data_ptr + 0x2c);
-    physics_params[4] = *(undefined4 *)(data_ptr + 0x30);
-    physics_params[5] = *(undefined4 *)(data_ptr + 0x4c);
-    physics_type = *(undefined1 *)(data_ptr + 0x50);
-    physics_params[6] = *(undefined8 *)(data_ptr + 0x14);
-    physics_params[7] = *(undefined8 *)(data_ptr + 0x1c);
-    physics_params[8] = *(undefined4 *)(data_ptr + 0x34);
-    physics_params[9] = *(undefined4 *)(data_ptr + 0x38);
-    physics_params[10] = *(undefined4 *)(data_ptr + 0x3c);
-    physics_params[11] = *(undefined4 *)(data_ptr + 0x40);
+    physics_params[0] = *(uint64_t *)(data_ptr + 0x44);
+    physics_params[1] = *(int32_t *)(data_ptr + 0x24);
+    physics_params[2] = *(int32_t *)(data_ptr + 0x28);
+    physics_params[3] = *(int32_t *)(data_ptr + 0x2c);
+    physics_params[4] = *(int32_t *)(data_ptr + 0x30);
+    physics_params[5] = *(int32_t *)(data_ptr + 0x4c);
+    physics_type = *(int8_t *)(data_ptr + 0x50);
+    physics_params[6] = *(uint64_t *)(data_ptr + 0x14);
+    physics_params[7] = *(uint64_t *)(data_ptr + 0x1c);
+    physics_params[8] = *(int32_t *)(data_ptr + 0x34);
+    physics_params[9] = *(int32_t *)(data_ptr + 0x38);
+    physics_params[10] = *(int32_t *)(data_ptr + 0x3c);
+    physics_params[11] = *(int32_t *)(data_ptr + 0x40);
     
     // 序列化物理数据
     serialized_bytes = func_0x00018074b7d0(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -1299,16 +1299,16 @@ int SerializePhysicsData(longlong data_ptr, longlong buffer_ptr, int buffer_size
  */
 int SerializeInputData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 input_config;      // 输入配置
+    int32_t input_config;      // 输入配置
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取输入配置
-    input_config = *(undefined4 *)(data_ptr + 0x14);
+    input_config = *(int32_t *)(data_ptr + 0x14);
     
     // 序列化输入数据
     serialized_bytes = func_0x00018074b7d0(buffer_ptr, buffer_size, 
-                                         *(undefined4 *)(data_ptr + 0x10));
+                                         *(int32_t *)(data_ptr + 0x10));
     
     // 序列化分隔符
     processed_bytes = FUN_18074b880(buffer_ptr + serialized_bytes, 
@@ -1337,16 +1337,16 @@ int SerializeInputData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeRenderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 render_config;      // 渲染配置
-    undefined1 render_type;        // 渲染类型
+    int32_t render_config;      // 渲染配置
+    int8_t render_type;        // 渲染类型
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
-    undefined8 render_params;      // 渲染参数
+    uint64_t render_params;      // 渲染参数
     
     // 获取渲染参数
-    render_params = *(undefined8 *)(data_ptr + 0x10);
-    render_type = *(undefined1 *)(data_ptr + 0x1c);
-    render_config = *(undefined4 *)(data_ptr + 0x18);
+    render_params = *(uint64_t *)(data_ptr + 0x10);
+    render_type = *(int8_t *)(data_ptr + 0x1c);
+    render_config = *(int32_t *)(data_ptr + 0x18);
     
     // 序列化渲染数据
     serialized_bytes = FUN_18088ece0(buffer_ptr, buffer_size, &render_params);
@@ -1388,14 +1388,14 @@ int SerializeRenderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeShaderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined1 shader_type;        // 着色器类型
+    int8_t shader_type;        // 着色器类型
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
-    undefined8 shader_params;      // 着色器参数
+    uint64_t shader_params;      // 着色器参数
     
     // 获取着色器参数
-    shader_params = *(undefined8 *)(data_ptr + 0x10);
-    shader_type = *(undefined1 *)(data_ptr + 0x1c);
+    shader_params = *(uint64_t *)(data_ptr + 0x10);
+    shader_type = *(int8_t *)(data_ptr + 0x1c);
     
     // 序列化着色器数据
     serialized_bytes = FUN_18088ece0(buffer_ptr, buffer_size, &shader_params);
@@ -1437,14 +1437,14 @@ int SerializeShaderData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
  */
 int SerializeTextureData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined4 texture_config;     // 纹理配置
-    undefined1 texture_type;       // 纹理类型
+    int32_t texture_config;     // 纹理配置
+    int8_t texture_type;       // 纹理类型
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取纹理配置
-    texture_type = *(undefined1 *)(data_ptr + 0x14);
-    texture_config = *(undefined4 *)(data_ptr + 0x10);
+    texture_type = *(int8_t *)(data_ptr + 0x14);
+    texture_config = *(int32_t *)(data_ptr + 0x10);
     
     // 序列化纹理数据
     serialized_bytes = FUN_18074b880(buffer_ptr, buffer_size, data_ptr + 0x20);
@@ -1486,12 +1486,12 @@ int SerializeTextureData(longlong data_ptr, longlong buffer_ptr, int buffer_size
  */
 int SerializeMaterialData(longlong data_ptr, longlong buffer_ptr, int buffer_size)
 {
-    undefined1 material_type;      // 材质类型
+    int8_t material_type;      // 材质类型
     int serialized_bytes;          // 已序列化字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取材质类型
-    material_type = *(undefined1 *)(data_ptr + 0x14);
+    material_type = *(int8_t *)(data_ptr + 0x14);
     
     // 序列化材质数据
     serialized_bytes = FUN_18074b880(buffer_ptr, buffer_size, data_ptr + 0x20);
@@ -1532,11 +1532,11 @@ int SerializeMaterialData(longlong data_ptr, longlong buffer_ptr, int buffer_siz
  * @param packet_size 数据包大小
  * @return void
  */
-void SendPacketHeader(longlong header_ptr, undefined8 target_ptr, undefined4 packet_size)
+void SendPacketHeader(longlong header_ptr, uint64_t target_ptr, int32_t packet_size)
 {
     // 调用底层发送函数传输包头
     FUN_18083f850(target_ptr, packet_size, &UNK_180983020, 
-                 *(undefined4 *)(header_ptr + 0x10), *(undefined4 *)(header_ptr + 0x18));
+                 *(int32_t *)(header_ptr + 0x10), *(int32_t *)(header_ptr + 0x18));
     return;
 }
 
@@ -1553,12 +1553,12 @@ void SendPacketHeader(longlong header_ptr, undefined8 target_ptr, undefined4 pac
  * @param packet_size 数据包大小
  * @return void
  */
-void SendPacketFooter(longlong footer_ptr, undefined8 target_ptr, undefined4 packet_size)
+void SendPacketFooter(longlong footer_ptr, uint64_t target_ptr, int32_t packet_size)
 {
     // 调用底层发送函数传输包尾
     FUN_18083f8f0(target_ptr, packet_size, &UNK_1809830a0, 
-                 *(undefined4 *)(footer_ptr + 0x10), *(undefined4 *)(footer_ptr + 0x18),
-                 *(undefined4 *)(footer_ptr + 0x1c));
+                 *(int32_t *)(footer_ptr + 0x10), *(int32_t *)(footer_ptr + 0x18),
+                 *(int32_t *)(footer_ptr + 0x1c));
     return;
 }
 
@@ -1578,21 +1578,21 @@ void SendPacketFooter(longlong footer_ptr, undefined8 target_ptr, undefined4 pac
  */
 int SendDataPacket(longlong packet_ptr, longlong target_ptr, int packet_size)
 {
-    undefined4 packet_params[4];   // 数据包参数
-    undefined4 main_header;        // 主头部信息
-    undefined4 secondary_header;   // 次要头部信息
-    undefined4 tertiary_header;    // 三级头部信息
+    int32_t packet_params[4];   // 数据包参数
+    int32_t main_header;        // 主头部信息
+    int32_t secondary_header;   // 次要头部信息
+    int32_t tertiary_header;    // 三级头部信息
     int sent_bytes;                // 已发送字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取数据包参数
-    packet_params[0] = *(undefined4 *)(packet_ptr + 0x1c);
-    packet_params[1] = *(undefined4 *)(packet_ptr + 0x20);
-    packet_params[2] = *(undefined4 *)(packet_ptr + 0x24);
-    packet_params[3] = *(undefined4 *)(packet_ptr + 0x28);
-    main_header = *(undefined4 *)(packet_ptr + 0x2c);
-    secondary_header = *(undefined4 *)(packet_ptr + 0x18);
-    tertiary_header = *(undefined4 *)(packet_ptr + 0x10);
+    packet_params[0] = *(int32_t *)(packet_ptr + 0x1c);
+    packet_params[1] = *(int32_t *)(packet_ptr + 0x20);
+    packet_params[2] = *(int32_t *)(packet_ptr + 0x24);
+    packet_params[3] = *(int32_t *)(packet_ptr + 0x28);
+    main_header = *(int32_t *)(packet_ptr + 0x2c);
+    secondary_header = *(int32_t *)(packet_ptr + 0x18);
+    tertiary_header = *(int32_t *)(packet_ptr + 0x10);
     
     // 发送数据包头
     sent_bytes = FUN_18074b880(target_ptr, packet_size, &UNK_180983120);
@@ -1652,11 +1652,11 @@ int SendDataPacket(longlong packet_ptr, longlong target_ptr, int packet_size)
  * @param ack_size 确认包大小
  * @return void
  */
-void SendAckPacket(longlong ack_ptr, undefined8 target_ptr, undefined4 ack_size)
+void SendAckPacket(longlong ack_ptr, uint64_t target_ptr, int32_t ack_size)
 {
     // 调用底层发送函数传输确认包
     FUN_18083f850(target_ptr, ack_size, &UNK_180982ea0, 
-                 *(undefined4 *)(ack_ptr + 0x10), *(undefined4 *)(ack_ptr + 0x18));
+                 *(int32_t *)(ack_ptr + 0x10), *(int32_t *)(ack_ptr + 0x18));
     return;
 }
 
@@ -1673,12 +1673,12 @@ void SendAckPacket(longlong ack_ptr, undefined8 target_ptr, undefined4 ack_size)
  * @param nack_size 非确认包大小
  * @return void
  */
-void SendNackPacket(longlong nack_ptr, undefined8 target_ptr, undefined4 nack_size)
+void SendNackPacket(longlong nack_ptr, uint64_t target_ptr, int32_t nack_size)
 {
     // 调用底层发送函数传输非确认包
     FUN_18083f8f0(target_ptr, nack_size, &UNK_180982f20, 
-                 *(undefined4 *)(nack_ptr + 0x10), *(undefined4 *)(nack_ptr + 0x18),
-                 *(undefined4 *)(nack_ptr + 0x1c));
+                 *(int32_t *)(nack_ptr + 0x10), *(int32_t *)(nack_ptr + 0x18),
+                 *(int32_t *)(nack_ptr + 0x1c));
     return;
 }
 
@@ -1697,21 +1697,21 @@ void SendNackPacket(longlong nack_ptr, undefined8 target_ptr, undefined4 nack_si
  */
 int SendHeartbeatPacket(longlong heartbeat_ptr, longlong target_ptr, int heartbeat_size)
 {
-    undefined4 heartbeat_params[4]; // 心跳参数
-    undefined4 main_header;        // 主头部信息
-    undefined4 secondary_header;   // 次要头部信息
-    undefined4 tertiary_header;    // 三级头部信息
+    int32_t heartbeat_params[4]; // 心跳参数
+    int32_t main_header;        // 主头部信息
+    int32_t secondary_header;   // 次要头部信息
+    int32_t tertiary_header;    // 三级头部信息
     int sent_bytes;                // 已发送字节数
     int processed_bytes;           // 已处理字节数
     
     // 获取心跳参数
-    heartbeat_params[0] = *(undefined4 *)(heartbeat_ptr + 0x1c);
-    heartbeat_params[1] = *(undefined4 *)(heartbeat_ptr + 0x20);
-    heartbeat_params[2] = *(undefined4 *)(heartbeat_ptr + 0x24);
-    heartbeat_params[3] = *(undefined4 *)(heartbeat_ptr + 0x28);
-    main_header = *(undefined4 *)(heartbeat_ptr + 0x2c);
-    secondary_header = *(undefined4 *)(heartbeat_ptr + 0x18);
-    tertiary_header = *(undefined4 *)(heartbeat_ptr + 0x10);
+    heartbeat_params[0] = *(int32_t *)(heartbeat_ptr + 0x1c);
+    heartbeat_params[1] = *(int32_t *)(heartbeat_ptr + 0x20);
+    heartbeat_params[2] = *(int32_t *)(heartbeat_ptr + 0x24);
+    heartbeat_params[3] = *(int32_t *)(heartbeat_ptr + 0x28);
+    main_header = *(int32_t *)(heartbeat_ptr + 0x2c);
+    secondary_header = *(int32_t *)(heartbeat_ptr + 0x18);
+    tertiary_header = *(int32_t *)(heartbeat_ptr + 0x10);
     
     // 发送心跳包头
     sent_bytes = FUN_18074b880(target_ptr, heartbeat_size, &UNK_180982fa0);
@@ -1771,11 +1771,11 @@ int SendHeartbeatPacket(longlong heartbeat_ptr, longlong target_ptr, int heartbe
  * @param disconnect_size 断开包大小
  * @return void
  */
-void SendDisconnectPacket(longlong disconnect_ptr, undefined8 target_ptr, undefined4 disconnect_size)
+void SendDisconnectPacket(longlong disconnect_ptr, uint64_t target_ptr, int32_t disconnect_size)
 {
     // 调用底层发送函数传输断开连接包
     FUN_18083f850(target_ptr, disconnect_size, &UNK_180982c20, 
-                 *(undefined4 *)(disconnect_ptr + 0x10), *(undefined4 *)(disconnect_ptr + 0x18));
+                 *(int32_t *)(disconnect_ptr + 0x10), *(int32_t *)(disconnect_ptr + 0x18));
     return;
 }
 
@@ -1792,11 +1792,11 @@ void SendDisconnectPacket(longlong disconnect_ptr, undefined8 target_ptr, undefi
  * @param ping_size Ping包大小
  * @return void
  */
-void SendPingPacket(longlong ping_ptr, undefined8 target_ptr, undefined4 ping_size)
+void SendPingPacket(longlong ping_ptr, uint64_t target_ptr, int32_t ping_size)
 {
     // 调用底层发送函数传输Ping包
     FUN_18083f850(target_ptr, ping_size, &UNK_180982ca0, 
-                 *(undefined4 *)(ping_ptr + 0x10), *(undefined4 *)(ping_ptr + 0x18));
+                 *(int32_t *)(ping_ptr + 0x10), *(int32_t *)(ping_ptr + 0x18));
     return;
 }
 
@@ -1813,11 +1813,11 @@ void SendPingPacket(longlong ping_ptr, undefined8 target_ptr, undefined4 ping_si
  * @param pong_size Pong包大小
  * @return void
  */
-void SendPongPacket(longlong pong_ptr, undefined8 target_ptr, undefined4 pong_size)
+void SendPongPacket(longlong pong_ptr, uint64_t target_ptr, int32_t pong_size)
 {
     // 调用底层发送函数传输Pong包
     FUN_18083f850(target_ptr, pong_size, &UNK_1809831a0, 
-                 *(undefined4 *)(pong_ptr + 0x10), *(undefined4 *)(pong_ptr + 0x18));
+                 *(int32_t *)(pong_ptr + 0x10), *(int32_t *)(pong_ptr + 0x18));
     return;
 }
 

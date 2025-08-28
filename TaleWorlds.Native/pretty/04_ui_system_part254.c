@@ -11,15 +11,15 @@ void FUN_18080f84b(int param_1,longlong param_2,int *param_3,longlong param_4)
   uint *puVar3;
   char cVar4;
   longlong lVar5;
-  undefined4 in_EAX;
+  int32_t in_EAX;
   int iVar6;
-  undefined4 uVar7;
+  int32_t uVar7;
   longlong lVar8;
   ulonglong uVar9;
   float *unaff_RBX;
   float *pfVar10;
   longlong unaff_RBP;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   float *pfVar11;
   int unaff_EDI;
   int iVar12;
@@ -33,11 +33,11 @@ void FUN_18080f84b(int param_1,longlong param_2,int *param_3,longlong param_4)
   ulonglong uVar18;
   uint uVar19;
   ulonglong uVar20;
-  undefined8 unaff_R13;
+  uint64_t unaff_R13;
   uint uVar21;
   int *piVar22;
   uint uVar23;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   uint *puVar24;
   float fVar25;
   float fVar26;
@@ -45,7 +45,7 @@ void FUN_18080f84b(int param_1,longlong param_2,int *param_3,longlong param_4)
   uint uStackX_24;
   int iStack0000000000000028;
   longlong lStack0000000000000030;
-  undefined4 uStack0000000000000038;
+  int32_t uStack0000000000000038;
   int iStack000000000000003c;
   int iStack0000000000000040;
   uint uStack0000000000000044;
@@ -65,16 +65,16 @@ void FUN_18080f84b(int param_1,longlong param_2,int *param_3,longlong param_4)
   int iStack0000000000000098;
   ulonglong in_stack_000000a0;
   
-  *(undefined8 *)(in_R11 + -0x18) = unaff_RSI;
+  *(uint64_t *)(in_R11 + -0x18) = unaff_RSI;
   pfVar11 = (float *)(param_2 + 0x900);
-  *(undefined8 *)(in_R11 + -0x28) = unaff_R13;
+  *(uint64_t *)(in_R11 + -0x28) = unaff_R13;
   iVar12 = *(int *)(param_4 + 0x48);
   iStack0000000000000090 = *(int *)(param_4 + 8);
   iStack000000000000003c = param_1 - iStack0000000000000090 >> 1;
   iVar13 = *(int *)(param_4 + 0x44);
   uVar9 = 0;
   iVar6 = 0;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R15;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
   iStack0000000000000098 = 0;
   iStack0000000000000094 = iStack0000000000000098;
   if (iVar13 < iStack0000000000000090) {
@@ -421,7 +421,7 @@ void FUN_18080f84b(int param_1,longlong param_2,int *param_3,longlong param_4)
     }
     *(int *)(lStack0000000000000030 + 0x3c) = iStack000000000000008c + 1;
     if (iStack0000000000000088 != -1) {
-      uVar7 = *(undefined4 *)
+      uVar7 = *(int32_t *)
                ((lStack0000000000000070 * 0xe + (longlong)iStack0000000000000088) * 4 + 0x180c42734)
       ;
       goto LAB_18081083d;
@@ -675,9 +675,9 @@ void FUN_18080f84b(int param_1,longlong param_2,int *param_3,longlong param_4)
     uVar9 = (ulonglong)(uStackX_24 + 1);
     *(uint *)(lStack0000000000000030 + 0x3c) = uStackX_24 + 1;
   }
-  uVar7 = *(undefined4 *)((lStack0000000000000070 * 0x17 + uVar9) * 4 + 0x180c423f0);
+  uVar7 = *(int32_t *)((lStack0000000000000070 * 0x17 + uVar9) * 4 + 0x180c423f0);
 LAB_18081083d:
-  *(undefined4 *)(lStack0000000000000030 + 0x40) = uVar7;
+  *(int32_t *)(lStack0000000000000030 + 0x40) = uVar7;
   if (0x10 < unaff_EDI) {
     uVar14 = (unaff_EDI - 0x11U >> 4) + 1;
     uVar9 = (ulonglong)uVar14;

@@ -22,12 +22,12 @@ void normalize_vector_length(float *vector)
     vector[0x23] = 0.0f;
     
     // 复制矩阵数据块
-    *(undefined8 *)(vector + 0x28) = *(undefined8 *)(vector + 0x3c);
-    *(undefined8 *)(vector + 0x2a) = *(undefined8 *)(vector + 0x3e);
-    *(undefined8 *)(vector + 0x18) = *(undefined8 *)(vector + 0x3c);
-    *(undefined8 *)(vector + 0x1a) = *(undefined8 *)(vector + 0x3e);
-    *(undefined8 *)(vector + 0x10) = *(undefined8 *)(vector + 0x3c);
-    *(undefined8 *)(vector + 0x12) = *(undefined8 *)(vector + 0x3e);
+    *(uint64_t *)(vector + 0x28) = *(uint64_t *)(vector + 0x3c);
+    *(uint64_t *)(vector + 0x2a) = *(uint64_t *)(vector + 0x3e);
+    *(uint64_t *)(vector + 0x18) = *(uint64_t *)(vector + 0x3c);
+    *(uint64_t *)(vector + 0x1a) = *(uint64_t *)(vector + 0x3e);
+    *(uint64_t *)(vector + 0x10) = *(uint64_t *)(vector + 0x3c);
+    *(uint64_t *)(vector + 0x12) = *(uint64_t *)(vector + 0x3e);
     
     // 计算向量叉积 - 第一个向量
     temp1 = vector[0x45];
@@ -160,8 +160,8 @@ void normalize_vector_length(float *vector)
     vector[3] = 3.4028235e+38f;  // FLT_MAX
     
     // 复制视图矩阵数据
-    *(undefined8 *)(vector + 0xc) = *(undefined8 *)(vector + 0x38);
-    *(undefined8 *)(vector + 0xe) = *(undefined8 *)(vector + 0x3a);
+    *(uint64_t *)(vector + 0xc) = *(uint64_t *)(vector + 0x38);
+    *(uint64_t *)(vector + 0xe) = *(uint64_t *)(vector + 0x3a);
     
     // 设置最终向量
     temp1 = vector[0x38];

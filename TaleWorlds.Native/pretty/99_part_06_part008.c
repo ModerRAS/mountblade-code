@@ -2,11 +2,11 @@
 
 // 99_part_06_part008.c - 3 个函数
 
-// 函数: void FUN_1803aa060(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1803aa060(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_1803aa060(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void FUN_1803aa060(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
-  FUN_1803aeb70(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_1803aeb70(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -15,8 +15,8 @@ void FUN_1803aa060(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
 
 
 
-// 函数: void FUN_1803aa090(undefined8 *param_1)
-void FUN_1803aa090(undefined8 *param_1)
+// 函数: void FUN_1803aa090(uint64_t *param_1)
+void FUN_1803aa090(uint64_t *param_1)
 
 {
   longlong *plVar1;

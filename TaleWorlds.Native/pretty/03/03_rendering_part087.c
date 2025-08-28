@@ -89,65 +89,65 @@ typedef struct {
  * @param render_flags 渲染标志位
  * @return void
  */
-void render_system_texture_mapper(undefined8 render_context, longlong texture_data, 
-                                int texture_index, int texture_size, undefined4 render_flags)
+void render_system_texture_mapper(uint64_t render_context, longlong texture_data, 
+                                int texture_index, int texture_size, int32_t render_flags)
 {
     longlong *render_manager;
     longlong texture_offset;
     longlong *texture_buffer;
     int texture_step;
-    undefined4 param_x;
-    undefined4 param_y;
-    undefined4 param_z;
-    undefined4 param_w;
-    undefined4 param_u;
-    undefined4 param_v;
-    undefined4 param_s;
-    undefined4 param_t;
-    undefined1 stack_protector[32];
-    undefined4 buffer_size_1;
-    undefined4 buffer_size_2;
-    undefined1 alignment_buffer[8];
+    int32_t param_x;
+    int32_t param_y;
+    int32_t param_z;
+    int32_t param_w;
+    int32_t param_u;
+    int32_t param_v;
+    int32_t param_s;
+    int32_t param_t;
+    int8_t stack_protector[32];
+    int32_t buffer_size_1;
+    int32_t buffer_size_2;
+    int8_t alignment_buffer[8];
     longlong *texture_ptr;
     longlong *texture_cache[2];
     longlong *resource_ptr;
-    undefined8 resource_handle;
-    undefined8 texture_handle;
-    undefined4 buffer_format;
+    uint64_t resource_handle;
+    uint64_t texture_handle;
+    int32_t buffer_format;
     longlong *memory_ptr;
     longlong *allocator_ptr;
     longlong allocation_size;
-    undefined4 alloc_flags;
+    int32_t alloc_flags;
     ulonglong checksum;
-    undefined4 texture_width;
-    undefined4 texture_height;
-    undefined4 texture_depth;
-    undefined4 texture_format;
+    int32_t texture_width;
+    int32_t texture_height;
+    int32_t texture_depth;
+    int32_t texture_format;
     longlong *texture_manager;
-    undefined8 manager_handle;
-    undefined8 cache_handle;
-    undefined4 operation_flags;
-    undefined1 texture_block[32];
-    undefined8 block_handle;
-    undefined8 block_size;
+    uint64_t manager_handle;
+    uint64_t cache_handle;
+    int32_t operation_flags;
+    int8_t texture_block[32];
+    uint64_t block_handle;
+    uint64_t block_size;
     longlong *data_ptr;
     longlong **data_cache;
     int data_size;
     int data_capacity;
-    undefined *data_source;
-    undefined1 *data_target;
-    undefined4 data_flags;
-    undefined1 data_buffer[8];
+    void *data_source;
+    int8_t *data_target;
+    int32_t data_flags;
+    int8_t data_buffer[8];
     ulonglong data_checksum;
-    undefined8 data_handle;
-    undefined8 temp_handle;
-    undefined4 temp_flags;
-    undefined4 buffer_flags;
-    undefined8 texture_params;
+    uint64_t data_handle;
+    uint64_t temp_handle;
+    int32_t temp_flags;
+    int32_t buffer_flags;
+    uint64_t texture_params;
     float texture_scale;
-    undefined4 scale_flags;
-    undefined4 size_flags;
-    undefined4 format_flags;
+    int32_t scale_flags;
+    int32_t size_flags;
+    int32_t format_flags;
     ulonglong memory_checksum;
     
     // 初始化内存保护
@@ -186,13 +186,13 @@ void render_system_texture_mapper(undefined8 render_context, longlong texture_da
     
     // 设置纹理管理器
     texture_buffer[0x1077] = (longlong)resource_ptr;
-    *(undefined8 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x83f0) = 0;
+    *(uint64_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x83f0) = 0;
     
     // 初始化渲染状态
-    FUN_18029de40(*(undefined8 *)(texture_offset + 0x1cd8), 1);
+    FUN_18029de40(*(uint64_t *)(texture_offset + 0x1cd8), 1);
     buffer_size_1 = 0;
     buffer_size_2 = 0;
-    FUN_18029c8a0(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 1, 0xff000000, 0x3f800000);
+    FUN_18029c8a0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 1, 0xff000000, 0x3f800000);
     
     texture_offset = _DAT_180c86938;
     texture_scale = (float)texture_step;
@@ -285,22 +285,22 @@ set_coordinates_r2:
     param_u = 0;
 apply_parameters:
     // 应用渲染参数
-    *(undefined4 *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1bf0) = param_x;
-    *(undefined4 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1bf4) = param_y;
-    *(undefined4 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1bf8) = param_v;
-    *(undefined4 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1bfc) = 0x3f800000;
-    *(undefined4 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c10) = param_s;
-    *(undefined4 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c14) = param_z;
-    *(undefined4 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c18) = param_u;
+    *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1bf0) = param_x;
+    *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1bf4) = param_y;
+    *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1bf8) = param_v;
+    *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1bfc) = 0x3f800000;
+    *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c10) = param_s;
+    *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c14) = param_z;
+    *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c18) = param_u;
     *(float *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c1c) = (float)texture_index;
-    *(undefined4 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c20) = param_u;
-    *(undefined4 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c24) = param_w;
-    *(undefined4 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c28) = param_t;
-    *(undefined4 *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c2c) = 0x3f800000;
+    *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c20) = param_u;
+    *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c24) = param_w;
+    *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c28) = param_t;
+    *(int32_t *)(*(longlong *)(texture_offset + 0x1cd8) + 0x1c2c) = 0x3f800000;
     
     // 处理纹理数据
     FUN_18031a240(texture_cache, render_flags);
-    FUN_18029fc10(*(longlong *)(_DAT_180c86938 + 0x1cd8), *(undefined8 *)(_DAT_180c86938 + 0x1c88),
+    FUN_18029fc10(*(longlong *)(_DAT_180c86938 + 0x1cd8), *(uint64_t *)(_DAT_180c86938 + 0x1c88),
                   *(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1be0, 0x230);
     
     // 设置数据源
@@ -348,32 +348,32 @@ apply_parameters:
         (**(code **)(*texture_manager + 0x28))();
     }
     
-    data_source = (undefined *)FUN_180299eb0(texture_offset, 0, &cache_handle, alignment_buffer);
+    data_source = (void *)FUN_180299eb0(texture_offset, 0, &cache_handle, alignment_buffer);
     data_flags = 0xff;
-    data_buffer = (undefined1 [8])0x4000300;
+    data_buffer = (int8_t [8])0x4000300;
     temp_handle = 0;
     block_size = 0;
     buffer_format = 0;
     temp_flags = 0x400;
     format_flags = 1;
     checksum = (ulonglong)*(uint *)(texture_data + 0x324);
-    data_target = (undefined1 *)0xff00000001060101;
+    data_target = (int8_t *)0xff00000001060101;
     buffer_size_1 = 0xffffffff;
     
     // 应用纹理映射
-    FUN_18029d150(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 5, render_context, 0x10);
+    FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 5, render_context, 0x10);
     buffer_size_1 = 0xffffffff;
-    FUN_18029d150(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 0, texture_cache[0], 0x10);
-    FUN_18029d000(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 4);
-    FUN_18029cdd0(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), &data_source);
+    FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 0, texture_cache[0], 0x10);
+    FUN_18029d000(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 4);
+    FUN_18029cdd0(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), &data_source);
     
     texture_offset = _DAT_180c86938;
     texture_handle = strnlen(&UNK_180a1abc8, 0x3f);
     strncpy(texture_offset + 0x1ce0, &UNK_180a1abc8, texture_handle);
-    *(undefined1 *)(texture_handle + 0x1ce0 + texture_offset) = 0;
+    *(int8_t *)(texture_handle + 0x1ce0 + texture_offset) = 0;
     
     // 完成纹理处理
-    FUN_18029e110(*(undefined8 *)(_DAT_180c86938 + 0x1cd8));
+    FUN_18029e110(*(uint64_t *)(_DAT_180c86938 + 0x1cd8));
     
     if (texture_manager != (longlong *)0x0) {
         (**(code **)(*texture_manager + 0x38))();
@@ -418,34 +418,34 @@ apply_parameters:
  * @param render_flags 渲染标志位
  * @return void
  */
-void render_system_parameter_processor(undefined8 *render_context, longlong texture_data, undefined4 render_flags)
+void render_system_parameter_processor(uint64_t *render_context, longlong texture_data, int32_t render_flags)
 {
     uint texture_size;
-    undefined4 *texture_ptr;
+    int32_t *texture_ptr;
     uint texture_count;
     int param_index;
     int param_count;
     uint param_max;
-    undefined *param_source;
-    undefined1 param_buffer[32];
-    undefined4 buffer_size;
-    undefined *data_source;
-    undefined *data_target;
+    void *param_source;
+    int8_t param_buffer[32];
+    int32_t buffer_size;
+    void *data_source;
+    void *data_target;
     uint data_size;
-    undefined4 data_width;
-    undefined4 data_height;
-    undefined4 data_depth;
-    undefined4 data_format;
-    undefined4 data_type;
-    undefined4 data_flags;
-    undefined4 data_offset;
-    undefined4 data_padding;
-    undefined1 data_coord_x;
-    undefined8 data_coord_y;
-    undefined4 data_scale;
-    undefined1 *data_end;
+    int32_t data_width;
+    int32_t data_height;
+    int32_t data_depth;
+    int32_t data_format;
+    int32_t data_type;
+    int32_t data_flags;
+    int32_t data_offset;
+    int32_t data_padding;
+    int8_t data_coord_x;
+    uint64_t data_coord_y;
+    int32_t data_scale;
+    int8_t *data_end;
     int data_length;
-    undefined1 data_block[136];
+    int8_t data_block[136];
     ulonglong checksum;
     
     // 初始化数据保护
@@ -484,23 +484,23 @@ void render_system_parameter_processor(undefined8 *render_context, longlong text
     texture_size = data_size;
     texture_count = data_size + 1;
     FUN_1806277c0(&data_target, texture_count);
-    *(undefined2 *)(data_source + data_size) = 0x5f;
+    *(int16_t *)(data_source + data_size) = 0x5f;
     param_index = texture_size + 0x11;
     data_size = texture_count;
     FUN_1806277c0(&data_target, param_index);
-    texture_ptr = (undefined4 *)(data_source + data_size);
+    texture_ptr = (int32_t *)(data_source + data_size);
     *texture_ptr = 0x746c6966;
     texture_ptr[1] = 0x64657265;
     texture_ptr[2] = 0x6275635f;
     texture_ptr[3] = 0x70616d65;
-    *(undefined1 *)(texture_ptr + 4) = 0;
+    *(int8_t *)(texture_ptr + 4) = 0;
     
     param_source = &UNK_1809fcc28;
     data_end = data_block;
     data_block[0] = 0;
     param_source = &DAT_18098bc73;
     
-    if (data_source != (undefined *)0x0) {
+    if (data_source != (void *)0x0) {
         param_source = data_source;
     }
     
@@ -529,8 +529,8 @@ void render_system_parameter_processor(undefined8 *render_context, longlong text
     
     data_target = &UNK_180a3c3e0;
     
-    if (data_source == (undefined *)0x0) {
-        data_source = (undefined *)0x0;
+    if (data_source == (void *)0x0) {
+        data_source = (void *)0x0;
         data_depth = 0;
         data_target = &UNK_18098bcb0;
         
@@ -549,10 +549,10 @@ void render_system_parameter_processor(undefined8 *render_context, longlong text
  * @param texture_flags 纹理标志位
  * @return void
  */
-void render_system_texture_allocator(undefined8 *texture_handle, undefined4 texture_flags)
+void render_system_texture_allocator(uint64_t *texture_handle, int32_t texture_flags)
 {
     uint texture_index;
-    undefined8 texture_data;
+    uint64_t texture_data;
     longlong *texture_manager;
     uint texture_count;
     float *texture_buffer;
@@ -562,27 +562,27 @@ void render_system_texture_allocator(undefined8 *texture_handle, undefined4 text
     double coord_x;
     double coord_y;
     float texture_coord;
-    undefined1 stack_buffer[32];
-    undefined8 buffer_handle;
-    undefined4 buffer_size;
-    undefined4 buffer_format;
-    undefined8 *buffer_ptr;
+    int8_t stack_buffer[32];
+    uint64_t buffer_handle;
+    int32_t buffer_size;
+    int32_t buffer_format;
+    uint64_t *buffer_ptr;
     float *float_ptr;
-    undefined8 texture_offset;
-    undefined2 texture_type;
-    undefined1 texture_mode;
-    undefined8 texture_info;
-    undefined8 texture_params;
-    undefined8 texture_config;
-    undefined8 texture_state;
-    undefined8 texture_resource;
-    undefined8 texture_cache;
-    undefined8 texture_memory;
-    undefined4 texture_width;
-    undefined2 texture_height;
-    undefined2 texture_depth;
-    undefined2 texture_format;
-    undefined1 texture_flags;
+    uint64_t texture_offset;
+    int16_t texture_type;
+    int8_t texture_mode;
+    uint64_t texture_info;
+    uint64_t texture_params;
+    uint64_t texture_config;
+    uint64_t texture_state;
+    uint64_t texture_resource;
+    uint64_t texture_cache;
+    uint64_t texture_memory;
+    int32_t texture_width;
+    int16_t texture_height;
+    int16_t texture_depth;
+    int16_t texture_format;
+    int8_t texture_flags;
     ulonglong checksum;
     
     // 初始化缓冲区
@@ -728,7 +728,7 @@ void render_system_buffer_manager(longlong buffer_manager, longlong resource_man
             (**(code **)(*buffer_ptr + 0x38))();
         }
         
-        *(undefined4 *)(resource_manager + 0x124c0) = 0;
+        *(int32_t *)(resource_manager + 0x124c0) = 0;
     }
     else {
         // 处理缓冲区数据
@@ -780,7 +780,7 @@ void render_system_buffer_manager(longlong buffer_manager, longlong resource_man
             (**(code **)(*buffer_ptr + 0x38))();
         }
         
-        *(undefined4 *)(resource_manager + 0x124c0) = 0;
+        *(int32_t *)(resource_manager + 0x124c0) = 0;
     }
     
     // 处理特殊资源

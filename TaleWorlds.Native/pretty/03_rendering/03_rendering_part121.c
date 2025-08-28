@@ -355,7 +355,7 @@ longlong* rendering_system_array_data_copy(longlong** dest_ptr, longlong* src_st
     longlong data_offset;
     longlong* element_ptr;
     longlong array_size;
-    undefined* string_ptr;
+    void* string_ptr;
     
     // 初始化目标指针
     *dest_ptr = (longlong)dest_data;
@@ -366,43 +366,43 @@ longlong* rendering_system_array_data_copy(longlong** dest_ptr, longlong* src_st
         do {
             // 复制基本数据
             *dest_data = (int)current_src[-0x12];
-            float_value1 = *(undefined *)((longlong)current_src + -0x7c);
+            float_value1 = *(void *)((longlong)current_src + -0x7c);
             data_offset = current_src[-0xf];
-            float_value2 = *(undefined *)((longlong)current_src + -0x74);
+            float_value2 = *(void *)((longlong)current_src + -0x74);
             dest_data[4] = (int)current_src[-0x10];
             dest_data[5] = float_value1;
             dest_data[6] = (int)data_offset;
             dest_data[7] = float_value2;
             
             // 复制扩展数据
-            float_value1 = *(undefined *)((longlong)current_src + -0x6c);
+            float_value1 = *(void *)((longlong)current_src + -0x6c);
             data_offset = current_src[-0xd];
-            float_value2 = *(undefined *)((longlong)current_src + -100);
+            float_value2 = *(void *)((longlong)current_src + -100);
             dest_data[8] = (int)current_src[-0xe];
             dest_data[9] = float_value1;
             dest_data[10] = (int)data_offset;
             dest_data[0xb] = float_value2;
             
             // 设置虚函数表
-            *(undefined **)(dest_data + 0xc) = &UNK_18098bcb0;
-            *(undefined8 *)(dest_data + 0xe) = 0;
+            *(void **)(dest_data + 0xc) = &UNK_18098bcb0;
+            *(uint64_t *)(dest_data + 0xe) = 0;
             dest_data[0x10] = 0;
             
             // 设置对象内部结构
-            *(undefined **)(dest_data + 0xc) = &UNK_1809fcc58;
+            *(void **)(dest_data + 0xc) = &UNK_1809fcc58;
             *(uint **)(dest_data + 0xe) = dest_data + 0x12;
             dest_data[0x10] = 0;
-            *(undefined1 *)(dest_data + 0x12) = 0;
+            *(int8_t *)(dest_data + 0x12) = 0;
             
             // 设置状态标志
             dest_data[0x10] = (int)current_src[-10];
             
             // 处理字符串数据
             string_ptr = &DAT_18098bc73;
-            if ((undefined *)current_src[-0xb] != (undefined *)0x0) {
-                string_ptr = (undefined *)current_src[-0xb];
+            if ((void *)current_src[-0xb] != (void *)0x0) {
+                string_ptr = (void *)current_src[-0xb];
             }
-            strcpy_s(*(undefined8 *)(dest_data + 0xe), RENDERING_SYSTEM_STRING_BUFFER_SIZE, string_ptr);
+            strcpy_s(*(uint64_t *)(dest_data + 0xe), RENDERING_SYSTEM_STRING_BUFFER_SIZE, string_ptr);
             
             // 处理动态数组数据
             array_size = *current_src - current_src[-1] >> 3;
@@ -658,10 +658,10 @@ void rendering_system_data_processor(uint* data_array, uint* process_start, uint
  * 原始代码包含更复杂的内存管理、对齐处理和错误恢复逻辑。
  */
 void rendering_system_memory_allocator(longlong context_ptr, longlong size) {
-    undefined8* allocated_memory;
+    uint64_t* allocated_memory;
     
     // 分配内存（包含对齐和初始化）
-    allocated_memory = FUN_18062b1e0(_DAT_180c8ed18, size * 8 + 8, RENDERING_SYSTEM_MEMORY_ALIGNMENT, *(undefined1 *)(context_ptr + 0x2c));
+    allocated_memory = FUN_18062b1e0(_DAT_180c8ed18, size * 8 + 8, RENDERING_SYSTEM_MEMORY_ALIGNMENT, *(int8_t *)(context_ptr + 0x2c));
     
     // 初始化内存块
     memset(allocated_memory, 0, size * 8);
@@ -724,20 +724,20 @@ longlong rendering_system_data_copier(longlong dest_ptr, longlong src_ptr) {
             
             // 复制数据（如果有）
             if (element_size != 0) {
-                memcpy(*(undefined8 *)(dest_ptr + (longlong)current_element), *current_element, data_size);
+                memcpy(*(uint64_t *)(dest_ptr + (longlong)current_element), *current_element, data_size);
             }
             
             // 清理数据指针
-            *(undefined4 *)(dest_ptr + 8 + (longlong)current_element) = 0;
+            *(int32_t *)(dest_ptr + 8 + (longlong)current_element) = 0;
             if (*(longlong *)(dest_ptr + (longlong)current_element) != 0) {
-                *(undefined1 *)(data_size + *(longlong *)(dest_ptr + (longlong)current_element)) = 0;
+                *(int8_t *)(data_size + *(longlong *)(dest_ptr + (longlong)current_element)) = 0;
             }
             
             // 复制扩展数据
             element_index = element_index + 1;
-            *(undefined4 *)(dest_ptr + 0x14 + (longlong)current_element) = *(undefined4 *)((longlong)current_element + 0x14);
+            *(int32_t *)(dest_ptr + 0x14 + (longlong)current_element) = *(int32_t *)((longlong)current_element + 0x14);
             *(int *)(dest_ptr + 0x18 + (longlong)current_element) = (int)current_element[3];
-            *(undefined4 *)(dest_ptr + 0x1c + (longlong)current_element) = *(undefined4 *)((longlong)current_element + 0x1c);
+            *(int32_t *)(dest_ptr + 0x1c + (longlong)current_element) = *(int32_t *)((longlong)current_element + 0x1c);
             *(char *)(dest_ptr + 0x20 + (longlong)current_element) = (char)current_element[4];
             current_element = current_element + RENDERING_SYSTEM_ELEMENT_SIZE;
         } while (element_index < *(int *)(dest_ptr + 0xc0));
@@ -794,20 +794,20 @@ void rendering_system_data_cleaner(longlong dest_ptr, longlong src_ptr) {
         
         // 复制数据（如果有）
         if (element_size != 0) {
-            memcpy(*(undefined8 *)(dest_ptr + (longlong)current_element), *current_element, data_size);
+            memcpy(*(uint64_t *)(dest_ptr + (longlong)current_element), *current_element, data_size);
         }
         
         // 清理数据指针
-        *(undefined4 *)(dest_ptr + 8 + (longlong)current_element) = 0;
+        *(int32_t *)(dest_ptr + 8 + (longlong)current_element) = 0;
         if (*(longlong *)(dest_ptr + (longlong)current_element) != 0) {
-            *(undefined1 *)(data_size + *(longlong *)(dest_ptr + (longlong)current_element)) = 0;
+            *(int8_t *)(data_size + *(longlong *)(dest_ptr + (longlong)current_element)) = 0;
         }
         
         // 复制扩展数据
         element_count = element_count + 1;
-        *(undefined4 *)(dest_ptr + 0x14 + (longlong)current_element) = *(undefined4 *)((longlong)current_element + 0x14);
+        *(int32_t *)(dest_ptr + 0x14 + (longlong)current_element) = *(int32_t *)((longlong)current_element + 0x14);
         *(int *)(dest_ptr + 0x18 + (longlong)current_element) = (int)current_element[3];
-        *(undefined4 *)(dest_ptr + 0x1c + (longlong)current_element) = *(undefined4 *)((longlong)current_element + 0x1c);
+        *(int32_t *)(dest_ptr + 0x1c + (longlong)current_element) = *(int32_t *)((longlong)current_element + 0x1c);
         *(char *)(dest_ptr + 0x20 + (longlong)current_element) = (char)current_element[4];
         current_element = current_element + RENDERING_SYSTEM_ELEMENT_SIZE;
     } while (element_count < *(int *)(dest_ptr + 0xc0));
@@ -863,17 +863,17 @@ void rendering_system_empty_operation(void) {
  * 本函数为简化实现，保留了核心的初始化逻辑。
  * 原始代码包含更复杂的对象设置、状态管理和依赖处理逻辑。
  */
-undefined8* rendering_system_object_initializer(undefined8 param_1, undefined8* param_2) {
+uint64_t* rendering_system_object_initializer(uint64_t param_1, uint64_t* param_2) {
     // 设置第一组虚函数表
     *param_2 = &UNK_18098bcb0;
     param_2[1] = 0;
-    *(undefined4 *)(param_2 + 2) = 0;
+    *(int32_t *)(param_2 + 2) = 0;
     
     // 设置第二组虚函数表
     *param_2 = &UNK_180a3c3e0;
     param_2[3] = 0;
     param_2[1] = 0;
-    *(undefined4 *)(param_2 + 2) = 0;
+    *(int32_t *)(param_2 + 2) = 0;
     
     // 调用相关初始化函数
     FUN_18033eb00();

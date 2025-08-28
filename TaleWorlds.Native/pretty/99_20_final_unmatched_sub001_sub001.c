@@ -627,8 +627,8 @@ undefined DAT_180c8aa48;
 undefined DAT_180c91cf8;
 undefined DAT_180c91d00;
 undefined DAT_180c91cf0;
-undefined1 DAT_180c91d14;
-undefined1 DAT_180c91d08;
+int8_t DAT_180c91d14;
+int8_t DAT_180c91d08;
 
 
 
@@ -850,9 +850,9 @@ undefined DAT_180bfa318;
 undefined DAT_180bfa330;
 undefined DAT_180bfa328;
 undefined DAT_180bfa338;
-undefined1 DAT_180bfa340;
-undefined1 DAT_180bfa320;
-undefined1 DAT_180bfa300;
+int8_t DAT_180bfa340;
+int8_t DAT_180bfa320;
+int8_t DAT_180bfa300;
 undefined UNK_180a23138;
 
 
@@ -1082,7 +1082,7 @@ undefined UNK_180a255f8;
 undefined UNK_180a25628;
 undefined UNK_180a25660;
 undefined UNK_180a25f88;
-undefined *PTR_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A_180944888;
+void *PTR_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A_180944888;
 undefined UNK_180a2161c;
 undefined UNK_180a25598;
 undefined UNK_180a255b4;
@@ -1194,10 +1194,10 @@ undefined DAT_180a2cc08;
 undefined UNK_180a2d380;
 undefined DAT_180c96110;
 undefined DAT_180c96380;
-undefined4 UNK_180c96374;
-undefined4 UNK_180c96378;
+int32_t UNK_180c96374;
+int32_t UNK_180c96378;
 undefined DAT_180c91044;
-undefined4 UNK_180c9637c;
+int32_t UNK_180c9637c;
 undefined DAT_180c96384;
 undefined DAT_180c91040;
 undefined DAT_180c964c0;
@@ -1212,7 +1212,7 @@ undefined UNK_1804e3030;
 undefined UNK_1804e3040;
 undefined DAT_180c91d30;
 undefined DAT_180c91d28;
-undefined8 UNK_180c91d38;
+uint64_t UNK_180c91d38;
 undefined UNK_180a2cc80;
 undefined UNK_180a2cc98;
 undefined UNK_180a2ccb0;

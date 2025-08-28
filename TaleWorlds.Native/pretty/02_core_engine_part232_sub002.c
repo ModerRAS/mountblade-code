@@ -2,8 +2,8 @@
 
 // 02_core_engine_part232_sub002.c - 1 个函数
 
-// 函数: void FUN_180202d4d(undefined4 param_1,float *param_2)
-void FUN_180202d4d(undefined4 param_1,float *param_2)
+// 函数: void FUN_180202d4d(int32_t param_1,float *param_2)
+void FUN_180202d4d(int32_t param_1,float *param_2)
 
 {
   float fVar1;
@@ -11,7 +11,7 @@ void FUN_180202d4d(undefined4 param_1,float *param_2)
   longlong lVar3;
   float *pfVar4;
   float *pfVar5;
-  undefined1 unaff_BL;
+  int8_t unaff_BL;
   longlong unaff_RBP;
   float *unaff_RSI;
   float fVar6;

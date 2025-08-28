@@ -244,7 +244,7 @@ SKIP_PROCESSING:
  * 本函数为简化实现，保留了核心的滤镜处理逻辑。
  * 原始代码包含更复杂的滤镜算法、错误处理和性能优化逻辑。
  */
-void RenderingSystem_FilterEffectProcessor(undefined8 filter_context, undefined8 image_data, int filter_size) {
+void RenderingSystem_FilterEffectProcessor(uint64_t filter_context, uint64_t image_data, int filter_size) {
     // 变量重命名以提高可读性：
     // pbVar1 -> temp_byte_ptr: 临时字节指针
     // bVar2 -> temp_byte: 临时字节值
@@ -424,7 +424,7 @@ void RenderingSystem_FilterEffectProcessor(undefined8 filter_context, undefined8
  * 本函数为简化实现，保留了核心的像素优化逻辑。
  * 原始代码包含更复杂的像素优化算法、内存管理和性能优化逻辑。
  */
-void RenderingSystem_PixelDataOptimizer(undefined8 optimization_context, longlong pixel_data) {
+void RenderingSystem_PixelDataOptimizer(uint64_t optimization_context, longlong pixel_data) {
     // 变量重命名以提高可读性：
     // pcVar1 -> char_ptr: 字符指针
     // pcVar2 -> code_ptr: 代码指针
@@ -440,7 +440,7 @@ void RenderingSystem_PixelDataOptimizer(undefined8 optimization_context, longlon
     
     char *char_ptr;
     code *code_ptr;
-    undefined2 port_value;
+    int16_t port_value;
     char char_value;
     uint uint_value;
     char low_byte;
@@ -451,7 +451,7 @@ void RenderingSystem_PixelDataOptimizer(undefined8 optimization_context, longlon
     longlong register_13;
     
     // 端口数据处理和优化
-    port_value = (undefined2)pixel_data;
+    port_value = (int16_t)pixel_data;
     char_value = in(port_value);  // 从端口读取数据
     
     // 像素数据优化 - 基址指针操作
@@ -513,7 +513,7 @@ void RenderingSystem_PixelDataOptimizer(undefined8 optimization_context, longlon
  * 本函数为简化实现，保留了核心的压缩逻辑。
  * 原始代码包含更复杂的压缩算法、错误处理和性能优化逻辑。
  */
-void RenderingSystem_AdvancedImageCompressor(undefined8 compression_context, undefined8 image_data, int width, int height, int compression_level, int *output_size) {
+void RenderingSystem_AdvancedImageCompressor(uint64_t compression_context, uint64_t image_data, int width, int height, int compression_level, int *output_size) {
     // 变量重命名以提高可读性：
     // lVar1 -> temp_offset: 临时偏移量
     // uVar2 -> temp_uint: 临时无符号整数
@@ -554,7 +554,7 @@ void RenderingSystem_AdvancedImageCompressor(undefined8 compression_context, und
     
     longlong temp_offset;
     uint temp_uint;
-    undefined1 *buffer_ptr;
+    int8_t *buffer_ptr;
     longlong workspace;
     ulonglong filter_index;
     ulonglong pixel_offset;
@@ -568,15 +568,15 @@ void RenderingSystem_AdvancedImageCompressor(undefined8 compression_context, und
     ulonglong best_filter;
     longlong row_bytes;
     int current_score;
-    undefined1 in_XMM1 [16];
-    undefined1 xmm_data_16 [16];
-    undefined1 in_XMM2 [16];
-    undefined1 xmm_abs_16 [16];
-    undefined1 xmm_sum_16 [16];
-    undefined1 xmm_accum_16 [16];
-    undefined1 xmm_temp_16 [16];
-    undefined1 stack_buffer [32];
-    undefined4 filter_param;
+    int8_t in_XMM1 [16];
+    int8_t xmm_data_16 [16];
+    int8_t in_XMM2 [16];
+    int8_t xmm_abs_16 [16];
+    int8_t xmm_sum_16 [16];
+    int8_t xmm_accum_16 [16];
+    int8_t xmm_temp_16 [16];
+    int8_t stack_buffer [32];
+    int32_t filter_param;
     int compression_param;
     uint scanline_index;
     longlong temp_workspace;
@@ -584,16 +584,16 @@ void RenderingSystem_AdvancedImageCompressor(undefined8 compression_context, und
     int image_width;
     int image_width_param;
     int buffer_size;
-    undefined1 *compression_buffer;
-    undefined8 image_context;
-    undefined1 *output_buffer;
+    int8_t *compression_buffer;
+    uint64_t image_context;
+    int8_t *output_buffer;
     longlong buffer_stride;
     int *size_output;
-    undefined8 chunk_header;
-    undefined8 png_header;
-    undefined4 header_size;
-    undefined4 png_signature;
-    undefined4 png_crc;
+    uint64_t chunk_header;
+    uint64_t png_header;
+    int32_t header_size;
+    int32_t png_signature;
+    int32_t png_crc;
     ulonglong security_cookie;
     
     // 初始化安全cookie
@@ -610,10 +610,10 @@ void RenderingSystem_AdvancedImageCompressor(undefined8 compression_context, und
     image_height = height;
     image_width_param = width;
     image_context = compression_context;
-    buffer_ptr = (undefined1 *)malloc((longlong)buffer_size);
+    buffer_ptr = (int8_t *)malloc((longlong)buffer_size);
     compression_buffer = buffer_ptr;
     
-    if (buffer_ptr != (undefined1 *)0x0) {
+    if (buffer_ptr != (int8_t *)0x0) {
         row_bytes = (longlong)(int)row_size;
         workspace = malloc(row_bytes);
         
@@ -819,7 +819,7 @@ void RenderingSystem_MemoryCleanup(void) {
     uint alignment_value;
     uint pixel_value;
     int base_offset;
-    undefined4 addr_high;
+    int32_t addr_high;
     longlong data_buffer;
     uint data_size;
     int quality_param;
@@ -830,20 +830,20 @@ void RenderingSystem_MemoryCleanup(void) {
     int min_value;
     longlong buffer_size;
     int total_sum;
-    undefined1 simd_reg1[16];
-    undefined1 simd_data1[16];
-    undefined1 simd_reg2[16];
-    undefined1 simd_abs1[16];
-    undefined1 simd_sum1[16];
-    undefined1 simd_sum2[16];
-    undefined1 simd_total[16];
+    int8_t simd_reg1[16];
+    int8_t simd_data1[16];
+    int8_t simd_reg2[16];
+    int8_t simd_abs1[16];
+    int8_t simd_sum1[16];
+    int8_t simd_sum2[16];
+    int8_t simd_total[16];
     int iteration_count;
     int result_size;
     uint width_param;
     uint height_param;
-    undefined1 *output_buffer;
-    undefined8 input_data;
-    undefined1 *result_ptr;
+    int8_t *output_buffer;
+    uint64_t input_data;
+    int8_t *result_ptr;
     longlong config_offset;
     int *output_size_ptr;
     ulonglong security_cookie;
@@ -998,8 +998,8 @@ void RenderingSystem_MemoryResourceManager(void) {
     
     longlong allocated_memory;
     longlong resource_flag;
-    undefined8 size_info;
-    undefined8 memory_to_free;
+    uint64_t size_info;
+    uint64_t memory_to_free;
     int *output_size_ptr;
     ulonglong security_cookie;
     
@@ -1052,7 +1052,7 @@ void RenderingSystem_MemoryResourceManager(void) {
  * 本函数为简化实现，主要展示数据编码的核心逻辑。
  * 原始代码包含更复杂的编码算法、错误处理和性能优化逻辑。
  */
-void RenderingSystem_DataEncoder(undefined8 *encoder_callback, uint *data_ptr, uint *length_ptr, ushort *encoding_params) {
+void RenderingSystem_DataEncoder(uint64_t *encoder_callback, uint *data_ptr, uint *length_ptr, ushort *encoding_params) {
     // 变量重命名以提高可读性：
     // uVar1 -> encoded_data: 编码后的数据
     // uVar2 -> byte_count: 字节计数
@@ -1142,7 +1142,7 @@ void RenderingSystem_DataStreamEncoder(void) {
     
     int data_stream;
     ulonglong byte_counter;
-    undefined8 *callback_ptr;
+    uint64_t *callback_ptr;
     char current_byte;
     uint stream_length;
     int *remaining_length_ptr;
@@ -1198,13 +1198,13 @@ void RenderingSystem_DataStreamEncoder(void) {
  * 本函数为简化实现，主要展示参数配置的核心逻辑。
  * 原始代码可能包含更复杂的参数验证、错误处理和配置管理逻辑。
  */
-void RenderingSystem_ParameterConfigurator(undefined8 reserved_param, undefined4 *output_param1, undefined4 *output_param2) {
+void RenderingSystem_ParameterConfigurator(uint64_t reserved_param, int32_t *output_param1, int32_t *output_param2) {
     // 变量重命名以提高可读性：
     // unaff_EBX -> parameter_value1: 参数值1
     // in_R10D -> parameter_value2: 参数值2
     
-    undefined4 parameter_value1;
-    undefined4 parameter_value2;
+    int32_t parameter_value1;
+    int32_t parameter_value2;
     
     // 设置输出参数
     *output_param1 = parameter_value1;

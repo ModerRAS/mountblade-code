@@ -2,9 +2,9 @@
 
 // 04_ui_system_part257.c - 2 个函数
 
-// 函数: void FUN_180811f40(float *param_1,undefined4 *param_2,float *param_3,float *param_4,
-void FUN_180811f40(float *param_1,undefined4 *param_2,float *param_3,float *param_4,
-                  undefined4 *param_5)
+// 函数: void FUN_180811f40(float *param_1,int32_t *param_2,float *param_3,float *param_4,
+void FUN_180811f40(float *param_1,int32_t *param_2,float *param_3,float *param_4,
+                  int32_t *param_5)
 
 {
   float fVar1;

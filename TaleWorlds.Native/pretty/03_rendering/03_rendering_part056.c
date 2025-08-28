@@ -31,12 +31,12 @@
  * @param param_3 浮点参数3，可能表示角度或弧度
  * @param param_4 浮点参数4，可能表示角度或弧度
  */
-void render_advanced_arc_calculation(undefined8 render_context, float param_2, float param_3, float param_4)
+void render_advanced_arc_calculation(uint64_t render_context, float param_2, float param_3, float param_4)
 
 {
   int *piVar1;
   longlong lVar2;
-  undefined8 uVar3;
+  uint64_t uVar3;
   int iVar4;
   int iVar5;
   int iVar6;
@@ -44,8 +44,8 @@ void render_advanced_arc_calculation(undefined8 render_context, float param_2, f
   int iVar7;
   longlong unaff_RDI;
   float *unaff_R14;
-  undefined4 unaff_R15D;
-  undefined4 uVar8;
+  int32_t unaff_R15D;
+  int32_t uVar8;
   float fVar9;
   float fVar10;
   float fVar11;
@@ -124,10 +124,10 @@ void render_advanced_arc_calculation(undefined8 render_context, float param_2, f
       iVar6 = *piVar1;
     }
     lVar2 = *(longlong *)(unaff_RDI + 0x88);
-    uVar3 = *(undefined8 *)(unaff_RBP + -0x79);
+    uVar3 = *(uint64_t *)(unaff_RBP + -0x79);
     *(float *)(unaff_RBP + -0x79) = fVar13;
     *(float *)(unaff_RBP + -0x75) = unaff_XMM13_Da;
-    *(undefined8 *)(lVar2 + (longlong)iVar6 * 8) = uVar3;
+    *(uint64_t *)(lVar2 + (longlong)iVar6 * 8) = uVar3;
     *piVar1 = *piVar1 + 1;
     iVar6 = *piVar1;
     iVar5 = *(int *)(unaff_RDI + 0x84);
@@ -145,8 +145,8 @@ void render_advanced_arc_calculation(undefined8 render_context, float param_2, f
       FUN_18011dc70(piVar1,iVar4);
       iVar6 = *piVar1;
     }
-    *(undefined8 *)(*(longlong *)(unaff_RDI + 0x88) + (longlong)iVar6 * 8) =
-         *(undefined8 *)(unaff_RBP + -0x79);
+    *(uint64_t *)(*(longlong *)(unaff_RDI + 0x88) + (longlong)iVar6 * 8) =
+         *(uint64_t *)(unaff_RBP + -0x79);
     *piVar1 = *piVar1 + 1;
   }
   else if ((fVar9 == unaff_XMM8_Da) && (fVar11 == 1.5707964)) {
@@ -222,10 +222,10 @@ void render_advanced_arc_calculation(undefined8 render_context, float param_2, f
         iVar6 = *piVar1;
       }
       lVar2 = *(longlong *)(unaff_RDI + 0x88);
-      uVar3 = *(undefined8 *)(unaff_RBP + 0x67);
+      uVar3 = *(uint64_t *)(unaff_RBP + 0x67);
       *(float *)(unaff_RBP + 0x67) = fVar12;
       *(float *)(unaff_RBP + 0x6b) = unaff_XMM14_Da;
-      *(undefined8 *)(lVar2 + (longlong)iVar6 * 8) = uVar3;
+      *(uint64_t *)(lVar2 + (longlong)iVar6 * 8) = uVar3;
       *piVar1 = *piVar1 + 1;
       iVar6 = *piVar1;
       iVar5 = *(int *)(unaff_RDI + 0x84);
@@ -240,8 +240,8 @@ void render_advanced_arc_calculation(undefined8 render_context, float param_2, f
         fVar11 = (float)FUN_18011dc70(piVar1,iVar5);
         iVar6 = *piVar1;
       }
-      *(undefined8 *)(*(longlong *)(unaff_RDI + 0x88) + (longlong)iVar6 * 8) =
-           *(undefined8 *)(unaff_RBP + 0x67);
+      *(uint64_t *)(*(longlong *)(unaff_RDI + 0x88) + (longlong)iVar6 * 8) =
+           *(uint64_t *)(unaff_RBP + 0x67);
       *piVar1 = *piVar1 + 1;
     }
     else if ((fVar10 == unaff_XMM8_Da) && (fVar14 == 1.5707964)) {
@@ -261,9 +261,9 @@ void render_advanced_arc_calculation(undefined8 render_context, float param_2, f
       fVar11 = (float)FUN_180293860(uVar8,unaff_RBP + 0x67,unaff_XMM7_Da,fVar10,fVar14);
     }
   }
-  FUN_180293190(fVar11,*(undefined8 *)(unaff_RDI + 0x88),*(undefined4 *)(unaff_RDI + 0x80),
+  FUN_180293190(fVar11,*(uint64_t *)(unaff_RDI + 0x88),*(int32_t *)(unaff_RDI + 0x80),
                 unaff_R15D);
-  *(undefined4 *)(unaff_RDI + 0x80) = 0;
+  *(int32_t *)(unaff_RDI + 0x80) = 0;
   return;
 }
 
@@ -297,8 +297,8 @@ void render_empty_operation_1(void)
  * @param param_4 无符号长整型参数
  * @param param_5 无符号整型参数
  */
-void render_boundary_processing(undefined8 param_1, float *param_2, float *param_3, ulonglong param_4,
-                  undefined4 param_5)
+void render_boundary_processing(uint64_t param_1, float *param_2, float *param_3, ulonglong param_4,
+                  int32_t param_5)
 
 {
   float fVar1;
@@ -637,7 +637,7 @@ void render_array_resize_16bit(int *param_1, int param_2)
 {
   int current_capacity;
   int new_capacity;
-  undefined8 new_memory_ptr;
+  uint64_t new_memory_ptr;
   int final_capacity;
   
   current_capacity = param_1[1];
@@ -660,7 +660,7 @@ void render_array_resize_16bit(int *param_1, int param_2)
       // WARNING: Subroutine does not return
       memcpy(new_memory_ptr,*(longlong *)(param_1 + 2),(longlong)*param_1 << 4);
     }
-    *(undefined8 *)(param_1 + 2) = new_memory_ptr;
+    *(uint64_t *)(param_1 + 2) = new_memory_ptr;
     param_1[1] = final_capacity;
   }
   *param_1 = param_2;
@@ -682,7 +682,7 @@ void render_array_resize_inline(void)
 
 {
   longlong context_ptr;
-  undefined8 new_memory_ptr;
+  uint64_t new_memory_ptr;
   int *array_ptr;
   int array_size;
   int new_capacity;
@@ -695,7 +695,7 @@ void render_array_resize_inline(void)
     // WARNING: Subroutine does not return
     memcpy(new_memory_ptr,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 4);
   }
-  *(undefined8 *)(array_ptr + 2) = new_memory_ptr;
+  *(uint64_t *)(array_ptr + 2) = new_memory_ptr;
   array_ptr[1] = new_capacity;
   *array_ptr = array_size;
   return;
@@ -713,8 +713,8 @@ void render_array_resize_inline(void)
 void render_simple_assignment(void)
 
 {
-  undefined4 *target_ptr;
-  undefined4 value;
+  int32_t *target_ptr;
+  int32_t value;
   
   *target_ptr = value;
   return;
@@ -739,7 +739,7 @@ void render_array_resize_40bit(int *param_1, int param_2)
 {
   int current_capacity;
   int new_capacity;
-  undefined8 new_memory_ptr;
+  uint64_t new_memory_ptr;
   int final_capacity;
   
   current_capacity = param_1[1];
@@ -766,7 +766,7 @@ void render_array_resize_40bit(int *param_1, int param_2)
       // WARNING: Subroutine does not return
       memcpy(new_memory_ptr,*(longlong *)(param_1 + 2),(longlong)*param_1 * 0x28);
     }
-    *(undefined8 *)(param_1 + 2) = new_memory_ptr;
+    *(uint64_t *)(param_1 + 2) = new_memory_ptr;
     param_1[1] = final_capacity;
     *param_1 = param_2;
     return;
@@ -792,7 +792,7 @@ void render_array_resize_alt(int param_1)
 
 {
   int current_size;
-  undefined8 new_memory_ptr;
+  uint64_t new_memory_ptr;
   int *array_ptr;
   int new_capacity;
   int requested_size;
@@ -816,7 +816,7 @@ void render_array_resize_alt(int param_1)
       // WARNING: Subroutine does not return
       memcpy(new_memory_ptr,*(longlong *)(array_ptr + 2),(longlong)*array_ptr * 0x28);
     }
-    *(undefined8 *)(array_ptr + 2) = new_memory_ptr;
+    *(uint64_t *)(array_ptr + 2) = new_memory_ptr;
     array_ptr[1] = new_capacity;
     *array_ptr = requested_size;
     return;
@@ -837,8 +837,8 @@ void render_array_resize_alt(int param_1)
 void render_simple_assignment_2(void)
 
 {
-  undefined4 *target_ptr;
-  undefined4 value;
+  int32_t *target_ptr;
+  int32_t value;
   
   *target_ptr = value;
   return;
@@ -856,8 +856,8 @@ void render_simple_assignment_2(void)
 void render_simple_assignment_3(void)
 
 {
-  undefined4 *target_ptr;
-  undefined4 value;
+  int32_t *target_ptr;
+  int32_t value;
   
   *target_ptr = value;
   return;
@@ -877,14 +877,14 @@ void render_simple_assignment_3(void)
  * @param param_1 数组指针，包含容量和大小信息
  * @param param_2 要添加的数据指针
  */
-void render_array_append_32bit(int *param_1, undefined8 *param_2)
+void render_array_append_32bit(int *param_1, uint64_t *param_2)
 
 {
-  undefined8 *array_element_ptr;
+  uint64_t *array_element_ptr;
   int current_capacity;
   longlong array_data_ptr;
   int new_capacity;
-  undefined8 new_memory_ptr;
+  uint64_t new_memory_ptr;
   int new_size;
   
   current_capacity = param_1[1];
@@ -908,18 +908,18 @@ void render_array_append_32bit(int *param_1, undefined8 *param_2)
         // WARNING: Subroutine does not return
         memcpy(new_memory_ptr,*(longlong *)(param_1 + 2),(longlong)*param_1 << 5);
       }
-      *(undefined8 *)(param_1 + 2) = new_memory_ptr;
+      *(uint64_t *)(param_1 + 2) = new_memory_ptr;
       param_1[1] = new_size;
     }
   }
   current_capacity = *param_1;
   new_memory_ptr = param_2[1];
   array_data_ptr = *(longlong *)(param_1 + 2);
-  array_element_ptr = (undefined8 *)((longlong)current_capacity * 0x20 + array_data_ptr);
+  array_element_ptr = (uint64_t *)((longlong)current_capacity * 0x20 + array_data_ptr);
   *array_element_ptr = *param_2;
   array_element_ptr[1] = new_memory_ptr;
   new_memory_ptr = param_2[3];
-  array_element_ptr = (undefined8 *)((longlong)current_capacity * 0x20 + 0x10 + array_data_ptr);
+  array_element_ptr = (uint64_t *)((longlong)current_capacity * 0x20 + 0x10 + array_data_ptr);
   *array_element_ptr = param_2[2];
   array_element_ptr[1] = new_memory_ptr;
   *param_1 = *param_1 + 1;
@@ -940,13 +940,13 @@ void render_array_append_32bit(int *param_1, undefined8 *param_2)
 void render_array_append_inline(void)
 
 {
-  undefined8 *array_element_ptr;
+  uint64_t *array_element_ptr;
   int current_size;
   longlong array_data_ptr;
   longlong context_ptr;
-  undefined8 new_memory_ptr;
+  uint64_t new_memory_ptr;
   int *array_ptr;
-  undefined8 *data_ptr;
+  uint64_t *data_ptr;
   int new_capacity;
   
   if (context_ptr != 0) {
@@ -957,16 +957,16 @@ void render_array_append_inline(void)
     // WARNING: Subroutine does not return
     memcpy(new_memory_ptr,*(longlong *)(array_ptr + 2),(longlong)*array_ptr << 5);
   }
-  *(undefined8 *)(array_ptr + 2) = new_memory_ptr;
+  *(uint64_t *)(array_ptr + 2) = new_memory_ptr;
   array_ptr[1] = new_capacity;
   current_size = *array_ptr;
   new_memory_ptr = data_ptr[1];
   array_data_ptr = *(longlong *)(array_ptr + 2);
-  array_element_ptr = (undefined8 *)((longlong)current_size * 0x20 + array_data_ptr);
+  array_element_ptr = (uint64_t *)((longlong)current_size * 0x20 + array_data_ptr);
   *array_element_ptr = *data_ptr;
   array_element_ptr[1] = new_memory_ptr;
   new_memory_ptr = data_ptr[3];
-  array_element_ptr = (undefined8 *)((longlong)current_size * 0x20 + 0x10 + array_data_ptr);
+  array_element_ptr = (uint64_t *)((longlong)current_size * 0x20 + 0x10 + array_data_ptr);
   *array_element_ptr = data_ptr[2];
   array_element_ptr[1] = new_memory_ptr;
   *array_ptr = *array_ptr + 1;
@@ -985,21 +985,21 @@ void render_array_append_inline(void)
 void render_array_append_alt(void)
 
 {
-  undefined8 *array_element_ptr;
+  uint64_t *array_element_ptr;
   int current_size;
   longlong array_data_ptr;
-  undefined8 data_value;
+  uint64_t data_value;
   int *array_ptr;
-  undefined8 *data_ptr;
+  uint64_t *data_ptr;
   
   current_size = *array_ptr;
   data_value = data_ptr[1];
   array_data_ptr = *(longlong *)(array_ptr + 2);
-  array_element_ptr = (undefined8 *)((longlong)current_size * 0x20 + array_data_ptr);
+  array_element_ptr = (uint64_t *)((longlong)current_size * 0x20 + array_data_ptr);
   *array_element_ptr = *data_ptr;
   array_element_ptr[1] = data_value;
   data_value = data_ptr[3];
-  array_element_ptr = (undefined8 *)((longlong)current_size * 0x20 + 0x10 + array_data_ptr);
+  array_element_ptr = (uint64_t *)((longlong)current_size * 0x20 + 0x10 + array_data_ptr);
   *array_element_ptr = data_ptr[2];
   array_element_ptr[1] = data_value;
   *array_ptr = *array_ptr + 1;

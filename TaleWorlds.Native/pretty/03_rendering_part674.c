@@ -54,7 +54,7 @@ undefined DAT_180c967f0;                          // 渲染系统状态数据块
 //------------------------------------------------------------------------------
 
 // 渲染系统高级数据处理器
-void FUN_180650a70(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180650a70(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 
 {
   // 调用渲染系统高级数据处理函数
@@ -85,7 +85,7 @@ void FUN_180650a70(undefined8 param_1, undefined8 param_2, undefined8 param_3, u
 longlong FUN_180650aa0(longlong param_1, longlong param_2)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   // 执行基础内存初始化操作
   FUN_180627be0();
@@ -94,21 +94,21 @@ longlong FUN_180650aa0(longlong param_1, longlong param_2)
   FUN_180627be0(param_1 + 0x20, param_2 + 0x20);
   
   // 复制状态标志和数据
-  *(undefined1 *)(param_1 + 0x40) = *(undefined1 *)(param_2 + 0x40);
-  *(undefined4 *)(param_1 + 0x44) = *(undefined4 *)(param_2 + 0x44);
-  *(undefined8 *)(param_1 + 0x48) = *(undefined8 *)(param_2 + 0x48);
-  *(undefined4 *)(param_1 + 0x50) = *(undefined4 *)(param_2 + 0x50);
+  *(int8_t *)(param_1 + 0x40) = *(int8_t *)(param_2 + 0x40);
+  *(int32_t *)(param_1 + 0x44) = *(int32_t *)(param_2 + 0x44);
+  *(uint64_t *)(param_1 + 0x48) = *(uint64_t *)(param_2 + 0x48);
+  *(int32_t *)(param_1 + 0x50) = *(int32_t *)(param_2 + 0x50);
   
   // 复制扩展数据块
   FUN_180627be0(param_1 + 0x58, param_2 + 0x58);
   FUN_180627be0(param_1 + 0x78, param_2 + 0x78);
   
   // 复制高级数据结构
-  uVar1 = *(undefined8 *)(param_2 + 0xa0);
-  *(undefined8 *)(param_1 + 0x98) = *(undefined8 *)(param_2 + 0x98);
-  *(undefined8 *)(param_1 + 0xa0) = uVar1;
-  *(undefined4 *)(param_1 + 0xa8) = *(undefined4 *)(param_2 + 0xa8);
-  *(undefined4 *)(param_1 + 0xac) = *(undefined4 *)(param_2 + 0xac);
+  uVar1 = *(uint64_t *)(param_2 + 0xa0);
+  *(uint64_t *)(param_1 + 0x98) = *(uint64_t *)(param_2 + 0x98);
+  *(uint64_t *)(param_1 + 0xa0) = uVar1;
+  *(int32_t *)(param_1 + 0xa8) = *(int32_t *)(param_2 + 0xa8);
+  *(int32_t *)(param_1 + 0xac) = *(int32_t *)(param_2 + 0xac);
   
   return param_1;
 }
@@ -213,11 +213,11 @@ ulonglong FUN_180650b30(longlong param_1, longlong param_2, longlong param_3)
  * @param param_2 内存管理标志
  * @return 内存管理状态码
  */
-undefined8 FUN_180650c00(longlong param_1, undefined8 param_2)
+uint64_t FUN_180650c00(longlong param_1, uint64_t param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查内存管理状态
   lVar1 = *(longlong *)(param_1 + 0x18);
@@ -232,7 +232,7 @@ undefined8 FUN_180650c00(longlong param_1, undefined8 param_2)
   }
   
   // 更新内存管理状态
-  *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(param_1 + 0x1c) | 1;
+  *(int32_t *)(param_1 + 0x1c) = *(int32_t *)(param_1 + 0x1c) | 1;
   return 0;
 }
 
@@ -256,11 +256,11 @@ undefined8 FUN_180650c00(longlong param_1, undefined8 param_2)
  * @param param_2 验证标志
  * @return 验证状态码
  */
-undefined8 FUN_180650d00(longlong param_1, undefined8 param_2)
+uint64_t FUN_180650d00(longlong param_1, uint64_t param_2)
 
 {
   uint uVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查数据指针有效性
   if (param_1 == 0) {
@@ -280,7 +280,7 @@ undefined8 FUN_180650d00(longlong param_1, undefined8 param_2)
   }
   
   // 更新验证状态
-  *(undefined4 *)(param_1 + 0x24) = *(undefined4 *)(param_1 + 0x24) | 2;
+  *(int32_t *)(param_1 + 0x24) = *(int32_t *)(param_1 + 0x24) | 2;
   return 0;
 }
 
@@ -304,11 +304,11 @@ undefined8 FUN_180650d00(longlong param_1, undefined8 param_2)
  * @param param_2 状态转换标志
  * @return 状态管理结果
  */
-undefined8 FUN_180650e00(longlong param_1, undefined8 param_2)
+uint64_t FUN_180650e00(longlong param_1, uint64_t param_2)
 
 {
   int iVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 获取当前状态
   iVar1 = *(int *)(param_1 + 0x28);
@@ -349,11 +349,11 @@ undefined8 FUN_180650e00(longlong param_1, undefined8 param_2)
  * @param param_2 清理标志
  * @return 清理状态码
  */
-undefined8 FUN_180650f00(longlong param_1, undefined8 param_2)
+uint64_t FUN_180650f00(longlong param_1, uint64_t param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查清理参数的有效性
   if (param_1 == 0) {
@@ -373,7 +373,7 @@ undefined8 FUN_180650f00(longlong param_1, undefined8 param_2)
   }
   
   // 更新清理状态
-  *(undefined4 *)(param_1 + 0x34) = *(undefined4 *)(param_1 + 0x34) | 4;
+  *(int32_t *)(param_1 + 0x34) = *(int32_t *)(param_1 + 0x34) | 4;
   return 0;
 }
 
@@ -397,11 +397,11 @@ undefined8 FUN_180650f00(longlong param_1, undefined8 param_2)
  * @param param_2 优化级别
  * @return 优化状态码
  */
-undefined8 FUN_180651000(longlong param_1, undefined8 param_2)
+uint64_t FUN_180651000(longlong param_1, uint64_t param_2)
 
 {
   uint uVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查优化参数
   uVar1 = *(uint *)(param_1 + 0x38);
@@ -440,11 +440,11 @@ undefined8 FUN_180651000(longlong param_1, undefined8 param_2)
  * @param param_2 配置参数
  * @return 配置状态码
  */
-undefined8 FUN_180651100(longlong param_1, undefined8 param_2)
+uint64_t FUN_180651100(longlong param_1, uint64_t param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查配置管理器
   lVar1 = *(longlong *)(param_1 + 0x40);
@@ -459,7 +459,7 @@ undefined8 FUN_180651100(longlong param_1, undefined8 param_2)
   }
   
   // 更新配置状态
-  *(undefined4 *)(param_1 + 0x44) = *(undefined4 *)(param_1 + 0x44) | 8;
+  *(int32_t *)(param_1 + 0x44) = *(int32_t *)(param_1 + 0x44) | 8;
   return 0;
 }
 
@@ -483,11 +483,11 @@ undefined8 FUN_180651100(longlong param_1, undefined8 param_2)
  * @param param_2 错误代码
  * @return 错误处理结果
  */
-undefined8 FUN_180651200(longlong param_1, undefined8 param_2)
+uint64_t FUN_180651200(longlong param_1, uint64_t param_2)
 
 {
   int iVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查错误处理参数
   iVar1 = *(int *)(param_1 + 0x48);
@@ -526,11 +526,11 @@ undefined8 FUN_180651200(longlong param_1, undefined8 param_2)
  * @param param_2 同步标志
  * @return 同步状态码
  */
-undefined8 FUN_180651300(longlong param_1, undefined8 param_2)
+uint64_t FUN_180651300(longlong param_1, uint64_t param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查同步参数
   lVar1 = *(longlong *)(param_1 + 0x50);
@@ -545,7 +545,7 @@ undefined8 FUN_180651300(longlong param_1, undefined8 param_2)
   }
   
   // 更新同步状态
-  *(undefined4 *)(param_1 + 0x54) = *(undefined4 *)(param_1 + 0x54) | 0x10;
+  *(int32_t *)(param_1 + 0x54) = *(int32_t *)(param_1 + 0x54) | 0x10;
   return 0;
 }
 
@@ -569,11 +569,11 @@ undefined8 FUN_180651300(longlong param_1, undefined8 param_2)
  * @param param_2 调试级别
  * @return 调试状态码
  */
-undefined8 FUN_180651400(longlong param_1, undefined8 param_2)
+uint64_t FUN_180651400(longlong param_1, uint64_t param_2)
 
 {
   uint uVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查调试参数
   uVar1 = *(uint *)(param_1 + 0x58);
@@ -612,11 +612,11 @@ undefined8 FUN_180651400(longlong param_1, undefined8 param_2)
  * @param param_2 特性标志
  * @return 特性处理结果
  */
-undefined8 FUN_180651500(longlong param_1, undefined8 param_2)
+uint64_t FUN_180651500(longlong param_1, uint64_t param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查特性参数
   lVar1 = *(longlong *)(param_1 + 0x60);
@@ -631,7 +631,7 @@ undefined8 FUN_180651500(longlong param_1, undefined8 param_2)
   }
   
   // 更新特性状态
-  *(undefined4 *)(param_1 + 0x64) = *(undefined4 *)(param_1 + 0x64) | 0x20;
+  *(int32_t *)(param_1 + 0x64) = *(int32_t *)(param_1 + 0x64) | 0x20;
   return 0;
 }
 
@@ -655,11 +655,11 @@ undefined8 FUN_180651500(longlong param_1, undefined8 param_2)
  * @param param_2 批处理大小
  * @return 批处理状态码
  */
-undefined8 FUN_180651560(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5)
+uint64_t FUN_180651560(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4, uint64_t param_5)
 
 {
   uint uVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查批处理参数
   uVar1 = *(uint *)(param_1 + 0x68);
@@ -698,11 +698,11 @@ undefined8 FUN_180651560(longlong param_1, undefined8 param_2, undefined8 param_
  * @param param_2 分配大小
  * @return 分配状态码
  */
-undefined8 FUN_180651600(longlong param_1, undefined8 param_2)
+uint64_t FUN_180651600(longlong param_1, uint64_t param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查分配参数
   lVar1 = *(longlong *)(param_1 + 0x70);
@@ -717,7 +717,7 @@ undefined8 FUN_180651600(longlong param_1, undefined8 param_2)
   }
   
   // 更新分配状态
-  *(undefined4 *)(param_1 + 0x74) = *(undefined4 *)(param_1 + 0x74) | 0x40;
+  *(int32_t *)(param_1 + 0x74) = *(int32_t *)(param_1 + 0x74) | 0x40;
   return 0;
 }
 
@@ -741,11 +741,11 @@ undefined8 FUN_180651600(longlong param_1, undefined8 param_2)
  * @param param_2 缓存操作
  * @return 缓存状态码
  */
-undefined8 FUN_180651700(longlong param_1, undefined8 param_2)
+uint64_t FUN_180651700(longlong param_1, uint64_t param_2)
 
 {
   uint uVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查缓存参数
   uVar1 = *(uint *)(param_1 + 0x78);
@@ -784,11 +784,11 @@ undefined8 FUN_180651700(longlong param_1, undefined8 param_2)
  * @param param_2 渲染模式
  * @return 渲染状态码
  */
-undefined8 FUN_180651800(longlong param_1, undefined8 param_2)
+uint64_t FUN_180651800(longlong param_1, uint64_t param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查渲染参数
   lVar1 = *(longlong *)(param_1 + 0x80);
@@ -803,7 +803,7 @@ undefined8 FUN_180651800(longlong param_1, undefined8 param_2)
   }
   
   // 更新渲染状态
-  *(undefined4 *)(param_1 + 0x84) = *(undefined4 *)(param_1 + 0x84) | 0x80;
+  *(int32_t *)(param_1 + 0x84) = *(int32_t *)(param_1 + 0x84) | 0x80;
   return 0;
 }
 
@@ -827,11 +827,11 @@ undefined8 FUN_180651800(longlong param_1, undefined8 param_2)
  * @param param_2 流操作类型
  * @return 数据流状态码
  */
-undefined8 FUN_180651900(longlong param_1, undefined8 param_2)
+uint64_t FUN_180651900(longlong param_1, uint64_t param_2)
 
 {
   uint uVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   // 检查数据流参数
   uVar1 = *(uint *)(param_1 + 0x88);
@@ -906,32 +906,32 @@ undefined8 FUN_180651900(longlong param_1, undefined8 param_2)
 //==============================================================================
 
 // 渲染系统核心类型别名
-typedef undefined8 RenderSystemHandle;       // 渲染系统句柄 - 用于标识渲染系统实例
-typedef undefined8 RenderDataHandle;         // 渲染数据句柄 - 用于标识渲染数据
-typedef undefined8 RenderResourceHandle;      // 渲染资源句柄 - 用于标识渲染资源
-typedef undefined8 RenderCacheHandle;         // 渲染缓存句柄 - 用于标识渲染缓存
-typedef undefined8 RenderStateHandle;         // 渲染状态句柄 - 用于标识渲染状态
+typedef uint64_t RenderSystemHandle;       // 渲染系统句柄 - 用于标识渲染系统实例
+typedef uint64_t RenderDataHandle;         // 渲染数据句柄 - 用于标识渲染数据
+typedef uint64_t RenderResourceHandle;      // 渲染资源句柄 - 用于标识渲染资源
+typedef uint64_t RenderCacheHandle;         // 渲染缓存句柄 - 用于标识渲染缓存
+typedef uint64_t RenderStateHandle;         // 渲染状态句柄 - 用于标识渲染状态
 
 // 渲染系统管理器类型别名
-typedef undefined8 RenderDataManager;        // 渲染数据管理器 - 管理渲染数据
-typedef undefined8 RenderResourceManager;     // 渲染资源管理器 - 管理渲染资源
-typedef undefined8 RenderCacheManager;        // 渲染缓存管理器 - 管理渲染缓存
-typedef undefined8 RenderStateManager;        // 渲染状态管理器 - 管理渲染状态
-typedef undefined8 RenderPerformanceManager;  // 渲染性能管理器 - 管理渲染性能
+typedef uint64_t RenderDataManager;        // 渲染数据管理器 - 管理渲染数据
+typedef uint64_t RenderResourceManager;     // 渲染资源管理器 - 管理渲染资源
+typedef uint64_t RenderCacheManager;        // 渲染缓存管理器 - 管理渲染缓存
+typedef uint64_t RenderStateManager;        // 渲染状态管理器 - 管理渲染状态
+typedef uint64_t RenderPerformanceManager;  // 渲染性能管理器 - 管理渲染性能
 
 // 渲染系统配置类型别名
-typedef undefined8 RenderConfigHandle;        // 渲染配置句柄 - 用于标识渲染配置
-typedef undefined8 RenderPipelineHandle;      // 渲染管线句柄 - 用于标识渲染管线
-typedef undefined8 RenderShaderHandle;        // 渲染着色器句柄 - 用于标识渲染着色器
-typedef undefined8 RenderTextureHandle;       // 渲染纹理句柄 - 用于标识渲染纹理
-typedef undefined8 RenderBufferHandle;        // 渲染缓冲区句柄 - 用于标识渲染缓冲区
+typedef uint64_t RenderConfigHandle;        // 渲染配置句柄 - 用于标识渲染配置
+typedef uint64_t RenderPipelineHandle;      // 渲染管线句柄 - 用于标识渲染管线
+typedef uint64_t RenderShaderHandle;        // 渲染着色器句柄 - 用于标识渲染着色器
+typedef uint64_t RenderTextureHandle;       // 渲染纹理句柄 - 用于标识渲染纹理
+typedef uint64_t RenderBufferHandle;        // 渲染缓冲区句柄 - 用于标识渲染缓冲区
 
 // 渲染系统数据类型别名
-typedef undefined8 RenderDataStructure;      // 渲染数据结构 - 用于存储渲染数据
-typedef undefined8 RenderMemoryPool;         // 渲染内存池 - 用于管理渲染内存
-typedef undefined8 RenderBatchProcessor;     // 渲染批处理器 - 用于处理批量渲染
-typedef undefined8 RenderStreamProcessor;     // 渲染流处理器 - 用于处理数据流
-typedef undefined8 RenderOptimizer;          // 渲染优化器 - 用于优化渲染性能
+typedef uint64_t RenderDataStructure;      // 渲染数据结构 - 用于存储渲染数据
+typedef uint64_t RenderMemoryPool;         // 渲染内存池 - 用于管理渲染内存
+typedef uint64_t RenderBatchProcessor;     // 渲染批处理器 - 用于处理批量渲染
+typedef uint64_t RenderStreamProcessor;     // 渲染流处理器 - 用于处理数据流
+typedef uint64_t RenderOptimizer;          // 渲染优化器 - 用于优化渲染性能
 
 //==============================================================================
 // 渲染系统函数别名定义

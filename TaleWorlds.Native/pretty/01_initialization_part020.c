@@ -46,24 +46,24 @@
 // ============================================================================
 
 // 基础类型别名
-typedef undefined8 SystemHandle;                // 系统句柄
-typedef undefined8 ConfigHandle;                // 配置句柄
-typedef undefined8 ResourceHandle;              // 资源句柄
-typedef undefined8 BufferHandle;                // 缓冲区句柄
+typedef uint64_t SystemHandle;                // 系统句柄
+typedef uint64_t ConfigHandle;                // 配置句柄
+typedef uint64_t ResourceHandle;              // 资源句柄
+typedef uint64_t BufferHandle;                // 缓冲区句柄
 
 // 状态类型别名
-typedef undefined4 SystemStatus;               // 系统状态
-typedef undefined4 ConfigStatus;                // 配置状态
-typedef undefined4 ResourceStatus;             // 资源状态
+typedef int32_t SystemStatus;               // 系统状态
+typedef int32_t ConfigStatus;                // 配置状态
+typedef int32_t ResourceStatus;             // 资源状态
 
 // 数学类型别名
 typedef float MathFloat;                       // 数学浮点数
 typedef double MathDouble;                      // 数学双精度数
-typedef undefined4 MathVector;                  // 数学向量
+typedef int32_t MathVector;                  // 数学向量
 
 // 字符串类型别名
-typedef undefined1 StringChar;                  // 字符串字符
-typedef undefined8 StringHandle;                // 字符串句柄
+typedef int8_t StringChar;                  // 字符串字符
+typedef uint64_t StringHandle;                // 字符串句柄
 
 // ============================================================================
 // 函数别名定义
@@ -129,7 +129,7 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
   MathFloat temp_value4;
   MathFloat temp_value5;
   MathFloat temp_value6;
-  undefined4 precision_result;
+  int32_t precision_result;
   MathFloat stack_value1;
   MathFloat stack_value2;
   
@@ -213,12 +213,12 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       // 存储计算结果
       *(float *)(system_context + 0x238) = base_value;
       precision_result = log2f();
-      *(undefined4 *)(system_context + 0x248) = precision_result;
+      *(int32_t *)(system_context + 0x248) = precision_result;
       *(float *)(system_context + 0x250) = _DAT_180d49144;
       
       // 更新系统状态
       system_manager = _DAT_180c86950;
-      *(undefined1 *)(_DAT_180c86950 + 0x162b) = 1;
+      *(int8_t *)(_DAT_180c86950 + 0x162b) = 1;
       temp_pointer = _DAT_180c86920;
     }
     else {
@@ -228,7 +228,7 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
     }
   }
   else {
-    *(undefined4 *)(system_context + 0x238) = 0x3f800000;
+    *(int32_t *)(system_context + 0x238) = 0x3f800000;
     system_manager = _DAT_180c86950;
   }
   
@@ -279,7 +279,7 @@ void InitializationSystem_AdvancedMathCalculator(SystemHandle system_context, Ma
       *(float *)(system_context + 0x234) = base_value;
     } while (base_value <= MATH_NORMALIZATION_FACTOR);
     
-    *(undefined4 *)(system_context + 0x234) = 0x3f800000;
+    *(int32_t *)(system_context + 0x234) = 0x3f800000;
     
 OPTIMIZATION_COMPLETE:
     stack_value1 = (float)(int)loop_counter / stack_value1;
@@ -323,7 +323,7 @@ OPTIMIZATION_COMPLETE:
       *(float *)(system_context + 0x238) = base_value;
     } while (base_value <= MATH_NORMALIZATION_FACTOR);
     
-    *(undefined4 *)(system_context + 0x238) = 0x3f800000;
+    *(int32_t *)(system_context + 0x238) = 0x3f800000;
     
 SECOND_OPTIMIZATION_COMPLETE:
     stack_value1 = (float)(int)precision_counter / (float)(int)loop_counter;
@@ -350,13 +350,13 @@ SECOND_OPTIMIZATION_COMPLETE:
  * @param param_4 状态标志
  * @return 无返回值
  */
-void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle config_param1, ConfigHandle config_param2, undefined1 status_flag)
+void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle config_param1, ConfigHandle config_param2, int8_t status_flag)
 
 {
   int validation_result;
   longlong system_manager;
   longlong resource_manager;
-  undefined8 callback_param;
+  uint64_t callback_param;
   longlong *resource_pointer;
   int *status_pointer;
   longlong memory_manager;
@@ -369,11 +369,11 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   longlong *temp_stack_pointer2;
   longlong **callback_pointer;
   longlong temp_array1 [2];
-  undefined *temp_pointer1;
-  undefined *temp_pointer2;
+  void *temp_pointer1;
+  void *temp_pointer2;
   longlong temp_array2 [2];
-  undefined *temp_pointer3;
-  undefined *temp_pointer4;
+  void *temp_pointer3;
+  void *temp_pointer4;
   
   // 初始化系统管理器
   system_manager = _DAT_180c86870;
@@ -467,13 +467,13 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
   }
   
   *(float *)(system_manager + 0x234) = calculated_value1;
-  *(undefined4 *)(system_manager + 0x238) = 0x3f800000;
+  *(int32_t *)(system_manager + 0x238) = 0x3f800000;
   calculated_value2 = MATH_NORMALIZATION_FACTOR;
   
   // 处理系统状态验证
   if (*(int *)(resource_manager + 0x1ea0) == 1) {
     validation_result = *(int *)(resource_manager + 0x1d50);
-    status_pointer = (int *)FUN_180171f10(*(undefined8 *)(_DAT_180c86870 + 8), &temp_stack_pointer2);
+    status_pointer = (int *)FUN_180171f10(*(uint64_t *)(_DAT_180c86870 + 8), &temp_stack_pointer2);
     calculated_value2 = (float)validation_result / (float)*status_pointer;
     calculated_value1 = calculated_value2 * *(float *)(system_manager + 0x234);
     calculated_value2 = calculated_value2 * *(float *)(system_manager + 0x238);
@@ -498,7 +498,7 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
     *(float *)(system_manager + 0x238) = calculated_value2;
   }
   else {
-    *(undefined4 *)(system_manager + 0x238) = 0x3e4ccccd;
+    *(int32_t *)(system_manager + 0x238) = 0x3e4ccccd;
   }
   
   return;
@@ -521,19 +521,19 @@ void InitializationSystem_ConfigManager(SystemHandle *config_array, ConfigHandle
 void InitializationSystem_StringProcessor(StringHandle string_buffer, longlong buffer_size)
 
 {
-  undefined4 *string_pointer;
+  int32_t *string_pointer;
   int string_length;
   int temp_counter;
   int temp_counter2;
-  undefined1 temp_buffer [32];
-  undefined **pointer_array;
-  undefined8 temp_param1;
-  undefined *temp_pointer1;
-  undefined8 temp_param2;
+  int8_t temp_buffer [32];
+  void **pointer_array;
+  uint64_t temp_param1;
+  void *temp_pointer1;
+  uint64_t temp_param2;
   int stack_value1;
-  undefined1 temp_buffer2 [16];
-  undefined *temp_pointer2;
-  undefined8 temp_param3;
+  int8_t temp_buffer2 [16];
+  void *temp_pointer2;
+  uint64_t temp_param3;
   int stack_value2;
   ulonglong security_cookie;
   
@@ -548,19 +548,19 @@ void InitializationSystem_StringProcessor(StringHandle string_buffer, longlong b
   
   FUN_180623de0(&temp_pointer1);
   string_length = 0;
-  *(undefined4 *)(buffer_size + 0x10) = 0;
+  *(int32_t *)(buffer_size + 0x10) = 0;
   
   // 处理字符串缓冲区
-  if (*(undefined1 **)(buffer_size + 8) != (undefined1 *)0x0) {
-    **(undefined1 **)(buffer_size + 8) = 0;
+  if (*(int8_t **)(buffer_size + 8) != (int8_t *)0x0) {
+    **(int8_t **)(buffer_size + 8) = 0;
     string_length = *(int *)(buffer_size + 0x10);
   }
   
   temp_counter2 = string_length + 5;
   FUN_1806277c0(buffer_size, temp_counter2);
-  string_pointer = (undefined4 *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8));
+  string_pointer = (int32_t *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8));
   *string_pointer = 0x3a757067;  // ":upg"
-  *(undefined2 *)(string_pointer + 1) = 0x20;  // " "
+  *(int16_t *)(string_pointer + 1) = 0x20;  // " "
   *(int *)(buffer_size + 0x10) = temp_counter2;
   
   // 处理缓冲区数据
@@ -572,14 +572,14 @@ void InitializationSystem_StringProcessor(StringHandle string_buffer, longlong b
   
   // 继续字符串处理
   FUN_1806277c0(buffer_size, string_length + 6);
-  *(undefined2 *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8)) = 10;
+  *(int16_t *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8)) = 10;
   *(int *)(buffer_size + 0x10) = string_length + 6;
   
   temp_counter2 = string_length + 0xb;
   FUN_1806277c0(buffer_size, temp_counter2);
-  string_pointer = (undefined4 *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8));
+  string_pointer = (int32_t *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8));
   *string_pointer = 0x3a757063;  // ":upc"
-  *(undefined2 *)(string_pointer + 1) = 0x20;  // " "
+  *(int16_t *)(string_pointer + 1) = 0x20;  // " "
   *(int *)(buffer_size + 0x10) = temp_counter2;
   
   // 处理第二段缓冲区数据
@@ -591,7 +591,7 @@ void InitializationSystem_StringProcessor(StringHandle string_buffer, longlong b
   
   // 完成字符串处理
   FUN_1806277c0(buffer_size, string_length + 0xc);
-  *(undefined2 *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8)) = 10;
+  *(int16_t *)((ulonglong)*(uint *)(buffer_size + 0x10) + *(longlong *)(buffer_size + 8)) = 10;
   *(int *)(buffer_size + 0x10) = string_length + 0xc;
   
   temp_pointer1 = &UNK_18098bcb0;
@@ -622,43 +622,43 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
 {
   longlong system_manager;
   longlong resource_manager;
-  undefined4 process_id;
+  int32_t process_id;
   int iteration_count;
   uint resource_counter;
   uint allocation_counter;
-  undefined1 *memory_pointer;
+  int8_t *memory_pointer;
   ulonglong memory_size;
-  undefined *temp_pointer;
+  void *temp_pointer;
   longlong temp_resource;
   uint temp_counter;
-  undefined1 temp_buffer [32];
-  undefined1 temp_flag;
-  undefined4 temp_value1;
-  undefined4 temp_value2;
-  undefined *temp_pointer1;
-  undefined1 *temp_pointer2;
+  int8_t temp_buffer [32];
+  int8_t temp_flag;
+  int32_t temp_value1;
+  int32_t temp_value2;
+  void *temp_pointer1;
+  int8_t *temp_pointer2;
   uint buffer_size;
-  undefined8 temp_param1;
-  undefined *temp_pointer3;
+  uint64_t temp_param1;
+  void *temp_pointer3;
   longlong stack_value;
   uint stack_counter;
-  undefined8 temp_param2;
-  undefined8 temp_param3;
-  undefined *temp_pointer4;
-  undefined8 temp_param4;
-  undefined4 temp_value3;
-  undefined8 temp_param5;
-  undefined8 temp_param6;
-  undefined1 temp_buffer2 [32];
-  undefined8 temp_param7;
-  undefined8 temp_param8;
+  uint64_t temp_param2;
+  uint64_t temp_param3;
+  void *temp_pointer4;
+  uint64_t temp_param4;
+  int32_t temp_value3;
+  uint64_t temp_param5;
+  uint64_t temp_param6;
+  int8_t temp_buffer2 [32];
+  uint64_t temp_param7;
+  uint64_t temp_param8;
   char process_name_buffer [16];
   ulonglong security_cookie;
   
   // 初始化安全cookie和参数
   temp_param7 = 0xfffffffffffffffe;
   security_cookie = _DAT_180bf00a8 ^ (ulonglong)temp_buffer;
-  memory_pointer = (undefined1 *)0x0;
+  memory_pointer = (int8_t *)0x0;
   temp_value1 = 0;
   temp_param3 = config_param;
   temp_param8 = config_param;
@@ -675,9 +675,9 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   memory_size = (ulonglong)stack_counter;
   
   // 写入进程信息前缀
-  *(undefined4 *)(memory_size + system_manager) = 0x44495020;  // "DIP "
-  *(undefined2 *)(memory_size + 4 + system_manager) = 0x203a;  // ":"
-  *(undefined1 *)(memory_size + 6 + system_manager) = 0;
+  *(int32_t *)(memory_size + system_manager) = 0x44495020;  // "DIP "
+  *(int16_t *)(memory_size + 4 + system_manager) = 0x203a;  // ":"
+  *(int8_t *)(memory_size + 6 + system_manager) = 0;
   stack_counter = 6;
   
   // 获取并处理进程名称
@@ -710,7 +710,7 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
   temp_pointer1 = &UNK_180a3c3e0;
   temp_counter = 0;
   temp_param1 = 0;
-  temp_pointer2 = (undefined1 *)0x0;
+  temp_pointer2 = (int8_t *)0x0;
   buffer_size = 0;
   temp_value2 = 2;
   allocation_counter = *(uint *)(management_param + 0x10);
@@ -722,7 +722,7 @@ void InitializationSystem_ResourceManager(ResourceHandle resource_handle, Config
 RESOURCE_ALLOCATION_COMPLETE:
     temp_counter = resource_counter;
     if (allocation_counter != 0) {
-      memcpy(memory_pointer, *(undefined8 *)(management_param + 8), memory_size);
+      memcpy(memory_pointer, *(uint64_t *)(management_param + 8), memory_size);
     }
   }
   else if (allocation_counter != 0) {
@@ -732,7 +732,7 @@ RESOURCE_ALLOCATION_COMPLETE:
     }
     
     // 分配内存资源
-    memory_pointer = (undefined1 *)FUN_18062b420(_DAT_180c8ed18, (longlong)iteration_count, 0x13);
+    memory_pointer = (int8_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)iteration_count, 0x13);
     *memory_pointer = 0;
     temp_pointer2 = memory_pointer;
     resource_counter = FUN_18064e990(memory_pointer);
@@ -741,28 +741,28 @@ RESOURCE_ALLOCATION_COMPLETE:
   }
   
   // 完成资源分配并处理数据
-  if (memory_pointer != (undefined1 *)0x0) {
+  if (memory_pointer != (int8_t *)0x0) {
     memory_pointer[memory_size] = 0;
   }
   
-  temp_value2 = *(undefined4 *)(management_param + 0x1c);
-  temp_param1 = CONCAT44(temp_value2, (undefined4)temp_param1);
+  temp_value2 = *(int32_t *)(management_param + 0x1c);
+  temp_param1 = CONCAT44(temp_value2, (int32_t)temp_param1);
   buffer_size = allocation_counter;
   
   // 处理资源扩展
   if (allocation_counter != 0xfffffffa) {
     allocation_counter = allocation_counter + 7;
-    if (memory_pointer == (undefined1 *)0x0) {
+    if (memory_pointer == (int8_t *)0x0) {
       if ((int)allocation_counter < 0x10) {
         allocation_counter = 0x10;
       }
-      memory_pointer = (undefined1 *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)allocation_counter, 0x13);
+      memory_pointer = (int8_t *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)allocation_counter, 0x13);
       *memory_pointer = 0;
     }
     else {
       if (allocation_counter <= temp_counter) goto RESOURCE_EXTENSION_COMPLETE;
       temp_flag = 0x13;
-      memory_pointer = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18, memory_pointer, allocation_counter, 0x10);
+      memory_pointer = (int8_t *)FUN_18062b8b0(_DAT_180c8ed18, memory_pointer, allocation_counter, 0x10);
     }
     
     temp_pointer2 = memory_pointer;
@@ -791,40 +791,40 @@ RESOURCE_EXTENSION_COMPLETE:
  * @param param_4 完成参数3
  * @return 系统完成状态码
  */
-undefined8
-InitializationSystem_CompletionHandler(SystemHandle completion_handle, undefined8 completion_param1, undefined8 completion_param2, undefined8 completion_param3)
+uint64_t
+InitializationSystem_CompletionHandler(SystemHandle completion_handle, uint64_t completion_param1, uint64_t completion_param2, uint64_t completion_param3)
 
 {
   char comparison_char1;
   char comparison_char2;
-  undefined8 *callback_array;
-  undefined8 *callback_array_end;
-  undefined8 *callback_pointer;
+  uint64_t *callback_array;
+  uint64_t *callback_array_end;
+  uint64_t *callback_pointer;
   longlong array_size;
   char *string_pointer;
   uint string_length;
   int *function_pointer;
   ulonglong iteration_counter;
-  undefined8 completion_status;
+  uint64_t completion_status;
   ulonglong temp_counter;
   ulonglong loop_counter;
   longlong temp_resource;
-  undefined8 *resource_pointer;
+  uint64_t *resource_pointer;
   ulonglong resource_size;
-  undefined *temp_pointer1;
-  undefined1 *memory_pointer;
+  void *temp_pointer1;
+  int8_t *memory_pointer;
   uint memory_size;
-  undefined8 temp_param1;
-  undefined8 temp_param2;
-  undefined8 *temp_pointer2;
-  undefined8 *temp_pointer3;
-  undefined8 temp_param4;
-  undefined4 temp_value;
+  uint64_t temp_param1;
+  uint64_t temp_param2;
+  uint64_t *temp_pointer2;
+  uint64_t *temp_pointer3;
+  uint64_t temp_param4;
+  int32_t temp_value;
   ulonglong system_cookie;
   
   // 初始化回调数组
-  temp_pointer2 = (undefined8 *)0x0;
-  temp_pointer3 = (undefined8 *)0x0;
+  temp_pointer2 = (uint64_t *)0x0;
+  temp_pointer3 = (uint64_t *)0x0;
   resource_size = 0;
   temp_param4 = 0;
   temp_value = 3;
@@ -848,7 +848,7 @@ CALLBACK_PROCESSING_COMPLETE:
     }
     
     // 清理资源并返回
-    if (callback_array != (undefined8 *)0x0) {
+    if (callback_array != (uint64_t *)0x0) {
       FUN_18064e900(callback_array);
     }
     return completion_status;
@@ -862,20 +862,20 @@ CALLBACK_PROCESSING_LOOP:
   // 初始化临时缓冲区
   temp_pointer1 = &UNK_180a3c3e0;
   temp_param2 = 0;
-  memory_pointer = (undefined1 *)0x0;
+  memory_pointer = (int8_t *)0x0;
   memory_size = 0;
   
   FUN_1806277c0(&temp_pointer1, *function_pointer);
   
   // 处理字符串数据
   if (*function_pointer != 0) {
-    memcpy(memory_pointer, *(undefined8 *)(function_pointer + -2), *function_pointer + 1);
+    memcpy(memory_pointer, *(uint64_t *)(function_pointer + -2), *function_pointer + 1);
   }
   
   // 检查并处理字符串数据
   if (*(longlong *)(function_pointer + -2) != 0) {
     memory_size = 0;
-    if (memory_pointer != (undefined1 *)0x0) {
+    if (memory_pointer != (int8_t *)0x0) {
       *memory_pointer = 0;
     }
     temp_param2 = temp_param2 & 0xffffffff;
@@ -899,7 +899,7 @@ CALLBACK_PROCESSING_LOOP:
   
   // 执行字符串比较
   array_size = func_0x0001800464d0(&temp_pointer1);
-  resource_pointer = (undefined8 *)&UNK_1809fde40;
+  resource_pointer = (uint64_t *)&UNK_1809fde40;
   
   do {
     string_pointer = (char *)*resource_pointer;
@@ -918,10 +918,10 @@ CALLBACK_PROCESSING_LOOP:
     resource_pointer = resource_pointer + 1;
     if (0x1809fde87 < (longlong)resource_pointer) {
       temp_pointer1 = &UNK_180a3c3e0;
-      if (memory_pointer != (undefined1 *)0x0) {
+      if (memory_pointer != (int8_t *)0x0) {
         FUN_18064e900();
       }
-      memory_pointer = (undefined1 *)0x0;
+      memory_pointer = (int8_t *)0x0;
       temp_param2 = (ulonglong)temp_param2._4_4_ << 0x20;
       temp_pointer1 = &UNK_18098bcb0;
       completion_status = 1;
@@ -931,10 +931,10 @@ CALLBACK_PROCESSING_LOOP:
   
   // 清理临时资源
   temp_pointer1 = &UNK_180a3c3e0;
-  if (memory_pointer != (undefined1 *)0x0) {
+  if (memory_pointer != (int8_t *)0x0) {
     FUN_18064e900();
   }
-  memory_pointer = (undefined1 *)0x0;
+  memory_pointer = (int8_t *)0x0;
   temp_param2 = (ulonglong)temp_param2._4_4_ << 0x20;
   temp_pointer1 = &UNK_18098bcb0;
   

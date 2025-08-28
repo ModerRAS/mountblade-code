@@ -353,32 +353,32 @@ void ListNodeRemove(void* node)
 void RegisterSystemCallback(void* callback_data)
 {
     char status;
-    undefined8 *base_ptr;
+    uint64_t *base_ptr;
     int compare_result;
     longlong *manager_ptr;
     longlong result;
-    undefined8 *current_ptr;
-    undefined8 *prev_ptr;
-    undefined8 *next_ptr;
-    undefined8 *new_callback;
+    uint64_t *current_ptr;
+    uint64_t *prev_ptr;
+    uint64_t *next_ptr;
+    uint64_t *new_callback;
     code *callback_function;
     
     /* 获取回调管理器指针 */
     manager_ptr = (longlong *)FUN_18008d070();
-    base_ptr = (undefined8 *)*manager_ptr;
+    base_ptr = (uint64_t *)*manager_ptr;
     status = *(char *)((longlong)base_ptr[1] + 0x19);
     callback_function = FUN_18007fcd0;
     prev_ptr = base_ptr;
-    current_ptr = (undefined8 *)base_ptr[1];
+    current_ptr = (uint64_t *)base_ptr[1];
     
     /* 在链表中查找合适的位置 */
     while (status == '\0') {
         compare_result = memcmp(current_ptr + 4, &DAT_1809fc740, 0x10);
         if (compare_result < 0) {
-            next_ptr = (undefined8 *)current_ptr[2];
+            next_ptr = (uint64_t *)current_ptr[2];
             current_ptr = prev_ptr;
         } else {
-            next_ptr = (undefined8 *)*current_ptr;
+            next_ptr = (uint64_t *)*current_ptr;
         }
         prev_ptr = current_ptr;
         current_ptr = next_ptr;
@@ -412,32 +412,32 @@ void RegisterSystemCallback(void* callback_data)
 void RegisterInputCallback(void* input_data)
 {
     char status;
-    undefined8 *base_ptr;
+    uint64_t *base_ptr;
     int compare_result;
     longlong *manager_ptr;
     longlong result;
-    undefined8 *current_ptr;
-    undefined8 *prev_ptr;
-    undefined8 *next_ptr;
-    undefined8 *new_callback;
-    undefined8 callback_data;
+    uint64_t *current_ptr;
+    uint64_t *prev_ptr;
+    uint64_t *next_ptr;
+    uint64_t *new_callback;
+    uint64_t callback_data;
     
     /* 获取输入管理器指针 */
     manager_ptr = (longlong *)FUN_18008d070();
-    base_ptr = (undefined8 *)*manager_ptr;
+    base_ptr = (uint64_t *)*manager_ptr;
     status = *(char *)((longlong)base_ptr[1] + 0x19);
     callback_data = 0;
     prev_ptr = base_ptr;
-    current_ptr = (undefined8 *)base_ptr[1];
+    current_ptr = (uint64_t *)base_ptr[1];
     
     /* 在链表中查找合适的位置 */
     while (status == '\0') {
         compare_result = memcmp(current_ptr + 4, &DAT_1809fc768, 0x10);
         if (compare_result < 0) {
-            next_ptr = (undefined8 *)current_ptr[2];
+            next_ptr = (uint64_t *)current_ptr[2];
             current_ptr = prev_ptr;
         } else {
-            next_ptr = (undefined8 *)*current_ptr;
+            next_ptr = (uint64_t *)*current_ptr;
         }
         prev_ptr = current_ptr;
         current_ptr = next_ptr;
@@ -471,32 +471,32 @@ void RegisterInputCallback(void* input_data)
 void RegisterRenderCallback(void* render_data)
 {
     char status;
-    undefined8 *base_ptr;
+    uint64_t *base_ptr;
     int compare_result;
     longlong *manager_ptr;
     longlong result;
-    undefined8 *current_ptr;
-    undefined8 *prev_ptr;
-    undefined8 *next_ptr;
-    undefined8 *new_callback;
-    undefined8 callback_data;
+    uint64_t *current_ptr;
+    uint64_t *prev_ptr;
+    uint64_t *next_ptr;
+    uint64_t *new_callback;
+    uint64_t callback_data;
     
     /* 获取渲染管理器指针 */
     manager_ptr = (longlong *)FUN_18008d070();
-    base_ptr = (undefined8 *)*manager_ptr;
+    base_ptr = (uint64_t *)*manager_ptr;
     status = *(char *)((longlong)base_ptr[1] + 0x19);
     callback_data = 0;
     prev_ptr = base_ptr;
-    current_ptr = (undefined8 *)base_ptr[1];
+    current_ptr = (uint64_t *)base_ptr[1];
     
     /* 在链表中查找合适的位置 */
     while (status == '\0') {
         compare_result = memcmp(current_ptr + 4, &DAT_18098c9b8, 0x10);
         if (compare_result < 0) {
-            next_ptr = (undefined8 *)current_ptr[2];
+            next_ptr = (uint64_t *)current_ptr[2];
             current_ptr = prev_ptr;
         } else {
-            next_ptr = (undefined8 *)*current_ptr;
+            next_ptr = (uint64_t *)*current_ptr;
         }
         prev_ptr = current_ptr;
         current_ptr = next_ptr;

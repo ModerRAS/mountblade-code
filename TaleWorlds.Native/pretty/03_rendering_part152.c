@@ -251,23 +251,23 @@ void FUN_18035ec60(longlong param_1)
   float sample_weight_x;          // 采样权重X坐标
   float sample_weight_y;          // 采样权重Y坐标  
   float interpolation_result;    // 插值计算结果
-  undefined4 color_mask;          // 颜色掩码
-  undefined4 temp_mask1;          // 临时掩码1
-  undefined4 temp_mask2;          // 临时掩码2
+  int32_t color_mask;          // 颜色掩码
+  int32_t temp_mask1;          // 临时掩码1
+  int32_t temp_mask2;          // 临时掩码2
   longlong memory_handle;         // 内存句柄
-  undefined1 buffer_data [8];     // 缓冲区数据
-  undefined8 *data_pointer;       // 数据指针
-  undefined8 temp_data;           // 临时数据
+  int8_t buffer_data [8];     // 缓冲区数据
+  uint64_t *data_pointer;       // 数据指针
+  uint64_t temp_data;           // 临时数据
   longlong *render_context1;      // 渲染上下文1
   longlong *render_context2;      // 渲染上下文2
   float *texture_coords;          // 纹理坐标指针
   int loop_counter1;              // 循环计数器1
-  undefined8 *array_pointer1;     // 数组指针1
+  uint64_t *array_pointer1;     // 数组指针1
   int loop_counter2;              // 循环计数器2
   longlong **context_pointer;     // 上下文指针
   int sample_index;               // 采样索引
-  undefined8 *array_pointer2;     // 数组指针2
-  undefined8 *array_pointer3;     // 数组指针3
+  uint64_t *array_pointer2;     // 数组指针2
+  uint64_t *array_pointer3;     // 数组指针3
   float *vertex_data;             // 顶点数据指针
   float texture_coord_u;          // 纹理U坐标
   float texture_coord_v;          // 纹理V坐标
@@ -280,39 +280,39 @@ void FUN_18035ec60(longlong param_1)
   float scale_factor;             // 缩放因子
   float threshold_value;          // 阈值数值
   // 栈变量区域 - 渲染系统工作内存
-  undefined1 stack_protection_buffer [32];        // 栈保护缓冲区
+  int8_t stack_protection_buffer [32];        // 栈保护缓冲区
   float *sampling_buffer_ptr;                     // 采样缓冲区指针
   longlong ***triple_context_ptr;                // 三重上下文指针
-  undefined *general_ptr1;                       // 通用指针1
-  undefined4 temp_flags;                          // 临时标志位
+  void *general_ptr1;                       // 通用指针1
+  int32_t temp_flags;                          // 临时标志位
   float sampling_weights [2];                     // 采样权重数组
-  undefined8 context_data1;                       // 上下文数据1
-  undefined8 context_data2;                       // 上下文数据2
+  uint64_t context_data1;                       // 上下文数据1
+  uint64_t context_data2;                       // 上下文数据2
   longlong **double_context_ptr;                 // 双重上下文指针
   longlong *memory_manager_ptr;                   // 内存管理器指针
-  undefined8 transform_data1;                    // 变换数据1
-  undefined8 transform_data2;                    // 变换数据2
-  undefined8 transform_data3;                    // 变换数据3
-  undefined1 temp_buffer1 [8];                    // 临时缓冲区1
-  undefined8 *buffer_manager_ptr;                // 缓冲区管理器指针
+  uint64_t transform_data1;                    // 变换数据1
+  uint64_t transform_data2;                    // 变换数据2
+  uint64_t transform_data3;                    // 变换数据3
+  int8_t temp_buffer1 [8];                    // 临时缓冲区1
+  uint64_t *buffer_manager_ptr;                // 缓冲区管理器指针
   code *callback_function1;                      // 回调函数1
   code *callback_function2;                      // 回调函数2
   longlong *pipeline_state_ptr;                  // 管线状态指针
   longlong *render_target_ptr;                   // 渲染目标指针
   float *vertex_buffer_ptr;                      // 顶点缓冲区指针
-  undefined8 texture_data1;                      // 纹理数据1
-  undefined8 texture_data2;                      // 纹理数据2
+  uint64_t texture_data1;                      // 纹理数据1
+  uint64_t texture_data2;                      // 纹理数据2
   longlong *shader_program_ptr;                  // 着色器程序指针
   longlong **texture_manager_ptr;                // 纹理管理器指针
   longlong *frame_buffer_ptr;                     // 帧缓冲区指针
-  undefined8 frame_buffer_data;                   // 帧缓冲区数据
+  uint64_t frame_buffer_data;                   // 帧缓冲区数据
   longlong *depth_buffer_ptr;                     // 深度缓冲区指针
   char status_flag1;                              // 状态标志1
   char status_flag2;                              // 状态标志2
   char status_flag3;                              // 状态标志3
   float render_scale_factor;                      // 渲染缩放因子
   float depth_threshold;                          // 深度阈值
-  undefined4 depth_mask;                          // 深度掩码
+  int32_t depth_mask;                          // 深度掩码
   float texture_coord_u1;                         // 纹理U坐标1
   float texture_coord_v1;                         // 纹理V坐标1
   int vertex_index1;                              // 顶点索引1
@@ -336,7 +336,7 @@ void FUN_18035ec60(longlong param_1)
   float normal_x2;                                // 法线X分量2
   float normal_y2;                                // 法线Y分量2
   float normal_z2;                                // 法线Z分量2
-  undefined4 normal_mask;                         // 法线掩码
+  int32_t normal_mask;                         // 法线掩码
   float color_r;                                  // 颜色红色分量
   float color_g;                                  // 颜色绿色分量
   float color_b;                                  // 颜色蓝色分量
@@ -346,79 +346,79 @@ void FUN_18035ec60(longlong param_1)
   float shadow_intensity;                         // 阴影强度
   float shadow_softness;                          // 阴影柔和度
   float shadow_distance;                          // 阴影距离
-  undefined4 shadow_mask;                         // 阴影掩码
+  int32_t shadow_mask;                         // 阴影掩码
   float light_x;                                  // 光源X坐标
   float light_y;                                  // 光源Y坐标
   float light_z;                                  // 光源Z坐标
-  undefined4 light_mask;                          // 光源掩码
+  int32_t light_mask;                          // 光源掩码
   float material_x;                               // 材质X坐标
   float material_y;                               // 材质Y坐标
   float material_z;                               // 材质Z坐标
-  undefined4 material_mask;                      // 材质掩码
+  int32_t material_mask;                      // 材质掩码
   longlong *vertex_buffer_manager_ptr;            // 顶点缓冲区管理器指针
-  undefined8 vertex_buffer_data;                  // 顶点缓冲区数据
+  uint64_t vertex_buffer_data;                  // 顶点缓冲区数据
   longlong *index_buffer_ptr;                     // 索引缓冲区指针
   float *texture_buffer_ptr;                     // 纹理缓冲区指针
   float *normal_buffer_ptr;                      // 法线缓冲区指针
   // 采样和渲染数据缓冲区
-  undefined1 sample_buffer1 [16];                   // 采样缓冲区1
-  undefined1 sample_buffer2 [16];                   // 采样缓冲区2
-  undefined1 sample_buffer3 [16];                   // 采样缓冲区3
-  undefined1 sample_buffer4 [16];                   // 采样缓冲区4
-  undefined1 render_buffer1 [16];                   // 渲染缓冲区1
-  undefined1 render_buffer2 [16];                   // 渲染缓冲区2
-  undefined *texture_sampler_ptr;                   // 纹理采样器指针
-  undefined **texture_manager_array_ptr;            // 纹理管理器数组指针
-  undefined8 render_context_data;                    // 渲染上下文数据
-  undefined *shader_uniform_ptr;                    // 着色器uniform指针
-  undefined *vertex_attribute_ptr;                  // 顶点属性指针
+  int8_t sample_buffer1 [16];                   // 采样缓冲区1
+  int8_t sample_buffer2 [16];                   // 采样缓冲区2
+  int8_t sample_buffer3 [16];                   // 采样缓冲区3
+  int8_t sample_buffer4 [16];                   // 采样缓冲区4
+  int8_t render_buffer1 [16];                   // 渲染缓冲区1
+  int8_t render_buffer2 [16];                   // 渲染缓冲区2
+  void *texture_sampler_ptr;                   // 纹理采样器指针
+  void **texture_manager_array_ptr;            // 纹理管理器数组指针
+  uint64_t render_context_data;                    // 渲染上下文数据
+  void *shader_uniform_ptr;                    // 着色器uniform指针
+  void *vertex_attribute_ptr;                  // 顶点属性指针
   code *render_callback;                            // 渲染回调函数
-  undefined8 pipeline_config;                       // 管线配置
+  uint64_t pipeline_config;                       // 管线配置
   longlong vertex_data_buffer [2];                  // 顶点数据缓冲区
-  undefined2 render_flags;                           // 渲染标志
-  undefined1 buffer_size_flag;                      // 缓冲区大小标志
-  undefined8 texture_coordinates1;                   // 纹理坐标1
-  undefined8 texture_coordinates2;                   // 纹理坐标2
-  undefined8 texture_coordinates3;                   // 纹理坐标3
-  undefined8 texture_coordinates4;                   // 纹理坐标4
-  undefined8 texture_coordinates5;                   // 纹理坐标5
-  undefined8 texture_coordinates6;                   // 纹理坐标6
-  undefined8 texture_coordinates7;                   // 纹理坐标7
-  undefined8 texture_coordinates8;                   // 纹理坐标8
-  undefined8 vertex_data1;                           // 顶点数据1
-  undefined8 vertex_data2;                           // 顶点数据2
-  undefined8 vertex_data3;                           // 顶点数据3
-  undefined8 vertex_data4;                           // 顶点数据4
-  undefined8 vertex_data5;                           // 顶点数据5
-  undefined8 vertex_data6;                           // 顶点数据6
-  undefined8 vertex_data7;                           // 顶点数据7
-  undefined8 vertex_data8;                           // 顶点数据8
+  int16_t render_flags;                           // 渲染标志
+  int8_t buffer_size_flag;                      // 缓冲区大小标志
+  uint64_t texture_coordinates1;                   // 纹理坐标1
+  uint64_t texture_coordinates2;                   // 纹理坐标2
+  uint64_t texture_coordinates3;                   // 纹理坐标3
+  uint64_t texture_coordinates4;                   // 纹理坐标4
+  uint64_t texture_coordinates5;                   // 纹理坐标5
+  uint64_t texture_coordinates6;                   // 纹理坐标6
+  uint64_t texture_coordinates7;                   // 纹理坐标7
+  uint64_t texture_coordinates8;                   // 纹理坐标8
+  uint64_t vertex_data1;                           // 顶点数据1
+  uint64_t vertex_data2;                           // 顶点数据2
+  uint64_t vertex_data3;                           // 顶点数据3
+  uint64_t vertex_data4;                           // 顶点数据4
+  uint64_t vertex_data5;                           // 顶点数据5
+  uint64_t vertex_data6;                           // 顶点数据6
+  uint64_t vertex_data7;                           // 顶点数据7
+  uint64_t vertex_data8;                           // 顶点数据8
   uint render_width;                                // 渲染宽度
-  undefined2 render_height;                           // 渲染高度
-  undefined4 render_quality;                         // 渲染质量
-  undefined1 texture_format;                        // 纹理格式
-  undefined *texture_cache_ptr;                     // 纹理缓存指针
-  undefined8 texture_cache_data;                    // 纹理缓存数据
-  undefined2 texture_flags;                          // 纹理标志
-  undefined1 texture_filter;                         // 纹理过滤器
-  undefined8 texture_sampler_data1;                  // 纹理采样器数据1
-  undefined8 texture_sampler_data2;                  // 纹理采样器数据2
-  undefined8 texture_sampler_data3;                  // 纹理采样器数据3
-  undefined8 texture_sampler_data4;                  // 纹理采样器数据4
-  undefined8 texture_sampler_data5;                  // 纹理采样器数据5
-  undefined8 texture_sampler_data6;                  // 纹理采样器数据6
-  undefined8 texture_sampler_data7;                  // 纹理采样器数据7
-  undefined8 texture_sampler_data8;                  // 纹理采样器数据8
-  undefined8 depth_stencil_data;                     // 深度模板数据
-  undefined4 depth_stencil_flags;                    // 深度模板标志
-  undefined2 stencil_ref;                            // 模板引用值
-  undefined4 stencil_mask;                           // 模板掩码
-  undefined1 stencil_func;                           // 模板函数
+  int16_t render_height;                           // 渲染高度
+  int32_t render_quality;                         // 渲染质量
+  int8_t texture_format;                        // 纹理格式
+  void *texture_cache_ptr;                     // 纹理缓存指针
+  uint64_t texture_cache_data;                    // 纹理缓存数据
+  int16_t texture_flags;                          // 纹理标志
+  int8_t texture_filter;                         // 纹理过滤器
+  uint64_t texture_sampler_data1;                  // 纹理采样器数据1
+  uint64_t texture_sampler_data2;                  // 纹理采样器数据2
+  uint64_t texture_sampler_data3;                  // 纹理采样器数据3
+  uint64_t texture_sampler_data4;                  // 纹理采样器数据4
+  uint64_t texture_sampler_data5;                  // 纹理采样器数据5
+  uint64_t texture_sampler_data6;                  // 纹理采样器数据6
+  uint64_t texture_sampler_data7;                  // 纹理采样器数据7
+  uint64_t texture_sampler_data8;                  // 纹理采样器数据8
+  uint64_t depth_stencil_data;                     // 深度模板数据
+  int32_t depth_stencil_flags;                    // 深度模板标志
+  int16_t stencil_ref;                            // 模板引用值
+  int32_t stencil_mask;                           // 模板掩码
+  int8_t stencil_func;                           // 模板函数
   ulonglong stack_guard;                             // 栈保护器
   
   uStack_280 = 0xfffffffffffffffe;
   uStack_d8 = _DAT_180bf00a8 ^ (ulonglong)auStack_458;
-  puVar9 = (undefined8 *)0x0;
+  puVar9 = (uint64_t *)0x0;
   alStack_1b8[0] = 0;
   alStack_1b8[1] = 0;
   uStack_1a8 = 0;
@@ -436,7 +436,7 @@ void FUN_18035ec60(longlong param_1)
   uStack_17c = 0;
   uStack_174 = 0;
   uStack_16c = 0;
-  puStack_148 = (undefined *)0x0;
+  puStack_148 = (void *)0x0;
   uStack_140 = 0;
   uStack_138 = 0;
   uStack_136 = 3;
@@ -486,12 +486,12 @@ void FUN_18035ec60(longlong param_1)
     FUN_180627020(&UNK_180a1f6f0);
   }
   else {
-    uStack_3e8 = (undefined **)alStack_1b8;
+    uStack_3e8 = (void **)alStack_1b8;
     uStack_3e0 = &plStack_3b0;
     pcStack_3c8 = (code *)&UNK_180360340;
     pcStack_3c0 = FUN_180360210;
     pfStack_438 = (float *)auStack_3d8;
-    auStack_3d8 = (undefined1  [8])uStack_3e8;
+    auStack_3d8 = (int8_t  [8])uStack_3e8;
     puStack_3d0 = uStack_3e0;
     (**(code **)(**(longlong **)(plStack_3b0[0x15] + 0x88) + 0x60))
               (*(longlong **)(plStack_3b0[0x15] + 0x88),&DAT_180a01050,plStack_3b0[0x15] + 0xc,0);
@@ -503,7 +503,7 @@ void FUN_18035ec60(longlong param_1)
     pcStack_3c8 = (code *)&UNK_180360300;
     pcStack_3c0 = FUN_180360210;
     puStack_3d0 = uStack_3e0;
-    auStack_3d8 = (undefined1  [8])uStack_3e8;
+    auStack_3d8 = (int8_t  [8])uStack_3e8;
     pfStack_438 = (float *)auStack_3d8;
     (**(code **)(**(longlong **)(plStack_3f8[0x15] + 0x88) + 0x60))
               (*(longlong **)(plStack_3f8[0x15] + 0x88),&DAT_180a01050,plStack_3f8[0x15] + 0xc,0);
@@ -515,8 +515,8 @@ void FUN_18035ec60(longlong param_1)
     fVar24 = (float)(uStack_15c & 0xffff);
     fVar26 = 1.0 / fVar24;
     afStack_418[0] = 0.0;
-    puStack_3d0 = (undefined8 *)0x0;
-    auStack_3d8 = (undefined1  [8])0x0;
+    puStack_3d0 = (uint64_t *)0x0;
+    auStack_3d8 = (int8_t  [8])0x0;
     puVar15 = puStack_3d0;
     auVar8 = auStack_3d8;
     puVar20 = puVar9;
@@ -530,7 +530,7 @@ void FUN_18035ec60(longlong param_1)
           fVar25 = fVar28 + 0.5;
           pfStack_3a8 = (float *)((ulonglong)(uint)((fVar24 - fVar25) * fVar26) << 0x20);
           puVar9 = puVar15;
-          puVar19 = (undefined8 *)auVar8;
+          puVar19 = (uint64_t *)auVar8;
           do {
             fVar23 = (float)iVar18 + 0.5;
             pfStack_3a8 = (float *)CONCAT44(pfStack_3a8._4_4_,fVar23 * fVar26);
@@ -552,7 +552,7 @@ void FUN_18035ec60(longlong param_1)
               iVar16 = iVar16 + 1;
             } while (iVar16 < 2);
             puVar15 = puVar9;
-            auVar8 = (undefined1  [8])puVar19;
+            auVar8 = (int8_t  [8])puVar19;
             if (((fVar27 < 0.5) && (0.5 < fVar22)) && (fVar22 < 1.5)) {
               uStack_408 = CONCAT44(fVar24 - fVar28,(float)iVar18);
               if (puVar9 < puVar20) {
@@ -565,45 +565,45 @@ void FUN_18035ec60(longlong param_1)
                 if (lVar7 == 0) {
                   lVar7 = 1;
 LAB_18035f156:
-                  auVar8 = (undefined1  [8])FUN_18062b420(_DAT_180c8ed18,lVar7 * 8,3);
+                  auVar8 = (int8_t  [8])FUN_18062b420(_DAT_180c8ed18,lVar7 * 8,3);
                 }
                 else {
                   lVar7 = lVar7 * 2;
                   if (lVar7 != 0) goto LAB_18035f156;
-                  auVar8 = (undefined1  [8])0x0;
+                  auVar8 = (int8_t  [8])0x0;
                 }
                 if (puVar19 != puVar9) {
                     // WARNING: Subroutine does not return
                   memmove(auVar8,puVar19,(longlong)puVar9 - (longlong)puVar19);
                 }
-                *(undefined8 *)auVar8 = uStack_408;
-                puVar15 = (undefined8 *)((longlong)auVar8 + 8);
-                if (puVar19 != (undefined8 *)0x0) {
+                *(uint64_t *)auVar8 = uStack_408;
+                puVar15 = (uint64_t *)((longlong)auVar8 + 8);
+                if (puVar19 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900(puVar19);
                 }
                 puStack_3d0 = puVar15;
                 auStack_3d8 = auVar8;
-                puVar20 = (undefined8 *)((longlong)auVar8 + lVar7 * 8);
+                puVar20 = (uint64_t *)((longlong)auVar8 + lVar7 * 8);
                 pcStack_3c8 = (code *)puVar20;
               }
             }
             iVar18 = iVar18 + 1;
             puVar9 = puVar15;
-            puVar19 = (undefined8 *)auVar8;
+            puVar19 = (uint64_t *)auVar8;
             fVar27 = afStack_418[0];
           } while (iVar18 < (int)fVar24);
         }
         afStack_418[0] = (float)((int)fVar27 + 1);
-        puVar9 = (undefined8 *)(ulonglong)(uint)afStack_418[0];
+        puVar9 = (uint64_t *)(ulonglong)(uint)afStack_418[0];
         param_1 = uStack_398;
       } while ((int)afStack_418[0] < (int)fVar24);
     }
-    FUN_1802e9fa0(*(undefined8 *)(param_1 + 0x18),1,0);
+    FUN_1802e9fa0(*(uint64_t *)(param_1 + 0x18),1,0);
     if (((longlong)puVar15 - (longlong)auVar8 & 0xfffffffffffffff8U) != 0) {
-      puStack_1f0 = (undefined *)0x0;
-      ppuStack_1e8 = (undefined **)0x0;
-      uStack_1e0 = (undefined *)0x0;
+      puStack_1f0 = (void *)0x0;
+      ppuStack_1e8 = (void **)0x0;
+      uStack_1e0 = (void *)0x0;
       ppplStack_430 = &pplStack_400;
       pfStack_438 = (float *)&uStack_410;
       FUN_18046a8c0();
@@ -614,7 +614,7 @@ LAB_18035f156:
         (**(code **)(*plVar11 + 0x28))(plVar11);
       }
       (**(code **)(plVar11[0x3e] + 0x10))(plVar11 + 0x3e,&UNK_180a1f6e0);
-      uVar10 = *(undefined8 *)(param_1 + 0x18);
+      uVar10 = *(uint64_t *)(param_1 + 0x18);
       pplStack_400 = &plStack_3b8;
       plStack_3b8 = plVar11;
       (**(code **)(*plVar11 + 0x28))(plVar11);
@@ -633,8 +633,8 @@ LAB_18035f156:
       (**(code **)(plVar12[2] + 0x10))(plVar12 + 2,&UNK_180a1f770);
       puStack_1f0 = &UNK_18098bc80;
       ppuStack_1e8 = &puStack_1d8;
-      puStack_1d8 = (undefined *)((ulonglong)puStack_1d8 & 0xffffffffffffff00);
-      uStack_1e0 = (undefined *)CONCAT44((int)((ulonglong)uStack_1e0 >> 0x20),0x12);
+      puStack_1d8 = (void *)((ulonglong)puStack_1d8 & 0xffffffffffffff00);
+      uStack_1e0 = (void *)CONCAT44((int)((ulonglong)uStack_1e0 >> 0x20),0x12);
       strcpy_s(&puStack_1d8,0x20,&UNK_180a1f758);
       uVar10 = FUN_1800b30d0(_DAT_180c86930,&uStack_410,&puStack_1f0,1);
       FUN_180076910(plVar12,uVar10);
@@ -758,7 +758,7 @@ LAB_18035f156:
                 fStack_324 = (pfVar21[-4] + 0.5) * fVar26;
                 pfVar13 = (float *)FUN_1802a11e0(&puStack_148,auStack_210,
                                                  CONCAT44(fStack_324,fStack_328),1);
-                uStack_3e8 = (undefined **)
+                uStack_3e8 = (void **)
                              CONCAT44((pfVar13[1] + pfVar13[1]) - 1.0,(*pfVar13 + *pfVar13) - 1.0);
                 uStack_3e0 = (longlong **)CONCAT44(0x7f7fffff,(pfVar13[2] + pfVar13[2]) - 1.0);
                 fStack_320 = (pfVar21[-3] + 0.5) * fVar26;
@@ -827,7 +827,7 @@ LAB_18035f156:
         } while (pfVar13 != pfStack_268);
       }
       puStack_1f0 = &UNK_180234790;
-      ppuStack_1e8 = (undefined **)&UNK_18022bf60;
+      ppuStack_1e8 = (void **)&UNK_18022bf60;
       uStack_1e0 = &UNK_1802347a0;
       puStack_1d8 = &UNK_1802347f0;
       puStack_1d0 = &UNK_180234830;
@@ -838,10 +838,10 @@ LAB_18035f156:
       FUN_18040fa30(&uStack_3e8);
       if ((int)(*(int *)(pplStack_388 + 0x11) + (*(int *)(pplStack_388 + 0x11) >> 0x1f & 3U)) >> 2 <
           0) {
-        uStack_420 = *(undefined4 *)(pplStack_388 + 0xc);
+        uStack_420 = *(int32_t *)(pplStack_388 + 0xc);
         puStack_428 = &DAT_18098bc73;
-        if ((undefined *)plStack_390[3] != (undefined *)0x0) {
-          puStack_428 = (undefined *)plStack_390[3];
+        if ((void *)plStack_390[3] != (void *)0x0) {
+          puStack_428 = (void *)plStack_390[3];
         }
         ppplStack_430 = (longlong ***)((ulonglong)ppplStack_430 & 0xffffffff00000000);
         pfStack_438 = (float *)&UNK_1809ffb30;
@@ -899,7 +899,7 @@ LAB_18035f156:
       }
       auVar8 = auStack_3d8;
     }
-    if (auVar8 != (undefined1  [8])0x0) {
+    if (auVar8 != (int8_t  [8])0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900(auVar8);
     }
@@ -911,11 +911,11 @@ LAB_18035f156:
     (**(code **)(*plStack_3b0 + 0x38))();
   }
   if (uStack_138._1_1_ == '\0') {
-    if (((char)uStack_138 == '\0') && (puStack_148 != (undefined *)0x0)) {
+    if (((char)uStack_138 == '\0') && (puStack_148 != (void *)0x0)) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    puStack_148 = (undefined *)0x0;
+    puStack_148 = (void *)0x0;
     uStack_140 = 0;
     uStack_138 = 0;
   }
@@ -976,27 +976,27 @@ LAB_18035f156:
  *   简化实现：保持原有功能逻辑，添加详细的参数说明和技术注释
  *   优化点：明确配置管理流程，添加字符串处理说明
  */
-void FUN_18035fff0(undefined8 param_1)
+void FUN_18035fff0(uint64_t param_1)
 
 {
-  undefined1 auStack_1e8 [32];
-  undefined4 uStack_1c8;
-  undefined **appuStack_1c0 [2];
-  undefined8 uStack_1b0;
-  undefined *apuStack_1a8 [11];
-  undefined4 uStack_150;
-  undefined *puStack_148;
-  undefined1 *puStack_140;
-  undefined4 uStack_138;
-  undefined1 auStack_130 [72];
-  undefined *puStack_e8;
-  undefined1 *puStack_e0;
-  undefined4 uStack_d8;
-  undefined1 auStack_d0 [72];
-  undefined *puStack_88;
-  undefined1 *puStack_80;
-  undefined4 uStack_78;
-  undefined1 auStack_70 [72];
+  int8_t auStack_1e8 [32];
+  int32_t uStack_1c8;
+  void **appuStack_1c0 [2];
+  uint64_t uStack_1b0;
+  void *apuStack_1a8 [11];
+  int32_t uStack_150;
+  void *puStack_148;
+  int8_t *puStack_140;
+  int32_t uStack_138;
+  int8_t auStack_130 [72];
+  void *puStack_e8;
+  int8_t *puStack_e0;
+  int32_t uStack_d8;
+  int8_t auStack_d0 [72];
+  void *puStack_88;
+  int8_t *puStack_80;
+  int32_t uStack_78;
+  int8_t auStack_70 [72];
   ulonglong uStack_28;
   
   uStack_1b0 = 0xfffffffffffffffe;

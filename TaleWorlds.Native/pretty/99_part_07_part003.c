@@ -452,8 +452,8 @@ void AdvancedDataProcessor(longlong param_1, longlong param_2) {
  * @param param_4 配置标志
  * @param param_5 配置选项
  */
-void ConfigurationManager(longlong *param_1, undefined8 param_2, longlong param_3, 
-                         uint param_4, undefined4 param_5) {
+void ConfigurationManager(longlong *param_1, uint64_t param_2, longlong param_3, 
+                         uint param_4, int32_t param_5) {
     // 系统上下文初始化
     system_context_t context;
     memset(&context, 0, sizeof(system_context_t));
@@ -525,7 +525,7 @@ void ConfigurationManager(longlong *param_1, undefined8 param_2, longlong param_
         *(float32_t*)(*(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1bec) = 1.0f / (float32_t)(*(word_t*)(param_1[0x85] + 0x32e) >> (param_byte - 1 & 0x1f));
         
         // 执行渲染操作
-        ExecuteOperation(*(longlong*)(_DAT_180c86938 + 0x1cd8), *(undefined8*)(_DAT_180c86938 + 0x1c88),
+        ExecuteOperation(*(longlong*)(_DAT_180c86938 + 0x1cd8), *(uint64_t*)(_DAT_180c86938 + 0x1c88),
                          *(longlong*)(_DAT_180c86938 + 0x1cd8) + 0x1be0, 0x230);
         
         // 更新系统状态

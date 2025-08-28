@@ -24,7 +24,7 @@ void render_context_match_and_process(longlong *render_context, longlong *contex
   ulonglong array_size;
   longlong context_id;
   longlong *stack_context;
-  undefined4 process_result;
+  int32_t process_result;
   
   // 获取当前上下文ID
   context_id = *(longlong *)(render_context + 0x18);
@@ -49,7 +49,7 @@ context_found:
   process_result = (**(code **)(*context_array + 8))(context_array);
   stack_context = context_array;
   // 调用渲染处理函数
-  (**(code **)(g_render_dispatch_table + 0x210))(*(undefined4 *)(render_context + 0x50), &stack_context);
+  (**(code **)(g_render_dispatch_table + 0x210))(*(int32_t *)(render_context + 0x50), &stack_context);
   return;
 }
 
@@ -58,30 +58,30 @@ context_found:
 //       param_5, param_6 - 最小/最大边界输出
 // 功能：计算顶点集合的边界框，处理三角形数据，优化渲染性能
 ulonglong *render_bounding_box_calculate_triangles(
-  undefined8 flags, 
+  uint64_t flags, 
   ulonglong *output_array, 
   float *vertex_data, 
   float *bounding_box_output,
-  undefined8 *min_bound_output, 
-  undefined8 *max_bound_output)
+  uint64_t *min_bound_output, 
+  uint64_t *max_bound_output)
 {
   uint vertex_count_x;
   uint vertex_count_y;
   float temp_float;
   uint *vertex_ptr;
-  undefined8 *temp_ptr1;
-  undefined1 simd_min_x[16];    // SIMD寄存器变量
-  undefined1 simd_min_y[16];    // SIMD寄存器变量
-  undefined1 simd_max_x[16];    // SIMD寄存器变量
-  undefined1 simd_max_y[16];    // SIMD寄存器变量
-  undefined1 simd_temp1[12];    // SIMD临时变量
-  undefined1 simd_temp2[12];    // SIMD临时变量
-  undefined1 simd_temp3[12];    // SIMD临时变量
-  undefined1 simd_temp4[12];    // SIMD临时变量
-  undefined4 temp_uint1;
-  undefined4 temp_uint2;
-  undefined4 temp_uint3;
-  undefined8 temp_ulong1;
+  uint64_t *temp_ptr1;
+  int8_t simd_min_x[16];    // SIMD寄存器变量
+  int8_t simd_min_y[16];    // SIMD寄存器变量
+  int8_t simd_max_x[16];    // SIMD寄存器变量
+  int8_t simd_max_y[16];    // SIMD寄存器变量
+  int8_t simd_temp1[12];    // SIMD临时变量
+  int8_t simd_temp2[12];    // SIMD临时变量
+  int8_t simd_temp3[12];    // SIMD临时变量
+  int8_t simd_temp4[12];    // SIMD临时变量
+  int32_t temp_uint1;
+  int32_t temp_uint2;
+  int32_t temp_uint3;
+  uint64_t temp_ulong1;
   char compare_result;
   float *float_ptr1;
   float *float_ptr2;
@@ -92,55 +92,55 @@ ulonglong *render_bounding_box_calculate_triangles(
   float *float_ptr6;
   float *float_ptr7;
   uint *uint_ptr1;
-  undefined4 *uint_ptr2;
+  int32_t *uint_ptr2;
   int loop_counter;
   longlong temp_long1;
-  undefined8 temp_ulong2;
-  undefined8 temp_ulong3;
-  undefined8 temp_ulong4;
+  uint64_t temp_ulong2;
+  uint64_t temp_ulong3;
+  uint64_t temp_ulong4;
   ulonglong vertex_array_size;
   undefined7 temp_undefined7;
-  undefined4 *uint_ptr3;
-  undefined4 *uint_ptr4;
+  int32_t *uint_ptr3;
+  int32_t *uint_ptr4;
   float *float_ptr8;
-  undefined8 *temp_ptr2;
+  uint64_t *temp_ptr2;
   float float_val1;
-  undefined4 simd_result1;
-  undefined4 simd_result2;
-  undefined4 simd_result3;
-  undefined4 simd_result4;
+  int32_t simd_result1;
+  int32_t simd_result2;
+  int32_t simd_result3;
+  int32_t simd_result4;
   float min_x_val;
   float max_x_val;
   float min_y_val;
   float max_y_val;
   float center_x;
   float center_y;
-  undefined1 simd_batch1[16];
-  undefined1 simd_batch2[16];
-  undefined1 simd_batch3[16];
-  undefined1 simd_batch4[16];
-  undefined1 simd_batch5[16];
-  undefined1 simd_batch6[16];
-  undefined1 simd_batch7[16];
-  undefined1 simd_batch8[16];
+  int8_t simd_batch1[16];
+  int8_t simd_batch2[16];
+  int8_t simd_batch3[16];
+  int8_t simd_batch4[16];
+  int8_t simd_batch5[16];
+  int8_t simd_batch6[16];
+  int8_t simd_batch7[16];
+  int8_t simd_batch8[16];
   float temp_float1;
-  undefined1 simd_min_batch[16];
-  undefined1 simd_temp_batch[16];
-  undefined1 simd_max_batch[16];
+  int8_t simd_min_batch[16];
+  int8_t simd_temp_batch[16];
+  int8_t simd_max_batch[16];
   float temp_float2;
-  undefined1 simd_center1[16];
+  int8_t simd_center1[16];
   float temp_float3;
-  undefined1 simd_final[16];
-  undefined1 simd_result[16];
-  undefined1 simd_output1[16];
-  undefined1 simd_output2[16];
-  undefined1 simd_output3[16];
-  undefined1 simd_output4[16];
-  undefined1 simd_output5[16];
-  undefined1 simd_output6[16];
-  undefined1 simd_output7[16];
-  undefined1 simd_output8[16];
-  undefined8 stack_bound_x;
+  int8_t simd_final[16];
+  int8_t simd_result[16];
+  int8_t simd_output1[16];
+  int8_t simd_output2[16];
+  int8_t simd_output3[16];
+  int8_t simd_output4[16];
+  int8_t simd_output5[16];
+  int8_t simd_output6[16];
+  int8_t simd_output7[16];
+  int8_t simd_output8[16];
+  uint64_t stack_bound_x;
   float *stack_vertex_ptr1;
   float *stack_vertex_ptr2;
   float stack_float1;
@@ -148,20 +148,20 @@ ulonglong *render_bounding_box_calculate_triangles(
   float stack_float3;
   float stack_float4;
   longlong stack_long1;
-  undefined8 stack_ulong1;
-  undefined8 stack_ulong2;
-  undefined8 stack_ulong3;
+  uint64_t stack_ulong1;
+  uint64_t stack_ulong2;
+  uint64_t stack_ulong3;
   float stack_float5;
   float *stack_ptr1;
   float *stack_ptr2;
   float *stack_ptr3;
   float *stack_ptr4;
-  undefined4 stack_uint1;
+  int32_t stack_uint1;
   float *stack_ptr5;
   float *stack_ptr6;
   float *stack_ptr7;
-  undefined4 stack_uint2;
-  undefined4 stack_uint3;
+  int32_t stack_uint2;
+  int32_t stack_uint3;
   float stack_float6;
   float stack_float7;
   float stack_float8;
@@ -169,9 +169,9 @@ ulonglong *render_bounding_box_calculate_triangles(
   float stack_float10;
   float stack_float11;
   float *stack_ptr8;
-  undefined8 stack_ulong4;
-  undefined1 simd_temp_array1[16];
-  undefined1 simd_temp_array2[16];
+  uint64_t stack_ulong4;
+  int8_t simd_temp_array1[16];
+  int8_t simd_temp_array2[16];
   
   // 初始化栈变量
   stack_ulong4 = 0xfffffffffffffffe;
@@ -381,7 +381,7 @@ ulonglong *render_bounding_box_calculate_triangles(
   *output_array = 0;
   output_array[1] = 0;
   output_array[2] = 0;
-  *(undefined4 *)(output_array + 3) = 3;
+  *(int32_t *)(output_array + 3) = 3;
   stack_uint3 = 1;
   stack_ptr5 = (float *)0x0;
   stack_ptr6 = (float *)0x0;
@@ -398,10 +398,10 @@ ulonglong *render_bounding_box_calculate_triangles(
   bounding_box_output[1] = stack_float11;
   bounding_box_output[2] = stack_float10;
   bounding_box_output[3] = stack_float9;
-  *(undefined8 *)(bounding_box_output + 4) = temp_ulong3;
+  *(uint64_t *)(bounding_box_output + 4) = temp_ulong3;
   bounding_box_output[6] = stack_float5;
   
-  temp_ptr2 = (undefined8 *)output_array[1];
+  temp_ptr2 = (uint64_t *)output_array[1];
   stack_vertex_ptr1 = vertex_data;
   stack_ulong1 = temp_ulong2;
   stack_ulong2 = temp_ulong4;
@@ -409,12 +409,12 @@ ulonglong *render_bounding_box_calculate_triangles(
   stack_float7 = stack_float11;
   
   // 处理输出数组内存分配
-  if (temp_ptr2 < (undefined8 *)output_array[2]) {
+  if (temp_ptr2 < (uint64_t *)output_array[2]) {
     output_array[1] = (longlong)temp_ptr2 + 0x1c;
-    temp_ulong1 = *(undefined8 *)(bounding_box_output + 2);
-    *temp_ptr2 = *(undefined8 *)bounding_box_output;
+    temp_ulong1 = *(uint64_t *)(bounding_box_output + 2);
+    *temp_ptr2 = *(uint64_t *)bounding_box_output;
     temp_ptr2[1] = temp_ulong1;
-    temp_ptr2[2] = *(undefined8 *)(bounding_box_output + 4);
+    temp_ptr2[2] = *(uint64_t *)(bounding_box_output + 4);
     *(float *)(temp_ptr2 + 3) = bounding_box_output[6];
     goto triangle_processing_start;
   }
@@ -425,7 +425,7 @@ ulonglong *render_bounding_box_calculate_triangles(
     stack_bound_x = 1;
 memory_alloc_loop:
     float_ptr1 = (float *)allocate_render_memory(g_global_memory_pool, stack_bound_x * 0x1c, (char)output_array[3]);
-    temp_ptr2 = (undefined8 *)output_array[1];
+    temp_ptr2 = (uint64_t *)output_array[1];
   }
   else {
     stack_bound_x = stack_bound_x * 2;
@@ -434,7 +434,7 @@ memory_alloc_loop:
   }
   
   // 内存拷贝和数据迁移
-  temp_ptr1 = (undefined8 *)*output_array;
+  temp_ptr1 = (uint64_t *)*output_array;
   if (temp_ptr1 != temp_ptr2) {
     memmove(float_ptr1, temp_ptr1, (longlong)temp_ptr2 - (longlong)temp_ptr1);
   }
@@ -446,7 +446,7 @@ memory_alloc_loop:
   float_ptr1[1] = max_y_val;
   float_ptr1[2] = max_x_val;
   float_ptr1[3] = min_y_val;
-  *(undefined8 *)(float_ptr1 + 4) = *(undefined8 *)(bounding_box_output + 4);
+  *(uint64_t *)(float_ptr1 + 4) = *(uint64_t *)(bounding_box_output + 4);
   float_ptr1[6] = bounding_box_output[6];
   
   if (*output_array != 0) {
@@ -519,11 +519,11 @@ triangle_processing_start:
           // 检查是否在容差范围内
           if ((stack_float6 - *float_ptr1) * (stack_float6 - *float_ptr1) +
               (temp_float1 - float_ptr1[1]) * (temp_float1 - float_ptr1[1]) <= stack_float5 + 0.001) {
-            *(undefined1 *)(stack_vertex_ptr2 + 1) = 1;
-            stack_float1 = (float)*(undefined8 *)current_vertex;
-            stack_float2 = (float)((ulonglong)*(undefined8 *)current_vertex >> 0x20);
-            stack_float3 = (float)*(undefined8 *)(stack_vertex_ptr2 + -3);
-            stack_float4 = (float)((ulonglong)*(undefined8 *)(stack_vertex_ptr2 + -3) >> 0x20);
+            *(int8_t *)(stack_vertex_ptr2 + 1) = 1;
+            stack_float1 = (float)*(uint64_t *)current_vertex;
+            stack_float2 = (float)((ulonglong)*(uint64_t *)current_vertex >> 0x20);
+            stack_float3 = (float)*(uint64_t *)(stack_vertex_ptr2 + -3);
+            stack_float4 = (float)((ulonglong)*(uint64_t *)(stack_vertex_ptr2 + -3) >> 0x20);
             temp_undefined7 = (undefined7)((ulonglong)current_vertex >> 8);
             
             if (temp_vertex2 < temp_vertex1) {
@@ -568,10 +568,10 @@ vertex_alloc_loop1:
             }
             
             temp_vertex3 = temp_vertex2 + 5;
-            stack_float1 = (float)*(undefined8 *)(stack_vertex_ptr2 + -3);
-            stack_float2 = (float)((ulonglong)*(undefined8 *)(stack_vertex_ptr2 + -3) >> 0x20);
-            stack_float3 = (float)*(undefined8 *)(stack_vertex_ptr2 + -1);
-            stack_float4 = (float)((ulonglong)*(undefined8 *)(stack_vertex_ptr2 + -1) >> 0x20);
+            stack_float1 = (float)*(uint64_t *)(stack_vertex_ptr2 + -3);
+            stack_float2 = (float)((ulonglong)*(uint64_t *)(stack_vertex_ptr2 + -3) >> 0x20);
+            stack_float3 = (float)*(uint64_t *)(stack_vertex_ptr2 + -1);
+            stack_float4 = (float)((ulonglong)*(uint64_t *)(stack_vertex_ptr2 + -1) >> 0x20);
             
             if (temp_vertex3 < temp_vertex1) {
               float_ptr8 = temp_vertex2 + 10;
@@ -616,10 +616,10 @@ vertex_alloc_loop2:
               stack_ptr11 = temp_vertex1;
             }
             
-            stack_float1 = (float)*(undefined8 *)(stack_vertex_ptr2 + -1);
-            stack_float2 = (float)((ulonglong)*(undefined8 *)(stack_vertex_ptr2 + -1) >> 0x20);
-            stack_float3 = (float)*(undefined8 *)current_vertex;
-            stack_float4 = (float)((ulonglong)*(undefined8 *)current_vertex >> 0x20);
+            stack_float1 = (float)*(uint64_t *)(stack_vertex_ptr2 + -1);
+            stack_float2 = (float)((ulonglong)*(uint64_t *)(stack_vertex_ptr2 + -1) >> 0x20);
+            stack_float3 = (float)*(uint64_t *)current_vertex;
+            stack_float4 = (float)((ulonglong)*(uint64_t *)current_vertex >> 0x20);
             
             if (float_ptr8 < temp_vertex1) {
               *float_ptr8 = stack_float1;
@@ -692,7 +692,7 @@ vertex_alloc_loop3:
               temp_vertex1[1] = max_y_val;
               temp_vertex1[2] = max_x_val;
               temp_vertex1[3] = min_y_val;
-              *(undefined8 *)(temp_vertex1 + 4) = *(undefined8 *)(float_ptr8 + 0xb);
+              *(uint64_t *)(temp_vertex1 + 4) = *(uint64_t *)(float_ptr8 + 0xb);
               temp_vertex1[6] = float_ptr8[0xd];
               temp_vertex1 = temp_vertex1 + 7;
             }
@@ -723,8 +723,8 @@ triangle_compare_check:
             if ((0.001 <= ABS(end_vertex[2] - max_y_val)) || (0.001 <= ABS(end_vertex[3] - temp_vertex1[3])))
             goto triangle_compare_check;
 triangle_match_found:
-            *(undefined1 *)(end_vertex + 4) = 1;
-            *(undefined1 *)(temp_vertex1 + 4) = 1;
+            *(int8_t *)(end_vertex + 4) = 1;
+            *(int8_t *)(temp_vertex1 + 4) = 1;
           }
         }
       }
@@ -758,13 +758,13 @@ triangle_match_found:
       
       // 将处理后的顶点添加到输出数组
       for (; temp_vertex1 != temp_vertex2; temp_vertex1 = temp_vertex1 + 5) {
-        stack_ulong1 = *(undefined8 *)temp_vertex1;
-        stack_ulong2 = *(undefined8 *)(temp_vertex1 + 2);
-        stack_ulong3 = *(undefined8 *)float_ptr1;
+        stack_ulong1 = *(uint64_t *)temp_vertex1;
+        stack_ulong2 = *(uint64_t *)(temp_vertex1 + 2);
+        stack_ulong3 = *(uint64_t *)float_ptr1;
         stack_vertex_ptr2 = (float *)0x0;
-        uint_ptr4 = (undefined4 *)output_array[1];
+        uint_ptr4 = (int32_t *)output_array[1];
         
-        if (uint_ptr4 < (undefined4 *)output_array[2]) {
+        if (uint_ptr4 < (int32_t *)output_array[2]) {
           output_array[1] = (ulonglong)(uint_ptr4 + 7);
           stack_ulong1._4_4_ = (float)((ulonglong)stack_ulong1 >> 0x20);
           stack_ulong2._4_4_ = (float)((ulonglong)stack_ulong2 >> 0x20);
@@ -772,7 +772,7 @@ triangle_match_found:
           uint_ptr4[1] = stack_ulong1._4_4_;
           uint_ptr4[2] = (float)stack_ulong2;
           uint_ptr4[3] = stack_ulong2._4_4_;
-          *(undefined8 *)(uint_ptr4 + 4) = stack_ulong3;
+          *(uint64_t *)(uint_ptr4 + 4) = stack_ulong3;
           uint_ptr4[6] = 0;
         }
         else {
@@ -781,7 +781,7 @@ triangle_match_found:
             stack_bound_x = 1;
 output_alloc_loop:
             stack_vertex_ptr1 = (float *)allocate_render_memory(g_global_memory_pool, stack_bound_x * 0x1c, (char)output_array[3]);
-            uint_ptr4 = (undefined4 *)output_array[1];
+            uint_ptr4 = (int32_t *)output_array[1];
           }
           else {
             stack_bound_x = stack_bound_x * 2;
@@ -789,7 +789,7 @@ output_alloc_loop:
             stack_vertex_ptr1 = (float *)0x0;
           }
           
-          uint_ptr3 = (undefined4 *)*output_array;
+          uint_ptr3 = (int32_t *)*output_array;
           if (uint_ptr3 != uint_ptr4) {
             memmove(stack_vertex_ptr1, uint_ptr3, (longlong)uint_ptr4 - (longlong)uint_ptr3);
           }
@@ -798,7 +798,7 @@ output_alloc_loop:
           stack_vertex_ptr1[1] = stack_ulong1._4_4_;
           stack_vertex_ptr1[2] = (float)stack_ulong2;
           stack_vertex_ptr1[3] = stack_ulong2._4_4_;
-          *(undefined8 *)(stack_vertex_ptr1 + 4) = stack_ulong3;
+          *(uint64_t *)(stack_vertex_ptr1 + 4) = stack_ulong3;
           stack_vertex_ptr1[6] = SUB84(stack_vertex_ptr2, 0);
           
           if (*output_array != 0) {
@@ -824,8 +824,8 @@ output_alloc_loop:
   }
   
   // 最终数据处理和优化
-  uint_ptr4 = (undefined4 *)output_array[1];
-  uint_ptr3 = (undefined4 *)*output_array;
+  uint_ptr4 = (int32_t *)output_array[1];
+  uint_ptr3 = (int32_t *)*output_array;
   stack_ulong1 = temp_ulong2;
   stack_ulong2 = temp_ulong4;
   stack_ulong3 = temp_ulong3;
@@ -853,7 +853,7 @@ output_alloc_loop:
           uint_ptr3[1] = temp_uint1;
           uint_ptr3[2] = temp_uint2;
           uint_ptr3[3] = temp_uint3;
-          *(undefined8 *)(uint_ptr3 + 4) = *(undefined8 *)(uint_ptr2 + 4);
+          *(uint64_t *)(uint_ptr3 + 4) = *(uint64_t *)(uint_ptr2 + 4);
           uint_ptr3[6] = uint_ptr2[6];
           uint_ptr3 = uint_ptr3 + 7;
         }
@@ -865,8 +865,8 @@ output_alloc_loop:
   // 调用数组优化函数
   render_array_optimize_and_cleanup(output_array, uint_ptr3, uint_ptr4);
   
-  temp_ptr2 = (undefined8 *)*output_array;
-  temp_ptr1 = (undefined8 *)output_array[1];
+  temp_ptr2 = (uint64_t *)*output_array;
+  temp_ptr1 = (uint64_t *)output_array[1];
   current_vertex = stack_ptr5;
   temp_vertex1 = stack_ptr6;
   float_ptr1 = stack_ptr7;
@@ -1025,7 +1025,7 @@ final_alloc_loop3:
     }
     
     temp_vertex1 = temp_vertex2 + 5;
-    temp_ptr2 = (undefined8 *)((longlong)temp_ptr2 + 0x1c);
+    temp_ptr2 = (uint64_t *)((longlong)temp_ptr2 + 0x1c);
   } while( true );
 }
 
@@ -1047,12 +1047,12 @@ longlong render_array_optimize_and_cleanup(longlong *array_ptr, longlong start_p
 }
 
 // 全局变量声明
-undefined8 g_render_dispatch_table = 0x180c8a9c0;  // 渲染分发表
-undefined8 g_global_memory_pool = 0x180c8ed18;     // 全局内存池
+uint64_t g_render_dispatch_table = 0x180c8a9c0;  // 渲染分发表
+uint64_t g_global_memory_pool = 0x180c8ed18;     // 全局内存池
 
 // 辅助函数声明
 void add_render_context(longlong *array_ptr, longlong *context_id);
-float *allocate_render_memory(undefined8 memory_pool, longlong size, char flags);
+float *allocate_render_memory(uint64_t memory_pool, longlong size, char flags);
 void free_render_memory(void *ptr);
-char render_compare_function(undefined4 *ptr1, undefined8 *ptr2);
-longlong *render_optimize_function(float **ptr1, undefined8 *ptr2);
+char render_compare_function(int32_t *ptr1, uint64_t *ptr2);
+longlong *render_optimize_function(float **ptr1, uint64_t *ptr2);

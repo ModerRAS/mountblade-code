@@ -8,8 +8,8 @@ void FUN_18071ffb4(void)
 {
   float *pfVar1;
   float *pfVar2;
-  undefined1 auVar3 [16];
-  undefined1 auVar4 [16];
+  int8_t auVar3 [16];
+  int8_t auVar4 [16];
   double dVar5;
   float fVar6;
   float *pfVar7;
@@ -26,11 +26,11 @@ void FUN_18071ffb4(void)
   uint uVar17;
   uint uVar18;
   longlong lVar19;
-  undefined8 unaff_RBX;
+  uint64_t unaff_RBX;
   longlong lVar20;
   longlong unaff_RBP;
   float *unaff_RSI;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   float *in_R9;
   int iVar21;
   longlong in_R10;
@@ -59,10 +59,10 @@ void FUN_18071ffb4(void)
   float afStackX_8 [8];
   ulonglong in_stack_00000190;
   
-  *(undefined8 *)(in_R11 + 0x10) = unaff_RDI;
+  *(uint64_t *)(in_R11 + 0x10) = unaff_RDI;
   uVar15 = unaff_R14[1];
   if (0 < (longlong)(int)uVar15) {
-    *(undefined8 *)(in_R11 + 8) = unaff_RBX;
+    *(uint64_t *)(in_R11 + 8) = unaff_RBX;
     lVar20 = 0;
     uVar18 = *unaff_R14;
     lVar22 = (longlong)(int)uVar18;
@@ -277,8 +277,8 @@ void FUN_18071ffc5(void)
 {
   float *pfVar1;
   float *pfVar2;
-  undefined1 auVar3 [16];
-  undefined1 auVar4 [16];
+  int8_t auVar3 [16];
+  int8_t auVar4 [16];
   double dVar5;
   float fVar6;
   float *pfVar7;
@@ -294,7 +294,7 @@ void FUN_18071ffc5(void)
   longlong lVar16;
   uint uVar17;
   longlong lVar18;
-  undefined8 unaff_RBX;
+  uint64_t unaff_RBX;
   longlong lVar19;
   longlong unaff_RBP;
   float *unaff_RSI;
@@ -327,7 +327,7 @@ void FUN_18071ffc5(void)
   float afStackX_8 [8];
   ulonglong in_stack_00000190;
   
-  *(undefined8 *)(in_R11 + 8) = unaff_RBX;
+  *(uint64_t *)(in_R11 + 8) = unaff_RBX;
   lVar19 = 0;
   uVar15 = *unaff_R14;
   lVar21 = (longlong)(int)uVar15;
@@ -541,7 +541,7 @@ void FUN_1807201ce(void)
 {
   float *pfVar1;
   float *pfVar2;
-  undefined1 auVar3 [16];
+  int8_t auVar3 [16];
   double dVar4;
   float fVar5;
   float *pfVar6;
@@ -701,7 +701,7 @@ void FUN_1807201f0(void)
 {
   float *pfVar1;
   float *pfVar2;
-  undefined1 auVar3 [16];
+  int8_t auVar3 [16];
   double dVar4;
   float fVar5;
   float *pfVar6;
@@ -854,12 +854,12 @@ void FUN_1807201f0(void)
 
 
 
-// 函数: void FUN_180720430(undefined8 param_1,undefined8 param_2,undefined8 param_3)
-void FUN_180720430(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+// 函数: void FUN_180720430(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+void FUN_180720430(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 
 {
-  undefined8 uStack_48;
-  undefined8 uStack_40;
+  uint64_t uStack_48;
+  uint64_t uStack_40;
   ulonglong uStack_38;
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)&uStack_48;
@@ -873,8 +873,8 @@ void FUN_180720430(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 
 
-// 函数: void FUN_1807207d0(undefined8 param_1,undefined8 param_2,int param_3)
-void FUN_1807207d0(undefined8 param_1,undefined8 param_2,int param_3)
+// 函数: void FUN_1807207d0(uint64_t param_1,uint64_t param_2,int param_3)
+void FUN_1807207d0(uint64_t param_1,uint64_t param_2,int param_3)
 
 {
                     // WARNING: Subroutine does not return

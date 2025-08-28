@@ -130,24 +130,24 @@
  * @param param_4 更新选项
  * @return void 无返回值
  */
-void RenderingSystem_StateUpdater(longlong param_1, undefined8 param_2, undefined1 param_3, undefined8 param_4)
+void RenderingSystem_StateUpdater(longlong param_1, uint64_t param_2, int8_t param_3, uint64_t param_4)
 {
     // 简化实现：状态更新处理
-    undefined8 uVar1;
+    uint64_t uVar1;
     ulonglong uVar2;
-    undefined8 uVar3;
-    undefined *puStack_30;
+    uint64_t uVar3;
+    void *puStack_30;
     longlong lStack_28;
     
     // 初始化状态更新器
     uVar3 = 0xfffffffffffffffe;
     uVar1 = FUN_180627910(&puStack_30);
-    uVar2 = FUN_180240430(*(undefined8 *)(param_1 + RENDERING_SYSTEM_OFFSET_1E0), uVar1, param_3, param_4, uVar3);
+    uVar2 = FUN_180240430(*(uint64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1E0), uVar1, param_3, param_4, uVar3);
     
     // 更新系统状态
     *(ulonglong *)(param_1 + RENDERING_SYSTEM_OFFSET_140) = *(ulonglong *)(param_1 + RENDERING_SYSTEM_OFFSET_140) | uVar2;
     FUN_18022dd60(param_1);
-    *(undefined2 *)(param_1 + RENDERING_SYSTEM_OFFSET_3C0) = 0xffff;
+    *(int16_t *)(param_1 + RENDERING_SYSTEM_OFFSET_3C0) = 0xffff;
     
     // 清理资源
     puStack_30 = &UNK_180a3c3e0;
@@ -171,7 +171,7 @@ void RenderingSystem_FlagSetter(longlong param_1, char param_2)
 {
     // 简化实现：标志设置处理
     uint uVar1;
-    undefined1 uVar2;
+    int8_t uVar2;
     
     // 设置或清除标志
     uVar1 = *(uint *)(param_1 + RENDERING_SYSTEM_OFFSET_388) | RENDERING_SYSTEM_FLAG_2000000;
@@ -182,7 +182,7 @@ void RenderingSystem_FlagSetter(longlong param_1, char param_2)
     
     // 更新系统状态
     uVar2 = func_0x00018022d300();
-    *(undefined1 *)(param_1 + RENDERING_SYSTEM_OFFSET_38C) = uVar2;
+    *(int8_t *)(param_1 + RENDERING_SYSTEM_OFFSET_38C) = uVar2;
     return;
 }
 
@@ -200,8 +200,8 @@ longlong * RenderingSystem_DataGetter1(longlong *param_1, longlong param_2)
 {
     // 简化实现：数据获取处理
     longlong *plVar1;
-    undefined4 uVar2;
-    undefined4 uStack_c;
+    int32_t uVar2;
+    int32_t uStack_c;
     
     // 获取数据
     plVar1 = *(longlong **)(param_2 + RENDERING_SYSTEM_OFFSET_1B8);
@@ -233,8 +233,8 @@ longlong * RenderingSystem_DataGetter2(longlong *param_1, longlong param_2)
 {
     // 简化实现：数据获取处理
     longlong *plVar1;
-    undefined4 uVar2;
-    undefined4 uStack_c;
+    int32_t uVar2;
+    int32_t uStack_c;
     
     // 获取数据
     plVar1 = *(longlong **)(param_2 + RENDERING_SYSTEM_OFFSET_1C0);
@@ -265,7 +265,7 @@ void RenderingSystem_ObjectCleaner(longlong param_1)
 {
     // 简化实现：对象清理处理
     longlong *aplStackX_8[4];
-    undefined *puStack_28;
+    void *puStack_28;
     longlong lStack_20;
     
     if (param_1 != 0) {
@@ -300,11 +300,11 @@ void RenderingSystem_ObjectCleaner(longlong param_1)
  * @param param_4 处理选项
  * @return void 无返回值
  */
-void RenderingSystem_ResourceProcessor(longlong param_1, longlong *param_2, undefined8 param_3, undefined8 param_4)
+void RenderingSystem_ResourceProcessor(longlong param_1, longlong *param_2, uint64_t param_3, uint64_t param_4)
 {
     // 简化实现：资源处理
     longlong *plStackX_8;
-    undefined8 uVar1;
+    uint64_t uVar1;
     
     if (param_1 != 0) {
         uVar1 = 0xfffffffffffffffe;
@@ -338,15 +338,15 @@ void RenderingSystem_ResourceProcessor(longlong param_1, longlong *param_2, unde
  * @param param_5 参数4
  * @return void 无返回值
  */
-void RenderingSystem_ParameterSetter1(longlong param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4,
-                                     undefined4 param_5)
+void RenderingSystem_ParameterSetter1(longlong param_1, int32_t param_2, int32_t param_3, int32_t param_4,
+                                     int32_t param_5)
 {
     // 简化实现：参数设置
     if (param_1 != 0) {
-        *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_2A8) = param_2;
-        *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_2AC) = param_3;
-        *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_2B0) = param_4;
-        *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_2B4) = param_5;
+        *(int32_t *)(param_1 + RENDERING_SYSTEM_OFFSET_2A8) = param_2;
+        *(int32_t *)(param_1 + RENDERING_SYSTEM_OFFSET_2AC) = param_3;
+        *(int32_t *)(param_1 + RENDERING_SYSTEM_OFFSET_2B0) = param_4;
+        *(int32_t *)(param_1 + RENDERING_SYSTEM_OFFSET_2B4) = param_5;
     }
     return;
 }
@@ -364,15 +364,15 @@ void RenderingSystem_ParameterSetter1(longlong param_1, undefined4 param_2, unde
  * @param param_5 参数4
  * @return void 无返回值
  */
-void RenderingSystem_ParameterSetter2(longlong param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4,
-                                     undefined4 param_5)
+void RenderingSystem_ParameterSetter2(longlong param_1, int32_t param_2, int32_t param_3, int32_t param_4,
+                                     int32_t param_5)
 {
     // 简化实现：参数设置
     if (param_1 != 0) {
-        *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_2B8) = param_2;
-        *(undefined4 *)(param_1 + 700) = param_3;
-        *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_2C0) = param_4;
-        *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_2C4) = param_5;
+        *(int32_t *)(param_1 + RENDERING_SYSTEM_OFFSET_2B8) = param_2;
+        *(int32_t *)(param_1 + 700) = param_3;
+        *(int32_t *)(param_1 + RENDERING_SYSTEM_OFFSET_2C0) = param_4;
+        *(int32_t *)(param_1 + RENDERING_SYSTEM_OFFSET_2C4) = param_5;
     }
     return;
 }
@@ -389,14 +389,14 @@ void RenderingSystem_ParameterSetter2(longlong param_1, undefined4 param_2, unde
  * @param param_4 检查标志
  * @return ulonglong 状态结果
  */
-ulonglong RenderingSystem_StateChecker(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+ulonglong RenderingSystem_StateChecker(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 简化实现：状态检查
     byte bVar1;
     ulonglong in_RAX;
-    undefined8 uVar2;
-    undefined8 uVar3;
-    undefined *puStack_30;
+    uint64_t uVar2;
+    uint64_t uVar3;
+    void *puStack_30;
     longlong lStack_28;
     
     uVar3 = 0xfffffffffffffffe;
@@ -426,21 +426,21 @@ ulonglong RenderingSystem_StateChecker(longlong param_1, undefined8 param_2, und
  * @param param_2 处理参数
  * @param param_3 处理选项
  * @param param_4 处理标志
- * @return undefined4* 数据指针
+ * @return int32_t* 数据指针
  */
-undefined4 * RenderingSystem_DataProcessor1(undefined4 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int32_t * RenderingSystem_DataProcessor1(int32_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 简化实现：数据处理
     longlong *plVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     longlong *plVar3;
     longlong *plStackX_20;
-    undefined4 uVar4;
-    undefined8 uVar5;
-    undefined4 uStack_58;
-    undefined4 uStack_54;
-    undefined4 uStack_4c;
-    undefined *puStack_48;
+    int32_t uVar4;
+    uint64_t uVar5;
+    int32_t uStack_58;
+    int32_t uStack_54;
+    int32_t uStack_4c;
+    void *puStack_48;
     longlong lStack_40;
     int iStack_38;
     
@@ -449,7 +449,7 @@ undefined4 * RenderingSystem_DataProcessor1(undefined4 *param_1, undefined8 para
     FUN_180627910(&puStack_48);
     
     if (iStack_38 < 1) {
-        puVar2 = (undefined8 *)FUN_1800befa0(_DAT_180c86898, &plStackX_20);
+        puVar2 = (uint64_t *)FUN_1800befa0(_DAT_180c86898, &plStackX_20);
         plVar3 = (longlong *)*puVar2;
         *puVar2 = 0;
 LAB_18044751c:
@@ -470,7 +470,7 @@ LAB_18044751c:
         }
         if (plVar3 == (longlong *)0x0) {
             FUN_180627020(&UNK_180a2a4e8, param_2);
-            puVar2 = (undefined8 *)FUN_1800befa0(_DAT_180c86898, &plStackX_20);
+            puVar2 = (uint64_t *)FUN_1800befa0(_DAT_180c86898, &plStackX_20);
             plVar3 = (longlong *)*puVar2;
             *puVar2 = 0;
             goto LAB_18044751c;
@@ -486,7 +486,7 @@ LAB_180447540:
     
     // 输出结果
     uStack_58 = SUB84(plVar3, 0);
-    uStack_54 = (undefined4)((ulonglong)plVar3 >> 0x20);
+    uStack_54 = (int32_t)((ulonglong)plVar3 >> 0x20);
     *param_1 = uStack_58;
     param_1[1] = uStack_54;
     param_1[2] = uVar4;
@@ -513,17 +513,17 @@ LAB_180447540:
  * @param param_2 处理参数
  * @param param_3 处理选项
  * @param param_4 处理标志
- * @return undefined4* 数据指针
+ * @return int32_t* 数据指针
  */
-undefined4 * RenderingSystem_DataProcessor2(undefined4 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int32_t * RenderingSystem_DataProcessor2(int32_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 简化实现：数据处理
     longlong *plVar1;
-    undefined4 uVar2;
+    int32_t uVar2;
     longlong *plStackX_8;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
-    undefined4 uStack_14;
+    int32_t uStack_20;
+    int32_t uStack_1c;
+    int32_t uStack_14;
     
     // 处理数据
     FUN_1800763c0(param_2, &plStackX_8, param_3, param_4, 0xfffffffffffffffe);
@@ -539,7 +539,7 @@ undefined4 * RenderingSystem_DataProcessor2(undefined4 *param_1, undefined8 para
     
     // 输出结果
     uStack_20 = SUB84(plVar1, 0);
-    uStack_1c = (undefined4)((ulonglong)plVar1 >> 0x20);
+    uStack_1c = (int32_t)((ulonglong)plVar1 >> 0x20);
     *param_1 = uStack_20;
     param_1[1] = uStack_1c;
     param_1[2] = uVar2;
@@ -560,17 +560,17 @@ undefined4 * RenderingSystem_DataProcessor2(undefined4 *param_1, undefined8 para
  * 
  * @param param_1 对象输出指针
  * @param param_2 创建参数
- * @return undefined4* 对象指针
+ * @return int32_t* 对象指针
  */
-undefined4 * RenderingSystem_ObjectCreator1(undefined4 *param_1, undefined1 param_2)
+int32_t * RenderingSystem_ObjectCreator1(int32_t *param_1, int8_t param_2)
 {
     // 简化实现：对象创建
-    undefined4 uVar1;
-    undefined8 uVar2;
+    int32_t uVar1;
+    uint64_t uVar2;
     longlong *plVar3;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
-    undefined4 uStack_14;
+    int32_t uStack_20;
+    int32_t uStack_1c;
+    int32_t uStack_14;
     
     // 创建对象
     uVar2 = FUN_18062b1e0(_DAT_180c8ed18, 0x300, 0x10, 3, 0xfffffffffffffffe);
@@ -587,7 +587,7 @@ undefined4 * RenderingSystem_ObjectCreator1(undefined4 *param_1, undefined1 para
     
     // 输出结果
     uStack_20 = SUB84(plVar3, 0);
-    uStack_1c = (undefined4)((ulonglong)plVar3 >> 0x20);
+    uStack_1c = (int32_t)((ulonglong)plVar3 >> 0x20);
     *param_1 = uStack_20;
     param_1[1] = uStack_1c;
     param_1[2] = uVar1;
@@ -606,19 +606,19 @@ undefined4 * RenderingSystem_ObjectCreator1(undefined4 *param_1, undefined1 para
  * 
  * @param param_1 对象输出指针
  * @param param_2 创建参数
- * @return undefined4* 对象指针
+ * @return int32_t* 对象指针
  */
-undefined4 * RenderingSystem_ObjectCreator2(undefined4 *param_1, longlong *param_2)
+int32_t * RenderingSystem_ObjectCreator2(int32_t *param_1, longlong *param_2)
 {
     // 简化实现：对象创建
-    undefined4 uVar1;
-    undefined8 uVar2;
+    int32_t uVar1;
+    uint64_t uVar2;
     longlong *plVar3;
     longlong *plStackX_8;
     longlong *plStackX_10;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
-    undefined4 uStack_14;
+    int32_t uStack_20;
+    int32_t uStack_1c;
+    int32_t uStack_14;
     
     // 创建对象
     uVar2 = FUN_18062b1e0(_DAT_180c8ed18, 0x300, 0x10, 3, 0xfffffffffffffffe);
@@ -648,7 +648,7 @@ undefined4 * RenderingSystem_ObjectCreator2(undefined4 *param_1, longlong *param
     
     // 输出结果
     uStack_20 = SUB84(plVar3, 0);
-    uStack_1c = (undefined4)((ulonglong)plVar3 >> 0x20);
+    uStack_1c = (int32_t)((ulonglong)plVar3 >> 0x20);
     *param_1 = uStack_20;
     param_1[1] = uStack_1c;
     param_1[2] = uVar1;
@@ -673,8 +673,8 @@ longlong * RenderingSystem_DataGetter3(longlong *param_1, longlong param_2)
 {
     // 简化实现：数据获取处理
     longlong *plVar1;
-    undefined4 uVar2;
-    undefined4 uStack_c;
+    int32_t uVar2;
+    int32_t uStack_c;
     
     // 获取数据
     plVar1 = *(longlong **)(param_2 + RENDERING_SYSTEM_OFFSET_1B0);
@@ -704,28 +704,28 @@ longlong * RenderingSystem_DataGetter3(longlong *param_1, longlong param_2)
  * @param param_4 分配标志
  * @param param_5 分配参数
  * @param param_6 分配参数
- * @return undefined4* 资源指针
+ * @return int32_t* 资源指针
  */
-undefined4 * RenderingSystem_ResourceAllocator(undefined4 *param_1, undefined8 param_2, undefined8 *param_3, undefined8 *param_4,
-                                              undefined8 *param_5, undefined8 *param_6)
+int32_t * RenderingSystem_ResourceAllocator(int32_t *param_1, uint64_t param_2, uint64_t *param_3, uint64_t *param_4,
+                                              uint64_t *param_5, uint64_t *param_6)
 {
     // 简化实现：资源分配
     longlong *plVar1;
-    undefined4 uVar2;
+    int32_t uVar2;
     longlong *aplStackX_8[2];
-    undefined8 uStackX_18;
-    undefined8 uStackX_20;
-    undefined8 uVar3;
-    undefined4 uStack_50;
-    undefined4 uStack_4c;
-    undefined4 uStack_44;
-    undefined *puStack_40;
+    uint64_t uStackX_18;
+    uint64_t uStackX_20;
+    uint64_t uVar3;
+    int32_t uStack_50;
+    int32_t uStack_4c;
+    int32_t uStack_44;
+    void *puStack_40;
     longlong lStack_38;
     
     uVar3 = 0xfffffffffffffffe;
     FUN_180627910(&puStack_40);
-    param_6 = (undefined8 *)*param_6;
-    param_5 = (undefined8 *)*param_5;
+    param_6 = (uint64_t *)*param_6;
+    param_5 = (uint64_t *)*param_5;
     uStackX_18 = *param_4;
     uStackX_20 = *param_3;
     
@@ -743,7 +743,7 @@ undefined4 * RenderingSystem_ResourceAllocator(undefined4 *param_1, undefined8 p
     
     // 输出结果
     uStack_50 = SUB84(plVar1, 0);
-    uStack_4c = (undefined4)((ulonglong)plVar1 >> 0x20);
+    uStack_4c = (int32_t)((ulonglong)plVar1 >> 0x20);
     *param_1 = uStack_50;
     param_1[1] = uStack_4c;
     param_1[2] = uVar2;
@@ -771,26 +771,26 @@ undefined4 * RenderingSystem_ResourceAllocator(undefined4 *param_1, undefined8 p
  * @param param_3 处理选项
  * @param param_4 处理标志
  * @param param_5 处理参数
- * @return undefined4* 数据指针
+ * @return int32_t* 数据指针
  */
-undefined4 * RenderingSystem_DataProcessor3(undefined4 *param_1, undefined8 param_2, undefined8 *param_3, undefined8 *param_4,
+int32_t * RenderingSystem_DataProcessor3(int32_t *param_1, uint64_t param_2, uint64_t *param_3, uint64_t *param_4,
                                             longlong *param_5)
 {
     // 简化实现：数据处理
     longlong *plVar1;
-    undefined4 uVar2;
+    int32_t uVar2;
     longlong *plStackX_8;
-    undefined8 uStackX_18;
-    undefined8 uStackX_20;
-    undefined4 uStack_80;
-    undefined4 uStack_7c;
-    undefined4 uStack_74;
-    undefined *puStack_70;
+    uint64_t uStackX_18;
+    uint64_t uStackX_20;
+    int32_t uStack_80;
+    int32_t uStack_7c;
+    int32_t uStack_74;
+    void *puStack_70;
     longlong lStack_68;
     longlong *plStack_50;
     longlong *plStack_48;
-    undefined1 auStack_40[8];
-    undefined8 uStack_38;
+    int8_t auStack_40[8];
+    uint64_t uStack_38;
     longlong *plStack_28;
     char cStack_20;
     char cStack_1f;
@@ -826,7 +826,7 @@ undefined4 * RenderingSystem_DataProcessor3(undefined4 *param_1, undefined8 para
     
     // 输出结果
     uStack_80 = SUB84(plVar1, 0);
-    uStack_7c = (undefined4)((ulonglong)plVar1 >> 0x20);
+    uStack_7c = (int32_t)((ulonglong)plVar1 >> 0x20);
     *param_1 = uStack_80;
     param_1[1] = uStack_7c;
     param_1[2] = uVar2;
@@ -882,17 +882,17 @@ undefined4 * RenderingSystem_DataProcessor3(undefined4 *param_1, undefined8 para
  * @param param_2 创建参数
  * @param param_3 创建选项
  * @param param_4 创建标志
- * @return undefined4* 对象指针
+ * @return int32_t* 对象指针
  */
-undefined4 * RenderingSystem_ObjectCreator3(undefined4 *param_1, undefined1 param_2, undefined8 param_3, undefined8 param_4)
+int32_t * RenderingSystem_ObjectCreator3(int32_t *param_1, int8_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 简化实现：对象创建
     longlong *plVar1;
-    undefined4 uVar2;
+    int32_t uVar2;
     longlong *plStackX_8;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
-    undefined4 uStack_14;
+    int32_t uStack_20;
+    int32_t uStack_1c;
+    int32_t uStack_14;
     
     // 创建对象
     FUN_1800b7b50(param_1, &plStackX_8, param_2, param_4, 0xfffffffffffffffe);
@@ -908,7 +908,7 @@ undefined4 * RenderingSystem_ObjectCreator3(undefined4 *param_1, undefined1 para
     
     // 输出结果
     uStack_20 = SUB84(plVar1, 0);
-    uStack_1c = (undefined4)((ulonglong)plVar1 >> 0x20);
+    uStack_1c = (int32_t)((ulonglong)plVar1 >> 0x20);
     *param_1 = uStack_20;
     param_1[1] = uStack_1c;
     param_1[2] = uVar2;
@@ -934,16 +934,16 @@ undefined4 * RenderingSystem_ObjectCreator3(undefined4 *param_1, undefined1 para
  * @param param_5 转换标志
  * @return void 无返回值
  */
-void RenderingSystem_DataTransformer(undefined8 param_1, undefined4 *param_2, undefined4 *param_3, undefined8 param_4,
-                                     undefined4 param_5)
+void RenderingSystem_DataTransformer(uint64_t param_1, int32_t *param_2, int32_t *param_3, uint64_t param_4,
+                                     int32_t param_5)
 {
     // 简化实现：数据转换
-    undefined4 uVar1;
-    undefined8 uStackX_8;
-    undefined4 uStack_28;
-    undefined4 uStack_24;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
+    int32_t uVar1;
+    uint64_t uStackX_8;
+    int32_t uStack_28;
+    int32_t uStack_24;
+    int32_t uStack_20;
+    int32_t uStack_1c;
     
     // 读取输入数据
     uStack_28 = *param_2;
@@ -976,21 +976,21 @@ void RenderingSystem_DataTransformer(undefined8 param_1, undefined4 *param_2, un
  * @param param_4 初始化标志
  * @return void 无返回值
  */
-void RenderingSystem_ObjectInitializer(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderingSystem_ObjectInitializer(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 简化实现：对象初始化
     code *pcVar1;
-    undefined *puVar2;
-    undefined8 uVar3;
-    undefined *puStack_30;
-    undefined *puStack_28;
+    void *puVar2;
+    uint64_t uVar3;
+    void *puStack_30;
+    void *puStack_28;
     
     uVar3 = 0xfffffffffffffffe;
     FUN_180627910(&puStack_30);
     pcVar1 = *(code **)(*(longlong *)(param_1 + 0x10) + 0x10);
     puVar2 = &DAT_18098bc73;
     
-    if (puStack_28 != (undefined *)0x0) {
+    if (puStack_28 != (void *)0x0) {
         puVar2 = puStack_28;
     }
     
@@ -999,7 +999,7 @@ void RenderingSystem_ObjectInitializer(longlong param_1, undefined8 param_2, und
     
     // 清理资源
     puStack_30 = &UNK_180a3c3e0;
-    if (puStack_28 != (undefined *)0x0) {
+    if (puStack_28 != (void *)0x0) {
         FUN_18064e900();
     }
     return;
@@ -1032,18 +1032,18 @@ void RenderingSystem_ColorSetter(longlong param_1, uint param_2)
  * 支持动态属性获取和错误处理。
  * 
  * @param param_1 渲染系统上下文指针
- * @return undefined4 属性值
+ * @return int32_t 属性值
  */
-undefined4 RenderingSystem_PropertyGetter1(longlong param_1)
+int32_t RenderingSystem_PropertyGetter1(longlong param_1)
 {
     // 简化实现：属性获取
     longlong lVar1;
     
     if ((*(byte *)(param_1 + RENDERING_SYSTEM_OFFSET_FD) & RENDERING_SYSTEM_FLAG_20) != 0) {
-        return *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_1FC);
+        return *(int32_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1FC);
     }
-    lVar1 = func_0x000180085de0(*(undefined8 *)(param_1 + RENDERING_SYSTEM_OFFSET_1B0));
-    return *(undefined4 *)(lVar1 + RENDERING_SYSTEM_OFFSET_1FC);
+    lVar1 = func_0x000180085de0(*(uint64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1B0));
+    return *(int32_t *)(lVar1 + RENDERING_SYSTEM_OFFSET_1FC);
 }
 
 /**
@@ -1053,18 +1053,18 @@ undefined4 RenderingSystem_PropertyGetter1(longlong param_1)
  * 支持动态属性获取和错误处理。
  * 
  * @param param_1 渲染系统上下文指针
- * @return undefined4 属性值
+ * @return int32_t 属性值
  */
-undefined4 RenderingSystem_PropertyGetter2(longlong param_1)
+int32_t RenderingSystem_PropertyGetter2(longlong param_1)
 {
     // 简化实现：属性获取
     longlong lVar1;
     
     if ((*(byte *)(param_1 + RENDERING_SYSTEM_OFFSET_FD) & RENDERING_SYSTEM_FLAG_20) != 0) {
-        return *(undefined4 *)(param_1 + RENDERING_SYSTEM_OFFSET_200);
+        return *(int32_t *)(param_1 + RENDERING_SYSTEM_OFFSET_200);
     }
-    lVar1 = func_0x000180085de0(*(undefined8 *)(param_1 + RENDERING_SYSTEM_OFFSET_1B0));
-    return *(undefined4 *)(lVar1 + RENDERING_SYSTEM_OFFSET_200);
+    lVar1 = func_0x000180085de0(*(uint64_t *)(param_1 + RENDERING_SYSTEM_OFFSET_1B0));
+    return *(int32_t *)(lVar1 + RENDERING_SYSTEM_OFFSET_200);
 }
 
 /**
@@ -1079,15 +1079,15 @@ undefined4 RenderingSystem_PropertyGetter2(longlong param_1)
  * @param param_4 释放标志
  * @return void 无返回值
  */
-void RenderingSystem_ResourceReleaser(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void RenderingSystem_ResourceReleaser(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 简化实现：资源释放
     longlong *plVar1;
-    undefined8 uVar2;
+    uint64_t uVar2;
     longlong *plStack_40;
     longlong *plStack_38;
-    undefined1 auStack_30[8];
-    undefined8 uStack_28;
+    int8_t auStack_30[8];
+    uint64_t uStack_28;
     longlong *plStack_18;
     char cStack_10;
     char cStack_f;
@@ -1155,12 +1155,12 @@ void RenderingSystem_ObjectProcessor(longlong *param_1)
     // 简化实现：对象处理
     longlong *plVar1;
     int iVar2;
-    undefined *puVar3;
-    undefined8 uVar4;
+    void *puVar3;
+    uint64_t uVar4;
     longlong *plStack_40;
     longlong *plStack_38;
-    undefined1 auStack_30[8];
-    undefined8 uStack_28;
+    int8_t auStack_30[8];
+    uint64_t uStack_28;
     longlong *plStack_18;
     char cStack_10;
     char cStack_f;
@@ -1186,8 +1186,8 @@ void RenderingSystem_ObjectProcessor(longlong *param_1)
     if ((10 < iVar2) ||
         ((int)((int)plStack_38[0x11] + ((int)plStack_38[0x11] >> 0x1f & 3U)) >> 2 < iVar2)) {
         puVar3 = &DAT_18098bc73;
-        if ((undefined *)plStack_40[3] != (undefined *)0x0) {
-            puVar3 = (undefined *)plStack_40[3];
+        if ((void *)plStack_40[3] != (void *)0x0) {
+            puVar3 = (void *)plStack_40[3];
         }
         FUN_1800623b0(_DAT_180c86928, 0, 0x80000000000, 3, &UNK_1809ffb30, iVar2, puVar3, (int)plStack_38[0xc],
                       uVar4);
@@ -1235,18 +1235,18 @@ void RenderingSystem_ObjectProcessor(longlong *param_1)
  * @param param_3 渲染选项
  * @return void 无返回值
  */
-void RenderingSystem_RenderProcessor(longlong *param_1, longlong param_2, undefined8 param_3)
+void RenderingSystem_RenderProcessor(longlong *param_1, longlong param_2, uint64_t param_3)
 {
     // 简化实现：渲染处理
     longlong *plVar1;
-    undefined4 uStack_68;
-    undefined4 uStack_64;
-    undefined4 uStack_60;
-    undefined4 uStack_5c;
+    int32_t uStack_68;
+    int32_t uStack_64;
+    int32_t uStack_60;
+    int32_t uStack_5c;
     longlong *plStack_58;
     longlong *plStack_50;
-    undefined1 auStack_48[8];
-    undefined8 uStack_40;
+    int8_t auStack_48[8];
+    uint64_t uStack_40;
     longlong *plStack_30;
     char cStack_28;
     char cStack_27;
@@ -1366,13 +1366,13 @@ float RenderingSystem_DistanceCalculator2(longlong *param_1)
  * 
  * @param param_1 边界输出指针
  * @param param_2 渲染对象指针
- * @return undefined8* 边界指针
+ * @return uint64_t* 边界指针
  */
-undefined8 * RenderingSystem_BoundaryGetter1(undefined8 *param_1, longlong *param_2)
+uint64_t * RenderingSystem_BoundaryGetter1(uint64_t *param_1, longlong *param_2)
 {
     // 简化实现：边界获取
-    undefined8 uVar1;
-    undefined8 uVar2;
+    uint64_t uVar1;
+    uint64_t uVar2;
     
     if (param_2 == (longlong *)0x0) {
         *param_1 = 0;
@@ -1382,8 +1382,8 @@ undefined8 * RenderingSystem_BoundaryGetter1(undefined8 *param_1, longlong *para
     
     // 获取边界
     (**(code **)(*param_2 + 0x28))(param_2);
-    uVar1 = *(undefined8 *)((longlong)param_2 + RENDERING_SYSTEM_OFFSET_274);
-    uVar2 = *(undefined8 *)((longlong)param_2 + RENDERING_SYSTEM_OFFSET_27C);
+    uVar1 = *(uint64_t *)((longlong)param_2 + RENDERING_SYSTEM_OFFSET_274);
+    uVar2 = *(uint64_t *)((longlong)param_2 + RENDERING_SYSTEM_OFFSET_27C);
     (**(code **)(*param_2 + 0x38))(param_2);
     
     // 输出结果
@@ -1400,13 +1400,13 @@ undefined8 * RenderingSystem_BoundaryGetter1(undefined8 *param_1, longlong *para
  * 
  * @param param_1 边界输出指针
  * @param param_2 渲染对象指针
- * @return undefined8* 边界指针
+ * @return uint64_t* 边界指针
  */
-undefined8 * RenderingSystem_BoundaryGetter2(undefined8 *param_1, longlong *param_2)
+uint64_t * RenderingSystem_BoundaryGetter2(uint64_t *param_1, longlong *param_2)
 {
     // 简化实现：边界获取
-    undefined8 uVar1;
-    undefined8 uVar2;
+    uint64_t uVar1;
+    uint64_t uVar2;
     
     if (param_2 == (longlong *)0x0) {
         *param_1 = 0;
@@ -1416,8 +1416,8 @@ undefined8 * RenderingSystem_BoundaryGetter2(undefined8 *param_1, longlong *para
     
     // 获取边界
     (**(code **)(*param_2 + 0x28))(param_2);
-    uVar1 = *(undefined8 *)((longlong)param_2 + RENDERING_SYSTEM_OFFSET_284);
-    uVar2 = *(undefined8 *)((longlong)param_2 + RENDERING_SYSTEM_OFFSET_28C);
+    uVar1 = *(uint64_t *)((longlong)param_2 + RENDERING_SYSTEM_OFFSET_284);
+    uVar2 = *(uint64_t *)((longlong)param_2 + RENDERING_SYSTEM_OFFSET_28C);
     (**(code **)(*param_2 + 0x38))(param_2);
     
     // 输出结果

@@ -19,12 +19,12 @@ void FUN_1804a5260(void)
   ulonglong uVar11;
   ulonglong uVar12;
   ulonglong uVar13;
-  undefined1 auStack_178 [48];
+  int8_t auStack_178 [48];
   longlong lStack_148;
   longlong lStack_140;
-  undefined1 auStack_138 [256];
+  int8_t auStack_138 [256];
   ulonglong uStack_38;
-  undefined8 uStack_30;
+  uint64_t uStack_30;
   
   if (_DAT_180c92590 != 0) {
     uStack_30 = 0x1804a5275;
@@ -126,7 +126,7 @@ LAB_18055c268:
       uVar13 = puVar7[0x12];
     }
     *puVar7 = uVar13 & uVar11 + 1;
-    *(undefined4 *)(lVar10 + 0x5c4) = 0;
+    *(int32_t *)(lVar10 + 0x5c4) = 0;
     cVar3 = FUN_18055cde0(&DAT_180c925a0,lVar10,lVar10 + 0x5d0);
     if (cVar3 == '\0') {
                     // WARNING: Subroutine does not return

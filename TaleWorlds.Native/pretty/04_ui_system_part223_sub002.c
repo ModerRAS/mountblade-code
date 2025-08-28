@@ -2,8 +2,8 @@
 
 // 04_ui_system_part223_sub002.c - 1 个函数
 
-// 函数: void FUN_1807975fc(longlong param_1,undefined8 param_2,float *param_3,float *param_4)
-void FUN_1807975fc(longlong param_1,undefined8 param_2,float *param_3,float *param_4)
+// 函数: void FUN_1807975fc(longlong param_1,uint64_t param_2,float *param_3,float *param_4)
+void FUN_1807975fc(longlong param_1,uint64_t param_2,float *param_3,float *param_4)
 
 {
   float *pfVar1;

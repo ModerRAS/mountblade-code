@@ -461,7 +461,7 @@ void finalize_render_batch_processing(void)
     uint64_t index_data;
     longlong vertex_data_ptr;
     longlong index_data_ptr;
-    undefined8 stack_param;
+    uint64_t stack_param;
     int* render_data_ptr;
     
     finalize_render_batch(render_data_ptr + 8, (vertex_data_ptr - *(longlong*)(render_data_ptr + 10)) / 0x14);
@@ -533,10 +533,10 @@ void advanced_render_control(uint64_t render_target, float render_scale, uint32_
     float width_scale;
     float height_scale;
     float aspect_ratio;
-    undefined1 temp_buffer[32];
+    int8_t temp_buffer[32];
     float* position_ptr;
-    undefined4 render_mode;
-    undefined8 render_params;
+    int32_t render_mode;
+    uint64_t render_params;
     float texture_x;
     float texture_y;
     float texture_width;

@@ -646,7 +646,7 @@ static simd_vector_t simd_rcp_ps(simd_vector_t a, simd_vector_t result)
 // =============================================================================
 
 // 原始函数名称映射
-void FUN_1807eaa70(undefined1 (*param_1)[16], float* param_2) 
+void FUN_1807eaa70(int8_t (*param_1)[16], float* param_2) 
     __attribute__((alias("SimdFastLog")));
 void FUN_1807eabe0(longlong param_1, float param_2) 
     __attribute__((alias("AudioSimd_InitializeBuffers")));

@@ -14,7 +14,7 @@ void FUN_180812dc0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180813210(int param_1)
+uint64_t FUN_180813210(int param_1)
 
 {
   uint *puVar1;
@@ -32,9 +32,9 @@ undefined8 FUN_180813210(int param_1)
   longlong lVar13;
   int iVar14;
   uint uVar15;
-  undefined4 *puVar16;
+  int32_t *puVar16;
   int *piVar17;
-  undefined8 *puVar18;
+  uint64_t *puVar18;
   float *pfVar19;
   ulonglong uVar20;
   ulonglong uVar21;
@@ -48,40 +48,40 @@ undefined8 FUN_180813210(int param_1)
   longlong lVar29;
   int *piVar30;
   longlong lVar31;
-  undefined4 uVar32;
+  int32_t uVar32;
   float fVar33;
   float fVar34;
-  undefined8 uVar35;
+  uint64_t uVar35;
   int iVar41;
-  undefined8 extraout_XMM0_Qb;
-  undefined8 extraout_XMM0_Qb_00;
-  undefined1 auVar36 [16];
+  uint64_t extraout_XMM0_Qb;
+  uint64_t extraout_XMM0_Qb_00;
+  int8_t auVar36 [16];
   int iVar42;
-  undefined1 auVar38 [16];
-  undefined1 auVar40 [16];
+  int8_t auVar38 [16];
+  int8_t auVar40 [16];
   int iVar43;
   int iVar44;
-  undefined1 auVar45 [16];
+  int8_t auVar45 [16];
   float fVar46;
   float fVar48;
   float fVar49;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar47 [16];
+  int8_t in_XMM2 [16];
+  int8_t auVar47 [16];
   float fVar50;
   int iVar56;
   int iVar57;
-  undefined1 auVar51 [16];
-  undefined1 auVar52 [16];
-  undefined1 auVar53 [16];
-  undefined1 auVar54 [16];
-  undefined1 auVar55 [16];
-  undefined1 auVar58 [16];
+  int8_t auVar51 [16];
+  int8_t auVar52 [16];
+  int8_t auVar53 [16];
+  int8_t auVar54 [16];
+  int8_t auVar55 [16];
+  int8_t auVar58 [16];
   longlong lStackX_10;
-  undefined1 auVar37 [16];
-  undefined1 auVar39 [16];
+  int8_t auVar37 [16];
+  int8_t auVar39 [16];
   
   iVar14 = -0x100;
-  puVar18 = (undefined8 *)0x180c41da0;
+  puVar18 = (uint64_t *)0x180c41da0;
   do {
     uVar35 = thunk_FUN_1808fea60();
     iVar14 = iVar14 + 4;
@@ -90,7 +90,7 @@ undefined8 FUN_180813210(int param_1)
     puVar18 = puVar18 + 2;
   } while (iVar14 < 0x78);
   if ((longlong)iVar14 < 0x7a) {
-    puVar16 = (undefined4 *)((longlong)iVar14 * 4 + 0x180c421a0);
+    puVar16 = (int32_t *)((longlong)iVar14 * 4 + 0x180c421a0);
     do {
       uVar32 = powf();
       *puVar16 = uVar32;
@@ -99,7 +99,7 @@ undefined8 FUN_180813210(int param_1)
   }
   auVar47 = _DAT_18097f930;
   uVar21 = 0;
-  puVar18 = (undefined8 *)0x180c398a0;
+  puVar18 = (uint64_t *)0x180c398a0;
   uVar6 = uVar21;
   do {
     auVar45 = auVar47;
@@ -111,7 +111,7 @@ undefined8 FUN_180813210(int param_1)
     puVar18 = puVar18 + 2;
   } while ((int)uVar15 < 0x200c);
   if ((int)uVar15 < 0x200f) {
-    puVar16 = (undefined4 *)((longlong)(int)uVar15 * 4 + 0x180c398a0);
+    puVar16 = (int32_t *)((longlong)(int)uVar15 * 4 + 0x180c398a0);
     do {
       auVar45 = ZEXT816(0x3faaaaab);
       uVar32 = powf();
@@ -150,7 +150,7 @@ undefined8 FUN_180813210(int param_1)
     in_XMM2._4_4_ = fVar48 * fVar34;
     in_XMM2._8_4_ = fVar49 * fVar2;
     in_XMM2._12_4_ = fVar50 * fVar3;
-    *(undefined1 (*) [16])(&DAT_180c418e0 + uVar6) = in_XMM2;
+    *(int8_t (*) [16])(&DAT_180c418e0 + uVar6) = in_XMM2;
     uVar6 = uVar6 + 0x10;
     lVar9 = lVar9 + -1;
   } while (lVar9 != 0);
@@ -230,7 +230,7 @@ undefined8 FUN_180813210(int param_1)
       lVar11 = (lVar22 - 1U >> 1) + 1;
       uVar7 = uVar6;
       do {
-        *(undefined4 *)(uVar7 + 0x180c41b60) = *(undefined4 *)(uVar7 + 0x180c41920);
+        *(int32_t *)(uVar7 + 0x180c41b60) = *(int32_t *)(uVar7 + 0x180c41920);
         uVar7 = uVar7 + 8;
         lVar11 = lVar11 + -1;
       } while (lVar11 != 0);

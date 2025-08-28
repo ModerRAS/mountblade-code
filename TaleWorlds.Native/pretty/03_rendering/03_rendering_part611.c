@@ -893,8 +893,8 @@ void RenderingSystemAdvancedController(longlong param_1)
         // 更新控制标志
         puVar1 = (ushort *)(*(longlong *)(param_1 + 0x728) + 0x5ac);
         *puVar1 = *puVar1 | uVar2;
-        *(undefined2 *)(*(longlong *)(param_1 + 0x728) + 0x5aa) = 0;
-        *(undefined4 *)(*(longlong *)(param_1 + 0x728) + 0x5a4) = 0xffffffff;
+        *(int16_t *)(*(longlong *)(param_1 + 0x728) + 0x5aa) = 0;
+        *(int32_t *)(*(longlong *)(param_1 + 0x728) + 0x5a4) = 0xffffffff;
     }
     
     // 执行渲染操作
@@ -902,8 +902,8 @@ void RenderingSystemAdvancedController(longlong param_1)
     FUN_180526710(param_1, 0x3c23d70a);
     
     // 执行间接跳转（动态函数调用）
-    (**(code **)**(undefined8 **)(param_1 + 0x590))
-            (*(undefined8 **)(param_1 + 0x590), 0x3c23d70a, *(undefined8 *)(param_1 + 0x658));
+    (**(code **)**(uint64_t **)(param_1 + 0x590))
+            (*(uint64_t **)(param_1 + 0x590), 0x3c23d70a, *(uint64_t *)(param_1 + 0x658));
     return;
 }
 

@@ -30,7 +30,7 @@ void initialize_rendering_data_parser(void)
  * @param data_count 数据计数
  * @return 处理结果状态码
  */
-ulonglong parse_rendering_data_block(longlong data_block, int block_size, undefined8 config, 
+ulonglong parse_rendering_data_block(longlong data_block, int block_size, uint64_t config, 
                                     longlong *output_data, int *data_count)
 {
     char data_type;
@@ -333,18 +333,18 @@ void handle_rendering_error(void)
  * @param flags_param 标志参数
  * 简化实现：处理参数验证和内存分配
  */
-void process_rendering_parameters(longlong render_context, undefined8 config_param, int width_param, int height_param, undefined4 format_param,
-                                 float scale_x_param, float scale_y_param, undefined8 reserved_param1, undefined8 reserved_param2,
-                                 undefined4 flags_param)
+void process_rendering_parameters(longlong render_context, uint64_t config_param, int width_param, int height_param, int32_t format_param,
+                                 float scale_x_param, float scale_y_param, uint64_t reserved_param1, uint64_t reserved_param2,
+                                 int32_t flags_param)
 {
     int *memory_ref;
     float min_scale;
     byte data_byte;
-    undefined8 *temp_ptr1;
-    undefined8 *temp_ptr2;
+    uint64_t *temp_ptr1;
+    uint64_t *temp_ptr2;
     float scale_x;
     float scale_y;
-    undefined4 flags;
+    int32_t flags;
     uint render_flags;
     uint data_type;
     int texture_id;
@@ -352,24 +352,24 @@ void process_rendering_parameters(longlong render_context, undefined8 config_par
     longlong offset;
     ulonglong valid_count;
     int texture_height;
-    undefined1 scale_vector1 [16];
-    undefined1 scale_vector2 [16];
-    undefined8 *buffer_ptr;
+    int8_t scale_vector1 [16];
+    int8_t scale_vector2 [16];
+    uint64_t *buffer_ptr;
     int width;
     int height;
-    undefined4 format;
-    undefined8 config;
-    undefined8 buffer1;
-    undefined8 buffer2;
-    undefined8 buffer3;
-    undefined8 buffer4;
-    undefined8 buffer5;
-    undefined8 buffer6;
-    undefined8 buffer7;
-    undefined8 buffer8;
-    undefined4 temp_count;
-    undefined8 temp_buffer;
-    undefined1 temp_scale [16];
+    int32_t format;
+    uint64_t config;
+    uint64_t buffer1;
+    uint64_t buffer2;
+    uint64_t buffer3;
+    uint64_t buffer4;
+    uint64_t buffer5;
+    uint64_t buffer6;
+    uint64_t buffer7;
+    uint64_t buffer8;
+    int32_t temp_count;
+    uint64_t temp_buffer;
+    int8_t temp_scale [16];
     
     flags = flags_param;
     render_flags = get_rendering_flags(render_context, flags_param, &buffer_ptr);
@@ -446,13 +446,13 @@ error_handler:
             min_scale = scale_y;
         }
         
-        buffer_ptr = (undefined8 *)0x0;
+        buffer_ptr = (uint64_t *)0x0;
         data_ptr = parse_rendering_data_block(temp_ptr1, valid_count & 0xffffffff, 0.35 / min_scale, &buffer_ptr, &format_param);
         temp_ptr2 = buffer_ptr;
         
         if (data_ptr != 0) {
             process_rendering_data_internal(&width, data_ptr, buffer_ptr, format_param, scale_x, scale_y);
-            if ((temp_ptr2 != (undefined8 *)0x0) && (g_rendering_memory_manager != 0)) {
+            if ((temp_ptr2 != (uint64_t *)0x0) && (g_rendering_memory_manager != 0)) {
                 *(int *)(g_rendering_memory_manager + 0x3a8) = *(int *)(g_rendering_memory_manager + 0x3a8) + -1;
             }
             
@@ -462,11 +462,11 @@ error_handler:
     }
     
     // 清理临时缓冲区
-    if ((temp_ptr1 != (undefined8 *)0x0) && (g_rendering_memory_manager != 0)) {
+    if ((temp_ptr1 != (uint64_t *)0x0) && (g_rendering_memory_manager != 0)) {
         *(int *)(g_rendering_memory_manager + 0x3a8) = *(int *)(g_rendering_memory_manager + 0x3a8) + -1;
     }
     
-    if (temp_ptr1 != (undefined8 *)0x0) {
+    if (temp_ptr1 != (uint64_t *)0x0) {
         // 内存清理逻辑
         valid_count = (ulonglong)temp_ptr1 & 0xffffffffffc00000;
         if (valid_count != 0) {
@@ -474,8 +474,8 @@ error_handler:
             data_ptr = data_ptr - (ulonglong)*(uint *)(data_ptr + 4);
             
             if ((*(void ***)(valid_count + 0x70) == &ExceptionList) && (*(char *)(data_ptr + 0xe) == '\0')) {
-                *temp_ptr1 = *(undefined8 *)(data_ptr + 0x20);
-                *(undefined8 **)(data_ptr + 0x20) = temp_ptr1;
+                *temp_ptr1 = *(uint64_t *)(data_ptr + 0x20);
+                *(uint64_t **)(data_ptr + 0x20) = temp_ptr1;
                 memory_ref = (int *)(data_ptr + 0x18);
                 *memory_ref = *memory_ref + -1;
                 
@@ -510,16 +510,16 @@ error_handler:
  * @param height_param 高度参数
  * 简化实现：处理寄存器保存和恢复逻辑
  */
-void save_restore_rendering_registers(longlong render_context, undefined8 config_param, int width_param, int height_param)
+void save_restore_rendering_registers(longlong render_context, uint64_t config_param, int width_param, int height_param)
 {
     int *memory_ref;
     float min_scale;
     byte data_byte;
-    undefined8 *temp_ptr1;
-    undefined8 *temp_ptr2;
+    uint64_t *temp_ptr1;
+    uint64_t *temp_ptr2;
     float scale_x;
     float scale_y;
-    undefined4 flags;
+    int32_t flags;
     uint render_flags;
     int texture_id;
     longlong context_ptr;
@@ -527,63 +527,63 @@ void save_restore_rendering_registers(longlong render_context, undefined8 config
     longlong offset;
     ulonglong valid_count;
     int texture_height;
-    undefined8 reg_rbx;
-    undefined8 reg_rbp;
-    undefined8 reg_rsi;
-    undefined8 reg_r12;
-    undefined8 reg_r13;
-    undefined8 reg_r14;
-    undefined8 reg_r15;
-    undefined1 scale_vector1 [16];
-    undefined1 scale_vector2 [16];
-    undefined4 xmm6_da;
-    undefined4 xmm6_db;
-    undefined4 xmm6_dc;
-    undefined4 xmm6_dd;
-    undefined4 xmm7_da;
-    undefined4 xmm7_db;
-    undefined4 xmm7_dc;
-    undefined4 xmm7_dd;
+    uint64_t reg_rbx;
+    uint64_t reg_rbp;
+    uint64_t reg_rsi;
+    uint64_t reg_r12;
+    uint64_t reg_r13;
+    uint64_t reg_r14;
+    uint64_t reg_r15;
+    int8_t scale_vector1 [16];
+    int8_t scale_vector2 [16];
+    int32_t xmm6_da;
+    int32_t xmm6_db;
+    int32_t xmm6_dc;
+    int32_t xmm6_dd;
+    int32_t xmm7_da;
+    int32_t xmm7_db;
+    int32_t xmm7_dc;
+    int32_t xmm7_dd;
     int stack_width;
     int stack_height;
-    undefined4 stack_format;
-    undefined8 stack_config;
-    undefined8 stack_buffer1;
-    undefined8 stack_buffer2;
-    undefined8 stack_buffer3;
-    undefined8 stack_buffer4;
+    int32_t stack_format;
+    uint64_t stack_config;
+    uint64_t stack_buffer1;
+    uint64_t stack_buffer2;
+    uint64_t stack_buffer3;
+    uint64_t stack_buffer4;
     int stack_counter;
-    undefined8 stack_buffer5;
-    undefined8 stack_buffer6;
-    undefined8 stack_buffer7;
-    undefined8 stack_buffer8;
-    undefined8 stack_buffer9;
-    undefined8 *data_buffer;
+    uint64_t stack_buffer5;
+    uint64_t stack_buffer6;
+    uint64_t stack_buffer7;
+    uint64_t stack_buffer8;
+    uint64_t stack_buffer9;
+    uint64_t *data_buffer;
     uint data_count;
-    undefined4 data_format;
+    int32_t data_format;
     float scale_x_value;
     float scale_y_value;
-    undefined4 data_flags;
-    undefined1 temp_scale [16];
+    int32_t data_flags;
+    int8_t temp_scale [16];
     
     data_flags = data_flags;
     
     // 保存寄存器状态到栈上
-    *(undefined8 *)(context_ptr + 0x10) = reg_rbx;
-    *(undefined8 *)(context_ptr + -0x10) = reg_rbp;
-    *(undefined8 *)(context_ptr + -0x18) = reg_rsi;
-    *(undefined8 *)(context_ptr + -0x20) = reg_r12;
-    *(undefined8 *)(context_ptr + -0x28) = reg_r13;
-    *(undefined8 *)(context_ptr + -0x30) = reg_r14;
-    *(undefined8 *)(context_ptr + -0x38) = reg_r15;
-    *(undefined4 *)(context_ptr + -0x48) = xmm6_da;
-    *(undefined4 *)(context_ptr + -0x44) = xmm6_db;
-    *(undefined4 *)(context_ptr + -0x40) = xmm6_dc;
-    *(undefined4 *)(context_ptr + -0x3c) = xmm6_dd;
-    *(undefined4 *)(context_ptr + -0x58) = xmm7_da;
-    *(undefined4 *)(context_ptr + -0x54) = xmm7_db;
-    *(undefined4 *)(context_ptr + -0x50) = xmm7_dc;
-    *(undefined4 *)(context_ptr + -0x4c) = xmm7_dd;
+    *(uint64_t *)(context_ptr + 0x10) = reg_rbx;
+    *(uint64_t *)(context_ptr + -0x10) = reg_rbp;
+    *(uint64_t *)(context_ptr + -0x18) = reg_rsi;
+    *(uint64_t *)(context_ptr + -0x20) = reg_r12;
+    *(uint64_t *)(context_ptr + -0x28) = reg_r13;
+    *(uint64_t *)(context_ptr + -0x30) = reg_r14;
+    *(uint64_t *)(context_ptr + -0x38) = reg_r15;
+    *(int32_t *)(context_ptr + -0x48) = xmm6_da;
+    *(int32_t *)(context_ptr + -0x44) = xmm6_db;
+    *(int32_t *)(context_ptr + -0x40) = xmm6_dc;
+    *(int32_t *)(context_ptr + -0x3c) = xmm6_dd;
+    *(int32_t *)(context_ptr + -0x58) = xmm7_da;
+    *(int32_t *)(context_ptr + -0x54) = xmm7_db;
+    *(int32_t *)(context_ptr + -0x50) = xmm7_dc;
+    *(int32_t *)(context_ptr + -0x4c) = xmm7_dd;
     
     data_count = get_rendering_flags(render_context, data_flags, context_ptr + 8);
     scale_y_value = scale_y_value;
@@ -659,13 +659,13 @@ error_handler:
             min_scale = scale_y_value;
         }
         
-        data_buffer = (undefined8 *)0x0;
+        data_buffer = (uint64_t *)0x0;
         data_ptr = parse_rendering_data_block(temp_ptr1, valid_count & 0xffffffff, 0.35 / min_scale, &data_buffer, &data_format);
         temp_ptr2 = data_buffer;
         
         if (data_ptr != 0) {
             process_rendering_data_internal(&stack_width, data_ptr, data_buffer, data_format, scale_x_value);
-            if ((temp_ptr2 != (undefined8 *)0x0) && (g_rendering_memory_manager != 0)) {
+            if ((temp_ptr2 != (uint64_t *)0x0) && (g_rendering_memory_manager != 0)) {
                 *(int *)(g_rendering_memory_manager + 0x3a8) = *(int *)(g_rendering_memory_manager + 0x3a8) + -1;
             }
             
@@ -675,11 +675,11 @@ error_handler:
     }
     
     // 清理临时缓冲区
-    if ((temp_ptr1 != (undefined8 *)0x0) && (g_rendering_memory_manager != 0)) {
+    if ((temp_ptr1 != (uint64_t *)0x0) && (g_rendering_memory_manager != 0)) {
         *(int *)(g_rendering_memory_manager + 0x3a8) = *(int *)(g_rendering_memory_manager + 0x3a8) + -1;
     }
     
-    if (temp_ptr1 != (undefined8 *)0x0) {
+    if (temp_ptr1 != (uint64_t *)0x0) {
         // 内存清理逻辑
         valid_count = (ulonglong)temp_ptr1 & 0xffffffffffc00000;
         if (valid_count != 0) {
@@ -687,8 +687,8 @@ error_handler:
             data_ptr = data_ptr - (ulonglong)*(uint *)(data_ptr + 4);
             
             if ((*(void ***)(valid_count + 0x70) == &ExceptionList) && (*(char *)(data_ptr + 0xe) == '\0')) {
-                *temp_ptr1 = *(undefined8 *)(data_ptr + 0x20);
-                *(undefined8 **)(data_ptr + 0x20) = temp_ptr1;
+                *temp_ptr1 = *(uint64_t *)(data_ptr + 0x20);
+                *(uint64_t **)(data_ptr + 0x20) = temp_ptr1;
                 memory_ref = (int *)(data_ptr + 0x18);
                 *memory_ref = *memory_ref + -1;
                 
@@ -723,7 +723,7 @@ error_handler:
  * @param height_param 高度参数
  * 简化实现：处理高级寄存器操作和内存分配
  */
-void process_rendering_registers_advanced(undefined8 render_param, undefined8 config_param, int width_param, int height_param)
+void process_rendering_registers_advanced(uint64_t render_param, uint64_t config_param, int width_param, int height_param)
 {
     // 简化实现：处理高级寄存器操作
     // 包含寄存器保存、内存分配、数据处理和清理逻辑
@@ -785,8 +785,8 @@ void cleanup_rendering_memory(void)
  * @param flags_param 标志参数
  * 简化实现：处理缓冲区初始化和清零操作
  */
-void initialize_rendering_buffer(undefined8 buffer_param, undefined8 config_param, int size_param, undefined8 data_param,
-                                undefined4 flags_param)
+void initialize_rendering_buffer(uint64_t buffer_param, uint64_t config_param, int size_param, uint64_t data_param,
+                                int32_t flags_param)
 {
     // 简化实现：处理缓冲区初始化
     // 如果大小大于0，则初始化缓冲区并清零
@@ -843,8 +843,8 @@ void rendering_no_operation(void)
  * @param flags_param 标志参数
  * 简化实现：处理高级缓冲区初始化和清零操作
  */
-void initialize_rendering_buffer_advanced(undefined8 buffer_param, int size_param, undefined8 config_param, undefined8 data_param,
-                                          undefined4 flags_param)
+void initialize_rendering_buffer_advanced(uint64_t buffer_param, int size_param, uint64_t config_param, uint64_t data_param,
+                                          int32_t flags_param)
 {
     // 简化实现：处理高级缓冲区初始化
     // 如果大小大于0，则初始化缓冲区并清零

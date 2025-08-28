@@ -43,16 +43,16 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
   longlong *resource_manager;
   float quality_factor;
   longlong queue_parameters[3];
-  undefined1 security_buffer[32];
-  undefined8 stack_guard;
+  int8_t security_buffer[32];
+  uint64_t stack_guard;
   longlong **callback_table;
-  undefined1 padding_buffer[8];
+  int8_t padding_buffer[8];
   longlong resource_handle;
   longlong queue_size;
   float priority_scale;
   float quality_scale;
   longlong *render_target;
-  undefined1 *visibility_flag;
+  int8_t *visibility_flag;
   float *quality_parameter;
   float *performance_metric;
   longlong *batch_processor;
@@ -60,8 +60,8 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
   longlong *resource_allocator;
   longlong resource_table[2];
   code *entry_point;
-  undefined *exit_handler;
-  undefined8 frame_counter;
+  void *exit_handler;
+  uint64_t frame_counter;
   longlong **system_manager;
   int priority_levels[6];
   ulonglong system_checksum;
@@ -69,13 +69,13 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
   stack_guard = 0xfffffffffffffffe;
   system_checksum = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
   LOCK();
-  *(undefined4 *)(render_context + 0x78) = 0;
+  *(int32_t *)(render_context + 0x78) = 0;
   UNLOCK();
   LOCK();
-  *(undefined4 *)(render_context + 0x980) = 0;
+  *(int32_t *)(render_context + 0x980) = 0;
   UNLOCK();
   LOCK();
-  *(undefined4 *)(render_context + 0x1288) = 0;
+  *(int32_t *)(render_context + 0x1288) = 0;
   UNLOCK();
   queue_parameters[0] = render_queue;
   queue_size = render_parameters;
@@ -83,8 +83,8 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
     lock_result = _Mtx_trylock(render_context + 0x1bb0);
     if (lock_result == 0) {
       if (*(longlong *)(queue_parameters[0] + 0x60b80) != 0) {
-        *(undefined8 *)(queue_size + 0x124c8) =
-             *(undefined8 *)(*(longlong *)(queue_parameters[0] + 0x60b80) + 0x20);
+        *(uint64_t *)(queue_size + 0x124c8) =
+             *(uint64_t *)(*(longlong *)(queue_parameters[0] + 0x60b80) + 0x20);
       }
       resource_manager = *(longlong **)(render_context + 0x1b90);
       if (resource_manager != *(longlong **)(render_context + 0x1b98)) {
@@ -101,7 +101,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
               security_buffer[0] = 1;
             }
             LOCK();
-            *(undefined4 *)(system_state + 0xa8) = 0;
+            *(int32_t *)(system_state + 0xa8) = 0;
             UNLOCK();
             system_state = *(longlong *)(_DAT_180c86870 + 0x3d8);
             if ((system_state == 0) || (*(int *)(system_state + 0x110) != 1)) {
@@ -180,7 +180,7 @@ void rendering_system_initialize_render_context(longlong render_context, longlon
         __Throw_C_error_std__YAXH_Z(lock_result);
       }
       if (*(char *)(_DAT_180c86870 + 0xf9) == '\0') {
-        *(undefined4 *)(queue_size + 0x124b8) = 0;
+        *(int32_t *)(queue_size + 0x124b8) = 0;
       }
       else {
         FUN_180307ca0(render_context, queue_size);
@@ -240,7 +240,7 @@ void rendering_system_process_render_batch(longlong *render_batch_data, int star
           render_context = *(longlong *)*render_batch_data;
         }
         FUN_180308500(render_context + 0xa8);
-        *(undefined1 *)((longlong)render_object + 0x39) = 1;
+        *(int8_t *)((longlong)render_object + 0x39) = 1;
       }
 LAB_1803066f9:
       if ((*(char *)((longlong)render_object + 0x39) == '\0') && (visibility_flag = rendering_system_check_render_visibility(), visibility_flag != '\0'))
@@ -261,7 +261,7 @@ LAB_1803066f9:
       }
       else {
         resource_handle = render_object[0x2b];
-        *(undefined4 *)((longlong)render_object + 0x34) = 0;
+        *(int32_t *)((longlong)render_object + 0x34) = 0;
         if (resource_handle != 0) {
           resource_handle = (ulonglong)(byte)(*(char *)(resource_handle + 0x2c8) + 8);
         }
@@ -323,35 +323,35 @@ void rendering_system_execute_render_pipeline(longlong *render_pipeline_data, in
   longlong pipeline_context;
   ulonglong resource_handle;
   longlong allocated_memory;
-  undefined8 register_rbx;
-  undefined8 register_rbp;
-  undefined8 register_r12;
-  undefined8 register_r13;
-  undefined8 register_r14;
+  uint64_t register_rbx;
+  uint64_t register_rbp;
+  uint64_t register_r12;
+  uint64_t register_r13;
+  uint64_t register_r14;
   bool allocation_success;
-  undefined4 register_xmm6_a;
-  undefined4 register_xmm6_b;
-  undefined4 register_xmm6_c;
-  undefined4 register_xmm6_d;
-  undefined4 register_xmm7_a;
-  undefined4 register_xmm7_b;
-  undefined4 register_xmm7_c;
-  undefined4 register_xmm7_d;
+  int32_t register_xmm6_a;
+  int32_t register_xmm6_b;
+  int32_t register_xmm6_c;
+  int32_t register_xmm6_d;
+  int32_t register_xmm7_a;
+  int32_t register_xmm7_b;
+  int32_t register_xmm7_c;
+  int32_t register_xmm7_d;
   int stack_param;
   
-  *(undefined8 *)(pipeline_context + 8) = register_rbx;
-  *(undefined8 *)(pipeline_context + 0x20) = register_r12;
-  *(undefined8 *)(pipeline_context + -0x20) = register_r13;
-  *(undefined4 *)(pipeline_context + -0x38) = register_xmm6_a;
-  *(undefined4 *)(pipeline_context + -0x34) = register_xmm6_b;
-  *(undefined4 *)(pipeline_context + -0x30) = register_xmm6_c;
-  *(undefined4 *)(pipeline_context + -0x2c) = register_xmm6_d;
-  *(undefined4 *)(pipeline_context + -0x48) = register_xmm7_a;
-  *(undefined4 *)(pipeline_context + -0x44) = register_xmm7_b;
-  *(undefined4 *)(pipeline_context + -0x40) = register_xmm7_c;
-  *(undefined4 *)(pipeline_context + -0x3c) = register_xmm7_d;
-  *(undefined8 *)(pipeline_context + 0x18) = register_rbp;
-  *(undefined8 *)(pipeline_context + -0x28) = register_r14;
+  *(uint64_t *)(pipeline_context + 8) = register_rbx;
+  *(uint64_t *)(pipeline_context + 0x20) = register_r12;
+  *(uint64_t *)(pipeline_context + -0x20) = register_r13;
+  *(int32_t *)(pipeline_context + -0x38) = register_xmm6_a;
+  *(int32_t *)(pipeline_context + -0x34) = register_xmm6_b;
+  *(int32_t *)(pipeline_context + -0x30) = register_xmm6_c;
+  *(int32_t *)(pipeline_context + -0x2c) = register_xmm6_d;
+  *(int32_t *)(pipeline_context + -0x48) = register_xmm7_a;
+  *(int32_t *)(pipeline_context + -0x44) = register_xmm7_b;
+  *(int32_t *)(pipeline_context + -0x40) = register_xmm7_c;
+  *(int32_t *)(pipeline_context + -0x3c) = register_xmm7_d;
+  *(uint64_t *)(pipeline_context + 0x18) = register_rbp;
+  *(uint64_t *)(pipeline_context + -0x28) = register_r14;
   *(int *)(pipeline_context + 0x10) = start_index;
   do {
     render_context = *(longlong *)*render_pipeline_data;
@@ -369,7 +369,7 @@ void rendering_system_execute_render_pipeline(longlong *render_pipeline_data, in
         render_context = *(longlong *)*render_pipeline_data;
       }
       FUN_180308500(render_context + 0xa8);
-      *(undefined1 *)((longlong)render_object + 0x39) = 1;
+      *(int8_t *)((longlong)render_object + 0x39) = 1;
       start_index = stack_param;
     }
 LAB_1803066f9:
@@ -390,7 +390,7 @@ LAB_1803066f9:
     }
     else {
       resource_handle = render_object[0x2b];
-      *(undefined4 *)((longlong)render_object + 0x34) = 0;
+      *(int32_t *)((longlong)render_object + 0x34) = 0;
       if (resource_handle != 0) {
         resource_handle = (ulonglong)(byte)(*(char *)(resource_handle + 0x2c8) + 8);
       }
@@ -464,27 +464,27 @@ bool rendering_system_check_render_visibility(longlong render_context, longlong 
   float matrix_a;
   float matrix_b;
   float matrix_c;
-  undefined4 padding_a;
+  int32_t padding_a;
   float matrix_d;
   float matrix_e;
   float matrix_f;
-  undefined4 padding_b;
+  int32_t padding_b;
   float matrix_g;
   float matrix_h;
   float matrix_i;
-  undefined4 padding_c;
+  int32_t padding_c;
   float matrix_j;
   float matrix_k;
   float matrix_l;
-  undefined4 padding_d;
+  int32_t padding_d;
   
   (**(code **)(*camera_matrix + 0x218))(camera_matrix);
   (**(code **)(*camera_matrix + 0x218))(camera_matrix);
-  if ((undefined *)*camera_matrix == &UNK_180a19770) {
+  if ((void *)*camera_matrix == &UNK_180a19770) {
     render_priority = *(uint *)((longlong)camera_matrix + 0x174);
   }
   else {
-    render_priority = (**(code **)((undefined *)*camera_matrix + 0x130))(camera_matrix);
+    render_priority = (**(code **)((void *)*camera_matrix + 0x130))(camera_matrix);
   }
   if (((render_priority & 1) != 0) &&
      ((render_priority = *(uint *)(render_target + 0x60300) & 0xfffffffe,
@@ -549,19 +549,19 @@ bool rendering_system_validate_render_state(void)
   float coordinate_x;
   float coordinate_y;
   float coordinate_z;
-  undefined4 padding_a;
+  int32_t padding_a;
   float matrix_a;
   float matrix_b;
   float matrix_c;
-  undefined4 padding_b;
+  int32_t padding_b;
   float matrix_d;
   float matrix_e;
   float matrix_f;
-  undefined4 padding_c;
+  int32_t padding_c;
   float matrix_g;
   float matrix_h;
   float matrix_i;
-  undefined4 padding_d;
+  int32_t padding_d;
   float visibility_threshold;
   float quality_metric;
   
@@ -639,23 +639,23 @@ bool rendering_system_verify_render_capability(void)
   float fStack0000000000000030;
   float fStack0000000000000034;
   float in_stack_00000038;
-  undefined4 uStack000000000000003c;
+  int32_t uStack000000000000003c;
   float fStack0000000000000040;
   float fStack0000000000000044;
   float in_stack_00000048;
-  undefined4 uStack000000000000004c;
+  int32_t uStack000000000000004c;
   float fStack0000000000000050;
   float fStack0000000000000054;
   float in_stack_00000058;
-  undefined4 uStack000000000000005c;
+  int32_t uStack000000000000005c;
   float fStack0000000000000060;
   float fStack0000000000000064;
   float in_stack_00000068;
-  undefined4 uStack000000000000006c;
-  undefined4 in_stack_00000070;
-  undefined4 in_stack_00000078;
-  undefined4 in_stack_00000080;
-  undefined4 in_stack_00000088;
+  int32_t uStack000000000000006c;
+  int32_t in_stack_00000070;
+  int32_t in_stack_00000078;
+  int32_t in_stack_00000080;
+  int32_t in_stack_00000088;
   float fStack00000000000000c0;
   float fStack00000000000000c4;
   float in_stack_000000c8;
@@ -730,7 +730,7 @@ void rendering_system_release_render_resources(longlong render_context)
     puVar1 = (uint *)(*(longlong *)(param_1 + 0x1c48) + 0x328);
     *puVar1 = *puVar1 & 0xdfffffff;
     plVar2 = *(longlong **)(param_1 + 0x1c48);
-    *(undefined8 *)(param_1 + 0x1c48) = 0;
+    *(uint64_t *)(param_1 + 0x1c48) = 0;
     if (plVar2 != (longlong *)0x0) {
                     // WARNING: Could not recover jumptable at 0x000180306b8c. Too many branches
                     // WARNING: Treating indirect jump as call

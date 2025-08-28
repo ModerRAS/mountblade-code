@@ -236,7 +236,7 @@ typedef undefined UISystem_StateMonitor_type;
  * @note 此函数在UI系统初始化和运行时被调用
  * @warning 错误的数据处理可能导致系统不稳定
  */
-void UISystem_CoreDataProcessor(undefined8 system_context, undefined8 operation_flag, undefined *data_buffer, undefined8 validation_flag, longlong processing_context);
+void UISystem_CoreDataProcessor(uint64_t system_context, uint64_t operation_flag, void *data_buffer, uint64_t validation_flag, longlong processing_context);
 
 /**
  * @brief UI系统内存管理器
@@ -249,12 +249,12 @@ void UISystem_CoreDataProcessor(undefined8 system_context, undefined8 operation_
  * 
  * @param memory_ptr 内存指针
  * @param allocation_flag 分配标志
- * @return undefined8* 内存指针
+ * @return uint64_t* 内存指针
  * 
  * @note 此函数在UI系统运行时被频繁调用
  * @warning 错误的内存管理可能导致内存泄漏
  */
-undefined8 * UISystem_MemoryManager(undefined8 *memory_ptr, ulonglong allocation_flag);
+uint64_t * UISystem_MemoryManager(uint64_t *memory_ptr, ulonglong allocation_flag);
 
 /**
  * @brief UI系统Steam接口管理器（用户接口）
@@ -271,7 +271,7 @@ undefined8 * UISystem_MemoryManager(undefined8 *memory_ptr, ulonglong allocation
  * @note 此函数在Steam集成时被调用
  * @warning 需要确保Steam API已正确初始化
  */
-void UISystem_SteamInterfaceManager_User(undefined8 *interface_ptr);
+void UISystem_SteamInterfaceManager_User(uint64_t *interface_ptr);
 
 /**
  * @brief UI系统Steam接口管理器（功能接口）
@@ -288,7 +288,7 @@ void UISystem_SteamInterfaceManager_User(undefined8 *interface_ptr);
  * @note 此函数在Steam集成时被调用
  * @warning 需要确保Steam API已正确初始化
  */
-void UISystem_SteamInterfaceManager_Feature(undefined8 *interface_ptr);
+void UISystem_SteamInterfaceManager_Feature(uint64_t *interface_ptr);
 
 /**
  * @brief UI系统数据结构操作器
@@ -303,12 +303,12 @@ void UISystem_SteamInterfaceManager_Feature(undefined8 *interface_ptr);
  * @param operation_flag 操作标志
  * @param data_param1 数据参数1
  * @param data_param2 数据参数2
- * @return undefined8* 数据结构指针
+ * @return uint64_t* 数据结构指针
  * 
  * @note 此函数在UI系统数据处理时被调用
  * @warning 错误的操作可能导致数据结构损坏
  */
-undefined8 * UISystem_DataStructureOperator(undefined8 *structure_ptr, ulonglong operation_flag, undefined8 data_param1, undefined8 data_param2);
+uint64_t * UISystem_DataStructureOperator(uint64_t *structure_ptr, ulonglong operation_flag, uint64_t data_param1, uint64_t data_param2);
 
 /**
  * @brief UI系统状态监控器（初始化）
@@ -344,7 +344,7 @@ void UISystem_StateMonitor_Initialize(void);
  * @note 此函数在UI系统运行时被频繁调用
  * @warning 错误的数据处理可能导致系统不稳定
  */
-void UISystem_DataProcessor(longlong data_source, longlong data_target, undefined8 processing_flag, undefined8 validation_flag);
+void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t processing_flag, uint64_t validation_flag);
 
 /**
  * @brief UI系统状态监控器（清理）
@@ -395,13 +395,13 @@ void UISystem_StateMonitor_Cleanup(void);
  * @param processing_context 处理上下文指针
  * @return void 操作状态
  */
-void UISystem_CoreDataProcessor(undefined8 system_context, undefined8 operation_flag, undefined *data_buffer, undefined8 validation_flag, longlong processing_context)
+void UISystem_CoreDataProcessor(uint64_t system_context, uint64_t operation_flag, void *data_buffer, uint64_t validation_flag, longlong processing_context)
 
 {
   byte *string_ptr1;
   byte *string_ptr2;
   uint char_comparison_result;
-  undefined4 validation_result;
+  int32_t validation_result;
   longlong memory_allocation_result;
   
   // 检查验证标志和数据缓冲区有效性
@@ -430,7 +430,7 @@ LAB_1806579f0:
   // 分配内存并处理数据
   memory_allocation_result = FUN_18062b420(_DAT_180c8ed18,MAX_DATA_BLOCK_SIZE,DAT_180c96808,validation_flag,0xfffffffffffffffe);
   FUN_180627ae0(memory_allocation_result + 0x20,processing_context);
-  *(undefined8 *)(memory_allocation_result + 0x40) = 0;
+  *(uint64_t *)(memory_allocation_result + 0x40) = 0;
   // 调用系统处理函数
   FUN_18066bdc0(memory_allocation_result,data_buffer,&DAT_180c967e0,validation_result);
 }
@@ -446,9 +446,9 @@ LAB_1806579f0:
  * 
  * @param memory_ptr 内存指针
  * @param allocation_flag 分配标志
- * @return undefined8* 内存指针
+ * @return uint64_t* 内存指针
  */
-undefined8 * UISystem_MemoryManager(undefined8 *memory_ptr, ulonglong allocation_flag)
+uint64_t * UISystem_MemoryManager(uint64_t *memory_ptr, ulonglong allocation_flag)
 
 {
   *memory_ptr = &UNK_180a3e470;
@@ -470,11 +470,11 @@ undefined8 * UISystem_MemoryManager(undefined8 *memory_ptr, ulonglong allocation
  * @param interface_ptr 接口指针
  * @return void 操作状态
  */
-void UISystem_SteamInterfaceManager_User(undefined8 *interface_ptr)
+void UISystem_SteamInterfaceManager_User(uint64_t *interface_ptr)
 
 {
-  undefined8 steam_interface_result;
-  undefined4 steam_user_handle;
+  uint64_t steam_interface_result;
+  int32_t steam_user_handle;
   
   // 获取Steam用户句柄
   steam_user_handle = SteamAPI_GetHSteamUser();
@@ -496,11 +496,11 @@ void UISystem_SteamInterfaceManager_User(undefined8 *interface_ptr)
  * @param interface_ptr 接口指针
  * @return void 操作状态
  */
-void UISystem_SteamInterfaceManager_Feature(undefined8 *interface_ptr)
+void UISystem_SteamInterfaceManager_Feature(uint64_t *interface_ptr)
 
 {
-  undefined8 steam_interface_result;
-  undefined4 steam_user_handle;
+  uint64_t steam_interface_result;
+  int32_t steam_user_handle;
   
   // 获取Steam用户句柄
   steam_user_handle = SteamAPI_GetHSteamUser();
@@ -523,13 +523,13 @@ void UISystem_SteamInterfaceManager_Feature(undefined8 *interface_ptr)
  * @param operation_flag 操作标志
  * @param data_param1 数据参数1
  * @param data_param2 数据参数2
- * @return undefined8* 数据结构指针
+ * @return uint64_t* 数据结构指针
  */
-undefined8 *
-UISystem_DataStructureOperator(undefined8 *structure_ptr, ulonglong operation_flag, undefined8 data_param1, undefined8 data_param2)
+uint64_t *
+UISystem_DataStructureOperator(uint64_t *structure_ptr, ulonglong operation_flag, uint64_t data_param1, uint64_t data_param2)
 
 {
-  undefined8 memory_management_flag;
+  uint64_t memory_management_flag;
   
   memory_management_flag = 0xfffffffffffffffe;
   *structure_ptr = &UNK_180a3e440;
@@ -573,18 +573,18 @@ void UISystem_StateMonitor_Initialize(void)
  * @param validation_flag 验证标志
  * @return void 操作状态
  */
-void UISystem_DataProcessor(longlong data_source, longlong data_target, undefined8 processing_flag, undefined8 validation_flag)
+void UISystem_DataProcessor(longlong data_source, longlong data_target, uint64_t processing_flag, uint64_t validation_flag)
 
 {
   int data_length;
-  undefined8 *data_structure_ptr;
+  uint64_t *data_structure_ptr;
   longlong source_data_ptr;
   ulonglong current_offset;
   uint data_item_id;
   ulonglong item_count;
-  undefined8 memory_management_flag;
-  undefined *stack_data_buffer;
-  undefined1 *string_buffer_ptr;
+  uint64_t memory_management_flag;
+  void *stack_data_buffer;
+  int8_t *string_buffer_ptr;
   int string_length;
   ulonglong buffer_size;
   
@@ -596,47 +596,47 @@ void UISystem_DataProcessor(longlong data_source, longlong data_target, undefine
     do {
       stack_data_buffer = &UNK_180a3c3e0;
       buffer_size = 0;
-      string_buffer_ptr = (undefined1 *)0x0;
+      string_buffer_ptr = (int8_t *)0x0;
       string_length = 0;
-      FUN_1806277c0(&stack_data_buffer,*(undefined4 *)(current_offset + 0x10 + source_data_ptr));
+      FUN_1806277c0(&stack_data_buffer,*(int32_t *)(current_offset + 0x10 + source_data_ptr));
       data_length = *(int *)(current_offset + 0x10 + source_data_ptr);
       if (data_length != 0) {
-        memcpy(string_buffer_ptr,*(undefined8 *)(current_offset + 8 + source_data_ptr),data_length + 1,validation_flag,memory_management_flag);
+        memcpy(string_buffer_ptr,*(uint64_t *)(current_offset + 8 + source_data_ptr),data_length + 1,validation_flag,memory_management_flag);
       }
       if (*(longlong *)(current_offset + 8 + source_data_ptr) != 0) {
         string_length = 0;
-        if (string_buffer_ptr != (undefined1 *)0x0) {
+        if (string_buffer_ptr != (int8_t *)0x0) {
           *string_buffer_ptr = 0;
         }
         buffer_size = buffer_size & 0xffffffff;
       }
-      data_structure_ptr = *(undefined8 **)(data_target + 8);
-      if (data_structure_ptr < *(undefined8 **)(data_target + 0x10)) {
-        *(undefined8 **)(data_target + 8) = data_structure_ptr + 4;
+      data_structure_ptr = *(uint64_t **)(data_target + 8);
+      if (data_structure_ptr < *(uint64_t **)(data_target + 0x10)) {
+        *(uint64_t **)(data_target + 8) = data_structure_ptr + 4;
         *data_structure_ptr = &UNK_18098bcb0;
         data_structure_ptr[1] = 0;
-        *(undefined4 *)(data_structure_ptr + 2) = 0;
+        *(int32_t *)(data_structure_ptr + 2) = 0;
         *data_structure_ptr = &UNK_180a3c3e0;
         data_structure_ptr[3] = 0;
         data_structure_ptr[1] = 0;
-        *(undefined4 *)(data_structure_ptr + 2) = 0;
+        *(int32_t *)(data_structure_ptr + 2) = 0;
         FUN_1806277c0(data_structure_ptr,string_length);
         if (string_length != 0) {
           memcpy(data_structure_ptr[1],string_buffer_ptr,string_length + 1,validation_flag,memory_management_flag);
         }
-        if (string_buffer_ptr != (undefined1 *)0x0) {
-          *(undefined4 *)(data_structure_ptr + 2) = 0;
-          if ((undefined1 *)data_structure_ptr[1] != (undefined1 *)0x0) {
-            *(undefined1 *)data_structure_ptr[1] = 0;
+        if (string_buffer_ptr != (int8_t *)0x0) {
+          *(int32_t *)(data_structure_ptr + 2) = 0;
+          if ((int8_t *)data_structure_ptr[1] != (int8_t *)0x0) {
+            *(int8_t *)data_structure_ptr[1] = 0;
           }
-          *(undefined4 *)((longlong)data_structure_ptr + 0x1c) = 0;
+          *(int32_t *)((longlong)data_structure_ptr + 0x1c) = 0;
         }
       }
       else {
         FUN_180059820(data_target,&stack_data_buffer);
       }
       stack_data_buffer = &UNK_180a3c3e0;
-      if (string_buffer_ptr != (undefined1 *)0x0) {
+      if (string_buffer_ptr != (int8_t *)0x0) {
         FUN_18064e900();
       }
       data_item_id = (int)item_count + 1;

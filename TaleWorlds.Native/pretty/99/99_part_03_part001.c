@@ -32,12 +32,12 @@
 // 全局变量引用
 // ============================================================================
 
-extern undefined8 _DAT_180c8aa08;    // 全局数据表指针
-extern undefined8 _DAT_180c82868;    // 系统状态标志
-extern undefined8 _DAT_180c8ed18;    // 内存分配器句柄
-extern undefined8 _DAT_180c86870;    // 渲染系统状态
-extern undefined8 DAT_180bf00a8;     // 安全检查常量
-extern undefined8 _DAT_180c86908;    // 系统配置状态
+extern uint64_t _DAT_180c8aa08;    // 全局数据表指针
+extern uint64_t _DAT_180c82868;    // 系统状态标志
+extern uint64_t _DAT_180c8ed18;    // 内存分配器句柄
+extern uint64_t _DAT_180c86870;    // 渲染系统状态
+extern uint64_t DAT_180bf00a8;     // 安全检查常量
+extern uint64_t _DAT_180c86908;    // 系统配置状态
 extern char DAT_180c82860;            // 调试模式标志
 extern char DAT_180c82842;            // 错误处理标志
 
@@ -45,16 +45,16 @@ extern char DAT_180c82842;            // 错误处理标志
 // 字符串常量引用
 // ============================================================================
 
-extern undefined8 UNK_180a0ce90;     // 字符串常量 "shader_cache"
-extern undefined8 UNK_180a0ce64;     // 字符串常量 "shaders"
-extern undefined8 UNK_180a0ce70;     // 字符串常量 "data"
-extern undefined8 UNK_180a0cf50;     // 字符串常量 "config"
-extern undefined8 UNK_180a01ff0;     // 文件扩展名过滤器
-extern undefined8 UNK_180a0cf4c;     // 配置文件路径
-extern undefined8 UNK_180a0cfa0;    // 错误消息标题
-extern undefined8 UNK_180a0cea0;    // 错误消息内容
-extern undefined8 UNK_180a0cf60;     // 对话框标题
-extern undefined8 UNK_180a04f08;     // 系统消息
+extern uint64_t UNK_180a0ce90;     // 字符串常量 "shader_cache"
+extern uint64_t UNK_180a0ce64;     // 字符串常量 "shaders"
+extern uint64_t UNK_180a0ce70;     // 字符串常量 "data"
+extern uint64_t UNK_180a0cf50;     // 字符串常量 "config"
+extern uint64_t UNK_180a01ff0;     // 文件扩展名过滤器
+extern uint64_t UNK_180a0cf4c;     // 配置文件路径
+extern uint64_t UNK_180a0cfa0;    // 错误消息标题
+extern uint64_t UNK_180a0cea0;    // 错误消息内容
+extern uint64_t UNK_180a0cf60;     // 对话框标题
+extern uint64_t UNK_180a04f08;     // 系统消息
 
 // ============================================================================
 // 核心函数实现
@@ -69,35 +69,35 @@ extern undefined8 UNK_180a04f08;     // 系统消息
  * 该函数实现高级字符串比较功能，支持多种字符串格式的比较和验证。
  * 主要用于系统初始化时的字符串匹配和验证过程。
  */
-void string_comparison_processor(undefined8 **param_1, longlong param_2)
+void string_comparison_processor(uint64_t **param_1, longlong param_2)
 {
-    undefined8 *global_ptr;
+    uint64_t *global_ptr;
     int string_length;
     longlong index;
-    undefined8 temp_var;
+    uint64_t temp_var;
     longlong *allocated_ptr;
-    undefined8 *result_ptr;
-    undefined8 **temp_ptr1;
+    uint64_t *result_ptr;
+    uint64_t **temp_ptr1;
     longlong temp_long;
-    undefined1 match_flag;
-    undefined8 **temp_ptr2;
-    undefined8 ***temp_ptr3;
-    undefined8 **temp_ptr4;
-    undefined8 *temp_ptr5;
-    undefined8 *stack_ptr1;
-    undefined1 stack_flag1;
-    undefined *stack_ptr2;
+    int8_t match_flag;
+    uint64_t **temp_ptr2;
+    uint64_t ***temp_ptr3;
+    uint64_t **temp_ptr4;
+    uint64_t *temp_ptr5;
+    uint64_t *stack_ptr1;
+    int8_t stack_flag1;
+    void *stack_ptr2;
     longlong stack_long1;
-    undefined4 stack_uint1;
-    undefined8 *stack_ptr3;
-    undefined1 stack_flag2;
-    undefined *stack_ptr4;
+    int32_t stack_uint1;
+    uint64_t *stack_ptr3;
+    int8_t stack_flag2;
+    void *stack_ptr4;
     longlong stack_long2;
-    undefined4 stack_uint2;
-    undefined8 *ptr_array[2];
+    int32_t stack_uint2;
+    uint64_t *ptr_array[2];
     code *func_ptr1;
     code *func_ptr2;
-    undefined8 stack_var1;
+    uint64_t stack_var1;
     
     // 初始化全局指针
     global_ptr = _DAT_180c8aa08;
@@ -132,8 +132,8 @@ void string_comparison_processor(undefined8 **param_1, longlong param_2)
         mismatch_case_2:
             // 字符串长度为8时的比较逻辑
             if ((string_length != 8) ||
-                ((string_length = strcmp(*(undefined8 *)(param_2 + 8), &UNK_180a0ce70), string_length != 0 &&
-                 (string_length = strcmp(*(undefined8 *)(param_2 + 8), &UNK_180a0cf50), string_length != 0))))
+                ((string_length = strcmp(*(uint64_t *)(param_2 + 8), &UNK_180a0ce70), string_length != 0 &&
+                 (string_length = strcmp(*(uint64_t *)(param_2 + 8), &UNK_180a0cf50), string_length != 0))))
                 goto final_mismatch;
         }
     }
@@ -151,18 +151,18 @@ final_mismatch:
     
     // 执行初始化回调
     (**(code **)(*allocated_ptr + 0x28))(allocated_ptr);
-    *(undefined1 *)(_DAT_180c86870 + 0x60) = 1;
+    *(int8_t *)(_DAT_180c86870 + 0x60) = 1;
     
     // 分配更多资源并处理
     temp_var = FUN_18062b1e0(_DAT_180c8ed18, 0xe0, 8, 3);
     temp_ptr2 = ptr_array;
-    temp_ptr3 = (undefined8 ***)&stack_ptr3;
+    temp_ptr3 = (uint64_t ***)&stack_ptr3;
     stack_ptr3 = global_ptr;
     stack_flag2 = match_flag;
     FUN_180627ae0(&stack_ptr4, param_2);
     
     // 构建处理链
-    temp_ptr3 = (undefined8 ***)&stack_ptr3;
+    temp_ptr3 = (uint64_t ***)&stack_ptr3;
     temp_ptr4 = &stack_ptr1;
     stack_ptr1 = stack_ptr3;
     stack_flag1 = stack_flag2;
@@ -172,12 +172,12 @@ final_mismatch:
     func_ptr2 = FUN_1801eb560;
     
     // 分配最终处理结构
-    result_ptr = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x30, 8, DAT_180bf00a8);
+    result_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x30, 8, DAT_180bf00a8);
     *result_ptr = stack_ptr1;
-    *(undefined1 *)(result_ptr + 1) = stack_flag1;
+    *(int8_t *)(result_ptr + 1) = stack_flag1;
     temp_ptr5 = result_ptr;
     FUN_180627ae0(result_ptr + 2, &stack_ptr2);
-    temp_ptr4 = (undefined8 **)&stack_ptr2;
+    temp_ptr4 = (uint64_t **)&stack_ptr2;
     stack_ptr2 = &UNK_180a3c3e0;
     ptr_array[0] = result_ptr;
     
@@ -188,7 +188,7 @@ final_mismatch:
     stack_long2 = 0;
     stack_uint2 = 0;
     stack_ptr2 = &UNK_18098bcb0;
-    temp_ptr3 = (undefined8 ***)&stack_ptr4;
+    temp_ptr3 = (uint64_t ***)&stack_ptr4;
     stack_ptr4 = &UNK_180a3c3e0;
     
     if (stack_long1 != 0) {
@@ -197,26 +197,26 @@ final_mismatch:
     stack_long1 = 0;
     stack_uint1 = 0;
     stack_ptr4 = &UNK_18098bcb0;
-    temp_ptr1 = (undefined8 **)FUN_18006b640(temp_var, ptr_array);
+    temp_ptr1 = (uint64_t **)FUN_18006b640(temp_var, ptr_array);
     
     // 执行回调处理
-    if (temp_ptr1 != (undefined8 **)0x0) {
+    if (temp_ptr1 != (uint64_t **)0x0) {
         temp_ptr2 = temp_ptr1;
         (*(code *)(*temp_ptr1)[5])(temp_ptr1);
     }
     
     // 更新全局状态
-    temp_ptr2 = (undefined8 **)global_ptr[9];
+    temp_ptr2 = (uint64_t **)global_ptr[9];
     global_ptr[9] = temp_ptr1;
-    if (temp_ptr2 != (undefined8 **)0x0) {
+    if (temp_ptr2 != (uint64_t **)0x0) {
         (*(code *)(*temp_ptr2)[7])();
     }
-    *(undefined8 *)(global_ptr[9] + 0x18) = 0xfffffffffffffffd;
+    *(uint64_t *)(global_ptr[9] + 0x18) = 0xfffffffffffffffd;
     temp_var = _DAT_180c82868;
     temp_ptr3 = &temp_ptr2;
-    temp_ptr2 = (undefined8 **)global_ptr[9];
+    temp_ptr2 = (uint64_t **)global_ptr[9];
     
-    if (temp_ptr2 != (undefined8 **)0x0) {
+    if (temp_ptr2 != (uint64_t **)0x0) {
         (*(code *)(*temp_ptr2)[5])();
     }
     
@@ -235,13 +235,13 @@ final_mismatch:
 void memory_cleanup_handler(longlong param_1)
 {
     // 重置内存块指针
-    *(undefined8 *)(param_1 + 0x10) = &UNK_180a3c3e0;
+    *(uint64_t *)(param_1 + 0x10) = &UNK_180a3c3e0;
     if (*(longlong *)(param_1 + 0x18) != 0) {
         FUN_18064e900();
     }
-    *(undefined8 *)(param_1 + 0x18) = 0;
-    *(undefined4 *)(param_1 + 0x28) = 0;
-    *(undefined8 *)(param_1 + 0x10) = &UNK_18098bcb0;
+    *(uint64_t *)(param_1 + 0x18) = 0;
+    *(int32_t *)(param_1 + 0x28) = 0;
+    *(uint64_t *)(param_1 + 0x10) = &UNK_18098bcb0;
     return;
 }
 
@@ -254,91 +254,91 @@ void memory_cleanup_handler(longlong param_1)
  * 该函数实现高级文件数据处理功能，包括文件读取、数据解析、哈希表操作等。
  * 支持多种文件格式的处理和数据验证。
  */
-void file_data_processor(undefined8 param_1, longlong param_2)
+void file_data_processor(uint64_t param_1, longlong param_2)
 {
-    undefined8 *global_ptr;
+    uint64_t *global_ptr;
     uint temp_uint1;
     uint temp_uint2;
-    undefined8 *temp_ptr1;
+    uint64_t *temp_ptr1;
     bool comparison_result;
     char temp_char;
-    undefined8 temp_var1;
+    uint64_t temp_var1;
     longlong temp_long1;
-    undefined8 *temp_ptr2;
-    undefined8 *temp_ptr3;
-    undefined4 *temp_ptr4;
-    undefined8 *temp_ptr5;
-    undefined *temp_ptr6;
+    uint64_t *temp_ptr2;
+    uint64_t *temp_ptr3;
+    int32_t *temp_ptr4;
+    uint64_t *temp_ptr5;
+    void *temp_ptr6;
     ulonglong temp_ulong;
     int temp_int;
     longlong temp_long2;
     longlong temp_long3;
     uint *uint_ptr;
-    undefined1 temp_buffer1[32];
+    int8_t temp_buffer1[32];
     uint *stack_uint_ptr1;
-    undefined1 stack_flag1;
+    int8_t stack_flag1;
     char stack_char_array[7];
     longlong stack_long1;
     uint *stack_uint_ptr2;
-    undefined8 stack_var1;
-    undefined2 stack_var2;
-    undefined1 stack_var3;
-    undefined *stack_ptr1;
-    undefined *stack_ptr2;
+    uint64_t stack_var1;
+    int16_t stack_var2;
+    int8_t stack_var3;
+    void *stack_ptr1;
+    void *stack_ptr2;
     uint stack_uint1;
     ulonglong stack_ulong1;
     uint stack_uint2;
     uint stack_uint3;
-    undefined8 stack_var4;
-    undefined8 stack_var5;
-    undefined8 stack_var6;
-    undefined *stack_ptr3;
+    uint64_t stack_var4;
+    uint64_t stack_var5;
+    uint64_t stack_var6;
+    void *stack_ptr3;
     longlong stack_long2;
     int stack_int1;
     ulonglong stack_ulong2;
-    undefined8 *stack_ptr4;
+    uint64_t *stack_ptr4;
     longlong stack_long3;
-    undefined1 stack_flag2;
+    int8_t stack_flag2;
     longlong stack_long4;
-    undefined8 stack_var7;
+    uint64_t stack_var7;
     longlong stack_long5;
-    undefined8 *stack_ptr5;
+    uint64_t *stack_ptr5;
     longlong stack_long6;
-    undefined1 stack_flag3;
+    int8_t stack_flag3;
     longlong stack_long7;
-    undefined1 stack_flag4;
+    int8_t stack_flag4;
     longlong stack_long8;
-    undefined1 stack_flag5;
+    int8_t stack_flag5;
     longlong stack_long9;
-    undefined8 *stack_ptr6;
-    undefined8 *stack_ptr7;
-    undefined8 *stack_ptr8;
+    uint64_t *stack_ptr6;
+    uint64_t *stack_ptr7;
+    uint64_t *stack_ptr8;
     longlong stack_long10;
     uint *stack_uint_ptr3;
     longlong stack_long11;
-    undefined8 *stack_ptr9;
-    undefined8 *stack_ptr10;
-    undefined8 *stack_ptr11;
+    uint64_t *stack_ptr9;
+    uint64_t *stack_ptr10;
+    uint64_t *stack_ptr11;
     longlong stack_long12;
-    undefined8 *stack_ptr12;
+    uint64_t *stack_ptr12;
     longlong stack_long13;
-    undefined8 *stack_ptr13;
-    undefined8 *stack_ptr14;
-    undefined8 *stack_ptr15;
+    uint64_t *stack_ptr13;
+    uint64_t *stack_ptr14;
+    uint64_t *stack_ptr15;
     longlong stack_long14;
-    undefined8 *stack_ptr16;
+    uint64_t *stack_ptr16;
     longlong stack_long15;
-    undefined8 *stack_ptr17;
-    undefined8 *stack_ptr18;
-    undefined8 *stack_ptr19;
+    uint64_t *stack_ptr17;
+    uint64_t *stack_ptr18;
+    uint64_t *stack_ptr19;
     longlong stack_long16;
     uint *stack_uint_ptr4;
-    undefined8 stack_var8;
+    uint64_t stack_var8;
     uint stack_uint4;
     uint stack_uint5;
     uint stack_uint6;
     uint stack_uint7;
-    undefined4 stack_var9;
+    int32_t stack_var9;
     ulonglong stack_ulong3;
     
     // 初始化全局变量和栈变量
@@ -351,28 +351,28 @@ void file_data_processor(undefined8 param_1, longlong param_2)
     FUN_1801d8e90(_DAT_180c8aa08, param_2, 0);
     stack_ptr1 = &UNK_180a3c3e0;
     stack_ulong1 = 0;
-    stack_ptr2 = (undefined *)0x0;
+    stack_ptr2 = (void *)0x0;
     stack_uint1 = 0;
     
     // 构建路径字符串
     FUN_1801c5870(&stack_ptr1, param_2);
     temp_int = stack_uint1 + 0x12;
     FUN_1806277c0(&stack_ptr1, temp_int);
-    temp_ptr4 = (undefined4 *)(stack_ptr2 + stack_uint1);
+    temp_ptr4 = (int32_t *)(stack_ptr2 + stack_uint1);
     
     // 设置文件名
     *temp_ptr4 = 0x64616873;  // "hash"
     temp_ptr4[1] = 0x6d5f7265; // "_rem"
     temp_ptr4[2] = 0x69707061; // "appi"
     temp_ptr4[3] = 0x622e676e; // "ng.b"
-    *(undefined2 *)(temp_ptr4 + 4) = 0x6e69; // "in"
-    *(undefined1 *)((longlong)temp_ptr4 + 0x12) = 0;
+    *(int16_t *)(temp_ptr4 + 4) = 0x6e69; // "in"
+    *(int8_t *)((longlong)temp_ptr4 + 0x12) = 0;
     
     // 初始化文件操作
     stack_var7 = 0;
     stack_long5 = 0;
     temp_ptr6 = &DAT_18098bc73;
-    if (stack_ptr2 != (undefined *)0x0) {
+    if (stack_ptr2 != (void *)0x0) {
         temp_ptr6 = stack_ptr2;
     }
     stack_uint1 = temp_int;
@@ -432,14 +432,14 @@ void file_data_processor(undefined8 param_1, longlong param_2)
                     temp_uint1 = uint_ptr[4];
                     temp_uint2 = uint_ptr[5];
                     uint_ptr = uint_ptr + 6;
-                    temp_ptr1 = *(undefined8 **)(temp_long2 + 0x318);
+                    temp_ptr1 = *(uint64_t **)(temp_long2 + 0x318);
                     stack_var9._2_1_ = (byte)(temp_uint1 >> 0x10);
                     stack_var9._0_2_ = (ushort)temp_uint1;
                     temp_ptr2 = temp_ptr1;
-                    temp_ptr3 = (undefined8 *)temp_ptr1[2];
+                    temp_ptr3 = (uint64_t *)temp_ptr1[2];
                     
                     // 搜索匹配的数据结构
-                    while (temp_ptr5 = temp_ptr2, temp_ptr3 != (undefined8 *)0x0) {
+                    while (temp_ptr5 = temp_ptr2, temp_ptr3 != (uint64_t *)0x0) {
                         if ((*(uint *)(temp_ptr3 + 4) < stack_uint4) ||
                            ((*(uint *)(temp_ptr3 + 4) <= stack_uint4 &&
                             ((*(ushort *)(temp_ptr3 + 6) < (ushort)stack_var9 ||
@@ -452,11 +452,11 @@ void file_data_processor(undefined8 param_1, longlong param_2)
                                    ((*(uint *)((longlong)temp_ptr3 + 0x2c) <= stack_uint7 &&
                                     (*(byte *)((longlong)temp_ptr3 + 0x32) < stack_var9._2_1_)))))))))))))))))) {
                             comparison_result = true;
-                            temp_ptr5 = (undefined8 *)*temp_ptr3;
+                            temp_ptr5 = (uint64_t *)*temp_ptr3;
                         }
                         else {
                             comparison_result = false;
-                            temp_ptr5 = (undefined8 *)temp_ptr3[1];
+                            temp_ptr5 = (uint64_t *)temp_ptr3[1];
                         }
                         temp_ptr2 = temp_ptr3;
                         temp_ptr3 = temp_ptr5;
@@ -481,7 +481,7 @@ void file_data_processor(undefined8 param_1, longlong param_2)
                         stack_var9 = temp_uint1;
                         temp_long2 = FUN_1801ea180(temp_ptr1, temp_ptr5, &stack_flag1, &stack_uint4);
                         if (temp_long2 == 0) {
-                            temp_ptr5 = (undefined8 *)FUN_1801ea730(temp_ptr1, stack_char_array, &stack_uint4);
+                            temp_ptr5 = (uint64_t *)FUN_1801ea730(temp_ptr1, stack_char_array, &stack_uint4);
                             temp_ptr3 = temp_ptr5;
                             temp_uint1 = stack_var9;
                             if (stack_char_array[0] != '\0') {
@@ -524,7 +524,7 @@ void file_data_processor(undefined8 param_1, longlong param_2)
         }
         else {
             // 处理特定模式的数据
-            temp_ptr1 = (undefined8 *)(param_2 + 0x328);
+            temp_ptr1 = (uint64_t *)(param_2 + 0x328);
             stack_long3 = param_2 + 0x360;
             stack_flag2 = 0;
             AcquireSRWLockExclusive(stack_long3);
@@ -538,16 +538,16 @@ void file_data_processor(undefined8 param_1, longlong param_2)
                     // 处理特定格式的数据块
                     stack_uint2 = *uint_ptr;
                     stack_uint3 = uint_ptr[1];
-                    stack_var4 = *(undefined8 *)(uint_ptr + 2);
-                    stack_var5 = *(undefined8 *)(uint_ptr + 4);
+                    stack_var4 = *(uint64_t *)(uint_ptr + 2);
+                    stack_var5 = *(uint64_t *)(uint_ptr + 4);
                     stack_var6 = *(ulonglong *)(uint_ptr + 6);
                     temp_uint1 = uint_ptr[8];
                     uint_ptr = uint_ptr + 9;
                     temp_ptr2 = temp_ptr1;
                     stack_uint_ptr2 = uint_ptr;
-                    temp_ptr3 = *(undefined8 **)(param_2 + 0x338);
+                    temp_ptr3 = *(uint64_t **)(param_2 + 0x338);
                     
-                    while (temp_ptr3 != (undefined8 *)0x0) {
+                    while (temp_ptr3 != (uint64_t *)0x0) {
                         // 数据比较逻辑
                         stack_ptr12 = temp_ptr3 + 4;
                         stack_long10 = (longlong)&stack_var6 + 4;
@@ -564,18 +564,18 @@ void file_data_processor(undefined8 param_1, longlong param_2)
                         temp_char = func_0x0001801eb6f0(&stack_long12, &stack_long10);
                         if (temp_char == '\0') {
                             temp_ptr2 = temp_ptr3;
-                            temp_ptr3 = (undefined8 *)temp_ptr3[1];
+                            temp_ptr3 = (uint64_t *)temp_ptr3[1];
                         }
                         else {
-                            temp_ptr3 = (undefined8 *)*temp_ptr3;
+                            temp_ptr3 = (uint64_t *)*temp_ptr3;
                         }
                     }
                     
                     if (temp_ptr2 == temp_ptr1) {
                     skip_to_new_entry:
                         stack_uint_ptr1 = &stack_uint2;
-                        temp_ptr2 = (undefined8 *)FUN_1801e8280(temp_ptr1, &stack_long3);
-                        temp_ptr2 = (undefined8 *)*temp_ptr2;
+                        temp_ptr2 = (uint64_t *)FUN_1801e8280(temp_ptr1, &stack_long3);
+                        temp_ptr2 = (uint64_t *)*temp_ptr2;
                     }
                     else {
                         // 处理现有条目
@@ -639,8 +639,8 @@ void file_data_processor(undefined8 param_1, longlong param_2)
     
     // 清理资源
     stack_ptr1 = &UNK_180a3c3e0;
-    if (stack_ptr2 == (undefined *)0x0) {
-        stack_ptr2 = (undefined *)0x0;
+    if (stack_ptr2 == (void *)0x0) {
+        stack_ptr2 = (void *)0x0;
         stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
         stack_ptr1 = &UNK_18098bcb0;
         FUN_1808fc050(stack_ulong3 ^ (ulonglong)temp_buffer1);
@@ -659,8 +659,8 @@ void file_data_processor(undefined8 param_1, longlong param_2)
 bool file_validator(longlong param_1)
 {
     longlong temp_long1;
-    undefined4 *temp_ptr1;
-    undefined *temp_ptr2;
+    int32_t *temp_ptr1;
+    void *temp_ptr2;
     int temp_int;
     ulonglong temp_ulong1;
     ulonglong temp_ulong2;
@@ -670,38 +670,38 @@ bool file_validator(longlong param_1)
     uint temp_array2[2];
     uint temp_array3[2];
     longlong temp_long_array[2];
-    undefined *stack_ptr1;
-    undefined *stack_ptr2;
+    void *stack_ptr1;
+    void *stack_ptr2;
     uint stack_uint1;
-    undefined8 stack_var1;
+    uint64_t stack_var1;
     
     // 初始化变量
     validation_result = true;
     temp_ulong2 = 0;
     stack_ptr1 = &UNK_180a3c3e0;
     stack_var1 = 0;
-    stack_ptr2 = (undefined *)0x0;
+    stack_ptr2 = (void *)0x0;
     stack_uint1 = 0;
     
     // 构建文件路径
     FUN_1801c5700(&stack_ptr1, param_1);
     temp_int = stack_uint1 + 0x1c;
     FUN_1806277c0(&stack_ptr1, temp_int);
-    temp_ptr1 = (undefined4 *)(stack_ptr2 + stack_uint1);
+    temp_ptr1 = (int32_t *)(stack_ptr2 + stack_uint1);
     
     // 设置进程名称
     *temp_ptr1 = 0x706d6f63;  // "comp"
     temp_ptr1[1] = 0x73736572; // "ress"
     temp_ptr1[2] = 0x735f6465; // "des_"
     temp_ptr1[3] = 0x65646168; // "shade"
-    *(undefined8 *)(temp_ptr1 + 4) = 0x2e65686361635f72; // "r_cache.ch"
+    *(uint64_t *)(temp_ptr1 + 4) = 0x2e65686361635f72; // "r_cache.ch"
     temp_ptr1[6] = 0x6b636173; // "sack"
-    *(undefined1 *)(temp_ptr1 + 7) = 0;
+    *(int8_t *)(temp_ptr1 + 7) = 0;
     
     // 初始化文件句柄
     temp_long_array[0] = -1;
     temp_ptr2 = &DAT_18098bc73;
-    if (stack_ptr2 != (undefined *)0x0) {
+    if (stack_ptr2 != (void *)0x0) {
         temp_ptr2 = stack_ptr2;
     }
     stack_uint1 = temp_int;
@@ -765,7 +765,7 @@ bool file_validator(longlong param_1)
     
     // 清理资源
     stack_ptr1 = &UNK_180a3c3e0;
-    if (stack_ptr2 == (undefined *)0x0) {
+    if (stack_ptr2 == (void *)0x0) {
         return validation_result;
     }
     FUN_18064e900();
@@ -778,27 +778,27 @@ bool file_validator(longlong param_1)
  * 
  * 该函数处理着色器缓存相关的操作，包括缓存读取、验证和更新。
  */
-void shader_cache_processor(undefined8 param_1)
+void shader_cache_processor(uint64_t param_1)
 {
     longlong temp_long1;
-    undefined8 temp_var1;
-    undefined4 *temp_ptr1;
-    undefined *temp_ptr2;
+    uint64_t temp_var1;
+    int32_t *temp_ptr1;
+    void *temp_ptr2;
     int temp_int;
-    undefined1 temp_buffer1[32];
+    int8_t temp_buffer1[32];
     int stack_int1;
     int temp_array1[3];
-    undefined *stack_ptr1;
-    undefined *stack_ptr2;
+    void *stack_ptr1;
+    void *stack_ptr2;
     uint stack_uint1;
     ulonglong stack_ulong1;
-    undefined8 stack_var1;
+    uint64_t stack_var1;
     longlong stack_long1;
-    undefined8 stack_var2;
-    undefined *stack_ptr3;
-    undefined1 *stack_ptr4;
-    undefined4 stack_var3;
-    undefined1 temp_buffer2[32];
+    uint64_t stack_var2;
+    void *stack_ptr3;
+    int8_t *stack_ptr4;
+    int32_t stack_var3;
+    int8_t temp_buffer2[32];
     ulonglong stack_ulong2;
     
     // 初始化栈变量
@@ -808,28 +808,28 @@ void shader_cache_processor(undefined8 param_1)
     temp_array1[1] = 0;
     stack_ptr1 = &UNK_180a3c3e0;
     stack_ulong1 = 0;
-    stack_ptr2 = (undefined *)0x0;
+    stack_ptr2 = (void *)0x0;
     stack_uint1 = 0;
     
     // 构建文件路径
     FUN_1801c5870(&stack_ptr1, param_1);
     temp_int = stack_uint1 + 0x12;
     FUN_1806277c0(&stack_ptr1, temp_int);
-    temp_ptr1 = (undefined4 *)(stack_ptr2 + stack_uint1);
+    temp_ptr1 = (int32_t *)(stack_ptr2 + stack_uint1);
     
     // 设置文件名
     *temp_ptr1 = 0x64616873;  // "hash"
     temp_ptr1[1] = 0x6d5f7265; // "_rem"
     temp_ptr1[2] = 0x69707061; // "appi"
     temp_ptr1[3] = 0x622e676e; // "ng.b"
-    *(undefined2 *)(temp_ptr1 + 4) = 0x6e69; // "in"
-    *(undefined1 *)((longlong)temp_ptr1 + 0x12) = 0;
+    *(int16_t *)(temp_ptr1 + 4) = 0x6e69; // "in"
+    *(int8_t *)((longlong)temp_ptr1 + 0x12) = 0;
     
     // 初始化文件操作
     stack_var1 = 0;
     stack_long1 = 0;
     temp_ptr2 = &DAT_18098bc73;
-    if (stack_ptr2 != (undefined *)0x0) {
+    if (stack_ptr2 != (void *)0x0) {
         temp_ptr2 = stack_ptr2;
     }
     stack_uint1 = temp_int;
@@ -876,8 +876,8 @@ void shader_cache_processor(undefined8 param_1)
     
     // 清理资源
     stack_ptr1 = &UNK_180a3c3e0;
-    if (stack_ptr2 == (undefined *)0x0) {
-        stack_ptr2 = (undefined *)0x0;
+    if (stack_ptr2 == (void *)0x0) {
+        stack_ptr2 = (void *)0x0;
         stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
         stack_ptr1 = &UNK_18098bcb0;
         FUN_1808fc050(stack_ulong2 ^ (ulonglong)temp_buffer1);
@@ -895,26 +895,26 @@ void configuration_file_handler(void)
 {
     longlong temp_long1;
     char temp_char;
-    undefined4 *temp_ptr1;
-    undefined1 *temp_ptr2;
+    int32_t *temp_ptr1;
+    int8_t *temp_ptr2;
     int temp_int;
-    undefined *temp_ptr3;
-    undefined1 temp_buffer1[32];
-    undefined *stack_ptr1;
-    undefined1 *stack_ptr2;
+    void *temp_ptr3;
+    int8_t temp_buffer1[32];
+    void *stack_ptr1;
+    int8_t *stack_ptr2;
     uint stack_uint1;
     ulonglong stack_ulong1;
     int temp_array1[2];
-    undefined *stack_ptr3;
+    void *stack_ptr3;
     longlong stack_long1;
     int stack_int1;
     ulonglong stack_ulong2;
-    undefined4 temp_array2[2];
-    undefined8 stack_var1;
+    int32_t temp_array2[2];
+    uint64_t stack_var1;
     longlong stack_long2;
-    undefined8 stack_var2;
-    undefined *stack_ptr4;
-    undefined *stack_ptr5;
+    uint64_t stack_var2;
+    void *stack_ptr4;
+    void *stack_ptr5;
     int stack_int2;
     undefined temp_buffer2[32];
     ulonglong stack_ulong3;
@@ -932,7 +932,7 @@ void configuration_file_handler(void)
         FUN_1801c5870(&stack_ptr3);
         stack_ptr1 = &UNK_180a3c3e0;
         stack_ulong1 = 0;
-        stack_ptr2 = (undefined1 *)0x0;
+        stack_ptr2 = (int8_t *)0x0;
         stack_uint1 = 0;
         FUN_1806277c0(&stack_ptr1, stack_int1);
         
@@ -942,7 +942,7 @@ void configuration_file_handler(void)
         
         if (stack_long1 != 0) {
             stack_uint1 = 0;
-            if (stack_ptr2 != (undefined1 *)0x0) {
+            if (stack_ptr2 != (int8_t *)0x0) {
                 *stack_ptr2 = 0;
             }
             stack_ulong1 = stack_ulong1 & 0xffffffff;
@@ -950,15 +950,15 @@ void configuration_file_handler(void)
         
         temp_int = stack_uint1 + 0x12;
         FUN_1806277c0(&stack_ptr1, temp_int);
-        temp_ptr1 = (undefined4 *)(stack_ptr2 + stack_uint1);
+        temp_ptr1 = (int32_t *)(stack_ptr2 + stack_uint1);
         
         // 设置文件名
         *temp_ptr1 = 0x64616873;  // "hash"
         temp_ptr1[1] = 0x6d5f7265; // "_rem"
         temp_ptr1[2] = 0x69707061; // "appi"
         temp_ptr1[3] = 0x622e676e; // "ng.b"
-        *(undefined2 *)(temp_ptr1 + 4) = 0x6e69; // "in"
-        *(undefined1 *)((longlong)temp_ptr1 + 0x12) = 0;
+        *(int16_t *)(temp_ptr1 + 4) = 0x6e69; // "in"
+        *(int8_t *)((longlong)temp_ptr1 + 0x12) = 0;
         
         stack_uint1 = temp_int;
         temp_char = FUN_180624af0(&stack_ptr1);
@@ -967,7 +967,7 @@ void configuration_file_handler(void)
             stack_var1 = 0;
             stack_long2 = 0;
             temp_ptr2 = &DAT_18098bc73;
-            if (stack_ptr2 != (undefined1 *)0x0) {
+            if (stack_ptr2 != (int8_t *)0x0) {
                 temp_ptr2 = stack_ptr2;
             }
             FUN_18062dee0(&stack_var1, temp_ptr2, &UNK_180a0cf4c);
@@ -989,7 +989,7 @@ void configuration_file_handler(void)
             temp_array1[0] = stack_int2;
             fwrite(temp_array1, 4, 1, temp_long1);
             temp_ptr3 = &DAT_18098bc73;
-            if (stack_ptr5 != (undefined *)0x0) {
+            if (stack_ptr5 != (void *)0x0) {
                 temp_ptr3 = stack_ptr5;
             }
             fwrite(temp_ptr3, 1, (longlong)temp_array1[0], temp_long1);
@@ -1004,10 +1004,10 @@ void configuration_file_handler(void)
         
         // 清理资源
         stack_ptr1 = &UNK_180a3c3e0;
-        if (stack_ptr2 != (undefined1 *)0x0) {
+        if (stack_ptr2 != (int8_t *)0x0) {
             FUN_18064e900();
         }
-        stack_ptr2 = (undefined1 *)0x0;
+        stack_ptr2 = (int8_t *)0x0;
         stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
         stack_ptr1 = &UNK_18098bcb0;
         stack_ptr3 = &UNK_180a3c3e0;
@@ -1034,15 +1034,15 @@ void path_builder(longlong *param_1, longlong param_2)
     uint temp_uint1;
     longlong temp_long1;
     longlong temp_long2;
-    undefined4 *temp_ptr1;
-    undefined *temp_ptr2;
+    int32_t *temp_ptr1;
+    void *temp_ptr2;
     int temp_int;
-    undefined1 temp_buffer1[32];
-    undefined4 stack_var1;
-    undefined8 stack_var2;
-    undefined *stack_ptr1;
-    undefined *stack_ptr2;
-    undefined4 stack_var3;
+    int8_t temp_buffer1[32];
+    int32_t stack_var1;
+    uint64_t stack_var2;
+    void *stack_ptr1;
+    void *stack_ptr2;
+    int32_t stack_var3;
     undefined temp_buffer2[16];
     ulonglong stack_ulong1;
     
@@ -1050,10 +1050,10 @@ void path_builder(longlong *param_1, longlong param_2)
     stack_var2 = 0xfffffffffffffffe;
     stack_ulong1 = DAT_180bf00a8 ^ (ulonglong)temp_buffer1;
     stack_var1 = 0;
-    *(undefined4 *)(param_1 + 2) = 0;
+    *(int32_t *)(param_1 + 2) = 0;
     
-    if ((undefined1 *)param_1[1] != (undefined1 *)0x0) {
-        *(undefined1 *)param_1[1] = 0;
+    if ((int8_t *)param_1[1] != (int8_t *)0x0) {
+        *(int8_t *)param_1[1] = 0;
     }
     
     if (param_2 == 0) {
@@ -1065,7 +1065,7 @@ void path_builder(longlong *param_1, longlong param_2)
         strcpy_s(temp_buffer2, 0x10, &UNK_180a3c07c);
         stack_var1 = 1;
         temp_ptr2 = &DAT_18098bc73;
-        if (stack_ptr2 != (undefined *)0x0) {
+        if (stack_ptr2 != (void *)0x0) {
             temp_ptr2 = stack_ptr2;
         }
         (**(code **)(*param_1 + 0x10))(param_1, temp_ptr2);
@@ -1076,15 +1076,15 @@ void path_builder(longlong *param_1, longlong param_2)
         FUN_1806277c0(param_1, temp_int);
         temp_uint1 = *(uint *)(param_1 + 2);
         temp_long1 = param_1[1];
-        *(undefined8 *)((ulonglong)temp_uint1 + temp_long1) = 0x2f73726564616853; // "Shader/"
-        *(undefined1 *)((undefined8 *)((ulonglong)temp_uint1 + temp_long1) + 1) = 0;
+        *(uint64_t *)((ulonglong)temp_uint1 + temp_long1) = 0x2f73726564616853; // "Shader/"
+        *(int8_t *)((uint64_t *)((ulonglong)temp_uint1 + temp_long1) + 1) = 0;
         *(int *)(param_1 + 2) = temp_int;
         temp_int = (int)temp_long2 + 0xe;
         FUN_1806277c0(param_1, temp_int);
-        temp_ptr1 = (undefined4 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+        temp_ptr1 = (int32_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
         *temp_ptr1 = 0x31443344; // "D3D1"
-        *(undefined2 *)(temp_ptr1 + 1) = 0x2f31; // "/1"
-        *(undefined1 *)((longlong)temp_ptr1 + 6) = 0;
+        *(int16_t *)(temp_ptr1 + 1) = 0x2f31; // "/1"
+        *(int8_t *)((longlong)temp_ptr1 + 6) = 0;
         *(int *)(param_1 + 2) = temp_int;
         FUN_18062c1e0(param_1, 1);
     }
@@ -1106,18 +1106,18 @@ void path_builder(longlong *param_1, longlong param_2)
 longlong string_constructor(longlong param_1, longlong param_2)
 {
     uint temp_uint1;
-    undefined8 temp_var1;
-    undefined8 *temp_ptr1;
+    uint64_t temp_var1;
+    uint64_t *temp_ptr1;
     int temp_int;
     ulonglong temp_ulong;
-    undefined *stack_ptr1;
+    void *stack_ptr1;
     longlong stack_long1;
-    undefined4 stack_var1;
+    int32_t stack_var1;
     
     // 初始化缓冲区
-    *(undefined4 *)(param_1 + 0x10) = 0;
-    if (*(undefined1 **)(param_1 + 8) != (undefined1 *)0x0) {
-        **(undefined1 **)(param_1 + 8) = 0;
+    *(int32_t *)(param_1 + 0x10) = 0;
+    if (*(int8_t **)(param_1 + 8) != (int8_t *)0x0) {
+        **(int8_t **)(param_1 + 8) = 0;
     }
     
     if (param_2 == 0) {
@@ -1133,11 +1133,11 @@ longlong string_constructor(longlong param_1, longlong param_2)
         stack_ptr1 = &UNK_18098bcb0;
         temp_int = *(int *)(param_1 + 0x10) + 0x12;
         FUN_1806277c0(param_1, temp_int);
-        temp_ptr1 = (undefined8 *)((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8));
+        temp_ptr1 = (uint64_t *)((ulonglong)*(uint *)(param_1 + 0x10) + *(longlong *)(param_1 + 8));
         *temp_ptr1 = 0x6461685365726f43; // "CoreShader"
         temp_ptr1[1] = 0x314433442f737265; // "res/D3D1"
-        *(undefined2 *)(temp_ptr1 + 2) = 0x2f31; // "/1"
-        *(undefined1 *)((longlong)temp_ptr1 + 0x12) = 0;
+        *(int16_t *)(temp_ptr1 + 2) = 0x2f31; // "/1"
+        *(int8_t *)((longlong)temp_ptr1 + 0x12) = 0;
         *(int *)(param_1 + 0x10) = temp_int;
         return 0;
     }
@@ -1146,18 +1146,18 @@ longlong string_constructor(longlong param_1, longlong param_2)
     temp_uint1 = *(uint *)(param_2 + 0x2c0);
     temp_ulong = (ulonglong)temp_uint1;
     if (*(longlong *)(param_2 + 0x2b8) != 0) {
-        stack_ptr1 = (undefined *)0x180627c06;
+        stack_ptr1 = (void *)0x180627c06;
         FUN_1806277c0(param_1, temp_ulong);
     }
     if (temp_uint1 != 0) {
-        stack_ptr1 = (undefined *)0x180627c1a;
-        memcpy(*(undefined8 *)(param_1 + 8), *(undefined8 *)(param_2 + 0x2b8), temp_ulong);
+        stack_ptr1 = (void *)0x180627c1a;
+        memcpy(*(uint64_t *)(param_1 + 8), *(uint64_t *)(param_2 + 0x2b8), temp_ulong);
     }
-    *(undefined4 *)(param_1 + 0x10) = 0;
+    *(int32_t *)(param_1 + 0x10) = 0;
     if (*(longlong *)(param_1 + 8) != 0) {
-        *(undefined1 *)(temp_ulong + *(longlong *)(param_1 + 8)) = 0;
+        *(int8_t *)(temp_ulong + *(longlong *)(param_1 + 8)) = 0;
     }
-    *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(param_2 + 0x2cc);
+    *(int32_t *)(param_1 + 0x1c) = *(int32_t *)(param_2 + 0x2cc);
     return param_1;
 }
 

@@ -110,16 +110,16 @@ undefined DAT_180c8eb70;                           // 系统数据缓冲区2
 //------------------------------------------------------------------------------
 
 // 系统初始化相关类型别名
-typedef undefined8 SystemContextHandle;            // 系统上下文句柄
-typedef undefined8 ModuleHandle;                  // 模块句柄
-typedef undefined8 ConfigDataHandle;              // 配置数据句柄
-typedef undefined8 RegistryHandle;                // 注册表句柄
-typedef undefined8 ServiceHandle;                 // 服务句柄
+typedef uint64_t SystemContextHandle;            // 系统上下文句柄
+typedef uint64_t ModuleHandle;                  // 模块句柄
+typedef uint64_t ConfigDataHandle;              // 配置数据句柄
+typedef uint64_t RegistryHandle;                // 注册表句柄
+typedef uint64_t ServiceHandle;                 // 服务句柄
 
 // 内存管理相关类型别名
-typedef undefined8 MemoryBlockHandle;             // 内存块句柄
-typedef undefined8 BufferHandle;                  // 缓冲区句柄
-typedef undefined8 DataPointerHandle;             // 数据指针句柄
+typedef uint64_t MemoryBlockHandle;             // 内存块句柄
+typedef uint64_t BufferHandle;                  // 缓冲区句柄
+typedef uint64_t DataPointerHandle;             // 数据指针句柄
 
 // 函数指针相关类型别名
 typedef void (*SystemCallbackFunction)(void);     // 系统回调函数类型
@@ -195,7 +195,7 @@ void SystemInitialization_RegisterComponent1(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined8 callback_function;                   // 回调函数
+  uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
@@ -465,7 +465,7 @@ void SystemInitialization_RegisterComponent4(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined8 callback_function;                   // 回调函数
+  uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
@@ -645,7 +645,7 @@ void SystemInitialization_RegisterComponent6(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined8 callback_function;                   // 回调函数
+  uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
@@ -735,7 +735,7 @@ void SystemInitialization_RegisterComponent7(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined* tool_function;                       // 工具函数指针
+  void* tool_function;                       // 工具函数指针
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
@@ -825,7 +825,7 @@ void SystemInitialization_RegisterComponent8(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined8 callback_function;                   // 回调函数
+  uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
@@ -1545,7 +1545,7 @@ void SystemInitialization_RegisterComponent15(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined8 callback_function;                   // 回调函数
+  uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
@@ -1725,7 +1725,7 @@ void SystemInitialization_RegisterComponent17(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined8 callback_function;                   // 回调函数
+  uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
@@ -1815,7 +1815,7 @@ void SystemInitialization_RegisterComponent18(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined* tool_function;                       // 工具函数指针
+  void* tool_function;                       // 工具函数指针
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
@@ -1905,7 +1905,7 @@ void SystemInitialization_RegisterComponent19(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined8 callback_function;                   // 回调函数
+  uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
@@ -2355,7 +2355,7 @@ void SystemInitialization_RegisterComponent24(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined8 callback_function;                   // 回调函数
+  uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();
@@ -2535,7 +2535,7 @@ void SystemInitialization_RegisterComponent26(void)
   SystemContextHandle* allocated_component_ptr;   // 已分配组件指针
   longlong allocation_size;                       // 分配大小
   int compare_result;                             // 比较结果
-  undefined8 callback_function;                   // 回调函数
+  uint64_t callback_function;                   // 回调函数
   
   // 获取系统上下文和根组件
   root_component_ptr = (SystemContextHandle*)SystemCoreInitializer();

@@ -69,7 +69,7 @@ typedef float TextureCoordinate;       // 纹理坐标类型
 typedef float *FloatPointer;           // 浮点指针类型
 typedef uint *UintPointer;             // 无符号整数指针类型
 typedef longlong *LongLongPointer;     // 长整型指针类型
-typedef undefined8 *Undefined8Pointer; // 未定义8字节指针类型
+typedef uint64_t *Undefined8Pointer; // 未定义8字节指针类型
 typedef void *FunctionPointer;         // 函数指针类型
 
 /* 结构体类型别名 */
@@ -164,37 +164,37 @@ void RenderingSystem_AdvancedParticleProcessor(void)
     RandomSeed seed;
     int loop_counter;
     UintPointer data_pointer;
-    undefined8 temp_var1;
-    undefined8 temp_var2;
-    undefined4 temp_var3;
-    undefined4 temp_var4;
+    uint64_t temp_var1;
+    uint64_t temp_var2;
+    int32_t temp_var3;
+    int32_t temp_var4;
     bool condition_flag;
     char byte_flag;
     LongLongPointer long_ptr;
     FloatPointer float_ptr;
-    undefined *register_rax;
+    void *register_rax;
     RandomSeed random_val;
     longlong temp_long;
     ulonglong ulong_val;
     longlong temp_long2;
-    undefined *undef_ptr;
+    void *undef_ptr;
     RandomSeed random_val2;
     RandomSeed register_ebx;
     longlong register_rbp;
     longlong register_rsi;
     RandomSeed random_val3;
     RandomSeed random_val4;
-    undefined *undef_ptr2;
+    void *undef_ptr2;
     char byte_val;
-    undefined8 register_r12;
-    undefined8 *register_r13;
+    uint64_t register_r12;
+    uint64_t *register_r13;
     RandomSeed register_r14d;
-    undefined8 register_r15;
+    uint64_t register_r15;
     Coordinate coord_x;
     Coordinate coord_y;
     Coordinate coord_z;
     Coordinate coord_w;
-    undefined1 align_array[16];
+    int8_t align_array[16];
     ScaleFactor scale_factor;
     RotationAngle rotation_angle;
     TextureCoordinate texture_u;
@@ -227,7 +227,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
         *(float *)(register_rbp + 0x5c) = register_xmm8_da * (register_xmm12_da / coord_x) * coord_y + HALF_VALUE / register_xmm9_da;
         
         /* 获取纹理坐标数据 */
-        float_ptr = (FloatPointer)FUN_1802a11e0(temp_long, register_rbp + 0x1b8, *(undefined8 *)(register_rbp + 0x58), 0);
+        float_ptr = (FloatPointer)FUN_1802a11e0(temp_long, register_rbp + 0x1b8, *(uint64_t *)(register_rbp + 0x58), 0);
         random_val = (uint)(register_xmm6_da * register_xmm6_da);
         coord_x = stack_var_38;
         coord_y = stack_var_48;
@@ -257,40 +257,40 @@ void RenderingSystem_AdvancedParticleProcessor(void)
         else if (0 < (int)random_val) {
             /* 处理复杂粒子情况 */
             *(ulonglong *)(register_rbp + 0x40) = (ulonglong)random_val;
-            *(undefined4 *)(register_rbp + 0x80) = 0;
-            *(undefined4 *)(register_rbp + 0x84) = MAX_FLOAT_VALUE;
+            *(int32_t *)(register_rbp + 0x80) = 0;
+            *(int32_t *)(register_rbp + 0x84) = MAX_FLOAT_VALUE;
             
             do {
                 /* 生成随机数 */
                 random_val = register_ebx ^ register_ebx << RANDOM_SEED_SHIFT_1;
                 random_val = random_val ^ random_val >> RANDOM_SEED_SHIFT_2;
-                *(undefined8 *)(register_rbp + -0x80) = 0;
-                *(undefined8 *)(register_rbp + -0x78) = 0x3f800000;
+                *(uint64_t *)(register_rbp + -0x80) = 0;
+                *(uint64_t *)(register_rbp + -0x78) = 0x3f800000;
                 coord_z = *(float *)(register_rsi + OFFSET_0x1c);
                 random_val = random_val ^ random_val << RANDOM_SEED_SHIFT_3;
                 random_val2 = random_val ^ random_val << RANDOM_SEED_SHIFT_1;
                 random_val2 = random_val2 ^ random_val2 >> RANDOM_SEED_SHIFT_2;
                 random_val2 = random_val2 ^ random_val2 << RANDOM_SEED_SHIFT_3;
-                undef_ptr = (undefined *)*register_r13;
+                undef_ptr = (void *)*register_r13;
                 distance_val = (float)(random_val - 1) * register_xmm13_da * *(float *)(register_rbp + 0x50) + register_xmm11_da;
                 rotation_angle = (float)(random_val2 - 1) * register_xmm13_da * register_xmm15_da + register_xmm14_da;
                 
                 /* 设置坐标数据 */
                 *(float *)(register_rbp + -0x70) = rotation_angle;
                 *(float *)(register_rbp + -0x6c) = distance_val;
-                *(undefined4 *)(register_rbp + -0x68) = *(undefined4 *)(register_rbp + 0x80);
-                *(undefined4 *)(register_rbp + -100) = *(undefined4 *)(register_rbp + 0x84);
+                *(int32_t *)(register_rbp + -0x68) = *(int32_t *)(register_rbp + 0x80);
+                *(int32_t *)(register_rbp + -100) = *(int32_t *)(register_rbp + 0x84);
                 *(float *)(register_rbp + 0x78) = rotation_angle;
                 *(float *)(register_rbp + 0x7c) = distance_val;
-                *(undefined4 *)(register_rbp + 0x80) = *(undefined4 *)(register_rbp + 0x80);
-                *(undefined4 *)(register_rbp + 0x84) = *(undefined4 *)(register_rbp + 0x84);
+                *(int32_t *)(register_rbp + 0x80) = *(int32_t *)(register_rbp + 0x80);
+                *(int32_t *)(register_rbp + 0x84) = *(int32_t *)(register_rbp + 0x84);
                 
                 /* 计算纹理坐标 */
                 scale_factor = *(float *)(register_rbp + -0xc);
                 rotation_angle = *(float *)(register_rbp + -0x10);
                 
                 if (undef_ptr == &UNK_180a22a30) {
-                    coord_w = *(float *)(register_r13[2] + OFFSET_0x1c) / (float)(1 << ((byte)*(undefined4 *)(register_r13 + 5) & 0x1f));
+                    coord_w = *(float *)(register_r13[2] + OFFSET_0x1c) / (float)(1 << ((byte)*(int32_t *)(register_r13 + 5) & 0x1f));
                 }
                 else {
                     coord_w = (float)(**(FunctionPointer **)(undef_ptr + OFFSET_0x30))(register_r13);
@@ -301,7 +301,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 coord_y = register_xmm12_da / ((float)*(int *)(register_r13 + OFFSET_0x0e) - register_xmm12_da);
                 *(float *)(register_rbp + 0x70) = (rotation_angle - coord_z * rotation_angle) * (register_xmm12_da / coord_w) * coord_y;
                 *(float *)(register_rbp + 0x74) = (distance_val - coord_z * scale_factor) * (register_xmm12_da / coord_w) * coord_y;
-                temp_var2 = *(undefined8 *)(register_rbp + 0x70);
+                temp_var2 = *(uint64_t *)(register_rbp + 0x70);
                 float_ptr = (FloatPointer)FUN_1802a11e0(temp_var1, register_rbp + 0x1c8, temp_var2, 1);
                 coord_z = *float_ptr;
                 random_val = 0;
@@ -317,7 +317,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 if ((*(uint *)(*(longlong *)(register_rbp + -0x40) + 0x60) & FLAG_0x400000) == 0) {
                     rotation_angle = (float)register_r15 - rotation_angle;
                     scale_factor = (float)((ulonglong)register_r15 >> 0x20) - distance_val;
-                    *(undefined8 *)(register_rbp + -0x50) = register_r12;
+                    *(uint64_t *)(register_rbp + -0x50) = register_r12;
                     coord_w = rotation_angle - *(float *)(register_rbp + -0x50);
                     
                     if (rotation_angle <= coord_w) {
@@ -366,7 +366,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 if ((*(float *)(register_rbp + -0x30) <= coord_z && coord_z != *(float *)(register_rbp + -0x30)) && (condition_flag)) {
                     if (*(float *)(register_rbp + -0x28) == register_xmm10_da) {
                         /* 执行高级粒子渲染 */
-                        float_ptr = (FloatPointer)FUN_1802a11e0(*(undefined8 *)(*(longlong *)(register_rbp + -0x58) + 0x818), register_rbp + 0x1d8, temp_var2, 1);
+                        float_ptr = (FloatPointer)FUN_1802a11e0(*(uint64_t *)(*(longlong *)(register_rbp + -0x58) + 0x818), register_rbp + 0x1d8, temp_var2, 1);
                         coord_z = *(float *)(register_rbp + -8) * *float_ptr + *(float *)(register_rbp + -4);
                         random_val = *(uint *)(*(longlong *)(register_rbp + -0x40) + 0x60);
                         *(float *)(register_rbp + -0x68) = coord_z;
@@ -376,20 +376,20 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                             if (((random_val >> FLAG_SHIFT_0x19 & 1) != 0) && (temp_long = *(longlong *)(*(longlong *)(register_rbp + -0x58) + 0x810), temp_long != 0)) {
                                 /* 处理向量归一化 */
                                 float_ptr = (FloatPointer)FUN_1802a11e0(temp_long, register_rbp + 0x1e8, temp_var2, 1);
-                                *(undefined4 *)(register_rbp + 0xa8) = 0;
-                                *(undefined4 *)(register_rbp + 0xac) = MAX_FLOAT_VALUE;
-                                temp_var3 = *(undefined4 *)(register_rbp + 0xa8);
-                                temp_var4 = *(undefined4 *)(register_rbp + 0xac);
+                                *(int32_t *)(register_rbp + 0xa8) = 0;
+                                *(int32_t *)(register_rbp + 0xac) = MAX_FLOAT_VALUE;
+                                temp_var3 = *(int32_t *)(register_rbp + 0xa8);
+                                temp_var4 = *(int32_t *)(register_rbp + 0xac);
                                 coord_y = *float_ptr * TWO_VALUE - register_xmm12_da;
                                 distance_val = float_ptr[1] * TWO_VALUE - register_xmm12_da;
                                 *(float *)(register_rbp + 0xa0) = coord_y;
                                 *(float *)(register_rbp + 0xa4) = distance_val;
-                                *(undefined4 *)(register_rbp + 0xa8) = temp_var3;
-                                *(undefined4 *)(register_rbp + 0xac) = temp_var4;
+                                *(int32_t *)(register_rbp + 0xa8) = temp_var3;
+                                *(int32_t *)(register_rbp + 0xac) = temp_var4;
                                 *(float *)(register_rbp + -0x50) = coord_y;
                                 *(float *)(register_rbp + -0x4c) = distance_val;
-                                *(undefined4 *)(register_rbp + -0x48) = temp_var3;
-                                *(undefined4 *)(register_rbp + -0x44) = temp_var4;
+                                *(int32_t *)(register_rbp + -0x48) = temp_var3;
+                                *(int32_t *)(register_rbp + -0x44) = temp_var4;
                                 distance_val = coord_y * coord_y + distance_val * distance_val;
                                 
                                 if ((register_xmm10_da <= distance_val) && (register_xmm10_da = distance_val, NORMALIZATION_FACTOR <= distance_val)) {
@@ -397,11 +397,11 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                                 }
                                 
                                 scale_factor = register_xmm12_da - register_xmm10_da;
-                                *(undefined4 *)(register_rbp + 0xbc) = MAX_FLOAT_VALUE;
+                                *(int32_t *)(register_rbp + 0xbc) = MAX_FLOAT_VALUE;
                                 distance_val = scale_factor + distance_val;
                                 align_array = rsqrtss(ZEXT416((uint)distance_val), ZEXT416((uint)distance_val));
                                 rotation_angle = align_array._0_4_;
-                                temp_var3 = *(undefined4 *)(register_rbp + -0x44);
+                                temp_var3 = *(int32_t *)(register_rbp + -0x44);
                                 rotation_angle = rotation_angle * HALF_VALUE * (THREE_VALUE - distance_val * rotation_angle * rotation_angle);
                                 distance_val = *(float *)(register_rbp + -0x4c) * rotation_angle;
                                 register_xmm10_da = coord_y * rotation_angle;
@@ -409,33 +409,33 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                                 *(float *)(register_rbp + -0x50) = register_xmm10_da;
                                 *(float *)(register_rbp + -0x4c) = distance_val;
                                 *(float *)(register_rbp + -0x48) = register_xmm12_da;
-                                *(undefined4 *)(register_rbp + -0x44) = temp_var3;
+                                *(int32_t *)(register_rbp + -0x44) = temp_var3;
                                 coord_w = distance_val * 0.0 - register_xmm12_da * 0.0;
                                 *(float *)(register_rbp + -0x80) = register_xmm10_da;
                                 *(float *)(register_rbp + -0x7c) = distance_val;
                                 *(float *)(register_rbp + -0x78) = register_xmm12_da;
-                                *(undefined4 *)(register_rbp + -0x74) = temp_var3;
+                                *(int32_t *)(register_rbp + -0x74) = temp_var3;
                                 rotation_angle = register_xmm10_da * 0.0 - distance_val * 1.0;
                                 coord_y = register_xmm12_da * 1.0 - register_xmm10_da * 0.0;
                                 *(float *)(register_rbp + 0xb0) = coord_w;
                                 *(float *)(register_rbp + 0xb4) = coord_y;
                                 *(float *)(register_rbp + 0xb8) = rotation_angle;
-                                *(undefined4 *)(register_rbp + 0xbc) = *(undefined4 *)(register_rbp + 0xbc);
+                                *(int32_t *)(register_rbp + 0xbc) = *(int32_t *)(register_rbp + 0xbc);
                                 rotation_angle = coord_y * coord_y + coord_w * coord_w + rotation_angle * rotation_angle;
                                 align_array = rsqrtss(ZEXT416((uint)rotation_angle), ZEXT416((uint)rotation_angle));
                                 scale_factor = align_array._0_4_;
                                 rotation_angle = scale_factor * HALF_VALUE * (THREE_VALUE - rotation_angle * scale_factor * scale_factor);
-                                *(undefined4 *)(register_rbp + 0xcc) = MAX_FLOAT_VALUE;
+                                *(int32_t *)(register_rbp + 0xcc) = MAX_FLOAT_VALUE;
                                 random_val = *(uint *)(*(longlong *)(register_rbp + -0x40) + 0x60);
                                 *(float *)(register_rbp + 0xc0) = register_xmm12_da * coord_y * rotation_angle - distance_val * rotation_angle * rotation_angle;
                                 *(float *)(register_rbp + 0xc4) = register_xmm10_da * rotation_angle * rotation_angle - register_xmm12_da * coord_w * rotation_angle;
                                 *(float *)(register_rbp + 200) = distance_val * coord_w * rotation_angle - register_xmm10_da * coord_y * rotation_angle;
-                                *(undefined4 *)(register_rbp + 0xcc) = *(undefined4 *)(register_rbp + 0xcc);
+                                *(int32_t *)(register_rbp + 0xcc) = *(int32_t *)(register_rbp + 0xcc);
                             }
                         }
                         else {
-                            *(undefined8 *)(register_rbp + -0x80) = 0;
-                            *(undefined8 *)(register_rbp + -0x78) = 0x7f7fffff3f800000;
+                            *(uint64_t *)(register_rbp + -0x80) = 0;
+                            *(uint64_t *)(register_rbp + -0x78) = 0x7f7fffff3f800000;
                         }
                         
                         if ((random_val >> FLAG_SHIFT_0x15 & 1) != 0) {
@@ -451,8 +451,8 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                     /* 更新粒子状态 */
                     *(float *)(register_rbp + 0x88) = rotation_angle;
                     *(float *)(register_rbp + 0x8c) = distance_val;
-                    *(undefined4 *)(register_rbp + 0x90) = 0;
-                    *(undefined4 *)(register_rbp + 0x94) = MAX_FLOAT_VALUE;
+                    *(int32_t *)(register_rbp + 0x90) = 0;
+                    *(int32_t *)(register_rbp + 0x94) = MAX_FLOAT_VALUE;
                     FUN_18046da60();
                     rotation_angle = *(float *)(register_rbp + 0x120) * COLOR_WEIGHT_33 * COLOR_WEIGHT_666;
                     scale_factor = *(float *)(register_rbp + 0x124) * COLOR_WEIGHT_33 * COLOR_WEIGHT_666;
@@ -483,7 +483,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 long_ptr = (LongLongPointer)(register_rbp + 0x40);
                 *long_ptr = *long_ptr + -1;
                 register_xmm11_da = *(float *)(register_rbp + 4);
-                register_r13 = *(undefined8 **)(register_rbp + -0x58);
+                register_r13 = *(uint64_t **)(register_rbp + -0x58);
                 register_rsi = *(longlong *)(register_rbp + -0x20);
             } while (*long_ptr != 0);
             
@@ -504,18 +504,18 @@ void RenderingSystem_AdvancedParticleProcessor(void)
                 *(uint *)(register_rbp + -0x24) = random_val2;
                 
                 if (*(int *)(register_rbp + 0x14) <= (int)random_val2) {
-                    undef_ptr = *(undefined **)(temp_long + 0x10);
+                    undef_ptr = *(void **)(temp_long + 0x10);
                     undef_ptr2 = &DAT_18098bc73;
                     
                     if ((*(uint *)(temp_long + 0x60) & FLAG_0x400000) == 0) {
-                        if (undef_ptr != (undefined *)0x0) {
+                        if (undef_ptr != (void *)0x0) {
                             undef_ptr2 = undef_ptr;
                         }
                         temp_long = (*(longlong **)(register_rbp + 0x68))[1] - **(longlong **)(register_rbp + 0x68);
                         undef_ptr = &UNK_180a21780;
                     }
                     else {
-                        if (undef_ptr != (undefined *)0x0) {
+                        if (undef_ptr != (void *)0x0) {
                             undef_ptr2 = undef_ptr;
                         }
                         temp_long = (*(longlong **)(register_rbp + 0x60))[1] - **(longlong **)(register_rbp + 0x60);
@@ -551,9 +551,9 @@ void RenderingSystem_AdvancedParticleProcessor(void)
         random_val2 = random_val2 & FLAG_0x400000;
         
         if (random_val2 == 0) {
-            *(undefined8 *)(register_rbp + -0x18) = register_r15;
+            *(uint64_t *)(register_rbp + -0x18) = register_r15;
             distance_val = *(float *)(register_rbp + -0x18) - register_xmm14_da;
-            *(undefined8 *)(register_rbp + -0x58) = register_r12;
+            *(uint64_t *)(register_rbp + -0x58) = register_r12;
             coord_z = register_xmm14_da - *(float *)(register_rbp + -0x58);
             coord_x = register_xmm11_da - *(float *)(register_rbp + -0x54);
             
@@ -613,23 +613,23 @@ void RenderingSystem_AdvancedParticleProcessor(void)
         }
         
         temp_long2 = *(longlong *)(register_rsi + 0x48);
-        *(undefined8 *)(register_rbp + 0x170) = *(undefined8 *)(temp_long + temp_long2 * 8);
+        *(uint64_t *)(register_rbp + 0x170) = *(uint64_t *)(temp_long + temp_long2 * 8);
         long_ptr = (LongLongPointer)(register_rbp + 0x170);
         *(longlong *)(register_rbp + 0x178) = temp_long + temp_long2 * 8;
         
     LAB_180377195:
         if (*long_ptr == *(longlong *)(temp_long + temp_long2 * 8)) {
-            register_r13 = (undefined8 *)0x0;
+            register_r13 = (uint64_t *)0x0;
         }
         else {
-            register_r13 = *(undefined8 **)(*long_ptr + 8);
+            register_r13 = *(uint64_t **)(*long_ptr + 8);
         }
         
-        *(undefined8 **)(register_rbp + -0x58) = register_r13;
+        *(uint64_t **)(register_rbp + -0x58) = register_r13;
         register_xmm15_da = (float)(int)(random_val + 1) * coord_y * rotation_angle - register_xmm14_da;
         register_xmm6_da = coord_x * register_xmm15_da;
         
-        if (((random_val2 == 0) && (byte_flag = func_0x0001803723f0(*(undefined8 *)(register_rbp + 0x20)), byte_flag == '\0')) && (*(int *)(register_rbp + 0x28) != 100)) {
+        if (((random_val2 == 0) && (byte_flag = func_0x0001803723f0(*(uint64_t *)(register_rbp + 0x20)), byte_flag == '\0')) && (*(int *)(register_rbp + 0x28) != 100)) {
             register_xmm6_da = register_xmm6_da * (float)*(int *)(register_rbp + 0x28) * 0.01;
         }
         
@@ -683,7 +683,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
         coord_y = scale_factor * rotation_angle - register_xmm11_da;
         random_val = *(ushort *)(temp_long + OFFSET_0x5c);
         *(float *)(register_rbp + 0x50) = coord_y;
-        register_rax = (undefined *)*register_r13;
+        register_rax = (void *)*register_r13;
         *(float *)(register_rbp + -0x10) = (float)(int)random_val3;
         *(float *)(register_rbp + -0xc) = (float)*(int *)(register_rbp + -0x38);
         register_xmm7_da = (register_xmm15_da * coord_z + register_xmm14_da) - coord_x * (float)(int)random_val3;
@@ -694,7 +694,7 @@ void RenderingSystem_AdvancedParticleProcessor(void)
             goto code_r0x00018037851f;
         }
         
-        coord_x = *(float *)(register_r13[2] + OFFSET_0x1c) / (float)(1 << ((byte)*(undefined4 *)(register_r13 + 5) & 0x1f));
+        coord_x = *(float *)(register_r13[2] + OFFSET_0x1c) / (float)(1 << ((byte)*(int32_t *)(register_r13 + 5) & 0x1f));
     } while( true );
 }
 
@@ -740,7 +740,7 @@ void RenderingSystem_DataSearchProcessor(longlong param_1, ulonglong *param_2, i
                 
                 if (ptr5 < (Undefined8Pointer)param_2[2]) {
                     param_2[1] = (ulonglong)(ptr5 + 1);
-                    *ptr5 = *(undefined8 *)(temp_long6 + temp_long3);
+                    *ptr5 = *(uint64_t *)(temp_long6 + temp_long3);
                 }
                 else {
                     ptr4 = (Undefined8Pointer)*param_2;
@@ -765,7 +765,7 @@ void RenderingSystem_DataSearchProcessor(longlong param_1, ulonglong *param_2, i
                         memmove(ptr2, ptr4, (longlong)ptr5 - (longlong)ptr4);
                     }
                     
-                    *ptr2 = *(undefined8 *)(temp_long6 + temp_long3);
+                    *ptr2 = *(uint64_t *)(temp_long6 + temp_long3);
                     
                     if (*param_2 != 0) {
                         FUN_18064e900();
@@ -802,7 +802,7 @@ void RenderingSystem_DataSearchProcessor(longlong param_1, ulonglong *param_2, i
  * @param param_3 搜索条件
  * @return void 无返回值
  */
-void RenderingSystem_AlternateDataSearch(undefined8 param_1, longlong param_2, int param_3)
+void RenderingSystem_AlternateDataSearch(uint64_t param_1, longlong param_2, int param_3)
 {
     longlong temp_long1;
     Undefined8Pointer ptr2;
@@ -821,7 +821,7 @@ void RenderingSystem_AlternateDataSearch(undefined8 param_1, longlong param_2, i
             
             if (ptr4 < (Undefined8Pointer)register_rbx[2]) {
                 register_rbx[1] = (ulonglong)(ptr4 + 1);
-                *ptr4 = *(undefined8 *)(temp_long5 + param_2);
+                *ptr4 = *(uint64_t *)(temp_long5 + param_2);
             }
             else {
                 ptr3 = (Undefined8Pointer)*register_rbx;
@@ -846,7 +846,7 @@ void RenderingSystem_AlternateDataSearch(undefined8 param_1, longlong param_2, i
                     memmove(ptr2, ptr3, (longlong)ptr4 - (longlong)ptr3);
                 }
                 
-                *ptr2 = *(undefined8 *)(temp_long5 + param_2);
+                *ptr2 = *(uint64_t *)(temp_long5 + param_2);
                 
                 if (*register_rbx != 0) {
                     FUN_18064e900();

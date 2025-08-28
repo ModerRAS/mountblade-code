@@ -2,8 +2,8 @@
 
 // 99_part_12_part072.c - 1 个函数
 
-// 函数: void FUN_1807fb00c(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
-void FUN_1807fb00c(undefined8 param_1,undefined8 param_2,int param_3,int param_4)
+// 函数: void FUN_1807fb00c(uint64_t param_1,uint64_t param_2,int param_3,int param_4)
+void FUN_1807fb00c(uint64_t param_1,uint64_t param_2,int param_3,int param_4)
 
 {
   float fVar1;
@@ -34,10 +34,10 @@ void FUN_1807fb00c(undefined8 param_1,undefined8 param_2,int param_3,int param_4
   longlong in_R11;
   longlong lVar20;
   float *pfVar21;
-  undefined8 unaff_R12;
-  undefined8 unaff_R13;
+  uint64_t unaff_R12;
+  uint64_t unaff_R13;
   int iVar22;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   float fVar23;
   float fVar24;
   float fVar25;
@@ -54,12 +54,12 @@ void FUN_1807fb00c(undefined8 param_1,undefined8 param_2,int param_3,int param_4
   longlong in_stack_000000c8;
   longlong in_stack_000000d0;
   
-  *(undefined8 *)(in_RAX + 8) = unaff_R12;
-  *(undefined8 *)(in_RAX + -0x38) = unaff_R15;
+  *(uint64_t *)(in_RAX + 8) = unaff_R12;
+  *(uint64_t *)(in_RAX + -0x38) = unaff_R15;
   param_3 = param_3 >> 2;
   iVar22 = param_4;
   if (param_3 != 0) {
-    *(undefined8 *)(in_RAX + -0x30) = unaff_R13;
+    *(uint64_t *)(in_RAX + -0x30) = unaff_R13;
     lVar18 = in_R11 + 0x20;
     iVar17 = param_4 * 2;
     iVar16 = param_4 * 3;

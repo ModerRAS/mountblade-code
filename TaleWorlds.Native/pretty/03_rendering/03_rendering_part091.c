@@ -31,55 +31,55 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
     float transform_value_2;
     int iteration_count;
     code *resource_pointer;
-    undefined8 handle_value;
+    uint64_t handle_value;
     longlong memory_address;
     longlong *memory_pool;
     uint buffer_index;
-    undefined8 temp_value;
+    uint64_t temp_value;
     code **context_pointer;
-    undefined8 *resource_array;
+    uint64_t *resource_array;
     longlong data_offset;
     code **temp_context;
     uint *index_array;
     longlong stack_data;
-    undefined4 format_flag;
-    undefined1 security_buffer[32];
-    undefined8 security_key;
-    undefined4 padding_1;
-    undefined4 padding_2;
-    undefined4 padding_3;
-    undefined4 padding_4;
-    undefined8 memory_guard;
-    undefined1 guard_flag;
-    undefined4 resource_flag;
+    int32_t format_flag;
+    int8_t security_buffer[32];
+    uint64_t security_key;
+    int32_t padding_1;
+    int32_t padding_2;
+    int32_t padding_3;
+    int32_t padding_4;
+    uint64_t memory_guard;
+    int8_t guard_flag;
+    int32_t resource_flag;
     code **managed_context;
     float scale_factor;
-    undefined4 float_max_flag;
-    undefined1 temp_buffer[8];
+    int32_t float_max_flag;
+    int8_t temp_buffer[8];
     code **context_cache;
     code **context_backup;
     code *resource_base;
-    undefined4 alignment_flag;
-    undefined2 alignment_offset_1;
-    undefined2 alignment_offset_2;
+    int32_t alignment_flag;
+    int16_t alignment_offset_1;
+    int16_t alignment_offset_2;
     code *texture_resource;
-    undefined *texture_data;
+    void *texture_data;
     code *shader_resource;
     code *vertex_resource;
-    undefined8 vertex_data;
-    undefined4 vertex_flag;
+    uint64_t vertex_data;
+    int32_t vertex_flag;
     longlong *vertex_pool;
     code *fragment_resource;
     longlong fragment_offset;
-    undefined4 fragment_flag;
+    int32_t fragment_flag;
     ulonglong checksum_value;
     uint vertex_indices[2];
-    undefined8 index_guard;
-    undefined1 vertex_buffer[32];
-    undefined4 vertex_size_1;
-    undefined4 vertex_size_2;
-    undefined4 vertex_size_3;
-    undefined4 vertex_size_4;
+    uint64_t index_guard;
+    int8_t vertex_buffer[32];
+    int32_t vertex_size_1;
+    int32_t vertex_size_2;
+    int32_t vertex_size_3;
+    int32_t vertex_size_4;
     longlong *vertex_manager;
     ulonglong memory_checksum;
     
@@ -104,7 +104,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
     security_key = CONCAT44(security_key._4_4_, 4);
     
     // 初始化渲染资源
-    FUN_1800b0a10(format_flag, &context_cache, *(undefined4 *)(render_context[0x11] + 0xa0), &resource_base);
+    FUN_1800b0a10(format_flag, &context_cache, *(int32_t *)(render_context[0x11] + 0xa0), &resource_base);
     memory_address = _DAT_180c86898;
     resource_base = (code *)&UNK_18098bcb0;
     resource_pointer = render_context[0x11];
@@ -124,11 +124,11 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             vertex_flag = 0;
             alignment_offset_2 = 0;
             if (*(longlong *)(_DAT_180c86898 + 0x410) == 0) {
-                resource_array = (undefined8 *)FUN_18009e9e0((longlong)iteration_count, &managed_context, &UNK_180a03740);
+                resource_array = (uint64_t *)FUN_18009e9e0((longlong)iteration_count, &managed_context, &UNK_180a03740);
                 handle_value = *resource_array;
                 *resource_array = 0;
                 context_cache = *(code ***)(memory_address + 0x410);
-                *(undefined8 *)(memory_address + 0x410) = handle_value;
+                *(uint64_t *)(memory_address + 0x410) = handle_value;
                 if (context_cache != (code **)0x0) {
                     (**(code **)((longlong)*context_cache + 0x38))();
                 }
@@ -149,9 +149,9 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             vertex_flag = 2;
             index_guard = 0;
             vertex_data = 0;
-            handle_value = *(undefined8 *)(context_backup + 0x15b8);
+            handle_value = *(uint64_t *)(context_backup + 0x15b8);
             managed_context = &resource_base;
-            vertex_data._4_4_ = (undefined4)((ulonglong)temp_value >> 0x20);
+            vertex_data._4_4_ = (int32_t)((ulonglong)temp_value >> 0x20);
             texture_resource = shader_resource;
             format_flag = vertex_flag;
             padding_1 = vertex_data._4_4_;
@@ -160,9 +160,9 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             vertex_data = temp_value;
             resource_base = context_backup;
             FUN_180627ae0(vertex_buffer, &fragment_resource);
-            vertex_size_1 = (undefined4)index_guard;
+            vertex_size_1 = (int32_t)index_guard;
             vertex_size_2 = index_guard._4_4_;
-            vertex_size_3 = (undefined4)vertex_data;
+            vertex_size_3 = (int32_t)vertex_data;
             vertex_size_4 = vertex_data._4_4_;
             vertex_manager = memory_pool;
             if (memory_pool != (longlong *)0x0) {
@@ -170,29 +170,29 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             }
             stack_data = FUN_180299eb0(handle_value, 0, &resource_base, temp_buffer);
             memory_address = _DAT_180c86938;
-            *(undefined4 *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d88) =
-                 *(undefined4 *)(render_context[0x11] + 0x30b0);
-            format_flag = powf(0x40000000, *(undefined4 *)(render_context[0x11] + 0x320c));
-            *(undefined4 *)(*(longlong *)(memory_address + 0x1cd8) + 0x1d58) = format_flag;
-            FUN_18029fc10(*(longlong *)(memory_address + 0x1cd8), *(undefined8 *)(memory_address + 0x1c88),
+            *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d88) =
+                 *(int32_t *)(render_context[0x11] + 0x30b0);
+            format_flag = powf(0x40000000, *(int32_t *)(render_context[0x11] + 0x320c));
+            *(int32_t *)(*(longlong *)(memory_address + 0x1cd8) + 0x1d58) = format_flag;
+            FUN_18029fc10(*(longlong *)(memory_address + 0x1cd8), *(uint64_t *)(memory_address + 0x1c88),
                           *(longlong *)(memory_address + 0x1cd8) + 0x1be0, 0x230);
             memory_address = *(longlong *)(_DAT_180c86938 + 0x1c88);
             memory_pool = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
             resource_pointer = *(code **)(*memory_pool + 0x238);
-            *(undefined4 *)(memory_address + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+            *(int32_t *)(memory_address + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
             (*resource_pointer)(memory_pool, 2, 1, memory_address + 0x10);
             memory_address = *(longlong *)(_DAT_180c86938 + 0x1cd8);
             if ((stack_data != 0) && (*(longlong *)(memory_address + 0x82a0) != (longlong)**(int **)(stack_data + 0x10))) {
                 (**(code **)(**(longlong **)(memory_address + 0x8400) + 0x228))
-                          (*(longlong **)(memory_address + 0x8400), *(undefined8 *)(*(int **)(stack_data + 0x10) + 6), 0, 0)
+                          (*(longlong **)(memory_address + 0x8400), *(uint64_t *)(*(int **)(stack_data + 0x10) + 6), 0, 0)
                 ;
                 *(longlong *)(memory_address + 0x82a0) = (longlong)**(int **)(stack_data + 0x10);
             }
             security_key = CONCAT44(security_key._4_4_, 0xffffffff);
-            FUN_18029d150(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 0, data_offset, 0x20);
+            FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 0, data_offset, 0x20);
             memory_address = *(longlong *)(_DAT_180c86938 + 0x1cd8);
             if (context_cache != (code **)0x0) {
-                *(undefined4 *)((longlong)context_cache + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+                *(int32_t *)((longlong)context_cache + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
                 temp_context = (code **)context_cache[4];
             }
             memory_pool = *(longlong **)(memory_address + 0x8400);
@@ -214,7 +214,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             padding_2 = 0x21;
             padding_1 = 2;
             security_key = CONCAT44(security_key._4_4_, 0x10);
-            FUN_1800b0a10(format_flag, &vertex_resource, *(undefined4 *)(render_context[0x11] + 0xa0), &resource_base);
+            FUN_1800b0a10(format_flag, &vertex_resource, *(int32_t *)(render_context[0x11] + 0xa0), &resource_base);
             resource_base = (code *)&UNK_18098bcb0;
             temp_context = (code **)FUN_18062b1e0(_DAT_180c8ed18, 0x48, 8, 3);
             resource_pointer = vertex_resource;
@@ -260,13 +260,13 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             }
             temp_context[3] = render_data;
             index_array = (uint *)FUN_180145140(render_context[0x11] + 0x3018, &shader_resource,
-                                            *(undefined4 *)(render_context[0x11] + 0x3f50));
+                                            *(int32_t *)(render_context[0x11] + 0x3f50));
             buffer_index = index_array[2];
             vertex_indices[1] = index_array[1];
             *(uint *)((longlong)temp_context + 0x24) = *index_array ^ 0x80000000;
             *(uint *)(temp_context + 5) = vertex_indices[1] ^ 0x80000000;
             *(uint *)((longlong)temp_context + 0x2c) = buffer_index ^ 0x80000000;
-            *(undefined4 *)(temp_context + 6) = RENDERING_FLOAT_MAX;
+            *(int32_t *)(temp_context + 6) = RENDERING_FLOAT_MAX;
             resource_pointer = render_context[0x11];
             transform_value_1 = *(float *)(resource_pointer + 0x30c8);
             scale_factor = transform_value_1 * *(float *)(resource_pointer + 0x30e4);
@@ -275,7 +275,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
             *(float *)((longlong)temp_context + 0x34) = transform_value_1 * *(float *)(resource_pointer + 0x30dc);
             *(float *)(temp_context + 7) = transform_value_1 * transform_value_2;
             *(float *)((longlong)temp_context + 0x3c) = scale_factor;
-            *(undefined4 *)(temp_context + 8) = RENDERING_FLOAT_MAX;
+            *(int32_t *)(temp_context + 8) = RENDERING_FLOAT_MAX;
             managed_context = &shader_resource;
             fragment_resource = (code *)&UNK_1802e4bc0;
             texture_data = &UNK_1800ee4c0;
@@ -309,7 +309,7 @@ void rendering_system_advanced_processor(code **render_context, code *render_dat
     iteration_count = *(int *)(render_data + 0x4c);
     *(int *)(render_data + 0x4c) = iteration_count + 1;
     if (iteration_count + 1 == RENDERING_MAX_ITERATIONS) {
-        *(undefined4 *)(render_data + 0x5c) = 0xffffffff;
+        *(int32_t *)(render_data + 0x5c) = 0xffffffff;
     }
 resource_cleanup_complete:
     if (context_cache != (code **)0x0) {
@@ -333,25 +333,25 @@ void rendering_system_cleanup_handler(longlong render_context)
         // WARNING: Subroutine does not return
         FUN_18064e900(resource_handle);
     }
-    *(undefined8 *)(render_context + 0x3c8) = 0;
+    *(uint64_t *)(render_context + 0x3c8) = 0;
     
     // 清理资源池 1
     resource_pool = *(longlong **)(render_context + 0x1c8);
-    *(undefined8 *)(render_context + 0x1c8) = 0;
+    *(uint64_t *)(render_context + 0x1c8) = 0;
     if (resource_pool != (longlong *)0x0) {
         (**(code **)(*resource_pool + 0x38))();
     }
     
     // 清理资源池 2
     resource_pool = *(longlong **)(render_context + 0x1d0);
-    *(undefined8 *)(render_context + 0x1d0) = 0;
+    *(uint64_t *)(render_context + 0x1d0) = 0;
     if (resource_pool != (longlong *)0x0) {
         (**(code **)(*resource_pool + 0x38))();
     }
     
     // 清理资源池 3
     resource_pool = *(longlong **)(render_context + 0x1d8);
-    *(undefined8 *)(render_context + 0x1d8) = 0;
+    *(uint64_t *)(render_context + 0x1d8) = 0;
     if (resource_pool != (longlong *)0x0) {
         (**(code **)(*resource_pool + 0x38))();
     }
@@ -365,27 +365,27 @@ void rendering_system_cleanup_handler(longlong render_context)
 void rendering_system_resource_manager(longlong render_context)
 {
     int state_flag;
-    undefined8 handle_value;
-    undefined8 *resource_pointer;
+    uint64_t handle_value;
+    uint64_t *resource_pointer;
     longlong resource_data;
     longlong *resource_manager;
-    undefined1 security_buffer[32];
-    undefined4 format_flag_1;
-    undefined4 format_flag_2;
-    undefined4 format_flag_3;
-    undefined4 format_flag_4;
+    int8_t security_buffer[32];
+    int32_t format_flag_1;
+    int32_t format_flag_2;
+    int32_t format_flag_3;
+    int32_t format_flag_4;
     int state_multiplier;
     longlong *managed_resource;
-    undefined1 guard_flag;
-    undefined4 resource_type;
+    int8_t guard_flag;
+    int32_t resource_type;
     longlong *resource_cache;
     longlong *resource_backup;
-    undefined8 resource_guard;
+    uint64_t resource_guard;
     longlong *resource_pool;
-    undefined *resource_data_ptr;
-    undefined1 *resource_name;
-    undefined4 name_length;
-    undefined1 resource_info[72];
+    void *resource_data_ptr;
+    int8_t *resource_name;
+    int32_t name_length;
+    int8_t resource_info[72];
     ulonglong checksum_value;
     
     // 初始化安全保护机制
@@ -395,7 +395,7 @@ void rendering_system_resource_manager(longlong render_context)
     // 根据状态标志选择不同的资源管理路径
     if (*(int *)(render_context + 0x60) == 0) {
         resource_manager = *(longlong **)(render_context + 0x1c8);
-        *(undefined8 *)(render_context + 0x1c8) = 0;
+        *(uint64_t *)(render_context + 0x1c8) = 0;
         managed_resource = resource_manager;
         if (resource_manager == (longlong *)0x0) goto cleanup_complete;
         resource_data = *resource_manager;
@@ -419,11 +419,11 @@ void rendering_system_resource_manager(longlong render_context)
             format_flag_1 = 0x41;
             state_multiplier = state_flag * 7;
             managed_resource = resource_manager;
-            resource_pointer = (undefined8 *)FUN_1800b0a10();
+            resource_pointer = (uint64_t *)FUN_1800b0a10();
             handle_value = *resource_pointer;
             *resource_pointer = 0;
             managed_resource = *(longlong **)(render_context + 0x1c8);
-            *(undefined8 *)(render_context + 0x1c8) = handle_value;
+            *(uint64_t *)(render_context + 0x1c8) = handle_value;
             if (managed_resource != (longlong *)0x0) {
                 (**(code **)(*managed_resource + 0x38))();
             }
@@ -432,7 +432,7 @@ void rendering_system_resource_manager(longlong render_context)
             }
             resource_data_ptr = &UNK_18098bcb0;
             managed_resource = *(longlong **)(render_context + 0x70);
-            *(undefined8 *)(render_context + 0x70) = 0;
+            *(uint64_t *)(render_context + 0x70) = 0;
             if (managed_resource != (longlong *)0x0) {
                 (**(code **)(*managed_resource + 0x38))();
             }
@@ -448,24 +448,24 @@ cleanup_complete:
 
 // 渲染系统参数处理器
 // 功能：处理渲染系统的参数设置、变换和优化
-void rendering_system_parameter_processor(undefined8 param_1, undefined8 param_2, float *transform_params, undefined4 render_flags)
+void rendering_system_parameter_processor(uint64_t param_1, uint64_t param_2, float *transform_params, int32_t render_flags)
 {
     float *param_pointer;
     float transformed_value_1;
     float transformed_value_2;
     float transformed_value_3;
-    undefined4 precision_flag;
-    undefined1 transform_buffer[16];
+    int32_t precision_flag;
+    int8_t transform_buffer[16];
     float original_value_1;
     float original_value_2;
     float original_value_3;
     float original_value_4;
-    undefined4 max_float_flag;
-    undefined4 format_flag;
+    int32_t max_float_flag;
+    int32_t format_flag;
     
     param_pointer = &original_value_1;
     FUN_18031c410(param_pointer, render_flags, &transformed_value_1, transform_buffer, param_pointer);
-    format_flag = (undefined4)((ulonglong)param_pointer >> 0x20);
+    format_flag = (int32_t)((ulonglong)param_pointer >> 0x20);
     transformed_value_1 = transformed_value_1 + *transform_params;
     transformed_value_2 = transformed_value_2 + transform_params[1];
     transformed_value_3 = transformed_value_3 + transform_params[2];
@@ -487,16 +487,16 @@ void rendering_system_parameter_processor(undefined8 param_1, undefined8 param_2
 void rendering_system_data_transformer(longlong source_context, longlong target_context)
 {
     float normalization_factor;
-    undefined4 transform_flag_1;
-    undefined4 transform_flag_2;
+    int32_t transform_flag_1;
+    int32_t transform_flag_2;
     int vector_component_count;
     longlong *vector_processor;
-    undefined8 transform_data;
+    uint64_t transform_data;
     char validation_flag;
     uint buffer_index;
     int iteration_limit;
-    undefined8 *data_pointer;
-    undefined8 *array_pointer;
+    uint64_t *data_pointer;
+    uint64_t *array_pointer;
     longlong data_offset;
     float vector_component_x;
     float vector_component_y;
@@ -506,34 +506,34 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
     float vector_magnitude;
     float normalized_x;
     float normalized_y;
-    undefined1 security_buffer[32];
-    undefined1 guard_flag;
-    undefined8 transform_matrix_1;
-    undefined8 transform_matrix_2;
-    undefined4 matrix_flags;
-    undefined *texture_reference;
-    undefined8 *texture_data;
-    undefined4 texture_format;
-    undefined8 texture_resource;
-    undefined4 texture_flags_1;
-    undefined4 texture_flags_2;
-    undefined4 texture_flags_3;
-    undefined4 texture_flags_4;
-    undefined8 vector_data;
-    undefined8 backup_vector;
-    undefined1 vector_guard;
-    undefined4 vector_flag;
+    int8_t security_buffer[32];
+    int8_t guard_flag;
+    uint64_t transform_matrix_1;
+    uint64_t transform_matrix_2;
+    int32_t matrix_flags;
+    void *texture_reference;
+    uint64_t *texture_data;
+    int32_t texture_format;
+    uint64_t texture_resource;
+    int32_t texture_flags_1;
+    int32_t texture_flags_2;
+    int32_t texture_flags_3;
+    int32_t texture_flags_4;
+    uint64_t vector_data;
+    uint64_t backup_vector;
+    int8_t vector_guard;
+    int32_t vector_flag;
     longlong *vector_manager;
     longlong *vector_cache;
     longlong *vector_pool;
     longlong *vector_buffer;
     longlong *vector_source;
     longlong *vector_target;
-    undefined8 resource_handle;
-    undefined *resource_data;
-    undefined1 *resource_name;
-    undefined4 name_length;
-    undefined1 transform_info[136];
+    uint64_t resource_handle;
+    void *resource_data;
+    int8_t *resource_name;
+    int32_t name_length;
+    int8_t transform_info[136];
     ulonglong checksum_value;
     
     // 初始化安全保护机制
@@ -552,24 +552,24 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
     }
     
     // 传输变换矩阵数据
-    transform_data = *(undefined8 *)(source_context + 0x24c);
-    *(undefined8 *)(target_context + 0x97c8) = *(undefined8 *)(source_context + 0x244);
-    *(undefined8 *)(target_context + 0x97d0) = transform_data;
-    transform_data = *(undefined8 *)(source_context + 0x25c);
-    *(undefined8 *)(target_context + 0x97d8) = *(undefined8 *)(source_context + 0x254);
-    *(undefined8 *)(target_context + 0x97e0) = transform_data;
-    transform_data = *(undefined8 *)(source_context + 0x26c);
-    *(undefined8 *)(target_context + 0x97e8) = *(undefined8 *)(source_context + 0x264);
-    *(undefined8 *)(target_context + 0x97f0) = transform_data;
-    transform_data = *(undefined8 *)(source_context + 0x27c);
-    *(undefined8 *)(target_context + 0x97f8) = *(undefined8 *)(source_context + 0x274);
-    *(undefined8 *)(target_context + 0x9800) = transform_data;
-    transform_data = *(undefined8 *)(source_context + 0x28c);
-    *(undefined8 *)(target_context + 0x9808) = *(undefined8 *)(source_context + 0x284);
-    *(undefined8 *)(target_context + 0x9810) = transform_data;
-    transform_data = *(undefined8 *)(source_context + 0x29c);
-    *(undefined8 *)(target_context + 0x9818) = *(undefined8 *)(source_context + 0x294);
-    *(undefined8 *)(target_context + 0x9820) = transform_data;
+    transform_data = *(uint64_t *)(source_context + 0x24c);
+    *(uint64_t *)(target_context + 0x97c8) = *(uint64_t *)(source_context + 0x244);
+    *(uint64_t *)(target_context + 0x97d0) = transform_data;
+    transform_data = *(uint64_t *)(source_context + 0x25c);
+    *(uint64_t *)(target_context + 0x97d8) = *(uint64_t *)(source_context + 0x254);
+    *(uint64_t *)(target_context + 0x97e0) = transform_data;
+    transform_data = *(uint64_t *)(source_context + 0x26c);
+    *(uint64_t *)(target_context + 0x97e8) = *(uint64_t *)(source_context + 0x264);
+    *(uint64_t *)(target_context + 0x97f0) = transform_data;
+    transform_data = *(uint64_t *)(source_context + 0x27c);
+    *(uint64_t *)(target_context + 0x97f8) = *(uint64_t *)(source_context + 0x274);
+    *(uint64_t *)(target_context + 0x9800) = transform_data;
+    transform_data = *(uint64_t *)(source_context + 0x28c);
+    *(uint64_t *)(target_context + 0x9808) = *(uint64_t *)(source_context + 0x284);
+    *(uint64_t *)(target_context + 0x9810) = transform_data;
+    transform_data = *(uint64_t *)(source_context + 0x29c);
+    *(uint64_t *)(target_context + 0x9818) = *(uint64_t *)(source_context + 0x294);
+    *(uint64_t *)(target_context + 0x9820) = transform_data;
     
     // 获取归一化因子
     normalization_factor = *(float *)(*(longlong *)(source_context + 0x88) + 0x4b4);
@@ -590,7 +590,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
         *(float *)(target_context + 0x97c8) = vector_magnitude;
         *(float *)(target_context + 0x97cc) = vector_component_y;
         *(float *)(target_context + 0x97d0) = vector_component_z;
-        *(undefined4 *)(target_context + 0x97d4) = RENDERING_FLOAT_MAX;
+        *(int32_t *)(target_context + 0x97d4) = RENDERING_FLOAT_MAX;
     }
     
     // 继续处理其他向量分量（共6个向量的归一化处理）
@@ -609,7 +609,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
         *(float *)(target_context + 0x97d8) = vector_magnitude;
         *(float *)(target_context + 0x97dc) = vector_component_y;
         *(float *)(target_context + 0x97e0) = vector_component_z;
-        *(undefined4 *)(target_context + 0x97e4) = RENDERING_FLOAT_MAX;
+        *(int32_t *)(target_context + 0x97e4) = RENDERING_FLOAT_MAX;
     }
     
     vector_component_y = *(float *)(target_context + 0x97ec);
@@ -627,7 +627,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
         *(float *)(target_context + 0x97e8) = vector_magnitude;
         *(float *)(target_context + 0x97ec) = vector_component_y;
         *(float *)(target_context + 0x97f0) = vector_component_z;
-        *(undefined4 *)(target_context + 0x97f4) = RENDERING_FLOAT_MAX;
+        *(int32_t *)(target_context + 0x97f4) = RENDERING_FLOAT_MAX;
     }
     
     vector_component_y = *(float *)(target_context + 0x97fc);
@@ -645,7 +645,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
         *(float *)(target_context + 0x97f8) = vector_magnitude;
         *(float *)(target_context + 0x97fc) = vector_component_y;
         *(float *)(target_context + 0x9800) = vector_component_z;
-        *(undefined4 *)(target_context + 0x9804) = RENDERING_FLOAT_MAX;
+        *(int32_t *)(target_context + 0x9804) = RENDERING_FLOAT_MAX;
     }
     
     vector_component_y = *(float *)(target_context + 0x980c);
@@ -663,7 +663,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
         *(float *)(target_context + 0x9808) = vector_magnitude;
         *(float *)(target_context + 0x980c) = vector_component_y;
         *(float *)(target_context + 0x9810) = vector_component_z;
-        *(undefined4 *)(target_context + 0x9814) = RENDERING_FLOAT_MAX;
+        *(int32_t *)(target_context + 0x9814) = RENDERING_FLOAT_MAX;
     }
     
     vector_component_y = *(float *)(target_context + 0x981c);
@@ -681,7 +681,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
         *(float *)(target_context + 0x9818) = vector_magnitude;
         *(float *)(target_context + 0x981c) = normalization_factor;
         *(float *)(target_context + 0x9820) = vector_component_z;
-        *(undefined4 *)(target_context + 0x9824) = RENDERING_FLOAT_MAX;
+        *(int32_t *)(target_context + 0x9824) = RENDERING_FLOAT_MAX;
     }
     
     // 处理向量处理器资源
@@ -723,7 +723,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
     // 处理特殊资源管理
     if (*(longlong *)(target_context + 0x97a0) == 0) {
         transform_matrix_1 = *(longlong **)(target_context + 0x97c0);
-        *(undefined8 *)(target_context + 0x97c0) = 0;
+        *(uint64_t *)(target_context + 0x97c0) = 0;
         if (transform_matrix_1 != (longlong *)0x0) {
             (**(code **)(*transform_matrix_1 + 0x38))();
         }
@@ -732,16 +732,16 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
     
     texture_reference = &UNK_180a3c3e0;
     texture_resource = 0;
-    texture_data = (undefined8 *)0x0;
+    texture_data = (uint64_t *)0x0;
     texture_format = 0;
-    data_pointer = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x1c, 0x13);
-    *(undefined1 *)data_pointer = 0;
+    data_pointer = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, 0x1c, 0x13);
+    *(int8_t *)data_pointer = 0;
     texture_data = data_pointer;
     buffer_index = FUN_18064e990(data_pointer);
     *data_pointer = 0x666669645f747270;
     data_pointer[1] = 0x69626d615f657375;
     data_pointer[2] = 0x757365725f746e65;
-    *(undefined4 *)(data_pointer + 3) = 0x5f746c;
+    *(int32_t *)(data_pointer + 3) = 0x5f746c;
     texture_format = 0x1b;
     data_offset = *(longlong *)(source_context + 0x88);
     iteration_limit = *(int *)(data_offset + 0x4e8);
@@ -749,13 +749,13 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
     if (0 < iteration_limit) {
         if ((iteration_limit != -0x1b) && (buffer_index < iteration_limit + 0x1cU)) {
             guard_flag = 0x13;
-            data_pointer = (undefined8 *)FUN_18062b8b0(_DAT_180c8ed18, data_pointer, iteration_limit + 0x1cU, 0x10);
+            data_pointer = (uint64_t *)FUN_18062b8b0(_DAT_180c8ed18, data_pointer, iteration_limit + 0x1cU, 0x10);
             texture_data = data_pointer;
             texture_resource._0_4_ = FUN_18064e990(data_pointer);
             iteration_limit = *(int *)(data_offset + 0x4e8);
         }
         // WARNING: Subroutine does not return
-        memcpy((undefined1 *)((longlong)data_pointer + 0x1b), *(undefined8 *)(data_offset + 0x4e0),
+        memcpy((int8_t *)((longlong)data_pointer + 0x1b), *(uint64_t *)(data_offset + 0x4e0),
                (longlong)(iteration_limit + 1));
     }
     texture_flags_1 = 1;
@@ -774,26 +774,26 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
         scale_factor_1 = *(double *)(data_offset + -8 + (longlong)iteration_limit * 0x10);
         scale_factor_2 = *(double *)(data_offset + (longlong)iteration_limit * 0x10);
     }
-    texture_flags_3 = (undefined4)(longlong)((double)*(float *)(target_context + 0x11c20) / scale_factor_1);
-    texture_flags_4 = (undefined4)(longlong)((double)*(float *)(target_context + 0x11c24) / scale_factor_2);
+    texture_flags_3 = (int32_t)(longlong)((double)*(float *)(target_context + 0x11c20) / scale_factor_1);
+    texture_flags_4 = (int32_t)(longlong)((double)*(float *)(target_context + 0x11c24) / scale_factor_2);
     texture_flags_1 = 0x1e;
     resource_data = &UNK_1809fcc28;
     resource_name = transform_info;
     transform_info[0] = 0;
     name_length = 0x1b;
-    array_pointer = (undefined8 *)&DAT_18098bc73;
-    if (data_pointer != (undefined8 *)0x0) {
+    array_pointer = (uint64_t *)&DAT_18098bc73;
+    if (data_pointer != (uint64_t *)0x0) {
         array_pointer = data_pointer;
     }
     strcpy_s(transform_info, 0x80, array_pointer);
     data_offset = *(longlong *)(source_context + 0x230);
     if (data_offset == 0) {
 texture_resource_allocation:
-        array_pointer = (undefined8 *)FUN_1800b1230(_DAT_180c86930, &vector_target, &resource_data, &texture_flags_3);
+        array_pointer = (uint64_t *)FUN_1800b1230(_DAT_180c86930, &vector_target, &resource_data, &texture_flags_3);
         transform_data = *array_pointer;
         *array_pointer = 0;
         vector_buffer = *(longlong **)(source_context + 0x230);
-        *(undefined8 *)(source_context + 0x230) = transform_data;
+        *(uint64_t *)(source_context + 0x230) = transform_data;
         if (vector_buffer != (longlong *)0x0) {
             (**(code **)(*vector_buffer + 0x38))();
         }
@@ -819,29 +819,29 @@ texture_resource_allocation:
         (**(code **)(*vector_target + 0x38))();
     }
     texture_reference = &UNK_180a3c3e0;
-    if (data_pointer != (undefined8 *)0x0) {
+    if (data_pointer != (uint64_t *)0x0) {
         // WARNING: Subroutine does not return
         FUN_18064e900(data_pointer);
     }
-    texture_data = (undefined8 *)0x0;
+    texture_data = (uint64_t *)0x0;
     texture_resource = (ulonglong)texture_resource._4_4_ << 0x20;
     texture_reference = &UNK_18098bcb0;
 texture_processing_complete:
     vector_component_x = *(float *)(source_context + 0x210);
     vector_component_y = *(float *)(source_context + 0x214);
-    transform_flag_1 = *(undefined4 *)(source_context + 500);
-    transform_flag_2 = *(undefined4 *)(source_context + 0x1f8);
+    transform_flag_1 = *(int32_t *)(source_context + 500);
+    transform_flag_2 = *(int32_t *)(source_context + 0x1f8);
     iteration_limit = *(int *)(source_context + 0x1e4);
-    *(undefined4 *)(target_context + 0x9750) = *(undefined4 *)(source_context + 0x1f0);
-    *(undefined4 *)(target_context + 0x9754) = transform_flag_1;
-    *(undefined4 *)(target_context + 0x9758) = transform_flag_2;
+    *(int32_t *)(target_context + 0x9750) = *(int32_t *)(source_context + 0x1f0);
+    *(int32_t *)(target_context + 0x9754) = transform_flag_1;
+    *(int32_t *)(target_context + 0x9758) = transform_flag_2;
     *(float *)(target_context + 0x975c) = (float)iteration_limit;
-    transform_flag_1 = *(undefined4 *)(source_context + 0x204);
-    transform_flag_2 = *(undefined4 *)(source_context + 0x208);
+    transform_flag_1 = *(int32_t *)(source_context + 0x204);
+    transform_flag_2 = *(int32_t *)(source_context + 0x208);
     iteration_limit = *(int *)(source_context + 0x1e8);
-    *(undefined4 *)(target_context + 0x9760) = *(undefined4 *)(source_context + 0x200);
-    *(undefined4 *)(target_context + 0x9764) = transform_flag_1;
-    *(undefined4 *)(target_context + 0x9768) = transform_flag_2;
+    *(int32_t *)(target_context + 0x9760) = *(int32_t *)(source_context + 0x200);
+    *(int32_t *)(target_context + 0x9764) = transform_flag_1;
+    *(int32_t *)(target_context + 0x9768) = transform_flag_2;
     *(float *)(target_context + 0x976c) = (float)iteration_limit;
     vector_component_x = 1.0 / vector_component_x;
     iteration_limit = *(int *)(source_context + 0x1ec);
@@ -849,45 +849,45 @@ texture_processing_complete:
     *(float *)(target_context + 0x9774) = vector_component_x;
     *(float *)(target_context + 0x9778) = 1.0 / vector_component_y;
     *(float *)(target_context + 0x977c) = (float)iteration_limit;
-    transform_flag_1 = *(undefined4 *)(*(longlong *)(source_context + 0x88) + 0x4b0);
-    transform_flag_2 = *(undefined4 *)(*(longlong *)(source_context + 0x88) + 0x4ac);
+    transform_flag_1 = *(int32_t *)(*(longlong *)(source_context + 0x88) + 0x4b0);
+    transform_flag_2 = *(int32_t *)(*(longlong *)(source_context + 0x88) + 0x4ac);
     transform_matrix_1 = (longlong *)CONCAT44(transform_flag_2, transform_flag_1);
-    *(undefined4 *)(target_context + 0x9780) = transform_flag_1;
-    *(undefined4 *)(target_context + 0x9784) = transform_flag_2;
-    *(undefined4 *)(target_context + 0x9788) = 0;
-    *(undefined4 *)(target_context + 0x978c) = 0;
+    *(int32_t *)(target_context + 0x9780) = transform_flag_1;
+    *(int32_t *)(target_context + 0x9784) = transform_flag_2;
+    *(int32_t *)(target_context + 0x9788) = 0;
+    *(int32_t *)(target_context + 0x978c) = 0;
     iteration_limit = *(int *)(source_context + 0x23c);
     vector_component_count = *(int *)(source_context + 0x240);
     transform_matrix_2 = 0x3f80000000000000;
     *(float *)(target_context + 0x9790) = (float)*(int *)(source_context + 0x238);
     *(float *)(target_context + 0x9794) = (float)iteration_limit;
     *(float *)(target_context + 0x9798) = (float)vector_component_count;
-    *(undefined4 *)(target_context + 0x979c) = 0x3f800000;
+    *(int32_t *)(target_context + 0x979c) = 0x3f800000;
     // WARNING: Subroutine does not return
     FUN_1808fc050(checksum_value ^ (ulonglong)security_buffer);
 }
 
 // 渲染系统内存优化器
 // 功能：优化渲染系统的内存使用，包括资源分配、数据压缩和缓存管理
-void rendering_system_memory_optimizer(undefined8 **render_context, longlong *memory_pool, undefined8 alloc_size, undefined8 memory_flags)
+void rendering_system_memory_optimizer(uint64_t **render_context, longlong *memory_pool, uint64_t alloc_size, uint64_t memory_flags)
 {
-    undefined8 *resource_block;
-    undefined8 *resource_cache;
-    undefined8 *resource_backup;
+    uint64_t *resource_block;
+    uint64_t *resource_cache;
+    uint64_t *resource_backup;
     longlong block_offset;
     longlong cache_offset;
     int block_size;
     int cache_size;
     int *size_pointer;
     ulonglong total_blocks;
-    undefined8 *temp_resource;
-    undefined8 *backup_resource;
-    undefined8 resource_handle;
-    undefined4 block_type;
+    uint64_t *temp_resource;
+    uint64_t *backup_resource;
+    uint64_t resource_handle;
+    int32_t block_type;
     
     // 初始化临时资源管理器
-    temp_resource = (undefined8 *)0x0;
-    backup_resource = (undefined8 *)0x0;
+    temp_resource = (uint64_t *)0x0;
+    backup_resource = (uint64_t *)0x0;
     resource_handle = 0;
     block_type = 3;
     
@@ -928,12 +928,12 @@ invalid_block_detected:
                 if (0 < block_size) {
                     FUN_1806277c0(memory_pool, (int)memory_pool[2] + block_size);
                     // WARNING: Subroutine does not return
-                    memcpy((ulonglong)*(uint *)(memory_pool + 2) + memory_pool[1], *(undefined8 *)(size_pointer + -2),
+                    memcpy((ulonglong)*(uint *)(memory_pool + 2) + memory_pool[1], *(uint64_t *)(size_pointer + -2),
                            (longlong)(*size_pointer + 1));
                 }
                 block_size = (int)memory_pool[2] + 1;
                 FUN_1806277c0(memory_pool, block_size);
-                *(undefined2 *)((ulonglong)*(uint *)(memory_pool + 2) + memory_pool[1]) = 0x20;
+                *(int16_t *)((ulonglong)*(uint *)(memory_pool + 2) + memory_pool[1]) = 0x20;
                 *(int *)(memory_pool + 2) = block_size;
             }
             cache_size = cache_size + 1;
@@ -947,15 +947,15 @@ invalid_block_detected:
     }
     
     // 释放主资源块
-    if (resource_cache != (undefined8 *)0x0) {
+    if (resource_cache != (uint64_t *)0x0) {
         // WARNING: Subroutine does not return
         FUN_18064e900(resource_cache);
     }
     return;
 }
 
-undefined8 *
-rendering_system_memory_allocator(undefined8 *memory_block, ulonglong allocation_size, undefined8 alloc_flags, undefined8 memory_params)
+uint64_t *
+rendering_system_memory_allocator(uint64_t *memory_block, ulonglong allocation_size, uint64_t alloc_flags, uint64_t memory_params)
 {
     *memory_block = &UNK_180a1ae60;
     *memory_block = &UNK_180a21720;

@@ -470,8 +470,8 @@ extern undefined DAT_180c8aa48;                       // 数据管理器数据10
 extern undefined DAT_180c91cf8;                       // 数据管理器数据104
 extern undefined DAT_180c91d00;                       // 数据管理器数据105
 extern undefined DAT_180c91cf0;                       // 数据管理器数据106
-extern undefined1 DAT_180c91d14;                       // 数据管理器数据107
-extern undefined1 DAT_180c91d08;                       // 数据管理器数据108
+extern int8_t DAT_180c91d14;                       // 数据管理器数据107
+extern int8_t DAT_180c91d08;                       // 数据管理器数据108
 
 /**
  * 数据验证器数据区域
@@ -574,9 +574,9 @@ extern undefined DAT_180d48da0;                       // 系统控制器7数据6
 extern undefined DAT_180d48d70;                       // 系统控制器7数据7
 extern undefined DAT_180d48d80;                       // 系统控制器7数据8
 extern undefined DAT_180d48d90;                       // 系统控制器7数据9
-extern undefined8 UNK_180d48d78;                      // 系统控制器7数据10
-extern undefined8 UNK_180d48d88;                      // 系统控制器7数据11
-extern undefined8 UNK_180d48d98;                      // 系统控制器7数据12
+extern uint64_t UNK_180d48d78;                      // 系统控制器7数据10
+extern uint64_t UNK_180d48d88;                      // 系统控制器7数据11
+extern uint64_t UNK_180d48d98;                      // 系统控制器7数据12
 extern undefined UNK_180a14aa8;                       // 系统控制器7数据13
 
 /**
@@ -719,7 +719,7 @@ extern undefined UNK_180a160f0;                       // 系统状态管理器3�
 extern undefined UNK_18098dc90;                       // 系统状态管理器3数据102
 extern undefined UNK_180a16160;                       // 系统状态管理器3数据103
 extern undefined UNK_180a161c0;                       // 系统状态管理器3数据104
-extern undefined4 UNK_00000004;                       // 系统状态管理器3数据105
+extern int32_t UNK_00000004;                       // 系统状态管理器3数据105
 extern float UNK_fffffffffffffffc;                    // 系统状态管理器3数据106
 extern undefined DAT_180a0b1c0;                       // 系统状态管理器3数据107
 extern undefined UNK_180a180b0;                       // 系统状态管理器3数据108
@@ -1129,7 +1129,7 @@ extern undefined UNK_180a255f8;                       // 系统处理器6数据5
 extern undefined UNK_180a25628;                       // 系统处理器6数据58
 extern undefined UNK_180a25660;                       // 系统处理器6数据59
 extern undefined UNK_180a25f88;                       // 系统处理器6数据60
-extern undefined *PTR_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A_180944888; // 系统处理器6数据61
+extern void *PTR_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A_180944888; // 系统处理器6数据61
 extern undefined UNK_180a2161c;                       // 系统处理器6数据62
 extern undefined UNK_180a25598;                       // 系统处理器6数据63
 extern undefined UNK_180a255b4;                       // 系统处理器6数据64
@@ -1229,17 +1229,17 @@ extern undefined UNK_180983e88;                       // 系统处理器7数据5
  * @param param_4 控制标志，决定处理方式和操作类型
  * @return void 无返回值，结果通过参数缓冲区返回
  */
-void string_processor_system_1(undefined8 param_1, longlong *param_2, longlong param_3, byte param_4)
+void string_processor_system_1(uint64_t param_1, longlong *param_2, longlong param_3, byte param_4)
 {
-    undefined1 uVar1;              // 临时变量，用于存储字符数据
+    int8_t uVar1;              // 临时变量，用于存储字符数据
     longlong lVar2;                // 临时变量，用于存储缓冲区指针
     longlong lVar3;                // 临时变量，用于存储缓冲区指针
-    undefined1 *puVar4;            // 字符串数据指针
+    int8_t *puVar4;            // 字符串数据指针
     longlong lVar5;                // 临时变量，用于存储循环控制
-    undefined1 *puVar6;            // 字符串数据指针
+    int8_t *puVar6;            // 字符串数据指针
     longlong lVar7;                // 临时变量，用于存储字符串长度
     ulonglong uVar8;               // 无符号长整型，用于循环计数
-    undefined1 *puVar9;            // 字符串数据指针
+    int8_t *puVar9;            // 字符串数据指针
     longlong *unaff_R15;           // 未使用的寄存器变量
     uint in_stack_00000080;        // 栈参数，用于传递附加信息
     
@@ -1328,14 +1328,14 @@ void string_processor_system_1(undefined8 param_1, longlong *param_2, longlong p
     }
     
     // 获取字符串数据源
-    puVar4 = *(undefined1 **)(param_3 + 8);
+    puVar4 = *(int8_t **)(param_3 + 8);
     lVar2 = *param_2;
     lVar3 = param_2[1];
     
     // 检查数据源是否为空
-    if (puVar4 == (undefined1 *)0x0) {
+    if (puVar4 == (int8_t *)0x0) {
         // 使用默认数据源
-        puVar6 = (undefined1 *)0x180d48d24;
+        puVar6 = (int8_t *)0x180d48d24;
         lVar7 = 0;
     }
     else {
@@ -1345,8 +1345,8 @@ void string_processor_system_1(undefined8 param_1, longlong *param_2, longlong p
     }
     
     // 设置默认数据源指针
-    puVar9 = (undefined1 *)0x180d48d24;
-    if (puVar4 != (undefined1 *)0x0) {
+    puVar9 = (int8_t *)0x180d48d24;
+    if (puVar4 != (int8_t *)0x0) {
         puVar9 = puVar4;
     }
     

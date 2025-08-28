@@ -82,20 +82,20 @@
 // ============================================================================
 
 /** 系统数据结构引用 */
-extern undefined8 UNK_180982790;                  ///< 系统配置数据
-extern undefined8 UNK_180958180;                  ///< 系统调用数据
-extern undefined8 UNK_18097c258;                  ///< 配置更新数据
-extern undefined8 UNK_18097c268;                  ///< 数据传输数据
-extern undefined8 UNK_18097c278;                  ///< 系统调用数据
-extern undefined8 UNK_18097c288;                  ///< 内存操作数据
-extern undefined8 UNK_18097c294;                  ///< 控制流数据
-extern undefined8 UNK_18097c29c;                  ///< 状态更新数据
-extern undefined8 UNK_18097c2a8;                  ///< 事件处理数据
-extern undefined8 UNK_18097c2b8;                  ///< 资源管理数据
-extern undefined8 UNK_18097c2c8;                  ///< 数据验证数据
-extern undefined8 UNK_18097c2d8;                  ///< 自定义操作数据
-extern undefined8 DAT_180a064c8;                  ///< 系统配置表
-extern undefined8 _DAT_180bf00a8;                 ///< 系统数据表
+extern uint64_t UNK_180982790;                  ///< 系统配置数据
+extern uint64_t UNK_180958180;                  ///< 系统调用数据
+extern uint64_t UNK_18097c258;                  ///< 配置更新数据
+extern uint64_t UNK_18097c268;                  ///< 数据传输数据
+extern uint64_t UNK_18097c278;                  ///< 系统调用数据
+extern uint64_t UNK_18097c288;                  ///< 内存操作数据
+extern uint64_t UNK_18097c294;                  ///< 控制流数据
+extern uint64_t UNK_18097c29c;                  ///< 状态更新数据
+extern uint64_t UNK_18097c2a8;                  ///< 事件处理数据
+extern uint64_t UNK_18097c2b8;                  ///< 资源管理数据
+extern uint64_t UNK_18097c2c8;                  ///< 数据验证数据
+extern uint64_t UNK_18097c2d8;                  ///< 自定义操作数据
+extern uint64_t DAT_180a064c8;                  ///< 系统配置表
+extern uint64_t _DAT_180bf00a8;                 ///< 系统数据表
 
 // ============================================================================
 // 核心函数实现
@@ -123,10 +123,10 @@ extern undefined8 _DAT_180bf00a8;                 ///< 系统数据表
  * 4. 处理协议命令
  * 5. 状态更新和清理
  */
-void AdvancedDataProcessor(longlong *param_1, char param_2, undefined1 param_3)
+void AdvancedDataProcessor(longlong *param_1, char param_2, int8_t param_3)
 {
     // 局部变量声明
-    undefined1 uVar1;                          ///< 临时变量1
+    int8_t uVar1;                          ///< 临时变量1
     char cVar2;                                ///< 字符变量
     longlong lVar3;                            ///< 长整型变量3
     longlong lVar4;                            ///< 长整型变量4
@@ -140,15 +140,15 @@ void AdvancedDataProcessor(longlong *param_1, char param_2, undefined1 param_3)
     float fVar13;                              ///< 浮点型变量13
     
     // 栈变量声明
-    undefined1 auStack_188[BUFFER_SIZE_STACK];  ///< 栈缓冲区1
-    undefined4 uStack_168;                      ///< 栈变量168
-    undefined4 uStack_160;                      ///< 栈变量160
-    undefined1 uStack_158;                      ///< 栈变量158
+    int8_t auStack_188[BUFFER_SIZE_STACK];  ///< 栈缓冲区1
+    int32_t uStack_168;                      ///< 栈变量168
+    int32_t uStack_160;                      ///< 栈变量160
+    int8_t uStack_158;                      ///< 栈变量158
     byte bStack_148;                            ///< 栈字节148
     byte bStack_147;                            ///< 栈字节147
     byte bStack_146;                            ///< 栈字节146
     int iStack_144;                             ///< 栈整型144
-    undefined1 auStack_138[BUFFER_SIZE_LARGE];  ///< 大栈缓冲区
+    int8_t auStack_138[BUFFER_SIZE_LARGE];  ///< 大栈缓冲区
     ulonglong uStack_38;                        ///< 栈长整型38
     ulonglong uVar9;                            ///< 无符号长整型变量9
     
@@ -184,13 +184,13 @@ LAB_1807bb170:
                     
                     // 数据处理和状态更新
                     lVar4 = *param_1;
-                    *(undefined1 *)((longlong)param_1 + 0x1c) = 0;
+                    *(int8_t *)((longlong)param_1 + 0x1c) = 0;
                     fVar13 = (float)uVar11 + *(float *)(param_1 + 4);
                     *(float *)(param_1 + 4) = fVar13;
                     goto LAB_1807bb1ea;
                 }
 LAB_1807bb1c0:
-                *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                *(int8_t *)((longlong)param_1 + 0x24) = 1;
             }
             else {
 LAB_1807bb1ea:
@@ -198,7 +198,7 @@ LAB_1807bb1ea:
                 if (fVar13 < *(float *)(lVar4 + 0x3bec) || fVar13 == *(float *)(lVar4 + 0x3bec)) {
                     uVar7 = *(uint *)(param_1 + 2);
                     uVar11 = *(uint *)((longlong)param_1 + 0x14);
-                    *(undefined1 *)((longlong)param_1 + 0x1c) = 0;
+                    *(int8_t *)((longlong)param_1 + 0x1c) = 0;
                     
                     if (uVar11 <= uVar7) goto LAB_1807bb1c0;
                     
@@ -242,11 +242,11 @@ LAB_1807bb1ea:
                                 }
                                 uVar9 = (ulonglong)uVar7;
                             } while (uVar7 < uVar11);
-                            *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                            *(int8_t *)((longlong)param_1 + 0x24) = 1;
                         }
                         else {
 LAB_1807bb47c:
-                            *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                            *(int8_t *)((longlong)param_1 + 0x24) = 1;
                         }
                     }
                     else if (bVar6 == DATA_TYPE_SPECIAL) {
@@ -262,12 +262,12 @@ LAB_1807bb47c:
                             if (-1 < cVar2) goto LAB_1807bb778;
                             uVar9 = (ulonglong)uVar7;
                         } while (uVar7 < uVar11);
-                        *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                        *(int8_t *)((longlong)param_1 + 0x24) = 1;
                     }
                     else if (bVar6 == DATA_TYPE_EXTENDED) {
                         // 扩展数据处理和协议命令处理
                         if (uVar8 < uVar11) {
-                            uVar1 = *(undefined1 *)(uVar9 + lVar3);
+                            uVar1 = *(int8_t *)(uVar9 + lVar3);
                             cVar10 = '\0';
                             uVar7 = uVar7 + 2;
                             uVar9 = (ulonglong)uVar7;
@@ -364,12 +364,12 @@ LAB_1807bb271:
                                         // 标志设置命令
                                         if (uVar8 != 0) {
                                             if (uVar7 < uVar11) {
-                                                *(undefined1 *)((longlong)param_1 + 0x25) = *(undefined1 *)(uVar9 + lVar3);
+                                                *(int8_t *)((longlong)param_1 + 0x25) = *(int8_t *)(uVar9 + lVar3);
 code_r0x0001807bb4a3:
                                                 *(int *)(param_1 + 2) = iVar12 + 2;
                                             }
                                             else {
-                                                *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                                                *(int8_t *)((longlong)param_1 + 0x24) = 1;
                                             }
                                         }
                                         break;
@@ -390,53 +390,53 @@ code_r0x0001807bb4a3:
                                     case PROTOCOL_CMD_VECTOR4_SET:
                                         // 四维向量设置命令
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd4) = *(undefined1 *)(uVar9 + lVar3);
+                                        *(int8_t *)(*param_1 + 0x3bd4) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd5) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd5) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd6) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd6) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd7) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd7) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd8) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bd8) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                         
                                     case PROTOCOL_CMD_VECTOR3_SET:
                                         // 三维向量设置命令
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bd9) = *(undefined1 *)(uVar9 + lVar3);
+                                        *(int8_t *)(*param_1 + 0x3bd9) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bda) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bda) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bdb) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bdb) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bdc) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bdc) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                         
                                     case PROTOCOL_CMD_VECTOR2_SET:
                                         // 二维向量设置命令
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bdd) = *(undefined1 *)(uVar9 + lVar3);
+                                        *(int8_t *)(*param_1 + 0x3bdd) = *(int8_t *)(uVar9 + lVar3);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         if (*(uint *)((longlong)param_1 + 0x14) <= *(uint *)(param_1 + 2))
                                             goto LAB_1807bb47c;
-                                        *(undefined1 *)(*param_1 + 0x3bde) = *(undefined1 *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
+                                        *(int8_t *)(*param_1 + 0x3bde) = *(int8_t *)((ulonglong)*(uint *)(param_1 + 2) + param_1[1]);
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                         
@@ -450,11 +450,11 @@ code_r0x0001807bb4a3:
                             }
                             goto LAB_1807bb47c;
                         }
-                        *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+                        *(int8_t *)((longlong)param_1 + 0x24) = 1;
                     }
                     goto LAB_1807bb778;
                 }
-                *(undefined1 *)((longlong)param_1 + 0x1c) = 1;
+                *(int8_t *)((longlong)param_1 + 0x1c) = 1;
             }
         }
     }
@@ -469,7 +469,7 @@ code_r0x0001807bb29c:
     goto LAB_1807bb271;
     
 code_r0x0001807bb2a1:
-    *(undefined1 *)((longlong)param_1 + 0x24) = 1;
+    *(int8_t *)((longlong)param_1 + 0x24) = 1;
     
 LAB_1807bb778:
     // 状态更新和循环处理
@@ -497,7 +497,7 @@ LAB_1807bb778:
  * 
  * @return           操作状态码，0x10表示错误
  */
-undefined8 BufferCopyManager(longlong param_1, longlong param_2, int param_3)
+uint64_t BufferCopyManager(longlong param_1, longlong param_2, int param_3)
 {
     uint uVar1;                              ///< 当前缓冲区位置
     uint uVar2;                              ///< 缓冲区总长度
@@ -508,7 +508,7 @@ undefined8 BufferCopyManager(longlong param_1, longlong param_2, int param_3)
     
     // 边界检查
     if (uVar2 <= uVar1) {
-        *(undefined1 *)(param_1 + 0x24) = 1;
+        *(int8_t *)(param_1 + 0x24) = 1;
         return 0x10;  // 返回错误状态
     }
     

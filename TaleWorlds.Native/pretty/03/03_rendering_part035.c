@@ -293,7 +293,7 @@ float * apply_matrix_transformation(float *input_matrix, float *output_matrix) {
  * 为渲染系统分配和管理内存资源
  * 
  * 参数：memory_block - 内存块指针
- * 返回：undefined8* - 内存块指针
+ * 返回：uint64_t* - 内存块指针
  */
 uint64_t * allocate_rendering_memory(uint64_t *memory_block) {
     if (!memory_block) {
@@ -415,7 +415,7 @@ void update_rendering_parameters(char *param_buffer, int param1, int param2) {
  * 
  * 参数：exception_data - 异常数据指针
  *       context_data - 上下文数据指针
- * 返回：undefined8* - 异常数据指针
+ * 返回：uint64_t* - 异常数据指针
  */
 uint64_t * initialize_rendering_exception(uint64_t *exception_data, longlong context_data) {
     if (!exception_data) {
@@ -435,7 +435,7 @@ uint64_t * initialize_rendering_exception(uint64_t *exception_data, longlong con
  * 创建渲染系统的异常对象
  * 
  * 参数：exception_data - 异常数据指针
- * 返回：undefined8* - 异常数据指针
+ * 返回：uint64_t* - 异常数据指针
  */
 uint64_t * create_rendering_exception(uint64_t *exception_data) {
     if (!exception_data) {
@@ -457,7 +457,7 @@ uint64_t * create_rendering_exception(uint64_t *exception_data) {
  *       error_handler - 错误处理器指针
  *       error_param3 - 错误参数3
  *       error_param4 - 错误参数4
- * 返回：undefined8* - 错误处理器指针
+ * 返回：uint64_t* - 错误处理器指针
  */
 uint64_t * setup_rendering_error_handler(uint64_t error_param1, uint64_t *error_handler, 
                                          uint64_t error_param3, uint64_t error_param4) {

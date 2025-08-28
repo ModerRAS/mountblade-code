@@ -19,7 +19,7 @@ void FUN_180696370(longlong param_1,int param_2,longlong param_3,int param_4,int
   int iVar11;
   int iVar12;
   longlong lVar13;
-  undefined1 auVar14 [16];
+  int8_t auVar14 [16];
   int iVar15;
   int iVar16;
   int iVar17;
@@ -28,9 +28,9 @@ void FUN_180696370(longlong param_1,int param_2,longlong param_3,int param_4,int
   int iVar20;
   int iVar21;
   int iVar22;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar23 [16];
-  undefined1 auVar24 [16];
+  int8_t in_XMM2 [16];
+  int8_t auVar23 [16];
+  int8_t auVar24 [16];
   longlong lStackX_18;
   longlong lStack_48;
   
@@ -144,7 +144,7 @@ void FUN_180696540(longlong param_1,int param_2,longlong param_3,int param_4,int
   int iVar11;
   int iVar12;
   longlong lVar13;
-  undefined1 auVar14 [16];
+  int8_t auVar14 [16];
   int iVar15;
   int iVar16;
   int iVar17;
@@ -153,9 +153,9 @@ void FUN_180696540(longlong param_1,int param_2,longlong param_3,int param_4,int
   int iVar20;
   int iVar21;
   int iVar22;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar23 [16];
-  undefined1 auVar24 [16];
+  int8_t in_XMM2 [16];
+  int8_t auVar23 [16];
+  int8_t auVar24 [16];
   longlong lStackX_18;
   longlong lStack_48;
   
@@ -269,7 +269,7 @@ void FUN_180696710(longlong param_1,int param_2,longlong param_3,int param_4,int
   int iVar11;
   int iVar12;
   longlong lVar13;
-  undefined1 auVar14 [16];
+  int8_t auVar14 [16];
   int iVar15;
   int iVar16;
   int iVar17;
@@ -278,9 +278,9 @@ void FUN_180696710(longlong param_1,int param_2,longlong param_3,int param_4,int
   int iVar20;
   int iVar21;
   int iVar22;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar23 [16];
-  undefined1 auVar24 [16];
+  int8_t in_XMM2 [16];
+  int8_t auVar23 [16];
+  int8_t auVar24 [16];
   longlong lStackX_18;
   longlong lStack_48;
   
@@ -393,13 +393,13 @@ void FUN_1806968e0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   byte *pbVar10;
   uint *puVar11;
   longlong lVar12;
-  undefined1 auVar13 [16];
+  int8_t auVar13 [16];
   int iVar14;
   int iVar15;
   int iVar16;
   int iVar17;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar18 [16];
+  int8_t in_XMM2 [16];
+  int8_t auVar18 [16];
   uint *puStackX_18;
   longlong lStack_48;
   
@@ -493,13 +493,13 @@ void FUN_180696a60(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   byte *pbVar10;
   uint *puVar11;
   longlong lVar12;
-  undefined1 auVar13 [16];
+  int8_t auVar13 [16];
   int iVar14;
   int iVar15;
   int iVar16;
   int iVar17;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar18 [16];
+  int8_t in_XMM2 [16];
+  int8_t auVar18 [16];
   uint *puStackX_18;
   longlong lStack_48;
   
@@ -593,7 +593,7 @@ void FUN_180696be0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   ulonglong uVar10;
   int iVar11;
   longlong lVar12;
-  undefined1 auVar13 [16];
+  int8_t auVar13 [16];
   int iVar14;
   int iVar15;
   int iVar16;
@@ -602,9 +602,9 @@ void FUN_180696be0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   int iVar19;
   int iVar20;
   int iVar21;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar22 [16];
-  undefined1 auVar23 [16];
+  int8_t in_XMM2 [16];
+  int8_t auVar22 [16];
+  int8_t auVar23 [16];
   uint *puStackX_18;
   longlong lStack_48;
   
@@ -713,7 +713,7 @@ void FUN_180696d90(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   ulonglong uVar10;
   int iVar11;
   longlong lVar12;
-  undefined1 auVar13 [16];
+  int8_t auVar13 [16];
   int iVar14;
   int iVar15;
   int iVar16;
@@ -722,9 +722,9 @@ void FUN_180696d90(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   int iVar19;
   int iVar20;
   int iVar21;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar22 [16];
-  undefined1 auVar23 [16];
+  int8_t in_XMM2 [16];
+  int8_t auVar22 [16];
+  int8_t auVar23 [16];
   uint *puStackX_18;
   longlong lStack_48;
   
@@ -833,7 +833,7 @@ void FUN_180696f40(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   ulonglong uVar10;
   int iVar11;
   longlong lVar12;
-  undefined1 auVar13 [16];
+  int8_t auVar13 [16];
   int iVar14;
   int iVar15;
   int iVar16;
@@ -842,9 +842,9 @@ void FUN_180696f40(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   int iVar19;
   int iVar20;
   int iVar21;
-  undefined1 in_XMM2 [16];
-  undefined1 auVar22 [16];
-  undefined1 auVar23 [16];
+  int8_t in_XMM2 [16];
+  int8_t auVar22 [16];
+  int8_t auVar23 [16];
   uint *puStackX_18;
   longlong lStack_48;
   

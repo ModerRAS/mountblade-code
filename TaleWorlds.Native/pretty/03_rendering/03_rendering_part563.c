@@ -73,9 +73,9 @@ typedef ulonglong RenderingSystem_ULongValue;              // 渲染系统无符
 typedef ushort RenderingSystem_UShortValue;                // 渲染系统无符号短整数值
 typedef uint RenderingSystem_UIntValue;                     // 渲染系统无符号整数值
 typedef longlong RenderingSystem_LongValue;                // 渲染系统长整数值
-typedef undefined1 RenderingSystem_Undefined1;              // 渲染系统未定义类型1
-typedef undefined4 RenderingSystem_Undefined4;              // 渲染系统未定义类型4
-typedef undefined8 RenderingSystem_Undefined8;              // 渲染系统未定义类型8
+typedef int8_t RenderingSystem_Undefined1;              // 渲染系统未定义类型1
+typedef int32_t RenderingSystem_Undefined4;              // 渲染系统未定义类型4
+typedef uint64_t RenderingSystem_Undefined8;              // 渲染系统未定义类型8
 
 // =============================================================================
 // 函数别名定义

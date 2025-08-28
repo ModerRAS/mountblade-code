@@ -75,7 +75,7 @@
  * - 支持SIMD指令加速处理
  */
 void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlong param_3,int param_4,
-                                      undefined8 param_5)
+                                      uint64_t param_5)
 
 {
   uint uVar1;
@@ -89,50 +89,50 @@ void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlon
   float fVar9;
   float fVar10;
   uint uVar11;
-  undefined8 unaff_RBX;
-  undefined8 unaff_RBP;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RBX;
+  uint64_t unaff_RBP;
+  uint64_t unaff_RSI;
   longlong lVar12;
   int iVar13;
   int iVar14;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   longlong in_R11;
-  undefined8 unaff_R13;
+  uint64_t unaff_R13;
   longlong lVar15;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   longlong lVar16;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Db;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM10_Dd;
-  undefined4 unaff_XMM11_Da;
-  undefined4 unaff_XMM11_Db;
-  undefined4 unaff_XMM11_Dc;
-  undefined4 unaff_XMM11_Dd;
-  undefined4 unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Db;
-  undefined4 unaff_XMM12_Dc;
-  undefined4 unaff_XMM12_Dd;
-  undefined4 unaff_XMM13_Da;
-  undefined4 unaff_XMM13_Db;
-  undefined4 unaff_XMM13_Dc;
-  undefined4 unaff_XMM13_Dd;
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Db;
+  int32_t unaff_XMM7_Dc;
+  int32_t unaff_XMM7_Dd;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM9_Db;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM9_Dd;
+  int32_t unaff_XMM10_Da;
+  int32_t unaff_XMM10_Db;
+  int32_t unaff_XMM10_Dc;
+  int32_t unaff_XMM10_Dd;
+  int32_t unaff_XMM11_Da;
+  int32_t unaff_XMM11_Db;
+  int32_t unaff_XMM11_Dc;
+  int32_t unaff_XMM11_Dd;
+  int32_t unaff_XMM12_Da;
+  int32_t unaff_XMM12_Db;
+  int32_t unaff_XMM12_Dc;
+  int32_t unaff_XMM12_Dd;
+  int32_t unaff_XMM13_Da;
+  int32_t unaff_XMM13_Db;
+  int32_t unaff_XMM13_Dc;
+  int32_t unaff_XMM13_Dd;
   float fStackX_20;
   float fStackX_24;
   longlong lStack0000000000000030;
@@ -152,46 +152,46 @@ void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlon
   float in_stack_00000080;
   ulonglong in_stack_00000088;
   
-  *(undefined8 *)(in_R11 + 0x20) = unaff_RBX;
-  *(undefined8 *)(in_R11 + -0x18) = unaff_RBP;
-  *(undefined8 *)(in_R11 + -0x20) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_RDI;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_R13;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R14;
+  *(uint64_t *)(in_R11 + 0x20) = unaff_RBX;
+  *(uint64_t *)(in_R11 + -0x18) = unaff_RBP;
+  *(uint64_t *)(in_R11 + -0x20) = unaff_RSI;
+  *(uint64_t *)(in_R11 + -0x28) = unaff_RDI;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_R13;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_R14;
   lVar16 = 0;
-  *(undefined4 *)(in_R11 + -0x48) = unaff_XMM6_Da;
-  *(undefined4 *)(in_R11 + -0x44) = unaff_XMM6_Db;
-  *(undefined4 *)(in_R11 + -0x40) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_R11 + -0x3c) = unaff_XMM6_Dd;
-  *(undefined4 *)(in_R11 + -0x58) = unaff_XMM7_Da;
-  *(undefined4 *)(in_R11 + -0x54) = unaff_XMM7_Db;
-  *(undefined4 *)(in_R11 + -0x50) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -100) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM9_Da;
-  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM9_Db;
-  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
-  *(undefined4 *)(in_R11 + -0x88) = unaff_XMM10_Da;
-  *(undefined4 *)(in_R11 + -0x84) = unaff_XMM10_Db;
-  *(undefined4 *)(in_R11 + -0x80) = unaff_XMM10_Dc;
-  *(undefined4 *)(in_R11 + -0x7c) = unaff_XMM10_Dd;
-  *(undefined4 *)(in_R11 + -0x98) = unaff_XMM11_Da;
-  *(undefined4 *)(in_R11 + -0x94) = unaff_XMM11_Db;
-  *(undefined4 *)(in_R11 + -0x90) = unaff_XMM11_Dc;
-  *(undefined4 *)(in_R11 + -0x8c) = unaff_XMM11_Dd;
+  *(int32_t *)(in_R11 + -0x48) = unaff_XMM6_Da;
+  *(int32_t *)(in_R11 + -0x44) = unaff_XMM6_Db;
+  *(int32_t *)(in_R11 + -0x40) = unaff_XMM6_Dc;
+  *(int32_t *)(in_R11 + -0x3c) = unaff_XMM6_Dd;
+  *(int32_t *)(in_R11 + -0x58) = unaff_XMM7_Da;
+  *(int32_t *)(in_R11 + -0x54) = unaff_XMM7_Db;
+  *(int32_t *)(in_R11 + -0x50) = unaff_XMM7_Dc;
+  *(int32_t *)(in_R11 + -0x4c) = unaff_XMM7_Dd;
+  *(int32_t *)(in_R11 + -0x68) = unaff_XMM8_Da;
+  *(int32_t *)(in_R11 + -100) = unaff_XMM8_Db;
+  *(int32_t *)(in_R11 + -0x60) = unaff_XMM8_Dc;
+  *(int32_t *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
+  *(int32_t *)(in_R11 + -0x78) = unaff_XMM9_Da;
+  *(int32_t *)(in_R11 + -0x74) = unaff_XMM9_Db;
+  *(int32_t *)(in_R11 + -0x70) = unaff_XMM9_Dc;
+  *(int32_t *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
+  *(int32_t *)(in_R11 + -0x88) = unaff_XMM10_Da;
+  *(int32_t *)(in_R11 + -0x84) = unaff_XMM10_Db;
+  *(int32_t *)(in_R11 + -0x80) = unaff_XMM10_Dc;
+  *(int32_t *)(in_R11 + -0x7c) = unaff_XMM10_Dd;
+  *(int32_t *)(in_R11 + -0x98) = unaff_XMM11_Da;
+  *(int32_t *)(in_R11 + -0x94) = unaff_XMM11_Db;
+  *(int32_t *)(in_R11 + -0x90) = unaff_XMM11_Dc;
+  *(int32_t *)(in_R11 + -0x8c) = unaff_XMM11_Dd;
   lStack0000000000000040 = (longlong)param_4;
-  *(undefined4 *)(in_R11 + -0xa8) = unaff_XMM12_Da;
-  *(undefined4 *)(in_R11 + -0xa4) = unaff_XMM12_Db;
-  *(undefined4 *)(in_R11 + -0xa0) = unaff_XMM12_Dc;
-  *(undefined4 *)(in_R11 + -0x9c) = unaff_XMM12_Dd;
-  *(undefined4 *)(in_R11 + -0xb8) = unaff_XMM13_Da;
-  *(undefined4 *)(in_R11 + -0xb4) = unaff_XMM13_Db;
-  *(undefined4 *)(in_R11 + -0xb0) = unaff_XMM13_Dc;
-  *(undefined4 *)(in_R11 + -0xac) = unaff_XMM13_Dd;
+  *(int32_t *)(in_R11 + -0xa8) = unaff_XMM12_Da;
+  *(int32_t *)(in_R11 + -0xa4) = unaff_XMM12_Db;
+  *(int32_t *)(in_R11 + -0xa0) = unaff_XMM12_Dc;
+  *(int32_t *)(in_R11 + -0x9c) = unaff_XMM12_Dd;
+  *(int32_t *)(in_R11 + -0xb8) = unaff_XMM13_Da;
+  *(int32_t *)(in_R11 + -0xb4) = unaff_XMM13_Db;
+  *(int32_t *)(in_R11 + -0xb0) = unaff_XMM13_Dc;
+  *(int32_t *)(in_R11 + -0xac) = unaff_XMM13_Dd;
   lStack0000000000000030 = param_3;
   do {
     lStack0000000000000038 = (longlong)*(int *)(lStack0000000000000030 + lVar16 * 4);
@@ -237,8 +237,8 @@ void RenderingData_CompareAndOptimize(longlong param_1,longlong *param_2,longlon
       } while (lVar12 < lVar16);
       if (!bVar2) {
 LAB_180410f7e:
-        *(undefined4 *)(param_1 + lStack0000000000000038 * 4) =
-             *(undefined4 *)(param_1 + (longlong)iVar13 * 4);
+        *(int32_t *)(param_1 + lStack0000000000000038 * 4) =
+             *(int32_t *)(param_1 + (longlong)iVar13 * 4);
       }
     }
     lVar16 = lVar16 + 1;
@@ -318,7 +318,7 @@ void RenderingData_OptimizeBatch(longlong param_1,longlong *param_2,uint param_3
   longlong lVar12;
   longlong lVar13;
   int iVar14;
-  undefined1 auStack_158 [32];
+  int8_t auStack_158 [32];
   float fStack_138;
   float fStack_134;
   float fStack_130;
@@ -389,7 +389,7 @@ void RenderingData_OptimizeBatch(longlong param_1,longlong *param_2,uint param_3
         lVar12 = lVar12 + 1;
         lVar13 = lStack_118;
       } while (!bVar1);
-      *(undefined4 *)(lStack_128 + param_1) = 0xffffffff;
+      *(int32_t *)(lStack_128 + param_1) = 0xffffffff;
       lStack_128 = lStack_128 + 4;
       lStack_120 = lStack_120 + -1;
     } while (lStack_120 != 0);
@@ -427,8 +427,8 @@ void RenderingData_OptimizeBatch(longlong param_1,longlong *param_2,uint param_3
  * - 采用寄存器变量优化性能
  * - 支持扩展的渲染参数配置
  */
-void RenderingData_ProcessOptimized(longlong param_1,longlong *param_2,ulonglong param_3,undefined8 param_4,
-                                    undefined8 param_5)
+void RenderingData_ProcessOptimized(longlong param_1,longlong *param_2,ulonglong param_3,uint64_t param_4,
+                                    uint64_t param_5)
 
 {
   bool bVar1;
@@ -442,48 +442,48 @@ void RenderingData_ProcessOptimized(longlong param_1,longlong *param_2,ulonglong
   float fVar9;
   uint uVar10;
   uint uVar11;
-  undefined8 unaff_RBX;
-  undefined8 unaff_RBP;
+  uint64_t unaff_RBX;
+  uint64_t unaff_RBP;
   longlong lVar12;
-  undefined8 unaff_RSI;
+  uint64_t unaff_RSI;
   longlong lVar13;
   int iVar14;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   longlong in_R11;
-  undefined8 unaff_R13;
-  undefined8 unaff_R14;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Db;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM10_Dd;
-  undefined4 unaff_XMM11_Da;
-  undefined4 unaff_XMM11_Db;
-  undefined4 unaff_XMM11_Dc;
-  undefined4 unaff_XMM11_Dd;
-  undefined4 unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Db;
-  undefined4 unaff_XMM12_Dc;
-  undefined4 unaff_XMM12_Dd;
-  undefined4 unaff_XMM13_Da;
-  undefined4 unaff_XMM13_Db;
-  undefined4 unaff_XMM13_Dc;
-  undefined4 unaff_XMM13_Dd;
+  uint64_t unaff_R13;
+  uint64_t unaff_R14;
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Db;
+  int32_t unaff_XMM7_Dc;
+  int32_t unaff_XMM7_Dd;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM9_Db;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM9_Dd;
+  int32_t unaff_XMM10_Da;
+  int32_t unaff_XMM10_Db;
+  int32_t unaff_XMM10_Dc;
+  int32_t unaff_XMM10_Dd;
+  int32_t unaff_XMM11_Da;
+  int32_t unaff_XMM11_Db;
+  int32_t unaff_XMM11_Dc;
+  int32_t unaff_XMM11_Dd;
+  int32_t unaff_XMM12_Da;
+  int32_t unaff_XMM12_Db;
+  int32_t unaff_XMM12_Dc;
+  int32_t unaff_XMM12_Dd;
+  int32_t unaff_XMM13_Da;
+  int32_t unaff_XMM13_Db;
+  int32_t unaff_XMM13_Dc;
+  int32_t unaff_XMM13_Dd;
   float fStackX_20;
   float fStackX_24;
   longlong lStack0000000000000030;
@@ -504,46 +504,46 @@ void RenderingData_ProcessOptimized(longlong param_1,longlong *param_2,ulonglong
   float in_stack_00000088;
   ulonglong in_stack_00000090;
   
-  *(undefined8 *)(in_R11 + 0x18) = unaff_RBX;
-  *(undefined8 *)(in_R11 + -0x18) = unaff_RBP;
-  *(undefined8 *)(in_R11 + -0x20) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_RDI;
+  *(uint64_t *)(in_R11 + 0x18) = unaff_RBX;
+  *(uint64_t *)(in_R11 + -0x18) = unaff_RBP;
+  *(uint64_t *)(in_R11 + -0x20) = unaff_RSI;
+  *(uint64_t *)(in_R11 + -0x28) = unaff_RDI;
   lStack0000000000000030 = 0;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_R13;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R14;
-  *(undefined4 *)(in_R11 + -0x48) = unaff_XMM6_Da;
-  *(undefined4 *)(in_R11 + -0x44) = unaff_XMM6_Db;
-  *(undefined4 *)(in_R11 + -0x40) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_R11 + -0x3c) = unaff_XMM6_Dd;
-  *(undefined4 *)(in_R11 + -0x58) = unaff_XMM7_Da;
-  *(undefined4 *)(in_R11 + -0x54) = unaff_XMM7_Db;
-  *(undefined4 *)(in_R11 + -0x50) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_R11 + -0x68) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -100) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x60) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_R11 + -0x78) = unaff_XMM9_Da;
-  *(undefined4 *)(in_R11 + -0x74) = unaff_XMM9_Db;
-  *(undefined4 *)(in_R11 + -0x70) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
-  *(undefined4 *)(in_R11 + -0x88) = unaff_XMM10_Da;
-  *(undefined4 *)(in_R11 + -0x84) = unaff_XMM10_Db;
-  *(undefined4 *)(in_R11 + -0x80) = unaff_XMM10_Dc;
-  *(undefined4 *)(in_R11 + -0x7c) = unaff_XMM10_Dd;
-  *(undefined4 *)(in_R11 + -0x98) = unaff_XMM11_Da;
-  *(undefined4 *)(in_R11 + -0x94) = unaff_XMM11_Db;
-  *(undefined4 *)(in_R11 + -0x90) = unaff_XMM11_Dc;
-  *(undefined4 *)(in_R11 + -0x8c) = unaff_XMM11_Dd;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_R13;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_R14;
+  *(int32_t *)(in_R11 + -0x48) = unaff_XMM6_Da;
+  *(int32_t *)(in_R11 + -0x44) = unaff_XMM6_Db;
+  *(int32_t *)(in_R11 + -0x40) = unaff_XMM6_Dc;
+  *(int32_t *)(in_R11 + -0x3c) = unaff_XMM6_Dd;
+  *(int32_t *)(in_R11 + -0x58) = unaff_XMM7_Da;
+  *(int32_t *)(in_R11 + -0x54) = unaff_XMM7_Db;
+  *(int32_t *)(in_R11 + -0x50) = unaff_XMM7_Dc;
+  *(int32_t *)(in_R11 + -0x4c) = unaff_XMM7_Dd;
+  *(int32_t *)(in_R11 + -0x68) = unaff_XMM8_Da;
+  *(int32_t *)(in_R11 + -100) = unaff_XMM8_Db;
+  *(int32_t *)(in_R11 + -0x60) = unaff_XMM8_Dc;
+  *(int32_t *)(in_R11 + -0x5c) = unaff_XMM8_Dd;
+  *(int32_t *)(in_R11 + -0x78) = unaff_XMM9_Da;
+  *(int32_t *)(in_R11 + -0x74) = unaff_XMM9_Db;
+  *(int32_t *)(in_R11 + -0x70) = unaff_XMM9_Dc;
+  *(int32_t *)(in_R11 + -0x6c) = unaff_XMM9_Dd;
+  *(int32_t *)(in_R11 + -0x88) = unaff_XMM10_Da;
+  *(int32_t *)(in_R11 + -0x84) = unaff_XMM10_Db;
+  *(int32_t *)(in_R11 + -0x80) = unaff_XMM10_Dc;
+  *(int32_t *)(in_R11 + -0x7c) = unaff_XMM10_Dd;
+  *(int32_t *)(in_R11 + -0x98) = unaff_XMM11_Da;
+  *(int32_t *)(in_R11 + -0x94) = unaff_XMM11_Db;
+  *(int32_t *)(in_R11 + -0x90) = unaff_XMM11_Dc;
+  *(int32_t *)(in_R11 + -0x8c) = unaff_XMM11_Dd;
   uStack0000000000000048 = param_3 & 0xffffffff;
-  *(undefined4 *)(in_R11 + -0xa8) = unaff_XMM12_Da;
-  *(undefined4 *)(in_R11 + -0xa4) = unaff_XMM12_Db;
-  *(undefined4 *)(in_R11 + -0xa0) = unaff_XMM12_Dc;
-  *(undefined4 *)(in_R11 + -0x9c) = unaff_XMM12_Dd;
-  *(undefined4 *)(in_R11 + -0xb8) = unaff_XMM13_Da;
-  *(undefined4 *)(in_R11 + -0xb4) = unaff_XMM13_Db;
-  *(undefined4 *)(in_R11 + -0xb0) = unaff_XMM13_Dc;
-  *(undefined4 *)(in_R11 + -0xac) = unaff_XMM13_Dd;
+  *(int32_t *)(in_R11 + -0xa8) = unaff_XMM12_Da;
+  *(int32_t *)(in_R11 + -0xa4) = unaff_XMM12_Db;
+  *(int32_t *)(in_R11 + -0xa0) = unaff_XMM12_Dc;
+  *(int32_t *)(in_R11 + -0x9c) = unaff_XMM12_Dd;
+  *(int32_t *)(in_R11 + -0xb8) = unaff_XMM13_Da;
+  *(int32_t *)(in_R11 + -0xb4) = unaff_XMM13_Db;
+  *(int32_t *)(in_R11 + -0xb0) = unaff_XMM13_Dc;
+  *(int32_t *)(in_R11 + -0xac) = unaff_XMM13_Dd;
   lStack0000000000000040 = 0;
   do {
     lStack0000000000000038 = 3;
@@ -588,7 +588,7 @@ void RenderingData_ProcessOptimized(longlong param_1,longlong *param_2,ulonglong
         lVar12 = lVar12 + 1;
         lVar13 = lStack0000000000000040;
       } while (!bVar1);
-      *(undefined4 *)(lStack0000000000000030 + param_1) = 0xffffffff;
+      *(int32_t *)(lStack0000000000000030 + param_1) = 0xffffffff;
       lStack0000000000000030 = lStack0000000000000030 + 4;
       lStack0000000000000038 = lStack0000000000000038 + -1;
     } while (lStack0000000000000038 != 0);
@@ -666,7 +666,7 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
   int iVar2;
   longlong lVar3;
   ulonglong uVar4;
-  undefined4 *puVar5;
+  int32_t *puVar5;
   longlong lVar6;
   uint uVar7;
   ulonglong uVar8;
@@ -677,23 +677,23 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
   uint uVar13;
   float fVar14;
   float fVar15;
-  undefined1 auStack_138 [32];
+  int8_t auStack_138 [32];
   uint uStack_118;
   longlong *plStack_110;
   uint uStack_108;
   uint uStack_104;
   int iStack_100;
   int iStack_fc;
-  undefined4 uStack_f8;
+  int32_t uStack_f8;
   int iStack_f4;
-  undefined4 uStack_f0;
+  int32_t uStack_f0;
   int iStack_ec;
   int iStack_e8;
   int iStack_e4;
   int iStack_e0;
   uint *puStack_d8;
-  undefined4 *puStack_d0;
-  undefined2 *puStack_c8;
+  int32_t *puStack_d0;
+  int16_t *puStack_c8;
   uint *puStack_c0;
   uint *puStack_b8;
   float fStack_b0;
@@ -728,8 +728,8 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
   iStack_e0 = param_4;
   iVar2 = (**(code **)*param_3)(param_3);
   if (0 < iVar2) {
-    puStack_c8 = (undefined2 *)(param_1 + 0x54);
-    puStack_d0 = (undefined4 *)(param_1 + 0x50);
+    puStack_c8 = (int16_t *)(param_1 + 0x54);
+    puStack_d0 = (int32_t *)(param_1 + 0x50);
     lStack_90 = 0;
     puStack_d8 = (uint *)(param_1 + 0x48);
     puStack_b8 = (uint *)(param_1 + 0xa8);
@@ -750,7 +750,7 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
           lVar3 = 1;
           *puStack_c8 = 0x100;
           lVar6 = 0x58;
-          *(undefined1 *)(puStack_c8 + 1) = 2;
+          *(int8_t *)(puStack_c8 + 1) = 2;
           *(uint *)(uVar4 + 8 + param_2) = uVar9;
           lVar10 = 0xc;
           *(uint *)(uVar4 + param_2) = uVar13;
@@ -794,25 +794,25 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
           else {
             bVar1 = true;
           }
-          *(undefined2 *)(uVar12 + 0x54 + param_1) = 0x100;
+          *(int16_t *)(uVar12 + 0x54 + param_1) = 0x100;
           lVar3 = 2;
           lVar6 = 0xb0;
           if (bVar1) {
-            *(undefined1 *)(uVar12 + 0x56 + param_1) = 2;
+            *(int8_t *)(uVar12 + 0x56 + param_1) = 2;
             *(uint *)(uVar4 + param_2) = uVar13;
             *(uint *)(uVar4 + 4 + param_2) = uVar7;
             *(uint *)(uVar4 + 8 + param_2) = uVar9;
-            *(undefined2 *)(param_1 + 0xac + uVar12) = 0x200;
-            *(undefined1 *)(param_1 + 0xae + uVar12) = 3;
+            *(int16_t *)(param_1 + 0xac + uVar12) = 0x200;
+            *(int8_t *)(param_1 + 0xae + uVar12) = 3;
             *(uint *)(uVar4 + 0xc + param_2) = uVar13;
           }
           else {
-            *(undefined1 *)(uVar12 + 0x56 + param_1) = 3;
+            *(int8_t *)(uVar12 + 0x56 + param_1) = 3;
             *(uint *)(uVar4 + param_2) = uVar13;
             *(uint *)(uVar4 + 4 + param_2) = uVar7;
             *(uint *)(uVar4 + 8 + param_2) = uStack_108;
-            *(undefined2 *)(param_1 + 0xac + uVar12) = 0x201;
-            *(undefined1 *)(param_1 + 0xae + uVar12) = 3;
+            *(int16_t *)(param_1 + 0xac + uVar12) = 0x201;
+            *(int8_t *)(param_1 + 0xae + uVar12) = 3;
             *(uint *)(uVar4 + 0xc + param_2) = uVar7;
           }
           *(uint *)(uVar4 + 0x10 + param_2) = uVar9;
@@ -824,8 +824,8 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
         iStack_100 = iStack_100 + (int)lVar3;
         lStack_90 = lStack_90 + lVar3;
         puStack_d8 = (uint *)((longlong)puStack_d8 + lVar6);
-        puStack_d0 = (undefined4 *)((longlong)puStack_d0 + lVar6);
-        puStack_c8 = (undefined2 *)((longlong)puStack_c8 + lVar6);
+        puStack_d0 = (int32_t *)((longlong)puStack_d0 + lVar6);
+        puStack_c8 = (int16_t *)((longlong)puStack_c8 + lVar6);
         puStack_c0 = (uint *)((longlong)puStack_c0 + lVar6);
         puStack_b8 = (uint *)((longlong)puStack_b8 + lVar6);
         uVar4 = uVar4 + lVar10;
@@ -841,7 +841,7 @@ void RenderingState_ProcessData(longlong param_1,longlong param_2,longlong *para
   }
   lVar3 = (longlong)iStack_e0;
   if (0 < lVar3) {
-    puVar5 = (undefined4 *)(param_1 + 0x4c);
+    puVar5 = (int32_t *)(param_1 + 0x4c);
     do {
       *puVar5 = 0;
       puVar5 = puVar5 + 0x16;
@@ -883,23 +883,23 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
   bool bVar1;
   int iVar2;
   uint uVar3;
-  undefined8 *in_RAX;
+  uint64_t *in_RAX;
   longlong lVar4;
   ulonglong uVar5;
   longlong unaff_RBP;
-  undefined4 *puVar6;
-  undefined8 unaff_RDI;
+  int32_t *puVar6;
+  uint64_t unaff_RDI;
   longlong lVar7;
   longlong in_R11;
   uint uVar8;
-  undefined8 unaff_R12;
+  uint64_t unaff_R12;
   ulonglong uVar9;
   uint uVar10;
   ulonglong uVar11;
   longlong lVar12;
   ulonglong unaff_R14;
   uint uVar13;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   float fVar14;
   float fVar15;
   float fVar16;
@@ -912,13 +912,13 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
   uint uStack0000000000000038;
   int iStack0000000000000058;
   uint *puStack0000000000000060;
-  undefined4 *puStack0000000000000068;
-  undefined2 *puStack0000000000000070;
+  int32_t *puStack0000000000000068;
+  int16_t *puStack0000000000000070;
   uint *puStack0000000000000078;
   
-  *(undefined8 *)(in_R11 + -0x28) = unaff_RDI;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_R12;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R15;
+  *(uint64_t *)(in_R11 + -0x28) = unaff_RDI;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_R12;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
   uStackX_20 = (uint)unaff_R14;
   uVar11 = unaff_R14 & 0xffffffff;
   uVar9 = unaff_R14 & 0xffffffff;
@@ -928,9 +928,9 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
   iStack0000000000000058 = param_4;
   iVar2 = (*(code *)*in_RAX)(param_3);
   if (0 < iVar2) {
-    puStack0000000000000070 = (undefined2 *)(param_1 + 0x54);
+    puStack0000000000000070 = (int16_t *)(param_1 + 0x54);
     uVar5 = unaff_R14 & 0xffffffff;
-    puStack0000000000000068 = (undefined4 *)(param_1 + 0x50);
+    puStack0000000000000068 = (int32_t *)(param_1 + 0x50);
     *(ulonglong *)(unaff_RBP + -0x58) = unaff_R14;
     puStack0000000000000060 = (uint *)(param_1 + 0x48);
     *(longlong *)(unaff_RBP + -0x80) = param_1 + 0xa8;
@@ -948,7 +948,7 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
           lVar4 = 1;
           *puStack0000000000000070 = 0x100;
           lVar7 = 0x58;
-          *(undefined1 *)(puStack0000000000000070 + 1) = 2;
+          *(int8_t *)(puStack0000000000000070 + 1) = 2;
           *(uint *)(uVar5 + 8 + param_2) = uVar10;
           lVar12 = 0xc;
           *(uint *)(uVar5 + param_2) = uVar13;
@@ -998,25 +998,25 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
           else {
             bVar1 = true;
           }
-          *(undefined2 *)(unaff_R14 + 0x54 + param_1) = 0x100;
+          *(int16_t *)(unaff_R14 + 0x54 + param_1) = 0x100;
           lVar4 = 2;
           lVar7 = 0xb0;
           if (bVar1) {
-            *(undefined1 *)(unaff_R14 + 0x56 + param_1) = 2;
+            *(int8_t *)(unaff_R14 + 0x56 + param_1) = 2;
             *(uint *)(uVar5 + param_2) = uVar13;
             *(uint *)(uVar5 + 4 + param_2) = uVar8;
             *(uint *)(uVar5 + 8 + param_2) = uVar10;
-            *(undefined2 *)(param_1 + 0xac + unaff_R14) = 0x200;
-            *(undefined1 *)(param_1 + 0xae + unaff_R14) = 3;
+            *(int16_t *)(param_1 + 0xac + unaff_R14) = 0x200;
+            *(int8_t *)(param_1 + 0xae + unaff_R14) = 3;
             *(uint *)(uVar5 + 0xc + param_2) = uVar13;
           }
           else {
-            *(undefined1 *)(unaff_R14 + 0x56 + param_1) = 3;
+            *(int8_t *)(unaff_R14 + 0x56 + param_1) = 3;
             *(uint *)(uVar5 + param_2) = uVar13;
             *(uint *)(uVar5 + 4 + param_2) = uVar8;
             *(uint *)(uVar5 + 8 + param_2) = uVar3;
-            *(undefined2 *)(param_1 + 0xac + unaff_R14) = 0x201;
-            *(undefined1 *)(param_1 + 0xae + unaff_R14) = 3;
+            *(int16_t *)(param_1 + 0xac + unaff_R14) = 0x201;
+            *(int8_t *)(param_1 + 0xae + unaff_R14) = 3;
             *(uint *)(uVar5 + 0xc + param_2) = uVar8;
           }
           *(uint *)(uVar5 + 0x10 + param_2) = uVar10;
@@ -1028,8 +1028,8 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
         uStack0000000000000038 = uStack0000000000000038 + (int)lVar4;
         *(longlong *)(unaff_RBP + -0x58) = *(longlong *)(unaff_RBP + -0x58) + lVar4;
         puStack0000000000000060 = (uint *)((longlong)puStack0000000000000060 + lVar7);
-        puStack0000000000000068 = (undefined4 *)((longlong)puStack0000000000000068 + lVar7);
-        puStack0000000000000070 = (undefined2 *)((longlong)puStack0000000000000070 + lVar7);
+        puStack0000000000000068 = (int32_t *)((longlong)puStack0000000000000068 + lVar7);
+        puStack0000000000000070 = (int16_t *)((longlong)puStack0000000000000070 + lVar7);
         puStack0000000000000078 = (uint *)((longlong)puStack0000000000000078 + lVar7);
         *(longlong *)(unaff_RBP + -0x80) = *(longlong *)(unaff_RBP + -0x80) + lVar7;
         uVar5 = uVar5 + lVar12;
@@ -1046,7 +1046,7 @@ void RenderingState_Finalize(longlong param_1,longlong param_2,longlong *param_3
   }
   lVar4 = (longlong)iStack0000000000000058;
   if (0 < lVar4) {
-    puVar6 = (undefined4 *)(param_1 + 0x4c);
+    puVar6 = (int32_t *)(param_1 + 0x4c);
     do {
       *puVar6 = (int)unaff_R14;
       puVar6 = puVar6 + 0x16;

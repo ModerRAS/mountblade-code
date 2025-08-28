@@ -329,39 +329,39 @@ void setup_render_object_properties(render_context_t *render_context, void *para
   render_object_t **instance_ptr;
   
   if (*(longlong *)(render_context + 0xb0) == 0) {
-    texture_list = (undefined8 *)create_render_object_instance(render_context,&instance_ptr,param3,param4,0xfffffffffffffffe);
+    texture_list = (uint64_t *)create_render_object_instance(render_context,&instance_ptr,param3,param4,0xfffffffffffffffe);
     property_value = *texture_list;
     *texture_list = 0;
     render_manager = *(longlong **)(render_context + 0xb0);
-    *(undefined8 *)(render_context + 0xb0) = property_value;
+    *(uint64_t *)(render_context + 0xb0) = property_value;
     if (render_manager != (longlong *)0x0) {
       (**(code **)(*render_manager + 0x38))();
     }
     if (instance_ptr != (longlong *)0x0) {
       (**(code **)(*instance_ptr + 0x38))();
     }
-    *(undefined1 *)(*(longlong *)(render_context + 0xb0) + 0xb1) = 1;
+    *(int8_t *)(*(longlong *)(render_context + 0xb0) + 0xb1) = 1;
     base_address = _DAT_180c86930;
     render_manager = *(longlong **)(render_context + 0xb0);
     compare_result = (**(code **)(*render_manager + 0x60))(render_manager);
-    *(undefined1 *)((longlong)render_manager + 0xb2) = 1;
+    *(int8_t *)((longlong)render_manager + 0xb2) = 1;
     register_render_object((longlong)compare_result * 0x98 + base_address + 8,render_manager);
   }
-  texture_list = (undefined8 *)(_DAT_180c8a9d0 + 0x180);
-  current_node = *(undefined8 **)(_DAT_180c8a9d0 + 400);
+  texture_list = (uint64_t *)(_DAT_180c8a9d0 + 0x180);
+  current_node = *(uint64_t **)(_DAT_180c8a9d0 + 400);
   parent_node = texture_list;
-  if (current_node != (undefined8 *)0x0) {
+  if (current_node != (uint64_t *)0x0) {
     do {
       compare_result = memcmp(current_node + 4,render_context + 0xc,0x10);
       if (compare_result < 0) {
-        property_node = (undefined8 *)*current_node;
+        property_node = (uint64_t *)*current_node;
       }
       else {
-        property_node = (undefined8 *)current_node[1];
+        property_node = (uint64_t *)current_node[1];
         parent_node = current_node;
       }
       current_node = property_node;
-    } while (property_node != (undefined8 *)0x0);
+    } while (property_node != (uint64_t *)0x0);
     if ((parent_node != texture_list) && (compare_result = memcmp(render_context + 0xc,parent_node + 4,0x10), -1 < compare_result))
     goto LAB_1802733d5;
   }
@@ -371,15 +371,15 @@ LAB_1802733d5:
     property_value = parent_node[6];
     texture_id = parent_node[7];
     render_manager = *(longlong **)(render_context + 0xb0);
-    *(undefined4 *)(render_manager + 0x170) = 0;
-    **(undefined1 **)(render_manager + 0x168) = 0;
+    *(int32_t *)(render_manager + 0x170) = 0;
+    **(int8_t **)(render_manager + 0x168) = 0;
     set_render_texture(render_manager + 0x160,&UNK_180a02954,property_value);
-    *(undefined8 *)(render_manager + 0x148) = property_value;
+    *(uint64_t *)(render_manager + 0x148) = property_value;
     render_manager = *(longlong **)(render_context + 0xb0);
-    *(undefined4 *)(render_manager + 0x1a8) = 0;
-    **(undefined1 **)(render_manager + 0x1a0) = 0;
+    *(int32_t *)(render_manager + 0x1a8) = 0;
+    **(int8_t **)(render_manager + 0x1a0) = 0;
     set_render_texture(render_manager + 0x198,&UNK_180a02954,texture_id);
-    *(undefined8 *)(render_manager + 0x150) = texture_id;
+    *(uint64_t *)(render_manager + 0x150) = texture_id;
   }
   return;
 }
@@ -401,7 +401,7 @@ void destroy_render_object_instance(longlong render_context)
     (**(code **)(*instance_ref + 0x28))();
     cleanup_render_resources();
     instance_ptr = *(longlong **)(render_context + 0xb0);
-    *(undefined8 *)(render_context + 0xb0) = 0;
+    *(uint64_t *)(render_context + 0xb0) = 0;
     if (instance_ptr != (longlong *)0x0) {
       // 调用对象销毁函数
       (**(code **)(*instance_ptr + 0x38))();
@@ -417,41 +417,41 @@ void destroy_render_object_instance(longlong render_context)
 
 
 
-// 函数: void process_render_object_creation(longlong render_context, undefined8 param2, undefined8 param3, undefined8 param4)
+// 函数: void process_render_object_creation(longlong render_context, uint64_t param2, uint64_t param3, uint64_t param4)
 // 功能: 处理渲染对象创建过程，包括线程安全的对象管理
-void process_render_object_creation(longlong render_context, undefined8 param2, undefined8 param3, undefined8 param4)
+void process_render_object_creation(longlong render_context, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong **thread_manager;
   char creation_result;
   int mutex_result;
-  undefined8 *new_object;
+  uint64_t *new_object;
   longlong *object_instance;
   longlong *array_data;
   longlong *buffer_ptr;
   longlong buffer_size;
-  undefined *object_name;
+  void *object_name;
   longlong *queue_head;
   longlong **queue_lock;
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   object_instance = *(longlong **)(render_context + 0xb0);
   if (object_instance == (longlong *)0x0) {
-    creation_result = check_render_object_creation(0,*(undefined8 *)(*(longlong *)(render_context + 0x88) + 8),param3,param4
+    creation_result = check_render_object_creation(0,*(uint64_t *)(*(longlong *)(render_context + 0x88) + 8),param3,param4
                                 ,0xfffffffffffffffe);
     if (creation_result != '\0') {
-      new_object = (undefined8 *)create_render_object_instance(render_context,&queue_lock);
+      new_object = (uint64_t *)create_render_object_instance(render_context,&queue_lock);
       cleanup_flag = *new_object;
       *new_object = 0;
       object_instance = *(longlong **)(render_context + 0xb0);
-      *(undefined8 *)(render_context + 0xb0) = cleanup_flag;
+      *(uint64_t *)(render_context + 0xb0) = cleanup_flag;
       if (object_instance != (longlong *)0x0) {
         (**(code **)(*object_instance + 0x38))();
       }
       if (queue_lock != (longlong **)0x0) {
         (*(code *)(*queue_lock)[7])();
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0xb0) + 0xb1) = 1;
+      *(int8_t *)(*(longlong *)(render_context + 0xb0) + 0xb1) = 1;
       finalize_render_object_creation();
     }
     return;
@@ -460,15 +460,15 @@ void process_render_object_creation(longlong render_context, undefined8 param2, 
   (**(code **)(*object_instance + 0x28))();
   cleanup_render_resources();
   object_name = &DAT_18098bc73;
-  if (*(undefined **)(render_context + 0x70) != (undefined *)0x0) {
-    object_name = *(undefined **)(render_context + 0x70);
+  if (*(void **)(render_context + 0x70) != (void *)0x0) {
+    object_name = *(void **)(render_context + 0x70);
   }
   array_data = (longlong *)(*(longlong *)(render_context + 0xb0) + 0x10);
   (**(code **)(*array_data + 0x10))(array_data,object_name);
   buffer_size = _DAT_180c86930;
   array_data = *(longlong **)(render_context + 0xb0);
   mutex_result = (**(code **)(*array_data + 0x60))(array_data);
-  *(undefined1 *)((longlong)array_data + 0xb2) = 1;
+  *(int8_t *)((longlong)array_data + 0xb2) = 1;
   buffer_ptr = (longlong *)((longlong)mutex_result * 0x98 + buffer_size + 8);
   cleanup_flag = 0xfffffffffffffffe;
   thread_manager = (longlong **)(buffer_ptr + 8);
@@ -530,7 +530,7 @@ LAB_1802abea0:
   buffer_ptr[1] = (longlong)(object_instance + 1);
   buffer_ptr[2] = (longlong)(buffer_ptr + buffer_size);
 LAB_1802abf36:
-  *(undefined1 *)(buffer_ptr + 0x12) = 1;
+  *(int8_t *)(buffer_ptr + 0x12) = 1;
   mutex_result = _Mtx_unlock(thread_manager);
   if (mutex_result != 0) {
     __Throw_C_error_std__YAXH_Z(mutex_result);
@@ -542,114 +542,114 @@ LAB_1802abf36:
 
 // 警告: 以'_'开头的全局变量与同一地址的较小符号重叠
 
-undefined8 * clone_render_object_data(undefined8 source_object, longlong clone_flags)
+uint64_t * clone_render_object_data(uint64_t source_object, longlong clone_flags)
 
 {
-  undefined4 property_a;
-  undefined4 property_b;
-  undefined4 property_c;
-  undefined8 data_ptr;
-  undefined8 *new_object;
+  int32_t property_a;
+  int32_t property_b;
+  int32_t property_c;
+  uint64_t data_ptr;
+  uint64_t *new_object;
   
-  new_object = (undefined8 *)allocate_render_object_memory(_DAT_180c8ed18,0x1c8,8,3,0xfffffffffffffffe);
+  new_object = (uint64_t *)allocate_render_object_memory(_DAT_180c8ed18,0x1c8,8,3,0xfffffffffffffffe);
   *new_object = &UNK_1809ffa18;
   *new_object = &UNK_180a167b8;
-  *(undefined4 *)(new_object + 1) = 0;
-  *(undefined4 *)((longlong)new_object + 0xc) = 0;
-  *(undefined4 *)(new_object + 2) = 0;
-  *(undefined4 *)((longlong)new_object + 0x14) = 0;
+  *(int32_t *)(new_object + 1) = 0;
+  *(int32_t *)((longlong)new_object + 0xc) = 0;
+  *(int32_t *)(new_object + 2) = 0;
+  *(int32_t *)((longlong)new_object + 0x14) = 0;
   initialize_render_object_properties(new_object + 3);
   if (clone_flags != 0) {
-    data_ptr = *(undefined8 *)(clone_flags + 0x10);
-    new_object[1] = *(undefined8 *)(clone_flags + 8);
+    data_ptr = *(uint64_t *)(clone_flags + 0x10);
+    new_object[1] = *(uint64_t *)(clone_flags + 8);
     new_object[2] = data_ptr;
-    *(undefined4 *)(new_object + 3) = *(undefined4 *)(clone_flags + 0x18);
-    *(undefined4 *)((longlong)new_object + 0x1c) = *(undefined4 *)(clone_flags + 0x1c);
-    data_ptr = *(undefined8 *)(clone_flags + 0x28);
-    new_object[4] = *(undefined8 *)(clone_flags + 0x20);
+    *(int32_t *)(new_object + 3) = *(int32_t *)(clone_flags + 0x18);
+    *(int32_t *)((longlong)new_object + 0x1c) = *(int32_t *)(clone_flags + 0x1c);
+    data_ptr = *(uint64_t *)(clone_flags + 0x28);
+    new_object[4] = *(uint64_t *)(clone_flags + 0x20);
     new_object[5] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x38);
-    new_object[6] = *(undefined8 *)(clone_flags + 0x30);
+    data_ptr = *(uint64_t *)(clone_flags + 0x38);
+    new_object[6] = *(uint64_t *)(clone_flags + 0x30);
     new_object[7] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x48);
-    new_object[8] = *(undefined8 *)(clone_flags + 0x40);
+    data_ptr = *(uint64_t *)(clone_flags + 0x48);
+    new_object[8] = *(uint64_t *)(clone_flags + 0x40);
     new_object[9] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x58);
-    new_object[10] = *(undefined8 *)(clone_flags + 0x50);
+    data_ptr = *(uint64_t *)(clone_flags + 0x58);
+    new_object[10] = *(uint64_t *)(clone_flags + 0x50);
     new_object[0xb] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x68);
-    new_object[0xc] = *(undefined8 *)(clone_flags + 0x60);
+    data_ptr = *(uint64_t *)(clone_flags + 0x68);
+    new_object[0xc] = *(uint64_t *)(clone_flags + 0x60);
     new_object[0xd] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x78);
-    new_object[0xe] = *(undefined8 *)(clone_flags + 0x70);
+    data_ptr = *(uint64_t *)(clone_flags + 0x78);
+    new_object[0xe] = *(uint64_t *)(clone_flags + 0x70);
     new_object[0xf] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x88);
-    new_object[0x10] = *(undefined8 *)(clone_flags + 0x80);
+    data_ptr = *(uint64_t *)(clone_flags + 0x88);
+    new_object[0x10] = *(uint64_t *)(clone_flags + 0x80);
     new_object[0x11] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x98);
-    new_object[0x12] = *(undefined8 *)(clone_flags + 0x90);
+    data_ptr = *(uint64_t *)(clone_flags + 0x98);
+    new_object[0x12] = *(uint64_t *)(clone_flags + 0x90);
     new_object[0x13] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0xa8);
-    new_object[0x14] = *(undefined8 *)(clone_flags + 0xa0);
+    data_ptr = *(uint64_t *)(clone_flags + 0xa8);
+    new_object[0x14] = *(uint64_t *)(clone_flags + 0xa0);
     new_object[0x15] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0xb8);
-    new_object[0x16] = *(undefined8 *)(clone_flags + 0xb0);
+    data_ptr = *(uint64_t *)(clone_flags + 0xb8);
+    new_object[0x16] = *(uint64_t *)(clone_flags + 0xb0);
     new_object[0x17] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 200);
-    new_object[0x18] = *(undefined8 *)(clone_flags + 0xc0);
+    data_ptr = *(uint64_t *)(clone_flags + 200);
+    new_object[0x18] = *(uint64_t *)(clone_flags + 0xc0);
     new_object[0x19] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0xd8);
-    new_object[0x1a] = *(undefined8 *)(clone_flags + 0xd0);
+    data_ptr = *(uint64_t *)(clone_flags + 0xd8);
+    new_object[0x1a] = *(uint64_t *)(clone_flags + 0xd0);
     new_object[0x1b] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0xe8);
-    new_object[0x1c] = *(undefined8 *)(clone_flags + 0xe0);
+    data_ptr = *(uint64_t *)(clone_flags + 0xe8);
+    new_object[0x1c] = *(uint64_t *)(clone_flags + 0xe0);
     new_object[0x1d] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0xf8);
-    new_object[0x1e] = *(undefined8 *)(clone_flags + 0xf0);
+    data_ptr = *(uint64_t *)(clone_flags + 0xf8);
+    new_object[0x1e] = *(uint64_t *)(clone_flags + 0xf0);
     new_object[0x1f] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x108);
-    new_object[0x20] = *(undefined8 *)(clone_flags + 0x100);
+    data_ptr = *(uint64_t *)(clone_flags + 0x108);
+    new_object[0x20] = *(uint64_t *)(clone_flags + 0x100);
     new_object[0x21] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x118);
-    new_object[0x22] = *(undefined8 *)(clone_flags + 0x110);
+    data_ptr = *(uint64_t *)(clone_flags + 0x118);
+    new_object[0x22] = *(uint64_t *)(clone_flags + 0x110);
     new_object[0x23] = data_ptr;
-    property_a = *(undefined4 *)(clone_flags + 0x124);
-    property_b = *(undefined4 *)(clone_flags + 0x128);
-    property_c = *(undefined4 *)(clone_flags + 300);
-    *(undefined4 *)(new_object + 0x24) = *(undefined4 *)(clone_flags + 0x120);
-    *(undefined4 *)((longlong)new_object + 0x124) = property_a;
-    *(undefined4 *)(new_object + 0x25) = property_b;
-    *(undefined4 *)((longlong)new_object + 300) = property_c;
-    *(undefined4 *)(new_object + 0x26) = *(undefined4 *)(clone_flags + 0x130);
-    *(undefined1 *)((longlong)new_object + 0x134) = *(undefined1 *)(clone_flags + 0x134);
-    if (new_object + 0x27 != (undefined8 *)(clone_flags + 0x138)) {
-      copy_render_object_data(new_object + 0x27,*(undefined8 *)(clone_flags + 0x138),*(undefined8 *)(clone_flags + 0x140))
+    property_a = *(int32_t *)(clone_flags + 0x124);
+    property_b = *(int32_t *)(clone_flags + 0x128);
+    property_c = *(int32_t *)(clone_flags + 300);
+    *(int32_t *)(new_object + 0x24) = *(int32_t *)(clone_flags + 0x120);
+    *(int32_t *)((longlong)new_object + 0x124) = property_a;
+    *(int32_t *)(new_object + 0x25) = property_b;
+    *(int32_t *)((longlong)new_object + 300) = property_c;
+    *(int32_t *)(new_object + 0x26) = *(int32_t *)(clone_flags + 0x130);
+    *(int8_t *)((longlong)new_object + 0x134) = *(int8_t *)(clone_flags + 0x134);
+    if (new_object + 0x27 != (uint64_t *)(clone_flags + 0x138)) {
+      copy_render_object_data(new_object + 0x27,*(uint64_t *)(clone_flags + 0x138),*(uint64_t *)(clone_flags + 0x140))
       ;
     }
-    *(undefined4 *)(new_object + 0x2b) = *(undefined4 *)(clone_flags + 0x158);
-    *(undefined4 *)((longlong)new_object + 0x15c) = *(undefined4 *)(clone_flags + 0x15c);
-    *(undefined4 *)(new_object + 0x2c) = *(undefined4 *)(clone_flags + 0x160);
-    *(undefined4 *)((longlong)new_object + 0x164) = *(undefined4 *)(clone_flags + 0x164);
-    data_ptr = *(undefined8 *)(clone_flags + 0x170);
-    new_object[0x2d] = *(undefined8 *)(clone_flags + 0x168);
+    *(int32_t *)(new_object + 0x2b) = *(int32_t *)(clone_flags + 0x158);
+    *(int32_t *)((longlong)new_object + 0x15c) = *(int32_t *)(clone_flags + 0x15c);
+    *(int32_t *)(new_object + 0x2c) = *(int32_t *)(clone_flags + 0x160);
+    *(int32_t *)((longlong)new_object + 0x164) = *(int32_t *)(clone_flags + 0x164);
+    data_ptr = *(uint64_t *)(clone_flags + 0x170);
+    new_object[0x2d] = *(uint64_t *)(clone_flags + 0x168);
     new_object[0x2e] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x180);
-    new_object[0x2f] = *(undefined8 *)(clone_flags + 0x178);
+    data_ptr = *(uint64_t *)(clone_flags + 0x180);
+    new_object[0x2f] = *(uint64_t *)(clone_flags + 0x178);
     new_object[0x30] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 400);
-    new_object[0x31] = *(undefined8 *)(clone_flags + 0x188);
+    data_ptr = *(uint64_t *)(clone_flags + 400);
+    new_object[0x31] = *(uint64_t *)(clone_flags + 0x188);
     new_object[0x32] = data_ptr;
-    data_ptr = *(undefined8 *)(clone_flags + 0x1a0);
-    new_object[0x33] = *(undefined8 *)(clone_flags + 0x198);
+    data_ptr = *(uint64_t *)(clone_flags + 0x1a0);
+    new_object[0x33] = *(uint64_t *)(clone_flags + 0x198);
     new_object[0x34] = data_ptr;
-    *(undefined4 *)(new_object + 0x35) = *(undefined4 *)(clone_flags + 0x1a8);
-    *(undefined4 *)((longlong)new_object + 0x1ac) = *(undefined4 *)(clone_flags + 0x1ac);
-    *(undefined4 *)(new_object + 0x36) = *(undefined4 *)(clone_flags + 0x1b0);
-    *(undefined4 *)((longlong)new_object + 0x1b4) = *(undefined4 *)(clone_flags + 0x1b4);
-    *(undefined4 *)(new_object + 0x37) = *(undefined4 *)(clone_flags + 0x1b8);
-    *(undefined4 *)((longlong)new_object + 0x1bc) = *(undefined4 *)(clone_flags + 0x1bc);
-    *(undefined4 *)(new_object + 0x38) = *(undefined4 *)(clone_flags + 0x1c0);
-    *(undefined4 *)((longlong)new_object + 0x1c4) = *(undefined4 *)(clone_flags + 0x1c4);
+    *(int32_t *)(new_object + 0x35) = *(int32_t *)(clone_flags + 0x1a8);
+    *(int32_t *)((longlong)new_object + 0x1ac) = *(int32_t *)(clone_flags + 0x1ac);
+    *(int32_t *)(new_object + 0x36) = *(int32_t *)(clone_flags + 0x1b0);
+    *(int32_t *)((longlong)new_object + 0x1b4) = *(int32_t *)(clone_flags + 0x1b4);
+    *(int32_t *)(new_object + 0x37) = *(int32_t *)(clone_flags + 0x1b8);
+    *(int32_t *)((longlong)new_object + 0x1bc) = *(int32_t *)(clone_flags + 0x1bc);
+    *(int32_t *)(new_object + 0x38) = *(int32_t *)(clone_flags + 0x1c0);
+    *(int32_t *)((longlong)new_object + 0x1c4) = *(int32_t *)(clone_flags + 0x1c4);
   }
   return new_object;
 }
@@ -690,7 +690,7 @@ void transfer_render_object_ownership(longlong source_context, longlong target_c
     update_render_object_references();
   }
   target_manager = *(longlong **)(source_context + 0xb0);
-  *(undefined8 *)(source_context + 0xb0) = 0;
+  *(uint64_t *)(source_context + 0xb0) = 0;
   if (target_manager != (longlong *)0x0) {
     (**(code **)(*target_manager + 0x38))();
   }

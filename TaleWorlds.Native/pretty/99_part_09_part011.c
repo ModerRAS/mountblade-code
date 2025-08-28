@@ -26,41 +26,41 @@ void FUN_1805c1d81(void)
   longlong unaff_R14;
   float fVar12;
   float fVar13;
-  undefined4 uVar14;
+  int32_t uVar14;
   float extraout_XMM0_Da;
   float fVar15;
   float fVar16;
   float fVar17;
   float fVar18;
-  undefined1 auVar19 [16];
+  int8_t auVar19 [16];
   float fVar20;
   float unaff_XMM6_Da;
   float fVar21;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Dc;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM10_Da;
+  int32_t unaff_XMM10_Dc;
   float unaff_XMM11_Da;
   float unaff_XMM12_Da;
   float unaff_XMM13_Da;
   float unaff_XMM14_Da;
-  undefined8 in_stack_00000040;
+  uint64_t in_stack_00000040;
   float fStack0000000000000050;
   float fStack0000000000000054;
   float fStack0000000000000058;
-  undefined4 uStack000000000000005c;
+  int32_t uStack000000000000005c;
   float fStack0000000000000060;
   float fStack0000000000000064;
   float fStack0000000000000068;
-  undefined4 uStack000000000000006c;
-  undefined4 in_stack_00000150;
-  undefined4 in_stack_00000158;
-  undefined4 in_stack_00000160;
-  undefined4 in_stack_00000168;
-  undefined4 in_stack_00000170;
-  undefined4 in_stack_00000178;
+  int32_t uStack000000000000006c;
+  int32_t in_stack_00000150;
+  int32_t in_stack_00000158;
+  int32_t in_stack_00000160;
+  int32_t in_stack_00000168;
+  int32_t in_stack_00000170;
+  int32_t in_stack_00000178;
   
   fVar12 = (float)FUN_1805c9600();
   bVar1 = unaff_XMM11_Da < fVar12;
@@ -83,7 +83,7 @@ void FUN_1805c1d81(void)
         FUN_1805d3210();
         cVar5 = bVar2;
       }
-      fVar12 = (float)func_0x0001805d8e00(unaff_RBX + 0x2ce,*(undefined4 *)(unaff_R14 + 0x60));
+      fVar12 = (float)func_0x0001805d8e00(unaff_RBX + 0x2ce,*(int32_t *)(unaff_R14 + 0x60));
       unaff_RDI[6] = fVar12;
     }
     unaff_R12B = '\0';
@@ -175,7 +175,7 @@ void FUN_1805c1d81(void)
               fVar12 = (float)(int)CONCAT71(uVar3,fVar12 <= 1.1754944e-38) * 1.1754944e-38 + fVar12;
               auVar19 = rsqrtss(ZEXT416((uint)fVar12),ZEXT416((uint)fVar12));
                     // WARNING: Subroutine does not return
-              FUN_1808fd400(*(undefined4 *)(lVar6 + 0x34),
+              FUN_1808fd400(*(int32_t *)(lVar6 + 0x34),
                             3.0 - fVar12 * auVar19._0_4_ * auVar19._0_4_);
             }
           }
@@ -424,7 +424,7 @@ LAB_1805c2964:
       }
     }
     else {
-      *(undefined4 *)((longlong)unaff_RBX + 0x172c) = 0xffffffff;
+      *(int32_t *)((longlong)unaff_RBX + 0x172c) = 0xffffffff;
     }
   }
   else if ((((int)unaff_RBX[0x403] == 2) && (*(int *)(*unaff_RBX + 0x564) != -1)) && (5.0 < fVar12))

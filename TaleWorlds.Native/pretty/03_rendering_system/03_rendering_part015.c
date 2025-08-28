@@ -10,7 +10,7 @@
 void perform_render_matrix_transform_and_collision(longlong render_context)
 {
   uint *collision_flags;
-  undefined8 *transform_data;
+  uint64_t *transform_data;
   float matrix_x, matrix_y, matrix_z, matrix_w;
   float scale_x, scale_y, scale_z, scale_w;
   float translate_x, translate_y, translate_z;
@@ -19,12 +19,12 @@ void perform_render_matrix_transform_and_collision(longlong render_context)
   longlong bone_index;
   float bone_transform_x, bone_transform_y, bone_transform_z;
   float bone_scale_x, bone_scale_y, bone_scale_z;
-  undefined8 bone_data1, bone_data2;
-  undefined4 bone_flags;
+  uint64_t bone_data1, bone_data2;
+  int32_t bone_flags;
   longlong object_ptr;
   float *matrix_ptr;
   longlong render_object;
-  undefined8 *transform_matrix;
+  uint64_t *transform_matrix;
   float *position_ptr;
   float *rotation_ptr;
   longlong bone_offset;
@@ -37,25 +37,25 @@ void perform_render_matrix_transform_and_collision(longlong render_context)
   float view_x, view_y, view_z, view_w;
   float screen_x, screen_y, screen_z, screen_w;
   float clip_x, clip_y, clip_z, clip_w;
-  undefined4 xmm8_data[4];
+  int32_t xmm8_data[4];
   float temp_x, temp_y, temp_z, temp_w;
-  undefined4 xmm9_data[4];
-  undefined4 xmm10_data[4];
+  int32_t xmm9_data[4];
+  int32_t xmm10_data[4];
   float stack_matrix[16];
   
   // 复制XMM8寄存器数据到栈
-  *(undefined4 *)(render_context + -0x58) = xmm8_data[0];
-  *(undefined4 *)(render_context + -0x54) = xmm8_data[1];
-  *(undefined4 *)(render_context + -0x50) = xmm8_data[2];
-  *(undefined4 *)(render_context + -0x4c) = xmm8_data[3];
-  *(undefined4 *)(render_context + -0x68) = xmm9_data[0];
-  *(undefined4 *)(render_context + -100) = xmm9_data[1];
-  *(undefined4 *)(render_context + -0x60) = xmm9_data[2];
-  *(undefined4 *)(render_context + -0x5c) = xmm9_data[3];
-  *(undefined4 *)(render_context + -0x78) = xmm10_data[0];
-  *(undefined4 *)(render_context + -0x74) = xmm10_data[1];
-  *(undefined4 *)(render_context + -0x70) = xmm10_data[2];
-  *(undefined4 *)(render_context + -0x6c) = xmm10_data[3];
+  *(int32_t *)(render_context + -0x58) = xmm8_data[0];
+  *(int32_t *)(render_context + -0x54) = xmm8_data[1];
+  *(int32_t *)(render_context + -0x50) = xmm8_data[2];
+  *(int32_t *)(render_context + -0x4c) = xmm8_data[3];
+  *(int32_t *)(render_context + -0x68) = xmm9_data[0];
+  *(int32_t *)(render_context + -100) = xmm9_data[1];
+  *(int32_t *)(render_context + -0x60) = xmm9_data[2];
+  *(int32_t *)(render_context + -0x5c) = xmm9_data[3];
+  *(int32_t *)(render_context + -0x78) = xmm10_data[0];
+  *(int32_t *)(render_context + -0x74) = xmm10_data[1];
+  *(int32_t *)(render_context + -0x70) = xmm10_data[2];
+  *(int32_t *)(render_context + -0x6c) = xmm10_data[3];
   
   // 获取变换矩阵
   if (object_ptr == render_context) {
@@ -149,7 +149,7 @@ void perform_render_matrix_transform_and_collision(longlong render_context)
   } while ((visibility_mask & 1) != 0);
   
   // 读取碰撞数据
-  transform_data = (undefined8 *)(bone_offset + 4 + bone_index);
+  transform_data = (uint64_t *)(bone_offset + 4 + bone_index);
   bone_data1 = *transform_data;
   bone_data2 = transform_data[1];
   matrix_ptr = (float *)(bone_offset + 0x14 + bone_index);
@@ -170,7 +170,7 @@ void perform_render_matrix_transform_and_collision(longlong render_context)
   *(float *)((longlong)transform_matrix + -0xc) = proj_x;
   *(float *)(transform_matrix + -1) = clip_z;
   *(float *)((longlong)transform_matrix + -4) = far_x;
-  *(undefined4 *)(bone_offset + bone_index) = 0;
+  *(int32_t *)(bone_offset + bone_index) = 0;
   bone_flags = 0x7f7fffff;
   stack_matrix[1] = stack_matrix[1] - proj_x;
   stack_matrix[2] = stack_matrix[2] - clip_z;
@@ -197,7 +197,7 @@ void perform_render_matrix_transform_and_collision(longlong render_context)
   } while ((visibility_mask & 1) != 0);
   
   // 读取并处理碰撞数据
-  transform_data = (undefined8 *)(bone_offset + 4 + bone_index);
+  transform_data = (uint64_t *)(bone_offset + 4 + bone_index);
   bone_data1 = *transform_data;
   bone_data2 = transform_data[1];
   matrix_ptr = (float *)(bone_offset + 0x14 + bone_index);
@@ -218,7 +218,7 @@ void perform_render_matrix_transform_and_collision(longlong render_context)
   *(float *)((longlong)transform_matrix + 0x14) = proj_x;
   *(float *)(transform_matrix + 3) = stack_matrix[9];
   *(float *)((longlong)transform_matrix + 0x1c) = far_x;
-  *(undefined4 *)(bone_offset + bone_index) = 0;
+  *(int32_t *)(bone_offset + bone_index) = 0;
   bone_flags = 0x7f7fffff;
   stack_matrix[11] = stack_matrix[6] - proj_x;
   stack_matrix[9] = stack_matrix[7] - stack_matrix[9];
@@ -234,23 +234,23 @@ void perform_render_matrix_transform_and_collision(longlong render_context)
     
     // 处理碰撞响应
     if (*(int *)(render_object + 0x318) == -1) {
-      *(undefined4 *)(render_object + 0x314) = *(undefined4 *)(transform_matrix + 0x26);
+      *(int32_t *)(render_object + 0x314) = *(int32_t *)(transform_matrix + 0x26);
       bone_flags = FUN_1801b9a40(animation_data + 0x1218);
-      *(undefined4 *)(render_object + 0x318) = bone_flags;
+      *(int32_t *)(render_object + 0x318) = bone_flags;
       LOCK();
-      *(undefined4 *)(render_object + 0x310) = 0;
+      *(int32_t *)(render_object + 0x310) = 0;
       UNLOCK();
     }
     
     // 更新碰撞数据
-    *(undefined4 *)(transform_matrix + 6) = stack_matrix[12];
-    *(undefined4 *)((longlong)transform_matrix + 0x34) = stack_matrix[13];
-    *(undefined4 *)(transform_matrix + 7) = stack_matrix[14];
+    *(int32_t *)(transform_matrix + 6) = stack_matrix[12];
+    *(int32_t *)((longlong)transform_matrix + 0x34) = stack_matrix[13];
+    *(int32_t *)(transform_matrix + 7) = stack_matrix[14];
     *(float *)((longlong)transform_matrix + 0x3c) = (float)*(int *)(transform_matrix + 0x27);
     *(float *)(transform_matrix + 4) = temp_x;
     *(float *)((longlong)transform_matrix + 0x24) = temp_y;
     *(float *)(transform_matrix + 5) = stack_matrix[2];
-    *(undefined4 *)((longlong)transform_matrix + 0x2c) = 0x3e19999a;
+    *(int32_t *)((longlong)transform_matrix + 0x2c) = 0x3e19999a;
     FUN_18020a7b0(render_object + 0x308, stack_matrix[13], transform_matrix + 4);
   }
   
@@ -266,18 +266,18 @@ void perform_render_matrix_transform_and_collision(longlong render_context)
  * @param param4 参数4
  * @param depth_value 深度值
  */
-void update_render_object_bounding_box(undefined8 param1, longlong param2, undefined8 param3, longlong param4, float depth_value)
+void update_render_object_bounding_box(uint64_t param1, longlong param2, uint64_t param3, longlong param4, float depth_value)
 {
   uint *collision_flags;
-  undefined8 *transform_data;
+  uint64_t *transform_data;
   float *matrix_ptr;
   uint visibility_mask;
   float bounding_x, bounding_y, bounding_z;
-  undefined8 bounding_data1, bounding_data2;
-  undefined4 bounding_flags;
+  uint64_t bounding_data1, bounding_data2;
+  int32_t bounding_flags;
   longlong render_object;
-  undefined8 *transform_matrix;
-  undefined4 render_flags;
+  uint64_t *transform_matrix;
+  int32_t render_flags;
   longlong animation_data;
   float temp_x, temp_y;
   float stack_matrix[16];
@@ -292,7 +292,7 @@ void update_render_object_bounding_box(undefined8 param1, longlong param2, undef
   } while ((visibility_mask & 1) != 0);
   
   // 读取边界框数据
-  transform_data = (undefined8 *)(param4 + 4 + param2);
+  transform_data = (uint64_t *)(param4 + 4 + param2);
   bounding_data1 = *transform_data;
   bounding_data2 = transform_data[1];
   matrix_ptr = (float *)(param4 + 0x14 + param2);
@@ -313,7 +313,7 @@ void update_render_object_bounding_box(undefined8 param1, longlong param2, undef
   *(float *)((longlong)transform_matrix + 0x14) = bounding_y;
   *(float *)(transform_matrix + 3) = stack_matrix[2];
   *(float *)((longlong)transform_matrix + 0x1c) = bounding_z;
-  *(undefined4 *)(param4 + param2) = render_flags;
+  *(int32_t *)(param4 + param2) = render_flags;
   bounding_flags = 0x7f7fffff;
   stack_matrix[1] = stack_matrix[6] - bounding_y;
   stack_matrix[2] = stack_matrix[7] - stack_matrix[2];
@@ -329,23 +329,23 @@ void update_render_object_bounding_box(undefined8 param1, longlong param2, undef
     
     // 处理碰撞响应
     if (*(int *)(render_object + 0x318) == -1) {
-      *(undefined4 *)(render_object + 0x314) = *(undefined4 *)(transform_matrix + 0x26);
+      *(int32_t *)(render_object + 0x314) = *(int32_t *)(transform_matrix + 0x26);
       bounding_flags = FUN_1801b9a40(animation_data + 0x1218);
-      *(undefined4 *)(render_object + 0x318) = bounding_flags;
+      *(int32_t *)(render_object + 0x318) = bounding_flags;
       LOCK();
-      *(undefined4 *)(render_object + 0x310) = render_flags;
+      *(int32_t *)(render_object + 0x310) = render_flags;
       UNLOCK();
     }
     
     // 更新边界框数据
-    *(undefined4 *)(transform_matrix + 6) = stack_matrix[12];
-    *(undefined4 *)((longlong)transform_matrix + 0x34) = stack_matrix[13];
-    *(undefined4 *)(transform_matrix + 7) = stack_matrix[14];
+    *(int32_t *)(transform_matrix + 6) = stack_matrix[12];
+    *(int32_t *)((longlong)transform_matrix + 0x34) = stack_matrix[13];
+    *(int32_t *)(transform_matrix + 7) = stack_matrix[14];
     *(float *)((longlong)transform_matrix + 0x3c) = (float)*(int *)(transform_matrix + 0x27);
     *(float *)(transform_matrix + 4) = temp_x;
     *(float *)((longlong)transform_matrix + 0x24) = temp_y;
     *(float *)(transform_matrix + 5) = depth_value;
-    *(undefined4 *)((longlong)transform_matrix + 0x2c) = 0x3e19999a;
+    *(int32_t *)((longlong)transform_matrix + 0x2c) = 0x3e19999a;
     FUN_18020a7b0(render_object + 0x308, stack_matrix[13], transform_matrix + 4);
   }
   
@@ -358,7 +358,7 @@ void update_render_object_bounding_box(undefined8 param1, longlong param2, undef
  */
 void process_render_object_depth_buffer(void)
 {
-  undefined8 *transform_matrix;
+  uint64_t *transform_matrix;
   
   // 继续处理深度缓冲区操作
   FUN_1808fc050(*(ulonglong *)(transform_matrix + 0x80) ^ (ulonglong)&stack_matrix[0]);
@@ -371,7 +371,7 @@ void process_render_object_depth_buffer(void)
 void perform_render_matrix_transform_simplified(longlong object_ptr)
 {
   uint *collision_flags;
-  undefined8 *transform_data;
+  uint64_t *transform_data;
   float matrix_x, matrix_y, matrix_z, matrix_w;
   float scale_x, scale_y, scale_z, scale_w;
   float translate_x, translate_y, translate_z;
@@ -380,12 +380,12 @@ void perform_render_matrix_transform_simplified(longlong object_ptr)
   longlong bone_index;
   float bone_transform_x, bone_transform_y, bone_transform_z;
   float bone_scale_x, bone_scale_y, bone_scale_z;
-  undefined8 bone_data1, bone_data2;
-  undefined4 bone_flags;
+  uint64_t bone_data1, bone_data2;
+  int32_t bone_flags;
   longlong render_context;
   float *matrix_ptr;
   longlong render_object;
-  undefined8 *transform_matrix;
+  uint64_t *transform_matrix;
   float *position_ptr;
   float *rotation_ptr;
   longlong bone_offset;
@@ -488,7 +488,7 @@ void perform_render_matrix_transform_simplified(longlong object_ptr)
   } while ((visibility_mask & 1) != 0);
   
   // 读取碰撞数据
-  transform_data = (undefined8 *)(bone_offset + 4 + bone_index);
+  transform_data = (uint64_t *)(bone_offset + 4 + bone_index);
   bone_data1 = *transform_data;
   bone_data2 = transform_data[1];
   matrix_ptr = (float *)(bone_offset + 0x14 + bone_index);
@@ -509,7 +509,7 @@ void perform_render_matrix_transform_simplified(longlong object_ptr)
   *(float *)((longlong)transform_matrix + -0xc) = proj_x;
   *(float *)(transform_matrix + -1) = clip_z;
   *(float *)((longlong)transform_matrix + -4) = far_x;
-  *(undefined4 *)(bone_offset + bone_index) = 0;
+  *(int32_t *)(bone_offset + bone_index) = 0;
   bone_flags = 0x7f7fffff;
   stack_matrix[1] = stack_matrix[1] - proj_x;
   stack_matrix[2] = stack_matrix[2] - clip_z;
@@ -536,7 +536,7 @@ void perform_render_matrix_transform_simplified(longlong object_ptr)
   } while ((visibility_mask & 1) != 0);
   
   // 读取并处理碰撞数据
-  transform_data = (undefined8 *)(bone_offset + 4 + bone_index);
+  transform_data = (uint64_t *)(bone_offset + 4 + bone_index);
   bone_data1 = *transform_data;
   bone_data2 = transform_data[1];
   matrix_ptr = (float *)(bone_offset + 0x14 + bone_index);
@@ -557,7 +557,7 @@ void perform_render_matrix_transform_simplified(longlong object_ptr)
   *(float *)((longlong)transform_matrix + 0x14) = proj_x;
   *(float *)(transform_matrix + 3) = stack_matrix[9];
   *(float *)((longlong)transform_matrix + 0x1c) = far_x;
-  *(undefined4 *)(bone_offset + bone_index) = 0;
+  *(int32_t *)(bone_offset + bone_index) = 0;
   bone_flags = 0x7f7fffff;
   stack_matrix[11] = stack_matrix[6] - proj_x;
   stack_matrix[9] = stack_matrix[7] - stack_matrix[9];
@@ -573,23 +573,23 @@ void perform_render_matrix_transform_simplified(longlong object_ptr)
     
     // 处理碰撞响应
     if (*(int *)(render_object + 0x318) == -1) {
-      *(undefined4 *)(render_object + 0x314) = *(undefined4 *)(transform_matrix + 0x26);
+      *(int32_t *)(render_object + 0x314) = *(int32_t *)(transform_matrix + 0x26);
       bone_flags = FUN_1801b9a40(animation_data + 0x1218);
-      *(undefined4 *)(render_object + 0x318) = bone_flags;
+      *(int32_t *)(render_object + 0x318) = bone_flags;
       LOCK();
-      *(undefined4 *)(render_object + 0x310) = 0;
+      *(int32_t *)(render_object + 0x310) = 0;
       UNLOCK();
     }
     
     // 更新碰撞数据
-    *(undefined4 *)(transform_matrix + 6) = stack_matrix[12];
-    *(undefined4 *)((longlong)transform_matrix + 0x34) = stack_matrix[13];
-    *(undefined4 *)(transform_matrix + 7) = stack_matrix[14];
+    *(int32_t *)(transform_matrix + 6) = stack_matrix[12];
+    *(int32_t *)((longlong)transform_matrix + 0x34) = stack_matrix[13];
+    *(int32_t *)(transform_matrix + 7) = stack_matrix[14];
     *(float *)((longlong)transform_matrix + 0x3c) = (float)*(int *)(transform_matrix + 0x27);
     *(float *)(transform_matrix + 4) = temp_x;
     *(float *)((longlong)transform_matrix + 0x24) = temp_y;
     *(float *)(transform_matrix + 5) = stack_matrix[2];
-    *(undefined4 *)((longlong)transform_matrix + 0x2c) = 0x3e19999a;
+    *(int32_t *)((longlong)transform_matrix + 0x2c) = 0x3e19999a;
     FUN_18020a7b0(render_object + 0x308, stack_matrix[13], transform_matrix + 4);
   }
   
@@ -603,10 +603,10 @@ void perform_render_matrix_transform_simplified(longlong object_ptr)
  * @param bounding_box_ptr 边界框指针
  * @param should_process 是否处理标志
  */
-void calculate_render_object_bounding_box(longlong render_object, undefined8 *bounding_box_ptr, char should_process)
+void calculate_render_object_bounding_box(longlong render_object, uint64_t *bounding_box_ptr, char should_process)
 {
   longlong bone_array_end;
-  undefined8 bounding_data1, bounding_data2;
+  uint64_t bounding_data1, bounding_data2;
   longlong bone_array_start;
   longlong *bone_ptr;
   float min_x, min_y, min_z, min_w;
@@ -614,11 +614,11 @@ void calculate_render_object_bounding_box(longlong render_object, undefined8 *bo
   float bone_x, bone_y, bone_z, bone_w;
   float distance_x, distance_y, distance_z;
   float bounding_sphere_radius;
-  undefined1 bone_buffer[224];
+  int8_t bone_buffer[224];
   
   bone_array_end = *(longlong *)(render_object + 0x40);
   bone_array_start = *(longlong *)(render_object + 0x38);
-  *(undefined4 *)(bounding_box_ptr + 6) = 0;
+  *(int32_t *)(bounding_box_ptr + 6) = 0;
   
   // 如果没有骨骼数据，初始化边界框
   if (bone_array_end - bone_array_start >> 4 == 0) {
@@ -633,10 +633,10 @@ void calculate_render_object_bounding_box(longlong render_object, undefined8 *bo
     // 初始化边界框为最大范围
     *bounding_box_ptr = 0x4cbebc204cbebc20;
     bounding_box_ptr[1] = 0x7f7fffff4cbebc20;
-    *(undefined4 *)(bounding_box_ptr + 4) = 0;
-    *(undefined4 *)((longlong)bounding_box_ptr + 0x24) = 0;
-    *(undefined4 *)(bounding_box_ptr + 5) = 0;
-    *(undefined4 *)((longlong)bounding_box_ptr + 0x2c) = 0x7f7fffff;
+    *(int32_t *)(bounding_box_ptr + 4) = 0;
+    *(int32_t *)((longlong)bounding_box_ptr + 0x24) = 0;
+    *(int32_t *)(bounding_box_ptr + 5) = 0;
+    *(int32_t *)((longlong)bounding_box_ptr + 0x2c) = 0x7f7fffff;
     bounding_box_ptr[2] = 0xccbebc20ccbebc20;
     bounding_box_ptr[3] = 0x7f7fffffccbebc20;
     
@@ -665,10 +665,10 @@ void calculate_render_object_bounding_box(longlong render_object, undefined8 *bo
     // 检查是否可以直接使用预计算的边界框
     if (((*(longlong *)(render_object + 0x40) - (longlong)*(longlong **)(render_object + 0x38) & 0xfffffffffffffff0U) == 0x10) &&
        (bone_array_end = **(longlong **)(render_object + 0x38), (*(uint *)(bone_array_end + 0x100) & 0x4000000) == 0)) {
-      bounding_data1 = *(undefined8 *)(bone_array_end + 0x29c);
-      bounding_box_ptr[4] = *(undefined8 *)(bone_array_end + 0x294);
+      bounding_data1 = *(uint64_t *)(bone_array_end + 0x29c);
+      bounding_box_ptr[4] = *(uint64_t *)(bone_array_end + 0x294);
       bounding_box_ptr[5] = bounding_data1;
-      *(undefined4 *)(bounding_box_ptr + 6) = *(undefined4 *)(**(longlong **)(render_object + 0x38) + 0x2a4);
+      *(int32_t *)(bounding_box_ptr + 6) = *(int32_t *)(**(longlong **)(render_object + 0x38) + 0x2a4);
     }
     else {
       // 计算边界球半径

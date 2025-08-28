@@ -100,12 +100,12 @@ void initialize_texture_processor(void)
  * 4. 执行纹理坐标变换
  * 5. 更新纹理映射参数
  */
-uint process_texture_coordinates(longlong param_1, longlong param_2, float* param_3, undefined8 param_4, longlong param_5)
+uint process_texture_coordinates(longlong param_1, longlong param_2, float* param_3, uint64_t param_4, longlong param_5)
 {
     float* local_20;
     float* local_18;
-    undefined8 local_10;
-    undefined4 local_c;
+    uint64_t local_10;
+    int32_t local_c;
     
     // 参数验证和边界检查
     if (param_5 == 0) {
@@ -188,10 +188,10 @@ uint process_texture_coordinates(longlong param_1, longlong param_2, float* para
  * 3. 处理纹理映射边界条件
  * 4. 更新映射结果
  */
-uint perform_uv_mapping(longlong param_1, longlong param_2, undefined8 param_3, undefined4 param_4)
+uint perform_uv_mapping(longlong param_1, longlong param_2, uint64_t param_3, int32_t param_4)
 {
-    undefined4 local_14;
-    undefined4 local_10;
+    int32_t local_14;
+    int32_t local_10;
     
     // 获取UV变换矩阵
     uv_transform_matrix* transform_matrix = (uv_transform_matrix*)param_3;
@@ -224,10 +224,10 @@ uint perform_uv_mapping(longlong param_1, longlong param_2, undefined8 param_3, 
     if (transformed_v > 1.0f) transformed_v -= 1.0f;
     
     // 存储变换结果
-    local_10 = (undefined4)((int)(transformed_u * 65535.0f) & 0xffff);
+    local_10 = (int32_t)((int)(transformed_u * 65535.0f) & 0xffff);
     
     // 更新输出参数
-    *(undefined4*)param_2 = local_10;
+    *(int32_t*)param_2 = local_10;
     
     return 1;  // 映射成功
 }
@@ -253,10 +253,10 @@ uint perform_uv_mapping(longlong param_1, longlong param_2, undefined8 param_3, 
  */
 uint execute_texture_algorithm(int param_1, longlong param_2)
 {
-    undefined4 local_18;
-    undefined4 local_14;
-    undefined4 local_10;
-    undefined4 local_c;
+    int32_t local_18;
+    int32_t local_14;
+    int32_t local_10;
+    int32_t local_c;
     
     // 算法参数验证
     if (param_1 < 0 || param_1 > 15) {
@@ -270,7 +270,7 @@ uint execute_texture_algorithm(int param_1, longlong param_2)
     }
     
     // 执行纹理算法
-    local_18 = (undefined4)param_1;
+    local_18 = (int32_t)param_1;
     local_14 = 0;
     local_10 = 0;
     local_c = 0;
@@ -354,7 +354,7 @@ uint restore_texture_parameters(void)
 
 // 函数别名 - 保持与原始函数名的兼容性
 void FUN_1802908c4(void) __attribute__((alias("initialize_texture_processor")));
-uint FUN_1802908d0(longlong param_1, longlong param_2, float* param_3, undefined8 param_4, longlong param_5) __attribute__((alias("process_texture_coordinates")));
-uint FUN_1802909e0(longlong param_1, longlong param_2, undefined8 param_3, undefined4 param_4) __attribute__((alias("perform_uv_mapping")));
+uint FUN_1802908d0(longlong param_1, longlong param_2, float* param_3, uint64_t param_4, longlong param_5) __attribute__((alias("process_texture_coordinates")));
+uint FUN_1802909e0(longlong param_1, longlong param_2, uint64_t param_3, int32_t param_4) __attribute__((alias("perform_uv_mapping")));
 uint FUN_180290a71(int param_1, longlong param_2) __attribute__((alias("execute_texture_algorithm")));
 uint FUN_180290f82(void) __attribute__((alias("restore_texture_parameters")));

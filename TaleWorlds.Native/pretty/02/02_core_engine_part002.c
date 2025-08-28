@@ -558,7 +558,7 @@ void register_postprocess_renderer_component(void)
  */
 void initialize_network_system_component(void)
 {
-  undefined8 system_parameter;
+  uint64_t system_parameter;
   network_config *network_cfg;
   network_params *net_params;
   uint32_t buffer_size;
@@ -583,7 +583,7 @@ void initialize_network_system_component(void)
 int validate_network_system_configuration(void)
 {
   longlong validation_result;
-  undefined8 system_parameter;
+  uint64_t system_parameter;
   
   network_config_base = &network_config_template;
   network_config_params = &network_config_defaults;
@@ -1119,7 +1119,7 @@ void register_fluid_system_component(void)
  */
 void initialize_physics_material_system(void)
 {
-  undefined8 system_parameter;
+  uint64_t system_parameter;
   physics_material_config *material_cfg;
   physics_material_params *material_params;
   uint32_t buffer_size;

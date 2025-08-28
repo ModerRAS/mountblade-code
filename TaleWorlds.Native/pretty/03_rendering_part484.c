@@ -2,143 +2,143 @@
 
 // 03_rendering_part484.c - 2 个函数
 
-// 函数: void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlong *param_4)
-void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlong *param_4)
+// 函数: void FUN_1805271f0(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *param_4)
+void FUN_1805271f0(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *param_4)
 
 {
   float *pfVar1;
   longlong *plVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   int iVar4;
   longlong lVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
-  undefined4 uVar8;
-  undefined4 uVar9;
-  undefined4 uVar10;
-  undefined8 uVar11;
+  int32_t uVar6;
+  int32_t uVar7;
+  int32_t uVar8;
+  int32_t uVar9;
+  int32_t uVar10;
+  uint64_t uVar11;
   char cVar12;
   int iVar13;
   longlong lVar14;
   byte bVar15;
   longlong lVar16;
   longlong lVar17;
-  undefined4 *puVar18;
+  int32_t *puVar18;
   float fVar19;
   float fVar20;
   float fVar21;
   longlong lStackX_8;
-  undefined8 uStack_2c8;
-  undefined4 uStack_2c0;
-  undefined4 uStack_2bc;
-  undefined8 uStack_2b8;
-  undefined4 uStack_2b0;
+  uint64_t uStack_2c8;
+  int32_t uStack_2c0;
+  int32_t uStack_2bc;
+  uint64_t uStack_2b8;
+  int32_t uStack_2b0;
   char cStack_2ac;
-  undefined1 uStack_2ab;
-  undefined1 uStack_2aa;
-  undefined4 uStack_2a8;
-  undefined4 uStack_2a4;
-  undefined1 uStack_2a0;
-  undefined4 uStack_29c;
-  undefined4 uStack_298;
-  undefined4 uStack_294;
-  undefined4 uStack_290;
-  undefined4 uStack_28c;
-  undefined4 uStack_288;
-  undefined4 uStack_284;
+  int8_t uStack_2ab;
+  int8_t uStack_2aa;
+  int32_t uStack_2a8;
+  int32_t uStack_2a4;
+  int8_t uStack_2a0;
+  int32_t uStack_29c;
+  int32_t uStack_298;
+  int32_t uStack_294;
+  int32_t uStack_290;
+  int32_t uStack_28c;
+  int32_t uStack_288;
+  int32_t uStack_284;
   float fStack_280;
-  undefined8 uStack_27c;
-  undefined8 uStack_274;
-  undefined8 uStack_26c;
-  undefined8 uStack_264;
-  undefined4 uStack_25c;
-  undefined4 uStack_258;
+  uint64_t uStack_27c;
+  uint64_t uStack_274;
+  uint64_t uStack_26c;
+  uint64_t uStack_264;
+  int32_t uStack_25c;
+  int32_t uStack_258;
   float fStack_254;
-  undefined4 uStack_250;
-  undefined8 uStack_24c;
-  undefined8 uStack_244;
-  undefined8 uStack_23c;
-  undefined8 uStack_234;
-  undefined4 uStack_22c;
-  undefined4 uStack_228;
+  int32_t uStack_250;
+  uint64_t uStack_24c;
+  uint64_t uStack_244;
+  uint64_t uStack_23c;
+  uint64_t uStack_234;
+  int32_t uStack_22c;
+  int32_t uStack_228;
   float fStack_224;
-  undefined4 uStack_220;
-  undefined4 uStack_21c;
-  undefined4 uStack_218;
-  undefined4 uStack_214;
-  undefined4 uStack_210;
-  undefined8 uStack_1e8;
-  undefined8 uStack_1e0;
-  undefined8 uStack_1d8;
-  undefined8 uStack_1d0;
-  undefined8 uStack_1c8;
-  undefined8 uStack_1c0;
-  undefined4 uStack_1b8;
-  undefined4 uStack_1b4;
-  undefined8 uStack_1b0;
-  undefined4 uStack_1a8;
-  undefined4 uStack_1a4;
-  undefined4 uStack_1a0;
-  undefined4 uStack_19c;
-  undefined2 uStack_198;
+  int32_t uStack_220;
+  int32_t uStack_21c;
+  int32_t uStack_218;
+  int32_t uStack_214;
+  int32_t uStack_210;
+  uint64_t uStack_1e8;
+  uint64_t uStack_1e0;
+  uint64_t uStack_1d8;
+  uint64_t uStack_1d0;
+  uint64_t uStack_1c8;
+  uint64_t uStack_1c0;
+  int32_t uStack_1b8;
+  int32_t uStack_1b4;
+  uint64_t uStack_1b0;
+  int32_t uStack_1a8;
+  int32_t uStack_1a4;
+  int32_t uStack_1a0;
+  int32_t uStack_19c;
+  int16_t uStack_198;
   undefined6 uStack_196;
-  undefined4 uStack_190;
-  undefined4 uStack_18c;
+  int32_t uStack_190;
+  int32_t uStack_18c;
   float fStack_188;
-  undefined4 uStack_184;
-  undefined4 uStack_180;
-  undefined4 uStack_17c;
-  undefined4 uStack_178;
-  undefined4 uStack_174;
-  undefined4 uStack_170;
-  undefined4 uStack_16c;
-  undefined4 uStack_168;
-  undefined4 uStack_164;
-  undefined8 uStack_160;
-  undefined8 uStack_158;
-  undefined8 uStack_150;
-  undefined4 uStack_148;
-  undefined8 uStack_144;
-  undefined4 uStack_13c;
+  int32_t uStack_184;
+  int32_t uStack_180;
+  int32_t uStack_17c;
+  int32_t uStack_178;
+  int32_t uStack_174;
+  int32_t uStack_170;
+  int32_t uStack_16c;
+  int32_t uStack_168;
+  int32_t uStack_164;
+  uint64_t uStack_160;
+  uint64_t uStack_158;
+  uint64_t uStack_150;
+  int32_t uStack_148;
+  uint64_t uStack_144;
+  int32_t uStack_13c;
   int iStack_138;
-  undefined4 uStack_134;
-  undefined4 uStack_130;
-  undefined4 uStack_12c;
-  undefined4 uStack_128;
-  undefined4 uStack_124;
-  undefined8 uStack_118;
-  undefined8 uStack_108;
-  undefined8 uStack_100;
-  undefined8 uStack_f8;
-  undefined8 uStack_f0;
-  undefined8 uStack_e8;
-  undefined8 uStack_e0;
-  undefined8 uStack_d8;
-  undefined8 uStack_d0;
-  undefined8 uStack_c8;
-  undefined8 uStack_c0;
-  undefined8 uStack_b8;
-  undefined8 uStack_b0;
-  undefined8 uStack_a8;
-  undefined8 uStack_a0;
-  undefined8 uStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined8 uStack_80;
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined4 uStack_68;
-  undefined4 uStack_64;
-  undefined8 uStack_60;
+  int32_t uStack_134;
+  int32_t uStack_130;
+  int32_t uStack_12c;
+  int32_t uStack_128;
+  int32_t uStack_124;
+  uint64_t uStack_118;
+  uint64_t uStack_108;
+  uint64_t uStack_100;
+  uint64_t uStack_f8;
+  uint64_t uStack_f0;
+  uint64_t uStack_e8;
+  uint64_t uStack_e0;
+  uint64_t uStack_d8;
+  uint64_t uStack_d0;
+  uint64_t uStack_c8;
+  uint64_t uStack_c0;
+  uint64_t uStack_b8;
+  uint64_t uStack_b0;
+  uint64_t uStack_a8;
+  uint64_t uStack_a0;
+  uint64_t uStack_98;
+  uint64_t uStack_90;
+  uint64_t uStack_88;
+  uint64_t uStack_80;
+  uint64_t uStack_78;
+  uint64_t uStack_70;
+  int32_t uStack_68;
+  int32_t uStack_64;
+  uint64_t uStack_60;
   int iStack_58;
-  undefined4 uStack_54;
-  undefined4 uStack_50;
-  undefined4 uStack_4c;
-  undefined8 uStack_48;
-  undefined4 uStack_38;
-  undefined4 uStack_34;
+  int32_t uStack_54;
+  int32_t uStack_50;
+  int32_t uStack_4c;
+  uint64_t uStack_48;
+  int32_t uStack_38;
+  int32_t uStack_34;
   float fStack_30;
-  undefined4 uStack_2c;
+  int32_t uStack_2c;
   
   lVar16 = 0;
   lVar5 = *(longlong *)(param_1 + 0x20);
@@ -146,49 +146,49 @@ void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
   if (*(longlong *)(lVar5 + 0xc0) != 0) {
     lVar17 = *(longlong *)(*(longlong *)(lVar5 + 0xc0) + 0x10);
   }
-  uStack_38 = *(undefined4 *)(lVar5 + 0xc);
-  uStack_34 = *(undefined4 *)(lVar5 + 0x10);
+  uStack_38 = *(int32_t *)(lVar5 + 0xc);
+  uStack_34 = *(int32_t *)(lVar5 + 0x10);
   fStack_30 = *(float *)(lVar5 + 0x14);
-  uStack_2c = *(undefined4 *)(lVar5 + 0x18);
+  uStack_2c = *(int32_t *)(lVar5 + 0x18);
   uStack_60 = 0x18052724d;
-  FUN_180592060(lVar5,param_2,*(undefined8 *)(param_1 + 0x8d8),param_3);
+  FUN_180592060(lVar5,param_2,*(uint64_t *)(param_1 + 0x8d8),param_3);
   if (*(longlong *)(lVar5 + 0xc0) != 0) {
     lVar16 = *(longlong *)(*(longlong *)(lVar5 + 0xc0) + 0x10);
   }
   lVar14 = *(longlong *)(param_1 + 0x20);
   if (lVar16 != 0) {
-    puVar3 = (undefined8 *)(param_1 + 0x41c);
-    *(undefined8 *)(param_1 + 0x45c) = *puVar3;
-    *(undefined8 *)(param_1 + 0x464) = *(undefined8 *)(param_1 + 0x424);
-    *(undefined8 *)(param_1 + 0x46c) = *(undefined8 *)(param_1 + 0x42c);
-    *(undefined8 *)(param_1 + 0x474) = *(undefined8 *)(param_1 + 0x434);
-    *(undefined8 *)(param_1 + 0x47c) = *(undefined8 *)(param_1 + 0x43c);
-    *(undefined8 *)(param_1 + 0x484) = *(undefined8 *)(param_1 + 0x444);
-    *(undefined8 *)(param_1 + 0x48c) = *(undefined8 *)(param_1 + 0x44c);
-    *(undefined8 *)(param_1 + 0x494) = *(undefined8 *)(param_1 + 0x454);
-    uVar11 = *(undefined8 *)(lVar16 + 0x78);
-    *puVar3 = *(undefined8 *)(lVar16 + 0x70);
-    *(undefined8 *)(param_1 + 0x424) = uVar11;
-    uVar11 = *(undefined8 *)(lVar16 + 0x88);
-    *(undefined8 *)(param_1 + 0x42c) = *(undefined8 *)(lVar16 + 0x80);
-    *(undefined8 *)(param_1 + 0x434) = uVar11;
-    uVar9 = *(undefined4 *)(lVar16 + 0x94);
-    uVar10 = *(undefined4 *)(lVar16 + 0x98);
-    uVar6 = *(undefined4 *)(lVar16 + 0x9c);
-    *(undefined4 *)(param_1 + 0x43c) = *(undefined4 *)(lVar16 + 0x90);
-    *(undefined4 *)(param_1 + 0x440) = uVar9;
-    *(undefined4 *)(param_1 + 0x444) = uVar10;
-    *(undefined4 *)(param_1 + 0x448) = uVar6;
-    uVar9 = *(undefined4 *)(lVar16 + 0xa4);
-    uVar10 = *(undefined4 *)(lVar16 + 0xa8);
-    uVar6 = *(undefined4 *)(lVar16 + 0xac);
-    *(undefined4 *)(param_1 + 0x44c) = *(undefined4 *)(lVar16 + 0xa0);
-    *(undefined4 *)(param_1 + 0x450) = uVar9;
-    *(undefined4 *)(param_1 + 0x454) = uVar10;
-    *(undefined4 *)(param_1 + 0x458) = uVar6;
+    puVar3 = (uint64_t *)(param_1 + 0x41c);
+    *(uint64_t *)(param_1 + 0x45c) = *puVar3;
+    *(uint64_t *)(param_1 + 0x464) = *(uint64_t *)(param_1 + 0x424);
+    *(uint64_t *)(param_1 + 0x46c) = *(uint64_t *)(param_1 + 0x42c);
+    *(uint64_t *)(param_1 + 0x474) = *(uint64_t *)(param_1 + 0x434);
+    *(uint64_t *)(param_1 + 0x47c) = *(uint64_t *)(param_1 + 0x43c);
+    *(uint64_t *)(param_1 + 0x484) = *(uint64_t *)(param_1 + 0x444);
+    *(uint64_t *)(param_1 + 0x48c) = *(uint64_t *)(param_1 + 0x44c);
+    *(uint64_t *)(param_1 + 0x494) = *(uint64_t *)(param_1 + 0x454);
+    uVar11 = *(uint64_t *)(lVar16 + 0x78);
+    *puVar3 = *(uint64_t *)(lVar16 + 0x70);
+    *(uint64_t *)(param_1 + 0x424) = uVar11;
+    uVar11 = *(uint64_t *)(lVar16 + 0x88);
+    *(uint64_t *)(param_1 + 0x42c) = *(uint64_t *)(lVar16 + 0x80);
+    *(uint64_t *)(param_1 + 0x434) = uVar11;
+    uVar9 = *(int32_t *)(lVar16 + 0x94);
+    uVar10 = *(int32_t *)(lVar16 + 0x98);
+    uVar6 = *(int32_t *)(lVar16 + 0x9c);
+    *(int32_t *)(param_1 + 0x43c) = *(int32_t *)(lVar16 + 0x90);
+    *(int32_t *)(param_1 + 0x440) = uVar9;
+    *(int32_t *)(param_1 + 0x444) = uVar10;
+    *(int32_t *)(param_1 + 0x448) = uVar6;
+    uVar9 = *(int32_t *)(lVar16 + 0xa4);
+    uVar10 = *(int32_t *)(lVar16 + 0xa8);
+    uVar6 = *(int32_t *)(lVar16 + 0xac);
+    *(int32_t *)(param_1 + 0x44c) = *(int32_t *)(lVar16 + 0xa0);
+    *(int32_t *)(param_1 + 0x450) = uVar9;
+    *(int32_t *)(param_1 + 0x454) = uVar10;
+    *(int32_t *)(param_1 + 0x458) = uVar6;
     if (lVar17 == lVar16) {
       uStack_60 = 0x1805272d0;
-      cVar12 = func_0x000180285f10((undefined8 *)(param_1 + 0x45c),puVar3,0x38d1b717);
+      cVar12 = func_0x000180285f10((uint64_t *)(param_1 + 0x45c),puVar3,0x38d1b717);
       if ((cVar12 == '\0') || (*(char *)(param_1 + 0x418) != '\0')) {
         lVar16 = *(longlong *)(param_1 + 0x8d8);
         uStack_60 = 0x1805272fa;
@@ -229,8 +229,8 @@ void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
       bVar15 = *(byte *)(lVar16 + 0x3424) & 0xef;
     }
     *(byte *)(lVar16 + 0x3424) = bVar15;
-    *(undefined4 *)(lVar16 + 0x25cc) = *(undefined4 *)(lVar5 + 0x88);
-    *(undefined4 *)(lVar16 + 0x3460) = *(undefined4 *)(lVar5 + 0x80);
+    *(int32_t *)(lVar16 + 0x25cc) = *(int32_t *)(lVar5 + 0x88);
+    *(int32_t *)(lVar16 + 0x3460) = *(int32_t *)(lVar5 + 0x80);
   }
   uStack_60 = 0x180527402;
   FUN_180522cf0(param_1);
@@ -239,13 +239,13 @@ void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
       (pfVar1 = (float *)(lVar14 + 0x14), *pfVar1 <= fVar20 && fVar20 != *pfVar1)) &&
      (*(float *)(lVar5 + 0x2c) <= 0.0 && *(float *)(lVar5 + 0x2c) != 0.0)) {
     uStack_60 = 0x18052743e;
-    FUN_18052bfa0(param_1,10,*(undefined4 *)(*(longlong *)(_DAT_180c8aa00 + 0x20) + 100));
+    FUN_18052bfa0(param_1,10,*(int32_t *)(*(longlong *)(_DAT_180c8aa00 + 0x20) + 100));
   }
   lVar5 = *(longlong *)(param_1 + 0x20);
   fVar20 = *(float *)(lVar5 + 0xd8);
   if (0.0 < fVar20) {
     if (param_4 == (longlong *)0x0) {
-      puVar18 = (undefined4 *)(lVar5 + 0xb0);
+      puVar18 = (int32_t *)(lVar5 + 0xb0);
       uStack_118 = 0xfffffffffffffffe;
       if (*(int *)(param_1 + 0x568) == 1) {
         uStack_1e8 = 0;
@@ -272,15 +272,15 @@ void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
         uStack_13c = 0;
         lVar16 = *(longlong *)(param_1 + 0x20);
         fVar19 = *(float *)(lVar16 + 0x14) + 0.01;
-        uVar9 = *(undefined4 *)(lVar16 + 0xc);
-        uVar10 = *(undefined4 *)(lVar16 + 0x10);
-        uStack_190 = *(undefined4 *)(lVar16 + 0xc);
-        uStack_18c = *(undefined4 *)(lVar16 + 0x10);
+        uVar9 = *(int32_t *)(lVar16 + 0xc);
+        uVar10 = *(int32_t *)(lVar16 + 0x10);
+        uStack_190 = *(int32_t *)(lVar16 + 0xc);
+        uStack_18c = *(int32_t *)(lVar16 + 0x10);
         uStack_184 = 0x7f7fffff;
         uStack_180 = *puVar18;
-        uStack_17c = *(undefined4 *)(lVar5 + 0xb4);
-        uStack_178 = *(undefined4 *)(lVar5 + 0xb8);
-        uStack_174 = *(undefined4 *)(lVar5 + 0xbc);
+        uStack_17c = *(int32_t *)(lVar5 + 0xb4);
+        uStack_178 = *(int32_t *)(lVar5 + 0xb8);
+        uStack_174 = *(int32_t *)(lVar5 + 0xbc);
         cVar12 = *(char *)(*(longlong *)
                             (*(longlong *)
                               (*(longlong *)(*(longlong *)(param_1 + 0x6d8) + 0x8a8) + 0x260) +
@@ -294,7 +294,7 @@ void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
           uStack_2ab = 8;
         }
         else {
-          uStack_2ab = *(undefined1 *)
+          uStack_2ab = *(int8_t *)
                         ((longlong)cVar12 * 0x1b0 + 0x104 + *(longlong *)(lVar17 + 0x140));
         }
         uStack_130 = 2;
@@ -311,11 +311,11 @@ void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
           uStack_2a4 = 0xffffffff;
         }
         else {
-          uStack_2a4 = *(undefined4 *)(*(longlong *)(lVar5 + 200) + 100);
+          uStack_2a4 = *(int32_t *)(*(longlong *)(lVar5 + 200) + 100);
         }
-        uVar6 = *(undefined4 *)(lVar16 + 0x24);
-        uVar7 = *(undefined4 *)(lVar16 + 0x28);
-        uVar8 = *(undefined4 *)(lVar16 + 0x30);
+        uVar6 = *(int32_t *)(lVar16 + 0x24);
+        uVar7 = *(int32_t *)(lVar16 + 0x28);
+        uVar8 = *(int32_t *)(lVar16 + 0x30);
         fVar21 = -fVar20;
         fStack_188 = fVar19;
         uStack_170 = uStack_180;
@@ -391,7 +391,7 @@ void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
         uStack_78 = uStack_158;
         uStack_70 = uStack_150;
         uStack_68 = uStack_148;
-        uStack_64 = (undefined4)uStack_144;
+        uStack_64 = (int32_t)uStack_144;
         uStack_60 = CONCAT44(uStack_13c,uStack_144._4_4_);
         iStack_58 = iStack_138;
         uStack_54 = uStack_134;
@@ -399,7 +399,7 @@ void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
         uStack_4c = uStack_12c;
         uStack_48 = CONCAT44(uStack_124,uStack_128);
         (**(code **)(lVar5 + 0x1e0))
-                  (*(undefined4 *)(*(longlong *)(param_1 + 0x8d8) + 0x98d928),&uStack_2c8,
+                  (*(int32_t *)(*(longlong *)(param_1 + 0x8d8) + 0x98d928),&uStack_2c8,
                    &uStack_108,iVar4,iVar13);
         if ((iVar4 != 0) && (_DAT_180c8f008 != 0)) {
           (**(code **)(_DAT_180c8f008 + 0x18))(iVar4);
@@ -426,137 +426,137 @@ void FUN_1805271f0(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
 
 
 
-// 函数: void FUN_1805271f8(longlong param_1,undefined8 param_2,undefined8 param_3,longlong *param_4)
-void FUN_1805271f8(longlong param_1,undefined8 param_2,undefined8 param_3,longlong *param_4)
+// 函数: void FUN_1805271f8(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *param_4)
+void FUN_1805271f8(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *param_4)
 
 {
   float *pfVar1;
   longlong *plVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   int iVar4;
   longlong lVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
-  undefined4 uVar8;
-  undefined4 uVar9;
-  undefined4 uVar10;
-  undefined8 uVar11;
+  int32_t uVar6;
+  int32_t uVar7;
+  int32_t uVar8;
+  int32_t uVar9;
+  int32_t uVar10;
+  uint64_t uVar11;
   char cVar12;
   int iVar13;
   longlong lVar14;
   byte bVar15;
   longlong lVar16;
   longlong lVar17;
-  undefined4 *puVar18;
+  int32_t *puVar18;
   float fVar19;
   float fVar20;
   float fVar21;
   float fStack0000000000000028;
-  undefined4 uStack000000000000002c;
+  int32_t uStack000000000000002c;
   longlong in_stack_00000060;
-  undefined8 uStack_270;
-  undefined4 uStack_268;
-  undefined4 uStack_264;
-  undefined8 uStack_260;
-  undefined4 uStack_258;
+  uint64_t uStack_270;
+  int32_t uStack_268;
+  int32_t uStack_264;
+  uint64_t uStack_260;
+  int32_t uStack_258;
   char cStack_254;
-  undefined1 uStack_253;
-  undefined1 uStack_252;
-  undefined4 uStack_250;
-  undefined4 uStack_24c;
-  undefined1 uStack_248;
-  undefined4 uStack_244;
-  undefined4 uStack_240;
-  undefined4 uStack_23c;
-  undefined4 uStack_238;
-  undefined4 uStack_234;
-  undefined4 uStack_230;
-  undefined4 uStack_22c;
+  int8_t uStack_253;
+  int8_t uStack_252;
+  int32_t uStack_250;
+  int32_t uStack_24c;
+  int8_t uStack_248;
+  int32_t uStack_244;
+  int32_t uStack_240;
+  int32_t uStack_23c;
+  int32_t uStack_238;
+  int32_t uStack_234;
+  int32_t uStack_230;
+  int32_t uStack_22c;
   float fStack_228;
-  undefined8 uStack_224;
-  undefined8 uStack_21c;
-  undefined8 uStack_214;
-  undefined8 uStack_20c;
-  undefined4 uStack_204;
-  undefined4 uStack_200;
+  uint64_t uStack_224;
+  uint64_t uStack_21c;
+  uint64_t uStack_214;
+  uint64_t uStack_20c;
+  int32_t uStack_204;
+  int32_t uStack_200;
   float fStack_1fc;
-  undefined4 uStack_1f8;
-  undefined8 uStack_1f4;
-  undefined8 uStack_1ec;
-  undefined8 uStack_1e4;
-  undefined8 uStack_1dc;
-  undefined4 uStack_1d4;
-  undefined4 uStack_1d0;
+  int32_t uStack_1f8;
+  uint64_t uStack_1f4;
+  uint64_t uStack_1ec;
+  uint64_t uStack_1e4;
+  uint64_t uStack_1dc;
+  int32_t uStack_1d4;
+  int32_t uStack_1d0;
   float fStack_1cc;
-  undefined4 uStack_1c8;
-  undefined4 uStack_1c4;
-  undefined4 uStack_1c0;
-  undefined4 uStack_1bc;
-  undefined4 uStack_1b8;
-  undefined8 uStack_190;
-  undefined8 uStack_188;
-  undefined8 uStack_180;
-  undefined8 uStack_178;
-  undefined8 uStack_170;
-  undefined8 uStack_168;
-  undefined4 uStack_160;
-  undefined4 uStack_15c;
-  undefined8 uStack_158;
-  undefined4 uStack_150;
-  undefined4 uStack_14c;
-  undefined4 uStack_148;
-  undefined4 uStack_144;
-  undefined2 uStack_140;
+  int32_t uStack_1c8;
+  int32_t uStack_1c4;
+  int32_t uStack_1c0;
+  int32_t uStack_1bc;
+  int32_t uStack_1b8;
+  uint64_t uStack_190;
+  uint64_t uStack_188;
+  uint64_t uStack_180;
+  uint64_t uStack_178;
+  uint64_t uStack_170;
+  uint64_t uStack_168;
+  int32_t uStack_160;
+  int32_t uStack_15c;
+  uint64_t uStack_158;
+  int32_t uStack_150;
+  int32_t uStack_14c;
+  int32_t uStack_148;
+  int32_t uStack_144;
+  int16_t uStack_140;
   undefined6 uStack_13e;
-  undefined4 uStack_138;
-  undefined4 uStack_134;
+  int32_t uStack_138;
+  int32_t uStack_134;
   float fStack_130;
-  undefined4 uStack_12c;
-  undefined4 uStack_128;
-  undefined4 uStack_124;
-  undefined4 uStack_120;
-  undefined4 uStack_11c;
-  undefined4 uStack_118;
-  undefined4 uStack_114;
-  undefined4 uStack_110;
-  undefined4 uStack_10c;
-  undefined8 uStack_108;
-  undefined8 uStack_100;
-  undefined8 uStack_f8;
-  undefined4 uStack_f0;
-  undefined8 uStack_ec;
-  undefined4 uStack_e4;
+  int32_t uStack_12c;
+  int32_t uStack_128;
+  int32_t uStack_124;
+  int32_t uStack_120;
+  int32_t uStack_11c;
+  int32_t uStack_118;
+  int32_t uStack_114;
+  int32_t uStack_110;
+  int32_t uStack_10c;
+  uint64_t uStack_108;
+  uint64_t uStack_100;
+  uint64_t uStack_f8;
+  int32_t uStack_f0;
+  uint64_t uStack_ec;
+  int32_t uStack_e4;
   int iStack_e0;
-  undefined2 uStack_dc;
-  undefined2 uStack_da;
-  undefined4 uStack_d8;
+  int16_t uStack_dc;
+  int16_t uStack_da;
+  int32_t uStack_d8;
   undefined3 uStack_d4;
-  undefined1 uStack_d1;
-  undefined4 uStack_d0;
-  undefined8 uStack_c0;
-  undefined8 uStack_b0;
-  undefined8 uStack_a8;
-  undefined8 uStack_a0;
-  undefined8 uStack_98;
-  undefined8 uStack_90;
-  undefined8 uStack_88;
-  undefined8 uStack_80;
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
-  undefined8 uStack_50;
-  undefined8 uStack_48;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  undefined8 uStack_28;
-  undefined8 uStack_20;
-  undefined8 uStack_18;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
-  undefined8 uStack_8;
+  int8_t uStack_d1;
+  int32_t uStack_d0;
+  uint64_t uStack_c0;
+  uint64_t uStack_b0;
+  uint64_t uStack_a8;
+  uint64_t uStack_a0;
+  uint64_t uStack_98;
+  uint64_t uStack_90;
+  uint64_t uStack_88;
+  uint64_t uStack_80;
+  uint64_t uStack_78;
+  uint64_t uStack_70;
+  uint64_t uStack_68;
+  uint64_t uStack_60;
+  uint64_t uStack_58;
+  uint64_t uStack_50;
+  uint64_t uStack_48;
+  uint64_t uStack_40;
+  uint64_t uStack_38;
+  uint64_t uStack_30;
+  uint64_t uStack_28;
+  uint64_t uStack_20;
+  uint64_t uStack_18;
+  int32_t uStack_10;
+  int32_t uStack_c;
+  uint64_t uStack_8;
   
   lVar16 = 0;
   lVar5 = *(longlong *)(param_1 + 0x20);
@@ -565,47 +565,47 @@ void FUN_1805271f8(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
     lVar17 = *(longlong *)(*(longlong *)(lVar5 + 0xc0) + 0x10);
   }
   fStack0000000000000028 = *(float *)(lVar5 + 0x14);
-  uStack000000000000002c = *(undefined4 *)(lVar5 + 0x18);
+  uStack000000000000002c = *(int32_t *)(lVar5 + 0x18);
   uStack_8 = 0x18052724d;
-  FUN_180592060(lVar5,param_2,*(undefined8 *)(param_1 + 0x8d8),param_3,*(undefined4 *)(lVar5 + 0xc))
+  FUN_180592060(lVar5,param_2,*(uint64_t *)(param_1 + 0x8d8),param_3,*(int32_t *)(lVar5 + 0xc))
   ;
   if (*(longlong *)(lVar5 + 0xc0) != 0) {
     lVar16 = *(longlong *)(*(longlong *)(lVar5 + 0xc0) + 0x10);
   }
   lVar14 = *(longlong *)(param_1 + 0x20);
   if (lVar16 != 0) {
-    puVar3 = (undefined8 *)(param_1 + 0x41c);
-    *(undefined8 *)(param_1 + 0x45c) = *puVar3;
-    *(undefined8 *)(param_1 + 0x464) = *(undefined8 *)(param_1 + 0x424);
-    *(undefined8 *)(param_1 + 0x46c) = *(undefined8 *)(param_1 + 0x42c);
-    *(undefined8 *)(param_1 + 0x474) = *(undefined8 *)(param_1 + 0x434);
-    *(undefined8 *)(param_1 + 0x47c) = *(undefined8 *)(param_1 + 0x43c);
-    *(undefined8 *)(param_1 + 0x484) = *(undefined8 *)(param_1 + 0x444);
-    *(undefined8 *)(param_1 + 0x48c) = *(undefined8 *)(param_1 + 0x44c);
-    *(undefined8 *)(param_1 + 0x494) = *(undefined8 *)(param_1 + 0x454);
-    uVar11 = *(undefined8 *)(lVar16 + 0x78);
-    *puVar3 = *(undefined8 *)(lVar16 + 0x70);
-    *(undefined8 *)(param_1 + 0x424) = uVar11;
-    uVar11 = *(undefined8 *)(lVar16 + 0x88);
-    *(undefined8 *)(param_1 + 0x42c) = *(undefined8 *)(lVar16 + 0x80);
-    *(undefined8 *)(param_1 + 0x434) = uVar11;
-    uVar9 = *(undefined4 *)(lVar16 + 0x94);
-    uVar10 = *(undefined4 *)(lVar16 + 0x98);
-    uVar6 = *(undefined4 *)(lVar16 + 0x9c);
-    *(undefined4 *)(param_1 + 0x43c) = *(undefined4 *)(lVar16 + 0x90);
-    *(undefined4 *)(param_1 + 0x440) = uVar9;
-    *(undefined4 *)(param_1 + 0x444) = uVar10;
-    *(undefined4 *)(param_1 + 0x448) = uVar6;
-    uVar9 = *(undefined4 *)(lVar16 + 0xa4);
-    uVar10 = *(undefined4 *)(lVar16 + 0xa8);
-    uVar6 = *(undefined4 *)(lVar16 + 0xac);
-    *(undefined4 *)(param_1 + 0x44c) = *(undefined4 *)(lVar16 + 0xa0);
-    *(undefined4 *)(param_1 + 0x450) = uVar9;
-    *(undefined4 *)(param_1 + 0x454) = uVar10;
-    *(undefined4 *)(param_1 + 0x458) = uVar6;
+    puVar3 = (uint64_t *)(param_1 + 0x41c);
+    *(uint64_t *)(param_1 + 0x45c) = *puVar3;
+    *(uint64_t *)(param_1 + 0x464) = *(uint64_t *)(param_1 + 0x424);
+    *(uint64_t *)(param_1 + 0x46c) = *(uint64_t *)(param_1 + 0x42c);
+    *(uint64_t *)(param_1 + 0x474) = *(uint64_t *)(param_1 + 0x434);
+    *(uint64_t *)(param_1 + 0x47c) = *(uint64_t *)(param_1 + 0x43c);
+    *(uint64_t *)(param_1 + 0x484) = *(uint64_t *)(param_1 + 0x444);
+    *(uint64_t *)(param_1 + 0x48c) = *(uint64_t *)(param_1 + 0x44c);
+    *(uint64_t *)(param_1 + 0x494) = *(uint64_t *)(param_1 + 0x454);
+    uVar11 = *(uint64_t *)(lVar16 + 0x78);
+    *puVar3 = *(uint64_t *)(lVar16 + 0x70);
+    *(uint64_t *)(param_1 + 0x424) = uVar11;
+    uVar11 = *(uint64_t *)(lVar16 + 0x88);
+    *(uint64_t *)(param_1 + 0x42c) = *(uint64_t *)(lVar16 + 0x80);
+    *(uint64_t *)(param_1 + 0x434) = uVar11;
+    uVar9 = *(int32_t *)(lVar16 + 0x94);
+    uVar10 = *(int32_t *)(lVar16 + 0x98);
+    uVar6 = *(int32_t *)(lVar16 + 0x9c);
+    *(int32_t *)(param_1 + 0x43c) = *(int32_t *)(lVar16 + 0x90);
+    *(int32_t *)(param_1 + 0x440) = uVar9;
+    *(int32_t *)(param_1 + 0x444) = uVar10;
+    *(int32_t *)(param_1 + 0x448) = uVar6;
+    uVar9 = *(int32_t *)(lVar16 + 0xa4);
+    uVar10 = *(int32_t *)(lVar16 + 0xa8);
+    uVar6 = *(int32_t *)(lVar16 + 0xac);
+    *(int32_t *)(param_1 + 0x44c) = *(int32_t *)(lVar16 + 0xa0);
+    *(int32_t *)(param_1 + 0x450) = uVar9;
+    *(int32_t *)(param_1 + 0x454) = uVar10;
+    *(int32_t *)(param_1 + 0x458) = uVar6;
     if (lVar17 == lVar16) {
       uStack_8 = 0x1805272d0;
-      cVar12 = func_0x000180285f10((undefined8 *)(param_1 + 0x45c),puVar3,0x38d1b717);
+      cVar12 = func_0x000180285f10((uint64_t *)(param_1 + 0x45c),puVar3,0x38d1b717);
       if ((cVar12 == '\0') || (*(char *)(param_1 + 0x418) != '\0')) {
         lVar16 = *(longlong *)(param_1 + 0x8d8);
         uStack_8 = 0x1805272fa;
@@ -646,8 +646,8 @@ void FUN_1805271f8(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
       bVar15 = *(byte *)(lVar16 + 0x3424) & 0xef;
     }
     *(byte *)(lVar16 + 0x3424) = bVar15;
-    *(undefined4 *)(lVar16 + 0x25cc) = *(undefined4 *)(lVar5 + 0x88);
-    *(undefined4 *)(lVar16 + 0x3460) = *(undefined4 *)(lVar5 + 0x80);
+    *(int32_t *)(lVar16 + 0x25cc) = *(int32_t *)(lVar5 + 0x88);
+    *(int32_t *)(lVar16 + 0x3460) = *(int32_t *)(lVar5 + 0x80);
   }
   uStack_8 = 0x180527402;
   FUN_180522cf0(param_1);
@@ -656,13 +656,13 @@ void FUN_1805271f8(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
       (pfVar1 = (float *)(lVar14 + 0x14), *pfVar1 <= fVar20 && fVar20 != *pfVar1)) &&
      (*(float *)(lVar5 + 0x2c) <= 0.0 && *(float *)(lVar5 + 0x2c) != 0.0)) {
     uStack_8 = 0x18052743e;
-    FUN_18052bfa0(param_1,10,*(undefined4 *)(*(longlong *)(_DAT_180c8aa00 + 0x20) + 100));
+    FUN_18052bfa0(param_1,10,*(int32_t *)(*(longlong *)(_DAT_180c8aa00 + 0x20) + 100));
   }
   lVar5 = *(longlong *)(param_1 + 0x20);
   fVar20 = *(float *)(lVar5 + 0xd8);
   if (0.0 < fVar20) {
     if (param_4 == (longlong *)0x0) {
-      puVar18 = (undefined4 *)(lVar5 + 0xb0);
+      puVar18 = (int32_t *)(lVar5 + 0xb0);
       uStack_c0 = 0xfffffffffffffffe;
       if (*(int *)(param_1 + 0x568) == 1) {
         uStack_190 = 0;
@@ -689,15 +689,15 @@ void FUN_1805271f8(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
         uStack_e4 = 0;
         lVar16 = *(longlong *)(param_1 + 0x20);
         fVar19 = *(float *)(lVar16 + 0x14) + 0.01;
-        uVar9 = *(undefined4 *)(lVar16 + 0xc);
-        uVar10 = *(undefined4 *)(lVar16 + 0x10);
-        uStack_138 = *(undefined4 *)(lVar16 + 0xc);
-        uStack_134 = *(undefined4 *)(lVar16 + 0x10);
+        uVar9 = *(int32_t *)(lVar16 + 0xc);
+        uVar10 = *(int32_t *)(lVar16 + 0x10);
+        uStack_138 = *(int32_t *)(lVar16 + 0xc);
+        uStack_134 = *(int32_t *)(lVar16 + 0x10);
         uStack_12c = 0x7f7fffff;
         uStack_128 = *puVar18;
-        uStack_124 = *(undefined4 *)(lVar5 + 0xb4);
-        uStack_120 = *(undefined4 *)(lVar5 + 0xb8);
-        uStack_11c = *(undefined4 *)(lVar5 + 0xbc);
+        uStack_124 = *(int32_t *)(lVar5 + 0xb4);
+        uStack_120 = *(int32_t *)(lVar5 + 0xb8);
+        uStack_11c = *(int32_t *)(lVar5 + 0xbc);
         cVar12 = *(char *)(*(longlong *)
                             (*(longlong *)
                               (*(longlong *)(*(longlong *)(param_1 + 0x6d8) + 0x8a8) + 0x260) +
@@ -711,7 +711,7 @@ void FUN_1805271f8(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
           uStack_253 = 8;
         }
         else {
-          uStack_253 = *(undefined1 *)
+          uStack_253 = *(int8_t *)
                         ((longlong)cVar12 * 0x1b0 + 0x104 + *(longlong *)(lVar17 + 0x140));
         }
         uStack_d8 = 2;
@@ -728,11 +728,11 @@ void FUN_1805271f8(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
           uStack_24c = 0xffffffff;
         }
         else {
-          uStack_24c = *(undefined4 *)(*(longlong *)(lVar5 + 200) + 100);
+          uStack_24c = *(int32_t *)(*(longlong *)(lVar5 + 200) + 100);
         }
-        uVar6 = *(undefined4 *)(lVar16 + 0x24);
-        uVar7 = *(undefined4 *)(lVar16 + 0x28);
-        uVar8 = *(undefined4 *)(lVar16 + 0x30);
+        uVar6 = *(int32_t *)(lVar16 + 0x24);
+        uVar7 = *(int32_t *)(lVar16 + 0x28);
+        uVar8 = *(int32_t *)(lVar16 + 0x30);
         fVar21 = -fVar20;
         fStack_130 = fVar19;
         uStack_118 = uStack_128;
@@ -808,10 +808,10 @@ void FUN_1805271f8(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
         uStack_20 = uStack_100;
         uStack_18 = uStack_f8;
         uStack_10 = uStack_f0;
-        uStack_c = (undefined4)uStack_ec;
+        uStack_c = (int32_t)uStack_ec;
         uStack_8 = CONCAT44(uStack_e4,uStack_ec._4_4_);
         (**(code **)(lVar5 + 0x1e0))
-                  (*(undefined4 *)(*(longlong *)(param_1 + 0x8d8) + 0x98d928),&uStack_270,&uStack_b0
+                  (*(int32_t *)(*(longlong *)(param_1 + 0x8d8) + 0x98d928),&uStack_270,&uStack_b0
                    ,iVar4,iVar13);
         if ((iVar4 != 0) && (_DAT_180c8f008 != 0)) {
           (**(code **)(_DAT_180c8f008 + 0x18))(iVar4);

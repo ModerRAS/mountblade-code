@@ -10,13 +10,13 @@
  * @param param_3 结束参数
  * @param param_4 输出参数数组
  */
-void calculate_rendering_parameter_range(undefined8 render_context, int start_param, int end_param, longlong *output_params)
+void calculate_rendering_parameter_range(uint64_t render_context, int start_param, int end_param, longlong *output_params)
 {
   longlong calculated_offset;
   longlong *context_ptr;
   int range_start;
   int range_end;
-  undefined4 register_value;
+  int32_t register_value;
   int stack_param;
   
   // 计算参数范围
@@ -40,7 +40,7 @@ void calculate_rendering_parameter_range(undefined8 render_context, int start_pa
   
   // 设置输出参数
   *context_ptr = calculated_offset;
-  *(undefined4 *)(context_ptr + 1) = 0;
+  *(int32_t *)(context_ptr + 1) = 0;
   *(int *)((longlong)context_ptr + 0xc) = stack_param;
   return;
 }
@@ -52,10 +52,10 @@ void calculate_rendering_parameter_range(undefined8 render_context, int start_pa
  * @param param_3 数据类型标识
  * @return 解析后的数据指针
  */
-undefined4 * parse_rendering_data_block(undefined4 *output_data, longlong *input_data, uint data_type)
+int32_t * parse_rendering_data_block(int32_t *output_data, longlong *input_data, uint data_type)
 {
-  undefined4 parsed_value;
-  undefined4 temp_value;
+  int32_t parsed_value;
+  int32_t temp_value;
   byte data_byte;
   uint data_length;
   ulonglong data_offset;
@@ -66,8 +66,8 @@ undefined4 * parse_rendering_data_block(undefined4 *output_data, longlong *input
   int temp_index;
   ulonglong max_offset;
   ulonglong current_offset;
-  undefined4 stack_val_1;
-  undefined4 stack_val_2;
+  int32_t stack_val_1;
+  int32_t stack_val_2;
   int stack_index;
   
   data_length = *(uint *)((longlong)input_data + 0xc);
@@ -186,8 +186,8 @@ undefined4 * parse_rendering_data_block(undefined4 *output_data, longlong *input
     data_ptr = *input_data;
     stack_index = 0;
 set_output_data:
-    stack_val_1 = (undefined4)data_ptr;
-    stack_val_2 = (undefined4)((ulonglong)data_ptr >> 0x20);
+    stack_val_1 = (int32_t)data_ptr;
+    stack_val_2 = (int32_t)((ulonglong)data_ptr >> 0x20);
   }
   
 data_processing_complete:
@@ -208,8 +208,8 @@ data_processing_complete:
 longlong * process_rendering_data_sequence(longlong *output_data, longlong *input_data, int process_mode)
 {
   int data_length;
-  undefined1 first_byte;
-  undefined1 second_byte;
+  int8_t first_byte;
+  int8_t second_byte;
   byte third_byte;
   int fourth_val;
   longlong data_ptr;
@@ -233,7 +233,7 @@ longlong * process_rendering_data_sequence(longlong *output_data, longlong *inpu
   // 读取前两个字节
   if (data_ptr < data_length) {
     fourth_val = fourth_val + 1;
-    first_byte = *(undefined1 *)(data_ptr + *input_data);
+    first_byte = *(int8_t *)(data_ptr + *input_data);
     data_ptr = data_ptr + 1;
   }
   else {
@@ -242,7 +242,7 @@ longlong * process_rendering_data_sequence(longlong *output_data, longlong *inpu
   
   if (data_ptr < data_length) {
     fourth_val = fourth_val + 1;
-    second_byte = *(undefined1 *)(data_ptr + *input_data);
+    second_byte = *(int8_t *)(data_ptr + *input_data);
   }
   else {
     second_byte = 0;
@@ -319,7 +319,7 @@ longlong * process_rendering_data_sequence(longlong *output_data, longlong *inpu
   
   // 设置输出数据
   *output_data = data_ptr;
-  *(undefined4 *)(output_data + 1) = 0;
+  *(int32_t *)(output_data + 1) = 0;
   *(int *)((longlong)output_data + 0xc) = stack_index;
   return output_data;
 }
@@ -370,27 +370,27 @@ int find_rendering_data_identifier(longlong base_address, uint data_offset, char
  * @param param_3 资源处理参数
  * @return 处理后的资源指针
  */
-undefined4 * process_rendering_resource_block(undefined4 *output_resource, longlong *input_data, undefined8 process_params)
+int32_t * process_rendering_resource_block(int32_t *output_resource, longlong *input_data, uint64_t process_params)
 {
-  undefined4 temp_value;
+  int32_t temp_value;
   int index_1;
   int index_2;
-  undefined8 *data_ptr;
-  undefined4 *resource_ptr;
+  uint64_t *data_ptr;
+  int32_t *resource_ptr;
   longlong resource_offset;
   longlong calc_offset;
   int temp_array[2];
-  undefined8 temp_param_1;
-  undefined8 temp_buffer_1;
-  undefined8 temp_buffer_2;
-  undefined1 temp_buffer_3[16];
+  uint64_t temp_param_1;
+  uint64_t temp_buffer_1;
+  uint64_t temp_buffer_2;
+  int8_t temp_buffer_3[16];
   
   calc_offset = 0;
   temp_array[0] = 0;
   temp_param_1 = 0;
   
   // 解析资源数据
-  data_ptr = (undefined8 *)parse_rendering_data_block(&temp_buffer_1, process_params, 0x12);
+  data_ptr = (uint64_t *)parse_rendering_data_block(&temp_buffer_1, process_params, 0x12);
   temp_buffer_1 = *data_ptr;
   temp_buffer_2._0_4_ = *(int *)(data_ptr + 1);
   temp_buffer_2._4_4_ = *(int *)((longlong)data_ptr + 0xc);
@@ -400,7 +400,7 @@ undefined4 * process_rendering_resource_block(undefined4 *output_resource, longl
   do {
     if ((int)temp_buffer_2._4_4_ <= (int)temp_buffer_2) break;
     temp_value = func_0x00018028b140(&temp_buffer_1);
-    *(undefined4 *)((longlong)&temp_param_1 + resource_offset * 4) = temp_value;
+    *(int32_t *)((longlong)&temp_param_1 + resource_offset * 4) = temp_value;
     resource_offset = resource_offset + 1;
   } while (resource_offset < 2);
   
@@ -420,7 +420,7 @@ undefined4 * process_rendering_resource_block(undefined4 *output_resource, longl
     }
     
     temp_buffer_2 = (ulonglong)temp_buffer_2._4_4_ << 0x20;
-    data_ptr = (undefined8 *)parse_rendering_data_block(temp_buffer_3, &temp_buffer_1, 0x13);
+    data_ptr = (uint64_t *)parse_rendering_data_block(temp_buffer_3, &temp_buffer_1, 0x13);
     temp_buffer_1 = *data_ptr;
     temp_buffer_2._0_4_ = *(int *)(data_ptr + 1);
     temp_buffer_2._4_4_ = *(int *)((longlong)data_ptr + 0xc);
@@ -438,7 +438,7 @@ undefined4 * process_rendering_resource_block(undefined4 *output_resource, longl
         index_2 = *(int *)((longlong)input_data + 0xc);
       }
       *(int *)(input_data + 1) = index_2;
-      resource_ptr = (undefined4 *)FUN_18028b000(temp_buffer_3, input_data);
+      resource_ptr = (int32_t *)FUN_18028b000(temp_buffer_3, input_data);
       temp_buffer_1._0_4_ = *resource_ptr;
       temp_buffer_1._4_4_ = resource_ptr[1];
       temp_buffer_2._0_4_ = resource_ptr[2];
@@ -454,7 +454,7 @@ undefined4 * process_rendering_resource_block(undefined4 *output_resource, longl
   temp_buffer_2._4_4_ = 0;
   
 set_resource_data:
-  *output_resource = (undefined4)temp_buffer_1;
+  *output_resource = (int32_t)temp_buffer_1;
   output_resource[1] = temp_buffer_1._4_4_;
   output_resource[2] = (int)temp_buffer_2;
   output_resource[3] = temp_buffer_2._4_4_;
@@ -468,46 +468,46 @@ set_resource_data:
  * @param param_3 资源初始化参数
  * @return 初始化状态
  */
-undefined8 initialize_rendering_resource_manager(longlong resource_manager, longlong data_address, undefined4 init_params)
+uint64_t initialize_rendering_resource_manager(longlong resource_manager, longlong data_address, int32_t init_params)
 {
   byte format_byte_1;
   byte format_byte_2;
-  undefined8 init_result;
-  undefined1 temp_buffer[16];
+  uint64_t init_result;
+  int8_t temp_buffer[16];
   uint resource_id;
   int offset_1;
   int offset_2;
-  undefined4 temp_param;
+  int32_t temp_param;
   uint temp_value;
   longlong *data_ptr;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   ulonglong calc_offset_1;
   ulonglong calc_offset_2;
   longlong temp_offset;
   int temp_array_1[4];
-  undefined4 stack_value;
+  int32_t stack_value;
   int temp_array_2[2];
   int temp_array_3[4];
-  undefined8 temp_buffer_1;
+  uint64_t temp_buffer_1;
   uint temp_value_1;
   uint temp_value_2;
-  undefined8 temp_buffer_2;
-  undefined4 temp_buffer_3;
-  undefined4 temp_buffer_4;
+  uint64_t temp_buffer_2;
+  int32_t temp_buffer_3;
+  int32_t temp_buffer_4;
   longlong temp_address;
-  undefined8 temp_buffer_5;
-  undefined1 temp_buffer_6[24];
+  uint64_t temp_buffer_5;
+  int8_t temp_buffer_6[24];
   
   // 初始化资源管理器基础结构
   *(longlong *)(resource_manager + 8) = data_address;
-  *(undefined4 *)(resource_manager + 0x10) = init_params;
+  *(int32_t *)(resource_manager + 0x10) = init_params;
   calc_offset_1 = 0;
   temp_buffer_1._0_4_ = 0;
   temp_buffer_1._4_4_ = 0;
   temp_buffer_3 = 0;
   temp_buffer_4 = 0;
-  *(undefined8 *)(resource_manager + 0x40) = 0;
-  *(undefined8 *)(resource_manager + 0x48) = 0;
+  *(uint64_t *)(resource_manager + 0x40) = 0;
+  *(uint64_t *)(resource_manager + 0x48) = 0;
   stack_value = init_params;
   
   // 查找资源标识
@@ -523,9 +523,9 @@ undefined8 initialize_rendering_resource_manager(longlong resource_manager, long
   temp_array_1[0] = find_rendering_data_identifier(data_address, stack_value, &UNK_180a16ef0);
   *(int *)(resource_manager + 0x28) = temp_array_1[0];
   temp_param = find_rendering_data_identifier(data_address, stack_value, &UNK_180a16f18);
-  *(undefined4 *)(resource_manager + 0x2c) = temp_param;
+  *(int32_t *)(resource_manager + 0x2c) = temp_param;
   temp_param = find_rendering_data_identifier(data_address, stack_value, &UNK_180a16f20);
-  *(undefined4 *)(resource_manager + 0x30) = temp_param;
+  *(int32_t *)(resource_manager + 0x30) = temp_param;
   
   // 验证必要资源
   if (resource_id == 0) {
@@ -557,12 +557,12 @@ undefined8 initialize_rendering_resource_manager(longlong resource_manager, long
   }
   
   // 设置资源管理器状态
-  *(undefined8 *)(resource_manager + 0x80) = 0;
-  *(undefined8 *)(resource_manager + 0x88) = 0;
+  *(uint64_t *)(resource_manager + 0x80) = 0;
+  *(uint64_t *)(resource_manager + 0x88) = 0;
   temp_buffer_1 = (ulonglong)temp_value + data_address;
   temp_buffer_4 = 0x20000000;
-  *(undefined8 *)(resource_manager + 0x90) = 0;
-  *(undefined8 *)(resource_manager + 0x98) = 0;
+  *(uint64_t *)(resource_manager + 0x90) = 0;
+  *(uint64_t *)(resource_manager + 0x98) = 0;
   temp_buffer_3 = 0;
   
   // 初始化资源缓冲区
@@ -571,7 +571,7 @@ undefined8 initialize_rendering_resource_manager(longlong resource_manager, long
   temp_buffer[12] = 0;
   temp_buffer[13] = 0x20;
   temp_value_2 = 0x20000000;
-  *(undefined1 (*) [16])(resource_manager + 0x40) = temp_buffer;
+  *(int8_t (*) [16])(resource_manager + 0x40) = temp_buffer;
   
   if (*(byte *)(temp_buffer_1 + 2) < 0x20000001) {
     temp_value_2 = (uint)*(byte *)(temp_buffer_1 + 2);
@@ -587,17 +587,17 @@ undefined8 initialize_rendering_resource_manager(longlong resource_manager, long
   temp_address = *data_ptr;
   temp_buffer_2 = data_ptr[1];
   
-  resource_ptr = (undefined8 *)process_rendering_data_sequence(&temp_buffer_1, &temp_address, 0);
-  temp_buffer_1._0_4_ = (undefined4)*resource_ptr;
-  temp_buffer_1._4_4_ = (undefined4)((ulonglong)*resource_ptr >> 0x20);
-  temp_buffer_3 = (undefined4)resource_ptr[1];
-  temp_buffer_4 = (undefined4)((ulonglong)resource_ptr[1] >> 0x20);
+  resource_ptr = (uint64_t *)process_rendering_data_sequence(&temp_buffer_1, &temp_address, 0);
+  temp_buffer_1._0_4_ = (int32_t)*resource_ptr;
+  temp_buffer_1._4_4_ = (int32_t)((ulonglong)*resource_ptr >> 0x20);
+  temp_buffer_3 = (int32_t)resource_ptr[1];
+  temp_buffer_4 = (int32_t)((ulonglong)resource_ptr[1] >> 0x20);
   
   FUN_18028b000(&temp_address, &temp_buffer_5);
-  resource_ptr = (undefined8 *)FUN_18028b000(&temp_address, &temp_buffer_5);
+  resource_ptr = (uint64_t *)FUN_18028b000(&temp_address, &temp_buffer_5);
   init_result = resource_ptr[1];
-  *(undefined8 *)(resource_manager + 0x60) = *resource_ptr;
-  *(undefined8 *)(resource_manager + 0x68) = init_result;
+  *(uint64_t *)(resource_manager + 0x60) = *resource_ptr;
+  *(uint64_t *)(resource_manager + 0x68) = init_result;
   
   // 解析资源参数
   data_ptr = (longlong *)parse_rendering_data_block(&temp_address, &temp_buffer_1, 0x11);
@@ -651,20 +651,20 @@ undefined8 initialize_rendering_resource_manager(longlong resource_manager, long
     calc_offset_2 = calc_offset_2 + 1;
   } while ((longlong)calc_offset_2 < 1);
   
-  temp_address = CONCAT44(temp_buffer_1._4_4_, (undefined4)temp_buffer_1);
+  temp_address = CONCAT44(temp_buffer_1._4_4_, (int32_t)temp_buffer_1);
   temp_buffer_2 = CONCAT44(temp_buffer_4, temp_buffer_3);
-  temp_buffer_1._0_4_ = (undefined4)temp_buffer_5;
+  temp_buffer_1._0_4_ = (int32_t)temp_buffer_5;
   temp_buffer_1._4_4_ = temp_buffer_5._4_4_;
   temp_buffer_3 = temp_value_1;
   temp_buffer_4 = temp_value_2;
   
   // 处理资源块
-  resource_ptr = (undefined8 *)process_rendering_resource_block(temp_buffer_6, &temp_buffer_1, &temp_address);
+  resource_ptr = (uint64_t *)process_rendering_resource_block(temp_buffer_6, &temp_buffer_1, &temp_address);
   offset_2 = temp_array_3[0];
   offset_1 = temp_array_1[2];
   init_result = resource_ptr[1];
-  *(undefined8 *)(resource_manager + 0x70) = *resource_ptr;
-  *(undefined8 *)(resource_manager + 0x78) = init_result;
+  *(uint64_t *)(resource_manager + 0x70) = *resource_ptr;
+  *(uint64_t *)(resource_manager + 0x78) = init_result;
   
   if (temp_array_1[0] != 2) {
     return 0;
@@ -691,10 +691,10 @@ undefined8 initialize_rendering_resource_manager(longlong resource_manager, long
     }
     
     // 设置资源管理器地址
-    resource_ptr = (undefined8 *)FUN_18028b000(temp_buffer_6, &temp_buffer_5);
+    resource_ptr = (uint64_t *)FUN_18028b000(temp_buffer_6, &temp_buffer_5);
     init_result = resource_ptr[1];
-    *(undefined8 *)(resource_manager + 0x80) = *resource_ptr;
-    *(undefined8 *)(resource_manager + 0x88) = init_result;
+    *(uint64_t *)(resource_manager + 0x80) = *resource_ptr;
+    *(uint64_t *)(resource_manager + 0x88) = init_result;
     
     temp_address = 0;
     temp_buffer_2 = 0;
@@ -720,10 +720,10 @@ undefined8 initialize_rendering_resource_manager(longlong resource_manager, long
     }
   }
   
-  resource_ptr = (undefined8 *)FUN_18028b000(temp_buffer_6, &temp_buffer_5);
+  resource_ptr = (uint64_t *)FUN_18028b000(temp_buffer_6, &temp_buffer_5);
   init_result = resource_ptr[1];
-  *(undefined8 *)(resource_manager + 0x50) = *resource_ptr;
-  *(undefined8 *)(resource_manager + 0x58) = init_result;
+  *(uint64_t *)(resource_manager + 0x50) = *resource_ptr;
+  *(uint64_t *)(resource_manager + 0x58) = init_result;
   
 process_resource_data:
   temp_value = find_rendering_data_identifier(data_address, stack_value, &UNK_180a16f10);
@@ -739,7 +739,7 @@ process_resource_data:
   // 读取格式信息
   format_byte_1 = *(byte *)((ulonglong)resource_id + 2 + data_address);
   format_byte_2 = *(byte *)((ulonglong)resource_id + 3 + data_address);
-  *(undefined4 *)(resource_manager + 0x34) = 0;
+  *(int32_t *)(resource_manager + 0x34) = 0;
   offset_1 = (uint)format_byte_1 * 0x100 + (uint)format_byte_2;
   
   if (offset_1 != 0) {
@@ -940,7 +940,7 @@ uint get_rendering_data_value(longlong resource_manager, uint data_offset)
  * @return 更新后的顶点索引
  */
 int add_rendering_vertex_data(longlong vertex_data, int vertex_index, int vertex_type, int vertex_count,
-                              undefined2 coord_x, undefined2 coord_y, int coord_z, int coord_w,
+                              int16_t coord_x, int16_t coord_y, int coord_z, int coord_w,
                               int coord_u, int coord_v)
 {
   longlong data_offset;
@@ -950,33 +950,33 @@ int add_rendering_vertex_data(longlong vertex_data, int vertex_index, int vertex
       data_offset = (longlong)vertex_index * 0xe;
       vertex_index = vertex_index + 1;
       *(short *)(data_offset + vertex_data) = (short)(coord_z + coord_v >> 1);
-      *(undefined1 *)(data_offset + 0xc + vertex_data) = 3;
-      *(undefined2 *)(data_offset + 4 + vertex_data) = (undefined2)coord_v;
-      *(undefined2 *)(data_offset + 6 + vertex_data) = (undefined2)coord_w;
+      *(int8_t *)(data_offset + 0xc + vertex_data) = 3;
+      *(int16_t *)(data_offset + 4 + vertex_data) = (int16_t)coord_v;
+      *(int16_t *)(data_offset + 6 + vertex_data) = (int16_t)coord_w;
       *(short *)(data_offset + 2 + vertex_data) = (short)(coord_u + coord_w >> 1);
     }
     data_offset = (longlong)vertex_index * 0xe;
-    *(undefined2 *)(data_offset + vertex_data) = coord_x;
-    *(undefined2 *)(data_offset + 2 + vertex_data) = coord_y;
+    *(int16_t *)(data_offset + vertex_data) = coord_x;
+    *(int16_t *)(data_offset + 2 + vertex_data) = coord_y;
     *(short *)(data_offset + 4 + vertex_data) = (short)coord_z;
-    *(undefined1 *)(data_offset + 0xc + vertex_data) = 3;
+    *(int8_t *)(data_offset + 0xc + vertex_data) = 3;
     *(short *)(data_offset + 6 + vertex_data) = (short)coord_u;
     return vertex_index + 1;
   }
   
   data_offset = (longlong)vertex_index * 0xe;
-  *(undefined2 *)(data_offset + vertex_data) = coord_x;
-  *(undefined2 *)(data_offset + 2 + vertex_data) = coord_y;
+  *(int16_t *)(data_offset + vertex_data) = coord_x;
+  *(int16_t *)(data_offset + 2 + vertex_data) = coord_y;
   
   if (vertex_type != 0) {
-    *(undefined2 *)(data_offset + 4 + vertex_data) = (undefined2)coord_v;
-    *(undefined2 *)(data_offset + 6 + vertex_data) = (undefined2)coord_w;
-    *(undefined1 *)(data_offset + 0xc + vertex_data) = 3;
+    *(int16_t *)(data_offset + 4 + vertex_data) = (int16_t)coord_v;
+    *(int16_t *)(data_offset + 6 + vertex_data) = (int16_t)coord_w;
+    *(int8_t *)(data_offset + 0xc + vertex_data) = 3;
     return vertex_index + 1;
   }
   
-  *(undefined1 *)(data_offset + 0xc + vertex_data) = 2;
-  *(undefined4 *)(data_offset + 4 + vertex_data) = 0;
+  *(int8_t *)(data_offset + 0xc + vertex_data) = 2;
+  *(int32_t *)(data_offset + 4 + vertex_data) = 0;
   return vertex_index + 1;
 }
 
@@ -995,9 +995,9 @@ int add_rendering_vertex_data(longlong vertex_data, int vertex_index, int vertex
  * @param param_11 V坐标
  * @return 处理后的顶点索引
  */
-int process_rendering_vertex_batch(longlong vertex_data, undefined8 batch_params, int vertex_type, int vertex_count,
-                                   undefined8 process_params, undefined2 coord_x, undefined2 coord_y,
-                                   int coord_z, undefined8 process_flag, int coord_u, int coord_v)
+int process_rendering_vertex_batch(longlong vertex_data, uint64_t batch_params, int vertex_type, int vertex_count,
+                                   uint64_t process_params, int16_t coord_x, int16_t coord_y,
+                                   int coord_z, uint64_t process_flag, int coord_u, int coord_v)
 {
   longlong data_offset;
   ulonglong batch_offset;
@@ -1007,17 +1007,17 @@ int process_rendering_vertex_batch(longlong vertex_data, undefined8 batch_params
     data_offset = batch_offset * 0xe;
     batch_offset = (ulonglong)((int)batch_offset + 1);
     *(short *)(data_offset + vertex_data) = (short)(coord_z + coord_v >> 1);
-    *(undefined1 *)(data_offset + 0xc + vertex_data) = 3;
+    *(int8_t *)(data_offset + 0xc + vertex_data) = 3;
     *(short *)(data_offset + 4 + flag_offset) = (short)coord_v;
     *(short *)(data_offset + 6 + flag_offset) = (short)coord_v;
     *(short *)(data_offset + 2 + flag_offset) = (short)(coord_z + coord_v >> 1);
   }
   
   data_offset = (longlong)(int)batch_offset * 0xe;
-  *(undefined2 *)(data_offset + flag_offset) = coord_x;
-  *(undefined2 *)(data_offset + 2 + flag_offset) = coord_y;
+  *(int16_t *)(data_offset + flag_offset) = coord_x;
+  *(int16_t *)(data_offset + 2 + flag_offset) = coord_y;
   *(short *)(data_offset + 4 + flag_offset) = (short)coord_z;
-  *(undefined1 *)(data_offset + 0xc + flag_offset) = 3;
+  *(int8_t *)(data_offset + 0xc + flag_offset) = 3;
   *(short *)(data_offset + 6 + flag_offset) = (short)coord_u;
   return (int)batch_offset + 1;
 }
@@ -1037,28 +1037,28 @@ int process_rendering_vertex_batch(longlong vertex_data, undefined8 batch_params
  * @param param_11 V坐标
  * @return 处理后的顶点索引
  */
-int process_rendering_vertex_extension(undefined8 ext_params, undefined8 vertex_data, int vertex_type,
-                                       undefined8 ext_data, undefined8 process_params, undefined2 coord_x,
-                                       undefined2 coord_y, undefined8 ext_flag, undefined8 ext_data_2,
-                                       undefined2 coord_u, undefined2 coord_v)
+int process_rendering_vertex_extension(uint64_t ext_params, uint64_t vertex_data, int vertex_type,
+                                       uint64_t ext_data, uint64_t process_params, int16_t coord_x,
+                                       int16_t coord_y, uint64_t ext_flag, uint64_t ext_data_2,
+                                       int16_t coord_u, int16_t coord_v)
 {
   longlong data_offset;
   longlong ext_offset;
   longlong flag_offset;
   
   data_offset = ext_offset * 0xe;
-  *(undefined2 *)(data_offset + flag_offset) = coord_x;
-  *(undefined2 *)(data_offset + 2 + flag_offset) = coord_y;
+  *(int16_t *)(data_offset + flag_offset) = coord_x;
+  *(int16_t *)(data_offset + 2 + flag_offset) = coord_y;
   
   if (vertex_type != 0) {
-    *(undefined2 *)(data_offset + 4 + flag_offset) = coord_u;
-    *(undefined2 *)(data_offset + 6 + flag_offset) = coord_v;
-    *(undefined1 *)(data_offset + 0xc + flag_offset) = 3;
+    *(int16_t *)(data_offset + 4 + flag_offset) = coord_u;
+    *(int16_t *)(data_offset + 6 + flag_offset) = coord_v;
+    *(int8_t *)(data_offset + 0xc + flag_offset) = 3;
     return (int)ext_offset + 1;
   }
   
-  *(undefined1 *)(data_offset + 0xc + flag_offset) = 2;
-  *(undefined4 *)(data_offset + 4 + flag_offset) = 0;
+  *(int8_t *)(data_offset + 0xc + flag_offset) = 2;
+  *(int32_t *)(data_offset + 4 + flag_offset) = 0;
   return (int)ext_offset + 1;
 }
 
@@ -1069,7 +1069,7 @@ int process_rendering_vertex_extension(undefined8 ext_params, undefined8 vertex_
  * @param param_3 输出参数指针
  * @return 处理后的矩阵大小
  */
-ulonglong process_rendering_transformation_matrix(longlong matrix_ptr, undefined8 matrix_params, ulonglong *output_params)
+ulonglong process_rendering_transformation_matrix(longlong matrix_ptr, uint64_t matrix_params, ulonglong *output_params)
 {
   byte *data_ptr_1;
   byte *data_ptr_2;
@@ -1078,7 +1078,7 @@ ulonglong process_rendering_transformation_matrix(longlong matrix_ptr, undefined
   byte transform_flag;
   short matrix_short;
   int matrix_int;
-  undefined4 temp_param;
+  int32_t temp_param;
   uint temp_value;
   int current_pos;
   ulonglong matrix_size;
@@ -1092,23 +1092,23 @@ ulonglong process_rendering_transformation_matrix(longlong matrix_ptr, undefined
   byte *temp_byte_ptr;
   short *short_ptr;
   byte *byte_ptr_2;
-  undefined4 temp_param_2;
+  int32_t temp_param_2;
   ulonglong temp_offset_5;
   byte temp_byte_2;
-  undefined4 temp_param_3;
+  int32_t temp_param_3;
   ulonglong temp_offset_6;
   uint temp_value_2;
   uint temp_value_3;
   byte *byte_ptr_3;
   longlong temp_long;
-  undefined2 temp_ushort;
-  undefined2 *ushort_ptr;
+  int16_t temp_ushort;
+  int16_t *ushort_ptr;
   ulonglong temp_offset_7;
   longlong temp_long_2;
-  undefined4 temp_param_4;
+  int32_t temp_param_4;
   ulonglong temp_offset_8;
   longlong temp_long_3;
-  undefined4 temp_param_5;
+  int32_t temp_param_5;
   uint temp_value_4;
   ulonglong temp_offset_9;
   float float_val_1;
@@ -1410,7 +1410,7 @@ set_matrix_size:
       
       // 处理顶点数据
       if (temp_offset_3 != 0) {
-        ushort_ptr = (undefined2 *)(temp_long_2 * 0xe + temp_offset_1);
+        ushort_ptr = (int16_t *)(temp_long_2 * 0xe + temp_offset_1);
         temp_offset_4 = temp_offset_2;
         temp_offset_7 = temp_offset_3;
         
@@ -1440,7 +1440,7 @@ set_matrix_size:
       
       // 继续处理顶点数据
       if (temp_offset_3 != 0) {
-        ushort_ptr = (undefined2 *)(temp_offset_1 + 2 + temp_long_2 * 0xe);
+        ushort_ptr = (int16_t *)(temp_offset_1 + 2 + temp_long_2 * 0xe);
         temp_offset_4 = temp_offset_2;
         temp_offset_7 = temp_offset_3;
         
@@ -1531,17 +1531,17 @@ set_matrix_size:
               }
             }
             
-            ushort_ptr = (undefined2 *)((longlong)matrix_int * 0xe + temp_offset_1);
-            *(undefined1 *)(ushort_ptr + 6) = 1;
+            ushort_ptr = (int16_t *)((longlong)matrix_int * 0xe + temp_offset_1);
+            *(int8_t *)(ushort_ptr + 6) = 1;
             *ushort_ptr = (short)temp_ulong;
             ushort_ptr[1] = (short)temp_offset_8;
-            *(undefined4 *)(ushort_ptr + 2) = 0;
+            *(int32_t *)(ushort_ptr + 2) = 0;
             stack_value_4 = (uint)*stack_byte_ptr * 0x100 + stack_byte_ptr[1] + 1;
             stack_byte_ptr = stack_byte_ptr + 2;
             temp_offset_6 = temp_ulong;
           }
           else {
-            temp_ushort = (undefined2)temp_offset_9;
+            temp_ushort = (int16_t)temp_offset_9;
             current_pos = (int)temp_offset_5;
             
             if ((temp_byte & 1) != 0) {
@@ -1555,16 +1555,16 @@ set_matrix_size:
               *(short *)(temp_long + 2 + temp_offset_1) = matrix_short;
               *(short *)(temp_long + 4 + temp_offset_1) = (short)temp_offset_3;
               temp_offset_3 = (ulonglong)stack_value_2;
-              *(undefined2 *)(temp_long + 6 + temp_offset_1) = temp_ushort;
+              *(int16_t *)(temp_long + 6 + temp_offset_1) = temp_ushort;
               goto next_vertex;
             }
             
             if (current_pos != 0) {
               temp_offset_4 = (ulonglong)(matrix_int + 1);
-              ushort_ptr = (undefined2 *)((longlong)matrix_int * 0xe + temp_offset_1);
+              ushort_ptr = (int16_t *)((longlong)matrix_int * 0xe + temp_offset_1);
               *ushort_ptr = (short)((int)((int)temp_offset_3 + temp_value_2) >> 1);
               ushort_ptr[1] = (short)((int)((int)temp_offset_9 + temp_value_3) >> 1);
-              *(undefined1 *)(ushort_ptr + 6) = 3;
+              *(int8_t *)(ushort_ptr + 6) = 3;
               ushort_ptr[2] = (short)temp_offset_3;
               ushort_ptr[3] = temp_ushort;
               temp_value = stack_value_1;
@@ -1577,11 +1577,11 @@ set_matrix_size:
             stack_value_6 = temp_value_3;
           }
           
-          temp_param_3 = (undefined4)temp_offset_6;
-          temp_param_4 = (undefined4)temp_offset_8;
-          temp_param_5 = (undefined4)temp_offset_3;
-          temp_param = (undefined4)temp_offset_9;
-          temp_param_2 = (undefined4)temp_offset_5;
+          temp_param_3 = (int32_t)temp_offset_6;
+          temp_param_4 = (int32_t)temp_offset_8;
+          temp_param_5 = (int32_t)temp_offset_3;
+          temp_param = (int32_t)temp_offset_9;
+          temp_param_2 = (int32_t)temp_offset_5;
           stack_value_1 = stack_value_1 + 1;
           temp_offset_2 = (ulonglong)stack_value_1;
           temp_ulong = temp_ulong + 1;

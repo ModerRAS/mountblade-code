@@ -341,7 +341,7 @@ struct memory_info {
  * @param param_2 操作参数
  * @return void
  */
-void SystemCoreProcessor(undefined8 param_1, undefined8 param_2)
+void SystemCoreProcessor(uint64_t param_1, uint64_t param_2)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     operation_data_ptr_t operation_data = (operation_data_ptr_t)param_2;
@@ -533,7 +533,7 @@ void SystemEmergencyExit(void)
  * @param param_2 操作数据
  * @return void
  */
-void SystemOperationHandler(longlong param_1, undefined8 *param_2)
+void SystemOperationHandler(longlong param_1, uint64_t *param_2)
 {
     system_context_t* context = (system_context_t*)param_1;
     operation_data_ptr_t operation_data = (operation_data_ptr_t)param_2;
@@ -592,9 +592,9 @@ void SystemOperationHandler(longlong param_1, undefined8 *param_2)
  * 主要功能：验证系统状态，检查系统完整性
  * 
  * @param param_1 系统对象指针
- * @return undefined8 验证结果
+ * @return uint64_t 验证结果
  */
-undefined8 SystemValidationProcessor(longlong *param_1)
+uint64_t SystemValidationProcessor(longlong *param_1)
 {
     system_object_ptr_t system_object = (system_object_ptr_t)param_1;
     error_code_t error_code;
@@ -644,9 +644,9 @@ undefined8 SystemValidationProcessor(longlong *param_1)
  * 主要功能：检查系统配置，验证配置有效性
  * 
  * @param param_1 系统参数
- * @return undefined8 检查结果
+ * @return uint64_t 检查结果
  */
-undefined8 SystemConfigurationChecker(longlong param_1)
+uint64_t SystemConfigurationChecker(longlong param_1)
 {
     system_parameters_t* parameters = (system_parameters_t*)param_1;
     error_code_t error_code;
@@ -692,9 +692,9 @@ undefined8 SystemConfigurationChecker(longlong param_1)
  * @param param_1 事件参数
  * @param param_2 事件类型
  * @param param_3 事件数据
- * @return undefined8 分发结果
+ * @return uint64_t 分发结果
  */
-undefined8 SystemEventDispatcher(undefined8 param_1, int param_2, undefined8 *param_3)
+uint64_t SystemEventDispatcher(uint64_t param_1, int param_2, uint64_t *param_3)
 {
     event_parameters_t* event_params = (event_parameters_t*)param_1;
     event_type_t event_type = (event_type_t)param_2;
@@ -728,9 +728,9 @@ undefined8 SystemEventDispatcher(undefined8 param_1, int param_2, undefined8 *pa
  * 主要功能：清理系统资源，释放内存
  * 
  * @param param_1 系统句柄
- * @return undefined8 清理结果
+ * @return uint64_t 清理结果
  */
-undefined8 SystemResourceCleaner(longlong param_1)
+uint64_t SystemResourceCleaner(longlong param_1)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     error_code_t error_code;
@@ -767,9 +767,9 @@ undefined8 SystemResourceCleaner(longlong param_1)
  * 主要功能：管理系统内存分配和释放
  * 
  * @param param_1 系统句柄
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  */
-undefined8 SystemMemoryManager(longlong param_1)
+uint64_t SystemMemoryManager(longlong param_1)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     error_code_t error_code;
@@ -806,9 +806,9 @@ undefined8 SystemMemoryManager(longlong param_1)
  * 
  * @param param_1 系统句柄
  * @param param_2 参数值
- * @return undefined8 验证结果
+ * @return uint64_t 验证结果
  */
-undefined8 SystemParameterValidator(longlong param_1, longlong param_2)
+uint64_t SystemParameterValidator(longlong param_1, longlong param_2)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     parameter_value_t parameter_value = (parameter_value_t)param_2;
@@ -840,9 +840,9 @@ undefined8 SystemParameterValidator(longlong param_1, longlong param_2)
  * 
  * @param param_1 系统句柄
  * @param param_2 回调参数
- * @return undefined8 处理结果
+ * @return uint64_t 处理结果
  */
-undefined8 SystemCallbackProcessor(longlong param_1, undefined8 param_2)
+uint64_t SystemCallbackProcessor(longlong param_1, uint64_t param_2)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     callback_params_t* callback_params = (callback_params_t*)param_2;
@@ -880,9 +880,9 @@ undefined8 SystemCallbackProcessor(longlong param_1, undefined8 param_2)
  * @param param_1 系统句柄
  * @param param_2 状态参数
  * @param param_3 控制参数
- * @return undefined8 控制结果
+ * @return uint64_t 控制结果
  */
-undefined8 SystemStateController(longlong param_1, undefined8 param_2, undefined8 param_3)
+uint64_t SystemStateController(longlong param_1, uint64_t param_2, uint64_t param_3)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     state_params_t* state_params = (state_params_t*)param_2;
@@ -923,7 +923,7 @@ undefined8 SystemStateController(longlong param_1, undefined8 param_2, undefined
  * @param param_2 操作数据
  * @return void
  */
-void SystemMainProcessor(longlong param_1, undefined8 *param_2)
+void SystemMainProcessor(longlong param_1, uint64_t *param_2)
 {
     system_handle_t system_handle = (system_handle_t)param_1;
     operation_data_ptr_t operation_data = (operation_data_ptr_t)param_2;

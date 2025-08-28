@@ -52,14 +52,14 @@ void cleanup_render_resources_internal(longlong render_context)
         release_render_memory(resource_handle);
       }
       // 重置资源句柄
-      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
     resource_count = *(ulonglong *)(render_context + RENDER_RESOURCE_COUNT_OFFSET);
   }
   
   // 重置渲染状态
-  *(undefined8 *)(render_context + RENDER_STATUS_OFFSET) = 0;
+  *(uint64_t *)(render_context + RENDER_STATUS_OFFSET) = 0;
   
   // 检查是否需要额外清理
   if ((1 < resource_count) && (*(longlong *)(render_context + RENDER_RESOURCE_ARRAY_OFFSET) != 0)) {
@@ -101,14 +101,14 @@ void cleanup_render_resources_extended(longlong render_context)
         release_render_memory(resource_handle);
       }
       // 重置资源句柄
-      *(undefined8 *)(resource_array_ptr + resource_index * 8) = 0;
+      *(uint64_t *)(resource_array_ptr + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
     resource_count = *(ulonglong *)(render_context + RENDER_RESOURCE_COUNT_OFFSET);
   }
   
   // 重置渲染状态
-  *(undefined8 *)(render_context + RENDER_STATUS_OFFSET) = 0;
+  *(uint64_t *)(render_context + RENDER_STATUS_OFFSET) = 0;
   
   // 检查是否需要额外清理
   if ((1 < resource_count) && (*(longlong *)(render_context + RENDER_RESOURCE_ARRAY_OFFSET) != 0)) {

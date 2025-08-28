@@ -19,7 +19,7 @@ float * FUN_1801503e0(float *param_1,float *param_2)
   float fVar3;
   float fVar4;
   float fVar5;
-  undefined1 auVar6 [16];
+  int8_t auVar6 [16];
   
   fVar1 = *param_1;
   fVar2 = param_1[1];

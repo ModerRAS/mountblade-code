@@ -2,8 +2,8 @@
 
 // 99_part_09_part025.c - 3 个函数
 
-// 函数: void FUN_1805c931e(undefined8 param_1,int param_2,int param_3,int param_4)
-void FUN_1805c931e(undefined8 param_1,int param_2,int param_3,int param_4)
+// 函数: void FUN_1805c931e(uint64_t param_1,int param_2,int param_3,int param_4)
+void FUN_1805c931e(uint64_t param_1,int param_2,int param_3,int param_4)
 
 {
   int iVar1;
@@ -43,7 +43,7 @@ void FUN_1805c931e(undefined8 param_1,int param_2,int param_3,int param_4)
   }
   else {
 LAB_1805c937e:
-    *(undefined4 *)(unaff_RBX + 0x436) = 0xffffffff;
+    *(int32_t *)(unaff_RBX + 0x436) = 0xffffffff;
     iVar5 = -2;
     if (param_3 != 4) {
       iVar5 = param_3;
@@ -57,7 +57,7 @@ LAB_1805c937e:
               4 & 1;
       if (param_4 != *(int *)(lVar10 * 0x1f8 + 0xf8 + *(longlong *)(*unaff_RBX + 0x8f8))) {
         *(int *)(unaff_RBX + 0x436) = param_4;
-        *(undefined4 *)(unaff_RBX + 0x277) = 0;
+        *(int32_t *)(unaff_RBX + 0x277) = 0;
       }
     }
   }
@@ -128,7 +128,7 @@ LAB_1805c9451:
 LAB_1805c9594:
   if (*(int *)((longlong)unaff_RBX + 0x215c) != param_2) {
     FUN_180508010();
-    *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+    *(int32_t *)((longlong)unaff_RBX + 0x178c) = 0;
     if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
       *(uint *)((longlong)unaff_RBX + 0x158c) =
            *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
@@ -183,7 +183,7 @@ void FUN_1805c9504(void)
   }
   if (*(int *)((longlong)unaff_RBX + 0x215c) != unaff_R15D) {
     FUN_180508010();
-    *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+    *(int32_t *)((longlong)unaff_RBX + 0x178c) = 0;
     if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
       *(uint *)((longlong)unaff_RBX + 0x158c) =
            *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
@@ -211,7 +211,7 @@ void FUN_1805c957a(void)
   }
   if (*(int *)((longlong)unaff_RBX + 0x215c) != unaff_R15D) {
     FUN_180508010();
-    *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+    *(int32_t *)((longlong)unaff_RBX + 0x178c) = 0;
     if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
       *(uint *)((longlong)unaff_RBX + 0x158c) =
            *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;

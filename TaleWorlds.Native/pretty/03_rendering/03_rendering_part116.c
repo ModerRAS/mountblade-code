@@ -319,7 +319,7 @@ void rendering_system_object_initializer(longlong param_1) {
  * 本函数为简化实现，原始代码包含复杂的创建逻辑。
  * 原始代码中实现了完整的对象创建、函数表设置、数据初始化等功能。
  */
-undefined8 *rendering_system_object_creator(undefined8 *param_1) {
+uint64_t *rendering_system_object_creator(uint64_t *param_1) {
     // 参数有效性检查
     if (param_1 == NULL) {
         return NULL;
@@ -446,7 +446,7 @@ bool rendering_system_object_comparator(longlong param_1, longlong param_2) {
  * 本函数为简化实现，原始代码包含复杂的数据处理逻辑。
  * 原始代码中实现了完整的数据处理、验证、优化等功能。
  */
-undefined1 rendering_system_data_processor(undefined8 param_1, undefined8 param_2, longlong param_3, longlong param_4) {
+int8_t rendering_system_data_processor(uint64_t param_1, uint64_t param_2, longlong param_3, longlong param_4) {
     // 参数有效性检查
     if (param_3 == 0) {
         return 0;
@@ -477,7 +477,7 @@ undefined1 rendering_system_data_processor(undefined8 param_1, undefined8 param_
  * 本函数为简化实现，原始代码可能包含特定的初始化逻辑。
  * 原始代码中可能实现了特定的初始化或清理功能。
  */
-undefined1 rendering_system_empty_processor(void) {
+int8_t rendering_system_empty_processor(void) {
     // 执行空操作处理
     // 原始代码可能包含特定的初始化或清理逻辑
     
@@ -513,7 +513,7 @@ undefined1 rendering_system_empty_processor(void) {
  * 本函数为简化实现，原始代码包含复杂的序列化逻辑。
  * 原始代码中实现了完整的高级序列化、缓冲区管理、数据验证等功能。
  */
-void rendering_system_advanced_serializer(longlong param_1, longlong *param_2, undefined8 param_3, undefined8 param_4) {
+void rendering_system_advanced_serializer(longlong param_1, longlong *param_2, uint64_t param_3, uint64_t param_4) {
     // 参数有效性检查
     if (param_1 == NULL || param_2 == NULL) {
         return;

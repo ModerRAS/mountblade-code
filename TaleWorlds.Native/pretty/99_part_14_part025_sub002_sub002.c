@@ -203,15 +203,15 @@ typedef struct {
  * - 防止竞态条件和死锁
  * - 实现了原子操作和锁机制
  */
-void LinkedListNodeInitializer(undefined8 param_1)
+void LinkedListNodeInitializer(uint64_t param_1)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     
     // 分配内存块用于链表节点
-    puVar1 = (undefined8 *)SystemCallWrapper(MEMORY_BLOCK_SIZE_16);
+    puVar1 = (uint64_t *)SystemCallWrapper(MEMORY_BLOCK_SIZE_16);
     
     // 检查内存分配是否成功
-    if (puVar1 != (undefined8 *)0x0) {
+    if (puVar1 != (uint64_t *)0x0) {
         // 初始化节点数据
         *puVar1 = _DAT_180c82800;        // 设置前驱节点指针
         puVar1[1] = param_1;             // 设置节点数据

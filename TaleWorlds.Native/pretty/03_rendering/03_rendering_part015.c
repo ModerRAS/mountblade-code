@@ -8,7 +8,7 @@ void render_object_matrix_transform(longlong render_context)
 
 {
   uint *buffer_lock;                // 缓冲区锁指针
-  undefined8 *buffer_data;          // 缓冲区数据指针
+  uint64_t *buffer_data;          // 缓冲区数据指针
   float projection_matrix[16];      // 投影矩阵
   float view_matrix[16];            // 视图矩阵
   float model_matrix[16];           // 模型矩阵
@@ -21,13 +21,13 @@ void render_object_matrix_transform(longlong render_context)
   float transformed_vertices[8];    // 变换后的顶点
   float screen_coords[2];           // 屏幕坐标
   float depth_values[2];            // 深度值
-  undefined8 matrix_data_1;         // 矩阵数据1
-  undefined8 matrix_data_2;         // 矩阵数据2
-  undefined4 shader_id;             // 着色器ID
+  uint64_t matrix_data_1;         // 矩阵数据1
+  uint64_t matrix_data_2;         // 矩阵数据2
+  int32_t shader_id;             // 着色器ID
   longlong current_renderer;        // 当前渲染器
   float *render_matrix;             // 渲染矩阵指针
   longlong render_state;            // 渲染状态
-  undefined8 *render_context;       // 渲染上下文
+  uint64_t *render_context;       // 渲染上下文
   float *view_matrix_ptr;           // 视图矩阵指针
   float *object_matrix;             // 对象矩阵
   longlong render_slot_index;       // 渲染槽索引
@@ -42,15 +42,15 @@ void render_object_matrix_transform(longlong render_context)
   float clip_coords[8];             // 裁剪坐标
   float screen_bounds[4];           // 屏幕边界
   float depth_bounds[2];            // 深度边界
-  undefined4 frustum_plane_1[4];    // 视锥体平面1
+  int32_t frustum_plane_1[4];    // 视锥体平面1
   float intersection_result_1;      // 相交结果1
-  undefined4 frustum_plane_2[4];    // 视锥体平面2
+  int32_t frustum_plane_2[4];    // 视锥体平面2
   float intersection_result_2;      // 相交结果2
-  undefined4 frustum_plane_3[4];    // 视锥体平面3
+  int32_t frustum_plane_3[4];    // 视锥体平面3
   float intersection_result_3;      // 相交结果3
-  undefined4 frustum_plane_4[4];    // 视锥体平面4
-  undefined4 frustum_plane_5[4];    // 视锥体平面5
-  undefined4 frustum_plane_6[4];    // 视锥体平面6
+  int32_t frustum_plane_4[4];    // 视锥体平面4
+  int32_t frustum_plane_5[4];    // 视锥体平面5
+  int32_t frustum_plane_6[4];    // 视锥体平面6
   float viewport_x;                 // 视口X坐标
   float viewport_y;                 // 视口Y坐标
   float viewport_width;             // 视口宽度
@@ -59,21 +59,21 @@ void render_object_matrix_transform(longlong render_context)
   float clip_space_y;               // 裁剪空间Y
   float clip_space_z;               // 裁剪空间Z
   float clip_space_w;               // 裁剪空间W
-  undefined4 render_target_1;       // 渲染目标1
-  undefined4 render_target_2;       // 渲染目标2
-  undefined8 render_data_1;         // 渲染数据1
-  undefined8 render_data_2;         // 渲染数据2
+  int32_t render_target_1;       // 渲染目标1
+  int32_t render_target_2;       // 渲染目标2
+  uint64_t render_data_1;         // 渲染数据1
+  uint64_t render_data_2;         // 渲染数据2
   float render_depth;               // 渲染深度
   float render_depth_far;           // 远平面深度
   float depth_range;                // 深度范围
-  undefined4 cull_mode;             // 剔除模式
-  undefined4 blend_mode;            // 混合模式
-  undefined4 stencil_mode;          // 模板模式
+  int32_t cull_mode;             // 剔除模式
+  int32_t blend_mode;            // 混合模式
+  int32_t stencil_mode;          // 模板模式
   float screen_x;                   // 屏幕X坐标
   float screen_y;                   // 屏幕Y坐标
   float screen_depth;               // 屏幕深度
   float object_depth;               // 对象深度
-  undefined4 visibility_flag;      // 可见性标志
+  int32_t visibility_flag;      // 可见性标志
   
   // 保存视锥体平面数据到渲染参数
   *(float *)(render_params + -0x58) = frustum_plane_1[0];
@@ -171,7 +171,7 @@ void render_object_matrix_transform(longlong render_context)
     *puVar1 = *puVar1 | 1;
     UNLOCK();
   } while ((uVar8 & 1) != 0);
-  puVar2 = (undefined8 *)(lVar23 + 4 + lVar9);
+  puVar2 = (uint64_t *)(lVar23 + 4 + lVar9);
   uVar19 = *puVar2;
   uVar20 = puVar2[1];
   pfVar22 = (float *)(lVar23 + 0x14 + lVar9);
@@ -192,7 +192,7 @@ void render_object_matrix_transform(longlong render_context)
   *(float *)((longlong)unaff_RBP + -0xc) = fVar26;
   *(float *)(unaff_RBP + -1) = fVar31;
   *(float *)((longlong)unaff_RBP + -4) = fVar3;
-  *(undefined4 *)(lVar23 + lVar9) = 0;
+  *(int32_t *)(lVar23 + lVar9) = 0;
   uStack000000000000003c = 0x7f7fffff;
   fStack0000000000000034 = fStack0000000000000034 - fVar26;
   in_stack_00000038 = in_stack_00000038 - fVar31;
@@ -213,7 +213,7 @@ void render_object_matrix_transform(longlong render_context)
     *puVar1 = *puVar1 | 1;
     UNLOCK();
   } while ((uVar8 & 1) != 0);
-  puVar2 = (undefined8 *)(lVar23 + 4 + lVar9);
+  puVar2 = (uint64_t *)(lVar23 + 4 + lVar9);
   uVar19 = *puVar2;
   uVar20 = puVar2[1];
   pfVar22 = (float *)(lVar23 + 0x14 + lVar9);
@@ -234,7 +234,7 @@ void render_object_matrix_transform(longlong render_context)
   *(float *)((longlong)unaff_RBP + 0x14) = fVar26;
   *(float *)(unaff_RBP + 3) = in_stack_00000058;
   *(float *)((longlong)unaff_RBP + 0x1c) = fVar31;
-  *(undefined4 *)(lVar23 + lVar9) = 0;
+  *(int32_t *)(lVar23 + lVar9) = 0;
   uStack000000000000005c = 0x7f7fffff;
   fStack0000000000000054 = fStack0000000000000064 - fVar26;
   in_stack_00000058 = in_stack_00000068 - in_stack_00000058;
@@ -247,21 +247,21 @@ void render_object_matrix_transform(longlong render_context)
       (fStack0000000000000028 < *(float *)(unaff_RBX + 0x22c) ||
        fStack0000000000000028 == *(float *)(unaff_RBX + 0x22c))))) {
     if (*(int *)(unaff_RBX + 0x318) == -1) {
-      *(undefined4 *)(unaff_RBX + 0x314) = *(undefined4 *)(unaff_RBP + 0x26);
+      *(int32_t *)(unaff_RBX + 0x314) = *(int32_t *)(unaff_RBP + 0x26);
       uVar21 = FUN_1801b9a40(unaff_R14 + 0x1218);
-      *(undefined4 *)(unaff_RBX + 0x318) = uVar21;
+      *(int32_t *)(unaff_RBX + 0x318) = uVar21;
       LOCK();
-      *(undefined4 *)(unaff_RBX + 0x310) = 0;
+      *(int32_t *)(unaff_RBX + 0x310) = 0;
       UNLOCK();
     }
-    *(undefined4 *)(unaff_RBP + 6) = uStack0000000000000070;
-    *(undefined4 *)((longlong)unaff_RBP + 0x34) = uStack0000000000000074;
-    *(undefined4 *)(unaff_RBP + 7) = in_stack_00000078;
+    *(int32_t *)(unaff_RBP + 6) = uStack0000000000000070;
+    *(int32_t *)((longlong)unaff_RBP + 0x34) = uStack0000000000000074;
+    *(int32_t *)(unaff_RBP + 7) = in_stack_00000078;
     *(float *)((longlong)unaff_RBP + 0x3c) = (float)*(int *)(unaff_RBP + 0x27);
     *(float *)(unaff_RBP + 4) = fStackX_20;
     *(float *)((longlong)unaff_RBP + 0x24) = fStackX_24;
     *(float *)(unaff_RBP + 5) = fStack0000000000000028;
-    *(undefined4 *)((longlong)unaff_RBP + 0x2c) = 0x3e19999a;
+    *(int32_t *)((longlong)unaff_RBP + 0x2c) = 0x3e19999a;
     FUN_18020a7b0(unaff_RBX + 0x308,uStack0000000000000074,unaff_RBP + 4);
   }
                     // WARNING: Subroutine does not return
@@ -272,37 +272,37 @@ void render_object_matrix_transform(longlong render_context)
 
 
 
-// 函数: void FUN_180276d52(undefined8 param_1,longlong param_2,undefined8 param_3,longlong param_4,
+// 函数: void FUN_180276d52(uint64_t param_1,longlong param_2,uint64_t param_3,longlong param_4,
 // 渲染参数处理和边界检查
-void render_parameter_processor(undefined8 render_system, longlong render_data, undefined8 texture_handle, longlong resource_pool, float depth_value)
+void render_parameter_processor(uint64_t render_system, longlong render_data, uint64_t texture_handle, longlong resource_pool, float depth_value)
 
 {
   uint *puVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   float *pfVar3;
   uint uVar4;
   float fVar5;
   float fVar6;
   float fVar7;
-  undefined8 uVar8;
-  undefined8 uVar9;
-  undefined4 uVar10;
+  uint64_t uVar8;
+  uint64_t uVar9;
+  int32_t uVar10;
   longlong unaff_RBX;
-  undefined8 *unaff_RBP;
-  undefined4 unaff_EDI;
+  uint64_t *unaff_RBP;
+  int32_t unaff_EDI;
   longlong unaff_R14;
   float fStackX_20;
   float fStackX_24;
   float fStack0000000000000050;
   float fStack0000000000000054;
   float fStack0000000000000058;
-  undefined4 uStack000000000000005c;
+  int32_t uStack000000000000005c;
   float fStack0000000000000060;
   float fStack0000000000000064;
   float in_stack_00000068;
-  undefined4 uStack0000000000000070;
-  undefined4 uStack0000000000000074;
-  undefined4 in_stack_00000078;
+  int32_t uStack0000000000000070;
+  int32_t uStack0000000000000074;
+  int32_t in_stack_00000078;
   
   do {
     LOCK();
@@ -311,7 +311,7 @@ void render_parameter_processor(undefined8 render_system, longlong render_data, 
     *puVar1 = *puVar1 | 1;
     UNLOCK();
   } while ((uVar4 & 1) != 0);
-  puVar2 = (undefined8 *)(param_4 + 4 + param_2);
+  puVar2 = (uint64_t *)(param_4 + 4 + param_2);
   uVar8 = *puVar2;
   uVar9 = puVar2[1];
   pfVar3 = (float *)(param_4 + 0x14 + param_2);
@@ -332,7 +332,7 @@ void render_parameter_processor(undefined8 render_system, longlong render_data, 
   *(float *)((longlong)unaff_RBP + 0x14) = fVar6;
   *(float *)(unaff_RBP + 3) = fStack0000000000000058;
   *(float *)((longlong)unaff_RBP + 0x1c) = fVar7;
-  *(undefined4 *)(param_4 + param_2) = unaff_EDI;
+  *(int32_t *)(param_4 + param_2) = unaff_EDI;
   uStack000000000000005c = 0x7f7fffff;
   fStack0000000000000054 = fStack0000000000000064 - fVar6;
   fStack0000000000000058 = in_stack_00000068 - fStack0000000000000058;
@@ -344,21 +344,21 @@ void render_parameter_processor(undefined8 render_system, longlong render_data, 
        (*(float *)(unaff_RBX + 0x21c) <= param_5)) &&
       (param_5 < *(float *)(unaff_RBX + 0x22c) || param_5 == *(float *)(unaff_RBX + 0x22c))))) {
     if (*(int *)(unaff_RBX + 0x318) == -1) {
-      *(undefined4 *)(unaff_RBX + 0x314) = *(undefined4 *)(unaff_RBP + 0x26);
+      *(int32_t *)(unaff_RBX + 0x314) = *(int32_t *)(unaff_RBP + 0x26);
       uVar10 = FUN_1801b9a40(unaff_R14 + 0x1218);
-      *(undefined4 *)(unaff_RBX + 0x318) = uVar10;
+      *(int32_t *)(unaff_RBX + 0x318) = uVar10;
       LOCK();
-      *(undefined4 *)(unaff_RBX + 0x310) = unaff_EDI;
+      *(int32_t *)(unaff_RBX + 0x310) = unaff_EDI;
       UNLOCK();
     }
-    *(undefined4 *)(unaff_RBP + 6) = uStack0000000000000070;
-    *(undefined4 *)((longlong)unaff_RBP + 0x34) = uStack0000000000000074;
-    *(undefined4 *)(unaff_RBP + 7) = in_stack_00000078;
+    *(int32_t *)(unaff_RBP + 6) = uStack0000000000000070;
+    *(int32_t *)((longlong)unaff_RBP + 0x34) = uStack0000000000000074;
+    *(int32_t *)(unaff_RBP + 7) = in_stack_00000078;
     *(float *)((longlong)unaff_RBP + 0x3c) = (float)*(int *)(unaff_RBP + 0x27);
     *(float *)(unaff_RBP + 4) = fStackX_20;
     *(float *)((longlong)unaff_RBP + 0x24) = fStackX_24;
     *(float *)(unaff_RBP + 5) = param_5;
-    *(undefined4 *)((longlong)unaff_RBP + 0x2c) = 0x3e19999a;
+    *(int32_t *)((longlong)unaff_RBP + 0x2c) = 0x3e19999a;
     FUN_18020a7b0(unaff_RBX + 0x308,uStack0000000000000074,unaff_RBP + 4);
   }
                     // WARNING: Subroutine does not return
@@ -390,7 +390,7 @@ void render_object_depth_test(void)
 
 {
   uint *puVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   float fVar3;
   float fVar4;
   float fVar5;
@@ -407,13 +407,13 @@ void render_object_depth_test(void)
   float fVar16;
   float fVar17;
   float fVar18;
-  undefined8 uVar19;
-  undefined8 uVar20;
-  undefined4 uVar21;
+  uint64_t uVar19;
+  uint64_t uVar20;
+  int32_t uVar21;
   longlong in_RAX;
   float *pfVar22;
   longlong unaff_RBX;
-  undefined8 *unaff_RBP;
+  uint64_t *unaff_RBP;
   float *unaff_RSI;
   float *unaff_RDI;
   longlong lVar23;
@@ -444,20 +444,20 @@ void render_object_depth_test(void)
   float in_stack_00000030;
   float fStack0000000000000034;
   float in_stack_00000038;
-  undefined4 uStack000000000000003c;
-  undefined8 in_stack_00000040;
-  undefined8 in_stack_00000048;
+  int32_t uStack000000000000003c;
+  uint64_t in_stack_00000040;
+  uint64_t in_stack_00000048;
   float in_stack_00000050;
   float fStack0000000000000054;
   float in_stack_00000058;
-  undefined4 uStack000000000000005c;
+  int32_t uStack000000000000005c;
   float in_stack_00000060;
   float fStack0000000000000064;
   float in_stack_00000068;
   float fStack000000000000006c;
-  undefined4 uStack0000000000000070;
-  undefined4 uStack0000000000000074;
-  undefined4 in_stack_00000078;
+  int32_t uStack0000000000000070;
+  int32_t uStack0000000000000074;
+  int32_t in_stack_00000078;
   
   pfVar22 = (float *)(**(code **)(in_RAX + 0x158))();
   fVar27 = *(float *)(unaff_R15 + 0x70);
@@ -536,7 +536,7 @@ void render_object_depth_test(void)
     *puVar1 = *puVar1 | 1;
     UNLOCK();
   } while ((uVar8 & 1) != 0);
-  puVar2 = (undefined8 *)(lVar23 + 4 + lVar9);
+  puVar2 = (uint64_t *)(lVar23 + 4 + lVar9);
   uVar19 = *puVar2;
   uVar20 = puVar2[1];
   pfVar22 = (float *)(lVar23 + 0x14 + lVar9);
@@ -557,7 +557,7 @@ void render_object_depth_test(void)
   *(float *)((longlong)unaff_RBP + -0xc) = fVar26;
   *(float *)(unaff_RBP + -1) = fVar31;
   *(float *)((longlong)unaff_RBP + -4) = fVar3;
-  *(undefined4 *)(lVar23 + lVar9) = 0;
+  *(int32_t *)(lVar23 + lVar9) = 0;
   uStack000000000000003c = 0x7f7fffff;
   fStack0000000000000034 = fStack0000000000000034 - fVar26;
   in_stack_00000038 = in_stack_00000038 - fVar31;
@@ -578,7 +578,7 @@ void render_object_depth_test(void)
     *puVar1 = *puVar1 | 1;
     UNLOCK();
   } while ((uVar8 & 1) != 0);
-  puVar2 = (undefined8 *)(lVar23 + 4 + lVar9);
+  puVar2 = (uint64_t *)(lVar23 + 4 + lVar9);
   uVar19 = *puVar2;
   uVar20 = puVar2[1];
   pfVar22 = (float *)(lVar23 + 0x14 + lVar9);
@@ -599,7 +599,7 @@ void render_object_depth_test(void)
   *(float *)((longlong)unaff_RBP + 0x14) = fVar26;
   *(float *)(unaff_RBP + 3) = in_stack_00000058;
   *(float *)((longlong)unaff_RBP + 0x1c) = fVar31;
-  *(undefined4 *)(lVar23 + lVar9) = 0;
+  *(int32_t *)(lVar23 + lVar9) = 0;
   uStack000000000000005c = 0x7f7fffff;
   fStack0000000000000054 = fStack0000000000000064 - fVar26;
   in_stack_00000058 = in_stack_00000068 - in_stack_00000058;
@@ -612,21 +612,21 @@ void render_object_depth_test(void)
       (fStack0000000000000028 < *(float *)(unaff_RBX + 0x22c) ||
        fStack0000000000000028 == *(float *)(unaff_RBX + 0x22c))))) {
     if (*(int *)(unaff_RBX + 0x318) == -1) {
-      *(undefined4 *)(unaff_RBX + 0x314) = *(undefined4 *)(unaff_RBP + 0x26);
+      *(int32_t *)(unaff_RBX + 0x314) = *(int32_t *)(unaff_RBP + 0x26);
       uVar21 = FUN_1801b9a40(unaff_R14 + 0x1218);
-      *(undefined4 *)(unaff_RBX + 0x318) = uVar21;
+      *(int32_t *)(unaff_RBX + 0x318) = uVar21;
       LOCK();
-      *(undefined4 *)(unaff_RBX + 0x310) = 0;
+      *(int32_t *)(unaff_RBX + 0x310) = 0;
       UNLOCK();
     }
-    *(undefined4 *)(unaff_RBP + 6) = uStack0000000000000070;
-    *(undefined4 *)((longlong)unaff_RBP + 0x34) = uStack0000000000000074;
-    *(undefined4 *)(unaff_RBP + 7) = in_stack_00000078;
+    *(int32_t *)(unaff_RBP + 6) = uStack0000000000000070;
+    *(int32_t *)((longlong)unaff_RBP + 0x34) = uStack0000000000000074;
+    *(int32_t *)(unaff_RBP + 7) = in_stack_00000078;
     *(float *)((longlong)unaff_RBP + 0x3c) = (float)*(int *)(unaff_RBP + 0x27);
     *(float *)(unaff_RBP + 4) = fStackX_20;
     *(float *)((longlong)unaff_RBP + 0x24) = fStackX_24;
     *(float *)(unaff_RBP + 5) = fStack0000000000000028;
-    *(undefined4 *)((longlong)unaff_RBP + 0x2c) = 0x3e19999a;
+    *(int32_t *)((longlong)unaff_RBP + 0x2c) = 0x3e19999a;
     FUN_18020a7b0(unaff_RBX + 0x308,uStack0000000000000074,unaff_RBP + 4);
   }
                     // WARNING: Subroutine does not return
@@ -637,13 +637,13 @@ void render_object_depth_test(void)
 
 
 
-// 函数: void FUN_180276f30(longlong param_1,undefined8 *param_2,char param_3)
+// 函数: void FUN_180276f30(longlong param_1,uint64_t *param_2,char param_3)
 // 渲染边界框计算和碰撞检测
-void render_bounding_box_calculation(longlong render_object, undefined8 *bounding_box, char include_children)
+void render_bounding_box_calculation(longlong render_object, uint64_t *bounding_box, char include_children)
 
 {
   longlong object_end_ptr;           // 对象数据结束指针
-  undefined8 bounding_box_data;     // 边界框数据
+  uint64_t bounding_box_data;     // 边界框数据
   longlong object_start_ptr;        // 对象数据开始指针
   longlong *object_iterator;        // 对象迭代器
   float bounding_sphere_radius;     // 边界球半径
@@ -653,12 +653,12 @@ void render_bounding_box_calculation(longlong render_object, undefined8 *boundin
   float transformed_y;               // 变换后的Y坐标
   float transformed_z;               // 变换后的Z坐标
   float magnitude_squared;         // 平方值
-  undefined1 transform_stack [224]; // 变换堆栈
+  int8_t transform_stack [224]; // 变换堆栈
   
   // 获取对象的开始和结束指针
   object_end_ptr = *(longlong *)(render_object + 0x40);
   object_start_ptr = *(longlong *)(render_object + 0x38);
-  *(undefined4 *)(bounding_box + 6) = 0;
+  *(int32_t *)(bounding_box + 6) = 0;
   // 如果对象为空，初始化边界框为零
   if (object_end_ptr - object_start_ptr >> 4 == 0) {
     *bounding_box = 0;
@@ -672,10 +672,10 @@ void render_bounding_box_calculation(longlong render_object, undefined8 *boundin
     // 初始化边界框为最大/最小值
     *bounding_box = 0x4cbebc204cbebc20;  // 最小值
     bounding_box[1] = 0x7f7fffff4cbebc20; // 最大值
-    *(undefined4 *)(bounding_box + 4) = 0;
-    *(undefined4 *)((longlong)bounding_box + 0x24) = 0;
-    *(undefined4 *)(bounding_box + 5) = 0;
-    *(undefined4 *)((longlong)bounding_box + 0x2c) = 0x7f7fffff;
+    *(int32_t *)(bounding_box + 4) = 0;
+    *(int32_t *)((longlong)bounding_box + 0x24) = 0;
+    *(int32_t *)(bounding_box + 5) = 0;
+    *(int32_t *)((longlong)bounding_box + 0x2c) = 0x7f7fffff;
     bounding_box[2] = 0xccbebc20ccbebc20; // 最小值
     bounding_box[3] = 0x7f7fffffccbebc20; // 最大值
     // 遍历所有子对象并计算边界框
@@ -702,10 +702,10 @@ void render_bounding_box_calculation(longlong render_object, undefined8 *boundin
     if (((*(longlong *)(render_object + 0x40) - (longlong)*(longlong **)(render_object + 0x38) &
          0xfffffffffffffff0U) == 0x10) &&
        (longlong single_object = **(longlong **)(render_object + 0x38), (*(uint *)(single_object + 0x100) & 0x4000000) == 0)) {
-      bounding_box_data = *(undefined8 *)(single_object + 0x29c);
-      bounding_box[4] = *(undefined8 *)(single_object + 0x294);
+      bounding_box_data = *(uint64_t *)(single_object + 0x29c);
+      bounding_box[4] = *(uint64_t *)(single_object + 0x294);
       bounding_box[5] = bounding_box_data;
-      *(undefined4 *)(bounding_box + 6) = *(undefined4 *)(**(longlong **)(render_object + 0x38) + 0x2a4);
+      *(int32_t *)(bounding_box + 6) = *(int32_t *)(**(longlong **)(render_object + 0x38) + 0x2a4);
     }
     else {
       // 计算复杂的边界球半径

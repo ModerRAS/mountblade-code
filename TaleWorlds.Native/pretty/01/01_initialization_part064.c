@@ -14,19 +14,19 @@ undefined initialize_data_sync_system;
 undefined network_connection_status;
 
 // 全局变量: 数据同步配置
-undefined8 data_sync_config;
+uint64_t data_sync_config;
 
 // 全局变量: 网络超时设置
-undefined4 network_timeout_settings;
+int32_t network_timeout_settings;
 
 // 全局变量: 连接管理器指针
-undefined *connection_manager_ptr;
+void *connection_manager_ptr;
 
 // 全局变量: 网络状态标志
-undefined1 *network_status_flags;
+int8_t *network_status_flags;
 
 // 全局变量: 数据传输缓冲区
-undefined4 data_transfer_buffer;
+int32_t data_transfer_buffer;
 
 // 全局变量: 网络连接计数器
 longlong network_connection_counter;
@@ -41,10 +41,10 @@ longlong network_latency_stats;
 longlong bandwidth_usage;
 
 // 全局变量: 连接质量指标
-undefined4 connection_quality_metrics;
+int32_t connection_quality_metrics;
 
 // 全局变量: 网络错误代码
-undefined4 network_error_codes;
+int32_t network_error_codes;
 
 // 全局变量: 数据同步状态
 undefined data_sync_status;

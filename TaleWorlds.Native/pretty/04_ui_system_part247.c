@@ -66,23 +66,23 @@
  * ============================================================================ */
 
 // 系统数据区域
-extern undefined4 UNK_180d498a8;
-extern undefined *UNK_180d498b0;
-extern undefined1 *UNK_180d498b8;
-extern undefined4 UNK_180d498c0;
+extern int32_t UNK_180d498a8;
+extern void *UNK_180d498b0;
+extern int8_t *UNK_180d498b8;
+extern int32_t UNK_180d498c0;
 extern longlong UNK_180d49908;
 extern longlong UNK_180d49910;
 extern longlong UNK_180d49928;
 extern longlong UNK_180d49930;
-extern undefined4 UNK_180d49948;
-extern undefined4 UNK_180d4994c;
+extern int32_t UNK_180d49948;
+extern int32_t UNK_180d4994c;
 extern undefined DAT_180d49950;
 extern undefined DAT_180d49970;
 extern undefined DAT_180bfc140;
 extern undefined DAT_1803f48b2;
 extern undefined UNK_180d49d58;
 extern longlong UNK_180d49d68;
-extern undefined8 UNK_180d49d70;
+extern uint64_t UNK_180d49d70;
 extern longlong UNK_180d49d78;
 extern longlong *UNK_180c96358;
 
@@ -103,7 +103,7 @@ extern longlong *UNK_180c96358;
  * @param param_2 输出数据缓冲区指针
  * @return void 无返回值
  */
-void UISystem_DataBitProcessor(undefined8 param_1, uint *param_2);
+void UISystem_DataBitProcessor(uint64_t param_1, uint *param_2);
 
 /**
  * @brief UI系统数据处理器
@@ -135,7 +135,7 @@ int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3);
  * @param param_3 状态标志
  * @return int 状态管理结果
  */
-int UISystem_StateManager(undefined8 param_1, undefined8 param_2, int param_3);
+int UISystem_StateManager(uint64_t param_1, uint64_t param_2, int param_3);
 
 /**
  * @brief UI系统数据读取器
@@ -146,9 +146,9 @@ int UISystem_StateManager(undefined8 param_1, undefined8 param_2, int param_3);
  * - 数据错误检测
  * - 数据同步处理
  * 
- * @return undefined4 读取结果状态
+ * @return int32_t 读取结果状态
  */
-undefined4 UISystem_DataReader(void);
+int32_t UISystem_DataReader(void);
 
 /**
  * @brief UI系统资源管理器
@@ -162,9 +162,9 @@ undefined4 UISystem_DataReader(void);
  * @param param_1 资源管理上下文
  * @param param_2 资源参数
  * @param param_3 管理标志
- * @return undefined8 资源管理结果
+ * @return uint64_t 资源管理结果
  */
-undefined8 UISystem_ResourceManager(longlong *param_1, undefined8 param_2, int param_3);
+uint64_t UISystem_ResourceManager(longlong *param_1, uint64_t param_2, int param_3);
 
 /**
  * @brief UI系统内存管理器
@@ -176,9 +176,9 @@ undefined8 UISystem_ResourceManager(longlong *param_1, undefined8 param_2, int p
  * - 内存错误恢复
  * 
  * @param param_1 内存管理参数
- * @return undefined8 内存管理结果
+ * @return uint64_t 内存管理结果
  */
-undefined8 UISystem_MemoryManager(longlong param_1);
+uint64_t UISystem_MemoryManager(longlong param_1);
 
 /**
  * @brief UI系统处理器
@@ -189,21 +189,21 @@ undefined8 UISystem_MemoryManager(longlong param_1);
  * - 系统优化处理
  * - 系统错误处理
  * 
- * @return undefined8 处理结果
+ * @return uint64_t 处理结果
  */
-undefined8 UISystem_Processor(void);
+uint64_t UISystem_Processor(void);
 
 /* ============================================================================
  * 类型别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
 
 // 基础类型别名
-typedef undefined8 SystemHandle;            // 系统句柄
-typedef undefined8 DataHandle;              // 数据句柄
-typedef undefined8 ResourceHandle;         // 资源句柄
-typedef undefined4 DataStatus;             // 数据状态
-typedef undefined4 ProcessFlags;           // 处理标志
-typedef undefined1 SystemByte;            // 系统字节
+typedef uint64_t SystemHandle;            // 系统句柄
+typedef uint64_t DataHandle;              // 数据句柄
+typedef uint64_t ResourceHandle;         // 资源句柄
+typedef int32_t DataStatus;             // 数据状态
+typedef int32_t ProcessFlags;           // 处理标志
+typedef int8_t SystemByte;            // 系统字节
 typedef void* SystemContext;               // 系统上下文
 
 // 枚举类型别名
@@ -252,7 +252,7 @@ typedef struct {
  * @param param_2 输出数据缓冲区指针
  * @return void 无返回值
  */
-void UISystem_DataBitProcessor(undefined8 param_1, uint *param_2)
+void UISystem_DataBitProcessor(uint64_t param_1, uint *param_2)
 {
     uint uVar1;                           // 临时变量
     uint in_EAX;                          // 输入数据计数
@@ -337,32 +337,32 @@ void UISystem_DataBitProcessor(undefined8 param_1, uint *param_2)
  */
 int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3)
 {
-    undefined4 uVar1;                      // 临时变量
+    int32_t uVar1;                      // 临时变量
     longlong lVar2;                        // 上下文指针
     int iVar3;                             // 当前索引
     longlong lVar4;                        // 数据指针1
     longlong lVar5;                        // 数据指针2
     int iVar6;                             // 处理数量
-    undefined4 auStackX_8 [2];            // 栈变量8
-    undefined4 auStackX_20 [2];           // 栈变量20
-    undefined4 *puVar7;                   // 指针变量7
-    undefined4 uVar8;                      // 变量8
-    undefined4 *puVar9;                   // 指针变量9
-    undefined4 uVar10;                    // 变量10
-    undefined4 *puVar11;                  // 指针变量11
-    undefined4 uVar12;                    // 变量12
-    undefined4 *puVar13;                  // 指针变量13
-    undefined4 uVar14;                    // 变量14
-    undefined4 *puVar15;                  // 指针变量15
-    undefined4 uVar16;                    // 变量16
+    int32_t auStackX_8 [2];            // 栈变量8
+    int32_t auStackX_20 [2];           // 栈变量20
+    int32_t *puVar7;                   // 指针变量7
+    int32_t uVar8;                      // 变量8
+    int32_t *puVar9;                   // 指针变量9
+    int32_t uVar10;                    // 变量10
+    int32_t *puVar11;                  // 指针变量11
+    int32_t uVar12;                    // 变量12
+    int32_t *puVar13;                  // 指针变量13
+    int32_t uVar14;                    // 变量14
+    int32_t *puVar15;                  // 指针变量15
+    int32_t uVar16;                    // 变量16
     int *piVar17;                          // 整数指针17
-    undefined4 uVar18;                    // 变量18
+    int32_t uVar18;                    // 变量18
     int *piVar19;                          // 整数指针19
-    undefined4 uVar20;                    // 变量20
-    undefined4 uStack_48;                  // 栈变量48
-    undefined4 uStack_44;                  // 栈变量44
-    undefined4 uStack_40;                  // 栈变量40
-    undefined4 uStack_3c;                  // 栈变量3c
+    int32_t uVar20;                    // 变量20
+    int32_t uStack_48;                  // 栈变量48
+    int32_t uStack_44;                  // 栈变量44
+    int32_t uStack_40;                  // 栈变量40
+    int32_t uStack_3c;                  // 栈变量3c
     int iStack_38;                         // 栈变量38
     int aiStack_34 [3];                    // 栈数组34
     
@@ -396,13 +396,13 @@ int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3)
                           puVar11, puVar13, puVar15, piVar17, piVar19);
             
             // 提取高位数据
-            uVar8 = (undefined4)((ulonglong)puVar7 >> 0x20);
-            uVar10 = (undefined4)((ulonglong)puVar9 >> 0x20);
-            uVar12 = (undefined4)((ulonglong)puVar11 >> 0x20);
-            uVar14 = (undefined4)((ulonglong)puVar13 >> 0x20);
-            uVar16 = (undefined4)((ulonglong)puVar15 >> 0x20);
-            uVar18 = (undefined4)((ulonglong)piVar17 >> 0x20);
-            uVar20 = (undefined4)((ulonglong)piVar19 >> 0x20);
+            uVar8 = (int32_t)((ulonglong)puVar7 >> 0x20);
+            uVar10 = (int32_t)((ulonglong)puVar9 >> 0x20);
+            uVar12 = (int32_t)((ulonglong)puVar11 >> 0x20);
+            uVar14 = (int32_t)((ulonglong)puVar13 >> 0x20);
+            uVar16 = (int32_t)((ulonglong)puVar15 >> 0x20);
+            uVar18 = (int32_t)((ulonglong)piVar17 >> 0x20);
+            uVar20 = (int32_t)((ulonglong)piVar19 >> 0x20);
             
             // 设置数据指针
             lVar5 = 0x180be6500;
@@ -421,7 +421,7 @@ int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3)
             iVar3 = FUN_1807681a0(2);
             if (iVar3 == 0) {
                 iVar3 = FUN_1807681a0(0);
-                uVar1 = *(undefined4 *)(lVar2 + 4);
+                uVar1 = *(int32_t *)(lVar2 + 4);
                 if (iVar3 == 0) {
                     // 模式0：完整数据处理
                     FUN_18080ba00(param_1, param_2, lVar4, lVar5, CONCAT44(uVar8, uStack_3c),
@@ -439,7 +439,7 @@ int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3)
             else {
                 // 模式2：高级数据处理
                 FUN_18082c450(param_1, param_2, lVar4, lVar5, CONCAT44(uVar8, uStack_3c),
-                              CONCAT44(uVar10, uStack_40), CONCAT44(uVar12, *(undefined4 *)(lVar2 + 4)),
+                              CONCAT44(uVar10, uStack_40), CONCAT44(uVar12, *(int32_t *)(lVar2 + 4)),
                               CONCAT44(uVar14, uStack_44), CONCAT44(uVar16, uStack_48),
                               CONCAT44(uVar18, auStackX_20[0]), CONCAT44(uVar20, auStackX_8[0]));
             }
@@ -465,21 +465,21 @@ int UISystem_DataProcessor(longlong *param_1, longlong param_2, int param_3)
  * @param param_3 状态标志
  * @return int 状态管理结果
  */
-int UISystem_StateManager(undefined8 param_1, undefined8 param_2, int param_3)
+int UISystem_StateManager(uint64_t param_1, uint64_t param_2, int param_3)
 {
     int iVar1;                             // 返回值
     longlong unaff_RBP;                    // 基址指针
     int unaff_EDI;                         // 状态值
     longlong in_R11;                      // 寄存器R11
-    undefined8 unaff_R14;                 // 寄存器R14
-    undefined8 unaff_R15;                 // 寄存器R15
+    uint64_t unaff_R14;                 // 寄存器R14
+    uint64_t unaff_R15;                 // 寄存器R15
     bool in_ZF;                           // 零标志
     char in_SF;                           // 符号标志
     char in_OF;                           // 溢出标志
     
     // 设置系统上下文参数
-    *(undefined8 *)(in_R11 + 0x10) = unaff_R14;
-    *(undefined8 *)(in_R11 + 0x18) = unaff_R15;
+    *(uint64_t *)(in_R11 + 0x10) = unaff_R14;
+    *(uint64_t *)(in_R11 + 0x18) = unaff_R15;
     *(longlong *)(in_R11 + -0x58) = unaff_RBP + -0xc;
     
     // 根据标志条件设置状态值
@@ -529,11 +529,11 @@ int UISystem_StateManager(undefined8 param_1, undefined8 param_2, int param_3)
  * - 数据错误检测
  * - 数据同步处理
  * 
- * @return undefined4 读取结果状态
+ * @return int32_t 读取结果状态
  */
-undefined4 UISystem_DataReader(void)
+int32_t UISystem_DataReader(void)
 {
-    undefined4 unaff_EDI;                  // 返回状态
+    int32_t unaff_EDI;                  // 返回状态
     
     return unaff_EDI;
 }
@@ -552,11 +552,11 @@ undefined4 UISystem_DataReader(void)
  * @param param_1 资源管理上下文
  * @param param_2 资源参数
  * @param param_3 管理标志
- * @return undefined8 资源管理结果
+ * @return uint64_t 资源管理结果
  * 
  * @note 这是一个简化实现，保留了原始核心逻辑但优化了代码结构
  */
-undefined8 UISystem_ResourceManager(longlong *param_1, undefined8 param_2, int param_3)
+uint64_t UISystem_ResourceManager(longlong *param_1, uint64_t param_2, int param_3)
 {
     // 简化实现：保留原始核心逻辑
     // 原始实现包含复杂的资源分配、状态管理和错误处理逻辑
@@ -586,11 +586,11 @@ undefined8 UISystem_ResourceManager(longlong *param_1, undefined8 param_2, int p
  * - 内存错误恢复
  * 
  * @param param_1 内存管理参数
- * @return undefined8 内存管理结果
+ * @return uint64_t 内存管理结果
  * 
  * @note 这是一个简化实现，保留了原始核心逻辑但优化了代码结构
  */
-undefined8 UISystem_MemoryManager(longlong param_1)
+uint64_t UISystem_MemoryManager(longlong param_1)
 {
     // 简化实现：保留原始核心逻辑
     // 原始实现包含复杂的内存分配、状态监控和优化逻辑
@@ -619,11 +619,11 @@ undefined8 UISystem_MemoryManager(longlong param_1)
  * - 系统优化处理
  * - 系统错误处理
  * 
- * @return undefined8 处理结果
+ * @return uint64_t 处理结果
  * 
  * @note 这是一个简化实现，保留了原始核心逻辑但优化了代码结构
  */
-undefined8 UISystem_Processor(void)
+uint64_t UISystem_Processor(void)
 {
     // 简化实现：保留原始核心逻辑
     // 原始实现包含复杂的系统处理、状态管理和优化逻辑

@@ -8,30 +8,30 @@ void register_game_module_type_a(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&MODULE_TYPE_A_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -58,30 +58,30 @@ void register_game_module_type_b(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&MODULE_TYPE_B_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -111,11 +111,11 @@ void register_game_module_type_b(void)
 void initialize_rendering_system_component(void)
 
 {
-  undefined8 render_config;
-  undefined *render_interface;
-  undefined1 *render_context;
-  undefined4 render_flags;
-  undefined1 render_buffer [136];
+  uint64_t render_config;
+  void *render_interface;
+  int8_t *render_context;
+  int32_t render_flags;
+  int8_t render_buffer [136];
   
   render_interface = &RENDER_INTERFACE_TABLE;
   render_context = render_buffer;
@@ -130,7 +130,7 @@ void initialize_rendering_system_component(void)
 
 // 函数: 初始化线程同步机制
 // 设置游戏引擎的线程同步和互斥机制
-int initialize_thread_synchronization(undefined8 sync_param1,undefined8 sync_param2,undefined8 sync_param3,undefined8 sync_param4)
+int initialize_thread_synchronization(uint64_t sync_param1,uint64_t sync_param2,uint64_t sync_param3,uint64_t sync_param4)
 
 {
   longlong init_result;
@@ -150,30 +150,30 @@ void register_game_module_type_c(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&MODULE_TYPE_C_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -202,30 +202,30 @@ void register_game_module_type_d(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&MODULE_TYPE_D_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -254,30 +254,30 @@ void register_physics_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
   code *physics_handler;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   physics_handler = physics_collision_handler;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&PHYSICS_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -306,30 +306,30 @@ void register_audio_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
   code *audio_handler;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   audio_handler = audio_stream_handler;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&AUDIO_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -358,30 +358,30 @@ void register_input_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
   code *input_handler;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   input_handler = input_event_handler;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&INPUT_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -410,30 +410,30 @@ void register_network_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
   code *network_handler;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   network_handler = network_packet_handler;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&NETWORK_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -462,30 +462,30 @@ void register_resource_management_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&RESOURCE_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -514,30 +514,30 @@ void register_ui_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
   code *ui_handler;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   ui_handler = ui_event_handler;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&UI_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -566,30 +566,30 @@ void register_scene_management_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&SCENE_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -618,30 +618,30 @@ void register_script_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined *script_engine;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  void *script_engine;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   script_engine = &SCRIPT_ENGINE_INTERFACE;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&SCRIPT_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -670,30 +670,30 @@ void register_animation_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&ANIMATION_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -722,30 +722,30 @@ void register_ai_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
   code *ai_handler;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   ai_handler = ai_behavior_handler;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&AI_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -774,30 +774,30 @@ void register_particle_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&PARTICLE_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -826,30 +826,30 @@ void register_lighting_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&LIGHTING_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -878,30 +878,30 @@ void register_shadow_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&SHADOW_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -930,30 +930,30 @@ void register_post_processing_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&POST_PROCESSING_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -982,30 +982,30 @@ void register_material_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&MATERIAL_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1034,30 +1034,30 @@ void register_texture_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&TEXTURE_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1086,30 +1086,30 @@ void register_geometry_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&GEOMETRY_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1138,30 +1138,30 @@ void register_shader_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
   code *shader_handler;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   shader_handler = shader_compiler_handler;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&SHADER_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1190,30 +1190,30 @@ void register_buffer_system_module(void)
 
 {
   char module_flag;
-  undefined8 *module_root;
+  uint64_t *module_root;
   int compare_result;
   longlong *engine_context;
   longlong allocation_size;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_module_entry;
-  undefined8 module_priority;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_module_entry;
+  uint64_t module_priority;
   
   engine_context = (longlong *)get_engine_context();
-  module_root = (undefined8 *)*engine_context;
+  module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((longlong)module_root[1] + 0x19);
   module_priority = 0;
   previous_node = module_root;
-  current_node = (undefined8 *)module_root[1];
+  current_node = (uint64_t *)module_root[1];
   while (module_flag == '\0') {
     compare_result = memcmp(current_node + 4,&BUFFER_MODULE_ID,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1243,11 +1243,11 @@ void register_buffer_system_module(void)
 void initialize_game_configuration_system(void)
 
 {
-  undefined8 config_param;
-  undefined *config_interface;
-  undefined1 *config_context;
-  undefined4 config_flags;
-  undefined1 config_buffer [136];
+  uint64_t config_param;
+  void *config_interface;
+  int8_t *config_context;
+  int32_t config_flags;
+  int8_t config_buffer [136];
   
   config_interface = &CONFIG_INTERFACE_TABLE;
   config_context = config_buffer;
@@ -1291,7 +1291,7 @@ int initialize_game_timer(void)
 
 // 函数: 初始化渲染线程
 // 设置渲染线程的同步机制
-int initialize_rendering_thread(undefined8 thread_param1,undefined8 thread_param2,undefined8 thread_param3,undefined8 thread_param4)
+int initialize_rendering_thread(uint64_t thread_param1,uint64_t thread_param2,uint64_t thread_param3,uint64_t thread_param4)
 
 {
   longlong thread_result;
@@ -1305,7 +1305,7 @@ int initialize_rendering_thread(undefined8 thread_param1,undefined8 thread_param
 
 // 函数: 初始化音频线程
 // 设置音频线程的同步机制
-int initialize_audio_thread(undefined8 thread_param1,undefined8 thread_param2,undefined8 thread_param3,undefined8 thread_param4)
+int initialize_audio_thread(uint64_t thread_param1,uint64_t thread_param2,uint64_t thread_param3,uint64_t thread_param4)
 
 {
   longlong thread_result;

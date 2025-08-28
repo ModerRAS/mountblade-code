@@ -60,8 +60,8 @@
 #define SystemMemoryManager_1         FUN_180046340
 #define SystemMemoryManager_2         FUN_180046650
 #define SystemMemoryManager_3         SystemMemoryManager_3
-#define SystemMemoryCleaner           FUN_180046820
-#define SystemMemoryAllocator         FUN_180046840
+#define SystemMemoryCleaner           SystemMemoryCleaner
+#define SystemMemoryAllocator         SystemMemoryAllocator
 
 // 同步原语管理函数别名
 #define SystemSemaphoreManager        FUN_180046130
@@ -75,20 +75,20 @@
 #define SystemResourceCleaner_2       FUN_180046240
 #define SystemResourceCleaner_3       SystemResourceCleaner_3
 #define SystemResourceInitializer     FUN_180046480
-#define SystemResourceHandler          FUN_180046ca0
-#define SystemResourceProcessor       FUN_180046e20
-#define SystemResourceFinder          FUN_180046b80
-#define SystemResourceInserter        FUN_180046890
-#define SystemResourceDeleter         FUN_180046b10
+#define SystemResourceHandler          SystemResourceHandler
+#define SystemResourceProcessor       SystemResourceProcessor
+#define SystemResourceFinder          SystemResourceFinder
+#define SystemResourceInserter        SystemResourceInserter
+#define SystemResourceDeleter         SystemResourceDeleter
 
 // 系统工具函数别名（续）
-#define SystemConfigManager           FUN_180047d40
-#define SystemResourceReleaser_1      FUN_180047e10
-#define SystemResourceReleaser_2      FUN_180047e40
-#define SystemResourceHandler_2       FUN_180047e70
+#define SystemConfigManager           SystemConfigManager
+#define SystemResourceReleaser_1      SystemResourceReleaser_1
+#define SystemResourceReleaser_2      SystemResourceReleaser_2
+#define SystemResourceHandler_2       SystemResourceHandler_2
 
 // 系统工具函数别名（内存管理）
-#define SystemMemoryInitializer       FUN_180046860
+#define SystemMemoryInitializer       SystemMemoryInitializer
 #define SystemMemoryValidator         FUN_1800469a0
 
 /*=============================================================================
@@ -616,8 +616,8 @@ SystemMemoryManager_3(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint6
 
 
 
-// 函数: void FUN_180046820(longlong *param_1)
-void FUN_180046820(longlong *param_1)
+// 函数: void SystemMemoryCleaner(longlong *param_1)
+void SystemMemoryCleaner(longlong *param_1)
 
 {
   longlong lVar1;
@@ -625,7 +625,7 @@ void FUN_180046820(longlong *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x100) {
-    FUN_180046b10(lVar2);
+    SystemResourceDeleter(lVar2);
   }
   if (*param_1 == 0) {
     return;
@@ -638,8 +638,8 @@ void FUN_180046820(longlong *param_1)
 
 
 
-// 函数: void FUN_180046840(longlong *param_1)
-void FUN_180046840(longlong *param_1)
+// 函数: void SystemMemoryAllocator(longlong *param_1)
+void SystemMemoryAllocator(longlong *param_1)
 
 {
   uint64_t *puVar1;
@@ -667,8 +667,8 @@ void FUN_180046840(longlong *param_1)
 
 
 
-// 函数: void FUN_180046860(ulonglong *param_1)
-void FUN_180046860(ulonglong *param_1)
+// 函数: void SystemMemoryInitializer(ulonglong *param_1)
+void SystemMemoryInitializer(ulonglong *param_1)
 
 {
   int *piVar1;
@@ -706,7 +706,7 @@ void FUN_180046860(ulonglong *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180046890(longlong param_1,longlong param_2)
+int SystemResourceInserter(longlong param_1,longlong param_2)
 
 {
   uint64_t ***pppuVar1;
@@ -821,7 +821,7 @@ LAB_1800469fd:
   lVar6 = *(longlong *)(param_1 + 8);
   if (lVar6 != lVar4) {
     do {
-      FUN_180046b10(lVar6);
+      SystemResourceDeleter(lVar6);
       lVar6 = lVar6 + 0x100;
     } while (lVar6 != lVar4);
     lVar6 = *(longlong *)(param_1 + 8);
@@ -851,8 +851,8 @@ LAB_180046a90:
 
 
 
-// 函数: void FUN_180046b10(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180046b10(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+// 函数: void SystemResourceDeleter(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void SystemResourceDeleter(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   FUN_180049fd0(param_1 + 0x1a,param_1[0x1c],param_3,param_4,0xfffffffffffffffe);
@@ -869,7 +869,7 @@ void FUN_180046b10(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t 
 
 
 
-ulonglong FUN_180046b80(longlong param_1,longlong param_2)
+ulonglong SystemResourceFinder(longlong param_1,longlong param_2)
 
 {
   byte *pbVar1;
@@ -948,8 +948,8 @@ LAB_180046c5e:
 
 
 
-// 函数: void FUN_180046ca0(longlong *param_1,uint64_t *param_2)
-void FUN_180046ca0(longlong *param_1,uint64_t *param_2)
+// 函数: void SystemResourceHandler(longlong *param_1,uint64_t *param_2)
+void SystemResourceHandler(longlong *param_1,uint64_t *param_2)
 
 {
   longlong *plVar1;
@@ -998,8 +998,8 @@ void FUN_180046ca0(longlong *param_1,uint64_t *param_2)
 
 
 
-// 函数: void FUN_180046e20(void)
-void FUN_180046e20(void)
+// 函数: void SystemResourceProcessor(void)
+void SystemResourceProcessor(void)
 
 {
   uint64_t uVar1;
@@ -1163,9 +1163,9 @@ void FUN_180046e20(void)
       } while (-1 < lVar6);
     }
     FUN_180629a40(&puStack_558,&puStack_538,iVar3 + 1,0xffffffff);
-    iVar3 = FUN_180046b80(&DAT_180bf5240,&puStack_538);
+    iVar3 = SystemResourceFinder(&DAT_180bf5240,&puStack_538);
     if (iVar3 == -1) {
-      iVar3 = FUN_180046890(&DAT_180bf5240,&puStack_538);
+      iVar3 = SystemResourceInserter(&DAT_180bf5240,&puStack_538);
     }
     lVar6 = (longlong)iVar3 * 0x100;
     ppplStack_590 = (longlong ***)(_DAT_180bf5248 + 0x30 + lVar6);
@@ -1256,7 +1256,7 @@ void FUN_180046e20(void)
 
 
 uint64_t *
-FUN_180047d40(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
+SystemConfigManager(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   *param_1 = *param_2;
@@ -1279,8 +1279,8 @@ FUN_180047d40(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
 
 
 
-// 函数: void FUN_180047e10(longlong param_1)
-void FUN_180047e10(longlong param_1)
+// 函数: void SystemResourceReleaser_1(longlong param_1)
+void SystemResourceReleaser_1(longlong param_1)
 
 {
   *(void **)(param_1 + 0x10) = &UNK_18098bcb0;
@@ -1291,8 +1291,8 @@ void FUN_180047e10(longlong param_1)
 
 
 
-// 函数: void FUN_180047e40(uint64_t *param_1)
-void FUN_180047e40(uint64_t *param_1)
+// 函数: void SystemResourceReleaser_2(uint64_t *param_1)
+void SystemResourceReleaser_2(uint64_t *param_1)
 
 {
   *param_1 = &UNK_18098bcb0;
@@ -1305,8 +1305,8 @@ void FUN_180047e40(uint64_t *param_1)
 
 
 
-// 函数: void FUN_180047e70(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
-void FUN_180047e70(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
+// 函数: void SystemResourceHandler_2(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
+void SystemResourceHandler_2(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
 
 {
   byte bVar1;
@@ -1322,9 +1322,9 @@ void FUN_180047e70(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t p
   uint64_t uStackX_8;
   
   uStackX_8 = param_1;
-  iVar3 = FUN_180046b80(&DAT_180bf5240);
+  iVar3 = SystemResourceFinder(&DAT_180bf5240);
   if (iVar3 == -1) {
-    iVar3 = FUN_180046890(&DAT_180bf5240,param_2);
+    iVar3 = SystemResourceInserter(&DAT_180bf5240,param_2);
   }
   puVar7 = (uint64_t *)(_DAT_180bf5248 + 0xd0 + (longlong)iVar3 * 0x100);
   puVar4 = puVar7;

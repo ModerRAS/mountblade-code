@@ -14,25 +14,25 @@
  * 3. 处理组件的引用计数
  * 4. 触发相关的状态更新回调
  */
-void update_rendering_component_state(undefined8 *component_ptr, undefined8 *state_data)
+void update_rendering_component_state(uint64_t *component_ptr, uint64_t *state_data)
 
 {
   longlong ref_count_ptr;
-  undefined8 state_value;
+  uint64_t state_value;
   char is_active;
-  undefined1 flag_value;
-  undefined8 *data_ptr;
+  int8_t flag_value;
+  uint64_t *data_ptr;
   
   data_ptr = state_data;
   is_active = func_0x000180285980(component_ptr + 0x66);
   if (is_active != '\0') {
     flag_value = func_0x00018023a100(data_ptr);
-    *(undefined1 *)(component_ptr + 100) = flag_value;
-    if ((undefined *)*component_ptr == &UNK_180a169b8) {
+    *(int8_t *)(component_ptr + 100) = flag_value;
+    if ((void *)*component_ptr == &UNK_180a169b8) {
       FUN_180276f30(component_ptr, (longlong)component_ptr + 0x214, 0);
     }
     else {
-      (**(code **)((undefined *)*component_ptr + 0x160))(component_ptr);
+      (**(code **)((void *)*component_ptr + 0x160))(component_ptr);
     }
     ref_count_ptr = component_ptr[5];
     if (ref_count_ptr != 0) {
@@ -83,7 +83,7 @@ int calculate_rendering_object_count(longlong object_container)
     do {
       object_ptr = *object_array;
       if ((*(byte *)(object_ptr + 0xfd) & 0x20) == 0) {
-        object_ptr = func_0x000180085de0(*(undefined8 *)(object_ptr + 0x1b0));
+        object_ptr = func_0x000180085de0(*(uint64_t *)(object_ptr + 0x1b0));
       }
       object_count = object_count + *(int *)(object_ptr + 0x1fc);
       object_array = object_array + 2;
@@ -121,7 +121,7 @@ int calculate_flagged_object_count(longlong object_container, byte flag_bit)
       if ((*(uint *)(object_array + 1) & 1 << (flag_bit & 0x1f)) != 0) {
         object_ptr = *object_array;
         if ((*(byte *)(object_ptr + 0xfd) & 0x20) == 0) {
-          object_ptr = func_0x000180085de0(*(undefined8 *)(object_ptr + 0x1b0));
+          object_ptr = func_0x000180085de0(*(uint64_t *)(object_ptr + 0x1b0));
         }
         flagged_count = flagged_count + *(int *)(object_ptr + 0x1fc);
       }
@@ -144,10 +144,10 @@ int calculate_flagged_object_count(longlong object_container, byte flag_bit)
  * 
  * 此函数创建并初始化渲染管理器对象
  */
-undefined8 *create_rendering_manager(undefined8 manager_type, undefined8 *output_ptr)
+uint64_t *create_rendering_manager(uint64_t manager_type, uint64_t *output_ptr)
 
 {
-  undefined8 manager_handle;
+  uint64_t manager_handle;
   longlong *manager_ptr;
   
   manager_handle = FUN_18062b1e0(_DAT_180c8ed18, 0x3d0, 8, 0x16, 0, 0xfffffffffffffffe);
@@ -181,13 +181,13 @@ undefined8 *create_rendering_manager(undefined8 manager_type, undefined8 *output
  * 3. 处理引用计数
  * 4. 合并纹理和着色器资源链表
  */
-void merge_rendering_object_data(longlong target_object, longlong source_object, undefined8 merge_flag1, undefined8 merge_flag2)
+void merge_rendering_object_data(longlong target_object, longlong source_object, uint64_t merge_flag1, uint64_t merge_flag2)
 
 {
   longlong resource_ptr;
   longlong *source_resource;
   longlong *target_resource;
-  undefined8 merge_flag;
+  uint64_t merge_flag;
   
   merge_flag = 0xfffffffffffffffe;
   

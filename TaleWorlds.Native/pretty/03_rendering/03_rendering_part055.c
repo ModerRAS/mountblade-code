@@ -15,39 +15,39 @@ void RenderSystem_ParticleSystem_Update(void)
   bool bVar4;
   longlong lVar5;
   longlong lVar6;
-  undefined8 unaff_RBX;
-  undefined8 *puVar7;
+  uint64_t unaff_RBX;
+  uint64_t *puVar7;
   longlong unaff_RBP;
   uint unaff_ESI;
-  undefined4 unaff_00000034;
-  undefined8 unaff_RDI;
+  int32_t unaff_00000034;
+  uint64_t unaff_RDI;
   longlong lVar8;
   longlong in_R11;
-  undefined8 unaff_R13;
+  uint64_t unaff_R13;
   int iVar9;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   float fVar10;
   float fVar11;
-  undefined4 unaff_XMM6_Da;
+  int32_t unaff_XMM6_Da;
   float fVar12;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM8_Da;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Dc;
+  int32_t unaff_XMM8_Da;
   float fVar13;
-  undefined4 unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dc;
   float unaff_XMM9_Da;
-  undefined4 unaff_XMM10_Da;
+  int32_t unaff_XMM10_Da;
   float fVar14;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM11_Da;
-  undefined4 unaff_XMM11_Dc;
-  undefined4 unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Dc;
-  undefined4 unaff_XMM13_Da;
-  undefined4 unaff_XMM13_Dc;
-  undefined4 unaff_XMM14_Da;
-  undefined4 unaff_XMM14_Dc;
+  int32_t unaff_XMM10_Dc;
+  int32_t unaff_XMM11_Da;
+  int32_t unaff_XMM11_Dc;
+  int32_t unaff_XMM12_Da;
+  int32_t unaff_XMM12_Dc;
+  int32_t unaff_XMM13_Da;
+  int32_t unaff_XMM13_Dc;
+  int32_t unaff_XMM14_Da;
+  int32_t unaff_XMM14_Dc;
   float fStack0000000000000030;
   float fStack0000000000000034;
   float fStack0000000000000038;
@@ -68,31 +68,31 @@ void RenderSystem_ParticleSystem_Update(void)
   float fStack0000000000000074;
   float fStack0000000000000078;
   float fStack000000000000007c;
-  undefined4 in_stack_00000090;
-  undefined4 in_stack_00000098;
-  undefined4 in_stack_000000a0;
-  undefined4 in_stack_000000a8;
-  undefined4 in_stack_000000b0;
-  undefined4 in_stack_000000b8;
-  undefined4 in_stack_000000c0;
-  undefined4 in_stack_000000c8;
-  undefined4 in_stack_000000d0;
-  undefined4 in_stack_000000d8;
-  undefined4 in_stack_000000f0;
-  undefined4 in_stack_000000f8;
-  undefined4 in_stack_00000100;
-  undefined4 in_stack_00000108;
-  undefined4 in_stack_00000110;
-  undefined4 in_stack_00000118;
+  int32_t in_stack_00000090;
+  int32_t in_stack_00000098;
+  int32_t in_stack_000000a0;
+  int32_t in_stack_000000a8;
+  int32_t in_stack_000000b0;
+  int32_t in_stack_000000b8;
+  int32_t in_stack_000000c0;
+  int32_t in_stack_000000c8;
+  int32_t in_stack_000000d0;
+  int32_t in_stack_000000d8;
+  int32_t in_stack_000000f0;
+  int32_t in_stack_000000f8;
+  int32_t in_stack_00000100;
+  int32_t in_stack_00000108;
+  int32_t in_stack_00000110;
+  int32_t in_stack_00000118;
   
   // 初始化渲染系统参数
-  *(undefined8 *)(in_R11 + 0x10) = unaff_RBX;
-  puVar7 = (undefined8 *)&stack0x00000068;
-  *(undefined8 *)(in_R11 + 0x18) = unaff_RDI;
+  *(uint64_t *)(in_R11 + 0x10) = unaff_RBX;
+  puVar7 = (uint64_t *)&stack0x00000068;
+  *(uint64_t *)(in_R11 + 0x18) = unaff_RDI;
   lVar8 = 4;
-  *(undefined8 *)(in_R11 + -0x18) = unaff_R13;
+  *(uint64_t *)(in_R11 + -0x18) = unaff_R13;
   lVar5 = _DAT_180c8a9b0;
-  *(undefined8 *)(in_R11 + -0x20) = unaff_R14;
+  *(uint64_t *)(in_R11 + -0x20) = unaff_R14;
   lVar3 = *(longlong *)(lVar5 + 0xa0);
   
   // 执行初始化循环
@@ -252,9 +252,9 @@ void RenderSystem_ParticleSystem_Update(void)
  * 处理粒子效果的多参数渲染和变换
  * 这是简化实现，原始实现包含复杂的参数传递和矩阵运算
  */
-void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,undefined8 param_7,undefined8 param_8,
-                  undefined8 param_9,undefined8 param_10,undefined8 param_11,undefined8 param_12)
+void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longlong param_3,uint64_t param_4,
+                  uint64_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
+                  uint64_t param_9,uint64_t param_10,uint64_t param_11,uint64_t param_12)
 {
   float fVar1;
   float fVar2;
@@ -268,32 +268,32 @@ void RenderSystem_ParticleEffect_Process(longlong param_1,longlong param_2,longl
   longlong lVar7;
   float fVar8;
   float fVar9;
-  undefined4 unaff_XMM6_Da;
+  int32_t unaff_XMM6_Da;
   float fVar10;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Dc;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Dc;
   float fVar11;
   float unaff_XMM9_Da;
   float fVar12;
-  undefined4 unaff_XMM11_Da;
-  undefined4 unaff_XMM11_Dc;
-  undefined4 unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Dc;
+  int32_t unaff_XMM11_Da;
+  int32_t unaff_XMM11_Dc;
+  int32_t unaff_XMM12_Da;
+  int32_t unaff_XMM12_Dc;
   float fStack0000000000000068;
   float fStack000000000000006c;
   float fStack0000000000000070;
   float fStack0000000000000074;
   float fStack0000000000000078;
   float fStack000000000000007c;
-  undefined4 in_stack_000000b0;
-  undefined4 in_stack_000000b8;
-  undefined4 in_stack_000000c0;
-  undefined4 in_stack_000000c8;
-  undefined4 in_stack_00000100;
-  undefined4 in_stack_00000108;
-  undefined4 in_stack_00000110;
-  undefined4 in_stack_00000118;
+  int32_t in_stack_000000b0;
+  int32_t in_stack_000000b8;
+  int32_t in_stack_000000c0;
+  int32_t in_stack_000000c8;
+  int32_t in_stack_00000100;
+  int32_t in_stack_00000108;
+  int32_t in_stack_00000110;
+  int32_t in_stack_00000118;
   
   // 计算粒子效果参数
   fVar11 = param_6._4_4_ - *(float *)(param_3 + 0x14 + param_2 * 8);
@@ -591,11 +591,11 @@ void RenderSystem_EmptyFunction_3(void)
  * 处理渲染系统中的浮点数计算和参数传递
  * 这是简化实现，原始实现包含复杂的浮点数运算
  */
-void RenderSystem_FloatCalculation_Process(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  undefined4 param_5)
+void RenderSystem_FloatCalculation_Process(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+                  int32_t param_5)
 {
-  undefined8 uStack_28;
-  undefined8 uStack_20;
+  uint64_t uStack_28;
+  uint64_t uStack_20;
   float fStack_18;
   float fStack_14;
   float fStack_10;
@@ -621,7 +621,7 @@ void RenderSystem_FloatCalculation_Process(undefined8 param_1,undefined8 param_2
  * 处理复杂的曲线绘制和贝塞尔曲线计算
  * 这是简化实现，原始实现包含高级的曲线算法
  */
-void RenderSystem_AdvancedCurve_Draw(longlong param_1,float *param_2,undefined4 param_3,float param_4,float param_5)
+void RenderSystem_AdvancedCurve_Draw(longlong param_1,float *param_2,int32_t param_3,float param_4,float param_5)
 {
   int *piVar1;
   float fVar2;
@@ -859,8 +859,8 @@ void RenderSystem_AdvancedCurve_Draw(longlong param_1,float *param_2,undefined4 
         FUN_180293860(param_1,&fStackX_10,param_5,fVar10,fVar9,3);
       }
     }
-    FUN_180293190(param_1,*(undefined8 *)(param_1 + 0x88),*(undefined4 *)(param_1 + 0x80),param_3);
-    *(undefined4 *)(param_1 + 0x80) = 0;
+    FUN_180293190(param_1,*(uint64_t *)(param_1 + 0x88),*(int32_t *)(param_1 + 0x80),param_3);
+    *(int32_t *)(param_1 + 0x80) = 0;
   }
   return;
 }

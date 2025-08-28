@@ -21,32 +21,32 @@ void load_mmd_model(render_context_t *render_context, const char *file_path, uin
   bool model_found;
   longlong *mesh_ptr;
   longlong *material_ptr;
-  undefined4 material_id;
+  int32_t material_id;
   longlong model_index;
-  undefined8 *file_handle;
+  uint64_t *file_handle;
   longlong mesh_count;
-  undefined4 *texture_array;
+  int32_t *texture_array;
   longlong *vertex_buffer;
   char *model_name;
   ulonglong name_length;
-  undefined *temp_ptr;
+  void *temp_ptr;
   ulonglong texture_count;
   uint texture_index;
   ulonglong mesh_iter;
-  undefined4 *material_data;
+  int32_t *material_data;
   int string_compare_result;
   ulonglong file_offset;
   int model_count;
   bool name_match;
-  undefined1 *stack_ptr;
+  int8_t *stack_ptr;
   int stack_array[2];
-  undefined8 *string_buffer;
-  undefined1 path_buffer[8];
-  undefined *path_ptr;
+  uint64_t *string_buffer;
+  int8_t path_buffer[8];
+  void *path_ptr;
   uint path_length;
-  undefined8 extension_data;
+  uint64_t extension_data;
   int stack_array2[2];
-  undefined *texture_ptr;
+  void *texture_ptr;
   char *material_name;
   uint material_name_length;
   ulonglong material_size;
@@ -54,37 +54,37 @@ void load_mmd_model(render_context_t *render_context, const char *file_path, uin
   longlong *normal_ptr;
   longlong mesh_offset;
   longlong *index_buffer;
-  undefined4 vertex_format;
+  int32_t vertex_format;
   longlong *uv_buffer;
-  undefined2 bone_weight;
+  int16_t bone_weight;
   char bone_index;
   int bone_indices[2];
   longlong *bone_ptr;
   longlong *weight_ptr;
-  undefined1 bone_data[8];
-  undefined8 bone_info;
+  int8_t bone_data[8];
+  uint64_t bone_info;
   longlong *animation_ptr;
   char anim_flag1;
   char anim_flag2;
   char anim_flag3;
-  undefined *debug_ptr1;
-  undefined *debug_ptr2;
+  void *debug_ptr1;
+  void *debug_ptr2;
   uint debug_uint1;
-  undefined4 debug_uint2;
+  int32_t debug_uint2;
   int debug_array[2];
   longlong *mesh_list_ptr;
   longlong *material_list_ptr;
-  undefined1 temp_array1[4];
-  undefined1 temp_array2[4];
+  int8_t temp_array1[4];
+  int8_t temp_array2[4];
   longlong *scene_object;
   longlong *render_object;
   longlong *transform_object;
   longlong *camera_object;
   longlong *light_object;
-  undefined *resource_ptr;
+  void *resource_ptr;
   longlong transform_data;
-  undefined4 render_flags;
-  undefined8 file_info;
+  int32_t render_flags;
+  uint64_t file_info;
   longlong *resource_handle;
   
   // 初始化路径处理
@@ -116,20 +116,20 @@ LAB_18027baf2:
   mesh_index = extract_filename_from_path(path_buffer, &resource_ptr, 0, model_count);
   
   // 清理临时路径缓冲区
-  if (path_ptr != (undefined *)0x0) {
+  if (path_ptr != (void *)0x0) {
     // WARNING: 此子函数不返回
     cleanup_memory_allocation();
   }
   
   // 获取文件信息：长度、路径指针、扩展名数据
   path_length = *(uint *)(mesh_index + 0x10);
-  path_ptr = *(undefined **)(mesh_index + 8);
-  extension_data = *(undefined8 *)(mesh_index + 0x18);
+  path_ptr = *(void **)(mesh_index + 8);
+  extension_data = *(uint64_t *)(mesh_index + 0x18);
   
   // 清理文件信息结构
-  *(undefined4 *)(mesh_index + 0x10) = 0;
-  *(undefined8 *)(mesh_index + 8) = 0;
-  *(undefined8 *)(mesh_index + 0x18) = 0;
+  *(int32_t *)(mesh_index + 0x10) = 0;
+  *(uint64_t *)(mesh_index + 8) = 0;
+  *(uint64_t *)(mesh_index + 0x18) = 0;
   
   // 设置默认材质路径
   resource_ptr = &DEFAULT_MATERIAL_PATH;
@@ -144,28 +144,28 @@ LAB_18027baf2:
   // 构建完整文件路径：添加 ".mmd" 扩展名
   texture_index = path_length + 4;
   resize_string_buffer(path_buffer, texture_index);
-  *(undefined4 *)(path_ptr + path_length) = 0x646d6d2f;  // "/mmd"
-  *(undefined1 *)((longlong)(path_ptr + path_length) + 4) = 0;
+  *(int32_t *)(path_ptr + path_length) = 0x646d6d2f;  // "/mmd"
+  *(int8_t *)((longlong)(path_ptr + path_length) + 4) = 0;
   path_length = texture_index;
   
   // 添加版本标识符
-  append_string_to_buffer(path_buffer, *(undefined4 *)(render_context + 0x324));
+  append_string_to_buffer(path_buffer, *(int32_t *)(render_context + 0x324));
   model_count = path_length + 4;
   resize_string_buffer(path_buffer, model_count);
-  *(undefined4 *)(path_ptr + path_length) = 0x646d6d2e;  // ".mmd"
-  *(undefined1 *)((longlong)(path_ptr + path_length) + 4) = 0;
+  *(int32_t *)(path_ptr + path_length) = 0x646d6d2e;  // ".mmd"
+  *(int8_t *)((longlong)(path_ptr + path_length) + 4) = 0;
   path_length = model_count;
   
   // 分配文件句柄结构
-  file_handle = (undefined8 *)allocate_file_handle(GLOBAL_MEMORY_MANAGER, 0x18, 8, 3);
+  file_handle = (uint64_t *)allocate_file_handle(GLOBAL_MEMORY_MANAGER, 0x18, 8, 3);
   temp_ptr = &DEFAULT_EMPTY_STRING;
-  if (path_ptr != (undefined *)0x0) {
+  if (path_ptr != (void *)0x0) {
     temp_ptr = path_ptr;
   }
   
   mesh_index = 0;
   *file_handle = 0;
-  *(undefined1 *)(file_handle + 2) = 0;
+  *(int8_t *)(file_handle + 2) = 0;
   string_buffer = file_handle;
   initialize_file_operations(file_handle, temp_ptr, &FILE_OPERATION_TABLE);
   
@@ -196,7 +196,7 @@ LAB_18027baf2:
         
         // 读取网格数据
         fread(vertex_buffer, 1, (longlong)stack_array2[0], file_handle[1]);
-        *(undefined1 *)((longlong)stack_array2[0] + (longlong)vertex_buffer) = 0;
+        *(int8_t *)((longlong)stack_array2[0] + (longlong)vertex_buffer) = 0;
         
         // 初始化网格名称处理
         initialize_mesh_name_processing(&debug_ptr1, vertex_buffer);
@@ -226,7 +226,7 @@ LAB_18027baf2:
         // 读取材质数据
         fread(temp_array2, 4, 1, file_handle[1]);
         fread(&stack_ptr, 4, 1, file_handle[1]);
-        texture_array = (undefined4 *)allocate_memory(GLOBAL_MEMORY_MANAGER, 
+        texture_array = (int32_t *)allocate_memory(GLOBAL_MEMORY_MANAGER, 
                                                      (longlong)(int)stack_ptr << 2, 0x10, 3);
         fread(texture_array, 4, (longlong)(int)stack_ptr);
         
@@ -239,7 +239,7 @@ LAB_18027baf2:
         if (*(longlong *)(render_context + 0x40) - mesh_index >> 4 == 0) {
 LAB_18027c5be:
           temp_ptr = &DEFAULT_EMPTY_STRING;
-          if (debug_ptr2 != (undefined *)0x0) {
+          if (debug_ptr2 != (void *)0x0) {
             temp_ptr = debug_ptr2;
           }
           log_model_loading_info(&MODEL_LOADING_LOGGER, temp_ptr);
@@ -268,8 +268,8 @@ LAB_18027c5be:
               
               if (0 < *(int *)(mesh_index + 0x20)) {
                 temp_ptr = &DEFAULT_EMPTY_STRING;
-                if (*(undefined **)(mesh_index + 0x18) != (undefined *)0x0) {
-                  temp_ptr = *(undefined **)(mesh_index + 0x18);
+                if (*(void **)(mesh_index + 0x18) != (void *)0x0) {
+                  temp_ptr = *(void **)(mesh_index + 0x18);
                 }
                 // WARNING: 此子函数不返回
                 memcpy(material_name, temp_ptr, (longlong)(*(int *)(mesh_index + 0x20) + 1));
@@ -390,7 +390,7 @@ LAB_18027c306:
                 file_offset = file_offset;
                 if (0 < (int)stack_ptr) {
                   do {
-                    *(undefined4 *)(render_object[0xd] + 0x54 + file_offset) = *material_data;
+                    *(int32_t *)(render_object[0xd] + 0x54 + file_offset) = *material_data;
                     bone_weight = CONCAT11(bone_weight._1_1_, 1);
                     texture_index = (int)file_offset + 1;
                     file_offset = file_offset + 0x5c;
@@ -479,7 +479,7 @@ LAB_18027c306:
         }
         
         // 清理材质数据
-        if (texture_array != (undefined4 *)0x0) {
+        if (texture_array != (int32_t *)0x0) {
           // WARNING: 此子函数不返回
           cleanup_memory_allocation(texture_array);
         }
@@ -490,11 +490,11 @@ LAB_18027c306:
         }
         
         debug_ptr1 = &DEFAULT_TEXTURE_PATH;
-        if (debug_ptr2 != (undefined *)0x0) {
+        if (debug_ptr2 != (void *)0x0) {
           // WARNING: 此子函数不返回
           cleanup_memory_allocation();
         }
-        debug_ptr2 = (undefined *)0x0;
+        debug_ptr2 = (void *)0x0;
         debug_uint2 = 0;
         debug_ptr1 = &DEFAULT_TEXTURE_PATH;
         stack_array[0] = stack_array[0] + 1;
@@ -508,10 +508,10 @@ LAB_18027c306:
       fread(&string_buffer, 4, 1, file_handle[1]);
       mesh_offset = allocate_memory(GLOBAL_MEMORY_MANAGER, (longlong)((int)string_buffer + 1), 0x10, 3);
       fread(mesh_offset, 1, (longlong)(int)string_buffer, file_handle[1]);
-      *(undefined1 *)((int)string_buffer + mesh_offset) = 0;
+      *(int8_t *)((int)string_buffer + mesh_offset) = 0;
       fread(temp_array1, 4, 1, file_handle[1]);
       fread(stack_array, 4, 1, file_handle[1]);
-      texture_array = (undefined4 *)allocate_memory(GLOBAL_MEMORY_MANAGER, (longlong)stack_array[0] << 2, 0x10, 3);
+      texture_array = (int32_t *)allocate_memory(GLOBAL_MEMORY_MANAGER, (longlong)stack_array[0] << 2, 0x10, 3);
       fread(texture_array, 4, (longlong)stack_array[0], file_handle[1]);
       
       vertex_buffer = *(longlong **)(mesh_index + *(longlong *)(render_context + 0x38));
@@ -540,7 +540,7 @@ LAB_18027c306:
       texture_count = texture_count;
       if (0 < stack_array[0]) {
         do {
-          *(undefined4 *)(render_object[0xd] + 0x54 + texture_count) = *material_data;
+          *(int32_t *)(render_object[0xd] + 0x54 + texture_count) = *material_data;
           anim_flag1 = '\x01';
           texture_index = (int)texture_count + 1;
           texture_count = texture_count + 0x5c;
@@ -599,7 +599,7 @@ LAB_18027c306:
         (**(code **)(*scene_object + 0x38))();
       }
       
-      if (texture_array != (undefined4 *)0x0) {
+      if (texture_array != (int32_t *)0x0) {
         // WARNING: 此子函数不返回
         cleanup_memory_allocation(texture_array);
       }

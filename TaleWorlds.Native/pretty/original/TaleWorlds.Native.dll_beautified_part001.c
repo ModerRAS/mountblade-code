@@ -55,13 +55,13 @@ undefined DAT_180bf52d0;           // 引擎音频数据
 undefined DAT_180bf52d8;           // 引擎输入数据
 
 /* 特殊数据类型 */
-undefined1 DAT_180bf5240;          // 布尔类型数据
+int8_t DAT_180bf5240;          // 布尔类型数据
 undefined DAT_180bf52a8;           // 引擎扩展数据1
 undefined DAT_180bf52b0;           // 引擎扩展数据2
-undefined1 DAT_180bf52e0;          // 布尔类型数据2
+int8_t DAT_180bf52e0;          // 布尔类型数据2
 undefined UNK_180a3c3e0;           // 未知数据结构 - 待分析
-undefined8 UNK_180bf5278;          // 64位数据结构
-undefined8 UNK_180bf5298;          // 64位数据结构2
+uint64_t UNK_180bf5278;          // 64位数据结构
+uint64_t UNK_180bf5298;          // 64位数据结构2
 
 /* 游戏世界数据 */
 undefined DAT_180bf5320;           // 游戏世界数据1
@@ -129,11 +129,11 @@ undefined DAT_180bf5770;           // 游戏世界状态数据
  * @{
  */
 
-typedef undefined1 bool;           // 布尔类型定义
-typedef undefined8 uint64;         // 64位无符号整数
-typedef undefined4 uint32;         // 32位无符号整数
-typedef undefined2 uint16;         // 16位无符号整数
-typedef undefined1 uint8;          // 8位无符号整数
+typedef int8_t bool;           // 布尔类型定义
+typedef uint64_t uint64;         // 64位无符号整数
+typedef int32_t uint32;         // 32位无符号整数
+typedef int16_t uint16;         // 16位无符号整数
+typedef int8_t uint8;          // 8位无符号整数
 
 /** @} */
 

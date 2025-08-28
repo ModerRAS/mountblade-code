@@ -322,7 +322,7 @@ void UtilitiesSystem_EmptyOperation1(void)
  * @note 处理系统参数时需要注意参数有效性
  * @see UtilitiesSystem_ParameterProcessor2
  */
-void UtilitiesSystem_ParameterProcessor1(longlong param_1, undefined8 param_2)
+void UtilitiesSystem_ParameterProcessor1(longlong param_1, uint64_t param_2)
 {
     // 语义化变量定义
     UtilStatus process_status;                       /**< 处理状态 */
@@ -366,12 +366,12 @@ void UtilitiesSystem_ParameterProcessor1(longlong param_1, undefined8 param_2)
  * - 返回处理结果
  * 
  * @param param_1 参数1的指针
- * @return undefined8 处理结果状态码
+ * @return uint64_t 处理结果状态码
  * 
  * @note 此函数包含复杂的参数处理逻辑
  * @see UtilitiesSystem_ParameterProcessor1
  */
-undefined8 UtilitiesSystem_ParameterProcessor2(longlong param_1)
+uint64_t UtilitiesSystem_ParameterProcessor2(longlong param_1)
 {
     // 语义化变量定义
     UtilStatus process_status;                       /**< 处理状态 */
@@ -443,7 +443,7 @@ undefined8 UtilitiesSystem_ParameterProcessor2(longlong param_1)
                     // 更新参数值
                     *(UtilFloat *)(data_pointer + 0x20) = parameter_value;
                     FUN_1808d7020(data_pointer);
-                    *(undefined1 *)(data_pointer + 0x35) = 0;
+                    *(int8_t *)(data_pointer + 0x35) = 0;
                 }
             }
         }
@@ -475,8 +475,8 @@ int UtilitiesSystem_DataHandler1(longlong param_1)
     UtilPointer data_pointer;                        /**< 数据指针 */
     int data_size;                                     /**< 数据大小 */
     int max_data_size;                                 /**< 最大数据大小 */
-    undefined1 stack_data[8];                         /**< 栈数据 */
-    undefined1 transfer_buffer[72];                   /**< 传输缓冲区 */
+    int8_t stack_data[8];                         /**< 栈数据 */
+    int8_t transfer_buffer[72];                   /**< 传输缓冲区 */
     
     // 初始化数据指针
     data_pointer = 0;
@@ -487,7 +487,7 @@ int UtilitiesSystem_DataHandler1(longlong param_1)
     }
     
     // 调用数据验证函数
-    process_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x4c), stack_data);
+    process_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x4c), stack_data);
     
     // 检查验证结果
     if (process_status == UTIL_SUCCESS) {
@@ -506,7 +506,7 @@ int UtilitiesSystem_DataHandler1(longlong param_1)
     // 检查数据指针
     if (data_pointer != 0) {
         // 执行系统调用
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+        FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                      data_pointer, 
                      &UNK_18095b500, 
                      0xb8, 
@@ -534,7 +534,7 @@ int UtilitiesSystem_DataHandler1(longlong param_1)
  * @note 处理系统操作时需要注意参数有效性
  * @see UtilitiesSystem_OperationHandler2
  */
-void UtilitiesSystem_OperationHandler1(longlong param_1, undefined8 param_2)
+void UtilitiesSystem_OperationHandler1(longlong param_1, uint64_t param_2)
 {
     // 语义化变量定义
     UtilStatus operation_status;                     /**< 操作状态 */
@@ -543,7 +543,7 @@ void UtilitiesSystem_OperationHandler1(longlong param_1, undefined8 param_2)
     longlong stack_data;                              /**< 栈数据 */
     
     // 调用操作验证函数
-    operation_flags = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    operation_flags = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查验证结果
     if (operation_flags == UTIL_SUCCESS) {
@@ -552,7 +552,7 @@ void UtilitiesSystem_OperationHandler1(longlong param_1, undefined8 param_2)
         
         // 调用操作处理函数
         FUN_180894dd0(param_2, &operation_flags, 
-                       *(undefined4 *)(param_1 + 0x14), 
+                       *(int32_t *)(param_1 + 0x14), 
                        stack_data);
     }
     
@@ -577,7 +577,7 @@ void UtilitiesSystem_OperationHandler1(longlong param_1, undefined8 param_2)
  * @note 此函数包含复杂的结果处理逻辑
  * @see UtilitiesSystem_ConfigValidator1
  */
-ulonglong UtilitiesSystem_ResultProcessor1(longlong param_1, undefined8 param_2)
+ulonglong UtilitiesSystem_ResultProcessor1(longlong param_1, uint64_t param_2)
 {
     // 语义化变量定义
     UtilStatus process_status;                       /**< 处理状态 */
@@ -589,7 +589,7 @@ ulonglong UtilitiesSystem_ResultProcessor1(longlong param_1, undefined8 param_2)
     int stack_value;                                  /**< 栈值 */
     
     // 调用结果处理函数
-    result_flags = func_0x00018088c530(*(undefined4 *)(param_1 + 0x24), &stack_data);
+    result_flags = func_0x00018088c530(*(int32_t *)(param_1 + 0x24), &stack_data);
     
     // 检查处理状态
     if ((int)result_flags == UTIL_SUCCESS) {
@@ -612,7 +612,7 @@ ulonglong UtilitiesSystem_ResultProcessor1(longlong param_1, undefined8 param_2)
             
             // 调用处理函数
             process_status = FUN_180894dd0(param_2, &result_flags, 
-                                           *(undefined4 *)(param_1 + 0x20), 
+                                           *(int32_t *)(param_1 + 0x20), 
                                            stack_data);
             result_flags = (ulonglong)process_status;
             
@@ -621,7 +621,7 @@ ulonglong UtilitiesSystem_ResultProcessor1(longlong param_1, undefined8 param_2)
                 result_flags = UTIL_SUCCESS;
             } else if (data_pointer != 0) {
                 // 执行清理操作
-                FUN_180741df0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+                FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                              data_pointer, 
                              &UNK_180957f70, 
                              0xe9);
@@ -650,7 +650,7 @@ ulonglong UtilitiesSystem_ResultProcessor1(longlong param_1, undefined8 param_2)
  * @note 验证系统配置时需要注意参数有效性
  * @see UtilitiesSystem_EmptyOperation2
  */
-int UtilitiesSystem_ConfigValidator1(undefined4 param_1)
+int UtilitiesSystem_ConfigValidator1(int32_t param_1)
 {
     // 语义化变量定义
     UtilStatus validation_status;                    /**< 验证状态 */
@@ -684,7 +684,7 @@ int UtilitiesSystem_ConfigValidator1(undefined4 param_1)
         validation_status = UTIL_SUCCESS;
     } else if (config_pointer != 0) {
         // 执行配置清理
-        FUN_180741df0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+        FUN_180741df0(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                      config_pointer, 
                      &UNK_180957f70, 
                      0xe9, 
@@ -703,12 +703,12 @@ int UtilitiesSystem_ConfigValidator1(undefined4 param_1)
  * - 保持接口兼容性
  * - 用作占位函数
  * 
- * @return undefined8 成功状态码
+ * @return uint64_t 成功状态码
  * 
  * @note 这是一个空操作函数，用于保持接口兼容性
  * @see UtilitiesSystem_EmptyOperation1
  */
-undefined8 UtilitiesSystem_EmptyOperation2(void)
+uint64_t UtilitiesSystem_EmptyOperation2(void)
 {
     // 语义化变量定义
     UtilStatus operation_status;                     /**< 操作状态 */
@@ -734,12 +734,12 @@ undefined8 UtilitiesSystem_EmptyOperation2(void)
  * - 保持接口兼容性
  * - 用作占位函数
  * 
- * @return undefined8 错误状态码
+ * @return uint64_t 错误状态码
  * 
  * @note 这是一个空操作函数，用于保持接口兼容性
  * @see UtilitiesSystem_EmptyOperation1
  */
-undefined8 UtilitiesSystem_EmptyOperation3(void)
+uint64_t UtilitiesSystem_EmptyOperation3(void)
 {
     // 语义化变量定义
     UtilStatus operation_status;                     /**< 操作状态 */
@@ -780,8 +780,8 @@ void UtilitiesSystem_ResourceHandler1(longlong param_1, longlong param_2)
     UtilFlags resource_flags;                        /**< 资源标志 */
     
     // 调用资源处理函数
-    resource_status = FUN_18073b5f0(*(undefined8 *)(param_2 + 0x78), 
-                                     *(undefined4 *)(param_1 + 0x10),
+    resource_status = FUN_18073b5f0(*(uint64_t *)(param_2 + 0x78), 
+                                     *(int32_t *)(param_1 + 0x10),
                                      param_1 + 0x14, 
                                      param_1 + 0x20, 
                                      param_1 + 0x2c, 
@@ -806,7 +806,7 @@ void UtilitiesSystem_ResourceHandler1(longlong param_1, longlong param_2)
         // 执行资源操作
         func_0x0001808d2830((longlong)*(int *)(param_1 + 0x10) * 0x44 +
                             *(longlong *)(param_2 + 0x90) + 0x554, 
-                            *(undefined1 *)(param_1 + 0x50));
+                            *(int8_t *)(param_1 + 0x50));
     }
     
     // 返回资源状态
@@ -836,14 +836,14 @@ void UtilitiesSystem_ResourceHandler2(longlong param_1, longlong param_2)
     UtilStatus resource_status;                      /**< 资源状态 */
     
     // 调用资源处理函数
-    resource_status = FUN_18073b810(*(undefined8 *)(param_2 + 0x78), 
-                                     *(undefined4 *)(param_1 + 0x10));
+    resource_status = FUN_18073b810(*(uint64_t *)(param_2 + 0x78), 
+                                     *(int32_t *)(param_1 + 0x10));
     
     // 检查处理结果
     if (resource_status == UTIL_SUCCESS) {
         // 执行资源清理
-        func_0x0001808c2130(*(undefined8 *)(param_2 + 0x90), 
-                            *(undefined4 *)(param_1 + 0x10));
+        func_0x0001808c2130(*(uint64_t *)(param_2 + 0x90), 
+                            *(int32_t *)(param_1 + 0x10));
     }
     
     // 返回资源状态
@@ -862,18 +862,18 @@ void UtilitiesSystem_ResourceHandler2(longlong param_1, longlong param_2)
  * 
  * @param param_1 参数1的指针
  * @param param_2 参数2的值
- * @return undefined8 验证结果状态码
+ * @return uint64_t 验证结果状态码
  * 
  * @note 验证系统状态时需要注意参数有效性
  * @see UtilitiesSystem_DataHandler2
  */
-undefined8 UtilitiesSystem_Validator1(longlong param_1, undefined8 param_2)
+uint64_t UtilitiesSystem_Validator1(longlong param_1, uint64_t param_2)
 {
     // 语义化变量定义
     UtilStatus validation_status;                    /**< 验证状态 */
     UtilFlags validation_flags;                       /**< 验证标志 */
     int *parameter_pointer;                           /**< 参数指针 */
-    undefined4 *data_pointer;                         /**< 数据指针 */
+    int32_t *data_pointer;                         /**< 数据指针 */
     int array_size;                                   /**< 数组大小 */
     int index;                                        /**< 索引 */
     
@@ -881,7 +881,7 @@ undefined8 UtilitiesSystem_Validator1(longlong param_1, undefined8 param_2)
     validation_status = UTIL_SUCCESS;
     
     // 设置数据指针
-    data_pointer = (undefined4 *)(param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
+    data_pointer = (int32_t *)(param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
     parameter_pointer = (int *)(param_1 + 0x18);
     
     // 检查数组大小
@@ -894,7 +894,7 @@ undefined8 UtilitiesSystem_Validator1(longlong param_1, undefined8 param_2)
                 (validation_status = FUN_1808678e0(param_2 + 0x60, 
                                                    (int *)(param_1 + 0x18) + (longlong)index * 2, 
                                                    *data_pointer, 
-                                                   *(undefined1 *)(param_1 + 0x14)), 
+                                                   *(int8_t *)(param_1 + 0x14)), 
                  (int)validation_status != UTIL_SUCCESS)) {
                 return validation_status;
             }
@@ -935,7 +935,7 @@ void UtilitiesSystem_DataHandler2(longlong param_1, longlong param_2)
     longlong *current_pointer;                       /**< 当前指针 */
     longlong *next_pointer;                           /**< 下一个指针 */
     longlong *temp_pointer;                           /**< 临时指针 */
-    undefined8 stack_data[2];                         /**< 栈数据 */
+    uint64_t stack_data[2];                         /**< 栈数据 */
     
     // 初始化指针
     data_pointer = (longlong *)0x0;
@@ -946,7 +946,7 @@ void UtilitiesSystem_DataHandler2(longlong param_1, longlong param_2)
     
     // 检查处理结果
     if ((process_status == UTIL_SUCCESS) && 
-        (process_status = FUN_1808bdd90(*(undefined8 *)(param_2 + 0x90)), 
+        (process_status = FUN_1808bdd90(*(uint64_t *)(param_2 + 0x90)), 
          process_status == UTIL_SUCCESS)) {
         
         // 设置当前指针
@@ -1015,25 +1015,25 @@ void UtilitiesSystem_DataHandler2(longlong param_1, longlong param_2)
  * - 返回管理结果
  * 
  * @param param_1 参数1的指针
- * @return undefined8 管理结果状态码
+ * @return uint64_t 管理结果状态码
  * 
  * @note 管理系统资源时需要注意参数有效性
  * @see UtilitiesSystem_Controller1
  */
-undefined8 UtilitiesSystem_Manager1(longlong param_1)
+uint64_t UtilitiesSystem_Manager1(longlong param_1)
 {
     // 语义化变量定义
     UtilStatus management_status;                    /**< 管理状态 */
     longlong stack_data[4];                           /**< 栈数据 */
     
     // 调用管理函数
-    management_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), stack_data);
+    management_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), stack_data);
     
     // 检查管理结果
     if ((int)management_status == UTIL_SUCCESS) {
         // 设置资源参数
-        *(undefined4 *)(*(longlong *)(stack_data[0] + 0x10) + 0x50) = 
-            *(undefined4 *)(param_1 + 0x18);
+        *(int32_t *)(*(longlong *)(stack_data[0] + 0x10) + 0x50) = 
+            *(int32_t *)(param_1 + 0x18);
         
         // 检查资源状态
         if ((*(longlong *)(stack_data[0] + 8) != 0) && 
@@ -1070,7 +1070,7 @@ void UtilitiesSystem_Controller1(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus control_status;                       /**< 控制状态 */
-    undefined8 stack_data;                            /**< 栈数据 */
+    uint64_t stack_data;                            /**< 栈数据 */
     
     // 检查控制参数
     if (*(int *)(param_1 + 0x2c) == UTIL_SUCCESS) {
@@ -1082,14 +1082,14 @@ void UtilitiesSystem_Controller1(longlong param_1, longlong param_2)
             control_status = func_0x00018088c500(stack_data, param_1 + 0x2c);
             if (control_status == UTIL_SUCCESS) {
                 // 执行系统操作
-                FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+                FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
             }
         }
         return;
     }
     
     // 执行系统操作
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+    FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回控制状态
     return;
@@ -1128,14 +1128,14 @@ void UtilitiesSystem_Controller2(longlong param_1, longlong param_2)
             return;
         }
         
-        control_status = func_0x00018088c500(*(undefined8 *)(stack_data + 0xd0), param_1 + 0x2c);
+        control_status = func_0x00018088c500(*(uint64_t *)(stack_data + 0xd0), param_1 + 0x2c);
         if (control_status != UTIL_SUCCESS) {
             return;
         }
     }
     
     // 执行系统操作
-    FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98), param_1);
+    FUN_18088d7c0(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回控制状态
     return;
@@ -1165,16 +1165,16 @@ void UtilitiesSystem_Controller3(longlong param_1, longlong param_2)
     longlong stack_data;                              /**< 栈数据 */
     
     // 调用控制函数
-    control_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    control_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查控制结果
     if (control_status == UTIL_SUCCESS) {
         // 设置配置参数
-        *(undefined4 *)(param_1 + 0x18) = *(undefined4 *)(stack_data + 0x30);
-        *(undefined4 *)(param_1 + 0x1c) = *(undefined4 *)(stack_data + 0x34);
+        *(int32_t *)(param_1 + 0x18) = *(int32_t *)(stack_data + 0x30);
+        *(int32_t *)(param_1 + 0x1c) = *(int32_t *)(stack_data + 0x34);
         
         // 执行系统操作
-        FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98), param_1);
+        FUN_18088d7c0(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回控制状态
@@ -1202,17 +1202,17 @@ void UtilitiesSystem_Controller4(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus control_status;                       /**< 控制状态 */
-    undefined8 stack_data;                            /**< 栈数据 */
+    uint64_t stack_data;                            /**< 栈数据 */
     
     // 调用控制函数
-    control_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    control_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查控制结果
     if (control_status == UTIL_SUCCESS) {
         control_status = FUN_1808deb90(stack_data, param_1 + 0x18);
         if (control_status == UTIL_SUCCESS) {
             // 执行系统操作
-            FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98), param_1);
+            FUN_18088d7c0(*(uint64_t *)(param_2 + 0x98), param_1);
         }
     }
     
@@ -1241,7 +1241,7 @@ void UtilitiesSystem_Controller5(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus control_status;                       /**< 控制状态 */
-    undefined8 stack_data;                            /**< 栈数据 */
+    uint64_t stack_data;                            /**< 栈数据 */
     
     // 检查控制参数
     if (*(int *)(param_1 + 0x2c) == UTIL_SUCCESS) {
@@ -1253,14 +1253,14 @@ void UtilitiesSystem_Controller5(longlong param_1, longlong param_2)
             control_status = func_0x00018088c500(stack_data, param_1 + 0x2c);
             if (control_status == UTIL_SUCCESS) {
                 // 执行系统操作
-                FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+                FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
             }
         }
         return;
     }
     
     // 执行系统操作
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+    FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回控制状态
     return;
@@ -1278,12 +1278,12 @@ void UtilitiesSystem_Controller5(longlong param_1, longlong param_2)
  * 
  * @param param_1 参数1的指针
  * @param param_2 参数2的指针
- * @return undefined8 管理结果状态码
+ * @return uint64_t 管理结果状态码
  * 
  * @note 管理系统状态时需要注意参数有效性
  * @see UtilitiesSystem_StateManager2
  */
-undefined8 UtilitiesSystem_StateManager1(longlong param_1, longlong param_2)
+uint64_t UtilitiesSystem_StateManager1(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus management_status;                    /**< 管理状态 */
@@ -1291,7 +1291,7 @@ undefined8 UtilitiesSystem_StateManager1(longlong param_1, longlong param_2)
     longlong stack_data;                              /**< 栈数据 */
     
     // 调用管理函数
-    management_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    management_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查管理结果
     if ((int)management_status == UTIL_SUCCESS) {
@@ -1307,7 +1307,7 @@ undefined8 UtilitiesSystem_StateManager1(longlong param_1, longlong param_2)
         // 检查状态值
         if (state_value == UTIL_SUCCESS) {
             // 执行系统操作
-            FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+            FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
         }
         
         management_status = UTIL_SUCCESS;
@@ -1341,15 +1341,15 @@ void UtilitiesSystem_StateManager2(longlong param_1, longlong param_2)
     longlong stack_data;                              /**< 栈数据 */
     
     // 调用管理函数
-    management_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    management_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查管理结果
     if (management_status == UTIL_SUCCESS) {
         // 重置状态值
-        *(undefined4 *)(stack_data + 0x30) = UTIL_SUCCESS;
+        *(int32_t *)(stack_data + 0x30) = UTIL_SUCCESS;
         
         // 执行系统操作
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+        FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回管理状态
@@ -1368,12 +1368,12 @@ void UtilitiesSystem_StateManager2(longlong param_1, longlong param_2)
  * 
  * @param param_1 参数1的指针
  * @param param_2 参数2的指针
- * @return undefined8 管理结果状态码
+ * @return uint64_t 管理结果状态码
  * 
  * @note 管理系统状态时需要注意参数有效性
  * @see UtilitiesSystem_StateManager2
  */
-undefined8 UtilitiesSystem_StateManager3(longlong param_1, longlong param_2)
+uint64_t UtilitiesSystem_StateManager3(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus management_status;                    /**< 管理状态 */
@@ -1381,7 +1381,7 @@ undefined8 UtilitiesSystem_StateManager3(longlong param_1, longlong param_2)
     longlong stack_data;                              /**< 栈数据 */
     
     // 调用管理函数
-    management_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    management_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查管理结果
     if ((int)management_status == UTIL_SUCCESS) {
@@ -1404,7 +1404,7 @@ undefined8 UtilitiesSystem_StateManager3(longlong param_1, longlong param_2)
         *(int *)(stack_data + 0x28) = state_value + -1;
         if (state_value == 1) {
             // 执行系统操作
-            FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+            FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
         }
         
         management_status = UTIL_SUCCESS;
@@ -1426,19 +1426,19 @@ undefined8 UtilitiesSystem_StateManager3(longlong param_1, longlong param_2)
  * 
  * @param param_1 参数1的指针
  * @param param_2 参数2的指针
- * @return undefined8 访问结果状态码
+ * @return uint64_t 访问结果状态码
  * 
  * @note 访问系统资源时需要注意参数有效性
  * @see UtilitiesSystem_Accessor2
  */
-undefined8 UtilitiesSystem_Accessor1(longlong param_1, longlong param_2)
+uint64_t UtilitiesSystem_Accessor1(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus access_status;                        /**< 访问状态 */
     longlong stack_data;                              /**< 栈数据 */
     
     // 调用访问函数
-    access_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    access_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查访问结果
     if ((int)access_status == UTIL_SUCCESS) {
@@ -1448,11 +1448,11 @@ undefined8 UtilitiesSystem_Accessor1(longlong param_1, longlong param_2)
         }
         
         // 设置资源参数
-        *(undefined8 *)(param_1 + 0x18) = 
-            *(undefined8 *)(*(longlong *)(stack_data + 8) + 0x78);
+        *(uint64_t *)(param_1 + 0x18) = 
+            *(uint64_t *)(*(longlong *)(stack_data + 8) + 0x78);
         
         // 执行系统操作
-        access_status = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98), param_1);
+        access_status = FUN_18088d7c0(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回访问结果
@@ -1471,19 +1471,19 @@ undefined8 UtilitiesSystem_Accessor1(longlong param_1, longlong param_2)
  * 
  * @param param_1 参数1的指针
  * @param param_2 参数2的指针
- * @return undefined8 访问结果状态码
+ * @return uint64_t 访问结果状态码
  * 
  * @note 访问系统资源时需要注意参数有效性
  * @see UtilitiesSystem_Accessor1
  */
-undefined8 UtilitiesSystem_Accessor2(longlong param_1, longlong param_2)
+uint64_t UtilitiesSystem_Accessor2(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus access_status;                        /**< 访问状态 */
     longlong stack_data;                              /**< 栈数据 */
     
     // 调用访问函数
-    access_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    access_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查访问结果
     if ((int)access_status != UTIL_SUCCESS) {
@@ -1496,10 +1496,10 @@ undefined8 UtilitiesSystem_Accessor2(longlong param_1, longlong param_2)
     }
     
     // 设置访问状态
-    *(undefined1 *)(stack_data + 0x2c) = 1;
+    *(int8_t *)(stack_data + 0x2c) = 1;
     
     // 执行系统操作
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+    FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回访问结果
     return access_status;
@@ -1529,15 +1529,15 @@ void UtilitiesSystem_ConfigHandler1(longlong param_1, longlong param_2)
     longlong stack_data;                              /**< 栈数据 */
     
     // 调用配置函数
-    config_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    config_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查配置结果
     if (config_status == UTIL_SUCCESS) {
         // 设置配置参数
-        *(undefined1 *)(stack_data + 0x29) = *(undefined1 *)(param_1 + 0x18);
+        *(int8_t *)(stack_data + 0x29) = *(int8_t *)(param_1 + 0x18);
         
         // 执行系统操作
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+        FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回配置状态
@@ -1568,15 +1568,15 @@ void UtilitiesSystem_ConfigHandler2(longlong param_1, longlong param_2)
     longlong stack_data;                              /**< 栈数据 */
     
     // 调用配置函数
-    config_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    config_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查配置结果
     if (config_status == UTIL_SUCCESS) {
         // 设置配置参数
-        *(undefined1 *)(stack_data + 0x28) = *(undefined1 *)(param_1 + 0x18);
+        *(int8_t *)(stack_data + 0x28) = *(int8_t *)(param_1 + 0x18);
         
         // 执行系统操作
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+        FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回配置状态
@@ -1595,18 +1595,18 @@ void UtilitiesSystem_ConfigHandler2(longlong param_1, longlong param_2)
  * 
  * @param param_1 参数1的指针
  * @param param_2 参数2的指针
- * @return undefined8 验证结果状态码
+ * @return uint64_t 验证结果状态码
  * 
  * @note 验证系统数据时需要注意参数有效性
  * @see UtilitiesSystem_StateController1
  */
-undefined8 UtilitiesSystem_DataValidator1(longlong param_1, longlong param_2)
+uint64_t UtilitiesSystem_DataValidator1(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus validation_status;                    /**< 验证状态 */
     uint parameter_value;                              /**< 参数值 */
     uint stack_value;                                  /**< 栈值 */
-    undefined4 stack_value_dword;                      /**< 栈值双字 */
+    int32_t stack_value_dword;                      /**< 栈值双字 */
     
     // 获取参数值
     parameter_value = *(uint *)(param_1 + 0x18);
@@ -1617,16 +1617,16 @@ undefined8 UtilitiesSystem_DataValidator1(longlong param_1, longlong param_2)
     }
     
     // 调用验证函数
-    validation_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_value);
+    validation_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_value);
     
     // 检查验证结果
     if ((int)validation_status == UTIL_SUCCESS) {
         // 设置验证参数
-        *(undefined4 *)(CONCAT44(stack_value_dword, stack_value) + 0x24) = 
-            *(undefined4 *)(param_1 + 0x18);
+        *(int32_t *)(CONCAT44(stack_value_dword, stack_value) + 0x24) = 
+            *(int32_t *)(param_1 + 0x18);
         
         // 执行系统操作
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+        FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回验证结果
@@ -1645,19 +1645,19 @@ undefined8 UtilitiesSystem_DataValidator1(longlong param_1, longlong param_2)
  * 
  * @param param_1 参数1的指针
  * @param param_2 参数2的指针
- * @return undefined8 控制结果状态码
+ * @return uint64_t 控制结果状态码
  * 
  * @note 控制系统状态时需要注意参数有效性
  * @see UtilitiesSystem_ArrayProcessor1
  */
-undefined8 UtilitiesSystem_StateController1(longlong param_1, longlong param_2)
+uint64_t UtilitiesSystem_StateController1(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus control_status;                       /**< 控制状态 */
     longlong stack_data;                              /**< 栈数据 */
     
     // 调用控制函数
-    control_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    control_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查控制结果
     if ((int)control_status != UTIL_SUCCESS) {
@@ -1670,10 +1670,10 @@ undefined8 UtilitiesSystem_StateController1(longlong param_1, longlong param_2)
     }
     
     // 重置状态值
-    *(undefined1 *)(stack_data + 0x2c) = 0;
+    *(int8_t *)(stack_data + 0x2c) = 0;
     
     // 执行系统操作
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+    FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回控制结果
     return control_status;
@@ -1709,13 +1709,13 @@ void UtilitiesSystem_ArrayProcessor1(longlong param_1, longlong param_2)
     longlong stack_data2;                             /**< 栈数据2 */
     
     // 调用处理函数
-    process_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data2);
+    process_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data2);
     
     // 检查处理结果
     if (((process_status != UTIL_SUCCESS) || 
          (process_status = FUN_180867bc0(&stack_data1), process_status != UTIL_SUCCESS)) ||
         (process_status = FUN_180868490(stack_data1, param_2, 
-                                        *(undefined8 *)(stack_data2 + 8)), 
+                                        *(uint64_t *)(stack_data2 + 8)), 
          process_status != UTIL_SUCCESS)) {
         return;
     }
@@ -1757,7 +1757,7 @@ void UtilitiesSystem_ArrayProcessor1(longlong param_1, longlong param_2)
         // 分配新内存
         if (new_size != 0) {
             if ((0x3ffffffe < new_size * 8 - 1U) ||
-                (data_pointer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+                (data_pointer = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                                              new_size * 8, 
                                              &UNK_180957f70, 
                                              UTIL_MEMORY_BLOCK_SIZE, 
@@ -1770,7 +1770,7 @@ void UtilitiesSystem_ArrayProcessor1(longlong param_1, longlong param_2)
             
             // 复制数据
             if (*(int *)(stack_data2 + 0x28) != 0) {
-                memcpy(data_pointer, *(undefined8 *)(stack_data2 + 0x20), 
+                memcpy(data_pointer, *(uint64_t *)(stack_data2 + 0x20), 
                        (longlong)*(int *)(stack_data2 + 0x28) << 3);
             }
         }
@@ -1778,7 +1778,7 @@ void UtilitiesSystem_ArrayProcessor1(longlong param_1, longlong param_2)
         // 释放旧内存
         if ((0 < *(int *)(stack_data2 + 0x2c)) && 
             (*(longlong *)(stack_data2 + 0x20) != 0)) {
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                          *(longlong *)(stack_data2 + 0x20), 
                          &UNK_180957f70, 
                          0x100, 
@@ -1797,7 +1797,7 @@ void UtilitiesSystem_ArrayProcessor1(longlong param_1, longlong param_2)
     
 LAB_180891fc0:
     // 执行系统操作
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+    FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
     
     // 返回处理状态
     return;
@@ -1822,7 +1822,7 @@ LAB_180891fc0:
  * @note 处理系统数组时需要注意参数有效性
  * @see UtilitiesSystem_ArrayProcessor1
  */
-void UtilitiesSystem_ArrayProcessor2(undefined8 param_1, undefined8 param_2, 
+void UtilitiesSystem_ArrayProcessor2(uint64_t param_1, uint64_t param_2, 
                                     longlong in_stack_00000060, longlong in_stack_00000070)
 {
     // 语义化变量定义
@@ -1837,7 +1837,7 @@ void UtilitiesSystem_ArrayProcessor2(undefined8 param_1, undefined8 param_2,
     
     // 调用处理函数
     process_status = FUN_180868490(param_1, param_2, 
-                                    *(undefined8 *)(in_stack_00000070 + 8));
+                                    *(uint64_t *)(in_stack_00000070 + 8));
     
     // 检查处理结果
     if (process_status != UTIL_SUCCESS) {
@@ -1881,7 +1881,7 @@ void UtilitiesSystem_ArrayProcessor2(undefined8 param_1, undefined8 param_2,
         // 分配新内存
         if (new_size != 0) {
             if ((0x3ffffffe < new_size * 8 - 1U) ||
-                (data_pointer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+                (data_pointer = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                                              new_size * 8, 
                                              &UNK_180957f70, 
                                              UTIL_MEMORY_BLOCK_SIZE, 
@@ -1892,7 +1892,7 @@ void UtilitiesSystem_ArrayProcessor2(undefined8 param_1, undefined8 param_2,
             
             // 复制数据
             if (*(int *)(in_stack_00000070 + 0x28) != 0) {
-                memcpy(data_pointer, *(undefined8 *)(in_stack_00000070 + 0x20), 
+                memcpy(data_pointer, *(uint64_t *)(in_stack_00000070 + 0x20), 
                        (longlong)*(int *)(in_stack_00000070 + 0x28) << 3);
             }
         }
@@ -1900,7 +1900,7 @@ void UtilitiesSystem_ArrayProcessor2(undefined8 param_1, undefined8 param_2,
         // 释放旧内存
         if ((0 < *(int *)(in_stack_00000070 + 0x2c)) && 
             (*(longlong *)(in_stack_00000070 + 0x20) != 0)) {
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                          *(longlong *)(in_stack_00000070 + 0x20), 
                          &UNK_180957f70, 
                          0x100, 
@@ -1919,7 +1919,7 @@ void UtilitiesSystem_ArrayProcessor2(undefined8 param_1, undefined8 param_2,
     
 LAB_180891fc0:
     // 执行系统操作
-    FUN_18088d720(*(undefined8 *)(unaff_R14 + 0x98));
+    FUN_18088d720(*(uint64_t *)(unaff_R14 + 0x98));
     
     // 返回处理状态
     return;
@@ -1944,7 +1944,7 @@ LAB_180891fc0:
  * @note 处理系统数组时需要注意参数有效性
  * @see UtilitiesSystem_ArrayProcessor2
  */
-void UtilitiesSystem_ArrayProcessor3(longlong in_RAX, undefined8 in_stack_00000060,
+void UtilitiesSystem_ArrayProcessor3(longlong in_RAX, uint64_t in_stack_00000060,
                                     longlong unaff_RBX, longlong unaff_R14)
 {
     // 语义化变量定义
@@ -1994,7 +1994,7 @@ void UtilitiesSystem_ArrayProcessor3(longlong in_RAX, undefined8 in_stack_000000
                 goto LAB_180891fc0;
             }
             
-            data_pointer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+            data_pointer = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                                         new_size * 8, 
                                         &UNK_180957f70, 
                                         UTIL_MEMORY_BLOCK_SIZE, 
@@ -2006,7 +2006,7 @@ void UtilitiesSystem_ArrayProcessor3(longlong in_RAX, undefined8 in_stack_000000
             
             // 复制数据
             if (*(int *)(unaff_RBX + 0x28) != 0) {
-                memcpy(data_pointer, *(undefined8 *)(unaff_RBX + 0x20), 
+                memcpy(data_pointer, *(uint64_t *)(unaff_RBX + 0x20), 
                        (longlong)*(int *)(unaff_RBX + 0x28) << 3);
             }
         }
@@ -2014,7 +2014,7 @@ void UtilitiesSystem_ArrayProcessor3(longlong in_RAX, undefined8 in_stack_000000
         // 释放旧内存
         if ((0 < *(int *)(unaff_RBX + 0x2c)) && 
             (*(longlong *)(unaff_RBX + 0x20) != 0)) {
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                          *(longlong *)(unaff_RBX + 0x20), 
                          &UNK_180957f70, 
                          0x100, 
@@ -2027,13 +2027,13 @@ void UtilitiesSystem_ArrayProcessor3(longlong in_RAX, undefined8 in_stack_000000
     }
     
     // 添加新元素
-    *(undefined8 *)(*(longlong *)(unaff_RBX + 0x20) + 
+    *(uint64_t *)(*(longlong *)(unaff_RBX + 0x20) + 
                     (longlong)*(int *)(unaff_RBX + 0x28) * 8) = in_stack_00000060;
     *(int *)(unaff_RBX + 0x28) = *(int *)(unaff_RBX + 0x28) + 1;
     
 LAB_180891fc0:
     // 执行系统操作
-    FUN_18088d720(*(undefined8 *)(unaff_R14 + 0x98));
+    FUN_18088d720(*(uint64_t *)(unaff_R14 + 0x98));
     
     // 返回处理状态
     return;
@@ -2061,7 +2061,7 @@ LAB_180891fc0:
  * @see UtilitiesSystem_ArrayProcessor3
  */
 void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2, 
-                                    undefined8 in_stack_00000060,
+                                    uint64_t in_stack_00000060,
                                     longlong unaff_RBX, longlong unaff_RSI, longlong unaff_R14)
 {
     // 语义化变量定义
@@ -2094,7 +2094,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
                 goto LAB_180891fc0;
             }
             
-            unaff_RSI = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+            unaff_RSI = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                                      new_size * 8, 
                                      &UNK_180957f70, 
                                      UTIL_MEMORY_BLOCK_SIZE);
@@ -2105,7 +2105,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
             
             // 复制数据
             if (*(int *)(unaff_RBX + 0x28) != 0) {
-                memcpy(unaff_RSI, *(undefined8 *)(unaff_RBX + 0x20), 
+                memcpy(unaff_RSI, *(uint64_t *)(unaff_RBX + 0x20), 
                        (longlong)*(int *)(unaff_RBX + 0x28) << 3);
             }
         }
@@ -2113,7 +2113,7 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
         // 释放旧内存
         if ((0 < *(int *)(unaff_RBX + 0x2c)) && 
             (*(longlong *)(unaff_RBX + 0x20) != 0)) {
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), 
+            FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), 
                          *(longlong *)(unaff_RBX + 0x20), 
                          &UNK_180957f70, 
                          0x100, 
@@ -2126,13 +2126,13 @@ void UtilitiesSystem_ArrayProcessor4(int param_1, int param_2,
     }
     
     // 添加新元素
-    *(undefined8 *)(*(longlong *)(unaff_RBX + 0x20) + 
+    *(uint64_t *)(*(longlong *)(unaff_RBX + 0x20) + 
                     (longlong)*(int *)(unaff_RBX + 0x28) * 8) = in_stack_00000060;
     *(int *)(unaff_RBX + 0x28) = *(int *)(unaff_RBX + 0x28) + 1;
     
 LAB_180891fc0:
     // 执行系统操作
-    FUN_18088d720(*(undefined8 *)(unaff_R14 + 0x98));
+    FUN_18088d720(*(uint64_t *)(unaff_R14 + 0x98));
     
     // 返回处理状态
     return;
@@ -2253,10 +2253,10 @@ void UtilitiesSystem_OperationHandler2(longlong param_1, longlong param_2)
     // 语义化变量定义
     UtilStatus operation_status;                     /**< 操作状态 */
     UtilFlags operation_flags;                        /**< 操作标志 */
-    undefined8 stack_data;                            /**< 栈数据 */
+    uint64_t stack_data;                            /**< 栈数据 */
     
     // 调用操作验证函数
-    operation_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    operation_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查验证结果
     if (operation_status == UTIL_SUCCESS) {
@@ -2270,7 +2270,7 @@ void UtilitiesSystem_OperationHandler2(longlong param_1, longlong param_2)
         } else {
             operation_status = func_0x0001808c8700(stack_data);
             if (operation_status < 1) {
-                *(undefined4 *)(param_1 + 0x18) = 2;
+                *(int32_t *)(param_1 + 0x18) = 2;
             } else {
                 operation_status = FUN_1808c7f30(stack_data, param_1 + 0x18);
                 if (operation_status != UTIL_SUCCESS) {
@@ -2280,7 +2280,7 @@ void UtilitiesSystem_OperationHandler2(longlong param_1, longlong param_2)
         }
         
         // 执行系统操作
-        FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98), param_1);
+        FUN_18088d7c0(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回操作状态
@@ -2305,7 +2305,7 @@ void UtilitiesSystem_OperationHandler2(longlong param_1, longlong param_2)
  * @note 处理系统操作时需要注意参数有效性
  * @see UtilitiesSystem_OperationHandler2
  */
-void UtilitiesSystem_OperationHandler3(undefined8 in_stack_00000030,
+void UtilitiesSystem_OperationHandler3(uint64_t in_stack_00000030,
                                        longlong unaff_RBP, longlong unaff_RSI)
 {
     // 语义化变量定义
@@ -2321,7 +2321,7 @@ void UtilitiesSystem_OperationHandler3(undefined8 in_stack_00000030,
     } else {
         operation_status = func_0x0001808c8700(in_stack_00000030);
         if (operation_status < 1) {
-            *(undefined4 *)(unaff_RSI + 0x18) = 2;
+            *(int32_t *)(unaff_RSI + 0x18) = 2;
         } else {
             operation_status = FUN_1808c7f30(in_stack_00000030, unaff_RSI + 0x18);
             if (operation_status != UTIL_SUCCESS) {
@@ -2331,7 +2331,7 @@ void UtilitiesSystem_OperationHandler3(undefined8 in_stack_00000030,
     }
     
     // 执行系统操作
-    FUN_18088d7c0(*(undefined8 *)(unaff_RBP + 0x98));
+    FUN_18088d7c0(*(uint64_t *)(unaff_RBP + 0x98));
     
     // 返回操作状态
     return;
@@ -2389,10 +2389,10 @@ void UtilitiesSystem_OperationHandler4(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus operation_status;                     /**< 操作状态 */
-    undefined8 stack_data;                            /**< 栈数据 */
+    uint64_t stack_data;                            /**< 栈数据 */
     
     // 调用操作验证函数
-    operation_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), &stack_data);
+    operation_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), &stack_data);
     
     // 检查验证结果
     if (operation_status == UTIL_SUCCESS) {
@@ -2400,7 +2400,7 @@ void UtilitiesSystem_OperationHandler4(longlong param_1, longlong param_2)
         operation_status = func_0x0001808c8470(stack_data);
         if (operation_status == UTIL_SUCCESS) {
             // 执行系统操作
-            FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+            FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
         }
     }
     
@@ -2429,15 +2429,15 @@ void UtilitiesSystem_OperationHandler5(longlong param_1, longlong param_2)
 {
     // 语义化变量定义
     UtilStatus operation_status;                     /**< 操作状态 */
-    undefined1 stack_data[8];                         /**< 栈数据 */
+    int8_t stack_data[8];                         /**< 栈数据 */
     
     // 调用操作验证函数
-    operation_status = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), stack_data);
+    operation_status = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), stack_data);
     
     // 检查验证结果
     if (operation_status == UTIL_SUCCESS) {
         // 执行系统操作
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98), param_1);
+        FUN_18088d720(*(uint64_t *)(param_2 + 0x98), param_1);
     }
     
     // 返回操作状态
@@ -2455,42 +2455,42 @@ void UtilitiesSystem_OperationHandler5(longlong param_1, longlong param_2)
 typedef struct {
     void (*terminator)(void);                         /**< 终止函数指针 */
     void (*empty_operation1)(void);                   /**< 空操作函数1指针 */
-    void (*parameter_processor1)(longlong, undefined8); /**< 参数处理器1指针 */
-    undefined8 (*parameter_processor2)(longlong);      /**< 参数处理器2指针 */
+    void (*parameter_processor1)(longlong, uint64_t); /**< 参数处理器1指针 */
+    uint64_t (*parameter_processor2)(longlong);      /**< 参数处理器2指针 */
     int (*data_handler1)(longlong);                   /**< 数据处理器1指针 */
-    void (*operation_handler1)(longlong, undefined8); /**< 操作处理器1指针 */
-    ulonglong (*result_processor1)(longlong, undefined8); /**< 结果处理器1指针 */
-    int (*config_validator1)(undefined4);              /**< 配置验证器1指针 */
-    undefined8 (*empty_operation2)(void);              /**< 空操作函数2指针 */
-    undefined8 (*empty_operation3)(void);              /**< 空操作函数3指针 */
+    void (*operation_handler1)(longlong, uint64_t); /**< 操作处理器1指针 */
+    ulonglong (*result_processor1)(longlong, uint64_t); /**< 结果处理器1指针 */
+    int (*config_validator1)(int32_t);              /**< 配置验证器1指针 */
+    uint64_t (*empty_operation2)(void);              /**< 空操作函数2指针 */
+    uint64_t (*empty_operation3)(void);              /**< 空操作函数3指针 */
     void (*resource_handler1)(longlong, longlong);     /**< 资源处理器1指针 */
     void (*resource_handler2)(longlong, longlong);     /**< 资源处理器2指针 */
-    undefined8 (*validator1)(longlong, undefined8);   /**< 验证器1指针 */
+    uint64_t (*validator1)(longlong, uint64_t);   /**< 验证器1指针 */
     void (*data_handler2)(longlong, longlong);         /**< 数据处理器2指针 */
-    undefined8 (*manager1)(longlong);                   /**< 管理器1指针 */
+    uint64_t (*manager1)(longlong);                   /**< 管理器1指针 */
     void (*controller1)(longlong, longlong);           /**< 控制器1指针 */
     void (*controller2)(longlong, longlong);           /**< 控制器2指针 */
     void (*controller3)(longlong, longlong);           /**< 控制器3指针 */
     void (*controller4)(longlong, longlong);           /**< 控制器4指针 */
     void (*controller5)(longlong, longlong);           /**< 控制器5指针 */
-    undefined8 (*state_manager1)(longlong, longlong);  /**< 状态管理器1指针 */
+    uint64_t (*state_manager1)(longlong, longlong);  /**< 状态管理器1指针 */
     void (*state_manager2)(longlong, longlong);        /**< 状态管理器2指针 */
-    undefined8 (*state_manager3)(longlong, longlong);  /**< 状态管理器3指针 */
-    undefined8 (*accessor1)(longlong, longlong);       /**< 访问器1指针 */
-    undefined8 (*accessor2)(longlong, longlong);       /**< 访问器2指针 */
+    uint64_t (*state_manager3)(longlong, longlong);  /**< 状态管理器3指针 */
+    uint64_t (*accessor1)(longlong, longlong);       /**< 访问器1指针 */
+    uint64_t (*accessor2)(longlong, longlong);       /**< 访问器2指针 */
     void (*config_handler1)(longlong, longlong);        /**< 配置处理器1指针 */
     void (*config_handler2)(longlong, longlong);        /**< 配置处理器2指针 */
-    undefined8 (*data_validator1)(longlong, longlong); /**< 数据验证器1指针 */
-    undefined8 (*state_controller1)(longlong, longlong); /**< 状态控制器1指针 */
+    uint64_t (*data_validator1)(longlong, longlong); /**< 数据验证器1指针 */
+    uint64_t (*state_controller1)(longlong, longlong); /**< 状态控制器1指针 */
     void (*array_processor1)(longlong, longlong);      /**< 数组处理器1指针 */
-    void (*array_processor2)(undefined8, undefined8, longlong, longlong); /**< 数组处理器2指针 */
-    void (*array_processor3)(longlong, undefined8, longlong, longlong); /**< 数组处理器3指针 */
-    void (*array_processor4)(int, int, undefined8, longlong, longlong, longlong); /**< 数组处理器4指针 */
+    void (*array_processor2)(uint64_t, uint64_t, longlong, longlong); /**< 数组处理器2指针 */
+    void (*array_processor3)(longlong, uint64_t, longlong, longlong); /**< 数组处理器3指针 */
+    void (*array_processor4)(int, int, uint64_t, longlong, longlong, longlong); /**< 数组处理器4指针 */
     void (*empty_operation4)(void);                   /**< 空操作函数4指针 */
     void (*empty_operation5)(void);                   /**< 空操作函数5指针 */
     void (*empty_operation6)(void);                   /**< 空操作函数6指针 */
     void (*operation_handler2)(longlong, longlong);     /**< 操作处理器2指针 */
-    void (*operation_handler3)(undefined8, longlong, longlong); /**< 操作处理器3指针 */
+    void (*operation_handler3)(uint64_t, longlong, longlong); /**< 操作处理器3指针 */
     void (*empty_operation7)(void);                   /**< 空操作函数7指针 */
     void (*operation_handler4)(longlong, longlong);     /**< 操作处理器4指针 */
     void (*operation_handler5)(longlong, longlong);     /**< 操作处理器5指针 */

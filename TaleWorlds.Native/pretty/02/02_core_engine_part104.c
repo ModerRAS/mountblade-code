@@ -10,7 +10,7 @@
  * @param content2 第二个字符串内容
  * @param flags 附加标志
  */
-void open_and_write_string_data(undefined8 file_path, undefined8 mode, undefined8 content1, undefined8 content2, undefined8 flags)
+void open_and_write_string_data(uint64_t file_path, uint64_t mode, uint64_t content1, uint64_t content2, uint64_t flags)
 {
     longlong allocated_buffer;
     int content1_length;
@@ -75,7 +75,7 @@ void open_and_write_string_data(undefined8 file_path, undefined8 mode, undefined
  * @param file_size_ptr 输出文件大小指针
  * @return 成功返回分配的缓冲区指针，失败返回0
  */
-longlong read_file_to_buffer(undefined8 file_path, undefined8 mode, longlong *file_size_ptr)
+longlong read_file_to_buffer(uint64_t file_path, uint64_t mode, longlong *file_size_ptr)
 {
     int file_operation_result;
     longlong file_handle;
@@ -149,7 +149,7 @@ longlong read_file_to_buffer(undefined8 file_path, undefined8 mode, longlong *fi
  * @param max_length 最大长度限制
  * @return 返回消耗的字节数
  */
-undefined8 parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, longlong max_length)
+uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, longlong max_length)
 {
     byte first_byte;
     uint unicode_char;
@@ -244,7 +244,7 @@ undefined8 parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, long
  * @param first_byte 首字节
  * @return 返回消耗的字节数
  */
-undefined8 process_utf8_4byte_sequence(undefined8 context, longlong string_ptr, undefined8 param3, byte first_byte)
+uint64_t process_utf8_4byte_sequence(uint64_t context, longlong string_ptr, uint64_t param3, byte first_byte)
 {
     uint unicode_char;
     uint *output_ptr;
@@ -283,7 +283,7 @@ undefined8 process_utf8_4byte_sequence(undefined8 context, longlong string_ptr, 
  * @param first_byte 首字节
  * @return 返回消耗的字节数
  */
-undefined8 process_utf8_special_sequence(undefined8 context, longlong string_ptr, undefined8 param3, byte first_byte)
+uint64_t process_utf8_special_sequence(uint64_t context, longlong string_ptr, uint64_t param3, byte first_byte)
 {
     uint unicode_char;
     uint *output_ptr;
@@ -307,7 +307,7 @@ undefined8 process_utf8_special_sequence(undefined8 context, longlong string_ptr
  * @param output_ptr 输出指针
  * @return 返回1
  */
-undefined8 set_default_character(undefined4 *output_ptr)
+uint64_t set_default_character(int32_t *output_ptr)
 {
     *output_ptr = 0x3f; // 问号字符
     return 1;
@@ -323,14 +323,14 @@ undefined8 set_default_character(undefined4 *output_ptr)
  * @param end_ptr_ptr 结束指针指针
  * @return 返回转换的字符数
  */
-ulonglong convert_utf8_to_wstring(undefined2 *output_buffer, int buffer_size, byte *input_string, 
-                                 undefined8 param4, undefined8 param5, undefined8 *end_ptr_ptr)
+ulonglong convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *input_string, 
+                                 uint64_t param4, uint64_t param5, uint64_t *end_ptr_ptr)
 {
     byte current_byte;
     int bytes_consumed;
     uint unicode_char;
     uint temp_unicode;
-    undefined2 *output_pos;
+    int16_t *output_pos;
     
     output_pos = output_buffer;
     if (output_buffer < output_buffer + (longlong)buffer_size + -1) {
@@ -498,7 +498,7 @@ handle_ascii:
     
     // 字符串终止符
     *output_pos = 0;
-    if (end_ptr_ptr != (undefined8 *)0x0) {
+    if (end_ptr_ptr != (uint64_t *)0x0) {
         *end_ptr_ptr = input_string;
     }
     
@@ -515,14 +515,14 @@ handle_ascii:
  * @param end_ptr_ptr 结束指针指针
  * @return 返回转换的字符数
  */
-ulonglong convert_utf8_to_wstring_variant(undefined2 *output_buffer, int buffer_size, byte *input_string, 
-                                        undefined8 param4, undefined8 param5, undefined8 *end_ptr_ptr)
+ulonglong convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size, byte *input_string, 
+                                        uint64_t param4, uint64_t param5, uint64_t *end_ptr_ptr)
 {
     byte current_byte;
     int bytes_consumed;
     uint unicode_char;
     uint temp_unicode;
-    undefined2 *output_pos;
+    int16_t *output_pos;
     
     output_pos = output_buffer;
     if (output_buffer < output_buffer + (longlong)buffer_size + -1) {
@@ -690,7 +690,7 @@ handle_ascii_variant:
     
     // 字符串终止符
     *output_pos = 0;
-    if (end_ptr_ptr != (undefined8 *)0x0) {
+    if (end_ptr_ptr != (uint64_t *)0x0) {
         *end_ptr_ptr = input_string;
     }
     
@@ -707,16 +707,16 @@ handle_ascii_variant:
  * @param end_ptr_ptr 结束指针指针
  * @return 返回转换的字符数
  */
-ulonglong convert_utf8_to_wstring_variant2(undefined8 param1, undefined8 param2, byte *input_string, 
-                                          undefined8 param4, undefined8 param5, undefined8 *end_ptr_ptr)
+ulonglong convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte *input_string, 
+                                          uint64_t param4, uint64_t param5, uint64_t *end_ptr_ptr)
 {
     byte current_byte;
     int bytes_consumed;
     uint unicode_char;
     longlong stack_base;
-    undefined2 *output_ptr;
+    int16_t *output_ptr;
     uint temp_unicode;
-    undefined2 *in_register;
+    int16_t *in_register;
     
     do {
         current_byte = *input_string;
@@ -880,7 +880,7 @@ handle_ascii_variant2:
     } while (in_register < output_ptr);
     
     *in_register = 0;
-    if (end_ptr_ptr != (undefined8 *)0x0) {
+    if (end_ptr_ptr != (uint64_t *)0x0) {
         *end_ptr_ptr = input_string;
     }
     
@@ -897,14 +897,14 @@ handle_ascii_variant2:
  * @param end_ptr_ptr 结束指针指针
  * @return 返回0
  */
-ulonglong empty_conversion_function(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4,
-                                  undefined8 param5, undefined8 *end_ptr_ptr)
+ulonglong empty_conversion_function(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4,
+                                  uint64_t param5, uint64_t *end_ptr_ptr)
 {
     longlong stack_base;
-    undefined2 *output_ptr;
+    int16_t *output_ptr;
     
     *output_ptr = 0;
-    if (end_ptr_ptr != (undefined8 *)0x0) {
+    if (end_ptr_ptr != (uint64_t *)0x0) {
         *end_ptr_ptr = param3;
     }
     return (longlong)output_ptr - stack_base >> 1 & 0xffffffff;
@@ -917,9 +917,9 @@ ulonglong empty_conversion_function(undefined8 param1, undefined8 param2, undefi
  * @param param3 第三个参数
  * @return 返回复制的字符数
  */
-ulonglong simple_string_copy(undefined8 param1, undefined8 param2, undefined8 param3)
+ulonglong simple_string_copy(uint64_t param1, uint64_t param2, uint64_t param3)
 {
-    undefined8 *output_ptr;
+    uint64_t *output_ptr;
     longlong stack_base;
     longlong register_value;
     
@@ -1262,23 +1262,23 @@ int calculate_utf8_size_needed(ushort *input_string, ushort *end_ptr)
 // 函数指针和全局变量声明（简化实现）
 extern longlong memory_manager_instance;
 extern longlong memory_allocator_context;
-extern undefined8 default_file_mode;
+extern uint64_t default_file_mode;
 
 // 内存管理函数声明
 extern longlong allocate_memory(longlong size, longlong context);
 extern void free_memory(longlong ptr, longlong context);
 
 // 字符串处理函数声明
-extern int calculate_string_length(undefined8 str, undefined8 end);
-extern void copy_string_to_buffer(undefined8 buffer, int length, undefined8 str, undefined8 flags, undefined8 param);
-extern void _wfopen(undefined8 param1, undefined8 param2);
-extern int fseek(undefined8 file, long offset, int origin);
-extern long ftell(undefined8 file);
-extern long fread(undefined8 buffer, long size, long count, undefined8 file);
-extern void fclose(undefined8 file);
+extern int calculate_string_length(uint64_t str, uint64_t end);
+extern void copy_string_to_buffer(uint64_t buffer, int length, uint64_t str, uint64_t flags, uint64_t param);
+extern void _wfopen(uint64_t param1, uint64_t param2);
+extern int fseek(uint64_t file, long offset, int origin);
+extern long ftell(uint64_t file);
+extern long fread(uint64_t buffer, long size, long count, uint64_t file);
+extern void fclose(uint64_t file);
 
 // 渲染和图形相关函数声明
-extern void func_0x000180121e20(undefined4 *param);
+extern void func_0x000180121e20(int32_t *param);
 extern float *global_render_context;
 extern longlong *global_texture_manager;
 
@@ -1289,12 +1289,12 @@ extern longlong *global_texture_manager;
  */
 void apply_scale_transform(int object_id, float scale_factor)
 {
-    undefined4 *transform_matrix;
-    undefined4 stack_matrix[3];
+    int32_t *transform_matrix;
+    int32_t stack_matrix[3];
     float scaled_value;
     
     // 获取对象的变换矩阵
-    transform_matrix = (undefined4 *)(global_render_context + TRANSFORM_MATRIX_OFFSET + 
+    transform_matrix = (int32_t *)(global_render_context + TRANSFORM_MATRIX_OFFSET + 
                                      ((longlong)object_id + 10) * 0x10);
     
     // 复制当前矩阵到栈
@@ -1355,7 +1355,7 @@ uint find_value_in_hash_table(int *hash_table_ptr, uint key, uint default_value)
  * @param key 查找键
  * @return 找到返回对应指针，否则返回0
  */
-undefined8 find_pointer_in_hash_table(int *hash_table_ptr, uint key)
+uint64_t find_pointer_in_hash_table(int *hash_table_ptr, uint key)
 {
     int table_size;
     uint *table_data;
@@ -1382,7 +1382,7 @@ undefined8 find_pointer_in_hash_table(int *hash_table_ptr, uint key)
     
     // 检查是否找到匹配项
     if ((current_entry != table_data + (longlong)table_size * 4) && (*current_entry == key)) {
-        return *(undefined8 *)(current_entry + 2); // 返回找到的指针
+        return *(uint64_t *)(current_entry + 2); // 返回找到的指针
     }
     return 0; // 未找到返回0
 }
@@ -1439,7 +1439,7 @@ void set_value_in_hash_table(int *hash_table_ptr, uint key, uint value)
  * @param key 键
  * @param value 指针值
  */
-void set_pointer_in_hash_table(int *hash_table_ptr, uint key, undefined8 value)
+void set_pointer_in_hash_table(int *hash_table_ptr, uint key, uint64_t value)
 {
     int table_size;
     uint *table_data;
@@ -1447,7 +1447,7 @@ void set_pointer_in_hash_table(int *hash_table_ptr, uint key, undefined8 value)
     uint *insert_position;
     ulonglong mid_point;
     uint new_entry[3];
-    undefined8 pointer_value;
+    uint64_t pointer_value;
     
     table_size = *hash_table_ptr;
     table_data = *(uint **)(hash_table_ptr + 2);
@@ -1468,7 +1468,7 @@ void set_pointer_in_hash_table(int *hash_table_ptr, uint key, undefined8 value)
     
     // 如果键已存在，更新值
     if ((insert_position != table_data + (longlong)table_size * 4) && (*insert_position == key)) {
-        *(undefined8 *)(insert_position + 2) = value;
+        *(uint64_t *)(insert_position + 2) = value;
         return;
     }
     
@@ -1486,9 +1486,9 @@ void set_pointer_in_hash_table(int *hash_table_ptr, uint key, undefined8 value)
  * @param separator 分隔符
  * @param flags 标志
  */
-void concatenate_strings_wrapper(undefined8 dest, undefined8 src, undefined8 separator, undefined8 flags)
+void concatenate_strings_wrapper(uint64_t dest, uint64_t src, uint64_t separator, uint64_t flags)
 {
-    undefined8 stack_params[2];
+    uint64_t stack_params[2];
     
     stack_params[0] = separator;
     stack_params[1] = flags;
@@ -1502,7 +1502,7 @@ void concatenate_strings_wrapper(undefined8 dest, undefined8 src, undefined8 sep
  * @param src 源字符串
  * @param params 参数数组
  */
-void concatenate_strings_internal(int *dest_ptr, undefined8 src, undefined8 params)
+void concatenate_strings_internal(int *dest_ptr, uint64_t src, uint64_t params)
 {
     int src_length;
     int dest_capacity;
@@ -1557,7 +1557,7 @@ void concatenate_strings_internal(int *dest_ptr, undefined8 src, undefined8 para
             if ((src_length == -1) || (required_size <= src_length)) {
                 src_length = required_size + -1;
             }
-            *(undefined1 *)(src_length + dest_data) = 0;
+            *(int8_t *)(src_length + dest_data) = 0;
         }
     }
     return;
@@ -1570,7 +1570,7 @@ void concatenate_strings_internal(int *dest_ptr, undefined8 src, undefined8 para
  * @param params 参数数组
  * @param initial_size 初始大小
  */
-void concatenate_strings_variant(int dest_ptr, undefined8 src, undefined8 params, int initial_size)
+void concatenate_strings_variant(int dest_ptr, uint64_t src, uint64_t params, int initial_size)
 {
     int src_length;
     int dest_capacity;
@@ -1601,7 +1601,7 @@ void concatenate_strings_variant(int dest_ptr, undefined8 src, undefined8 params
         if ((dest_capacity == -1) || (src_length <= dest_capacity)) {
             dest_capacity = src_length + -1;
         }
-        *(undefined1 *)(dest_capacity + param_value) = 0;
+        *(int8_t *)(dest_capacity + param_value) = 0;
     }
     return;
 }
@@ -1621,9 +1621,9 @@ void empty_function(void)
  * @param end_ptr 字符串结束指针
  * @param comment_char 注释字符
  */
-void process_string_comments(undefined8 context, char *start_ptr, char *end_ptr, char comment_char)
+void process_string_comments(uint64_t context, char *start_ptr, char *end_ptr, char comment_char)
 {
-    undefined4 *render_color;
+    int32_t *render_color;
     longlong renderer_context;
     uint render_flags;
     longlong font_manager;
@@ -1632,8 +1632,8 @@ void process_string_comments(undefined8 context, char *start_ptr, char *end_ptr,
     longlong font_data;
     longlong texture_data;
     float font_scale;
-    undefined8 stack_params[5];
-    undefined4 stack_colors[3];
+    uint64_t stack_params[5];
+    int32_t stack_colors[3];
     float scaled_font_size;
     
     renderer_context = global_render_context;
@@ -1670,9 +1670,9 @@ void process_string_comments(undefined8 context, char *start_ptr, char *end_ptr,
     // 如果有有效字符串内容，进行渲染处理
     if (start_ptr != end_ptr) {
         // 获取当前渲染颜色
-        stack_colors[0] = *(undefined4 *)(global_render_context + RENDER_COLOR_OFFSET);
-        stack_colors[1] = *(undefined4 *)(global_render_context + RENDER_COLOR_OFFSET + 4);
-        stack_colors[2] = *(undefined4 *)(global_render_context + RENDER_COLOR_OFFSET + 8);
+        stack_colors[0] = *(int32_t *)(global_render_context + RENDER_COLOR_OFFSET);
+        stack_colors[1] = *(int32_t *)(global_render_context + RENDER_COLOR_OFFSET + 4);
+        stack_colors[2] = *(int32_t *)(global_render_context + RENDER_COLOR_OFFSET + 8);
         
         // 获取字体管理器
         font_manager = *(longlong *)(*(longlong *)(global_render_context + FONT_MANAGER_OFFSET) + 0x2e8);
@@ -1711,7 +1711,7 @@ void process_string_comments(undefined8 context, char *start_ptr, char *end_ptr,
                 }
                 
                 // 获取纹理数据
-                render_color = (undefined4 *)
+                render_color = (int32_t *)
                               (*(longlong *)(font_manager + 0x68) + -0x10 + 
                                (longlong)*(int *)(font_manager + 0x60) * 0x10);
                 
@@ -1748,10 +1748,10 @@ void process_string_comments(undefined8 context, char *start_ptr, char *end_ptr,
 extern float *global_scale_factor;
 
 // 辅助函数声明
-extern int calculate_string_copy_length(undefined8 dest, undefined8 size, undefined8 src, undefined8 params);
+extern int calculate_string_copy_length(uint64_t dest, uint64_t size, uint64_t src, uint64_t params);
 extern void resize_string_buffer(int *buffer_ptr, int new_size);
 extern void insert_into_hash_table(int *table_ptr, uint *position, uint *entry);
 extern void render_text_with_font(longlong font_data, longlong font_manager, float font_scale, 
-                                 undefined8 context, uint flags, undefined4 *colors, 
+                                 uint64_t context, uint flags, int32_t *colors, 
                                  char *text_start, char *text_end, int param1, int param2);
-extern void process_comment_text(undefined8 *params, char *start, char *end);
+extern void process_comment_text(uint64_t *params, char *start, char *end);

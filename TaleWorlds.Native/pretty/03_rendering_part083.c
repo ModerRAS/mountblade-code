@@ -10,32 +10,32 @@ void FUN_1803162f0(longlong param_1)
   longlong lVar2;
   
   plVar1 = *(longlong **)(param_1 + 0x100);
-  *(undefined8 *)(param_1 + 0x100) = 0;
+  *(uint64_t *)(param_1 + 0x100) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   plVar1 = *(longlong **)(param_1 + 0x108);
-  *(undefined8 *)(param_1 + 0x108) = 0;
+  *(uint64_t *)(param_1 + 0x108) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   plVar1 = *(longlong **)(param_1 + 0x110);
-  *(undefined8 *)(param_1 + 0x110) = 0;
+  *(uint64_t *)(param_1 + 0x110) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   plVar1 = *(longlong **)(param_1 + 0x118);
-  *(undefined8 *)(param_1 + 0x118) = 0;
+  *(uint64_t *)(param_1 + 0x118) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   plVar1 = *(longlong **)(param_1 + 0x120);
-  *(undefined8 *)(param_1 + 0x120) = 0;
+  *(uint64_t *)(param_1 + 0x120) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   plVar1 = *(longlong **)(param_1 + 0x128);
-  *(undefined8 *)(param_1 + 0x128) = 0;
+  *(uint64_t *)(param_1 + 0x128) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
@@ -56,36 +56,36 @@ void FUN_1803162f0(longlong param_1)
     FUN_18023b050(lVar2,0);
   }
   plVar1 = *(longlong **)(param_1 + 0x30);
-  *(undefined8 *)(param_1 + 0x30) = 0;
+  *(uint64_t *)(param_1 + 0x30) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   plVar1 = *(longlong **)(param_1 + 0x38);
-  *(undefined8 *)(param_1 + 0x38) = 0;
+  *(uint64_t *)(param_1 + 0x38) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   plVar1 = *(longlong **)(param_1 + 0x40);
-  *(undefined8 *)(param_1 + 0x40) = 0;
+  *(uint64_t *)(param_1 + 0x40) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   plVar1 = *(longlong **)(param_1 + 0x18);
-  *(undefined8 *)(param_1 + 0x18) = 0;
+  *(uint64_t *)(param_1 + 0x18) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   plVar1 = *(longlong **)(param_1 + 0x20);
-  *(undefined8 *)(param_1 + 0x20) = 0;
+  *(uint64_t *)(param_1 + 0x20) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
   plVar1 = *(longlong **)(param_1 + 0x28);
-  *(undefined8 *)(param_1 + 0x28) = 0;
+  *(uint64_t *)(param_1 + 0x28) = 0;
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
   }
-  *(undefined4 *)(param_1 + 0x10) = 0;
+  *(int32_t *)(param_1 + 0x10) = 0;
   return;
 }
 

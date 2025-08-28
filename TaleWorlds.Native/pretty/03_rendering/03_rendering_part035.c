@@ -42,9 +42,9 @@ void transform_bounding_box_with_matrix(longlong render_context, float *matrix_p
     float center_x, center_y, center_z;
     float radius, extent_x, extent_y, extent_z;
     float matrix_row1[4], matrix_row2[4], matrix_row3[4], matrix_row4[4];
-    undefined8 matrix_part1, matrix_part2;
-    undefined1 stack_data[44];
-    undefined4 stack_value;
+    uint64_t matrix_part1, matrix_part2;
+    int8_t stack_data[44];
+    int32_t stack_value;
     float transform_matrix[12];
     float bounding_center[3];
     ulonglong stack_guard;
@@ -55,10 +55,10 @@ void transform_bounding_box_with_matrix(longlong render_context, float *matrix_p
     // 提取矩阵数据
     transform_matrix[0] = matrix_ptr[0];  // 第一行第一列
     transform_matrix[1] = matrix_ptr[1];  // 第一行第二列
-    matrix_part1 = *(undefined8 *)matrix_ptr;
+    matrix_part1 = *(uint64_t *)matrix_ptr;
     transform_matrix[2] = matrix_ptr[2];  // 第一行第三列
     transform_matrix[3] = matrix_ptr[3];  // 第一行第四列
-    matrix_part2 = *(undefined8 *)(matrix_ptr + 2);
+    matrix_part2 = *(uint64_t *)(matrix_ptr + 2);
     
     // 初始化边界框顶点处理指针
     current_point = bounding_values + 2;
@@ -178,8 +178,8 @@ void transform_bounding_box_with_matrix(longlong render_context, float *matrix_p
     float matrix_transform_z = matrix_ptr[10];
     
     // 存储变换后的矩阵数据到渲染上下文
-    *(undefined8 *)(render_context + 0xc0) = matrix_part1;
-    *(undefined8 *)(render_context + 200) = matrix_part2;
+    *(uint64_t *)(render_context + 0xc0) = matrix_part1;
+    *(uint64_t *)(render_context + 200) = matrix_part2;
     *(float *)(render_context + 0xd0) = matrix_row1[0];
     *(float *)(render_context + 0xd4) = matrix_row1[1];
     *(float *)(render_context + 0xd8) = matrix_row1[2];
@@ -193,7 +193,7 @@ void transform_bounding_box_with_matrix(longlong render_context, float *matrix_p
     *(float *)(render_context + 0xf0) = (bounding_box_ptr[4] + center_x) * 0.5f + radius * matrix_transform_x;
     *(float *)(render_context + 0xf4) = radius * matrix_transform_y + (box_height + bounding_box_ptr[1]) * 0.5f;
     *(float *)(render_context + 0xf8) = (center_z + box_depth) * 0.5f + radius * matrix_transform_z;
-    *(undefined4 *)(render_context + 0xfc) = FLOAT_INFINITY;
+    *(int32_t *)(render_context + 0xfc) = FLOAT_INFINITY;
     
     // 调用渲染更新函数
     FUN_1802864f0(render_context);
@@ -204,8 +204,8 @@ void transform_bounding_box_with_matrix(longlong render_context, float *matrix_p
     *(float *)(render_context + 0x110) = -extent_y;
     *(float *)(render_context + 0x108) = extent_x;
     *(float *)(render_context + 0x10c) = extent_y;
-    *(undefined1 *)(render_context + 0x100) = 0;
-    *(undefined4 *)(render_context + 0x114) = 0x3f800000;  // 1.0f
+    *(int8_t *)(render_context + 0x100) = 0;
+    *(int32_t *)(render_context + 0x114) = 0x3f800000;  // 1.0f
     
     // 清理和验证
     FUN_1802864f0();
@@ -319,22 +319,22 @@ float * transform_vector_by_matrix(float *input_matrix, float *output_vector)
  * @param pool_data 池数据指针
  * @return 池数据指针
  */
-undefined8 * initialize_rendering_pool(undefined8 *pool_data)
+uint64_t * initialize_rendering_pool(uint64_t *pool_data)
 {
     longlong allocation_size;
     longlong memory_alignment;
-    undefined8 *memory_block;
-    undefined8 *previous_block;
-    undefined8 *current_block;
-    undefined8 *next_block;
-    undefined8 *block_pointer;
+    uint64_t *memory_block;
+    uint64_t *previous_block;
+    uint64_t *current_block;
+    uint64_t *next_block;
+    uint64_t *block_pointer;
     ulonglong hash_mask;
     ulonglong hash_value;
-    undefined1 stack_data1[24];
-    undefined1 stack_data2[32];
+    int8_t stack_data1[24];
+    int8_t stack_data2[32];
     
     // 初始化指针
-    block_pointer = (undefined8 *)0x0;
+    block_pointer = (uint64_t *)0x0;
     
     // 计算哈希表掩码
     hash_mask = HASH_TABLE_SIZE;
@@ -349,8 +349,8 @@ undefined8 * initialize_rendering_pool(undefined8 *pool_data)
     // 根据大小选择分配策略
     if (hash_mask + 1 < SMALL_POOL_SIZE) {
         // 小池分配
-        memory_block = (undefined8 *)FUN_1801ee790();
-        if (memory_block == (undefined8 *)0x0) {
+        memory_block = (uint64_t *)FUN_1801ee790();
+        if (memory_block == (uint64_t *)0x0) {
             FUN_180287f70(stack_data2);
             _CxxThrowException(stack_data2, &UNK_180bd8a18);
         }
@@ -369,7 +369,7 @@ undefined8 * initialize_rendering_pool(undefined8 *pool_data)
             memory_block = block_pointer;
             
             if (memory_alignment != 0) {
-                memory_block = (undefined8 *)((ulonglong)(-(int)memory_alignment & 7) + memory_alignment);
+                memory_block = (uint64_t *)((ulonglong)(-(int)memory_alignment & 7) + memory_alignment);
                 
                 // 初始化内存块
                 *memory_block = 0;
@@ -382,23 +382,23 @@ undefined8 * initialize_rendering_pool(undefined8 *pool_data)
                 memory_block[0x13] = memory_alignment;
             }
             
-            if (memory_block == (undefined8 *)0x0) {
+            if (memory_block == (uint64_t *)0x0) {
                 FUN_180287f70(stack_data1);
                 _CxxThrowException(stack_data1, &UNK_180bd8a18);
             }
             
             // 链接内存块
             previous_block = memory_block;
-            if (next_block != (undefined8 *)0x0) {
+            if (next_block != (uint64_t *)0x0) {
                 current_block[0x10] = memory_block;
                 previous_block = next_block;
             }
             
             memory_block[0x10] = previous_block;
-            previous_block = (undefined8 *)((longlong)previous_block + 1);
+            previous_block = (uint64_t *)((longlong)previous_block + 1);
             next_block = previous_block;
             current_block = memory_block;
-        } while (previous_block != (undefined8 *)0x2);
+        } while (previous_block != (uint64_t *)0x2);
     }
     
     // 设置池数据
@@ -436,7 +436,7 @@ void set_rendering_state(char *state_ptr, int param1, int param2)
     
     // 状态冲突，抛出异常
     FUN_180062300(_DAT_180c86928, &UNK_180a16bd0, *(int *)(state_ptr + 4), 
-                 *(undefined4 *)(state_ptr + 8), param1, param2);
+                 *(int32_t *)(state_ptr + 8), param1, param2);
 }
 
 /**
@@ -445,7 +445,7 @@ void set_rendering_state(char *state_ptr, int param1, int param2)
  * @param exception_info 异常信息指针
  * @return 异常数据指针
  */
-undefined8 * create_exception_data(undefined8 *exception_data, longlong exception_info)
+uint64_t * create_exception_data(uint64_t *exception_data, longlong exception_info)
 {
     *exception_data = &UNK_18098b928;
     exception_data[1] = 0;
@@ -460,7 +460,7 @@ undefined8 * create_exception_data(undefined8 *exception_data, longlong exceptio
  * @param exception_data 异常数据指针
  * @return 异常数据指针
  */
-undefined8 * create_runtime_exception(undefined8 *exception_data)
+uint64_t * create_runtime_exception(uint64_t *exception_data)
 {
     *exception_data = &UNK_18098b928;
     exception_data[2] = 0;
@@ -478,16 +478,16 @@ undefined8 * create_runtime_exception(undefined8 *exception_data)
  * @param param4 参数4
  * @return 异常数据指针
  */
-undefined8 * create_string_exception(undefined8 param1, undefined8 *exception_data, 
-                                   undefined8 param2, undefined8 param3)
+uint64_t * create_string_exception(uint64_t param1, uint64_t *exception_data, 
+                                   uint64_t param2, uint64_t param3)
 {
     *exception_data = &UNK_18098bcb0;
     exception_data[1] = 0;
-    *(undefined4 *)(exception_data + 2) = 0;
+    *(int32_t *)(exception_data + 2) = 0;
     *exception_data = &UNK_1809fcc28;
     exception_data[1] = exception_data + 3;
-    *(undefined1 *)(exception_data + 3) = 0;
-    *(undefined4 *)(exception_data + 2) = 0x16;
+    *(int8_t *)(exception_data + 3) = 0;
+    *(int32_t *)(exception_data + 2) = 0x16;
     strcpy_s(exception_data[1], 0x80, &DAT_180a16c50, param3, 0, 0xfffffffffffffffe);
     return exception_data;
 }

@@ -82,7 +82,7 @@ static void RenderingSystemLinkAnimationNode(void* parent, void* child);
  * @param param_2 参数2：配置指针
  * @param param_3 参数3：数据指针
  */
-void FUN_180416926(undefined8 param_1, undefined8 param_2, longlong param_3)
+void FUN_180416926(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
     // 局部变量声明
     int iVar1;                    // 临时整型变量

@@ -38,87 +38,87 @@
  * @param render_context 渲染上下文指针，包含渲染状态和资源信息
  * @param resource_param 资源参数，用于标识要处理的资源类型
  */
-void process_rendering_resources(longlong render_context, undefined8 resource_param)
+void process_rendering_resources(longlong render_context, uint64_t resource_param)
 {
     longlong *resource_ptr;
     byte byte_val;
-    undefined *ptr_val;
+    void *ptr_val;
     bool bool_result;
-    undefined8 *******resource_array_ptr;
-    undefined1 flag_val;
+    uint64_t *******resource_array_ptr;
+    int8_t flag_val;
     int int_val;
-    undefined4 uint_val;
+    int32_t uint_val;
     uint uint_result;
-    undefined1 *byte_ptr;
+    int8_t *byte_ptr;
     char *char_ptr;
     longlong long_val;
-    undefined8 *mem_ptr;
-    undefined8 ******array_ptr;
+    uint64_t *mem_ptr;
+    uint64_t ******array_ptr;
     byte *byte_array_ptr;
-    undefined8 *******nested_array_ptr;
-    undefined8 *temp_mem_ptr;
+    uint64_t *******nested_array_ptr;
+    uint64_t *temp_mem_ptr;
     char *temp_char_ptr;
     int temp_int;
-    undefined8 *resource_block;
+    uint64_t *resource_block;
     uint temp_uint;
-    undefined8 *alloc_ptr;
-    undefined *undefined_ptr;
-    undefined8 *******hash_table_ptr;
-    undefined8 *******temp_hash_ptr;
+    uint64_t *alloc_ptr;
+    void *undefined_ptr;
+    uint64_t *******hash_table_ptr;
+    uint64_t *******temp_hash_ptr;
     uint *uint_ptr;
     longlong temp_long;
-    undefined8 temp_undefined;
+    uint64_t temp_undefined;
     ulonglong hash_val1;
     ulonglong hash_val2;
     uint string_length;
     char char_val;
-    undefined1 stack_buffer1[32];
-    undefined1 stack_val1;
-    undefined *stack_ptr1;
+    int8_t stack_buffer1[32];
+    int8_t stack_val1;
+    void *stack_ptr1;
     char *stack_char_ptr;
     uint stack_uint1;
-    undefined8 stack_undefined1;
-    undefined *stack_ptr2;
-    undefined1 *stack_byte_ptr;
+    uint64_t stack_int8_t;
+    void *stack_ptr2;
+    int8_t *stack_byte_ptr;
     uint stack_uint2;
-    undefined8 stack_undefined2;
+    uint64_t stack_int16_t;
     uint stack_uint3;
     uint stack_uint4;
-    undefined8 *stack_mem_ptr1;
-    undefined8 *stack_mem_ptr2;
-    undefined8 *stack_mem_ptr3;
-    undefined4 stack_uint5;
-    undefined8 *stack_resource_ptr1;
-    undefined8 *stack_resource_ptr2;
-    undefined8 *stack_resource_ptr3;
-    undefined4 stack_uint6;
-    undefined8 *stack_resource_ptr4;
-    undefined8 *stack_resource_ptr5;
-    undefined8 *stack_resource_ptr6;
-    undefined8 *stack_resource_ptr7;
-    undefined4 stack_uint7;
-    undefined8 *******stack_hash_ptr1;
-    undefined8 *******stack_hash_ptr2;
-    undefined8 *******stack_hash_ptr3;
-    undefined8 stack_undefined3;
+    uint64_t *stack_mem_ptr1;
+    uint64_t *stack_mem_ptr2;
+    uint64_t *stack_mem_ptr3;
+    int32_t stack_uint5;
+    uint64_t *stack_resource_ptr1;
+    uint64_t *stack_resource_ptr2;
+    uint64_t *stack_resource_ptr3;
+    int32_t stack_uint6;
+    uint64_t *stack_resource_ptr4;
+    uint64_t *stack_resource_ptr5;
+    uint64_t *stack_resource_ptr6;
+    uint64_t *stack_resource_ptr7;
+    int32_t stack_uint7;
+    uint64_t *******stack_hash_ptr1;
+    uint64_t *******stack_hash_ptr2;
+    uint64_t *******stack_hash_ptr3;
+    uint64_t stack_undefined3;
     longlong stack_long1;
-    undefined4 stack_uint8;
-    undefined4 stack_uint9;
-    undefined **stack_ptr_array;
-    undefined *stack_ptr3;
-    undefined1 *stack_byte_ptr2;
-    undefined4 stack_uint10;
+    int32_t stack_uint8;
+    int32_t stack_uint9;
+    void **stack_ptr_array;
+    void *stack_ptr3;
+    int8_t *stack_byte_ptr2;
+    int32_t stack_uint10;
     ulonglong stack_ulong1;
-    undefined1 stack_buffer2[32];
+    int8_t stack_buffer2[32];
     longlong stack_long2;
     longlong stack_long3;
     longlong stack_long4;
-    undefined8 stack_undefined4;
-    undefined4 stack_uint11;
-    undefined8 stack_undefined5;
-    undefined8 stack_undefined6;
-    undefined8 stack_undefined7;
-    undefined *stack_ptr4;
+    uint64_t stack_int32_t;
+    int32_t stack_uint11;
+    uint64_t stack_undefined5;
+    uint64_t stack_undefined6;
+    uint64_t stack_undefined7;
+    void *stack_ptr4;
     char *stack_char_ptr2;
     uint stack_uint12;
     char stack_buffer3[136];
@@ -134,11 +134,11 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
     stack_undefined7 = resource_param;
     
     // 检查系统状态并确定时间值
-    if (*(undefined **)*_DAT_180c8ed08 == &UNK_18098bb88) {
+    if (*(void **)*_DAT_180c8ed08 == &UNK_18098bb88) {
         char_val = *(int *)(_DAT_180c8a9c8 + 0xe0) != 0;
     }
     else {
-        char_val = (**(code **)(*(undefined **)*_DAT_180c8ed08 + 0x48))();
+        char_val = (**(code **)(*(void **)*_DAT_180c8ed08 + 0x48))();
     }
     
     // 根据系统状态设置时间值
@@ -152,32 +152,32 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
     // 初始化资源处理状态
     stack_long3 = 0;
     stack_long4 = 0;
-    stack_undefined4 = 0;
+    stack_int32_t = 0;
     stack_uint11 = 3;
     stack_uint4 = uint_result ^ RANDOM_SEED_XOR;
     
     // 初始化资源数组
     get_time_value(0, &stack_long3);
-    stack_resource_ptr1 = (undefined8 *)0x0;
-    stack_resource_ptr2 = (undefined8 *)0x0;
-    stack_resource_ptr3 = (undefined8 *)0x0;
+    stack_resource_ptr1 = (uint64_t *)0x0;
+    stack_resource_ptr2 = (uint64_t *)0x0;
+    stack_resource_ptr3 = (uint64_t *)0x0;
     stack_uint6 = 3;
     uint_result = uint_result ^ RANDOM_SEED_XOR;
     
     // 处理资源列表中的每个条目
     if (stack_long4 - stack_long3 >> 3 != 0) {
         do {
-            mem_ptr = (undefined8 *)0x0;
+            mem_ptr = (uint64_t *)0x0;
             long_val = *(longlong *)(stack_long3 + hash_val1 * 8);
             stack_ptr4 = &UNK_1809fcc28;
             stack_char_ptr2 = stack_buffer3;
             stack_buffer3[0] = '\0';
             stack_uint12 = *(uint *)(long_val + 0x20);
-            ptr_val = *(undefined **)(long_val + 0x18);
+            ptr_val = *(void **)(long_val + 0x18);
             undefined_ptr = &DAT_18098bc73;
             
             // 获取资源名称
-            if (ptr_val != (undefined *)0x0) {
+            if (ptr_val != (void *)0x0) {
                 undefined_ptr = ptr_val;
             }
             strcpy_s(stack_buffer3, MAX_STRING_LENGTH, undefined_ptr);
@@ -195,7 +195,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                         if (*temp_char_ptr != temp_char_ptr[_DAT_180bf90b8 - (longlong)stack_char_ptr2]) 
                             goto LAB_string_length_check;
                         uint_result = (int)temp_mem_ptr + 1;
-                        temp_mem_ptr = (undefined8 *)(ulonglong)uint_result;
+                        temp_mem_ptr = (uint64_t *)(ulonglong)uint_result;
                         temp_char_ptr = temp_char_ptr + 1;
                     } while (uint_result < _DAT_180bf90c0);
                 }
@@ -205,8 +205,8 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
             // 处理符合要求的资源
             if (bool_result) {
                 stack_ptr1 = &UNK_180a3c3e0;
-                stack_undefined1 = 0;
-                stack_char_ptr = (undefined1 *)0x0;
+                stack_int8_t = 0;
+                stack_char_ptr = (int8_t *)0x0;
                 stack_uint1 = 0;
                 copy_string_data(&stack_ptr1, stack_uint12);
                 temp_char_ptr = stack_char_ptr;
@@ -222,14 +222,14 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                 
                 // 处理字符串指针
                 if (stack_char_ptr2 == (char *)0x0) {
-                    temp_mem_ptr = (undefined8 *)(ulonglong)stack_uint1;
+                    temp_mem_ptr = (uint64_t *)(ulonglong)stack_uint1;
                 }
                 else {
                     stack_uint1 = 0;
                     temp_mem_ptr = mem_ptr;
-                    if (stack_char_ptr != (undefined1 *)0x0) {
+                    if (stack_char_ptr != (int8_t *)0x0) {
                         *stack_char_ptr = 0;
-                        temp_mem_ptr = (undefined8 *)0x0;
+                        temp_mem_ptr = (uint64_t *)0x0;
                     }
                 }
                 
@@ -238,14 +238,14 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                     stack_resource_ptr4 = stack_resource_ptr2;
                     *stack_resource_ptr2 = &UNK_18098bcb0;
                     stack_resource_ptr2[1] = 0;
-                    *(undefined4 *)(stack_resource_ptr2 + 2) = 0;
+                    *(int32_t *)(stack_resource_ptr2 + 2) = 0;
                     *stack_resource_ptr2 = &UNK_180a3c3e0;
                     *(int *)(stack_resource_ptr2 + 2) = (int)temp_mem_ptr;
                     stack_resource_ptr2[1] = stack_char_ptr;
-                    *(undefined4 *)((longlong)stack_resource_ptr2 + 0x1c) = stack_undefined1._4_4_;
-                    *(undefined4 *)(stack_resource_ptr2 + 3) = (undefined4)stack_undefined1;
+                    *(int32_t *)((longlong)stack_resource_ptr2 + 0x1c) = stack_int8_t._4_4_;
+                    *(int32_t *)(stack_resource_ptr2 + 3) = (int32_t)stack_int8_t;
                     stack_uint1 = 0;
-                    stack_undefined1 = 0;
+                    stack_int8_t = 0;
                     resource_block = stack_resource_ptr2;
                 }
                 else {
@@ -254,7 +254,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                     if (long_val == 0) {
                         long_val = 1;
                     LAB_expand_resource_array:
-                        mem_ptr = (undefined8 *)allocate_rendering_memory(_DAT_180c8ed18, long_val << 5, (undefined1)stack_uint6);
+                        mem_ptr = (uint64_t *)allocate_rendering_memory(_DAT_180c8ed18, long_val << 5, (int8_t)stack_uint6);
                     }
                     else {
                         long_val = long_val * 2;
@@ -262,26 +262,26 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                     }
                     
                     // 重新分配资源数组
-                    resource_block = (undefined8 *)initialize_resource_array(stack_resource_ptr1, stack_resource_ptr2, mem_ptr);
+                    resource_block = (uint64_t *)initialize_resource_array(stack_resource_ptr1, stack_resource_ptr2, mem_ptr);
                     temp_mem_ptr = stack_resource_ptr2;
                     *resource_block = &UNK_18098bcb0;
                     resource_block[1] = 0;
-                    *(undefined4 *)(resource_block + 2) = 0;
+                    *(int32_t *)(resource_block + 2) = 0;
                     *resource_block = &UNK_180a3c3e0;
                     *(int *)(resource_block + 2) = (int)temp_mem_ptr;
                     resource_block[1] = temp_char_ptr;
-                    *(undefined4 *)((longlong)resource_block + 0x1c) = stack_undefined1._4_4_;
-                    *(undefined4 *)(resource_block + 3) = (undefined4)stack_undefined1;
+                    *(int32_t *)((longlong)resource_block + 0x1c) = stack_int8_t._4_4_;
+                    *(int32_t *)(resource_block + 3) = (int32_t)stack_int8_t;
                     stack_uint1 = 0;
                     stack_char_ptr = (char *)0x0;
-                    stack_undefined1 = 0;
+                    stack_int8_t = 0;
                     stack_resource_ptr4 = resource_block;
                     
                     // 清理旧的资源数组
                     for (temp_mem_ptr = stack_resource_ptr1; temp_mem_ptr != temp_mem_ptr; temp_mem_ptr = temp_mem_ptr + 4) {
                         (**(code **)*temp_mem_ptr)(temp_mem_ptr, 0);
                     }
-                    if (stack_resource_ptr1 != (undefined8 *)0x0) {
+                    if (stack_resource_ptr1 != (uint64_t *)0x0) {
                         free_rendering_memory(stack_resource_ptr1);
                     }
                     stack_resource_ptr3 = mem_ptr + long_val * 4;
@@ -289,7 +289,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                 }
                 stack_resource_ptr2 = resource_block + 4;
                 stack_char_ptr = (char *)0x0;
-                stack_undefined1 = stack_undefined1 & 0xffffffff00000000;
+                stack_int8_t = stack_int8_t & 0xffffffff00000000;
                 stack_ptr1 = &UNK_18098bcb0;
             }
             stack_ptr4 = &UNK_18098bcb0;
@@ -300,22 +300,22 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
     
     // 初始化哈希表处理
     hash_val1 = 0;
-    stack_resource_ptr5 = (undefined8 *)0x0;
-    stack_resource_ptr6 = (undefined8 *)0x0;
-    stack_resource_ptr7 = (undefined8 *)0x0;
+    stack_resource_ptr5 = (uint64_t *)0x0;
+    stack_resource_ptr6 = (uint64_t *)0x0;
+    stack_resource_ptr7 = (uint64_t *)0x0;
     stack_uint7 = 3;
-    stack_mem_ptr1 = (undefined8 *)0x0;
-    stack_mem_ptr2 = (undefined8 *)0x0;
-    stack_mem_ptr3 = (undefined8 *)0x0;
+    stack_mem_ptr1 = (uint64_t *)0x0;
+    stack_mem_ptr2 = (uint64_t *)0x0;
+    stack_mem_ptr3 = (uint64_t *)0x0;
     stack_uint5 = 3;
     stack_uint8 = 3;
     stack_hash_ptr1 = &stack_hash_ptr1;
     stack_hash_ptr2 = &stack_hash_ptr1;
-    stack_hash_ptr3 = (undefined8 *******)0x0;
+    stack_hash_ptr3 = (uint64_t *******)0x0;
     stack_undefined3 = 0;
     stack_long1 = 0;
     stack_ptr1 = &UNK_180a3c3e0;
-    stack_undefined1 = 0;
+    stack_int8_t = 0;
     stack_char_ptr = (char *)0x0;
     stack_uint1 = 0;
     
@@ -325,23 +325,23 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
         if (int_val < MIN_ALLOCATION_SIZE) {
             int_val = MIN_ALLOCATION_SIZE;
         }
-        byte_ptr = (undefined1 *)allocate_rendering_memory(_DAT_180c8ed18, (longlong)int_val, MEMORY_ALIGNMENT_0X13);
+        byte_ptr = (int8_t *)allocate_rendering_memory(_DAT_180c8ed18, (longlong)int_val, MEMORY_ALIGNMENT_0X13);
         *byte_ptr = 0;
         stack_char_ptr = byte_ptr;
         uint_val = get_string_hash(byte_ptr);
-        stack_undefined1 = CONCAT44(stack_undefined1._4_4_, uint_val);
+        stack_int8_t = CONCAT44(stack_int8_t._4_4_, uint_val);
         memcpy(byte_ptr, _DAT_180bf90b8, (longlong)(int)(_DAT_180bf90c0 + 1));
     }
     
     // 初始化字符串处理
     string_length = 1;
-    stack_resource_ptr4 = (undefined8 *)CONCAT44(stack_resource_ptr4._4_4_, 1);
+    stack_resource_ptr4 = (uint64_t *)CONCAT44(stack_resource_ptr4._4_4_, 1);
     char_ptr = (char *)allocate_rendering_memory(_DAT_180c8ed18, 0x10, MEMORY_ALIGNMENT_0X13);
     *char_ptr = '\0';
     stack_char_ptr = char_ptr;
     uint_result = get_string_hash(char_ptr);
     temp_char_ptr = stack_char_ptr;
-    stack_undefined1 = CONCAT44(stack_undefined1._4_4_, uint_result);
+    stack_int8_t = CONCAT44(stack_int8_t._4_4_, uint_result);
     char_ptr[0] = '_';
     char_ptr[1] = '\0';
     stack_uint1 = 1;
@@ -364,7 +364,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
             }
             stack_char_ptr = char_ptr;
             uint_val = get_string_hash(char_ptr);
-            stack_undefined1 = CONCAT44(stack_undefined1._4_4_, uint_val);
+            stack_int8_t = CONCAT44(stack_int8_t._4_4_, uint_val);
         }
     LAB_string_copy:
         memcpy(char_ptr + 1, _DAT_180bf5b90, (longlong)(_DAT_180bf5b98 + 1));
@@ -375,7 +375,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
     if ((longlong)stack_resource_ptr2 - (longlong)stack_resource_ptr1 >> 5 != 0) {
         do {
             temp_mem_ptr = stack_mem_ptr2;
-            resource_block = (undefined8 *)0x0;
+            resource_block = (uint64_t *)0x0;
             alloc_ptr = stack_resource_ptr1 + hash_val1 * 4;
             uint_result = *(uint *)(alloc_ptr + 2);
             
@@ -392,7 +392,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                         if (char_ptr[alloc_ptr[1] - (longlong)temp_char_ptr] != *char_ptr) 
                             goto LAB_string_length_check2;
                         uint_result = (int)temp_mem_ptr + 1;
-                        temp_mem_ptr = (undefined8 *)(ulonglong)uint_result;
+                        temp_mem_ptr = (uint64_t *)(ulonglong)uint_result;
                         char_ptr = char_ptr + 1;
                     } while (uint_result < string_length);
                 }
@@ -418,7 +418,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                 if (long_val == 0) {
                     long_val = 1;
                 LAB_expand_hash_table:
-                    resource_block = (undefined8 *)allocate_rendering_memory(_DAT_180c8ed18, long_val << 5, (undefined1)stack_uint5);
+                    resource_block = (uint64_t *)allocate_rendering_memory(_DAT_180c8ed18, long_val << 5, (int8_t)stack_uint5);
                 }
                 else {
                     long_val = long_val * 2;
@@ -433,12 +433,12 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                 for (alloc_ptr = stack_mem_ptr1; alloc_ptr != temp_mem_ptr; alloc_ptr = alloc_ptr + 4) {
                     (**(code **)*alloc_ptr)(alloc_ptr, 0);
                 }
-                if (stack_mem_ptr1 != (undefined8 *)0x0) {
+                if (stack_mem_ptr1 != (uint64_t *)0x0) {
                     free_rendering_memory(stack_mem_ptr1);
                 }
                 stack_mem_ptr3 = resource_block + long_val * 4;
                 stack_mem_ptr1 = resource_block;
-                stack_mem_ptr2 = (undefined8 *)(temp_long + 0x20);
+                stack_mem_ptr2 = (uint64_t *)(temp_long + 0x20);
             }
             stack_uint3 = stack_uint3 + 1;
             hash_val1 = (ulonglong)stack_uint3;
@@ -449,7 +449,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
     }
     
     // 清理临时变量
-    byte_ptr = (undefined1 *)0x0;
+    byte_ptr = (int8_t *)0x0;
     traverse_resource_list(&stack_resource_ptr5);
     long_val = stack_long2;
     
@@ -471,12 +471,12 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
     else {
         flag_val = 0;
     }
-    *(undefined1 *)(stack_long2 + 0x130) = flag_val;
+    *(int8_t *)(stack_long2 + 0x130) = flag_val;
     
     // 处理资源查找
     stack_ptr2 = &UNK_180a3c3e0;
-    stack_undefined2 = 0;
-    stack_byte_ptr = (undefined1 *)0x0;
+    stack_int16_t = 0;
+    stack_byte_ptr = (int8_t *)0x0;
     stack_uint2 = 0;
     
     if (*(char *)(stack_long2 + 0x130) == '\0') {
@@ -498,7 +498,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
         }
         byte_ptr = stack_byte_ptr;
         stack_uint2 = 0;
-        if (stack_byte_ptr != (undefined1 *)0x0) {
+        if (stack_byte_ptr != (int8_t *)0x0) {
             stack_byte_ptr[hash_val1] = 0;
         }
         goto LAB_resource_processing_complete;
@@ -516,10 +516,10 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
     // 遍历哈希表查找资源
     hash_table_ptr = &stack_hash_ptr1;
     nested_array_ptr = stack_hash_ptr3;
-    while (resource_array_ptr = hash_table_ptr, nested_array_ptr != (undefined8 *******)0x0) {
+    while (resource_array_ptr = hash_table_ptr, nested_array_ptr != (uint64_t *******)0x0) {
         if (*(int *)(nested_array_ptr + 6) == 0) {
             bool_result = false;
-            temp_hash_ptr = (undefined8 *******)*nested_array_ptr;
+            temp_hash_ptr = (uint64_t *******)*nested_array_ptr;
         }
         else {
             if (*(int *)(stack_resource_ptr5 + (longlong)int_val * 4 + 2) == 0) {
@@ -532,15 +532,15 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                     uint_result = (uint)*(byte *)((longlong)array_ptr + temp_long);
                     temp_int = *(byte *)array_ptr - uint_result;
                     if (*(byte *)array_ptr != uint_result) break;
-                    array_ptr = (undefined8 ******)((longlong)array_ptr + 1);
+                    array_ptr = (uint64_t ******)((longlong)array_ptr + 1);
                 } while (uint_result != 0);
                 bool_result = 0 < temp_int;
                 if (temp_int < 1) {
-                    temp_hash_ptr = (undefined8 *******)*nested_array_ptr;
+                    temp_hash_ptr = (uint64_t *******)*nested_array_ptr;
                     goto LAB_hash_traversal_complete;
                 }
             }
-            temp_hash_ptr = (undefined8 *******)nested_array_ptr[1];
+            temp_hash_ptr = (uint64_t *******)nested_array_ptr[1];
         }
     LAB_hash_traversal_complete:
         hash_table_ptr = nested_array_ptr;
@@ -552,12 +552,12 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
     
     // 继续哈希表遍历
     nested_array_ptr = &stack_hash_ptr1;
-    if (stack_hash_ptr3 != (undefined8 *******)0x0) {
+    if (stack_hash_ptr3 != (uint64_t *******)0x0) {
         temp_hash_ptr = stack_hash_ptr3;
         do {
             if (*(int *)(stack_resource_ptr5 + (longlong)int_val * 4 + 2) == 0) {
                 bool_result = false;
-                temp_hash_ptr = (undefined8 *******)temp_hash_ptr[1];
+                temp_hash_ptr = (uint64_t *******)temp_hash_ptr[1];
             }
             else {
                 if (*(int *)(temp_hash_ptr + 6) == 0) {
@@ -574,24 +574,24 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                     } while (uint_result != 0);
                     bool_result = 0 < temp_int;
                     if (temp_int < 1) {
-                        temp_hash_ptr = (undefined8 *******)temp_hash_ptr[1];
+                        temp_hash_ptr = (uint64_t *******)temp_hash_ptr[1];
                         goto LAB_hash_comparison_complete;
                     }
                 }
-                temp_hash_ptr = (undefined8 *******)*temp_hash_ptr;
+                temp_hash_ptr = (uint64_t *******)*temp_hash_ptr;
             }
         LAB_hash_comparison_complete:
             if (bool_result) {
                 temp_hash_ptr = nested_array_ptr;
             }
             nested_array_ptr = temp_hash_ptr;
-            temp_hash_ptr = (undefined8 *******)temp_hash_ptr;
-        } while (temp_hash_ptr != (undefined8 *******)0x0);
+            temp_hash_ptr = (uint64_t *******)temp_hash_ptr;
+        } while (temp_hash_ptr != (uint64_t *******)0x0);
     }
     
     // 处理找到的资源
     for (; nested_array_ptr != resource_array_ptr;
-        nested_array_ptr = (undefined8 *******)func_0x00018066bd70(nested_array_ptr)) {
+        nested_array_ptr = (uint64_t *******)func_0x00018066bd70(nested_array_ptr)) {
         if (*(ulonglong *)(long_val + 0x140) < *(ulonglong *)(long_val + 0x148)) {
             *(ulonglong *)(long_val + 0x140) = *(ulonglong *)(long_val + 0x140) + 0x20;
             process_resource_entry();
@@ -604,7 +604,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
     // 最终资源处理
     uint_result = uint_result ^ uint_result << 0xd;
     uint_result = uint_result ^ uint_result >> 0x11;
-    alloc_ptr = (undefined8 *)
+    alloc_ptr = (uint64_t *)
                 ((longlong)
                  (int)((ulonglong)((uint_result << 5 ^ uint_result) - 1) %
                       (*(longlong *)(long_val + 0x140) - *resource_ptr >> 5 & 0xffffffffU)) * 0x20 + *resource_ptr);
@@ -622,7 +622,7 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
         if (int_val < MIN_ALLOCATION_SIZE) {
             int_val = MIN_ALLOCATION_SIZE;
         }
-        byte_ptr = (undefined1 *)allocate_rendering_memory(_DAT_180c8ed18, (longlong)int_val, MEMORY_ALIGNMENT_0X13);
+        byte_ptr = (int8_t *)allocate_rendering_memory(_DAT_180c8ed18, (longlong)int_val, MEMORY_ALIGNMENT_0X13);
         *byte_ptr = 0;
         hash_val1 = (ulonglong)byte_ptr & 0xffffffffffc00000;
         
@@ -655,12 +655,12 @@ void process_rendering_resources(longlong render_context, undefined8 resource_pa
                                                           * 0x10000)) % hash_val2);
             }
         }
-        stack_undefined2 = CONCAT44(stack_undefined2._4_4_, uint_result);
+        stack_int16_t = CONCAT44(stack_int16_t._4_4_, uint_result);
         stack_byte_ptr = byte_ptr;
         goto LAB_final_resource_copy;
     }
     stack_uint2 = uint_result;
-    if (byte_ptr != (undefined1 *)0x0) {
+    if (byte_ptr != (int8_t *)0x0) {
         byte_ptr[uint_result] = 0;
     }
     
@@ -668,7 +668,7 @@ LAB_resource_processing_complete:
     // 设置渲染参数
     uint_result = *(uint *)((longlong)alloc_ptr + 0x1c);
     *(float *)(stack_long2 + 0x15c) = (float)_DAT_180c8ed30 * FLOAT_SCALE_FACTOR;
-    stack_undefined2._4_4_ = uint_result;
+    stack_int16_t._4_4_ = uint_result;
     
     // 生成随机哈希值
     generate_random_hash(_DAT_180c86930, stack_undefined5, &stack_ptr2, 1);
@@ -676,11 +676,11 @@ LAB_resource_processing_complete:
     stack_ptr2 = &UNK_180a3c3e0;
     
     // 清理内存
-    if (byte_ptr != (undefined1 *)0x0) {
+    if (byte_ptr != (int8_t *)0x0) {
         free_rendering_memory(byte_ptr);
     }
-    stack_byte_ptr = (undefined1 *)0x0;
-    stack_undefined2 = (ulonglong)stack_undefined2._4_4_ << 0x20;
+    stack_byte_ptr = (int8_t *)0x0;
+    stack_int16_t = (ulonglong)stack_int16_t._4_4_ << 0x20;
     stack_ptr2 = &UNK_18098bcb0;
     stack_ptr1 = &UNK_180a3c3e0;
     
@@ -688,7 +688,7 @@ LAB_resource_processing_complete:
         free_rendering_memory(char_ptr);
     }
     stack_char_ptr = (char *)0x0;
-    stack_undefined1 = stack_undefined1 & 0xffffffff00000000;
+    stack_int8_t = stack_int8_t & 0xffffffff00000000;
     stack_ptr1 = &UNK_18098bcb0;
     
     // 清理所有资源数组
@@ -703,8 +703,8 @@ LAB_resource_processing_complete:
     
     // 处理字符串分割和资源标记
     while (true) {
-        temp_mem_ptr = (undefined8 *)(ulonglong)(int_val + 1U);
-        alloc_ptr = (undefined8 *)((longlong)alloc_ptr + 1);
+        temp_mem_ptr = (uint64_t *)(ulonglong)(int_val + 1U);
+        alloc_ptr = (uint64_t *)((longlong)alloc_ptr + 1);
         if (uint_result <= int_val + 1U) break;
     LAB_resource_processing:
         int_val = (int)temp_mem_ptr;
@@ -712,7 +712,7 @@ LAB_resource_processing_complete:
     }
     
 LAB_resource_found:
-    alloc_ptr = (undefined8 *)0xffffffffffffffff;
+    alloc_ptr = (uint64_t *)0xffffffffffffffff;
     int_val = -1;
     
 LAB_resource_separator_found:
@@ -746,26 +746,26 @@ LAB_final_separator_found:
     
     // 添加到资源列表
     if (stack_resource_ptr6 < stack_resource_ptr7) {
-        stack_ptr_array = (undefined **)stack_resource_ptr6;
+        stack_ptr_array = (void **)stack_resource_ptr6;
         *stack_resource_ptr6 = &UNK_18098bcb0;
         stack_resource_ptr6[1] = 0;
-        *(undefined4 *)(stack_resource_ptr6 + 2) = 0;
+        *(int32_t *)(stack_resource_ptr6 + 2) = 0;
         *stack_resource_ptr6 = &UNK_180a3c3e0;
         stack_resource_ptr6[3] = 0;
         stack_resource_ptr6[1] = 0;
-        *(undefined4 *)(stack_resource_ptr6 + 2) = 0;
+        *(int32_t *)(stack_resource_ptr6 + 2) = 0;
         stack_resource_ptr6 = stack_resource_ptr6 + 4;
         copy_string_data(alloc_ptr, stack_uint2);
         
         if (stack_uint2 != 0) {
             memcpy(alloc_ptr[1], stack_byte_ptr, stack_uint2 + 1);
         }
-        if (stack_byte_ptr != (undefined1 *)0x0) {
-            *(undefined4 *)(alloc_ptr + 2) = 0;
-            if ((undefined1 *)alloc_ptr[1] != (undefined1 *)0x0) {
-                *(undefined1 *)alloc_ptr[1] = 0;
+        if (stack_byte_ptr != (int8_t *)0x0) {
+            *(int32_t *)(alloc_ptr + 2) = 0;
+            if ((int8_t *)alloc_ptr[1] != (int8_t *)0x0) {
+                *(int8_t *)alloc_ptr[1] = 0;
             }
-            *(undefined4 *)((longlong)alloc_ptr + 0x1c) = 0;
+            *(int32_t *)((longlong)alloc_ptr + 0x1c) = 0;
         }
     }
     else {
@@ -774,7 +774,7 @@ LAB_final_separator_found:
         if (long_val == 0) {
             long_val = 1;
         LAB_expand_resource_list:
-            resource_block = (undefined8 *)allocate_rendering_memory(_DAT_180c8ed18, long_val << 5, (undefined1)stack_uint7);
+            resource_block = (uint64_t *)allocate_rendering_memory(_DAT_180c8ed18, long_val << 5, (int8_t)stack_uint7);
         }
         else {
             long_val = long_val * 2;
@@ -789,12 +789,12 @@ LAB_final_separator_found:
         for (alloc_ptr = stack_resource_ptr5; alloc_ptr != temp_mem_ptr; alloc_ptr = alloc_ptr + 4) {
             (**(code **)*alloc_ptr)(alloc_ptr, 0);
         }
-        if (stack_resource_ptr5 != (undefined8 *)0x0) {
+        if (stack_resource_ptr5 != (uint64_t *)0x0) {
             free_rendering_memory(stack_resource_ptr5);
         }
         stack_resource_ptr7 = resource_block + long_val * 4;
         stack_resource_ptr5 = resource_block;
-        stack_resource_ptr6 = (undefined8 *)(temp_long + 0x20);
+        stack_resource_ptr6 = (uint64_t *)(temp_long + 0x20);
     }
     
     // 最终资源处理和哈希表更新
@@ -802,16 +802,16 @@ LAB_final_separator_found:
     stack_ptr_array = &stack_ptr3;
     stack_ptr3 = &UNK_180a3c3e0;
     stack_ulong1 = 0;
-    stack_byte_ptr2 = (undefined1 *)0x0;
+    stack_byte_ptr2 = (int8_t *)0x0;
     stack_uint10 = 0;
     copy_string_data(&stack_ptr3, stack_uint2);
     
     if (stack_uint2 != 0) {
         memcpy(stack_byte_ptr2, stack_byte_ptr, stack_uint2 + 1);
     }
-    if (stack_byte_ptr != (undefined1 *)0x0) {
+    if (stack_byte_ptr != (int8_t *)0x0) {
         stack_uint10 = 0;
-        if (stack_byte_ptr2 != (undefined1 *)0x0) {
+        if (stack_byte_ptr2 != (int8_t *)0x0) {
             *stack_byte_ptr2 = 0;
         }
         stack_ulong1 = stack_ulong1 & 0xffffffff;
@@ -819,18 +819,18 @@ LAB_final_separator_found:
     
     // 处理资源条目
     process_resource_entry(stack_buffer2, alloc_ptr);
-    long_val = allocate_rendering_memory(_DAT_180c8ed18, 0x60, (undefined1)stack_uint8);
+    long_val = allocate_rendering_memory(_DAT_180c8ed18, 0x60, (int8_t)stack_uint8);
     initialize_string_resource(long_val + 0x20, &stack_ptr3);
     
     // 更新哈希表
     nested_array_ptr = &stack_hash_ptr1;
     hash_table_ptr = stack_hash_ptr3;
-    if (stack_hash_ptr3 != (undefined8 *******)0x0) {
+    if (stack_hash_ptr3 != (uint64_t *******)0x0) {
         do {
             nested_array_ptr = hash_table_ptr;
             if (*(int *)(nested_array_ptr + 6) == 0) {
             LAB_hash_cleanup:
-                hash_table_ptr = (undefined8 *******)*nested_array_ptr;
+                hash_table_ptr = (uint64_t *******)*nested_array_ptr;
             }
             else {
                 if (*(int *)(long_val + 0x30) != 0) {
@@ -840,15 +840,15 @@ LAB_final_separator_found:
                         byte_val = *(byte *)array_ptr;
                         uint_result = (uint)*(byte *)((longlong)array_ptr + temp_long);
                         if (byte_val != uint_result) break;
-                        array_ptr = (undefined8 ******)((longlong)array_ptr + 1);
+                        array_ptr = (uint64_t ******)((longlong)array_ptr + 1);
                     } while (uint_result != 0);
                     if ((int)(byte_val - uint_result) < 1) goto LAB_hash_cleanup;
                 }
-                hash_table_ptr = (undefined8 *******)nested_array_ptr[1];
+                hash_table_ptr = (uint64_t *******)nested_array_ptr[1];
             }
-        } while (hash_table_ptr != (undefined8 *******)0x0);
+        } while (hash_table_ptr != (uint64_t *******)0x0);
         
-        if ((undefined8 ********)nested_array_ptr != &stack_hash_ptr1) {
+        if ((uint64_t ********)nested_array_ptr != &stack_hash_ptr1) {
             if (*(int *)(nested_array_ptr + 6) != 0) {
                 if (*(int *)(long_val + 0x30) == 0) goto LAB_final_hash_processing;
                 array_ptr = nested_array_ptr[5];
@@ -857,7 +857,7 @@ LAB_final_separator_found:
                     byte_val = *(byte *)array_ptr;
                     uint_result = (uint)*(byte *)((longlong)array_ptr + temp_long);
                     if (byte_val != uint_result) break;
-                    array_ptr = (undefined8 *******)((longlong)array_ptr + 1);
+                    array_ptr = (uint64_t *******)((longlong)array_ptr + 1);
                 } while (uint_result != 0);
                 if (0 < (int)(byte_val - uint_result)) goto LAB_final_hash_processing;
             }

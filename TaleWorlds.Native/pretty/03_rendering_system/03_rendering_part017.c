@@ -53,16 +53,16 @@ void cleanup_render_object_states(void)
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)(render_obj_ptr + 0x1d8) = 0;
+        *(uint64_t *)(render_obj_ptr + 0x1d8) = 0;
         LOCK();
-        *(undefined1 *)(render_obj_ptr + 0xf9) = 0;
+        *(int8_t *)(render_obj_ptr + 0xf9) = 0;
         UNLOCK();
       }
       
       // 清理对象的附加资源
       if (*(longlong *)(render_obj_ptr + 0x1e8) != 0) {
         FUN_180080060();
-        *(undefined8 *)(render_obj_ptr + 0x1e8) = 0;
+        *(uint64_t *)(render_obj_ptr + 0x1e8) = 0;
         if (*(longlong *)(render_obj_ptr + 0x1f0) != 0) {
           status_flag_ptr = (byte *)(*(longlong *)(render_obj_ptr + 0x1f0) + 0xfe);
           *status_flag_ptr = *status_flag_ptr & 0xfb;
@@ -103,11 +103,11 @@ void process_render_object_destruction(longlong render_context_ptr)
   longlong *destructor_ptr;
   longlong *cleanup_ptr;
   longlong *temp_stack_ptr;
-  undefined1 temp_buffer[8];
+  int8_t temp_buffer[8];
   longlong *resource_ptr;
-  undefined4 cleanup_flag;
+  int32_t cleanup_flag;
   longlong *object_data_ptr;
-  undefined2 status_word;
+  int16_t status_word;
   char cleanup_status;
   
   object_data_ptr = *(longlong **)(render_context_ptr + 0x38);
@@ -118,7 +118,7 @@ void process_render_object_destruction(longlong render_context_ptr)
         // 重置对象状态
         object_ptr[0x3f] = 0;
         object_ptr[0x40] = 0;
-        *(undefined4 *)(object_ptr + 0x41) = 0;
+        *(int32_t *)(object_ptr + 0x41) = 0;
         FUN_180079520(object_ptr);
       }
       else {
@@ -139,11 +139,11 @@ void process_render_object_destruction(longlong render_context_ptr)
         status_word = 0;
         cleanup_status = '\0';
         (**(code **)(*object_ptr + 0x38))(object_ptr);
-        *(undefined4 *)(destructor_ptr + 2) = 0;
-        *(undefined4 *)(destructor_ptr + 7) = 0;
-        *(undefined4 *)(destructor_ptr + 0x11) = 0;
-        *(undefined4 *)(destructor_ptr + 0xc) = 0;
-        *(undefined2 *)(destructor_ptr + 0x18) = 0;
+        *(int32_t *)(destructor_ptr + 2) = 0;
+        *(int32_t *)(destructor_ptr + 7) = 0;
+        *(int32_t *)(destructor_ptr + 0x11) = 0;
+        *(int32_t *)(destructor_ptr + 0xc) = 0;
+        *(int16_t *)(destructor_ptr + 0x18) = 0;
         if (destructor_ptr[0x17] != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
@@ -151,7 +151,7 @@ void process_render_object_destruction(longlong render_context_ptr)
         destructor_ptr[0x17] = 0;
         FUN_180085530(destructor_ptr[0x16]);
         destructor_ptr[0x16] = 0;
-        *(undefined4 *)(destructor_ptr + 0x19) = 0;
+        *(int32_t *)(destructor_ptr + 0x19) = 0;
         status_word = 0x101;
         if ((object_ptr != (longlong *)0x0) && (destructor_ptr != (longlong *)0x0)) {
           if (cleanup_status != '\0') {
@@ -196,18 +196,18 @@ void remove_render_objects_by_mask(longlong render_context_ptr, byte mask_bit)
 
 {
   uint object_mask;
-  undefined8 object_data;
+  uint64_t object_data;
   longlong *object_ptr;
-  undefined8 *list_start;
-  undefined8 *list_end;
-  undefined8 *current_pos;
-  undefined8 *next_pos;
+  uint64_t *list_start;
+  uint64_t *list_end;
+  uint64_t *current_pos;
+  uint64_t *next_pos;
   longlong remaining_count;
   uint current_mask;
   
   object_mask = 1 << (mask_bit & 0x1f);
-  list_start = *(undefined8 **)(render_context_ptr + 0x38);
-  list_end = *(undefined8 **)(render_context_ptr + 0x40);
+  list_start = *(uint64_t **)(render_context_ptr + 0x38);
+  list_end = *(uint64_t **)(render_context_ptr + 0x40);
   if (list_start != list_end) {
     next_pos = list_start + 2;
     do {
@@ -224,13 +224,13 @@ void remove_render_objects_by_mask(longlong render_context_ptr, byte mask_bit)
             if (object_ptr != (longlong *)0x0) {
               (**(code **)(*object_ptr + 0x38))();
             }
-            *(undefined4 *)(current_pos + -1) = *(undefined4 *)(current_pos + 1);
+            *(int32_t *)(current_pos + -1) = *(int32_t *)(current_pos + 1);
             remaining_count = remaining_count + -1;
             current_pos = current_pos + 2;
           } while (0 < remaining_count);
-          list_end = *(undefined8 **)(render_context_ptr + 0x40);
+          list_end = *(uint64_t **)(render_context_ptr + 0x40);
         }
-        *(undefined8 **)(render_context_ptr + 0x40) = list_end + -2;
+        *(uint64_t **)(render_context_ptr + 0x40) = list_end + -2;
         object_ptr = (longlong *)list_end[-2];
         if (object_ptr != (longlong *)0x0) {
           (**(code **)(*object_ptr + 0x38))();
@@ -244,7 +244,7 @@ void remove_render_objects_by_mask(longlong render_context_ptr, byte mask_bit)
         list_start = list_start + 2;
         next_pos = next_pos + 2;
       }
-      list_end = *(undefined8 **)(render_context_ptr + 0x40);
+      list_end = *(uint64_t **)(render_context_ptr + 0x40);
     } while (list_start != list_end);
   }
   FUN_180278270(render_context_ptr);
@@ -270,7 +270,7 @@ void remove_render_objects_by_mask(longlong render_context_ptr, byte mask_bit)
 void filter_and_reorganize_render_objects(longlong render_context_ptr, uint bit_position)
 
 {
-  undefined4 *mask_ptr;
+  int32_t *mask_ptr;
   longlong list_size;
   longlong *object_ptr;
   longlong *filtered_ptr;
@@ -306,8 +306,8 @@ void filter_and_reorganize_render_objects(longlong render_context_ptr, uint bit_
             (**(code **)(*target_end + 0x28))();
             filtered_count = current_mask;
           }
-          *(undefined4 *)(source_end + 1) =
-               *(undefined4 *)((longlong)(source_start + 1) + (longlong)target_ptr);
+          *(int32_t *)(source_end + 1) =
+               *(int32_t *)((longlong)(source_start + 1) + (longlong)target_ptr);
         }
         else {
           list_size = (longlong)source_end - (longlong)target_end >> 4;
@@ -329,8 +329,8 @@ LAB_180277c31:
             do {
               *source_end = *filtered_ptr;
               *filtered_ptr = 0;
-              mask_ptr = (undefined4 *)((longlong)object_ptr + (8 - (longlong)target_end) + (longlong)filtered_ptr);
-              *mask_ptr = *(undefined4 *)((longlong)mask_ptr + ((longlong)target_end - (longlong)object_ptr));
+              mask_ptr = (int32_t *)((longlong)object_ptr + (8 - (longlong)target_end) + (longlong)filtered_ptr);
+              *mask_ptr = *(int32_t *)((longlong)mask_ptr + ((longlong)target_end - (longlong)object_ptr));
               filtered_ptr = filtered_ptr + 2;
               source_end = source_end + 2;
             } while (filtered_ptr != source_end);
@@ -340,7 +340,7 @@ LAB_180277c31:
           if (filtered_ptr != (longlong *)0x0) {
             (**(code **)(*filtered_ptr + 0x28))();
           }
-          *(undefined4 *)(source_end + 1) = *(undefined4 *)((longlong)(source_start + 1) + (longlong)target_ptr)
+          *(int32_t *)(source_end + 1) = *(int32_t *)((longlong)(source_start + 1) + (longlong)target_ptr)
           ;
           source_end = source_end + 2;
           for (source_start = target_end; source_start != source_end; source_start = source_start + 2) {
@@ -369,7 +369,7 @@ LAB_180277c31:
   object_ptr = *(longlong **)(render_context_ptr + 0x40);
   *(longlong **)(render_context_ptr + 0x40) = source_end;
   *(longlong **)(render_context_ptr + 0x48) = filtered_ptr;
-  *(undefined4 *)(render_context_ptr + 0x50) = 0x16;
+  *(int32_t *)(render_context_ptr + 0x50) = 0x16;
   FUN_180278270(render_context_ptr);
   list_size = *(longlong *)(render_context_ptr + 0x28);
   source_end = source_start;
@@ -403,37 +403,37 @@ LAB_180277c31:
 void collect_render_objects_by_mask(longlong render_context_ptr, ulonglong *output_array, uint filter_mask)
 
 {
-  undefined8 object_data;
+  uint64_t object_data;
   longlong array_size;
-  undefined8 *array_ptr;
-  undefined8 *array_end;
-  undefined8 *new_array_ptr;
-  undefined8 *temp_ptr;
+  uint64_t *array_ptr;
+  uint64_t *array_end;
+  uint64_t *new_array_ptr;
+  uint64_t *temp_ptr;
   
-  array_end = *(undefined8 **)(render_context_ptr + 0x38);
-  if (array_end < *(undefined8 **)(render_context_ptr + 0x40)) {
+  array_end = *(uint64_t **)(render_context_ptr + 0x38);
+  if (array_end < *(uint64_t **)(render_context_ptr + 0x40)) {
     do {
       if ((*(uint *)(array_end + 1) & filter_mask) != 0) {
-        temp_ptr = (undefined8 *)output_array[1];
+        temp_ptr = (uint64_t *)output_array[1];
         object_data = *array_end;
-        if (temp_ptr < (undefined8 *)output_array[2]) {
+        if (temp_ptr < (uint64_t *)output_array[2]) {
           output_array[1] = (ulonglong)(temp_ptr + 1);
           *temp_ptr = object_data;
         }
         else {
-          array_ptr = (undefined8 *)*output_array;
+          array_ptr = (uint64_t *)*output_array;
           array_size = (longlong)temp_ptr - (longlong)array_ptr >> 3;
           if (array_size == 0) {
             array_size = 1;
 LAB_180277eb2:
-            new_array_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, (char)output_array[3]);
-            array_ptr = (undefined8 *)*output_array;
-            temp_ptr = (undefined8 *)output_array[1];
+            new_array_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, (char)output_array[3]);
+            array_ptr = (uint64_t *)*output_array;
+            temp_ptr = (uint64_t *)output_array[1];
           }
           else {
             array_size = array_size * 2;
             if (array_size != 0) goto LAB_180277eb2;
-            new_array_ptr = (undefined8 *)0x0;
+            new_array_ptr = (uint64_t *)0x0;
           }
           if (array_ptr != temp_ptr) {
                     // WARNING: Subroutine does not return
@@ -450,7 +450,7 @@ LAB_180277eb2:
         }
       }
       array_end = array_end + 2;
-    } while (array_end < *(undefined8 **)(render_context_ptr + 0x40));
+    } while (array_end < *(uint64_t **)(render_context_ptr + 0x40));
   }
   return;
 }
@@ -468,38 +468,38 @@ LAB_180277eb2:
 void collect_render_objects_inline(void)
 
 {
-  undefined8 object_data;
+  uint64_t object_data;
   longlong array_size;
-  undefined8 *array_ptr;
-  undefined8 *array_end;
-  undefined8 *new_array_ptr;
+  uint64_t *array_ptr;
+  uint64_t *array_end;
+  uint64_t *new_array_ptr;
   ulonglong *output_array;
-  undefined8 *current_ptr;
+  uint64_t *current_ptr;
   uint filter_mask;
   longlong context_ptr;
   
   do {
     if ((*(uint *)(current_ptr + 1) & filter_mask) != 0) {
-      array_end = (undefined8 *)output_array[1];
+      array_end = (uint64_t *)output_array[1];
       object_data = *current_ptr;
-      if (array_end < (undefined8 *)output_array[2]) {
+      if (array_end < (uint64_t *)output_array[2]) {
         output_array[1] = (ulonglong)(array_end + 1);
         *array_end = object_data;
       }
       else {
-        array_ptr = (undefined8 *)*output_array;
+        array_ptr = (uint64_t *)*output_array;
         array_size = (longlong)array_end - (longlong)array_ptr >> 3;
         if (array_size == 0) {
           array_size = 1;
 LAB_180277eb2:
-          new_array_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, (char)output_array[3]);
-          array_ptr = (undefined8 *)*output_array;
-          array_end = (undefined8 *)output_array[1];
+          new_array_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, array_size * 8, (char)output_array[3]);
+          array_ptr = (uint64_t *)*output_array;
+          array_end = (uint64_t *)output_array[1];
         }
         else {
           array_size = array_size * 2;
           if (array_size != 0) goto LAB_180277eb2;
-          new_array_ptr = (undefined8 *)0x0;
+          new_array_ptr = (uint64_t *)0x0;
         }
         if (array_ptr != array_end) {
                     // WARNING: Subroutine does not return
@@ -516,7 +516,7 @@ LAB_180277eb2:
       }
     }
     current_ptr = current_ptr + 2;
-    if (*(undefined8 **)(context_ptr + 0x40) <= current_ptr) {
+    if (*(uint64_t **)(context_ptr + 0x40) <= current_ptr) {
       return;
     }
   } while( true );
@@ -748,7 +748,7 @@ void process_advanced_matrix_transform(void)
   longlong *temp_ptr;
   float *result_ptr;
   longlong *result_end;
-  undefined8 context_data;
+  uint64_t context_data;
   longlong *obj_list_ptr;
   float x, y, z, w;
   float tx, ty, tz, tw;
@@ -757,44 +757,44 @@ void process_advanced_matrix_transform(void)
   float vx, vy, vz, vw;
   float px, py, pz, pw;
   float rx, ry, rz, rw;
-  undefined8 param1, param2, param3;
+  uint64_t param1, param2, param3;
   longlong obj_ptr;
   uint filter_mask;
   longlong render_context;
   ulonglong *object_array;
   ulonglong *matrix_array;
   float *transform_params;
-  undefined4 xmm6_data[4];
+  int32_t xmm6_data[4];
   float xmm6_f[4];
-  undefined4 xmm7_data[4];
+  int32_t xmm7_data[4];
   float xmm7_f[4];
-  undefined4 xmm8_data[4];
+  int32_t xmm8_data[4];
   float xmm8_f[4];
-  undefined4 xmm9_data[4];
+  int32_t xmm9_data[4];
   float xmm9_f[4];
   float *stack_params;
   
   // 保存上下文寄存器
-  *(undefined8 *)(context_ptr + 8) = context_data;
-  *(undefined8 *)(context_ptr + 0x10) = param1;
-  *(undefined8 *)(context_ptr + 0x18) = param2;
-  *(undefined8 *)(context_ptr + -0x28) = param3;
-  *(undefined4 *)(context_ptr + -0x38) = xmm6_data[0];
-  *(undefined4 *)(context_ptr + -0x34) = xmm6_data[1];
-  *(undefined4 *)(context_ptr + -0x30) = xmm6_data[2];
-  *(undefined4 *)(context_ptr + -0x2c) = xmm6_data[3];
-  *(undefined4 *)(context_ptr + -0x48) = xmm7_data[0];
-  *(undefined4 *)(context_ptr + -0x44) = xmm7_data[1];
-  *(undefined4 *)(context_ptr + -0x40) = xmm7_data[2];
-  *(undefined4 *)(context_ptr + -0x3c) = xmm7_data[3];
-  *(undefined4 *)(context_ptr + -0x58) = xmm8_data[0];
-  *(undefined4 *)(context_ptr + -0x54) = xmm8_data[1];
-  *(undefined4 *)(context_ptr + -0x50) = xmm8_data[2];
-  *(undefined4 *)(context_ptr + -0x4c) = xmm8_data[3];
-  *(undefined4 *)(context_ptr + -0x68) = xmm9_data[0];
-  *(undefined4 *)(context_ptr + -100) = xmm9_data[1];
-  *(undefined4 *)(context_ptr + -0x60) = xmm9_data[2];
-  *(undefined4 *)(context_ptr + -0x5c) = xmm9_data[3];
+  *(uint64_t *)(context_ptr + 8) = context_data;
+  *(uint64_t *)(context_ptr + 0x10) = param1;
+  *(uint64_t *)(context_ptr + 0x18) = param2;
+  *(uint64_t *)(context_ptr + -0x28) = param3;
+  *(int32_t *)(context_ptr + -0x38) = xmm6_data[0];
+  *(int32_t *)(context_ptr + -0x34) = xmm6_data[1];
+  *(int32_t *)(context_ptr + -0x30) = xmm6_data[2];
+  *(int32_t *)(context_ptr + -0x2c) = xmm6_data[3];
+  *(int32_t *)(context_ptr + -0x48) = xmm7_data[0];
+  *(int32_t *)(context_ptr + -0x44) = xmm7_data[1];
+  *(int32_t *)(context_ptr + -0x40) = xmm7_data[2];
+  *(int32_t *)(context_ptr + -0x3c) = xmm7_data[3];
+  *(int32_t *)(context_ptr + -0x58) = xmm8_data[0];
+  *(int32_t *)(context_ptr + -0x54) = xmm8_data[1];
+  *(int32_t *)(context_ptr + -0x50) = xmm8_data[2];
+  *(int32_t *)(context_ptr + -0x4c) = xmm8_data[3];
+  *(int32_t *)(context_ptr + -0x68) = xmm9_data[0];
+  *(int32_t *)(context_ptr + -100) = xmm9_data[1];
+  *(int32_t *)(context_ptr + -0x60) = xmm9_data[2];
+  *(int32_t *)(context_ptr + -0x5c) = xmm9_data[3];
   
   do {
     if (((uint)transform_params[0x10] & *(uint *)(obj_list_ptr + 1)) != 0) {

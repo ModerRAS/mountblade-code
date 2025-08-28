@@ -418,7 +418,7 @@ static OperationResult perform_system_cleanup(CleanupLevel level)
 void FUN_180244e4d(void)
 {
     code *in_RAX;                      /**< 寄存器RAX内容 */
-    undefined *puVar1;                 /**< 变量指针 */
+    void *puVar1;                 /**< 变量指针 */
     longlong unaff_RSI;                /**< RSI寄存器值 */
     longlong unaff_RDI;                /**< RDI寄存器值 */
     
@@ -433,14 +433,14 @@ void FUN_180244e4d(void)
     }
     
     /* 设置系统回调函数 */
-    *(undefined **)(unaff_RSI + MEMORY_BLOCK_SIZE) = &UNK_1800ee4d0;
-    *(undefined **)(unaff_RSI + MEMORY_CACHE_SIZE) = &UNK_1800ee4c0;
+    *(void **)(unaff_RSI + MEMORY_BLOCK_SIZE) = &UNK_1800ee4d0;
+    *(void **)(unaff_RSI + MEMORY_CACHE_SIZE) = &UNK_1800ee4c0;
     *(code **)(unaff_RSI + MEMORY_POOL_SIZE) = FUN_1802436f0;
     
     /* 设置系统配置 */
     puVar1 = &DAT_18098bc73;
-    if (*(undefined **)(unaff_RDI + 0xb0) != (undefined *)0x0) {
-        puVar1 = *(undefined **)(unaff_RDI + 0xb0);
+    if (*(void **)(unaff_RDI + 0xb0) != (void *)0x0) {
+        puVar1 = *(void **)(unaff_RDI + 0xb0);
     }
     
     /* 执行系统配置操作 */
@@ -448,18 +448,18 @@ void FUN_180244e4d(void)
     
     /* 设置系统参数 */
     puVar1 = &DAT_18098bc73;
-    if (*(undefined **)(unaff_RDI + 0x90) != (undefined *)0x0) {
-        puVar1 = *(undefined **)(unaff_RDI + 0x90);
+    if (*(void **)(unaff_RDI + 0x90) != (void *)0x0) {
+        puVar1 = *(void **)(unaff_RDI + 0x90);
     }
     
     /* 执行参数配置操作 */
     (**(code **)(*(longlong *)(unaff_RSI + 0x95e8) + 0x10))((longlong *)(unaff_RSI + 0x95e8), puVar1);
     
     /* 复制系统状态 */
-    *(undefined4 *)(unaff_RSI + 0x9608) = *(undefined4 *)(unaff_RDI + MEMORY_THRESHOLD_SIZE);
+    *(int32_t *)(unaff_RSI + 0x9608) = *(int32_t *)(unaff_RDI + MEMORY_THRESHOLD_SIZE);
     
     /* 重置系统标志 */
-    *(undefined1 *)(unaff_RDI + 0xe9) = 0;
+    *(int8_t *)(unaff_RDI + 0xe9) = 0;
     
     /* 更新系统状态 */
     g_system_initialized = 1;
@@ -486,9 +486,9 @@ void FUN_180244ef2(void)
  * 
  * @param param_1 资源管理器指针
  * @param param_2 分配标志
- * @return undefined8* 分配的资源指针
+ * @return uint64_t* 分配的资源指针
  */
-undefined8 * FUN_180244f00(undefined8 *param_1, ulonglong param_2)
+uint64_t * FUN_180244f00(uint64_t *param_1, ulonglong param_2)
 {
     longlong *plVar1;                  /**< 资源列表指针 */
     
@@ -510,7 +510,7 @@ undefined8 * FUN_180244f00(undefined8 *param_1, ulonglong param_2)
         
         /* 重置资源参数 */
         param_1[0x19] = 0;
-        *(undefined4 *)(param_1 + 0x1b) = 0;
+        *(int32_t *)(param_1 + 0x1b) = 0;
         param_1[0x18] = &UNK_18098bcb0;
         
         /* 执行资源初始化 */
@@ -534,7 +534,7 @@ undefined8 * FUN_180244f00(undefined8 *param_1, ulonglong param_2)
         /* 重置资源数据 */
         *plVar1 = 0;
         plVar1[1] = 0;
-        *(undefined1 *)(plVar1 + 2) = 0;
+        *(int8_t *)(plVar1 + 2) = 0;
     }
     
     /* 执行资源管理操作 */
@@ -554,35 +554,35 @@ void FUN_180244ff0(longlong param_1)
     int iVar1;                         /**< 整数变量1 */
     int iVar2;                         /**< 整数变量2 */
     uint uVar3;                        /**< 无符号整数变量 */
-    undefined8 uVar4;                  /**< 未定义8位变量 */
+    uint64_t uVar4;                  /**< 未定义8位变量 */
     char cVar5;                        /**< 字符变量 */
     int iVar6;                         /**< 整数变量6 */
     longlong lVar7;                    /**< 长整数变量7 */
-    undefined8 *puVar8;                /**< 未定义8位指针 */
-    undefined *puVar9;                 /**< 未定义指针 */
+    uint64_t *puVar8;                /**< 未定义8位指针 */
+    void *puVar9;                 /**< 未定义指针 */
     ulonglong uVar10;                  /**< 无符号长整数变量 */
     ulonglong extraout_XMM0_Qa;        /**< XMM0寄存器输出 */
-    undefined1 auStack_158 [32];       /**< 栈数组 */
-    undefined4 uStack_138;             /**< 栈变量 */
-    undefined4 uStack_134;             /**< 栈变量 */
-    undefined4 uStack_130;             /**< 栈变量 */
-    undefined4 uStack_12c;             /**< 栈变量 */
-    undefined4 uStack_128;             /**< 栈变量 */
+    int8_t auStack_158 [32];       /**< 栈数组 */
+    int32_t uStack_138;             /**< 栈变量 */
+    int32_t uStack_134;             /**< 栈变量 */
+    int32_t uStack_130;             /**< 栈变量 */
+    int32_t uStack_12c;             /**< 栈变量 */
+    int32_t uStack_128;             /**< 栈变量 */
     float fStack_124;                  /**< 浮点栈变量 */
     float fStack_120;                  /**< 浮点栈变量 */
     float fStack_11c;                  /**< 浮点栈变量 */
     float fStack_118;                  /**< 浮点栈变量 */
-    undefined1 uStack_114;             /**< 栈变量 */
-    undefined8 uStack_113;             /**< 栈变量 */
-    undefined4 uStack_108;             /**< 栈变量 */
-    undefined1 uStack_104;             /**< 栈变量 */
+    int8_t uStack_114;             /**< 栈变量 */
+    uint64_t uStack_113;             /**< 栈变量 */
+    int32_t uStack_108;             /**< 栈变量 */
+    int8_t uStack_104;             /**< 栈变量 */
     longlong *plStack_100;             /**< 长整数指针栈变量 */
     longlong *aplStack_f8 [3];         /**< 长整数指针数组 */
-    undefined8 uStack_e0;              /**< 栈变量 */
-    undefined *puStack_d8;              /**< 未定义指针栈变量 */
-    undefined1 *puStack_d0;             /**< 未定义指针栈变量 */
+    uint64_t uStack_e0;              /**< 栈变量 */
+    void *puStack_d8;              /**< 未定义指针栈变量 */
+    int8_t *puStack_d0;             /**< 未定义指针栈变量 */
     uint uStack_c8;                    /**< 无符号整数栈变量 */
-    undefined1 auStack_c0 [136];       /**< 栈数组 */
+    int8_t auStack_c0 [136];       /**< 栈数组 */
     ulonglong uStack_38;                /**< 无符号长整数栈变量 */
     
     /* 初始化栈变量 */
@@ -606,8 +606,8 @@ void FUN_180244ff0(longlong param_1)
         
         /* 获取系统名称 */
         puVar9 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 0x3528) != (undefined *)0x0) {
-            puVar9 = *(undefined **)(param_1 + 0x3528);
+        if (*(void **)(param_1 + 0x3528) != (void *)0x0) {
+            puVar9 = *(void **)(param_1 + 0x3528);
         }
         
         /* 计算字符串长度 */
@@ -630,9 +630,9 @@ void FUN_180244ff0(longlong param_1)
         uStack_104 = 0;
         
         /* 转换浮点参数 */
-        uStack_138 = (undefined4)(longlong)(float)iVar1;
-        uStack_134 = (undefined4)(longlong)(float)iVar2;
-        uStack_128 = *(undefined4 *)(param_1 + 0x9714);
+        uStack_138 = (int32_t)(longlong)(float)iVar1;
+        uStack_134 = (int32_t)(longlong)(float)iVar2;
+        uStack_128 = *(int32_t *)(param_1 + 0x9714);
         
         /* 获取颜色数据 */
         uVar3 = *(uint *)(param_1 + 0x11cf0);
@@ -643,7 +643,7 @@ void FUN_180244ff0(longlong param_1)
         fStack_11c = (float)(uVar3 & RESOURCE_COLOR_MASK) * RESOURCE_COLOR_SCALE;
         
         /* 设置附加参数 */
-        uStack_108 = *(undefined4 *)(param_1 + 0x1bd4);
+        uStack_108 = *(int32_t *)(param_1 + 0x1bd4);
         lVar7 = *(longlong *)(param_1 + 0x96a0);
         
         /* 检查资源状态 */
@@ -652,13 +652,13 @@ void FUN_180244ff0(longlong param_1)
             cVar5 == '\0')) || (*(int *)(lVar7 + 0x380) == 0)) {
             
             /* 分配新资源 */
-            puVar8 = (undefined8 *)FUN_1800b1230(uVar10, aplStack_f8, &puStack_d8, &uStack_138);
+            puVar8 = (uint64_t *)FUN_1800b1230(uVar10, aplStack_f8, &puStack_d8, &uStack_138);
             uVar4 = *puVar8;
             *puVar8 = 0;
             
             /* 更新资源管理器 */
             plStack_100 = *(longlong **)(param_1 + 0x96a0);
-            *(undefined8 *)(param_1 + 0x96a0) = uVar4;
+            *(uint64_t *)(param_1 + 0x96a0) = uVar4;
             
             /* 清理旧资源 */
             if (plStack_100 != (longlong *)0x0) {
@@ -690,26 +690,26 @@ void FUN_180244ff0(longlong param_1)
  */
 void FUN_180245280(longlong param_1)
 {
-    undefined8 uVar1;                  /**< 未定义8位变量 */
+    uint64_t uVar1;                  /**< 未定义8位变量 */
     longlong lVar2;                     /**< 长整数变量 */
-    undefined8 *puVar3;                /**< 未定义8位指针 */
+    uint64_t *puVar3;                /**< 未定义8位指针 */
     uint uVar4;                        /**< 无符号整数变量 */
-    undefined4 uVar5;                  /**< 未定义4位变量 */
-    undefined1 auStack_118 [32];       /**< 栈数组 */
+    int32_t uVar5;                  /**< 未定义4位变量 */
+    int8_t auStack_118 [32];       /**< 栈数组 */
     uint uStack_f8;                    /**< 无符号整数栈变量 */
     uint uStack_f4;                    /**< 无符号整数栈变量 */
     uint uStack_f0;                    /**< 无符号整数栈变量 */
-    undefined4 uStack_ec;              /**< 栈变量 */
-    undefined4 uStack_e8;              /**< 栈变量 */
-    undefined4 uStack_e4;              /**< 栈变量 */
-    undefined4 uStack_e0;              /**< 栈变量 */
+    int32_t uStack_ec;              /**< 栈变量 */
+    int32_t uStack_e8;              /**< 栈变量 */
+    int32_t uStack_e4;              /**< 栈变量 */
+    int32_t uStack_e0;              /**< 栈变量 */
     longlong *plStack_d8;              /**< 长整数指针栈变量 */
     longlong *plStack_d0;              /**< 长整数指针栈变量 */
-    undefined8 uStack_c8;             /**< 栈变量 */
-    undefined *puStack_b8;             /**< 未定义指针栈变量 */
-    undefined1 *puStack_b0;            /**< 未定义指针栈变量 */
-    undefined4 uStack_a8;              /**< 栈变量 */
-    undefined1 auStack_a0 [136];       /**< 栈数组 */
+    uint64_t uStack_c8;             /**< 栈变量 */
+    void *puStack_b8;             /**< 未定义指针栈变量 */
+    int8_t *puStack_b0;            /**< 未定义指针栈变量 */
+    int32_t uStack_a8;              /**< 栈变量 */
+    int8_t auStack_a0 [136];       /**< 栈数组 */
     ulonglong uStack_18;               /**< 无符号长整数栈变量 */
     
     /* 初始化栈变量 */
@@ -736,7 +736,7 @@ void FUN_180245280(longlong param_1)
         uStack_e4 = 0x1018a;
         uStack_ec = 0x2f;
         uStack_e8 = 0x3f800000;
-        uStack_e0 = *(undefined4 *)(param_1 + 0x1bd4);
+        uStack_e0 = *(int32_t *)(param_1 + 0x1bd4);
         
         /* 设置资源管理参数 */
         puStack_b8 = &UNK_1809fcc28;
@@ -749,13 +749,13 @@ void FUN_180245280(longlong param_1)
         uVar5 = strcpy_s(auStack_a0, RESOURCE_STRING_SIZE, &UNK_180a146f0);
         
         /* 分配资源 */
-        puVar3 = (undefined8 *)FUN_1800b1d80(uVar5, &plStack_d0, &puStack_b8, &uStack_f8);
+        puVar3 = (uint64_t *)FUN_1800b1d80(uVar5, &plStack_d0, &puStack_b8, &uStack_f8);
         uVar1 = *puVar3;
         *puVar3 = 0;
         
         /* 更新资源管理器 */
         plStack_d8 = *(longlong **)(param_1 + 0x96a8);
-        *(undefined8 *)(param_1 + 0x96a8) = uVar1;
+        *(uint64_t *)(param_1 + 0x96a8) = uVar1;
         
         /* 清理旧资源 */
         if (plStack_d8 != (longlong *)0x0) {
@@ -788,91 +788,91 @@ void FUN_180245420(longlong param_1)
     
     /* 清理系统资源块1 */
     plVar1 = *(longlong **)(param_1 + 0x9690);
-    *(undefined8 *)(param_1 + 0x9690) = 0;
+    *(uint64_t *)(param_1 + 0x9690) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块2 */
     plVar1 = *(longlong **)(param_1 + 0x9698);
-    *(undefined8 *)(param_1 + 0x9698) = 0;
+    *(uint64_t *)(param_1 + 0x9698) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块3 */
     plVar1 = *(longlong **)(param_1 + 0x96a8);
-    *(undefined8 *)(param_1 + 0x96a8) = 0;
+    *(uint64_t *)(param_1 + 0x96a8) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块4 */
     plVar1 = *(longlong **)(param_1 + 0x96e8);
-    *(undefined8 *)(param_1 + 0x96e8) = 0;
+    *(uint64_t *)(param_1 + 0x96e8) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块5 */
     plVar1 = *(longlong **)(param_1 + 0x96f0);
-    *(undefined8 *)(param_1 + 0x96f0) = 0;
+    *(uint64_t *)(param_1 + 0x96f0) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块6 */
     plVar1 = *(longlong **)(param_1 + 0x96d8);
-    *(undefined8 *)(param_1 + 0x96d8) = 0;
+    *(uint64_t *)(param_1 + 0x96d8) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块7 */
     plVar1 = *(longlong **)(param_1 + 0x96e0);
-    *(undefined8 *)(param_1 + 0x96e0) = 0;
+    *(uint64_t *)(param_1 + 0x96e0) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块8 */
     plVar1 = *(longlong **)(param_1 + 0x96d0);
-    *(undefined8 *)(param_1 + 0x96d0) = 0;
+    *(uint64_t *)(param_1 + 0x96d0) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块9 */
     plVar1 = *(longlong **)(param_1 + 0x96f8);
-    *(undefined8 *)(param_1 + 0x96f8) = 0;
+    *(uint64_t *)(param_1 + 0x96f8) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块10 */
     plVar1 = *(longlong **)(param_1 + 0x9960);
-    *(undefined8 *)(param_1 + 0x9960) = 0;
+    *(uint64_t *)(param_1 + 0x9960) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块11 */
     plVar1 = *(longlong **)(param_1 + 0x9968);
-    *(undefined8 *)(param_1 + 0x9968) = 0;
+    *(uint64_t *)(param_1 + 0x9968) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块12 */
     plVar1 = *(longlong **)(param_1 + 0x99b8);
-    *(undefined8 *)(param_1 + 0x99b8) = 0;
+    *(uint64_t *)(param_1 + 0x99b8) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }
     
     /* 清理系统资源块13 */
     plVar1 = *(longlong **)(param_1 + 0x12498);
-    *(undefined8 *)(param_1 + 0x12498) = 0;
+    *(uint64_t *)(param_1 + 0x12498) = 0;
     if (plVar1 != (longlong *)0x0) {
         (**(code **)(*plVar1 + 0x38))();
     }

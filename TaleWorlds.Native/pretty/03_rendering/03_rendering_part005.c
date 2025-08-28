@@ -18,28 +18,28 @@ void process_animation_curve_data(longlong animation_context, longlong name_offs
   char *string_ptr1;
   ulonglong length_counter;
   longlong offset_value;
-  undefined *data_ptr1;
-  undefined8 *node_ptr1;
+  void *data_ptr1;
+  uint64_t *node_ptr1;
   char *string_ptr2;
-  undefined8 *node_ptr2;
+  uint64_t *node_ptr2;
   char *string_ptr3;
   int version_info[2];
   float time_values[2];
   float value_pairs[2];
-  undefined8 curve_flags;
+  uint64_t curve_flags;
   int keyframe_time;
   float keyframe_value;
-  undefined8 keyframe_flags;
+  uint64_t keyframe_flags;
   int keyframe_time2;
   float keyframe_value2;
-  undefined8 keyframe_flags2;
+  uint64_t keyframe_flags2;
   
   // 初始化曲线处理
   initialize_curve_processor(animation_context, curve_data);
   curve_flags = 0xfffffffffffffffe;
   
   // 复制曲线引用
-  *(undefined8 *)(animation_context + 0x18) = *(undefined8 *)(animation_context + 0x10);
+  *(uint64_t *)(animation_context + 0x18) = *(uint64_t *)(animation_context + 0x10);
   
   // 查找曲线类型标识符
   string_ptr2 = "curve";
@@ -49,9 +49,9 @@ void process_animation_curve_data(longlong animation_context, longlong name_offs
   } while (*string_ptr2 != '\0');
   
   // 遍历曲线数据节点
-  node_ptr1 = *(undefined8 **)(curve_data + 0x30);
+  node_ptr1 = *(uint64_t **)(curve_data + 0x30);
   do {
-    if (node_ptr1 == (undefined8 *)0x0) {
+    if (node_ptr1 == (uint64_t *)0x0) {
       return;
     }
     
@@ -75,7 +75,7 @@ void process_animation_curve_data(longlong animation_context, longlong name_offs
         if (string_ptr1 <= string_ptr2) goto MATCH_FOUND_CURVE;
       }
     }
-    node_ptr1 = (undefined8 *)node_ptr1[0xb];
+    node_ptr1 = (uint64_t *)node_ptr1[0xb];
   } while( true );
   
 MATCH_FOUND_CURVE:
@@ -87,8 +87,8 @@ MATCH_FOUND_CURVE:
   } while (*string_ptr2 != '\0');
   
   // 在曲线属性中查找名称
-  for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-      node_ptr2 = (undefined8 *)node_ptr2[6]) {
+  for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+      node_ptr2 = (uint64_t *)node_ptr2[6]) {
     string_ptr2 = (char *)*node_ptr2;
     if (string_ptr2 == (char *)0x0) {
       string_ptr1 = (char *)0x0;
@@ -138,8 +138,8 @@ HANDLE_CURVE_DATA:
     
     while( true ) {
       do {
-        node_ptr1 = (undefined8 *)node_ptr1[0xb];
-        if (node_ptr1 == (undefined8 *)0x0) {
+        node_ptr1 = (uint64_t *)node_ptr1[0xb];
+        if (node_ptr1 == (uint64_t *)0x0) {
           return;
         }
         string_ptr2 = (char *)*node_ptr1;
@@ -172,9 +172,9 @@ HANDLE_CURVE_DATA:
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  node_ptr2 = (undefined8 *)node_ptr1[8];
+  node_ptr2 = (uint64_t *)node_ptr1[8];
   do {
-    if (node_ptr2 == (undefined8 *)0x0) goto PROCESS_DEFAULT_VALUE;
+    if (node_ptr2 == (uint64_t *)0x0) goto PROCESS_DEFAULT_VALUE;
     
     string_ptr2 = (char *)*node_ptr2;
     if (string_ptr2 == (char *)0x0) {
@@ -211,7 +211,7 @@ HANDLE_CURVE_DATA:
         parse_version_string(string_ptr2, data_ptr1, version_info);
       }
     }
-    node_ptr2 = (undefined8 *)node_ptr2[6];
+    node_ptr2 = (uint64_t *)node_ptr2[6];
   } while( true );
   
 PROCESS_DEFAULT_VALUE:
@@ -222,8 +222,8 @@ PROCESS_DEFAULT_VALUE:
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-      node_ptr2 = (undefined8 *)node_ptr2[6]) {
+  for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+      node_ptr2 = (uint64_t *)node_ptr2[6]) {
     string_ptr2 = (char *)*node_ptr2;
     if (string_ptr2 == (char *)0x0) {
       string_ptr1 = (char *)0x0;
@@ -268,8 +268,8 @@ PROCESS_DEFAULT_VALUE_OFFSET:
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  for (node_ptr2 = (undefined8 *)node_ptr1[8]; node_ptr2 != (undefined8 *)0x0;
-      node_ptr2 = (undefined8 *)node_ptr2[6]) {
+  for (node_ptr2 = (uint64_t *)node_ptr1[8]; node_ptr2 != (uint64_t *)0x0;
+      node_ptr2 = (uint64_t *)node_ptr2[6]) {
     string_ptr2 = (char *)*node_ptr2;
     if (string_ptr2 == (char *)0x0) {
       string_ptr1 = (char *)0x0;
@@ -315,9 +315,9 @@ PROCESS_CURVE_MULTIPLIER:
       string_ptr2 = string_ptr3 + 1;
     } while (*string_ptr2 != '\0');
     
-    node_ptr1 = (undefined8 *)node_ptr1[6];
+    node_ptr1 = (uint64_t *)node_ptr1[6];
     do {
-      if (node_ptr1 == (undefined8 *)0x0) {
+      if (node_ptr1 == (uint64_t *)0x0) {
         return;
       }
       
@@ -338,7 +338,7 @@ PROCESS_CURVE_MULTIPLIER:
           process_single_keyframe(node_ptr1, animation_context);
         }
       }
-      node_ptr1 = (undefined8 *)node_ptr1[0xb];
+      node_ptr1 = (uint64_t *)node_ptr1[0xb];
     } while( true );
   }
   
@@ -353,18 +353,18 @@ PROCESS_CURVE_MULTIPLIER:
  * @param keyframe_node 关键帧节点指针
  * @param animation_context 动画上下文指针
  */
-static void process_single_keyframe(undefined8 *keyframe_node, longlong animation_context)
+static void process_single_keyframe(uint64_t *keyframe_node, longlong animation_context)
 {
   char *string_ptr1;
   char *string_ptr2;
   char *string_ptr3;
   longlong offset_value;
-  undefined8 *sub_node_ptr;
+  uint64_t *sub_node_ptr;
   float time_values[2];
   float value_pairs[2];
   int keyframe_time;
   float keyframe_value;
-  undefined8 keyframe_flags;
+  uint64_t keyframe_flags;
   
   // 获取关键帧时间
   string_ptr2 = "time";
@@ -373,8 +373,8 @@ static void process_single_keyframe(undefined8 *keyframe_node, longlong animatio
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  for (sub_node_ptr = (undefined8 *)keyframe_node[8]; sub_node_ptr != (undefined8 *)0x0;
-      sub_node_ptr = (undefined8 *)sub_node_ptr[6]) {
+  for (sub_node_ptr = (uint64_t *)keyframe_node[8]; sub_node_ptr != (uint64_t *)0x0;
+      sub_node_ptr = (uint64_t *)sub_node_ptr[6]) {
     string_ptr2 = (char *)*sub_node_ptr;
     if (string_ptr2 == (char *)0x0) {
       string_ptr1 = (char *)0x0;
@@ -412,8 +412,8 @@ static void process_single_keyframe(undefined8 *keyframe_node, longlong animatio
     string_ptr2 = string_ptr3 + 1;
   } while (*string_ptr2 != '\0');
   
-  for (sub_node_ptr = (undefined8 *)keyframe_node[8]; sub_node_ptr != (undefined8 *)0x0;
-      sub_node_ptr = (undefined8 *)sub_node_ptr[6]) {
+  for (sub_node_ptr = (uint64_t *)keyframe_node[8]; sub_node_ptr != (uint64_t *)0x0;
+      sub_node_ptr = (uint64_t *)sub_node_ptr[6]) {
     string_ptr2 = (char *)*sub_node_ptr;
     if (string_ptr2 == (char *)0x0) {
       string_ptr1 = (char *)0x0;
@@ -462,11 +462,11 @@ static void process_single_keyframe(undefined8 *keyframe_node, longlong animatio
  * @param debug_param 调试参数
  * @return 初始化后的数据容器指针
  */
-undefined8 *
-create_animation_data_container(undefined8 *data_container, ulonglong allocation_flags, 
-                                undefined8 cleanup_param, undefined8 debug_param)
+uint64_t *
+create_animation_data_container(uint64_t *data_container, ulonglong allocation_flags, 
+                                uint64_t cleanup_param, uint64_t debug_param)
 {
-  undefined8 management_flags;
+  uint64_t management_flags;
   
   management_flags = 0xfffffffffffffffe;
   
@@ -499,8 +499,8 @@ create_animation_data_container(undefined8 *data_container, ulonglong allocation
 
 // 函数引用声明（原始代码中的函数调用）
 void initialize_curve_processor(longlong context, longlong data);
-void parse_version_string(char *version_str, undefined *format_ptr, int *version_info);
-void parse_animation_value(longlong value_ptr, undefined *parser_table, void *output);
-void process_keyframe_array(undefined8 *keyframe_array, longlong context);
-void process_keyframe_data(undefined8 *keyframe, undefined *handler, void *stack_data);
-void initialize_data_container(undefined8 *container);
+void parse_version_string(char *version_str, void *format_ptr, int *version_info);
+void parse_animation_value(longlong value_ptr, void *parser_table, void *output);
+void process_keyframe_array(uint64_t *keyframe_array, longlong context);
+void process_keyframe_data(uint64_t *keyframe, void *handler, void *stack_data);
+void initialize_data_container(uint64_t *container);

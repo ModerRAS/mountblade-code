@@ -144,25 +144,25 @@ typedef struct {
 // ============================================================================
 
 /** 渲染系统全局数据指针 */
-extern undefined8 _DAT_180c8ed00;
+extern uint64_t _DAT_180c8ed00;
 
 /** 渲染系统状态指针 */
-extern undefined8 _DAT_180c8ed68;
+extern uint64_t _DAT_180c8ed68;
 
 /** 渲染系统备用数据指针 */
-extern undefined8 _DAT_180c8ed08;
+extern uint64_t _DAT_180c8ed08;
 
 /** 渲染系统配置数据指针 */
-extern undefined8 _DAT_180c8ed18;
+extern uint64_t _DAT_180c8ed18;
 
 /** 渲染系统地址常量 */
-extern undefined8 _DAT_180c86928;
+extern uint64_t _DAT_180c86928;
 
 /** 渲染系统魔数地址 */
-extern undefined8 _DAT_180bf00a8;
+extern uint64_t _DAT_180bf00a8;
 
 /** 渲染系统数据地址 */
-extern undefined4 DAT_1809fcc18;
+extern int32_t DAT_1809fcc18;
 
 /** 渲染系统空对象指针 */
 extern undefined UNK_180a3c3e0;
@@ -173,26 +173,26 @@ extern undefined UNK_180a3c3e0;
 
 // 渲染系统核心功能函数
 RenderingSystemHandle RenderingSystemGetHandle(void);
-void RenderingSystemProcessParameters(undefined4 *param1, undefined4 *param2, undefined4 param3, undefined1 param4);
-void RenderingSystemHandleMatrixData(undefined4 *param1, undefined8 *param2, undefined4 param3, undefined1 param4, undefined4 param5);
-void RenderingSystemProcessVectorData(undefined4 *param1, undefined4 param2, undefined4 param3, undefined1 param4, undefined4 param5);
-void RenderingSystemManageRenderQueue(undefined4 *param1, undefined8 *param2, undefined4 param3, undefined4 param4, undefined1 param5, undefined4 param6);
-void RenderingSystemAllocateResources(undefined4 *param1, undefined8 param2, undefined4 param3, undefined4 param4, undefined4 param5, undefined4 param6);
-void RenderingSystemCleanupMemory(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4);
-void RenderingSystemProcessRenderData(undefined4 param1, undefined4 param2, undefined4 param3, undefined4 param4);
-void RenderingSystemProcessExtendedData(undefined4 param1, undefined4 param2, undefined4 param3, undefined4 param4, undefined4 param5);
+void RenderingSystemProcessParameters(int32_t *param1, int32_t *param2, int32_t param3, int8_t param4);
+void RenderingSystemHandleMatrixData(int32_t *param1, uint64_t *param2, int32_t param3, int8_t param4, int32_t param5);
+void RenderingSystemProcessVectorData(int32_t *param1, int32_t param2, int32_t param3, int8_t param4, int32_t param5);
+void RenderingSystemManageRenderQueue(int32_t *param1, uint64_t *param2, int32_t param3, int32_t param4, int8_t param5, int32_t param6);
+void RenderingSystemAllocateResources(int32_t *param1, uint64_t param2, int32_t param3, int32_t param4, int32_t param5, int32_t param6);
+void RenderingSystemCleanupMemory(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4);
+void RenderingSystemProcessRenderData(int32_t param1, int32_t param2, int32_t param3, int32_t param4);
+void RenderingSystemProcessExtendedData(int32_t param1, int32_t param2, int32_t param3, int32_t param4, int32_t param5);
 void RenderingSystemInitializeSystem(void);
 void RenderingSystemValidateParameters(int param1);
-void RenderingSystemProcessTextureData(undefined4 *param1, undefined4 *param2, undefined4 param3, undefined1 param4, undefined4 param5);
-void RenderingSystemProcessMultiTextureData(undefined8 *param1, undefined8 *param2, undefined8 *param3, undefined4 param4, undefined1 param5, undefined4 param6);
-void RenderingSystemProcessRenderParameters(undefined8 param1, undefined8 param2, undefined8 param3, undefined4 param4);
-void RenderingSystemProcessRenderParametersEx(undefined8 param1, undefined8 param2, undefined8 param3, undefined4 param4, undefined1 param5);
-void RenderingSystemManageRenderMemory(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4);
+void RenderingSystemProcessTextureData(int32_t *param1, int32_t *param2, int32_t param3, int8_t param4, int32_t param5);
+void RenderingSystemProcessMultiTextureData(uint64_t *param1, uint64_t *param2, uint64_t *param3, int32_t param4, int8_t param5, int32_t param6);
+void RenderingSystemProcessRenderParameters(uint64_t param1, uint64_t param2, uint64_t param3, int32_t param4);
+void RenderingSystemProcessRenderParametersEx(uint64_t param1, uint64_t param2, uint64_t param3, int32_t param4, int8_t param5);
+void RenderingSystemManageRenderMemory(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4);
 ColorValue RenderingSystemConvertColorFormat(longlong param1);
 ColorValue RenderingSystemConvertColorFormatEx(longlong param1);
-undefined8 RenderingSystemGetNullHandle(void);
+uint64_t RenderingSystemGetNullHandle(void);
 void RenderingSystemProcessColorData(longlong *param1, ColorValue param2);
-void RenderingSystemSetRenderParameters(longlong param1, undefined4 param2, undefined4 param3, undefined4 param4, undefined4 param5);
+void RenderingSystemSetRenderParameters(longlong param1, int32_t param2, int32_t param3, int32_t param4, int32_t param5);
 
 // ============================================================================
 // 函数实现
@@ -207,7 +207,7 @@ void RenderingSystemSetRenderParameters(longlong param1, undefined4 param2, unde
  * @note 内部包含间接跳转表，用于动态分发处理
  * @warning 函数地址0x00018043bff0
  */
-void FUN_18043bff0(undefined8 param_1)
+void FUN_18043bff0(uint64_t param_1)
 {
     longlong *plVar1;
     
@@ -231,17 +231,17 @@ void FUN_18043bff0(undefined8 param_1)
  * @param param_4 控制标志位
  * @note 函数地址0x00018043c020
  */
-void FUN_18043c020(undefined4 *param_1, undefined4 *param_2, undefined4 param_3, undefined1 param_4)
+void FUN_18043c020(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t param_4)
 {
-    undefined4 auStackX_18[4];
-    undefined4 uStack_28;
-    undefined4 uStack_24;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
-    undefined4 uStack_18;
-    undefined4 uStack_14;
-    undefined4 uStack_10;
-    undefined4 uStack_c;
+    int32_t auStackX_18[4];
+    int32_t uStack_28;
+    int32_t uStack_24;
+    int32_t uStack_20;
+    int32_t uStack_1c;
+    int32_t uStack_18;
+    int32_t uStack_14;
+    int32_t uStack_10;
+    int32_t uStack_c;
     
     // 复制第一个向量参数到栈
     uStack_18 = *param_1;
@@ -275,14 +275,14 @@ void FUN_18043c020(undefined4 *param_1, undefined4 *param_2, undefined4 param_3,
  * @param param_5 扩展参数
  * @note 函数地址0x00018043c060
  */
-void FUN_18043c060(undefined4 *param_1, undefined8 *param_2, undefined4 param_3, undefined1 param_4, undefined4 param_5)
+void FUN_18043c060(int32_t *param_1, uint64_t *param_2, int32_t param_3, int8_t param_4, int32_t param_5)
 {
-    undefined8 uStack_28;
-    undefined8 uStack_20;
-    undefined4 uStack_18;
-    undefined4 uStack_14;
-    undefined4 uStack_10;
-    undefined4 uStack_c;
+    uint64_t uStack_28;
+    uint64_t uStack_20;
+    int32_t uStack_18;
+    int32_t uStack_14;
+    int32_t uStack_10;
+    int32_t uStack_c;
     
     // 复制矩阵数据到栈
     uStack_28 = *param_2;
@@ -311,12 +311,12 @@ void FUN_18043c060(undefined4 *param_1, undefined8 *param_2, undefined4 param_3,
  * @param param_5 扩展参数
  * @note 函数地址0x00018043c0b0
  */
-void FUN_18043c0b0(undefined4 *param_1, undefined4 param_2, undefined4 param_3, undefined1 param_4, undefined4 param_5)
+void FUN_18043c0b0(int32_t *param_1, int32_t param_2, int32_t param_3, int8_t param_4, int32_t param_5)
 {
-    undefined4 uStack_18;
-    undefined4 uStack_14;
-    undefined4 uStack_10;
-    undefined4 uStack_c;
+    int32_t uStack_18;
+    int32_t uStack_14;
+    int32_t uStack_10;
+    int32_t uStack_c;
     
     // 复制向量数据到栈
     uStack_18 = *param_1;
@@ -342,14 +342,14 @@ void FUN_18043c0b0(undefined4 *param_1, undefined4 param_2, undefined4 param_3, 
  * @param param_6 扩展参数
  * @note 函数地址0x00018043c0f0
  */
-void FUN_18043c0f0(undefined4 *param_1, undefined8 *param_2, undefined4 param_3, undefined4 param_4, undefined1 param_5, undefined4 param_6)
+void FUN_18043c0f0(int32_t *param_1, uint64_t *param_2, int32_t param_3, int32_t param_4, int8_t param_5, int32_t param_6)
 {
-    undefined8 uStack_28;
-    undefined8 uStack_20;
-    undefined4 uStack_18;
-    undefined4 uStack_14;
-    undefined4 uStack_10;
-    undefined4 uStack_c;
+    uint64_t uStack_28;
+    uint64_t uStack_20;
+    int32_t uStack_18;
+    int32_t uStack_14;
+    int32_t uStack_10;
+    int32_t uStack_c;
     
     // 复制队列数据到栈
     uStack_28 = *param_2;
@@ -379,16 +379,16 @@ void FUN_18043c0f0(undefined4 *param_1, undefined8 *param_2, undefined4 param_3,
  * @param param_6 附加参数
  * @note 函数地址0x00018043c160
  */
-void FUN_18043c160(undefined4 *param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5, undefined4 param_6)
+void FUN_18043c160(int32_t *param_1, uint64_t param_2, int32_t param_3, int32_t param_4, int32_t param_5, int32_t param_6)
 {
-    undefined4 uStackX_8;
-    undefined4 uStackX_c;
-    undefined8 uVar1;
-    undefined4 uStack_40;
-    undefined4 uStack_3c;
-    undefined4 uStack_38;
-    undefined4 uStack_34;
-    undefined *puStack_30;
+    int32_t uStackX_8;
+    int32_t uStackX_c;
+    uint64_t uVar1;
+    int32_t uStack_40;
+    int32_t uStack_3c;
+    int32_t uStack_38;
+    int32_t uStack_34;
+    void *puStack_30;
     longlong lStack_28;
     
     uVar1 = INVALID_HANDLE;
@@ -419,9 +419,9 @@ void FUN_18043c160(undefined4 *param_1, undefined8 param_2, undefined4 param_3, 
  * @param param_4 清理标志参数
  * @note 函数地址0x00018043c230
  */
-void FUN_18043c230(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_18043c230(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined *puStack_30;
+    void *puStack_30;
     longlong lStack_28;
     
     FUN_180627910(&puStack_30, param_3, param_3, param_4, INVALID_HANDLE);
@@ -444,13 +444,13 @@ void FUN_18043c230(undefined8 param_1, undefined8 param_2, undefined8 param_3, u
  * @param param_4 颜色分量4
  * @note 函数地址0x00018043c290
  */
-void FUN_18043c290(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4)
+void FUN_18043c290(int32_t param_1, int32_t param_2, int32_t param_3, int32_t param_4)
 {
-    undefined4 uStack_28;
-    undefined4 uStack_24;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
-    undefined4 uStack_18;
+    int32_t uStack_28;
+    int32_t uStack_24;
+    int32_t uStack_20;
+    int32_t uStack_1c;
+    int32_t uStack_18;
     
     // 设置渲染魔数
     uStack_18 = RENDERING_MAGIC_NUMBER;
@@ -476,13 +476,13 @@ void FUN_18043c290(undefined4 param_1, undefined4 param_2, undefined4 param_3, u
  * @param param_5 扩展配置参数
  * @note 函数地址0x00018043c2e0
  */
-void FUN_18043c2e0(undefined4 param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)
+void FUN_18043c2e0(int32_t param_1, int32_t param_2, int32_t param_3, int32_t param_4, int32_t param_5)
 {
-    undefined4 uStack_28;
-    undefined4 uStack_24;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
-    undefined4 uStack_18;
+    int32_t uStack_28;
+    int32_t uStack_24;
+    int32_t uStack_20;
+    int32_t uStack_1c;
+    int32_t uStack_18;
     
     // 设置扩展参数
     uStack_18 = param_5;
@@ -549,46 +549,46 @@ void FUN_18043c370(int param_1)
  * @param param_5 扩展参数
  * @note 函数地址0x00018043c3b0
  */
-void FUN_18043c3b0(undefined4 *param_1, undefined4 *param_2, undefined4 param_3, undefined1 param_4, undefined4 param_5)
+void FUN_18043c3b0(int32_t *param_1, int32_t *param_2, int32_t param_3, int8_t param_4, int32_t param_5)
 {
     longlong lVar1;
     int iVar2;
-    undefined1 auStack_f8[32];
-    undefined4 uStack_d8;
-    undefined4 uStack_c8;
-    undefined4 uStack_c4;
-    undefined4 uStack_c0;
-    undefined4 uStack_bc;
-    undefined4 uStack_b8;
-    undefined4 uStack_b4;
-    undefined4 uStack_b0;
-    undefined4 uStack_ac;
-    undefined8 uStack_a8;
+    int8_t auStack_f8[32];
+    int32_t uStack_d8;
+    int32_t uStack_c8;
+    int32_t uStack_c4;
+    int32_t uStack_c0;
+    int32_t uStack_bc;
+    int32_t uStack_b8;
+    int32_t uStack_b4;
+    int32_t uStack_b0;
+    int32_t uStack_ac;
+    uint64_t uStack_a8;
     longlong lStack_a0;
-    undefined4 uStack_98;
-    undefined4 uStack_94;
-    undefined4 uStack_90;
-    undefined4 uStack_88;
-    undefined4 uStack_84;
-    undefined4 uStack_80;
-    undefined4 uStack_78;
-    undefined4 uStack_74;
-    undefined4 uStack_70;
-    undefined4 uStack_68;
-    undefined4 uStack_64;
-    undefined4 uStack_60;
-    undefined4 uStack_58;
-    undefined4 uStack_54;
-    undefined4 uStack_50;
-    undefined4 uStack_48;
-    undefined4 uStack_44;
-    undefined4 uStack_40;
-    undefined4 uStack_38;
-    undefined4 uStack_34;
-    undefined4 uStack_30;
-    undefined4 uStack_28;
-    undefined4 uStack_24;
-    undefined4 uStack_20;
+    int32_t uStack_98;
+    int32_t uStack_94;
+    int32_t uStack_90;
+    int32_t uStack_88;
+    int32_t uStack_84;
+    int32_t uStack_80;
+    int32_t uStack_78;
+    int32_t uStack_74;
+    int32_t uStack_70;
+    int32_t uStack_68;
+    int32_t uStack_64;
+    int32_t uStack_60;
+    int32_t uStack_58;
+    int32_t uStack_54;
+    int32_t uStack_50;
+    int32_t uStack_48;
+    int32_t uStack_44;
+    int32_t uStack_40;
+    int32_t uStack_38;
+    int32_t uStack_34;
+    int32_t uStack_30;
+    int32_t uStack_28;
+    int32_t uStack_24;
+    int32_t uStack_20;
     ulonglong uStack_18;
     
     lVar1 = _DAT_180c8ed68;
@@ -663,31 +663,31 @@ void FUN_18043c3b0(undefined4 *param_1, undefined4 *param_2, undefined4 param_3,
  * @param param_6 扩展参数
  * @note 函数地址0x00018043c510
  */
-void FUN_18043c510(undefined8 *param_1, undefined8 *param_2, undefined8 *param_3, undefined4 param_4, undefined1 param_5, undefined4 param_6)
+void FUN_18043c510(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3, int32_t param_4, int8_t param_5, int32_t param_6)
 {
     longlong lVar1;
     int iVar2;
-    undefined1 auStack_138[32];
-    undefined4 uStack_118;
-    undefined8 uStack_108;
+    int8_t auStack_138[32];
+    int32_t uStack_118;
+    uint64_t uStack_108;
     longlong lStack_100;
-    undefined8 uStack_f8;
-    undefined8 uStack_f0;
-    undefined8 uStack_e8;
-    undefined8 uStack_e0;
-    undefined8 uStack_d8;
-    undefined8 uStack_d0;
-    undefined8 uStack_c8;
-    undefined8 uStack_c0;
-    undefined4 uStack_b8;
-    undefined4 uStack_b4;
-    undefined4 uStack_b0;
-    undefined4 uStack_ac;
-    undefined4 uStack_a8;
-    undefined4 uStack_a4;
-    undefined4 uStack_a0;
-    undefined4 uStack_9c;
-    undefined1 auStack_98[BUFFER_SIZE_128];
+    uint64_t uStack_f8;
+    uint64_t uStack_f0;
+    uint64_t uStack_e8;
+    uint64_t uStack_e0;
+    uint64_t uStack_d8;
+    uint64_t uStack_d0;
+    uint64_t uStack_c8;
+    uint64_t uStack_c0;
+    int32_t uStack_b8;
+    int32_t uStack_b4;
+    int32_t uStack_b0;
+    int32_t uStack_ac;
+    int32_t uStack_a8;
+    int32_t uStack_a4;
+    int32_t uStack_a0;
+    int32_t uStack_9c;
+    int8_t auStack_98[BUFFER_SIZE_128];
     ulonglong uStack_18;
     
     lVar1 = _DAT_180c8ed68;
@@ -701,14 +701,14 @@ void FUN_18043c510(undefined8 *param_1, undefined8 *param_2, undefined8 *param_3
     uStack_d0 = param_3[1];
     uStack_c8 = param_3[2];
     uStack_c0 = param_3[3];
-    uStack_b8 = *(undefined4 *)(param_3 + 4);
-    uStack_b4 = *(undefined4 *)((longlong)param_3 + 0x24);
-    uStack_b0 = *(undefined4 *)(param_3 + 5);
-    uStack_ac = *(undefined4 *)((longlong)param_3 + 0x2c);
-    uStack_a8 = *(undefined4 *)(param_3 + 6);
-    uStack_a4 = *(undefined4 *)((longlong)param_3 + 0x34);
-    uStack_a0 = *(undefined4 *)(param_3 + 7);
-    uStack_9c = *(undefined4 *)((longlong)param_3 + 0x3c);
+    uStack_b8 = *(int32_t *)(param_3 + 4);
+    uStack_b4 = *(int32_t *)((longlong)param_3 + 0x24);
+    uStack_b0 = *(int32_t *)(param_3 + 5);
+    uStack_ac = *(int32_t *)((longlong)param_3 + 0x2c);
+    uStack_a8 = *(int32_t *)(param_3 + 6);
+    uStack_a4 = *(int32_t *)((longlong)param_3 + 0x34);
+    uStack_a0 = *(int32_t *)(param_3 + 7);
+    uStack_9c = *(int32_t *)((longlong)param_3 + 0x3c);
     
     // 检查渲染系统状态
     if (*(char *)(_DAT_180c8ed68 + RENDERING_SYSTEM_OFFSET_0X50) != '\0') {
@@ -743,7 +743,7 @@ void FUN_18043c510(undefined8 *param_1, undefined8 *param_2, undefined8 *param_3
  * @param param_4 参数类型
  * @note 函数地址0x00018043c6b0
  */
-void FUN_18043c6b0(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4)
+void FUN_18043c6b0(uint64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4)
 {
     (**(code **)(*(longlong *)*_DAT_180c8ed08 + VTABLE_OFFSET_PARAM_PROCESS_0X20))
             ((longlong *)*_DAT_180c8ed08, param_2, param_4, param_1, 0, 1);
@@ -762,7 +762,7 @@ void FUN_18043c6b0(undefined8 param_1, undefined8 param_2, undefined8 param_3, u
  * @param param_5 控制标志位
  * @note 函数地址0x00018043c6e0
  */
-void FUN_18043c6e0(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4, undefined1 param_5)
+void FUN_18043c6e0(uint64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4, int8_t param_5)
 {
     (**(code **)(*(longlong *)*_DAT_180c8ed08 + VTABLE_OFFSET_PARAM_PROCESS_0X28))
             ((longlong *)*_DAT_180c8ed08, param_2, param_4, param_1, param_5, 1);
@@ -780,9 +780,9 @@ void FUN_18043c6e0(undefined8 param_1, undefined8 param_2, undefined8 param_3, u
  * @param param_4 内存块指针4
  * @note 函数地址0x00018043c740
  */
-void FUN_18043c740(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_18043c740(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined *puStack_30;
+    void *puStack_30;
     longlong lStack_28;
     
     FUN_180627910(&puStack_30, param_1, param_3, param_4, INVALID_HANDLE);
@@ -808,8 +808,8 @@ void FUN_18043c740(undefined8 param_1, undefined8 param_2, undefined8 param_3, u
 longlong *FUN_18043c7a0(longlong *param_1, longlong param_2)
 {
     longlong *plVar1;
-    undefined4 uVar2;
-    undefined4 uStack_c;
+    int32_t uVar2;
+    int32_t uStack_c;
     
     // 获取资源管理器
     plVar1 = *(longlong **)(param_2 + RENDERING_SYSTEM_OFFSET_0X158);
@@ -835,14 +835,14 @@ longlong *FUN_18043c7a0(longlong *param_1, longlong param_2)
  * @return 资源数据指针
  * @note 函数地址0x00018043c820
  */
-undefined4 *FUN_18043c820(undefined4 *param_1, longlong param_2)
+int32_t *FUN_18043c820(int32_t *param_1, longlong param_2)
 {
-    undefined4 uVar1;
-    undefined8 uVar2;
+    int32_t uVar1;
+    uint64_t uVar2;
     longlong *plVar3;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
-    undefined4 uStack_14;
+    int32_t uStack_20;
+    int32_t uStack_1c;
+    int32_t uStack_14;
     
     // 分配资源内存
     uVar2 = FUN_18062b1e0(_DAT_180c8ed18, 0x298, MEMORY_ALIGNMENT_8, 3, INVALID_HANDLE);
@@ -867,7 +867,7 @@ undefined4 *FUN_18043c820(undefined4 *param_1, longlong param_2)
     
     // 返回资源数据
     uStack_20 = SUB84(plVar3, 0);
-    uStack_1c = (undefined4)((ulonglong)plVar3 >> 0x20);
+    uStack_1c = (int32_t)((ulonglong)plVar3 >> 0x20);
     *param_1 = uStack_20;
     param_1[1] = uStack_1c;
     param_1[2] = uVar1;
@@ -1013,7 +1013,7 @@ uint FUN_18043c8f5(longlong param_1)
  * @return 空句柄值
  * @note 函数地址0x00018043c9fc
  */
-undefined8 FUN_18043c9fc(void)
+uint64_t FUN_18043c9fc(void)
 {
     return 0;
 }
@@ -1059,13 +1059,13 @@ void FUN_18043ca10(longlong *param_1, uint param_2)
  * @param param_5 参数4
  * @note 函数地址0x00018043caa0
  */
-void FUN_18043caa0(longlong param_1, undefined4 param_2, undefined4 param_3, undefined4 param_4, undefined4 param_5)
+void FUN_18043caa0(longlong param_1, int32_t param_2, int32_t param_3, int32_t param_4, int32_t param_5)
 {
     if (param_1 != 0) {
-        *(undefined4 *)(param_1 + RENDER_PARAM_OFFSET_0X60) = param_2;
-        *(undefined4 *)(param_1 + RENDER_PARAM_OFFSET_0X64) = param_3;
-        *(undefined4 *)(param_1 + RENDER_PARAM_OFFSET_0X68) = param_4;
-        *(undefined4 *)(param_1 + RENDER_PARAM_OFFSET_0X6C) = param_5;
+        *(int32_t *)(param_1 + RENDER_PARAM_OFFSET_0X60) = param_2;
+        *(int32_t *)(param_1 + RENDER_PARAM_OFFSET_0X64) = param_3;
+        *(int32_t *)(param_1 + RENDER_PARAM_OFFSET_0X68) = param_4;
+        *(int32_t *)(param_1 + RENDER_PARAM_OFFSET_0X6C) = param_5;
     }
     return;
 }

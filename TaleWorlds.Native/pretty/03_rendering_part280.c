@@ -6,25 +6,25 @@
 void FUN_18041eb4a(uint param_1)
 
 {
-  undefined8 unaff_RBX;
-  undefined8 unaff_RBP;
-  undefined8 unaff_RSI;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RBX;
+  uint64_t unaff_RBP;
+  uint64_t unaff_RSI;
+  uint64_t unaff_RDI;
   longlong in_R11;
-  undefined8 unaff_R12;
-  undefined8 unaff_R13;
+  uint64_t unaff_R12;
+  uint64_t unaff_R13;
   ulonglong uVar1;
-  undefined8 unaff_R14;
+  uint64_t unaff_R14;
   ulonglong unaff_R15;
-  undefined1 auStackX_20 [8];
+  int8_t auStackX_20 [8];
   ulonglong in_stack_00000820;
   
-  *(undefined8 *)(in_R11 + -0x18) = unaff_RBX;
-  *(undefined8 *)(in_R11 + -0x20) = unaff_RBP;
-  *(undefined8 *)(in_R11 + -0x28) = unaff_RSI;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_RDI;
-  *(undefined8 *)(in_R11 + -0x38) = unaff_R13;
-  *(undefined8 *)(in_R11 + -0x40) = unaff_R14;
+  *(uint64_t *)(in_R11 + -0x18) = unaff_RBX;
+  *(uint64_t *)(in_R11 + -0x20) = unaff_RBP;
+  *(uint64_t *)(in_R11 + -0x28) = unaff_RSI;
+  *(uint64_t *)(in_R11 + -0x30) = unaff_RDI;
+  *(uint64_t *)(in_R11 + -0x38) = unaff_R13;
+  *(uint64_t *)(in_R11 + -0x40) = unaff_R14;
   uVar1 = (ulonglong)param_1;
   do {
     if (unaff_R15 != 0) {
@@ -59,10 +59,10 @@ void FUN_18041ec11(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18041ec30(undefined8 param_1,int *param_2,int *param_3,int *param_4)
+ulonglong FUN_18041ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   ushort uVar2;
   ushort uVar3;
   ushort uVar4;
@@ -75,7 +75,7 @@ ulonglong FUN_18041ec30(undefined8 param_1,int *param_2,int *param_3,int *param_
   ulonglong uVar11;
   ulonglong uVar12;
   longlong lVar13;
-  undefined8 *puVar14;
+  uint64_t *puVar14;
   ulonglong uVar15;
   uint uVar16;
   ushort *puVar17;
@@ -114,7 +114,7 @@ ulonglong FUN_18041ec30(undefined8 param_1,int *param_2,int *param_3,int *param_
         if ((int)uVar10 < 0) {
           uVar10 = (uVar10 - 1 | 0xffffffe0) + 1;
         }
-        puVar14 = (undefined8 *)(uVar12 + 8);
+        puVar14 = (uint64_t *)(uVar12 + 8);
         puVar17 = (ushort *)(uVar11 + 0x20);
         do {
           puVar1 = puVar14 + 4;
@@ -260,7 +260,7 @@ ulonglong FUN_18041ec30(undefined8 param_1,int *param_2,int *param_3,int *param_
         } while ((longlong)((-8 - uVar12) + (longlong)puVar1) < (longlong)(int)(uVar16 - uVar10));
       }
       for (lVar13 = (longlong)(int)uVar15; lVar13 < (int)uVar16; lVar13 = lVar13 + 1) {
-        *(undefined1 *)(lVar13 + uVar12) = *(undefined1 *)(uVar11 + 1 + lVar13 * 2);
+        *(int8_t *)(lVar13 + uVar12) = *(int8_t *)(uVar11 + 1 + lVar13 * 2);
       }
                     // WARNING: Subroutine does not return
       FUN_18064e900(uVar11);
@@ -276,10 +276,10 @@ ulonglong FUN_18041ec30(undefined8 param_1,int *param_2,int *param_3,int *param_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18041ec8c(void)
+uint64_t FUN_18041ec8c(void)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   ushort uVar2;
   ushort uVar3;
   ushort uVar4;
@@ -291,7 +291,7 @@ undefined8 FUN_18041ec8c(void)
   uint uVar10;
   ulonglong uVar11;
   longlong lVar12;
-  undefined8 *puVar13;
+  uint64_t *puVar13;
   int iVar14;
   ulonglong unaff_RBX;
   uint uVar15;
@@ -334,7 +334,7 @@ undefined8 FUN_18041ec8c(void)
     if ((int)uVar10 < 0) {
       uVar10 = (uVar10 - 1 | 0xffffffe0) + 1;
     }
-    puVar13 = (undefined8 *)(uVar11 + 8);
+    puVar13 = (uint64_t *)(uVar11 + 8);
     puVar16 = (ushort *)(unaff_RBX + 0x20);
     do {
       puVar1 = puVar13 + 4;
@@ -487,7 +487,7 @@ undefined8 FUN_18041ec8c(void)
     } while ((longlong)((-8 - uVar11) + (longlong)puVar1) < (longlong)(int)(uVar15 - uVar10));
   }
   for (lVar12 = (longlong)iVar14; lVar12 < (int)uVar15; lVar12 = lVar12 + 1) {
-    *(undefined1 *)(lVar12 + uVar11) = *(undefined1 *)(unaff_RBX + 1 + lVar12 * 2);
+    *(int8_t *)(lVar12 + uVar11) = *(int8_t *)(unaff_RBX + 1 + lVar12 * 2);
   }
                     // WARNING: Subroutine does not return
   FUN_18064e900();

@@ -103,67 +103,67 @@ undefined core_engine_debug_variable_watcher;            // 调试变量监视�
 // ============================================================================
 
 // 系统状态变量
-undefined *system_status_flags;                         // 系统状态标志
-undefined *system_error_codes;                          // 系统错误代码
-undefined *system_configuration_data;                  // 系统配置数据
-undefined *system_performance_counters;                 // 系统性能计数器
-undefined *system_memory_statistics;                   // 系统内存统计
+void *system_status_flags;                         // 系统状态标志
+void *system_error_codes;                          // 系统错误代码
+void *system_configuration_data;                  // 系统配置数据
+void *system_performance_counters;                 // 系统性能计数器
+void *system_memory_statistics;                   // 系统内存统计
 
 // 内存管理变量
-undefined *memory_pool_pointers;                       // 内存池指针
-undefined *memory_allocation_tables;                   // 内存分配表
-undefined *memory_usage_statistics;                    // 内存使用统计
-undefined *memory_debug_information;                   // 内存调试信息
-undefined *memory_heap_managers;                       // 内存堆管理器
+void *memory_pool_pointers;                       // 内存池指针
+void *memory_allocation_tables;                   // 内存分配表
+void *memory_usage_statistics;                    // 内存使用统计
+void *memory_debug_information;                   // 内存调试信息
+void *memory_heap_managers;                       // 内存堆管理器
 
 // 渲染系统变量
-undefined *render_context_data;                         // 渲染上下文数据
-undefined *render_device_pointers;                      // 渲染设备指针
-undefined *render_shader_cache;                         // 渲染着色器缓存
-undefined *render_texture_buffers;                      // 渲染纹理缓冲区
-undefined *render_vertex_buffers;                       // 渲染顶点缓冲区
+void *render_context_data;                         // 渲染上下文数据
+void *render_device_pointers;                      // 渲染设备指针
+void *render_shader_cache;                         // 渲染着色器缓存
+void *render_texture_buffers;                      // 渲染纹理缓冲区
+void *render_vertex_buffers;                       // 渲染顶点缓冲区
 
 // 输入系统变量
-undefined *input_device_states;                         // 输入设备状态
-undefined *input_mapping_tables;                        // 输入映射表
-undefined *input_event_queues;                          // 输入事件队列
-undefined *input_configuration_data;                   // 输入配置数据
-undefined *input_deadzone_settings;                     // 输入死区设置
+void *input_device_states;                         // 输入设备状态
+void *input_mapping_tables;                        // 输入映射表
+void *input_event_queues;                          // 输入事件队列
+void *input_configuration_data;                   // 输入配置数据
+void *input_deadzone_settings;                     // 输入死区设置
 
 // 音频系统变量
-undefined *audio_context_data;                          // 音频上下文数据
-undefined *audio_buffer_pool;                            // 音频缓冲区池
-undefined *audio_channel_mixer;                          // 音频通道混音器
-undefined *audio_stream_data;                            // 音频流数据
-undefined *audio_effect_chain;                           // 音频效果链
+void *audio_context_data;                          // 音频上下文数据
+void *audio_buffer_pool;                            // 音频缓冲区池
+void *audio_channel_mixer;                          // 音频通道混音器
+void *audio_stream_data;                            // 音频流数据
+void *audio_effect_chain;                           // 音频效果链
 
 // 网络系统变量
-undefined *network_connection_pool;                     // 网络连接池
-undefined *network_packet_buffers;                       // 网络包缓冲区
-undefined *network_protocol_state;                      // 网络协议状态
-undefined *network_bandwidth_statistics;                // 网络带宽统计
-undefined *network_error_handlers;                       // 网络错误处理器
+void *network_connection_pool;                     // 网络连接池
+void *network_packet_buffers;                       // 网络包缓冲区
+void *network_protocol_state;                      // 网络协议状态
+void *network_bandwidth_statistics;                // 网络带宽统计
+void *network_error_handlers;                       // 网络错误处理器
 
 // 文件系统变量
-undefined *file_handle_table;                           // 文件句柄表
-undefined *file_cache_data;                             // 文件缓存数据
-undefined *file_path_cache;                             // 文件路径缓存
-undefined *file_io_buffers;                             // 文件IO缓冲区
-undefined *file_monitor_handles;                        // 文件监控句柄
+void *file_handle_table;                           // 文件句柄表
+void *file_cache_data;                             // 文件缓存数据
+void *file_path_cache;                             // 文件路径缓存
+void *file_io_buffers;                             // 文件IO缓冲区
+void *file_monitor_handles;                        // 文件监控句柄
 
 // 脚本系统变量
-undefined *script_virtual_machine;                       // 脚本虚拟机
-undefined *script_execution_context;                    // 脚本执行上下文
-undefined *script_function_table;                       // 脚本函数表
-undefined *script_global_variables;                     // 脚本全局变量
-undefined *script_debug_symbols;                         // 脚本调试符号
+void *script_virtual_machine;                       // 脚本虚拟机
+void *script_execution_context;                    // 脚本执行上下文
+void *script_function_table;                       // 脚本函数表
+void *script_global_variables;                     // 脚本全局变量
+void *script_debug_symbols;                         // 脚本调试符号
 
 // 调试系统变量
-undefined *debug_log_buffer;                             // 调试日志缓冲区
-undefined *debug_breakpoint_table;                       // 调试断点表
-undefined *debug_profiler_data;                         // 调试性能分析数据
-undefined *debug_memory_dump;                            // 调试内存转储
-undefined *debug_stack_trace;                            // 调试堆栈跟踪
+void *debug_log_buffer;                             // 调试日志缓冲区
+void *debug_breakpoint_table;                       // 调试断点表
+void *debug_profiler_data;                         // 调试性能分析数据
+void *debug_memory_dump;                            // 调试内存转储
+void *debug_stack_trace;                            // 调试堆栈跟踪
 
 // ============================================================================
 // 常量定义区域
@@ -536,67 +536,67 @@ extern int core_engine_set_breakpoint(const char* function_name, int line_number
 void core_engine_module_initialize(void)
 {
     // 初始化系统状态变量
-    system_status_flags = (undefined*)0x0;
-    system_error_codes = (undefined*)0x0;
-    system_configuration_data = (undefined*)0x0;
-    system_performance_counters = (undefined*)0x0;
-    system_memory_statistics = (undefined*)0x0;
+    system_status_flags = (void*)0x0;
+    system_error_codes = (void*)0x0;
+    system_configuration_data = (void*)0x0;
+    system_performance_counters = (void*)0x0;
+    system_memory_statistics = (void*)0x0;
     
     // 初始化内存管理变量
-    memory_pool_pointers = (undefined*)0x0;
-    memory_allocation_tables = (undefined*)0x0;
-    memory_usage_statistics = (undefined*)0x0;
-    memory_debug_information = (undefined*)0x0;
-    memory_heap_managers = (undefined*)0x0;
+    memory_pool_pointers = (void*)0x0;
+    memory_allocation_tables = (void*)0x0;
+    memory_usage_statistics = (void*)0x0;
+    memory_debug_information = (void*)0x0;
+    memory_heap_managers = (void*)0x0;
     
     // 初始化渲染系统变量
-    render_context_data = (undefined*)0x0;
-    render_device_pointers = (undefined*)0x0;
-    render_shader_cache = (undefined*)0x0;
-    render_texture_buffers = (undefined*)0x0;
-    render_vertex_buffers = (undefined*)0x0;
+    render_context_data = (void*)0x0;
+    render_device_pointers = (void*)0x0;
+    render_shader_cache = (void*)0x0;
+    render_texture_buffers = (void*)0x0;
+    render_vertex_buffers = (void*)0x0;
     
     // 初始化输入系统变量
-    input_device_states = (undefined*)0x0;
-    input_mapping_tables = (undefined*)0x0;
-    input_event_queues = (undefined*)0x0;
-    input_configuration_data = (undefined*)0x0;
-    input_deadzone_settings = (undefined*)0x0;
+    input_device_states = (void*)0x0;
+    input_mapping_tables = (void*)0x0;
+    input_event_queues = (void*)0x0;
+    input_configuration_data = (void*)0x0;
+    input_deadzone_settings = (void*)0x0;
     
     // 初始化音频系统变量
-    audio_context_data = (undefined*)0x0;
-    audio_buffer_pool = (undefined*)0x0;
-    audio_channel_mixer = (undefined*)0x0;
-    audio_stream_data = (undefined*)0x0;
-    audio_effect_chain = (undefined*)0x0;
+    audio_context_data = (void*)0x0;
+    audio_buffer_pool = (void*)0x0;
+    audio_channel_mixer = (void*)0x0;
+    audio_stream_data = (void*)0x0;
+    audio_effect_chain = (void*)0x0;
     
     // 初始化网络系统变量
-    network_connection_pool = (undefined*)0x0;
-    network_packet_buffers = (undefined*)0x0;
-    network_protocol_state = (undefined*)0x0;
-    network_bandwidth_statistics = (undefined*)0x0;
-    network_error_handlers = (undefined*)0x0;
+    network_connection_pool = (void*)0x0;
+    network_packet_buffers = (void*)0x0;
+    network_protocol_state = (void*)0x0;
+    network_bandwidth_statistics = (void*)0x0;
+    network_error_handlers = (void*)0x0;
     
     // 初始化文件系统变量
-    file_handle_table = (undefined*)0x0;
-    file_cache_data = (undefined*)0x0;
-    file_path_cache = (undefined*)0x0;
-    file_io_buffers = (undefined*)0x0;
-    file_monitor_handles = (undefined*)0x0;
+    file_handle_table = (void*)0x0;
+    file_cache_data = (void*)0x0;
+    file_path_cache = (void*)0x0;
+    file_io_buffers = (void*)0x0;
+    file_monitor_handles = (void*)0x0;
     
     // 初始化脚本系统变量
-    script_virtual_machine = (undefined*)0x0;
-    script_execution_context = (undefined*)0x0;
-    script_function_table = (undefined*)0x0;
-    script_global_variables = (undefined*)0x0;
-    script_debug_symbols = (undefined*)0x0;
+    script_virtual_machine = (void*)0x0;
+    script_execution_context = (void*)0x0;
+    script_function_table = (void*)0x0;
+    script_global_variables = (void*)0x0;
+    script_debug_symbols = (void*)0x0;
     
     // 初始化调试系统变量
-    debug_log_buffer = (undefined*)0x0;
-    debug_breakpoint_table = (undefined*)0x0;
-    debug_profiler_data = (undefined*)0x0;
-    debug_memory_dump = (undefined*)0x0;
-    debug_stack_trace = (undefined*)0x0;
+    debug_log_buffer = (void*)0x0;
+    debug_breakpoint_table = (void*)0x0;
+    debug_profiler_data = (void*)0x0;
+    debug_memory_dump = (void*)0x0;
+    debug_stack_trace = (void*)0x0;
 }
 
 /**
@@ -606,67 +606,67 @@ void core_engine_module_initialize(void)
 void core_engine_module_cleanup(void)
 {
     // 清理系统状态变量
-    system_status_flags = (undefined*)0x0;
-    system_error_codes = (undefined*)0x0;
-    system_configuration_data = (undefined*)0x0;
-    system_performance_counters = (undefined*)0x0;
-    system_memory_statistics = (undefined*)0x0;
+    system_status_flags = (void*)0x0;
+    system_error_codes = (void*)0x0;
+    system_configuration_data = (void*)0x0;
+    system_performance_counters = (void*)0x0;
+    system_memory_statistics = (void*)0x0;
     
     // 清理内存管理变量
-    memory_pool_pointers = (undefined*)0x0;
-    memory_allocation_tables = (undefined*)0x0;
-    memory_usage_statistics = (undefined*)0x0;
-    memory_debug_information = (undefined*)0x0;
-    memory_heap_managers = (undefined*)0x0;
+    memory_pool_pointers = (void*)0x0;
+    memory_allocation_tables = (void*)0x0;
+    memory_usage_statistics = (void*)0x0;
+    memory_debug_information = (void*)0x0;
+    memory_heap_managers = (void*)0x0;
     
     // 清理渲染系统变量
-    render_context_data = (undefined*)0x0;
-    render_device_pointers = (undefined*)0x0;
-    render_shader_cache = (undefined*)0x0;
-    render_texture_buffers = (undefined*)0x0;
-    render_vertex_buffers = (undefined*)0x0;
+    render_context_data = (void*)0x0;
+    render_device_pointers = (void*)0x0;
+    render_shader_cache = (void*)0x0;
+    render_texture_buffers = (void*)0x0;
+    render_vertex_buffers = (void*)0x0;
     
     // 清理输入系统变量
-    input_device_states = (undefined*)0x0;
-    input_mapping_tables = (undefined*)0x0;
-    input_event_queues = (undefined*)0x0;
-    input_configuration_data = (undefined*)0x0;
-    input_deadzone_settings = (undefined*)0x0;
+    input_device_states = (void*)0x0;
+    input_mapping_tables = (void*)0x0;
+    input_event_queues = (void*)0x0;
+    input_configuration_data = (void*)0x0;
+    input_deadzone_settings = (void*)0x0;
     
     // 清理音频系统变量
-    audio_context_data = (undefined*)0x0;
-    audio_buffer_pool = (undefined*)0x0;
-    audio_channel_mixer = (undefined*)0x0;
-    audio_stream_data = (undefined*)0x0;
-    audio_effect_chain = (undefined*)0x0;
+    audio_context_data = (void*)0x0;
+    audio_buffer_pool = (void*)0x0;
+    audio_channel_mixer = (void*)0x0;
+    audio_stream_data = (void*)0x0;
+    audio_effect_chain = (void*)0x0;
     
     // 清理网络系统变量
-    network_connection_pool = (undefined*)0x0;
-    network_packet_buffers = (undefined*)0x0;
-    network_protocol_state = (undefined*)0x0;
-    network_bandwidth_statistics = (undefined*)0x0;
-    network_error_handlers = (undefined*)0x0;
+    network_connection_pool = (void*)0x0;
+    network_packet_buffers = (void*)0x0;
+    network_protocol_state = (void*)0x0;
+    network_bandwidth_statistics = (void*)0x0;
+    network_error_handlers = (void*)0x0;
     
     // 清理文件系统变量
-    file_handle_table = (undefined*)0x0;
-    file_cache_data = (undefined*)0x0;
-    file_path_cache = (undefined*)0x0;
-    file_io_buffers = (undefined*)0x0;
-    file_monitor_handles = (undefined*)0x0;
+    file_handle_table = (void*)0x0;
+    file_cache_data = (void*)0x0;
+    file_path_cache = (void*)0x0;
+    file_io_buffers = (void*)0x0;
+    file_monitor_handles = (void*)0x0;
     
     // 清理脚本系统变量
-    script_virtual_machine = (undefined*)0x0;
-    script_execution_context = (undefined*)0x0;
-    script_function_table = (undefined*)0x0;
-    script_global_variables = (undefined*)0x0;
-    script_debug_symbols = (undefined*)0x0;
+    script_virtual_machine = (void*)0x0;
+    script_execution_context = (void*)0x0;
+    script_function_table = (void*)0x0;
+    script_global_variables = (void*)0x0;
+    script_debug_symbols = (void*)0x0;
     
     // 清理调试系统变量
-    debug_log_buffer = (undefined*)0x0;
-    debug_breakpoint_table = (undefined*)0x0;
-    debug_profiler_data = (undefined*)0x0;
-    debug_memory_dump = (undefined*)0x0;
-    debug_stack_trace = (undefined*)0x0;
+    debug_log_buffer = (void*)0x0;
+    debug_breakpoint_table = (void*)0x0;
+    debug_profiler_data = (void*)0x0;
+    debug_memory_dump = (void*)0x0;
+    debug_stack_trace = (void*)0x0;
 }
 
 // ============================================================================

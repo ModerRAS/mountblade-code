@@ -275,17 +275,17 @@ static uint32_t g_system_flags = 0;
  * - 实现数据验证和错误处理
  * - 优化数据访问模式
  */
-void SystemContainer_ProcessData(int param_1, int param_2, undefined8 param_3, longlong *param_4)
+void SystemContainer_ProcessData(int param_1, int param_2, uint64_t param_3, longlong *param_4)
 {
     longlong lVar1;
     longlong *plVar2;
     int iVar3;
     longlong lVar4;
     ulonglong uVar5;
-    undefined4 *puVar6;
-    undefined4 *puVar7;
-    undefined4 *puVar8;
-    undefined4 unaff_R12D;
+    int32_t *puVar6;
+    int32_t *puVar7;
+    int32_t *puVar8;
+    int32_t unaff_R12D;
     int unaff_R13D;
     int unaff_R15D;
     int iStackX_20;
@@ -304,37 +304,37 @@ void SystemContainer_ProcessData(int param_1, int param_2, undefined8 param_3, l
         lVar4 = (longlong)(unaff_R13D * *(int *)((longlong)param_4 + 0x24) + param_1);
         lVar1 = *param_4 + lVar4 * 0x28;
         FUN_1801bb0b0(lVar1 + 8, (longlong)*(int *)(*param_4 + lVar4 * 0x28));
-        puVar7 = *(undefined4 **)(lVar1 + 0x10);
-        if (puVar7 < *(undefined4 **)(lVar1 + 0x18)) {
-            *(undefined4 **)(lVar1 + 0x10) = puVar7 + 1;
+        puVar7 = *(int32_t **)(lVar1 + 0x10);
+        if (puVar7 < *(int32_t **)(lVar1 + 0x18)) {
+            *(int32_t **)(lVar1 + 0x10) = puVar7 + 1;
             *puVar7 = unaff_R12D;
         }
         else {
-            puVar6 = *(undefined4 **)(lVar1 + 8);
+            puVar6 = *(int32_t **)(lVar1 + 8);
             lVar4 = (longlong)puVar7 - (longlong)puVar6 >> 2;
             if (lVar4 == 0) {
                 lVar4 = 1;
 LAB_1801b9874:
                 plVar2 = *(longlong **)(lVar1 + 0x20);
                 uVar5 = (longlong)((int)plVar2[2] + 0xf) & 0xfffffffffffffff0;
-                puVar8 = (undefined4 *)(*plVar2 + uVar5);
+                puVar8 = (int32_t *)(*plVar2 + uVar5);
                 *(int *)(plVar2 + 2) = (int)uVar5 + (int)lVar4 * 4;
-                puVar7 = *(undefined4 **)(lVar1 + 0x10);
-                puVar6 = *(undefined4 **)(lVar1 + 8);
+                puVar7 = *(int32_t **)(lVar1 + 0x10);
+                puVar6 = *(int32_t **)(lVar1 + 8);
             }
             else {
                 lVar4 = lVar4 * 2;
                 if (lVar4 != 0) goto LAB_1801b9874;
-                puVar8 = (undefined4 *)0x0;
+                puVar8 = (int32_t *)0x0;
             }
             if (puVar6 != puVar7) {
                 // WARNING: Subroutine does not return
                 memmove(puVar8, puVar6, (longlong)puVar7 - (longlong)puVar6);
             }
             *puVar8 = unaff_R12D;
-            *(undefined4 **)(lVar1 + 0x10) = puVar8 + 1;
-            *(undefined4 **)(lVar1 + 0x18) = puVar8 + lVar4;
-            *(undefined4 **)(lVar1 + 8) = puVar8;
+            *(int32_t **)(lVar1 + 0x10) = puVar8 + 1;
+            *(int32_t **)(lVar1 + 0x18) = puVar8 + lVar4;
+            *(int32_t **)(lVar1 + 8) = puVar8;
         }
         param_4 = in_stack_00000060;
         param_1 = param_1 + 1;
@@ -402,8 +402,8 @@ void SystemContainer_Clean(longlong *param_1)
                     iVar2 = *(int *)((longlong)param_1 + 0x24) * iVar5 + iVar4;
                     iVar4 = iVar4 + 1;
                     lVar3 = (longlong)iVar2;
-                    *(undefined8 *)(*param_1 + 0x10 + lVar3 * 0x28) =
-                         *(undefined8 *)(*param_1 + 8 + lVar3 * 0x28);
+                    *(uint64_t *)(*param_1 + 0x10 + lVar3 * 0x28) =
+                         *(uint64_t *)(*param_1 + 8 + lVar3 * 0x28);
                 } while (iVar4 < *(int *)((longlong)param_1 + 0x24));
             }
             iVar5 = iVar5 + 1;
@@ -490,12 +490,12 @@ void SystemMemory_CleanManager(void)
 void SystemMemory_CleanBlock(void)
 {
     longlong unaff_RBX;
-    undefined8 unaff_RSI;
+    uint64_t unaff_RSI;
     
-    *(undefined8 *)(unaff_RBX + 8) = unaff_RSI;
-    *(undefined8 *)(unaff_RBX + 0x10) = unaff_RSI;
-    *(undefined8 *)(unaff_RBX + 0x18) = unaff_RSI;
-    *(undefined8 *)(unaff_RBX + 0x20) = unaff_RSI;
+    *(uint64_t *)(unaff_RBX + 8) = unaff_RSI;
+    *(uint64_t *)(unaff_RBX + 0x10) = unaff_RSI;
+    *(uint64_t *)(unaff_RBX + 0x18) = unaff_RSI;
+    *(uint64_t *)(unaff_RBX + 0x20) = unaff_RSI;
     return;
 }
 
@@ -537,7 +537,7 @@ void SystemArray_Initialize(longlong param_1)
         lVar1 = (longlong)(int)uVar2;
         plVar3 = plVar3 + 1;
         uVar2 = uVar2 + 1;
-        *(undefined8 *)(param_1 + 8 + lVar1 * 8) = 0;
+        *(uint64_t *)(param_1 + 8 + lVar1 * 8) = 0;
     } while (uVar2 < 0x400);
     return;
 }
@@ -603,7 +603,7 @@ uint SystemHash_AllocateTable(uint *param_1, int param_2)
                 if (bVar9) {
                     func_0x0001801bb270(param_1, iVar4 << 0xc);
                     LOCK();
-                    *(undefined1 *)((longlong)iVar4 + 0x808 + (longlong)param_1) = 0;
+                    *(int8_t *)((longlong)iVar4 + 0x808 + (longlong)param_1) = 0;
                     UNLOCK();
                 }
                 else {
@@ -638,7 +638,7 @@ uint SystemHash_AllocateTable(uint *param_1, int param_2)
  *   param_1 - 内存管理器指针
  * 
  * 返回值：
- *   undefined4 - 分配状态
+ *   int32_t - 分配状态
  * 
  * 技术说明：
  * 该函数负责分配内存块，支持线程安全的内存分配和初始化操作。
@@ -649,7 +649,7 @@ uint SystemHash_AllocateTable(uint *param_1, int param_2)
  * - 支持大块内存的分配
  * - 处理内存分配失败的情况
  */
-undefined4 SystemMemory_AllocateBlock(longlong param_1)
+int32_t SystemMemory_AllocateBlock(longlong param_1)
 {
     longlong *plVar1;
     longlong in_RAX;
@@ -658,7 +658,7 @@ undefined4 SystemMemory_AllocateBlock(longlong param_1)
     longlong unaff_RBP;
     int iVar4;
     ulonglong unaff_RDI;
-    undefined4 unaff_R12D;
+    int32_t unaff_R12D;
     longlong unaff_R14;
     longlong lVar5;
     longlong *plVar6;
@@ -681,7 +681,7 @@ undefined4 SystemMemory_AllocateBlock(longlong param_1)
             if (bVar7) {
                 func_0x0001801bb270();
                 LOCK();
-                *(undefined1 *)((longlong)iVar4 + 0x808 + unaff_RBP) = 0;
+                *(int8_t *)((longlong)iVar4 + 0x808 + unaff_RBP) = 0;
                 UNLOCK();
             }
             else {
@@ -715,14 +715,14 @@ undefined4 SystemMemory_AllocateBlock(longlong param_1)
  *   无参数
  * 
  * 返回值：
- *   undefined4 - 返回值
+ *   int32_t - 返回值
  * 
  * 技术说明：
  * 该函数为系统空函数，主要用于接口兼容性和占位用途。
  */
-undefined4 SystemContainer_EmptyFunction2(void)
+int32_t SystemContainer_EmptyFunction2(void)
 {
-    undefined4 unaff_R12D;
+    int32_t unaff_R12D;
     
     return unaff_R12D;
 }
@@ -816,7 +816,7 @@ char SystemHash_Lookup(longlong param_1, int param_2)
  * - 支持多种数据类型的扩容
  * - 处理内存分配失败的情况
  */
-longlong * SystemContainer_Expand(longlong *param_1, longlong *param_2, undefined8 param_3, undefined8 param_4)
+longlong * SystemContainer_Expand(longlong *param_1, longlong *param_2, uint64_t param_3, uint64_t param_4)
 {
     uint uVar1;
     longlong lVar2;
@@ -962,7 +962,7 @@ LAB_1801b9d0f:
  * - 迁移现有数据到新位置
  * - 释放旧的内存空间
  */
-void SystemContainer_Reallocate(undefined8 param_1, undefined8 param_2, longlong param_3)
+void SystemContainer_Reallocate(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
     longlong lVar1;
     longlong lVar2;
@@ -1062,7 +1062,7 @@ void System_ErrorHandler(void)
  * - 迁移现有数据
  * - 释放旧的内存空间
  */
-void SystemArray_Reallocate12Byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void SystemArray_Reallocate12Byte(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint uVar1;
     longlong lVar2;
@@ -1070,7 +1070,7 @@ void SystemArray_Reallocate12Byte(longlong *param_1, undefined8 param_2, undefin
     longlong lVar4;
     longlong lVar5;
     longlong lVar6;
-    undefined8 uVar7;
+    uint64_t uVar7;
     
     uVar7 = 0xfffffffffffffffe;
     lVar2 = param_1[1];
@@ -1125,7 +1125,7 @@ void SystemArray_Reallocate12Byte(longlong *param_1, undefined8 param_2, undefin
  * - 迁移现有数据
  * - 释放旧的内存空间
  */
-void SystemArray_Reallocate52Byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void SystemArray_Reallocate52Byte(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint uVar1;
     longlong lVar2;
@@ -1133,7 +1133,7 @@ void SystemArray_Reallocate52Byte(longlong *param_1, undefined8 param_2, undefin
     longlong lVar4;
     longlong lVar5;
     longlong lVar6;
-    undefined8 uVar7;
+    uint64_t uVar7;
     
     uVar7 = 0xfffffffffffffffe;
     lVar2 = param_1[1];
@@ -1187,7 +1187,7 @@ void SystemArray_Reallocate52Byte(longlong *param_1, undefined8 param_2, undefin
  * - 迁移现有数据（包括复杂数据结构）
  * - 释放旧的内存空间
  */
-void SystemArray_Reallocate1056Byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void SystemArray_Reallocate1056Byte(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong *plVar1;
     int *piVar2;
@@ -1195,8 +1195,8 @@ void SystemArray_Reallocate1056Byte(longlong *param_1, undefined8 param_2, undef
     uint uVar4;
     longlong *plVar5;
     longlong lVar6;
-    undefined4 uVar7;
-    undefined4 uVar8;
+    int32_t uVar7;
+    int32_t uVar8;
     longlong lVar9;
     longlong lVar10;
     longlong *plVar11;
@@ -1267,16 +1267,16 @@ void SystemArray_Reallocate1056Byte(longlong *param_1, undefined8 param_2, undef
             lVar6 = plVar12[0x18];
             plVar11[0x16] = plVar12[0x17];
             plVar11[0x17] = lVar6;
-            uVar7 = *(undefined4 *)((longlong)plVar12 + 0xcc);
+            uVar7 = *(int32_t *)((longlong)plVar12 + 0xcc);
             lVar6 = plVar12[0x1a];
-            uVar8 = *(undefined4 *)((longlong)plVar12 + 0xd4);
+            uVar8 = *(int32_t *)((longlong)plVar12 + 0xd4);
             *(int *)(plVar11 + 0x18) = (int)plVar12[0x19];
-            *(undefined4 *)((longlong)plVar11 + 0xc4) = uVar7;
+            *(int32_t *)((longlong)plVar11 + 0xc4) = uVar7;
             *(int *)(plVar11 + 0x19) = (int)lVar6;
-            *(undefined4 *)((longlong)plVar11 + 0xcc) = uVar8;
+            *(int32_t *)((longlong)plVar11 + 0xcc) = uVar8;
             plVar11[0x1a] = plVar12[0x1b];
             *(int *)(plVar11 + 0x1b) = (int)plVar12[0x1c];
-            *(undefined4 *)((longlong)plVar11 + 0xdc) = *(undefined4 *)((longlong)plVar12 + 0xe4);
+            *(int32_t *)((longlong)plVar11 + 0xdc) = *(int32_t *)((longlong)plVar12 + 0xe4);
             FUN_1801bd980(plVar11 + 0x1d, plVar12 + 0x1e);
             plVar12 = plVar12 + 0x84;
             plVar11 = plVar11 + 0x84;
@@ -1322,7 +1322,7 @@ void SystemArray_Reallocate1056Byte(longlong *param_1, undefined8 param_2, undef
  * - 迁移现有数据
  * - 释放旧的内存空间
  */
-void SystemArray_Reallocate188Byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void SystemArray_Reallocate188Byte(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint uVar1;
     longlong lVar2;
@@ -1330,7 +1330,7 @@ void SystemArray_Reallocate188Byte(longlong *param_1, undefined8 param_2, undefi
     longlong lVar4;
     longlong lVar5;
     longlong lVar6;
-    undefined8 uVar7;
+    uint64_t uVar7;
     
     uVar7 = 0xfffffffffffffffe;
     lVar2 = param_1[1];
@@ -1384,7 +1384,7 @@ void SystemArray_Reallocate188Byte(longlong *param_1, undefined8 param_2, undefi
 void SystemArray_Clean(longlong param_1)
 {
     longlong lVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar2;
     ulonglong uVar3;
     ulonglong uVar4;
     
@@ -1393,18 +1393,18 @@ void SystemArray_Clean(longlong param_1)
     uVar4 = 0;
     if (uVar3 != 0) {
         do {
-            puVar2 = *(undefined8 **)(lVar1 + uVar4 * 8);
-            if (puVar2 != (undefined8 *)0x0) {
+            puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
+            if (puVar2 != (uint64_t *)0x0) {
                 *puVar2 = &UNK_18098bcb0;
                 // WARNING: Subroutine does not return
                 FUN_18064e900();
             }
-            *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
+            *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
             uVar4 = uVar4 + 1;
         } while (uVar4 < uVar3);
         uVar3 = *(ulonglong *)(param_1 + 0x10);
     }
-    *(undefined8 *)(param_1 + 0x18) = 0;
+    *(uint64_t *)(param_1 + 0x18) = 0;
     if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
         // WARNING: Subroutine does not return
         FUN_18064e900();
@@ -1460,7 +1460,7 @@ longlong * SystemHash_FindEntry(longlong param_1, longlong *param_2, longlong pa
     }
     lVar4 = (uVar2 % (ulonglong)*(uint *)(param_1 + 0x10)) * 8;
     lVar3 = func_0x0001801bb330((ulonglong)*(uint *)(param_1 + 0x10),
-                              *(undefined8 *)(*(longlong *)(param_1 + 8) + lVar4));
+                              *(uint64_t *)(*(longlong *)(param_1 + 8) + lVar4));
     if (lVar3 == 0) {
         lVar4 = *(longlong *)(param_1 + 8) + *(longlong *)(param_1 + 0x10) * 8;
         lVar3 = *(longlong *)(*(longlong *)(param_1 + 8) + *(longlong *)(param_1 + 0x10) * 8);
@@ -1497,12 +1497,12 @@ longlong * SystemHash_FindEntry(longlong param_1, longlong *param_2, longlong pa
  * - 支持回调函数机制
  * - 确保资源的安全释放
  */
-void SystemContainer_Iterate(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void SystemContainer_Iterate(longlong *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     longlong *plVar1;
     longlong *plVar2;
     longlong *plVar3;
-    undefined8 uVar4;
+    uint64_t uVar4;
     
     uVar4 = 0xfffffffffffffffe;
     plVar1 = (longlong *)param_1[1];
@@ -1566,7 +1566,7 @@ void SystemArray_RemoveElement(ulonglong *param_1, longlong param_2)
             }
         }
         uVar3 = (ulonglong)(iVar7 + -1);
-        *(undefined8 *)(uVar5 + (longlong)(int)uVar4 * 8) = *(undefined8 *)(uVar3 * 8 + uVar5);
+        *(uint64_t *)(uVar5 + (longlong)(int)uVar4 * 8) = *(uint64_t *)(uVar3 * 8 + uVar5);
         uVar5 = param_1[1];
         uVar1 = *param_1;
         uVar4 = (longlong)(uVar5 - uVar1) >> 3;
@@ -1642,7 +1642,7 @@ void SystemArray_RemoveElement(ulonglong *param_1, longlong param_2)
  * - 处理内存分配和释放
  * - 确保数据完整性
  */
-void SystemArray_MoveElement(int param_1, undefined8 param_2, longlong param_3, int param_4)
+void SystemArray_MoveElement(int param_1, uint64_t param_2, longlong param_3, int param_4)
 {
     longlong lVar1;
     ulonglong uVar2;
@@ -1653,7 +1653,7 @@ void SystemArray_MoveElement(int param_1, undefined8 param_2, longlong param_3, 
     longlong unaff_R14;
     
     uVar2 = (ulonglong)(param_4 + -1);
-    *(undefined8 *)(param_3 + (longlong)param_1 * 8) = *(undefined8 *)(uVar2 * 8 + param_3);
+    *(uint64_t *)(param_3 + (longlong)param_1 * 8) = *(uint64_t *)(uVar2 * 8 + param_3);
     lVar4 = unaff_RBX[1];
     lVar1 = *unaff_RBX;
     uVar3 = lVar4 - lVar1 >> 3;
@@ -1796,14 +1796,14 @@ void SystemArray_Expand(longlong param_1, ulonglong param_2)
 void SystemContainer_EmptyFunction3(void)
 {
     longlong unaff_RBX;
-    undefined8 unaff_RSI;
+    uint64_t unaff_RSI;
     longlong unaff_RDI;
     
     if (unaff_RDI != 0) {
         // WARNING: Subroutine does not return
         memset();
     }
-    *(undefined8 *)(unaff_RBX + 8) = unaff_RSI;
+    *(uint64_t *)(unaff_RBX + 8) = unaff_RSI;
     return;
 }
 
@@ -1830,7 +1830,7 @@ void SystemContainer_EmptyFunction3(void)
  * - 更新指针值
  * - 确保指针运算的安全性
  */
-void SystemPointer_CalculateOffset(longlong param_1, undefined8 param_2, undefined8 param_3, longlong param_4)
+void SystemPointer_CalculateOffset(longlong param_1, uint64_t param_2, uint64_t param_3, longlong param_4)
 {
     longlong unaff_RBX;
     

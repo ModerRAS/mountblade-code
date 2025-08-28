@@ -2,8 +2,8 @@
 
 // 03_rendering_part403.c - 2 个函数
 
-// 函数: void FUN_180490f80(undefined8 *param_1)
-void FUN_180490f80(undefined8 *param_1)
+// 函数: void FUN_180490f80(uint64_t *param_1)
+void FUN_180490f80(uint64_t *param_1)
 
 {
   longlong *plVar1;
@@ -124,7 +124,7 @@ void FUN_180490f80(undefined8 *param_1)
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        *(undefined8 *)(*plVar1 + lVar4 * 8) = 0;
+        *(uint64_t *)(*plVar1 + lVar4 * 8) = 0;
         lVar4 = lVar4 + 1;
       } while (lVar4 < iVar3);
     }
@@ -147,15 +147,15 @@ void FUN_180490f80(undefined8 *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180491260(longlong param_1,longlong *param_2)
+uint64_t FUN_180491260(longlong param_1,longlong *param_2)
 
 {
   longlong lVar1;
   int iVar2;
-  undefined8 uVar3;
+  uint64_t uVar3;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStackX_18;
+  uint64_t uStackX_18;
   longlong **pplStackX_20;
   
   plStackX_10 = param_2;
@@ -168,7 +168,7 @@ undefined8 FUN_180491260(longlong param_1,longlong *param_2)
     (**(code **)(*plStackX_8 + 0x28))();
   }
   FUN_180490840(uVar3,&plStackX_8);
-  *(undefined1 *)(param_1 + 0x60) = 1;
+  *(int8_t *)(param_1 + 0x60) = 1;
   lVar1 = param_1 + 8;
   pplStackX_20 = (longlong **)lVar1;
   iVar2 = _Mtx_lock(lVar1);
@@ -211,12 +211,12 @@ void FUN_180491340(longlong param_1,longlong param_2)
     do {
       if (param_2 == *(longlong *)(lVar1 + lVar3 * 8)) {
         lVar3 = (longlong)iVar4 * 8;
-        FUN_1804903f0(*(undefined8 *)(lVar3 + lVar1));
-        *(undefined8 *)(lVar3 + *(longlong *)(param_1 + 0x68)) = 0;
-        *(undefined8 *)(*(longlong *)(param_1 + 0x68) + lVar3) =
-             *(undefined8 *)(*(longlong *)(param_1 + 0x68) + ((longlong)iVar2 + -1) * 8);
+        FUN_1804903f0(*(uint64_t *)(lVar3 + lVar1));
+        *(uint64_t *)(lVar3 + *(longlong *)(param_1 + 0x68)) = 0;
+        *(uint64_t *)(*(longlong *)(param_1 + 0x68) + lVar3) =
+             *(uint64_t *)(*(longlong *)(param_1 + 0x68) + ((longlong)iVar2 + -1) * 8);
         FUN_180057340(param_1 + 0x68);
-        *(undefined1 *)(param_1 + 0x60) = 1;
+        *(int8_t *)(param_1 + 0x60) = 1;
         break;
       }
       iVar4 = iVar4 + 1;

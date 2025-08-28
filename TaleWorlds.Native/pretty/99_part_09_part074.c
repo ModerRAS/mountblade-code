@@ -78,8 +78,8 @@
  * @param param_5 状态参数4
  * @param param_6 状态参数5
  */
-void system_state_processor(undefined8 param_1, undefined1 param_2, undefined4 param_3, undefined4 param_4,
-                          undefined4 param_5, undefined4 param_6)
+void system_state_processor(uint64_t param_1, int8_t param_2, int32_t param_3, int32_t param_4,
+                          int32_t param_5, int32_t param_6)
 {
   ulonglong *system_data_pointer;
   longlong system_data_index;
@@ -170,7 +170,7 @@ void system_state_processor(undefined8 param_1, undefined1 param_2, undefined4 p
  */
 void system_data_validator(longlong *param_1)
 {
-  undefined4 system_parameter;
+  int32_t system_parameter;
   longlong system_data_handle;
   char system_validation_flag;
   int system_result_code;
@@ -196,7 +196,7 @@ void system_data_validator(longlong *param_1)
   }
   
   /* 系统参数获取 */
-  system_parameter = *(undefined4 *)(*param_1 + 0x10);
+  system_parameter = *(int32_t *)(*param_1 + 0x10);
   system_validation_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
   
   /* 系统数据验证流程 */
@@ -257,9 +257,9 @@ void system_data_validator(longlong *param_1)
  * @param param_2 资源参数
  * @param param_3 目标资源
  */
-void system_resource_manager(longlong *param_1, undefined8 param_2, longlong param_3)
+void system_resource_manager(longlong *param_1, uint64_t param_2, longlong param_3)
 {
-  undefined4 system_parameter;
+  int32_t system_parameter;
   longlong system_data_handle;
   char system_validation_flag;
   int system_result_code;
@@ -284,7 +284,7 @@ void system_resource_manager(longlong *param_1, undefined8 param_2, longlong par
   }
   
   /* 系统参数获取 */
-  system_parameter = *(undefined4 *)(*param_1 + 0x10);
+  system_parameter = *(int32_t *)(*param_1 + 0x10);
   system_validation_flag = FUN_180645c10(0x180c95578, 0, &UNK_1809fa560);
   
   /* 系统资源验证流程 */
@@ -373,17 +373,17 @@ void system_cleanup_manager(void)
  * @param param_2 参数上下文
  * @param param_3 参数值
  */
-void system_parameter_handler(longlong *param_1, longlong param_2, undefined4 param_3)
+void system_parameter_handler(longlong *param_1, longlong param_2, int32_t param_3)
 {
   char system_validation_flag;
   int system_result_code;
-  undefined8 system_context;
+  uint64_t system_context;
   longlong system_base_address;
   uint system_hash_value;
   
   /* 系统参数更新 */
   system_base_address = param_1[3];
-  *(undefined4 *)(param_1 + 3) = param_3;
+  *(int32_t *)(param_1 + 3) = param_3;
   
   /* 系统资源管理 */
   if (((_DAT_180c96070 != 0) && (-1 < (int)system_base_address)) &&
@@ -464,9 +464,9 @@ void system_thread_synchronizer(void)
   char system_validation_flag;
   int system_result_code;
   longlong system_context;
-  undefined8 system_handle;
+  uint64_t system_handle;
   longlong system_base_address;
-  undefined4 system_parameter;
+  int32_t system_parameter;
   bool sync_flag;
   
   /* 线程同步处理 */
@@ -476,7 +476,7 @@ void system_thread_synchronizer(void)
       __Throw_C_error_std__YAXH_Z(system_result_code);
     }
     system_handle = FUN_1805fa9a0(system_base_address + 0x50, 0x28);
-    system_parameter = *(undefined4 *)(system_context + 8);
+    system_parameter = *(int32_t *)(system_context + 8);
   }
   else {
     system_handle = 0;
@@ -565,7 +565,7 @@ void system_empty_function(void)
  * @param param_4 分配参数2
  * @return 分配的内存指针
  */
-undefined8 *system_allocator(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
+uint64_t *system_allocator(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
   /* 系统内存池初始化 */
   *param_1 = &UNK_180a378a0;
@@ -594,7 +594,7 @@ undefined8 *system_allocator(undefined8 *param_1, ulonglong param_2, undefined8 
  * 
  * @param param_1 资源指针
  */
-void system_resource_initializer(undefined8 *param_1)
+void system_resource_initializer(uint64_t *param_1)
 {
   /* 系统资源初始化 */
   *param_1 = &UNK_180a378a0;
@@ -626,15 +626,15 @@ void system_resource_initializer(undefined8 *param_1)
  * @param param_9 控制参数8
  * @return 内存控制器指针
  */
-undefined8 *system_memory_controller(undefined8 *param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4,
-                                     undefined4 param_5, undefined8 param_6, undefined8 param_7, undefined8 param_8,
-                                     undefined1 param_9)
+uint64_t *system_memory_controller(uint64_t *param_1, uint64_t param_2, int32_t param_3, int32_t param_4,
+                                     int32_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8,
+                                     int8_t param_9)
 {
   longlong *system_resource_pointer;
   longlong system_iterator;
   longlong *system_array_pointer;
   code *system_function_pointer;
-  undefined4 system_parameter;
+  int32_t system_parameter;
   
   /* 系统内存控制器初始化 */
   *param_1 = &UNK_180a19ac8;
@@ -643,7 +643,7 @@ undefined8 *system_memory_controller(undefined8 *param_1, undefined8 param_2, un
   param_1[1] = 0;
   param_1[2] = 0;
   param_1[3] = 0;
-  *(undefined4 *)(param_1 + 4) = 3;
+  *(int32_t *)(param_1 + 4) = 3;
   
   /* 系统缓冲区初始化 */
   FUN_18034c080(param_1 + 10);
@@ -658,13 +658,13 @@ undefined8 *system_memory_controller(undefined8 *param_1, undefined8 param_2, un
   FUN_1808fc838(system_array_pointer, 8, 3, &SUB_18005d5f0, FUN_180045af0);
   
   /* 系统随机种子设置 */
-  *(undefined4 *)(param_1 + 0x229) = SYSTEM_RANDOM_SEED1;
-  *(undefined4 *)(param_1 + 0x229) = SYSTEM_RANDOM_SEED2;
-  *(undefined4 *)(param_1 + 5) = 0xbfc4bf74;
-  *(undefined8 *)((longlong)param_1 + 0x2c) = SYSTEM_FLOAT_CONSTANT;
-  *(undefined4 *)((longlong)param_1 + 0x34) = SYSTEM_FLOAT_CONSTANT;
+  *(int32_t *)(param_1 + 0x229) = SYSTEM_RANDOM_SEED1;
+  *(int32_t *)(param_1 + 0x229) = SYSTEM_RANDOM_SEED2;
+  *(int32_t *)(param_1 + 5) = 0xbfc4bf74;
+  *(uint64_t *)((longlong)param_1 + 0x2c) = SYSTEM_FLOAT_CONSTANT;
+  *(int32_t *)((longlong)param_1 + 0x34) = SYSTEM_FLOAT_CONSTANT;
   param_1[0x221] = 0xffffffffffffffff;
-  *(undefined4 *)(param_1 + 0x222) = 0xffffffff;
+  *(int32_t *)(param_1 + 0x222) = 0xffffffff;
   
   /* 系统资源清理循环 */
   do {
@@ -673,18 +673,18 @@ undefined8 *system_memory_controller(undefined8 *param_1, undefined8 param_2, un
     if (system_resource_pointer != (longlong *)0x0) {
       (**(code **)(*system_resource_pointer + 0x38))();
     }
-    system_parameter = (undefined4)((ulonglong)system_function_pointer >> 0x20);
-    *(undefined1 *)((longlong)param_1 + system_iterator + 0x1138) = 0;
+    system_parameter = (int32_t)((ulonglong)system_function_pointer >> 0x20);
+    *(int8_t *)((longlong)param_1 + system_iterator + 0x1138) = 0;
     system_iterator = system_iterator + 1;
     system_array_pointer = system_array_pointer + 1;
   } while (system_iterator < 3);
   
   /* 系统参数设置 */
-  *(undefined4 *)(param_1 + 7) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x3c) = 0x3f800000;
-  *(undefined4 *)(param_1 + 8) = 0;
-  *(undefined4 *)((longlong)param_1 + 0x44) = 0x7f7fffff;
-  *(undefined1 *)(param_1 + 9) = 0;
+  *(int32_t *)(param_1 + 7) = 0;
+  *(int32_t *)((longlong)param_1 + 0x3c) = 0x3f800000;
+  *(int32_t *)(param_1 + 8) = 0;
+  *(int32_t *)((longlong)param_1 + 0x44) = 0x7f7fffff;
+  *(int8_t *)(param_1 + 9) = 0;
   
   /* 系统资源清理 */
   system_array_pointer = (longlong *)param_1[0x21e];
@@ -700,7 +700,7 @@ undefined8 *system_memory_controller(undefined8 *param_1, undefined8 param_2, un
   }
   
   param_1[0x228] = 0;
-  *(undefined4 *)(param_1 + 0x223) = 0xffffffff;
+  *(int32_t *)(param_1 + 0x223) = 0xffffffff;
   
   /* 系统最终初始化 */
   FUN_1805eebb0(param_1, param_2, param_3, param_4, CONCAT44(system_parameter, param_5), param_6, param_7, param_8,
@@ -722,7 +722,7 @@ undefined8 *system_memory_controller(undefined8 *param_1, undefined8 param_2, un
  * @param param_2 终结标志
  * @return 系统资源指针
  */
-undefined8 system_finalizer(undefined8 param_1, ulonglong param_2)
+uint64_t system_finalizer(uint64_t param_1, ulonglong param_2)
 {
   /* 系统资源去初始化 */
   system_deinitializer();
@@ -750,7 +750,7 @@ undefined8 system_finalizer(undefined8 param_1, ulonglong param_2)
  * 
  * @param param_1 系统资源指针
  */
-void system_deinitializer(undefined8 *param_1)
+void system_deinitializer(uint64_t *param_1)
 {
   uint *system_flag_pointer;
   longlong system_resource_handle;
@@ -857,17 +857,17 @@ void system_deinitializer(undefined8 *param_1)
 void system_state_updater(longlong param_1, float param_2, longlong param_3)
 {
   longlong *system_resource_pointer;
-  undefined8 system_context;
+  uint64_t system_context;
   int *system_index_pointer;
   ulonglong system_iterator;
-  undefined8 *system_handle;
+  uint64_t *system_handle;
   uint system_hash_value;
   ulonglong system_counter;
   ulonglong *system_array_pointer;
   ulonglong system_data;
   int system_current_index;
   int system_target_index;
-  undefined1 system_flag;
+  int8_t system_flag;
   float system_time_value;
   float system_calculated_value;
   longlong *system_stack_pointer;
@@ -882,10 +882,10 @@ void system_state_updater(longlong param_1, float param_2, longlong param_3)
     system_target_index = *system_index_pointer;
     system_current_index = (int)system_data;
     if (system_target_index != -1) {
-      system_flag = *(undefined1 *)((longlong)system_current_index + 0x1114 + param_1);
+      system_flag = *(int8_t *)((longlong)system_current_index + 0x1114 + param_1);
       if (-1 < system_target_index) {
         if (*(int *)(param_1 + 0x1118) != system_target_index) {
-          system_handle = (undefined8 *)
+          system_handle = (uint64_t *)
                    FUN_1800b3590(system_counter, &system_stack_pointer,
                                  *(longlong *)
                                   (*(longlong *)(_DAT_180c8a9f0 + 0x30) + (longlong)system_target_index * 8) +
@@ -917,18 +917,18 @@ void system_state_updater(longlong param_1, float param_2, longlong param_3)
     if (system_stack_pointer != (longlong *)0x0) {
       (**(code **)(*system_stack_pointer + 0x38))();
     }
-    *(undefined4 *)(param_1 + 0x78) = *(undefined4 *)(param_1 + 0x898);
-    *(undefined4 *)(param_1 + 0x7c) = 0x3f800000;
-    *(undefined1 *)(param_1 + 0x80) = *(undefined1 *)(param_1 + 0x90);
+    *(int32_t *)(param_1 + 0x78) = *(int32_t *)(param_1 + 0x898);
+    *(int32_t *)(param_1 + 0x7c) = 0x3f800000;
+    *(int8_t *)(param_1 + 0x80) = *(int8_t *)(param_1 + 0x90);
   }
   
   system_stack_pointer = *(longlong **)(param_1 + 0x88);
-  *(undefined8 *)(param_1 + 0x88) = 0;
+  *(uint64_t *)(param_1 + 0x88) = 0;
   if (system_stack_pointer != (longlong *)0x0) {
     (**(code **)(*system_stack_pointer + 0x38))();
   }
-  *(undefined2 *)(param_1 + 0x90) = 0;
-  *(undefined4 *)(param_1 + 0x898) = 0;
+  *(int16_t *)(param_1 + 0x90) = 0;
+  *(int32_t *)(param_1 + 0x898) = 0;
   
 SYSTEM_STATE_UPDATE:
   *(int *)(param_1 + 0x1118) = system_target_index;
@@ -950,7 +950,7 @@ SYSTEM_STATE_UPDATE:
     
     system_time_value = (float)(system_hash_value - 1) * 1.5366822e-11 + 0.05;
     *(float *)(param_1 + 0x2c) = system_time_value;
-    *(undefined4 *)(param_1 + 0x30) = 0;
+    *(int32_t *)(param_1 + 0x30) = 0;
     *(float *)(param_1 + 0x34) = system_time_value + system_time_value;
     
     system_hash_value = *(uint *)(param_1 + 0x1148) << SYSTEM_BIT_SHIFT_13 ^ *(uint *)(param_1 + 0x1148);
@@ -974,18 +974,18 @@ SYSTEM_STATE_UPDATE:
       if (system_stack_pointer != (longlong *)0x0) {
         (**(code **)(*system_stack_pointer + 0x38))();
       }
-      *(undefined4 *)(param_1 + 0x78) = *(undefined4 *)(param_1 + 0x898);
-      *(undefined4 *)(param_1 + 0x7c) = 0x3f800000;
-      *(undefined1 *)(param_1 + 0x80) = *(undefined1 *)(param_1 + 0x90);
+      *(int32_t *)(param_1 + 0x78) = *(int32_t *)(param_1 + 0x898);
+      *(int32_t *)(param_1 + 0x7c) = 0x3f800000;
+      *(int8_t *)(param_1 + 0x80) = *(int8_t *)(param_1 + 0x90);
       system_stack_pointer = *(longlong **)(param_1 + 0x88);
-      *(undefined8 *)(param_1 + 0x88) = 0;
+      *(uint64_t *)(param_1 + 0x88) = 0;
       if (system_stack_pointer != (longlong *)0x0) {
         (**(code **)(*system_stack_pointer + 0x38))();
       }
-      *(undefined2 *)(param_1 + 0x90) = 0;
-      *(undefined4 *)(param_1 + 0x898) = 0;
+      *(int16_t *)(param_1 + 0x90) = 0;
+      *(int32_t *)(param_1 + 0x898) = 0;
       if (system_current_index != -1) {
-        *(undefined4 *)(param_1 + 0x1108 + (longlong)system_current_index * 4) = 0xffffffff;
+        *(int32_t *)(param_1 + 0x1108 + (longlong)system_current_index * 4) = 0xffffffff;
       }
     }
   }
@@ -998,7 +998,7 @@ SYSTEM_STATE_UPDATE:
   do {
     if (system_data != 0) goto SYSTEM_DATA_PROCESSING;
     if (*system_array_pointer != 0) {
-      system_flag = *(undefined1 *)(system_iterator + 0x1138 + param_1);
+      system_flag = *(int8_t *)(system_iterator + 0x1138 + param_1);
       system_data = *system_array_pointer;
     }
     system_hash_value = (int)system_counter + 1;
@@ -1017,18 +1017,18 @@ SYSTEM_STATE_UPDATE:
       if (system_stack_pointer != (longlong *)0x0) {
         (**(code **)(*system_stack_pointer + 0x38))();
       }
-      *(undefined4 *)(param_1 + 0x8c8) = *(undefined4 *)(param_1 + 0x10e8);
-      *(undefined4 *)(param_1 + 0x8cc) = 0x3f800000;
-      *(undefined1 *)(param_1 + 0x8d0) = *(undefined1 *)(param_1 + 0x8e0);
+      *(int32_t *)(param_1 + 0x8c8) = *(int32_t *)(param_1 + 0x10e8);
+      *(int32_t *)(param_1 + 0x8cc) = 0x3f800000;
+      *(int8_t *)(param_1 + 0x8d0) = *(int8_t *)(param_1 + 0x8e0);
     }
     system_stack_pointer = *(longlong **)(param_1 + 0x8d8);
-    *(undefined8 *)(param_1 + 0x8d8) = 0;
+    *(uint64_t *)(param_1 + 0x8d8) = 0;
     if (system_stack_pointer != (longlong *)0x0) {
       (**(code **)(*system_stack_pointer + 0x38))();
     }
-    *(undefined2 *)(param_1 + 0x8e0) = 0;
-    *(undefined4 *)(param_1 + 0x10e8) = 0;
-    *(undefined8 *)(param_1 + 0x1140) = 0;
+    *(int16_t *)(param_1 + 0x8e0) = 0;
+    *(int32_t *)(param_1 + 0x10e8) = 0;
+    *(uint64_t *)(param_1 + 0x1140) = 0;
   }
   else {
 SYSTEM_DATA_PROCESSING:
@@ -1079,11 +1079,11 @@ SYSTEM_DATA_PROCESSING:
     *(float *)(param_1 + 0x8cc) = system_time_value;
     if (system_time_value <= 0.0) {
       system_stack_pointer = *(longlong **)(param_1 + 0x8c0);
-      *(undefined8 *)(param_1 + 0x8c0) = 0;
+      *(uint64_t *)(param_1 + 0x8c0) = 0;
       if (system_stack_pointer != (longlong *)0x0) {
         (**(code **)(*system_stack_pointer + 0x38))();
       }
-      *(undefined4 *)(param_1 + 0x8cc) = 0;
+      *(int32_t *)(param_1 + 0x8cc) = 0;
     }
   }
   return;

@@ -106,42 +106,42 @@ static undefined coordinate_calculator;
 /**
  * 数据处理系统函数
  */
-static void data_interpolation_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void pixel_coordinate_transformer(undefined8 context, undefined8 param1, undefined8 param2);
-static void bilinear_interpolation_calculator(undefined8 context, undefined8 param1, undefined8 param2);
-static void texture_sampler(undefined8 context, undefined8 param1, undefined8 param2);
-static void color_space_converter(undefined8 context, undefined8 param1, undefined8 param2);
-static void data_normalizer(undefined8 context, undefined8 param1, undefined8 param2);
-static void coordinate_mapper(undefined8 context, undefined8 param1, undefined8 param2);
-static void pixel_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void image_scaler(undefined8 context, undefined8 param1, undefined8 param2);
-static void texture_mapper(undefined8 context, undefined8 param1, undefined8 param2);
+static void data_interpolation_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void pixel_coordinate_transformer(uint64_t context, uint64_t param1, uint64_t param2);
+static void bilinear_interpolation_calculator(uint64_t context, uint64_t param1, uint64_t param2);
+static void texture_sampler(uint64_t context, uint64_t param1, uint64_t param2);
+static void color_space_converter(uint64_t context, uint64_t param1, uint64_t param2);
+static void data_normalizer(uint64_t context, uint64_t param1, uint64_t param2);
+static void coordinate_mapper(uint64_t context, uint64_t param1, uint64_t param2);
+static void pixel_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void image_scaler(uint64_t context, uint64_t param1, uint64_t param2);
+static void texture_mapper(uint64_t context, uint64_t param1, uint64_t param2);
 
 /**
  * 像素处理系统函数
  */
-static void pixel_sampler(undefined8 context, undefined8 param1, undefined8 param2);
-static void color_interpolator(undefined8 context, undefined8 param1, undefined8 param2);
-static void texture_coordinate_mapper(undefined8 context, undefined8 param1, undefined8 param2);
-static void pixel_buffer_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void color_converter(undefined8 context, undefined8 param1, undefined8 param2);
-static void pixel_filter(undefined8 context, undefined8 param1, undefined8 param2);
-static void image_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void pixel_normalizer(undefined8 context, undefined8 param1, undefined8 param2);
-static void color_space_manager(undefined8 context, undefined8 param1, undefined8 param2);
+static void pixel_sampler(uint64_t context, uint64_t param1, uint64_t param2);
+static void color_interpolator(uint64_t context, uint64_t param1, uint64_t param2);
+static void texture_coordinate_mapper(uint64_t context, uint64_t param1, uint64_t param2);
+static void pixel_buffer_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void color_converter(uint64_t context, uint64_t param1, uint64_t param2);
+static void pixel_filter(uint64_t context, uint64_t param1, uint64_t param2);
+static void image_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void pixel_normalizer(uint64_t context, uint64_t param1, uint64_t param2);
+static void color_space_manager(uint64_t context, uint64_t param1, uint64_t param2);
 
 /**
  * 坐标处理系统函数
  */
-static void coordinate_transformer(undefined8 context, undefined8 param1, undefined8 param2);
-static void coordinate_validator(undefined8 context, undefined8 param1, undefined8 param2);
-static void coordinate_scaler(undefined8 context, undefined8 param1, undefined8 param2);
-static void coordinate_interpolator(undefined8 context, undefined8 param1, undefined8 param2);
-static void coordinate_mapper(undefined8 context, undefined8 param1, undefined8 param2);
-static void coordinate_normalizer(undefined8 context, undefined8 param1, undefined8 param2);
-static void coordinate_processor(undefined8 context, undefined8 param1, undefined8 param2);
-static void coordinate_manager(undefined8 context, undefined8 param1, undefined8 param2);
-static void coordinate_calculator(undefined8 context, undefined8 param1, undefined8 param2);
+static void coordinate_transformer(uint64_t context, uint64_t param1, uint64_t param2);
+static void coordinate_validator(uint64_t context, uint64_t param1, uint64_t param2);
+static void coordinate_scaler(uint64_t context, uint64_t param1, uint64_t param2);
+static void coordinate_interpolator(uint64_t context, uint64_t param1, uint64_t param2);
+static void coordinate_mapper(uint64_t context, uint64_t param1, uint64_t param2);
+static void coordinate_normalizer(uint64_t context, uint64_t param1, uint64_t param2);
+static void coordinate_processor(uint64_t context, uint64_t param1, uint64_t param2);
+static void coordinate_manager(uint64_t context, uint64_t param1, uint64_t param2);
+static void coordinate_calculator(uint64_t context, uint64_t param1, uint64_t param2);
 
 /*==========================================
 =            函数定义            =
@@ -157,17 +157,17 @@ static void coordinate_calculator(undefined8 context, undefined8 param1, undefin
  * @param param_4 浮点缩放参数
  * @param param_5 处理模式标志
  */
-void FUN_1802a26b0(undefined8 param_1, undefined8 *param_2, longlong *param_3, float *param_4,
+void FUN_1802a26b0(uint64_t param_1, uint64_t *param_2, longlong *param_3, float *param_4,
                    int param_5)
 {
   ushort uVar1;
-  undefined8 uVar2;
-  undefined8 uVar3;
+  uint64_t uVar2;
+  uint64_t uVar3;
   int iVar4;
   int iVar5;
   int iVar6;
   int iVar7;
-  undefined8 *puVar8;
+  uint64_t *puVar8;
   longlong lVar9;
   int iVar10;
   uint uVar11;
@@ -175,13 +175,13 @@ void FUN_1802a26b0(undefined8 param_1, undefined8 *param_2, longlong *param_3, f
   int iVar13;
   float fVar14;
   float fVar15;
-  undefined1 auStack_a8 [STACK_CANARY_SIZE];
-  undefined1 auStack_88 [8];
-  undefined8 *puStack_80;
-  undefined8 uStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  undefined8 uStack_60;
+  int8_t auStack_a8 [STACK_CANARY_SIZE];
+  int8_t auStack_88 [8];
+  uint64_t *puStack_80;
+  uint64_t uStack_78;
+  uint64_t uStack_70;
+  uint64_t uStack_68;
+  uint64_t uStack_60;
   ulonglong uStack_58;
   
   // 栈保护变量初始化
@@ -217,7 +217,7 @@ void FUN_1802a26b0(undefined8 param_1, undefined8 *param_2, longlong *param_3, f
     }
     
     // 计算最终数据指针位置
-    *param_2 = *(undefined8 *)
+    *param_2 = *(uint64_t *)
                 (*param_3 +
                 (longlong)(int)(iVar7 * (uint)*(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X) + iVar5) * ARRAY_ELEMENT_SIZE_8);
   }
@@ -296,10 +296,10 @@ void FUN_1802a26b0(undefined8 param_1, undefined8 *param_2, longlong *param_3, f
     
     // 加载四个角点的数据
     lVar9 = *param_3;
-    uStack_78 = *(undefined8 *)(lVar9 + (ulonglong)(uVar11 * iVar5 + iVar10) * ARRAY_ELEMENT_SIZE_8);
-    uStack_70 = *(undefined8 *)(lVar9 + (ulonglong)((uint)uVar1 * iVar7 + iVar13) * ARRAY_ELEMENT_SIZE_8);
-    uStack_68 = *(undefined8 *)(lVar9 + (ulonglong)(uVar11 * iVar4 + iVar10) * ARRAY_ELEMENT_SIZE_8);
-    uStack_60 = *(undefined8 *)(lVar9 + (ulonglong)(uVar11 * iVar12 + iVar13) * ARRAY_ELEMENT_SIZE_8);
+    uStack_78 = *(uint64_t *)(lVar9 + (ulonglong)(uVar11 * iVar5 + iVar10) * ARRAY_ELEMENT_SIZE_8);
+    uStack_70 = *(uint64_t *)(lVar9 + (ulonglong)((uint)uVar1 * iVar7 + iVar13) * ARRAY_ELEMENT_SIZE_8);
+    uStack_68 = *(uint64_t *)(lVar9 + (ulonglong)(uVar11 * iVar4 + iVar10) * ARRAY_ELEMENT_SIZE_8);
+    uStack_60 = *(uint64_t *)(lVar9 + (ulonglong)(uVar11 * iVar12 + iVar13) * ARRAY_ELEMENT_SIZE_8);
     
     // 执行双线性插值计算
     fVar15 = (float)modff(uStack_60, auStack_88);
@@ -356,11 +356,11 @@ void FUN_1802a26b0(undefined8 param_1, undefined8 *param_2, longlong *param_3, f
  * @param param_1 上下文参数
  * @param param_2 输出参数数量
  */
-void FUN_1802a26f0(undefined8 param_1, int param_2)
+void FUN_1802a26f0(uint64_t param_1, int param_2)
 {
   ushort uVar1;
-  undefined8 uVar2;
-  undefined2 *puVar3;
+  uint64_t uVar2;
+  int16_t *puVar3;
   int iVar4;
   int iVar5;
   int iVar6;
@@ -450,14 +450,14 @@ void FUN_1802a26f0(undefined8 param_1, int param_2)
   
   // 加载四个角点的数据
   lVar8 = *unaff_RSI;
-  *(undefined8 *)(unaff_RBP + -0x29) =
-       *(undefined8 *)(lVar8 + (ulonglong)(uVar11 * iVar5 + iVar10) * ARRAY_ELEMENT_SIZE_8);
-  *(undefined8 *)(unaff_RBP + -0x21) =
-       *(undefined8 *)(lVar8 + (ulonglong)((uint)uVar1 * iVar7 + iVar13) * ARRAY_ELEMENT_SIZE_8);
-  *(undefined8 *)(unaff_RBP + -0x19) =
-       *(undefined8 *)(lVar8 + (ulonglong)(uVar11 * iVar4 + iVar10) * ARRAY_ELEMENT_SIZE_8);
-  uVar2 = *(undefined8 *)(lVar8 + (ulonglong)(uVar11 * iVar12 + iVar13) * ARRAY_ELEMENT_SIZE_8);
-  *(undefined8 *)(unaff_RBP + -0x11) = uVar2;
+  *(uint64_t *)(unaff_RBP + -0x29) =
+       *(uint64_t *)(lVar8 + (ulonglong)(uVar11 * iVar5 + iVar10) * ARRAY_ELEMENT_SIZE_8);
+  *(uint64_t *)(unaff_RBP + -0x21) =
+       *(uint64_t *)(lVar8 + (ulonglong)((uint)uVar1 * iVar7 + iVar13) * ARRAY_ELEMENT_SIZE_8);
+  *(uint64_t *)(unaff_RBP + -0x19) =
+       *(uint64_t *)(lVar8 + (ulonglong)(uVar11 * iVar4 + iVar10) * ARRAY_ELEMENT_SIZE_8);
+  uVar2 = *(uint64_t *)(lVar8 + (ulonglong)(uVar11 * iVar12 + iVar13) * ARRAY_ELEMENT_SIZE_8);
+  *(uint64_t *)(unaff_RBP + -0x11) = uVar2;
   
   // 执行双线性插值计算
   fVar15 = (float)modff(uVar2, unaff_RBP + -0x39);
@@ -490,17 +490,17 @@ void FUN_1802a26f0(undefined8 param_1, int param_2)
        (int)((float)(int)(((int)((float)(int)((uint)*(ushort *)(unaff_RBP + -0x11) -
                                              (uint)*(ushort *)(unaff_RBP + -0x19)) * fVar14) +
                           (uint)*(ushort *)(unaff_RBP + -0x19)) - iVar13) * fVar15) + iVar13;
-  puVar3 = *(undefined2 **)(unaff_RBP + -0x31);
+  puVar3 = *(int16_t **)(unaff_RBP + -0x31);
   *(int *)(unaff_RBP + -0x1d) =
        (int)((float)(int)(((int)((float)(int)((uint)*(ushort *)(unaff_RBP + -0xb) -
                                              (uint)*(ushort *)(unaff_RBP + -0x13)) * fVar14) +
                           (uint)*(ushort *)(unaff_RBP + -0x13)) - iVar7) * fVar15) + iVar7;
   
   // 存储插值结果
-  *puVar3 = *(undefined2 *)(unaff_RBP + -0x21);
-  puVar3[1] = *(undefined2 *)(unaff_RBP + -0x25);
-  puVar3[2] = *(undefined2 *)(unaff_RBP + -0x29);
-  puVar3[3] = *(undefined2 *)(unaff_RBP + -0x1d);
+  *puVar3 = *(int16_t *)(unaff_RBP + -0x21);
+  puVar3[1] = *(int16_t *)(unaff_RBP + -0x25);
+  puVar3[2] = *(int16_t *)(unaff_RBP + -0x29);
+  puVar3[3] = *(int16_t *)(unaff_RBP + -0x1d);
   
   // 栈保护检查和退出
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + -9) ^ (ulonglong)&stack0x00000000);
@@ -514,14 +514,14 @@ void FUN_1802a26f0(undefined8 param_1, int param_2)
  * @param param_2 输出参数
  * @param param_3 输入数据指针
  */
-void FUN_1802a2a2a(undefined8 param_1, undefined8 param_2, longlong param_3)
+void FUN_1802a2a2a(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
   int iVar1;
   int iVar2;
   longlong unaff_RBP;
   longlong *unaff_RSI;
   int iVar3;
-  undefined8 *in_R11;
+  uint64_t *in_R11;
   float *unaff_R14;
   
   // 计算Y坐标索引
@@ -551,7 +551,7 @@ void FUN_1802a2a2a(undefined8 param_1, undefined8 param_2, longlong param_3)
   }
   
   // 计算最终数据指针位置
-  *in_R11 = *(undefined8 *)
+  *in_R11 = *(uint64_t *)
              (*unaff_RSI + (longlong)(int)(iVar1 * (uint)*(ushort *)(param_3 + COORDINATE_OFFSET_X) + iVar2) * ARRAY_ELEMENT_SIZE_8);
   
   // 栈保护检查和退出
@@ -568,7 +568,7 @@ void FUN_1802a2a2a(undefined8 param_1, undefined8 param_2, longlong param_3)
  * @param param_4 浮点缩放参数
  * @param param_5 处理模式标志
  */
-void FUN_1802a2ab0(undefined8 param_1, short *param_2, longlong *param_3, float *param_4, int param_5)
+void FUN_1802a2ab0(uint64_t param_1, short *param_2, longlong *param_3, float *param_4, int param_5)
 {
   short sVar1;
   longlong lVar2;
@@ -579,8 +579,8 @@ void FUN_1802a2ab0(undefined8 param_1, short *param_2, longlong *param_3, float 
   int iVar7;
   float fVar8;
   float fVar9;
-  undefined1 auStack_98 [STACK_CANARY_SIZE];
-  undefined1 auStack_78 [8];
+  int8_t auStack_98 [STACK_CANARY_SIZE];
+  int8_t auStack_78 [8];
   ushort uStack_70;
   ushort uStack_6e;
   ushort uStack_6c;
@@ -629,7 +629,7 @@ void FUN_1802a2ab0(undefined8 param_1, short *param_2, longlong *param_3, float 
     // 计算最终数据指针位置
     lVar6 = *param_3;
     lVar2 = (longlong)(int)(iVar4 + iVar7 * (uint)*(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X));
-    *(undefined4 *)param_2 = *(undefined4 *)(lVar6 + lVar2 * ARRAY_ELEMENT_SIZE_6);
+    *(int32_t *)param_2 = *(int32_t *)(lVar6 + lVar2 * ARRAY_ELEMENT_SIZE_6);
     sVar1 = *(short *)(lVar6 + 4 + lVar2 * ARRAY_ELEMENT_SIZE_6);
   }
   // 模式1：双线性插值
@@ -690,12 +690,12 @@ LAB_1802a2ced:
  * @param param_7 输入参数5
  * @param param_8 栈保护参数
  */
-void FUN_1802a2aec(undefined8 param_1, int param_2, undefined8 param_3, undefined8 param_4,
-                   undefined8 param_5, undefined8 param_6, undefined8 param_7, ulonglong param_8)
+void FUN_1802a2aec(uint64_t param_1, int param_2, uint64_t param_3, uint64_t param_4,
+                   uint64_t param_5, uint64_t param_6, uint64_t param_7, ulonglong param_8)
 {
   int iVar1;
   int iVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong unaff_RBP;
   short *unaff_RSI;
   ulonglong uVar4;
@@ -703,14 +703,14 @@ void FUN_1802a2aec(undefined8 param_1, int param_2, undefined8 param_3, undefine
   longlong unaff_R14;
   float fVar6;
   float fVar7;
-  undefined1 auStackX_20 [8];
+  int8_t auStackX_20 [8];
   
   // 初始化输出缓冲区
   puVar3 = &param_5;
   uVar4 = (ulonglong)(param_2 + 3);
   do {
     func_0x000180074f10(puVar3);
-    puVar3 = (undefined8 *)((longlong)puVar3 + 6);
+    puVar3 = (uint64_t *)((longlong)puVar3 + 6);
     uVar4 = uVar4 - 1;
   } while (uVar4 != 0);
   
@@ -753,14 +753,14 @@ void FUN_1802a2aec(undefined8 param_1, int param_2, undefined8 param_3, undefine
  * @param param_2 输出数据指针
  * @param param_3 输入数据指针
  */
-void FUN_1802a2c83(undefined8 param_1, undefined8 param_2, longlong param_3)
+void FUN_1802a2c83(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
   longlong lVar1;
   longlong lVar2;
   int iVar3;
   int iVar4;
   float *unaff_RBP;
-  undefined4 *unaff_RSI;
+  int32_t *unaff_RSI;
   int iVar5;
   longlong *unaff_R14;
   ulonglong in_stack_00000040;
@@ -794,8 +794,8 @@ void FUN_1802a2c83(undefined8 param_1, undefined8 param_2, longlong param_3)
   // 计算最终数据指针位置
   lVar1 = *unaff_R14;
   lVar2 = (longlong)(int)(iVar4 + iVar3 * (uint)*(ushort *)(param_3 + COORDINATE_OFFSET_X));
-  *unaff_RSI = *(undefined4 *)(lVar1 + lVar2 * ARRAY_ELEMENT_SIZE_6);
-  *(undefined2 *)(unaff_RSI + 1) = *(undefined2 *)(lVar1 + 4 + lVar2 * ARRAY_ELEMENT_SIZE_6);
+  *unaff_RSI = *(int32_t *)(lVar1 + lVar2 * ARRAY_ELEMENT_SIZE_6);
+  *(int16_t *)(unaff_RSI + 1) = *(int16_t *)(lVar1 + 4 + lVar2 * ARRAY_ELEMENT_SIZE_6);
   
   // 栈保护检查和退出
   FUN_1808fc050(in_stack_00000040 ^ (ulonglong)&stack0x00000000);
@@ -811,19 +811,19 @@ void FUN_1802a2c83(undefined8 param_1, undefined8 param_2, longlong param_3)
  * @param param_4 浮点缩放参数
  * @param param_5 处理模式标志
  */
-void FUN_1802a2d10(undefined8 param_1, char *param_2, longlong *param_3, float *param_4, int param_5)
+void FUN_1802a2d10(uint64_t param_1, char *param_2, longlong *param_3, float *param_4, int param_5)
 {
   char cVar1;
   int iVar2;
-  undefined2 *puVar3;
+  int16_t *puVar3;
   int iVar4;
   byte *pbVar5;
   longlong lVar6;
   int iVar7;
   float fVar8;
   float fVar9;
-  undefined1 auStack_88 [STACK_CANARY_SIZE];
-  undefined1 auStack_68 [8];
+  int8_t auStack_88 [STACK_CANARY_SIZE];
+  int8_t auStack_68 [8];
   byte bStack_60;
   byte bStack_5f;
   byte bStack_5e;
@@ -870,10 +870,10 @@ void FUN_1802a2d10(undefined8 param_1, char *param_2, longlong *param_3, float *
     }
     
     // 计算最终数据指针位置
-    puVar3 = (undefined2 *)
+    puVar3 = (int16_t *)
              ((longlong)(int)(iVar4 + iVar7 * (uint)*(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X)) * ARRAY_ELEMENT_SIZE_3 +
              *param_3);
-    *(undefined2 *)param_2 = *puVar3;
+    *(int16_t *)param_2 = *puVar3;
     cVar1 = *(char *)(puVar3 + 1);
   }
   // 模式1：双线性插值
@@ -933,12 +933,12 @@ LAB_1802a2f44:
  * @param param_6 输入参数4
  * @param param_7 栈保护参数
  */
-void FUN_1802a2d49(undefined8 param_1, int param_2, undefined8 param_3, undefined8 param_4,
-                   undefined8 param_5, undefined8 param_6, ulonglong param_7)
+void FUN_1802a2d49(uint64_t param_1, int param_2, uint64_t param_3, uint64_t param_4,
+                   uint64_t param_5, uint64_t param_6, ulonglong param_7)
 {
   int iVar1;
   int iVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong unaff_RBP;
   char *unaff_RSI;
   ulonglong uVar4;
@@ -946,14 +946,14 @@ void FUN_1802a2d49(undefined8 param_1, int param_2, undefined8 param_3, undefine
   longlong unaff_R14;
   float fVar6;
   float fVar7;
-  undefined1 auStackX_20 [8];
+  int8_t auStackX_20 [8];
   
   // 初始化输出缓冲区
   puVar3 = &param_5;
   uVar4 = (ulonglong)(param_2 + 3);
   do {
     func_0x000180074f10(puVar3);
-    puVar3 = (undefined8 *)((longlong)puVar3 + 3);
+    puVar3 = (uint64_t *)((longlong)puVar3 + 3);
     uVar4 = uVar4 - 1;
   } while (uVar4 != 0);
   
@@ -996,13 +996,13 @@ void FUN_1802a2d49(undefined8 param_1, int param_2, undefined8 param_3, undefine
  * @param param_2 输出像素数据指针
  * @param param_3 输入数据指针
  */
-void FUN_1802a2eda(undefined8 param_1, undefined8 param_2, longlong param_3)
+void FUN_1802a2eda(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
   int iVar1;
-  undefined2 *puVar2;
+  int16_t *puVar2;
   int iVar3;
   longlong *unaff_RBP;
-  undefined2 *unaff_RSI;
+  int16_t *unaff_RSI;
   int iVar4;
   float *unaff_R14;
   ulonglong in_stack_00000038;
@@ -1034,10 +1034,10 @@ void FUN_1802a2eda(undefined8 param_1, undefined8 param_2, longlong param_3)
   }
   
   // 计算最终数据指针位置
-  puVar2 = (undefined2 *)
+  puVar2 = (int16_t *)
            ((longlong)(int)(iVar3 + iVar1 * (uint)*(ushort *)(param_3 + COORDINATE_OFFSET_X)) * ARRAY_ELEMENT_SIZE_3 + *unaff_RBP);
   *unaff_RSI = *puVar2;
-  *(undefined1 *)(unaff_RSI + 1) = *(undefined1 *)(puVar2 + 1);
+  *(int8_t *)(unaff_RSI + 1) = *(int8_t *)(puVar2 + 1);
   
   // 栈保护检查和退出
   FUN_1808fc050(in_stack_00000038 ^ (ulonglong)&stack0x00000000);
@@ -1053,7 +1053,7 @@ void FUN_1802a2eda(undefined8 param_1, undefined8 param_2, longlong param_3)
  * @param param_4 浮点缩放参数
  * @param param_5 处理模式标志
  */
-void FUN_1802a2f60(undefined8 param_1, undefined4 *param_2, longlong *param_3, float *param_4,
+void FUN_1802a2f60(uint64_t param_1, int32_t *param_2, longlong *param_3, float *param_4,
                    int param_5)
 {
   ushort uVar1;
@@ -1071,12 +1071,12 @@ void FUN_1802a2f60(undefined8 param_1, undefined4 *param_2, longlong *param_3, f
   int iVar13;
   float fVar14;
   float fVar15;
-  undefined1 auStack_98 [STACK_CANARY_SIZE];
-  undefined1 auStack_78 [8];
-  undefined4 *puStack_70;
+  int8_t auStack_98 [STACK_CANARY_SIZE];
+  int8_t auStack_78 [8];
+  int32_t *puStack_70;
   uint uStack_68;
   uint uStack_64;
-  undefined4 uStack_60;
+  int32_t uStack_60;
   uint uStack_5c;
   ulonglong uStack_58;
   
@@ -1113,7 +1113,7 @@ void FUN_1802a2f60(undefined8 param_1, undefined4 *param_2, longlong *param_3, f
     }
     
     // 计算最终数据指针位置
-    *param_2 = *(undefined4 *)
+    *param_2 = *(int32_t *)
                 (*param_3 +
                 (longlong)(int)(iVar6 * (uint)*(ushort *)((longlong)param_3 + COORDINATE_OFFSET_X) + iVar3) * ARRAY_ELEMENT_SIZE_4);
   }
@@ -1226,10 +1226,10 @@ void FUN_1802a2f60(undefined8 param_1, undefined4 *param_2, longlong *param_3, f
                                    uVar11) - iVar6) * fVar15) + iVar6;
     
     // 存储插值结果
-    *(undefined1 *)puStack_70 = (undefined1)uStack_68;
-    *(undefined1 *)((longlong)puStack_70 + 1) = (undefined1)uStack_64;
-    *(undefined1 *)((longlong)puStack_70 + 2) = (undefined1)uStack_60;
-    *(undefined1 *)((longlong)puStack_70 + 3) = (undefined1)uStack_5c;
+    *(int8_t *)puStack_70 = (int8_t)uStack_68;
+    *(int8_t *)((longlong)puStack_70 + 1) = (int8_t)uStack_64;
+    *(int8_t *)((longlong)puStack_70 + 2) = (int8_t)uStack_60;
+    *(int8_t *)((longlong)puStack_70 + 3) = (int8_t)uStack_5c;
   }
   
   // 栈保护检查和退出
@@ -1324,7 +1324,7 @@ void module_cleanup(void)
  * 导出函数：双线性插值数据处理器
  * 对应原始函数：FUN_1802a26b0
  */
-void BilinearInterpolationDataProcessor(undefined8 param_1, undefined8 *param_2, longlong *param_3, float *param_4,
+void BilinearInterpolationDataProcessor(uint64_t param_1, uint64_t *param_2, longlong *param_3, float *param_4,
                                         int param_5)
 {
   FUN_1802a26b0(param_1, param_2, param_3, param_4, param_5);
@@ -1334,7 +1334,7 @@ void BilinearInterpolationDataProcessor(undefined8 param_1, undefined8 *param_2,
  * 导出函数：像素数据插值处理器
  * 对应原始函数：FUN_1802a26f0
  */
-void PixelDataInterpolationProcessor(undefined8 param_1, int param_2)
+void PixelDataInterpolationProcessor(uint64_t param_1, int param_2)
 {
   FUN_1802a26f0(param_1, param_2);
 }
@@ -1343,7 +1343,7 @@ void PixelDataInterpolationProcessor(undefined8 param_1, int param_2)
  * 导出函数：坐标映射数据处理器
  * 对应原始函数：FUN_1802a2a2a
  */
-void CoordinateMappingDataProcessor(undefined8 param_1, undefined8 param_2, longlong param_3)
+void CoordinateMappingDataProcessor(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
   FUN_1802a2a2a(param_1, param_2, param_3);
 }
@@ -1352,7 +1352,7 @@ void CoordinateMappingDataProcessor(undefined8 param_1, undefined8 param_2, long
  * 导出函数：像素数据采样处理器
  * 对应原始函数：FUN_1802a2ab0
  */
-void PixelDataSamplingProcessor(undefined8 param_1, short *param_2, longlong *param_3, float *param_4, int param_5)
+void PixelDataSamplingProcessor(uint64_t param_1, short *param_2, longlong *param_3, float *param_4, int param_5)
 {
   FUN_1802a2ab0(param_1, param_2, param_3, param_4, param_5);
 }
@@ -1361,8 +1361,8 @@ void PixelDataSamplingProcessor(undefined8 param_1, short *param_2, longlong *pa
  * 导出函数：像素数据批量处理器
  * 对应原始函数：FUN_1802a2aec
  */
-void PixelDataBatchProcessor(undefined8 param_1, int param_2, undefined8 param_3, undefined8 param_4,
-                              undefined8 param_5, undefined8 param_6, undefined8 param_7, ulonglong param_8)
+void PixelDataBatchProcessor(uint64_t param_1, int param_2, uint64_t param_3, uint64_t param_4,
+                              uint64_t param_5, uint64_t param_6, uint64_t param_7, ulonglong param_8)
 {
   FUN_1802a2aec(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8);
 }
@@ -1371,7 +1371,7 @@ void PixelDataBatchProcessor(undefined8 param_1, int param_2, undefined8 param_3
  * 导出函数：坐标映射数据处理器2
  * 对应原始函数：FUN_1802a2c83
  */
-void CoordinateMappingDataProcessor2(undefined8 param_1, undefined8 param_2, longlong param_3)
+void CoordinateMappingDataProcessor2(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
   FUN_1802a2c83(param_1, param_2, param_3);
 }
@@ -1380,7 +1380,7 @@ void CoordinateMappingDataProcessor2(undefined8 param_1, undefined8 param_2, lon
  * 导出函数：字符数据采样处理器
  * 对应原始函数：FUN_1802a2d10
  */
-void CharacterDataSamplingProcessor(undefined8 param_1, char *param_2, longlong *param_3, float *param_4, int param_5)
+void CharacterDataSamplingProcessor(uint64_t param_1, char *param_2, longlong *param_3, float *param_4, int param_5)
 {
   FUN_1802a2d10(param_1, param_2, param_3, param_4, param_5);
 }
@@ -1389,8 +1389,8 @@ void CharacterDataSamplingProcessor(undefined8 param_1, char *param_2, longlong 
  * 导出函数：字符数据批量处理器
  * 对应原始函数：FUN_1802a2d49
  */
-void CharacterDataBatchProcessor(undefined8 param_1, int param_2, undefined8 param_3, undefined8 param_4,
-                                 undefined8 param_5, undefined8 param_6, ulonglong param_7)
+void CharacterDataBatchProcessor(uint64_t param_1, int param_2, uint64_t param_3, uint64_t param_4,
+                                 uint64_t param_5, uint64_t param_6, ulonglong param_7)
 {
   FUN_1802a2d49(param_1, param_2, param_3, param_4, param_5, param_6, param_7);
 }
@@ -1399,7 +1399,7 @@ void CharacterDataBatchProcessor(undefined8 param_1, int param_2, undefined8 par
  * 导出函数：像素数据检索处理器
  * 对应原始函数：FUN_1802a2eda
  */
-void PixelDataRetrievalProcessor(undefined8 param_1, undefined8 param_2, longlong param_3)
+void PixelDataRetrievalProcessor(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
   FUN_1802a2eda(param_1, param_2, param_3);
 }
@@ -1408,7 +1408,7 @@ void PixelDataRetrievalProcessor(undefined8 param_1, undefined8 param_2, longlon
  * 导出函数：像素数据采样处理器2
  * 对应原始函数：FUN_1802a2f60
  */
-void PixelDataSamplingProcessor2(undefined8 param_1, undefined4 *param_2, longlong *param_3, float *param_4,
+void PixelDataSamplingProcessor2(uint64_t param_1, int32_t *param_2, longlong *param_3, float *param_4,
                                   int param_5)
 {
   FUN_1802a2f60(param_1, param_2, param_3, param_4, param_5);

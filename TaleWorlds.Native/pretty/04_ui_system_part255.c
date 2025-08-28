@@ -15,14 +15,14 @@ void FUN_1808108af(void)
 
 
 
-undefined8 FUN_1808108e0(undefined8 param_1,undefined8 *param_2,uint *param_3,int *param_4)
+uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *param_4)
 
 {
   byte bVar1;
   byte bVar2;
   uint uVar3;
-  undefined4 uVar4;
-  undefined8 *puVar5;
+  int32_t uVar4;
+  uint64_t *puVar5;
   int iVar6;
   int iVar7;
   
@@ -38,8 +38,8 @@ undefined8 FUN_1808108e0(undefined8 param_1,undefined8 *param_2,uint *param_3,in
       iVar6 = 8;
       do {
         uVar4 = func_0x000180815b30(param_1,bVar1);
-        *(undefined4 *)param_2 = uVar4;
-        param_2 = (undefined8 *)((longlong)param_2 + 4);
+        *(int32_t *)param_2 = uVar4;
+        param_2 = (uint64_t *)((longlong)param_2 + 4);
         iVar6 = iVar6 + -1;
       } while (iVar6 != 0);
       *param_4 = *param_4 - (uint)bVar1;
@@ -47,19 +47,19 @@ undefined8 FUN_1808108e0(undefined8 param_1,undefined8 *param_2,uint *param_3,in
     }
     do {
       uVar4 = func_0x000180815b30(param_1,bVar1);
-      *(undefined4 *)param_2 = uVar4;
-      param_2 = (undefined8 *)((longlong)param_2 + 4);
+      *(int32_t *)param_2 = uVar4;
+      param_2 = (uint64_t *)((longlong)param_2 + 4);
       iVar6 = iVar6 + -1;
     } while (iVar6 != 0);
     do {
       puVar5 = param_2;
       uVar4 = func_0x000180815b30(param_1,bVar2);
-      *(undefined4 *)puVar5 = uVar4;
+      *(int32_t *)puVar5 = uVar4;
       iVar7 = iVar7 + -1;
-      param_2 = (undefined8 *)((longlong)puVar5 + 4);
+      param_2 = (uint64_t *)((longlong)puVar5 + 4);
     } while (iVar7 != 0);
-    *(undefined8 *)((longlong)puVar5 + 4) = 0;
-    *(undefined4 *)((longlong)puVar5 + 0xc) = 0;
+    *(uint64_t *)((longlong)puVar5 + 4) = 0;
+    *(int32_t *)((longlong)puVar5 + 0xc) = 0;
   }
   else {
     uVar3 = *param_3;
@@ -67,15 +67,15 @@ undefined8 FUN_1808108e0(undefined8 param_1,undefined8 *param_2,uint *param_3,in
       iVar6 = 0xb;
       do {
         uVar4 = func_0x000180815b30(param_1,bVar1);
-        *(undefined4 *)param_2 = uVar4;
-        param_2 = (undefined8 *)((longlong)param_2 + 4);
+        *(int32_t *)param_2 = uVar4;
+        param_2 = (uint64_t *)((longlong)param_2 + 4);
         iVar6 = iVar6 + -1;
       } while (iVar6 != 0);
       iVar6 = 10;
       do {
         uVar4 = func_0x000180815b30(param_1,bVar2);
-        *(undefined4 *)param_2 = uVar4;
-        param_2 = (undefined8 *)((longlong)param_2 + 4);
+        *(int32_t *)param_2 = uVar4;
+        param_2 = (uint64_t *)((longlong)param_2 + 4);
         iVar6 = iVar6 + -1;
       } while (iVar6 != 0);
       *param_4 = (uint)bVar1 + ((uint)bVar2 + (uint)bVar1) * 10;
@@ -85,8 +85,8 @@ undefined8 FUN_1808108e0(undefined8 param_1,undefined8 *param_2,uint *param_3,in
         iVar6 = 6;
         do {
           uVar4 = func_0x000180815b30(param_1,bVar1);
-          *(undefined4 *)param_2 = uVar4;
-          param_2 = (undefined8 *)((longlong)param_2 + 4);
+          *(int32_t *)param_2 = uVar4;
+          param_2 = (uint64_t *)((longlong)param_2 + 4);
           iVar6 = iVar6 + -1;
         } while (iVar6 != 0);
         *param_4 = *param_4 + ((uint)bVar1 + (uint)bVar1 * 2) * 2;
@@ -99,42 +99,42 @@ undefined8 FUN_1808108e0(undefined8 param_1,undefined8 *param_2,uint *param_3,in
         iVar7 = 5;
         do {
           uVar4 = func_0x000180815b30(param_1,bVar1);
-          *(undefined4 *)param_2 = uVar4;
-          param_2 = (undefined8 *)((longlong)param_2 + 4);
+          *(int32_t *)param_2 = uVar4;
+          param_2 = (uint64_t *)((longlong)param_2 + 4);
           iVar7 = iVar7 + -1;
         } while (iVar7 != 0);
         *param_4 = (uint)bVar1 + *param_4 + (uint)bVar1 * 4;
       }
       else {
-        param_2 = (undefined8 *)((longlong)param_2 + 0x14);
+        param_2 = (uint64_t *)((longlong)param_2 + 0x14);
       }
       if ((uVar3 & 2) == 0) {
         iVar7 = 5;
         do {
           uVar4 = func_0x000180815b30(param_1,bVar2);
-          *(undefined4 *)param_2 = uVar4;
-          param_2 = (undefined8 *)((longlong)param_2 + 4);
+          *(int32_t *)param_2 = uVar4;
+          param_2 = (uint64_t *)((longlong)param_2 + 4);
           iVar7 = iVar7 + -1;
         } while (iVar7 != 0);
         *param_4 = *param_4 + (uint)bVar2 * 4 + (uint)bVar2;
       }
       else {
-        param_2 = (undefined8 *)((longlong)param_2 + 0x14);
+        param_2 = (uint64_t *)((longlong)param_2 + 0x14);
       }
       if ((uVar3 & 1) == 0) {
         do {
           uVar4 = func_0x000180815b30(param_1,bVar2);
-          *(undefined4 *)param_2 = uVar4;
-          param_2 = (undefined8 *)((longlong)param_2 + 4);
+          *(int32_t *)param_2 = uVar4;
+          param_2 = (uint64_t *)((longlong)param_2 + 4);
           iVar6 = iVar6 + -1;
         } while (iVar6 != 0);
         *param_4 = (uint)bVar2 + *param_4 + (uint)bVar2 * 4;
       }
       else {
-        param_2 = (undefined8 *)((longlong)param_2 + 0x14);
+        param_2 = (uint64_t *)((longlong)param_2 + 0x14);
       }
     }
-    *(undefined4 *)param_2 = 0;
+    *(int32_t *)param_2 = 0;
   }
   return 0;
 }

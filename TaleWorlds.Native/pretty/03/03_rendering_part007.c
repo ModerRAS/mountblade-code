@@ -21,18 +21,18 @@
 #define RENDER_LARGE_OFFSET_1       0x18c9
 #define RENDER_DATA_ARRAY_SIZE      0x10
 
-// 函数: void serialize_render_data(undefined4 *render_params, longlong *buffer_manager)
+// 函数: void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
 // 功能: 序列化渲染数据，处理各种渲染参数和缓冲区管理
 // 参数: render_params - 渲染参数数组, buffer_manager - 缓冲区管理器指针
 // 返回: 无
 // 说明: 此函数负责序列化渲染数据到缓冲区，包括处理各种渲染参数和状态标志
-void serialize_render_data(undefined4 *render_params, longlong *buffer_manager)
+void serialize_render_data(int32_t *render_params, longlong *buffer_manager)
 
 {
-  undefined1 uVar1;
-  undefined4 uVar2;
-  undefined1 *puVar3;
-  undefined4 *puVar4;
+  int8_t uVar1;
+  int32_t uVar2;
+  int8_t *puVar3;
+  int32_t *puVar4;
   int *piVar5;
   longlong lVar6;
   longlong *unaff_RBX;
@@ -40,10 +40,10 @@ void serialize_render_data(undefined4 *render_params, longlong *buffer_manager)
   int iVar8;
   longlong lVar9;
   
-  puVar4 = (undefined4 *)buffer_manager[1];
+  puVar4 = (int32_t *)buffer_manager[1];
   if ((ulonglong)((*buffer_manager - (longlong)puVar4) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = 1;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -72,19 +72,19 @@ void serialize_render_data(undefined4 *render_params, longlong *buffer_manager)
     lVar9 = 0;
     do {
       FUN_180639ec0();
-      puVar4 = (undefined4 *)unaff_RBX[1];
-      uVar2 = *(undefined4 *)(lVar9 + RENDER_DATA_FIELD_OFFSET + *(longlong *)(render_params + RENDER_DATA_START_OFFSET));
+      puVar4 = (int32_t *)unaff_RBX[1];
+      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_FIELD_OFFSET + *(longlong *)(render_params + RENDER_DATA_START_OFFSET));
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = uVar2;
       unaff_RBX[1] = unaff_RBX[1] + 4;
-      puVar4 = (undefined4 *)unaff_RBX[1];
-      uVar2 = *(undefined4 *)(lVar9 + RENDER_DATA_SECOND_OFFSET + *(longlong *)(render_params + RENDER_DATA_START_OFFSET));
+      puVar4 = (int32_t *)unaff_RBX[1];
+      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_SECOND_OFFSET + *(longlong *)(render_params + RENDER_DATA_START_OFFSET));
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = uVar2;
       unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -106,21 +106,21 @@ void serialize_render_data(undefined4 *render_params, longlong *buffer_manager)
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
   FUN_18025a940(&UNK_18098dfd0,render_params[0x1f2]);
-  puVar3 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(render_params + RENDER_FLAG_OFFSET);
+  puVar3 = (int8_t *)unaff_RBX[1];
+  uVar1 = *(int8_t *)(render_params + RENDER_FLAG_OFFSET);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
+    puVar3 = (int8_t *)unaff_RBX[1];
   }
   *puVar3 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   if (*(char *)(render_params + RENDER_FLAG_OFFSET) == '\0') {
     return;
   }
-  puVar4 = (undefined4 *)unaff_RBX[1];
+  puVar4 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
   }
   iVar8 = 0;
   *puVar4 = 0;
@@ -144,19 +144,19 @@ void serialize_render_data(undefined4 *render_params, longlong *buffer_manager)
              (ulonglong)((*(longlong *)(render_params + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(render_params + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_2));
   }
   FUN_180639ec0();
-  puVar3 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(render_params + 0x22a);
+  puVar3 = (int8_t *)unaff_RBX[1];
+  uVar1 = *(int8_t *)(render_params + 0x22a);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
+    puVar3 = (int8_t *)unaff_RBX[1];
   }
   *puVar3 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  puVar4 = (undefined4 *)unaff_RBX[1];
+  puVar4 = (int32_t *)unaff_RBX[1];
   uVar2 = render_params[0x22b];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -228,15 +228,15 @@ void serialize_render_data(undefined4 *render_params, longlong *buffer_manager)
              (ulonglong)((*(longlong *)(render_params + 0x624) - *(longlong *)(render_params + 0x622)) / RENDER_CHUNK_SIZE_2));
   }
   FUN_180639ec0();
-  puVar3 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)((longlong)render_params + RENDER_LARGE_OFFSET_1);
+  puVar3 = (int8_t *)unaff_RBX[1];
+  uVar1 = *(int8_t *)((longlong)render_params + RENDER_LARGE_OFFSET_1);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
+    puVar3 = (int8_t *)unaff_RBX[1];
   }
   *puVar3 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  puVar4 = (undefined4 *)unaff_RBX[1];
+  puVar4 = (int32_t *)unaff_RBX[1];
   if (*(char *)((longlong)render_params + RENDER_LARGE_OFFSET_1) != '\0') {
     FUN_180639ec0();
     FUN_180639ec0();
@@ -244,11 +244,11 @@ void serialize_render_data(undefined4 *render_params, longlong *buffer_manager)
     FUN_180639ec0();
     FUN_180639ec0();
     FUN_180639ec0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
   }
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = RENDER_ITERATION_COUNT;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -266,30 +266,30 @@ void serialize_render_data(undefined4 *render_params, longlong *buffer_manager)
   return;
 }
 
-// 函数: void process_render_batch(undefined4 *render_params)
+// 函数: void process_render_batch(int32_t *render_params)
 // 功能: 处理渲染批次数据，执行批量渲染操作
 // 参数: render_params - 渲染参数数组
 // 返回: 无
 // 说明: 此函数负责处理渲染批次数据，包括批量渲染操作和状态管理
-void process_render_batch(undefined4 *render_params)
+void process_render_batch(int32_t *render_params)
 
 {
-  undefined1 uVar1;
-  undefined4 uVar2;
+  int8_t uVar1;
+  int32_t uVar2;
   longlong in_RAX;
-  undefined1 *puVar3;
-  undefined4 *puVar4;
+  int8_t *puVar3;
+  int32_t *puVar4;
   int *piVar5;
   longlong lVar6;
   longlong *unaff_RBX;
   int iVar7;
   int iVar8;
   longlong lVar9;
-  undefined4 *unaff_RDI;
+  int32_t *unaff_RDI;
   
   if ((ulonglong)((in_RAX - (longlong)render_params) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    render_params = (undefined4 *)unaff_RBX[1];
+    render_params = (int32_t *)unaff_RBX[1];
   }
   *render_params = 1;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -318,19 +318,19 @@ void process_render_batch(undefined4 *render_params)
     lVar9 = 0;
     do {
       FUN_180639ec0();
-      puVar4 = (undefined4 *)unaff_RBX[1];
-      uVar2 = *(undefined4 *)(lVar9 + RENDER_DATA_FIELD_OFFSET + *(longlong *)(unaff_RDI + RENDER_DATA_START_OFFSET));
+      puVar4 = (int32_t *)unaff_RBX[1];
+      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_FIELD_OFFSET + *(longlong *)(unaff_RDI + RENDER_DATA_START_OFFSET));
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = uVar2;
       unaff_RBX[1] = unaff_RBX[1] + 4;
-      puVar4 = (undefined4 *)unaff_RBX[1];
-      uVar2 = *(undefined4 *)(lVar9 + RENDER_DATA_SECOND_OFFSET + *(longlong *)(unaff_RDI + RENDER_DATA_START_OFFSET));
+      puVar4 = (int32_t *)unaff_RBX[1];
+      uVar2 = *(int32_t *)(lVar9 + RENDER_DATA_SECOND_OFFSET + *(longlong *)(unaff_RDI + RENDER_DATA_START_OFFSET));
       if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
         FUN_180639bf0();
-        puVar4 = (undefined4 *)unaff_RBX[1];
+        puVar4 = (int32_t *)unaff_RBX[1];
       }
       *puVar4 = uVar2;
       unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -352,21 +352,21 @@ void process_render_batch(undefined4 *render_params)
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
   FUN_18025a940(&UNK_18098dfd0,unaff_RDI[0x1f2]);
-  puVar3 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(unaff_RDI + RENDER_FLAG_OFFSET);
+  puVar3 = (int8_t *)unaff_RBX[1];
+  uVar1 = *(int8_t *)(unaff_RDI + RENDER_FLAG_OFFSET);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
+    puVar3 = (int8_t *)unaff_RBX[1];
   }
   *puVar3 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   if (*(char *)(unaff_RDI + RENDER_FLAG_OFFSET) == '\0') {
     return;
   }
-  puVar4 = (undefined4 *)unaff_RBX[1];
+  puVar4 = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
   }
   iVar8 = 0;
   *puVar4 = 0;
@@ -392,19 +392,19 @@ void process_render_batch(undefined4 *render_params)
              ((*(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_2) - *(longlong *)(unaff_RDI + RENDER_EXTENDED_OFFSET_1)) / RENDER_CHUNK_SIZE_2));
   }
   FUN_180639ec0();
-  puVar3 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)(unaff_RDI + 0x22a);
+  puVar3 = (int8_t *)unaff_RBX[1];
+  uVar1 = *(int8_t *)(unaff_RDI + 0x22a);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
+    puVar3 = (int8_t *)unaff_RBX[1];
   }
   *puVar3 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  puVar4 = (undefined4 *)unaff_RBX[1];
+  puVar4 = (int32_t *)unaff_RBX[1];
   uVar2 = unaff_RDI[0x22b];
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -482,15 +482,15 @@ void process_render_batch(undefined4 *render_params)
              ((*(longlong *)(unaff_RDI + 0x624) - *(longlong *)(unaff_RDI + 0x622)) / RENDER_CHUNK_SIZE_2));
   }
   FUN_180639ec0();
-  puVar3 = (undefined1 *)unaff_RBX[1];
-  uVar1 = *(undefined1 *)((longlong)unaff_RDI + RENDER_LARGE_OFFSET_1);
+  puVar3 = (int8_t *)unaff_RBX[1];
+  uVar1 = *(int8_t *)((longlong)unaff_RDI + RENDER_LARGE_OFFSET_1);
   if ((ulonglong)((*unaff_RBX - (longlong)puVar3) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    puVar3 = (undefined1 *)unaff_RBX[1];
+    puVar3 = (int8_t *)unaff_RBX[1];
   }
   *puVar3 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  puVar4 = (undefined4 *)unaff_RBX[1];
+  puVar4 = (int32_t *)unaff_RBX[1];
   if (*(char *)((longlong)unaff_RDI + RENDER_LARGE_OFFSET_1) != '\0') {
     FUN_180639ec0();
     FUN_180639ec0();
@@ -498,11 +498,11 @@ void process_render_batch(undefined4 *render_params)
     FUN_180639ec0();
     FUN_180639ec0();
     FUN_180639ec0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
   }
   if ((ulonglong)((*unaff_RBX - (longlong)puVar4) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    puVar4 = (undefined4 *)unaff_RBX[1];
+    puVar4 = (int32_t *)unaff_RBX[1];
   }
   *puVar4 = RENDER_ITERATION_COUNT;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -525,11 +525,11 @@ void process_render_batch(undefined4 *render_params)
 void serialize_vertex_attributes(void)
 
 {
-  undefined1 byte_value;
-  undefined4 dword_value;
+  int8_t byte_value;
+  int32_t dword_value;
   longlong temp_var;
-  undefined1 *byte_ptr;
-  undefined4 *dword_ptr;
+  int8_t *byte_ptr;
+  int32_t *dword_ptr;
   int *int_ptr;
   longlong *unaff_RBX;
   uint unaff_EBP;
@@ -543,19 +543,19 @@ void serialize_vertex_attributes(void)
   uVar10 = (ulonglong)unaff_EBP;
   do {
     FUN_180639ec0();
-    dword_ptr = (undefined4 *)unaff_RBX[1];
-    dword_value = *(undefined4 *)(uVar10 + 0x58 + *(longlong *)(unaff_RDI + 0x128));
+    dword_ptr = (int32_t *)unaff_RBX[1];
+    dword_value = *(int32_t *)(uVar10 + 0x58 + *(longlong *)(unaff_RDI + 0x128));
     if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
       FUN_180639bf0();
-      dword_ptr = (undefined4 *)unaff_RBX[1];
+      dword_ptr = (int32_t *)unaff_RBX[1];
     }
     *dword_ptr = dword_value;
     unaff_RBX[1] = unaff_RBX[1] + 4;
-    dword_ptr = (undefined4 *)unaff_RBX[1];
-    dword_value = *(undefined4 *)(uVar10 + 0x5c + *(longlong *)(unaff_RDI + 0x128));
+    dword_ptr = (int32_t *)unaff_RBX[1];
+    dword_value = *(int32_t *)(uVar10 + 0x5c + *(longlong *)(unaff_RDI + 0x128));
     if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
       FUN_180639bf0();
-      dword_ptr = (undefined4 *)unaff_RBX[1];
+      dword_ptr = (int32_t *)unaff_RBX[1];
     }
     *dword_ptr = dword_value;
     unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -579,12 +579,12 @@ void serialize_vertex_attributes(void)
   } while (data_count != 0);
   
   // 处理材质标识符
-  FUN_18025a940(&UNK_18098dfd0, *(undefined4 *)(unaff_RDI + 0x7c8));
-  byte_ptr = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x7cc);
+  FUN_18025a940(&UNK_18098dfd0, *(int32_t *)(unaff_RDI + 0x7c8));
+  byte_ptr = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_ptr = (undefined1 *)unaff_RBX[1];
+    byte_ptr = (int8_t *)unaff_RBX[1];
   }
   *byte_ptr = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
@@ -593,10 +593,10 @@ void serialize_vertex_attributes(void)
   }
   
   // 序列化材质属性
-  dword_ptr = (undefined4 *)unaff_RBX[1];
+  dword_ptr = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_ptr = (undefined4 *)unaff_RBX[1];
+    dword_ptr = (int32_t *)unaff_RBX[1];
   }
   item_count = 0;
   *dword_ptr = 0;
@@ -622,19 +622,19 @@ void serialize_vertex_attributes(void)
              ((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / 0x98));
   }
   FUN_180639ec0();
-  byte_ptr = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x8a8);
+  byte_ptr = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x8a8);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_ptr = (undefined1 *)unaff_RBX[1];
+    byte_ptr = (int8_t *)unaff_RBX[1];
   }
   *byte_ptr = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  dword_ptr = (undefined4 *)unaff_RBX[1];
-  dword_value = *(undefined4 *)(unaff_RDI + 0x8ac);
+  dword_ptr = (int32_t *)unaff_RBX[1];
+  dword_value = *(int32_t *)(unaff_RDI + 0x8ac);
   if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_ptr = (undefined4 *)unaff_RBX[1];
+    dword_ptr = (int32_t *)unaff_RBX[1];
   }
   *dword_ptr = dword_value;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -723,15 +723,15 @@ void serialize_vertex_attributes(void)
              ((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / 0x98));
   }
   FUN_180639ec0();
-  byte_ptr = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x18c9);
+  byte_ptr = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x18c9);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_ptr = (undefined1 *)unaff_RBX[1];
+    byte_ptr = (int8_t *)unaff_RBX[1];
   }
   *byte_ptr = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  dword_ptr = (undefined4 *)unaff_RBX[1];
+  dword_ptr = (int32_t *)unaff_RBX[1];
   if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
     FUN_180639ec0();
     FUN_180639ec0();
@@ -739,11 +739,11 @@ void serialize_vertex_attributes(void)
     FUN_180639ec0();
     FUN_180639ec0();
     FUN_180639ec0();
-    dword_ptr = (undefined4 *)unaff_RBX[1];
+    dword_ptr = (int32_t *)unaff_RBX[1];
   }
   if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_ptr = (undefined4 *)unaff_RBX[1];
+    dword_ptr = (int32_t *)unaff_RBX[1];
   }
   *dword_ptr = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -770,11 +770,11 @@ void serialize_vertex_attributes(void)
 void serialize_material_properties(void)
 
 {
-  undefined1 byte_value;
-  undefined4 dword_value;
+  int8_t byte_value;
+  int32_t dword_value;
   longlong temp_var;
-  undefined1 *byte_ptr;
-  undefined4 *dword_ptr;
+  int8_t *byte_ptr;
+  int32_t *dword_ptr;
   int *int_ptr;
   longlong *unaff_RBX;
   int loop_counter;
@@ -798,12 +798,12 @@ void serialize_material_properties(void)
   } while (data_count != 0);
   
   // 处理材质标识符
-  FUN_18025a940(&UNK_18098dfd0, *(undefined4 *)(unaff_RDI + 0x7c8));
-  byte_ptr = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x7cc);
+  FUN_18025a940(&UNK_18098dfd0, *(int32_t *)(unaff_RDI + 0x7c8));
+  byte_ptr = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_ptr = (undefined1 *)unaff_RBX[1];
+    byte_ptr = (int8_t *)unaff_RBX[1];
   }
   *byte_ptr = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
@@ -812,10 +812,10 @@ void serialize_material_properties(void)
   }
   
   // 序列化材质属性
-  dword_ptr = (undefined4 *)unaff_RBX[1];
+  dword_ptr = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_ptr = (undefined4 *)unaff_RBX[1];
+    dword_ptr = (int32_t *)unaff_RBX[1];
   }
   item_count = 0;
   *dword_ptr = 0;
@@ -841,19 +841,19 @@ void serialize_material_properties(void)
              ((*(longlong *)(unaff_RDI + 0x7f8) - *(longlong *)(unaff_RDI + 0x7f0)) / 0x98));
   }
   FUN_180639ec0();
-  byte_ptr = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x8a8);
+  byte_ptr = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x8a8);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_ptr = (undefined1 *)unaff_RBX[1];
+    byte_ptr = (int8_t *)unaff_RBX[1];
   }
   *byte_ptr = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  dword_ptr = (undefined4 *)unaff_RBX[1];
-  dword_value = *(undefined4 *)(unaff_RDI + 0x8ac);
+  dword_ptr = (int32_t *)unaff_RBX[1];
+  dword_value = *(int32_t *)(unaff_RDI + 0x8ac);
   if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_ptr = (undefined4 *)unaff_RBX[1];
+    dword_ptr = (int32_t *)unaff_RBX[1];
   }
   *dword_ptr = dword_value;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -942,15 +942,15 @@ void serialize_material_properties(void)
              ((*(longlong *)(unaff_RDI + 0x1890) - *(longlong *)(unaff_RDI + 0x1888)) / 0x98));
   }
   FUN_180639ec0();
-  byte_ptr = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x18c9);
+  byte_ptr = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x18c9);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_ptr) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_ptr = (undefined1 *)unaff_RBX[1];
+    byte_ptr = (int8_t *)unaff_RBX[1];
   }
   *byte_ptr = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  dword_ptr = (undefined4 *)unaff_RBX[1];
+  dword_ptr = (int32_t *)unaff_RBX[1];
   if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
     FUN_180639ec0();
     FUN_180639ec0();
@@ -958,11 +958,11 @@ void serialize_material_properties(void)
     FUN_180639ec0();
     FUN_180639ec0();
     FUN_180639ec0();
-    dword_ptr = (undefined4 *)unaff_RBX[1];
+    dword_ptr = (int32_t *)unaff_RBX[1];
   }
   if ((ulonglong)((*unaff_RBX - (longlong)dword_ptr) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_ptr = (undefined4 *)unaff_RBX[1];
+    dword_ptr = (int32_t *)unaff_RBX[1];
   }
   *dword_ptr = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;

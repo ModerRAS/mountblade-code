@@ -14,28 +14,28 @@ void FUN_180836c90(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   float fVar6;
   longlong lVar7;
   longlong lVar8;
-  undefined1 auVar9 [32];
-  undefined1 auVar10 [32];
+  int8_t auVar9 [32];
+  int8_t auVar10 [32];
   float fVar11;
-  undefined1 auVar12 [16];
-  undefined1 auVar13 [32];
-  undefined1 auVar14 [32];
-  undefined1 auVar15 [32];
-  undefined1 auVar16 [32];
+  int8_t auVar12 [16];
+  int8_t auVar13 [32];
+  int8_t auVar14 [32];
+  int8_t auVar15 [32];
+  int8_t auVar16 [32];
   ulonglong uVar17;
   int iVar18;
   uint uVar19;
   int iVar20;
   ulonglong *puVar21;
   float *pfVar22;
-  undefined1 auVar23 [16];
-  undefined1 auVar24 [32];
-  undefined1 auVar25 [32];
-  undefined1 auVar26 [32];
-  undefined1 auVar27 [32];
-  undefined1 auVar28 [32];
-  undefined1 auStack_d8 [24];
-  undefined1 auStack_c0 [32];
+  int8_t auVar23 [16];
+  int8_t auVar24 [32];
+  int8_t auVar25 [32];
+  int8_t auVar26 [32];
+  int8_t auVar27 [32];
+  int8_t auVar28 [32];
+  int8_t auStack_d8 [24];
+  int8_t auStack_c0 [32];
   ulonglong auStack_98 [18];
   
   puVar21 = auStack_98;
@@ -96,7 +96,7 @@ void FUN_180836c90(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     auVar23._8_8_ = 0;
     auVar23._0_8_ = lVar8 * 2;
     auVar23 = vpinsrq_avx(auVar23,lVar8 * 3,1);
-    auVar12 = vpinsrq_avx((undefined1  [16])0x0,lVar8,1);
+    auVar12 = vpinsrq_avx((int8_t  [16])0x0,lVar8,1);
     auVar24._16_16_ = auVar23;
     auVar24._0_16_ = auVar12;
     auVar24 = vpaddq_avx2(auVar24,auVar26);
@@ -120,21 +120,21 @@ void FUN_180836c90(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       auVar25 = vpaddd_avx2(auVar25,auVar27);
       auVar24 = vpsrld_avx2(auVar25,1);
       auVar10 = vcvtdq2ps_avx(auVar24);
-      auVar26 = *(undefined1 (*) [32])(param_3 + (ulonglong)(uint)(auStack_c0._4_4_ << 2) * 4);
+      auVar26 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_c0._4_4_ << 2) * 4);
       auVar25 = vpaddd_avx2(auVar25,auVar27);
       auVar24 = vpaddq_avx2(auVar28,auStack_c0);
-      auVar14 = vperm2f128_avx(auVar26,*(undefined1 (*) [32])
+      auVar14 = vperm2f128_avx(auVar26,*(int8_t (*) [32])
                                         (param_3 + (ulonglong)(uint)(auStack_c0._12_4_ << 2) * 4),
                                0x20);
-      auVar26 = vperm2f128_avx(auVar26,*(undefined1 (*) [32])
+      auVar26 = vperm2f128_avx(auVar26,*(int8_t (*) [32])
                                         (param_3 + (ulonglong)(uint)(auStack_c0._12_4_ << 2) * 4),
                                0x31);
       auVar13 = vsubps_avx(auVar26,auVar14);
-      auVar26 = *(undefined1 (*) [32])(param_3 + (ulonglong)(uint)(auStack_c0._20_4_ << 2) * 4);
-      auVar15 = vperm2f128_avx(auVar26,*(undefined1 (*) [32])
+      auVar26 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_c0._20_4_ << 2) * 4);
+      auVar15 = vperm2f128_avx(auVar26,*(int8_t (*) [32])
                                         (param_3 + (ulonglong)(uint)(auStack_c0._28_4_ << 2) * 4),
                                0x20);
-      auVar16 = vperm2f128_avx(auVar26,*(undefined1 (*) [32])
+      auVar16 = vperm2f128_avx(auVar26,*(int8_t (*) [32])
                                         (param_3 + (ulonglong)(uint)(auStack_c0._28_4_ << 2) * 4),
                                0x31);
       auVar16 = vsubps_avx(auVar16,auVar15);
@@ -191,7 +191,7 @@ void FUN_180836c90(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     } while (param_2 != 0);
   }
                     // WARNING: Subroutine does not return
-  *(undefined8 *)((longlong)puVar21 + -8) = 0x180837005;
+  *(uint64_t *)((longlong)puVar21 + -8) = 0x180837005;
   FUN_1808fc050(auStack_98[0] ^ (ulonglong)auStack_98);
 }
 
@@ -210,23 +210,23 @@ void FUN_180837050(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   float fVar2;
   longlong lVar3;
   longlong lVar4;
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
-  undefined1 auVar7 [32];
-  undefined1 auVar8 [32];
-  undefined1 auVar9 [32];
+  int8_t auVar5 [32];
+  int8_t auVar6 [32];
+  int8_t auVar7 [32];
+  int8_t auVar8 [32];
+  int8_t auVar9 [32];
   ulonglong uVar10;
   uint uVar11;
-  undefined1 auVar12 [32];
+  int8_t auVar12 [32];
   ulonglong *puVar13;
   int iVar14;
-  undefined1 auVar15 [16];
-  undefined1 auVar16 [32];
-  undefined1 auVar17 [32];
-  undefined1 auVar18 [16];
-  undefined1 auVar19 [32];
-  undefined1 auStack_b8 [24];
-  undefined1 auStack_a0 [32];
+  int8_t auVar15 [16];
+  int8_t auVar16 [32];
+  int8_t auVar17 [32];
+  int8_t auVar18 [16];
+  int8_t auVar19 [32];
+  int8_t auStack_b8 [24];
+  int8_t auStack_a0 [32];
   ulonglong auStack_78 [14];
   
   puVar13 = auStack_78;
@@ -264,7 +264,7 @@ void FUN_180837050(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     auVar15._8_8_ = 0;
     auVar15._0_8_ = lVar4 * 2;
     auVar15 = vpinsrq_avx(auVar15,lVar4 * 3,1);
-    auVar18 = vpinsrq_avx((undefined1  [16])0x0,lVar4,1);
+    auVar18 = vpinsrq_avx((int8_t  [16])0x0,lVar4,1);
     auVar16._16_16_ = auVar15;
     auVar16._0_16_ = auVar18;
     auVar16 = vpaddq_avx2(auVar16,auVar17);
@@ -277,15 +277,15 @@ void FUN_180837050(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       auStack_a0 = auVar16;
       auVar9 = vpermd_avx2(auVar12,auStack_a0);
       auVar16 = vpaddq_avx2(auVar19,auStack_a0);
-      auVar17 = *(undefined1 (*) [32])(param_3 + (ulonglong)(uint)(auStack_a0._4_4_ * 2) * 4);
-      auVar7 = vpunpcklqdq_avx2(auVar17,*(undefined1 (*) [32])
+      auVar17 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_a0._4_4_ * 2) * 4);
+      auVar7 = vpunpcklqdq_avx2(auVar17,*(int8_t (*) [32])
                                          (param_3 + (ulonglong)(uint)(auStack_a0._12_4_ * 2) * 4));
-      auVar5 = vpunpckhqdq_avx2(auVar17,*(undefined1 (*) [32])
+      auVar5 = vpunpckhqdq_avx2(auVar17,*(int8_t (*) [32])
                                          (param_3 + (ulonglong)(uint)(auStack_a0._12_4_ * 2) * 4));
-      auVar17 = *(undefined1 (*) [32])(param_3 + (ulonglong)(uint)(auStack_a0._20_4_ * 2) * 4);
-      auVar8 = vpunpcklqdq_avx2(auVar17,*(undefined1 (*) [32])
+      auVar17 = *(int8_t (*) [32])(param_3 + (ulonglong)(uint)(auStack_a0._20_4_ * 2) * 4);
+      auVar8 = vpunpcklqdq_avx2(auVar17,*(int8_t (*) [32])
                                          (param_3 + (ulonglong)(uint)(auStack_a0._28_4_ * 2) * 4));
-      auVar6 = vpunpckhqdq_avx2(auVar17,*(undefined1 (*) [32])
+      auVar6 = vpunpckhqdq_avx2(auVar17,*(int8_t (*) [32])
                                          (param_3 + (ulonglong)(uint)(auStack_a0._28_4_ * 2) * 4));
       auVar7 = vperm2f128_avx(auVar7,auVar8,0x20);
       auVar17 = vpsrld_avx2(auVar9,1);
@@ -321,7 +321,7 @@ void FUN_180837050(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     param_1 = param_1 + 2;
   }
                     // WARNING: Subroutine does not return
-  *(undefined8 *)((longlong)puVar13 + -8) = 0x1808372ac;
+  *(uint64_t *)((longlong)puVar13 + -8) = 0x1808372ac;
   FUN_1808fc050(auStack_78[0] ^ (ulonglong)auStack_78);
 }
 
@@ -337,7 +337,7 @@ void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
 
 {
   longlong lVar1;
-  undefined1 auVar2 [16];
+  int8_t auVar2 [16];
   short sVar3;
   short sVar4;
   short sVar5;
@@ -351,29 +351,29 @@ void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
   float fVar13;
   float fVar14;
   float fVar15;
-  undefined1 auVar16 [32];
-  undefined1 auVar17 [32];
-  undefined1 auVar18 [32];
-  undefined1 auVar19 [32];
-  undefined1 auVar20 [32];
-  undefined1 auVar21 [32];
+  int8_t auVar16 [32];
+  int8_t auVar17 [32];
+  int8_t auVar18 [32];
+  int8_t auVar19 [32];
+  int8_t auVar20 [32];
+  int8_t auVar21 [32];
   ulonglong uVar22;
   uint uVar23;
-  undefined1 auVar24 [32];
-  undefined1 *puVar25;
+  int8_t auVar24 [32];
+  int8_t *puVar25;
   int iVar26;
-  undefined1 auVar27 [16];
-  undefined1 auVar28 [16];
-  undefined1 auVar29 [32];
-  undefined1 auVar30 [32];
-  undefined1 auVar31 [32];
-  undefined1 auVar32 [16];
-  undefined1 auVar33 [16];
-  undefined1 auVar34 [16];
-  undefined1 auStack_168 [8];
-  undefined1 auStack_160 [32];
-  undefined1 auStack_128 [8];
-  undefined1 auStack_120 [32];
+  int8_t auVar27 [16];
+  int8_t auVar28 [16];
+  int8_t auVar29 [32];
+  int8_t auVar30 [32];
+  int8_t auVar31 [32];
+  int8_t auVar32 [16];
+  int8_t auVar33 [16];
+  int8_t auVar34 [16];
+  int8_t auStack_168 [8];
+  int8_t auStack_160 [32];
+  int8_t auStack_128 [8];
+  int8_t auStack_120 [32];
   longlong lStack_100;
   longlong lStack_f8;
   longlong lStack_f0;
@@ -423,7 +423,7 @@ void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     auVar28._8_8_ = 0;
     auVar28._0_8_ = lVar8 * 2;
     auVar28 = vpinsrq_avx(auVar28,lVar8 * 3,1);
-    auVar33 = vpinsrq_avx((undefined1  [16])0x0,lVar8,1);
+    auVar33 = vpinsrq_avx((int8_t  [16])0x0,lVar8,1);
     auVar29._16_16_ = auVar28;
     auVar29._0_16_ = auVar33;
     auStack_120 = vpaddq_avx2(auVar29,auVar30);
@@ -439,20 +439,20 @@ void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       auVar30 = vcvtdq2ps_avx(auVar30);
       auVar31 = vpsrld_avx2(auVar31,1);
       auVar31 = vcvtdq2ps_avx(auVar31);
-      auVar28 = *(undefined1 (*) [16])(param_3 + (ulonglong)(uint)(auStack_160._12_4_ * 6) * 2);
-      auVar33 = *(undefined1 (*) [16])
+      auVar28 = *(int8_t (*) [16])(param_3 + (ulonglong)(uint)(auStack_160._12_4_ * 6) * 2);
+      auVar33 = *(int8_t (*) [16])
                  (param_3 + 0xc + (ulonglong)(uint)(auStack_160._12_4_ * 6) * 2);
       auVar27 = vpslldq_avx(auVar28,0xc);
-      auVar27 = vpblendd_avx2(*(undefined1 (*) [16])
+      auVar27 = vpblendd_avx2(*(int8_t (*) [16])
                                (param_3 + (ulonglong)(uint)(auStack_160._4_4_ * 6) * 2),auVar27,8);
       auVar16 = vpmovsxwd_avx2(auVar27);
       auVar16 = vcvtdq2ps_avx(auVar16);
       auVar27 = vpslldq_avx(auVar33,0xc);
-      auVar32 = vpblendd_avx2(*(undefined1 (*) [16])
+      auVar32 = vpblendd_avx2(*(int8_t (*) [16])
                                (param_3 + 0xc + (ulonglong)(uint)(auStack_160._4_4_ * 6) * 2),
                               auVar27,8);
-      auVar27 = *(undefined1 (*) [16])(param_3 + (ulonglong)(uint)(auStack_160._20_4_ * 6) * 2);
-      auVar2 = *(undefined1 (*) [16])(param_3 + 0xc + (ulonglong)(uint)(auStack_160._20_4_ * 6) * 2)
+      auVar27 = *(int8_t (*) [16])(param_3 + (ulonglong)(uint)(auStack_160._20_4_ * 6) * 2);
+      auVar2 = *(int8_t (*) [16])(param_3 + 0xc + (ulonglong)(uint)(auStack_160._20_4_ * 6) * 2)
       ;
       auVar17 = vpmovsxwd_avx2(auVar32);
       auVar28 = vpsrldq_avx(auVar28,4);
@@ -465,7 +465,7 @@ void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       auVar28 = vpsrldq_avx(auVar33,4);
       auVar28 = vpblendd_avx2(auVar28,auVar34,0xc);
       auVar19 = vpmovsxwd_avx2(auVar28);
-      auVar33 = vpslldq_avx(*(undefined1 (*) [16])
+      auVar33 = vpslldq_avx(*(int8_t (*) [16])
                              (param_3 + (ulonglong)(uint)(auStack_160._28_4_ * 6) * 2),4);
       auVar19 = vcvtdq2ps_avx(auVar19);
       auVar28 = vpsrldq_avx(auVar27,8);
@@ -473,7 +473,7 @@ void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       auVar20 = vpmovsxwd_avx2(auVar28);
       auVar20 = vcvtdq2ps_avx(auVar20);
       auVar28 = vpsrldq_avx(auVar2,8);
-      auVar33 = vpslldq_avx(*(undefined1 (*) [16])
+      auVar33 = vpslldq_avx(*(int8_t (*) [16])
                              (param_3 + 0xc + (ulonglong)(uint)(auStack_160._28_4_ * 6) * 2),4);
       auVar28 = vpblendd_avx2(auVar28,auVar33,0xe);
       auVar21 = vpmovsxwd_avx2(auVar28);
@@ -513,7 +513,7 @@ void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
       auVar16._24_4_ =
            (auVar19._24_4_ * auVar30._24_4_ * 4.656613e-10 + auVar18._24_4_) * 3.0517578e-05;
       auVar16._28_4_ = 0;
-      *(undefined1 (*) [32])(param_1 + 8) = auVar16;
+      *(int8_t (*) [32])(param_1 + 8) = auVar16;
       param_1[0x10] = (auVar21._0_4_ * auVar31._0_4_ * 4.656613e-10 + auVar20._0_4_) * 3.0517578e-05
       ;
       param_1[0x11] = (auVar21._4_4_ * auVar31._4_4_ * 4.656613e-10 + auVar20._4_4_) * 3.0517578e-05
@@ -567,7 +567,7 @@ void FUN_1808372e0(float *param_1,uint param_2,longlong param_3,uint *param_4,lo
     } while (param_2 != 0);
   }
                     // WARNING: Subroutine does not return
-  *(undefined8 *)(puVar25 + -8) = 0x180837925;
+  *(uint64_t *)(puVar25 + -8) = 0x180837925;
   FUN_1808fc050(uStack_e0 ^ (ulonglong)auStack_128);
 }
 

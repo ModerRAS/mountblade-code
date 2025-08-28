@@ -2,12 +2,12 @@
 
 // 99_part_05_part019_sub002.c - 1 个函数
 
-// 函数: void FUN_1802e4ca0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1802e4ca0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_1802e4ca0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void FUN_1802e4ca0(longlong param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   int iVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   uVar2 = 0xfffffffffffffffe;
   iVar1 = _Mtx_lock(param_1 + 0x58);

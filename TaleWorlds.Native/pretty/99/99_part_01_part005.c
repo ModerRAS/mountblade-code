@@ -61,7 +61,7 @@
  * @param resource_data 资源数据指针
  * @return 处理后的资源数据
  */
-undefined8* system_resource_allocator(undefined8 system_handle, longlong resource_data);
+uint64_t* system_resource_allocator(uint64_t system_handle, longlong resource_data);
 
 /**
  * @brief 系统初始化器
@@ -70,7 +70,7 @@ undefined8* system_resource_allocator(undefined8 system_handle, longlong resourc
  * @param param3 第三个参数
  * @param param4 第四个参数
  */
-void system_initializer(undefined8* system_ptr, undefined8 param2, undefined8 param3, undefined8 param4);
+void system_initializer(uint64_t* system_ptr, uint64_t param2, uint64_t param3, uint64_t param4);
 
 /**
  * @brief 系统清理器
@@ -104,7 +104,7 @@ void memory_allocator(longlong system_handle);
  * @param param4 第四个参数
  * @return 创建结果
  */
-bool resource_creator(longlong system_handle, undefined8* resource_ptr, undefined4 param3, undefined4 param4);
+bool resource_creator(longlong system_handle, uint64_t* resource_ptr, int32_t param3, int32_t param4);
 
 /**
  * @brief 资源配置器
@@ -112,7 +112,7 @@ bool resource_creator(longlong system_handle, undefined8* resource_ptr, undefine
  * @param param2 第二个参数
  * @param param3 第三个参数
  */
-void resource_configurator(longlong system_handle, undefined4 param2, undefined4 param3);
+void resource_configurator(longlong system_handle, int32_t param2, int32_t param3);
 
 /**
  * @brief 资源句柄分配器
@@ -120,7 +120,7 @@ void resource_configurator(longlong system_handle, undefined4 param2, undefined4
  * @param param2 第二个参数
  * @return 分配的资源句柄
  */
-undefined8* resource_handle_allocator(undefined8 param1, undefined8* param2);
+uint64_t* resource_handle_allocator(uint64_t param1, uint64_t* param2);
 
 /**
  * @brief 系统状态管理器
@@ -162,33 +162,33 @@ void system_null_operation_processor(void);
  * @warning 需要确保传入的resource_data有效且已正确初始化
  * @see system_resource_allocator, system_initializer
  */
-void system_resource_allocator_and_initializer(undefined8 system_handle, longlong resource_data)
+void system_resource_allocator_and_initializer(uint64_t system_handle, longlong resource_data)
 {
     longlong local_var1;
-    undefined8 local_var2;
-    undefined1 local_stack_buffer1[32];
-    undefined1 *local_stack_ptr1;
-    undefined4 local_stack_value1;
-    undefined4 local_stack_value2;
-    undefined1 *local_stack_ptr2;
-    undefined **local_stack_ptr_ptr;
-    undefined *local_stack_ptr3;
+    uint64_t local_var2;
+    int8_t local_stack_buffer1[32];
+    int8_t *local_stack_ptr1;
+    int32_t local_stack_value1;
+    int32_t local_stack_value2;
+    int8_t *local_stack_ptr2;
+    void **local_stack_ptr_ptr;
+    void *local_stack_ptr3;
     longlong local_stack_value3;
-    undefined4 local_stack_value4;
-    undefined8 local_stack_value5;
+    int32_t local_stack_value4;
+    uint64_t local_stack_value5;
     int local_stack_value6;
-    undefined *local_stack_ptr4;
-    undefined1 local_stack_buffer2[8];
-    undefined1 local_stack_buffer3[120];
+    void *local_stack_ptr4;
+    int8_t local_stack_buffer2[8];
+    int8_t local_stack_buffer3[120];
     longlong local_stack_value7;
-    undefined1 local_stack_buffer4[104];
-    undefined1 local_stack_buffer5[16];
-    undefined *local_stack_ptr5;
-    undefined1 *local_stack_ptr6;
-    undefined4 local_stack_value8;
-    undefined1 local_stack_buffer6[264];
-    undefined *local_stack_ptr_array[68];
-    undefined1 local_stack_buffer7[560];
+    int8_t local_stack_buffer4[104];
+    int8_t local_stack_buffer5[16];
+    void *local_stack_ptr5;
+    int8_t *local_stack_ptr6;
+    int32_t local_stack_value8;
+    int8_t local_stack_buffer6[264];
+    void *local_stack_ptr_array[68];
+    int8_t local_stack_buffer7[560];
     ulonglong stack_canary;
     
     // 栈保护初始化
@@ -208,7 +208,7 @@ void system_resource_allocator_and_initializer(undefined8 system_handle, longlon
         do {
             local_var1 = local_var1 + 1;
         } while (*(char *)(resource_data + local_var1) != '\0');
-        local_stack_value8 = (undefined4)local_var1;
+        local_stack_value8 = (int32_t)local_var1;
         strcpy_s(local_stack_buffer6, 0x100, resource_data);
     }
     
@@ -233,7 +233,7 @@ void system_resource_allocator_and_initializer(undefined8 system_handle, longlon
             (&local_stack_ptr4, local_stack_buffer2, 0, 0);
     
     // 流缓冲区管理
-    *(undefined **)(local_stack_buffer2 + (longlong)*(int *)(local_stack_ptr4 + 4) + -8) = &UNK_180a01630;
+    *(void **)(local_stack_buffer2 + (longlong)*(int *)(local_stack_ptr4 + 4) + -8) = &UNK_180a01630;
     *(int *)((longlong)&local_stack_value6 + (longlong)*(int *)(local_stack_ptr4 + 4)) =
          *(int *)(local_stack_ptr4 + 4) + -0xa8;
     
@@ -254,8 +254,8 @@ void system_resource_allocator_and_initializer(undefined8 system_handle, longlon
     
     // 系统资源清理
     local_stack_ptr_ptr = &local_stack_ptr4;
-    local_stack_ptr2 = (undefined1 *)0x0;
-    local_stack_ptr1 = (undefined1 *)((ulonglong)local_stack_ptr1 & 0xffffffff00000000);
+    local_stack_ptr2 = (int8_t *)0x0;
+    local_stack_ptr1 = (int8_t *)((ulonglong)local_stack_ptr1 & 0xffffffff00000000);
     FUN_1800a1310(local_stack_buffer5, &local_stack_ptr2, system_handle, 0);
     
     // 最终状态验证
@@ -267,7 +267,7 @@ void system_resource_allocator_and_initializer(undefined8 system_handle, longlon
     
     // 资源释放和清理
     local_stack_ptr2 = local_stack_buffer4;
-    *(undefined **)(local_stack_buffer2 + (longlong)*(int *)(local_stack_ptr4 + 4) + -8) = &UNK_180a01630;
+    *(void **)(local_stack_buffer2 + (longlong)*(int *)(local_stack_ptr4 + 4) + -8) = &UNK_180a01630;
     *(int *)((longlong)&local_stack_value6 + (longlong)*(int *)(local_stack_ptr4 + 4)) =
          *(int *)(local_stack_ptr4 + 4) + -0xa8;
     FUN_18009fb60(local_stack_buffer2);
@@ -305,31 +305,31 @@ void system_resource_allocator_and_initializer(undefined8 system_handle, longlon
  * @warning 调用者必须确保传入的handle_array有足够的内存空间
  * @see system_initializer, resource_manager
  */
-undefined8* system_resource_handle_initializer(undefined8 *handle_array)
+uint64_t* system_resource_handle_initializer(uint64_t *handle_array)
 {
     // 第一组句柄初始化
     *handle_array = &UNK_18098bcb0;
     handle_array[1] = 0;
-    *(undefined4 *)(handle_array + 2) = 0;
+    *(int32_t *)(handle_array + 2) = 0;
     *handle_array = &UNK_180a3c3e0;
     handle_array[3] = 0;
     handle_array[1] = 0;
-    *(undefined4 *)(handle_array + 2) = 0;
+    *(int32_t *)(handle_array + 2) = 0;
     
     // 第二组句柄初始化
     handle_array[4] = &UNK_18098bcb0;
     handle_array[5] = 0;
-    *(undefined4 *)(handle_array + 6) = 0;
+    *(int32_t *)(handle_array + 6) = 0;
     handle_array[4] = &UNK_180a3c3e0;
     handle_array[7] = 0;
     handle_array[5] = 0;
-    *(undefined4 *)(handle_array + 6) = 0;
+    *(int32_t *)(handle_array + 6) = 0;
     
     // 第三组句柄初始化
     handle_array[9] = 0;
     handle_array[10] = 0;
     handle_array[0xb] = 0;
-    *(undefined4 *)(handle_array + 0xc) = 3;
+    *(int32_t *)(handle_array + 0xc) = 3;
     handle_array[0xd] = 0;
     handle_array[8] = 0;
     
@@ -357,7 +357,7 @@ undefined8* system_resource_handle_initializer(undefined8 *handle_array)
  * @warning 需要确保系统处于正确的初始化状态
  * @see system_initializer, system_cleaner
  */
-void advanced_system_initializer(undefined8 *system_ptr, undefined8 param2, undefined8 param3, undefined8 param4)
+void advanced_system_initializer(uint64_t *system_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
 {
     longlong *local_var1;
     longlong *local_var2;
@@ -368,7 +368,7 @@ void advanced_system_initializer(undefined8 *system_ptr, undefined8 param2, unde
     system_ptr[0x2438] = 0;
     system_ptr[0x2439] = 0;
     system_ptr[0x243a] = 0;
-    *(undefined4 *)(system_ptr + 0x243b) = 3;
+    *(int32_t *)(system_ptr + 0x243b) = 3;
     system_ptr[0x243c] = 0;
     
     // 资源管理器初始化
@@ -408,12 +408,12 @@ void advanced_system_initializer(undefined8 *system_ptr, undefined8 param2, unde
     // 系统安全配置
     system_ptr[0x3ad] = 0;
     system_ptr[0x3af] = 0;
-    *(undefined1 *)(system_ptr + 0x2437) = 0;
-    *(undefined4 *)(system_ptr + 0x3b0) = 0x1c;
+    *(int8_t *)(system_ptr + 0x2437) = 0;
+    *(int32_t *)(system_ptr + 0x3b0) = 0x1c;
     
     // 线程安全机制
     LOCK();
-    *(undefined4 *)(system_ptr + 0x243d) = 0;
+    *(int32_t *)(system_ptr + 0x243d) = 0;
     UNLOCK();
     
     // 内存池初始化
@@ -516,7 +516,7 @@ void system_cleaner_and_resource_releaser(longlong system_handle)
 void resource_manager_and_handle_cleaner(ulonglong *resource_ptr)
 {
     int *local_var1;
-    undefined8 *local_var2;
+    uint64_t *local_var2;
     longlong local_var3;
     ulonglong local_var4;
     ulonglong local_var5;
@@ -524,12 +524,12 @@ void resource_manager_and_handle_cleaner(ulonglong *resource_ptr)
     // 资源数组遍历
     local_var5 = resource_ptr[1];
     for (local_var4 = *resource_ptr; local_var4 != local_var5; local_var4 = local_var4 + 0xd0) {
-        *(undefined **)(local_var4 + 0x10) = &UNK_18098bcb0;
+        *(void **)(local_var4 + 0x10) = &UNK_18098bcb0;
     }
     
     // 资源句柄清理
-    local_var2 = (undefined8 *)*resource_ptr;
-    if (local_var2 != (undefined8 *)0x0) {
+    local_var2 = (uint64_t *)*resource_ptr;
+    if (local_var2 != (uint64_t *)0x0) {
         local_var5 = (ulonglong)local_var2 & 0xffffffffffc00000;
         if (local_var5 != 0) {
             local_var3 = local_var5 + 0x80 + ((longlong)local_var2 - local_var5 >> 0x10) * 0x50;
@@ -537,8 +537,8 @@ void resource_manager_and_handle_cleaner(ulonglong *resource_ptr)
             
             // 异常处理和引用计数
             if ((*(void ***)(local_var5 + 0x70) == &ExceptionList) && (*(char *)(local_var3 + 0xe) == '\0')) {
-                *local_var2 = *(undefined8 *)(local_var3 + 0x20);
-                *(undefined8 **)(local_var3 + 0x20) = local_var2;
+                *local_var2 = *(uint64_t *)(local_var3 + 0x20);
+                *(uint64_t **)(local_var3 + 0x20) = local_var2;
                 local_var1 = (int *)(local_var3 + 0x18);
                 *local_var1 = *local_var1 + -1;
                 if (*local_var1 == 0) {
@@ -576,30 +576,30 @@ void resource_manager_and_handle_cleaner(ulonglong *resource_ptr)
  */
 void directx_subsystem_initializer(longlong system_handle)
 {
-    undefined8 *local_var1;
+    uint64_t *local_var1;
     longlong local_var2;
     int local_var3;
     longlong local_var4;
-    undefined1 local_stack_buffer1[80];
+    int8_t local_stack_buffer1[80];
     longlong *local_stack_ptr1;
     longlong local_stack_value1;
-    undefined **local_stack_ptr_ptr;
+    void **local_stack_ptr_ptr;
     longlong local_stack_value2;
-    undefined8 local_stack_value3;
+    uint64_t local_stack_value3;
     longlong *local_stack_ptr2;
-    undefined4 local_stack_value4;
-    undefined *local_stack_ptr3;
-    undefined1 *local_stack_ptr4;
-    undefined4 local_stack_value5;
-    undefined1 local_stack_buffer2[128];
-    undefined8 local_stack_value6;
-    undefined8 local_stack_value7;
-    undefined8 local_stack_value8;
-    undefined8 local_stack_value9;
-    undefined4 local_stack_value10;
-    undefined1 local_stack_value11;
-    undefined1 local_stack_buffer3[304];
-    undefined1 local_stack_buffer4[256];
+    int32_t local_stack_value4;
+    void *local_stack_ptr3;
+    int8_t *local_stack_ptr4;
+    int32_t local_stack_value5;
+    int8_t local_stack_buffer2[128];
+    uint64_t local_stack_value6;
+    uint64_t local_stack_value7;
+    uint64_t local_stack_value8;
+    uint64_t local_stack_value9;
+    int32_t local_stack_value10;
+    int8_t local_stack_value11;
+    int8_t local_stack_buffer3[304];
+    int8_t local_stack_buffer4[256];
     ulonglong stack_canary;
     
     // 栈保护初始化
@@ -607,17 +607,17 @@ void directx_subsystem_initializer(longlong system_handle)
     stack_canary = _DAT_180bf00a8 ^ (ulonglong)local_stack_buffer1;
     
     // DirectX版本检测
-    *(undefined4 *)(system_handle + 0x121bc) = 4;
-    local_var1 = (undefined8 *)(system_handle + 0x1d68);
+    *(int32_t *)(system_handle + 0x121bc) = 4;
+    local_var1 = (uint64_t *)(system_handle + 0x1d68);
     local_stack_value2 = system_handle;
     
     // DirectX 11初始化尝试
     local_var3 = CreateDXGIFactory1(&UNK_180a028c8, local_var1);
     if (local_var3 < 0) {
-        *(undefined4 *)(system_handle + 0x121bc) = 1;
+        *(int32_t *)(system_handle + 0x121bc) = 1;
         local_var3 = CreateDXGIFactory1(&UNK_180a02718, local_var1);
         if (local_var3 < 0) {
-            *(undefined4 *)(system_handle + 0x121bc) = 0;
+            *(int32_t *)(system_handle + 0x121bc) = 0;
             local_var3 = CreateDXGIFactory1(&UNK_180a02728, local_var1);
             if (local_var3 < 0) {
                 FUN_180220810(local_var3, &UNK_180a01748);
@@ -631,7 +631,7 @@ void directx_subsystem_initializer(longlong system_handle)
     local_stack_value1 = local_var4;
     if (local_var4 != local_var2) {
         do {
-            local_stack_ptr_ptr = (undefined **)(local_var4 + 0x10);
+            local_stack_ptr_ptr = (void **)(local_var4 + 0x10);
             *local_stack_ptr_ptr = &UNK_18098bcb0;
             local_stack_value1 = local_var4 + 0xd0;
             local_var4 = local_stack_value1;
@@ -643,7 +643,7 @@ void directx_subsystem_initializer(longlong system_handle)
     *(longlong *)(system_handle + 0x1d28) = local_var4;
     local_var3 = (**(code **)(*(longlong *)*local_var1 + 0x38))((longlong *)*local_var1, 0, &local_stack_ptr1);
     if (local_var3 == -0x7785fffe) {
-        *(undefined4 *)(system_handle + 0x1d48) = 0;
+        *(int32_t *)(system_handle + 0x1d48) = 0;
         // WARNING: Subroutine does not return
         FUN_1808fc050(stack_canary ^ (ulonglong)local_stack_buffer1);
     }
@@ -692,16 +692,16 @@ void directx_subsystem_initializer(longlong system_handle)
 void system_memory_allocator_and_resource_manager(longlong system_handle)
 {
     longlong local_var1;
-    undefined4 local_var2;
-    undefined8 local_var3;
-    undefined4 *local_var4;
-    undefined1 local_stack_buffer1[136];
-    undefined *local_stack_ptr1;
-    undefined4 *local_stack_ptr2;
-    undefined4 local_stack_value1;
-    undefined8 local_stack_value2;
-    undefined4 local_stack_value3;
-    undefined8 local_stack_value4;
+    int32_t local_var2;
+    uint64_t local_var3;
+    int32_t *local_var4;
+    int8_t local_stack_buffer1[136];
+    void *local_stack_ptr1;
+    int32_t *local_stack_ptr2;
+    int32_t local_stack_value1;
+    uint64_t local_stack_value2;
+    int32_t local_stack_value3;
+    uint64_t local_stack_value4;
     ulonglong stack_canary;
     
     // 栈保护初始化
@@ -711,23 +711,23 @@ void system_memory_allocator_and_resource_manager(longlong system_handle)
     
     // 内存池分配
     local_var3 = FUN_18062b1e0(_DAT_180c8ed18, 8, 8, 3);
-    *(undefined8 *)(system_handle + 0x10) = local_var3;
+    *(uint64_t *)(system_handle + 0x10) = local_var3;
     
     // 资源内存分配
     local_var3 = FUN_18062b1e0(_DAT_180c8ed18, 0x120, 8, 3);
     local_var3 = FUN_1800ae430(local_var3);
-    *(undefined8 *)(system_handle + 8) = local_var3;
+    *(uint64_t *)(system_handle + 8) = local_var3;
     
     // 系统资源管理器
     local_var1 = _DAT_180c86898;
     local_stack_ptr1 = &UNK_180a3c3e0;
     local_stack_value2 = 0;
-    local_stack_ptr2 = (undefined4 *)0x0;
+    local_stack_ptr2 = (int32_t *)0x0;
     local_stack_value1 = 0;
     
     // 资源标识符创建
-    local_var4 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x12, 0x13);
-    *(undefined1 *)local_var4 = 0;
+    local_var4 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x12, 0x13);
+    *(int8_t *)local_var4 = 0;
     local_stack_ptr2 = local_var4;
     
     // 资源属性设置
@@ -737,11 +737,11 @@ void system_memory_allocator_and_resource_manager(longlong system_handle)
     local_var4[1] = 0x756f7365;
     local_var4[2] = 0x5f656372;
     local_var4[3] = 0x68636163;
-    *(undefined2 *)(local_var4 + 4) = 0x65;
+    *(int16_t *)(local_var4 + 4) = 0x65;
     local_stack_value1 = 0x11;
     
     // 系统状态更新
-    *(undefined4 *)(local_var1 + 0x468) = 0xffffffff;
+    *(int32_t *)(local_var1 + 0x468) = 0xffffffff;
     local_stack_ptr1 = &UNK_180a3c3e0;
     // WARNING: Subroutine does not return
     FUN_18064e900(local_var4);
@@ -768,11 +768,11 @@ void system_memory_allocator_and_resource_manager(longlong system_handle)
  * @warning 资源创建失败时会记录详细的错误信息
  * @see resource_creator, resource_configurator
  */
-bool resource_creator_and_validator(longlong system_handle, undefined8 *resource_ptr, undefined4 param3, undefined4 param4)
+bool resource_creator_and_validator(longlong system_handle, uint64_t *resource_ptr, int32_t param3, int32_t param4)
 {
     char local_var1;
     int local_var2;
-    undefined4 local_var3;
+    int32_t local_var3;
     int local_stack_array[2];
     
     // 资源创建参数初始化
@@ -822,32 +822,32 @@ bool resource_creator_and_validator(longlong system_handle, undefined8 *resource
  * @warning 配置变更可能会影响系统性能
  * @see resource_configurator, system_state_manager
  */
-void resource_configurator_and_state_manager(longlong system_handle, undefined4 param2, undefined4 param3)
+void resource_configurator_and_state_manager(longlong system_handle, int32_t param2, int32_t param3)
 {
-    undefined8 local_var1;
+    uint64_t local_var1;
     byte local_var2;
     int local_var3;
-    undefined1 local_stack_buffer1[32];
-    undefined8 local_stack_value1;
-    undefined8 local_stack_value2;
-    undefined8 *local_stack_ptr1;
+    int8_t local_stack_buffer1[32];
+    uint64_t local_stack_value1;
+    uint64_t local_stack_value2;
+    uint64_t *local_stack_ptr1;
     int local_stack_array[2];
-    undefined8 local_stack_value3;
-    undefined4 local_stack_value4;
-    undefined4 local_stack_value5;
+    uint64_t local_stack_value3;
+    int32_t local_stack_value4;
+    int32_t local_stack_value5;
     ulonglong local_stack_value6;
-    undefined4 local_stack_value7;
-    undefined4 local_stack_value8;
-    undefined4 local_stack_value9;
+    int32_t local_stack_value7;
+    int32_t local_stack_value8;
+    int32_t local_stack_value9;
     ulonglong local_stack_value10;
     int local_stack_value11;
-    undefined4 local_stack_value12;
+    int32_t local_stack_value12;
     int local_stack_value13;
-    undefined4 local_stack_value14;
-    undefined4 local_stack_value15;
-    undefined4 local_stack_value16;
-    undefined8 local_stack_value17;
-    undefined4 local_stack_value18;
+    int32_t local_stack_value14;
+    int32_t local_stack_value15;
+    int32_t local_stack_value16;
+    uint64_t local_stack_value17;
+    int32_t local_stack_value18;
     ulonglong stack_canary;
     
     // 栈保护初始化
@@ -889,22 +889,22 @@ void resource_configurator_and_state_manager(longlong system_handle, undefined4 
             
             // 配置应用
             (**(code **)(**(longlong **)(system_handle + 0x1d68) + 0x78))
-                      (*(longlong **)(system_handle + 0x1d68), *(undefined8 *)(system_handle + 0x1d78),
-                       *(undefined8 *)(*(longlong *)(_DAT_180c86870 + 8) + 8), &local_stack_value4);
-            *(undefined8 *)(system_handle + 0x1d70) = local_stack_value3;
+                      (*(longlong **)(system_handle + 0x1d68), *(uint64_t *)(system_handle + 0x1d78),
+                       *(uint64_t *)(*(longlong *)(_DAT_180c86870 + 8) + 8), &local_stack_value4);
+            *(uint64_t *)(system_handle + 0x1d70) = local_stack_value3;
             goto LAB_1800a326b;
         }
     }
     
 LAB_1800a31d1:
     // 默认配置应用
-    local_stack_value12 = *(undefined4 *)(system_handle + 0x1d4c);
-    local_stack_value7 = *(undefined4 *)(system_handle + 0x1d80);
+    local_stack_value12 = *(int32_t *)(system_handle + 0x1d4c);
+    local_stack_value7 = *(int32_t *)(system_handle + 0x1d80);
     local_stack_value13 = 0;
     local_stack_value18 = 0;
-    local_var1 = *(undefined8 *)(*(longlong *)(_DAT_180c86870 + 8) + 8);
-    local_stack_value14 = (undefined4)local_var1;
-    local_stack_value15 = (undefined4)((ulonglong)local_var1 >> 0x20);
+    local_var1 = *(uint64_t *)(*(longlong *)(_DAT_180c86870 + 8) + 8);
+    local_stack_value14 = (int32_t)local_var1;
+    local_stack_value15 = (int32_t)((ulonglong)local_var1 >> 0x20);
     local_stack_value10 = 1;
     local_stack_value8 = 0;
     local_stack_value9 = 0;
@@ -915,13 +915,13 @@ LAB_1800a31d1:
     
     // 配置执行
     (**(code **)(**(longlong **)(system_handle + 0x1d68) + 0x50))
-            (*(longlong **)(system_handle + 0x1d68), *(undefined8 *)(system_handle + 0x1d78), &local_stack_value4,
+            (*(longlong **)(system_handle + 0x1d68), *(uint64_t *)(system_handle + 0x1d78), &local_stack_value4,
              system_handle + 0x1d70);
             
 LAB_1800a326b:
     // 系统状态更新
     (**(code **)(**(longlong **)(system_handle + 0x1d68) + 0x40))
-            (*(longlong **)(system_handle + 0x1d68), *(undefined8 *)(*(longlong *)(_DAT_180c86870 + 8) + 8), 2);
+            (*(longlong **)(system_handle + 0x1d68), *(uint64_t *)(*(longlong *)(_DAT_180c86870 + 8) + 8), 2);
     // WARNING: Subroutine does not return
     FUN_1808fc050(stack_canary ^ (ulonglong)local_stack_buffer1);
 }
@@ -945,13 +945,13 @@ LAB_1800a326b:
  * @warning 调用者必须确保param2有足够的内存空间
  * @see resource_handle_allocator, resource_manager
  */
-undefined8* resource_handle_allocator_and_initializer(undefined8 param1, undefined8 *param2)
+uint64_t* resource_handle_allocator_and_initializer(uint64_t param1, uint64_t *param2)
 {
     // 句柄数组初始化
     *param2 = 0;
     param2[1] = 0;
     param2[2] = 0;
-    *(undefined4 *)(param2 + 3) = 3;
+    *(int32_t *)(param2 + 3) = 3;
     return param2;
 }
 
@@ -976,12 +976,12 @@ undefined8* resource_handle_allocator_and_initializer(undefined8 param1, undefin
 void system_state_manager_and_resource_allocator(longlong system_handle)
 {
     int local_var1;
-    undefined8 local_var2;
-    undefined1 local_var3;
+    uint64_t local_var2;
+    int8_t local_var3;
     longlong *local_var4;
     longlong local_var5;
-    undefined4 local_stack_value1;
-    undefined4 local_stack_value2;
+    int32_t local_stack_value1;
+    int32_t local_stack_value2;
     
     // 系统状态检查
     if (*(longlong *)(system_handle + 0x1d78) == 0) {
@@ -1010,27 +1010,27 @@ void system_state_manager_and_resource_allocator(longlong system_handle)
     
     // 资源分配序列
     local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
-    *(undefined8 *)(system_handle + 0x1e08) = local_var2;
+    *(uint64_t *)(system_handle + 0x1e08) = local_var2;
     
     local_stack_value1 = 0x7000200;
     local_stack_value2 = 1;
     local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
-    *(undefined8 *)(system_handle + 0x1e10) = local_var2;
+    *(uint64_t *)(system_handle + 0x1e10) = local_var2;
     
     local_stack_value1 = 0x7000007;
     local_stack_value2 = 1;
     local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
-    *(undefined8 *)(system_handle + 0x1e18) = local_var2;
+    *(uint64_t *)(system_handle + 0x1e18) = local_var2;
     
     local_stack_value1 = 0x7000207;
     local_stack_value2 = 1;
     local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
-    *(undefined8 *)(system_handle + 0x1e20) = local_var2;
+    *(uint64_t *)(system_handle + 0x1e20) = local_var2;
     
     local_stack_value1 = 0x7000107;
     local_stack_value2 = 1;
     local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
-    *(undefined8 *)(system_handle + 0x1e28) = local_var2;
+    *(uint64_t *)(system_handle + 0x1e28) = local_var2;
     
     // 系统配置读取
     local_var1 = *(int *)(_DAT_180c86920 + 0x310);
@@ -1066,19 +1066,19 @@ LAB_1800a37f8:
     local_stack_value1._0_2_ = (ushort)(byte)local_stack_value1;
     local_stack_value1 = CONCAT13(7, (uint3)local_stack_value1);
     local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
-    *(undefined8 *)(system_handle + 0x1e30) = local_var2;
+    *(uint64_t *)(system_handle + 0x1e30) = local_var2;
     
     local_stack_value1 = 0x300020a;
     local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
-    *(undefined8 *)(system_handle + 0x1e38) = local_var2;
+    *(uint64_t *)(system_handle + 0x1e38) = local_var2;
     
     local_stack_value1 = 0x600020a;
     local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
-    *(undefined8 *)(system_handle + 0x1e40) = local_var2;
+    *(uint64_t *)(system_handle + 0x1e40) = local_var2;
     
     local_stack_value1 = 0x300030a;
     local_var2 = FUN_1800ab420(system_handle, &local_stack_value1);
-    *(undefined8 *)(system_handle + 0x1e48) = local_var2;
+    *(uint64_t *)(system_handle + 0x1e48) = local_var2;
     return;
 }
 
@@ -1104,8 +1104,8 @@ void resource_sync_manager_and_state_controller(longlong system_handle)
 {
     int local_var1;
     longlong local_var2;
-    undefined8 local_var3;
-    undefined1 local_var4;
+    uint64_t local_var3;
+    int8_t local_var4;
     longlong *local_var5;
     longlong local_var6;
     longlong local_var7;
@@ -1125,85 +1125,85 @@ void resource_sync_manager_and_state_controller(longlong system_handle)
     
     // 同步参数初始化
     local_var4 = 0;
-    *(undefined4 *)(local_var7 + 0x18) = 0x7000000;
-    *(undefined4 *)(local_var7 + 0x1c) = 1;
+    *(int32_t *)(local_var7 + 0x18) = 0x7000000;
+    *(int32_t *)(local_var7 + 0x1c) = 1;
     if ((*(int *)(local_var2 + 0x4d0) - 3U & 0xfffffffd) == 0) {
         local_var4 = 2;
     }
     
     // 同步资源分配
     local_var3 = FUN_1800ab420();
-    *(undefined8 *)(local_var7 + 0x1e08) = local_var3;
+    *(uint64_t *)(local_var7 + 0x1e08) = local_var3;
     
-    *(undefined4 *)(local_var7 + 0x18) = 0x7000200;
-    *(undefined4 *)(local_var7 + 0x1c) = 1;
+    *(int32_t *)(local_var7 + 0x18) = 0x7000200;
+    *(int32_t *)(local_var7 + 0x1c) = 1;
     local_var3 = FUN_1800ab420();
-    *(undefined8 *)(local_var7 + 0x1e10) = local_var3;
+    *(uint64_t *)(local_var7 + 0x1e10) = local_var3;
     
-    *(undefined4 *)(local_var7 + 0x18) = 0x7000007;
-    *(undefined4 *)(local_var7 + 0x1c) = 1;
+    *(int32_t *)(local_var7 + 0x18) = 0x7000007;
+    *(int32_t *)(local_var7 + 0x1c) = 1;
     local_var3 = FUN_1800ab420();
-    *(undefined8 *)(local_var7 + 0x1e18) = local_var3;
+    *(uint64_t *)(local_var7 + 0x1e18) = local_var3;
     
-    *(undefined4 *)(local_var7 + 0x18) = 0x7000207;
-    *(undefined4 *)(local_var7 + 0x1c) = 1;
+    *(int32_t *)(local_var7 + 0x18) = 0x7000207;
+    *(int32_t *)(local_var7 + 0x1c) = 1;
     local_var3 = FUN_1800ab420();
-    *(undefined8 *)(local_var7 + 0x1e20) = local_var3;
+    *(uint64_t *)(local_var7 + 0x1e20) = local_var3;
     
-    *(undefined4 *)(local_var7 + 0x18) = 0x7000107;
-    *(undefined4 *)(local_var7 + 0x1c) = 1;
+    *(int32_t *)(local_var7 + 0x18) = 0x7000107;
+    *(int32_t *)(local_var7 + 0x1c) = 1;
     local_var3 = FUN_1800ab420();
-    *(undefined8 *)(local_var7 + 0x1e28) = local_var3;
+    *(uint64_t *)(local_var7 + 0x1e28) = local_var3;
     
     // 系统配置读取
     local_var1 = *(int *)(_DAT_180c86920 + 0x310);
     if (local_var1 == 0) {
-        *(undefined4 *)(local_var7 + 0x1c) = 1;
-        *(undefined1 *)(local_var7 + 0x1a) = 0;
-        *(undefined1 *)(local_var7 + 0x18) = 6;
+        *(int32_t *)(local_var7 + 0x1c) = 1;
+        *(int8_t *)(local_var7 + 0x1a) = 0;
+        *(int8_t *)(local_var7 + 0x18) = 6;
         goto LAB_1800a37f8;
     }
     if (local_var1 == 1) {
-        *(undefined4 *)(local_var7 + 0x1c) = 1;
-        *(undefined1 *)(local_var7 + 0x1a) = 0;
-        *(undefined1 *)(local_var7 + 0x18) = 7;
+        *(int32_t *)(local_var7 + 0x1c) = 1;
+        *(int8_t *)(local_var7 + 0x1a) = 0;
+        *(int8_t *)(local_var7 + 0x18) = 7;
         goto LAB_1800a37f8;
     }
     if (local_var1 == 2) {
 LAB_1800a37ee:
-        *(undefined4 *)(local_var7 + 0x1c) = 2;
+        *(int32_t *)(local_var7 + 0x1c) = 2;
     }
     else if (local_var1 == 3) {
-        *(undefined4 *)(local_var7 + 0x1c) = 4;
+        *(int32_t *)(local_var7 + 0x1c) = 4;
     }
     else if (local_var1 == 4) {
-        *(undefined4 *)(local_var7 + 0x1c) = 8;
+        *(int32_t *)(local_var7 + 0x1c) = 8;
     }
     else {
         if (local_var1 != 5) goto LAB_1800a37ee;
-        *(undefined4 *)(local_var7 + 0x1c) = 0x10;
+        *(int32_t *)(local_var7 + 0x1c) = 0x10;
     }
-    *(undefined1 *)(local_var7 + 0x18) = 8;
-    *(undefined1 *)(local_var7 + 0x1a) = local_var4;
+    *(int8_t *)(local_var7 + 0x18) = 8;
+    *(int8_t *)(local_var7 + 0x1a) = local_var4;
     
 LAB_1800a37f8:
     // 最终同步配置
-    *(undefined1 *)(local_var7 + 0x19) = 0;
-    *(undefined1 *)(local_var7 + 0x1b) = 7;
+    *(int8_t *)(local_var7 + 0x19) = 0;
+    *(int8_t *)(local_var7 + 0x1b) = 7;
     local_var3 = FUN_1800ab420();
-    *(undefined8 *)(local_var7 + 0x1e30) = local_var3;
+    *(uint64_t *)(local_var7 + 0x1e30) = local_var3;
     
-    *(undefined4 *)(local_var7 + 0x18) = 0x300020a;
+    *(int32_t *)(local_var7 + 0x18) = 0x300020a;
     local_var3 = FUN_1800ab420();
-    *(undefined8 *)(local_var7 + 0x1e38) = local_var3;
+    *(uint64_t *)(local_var7 + 0x1e38) = local_var3;
     
-    *(undefined4 *)(local_var7 + 0x18) = 0x600020a;
+    *(int32_t *)(local_var7 + 0x18) = 0x600020a;
     local_var3 = FUN_1800ab420();
-    *(undefined8 *)(local_var7 + 0x1e40) = local_var3;
+    *(uint64_t *)(local_var7 + 0x1e40) = local_var3;
     
-    *(undefined4 *)(local_var7 + 0x18) = 0x300030a;
+    *(int32_t *)(local_var7 + 0x18) = 0x300030a;
     local_var3 = FUN_1800ab420();
-    *(undefined8 *)(local_var7 + 0x1e48) = local_var3;
+    *(uint64_t *)(local_var7 + 0x1e48) = local_var3;
     return;
 }
 
@@ -1285,8 +1285,8 @@ void system_null_operation_processor(void)
  * 
  * @code
  * // 系统初始化示例
- * undefined8 system_handle = initialize_system();
- * undefined8* resource_array = allocate_resources();
+ * uint64_t system_handle = initialize_system();
+ * uint64_t* resource_array = allocate_resources();
  * 
  * // 资源配置
  * configure_resources(system_handle, RESOURCE_FLAG_HIGH_PERFORMANCE);

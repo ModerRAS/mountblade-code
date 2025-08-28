@@ -6,8 +6,8 @@
 void FUN_1806c2a6d(void)
 
 {
-  undefined4 *puVar1;
-  undefined4 uVar2;
+  int32_t *puVar1;
+  int32_t uVar2;
   uint uVar3;
   longlong lVar4;
   longlong lVar5;
@@ -19,26 +19,26 @@ void FUN_1806c2a6d(void)
   char *pcVar11;
   longlong lVar12;
   longlong lVar13;
-  undefined8 uVar14;
-  undefined *puVar15;
+  uint64_t uVar14;
+  void *puVar15;
   longlong *plVar16;
-  undefined8 *puVar17;
+  uint64_t *puVar17;
   ulonglong uVar18;
-  undefined8 *unaff_RBP;
+  uint64_t *unaff_RBP;
   longlong *unaff_RSI;
   longlong *unaff_RDI;
   uint uVar19;
-  undefined8 *unaff_R12;
+  uint64_t *unaff_R12;
   longlong *unaff_R13;
   longlong *unaff_R15;
-  undefined4 extraout_XMM0_Da;
-  undefined4 extraout_XMM0_Da_00;
-  undefined4 extraout_XMM0_Da_01;
-  undefined4 uVar20;
-  undefined *in_stack_00000020;
-  undefined *in_stack_00000040;
+  int32_t extraout_XMM0_Da;
+  int32_t extraout_XMM0_Da_00;
+  int32_t extraout_XMM0_Da_01;
+  int32_t uVar20;
+  void *in_stack_00000020;
+  void *in_stack_00000040;
   uint uStack0000000000000048;
-  undefined4 uStack000000000000004c;
+  int32_t uStack000000000000004c;
   longlong in_stack_00000050;
   longlong in_stack_00000060;
   longlong in_stack_00000068;
@@ -46,10 +46,10 @@ void FUN_1806c2a6d(void)
   longlong in_stack_00000078;
   
   cVar9 = FUN_1806d56e0();
-  uVar20 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
+  uVar20 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
   if (cVar9 != '\0') {
     cVar9 = FUN_1806d5620();
-    uVar20 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
+    uVar20 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
     if (cVar9 != '\0') {
       lVar12 = unaff_RBP[0x2a];
       do {
@@ -71,7 +71,7 @@ void FUN_1806c2a6d(void)
           }
           unaff_RBP[0x2d] = lVar13;
           if (lVar13 == 0) {
-            *(undefined1 *)unaff_RDI[10] = 1;
+            *(int8_t *)unaff_RDI[10] = 1;
           }
           else if (*(uint *)(unaff_RSI + 1) < (*(uint *)((longlong)unaff_RSI + 0xc) & 0x7fffffff)) {
             *(longlong *)(*unaff_RSI + (ulonglong)*(uint *)(unaff_RSI + 1) * 8) = lVar13;
@@ -81,22 +81,22 @@ void FUN_1806c2a6d(void)
             FUN_1806d5870(uVar20,unaff_RBP + 0x2d);
           }
         }
-        uVar20 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
+        uVar20 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
         if ((char)unaff_RDI[9] == '\0') break;
         cVar9 = (**(code **)(*(longlong *)unaff_RDI[5] + 0x28))();
-        uVar20 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
+        uVar20 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
       } while (cVar9 != '\0');
-      unaff_R12 = (undefined8 *)unaff_RBP[0x2b];
+      unaff_R12 = (uint64_t *)unaff_RBP[0x2b];
     }
   }
   FUN_1806d6eb0();
   lVar12 = unaff_RDI[1];
-  uVar2 = *(undefined4 *)(*unaff_RDI + 0x10);
+  uVar2 = *(int32_t *)(*unaff_RDI + 0x10);
   uVar3 = *(uint *)(lVar12 + 0x14);
   uVar19 = *(uint *)(lVar12 + 0x10);
-  *(undefined4 *)(unaff_RBP + 0x2a) = uVar2;
+  *(int32_t *)(unaff_RBP + 0x2a) = uVar2;
   if (uVar19 < (uVar3 & 0x7fffffff)) {
-    *(undefined4 *)(*(longlong *)(lVar12 + 8) + (ulonglong)uVar19 * 4) = uVar2;
+    *(int32_t *)(*(longlong *)(lVar12 + 8) + (ulonglong)uVar19 * 4) = uVar2;
     *(int *)(lVar12 + 0x10) = *(int *)(lVar12 + 0x10) + 1;
   }
   else {
@@ -110,7 +110,7 @@ void FUN_1806c2a6d(void)
   uStack0000000000000048 = uStack0000000000000048 & 0xffffff00;
   if (uVar3 < (*(uint *)(lVar12 + 0x14) & 0x7fffffff)) {
     lVar13 = *(longlong *)(lVar12 + 8);
-    puVar1 = (undefined4 *)(lVar13 + (ulonglong)uVar3 * 0x18);
+    puVar1 = (int32_t *)(lVar13 + (ulonglong)uVar3 * 0x18);
     *puVar1 = 0x8094c830;
     puVar1[1] = 1;
     puVar1[2] = uStack0000000000000048;
@@ -127,12 +127,12 @@ void FUN_1806c2a6d(void)
     puVar15 = &DAT_18098bc73;
   }
   else {
-    puVar15 = (undefined *)(**(code **)(*(longlong *)unaff_RDI[5] + 0x38))();
+    puVar15 = (void *)(**(code **)(*(longlong *)unaff_RDI[5] + 0x38))();
   }
   iVar10 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar15,&UNK_18094c048);
   if (iVar10 == 0) {
     plVar16 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-    puVar17 = (undefined8 *)
+    puVar17 = (uint64_t *)
               (**(code **)(*plVar16 + 8))
                         (plVar16,8,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar20,0xad));
     *puVar17 = 0;
@@ -150,21 +150,21 @@ void FUN_1806c2a6d(void)
     unaff_RBP[-6] = lVar13;
     unaff_RBP[-5] = lVar4;
     unaff_RBP[-1] = lVar5;
-    *(undefined1 *)(unaff_RBP + 0x2a) = 0;
+    *(int8_t *)(unaff_RBP + 0x2a) = 0;
     unaff_RBP[5] = 0;
     unaff_RBP[6] = 0;
     *unaff_RBP = puVar17;
     unaff_RBP[-2] = lVar12;
     unaff_RBP[1] = lVar6;
     unaff_RBP[2] = lVar7;
-    *(undefined1 *)(unaff_RBP + 3) = 1;
+    *(int8_t *)(unaff_RBP + 3) = 1;
     unaff_RBP[4] = unaff_RBP + 0x2a;
     FUN_1806c0f20(unaff_RBP + -6,&stack0x00000040,0);
 LAB_1806c3258:
     cVar9 = *(char *)(unaff_RBP + 0x2a);
 joined_r0x0001806c2e65:
     if (cVar9 == '\0') {
-      *(undefined1 *)unaff_RDI[10] = 1;
+      *(int8_t *)unaff_RDI[10] = 1;
     }
   }
   else {
@@ -175,7 +175,7 @@ joined_r0x0001806c2e65:
         iVar10 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar15,&UNK_18094c008);
         if (iVar10 == 0) {
           plVar16 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-          puVar17 = (undefined8 *)
+          puVar17 = (uint64_t *)
                     (**(code **)(*plVar16 + 8))
                               (plVar16,0x10,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar20,0xad));
           *puVar17 = 3;
@@ -195,13 +195,13 @@ joined_r0x0001806c2e65:
           unaff_RBP[-6] = lVar4;
           unaff_RBP[-5] = lVar5;
           unaff_RBP[-1] = lVar6;
-          *(undefined1 *)(unaff_RBP + 0x2a) = 0;
+          *(int8_t *)(unaff_RBP + 0x2a) = 0;
           unaff_RBP[5] = 0;
           unaff_RBP[6] = 0;
           *unaff_RBP = puVar17;
           unaff_RBP[-2] = lVar12;
           unaff_RBP[2] = lVar7;
-          *(undefined1 *)(unaff_RBP + 3) = 1;
+          *(int8_t *)(unaff_RBP + 3) = 1;
           unaff_RBP[4] = unaff_RBP + 0x2a;
           FUN_1806c0b60(unaff_RBP + -6,&stack0x00000040,0);
         }
@@ -209,19 +209,19 @@ joined_r0x0001806c2e65:
           iVar10 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar15,&UNK_18094c030);
           if (iVar10 == 0) {
             plVar16 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-            puVar17 = (undefined8 *)
+            puVar17 = (uint64_t *)
                       (**(code **)(*plVar16 + 8))
                                 (plVar16,0x30,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar20,0xad));
-            *(undefined4 *)puVar17 = 4;
-            *(undefined4 *)((longlong)puVar17 + 4) = 0x3f800000;
-            *(undefined4 *)(puVar17 + 1) = 0x3f800000;
-            *(undefined8 *)((longlong)puVar17 + 0xc) = 0x3f800000;
-            *(undefined8 *)((longlong)puVar17 + 0x14) = 0;
-            *(undefined4 *)((longlong)puVar17 + 0x1c) = 0x3f800000;
+            *(int32_t *)puVar17 = 4;
+            *(int32_t *)((longlong)puVar17 + 4) = 0x3f800000;
+            *(int32_t *)(puVar17 + 1) = 0x3f800000;
+            *(uint64_t *)((longlong)puVar17 + 0xc) = 0x3f800000;
+            *(uint64_t *)((longlong)puVar17 + 0x14) = 0;
+            *(int32_t *)((longlong)puVar17 + 0x1c) = 0x3f800000;
             puVar17[4] = 0;
-            *(undefined1 *)(puVar17 + 5) = 1;
-            *(undefined2 *)((longlong)puVar17 + 0x29) = 0;
-            *(undefined1 *)((longlong)puVar17 + 0x2b) = 0;
+            *(int8_t *)(puVar17 + 5) = 1;
+            *(int16_t *)((longlong)puVar17 + 0x29) = 0;
+            *(int8_t *)((longlong)puVar17 + 0x2b) = 0;
             __0PxConvexMeshGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0xe);
             __0PxConvexMeshGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + -6);
             in_stack_00000070 = unaff_RDI[2];
@@ -233,13 +233,13 @@ joined_r0x0001806c2e65:
             lVar12 = unaff_RDI[4];
             unaff_RBP[-0xf] = unaff_RDI[5];
             unaff_RBP[-0xd] = lVar13;
-            *(undefined1 *)(unaff_RBP + 0x2a) = 0;
+            *(int8_t *)(unaff_RBP + 0x2a) = 0;
             unaff_RBP[-9] = 0;
             unaff_RBP[-8] = 0;
             unaff_RBP[-0xe] = puVar17;
             unaff_RBP[-0x10] = lVar12;
             unaff_RBP[-0xc] = lVar4;
-            *(undefined1 *)(unaff_RBP + -0xb) = 1;
+            *(int8_t *)(unaff_RBP + -0xb) = 1;
             unaff_RBP[-10] = unaff_RBP + 0x2a;
             FUN_1806c6f10(unaff_RBP + -6,&stack0x00000060,0);
           }
@@ -247,19 +247,19 @@ joined_r0x0001806c2e65:
             iVar10 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar15,&UNK_18094c070);
             if (iVar10 == 0) {
               plVar16 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-              puVar17 = (undefined8 *)
+              puVar17 = (uint64_t *)
                         (**(code **)(*plVar16 + 8))
                                   (plVar16,0x30,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar20,0xad))
               ;
-              *(undefined4 *)puVar17 = 5;
-              *(undefined4 *)((longlong)puVar17 + 4) = 0x3f800000;
-              *(undefined4 *)(puVar17 + 1) = 0x3f800000;
-              *(undefined8 *)((longlong)puVar17 + 0xc) = 0x3f800000;
-              *(undefined8 *)((longlong)puVar17 + 0x14) = 0;
-              *(undefined4 *)((longlong)puVar17 + 0x1c) = 0x3f800000;
-              *(undefined1 *)(puVar17 + 4) = 0;
-              *(undefined2 *)((longlong)puVar17 + 0x21) = 0;
-              *(undefined1 *)((longlong)puVar17 + 0x23) = 0;
+              *(int32_t *)puVar17 = 5;
+              *(int32_t *)((longlong)puVar17 + 4) = 0x3f800000;
+              *(int32_t *)(puVar17 + 1) = 0x3f800000;
+              *(uint64_t *)((longlong)puVar17 + 0xc) = 0x3f800000;
+              *(uint64_t *)((longlong)puVar17 + 0x14) = 0;
+              *(int32_t *)((longlong)puVar17 + 0x1c) = 0x3f800000;
+              *(int8_t *)(puVar17 + 4) = 0;
+              *(int16_t *)((longlong)puVar17 + 0x21) = 0;
+              *(int8_t *)((longlong)puVar17 + 0x23) = 0;
               puVar17[5] = 0;
               __0PxTriangleMeshGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0xe);
               __0PxTriangleMeshGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + -6);
@@ -272,13 +272,13 @@ joined_r0x0001806c2e65:
               lVar12 = unaff_RDI[4];
               unaff_RBP[-0xf] = unaff_RDI[5];
               unaff_RBP[-0xd] = lVar13;
-              *(undefined1 *)(unaff_RBP + 0x2a) = 0;
+              *(int8_t *)(unaff_RBP + 0x2a) = 0;
               unaff_RBP[-9] = 0;
               unaff_RBP[-8] = 0;
               unaff_RBP[-0xe] = puVar17;
               unaff_RBP[-0x10] = lVar12;
               unaff_RBP[-0xc] = lVar4;
-              *(undefined1 *)(unaff_RBP + -0xb) = 1;
+              *(int8_t *)(unaff_RBP + -0xb) = 1;
               unaff_RBP[-10] = unaff_RBP + 0x2a;
               FUN_1806cbbd0(unaff_RBP + -6,&stack0x00000060,0);
             }
@@ -286,18 +286,18 @@ joined_r0x0001806c2e65:
               iVar10 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar15,&UNK_18094c088);
               if (iVar10 != 0) goto LAB_1806c326c;
               plVar16 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-              puVar17 = (undefined8 *)
+              puVar17 = (uint64_t *)
                         (**(code **)(*plVar16 + 8))
                                   (plVar16,0x20,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar20,0xad))
               ;
               puVar17[1] = 0;
-              *(undefined4 *)puVar17 = 6;
-              *(undefined4 *)(puVar17 + 2) = 0x3f800000;
-              *(undefined4 *)((longlong)puVar17 + 0x14) = 0x3f800000;
-              *(undefined4 *)(puVar17 + 3) = 0x3f800000;
-              *(undefined1 *)((longlong)puVar17 + 0x1c) = 0;
-              *(undefined2 *)((longlong)puVar17 + 0x1d) = 0;
-              *(undefined1 *)((longlong)puVar17 + 0x1f) = 0;
+              *(int32_t *)puVar17 = 6;
+              *(int32_t *)(puVar17 + 2) = 0x3f800000;
+              *(int32_t *)((longlong)puVar17 + 0x14) = 0x3f800000;
+              *(int32_t *)(puVar17 + 3) = 0x3f800000;
+              *(int8_t *)((longlong)puVar17 + 0x1c) = 0;
+              *(int16_t *)((longlong)puVar17 + 0x1d) = 0;
+              *(int8_t *)((longlong)puVar17 + 0x1f) = 0;
               __0PxHeightFieldGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0xe);
               __0PxHeightFieldGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + -6);
               in_stack_00000070 = unaff_RDI[2];
@@ -309,13 +309,13 @@ joined_r0x0001806c2e65:
               lVar12 = unaff_RDI[4];
               unaff_RBP[-0xf] = unaff_RDI[5];
               unaff_RBP[-0xd] = lVar13;
-              *(undefined1 *)(unaff_RBP + 0x2a) = 0;
+              *(int8_t *)(unaff_RBP + 0x2a) = 0;
               unaff_RBP[-9] = 0;
               unaff_RBP[-8] = 0;
               unaff_RBP[-0xe] = puVar17;
               unaff_RBP[-0x10] = lVar12;
               unaff_RBP[-0xc] = lVar4;
-              *(undefined1 *)(unaff_RBP + -0xb) = 1;
+              *(int8_t *)(unaff_RBP + -0xb) = 1;
               unaff_RBP[-10] = unaff_RBP + 0x2a;
               FUN_1806c89f0(unaff_RBP + -6,&stack0x00000060,0);
             }
@@ -324,25 +324,25 @@ joined_r0x0001806c2e65:
         goto LAB_1806c3258;
       }
       plVar16 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-      puVar17 = (undefined8 *)
+      puVar17 = (uint64_t *)
                 (**(code **)(*plVar16 + 8))
                           (plVar16,0xc,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar20,0xad));
-      *(undefined4 *)(puVar17 + 1) = 0;
+      *(int32_t *)(puVar17 + 1) = 0;
       *puVar17 = 2;
       __0PxCapsuleGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + -6);
       __0PxCapsuleGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0xe);
-      in_stack_00000040 = (undefined *)unaff_RDI[2];
+      in_stack_00000040 = (void *)unaff_RDI[2];
       uStack0000000000000048 = *(uint *)(unaff_RDI + 3);
-      uStack000000000000004c = *(undefined4 *)((longlong)unaff_RDI + 0x1c);
+      uStack000000000000004c = *(int32_t *)((longlong)unaff_RDI + 0x1c);
       in_stack_00000050 = unaff_RDI[4];
       cVar9 = FUN_1806c36a0(&stack0x00000040,*unaff_RDI,unaff_RDI[1],unaff_RDI[5],puVar17);
       goto joined_r0x0001806c2e65;
     }
     plVar16 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-    puVar17 = (undefined8 *)
+    puVar17 = (uint64_t *)
               (**(code **)(*plVar16 + 8))
                         (plVar16,4,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar20,0xad));
-    *(undefined4 *)puVar17 = 1;
+    *(int32_t *)puVar17 = 1;
     __0PxPlaneGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0x2a);
     __0PxPlaneGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0x2d);
   }
@@ -365,11 +365,11 @@ LAB_1806c326c:
           *(int *)(lVar13 + 0x10) = *(int *)(lVar13 + 0x10) + -1;
           lVar13 = *unaff_RDI;
         }
-        *(undefined1 *)(unaff_RDI + 9) = 1;
+        *(int8_t *)(unaff_RDI + 9) = 1;
         uVar19 = *(uint *)(lVar13 + 0x10);
         if ((uVar19 != 0) &&
            (*(char *)(*(longlong *)(lVar13 + 8) + 0x10 + (ulonglong)(uVar19 - 1) * 0x18) == '\0')) {
-          *(undefined1 *)(unaff_RDI + 9) = 0;
+          *(int8_t *)(unaff_RDI + 9) = 0;
           uVar19 = *(uint *)(lVar13 + 0x10);
         }
       } while (uVar3 < uVar19);
@@ -389,10 +389,10 @@ LAB_1806c326c:
 void FUN_1806c2a92(void)
 
 {
-  undefined4 *puVar1;
-  undefined4 uVar2;
+  int32_t *puVar1;
+  int32_t uVar2;
   uint uVar3;
-  undefined8 *puVar4;
+  uint64_t *puVar4;
   longlong lVar5;
   longlong lVar6;
   longlong lVar7;
@@ -403,25 +403,25 @@ void FUN_1806c2a92(void)
   char *pcVar12;
   longlong lVar13;
   longlong lVar14;
-  undefined8 uVar15;
-  undefined *puVar16;
+  uint64_t uVar15;
+  void *puVar16;
   longlong *plVar17;
-  undefined8 *puVar18;
+  uint64_t *puVar18;
   ulonglong uVar19;
-  undefined8 *unaff_RBP;
+  uint64_t *unaff_RBP;
   longlong *unaff_RSI;
   longlong *unaff_RDI;
   uint uVar20;
   longlong *unaff_R13;
   longlong *unaff_R15;
-  undefined4 extraout_XMM0_Da;
-  undefined4 extraout_XMM0_Da_00;
-  undefined4 extraout_XMM0_Da_01;
-  undefined4 uVar21;
-  undefined *in_stack_00000020;
-  undefined *in_stack_00000040;
+  int32_t extraout_XMM0_Da;
+  int32_t extraout_XMM0_Da_00;
+  int32_t extraout_XMM0_Da_01;
+  int32_t uVar21;
+  void *in_stack_00000020;
+  void *in_stack_00000040;
   uint uStack0000000000000048;
-  undefined4 uStack000000000000004c;
+  int32_t uStack000000000000004c;
   longlong in_stack_00000050;
   longlong in_stack_00000060;
   longlong in_stack_00000068;
@@ -448,7 +448,7 @@ void FUN_1806c2a92(void)
       }
       unaff_RBP[0x2d] = lVar14;
       if (lVar14 == 0) {
-        *(undefined1 *)unaff_RDI[10] = 1;
+        *(int8_t *)unaff_RDI[10] = 1;
       }
       else if (*(uint *)(unaff_RSI + 1) < (*(uint *)((longlong)unaff_RSI + 0xc) & 0x7fffffff)) {
         *(longlong *)(*unaff_RSI + (ulonglong)*(uint *)(unaff_RSI + 1) * 8) = lVar14;
@@ -458,20 +458,20 @@ void FUN_1806c2a92(void)
         FUN_1806d5870(uVar21,unaff_RBP + 0x2d);
       }
     }
-    uVar21 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
+    uVar21 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
     if ((char)unaff_RDI[9] == '\0') break;
     cVar10 = (**(code **)(*(longlong *)unaff_RDI[5] + 0x28))();
-    uVar21 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
+    uVar21 = (int32_t)((ulonglong)in_stack_00000020 >> 0x20);
   } while (cVar10 != '\0');
-  puVar4 = (undefined8 *)unaff_RBP[0x2b];
+  puVar4 = (uint64_t *)unaff_RBP[0x2b];
   FUN_1806d6eb0();
   lVar13 = unaff_RDI[1];
-  uVar2 = *(undefined4 *)(*unaff_RDI + 0x10);
+  uVar2 = *(int32_t *)(*unaff_RDI + 0x10);
   uVar3 = *(uint *)(lVar13 + 0x14);
   uVar20 = *(uint *)(lVar13 + 0x10);
-  *(undefined4 *)(unaff_RBP + 0x2a) = uVar2;
+  *(int32_t *)(unaff_RBP + 0x2a) = uVar2;
   if (uVar20 < (uVar3 & 0x7fffffff)) {
-    *(undefined4 *)(*(longlong *)(lVar13 + 8) + (ulonglong)uVar20 * 4) = uVar2;
+    *(int32_t *)(*(longlong *)(lVar13 + 8) + (ulonglong)uVar20 * 4) = uVar2;
     *(int *)(lVar13 + 0x10) = *(int *)(lVar13 + 0x10) + 1;
   }
   else {
@@ -485,7 +485,7 @@ void FUN_1806c2a92(void)
   uStack0000000000000048 = uStack0000000000000048 & 0xffffff00;
   if (uVar3 < (*(uint *)(lVar13 + 0x14) & 0x7fffffff)) {
     lVar14 = *(longlong *)(lVar13 + 8);
-    puVar1 = (undefined4 *)(lVar14 + (ulonglong)uVar3 * 0x18);
+    puVar1 = (int32_t *)(lVar14 + (ulonglong)uVar3 * 0x18);
     *puVar1 = 0x8094c830;
     puVar1[1] = 1;
     puVar1[2] = uStack0000000000000048;
@@ -502,12 +502,12 @@ void FUN_1806c2a92(void)
     puVar16 = &DAT_18098bc73;
   }
   else {
-    puVar16 = (undefined *)(**(code **)(*(longlong *)unaff_RDI[5] + 0x38))();
+    puVar16 = (void *)(**(code **)(*(longlong *)unaff_RDI[5] + 0x38))();
   }
   iVar11 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar16,&UNK_18094c048);
   if (iVar11 == 0) {
     plVar17 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-    puVar18 = (undefined8 *)
+    puVar18 = (uint64_t *)
               (**(code **)(*plVar17 + 8))
                         (plVar17,8,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar21,0xad));
     *puVar18 = 0;
@@ -525,21 +525,21 @@ void FUN_1806c2a92(void)
     unaff_RBP[-6] = lVar14;
     unaff_RBP[-5] = lVar5;
     unaff_RBP[-1] = lVar6;
-    *(undefined1 *)(unaff_RBP + 0x2a) = 0;
+    *(int8_t *)(unaff_RBP + 0x2a) = 0;
     unaff_RBP[5] = 0;
     unaff_RBP[6] = 0;
     *unaff_RBP = puVar18;
     unaff_RBP[-2] = lVar13;
     unaff_RBP[1] = lVar7;
     unaff_RBP[2] = lVar8;
-    *(undefined1 *)(unaff_RBP + 3) = 1;
+    *(int8_t *)(unaff_RBP + 3) = 1;
     unaff_RBP[4] = unaff_RBP + 0x2a;
     FUN_1806c0f20(unaff_RBP + -6,&stack0x00000040,0);
 LAB_1806c3258:
     cVar10 = *(char *)(unaff_RBP + 0x2a);
 joined_r0x0001806c2e65:
     if (cVar10 == '\0') {
-      *(undefined1 *)unaff_RDI[10] = 1;
+      *(int8_t *)unaff_RDI[10] = 1;
     }
   }
   else {
@@ -550,7 +550,7 @@ joined_r0x0001806c2e65:
         iVar11 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar16,&UNK_18094c008);
         if (iVar11 == 0) {
           plVar17 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-          puVar18 = (undefined8 *)
+          puVar18 = (uint64_t *)
                     (**(code **)(*plVar17 + 8))
                               (plVar17,0x10,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar21,0xad));
           *puVar18 = 3;
@@ -570,13 +570,13 @@ joined_r0x0001806c2e65:
           unaff_RBP[-6] = lVar5;
           unaff_RBP[-5] = lVar6;
           unaff_RBP[-1] = lVar7;
-          *(undefined1 *)(unaff_RBP + 0x2a) = 0;
+          *(int8_t *)(unaff_RBP + 0x2a) = 0;
           unaff_RBP[5] = 0;
           unaff_RBP[6] = 0;
           *unaff_RBP = puVar18;
           unaff_RBP[-2] = lVar13;
           unaff_RBP[2] = lVar8;
-          *(undefined1 *)(unaff_RBP + 3) = 1;
+          *(int8_t *)(unaff_RBP + 3) = 1;
           unaff_RBP[4] = unaff_RBP + 0x2a;
           FUN_1806c0b60(unaff_RBP + -6,&stack0x00000040,0);
         }
@@ -584,19 +584,19 @@ joined_r0x0001806c2e65:
           iVar11 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar16,&UNK_18094c030);
           if (iVar11 == 0) {
             plVar17 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-            puVar18 = (undefined8 *)
+            puVar18 = (uint64_t *)
                       (**(code **)(*plVar17 + 8))
                                 (plVar17,0x30,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar21,0xad));
-            *(undefined4 *)puVar18 = 4;
-            *(undefined4 *)((longlong)puVar18 + 4) = 0x3f800000;
-            *(undefined4 *)(puVar18 + 1) = 0x3f800000;
-            *(undefined8 *)((longlong)puVar18 + 0xc) = 0x3f800000;
-            *(undefined8 *)((longlong)puVar18 + 0x14) = 0;
-            *(undefined4 *)((longlong)puVar18 + 0x1c) = 0x3f800000;
+            *(int32_t *)puVar18 = 4;
+            *(int32_t *)((longlong)puVar18 + 4) = 0x3f800000;
+            *(int32_t *)(puVar18 + 1) = 0x3f800000;
+            *(uint64_t *)((longlong)puVar18 + 0xc) = 0x3f800000;
+            *(uint64_t *)((longlong)puVar18 + 0x14) = 0;
+            *(int32_t *)((longlong)puVar18 + 0x1c) = 0x3f800000;
             puVar18[4] = 0;
-            *(undefined1 *)(puVar18 + 5) = 1;
-            *(undefined2 *)((longlong)puVar18 + 0x29) = 0;
-            *(undefined1 *)((longlong)puVar18 + 0x2b) = 0;
+            *(int8_t *)(puVar18 + 5) = 1;
+            *(int16_t *)((longlong)puVar18 + 0x29) = 0;
+            *(int8_t *)((longlong)puVar18 + 0x2b) = 0;
             __0PxConvexMeshGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0xe);
             __0PxConvexMeshGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + -6);
             in_stack_00000070 = unaff_RDI[2];
@@ -608,13 +608,13 @@ joined_r0x0001806c2e65:
             lVar13 = unaff_RDI[4];
             unaff_RBP[-0xf] = unaff_RDI[5];
             unaff_RBP[-0xd] = lVar14;
-            *(undefined1 *)(unaff_RBP + 0x2a) = 0;
+            *(int8_t *)(unaff_RBP + 0x2a) = 0;
             unaff_RBP[-9] = 0;
             unaff_RBP[-8] = 0;
             unaff_RBP[-0xe] = puVar18;
             unaff_RBP[-0x10] = lVar13;
             unaff_RBP[-0xc] = lVar5;
-            *(undefined1 *)(unaff_RBP + -0xb) = 1;
+            *(int8_t *)(unaff_RBP + -0xb) = 1;
             unaff_RBP[-10] = unaff_RBP + 0x2a;
             FUN_1806c6f10(unaff_RBP + -6,&stack0x00000060,0);
           }
@@ -622,19 +622,19 @@ joined_r0x0001806c2e65:
             iVar11 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar16,&UNK_18094c070);
             if (iVar11 == 0) {
               plVar17 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-              puVar18 = (undefined8 *)
+              puVar18 = (uint64_t *)
                         (**(code **)(*plVar17 + 8))
                                   (plVar17,0x30,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar21,0xad))
               ;
-              *(undefined4 *)puVar18 = 5;
-              *(undefined4 *)((longlong)puVar18 + 4) = 0x3f800000;
-              *(undefined4 *)(puVar18 + 1) = 0x3f800000;
-              *(undefined8 *)((longlong)puVar18 + 0xc) = 0x3f800000;
-              *(undefined8 *)((longlong)puVar18 + 0x14) = 0;
-              *(undefined4 *)((longlong)puVar18 + 0x1c) = 0x3f800000;
-              *(undefined1 *)(puVar18 + 4) = 0;
-              *(undefined2 *)((longlong)puVar18 + 0x21) = 0;
-              *(undefined1 *)((longlong)puVar18 + 0x23) = 0;
+              *(int32_t *)puVar18 = 5;
+              *(int32_t *)((longlong)puVar18 + 4) = 0x3f800000;
+              *(int32_t *)(puVar18 + 1) = 0x3f800000;
+              *(uint64_t *)((longlong)puVar18 + 0xc) = 0x3f800000;
+              *(uint64_t *)((longlong)puVar18 + 0x14) = 0;
+              *(int32_t *)((longlong)puVar18 + 0x1c) = 0x3f800000;
+              *(int8_t *)(puVar18 + 4) = 0;
+              *(int16_t *)((longlong)puVar18 + 0x21) = 0;
+              *(int8_t *)((longlong)puVar18 + 0x23) = 0;
               puVar18[5] = 0;
               __0PxTriangleMeshGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0xe);
               __0PxTriangleMeshGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + -6);
@@ -647,13 +647,13 @@ joined_r0x0001806c2e65:
               lVar13 = unaff_RDI[4];
               unaff_RBP[-0xf] = unaff_RDI[5];
               unaff_RBP[-0xd] = lVar14;
-              *(undefined1 *)(unaff_RBP + 0x2a) = 0;
+              *(int8_t *)(unaff_RBP + 0x2a) = 0;
               unaff_RBP[-9] = 0;
               unaff_RBP[-8] = 0;
               unaff_RBP[-0xe] = puVar18;
               unaff_RBP[-0x10] = lVar13;
               unaff_RBP[-0xc] = lVar5;
-              *(undefined1 *)(unaff_RBP + -0xb) = 1;
+              *(int8_t *)(unaff_RBP + -0xb) = 1;
               unaff_RBP[-10] = unaff_RBP + 0x2a;
               FUN_1806cbbd0(unaff_RBP + -6,&stack0x00000060,0);
             }
@@ -661,18 +661,18 @@ joined_r0x0001806c2e65:
               iVar11 = _stricmp_shdfnd_physx__YAHPEBD0_Z(puVar16,&UNK_18094c088);
               if (iVar11 != 0) goto LAB_1806c326c;
               plVar17 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-              puVar18 = (undefined8 *)
+              puVar18 = (uint64_t *)
                         (**(code **)(*plVar17 + 8))
                                   (plVar17,0x20,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar21,0xad))
               ;
               puVar18[1] = 0;
-              *(undefined4 *)puVar18 = 6;
-              *(undefined4 *)(puVar18 + 2) = 0x3f800000;
-              *(undefined4 *)((longlong)puVar18 + 0x14) = 0x3f800000;
-              *(undefined4 *)(puVar18 + 3) = 0x3f800000;
-              *(undefined1 *)((longlong)puVar18 + 0x1c) = 0;
-              *(undefined2 *)((longlong)puVar18 + 0x1d) = 0;
-              *(undefined1 *)((longlong)puVar18 + 0x1f) = 0;
+              *(int32_t *)puVar18 = 6;
+              *(int32_t *)(puVar18 + 2) = 0x3f800000;
+              *(int32_t *)((longlong)puVar18 + 0x14) = 0x3f800000;
+              *(int32_t *)(puVar18 + 3) = 0x3f800000;
+              *(int8_t *)((longlong)puVar18 + 0x1c) = 0;
+              *(int16_t *)((longlong)puVar18 + 0x1d) = 0;
+              *(int8_t *)((longlong)puVar18 + 0x1f) = 0;
               __0PxHeightFieldGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0xe);
               __0PxHeightFieldGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + -6);
               in_stack_00000070 = unaff_RDI[2];
@@ -684,13 +684,13 @@ joined_r0x0001806c2e65:
               lVar13 = unaff_RDI[4];
               unaff_RBP[-0xf] = unaff_RDI[5];
               unaff_RBP[-0xd] = lVar14;
-              *(undefined1 *)(unaff_RBP + 0x2a) = 0;
+              *(int8_t *)(unaff_RBP + 0x2a) = 0;
               unaff_RBP[-9] = 0;
               unaff_RBP[-8] = 0;
               unaff_RBP[-0xe] = puVar18;
               unaff_RBP[-0x10] = lVar13;
               unaff_RBP[-0xc] = lVar5;
-              *(undefined1 *)(unaff_RBP + -0xb) = 1;
+              *(int8_t *)(unaff_RBP + -0xb) = 1;
               unaff_RBP[-10] = unaff_RBP + 0x2a;
               FUN_1806c89f0(unaff_RBP + -6,&stack0x00000060,0);
             }
@@ -699,25 +699,25 @@ joined_r0x0001806c2e65:
         goto LAB_1806c3258;
       }
       plVar17 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-      puVar18 = (undefined8 *)
+      puVar18 = (uint64_t *)
                 (**(code **)(*plVar17 + 8))
                           (plVar17,0xc,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar21,0xad));
-      *(undefined4 *)(puVar18 + 1) = 0;
+      *(int32_t *)(puVar18 + 1) = 0;
       *puVar18 = 2;
       __0PxCapsuleGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + -6);
       __0PxCapsuleGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0xe);
-      in_stack_00000040 = (undefined *)unaff_RDI[2];
+      in_stack_00000040 = (void *)unaff_RDI[2];
       uStack0000000000000048 = *(uint *)(unaff_RDI + 3);
-      uStack000000000000004c = *(undefined4 *)((longlong)unaff_RDI + 0x1c);
+      uStack000000000000004c = *(int32_t *)((longlong)unaff_RDI + 0x1c);
       in_stack_00000050 = unaff_RDI[4];
       cVar10 = FUN_1806c36a0(&stack0x00000040,*unaff_RDI,unaff_RDI[1],unaff_RDI[5],puVar18);
       goto joined_r0x0001806c2e65;
     }
     plVar17 = (longlong *)(**(code **)(*(longlong *)unaff_RDI[7] + 0x18))();
-    puVar18 = (undefined8 *)
+    puVar18 = (uint64_t *)
               (**(code **)(*plVar17 + 8))
                         (plVar17,4,&UNK_18094c990,&UNK_18094c930,CONCAT44(uVar21,0xad));
-    *(undefined4 *)puVar18 = 1;
+    *(int32_t *)puVar18 = 1;
     __0PxPlaneGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0x2a);
     __0PxPlaneGeometryGeneratedInfo_physx__QEAA_XZ(unaff_RBP + 0x2d);
   }
@@ -740,11 +740,11 @@ LAB_1806c326c:
           *(int *)(lVar14 + 0x10) = *(int *)(lVar14 + 0x10) + -1;
           lVar14 = *unaff_RDI;
         }
-        *(undefined1 *)(unaff_RDI + 9) = 1;
+        *(int8_t *)(unaff_RDI + 9) = 1;
         uVar20 = *(uint *)(lVar14 + 0x10);
         if ((uVar20 != 0) &&
            (*(char *)(*(longlong *)(lVar14 + 8) + 0x10 + (ulonglong)(uVar20 - 1) * 0x18) == '\0')) {
-          *(undefined1 *)(unaff_RDI + 9) = 0;
+          *(int8_t *)(unaff_RDI + 9) = 0;
           uVar20 = *(uint *)(lVar14 + 0x10);
         }
       } while (uVar3 < uVar20);

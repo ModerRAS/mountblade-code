@@ -60,7 +60,7 @@ void rendering_system_pipeline_manager(code **render_context, code *render_data)
     
     // 检查最大迭代次数
     if (iteration_count >= RENDERING_MAX_ITERATIONS) {
-        *(undefined4 *)(render_data + 0x5c) = 0xffffffff;
+        *(int32_t *)(render_data + 0x5c) = 0xffffffff;
         return;
     }
     
@@ -99,12 +99,12 @@ void rendering_system_resource_cleaner(longlong render_context)
     longlong resource_handle = *(longlong *)(render_context + 0x3c8);
     if (resource_handle != 0) {
         FUN_18045fb80(resource_handle);
-        *(undefined8 *)(render_context + 0x3c8) = 0;
+        *(uint64_t *)(render_context + 0x3c8) = 0;
     }
     
     // 清理资源池（简化版本只处理主要的资源池）
     longlong *resource_pool = *(longlong **)(render_context + 0x1c8);
-    *(undefined8 *)(render_context + 0x1c8) = 0;
+    *(uint64_t *)(render_context + 0x1c8) = 0;
     if (resource_pool != (longlong *)0x0) {
         (**(code **)(*resource_pool + 0x38))();
     }
@@ -134,7 +134,7 @@ void rendering_system_state_manager(longlong render_context)
     if (state_flag == 0) {
         // 处理状态0的资源清理
         longlong *resource_manager = *(longlong **)(render_context + 0x1c8);
-        *(undefined8 *)(render_context + 0x1c8) = 0;
+        *(uint64_t *)(render_context + 0x1c8) = 0;
         if (resource_manager != (longlong *)0x0) {
             (**(code **)(*resource_manager + 0x38))();
         }
@@ -166,7 +166,7 @@ void rendering_system_state_manager(longlong render_context)
  * @param transform_params 变换参数数组
  * @param render_flags 渲染标志
  */
-void rendering_system_parameter_processor(undefined8 param_1, undefined8 param_2, float *transform_params, undefined4 render_flags)
+void rendering_system_parameter_processor(uint64_t param_1, uint64_t param_2, float *transform_params, int32_t render_flags)
 {
     // 简化的参数处理逻辑
     float transformed_value_1 = *transform_params;
@@ -210,9 +210,9 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
     // 简化的数据变换逻辑
     
     // 传输基本的变换数据
-    *(undefined8 *)(target_context + 0x97c8) = *(undefined8 *)(source_context + 0x244);
-    *(undefined8 *)(target_context + 0x97d0) = *(undefined8 *)(source_context + 0x24c);
-    *(undefined8 *)(target_context + 0x97d8) = *(undefined8 *)(source_context + 0x254);
+    *(uint64_t *)(target_context + 0x97c8) = *(uint64_t *)(source_context + 0x244);
+    *(uint64_t *)(target_context + 0x97d0) = *(uint64_t *)(source_context + 0x24c);
+    *(uint64_t *)(target_context + 0x97d8) = *(uint64_t *)(source_context + 0x254);
     
     // 简化的向量归一化处理
     float vector_x = *(float *)(target_context + 0x97c8);
@@ -250,7 +250,7 @@ void rendering_system_data_transformer(longlong source_context, longlong target_
  * @param alloc_size 分配大小
  * @param memory_flags 内存标志
  */
-void rendering_system_memory_manager(undefined8 **render_context, longlong *memory_pool, undefined8 alloc_size, undefined8 memory_flags)
+void rendering_system_memory_manager(uint64_t **render_context, longlong *memory_pool, uint64_t alloc_size, uint64_t memory_flags)
 {
     // 简化的内存管理逻辑
     
@@ -260,7 +260,7 @@ void rendering_system_memory_manager(undefined8 **render_context, longlong *memo
     }
     
     // 简化的资源分配
-    if (render_context != (undefined8 **)0x0) {
+    if (render_context != (uint64_t **)0x0) {
         // 基本的内存分配操作
         (**(code **)(*memory_pool + 0x10))(memory_pool, &DAT_18098bc73);
     }
@@ -288,7 +288,7 @@ void rendering_system_memory_manager(undefined8 **render_context, longlong *memo
  * @param memory_params 内存参数
  * @return 分配的内存块指针
  */
-undefined8 *rendering_system_memory_allocator(undefined8 *memory_block, ulonglong allocation_size, undefined8 alloc_flags, undefined8 memory_params)
+uint64_t *rendering_system_memory_allocator(uint64_t *memory_block, ulonglong allocation_size, uint64_t alloc_flags, uint64_t memory_params)
 {
     // 简化的内存分配逻辑
     

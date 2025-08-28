@@ -8,7 +8,7 @@ void FUN_180738e07(void)
 {
   int iVar1;
   int iVar2;
-  undefined4 unaff_ESI;
+  int32_t unaff_ESI;
   
   iVar1 = FUN_18074b880(&stack0x00000040,0x100);
   iVar2 = FUN_18074b880(&stack0x00000040 + iVar1,0x100 - iVar1,&DAT_180a06434);

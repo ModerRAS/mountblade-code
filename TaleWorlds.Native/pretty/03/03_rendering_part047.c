@@ -37,148 +37,148 @@ void initialize_rendering_parameters(longlong render_context)
   }
   
   // 设置基础缩放参数 (1.0, 1.0)
-  *(undefined8 *)(context_ptr + 0xa0) = 0x3f8000003f800000;
-  *(undefined8 *)(context_ptr + 0xa8) = 0x3f8000003f800000;
+  *(uint64_t *)(context_ptr + 0xa0) = 0x3f8000003f800000;
+  *(uint64_t *)(context_ptr + 0xa8) = 0x3f8000003f800000;
   
   // 设置细节层次参数 (0.05, 0.05)
-  *(undefined8 *)(context_ptr + 0xc0) = 0x3d75c28f3d75c28f;
-  *(undefined8 *)(context_ptr + 200) = 0x3f70a3d73d75c28f;
+  *(uint64_t *)(context_ptr + 0xc0) = 0x3d75c28f3d75c28f;
+  *(uint64_t *)(context_ptr + 200) = 0x3f70a3d73d75c28f;
   
   // 设置UV映射参数 (0.08, 0.08)
-  *(undefined8 *)(context_ptr + 0xe0) = 0x3da3d70a3da3d70a;
-  *(undefined8 *)(context_ptr + 0xe8) = 0x3f70a3d73da3d70a;
+  *(uint64_t *)(context_ptr + 0xe0) = 0x3da3d70a3da3d70a;
+  *(uint64_t *)(context_ptr + 0xe8) = 0x3f70a3d73da3d70a;
   
   // 设置基础偏移参数 (0.5, 0.5)
-  *(undefined8 *)(context_ptr + 0xb0) = 0x3f0000003f000000;
-  *(undefined8 *)(context_ptr + 0xb8) = 0x3f8000003f000000;
+  *(uint64_t *)(context_ptr + 0xb0) = 0x3f0000003f000000;
+  *(uint64_t *)(context_ptr + 0xb8) = 0x3f8000003f000000;
   
   // 清零某些参数区域
-  *(undefined8 *)(context_ptr + 0x100) = 0;
-  *(undefined8 *)(context_ptr + 0x108) = 0;
+  *(uint64_t *)(context_ptr + 0x100) = 0;
+  *(uint64_t *)(context_ptr + 0x108) = 0;
   
   // 设置颜色混合参数
-  *(undefined8 *)(context_ptr + 0x120) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x128) = 0x3ecccccd3f7ae148;
+  *(uint64_t *)(context_ptr + 0x120) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x128) = 0x3ecccccd3f7ae148;
   
   // 清零更多参数区域
-  *(undefined8 *)(context_ptr + 0xd0) = 0;
-  *(undefined8 *)(context_ptr + 0xd8) = 0;
+  *(uint64_t *)(context_ptr + 0xd0) = 0;
+  *(uint64_t *)(context_ptr + 0xd8) = 0;
   
   // 设置纹理坐标参数
-  *(undefined8 *)(context_ptr + 0x140) = 0x3d23d70a3d23d70a;
-  *(undefined8 *)(context_ptr + 0x148) = 0x3f8000003d23d70a;
+  *(uint64_t *)(context_ptr + 0x140) = 0x3d23d70a3d23d70a;
+  *(uint64_t *)(context_ptr + 0x148) = 0x3f8000003d23d70a;
   
   // 设置高级渲染参数
-  *(undefined8 *)(context_ptr + 0x110) = 0x3e947ae13e23d70a;
-  *(undefined8 *)(context_ptr + 0x118) = 0x3f0a3d713ef5c28f;
+  *(uint64_t *)(context_ptr + 0x110) = 0x3e947ae13e23d70a;
+  *(uint64_t *)(context_ptr + 0x118) = 0x3f0a3d713ef5c28f;
   
   // 设置阴影参数
-  *(undefined8 *)(context_ptr + 0x160) = 0;
-  *(undefined8 *)(context_ptr + 0x168) = 0x3f028f5c00000000;
+  *(uint64_t *)(context_ptr + 0x160) = 0;
+  *(uint64_t *)(context_ptr + 0x168) = 0x3f028f5c00000000;
   
   // 设置光照参数
-  *(undefined8 *)(context_ptr + 0x130) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x138) = 0x3f2b851f3f7ae148;
+  *(uint64_t *)(context_ptr + 0x130) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x138) = 0x3f2b851f3f7ae148;
   
   // 设置环境光参数
-  *(undefined8 *)(context_ptr + 0x180) = 0x3ca3d70a3ca3d70a;
-  *(undefined8 *)(context_ptr + 0x188) = 0x3f07ae143ca3d70a;
+  *(uint64_t *)(context_ptr + 0x180) = 0x3ca3d70a3ca3d70a;
+  *(uint64_t *)(context_ptr + 0x188) = 0x3f07ae143ca3d70a;
   
   // 设置雾效参数
-  *(undefined8 *)(context_ptr + 0x170) = 0x3e0f5c293e0f5c29;
-  *(undefined8 *)(context_ptr + 0x178) = 0x3f8000003e0f5c29;
+  *(uint64_t *)(context_ptr + 0x170) = 0x3e0f5c293e0f5c29;
+  *(uint64_t *)(context_ptr + 0x178) = 0x3f8000003e0f5c29;
   
   // 设置反射参数
-  *(undefined8 *)(context_ptr + 0x1a0) = 0x3ed1eb853ed1eb85;
-  *(undefined8 *)(context_ptr + 0x1a8) = 0x3f8000003ed1eb85;
+  *(uint64_t *)(context_ptr + 0x1a0) = 0x3ed1eb853ed1eb85;
+  *(uint64_t *)(context_ptr + 0x1a8) = 0x3f8000003ed1eb85;
   
   // 设置折射参数
-  *(undefined8 *)(context_ptr + 400) = 0x3e9eb8523e9eb852;
-  *(undefined8 *)(context_ptr + 0x198) = 0x3f8000003e9eb852;
+  *(uint64_t *)(context_ptr + 400) = 0x3e9eb8523e9eb852;
+  *(uint64_t *)(context_ptr + 0x198) = 0x3f8000003e9eb852;
   
   // 设置多重采样参数
-  *(undefined8 *)(context_ptr + 0x1c0) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x1c8) = 0x3f8000003f7ae148;
+  *(uint64_t *)(context_ptr + 0x1c0) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x1c8) = 0x3f8000003f7ae148;
   
   // 设置抗锯齿参数
-  *(undefined8 *)(context_ptr + 0x1e0) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x1e8) = 0x3f8000003f7ae148;
+  *(uint64_t *)(context_ptr + 0x1e0) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x1e8) = 0x3f8000003f7ae148;
   
   // 设置深度参数
-  *(undefined8 *)(context_ptr + 0x200) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x208) = 0x3f8000003f7ae148;
+  *(uint64_t *)(context_ptr + 0x200) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x208) = 0x3f8000003f7ae148;
   
   // 设置模板参数
-  *(undefined8 *)(context_ptr + 0x240) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x248) = 0x3f8000003f7ae148;
+  *(uint64_t *)(context_ptr + 0x240) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x248) = 0x3f8000003f7ae148;
   
   // 设置混合参数
-  *(undefined8 *)(context_ptr + 0x1b0) = 0x3f028f5c3f028f5c;
-  *(undefined8 *)(context_ptr + 0x1b8) = 0x3f8000003f028f5c;
+  *(uint64_t *)(context_ptr + 0x1b0) = 0x3f028f5c3f028f5c;
+  *(uint64_t *)(context_ptr + 0x1b8) = 0x3f8000003f028f5c;
   
   // 设置滤镜参数
-  *(undefined8 *)(context_ptr + 0x260) = 0x3ecccccd3dcccccd;
-  *(undefined8 *)(context_ptr + 0x268) = 0x3f47ae143f400000;
+  *(uint64_t *)(context_ptr + 0x260) = 0x3ecccccd3dcccccd;
+  *(uint64_t *)(context_ptr + 0x268) = 0x3f47ae143f400000;
   
   // 设置锐化参数
-  *(undefined8 *)(context_ptr + 0x1d0) = 0x3f051eb83e75c28f;
-  *(undefined8 *)(context_ptr + 0x1d8) = 0x3f8000003f6147ae;
+  *(uint64_t *)(context_ptr + 0x1d0) = 0x3f051eb83e75c28f;
+  *(uint64_t *)(context_ptr + 0x1d8) = 0x3f8000003f6147ae;
   
   // 设置模糊参数
-  *(undefined8 *)(context_ptr + 0x280) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x288) = 0x3e8000003f7ae148;
+  *(uint64_t *)(context_ptr + 0x280) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x288) = 0x3e8000003f7ae148;
   
   // 设置噪声参数
-  *(undefined8 *)(context_ptr + 0x1f0) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x1f8) = 0x3ecccccd3f7ae148;
+  *(uint64_t *)(context_ptr + 0x1f0) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x1f8) = 0x3ecccccd3f7ae148;
   
   // 设置粒子参数
-  *(undefined8 *)(context_ptr + 0xf0) = 0x3edc28f63edc28f6;
-  *(undefined8 *)(context_ptr + 0xf8) = 0x3f0000003f000000;
+  *(uint64_t *)(context_ptr + 0xf0) = 0x3edc28f63edc28f6;
+  *(uint64_t *)(context_ptr + 0xf8) = 0x3f0000003f000000;
   
   // 设置物理参数
-  *(undefined8 *)(context_ptr + 0x250) = 0x3edc28f63edc28f6;
-  *(undefined8 *)(context_ptr + 600) = 0x3f0000003f000000;
+  *(uint64_t *)(context_ptr + 0x250) = 0x3edc28f63edc28f6;
+  *(uint64_t *)(context_ptr + 600) = 0x3f0000003f000000;
   
   // 设置后处理参数
-  *(undefined8 *)(context_ptr + 0x2a0) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x2a8) = 0x3f7333333f7ae148;
+  *(uint64_t *)(context_ptr + 0x2a0) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x2a8) = 0x3f7333333f7ae148;
   
   // 设置色调映射参数
-  *(undefined8 *)(context_ptr + 0x210) = 0x3f07ae143d75c28f;
-  *(undefined8 *)(context_ptr + 0x218) = 0x3f8000003f7ae148;
+  *(uint64_t *)(context_ptr + 0x210) = 0x3f07ae143d75c28f;
+  *(uint64_t *)(context_ptr + 0x218) = 0x3f8000003f7ae148;
   
   // 设置伽马校正参数
-  *(undefined8 *)(context_ptr + 0x270) = 0x3ecccccd3dcccccd;
-  *(undefined8 *)(context_ptr + 0x278) = 0x3f8000003f400000;
+  *(uint64_t *)(context_ptr + 0x270) = 0x3ecccccd3dcccccd;
+  *(uint64_t *)(context_ptr + 0x278) = 0x3f8000003f400000;
   
   // 设置HDR参数
-  *(undefined8 *)(context_ptr + 0x230) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x238) = 0x3f4ccccd3f7ae148;
+  *(uint64_t *)(context_ptr + 0x230) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x238) = 0x3f4ccccd3f7ae148;
   
   // 设置色彩空间参数
-  *(undefined8 *)(context_ptr + 0x290) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x298) = 0x3f2b851f3f7ae148;
+  *(uint64_t *)(context_ptr + 0x290) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x298) = 0x3f2b851f3f7ae148;
   
   // 设置曝光参数
-  *(undefined4 *)(context_ptr + 0x220) = 0x3e851eb8;
-  *(undefined4 *)(context_ptr + 0x224) = 0x3f170a3d;
-  *(undefined4 *)(context_ptr + 0x228) = 0x3f7ae148;
-  *(undefined4 *)(context_ptr + 0x22c) = 0x3e9eb852;
+  *(int32_t *)(context_ptr + 0x220) = 0x3e851eb8;
+  *(int32_t *)(context_ptr + 0x224) = 0x3f170a3d;
+  *(int32_t *)(context_ptr + 0x228) = 0x3f7ae148;
+  *(int32_t *)(context_ptr + 0x22c) = 0x3e9eb852;
   
   // 设置对比度参数
-  *(undefined4 *)(context_ptr + 0x150) = 0x3e23d70a;
-  *(undefined4 *)(context_ptr + 0x154) = 0x3e947ae1;
-  *(undefined4 *)(context_ptr + 0x158) = 0x3ef5c28f;
-  *(undefined4 *)(context_ptr + 0x15c) = 0x3f800000;
+  *(int32_t *)(context_ptr + 0x150) = 0x3e23d70a;
+  *(int32_t *)(context_ptr + 0x154) = 0x3e947ae1;
+  *(int32_t *)(context_ptr + 0x158) = 0x3ef5c28f;
+  *(int32_t *)(context_ptr + 0x15c) = 0x3f800000;
   
   // 设置高级色彩参数
-  *(undefined8 *)(context_ptr + 0x2c0) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x2c8) = 0x3f4ccccd3f7ae148;
+  *(uint64_t *)(context_ptr + 0x2c0) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x2c8) = 0x3f4ccccd3f7ae148;
   
   // 设置饱和度参数
-  *(undefined4 *)(context_ptr + 0x2b0) = 0x3e3851eb;
-  *(undefined4 *)(context_ptr + 0x2b4) = 0x3eb33332;
+  *(int32_t *)(context_ptr + 0x2b0) = 0x3e3851eb;
+  *(int32_t *)(context_ptr + 0x2b4) = 0x3eb33332;
   
   // 动态计算亮度参数 (基于插值)
   *(float *)(context_ptr + 0x2b8) =
@@ -250,54 +250,54 @@ void initialize_rendering_parameters(longlong render_context)
        *(float *)(context_ptr + 0x2dc);
   
   // 设置色差参数
-  *(undefined8 *)(context_ptr + 0x310) = 0x3e4ccccd3e4ccccd;
-  *(undefined8 *)(context_ptr + 0x318) = 0x3f8000003e4ccccd;
+  *(uint64_t *)(context_ptr + 0x310) = 0x3e4ccccd3e4ccccd;
+  *(uint64_t *)(context_ptr + 0x318) = 0x3f8000003e4ccccd;
   
   // 设置色域参数
-  *(undefined8 *)(context_ptr + 800) = 0x3f1c28f63f1c28f6;
-  *(undefined8 *)(context_ptr + 0x328) = 0x3f8000003f1c28f6;
+  *(uint64_t *)(context_ptr + 800) = 0x3f1c28f63f1c28f6;
+  *(uint64_t *)(context_ptr + 0x328) = 0x3f8000003f1c28f6;
   
   // 设置白平衡参数
-  *(undefined8 *)(context_ptr + 0x330) = 0x3edc28f63f800000;
-  *(undefined8 *)(context_ptr + 0x338) = 0x3f8000003eb33333;
+  *(uint64_t *)(context_ptr + 0x330) = 0x3edc28f63f800000;
+  *(uint64_t *)(context_ptr + 0x338) = 0x3f8000003eb33333;
   
   // 设置色彩温度参数
-  *(undefined8 *)(context_ptr + 0x340) = 0x3f3333333f666666;
-  *(undefined8 *)(context_ptr + 0x348) = 0x3f80000000000000;
+  *(uint64_t *)(context_ptr + 0x340) = 0x3f3333333f666666;
+  *(uint64_t *)(context_ptr + 0x348) = 0x3f80000000000000;
   
   // 设置色彩平衡参数
-  *(undefined8 *)(context_ptr + 0x350) = 0x3f19999a3f800000;
-  *(undefined8 *)(context_ptr + 0x358) = 0x3f80000000000000;
+  *(uint64_t *)(context_ptr + 0x350) = 0x3f19999a3f800000;
+  *(uint64_t *)(context_ptr + 0x358) = 0x3f80000000000000;
   
   // 设置色彩分级参数
-  *(undefined8 *)(context_ptr + 0x360) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x368) = 0x3eb333333f7ae148;
+  *(uint64_t *)(context_ptr + 0x360) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x368) = 0x3eb333333f7ae148;
   
   // 设置色彩校正参数
-  *(undefined8 *)(context_ptr + 0x370) = 0x3f8000003f800000;
-  *(undefined8 *)(context_ptr + 0x378) = 0x3f66666600000000;
+  *(uint64_t *)(context_ptr + 0x370) = 0x3f8000003f800000;
+  *(uint64_t *)(context_ptr + 0x378) = 0x3f66666600000000;
   
   // 设置色彩增强参数
-  *(undefined8 *)(context_ptr + 0x380) = 0x3f170a3d3e851eb8;
-  *(undefined8 *)(context_ptr + 0x388) = 0x3f8000003f7ae148;
+  *(uint64_t *)(context_ptr + 0x380) = 0x3f170a3d3e851eb8;
+  *(uint64_t *)(context_ptr + 0x388) = 0x3f8000003f7ae148;
   
   // 设置色彩还原参数
-  *(undefined8 *)(context_ptr + 0x390) = 0x3f8000003f800000;
-  *(undefined8 *)(context_ptr + 0x398) = 0x3f3333333f800000;
+  *(uint64_t *)(context_ptr + 0x390) = 0x3f8000003f800000;
+  *(uint64_t *)(context_ptr + 0x398) = 0x3f3333333f800000;
   
   // 设置色彩滤波参数
-  *(undefined8 *)(context_ptr + 0x3a0) = 0x3f4ccccd3f4ccccd;
-  *(undefined8 *)(context_ptr + 0x3a8) = 0x3e4ccccd3f4ccccd;
+  *(uint64_t *)(context_ptr + 0x3a0) = 0x3f4ccccd3f4ccccd;
+  *(uint64_t *)(context_ptr + 0x3a8) = 0x3e4ccccd3f4ccccd;
   
   // 复制并应用颜色参数
-  *(undefined4 *)(context_ptr + 0x300) = *(undefined4 *)(context_ptr + 0x240);
-  *(undefined4 *)(context_ptr + 0x304) = *(undefined4 *)(context_ptr + 0x244);
-  *(undefined4 *)(context_ptr + 0x308) = *(undefined4 *)(context_ptr + 0x248);
+  *(int32_t *)(context_ptr + 0x300) = *(int32_t *)(context_ptr + 0x240);
+  *(int32_t *)(context_ptr + 0x304) = *(int32_t *)(context_ptr + 0x244);
+  *(int32_t *)(context_ptr + 0x308) = *(int32_t *)(context_ptr + 0x248);
   *(float *)(context_ptr + 0x30c) = *(float *)(context_ptr + 0x24c) * 0.7;
   
   // 设置最终色彩参数
-  *(undefined8 *)(context_ptr + 0x3b0) = 0x3f4ccccd3f4ccccd;
-  *(undefined8 *)(context_ptr + 0x3b8) = 0x3eb333333f4ccccd;
+  *(uint64_t *)(context_ptr + 0x3b0) = 0x3f4ccccd3f4ccccd;
+  *(uint64_t *)(context_ptr + 0x3b8) = 0x3eb333333f4ccccd;
   
   return;
 }
@@ -308,7 +308,7 @@ void initialize_rendering_parameters(longlong render_context)
  * 
  * @param context 渲染上下文指针
  */
-void reset_rendering_context(undefined4 *context)
+void reset_rendering_context(int32_t *context)
 {
   int resource_count;
   int cleanup_size;
@@ -349,8 +349,8 @@ void reset_rendering_context(undefined4 *context)
   FUN_18013e800(context + 8, 0);
   context[0xc] = 3;
   context[0x12] = 0;
-  *(undefined8 *)(context + 0x14) = 0;
-  *(undefined8 *)(context + 0x16) = 0;
+  *(uint64_t *)(context + 0x14) = 0;
+  *(uint64_t *)(context + 0x16) = 0;
   
   // 清理扩展资源
   resource_count = context[0x19];
@@ -404,11 +404,11 @@ void reset_rendering_context(undefined4 *context)
  * 
  * @param resource_handle 资源句柄指针
  */
-void release_rendering_resources(undefined8 *resource_handle)
+void release_rendering_resources(uint64_t *resource_handle)
 {
   int *reference_counter;
   longlong resource_ptr;
-  undefined8 *sub_resource;
+  uint64_t *sub_resource;
   longlong global_context;
   uint resource_index;
   ulonglong iteration_count;
@@ -451,7 +451,7 @@ void release_rendering_resources(undefined8 *resource_handle)
   }
   
   // 重置资源标志
-  *(undefined4 *)(resource_handle + 9) = 0;
+  *(int32_t *)(resource_handle + 9) = 0;
   resource_handle[10] = 0;
   resource_handle[0xb] = 0;
   
@@ -474,15 +474,15 @@ void release_rendering_resources(undefined8 *resource_handle)
     resource_ptr = resource_handle[0x11];
     if (resource_ptr == 0) {
       // 重置数组标志
-      *(undefined4 *)(resource_handle + 0x12) = 0;
-      *(undefined4 *)((longlong)resource_handle + 0x94) = 1;
+      *(int32_t *)(resource_handle + 0x12) = 0;
+      *(int32_t *)((longlong)resource_handle + 0x94) = 1;
       
       // 遍历并清理数组中的资源
       iteration_count = 0;
       if (0 < *(int *)(resource_handle + 0x13)) {
         do {
           if (iteration_count == 0) {
-            sub_resource = (undefined8 *)resource_handle[0x14];
+            sub_resource = (uint64_t *)resource_handle[0x14];
             *sub_resource = 0;
             sub_resource[1] = 0;
             sub_resource[2] = 0;
@@ -494,7 +494,7 @@ void release_rendering_resources(undefined8 *resource_handle)
           array_offset = iteration_count * 0x20;
           resource_ptr = *(longlong *)(resource_handle[0x14] + 8 + array_offset);
           if (resource_ptr != 0) {
-            *(undefined8 *)(resource_handle[0x14] + array_offset) = 0;
+            *(uint64_t *)(resource_handle[0x14] + array_offset) = 0;
             if (global_context != 0) {
               *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
             }
@@ -504,7 +504,7 @@ void release_rendering_resources(undefined8 *resource_handle)
           // 清理数组元素扩展资源
           resource_ptr = *(longlong *)(resource_handle[0x14] + 0x18 + array_offset);
           if (resource_ptr != 0) {
-            *(undefined8 *)(resource_handle[0x14] + 0x10 + array_offset) = 0;
+            *(uint64_t *)(resource_handle[0x14] + 0x10 + array_offset) = 0;
             if (global_context != 0) {
               *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
             }
@@ -556,9 +556,9 @@ void release_rendering_resources_extended(longlong resource_context)
 {
   int *reference_counter;
   longlong resource_ptr;
-  undefined8 *sub_resource;
+  uint64_t *sub_resource;
   longlong global_context;
-  undefined8 *resource_base;
+  uint64_t *resource_base;
   uint resource_index;
   ulonglong iteration_count;
   longlong array_offset;
@@ -599,7 +599,7 @@ void release_rendering_resources_extended(longlong resource_context)
   }
   
   // 重置资源标志
-  *(undefined4 *)(resource_base + 9) = 0;
+  *(int32_t *)(resource_base + 9) = 0;
   resource_base[10] = 0;
   resource_base[0xb] = 0;
   
@@ -622,15 +622,15 @@ void release_rendering_resources_extended(longlong resource_context)
     resource_ptr = resource_base[0x11];
     if (resource_ptr == 0) {
       // 重置数组标志
-      *(undefined4 *)(resource_base + 0x12) = 0;
-      *(undefined4 *)((longlong)resource_base + 0x94) = 1;
+      *(int32_t *)(resource_base + 0x12) = 0;
+      *(int32_t *)((longlong)resource_base + 0x94) = 1;
       
       // 遍历并清理数组中的资源
       iteration_count = 0;
       if (0 < *(int *)(resource_base + 0x13)) {
         do {
           if (iteration_count == 0) {
-            sub_resource = (undefined8 *)resource_base[0x14];
+            sub_resource = (uint64_t *)resource_base[0x14];
             *sub_resource = 0;
             sub_resource[1] = 0;
             sub_resource[2] = 0;
@@ -642,7 +642,7 @@ void release_rendering_resources_extended(longlong resource_context)
           array_offset = iteration_count * 0x20;
           resource_ptr = *(longlong *)(resource_base[0x14] + 8 + array_offset);
           if (resource_ptr != 0) {
-            *(undefined8 *)(resource_base[0x14] + array_offset) = 0;
+            *(uint64_t *)(resource_base[0x14] + array_offset) = 0;
             if (global_context != 0) {
               *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
             }
@@ -652,7 +652,7 @@ void release_rendering_resources_extended(longlong resource_context)
           // 清理数组元素扩展资源
           resource_ptr = *(longlong *)(resource_base[0x14] + 0x18 + array_offset);
           if (resource_ptr != 0) {
-            *(undefined8 *)(resource_base[0x14] + 0x10 + array_offset) = 0;
+            *(uint64_t *)(resource_base[0x14] + 0x10 + array_offset) = 0;
             if (global_context != 0) {
               *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
             }
@@ -702,7 +702,7 @@ void release_rendering_resources_extended(longlong resource_context)
  */
 void cleanup_rendering_data_arrays(void)
 {
-  undefined8 *array_element;
+  uint64_t *array_element;
   longlong resource_ptr;
   longlong global_context;
   longlong array_base;
@@ -718,7 +718,7 @@ void cleanup_rendering_data_arrays(void)
   // 遍历数组元素
   do {
     if (iteration_index == 0) {
-      array_element = *(undefined8 **)(unaff_RBX + 0xa0);
+      array_element = *(uint64_t **)(unaff_RBX + 0xa0);
       *array_element = 0;
       array_element[1] = 0;
       array_element[2] = 0;
@@ -779,7 +779,7 @@ void release_rendering_memory_pool(void)
   longlong memory_pool;
   longlong global_context;
   longlong unaff_RBX;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   
   // 获取全局渲染上下文
   global_context = RENDER_CONTEXT_BASE;
@@ -787,7 +787,7 @@ void release_rendering_memory_pool(void)
   
   // 释放内存池
   if (memory_pool != 0) {
-    *(undefined8 *)(unaff_RBX + 0x98) = unaff_R15;
+    *(uint64_t *)(unaff_RBX + 0x98) = unaff_R15;
     if (global_context != 0) {
       reference_counter = (int *)(global_context + 0x3a8);
       *reference_counter = *reference_counter + -1;
@@ -804,16 +804,16 @@ void release_rendering_memory_pool(void)
  * 
  * @param buffer_handle 缓冲区句柄
  */
-void deallocate_rendering_buffer(undefined8 buffer_handle)
+void deallocate_rendering_buffer(uint64_t buffer_handle)
 {
   int *reference_counter;
   longlong global_context;
   longlong unaff_RBX;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   
   // 获取全局渲染上下文
   global_context = RENDER_CONTEXT_BASE;
-  *(undefined8 *)(unaff_RBX + 0x98) = unaff_R15;
+  *(uint64_t *)(unaff_RBX + 0x98) = unaff_R15;
   
   // 减少引用计数并释放缓冲区
   if (global_context != 0) {
@@ -832,7 +832,7 @@ void deallocate_rendering_buffer(undefined8 buffer_handle)
 void add_rendering_parameter_entry(int *parameter_array)
 {
   longlong *parameter_entry;
-  undefined8 *extended_data;
+  uint64_t *extended_data;
   longlong array_base;
   int current_count;
   uint parameter_id;
@@ -840,8 +840,8 @@ void add_rendering_parameter_entry(int *parameter_array)
   longlong parameter_data;
   int array_capacity;
   uint *source_entry;
-  undefined4 stack_param;
-  undefined8 extended_value;
+  int32_t stack_param;
+  uint64_t extended_value;
   
   // 获取源参数条目
   if (parameter_array[0x18] == 0) {
@@ -859,7 +859,7 @@ void add_rendering_parameter_entry(int *parameter_array)
   if (parameter_array[0x1c] == 0) {
     extended_value = 0;
   } else {
-    extended_value = *(undefined8 *)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
+    extended_value = *(uint64_t *)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
   }
   
   // 检查并扩展数组容量
@@ -887,12 +887,12 @@ void add_rendering_parameter_entry(int *parameter_array)
   parameter_entry[1] = parameter_data;
   
   // 设置扩展数据
-  extended_data = (undefined8 *)(array_base + 0x10 + array_base * 0x30);
+  extended_data = (uint64_t *)(array_base + 0x10 + array_base * 0x30);
   *extended_data = CONCAT44(stack_param, parameter_flags);
   extended_data[1] = extended_value;
   
   // 清零额外数据区域
-  extended_data = (undefined8 *)(array_base + 0x20 + array_base * 0x30);
+  extended_data = (uint64_t *)(array_base + 0x20 + array_base * 0x30);
   *extended_data = 0;
   extended_data[1] = 0;
   
@@ -910,7 +910,7 @@ void add_rendering_parameter_entry(int *parameter_array)
  */
 void update_rendering_parameter_entry(int *parameter_array)
 {
-  undefined8 *parameter_entry;
+  uint64_t *parameter_entry;
   longlong resource_ptr;
   int current_count;
   uint parameter_id;
@@ -921,8 +921,8 @@ void update_rendering_parameter_entry(int *parameter_array)
   longlong *existing_entry;
   int *previous_entry;
   int *prev_prev_entry;
-  undefined4 stack_param;
-  undefined8 extended_value;
+  int32_t stack_param;
+  uint64_t extended_value;
   
   // 获取源参数条目
   if (parameter_array[0x18] == 0) {
@@ -962,7 +962,7 @@ void update_rendering_parameter_entry(int *parameter_array)
     if (parameter_array[0x1c] == 0) {
       extended_value = 0;
     } else {
-      extended_value = *(undefined8 *)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
+      extended_value = *(uint64_t *)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
     }
     
     // 检查并扩展数组容量
@@ -988,10 +988,10 @@ void update_rendering_parameter_entry(int *parameter_array)
     existing_entry = (longlong *)(parameter_data + resource_ptr * 0x30);
     *existing_entry = (ulonglong)parameter_id << 0x20;
     existing_entry[1] = parameter_data;
-    parameter_entry = (undefined8 *)(parameter_data + 0x10 + resource_ptr * 0x30);
+    parameter_entry = (uint64_t *)(parameter_data + 0x10 + resource_ptr * 0x30);
     *parameter_entry = CONCAT44(stack_param, parameter_flags);
     parameter_entry[1] = extended_value;
-    parameter_entry = (undefined8 *)(parameter_data + 0x20 + resource_ptr * 0x30);
+    parameter_entry = (uint64_t *)(parameter_data + 0x20 + resource_ptr * 0x30);
     *parameter_entry = 0;
     parameter_entry[1] = 0;
     *parameter_array = *parameter_array + 1;
@@ -1034,7 +1034,7 @@ void update_rendering_parameter_entry(int *parameter_array)
  */
 void remove_rendering_parameter_entry(int *parameter_array)
 {
-  undefined8 *parameter_entry;
+  uint64_t *parameter_entry;
   longlong resource_ptr;
   int current_count;
   uint parameter_id;
@@ -1045,8 +1045,8 @@ void remove_rendering_parameter_entry(int *parameter_array)
   longlong *existing_entry;
   int *previous_entry;
   int *prev_prev_entry;
-  undefined4 stack_param;
-  undefined8 extended_value;
+  int32_t stack_param;
+  uint64_t extended_value;
   
   // 获取当前参数引用
   prev_prev_entry = (int *)0x0;
@@ -1105,7 +1105,7 @@ void remove_rendering_parameter_entry(int *parameter_array)
   if (parameter_array[0x1c] == 0) {
     extended_value = 0;
   } else {
-    extended_value = *(undefined8 *)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
+    extended_value = *(uint64_t *)(*(longlong *)(parameter_array + 0x1e) + -8 + (longlong)parameter_array[0x1c] * 8);
   }
   
   // 检查并扩展数组容量
@@ -1131,10 +1131,10 @@ void remove_rendering_parameter_entry(int *parameter_array)
   existing_entry = (longlong *)(resource_ptr + parameter_data * 0x30);
   *existing_entry = (ulonglong)parameter_id << 0x20;
   existing_entry[1] = parameter_data;
-  parameter_entry = (undefined8 *)(resource_ptr + 0x10 + parameter_data * 0x30);
+  parameter_entry = (uint64_t *)(resource_ptr + 0x10 + parameter_data * 0x30);
   *parameter_entry = CONCAT44(stack_param, parameter_flags);
   parameter_entry[1] = extended_value;
-  parameter_entry = (undefined8 *)(resource_ptr + 0x20 + parameter_data * 0x30);
+  parameter_entry = (uint64_t *)(resource_ptr + 0x20 + parameter_data * 0x30);
   *parameter_entry = 0;
   parameter_entry[1] = 0;
   *parameter_array = *parameter_array + 1;

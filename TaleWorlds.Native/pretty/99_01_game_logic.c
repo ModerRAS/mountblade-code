@@ -301,7 +301,7 @@ typedef undefined GameLogic_ResourceManager_type;
  * @note 此函数在游戏启动时被调用
  * @warning 错误的初始化可能导致系统不稳定
  */
-undefined GameLogic_Initializer(undefined8 system_context, undefined8 init_flag, undefined8 config_param, undefined8 resource_param);
+undefined GameLogic_Initializer(uint64_t system_context, uint64_t init_flag, uint64_t config_param, uint64_t resource_param);
 
 /**
  * @brief 游戏事件处理器
@@ -321,7 +321,7 @@ undefined GameLogic_Initializer(undefined8 system_context, undefined8 init_flag,
  * @note 此函数在游戏运行时被频繁调用
  * @warning 错误的事件处理可能导致逻辑错误
  */
-undefined GameLogic_EventHandler(undefined8 event_context, undefined8 event_type, undefined8 event_data, undefined8 event_param);
+undefined GameLogic_EventHandler(uint64_t event_context, uint64_t event_type, uint64_t event_data, uint64_t event_param);
 
 /**
  * @brief 游戏状态更新器
@@ -341,7 +341,7 @@ undefined GameLogic_EventHandler(undefined8 event_context, undefined8 event_type
  * @note 此函数在游戏主循环中被调用
  * @warning 错误的状态更新可能导致游戏逻辑错误
  */
-undefined GameLogic_StateUpdater(undefined8 state_context, undefined8 update_flag, undefined8 delta_time, undefined8 update_param);
+undefined GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, uint64_t delta_time, uint64_t update_param);
 
 /**
  * @brief 游戏资源清理器
@@ -360,7 +360,7 @@ undefined GameLogic_StateUpdater(undefined8 state_context, undefined8 update_fla
  * @note 此函数在游戏关闭时被调用
  * @warning 需要确保所有资源都已正确释放
  */
-undefined GameLogic_ResourceCleaner(undefined8 resource_context, undefined8 cleanup_flag, undefined8 cleanup_param);
+undefined GameLogic_ResourceCleaner(uint64_t resource_context, uint64_t cleanup_flag, uint64_t cleanup_param);
 
 /* ========================================
    函数别名定义（便于代码阅读和维护）
@@ -379,25 +379,25 @@ undefined GameLogic_ResourceCleaner(undefined8 resource_context, undefined8 clea
  * @brief 游戏逻辑上下文
  * 存储游戏逻辑的上下文信息
  */
-static undefined8 *g_game_logic_context = NULL;
+static uint64_t *g_game_logic_context = NULL;
 
 /**
  * @brief 游戏事件队列
  * 存储待处理的游戏事件
  */
-static undefined8 *g_game_event_queue = NULL;
+static uint64_t *g_game_event_queue = NULL;
 
 /**
  * @brief 游戏状态管理器
  * 管理游戏状态的组件
  */
-static undefined8 *g_game_state_manager = NULL;
+static uint64_t *g_game_state_manager = NULL;
 
 /**
  * @brief 游戏资源管理器
  * 管理游戏资源的组件
  */
-static undefined8 *g_game_resource_manager = NULL;
+static uint64_t *g_game_resource_manager = NULL;
 
 /**
  * @brief 游戏系统标志
@@ -424,10 +424,10 @@ static uint32_t g_game_system_flags = 0;
  * @param resource_param 资源参数
  * @return undefined 初始化状态
  */
-undefined GameLogic_Initializer(undefined8 system_context, undefined8 init_flag, undefined8 config_param, undefined8 resource_param)
+undefined GameLogic_Initializer(uint64_t system_context, uint64_t init_flag, uint64_t config_param, uint64_t resource_param)
 
 {
-  undefined8 initialization_result;
+  uint64_t initialization_result;
   
   // 执行游戏初始化逻辑
   initialization_result = FUN_1800adba0;
@@ -456,10 +456,10 @@ undefined GameLogic_Initializer(undefined8 system_context, undefined8 init_flag,
  * @param event_param 事件参数
  * @return undefined 事件处理状态
  */
-undefined GameLogic_EventHandler(undefined8 event_context, undefined8 event_type, undefined8 event_data, undefined8 event_param)
+undefined GameLogic_EventHandler(uint64_t event_context, uint64_t event_type, uint64_t event_data, uint64_t event_param)
 
 {
-  undefined8 event_handling_result;
+  uint64_t event_handling_result;
   
   // 执行事件处理逻辑
   event_handling_result = FUN_1800adc50;
@@ -487,10 +487,10 @@ undefined GameLogic_EventHandler(undefined8 event_context, undefined8 event_type
  * @param update_param 更新参数
  * @return undefined 状态更新结果
  */
-undefined GameLogic_StateUpdater(undefined8 state_context, undefined8 update_flag, undefined8 delta_time, undefined8 update_param)
+undefined GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, uint64_t delta_time, uint64_t update_param)
 
 {
-  undefined8 state_update_result;
+  uint64_t state_update_result;
   
   // 执行状态更新逻辑
   state_update_result = FUN_1800b8300;
@@ -517,10 +517,10 @@ undefined GameLogic_StateUpdater(undefined8 state_context, undefined8 update_fla
  * @param cleanup_param 清理参数
  * @return undefined 清理状态
  */
-undefined GameLogic_ResourceCleaner(undefined8 resource_context, undefined8 cleanup_flag, undefined8 cleanup_param)
+undefined GameLogic_ResourceCleaner(uint64_t resource_context, uint64_t cleanup_flag, uint64_t cleanup_param)
 
 {
-  undefined8 cleanup_result;
+  uint64_t cleanup_result;
   
   // 执行资源清理逻辑
   cleanup_result = FUN_1800ae3f0;

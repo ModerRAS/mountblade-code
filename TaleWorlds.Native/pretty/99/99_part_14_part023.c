@@ -211,7 +211,7 @@ typedef struct {
  * @param param_4 帧管理上下文
  * @details 管理异常帧的生命周期，处理异常分发和清理
  */
-void ExceptionFrameManager(longlong param_1, undefined8 param_2, undefined8 param_3, longlong param_4) {
+void ExceptionFrameManager(longlong param_1, uint64_t param_2, uint64_t param_3, longlong param_4) {
     longlong frame_context;
     
     // 获取帧管理上下文
@@ -239,7 +239,7 @@ void SystemRandomInitializer(void) {
     ulonglong performance_value;
     uint current_process_id;
     uint performance_low;
-    undefined4 performance_high;
+    int32_t performance_high;
     
     // 检查是否已经初始化
     if (_DAT_180bf00a8 == SYSTEM_INIT_CHECK_VALUE) {
@@ -281,7 +281,7 @@ void SystemRandomInitializer(void) {
  * @return 操作结果
  * @details 管理线程库的生命周期和配置
  */
-undefined8 ThreadLibraryManager(undefined8 param_1, int param_2) {
+uint64_t ThreadLibraryManager(uint64_t param_1, int param_2) {
     if (param_2 == 1) {
         // 禁用线程库调用
         DisableThreadLibraryCalls();
@@ -312,13 +312,13 @@ void SystemStateManager(void) {
  * @param param_1 清理参数
  * @details 执行系统资源清理和状态重置
  */
-void SystemCleanupHandler(undefined4 param_1) {
+void SystemCleanupHandler(int32_t param_1) {
     code *processor_function;
     int processor_feature;
-    undefined1 *stack_context;
-    undefined1 stack_buffer_5c8[8];
-    undefined1 stack_buffer_5c0[232];
-    undefined1 stack_buffer_4d8[1232];
+    int8_t *stack_context;
+    int8_t stack_buffer_5c8[8];
+    int8_t stack_buffer_5c0[232];
+    int8_t stack_buffer_4d8[1232];
     
     stack_context = stack_buffer_5c8;
     
@@ -331,11 +331,11 @@ void SystemCleanupHandler(undefined4 param_1) {
     }
     
     // 设置清理帧
-    *(undefined8 *)(stack_context + -8) = 0x1808fd643;
+    *(uint64_t *)(stack_context + -8) = 0x1808fd643;
     func_0x0001808fd608(3);
     
     // 设置清理帧（不返回）
-    *(undefined8 *)(stack_context + -8) = 0x1808fd654;
+    *(uint64_t *)(stack_context + -8) = 0x1808fd654;
     memset(stack_buffer_4d8, 0, 0x4d0);
 }
 
@@ -391,7 +391,7 @@ void free(void) {
  * @return 分配的内存块指针
  * @details 分配内存并处理异常上下文
  */
-undefined8 * MemoryAllocator(undefined8 *param_1, longlong param_2) {
+uint64_t * MemoryAllocator(uint64_t *param_1, longlong param_2) {
     *param_1 = &UNK_18098b928;
     param_1[1] = 0;
     param_1[2] = 0;
@@ -407,7 +407,7 @@ undefined8 * MemoryAllocator(undefined8 *param_1, longlong param_2) {
  * @return 释放后的内存块指针
  * @details 释放内存并处理异常清理
  */
-undefined8 * MemoryDeallocator(undefined8 *param_1, ulonglong param_2) {
+uint64_t * MemoryDeallocator(uint64_t *param_1, ulonglong param_2) {
     *param_1 = &UNK_18098b928;
     __std_exception_destroy(param_1 + 1);
     
@@ -423,7 +423,7 @@ undefined8 * MemoryDeallocator(undefined8 *param_1, ulonglong param_2) {
  * @details 抛出系统异常并处理异常上下文
  */
 void SystemExceptionThrower(void) {
-    undefined1 exception_context[40];
+    int8_t exception_context[40];
     
     FUN_180287f70(exception_context);
     // WARNING: Subroutine does not return
@@ -435,7 +435,7 @@ void SystemExceptionThrower(void) {
  * @details 抛出系统错误并处理错误上下文
  */
 void SystemErrorThrower(void) {
-    undefined1 error_context[40];
+    int8_t error_context[40];
     
     func_0x0001808fd81c(error_context);
     // WARNING: Subroutine does not return
@@ -449,8 +449,8 @@ void SystemErrorThrower(void) {
  * @return 计算结果
  * @details 高精度的三角函数计算器，支持sin/cos计算
  */
-ulonglong AdvancedTrigonometricCalculator(undefined8 param_1, undefined4 param_2) {
-    undefined4 input_param;
+ulonglong AdvancedTrigonometricCalculator(uint64_t param_1, int32_t param_2) {
+    int32_t input_param;
     uint range_flags;
     ulonglong result_value;
     int integer_value;
@@ -463,20 +463,20 @@ ulonglong AdvancedTrigonometricCalculator(undefined8 param_1, undefined4 param_2
     float result_x, result_y;
     int final_index;
     float final_x, final_y;
-    undefined1 input_vector[16];
+    int8_t input_vector[16];
     int vector_index;
     float vector_component;
-    undefined1 mask_vector[16];
+    int8_t mask_vector[16];
     float mask_result;
-    undefined1 result_vector[16];
-    undefined1 temp_vector[16];
-    undefined1 final_vector[16];
-    undefined1 loop_vector[16];
+    int8_t result_vector[16];
+    int8_t temp_vector[16];
+    int8_t final_vector[16];
+    int8_t loop_vector[16];
     float angle_values[8];
     ulonglong stack_value;
     uint stack_flags[2];
-    undefined1 result_matrix[3][16];
-    undefined1 temp_result[16];
+    int8_t result_matrix[3][16];
+    int8_t temp_result[16];
     
     vector_component = input_vector._0_4_;
     mask_result = input_vector._4_4_;
@@ -734,8 +734,8 @@ ulonglong AdvancedTrigonometricCalculator(undefined8 param_1, undefined4 param_2
  * @return 优化结果
  * @details 高精度的浮点数优化器，支持向量化计算
  */
-ulonglong FloatingPointOptimizer(undefined8 param_1, undefined4 param_2) {
-    undefined4 input_param;
+ulonglong FloatingPointOptimizer(uint64_t param_1, int32_t param_2) {
+    int32_t input_param;
     uint optimization_flags;
     ulonglong result_value;
     int temp_index;
@@ -746,18 +746,18 @@ ulonglong FloatingPointOptimizer(undefined8 param_1, undefined4 param_2) {
     float optimized_x, optimized_y;
     int final_index;
     float result_x, result_y;
-    undefined1 input_vector[16];
-    undefined1 temp_vector[16];
+    int8_t input_vector[16];
+    int8_t temp_vector[16];
     float temp_component;
-    undefined1 mask_vector[16];
+    int8_t mask_vector[16];
     float mask_result;
-    undefined1 result_vector[16];
+    int8_t result_vector[16];
     float final_x, final_y;
-    undefined1 loop_vector[16];
+    int8_t loop_vector[16];
     float angle_values[2][16];
     uint stack_flags[2];
-    undefined1 result_matrix[3][16];
-    undefined1 final_vector[16];
+    int8_t result_matrix[3][16];
+    int8_t final_vector[16];
     
     temp_vector = input_vector & _DAT_180d9fd20;
     final_x = temp_vector._0_4_;

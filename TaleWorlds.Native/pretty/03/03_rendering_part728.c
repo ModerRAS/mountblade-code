@@ -64,14 +64,14 @@
  * 
  * @note 这是一个高度优化的SIMD图像处理函数，使用了大量的SSE指令
  */
-void rendering_system_simd_image_processor(undefined8 param_1, longlong param_2, undefined8 param_3, short *param_4)
+void rendering_system_simd_image_processor(uint64_t param_1, longlong param_2, uint64_t param_3, short *param_4)
 {
     // 局部变量声明
     ushort *puVar1;          // 无符号短整型指针
     short *psVar2;           // 短整型指针
     short *psVar3;           // 短整型指针
     short sVar4;             // 短整型变量
-    undefined1 (*in_RAX) [16]; // SIMD寄存器指针
+    int8_t (*in_RAX) [16]; // SIMD寄存器指针
     ushort *puVar5;          // 无符号短整型指针
     longlong lVar6;          // 长整型变量
     longlong unaff_RBX;      // 未使用的RBX寄存器
@@ -83,7 +83,7 @@ void rendering_system_simd_image_processor(undefined8 param_1, longlong param_2,
     ushort uVar10;          // 无符号短整型变量
     ushort uVar11;           // 无符号短整型变量
     ushort uVar12;           // 无符号短整型变量
-    undefined1 auVar8 [16];  // SIMD数组变量
+    int8_t auVar8 [16];  // SIMD数组变量
     ushort uVar13;           // 无符号短整型变量
     ushort uVar14;           // 无符号短整型变量
     ushort uVar15;           // 无符号短整型变量
@@ -108,36 +108,36 @@ void rendering_system_simd_image_processor(undefined8 param_1, longlong param_2,
     short sVar36;            // 短整型变量
     short sVar37;            // 短整型变量
     short sVar38;            // 短整型变量
-    undefined1 auVar30 [16]; // SIMD数组变量
-    undefined1 auVar31 [16]; // SIMD数组变量
+    int8_t auVar30 [16]; // SIMD数组变量
+    int8_t auVar31 [16]; // SIMD数组变量
     short sVar43;            // 短整型变量
-    undefined1 auVar39 [16]; // SIMD数组变量
-    undefined1 in_XMM4 [16]; // XMM4寄存器内容
-    undefined1 auVar40 [16]; // SIMD数组变量
-    undefined1 auVar41 [16]; // SIMD数组变量
-    undefined1 in_XMM5 [16]; // XMM5寄存器内容
-    undefined1 auVar42 [16]; // SIMD数组变量
+    int8_t auVar39 [16]; // SIMD数组变量
+    int8_t in_XMM4 [16]; // XMM4寄存器内容
+    int8_t auVar40 [16]; // SIMD数组变量
+    int8_t auVar41 [16]; // SIMD数组变量
+    int8_t in_XMM5 [16]; // XMM5寄存器内容
+    int8_t auVar42 [16]; // SIMD数组变量
     short sVar47;            // 短整型变量
     short sVar48;            // 短整型变量
     short sVar49;            // 短整型变量
     short sVar50;            // 短整型变量
     short sVar51;            // 短整型变量
     short sVar52;            // 短整型变量
-    undefined1 auVar44 [16]; // SIMD数组变量
-    undefined1 auVar45 [16]; // SIMD数组变量
+    int8_t auVar44 [16]; // SIMD数组变量
+    int8_t auVar45 [16]; // SIMD数组变量
     short sVar53;            // 短整型变量
-    undefined1 auVar46 [16]; // SIMD数组变量
+    int8_t auVar46 [16]; // SIMD数组变量
     short sVar54;            // 短整型变量
-    undefined4 unaff_XMM7_Da; // XMM7寄存器双字
+    int32_t unaff_XMM7_Da; // XMM7寄存器双字
     short sVar55;            // 短整型变量
     short sVar56;            // 短整型变量
-    undefined4 unaff_XMM7_Db; // XMM7寄存器双字
+    int32_t unaff_XMM7_Db; // XMM7寄存器双字
     short sVar57;            // 短整型变量
     short sVar58;            // 短整型变量
-    undefined4 unaff_XMM7_Dc; // XMM7寄存器双字
+    int32_t unaff_XMM7_Dc; // XMM7寄存器双字
     short sVar59;            // 短整型变量
     short sVar60;            // 短整型变量
-    undefined4 unaff_XMM7_Dd; // XMM7寄存器双字
+    int32_t unaff_XMM7_Dd; // XMM7寄存器双字
     short sVar61;            // 短整型变量
     short sVar62;            // 短整型变量
     short sVar65;            // 短整型变量
@@ -146,13 +146,13 @@ void rendering_system_simd_image_processor(undefined8 param_1, longlong param_2,
     short sVar68;            // 短整型变量
     short sVar69;            // 短整型变量
     short sVar70;            // 短整型变量
-    undefined1 auVar63 [16]; // SIMD数组变量
-    undefined1 auVar64 [16]; // SIMD数组变量
-    undefined1 auVar71 [16]; // SIMD数组变量
-    undefined1 auVar72 [16]; // SIMD数组变量
-    undefined1 auVar73 [16]; // SIMD数组变量
-    undefined1 (*in_stack_000000b8) [16]; // 栈参数
-    undefined1 (*in_stack_000000c0) [16]; // 栈参数
+    int8_t auVar63 [16]; // SIMD数组变量
+    int8_t auVar64 [16]; // SIMD数组变量
+    int8_t auVar71 [16]; // SIMD数组变量
+    int8_t auVar72 [16]; // SIMD数组变量
+    int8_t auVar73 [16]; // SIMD数组变量
+    int8_t (*in_stack_000000b8) [16]; // 栈参数
+    int8_t (*in_stack_000000c0) [16]; // 栈参数
     short *in_stack_000000d8; // 栈参数
     ushort *in_stack_000000e0; // 栈参数
     
@@ -167,8 +167,8 @@ void rendering_system_simd_image_processor(undefined8 param_1, longlong param_2,
     auVar42 = psraw(in_XMM5, 0xf);  // 对XMM5进行15位右移
     
     // SIMD异或操作（用于数据解密或变换）
-    auVar30 = auVar40 ^ *(undefined1 (*) [16])(unaff_RBX + param_2 * 2);
-    auVar39 = auVar42 ^ *(undefined1 (*) [16])(unaff_RBX + 0x10 + param_2 * 2);
+    auVar30 = auVar40 ^ *(int8_t (*) [16])(unaff_RBX + param_2 * 2);
+    auVar39 = auVar42 ^ *(int8_t (*) [16])(unaff_RBX + 0x10 + param_2 * 2);
     
     // SIMD减法操作（计算差异）
     auVar31._0_2_ = auVar30._0_2_ - auVar40._0_2_;
@@ -397,10 +397,10 @@ void rendering_system_simd_image_processor(undefined8 param_1, longlong param_2,
         
         do {
             puVar1 = puVar5 + 0x10;
-            auVar41 = psraw(*(undefined1 (*) [16])(lVar7 + -0x10 + (longlong)puVar5), 0xf);
-            auVar45 = psraw(*(undefined1 (*) [16])(lVar7 + (longlong)puVar5), 0xf);
-            auVar30 = auVar41 ^ *(undefined1 (*) [16])(lVar7 + -0x30 + (longlong)puVar1);
-            auVar39 = auVar45 ^ *(undefined1 (*) [16])(lVar7 + -0x20 + (longlong)puVar1);
+            auVar41 = psraw(*(int8_t (*) [16])(lVar7 + -0x10 + (longlong)puVar5), 0xf);
+            auVar45 = psraw(*(int8_t (*) [16])(lVar7 + (longlong)puVar5), 0xf);
+            auVar30 = auVar41 ^ *(int8_t (*) [16])(lVar7 + -0x30 + (longlong)puVar1);
+            auVar39 = auVar45 ^ *(int8_t (*) [16])(lVar7 + -0x20 + (longlong)puVar1);
             
             // 循环内的SIMD操作（与前面类似的处理逻辑）
             auVar44._0_2_ = auVar30._0_2_ - auVar41._0_2_;
@@ -683,35 +683,35 @@ void rendering_system_simd_image_processor(undefined8 param_1, longlong param_2,
  * 
  * @note 这是一个高性能的内存填充函数，使用了SIMD指令优化
  */
-void rendering_system_memory_block_filler(undefined8 param_1, longlong param_2)
+void rendering_system_memory_block_filler(uint64_t param_1, longlong param_2)
 {
     // 局部变量声明
-    undefined4 *puVar1;          // 无符号整型指针
-    undefined4 *puVar2;          // 无符号整型指针
+    int32_t *puVar1;          // 无符号整型指针
+    int32_t *puVar2;          // 无符号整型指针
     longlong in_R10;             // R10寄存器值
     longlong in_R11;             // R11寄存器值
-    undefined4 unaff_XMM7_Da;    // XMM7寄存器双字a
-    undefined4 unaff_XMM7_Db;    // XMM7寄存器双字b
-    undefined4 unaff_XMM7_Dc;    // XMM7寄存器双字c
-    undefined4 unaff_XMM7_Dd;    // XMM7寄存器双字d
-    undefined2 *in_stack_000000e0; // 栈参数
+    int32_t unaff_XMM7_Da;    // XMM7寄存器双字a
+    int32_t unaff_XMM7_Db;    // XMM7寄存器双字b
+    int32_t unaff_XMM7_Dc;    // XMM7寄存器双字c
+    int32_t unaff_XMM7_Dd;    // XMM7寄存器双字d
+    int16_t *in_stack_000000e0; // 栈参数
     
     // 初始化指针位置
-    puVar2 = (undefined4 *)(in_R11 + (param_2 + 8) * 2);
+    puVar2 = (int32_t *)(in_R11 + (param_2 + 8) * 2);
     
     // 循环填充内存块
     do {
         param_2 = param_2 + 0x10;  // 增加16字节（一个SIMD向量的大小）
         
         // 填充第一个内存块
-        puVar1 = (undefined4 *)((longlong)puVar2 + (in_R10 - in_R11) + -0x10);
+        puVar1 = (int32_t *)((longlong)puVar2 + (in_R10 - in_R11) + -0x10);
         *puVar1 = unaff_XMM7_Da;
         puVar1[1] = unaff_XMM7_Db;
         puVar1[2] = unaff_XMM7_Dc;
         puVar1[3] = unaff_XMM7_Dd;
         
         // 填充第二个内存块
-        puVar1 = (undefined4 *)((longlong)puVar2 + (in_R10 - in_R11));
+        puVar1 = (int32_t *)((longlong)puVar2 + (in_R10 - in_R11));
         *puVar1 = unaff_XMM7_Da;
         puVar1[1] = unaff_XMM7_Db;
         puVar1[2] = unaff_XMM7_Dc;
@@ -794,7 +794,7 @@ void rendering_system_advanced_pixel_difference_calculator(longlong param_1, int
     int iVar11;                 // 整型变量
     int iVar12;                 // 整型变量
     longlong lVar13;             // 长整型变量
-    undefined1 auVar14 [16];    // SIMD数组变量
+    int8_t auVar14 [16];    // SIMD数组变量
     int iVar15;                 // 整型变量
     int iVar16;                 // 整型变量
     int iVar17;                 // 整型变量
@@ -803,9 +803,9 @@ void rendering_system_advanced_pixel_difference_calculator(longlong param_1, int
     int iVar20;                 // 整型变量
     int iVar21;                 // 整型变量
     int iVar22;                 // 整型变量
-    undefined1 in_XMM2 [16];     // XMM2寄存器内容
-    undefined1 auVar23 [16];     // SIMD数组变量
-    undefined1 auVar24 [16];     // SIMD数组变量
+    int8_t in_XMM2 [16];     // XMM2寄存器内容
+    int8_t auVar23 [16];     // SIMD数组变量
+    int8_t auVar24 [16];     // SIMD数组变量
     longlong lStackX_18;        // 栈变量
     longlong lStack_48;         // 栈变量
     

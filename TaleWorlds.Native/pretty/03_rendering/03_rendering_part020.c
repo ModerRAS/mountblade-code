@@ -57,58 +57,58 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
     // 局部变量声明
     char name_char1, name_char2;
     code *render_function;
-    undefined8 material_handle;
+    uint64_t material_handle;
     longlong material_offset;
     char *name_ptr1, *name_ptr2;
     ulonglong data_size;
     longlong *material_list;
     longlong current_material;
-    undefined *texture_ptr;
-    undefined8 *material_entry;
-    undefined8 *sub_material_entry;
-    undefined8 *material_node;
+    void *texture_ptr;
+    uint64_t *material_entry;
+    uint64_t *sub_material_entry;
+    uint64_t *material_node;
     char *search_name, *current_name;
     ulonglong material_index;
     uint material_count;
     bool name_match;
     
     // 栈变量定义
-    undefined1 stack_buffer_2d8[32];          // 安全缓冲区
+    int8_t stack_buffer_2d8[32];          // 安全缓冲区
     uint material_params[4];                 // 材质参数数组
     longlong *material_chain;                // 材质链表指针
-    undefined *texture_manager;              // 纹理管理器
+    void *texture_manager;              // 纹理管理器
     longlong name_buffer_ptr;                // 名称缓冲区指针
     uint name_length;                         // 名称长度
-    undefined8 render_state;                 // 渲染状态
-    undefined8 texture_data[3];              // 纹理数据
+    uint64_t render_state;                 // 渲染状态
+    uint64_t texture_data[3];              // 纹理数据
     float factor_value;                       // 因子值
     float alpha_value;                        // 透明度值
-    undefined8 color_data[3];                // 颜色数据
-    undefined *material_resource;             // 材质资源
+    uint64_t color_data[3];                // 颜色数据
+    void *material_resource;             // 材质资源
     longlong second_material_handle;          // 第二材质句柄
     int material_index_int;                   // 材质索引整数
     ulonglong material_data_size;             // 材质数据大小
-    undefined *data_processor;               // 数据处理器
+    void *data_processor;               // 数据处理器
     longlong data_buffer;                     // 数据缓冲区
-    undefined4 process_flags;                 // 处理标志
+    int32_t process_flags;                 // 处理标志
     ulonglong file_offset;                    // 文件偏移量
     longlong *material_array[3];             // 材质数组
-    undefined4 uv_coords[4];                 // UV坐标
+    int32_t uv_coords[4];                 // UV坐标
     float transform_values[6];               // 变换值
     float color_values[9];                    // 颜色值
-    undefined4 blend_params[4];               // 混合参数
+    int32_t blend_params[4];               // 混合参数
     float factor_values[3];                  // 因子值数组
-    undefined4 color_params[4];              // 颜色参数
-    undefined8 transform_data[2];            // 变换数据
+    int32_t color_params[4];              // 颜色参数
+    uint64_t transform_data[2];            // 变换数据
     longlong *material_manager;               // 材质管理器
-    undefined4 render_params[8];              // 渲染参数
-    undefined4 uv_params[4];                  // UV参数
-    undefined *mesh_processor;                // 网格处理器
+    int32_t render_params[8];              // 渲染参数
+    int32_t uv_params[4];                  // UV参数
+    void *mesh_processor;                // 网格处理器
     char material_name[MAX_MATERIAL_NAME_LENGTH]; // 材质名称缓冲区
-    undefined *resource_manager;              // 资源管理器
-    undefined1 *shader_data;                  // 着色器数据
-    undefined4 shader_flags;                  // 着色器标志
-    undefined1 render_buffer[136];            // 渲染缓冲区
+    void *resource_manager;              // 资源管理器
+    int8_t *shader_data;                  // 着色器数据
+    int32_t shader_flags;                  // 着色器标志
+    int8_t render_buffer[136];            // 渲染缓冲区
     ulonglong security_cookie;               // 安全cookie
     
     // 初始化安全cookie
@@ -129,9 +129,9 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
     }
     
     // 遍历材质数据链表
-    for (material_entry = (undefined8 *)material_data[8]; 
-         material_chain = material_data, material_entry != (undefined8 *)0x0;
-         material_entry = (undefined8 *)material_entry[6]) {
+    for (material_entry = (uint64_t *)material_data[8]; 
+         material_chain = material_data, material_entry != (uint64_t *)0x0;
+         material_entry = (uint64_t *)material_entry[6]) {
         
         current_name = (char *)*material_entry;
         if (current_name == (char *)0x0) {
@@ -186,11 +186,11 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
                 memcpy(render_context[0x3f], name_buffer_ptr, material_count);
             }
             
-            *(undefined4 *)(render_context + 0x40) = 0;
+            *(int32_t *)(render_context + 0x40) = 0;
             if (render_context[0x3f] != 0) {
-                *(undefined1 *)(data_size + render_context[0x3f]) = 0;
+                *(int8_t *)(data_size + render_context[0x3f]) = 0;
             }
-            *(undefined4 *)((longlong)render_context + 0x20c) = render_state._4_4_;
+            *(int32_t *)((longlong)render_context + 0x20c) = render_state._4_4_;
         } else {
             FUN_180275a60(current_material, render_context, 1);
         }
@@ -209,9 +209,9 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
     }
     
     // 遍历材质数据
-    for (material_entry = (undefined8 *)material_data[8]; 
-         material_entry != (undefined8 *)0x0;
-         material_entry = (undefined8 *)material_entry[6]) {
+    for (material_entry = (uint64_t *)material_data[8]; 
+         material_entry != (uint64_t *)0x0;
+         material_entry = (uint64_t *)material_entry[6]) {
         
         current_name = (char *)*material_entry;
         if (current_name == (char *)0x0) {
@@ -271,8 +271,8 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
     material_resource = &UNK_18098bcb0;
     
     // 处理网格材质数据
-    material_node = (undefined8 *)material_data[6];
-    if (material_node != (undefined8 *)0x0) {
+    material_node = (uint64_t *)material_data[6];
+    if (material_node != (uint64_t *)0x0) {
         do {
             // 初始化处理参数
             texture_data[0] = &UNK_180a3c3e0;
@@ -288,9 +288,9 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
             }
             
             // 遍历网格节点
-            for (sub_material_entry = (undefined8 *)material_node[8]; 
-                 sub_material_entry != (undefined8 *)0x0;
-                 sub_material_entry = (undefined8 *)sub_material_entry[6]) {
+            for (sub_material_entry = (uint64_t *)material_node[8]; 
+                 sub_material_entry != (uint64_t *)0x0;
+                 sub_material_entry = (uint64_t *)sub_material_entry[6]) {
                 
                 current_name = (char *)*sub_material_entry;
                 if (current_name == (char *)0x0) {
@@ -352,8 +352,8 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
                     material_index_int = *(int *)(material_offset + 0x10);
                     sub_material_entry = &DAT_18098bc73;
                     
-                    if (*(undefined **)(material_offset + MATERIAL_TEXTURE_OFFSET) != (undefined *)0x0) {
-                        sub_material_entry = *(undefined **)(material_offset + MATERIAL_TEXTURE_OFFSET);
+                    if (*(void **)(material_offset + MATERIAL_TEXTURE_OFFSET) != (void *)0x0) {
+                        sub_material_entry = *(void **)(material_offset + MATERIAL_TEXTURE_OFFSET);
                     }
                     
                     mesh_processor = texture_ptr;
@@ -405,9 +405,9 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
                             current_name++;
                         }
                         
-                        for (sub_material_entry = (undefined8 *)material_node[8]; 
-                             sub_material_entry != (undefined8 *)0x0;
-                             sub_material_entry = (undefined8 *)sub_material_entry[6]) {
+                        for (sub_material_entry = (uint64_t *)material_node[8]; 
+                             sub_material_entry != (uint64_t *)0x0;
+                             sub_material_entry = (uint64_t *)sub_material_entry[6]) {
                             
                             current_name = (char *)*sub_material_entry;
                             if (current_name == (char *)0x0) {
@@ -465,9 +465,9 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
                             current_name++;
                         }
                         
-                        for (sub_material_entry = (undefined8 *)material_node[8]; 
-                             sub_material_entry != (undefined8 *)0x0;
-                             sub_material_entry = (undefined8 *)sub_material_entry[6]) {
+                        for (sub_material_entry = (uint64_t *)material_node[8]; 
+                             sub_material_entry != (uint64_t *)0x0;
+                             sub_material_entry = (uint64_t *)sub_material_entry[6]) {
                             
                             current_name = (char *)*sub_material_entry;
                             if (current_name == (char *)0x0) {
@@ -533,9 +533,9 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
                             current_name++;
                         }
                         
-                        for (sub_material_entry = (undefined8 *)material_node[8]; 
-                             sub_material_entry != (undefined8 *)0x0;
-                             sub_material_entry = (undefined8 *)sub_material_entry[6]) {
+                        for (sub_material_entry = (uint64_t *)material_node[8]; 
+                             sub_material_entry != (uint64_t *)0x0;
+                             sub_material_entry = (uint64_t *)sub_material_entry[6]) {
                             
                             current_name = (char *)*sub_material_entry;
                             if (current_name == (char *)0x0) {
@@ -597,18 +597,18 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
                         // 处理UV坐标
                         material_offset = FUN_180631b90(material_node, &UNK_180a167e0, &render_params[0]);
                         if (material_offset != 0) {
-                            *(undefined4 *)(current_material + MATERIAL_UV_OFFSET) = render_params[0];
-                            *(undefined4 *)(current_material + MATERIAL_UV_OFFSET + 4) = render_params[1];
-                            *(undefined4 *)(current_material + MATERIAL_UV_OFFSET + 8) = render_params[2];
-                            *(undefined4 *)(current_material + MATERIAL_UV_OFFSET + 12) = render_params[3];
+                            *(int32_t *)(current_material + MATERIAL_UV_OFFSET) = render_params[0];
+                            *(int32_t *)(current_material + MATERIAL_UV_OFFSET + 4) = render_params[1];
+                            *(int32_t *)(current_material + MATERIAL_UV_OFFSET + 8) = render_params[2];
+                            *(int32_t *)(current_material + MATERIAL_UV_OFFSET + 12) = render_params[3];
                         }
                         
                         material_offset = FUN_180631b90(material_node, &UNK_180a167f0, &render_params[0]);
                         if (material_offset != 0) {
-                            *(undefined4 *)(current_material + MATERIAL_SECOND_UV_OFFSET) = render_params[0];
-                            *(undefined4 *)(current_material + MATERIAL_SECOND_UV_OFFSET + 4) = render_params[1];
-                            *(undefined4 *)(current_material + MATERIAL_SECOND_UV_OFFSET + 8) = render_params[2];
-                            *(undefined4 *)(current_material + MATERIAL_SECOND_UV_OFFSET + 12) = render_params[3];
+                            *(int32_t *)(current_material + MATERIAL_SECOND_UV_OFFSET) = render_params[0];
+                            *(int32_t *)(current_material + MATERIAL_SECOND_UV_OFFSET + 4) = render_params[1];
+                            *(int32_t *)(current_material + MATERIAL_SECOND_UV_OFFSET + 8) = render_params[2];
+                            *(int32_t *)(current_material + MATERIAL_SECOND_UV_OFFSET + 12) = render_params[3];
                         }
                         
                         resource_manager = &UNK_18098bcb0;
@@ -640,9 +640,9 @@ void process_rendering_materials(longlong *render_context, longlong *material_da
             
             while (true) {
                 do {
-                    material_node = (undefined8 *)material_node[0xb];
+                    material_node = (uint64_t *)material_node[0xb];
                     material_data = material_chain;
-                    if (material_node == (undefined8 *)0x0) {
+                    if (material_node == (uint64_t *)0x0) {
                         goto cleanup_section;
                     }
                     
@@ -679,9 +679,9 @@ cleanup_section:
         current_name++;
     }
     
-    material_entry = (undefined8 *)material_data[8];
+    material_entry = (uint64_t *)material_data[8];
     do {
-        if (material_entry == (undefined8 *)0x0) {
+        if (material_entry == (uint64_t *)0x0) {
             goto final_processing;
         }
         
@@ -717,7 +717,7 @@ cleanup_section:
                 
 final_processing:
                 // 设置渲染状态
-                *(undefined1 *)((longlong)render_context + 0x32c) = 0;
+                *(int8_t *)((longlong)render_context + 0x32c) = 0;
                 data_processor = &UNK_180a3c3e0;
                 material_data_size = 0;
                 data_buffer = 0;
@@ -730,14 +730,14 @@ final_processing:
                     current_name++;
                 }
                 
-                material_entry = (undefined8 *)material_data[8];
+                material_entry = (uint64_t *)material_data[8];
                 do {
-                    if (material_entry == (undefined8 *)0x0) {
+                    if (material_entry == (uint64_t *)0x0) {
                         // 设置渲染参数
-                        render_params[0] = (undefined4)render_context[0x6c];
-                        render_params[1] = *(undefined4 *)((longlong)render_context + 0x364);
-                        render_params[2] = (undefined4)render_context[0x6d];
-                        render_params[3] = *(undefined4 *)((longlong)render_context + 0x36c);
+                        render_params[0] = (int32_t)render_context[0x6c];
+                        render_params[1] = *(int32_t *)((longlong)render_context + 0x364);
+                        render_params[2] = (int32_t)render_context[0x6d];
+                        render_params[3] = *(int32_t *)((longlong)render_context + 0x36c);
                         
                         FUN_1801c1720(render_context + 0x66, &uv_coords[0]);
                         FUN_180085020(render_context + 0x66, &factor_value);
@@ -749,7 +749,7 @@ final_processing:
                         transform_data[1] = CONCAT44(render_params[3], render_params[2]);
                         
                         // 设置变换参数
-                        texture_data[0] = (undefined *)0x3f800000;  // 1.0f
+                        texture_data[0] = (void *)0x3f800000;  // 1.0f
                         texture_data[2] = 0;
                         factor_value = 0.0f;
                         alpha_value = 1.0f;
@@ -787,10 +787,10 @@ final_processing:
                             (material_list = (longlong *)render_context[7], material_list < (longlong *)render_context[8])) {
                             do {
                                 current_material = *material_list;
-                                *(undefined4 *)(current_material + MATERIAL_SECOND_UV_OFFSET) = uv_params[0];
-                                *(undefined4 *)(current_material + MATERIAL_SECOND_UV_OFFSET + 4) = uv_params[1];
-                                *(undefined4 *)(current_material + MATERIAL_SECOND_UV_OFFSET + 8) = uv_params[2];
-                                *(undefined4 *)(current_material + MATERIAL_SECOND_UV_OFFSET + 12) = uv_params[3];
+                                *(int32_t *)(current_material + MATERIAL_SECOND_UV_OFFSET) = uv_params[0];
+                                *(int32_t *)(current_material + MATERIAL_SECOND_UV_OFFSET + 4) = uv_params[1];
+                                *(int32_t *)(current_material + MATERIAL_SECOND_UV_OFFSET + 8) = uv_params[2];
+                                *(int32_t *)(current_material + MATERIAL_SECOND_UV_OFFSET + 12) = uv_params[3];
                                 material_list += 2;
                             } while (material_list < (longlong *)render_context[8]);
                         }
@@ -902,7 +902,7 @@ final_processing:
                             }
                         }
                     }
-                    material_entry = (undefined8 *)material_entry[6];
+                    material_entry = (uint64_t *)material_entry[6];
                 } while (true);
             }
             
@@ -933,7 +933,7 @@ final_processing:
                 }
             }
         }
-        material_entry = (undefined8 *)material_entry[6];
+        material_entry = (uint64_t *)material_entry[6];
     } while (true);
 }
 
@@ -954,10 +954,10 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
 {
     // 局部变量声明
     int read_status;
-    undefined8 *file_handle;
+    uint64_t *file_handle;
     longlong material_buffer;
     longlong mesh_buffer;
-    undefined *default_path;
+    void *default_path;
     ulonglong material_count;
     uint mesh_count;
     int string_length;
@@ -968,29 +968,29 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
     int total_meshes;
     int total_materials;
     uint texture_data[2];
-    undefined *texture_manager;
+    void *texture_manager;
     longlong string_buffer;
     uint string_size;
-    undefined4 buffer_flags;
-    undefined1 material_name[4];
-    undefined1 mesh_name[4];
-    undefined8 security_cookie;
+    int32_t buffer_flags;
+    int8_t material_name[4];
+    int8_t mesh_name[4];
+    uint64_t security_cookie;
     
     // 初始化安全cookie
     security_cookie = DEFAULT_STACK_CANARY;
     
     // 打开文件句柄
-    file_handle = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
+    file_handle = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x18, 8, 3);
     default_path = &DAT_18098bc73;
     
     // 获取文件路径
-    if (*(undefined **)(file_data + 8) != (undefined *)0x0) {
-        default_path = *(undefined **)(file_data + 8);
+    if (*(void **)(file_data + 8) != (void *)0x0) {
+        default_path = *(void **)(file_data + 8);
     }
     
     read_status = 0;
     *file_handle = 0;
-    *(undefined1 *)(file_handle + 2) = 0;
+    *(int8_t *)(file_handle + 2) = 0;
     FUN_18062dee0(file_handle, default_path, &UNK_180a01ff0);
     
     // 检查文件是否成功打开
@@ -1009,7 +1009,7 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
                     fread(material_data[0], 4, 1, file_handle[1]);
                     material_buffer = FUN_18062b1e0(_DAT_180c8ed18, (longlong)(material_data[0][0] + 1), 0x10, 3);
                     fread(material_buffer, 1, (longlong)material_data[0][0], file_handle[1]);
-                    *(undefined1 *)(material_data[0][0] + material_buffer) = 0;
+                    *(int8_t *)(material_data[0][0] + material_buffer) = 0;
                     FUN_180627910(&texture_manager, material_buffer);
                     
                     // 清理材质名称中的特殊字符
@@ -1026,15 +1026,15 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
                         if (material_count < string_size) {
                             mesh_buffer = (longlong)(int)material_count;
                             do {
-                                *(undefined1 *)((mesh_buffer - material_index) + string_buffer) = 
-                                    *(undefined1 *)(mesh_buffer + string_buffer);
+                                *(int8_t *)((mesh_buffer - material_index) + string_buffer) = 
+                                    *(int8_t *)(mesh_buffer + string_buffer);
                                 material_count++;
                                 mesh_buffer++;
                             } while (material_count < string_size);
                         }
                         
                         string_size = string_size - material_index;
-                        *(undefined1 *)((ulonglong)string_size + string_buffer) = 0;
+                        *(int8_t *)((ulonglong)string_size + string_buffer) = 0;
                     }
                     
                     // 处理材质数据
@@ -1078,7 +1078,7 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
                 fread(mesh_data[0], 4, 1, file_handle[1]);
                 mesh_buffer = FUN_18062b1e0(_DAT_180c8ed18, (longlong)(mesh_data[0][0] + 1), 0x10, 3);
                 fread(mesh_buffer, 1, (longlong)mesh_data[0][0], file_handle[1]);
-                *(undefined1 *)(mesh_data[0][0] + mesh_buffer) = 0;
+                *(int8_t *)(mesh_data[0][0] + mesh_buffer) = 0;
                 
                 // 读取纹理数据
                 fread(material_name, 4, 1, file_handle[1]);
@@ -1098,15 +1098,15 @@ void load_mdm_model_data(longlong model_context, longlong file_data)
                     if (material_count < string_size) {
                         material_buffer = (longlong)(int)material_count;
                         do {
-                            *(undefined1 *)((material_buffer - string_length) + string_buffer) = 
-                                *(undefined1 *)(material_buffer + string_buffer);
+                            *(int8_t *)((material_buffer - string_length) + string_buffer) = 
+                                *(int8_t *)(material_buffer + string_buffer);
                             material_count++;
                             material_buffer++;
                         } while (material_count < string_size);
                     }
                     
                     string_size = string_size - string_length;
-                    *(undefined1 *)((ulonglong)string_size + string_buffer) = 0;
+                    *(int8_t *)((ulonglong)string_size + string_buffer) = 0;
                 }
                 
                 // 处理网格数据

@@ -554,11 +554,11 @@ void initialize_particle_system(void)
 void initialize_game_resource_manager(void)
 
 {
-  undefined8 resource_flags;
-  undefined *resource_config;
-  undefined1 *resource_buffer;
-  undefined4 resource_type;
-  undefined1 resource_data[136];
+  uint64_t resource_flags;
+  void *resource_config;
+  int8_t *resource_buffer;
+  int32_t resource_type;
+  int8_t resource_data[136];
   
   // 配置资源参数
   resource_config = &game_resource_config;
@@ -584,30 +584,30 @@ void FUN_1800325a0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025cc00;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a010a0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -636,30 +636,30 @@ void FUN_1800326a0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025c000;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -688,30 +688,30 @@ void FUN_1800327a0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -740,30 +740,30 @@ void FUN_1800328a0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
   code *pcStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   pcStackX_18 = FUN_18025d270;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -792,30 +792,30 @@ void FUN_1800329a0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -844,30 +844,30 @@ void FUN_180032aa0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  void *puStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   puStackX_18 = &UNK_1800868c0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -896,30 +896,30 @@ void FUN_180032ba0(void)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   int iVar3;
   longlong *plVar4;
   longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  uint64_t *puVar6;
+  uint64_t *puVar7;
+  uint64_t *puVar8;
+  uint64_t *puStackX_10;
+  uint64_t uStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
+  puVar2 = (uint64_t *)*plVar4;
   cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
   uStackX_18 = 0;
   puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
+  puVar6 = (uint64_t *)puVar2[1];
   while (cVar1 == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
     if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
+      puVar8 = (uint64_t *)puVar6[2];
       puVar6 = puVar7;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      puVar8 = (uint64_t *)*puVar6;
     }
     puVar7 = puVar6;
     puVar6 = puVar8;
@@ -952,11 +952,11 @@ void FUN_180032ba0(void)
 void initialize_ui_resource_manager(void)
 
 {
-  undefined8 resource_flags;
-  undefined *resource_config;
-  undefined1 *resource_buffer;
-  undefined4 resource_type;
-  undefined1 resource_data[136];
+  uint64_t resource_flags;
+  void *resource_config;
+  int8_t *resource_buffer;
+  int32_t resource_type;
+  int8_t resource_data[136];
   
   // 配置UI资源参数
   resource_config = &ui_resource_config;
@@ -980,7 +980,7 @@ int FUN_180032d30(void)
 
 {
   longlong lVar1;
-  undefined8 in_R9;
+  uint64_t in_R9;
   
   _DAT_180bf7e90 = &UNK_1809fcc58;
   _DAT_180bf7e98 = &DAT_180bf7ea8;
@@ -994,11 +994,11 @@ int FUN_180032d30(void)
 void initialize_audio_resource_manager(void)
 
 {
-  undefined8 resource_flags;
-  undefined *resource_config;
-  undefined1 *resource_buffer;
-  undefined4 resource_type;
-  undefined1 resource_data[136];
+  uint64_t resource_flags;
+  void *resource_config;
+  int8_t *resource_buffer;
+  int32_t resource_type;
+  int8_t resource_data[136];
   
   // 配置音频资源参数
   resource_config = &audio_resource_config;
@@ -1028,11 +1028,11 @@ void initialize_audio_resource_manager(void)
 void initialize_model_resource_manager(void)
 
 {
-  undefined8 resource_flags;
-  undefined *resource_config;
-  undefined1 *resource_buffer;
-  undefined4 resource_type;
-  undefined1 resource_data[136];
+  uint64_t resource_flags;
+  void *resource_config;
+  int8_t *resource_buffer;
+  int32_t resource_type;
+  int8_t resource_data[136];
   
   // 配置模型资源参数
   resource_config = &model_resource_config;
@@ -1062,11 +1062,11 @@ void initialize_model_resource_manager(void)
 void initialize_material_resource_manager(void)
 
 {
-  undefined8 resource_flags;
-  undefined *resource_config;
-  undefined1 *resource_buffer;
-  undefined4 resource_type;
-  undefined1 resource_data[136];
+  uint64_t resource_flags;
+  void *resource_config;
+  int8_t *resource_buffer;
+  int32_t resource_type;
+  int8_t resource_data[136];
   
   // 配置材质资源参数
   resource_config = &material_resource_config;
@@ -1096,11 +1096,11 @@ void initialize_material_resource_manager(void)
 void initialize_shader_resource_manager(void)
 
 {
-  undefined8 resource_flags;
-  undefined *resource_config;
-  undefined1 *resource_buffer;
-  undefined4 resource_type;
-  undefined1 resource_data[136];
+  uint64_t resource_flags;
+  void *resource_config;
+  int8_t *resource_buffer;
+  int32_t resource_type;
+  int8_t resource_data[136];
   
   // 配置着色器资源参数
   resource_config = &shader_resource_config;
@@ -1130,11 +1130,11 @@ void initialize_shader_resource_manager(void)
 void initialize_script_resource_manager(void)
 
 {
-  undefined8 resource_flags;
-  undefined *resource_config;
-  undefined1 *resource_buffer;
-  undefined4 resource_type;
-  undefined1 resource_data[136];
+  uint64_t resource_flags;
+  void *resource_config;
+  int8_t *resource_buffer;
+  int32_t resource_type;
+  int8_t resource_data[136];
   
   // 配置脚本资源参数
   resource_config = &script_resource_config;

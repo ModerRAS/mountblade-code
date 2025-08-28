@@ -138,28 +138,28 @@ finalize_mapping:
  * @param partition_count 分区数量
  * @return 处理状态码
  */
-undefined4 process_rendering_partitions(longlong space_data, longlong render_info, int partition_count)
+int32_t process_rendering_partitions(longlong space_data, longlong render_info, int partition_count)
 
 {
   ushort *partition_ptr;
   ushort partition_width;
   ushort partition_height;
   short *space_info;
-  undefined8 mapping_result;
+  uint64_t mapping_result;
   longlong *texture_mapping;
   int partition_index;
-  undefined8 *partition_data;
+  uint64_t *partition_data;
   ushort *texture_ptr;
-  undefined4 process_status;
+  int32_t process_status;
   ushort *next_texture_ptr;
   short *partition_manager;
   longlong space_offset;
   short partition_offset;
   int *index_array;
   short texture_id;
-  undefined4 success_flag;
+  int32_t success_flag;
   longlong partition_size;
-  undefined1 temp_buffer[16];
+  int8_t temp_buffer[16];
   
   process_status = 1;
   partition_index = 0;
@@ -187,7 +187,7 @@ undefined4 process_rendering_partitions(longlong space_data, longlong render_inf
         partition_manager[0] = 0;
       }
       else {
-        partition_data = (undefined8 *)calculate_texture_mapping(temp_buffer, space_data, partition_width, partition_height);
+        partition_data = (uint64_t *)calculate_texture_mapping(temp_buffer, space_data, partition_width, partition_height);
         mapping_result = *partition_data;
         texture_mapping = (longlong *)partition_data[1];
         
@@ -204,7 +204,7 @@ undefined4 process_rendering_partitions(longlong space_data, longlong render_inf
           space_info[1] = partition_height + texture_id;
           partition_offset = (short)mapping_result;
           *space_info = partition_offset;
-          *(undefined8 *)(space_data + 0x20) = *(undefined8 *)(space_info + 4);
+          *(uint64_t *)(space_data + 0x20) = *(uint64_t *)(space_info + 4);
           
           texture_ptr = (ushort *)*texture_mapping;
           partition_index = (int)mapping_result;
@@ -225,7 +225,7 @@ undefined4 process_rendering_partitions(longlong space_data, longlong render_inf
             
             do {
               if ((int)(partition_index + (uint)partition_width) < (int)(uint)*next_texture_ptr) break;
-              *(undefined8 *)(texture_ptr + 4) = *(undefined8 *)(space_data + 0x20);
+              *(uint64_t *)(texture_ptr + 4) = *(uint64_t *)(space_data + 0x20);
               *(ushort **)(space_data + 0x20) = texture_ptr;
               partition_ptr = next_texture_ptr + 4;
               texture_ptr = next_texture_ptr;
@@ -293,10 +293,10 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
   ushort partition_width;
   ushort partition_height;
   short *space_info;
-  undefined8 mapping_result;
+  uint64_t mapping_result;
   longlong *texture_mapping;
   int partition_index;
-  undefined8 *partition_data;
+  uint64_t *partition_data;
   ushort *texture_ptr;
   int layout_status;
   int next_status;
@@ -332,7 +332,7 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
         partition_manager[0] = 0;
       }
       else {
-        partition_data = (undefined8 *)calculate_texture_mapping(&stack_buffer, render_context, partition_width, partition_height);
+        partition_data = (uint64_t *)calculate_texture_mapping(&stack_buffer, render_context, partition_width, partition_height);
         mapping_result = *partition_data;
         texture_mapping = (longlong *)partition_data[1];
         if (((texture_mapping == (longlong *)0x0) ||
@@ -347,7 +347,7 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
           space_info[1] = partition_height + texture_id;
           texture_offset = (short)mapping_result;
           *space_info = texture_offset;
-          *(undefined8 *)(render_context + 0x20) = *(undefined8 *)(space_info + 4);
+          *(uint64_t *)(render_context + 0x20) = *(uint64_t *)(space_info + 4);
           texture_ptr = (ushort *)*texture_mapping;
           partition_index = (int)mapping_result;
           if ((int)(uint)*texture_ptr < partition_index) {
@@ -362,7 +362,7 @@ int optimize_rendering_layout(longlong render_context, longlong optimization_dat
             next_texture_ptr = *(ushort **)(texture_ptr + 4);
             do {
               if ((int)(partition_index + (uint)partition_width) < (int)(uint)*next_texture_ptr) break;
-              *(undefined8 *)(texture_ptr + 4) = *(undefined8 *)(render_context + 0x20);
+              *(uint64_t *)(texture_ptr + 4) = *(uint64_t *)(render_context + 0x20);
               *(ushort **)(render_context + 0x20) = texture_ptr;
               partition_ptr = next_texture_ptr + 4;
               texture_ptr = next_texture_ptr;

@@ -2,45 +2,45 @@
 
 // 04_ui_system_part276.c - 1 个函数
 
-// 函数: void FUN_1808240c2(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
-void FUN_1808240c2(int param_1,undefined8 param_2,undefined8 param_3,int param_4)
+// 函数: void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
+void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
 
 {
   uint uVar1;
-  undefined1 auVar2 [16];
-  undefined1 auVar3 [16];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [12];
+  int8_t auVar2 [16];
+  int8_t auVar3 [16];
+  int8_t auVar4 [32];
+  int8_t auVar5 [12];
   int in_EAX;
   uint uVar6;
   longlong unaff_RBX;
   longlong unaff_RSI;
   int unaff_EDI;
   ulonglong uVar7;
-  undefined2 *in_R10;
+  int16_t *in_R10;
   uint *in_R11;
   int unaff_R12D;
   int unaff_R13D;
   int unaff_R14D;
   int unaff_R15D;
-  undefined1 auVar8 [32];
-  undefined1 auVar9 [32];
-  undefined1 auVar10 [32];
-  undefined1 auVar11 [32];
-  undefined1 auVar12 [32];
-  undefined1 auVar13 [32];
-  undefined1 auVar14 [32];
-  undefined1 auVar15 [32];
-  undefined1 auVar17 [36];
-  undefined1 auVar16 [64];
-  undefined1 auVar18 [28];
-  undefined1 auVar19 [32];
-  undefined1 auVar20 [32];
-  undefined1 auVar21 [32];
-  undefined1 auVar22 [32];
-  undefined1 auVar23 [32];
-  undefined1 auVar24 [32];
-  undefined1 auVar25 [32];
+  int8_t auVar8 [32];
+  int8_t auVar9 [32];
+  int8_t auVar10 [32];
+  int8_t auVar11 [32];
+  int8_t auVar12 [32];
+  int8_t auVar13 [32];
+  int8_t auVar14 [32];
+  int8_t auVar15 [32];
+  int8_t auVar17 [36];
+  int8_t auVar16 [64];
+  int8_t auVar18 [28];
+  int8_t auVar19 [32];
+  int8_t auVar20 [32];
+  int8_t auVar21 [32];
+  int8_t auVar22 [32];
+  int8_t auVar23 [32];
+  int8_t auVar24 [32];
+  int8_t auVar25 [32];
   float unaff_XMM9_Da;
   float unaff_XMM9_Db;
   float unaff_XMM9_Dc;
@@ -146,7 +146,7 @@ void FUN_1808240c2(int param_1,undefined8 param_2,undefined8 param_3,int param_4
     auVar4._28_4_ = auVar8._28_4_;
     auVar8 = vcvtps2dq_avx(auVar4);
     auVar2 = vpackssdw_avx(auVar8._0_16_,auVar8._0_16_);
-    auVar17 = (undefined1  [36])0x0;
+    auVar17 = (int8_t  [36])0x0;
     *in_R10 = auVar2._0_2_;
     in_R11 = in_R11 + (int)unaff_RBX * 8;
     in_R10[unaff_RSI] = auVar2._2_2_;

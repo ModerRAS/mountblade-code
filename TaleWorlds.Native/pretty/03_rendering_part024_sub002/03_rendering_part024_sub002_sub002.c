@@ -157,15 +157,15 @@ void FUN_18027dd70(ulonglong *******param_1,ulonglong *******param_2)
     longlong *plVar2;                          // 长整型指针变量2
     ulonglong *****pppppuVar3;                 // 五级指针变量3
     code *pcVar4;                              // 代码指针变量4
-    undefined4 uVar5;                          // 未定义4字节变量5
-    undefined4 uVar6;                          // 未定义4字节变量6
-    undefined4 uVar7;                          // 未定义4字节变量7
+    int32_t uVar5;                          // 未定义4字节变量5
+    int32_t uVar6;                          // 未定义4字节变量6
+    int32_t uVar7;                          // 未定义4字节变量7
     ulonglong *puVar8;                         // 无符号长整型指针变量8
     uint uVar9;                               // 无符号整型变量9
     longlong lVar10;                           // 长整型变量10
     ulonglong ******ppppppuVar11;              // 六级指针变量11
     ulonglong ******ppppppuVar12;              // 六级指针变量12
-    undefined8 uVar13;                         // 未定义8字节变量13
+    uint64_t uVar13;                         // 未定义8字节变量13
     ulonglong *******pppppppuVar14;            // 七级指针变量14
     ulonglong *puVar15;                        // 无符号长整型指针变量15
     ulonglong *puVar16;                        // 无符号长整型指针变量16
@@ -175,7 +175,7 @@ void FUN_18027dd70(ulonglong *******param_1,ulonglong *******param_2)
     ulonglong uVar20;                          // 无符号长整型变量20
     ulonglong uVar21;                          // 无符号长整型变量21
     ulonglong ******ppppppuVar22;              // 六级指针变量22
-    undefined *puVar23;                        // 未定义指针变量23
+    void *puVar23;                        // 未定义指针变量23
     byte *pbVar24;                             // 字节指针变量24
     longlong *plVar25;                         // 长整型指针变量25
     ulonglong *puVar26;                        // 无符号长整型指针变量26
@@ -198,15 +198,15 @@ void FUN_18027dd70(ulonglong *******param_1,ulonglong *******param_2)
     ulonglong ******ppppppuStackX_10;         // 栈变量：六级指针X_10
     int iStackX_18;                           // 栈变量：整型X_18
     ulonglong ******ppppppuStackX_20;         // 栈变量：六级指针X_20
-    undefined *puStack_238;                   // 栈变量：未定义指针_238
+    void *puStack_238;                   // 栈变量：未定义指针_238
     byte *pbStack_230;                        // 栈变量：字节指针_230
     uint uStack_228;                          // 栈变量：无符号整型_228
-    undefined8 uStack_220;                     // 栈变量：未定义8字节_220
+    uint64_t uStack_220;                     // 栈变量：未定义8字节_220
     int *piStack_218;                         // 栈变量：整型指针_218
     longlong *plStack_210;                    // 栈变量：长整型指针_210
     longlong *plStack_208;                    // 栈变量：长整型指针_208
     ulonglong ******ppppppuStack_200;          // 栈变量：六级指针_200
-    undefined8 uStack_1f8;                     // 栈变量：未定义8字节_1f8
+    uint64_t uStack_1f8;                     // 栈变量：未定义8字节_1f8
     ulonglong ******ppppppuStack_1e8;          // 栈变量：六级指针_1e8
     ulonglong *puStack_1d8;                    // 栈变量：无符号长整型指针_1d8
     byte *pbStack_1d0;                        // 栈变量：字节指针_1d0
@@ -215,46 +215,46 @@ void FUN_18027dd70(ulonglong *******param_1,ulonglong *******param_2)
     ulonglong *puStack_1b8;                    // 栈变量：无符号长整型指针_1b8
     ulonglong ******ppppppuStack_1b0;          // 栈变量：六级指针_1b0
     ulonglong ******ppppppuStack_1a8;          // 栈变量：六级指针_1a8
-    undefined4 uStack_1a0;                     // 栈变量：未定义4字节_1a0
+    int32_t uStack_1a0;                     // 栈变量：未定义4字节_1a0
     ulonglong *puStack_198;                    // 栈变量：无符号长整型指针_198
     longlong lStack_190;                       // 栈变量：长整型_190
-    undefined8 uStack_188;                     // 栈变量：未定义8字节_188
-    undefined8 uStack_180;                     // 栈变量：未定义8字节_180
+    uint64_t uStack_188;                     // 栈变量：未定义8字节_188
+    uint64_t uStack_180;                     // 栈变量：未定义8字节_180
     ulonglong *puStack_170;                    // 栈变量：无符号长整型指针_170
     ulonglong *puStack_168;                    // 栈变量：无符号长整型指针_168
     ulonglong *puStack_160;                    // 栈变量：无符号长整型指针_160
-    undefined4 uStack_158;                     // 栈变量：未定义4字节_158
+    int32_t uStack_158;                     // 栈变量：未定义4字节_158
     ulonglong *puStack_150;                    // 栈变量：无符号长整型指针_150
     ulonglong *puStack_148;                    // 栈变量：无符号长整型指针_148
     ulonglong *puStack_140;                    // 栈变量：无符号长整型指针_140
     ulonglong *puStack_138;                    // 栈变量：无符号长整型指针_138
-    undefined4 uStack_130;                     // 栈变量：未定义4字节_130
+    int32_t uStack_130;                     // 栈变量：未定义4字节_130
     ulonglong *puStack_128;                    // 栈变量：无符号长整型指针_128
     ulonglong *puStack_120;                    // 栈变量：无符号长整型指针_120
     ulonglong *puStack_118;                    // 栈变量：无符号长整型指针_118
-    undefined4 uStack_110;                     // 栈变量：未定义4字节_110
-    undefined1 auStack_108 [8];                // 栈变量：未定义1字节数组_108
+    int32_t uStack_110;                     // 栈变量：未定义4字节_110
+    int8_t auStack_108 [8];                // 栈变量：未定义1字节数组_108
     longlong *plStack_100;                     // 栈变量：长整型指针_100
     longlong lStack_f8;                        // 栈变量：长整型_f8
-    undefined8 uStack_f0;                      // 栈变量：未定义8字节_f0
-    undefined4 uStack_e8;                      // 栈变量：未定义4字节_e8
-    undefined4 uStack_e4;                      // 栈变量：未定义4字节_e4
-    undefined4 uStack_e0;                      // 栈变量：未定义4字节_e0
-    undefined4 uStack_dc;                      // 栈变量：未定义4字节_dc
+    uint64_t uStack_f0;                      // 栈变量：未定义8字节_f0
+    int32_t uStack_e8;                      // 栈变量：未定义4字节_e8
+    int32_t uStack_e4;                      // 栈变量：未定义4字节_e4
+    int32_t uStack_e0;                      // 栈变量：未定义4字节_e0
+    int32_t uStack_dc;                      // 栈变量：未定义4字节_dc
     longlong *plStack_d8;                      // 栈变量：长整型指针_d8
     longlong lStack_d0;                        // 栈变量：长整型_d0
-    undefined8 uStack_c8;                      // 栈变量：未定义8字节_c8
-    undefined8 uStack_c0;                      // 栈变量：未定义8字节_c0
-    undefined *puStack_b8;                     // 栈变量：未定义指针_b8
+    uint64_t uStack_c8;                      // 栈变量：未定义8字节_c8
+    uint64_t uStack_c0;                      // 栈变量：未定义8字节_c0
+    void *puStack_b8;                     // 栈变量：未定义指针_b8
     byte *pbStack_b0;                          // 栈变量：字节指针_b0
     uint uStack_a8;                            // 栈变量：无符号整型_a8
-    undefined4 uStack_a0;                      // 栈变量：未定义4字节_a0
-    undefined8 uStack_98;                      // 栈变量：未定义8字节_98
-    undefined8 uStack_90;                      // 栈变量：未定义8字节_90
-    undefined1 auStack_88 [8];                 // 栈变量：未定义1字节数组_88
-    undefined8 uStack_80;                      // 栈变量：未定义8字节_80
-    undefined8 uStack_70;                      // 栈变量：未定义8字节_70
-    undefined8 uStack_60;                      // 栈变量：未定义8字节_60
+    int32_t uStack_a0;                      // 栈变量：未定义4字节_a0
+    uint64_t uStack_98;                      // 栈变量：未定义8字节_98
+    uint64_t uStack_90;                      // 栈变量：未定义8字节_90
+    int8_t auStack_88 [8];                 // 栈变量：未定义1字节数组_88
+    uint64_t uStack_80;                      // 栈变量：未定义8字节_80
+    uint64_t uStack_70;                      // 栈变量：未定义8字节_70
+    uint64_t uStack_60;                      // 栈变量：未定义8字节_60
     
     // 初始化最大迭代次数
     uStack_60 = RENDERING_SYSTEM_MAX_DATA_FLOW_ITERATIONS;
@@ -317,20 +317,20 @@ LAB_18027de2e:
                     ppppppuVar22 = ppppppuStack_1e8;
                     ppppppuStackX_10 =
                          (ulonglong ******)
-                         CONCAT44(ppppppuStackX_10._4_4_,*(undefined4 *)((longlong)ppppppuVar12 + uVar38 + 8))
+                         CONCAT44(ppppppuStackX_10._4_4_,*(int32_t *)((longlong)ppppppuVar12 + uVar38 + 8))
                     ;
                     FUN_180284830(auStack_108,&ppppppuStack_200);
                     ppppppuVar12 = ppppppuStack_200;
-                    lVar10 = FUN_180079430(*(undefined8 *)(uVar38 + (longlong)*ppppppuVar22));
+                    lVar10 = FUN_180079430(*(uint64_t *)(uVar38 + (longlong)*ppppppuVar22));
                     puStack_238 = &UNK_180a3c3e0;
                     uStack_220 = 0;
                     pbStack_230 = (byte *)0x0;
                     uStack_228 = 0;
-                    FUN_1806277c0(&puStack_238,*(undefined4 *)(lVar10 + 0x10));
+                    FUN_1806277c0(&puStack_238,*(int32_t *)(lVar10 + 0x10));
                     if (0 < *(int *)(lVar10 + 0x10)) {
                         puVar23 = &DAT_18098bc73;
-                        if (*(undefined **)(lVar10 + 8) != (undefined *)0x0) {
-                            puVar23 = *(undefined **)(lVar10 + 8);
+                        if (*(void **)(lVar10 + 8) != (void *)0x0) {
+                            puVar23 = *(void **)(lVar10 + 8);
                         }
                         // WARNING: Subroutine does not return
                         memcpy(pbStack_230,puVar23,(longlong)(*(int *)(lVar10 + 0x10) + 1));
@@ -355,7 +355,7 @@ LAB_18027de2e:
                     }
                     FUN_180284a50(ppppppuVar12 + 1,&ppppppuStack_200,uVar31,&puStack_238,uVar20);
                     ppppppuVar22 = ppppppuStack_200;
-                    uStack_180 = *(undefined8 *)(uVar38 + (longlong)*ppppppuStack_1e8);
+                    uStack_180 = *(uint64_t *)(uVar38 + (longlong)*ppppppuStack_1e8);
                     ppppppuVar12 = (ulonglong ******)ppppppuStack_200[5];
                     if (ppppppuVar12 < ppppppuStack_200[6]) {
                         ppppppuStack_200[5] = (ulonglong *****)(ppppppuVar12 + 2);

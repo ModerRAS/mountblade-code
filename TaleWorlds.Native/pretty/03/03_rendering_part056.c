@@ -13,19 +13,19 @@
  * @param param2 参数2：弧度偏移值  
  * @param param3 参数3：弧度缩放值
  */
-void calculate_rendering_arc_parameters(undefined8 render_context, float param1, float param2, float param3, float param4)
+void calculate_rendering_arc_parameters(uint64_t render_context, float param1, float param2, float param3, float param4)
 {
     int *render_queue_count;
     longlong render_data_ptr;
-    undefined8 render_state;
+    uint64_t render_state;
     int arc_count;
     int buffer_capacity;
     int render_flags;
     longlong arc_base_ptr;
     int queue_capacity;
     longlong render_buffer_ptr;
-    undefined4 render_mode;
-    undefined4 arc_calc_param;
+    int32_t render_mode;
+    int32_t arc_calc_param;
     float arc_start;
     float arc_end;
     float arc_radius;
@@ -119,10 +119,10 @@ void calculate_rendering_arc_parameters(undefined8 render_context, float param1,
         
         // 添加渲染数据到队列
         render_data_ptr = *(longlong *)(render_data_ptr + 0x88);
-        render_state = *(undefined8 *)(arc_base_ptr + -0x79);
+        render_state = *(uint64_t *)(arc_base_ptr + -0x79);
         *(float *)(arc_base_ptr + -0x79) = arc_midpoint;
         *(float *)(arc_base_ptr + -0x75) = unaff_XMM13_Da;
-        *(undefined8 *)(render_data_ptr + (longlong)arc_count * 8) = render_state;
+        *(uint64_t *)(render_data_ptr + (longlong)arc_count * 8) = render_state;
         *render_queue_count = *render_queue_count + 1;
         arc_count = *render_queue_count;
         buffer_capacity = *(int *)(render_data_ptr + 0x84);
@@ -142,8 +142,8 @@ void calculate_rendering_arc_parameters(undefined8 render_context, float param1,
             resize_rendering_queue(render_queue_count, arc_count);
             arc_count = *render_queue_count;
         }
-        *(undefined8 *)(*(longlong *)(render_data_ptr + 0x88) + (longlong)arc_count * 8) =
-             *(undefined8 *)(arc_base_ptr + -0x79);
+        *(uint64_t *)(*(longlong *)(render_data_ptr + 0x88) + (longlong)arc_count * 8) =
+             *(uint64_t *)(arc_base_ptr + -0x79);
         *render_queue_count = *render_queue_count + 1;
     }
     // 处理特殊弧度值的情况
@@ -233,10 +233,10 @@ void calculate_rendering_arc_parameters(undefined8 render_context, float param1,
             
             // 添加渲染数据
             render_data_ptr = *(longlong *)(render_data_ptr + 0x88);
-            render_state = *(undefined8 *)(arc_base_ptr + 0x67);
+            render_state = *(uint64_t *)(arc_base_ptr + 0x67);
             *(float *)(arc_base_ptr + 0x67) = arc_end;
             *(float *)(arc_base_ptr + 0x6b) = unaff_XMM14_Da;
-            *(undefined8 *)(render_data_ptr + (longlong)arc_count * 8) = render_state;
+            *(uint64_t *)(render_data_ptr + (longlong)arc_count * 8) = render_state;
             *render_queue_count = *render_queue_count + 1;
             arc_count = *render_queue_count;
             buffer_capacity = *(int *)(render_data_ptr + 0x84);
@@ -253,8 +253,8 @@ void calculate_rendering_arc_parameters(undefined8 render_context, float param1,
                 arc_angle = (float)resize_rendering_queue(render_queue_count, buffer_capacity);
                 arc_count = *render_queue_count;
             }
-            *(undefined8 *)(*(longlong *)(render_data_ptr + 0x88) + (longlong)arc_count * 8) =
-                 *(undefined8 *)(arc_base_ptr + 0x67);
+            *(uint64_t *)(*(longlong *)(render_data_ptr + 0x88) + (longlong)arc_count * 8) =
+                 *(uint64_t *)(arc_base_ptr + 0x67);
             *render_queue_count = *render_queue_count + 1;
         }
         // 处理特殊弧度值的情况
@@ -280,9 +280,9 @@ void calculate_rendering_arc_parameters(undefined8 render_context, float param1,
     }
     
     // 完成渲染处理
-    finalize_arc_rendering(arc_angle, *(undefined8 *)(render_data_ptr + 0x88), 
-                          *(undefined4 *)(render_data_ptr + 0x80), render_mode);
-    *(undefined4 *)(render_data_ptr + 0x80) = 0;
+    finalize_arc_rendering(arc_angle, *(uint64_t *)(render_data_ptr + 0x88), 
+                          *(int32_t *)(render_data_ptr + 0x80), render_mode);
+    *(int32_t *)(render_data_ptr + 0x80) = 0;
     return;
 }
 
@@ -307,8 +307,8 @@ void rendering_system_empty_function(void)
  * @param render_flags 渲染标志位
  * @param render_mode 渲染模式
  */
-void process_rendering_bounding_box(undefined8 render_context, float *box_min, float *box_max, 
-                                    ulonglong render_flags, undefined4 render_mode)
+void process_rendering_bounding_box(uint64_t render_context, float *box_min, float *box_max, 
+                                    ulonglong render_flags, int32_t render_mode)
 {
     float min_x;
     float min_y;
@@ -684,7 +684,7 @@ void resize_rendering_dynamic_array(int *array_ptr, int new_size)
 {
     int current_capacity;
     int new_capacity;
-    undefined8 new_buffer;
+    uint64_t new_buffer;
     int calculated_size;
     
     current_capacity = array_ptr[1];
@@ -709,7 +709,7 @@ void resize_rendering_dynamic_array(int *array_ptr, int new_size)
             // 复制现有数据到新缓冲区
             memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 4);
         }
-        *(undefined8 *)(array_ptr + 2) = new_buffer;
+        *(uint64_t *)(array_ptr + 2) = new_buffer;
         array_ptr[1] = calculated_size;
     }
     *array_ptr = new_size;
@@ -724,7 +724,7 @@ void resize_rendering_dynamic_array(int *array_ptr, int new_size)
 void fast_resize_rendering_dynamic_array(void)
 {
     longlong render_context;
-    undefined8 new_buffer;
+    uint64_t new_buffer;
     int *array_ptr;
     int array_size;
     int new_capacity;
@@ -737,7 +737,7 @@ void fast_resize_rendering_dynamic_array(void)
         // 复制现有数据到新缓冲区
         memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 4);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
     *array_ptr = array_size;
     return;
@@ -750,8 +750,8 @@ void fast_resize_rendering_dynamic_array(void)
  */
 void simple_rendering_assignment(void)
 {
-    undefined4 *target_ptr;
-    undefined4 value;
+    int32_t *target_ptr;
+    int32_t value;
     
     *target_ptr = value;
     return;
@@ -769,7 +769,7 @@ void extended_resize_rendering_dynamic_array(int *array_ptr, int new_size)
 {
     int current_capacity;
     int new_capacity;
-    undefined8 new_buffer;
+    uint64_t new_buffer;
     int calculated_size;
     
     current_capacity = array_ptr[1];
@@ -796,7 +796,7 @@ void extended_resize_rendering_dynamic_array(int *array_ptr, int new_size)
             // 复制现有数据到新缓冲区
             memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 0x28);
         }
-        *(undefined8 *)(array_ptr + 2) = new_buffer;
+        *(uint64_t *)(array_ptr + 2) = new_buffer;
         array_ptr[1] = calculated_size;
         *array_ptr = new_size;
         return;
@@ -815,7 +815,7 @@ void extended_resize_rendering_dynamic_array(int *array_ptr, int new_size)
 void parametric_resize_rendering_array(int param_size)
 {
     int current_capacity;
-    undefined8 new_buffer;
+    uint64_t new_buffer;
     int *array_ptr;
     int new_capacity;
     int array_size;
@@ -839,7 +839,7 @@ void parametric_resize_rendering_array(int param_size)
             // 复制现有数据到新缓冲区
             memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr * 0x28);
         }
-        *(undefined8 *)(array_ptr + 2) = new_buffer;
+        *(uint64_t *)(array_ptr + 2) = new_buffer;
         array_ptr[1] = new_capacity;
         *array_ptr = array_size;
         return;
@@ -855,8 +855,8 @@ void parametric_resize_rendering_array(int param_size)
  */
 void rendering_nop_function_1(void)
 {
-    undefined4 *target_ptr;
-    undefined4 value;
+    int32_t *target_ptr;
+    int32_t value;
     
     *target_ptr = value;
     return;
@@ -869,8 +869,8 @@ void rendering_nop_function_1(void)
  */
 void rendering_nop_function_2(void)
 {
-    undefined4 *target_ptr;
-    undefined4 value;
+    int32_t *target_ptr;
+    int32_t value;
     
     *target_ptr = value;
     return;
@@ -884,13 +884,13 @@ void rendering_nop_function_2(void)
  * @param array_ptr 数组指针
  * @param data_ptr 数据指针
  */
-void insert_advanced_rendering_data(int *array_ptr, undefined8 *data_ptr)
+void insert_advanced_rendering_data(int *array_ptr, uint64_t *data_ptr)
 {
-    undefined8 *target_element;
+    uint64_t *target_element;
     int current_capacity;
     longlong array_buffer;
     int new_capacity;
-    undefined8 new_buffer;
+    uint64_t new_buffer;
     int array_size;
     
     current_capacity = array_ptr[1];
@@ -914,7 +914,7 @@ void insert_advanced_rendering_data(int *array_ptr, undefined8 *data_ptr)
                 // 复制现有数据到新缓冲区
                 memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 5);
             }
-            *(undefined8 *)(array_ptr + 2) = new_buffer;
+            *(uint64_t *)(array_ptr + 2) = new_buffer;
             array_ptr[1] = array_size;
         }
     }
@@ -923,11 +923,11 @@ void insert_advanced_rendering_data(int *array_ptr, undefined8 *data_ptr)
     array_size = *array_ptr;
     new_buffer = data_ptr[1];
     array_buffer = *(longlong *)(array_ptr + 2);
-    target_element = (undefined8 *)((longlong)array_size * 0x20 + array_buffer);
+    target_element = (uint64_t *)((longlong)array_size * 0x20 + array_buffer);
     *target_element = *data_ptr;
     target_element[1] = new_buffer;
     new_buffer = data_ptr[3];
-    target_element = (undefined8 *)((longlong)array_size * 0x20 + 0x10 + array_buffer);
+    target_element = (uint64_t *)((longlong)array_size * 0x20 + 0x10 + array_buffer);
     *target_element = data_ptr[2];
     target_element[1] = new_buffer;
     *array_ptr = *array_ptr + 1;
@@ -941,12 +941,12 @@ void insert_advanced_rendering_data(int *array_ptr, undefined8 *data_ptr)
  */
 void fast_insert_rendering_data(void)
 {
-    undefined8 *target_element;
+    uint64_t *target_element;
     int array_size;
     longlong array_buffer;
-    undefined8 new_buffer;
+    uint64_t new_buffer;
     int *array_ptr;
-    undefined8 *data_ptr;
+    uint64_t *data_ptr;
     int new_capacity;
     
     if (global_render_manager != 0) {
@@ -957,16 +957,16 @@ void fast_insert_rendering_data(void)
         // 复制现有数据到新缓冲区
         memcpy(new_buffer, *(longlong *)(array_ptr + 2), (longlong)*array_ptr << 5);
     }
-    *(undefined8 *)(array_ptr + 2) = new_buffer;
+    *(uint64_t *)(array_ptr + 2) = new_buffer;
     array_ptr[1] = new_capacity;
     array_size = *array_ptr;
     new_buffer = data_ptr[1];
     array_buffer = *(longlong *)(array_ptr + 2);
-    target_element = (undefined8 *)((longlong)array_size * 0x20 + array_buffer);
+    target_element = (uint64_t *)((longlong)array_size * 0x20 + array_buffer);
     *target_element = *data_ptr;
     target_element[1] = new_buffer;
     new_buffer = data_ptr[3];
-    target_element = (undefined8 *)((longlong)array_size * 0x20 + 0x10 + array_buffer);
+    target_element = (uint64_t *)((longlong)array_size * 0x20 + 0x10 + array_buffer);
     *target_element = data_ptr[2];
     target_element[1] = new_buffer;
     *array_ptr = *array_ptr + 1;
@@ -980,21 +980,21 @@ void fast_insert_rendering_data(void)
  */
 void optimized_insert_rendering_data(void)
 {
-    undefined8 *target_element;
+    uint64_t *target_element;
     int array_size;
     longlong array_buffer;
-    undefined8 data_value;
+    uint64_t data_value;
     int *array_ptr;
-    undefined8 *data_ptr;
+    uint64_t *data_ptr;
     
     array_size = *array_ptr;
     data_value = data_ptr[1];
     array_buffer = *(longlong *)(array_ptr + 2);
-    target_element = (undefined8 *)((longlong)array_size * 0x20 + array_buffer);
+    target_element = (uint64_t *)((longlong)array_size * 0x20 + array_buffer);
     *target_element = *data_ptr;
     target_element[1] = data_value;
     data_value = data_ptr[3];
-    target_element = (undefined8 *)((longlong)array_size * 0x20 + 0x10 + array_buffer);
+    target_element = (uint64_t *)((longlong)array_size * 0x20 + 0x10 + array_buffer);
     *target_element = data_ptr[2];
     target_element[1] = data_value;
     *array_ptr = *array_ptr + 1;

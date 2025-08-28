@@ -8,33 +8,33 @@ void initialize_game_system_component_type1(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined *default_config;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  void *default_config;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   default_config = &DEFAULT_CONFIG_1800868c0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a00fd8,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -64,33 +64,33 @@ void initialize_game_system_component_type2(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a00fb0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -120,33 +120,33 @@ void initialize_game_system_component_type3(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   void *component_callback;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   component_callback = get_component_callback_handler();
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a010a0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -176,33 +176,33 @@ void initialize_game_system_component_type4(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   void *component_handler;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   component_handler = get_component_handler();
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a01078,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -232,33 +232,33 @@ void initialize_game_system_component_type5(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a01050,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -288,33 +288,33 @@ void initialize_game_system_component_type6(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   void *system_callback;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   system_callback = get_system_callback();
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a01028,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -344,33 +344,33 @@ void initialize_game_system_component_type7(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a01000,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -400,33 +400,33 @@ void initialize_game_system_component_type8(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined *default_config;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  void *default_config;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   default_config = &DEFAULT_CONFIG_1800868c0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a00fd8,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -456,33 +456,33 @@ void initialize_game_system_component_type9(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a00fb0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -512,33 +512,33 @@ void initialize_game_system_component_type10(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   void *component_callback;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   component_callback = get_component_callback_handler();
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a010a0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -568,33 +568,33 @@ void initialize_game_system_component_type11(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   void *component_handler;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   component_handler = get_component_handler();
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a01078,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -624,33 +624,33 @@ void initialize_game_system_component_type12(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a01050,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -680,33 +680,33 @@ void initialize_game_system_component_type13(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   void *system_callback;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   system_callback = get_system_callback();
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a01028,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -736,33 +736,33 @@ void initialize_game_system_component_type14(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a01000,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -792,33 +792,33 @@ void initialize_game_system_component_type15(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined *default_config;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  void *default_config;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   default_config = &DEFAULT_CONFIG_1800868c0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a00fd8,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -848,33 +848,33 @@ void initialize_game_system_component_type16(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&COMPONENT_ID_180a00fb0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -904,33 +904,33 @@ void initialize_game_system_component_type17(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   void *module_initializer;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   module_initializer = get_module_initializer();
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&MODULE_ID_1809fc740,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -960,33 +960,33 @@ void initialize_game_system_component_type18(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&MODULE_ID_1809fc768,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1016,33 +1016,33 @@ void initialize_game_system_component_type19(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&SYSTEM_ID_18098c9b8,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1072,33 +1072,33 @@ void initialize_game_system_component_type20(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&SYSTEM_ID_18098c940,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1128,33 +1128,33 @@ void initialize_game_system_component_type21(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&SYSTEM_ID_18098c918,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1184,33 +1184,33 @@ void initialize_game_system_component_type22(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&SYSTEM_ID_18098c968,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1240,33 +1240,33 @@ void initialize_game_system_component_type23(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&SYSTEM_ID_18098c990,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1296,33 +1296,33 @@ void initialize_game_system_component_type24(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&SYSTEM_ID_18098c9e0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1352,33 +1352,33 @@ void initialize_game_system_component_type25(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
   void *system_processor;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   system_processor = get_system_processor();
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&PROCESSOR_ID_18098c8f0,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;
@@ -1408,33 +1408,33 @@ void initialize_game_system_component_type26(void)
 
 {
   char is_initialized;
-  undefined8 *system_root;
+  uint64_t *system_root;
   int compare_result;
   longlong *system_manager;
   longlong memory_offset;
-  undefined8 *current_node;
-  undefined8 *previous_node;
-  undefined8 *next_node;
-  undefined8 *new_component;
-  undefined8 uStackX_18;
+  uint64_t *current_node;
+  uint64_t *previous_node;
+  uint64_t *next_node;
+  uint64_t *new_component;
+  uint64_t uStackX_18;
   
   // 获取系统管理器
   system_manager = (longlong *)get_system_manager();
-  system_root = (undefined8 *)*system_manager;
+  system_root = (uint64_t *)*system_manager;
   is_initialized = *(char *)((longlong)system_root[1] + 0x19);
   uStackX_18 = 0;
   previous_node = system_root;
-  current_node = (undefined8 *)system_root[1];
+  current_node = (uint64_t *)system_root[1];
   
   // 遍历系统节点链表，查找特定组件
   while (is_initialized == '\0') {
     compare_result = memcmp(current_node + 4,&HANDLER_ID_18098c8c8,0x10);
     if (compare_result < 0) {
-      next_node = (undefined8 *)current_node[2];
+      next_node = (uint64_t *)current_node[2];
       current_node = previous_node;
     }
     else {
-      next_node = (undefined8 *)*current_node;
+      next_node = (uint64_t *)*current_node;
     }
     previous_node = current_node;
     current_node = next_node;

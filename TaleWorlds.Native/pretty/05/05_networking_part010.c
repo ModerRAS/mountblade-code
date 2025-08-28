@@ -224,7 +224,7 @@ extern void FUN_18084d520(void* buffer, int flags);    /**< 缓冲区操作函�
  */
 void NetworkPacketManager_InitializePacket(void* packet) {
     // 简化实现：初始化数据包基本结构
-    undefined8* packet_ptr = (undefined8*)packet;
+    uint64_t* packet_ptr = (uint64_t*)packet;
     
     // 设置数据包基本信息
     *packet_ptr = &UNK_180984a70;
@@ -253,13 +253,13 @@ void NetworkPacketManager_InitializePacket(void* packet) {
         ((longlong*)packet_ptr[5] == connection_ptr)) {
         func_0x00018085dda0(connection_ptr);
         *packet_ptr = &UNK_180984ab8;
-        *(undefined4*)(packet_ptr + 1) = MAGIC_DEADFOOD;
+        *(int32_t*)(packet_ptr + 1) = MAGIC_DEADFOOD;
         return;
     }
     
     // 处理数据包连接链表
     longlong* link_data = (connection_data != connection_ptr) ? connection_data : (longlong*)0x0;
-    *(undefined4*)((longlong)link_data + 0x44) = 0xffffffff;
+    *(int32_t*)((longlong)link_data + 0x44) = 0xffffffff;
     
     // 初始化链表操作
     FUN_18084c220(link_data + 4);
@@ -276,7 +276,7 @@ void NetworkPacketManager_InitializePacket(void* packet) {
     *link_data = (longlong)link_data;
     
     // 分配内存并初始化
-    FUN_180742250(*(undefined8*)(_DAT_180be12f0 + 0x1a0), link_data, &UNK_180986f90, NETWORK_TIMEOUT, 1);
+    FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), link_data, &UNK_180986f90, NETWORK_TIMEOUT, 1);
 }
 
 /**
@@ -291,11 +291,11 @@ void NetworkPacketManager_InitializePacket(void* packet) {
  * @param packet 数据包指针
  * @param flags 销毁标志位
  * 
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  * 
  * @note 这是简化实现，原始实现包含复杂的资源清理逻辑
  */
-undefined8 NetworkPacketManager_DestroyPacket(undefined8 packet, ulonglong flags) {
+uint64_t NetworkPacketManager_DestroyPacket(uint64_t packet, ulonglong flags) {
     // 调用初始化函数进行清理
     NetworkPacketManager_InitializePacket();
     
@@ -349,30 +349,30 @@ longlong NetworkConnectionManager_HandleConnection(longlong connection, ulonglon
  * @param manager 缓冲区管理器指针
  * @param size 请求的缓冲区大小
  * 
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  * 
  * @note 这是简化实现，原始实现包含复杂的内存管理逻辑
  */
-undefined8 NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
+uint64_t NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
     int current_size;
     longlong source_data;
-    undefined4* new_buffer;
+    int32_t* new_buffer;
     longlong copy_size;
-    undefined4* source_ptr;
-    undefined4* dest_ptr;
+    int32_t* source_ptr;
+    int32_t* dest_ptr;
     
     // 验证参数有效性
     if (size < (int)manager[1]) {
         return ERROR_INVALID_PARAM;
     }
     
-    new_buffer = (undefined4*)0x0;
+    new_buffer = (int32_t*)0x0;
     if (size != 0) {
         // 检查大小限制
         if (size * 4 - 1U < 0x3fffffff) {
             // 分配新缓冲区
-            new_buffer = (undefined4*)FUN_180741e10(
-                *(undefined8*)(_DAT_180be12f0 + 0x1a0), 
+            new_buffer = (int32_t*)FUN_180741e10(
+                *(uint64_t*)(_DAT_180be12f0 + 0x1a0), 
                 size * 4, 
                 &UNK_180957f70, 
                 0xf4, 
@@ -381,14 +381,14 @@ undefined8 NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
                 1
             );
             
-            if (new_buffer != (undefined4*)0x0) {
+            if (new_buffer != (int32_t*)0x0) {
                 // 复制现有数据
                 current_size = (int)manager[1];
                 copy_size = (longlong)current_size;
                 if ((current_size != 0) && (source_data = *manager, 0 < current_size)) {
                     dest_ptr = new_buffer;
                     do {
-                        *dest_ptr = *(undefined4*)((source_data - (longlong)new_buffer) + (longlong)dest_ptr);
+                        *dest_ptr = *(int32_t*)((source_data - (longlong)new_buffer) + (longlong)dest_ptr);
                         dest_ptr = dest_ptr + 1;
                         copy_size = copy_size - 1;
                     } while (copy_size != 0);
@@ -400,7 +400,7 @@ undefined8 NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
     
     // 清理现有缓冲区
     if ((0 < *(int*)((longlong)manager + 0xc)) && (*manager != 0)) {
-        FUN_180742250(*(undefined8*)(_DAT_180be12f0 + 0x1a0), *manager, &UNK_180957f70, 0x100, 1);
+        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *manager, &UNK_180957f70, 0x100, 1);
     }
     
     // 设置新缓冲区
@@ -418,25 +418,25 @@ undefined8 NetworkBufferManager_AllocateBuffer(longlong* manager, int size) {
  * @param param1 参数1
  * @param param2 参数2
  * 
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  * 
  * @note 这是简化实现，基于原始原始代码重构
  */
-undefined8 NetworkBufferManager_ReallocateBuffer(undefined8 param1, int param2) {
+uint64_t NetworkBufferManager_ReallocateBuffer(uint64_t param1, int param2) {
     int current_size;
     longlong source_data;
-    undefined4* new_buffer;
+    int32_t* new_buffer;
     longlong copy_size;
-    undefined4* source_ptr;
-    undefined4* dest_ptr;
+    int32_t* source_ptr;
+    int32_t* dest_ptr;
     longlong* unaff_RBX;
     int unaff_EDI;
     
-    new_buffer = (undefined4*)0x0;
+    new_buffer = (int32_t*)0x0;
     if (unaff_EDI == 0) {
         // 清理现有缓冲区
         if ((0 < *(int*)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
-            FUN_180742250(*(undefined8*)(_DAT_180be12f0 + 0x1a0), *unaff_RBX, &UNK_180957f70, 0x100, 1);
+            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *unaff_RBX, &UNK_180957f70, 0x100, 1);
         }
         *unaff_RBX = (longlong)new_buffer;
         *(int*)((longlong)unaff_RBX + 0xc) = unaff_EDI;
@@ -446,22 +446,22 @@ undefined8 NetworkBufferManager_ReallocateBuffer(undefined8 param1, int param2) 
     // 检查大小限制
     if (param2 * 4 - 1U < 0x3fffffff) {
         // 分配新缓冲区
-        new_buffer = (undefined4*)FUN_180741e10(
-            *(undefined8*)(_DAT_180be12f0 + 0x1a0), 
+        new_buffer = (int32_t*)FUN_180741e10(
+            *(uint64_t*)(_DAT_180be12f0 + 0x1a0), 
             param2 * 4, 
             &UNK_180957f70, 
             0xf4, 
             0
         );
         
-        if (new_buffer != (undefined4*)0x0) {
+        if (new_buffer != (int32_t*)0x0) {
             // 复制现有数据
             current_size = (int)unaff_RBX[1];
             copy_size = (longlong)current_size;
             if ((current_size != 0) && (source_data = *unaff_RBX, 0 < current_size)) {
                 dest_ptr = new_buffer;
                 do {
-                    *dest_ptr = *(undefined4*)((source_data - (longlong)new_buffer) + (longlong)dest_ptr);
+                    *dest_ptr = *(int32_t*)((source_data - (longlong)new_buffer) + (longlong)dest_ptr);
                     dest_ptr = dest_ptr + 1;
                     copy_size = copy_size - 1;
                 } while (copy_size != 0);
@@ -469,7 +469,7 @@ undefined8 NetworkBufferManager_ReallocateBuffer(undefined8 param1, int param2) 
             
             // 清理现有缓冲区
             if ((0 < *(int*)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
-                FUN_180742250(*(undefined8*)(_DAT_180be12f0 + 0x1a0), *unaff_RBX, &UNK_180957f70, 0x100, 1);
+                FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *unaff_RBX, &UNK_180957f70, 0x100, 1);
             }
             *unaff_RBX = (longlong)new_buffer;
             *(int*)((longlong)unaff_RBX + 0xc) = param2;
@@ -485,9 +485,9 @@ undefined8 NetworkBufferManager_ReallocateBuffer(undefined8 param1, int param2) 
  * 
  * 返回内存分配错误代码。
  * 
- * @return undefined8 错误代码
+ * @return uint64_t 错误代码
  */
-undefined8 NetworkErrorHandler_ReturnError(void) {
+uint64_t NetworkErrorHandler_ReturnError(void) {
     return ERROR_MEMORY_ALLOC;
 }
 
@@ -508,10 +508,10 @@ undefined8 NetworkErrorHandler_ReturnError(void) {
 void NetworkConnectionManager_CleanupConnection(longlong* connection) {
     int item_count;
     uint buffer_size;
-    undefined4* data_ptr;
+    int32_t* data_ptr;
     longlong remaining_items;
-    undefined4* item_data;
-    undefined4 item1, item2, item3, item4;
+    int32_t* item_data;
+    int32_t item1, item2, item3, item4;
     
     buffer_size = *(uint*)((longlong)connection + 0xc);
     
@@ -523,11 +523,11 @@ void NetworkConnectionManager_CleanupConnection(longlong* connection) {
         
         // 清理缓冲区
         if ((0 < (int)buffer_size) && (*connection != 0)) {
-            FUN_180742250(*(undefined8*)(_DAT_180be12f0 + 0x1a0), *connection, &UNK_180957f70, 0x100, 1);
+            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *connection, &UNK_180957f70, 0x100, 1);
         }
         
         *connection = 0;
-        *(undefined4*)((longlong)connection + 0xc) = 0;
+        *(int32_t*)((longlong)connection + 0xc) = 0;
         buffer_size = 0;
     }
     
@@ -535,17 +535,17 @@ void NetworkConnectionManager_CleanupConnection(longlong* connection) {
     if (item_count < 0) {
         remaining_items = (longlong)-item_count;
         if (item_count < 0) {
-            data_ptr = (undefined4*)(*connection + 0x14 + (longlong)item_count * 0x18);
+            data_ptr = (int32_t*)(*connection + 0x14 + (longlong)item_count * 0x18);
             do {
-                item_data = (undefined4*)FUN_180847820();
+                item_data = (int32_t*)FUN_180847820();
                 item1 = item_data[1];
                 item2 = item_data[2];
                 item3 = item_data[3];
-                *(undefined4*)(data_ptr + -0x14) = *item_data;
-                *(undefined4*)(data_ptr + -0x10) = item1;
-                *(undefined4*)(data_ptr + -0xc) = item2;
-                *(undefined4*)(data_ptr + -8) = item3;
-                *(undefined8*)(data_ptr + -4) = 0;
+                *(int32_t*)(data_ptr + -0x14) = *item_data;
+                *(int32_t*)(data_ptr + -0x10) = item1;
+                *(int32_t*)(data_ptr + -0xc) = item2;
+                *(int32_t*)(data_ptr + -8) = item3;
+                *(uint64_t*)(data_ptr + -4) = 0;
                 remaining_items = remaining_items - 1;
                 data_ptr = data_ptr + 0x18;
             } while (remaining_items != 0);
@@ -554,7 +554,7 @@ void NetworkConnectionManager_CleanupConnection(longlong* connection) {
     }
     
     // 重置连接状态
-    *(undefined4*)(connection + 1) = 0;
+    *(int32_t*)(connection + 1) = 0;
     if (0 < (int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f))) {
         FUN_18084d3f0(connection, 0);
     }
@@ -576,12 +576,12 @@ void NetworkConnectionManager_CleanupConnection(longlong* connection) {
  * 
  * @note 这是简化实现，原始实现包含复杂的数据包列表管理逻辑
  */
-void NetworkPacketManager_ProcessPacketList(undefined4 param1, int param2, uint param3) {
-    undefined4 item1, item2, item3;
+void NetworkPacketManager_ProcessPacketList(int32_t param1, int param2, uint param3) {
+    int32_t item1, item2, item3;
     longlong data_ptr;
-    undefined4* item_data;
+    int32_t* item_data;
     longlong remaining_items;
-    undefined8 unaff_RBP;
+    uint64_t unaff_RBP;
     longlong list_ptr;
     longlong unaff_RDI;
     
@@ -589,16 +589,16 @@ void NetworkPacketManager_ProcessPacketList(undefined4 param1, int param2, uint 
     if (0 < param2) {
         list_ptr = data_ptr + 0x14 + remaining_items * 8;
         do {
-            item_data = (undefined4*)FUN_180847820();
+            item_data = (int32_t*)FUN_180847820();
             param1 = *item_data;
             item1 = item_data[1];
             item2 = item_data[2];
             item3 = item_data[3];
-            *(undefined4*)(list_ptr + -0x14) = param1;
-            *(undefined4*)(list_ptr + -0x10) = item1;
-            *(undefined4*)(list_ptr + -0xc) = item2;
-            *(undefined4*)(list_ptr + -8) = item3;
-            *(undefined8*)(list_ptr + -4) = unaff_RBP;
+            *(int32_t*)(list_ptr + -0x14) = param1;
+            *(int32_t*)(list_ptr + -0x10) = item1;
+            *(int32_t*)(list_ptr + -0xc) = item2;
+            *(int32_t*)(list_ptr + -8) = item3;
+            *(uint64_t*)(list_ptr + -4) = unaff_RBP;
             remaining_items = remaining_items - 1;
             list_ptr = list_ptr + 0x18;
         } while (remaining_items != 0);
@@ -625,27 +625,27 @@ void NetworkPacketManager_ProcessPacketList(undefined4 param1, int param2, uint 
  * @note 这是简化实现，原始实现包含复杂的批量处理逻辑
  */
 void NetworkPacketManager_ProcessPackets(longlong param1) {
-    undefined4 item1, item2, item3, item4;
-    undefined8 data_ptr;
-    undefined4* item_data;
+    int32_t item1, item2, item3, item4;
+    uint64_t data_ptr;
+    int32_t* item_data;
     uint buffer_size;
     longlong remaining_items;
-    undefined8 unaff_RBP;
+    uint64_t unaff_RBP;
     longlong unaff_RSI;
     longlong unaff_RDI;
     
     remaining_items = data_ptr + 0x14 + param1 * 8;
     do {
-        item_data = (undefined4*)FUN_180847820();
+        item_data = (int32_t*)FUN_180847820();
         item1 = *item_data;
         item2 = item_data[1];
         item3 = item_data[2];
         item4 = item_data[3];
-        *(undefined4*)(remaining_items + -0x14) = item1;
-        *(undefined4*)(remaining_items + -0x10) = item2;
-        *(undefined4*)(remaining_items + -0xc) = item3;
-        *(undefined4*)(remaining_items + -8) = item4;
-        *(undefined8*)(remaining_items + -4) = unaff_RBP;
+        *(int32_t*)(remaining_items + -0x14) = item1;
+        *(int32_t*)(remaining_items + -0x10) = item2;
+        *(int32_t*)(remaining_items + -0xc) = item3;
+        *(int32_t*)(remaining_items + -8) = item4;
+        *(uint64_t*)(remaining_items + -4) = unaff_RBP;
         unaff_RSI = unaff_RSI - 1;
         remaining_items = remaining_items + 0x18;
     } while (unaff_RSI != 0);
@@ -671,12 +671,12 @@ void NetworkPacketManager_ProcessPackets(longlong param1) {
  * 
  * @note 这是简化实现，原始实现包含复杂的连接状态管理逻辑
  */
-void NetworkConnectionManager_UpdateConnection(undefined8 param1, undefined8 param2, uint param3) {
-    undefined4 unaff_EBP;
+void NetworkConnectionManager_UpdateConnection(uint64_t param1, uint64_t param2, uint param3) {
+    int32_t unaff_EBP;
     longlong unaff_RDI;
     
     // 更新连接状态
-    *(undefined4*)(unaff_RDI + 8) = unaff_EBP;
+    *(int32_t*)(unaff_RDI + 8) = unaff_EBP;
     if (0 < (int)((param3 ^ (int)param3 >> 0x1f) - ((int)param3 >> 0x1f))) {
         FUN_18084d3f0();
     }
@@ -695,12 +695,12 @@ void NetworkConnectionManager_UpdateConnection(undefined8 param1, undefined8 par
  * 
  * @note 这是简化实现，原始实现包含复杂的连接重置逻辑
  */
-void NetworkConnectionManager_ResetConnection(undefined8 param1, undefined8 param2, uint param3) {
-    undefined4 unaff_EBP;
+void NetworkConnectionManager_ResetConnection(uint64_t param1, uint64_t param2, uint param3) {
+    int32_t unaff_EBP;
     longlong unaff_RDI;
     
     // 重置连接状态
-    *(undefined4*)(unaff_RDI + 8) = unaff_EBP;
+    *(int32_t*)(unaff_RDI + 8) = unaff_EBP;
     if (0 < (int)((param3 ^ (int)param3 >> 0x1f) - ((int)param3 >> 0x1f))) {
         FUN_18084d3f0();
     }
@@ -734,7 +734,7 @@ void NetworkLinkedList_CleanupNode(longlong* node) {
             *node_ptr = (longlong)node_ptr;
             
             // 释放节点内存
-            FUN_180742250(*(undefined8*)(_DAT_180be12f0 + 0x1a0), node_ptr, &UNK_180984b50, 0xe1, 1);
+            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), node_ptr, &UNK_180984b50, 0xe1, 1);
         }
         node_ptr = (longlong*)*node;
     }
@@ -761,14 +761,14 @@ void NetworkLinkedList_CleanupNode(longlong* node) {
  * 
  * @note 这是简化实现，原始实现包含复杂的资源清理逻辑
  */
-void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
+void NetworkPacketManager_DestroyPacketFull(uint64_t* packet) {
     int item_count;
     longlong* link_ptr;
     longlong* link_data;
-    undefined4 item1, item2, item3;
-    undefined8 data_ptr;
-    undefined4* item_data;
-    undefined4* data_buffer;
+    int32_t item1, item2, item3;
+    uint64_t data_ptr;
+    int32_t* item_data;
+    int32_t* data_buffer;
     longlong* list_ptr;
     uint buffer_size;
     longlong remaining_items;
@@ -808,7 +808,7 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
         *cleanup_ptr = (longlong)cleanup_ptr;
         
         // 释放链表内存
-        FUN_180742250(*(undefined8*)(_DAT_180be12f0 + 0x1a0), cleanup_ptr, &UNK_180984ad0, 0xe, 1);
+        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), cleanup_ptr, &UNK_180984ad0, 0xe, 1);
     }
     
     // 继续清理其他链表
@@ -827,7 +827,7 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
         *(longlong*)(*cleanup_ptr + 8) = cleanup_ptr[1];
         cleanup_ptr[1] = (longlong)cleanup_ptr;
         *cleanup_ptr = (longlong)cleanup_ptr;
-        FUN_180742250(*(undefined8*)(_DAT_180be12f0 + 0x1a0), cleanup_ptr, &UNK_180984ad0, 0x12, 1);
+        FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), cleanup_ptr, &UNK_180984ad0, 0x12, 1);
     }
     
     // 清理数据缓冲区
@@ -838,10 +838,10 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
     if ((int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f)) < 0) {
         if (*(int*)(packet + 0x12) < 1) {
             if ((0 < (int)buffer_size) && (*link_data != 0)) {
-                FUN_180742250(*(undefined8*)(_DAT_180be12f0 + 0x1a0), *link_data, &UNK_180957f70, 0x100, 1);
+                FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), *link_data, &UNK_180957f70, 0x100, 1);
             }
             *link_data = 0;
-            *(undefined4*)((longlong)packet + 0x94) = 0;
+            *(int32_t*)((longlong)packet + 0x94) = 0;
             list_ptr = cleanup_ptr;
         }
     }
@@ -852,9 +852,9 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
     if (item_count < 0) {
         remaining_items = (longlong)-item_count;
         if (item_count < 0) {
-            data_buffer = (undefined4*)((longlong)item_count * 0x20 + 0x10 + *link_data);
+            data_buffer = (int32_t*)((longlong)item_count * 0x20 + 0x10 + *link_data);
             do {
-                item_data = (undefined4*)FUN_180847820();
+                item_data = (int32_t*)FUN_180847820();
                 item1 = item_data[1];
                 item2 = item_data[2];
                 item3 = item_data[3];
@@ -864,7 +864,7 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
                 data_buffer[-1] = item3;
                 *data_buffer = 4;
                 data_buffer[1] = 4;
-                item_data = (undefined4*)FUN_18084da10();
+                item_data = (int32_t*)FUN_18084da10();
                 data_buffer[2] = *item_data;
                 data_buffer[3] = 0;
                 remaining_items = remaining_items - 1;
@@ -875,7 +875,7 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
     }
     
     // 重置数据项状态
-    *(undefined4*)(packet + 0x12) = 0;
+    *(int32_t*)(packet + 0x12) = 0;
     if (0 < (int)((buffer_size ^ (int)buffer_size >> 0x1f) - ((int)buffer_size >> 0x1f))) {
         FUN_18084d620(link_data, 0);
     }
@@ -887,10 +887,10 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
             // 继续清理
         }
         if ((0 < (int)buffer_size) && (packet[0xf] != 0)) {
-            FUN_180742250(*(undefined8*)(_DAT_180be12f0 + 0x1a0), packet[0xf], &UNK_180957f70, 0x100, 1);
+            FUN_180742250(*(uint64_t*)(_DAT_180be12f0 + 0x1a0), packet[0xf], &UNK_180957f70, 0x100, 1);
         }
         packet[0xf] = 0;
-        *(undefined4*)((longlong)packet + 0x84) = 0;
+        *(int32_t*)((longlong)packet + 0x84) = 0;
     }
     
     // 处理网络连接
@@ -901,17 +901,17 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
         if ((int)buffer_size < 0) {
             data_ptr = packet[0xf] + 0x1c + (longlong)(int)buffer_size * 0x28;
             do {
-                data_buffer = (undefined4*)FUN_180847820();
+                data_buffer = (int32_t*)FUN_180847820();
                 item1 = data_buffer[1];
                 item2 = data_buffer[2];
                 item3 = data_buffer[3];
-                *(undefined4*)(data_ptr + -0x1c) = *data_buffer;
-                *(undefined4*)(data_ptr + -0x18) = item1;
-                *(undefined4*)(data_ptr + -0x14) = item2;
-                *(undefined4*)(data_ptr + -0x10) = item3;
-                *(undefined8*)(data_ptr + -0xc) = 0;
-                *(undefined8*)(data_ptr + -4) = 0;
-                *(undefined8*)(data_ptr + 4) = 0;
+                *(int32_t*)(data_ptr + -0x1c) = *data_buffer;
+                *(int32_t*)(data_ptr + -0x18) = item1;
+                *(int32_t*)(data_ptr + -0x14) = item2;
+                *(int32_t*)(data_ptr + -0x10) = item3;
+                *(uint64_t*)(data_ptr + -0xc) = 0;
+                *(uint64_t*)(data_ptr + -4) = 0;
+                *(uint64_t*)(data_ptr + 4) = 0;
                 remaining_items = remaining_items - 1;
                 data_ptr = data_ptr + 0x28;
             } while (remaining_items != 0);
@@ -927,7 +927,7 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
     
     // 最终清理
     buffer_size = (int)*(uint*)((longlong)packet + 0x84) >> 0x1f;
-    *(undefined4*)(packet + 0x10) = 0;
+    *(int32_t*)(packet + 0x10) = 0;
     if (0 < (int)((*(uint*)((longlong)packet + 0x84) ^ buffer_size) - buffer_size)) {
         FUN_18084d520(packet + 0xf, 0);
     }
@@ -949,7 +949,7 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
     
     // 更新链表指针
     *(longlong**)packet[0xe] = cleanup_ptr;
-    *(undefined8*)(*list_ptr + 8) = packet[0xe];
+    *(uint64_t*)(*list_ptr + 8) = packet[0xe];
     packet[0xe] = list_ptr;
     *list_ptr = (longlong)list_ptr;
     
@@ -970,7 +970,7 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
     
     // 最终更新
     *(longlong**)packet[0xc] = list_ptr;
-    *(undefined8*)(*link_ptr + 8) = packet[0xc];
+    *(uint64_t*)(*link_ptr + 8) = packet[0xc];
     packet[0xc] = link_ptr;
     *link_ptr = (longlong)link_ptr;
     
@@ -980,7 +980,7 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
     FUN_18084c220(packet + 5);
     
     // 设置结束标志
-    *(undefined4*)(packet + 1) = MAGIC_DEADFOOD;
+    *(int32_t*)(packet + 1) = MAGIC_DEADFOOD;
     *packet = &UNK_180984ab8;
 }
 
@@ -997,7 +997,7 @@ void NetworkPacketManager_DestroyPacketFull(undefined8* packet) {
  * 
  * @return void
  */
-void FUN_18084c2d0(undefined8* param_1) {
+void FUN_18084c2d0(uint64_t* param_1) {
     // 调用新的网络数据包初始化系统
     NetworkPacketManager_InitializePacket(param_1);
 }
@@ -1010,9 +1010,9 @@ void FUN_18084c2d0(undefined8* param_1) {
  * @param param_1 数据包指针
  * @param param_2 销毁标志
  * 
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  */
-undefined8 FUN_18084c350(undefined8 param_1, ulonglong param_2) {
+uint64_t FUN_18084c350(uint64_t param_1, ulonglong param_2) {
     // 调用新的网络数据包销毁系统
     return NetworkPacketManager_DestroyPacket(param_1, param_2);
 }
@@ -1040,9 +1040,9 @@ longlong FUN_18084c390(longlong param_1, ulonglong param_2) {
  * @param param_1 缓冲区管理器指针
  * @param param_2 请求的缓冲区大小
  * 
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  */
-undefined8 FUN_18084c470(longlong* param_1, int param_2) {
+uint64_t FUN_18084c470(longlong* param_1, int param_2) {
     // 调用新的网络缓冲区分配系统
     return NetworkBufferManager_AllocateBuffer(param_1, param_2);
 }
@@ -1055,9 +1055,9 @@ undefined8 FUN_18084c470(longlong* param_1, int param_2) {
  * @param param_1 参数1
  * @param param_2 参数2
  * 
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  */
-undefined8 FUN_18084c494(undefined8 param_1, int param_2) {
+uint64_t FUN_18084c494(uint64_t param_1, int param_2) {
     // 调用新的网络缓冲区重新分配系统
     return NetworkBufferManager_ReallocateBuffer(param_1, param_2);
 }
@@ -1067,9 +1067,9 @@ undefined8 FUN_18084c494(undefined8 param_1, int param_2) {
  * 
  * 这是原始的反编译函数，映射到新的网络错误处理系统
  * 
- * @return undefined8 错误代码
+ * @return uint64_t 错误代码
  */
-undefined8 FUN_18084c55b(void) {
+uint64_t FUN_18084c55b(void) {
     // 调用新的网络错误处理系统
     return NetworkErrorHandler_ReturnError();
 }
@@ -1099,7 +1099,7 @@ void FUN_18084c5a0(longlong* param_1) {
  * 
  * @return void
  */
-void FUN_18084c612(undefined4 param_1, int param_2, uint param_3) {
+void FUN_18084c612(int32_t param_1, int param_2, uint param_3) {
     // 调用新的网络数据包列表处理系统
     NetworkPacketManager_ProcessPacketList(param_1, param_2, param_3);
 }
@@ -1129,7 +1129,7 @@ void FUN_18084c61e(longlong param_1) {
  * 
  * @return void
  */
-void FUN_18084c653(undefined8 param_1, undefined8 param_2, uint param_3) {
+void FUN_18084c653(uint64_t param_1, uint64_t param_2, uint param_3) {
     // 调用新的网络连接状态更新系统
     NetworkConnectionManager_UpdateConnection(param_1, param_2, param_3);
 }
@@ -1145,7 +1145,7 @@ void FUN_18084c653(undefined8 param_1, undefined8 param_2, uint param_3) {
  * 
  * @return void
  */
-void FUN_18084c658(undefined8 param_1, undefined8 param_2, uint param_3) {
+void FUN_18084c658(uint64_t param_1, uint64_t param_2, uint param_3) {
     // 调用新的网络连接重置系统
     NetworkConnectionManager_ResetConnection(param_1, param_2, param_3);
 }
@@ -1173,7 +1173,7 @@ void FUN_18084c680(longlong* param_1) {
  * 
  * @return void
  */
-void FUN_18084c730(undefined8* param_1) {
+void FUN_18084c730(uint64_t* param_1) {
     // 调用新的网络数据包完整销毁系统
     NetworkPacketManager_DestroyPacketFull(param_1);
 }
@@ -1187,7 +1187,7 @@ void FUN_18084c730(undefined8* param_1) {
  * 
  * @return void
  */
-void FUN_18084c738(undefined8* param_1) {
+void FUN_18084c738(uint64_t* param_1) {
     // 调用新的网络数据包完整销毁系统
     NetworkPacketManager_DestroyPacketFull(param_1);
 }
@@ -1201,7 +1201,7 @@ void FUN_18084c738(undefined8* param_1) {
  * 
  * @return void
  */
-void FUN_18084c744(undefined8* param_1) {
+void FUN_18084c744(uint64_t* param_1) {
     // 调用新的网络数据包完整销毁系统
     NetworkPacketManager_DestroyPacketFull(param_1);
 }

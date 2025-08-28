@@ -5,10 +5,10 @@
 
 // 全局变量和常量定义
 ulonglong g_RenderContextManager = 0xfffffffffffffffe;  // 渲染上下文管理器
-undefined8 *g_RenderInterfaceTable = &UNK_180a16dc0;     // 渲染接口表
-undefined8 *g_DeviceContext = &UNK_1809fcc58;           // 设备上下文
-undefined8 *g_MemoryAllocator = &UNK_18098bcb0;          // 内存分配器
-undefined8 *g_RenderDevice = &UNK_180a3c3e0;             // 渲染设备
+uint64_t *g_RenderInterfaceTable = &UNK_180a16dc0;     // 渲染接口表
+uint64_t *g_DeviceContext = &UNK_1809fcc58;           // 设备上下文
+uint64_t *g_MemoryAllocator = &UNK_18098bcb0;          // 内存分配器
+uint64_t *g_RenderDevice = &UNK_180a3c3e0;             // 渲染设备
 char *g_RenderDeviceName = "Llg_Global_services_view_wi"; // 渲染设备名称字符串
 
 /**
@@ -22,63 +22,63 @@ char *g_RenderDeviceName = "Llg_Global_services_view_wi"; // 渲染设备名称�
  * 3. 配置渲染管线状态
  * 4. 初始化资源管理器
  */
-void InitializeRenderingSystem(undefined8 *renderContext)
+void InitializeRenderingSystem(uint64_t *renderContext)
 {
   longlong *bufferManager;
-  undefined8 *deviceInterface;
-  undefined8 *memoryInterface;
-  undefined8 *renderInterface;
+  uint64_t *deviceInterface;
+  uint64_t *memoryInterface;
+  uint64_t *renderInterface;
   longlong bufferSize;
-  undefined8 deviceHandle;
+  uint64_t deviceHandle;
   int renderFlags;
   longlong *resourceArray;
   longlong *textureManager;
   longlong *shaderManager;
   uint textureCount;
-  undefined8 *resourceBuffer;
-  undefined4 deviceCaps;
-  undefined4 extraout_XMM0_Da;
-  undefined1 tempBuffer[32];
+  uint64_t *resourceBuffer;
+  int32_t deviceCaps;
+  int32_t extraout_XMM0_Da;
+  int8_t tempBuffer[32];
   uint tempCounter;
   longlong *bufferPointer;
   longlong *shaderCache;
   longlong *textureCache;
   longlong *renderTarget;
-  undefined4 renderState;
-  undefined4 blendMode;
+  int32_t renderState;
+  int32_t blendMode;
   int frameIndex;
-  undefined4 stencilMode;
+  int32_t stencilMode;
   longlong *vertexBuffer;
   longlong *indexBuffer;
-  undefined *vertexData;
+  void *vertexData;
   longlong frameTime;
-  undefined4 clearColor[4];
-  undefined8 viewportData;
-  undefined4 depthValue;
-  undefined4 stencilValue;
-  undefined2 viewportWidth;
-  undefined1 viewportFlags;
-  undefined4 cullMode;
-  undefined1 multisample;
-  undefined8 transformMatrix;
+  int32_t clearColor[4];
+  uint64_t viewportData;
+  int32_t depthValue;
+  int32_t stencilValue;
+  int16_t viewportWidth;
+  int8_t viewportFlags;
+  int32_t cullMode;
+  int8_t multisample;
+  uint64_t transformMatrix;
   longlong worldMatrix[3];
-  undefined4 shaderParams;
-  undefined8 projectionMatrix;
-  undefined8 viewMatrix;
-  undefined8 *renderTargetPtr;
-  undefined *vertexFormat;
-  undefined1 *pixelShader;
-  undefined4 rasterState;
-  undefined4 blendState;
-  undefined1 constantBuffer[8];
-  undefined8 samplerState;
+  int32_t shaderParams;
+  uint64_t projectionMatrix;
+  uint64_t viewMatrix;
+  uint64_t *renderTargetPtr;
+  void *vertexFormat;
+  int8_t *pixelShader;
+  int32_t rasterState;
+  int32_t blendState;
+  int8_t constantBuffer[8];
+  uint64_t samplerState;
   longlong constantBufferData[3];
-  undefined4 topology;
-  undefined8 inputLayout;
-  undefined *depthStencil;
-  undefined1 *renderTargetView;
-  undefined4 depthStencilState;
-  undefined1 renderTargetArray[72];
+  int32_t topology;
+  uint64_t inputLayout;
+  void *depthStencil;
+  int8_t *renderTargetView;
+  int32_t depthStencilState;
+  int8_t renderTargetArray[72];
   ulonglong stackCookie;
   
   // 初始化栈保护和临时变量
@@ -96,7 +96,7 @@ void InitializeRenderingSystem(undefined8 *renderContext)
   *bufferManager = 0;
   renderContext[0x20] = 0;
   renderContext[0x21] = 0;
-  *(undefined4 *)(renderContext + 0x22) = 3;  // 缓冲区数量
+  *(int32_t *)(renderContext + 0x22) = 3;  // 缓冲区数量
   renderContext[0x24] = 0;
   renderContext[0x25] = 0;
   
@@ -105,12 +105,12 @@ void InitializeRenderingSystem(undefined8 *renderContext)
   *textureManager = 0;
   renderContext[0x28] = 0;
   renderContext[0x29] = 0;
-  *(undefined4 *)(renderContext + 0x2a) = 3;
+  *(int32_t *)(renderContext + 0x2a) = 3;
   
   // 设置渲染状态标志
-  *(undefined1 *)((longlong)renderContext + 0x11c) = 1;  // 渲染启用标志
-  *(undefined1 *)(renderContext + 0x1e) = 0;            // 垂直同步关闭
-  *(undefined4 *)(renderContext + 0x23) = 0;             // 清除颜色
+  *(int8_t *)((longlong)renderContext + 0x11c) = 1;  // 渲染启用标志
+  *(int8_t *)(renderContext + 0x1e) = 0;            // 垂直同步关闭
+  *(int32_t *)(renderContext + 0x23) = 0;             // 清除颜色
   deviceHandle = _DAT_180c86930;
   
   // 创建设备接口
@@ -134,8 +134,8 @@ void InitializeRenderingSystem(undefined8 *renderContext)
   }
   
   // 创建内存管理接口
-  renderInterface = (undefined8 *)FUN_1800bf050(deviceCaps,&indexBuffer);
-  renderInterface = (undefined8 *)FUN_1800763c0(*renderInterface,&vertexBuffer);
+  renderInterface = (uint64_t *)FUN_1800bf050(deviceCaps,&indexBuffer);
+  renderInterface = (uint64_t *)FUN_1800763c0(*renderInterface,&vertexBuffer);
   deviceHandle = *renderInterface;
   *renderInterface = 0;
   
@@ -174,14 +174,14 @@ void InitializeRenderingSystem(undefined8 *renderContext)
     if (0 < (int)textureManager) {
       do {
         renderFlags = frameIndex;
-        renderInterface = (undefined8 *)0x0;
+        renderInterface = (uint64_t *)0x0;
         FUN_180627ae0(&vertexData,(longlong)frameIndex * 0x20 + renderContext[0x27]);
         FUN_1800b08e0(_DAT_180c86930,&renderTarget,&vertexData,1);
         *(uint *)(renderTarget + 0x65) = *(uint *)(renderTarget + 0x65) | 0x20000000;
         
         // 管理纹理缓冲区
-        renderInterface = (undefined8 *)renderContext[0x20];
-        if (renderInterface < (undefined8 *)renderContext[0x21]) {
+        renderInterface = (uint64_t *)renderContext[0x20];
+        if (renderInterface < (uint64_t *)renderContext[0x21]) {
           renderContext[0x20] = renderInterface + 1;
           *renderInterface = renderTarget;
           if (renderTarget != (longlong *)0x0) {
@@ -190,15 +190,15 @@ void InitializeRenderingSystem(undefined8 *renderContext)
         }
         else {
           // 扩展缓冲区
-          memoryInterface = (undefined8 *)*bufferManager;
+          memoryInterface = (uint64_t *)*bufferManager;
           bufferSize = (longlong)renderInterface - (longlong)memoryInterface >> 3;
           if (bufferSize == 0) {
             bufferSize = 1;
 LAB_18028834f:
-            renderInterface = (undefined8 *)
-                     FUN_18062b420(_DAT_180c8ed18,bufferSize * 8,*(undefined1 *)(renderContext + 0x22));
-            renderInterface = (undefined8 *)renderContext[0x20];
-            memoryInterface = (undefined8 *)*bufferManager;
+            renderInterface = (uint64_t *)
+                     FUN_18062b420(_DAT_180c8ed18,bufferSize * 8,*(int8_t *)(renderContext + 0x22));
+            renderInterface = (uint64_t *)renderContext[0x20];
+            memoryInterface = (uint64_t *)*bufferManager;
             deviceInterface = renderInterface;
           }
           else {
@@ -248,7 +248,7 @@ LAB_18028834f:
           if (renderTarget != (longlong *)0x0) {
             deviceHandle = 0;
 LAB_18028843a:
-            FUN_18022cd30(*(undefined8 *)(renderContext[0x24] + 0x1b8),deviceHandle);
+            FUN_18022cd30(*(uint64_t *)(renderContext[0x24] + 0x1b8),deviceHandle);
           }
         }
         else if ((renderFlags == 1) && (renderTarget != (longlong *)0x0)) {
@@ -257,7 +257,7 @@ LAB_18028843a:
         }
         
         if (((int)textureManager == 1) && (renderTarget != (longlong *)0x0)) {
-          FUN_18022cd30(*(undefined8 *)(renderContext[0x24] + 0x1b8),(ulonglong)textureManager & 0xffffffff);
+          FUN_18022cd30(*(uint64_t *)(renderContext[0x24] + 0x1b8),(ulonglong)textureManager & 0xffffffff);
         }
         
         if (renderTarget != (longlong *)0x0) {
@@ -277,8 +277,8 @@ LAB_18028843a:
     }
     
     // 最终渲染配置
-    vertexData = (undefined *)0x0;
-    pixelShader = (undefined1 *)0xffffffff00000000;
+    vertexData = (void *)0x0;
+    pixelShader = (int8_t *)0xffffffff00000000;
     rasterState = CONCAT13(rasterState._3_1_,1);
     blendState = 0xffffffff;
     constantBuffer[0] = 1;
@@ -311,7 +311,7 @@ LAB_18028843a:
   FUN_1800b30d0(deviceHandle,&renderTarget,&depthStencil,1);
   tempCounter = textureCount & 0xffffffef | 8;
   depthStencil = &UNK_18098bcb0;
-  renderInterface = (undefined8 *)FUN_18022cb40(renderTarget,&frameIndex);
+  renderInterface = (uint64_t *)FUN_18022cb40(renderTarget,&frameIndex);
   bufferManager = (longlong *)*renderInterface;
   *renderInterface = 0;
   textureCache = textureCache;
@@ -335,8 +335,8 @@ LAB_18028843a:
   }
   
   // 创建最终渲染接口
-  renderInterface = (undefined8 *)FUN_1800bf6c0(deviceCaps,&shaderCache);
-  renderInterface = (undefined8 *)FUN_1800763c0(*renderInterface,&indexBuffer);
+  renderInterface = (uint64_t *)FUN_1800bf6c0(deviceCaps,&shaderCache);
+  renderInterface = (uint64_t *)FUN_1800763c0(*renderInterface,&indexBuffer);
   deviceHandle = *renderInterface;
   *renderInterface = 0;
   textureCache = (longlong *)renderContext[0x25];
@@ -375,7 +375,7 @@ LAB_18028843a:
   rasterState = 0x7f7fffff;
   FUN_1800c12e0(renderContext[0x25],&textureCache);
   FUN_1800b6620();
-  *(undefined4 *)((longlong)renderContext + 0x15c) = 0xc0a00000;
+  *(int32_t *)((longlong)renderContext + 0x15c) = 0xc0a00000;
   textureCache = worldMatrix;
   
   if (worldMatrix[0] == 0) {
@@ -400,7 +400,7 @@ LAB_18028843a:
  * 3. 调用系统清理函数
  * 4. 可选地释放内存
  */
-undefined8 * DestroyRenderingSystem(undefined8 *renderContext, ulonglong freeMemory)
+uint64_t * DestroyRenderingSystem(uint64_t *renderContext, ulonglong freeMemory)
 {
   longlong *deviceInterface;
   
@@ -460,18 +460,18 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   int frameNumber;
   longlong *resourceManager;
   longlong *textureCache;
-  undefined4 renderState;
-  undefined4 blendMode;
-  undefined8 deviceHandle;
+  int32_t renderState;
+  int32_t blendMode;
+  uint64_t deviceHandle;
   longlong frameTime;
-  undefined8 *renderTarget;
-  undefined8 *depthBuffer;
-  undefined1 renderFlags;
+  uint64_t *renderTarget;
+  uint64_t *depthBuffer;
+  int8_t renderFlags;
   uint textureFlags;
-  undefined4 clearFlags;
+  int32_t clearFlags;
   longlong viewportData;
-  undefined8 *colorTarget;
-  undefined8 *depthTarget;
+  uint64_t *colorTarget;
+  uint64_t *depthTarget;
   longlong projectionData;
   byte useHDR;
   float screenWidth;
@@ -481,64 +481,64 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   float fov;
   float viewWidth;
   float viewHeight;
-  undefined8 viewportSettings;
-  undefined4 clearColor[4];
-  undefined8 depthStencilState;
-  undefined8 rasterizerState;
-  undefined4 blendState;
-  undefined2 sampleCount;
-  undefined8 renderTargetView;
-  undefined8 depthStencilView;
-  undefined8 shaderConstants;
+  uint64_t viewportSettings;
+  int32_t clearColor[4];
+  uint64_t depthStencilState;
+  uint64_t rasterizerState;
+  int32_t blendState;
+  int16_t sampleCount;
+  uint64_t renderTargetView;
+  uint64_t depthStencilView;
+  uint64_t shaderConstants;
   longlong constantBufferData[3];
-  undefined4 topology;
-  undefined8 inputLayout;
-  undefined4 vertexFormat;
-  undefined8 vertexBuffer;
-  undefined8 indexBuffer;
-  undefined4 vertexStride;
-  undefined4 vertexOffset;
-  undefined8 indexBufferFormat;
-  undefined4 primitiveTopology;
-  undefined4 vertexShader;
-  undefined4 pixelShader;
-  undefined4 geometryShader;
-  undefined4 hullShader;
-  undefined4 domainShader;
-  undefined4 computeShader;
-  undefined8 shaderResourceViews[16];
-  undefined8 samplerStates[16];
-  undefined4 renderTargetCount;
-  undefined8 renderTargetViews[8];
-  undefined8 depthStencilStatePtr;
-  undefined4 stencilRef;
-  undefined4 blendStatePtr;
-  undefined4 blendFactor[4];
-  undefined4 sampleMask;
-  undefined8 constantBuffers[16];
-  undefined4 constantBufferCount;
-  undefined8 vertexShaderPtr;
-  undefined4 vertexShaderSlot;
-  undefined8 pixelShaderPtr;
-  undefined4 pixelShaderSlot;
-  undefined8 geometryShaderPtr;
-  undefined4 geometryShaderSlot;
-  undefined8 hullShaderPtr;
-  undefined4 hullShaderSlot;
-  undefined8 domainShaderPtr;
-  undefined4 domainShaderSlot;
-  undefined8 computeShaderPtr;
-  undefined4 computeShaderSlot;
-  undefined8 streamOutput;
-  undefined4 streamOutputTargets[4];
-  undefined4 streamOutputOffsets[4];
+  int32_t topology;
+  uint64_t inputLayout;
+  int32_t vertexFormat;
+  uint64_t vertexBuffer;
+  uint64_t indexBuffer;
+  int32_t vertexStride;
+  int32_t vertexOffset;
+  uint64_t indexBufferFormat;
+  int32_t primitiveTopology;
+  int32_t vertexShader;
+  int32_t pixelShader;
+  int32_t geometryShader;
+  int32_t hullShader;
+  int32_t domainShader;
+  int32_t computeShader;
+  uint64_t shaderResourceViews[16];
+  uint64_t samplerStates[16];
+  int32_t renderTargetCount;
+  uint64_t renderTargetViews[8];
+  uint64_t depthStencilStatePtr;
+  int32_t stencilRef;
+  int32_t blendStatePtr;
+  int32_t blendFactor[4];
+  int32_t sampleMask;
+  uint64_t constantBuffers[16];
+  int32_t constantBufferCount;
+  uint64_t vertexShaderPtr;
+  int32_t vertexShaderSlot;
+  uint64_t pixelShaderPtr;
+  int32_t pixelShaderSlot;
+  uint64_t geometryShaderPtr;
+  int32_t geometryShaderSlot;
+  uint64_t hullShaderPtr;
+  int32_t hullShaderSlot;
+  uint64_t domainShaderPtr;
+  int32_t domainShaderSlot;
+  uint64_t computeShaderPtr;
+  int32_t computeShaderSlot;
+  uint64_t streamOutput;
+  int32_t streamOutputTargets[4];
+  int32_t streamOutputOffsets[4];
   
   // 初始化帧渲染参数
   viewportSettings = 0xfffffffffffffffe;
   
   // 检查并更新渲染状态
   if (*(char *)(renderContext + 0x11c) != '\0') {
-    *(undefined1 *)(renderContext + 0x11c) = 0;
+    *(int8_t *)(renderContext + 0x11c) = 0;
     *(float *)(renderContext + 0x15c) = (float)_DAT_180c8ed30 * 1e-05;
   }
   
@@ -577,8 +577,8 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   depthStencilView = 0;
   topology = 3;
   
-  FUN_180076c50(*(undefined8 *)(renderContext + 0x120),&depthStencilState);
-  FUN_180076c50(*(undefined8 *)(renderContext + 0x128),&viewportSettings);
+  FUN_180076c50(*(uint64_t *)(renderContext + 0x120),&depthStencilState);
+  FUN_180076c50(*(uint64_t *)(renderContext + 0x128),&viewportSettings);
   FUN_1800b6620();
   
   frameTime = FUN_1800daa50();
@@ -597,16 +597,16 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   }
   
   resourceManager = *(longlong **)(frameTime + 0x96a8);
-  *(undefined8 *)(frameTime + 0x96a8) = 0;
+  *(uint64_t *)(frameTime + 0x96a8) = 0;
   if (resourceManager != (longlong *)0x0) {
     (**(code **)(*resourceManager + 0x38))();
   }
   
   // 配置渲染参数
-  deviceHandle = *(undefined8 *)(renderContext + 0x24);
-  *(undefined8 *)(frameTime + 0x11c18) = *(undefined8 *)(renderContext + 0x1c);
-  *(undefined8 *)(frameTime + 0x11c20) = deviceHandle;
-  *(undefined8 *)(frameTime + 0x11c28) = *(undefined8 *)(renderContext + 0x2c);
+  deviceHandle = *(uint64_t *)(renderContext + 0x24);
+  *(uint64_t *)(frameTime + 0x11c18) = *(uint64_t *)(renderContext + 0x1c);
+  *(uint64_t *)(frameTime + 0x11c20) = deviceHandle;
+  *(uint64_t *)(frameTime + 0x11c28) = *(uint64_t *)(renderContext + 0x2c);
   
   // 计算投影矩阵
   projectionData = _DAT_180c86950;
@@ -637,9 +637,9 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   *(float *)(frameTime + 0x11c24) = nearPlane * screenWidth - farPlane;
   
   // 设置渲染状态
-  *(undefined4 *)(frameTime + 0x11cf0) = 0x1000000;
-  *(undefined2 *)(frameTime + 0x11c36) = 0x100;
-  *(undefined1 *)(frameTime + 0x9a31) = 0;
+  *(int32_t *)(frameTime + 0x11cf0) = 0x1000000;
+  *(int16_t *)(frameTime + 0x11c36) = 0x100;
+  *(int8_t *)(frameTime + 0x9a31) = 0;
   
   textureFlags = *(uint *)(renderContext + 0xcc);
   *(uint *)(frameTime + 4) = textureFlags | 0x10010082;
@@ -656,8 +656,8 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   
   // 复制渲染数据
   viewportData = 2;
-  colorTarget = (undefined8 *)(projectionData + 0x16a0);
-  depthTarget = (undefined8 *)(frameTime + 0x30);
+  colorTarget = (uint64_t *)(projectionData + 0x16a0);
+  depthTarget = (uint64_t *)(frameTime + 0x30);
   
   do {
     renderTarget = depthTarget;
@@ -698,23 +698,23 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   renderTarget[0x12] = depthBuffer[0x12];
   renderTarget[0x13] = deviceHandle;
   
-  clearFlags = *(undefined4 *)((longlong)depthBuffer + 0xa4);
-  renderState = *(undefined4 *)(depthBuffer + 0x15);
-  blendMode = *(undefined4 *)((longlong)depthBuffer + 0xac);
+  clearFlags = *(int32_t *)((longlong)depthBuffer + 0xa4);
+  renderState = *(int32_t *)(depthBuffer + 0x15);
+  blendMode = *(int32_t *)((longlong)depthBuffer + 0xac);
   
-  *(undefined4 *)(renderTarget + 0x14) = *(undefined4 *)(depthBuffer + 0x14);
-  *(undefined4 *)((longlong)renderTarget + 0xa4) = clearFlags;
-  *(undefined4 *)(renderTarget + 0x15) = renderState;
-  *(undefined4 *)((longlong)renderTarget + 0xac) = blendMode;
+  *(int32_t *)(renderTarget + 0x14) = *(int32_t *)(depthBuffer + 0x14);
+  *(int32_t *)((longlong)renderTarget + 0xa4) = clearFlags;
+  *(int32_t *)(renderTarget + 0x15) = renderState;
+  *(int32_t *)((longlong)renderTarget + 0xac) = blendMode;
   
-  clearFlags = *(undefined4 *)((longlong)depthBuffer + 0xb4);
-  renderState = *(undefined4 *)(depthBuffer + 0x17);
-  blendMode = *(undefined4 *)((longlong)depthBuffer + 0xbc);
+  clearFlags = *(int32_t *)((longlong)depthBuffer + 0xb4);
+  renderState = *(int32_t *)(depthBuffer + 0x17);
+  blendMode = *(int32_t *)((longlong)depthBuffer + 0xbc);
   
-  *(undefined4 *)(renderTarget + 0x16) = *(undefined4 *)(depthBuffer + 0x16);
-  *(undefined4 *)((longlong)renderTarget + 0xb4) = clearFlags;
-  *(undefined4 *)(renderTarget + 0x17) = renderState;
-  *(undefined4 *)((longlong)renderTarget + 0xbc) = blendMode;
+  *(int32_t *)(renderTarget + 0x16) = *(int32_t *)(depthBuffer + 0x16);
+  *(int32_t *)((longlong)renderTarget + 0xb4) = clearFlags;
+  *(int32_t *)(renderTarget + 0x17) = renderState;
+  *(int32_t *)((longlong)renderTarget + 0xbc) = blendMode;
   
   FUN_18024b8d0(frameTime);
   
@@ -722,7 +722,7 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
     *(uint *)(frameTime + 4) = *(uint *)(frameTime + 4) | 0x40000;
   }
   
-  *(undefined4 *)(frameTime + 0x9a2c) = 10000;
+  *(int32_t *)(frameTime + 0x9a2c) = 10000;
   
   // 设置混合状态
   topology = 0x3f800000;
@@ -759,7 +759,7 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   domainShader = 0;
   topology = 0x7f7fffff;
   
-  *(undefined1 *)(frameTime + 0x1c60) = 1;
+  *(int8_t *)(frameTime + 0x1c60) = 1;
   vertexShader = vertexShader;
   pixelShader = pixelShader;
   geometryShader = geometryShader;
@@ -768,15 +768,15 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   computeShader = computeShader;
   
   renderFlags = func_0x0001800e2bf0(_DAT_180c86890,frameTime);
-  *(undefined1 *)(frameTime + 0x1c61) = renderFlags;
+  *(int8_t *)(frameTime + 0x1c61) = renderFlags;
   
   if (*(int *)(frameTime + 8) != -1) {
-    useHDR = (byte)*(undefined4 *)(frameTime + 0x18);
+    useHDR = (byte)*(int32_t *)(frameTime + 0x18);
   }
   
   *(byte *)(frameTime + 0x1c62) = useHDR & 1;
   clearFlags = func_0x00018024c420(frameTime);
-  *(undefined4 *)(frameTime + 0x1c64) = clearFlags;
+  *(int32_t *)(frameTime + 0x1c64) = clearFlags;
   
   // 设置渲染描述符
   renderTargetView = 0;
@@ -797,10 +797,10 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   viewportData = 0;
   
   if (*(char *)(renderContext + 0xf0) == '\0') {
-    FUN_180077750(*(undefined8 *)(renderContext + 0x120),frameTime,&topology,0,&renderTargetView);
+    FUN_180077750(*(uint64_t *)(renderContext + 0x120),frameTime,&topology,0,&renderTargetView);
   }
   
-  FUN_180077750(*(undefined8 *)(renderContext + 0x128),frameTime,&vertexShader,0,&renderTargetView);
+  FUN_180077750(*(uint64_t *)(renderContext + 0x128),frameTime,&vertexShader,0,&renderTargetView);
   
   // 更新帧计数器
   LOCK();
@@ -811,14 +811,14 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
   
   *(longlong *)(frameData + 0x9a48 + (longlong)frameNumber * 8) = frameTime;
   
-  clearFlags = *(undefined4 *)(frameData + 0x9a38);
-  renderState = *(undefined4 *)(frameData + 0x9a3c);
-  blendMode = *(undefined4 *)(frameData + 0x9a40);
+  clearFlags = *(int32_t *)(frameData + 0x9a38);
+  renderState = *(int32_t *)(frameData + 0x9a3c);
+  blendMode = *(int32_t *)(frameData + 0x9a40);
   
-  *(undefined4 *)(frameTime + 0x9a34) = *(undefined4 *)(frameData + 0x9a34);
-  *(undefined4 *)(frameTime + 0x9a38) = clearFlags;
-  *(undefined4 *)(frameTime + 0x9a3c) = renderState;
-  *(undefined4 *)(frameTime + 0x9a40) = blendMode;
+  *(int32_t *)(frameTime + 0x9a34) = *(int32_t *)(frameData + 0x9a34);
+  *(int32_t *)(frameTime + 0x9a38) = clearFlags;
+  *(int32_t *)(frameTime + 0x9a3c) = renderState;
+  *(int32_t *)(frameTime + 0x9a40) = blendMode;
   
   if (frameTime == 0) {
     if (viewportData == 0) {
@@ -844,32 +844,32 @@ longlong RenderFrame(longlong renderContext, longlong frameData)
  * 3. 配置设备参数
  * 4. 返回设备接口指针
  */
-undefined8 * CreateRenderDevice(undefined8 deviceType, undefined8 *deviceInterface, undefined8 createFlags, undefined8 adapterFlags)
+uint64_t * CreateRenderDevice(uint64_t deviceType, uint64_t *deviceInterface, uint64_t createFlags, uint64_t adapterFlags)
 {
-  undefined8 *interfacePtr;
+  uint64_t *interfacePtr;
   
   // 初始化设备接口
   *deviceInterface = g_MemoryAllocator;
   deviceInterface[1] = 0;
-  *(undefined4 *)(deviceInterface + 2) = 0;
+  *(int32_t *)(deviceInterface + 2) = 0;
   
   *deviceInterface = g_RenderDevice;
   deviceInterface[3] = 0;
   deviceInterface[1] = 0;
-  *(undefined4 *)(deviceInterface + 2) = 0;
+  *(int32_t *)(deviceInterface + 2) = 0;
   
   // 创建设备
   FUN_1806277c0(deviceInterface,0x16,createFlags,adapterFlags,0,g_RenderContextManager);
   
   // 设置设备名称
-  interfacePtr = (undefined8 *)deviceInterface[1];
+  interfacePtr = (uint64_t *)deviceInterface[1];
   *interfacePtr = 0x6964616f4c6c6772;  // "Llg_Global"
   interfacePtr[1] = 0x65657263735f676e;  // "services_view"
-  *(undefined4 *)(interfacePtr + 2) = 0x69765f6e;  // "n_vi"
-  *(undefined2 *)((longlong)interfacePtr + 0x14) = 0x7765;  // "ew"
-  *(undefined1 *)((longlong)interfacePtr + 0x16) = 0;
+  *(int32_t *)(interfacePtr + 2) = 0x69765f6e;  // "n_vi"
+  *(int16_t *)((longlong)interfacePtr + 0x14) = 0x7765;  // "ew"
+  *(int8_t *)((longlong)interfacePtr + 0x16) = 0;
   
-  *(undefined4 *)(deviceInterface + 2) = 0x16;
+  *(int32_t *)(deviceInterface + 2) = 0x16;
   return deviceInterface;
 }
 
@@ -896,7 +896,7 @@ ulonglong CleanupRenderResources(longlong renderContext)
   longlong resourcePtr;
   
   // 释放主渲染接口
-  FUN_180077040(*(undefined8 *)(renderContext + 0x120));
+  FUN_180077040(*(uint64_t *)(renderContext + 0x120));
   
   resourceSize = *(longlong *)(renderContext + 0x128);
   if (*(longlong *)(resourceSize + 0x1b8) != 0) {
@@ -927,7 +927,7 @@ ulonglong CleanupRenderResources(longlong renderContext)
     if (*(longlong *)(resourceSize + 0x1d8) != 0) {
       FUN_18064e900();
     }
-    *(undefined8 *)(resourceSize + 0x1d8) = 0;
+    *(uint64_t *)(resourceSize + 0x1d8) = 0;
     LOCK();
     cleanupFlags = *(byte *)(resourceSize + 0xf9);
     *(byte *)(resourceSize + 0xf9) = 0;
@@ -938,7 +938,7 @@ ulonglong CleanupRenderResources(longlong renderContext)
   if (*(longlong *)(resourceSize + 0x1e8) != 0) {
     FUN_180080060();
     cleanupResult = *(ulonglong *)(resourceSize + 0x1f0);
-    *(undefined8 *)(resourceSize + 0x1e8) = 0;
+    *(uint64_t *)(resourceSize + 0x1e8) = 0;
     if (cleanupResult != 0) {
       *(byte *)(cleanupResult + 0xfe) = *(byte *)(cleanupResult + 0xfe) & 0xfb;
     }

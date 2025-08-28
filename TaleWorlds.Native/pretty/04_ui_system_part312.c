@@ -286,16 +286,16 @@ void FUN_18083a850(longlong param_1,float *param_2,int param_3,int param_4)
 
 
 
-// 函数: void FUN_18083a990(undefined1 (*param_1) [32],undefined1 (*param_2) [32],int param_3)
-void FUN_18083a990(undefined1 (*param_1) [32],undefined1 (*param_2) [32],int param_3)
+// 函数: void FUN_18083a990(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
+void FUN_18083a990(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
 
 {
-  undefined1 auVar1 [32];
-  undefined1 auVar2 [32];
-  undefined1 auVar3 [32];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
+  int8_t auVar1 [32];
+  int8_t auVar2 [32];
+  int8_t auVar3 [32];
+  int8_t auVar4 [32];
+  int8_t auVar5 [32];
+  int8_t auVar6 [32];
   
   for (param_3 = param_3 >> 3; param_3 != 0; param_3 = param_3 + -1) {
     auVar1 = *param_2;
@@ -338,17 +338,17 @@ void FUN_18083a990(undefined1 (*param_1) [32],undefined1 (*param_2) [32],int par
 
 
 
-// 函数: void FUN_18083a9a6(undefined1 (*param_1) [32],undefined1 (*param_2) [32],int param_3)
-void FUN_18083a9a6(undefined1 (*param_1) [32],undefined1 (*param_2) [32],int param_3)
+// 函数: void FUN_18083a9a6(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
+void FUN_18083a9a6(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
 
 {
-  undefined1 auVar1 [32];
-  undefined1 auVar2 [32];
-  undefined1 auVar3 [32];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
-  undefined1 in_ZMM7 [64];
+  int8_t auVar1 [32];
+  int8_t auVar2 [32];
+  int8_t auVar3 [32];
+  int8_t auVar4 [32];
+  int8_t auVar5 [32];
+  int8_t auVar6 [32];
+  int8_t in_ZMM7 [64];
   
   do {
     auVar1 = *param_2;

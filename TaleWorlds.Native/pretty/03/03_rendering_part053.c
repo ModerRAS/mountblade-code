@@ -15,14 +15,14 @@ void rendering_system_initialize(void)
 
 
 
-// 函数: undefined8 simple_rendering_return(undefined8 param1,undefined8 param2,undefined8 param3)
+// 函数: uint64_t simple_rendering_return(uint64_t param1,uint64_t param2,uint64_t param3)
 // 功能: 简单的渲染返回函数，直接返回第三个参数
 // 参数: 
 //   param1 - 第一个参数（未使用）
 //   param2 - 第二个参数（未使用）
 //   param3 - 第三个参数（返回值）
 // 返回值: 返回第三个参数
-undefined8 simple_rendering_return(undefined8 param1,undefined8 param2,undefined8 param3)
+uint64_t simple_rendering_return(uint64_t param1,uint64_t param2,uint64_t param3)
 
 {
   return param3;
@@ -43,7 +43,7 @@ undefined8 simple_rendering_return(undefined8 param1,undefined8 param2,undefined
 //   output_pos - 输出位置指针
 // 返回值: 尺寸数组指针
 float * calculate_text_rendering_metrics(float *font_metrics,float *dimensions,float font_size,float max_width,float line_height,
-                     char *text_start,char *text_end,undefined8 *output_pos)
+                     char *text_start,char *text_end,uint64_t *output_pos)
 
 {
   char current_char;
@@ -152,7 +152,7 @@ TEXT_PROCESSING_COMPLETE:
   if ((0.0 < line_width) || (dimensions[1] == 0.0)) {
     dimensions[1] = font_size + dimensions[1];
   }
-  if (output_pos != (undefined8 *)0x0) {
+  if (output_pos != (uint64_t *)0x0) {
     *output_pos = next_pos;
   }
   return dimensions;
@@ -160,7 +160,7 @@ TEXT_PROCESSING_COMPLETE:
 
 
 
-// 函数: void process_rendering_text_metrics(float *font_metrics,undefined8 *output_pos,float font_size,float max_width)
+// 函数: void process_rendering_text_metrics(float *font_metrics,uint64_t *output_pos,float font_size,float max_width)
 // 功能: 处理渲染文本指标，优化文本布局计算
 // 参数: 
 //   font_metrics - 字体指标数组
@@ -168,7 +168,7 @@ TEXT_PROCESSING_COMPLETE:
 //   font_size - 字体大小
 //   max_width - 最大宽度
 // 返回值: 无
-void process_rendering_text_metrics(float *font_metrics,undefined8 *output_pos,float font_size,float max_width)
+void process_rendering_text_metrics(float *font_metrics,uint64_t *output_pos,float font_size,float max_width)
 
 {
   char current_char;
@@ -179,11 +179,11 @@ void process_rendering_text_metrics(float *font_metrics,undefined8 *output_pos,f
   char *text_start;
   char *current_pos;
   char *next_pos;
-  undefined8 render_params;
+  uint64_t render_params;
   float *dimensions;
   longlong texture_manager;
   char *text_end;
-  undefined8 font_cache;
+  uint64_t font_cache;
   float char_scale;
   float line_width;
   float scale_factor;
@@ -193,29 +193,29 @@ void process_rendering_text_metrics(float *font_metrics,undefined8 *output_pos,f
   float texture_height;
   float texture_depth;
   
-  *(undefined8 *)(render_context + 8) = render_params;
-  *(undefined8 *)(render_context + 0x10) = font_cache;
-  *(undefined8 *)(render_context + 0x18) = texture_manager;
-  *(undefined4 *)(render_context + -0x28) = texture_coord;
-  *(undefined4 *)(render_context + -0x24) = texture_width;
-  *(undefined4 *)(render_context + -0x20) = texture_height;
-  *(undefined4 *)(render_context + -0x1c) = texture_depth;
-  *(undefined4 *)(render_context + -0x38) = accumulated_width;
-  *(undefined4 *)(render_context + -0x34) = line_width;
-  *(undefined4 *)(render_context + -0x30) = char_scale;
-  *(undefined4 *)(render_context + -0x2c) = scale_factor;
-  *(undefined4 *)(render_context + -0x48) = char_scale;
-  *(undefined4 *)(render_context + -0x44) = line_width;
-  *(undefined4 *)(render_context + -0x40) = scale_factor;
-  *(undefined4 *)(render_context + -0x3c) = max_width;
-  *(undefined4 *)(render_context + -0x58) = texture_coord;
-  *(undefined4 *)(render_context + -0x54) = texture_width;
-  *(undefined4 *)(render_context + -0x50) = texture_height;
-  *(undefined4 *)(render_context + -0x4c) = texture_depth;
-  *(undefined4 *)(render_context + -0x68) = char_scale;
-  *(undefined4 *)(render_context + -100) = line_width;
-  *(undefined4 *)(render_context + -0x60) = scale_factor;
-  *(undefined4 *)(render_context + -0x5c) = max_width;
+  *(uint64_t *)(render_context + 8) = render_params;
+  *(uint64_t *)(render_context + 0x10) = font_cache;
+  *(uint64_t *)(render_context + 0x18) = texture_manager;
+  *(int32_t *)(render_context + -0x28) = texture_coord;
+  *(int32_t *)(render_context + -0x24) = texture_width;
+  *(int32_t *)(render_context + -0x20) = texture_height;
+  *(int32_t *)(render_context + -0x1c) = texture_depth;
+  *(int32_t *)(render_context + -0x38) = accumulated_width;
+  *(int32_t *)(render_context + -0x34) = line_width;
+  *(int32_t *)(render_context + -0x30) = char_scale;
+  *(int32_t *)(render_context + -0x2c) = scale_factor;
+  *(int32_t *)(render_context + -0x48) = char_scale;
+  *(int32_t *)(render_context + -0x44) = line_width;
+  *(int32_t *)(render_context + -0x40) = scale_factor;
+  *(int32_t *)(render_context + -0x3c) = max_width;
+  *(int32_t *)(render_context + -0x58) = texture_coord;
+  *(int32_t *)(render_context + -0x54) = texture_width;
+  *(int32_t *)(render_context + -0x50) = texture_height;
+  *(int32_t *)(render_context + -0x4c) = texture_depth;
+  *(int32_t *)(render_context + -0x68) = char_scale;
+  *(int32_t *)(render_context + -100) = line_width;
+  *(int32_t *)(render_context + -0x60) = scale_factor;
+  *(int32_t *)(render_context + -0x5c) = max_width;
   text_end = render_context + 0xd0;
   if (render_context + 0xd0 == (char *)0x0) {
     texture_manager = -1;
@@ -307,7 +307,7 @@ TEXT_PROCESSING_COMPLETE:
   if ((0.0 < line_width) || (dimensions[1] == 0.0)) {
     dimensions[1] = font_size + dimensions[1];
   }
-  if (render_context + 0xd8 != (undefined8 *)0x0) {
+  if (render_context + 0xd8 != (uint64_t *)0x0) {
     *(render_context + 0xd8) = current_pos;
   }
   return;
@@ -315,13 +315,13 @@ TEXT_PROCESSING_COMPLETE:
 
 
 
-// 函数: void optimized_text_rendering_calculator(undefined8 render_context,float scale_factor)
+// 函数: void optimized_text_rendering_calculator(uint64_t render_context,float scale_factor)
 // 功能: 优化的文本渲染计算器，处理文本布局和换行
 // 参数: 
 //   render_context - 渲染上下文
 //   scale_factor - 缩放因子
 // 返回值: 无
-void optimized_text_rendering_calculator(undefined8 render_context,float scale_factor)
+void optimized_text_rendering_calculator(uint64_t render_context,float scale_factor)
 
 {
   char current_char;
@@ -339,7 +339,7 @@ void optimized_text_rendering_calculator(undefined8 render_context,float scale_f
   float accumulated_width;
   float max_width;
   uint char_code;
-  undefined8 *output_pos;
+  uint64_t *output_pos;
   
   do {
     char_scale = accumulated_width;
@@ -414,7 +414,7 @@ TEXT_PROCESSING_COMPLETE:
   if ((accumulated_width < line_width) || (accumulated_width == dimensions[1])) {
     dimensions[1] = accumulated_width + dimensions[1];
   }
-  if (output_pos != (undefined8 *)0x0) {
+  if (output_pos != (uint64_t *)0x0) {
     *output_pos = current_pos;
   }
   return;
@@ -429,12 +429,12 @@ TEXT_PROCESSING_COMPLETE:
 void finalize_text_rendering_metrics(void)
 
 {
-  undefined8 text_context;
+  uint64_t text_context;
   float *dimensions;
   float line_width;
   float accumulated_width;
   float max_width;
-  undefined8 *output_pos;
+  uint64_t *output_pos;
   
   if (*dimensions <= line_width && line_width != *dimensions) {
     *dimensions = line_width;
@@ -442,7 +442,7 @@ void finalize_text_rendering_metrics(void)
   if ((max_width < line_width) || (max_width == dimensions[1])) {
     dimensions[1] = accumulated_width + dimensions[1];
   }
-  if (output_pos != (undefined8 *)0x0) {
+  if (output_pos != (uint64_t *)0x0) {
     *output_pos = text_context;
   }
   return;
@@ -457,18 +457,18 @@ void finalize_text_rendering_metrics(void)
 void update_text_rendering_dimensions(void)
 
 {
-  undefined8 text_context;
+  uint64_t text_context;
   float *dimensions;
   float line_width;
   float accumulated_width;
   float max_width;
-  undefined8 *output_pos;
+  uint64_t *output_pos;
   
   *dimensions = line_width;
   if ((max_width < line_width) || (max_width == dimensions[1])) {
     dimensions[1] = accumulated_width + dimensions[1];
   }
-  if (output_pos != (undefined8 *)0x0) {
+  if (output_pos != (uint64_t *)0x0) {
     *output_pos = text_context;
   }
   return;
@@ -483,16 +483,16 @@ void update_text_rendering_dimensions(void)
 void check_text_rendering_cache(void)
 
 {
-  undefined8 text_context;
+  uint64_t text_context;
   longlong cache_ptr;
   float accumulated_width;
   float max_width;
-  undefined8 *output_pos;
+  uint64_t *output_pos;
   
   if (max_width == *(float *)(cache_ptr + 4)) {
     *(float *)(cache_ptr + 4) = accumulated_width + *(float *)(cache_ptr + 4);
   }
-  if (output_pos != (undefined8 *)0x0) {
+  if (output_pos != (uint64_t *)0x0) {
     *output_pos = text_context;
   }
   return;
@@ -507,8 +507,8 @@ void check_text_rendering_cache(void)
 void simple_text_assignment(void)
 
 {
-  undefined8 *target_ptr;
-  undefined8 source_value;
+  uint64_t *target_ptr;
+  uint64_t source_value;
   
   *target_ptr = source_value;
   return;
@@ -516,7 +516,7 @@ void simple_text_assignment(void)
 
 
 
-// 函数: void advanced_text_renderer(float *font_metrics,int *render_params,float line_spacing,undefined8 texture_handle,float z_depth,
+// 函数: void advanced_text_renderer(float *font_metrics,int *render_params,float line_spacing,uint64_t texture_handle,float z_depth,
 // 功能: 高级文本渲染器，处理复杂的文本布局和渲染
 // 参数: 
 //   font_metrics - 字体指标数组
@@ -530,7 +530,7 @@ void simple_text_assignment(void)
 //   max_width - 最大宽度
 //   wrap_mode - 换行模式
 // 返回值: 无
-void advanced_text_renderer(float *font_metrics,int *render_params,float line_spacing,undefined8 texture_handle,float z_depth,
+void advanced_text_renderer(float *font_metrics,int *render_params,float line_spacing,uint64_t texture_handle,float z_depth,
                   float *viewport_data,char *text_start,char *text_end,float max_width,char wrap_mode)
 
 {

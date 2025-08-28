@@ -190,7 +190,7 @@ typedef struct {
  * 
  * @see COLOR_COMPONENT_MASK_5BIT, COLOR_COMPONENT_MAX_5BIT, COLOR_COMPONENT_MAX_8BIT
  */
-void rendering_system_color_extractor(undefined8 param_1, undefined1 *param_2)
+void rendering_system_color_extractor(uint64_t param_1, int8_t *param_2)
 {
     color_16bit_t color_16bit;
     
@@ -221,23 +221,23 @@ void rendering_system_color_extractor(undefined8 param_1, undefined1 *param_2)
  * @param param_3 输出数据高度指针
  * @param param_4 输出数据大小指针（可选）
  * 
- * @return undefined1* 解压后的数据缓冲区指针，失败时返回NULL
+ * @return int8_t* 解压后的数据缓冲区指针，失败时返回NULL
  * 
  * @note 此函数处理多种压缩格式，包括RLE压缩和原始数据。
  *       支持不同的位深度（1字节、2字节、3字节）和不同的数据排列方式。
  * 
  * @see DATA_COMPRESSION_RLE_MARKER_8, DATA_COMPRESSION_RLE_MARKER_15, DATA_COMPRESSION_RLE_MARKER_16
  */
-undefined1 *rendering_system_data_buffer_processor(longlong param_1, int *param_2, uint *param_3, int *param_4)
+int8_t *rendering_system_data_buffer_processor(longlong param_1, int *param_2, uint *param_3, int *param_4)
 {
     bool is_special_compression;
-    undefined4 compression_info;
+    int32_t compression_info;
     uint data_size;
     byte *buffer_ptr;
     byte *buffer_end;
-    undefined1 *output_buffer;
+    int8_t *output_buffer;
     byte first_byte;
-    undefined1 second_byte;
+    int8_t second_byte;
     int byte_count;
     uint compression_marker;
     int data_offset;
@@ -258,11 +258,11 @@ undefined1 *rendering_system_data_buffer_processor(longlong param_1, int *param_
     longlong temp_buffer;
     ulonglong data_chunk_size;
     byte temp_stack_byte;
-    undefined4 temp_stack_value;
+    int32_t temp_stack_value;
     uint temp_stack_size;
     uint temp_stack_data;
     int temp_stack_int;
-    undefined1 *temp_stack_buffer;
+    int8_t *temp_stack_buffer;
     uint temp_stack_offset;
     uint temp_stack_capacity;
     int temp_stack_index;
@@ -422,12 +422,12 @@ undefined1 *rendering_system_data_buffer_processor(longlong param_1, int *param_
             goto LABEL_SPECIAL_COMPRESSION;
     LABEL_STANDARD_COMPRESSION:
         if ((data_offset != DATA_COMPRESSION_RLE_MARKER_8) && (data_offset != DATA_COMPRESSION_RLE_MARKER_16)) {
-            return (undefined1 *)0x0;
+            return (int8_t *)0x0;
         }
         temp_stack_offset = data_size >> 3;
         chunk_size = (ulonglong)temp_stack_offset;
         if (data_size >> 3 == 0) {
-            return (undefined1 *)0x0;
+            return (int8_t *)0x0;
         }
     }
     
@@ -446,10 +446,10 @@ LABEL_COMPRESSION_DETECTED:
            (data_offset = (int)(MEMORY_MAX_ALLOCATION_SIZE / chunk_size), data_offset < (int)data_size)))) ||
          ((temp_stack_data != 0 && ((int)(MEMORY_MAX_ALLOCATION_SIZE / (longlong)(int)temp_stack_data) < temp_stack_int)))) ||
         ((((int)data_size < 0 || (data_offset < (int)data_size)) ||
-         (output_buffer = (undefined1 *)
+         (output_buffer = (int8_t *)
                    FUN_18062b420(_DAT_180c8ed18,(longlong)(int)((int)chunk_size * temp_stack_data * temp_stack_int),
-                                 CONCAT71((int7)(chunk_size >> 8), MEMORY_ALIGNMENT_4BYTE)), output_buffer == (undefined1 *)0x0)))) {
-        return (undefined1 *)0x0;
+                                 CONCAT71((int7)(chunk_size >> 8), MEMORY_ALIGNMENT_4BYTE)), output_buffer == (int8_t *)0x0)))) {
+        return (int8_t *)0x0;
     }
     
     temp_stack_buffer = output_buffer;
@@ -535,20 +535,20 @@ LABEL_COMPRESSION_DETECTED:
                         data_size = temp_stack_size;
                         if (chunk_size != 0) {
                             do {
-                                buffer_ptr = *(undefined1 **)(param_1 + 0xb8);
-                                if (buffer_ptr < *(undefined1 **)(param_1 + 0xc0)) {
+                                buffer_ptr = *(int8_t **)(param_1 + 0xb8);
+                                if (buffer_ptr < *(int8_t **)(param_1 + 0xc0)) {
                                     second_byte = *buffer_ptr;
-                                    *(undefined1 **)(param_1 + 0xb8) = buffer_ptr + 1;
+                                    *(int8_t **)(param_1 + 0xb8) = buffer_ptr + 1;
                                 }
                                 else if (*(int *)(param_1 + 0x30) == 0) {
                                     second_byte = 0;
                                 }
                                 else {
                                     FUN_18041ee20(param_1);
-                                    second_byte = **(undefined1 **)(param_1 + 0xb8);
-                                    *(undefined1 **)(param_1 + 0xb8) = *(undefined1 **)(param_1 + 0xb8) + 1;
+                                    second_byte = **(int8_t **)(param_1 + 0xb8);
+                                    *(int8_t **)(param_1 + 0xb8) = *(int8_t **)(param_1 + 0xb8) + 1;
                                 }
-                                *(undefined1 *)((longlong)&temp_stack_value + remaining_data) = second_byte;
+                                *(int8_t *)((longlong)&temp_stack_value + remaining_data) = second_byte;
                                 remaining_data = remaining_data + 1;
                                 data_size = temp_stack_size;
                             } while ((longlong)remaining_data < (longlong)chunk_size);
@@ -690,7 +690,7 @@ LABEL_PROCESSING_COMPLETE:
  * @param param_2 输出像素缓冲区指针
  * @param param_3 要读取的像素数量
  * 
- * @return undefined8 成功返回1，失败返回0
+ * @return uint64_t 成功返回1，失败返回0
  * 
  * @note 此函数处理RLE压缩的像素数据，支持两种主要的压缩模式：
  *       1. 字节值 < 0x80: 原始数据模式，后跟字节数+1个原始像素
@@ -698,9 +698,9 @@ LABEL_PROCESSING_COMPLETE:
  * 
  * @see DATA_COMPRESSION_RLE_MARKER_128, DATA_COMPRESSION_RLE_MAX_RUN
  */
-undefined8 rendering_system_pixel_reader(longlong param_1, byte *param_2, int param_3)
+uint64_t rendering_system_pixel_reader(longlong param_1, byte *param_2, int param_3)
 {
-    undefined1 *stream_ptr;
+    int8_t *stream_ptr;
     int bytes_read;
     byte *buffer_ptr;
     byte pixel_value;
@@ -722,12 +722,12 @@ undefined8 rendering_system_pixel_reader(longlong param_1, byte *param_2, int pa
                 run_length = 0;
             }
             else {
-                stream_ptr = (undefined1 *)(param_1 + 0x38);
+                stream_ptr = (int8_t *)(param_1 + 0x38);
                 bytes_read = (**(code **)(param_1 + 0x10))
-                              (*(undefined8 *)(param_1 + 0x28), stream_ptr, *(undefined4 *)(param_1 + 0x34));
-                *(undefined1 **)(param_1 + 0xb8) = stream_ptr;
+                              (*(uint64_t *)(param_1 + 0x28), stream_ptr, *(int32_t *)(param_1 + 0x34));
+                *(int8_t **)(param_1 + 0xb8) = stream_ptr;
                 if (bytes_read == 0) {
-                    *(undefined4 *)(param_1 + 0x30) = 0;
+                    *(int32_t *)(param_1 + 0x30) = 0;
                     *(longlong *)(param_1 + 0xc0) = param_1 + 0x39;
                     *stream_ptr = 0;
                 }
@@ -758,13 +758,13 @@ undefined8 rendering_system_pixel_reader(longlong param_1, byte *param_2, int pa
                             pixel_value = 0;
                         }
                         else {
-                            stream_ptr = (undefined1 *)(param_1 + 0x38);
+                            stream_ptr = (int8_t *)(param_1 + 0x38);
                             remaining_pixels = (**(code **)(param_1 + 0x10))
-                                              (*(undefined8 *)(param_1 + 0x28), stream_ptr,
-                                               *(undefined4 *)(param_1 + 0x34));
-                            *(undefined1 **)(param_1 + 0xb8) = stream_ptr;
+                                              (*(uint64_t *)(param_1 + 0x28), stream_ptr,
+                                               *(int32_t *)(param_1 + 0x34));
+                            *(int8_t **)(param_1 + 0xb8) = stream_ptr;
                             if (remaining_pixels == 0) {
-                                *(undefined4 *)(param_1 + 0x30) = 0;
+                                *(int32_t *)(param_1 + 0x30) = 0;
                                 *(longlong *)(param_1 + 0xc0) = param_1 + 0x39;
                                 *stream_ptr = 0;
                             }
@@ -822,7 +822,7 @@ undefined8 rendering_system_pixel_reader(longlong param_1, byte *param_2, int pa
  * @param param_6 输出Mipmap格式指针
  * @param param_7 纹理处理标志
  * 
- * @return undefined2* 成功返回纹理数据指针，失败返回NULL
+ * @return int16_t* 成功返回纹理数据指针，失败返回NULL
  * 
  * @note 此函数处理完整的纹理加载流程，包括：
  *       1. 验证纹理文件头部魔数和版本
@@ -834,34 +834,34 @@ undefined8 rendering_system_pixel_reader(longlong param_1, byte *param_2, int pa
  * 
  * @see TEXTURE_MAGIC_HEADER, TEXTURE_VERSION_1, TEXTURE_FORMAT_16BIT, TEXTURE_FORMAT_32BIT
  */
-undefined2 *
-rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3, undefined4 *param_4, undefined8 param_5,
+int16_t *
+rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3, int32_t *param_4, uint64_t param_5,
                                   int *param_6, int param_7)
 {
     longlong *stream_position;
-    undefined2 texture_data;
-    undefined1 alpha_component;
+    int16_t texture_data;
+    int8_t alpha_component;
     int texture_width;
     int texture_height;
     uint texture_format;
     int mipmap_count;
     int pixel_format;
-    undefined4 format_info;
+    int32_t format_info;
     ulonglong total_pixels;
-    undefined2 *texture_buffer;
-    undefined1 pixel_byte;
+    int16_t *texture_buffer;
+    int8_t pixel_byte;
     ushort *pixel_ptr;
     byte *byte_ptr;
-    undefined1 *data_ptr;
+    int8_t *data_ptr;
     longlong buffer_position;
     uint pixel_count;
     longlong row_position;
     longlong column_position;
-    undefined2 *output_ptr;
-    undefined2 *current_ptr;
+    int16_t *output_ptr;
+    int16_t *current_ptr;
     float normalization_factor;
     float bias_factor;
-    undefined2 *stack_buffer;
+    int16_t *stack_buffer;
     
     // 读取纹理魔数和版本信息
     texture_width = FUN_18041efc0();
@@ -876,7 +876,7 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
         }
         else {
             *stream_position = *(longlong *)(param_1 + 0xc0);
-            (**(code **)(param_1 + 0x18))(*(undefined8 *)(param_1 + 0x28), 6 - texture_width);
+            (**(code **)(param_1 + 0x18))(*(uint64_t *)(param_1 + 0x28), 6 - texture_width);
         }
         
         // 读取纹理格式信息
@@ -906,21 +906,21 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
                         if ((((texture_height == 0) || (7 < (int)(MEMORY_MAX_ALLOCATION_SIZE / (longlong)texture_height))) && 
                            ((-1 < texture_height * 8)) &&
                            ((texture_width == 0 || (texture_height * 8 <= (int)(MEMORY_MAX_ALLOCATION_SIZE / (longlong)texture_width))))) {
-                            stack_buffer = (undefined2 *)
+                            stack_buffer = (int16_t *)
                                          FUN_18062b420(_DAT_180c8ed18, (longlong)(int)(pixel_count * 8), MEMORY_ALIGNMENT_4BYTE);
                             *param_6 = TEXTURE_FORMAT_16BIT;
                         }
                         else {
-                            stack_buffer = (undefined2 *)0x0;
+                            stack_buffer = (int16_t *)0x0;
                             *param_6 = TEXTURE_FORMAT_16BIT;
                         }
                     }
                     else {
-                        stack_buffer = (undefined2 *)
+                        stack_buffer = (int16_t *)
                                      FUN_18062b420(_DAT_180c8ed18, (longlong)(int)(pixel_count * 4), MEMORY_ALIGNMENT_4BYTE);
                     }
                     
-                    if (stack_buffer != (undefined2 *)0x0) {
+                    if (stack_buffer != (int16_t *)0x0) {
                         if (pixel_format == 0) {
                             // 处理Mipmap纹理
                             pixel_format = 0;
@@ -946,7 +946,7 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
                                             texture_buffer = output_ptr;
                                             do {
                                                 FUN_18041efc0(param_1);
-                                                *(undefined1 *)texture_buffer = alpha_component;
+                                                *(int8_t *)texture_buffer = alpha_component;
                                                 texture_buffer = texture_buffer + 2;
                                                 total_pixels = total_pixels - 1;
                                             } while (total_pixels != 0);
@@ -956,8 +956,8 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
                                         total_pixels = (ulonglong)pixel_count;
                                         texture_buffer = output_ptr;
                                         do {
-                                            data_ptr = (undefined1 *)*stream_position;
-                                            if (data_ptr < *(undefined1 **)(param_1 + 0xc0)) {
+                                            data_ptr = (int8_t *)*stream_position;
+                                            if (data_ptr < *(int8_t **)(param_1 + 0xc0)) {
                                                 pixel_byte = *data_ptr;
                                                 *stream_position = (longlong)(data_ptr + 1);
                                             }
@@ -966,10 +966,10 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
                                             }
                                             else {
                                                 FUN_18041ee20(param_1);
-                                                pixel_byte = *(undefined1 *)*stream_position;
-                                                *stream_position = (longlong)((undefined1 *)*stream_position + 1);
+                                                pixel_byte = *(int8_t *)*stream_position;
+                                                *stream_position = (longlong)((int8_t *)*stream_position + 1);
                                             }
-                                            *(undefined1 *)texture_buffer = pixel_byte;
+                                            *(int8_t *)texture_buffer = pixel_byte;
                                             texture_buffer = texture_buffer + 2;
                                             total_pixels = total_pixels - 1;
                                         } while (total_pixels != 0);
@@ -999,7 +999,7 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
                                         total_pixels = (ulonglong)pixel_count;
                                         texture_buffer = output_ptr;
                                         do {
-                                            *(undefined1 *)texture_buffer = pixel_byte;
+                                            *(int8_t *)texture_buffer = pixel_byte;
                                             texture_buffer = texture_buffer + 2;
                                             total_pixels = total_pixels - 1;
                                         } while (total_pixels != 0);
@@ -1007,7 +1007,7 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
                                 }
                                 pixel_format = pixel_format + 1;
                                 current_ptr = current_ptr + 1;
-                                output_ptr = (undefined2 *)((longlong)output_ptr + 1);
+                                output_ptr = (int16_t *)((longlong)output_ptr + 1);
                             } while (pixel_format < TEXTURE_MIPMAP_LEVEL_MAX);
                         }
                         else {
@@ -1015,7 +1015,7 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
                             func_0x00018041ee90(param_1, texture_width * texture_format * 2);
                             mipmap_count = 0;
                             do {
-                                data_ptr = (undefined1 *)((longlong)mipmap_count + (longlong)stack_buffer);
+                                data_ptr = (int8_t *)((longlong)mipmap_count + (longlong)stack_buffer);
                                 if (mipmap_count < (int)texture_format) {
                                     pixel_format = rendering_system_pixel_reader(param_1, data_ptr, pixel_count);
                                     if (pixel_format == 0) {
@@ -1156,7 +1156,7 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
                         }
                         
                         // 设置输出参数
-                        if (param_4 != (undefined4 *)0x0) {
+                        if (param_4 != (int32_t *)0x0) {
                             *param_4 = 4;
                         }
                         *param_3 = texture_width;
@@ -1167,7 +1167,7 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
             }
         }
     }
-    return (undefined2 *)0x0;
+    return (int16_t *)0x0;
 }
 
 /**
@@ -1177,14 +1177,14 @@ rendering_system_texture_processor(longlong param_1, int *param_2, int *param_3,
  * @param param_1 渲染系统上下文指针
  * @param param_2 要匹配的字符串模式指针
  * 
- * @return undefined8 匹配成功返回1，失败返回0
+ * @return uint64_t 匹配成功返回1，失败返回0
  * 
  * @note 此函数在数据流中查找最多4个字符的匹配模式，
  *       主要用于纹理和资源文件格式的识别。
  * 
  * @see STRING_MAX_COMPARE_LENGTH, STRING_TERMINATOR
  */
-undefined8 rendering_system_string_matcher(longlong param_1, longlong param_2)
+uint64_t rendering_system_string_matcher(longlong param_1, longlong param_2)
 {
     char *stream_ptr;
     char current_char;
@@ -1232,9 +1232,9 @@ undefined8 rendering_system_string_matcher(longlong param_1, longlong param_2)
 longlong rendering_system_bit_flag_processor(longlong param_1, uint param_2, longlong param_3)
 {
     int stream_status;
-    undefined1 *stream_ptr;
-    undefined1 data_byte;
-    undefined1 *buffer_ptr;
+    int8_t *stream_ptr;
+    int8_t data_byte;
+    int8_t *buffer_ptr;
     uint bit_mask;
     longlong write_position;
     
@@ -1244,37 +1244,37 @@ longlong rendering_system_bit_flag_processor(longlong param_1, uint param_2, lon
         if ((param_2 & bit_mask) != 0) {
             if (*(longlong *)(param_1 + 0x10) == 0) {
             LABEL_STREAM_ERROR:
-                stream_ptr = *(undefined1 **)(param_1 + 0xb8);
-                buffer_ptr = *(undefined1 **)(param_1 + 0xc0);
+                stream_ptr = *(int8_t **)(param_1 + 0xb8);
+                buffer_ptr = *(int8_t **)(param_1 + 0xc0);
                 if (buffer_ptr <= stream_ptr) {
                     return 0;
                 }
             }
             else {
-                stream_status = (**(code **)(param_1 + 0x20))(*(undefined8 *)(param_1 + 0x28));
+                stream_status = (**(code **)(param_1 + 0x20))(*(uint64_t *)(param_1 + 0x28));
                 if (stream_status != 0) {
                     if (*(int *)(param_1 + 0x30) == 0) {
                         return 0;
                     }
                     goto LABEL_STREAM_ERROR;
                 }
-                stream_ptr = *(undefined1 **)(param_1 + 0xb8);
-                buffer_ptr = *(undefined1 **)(param_1 + 0xc0);
+                stream_ptr = *(int8_t **)(param_1 + 0xb8);
+                buffer_ptr = *(int8_t **)(param_1 + 0xc0);
             }
             
             if (stream_ptr < buffer_ptr) {
                 data_byte = *stream_ptr;
-                *(undefined1 **)(param_1 + 0xb8) = stream_ptr + 1;
+                *(int8_t **)(param_1 + 0xb8) = stream_ptr + 1;
             }
             else if (*(int *)(param_1 + 0x30) == 0) {
                 data_byte = 0;
             }
             else {
                 FUN_18041ee20(param_1);
-                data_byte = **(undefined1 **)(param_1 + 0xb8);
-                *(undefined1 **)(param_1 + 0xb8) = *(undefined1 **)(param_1 + 0xb8) + 1;
+                data_byte = **(int8_t **)(param_1 + 0xb8);
+                *(int8_t **)(param_1 + 0xb8) = *(int8_t **)(param_1 + 0xb8) + 1;
             }
-            *(undefined1 *)(write_position + param_3) = data_byte;
+            *(int8_t *)(write_position + param_3) = data_byte;
         }
         write_position = write_position + 1;
         bit_mask = (int)bit_mask >> 1;

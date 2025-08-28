@@ -779,7 +779,7 @@ typedef enum RenderingSystemFeatureFlag {
  * @return void
  */
 void RenderingSystemAdvancedParameterProcessor(longlong param_1, int param_2, int param_3, 
-                                             undefined1 param_4, undefined1 param_5, int param_6)
+                                             int8_t param_4, int8_t param_5, int param_6)
 {
     int iVar1;
     longlong lVar2;
@@ -821,11 +821,11 @@ void RenderingSystemAdvancedParameterProcessor(longlong param_1, int param_2, in
  * @param param_3 状态验证数据
  * @return void
  */
-void RenderingSystemStateValidator(longlong param_1, undefined8 param_2, undefined8 param_3)
+void RenderingSystemStateValidator(longlong param_1, uint64_t param_2, uint64_t param_3)
 {
-    undefined1 auStackX_8 [32];
+    int8_t auStackX_8 [32];
     
-    FUN_180537bd0(*(undefined8 *)(param_1 + 0x8f8), param_2, param_3, auStackX_8);
+    FUN_180537bd0(*(uint64_t *)(param_1 + 0x8f8), param_2, param_3, auStackX_8);
     return;
 }
 
@@ -862,11 +862,11 @@ void RenderingSystemFlagChecker(longlong param_1)
     float fVar19;
     float fVar20;
     int aiStackX_10 [2];
-    undefined4 auStackX_18 [2];
-    undefined4 auStackX_20 [2];
-    undefined1 auStack_50 [24];
+    int32_t auStackX_18 [2];
+    int32_t auStackX_20 [2];
+    int8_t auStack_50 [24];
     
-    FUN_180537de0(*(undefined8 *)(param_1 + 0x8f8));
+    FUN_180537de0(*(uint64_t *)(param_1 + 0x8f8));
     pfVar16 = (float *)(*(longlong *)(param_1 + 0x6d8) + 0x128);
     iVar14 = 0;
     lVar15 = 0;
@@ -996,9 +996,9 @@ void RenderingSystemConditionHandler(longlong param_1)
 {
     ushort *puVar1;
     longlong lVar2;
-    undefined1 uVar3;
+    int8_t uVar3;
     
-    FUN_180537a80(*(undefined8 *)(param_1 + 0x8f8));
+    FUN_180537a80(*(uint64_t *)(param_1 + 0x8f8));
     lVar2 = *(longlong *)(param_1 + 0x6d8);
     if ((*(int *)(param_1 + 0x570) == 2) && (DAT_180c8ec8a != '\0')) {
         uVar3 = 1;
@@ -1006,7 +1006,7 @@ void RenderingSystemConditionHandler(longlong param_1)
     else {
         uVar3 = 0;
     }
-    *(undefined1 *)(lVar2 + 0x848) = uVar3;
+    *(int8_t *)(lVar2 + 0x848) = uVar3;
     FUN_180543e30(lVar2);
     FUN_180540440(lVar2, param_1);
     if (((_DAT_180c92514 != 1) && (_DAT_180c92514 != 4)) && (*(int *)(param_1 + 0x570) == 1)) {
@@ -1029,7 +1029,7 @@ void RenderingSystemConditionHandler(longlong param_1)
  * @param param_4 计算标志位
  * @return void
  */
-void RenderingSystemFloatCalculator(longlong param_1, int param_2, undefined8 param_3, short param_4)
+void RenderingSystemFloatCalculator(longlong param_1, int param_2, uint64_t param_3, short param_4)
 {
     int iVar1;
     longlong *plVar2;
@@ -1053,9 +1053,9 @@ void RenderingSystemFloatCalculator(longlong param_1, int param_2, undefined8 pa
     float fVar20;
     float fVar21;
     int aiStackX_10 [2];
-    undefined4 auStackX_18 [2];
-    undefined4 auStackX_20 [2];
-    undefined1 auStack_50 [24];
+    int32_t auStackX_18 [2];
+    int32_t auStackX_20 [2];
+    int8_t auStack_50 [24];
     
     uVar10 = *(ulonglong *)((longlong)param_2 * 0x1f8 + 8 + *(longlong *)(param_1 + 0x8f8));
     if (uVar10 != 0) {
@@ -1198,15 +1198,15 @@ LAB_1805407d6:
  * @param param_7 内存操作数据
  * @return void
  */
-void RenderingSystemMemoryAccessor(longlong param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4,
-                                  longlong *param_5, undefined1 param_6, undefined8 param_7)
+void RenderingSystemMemoryAccessor(longlong param_1, uint64_t param_2, uint64_t param_3, int32_t param_4,
+                                  longlong *param_5, int8_t param_6, uint64_t param_7)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar2;
     longlong *plStackX_8;
     longlong alStack_38 [2];
     longlong **pplStack_28;
-    undefined8 *puStack_20;
+    uint64_t *puStack_20;
     
     alStack_38[1] = 0xfffffffffffffffe;
     plStackX_8 = param_5;
@@ -1224,7 +1224,7 @@ void RenderingSystemMemoryAccessor(longlong param_1, undefined8 param_2, undefin
     }
     FUN_18058e430(lVar2, param_2, param_3, param_4, &UNK_180a30990, 0, 0, &param_5, 0, 0xffffffff, 0);
     FUN_18005ea90(param_1 + 0x900, alStack_38);
-    uVar1 = *(undefined8 *)(param_1 + 0x6d8);
+    uVar1 = *(uint64_t *)(param_1 + 0x6d8);
     puStack_20 = &param_5;
     param_5 = plStackX_8;
     if (plStackX_8 != (longlong *)0x0) {
@@ -1254,16 +1254,16 @@ void RenderingSystemSystemCaller(longlong param_1, int param_2)
     ulonglong uVar1;
     longlong lVar2;
     longlong *plVar3;
-    undefined8 uVar4;
+    uint64_t uVar4;
     longlong *plVar5;
     ulonglong uVar6;
     longlong lVar7;
-    undefined8 uVar8;
+    uint64_t uVar8;
     
     uVar8 = 0xfffffffffffffffe;
     lVar2 = *(longlong *)(param_1 + 0x6d8);
     plVar3 = *(longlong **)((longlong)param_2 * 8 + *(longlong *)(lVar2 + 0x810));
-    uVar4 = *(undefined8 *)(lVar2 + 0x8a8);
+    uVar4 = *(uint64_t *)(lVar2 + 0x8a8);
     plVar5 = (longlong *)*plVar3;
     if (plVar5 != (longlong *)0x0) {
         (**(code **)(*plVar5 + 0x28))(plVar5);
@@ -1300,8 +1300,8 @@ void RenderingSystemSystemCaller(longlong param_1, int param_2)
  * @param param_7 参数设置数据
  * @return void
  */
-void RenderingSystemParameterSetter(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined4 param_4,
-                                   longlong *param_5, undefined4 param_6, undefined8 param_7)
+void RenderingSystemParameterSetter(uint64_t param_1, uint64_t param_2, uint64_t param_3, int32_t param_4,
+                                   longlong *param_5, int32_t param_6, uint64_t param_7)
 {
     longlong *plStackX_8;
     
@@ -1371,7 +1371,7 @@ void RenderingSystemDataValidator(longlong param_1, int param_2, char param_3)
         if (piVar6 != piVar4) goto LAB_18060064c;
     }
     aiStackX_8[0] = param_2;
-    FUN_1800571e0((undefined8 *)(lVar3 + 0x2110), aiStackX_8);
+    FUN_1800571e0((uint64_t *)(lVar3 + 0x2110), aiStackX_8);
 LAB_18060064c:
     if ((*(int *)(lVar3 + 0x178) == 0) && (*(char *)(lVar3 + 0x12bc) != '\0')) {
         iVar7 = *(int *)(lVar3 + 0x12b8);
@@ -1394,9 +1394,9 @@ LAB_18060064c:
                     lVar8 = *(longlong *)(lVar3 + 0x1290);
                 }
                 if (*(int *)(*(longlong *)((longlong)iVar7 * 0x20 + 0x10 + lVar8) + 0x130) == param_2) {
-                    *(undefined4 *)(lVar3 + 0x178) = 8;
-                    *(undefined2 *)(lVar3 + 0x12bc) = 0;
-                    *(undefined4 *)(lVar3 + 0x12f0) = 0;
+                    *(int32_t *)(lVar3 + 0x178) = 8;
+                    *(int16_t *)(lVar3 + 0x12bc) = 0;
+                    *(int32_t *)(lVar3 + 0x12f0) = 0;
                     return;
                 }
             }
@@ -1416,7 +1416,7 @@ LAB_18060064c:
  * @param param_2 状态管理参数
  * @return void
  */
-void RenderingSystemStateManager(longlong param_1, undefined8 param_2)
+void RenderingSystemStateManager(longlong param_1, uint64_t param_2)
 {
     FUN_1805204e0(param_1, *(longlong *)(param_1 + 0x8d8) + 0x52eda0 +
                       (longlong)*(int *)(param_1 + 0x10) * 0x200, param_2);
@@ -1435,7 +1435,7 @@ void RenderingSystemStateManager(longlong param_1, undefined8 param_2)
 void RenderingSystemConfigurationManager(longlong param_1)
 {
     int iVar1;
-    undefined4 uVar2;
+    int32_t uVar2;
     longlong lVar3;
     longlong *plVar4;
     
@@ -1444,9 +1444,9 @@ void RenderingSystemConfigurationManager(longlong param_1)
         plVar4 = (longlong *)(**(code **)(_DAT_180c925a0 + 0x20))(&DAT_180c925a0);
         lVar3 = *plVar4;
         if (lVar3 != 0) {
-            uVar2 = *(undefined4 *)(lVar3 + 0x4b80);
+            uVar2 = *(int32_t *)(lVar3 + 0x4b80);
             FUN_18055fb60(lVar3 + 0x5940, (iVar1 + 1) * 0x10, &DAT_180c92cf8);
-            *(undefined4 *)(*(longlong *)(lVar3 + 0x5960) + (longlong)iVar1 * 8) = uVar2;
+            *(int32_t *)(*(longlong *)(lVar3 + 0x5960) + (longlong)iVar1 * 8) = uVar2;
         }
     }
     return;
@@ -1464,7 +1464,7 @@ void RenderingSystemConfigurationManager(longlong param_1)
 void RenderingSystemInitializer(longlong param_1)
 {
     int iVar1;
-    undefined4 uVar2;
+    int32_t uVar2;
     longlong lVar3;
     longlong in_RAX;
     longlong *plVar4;
@@ -1473,9 +1473,9 @@ void RenderingSystemInitializer(longlong param_1)
     plVar4 = (longlong *)(**(code **)(in_RAX + 0x20))(&DAT_180c925a0);
     lVar3 = *plVar4;
     if (lVar3 != 0) {
-        uVar2 = *(undefined4 *)(lVar3 + 0x4b80);
+        uVar2 = *(int32_t *)(lVar3 + 0x4b80);
         FUN_18055fb60(lVar3 + 0x5940, (iVar1 + 1) * 0x10, &DAT_180c92cf8);
-        *(undefined4 *)(*(longlong *)(lVar3 + 0x5960) + (longlong)iVar1 * 8) = uVar2;
+        *(int32_t *)(*(longlong *)(lVar3 + 0x5960) + (longlong)iVar1 * 8) = uVar2;
     }
     return;
 }
@@ -1490,15 +1490,15 @@ void RenderingSystemInitializer(longlong param_1)
  * @param param_2 资源管理参数
  * @return void
  */
-void RenderingSystemResourceManager(undefined8 param_1, int param_2)
+void RenderingSystemResourceManager(uint64_t param_1, int param_2)
 {
-    undefined4 uVar1;
+    int32_t uVar1;
     longlong unaff_RSI;
     longlong unaff_RDI;
     
-    uVar1 = *(undefined4 *)(unaff_RDI + 0x4b80);
+    uVar1 = *(int32_t *)(unaff_RDI + 0x4b80);
     FUN_18055fb60(unaff_RDI + 0x5940, param_2 << 4, &DAT_180c92cf8);
-    *(undefined4 *)(*(longlong *)(unaff_RDI + 0x5960) + unaff_RSI * 8) = uVar1;
+    *(int32_t *)(*(longlong *)(unaff_RDI + 0x5960) + unaff_RSI * 8) = uVar1;
     return;
 }
 
@@ -1538,20 +1538,20 @@ void RenderingSystemCleanupHandler(void)
  * @param param_2 向量处理参数
  * @return void
  */
-void RenderingSystemVectorProcessor(longlong param_1, undefined4 *param_2)
+void RenderingSystemVectorProcessor(longlong param_1, int32_t *param_2)
 {
     float fVar1;
     float fVar2;
-    undefined1 auVar3 [16];
+    int8_t auVar3 [16];
     float fStackX_8;
     float fStackX_c;
-    undefined4 uStack_28;
-    undefined4 uStack_24;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
+    int32_t uStack_28;
+    int32_t uStack_24;
+    int32_t uStack_20;
+    int32_t uStack_1c;
     
-    fStackX_8 = (float)*(undefined8 *)(param_1 + 0x49c);
-    fStackX_c = (float)((ulonglong)*(undefined8 *)(param_1 + 0x49c) >> 0x20);
+    fStackX_8 = (float)*(uint64_t *)(param_1 + 0x49c);
+    fStackX_c = (float)((ulonglong)*(uint64_t *)(param_1 + 0x49c) >> 0x20);
     fVar1 = fStackX_c * fStackX_c + fStackX_8 * fStackX_8;
     auVar3 = rsqrtss(ZEXT416((uint)fVar1), ZEXT416((uint)fVar1));
     fVar2 = auVar3._0_4_;
@@ -1575,7 +1575,7 @@ void RenderingSystemVectorProcessor(longlong param_1, undefined4 *param_2)
  * @param param_2 错误处理参数
  * @return void
  */
-void RenderingSystemErrorHandler(undefined8 param_1, longlong param_2)
+void RenderingSystemErrorHandler(uint64_t param_1, longlong param_2)
 {
     // WARNING: Subroutine does not return
     FUN_1808fd400(*(float *)(param_2 + 0x4b0) + *(float *)(param_2 + 0x4ac));
@@ -1597,7 +1597,7 @@ void RenderingSystemDataProcessor(longlong param_1, uint *param_2)
     uint uVar2;
     uint uVar3;
     uint uVar4;
-    undefined4 uVar5;
+    int32_t uVar5;
     
     uVar1 = *param_2;
     uVar2 = param_2[1];
@@ -1608,8 +1608,8 @@ void RenderingSystemDataProcessor(longlong param_1, uint *param_2)
     *(uint *)(param_1 + 0x4a4) = uVar3;
     *(uint *)(param_1 + 0x4a8) = uVar4;
     uVar5 = atan2f(uVar1 ^ 0x80000000, uVar2);
-    *(undefined4 *)(param_1 + 0x4ac) = uVar5;
-    *(undefined4 *)(param_1 + 0x4b0) = 0;
+    *(int32_t *)(param_1 + 0x4ac) = uVar5;
+    *(int32_t *)(param_1 + 0x4b0) = 0;
     return;
 }
 
@@ -1623,13 +1623,13 @@ void RenderingSystemDataProcessor(longlong param_1, uint *param_2)
  * @param param_2 渲染控制参数
  * @return void
  */
-void RenderingSystemRenderController(longlong param_1, undefined4 param_2)
+void RenderingSystemRenderController(longlong param_1, int32_t param_2)
 {
     char cVar1;
     
-    cVar1 = FUN_18061ca10(*(undefined8 *)(param_1 + 0x8d8));
+    cVar1 = FUN_18061ca10(*(uint64_t *)(param_1 + 0x8d8));
     if (cVar1 != '\0') {
-        *(undefined4 *)(*(longlong *)(param_1 + 0x6e0) + 0x2130) = param_2;
+        *(int32_t *)(*(longlong *)(param_1 + 0x6e0) + 0x2130) = param_2;
     }
     return;
 }
@@ -1645,30 +1645,30 @@ void RenderingSystemRenderController(longlong param_1, undefined4 param_2)
  * @param param_3 内存管理数据
  * @return void
  */
-void RenderingSystemMemoryManager(longlong param_1, int param_2, undefined8 *param_3)
+void RenderingSystemMemoryManager(longlong param_1, int param_2, uint64_t *param_3)
 {
     char cVar1;
     uint uVar2;
-    undefined1 uVar3;
+    int8_t uVar3;
     longlong lVar4;
-    undefined4 uVar5;
+    int32_t uVar5;
     
-    cVar1 = FUN_18061ca10(*(undefined8 *)(param_1 + 0x8d8), param_2);
+    cVar1 = FUN_18061ca10(*(uint64_t *)(param_1 + 0x8d8), param_2);
     if (cVar1 != '\0') {
         lVar4 = *(longlong *)(param_1 + 0x6e0);
         if (param_2 < 0) {
-            *(undefined4 *)(lVar4 + 0x173c) = 0xffffffff;
-            *(undefined8 *)(lVar4 + 0x1734) = 0;
+            *(int32_t *)(lVar4 + 0x173c) = 0xffffffff;
+            *(uint64_t *)(lVar4 + 0x1734) = 0;
             if (-1 < (char)*(uint *)(lVar4 + 0x1484)) {
                 return;
             }
             uVar2 = *(uint *)(lVar4 + 0x1484) & 0xffffff7f;
         }
         else {
-            *(undefined8 *)(lVar4 + 0x1734) = *param_3;
+            *(uint64_t *)(lVar4 + 0x1734) = *param_3;
             *(int *)(lVar4 + 0x173c) = param_2;
-            *(undefined4 *)(lVar4 + 0x12d8) =
-                 *(undefined4 *)
+            *(int32_t *)(lVar4 + 0x12d8) =
+                 *(int32_t *)
                  (*(longlong *)((longlong)param_2 * 0xa60 + 0x30c0 + *(longlong *)(lVar4 + 0x1488)) +
                  0x34);
             if ((char)*(uint *)(lVar4 + 0x1484) < '\0') {
@@ -1679,10 +1679,10 @@ void RenderingSystemMemoryManager(longlong param_1, int param_2, undefined8 *par
         *(uint *)(lVar4 + 0x1484) = uVar2;
         lVar4 = *(longlong *)(param_1 + 0x738);
         if (lVar4 != 0) {
-            uVar3 = *(undefined1 *)(param_1 + 0x5fd);
+            uVar3 = *(int8_t *)(param_1 + 0x5fd);
             uVar5 = func_0x00018052dc80(param_1);
-            *(undefined4 *)(lVar4 + 0xe8) = uVar5;
-            *(undefined1 *)(lVar4 + 0xec) = uVar3;
+            *(int32_t *)(lVar4 + 0xe8) = uVar5;
+            *(int8_t *)(lVar4 + 0xec) = uVar3;
         }
     }
     return;
@@ -1698,14 +1698,14 @@ void RenderingSystemMemoryManager(longlong param_1, int param_2, undefined8 *par
  * @param param_2 查询参数
  * @param param_3 查询数据
  * @param param_4 查询选项
- * @return undefined4 查询结果
+ * @return int32_t 查询结果
  */
-undefined4
-RenderingSystemQueryHandler(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+int32_t
+RenderingSystemQueryHandler(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined4 uVar1;
-    undefined8 uVar2;
-    undefined *puStack_30;
+    int32_t uVar1;
+    uint64_t uVar2;
+    void *puStack_30;
     longlong lStack_28;
     
     uVar2 = FUN_180627910(&puStack_30, param_1, param_3, param_4, 0xfffffffffffffffe);
@@ -1738,10 +1738,10 @@ void RenderingSystemStateSetter(longlong param_1, ulonglong param_2)
     uVar3 = *(uint *)(*(longlong *)(param_1 + 0x6e0) + 0x1484) >> 1 & 1;
     *(int *)(*(longlong *)(param_1 + 0x6e0) + 0x1484) = (int)param_2;
     if ((uVar3 == uVar2) || ((param_2 & 2) == 0)) {
-        FUN_180508010(*(undefined8 *)(param_1 + 0x6e0));
+        FUN_180508010(*(uint64_t *)(param_1 + 0x6e0));
     }
     else {
-        *(undefined4 *)(*(longlong *)(param_1 + 0x6e0) + 0x13b8) = 0;
+        *(int32_t *)(*(longlong *)(param_1 + 0x6e0) + 0x13b8) = 0;
     }
     if (uVar3 != uVar2) {
         puVar1 = (ushort *)(*(longlong *)(param_1 + 0x6e0) + 0x130);
@@ -1762,9 +1762,9 @@ void RenderingSystemStateSetter(longlong param_1, ulonglong param_2)
  * 
  * @param param_1 数据访问结果指针
  * @param param_2 数据访问上下文指针
- * @return undefined8* 数据访问结果指针
+ * @return uint64_t* 数据访问结果指针
  */
-undefined8 * RenderingSystemDataAccessor(undefined8 *param_1, longlong param_2)
+uint64_t * RenderingSystemDataAccessor(uint64_t *param_1, longlong param_2)
 {
     longlong lVar1;
     ulonglong uVar2;
@@ -1779,7 +1779,7 @@ undefined8 * RenderingSystemDataAccessor(undefined8 *param_1, longlong param_2)
         }
         if (((*(ulonglong *)(lVar1 + 0x2470) | uVar2) & 0x400000000000) != 0) {
             // WARNING: Subroutine does not return
-            FUN_1808fd400(*(undefined4 *)(*(longlong *)(param_2 + 0x20) + 0x34));
+            FUN_1808fd400(*(int32_t *)(*(longlong *)(param_2 + 0x20) + 0x34));
         }
     }
     *param_1 = 0;
@@ -1798,14 +1798,14 @@ undefined8 * RenderingSystemDataAccessor(undefined8 *param_1, longlong param_2)
  * @param param_3 事件处理数据
  * @return void
  */
-void RenderingSystemEventHandler(undefined8 param_1, undefined8 param_2, longlong param_3)
+void RenderingSystemEventHandler(uint64_t param_1, uint64_t param_2, longlong param_3)
 {
     longlong in_RAX;
-    undefined8 uStack0000000000000028;
+    uint64_t uStack0000000000000028;
     
-    uStack0000000000000028 = *(undefined8 *)(param_3 + 0xc4);
+    uStack0000000000000028 = *(uint64_t *)(param_3 + 0xc4);
     // WARNING: Subroutine does not return
-    FUN_1808fd400(*(undefined4 *)(in_RAX + 0x34));
+    FUN_1808fd400(*(int32_t *)(in_RAX + 0x34));
 }
 
 /**
@@ -1818,7 +1818,7 @@ void RenderingSystemEventHandler(undefined8 param_1, undefined8 param_2, longlon
  */
 void RenderingSystemResourceCleaner(void)
 {
-    undefined8 *unaff_RBX;
+    uint64_t *unaff_RBX;
     
     *unaff_RBX = 0;
     unaff_RBX[1] = 0;
@@ -1846,25 +1846,25 @@ void RenderingSystemResourceCleaner(void)
  * @param param_13 渲染管线管理选项
  * @return void
  */
-void RenderingSystemPipelineManager(undefined8 param_1, undefined4 param_2, undefined4 param_3, undefined8 param_4,
-                                    undefined1 param_5, undefined4 param_6, undefined4 param_7, undefined4 param_8,
-                                    undefined4 param_9, undefined4 param_10, undefined1 param_11, undefined4 param_12,
-                                    undefined1 param_13)
+void RenderingSystemPipelineManager(uint64_t param_1, int32_t param_2, int32_t param_3, uint64_t param_4,
+                                    int8_t param_5, int32_t param_6, int32_t param_7, int32_t param_8,
+                                    int32_t param_9, int32_t param_10, int8_t param_11, int32_t param_12,
+                                    int8_t param_13)
 {
-    undefined4 uStack_38;
-    undefined4 uStack_34;
-    undefined8 uStack_30;
-    undefined4 uStack_28;
-    undefined4 uStack_24;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
-    undefined4 uStack_18;
-    undefined4 uStack_14;
-    undefined1 uStack_10;
-    undefined1 uStack_f;
-    undefined1 uStack_e;
-    undefined1 uStack_d;
-    undefined1 uStack_c;
+    int32_t uStack_38;
+    int32_t uStack_34;
+    uint64_t uStack_30;
+    int32_t uStack_28;
+    int32_t uStack_24;
+    int32_t uStack_20;
+    int32_t uStack_1c;
+    int32_t uStack_18;
+    int32_t uStack_14;
+    int8_t uStack_10;
+    int8_t uStack_f;
+    int8_t uStack_e;
+    int8_t uStack_d;
+    int8_t uStack_c;
     
     uStack_24 = param_6;
     uStack_20 = param_7;
@@ -1911,8 +1911,8 @@ void RenderingSystemOptimizer(longlong param_1)
     }
     if ((((plVar2[0x48e] | uVar4) & 0x400000000000) == 0) ||
        ((ushort)(*(short *)(*(longlong *)(param_1 + 0x658) + 0x40) - 2U) < 3)) {
-        *(undefined8 *)((longlong)plVar2 + 0xbc) = 0;
-        *(undefined8 *)((longlong)plVar2 + 0xc4) = 0;
+        *(uint64_t *)((longlong)plVar2 + 0xbc) = 0;
+        *(uint64_t *)((longlong)plVar2 + 0xc4) = 0;
         return;
     }
     if (*(longlong *)plVar2[0x1f] == 0) {
@@ -1943,7 +1943,7 @@ LAB_18058ad28:
     *(float *)((longlong)plVar2 + 0xbc) = fVar7 * *(float *)(lVar3 + 8);
     *(float *)(plVar2 + 0x18) = fVar7 * fVar6;
     *(float *)((longlong)plVar2 + 0xc4) = fVar7 * fVar1;
-    *(undefined4 *)(plVar2 + 0x19) = 0x7f7fffff;
+    *(int32_t *)(plVar2 + 0x19) = 0x7f7fffff;
     return;
 }
 

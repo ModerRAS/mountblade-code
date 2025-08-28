@@ -2,8 +2,8 @@
 
 // 02_core_engine_part134.c - 4 个函数
 
-// 函数: void FUN_1801315b4(uint param_1,undefined4 *param_2,longlong param_3)
-void FUN_1801315b4(uint param_1,undefined4 *param_2,longlong param_3)
+// 函数: void FUN_1801315b4(uint param_1,int32_t *param_2,longlong param_3)
+void FUN_1801315b4(uint param_1,int32_t *param_2,longlong param_3)
 
 {
   float fVar1;
@@ -76,9 +76,9 @@ void FUN_1801315b4(uint param_1,undefined4 *param_2,longlong param_3)
   }
   if (*(int *)(param_3 + 0x1ca0) == unaff_EBP) {
     *(longlong *)(param_3 + 0x1c98) = unaff_RBX;
-    *(undefined4 *)(param_3 + 0x1cfc) = *(undefined4 *)(unaff_RBX + 0x16c);
-    *(undefined1 *)(param_3 + 0x1d04) = 1;
-    *(undefined4 *)(param_3 + 0x1d00) = *(undefined4 *)(unaff_RBX + 0x3f4);
+    *(int32_t *)(param_3 + 0x1cfc) = *(int32_t *)(unaff_RBX + 0x16c);
+    *(int8_t *)(param_3 + 0x1d04) = 1;
+    *(int32_t *)(param_3 + 0x1d00) = *(int32_t *)(unaff_RBX + 0x3f4);
     piVar6 = (int *)(unaff_RBX + ((longlong)*(int *)(unaff_RBX + 0x16c) + 0x3d) * 0x10);
     *piVar6 = unaff_XMM6_Da;
     piVar6[1] = unaff_XMM6_Db;
@@ -92,11 +92,11 @@ void FUN_1801315b4(uint param_1,undefined4 *param_2,longlong param_3)
 
 
 
-// 函数: void FUN_18013161b(undefined8 param_1,undefined8 param_2,longlong param_3)
-void FUN_18013161b(undefined8 param_1,undefined8 param_2,longlong param_3)
+// 函数: void FUN_18013161b(uint64_t param_1,uint64_t param_2,longlong param_3)
+void FUN_18013161b(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 {
-  undefined4 *puVar1;
+  int32_t *puVar1;
   float fVar2;
   float fVar3;
   float fVar4;
@@ -106,10 +106,10 @@ void FUN_18013161b(undefined8 param_1,undefined8 param_2,longlong param_3)
   float *unaff_RDI;
   float fVar6;
   float fVar7;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
   float fStack0000000000000028;
   float fStack000000000000002c;
   
@@ -136,19 +136,19 @@ void FUN_18013161b(undefined8 param_1,undefined8 param_2,longlong param_3)
                                 *(longlong *)(param_3 + 0x1af8),*unaff_RDI), cVar5 != '\0')) {
         *(int *)(param_3 + 0x1d68) = unaff_EBP;
         *(longlong *)(param_3 + 0x1d70) = unaff_RBX;
-        *(undefined4 *)(param_3 + 0x1d84) = unaff_XMM6_Da;
-        *(undefined4 *)(param_3 + 0x1d88) = unaff_XMM6_Db;
-        *(undefined4 *)(param_3 + 0x1d8c) = unaff_XMM6_Dc;
-        *(undefined4 *)(param_3 + 0x1d90) = unaff_XMM6_Dd;
+        *(int32_t *)(param_3 + 0x1d84) = unaff_XMM6_Da;
+        *(int32_t *)(param_3 + 0x1d88) = unaff_XMM6_Db;
+        *(int32_t *)(param_3 + 0x1d8c) = unaff_XMM6_Dc;
+        *(int32_t *)(param_3 + 0x1d90) = unaff_XMM6_Dd;
       }
     }
   }
   if (*(int *)(param_3 + 0x1ca0) == unaff_EBP) {
     *(longlong *)(param_3 + 0x1c98) = unaff_RBX;
-    *(undefined4 *)(param_3 + 0x1cfc) = *(undefined4 *)(unaff_RBX + 0x16c);
-    *(undefined1 *)(param_3 + 0x1d04) = 1;
-    *(undefined4 *)(param_3 + 0x1d00) = *(undefined4 *)(unaff_RBX + 0x3f4);
-    puVar1 = (undefined4 *)(unaff_RBX + ((longlong)*(int *)(unaff_RBX + 0x16c) + 0x3d) * 0x10);
+    *(int32_t *)(param_3 + 0x1cfc) = *(int32_t *)(unaff_RBX + 0x16c);
+    *(int8_t *)(param_3 + 0x1d04) = 1;
+    *(int32_t *)(param_3 + 0x1d00) = *(int32_t *)(unaff_RBX + 0x3f4);
+    puVar1 = (int32_t *)(unaff_RBX + ((longlong)*(int *)(unaff_RBX + 0x16c) + 0x3d) * 0x10);
     *puVar1 = unaff_XMM6_Da;
     puVar1[1] = unaff_XMM6_Db;
     puVar1[2] = unaff_XMM6_Dc;
@@ -161,22 +161,22 @@ void FUN_18013161b(undefined8 param_1,undefined8 param_2,longlong param_3)
 
 
 
-// 函数: void FUN_180131701(undefined8 param_1,undefined8 param_2,longlong param_3)
-void FUN_180131701(undefined8 param_1,undefined8 param_2,longlong param_3)
+// 函数: void FUN_180131701(uint64_t param_1,uint64_t param_2,longlong param_3)
+void FUN_180131701(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 {
-  undefined4 *puVar1;
+  int32_t *puVar1;
   longlong unaff_RBX;
-  undefined4 unaff_XMM6_Da;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
+  int32_t unaff_XMM6_Da;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
   
   *(longlong *)(param_3 + 0x1c98) = unaff_RBX;
-  *(undefined4 *)(param_3 + 0x1cfc) = *(undefined4 *)(unaff_RBX + 0x16c);
-  *(undefined1 *)(param_3 + 0x1d04) = 1;
-  *(undefined4 *)(param_3 + 0x1d00) = *(undefined4 *)(unaff_RBX + 0x3f4);
-  puVar1 = (undefined4 *)(unaff_RBX + ((longlong)*(int *)(unaff_RBX + 0x16c) + 0x3d) * 0x10);
+  *(int32_t *)(param_3 + 0x1cfc) = *(int32_t *)(unaff_RBX + 0x16c);
+  *(int8_t *)(param_3 + 0x1d04) = 1;
+  *(int32_t *)(param_3 + 0x1d00) = *(int32_t *)(unaff_RBX + 0x3f4);
+  puVar1 = (int32_t *)(unaff_RBX + ((longlong)*(int *)(unaff_RBX + 0x16c) + 0x3d) * 0x10);
   *puVar1 = unaff_XMM6_Da;
   puVar1[1] = unaff_XMM6_Db;
   puVar1[2] = unaff_XMM6_Dc;
@@ -308,7 +308,7 @@ float * FUN_180131aac(float *param_1,uint param_2,uint param_3,float param_4)
 
 {
   longlong lVar1;
-  undefined8 in_RAX;
+  uint64_t in_RAX;
   ulonglong uVar2;
   ulonglong uVar3;
   float fVar4;
@@ -319,7 +319,7 @@ float * FUN_180131aac(float *param_1,uint param_2,uint param_3,float param_4)
   
   uVar3 = (ulonglong)param_3;
   uVar2 = (ulonglong)param_2;
-  *(undefined8 *)param_1 = in_RAX;
+  *(uint64_t *)param_1 = in_RAX;
   fVar7 = 0.0;
   if ((param_2 & 1) != 0) {
     fVar7 = (float)FUN_1801319b0((int)in_RAX + 0x14,param_3);
@@ -364,7 +364,7 @@ float * FUN_180131aac(float *param_1,uint param_2,uint param_3,float param_4)
 
 
 
-float * FUN_180131be4(undefined8 param_1,float param_2,undefined8 param_3,float *param_4)
+float * FUN_180131be4(uint64_t param_1,float param_2,uint64_t param_3,float *param_4)
 
 {
   longlong in_RAX;
@@ -387,7 +387,7 @@ float * FUN_180131be4(undefined8 param_1,float param_2,undefined8 param_3,float 
 
 
 
-float * FUN_180131c21(undefined8 param_1,float param_2,float param_3,float *param_4)
+float * FUN_180131c21(uint64_t param_1,float param_2,float param_3,float *param_4)
 
 {
   longlong in_RAX;

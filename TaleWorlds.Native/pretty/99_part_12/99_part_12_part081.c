@@ -60,16 +60,16 @@
 typedef uint system_param_count_t;                  // 系统参数计数类型
 typedef ulonglong system_handle_t;                  // 系统句柄类型
 typedef longlong system_pointer_t;                  // 系统指针类型
-typedef undefined8 system_result_t;                // 系统结果类型
+typedef uint64_t system_result_t;                // 系统结果类型
 typedef int system_status_t;                       // 系统状态类型
 typedef uint system_flag_t;                         // 系统标志类型
-typedef undefined4 system_data_t;                  // 系统数据类型
+typedef int32_t system_data_t;                  // 系统数据类型
 
 // 数据结构别名
 typedef int data_array_t[];                        // 数据数组类型
-typedef undefined1 data_buffer_t[];                // 数据缓冲区类型
+typedef int8_t data_buffer_t[];                // 数据缓冲区类型
 typedef longlong* pointer_array_t;                 // 指针数组类型
-typedef undefined4* data_pointer_t;                // 数据指针类型
+typedef int32_t* data_pointer_t;                // 数据指针类型
 
 // 函数指针别名
 typedef system_result_t (*system_call_func_t)(void*, void*, int);  // 系统调用函数类型
@@ -222,9 +222,9 @@ void FUN_1808a0f37(void)
     
     // 步骤2：数据处理和参数转换
     if (param_count < DATA_MAX_ITERATIONS) {
-      stack_param2 = (undefined2)param_count;
+      stack_param2 = (int16_t)param_count;
       call_result = 2;
-      data_pointer = (undefined4 *)&stack0x000000b0;
+      data_pointer = (int32_t *)&stack0x000000b0;
     }
     else {
       call_result = 4;
@@ -233,8 +233,8 @@ void FUN_1808a0f37(void)
     }
     
     // 步骤3：系统调用和状态检查
-    operation_status = (**(code **)**(undefined8 **)(*unaff_RBX + 8))
-                      (*(undefined8 **)(*unaff_RBX + 8), data_pointer, call_result);
+    operation_status = (**(code **)**(uint64_t **)(*unaff_RBX + 8))
+                      (*(uint64_t **)(*unaff_RBX + 8), data_pointer, call_result);
     if (operation_status != SYSTEM_SUCCESS_CODE) {
       return;
     }
@@ -396,8 +396,8 @@ ulonglong FUN_1808a1090(longlong param_1, longlong *param_2)
     // 步骤2：系统状态检查和参数处理
     if (*(int *)(param_2[1] + 0x18) == 0) {
       data_array[0] = validation_status;
-      data_handle = (**(code **)**(undefined8 **)(*param_2 + 8))
-                        (*(undefined8 **)(*param_2 + 8), data_array, 4);
+      data_handle = (**(code **)**(uint64_t **)(*param_2 + 8))
+                        (*(uint64_t **)(*param_2 + 8), data_array, 4);
     }
     else {
       data_handle = 0x1c;
@@ -423,9 +423,9 @@ ulonglong FUN_1808a1090(longlong param_1, longlong *param_2)
         data_size = 0;
       }
       else if (*(int *)(param_2[1] + 0x18) == 0) {
-        data_array[0] = CONCAT31(data_array[0]._1_3_, *(undefined1 *)(param_1 + 0x5c));
-        data_size = (**(code **)**(undefined8 **)(*param_2 + 8))
-                          (*(undefined8 **)(*param_2 + 8), data_array, 1);
+        data_array[0] = CONCAT31(data_array[0]._1_3_, *(int8_t *)(param_1 + 0x5c));
+        data_size = (**(code **)**(uint64_t **)(*param_2 + 8))
+                          (*(uint64_t **)(*param_2 + 8), data_array, 1);
       }
       
       // 步骤5：最终处理和系统调用
@@ -482,8 +482,8 @@ ulonglong FUN_1808a10c8(void)
   // 步骤2：系统状态检查和参数处理
   if (*(int *)(in_RAX + 0x18) == 0) {
     in_stack_00000080 = data_count;
-    operation_result = (**(code **)**(undefined8 **)(*unaff_RSI + 8))
-                      (*(undefined8 **)(*unaff_RSI + 8), &stack0x00000080, 4);
+    operation_result = (**(code **)**(uint64_t **)(*unaff_RSI + 8))
+                      (*(uint64_t **)(*unaff_RSI + 8), &stack0x00000080, 4);
   }
   else {
     operation_result = 0x1c;
@@ -509,9 +509,9 @@ ulonglong FUN_1808a10c8(void)
       param_size = 0;
     }
     else if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
-      in_stack_00000080 = CONCAT31(in_stack_00000080._1_3_, *(undefined1 *)(unaff_R14 + 0x5c));
-      param_size = (**(code **)**(undefined8 **)(*unaff_RSI + 8))
-                        (*(undefined8 **)(*unaff_RSI + 8), &stack0x00000080, 1);
+      in_stack_00000080 = CONCAT31(in_stack_00000080._1_3_, *(int8_t *)(unaff_R14 + 0x5c));
+      param_size = (**(code **)**(uint64_t **)(*unaff_RSI + 8))
+                        (*(uint64_t **)(*unaff_RSI + 8), &stack0x00000080, 1);
     }
     
     // 步骤5：最终处理和系统调用
@@ -557,7 +557,7 @@ ulonglong FUN_1808a110e(void)
   system_pointer_t system_context;              // 系统上下文
   system_pointer_t data_pointer;                // 数据指针
   system_flag_t param_flag;                     // 参数标志
-  undefined1 stack_param;                       // 堆栈参数
+  int8_t stack_param;                       // 堆栈参数
   
   // 步骤1：循环初始化
   loop_counter = 0;
@@ -578,9 +578,9 @@ ulonglong FUN_1808a110e(void)
     param_flag = 0;
   }
   else if (*(int *)(unaff_RSI[1] + 0x18) == 0) {
-    in_stack_00000080 = *(undefined1 *)(unaff_R14 + 0x5c);
-    param_flag = (**(code **)**(undefined8 **)(*unaff_RSI + 8))
-                          (*(undefined8 **)(*unaff_RSI + 8), &stack0x00000080, 1);
+    in_stack_00000080 = *(int8_t *)(unaff_R14 + 0x5c);
+    param_flag = (**(code **)**(uint64_t **)(*unaff_RSI + 8))
+                          (*(uint64_t **)(*unaff_RSI + 8), &stack0x00000080, 1);
   }
   
   // 步骤4：最终处理和系统调用
@@ -659,7 +659,7 @@ void FUN_1808a11b5(void)
 //   - 系统调用和状态管理
 //   - 循环优化和错误处理
 //------------------------------------------------------------------------------
-undefined8 FUN_1808a11c0(ulonglong *param_1, longlong *param_2)
+uint64_t FUN_1808a11c0(ulonglong *param_1, longlong *param_2)
 
 {
   // 语义化变量定义
@@ -685,8 +685,8 @@ undefined8 FUN_1808a11c0(ulonglong *param_1, longlong *param_2)
     
     // 步骤3：对象参数处理
     param_array[0] = (uint)param_1[2];
-    operation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                      (*(undefined8 **)(*param_2 + 8), param_array, 4);
+    operation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                      (*(uint64_t **)(*param_2 + 8), param_array, 4);
     
     // 步骤4：数据处理和验证
     if ((int)operation_result == SYSTEM_SUCCESS_CODE) {
@@ -696,8 +696,8 @@ undefined8 FUN_1808a11c0(ulonglong *param_1, longlong *param_2)
       
       // 步骤5：对象数据获取和验证
       param_array[0] = *(uint *)((longlong)param_1 + 0x14);
-      operation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                        (*(undefined8 **)(*param_2 + 8), param_array, 4);
+      operation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                        (*(uint64_t **)(*param_2 + 8), param_array, 4);
       
       // 步骤6：参数计数和数据处理
       if ((int)operation_result == SYSTEM_SUCCESS_CODE) {
@@ -716,8 +716,8 @@ undefined8 FUN_1808a11c0(ulonglong *param_1, longlong *param_2)
         }
         
         // 步骤8：系统调用和参数传递
-        operation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                          (*(undefined8 **)(*param_2 + 8), data_pointer, operation_result);
+        operation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                          (*(uint64_t **)(*param_2 + 8), data_pointer, operation_result);
         
         // 步骤9：对象循环处理
         if ((int)operation_result == SYSTEM_SUCCESS_CODE) {
@@ -750,8 +750,8 @@ undefined8 FUN_1808a11c0(ulonglong *param_1, longlong *param_2)
             }
             
             // 步骤9.5：系统调用和数据处理
-            system_pointer = *(undefined8 **)(object_pointer + 8);
-            stack_param2 = *(undefined4 *)(object_handle + 0x10);
+            system_pointer = *(uint64_t **)(object_pointer + 8);
+            stack_param2 = *(int32_t *)(object_handle + 0x10);
             operation_result = (**(code **)*system_pointer)(system_pointer, &stack_param2, 4);
             if ((int)operation_result != SYSTEM_SUCCESS_CODE) {
               return operation_result;
@@ -797,7 +797,7 @@ undefined8 FUN_1808a11c0(ulonglong *param_1, longlong *param_2)
 //   - 系统调用和状态监控
 //   - 循环优化和错误处理
 //------------------------------------------------------------------------------
-void FUN_1808a12c6(undefined4 param_1)
+void FUN_1808a12c6(int32_t param_1)
 
 {
   // 语义化变量定义
@@ -808,7 +808,7 @@ void FUN_1808a12c6(undefined4 param_1)
   system_handle_t object_handle;                 // 对象句柄
   system_data_t stack_param1;                    // 堆栈参数1
   system_data_t stack_param2;                    // 堆栈参数2
-  undefined8 stack_param3;                       // 堆栈参数3
+  uint64_t stack_param3;                       // 堆栈参数3
   
   // 步骤1：系统状态验证
   if (in_EAX == 0) {
@@ -836,8 +836,8 @@ void FUN_1808a12c6(undefined4 param_1)
       }
       
       // 步骤5：系统调用和数据处理
-      object_pointer = *(undefined8 **)(system_pointer + 8);
-      stack_param3._4_4_ = *(undefined4 *)(object_handle + 0x10);
+      object_pointer = *(uint64_t **)(system_pointer + 8);
+      stack_param3._4_4_ = *(int32_t *)(object_handle + 0x10);
       operation_status = (**(code **)*object_pointer)(object_pointer, (longlong)&stack0x00000030 + 4, 4);
       if (operation_status != SYSTEM_SUCCESS_CODE) {
         return;
@@ -899,7 +899,7 @@ void FUN_1808a139f(void)
 //   - 系统调用和状态管理
 //   - 错误处理和异常管理
 //------------------------------------------------------------------------------
-void FUN_1808a13b0(longlong param_1, undefined8 param_2)
+void FUN_1808a13b0(longlong param_1, uint64_t param_2)
 
 {
   // 语义化变量定义
@@ -938,7 +938,7 @@ void FUN_1808a13b0(longlong param_1, undefined8 param_2)
 //   - 系统调用和状态管理
 //   - 错误处理和异常管理
 //------------------------------------------------------------------------------
-undefined8 FUN_1808a13f0(longlong param_1, undefined8 *param_2)
+uint64_t FUN_1808a13f0(longlong param_1, uint64_t *param_2)
 
 {
   // 语义化变量定义
@@ -1023,7 +1023,7 @@ undefined8 FUN_1808a13f0(longlong param_1, undefined8 *param_2)
 //   - 系统调用和状态管理
 //   - 错误处理和异常管理
 //------------------------------------------------------------------------------
-undefined8 FUN_1808a1530(longlong param_1, undefined8 *param_2)
+uint64_t FUN_1808a1530(longlong param_1, uint64_t *param_2)
 
 {
   // 语义化变量定义
@@ -1085,7 +1085,7 @@ undefined8 FUN_1808a1530(longlong param_1, undefined8 *param_2)
 //   - 系统调用和状态管理
 //   - 链表遍历和错误处理
 //------------------------------------------------------------------------------
-undefined8 FUN_1808a1610(longlong param_1, longlong *param_2)
+uint64_t FUN_1808a1610(longlong param_1, longlong *param_2)
 
 {
   // 语义化变量定义
@@ -1107,8 +1107,8 @@ undefined8 FUN_1808a1610(longlong param_1, longlong *param_2)
   }
   
   // 步骤2：对象链表初始化
-  object_pointer = *(undefined8 **)(param_1 + 0x20);
-  start_pointer = (undefined8 *)(param_1 + 0x20);
+  object_pointer = *(uint64_t **)(param_1 + 0x20);
+  start_pointer = (uint64_t *)(param_1 + 0x20);
   valid_objects = 0;
   status_array[0] = 0;
   list_pointer = object_pointer;
@@ -1125,7 +1125,7 @@ undefined8 FUN_1808a1610(longlong param_1, longlong *param_2)
       
       // 步骤3.2：链表遍历继续
       if (object_pointer != start_pointer) {
-        object_pointer = (undefined8 *)*object_pointer;
+        object_pointer = (uint64_t *)*object_pointer;
         list_pointer = object_pointer;
       }
     } while (list_pointer != start_pointer);
@@ -1138,8 +1138,8 @@ undefined8 FUN_1808a1610(longlong param_1, longlong *param_2)
       }
       
       // 步骤5：对象数据处理循环
-      for (object_pointer = (undefined8 *)*start_pointer; object_pointer != start_pointer; 
-           object_pointer = (undefined8 *)*object_pointer) {
+      for (object_pointer = (uint64_t *)*start_pointer; object_pointer != start_pointer; 
+           object_pointer = (uint64_t *)*object_pointer) {
         
         // 步骤5.1：对象属性验证
         if (((*(int *)(object_pointer + 5) == 0) && (*(int *)(object_pointer + 3) == 0)) &&
@@ -1163,18 +1163,18 @@ undefined8 FUN_1808a1610(longlong param_1, longlong *param_2)
           }
           
           // 步骤5.4：对象参数处理
-          param_array[0] = *(undefined4 *)(object_pointer + 8);
-          operation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                            (*(undefined8 **)(*param_2 + 8), param_array, 4);
+          param_array[0] = *(int32_t *)(object_pointer + 8);
+          operation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                            (*(uint64_t **)(*param_2 + 8), param_array, 4);
           if ((int)operation_result != SYSTEM_SUCCESS_CODE) {
             return operation_result;
           }
           
           // 步骤5.5：系统参数验证和处理
           if (*(int *)(param_2[1] + 0x18) == 0) {
-            param_array[0] = CONCAT22(param_array[0]._2_2_, *(undefined2 *)(object_pointer + 9));
-            operation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                              (*(undefined8 **)(*param_2 + 8), param_array, 2);
+            param_array[0] = CONCAT22(param_array[0]._2_2_, *(int16_t *)(object_pointer + 9));
+            operation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                              (*(uint64_t **)(*param_2 + 8), param_array, 2);
             if ((int)operation_result != SYSTEM_SUCCESS_CODE) {
               return operation_result;
             }
@@ -1182,9 +1182,9 @@ undefined8 FUN_1808a1610(longlong param_1, longlong *param_2)
             // 步骤5.6：继续参数处理
             if (*(int *)(param_2[1] + 0x18) == 0) {
               param_array[0] = CONCAT22(param_array[0]._2_2_, 
-                                         *(undefined2 *)((longlong)object_pointer + 0x4a));
-              operation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                                (*(undefined8 **)(*param_2 + 8), param_array, 2);
+                                         *(int16_t *)((longlong)object_pointer + 0x4a));
+              operation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                                (*(uint64_t **)(*param_2 + 8), param_array, 2);
               if ((int)operation_result != SYSTEM_SUCCESS_CODE) {
                 return operation_result;
               }
@@ -1259,7 +1259,7 @@ LAB_1808a1807:
 //   - 系统调用和状态管理
 //   - 链表遍历和错误处理
 //------------------------------------------------------------------------------
-undefined8 FUN_1808a164e(undefined8 param_1, undefined8 *param_2)
+uint64_t FUN_1808a164e(uint64_t param_1, uint64_t *param_2)
 
 {
   // 语义化变量定义
@@ -1287,7 +1287,7 @@ undefined8 FUN_1808a164e(undefined8 param_1, undefined8 *param_2)
       
       // 步骤2.2：链表遍历继续
       if (param_2 != unaff_RSI) {
-        param_2 = (undefined8 *)*param_2;
+        param_2 = (uint64_t *)*param_2;
         list_pointer = param_2;
       }
     } while (list_pointer != unaff_RSI);
@@ -1300,8 +1300,8 @@ undefined8 FUN_1808a164e(undefined8 param_1, undefined8 *param_2)
       }
       
       // 步骤4：对象数据处理循环
-      for (list_pointer = (undefined8 *)*unaff_RSI; list_pointer != unaff_RSI; 
-           list_pointer = (undefined8 *)*list_pointer) {
+      for (list_pointer = (uint64_t *)*unaff_RSI; list_pointer != unaff_RSI; 
+           list_pointer = (uint64_t *)*list_pointer) {
         
         // 步骤4.1：对象属性验证
         if (((*(int *)(list_pointer + 5) == 0) && (*(int *)(list_pointer + 3) == 0)) &&
@@ -1325,18 +1325,18 @@ undefined8 FUN_1808a164e(undefined8 param_1, undefined8 *param_2)
           }
           
           // 步骤4.4：对象参数处理
-          stack_param = *(undefined4 *)(list_pointer + 8);
-          operation_result = (**(code **)**(undefined8 **)(*unaff_RBX + 8))
-                            (*(undefined8 **)(*unaff_RBX + 8), &stack0x000000a0, 4);
+          stack_param = *(int32_t *)(list_pointer + 8);
+          operation_result = (**(code **)**(uint64_t **)(*unaff_RBX + 8))
+                            (*(uint64_t **)(*unaff_RBX + 8), &stack0x000000a0, 4);
           if ((int)operation_result != SYSTEM_SUCCESS_CODE) {
             return operation_result;
           }
           
           // 步骤4.5：系统参数验证和处理
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            stack_param = CONCAT22(stack_param._2_2_, *(undefined2 *)(list_pointer + 9));
-            operation_result = (**(code **)**(undefined8 **)(*unaff_RBX + 8))
-                              (*(undefined8 **)(*unaff_RBX + 8), &stack0x000000a0, 2);
+            stack_param = CONCAT22(stack_param._2_2_, *(int16_t *)(list_pointer + 9));
+            operation_result = (**(code **)**(uint64_t **)(*unaff_RBX + 8))
+                              (*(uint64_t **)(*unaff_RBX + 8), &stack0x000000a0, 2);
             if ((int)operation_result != SYSTEM_SUCCESS_CODE) {
               return operation_result;
             }
@@ -1344,9 +1344,9 @@ undefined8 FUN_1808a164e(undefined8 param_1, undefined8 *param_2)
             // 步骤4.6：继续参数处理
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
               stack_param = CONCAT22(stack_param._2_2_, 
-                                     *(undefined2 *)((longlong)list_pointer + 0x4a));
-              operation_result = (**(code **)**(undefined8 **)(*unaff_RBX + 8))
-                                (*(undefined8 **)(*unaff_RBX + 8), &stack0x000000a0, 2);
+                                     *(int16_t *)((longlong)list_pointer + 0x4a));
+              operation_result = (**(code **)**(uint64_t **)(*unaff_RBX + 8))
+                                (*(uint64_t **)(*unaff_RBX + 8), &stack0x000000a0, 2);
               if ((int)operation_result != SYSTEM_SUCCESS_CODE) {
                 return operation_result;
               }
@@ -1434,7 +1434,7 @@ void FUN_1808a1841(void)
 //   - 统一错误处理接口
 //   - 支持系统状态管理
 //------------------------------------------------------------------------------
-undefined8 FUN_1808a1848(void)
+uint64_t FUN_1808a1848(void)
 
 {
   return SYSTEM_ERROR_CODE;
@@ -1462,7 +1462,7 @@ undefined8 FUN_1808a1848(void)
 //   - 参数传递和验证
 //   - 系统标识符管理
 //------------------------------------------------------------------------------
-void FUN_1808a1850(undefined8 param_1, undefined8 param_2)
+void FUN_1808a1850(uint64_t param_1, uint64_t param_2)
 
 {
   FUN_18089f530(param_1, param_2, SYSTEM_ID_SUBR, SYSTEM_ID_BSBP, 1);
@@ -1491,7 +1491,7 @@ void FUN_1808a1850(undefined8 param_1, undefined8 param_2)
 //   - 系统调用和状态管理
 //   - 错误处理和异常管理
 //------------------------------------------------------------------------------
-undefined8 FUN_1808a1870(longlong param_1, longlong *param_2)
+uint64_t FUN_1808a1870(longlong param_1, longlong *param_2)
 
 {
   // 语义化变量定义
@@ -1518,9 +1518,9 @@ undefined8 FUN_1808a1870(longlong param_1, longlong *param_2)
       }
       
       // 步骤5：参数处理和系统调用
-      param_array[0] = *(undefined4 *)(param_1 + 0xc);
-      operation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                        (*(undefined8 **)(*param_2 + 8), param_array, 4);
+      param_array[0] = *(int32_t *)(param_1 + 0xc);
+      operation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                        (*(uint64_t **)(*param_2 + 8), param_array, 4);
       if ((int)operation_result == SYSTEM_SUCCESS_CODE) {
         operation_result = FUN_1808de160(param_2, 0);
       }
@@ -1553,7 +1553,7 @@ undefined8 FUN_1808a1870(longlong param_1, longlong *param_2)
 //   - 系统调用和状态管理
 //   - 错误处理和异常管理
 //------------------------------------------------------------------------------
-undefined8 FUN_1808a1910(longlong param_1, longlong *param_2)
+uint64_t FUN_1808a1910(longlong param_1, longlong *param_2)
 
 {
   // 语义化变量定义
@@ -1584,9 +1584,9 @@ undefined8 FUN_1808a1910(longlong param_1, longlong *param_2)
       }
       
       // 步骤5：参数处理和系统调用
-      param_array[0] = *(undefined4 *)(param_1 + 0xf0);
-      operation_result = (**(code **)**(undefined8 **)(*param_2 + 8))
-                        (*(undefined8 **)(*param_2 + 8), param_array, 4);
+      param_array[0] = *(int32_t *)(param_1 + 0xf0);
+      operation_result = (**(code **)**(uint64_t **)(*param_2 + 8))
+                        (*(uint64_t **)(*param_2 + 8), param_array, 4);
       
       // 步骤6：数据处理和验证
       if (((int)operation_result == SYSTEM_SUCCESS_CODE) && 
@@ -1596,7 +1596,7 @@ undefined8 FUN_1808a1910(longlong param_1, longlong *param_2)
         // 步骤7：参数范围检查和数据更新
         if (((*(uint *)(param_2 + 8) < SYSTEM_MAX_PARAMS) && (*(int *)(param_1 + 0xf8) == 0)) ||
            ((*(uint *)(param_2 + 8) < 0x8e && (*(int *)(param_1 + 0xf8) == 0x7fffffff)))) {
-          *(undefined4 *)(param_1 + 0xf8) = 0x21;
+          *(int32_t *)(param_1 + 0xf8) = 0x21;
         }
         
         // 步骤8：数据处理和状态验证
@@ -1607,13 +1607,13 @@ undefined8 FUN_1808a1910(longlong param_1, longlong *param_2)
             if (*(int *)(param_2[1] + 0x18) == 0) {
               system_pointer = *param_2;
               param_array[0] = 0;
-              system_pointer = *(undefined8 **)(system_pointer + 8);
+              system_pointer = *(uint64_t **)(system_pointer + 8);
               operation_result = (**(code **)*system_pointer)(system_pointer, param_array, 4);
               status_array[0] = (int)operation_result;
               if (status_array[0] != 0) {
                 return operation_result;
               }
-              system_pointer = *(undefined8 **)(system_pointer + 8);
+              system_pointer = *(uint64_t **)(system_pointer + 8);
               operation_result = (**(code **)*system_pointer)(system_pointer, status_array, 4);
             }
             else {
@@ -1681,7 +1681,7 @@ void FUN_1808a19dc(void)
     // 步骤2：参数范围检查和数据更新
     if (((*(uint *)(unaff_RBX + 8) < SYSTEM_MAX_PARAMS) && (*(int *)(unaff_RDI + 0xf8) == 0)) ||
        ((*(uint *)(unaff_RBX + 8) < 0x8e && (*(int *)(unaff_RDI + 0xf8) == 0x7fffffff)))) {
-      *(undefined4 *)(unaff_RDI + 0xf8) = 0x21;
+      *(int32_t *)(unaff_RDI + 0xf8) = 0x21;
     }
     
     // 步骤3：数据处理和状态验证
@@ -1692,12 +1692,12 @@ void FUN_1808a19dc(void)
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
           system_pointer = *unaff_RBX;
           in_stack_00000090 = 0;
-          system_pointer = *(undefined8 **)(system_pointer + 8);
+          system_pointer = *(uint64_t **)(system_pointer + 8);
           in_stack_00000098 = (**(code **)*system_pointer)(system_pointer, &stack0x00000090, 4);
           if (in_stack_00000098 != 0) {
             return;
           }
-          system_pointer = *(undefined8 **)(system_pointer + 8);
+          system_pointer = *(uint64_t **)(system_pointer + 8);
           operation_status = (**(code **)*system_pointer)(system_pointer, &stack0x00000098, 4);
         }
         else {

@@ -75,12 +75,12 @@ extern char DAT_180c82846;           // 渲染系统状态标志
 // param_2: 渲染状态索引
 // param_3: 渲染参数值
 // param_4: 状态标志位掩码
-void FUN_18029ccc0(longlong param_1,int param_2,undefined4 param_3,uint param_4)
+void FUN_18029ccc0(longlong param_1,int param_2,int32_t param_3,uint param_4)
 {
-  undefined8 render_state_stack[RENDER_BUFFER_SIZE_SMALL/8];
+  uint64_t render_state_stack[RENDER_BUFFER_SIZE_SMALL/8];
   
   // 获取渲染状态数据
-  render_state_stack[0] = *(undefined8 *)(_DAT_180c86938 + RENDER_OFFSET_TEXTURE_DATA + (longlong)param_2 * 8);
+  render_state_stack[0] = *(uint64_t *)(_DAT_180c86938 + RENDER_OFFSET_TEXTURE_DATA + (longlong)param_2 * 8);
   
   // 根据标志位更新相应的渲染状态
   if ((param_4 & RENDER_STATE_FLAG_TEXTURE) != 0) {
@@ -116,13 +116,13 @@ void FUN_18029ccc0(longlong param_1,int param_2,undefined4 param_3,uint param_4)
 // 处理材质数据的各种参数和状态更新
 // param_1: 渲染系统上下文指针
 // param_2: 材质数据包指针
-void FUN_18029cdd0(longlong param_1,undefined8 *param_2)
+void FUN_18029cdd0(longlong param_1,uint64_t *param_2)
 {
   longlong material_handle;
   byte material_type;
   longlong render_core;
-  undefined1 security_buffer[RENDER_BUFFER_SIZE_MEDIUM];
-  undefined4 default_float_params[4];
+  int8_t security_buffer[RENDER_BUFFER_SIZE_MEDIUM];
+  int32_t default_float_params[4];
   ulonglong security_key;
   
   // 初始化安全缓冲区
@@ -195,9 +195,9 @@ void FUN_18029cdd0(longlong param_1,undefined8 *param_2)
   }
   
   // 设置渲染模式和纹理
-  RenderingSystem_SetRenderMode(param_1,*(undefined1 *)((longlong)param_2 + 0x17));
-  FUN_18029f560(param_1,*param_2,*(undefined1 *)((longlong)param_2 + 0x3b),
-                *(undefined1 *)((longlong)param_2 + 0x3a));
+  RenderingSystem_SetRenderMode(param_1,*(int8_t *)((longlong)param_2 + 0x17));
+  FUN_18029f560(param_1,*param_2,*(int8_t *)((longlong)param_2 + 0x3b),
+                *(int8_t *)((longlong)param_2 + 0x3a));
                     
   // 清理安全缓冲区
   FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
@@ -225,7 +225,7 @@ void FUN_18029cfa0(longlong param_1,longlong *param_2)
     // 调用渲染系统更新着色器参数
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x228))
               (*(longlong **)(param_1 + 0x8400),
-               *(undefined8 *)(shader_param_data + 6),  // 着色器参数偏移量
+               *(uint64_t *)(shader_param_data + 6),  // 着色器参数偏移量
                0,                                     // 额外参数1
                0);                                    // 额外参数2
     
@@ -243,7 +243,7 @@ void FUN_18029cfa0(longlong param_1,longlong *param_2)
 // 根据输入模式设置渲染系统的渲染模式
 // param_1: 渲染系统上下文指针
 // param_2: 渲染模式枚举值
-void FUN_18029d000(longlong param_1,undefined1 param_2)
+void FUN_18029d000(longlong param_1,int8_t param_2)
 {
   int render_mode;
   
@@ -293,17 +293,17 @@ void FUN_18029d000(longlong param_1,undefined1 param_2)
 // param_1: 渲染系统上下文指针
 // param_2: 纹理数据包指针
 // param_3: 纹理参数数组指针
-void FUN_18029d0a0(longlong param_1,undefined8 *param_2,undefined4 *param_3)
+void FUN_18029d0a0(longlong param_1,uint64_t *param_2,int32_t *param_3)
 {
-  undefined1 security_buffer[RENDER_BUFFER_SIZE_SMALL];
-  undefined4 texture_param4;
-  undefined4 texture_param2;
-  undefined4 texture_param3;
-  undefined4 texture_param1;
-  undefined8 texture_handle1;
-  undefined8 texture_handle2;
-  undefined4 texture_id2;
-  undefined4 texture_id1;
+  int8_t security_buffer[RENDER_BUFFER_SIZE_SMALL];
+  int32_t texture_param4;
+  int32_t texture_param2;
+  int32_t texture_param3;
+  int32_t texture_param1;
+  uint64_t texture_handle1;
+  uint64_t texture_handle2;
+  int32_t texture_id2;
+  int32_t texture_id1;
   ulonglong security_key;
   
   // 初始化安全缓冲区
@@ -312,8 +312,8 @@ void FUN_18029d0a0(longlong param_1,undefined8 *param_2,undefined4 *param_3)
   // 提取纹理数据
   texture_handle1 = *param_2;                    // 纹理句柄1
   texture_handle2 = param_2[1];                  // 纹理句柄2
-  texture_id2 = *(undefined4 *)((longlong)param_2 + 0x14);  // 纹理ID2
-  texture_id1 = *(undefined4 *)(param_2 + 2);               // 纹理ID1
+  texture_id2 = *(int32_t *)((longlong)param_2 + 0x14);  // 纹理ID2
+  texture_id1 = *(int32_t *)(param_2 + 2);               // 纹理ID1
   
   // 调用渲染系统设置纹理参数（第一阶段）
   (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x160))
@@ -430,17 +430,17 @@ void FUN_18029d280(longlong param_1,longlong param_2)
 {
   uint render_flags;
   longlong render_info;
-  undefined4 *report_data;
-  undefined8 *report_data64;
-  undefined2 *report_data16;
+  int32_t *report_data;
+  uint64_t *report_data64;
+  int16_t *report_data16;
   int slot_index;
   int buffer_size;
-  undefined *info_string;
+  void *info_string;
   longlong *render_slots;
   uint *render_flags_array;
-  undefined1 security_buffer[RENDER_BUFFER_SIZE_LARGE];
-  undefined8 magic_value;
-  undefined *info_array[RENDER_PARAM_MAX_SLOTS];
+  int8_t security_buffer[RENDER_BUFFER_SIZE_LARGE];
+  uint64_t magic_value;
+  void *info_array[RENDER_PARAM_MAX_SLOTS];
   ulonglong security_key;
   
   magic_value = 0xfffffffffffffffe;
@@ -452,13 +452,13 @@ void FUN_18029d280(longlong param_1,longlong param_2)
   FUN_1806277c0(param_2, buffer_size);
   
   // 写入报告标题
-  report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  report_data = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *report_data = 0x74786554;        // "Text"
   report_data[1] = 0x20657275;       // "ure "
   report_data[2] = 0x746f6c53;       // "Slot"
   report_data[3] = 0x73694c20;       // "Lis "
   report_data[4] = 0xa3a2074;        // "t" + 终止符
-  *(undefined1 *)(report_data + 5) = 0;
+  *(int8_t *)(report_data + 5) = 0;
   *(int *)(param_2 + 0x10) = buffer_size;
   
   // 获取渲染插槽和标志数组
@@ -471,8 +471,8 @@ void FUN_18029d280(longlong param_1,longlong param_2)
       // 获取渲染信息
       render_info = FUN_1802a05d0(*render_slots, info_array);
       info_string = &DAT_18098bc73;
-      if (*(undefined **)(render_info + 8) != (undefined *)0x0) {
-        info_string = *(undefined **)(render_info + 8);
+      if (*(void **)(render_info + 8) != (void *)0x0) {
+        info_string = *(void **)(render_info + 8);
       }
       
       // 写入插槽信息
@@ -485,57 +485,57 @@ void FUN_18029d280(longlong param_1,longlong param_2)
       if ((render_flags & 1) != 0) {
         buffer_size = *(int *)(param_2 + 0x10) + 7;
         FUN_1806277c0(param_2, buffer_size);
-        *(undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
+        *(uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
              0x20786574726576;  // "vertex "
         *(int *)(param_2 + 0x10) = buffer_size;
       }
       if ((render_flags & 2) != 0) {
         buffer_size = *(int *)(param_2 + 0x10) + 7;
         FUN_1806277c0(param_2, buffer_size);
-        *(undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
+        *(uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8)) =
              0x206e69616d6f64;  // "domain "
         *(int *)(param_2 + 0x10) = buffer_size;
       }
       if ((render_flags & 4) != 0) {
         buffer_size = *(int *)(param_2 + 0x10) + 5;
         FUN_1806277c0(param_2, buffer_size);
-        report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+        report_data = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
         *report_data = 0x6c6c7568;  // "hull"
-        *(undefined2 *)(report_data + 1) = 0x20;
+        *(int16_t *)(report_data + 1) = 0x20;
         *(int *)(param_2 + 0x10) = buffer_size;
       }
       if ((render_flags & 8) != 0) {
         buffer_size = *(int *)(param_2 + 0x10) + 9;
         FUN_1806277c0(param_2, buffer_size);
-        report_data64 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+        report_data64 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
         *report_data64 = 0x797274656d6f6567;  // "geometry "
-        *(undefined2 *)(report_data64 + 1) = 0x20;
+        *(int16_t *)(report_data64 + 1) = 0x20;
         *(int *)(param_2 + 0x10) = buffer_size;
       }
       if ((render_flags & 0x10) != 0) {
         buffer_size = *(int *)(param_2 + 0x10) + 6;
         FUN_1806277c0(param_2, buffer_size);
-        report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+        report_data = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
         *report_data = 0x65786970;  // "pixel"
-        *(undefined2 *)(report_data + 1) = 0x206c;
-        *(undefined1 *)((longlong)report_data + 6) = 0;
+        *(int16_t *)(report_data + 1) = 0x206c;
+        *(int8_t *)((longlong)report_data + 6) = 0;
         *(int *)(param_2 + 0x10) = buffer_size;
       }
       buffer_size = *(int *)(param_2 + 0x10);
       if ((render_flags & 0x20) != 0) {
         buffer_size = buffer_size + 8;
         FUN_1806277c0(param_2, buffer_size);
-        report_data64 = (undefined8 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+        report_data64 = (uint64_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
         *report_data64 = 0x20657475706d6f63;  // "compute "
-        *(undefined1 *)(report_data64 + 1) = 0;
+        *(int8_t *)(report_data64 + 1) = 0;
         *(int *)(param_2 + 0x10) = buffer_size;
       }
       
       // 写入行结束符
       FUN_1806277c0(param_2, buffer_size + 2);
-      report_data16 = (undefined2 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+      report_data16 = (int16_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
       *report_data16 = 0xa29;  // 换行符
-      *(undefined1 *)(report_data16 + 1) = 0;
+      *(int8_t *)(report_data16 + 1) = 0;
       *(int *)(param_2 + 0x10) = buffer_size + 2;
     }
     slot_index = slot_index + 1;
@@ -559,18 +559,18 @@ void FUN_18029d280(longlong param_1,longlong param_2)
 // param_2: 报告缓冲区指针
 void FUN_18029d500(longlong param_1,longlong param_2)
 {
-  undefined4 *report_data;
+  int32_t *report_data;
   int buffer_size;
   int slot_index;
   longlong *render_targets;
-  undefined *target_name;
-  undefined1 security_buffer[RENDER_BUFFER_SIZE_LARGE];
-  undefined4 report_type;
+  void *target_name;
+  int8_t security_buffer[RENDER_BUFFER_SIZE_LARGE];
+  int32_t report_type;
   longlong render_context;
-  undefined8 magic_value;
-  undefined *target_info;
-  undefined *target_data;
-  undefined4 target_id;
+  uint64_t magic_value;
+  void *target_info;
+  void *target_data;
+  int32_t target_id;
   undefined target_buffer[RENDER_BUFFER_NAME_MAX];
   ulonglong security_key;
   
@@ -585,14 +585,14 @@ void FUN_18029d500(longlong param_1,longlong param_2)
   FUN_1806277c0(param_2, buffer_size);
   
   // 写入报告标题
-  report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  report_data = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *report_data = 0x646e6552;        // "Rend"
   report_data[1] = 0x54207265;       // "er T"
   report_data[2] = 0x65677261;       // "arge"
   report_data[3] = 0x6c532074;       // "t Sl"
-  *(undefined8 *)(report_data + 4) = 0x207473694c20746f;  // "ot Lis "
-  *(undefined2 *)(report_data + 6) = 0xa3a;              // ":" + 终止符
-  *(undefined1 *)((longlong)report_data + 0x1a) = 0;
+  *(uint64_t *)(report_data + 4) = 0x207473694c20746f;  // "ot Lis "
+  *(int16_t *)(report_data + 6) = 0xa3a;              // ":" + 终止符
+  *(int8_t *)((longlong)report_data + 0x1a) = 0;
   *(int *)(param_2 + 0x10) = buffer_size;
   
   // 遍历渲染目标（最多7个）
@@ -606,7 +606,7 @@ void FUN_18029d500(longlong param_1,longlong param_2)
       strcpy_s(target_buffer, 0x80, &DAT_18098bc73);
       report_type = 1;
       target_name = &DAT_18098bc73;
-      if (target_data != (undefined *)0x0) {
+      if (target_data != (void *)0x0) {
         target_name = target_data;
       }
       
@@ -623,22 +623,22 @@ void FUN_18029d500(longlong param_1,longlong param_2)
   buffer_size = *(int *)(param_2 + 0x10);
   slot_index = buffer_size + 0x14;
   FUN_1806277c0(param_2, slot_index);
-  report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+  report_data = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
   *report_data = 0x74706544;        // "Dept"
   report_data[1] = 0x61542068;       // "h Ta"
   report_data[2] = 0x74656772;       // "rget"
   report_data[3] = 0x6f6c5320;       // " Slo"
   report_data[4] = 0x203a2074;        // "t :"
-  *(undefined1 *)(report_data + 5) = 0;
+  *(int8_t *)(report_data + 5) = 0;
   *(int *)(param_2 + 0x10) = slot_index;
   
   // 检查是否有深度目标
   if (*(longlong *)(render_context + 0x83f0) == 0) {
     buffer_size = buffer_size + 0x19;
     FUN_1806277c0(param_2, buffer_size);
-    report_data = (undefined4 *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
+    report_data = (int32_t *)((ulonglong)*(uint *)(param_2 + 0x10) + *(longlong *)(param_2 + 8));
     *report_data = 0x6c6c756e;  // "null"
-    *(undefined2 *)(report_data + 1) = 10;  // 换行符
+    *(int16_t *)(report_data + 1) = 10;  // 换行符
     *(int *)(param_2 + 0x10) = buffer_size;
   }
   else {
@@ -650,7 +650,7 @@ void FUN_18029d500(longlong param_1,longlong param_2)
     strcpy_s(target_buffer, 0x80, &DAT_18098bc73);
     report_type = 2;
     target_name = &DAT_18098bc73;
-    if (target_data != (undefined *)0x0) {
+    if (target_data != (void *)0x0) {
       target_name = target_data;
     }
     FUN_180628040(param_2, &UNK_180a0d2d4, target_name);
@@ -679,15 +679,15 @@ void FUN_18029d760(longlong param_1,int param_2,char param_3,longlong param_4,in
 {
   longlong *render_core;
   int *frame_counter;
-  undefined8 target_data;
-  undefined1 security_buffer[RENDER_BUFFER_SIZE_MEDIUM];
-  undefined4 *target_params;
-  undefined4 param_count;
-  undefined8 *target_array;
-  undefined4 *target_format;
-  undefined4 target_formats[2];
-  undefined8 target_value;
-  undefined8 target_handles[RENDER_PARAM_MAX_SLOTS];
+  uint64_t target_data;
+  int8_t security_buffer[RENDER_BUFFER_SIZE_MEDIUM];
+  int32_t *target_params;
+  int32_t param_count;
+  uint64_t *target_array;
+  int32_t *target_format;
+  int32_t target_formats[2];
+  uint64_t target_value;
+  uint64_t target_handles[RENDER_PARAM_MAX_SLOTS];
   ulonglong security_key;
   
   security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
@@ -701,15 +701,15 @@ void FUN_18029d760(longlong param_1,int param_2,char param_3,longlong param_4,in
     
     // 获取目标数据
     if (param_5 == -1) {
-      target_data = *(undefined8 *)(param_4 + 0x208);  // 默认目标
+      target_data = *(uint64_t *)(param_4 + 0x208);  // 默认目标
     }
     else {
-      target_data = *(undefined8 *)(*(longlong *)(param_4 + 0x210) + 
+      target_data = *(uint64_t *)(*(longlong *)(param_4 + 0x210) + 
                                     (longlong)param_5 * 8);  // 索引目标
     }
     
     *(longlong *)(param_4 + 0x340) = (longlong)*frame_counter;
-    target_formats[0] = *(undefined4 *)(param_4 + 0x1f8);  // 获取目标格式
+    target_formats[0] = *(int32_t *)(param_4 + 0x1f8);  // 获取目标格式
   }
   
   render_core = *(longlong **)(param_1 + 0x8400);
@@ -730,27 +730,27 @@ void FUN_18029d760(longlong param_1,int param_2,char param_3,longlong param_4,in
     target_handles[param_2 - 1] = target_data;
     target_array = target_handles;
     param_count = 4;
-    target_params = (undefined4 *)CONCAT44(target_params._4_4_, 1);
+    target_params = (int32_t *)CONCAT44(target_params._4_4_, 1);
     
     // 调用渲染核心设置函数
     (**(code **)(*render_core + 0x110))(render_core, 0xffffffff, 0, 0);
     
     // 如果目标索引小于7，重置所有渲染目标
     if (param_2 < 7) {
-      *(undefined8 *)(param_1 + 0x83b8) = 0;        // 目标0
-      *(undefined8 *)(param_1 + 0x8378) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83c0) = 0;        // 目标1
-      *(undefined8 *)(param_1 + 0x8380) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83c8) = 0;        // 目标2
-      *(undefined8 *)(param_1 + 0x8388) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83d0) = 0;        // 目标3
-      *(undefined8 *)(param_1 + 0x8390) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83d8) = 0;        // 目标4
-      *(undefined8 *)(param_1 + 0x8398) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83e0) = 0;        // 目标5
-      *(undefined8 *)(param_1 + 0x83a0) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83e8) = 0;        // 目标6
-      *(undefined8 *)(param_1 + 0x83a8) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83b8) = 0;        // 目标0
+      *(uint64_t *)(param_1 + 0x8378) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83c0) = 0;        // 目标1
+      *(uint64_t *)(param_1 + 0x8380) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83c8) = 0;        // 目标2
+      *(uint64_t *)(param_1 + 0x8388) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83d0) = 0;        // 目标3
+      *(uint64_t *)(param_1 + 0x8390) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83d8) = 0;        // 目标4
+      *(uint64_t *)(param_1 + 0x8398) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83e0) = 0;        // 目标5
+      *(uint64_t *)(param_1 + 0x83a0) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83e8) = 0;        // 目标6
+      *(uint64_t *)(param_1 + 0x83a8) = RENDER_PARAM_MAGIC_VALUE;
     }
   }
   else {
@@ -775,17 +775,17 @@ void FUN_18029d760(longlong param_1,int param_2,char param_3,longlong param_4,in
 // param_2: 纹理索引
 // param_3: 纹理类型标志
 // param_4: 纹理数据指针
-void FUN_18029d930(longlong param_1,undefined8 param_2,char param_3,longlong param_4)
+void FUN_18029d930(longlong param_1,uint64_t param_2,char param_3,longlong param_4)
 {
   longlong *render_core;
-  undefined8 texture_data;
-  undefined1 security_buffer[RENDER_BUFFER_SIZE_SMALL];
-  undefined8 texture_param1;
-  undefined4 param_count;
-  undefined8 *texture_array;
-  undefined8 texture_param2;
-  undefined8 texture_value;
-  undefined8 texture_handles[RENDER_PARAM_MAX_SLOTS];
+  uint64_t texture_data;
+  int8_t security_buffer[RENDER_BUFFER_SIZE_SMALL];
+  uint64_t texture_param1;
+  int32_t param_count;
+  uint64_t *texture_array;
+  uint64_t texture_param2;
+  uint64_t texture_value;
+  uint64_t texture_handles[RENDER_PARAM_MAX_SLOTS];
   ulonglong security_key;
   
   security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
@@ -793,8 +793,8 @@ void FUN_18029d930(longlong param_1,undefined8 param_2,char param_3,longlong par
   
   // 处理纹理数据
   if (param_4 != 0) {
-    texture_data = *(undefined8 *)(param_4 + 0x20);  // 获取纹理数据
-    *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);  // 设置帧计数器
+    texture_data = *(uint64_t *)(param_4 + 0x20);  // 获取纹理数据
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);  // 设置帧计数器
   }
   
   render_core = *(longlong **)(param_1 + 0x8400);
@@ -822,20 +822,20 @@ void FUN_18029d930(longlong param_1,undefined8 param_2,char param_3,longlong par
     
     // 如果纹理索引小于7，重置所有纹理句柄
     if ((int)param_2 < 7) {
-      *(undefined8 *)(param_1 + 0x83b8) = 0;        // 纹理0
-      *(undefined8 *)(param_1 + 0x8378) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83c0) = 0;        // 纹理1
-      *(undefined8 *)(param_1 + 0x8380) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83c8) = 0;        // 纹理2
-      *(undefined8 *)(param_1 + 0x8388) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83d0) = 0;        // 纹理3
-      *(undefined8 *)(param_1 + 0x8390) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83d8) = 0;        // 纹理4
-      *(undefined8 *)(param_1 + 0x8398) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83e0) = 0;        // 纹理5
-      *(undefined8 *)(param_1 + 0x83a0) = RENDER_PARAM_MAGIC_VALUE;
-      *(undefined8 *)(param_1 + 0x83e8) = 0;        // 纹理6
-      *(undefined8 *)(param_1 + 0x83a8) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83b8) = 0;        // 纹理0
+      *(uint64_t *)(param_1 + 0x8378) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83c0) = 0;        // 纹理1
+      *(uint64_t *)(param_1 + 0x8380) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83c8) = 0;        // 纹理2
+      *(uint64_t *)(param_1 + 0x8388) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83d0) = 0;        // 纹理3
+      *(uint64_t *)(param_1 + 0x8390) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83d8) = 0;        // 纹理4
+      *(uint64_t *)(param_1 + 0x8398) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83e0) = 0;        // 纹理5
+      *(uint64_t *)(param_1 + 0x83a0) = RENDER_PARAM_MAGIC_VALUE;
+      *(uint64_t *)(param_1 + 0x83e8) = 0;        // 纹理6
+      *(uint64_t *)(param_1 + 0x83a8) = RENDER_PARAM_MAGIC_VALUE;
     }
   }
   else {
@@ -862,7 +862,7 @@ void FUN_18029db70(longlong param_1,char param_2,longlong param_3)
   longlong *render_core;
   longlong viewport_top;
   longlong viewport_bottom;
-  undefined4 viewport_count;
+  int32_t viewport_count;
   longlong viewport_left;
   
   // 检查视口是否需要更新
@@ -893,7 +893,7 @@ void FUN_18029db70(longlong param_1,char param_2,longlong param_3)
       viewport_top = param_3 + 0x220;
       viewport_bottom = param_3 + 0x260;
       viewport_left = param_3 + 0x1a0;
-      viewport_count = *(undefined4 *)(param_3 + 0x18c);
+      viewport_count = *(int32_t *)(param_3 + 0x18c);
     }
     
     // 调用渲染核心设置视口
@@ -921,7 +921,7 @@ void FUN_18029dc40(longlong param_1,longlong param_2)
     // 调用渲染核心设置扩展目标
     (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x90))
               (*(longlong **)(param_1 + 0x8400), 0,
-               *(undefined4 *)(param_2 + 0x188),  // 目标计数
+               *(int32_t *)(param_2 + 0x188),  // 目标计数
                param_2 + 0x1a0,                   // 左边界
                param_2 + 0x260,                   // 底边界
                param_2 + 0x220);                  // 顶边界
@@ -953,7 +953,7 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
   if ((param_3 & 1) != 0) {
     render_core = *(longlong **)(param_1 + 0x8400);
     render_function = *(code **)(*render_core + 0x38);
-    *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     (*render_function)(render_core, param_2, 1, param_4 + 0x10);
   }
   
@@ -961,7 +961,7 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
   if ((param_3 & 4) != 0) {
     render_core = *(longlong **)(param_1 + 0x8400);
     render_function = *(code **)(*render_core + 0x1f0);
-    *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
   
@@ -969,7 +969,7 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
   if ((param_3 & 2) != 0) {
     render_core = *(longlong **)(param_1 + 0x8400);
     render_function = *(code **)(*render_core + 0x210);
-    *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
   
@@ -977,7 +977,7 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
   if ((param_3 & 0x10) != 0) {
     render_core = *(longlong **)(param_1 + 0x8400);
     render_function = *(code **)(*render_core + 0x80);
-    *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
   
@@ -985,7 +985,7 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
   if ((param_3 & 0x20) != 0) {
     render_core = *(longlong **)(param_1 + 0x8400);
     render_function = *(code **)(*render_core + 0x238);
-    *(undefined4 *)(param_4 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(param_4 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     (*render_function)(render_core, flag_value, 1, param_4 + 0x10);
   }
   return;
@@ -1001,10 +1001,10 @@ void FUN_18029dca0(longlong param_1,ulonglong param_2,uint param_3,longlong para
 // 更新渲染系统的各种插槽状态
 // param_1: 渲染系统上下文指针
 // param_2: 插槽参数
-void FUN_18029de40(longlong param_1,undefined4 param_2)
+void FUN_18029de40(longlong param_1,int32_t param_2)
 {
   longlong slot_data;
-  undefined8 depth_data;
+  uint64_t depth_data;
   bool slot0_changed;
   bool slot1_changed;
   bool slot2_changed;
@@ -1013,17 +1013,17 @@ void FUN_18029de40(longlong param_1,undefined4 param_2)
   bool slot5_changed;
   bool slot6_changed;
   bool depth_changed;
-  undefined1 security_buffer[RENDER_BUFFER_SIZE_SMALL];
-  undefined4 update_mask;
-  undefined4 update_count;
-  undefined8 slot_handle0;
-  undefined8 slot_handle1;
-  undefined8 slot_handle2;
-  undefined8 slot_handle3;
-  undefined8 slot_handle4;
-  undefined8 slot_handle5;
-  undefined8 slot_handle6;
-  undefined8 slot_handle_depth;
+  int8_t security_buffer[RENDER_BUFFER_SIZE_SMALL];
+  int32_t update_mask;
+  int32_t update_count;
+  uint64_t slot_handle0;
+  uint64_t slot_handle1;
+  uint64_t slot_handle2;
+  uint64_t slot_handle3;
+  uint64_t slot_handle4;
+  uint64_t slot_handle5;
+  uint64_t slot_handle6;
+  uint64_t slot_handle_depth;
   ulonglong security_key;
   
   security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
@@ -1034,7 +1034,7 @@ void FUN_18029de40(longlong param_1,undefined4 param_2)
   if (slot0_changed) {
     *(longlong *)(param_1 + 0x8378) = slot_data;
   }
-  slot_handle0 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  slot_handle0 = (slot_data == 0) ? 0 : *(uint64_t *)(slot_data + 8);
   
   // 检查插槽1的变化
   slot_data = *(longlong *)(param_1 + 0x83c0);
@@ -1042,7 +1042,7 @@ void FUN_18029de40(longlong param_1,undefined4 param_2)
   if (slot1_changed) {
     *(longlong *)(param_1 + 0x8380) = slot_data;
   }
-  slot_handle1 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  slot_handle1 = (slot_data == 0) ? 0 : *(uint64_t *)(slot_data + 8);
   
   // 检查插槽2的变化
   slot_data = *(longlong *)(param_1 + 0x83c8);
@@ -1050,7 +1050,7 @@ void FUN_18029de40(longlong param_1,undefined4 param_2)
   if (slot2_changed) {
     *(longlong *)(param_1 + 0x8388) = slot_data;
   }
-  slot_handle2 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  slot_handle2 = (slot_data == 0) ? 0 : *(uint64_t *)(slot_data + 8);
   
   // 检查插槽3的变化
   slot_data = *(longlong *)(param_1 + 0x83d0);
@@ -1058,7 +1058,7 @@ void FUN_18029de40(longlong param_1,undefined4 param_2)
   if (slot3_changed) {
     *(longlong *)(param_1 + 0x8390) = slot_data;
   }
-  slot_handle3 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  slot_handle3 = (slot_data == 0) ? 0 : *(uint64_t *)(slot_data + 8);
   
   // 检查插槽4的变化
   slot_data = *(longlong *)(param_1 + 0x83d8);
@@ -1066,7 +1066,7 @@ void FUN_18029de40(longlong param_1,undefined4 param_2)
   if (slot4_changed) {
     *(longlong *)(param_1 + 0x8398) = slot_data;
   }
-  slot_handle4 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  slot_handle4 = (slot_data == 0) ? 0 : *(uint64_t *)(slot_data + 8);
   
   // 检查插槽5的变化
   slot_data = *(longlong *)(param_1 + 0x83e0);
@@ -1074,7 +1074,7 @@ void FUN_18029de40(longlong param_1,undefined4 param_2)
   if (slot5_changed) {
     *(longlong *)(param_1 + 0x83a0) = slot_data;
   }
-  slot_handle5 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  slot_handle5 = (slot_data == 0) ? 0 : *(uint64_t *)(slot_data + 8);
   
   // 检查插槽6的变化
   slot_data = *(longlong *)(param_1 + 0x83e8);
@@ -1082,7 +1082,7 @@ void FUN_18029de40(longlong param_1,undefined4 param_2)
   if (slot6_changed) {
     *(longlong *)(param_1 + 0x83a8) = slot_data;
   }
-  slot_handle6 = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  slot_handle6 = (slot_data == 0) ? 0 : *(uint64_t *)(slot_data + 8);
   
   // 检查深度缓冲区的变化
   slot_data = *(longlong *)(param_1 + 0x83f0);
@@ -1090,7 +1090,7 @@ void FUN_18029de40(longlong param_1,undefined4 param_2)
   if (depth_changed) {
     *(longlong *)(param_1 + 0x83b0) = slot_data;
   }
-  depth_data = (slot_data == 0) ? 0 : *(undefined8 *)(slot_data + 8);
+  depth_data = (slot_data == 0) ? 0 : *(uint64_t *)(slot_data + 8);
   
   // 如果有任何插槽发生变化，则更新渲染系统
   if ((slot6_changed || (slot5_changed || (slot4_changed || (slot3_changed || 
@@ -1137,7 +1137,7 @@ void FUN_18029e060(longlong param_1)
 // param_2: 参数类型
 // param_3: 参数索引
 // param_4: 参数值
-void FUN_18029e090(longlong param_1,undefined4 param_2,int param_3,undefined4 param_4)
+void FUN_18029e090(longlong param_1,int32_t param_2,int param_3,int32_t param_4)
 {
   // 检查渲染系统是否就绪
   if (DAT_180c82846 == '\0') {
@@ -1178,7 +1178,7 @@ void FUN_18029e110(longlong param_1)
       // 调用渲染核心更新上下文
       (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x90))
                 (*(longlong **)(param_1 + 0x8400), 0,
-                 *(undefined4 *)(context_data + 0x188),  // 上下文计数
+                 *(int32_t *)(context_data + 0x188),  // 上下文计数
                  context_data + 0x1a0,                  // 左边界
                  context_data + 0x260,                  // 底边界
                  context_data + 0x220);                 // 顶边界
@@ -1210,7 +1210,7 @@ bool FUN_18029e1a0(longlong param_1,longlong param_2,int param_3,int param_4,uin
   longlong render_data;
   uint data_size;
   uint adjusted_size;
-  undefined8 validate_output;
+  uint64_t validate_output;
   uint validate_flags;
   
   // 获取渲染数据
@@ -1247,7 +1247,7 @@ bool FUN_18029e1a0(longlong param_1,longlong param_2,int param_3,int param_4,uin
   // 调用渲染核心验证数据
   validate_result = (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x70))
                     (*(longlong **)(param_1 + 0x8400),
-                     *(undefined8 *)(render_data + 8),  // 数据句柄
+                     *(uint64_t *)(render_data + 8),  // 数据句柄
                      param_3,                          // 数据偏移量
                      validate_flags,                  // 验证标志
                      0,                               // 保留参数
@@ -1259,7 +1259,7 @@ bool FUN_18029e1a0(longlong param_1,longlong param_2,int param_3,int param_4,uin
   }
   
   // 输出验证结果
-  *(undefined8 *)(param_6 + 2) = validate_output;
+  *(uint64_t *)(param_6 + 2) = validate_output;
   *(ulonglong *)(param_6 + 4) = (ulonglong)validate_flags;
   *param_6 = param_3;
   
@@ -1275,9 +1275,9 @@ bool FUN_18029e1a0(longlong param_1,longlong param_2,int param_3,int param_4,uin
 // param_1: 渲染系统上下文指针
 // param_2: 设置数据指针
 // param_3: 设置参数数组指针
-void FUN_18029e2a0(longlong param_1,undefined8 param_2,undefined4 *param_3)
+void FUN_18029e2a0(longlong param_1,uint64_t param_2,int32_t *param_3)
 {
-  undefined4 setting_value;
+  int32_t setting_value;
   longlong *render_core;
   code *apply_function;
   longlong setting_data;
@@ -1293,7 +1293,7 @@ void FUN_18029e2a0(longlong param_1,undefined8 param_2,undefined4 *param_3)
   
   // 调用渲染核心应用设置（警告：无法恢复的跳转表）
   (*apply_function)(render_core,
-                   *(undefined8 *)(setting_data + 8),  // 设置数据句柄
+                   *(uint64_t *)(setting_data + 8),  // 设置数据句柄
                    setting_value);                    // 设置值
   return;
 }
@@ -1314,10 +1314,10 @@ bool FUN_18029e2f0(longlong param_1,longlong param_2,uint param_3,longlong param
   uint capability_flags;
   int check_result;
   uint check_params;
-  undefined8 check_output[2];
+  uint64_t check_output[2];
   
   // 设置帧计数器
-  *(undefined4 *)(param_2 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+  *(int32_t *)(param_2 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
   
   // 根据能力类型设置检查参数
   if (param_3 == 0) {
@@ -1341,7 +1341,7 @@ bool FUN_18029e2f0(longlong param_1,longlong param_2,uint param_3,longlong param
   // 调用渲染核心检查能力
   check_result = (**(code **)(**(longlong **)(param_1 + 0x8400) + 0x70))
                     (*(longlong **)(param_1 + 0x8400),
-                     *(undefined8 *)(param_2 + 0x10),  // 能力数据句柄
+                     *(uint64_t *)(param_2 + 0x10),  // 能力数据句柄
                      0,                               // 偏移量
                      check_params,                    // 检查参数
                      0,                               // 保留参数
@@ -1353,7 +1353,7 @@ bool FUN_18029e2f0(longlong param_1,longlong param_2,uint param_3,longlong param
   }
   
   // 输出检查结果
-  *(undefined8 *)(param_4 + 8) = check_output[0];
+  *(uint64_t *)(param_4 + 8) = check_output[0];
   
   return -1 < check_result;  // 返回能力是否可用
 }

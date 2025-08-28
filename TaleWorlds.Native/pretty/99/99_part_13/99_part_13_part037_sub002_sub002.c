@@ -173,9 +173,9 @@ typedef struct {
  * 
  * @see SystemDataInitializer
  */
-void SystemDataInitializer(longlong param_1, undefined8 param_2)
+void SystemDataInitializer(longlong param_1, uint64_t param_2)
 {
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 初始化数据缓冲区 */
     auStackX_8[0] = 0;
@@ -194,7 +194,7 @@ void SystemDataInitializer(longlong param_1, undefined8 param_2)
  * 
  * @param param_1 数据参数指针
  * @param param_2 处理参数
- * @return undefined8 处理结果状态码
+ * @return uint64_t 处理结果状态码
  * 
  * @retval ERROR_SUCCESS 处理成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -203,11 +203,11 @@ void SystemDataInitializer(longlong param_1, undefined8 param_2)
  * 
  * @see AdvancedDataProcessor
  */
-undefined8 AdvancedDataProcessor(longlong param_1, longlong param_2)
+uint64_t AdvancedDataProcessor(longlong param_1, longlong param_2)
 {
     longlong *plVar1;
     longlong *plVar2;
-    undefined8 uVar3;
+    uint64_t uVar3;
     longlong *plVar4;
     uint uVar5;
     longlong *plVar6;
@@ -313,7 +313,7 @@ LAB_1808be216:
  * 
  * @param param_1 系统参数指针
  * @param param_2 验证参数指针
- * @return undefined4 验证结果状态码
+ * @return int32_t 验证结果状态码
  * 
  * @retval ERROR_SUCCESS 验证成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -321,11 +321,11 @@ LAB_1808be216:
  * 
  * @see SystemStateValidator
  */
-undefined4 SystemStateValidator(longlong *param_1, longlong *param_2)
+int32_t SystemStateValidator(longlong *param_1, longlong *param_2)
 {
-    undefined4 uVar1;
-    undefined4 uVar2;
-    undefined4 uVar3;
+    int32_t uVar1;
+    int32_t uVar2;
+    int32_t uVar3;
     longlong lVar1;
     longlong lVar2;
     longlong lVar3;
@@ -336,8 +336,8 @@ undefined4 SystemStateValidator(longlong *param_1, longlong *param_2)
     }
     
     /* 检查系统状态 */
-    uVar1 = *(undefined4 *)*param_1;
-    uVar2 = *(undefined4 *)*param_2;
+    uVar1 = *(int32_t *)*param_1;
+    uVar2 = *(int32_t *)*param_2;
     
     if ((uVar1 & 0xffff) != (uVar2 & 0xffff)) {
         return 0x1f;
@@ -377,7 +377,7 @@ undefined4 SystemStateValidator(longlong *param_1, longlong *param_2)
  * 
  * @param param_1 资源参数指针
  * @param param_2 分配参数指针
- * @return undefined8 分配结果状态码
+ * @return uint64_t 分配结果状态码
  * 
  * @retval ERROR_SUCCESS 分配成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -385,13 +385,13 @@ undefined4 SystemStateValidator(longlong *param_1, longlong *param_2)
  * 
  * @see ResourceAllocator
  */
-undefined8 ResourceAllocator(longlong param_1, longlong param_2)
+uint64_t ResourceAllocator(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
-    undefined8 uVar2;
+    uint64_t uVar1;
+    uint64_t uVar2;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -430,7 +430,7 @@ undefined8 ResourceAllocator(longlong param_1, longlong param_2)
     /* 配置资源参数 */
     lVar2 = *(longlong *)(lVar1 + 8);
     if (lVar2 != 0) {
-        uVar2 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar2 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar2 != 0) {
             return uVar2;
         }
@@ -453,7 +453,7 @@ undefined8 ResourceAllocator(longlong param_1, longlong param_2)
  * 
  * @param param_1 数据参数指针
  * @param param_2 转换参数指针
- * @return undefined8 转换结果状态码
+ * @return uint64_t 转换结果状态码
  * 
  * @retval ERROR_SUCCESS 转换成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -461,12 +461,12 @@ undefined8 ResourceAllocator(longlong param_1, longlong param_2)
  * 
  * @see DataConverter
  */
-undefined8 DataConverter(longlong param_1, longlong param_2)
+uint64_t DataConverter(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -499,7 +499,7 @@ undefined8 DataConverter(longlong param_1, longlong param_2)
     /* 执行数据转换操作 */
     lVar2 = *(longlong *)(lVar1 + 0x10);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -522,7 +522,7 @@ undefined8 DataConverter(longlong param_1, longlong param_2)
  * 
  * @param param_1 配置参数指针
  * @param param_2 设置参数指针
- * @return undefined8 配置结果状态码
+ * @return uint64_t 配置结果状态码
  * 
  * @retval ERROR_SUCCESS 配置成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -530,12 +530,12 @@ undefined8 DataConverter(longlong param_1, longlong param_2)
  * 
  * @see SystemConfigurator
  */
-undefined8 SystemConfigurator(longlong param_1, longlong param_2)
+uint64_t SystemConfigurator(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -568,7 +568,7 @@ undefined8 SystemConfigurator(longlong param_1, longlong param_2)
     /* 执行配置操作 */
     lVar2 = *(longlong *)(lVar1 + 8);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -591,7 +591,7 @@ undefined8 SystemConfigurator(longlong param_1, longlong param_2)
  * 
  * @param param_1 内存参数指针
  * @param param_2 管理参数指针
- * @return undefined8 管理结果状态码
+ * @return uint64_t 管理结果状态码
  * 
  * @retval ERROR_SUCCESS 管理成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -599,12 +599,12 @@ undefined8 SystemConfigurator(longlong param_1, longlong param_2)
  * 
  * @see MemoryManager
  */
-undefined8 MemoryManager(longlong param_1, longlong param_2)
+uint64_t MemoryManager(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -637,7 +637,7 @@ undefined8 MemoryManager(longlong param_1, longlong param_2)
     /* 执行内存管理操作 */
     lVar2 = *(longlong *)(lVar1 + 0x10);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -660,7 +660,7 @@ undefined8 MemoryManager(longlong param_1, longlong param_2)
  * 
  * @param param_1 状态参数指针
  * @param param_2 同步参数指针
- * @return undefined8 同步结果状态码
+ * @return uint64_t 同步结果状态码
  * 
  * @retval ERROR_SUCCESS 同步成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -668,12 +668,12 @@ undefined8 MemoryManager(longlong param_1, longlong param_2)
  * 
  * @see StateSynchronizer
  */
-undefined8 StateSynchronizer(longlong param_1, longlong param_2)
+uint64_t StateSynchronizer(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -706,7 +706,7 @@ undefined8 StateSynchronizer(longlong param_1, longlong param_2)
     /* 执行状态同步操作 */
     lVar2 = *(longlong *)(lVar1 + 8);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -729,7 +729,7 @@ undefined8 StateSynchronizer(longlong param_1, longlong param_2)
  * 
  * @param param_1 异常参数指针
  * @param param_2 处理参数指针
- * @return undefined8 处理结果状态码
+ * @return uint64_t 处理结果状态码
  * 
  * @retval ERROR_SUCCESS 处理成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -737,12 +737,12 @@ undefined8 StateSynchronizer(longlong param_1, longlong param_2)
  * 
  * @see ExceptionHandler
  */
-undefined8 ExceptionHandler(longlong param_1, longlong param_2)
+uint64_t ExceptionHandler(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -775,7 +775,7 @@ undefined8 ExceptionHandler(longlong param_1, longlong param_2)
     /* 执行异常处理操作 */
     lVar2 = *(longlong *)(lVar1 + 0x10);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -798,7 +798,7 @@ undefined8 ExceptionHandler(longlong param_1, longlong param_2)
  * 
  * @param param_1 资源参数指针
  * @param param_2 清理参数指针
- * @return undefined8 清理结果状态码
+ * @return uint64_t 清理结果状态码
  * 
  * @retval ERROR_SUCCESS 清理成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -806,12 +806,12 @@ undefined8 ExceptionHandler(longlong param_1, longlong param_2)
  * 
  * @see ResourceCleaner
  */
-undefined8 ResourceCleaner(longlong param_1, longlong param_2)
+uint64_t ResourceCleaner(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -844,7 +844,7 @@ undefined8 ResourceCleaner(longlong param_1, longlong param_2)
     /* 执行资源清理操作 */
     lVar2 = *(longlong *)(lVar1 + 8);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -867,7 +867,7 @@ undefined8 ResourceCleaner(longlong param_1, longlong param_2)
  * 
  * @param param_1 数据参数指针
  * @param param_2 验证参数指针
- * @return undefined8 验证结果状态码
+ * @return uint64_t 验证结果状态码
  * 
  * @retval ERROR_SUCCESS 验证成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -875,12 +875,12 @@ undefined8 ResourceCleaner(longlong param_1, longlong param_2)
  * 
  * @see DataValidator
  */
-undefined8 DataValidator(longlong param_1, longlong param_2)
+uint64_t DataValidator(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -913,7 +913,7 @@ undefined8 DataValidator(longlong param_1, longlong param_2)
     /* 执行数据验证操作 */
     lVar2 = *(longlong *)(lVar1 + 0x10);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -936,7 +936,7 @@ undefined8 DataValidator(longlong param_1, longlong param_2)
  * 
  * @param param_1 初始化参数指针
  * @param param_2 配置参数指针
- * @return undefined8 初始化结果状态码
+ * @return uint64_t 初始化结果状态码
  * 
  * @retval ERROR_SUCCESS 初始化成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -944,12 +944,12 @@ undefined8 DataValidator(longlong param_1, longlong param_2)
  * 
  * @see SystemInitializer
  */
-undefined8 SystemInitializer(longlong param_1, longlong param_2)
+uint64_t SystemInitializer(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -982,7 +982,7 @@ undefined8 SystemInitializer(longlong param_1, longlong param_2)
     /* 执行系统初始化操作 */
     lVar2 = *(longlong *)(lVar1 + 8);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -1005,7 +1005,7 @@ undefined8 SystemInitializer(longlong param_1, longlong param_2)
  * 
  * @param param_1 终止参数指针
  * @param param_2 清理参数指针
- * @return undefined8 终止结果状态码
+ * @return uint64_t 终止结果状态码
  * 
  * @retval ERROR_SUCCESS 终止成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -1013,12 +1013,12 @@ undefined8 SystemInitializer(longlong param_1, longlong param_2)
  * 
  * @see SystemTerminator
  */
-undefined8 SystemTerminator(longlong param_1, longlong param_2)
+uint64_t SystemTerminator(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -1051,7 +1051,7 @@ undefined8 SystemTerminator(longlong param_1, longlong param_2)
     /* 执行系统终止操作 */
     lVar2 = *(longlong *)(lVar1 + 0x10);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -1074,7 +1074,7 @@ undefined8 SystemTerminator(longlong param_1, longlong param_2)
  * 
  * @param param_1 优化参数指针
  * @param param_2 配置参数指针
- * @return undefined8 优化结果状态码
+ * @return uint64_t 优化结果状态码
  * 
  * @retval ERROR_SUCCESS 优化成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -1082,12 +1082,12 @@ undefined8 SystemTerminator(longlong param_1, longlong param_2)
  * 
  * @see DataOptimizer
  */
-undefined8 DataOptimizer(longlong param_1, longlong param_2)
+uint64_t DataOptimizer(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -1120,7 +1120,7 @@ undefined8 DataOptimizer(longlong param_1, longlong param_2)
     /* 执行数据优化操作 */
     lVar2 = *(longlong *)(lVar1 + 8);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -1143,7 +1143,7 @@ undefined8 DataOptimizer(longlong param_1, longlong param_2)
  * 
  * @param param_1 监控参数指针
  * @param param_2 配置参数指针
- * @return undefined8 监控结果状态码
+ * @return uint64_t 监控结果状态码
  * 
  * @retval ERROR_SUCCESS 监控成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -1151,12 +1151,12 @@ undefined8 DataOptimizer(longlong param_1, longlong param_2)
  * 
  * @see SystemMonitor
  */
-undefined8 SystemMonitor(longlong param_1, longlong param_2)
+uint64_t SystemMonitor(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -1189,7 +1189,7 @@ undefined8 SystemMonitor(longlong param_1, longlong param_2)
     /* 执行系统监控操作 */
     lVar2 = *(longlong *)(lVar1 + 8);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -1212,7 +1212,7 @@ undefined8 SystemMonitor(longlong param_1, longlong param_2)
  * 
  * @param param_1 缓存参数指针
  * @param param_2 管理参数指针
- * @return undefined8 管理结果状态码
+ * @return uint64_t 管理结果状态码
  * 
  * @retval ERROR_SUCCESS 管理成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -1220,12 +1220,12 @@ undefined8 SystemMonitor(longlong param_1, longlong param_2)
  * 
  * @see CacheManager
  */
-undefined8 CacheManager(longlong param_1, longlong param_2)
+uint64_t CacheManager(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -1258,7 +1258,7 @@ undefined8 CacheManager(longlong param_1, longlong param_2)
     /* 执行缓存管理操作 */
     lVar2 = *(longlong *)(lVar1 + 0x10);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -1281,7 +1281,7 @@ undefined8 CacheManager(longlong param_1, longlong param_2)
  * 
  * @param param_1 同步参数指针
  * @param param_2 配置参数指针
- * @return undefined8 同步结果状态码
+ * @return uint64_t 同步结果状态码
  * 
  * @retval ERROR_SUCCESS 同步成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -1289,12 +1289,12 @@ undefined8 CacheManager(longlong param_1, longlong param_2)
  * 
  * @see ThreadSynchronizer
  */
-undefined8 ThreadSynchronizer(longlong param_1, longlong param_2)
+uint64_t ThreadSynchronizer(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -1327,7 +1327,7 @@ undefined8 ThreadSynchronizer(longlong param_1, longlong param_2)
     /* 执行线程同步操作 */
     lVar2 = *(longlong *)(lVar1 + 8);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }
@@ -1350,7 +1350,7 @@ undefined8 ThreadSynchronizer(longlong param_1, longlong param_2)
  * 
  * @param param_1 参数指针
  * @param param_2 处理配置指针
- * @return undefined8 处理结果状态码
+ * @return uint64_t 处理结果状态码
  * 
  * @retval ERROR_SUCCESS 处理成功
  * @retval ERROR_INVALID_PARAM 无效参数
@@ -1358,12 +1358,12 @@ undefined8 ThreadSynchronizer(longlong param_1, longlong param_2)
  * 
  * @see ParameterProcessor
  */
-undefined8 ParameterProcessor(longlong param_1, longlong param_2)
+uint64_t ParameterProcessor(longlong param_1, longlong param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar1;
     longlong lVar2;
-    undefined8 auStackX_8 [4];
+    uint64_t auStackX_8 [4];
     
     /* 验证参数有效性 */
     if ((param_1 == 0) || (param_2 == 0)) {
@@ -1396,7 +1396,7 @@ undefined8 ParameterProcessor(longlong param_1, longlong param_2)
     /* 执行参数处理操作 */
     lVar2 = *(longlong *)(lVar1 + 0x10);
     if (lVar2 != 0) {
-        uVar1 = FUN_1808d73b0(lVar2, *(undefined4 *)(param_1 + 4), 0);
+        uVar1 = FUN_1808d73b0(lVar2, *(int32_t *)(param_1 + 4), 0);
         if ((int)uVar1 != 0) {
             return uVar1;
         }

@@ -78,14 +78,14 @@
  */
 void advanced_data_structure_search_and_comparator(longlong *data_structure_ptr, int start_index, int end_index)
 {
-    undefined8 *comparison_node_1;
+    uint64_t *comparison_node_1;
     ulonglong comparison_value_1;
     bool comparison_result;
-    undefined8 *comparison_node_2;
-    undefined8 *comparison_node_3;
+    uint64_t *comparison_node_2;
+    uint64_t *comparison_node_3;
     longlong data_offset;
-    undefined8 *search_root;
-    undefined8 *current_node;
+    uint64_t *search_root;
+    uint64_t *current_node;
     longlong *data_array;
     int iteration_count;
     int inner_loop_count;
@@ -107,13 +107,13 @@ void advanced_data_structure_search_and_comparator(longlong *data_structure_ptr,
                 loop_index = 0;
                 do {
                     array_size = *(ulonglong *)(temp_offset + loop_index);
-                    comparison_node_1 = (undefined8 *)data_structure_ptr[4];
+                    comparison_node_1 = (uint64_t *)data_structure_ptr[4];
                     comparison_value_2 = *(uint *)(*(longlong *)data_structure_ptr[1] + data_offset);
                     inner_loop_count = (int)(data_array[1] - temp_offset >> 3) * (int)search_key + iteration_count;
                     search_key = *(ulonglong *)data_structure_ptr[5];
-                    current_node = (undefined8 *)comparison_node_1[2];
+                    current_node = (uint64_t *)comparison_node_1[2];
                     comparison_node_2 = comparison_node_1;
-                    if (current_node == (undefined8 *)0x0) {
+                    if (current_node == (uint64_t *)0x0) {
                         comparison_node_3 = comparison_node_1;
                     }
                     else {
@@ -126,11 +126,11 @@ void advanced_data_structure_search_and_comparator(longlong *data_structure_ptr,
                                     ((*(uint *)(current_node + 6) <= comparison_value_2 &&
                                      (*(ushort *)((longlong)current_node + 0x34) < (ushort)*(byte *)data_structure_ptr[2]))))))))))))
                             ) {
-                                comparison_node_3 = (undefined8 *)*current_node;
+                                comparison_node_3 = (uint64_t *)*current_node;
                                 comparison_result = true;
                             }
                             else {
-                                comparison_node_3 = (undefined8 *)current_node[1];
+                                comparison_node_3 = (uint64_t *)current_node[1];
                                 comparison_result = false;
                             }
                             comparison_node_2 = comparison_node_3;
@@ -139,7 +139,7 @@ void advanced_data_structure_search_and_comparator(longlong *data_structure_ptr,
                             }
                             comparison_node_1 = comparison_node_2;
                             current_node = comparison_node_3;
-                        } while (comparison_node_3 != (undefined8 *)0x0);
+                        } while (comparison_node_3 != (uint64_t *)0x0);
                         if (((comparison_node_2 == comparison_node_1) || (search_key < (ulonglong)comparison_node_2[4])) ||
                             ((search_key <= (ulonglong)comparison_node_2[4] &&
                              ((array_size < (ulonglong)comparison_node_2[5] ||
@@ -180,43 +180,43 @@ void advanced_data_structure_search_and_comparator(longlong *data_structure_ptr,
  * 
  * @note 本函数使用了高级的数据处理算法
  */
-void advanced_data_structure_processor(undefined8 param_1, undefined8 param_2, int param_3)
+void advanced_data_structure_processor(uint64_t param_1, uint64_t param_2, int param_3)
 {
-    undefined8 *node_ptr_1;
+    uint64_t *node_ptr_1;
     ulonglong node_value_1;
     bool processing_result;
     longlong register_rax;
-    undefined8 *node_ptr_2;
-    undefined8 *node_ptr_3;
+    uint64_t *node_ptr_2;
+    uint64_t *node_ptr_3;
     longlong temp_offset;
-    undefined8 *node_ptr_4;
-    undefined8 *node_ptr_5;
-    undefined8 register_rbx;
+    uint64_t *node_ptr_4;
+    uint64_t *node_ptr_5;
+    uint64_t register_rbx;
     int loop_counter_1;
-    undefined8 register_rbp;
+    uint64_t register_rbp;
     int loop_counter_2;
-    undefined8 register_rsi;
-    undefined8 register_rdi;
+    uint64_t register_rsi;
+    uint64_t register_rdi;
     ulonglong array_size;
     longlong *register_r10;
     uint comparison_value;
     ulonglong register_r12;
-    undefined8 register_r13;
+    uint64_t register_r13;
     longlong calculated_offset;
-    undefined8 *register_r14;
-    undefined8 register_r15;
+    uint64_t *register_r14;
+    uint64_t register_r15;
     longlong data_offset;
     int stack_param;
     
-    *(undefined8 *)(register_rax + 8) = register_rbx;
-    *(undefined8 *)(register_rax + 0x10) = register_rbp;
-    *(undefined8 *)(register_rax + 0x20) = register_rsi;
+    *(uint64_t *)(register_rax + 8) = register_rbx;
+    *(uint64_t *)(register_rax + 0x10) = register_rbp;
+    *(uint64_t *)(register_rax + 0x20) = register_rsi;
     temp_offset = register_r10[1];
     data_offset = *register_r10;
-    *(undefined8 *)(register_rax + -0x18) = register_rdi;
-    *(undefined8 *)(register_rax + -0x20) = register_r13;
+    *(uint64_t *)(register_rax + -0x18) = register_rdi;
+    *(uint64_t *)(register_rax + -0x20) = register_r13;
     calculated_offset = register_r12 * 4;
-    *(undefined8 *)(register_rax + -0x28) = register_r15;
+    *(uint64_t *)(register_rax + -0x28) = register_r15;
     array_size = temp_offset - data_offset >> 3;
     do {
         loop_counter_1 = 0;
@@ -225,13 +225,13 @@ void advanced_data_structure_processor(undefined8 param_1, undefined8 param_2, i
             data_offset = 0;
             do {
                 array_size = *(ulonglong *)(temp_offset + data_offset);
-                node_ptr_1 = (undefined8 *)register_r14[4];
+                node_ptr_1 = (uint64_t *)register_r14[4];
                 comparison_value = *(uint *)(*(longlong *)register_r14[1] + calculated_offset);
                 loop_counter_2 = (int)(register_r10[1] - temp_offset >> 3) * (int)register_r12 + loop_counter_1;
                 node_value_1 = *(ulonglong *)register_r14[5];
-                node_ptr_4 = (undefined8 *)node_ptr_1[2];
+                node_ptr_4 = (uint64_t *)node_ptr_1[2];
                 node_ptr_2 = node_ptr_1;
-                if (node_ptr_4 == (undefined8 *)0x0) {
+                if (node_ptr_4 == (uint64_t *)0x0) {
                     node_ptr_3 = node_ptr_1;
                 }
                 else {
@@ -244,11 +244,11 @@ void advanced_data_structure_processor(undefined8 param_1, undefined8 param_2, i
                                 ((*(uint *)(node_ptr_4 + 6) <= comparison_value &&
                                  (*(ushort *)((longlong)node_ptr_4 + 0x34) < (ushort)*(byte *)register_r14[2])))))))))))
                         ) {
-                            node_ptr_5 = (undefined8 *)*node_ptr_4;
+                            node_ptr_5 = (uint64_t *)*node_ptr_4;
                             processing_result = true;
                         }
                         else {
-                            node_ptr_5 = (undefined8 *)node_ptr_4[1];
+                            node_ptr_5 = (uint64_t *)node_ptr_4[1];
                             processing_result = false;
                         }
                         node_ptr_3 = node_ptr_4;
@@ -257,7 +257,7 @@ void advanced_data_structure_processor(undefined8 param_1, undefined8 param_2, i
                         }
                         node_ptr_2 = node_ptr_3;
                         node_ptr_4 = node_ptr_5;
-                    } while (node_ptr_5 != (undefined8 *)0x0);
+                    } while (node_ptr_5 != (uint64_t *)0x0);
                     if (((node_ptr_3 == node_ptr_1) || (node_value_1 < (ulonglong)node_ptr_3[4])) ||
                         ((node_value_1 <= (ulonglong)node_ptr_3[4] &&
                          ((array_size < (ulonglong)node_ptr_3[5] ||
@@ -315,7 +315,7 @@ void system_null_operation_processor(void)
  * 
  * @note 本函数使用了高级的资源管理算法
  */
-void advanced_system_resource_manager(undefined8 system_handle, undefined8 *resource_manager_ptr, undefined8 resource_data, undefined8 resource_flags)
+void advanced_system_resource_manager(uint64_t system_handle, uint64_t *resource_manager_ptr, uint64_t resource_data, uint64_t resource_flags)
 {
     byte status_flag;
     longlong temp_offset;
@@ -324,34 +324,34 @@ void advanced_system_resource_manager(undefined8 system_handle, undefined8 *reso
     byte *string_ptr;
     int string_length;
     longlong *resource_array;
-    undefined *data_ptr;
-    undefined8 *node_ptr_1;
-    undefined8 *node_ptr_2;
-    undefined8 *node_ptr_3;
-    undefined8 *node_ptr_4;
-    undefined8 *node_ptr_5;
+    void *data_ptr;
+    uint64_t *node_ptr_1;
+    uint64_t *node_ptr_2;
+    uint64_t *node_ptr_3;
+    uint64_t *node_ptr_4;
+    uint64_t *node_ptr_5;
     longlong data_offset;
     ulonglong allocation_size;
     uint resource_id;
     ulonglong temp_size;
     int stack_index_18;
-    undefined *stack_ptr_d0;
+    void *stack_ptr_d0;
     byte *stack_ptr_c8;
     int stack_value_c0;
     ulonglong stack_value_b8;
     longlong *stack_ptr_b0;
-    undefined *stack_ptr_a8;
+    void *stack_ptr_a8;
     longlong stack_value_a0;
-    undefined4 stack_value_90;
-    undefined2 stack_value_88;
+    int32_t stack_value_90;
+    int16_t stack_value_88;
     longlong *stack_ptr_80;
     longlong stack_value_78;
-    undefined8 stack_value_70;
-    undefined4 stack_value_68;
-    undefined8 stack_value_60;
-    undefined **stack_ptr_58;
+    uint64_t stack_value_70;
+    int32_t stack_value_68;
+    uint64_t stack_value_60;
+    void **stack_ptr_58;
     longlong *stack_ptr_50;
-    undefined1 stack_buffer_48 [16];
+    int8_t stack_buffer_48 [16];
     
     stack_value_60 = 0xfffffffffffffffe;
     stack_ptr_80 = (longlong *)0x0;
@@ -377,27 +377,27 @@ void advanced_system_resource_manager(undefined8 system_handle, undefined8 *reso
                         stack_value_b8 = 0;
                         stack_ptr_c8 = (byte *)0x0;
                         stack_value_c0 = 0;
-                        FUN_1806277c0(&stack_ptr_d0, *(undefined4 *)(data_offset + 0x20));
+                        FUN_1806277c0(&stack_ptr_d0, *(int32_t *)(data_offset + 0x20));
                         if (0 < *(int *)(data_offset + 0x20)) {
                             data_ptr = &DAT_18098bc73;
-                            if (*(undefined **)(data_offset + 0x18) != (undefined *)0x0) {
-                                data_ptr = *(undefined **)(data_offset + 0x18);
+                            if (*(void **)(data_offset + 0x18) != (void *)0x0) {
+                                data_ptr = *(void **)(data_offset + 0x18);
                             }
                             memcpy(stack_ptr_c8, data_ptr, (longlong)(*(int *)(data_offset + 0x20) + 1));
                         }
                         if ((*(longlong *)(data_offset + 0x18) != 0) && (stack_value_c0 = 0, stack_ptr_c8 != (byte *)0x0)) {
                             *stack_ptr_c8 = 0;
                         }
-                        node_ptr_1 = (undefined8 *)resource_manager_ptr[2];
+                        node_ptr_1 = (uint64_t *)resource_manager_ptr[2];
                         node_ptr_3 = resource_manager_ptr;
-                        if (node_ptr_1 == (undefined8 *)0x0) {
+                        if (node_ptr_1 == (uint64_t *)0x0) {
                             node_ptr_2 = resource_manager_ptr;
                         }
                         else {
                             do {
                                 if (stack_value_c0 == 0) {
                                     comparison_result = false;
-                                    node_ptr_5 = (undefined8 *)node_ptr_1[1];
+                                    node_ptr_5 = (uint64_t *)node_ptr_1[1];
                                 }
                                 else {
                                     if (*(int *)(node_ptr_1 + 6) == 0) {
@@ -413,11 +413,11 @@ void advanced_system_resource_manager(undefined8 system_handle, undefined8 *reso
                                         } while (resource_id != 0);
                                         comparison_result = 0 < string_length;
                                         if (string_length < 1) {
-                                            node_ptr_5 = (undefined8 *)node_ptr_1[1];
+                                            node_ptr_5 = (uint64_t *)node_ptr_1[1];
                                         }
                                     }
                                     if (string_length < 1) {
-                                        node_ptr_5 = (undefined8 *)*node_ptr_1;
+                                        node_ptr_5 = (uint64_t *)*node_ptr_1;
                                     }
                                 }
                                 node_ptr_2 = node_ptr_1;
@@ -426,7 +426,7 @@ void advanced_system_resource_manager(undefined8 system_handle, undefined8 *reso
                                 }
                                 node_ptr_3 = node_ptr_2;
                                 node_ptr_1 = node_ptr_5;
-                            } while (node_ptr_5 != (undefined8 *)0x0);
+                            } while (node_ptr_5 != (uint64_t *)0x0);
                             if (node_ptr_2 == resource_manager_ptr) {
                                 node_ptr_2 = resource_manager_ptr;
                             }
@@ -458,16 +458,16 @@ void advanced_system_resource_manager(undefined8 system_handle, undefined8 *reso
                             stack_value_a0 = 0;
                             stack_value_90 = 0;
                             stack_ptr_a8 = &UNK_18098bcb0;
-                            node_ptr_1 = (undefined8 *)resource_manager_ptr[2];
+                            node_ptr_1 = (uint64_t *)resource_manager_ptr[2];
                             node_ptr_3 = resource_manager_ptr;
-                            if (node_ptr_1 == (undefined8 *)0x0) {
+                            if (node_ptr_1 == (uint64_t *)0x0) {
                                 node_ptr_2 = resource_manager_ptr;
                             }
                             else {
                                 do {
                                     if (stack_value_c0 == 0) {
                                         comparison_result = false;
-                                        node_ptr_5 = (undefined8 *)node_ptr_1[1];
+                                        node_ptr_5 = (uint64_t *)node_ptr_1[1];
                                     }
                                     else {
                                         if (*(int *)(node_ptr_1 + 6) == 0) {
@@ -483,11 +483,11 @@ void advanced_system_resource_manager(undefined8 system_handle, undefined8 *reso
                                             } while (resource_id != 0);
                                             comparison_result = 0 < string_length;
                                             if (string_length < 1) {
-                                                node_ptr_5 = (undefined8 *)node_ptr_1[1];
+                                                node_ptr_5 = (uint64_t *)node_ptr_1[1];
                                             }
                                         }
                                         if (string_length < 1) {
-                                            node_ptr_5 = (undefined8 *)*node_ptr_1;
+                                            node_ptr_5 = (uint64_t *)*node_ptr_1;
                                         }
                                     }
                                     node_ptr_2 = node_ptr_1;
@@ -496,7 +496,7 @@ void advanced_system_resource_manager(undefined8 system_handle, undefined8 *reso
                                     }
                                     node_ptr_3 = node_ptr_2;
                                     node_ptr_1 = node_ptr_5;
-                                } while (node_ptr_5 != (undefined8 *)0x0);
+                                } while (node_ptr_5 != (uint64_t *)0x0);
                                 if (node_ptr_2 == resource_manager_ptr) {
                                     node_ptr_2 = resource_manager_ptr;
                                 }
@@ -519,12 +519,12 @@ void advanced_system_resource_manager(undefined8 system_handle, undefined8 *reso
                             resource_array = *(longlong **)(*(longlong *)(temp_offset + 0x3c8) + 0x20);
                             stack_ptr_50 = resource_array;
                             if (resource_array == (longlong *)0x0) {
-                                *(undefined1 *)((longlong)node_ptr_2 + 0x41) = 1;
+                                *(int8_t *)((longlong)node_ptr_2 + 0x41) = 1;
                             }
                             else {
                                 (**(code **)(*resource_array + 0x28))(resource_array);
                                 (**(code **)(*resource_array + 0x38))(resource_array);
-                                *(undefined1 *)(node_ptr_2 + 8) = 1;
+                                *(int8_t *)(node_ptr_2 + 8) = 1;
                             }
                             stack_ptr_d0 = &UNK_180a3c3e0;
                             if (stack_ptr_c8 != (byte *)0x0) {

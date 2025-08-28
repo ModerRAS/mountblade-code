@@ -1109,7 +1109,7 @@ uint64_t Resource_ReleaseCheck(void)
  * - 条件性数据处理
  * - 安全的指针验证
  */
-uint64_t ConditionalDataProcessor(longlong param_1, undefined8 param_2, longlong param_3)
+uint64_t ConditionalDataProcessor(longlong param_1, uint64_t param_2, longlong param_3)
 {
   /* 检查激活标志和数据有效性 */
   if (((*(byte *)(param_3 + 0xc4) & 1) != 0) && (*(longlong *)(param_1 + 0x20) != 0)) {
@@ -1212,7 +1212,7 @@ uint64_t DataStructure_CopyAndProcess(longlong param_1, longlong param_2, longlo
  * - 条件分支优化
  * - 哈希表查找效率
  */
-uint64_t ReferenceCount_Manager(longlong *param_1, undefined8 *param_2)
+uint64_t ReferenceCount_Manager(longlong *param_1, uint64_t *param_2)
 {
   uint16_t ref_count;
   longlong *hash_table;

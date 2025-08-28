@@ -9,41 +9,41 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
 {
   uint resource_size;
   int resource_index;
-  undefined8 resource_handle;
+  uint64_t resource_handle;
   longlong *resource_ptr;
-  undefined *resource_data;
+  void *resource_data;
   longlong resource_offset;
   ulonglong resource_count;
-  undefined1 stack_buffer [32];
-  undefined4 stack_flags;
-  undefined *stack_ptr;
+  int8_t stack_buffer [32];
+  int32_t stack_flags;
+  void *stack_ptr;
   longlong stack_data;
   uint stack_size;
-  undefined8 stack_param1;
-  undefined4 stack_param2;
-  undefined *stack_buffer_ptr;
+  uint64_t stack_param1;
+  int32_t stack_param2;
+  void *stack_buffer_ptr;
   longlong stack_offset;
   uint stack_capacity;
-  undefined8 stack_control;
-  undefined *stack_string_ptr;
+  uint64_t stack_control;
+  void *stack_string_ptr;
   longlong stack_length;
-  undefined4 stack_id;
-  undefined **stack_ptr_ptr;
-  undefined *stack_resource_ptr;
+  int32_t stack_id;
+  void **stack_ptr_ptr;
+  void *stack_resource_ptr;
   longlong stack_resource_data;
-  undefined4 stack_resource_flags[4];
-  undefined4 stack_resource_value;
-  undefined4 stack_resource_type;
-  undefined1 stack_resource_bool;
-  undefined4 stack_resource_format[9];
-  undefined1 stack_resource_status;
-  undefined4 stack_resource_id[2];
-  undefined8 stack_resource_hash;
-  undefined **stack_resource_handle_ptr;
-  undefined *stack_resource_string_ptr;
-  undefined1 *stack_resource_data_ptr;
-  undefined4 stack_resource_config;
-  undefined1 resource_name_buffer [136];
+  int32_t stack_resource_flags[4];
+  int32_t stack_resource_value;
+  int32_t stack_resource_type;
+  int8_t stack_resource_bool;
+  int32_t stack_resource_format[9];
+  int8_t stack_resource_status;
+  int32_t stack_resource_id[2];
+  uint64_t stack_resource_hash;
+  void **stack_resource_handle_ptr;
+  void *stack_resource_string_ptr;
+  int8_t *stack_resource_data_ptr;
+  int32_t stack_resource_config;
+  int8_t resource_name_buffer [136];
   ulonglong stack_checksum;
   
   stack_resource_hash = 0xfffffffffffffffe;
@@ -58,15 +58,15 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_resource_bool = 0;
   stack_resource_format[0] = 0;
   resource_data = &DAT_18098bc73;
-  if (*(undefined **)(resource_params + 8) != (undefined *)0x0) {
-    resource_data = *(undefined **)(resource_params + 8);
+  if (*(void **)(resource_params + 8) != (void *)0x0) {
+    resource_data = *(void **)(resource_params + 8);
   }
   FUN_180627c50(&stack_string_ptr,resource_data);
   stack_resource_value = 0;
   stack_capacity = stack_capacity & 0xffffff00;
   resource_handle = FUN_18062b1e0(_DAT_180c8ed18,0x60d30,0x10,0x1f);
   resource_ptr = (longlong *)FUN_1801954d0(resource_handle,&stack_string_ptr);
-  stack_ptr_ptr = (undefined **)resource_ptr;
+  stack_ptr_ptr = (void **)resource_ptr;
   if (resource_ptr != (longlong *)0x0) {
     (**(code **)(*resource_ptr + 0x28))(resource_ptr);
   }
@@ -85,10 +85,10 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   stack_resource_string_ptr = &UNK_1809fcc28;
   stack_resource_data_ptr = resource_name_buffer;
   resource_name_buffer[0] = 0;
-  stack_resource_config = *(undefined4 *)(resource_params + 0x10);
+  stack_resource_config = *(int32_t *)(resource_params + 0x10);
   resource_data = &DAT_18098bc73;
-  if (*(undefined **)(resource_params + 8) != (undefined *)0x0) {
-    resource_data = *(undefined **)(resource_params + 8);
+  if (*(void **)(resource_params + 8) != (void *)0x0) {
+    resource_data = *(void **)(resource_params + 8);
   }
   strcpy_s(resource_name_buffer,0x80,resource_data);
   FUN_18019e140(&stack_ptr,&stack_resource_string_ptr);
@@ -128,12 +128,12 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
   }
   if (resource_size != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(stack_data,*(undefined8 *)(resource_offset + 8),resource_count);
+    memcpy(stack_data,*(uint64_t *)(resource_offset + 8),resource_count);
   }
   if (stack_data != 0) {
-    *(undefined1 *)(resource_count + stack_data) = 0;
+    *(int8_t *)(resource_count + stack_data) = 0;
   }
-  stack_param1 = CONCAT44(*(uint *)(resource_offset + 0x1c),(undefined4)stack_param1);
+  stack_param1 = CONCAT44(*(uint *)(resource_offset + 0x1c),(int32_t)stack_param1);
   if (0 < stack_id) {
     stack_size = resource_size;
     FUN_1806277c0(&stack_ptr,stack_id);
@@ -141,7 +141,7 @@ void initialize_resource_manager(longlong *engine_context,longlong resource_para
     memcpy((ulonglong)stack_size + stack_data,stack_length,(longlong)(stack_id + 1));
   }
   stack_offset = stack_data;
-  stack_control._0_4_ = (undefined4)stack_param1;
+  stack_control._0_4_ = (int32_t)stack_param1;
   stack_size = 0;
   stack_param2 = 0;
   stack_data = 0;
@@ -202,46 +202,46 @@ void process_shader_files(void)
 {
   uint file_size;
   longlong *engine_ptr;
-  undefined8 *shader_data;
+  uint64_t *shader_data;
   char path_separator;
-  undefined8 *shader_ptr;
-  undefined1 *file_path;
-  undefined4 *file_size_ptr;
+  uint64_t *shader_ptr;
+  int8_t *file_path;
+  int32_t *file_size_ptr;
   int file_count;
   int shader_index;
   longlong file_offset;
   ulonglong path_length;
-  undefined8 *file_iterator;
+  uint64_t *file_iterator;
   int file_id;
   longlong total_files;
   uint *shader_entry;
-  undefined *file_handle;
-  undefined4 file_type;
-  undefined1 shader_buffer [32];
-  undefined *shader_output;
-  undefined1 *shader_input;
+  void *file_handle;
+  int32_t file_type;
+  int8_t shader_buffer [32];
+  void *shader_output;
+  int8_t *shader_input;
   uint shader_length;
-  undefined8 shader_info;
-  undefined *shader_reader;
-  undefined1 *file_content;
+  uint64_t shader_info;
+  void *shader_reader;
+  int8_t *file_content;
   uint content_size;
   ulonglong file_info;
-  undefined *file_writer;
+  void *file_writer;
   longlong file_data;
   int max_path_length;
-  undefined4 buffer_size;
+  int32_t buffer_size;
   longlong *global_engine_ptr;
   longlong file_count_limit;
-  undefined *temp_buffer;
-  undefined *file_buffer;
-  undefined4 file_mode;
-  undefined *resource_handle;
+  void *temp_buffer;
+  void *file_buffer;
+  int32_t file_mode;
+  void *resource_handle;
   longlong resource_data;
-  undefined4 resource_flags;
-  undefined8 *shader_array[2];
-  undefined8 shader_metadata;
-  undefined4 shader_version;
-  undefined8 shader_config;
+  int32_t resource_flags;
+  uint64_t *shader_array[2];
+  uint64_t shader_metadata;
+  int32_t shader_version;
+  uint64_t shader_config;
   ulonglong stack_guard;
   
   shader_config = 0xfffffffffffffffe;
@@ -266,16 +266,16 @@ LAB_file_processing_error:
       }
       shader_reader = &UNK_180a3c3e0;
       file_info = 0;
-      file_content = (undefined1 *)0x0;
+      file_content = (int8_t *)0x0;
       content_size = 0;
-      FUN_1806277c0(&shader_reader,*(undefined4 *)(file_offset + 0x10));
+      FUN_1806277c0(&shader_reader,*(int32_t *)(file_offset + 0x10));
       if (*(int *)(file_offset + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(file_content,*(undefined8 *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
+        memcpy(file_content,*(uint64_t *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
       }
       if (*(longlong *)(file_offset + 8) != 0) {
         content_size = 0;
-        if (file_content != (undefined1 *)0x0) {
+        if (file_content != (int8_t *)0x0) {
           *file_content = 0;
         }
         file_info = file_info & 0xffffffff;
@@ -292,44 +292,44 @@ LAB_path_processing_error:
       }
       file_writer = &UNK_180a3c3e0;
       file_data = 0;
-      file_handle = (undefined1 *)0x0;
+      file_handle = (int8_t *)0x0;
       file_type = 0;
-      FUN_1806277c0(&file_writer,*(undefined4 *)(file_offset + 0x10));
+      FUN_1806277c0(&file_writer,*(int32_t *)(file_offset + 0x10));
       if (*(int *)(file_offset + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(file_handle,*(undefined8 *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
+        memcpy(file_handle,*(uint64_t *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
       }
       if (*(longlong *)(file_offset + 8) != 0) {
         file_type = 0;
-        if (file_handle != (undefined1 *)0x0) {
+        if (file_handle != (int8_t *)0x0) {
           *file_handle = 0;
         }
         file_data = file_data & 0xffffffff;
       }
       file_count = content_size + 8;
       FUN_1806277c0(&shader_reader,file_count);
-      *(undefined8 *)(file_content + content_size) = 0x6a624f656e656353;
-      *(undefined1 *)((longlong)(file_content + content_size) + 8) = 0;
+      *(uint64_t *)(file_content + content_size) = 0x6a624f656e656353;
+      *(int8_t *)((longlong)(file_content + content_size) + 8) = 0;
       content_size = file_count;
       path_separator = FUN_180624a00(&shader_reader);
       if (path_separator == '\0') {
         file_writer = &UNK_180a3c3e0;
-        if (file_handle != (undefined1 *)0x0) {
+        if (file_handle != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        file_handle = (undefined1 *)0x0;
+        file_handle = (int8_t *)0x0;
         file_data = file_data & 0xffffffff00000000;
         file_writer = &UNK_18098bcb0;
         shader_reader = &UNK_180a3c3e0;
-        if (file_content != (undefined1 *)0x0) {
+        if (file_content != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
       }
       else {
-        shader_array[0] = (undefined8 *)0x0;
-        shader_array[1] = (undefined8 *)0x0;
+        shader_array[0] = (uint64_t *)0x0;
+        shader_array[1] = (uint64_t *)0x0;
         shader_metadata = 0;
         shader_version = 3;
         FUN_18062c5f0(&shader_reader,&shader_array);
@@ -338,7 +338,7 @@ LAB_path_processing_error:
         file_offset = (longlong)shader_array[1] - (longlong)shader_array[0];
         FUN_18004b100(&file_buffer);
         file_path = &DAT_18098bc73;
-        if (file_handle != (undefined1 *)0x0) {
+        if (file_handle != (int8_t *)0x0) {
           file_path = file_handle;
         }
         FUN_180628040(&file_buffer,&UNK_1809fd7c4,file_path);
@@ -357,53 +357,53 @@ LAB_path_processing_error:
             shader_output = &UNK_180a3c3e0;
             shader_info._0_4_ = 0;
             shader_info._4_4_ = 0;
-            shader_input = (undefined1 *)0x0;
+            shader_input = (int8_t *)0x0;
             shader_length = 0;
             FUN_1806277c0(&shader_output,*shader_entry);
             if (*shader_entry != 0) {
                     // WARNING: Subroutine does not return
-              memcpy(shader_input,*(undefined8 *)(shader_entry + -2),*shader_entry + 1);
+              memcpy(shader_input,*(uint64_t *)(shader_entry + -2),*shader_entry + 1);
             }
             if (*(longlong *)(shader_entry + -2) != 0) {
               shader_length = 0;
-              if (shader_input != (undefined1 *)0x0) {
+              if (shader_input != (int8_t *)0x0) {
                 *shader_input = 0;
               }
               shader_info._4_4_ = 0;
             }
             shader_index = shader_length + 0xd;
             FUN_1806277c0(&shader_output,shader_index);
-            shader_ptr = (undefined8 *)(shader_input + shader_length);
+            shader_ptr = (uint64_t *)(shader_input + shader_length);
             *shader_ptr = 0x782e656e6563732f;
-            *(undefined4 *)(shader_ptr + 1) = 0x6e656373;
-            *(undefined2 *)((longlong)shader_ptr + 0xc) = 0x65;
+            *(int32_t *)(shader_ptr + 1) = 0x6e656373;
+            *(int16_t *)((longlong)shader_ptr + 0xc) = 0x65;
             file_path = &DAT_18098bc73;
-            if (shader_input != (undefined1 *)0x0) {
+            if (shader_input != (int8_t *)0x0) {
               file_path = shader_input;
             }
             shader_length = shader_index;
             total_files = strstr(file_path,&UNK_1809fd7d8);
             if (total_files == 0) {
               file_path = &DAT_18098bc73;
-              if (shader_input != (undefined1 *)0x0) {
+              if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
               total_files = strstr(file_path,&UNK_1809fd7f8);
               if (total_files != 0) goto LAB_shader_found;
               file_path = &DAT_18098bc73;
-              if (shader_input != (undefined1 *)0x0) {
+              if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
               total_files = strstr(file_path,&UNK_1809fd810);
               if (total_files != 0) goto LAB_shader_found;
               file_path = &DAT_18098bc73;
-              if (shader_input != (undefined1 *)0x0) {
+              if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
               total_files = strstr(file_path,&UNK_1809fd828);
               if (total_files != 0) goto LAB_shader_found;
               file_path = &DAT_18098bc73;
-              if (shader_input != (undefined1 *)0x0) {
+              if (shader_input != (int8_t *)0x0) {
                 file_path = shader_input;
               }
               total_files = strstr(file_path,&UNK_1809fd848);
@@ -411,7 +411,7 @@ LAB_path_processing_error:
               path_separator = FUN_180624af0(&shader_output);
               if (path_separator == '\0') {
                 shader_length = 0;
-                if (shader_input != (undefined1 *)0x0) {
+                if (shader_input != (int8_t *)0x0) {
                   *shader_input = 0;
                 }
                 file_size = *shader_entry;
@@ -421,26 +421,26 @@ LAB_path_processing_error:
                 }
                 if (file_size != 0) {
                     // WARNING: Subroutine does not return
-                  memcpy(shader_input,*(undefined8 *)(shader_entry + -2),path_length);
+                  memcpy(shader_input,*(uint64_t *)(shader_entry + -2),path_length);
                 }
-                if (shader_input != (undefined1 *)0x0) {
+                if (shader_input != (int8_t *)0x0) {
                   shader_input[path_length] = 0;
                 }
                 shader_info._4_4_ = shader_entry[3];
                 shader_length = file_size;
                 FUN_1806277c0(&shader_output,0x12);
-                file_size_ptr = (undefined4 *)(shader_input + shader_length);
+                file_size_ptr = (int32_t *)(shader_input + shader_length);
                 *file_size_ptr = 0x6563732f;
                 file_size_ptr[1] = 0x782e656e;
                 file_size_ptr[2] = 0x2e6f6373;
                 file_size_ptr[3] = 0x65637378;
-                *(undefined2 *)(file_size_ptr + 4) = 0x656e;
-                *(undefined1 *)((longlong)file_size_ptr + 0x12) = 0;
+                *(int16_t *)(file_size_ptr + 4) = 0x656e;
+                *(int8_t *)((longlong)file_size_ptr + 0x12) = 0;
                 shader_length = 0x12;
                 path_separator = FUN_180624af0(&shader_output);
                 if (path_separator != '\0') goto LAB_shader_processing;
                 shader_output = &UNK_180a3c3e0;
-                if (shader_input != (undefined1 *)0x0) {
+                if (shader_input != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
@@ -465,7 +465,7 @@ LAB_shader_path_found:
                   FUN_18005c1c0(file_type,&resource_handle);
                   shader_reader = &UNK_180a3c3e0;
                   file_data = 0;
-                  file_content = (undefined1 *)0x0;
+                  file_content = (int8_t *)0x0;
                   file_type = 0;
                   FUN_1806277c0(&shader_reader,max_path_length);
                   if (max_path_length != 0) {
@@ -474,24 +474,24 @@ LAB_shader_path_found:
                   }
                   if (file_data != 0) {
                     file_type = 0;
-                    if (file_content != (undefined1 *)0x0) {
+                    if (file_content != (int8_t *)0x0) {
                       *file_content = 0;
                     }
                     file_data = file_data & 0xffffffff;
                   }
                   file_handle = &DAT_18098bc73;
-                  if (file_buffer != (undefined *)0x0) {
+                  if (file_buffer != (void *)0x0) {
                     file_handle = file_buffer;
                   }
                   FUN_180628040(&shader_reader,&UNK_1809fd870,file_handle);
                   FUN_18062db60(&shader_reader,&resource_handle);
                   _DAT_180c82854 = 0;
                   shader_reader = &UNK_180a3c3e0;
-                  if (file_content != (undefined1 *)0x0) {
+                  if (file_content != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900();
                   }
-                  file_content = (undefined1 *)0x0;
+                  file_content = (int8_t *)0x0;
                   file_data = file_data & 0xffffffff00000000;
                   shader_reader = &UNK_18098bcb0;
                   resource_handle = &UNK_180a3c3e0;
@@ -504,15 +504,15 @@ LAB_shader_path_found:
                   resource_handle = &UNK_18098bcb0;
                 }
                 temp_buffer = &UNK_180a3c3e0;
-                if (file_buffer != (undefined *)0x0) {
+                if (file_buffer != (void *)0x0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
-                file_buffer = (undefined *)0x0;
+                file_buffer = (void *)0x0;
                 file_mode = 0;
                 temp_buffer = &UNK_18098bcb0;
                 shader_output = &UNK_180a3c3e0;
-                if (shader_input != (undefined1 *)0x0) {
+                if (shader_input != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
@@ -522,13 +522,13 @@ LAB_shader_path_found:
             else {
 LAB_shader_found:
               shader_output = &UNK_180a3c3e0;
-              if (shader_input != (undefined1 *)0x0) {
+              if (shader_input != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
                 FUN_18064e900();
               }
               shader_info = (ulonglong)shader_info._4_4_ << 0x20;
             }
-            shader_input = (undefined1 *)0x0;
+            shader_input = (int8_t *)0x0;
             shader_output = &UNK_18098bcb0;
             file_id = file_id + 1;
             shader_entry = shader_entry + 8;
@@ -549,28 +549,28 @@ LAB_shader_found:
         for (file_iterator = shader_data; file_iterator != shader_ptr; file_iterator = file_iterator + 4) {
           (**(code **)*file_iterator)(file_iterator,0);
         }
-        if (shader_data != (undefined8 *)0x0) {
+        if (shader_data != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900(shader_data);
         }
         file_writer = &UNK_180a3c3e0;
-        if (file_handle != (undefined1 *)0x0) {
+        if (file_handle != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        file_handle = (undefined1 *)0x0;
+        file_handle = (int8_t *)0x0;
         file_data = file_data & 0xffffffff00000000;
         file_writer = &UNK_18098bcb0;
         shader_reader = &UNK_180a3c3e0;
-        if (file_content != (undefined1 *)0x0) {
+        if (file_content != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
       }
-      file_handle = (undefined1 *)0x0;
+      file_handle = (int8_t *)0x0;
       file_writer = &UNK_18098bcb0;
       file_info = file_info & 0xffffffff00000000;
-      file_content = (undefined1 *)0x0;
+      file_content = (int8_t *)0x0;
       shader_reader = &UNK_18098bcb0;
       file_count = shader_index + 1;
     } while (file_count < (int)total_files);
@@ -590,61 +590,61 @@ LAB_shader_found:
 void initialize_render_pipeline(void)
 
 {
-  undefined8 *render_target;
-  undefined8 *render_state;
-  undefined8 render_config;
+  uint64_t *render_target;
+  uint64_t *render_state;
+  uint64_t render_config;
   longlong mutex_data;
   
-  render_state = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
+  render_state = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
   render_target = render_state + 4;
   FUN_180637560(render_target);
   *render_target = &UNK_180a3cf50;
-  *(undefined2 *)(render_state + 0x1a) = 1;
-  *(undefined4 *)(render_state + 9) = 0;
-  *(undefined1 *)((longlong)render_state + 0x54) = 0;
+  *(int16_t *)(render_state + 0x1a) = 1;
+  *(int32_t *)(render_state + 9) = 0;
+  *(int8_t *)((longlong)render_state + 0x54) = 0;
   *render_target = &UNK_1809fe6d8;
   render_target = render_state + 0x1b;
   FUN_180637560(render_target);
   *render_target = &UNK_180a3cf50;
-  *(undefined2 *)(render_state + 0x31) = 1;
-  *(undefined4 *)(render_state + 0x20) = 0;
-  *(undefined1 *)((longlong)render_state + 0x10c) = 0;
+  *(int16_t *)(render_state + 0x31) = 1;
+  *(int32_t *)(render_state + 0x20) = 0;
+  *(int8_t *)((longlong)render_state + 0x10c) = 0;
   *render_target = &UNK_1809fe6d8;
   *render_state = 0;
-  *(undefined1 *)(render_state + 3) = 0;
+  *(int8_t *)(render_state + 3) = 0;
   render_state[2] = 0xffffffff00000000;
-  *(undefined4 *)(render_state + 1) = 0xe;
+  *(int32_t *)(render_state + 1) = 0xe;
   _DAT_180c86928 = render_state;
   render_config = FUN_18062b1e0(_DAT_180c8ed18,0x480,8,3);
   _DAT_180c8a9f8 = FUN_18004bd10(render_config);
   render_config = FUN_18062b1e0(_DAT_180c8ed18,0x10420,8,3);
   _DAT_180c868c0 = FUN_18005c090(render_config);
   _DAT_180c868d8 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3);
-  *(undefined4 *)(_DAT_180c868d8 + 0x19) = 0;
-  *(undefined2 *)(_DAT_180c868d8 + 0x1d) = 0;
-  *(undefined1 *)(_DAT_180c868d8 + 0x1f) = 0;
-  *(undefined4 *)(_DAT_180c868d8 + 0x28) = 3;
+  *(int32_t *)(_DAT_180c868d8 + 0x19) = 0;
+  *(int16_t *)(_DAT_180c868d8 + 0x1d) = 0;
+  *(int8_t *)(_DAT_180c868d8 + 0x1f) = 0;
+  *(int32_t *)(_DAT_180c868d8 + 0x28) = 3;
   *(longlong *)_DAT_180c868d8 = _DAT_180c868d8;
   *(longlong *)(_DAT_180c868d8 + 8) = _DAT_180c868d8;
-  *(undefined8 *)(_DAT_180c868d8 + 0x10) = 0;
-  *(undefined1 *)(_DAT_180c868d8 + 0x18) = 0;
-  *(undefined8 *)(_DAT_180c868d8 + 0x20) = 0;
+  *(uint64_t *)(_DAT_180c868d8 + 0x10) = 0;
+  *(int8_t *)(_DAT_180c868d8 + 0x18) = 0;
+  *(uint64_t *)(_DAT_180c868d8 + 0x20) = 0;
   _DAT_180c86910 = FUN_18062b1e0(_DAT_180c8ed18,8,4,3);
-  *(undefined4 *)(_DAT_180c86910 + 4) = 0;
+  *(int32_t *)(_DAT_180c86910 + 4) = 0;
   render_config = FUN_18062b1e0(_DAT_180c8ed18,0x80,8,3);
   _DAT_180c86900 = FUN_18015c450(render_config);
   mutex_data = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
   _Mtx_init_in_situ(mutex_data,2);
   _Mtx_init_in_situ(mutex_data + 0x50,2);
-  *(undefined8 *)(mutex_data + 0xa0) = 0;
-  *(undefined8 *)(mutex_data + 0xa8) = 0;
-  *(undefined8 *)(mutex_data + 0xb0) = 0;
-  *(undefined4 *)(mutex_data + 0xb8) = 3;
-  *(undefined8 *)(mutex_data + 0xc0) = 0;
-  *(undefined8 *)(mutex_data + 200) = 0;
-  *(undefined8 *)(mutex_data + 0xd0) = 0;
-  *(undefined4 *)(mutex_data + 0xd8) = 0x20;
-  *(undefined4 *)(mutex_data + 0xe0) = 0;
+  *(uint64_t *)(mutex_data + 0xa0) = 0;
+  *(uint64_t *)(mutex_data + 0xa8) = 0;
+  *(uint64_t *)(mutex_data + 0xb0) = 0;
+  *(int32_t *)(mutex_data + 0xb8) = 3;
+  *(uint64_t *)(mutex_data + 0xc0) = 0;
+  *(uint64_t *)(mutex_data + 200) = 0;
+  *(uint64_t *)(mutex_data + 0xd0) = 0;
+  *(int32_t *)(mutex_data + 0xd8) = 0x20;
+  *(int32_t *)(mutex_data + 0xe0) = 0;
   _DAT_180c8a998 = mutex_data;
   render_config = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
                     // WARNING: Subroutine does not return
@@ -676,12 +676,12 @@ void cleanup_resource_array(longlong *resource_array)
 
 
 
-// 函数: void initialize_resource_handler(longlong resource_handle,undefined8 param2,undefined8 param3,undefined8 param4)
+// 函数: void initialize_resource_handler(longlong resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
 // 初始化资源处理器，设置资源处理的相关参数
-void initialize_resource_handler(longlong resource_handle,undefined8 param2,undefined8 param3,undefined8 param4)
+void initialize_resource_handler(longlong resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
-  FUN_180058210(resource_handle,*(undefined8 *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
+  FUN_180058210(resource_handle,*(uint64_t *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
   return;
 }
 
@@ -711,12 +711,12 @@ void destroy_resource_handler(longlong resource_handle)
                     // WARNING: Subroutine does not return
         FUN_18064e900(resource_ptr);
       }
-      *(undefined8 *)(resource_data + resource_index * 8) = 0;
+      *(uint64_t *)(resource_data + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
     resource_count = *(ulonglong *)(resource_handle + 0x10);
   }
-  *(undefined8 *)(resource_handle + 0x18) = 0;
+  *(uint64_t *)(resource_handle + 0x18) = 0;
   if ((1 < resource_count) && (*(longlong *)(resource_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -732,13 +732,13 @@ void destroy_resource_handler(longlong resource_handle)
 longlong create_resource_context(longlong context_ptr)
 
 {
-  *(undefined8 *)(context_ptr + 8) = &UNK_18098bcb0;
-  *(undefined8 *)(context_ptr + 0x10) = 0;
-  *(undefined4 *)(context_ptr + 0x18) = 0;
-  *(undefined8 *)(context_ptr + 8) = &UNK_180a3c3e0;
-  *(undefined8 *)(context_ptr + 0x20) = 0;
-  *(undefined8 *)(context_ptr + 0x10) = 0;
-  *(undefined4 *)(context_ptr + 0x18) = 0;
+  *(uint64_t *)(context_ptr + 8) = &UNK_18098bcb0;
+  *(uint64_t *)(context_ptr + 0x10) = 0;
+  *(int32_t *)(context_ptr + 0x18) = 0;
+  *(uint64_t *)(context_ptr + 8) = &UNK_180a3c3e0;
+  *(uint64_t *)(context_ptr + 0x20) = 0;
+  *(uint64_t *)(context_ptr + 0x10) = 0;
+  *(int32_t *)(context_ptr + 0x18) = 0;
   return context_ptr;
 }
 
@@ -750,26 +750,26 @@ longlong create_resource_context(longlong context_ptr)
 void destroy_resource_context(longlong context_ptr)
 
 {
-  *(undefined8 *)(context_ptr + 8) = &UNK_180a3c3e0;
+  *(uint64_t *)(context_ptr + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(context_ptr + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(undefined8 *)(context_ptr + 0x10) = 0;
-  *(undefined4 *)(context_ptr + 0x20) = 0;
-  *(undefined8 *)(context_ptr + 8) = &UNK_18098bcb0;
+  *(uint64_t *)(context_ptr + 0x10) = 0;
+  *(int32_t *)(context_ptr + 0x20) = 0;
+  *(uint64_t *)(context_ptr + 8) = &UNK_18098bcb0;
   return;
 }
 
 
 
 
-// 函数: void initialize_resource_manager_v2(longlong resource_handle,undefined8 param2,undefined8 param3,undefined8 param4)
+// 函数: void initialize_resource_manager_v2(longlong resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
 // 初始化资源管理器版本2，提供更高级的资源管理功能
-void initialize_resource_manager_v2(longlong resource_handle,undefined8 param2,undefined8 param3,undefined8 param4)
+void initialize_resource_manager_v2(longlong resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
 
 {
-  FUN_180058210(resource_handle,*(undefined8 *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
+  FUN_180058210(resource_handle,*(uint64_t *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
   return;
 }
 
@@ -799,12 +799,12 @@ void destroy_resource_manager_v2(longlong resource_handle)
                     // WARNING: Subroutine does not return
         FUN_18064e900(resource_ptr);
       }
-      *(undefined8 *)(resource_data + resource_index * 8) = 0;
+      *(uint64_t *)(resource_data + resource_index * 8) = 0;
       resource_index = resource_index + 1;
     } while (resource_index < resource_count);
     resource_count = *(ulonglong *)(resource_handle + 0x10);
   }
-  *(undefined8 *)(resource_handle + 0x18) = 0;
+  *(uint64_t *)(resource_handle + 0x18) = 0;
   if ((1 < resource_count) && (*(longlong *)(resource_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -818,9 +818,9 @@ void destroy_resource_manager_v2(longlong resource_handle)
 
 
 
-// 函数: void emergency_exit(undefined8 exit_code,undefined4 exit_status)
+// 函数: void emergency_exit(uint64_t exit_code,int32_t exit_status)
 // 紧急退出函数，在发生严重错误时调用
-void emergency_exit(undefined8 exit_code,undefined4 exit_status)
+void emergency_exit(uint64_t exit_code,int32_t exit_status)
 
 {
   code *exit_handler;
@@ -846,18 +846,18 @@ void emergency_exit(undefined8 exit_code,undefined4 exit_status)
 void finalize_initialization(void)
 
 {
-  undefined8 *global_ptr;
-  undefined8 temp_value;
+  uint64_t *global_ptr;
+  uint64_t temp_value;
   char *config_data;
   int lock_status;
   char *config_ptr;
-  undefined8 unused_param;
-  undefined8 stack_guard;
+  uint64_t unused_param;
+  uint64_t stack_guard;
   
   config_data = _DAT_180c8a9d8;
   stack_guard = 0xfffffffffffffffe;
   if (*_DAT_180c8a9d8 != '\0') {
-    global_ptr = (undefined8 *)*_DAT_180c86960;
+    global_ptr = (uint64_t *)*_DAT_180c86960;
     lock_status = _Mtx_lock(0x180c91970);
     if (lock_status != 0) {
       __Throw_C_error_std__YAXH_Z(lock_status);
@@ -865,23 +865,23 @@ void finalize_initialization(void)
     temp_value = _DAT_180c8a9b0;
     _DAT_180c8a9b0 = *global_ptr;
     FUN_1801299b0(&UNK_1809fd9a0,0,0,unused_param,stack_guard);
-    FUN_18010f010(&UNK_1809fd9b0,*(undefined4 *)(config_data + 4));
-    FUN_18010f010(&UNK_1809fd9d0,*(undefined4 *)(config_data + 8));
-    FUN_18010f010(&UNK_1809fd9f0,*(undefined4 *)(config_data + 0xc));
-    FUN_18010f010(&UNK_1809fda10,*(undefined4 *)(config_data + 0x10));
-    FUN_18010f010(&UNK_1809fda30,*(undefined4 *)(config_data + 0x14));
-    FUN_18010f010(&UNK_1809fda58,*(undefined4 *)(config_data + 0x18));
+    FUN_18010f010(&UNK_1809fd9b0,*(int32_t *)(config_data + 4));
+    FUN_18010f010(&UNK_1809fd9d0,*(int32_t *)(config_data + 8));
+    FUN_18010f010(&UNK_1809fd9f0,*(int32_t *)(config_data + 0xc));
+    FUN_18010f010(&UNK_1809fda10,*(int32_t *)(config_data + 0x10));
+    FUN_18010f010(&UNK_1809fda30,*(int32_t *)(config_data + 0x14));
+    FUN_18010f010(&UNK_1809fda58,*(int32_t *)(config_data + 0x18));
     for (config_ptr = *(char **)(config_data + 0x28); config_ptr != config_data + 0x20;
         config_ptr = (char *)func_0x00018066bd70(config_ptr)) {
-      FUN_18010f010(&UNK_1809fda80,*(undefined4 *)(config_ptr + 0x20),*(undefined4 *)(config_ptr + 0x24));
+      FUN_18010f010(&UNK_1809fda80,*(int32_t *)(config_ptr + 0x20),*(int32_t *)(config_ptr + 0x24));
     }
     for (config_ptr = *(char **)(config_data + 0x58); config_ptr != config_data + 0x50;
         config_ptr = (char *)func_0x00018066bd70(config_ptr)) {
-      FUN_18010f010(&UNK_1809fdaa8,*(undefined4 *)(config_ptr + 0x20),*(undefined4 *)(config_ptr + 0x24));
+      FUN_18010f010(&UNK_1809fdaa8,*(int32_t *)(config_ptr + 0x20),*(int32_t *)(config_ptr + 0x24));
     }
-    FUN_18010f010(&UNK_1809fdad0,*(undefined4 *)(config_data + 0x80));
-    FUN_18010f010(&UNK_1809fdaf8,*(undefined4 *)(config_data + 0x84));
-    FUN_18010f010(&UNK_1809fdb20,*(undefined4 *)(config_data + 0x88));
+    FUN_18010f010(&UNK_1809fdad0,*(int32_t *)(config_data + 0x80));
+    FUN_18010f010(&UNK_1809fdaf8,*(int32_t *)(config_data + 0x84));
+    FUN_18010f010(&UNK_1809fdb20,*(int32_t *)(config_data + 0x88));
     FUN_18012cfe0();
     _DAT_180c8a9b0 = temp_value;
     lock_status = _Mtx_unlock(0x180c91970);

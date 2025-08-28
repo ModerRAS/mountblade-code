@@ -199,10 +199,10 @@ static volatile uint32_t g_error_flags = 0;
  * @note 该函数是系统初始化的核心函数，必须在所有其他系统函数之前调用
  * @warning 如果初始化失败，系统将无法启动
  */
-void FUN_180942750(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180942750(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 *puVar1;
-    undefined8 *puVar2;
+    uint64_t *puVar1;
+    uint64_t *puVar2;
     
     // 调用系统初始化函数
     FUN_18005d260(&DAT_180bfaec0, _DAT_180bfaed0, param_3, param_4, 0xfffffffffffffffe);
@@ -216,12 +216,12 @@ void FUN_180942750(undefined8 param_1, undefined8 param_2, undefined8 param_3, u
             FUN_18064e900();
         }
         puVar2[1] = 0;
-        *(undefined4 *)(puVar2 + 3) = 0;
+        *(int32_t *)(puVar2 + 3) = 0;
         *puVar2 = &UNK_18098bcb0;
     }
     
     // 验证初始化结果
-    if (_DAT_180bfaea0 != (undefined8 *)0x0) {
+    if (_DAT_180bfaea0 != (uint64_t *)0x0) {
         // 初始化失败处理
         FUN_18064e900();
     }
@@ -654,7 +654,7 @@ void FUN_1809429f0(void)
 {
     ulonglong uVar1;
     longlong lVar2;
-    undefined8 in_R9;
+    uint64_t in_R9;
     
     // 检查线程本地存储
     if (lRam0000000180d49d68 != 0) {
@@ -777,13 +777,13 @@ void FUN_180942a80(void)
  * 
  * @note 该函数用于系统配置
  */
-void FUN_180942aa0(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180942aa0(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     
     // 获取系统参数上下文
     puVar1 = _DAT_180d49e18;
-    if (_DAT_180d49e18 != (undefined8 *)0x0) {
+    if (_DAT_180d49e18 != (uint64_t *)0x0) {
         // 处理系统参数
         FUN_1804a9b80(param_1, *_DAT_180d49e18, param_3, param_4, 0xfffffffffffffffe);
         // 错误处理（不返回）
@@ -1197,13 +1197,13 @@ void FUN_180943160(void)
  * 
  * @note 该函数用于数据处理
  */
-void FUN_180943180(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180943180(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     
     // 获取数据上下文
     puVar1 = _DAT_180c967a0;
-    if (_DAT_180c967a0 != (undefined8 *)0x0) {
+    if (_DAT_180c967a0 != (uint64_t *)0x0) {
         // 处理系统数据
         FUN_180651560(&DAT_180c96790, *_DAT_180c967a0, param_3, param_4, 0xfffffffffffffffe);
         FUN_18063cfe0(puVar1 + 5);
@@ -1228,14 +1228,14 @@ void FUN_1809431a0(void)
     lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
     
     // 初始化线程本地存储
-    *(undefined8 *)(lVar1 + 0x18) = &UNK_180a3c3e0;
+    *(uint64_t *)(lVar1 + 0x18) = &UNK_180a3c3e0;
     if (*(longlong *)(lVar1 + 0x20) != 0) {
         // 线程本地存储初始化失败
         FUN_18064e900();
     }
-    *(undefined8 *)(lVar1 + 0x20) = 0;
-    *(undefined4 *)(lVar1 + 0x30) = 0;
-    *(undefined8 *)(lVar1 + 0x18) = &UNK_18098bcb0;
+    *(uint64_t *)(lVar1 + 0x20) = 0;
+    *(int32_t *)(lVar1 + 0x30) = 0;
+    *(uint64_t *)(lVar1 + 0x18) = &UNK_18098bcb0;
     return;
 }
 
@@ -1251,13 +1251,13 @@ void FUN_1809431a0(void)
  * 
  * @note 该函数用于线程本地存储管理
  */
-void FUN_180943200(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180943200(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 *puVar1;
+    uint64_t *puVar1;
     
     // 获取线程本地存储上下文
     puVar1 = _DAT_180c967f0;
-    if (_DAT_180c967f0 == (undefined8 *)0x0) {
+    if (_DAT_180c967f0 == (uint64_t *)0x0) {
         return;
     }
     
@@ -1269,7 +1269,7 @@ void FUN_180943200(undefined8 param_1, undefined8 param_2, undefined8 param_3, u
         FUN_18064e900();
     }
     puVar1[5] = 0;
-    *(undefined4 *)(puVar1 + 7) = 0;
+    *(int32_t *)(puVar1 + 7) = 0;
     puVar1[4] = &UNK_18098bcb0;
     // 清理完成
     FUN_18064e900(puVar1);

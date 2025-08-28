@@ -81,7 +81,7 @@
 void RenderingSystemAdvancedResourceCleaner(void)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
   longlong lVar3;
   ulonglong uVar4;
@@ -94,8 +94,8 @@ void RenderingSystemAdvancedResourceCleaner(void)
   if ((_DAT_180c95ed8 - _DAT_180c95ed0) / 0x68 != 0) {
     do {
       lVar2 = _DAT_180c95ed0;
-      puVar1 = *(undefined8 **)(_DAT_180c95ed0 + 0x18 + uVar4);
-      if (puVar1 != (undefined8 *)0x0) {
+      puVar1 = *(uint64_t **)(_DAT_180c95ed0 + 0x18 + uVar4);
+      if (puVar1 != (uint64_t *)0x0) {
         lVar3 = __RTCastToVoid(puVar1);
         (**(code **)*puVar1)(puVar1,0);
         if (lVar3 != 0) {
@@ -103,7 +103,7 @@ void RenderingSystemAdvancedResourceCleaner(void)
           FUN_18064e900(lVar3);
         }
       }
-      *(undefined8 *)(lVar2 + 0x18 + uVar4) = 0;
+      *(uint64_t *)(lVar2 + 0x18 + uVar4) = 0;
       uVar5 = (int)uVar6 + 1;
       uVar4 = uVar4 + 0x68;
       uVar6 = (ulonglong)uVar5;
@@ -124,7 +124,7 @@ void RenderingSystemAdvancedResourceCleaner(void)
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *(undefined8 *)(lVar2 + uVar4 * 8) = 0;
+      *(uint64_t *)(lVar2 + uVar4 * 8) = 0;
       uVar5 = (int)uVar4 + 1;
       uVar4 = (ulonglong)uVar5;
     } while (uVar5 < uVar6);
@@ -150,7 +150,7 @@ void RenderingSystemAdvancedResourceCleaner(void)
 void RenderingSystemMemoryManager(void)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   ulonglong uVar2;
   longlong lVar3;
   longlong lVar4;
@@ -162,8 +162,8 @@ void RenderingSystemMemoryManager(void)
   
   uVar5 = unaff_R15 & 0xffffffff;
   do {
-    puVar1 = *(undefined8 **)(unaff_RSI + 0x18 + uVar5);
-    if (puVar1 != (undefined8 *)0x0) {
+    puVar1 = *(uint64_t **)(unaff_RSI + 0x18 + uVar5);
+    if (puVar1 != (uint64_t *)0x0) {
       lVar3 = __RTCastToVoid(puVar1);
       (**(code **)*puVar1)(puVar1,0);
       if (lVar3 != 0) {
@@ -191,7 +191,7 @@ void RenderingSystemMemoryManager(void)
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *(undefined8 *)(lVar3 + uVar5 * 8) = 0;
+      *(uint64_t *)(lVar3 + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
     } while (uVar5 < uVar2);
   }
@@ -237,7 +237,7 @@ void RenderingSystemObjectLifecycleManager(void)
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *(undefined8 *)(lVar2 + uVar4 * 8) = 0;
+      *(uint64_t *)(lVar2 + uVar4 * 8) = 0;
       uVar4 = uVar4 + 1;
     } while (uVar4 < uVar3);
   }
@@ -262,28 +262,28 @@ void RenderingSystemObjectLifecycleManager(void)
 void RenderingSystemResourceRecycler(void)
 
 {
-  undefined4 uVar1;
-  undefined8 uVar2;
-  undefined8 *puVar3;
-  undefined *puStack_288;
-  undefined8 *puStack_280;
-  undefined4 uStack_278;
-  undefined8 uStack_270;
-  undefined8 uStack_48;
+  int32_t uVar1;
+  uint64_t uVar2;
+  uint64_t *puVar3;
+  void *puStack_288;
+  uint64_t *puStack_280;
+  int32_t uStack_278;
+  uint64_t uStack_270;
+  uint64_t uStack_48;
   
   uStack_48 = 0xfffffffffffffffe;
   uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x88,8,3);
   puStack_288 = &UNK_180a3c3e0;
   uStack_270 = 0;
-  puStack_280 = (undefined8 *)0x0;
+  puStack_280 = (uint64_t *)0x0;
   uStack_278 = 0;
-  puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)puVar3 = 0;
+  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  *(int8_t *)puVar3 = 0;
   puStack_280 = puVar3;
   uVar1 = FUN_18064e990(puVar3);
   uStack_270 = CONCAT44(uStack_270._4_4_,uVar1);
   *puVar3 = 0x5f6e6f697373696d;
-  *(undefined4 *)(puVar3 + 1) = 0x707063;
+  *(int32_t *)(puVar3 + 1) = 0x707063;
   uStack_278 = 0xb;
   FUN_1801614d0(uVar2,&puStack_288);
   puStack_288 = &UNK_180a3c3e0;

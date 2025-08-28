@@ -70,9 +70,9 @@
 
 /** 基础类型别名 */
 typedef longlong RenderingSystemHandle;              ///< 渲染系统句柄类型
-typedef undefined4 RenderingSystemState;              ///< 渲染系统状态类型
-typedef undefined8 RenderingSystemParameter;         ///< 渲染系统参数类型
-typedef undefined1 RenderingSystemFlag;               ///< 渲染系统标志类型
+typedef int32_t RenderingSystemState;              ///< 渲染系统状态类型
+typedef uint64_t RenderingSystemParameter;         ///< 渲染系统参数类型
+typedef int8_t RenderingSystemFlag;               ///< 渲染系统标志类型
 typedef uint RenderingSystemCount;                   ///< 渲染系统计数类型
 typedef float RenderingSystemFloat;                  ///< 渲染系统浮点类型
 typedef byte RenderingSystemByte;                    ///< 渲染系统字节类型
@@ -81,10 +81,10 @@ typedef char RenderingSystemChar;                    ///< 渲染系统字符类�
 
 /** 指针类型别名 */
 typedef longlong *RenderingSystemHandlePtr;          ///< 渲染系统句柄指针类型
-typedef undefined4 *RenderingSystemStatePtr;         ///< 渲染系统状态指针类型
-typedef undefined8 *RenderingSystemParameterPtr;    ///< 渲染系统参数指针类型
+typedef int32_t *RenderingSystemStatePtr;         ///< 渲染系统状态指针类型
+typedef uint64_t *RenderingSystemParameterPtr;    ///< 渲染系统参数指针类型
 typedef longlong **RenderingSystemComponentPtr;      ///< 渲染系统组件指针类型
-typedef undefined **RenderingSystemDataPtr;          ///< 渲染系统数据指针类型
+typedef void **RenderingSystemDataPtr;          ///< 渲染系统数据指针类型
 
 /** 函数指针类型别名 */
 typedef code *RenderingSystemCallback;               ///< 渲染系统回调函数类型

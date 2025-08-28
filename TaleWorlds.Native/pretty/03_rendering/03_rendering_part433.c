@@ -63,13 +63,13 @@
 typedef longlong* RenderingDataStructurePtr;
 
 /** 渲染内存块指针类型 */
-typedef undefined4* RenderingMemoryBlockPtr;
+typedef int32_t* RenderingMemoryBlockPtr;
 
 /** 渲染系统函数指针类型 */
 typedef code* RenderingFunctionPtr;
 
 /** 渲染数据块类型 */
-typedef undefined8 RenderingDataBlock;
+typedef uint64_t RenderingDataBlock;
 
 /** 渲染索引类型 */
 typedef uint RenderingIndex;
@@ -90,7 +90,7 @@ typedef longlong RenderingSize;
 typedef longlong RenderingAddress;
 
 /** 渲染句柄类型 */
-typedef undefined8 RenderingHandle;
+typedef uint64_t RenderingHandle;
 
 // =============================================================================
 // 枚举定义
@@ -220,8 +220,8 @@ void RenderingSystemAdvancedDataProcessor(longlong *param_1, longlong param_2)
     longlong tempVar2;
     longlong tempVar3;
     RenderingFlag comparisonResult;
-    undefined4 tempVar4;
-    undefined4 tempVar5;
+    int32_t tempVar4;
+    int32_t tempVar5;
     longlong tempVar6;
     longlong tempVar7;
     ulonglong offsetVar;
@@ -239,12 +239,12 @@ void RenderingSystemAdvancedDataProcessor(longlong *param_1, longlong param_2)
     // 检查索引范围是否有效
     if (index1 != index2) {
         // 保存当前数据结构状态
-        tempVar4 = (undefined4)*param_1;
-        tempVar5 = *(undefined4 *)((longlong)param_1 + 4);
+        tempVar4 = (int32_t)*param_1;
+        tempVar5 = *(int32_t *)((longlong)param_1 + 4);
         tempVar6 = *param_1;
         tempVar1 = *param_1;
         tempIndex = *(RenderingIndex *)(param_1 + 1);
-        tempVar5 = *(undefined4 *)((longlong)param_1 + 0xc);
+        tempVar5 = *(int32_t *)((longlong)param_1 + 0xc);
         
         // 遍历数据结构进行优化处理
         while (tempIndex = tempIndex + 1, tempIndex != index2) {
@@ -254,20 +254,20 @@ void RenderingSystemAdvancedDataProcessor(longlong *param_1, longlong param_2)
             
             // 处理数据块清理和初始化
             tempVar6 = *(longlong *)(tempVar1 + offsetVar * RENDERING_DATA_BLOCK_SIZE);
-            *(undefined8 *)(tempVar1 + offsetVar * RENDERING_DATA_BLOCK_SIZE) = 0;
+            *(uint64_t *)(tempVar1 + offsetVar * RENDERING_DATA_BLOCK_SIZE) = 0;
             tempVar2 = *(longlong *)(tempVar1 + 8 + offsetVar * RENDERING_DATA_BLOCK_SIZE);
-            *(undefined8 *)(tempVar1 + 8 + offsetVar * RENDERING_DATA_BLOCK_SIZE) = 0;
+            *(uint64_t *)(tempVar1 + 8 + offsetVar * RENDERING_DATA_BLOCK_SIZE) = 0;
             tempVar3 = *(longlong *)(tempVar1 + 0x10 + offsetVar * RENDERING_DATA_BLOCK_SIZE);
-            *(undefined8 *)(tempVar1 + 0x10 + offsetVar * RENDERING_DATA_BLOCK_SIZE) = 0;
-            tempVar4 = *(undefined4 *)(tempVar1 + 0x18 + offsetVar * RENDERING_DATA_BLOCK_SIZE);
-            *(undefined4 *)(tempVar1 + 0x18 + offsetVar * RENDERING_DATA_BLOCK_SIZE) = 
-                *(undefined4 *)(tempVar1 + 0x18 + offsetVar * RENDERING_DATA_BLOCK_SIZE);
+            *(uint64_t *)(tempVar1 + 0x10 + offsetVar * RENDERING_DATA_BLOCK_SIZE) = 0;
+            tempVar4 = *(int32_t *)(tempVar1 + 0x18 + offsetVar * RENDERING_DATA_BLOCK_SIZE);
+            *(int32_t *)(tempVar1 + 0x18 + offsetVar * RENDERING_DATA_BLOCK_SIZE) = 
+                *(int32_t *)(tempVar1 + 0x18 + offsetVar * RENDERING_DATA_BLOCK_SIZE);
             
             // 处理数据结构指针和引用
             tempPtr1 = (longlong *)(tempVar1 + 0x20 + offsetVar * RENDERING_DATA_BLOCK_SIZE);
             tempVar2 = *tempPtr1;
             tempVar3 = tempPtr1[1];
-            dataPtr = (undefined4 *)(tempVar1 + 0x30 + offsetVar * RENDERING_DATA_BLOCK_SIZE);
+            dataPtr = (int32_t *)(tempVar1 + 0x30 + offsetVar * RENDERING_DATA_BLOCK_SIZE);
             tempVar4 = *dataPtr;
             tempVar5 = dataPtr[1];
             tempVar4 = dataPtr[2];
@@ -322,7 +322,7 @@ void RenderingSystemAdvancedDataProcessor(longlong *param_1, longlong param_2)
                     tempPtr1[1] = tempVar2;
                     tempVar3 = tempPtr1[2];
                     tempPtr1[2] = tempVar3;
-                    tempVar4 = (undefined4)tempPtr1[3];
+                    tempVar4 = (int32_t)tempPtr1[3];
                     *(int *)(tempPtr1 + 3) = (int)tempVar7;
                     
                     if (tempVar6 != 0) {
@@ -350,13 +350,13 @@ void RenderingSystemAdvancedDataProcessor(longlong *param_1, longlong param_2)
                 tempVar1 = tempPtr2[5];
                 tempPtr1[4] = tempPtr2[4];
                 tempPtr1[5] = tempVar1;
-                tempVar4 = *(undefined4 *)((longlong)tempPtr2 + 0x34);
+                tempVar4 = *(int32_t *)((longlong)tempPtr2 + 0x34);
                 tempVar1 = tempPtr2[7];
-                tempVar5 = *(undefined4 *)((longlong)tempPtr2 + 0x3c);
+                tempVar5 = *(int32_t *)((longlong)tempPtr2 + 0x3c);
                 *(int *)(tempPtr1 + 6) = (int)tempPtr2[6];
-                *(undefined4 *)((longlong)tempPtr1 + 0x34) = tempVar4;
+                *(int32_t *)((longlong)tempPtr1 + 0x34) = tempVar4;
                 *(int *)(tempPtr1 + 7) = (int)tempVar1;
-                *(undefined4 *)((longlong)tempPtr1 + 0x3c) = tempVar5;
+                *(int32_t *)((longlong)tempPtr1 + 0x3c) = tempVar5;
                 tempVar1 = tempPtr2[9];
                 tempPtr1[8] = tempPtr2[8];
                 tempPtr1[9] = tempVar1;
@@ -386,7 +386,7 @@ void RenderingSystemAdvancedDataProcessor(longlong *param_1, longlong param_2)
                 tempPtr1[1] = tempVar2;
                 tempVar6 = tempPtr1[2];
                 tempPtr1[2] = tempVar3;
-                tempVar4 = (undefined4)tempPtr1[3];
+                tempVar4 = (int32_t)tempPtr1[3];
                 *(int *)(tempPtr1 + 3) = (int)tempVar7;
                 
                 if (tempVar2 != 0) {
@@ -401,7 +401,7 @@ void RenderingSystemAdvancedDataProcessor(longlong *param_1, longlong param_2)
                 tempVar3 = tempPtr1[2];
                 tempPtr1[2] = tempVar6;
                 tempVar7 = tempPtr1[3];
-                *(undefined4 *)(tempPtr1 + 3) = tempVar4;
+                *(int32_t *)(tempPtr1 + 3) = tempVar4;
                 tempVar2 = 0;
                 tempVar6 = tempVar1;
                 tempVar7 = tempVar2;
@@ -412,10 +412,10 @@ void RenderingSystemAdvancedDataProcessor(longlong *param_1, longlong param_2)
             // 设置最终的数据结构状态
             tempPtr1[4] = tempVar2;
             tempPtr1[5] = tempVar3;
-            *(undefined4 *)(tempPtr1 + 6) = tempVar4;
-            *(undefined4 *)((longlong)tempPtr1 + 0x34) = tempVar5;
-            *(undefined4 *)(tempPtr1 + 7) = tempVar4;
-            *(undefined4 *)((longlong)tempPtr1 + 0x3c) = tempVar5;
+            *(int32_t *)(tempPtr1 + 6) = tempVar4;
+            *(int32_t *)((longlong)tempPtr1 + 0x34) = tempVar5;
+            *(int32_t *)(tempPtr1 + 7) = tempVar4;
+            *(int32_t *)((longlong)tempPtr1 + 0x3c) = tempVar5;
             tempPtr1[8] = tempVar6;
             tempPtr1[9] = tempVar7;
             
@@ -465,7 +465,7 @@ void RenderingSystemCallProcessorType2(void)
     // 执行条件判断和处理
     if (0 < unaff_RSI) {
         // 执行大块内存复制操作
-        memcpy(&stack0x00000ce0, *(undefined4 *)(unaff_R15 + -0xc), RENDERING_MEMORY_COPY_SIZE);
+        memcpy(&stack0x00000ce0, *(int32_t *)(unaff_R15 + -0xc), RENDERING_MEMORY_COPY_SIZE);
     }
     
     if (unaff_RSI == 0) {
@@ -593,21 +593,21 @@ void RenderingSystemEmptyOperationProcessor(void)
  * @param param_4 数据结构配置参数
  * @return longlong* 构建完成的数据结构指针
  */
-longlong *RenderingSystemDataStructureBuilder(longlong *param_1, undefined4 *param_2, 
-    undefined4 *param_3, undefined8 *param_4)
+longlong *RenderingSystemDataStructureBuilder(longlong *param_1, int32_t *param_2, 
+    int32_t *param_3, uint64_t *param_4)
 {
-    undefined4 *tempPtr1;
-    undefined8 *tempPtr2;
+    int32_t *tempPtr1;
+    uint64_t *tempPtr2;
     int tempInt1;
     longlong *tempPtr3;
-    undefined4 tempVar1;
-    undefined4 tempVar2;
-    undefined4 tempVar3;
-    undefined8 tempVar4;
-    undefined8 *tempPtr4;
+    int32_t tempVar1;
+    int32_t tempVar2;
+    int32_t tempVar3;
+    uint64_t tempVar4;
+    uint64_t *tempPtr4;
     longlong tempVar5;
     int tempInt2;
-    undefined4 *tempPtr5;
+    int32_t *tempPtr5;
     
     // 初始化数据结构构建器
     *param_1 = (longlong)param_4;
@@ -618,63 +618,63 @@ longlong *RenderingSystemDataStructureBuilder(longlong *param_1, undefined4 *par
         do {
             // 设置数据结构基础配置
             *param_4 = &UNK_180a308c0;
-            *(undefined4 *)(param_4 + 1) = *tempPtr5;
-            *(undefined4 *)((longlong)param_4 + 0xc) = tempPtr5[1];
+            *(int32_t *)(param_4 + 1) = *tempPtr5;
+            *(int32_t *)((longlong)param_4 + 0xc) = tempPtr5[1];
             *param_4 = &UNK_180a308e0;
-            param_4[2] = *(undefined8 *)(tempPtr5 + 2);
-            tempVar4 = *(undefined8 *)(tempPtr5 + 6);
-            param_4[3] = *(undefined8 *)(tempPtr5 + 4);
+            param_4[2] = *(uint64_t *)(tempPtr5 + 2);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 6);
+            param_4[3] = *(uint64_t *)(tempPtr5 + 4);
             param_4[4] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 10);
-            param_4[5] = *(undefined8 *)(tempPtr5 + 8);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 10);
+            param_4[5] = *(uint64_t *)(tempPtr5 + 8);
             param_4[6] = tempVar4;
             
             // 设置数据结构扩展配置
             tempVar1 = tempPtr5[0xd];
             tempVar2 = tempPtr5[0xe];
             tempVar3 = tempPtr5[0xf];
-            *(undefined4 *)(param_4 + 7) = tempPtr5[0xc];
-            *(undefined4 *)((longlong)param_4 + 0x3c) = tempVar1;
-            *(undefined4 *)(param_4 + 8) = tempVar2;
-            *(undefined4 *)((longlong)param_4 + 0x44) = tempVar3;
+            *(int32_t *)(param_4 + 7) = tempPtr5[0xc];
+            *(int32_t *)((longlong)param_4 + 0x3c) = tempVar1;
+            *(int32_t *)(param_4 + 8) = tempVar2;
+            *(int32_t *)((longlong)param_4 + 0x44) = tempVar3;
             
             // 批量复制数据结构参数
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0x12);
-            param_4[9] = *(undefined8 *)(tempPtr5 + 0x10);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0x12);
+            param_4[9] = *(uint64_t *)(tempPtr5 + 0x10);
             param_4[10] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0x16);
-            param_4[0xb] = *(undefined8 *)(tempPtr5 + 0x14);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0x16);
+            param_4[0xb] = *(uint64_t *)(tempPtr5 + 0x14);
             param_4[0xc] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0x1a);
-            param_4[0xd] = *(undefined8 *)(tempPtr5 + 0x18);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0x1a);
+            param_4[0xd] = *(uint64_t *)(tempPtr5 + 0x18);
             param_4[0xe] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0x1e);
-            param_4[0xf] = *(undefined8 *)(tempPtr5 + 0x1c);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0x1e);
+            param_4[0xf] = *(uint64_t *)(tempPtr5 + 0x1c);
             param_4[0x10] = tempVar4;
             
             // 继续批量数据复制
-            *(undefined4 *)(param_4 + 0x11) = tempPtr5[0x20];
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0x23);
-            *(undefined8 *)((longlong)param_4 + 0x8c) = *(undefined8 *)(tempPtr5 + 0x21);
-            *(undefined8 *)((longlong)param_4 + 0x94) = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0x27);
-            *(undefined8 *)((longlong)param_4 + 0x9c) = *(undefined8 *)(tempPtr5 + 0x25);
-            *(undefined8 *)((longlong)param_4 + 0xa4) = tempVar4;
+            *(int32_t *)(param_4 + 0x11) = tempPtr5[0x20];
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0x23);
+            *(uint64_t *)((longlong)param_4 + 0x8c) = *(uint64_t *)(tempPtr5 + 0x21);
+            *(uint64_t *)((longlong)param_4 + 0x94) = tempVar4;
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0x27);
+            *(uint64_t *)((longlong)param_4 + 0x9c) = *(uint64_t *)(tempPtr5 + 0x25);
+            *(uint64_t *)((longlong)param_4 + 0xa4) = tempVar4;
             
             // 设置高级配置参数
-            *(undefined4 *)((longlong)param_4 + 0xac) = tempPtr5[0x29];
+            *(int32_t *)((longlong)param_4 + 0xac) = tempPtr5[0x29];
             tempVar1 = tempPtr5[0x2b];
             tempVar2 = tempPtr5[0x2c];
             tempVar3 = tempPtr5[0x2d];
-            *(undefined4 *)(param_4 + 0x16) = tempPtr5[0x2a];
-            *(undefined4 *)((longlong)param_4 + 0xb4) = tempVar1;
-            *(undefined4 *)(param_4 + 0x17) = tempVar2;
-            *(undefined4 *)((longlong)param_4 + 0xbc) = tempVar3;
+            *(int32_t *)(param_4 + 0x16) = tempPtr5[0x2a];
+            *(int32_t *)((longlong)param_4 + 0xb4) = tempVar1;
+            *(int32_t *)(param_4 + 0x17) = tempVar2;
+            *(int32_t *)((longlong)param_4 + 0xbc) = tempVar3;
             
             // 设置函数指针和回调
-            *(undefined4 *)(param_4 + 0x18) = tempPtr5[0x2e];
-            *(undefined4 *)((longlong)param_4 + 0xc4) = tempPtr5[0x2f];
-            *(undefined1 *)(param_4 + 0x19) = *(undefined1 *)(tempPtr5 + 0x30);
+            *(int32_t *)(param_4 + 0x18) = tempPtr5[0x2e];
+            *(int32_t *)((longlong)param_4 + 0xc4) = tempPtr5[0x2f];
+            *(int8_t *)(param_4 + 0x19) = *(int8_t *)(tempPtr5 + 0x30);
             tempPtr3 = *(longlong **)(tempPtr5 + 0x32);
             param_4[0x1a] = tempPtr3;
             
@@ -696,80 +696,80 @@ longlong *RenderingSystemDataStructureBuilder(longlong *param_1, undefined4 *par
             }
             
             // 设置高级数据结构参数
-            param_4[0x1d] = *(undefined8 *)(tempPtr5 + 0x38);
-            param_4[0x1e] = *(undefined8 *)(tempPtr5 + 0x3a);
+            param_4[0x1d] = *(uint64_t *)(tempPtr5 + 0x38);
+            param_4[0x1e] = *(uint64_t *)(tempPtr5 + 0x3a);
             FUN_1804ffe50(param_4 + 0x20, tempPtr5 + 0x3e);
             
             // 批量设置渲染参数
-            param_4[0x50] = *(undefined8 *)(tempPtr5 + 0x9e);
-            *(undefined4 *)(param_4 + 0x51) = tempPtr5[0xa0];
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xa4);
-            param_4[0x52] = *(undefined8 *)(tempPtr5 + 0xa2);
+            param_4[0x50] = *(uint64_t *)(tempPtr5 + 0x9e);
+            *(int32_t *)(param_4 + 0x51) = tempPtr5[0xa0];
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xa4);
+            param_4[0x52] = *(uint64_t *)(tempPtr5 + 0xa2);
             param_4[0x53] = tempVar4;
             
             // 继续批量参数设置
-            *(undefined4 *)(param_4 + 0x54) = tempPtr5[0xa6];
-            *(undefined4 *)((longlong)param_4 + 0x2a4) = tempPtr5[0xa7];
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xaa);
-            param_4[0x55] = *(undefined8 *)(tempPtr5 + 0xa8);
+            *(int32_t *)(param_4 + 0x54) = tempPtr5[0xa6];
+            *(int32_t *)((longlong)param_4 + 0x2a4) = tempPtr5[0xa7];
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xaa);
+            param_4[0x55] = *(uint64_t *)(tempPtr5 + 0xa8);
             param_4[0x56] = tempVar4;
             
             // 完成所有参数设置
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xae);
-            param_4[0x57] = *(undefined8 *)(tempPtr5 + 0xac);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xae);
+            param_4[0x57] = *(uint64_t *)(tempPtr5 + 0xac);
             param_4[0x58] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xb2);
-            param_4[0x59] = *(undefined8 *)(tempPtr5 + 0xb0);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xb2);
+            param_4[0x59] = *(uint64_t *)(tempPtr5 + 0xb0);
             param_4[0x5a] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xb6);
-            param_4[0x5b] = *(undefined8 *)(tempPtr5 + 0xb4);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xb6);
+            param_4[0x5b] = *(uint64_t *)(tempPtr5 + 0xb4);
             param_4[0x5c] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xba);
-            param_4[0x5d] = *(undefined8 *)(tempPtr5 + 0xb8);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xba);
+            param_4[0x5d] = *(uint64_t *)(tempPtr5 + 0xb8);
             param_4[0x5e] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xbe);
-            param_4[0x5f] = *(undefined8 *)(tempPtr5 + 0xbc);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xbe);
+            param_4[0x5f] = *(uint64_t *)(tempPtr5 + 0xbc);
             param_4[0x60] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xc2);
-            param_4[0x61] = *(undefined8 *)(tempPtr5 + 0xc0);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xc2);
+            param_4[0x61] = *(uint64_t *)(tempPtr5 + 0xc0);
             param_4[0x62] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xc6);
-            param_4[99] = *(undefined8 *)(tempPtr5 + 0xc4);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xc6);
+            param_4[99] = *(uint64_t *)(tempPtr5 + 0xc4);
             param_4[100] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xca);
-            param_4[0x65] = *(undefined8 *)(tempPtr5 + 200);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xca);
+            param_4[0x65] = *(uint64_t *)(tempPtr5 + 200);
             param_4[0x66] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xce);
-            param_4[0x67] = *(undefined8 *)(tempPtr5 + 0xcc);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xce);
+            param_4[0x67] = *(uint64_t *)(tempPtr5 + 0xcc);
             param_4[0x68] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xd2);
-            param_4[0x69] = *(undefined8 *)(tempPtr5 + 0xd0);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xd2);
+            param_4[0x69] = *(uint64_t *)(tempPtr5 + 0xd0);
             param_4[0x6a] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xd6);
-            param_4[0x6b] = *(undefined8 *)(tempPtr5 + 0xd4);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xd6);
+            param_4[0x6b] = *(uint64_t *)(tempPtr5 + 0xd4);
             param_4[0x6c] = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xda);
-            param_4[0x6d] = *(undefined8 *)(tempPtr5 + 0xd8);
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xda);
+            param_4[0x6d] = *(uint64_t *)(tempPtr5 + 0xd8);
             param_4[0x6e] = tempVar4;
-            param_4[0x6f] = *(undefined8 *)(tempPtr5 + 0xdc);
-            *(undefined4 *)(param_4 + 0x70) = tempPtr5[0xde];
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xe1);
-            *(undefined8 *)((longlong)param_4 + 900) = *(undefined8 *)(tempPtr5 + 0xdf);
-            *(undefined8 *)((longlong)param_4 + 0x38c) = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xe5);
-            *(undefined8 *)((longlong)param_4 + 0x394) = *(undefined8 *)(tempPtr5 + 0xe3);
-            *(undefined8 *)((longlong)param_4 + 0x39c) = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xe9);
-            *(undefined8 *)((longlong)param_4 + 0x3a4) = *(undefined8 *)(tempPtr5 + 0xe7);
-            *(undefined8 *)((longlong)param_4 + 0x3ac) = tempVar4;
-            tempVar4 = *(undefined8 *)(tempPtr5 + 0xed);
-            *(undefined8 *)((longlong)param_4 + 0x3b4) = *(undefined8 *)(tempPtr5 + 0xeb);
-            *(undefined8 *)((longlong)param_4 + 0x3bc) = tempVar4;
-            *(undefined2 *)((longlong)param_4 + 0x3c4) = *(undefined2 *)(tempPtr5 + 0xef);
-            param_4[0x79] = *(undefined8 *)(tempPtr5 + 0xf0);
-            *(undefined1 *)(param_4 + 0x7a) = *(undefined1 *)(tempPtr5 + 0xf2);
-            *(undefined1 *)((longlong)param_4 + 0x3d1) = *(undefined1 *)((longlong)tempPtr5 + 0x3c9);
-            *(undefined1 *)((longlong)param_4 + 0x3d2) = *(undefined1 *)((longlong)tempPtr5 + 0x3ca);
+            param_4[0x6f] = *(uint64_t *)(tempPtr5 + 0xdc);
+            *(int32_t *)(param_4 + 0x70) = tempPtr5[0xde];
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xe1);
+            *(uint64_t *)((longlong)param_4 + 900) = *(uint64_t *)(tempPtr5 + 0xdf);
+            *(uint64_t *)((longlong)param_4 + 0x38c) = tempVar4;
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xe5);
+            *(uint64_t *)((longlong)param_4 + 0x394) = *(uint64_t *)(tempPtr5 + 0xe3);
+            *(uint64_t *)((longlong)param_4 + 0x39c) = tempVar4;
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xe9);
+            *(uint64_t *)((longlong)param_4 + 0x3a4) = *(uint64_t *)(tempPtr5 + 0xe7);
+            *(uint64_t *)((longlong)param_4 + 0x3ac) = tempVar4;
+            tempVar4 = *(uint64_t *)(tempPtr5 + 0xed);
+            *(uint64_t *)((longlong)param_4 + 0x3b4) = *(uint64_t *)(tempPtr5 + 0xeb);
+            *(uint64_t *)((longlong)param_4 + 0x3bc) = tempVar4;
+            *(int16_t *)((longlong)param_4 + 0x3c4) = *(int16_t *)(tempPtr5 + 0xef);
+            param_4[0x79] = *(uint64_t *)(tempPtr5 + 0xf0);
+            *(int8_t *)(param_4 + 0x7a) = *(int8_t *)(tempPtr5 + 0xf2);
+            *(int8_t *)((longlong)param_4 + 0x3d1) = *(int8_t *)((longlong)tempPtr5 + 0x3c9);
+            *(int8_t *)((longlong)param_4 + 0x3d2) = *(int8_t *)((longlong)tempPtr5 + 0x3ca);
             
             // 处理数据结构索引和计数
             tempInt1 = tempPtr5[0x2f3];
@@ -778,22 +778,22 @@ longlong *RenderingSystemDataStructureBuilder(longlong *param_1, undefined4 *par
             
             if (0 < tempInt1) {
                 // 批量处理数据结构元素
-                tempPtr4 = (undefined8 *)(tempPtr5 + 0xf3);
+                tempPtr4 = (uint64_t *)(tempPtr5 + 0xf3);
                 tempVar5 = (longlong)param_4 + (0x3d4 - (longlong)tempPtr4);
                 do {
                     tempVar4 = tempPtr4[1];
-                    *(undefined8 *)(tempVar5 + (longlong)tempPtr4) = *tempPtr4;
-                    ((undefined8 *)(tempVar5 + (longlong)tempPtr4))[1] = tempVar4;
+                    *(uint64_t *)(tempVar5 + (longlong)tempPtr4) = *tempPtr4;
+                    ((uint64_t *)(tempVar5 + (longlong)tempPtr4))[1] = tempVar4;
                     tempVar4 = tempPtr4[3];
-                    tempPtr2 = (undefined8 *)(tempVar5 + 0x10 + (longlong)tempPtr4);
+                    tempPtr2 = (uint64_t *)(tempVar5 + 0x10 + (longlong)tempPtr4);
                     *tempPtr2 = tempPtr4[2];
                     tempPtr2[1] = tempVar4;
                     tempVar4 = tempPtr4[5];
-                    tempPtr2 = (undefined8 *)(tempVar5 + 0x20 + (longlong)tempPtr4);
+                    tempPtr2 = (uint64_t *)(tempVar5 + 0x20 + (longlong)tempPtr4);
                     *tempPtr2 = tempPtr4[4];
                     tempPtr2[1] = tempVar4;
                     tempVar4 = tempPtr4[7];
-                    tempPtr2 = (undefined8 *)(tempVar5 + 0x30 + (longlong)tempPtr4);
+                    tempPtr2 = (uint64_t *)(tempVar5 + 0x30 + (longlong)tempPtr4);
                     *tempPtr2 = tempPtr4[6];
                     tempPtr2[1] = tempVar4;
                     tempInt2 = tempInt2 + 1;
@@ -803,7 +803,7 @@ longlong *RenderingSystemDataStructureBuilder(longlong *param_1, undefined4 *par
             
             // 更新数据结构指针
             *param_1 = *param_1 + RENDERING_DATA_STRUCTURE_SIZE;
-            param_4 = (undefined8 *)*param_1;
+            param_4 = (uint64_t *)*param_1;
             tempPtr1 = tempPtr5 + 0x2f6;
             tempPtr5 = tempPtr5 + 0x2f8;
         } while (tempPtr1 != param_3);
@@ -829,12 +829,12 @@ longlong *RenderingSystemDataStructureBuilder(longlong *param_1, undefined4 *par
 longlong RenderingSystemDataCopyProcessor(longlong param_1, longlong param_2, longlong param_3)
 {
     int *tempIntPtr1;
-    undefined8 *tempPtr1;
+    uint64_t *tempPtr1;
     int tempInt1;
     longlong *tempPtr2;
     longlong *tempPtr3;
     int tempInt2;
-    undefined8 tempVar1;
+    uint64_t tempVar1;
     int *tempIntPtr2;
     int *tempIntPtr3;
     
@@ -853,13 +853,13 @@ longlong RenderingSystemDataCopyProcessor(longlong param_1, longlong param_2, lo
             // 执行深度数据复制操作
             tempIntPtr3[-0x2f3] = *tempIntPtr2;
             tempIntPtr3[-0x2f2] = tempIntPtr2[1];
-            *(undefined8 *)(tempIntPtr3 + -0x2f1) = *(undefined8 *)(tempIntPtr2 + 2);
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 6);
-            *(undefined8 *)(tempIntPtr3 + -0x2ef) = *(undefined8 *)(tempIntPtr2 + 4);
-            *(undefined8 *)(tempIntPtr3 + -0x2ed) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 10);
-            *(undefined8 *)(tempIntPtr3 + -0x2eb) = *(undefined8 *)(tempIntPtr2 + 8);
-            *(undefined8 *)(tempIntPtr3 + -0x2e9) = tempVar1;
+            *(uint64_t *)(tempIntPtr3 + -0x2f1) = *(uint64_t *)(tempIntPtr2 + 2);
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 6);
+            *(uint64_t *)(tempIntPtr3 + -0x2ef) = *(uint64_t *)(tempIntPtr2 + 4);
+            *(uint64_t *)(tempIntPtr3 + -0x2ed) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 10);
+            *(uint64_t *)(tempIntPtr3 + -0x2eb) = *(uint64_t *)(tempIntPtr2 + 8);
+            *(uint64_t *)(tempIntPtr3 + -0x2e9) = tempVar1;
             
             // 复制扩展数据结构
             tempInt1 = tempIntPtr2[0xd];
@@ -869,25 +869,25 @@ longlong RenderingSystemDataCopyProcessor(longlong param_1, longlong param_2, lo
             tempIntPtr3[-0x2e6] = tempInt1;
             tempIntPtr3[-0x2e5] = tempInt2;
             tempIntPtr3[-0x2e4] = tempInt2;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0x12);
-            *(undefined8 *)(tempIntPtr3 + -0x2e3) = *(undefined8 *)(tempIntPtr2 + 0x10);
-            *(undefined8 *)(tempIntPtr3 + -0x2e1) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0x16);
-            *(undefined8 *)(tempIntPtr3 + -0x2df) = *(undefined8 *)(tempIntPtr2 + 0x14);
-            *(undefined8 *)(tempIntPtr3 + -0x2dd) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0x1a);
-            *(undefined8 *)(tempIntPtr3 + -0x2db) = *(undefined8 *)(tempIntPtr2 + 0x18);
-            *(undefined8 *)(tempIntPtr3 + -0x2d9) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0x1e);
-            *(undefined8 *)(tempIntPtr3 + -0x2d7) = *(undefined8 *)(tempIntPtr2 + 0x1c);
-            *(undefined8 *)(tempIntPtr3 + -0x2d5) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0x12);
+            *(uint64_t *)(tempIntPtr3 + -0x2e3) = *(uint64_t *)(tempIntPtr2 + 0x10);
+            *(uint64_t *)(tempIntPtr3 + -0x2e1) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0x16);
+            *(uint64_t *)(tempIntPtr3 + -0x2df) = *(uint64_t *)(tempIntPtr2 + 0x14);
+            *(uint64_t *)(tempIntPtr3 + -0x2dd) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0x1a);
+            *(uint64_t *)(tempIntPtr3 + -0x2db) = *(uint64_t *)(tempIntPtr2 + 0x18);
+            *(uint64_t *)(tempIntPtr3 + -0x2d9) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0x1e);
+            *(uint64_t *)(tempIntPtr3 + -0x2d7) = *(uint64_t *)(tempIntPtr2 + 0x1c);
+            *(uint64_t *)(tempIntPtr3 + -0x2d5) = tempVar1;
             tempIntPtr3[-0x2d3] = tempIntPtr2[0x20];
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0x23);
-            *(undefined8 *)(tempIntPtr3 + -0x2d2) = *(undefined8 *)(tempIntPtr2 + 0x21);
-            *(undefined8 *)(tempIntPtr3 + -0x2d0) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0x27);
-            *(undefined8 *)(tempIntPtr3 + -0x2ce) = *(undefined8 *)(tempIntPtr2 + 0x25);
-            *(undefined8 *)(tempIntPtr3 + -0x2cc) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0x23);
+            *(uint64_t *)(tempIntPtr3 + -0x2d2) = *(uint64_t *)(tempIntPtr2 + 0x21);
+            *(uint64_t *)(tempIntPtr3 + -0x2d0) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0x27);
+            *(uint64_t *)(tempIntPtr3 + -0x2ce) = *(uint64_t *)(tempIntPtr2 + 0x25);
+            *(uint64_t *)(tempIntPtr3 + -0x2cc) = tempVar1;
             tempIntPtr3[-0x2ca] = tempIntPtr2[0x29];
             tempInt1 = tempIntPtr2[0x2b];
             tempInt2 = tempIntPtr2[0x2c];
@@ -935,74 +935,74 @@ longlong RenderingSystemDataCopyProcessor(longlong param_1, longlong param_2, lo
             }
             
             // 继续深度数据复制
-            *(undefined8 *)(tempIntPtr3 + -699) = *(undefined8 *)(tempIntPtr2 + 0x38);
-            *(undefined8 *)(tempIntPtr3 + -0x2b9) = *(undefined8 *)(tempIntPtr2 + 0x3a);
+            *(uint64_t *)(tempIntPtr3 + -699) = *(uint64_t *)(tempIntPtr2 + 0x38);
+            *(uint64_t *)(tempIntPtr3 + -0x2b9) = *(uint64_t *)(tempIntPtr2 + 0x3a);
             FUN_180505560(tempIntPtr3 + -0x2b5, tempIntPtr2 + 0x3e);
-            *(undefined8 *)(tempIntPtr3 + -0x255) = *(undefined8 *)(tempIntPtr2 + 0x9e);
+            *(uint64_t *)(tempIntPtr3 + -0x255) = *(uint64_t *)(tempIntPtr2 + 0x9e);
             tempIntPtr3[-0x253] = tempIntPtr2[0xa0];
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xa4);
-            *(undefined8 *)(tempIntPtr3 + -0x251) = *(undefined8 *)(tempIntPtr2 + 0xa2);
-            *(undefined8 *)(tempIntPtr3 + -0x24f) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xa4);
+            *(uint64_t *)(tempIntPtr3 + -0x251) = *(uint64_t *)(tempIntPtr2 + 0xa2);
+            *(uint64_t *)(tempIntPtr3 + -0x24f) = tempVar1;
             tempIntPtr3[-0x24d] = tempIntPtr2[0xa6];
             tempIntPtr3[-0x24c] = tempIntPtr2[0xa7];
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xaa);
-            *(undefined8 *)(tempIntPtr3 + -0x24b) = *(undefined8 *)(tempIntPtr2 + 0xa8);
-            *(undefined8 *)(tempIntPtr3 + -0x249) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xae);
-            *(undefined8 *)(tempIntPtr3 + -0x247) = *(undefined8 *)(tempIntPtr2 + 0xac);
-            *(undefined8 *)(tempIntPtr3 + -0x245) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xb2);
-            *(undefined8 *)(tempIntPtr3 + -0x243) = *(undefined8 *)(tempIntPtr2 + 0xb0);
-            *(undefined8 *)(tempIntPtr3 + -0x241) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xb6);
-            *(undefined8 *)(tempIntPtr3 + -0x23f) = *(undefined8 *)(tempIntPtr2 + 0xb4);
-            *(undefined8 *)(tempIntPtr3 + -0x23d) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xba);
-            *(undefined8 *)(tempIntPtr3 + -0x23b) = *(undefined8 *)(tempIntPtr2 + 0xb8);
-            *(undefined8 *)(tempIntPtr3 + -0x239) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xbe);
-            *(undefined8 *)(tempIntPtr3 + -0x237) = *(undefined8 *)(tempIntPtr2 + 0xbc);
-            *(undefined8 *)(tempIntPtr3 + -0x235) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xc2);
-            *(undefined8 *)(tempIntPtr3 + -0x233) = *(undefined8 *)(tempIntPtr2 + 0xc0);
-            *(undefined8 *)(tempIntPtr3 + -0x231) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xc6);
-            *(undefined8 *)(tempIntPtr3 + -0x22f) = *(undefined8 *)(tempIntPtr2 + 0xc4);
-            *(undefined8 *)(tempIntPtr3 + -0x22d) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xca);
-            *(undefined8 *)(tempIntPtr3 + -0x22b) = *(undefined8 *)(tempIntPtr2 + 200);
-            *(undefined8 *)(tempIntPtr3 + -0x229) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xce);
-            *(undefined8 *)(tempIntPtr3 + -0x227) = *(undefined8 *)(tempIntPtr2 + 0xcc);
-            *(undefined8 *)(tempIntPtr3 + -0x225) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xd2);
-            *(undefined8 *)(tempIntPtr3 + -0x223) = *(undefined8 *)(tempIntPtr2 + 0xd0);
-            *(undefined8 *)(tempIntPtr3 + -0x221) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xd6);
-            *(undefined8 *)(tempIntPtr3 + -0x21f) = *(undefined8 *)(tempIntPtr2 + 0xd4);
-            *(undefined8 *)(tempIntPtr3 + -0x21d) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xda);
-            *(undefined8 *)(tempIntPtr3 + -0x21b) = *(undefined8 *)(tempIntPtr2 + 0xd8);
-            *(undefined8 *)(tempIntPtr3 + -0x219) = tempVar1;
-            *(undefined8 *)(tempIntPtr3 + -0x217) = *(undefined8 *)(tempIntPtr2 + 0xdc);
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xaa);
+            *(uint64_t *)(tempIntPtr3 + -0x24b) = *(uint64_t *)(tempIntPtr2 + 0xa8);
+            *(uint64_t *)(tempIntPtr3 + -0x249) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xae);
+            *(uint64_t *)(tempIntPtr3 + -0x247) = *(uint64_t *)(tempIntPtr2 + 0xac);
+            *(uint64_t *)(tempIntPtr3 + -0x245) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xb2);
+            *(uint64_t *)(tempIntPtr3 + -0x243) = *(uint64_t *)(tempIntPtr2 + 0xb0);
+            *(uint64_t *)(tempIntPtr3 + -0x241) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xb6);
+            *(uint64_t *)(tempIntPtr3 + -0x23f) = *(uint64_t *)(tempIntPtr2 + 0xb4);
+            *(uint64_t *)(tempIntPtr3 + -0x23d) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xba);
+            *(uint64_t *)(tempIntPtr3 + -0x23b) = *(uint64_t *)(tempIntPtr2 + 0xb8);
+            *(uint64_t *)(tempIntPtr3 + -0x239) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xbe);
+            *(uint64_t *)(tempIntPtr3 + -0x237) = *(uint64_t *)(tempIntPtr2 + 0xbc);
+            *(uint64_t *)(tempIntPtr3 + -0x235) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xc2);
+            *(uint64_t *)(tempIntPtr3 + -0x233) = *(uint64_t *)(tempIntPtr2 + 0xc0);
+            *(uint64_t *)(tempIntPtr3 + -0x231) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xc6);
+            *(uint64_t *)(tempIntPtr3 + -0x22f) = *(uint64_t *)(tempIntPtr2 + 0xc4);
+            *(uint64_t *)(tempIntPtr3 + -0x22d) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xca);
+            *(uint64_t *)(tempIntPtr3 + -0x22b) = *(uint64_t *)(tempIntPtr2 + 200);
+            *(uint64_t *)(tempIntPtr3 + -0x229) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xce);
+            *(uint64_t *)(tempIntPtr3 + -0x227) = *(uint64_t *)(tempIntPtr2 + 0xcc);
+            *(uint64_t *)(tempIntPtr3 + -0x225) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xd2);
+            *(uint64_t *)(tempIntPtr3 + -0x223) = *(uint64_t *)(tempIntPtr2 + 0xd0);
+            *(uint64_t *)(tempIntPtr3 + -0x221) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xd6);
+            *(uint64_t *)(tempIntPtr3 + -0x21f) = *(uint64_t *)(tempIntPtr2 + 0xd4);
+            *(uint64_t *)(tempIntPtr3 + -0x21d) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xda);
+            *(uint64_t *)(tempIntPtr3 + -0x21b) = *(uint64_t *)(tempIntPtr2 + 0xd8);
+            *(uint64_t *)(tempIntPtr3 + -0x219) = tempVar1;
+            *(uint64_t *)(tempIntPtr3 + -0x217) = *(uint64_t *)(tempIntPtr2 + 0xdc);
             tempIntPtr3[-0x215] = tempIntPtr2[0xde];
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xe1);
-            *(undefined8 *)(tempIntPtr3 + -0x214) = *(undefined8 *)(tempIntPtr2 + 0xdf);
-            *(undefined8 *)(tempIntPtr3 + -0x212) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xe5);
-            *(undefined8 *)(tempIntPtr3 + -0x210) = *(undefined8 *)(tempIntPtr2 + 0xe3);
-            *(undefined8 *)(tempIntPtr3 + -0x20e) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xe9);
-            *(undefined8 *)(tempIntPtr3 + -0x20c) = *(undefined8 *)(tempIntPtr2 + 0xe7);
-            *(undefined8 *)(tempIntPtr3 + -0x20a) = tempVar1;
-            tempVar1 = *(undefined8 *)(tempIntPtr2 + 0xed);
-            *(undefined8 *)(tempIntPtr3 + -0x208) = *(undefined8 *)(tempIntPtr2 + 0xeb);
-            *(undefined8 *)(tempIntPtr3 + -0x206) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xe1);
+            *(uint64_t *)(tempIntPtr3 + -0x214) = *(uint64_t *)(tempIntPtr2 + 0xdf);
+            *(uint64_t *)(tempIntPtr3 + -0x212) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xe5);
+            *(uint64_t *)(tempIntPtr3 + -0x210) = *(uint64_t *)(tempIntPtr2 + 0xe3);
+            *(uint64_t *)(tempIntPtr3 + -0x20e) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xe9);
+            *(uint64_t *)(tempIntPtr3 + -0x20c) = *(uint64_t *)(tempIntPtr2 + 0xe7);
+            *(uint64_t *)(tempIntPtr3 + -0x20a) = tempVar1;
+            tempVar1 = *(uint64_t *)(tempIntPtr2 + 0xed);
+            *(uint64_t *)(tempIntPtr3 + -0x208) = *(uint64_t *)(tempIntPtr2 + 0xeb);
+            *(uint64_t *)(tempIntPtr3 + -0x206) = tempVar1;
             *(short *)(tempIntPtr3 + -0x204) = (short)tempIntPtr2[0xef];
-            *(undefined8 *)(tempIntPtr3 + -0x203) = *(undefined8 *)(tempIntPtr2 + 0xf0);
+            *(uint64_t *)(tempIntPtr3 + -0x203) = *(uint64_t *)(tempIntPtr2 + 0xf0);
             *(char *)(tempIntPtr3 + -0x201) = (char)tempIntPtr2[0xf2];
-            *(undefined1 *)((longlong)tempIntPtr3 + -0x803) = *(undefined1 *)((longlong)tempIntPtr2 + 0x3c9);
-            *(undefined1 *)((longlong)tempIntPtr3 + -0x802) = *(undefined1 *)((longlong)tempIntPtr2 + 0x3ca);
+            *(int8_t *)((longlong)tempIntPtr3 + -0x803) = *(int8_t *)((longlong)tempIntPtr2 + 0x3c9);
+            *(int8_t *)((longlong)tempIntPtr3 + -0x802) = *(int8_t *)((longlong)tempIntPtr2 + 0x3ca);
             tempInt1 = tempIntPtr2[0x2f3];
             *tempIntPtr3 = tempInt1;
             tempInt2 = 0;
@@ -1012,26 +1012,26 @@ longlong RenderingSystemDataCopyProcessor(longlong param_1, longlong param_2, lo
                 tempIntPtr1 = tempIntPtr3 + -0x200;
                 tempIntPtr2 = tempIntPtr1;
                 do {
-                    tempPtr1 = (undefined8 *)((longlong)tempIntPtr2 + (longlong)tempIntPtr2 + 
+                    tempPtr1 = (uint64_t *)((longlong)tempIntPtr2 + (longlong)tempIntPtr2 + 
                         (0x3cc - (longlong)tempIntPtr1));
                     tempVar1 = tempPtr1[1];
-                    *(undefined8 *)tempIntPtr2 = *tempPtr1;
-                    *(undefined8 *)(tempIntPtr2 + 2) = tempVar1;
-                    tempPtr1 = (undefined8 *)((longlong)tempIntPtr2 + (longlong)tempIntPtr2 + 
+                    *(uint64_t *)tempIntPtr2 = *tempPtr1;
+                    *(uint64_t *)(tempIntPtr2 + 2) = tempVar1;
+                    tempPtr1 = (uint64_t *)((longlong)tempIntPtr2 + (longlong)tempIntPtr2 + 
                         (0x3dc - (longlong)tempIntPtr1));
                     tempVar1 = tempPtr1[1];
-                    *(undefined8 *)(tempIntPtr2 + 4) = *tempPtr1;
-                    *(undefined8 *)(tempIntPtr2 + 6) = tempVar1;
-                    tempPtr1 = (undefined8 *)((longlong)tempIntPtr2 + (longlong)tempIntPtr2 + 
+                    *(uint64_t *)(tempIntPtr2 + 4) = *tempPtr1;
+                    *(uint64_t *)(tempIntPtr2 + 6) = tempVar1;
+                    tempPtr1 = (uint64_t *)((longlong)tempIntPtr2 + (longlong)tempIntPtr2 + 
                         (0x3ec - (longlong)tempIntPtr1));
                     tempVar1 = tempPtr1[1];
-                    *(undefined8 *)(tempIntPtr2 + 8) = *tempPtr1;
-                    *(undefined8 *)(tempIntPtr2 + 10) = tempVar1;
-                    tempPtr1 = (undefined8 *)((longlong)tempIntPtr2 + (longlong)tempIntPtr2 + 
+                    *(uint64_t *)(tempIntPtr2 + 8) = *tempPtr1;
+                    *(uint64_t *)(tempIntPtr2 + 10) = tempVar1;
+                    tempPtr1 = (uint64_t *)((longlong)tempIntPtr2 + (longlong)tempIntPtr2 + 
                         (0x3fc - (longlong)tempIntPtr1));
                     tempVar1 = tempPtr1[1];
-                    *(undefined8 *)(tempIntPtr2 + 0xc) = *tempPtr1;
-                    *(undefined8 *)(tempIntPtr2 + 0xe) = tempVar1;
+                    *(uint64_t *)(tempIntPtr2 + 0xc) = *tempPtr1;
+                    *(uint64_t *)(tempIntPtr2 + 0xe) = tempVar1;
                     tempInt2 = tempInt2 + 1;
                     tempIntPtr2 = tempIntPtr2 + 0x10;
                 } while (tempInt2 < *tempIntPtr3);
@@ -1064,14 +1064,14 @@ longlong RenderingSystemDataCopyProcessor(longlong param_1, longlong param_2, lo
  * @return void 无返回值
  */
 void RenderingSystemAdvancedFunctionCallProcessor(longlong *param_1, longlong *param_2, 
-    undefined8 param_3, undefined4 *param_4, undefined4 *param_5)
+    uint64_t param_3, int32_t *param_4, int32_t *param_5)
 {
     code *functionPtr;
-    undefined8 tempVar1;
+    uint64_t tempVar1;
     longlong *tempPtr1;
-    undefined *tempPtr2;
+    void *tempPtr2;
     longlong tempVar2;
-    undefined4 tempVar3;
+    int32_t tempVar3;
     
     // 获取并执行主函数调用
     functionPtr = *(code **)(*param_1 + 0x78);

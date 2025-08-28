@@ -79,32 +79,32 @@ typedef struct {
 // - param_5: 输出向量X分量
 // - param_6: 输出向量Y分量
 // - param_7: 角度参数
-void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlong param_2, undefined8 param_3, uint param_4,
-                                                      undefined8 param_5, undefined8 param_6, float param_7)
+void rendering_system_advanced_param_processing_8args(uint64_t param_1, longlong param_2, uint64_t param_3, uint param_4,
+                                                      uint64_t param_5, uint64_t param_6, float param_7)
 {
-    undefined8 uVar1;
-    undefined8 uVar2;
-    undefined8 uVar3;
+    uint64_t uVar1;
+    uint64_t uVar2;
+    uint64_t uVar3;
     int iVar4;
-    undefined4 uVar5;
+    int32_t uVar5;
     uint uVar6;
     int iVar7;
     longlong lVar8;
-    undefined8 *unaff_RBX;
+    uint64_t *unaff_RBX;
     longlong unaff_RBP;
     longlong unaff_RSI;
     int iVar9;
-    undefined8 unaff_RDI;
+    uint64_t unaff_RDI;
     uint uVar10;
     longlong *in_R10;
     longlong in_R11;
-    undefined8 unaff_R12;
+    uint64_t unaff_R12;
     longlong lVar11;
-    undefined8 unaff_R13;
+    uint64_t unaff_R13;
     longlong lVar12;
-    undefined8 unaff_R14;
+    uint64_t unaff_R14;
     ulonglong uVar13;
-    undefined8 unaff_R15;
+    uint64_t unaff_R15;
     float fVar14;
     float fVar15;
     float fVar16;
@@ -117,72 +117,72 @@ void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlo
     float unaff_XMM7_Da;
     float fVar21;
     float fVar22;
-    undefined4 unaff_XMM9_Da;
+    int32_t unaff_XMM9_Da;
     float fVar23;
     float fVar24;
-    undefined4 unaff_XMM9_Db;
-    undefined4 unaff_XMM9_Dc;
-    undefined4 unaff_XMM9_Dd;
-    undefined4 unaff_XMM10_Da;
+    int32_t unaff_XMM9_Db;
+    int32_t unaff_XMM9_Dc;
+    int32_t unaff_XMM9_Dd;
+    int32_t unaff_XMM10_Da;
     float fVar25;
-    undefined4 unaff_XMM10_Db;
-    undefined4 unaff_XMM10_Dc;
-    undefined4 unaff_XMM10_Dd;
-    undefined4 unaff_XMM11_Da;
+    int32_t unaff_XMM10_Db;
+    int32_t unaff_XMM10_Dc;
+    int32_t unaff_XMM10_Dd;
+    int32_t unaff_XMM11_Da;
     float fVar26;
-    undefined4 unaff_XMM11_Db;
-    undefined4 unaff_XMM11_Dc;
-    undefined4 unaff_XMM11_Dd;
-    undefined4 unaff_XMM12_Da;
+    int32_t unaff_XMM11_Db;
+    int32_t unaff_XMM11_Dc;
+    int32_t unaff_XMM11_Dd;
+    int32_t unaff_XMM12_Da;
     float fVar27;
-    undefined4 unaff_XMM12_Db;
-    undefined4 unaff_XMM12_Dc;
-    undefined4 unaff_XMM12_Dd;
-    undefined4 unaff_XMM13_Da;
-    undefined4 unaff_XMM13_Db;
-    undefined4 unaff_XMM13_Dc;
-    undefined4 unaff_XMM13_Dd;
+    int32_t unaff_XMM12_Db;
+    int32_t unaff_XMM12_Dc;
+    int32_t unaff_XMM12_Dd;
+    int32_t unaff_XMM13_Da;
+    int32_t unaff_XMM13_Db;
+    int32_t unaff_XMM13_Dc;
+    int32_t unaff_XMM13_Dd;
     float unaff_XMM14_Da;
-    undefined4 unaff_XMM15_Da;
-    undefined4 unaff_XMM15_Db;
-    undefined4 unaff_XMM15_Dc;
-    undefined4 unaff_XMM15_Dd;
+    int32_t unaff_XMM15_Da;
+    int32_t unaff_XMM15_Db;
+    int32_t unaff_XMM15_Dc;
+    int32_t unaff_XMM15_Dd;
     
     // 保存寄存器状态到栈帧
-    *(undefined8 *)(in_R11 + 0x18) = unaff_R12;
+    *(uint64_t *)(in_R11 + 0x18) = unaff_R12;
     uVar10 = param_4 + 2;
-    *(undefined8 *)(in_R11 + -0x18) = unaff_R13;
+    *(uint64_t *)(in_R11 + -0x18) = unaff_R13;
     lVar12 = *(longlong *)(unaff_RBP + 0x170);
-    *(undefined8 *)(in_R11 + -0x20) = unaff_R14;
+    *(uint64_t *)(in_R11 + -0x20) = unaff_R14;
     uVar13 = (ulonglong)param_4;
-    *(undefined8 *)(in_R11 + 0x10) = unaff_RDI;
-    *(undefined8 *)(in_R11 + -0x28) = unaff_R15;
+    *(uint64_t *)(in_R11 + 0x10) = unaff_RDI;
+    *(uint64_t *)(in_R11 + -0x28) = unaff_R15;
     
     // 保存XMM寄存器状态
-    *(undefined4 *)(in_R11 + -0x68) = unaff_XMM9_Da;
-    *(undefined4 *)(in_R11 + -100) = unaff_XMM9_Db;
-    *(undefined4 *)(in_R11 + -0x60) = unaff_XMM9_Dc;
-    *(undefined4 *)(in_R11 + -0x5c) = unaff_XMM9_Dd;
-    *(undefined4 *)(in_R11 + -0x78) = unaff_XMM10_Da;
-    *(undefined4 *)(in_R11 + -0x74) = unaff_XMM10_Db;
-    *(undefined4 *)(in_R11 + -0x70) = unaff_XMM10_Dc;
-    *(undefined4 *)(in_R11 + -0x6c) = unaff_XMM10_Dd;
-    *(undefined4 *)(in_R11 + -0x88) = unaff_XMM11_Da;
-    *(undefined4 *)(in_R11 + -0x84) = unaff_XMM11_Db;
-    *(undefined4 *)(in_R11 + -0x80) = unaff_XMM11_Dc;
-    *(undefined4 *)(in_R11 + -0x7c) = unaff_XMM11_Dd;
-    *(undefined4 *)(in_R11 + -0x98) = unaff_XMM12_Da;
-    *(undefined4 *)(in_R11 + -0x94) = unaff_XMM12_Db;
-    *(undefined4 *)(in_R11 + -0x90) = unaff_XMM12_Dc;
-    *(undefined4 *)(in_R11 + -0x8c) = unaff_XMM12_Dd;
-    *(undefined4 *)(in_R11 + -0xa8) = unaff_XMM13_Da;
-    *(undefined4 *)(in_R11 + -0xa4) = unaff_XMM13_Db;
-    *(undefined4 *)(in_R11 + -0xa0) = unaff_XMM13_Dc;
-    *(undefined4 *)(in_R11 + -0x9c) = unaff_XMM13_Dd;
-    *(undefined4 *)(in_R11 + -200) = unaff_XMM15_Da;
-    *(undefined4 *)(in_R11 + -0xc4) = unaff_XMM15_Db;
-    *(undefined4 *)(in_R11 + -0xc0) = unaff_XMM15_Dc;
-    *(undefined4 *)(in_R11 + -0xbc) = unaff_XMM15_Dd;
+    *(int32_t *)(in_R11 + -0x68) = unaff_XMM9_Da;
+    *(int32_t *)(in_R11 + -100) = unaff_XMM9_Db;
+    *(int32_t *)(in_R11 + -0x60) = unaff_XMM9_Dc;
+    *(int32_t *)(in_R11 + -0x5c) = unaff_XMM9_Dd;
+    *(int32_t *)(in_R11 + -0x78) = unaff_XMM10_Da;
+    *(int32_t *)(in_R11 + -0x74) = unaff_XMM10_Db;
+    *(int32_t *)(in_R11 + -0x70) = unaff_XMM10_Dc;
+    *(int32_t *)(in_R11 + -0x6c) = unaff_XMM10_Dd;
+    *(int32_t *)(in_R11 + -0x88) = unaff_XMM11_Da;
+    *(int32_t *)(in_R11 + -0x84) = unaff_XMM11_Db;
+    *(int32_t *)(in_R11 + -0x80) = unaff_XMM11_Dc;
+    *(int32_t *)(in_R11 + -0x7c) = unaff_XMM11_Dd;
+    *(int32_t *)(in_R11 + -0x98) = unaff_XMM12_Da;
+    *(int32_t *)(in_R11 + -0x94) = unaff_XMM12_Db;
+    *(int32_t *)(in_R11 + -0x90) = unaff_XMM12_Dc;
+    *(int32_t *)(in_R11 + -0x8c) = unaff_XMM12_Dd;
+    *(int32_t *)(in_R11 + -0xa8) = unaff_XMM13_Da;
+    *(int32_t *)(in_R11 + -0xa4) = unaff_XMM13_Db;
+    *(int32_t *)(in_R11 + -0xa0) = unaff_XMM13_Dc;
+    *(int32_t *)(in_R11 + -0x9c) = unaff_XMM13_Dd;
+    *(int32_t *)(in_R11 + -200) = unaff_XMM15_Da;
+    *(int32_t *)(in_R11 + -0xc4) = unaff_XMM15_Db;
+    *(int32_t *)(in_R11 + -0xc0) = unaff_XMM15_Dc;
+    *(int32_t *)(in_R11 + -0xbc) = unaff_XMM15_Dd;
     
     // 主处理循环
     do {
@@ -219,12 +219,12 @@ void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlo
             fVar19 = *(float *)(unaff_RBP + 0x48);
             
             // 获取顶点属性数据
-            uVar1 = *(undefined8 *)(lVar11 + 0x28 + lVar12);
-            uVar5 = *(undefined4 *)(lVar11 + 0x30 + lVar12);
-            uVar2 = *(undefined8 *)(lVar11 + 0x28 + lVar12);
-            uVar3 = *(undefined8 *)(lVar11 + 0x28 + lVar12);
-            *(undefined4 *)(unaff_RBP + -0x48) = uVar5;
-            *(undefined4 *)(unaff_RBP + -0x38) = uVar5;
+            uVar1 = *(uint64_t *)(lVar11 + 0x28 + lVar12);
+            uVar5 = *(int32_t *)(lVar11 + 0x30 + lVar12);
+            uVar2 = *(uint64_t *)(lVar11 + 0x28 + lVar12);
+            uVar3 = *(uint64_t *)(lVar11 + 0x28 + lVar12);
+            *(int32_t *)(unaff_RBP + -0x48) = uVar5;
+            *(int32_t *)(unaff_RBP + -0x38) = uVar5;
             
             // 计算向量运算
             fVar16 = fVar14 * (float)uVar1 + fVar15 * (float)((ulonglong)uVar1 >> 0x20) +
@@ -233,23 +233,23 @@ void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlo
             param_6._0_4_ = (float)((ulonglong)uVar3 >> 0x20) - fVar15 * fVar16;
             
             // 处理法线向量
-            uVar1 = *(undefined8 *)(lVar11 + 0x34 + lVar12);
+            uVar1 = *(uint64_t *)(lVar11 + 0x34 + lVar12);
             fVar21 = *(float *)(unaff_RBP + -0x38) - fVar19 * fVar16;
             *(float *)(unaff_RBP + 8) = fVar21;
             fVar27 = *(float *)(unaff_RBP + 8);
-            uVar5 = *(undefined4 *)(lVar11 + 0x3c + lVar12);
-            uVar2 = *(undefined8 *)(lVar11 + 0x34 + lVar12);
-            *(undefined4 *)(unaff_RBP + -0x28) = uVar5;
-            *(undefined4 *)(unaff_RBP + -0x18) = uVar5;
+            uVar5 = *(int32_t *)(lVar11 + 0x3c + lVar12);
+            uVar2 = *(uint64_t *)(lVar11 + 0x34 + lVar12);
+            *(int32_t *)(unaff_RBP + -0x28) = uVar5;
+            *(int32_t *)(unaff_RBP + -0x18) = uVar5;
             
             // 计算法线向量运算
             fVar17 = fVar15 * (float)((ulonglong)uVar1 >> 0x20) + fVar14 * (float)uVar1 +
                      fVar19 * *(float *)(unaff_RBP + -0x28);
             fVar23 = (float)uVar2 - fVar14 * fVar17;
             fVar16 = *(float *)(unaff_RBP + -0x18) - fVar19 * fVar17;
-            fVar17 = (float)((ulonglong)*(undefined8 *)(lVar11 + 0x34 + lVar12) >> 0x20) - fVar15 * fVar17;
+            fVar17 = (float)((ulonglong)*(uint64_t *)(lVar11 + 0x34 + lVar12) >> 0x20) - fVar15 * fVar17;
             *(float *)(unaff_RBP + 0x18) = fVar16;
-            *(undefined4 *)(unaff_RBP + -0x80) = *(undefined4 *)(unaff_RBP + 0x18);
+            *(int32_t *)(unaff_RBP + -0x80) = *(int32_t *)(unaff_RBP + 0x18);
             
             // 向量归一化处理
             if (((unaff_XMM7_Da < (float)((uint)param_5._4_4_ & unaff_XMM6_Da)) ||
@@ -354,7 +354,7 @@ void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlo
             lVar12 = *(longlong *)(unaff_RBP + 0x170);
             uVar10 = 2;
             param_2 = *(longlong *)(unaff_RBP + -0x68);
-            *(undefined4 *)(unaff_RBP + -8) = *(undefined4 *)(unaff_RBX + 1);
+            *(int32_t *)(unaff_RBP + -8) = *(int32_t *)(unaff_RBX + 1);
             fVar15 = *(float *)(unaff_RBP + -8);
             in_XMM5_Da = param_7 + fVar21;
             fVar19 = *(float *)((longlong)unaff_RBX + 0x14);
@@ -363,7 +363,7 @@ void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlo
             *unaff_RBX = CONCAT44(fVar14 + (float)param_6 * fVar21, (float)uVar1 + param_5._4_4_ * fVar21);
             uVar1 = unaff_RBX[2];
             *(float *)(unaff_RBP + 0x28) = fVar15 + fVar27 * fVar21;
-            *(undefined4 *)(unaff_RBX + 1) = *(undefined4 *)(unaff_RBP + 0x28);
+            *(int32_t *)(unaff_RBX + 1) = *(int32_t *)(unaff_RBP + 0x28);
             unaff_RBX[2] = CONCAT44(fVar19 + fVar17 * fVar21, (float)uVar1 + fVar23 * fVar21);
             *(float *)((longlong)unaff_RBX + 0x1c) =
                  fVar21 * *(float *)(lVar11 + 0x44 + lVar12) + *(float *)((longlong)unaff_RBX + 0x1c);
@@ -379,7 +379,7 @@ void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlo
     // 最终归一化处理
     uVar1 = *unaff_RBX;
     fVar14 = *(float *)(unaff_RBX + 1);
-    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
     *(float *)(unaff_RBP + 0x38) = fVar14;
     if (((unaff_XMM7_Da < (float)((uint)uVar1 & unaff_XMM6_Da)) ||
         (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x34) & unaff_XMM6_Da))) ||
@@ -387,7 +387,7 @@ void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlo
         uVar1 = *unaff_RBX;
         *(float *)(unaff_RBP + 0x38) = fVar14;
         fVar19 = (float)((ulonglong)uVar1 >> 0x20);
-        *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+        *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         fVar15 = unaff_XMM14_Da /
                  SQRT(fVar19 * fVar19 + *(float *)(unaff_RBP + 0x30) * *(float *)(unaff_RBP + 0x30) +
                       *(float *)(unaff_RBP + 0x38) * *(float *)(unaff_RBP + 0x38));
@@ -398,7 +398,7 @@ void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlo
     // 第二组最终归一化
     uVar1 = unaff_RBX[2];
     fVar14 = *(float *)(unaff_RBX + 3);
-    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
     *(float *)(unaff_RBP + 0x38) = fVar14;
     if (((unaff_XMM7_Da < (float)((uint)uVar1 & unaff_XMM6_Da)) ||
         (unaff_XMM7_Da < (float)(*(uint *)(unaff_RBP + 0x34) & unaff_XMM6_Da))) ||
@@ -406,7 +406,7 @@ void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlo
         uVar1 = unaff_RBX[2];
         *(float *)(unaff_RBP + 0x38) = fVar14;
         fVar19 = (float)((ulonglong)uVar1 >> 0x20);
-        *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+        *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         fVar15 = unaff_XMM14_Da /
                  SQRT(fVar19 * fVar19 + *(float *)(unaff_RBP + 0x30) * *(float *)(unaff_RBP + 0x30) +
                       *(float *)(unaff_RBP + 0x38) * *(float *)(unaff_RBP + 0x38));
@@ -441,9 +441,9 @@ void rendering_system_advanced_param_processing_8args(undefined8 param_1, longlo
 // - 应用标准化系数
 void rendering_system_vector_normalization(void)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     float fVar2;
-    undefined8 *unaff_RBX;
+    uint64_t *unaff_RBX;
     longlong unaff_RBP;
     float fVar3;
     float fVar4;
@@ -456,7 +456,7 @@ void rendering_system_vector_normalization(void)
     // 获取第一个向量数据
     uVar1 = *unaff_RBX;
     fVar2 = *(float *)(unaff_RBX + 1);
-    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
     *(float *)(unaff_RBP + 0x38) = fVar2;
     
     // 检查是否需要归一化
@@ -466,7 +466,7 @@ void rendering_system_vector_normalization(void)
         uVar1 = *unaff_RBX;
         *(float *)(unaff_RBP + 0x38) = fVar2;
         fVar4 = (float)((ulonglong)uVar1 >> 0x20);
-        *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+        *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         
         // 计算归一化系数
         fVar3 = unaff_XMM14_Da /
@@ -481,7 +481,7 @@ void rendering_system_vector_normalization(void)
     // 获取第二个向量数据
     uVar1 = unaff_RBX[2];
     fVar2 = *(float *)(unaff_RBX + 3);
-    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
     *(float *)(unaff_RBP + 0x38) = fVar2;
     
     // 检查第二个向量是否需要归一化
@@ -491,7 +491,7 @@ void rendering_system_vector_normalization(void)
         uVar1 = unaff_RBX[2];
         *(float *)(unaff_RBP + 0x38) = fVar2;
         fVar4 = (float)((ulonglong)uVar1 >> 0x20);
-        *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+        *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         
         // 计算第二个向量的归一化系数
         fVar3 = unaff_XMM14_Da /
@@ -530,9 +530,9 @@ void rendering_system_vector_normalization(void)
 // - 提高处理效率
 void rendering_system_fast_vector_normalization(void)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     float in_EAX;
-    undefined8 *unaff_RBX;
+    uint64_t *unaff_RBX;
     longlong unaff_RBP;
     float fVar2;
     float fVar3;
@@ -549,7 +549,7 @@ void rendering_system_fast_vector_normalization(void)
         uVar1 = *unaff_RBX;
         *(float *)(unaff_RBP + 0x38) = in_EAX;
         fVar3 = (float)((ulonglong)uVar1 >> 0x20);
-        *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+        *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         
         // 计算快速归一化系数
         fVar2 = unaff_XMM14_Da /
@@ -564,7 +564,7 @@ void rendering_system_fast_vector_normalization(void)
     // 获取第二个向量数据
     uVar1 = unaff_RBX[2];
     fVar2 = *(float *)(unaff_RBX + 3);
-    *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+    *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
     *(float *)(unaff_RBP + 0x38) = fVar2;
     
     // 检查第二个向量是否需要归一化
@@ -574,7 +574,7 @@ void rendering_system_fast_vector_normalization(void)
         uVar1 = unaff_RBX[2];
         *(float *)(unaff_RBP + 0x38) = fVar2;
         fVar4 = (float)((ulonglong)uVar1 >> 0x20);
-        *(undefined8 *)(unaff_RBP + 0x30) = uVar1;
+        *(uint64_t *)(unaff_RBP + 0x30) = uVar1;
         
         // 计算第二个向量的归一化系数
         fVar3 = unaff_XMM14_Da /
@@ -649,7 +649,7 @@ void rendering_system_quick_sort(longlong param_1, int param_2, int param_3, uin
 {
     int iVar1;
     int iVar2;
-    undefined4 uVar3;
+    int32_t uVar3;
     byte bVar4;
     uint uVar5;
     ulonglong uVar6;
@@ -693,13 +693,13 @@ void rendering_system_quick_sort(longlong param_1, int param_2, int param_3, uin
             if (lVar8 < (longlong)uVar10) break;
             
             // 交换元素
-            uVar3 = *(undefined4 *)(param_1 + uVar10 * 4);
+            uVar3 = *(int32_t *)(param_1 + uVar10 * 4);
             uVar5 = uVar5 + 1;
             uVar6 = (ulonglong)uVar5;
             iVar7 = iVar7 + -1;
-            *(undefined4 *)(param_1 + uVar10 * 4) = *(undefined4 *)(param_1 + lVar8 * 4);
+            *(int32_t *)(param_1 + uVar10 * 4) = *(int32_t *)(param_1 + lVar8 * 4);
             uVar10 = uVar10 + 1;
-            *(undefined4 *)(param_1 + lVar8 * 4) = uVar3;
+            *(int32_t *)(param_1 + lVar8 * 4) = uVar3;
             lVar8 = lVar8 + -1;
         } while ((longlong)uVar10 <= lVar8);
         
@@ -956,8 +956,8 @@ LAB_1804138ec:
 // - 建立邻接关系
 // - 处理边缘数据
 // - 验证关系正确性
-void rendering_system_edge_detection(undefined8 param_1, undefined8 param_2, longlong param_3, longlong param_4,
-                                    undefined8 param_5, undefined8 param_6, longlong param_7)
+void rendering_system_edge_detection(uint64_t param_1, uint64_t param_2, longlong param_3, longlong param_4,
+                                    uint64_t param_5, uint64_t param_6, longlong param_7)
 {
     int iVar1;
     int iVar2;

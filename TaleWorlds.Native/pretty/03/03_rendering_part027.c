@@ -34,8 +34,8 @@ void RenderingBatchManager(void *render_context, longlong *batch_data)
     longlong instance_count;
     uint instance_flag;
     ulonglong instance_data;
-    undefined1 stack_guard[32];
-    undefined4 render_state;
+    int8_t stack_guard[32];
+    int32_t render_state;
     int current_batch;
     uint batch_flags;
     char render_target[4];
@@ -154,8 +154,8 @@ material_found:
                             stream_offset = material_hash;
                             
                             // 生成材质名称
-                            FUN_18066c220(texture_id + 0x20, render_target, *(undefined4 *)(texture_id + 0x10),
-                                          *(undefined4 *)(texture_id + 0x18));
+                            FUN_18066c220(texture_id + 0x20, render_target, *(int32_t *)(texture_id + 0x10),
+                                          *(int32_t *)(texture_id + 0x18));
                             if (render_target[0] != '\0') {
                                 buffer_size = instance_data % (ulonglong)depth_stencil;
                                 FUN_180285760(texture_id, depth_stencil);
@@ -299,10 +299,10 @@ realloc_buffer:
 
 // 函数: 材质批处理变体 - 处理材质批处理的变体逻辑
 // 原始函数名: FUN_180280648
-void MaterialBatchProcessor(undefined8 context_base, undefined8 render_context, longlong batch_data, longlong *render_buffer,
-                          undefined8 material_type, int batch_index, undefined8 material_name, longlong *uniform_buffer,
-                          longlong *vertex_buffer, undefined8 texture_data, undefined8 shader_data, ulonglong *material_hash,
-                          longlong render_target, undefined8 depth_stencil, ulonglong *constant_buffer, ulonglong instance_data,
+void MaterialBatchProcessor(uint64_t context_base, uint64_t render_context, longlong batch_data, longlong *render_buffer,
+                          uint64_t material_type, int batch_index, uint64_t material_name, longlong *uniform_buffer,
+                          longlong *vertex_buffer, uint64_t texture_data, uint64_t shader_data, ulonglong *material_hash,
+                          longlong render_target, uint64_t depth_stencil, ulonglong *constant_buffer, ulonglong instance_data,
                           ulonglong buffer_offset, ulonglong material_offset)
 {
   // 材质和纹理处理变量
@@ -310,13 +310,13 @@ void MaterialBatchProcessor(undefined8 context_base, undefined8 render_context, 
   longlong shader_offset;
   longlong texture_offset;
   longlong *resource_manager;
-  undefined8 *texture_handle;
+  uint64_t *texture_handle;
   ulonglong hash_key;
   longlong material_id;
   longlong texture_id;
   longlong vertex_offset;
   longlong index_offset;
-  undefined8 render_device;
+  uint64_t render_device;
   uint *batch_buffer;
   ulonglong buffer_size;
   ulonglong total_vertices;
@@ -329,12 +329,12 @@ void MaterialBatchProcessor(undefined8 context_base, undefined8 render_context, 
   longlong instance_count;
   uint instance_flag;
   ulonglong instance_hash;
-  undefined8 stack_guard[32];
-  undefined8 render_state;
+  uint64_t stack_guard[32];
+  uint64_t render_state;
   longlong batch_size;
   uint batch_flags;
   char material_target[4];
-  undefined8 depth_target;
+  uint64_t depth_target;
   longlong *uniform_data;
   longlong vertex_stride;
   longlong index_stride;
@@ -344,13 +344,13 @@ void MaterialBatchProcessor(undefined8 context_base, undefined8 render_context, 
   ulonglong index_offset2;
   
   // 保存寄存器状态（简化实现）
-  *(undefined8 *)(render_context + 0x18) = context_base;
-  *(undefined8 *)(render_context + -0x10) = render_context;
-  *(undefined8 *)(render_context + -0x18) = render_context;
-  *(undefined8 *)(render_context + -0x20) = render_context;
-  *(undefined8 *)(render_context + -0x28) = render_context;
-  *(undefined8 *)(render_context + -0x30) = render_context;
-  *(undefined8 *)(render_context + -0x38) = render_context;
+  *(uint64_t *)(render_context + 0x18) = context_base;
+  *(uint64_t *)(render_context + -0x10) = render_context;
+  *(uint64_t *)(render_context + -0x18) = render_context;
+  *(uint64_t *)(render_context + -0x20) = render_context;
+  *(uint64_t *)(render_context + -0x28) = render_context;
+  *(uint64_t *)(render_context + -0x30) = render_context;
+  *(uint64_t *)(render_context + -0x38) = render_context;
   
   buffer_offset = 0;
   do {
@@ -408,9 +408,9 @@ material_found:
             
             // 初始化顶点数据
             if (0 < *(int *)*render_context) {
-              texture_handle = (undefined8 *)(vertex_offset2 + 8);
+              texture_handle = (uint64_t *)(vertex_offset2 + 8);
               do {
-                render_device = (undefined8 *)render_context[3];
+                render_device = (uint64_t *)render_context[3];
                 vertex_format = vertex_format + 1;
                 texture_handle[-1] = 0;
                 *texture_handle = 0;
@@ -446,8 +446,8 @@ material_found:
             index_offset2 = buffer_size;
             
             // 生成材质名称
-            FUN_18066c220(texture_id + 0x20, material_target, *(undefined4 *)(texture_id + 0x10),
-                          *(undefined4 *)(texture_id + 0x18), 1);
+            FUN_18066c220(texture_id + 0x20, material_target, *(int32_t *)(texture_id + 0x10),
+                          *(int32_t *)(texture_id + 0x18), 1);
             if (material_target[0] != '\0') {
               stream_offset = instance_data % (ulonglong)depth_target;
               FUN_180285760(texture_id, depth_target);
@@ -523,28 +523,28 @@ realloc_buffer:
                 *index_data = *(uint *)((longlong)shader_slot + (-4 - (longlong)texture_slot) +
                                       (longlong)vertex_data);
                 index_data = index_data + 0x14;
-                texture_handle = (undefined8 *)
+                texture_handle = (uint64_t *)
                           ((longlong)shader_slot + (-0x50 - (longlong)texture_slot) + (longlong)material_ptr);
                 render_device = texture_handle[1];
-                *(undefined8 *)vertex_data = *texture_handle;
-                *(undefined8 *)(vertex_data + 2) = render_device;
-                texture_handle = (undefined8 *)
+                *(uint64_t *)vertex_data = *texture_handle;
+                *(uint64_t *)(vertex_data + 2) = render_device;
+                texture_handle = (uint64_t *)
                           ((longlong)shader_slot + (-0x40 - (longlong)texture_slot) + (longlong)material_ptr);
                 render_device = texture_handle[1];
-                *(undefined8 *)(vertex_data + 4) = *texture_handle;
-                *(undefined8 *)(vertex_data + 6) = render_device;
-                texture_handle = (undefined8 *)
+                *(uint64_t *)(vertex_data + 4) = *texture_handle;
+                *(uint64_t *)(vertex_data + 6) = render_device;
+                texture_handle = (uint64_t *)
                           ((longlong)shader_slot + (-0x30 - (longlong)texture_slot) + (longlong)material_ptr);
                 render_device = texture_handle[1];
-                *(undefined8 *)(vertex_data + 8) = *texture_handle;
-                *(undefined8 *)(vertex_data + 10) = render_device;
-                texture_handle = (undefined8 *)
+                *(uint64_t *)(vertex_data + 8) = *texture_handle;
+                *(uint64_t *)(vertex_data + 10) = render_device;
+                texture_handle = (uint64_t *)
                           ((longlong)shader_slot + (-0x20 - (longlong)texture_slot) + (longlong)material_ptr);
                 render_device = texture_handle[1];
-                *(undefined8 *)(vertex_data + 0xc) = *texture_handle;
-                *(undefined8 *)(vertex_data + 0xe) = render_device;
-                *(undefined8 *)(vertex_data + 0x11) =
-                     *(undefined8 *)
+                *(uint64_t *)(vertex_data + 0xc) = *texture_handle;
+                *(uint64_t *)(vertex_data + 0xe) = render_device;
+                *(uint64_t *)(vertex_data + 0x11) =
+                     *(uint64_t *)
                       ((longlong)shader_slot + (-0xc - (longlong)texture_slot) + (longlong)material_ptr);
                 batch_buffer = (uint *)((longlong)vertex_data +
                                   (longlong)shader_slot + (0x4c - (longlong)texture_slot));

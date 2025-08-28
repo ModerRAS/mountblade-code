@@ -8,12 +8,12 @@
 void serialize_rendering_data(void)
 
 {
-  undefined1 byte_value;
-  undefined4 dword_value;
+  int8_t byte_value;
+  int32_t dword_value;
   longlong calculated_value;
   longlong range_value;
-  undefined1 *byte_writer;
-  undefined4 *dword_writer;
+  int8_t *byte_writer;
+  int32_t *dword_writer;
   int *int_writer;
   longlong *buffer_manager;
   int iteration_index;
@@ -27,14 +27,14 @@ void serialize_rendering_data(void)
   } while (unaff_RBP != 0);
   
   // 处理渲染数据缓冲区初始化
-  FUN_18025a940(&UNK_18098dfd0,*(undefined4 *)(unaff_RDI + 0x7c8));
-  byte_writer = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x7cc);
+  FUN_18025a940(&UNK_18098dfd0,*(int32_t *)(unaff_RDI + 0x7c8));
+  byte_writer = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
   
   // 检查缓冲区空间并写入字节数据
   if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_writer = (undefined1 *)unaff_RBX[1];
+    byte_writer = (int8_t *)unaff_RBX[1];
   }
   *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
@@ -45,10 +45,10 @@ void serialize_rendering_data(void)
   }
   
   // 处理双字数据写入初始化
-  dword_writer = (undefined4 *)unaff_RBX[1];
+  dword_writer = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   iteration_index = 0;
   *dword_writer = 0;
@@ -80,21 +80,21 @@ void serialize_rendering_data(void)
   
   // 处理渲染状态数据
   FUN_180639ec0();
-  byte_writer = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x8a8);
+  byte_writer = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x8a8);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_writer = (undefined1 *)unaff_RBX[1];
+    byte_writer = (int8_t *)unaff_RBX[1];
   }
   *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   
   // 写入渲染配置数据
-  dword_writer = (undefined4 *)unaff_RBX[1];
-  dword_value = *(undefined4 *)(unaff_RDI + 0x8ac);
+  dword_writer = (int32_t *)unaff_RBX[1];
+  dword_value = *(int32_t *)(unaff_RDI + 0x8ac);
   if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   *dword_writer = dword_value;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -192,17 +192,17 @@ void serialize_rendering_data(void)
   
   // 处理渲染状态标志
   FUN_180639ec0();
-  byte_writer = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x18c9);
+  byte_writer = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x18c9);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_writer = (undefined1 *)unaff_RBX[1];
+    byte_writer = (int8_t *)unaff_RBX[1];
   }
   *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   
   // 处理渲染配置数据块
-  dword_writer = (undefined4 *)unaff_RBX[1];
+  dword_writer = (int32_t *)unaff_RBX[1];
   if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
     FUN_180639ec0();
     FUN_180639ec0();
@@ -210,11 +210,11 @@ void serialize_rendering_data(void)
     FUN_180639ec0();
     FUN_180639ec0();
     FUN_180639ec0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   *dword_writer = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -241,22 +241,22 @@ void serialize_rendering_data(void)
 void serialize_rendering_data_alternate(void)
 
 {
-  undefined1 byte_value;
-  undefined4 dword_value;
+  int8_t byte_value;
+  int32_t dword_value;
   longlong calculated_value;
   longlong range_value;
-  undefined1 *byte_writer;
-  undefined4 *dword_writer;
+  int8_t *byte_writer;
+  int32_t *dword_writer;
   int *int_writer;
   longlong *buffer_manager;
   int iteration_index;
-  undefined1 status_flag;
+  int8_t status_flag;
   int data_index;
   longlong render_context;
   
   // 备用序列化路径初始化
   FUN_180639bf0();
-  *(undefined1 *)unaff_RBX[1] = unaff_SIL;
+  *(int8_t *)unaff_RBX[1] = unaff_SIL;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   
   // 检查渲染状态标志
@@ -265,10 +265,10 @@ void serialize_rendering_data_alternate(void)
   }
   
   // 处理双字数据写入
-  dword_writer = (undefined4 *)unaff_RBX[1];
+  dword_writer = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   iteration_index = 0;
   *dword_writer = 0;
@@ -300,21 +300,21 @@ void serialize_rendering_data_alternate(void)
   
   // 处理渲染状态数据
   FUN_180639ec0();
-  byte_writer = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x8a8);
+  byte_writer = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x8a8);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_writer = (undefined1 *)unaff_RBX[1];
+    byte_writer = (int8_t *)unaff_RBX[1];
   }
   *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   
   // 写入渲染配置数据
-  dword_writer = (undefined4 *)unaff_RBX[1];
-  dword_value = *(undefined4 *)(unaff_RDI + 0x8ac);
+  dword_writer = (int32_t *)unaff_RBX[1];
+  dword_value = *(int32_t *)(unaff_RDI + 0x8ac);
   if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   *dword_writer = dword_value;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -412,17 +412,17 @@ void serialize_rendering_data_alternate(void)
   
   // 处理渲染状态标志
   FUN_180639ec0();
-  byte_writer = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x18c9);
+  byte_writer = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x18c9);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_writer = (undefined1 *)unaff_RBX[1];
+    byte_writer = (int8_t *)unaff_RBX[1];
   }
   *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   
   // 处理渲染配置数据块
-  dword_writer = (undefined4 *)unaff_RBX[1];
+  dword_writer = (int32_t *)unaff_RBX[1];
   if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
     FUN_180639ec0();
     FUN_180639ec0();
@@ -430,11 +430,11 @@ void serialize_rendering_data_alternate(void)
     FUN_180639ec0();
     FUN_180639ec0();
     FUN_180639ec0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   *dword_writer = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -461,26 +461,26 @@ void serialize_rendering_data_alternate(void)
 void serialize_rendering_data_parameterized(void)
 
 {
-  undefined1 byte_value;
-  undefined4 dword_value;
+  int8_t byte_value;
+  int32_t dword_value;
   longlong calculated_value;
   longlong range_value;
-  undefined1 *byte_writer;
-  undefined4 *dword_writer;
+  int8_t *byte_writer;
+  int32_t *dword_writer;
   int *int_writer;
   longlong *buffer_manager;
   int iteration_index;
   int data_index;
   longlong render_context;
-  undefined8 stack_parameter;
-  undefined8 stack_temp;
+  uint64_t stack_parameter;
+  uint64_t stack_temp;
   
   // 参数化序列化初始化
   uStack0000000000000040 = in_stack_00000030;
-  dword_writer = (undefined4 *)unaff_RBX[1];
+  dword_writer = (int32_t *)unaff_RBX[1];
   if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   iteration_index = 0;
   *dword_writer = 0;
@@ -512,21 +512,21 @@ void serialize_rendering_data_parameterized(void)
   
   // 处理渲染状态数据
   FUN_180639ec0();
-  byte_writer = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x8a8);
+  byte_writer = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x8a8);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_writer = (undefined1 *)unaff_RBX[1];
+    byte_writer = (int8_t *)unaff_RBX[1];
   }
   *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   
   // 写入渲染配置数据
-  dword_writer = (undefined4 *)unaff_RBX[1];
-  dword_value = *(undefined4 *)(unaff_RDI + 0x8ac);
+  dword_writer = (int32_t *)unaff_RBX[1];
+  dword_value = *(int32_t *)(unaff_RDI + 0x8ac);
   if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   *dword_writer = dword_value;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -624,17 +624,17 @@ void serialize_rendering_data_parameterized(void)
   
   // 处理渲染状态标志
   FUN_180639ec0();
-  byte_writer = (undefined1 *)unaff_RBX[1];
-  byte_value = *(undefined1 *)(unaff_RDI + 0x18c9);
+  byte_writer = (int8_t *)unaff_RBX[1];
+  byte_value = *(int8_t *)(unaff_RDI + 0x18c9);
   if ((ulonglong)((*unaff_RBX - (longlong)byte_writer) + unaff_RBX[2]) < 2) {
     FUN_180639bf0();
-    byte_writer = (undefined1 *)unaff_RBX[1];
+    byte_writer = (int8_t *)unaff_RBX[1];
   }
   *byte_writer = byte_value;
   unaff_RBX[1] = unaff_RBX[1] + 1;
   
   // 处理渲染配置数据块
-  dword_writer = (undefined4 *)unaff_RBX[1];
+  dword_writer = (int32_t *)unaff_RBX[1];
   if (*(char *)(unaff_RDI + 0x18c9) != '\0') {
     FUN_180639ec0();
     FUN_180639ec0();
@@ -642,11 +642,11 @@ void serialize_rendering_data_parameterized(void)
     FUN_180639ec0();
     FUN_180639ec0();
     FUN_180639ec0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   if ((ulonglong)((*unaff_RBX - (longlong)dword_writer) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    dword_writer = (undefined4 *)unaff_RBX[1];
+    dword_writer = (int32_t *)unaff_RBX[1];
   }
   *dword_writer = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;
@@ -678,21 +678,21 @@ void process_rendering_system(longlong render_manager,longlong data_buffer)
   int temp_int;
   longlong temp_long;
   int *int_pointer;
-  undefined4 *dword_pointer;
+  int32_t *dword_pointer;
   longlong range_size;
   longlong *context_pointer;
   uint *uint_pointer;
-  undefined *data_pointer;
+  void *data_pointer;
   ulonglong offset_1;
   ulonglong offset_2;
   uint uint_value;
   ulonglong loop_count;
   longlong temp_value;
-  undefined1 stack_buffer [32];
-  undefined8 stack_guard;
-  undefined *ptr_e8;
-  undefined *ptr_e0;
-  undefined4 stack_d8;
+  int8_t stack_buffer [32];
+  uint64_t stack_guard;
+  void *ptr_e8;
+  void *ptr_e0;
+  int32_t stack_d8;
   undefined stack_d0 [136];
   ulonglong stack_checksum;
   
@@ -751,9 +751,9 @@ void process_rendering_system(longlong render_manager,longlong data_buffer)
   
   // 处理渲染状态和配置数据
   *(char *)(render_manager + 0xd8) = (char)*uint_pointer;
-  dword_pointer = (undefined4 *)(*(longlong *)(data_buffer + 8) + 1);
-  *(undefined4 **)(data_buffer + 8) = dword_pointer;
-  *(undefined4 *)(render_manager + 0xdc) = *dword_pointer;
+  dword_pointer = (int32_t *)(*(longlong *)(data_buffer + 8) + 1);
+  *(int32_t **)(data_buffer + 8) = dword_pointer;
+  *(int32_t *)(render_manager + 0xdc) = *dword_pointer;
   lVar13 = *(longlong *)(data_buffer + 8);
   uint_pointer = (uint *)(lVar13 + 4);
   *(uint **)(data_buffer + 8) = uint_pointer;
@@ -993,7 +993,7 @@ void process_rendering_system(longlong render_manager,longlong data_buffer)
       }
       if (temp_int < 0x10) {
         puVar8 = &DAT_18098bc73;
-        if (puStack_e0 != (undefined *)0x0) {
+        if (puStack_e0 != (void *)0x0) {
           puVar8 = puStack_e0;
         }
         (**(code **)(*context_pointer + 0x10))(context_pointer,puVar8);

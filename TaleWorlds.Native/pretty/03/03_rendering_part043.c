@@ -41,7 +41,7 @@ void process_rendering_data_complex(void)
   int int_val;                    // 整数值
   longlong loop_var1;             // 循环变量1
   ulonglong ulong_val;            // 无符号长整型
-  undefined8 base_reg;           // 基址寄存器
+  uint64_t base_reg;           // 基址寄存器
   longlong source_reg;            // 源寄存器
   int count_reg;                  // 计数寄存器
   longlong target_reg;            // 目标寄存器
@@ -65,7 +65,7 @@ void process_rendering_data_complex(void)
   ulonglong temp_ulong;           // 临时无符号长整型
   
   // 初始化数据上下文
-  *(undefined8 *)(data_context + 8) = base_reg;
+  *(uint64_t *)(data_context + 8) = base_reg;
   
   // 主处理循环
   do {
@@ -273,7 +273,7 @@ void initialize_rendering_state(void)
 }
 
 // 函数: void setup_rendering_buffer(int *buffer_config, longlong buffer_ptr, int buffer_size, 
-//                                   undefined8 param_4, undefined8 param_5, int offset)
+//                                   uint64_t param_4, uint64_t param_5, int offset)
 // 功能: 设置渲染缓冲区
 // 参数:
 //   buffer_config - 缓冲区配置指针
@@ -284,15 +284,15 @@ void initialize_rendering_state(void)
 //   offset - 偏移量
 // 返回: 无
 void setup_rendering_buffer(int *buffer_config, longlong buffer_ptr, int buffer_size, 
-                          undefined8 param_4, undefined8 param_5, int offset)
+                          uint64_t param_4, uint64_t param_5, int offset)
 
 {
   int config_size;               // 配置大小
-  undefined1 stack_buffer[48];   // 栈缓冲区
-  undefined1 *buffer_ptr_local;  // 本地缓冲区指针
-  undefined8 local_var;          // 本地变量
-  undefined1 *target_ptr;        // 目标指针
-  undefined1 large_buffer[528];  // 大缓冲区
+  int8_t stack_buffer[48];   // 栈缓冲区
+  int8_t *buffer_ptr_local;  // 本地缓冲区指针
+  uint64_t local_var;          // 本地变量
+  int8_t *target_ptr;        // 目标指针
+  int8_t large_buffer[528];  // 大缓冲区
   ulonglong checksum;            // 校验和
   
   // 计算校验和
@@ -310,7 +310,7 @@ void setup_rendering_buffer(int *buffer_config, longlong buffer_ptr, int buffer_
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
     // 分配内存
-    buffer_ptr_local = (undefined1 *)func_0x000180120ce0((longlong)(config_size * 2 + 1) << 2, _DAT_180c8a9a8);
+    buffer_ptr_local = (int8_t *)func_0x000180120ce0((longlong)(config_size * 2 + 1) << 2, _DAT_180c8a9a8);
   }
   
   target_ptr = buffer_ptr_local + (longlong)*buffer_config * 4;
@@ -322,7 +322,7 @@ void setup_rendering_buffer(int *buffer_config, longlong buffer_ptr, int buffer_
       // 错误处理
       FUN_1808fc050(checksum ^ (ulonglong)stack_buffer);
     }
-    if ((buffer_ptr_local != (undefined1 *)0x0) && (_DAT_180c8a9b0 != 0)) {
+    if ((buffer_ptr_local != (int8_t *)0x0) && (_DAT_180c8a9b0 != 0)) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
     // 内存释放
@@ -344,34 +344,34 @@ void configure_rendering_context(int *context_config, longlong context_ptr, int 
 
 {
   int config_value;              // 配置值
-  undefined1 *local_buffer;      // 本地缓冲区
-  undefined8 reg_bx;             // 寄存器BX
-  undefined8 reg_bp;             // 寄存器BP
-  undefined8 reg_si;             // 寄存器SI
-  undefined8 reg_di;             // 寄存器DI
+  int8_t *local_buffer;      // 本地缓冲区
+  uint64_t reg_bx;             // 寄存器BX
+  uint64_t reg_bp;             // 寄存器BP
+  uint64_t reg_si;             // 寄存器SI
+  uint64_t reg_di;             // 寄存器DI
   longlong reg_r11;              // 寄存器R11
-  undefined8 reg_r12;            // 寄存器R12
-  undefined8 reg_r13;            // 寄存器R13
-  undefined8 reg_r14;            // 寄存器R14
-  undefined8 reg_r15;            // 寄存器R15
-  undefined4 xmm_reg[4];        // XMM寄存器数组
-  undefined8 local_var;          // 本地变量
+  uint64_t reg_r12;            // 寄存器R12
+  uint64_t reg_r13;            // 寄存器R13
+  uint64_t reg_r14;            // 寄存器R14
+  uint64_t reg_r15;            // 寄存器R15
+  int32_t xmm_reg[4];        // XMM寄存器数组
+  uint64_t local_var;          // 本地变量
   ulonglong stack_checksum;      // 栈校验和
   int stack_param;               // 栈参数
   
   // 保存寄存器状态
-  *(undefined8 *)(reg_r11 + 0x20) = reg_bx;
-  *(undefined8 *)(reg_r11 + -8) = reg_bp;
-  *(undefined8 *)(reg_r11 + -0x10) = reg_si;
-  *(undefined8 *)(reg_r11 + -0x18) = reg_di;
-  *(undefined8 *)(reg_r11 + -0x20) = reg_r12;
-  *(undefined8 *)(reg_r11 + -0x28) = reg_r13;
-  *(undefined8 *)(reg_r11 + -0x30) = reg_r14;
-  *(undefined8 *)(reg_r11 + -0x38) = reg_r15;
-  *(undefined4 *)(reg_r11 + -0x78) = xmm_reg[0];
-  *(undefined4 *)(reg_r11 + -0x74) = xmm_reg[1];
-  *(undefined4 *)(reg_r11 + -0x70) = xmm_reg[2];
-  *(undefined4 *)(reg_r11 + -0x6c) = xmm_reg[3];
+  *(uint64_t *)(reg_r11 + 0x20) = reg_bx;
+  *(uint64_t *)(reg_r11 + -8) = reg_bp;
+  *(uint64_t *)(reg_r11 + -0x10) = reg_si;
+  *(uint64_t *)(reg_r11 + -0x18) = reg_di;
+  *(uint64_t *)(reg_r11 + -0x20) = reg_r12;
+  *(uint64_t *)(reg_r11 + -0x28) = reg_r13;
+  *(uint64_t *)(reg_r11 + -0x30) = reg_r14;
+  *(uint64_t *)(reg_r11 + -0x38) = reg_r15;
+  *(int32_t *)(reg_r11 + -0x78) = xmm_reg[0];
+  *(int32_t *)(reg_r11 + -0x74) = xmm_reg[1];
+  *(int32_t *)(reg_r11 + -0x70) = xmm_reg[2];
+  *(int32_t *)(reg_r11 + -0x6c) = xmm_reg[3];
   local_var = 0;
   
   // 选择缓冲区
@@ -384,7 +384,7 @@ void configure_rendering_context(int *context_config, longlong context_ptr, int 
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
     // 分配内存
-    local_buffer = (undefined1 *)func_0x000180120ce0((longlong)(config_value * 2 + 1) << 2, _DAT_180c8a9a8);
+    local_buffer = (int8_t *)func_0x000180120ce0((longlong)(config_value * 2 + 1) << 2, _DAT_180c8a9a8);
   }
   
   *(float *)(context_ptr + 4 + (longlong)context_id * 0x14) = (float)(context_config[1] + stack_param) + 1.0;
@@ -395,7 +395,7 @@ void configure_rendering_context(int *context_config, longlong context_ptr, int 
       // 错误处理
       FUN_1808fc050(stack_checksum ^ (ulonglong)&stack0x00000000);
     }
-    if ((local_buffer != (undefined1 *)0x0) && (_DAT_180c8a9b0 != 0)) {
+    if ((local_buffer != (int8_t *)0x0) && (_DAT_180c8a9b0 != 0)) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
     // 内存释放
@@ -417,32 +417,32 @@ void setup_rendering_pipeline(int *pipeline_config, longlong pipeline_ptr, int p
 
 {
   int config_value;              // 配置值
-  undefined1 *local_buffer;      // 本地缓冲区
+  int8_t *local_buffer;      // 本地缓冲区
   int reg_bx;                    // 寄存器BX
-  undefined8 reg_bp;             // 寄存器BP
-  undefined8 reg_si;             // 寄存器SI
-  undefined8 reg_di;             // 寄存器DI
+  uint64_t reg_bp;             // 寄存器BP
+  uint64_t reg_si;             // 寄存器SI
+  uint64_t reg_di;             // 寄存器DI
   longlong reg_r11;              // 寄存器R11
-  undefined8 reg_r12;            // 寄存器R12
-  undefined8 reg_r13;            // 寄存器R13
-  undefined8 reg_r14;            // 寄存器R14
-  undefined8 reg_r15;            // 寄存器R15
-  undefined4 xmm_reg[4];        // XMM寄存器数组
+  uint64_t reg_r12;            // 寄存器R12
+  uint64_t reg_r13;            // 寄存器R13
+  uint64_t reg_r14;            // 寄存器R14
+  uint64_t reg_r15;            // 寄存器R15
+  int32_t xmm_reg[4];        // XMM寄存器数组
   ulonglong stack_checksum;      // 栈校验和
   int stack_param;               // 栈参数
   
   // 保存寄存器状态
-  *(undefined8 *)(reg_r11 + -8) = reg_bp;
-  *(undefined8 *)(reg_r11 + -0x10) = reg_si;
-  *(undefined8 *)(reg_r11 + -0x18) = reg_di;
-  *(undefined8 *)(reg_r11 + -0x20) = reg_r12;
-  *(undefined8 *)(reg_r11 + -0x28) = reg_r13;
-  *(undefined8 *)(reg_r11 + -0x30) = reg_r14;
-  *(undefined8 *)(reg_r11 + -0x38) = reg_r15;
-  *(undefined4 *)(reg_r11 + -0x78) = xmm_reg[0];
-  *(undefined4 *)(reg_r11 + -0x74) = xmm_reg[1];
-  *(undefined4 *)(reg_r11 + -0x70) = xmm_reg[2];
-  *(undefined4 *)(reg_r11 + -0x6c) = xmm_reg[3];
+  *(uint64_t *)(reg_r11 + -8) = reg_bp;
+  *(uint64_t *)(reg_r11 + -0x10) = reg_si;
+  *(uint64_t *)(reg_r11 + -0x18) = reg_di;
+  *(uint64_t *)(reg_r11 + -0x20) = reg_r12;
+  *(uint64_t *)(reg_r11 + -0x28) = reg_r13;
+  *(uint64_t *)(reg_r11 + -0x30) = reg_r14;
+  *(uint64_t *)(reg_r11 + -0x38) = reg_r15;
+  *(int32_t *)(reg_r11 + -0x78) = xmm_reg[0];
+  *(int32_t *)(reg_r11 + -0x74) = xmm_reg[1];
+  *(int32_t *)(reg_r11 + -0x70) = xmm_reg[2];
+  *(int32_t *)(reg_r11 + -0x6c) = xmm_reg[3];
   
   // 选择缓冲区
   if (config_value < 0x41) {
@@ -454,7 +454,7 @@ void setup_rendering_pipeline(int *pipeline_config, longlong pipeline_ptr, int p
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + 1;
     }
     // 分配内存
-    local_buffer = (undefined1 *)func_0x000180120ce0((longlong)(config_value * 2 + 1) << 2, _DAT_180c8a9a8);
+    local_buffer = (int8_t *)func_0x000180120ce0((longlong)(config_value * 2 + 1) << 2, _DAT_180c8a9a8);
   }
   
   *(float *)(pipeline_ptr + 4 + (longlong)pipeline_id * 0x14) = (float)(pipeline_config[1] + stack_param) + 1.0;
@@ -465,7 +465,7 @@ void setup_rendering_pipeline(int *pipeline_config, longlong pipeline_ptr, int p
       // 错误处理
       FUN_1808fc050(stack_checksum ^ (ulonglong)&stack0x00000000);
     }
-    if ((local_buffer != (undefined1 *)0x0) && (_DAT_180c8a9b0 != 0)) {
+    if ((local_buffer != (int8_t *)0x0) && (_DAT_180c8a9b0 != 0)) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
     // 内存释放
@@ -495,7 +495,7 @@ void release_rendering_resources(void)
 
 {
   longlong reg_r15;              // 寄存器R15
-  undefined1 *stack_param1;      // 栈参数1
+  int8_t *stack_param1;      // 栈参数1
   ulonglong stack_param2;        // 栈参数2
   
   // 释放主要资源
@@ -508,7 +508,7 @@ void release_rendering_resources(void)
   
   // 释放栈资源
   if (stack_param1 != &stack0x00000050) {
-    if ((stack_param1 != (undefined1 *)0x0) && (_DAT_180c8a9b0 != 0)) {
+    if ((stack_param1 != (int8_t *)0x0) && (_DAT_180c8a9b0 != 0)) {
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
     FUN_180059ba0(stack_param1, _DAT_180c8a9a8);
@@ -545,38 +545,38 @@ void deallocate_rendering_memory(longlong memory_ptr)
   FUN_180059ba0(memory_ptr, _DAT_180c8a9a8);
 }
 
-// 函数: void optimize_rendering_data(undefined8 *data_array, int array_size)
+// 函数: void optimize_rendering_data(uint64_t *data_array, int array_size)
 // 功能: 优化渲染数据
 // 参数:
 //   data_array - 数据数组指针
 //   array_size - 数组大小
 // 返回: 无
-void optimize_rendering_data(undefined8 *data_array, int array_size)
+void optimize_rendering_data(uint64_t *data_array, int array_size)
 
 {
-  undefined4 *elem_ptr1;         // 元素指针1
+  int32_t *elem_ptr1;         // 元素指针1
   float *float_ptr1;             // 浮点指针1
   float float_val1;              // 浮点值1
   float float_val2;              // 浮点值2
-  undefined4 elem_val1;          // 元素值1
-  undefined4 elem_val2;          // 元素值2
-  undefined4 elem_val3;          // 元素值3
-  undefined4 elem_val4;          // 元素值4
-  undefined4 elem_val5;          // 元素值5
-  undefined8 elem_val6;          // 元素值6
-  undefined8 elem_val7;          // 元素值7
-  undefined8 elem_val8;          // 元素值8
+  int32_t elem_val1;          // 元素值1
+  int32_t elem_val2;          // 元素值2
+  int32_t elem_val3;          // 元素值3
+  int32_t elem_val4;          // 元素值4
+  int32_t elem_val5;          // 元素值5
+  uint64_t elem_val6;          // 元素值6
+  uint64_t elem_val7;          // 元素值7
+  uint64_t elem_val8;          // 元素值8
   int partition_size;            // 分区大小
   longlong mid_index;            // 中间索引
   longlong last_index;           // 最后索引
   float *float_ptr2;             // 浮点指针2
   int left_size;                 // 左侧大小
-  undefined8 *elem_ptr2;         // 元素指针2
+  uint64_t *elem_ptr2;         // 元素指针2
   int right_size;                // 右侧大小
   longlong swap_index;           // 交换索引
   longlong partition_end;        // 分区结束
   int temp_size;                 // 临时大小
-  undefined8 *temp_ptr;          // 临时指针
+  uint64_t *temp_ptr;          // 临时指针
   
   // 快速排序实现
   if (0xc < array_size) {
@@ -589,47 +589,47 @@ void optimize_rendering_data(undefined8 *data_array, int array_size)
       
       // 分区选择
       if (*(float *)((longlong)data_array + 4) < float_val1 != float_val1 < float_val2) {
-        elem_ptr2 = (undefined8 *)((longlong)data_array + mid_index * 0x14);
+        elem_ptr2 = (uint64_t *)((longlong)data_array + mid_index * 0x14);
         elem_val6 = elem_ptr2[1];
         swap_index = 0;
         if (*(float *)((longlong)data_array + 4) < float_val2 != float_val1 < float_val2) {
           swap_index = right_size;
         }
         partition_end = (longlong)swap_index;
-        temp_ptr = (undefined8 *)((longlong)data_array + partition_end * 0x14);
+        temp_ptr = (uint64_t *)((longlong)data_array + partition_end * 0x14);
         elem_val7 = *temp_ptr;
         elem_val8 = temp_ptr[1];
-        elem_val1 = *(undefined4 *)((longlong)data_array + partition_end * 0x14 + 0x10);
-        temp_ptr = (undefined8 *)((longlong)data_array + partition_end * 0x14);
+        elem_val1 = *(int32_t *)((longlong)data_array + partition_end * 0x14 + 0x10);
+        temp_ptr = (uint64_t *)((longlong)data_array + partition_end * 0x14);
         *temp_ptr = *elem_ptr2;
         temp_ptr[1] = elem_val6;
-        *(undefined4 *)((longlong)data_array + partition_end * 0x14 + 0x10) =
-             *(undefined4 *)((longlong)data_array + mid_index * 0x14 + 0x10);
-        elem_ptr2 = (undefined8 *)((longlong)data_array + mid_index * 0x14);
+        *(int32_t *)((longlong)data_array + partition_end * 0x14 + 0x10) =
+             *(int32_t *)((longlong)data_array + mid_index * 0x14 + 0x10);
+        elem_ptr2 = (uint64_t *)((longlong)data_array + mid_index * 0x14);
         *elem_ptr2 = elem_val7;
         elem_ptr2[1] = elem_val8;
-        *(undefined4 *)((longlong)data_array + mid_index * 0x14 + 0x10) = elem_val1;
+        *(int32_t *)((longlong)data_array + mid_index * 0x14 + 0x10) = elem_val1;
       }
       
       // 交换分区元素
-      elem_ptr2 = (undefined8 *)((longlong)data_array + mid_index * 0x14);
+      elem_ptr2 = (uint64_t *)((longlong)data_array + mid_index * 0x14);
       elem_val6 = elem_ptr2[1];
-      elem_val1 = *(undefined4 *)(data_array + 2);
+      elem_val1 = *(int32_t *)(data_array + 2);
       swap_index = 1;
-      elem_val2 = *(undefined4 *)data_array;
-      elem_val3 = *(undefined4 *)((longlong)data_array + 4);
-      elem_val4 = *(undefined4 *)(data_array + 1);
-      elem_val5 = *(undefined4 *)((longlong)data_array + 0xc);
+      elem_val2 = *(int32_t *)data_array;
+      elem_val3 = *(int32_t *)((longlong)data_array + 4);
+      elem_val4 = *(int32_t *)(data_array + 1);
+      elem_val5 = *(int32_t *)((longlong)data_array + 0xc);
       partition_end = 1;
       *data_array = *elem_ptr2;
       data_array[1] = elem_val6;
-      *(undefined4 *)(data_array + 2) = *(undefined4 *)((longlong)data_array + mid_index * 0x14 + 0x10);
-      elem_ptr1 = (undefined4 *)((longlong)data_array + mid_index * 0x14);
+      *(int32_t *)(data_array + 2) = *(int32_t *)((longlong)data_array + mid_index * 0x14 + 0x10);
+      elem_ptr1 = (int32_t *)((longlong)data_array + mid_index * 0x14);
       *elem_ptr1 = elem_val2;
       elem_ptr1[1] = elem_val3;
       elem_ptr1[2] = elem_val4;
       elem_ptr1[3] = elem_val5;
-      *(undefined4 *)((longlong)data_array + mid_index * 0x14 + 0x10) = elem_val1;
+      *(int32_t *)((longlong)data_array + mid_index * 0x14 + 0x10) = elem_val1;
       
       // 分区处理
       while( true ) {
@@ -658,28 +658,28 @@ void optimize_rendering_data(undefined8 *data_array, int array_size)
         }
         if (partition_end <= mid_index) break;
         swap_index = swap_index + 1;
-        elem_ptr2 = (undefined8 *)((longlong)data_array + partition_end * 0x14);
+        elem_ptr2 = (uint64_t *)((longlong)data_array + partition_end * 0x14);
         elem_val6 = elem_ptr2[1];
         right_size = right_size + -1;
-        elem_ptr1 = (undefined4 *)((longlong)data_array + mid_index * 0x14);
+        elem_ptr1 = (int32_t *)((longlong)data_array + mid_index * 0x14);
         elem_val2 = *elem_ptr1;
         elem_val3 = elem_ptr1[1];
         elem_val4 = elem_ptr1[2];
         elem_val5 = elem_ptr1[3];
-        elem_val1 = *(undefined4 *)((longlong)data_array + mid_index * 0x14 + 0x10);
+        elem_val1 = *(int32_t *)((longlong)data_array + mid_index * 0x14 + 0x10);
         partition_end = mid_index + 1;
-        temp_ptr = (undefined8 *)((longlong)data_array + mid_index * 0x14);
+        temp_ptr = (uint64_t *)((longlong)data_array + mid_index * 0x14);
         *temp_ptr = *elem_ptr2;
         temp_ptr[1] = elem_val6;
         last_index = partition_end + -1;
-        *(undefined4 *)((longlong)data_array + mid_index * 0x14 + 0x10) =
-             *(undefined4 *)((longlong)data_array + partition_end * 0x14 + 0x10);
-        elem_ptr1 = (undefined4 *)((longlong)data_array + partition_end * 0x14);
+        *(int32_t *)((longlong)data_array + mid_index * 0x14 + 0x10) =
+             *(int32_t *)((longlong)data_array + partition_end * 0x14 + 0x10);
+        elem_ptr1 = (int32_t *)((longlong)data_array + partition_end * 0x14);
         *elem_ptr1 = elem_val2;
         elem_ptr1[1] = elem_val3;
         elem_ptr1[2] = elem_val4;
         elem_ptr1[3] = elem_val5;
-        *(undefined4 *)((longlong)data_array + partition_end * 0x14 + 0x10) = elem_val1;
+        *(int32_t *)((longlong)data_array + partition_end * 0x14 + 0x10) = elem_val1;
       }
       
       left_size = array_size - swap_index;
@@ -690,7 +690,7 @@ void optimize_rendering_data(undefined8 *data_array, int array_size)
         partition_size = left_size;
       }
       
-      elem_ptr2 = (undefined8 *)((longlong)data_array + (longlong)swap_index * 0x14);
+      elem_ptr2 = (uint64_t *)((longlong)data_array + (longlong)swap_index * 0x14);
       temp_ptr = data_array;
       if (left_size <= right_size) {
         temp_ptr = elem_ptr2;
@@ -706,38 +706,38 @@ void optimize_rendering_data(undefined8 *data_array, int array_size)
   return;
 }
 
-// 函数: void sort_rendering_elements(undefined8 *element_array, int element_count)
+// 函数: void sort_rendering_elements(uint64_t *element_array, int element_count)
 // 功能: 排序渲染元素
 // 参数:
 //   element_array - 元素数组指针
 //   element_count - 元素数量
 // 返回: 无
-void sort_rendering_elements(undefined8 *element_array, int element_count)
+void sort_rendering_elements(uint64_t *element_array, int element_count)
 
 {
-  undefined4 *elem_ptr1;         // 元素指针1
+  int32_t *elem_ptr1;         // 元素指针1
   float *float_ptr1;             // 浮点指针1
   float float_val1;              // 浮点值1
   float float_val2;              // 浮点值2
-  undefined4 elem_val1;          // 元素值1
-  undefined4 elem_val2;          // 元素值2
-  undefined4 elem_val3;          // 元素值3
-  undefined4 elem_val4;          // 元素值4
-  undefined4 elem_val5;          // 元素值5
-  undefined8 elem_val6;          // 元素值6
-  undefined8 elem_val7;          // 元素值7
-  undefined8 elem_val8;          // 元素值8
+  int32_t elem_val1;          // 元素值1
+  int32_t elem_val2;          // 元素值2
+  int32_t elem_val3;          // 元素值3
+  int32_t elem_val4;          // 元素值4
+  int32_t elem_val5;          // 元素值5
+  uint64_t elem_val6;          // 元素值6
+  uint64_t elem_val7;          // 元素值7
+  uint64_t elem_val8;          // 元素值8
   int partition_size;            // 分区大小
   longlong mid_index;            // 中间索引
   longlong last_index;           // 最后索引
   float *float_ptr2;             // 浮点指针2
   int left_size;                 // 左侧大小
-  undefined8 *elem_ptr2;         // 元素指针2
+  uint64_t *elem_ptr2;         // 元素指针2
   int right_size;                // 右侧大小
   longlong swap_index;           // 交换索引
   longlong partition_end;        // 分区结束
   int temp_size;                 // 临时大小
-  undefined8 *temp_ptr;          // 临时指针
+  uint64_t *temp_ptr;          // 临时指针
   
   // 快速排序实现（递归版本）
   do {
@@ -749,47 +749,47 @@ void sort_rendering_elements(undefined8 *element_array, int element_count)
     
     // 分区选择
     if (*(float *)((longlong)element_array + 4) < float_val1 != float_val1 < float_val2) {
-      elem_ptr2 = (undefined8 *)((longlong)element_array + mid_index * 0x14);
+      elem_ptr2 = (uint64_t *)((longlong)element_array + mid_index * 0x14);
       elem_val6 = elem_ptr2[1];
       swap_index = 0;
       if (*(float *)((longlong)element_array + 4) < float_val2 != float_val1 < float_val2) {
         swap_index = right_size;
       }
       partition_end = (longlong)swap_index;
-      temp_ptr = (undefined8 *)((longlong)element_array + partition_end * 0x14);
+      temp_ptr = (uint64_t *)((longlong)element_array + partition_end * 0x14);
       elem_val7 = *temp_ptr;
       elem_val8 = temp_ptr[1];
-      elem_val1 = *(undefined4 *)((longlong)element_array + partition_end * 0x14 + 0x10);
-      temp_ptr = (undefined8 *)((longlong)element_array + partition_end * 0x14);
+      elem_val1 = *(int32_t *)((longlong)element_array + partition_end * 0x14 + 0x10);
+      temp_ptr = (uint64_t *)((longlong)element_array + partition_end * 0x14);
       *temp_ptr = *elem_ptr2;
       temp_ptr[1] = elem_val6;
-      *(undefined4 *)((longlong)element_array + partition_end * 0x14 + 0x10) =
-           *(undefined4 *)((longlong)element_array + mid_index * 0x14 + 0x10);
-      elem_ptr2 = (undefined8 *)((longlong)element_array + mid_index * 0x14);
+      *(int32_t *)((longlong)element_array + partition_end * 0x14 + 0x10) =
+           *(int32_t *)((longlong)element_array + mid_index * 0x14 + 0x10);
+      elem_ptr2 = (uint64_t *)((longlong)element_array + mid_index * 0x14);
       *elem_ptr2 = elem_val7;
       elem_ptr2[1] = elem_val8;
-      *(undefined4 *)((longlong)element_array + mid_index * 0x14 + 0x10) = elem_val1;
+      *(int32_t *)((longlong)element_array + mid_index * 0x14 + 0x10) = elem_val1;
     }
     
     // 交换分区元素
-    elem_ptr2 = (undefined8 *)((longlong)element_array + mid_index * 0x14);
+    elem_ptr2 = (uint64_t *)((longlong)element_array + mid_index * 0x14);
     elem_val6 = elem_ptr2[1];
-    elem_val1 = *(undefined4 *)(element_array + 2);
+    elem_val1 = *(int32_t *)(element_array + 2);
     swap_index = 1;
-    elem_val2 = *(undefined4 *)element_array;
-    elem_val3 = *(undefined4 *)((longlong)element_array + 4);
-    elem_val4 = *(undefined4 *)(element_array + 1);
-    elem_val5 = *(undefined4 *)((longlong)element_array + 0xc);
+    elem_val2 = *(int32_t *)element_array;
+    elem_val3 = *(int32_t *)((longlong)element_array + 4);
+    elem_val4 = *(int32_t *)(element_array + 1);
+    elem_val5 = *(int32_t *)((longlong)element_array + 0xc);
     partition_end = 1;
     *element_array = *elem_ptr2;
     element_array[1] = elem_val6;
-    *(undefined4 *)(element_array + 2) = *(undefined4 *)((longlong)element_array + mid_index * 0x14 + 0x10);
-    elem_ptr1 = (undefined4 *)((longlong)element_array + mid_index * 0x14);
+    *(int32_t *)(element_array + 2) = *(int32_t *)((longlong)element_array + mid_index * 0x14 + 0x10);
+    elem_ptr1 = (int32_t *)((longlong)element_array + mid_index * 0x14);
     *elem_ptr1 = elem_val2;
     elem_ptr1[1] = elem_val3;
     elem_ptr1[2] = elem_val4;
     elem_ptr1[3] = elem_val5;
-    *(undefined4 *)((longlong)element_array + mid_index * 0x14 + 0x10) = elem_val1;
+    *(int32_t *)((longlong)element_array + mid_index * 0x14 + 0x10) = elem_val1;
     
     // 分区处理
     while( true ) {
@@ -818,28 +818,28 @@ void sort_rendering_elements(undefined8 *element_array, int element_count)
       }
       if (partition_end <= mid_index) break;
       swap_index = swap_index + 1;
-      elem_ptr2 = (undefined8 *)((longlong)element_array + partition_end * 0x14);
+      elem_ptr2 = (uint64_t *)((longlong)element_array + partition_end * 0x14);
       elem_val6 = elem_ptr2[1];
       right_size = right_size + -1;
-      elem_ptr1 = (undefined4 *)((longlong)element_array + mid_index * 0x14);
+      elem_ptr1 = (int32_t *)((longlong)element_array + mid_index * 0x14);
       elem_val2 = *elem_ptr1;
       elem_val3 = elem_ptr1[1];
       elem_val4 = elem_ptr1[2];
       elem_val5 = elem_ptr1[3];
-      elem_val1 = *(undefined4 *)((longlong)element_array + mid_index * 0x14 + 0x10);
+      elem_val1 = *(int32_t *)((longlong)element_array + mid_index * 0x14 + 0x10);
       partition_end = mid_index + 1;
-      temp_ptr = (undefined8 *)((longlong)element_array + mid_index * 0x14);
+      temp_ptr = (uint64_t *)((longlong)element_array + mid_index * 0x14);
       *temp_ptr = *elem_ptr2;
       temp_ptr[1] = elem_val6;
       last_index = partition_end + -1;
-      *(undefined4 *)((longlong)element_array + mid_index * 0x14 + 0x10) =
-           *(undefined4 *)((longlong)element_array + partition_end * 0x14 + 0x10);
-      elem_ptr1 = (undefined4 *)((longlong)element_array + partition_end * 0x14);
+      *(int32_t *)((longlong)element_array + mid_index * 0x14 + 0x10) =
+           *(int32_t *)((longlong)element_array + partition_end * 0x14 + 0x10);
+      elem_ptr1 = (int32_t *)((longlong)element_array + partition_end * 0x14);
       *elem_ptr1 = elem_val2;
       elem_ptr1[1] = elem_val3;
       elem_ptr1[2] = elem_val4;
       elem_ptr1[3] = elem_val5;
-      *(undefined4 *)((longlong)element_array + partition_end * 0x14 + 0x10) = elem_val1;
+      *(int32_t *)((longlong)element_array + partition_end * 0x14 + 0x10) = elem_val1;
     }
     
     left_size = element_count - swap_index;
@@ -850,7 +850,7 @@ void sort_rendering_elements(undefined8 *element_array, int element_count)
       partition_size = left_size;
     }
     
-    elem_ptr2 = (undefined8 *)((longlong)element_array + (longlong)swap_index * 0x14);
+    elem_ptr2 = (uint64_t *)((longlong)element_array + (longlong)swap_index * 0x14);
     temp_ptr = element_array;
     if (left_size <= right_size) {
       temp_ptr = elem_ptr2;

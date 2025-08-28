@@ -13,10 +13,10 @@ void process_engine_state(void)
   code *handler_func;
   code ******global_handler;
   code *****task_queue;
-  undefined4 status_flag;
+  int32_t status_flag;
   int current_state;
-  undefined8 memory_block;
-  undefined4 *string_buffer;
+  uint64_t memory_block;
+  int32_t *string_buffer;
   longlong temp_ptr;
   code *****callback_ptr;
   code ******event_handler;
@@ -24,38 +24,38 @@ void process_engine_state(void)
   longlong list_end;
   ulonglong counter;
   ulonglong loop_counter;
-  undefined *data_ptr;
+  void *data_ptr;
   longlong *list_head;
   longlong node_data;
   uint iteration_count;
-  undefined1 buffer1[32];
+  int8_t buffer1[32];
   code ***handler_array;
   code *****event_queue;
   code *****task_list;
   code *****pending_tasks;
   code ***callback_chain;
-  undefined4 *error_code;
-  undefined8 context_data;
-  undefined8 timestamp;
-  undefined1 mode_flag;
-  undefined *stack_ptr;
-  undefined4 *result_ptr;
-  undefined4 return_value;
-  undefined8 address;
-  undefined4 *function_ptr;
-  undefined1 buffer2[32];
-  undefined *heap_ptr;
-  undefined1 *string_ptr;
-  undefined4 buffer_size;
-  undefined1 buffer3[32];
-  undefined *temp_stack;
-  undefined1 *temp_string;
-  undefined4 temp_size;
-  undefined1 buffer4[32];
-  undefined *stack_alloc;
-  undefined1 *alloc_string;
-  undefined4 alloc_size;
-  undefined1 buffer5[32];
+  int32_t *error_code;
+  uint64_t context_data;
+  uint64_t timestamp;
+  int8_t mode_flag;
+  void *stack_ptr;
+  int32_t *result_ptr;
+  int32_t return_value;
+  uint64_t address;
+  int32_t *function_ptr;
+  int8_t buffer2[32];
+  void *heap_ptr;
+  int8_t *string_ptr;
+  int32_t buffer_size;
+  int8_t buffer3[32];
+  void *temp_stack;
+  int8_t *temp_string;
+  int32_t temp_size;
+  int8_t buffer4[32];
+  void *stack_alloc;
+  int8_t *alloc_string;
+  int32_t alloc_size;
+  int8_t buffer5[32];
   ulonglong checksum;
   
   // 初始化引擎上下文和变量
@@ -99,7 +99,7 @@ void process_engine_state(void)
     
     // 子状态2处理
     if (current_state == 2) {
-      global_state_table = (undefined8 *)allocate_memory_block(memory_allocator,0x18,8,3);
+      global_state_table = (uint64_t *)allocate_memory_block(memory_allocator,0x18,8,3);
       *global_state_table = 0;
       global_state_table[1] = 0;
       global_state_table[2] = 0;
@@ -114,21 +114,21 @@ void process_engine_state(void)
       setup_event_handlers();
       engine_context = global_event_queue;
       handler_array = (code ***)&event_handler_array;
-      timestamp = (undefined *)0x0;
-      error_code = (undefined4 *)0x0;
-      address = (undefined *)((ulonglong)address & 0xffffffff00000000);
-      string_buffer = (undefined4 *)allocate_string_buffer(memory_allocator,0x18,0x13);
-      *(undefined1 *)string_buffer = 0;
+      timestamp = (void *)0x0;
+      error_code = (int32_t *)0x0;
+      address = (void *)((ulonglong)address & 0xffffffff00000000);
+      string_buffer = (int32_t *)allocate_string_buffer(memory_allocator,0x18,0x13);
+      *(int8_t *)string_buffer = 0;
       error_code = string_buffer;
       status_flag = validate_string_buffer(string_buffer);
-      timestamp = (undefined *)CONCAT44(timestamp._4_4_,status_flag);
+      timestamp = (void *)CONCAT44(timestamp._4_4_,status_flag);
       *string_buffer = 0x65726f63;  // "core"
       string_buffer[1] = 0x5f726c63;  // "_rlc"
       string_buffer[2] = 0x61657263;  // "care"
       string_buffer[3] = 0x645f6574;  // "d_et"
-      *(undefined8 *)(string_buffer + 4) = 0x65746167656c65;  // "elegate"
-      address = (undefined *)CONCAT44(address._4_4_,0x17);
-      GetProcAddress(*(undefined8 *)(engine_context + 0x10),string_buffer);
+      *(uint64_t *)(string_buffer + 4) = 0x65746167656c65;  // "elegate"
+      address = (void *)CONCAT44(address._4_4_,0x17);
+      GetProcAddress(*(uint64_t *)(engine_context + 0x10),string_buffer);
       handler_array = (code ***)&event_handler_array;
       free_string_buffer(string_buffer);
     }
@@ -143,10 +143,10 @@ void process_engine_state(void)
       *pending_tasks = (code ****)0x0;
       task_queue[0x2e] = (code ****)0x0;
       task_queue[0x2f] = (code ****)0x0;
-      *(undefined4 *)(task_queue + 0x30) = 3;
-      *(undefined2 *)(task_queue + 0x31) = 0;
+      *(int32_t *)(task_queue + 0x30) = 3;
+      *(int16_t *)(task_queue + 0x31) = 0;
       global_task_manager = (code ******)task_queue;
-      *(undefined4 *)((longlong)task_queue + 0x18c) = 0;
+      *(int32_t *)((longlong)task_queue + 0x18c) = 0;
       *(code ******)(engine_context + 0x40) = task_queue;
       execute_task_sequence(global_task_sequence,&global_state_config);
     }
@@ -160,17 +160,17 @@ void process_engine_state(void)
     *pending_tasks = (code ****)0x0;
     ((code ******)task_queue)[0x2e] = (code *****)0x0;
     ((code ******)task_queue)[0x2f] = (code *****)0x0;
-    *(undefined4 *)((code ******)task_queue + 0x30) = 3;
-    *(undefined2 *)((code ******)task_queue + 0x31) = 0;
+    *(int32_t *)((code ******)task_queue + 0x30) = 3;
+    *(int16_t *)((code ******)task_queue + 0x31) = 0;
     global_task_manager = (code ******)task_queue;
-    *(undefined4 *)((longlong)task_queue + 0x18c) = 0;
+    *(int32_t *)((longlong)task_queue + 0x18c) = 0;
     *task_queue = (code ****)&event_handler_start;
     *(code ******)(engine_context + 0x40) = task_queue;
     memory_block = allocate_memory_block(memory_allocator,0x238,8,3);
     memory_block = initialize_memory_pool(memory_block);
     (**(code **)(**(longlong **)(engine_context + 0x40) + 8))(*(longlong **)(engine_context + 0x40),memory_block);
     (**(code **)(**(longlong **)(engine_context + 0x2b0) + 0x80))
-              (*(longlong **)(engine_context + 0x2b0),*(undefined8 *)(engine_context + 0x40));
+              (*(longlong **)(engine_context + 0x2b0),*(uint64_t *)(engine_context + 0x40));
     event_handler = (code ******)task_list;
     if ((*(int *)(engine_context + 0x3c) == -1) || (*(int *)(engine_context + 0x318) + 1 < *(int *)(engine_context + 0x3c)))
     {
@@ -215,7 +215,7 @@ STATE_INCREMENT:
     // 状态2: 状态检查
     if (current_state == 2) {
       if ((*(int *)(engine_context + 0x3c) == -1) || (3 < *(int *)(engine_context + 0x3c))) {
-        *(undefined4 *)(engine_context + 0x318) = 3;
+        *(int32_t *)(engine_context + 0x318) = 3;
       }
       goto STATE_UPDATE_COMPLETE;
     }

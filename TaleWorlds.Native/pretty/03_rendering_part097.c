@@ -92,12 +92,12 @@
  * ============================================================================ */
 
 // 基础类型别名
-typedef undefined4 RenderBufferHandle;          // 渲染缓冲区句柄
-typedef undefined4 ResourceHandle;             // 资源句柄
-typedef undefined4 RenderStatus;               // 渲染状态
-typedef undefined4 RenderFlags;               // 渲染标志
-typedef undefined8 RenderContext;              // 渲染上下文
-typedef undefined1 RenderByte;                 // 渲染字节
+typedef int32_t RenderBufferHandle;          // 渲染缓冲区句柄
+typedef int32_t ResourceHandle;             // 资源句柄
+typedef int32_t RenderStatus;               // 渲染状态
+typedef int32_t RenderFlags;               // 渲染标志
+typedef uint64_t RenderContext;              // 渲染上下文
+typedef int8_t RenderByte;                 // 渲染字节
 
 // 数学类型别名
 typedef float Matrix4x4[16];                   // 4x4矩阵类型
@@ -179,17 +179,17 @@ typedef struct {
  * ============================================================================ */
 
 // 渲染系统数据区域
-extern undefined4 DAT_180bf00a8;               // 渲染系统状态标志
-extern undefined4 DAT_180c8ed18;               // 渲染系统配置数据
-extern undefined4 DAT_180c86930;               // 渲染系统资源数据
-extern undefined4 DAT_18098bc73;               // 渲染系统默认数据
-extern undefined4 DAT_1809fcc28;               // 渲染系统字符串数据
-extern undefined4 DAT_180a09a40;               // 渲染系统路径数据
-extern undefined4 DAT_18098bcb0;               // 渲染系统回调数据
-extern undefined4 DAT_180a1d0b0;               // 渲染系统接口数据
-extern undefined4 DAT_180a19ac8;               // 渲染系统函数指针表
-extern undefined4 DAT_180a199c8;               // 渲染系统方法表
-extern undefined4 DAT_180a19af8;               // 渲染系统属性表
+extern int32_t DAT_180bf00a8;               // 渲染系统状态标志
+extern int32_t DAT_180c8ed18;               // 渲染系统配置数据
+extern int32_t DAT_180c86930;               // 渲染系统资源数据
+extern int32_t DAT_18098bc73;               // 渲染系统默认数据
+extern int32_t DAT_1809fcc28;               // 渲染系统字符串数据
+extern int32_t DAT_180a09a40;               // 渲染系统路径数据
+extern int32_t DAT_18098bcb0;               // 渲染系统回调数据
+extern int32_t DAT_180a1d0b0;               // 渲染系统接口数据
+extern int32_t DAT_180a19ac8;               // 渲染系统函数指针表
+extern int32_t DAT_180a199c8;               // 渲染系统方法表
+extern int32_t DAT_180a19af8;               // 渲染系统属性表
 
 /* ============================================================================
  * 函数声明
@@ -233,7 +233,7 @@ void RenderingSystem_BufferProcessor(longlong param_1, longlong *param_2, uint *
  * @param param_7 资源数据
  * @return uint 管理结果状态
  */
-uint RenderingSystem_ResourceManager(longlong param_1, longlong *param_2, uint *param_3, longlong param_4, uint param_5, uint param_6, undefined8 param_7);
+uint RenderingSystem_ResourceManager(longlong param_1, longlong *param_2, uint *param_3, longlong param_4, uint param_5, uint param_6, uint64_t param_7);
 
 /**
  * @brief 渲染系统资源处理器
@@ -250,7 +250,7 @@ uint RenderingSystem_ResourceManager(longlong param_1, longlong *param_2, uint *
  * @param param_4 处理标志
  * @return void 处理结果
  */
-void RenderingSystem_ResourceHandler(longlong param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4);
+void RenderingSystem_ResourceHandler(longlong param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4);
 
 /* ============================================================================
  * 主要功能函数实现
@@ -457,7 +457,7 @@ void FUN_1803248c0(longlong param_1, longlong *param_2, uint *param_3, longlong 
  * @param param_7 资源数据
  * @return uint 管理结果状态
  */
-uint FUN_180325220(longlong param_1, longlong *param_2, uint *param_3, longlong param_4, uint param_5, uint param_6, undefined8 param_7)
+uint FUN_180325220(longlong param_1, longlong *param_2, uint *param_3, longlong param_4, uint param_5, uint param_6, uint64_t param_7)
 {
     // 渲染系统资源管理逻辑实现
     
@@ -521,7 +521,7 @@ uint FUN_180325220(longlong param_1, longlong *param_2, uint *param_3, longlong 
  * @param param_4 处理标志
  * @return void 处理结果
  */
-void FUN_180325830(longlong param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180325830(longlong param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
     // 渲染系统资源处理逻辑实现
     

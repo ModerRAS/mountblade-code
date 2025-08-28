@@ -105,14 +105,14 @@ LAB_1805cf801:
           unaff_RBX[0x2e2] =
                *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2e3] * 8) -
                (longlong)(fVar14 * fVar15);
-          *(undefined1 *)(unaff_RBX + 0x2e4) = 1;
+          *(int8_t *)(unaff_RBX + 0x2e4) = 1;
           goto FUN_1805cfbdd;
         }
       }
       else if ((float)(*(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2e3] * 8) -
                       unaff_RBX[0x2e2]) * 1e-05 < unaff_XMM10_Da) goto FUN_1805cfbdd;
     }
-    *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 8;
+    *(int32_t *)((longlong)unaff_RBX + 0x178c) = 8;
     goto FUN_1805cfbdd;
   }
   if (0.5 < (float)(*(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
@@ -121,7 +121,7 @@ LAB_1805cf801:
     if ((unaff_XMM10_Da != *pfVar8) &&
        ((piVar6 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar6 == 1 ||
         (piVar6 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar6 == 2)))) {
-      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 6;
+      *(int32_t *)((longlong)unaff_RBX + 0x178c) = 6;
       uVar9 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
       uVar9 = uVar9 >> 0x11 ^ uVar9;
       uVar9 = uVar9 << 5 ^ uVar9;
@@ -190,7 +190,7 @@ FUN_1805cfbdd:
       unaff_RBX[0x2e9] =
            *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
            (longlong)(*(float *)(*unaff_RBX + 0x300) * 100000.0);
-      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+      *(int32_t *)((longlong)unaff_RBX + 0x178c) = 0;
       if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
         *(uint *)((longlong)unaff_RBX + 0x158c) =
              *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
@@ -314,14 +314,14 @@ LAB_1805cf801:
           unaff_RBX[0x2e2] =
                *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2e3] * 8) -
                (longlong)(fVar14 * fVar15);
-          *(undefined1 *)(unaff_RBX + 0x2e4) = 1;
+          *(int8_t *)(unaff_RBX + 0x2e4) = 1;
           goto FUN_1805cfbdd;
         }
       }
       else if ((float)(*(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2e3] * 8) -
                       unaff_RBX[0x2e2]) * unaff_XMM8_Da < unaff_XMM10_Da) goto FUN_1805cfbdd;
     }
-    *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 8;
+    *(int32_t *)((longlong)unaff_RBX + 0x178c) = 8;
     goto FUN_1805cfbdd;
   }
   if (0.5 < (float)(*(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
@@ -330,7 +330,7 @@ LAB_1805cf801:
     if ((unaff_XMM10_Da != *pfVar8) &&
        ((piVar6 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar6 == 1 ||
         (piVar6 = (int *)FUN_1805b7660(unaff_RBX + 1), *piVar6 == 2)))) {
-      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 6;
+      *(int32_t *)((longlong)unaff_RBX + 0x178c) = 6;
       uVar9 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
       uVar9 = uVar9 >> 0x11 ^ uVar9;
       uVar9 = uVar9 << 5 ^ uVar9;
@@ -399,7 +399,7 @@ FUN_1805cfbdd:
       unaff_RBX[0x2e9] =
            *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
            (longlong)(*(float *)(*unaff_RBX + 0x300) * 100000.0);
-      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+      *(int32_t *)((longlong)unaff_RBX + 0x178c) = 0;
       if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
         *(uint *)((longlong)unaff_RBX + 0x158c) =
              *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
@@ -446,7 +446,7 @@ void FUN_1805cf9f7(void)
         piVar4 = (int *)FUN_1805b7660(unaff_RBX + 1);
         if (*piVar4 != 2) goto LAB_1805cfaaa;
       }
-      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 6;
+      *(int32_t *)((longlong)unaff_RBX + 0x178c) = 6;
       uVar6 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272);
       uVar6 = uVar6 >> 0x11 ^ uVar6;
       uVar6 = uVar6 << 5 ^ uVar6;
@@ -519,7 +519,7 @@ LAB_1805cfbd7:
       unaff_RBX[0x2e9] =
            *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
            (longlong)(*(float *)(*unaff_RBX + 0x300) * 100000.0);
-      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+      *(int32_t *)((longlong)unaff_RBX + 0x178c) = 0;
       if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
         *(uint *)((longlong)unaff_RBX + 0x158c) =
              *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
@@ -580,7 +580,7 @@ void FUN_1805cfbdd(void)
       unaff_RBX[0x2e9] =
            *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
            (longlong)(*(float *)(*unaff_RBX + 0x300) * 100000.0);
-      *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+      *(int32_t *)((longlong)unaff_RBX + 0x178c) = 0;
       if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
         *(uint *)((longlong)unaff_RBX + 0x158c) =
              *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;
@@ -640,7 +640,7 @@ void FUN_1805cfbef(void)
     unaff_RBX[0x2e9] =
          *(longlong *)(unaff_R13 + (longlong)(int)unaff_RBX[0x2ea] * 8) -
          (longlong)(*(float *)(*unaff_RBX + 0x300) * 100000.0);
-    *(undefined4 *)((longlong)unaff_RBX + 0x178c) = 0;
+    *(int32_t *)((longlong)unaff_RBX + 0x178c) = 0;
     if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
       *(uint *)((longlong)unaff_RBX + 0x158c) =
            *(uint *)((longlong)unaff_RBX + 0x158c) & 0xfffffc3f | 0x4000;

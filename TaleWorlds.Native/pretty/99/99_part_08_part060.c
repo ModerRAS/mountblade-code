@@ -25,19 +25,19 @@
 #define TIMER_PRECISION_MULTIPLIER 0x3fb999999999999a
 
 // 全局变量引用
-extern undefined8 _DAT_180c8ed18;  // 内存管理器引用
-extern undefined8 _DAT_180c8ed48;  // 时间基准
+extern uint64_t _DAT_180c8ed18;  // 内存管理器引用
+extern uint64_t _DAT_180c8ed48;  // 时间基准
 extern double _DAT_180c8ed50;      // 时间精度
-extern undefined8 _DAT_180c8ed58;  // 性能计数器
-extern undefined8 _DAT_180bf65b8;  // 随机数种子
-extern undefined8 _DAT_180c966e0;  // 默认数据结构引用
-extern undefined8 _DAT_180c966e8;  // 系统配置引用
+extern uint64_t _DAT_180c8ed58;  // 性能计数器
+extern uint64_t _DAT_180bf65b8;  // 随机数种子
+extern uint64_t _DAT_180c966e0;  // 默认数据结构引用
+extern uint64_t _DAT_180c966e8;  // 系统配置引用
 extern int _DAT_180bf6678;         // 系统标识符1
 extern int _DAT_180bf667c;         // 系统标识符2
 
 // 位操作掩码表
-extern undefined8 UNK_1809fabe0;    // 位清除掩码表
-extern undefined8 UNK_1809f9308;    // 位置位掩码表
+extern uint64_t UNK_1809fabe0;    // 位清除掩码表
+extern uint64_t UNK_1809f9308;    // 位置位掩码表
 extern int UNK_1809fb100;           // 阈值表
 extern int UNK_1809fb110;           // 偏移量表
 
@@ -70,12 +70,12 @@ void FUN_1805fab40(void);
 void FUN_1805b62d0(longlong param_1);
 void FUN_18005ea90(longlong param_1,void *param_2);
 void FUN_1806193b0(longlong param_1,int param_2);
-void FUN_1805f7890(undefined8 param_1);
+void FUN_1805f7890(uint64_t param_1);
 void FUN_180646200(longlong param_1);
 void FUN_180645c10(longlong param_1,void *param_2,void *param_3);
 void FUN_1808fd200(void);
-void FUN_18062b420(undefined8 param_1,longlong param_2,char param_3);
-void FUN_18062b1e0(undefined8 param_1,longlong param_2,longlong param_3,char param_4);
+void FUN_18062b420(uint64_t param_1,longlong param_2,char param_3);
+void FUN_18062b1e0(uint64_t param_1,longlong param_2,longlong param_3,char param_4);
 
 // 函数: void ProcessResourceCleanup(longlong *resource_manager)
 // 资源清理处理器 - 负责系统资源的清理和释放
@@ -226,7 +226,7 @@ void EmptyOperationPlaceholder(void)
   return;
 }
 
-// 函数: void InitializeMemoryPool(undefined8 *memory_pool, int pool_size)
+// 函数: void InitializeMemoryPool(uint64_t *memory_pool, int pool_size)
 // 内存池初始化器 - 初始化系统内存池
 // 
 // 参数:
@@ -237,10 +237,10 @@ void EmptyOperationPlaceholder(void)
 //   2. 分配内存池空间
 //   3. 初始化内存池数据
 //   4. 清理内存池内容
-void InitializeMemoryPool(undefined8 *memory_pool, int pool_size)
+void InitializeMemoryPool(uint64_t *memory_pool, int pool_size)
 
 {
-  undefined8 allocated_memory;
+  uint64_t allocated_memory;
   int memory_blocks;
   
   *(int *)(memory_pool + 1) = pool_size;
@@ -304,10 +304,10 @@ void ProcessBitOperations(longlong *bit_array, uint index1, uint index2, char op
 void ConfigureSystemParameters(longlong system_config, uint param_index)
 
 {
-  undefined8 *config_block;
+  uint64_t *config_block;
   
   if ((ulonglong)(longlong)(int)param_index < (ulonglong)((*(longlong *)(system_config + 0x760) - *(longlong *)(system_config + 0x758)) / 0xd08)) {
-    config_block = (undefined8 *)((longlong)(int)param_index * 0xd08 + *(longlong *)(system_config + 0x758));
+    config_block = (uint64_t *)((longlong)(int)param_index * 0xd08 + *(longlong *)(system_config + 0x758));
     config_block[0x1a0] = _DAT_180c966e8;
     param_index = param_index & 0x8000000f;
     if ((int)param_index < 0) {
@@ -318,38 +318,38 @@ void ConfigureSystemParameters(longlong system_config, uint param_index)
     case 9:
       // 配置默认参数集
       config_block[2] = MAXIMUM_ULONG;
-      *(undefined4 *)(config_block + 3) = 0;
+      *(int32_t *)(config_block + 3) = 0;
       config_block[4] = 0;
       config_block[5] = 0;
       config_block[6] = 0;
-      *(undefined4 *)(config_block + 7) = 0;
+      *(int32_t *)(config_block + 7) = 0;
       config_block[8] = 0;
-      *(undefined4 *)((longlong)config_block + 0x3c) = FLOAT_ONE;
-      *(undefined4 *)(config_block + 8) = FLOAT_NEGATIVE;
-      *(undefined4 *)((longlong)config_block + 0x44) = FLOAT_NEGATIVE;
+      *(int32_t *)((longlong)config_block + 0x3c) = FLOAT_ONE;
+      *(int32_t *)(config_block + 8) = FLOAT_NEGATIVE;
+      *(int32_t *)((longlong)config_block + 0x44) = FLOAT_NEGATIVE;
       config_block[9] = FLOAT_POSITIVE_SMALL;
-      *(undefined2 *)(config_block + 10) = DEFAULT_ID_VALUE;
-      *(undefined1 *)(config_block + 0xb) = ENABLE_FLAG;
-      *(undefined8 *)((longlong)config_block + 0x5c) = MAXIMUM_ULONG;
+      *(int16_t *)(config_block + 10) = DEFAULT_ID_VALUE;
+      *(int8_t *)(config_block + 0xb) = ENABLE_FLAG;
+      *(uint64_t *)((longlong)config_block + 0x5c) = MAXIMUM_ULONG;
       config_block[0x11] = MAXIMUM_ULONG;
-      *(undefined1 *)(config_block + 0x12) = BIT_MASK_8BIT;
-      *(undefined8 *)((longlong)config_block + 0x94) = 0;
-      *(undefined4 *)((longlong)config_block + 0x84) = 0xffffffff;
-      *(undefined8 *)((longlong)config_block + 100) = 0;
-      *(undefined8 *)((longlong)config_block + 0x6c) = 0;
-      *(undefined8 *)((longlong)config_block + 0x74) = 0;
-      *(undefined8 *)((longlong)config_block + 0x7c) = 0;
-      *(undefined4 *)((longlong)config_block + 0x9c) = FLOAT_ONE;
+      *(int8_t *)(config_block + 0x12) = BIT_MASK_8BIT;
+      *(uint64_t *)((longlong)config_block + 0x94) = 0;
+      *(int32_t *)((longlong)config_block + 0x84) = 0xffffffff;
+      *(uint64_t *)((longlong)config_block + 100) = 0;
+      *(uint64_t *)((longlong)config_block + 0x6c) = 0;
+      *(uint64_t *)((longlong)config_block + 0x74) = 0;
+      *(uint64_t *)((longlong)config_block + 0x7c) = 0;
+      *(int32_t *)((longlong)config_block + 0x9c) = FLOAT_ONE;
       return;
     case 1:
       // 配置扩展参数集
       config_block[0x26] = MAXIMUM_ULONG;
-      *(undefined2 *)(config_block + 0x2b) = BIT_MASK_8BIT;
+      *(int16_t *)(config_block + 0x2b) = BIT_MASK_8BIT;
       config_block[0x27] = 0;
       config_block[0x28] = 0;
       config_block[0x29] = 0;
       config_block[0x2a] = 0;
-      *(undefined4 *)((longlong)config_block + 0x15c) = 0;
+      *(int32_t *)((longlong)config_block + 0x15c) = 0;
       return;
     case 2:
       // 配置浮点参数集
@@ -367,15 +367,15 @@ void ConfigureSystemParameters(longlong system_config, uint param_index)
     case 0xd:
     case 0xe:
       // 配置零参数集
-      *(undefined4 *)config_block = 0;
+      *(int32_t *)config_block = 0;
       return;
     case 6:
       // 配置单位参数集
-      *(undefined4 *)config_block = 1;
+      *(int32_t *)config_block = 1;
       return;
     case 0xf:
       // 配置最大参数集
-      *(undefined4 *)config_block = 0xffffffff;
+      *(int32_t *)config_block = 0xffffffff;
     }
   }
   return;
@@ -395,7 +395,7 @@ void TriggerSystemError(void)
   FUN_1808fd200();
 }
 
-// 函数: void ProcessSystemData(int *data_array, int array_size, longlong data_source, longlong data_target, undefined8 config_param)
+// 函数: void ProcessSystemData(int *data_array, int array_size, longlong data_source, longlong data_target, uint64_t config_param)
 // 系统数据处理器 - 处理系统数据
 // 
 // 参数:
@@ -409,12 +409,12 @@ void TriggerSystemError(void)
 //   2. 执行数据转换
 //   3. 管理数据状态
 //   4. 更新数据统计
-void ProcessSystemData(int *data_array, int array_size, longlong data_source, longlong data_target, undefined8 config_param,
-                  longlong *resource_manager, undefined8 param_7, undefined8 param_8, int max_items)
+void ProcessSystemData(int *data_array, int array_size, longlong data_source, longlong data_target, uint64_t config_param,
+                  longlong *resource_manager, uint64_t param_7, uint64_t param_8, int max_items)
 
 {
   int data_item;
-  undefined8 timestamp;
+  uint64_t timestamp;
   double elapsed_time;
   longlong data_offset;
   int *data_pointer;
@@ -452,11 +452,11 @@ void ProcessSystemData(int *data_array, int array_size, longlong data_source, lo
 LAB_1805b3980:
         if (data_array[1] + *(int *)(data_source + 0x5c8) + data_value < max_items) {
           data_array[2] = -1;
-          timestamp = *(undefined8 *)(data_source + 0x5a0);
+          timestamp = *(uint64_t *)(data_source + 0x5a0);
           timestamp_pointer = (double *)(resource_offset * 0x20 + *resource_manager);
           *timestamp_pointer = elapsed_time;
-          *(undefined8 *)((longlong)timestamp_pointer + 0xc) = timestamp;
-          *(undefined1 *)(timestamp_pointer + 1) = 1;
+          *(uint64_t *)((longlong)timestamp_pointer + 0xc) = timestamp;
+          *(int8_t *)(timestamp_pointer + 1) = 1;
           func_0x0001805b3aa0(resource_manager);
           FUN_1806193b0(data_source, current_item);
           *(short *)(data_target + 0x18 + (longlong)*(int *)(data_target + 0x14) * 2) = (short)data_item;
@@ -495,11 +495,11 @@ LAB_1805b3980:
 void ExecuteSystemProcessor(void)
 
 {
-  undefined8 config_data;
+  uint64_t config_data;
   longlong data_offset;
   int *data_pointer;
   int data_value;
-  undefined8 *resource_pointer;
+  uint64_t *resource_pointer;
   uint resource_id;
   longlong resource_handle;
   longlong loop_counter;
@@ -508,8 +508,8 @@ void ExecuteSystemProcessor(void)
   byte status_flag;
   int current_item;
   longlong resource_count;
-  undefined4 time_high;
-  undefined4 time_low;
+  int32_t time_high;
+  int32_t time_low;
   longlong performance_counter;
   
   do {
@@ -528,11 +528,11 @@ void ExecuteSystemProcessor(void)
 LAB_1805b3980:
       if (data_array[1] + *(int *)(system_config + 0x5c8) + data_value < max_items) {
         data_array[2] = -1;
-        config_data = *(undefined8 *)(system_config + 0x5a0);
-        resource_pointer = (undefined8 *)(resource_handle * 0x20 + *resource_manager);
+        config_data = *(uint64_t *)(system_config + 0x5a0);
+        resource_pointer = (uint64_t *)(resource_handle * 0x20 + *resource_manager);
         *resource_pointer = CONCAT44(time_low, time_high);
-        *(undefined8 *)((longlong)resource_pointer + 0xc) = config_data;
-        *(undefined1 *)(resource_pointer + 1) = 1;
+        *(uint64_t *)((longlong)resource_pointer + 0xc) = config_data;
+        *(int8_t *)(resource_pointer + 1) = 1;
         func_0x0001805b3aa0(resource_manager);
         FUN_1806193b0();
         *(short *)(performance_counter + 0x18 + (longlong)*(int *)(performance_counter + 0x14) * 2) = (short)current_item;
@@ -554,7 +554,7 @@ LAB_1805b3980:
   current_item = 0;
   do {
     if (0 < *data_pointer) {
-      status_flag = (byte)*(undefined4 *)(&UNK_1809fb110 + (longlong)current_item * 4);
+      status_flag = (byte)*(int32_t *)(&UNK_1809fb110 + (longlong)current_item * 4);
       goto LAB_1806193ee;
     }
     current_item = current_item + 1;
@@ -579,16 +579,16 @@ void ProcessSystemCleanup(void)
 {
   int *data_pointer;
   int data_value;
-  undefined8 config_data;
-  undefined4 status_value;
+  uint64_t config_data;
+  int32_t status_value;
   int cleanup_mask;
-  undefined4 config_param;
+  int32_t config_param;
   
   data_pointer = (int *)&UNK_1809fb100;
   data_value = 0;
   do {
     if (0 < *data_pointer) {
-      config_param = *(undefined4 *)(&UNK_1809fb110 + (longlong)data_value * 4);
+      config_param = *(int32_t *)(&UNK_1809fb110 + (longlong)data_value * 4);
       goto LAB_1806193ee;
     }
     data_value = data_value + 1;
@@ -603,7 +603,7 @@ LAB_1806193ee:
   return;
 }
 
-// 函数: void InitializeSystemContext(undefined4 *system_context, longlong *resource_manager, undefined4 context_param, undefined8 config_data)
+// 函数: void InitializeSystemContext(int32_t *system_context, longlong *resource_manager, int32_t context_param, uint64_t config_data)
 // 系统上下文初始化器 - 初始化系统上下文
 // 
 // 参数:
@@ -616,7 +616,7 @@ LAB_1806193ee:
 //   2. 设置系统参数
 //   3. 分配系统资源
 //   4. 配置系统行为
-void InitializeSystemContext(undefined4 *system_context, longlong *resource_manager, undefined4 context_param, undefined8 config_data)
+void InitializeSystemContext(int32_t *system_context, longlong *resource_manager, int32_t context_param, uint64_t config_data)
 
 {
   longlong memory_handle;
@@ -629,19 +629,19 @@ void InitializeSystemContext(undefined4 *system_context, longlong *resource_mana
   uint context_id;
   ulonglong allocated_size;
   
-  *(undefined1 *)(system_context + 0xc) = 0;
+  *(int8_t *)(system_context + 0xc) = 0;
   *(longlong **)(system_context + 0x163e) = resource_manager;
   if (*(char *)((longlong)system_context + 0x31) == '\0') {
     allocated_size = 0;
     system_context[6] = 0;
-    *(undefined2 *)(system_context + 5) = 0;
+    *(int16_t *)(system_context + 5) = 0;
     *system_context = context_param;
     // 生成随机数种子
     _DAT_180bf65b8 = _DAT_180bf65b8 << BIT_SHIFT_13 ^ _DAT_180bf65b8;
     _DAT_180bf65b8 = _DAT_180bf65b8 >> BIT_SHIFT_17 ^ _DAT_180bf65b8;
     _DAT_180bf65b8 = _DAT_180bf65b8 << BIT_SHIFT_5 ^ _DAT_180bf65b8;
     system_context[0xe] = (_DAT_180bf65b8 - 1) % RANDOM_SEED_RANGE + 1;
-    *(undefined8 *)(system_context + 0xf) = _DAT_180c966e0;
+    *(uint64_t *)(system_context + 0xf) = _DAT_180c966e0;
     memory_handle = _DAT_180c8ed58;
     if (_DAT_180c8ed58 == 0) {
       QueryPerformanceCounter(&context_id);
@@ -650,13 +650,13 @@ void InitializeSystemContext(undefined4 *system_context, longlong *resource_mana
     memory_pointer = (longlong *)(system_context + 0x20);
     memory_offset = 0x960;
     *(double *)(system_context + 8) = (double)(memory_handle - _DAT_180c8ed48) * _DAT_180c8ed50;
-    *(undefined8 *)(system_context + 0x164a) = 0;
-    *(undefined8 *)(system_context + 0x1640) = 0;
-    *(undefined8 *)(system_context + 0x1642) = 0;
-    *(undefined8 *)(system_context + 0x1648) = 0;
+    *(uint64_t *)(system_context + 0x164a) = 0;
+    *(uint64_t *)(system_context + 0x1640) = 0;
+    *(uint64_t *)(system_context + 0x1642) = 0;
+    *(uint64_t *)(system_context + 0x1648) = 0;
     system_context[0x164c] = 0;
-    *(undefined8 *)(system_context + 0x164d) = MAXIMUM_ULONG;
-    *(undefined8 *)(system_context + 10) = 0;
+    *(uint64_t *)(system_context + 0x164d) = MAXIMUM_ULONG;
+    *(uint64_t *)(system_context + 10) = 0;
     do {
       if (*memory_pointer != 0) {
         // 释放内存资源
@@ -679,10 +679,10 @@ void InitializeSystemContext(undefined4 *system_context, longlong *resource_mana
       } while ((ulonglong)(longlong)(int)resource_id < (ulonglong)(*(longlong *)(system_context + 0x16) - memory_handle >> 3));
     }
     *(longlong *)(system_context + 0x16) = memory_handle;
-    *(undefined8 *)(system_context + 0x12e0) = 0;
-    *(undefined8 *)(system_context + 0x12e2) = 0;
-    *(undefined8 *)(system_context + 0x12e4) = 0;
-    *(undefined8 *)(system_context + 0x12e6) = TIMER_PRECISION_MULTIPLIER;
+    *(uint64_t *)(system_context + 0x12e0) = 0;
+    *(uint64_t *)(system_context + 0x12e2) = 0;
+    *(uint64_t *)(system_context + 0x12e4) = 0;
+    *(uint64_t *)(system_context + 0x12e6) = TIMER_PRECISION_MULTIPLIER;
     if (*(longlong *)(system_context + 0x1c) != 0) {
       // 释放内存资源
       FUN_18064e900();
@@ -693,25 +693,25 @@ void InitializeSystemContext(undefined4 *system_context, longlong *resource_mana
     cleanup_id = 0;
     *(ulonglong *)(memory_handle + 0x5a0) = (ulonglong)context_id;
     system_context[0x1e] = 0;
-    *(undefined4 *)(*(longlong *)(system_context + 0x1c) + 0x5c0) = 0;
-    *(undefined8 *)(system_context + 0x163a) = 0;
-    *(undefined8 *)(system_context + 0x1638) = 0;
+    *(int32_t *)(*(longlong *)(system_context + 0x1c) + 0x5c0) = 0;
+    *(uint64_t *)(system_context + 0x163a) = 0;
+    *(uint64_t *)(system_context + 0x1638) = 0;
     system_context[0x163d] = 1;
     system_context[0x163c] = 10;
     FUN_1805b62d0(system_context + 0x1602);
     FUN_1805b62d0(system_context + 0x1612);
     system_context[0xd] = 0;
-    *(undefined8 *)(system_context + 0x1652) = *(undefined8 *)(system_context + 0x1650);
-    *(undefined8 *)(system_context + 0x165a) = *(undefined8 *)(system_context + 0x1658);
+    *(uint64_t *)(system_context + 0x1652) = *(uint64_t *)(system_context + 0x1650);
+    *(uint64_t *)(system_context + 0x165a) = *(uint64_t *)(system_context + 0x1658);
     system_context[0x1660] = 0xffffffff;
     *resource_manager = (longlong)system_context;
-    *(undefined1 *)((longlong)system_context + 0x31) = *(undefined1 *)((longlong)resource_manager + 0x24);
-    *(undefined8 *)(system_context + 0x1622) = config_data;
+    *(int8_t *)((longlong)system_context + 0x31) = *(int8_t *)((longlong)resource_manager + 0x24);
+    *(uint64_t *)(system_context + 0x1622) = config_data;
   }
   return;
 }
 
-// 函数: void ConfigureSystemParametersEx(undefined4 *system_context, undefined8 config_param, undefined4 context_param)
+// 函数: void ConfigureSystemParametersEx(int32_t *system_context, uint64_t config_param, int32_t context_param)
 // 系统参数配置器扩展 - 扩展的系统参数配置
 // 
 // 参数:
@@ -722,11 +722,11 @@ void InitializeSystemContext(undefined4 *system_context, longlong *resource_mana
 //   1. 配置系统参数
 //   2. 初始化系统资源
 //   3. 设置系统行为
-void ConfigureSystemParametersEx(undefined4 *system_context, undefined8 config_param, undefined4 context_param)
+void ConfigureSystemParametersEx(int32_t *system_context, uint64_t config_param, int32_t context_param)
 
 {
   longlong memory_handle;
-  undefined8 system_config;
+  uint64_t system_config;
   uint resource_id;
   longlong memory_offset;
   longlong *memory_pointer;
@@ -737,14 +737,14 @@ void ConfigureSystemParametersEx(undefined4 *system_context, undefined8 config_p
   
   memory_size = 0;
   system_context[6] = 0;
-  *(undefined2 *)(system_context + 5) = 0;
+  *(int16_t *)(system_context + 5) = 0;
   *system_context = context_param;
   // 生成随机数种子
   _DAT_180bf65b8 = _DAT_180bf65b8 << BIT_SHIFT_13 ^ _DAT_180bf65b8;
   _DAT_180bf65b8 = _DAT_180bf65b8 >> BIT_SHIFT_17 ^ _DAT_180bf65b8;
   _DAT_180bf65b8 = _DAT_180bf65b8 << BIT_SHIFT_5 ^ _DAT_180bf65b8;
   *(uint *)(system_config + 0x38) = (_DAT_180bf65b8 - 1) % RANDOM_SEED_RANGE + 1;
-  *(undefined8 *)(system_config + 0x3c) = _DAT_180c966e0;
+  *(uint64_t *)(system_config + 0x3c) = _DAT_180c966e0;
   memory_handle = _DAT_180c8ed58;
   if (_DAT_180c8ed58 == 0) {
     QueryPerformanceCounter(&stack0x00000040);
@@ -753,13 +753,13 @@ void ConfigureSystemParametersEx(undefined4 *system_context, undefined8 config_p
   memory_pointer = (longlong *)(system_config + 0x80);
   memory_offset = 0x960;
   *(double *)(system_config + 0x20) = (double)(memory_handle - _DAT_180c8ed48) * _DAT_180c8ed50;
-  *(undefined8 *)(system_config + 0x5928) = 0;
-  *(undefined8 *)(system_config + 0x5900) = 0;
-  *(undefined8 *)(system_config + 0x5908) = 0;
-  *(undefined8 *)(system_config + 0x5920) = 0;
-  *(undefined4 *)(system_config + 0x5930) = 0;
-  *(undefined8 *)(system_config + 0x5934) = MAXIMUM_ULONG;
-  *(undefined8 *)(system_config + 0x28) = 0;
+  *(uint64_t *)(system_config + 0x5928) = 0;
+  *(uint64_t *)(system_config + 0x5900) = 0;
+  *(uint64_t *)(system_config + 0x5908) = 0;
+  *(uint64_t *)(system_config + 0x5920) = 0;
+  *(int32_t *)(system_config + 0x5930) = 0;
+  *(uint64_t *)(system_config + 0x5934) = MAXIMUM_ULONG;
+  *(uint64_t *)(system_config + 0x28) = 0;
   do {
     if (*memory_pointer != 0) {
       // 释放内存资源
@@ -782,31 +782,31 @@ void ConfigureSystemParametersEx(undefined4 *system_context, undefined8 config_p
     } while ((ulonglong)(longlong)(int)resource_id < (ulonglong)(*(longlong *)(system_config + 0x58) - memory_handle >> 3));
   }
   *(longlong *)(system_config + 0x58) = memory_handle;
-  *(undefined8 *)(system_config + 0x4b80) = 0;
-  *(undefined8 *)(system_config + 0x4b88) = 0;
-  *(undefined8 *)(system_config + 0x4b90) = 0;
-  *(undefined8 *)(system_config + 0x4b98) = TIMER_PRECISION_MULTIPLIER;
+  *(uint64_t *)(system_config + 0x4b80) = 0;
+  *(uint64_t *)(system_config + 0x4b88) = 0;
+  *(uint64_t *)(system_config + 0x4b90) = 0;
+  *(uint64_t *)(system_config + 0x4b98) = TIMER_PRECISION_MULTIPLIER;
   if (*(longlong *)(system_config + 0x70) == 0) {
     memory_handle = FUN_1805fab40();
     context_id = *(uint *)(system_config + 0x4b80);
     *(longlong *)(system_config + 0x70) = memory_handle;
     allocated_size = 0;
     *(ulonglong *)(memory_handle + 0x5a0) = (ulonglong)context_id;
-    *(undefined4 *)(system_config + 0x78) = 0;
-    *(undefined4 *)(*(longlong *)(system_config + 0x70) + 0x5c0) = 0;
-    *(undefined8 *)(system_config + 0x58e8) = 0;
-    *(undefined8 *)(system_config + 0x58e0) = 0;
-    *(undefined4 *)(system_config + 0x58f4) = 1;
-    *(undefined4 *)(system_config + 0x58f0) = 10;
+    *(int32_t *)(system_config + 0x78) = 0;
+    *(int32_t *)(*(longlong *)(system_config + 0x70) + 0x5c0) = 0;
+    *(uint64_t *)(system_config + 0x58e8) = 0;
+    *(uint64_t *)(system_config + 0x58e0) = 0;
+    *(int32_t *)(system_config + 0x58f4) = 1;
+    *(int32_t *)(system_config + 0x58f0) = 10;
     FUN_1805b62d0(system_config + 0x5808);
     FUN_1805b62d0(system_config + 0x5848);
-    *(undefined4 *)(system_config + 0x34) = 0;
-    *(undefined8 *)(system_config + 0x5948) = *(undefined8 *)(system_config + 0x5940);
-    *(undefined8 *)(system_config + 0x5968) = *(undefined8 *)(system_config + 0x5960);
-    *(undefined4 *)(system_config + 0x5980) = 0xffffffff;
+    *(int32_t *)(system_config + 0x34) = 0;
+    *(uint64_t *)(system_config + 0x5948) = *(uint64_t *)(system_config + 0x5940);
+    *(uint64_t *)(system_config + 0x5968) = *(uint64_t *)(system_config + 0x5960);
+    *(int32_t *)(system_config + 0x5980) = 0xffffffff;
     *resource_manager = system_config;
-    *(undefined1 *)(system_config + 0x31) = *(undefined1 *)((longlong)resource_manager + 0x24);
-    *(undefined8 *)(system_config + 0x5888) = config_param;
+    *(int8_t *)(system_config + 0x31) = *(int8_t *)((longlong)resource_manager + 0x24);
+    *(uint64_t *)(system_config + 0x5888) = config_param;
     return;
   }
   // 释放内存资源
@@ -858,7 +858,7 @@ void ProcessMemoryManagement(longlong memory_manager)
   double timestamp;
   longlong list_head;
   ulonglong item_index;
-  undefined8 *memory_block;
+  uint64_t *memory_block;
   longlong block_size;
   double *timestamp_pointer;
   uint list_count;
@@ -866,7 +866,7 @@ void ProcessMemoryManagement(longlong memory_manager)
   ulonglong memory_index;
   int item_id;
   ulonglong available_memory;
-  undefined8 *stack_pointer;
+  uint64_t *stack_pointer;
   longlong performance_counter;
   ulonglong memory_capacity;
   
@@ -894,7 +894,7 @@ void ProcessMemoryManagement(longlong memory_manager)
           goto LAB_1805b3e92;
         }
         memory_offset = *(longlong *)(memory_manager + 0x5828) + memory_capacity * 8;
-        stack_pointer = *(undefined8 **)(*(longlong *)(memory_manager + 0x5828) + memory_capacity * 8);
+        stack_pointer = *(uint64_t **)(*(longlong *)(memory_manager + 0x5828) + memory_capacity * 8);
         list_head = memory_offset + 8;
         if (memory_offset != list_head) {
           memory_offset = *(longlong *)(memory_manager + 0x5830);
@@ -917,7 +917,7 @@ void ProcessMemoryManagement(longlong memory_manager)
       item_id = (int)item_index;
       if (*(double *)(*(longlong *)(memory_offset + item_index * 8) + 8) + 3.0 < timestamp) {
         list_head = *(longlong *)(memory_manager + 0x5868) + item_index * 8;
-        stack_pointer = *(undefined8 **)(*(longlong *)(memory_manager + 0x5868) + item_index * 8);
+        stack_pointer = *(uint64_t **)(*(longlong *)(memory_manager + 0x5868) + item_index * 8);
         memory_offset = list_head + 8;
         if (list_head != memory_offset) {
           block_size = *(longlong *)(memory_manager + 0x5870);
@@ -937,7 +937,7 @@ void ProcessMemoryManagement(longlong memory_manager)
   return;
 LAB_1805b3e92:
   if ((*data_pointer == data_item) && (data_pointer[1] == data_pointer[1])) {
-    *(undefined1 *)(data_pointer + 7) = 1;
+    *(int8_t *)(data_pointer + 7) = 1;
     goto LAB_1805b3eb4;
   }
   list_count = (int)memory_capacity + 1;
@@ -948,7 +948,7 @@ LAB_1805b3eb4:
     memory_offset = *(longlong *)(memory_manager + 0x5848);
     list_head = *(longlong *)(memory_manager + 0x5850);
     if (memory_offset == list_head) {
-      memory_block = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0xc98, 8, CONCAT71((uint7)(uint3)((uint)data_item >> 8), 3));
+      memory_block = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0xc98, 8, CONCAT71((uint7)(uint3)((uint)data_item >> 8), 3));
       *memory_block = 0;
       *memory_block = _DAT_180c966e8;
       memory_block[1] = 0;
@@ -956,7 +956,7 @@ LAB_1805b3eb4:
     }
     else {
       available_memory = list_head - memory_offset >> 3;
-      memory_block = *(undefined8 **)(memory_offset + -8 + available_memory * 8);
+      memory_block = *(uint64_t **)(memory_offset + -8 + available_memory * 8);
       memory_capacity = available_memory - 1;
       if (available_memory < memory_capacity) {
         stack_pointer = memory_block;
@@ -972,7 +972,7 @@ LAB_1805b3eb4:
           item_index = memory_capacity;
         }
         if (item_index != 0) {
-          item_index = FUN_18062b420(_DAT_180c8ed18, item_index * 8, *(undefined1 *)(memory_manager + 0x5860));
+          item_index = FUN_18062b420(_DAT_180c8ed18, item_index * 8, *(int8_t *)(memory_manager + 0x5860));
           memory_offset = *(longlong *)(memory_manager + 0x5848);
           list_head = *(longlong *)(memory_manager + 0x5850);
         }
@@ -1011,17 +1011,17 @@ void ProcessMemoryManagementEx(longlong memory_manager)
   longlong memory_offset;
   longlong performance_counter;
   ulonglong item_index;
-  undefined8 *memory_block;
+  uint64_t *memory_block;
   int *list_pointer;
   longlong list_head;
   uint list_count;
   longlong block_size;
   ulonglong available_memory;
-  undefined8 *stack_pointer;
+  uint64_t *stack_pointer;
   longlong system_config;
   ulonglong memory_capacity;
   double timestamp;
-  undefined8 *context_pointer;
+  uint64_t *context_pointer;
   ulonglong allocation_size;
   
   if (performance_counter == 0) {
@@ -1047,7 +1047,7 @@ void ProcessMemoryManagementEx(longlong memory_manager)
           goto LAB_1805b3e92;
         }
         memory_offset = *(longlong *)(system_config + 0x5828) + memory_capacity * 8;
-        context_pointer = *(undefined8 **)(*(longlong *)(system_config + 0x5828) + memory_capacity * 8);
+        context_pointer = *(uint64_t **)(*(longlong *)(system_config + 0x5828) + memory_capacity * 8);
         list_head = memory_offset + 8;
         if (memory_offset != list_head) {
           memory_offset = *(longlong *)(system_config + 0x5830);
@@ -1070,7 +1070,7 @@ void ProcessMemoryManagementEx(longlong memory_manager)
       item_id = (int)item_index;
       if (*(double *)(*(longlong *)(memory_offset + item_index * 8) + 8) + 3.0 < timestamp) {
         list_head = *(longlong *)(system_config + 0x5868) + item_index * 8;
-        context_pointer = *(undefined8 **)(*(longlong *)(system_config + 0x5868) + item_index * 8);
+        context_pointer = *(uint64_t **)(*(longlong *)(system_config + 0x5868) + item_index * 8);
         memory_offset = list_head + 8;
         if (list_head != memory_offset) {
           memory_offset = *(longlong *)(system_config + 0x5870);
@@ -1090,7 +1090,7 @@ void ProcessMemoryManagementEx(longlong memory_manager)
   return;
 LAB_1805b3e92:
   if ((*list_pointer == data_item) && (list_pointer[1] == data_pointer[1])) {
-    *(undefined1 *)(list_pointer + 7) = 1;
+    *(int8_t *)(list_pointer + 7) = 1;
     goto LAB_1805b3eb4;
   }
   list_count = (int)memory_capacity + 1;
@@ -1101,7 +1101,7 @@ LAB_1805b3eb4:
     memory_offset = *(longlong *)(system_config + 0x5848);
     list_head = *(longlong *)(system_config + 0x5850);
     if (memory_offset == list_head) {
-      memory_block = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0xc98, 8, CONCAT71((uint7)(uint3)((uint)data_item >> 8), 3));
+      memory_block = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0xc98, 8, CONCAT71((uint7)(uint3)((uint)data_item >> 8), 3));
       *memory_block = 0;
       *memory_block = _DAT_180c966e8;
       memory_block[1] = 0;
@@ -1109,7 +1109,7 @@ LAB_1805b3eb4:
     }
     else {
       available_memory = list_head - memory_offset >> 3;
-      memory_block = *(undefined8 **)(memory_offset + -8 + available_memory * 8);
+      memory_block = *(uint64_t **)(memory_offset + -8 + available_memory * 8);
       memory_capacity = available_memory - 1;
       if (available_memory < memory_capacity) {
         context_pointer = memory_block;
@@ -1125,7 +1125,7 @@ LAB_1805b3eb4:
           allocation_size = memory_capacity;
         }
         if (allocation_size != 0) {
-          item_index = FUN_18062b420(_DAT_180c8ed18, allocation_size * 8, *(undefined1 *)(system_config + 0x5860));
+          item_index = FUN_18062b420(_DAT_180c8ed18, allocation_size * 8, *(int8_t *)(system_config + 0x5860));
           memory_offset = *(longlong *)(system_config + 0x5848);
           list_head = *(longlong *)(system_config + 0x5850);
         }

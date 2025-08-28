@@ -410,7 +410,7 @@ void AudioSystem_Initializer(void)
  * 参数：param_1 - 音频上下文句柄，param_2 - 输入音频数据，param_3 - 输出音频数据，param_4 - 处理次数，param_5 - 音频通道数
  * 返回值：处理状态码
  */
-undefined8 AudioSystem_AdvancedProcessor(longlong param_1, float *param_2, float *param_3, int param_4, uint param_5)
+uint64_t AudioSystem_AdvancedProcessor(longlong param_1, float *param_2, float *param_3, int param_4, uint param_5)
 {
     AudioSystem_FloatValue audio_value;
     AudioSystem_FloatValue gain_value;
@@ -507,8 +507,8 @@ undefined8 AudioSystem_AdvancedProcessor(longlong param_1, float *param_2, float
                 *(float *)(param_1 + 0x240) = audio_value;
                 *(uint *)(param_1 + 0x220) = *(uint *)(param_1 + 0x23c) ^ 0x80000000;
                 *(uint *)(param_1 + 0x224) = *(uint *)(param_1 + 0x240) ^ 0x80000000;
-                *(undefined4 *)(param_1 + 0x228) = *(undefined4 *)(param_1 + 0x234);
-                *(undefined4 *)(param_1 + 0x22c) = *(undefined4 *)(param_1 + 0x238);
+                *(int32_t *)(param_1 + 0x228) = *(int32_t *)(param_1 + 0x234);
+                *(int32_t *)(param_1 + 0x22c) = *(int32_t *)(param_1 + 0x238);
             }
             
             // 处理其他音频通道...
@@ -581,7 +581,7 @@ undefined8 AudioSystem_AdvancedProcessor(longlong param_1, float *param_2, float
  * 参数：无
  * 返回值：处理状态码
  */
-undefined8 AudioSystem_Mixer(void)
+uint64_t AudioSystem_Mixer(void)
 {
     AudioSystem_FloatValue audio_value;
     AudioSystem_FloatValue gain_value;
@@ -682,8 +682,8 @@ undefined8 AudioSystem_Mixer(void)
             *(float *)(in_R10 + 0x240) = audio_value;
             *(uint *)(in_R10 + 0x220) = *(uint *)(in_R10 + 0x23c) ^ 0x80000000;
             *(uint *)(in_R10 + 0x224) = *(uint *)(in_R10 + 0x240) ^ 0x80000000;
-            *(undefined4 *)(in_R10 + 0x228) = *(undefined4 *)(in_R10 + 0x234);
-            *(undefined4 *)(in_R10 + 0x22c) = *(undefined4 *)(in_R10 + 0x238);
+            *(int32_t *)(in_R10 + 0x228) = *(int32_t *)(in_R10 + 0x234);
+            *(int32_t *)(in_R10 + 0x22c) = *(int32_t *)(in_R10 + 0x238);
         }
         
         // 处理其他音频通道...
@@ -758,7 +758,7 @@ undefined8 AudioSystem_Mixer(void)
  * 参数：无
  * 返回值：处理状态码
  */
-undefined8 AudioSystem_Filter(void)
+uint64_t AudioSystem_Filter(void)
 {
     return 0;
 }
@@ -769,12 +769,12 @@ undefined8 AudioSystem_Filter(void)
  * 参数：param_1 - 音频上下文句柄，param_2 - 输入音频数据，param_3 - 输出音频数据，param_4 - 缓冲区大小，param_5 - 特效参数
  * 返回值：处理状态码
  */
-undefined8 AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longlong param_3, uint param_4, uint param_5)
+uint64_t AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longlong param_3, uint param_4, uint param_5)
 {
     int process_count;
     uint buffer_size;
     uint effect_size;
-    undefined8 effect_result;
+    uint64_t effect_result;
     int effect_type;
     ulonglong effect_index;
     AudioSystem_FloatValue gain_value;
@@ -804,7 +804,7 @@ undefined8 AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longl
                 gain_value = 0.0;
             }
             *(float *)(param_1 + 0x25a8) = gain_value;
-            *(undefined4 *)(param_1 + 0x25b0) = 0x43800000;
+            *(int32_t *)(param_1 + 0x25b0) = 0x43800000;
             effect_size = 0x100;
             if (0x100 < effect_size) {
                 effect_size = effect_size;
@@ -825,7 +825,7 @@ undefined8 AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longl
                 gain_value = 0.0;
             }
             *(float *)(param_1 + 0x25bc) = gain_value;
-            *(undefined4 *)(param_1 + 0x25c4) = 0x43800000;
+            *(int32_t *)(param_1 + 0x25c4) = 0x43800000;
             effect_size = 0x100;
             if (0x100 < buffer_size) {
                 effect_size = buffer_size;
@@ -847,7 +847,7 @@ undefined8 AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longl
             if (0x100 < effect_size) {
                 buffer_size = effect_size;
             }
-            *(undefined4 *)(param_1 + 0x25d8) = 0x43800000;
+            *(int32_t *)(param_1 + 0x25d8) = 0x43800000;
             *(uint *)(param_1 + 0x25e8) = buffer_size;
             *(float *)(param_1 + 0x25d4) = (volume_value - *(float *)(param_1 + 0x25cc)) * 0.00390625;
         }
@@ -894,22 +894,22 @@ undefined8 AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longl
                     (*(code *)*_DAT_180c2bca0)
                             (param_3 + effect_index * 4, param_2 + effect_index * 4, param_4, param_5, process_count, param_1 + 0x5a0,
                              param_1 + 0x15a0, param_1 + 0xda0, param_1 + 0x1da0,
-                             *(undefined4 *)(param_1 + 0x25a4), *(undefined4 *)(param_1 + 0x25b8),
-                             *(undefined4 *)(param_1 + 0x25cc));
+                             *(int32_t *)(param_1 + 0x25a4), *(int32_t *)(param_1 + 0x25b8),
+                             *(int32_t *)(param_1 + 0x25cc));
                 }
                 else if (effect_type == 1) {
                     (*(code *)_DAT_180c2bca0[1])
                             (param_3 + effect_index * 4, param_2 + effect_index * 4, param_4, param_5, process_count, param_1 + 0x5a0,
                              param_1 + 0x15a0, param_1 + 0xda0, param_1 + 0x1da0,
-                             *(undefined4 *)(param_1 + 0x25a4), *(undefined4 *)(param_1 + 0x25b8),
-                             *(undefined4 *)(param_1 + 0x25cc));
+                             *(int32_t *)(param_1 + 0x25a4), *(int32_t *)(param_1 + 0x25b8),
+                             *(int32_t *)(param_1 + 0x25cc));
                 }
                 else if (effect_type == 2) {
                     (*(code *)_DAT_180c2bca0[2])
                             (param_3 + effect_index * 4, param_2 + effect_index * 4, param_4, param_5, process_count, param_1 + 0x5a0,
                              param_1 + 0x15a0, param_1 + 0xda0, param_1 + 0x1da0,
-                             *(undefined4 *)(param_1 + 0x25a4), *(undefined4 *)(param_1 + 0x25b8),
-                             *(undefined4 *)(param_1 + 0x25cc));
+                             *(int32_t *)(param_1 + 0x25a4), *(int32_t *)(param_1 + 0x25b8),
+                             *(int32_t *)(param_1 + 0x25cc));
                 }
                 effect_index = (ulonglong)(process_count + 1U);
             } while (process_count + 1U < param_5);
@@ -924,27 +924,27 @@ undefined8 AudioSystem_EffectGenerator(longlong param_1, longlong param_2, longl
  * 参数：param_1 - 音频上下文句柄，param_2 - 音频增益值
  * 返回值：处理状态码
  */
-undefined8 AudioSystem_ParameterController(longlong param_1, float param_2)
+uint64_t AudioSystem_ParameterController(longlong param_1, float param_2)
 {
     int effect_type;
     uint buffer_size;
-    undefined8 effect_result;
+    uint64_t effect_result;
     longlong unaff_RBX;
-    undefined8 unaff_RBP;
+    uint64_t unaff_RBP;
     uint unaff_ESI;
     int process_count;
     ulonglong unaff_RDI;
     longlong in_R11;
     longlong unaff_R12;
-    undefined4 unaff_R14D;
+    int32_t unaff_R14D;
     longlong unaff_R15;
     bool in_ZF;
     AudioSystem_FloatValue gain_value;
     AudioSystem_FloatValue volume_value;
-    undefined4 effect_param;
+    int32_t effect_param;
     float in_stack_000000b0;
     
-    *(undefined8 *)(in_R11 + 8) = unaff_RBP;
+    *(uint64_t *)(in_R11 + 8) = unaff_RBP;
     volume_value = 0.0;
     
     if (!in_ZF) {
@@ -956,7 +956,7 @@ undefined8 AudioSystem_ParameterController(longlong param_1, float param_2)
             gain_value = 0.0;
         }
         *(float *)(unaff_RBX + 0x25a8) = gain_value;
-        *(undefined4 *)(unaff_RBX + 0x25b0) = 0x43800000;
+        *(int32_t *)(unaff_RBX + 0x25b0) = 0x43800000;
         buffer_size = 0x100;
         if (0x100 < unaff_ESI) {
             buffer_size = unaff_ESI;
@@ -976,7 +976,7 @@ undefined8 AudioSystem_ParameterController(longlong param_1, float param_2)
             gain_value = 0.0;
         }
         *(float *)(unaff_RBX + 0x25bc) = gain_value;
-        *(undefined4 *)(unaff_RBX + 0x25c4) = 0x43800000;
+        *(int32_t *)(unaff_RBX + 0x25c4) = 0x43800000;
         buffer_size = 0x100;
         if (0x100 < unaff_ESI) {
             buffer_size = unaff_ESI;
@@ -998,7 +998,7 @@ undefined8 AudioSystem_ParameterController(longlong param_1, float param_2)
             buffer_size = unaff_ESI;
         }
         unaff_ESI = buffer_size;
-        *(undefined4 *)(unaff_RBX + 0x25d8) = 0x43800000;
+        *(int32_t *)(unaff_RBX + 0x25d8) = 0x43800000;
         *(uint *)(unaff_RBX + 0x25e8) = unaff_ESI;
         *(float *)(unaff_RBX + 0x25d4) = (volume_value - *(float *)(unaff_RBX + 0x25cc)) * 0.00390625;
     }
@@ -1070,22 +1070,22 @@ undefined8 AudioSystem_ParameterController(longlong param_1, float param_2)
  * 参数：param_1 - 音频特效设置值
  * 返回值：处理状态码
  */
-undefined8 AudioSystem_StateManager(undefined4 param_1)
+uint64_t AudioSystem_StateManager(int32_t param_1)
 {
     AudioSystem_FloatValue effect_value;
     int effect_type;
-    undefined8 effect_result;
+    uint64_t effect_result;
     longlong unaff_RBX;
     uint buffer_size;
     int process_count;
     ulonglong unaff_RDI;
     longlong unaff_R12;
-    undefined4 unaff_R14D;
+    int32_t unaff_R14D;
     longlong unaff_R15;
-    undefined4 effect_param;
+    int32_t effect_param;
     uint in_stack_000000b0;
     
-    *(undefined4 *)(unaff_RBX + 0x25dc) = param_1;
+    *(int32_t *)(unaff_RBX + 0x25dc) = param_1;
     FUN_1807a4a90(param_1, 0x400);
     buffer_size = 0x400;
     if (0x400 < *(uint *)(unaff_RBX + 0x25e8)) {

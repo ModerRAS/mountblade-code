@@ -14,22 +14,22 @@ void update_ui_element_position_and_status(void)
 {
   int *status_ptr;
   char *flag_ptr;
-  undefined4 *position_ptr;
+  int32_t *position_ptr;
   float scale_value;
   int state_value;
   int mode_value;
   longlong context_base;
   longlong element_ptr;
   longlong temp_ptr;
-  undefined4 position_x;
-  undefined4 position_y;
+  int32_t position_x;
+  int32_t position_y;
   int element_index;
   longlong data_ptr;
   longlong dimension_ptr;
   longlong bounds_ptr;
   float adjusted_value;
   uint flag_bits;
-  undefined4 temp_flag;
+  int32_t temp_flag;
   
   context_base = global_engine_context;
   element_ptr = *(longlong *)(global_engine_context + 0x1af8);
@@ -38,13 +38,13 @@ void update_ui_element_position_and_status(void)
     (((*(int *)(global_engine_context + 0x1d98) == 0 && (*(int *)(global_engine_context + 0x1d28) == 0)) &&
       (state_value = *(int *)(global_engine_context + 0x1cfc), state_value == 0)))) {
     mode_value = *(int *)(global_engine_context + 0x1d2c);
-    position_x = *(undefined4 *)(element_ptr + 0x3d0);
-    position_y = *(undefined4 *)(element_ptr + 0x3d8);
+    position_x = *(int32_t *)(element_ptr + 0x3d0);
+    position_y = *(int32_t *)(element_ptr + 0x3d8);
     element_index = mode_value;
     if (mode_value == 1) {
       element_index = 1;
     }
-    temp_flag = (int)*(undefined8 *)(element_ptr + 0x3d0);
+    temp_flag = (int)*(uint64_t *)(element_ptr + 0x3d0);
     if (element_index == 2) {
       adjusted_value = *(float *)(element_ptr + 100);
       if (*(float *)(element_ptr + 100) <= *(float *)(element_ptr + 0x54)) {
@@ -52,13 +52,13 @@ void update_ui_element_position_and_status(void)
       }
       flag_ptr = (char *)(global_engine_context + 0x1d09);
       adjusted_value = adjusted_value - *(float *)(element_ptr + 0x90);
-      *(undefined1 *)(global_engine_context + 0x1d21) = 0;
+      *(int8_t *)(global_engine_context + 0x1d21) = 0;
       *(bool *)(context_base + 0x1d08) = *flag_ptr != '\0';
-      *(undefined4 *)(context_base + 0x1d2c) = 2;
+      *(int32_t *)(context_base + 0x1d2c) = 2;
       *(int *)(context_base + 0x1d34) = mode_value;
-      *(undefined4 *)(context_base + 0x1d28) = 1;
-      *(undefined4 *)(context_base + 0x1d24) = 2;
-      position_ptr = (undefined4 *)(*(longlong *)(context_base + 0x1c98) + ((longlong)state_value + 0x3d) * 0x10);
+      *(int32_t *)(context_base + 0x1d28) = 1;
+      *(int32_t *)(context_base + 0x1d24) = 2;
+      position_ptr = (int32_t *)(*(longlong *)(context_base + 0x1c98) + ((longlong)state_value + 0x3d) * 0x10);
       *position_ptr = position_x;
       position_ptr[1] = adjusted_value;
       position_ptr[2] = position_y;
@@ -69,12 +69,12 @@ void update_ui_element_position_and_status(void)
     if (element_index == 3) {
       flag_bits = *(uint *)(element_ptr + 0x90) ^ 0x80000000;
       *(bool *)(context_base + 0x1d08) = *(char *)(context_base + 0x1d09) != '\0';
-      *(undefined1 *)(context_base + 0x1d21) = 0;
-      *(undefined4 *)(context_base + 0x1d2c) = 3;
+      *(int8_t *)(context_base + 0x1d21) = 0;
+      *(int32_t *)(context_base + 0x1d2c) = 3;
       *(int *)(context_base + 0x1d34) = mode_value;
-      *(undefined4 *)(context_base + 0x1d28) = 1;
-      *(undefined4 *)(context_base + 0x1d24) = 2;
-      position_ptr = (undefined4 *)
+      *(int32_t *)(context_base + 0x1d28) = 1;
+      *(int32_t *)(context_base + 0x1d24) = 2;
+      position_ptr = (int32_t *)
                (*(longlong *)(context_base + 0x1c98) + ((longlong)*(int *)(context_base + 0x1cfc) + 0x3d) * 0x10);
       *position_ptr = temp_flag;
       position_ptr[1] = flag_bits;
@@ -106,13 +106,13 @@ void update_ui_element_position_and_status(void)
         else {
           close_file_handle();
         }
-        *(undefined8 *)(dimension_ptr + 0x2e40) = 0;
+        *(uint64_t *)(dimension_ptr + 0x2e40) = 0;
       }
       status_ptr = (int *)(dimension_ptr + 0x2e48);
       data_ptr = *(longlong *)(dimension_ptr + 0x2e50);
       if ((data_ptr != 0) && (1 < *status_ptr + -1)) {
         if (*(code **)(global_engine_context + 0x100) != (code *)0x0) {
-          (**(code **)(global_engine_context + 0x100))(*(undefined8 *)(global_engine_context + 0x108),data_ptr);
+          (**(code **)(global_engine_context + 0x100))(*(uint64_t *)(global_engine_context + 0x108),data_ptr);
           data_ptr = *(longlong *)(dimension_ptr + 0x2e50);
         }
         dimension_ptr = global_engine_context;
@@ -156,7 +156,7 @@ void update_ui_element_position_and_status(void)
     if (*(longlong *)(element_ptr + 0x1af8) != 0) {
       element_ptr = *(longlong *)(*(longlong *)(element_ptr + 0x1af8) + 0x28);
       if (element_ptr != 0) {
-        *(undefined4 *)(element_ptr + 0x54) = *(undefined4 *)(dimension_ptr + 0x1a90);
+        *(int32_t *)(element_ptr + 0x54) = *(int32_t *)(dimension_ptr + 0x1a90);
       }
       if (((*(longlong *)(dimension_ptr + 0x1c78) != element_ptr) &&
           (*(longlong *)(dimension_ptr + 0x1c78) = element_ptr, element_ptr != 0)) &&
@@ -177,7 +177,7 @@ void calculate_ui_element_optimal_position(float *output_position,float *referen
   float ref_height;
   float element_height;
   float element_width;
-  undefined8 position_data;
+  uint64_t position_data;
   int current_anchor;
   int test_anchor;
   float *boundary_ptr;
@@ -187,9 +187,9 @@ void calculate_ui_element_optimal_position(float *output_position,float *referen
   float test_width;
   float test_height;
   float optimal_height;
-  undefined8 stack_guard;
-  undefined4 anchor_sequence;
-  undefined4 anchor_values;
+  uint64_t stack_guard;
+  int32_t anchor_sequence;
+  int32_t anchor_values;
   ulonglong guard_value;
   
   guard_value = global_ui_scale_factor ^ (ulonglong)&stack_guard;
@@ -307,7 +307,7 @@ LAB_anchor_mode_1:
     loop_index = loop_index + 1;
     if (3 < loop_index) {
       *anchor_mode = -1;
-      position_data = *(undefined8 *)reference_position;
+      position_data = *(uint64_t *)reference_position;
       test_y = *element_size + (float)position_data;
       if (boundary_bounds[2] <= test_y) {
         test_y = boundary_bounds[2];
@@ -351,14 +351,14 @@ float * calculate_ui_element_bounding_box(float *bounding_box,longlong element_d
   bounding_box[3] = -3.4028235e+38;
   index = (longlong)*(int *)(element_data + 0x3c);
   if (*(int *)(element_data + 0x3c) < 0) {
-    *(undefined8 *)bounding_box = *(undefined8 *)(*(longlong *)(element_data + 0x28) + 8);
+    *(uint64_t *)bounding_box = *(uint64_t *)(*(longlong *)(element_data + 0x28) + 8);
     index = *(longlong *)(element_data + 0x28);
     scale_y = *(float *)(index + 8) + *(float *)(index + 0x10);
     scale_x = *(float *)(index + 0xc) + *(float *)(index + 0x14);
   }
   else {
     array_ptr = *(longlong *)(context_base + 0x1608);
-    *(undefined8 *)bounding_box = *(undefined8 *)(array_ptr + 0x10 + index * 0x24);
+    *(uint64_t *)bounding_box = *(uint64_t *)(array_ptr + 0x10 + index * 0x24);
     scale_y = *(float *)(array_ptr + 0x18 + index * 0x24) + *(float *)(array_ptr + 0x10 + index * 0x24);
     scale_x = *(float *)(array_ptr + 0x1c + index * 0x24) + *(float *)(array_ptr + 0x14 + index * 0x24);
   }
@@ -385,7 +385,7 @@ float * calculate_ui_element_bounding_box(float *bounding_box,longlong element_d
 }
 
 // 函数: 计算UI元素的绝对位置
-undefined8 * calculate_ui_element_absolute_position(undefined8 *output_position,longlong element_data)
+uint64_t * calculate_ui_element_absolute_position(uint64_t *output_position,longlong element_data)
 {
   uint element_flags;
   longlong context_base;
@@ -394,18 +394,18 @@ undefined8 * calculate_ui_element_absolute_position(undefined8 *output_position,
   float padding_size;
   float element_x;
   float element_y;
-  undefined8 position_data;
+  uint64_t position_data;
   float boundary_min_x;
   float boundary_min_y;
   float boundary_max_x;
   float boundary_max_y;
-  undefined1 bounding_box_buffer [64];
+  int8_t bounding_box_buffer [64];
   
   element_flags = *(uint *)(element_data + 0xc);
   if ((element_flags >> 0x1c & 1) == 0) {
     if ((element_flags >> 0x1a & 1) == 0) {
       if ((element_flags >> 0x19 & 1) == 0) {
-        *output_position = *(undefined8 *)(element_data + 0x40);
+        *output_position = *(uint64_t *)(element_data + 0x40);
       }
       else {
         padding_size = *(float *)(global_engine_context + 0x16bc);
@@ -490,13 +490,13 @@ undefined8 * calculate_ui_element_absolute_position(undefined8 *output_position,
 }
 
 // 函数: 处理UI元素的边界约束
-void process_ui_element_boundary_constraints(undefined8 position_data,longlong element_data)
+void process_ui_element_boundary_constraints(uint64_t position_data,longlong element_data)
 {
   longlong element_ptr;
   uint element_flags;
   longlong context_base;
   longlong parent_element;
-  undefined4 constraint_value;
+  int32_t constraint_value;
   float element_width;
   float element_height;
   float boundary_width;
@@ -512,13 +512,13 @@ void process_ui_element_boundary_constraints(undefined8 position_data,longlong e
     boundary_height = ((*(float *)(element_ptr + 0x40) + *(float *)(element_ptr + 0x48)) - global_horizontal_offset) -
             *(float *)(element_ptr + 0xa4);
     *(float *)(context_base + 7) = element_height;
-    *(undefined4 *)(context_base + 0xb) = 0xff7fffff;
+    *(int32_t *)(context_base + 0xb) = 0xff7fffff;
     *(float *)(context_base + 0xf) = boundary_height;
-    *(undefined4 *)(context_base + 0x13) = 0x7f7fffff;
+    *(int32_t *)(context_base + 0x13) = 0x7f7fffff;
     *(float *)(context_base + 7) = element_height;
-    *(undefined4 *)(context_base + 0xb) = 0xff7fffff;
+    *(int32_t *)(context_base + 0xb) = 0xff7fffff;
     *(float *)(context_base + 0xf) = boundary_height;
-    *(undefined4 *)(context_base + 0x13) = 0x7f7fffff;
+    *(int32_t *)(context_base + 0x13) = 0x7f7fffff;
   }
   else {
     boundary_height = 0.0;
@@ -544,13 +544,13 @@ void process_ui_element_boundary_constraints(undefined8 position_data,longlong e
     }
     boundary_height = *(float *)(element_ptr + 0x44) + boundary_height;
     constraint_value = 0x7f7fffff;
-    *(undefined4 *)(context_base + 7) = 0xff7fffff;
+    *(int32_t *)(context_base + 7) = 0xff7fffff;
     *(float *)(context_base + 0xb) = boundary_height;
-    *(undefined4 *)(context_base + 0xf) = 0x7f7fffff;
+    *(int32_t *)(context_base + 0xf) = 0x7f7fffff;
     *(float *)(context_base + 0x13) = boundary_width;
-    *(undefined4 *)(context_base + 7) = 0xff7fffff;
+    *(int32_t *)(context_base + 7) = 0xff7fffff;
     *(float *)(context_base + 0xb) = boundary_height;
-    *(undefined4 *)(context_base + 0xf) = 0x7f7fffff;
+    *(int32_t *)(context_base + 0xf) = 0x7f7fffff;
     *(float *)(context_base + 0x13) = boundary_width;
   }
   calculate_ui_element_optimal_position(constraint_value,element_data + 0x40,element_data + 0x48,element_data + 0xd4,context_base + 0x17);
@@ -558,11 +558,11 @@ void process_ui_element_boundary_constraints(undefined8 position_data,longlong e
 }
 
 // 函数: 计算工具提示位置
-void calculate_tooltip_position(undefined8 *output_position,longlong element_data)
+void calculate_tooltip_position(uint64_t *output_position,longlong element_data)
 {
   uint tooltip_flags;
   longlong context_base;
-  undefined8 *position_ptr;
+  uint64_t *position_ptr;
   longlong parent_element;
   int *anchor_mode_ptr;
   float tooltip_padding;
@@ -575,7 +575,7 @@ void calculate_tooltip_position(undefined8 *output_position,longlong element_dat
   
   if ((tooltip_flags >> 0x1a & 1) == 0) {
     if ((tooltip_flags >> 0x19 & 1) == 0) {
-      *output_position = *(undefined8 *)(element_data + 0x40);
+      *output_position = *(uint64_t *)(element_data + 0x40);
     }
     else {
       tooltip_padding = *(float *)(parent_element + 0x16bc);
@@ -615,7 +615,7 @@ void calculate_tooltip_position(undefined8 *output_position,longlong element_dat
         *position_ptr = CONCAT44(element_y + 2.0,boundary_max_x + 2.0);
       }
       else {
-        *position_ptr = *(undefined8 *)(context_base + 0x77);
+        *position_ptr = *(uint64_t *)(context_base + 0x77);
       }
     }
   }
@@ -637,7 +637,7 @@ void calculate_tooltip_position(undefined8 *output_position,longlong element_dat
 void calculate_tooltip_position_simplified(void)
 {
   longlong context_base;
-  undefined8 *position_ptr;
+  uint64_t *position_ptr;
   longlong parent_element;
   int *anchor_mode_ptr;
   float tooltip_padding;
@@ -683,7 +683,7 @@ void calculate_tooltip_position_simplified(void)
     *position_ptr = CONCAT44(boundary_width + 2.0,boundary_height + 2.0);
   }
   else {
-    *position_ptr = *(undefined8 *)(context_base + 0x77);
+    *position_ptr = *(uint64_t *)(context_base + 0x77);
   }
   return;
 }
@@ -692,7 +692,7 @@ void calculate_tooltip_position_simplified(void)
 void calculate_tooltip_position_alternative(void)
 {
   longlong context_base;
-  undefined8 *position_ptr;
+  uint64_t *position_ptr;
   longlong parent_element;
   int *anchor_mode_ptr;
   float tooltip_padding;
@@ -738,7 +738,7 @@ void calculate_tooltip_position_alternative(void)
     *position_ptr = CONCAT44(boundary_width + 2.0,boundary_height + 2.0);
   }
   else {
-    *position_ptr = *(undefined8 *)(context_base + 0x77);
+    *position_ptr = *(uint64_t *)(context_base + 0x77);
   }
   return;
 }
@@ -746,7 +746,7 @@ void calculate_tooltip_position_alternative(void)
 // 函数: 设置工具提示偏移位置
 void set_tooltip_offset_position(void)
 {
-  undefined8 *position_ptr;
+  uint64_t *position_ptr;
   float horizontal_offset;
   float vertical_offset;
   
@@ -758,8 +758,8 @@ void set_tooltip_offset_position(void)
 void get_calculated_position(void)
 {
   longlong context_base;
-  undefined8 *position_ptr;
+  uint64_t *position_ptr;
   
-  *position_ptr = *(undefined8 *)(context_base + 0x77);
+  *position_ptr = *(uint64_t *)(context_base + 0x77);
   return;
 }

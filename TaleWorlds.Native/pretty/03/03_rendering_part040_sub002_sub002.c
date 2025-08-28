@@ -991,10 +991,10 @@ int32_t add_render_batch_item(void* data_ptr, int32_t index, int32_t flag1, int3
 // ============================================================================
 
 // 原始函数别名
-void FUN_18028b0d2(undefined8 param_1, int param_2, int param_3, longlong *param_4)
+void FUN_18028b0d2(uint64_t param_1, int param_2, int param_3, longlong *param_4)
     __attribute__((alias("extract_render_data_block")));
 
-uint32_t* FUN_18028b2f0(undefined4 *param_1, longlong *param_2, uint param_3)
+uint32_t* FUN_18028b2f0(int32_t *param_1, longlong *param_2, uint param_3)
     __attribute__((alias("find_render_data_marker")));
 
 void* FUN_18028b4c0(longlong *param_1, longlong *param_2, int param_3)
@@ -1003,17 +1003,17 @@ void* FUN_18028b4c0(longlong *param_1, longlong *param_2, int param_3)
 int32_t FUN_18028b630(longlong param_1, uint param_2, char *param_3)
     __attribute__((alias("find_render_resource_info")));
 
-void* FUN_18028b820(undefined4 *param_1, longlong *param_2, undefined8 param_3)
+void* FUN_18028b820(int32_t *param_1, longlong *param_2, uint64_t param_3)
     __attribute__((alias("process_render_coordinate_transform")));
 
-int32_t FUN_18028b960(longlong param_1, longlong param_2, undefined4 param_3)
+int32_t FUN_18028b960(longlong param_1, longlong param_2, int32_t param_3)
     __attribute__((alias("initialize_render_resource")));
 
 uint32_t FUN_18028be60(longlong param_1, uint param_2)
     __attribute__((alias("get_render_data_value")));
 
 int32_t FUN_18028c2f0(longlong param_1, int param_2, int param_3, int param_4, 
-                       undefined2 param_5, undefined2 param_6, int param_7, 
+                       int16_t param_5, int16_t param_6, int param_7, 
                        int param_8, int param_9, int param_10)
     __attribute__((alias("add_render_batch_item")));
 

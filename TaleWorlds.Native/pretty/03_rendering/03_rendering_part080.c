@@ -68,34 +68,34 @@ void rendering_system_advanced_render_controller(void)
   ulonglong render_context;
   byte texture_index;
   int distance_value;
-  undefined4 render_flag;
+  int32_t render_flag;
   longlong render_base_ptr;
   longlong scene_context;
   char render_state;
   int render_quality;
-  undefined4 render_option;
+  int32_t render_option;
   longlong matrix_data;
   float scale_factor;
-  undefined8 render_value;
-  undefined1 texture_buffer_1 [16];
-  undefined1 texture_buffer_2 [16];
-  undefined1 texture_buffer_3 [16];
-  undefined1 texture_buffer_4 [16];
+  uint64_t render_value;
+  int8_t texture_buffer_1 [16];
+  int8_t texture_buffer_2 [16];
+  int8_t texture_buffer_3 [16];
+  int8_t texture_buffer_4 [16];
   float depth_value;
-  undefined1 position_buffer_1 [16];
-  undefined1 position_buffer_2 [16];
+  int8_t position_buffer_1 [16];
+  int8_t position_buffer_2 [16];
   float light_intensity;
   float ambient_light;
   float specular_light;
   float diffuse_light;
-  undefined2 texture_format;
+  int16_t texture_format;
   float position_x;
   float position_y;
   float camera_distance;
   float fog_density;
-  undefined4 render_mode;
-  undefined8 color_value;
-  undefined1 normal_buffer [16];
+  int32_t render_mode;
+  uint64_t color_value;
+  int8_t normal_buffer [16];
   
   // 计算缩放因子和深度值
   scale_factor = (float)*(byte *)(render_base_ptr + 0xa9) * diffuse_light;
@@ -188,7 +188,7 @@ void rendering_system_advanced_render_controller(void)
   texture_coord_u = CONCAT14(RENDER_CMD_DISTANCE_TEST,texture_coord_u);
   FUN_180310a00();
   
-  texture_format = (undefined2)((uint)scale_factor >> 0x10);
+  texture_format = (int16_t)((uint)scale_factor >> 0x10);
   status_flag = *(int *)(RENDER_SYSTEM_BASE_ADDR + 0x2300);
   render_state = (char)render_quality;
   
@@ -208,9 +208,9 @@ void rendering_system_advanced_render_controller(void)
     render_mode = RENDER_CMD_BEGIN_BATCH;
     FUN_180310a00();
     *(char *)(scene_context + 0x7c) = render_state;
-    *(undefined4 *)(scene_context + 0x68) = 0xbf800000;
-    *(undefined8 *)(scene_context + 0x6c) = 0;
-    *(undefined8 *)(scene_context + 0x74) = 0;
+    *(int32_t *)(scene_context + 0x68) = 0xbf800000;
+    *(uint64_t *)(scene_context + 0x6c) = 0;
+    *(uint64_t *)(scene_context + 0x74) = 0;
     texture_index = 0;
   }
   else {
@@ -221,7 +221,7 @@ void rendering_system_advanced_render_controller(void)
       scale_factor = 0.0;
       texture_coord_u =
            CONCAT44((float)*(ushort *)(render_base_ptr + -0x22),(float)*(ushort *)(render_base_ptr + -0x24));
-      *(undefined8 *)(scene_context + 0x6c) = texture_coord_u;
+      *(uint64_t *)(scene_context + 0x6c) = texture_coord_u;
     }
     else {
       scale_factor = *(float *)(scene_context + 0x68) + RENDERING_TIME_DELTA;
@@ -232,7 +232,7 @@ void rendering_system_advanced_render_controller(void)
     FUN_180310a00();
     texture_coord_u =
          CONCAT44((float)*(ushort *)(render_base_ptr + -0x22),(float)*(ushort *)(render_base_ptr + -0x24));
-    *(undefined8 *)(scene_context + 0x74) = texture_coord_u;
+    *(uint64_t *)(scene_context + 0x74) = texture_coord_u;
     texture_index = *(byte *)(render_base_ptr + 0x7d);
   }
   *(byte *)(scene_context + 0x7d) = texture_index;
@@ -265,7 +265,7 @@ void rendering_system_advanced_render_controller(void)
     }
     *(float *)(render_base_ptr + -0x78) = scale_factor;
     *(float *)(render_base_ptr + -0x74) = position_x;
-    render_value = *(undefined8 *)(render_base_ptr + -0x78);
+    render_value = *(uint64_t *)(render_base_ptr + -0x78);
     *(char *)(matrix_data + 0x2028) = render_state;
   }
   else {
@@ -274,11 +274,11 @@ void rendering_system_advanced_render_controller(void)
   
   // 处理渲染参数和状态更新
   render_data_ptr = RENDER_SYSTEM_BASE_ADDR;
-  render_flag = *(undefined4 *)(render_base_ptr + -0x34);
-  *(undefined4 *)(scene_context + 0x338) = *(undefined4 *)(render_base_ptr + -0x38);
-  *(undefined4 *)(scene_context + 0x340) = *(undefined4 *)(render_base_ptr + -0x30);
-  *(undefined4 *)(scene_context + 0x33c) = render_flag;
-  *(undefined8 *)(render_base_ptr + -0x78) = render_value;
+  render_flag = *(int32_t *)(render_base_ptr + -0x34);
+  *(int32_t *)(scene_context + 0x338) = *(int32_t *)(render_base_ptr + -0x38);
+  *(int32_t *)(scene_context + 0x340) = *(int32_t *)(render_base_ptr + -0x30);
+  *(int32_t *)(scene_context + 0x33c) = render_flag;
+  *(uint64_t *)(render_base_ptr + -0x78) = render_value;
   if (*(int *)(render_data_ptr + 0x2530) != render_quality) {
     if (*(byte *)(render_base_ptr + -0x2c) < *(byte *)(render_base_ptr + 0x7d)) {
       *(int *)(scene_context + 0x334) = render_quality;
@@ -304,7 +304,7 @@ void rendering_system_advanced_render_controller(void)
         matrix_data = RENDER_SYSTEM_CONTEXT_ADDR;
         if (*(char *)(RENDER_SYSTEM_STATUS_ADDR + 0x1609) != render_state) {
           texture_coord_u = CONCAT44(loop_counter,distance_value);
-          FUN_180174080(*(undefined8 *)(RENDER_SYSTEM_DATA_ADDR + 8),texture_coord_u);
+          FUN_180174080(*(uint64_t *)(RENDER_SYSTEM_DATA_ADDR + 8),texture_coord_u);
           matrix_data = 0x180c868d0;
         }
       }
@@ -318,7 +318,7 @@ void rendering_system_advanced_render_controller(void)
   texture_buffer_1._4_4_ = render_option;
   texture_buffer_1._0_4_ = light_intensity;
   texture_buffer_1._8_4_ = fog_density;
-  texture_buffer_1._12_4_ = *(undefined4 *)&specular_light;
+  texture_buffer_1._12_4_ = *(int32_t *)&specular_light;
   texture_buffer_2._4_12_ = texture_buffer_1._4_12_;
   texture_buffer_2._0_4_ = light_intensity * light_intensity;
   color_value = texture_buffer_2._0_8_;
@@ -335,7 +335,7 @@ void rendering_system_advanced_render_controller(void)
       scale_factor = diffuse_light;
     }
     position_buffer_1._0_8_ = cosf();
-    position_buffer_1._8_8_ = *(undefined8 *)&position_x;
+    position_buffer_1._8_8_ = *(uint64_t *)&position_x;
     position_buffer_2._4_12_ = position_buffer_1._4_12_;
     position_buffer_2._0_4_ = (float)position_buffer_1._0_8_ * light_intensity;
     color_value = position_buffer_2._0_8_;
@@ -448,7 +448,7 @@ void rendering_system_advanced_render_controller(void)
     position_buffer_2._0_4_ = position_buffer_1._0_4_ * 255.0;
     texture_buffer_2._4_12_ = normal_buffer._4_12_;
     texture_buffer_2._0_4_ = normal_buffer._0_4_ * 255.0;
-    FUN_1808eecf0(*(undefined4 *)(scene_context + 0x330),&position_buffer_1,position_buffer_2._0_8_,texture_buffer_2._0_8_,
+    FUN_1808eecf0(*(int32_t *)(scene_context + 0x330),&position_buffer_1,position_buffer_2._0_8_,texture_buffer_2._0_8_,
                   CONCAT22(texture_format,CONCAT11((char)(int)texture_buffer_2._0_4_,(char)(int)position_buffer_2._0_4_)));
     scale_factor = RENDERING_TIME_DELTA;
   }
@@ -456,15 +456,15 @@ void rendering_system_advanced_render_controller(void)
   // 处理渲染模式和状态切换
   if (*(char *)(scene_context + 0x192) == render_state) {
     render_flag = 4;
-    *(undefined4 *)(scene_context + 100) = 4;
-    status_flag = FUN_1808ee530(*(undefined4 *)(scene_context + 0x330),&matrix_data);
+    *(int32_t *)(scene_context + 100) = 4;
+    status_flag = FUN_1808ee530(*(int32_t *)(scene_context + 0x330),&matrix_data);
     if ((status_flag == 0) && (matrix_data != 0)) {
       if (matrix_data == 1) {
         render_flag = 2;
       }
-      *(undefined4 *)(scene_context + 100) = render_flag;
+      *(int32_t *)(scene_context + 100) = render_flag;
     }
-    *(undefined1 *)(scene_context + 0x7e) = 1;
+    *(int8_t *)(scene_context + 0x7e) = 1;
     FUN_1808fc050(*(ulonglong *)(render_base_ptr + 0xc0) ^ (ulonglong)&matrix_data);
   }
   
@@ -503,19 +503,19 @@ void rendering_system_advanced_render_controller(void)
 void rendering_system_render_state_processor(void)
 
 {
-  undefined4 render_mode;
+  int32_t render_mode;
   longlong render_context;
   longlong scene_data;
-  undefined4 render_option;
+  int32_t render_option;
   int status_flag;
   
   if (status_flag != 0) {
     if (status_flag == 1) {
       render_mode = render_option;
     }
-    *(undefined4 *)(scene_data + 100) = render_mode;
+    *(int32_t *)(scene_data + 100) = render_mode;
   }
-  *(undefined1 *)(scene_data + 0x7e) = 1;
+  *(int8_t *)(scene_data + 0x7e) = 1;
   FUN_1808fc050(*(ulonglong *)(render_context + 0xc0) ^ (ulonglong)&status_flag);
 }
 
@@ -524,12 +524,12 @@ void rendering_system_render_state_processor(void)
 // 函数: 渲染系统参数处理器
 // 参数: param_1 - 渲染参数值, param_2 - 参数类型, param_3 - 参数标志
 // 功能: 处理渲染系统参数的设置和验证
-void rendering_system_parameter_handler(undefined4 param_1,undefined1 param_2,char param_3)
+void rendering_system_parameter_handler(int32_t param_1,int8_t param_2,char param_3)
 
 {
-  undefined1 parameter_buffer [4];
-  undefined1 parameter_type;
-  undefined8 parameter_value;
+  int8_t parameter_buffer [4];
+  int8_t parameter_type;
+  uint64_t parameter_value;
   
   parameter_type = param_2;
   if (param_3 != '\0') {

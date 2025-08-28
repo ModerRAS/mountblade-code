@@ -519,7 +519,7 @@ void FUN_180673970(longlong param_1, longlong *param_2)
  * @param param_6 操作标志
  */
 void FUN_180673e10(longlong param_1, int param_2, int param_3, int param_4, 
-                  undefined8 param_5, undefined4 param_6)
+                  uint64_t param_5, int32_t param_6)
 {
     // 内存管理参数
     uint32_t memory_size;             // 内存大小
@@ -597,8 +597,8 @@ cleanup_handler:
  * @param param_5 目标地址
  * @param param_6 操作标志
  */
-void FUN_180673f50(longlong param_1, undefined8 param_2, int param_3, int param_4, 
-                  undefined8 param_5, undefined4 param_6)
+void FUN_180673f50(longlong param_1, uint64_t param_2, int param_3, int param_4, 
+                  uint64_t param_5, int32_t param_6)
 {
     // 数据变换参数
     uint32_t data_size;               // 数据大小
@@ -674,7 +674,7 @@ void FUN_180673f50(longlong param_1, undefined8 param_2, int param_3, int param_
  * @param param_6 操作标志
  */
 void FUN_180674040(longlong param_1, int param_2, int param_3, int param_4, 
-                  undefined8 param_5, undefined4 param_6)
+                  uint64_t param_5, int32_t param_6)
 {
     // 参数处理变量
     uint32_t param_count;             // 参数数量
@@ -740,8 +740,8 @@ void FUN_180674040(longlong param_1, int param_2, int param_3, int param_4,
  * @param param_5 目标地址
  * @param param_6 变换参数
  */
-void FUN_180674120(undefined1 *param_1, int param_2, int param_3, int param_4, 
-                  undefined1 *param_5, int param_6)
+void FUN_180674120(int8_t *param_1, int param_2, int param_3, int param_4, 
+                  int8_t *param_5, int param_6)
 {
     // 坐标变换变量
     float coordinates[16];             // 坐标数组
@@ -775,7 +775,7 @@ void FUN_180674120(undefined1 *param_1, int param_2, int param_3, int param_4,
     if (param_3 == 0) {
         if (param_4 == 0) {
             // 模式0：直接坐标复制
-            undefined1 *source_ptr = param_1 + param_2;
+            int8_t *source_ptr = param_1 + param_2;
             *param_5 = *param_1;
             param_5[1] = param_1[1];
             param_5[2] = param_1[2];
@@ -786,14 +786,14 @@ void FUN_180674120(undefined1 *param_1, int param_2, int param_3, int param_4,
             param_5[2] = source_ptr[2];
             param_5[3] = source_ptr[3];
             
-            undefined1 *next_ptr = source_ptr + param_2;
+            int8_t *next_ptr = source_ptr + param_2;
             param_5 += param_6;
             *param_5 = *next_ptr;
             param_5[1] = next_ptr[1];
             param_5[2] = next_ptr[2];
             param_5[3] = next_ptr[3];
             
-            undefined1 *final_ptr = next_ptr + param_2;
+            int8_t *final_ptr = next_ptr + param_2;
             param_5 += param_6;
             *param_5 = *final_ptr;
             param_5[1] = final_ptr[1];
@@ -839,7 +839,7 @@ void FUN_180674120(undefined1 *param_1, int param_2, int param_3, int param_4,
  * @param param_6 优化标志
  */
 void FUN_1806742a0(longlong param_1, int param_2, int param_3, int param_4, 
-                  undefined8 param_5, undefined4 param_6)
+                  uint64_t param_5, int32_t param_6)
 {
     // 优化参数
     uint32_t optimization_level;       // 优化级别
@@ -913,8 +913,8 @@ void FUN_1806742a0(longlong param_1, int param_2, int param_3, int param_4,
  * @param param_5 目标地址
  * @param param_6 操作标志
  */
-void FUN_1806743e0(longlong param_1, undefined8 param_2, int param_3, int param_4, 
-                  undefined8 param_5, undefined4 param_6)
+void FUN_1806743e0(longlong param_1, uint64_t param_2, int param_3, int param_4, 
+                  uint64_t param_5, int32_t param_6)
 {
     // 资源处理变量
     uint32_t resource_size;           // 资源大小
@@ -989,7 +989,7 @@ void FUN_1806743e0(longlong param_1, undefined8 param_2, int param_3, int param_
  * @param param_6 分配标志
  */
 void FUN_1806744d0(longlong param_1, int param_2, int param_3, int param_4, 
-                  undefined8 param_5, undefined4 param_6)
+                  uint64_t param_5, int32_t param_6)
 {
     // 内存分配参数
     uint32_t allocation_size;         // 分配大小
@@ -1063,8 +1063,8 @@ void FUN_1806744d0(longlong param_1, int param_2, int param_3, int param_4,
  * @param param_5 目标地址
  * @param param_6 初始化标志
  */
-void FUN_180674610(longlong param_1, undefined8 param_2, int param_3, int param_4, 
-                  undefined8 param_5, undefined4 param_6)
+void FUN_180674610(longlong param_1, uint64_t param_2, int param_3, int param_4, 
+                  uint64_t param_5, int32_t param_6)
 {
     // 初始化参数
     uint32_t init_flags;              // 初始化标志
@@ -1138,8 +1138,8 @@ void FUN_180674610(longlong param_1, undefined8 param_2, int param_3, int param_
  * @param param_5 目标地址
  * @param param_6 处理标志
  */
-void FUN_180674700(longlong param_1, undefined8 param_2, longlong param_3, 
-                  undefined8 param_4, short *param_5)
+void FUN_180674700(longlong param_1, uint64_t param_2, longlong param_3, 
+                  uint64_t param_4, short *param_5)
 {
     // 数据处理参数
     uint32_t data_size;               // 数据大小

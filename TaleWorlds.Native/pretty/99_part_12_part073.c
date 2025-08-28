@@ -2,8 +2,8 @@
 
 // 99_part_12_part073.c - 2 个函数
 
-// 函数: void FUN_1807fb03f(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
-void FUN_1807fb03f(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
+// 函数: void FUN_1807fb03f(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
+void FUN_1807fb03f(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
 
 {
   float fVar1;
@@ -33,7 +33,7 @@ void FUN_1807fb03f(undefined8 param_1,undefined8 param_2,longlong param_3,longlo
   longlong lVar19;
   float *pfVar20;
   int unaff_R12D;
-  undefined8 unaff_R13;
+  uint64_t unaff_R13;
   longlong unaff_R14;
   int unaff_R15D;
   float fVar21;
@@ -50,7 +50,7 @@ void FUN_1807fb03f(undefined8 param_1,undefined8 param_2,longlong param_3,longlo
   uint in_stack_000000b0;
   int in_stack_000000b8;
   
-  *(undefined8 *)(in_RAX + -0x30) = unaff_R13;
+  *(uint64_t *)(in_RAX + -0x30) = unaff_R13;
   lVar18 = in_R11 + 0x20;
   iVar17 = (int)unaff_R14 * 2;
   iVar16 = (int)unaff_R14 * 3;
@@ -491,8 +491,8 @@ void FUN_1807fb03f(undefined8 param_1,undefined8 param_2,longlong param_3,longlo
 
 
 
-// 函数: void FUN_1807fbba9(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
-void FUN_1807fbba9(undefined8 param_1,undefined8 param_2,longlong param_3,longlong param_4)
+// 函数: void FUN_1807fbba9(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
+void FUN_1807fbba9(uint64_t param_1,uint64_t param_2,longlong param_3,longlong param_4)
 
 {
   float fVar1;

@@ -880,19 +880,19 @@ BUILD_STRING:
 void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
 {
     longlong system_context;
-    undefined8 resource_result_1;
-    undefined8 resource_result_2;
-    undefined8 resource_result_3;
-    undefined *resource_data;
-    undefined *resource_buffer_1;
-    undefined1 *resource_ptr_1;
-    undefined4 resource_flag_1;
+    uint64_t resource_result_1;
+    uint64_t resource_result_2;
+    uint64_t resource_result_3;
+    void *resource_data;
+    void *resource_buffer_1;
+    int8_t *resource_ptr_1;
+    int32_t resource_flag_1;
     ulonglong resource_size_1;
-    undefined8 resource_buffer_2;
-    undefined8 resource_buffer_3;
-    undefined8 resource_buffer_4;
-    undefined8 resource_buffer_5;
-    undefined4 *operation_stack [2];
+    uint64_t resource_buffer_2;
+    uint64_t resource_buffer_3;
+    uint64_t resource_buffer_4;
+    uint64_t resource_buffer_5;
+    int32_t *operation_stack [2];
     code *operation_handler_1;
     code *operation_handler_2;
     
@@ -902,14 +902,14 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     // 初始化第一个资源缓冲区
     resource_buffer_1 = &RESOURCE_DEFAULT_BUFFER;
     resource_size_1 = 0;
-    resource_ptr_1 = (undefined1 *)0x0;
+    resource_ptr_1 = (int8_t *)0x0;
     resource_flag_1 = 0;
     
     // 处理第一个资源操作
     FUN_1806277c0(&resource_buffer_1, RESOURCE_CONFIG_SIZE_1);
     if (0 < RESOURCE_CONFIG_SIZE_1) {
         resource_data = &RESOURCE_DEFAULT_DATA;
-        if (RESOURCE_CONFIG_PTR_1 != (undefined *)0x0) {
+        if (RESOURCE_CONFIG_PTR_1 != (void *)0x0) {
             resource_data = RESOURCE_CONFIG_PTR_1;
         }
         // 安全复制资源数据
@@ -917,9 +917,9 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     }
     
     // 验证和清理资源指针
-    if (RESOURCE_CONFIG_PTR_1 != (undefined *)0x0) {
+    if (RESOURCE_CONFIG_PTR_1 != (void *)0x0) {
         resource_flag_1 = 0;
-        if (resource_ptr_1 != (undefined1 *)0x0) {
+        if (resource_ptr_1 != (int8_t *)0x0) {
             *resource_ptr_1 = 0;
         }
     }
@@ -929,10 +929,10 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     resource_buffer_1 = &RESOURCE_DEFAULT_BUFFER;
     
     // 检查资源状态
-    if (resource_ptr_1 != (undefined1 *)0x0) {
+    if (resource_ptr_1 != (int8_t *)0x0) {
         FUN_18064e900();
     }
-    resource_ptr_1 = (undefined1 *)0x0;
+    resource_ptr_1 = (int8_t *)0x0;
     resource_size_1 = resource_size_1 & 0xffffffff00000000;
     resource_buffer_1 = &RESOURCE_SAFE_BUFFER;
     
@@ -940,14 +940,14 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     system_context = *(longlong *)(param_1 + SYSTEM_CONTEXT_OFFSET);
     resource_buffer_2 = &RESOURCE_DEFAULT_BUFFER;
     resource_buffer_5 = 0;
-    resource_buffer_3 = (undefined1 *)0x0;
+    resource_buffer_3 = (int8_t *)0x0;
     resource_buffer_4 = (ulonglong)resource_buffer_4._4_4_ << 0x20;
     
     // 处理第二个资源操作
     FUN_1806277c0(&resource_buffer_2, RESOURCE_CONFIG_SIZE_2);
     if (0 < RESOURCE_CONFIG_SIZE_2) {
         resource_data = &RESOURCE_DEFAULT_DATA;
-        if (RESOURCE_CONFIG_PTR_2 != (undefined *)0x0) {
+        if (RESOURCE_CONFIG_PTR_2 != (void *)0x0) {
             resource_data = RESOURCE_CONFIG_PTR_2;
         }
         // 安全复制资源数据
@@ -955,9 +955,9 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     }
     
     // 验证和清理第二个资源
-    if (RESOURCE_CONFIG_PTR_2 != (undefined *)0x0) {
+    if (RESOURCE_CONFIG_PTR_2 != (void *)0x0) {
         resource_buffer_4 = resource_buffer_4 & 0xffffffff00000000;
-        if (resource_buffer_3 != (undefined1 *)0x0) {
+        if (resource_buffer_3 != (int8_t *)0x0) {
             *resource_buffer_3 = 0;
         }
     }
@@ -967,10 +967,10 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     resource_buffer_2 = &RESOURCE_DEFAULT_BUFFER;
     
     // 检查第二个资源状态
-    if (resource_buffer_3 != (undefined1 *)0x0) {
+    if (resource_buffer_3 != (int8_t *)0x0) {
         FUN_18064e900();
     }
-    resource_buffer_3 = (undefined1 *)0x0;
+    resource_buffer_3 = (int8_t *)0x0;
     resource_buffer_5 = resource_buffer_5 & 0xffffffff00000000;
     resource_buffer_2 = &RESOURCE_SAFE_BUFFER;
     
@@ -978,14 +978,14 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     system_context = *(longlong *)(param_1 + SYSTEM_CONTEXT_OFFSET);
     resource_buffer_1 = &RESOURCE_DEFAULT_BUFFER;
     resource_size_1 = 0;
-    resource_ptr_1 = (undefined1 *)0x0;
+    resource_ptr_1 = (int8_t *)0x0;
     resource_flag_1 = 0;
     
     // 处理第三个资源操作
     FUN_1806277c0(&resource_buffer_1, RESOURCE_CONFIG_SIZE_3);
     if (0 < RESOURCE_CONFIG_SIZE_3) {
         resource_data = &RESOURCE_DEFAULT_DATA;
-        if (RESOURCE_CONFIG_PTR_3 != (undefined *)0x0) {
+        if (RESOURCE_CONFIG_PTR_3 != (void *)0x0) {
             resource_data = RESOURCE_CONFIG_PTR_3;
         }
         // 安全复制资源数据
@@ -993,9 +993,9 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     }
     
     // 验证和清理第三个资源
-    if (RESOURCE_CONFIG_PTR_3 != (undefined *)0x0) {
+    if (RESOURCE_CONFIG_PTR_3 != (void *)0x0) {
         resource_flag_1 = 0;
-        if (resource_ptr_1 != (undefined1 *)0x0) {
+        if (resource_ptr_1 != (int8_t *)0x0) {
             *resource_ptr_1 = 0;
         }
     }
@@ -1005,10 +1005,10 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     resource_buffer_1 = &RESOURCE_DEFAULT_BUFFER;
     
     // 检查第三个资源状态
-    if (resource_ptr_1 != (undefined1 *)0x0) {
+    if (resource_ptr_1 != (int8_t *)0x0) {
         FUN_18064e900();
     }
-    resource_ptr_1 = (undefined1 *)0x0;
+    resource_ptr_1 = (int8_t *)0x0;
     resource_size_1 = resource_size_1 & 0xffffffff00000000;
     resource_buffer_1 = &RESOURCE_SAFE_BUFFER;
     
@@ -1017,24 +1017,24 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
     operation_handler_2 = FUN_1803aed40;
     
     // 准备操作参数
-    resource_buffer_2 = (undefined *)param_1;
-    resource_buffer_3 = (undefined1 *)resource_result_1;
+    resource_buffer_2 = (void *)param_1;
+    resource_buffer_3 = (int8_t *)resource_result_1;
     resource_buffer_4 = resource_result_2;
     resource_buffer_5 = resource_result_3;
     
     // 分配操作栈内存
-    operation_stack[0] = (undefined4 *)FUN_18062b1e0(SYSTEM_MEMORY_POOL, 0x20, 8, MEMORY_ALIGNMENT);
-    *operation_stack[0] = (undefined4)resource_buffer_2;
+    operation_stack[0] = (int32_t *)FUN_18062b1e0(SYSTEM_MEMORY_POOL, 0x20, 8, MEMORY_ALIGNMENT);
+    *operation_stack[0] = (int32_t)resource_buffer_2;
     operation_stack[0][1] = resource_buffer_2._4_4_;
-    operation_stack[0][2] = (undefined4)resource_buffer_3;
+    operation_stack[0][2] = (int32_t)resource_buffer_3;
     operation_stack[0][3] = resource_buffer_3._4_4_;
-    operation_stack[0][4] = (undefined4)resource_buffer_4;
+    operation_stack[0][4] = (int32_t)resource_buffer_4;
     operation_stack[0][5] = resource_buffer_4._4_4_;
-    operation_stack[0][6] = (undefined4)resource_buffer_5;
+    operation_stack[0][6] = (int32_t)resource_buffer_5;
     operation_stack[0][7] = resource_buffer_5._4_4_;
     
     // 执行批量操作
-    FUN_18015b810((undefined4)resource_buffer_2, 0, 3, 1, 0xffffffffffffffff, operation_stack);
+    FUN_18015b810((int32_t)resource_buffer_2, 0, 3, 1, 0xffffffffffffffff, operation_stack);
     
     return;
 }
@@ -1078,35 +1078,35 @@ void ResourceProcessor_ExecuteBatchOperations(longlong param_1)
  * 线程安全:
  * 该函数不是线程安全的，需要在系统初始化阶段单线程调用。
  */
-void SystemManager_InitializeComplex(undefined8 *param_1)
+void SystemManager_InitializeComplex(uint64_t *param_1)
 {
-    undefined8 *component_ptr_1;
-    undefined8 *component_ptr_2;
-    undefined8 *component_ptr_3;
-    undefined *resource_data;
+    uint64_t *component_ptr_1;
+    uint64_t *component_ptr_2;
+    uint64_t *component_ptr_3;
+    void *resource_data;
     longlong *system_handler;
-    undefined8 *event_handler;
-    undefined8 *global_context;
+    uint64_t *event_handler;
+    uint64_t *global_context;
     longlong component_id;
-    undefined8 *memory_block;
-    undefined1 security_buffer [32];
+    uint64_t *memory_block;
+    int8_t security_buffer [32];
     longlong *cleanup_handler;
-    undefined8 *system_config;
-    undefined8 *component_registry;
-    undefined8 *system_state;
-    undefined8 initialization_flag;
-    undefined8 *system_resources;
-    undefined *event_data_1;
-    undefined *event_data_2;
-    undefined4 event_flag_1;
+    uint64_t *system_config;
+    uint64_t *component_registry;
+    uint64_t *system_state;
+    uint64_t initialization_flag;
+    uint64_t *system_resources;
+    void *event_data_1;
+    void *event_data_2;
+    int32_t event_flag_1;
     undefined event_buffer_1 [72];
-    undefined *event_data_3;
-    undefined *event_data_4;
-    undefined4 event_flag_2;
+    void *event_data_3;
+    void *event_data_4;
+    int32_t event_flag_2;
     undefined event_buffer_2 [72];
-    undefined *callback_data;
-    undefined1 *string_buffer;
-    undefined4 string_flag;
+    void *callback_data;
+    int8_t *string_buffer;
+    int32_t string_flag;
     undefined string_buffer_3 [72];
     ulonglong security_checksum;
     
@@ -1128,31 +1128,31 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
     // 初始化组件注册表
     component_ptr_2 = param_1 + COMPONENT_TABLE_OFFSET_1;
     param_1[COMPONENT_STATUS_OFFSET_1] = 0;
-    *(undefined4 *)(param_1 + COMPONENT_FLAG_OFFSET_1) = COMPONENT_TYPE_DEFAULT;
+    *(int32_t *)(param_1 + COMPONENT_FLAG_OFFSET_1) = COMPONENT_TYPE_DEFAULT;
     *component_ptr_2 = component_ptr_2;
     param_1[COMPONENT_LINK_OFFSET_1] = component_ptr_2;
     param_1[COMPONENT_LINK_OFFSET_2] = 0;
-    *(undefined1 *)(param_1 + COMPONENT_STATUS_OFFSET_1) = 0;
+    *(int8_t *)(param_1 + COMPONENT_STATUS_OFFSET_1) = 0;
     param_1[COMPONENT_LINK_OFFSET_3] = 0;
     
     // 初始化第二个组件表
     component_ptr_2 = param_1 + COMPONENT_TABLE_OFFSET_2;
     param_1[COMPONENT_STATUS_OFFSET_2] = 0;
-    *(undefined4 *)(param_1 + COMPONENT_FLAG_OFFSET_2) = COMPONENT_TYPE_DEFAULT;
+    *(int32_t *)(param_1 + COMPONENT_FLAG_OFFSET_2) = COMPONENT_TYPE_DEFAULT;
     *component_ptr_2 = component_ptr_2;
     param_1[COMPONENT_LINK_OFFSET_4] = component_ptr_2;
     param_1[COMPONENT_LINK_OFFSET_5] = 0;
-    *(undefined1 *)(param_1 + COMPONENT_STATUS_OFFSET_2) = 0;
+    *(int8_t *)(param_1 + COMPONENT_STATUS_OFFSET_2) = 0;
     param_1[COMPONENT_LINK_OFFSET_6] = 0;
     
     // 初始化第三个组件表
     component_registry = param_1 + COMPONENT_TABLE_OFFSET_3;
     param_1[COMPONENT_STATUS_OFFSET_3] = 0;
-    *(undefined4 *)(param_1 + COMPONENT_FLAG_OFFSET_3) = COMPONENT_TYPE_DEFAULT;
+    *(int32_t *)(param_1 + COMPONENT_FLAG_OFFSET_3) = COMPONENT_TYPE_DEFAULT;
     *component_registry = component_registry;
     param_1[COMPONENT_LINK_OFFSET_7] = component_registry;
     param_1[COMPONENT_LINK_OFFSET_8] = 0;
-    *(undefined1 *)(param_1 + COMPONENT_STATUS_OFFSET_3) = 0;
+    *(int8_t *)(param_1 + COMPONENT_STATUS_OFFSET_3) = 0;
     param_1[COMPONENT_LINK_OFFSET_9] = 0;
     
     // 初始化系统状态标志
@@ -1163,27 +1163,27 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
     // 初始化事件处理器表
     component_ptr_2 = param_1 + EVENT_TABLE_OFFSET;
     param_1[EVENT_STATUS_OFFSET] = 0;
-    *(undefined4 *)(param_1 + EVENT_FLAG_OFFSET) = COMPONENT_TYPE_DEFAULT;
+    *(int32_t *)(param_1 + EVENT_FLAG_OFFSET) = COMPONENT_TYPE_DEFAULT;
     *component_ptr_2 = component_ptr_2;
     param_1[EVENT_LINK_OFFSET_1] = component_ptr_2;
     param_1[EVENT_LINK_OFFSET_2] = 0;
-    *(undefined1 *)(param_1 + EVENT_STATUS_OFFSET) = 0;
+    *(int8_t *)(param_1 + EVENT_STATUS_OFFSET) = 0;
     param_1[EVENT_LINK_OFFSET_3] = 0;
     
     // 初始化配置管理器
     system_config = param_1 + CONFIG_TABLE_OFFSET;
     param_1[CONFIG_STATUS_OFFSET] = 0;
-    *(undefined4 *)(param_1 + CONFIG_FLAG_OFFSET) = COMPONENT_TYPE_DEFAULT;
+    *(int32_t *)(param_1 + CONFIG_FLAG_OFFSET) = COMPONENT_TYPE_DEFAULT;
     *system_config = system_config;
     param_1[CONFIG_LINK_OFFSET_1] = system_config;
     param_1[CONFIG_LINK_OFFSET_2] = 0;
-    *(undefined1 *)(param_1 + CONFIG_STATUS_OFFSET) = 0;
+    *(int8_t *)(param_1 + CONFIG_STATUS_OFFSET) = 0;
     param_1[CONFIG_LINK_OFFSET_3] = 0;
     
     // 设置系统激活标志
-    *(undefined1 *)(param_1 + SYSTEM_ACTIVATION_OFFSET) = 1;
+    *(int8_t *)(param_1 + SYSTEM_ACTIVATION_OFFSET) = 1;
     param_1[SYSTEM_ACTIVATION_OFFSET_2] = 0;
-    *(undefined4 *)((longlong)param_1 + SYSTEM_INTEGRITY_OFFSET) = 0;
+    *(int32_t *)((longlong)param_1 + SYSTEM_INTEGRITY_OFFSET) = 0;
     
     // 清理现有处理器
     cleanup_handler = (longlong *)param_1[CLEANUP_HANDLER_OFFSET_1];
@@ -1202,12 +1202,12 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
     param_1[CLEANUP_HANDLER_OFFSET_3] = 0;
     component_ptr_2 = EVENT_REGISTRY_BASE;
     component_ptr_3 = EVENT_REGISTRY_CURRENT;
-    global_context = (undefined8 *)GLOBAL_SYSTEM_CONTEXT;
+    global_context = (uint64_t *)GLOBAL_SYSTEM_CONTEXT;
     if (cleanup_handler != (longlong *)0x0) {
         (**(code **)(*cleanup_handler + CLEANUP_HANDLER_VTABLE_OFFSET))();
         component_ptr_2 = EVENT_REGISTRY_BASE;
         component_ptr_3 = EVENT_REGISTRY_CURRENT;
-        global_context = (undefined8 *)GLOBAL_SYSTEM_CONTEXT;
+        global_context = (uint64_t *)GLOBAL_SYSTEM_CONTEXT;
     }
     
     // 处理事件队列
@@ -1216,7 +1216,7 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
         EVENT_REGISTRY_CURRENT = component_ptr_3;
         (**(code **)*component_ptr_2)(component_ptr_2, 0);
         component_ptr_3 = EVENT_REGISTRY_CURRENT;
-        global_context = (undefined8 *)GLOBAL_SYSTEM_CONTEXT;
+        global_context = (uint64_t *)GLOBAL_SYSTEM_CONTEXT;
         EVENT_REGISTRY_CURRENT = event_handler;
     }
     
@@ -1231,7 +1231,7 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
     
     if (system_handler != *(longlong **)((longlong)global_context + SYSTEM_COMPONENT_END_OFFSET)) {
         do {
-            component_ptr_2 = (undefined8 *)0x0;
+            component_ptr_2 = (uint64_t *)0x0;
             component_id = *system_handler;
             
             // 检查组件类型并处理
@@ -1239,10 +1239,10 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
                 callback_data = &EVENT_CALLBACK_ROOT;
                 string_buffer = string_buffer_3;
                 string_buffer_3[0] = 0;
-                string_flag = *(undefined4 *)(component_id + COMPONENT_FLAG_OFFSET_1);
+                string_flag = *(int32_t *)(component_id + COMPONENT_FLAG_OFFSET_1);
                 resource_data = &DEFAULT_RESOURCE_DATA;
-                if (*(undefined **)(component_id + COMPONENT_DATA_OFFSET) != (undefined *)0x0) {
-                    resource_data = *(undefined **)(component_id + COMPONENT_DATA_OFFSET);
+                if (*(void **)(component_id + COMPONENT_DATA_OFFSET) != (void *)0x0) {
+                    resource_data = *(void **)(component_id + COMPONENT_DATA_OFFSET);
                 }
                 cleanup_handler = system_handler;
                 strcpy_s(string_buffer_3, MAX_STRING_LENGTH, resource_data);
@@ -1261,7 +1261,7 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
                         component_id = component_id * 2;
                     }
                     
-                    memory_block = (undefined8 *)FUN_18062b420(SYSTEM_MEMORY_POOL, component_id * EVENT_REGISTRY_SIZE, EVENT_REGISTRY_ALIGNMENT);
+                    memory_block = (uint64_t *)FUN_18062b420(SYSTEM_MEMORY_POOL, component_id * EVENT_REGISTRY_SIZE, EVENT_REGISTRY_ALIGNMENT);
                     component_ptr_3 = EVENT_REGISTRY_BASE;
                     event_handler = EVENT_REGISTRY_CURRENT;
                     
@@ -1270,15 +1270,15 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
                         EVENT_REGISTRY_CURRENT = event_handler;
                         *memory_block = &EVENT_SAFE_HANDLER;
                         memory_block[1] = 0;
-                        *(undefined4 *)(memory_block + 2) = 0;
+                        *(int32_t *)(memory_block + 2) = 0;
                         *memory_block = &EVENT_CALLBACK_ROOT;
                         memory_block[1] = memory_block + 3;
-                        *(undefined4 *)(memory_block + 2) = 0;
-                        *(undefined1 *)(memory_block + 3) = 0;
-                        *(undefined4 *)(memory_block + 2) = *(undefined4 *)(component_ptr_3 + 2);
+                        *(int32_t *)(memory_block + 2) = 0;
+                        *(int8_t *)(memory_block + 3) = 0;
+                        *(int32_t *)(memory_block + 2) = *(int32_t *)(component_ptr_3 + 2);
                         resource_data = &DEFAULT_RESOURCE_DATA;
-                        if ((undefined *)component_ptr_3[1] != (undefined *)0x0) {
-                            resource_data = (undefined *)component_ptr_3[1];
+                        if ((void *)component_ptr_3[1] != (void *)0x0) {
+                            resource_data = (void *)component_ptr_3[1];
                         }
                         system_config = memory_block;
                         strcpy_s(memory_block[1], MAX_STRING_LENGTH, resource_data);
@@ -1298,7 +1298,7 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
                         (**(code **)*component_ptr_3)(component_ptr_3, 0);
                     }
                     
-                    if (EVENT_REGISTRY_BASE != (undefined8 *)0x0) {
+                    if (EVENT_REGISTRY_BASE != (uint64_t *)0x0) {
                         FUN_18064e900(EVENT_REGISTRY_BASE);
                     }
                     
@@ -1312,7 +1312,7 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
             system_handler = system_handler + 1;
             component_ptr_2 = EVENT_REGISTRY_SECONDARY;
             component_ptr_3 = EVENT_REGISTRY_TERTIARY;
-            event_handler = (undefined8 *)GLOBAL_SYSTEM_CONTEXT;
+            event_handler = (uint64_t *)GLOBAL_SYSTEM_CONTEXT;
             cleanup_handler = system_handler;
         } while (system_handler != *(longlong **)((longlong)global_context + SYSTEM_COMPONENT_END_OFFSET));
     }
@@ -1338,7 +1338,7 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
  * - param_2: 条件标志位，用于控制是否执行释放操作
  * 
  * 返回值:
- * - undefined8: 返回原始的内存块指针，便于链式操作
+ * - uint64_t: 返回原始的内存块指针，便于链式操作
  * 
  * 异常处理:
  * - 在释放前调用系统清理函数 FUN_1803aa090() 确保系统状态一致
@@ -1361,7 +1361,7 @@ void SystemManager_InitializeComplex(undefined8 *param_1)
  * ptr = MemoryManager_ReleaseWithCondition(ptr, 1); // 条件释放
  * ```
  */
-undefined8 MemoryManager_ReleaseWithCondition(undefined8 param_1, ulonglong param_2)
+uint64_t MemoryManager_ReleaseWithCondition(uint64_t param_1, ulonglong param_2)
 {
     // 执行系统清理操作
     FUN_1803aa090();
@@ -1415,10 +1415,10 @@ undefined8 MemoryManager_ReleaseWithCondition(undefined8 param_1, ulonglong para
  * SystemOperation_ExecuteWithFlags(system_context, 0, param3, param4);
  * ```
  */
-void SystemOperation_ExecuteWithFlags(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void SystemOperation_ExecuteWithFlags(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 提取系统上下文中的参数并调用核心处理函数
-    FUN_1803aeb70(param_1, *(undefined8 *)(param_1 + SYSTEM_CONTEXT_PARAM_OFFSET), param_3, param_4, SYSTEM_OPERATION_FLAGS);
+    FUN_1803aeb70(param_1, *(uint64_t *)(param_1 + SYSTEM_CONTEXT_PARAM_OFFSET), param_3, param_4, SYSTEM_OPERATION_FLAGS);
     
     return;
 }
@@ -1467,10 +1467,10 @@ void SystemOperation_ExecuteWithFlags(longlong param_1, undefined8 param_2, unde
  * 该函数与 SystemOperation_ExecuteWithFlags 功能完全相同，可能是为了提供不同的调用接口
  * 或用于不同的系统上下文中。
  */
-void SystemOperation_ExecuteAlternative(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void SystemOperation_ExecuteAlternative(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 提取系统上下文中的参数并调用核心处理函数
-    FUN_1803aeb70(param_1, *(undefined8 *)(param_1 + SYSTEM_CONTEXT_PARAM_OFFSET), param_3, param_4, SYSTEM_OPERATION_FLAGS);
+    FUN_1803aeb70(param_1, *(uint64_t *)(param_1 + SYSTEM_CONTEXT_PARAM_OFFSET), param_3, param_4, SYSTEM_OPERATION_FLAGS);
     
     return;
 }

@@ -38,7 +38,7 @@
 #define RenderingSystem_ComponentProcessor FUN_1808fc050
 
 // 全局变量引用
-extern undefined8 _DAT_180bf00a8;
+extern uint64_t _DAT_180bf00a8;
 extern undefined UNK_18098bc80;
 extern char DAT_180a1eb78;
 extern undefined UNK_18098bcb0;
@@ -63,7 +63,7 @@ extern char DAT_180a1ecd0;
 extern undefined UNK_180a0ba98;
 extern char DAT_180a00300;
 extern undefined UNK_180a1ed48;
-extern undefined8 _DAT_180c8ed18;
+extern uint64_t _DAT_180c8ed18;
 
 /**
  * 渲染系统参数处理器
@@ -84,92 +84,92 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
     char char_val_2;
     int int_val;
     char *string_ptr;
-    undefined8 *data_ptr;
+    uint64_t *data_ptr;
     longlong long_val;
     bool bool_result;
-    undefined1 security_buffer[32];
+    int8_t security_buffer[32];
     longlong *resource_ptr;
-    undefined8 stack_value;
-    undefined *buffer_ptr_1;
-    undefined1 *buffer_ptr_2;
-    undefined4 buffer_size;
-    undefined1 string_buffer[72];
-    undefined *buffer_ptr_3;
-    undefined1 *buffer_ptr_4;
-    undefined4 buffer_size_2;
-    undefined1 string_buffer_2[72];
-    undefined *buffer_ptr_5;
-    undefined1 *buffer_ptr_6;
-    undefined4 buffer_size_3;
-    undefined1 string_buffer_3[72];
-    undefined *buffer_ptr_7;
-    undefined1 *buffer_ptr_8;
-    undefined4 buffer_size_4;
-    undefined1 string_buffer_4[72];
-    undefined *buffer_ptr_9;
-    undefined1 *buffer_ptr_10;
-    undefined4 buffer_size_5;
-    undefined1 string_buffer_5[72];
-    undefined *buffer_ptr_11;
-    undefined1 *buffer_ptr_12;
-    undefined4 buffer_size_6;
-    undefined1 string_buffer_6[72];
-    undefined *buffer_ptr_13;
-    undefined1 *buffer_ptr_14;
-    undefined4 buffer_size_7;
-    undefined1 string_buffer_7[72];
-    undefined *buffer_ptr_15;
-    undefined1 *buffer_ptr_16;
-    undefined4 buffer_size_8;
-    undefined1 string_buffer_8[72];
-    undefined *buffer_ptr_17;
-    undefined1 *buffer_ptr_18;
-    undefined4 buffer_size_9;
-    undefined1 string_buffer_9[72];
-    undefined *buffer_ptr_19;
-    undefined1 *buffer_ptr_20;
-    undefined4 buffer_size_10;
-    undefined1 string_buffer_10[72];
-    undefined *buffer_ptr_21;
-    undefined1 *buffer_ptr_22;
-    undefined4 buffer_size_11;
-    undefined1 string_buffer_11[72];
-    undefined *buffer_ptr_23;
-    undefined1 *buffer_ptr_24;
-    undefined4 buffer_size_12;
-    undefined1 string_buffer_12[72];
-    undefined *buffer_ptr_25;
-    undefined1 *buffer_ptr_26;
-    undefined4 buffer_size_13;
-    undefined1 string_buffer_13[72];
-    undefined *buffer_ptr_27;
-    undefined1 *buffer_ptr_28;
-    undefined4 buffer_size_14;
-    undefined1 string_buffer_14[72];
-    undefined *buffer_ptr_29;
-    undefined1 *buffer_ptr_30;
-    undefined4 buffer_size_15;
-    undefined1 string_buffer_15[72];
-    undefined *buffer_ptr_31;
-    undefined1 *buffer_ptr_32;
-    undefined4 buffer_size_16;
-    undefined1 string_buffer_16[72];
-    undefined *buffer_ptr_33;
-    undefined1 *buffer_ptr_34;
-    undefined4 buffer_size_17;
-    undefined1 string_buffer_17[72];
-    undefined *buffer_ptr_35;
-    undefined1 *buffer_ptr_36;
-    undefined4 buffer_size_18;
-    undefined1 string_buffer_18[72];
-    undefined *buffer_ptr_37;
-    undefined1 *buffer_ptr_38;
-    undefined4 buffer_size_19;
-    undefined1 string_buffer_19[72];
-    undefined *buffer_ptr_40;
-    undefined1 *buffer_ptr_41;
-    undefined4 buffer_size_20;
-    undefined1 string_buffer_20[72];
+    uint64_t stack_value;
+    void *buffer_ptr_1;
+    int8_t *buffer_ptr_2;
+    int32_t buffer_size;
+    int8_t string_buffer[72];
+    void *buffer_ptr_3;
+    int8_t *buffer_ptr_4;
+    int32_t buffer_size_2;
+    int8_t string_buffer_2[72];
+    void *buffer_ptr_5;
+    int8_t *buffer_ptr_6;
+    int32_t buffer_size_3;
+    int8_t string_buffer_3[72];
+    void *buffer_ptr_7;
+    int8_t *buffer_ptr_8;
+    int32_t buffer_size_4;
+    int8_t string_buffer_4[72];
+    void *buffer_ptr_9;
+    int8_t *buffer_ptr_10;
+    int32_t buffer_size_5;
+    int8_t string_buffer_5[72];
+    void *buffer_ptr_11;
+    int8_t *buffer_ptr_12;
+    int32_t buffer_size_6;
+    int8_t string_buffer_6[72];
+    void *buffer_ptr_13;
+    int8_t *buffer_ptr_14;
+    int32_t buffer_size_7;
+    int8_t string_buffer_7[72];
+    void *buffer_ptr_15;
+    int8_t *buffer_ptr_16;
+    int32_t buffer_size_8;
+    int8_t string_buffer_8[72];
+    void *buffer_ptr_17;
+    int8_t *buffer_ptr_18;
+    int32_t buffer_size_9;
+    int8_t string_buffer_9[72];
+    void *buffer_ptr_19;
+    int8_t *buffer_ptr_20;
+    int32_t buffer_size_10;
+    int8_t string_buffer_10[72];
+    void *buffer_ptr_21;
+    int8_t *buffer_ptr_22;
+    int32_t buffer_size_11;
+    int8_t string_buffer_11[72];
+    void *buffer_ptr_23;
+    int8_t *buffer_ptr_24;
+    int32_t buffer_size_12;
+    int8_t string_buffer_12[72];
+    void *buffer_ptr_25;
+    int8_t *buffer_ptr_26;
+    int32_t buffer_size_13;
+    int8_t string_buffer_13[72];
+    void *buffer_ptr_27;
+    int8_t *buffer_ptr_28;
+    int32_t buffer_size_14;
+    int8_t string_buffer_14[72];
+    void *buffer_ptr_29;
+    int8_t *buffer_ptr_30;
+    int32_t buffer_size_15;
+    int8_t string_buffer_15[72];
+    void *buffer_ptr_31;
+    int8_t *buffer_ptr_32;
+    int32_t buffer_size_16;
+    int8_t string_buffer_16[72];
+    void *buffer_ptr_33;
+    int8_t *buffer_ptr_34;
+    int32_t buffer_size_17;
+    int8_t string_buffer_17[72];
+    void *buffer_ptr_35;
+    int8_t *buffer_ptr_36;
+    int32_t buffer_size_18;
+    int8_t string_buffer_18[72];
+    void *buffer_ptr_37;
+    int8_t *buffer_ptr_38;
+    int32_t buffer_size_19;
+    int8_t string_buffer_19[72];
+    void *buffer_ptr_40;
+    int8_t *buffer_ptr_41;
+    int32_t buffer_size_20;
+    int8_t string_buffer_20[72];
     ulonglong security_hash;
     
     // 初始化安全栈值
@@ -785,10 +785,10 @@ void RenderingSystem_ParameterProcessor(longlong render_context, longlong parame
     }
     
     // 处理渲染系统资源
-    data_ptr = (undefined8 *)
+    data_ptr = (uint64_t *)
                RenderingSystem_InternalProcessor(*(longlong *)(*(longlong *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1) + BUFFER_OFFSET_2, &resource_ptr,
                              render_context + RENDER_CONTEXT_OFFSET_4);
-    *(undefined8 *)(render_context + RENDER_CONTEXT_OFFSET_5) = *data_ptr;
+    *(uint64_t *)(render_context + RENDER_CONTEXT_OFFSET_5) = *data_ptr;
     if (resource_ptr != (longlong *)0x0) {
         (**(code **)(*resource_ptr + 0x38))();
     }
@@ -816,9 +816,9 @@ void RenderingSystem_StateManager(longlong render_context)
 {
     uint flag_value;
     longlong context_ptr;
-    undefined8 object_ptr;
+    uint64_t object_ptr;
     int status_code;
-    undefined8 resource_handle;
+    uint64_t resource_handle;
     longlong *object_instance;
     longlong component_data;
     byte flag_bit;
@@ -828,7 +828,7 @@ void RenderingSystem_StateManager(longlong render_context)
     longlong **component_ptr;
     
     // 获取渲染对象指针
-    object_ptr = *(undefined8 *)(*(longlong *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1);
+    object_ptr = *(uint64_t *)(*(longlong *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1);
     
     // 分配渲染资源
     resource_handle = RenderingSystem_MemoryAllocator(_DAT_180c8ed18, 0x2f0, 0x10, 0xd);
@@ -863,7 +863,7 @@ void RenderingSystem_StateManager(longlong render_context)
     }
     
     // 初始化新对象
-    RenderingSystem_ObjectCleanup(*(undefined8 *)(render_context + BUFFER_OFFSET_3), &UNK_180a1ed48);
+    RenderingSystem_ObjectCleanup(*(uint64_t *)(render_context + BUFFER_OFFSET_3), &UNK_180a1ed48);
     component_data = *(longlong *)(render_context + BUFFER_OFFSET_3);
     flag_value = *(uint *)(component_data + BUFFER_OFFSET_4);
     *(uint *)(component_data + BUFFER_OFFSET_4) = flag_value | 0x2020000;

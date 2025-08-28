@@ -118,7 +118,7 @@
 #define System_AdvancedParameterManager FUN_1808a04a0
 
 // 全局变量引用
-extern undefined8 _DAT_180c8ed18;
+extern uint64_t _DAT_180c8ed18;
 extern undefined UNK_180a0ba98;
 extern char DAT_180a00300;
 extern undefined UNK_180a1ed48;
@@ -150,18 +150,18 @@ void System_EmptyOperationProcessor(void)
  * - 处理系统错误和异常情况
  * 
  * @param param_1 系统配置参数指针
- * @return undefined8 返回操作状态码，0表示成功
+ * @return uint64_t 返回操作状态码，0表示成功
  */
-undefined8 System_StateConfigurationManager(longlong *system_config)
+uint64_t System_StateConfigurationManager(longlong *system_config)
 {
-  undefined8 status_code;
-  undefined8 resource_handle;
+  uint64_t status_code;
+  uint64_t resource_handle;
   int validation_result;
-  undefined8 stack_value;
+  uint64_t stack_value;
   longlong *resource_ptr;
   
   // 获取系统资源句柄
-  resource_handle = *(undefined8 *)(system_config[3] + MEMORY_OFFSET_0x68);
+  resource_handle = *(uint64_t *)(system_config[3] + MEMORY_OFFSET_0x68);
   status_code = func_0x000180806a00();
   
   // 验证系统状态
@@ -195,7 +195,7 @@ undefined8 System_StateConfigurationManager(longlong *system_config)
     
     // 执行系统配置回调
     status_code = (**(code **)(*system_config + MEMORY_OFFSET_0x88))
-                    (system_config, *(undefined4 *)(system_config[5] + MEMORY_OFFSET_0x4C), *(undefined4 *)(system_config[5] + MEMORY_OFFSET_0x50));
+                    (system_config, *(int32_t *)(system_config[5] + MEMORY_OFFSET_0x4C), *(int32_t *)(system_config[5] + MEMORY_OFFSET_0x50));
     if ((int)status_code != 0) {
       return status_code;
     }
@@ -257,7 +257,7 @@ undefined8 System_StateConfigurationManager(longlong *system_config)
     }
     
     // 处理系统参数配置
-    status_code = func_0x000180742ca0(system_config[1], *(undefined4 *)(*(longlong *)(system_config[5] + MEMORY_OFFSET_0x60) + MEMORY_OFFSET_0xA4), &stack_value);
+    status_code = func_0x000180742ca0(system_config[1], *(int32_t *)(*(longlong *)(system_config[5] + MEMORY_OFFSET_0x60) + MEMORY_OFFSET_0xA4), &stack_value);
     if ((int)status_code != 0) {
       return status_code;
     }
@@ -275,7 +275,7 @@ undefined8 System_StateConfigurationManager(longlong *system_config)
     
     // 验证系统参数值
     if (*(float *)(system_config + 0xd) <= 100.0 && *(float *)(system_config + 0xd) != 100.0) {
-      *(undefined4 *)(system_config + 0xd) = SYSTEM_FLAG_MASK_0x42C80000;
+      *(int32_t *)(system_config + 0xd) = SYSTEM_FLAG_MASK_0x42C80000;
     }
     
     // 配置系统资源分配
@@ -331,8 +331,8 @@ undefined8 System_StateConfigurationManager(longlong *system_config)
   }
   
   // 完成系统配置
-  *(undefined4 *)(system_config + MEMORY_OFFSET_0x60) = SYSTEM_FLAG_MASK_0xFFFFFFFF;
-  *(undefined4 *)((longlong)system_config + MEMORY_OFFSET_0x304) = *(undefined4 *)(*(longlong *)(system_config[3] + MEMORY_OFFSET_0x20) + MEMORY_OFFSET_0x1EC);
+  *(int32_t *)(system_config + MEMORY_OFFSET_0x60) = SYSTEM_FLAG_MASK_0xFFFFFFFF;
+  *(int32_t *)((longlong)system_config + MEMORY_OFFSET_0x304) = *(int32_t *)(*(longlong *)(system_config[3] + MEMORY_OFFSET_0x20) + MEMORY_OFFSET_0x1EC);
   
   return 0;
 }

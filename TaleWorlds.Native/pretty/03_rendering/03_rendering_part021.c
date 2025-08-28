@@ -215,7 +215,7 @@ PATH_SEPARATOR_FOUND:
         }
         fread(temp_array2, 4, 1, file_handle[1]);
         fread(&texture_name, 4, 1, file_handle[1]);
-        material_params = (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)(int)texture_name << 2, 0x10, 3);
+        material_params = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)(int)texture_name << 2, 0x10, 3);
         fread(material_params, 4, (longlong)(int)texture_name);
         material_found = false;
         param_offset = 0;
@@ -224,7 +224,7 @@ PATH_SEPARATOR_FOUND:
         if (*(longlong *)(render_context + 0x40) - file_position >> 4 == 0) {
 LAB_18027c5be:
           string_ptr = &DAT_18098bc73;
-          if (ptr2 != (undefined *)0x0) {
+          if (ptr2 != (void *)0x0) {
             string_ptr = ptr2;
           }
           FUN_1806272a0(&UNK_180a168b0, string_ptr);
@@ -249,8 +249,8 @@ LAB_18027c5be:
               texture_size = CONCAT44(texture_size._4_4_, param_value);
               if (0 < *(int *)(file_position + 0x20)) {
                 string_ptr = &DAT_18098bc73;
-                if (*(undefined **)(file_position + 0x18) != (undefined *)0x0) {
-                  string_ptr = *(undefined **)(file_position + 0x18);
+                if (*(void **)(file_position + 0x18) != (void *)0x0) {
+                  string_ptr = *(void **)(file_position + 0x18);
                 }
                     // WARNING: Subroutine does not return
                 memcpy(texture_path, string_ptr, (longlong)(*(int *)(file_position + 0x20) + 1));
@@ -355,7 +355,7 @@ LAB_18027c306:
                 entry_index = path_length;
                 if (0 < (int)texture_name) {
                   do {
-                    *(undefined4 *)(texture_ptr2[0xd] + 0x54 + path_length) = *texture_data;
+                    *(int32_t *)(texture_ptr2[0xd] + 0x54 + path_length) = *texture_data;
                     texture_flag = CONCAT11(texture_flag._1_1_, 1);
                     material_count = (int)entry_index + 1;
                     path_length = path_length + 0x5c;
@@ -435,7 +435,7 @@ LAB_18027c306:
                    (ulonglong)(*(longlong *)(render_context + 0x40) - file_position >> 4));
           if (!material_found) goto LAB_18027c5be;
         }
-        if (material_params != (undefined4 *)0x0) {
+        if (material_params != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900(material_params);
         }
@@ -444,11 +444,11 @@ LAB_18027c306:
           FUN_18064e900();
         }
         ptr1 = &UNK_180a3c3e0;
-        if (ptr2 != (undefined *)0x0) {
+        if (ptr2 != (void *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        ptr2 = (undefined *)0x0;
+        ptr2 = (void *)0x0;
         param_value = 0;
         ptr1 = &UNK_18098bcb0;
         texture_indices[0] = texture_indices[0] + 1;
@@ -461,10 +461,10 @@ LAB_18027c306:
       fread(&temp_handle, 4, 1, file_handle[1]);
       array_index = FUN_18062b1e0(_DAT_180c8ed18, (longlong)((int)temp_handle + 1), 0x10, 3);
       fread(array_index, 1, (longlong)(int)temp_handle, file_handle[1]);
-      *(undefined1 *)((int)temp_handle + array_index) = 0;
+      *(int8_t *)((int)temp_handle + array_index) = 0;
       fread(temp_array1, 4, 1, file_handle[1]);
       fread(texture_indices, 4, 1, file_handle[1]);
-      material_params = (undefined4 *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)texture_indices[0] << 2, 0x10, 3);
+      material_params = (int32_t *)FUN_18062b1e0(_DAT_180c8ed18, (longlong)texture_indices[0] << 2, 0x10, 3);
       fread(material_params, 4, (longlong)texture_indices[0], file_handle[1]);
       material_entry = *(longlong **)(file_position + *(longlong *)(render_context + 0x38));
       FUN_18007ea10(material_entry, 0);
@@ -487,7 +487,7 @@ LAB_18027c306:
       entry_index = path_length;
       if (0 < texture_indices[0]) {
         do {
-          *(undefined4 *)(entry_list2[0xd] + 0x54 + path_length) = *texture_data;
+          *(int32_t *)(entry_list2[0xd] + 0x54 + path_length) = *texture_data;
           stack_char1 = '\x01';
           material_count = (int)entry_index + 1;
           path_length = path_length + 0x5c;
@@ -542,7 +542,7 @@ LAB_18027c306:
       if (entry_list != (longlong *)0x0) {
         (**(code **)(*entry_list + 0x38))();
       }
-      if (material_params != (undefined4 *)0x0) {
+      if (material_params != (int32_t *)0x0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(material_params);
       }

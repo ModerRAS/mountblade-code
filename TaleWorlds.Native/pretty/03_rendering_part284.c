@@ -17,29 +17,29 @@ void FUN_1804215a0(longlong param_1)
   int iVar9;
   int iVar10;
   int iVar11;
-  undefined1 auStack_108 [32];
+  int8_t auStack_108 [32];
   longlong lStack_e8;
   int iStack_e0;
   longlong lStack_d8;
   int iStack_c8;
   int iStack_c4;
   int *piStack_c0;
-  undefined1 auStack_b8 [128];
+  int8_t auStack_b8 [128];
   ulonglong uStack_38;
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_108;
-  *(undefined8 *)(param_1 + 0x4820) = 0;
-  *(undefined4 *)(param_1 + 0x482c) = 0;
-  *(undefined4 *)(param_1 + 0x47d8) = 0;
-  *(undefined4 *)(param_1 + 0x4778) = 0;
-  *(undefined4 *)(param_1 + 0x4718) = 0;
-  *(undefined4 *)(param_1 + 0x46b8) = 0;
-  *(undefined1 *)(param_1 + 0x4828) = 0xff;
+  *(uint64_t *)(param_1 + 0x4820) = 0;
+  *(int32_t *)(param_1 + 0x482c) = 0;
+  *(int32_t *)(param_1 + 0x47d8) = 0;
+  *(int32_t *)(param_1 + 0x4778) = 0;
+  *(int32_t *)(param_1 + 0x4718) = 0;
+  *(int32_t *)(param_1 + 0x46b8) = 0;
+  *(int8_t *)(param_1 + 0x4828) = 0xff;
   iVar9 = 0x7fffffff;
   if (*(int *)(param_1 + 0x4868) != 0) {
     iVar9 = *(int *)(param_1 + 0x4868);
   }
-  *(undefined4 *)(param_1 + 0x4844) = 0;
+  *(int32_t *)(param_1 + 0x4844) = 0;
   *(int *)(param_1 + 0x486c) = iVar9;
   if (*(int *)(param_1 + 0x4830) == 0) {
     if (*(int *)(param_1 + 0x4854) == 1) {
@@ -71,18 +71,18 @@ void FUN_1804215a0(longlong param_1)
                   FUN_18041f7a0(param_1);
                 }
                 if (7 < (byte)(*(char *)(param_1 + 0x4828) + 0x30U)) goto LAB_1804217f5;
-                *(undefined8 *)(param_1 + 0x4820) = 0;
-                *(undefined4 *)(param_1 + 0x482c) = 0;
-                *(undefined4 *)(param_1 + 0x47d8) = 0;
-                *(undefined4 *)(param_1 + 0x4778) = 0;
-                *(undefined4 *)(param_1 + 0x4718) = 0;
-                *(undefined4 *)(param_1 + 0x46b8) = 0;
-                *(undefined1 *)(param_1 + 0x4828) = 0xff;
+                *(uint64_t *)(param_1 + 0x4820) = 0;
+                *(int32_t *)(param_1 + 0x482c) = 0;
+                *(int32_t *)(param_1 + 0x47d8) = 0;
+                *(int32_t *)(param_1 + 0x4778) = 0;
+                *(int32_t *)(param_1 + 0x4718) = 0;
+                *(int32_t *)(param_1 + 0x46b8) = 0;
+                *(int8_t *)(param_1 + 0x4828) = 0xff;
                 iVar2 = 0x7fffffff;
                 if (*(int *)(param_1 + 0x4868) != 0) {
                   iVar2 = *(int *)(param_1 + 0x4868);
                 }
-                *(undefined4 *)(param_1 + 0x4844) = 0;
+                *(int32_t *)(param_1 + 0x4844) = 0;
                 *(int *)(param_1 + 0x486c) = iVar2;
               }
               iVar7 = iVar7 + 1;
@@ -148,18 +148,18 @@ void FUN_1804215a0(longlong param_1)
                   FUN_18041f7a0(param_1);
                 }
                 if (7 < (byte)(*(char *)(param_1 + 0x4828) + 0x30U)) goto LAB_1804217f5;
-                *(undefined8 *)(param_1 + 0x4820) = 0;
-                *(undefined4 *)(param_1 + 0x482c) = 0;
-                *(undefined4 *)(param_1 + 0x47d8) = 0;
-                *(undefined4 *)(param_1 + 0x4778) = 0;
-                *(undefined4 *)(param_1 + 0x4718) = 0;
-                *(undefined4 *)(param_1 + 0x46b8) = 0;
-                *(undefined1 *)(param_1 + 0x4828) = 0xff;
+                *(uint64_t *)(param_1 + 0x4820) = 0;
+                *(int32_t *)(param_1 + 0x482c) = 0;
+                *(int32_t *)(param_1 + 0x47d8) = 0;
+                *(int32_t *)(param_1 + 0x4778) = 0;
+                *(int32_t *)(param_1 + 0x4718) = 0;
+                *(int32_t *)(param_1 + 0x46b8) = 0;
+                *(int8_t *)(param_1 + 0x4828) = 0xff;
                 iVar8 = 0x7fffffff;
                 if (*(int *)(param_1 + 0x4868) != 0) {
                   iVar8 = *(int *)(param_1 + 0x4868);
                 }
-                *(undefined4 *)(param_1 + 0x4844) = 0;
+                *(int32_t *)(param_1 + 0x4844) = 0;
                 *(int *)(param_1 + 0x486c) = iVar8;
               }
               iVar9 = iVar9 + 1;
@@ -200,18 +200,18 @@ void FUN_1804215a0(longlong param_1)
                 FUN_18041f7a0(param_1);
               }
               if (7 < (byte)(*(char *)(param_1 + 0x4828) + 0x30U)) goto LAB_1804217f5;
-              *(undefined8 *)(param_1 + 0x4820) = 0;
-              *(undefined4 *)(param_1 + 0x482c) = 0;
-              *(undefined4 *)(param_1 + 0x47d8) = 0;
-              *(undefined4 *)(param_1 + 0x4778) = 0;
-              *(undefined4 *)(param_1 + 0x4718) = 0;
-              *(undefined4 *)(param_1 + 0x46b8) = 0;
-              *(undefined1 *)(param_1 + 0x4828) = 0xff;
+              *(uint64_t *)(param_1 + 0x4820) = 0;
+              *(int32_t *)(param_1 + 0x482c) = 0;
+              *(int32_t *)(param_1 + 0x47d8) = 0;
+              *(int32_t *)(param_1 + 0x4778) = 0;
+              *(int32_t *)(param_1 + 0x4718) = 0;
+              *(int32_t *)(param_1 + 0x46b8) = 0;
+              *(int8_t *)(param_1 + 0x4828) = 0xff;
               iVar5 = 0x7fffffff;
               if (*(int *)(param_1 + 0x4868) != 0) {
                 iVar5 = *(int *)(param_1 + 0x4868);
               }
-              *(undefined4 *)(param_1 + 0x4844) = 0;
+              *(int32_t *)(param_1 + 0x4844) = 0;
               *(int *)(param_1 + 0x486c) = iVar5;
             }
             iVar7 = iVar7 + 1;
@@ -266,18 +266,18 @@ void FUN_1804215a0(longlong param_1)
                 FUN_18041f7a0(param_1);
               }
               if (7 < (byte)(*(char *)(param_1 + 0x4828) + 0x30U)) goto LAB_1804217f5;
-              *(undefined8 *)(param_1 + 0x4820) = 0;
-              *(undefined4 *)(param_1 + 0x482c) = 0;
-              *(undefined4 *)(param_1 + 0x47d8) = 0;
-              *(undefined4 *)(param_1 + 0x4778) = 0;
-              *(undefined4 *)(param_1 + 0x4718) = 0;
-              *(undefined4 *)(param_1 + 0x46b8) = 0;
-              *(undefined1 *)(param_1 + 0x4828) = 0xff;
+              *(uint64_t *)(param_1 + 0x4820) = 0;
+              *(int32_t *)(param_1 + 0x482c) = 0;
+              *(int32_t *)(param_1 + 0x47d8) = 0;
+              *(int32_t *)(param_1 + 0x4778) = 0;
+              *(int32_t *)(param_1 + 0x4718) = 0;
+              *(int32_t *)(param_1 + 0x46b8) = 0;
+              *(int8_t *)(param_1 + 0x4828) = 0xff;
               iVar10 = 0x7fffffff;
               if (*(int *)(param_1 + 0x4868) != 0) {
                 iVar10 = *(int *)(param_1 + 0x4868);
               }
-              *(undefined4 *)(param_1 + 0x4844) = 0;
+              *(int32_t *)(param_1 + 0x4844) = 0;
               *(int *)(param_1 + 0x486c) = iVar10;
             }
             iVar8 = iVar8 + 1;

@@ -2,9 +2,9 @@
 
 // 04_ui_system_part090.c - 6 个函数
 
-// 函数: void FUN_18071fb5a(float param_1,undefined8 param_2,undefined8 param_3,int param_4,
-void FUN_18071fb5a(float param_1,undefined8 param_2,undefined8 param_3,int param_4,
-                  undefined8 param_5,byte param_6,undefined8 param_7,longlong param_8)
+// 函数: void FUN_18071fb5a(float param_1,uint64_t param_2,uint64_t param_3,int param_4,
+void FUN_18071fb5a(float param_1,uint64_t param_2,uint64_t param_3,int param_4,
+                  uint64_t param_5,byte param_6,uint64_t param_7,longlong param_8)
 
 {
   float *pfVar1;
@@ -154,7 +154,7 @@ void FUN_18071fb70(longlong param_1,float *param_2)
   float fVar26;
   float fVar27;
   float fVar28;
-  undefined1 auStack_e8 [32];
+  int8_t auStack_e8 [32];
   int iStack_c8;
   int iStack_c0;
   int iStack_b8;
@@ -195,7 +195,7 @@ void FUN_18071fb70(longlong param_1,float *param_2)
       }
       sVar5 = *(short *)(lVar13 + 0xc + param_1);
       if (sVar5 == 2) {
-        FUN_18071e580(param_2,iVar16,*(undefined4 *)((longlong)auStack_a8 + lVar13));
+        FUN_18071e580(param_2,iVar16,*(int32_t *)((longlong)auStack_a8 + lVar13));
       }
       else {
         bVar7 = (byte)iVar10;
@@ -317,7 +317,7 @@ void FUN_18071fc11(void)
     }
     sVar4 = *(short *)(lVar10 + 0xc + unaff_RBX);
     if (sVar4 == 2) {
-      FUN_18071e580(unaff_RSI,in_R9D,*(undefined4 *)(&stack0x00000040 + lVar10));
+      FUN_18071e580(unaff_RSI,in_R9D,*(int32_t *)(&stack0x00000040 + lVar10));
     }
     else if (sVar4 == 3) {
       uVar15 = *(uint *)(&stack0x00000040 + lVar10);
@@ -439,7 +439,7 @@ void FUN_18071fed0(void)
   ulonglong in_stack_00000060;
   
   do {
-    FUN_18071e580(unaff_RSI,in_R9D,*(undefined4 *)(&stack0x00000040 + unaff_RDI));
+    FUN_18071e580(unaff_RSI,in_R9D,*(int32_t *)(&stack0x00000040 + unaff_RDI));
     in_R9D = unaff_R15D;
     while( true ) {
       lVar8 = unaff_RDI;
@@ -537,8 +537,8 @@ void FUN_18071fef0(longlong param_1,longlong param_2,float *param_3)
   float *pfVar1;
   float *pfVar2;
   uint *puVar3;
-  undefined1 auVar4 [16];
-  undefined1 auVar5 [16];
+  int8_t auVar4 [16];
+  int8_t auVar5 [16];
   double dVar6;
   float fVar7;
   float *pfVar8;

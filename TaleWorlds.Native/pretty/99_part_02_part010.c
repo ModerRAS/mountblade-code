@@ -50,10 +50,10 @@
  * - 调用底层系统调用处理函数
  * - 处理系统调用结果
  */
-void system_call_dispatcher_type1(longlong system_context, undefined8 interface_ptr, undefined8 param3, undefined8 param4)
+void system_call_dispatcher_type1(longlong system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
 {
     // 调用系统调用处理函数
-    system_call_handler_080(system_context, *(undefined8 *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
+    system_call_handler_080(system_context, *(uint64_t *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
     return;
 }
 
@@ -78,10 +78,10 @@ void system_call_dispatcher_type1(longlong system_context, undefined8 interface_
  * - 调用底层系统调用处理函数130
  * - 处理系统调用结果
  */
-void system_call_dispatcher_type2(longlong system_context, undefined8 interface_ptr, undefined8 param3, undefined8 param4)
+void system_call_dispatcher_type2(longlong system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
 {
     // 调用系统调用处理函数130
-    system_call_handler_130(system_context, *(undefined8 *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
+    system_call_handler_130(system_context, *(uint64_t *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
     return;
 }
 
@@ -107,7 +107,7 @@ void system_call_dispatcher_type2(longlong system_context, undefined8 interface_
  * - 重置系统状态
  * - 验证资源释放结果
  */
-void resource_cleanup_and_reset(longlong resource_handle, undefined8 unused_param, undefined8 param3, undefined8 param4)
+void resource_cleanup_and_reset(longlong resource_handle, uint64_t unused_param, uint64_t param3, uint64_t param4)
 {
     // 调用资源清理回调函数
     if (*(code **)(resource_handle + OFFSET_0x68) != (code *)0x0) {
@@ -125,7 +125,7 @@ void resource_cleanup_and_reset(longlong resource_handle, undefined8 unused_para
     }
     
     // 设置清理标记
-    *(undefined8 *)(resource_handle + OFFSET_0x18) = &CLEANUP_FLAG_ACTIVE;
+    *(uint64_t *)(resource_handle + OFFSET_0x18) = &CLEANUP_FLAG_ACTIVE;
     
     // 检查是否有未释放的资源
     if (*(longlong *)(resource_handle + OFFSET_0x20) != 0) {
@@ -134,9 +134,9 @@ void resource_cleanup_and_reset(longlong resource_handle, undefined8 unused_para
     }
     
     // 重置资源状态
-    *(undefined8 *)(resource_handle + OFFSET_0x20) = 0;
-    *(undefined4 *)(resource_handle + OFFSET_0x30) = 0;
-    *(undefined8 *)(resource_handle + OFFSET_0x18) = &CLEANUP_FLAG_INACTIVE;
+    *(uint64_t *)(resource_handle + OFFSET_0x20) = 0;
+    *(int32_t *)(resource_handle + OFFSET_0x30) = 0;
+    *(uint64_t *)(resource_handle + OFFSET_0x18) = &CLEANUP_FLAG_INACTIVE;
     
     return;
 }
@@ -160,17 +160,17 @@ void resource_cleanup_and_reset(longlong resource_handle, undefined8 unused_para
 longlong data_structure_initializer(longlong data_structure)
 {
     // 初始化数据结构的基本字段
-    *(undefined8 *)(data_structure + OFFSET_0x18) = 0;
-    *(undefined4 *)(data_structure + OFFSET_0x28) = 3;  // 设置状态为3
+    *(uint64_t *)(data_structure + OFFSET_0x18) = 0;
+    *(int32_t *)(data_structure + OFFSET_0x28) = 3;  // 设置状态为3
     
     // 设置自引用指针
     *(longlong *)data_structure = data_structure;        // 头部指针指向自己
     *(longlong *)(data_structure + 8) = data_structure;  // 尾部指针指向自己
     
     // 初始化其他字段
-    *(undefined8 *)(data_structure + OFFSET_0x10) = 0;   // 清空接口指针
-    *(undefined1 *)(data_structure + OFFSET_0x18) = 0;   // 清空状态标志
-    *(undefined8 *)(data_structure + OFFSET_0x20) = 0;   // 清空资源句柄
+    *(uint64_t *)(data_structure + OFFSET_0x10) = 0;   // 清空接口指针
+    *(int8_t *)(data_structure + OFFSET_0x18) = 0;   // 清空状态标志
+    *(uint64_t *)(data_structure + OFFSET_0x20) = 0;   // 清空资源句柄
     
     return data_structure;
 }
@@ -196,10 +196,10 @@ longlong data_structure_initializer(longlong data_structure)
  * - 调用底层系统调用处理函数080
  * - 处理系统调用结果
  */
-void system_call_dispatcher_type3(longlong system_context, undefined8 interface_ptr, undefined8 param3, undefined8 param4)
+void system_call_dispatcher_type3(longlong system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
 {
     // 调用系统调用处理函数080
-    system_call_handler_080(system_context, *(undefined8 *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
+    system_call_handler_080(system_context, *(uint64_t *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
     return;
 }
 
@@ -224,10 +224,10 @@ void system_call_dispatcher_type3(longlong system_context, undefined8 interface_
  * - 调用底层系统调用处理函数130
  * - 处理系统调用结果
  */
-void system_call_dispatcher_type4(longlong system_context, undefined8 interface_ptr, undefined8 param3, undefined8 param4)
+void system_call_dispatcher_type4(longlong system_context, uint64_t interface_ptr, uint64_t param3, uint64_t param4)
 {
     // 调用系统调用处理函数130
-    system_call_handler_130(system_context, *(undefined8 *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
+    system_call_handler_130(system_context, *(uint64_t *)(system_context + OFFSET_0x10), param3, param4, INVALID_HANDLE);
     return;
 }
 
@@ -351,10 +351,10 @@ void container_manager_cleanup(void)
         // 检查是否已经遍历完所有容器
         if (*(ulonglong **)(manager_context + OFFSET_0x48) <= container_ptr) {
             // 重置容器管理器状态
-            *(undefined8 *)(manager_context + OFFSET_0x30) = *(undefined8 *)(manager_context + OFFSET_0x10);
-            *(undefined8 *)(manager_context + OFFSET_0x38) = *(undefined8 *)(manager_context + OFFSET_0x18);
-            *(undefined8 *)(manager_context + OFFSET_0x40) = *(undefined8 *)(manager_context + OFFSET_0x20);
-            *(undefined8 *)(manager_context + OFFSET_0x48) = *(undefined8 *)(manager_context + OFFSET_0x28);
+            *(uint64_t *)(manager_context + OFFSET_0x30) = *(uint64_t *)(manager_context + OFFSET_0x10);
+            *(uint64_t *)(manager_context + OFFSET_0x38) = *(uint64_t *)(manager_context + OFFSET_0x18);
+            *(uint64_t *)(manager_context + OFFSET_0x40) = *(uint64_t *)(manager_context + OFFSET_0x20);
+            *(uint64_t *)(manager_context + OFFSET_0x48) = *(uint64_t *)(manager_context + OFFSET_0x28);
             return;
         }
     }
@@ -385,10 +385,10 @@ void container_manager_state_reset(void)
     longlong manager_context;
     
     // 重置容器管理器的状态字段
-    *(undefined8 *)(manager_context + OFFSET_0x30) = *(undefined8 *)(manager_context + OFFSET_0x10);  // 重置30偏移处状态
-    *(undefined8 *)(manager_context + OFFSET_0x38) = *(undefined8 *)(manager_context + OFFSET_0x18);  // 重置38偏移处状态
-    *(undefined8 *)(manager_context + OFFSET_0x40) = *(undefined8 *)(manager_context + OFFSET_0x20);  // 重置40偏移处状态
-    *(undefined8 *)(manager_context + OFFSET_0x48) = *(undefined8 *)(manager_context + OFFSET_0x28);  // 重置48偏移处状态
+    *(uint64_t *)(manager_context + OFFSET_0x30) = *(uint64_t *)(manager_context + OFFSET_0x10);  // 重置30偏移处状态
+    *(uint64_t *)(manager_context + OFFSET_0x38) = *(uint64_t *)(manager_context + OFFSET_0x18);  // 重置38偏移处状态
+    *(uint64_t *)(manager_context + OFFSET_0x40) = *(uint64_t *)(manager_context + OFFSET_0x20);  // 重置40偏移处状态
+    *(uint64_t *)(manager_context + OFFSET_0x48) = *(uint64_t *)(manager_context + OFFSET_0x28);  // 重置48偏移处状态
     
     return;
 }
@@ -468,10 +468,10 @@ void resource_group_cleanup(longlong *resource_group)
  * - 设置清理标记
  * - 验证清理结果
  */
-void recursive_memory_cleanup_type1(undefined8 context, undefined8 *memory_block, undefined8 param3, undefined8 param4)
+void recursive_memory_cleanup_type1(uint64_t context, uint64_t *memory_block, uint64_t param3, uint64_t param4)
 {
     // 检查内存块有效性
-    if (memory_block == (undefined8 *)0x0) {
+    if (memory_block == (uint64_t *)0x0) {
         return;  // 内存块为空，直接返回
     }
     
@@ -489,7 +489,7 @@ void recursive_memory_cleanup_type1(undefined8 context, undefined8 *memory_block
     
     // 重置内存块状态
     memory_block[6] = 0;
-    *(undefined4 *)(memory_block + 8) = 0;
+    *(int32_t *)(memory_block + 8) = 0;
     memory_block[5] = &CLEANUP_FLAG_INACTIVE;
     
     // 验证内存块清理结果
@@ -518,10 +518,10 @@ void recursive_memory_cleanup_type1(undefined8 context, undefined8 *memory_block
  * - 调用内存块的清理回调函数
  * - 释放内存块
  */
-void recursive_memory_cleanup_type2(undefined8 context, undefined8 *memory_block, undefined8 param3, undefined8 param4)
+void recursive_memory_cleanup_type2(uint64_t context, uint64_t *memory_block, uint64_t param3, uint64_t param4)
 {
     // 检查内存块有效性
-    if (memory_block != (undefined8 *)0x0) {
+    if (memory_block != (uint64_t *)0x0) {
         // 递归清理子内存块
         recursive_memory_cleanup_type2(context, *memory_block, param3, param4, INVALID_HANDLE);
         
@@ -694,25 +694,25 @@ void error_handler_critical(void)
  * - 清理旧的数据
  * - 更新数组信息
  */
-void dynamic_array_expand(longlong *array_info, ulonglong required_size, undefined8 param3, undefined8 param4)
+void dynamic_array_expand(longlong *array_info, ulonglong required_size, uint64_t param3, uint64_t param4)
 {
-    undefined8 *current_end;
+    uint64_t *current_end;
     longlong *current_start;
     longlong size_diff;
-    undefined8 *new_memory;
-    undefined8 *new_pos;
-    undefined8 *old_start;
-    undefined8 *old_end;
+    uint64_t *new_memory;
+    uint64_t *new_pos;
+    uint64_t *old_start;
+    uint64_t *old_end;
     ulonglong count;
     longlong *old_array;
     ulonglong new_capacity;
     
     // 获取当前数组信息
-    current_end = (undefined8 *)array_info[1];
+    current_end = (uint64_t *)array_info[1];
     
     // 检查是否需要扩容
     if ((ulonglong)(array_info[2] - (longlong)current_end >> 5) < required_size) {
-        old_start = (undefined8 *)*array_info;
+        old_start = (uint64_t *)*array_info;
         size_diff = (longlong)current_end - (longlong)old_start >> 5;
         new_capacity = size_diff * 2;
         
@@ -727,12 +727,12 @@ void dynamic_array_expand(longlong *array_info, ulonglong required_size, undefin
         }
         
         // 分配新的内存空间
-        new_memory = (undefined8 *)0x0;
+        new_memory = (uint64_t *)0x0;
         if (new_capacity != 0) {
-            new_memory = (undefined8 *)
+            new_memory = (uint64_t *)
                          memory_allocator(MEMORY_POOL, new_capacity << 5, (char)array_info[3], param4, INVALID_HANDLE);
-            current_end = (undefined8 *)array_info[1];
-            old_start = (undefined8 *)*array_info;
+            current_end = (uint64_t *)array_info[1];
+            old_start = (uint64_t *)*array_info;
         }
         
         new_pos = new_memory;
@@ -744,11 +744,11 @@ void dynamic_array_expand(longlong *array_info, ulonglong required_size, undefin
             do {
                 *new_pos = old_start[-1];
                 old_start[-1] = 0;
-                *(undefined8 *)((longlong)old_start + size_diff) = *old_start;
+                *(uint64_t *)((longlong)old_start + size_diff) = *old_start;
                 *old_start = 0;
-                *(undefined8 *)(size_diff + 8 + (longlong)old_start) = old_start[1];
+                *(uint64_t *)(size_diff + 8 + (longlong)old_start) = old_start[1];
                 old_start[1] = 0;
-                *(undefined8 *)(size_diff + 0x10 + (longlong)old_start) = old_start[2];
+                *(uint64_t *)(size_diff + 0x10 + (longlong)old_start) = old_start[2];
                 old_start[2] = 0;
                 new_pos = new_pos + 4;
                 old_start = old_start + 4;
@@ -819,7 +819,7 @@ void dynamic_array_expand(longlong *array_info, ulonglong required_size, undefin
                 current_end = current_end + 4;
                 count = count - 1;
             } while (count != 0);
-            current_end = (undefined8 *)array_info[1];
+            current_end = (uint64_t *)array_info[1];
         }
         array_info[1] = (longlong)(current_end + required_size * 4);
     }
@@ -849,7 +849,7 @@ void dynamic_array_expand(longlong *array_info, ulonglong required_size, undefin
 void memory_block_cleanup(longlong memory_block)
 {
     // 设置清理标记
-    *(undefined8 *)(memory_block + 8) = &CLEANUP_FLAG_ACTIVE;
+    *(uint64_t *)(memory_block + 8) = &CLEANUP_FLAG_ACTIVE;
     
     // 检查内存块是否已被占用
     if (*(longlong *)(memory_block + OFFSET_0x10) != 0) {
@@ -858,9 +858,9 @@ void memory_block_cleanup(longlong memory_block)
     }
     
     // 重置内存块状态
-    *(undefined8 *)(memory_block + OFFSET_0x10) = 0;
-    *(undefined4 *)(memory_block + OFFSET_0x20) = 0;
-    *(undefined8 *)(memory_block + 8) = &CLEANUP_FLAG_INACTIVE;
+    *(uint64_t *)(memory_block + OFFSET_0x10) = 0;
+    *(int32_t *)(memory_block + OFFSET_0x20) = 0;
+    *(uint64_t *)(memory_block + 8) = &CLEANUP_FLAG_INACTIVE;
     
     return;
 }
@@ -909,7 +909,7 @@ void resource_release_callback(longlong resource_handle)
  * - 设置标志位和状态字段
  * - 返回初始化后的数据结构指针
  */
-undefined8 *data_structure_initializer_ext(undefined8 *data_structure)
+uint64_t *data_structure_initializer_ext(uint64_t *data_structure)
 {
     // 初始化基本字段
     *data_structure = 0;
@@ -939,7 +939,7 @@ undefined8 *data_structure_initializer_ext(undefined8 *data_structure)
     data_structure[0x15] = 0;
     
     // 初始化控制字段
-    *(undefined4 *)(data_structure + 0x25) = 0;
+    *(int32_t *)(data_structure + 0x25) = 0;
     data_structure[0x1f] = 0;
     data_structure[0x20] = 0;
     data_structure[0x21] = 0;
@@ -951,11 +951,11 @@ undefined8 *data_structure_initializer_ext(undefined8 *data_structure)
     data_structure[0x28] = 0;
     
     // 设置配置参数
-    *(undefined4 *)(data_structure + 0x29) = 0xc;  // 配置参数1
+    *(int32_t *)(data_structure + 0x29) = 0xc;  // 配置参数1
     data_structure[0x2a] = 0;
     data_structure[0x2b] = 0;
     data_structure[0x2c] = 0;
-    *(undefined4 *)(data_structure + 0x2d) = 0xc;  // 配置参数2
+    *(int32_t *)(data_structure + 0x2d) = 0xc;  // 配置参数2
     
     // 初始化浮点数
     data_structure[0x17] = FLOAT_ONE;            // 1.0f
@@ -994,7 +994,7 @@ undefined8 *data_structure_initializer_ext(undefined8 *data_structure)
 void system_resource_initializer(longlong param_1)
 {
     longlong lVar1;
-    undefined8 uVar2;
+    uint64_t uVar2;
     ulonglong uVar3;
     uint uVar4;
     ulonglong uVar5;
@@ -1006,7 +1006,7 @@ void system_resource_initializer(longlong param_1)
         uVar2 = FUN_1800ee510(uVar2);
         // 更新状态标志
         *(byte *)(param_1 + 0x2e9) = *(byte *)(param_1 + 0x2e9) & 0xfb;
-        *(undefined8 *)(param_1 + 0x28) = uVar2;
+        *(uint64_t *)(param_1 + 0x28) = uVar2;
     }
     
     // 递归处理资源数组
@@ -1112,14 +1112,14 @@ void noop_function(void)
  * - 处理资源回调函数
  * - 执行资源清理操作
  */
-void advanced_resource_processor(undefined8 param_1, longlong *param_2, undefined1 param_3)
+void advanced_resource_processor(uint64_t param_1, longlong *param_2, int8_t param_3)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong *plVar2;
     longlong lVar3;
-    undefined *puVar4;
+    void *puVar4;
     longlong *plStackX_20;
-    undefined8 uVar5;
+    uint64_t uVar5;
     longlong *plVar6;
     longlong **pplVar7;
     
@@ -1138,8 +1138,8 @@ void advanced_resource_processor(undefined8 param_1, longlong *param_2, undefine
     
     // 获取默认数据指针
     puVar4 = &DAT_18098bc73;
-    if (*(undefined **)(*param_2 + 0x18) != (undefined *)0x0) {
-        puVar4 = *(undefined **)(*param_2 + 0x18);
+    if (*(void **)(*param_2 + 0x18) != (void *)0x0) {
+        puVar4 = *(void **)(*param_2 + 0x18);
     }
     
     // 处理资源数据
@@ -1164,8 +1164,8 @@ void advanced_resource_processor(undefined8 param_1, longlong *param_2, undefine
     
     // 处理资源数据
     puVar4 = &DAT_18098bc73;
-    if (*(undefined **)(lVar3 + 8) != (undefined *)0x0) {
-        puVar4 = *(undefined **)(lVar3 + 8);
+    if (*(void **)(lVar3 + 8) != (void *)0x0) {
+        puVar4 = *(void **)(lVar3 + 8);
     }
     
     // 执行数据处理
@@ -1215,7 +1215,7 @@ void advanced_resource_processor(undefined8 param_1, longlong *param_2, undefine
  * - 处理资源回调函数
  * - 管理资源生命周期
  */
-void simplified_resource_processor(undefined8 param_1, longlong *param_2, undefined8 param_3, undefined8 param_4)
+void simplified_resource_processor(uint64_t param_1, longlong *param_2, uint64_t param_3, uint64_t param_4)
 {
     // 执行基础资源处理操作
     FUN_1802edcd0(param_1, *param_2, param_3, param_4, INVALID_HANDLE);
@@ -1247,9 +1247,9 @@ void simplified_resource_processor(undefined8 param_1, longlong *param_2, undefi
  * - 配置系统参数和标志位
  * - 设置清理和状态管理机制
  */
-undefined4 *complex_data_structure_initializer(undefined4 *data_structure)
+int32_t *complex_data_structure_initializer(int32_t *data_structure)
 {
-    undefined4 *return_ptr;
+    int32_t *return_ptr;
     uint index;
     
     // 初始化互斥锁
@@ -1260,50 +1260,50 @@ undefined4 *complex_data_structure_initializer(undefined4 *data_structure)
     
     // 初始化多个状态区域
     index = 0;
-    *(undefined8 *)(data_structure + 0x30) = 0;
-    *(undefined8 *)(data_structure + 0x32) = 0;
-    *(undefined8 *)(data_structure + 0x34) = 0;
+    *(uint64_t *)(data_structure + 0x30) = 0;
+    *(uint64_t *)(data_structure + 0x32) = 0;
+    *(uint64_t *)(data_structure + 0x34) = 0;
     data_structure[0x36] = 3;
-    *(undefined8 *)(data_structure + 0x38) = 0;
-    *(undefined8 *)(data_structure + 0x3a) = 0;
-    *(undefined8 *)(data_structure + 0x3c) = 0;
+    *(uint64_t *)(data_structure + 0x38) = 0;
+    *(uint64_t *)(data_structure + 0x3a) = 0;
+    *(uint64_t *)(data_structure + 0x3c) = 0;
     data_structure[0x3e] = 3;
-    *(undefined8 *)(data_structure + 0x40) = 0;
-    *(undefined8 *)(data_structure + 0x42) = 0;
-    *(undefined8 *)(data_structure + 0x44) = 0;
+    *(uint64_t *)(data_structure + 0x40) = 0;
+    *(uint64_t *)(data_structure + 0x42) = 0;
+    *(uint64_t *)(data_structure + 0x44) = 0;
     data_structure[0x46] = 3;
-    *(undefined8 *)(data_structure + 0x48) = 0;
-    *(undefined8 *)(data_structure + 0x4a) = 0;
-    *(undefined8 *)(data_structure + 0x4c) = 0;
+    *(uint64_t *)(data_structure + 0x48) = 0;
+    *(uint64_t *)(data_structure + 0x4a) = 0;
+    *(uint64_t *)(data_structure + 0x4c) = 0;
     data_structure[0x4e] = 3;
-    *(undefined8 *)(data_structure + 0x50) = 0;
-    *(undefined8 *)(data_structure + 0x52) = 0;
-    *(undefined8 *)(data_structure + 0x54) = 0;
+    *(uint64_t *)(data_structure + 0x50) = 0;
+    *(uint64_t *)(data_structure + 0x52) = 0;
+    *(uint64_t *)(data_structure + 0x54) = 0;
     data_structure[0x56] = 3;
-    *(undefined8 *)(data_structure + 0x58) = 0;
-    *(undefined8 *)(data_structure + 0x5a) = 0;
-    *(undefined8 *)(data_structure + 0x5c) = 0;
+    *(uint64_t *)(data_structure + 0x58) = 0;
+    *(uint64_t *)(data_structure + 0x5a) = 0;
+    *(uint64_t *)(data_structure + 0x5c) = 0;
     data_structure[0x5e] = 3;
-    *(undefined8 *)(data_structure + 0x60) = 0;
-    *(undefined8 *)(data_structure + 0x62) = 0;
-    *(undefined8 *)(data_structure + 100) = 0;
+    *(uint64_t *)(data_structure + 0x60) = 0;
+    *(uint64_t *)(data_structure + 0x62) = 0;
+    *(uint64_t *)(data_structure + 100) = 0;
     data_structure[0x66] = 3;
-    *(undefined8 *)(data_structure + 0x68) = 0;
-    *(undefined8 *)(data_structure + 0x6a) = 0;
-    *(undefined8 *)(data_structure + 0x6c) = 0;
+    *(uint64_t *)(data_structure + 0x68) = 0;
+    *(uint64_t *)(data_structure + 0x6a) = 0;
+    *(uint64_t *)(data_structure + 0x6c) = 0;
     data_structure[0x6e] = 3;
     
     // 初始化第二个互斥锁
     _Mtx_init_in_situ(data_structure + 0x70, MUTEX_TYPE_2);
     
     // 初始化数据区域2
-    *(undefined8 *)(data_structure + 0x84) = 0;
-    *(undefined8 *)(data_structure + 0x86) = 0;
-    *(undefined8 *)(data_structure + 0x88) = 0;
+    *(uint64_t *)(data_structure + 0x84) = 0;
+    *(uint64_t *)(data_structure + 0x86) = 0;
+    *(uint64_t *)(data_structure + 0x88) = 0;
     data_structure[0x8a] = 3;
-    *(undefined8 *)(data_structure + 0x8c) = 0;
-    *(undefined8 *)(data_structure + 0x8e) = 0;
-    *(undefined8 *)(data_structure + 0x90) = 0;
+    *(uint64_t *)(data_structure + 0x8c) = 0;
+    *(uint64_t *)(data_structure + 0x8e) = 0;
+    *(uint64_t *)(data_structure + 0x90) = 0;
     data_structure[0x92] = 3;
     
     // 初始化同步变量
@@ -1313,101 +1313,101 @@ undefined4 *complex_data_structure_initializer(undefined4 *data_structure)
     
     // 初始化数组状态
     do {
-        *(undefined8 *)(data_structure + (longlong)(int)index * 2 + 0x96) = 0;
+        *(uint64_t *)(data_structure + (longlong)(int)index * 2 + 0x96) = 0;
         LOCK();
-        *(undefined1 *)((longlong)data_structure + (longlong)(int)index + 0x2a8) = 1;
+        *(int8_t *)((longlong)data_structure + (longlong)(int)index + 0x2a8) = 1;
         UNLOCK();
         index = index + 1;
     } while (index < ARRAY_SIZE_10);
     
     // 初始化链表结构
-    *(undefined8 *)(data_structure + 0xae) = 0;
+    *(uint64_t *)(data_structure + 0xae) = 0;
     return_ptr = data_structure + 0xb2;
-    *(undefined8 *)(data_structure + 0xb8) = 0;
+    *(uint64_t *)(data_structure + 0xb8) = 0;
     data_structure[0xbc] = 3;
-    *(undefined4 **)return_ptr = return_ptr;
-    *(undefined4 **)(data_structure + 0xb4) = return_ptr;
-    *(undefined8 *)(data_structure + 0xb6) = 0;
-    *(undefined1 *)(data_structure + 0xb8) = 0;
-    *(undefined8 *)(data_structure + 0xba) = 0;
+    *(int32_t **)return_ptr = return_ptr;
+    *(int32_t **)(data_structure + 0xb4) = return_ptr;
+    *(uint64_t *)(data_structure + 0xb6) = 0;
+    *(int8_t *)(data_structure + 0xb8) = 0;
+    *(uint64_t *)(data_structure + 0xba) = 0;
     
     // 初始化回调函数
     FUN_1808fc838(data_structure + 0xc2, 8, 0xd, &SUB_18005d5f0, FUN_180045af0);
     
     // 初始化更多数据区域
-    *(undefined8 *)(data_structure + 0xdc) = 0;
-    *(undefined8 *)(data_structure + 0xde) = 0;
-    *(undefined8 *)(data_structure + 0xe0) = 0;
-    *(undefined8 *)(data_structure + 0xe2) = 0;
-    *(undefined8 *)(data_structure + 0xe4) = 0;
-    *(undefined8 *)(data_structure + 0xe6) = 0;
+    *(uint64_t *)(data_structure + 0xdc) = 0;
+    *(uint64_t *)(data_structure + 0xde) = 0;
+    *(uint64_t *)(data_structure + 0xe0) = 0;
+    *(uint64_t *)(data_structure + 0xe2) = 0;
+    *(uint64_t *)(data_structure + 0xe4) = 0;
+    *(uint64_t *)(data_structure + 0xe6) = 0;
     FUN_1808fc838(data_structure + 0xea, 8, 0xd, &SUB_18005d5f0, FUN_180045af0);
     
     // 初始化扩展数据区域
-    *(undefined8 *)(data_structure + 0x104) = 0;
-    *(undefined8 *)(data_structure + 0x106) = 0;
-    *(undefined8 *)(data_structure + 0x108) = 0;
-    *(undefined8 *)(data_structure + 0x10a) = 0;
-    *(undefined8 *)(data_structure + 0x10c) = 0;
-    *(undefined8 *)(data_structure + 0x10e) = 0;
-    *(undefined8 *)(data_structure + 0x110) = 0;
-    *(undefined8 *)(data_structure + 0x112) = 0;
-    *(undefined8 *)(data_structure + 0x114) = 0;
-    *(undefined8 *)(data_structure + 0x116) = 0;
-    *(undefined8 *)(data_structure + 0x118) = 0;
-    *(undefined8 *)(data_structure + 0x11a) = 0;
+    *(uint64_t *)(data_structure + 0x104) = 0;
+    *(uint64_t *)(data_structure + 0x106) = 0;
+    *(uint64_t *)(data_structure + 0x108) = 0;
+    *(uint64_t *)(data_structure + 0x10a) = 0;
+    *(uint64_t *)(data_structure + 0x10c) = 0;
+    *(uint64_t *)(data_structure + 0x10e) = 0;
+    *(uint64_t *)(data_structure + 0x110) = 0;
+    *(uint64_t *)(data_structure + 0x112) = 0;
+    *(uint64_t *)(data_structure + 0x114) = 0;
+    *(uint64_t *)(data_structure + 0x116) = 0;
+    *(uint64_t *)(data_structure + 0x118) = 0;
+    *(uint64_t *)(data_structure + 0x11a) = 0;
     
     // 初始化第二个链表
     return_ptr = data_structure + 0x11c;
-    *(undefined8 *)(data_structure + 0x122) = 0;
+    *(uint64_t *)(data_structure + 0x122) = 0;
     data_structure[0x126] = 3;
-    *(undefined4 **)return_ptr = return_ptr;
-    *(undefined4 **)(data_structure + 0x11e) = return_ptr;
-    *(undefined8 *)(data_structure + 0x120) = 0;
-    *(undefined1 *)(data_structure + 0x122) = 0;
-    *(undefined8 *)(data_structure + 0x124) = 0;
+    *(int32_t **)return_ptr = return_ptr;
+    *(int32_t **)(data_structure + 0x11e) = return_ptr;
+    *(uint64_t *)(data_structure + 0x120) = 0;
+    *(int8_t *)(data_structure + 0x122) = 0;
+    *(uint64_t *)(data_structure + 0x124) = 0;
     
     // 初始化第三个链表
-    *(undefined8 *)(data_structure + 0x1028) = 0;
-    *(undefined8 *)(data_structure + 0x102a) = 0;
-    *(undefined8 *)(data_structure + 0x102c) = 0;
+    *(uint64_t *)(data_structure + 0x1028) = 0;
+    *(uint64_t *)(data_structure + 0x102a) = 0;
+    *(uint64_t *)(data_structure + 0x102c) = 0;
     return_ptr = data_structure + 0x1038;
-    *(undefined8 *)(data_structure + 0x103e) = 0;
+    *(uint64_t *)(data_structure + 0x103e) = 0;
     data_structure[0x1042] = 3;
-    *(undefined4 **)return_ptr = return_ptr;
-    *(undefined4 **)(data_structure + 0x103a) = return_ptr;
-    *(undefined8 *)(data_structure + 0x103c) = 0;
-    *(undefined1 *)(data_structure + 0x103e) = 0;
-    *(undefined8 *)(data_structure + 0x1040) = 0;
+    *(int32_t **)return_ptr = return_ptr;
+    *(int32_t **)(data_structure + 0x103a) = return_ptr;
+    *(uint64_t *)(data_structure + 0x103c) = 0;
+    *(int8_t *)(data_structure + 0x103e) = 0;
+    *(uint64_t *)(data_structure + 0x1040) = 0;
     
     // 初始化第四个链表
     return_ptr = data_structure + 0x1044;
-    *(undefined8 *)(data_structure + 0x104a) = 0;
+    *(uint64_t *)(data_structure + 0x104a) = 0;
     data_structure[0x104e] = 3;
-    *(undefined4 **)return_ptr = return_ptr;
-    *(undefined4 **)(data_structure + 0x1046) = return_ptr;
-    *(undefined8 *)(data_structure + 0x1048) = 0;
-    *(undefined1 *)(data_structure + 0x104a) = 0;
-    *(undefined8 *)(data_structure + 0x104c) = 0;
+    *(int32_t **)return_ptr = return_ptr;
+    *(int32_t **)(data_structure + 0x1046) = return_ptr;
+    *(uint64_t *)(data_structure + 0x1048) = 0;
+    *(int8_t *)(data_structure + 0x104a) = 0;
+    *(uint64_t *)(data_structure + 0x104c) = 0;
     
     // 初始化特殊功能区域
     FUN_1800f63f0(data_structure + 0x1050);
     
     // 设置清理标志
-    *(undefined **)(data_structure + 0x1064) = &CLEANUP_FLAG_INACTIVE;
-    *(undefined8 *)(data_structure + 0x1066) = 0;
+    *(void **)(data_structure + 0x1064) = &CLEANUP_FLAG_INACTIVE;
+    *(uint64_t *)(data_structure + 0x1066) = 0;
     data_structure[0x1068] = 0;
-    *(undefined **)(data_structure + 0x1064) = &CLEANUP_FLAG_ACTIVE;
-    *(undefined8 *)(data_structure + 0x106a) = 0;
-    *(undefined8 *)(data_structure + 0x1066) = 0;
+    *(void **)(data_structure + 0x1064) = &CLEANUP_FLAG_ACTIVE;
+    *(uint64_t *)(data_structure + 0x106a) = 0;
+    *(uint64_t *)(data_structure + 0x1066) = 0;
     data_structure[0x1068] = 0;
     
     // 最终状态设置
     data_structure[0xbe] = 0;
     *data_structure = 0;
-    *(undefined1 *)(data_structure + 1) = 0;
-    *(undefined2 *)(data_structure + 0xb0) = 0;
-    *(undefined1 *)(data_structure + 0xe8) = 0;
+    *(int8_t *)(data_structure + 1) = 0;
+    *(int16_t *)(data_structure + 0xb0) = 0;
+    *(int8_t *)(data_structure + 0xe8) = 0;
     
     return data_structure;
 }
@@ -1476,10 +1476,10 @@ void resource_chain_traverse(longlong *resource_chain)
  * - 调用底层资源处理函数
  * - 传递所有参数
  */
-void resource_processor_delegate_type1(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void resource_processor_delegate_type1(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数
-    FUN_1800f7260(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    FUN_1800f7260(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
     return;
 }
 
@@ -1565,10 +1565,10 @@ void multi_level_resource_cleanup(longlong resource_manager)
  * - 调用底层资源处理函数7320
  * - 传递所有参数
  */
-void resource_processor_delegate_type2(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void resource_processor_delegate_type2(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数7320
-    FUN_1800f7320(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    FUN_1800f7320(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
     return;
 }
 
@@ -1594,10 +1594,10 @@ void resource_processor_delegate_type2(longlong param_1, undefined8 param_2, und
  * - 调用底层资源处理函数74f0
  * - 传递所有参数
  */
-void resource_processor_delegate_type3(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void resource_processor_delegate_type3(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数74f0
-    FUN_1800f74f0(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    FUN_1800f74f0(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
     return;
 }
 
@@ -1623,10 +1623,10 @@ void resource_processor_delegate_type3(longlong param_1, undefined8 param_2, und
  * - 调用底层资源处理函数7260
  * - 传递所有参数
  */
-void resource_processor_delegate_type4(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void resource_processor_delegate_type4(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数7260
-    FUN_1800f7260(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    FUN_1800f7260(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
     return;
 }
 
@@ -1652,10 +1652,10 @@ void resource_processor_delegate_type4(longlong param_1, undefined8 param_2, und
  * - 调用底层资源处理函数7320
  * - 传递所有参数
  */
-void resource_processor_delegate_type5(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void resource_processor_delegate_type5(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数7320
-    FUN_1800f7320(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    FUN_1800f7320(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
     return;
 }
 
@@ -1681,10 +1681,10 @@ void resource_processor_delegate_type5(longlong param_1, undefined8 param_2, und
  * - 调用底层资源处理函数74f0
  * - 传递所有参数
  */
-void resource_processor_delegate_type6(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void resource_processor_delegate_type6(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 调用底层资源处理函数74f0
-    FUN_1800f74f0(param_1, *(undefined8 *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
+    FUN_1800f74f0(param_1, *(uint64_t *)(param_1 + OFFSET_0x10), param_3, param_4, INVALID_HANDLE);
     return;
 }
 

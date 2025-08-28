@@ -198,7 +198,7 @@ void FUN_180742af0(longlong *param_1,uint param_2,int param_3,uint param_4)
   byte bVar2;
   uint uVar3;
   int iVar4;
-  undefined4 uVar5;
+  int32_t uVar5;
   ulonglong uVar6;
   longlong lVar7;
   uint uVar8;
@@ -294,8 +294,8 @@ void FUN_180742af0(longlong *param_1,uint param_2,int param_3,uint param_4)
     }
     if ((*(byte *)((longlong)((int)(uVar10 + ((int)uVar10 >> 0x1f & 7U)) >> 3) + *param_1) &
         (byte)(1 << ((byte)uVar10 & 7))) != 0) {
-      uVar5 = FUN_180742190(param_1,uVar10,*(undefined4 *)((longlong)param_1 + 0x33c),1);
-      *(undefined4 *)(param_1 + 0x69) = uVar5;
+      uVar5 = FUN_180742190(param_1,uVar10,*(int32_t *)((longlong)param_1 + 0x33c),1);
+      *(int32_t *)(param_1 + 0x69) = uVar5;
     }
   }
   return;
@@ -305,16 +305,16 @@ void FUN_180742af0(longlong *param_1,uint param_2,int param_3,uint param_4)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8
-FUN_180742cd0(longlong param_1,int param_2,undefined8 param_3,undefined4 param_4,undefined4 param_5)
+uint64_t
+FUN_180742cd0(longlong param_1,int param_2,uint64_t param_3,int32_t param_4,int32_t param_5)
 
 {
   longlong *plVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   if (*(longlong *)((longlong)param_2 * 8 + 0x10f90 + param_1) == 0) {
     plVar1 = (longlong *)
-             FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x3c0,&UNK_180957e90,0x264,0);
+             FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x3c0,&UNK_180957e90,0x264,0);
     if (plVar1 == (longlong *)0x0) {
       return 0x26;
     }
@@ -333,11 +333,11 @@ FUN_180742cd0(longlong param_1,int param_2,undefined8 param_3,undefined4 param_4
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180742d90(longlong param_1,int param_2)
+uint64_t FUN_180742d90(longlong param_1,int param_2)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   
   lVar1 = *(longlong *)(param_1 + (longlong)param_2 * 8 + 0x10f90);
   if (lVar1 == 0) {
@@ -347,7 +347,7 @@ undefined8 FUN_180742d90(longlong param_1,int param_2)
     uVar2 = FUN_180770580(lVar1);
     if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar1,&UNK_180957e90,0x28c,1);
+      FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),lVar1,&UNK_180957e90,0x28c,1);
     }
   }
   return uVar2;
@@ -355,18 +355,18 @@ undefined8 FUN_180742d90(longlong param_1,int param_2)
 
 
 
-undefined8
-FUN_180742e00(longlong param_1,longlong param_2,undefined8 param_3,longlong *param_4,char param_5)
+uint64_t
+FUN_180742e00(longlong param_1,longlong param_2,uint64_t param_3,longlong *param_4,char param_5)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   if (param_4 != (longlong *)0x0) {
     if (param_5 != '\0') {
       *param_4 = 0;
     }
     if (param_2 != 0) {
-      uVar1 = FUN_1807716e0(*(undefined8 *)(param_1 + 0x11418));
+      uVar1 = FUN_1807716e0(*(uint64_t *)(param_1 + 0x11418));
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -381,7 +381,7 @@ FUN_180742e00(longlong param_1,longlong param_2,undefined8 param_3,longlong *par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_180742e60(longlong param_1)
+int32_t FUN_180742e60(longlong param_1)
 
 {
   longlong lVar1;
@@ -395,7 +395,7 @@ undefined4 FUN_180742e60(longlong param_1)
     return 0x26;
   }
   plVar2 = (longlong *)
-           FUN_180742050(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180957e90,0x7e,0);
+           FUN_180742050(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_180957e90,0x7e,0);
   if (plVar2 != (longlong *)0x0) {
     plVar2[2] = 0;
     plVar2[3] = lVar1;
@@ -416,17 +416,17 @@ undefined4 FUN_180742e60(longlong param_1)
 
 
 
-// 函数: void FUN_180742eec(longlong param_1,undefined8 param_2,undefined8 param_3,int param_4)
-void FUN_180742eec(longlong param_1,undefined8 param_2,undefined8 param_3,int param_4)
+// 函数: void FUN_180742eec(longlong param_1,uint64_t param_2,uint64_t param_3,int param_4)
+void FUN_180742eec(longlong param_1,uint64_t param_2,uint64_t param_3,int param_4)
 
 {
   longlong *plVar1;
   longlong unaff_RBP;
   longlong unaff_RDI;
-  undefined4 unaff_R12D;
-  undefined4 unaff_000000a4;
+  int32_t unaff_R12D;
+  int32_t unaff_000000a4;
   
-  plVar1 = (longlong *)FUN_180742050(*(undefined8 *)(param_1 + 0x1a0),param_4 + -0x5e);
+  plVar1 = (longlong *)FUN_180742050(*(uint64_t *)(param_1 + 0x1a0),param_4 + -0x5e);
   if (plVar1 != (longlong *)0x0) {
     plVar1[2] = CONCAT44(unaff_000000a4,unaff_R12D);
     plVar1[3] = unaff_RBP;

@@ -183,7 +183,7 @@ void FUN_180264330(longlong param_1, ulonglong param_2)
     uint32_t temp_values[4];
     
     // 栈变量初始化
-    undefined8 uStack_410 = 0xfffffffffffffffe;
+    uint64_t uStack_410 = 0xfffffffffffffffe;
     ulonglong security_cookie = _DAT_180bf00a8 ^ (ulonglong)auStack_458;
     longlong loop_counter = 0;
     

@@ -30,14 +30,14 @@
 #define initialize_render_state           FUN_18028106c
 #define setup_render_context              FUN_180281080
 
-// 函数: void process_advanced_render_batch(undefined8 param_1, code *param_2, undefined8 param_3, longlong *param_4, ...)
+// 函数: void process_advanced_render_batch(uint64_t param_1, code *param_2, uint64_t param_3, longlong *param_4, ...)
 // 高级渲染批处理函数
 // 参数: param_1 - 渲染上下文, param_2 - 处理函数指针, param_3 - 批处理参数, param_4 - 数据指针
 // 功能: 执行复杂的渲染批处理操作，包括哈希表查找、内存分配和状态同步
-void process_advanced_render_batch(undefined8 param_1, code *param_2, undefined8 param_3, longlong *param_4,
-                                  undefined8 param_5, undefined8 param_6, undefined8 param_7, longlong *param_8,
+void process_advanced_render_batch(uint64_t param_1, code *param_2, uint64_t param_3, longlong *param_4,
+                                  uint64_t param_5, uint64_t param_6, uint64_t param_7, longlong *param_8,
                                   longlong *param_9, longlong param_10, longlong param_11, ulonglong *param_12,
-                                  longlong param_13, undefined8 param_14, ulonglong *param_15, ulonglong param_16,
+                                  longlong param_13, uint64_t param_14, ulonglong *param_15, ulonglong param_16,
                                   ulonglong param_17, ulonglong param_18)
 
 {
@@ -45,7 +45,7 @@ void process_advanced_render_batch(undefined8 param_1, code *param_2, undefined8
   longlong hash_key1;          // 哈希键值1
   longlong hash_key2;          // 哈希键值2
   longlong *hash_table;       // 哈希表指针
-  undefined8 *resource_ptr;    // 资源指针
+  uint64_t *resource_ptr;    // 资源指针
   ulonglong hash_value1;      // 哈希值1
   ulonglong hash_value2;      // 哈希值2
   longlong resource_count;    // 资源计数
@@ -53,8 +53,8 @@ void process_advanced_render_batch(undefined8 param_1, code *param_2, undefined8
   longlong loop_counter;      // 循环计数器
   longlong transform_data;    // 变换数据
   longlong property_data;     // 属性数据
-  undefined8 batch_param;     // 批处理参数
-  undefined8 *batch_array;    // 批处理数组
+  uint64_t batch_param;     // 批处理参数
+  uint64_t *batch_array;    // 批处理数组
   uint *current_ptr;          // 当前指针
   ulonglong combined_hash;    // 组合哈希值
   uint *temp_ptr;             // 临时指针
@@ -119,9 +119,9 @@ process_batch_loop:
             
             // 初始化批处理数据
             if (0 < *(int *)*batch_array) {
-              resource_ptr = (undefined8 *)(param_17 + 8);
+              resource_ptr = (uint64_t *)(param_17 + 8);
               do {
-                batch_param = (undefined8 *)batch_array[3];
+                batch_param = (uint64_t *)batch_array[3];
                 item_count = item_count + 1;
                 resource_ptr[-1] = 0;
                 *resource_ptr = 0;
@@ -156,8 +156,8 @@ process_batch_loop:
             param_16 = hash_value1;
             
             // 调用渲染处理函数
-            FUN_18066c220(resource_count + 0x20, &param_7, *(undefined4 *)(resource_count + 0x10),
-                          *(undefined4 *)(resource_count + 0x18), 1);
+            FUN_18066c220(resource_count + 0x20, &param_7, *(int32_t *)(resource_count + 0x10),
+                          *(int32_t *)(resource_count + 0x18), 1);
             if ((char)param_7 != '\0') {
               hash_result = combined_hash % (ulonglong)param_7._4_4_;
               FUN_180285760(resource_count, param_7._4_4_);
@@ -234,28 +234,28 @@ process_batch_loop:
                 *temp_ptr = *(uint *)((longlong)source_array + (-4 - (longlong)dest_array) +
                                     (longlong)new_array);
                 temp_ptr = temp_ptr + 0x14;
-                resource_ptr = (undefined8 *)
+                resource_ptr = (uint64_t *)
                           ((longlong)source_array + (-0x50 - (longlong)dest_array) + (longlong)new_array);
                 batch_param = resource_ptr[1];
-                *(undefined8 *)new_array = *resource_ptr;
-                *(undefined8 *)(new_array + 2) = batch_param;
-                resource_ptr = (undefined8 *)
+                *(uint64_t *)new_array = *resource_ptr;
+                *(uint64_t *)(new_array + 2) = batch_param;
+                resource_ptr = (uint64_t *)
                           ((longlong)source_array + (-0x40 - (longlong)dest_array) + (longlong)new_array);
                 batch_param = resource_ptr[1];
-                *(undefined8 *)(new_array + 4) = *resource_ptr;
-                *(undefined8 *)(new_array + 6) = batch_param;
-                resource_ptr = (undefined8 *)
+                *(uint64_t *)(new_array + 4) = *resource_ptr;
+                *(uint64_t *)(new_array + 6) = batch_param;
+                resource_ptr = (uint64_t *)
                           ((longlong)source_array + (-0x30 - (longlong)dest_array) + (longlong)new_array);
                 batch_param = resource_ptr[1];
-                *(undefined8 *)(new_array + 8) = *resource_ptr;
-                *(undefined8 *)(new_array + 10) = batch_param;
-                resource_ptr = (undefined8 *)
+                *(uint64_t *)(new_array + 8) = *resource_ptr;
+                *(uint64_t *)(new_array + 10) = batch_param;
+                resource_ptr = (uint64_t *)
                           ((longlong)source_array + (-0x20 - (longlong)dest_array) + (longlong)new_array);
                 batch_param = resource_ptr[1];
-                *(undefined8 *)(new_array + 0xc) = *resource_ptr;
-                *(undefined8 *)(new_array + 0xe) = batch_param;
-                *(undefined8 *)(new_array + 0x11) =
-                     *(undefined8 *)
+                *(uint64_t *)(new_array + 0xc) = *resource_ptr;
+                *(uint64_t *)(new_array + 0xe) = batch_param;
+                *(uint64_t *)(new_array + 0x11) =
+                     *(uint64_t *)
                       ((longlong)source_array + (-0xc - (longlong)dest_array) + (longlong)new_array);
                 batch_flags = (uint *)((longlong)new_array +
                                   (longlong)source_array + (0x4c - (longlong)dest_array));
@@ -319,7 +319,7 @@ process_batch_loop:
 void calculate_render_transform(longlong *param_1, longlong *param_2)
 
 {
-  undefined4 transform_result;   // 变换结果
+  int32_t transform_result;   // 变换结果
   longlong *matrix_ptr;         // 矩阵指针
   float matrix_element_1;       // 矩阵元素1
   float matrix_element_2;       // 矩阵元素2
@@ -417,7 +417,7 @@ void calculate_render_transform(longlong *param_1, longlong *param_2)
       }
       
       // 读取矩阵元素
-      transform_result = *(undefined4 *)(stack_offset_18 + 8 + array_size);
+      transform_result = *(int32_t *)(stack_offset_18 + 8 + array_size);
       computed_value_2 = *(float *)(matrix_ptr + 0x24);
       computed_value_3 = *(float *)((longlong)matrix_ptr + 0x124);
       computed_value_5 = *(float *)(matrix_ptr + 0x25);
@@ -495,7 +495,7 @@ void calculate_render_transform(longlong *param_1, longlong *param_2)
         param_1[8] = (longlong)(temp_matrix_5 + 2);
         *temp_matrix_5 = (longlong)matrix_ptr;
         (**(code **)(*matrix_ptr + 0x28))(matrix_ptr);
-        *(undefined4 *)(temp_matrix_5 + 1) = transform_result;
+        *(int32_t *)(temp_matrix_5 + 1) = transform_result;
       }
       else {
         // 重新分配数组空间
@@ -530,7 +530,7 @@ void calculate_render_transform(longlong *param_1, longlong *param_2)
         // 添加新矩阵
         *temp_matrix_2 = (longlong)matrix_ptr;
         (**(code **)(*matrix_ptr + 0x28))(matrix_ptr);
-        *(undefined4 *)(temp_matrix_2 + 1) = transform_result;
+        *(int32_t *)(temp_matrix_2 + 1) = transform_result;
         temp_matrix_5 = (longlong *)param_1[8];
         temp_matrix_3 = (longlong *)param_1[7];
         
@@ -629,7 +629,7 @@ void cleanup_render_batch_data(longlong param_1)
   if (0 < item_count) {
     data_ptr = 0;
     do {
-      FUN_180075ff0(*(undefined8 *)(data_ptr + *(longlong *)(param_1 + 0x38)));
+      FUN_180075ff0(*(uint64_t *)(data_ptr + *(longlong *)(param_1 + 0x38)));
       data_ptr = data_ptr + 0x10;
       loop_counter = loop_counter + -1;
     } while (loop_counter != 0);
@@ -652,7 +652,7 @@ void release_render_resources(void)
   
   data_offset = 0;
   do {
-    FUN_180075ff0(*(undefined8 *)(data_offset + *(longlong *)(resource_count + 0x38)));
+    FUN_180075ff0(*(uint64_t *)(data_offset + *(longlong *)(resource_count + 0x38)));
     data_offset = data_offset + 0x10;
     item_count = item_count + -1;
   } while (item_count != 0);
@@ -673,18 +673,18 @@ void initialize_render_state(void)
 
 
 
-// 函数: void setup_render_context(longlong param_1, undefined8 param_2, longlong param_3)
+// 函数: void setup_render_context(longlong param_1, uint64_t param_2, longlong param_3)
 // 渲染上下文设置函数
 // 参数: param_1 - 渲染上下文, param_2 - 上下文参数, param_3 - 配置数据
 // 功能: 设置渲染上下文，初始化渲染环境和配置
-void setup_render_context(longlong param_1, undefined8 param_2, longlong param_3)
+void setup_render_context(longlong param_1, uint64_t param_2, longlong param_3)
 
 {
   longlong **context_array;    // 上下文数组
   int lock_result;             // 锁定结果
   longlong config_data;        // 配置数据
-  undefined8 *resource_ptr;    // 资源指针
-  undefined8 context_param;    // 上下文参数
+  uint64_t *resource_ptr;    // 资源指针
+  uint64_t context_param;    // 上下文参数
   ulonglong hash_key;          // 哈希键
   longlong *batch_processor;    // 批处理器
   longlong *resource_manager;  // 资源管理器
@@ -694,18 +694,18 @@ void setup_render_context(longlong param_1, undefined8 param_2, longlong param_3
   uint context_flags;          // 上下文标志
   ulonglong security_key;      // 安全密钥
   int config_index;            // 配置索引
-  undefined1 security_buffer[32]; // 安全缓冲区
-  undefined8 lock_timeout;     // 锁定超时
+  int8_t security_buffer[32]; // 安全缓冲区
+  uint64_t lock_timeout;     // 锁定超时
   longlong *temp_context;      // 临时上下文
   longlong *temp_manager;      // 临时管理器
   longlong *temp_processor;    // 临时处理器
   longlong **temp_array;       // 临时数组
   longlong *temp_resource;     // 临时资源
-  undefined8 temp_param;       // 临时参数
-  undefined *temp_ptr;          // 临时指针
-  undefined1 *temp_buffer;     // 临时缓冲区
-  undefined4 context_id;       // 上下文ID
-  undefined1 temp_storage[72]; // 临时存储
+  uint64_t temp_param;       // 临时参数
+  void *temp_ptr;          // 临时指针
+  int8_t *temp_buffer;     // 临时缓冲区
+  int32_t context_id;       // 上下文ID
+  int8_t temp_storage[72]; // 临时存储
   ulonglong temp_security;     // 临时安全值
   
   // 初始化上下文参数
@@ -758,7 +758,7 @@ void setup_render_context(longlong param_1, undefined8 param_2, longlong param_3
           __Throw_C_error_std__YAXH_Z(lock_result);
         }
         
-        resource_ptr = (undefined8 *)FUN_1801940f0(context_array, &temp_resource, config_data, config_index);
+        resource_ptr = (uint64_t *)FUN_1801940f0(context_array, &temp_resource, config_data, config_index);
         FUN_180275a60(*resource_ptr, param_1, 1);
         if (temp_resource != (longlong *)0x0) {
           (**(code **)(*temp_resource + 0x38))();
@@ -788,7 +788,7 @@ void setup_render_context(longlong param_1, undefined8 param_2, longlong param_3
         if (temp_processor != (longlong *)0x0) {
           (**(code **)(*temp_processor + 0x28))();
         }
-        FUN_180275e10(param_1, *(undefined4 *)(hash_key + 0x58 + *(longlong *)(param_3 + 0x90)),
+        FUN_180275e10(param_1, *(int32_t *)(hash_key + 0x58 + *(longlong *)(param_3 + 0x90)),
                       &temp_context, 1);
         resource_manager = temp_manager;
         if (temp_processor != (longlong *)0x0) {
@@ -804,7 +804,7 @@ void setup_render_context(longlong param_1, undefined8 param_2, longlong param_3
         if (temp_processor != (longlong *)0x0) {
           (**(code **)(*temp_processor + 0x28))();
         }
-        FUN_180275e10(param_1, *(undefined4 *)(hash_key + 0x58 + *(longlong *)(param_3 + 0x90)),
+        FUN_180275e10(param_1, *(int32_t *)(hash_key + 0x58 + *(longlong *)(param_3 + 0x90)),
                       &temp_manager, 1);
         resource_manager = context_param;
       }
@@ -829,7 +829,7 @@ context_setup_complete:
       
       // 检查渲染标志
       if ((*(uint *)(data_offset + 0x5c) >> 8 & 1) != 0) {
-        FUN_18022cb40(*(undefined8 *)(config_data + 0x1b8), &temp_context);
+        FUN_18022cb40(*(uint64_t *)(config_data + 0x1b8), &temp_context);
         resource_manager = temp_context;
         temp_ptr = &UNK_1809fcc58;
         temp_buffer = temp_storage;
@@ -839,7 +839,7 @@ context_setup_complete:
         hash_key = FUN_180240430(resource_manager[0x3c], &temp_ptr, 0);
         resource_manager[0x28] = resource_manager[0x28] | hash_key;
         FUN_18022dd60(resource_manager);
-        *(undefined2 *)(resource_manager + 0x78) = 0xffff;
+        *(int16_t *)(resource_manager + 0x78) = 0xffff;
         temp_ptr = &UNK_18098bcb0;
         FUN_180076910(config_data, &temp_context);
         if (temp_context != (longlong *)0x0) {
@@ -856,9 +856,9 @@ context_setup_complete:
   }
   
   // 设置上下文属性
-  *(undefined4 *)(param_1 + 0x318) = *(undefined4 *)(param_3 + 0x1bc);
+  *(int32_t *)(param_1 + 0x318) = *(int32_t *)(param_3 + 0x1bc);
   LOCK();
-  *(undefined4 *)(param_1 + 0x310) = *(undefined4 *)(param_3 + 0x1c0);
+  *(int32_t *)(param_1 + 0x310) = *(int32_t *)(param_3 + 0x1c0);
   UNLOCK();
   
   // 安全验证

@@ -23,10 +23,10 @@
 #define rendering_object_batch_processor FUN_180282e00    // 渲染对象批处理器
 
 // 函数声明
-undefined8 rendering_object_finder(longlong *render_context, longlong object_id);
+uint64_t rendering_object_finder(longlong *render_context, longlong object_id);
 void rendering_object_processor(longlong process_context, longlong *object_data);
-void rendering_object_initializer(longlong init_context, longlong *object_data, undefined8 param_3, undefined8 param_4);
-undefined8 * rendering_object_data_handler(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4);
+void rendering_object_initializer(longlong init_context, longlong *object_data, uint64_t param_3, uint64_t param_4);
+uint64_t * rendering_object_data_handler(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4);
 void rendering_object_batch_processor(longlong batch_context, longlong data_stream);
 
 /**
@@ -53,14 +53,14 @@ void rendering_object_advanced_manager(longlong ******render_context, longlong *
     longlong *****start_object_array;
     longlong ****object_sub_array;
     longlong ***object_element;
-    undefined4 render_status;
+    int32_t render_status;
     longlong *******manager_ptr;
     longlong object_count;
     longlong *******temp_manager;
-    undefined8 memory_flag;
+    uint64_t memory_flag;
     longlong **object_ptr;
     longlong ******object_array_ptr;
-    undefined *data_ptr;
+    void *data_ptr;
     longlong ***temp_element;
     longlong *****temp_object_array;
     longlong **temp_ptr;
@@ -71,9 +71,9 @@ void rendering_object_advanced_manager(longlong ******render_context, longlong *
     ulonglong search_limit;
     longlong *target_object;
     longlong object_difference;
-    undefined4 object_flags;
-    undefined4 extra_status;
-    undefined4 extra_status_2;
+    int32_t object_flags;
+    int32_t extra_status;
+    int32_t extra_status_2;
     longlong *******stack_manager_1;
     longlong *******stack_manager_2;
     longlong *******stack_manager_3;
@@ -89,7 +89,7 @@ void rendering_object_advanced_manager(longlong ******render_context, longlong *
     longlong *******stack_manager_10;
     longlong *******stack_manager_11;
     uint stack_flags;
-    undefined8 stack_memory;
+    uint64_t stack_memory;
     longlong *******stack_manager_12;
     
     // 初始化内存标志和管理器指针
@@ -104,9 +104,9 @@ void rendering_object_advanced_manager(longlong ******render_context, longlong *
     
     // 执行渲染初始化操作
     (*(code *)render_context[0x10][2])(render_context + 0x10, object_array_ptr);
-    *(undefined4 *)(render_context + 0xd) = *(undefined4 *)(temp_manager + 1);
+    *(int32_t *)(render_context + 0xd) = *(int32_t *)(temp_manager + 1);
     render_status = (*(code *)render_context[0x23][2])(render_context + 0x23);
-    *(undefined4 *)(render_context[0x79] + 5) = *(undefined4 *)(temp_manager + 0xe);
+    *(int32_t *)(render_context[0x79] + 5) = *(int32_t *)(temp_manager + 0xe);
     
     // 检查并处理渲染状态
     if (((temp_manager[6] != (longlong ******)0x0) || (temp_manager[7] != (longlong ******)0x0)) &&
@@ -141,8 +141,8 @@ void rendering_object_advanced_manager(longlong ******render_context, longlong *
         if (object_array_ptr != (longlong ******)0x0) {
             render_status = (*(code *)(*object_array_ptr)[5])();
         }
-        *(undefined4 *)((longlong)temp_object_array + (longlong)temp_manager + (8 - (longlong)start_object_array)) =
-             *(undefined4 *)(temp_object_array + 1);
+        *(int32_t *)((longlong)temp_object_array + (longlong)temp_manager + (8 - (longlong)start_object_array)) =
+             *(int32_t *)(temp_object_array + 1);
         process_manager = process_manager + 2;
     }
     
@@ -169,7 +169,7 @@ void rendering_object_advanced_manager(longlong ******render_context, longlong *
     
     // 执行渲染清理操作
     FUN_180284500(render_context + 7);
-    *(undefined4 *)(render_context + 0xb) = 0;
+    *(int32_t *)(render_context + 0xb) = 0;
     current_object_array = render_context[5];
     
     // 处理渲染对象引用
@@ -217,18 +217,18 @@ void rendering_object_advanced_manager(longlong ******render_context, longlong *
                     }
                     stack_manager_5 = (longlong *******)0x0;
                     data_ptr = &RENDERING_OBJECT_DEFAULT_PTR;
-                    if ((undefined *)target_object[3] != (undefined *)0x0) {
-                        data_ptr = (undefined *)target_object[3];
+                    if ((void *)target_object[3] != (void *)0x0) {
+                        data_ptr = (void *)target_object[3];
                     }
                     stack_manager_2 = temp_manager;
                     (*(code *)temp_manager[2][2])(temp_manager + 2, data_ptr);
-                    render_status = *(undefined4 *)((longlong)target_object + 4);
+                    render_status = *(int32_t *)((longlong)target_object + 4);
                     search_offset = target_object[1];
-                    object_flags = *(undefined4 *)((longlong)target_object + 0xc);
+                    object_flags = *(int32_t *)((longlong)target_object + 0xc);
                     *(int *)(temp_manager + 0x17) = (int)*target_object;
-                    *(undefined4 *)((longlong)temp_manager + 0xbc) = render_status;
+                    *(int32_t *)((longlong)temp_manager + 0xbc) = render_status;
                     *(int *)(temp_manager + 0x18) = (int)search_offset;
-                    *(undefined4 *)((longlong)temp_manager + 0xc4) = object_flags;
+                    *(int32_t *)((longlong)temp_manager + 0xc4) = object_flags;
                     
                     // 处理渲染上下文
                     if (*(char *)((longlong)render_context + 0x322) == '\0') {
@@ -276,7 +276,7 @@ void rendering_object_advanced_manager(longlong ******render_context, longlong *
                 search_offset = RENDERING_GLOBAL_DATA_1;
                 if ((*(char *)((longlong)render_context + 0x322) != '\0') && (*(char *)render_context[6][0x11][1] == '\0')) {
                     iteration_count = (*(code *)(*temp_manager)[0xc])(temp_manager);
-                    *(undefined1 *)((longlong)temp_manager + 0xb2) = 1;
+                    *(int8_t *)((longlong)temp_manager + 0xb2) = 1;
                     FUN_1802abe00((longlong)iteration_count * 0x98 + search_offset + 8, temp_manager);
                 }
                 FUN_18007bbb0(temp_manager, 0, target_object);
@@ -324,15 +324,15 @@ void rendering_object_advanced_manager(longlong ******render_context, longlong *
             stack_manager_8 = (longlong *******)&stack_manager_1;
             stack_manager_1 = (longlong *******)0x0;
             stack_manager_2 = *(longlong ********)(*(longlong *)(object_count + (longlong)render_context[7]) + 0x118);
-            *(undefined8 *)(*(longlong *)(object_count + (longlong)render_context[7]) + 0x118) = 0;
+            *(uint64_t *)(*(longlong *)(object_count + (longlong)render_context[7]) + 0x118) = 0;
             if (stack_manager_2 != (longlong *******)0x0) {
                 (*(code *)(*stack_manager_2)[7])();
             }
             if (stack_manager_1 != (longlong *******)0x0) {
                 (*(code *)(*stack_manager_1)[7])();
             }
-            *(undefined1 *)(*(longlong *)(object_count + (longlong)render_context[7]) + 0x2e9) = 0;
-            *(undefined1 *)(*(longlong *)(object_count + (longlong)render_context[7]) + 0x2f9) = 0;
+            *(int8_t *)(*(longlong *)(object_count + (longlong)render_context[7]) + 0x2e9) = 0;
+            *(int8_t *)(*(longlong *)(object_count + (longlong)render_context[7]) + 0x2f9) = 0;
             object_count = object_count + 0x10;
             object_difference = object_difference + -1;
         } while (object_difference != 0);
@@ -383,7 +383,7 @@ void rendering_object_advanced_manager(longlong ******render_context, longlong *
  * 4. 更新渲染状态
  * 5. 返回查找结果
  */
-undefined8 rendering_object_finder(longlong *render_context, longlong object_id)
+uint64_t rendering_object_finder(longlong *render_context, longlong object_id)
 {
     longlong object_index;
     ulonglong object_count;
@@ -400,7 +400,7 @@ undefined8 rendering_object_finder(longlong *render_context, longlong object_id)
         do {
             if (*current_object == object_id) {
                 // 清除对象引用
-                *(undefined8 *)(object_id + 0x1c8) = 0;
+                *(uint64_t *)(object_id + 0x1c8) = 0;
                 FUN_180284450(render_context + 7, (longlong)search_index * 0x10 + render_context[7]);
                 
                 // 更新渲染状态
@@ -448,24 +448,24 @@ void rendering_object_processor(longlong process_context, longlong *object_data)
 {
     longlong context_offset;
     longlong *current_object;
-    undefined *data_ptr;
-    undefined4 object_flags;
+    void *data_ptr;
+    int32_t object_flags;
     uint process_flags;
-    undefined *temp_data;
-    undefined1 stack_data_1[32];
+    void *temp_data;
+    int8_t stack_data_1[32];
     uint stack_flags_1;
     longlong *stack_object_1;
     longlong **stack_ptr_1;
-    undefined8 stack_memory_1;
+    uint64_t stack_memory_1;
     longlong *stack_object_2;
     longlong **stack_ptr_2;
-    undefined *stack_data_2;
-    undefined *stack_data_3;
-    undefined4 stack_flags_2;
+    void *stack_data_2;
+    void *stack_data_3;
+    int32_t stack_flags_2;
     undefined stack_data_4[136];
-    undefined *stack_data_5;
-    undefined *stack_data_6;
-    undefined4 stack_flags_3;
+    void *stack_data_5;
+    void *stack_data_6;
+    int32_t stack_flags_3;
     undefined stack_data_7[136];
     ulonglong stack_guard;
     
@@ -523,10 +523,10 @@ void rendering_object_processor(longlong process_context, longlong *object_data)
         stack_data_5 = &RENDERING_STRING_CONSTANT_1;
         stack_data_6 = stack_data_7;
         stack_data_7[0] = 0;
-        stack_flags_3 = *(undefined4 *)(context_offset + 0x48);
+        stack_flags_3 = *(int32_t *)(context_offset + 0x48);
         data_ptr = &RENDERING_OBJECT_DEFAULT_PTR;
-        if (*(undefined **)(context_offset + 0x40) != (undefined *)0x0) {
-            data_ptr = *(undefined **)(context_offset + 0x40);
+        if (*(void **)(context_offset + 0x40) != (void *)0x0) {
+            data_ptr = *(void **)(context_offset + 0x40);
         }
         strcpy_s(stack_data_7, 0x80, data_ptr);
         process_flags = 1;
@@ -536,12 +536,12 @@ void rendering_object_processor(longlong process_context, longlong *object_data)
     }
     
     // 设置对象属性
-    *(undefined4 *)(process_context + 0x90) = object_flags;
+    *(int32_t *)(process_context + 0x90) = object_flags;
     temp_data = &RENDERING_OBJECT_DEFAULT_PTR;
-    if (data_ptr != (undefined *)0x0) {
+    if (data_ptr != (void *)0x0) {
         temp_data = data_ptr;
     }
-    strcpy_s(*(undefined8 *)(process_context + 0x88), 0x80, temp_data);
+    strcpy_s(*(uint64_t *)(process_context + 0x88), 0x80, temp_data);
     
     // 处理标志位
     if ((process_flags & 2) != 0) {
@@ -580,27 +580,27 @@ void rendering_object_processor(longlong process_context, longlong *object_data)
  * 4. 配置对象参数
  * 5. 清理资源和返回结果
  */
-void rendering_object_initializer(longlong init_context, longlong *object_data, undefined8 param_3, undefined8 param_4)
+void rendering_object_initializer(longlong init_context, longlong *object_data, uint64_t param_3, uint64_t param_4)
 {
     longlong context_offset;
     code *init_function;
     longlong *current_object;
-    undefined **data_ptr_ptr;
-    undefined *data_ptr;
+    void **data_ptr_ptr;
+    void *data_ptr;
     bool is_default_object;
     longlong *stack_object_1;
     longlong *stack_object_2;
     longlong **stack_ptr_1;
     longlong **stack_ptr_2;
-    undefined4 init_flags;
-    undefined8 memory_flag;
-    undefined *stack_data_1;
+    int32_t init_flags;
+    uint64_t memory_flag;
+    void *stack_data_1;
     longlong stack_offset_1;
-    undefined4 stack_flags_1;
+    int32_t stack_flags_1;
     ulonglong stack_limit_1;
-    undefined *stack_data_2;
+    void *stack_data_2;
     longlong stack_offset_2;
-    undefined4 stack_flags_2;
+    int32_t stack_flags_2;
     
     // 初始化参数
     memory_flag = 0xfffffffffffffffe;
@@ -648,14 +648,14 @@ void rendering_object_initializer(longlong init_context, longlong *object_data, 
     }
     else {
         // 处理特定对象
-        data_ptr_ptr = (undefined **)FUN_180627ae0(&stack_data_2, *object_data + 0x1f0);
+        data_ptr_ptr = (void **)FUN_180627ae0(&stack_data_2, *object_data + 0x1f0);
         init_flags = 1;
     }
     
     context_offset = stack_offset_1;
     init_function = *(code **)(*(longlong *)(init_context + 0x118) + 0x10);
     data_ptr = &RENDERING_OBJECT_DEFAULT_PTR;
-    if (data_ptr_ptr[1] != (undefined *)0x0) {
+    if (data_ptr_ptr[1] != (void *)0x0) {
         data_ptr = data_ptr_ptr[1];
     }
     
@@ -712,28 +712,28 @@ void rendering_object_initializer(longlong init_context, longlong *object_data, 
  * 3. 配置数据属性
  * 4. 返回处理结果
  */
-undefined8 * rendering_object_data_handler(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+uint64_t * rendering_object_data_handler(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-    undefined8 *result_ptr;
+    uint64_t *result_ptr;
     
     // 初始化数据结构
     *param_2 = &RENDERING_STRING_CONSTANT_2;
     param_2[1] = 0;
-    *(undefined4 *)(param_2 + 2) = 0;
+    *(int32_t *)(param_2 + 2) = 0;
     *param_2 = &RENDERING_DATA_STRUCTURE_1;
     param_2[3] = 0;
     param_2[1] = 0;
-    *(undefined4 *)(param_2 + 2) = 0;
+    *(int32_t *)(param_2 + 2) = 0;
     
     // 配置数据属性
     FUN_1806277c0(param_2, 0x13, param_3, param_4, 0, 0xfffffffffffffffe);
-    result_ptr = (undefined8 *)param_2[1];
+    result_ptr = (uint64_t *)param_2[1];
     
     // 设置对象签名
     *result_ptr = RENDERING_OBJECT_SIGNATURE;
     result_ptr[1] = 0x6e6f706d6f635f68;
-    *(undefined4 *)(result_ptr + 2) = 0x746e65;
-    *(undefined4 *)(param_2 + 2) = 0x13;
+    *(int32_t *)(result_ptr + 2) = 0x746e65;
+    *(int32_t *)(param_2 + 2) = 0x13;
     
     return param_2;
 }
@@ -758,37 +758,37 @@ void rendering_object_batch_processor(longlong batch_context, longlong data_stre
 {
     char data_flag;
     uint data_size;
-    undefined8 *data_ptr;
-    undefined8 data_value;
+    uint64_t *data_ptr;
+    uint64_t data_value;
     longlong object_index;
     longlong *current_object;
     longlong object_offset;
-    undefined8 object_data;
+    uint64_t object_data;
     char *string_ptr;
     char *temp_string;
     uint *uint_ptr;
-    undefined4 *uint4_ptr;
+    int32_t *uint4_ptr;
     ulonglong process_limit;
     ulonglong data_limit;
     longlong *stack_object_1;
     longlong *stack_object_2;
-    undefined *stack_data_1;
+    void *stack_data_1;
     longlong stack_offset_1;
     uint stack_flags_1;
-    undefined8 stack_memory_1;
-    undefined *stack_data_2;
+    uint64_t stack_memory_1;
+    void *stack_data_2;
     longlong stack_offset_2;
-    undefined4 stack_flags_2;
+    int32_t stack_flags_2;
     ulonglong stack_limit_2;
-    undefined *stack_data_3;
+    void *stack_data_3;
     longlong stack_offset_3;
-    undefined4 stack_flags_3;
+    int32_t stack_flags_3;
     ulonglong stack_limit_3;
-    undefined8 stack_memory_2;
-    undefined8 stack_memory_3;
-    undefined4 stack_flags_4;
+    uint64_t stack_memory_2;
+    uint64_t stack_memory_3;
+    int32_t stack_flags_4;
     ulonglong stack_limit_4;
-    undefined8 stack_memory_4;
+    uint64_t stack_memory_4;
     
     // 初始化批处理参数
     stack_memory_4 = 0xfffffffffffffffe;
@@ -815,32 +815,32 @@ void rendering_object_batch_processor(longlong batch_context, longlong data_stre
         }
         if (data_size != 0) {
             // 警告：此子函数不返回
-            memcpy(*(undefined8 *)(batch_context + 0x1f8), stack_offset_1, process_limit);
+            memcpy(*(uint64_t *)(batch_context + 0x1f8), stack_offset_1, process_limit);
         }
-        *(undefined4 *)(batch_context + 0x200) = 0;
+        *(int32_t *)(batch_context + 0x200) = 0;
         if (*(longlong *)(batch_context + 0x1f8) != 0) {
-            *(undefined1 *)(process_limit + *(longlong *)(batch_context + 0x1f8)) = 0;
+            *(int8_t *)(process_limit + *(longlong *)(batch_context + 0x1f8)) = 0;
         }
-        *(undefined4 *)(batch_context + 0x20c) = stack_memory_1._4_4_;
+        *(int32_t *)(batch_context + 0x20c) = stack_memory_1._4_4_;
     }
     else {
         FUN_180275a60(object_index, batch_context, 1);
     }
     
     process_limit = 0;
-    *(undefined4 *)(batch_context + 0x324) = **(undefined4 **)(data_stream + 8);
+    *(int32_t *)(batch_context + 0x324) = **(int32_t **)(data_stream + 8);
     *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + 4;
-    uint4_ptr = (undefined4 *)((longlong)&stack_memory_2 + 4);
+    uint4_ptr = (int32_t *)((longlong)&stack_memory_2 + 4);
     data_limit = 4;
     temp_string = *(char **)(data_stream + 8);
     
     // 处理数据块
     do {
         string_ptr = temp_string;
-        uint4_ptr[-1] = *(undefined4 *)string_ptr;
-        *uint4_ptr = *(undefined4 *)(string_ptr + 4);
-        uint4_ptr[1] = *(undefined4 *)(string_ptr + 8);
-        uint4_ptr[2] = *(undefined4 *)(string_ptr + 0xc);
+        uint4_ptr[-1] = *(int32_t *)string_ptr;
+        *uint4_ptr = *(int32_t *)(string_ptr + 4);
+        uint4_ptr[1] = *(int32_t *)(string_ptr + 8);
+        uint4_ptr[2] = *(int32_t *)(string_ptr + 0xc);
         temp_string = string_ptr + 0x10;
         uint4_ptr = uint4_ptr + 4;
         data_limit = data_limit - 1;
@@ -939,69 +939,69 @@ void rendering_object_batch_processor(longlong batch_context, longlong data_stre
             }
             
             // 处理对象属性
-            data_ptr = *(undefined8 **)(data_stream + 8);
+            data_ptr = *(uint64_t **)(data_stream + 8);
             data_value = *data_ptr;
             object_data = data_ptr[1];
-            *(undefined8 **)(data_stream + 8) = data_ptr + 2;
-            *(undefined8 *)(object_offset + 0x238) = data_value;
-            *(undefined8 *)(object_offset + 0x240) = object_data;
+            *(uint64_t **)(data_stream + 8) = data_ptr + 2;
+            *(uint64_t *)(object_offset + 0x238) = data_value;
+            *(uint64_t *)(object_offset + 0x240) = object_data;
             
-            data_ptr = *(undefined8 **)(data_stream + 8);
+            data_ptr = *(uint64_t **)(data_stream + 8);
             data_value = *data_ptr;
             object_data = data_ptr[1];
-            *(undefined8 **)(data_stream + 8) = data_ptr + 2;
-            *(undefined8 *)(object_offset + 0x238) = data_value;
-            *(undefined8 *)(object_offset + 0x240) = object_data;
+            *(uint64_t **)(data_stream + 8) = data_ptr + 2;
+            *(uint64_t *)(object_offset + 0x238) = data_value;
+            *(uint64_t *)(object_offset + 0x240) = object_data;
             
-            data_ptr = *(undefined8 **)(data_stream + 8);
+            data_ptr = *(uint64_t **)(data_stream + 8);
             data_value = *data_ptr;
             object_data = data_ptr[1];
-            *(undefined8 **)(data_stream + 8) = data_ptr + 2;
-            *(undefined8 *)(object_offset + 0x2a8) = data_value;
-            *(undefined8 *)(object_offset + 0x2b0) = object_data;
+            *(uint64_t **)(data_stream + 8) = data_ptr + 2;
+            *(uint64_t *)(object_offset + 0x2a8) = data_value;
+            *(uint64_t *)(object_offset + 0x2b0) = object_data;
             
-            data_ptr = *(undefined8 **)(data_stream + 8);
+            data_ptr = *(uint64_t **)(data_stream + 8);
             data_value = *data_ptr;
             object_data = data_ptr[1];
-            *(undefined8 **)(data_stream + 8) = data_ptr + 2;
-            *(undefined8 *)(object_offset + 0x2b8) = data_value;
-            *(undefined8 *)(object_offset + 0x2c0) = object_data;
+            *(uint64_t **)(data_stream + 8) = data_ptr + 2;
+            *(uint64_t *)(object_offset + 0x2b8) = data_value;
+            *(uint64_t *)(object_offset + 0x2c0) = object_data;
             
             // 处理对象标志位
-            uint4_ptr = *(undefined4 **)(data_stream + 8);
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 0x10) = *uint4_ptr;
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 1;
+            uint4_ptr = *(int32_t **)(data_stream + 8);
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 0x10) = *uint4_ptr;
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 1;
             current_object = (longlong *)(*(longlong *)(object_offset + 0x268) + 0x20);
             data_size = uint4_ptr[1];
             uint4_ptr = uint4_ptr + 2;
-            *(undefined4 **)(data_stream + 8) = uint4_ptr;
+            *(int32_t **)(data_stream + 8) = uint4_ptr;
             if (data_size != 0) {
                 (**(code **)(*current_object + 0x18))(current_object, uint4_ptr, data_size);
                 *(longlong *)(data_stream + 8) = *(longlong *)(data_stream + 8) + (ulonglong)data_size;
-                uint4_ptr = *(undefined4 **)(data_stream + 8);
+                uint4_ptr = *(int32_t **)(data_stream + 8);
             }
             
             // 设置对象属性
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 0x44) = *uint4_ptr;
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 1;
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 0x48) = uint4_ptr[1];
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 2;
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 0x4c) = uint4_ptr[2];
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 3;
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 0x54) = uint4_ptr[3];
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 4;
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 0x58) = uint4_ptr[4];
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 5;
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 0x5c) = uint4_ptr[5];
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 6;
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 0x60) = uint4_ptr[6];
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 7;
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 100) = uint4_ptr[7];
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 8;
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 0x68) = uint4_ptr[8];
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 9;
-            *(undefined4 *)(*(longlong *)(object_offset + 0x268) + 0x6c) = uint4_ptr[9];
-            *(undefined4 **)(data_stream + 8) = uint4_ptr + 10;
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 0x44) = *uint4_ptr;
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 1;
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 0x48) = uint4_ptr[1];
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 2;
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 0x4c) = uint4_ptr[2];
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 3;
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 0x54) = uint4_ptr[3];
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 4;
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 0x58) = uint4_ptr[4];
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 5;
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 0x5c) = uint4_ptr[5];
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 6;
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 0x60) = uint4_ptr[6];
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 7;
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 100) = uint4_ptr[7];
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 8;
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 0x68) = uint4_ptr[8];
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 9;
+            *(int32_t *)(*(longlong *)(object_offset + 0x268) + 0x6c) = uint4_ptr[9];
+            *(int32_t **)(data_stream + 8) = uint4_ptr + 10;
             
             // 清理资源
             stack_data_3 = &RENDERING_DATA_STRUCTURE_1;

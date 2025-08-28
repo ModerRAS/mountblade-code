@@ -59,9 +59,9 @@
 
 /* 渲染系统基础类型别名 */
 typedef longlong* RenderingSystemContextPtr;          /* 渲染系统上下文指针 */
-typedef undefined8 RenderingSystemParam;               /* 渲染系统参数 */
-typedef undefined4 RenderingSystemFlag;                /* 渲染系统标志 */
-typedef undefined1 RenderingSystemState;               /* 渲染系统状态 */
+typedef uint64_t RenderingSystemParam;               /* 渲染系统参数 */
+typedef int32_t RenderingSystemFlag;                /* 渲染系统标志 */
+typedef int8_t RenderingSystemState;               /* 渲染系统状态 */
 typedef float RenderingSystemFloat;                     /* 渲染系统浮点数 */
 typedef int RenderingSystemInt;                         /* 渲染系统整数 */
 typedef char RenderingSystemBool;                       /* 渲染系统布尔值 */
@@ -70,30 +70,30 @@ typedef char RenderingSystemBool;                       /* 渲染系统布尔值
 typedef int RenderingSystemDataArray[2];                /* 渲染系统数据数组 */
 typedef longlong* RenderingSystemDataPtr;              /* 渲染系统数据指针 */
 typedef int* RenderingSystemIndexPtr;                  /* 渲染系统索引指针 */
-typedef undefined8* RenderingSystemResourcePtr;        /* 渲染系统资源指针 */
+typedef uint64_t* RenderingSystemResourcePtr;        /* 渲染系统资源指针 */
 
 /* 渲染系统配置结构别名 */
 typedef struct {
-    undefined4 field_0;                              /* 配置字段0 */
-    undefined4 field_4;                              /* 配置字段4 */
-    undefined4 field_8;                              /* 配置字段8 */
-    undefined4 field_12;                             /* 配置字段12 */
-    undefined8 field_16;                             /* 配置字段16 */
-    undefined8 field_24;                             /* 配置字段24 */
-    undefined1 field_32;                             /* 配置字段32 */
-    undefined4 field_36;                             /* 配置字段36 */
-    undefined1 field_40;                             /* 配置字段40 */
+    int32_t field_0;                              /* 配置字段0 */
+    int32_t field_4;                              /* 配置字段4 */
+    int32_t field_8;                              /* 配置字段8 */
+    int32_t field_12;                             /* 配置字段12 */
+    uint64_t field_16;                             /* 配置字段16 */
+    uint64_t field_24;                             /* 配置字段24 */
+    int8_t field_32;                             /* 配置字段32 */
+    int32_t field_36;                             /* 配置字段36 */
+    int8_t field_40;                             /* 配置字段40 */
 } RenderingSystemConfig;                             /* 渲染系统配置结构 */
 
 /* 渲染系统内存管理结构别名 */
 typedef struct {
-    undefined4 padding_0;                           /* 内存填充0 */
-    undefined4 padding_4;                           /* 内存填充4 */
-    undefined8 data_ptr;                             /* 数据指针 */
-    undefined8 resource_ptr;                         /* 资源指针 */
-    undefined1 state_flag;                           /* 状态标志 */
-    undefined4 flag_field;                           /* 标志字段 */
-    undefined1 control_flag;                         /* 控制标志 */
+    int32_t padding_0;                           /* 内存填充0 */
+    int32_t padding_4;                           /* 内存填充4 */
+    uint64_t data_ptr;                             /* 数据指针 */
+    uint64_t resource_ptr;                         /* 资源指针 */
+    int8_t state_flag;                           /* 状态标志 */
+    int32_t flag_field;                           /* 标志字段 */
+    int8_t control_flag;                         /* 控制标志 */
 } RenderingSystemMemoryBlock;                       /* 渲染系统内存块结构 */
 
 /*=============================================================================
@@ -101,15 +101,15 @@ typedef struct {
 =============================================================================*/
 
 /* 渲染系统回调函数类型 */
-typedef char (*RenderingSystemValidationFunc)(undefined8 param, int* output, void* context);
+typedef char (*RenderingSystemValidationFunc)(uint64_t param, int* output, void* context);
 typedef void (*RenderingSystemProcessorFunc)(void* context, char result, void* config, int* data);
-typedef int (*RenderingSystemCalculatorFunc)(undefined8 param1, undefined4 param2, int param3, 
-                                           undefined8 param4, int param5, int param6, char condition);
+typedef int (*RenderingSystemCalculatorFunc)(uint64_t param1, int32_t param2, int param3, 
+                                           uint64_t param4, int param5, int param6, char condition);
 typedef void (*RenderingSystemCleanupFunc)(longlong context, void* data);
 
 /* 渲染系统状态管理函数类型 */
 typedef void (*RenderingSystemStateFunc)(longlong context);
-typedef undefined4 (*RenderingSystemParamFunc)(longlong context, ...);
+typedef int32_t (*RenderingSystemParamFunc)(longlong context, ...);
 typedef char (*RenderingSystemCheckFunc)(void);
 
 /*=============================================================================
@@ -181,7 +181,7 @@ typedef enum {
  * 5. 处理渲染参数
  * 6. 执行清理操作
  */
-void FUN_180535970(longlong *param_1, undefined8 param_2, undefined8 param_3)
+void FUN_180535970(longlong *param_1, uint64_t param_2, uint64_t param_3)
 {
     RenderingSystemContextPtr context = param_1;      /* 渲染系统上下文指针 */
     RenderingSystemParam system_param = param_2;      /* 渲染系统参数 */
@@ -458,7 +458,7 @@ LAB_18052490a:
  * 3. 处理状态转换
  * 4. 执行状态清理
  */
-void FUN_18053598c(undefined4 param_1)
+void FUN_18053598c(int32_t param_1)
 {
     RenderingSystemFlag state_param = param_1;          /* 渲染系统状态参数 */
     RenderingSystemBool validation_result;              /* 验证结果 */
@@ -923,7 +923,7 @@ LAB_18052490a:
  * 3. 处理资源验证
  * 4. 执行资源清理
  */
-void FUN_180535a30(longlong *param_1, undefined8 param_2, undefined8 param_3)
+void FUN_180535a30(longlong *param_1, uint64_t param_2, uint64_t param_3)
 {
     RenderingSystemContextPtr context = param_1;      /* 渲染系统上下文指针 */
     RenderingSystemParam system_param = param_2;      /* 渲染系统参数 */
@@ -1038,7 +1038,7 @@ void FUN_180535a81(void)
  * 3. 处理参数验证
  * 4. 执行参数清理
  */
-void FUN_180535aa0(longlong *param_1, undefined8 param_2, undefined8 param_3)
+void FUN_180535aa0(longlong *param_1, uint64_t param_2, uint64_t param_3)
 {
     RenderingSystemContextPtr context = param_1;      /* 渲染系统上下文指针 */
     RenderingSystemParam system_param = param_2;      /* 渲染系统参数 */
@@ -1046,7 +1046,7 @@ void FUN_180535aa0(longlong *param_1, undefined8 param_2, undefined8 param_3)
     
     longlong context_value = *context;              /* 上下文值 */
     RenderingSystemBool validation_result;            /* 验证结果 */
-    undefined8 extraout_XMM0_Qa;                    /* 扩展输出XMM0寄存器 */
+    uint64_t extraout_XMM0_Qa;                    /* 扩展输出XMM0寄存器 */
     RenderingSystemInt data_array[2];                /* 数据数组 */
     longlong config_offset;                          /* 配置偏移量 */
     RenderingSystemConfig stack_config;               /* 栈配置 */
@@ -1112,7 +1112,7 @@ void FUN_180535aa0(longlong *param_1, undefined8 param_2, undefined8 param_3)
 void FUN_180535b2e(void)
 {
     RenderingSystemBool validation_result;            /* 验证结果 */
-    undefined8 unaff_RBX;                            /* 寄存器RBX值 */
+    uint64_t unaff_RBX;                            /* 寄存器RBX值 */
     longlong unaff_RDI;                               /* 寄存器RDI值 */
     longlong in_R11;                                  /* 寄存器R11值 */
     RenderingSystemState *state_ptr;                  /* 状态指针 */
@@ -1190,7 +1190,7 @@ void FUN_180535b60(void)
  * 3. 处理数据验证
  * 4. 执行数据清理
  */
-void FUN_180535ba0(longlong *param_1, undefined8 param_2, undefined8 param_3)
+void FUN_180535ba0(longlong *param_1, uint64_t param_2, uint64_t param_3)
 {
     RenderingSystemContextPtr context = param_1;      /* 渲染系统上下文指针 */
     RenderingSystemParam system_param = param_2;      /* 渲染系统参数 */

@@ -13,7 +13,7 @@ void FUN_18081d22f(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18081d250(short param_1)
+uint64_t FUN_18081d250(short param_1)
 
 {
   if (_DAT_180c4ea50 == 0) {
@@ -108,7 +108,7 @@ undefined8 FUN_18081d250(short param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18081d44a(short param_1)
+uint64_t FUN_18081d44a(short param_1)
 
 {
   if (param_1 == 0) {
@@ -155,7 +155,7 @@ undefined8 FUN_18081d44a(short param_1)
 
 
 
-undefined8
+uint64_t
 FUN_18081d600(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
              float *param_6,short param_7)
 
@@ -199,7 +199,7 @@ FUN_18081d600(float *param_1,short param_2,float *param_3,short param_4,float *p
 
 
 
-undefined8
+uint64_t
 FUN_18081d760(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
              float *param_6,short param_7)
 
@@ -242,7 +242,7 @@ FUN_18081d760(float *param_1,short param_2,float *param_3,short param_4,float *p
 
 
 
-undefined8
+uint64_t
 FUN_18081d8a0(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
              float *param_6,short param_7)
 
@@ -741,8 +741,8 @@ void FUN_18081dfd2(void)
 
 
 
-// 函数: void FUN_18081e03c(undefined8 param_1,float param_2,undefined8 param_3,int param_4)
-void FUN_18081e03c(undefined8 param_1,float param_2,undefined8 param_3,int param_4)
+// 函数: void FUN_18081e03c(uint64_t param_1,float param_2,uint64_t param_3,int param_4)
+void FUN_18081e03c(uint64_t param_1,float param_2,uint64_t param_3,int param_4)
 
 {
   uint uVar1;

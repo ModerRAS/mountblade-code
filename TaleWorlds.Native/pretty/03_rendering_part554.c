@@ -2,9 +2,9 @@
 
 // 03_rendering_part554.c - 7 个函数
 
-// 函数: void FUN_180573020(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
-void FUN_180573020(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
-                  undefined4 param_5,longlong param_6,undefined8 param_7,undefined8 param_8,
+// 函数: void FUN_180573020(longlong param_1,uint64_t param_2,int32_t param_3,int32_t param_4,
+void FUN_180573020(longlong param_1,uint64_t param_2,int32_t param_3,int32_t param_4,
+                  int32_t param_5,longlong param_6,uint64_t param_7,uint64_t param_8,
                   longlong *param_9)
 
 {
@@ -14,23 +14,23 @@ void FUN_180573020(longlong param_1,undefined8 param_2,undefined4 param_3,undefi
   longlong lVar4;
   longlong lVar5;
   longlong lVar6;
-  undefined8 uVar7;
+  uint64_t uVar7;
   longlong lVar8;
   ulonglong uVar9;
   longlong *plVar10;
   ulonglong uVar11;
   longlong lVar12;
-  undefined1 uVar13;
+  int8_t uVar13;
   
   lVar8 = param_6;
   if (*(longlong *)(param_1 + 0xabf0) == 0) {
     uVar7 = FUN_18062b1e0(_DAT_180c8ed18,0x1150,8,3);
-    uVar13 = *(undefined1 *)(param_1 + 0xde);
+    uVar13 = *(int8_t *)(param_1 + 0xde);
     uVar7 = FUN_1805edc80(uVar7,param_2,param_3,param_4,param_5,param_6,param_7,param_8,uVar13);
-    *(undefined8 *)(param_1 + 0xabf0) = uVar7;
+    *(uint64_t *)(param_1 + 0xabf0) = uVar7;
   }
   else {
-    uVar13 = *(undefined1 *)(param_1 + 0xde);
+    uVar13 = *(int8_t *)(param_1 + 0xde);
     FUN_1805eebb0();
   }
   if (*(char *)(param_6 + 0x192) != '\0') {
@@ -48,7 +48,7 @@ void FUN_180573020(longlong param_1,undefined8 param_2,undefined4 param_3,undefi
             lVar8 = 0;
           }
           else {
-            lVar8 = FUN_18062b420(_DAT_180c8ed18,uVar11 * 8,*(undefined1 *)(lVar4 + 0x20));
+            lVar8 = FUN_18062b420(_DAT_180c8ed18,uVar11 * 8,*(int8_t *)(lVar4 + 0x20));
           }
           if (lVar3 != lVar2) {
                     // WARNING: Subroutine does not return
@@ -128,7 +128,7 @@ void FUN_180573118(longlong *param_1)
           lVar5 = 0;
         }
         else {
-          lVar5 = FUN_18062b420(_DAT_180c8ed18,uVar8 * 8,*(undefined1 *)(lVar3 + 0x20));
+          lVar5 = FUN_18062b420(_DAT_180c8ed18,uVar8 * 8,*(int8_t *)(lVar3 + 0x20));
         }
         if (lVar2 != lVar1) {
                     // WARNING: Subroutine does not return
@@ -195,7 +195,7 @@ void FUN_180573240(longlong param_1)
   
   plVar1 = *(longlong **)(param_1 + 0xabf0);
   if (plVar1 == (longlong *)0x0) {
-    *(undefined8 *)(param_1 + 0xabf0) = 0;
+    *(uint64_t *)(param_1 + 0xabf0) = 0;
     return;
   }
   lVar2 = __RTCastToVoid(plVar1);
@@ -204,7 +204,7 @@ void FUN_180573240(longlong param_1)
                     // WARNING: Subroutine does not return
     FUN_18064e900(lVar2);
   }
-  *(undefined8 *)(param_1 + 0xabf0) = 0;
+  *(uint64_t *)(param_1 + 0xabf0) = 0;
   return;
 }
 
@@ -226,7 +226,7 @@ void FUN_18057325c(void)
                     // WARNING: Subroutine does not return
     FUN_18064e900(lVar1);
   }
-  *(undefined8 *)(unaff_RBX + 0xabf0) = 0;
+  *(uint64_t *)(unaff_RBX + 0xabf0) = 0;
   return;
 }
 
@@ -238,7 +238,7 @@ void FUN_18057325c(void)
 void FUN_18057329d(longlong param_1)
 
 {
-  *(undefined8 *)(param_1 + 0xabf0) = 0;
+  *(uint64_t *)(param_1 + 0xabf0) = 0;
   return;
 }
 
@@ -246,8 +246,8 @@ void FUN_18057329d(longlong param_1)
 
 
 
-// 函数: void FUN_1805732c0(longlong *param_1,float param_2,undefined8 param_3)
-void FUN_1805732c0(longlong *param_1,float param_2,undefined8 param_3)
+// 函数: void FUN_1805732c0(longlong *param_1,float param_2,uint64_t param_3)
+void FUN_1805732c0(longlong *param_1,float param_2,uint64_t param_3)
 
 {
   float fVar1;
@@ -256,12 +256,12 @@ void FUN_1805732c0(longlong *param_1,float param_2,undefined8 param_3)
   longlong lVar4;
   longlong *plVar5;
   longlong lVar6;
-  undefined1 uVar7;
-  undefined4 uVar8;
+  int8_t uVar7;
+  int32_t uVar8;
   float fVar9;
   longlong *plStackX_8;
-  undefined1 uStackX_10;
-  undefined1 uStackX_11;
+  int8_t uStackX_10;
+  int8_t uStackX_11;
   
   fVar9 = 0.0;
   if ((param_1[0x4a0] != param_1[0x4a1]) &&
@@ -295,13 +295,13 @@ void FUN_1805732c0(longlong *param_1,float param_2,undefined8 param_3)
     if ((int)param_1[0x493] == -1) {
       lVar4 = param_1[0x157e];
       plStackX_8 = *(longlong **)(lVar4 + 0x1128);
-      *(undefined8 *)(lVar4 + 0x1128) = 0;
+      *(uint64_t *)(lVar4 + 0x1128) = 0;
       if (plStackX_8 != (longlong *)0x0) {
         (**(code **)(*plStackX_8 + 0x38))();
       }
-      *(undefined1 *)(lVar4 + 0x1139) = 1;
+      *(int8_t *)(lVar4 + 0x1139) = 1;
     }
-    (*(code *)**(undefined8 **)param_1[0x157e])((undefined8 *)param_1[0x157e],param_2,param_3);
+    (*(code *)**(uint64_t **)param_1[0x157e])((uint64_t *)param_1[0x157e],param_2,param_3);
   }
   if ((-1 < (char)param_1[0xb]) && (fVar1 = *(float *)(param_1 + 0xe), 0.001 < fVar1)) {
     fVar9 = *(float *)((longlong)param_1 + 100);
@@ -316,17 +316,17 @@ void FUN_1805732c0(longlong *param_1,float param_2,undefined8 param_3)
     param_1[0x68e] = param_1[0x4b6];
     *(float *)(param_1 + 0x690) = fVar9;
     *(int *)(param_1 + 0x68f) = (int)param_1[0x4b7];
-    *(undefined4 *)((longlong)param_1 + 0x347c) = *(undefined4 *)((longlong)param_1 + 0x25bc);
-    uStackX_10 = *(undefined1 *)((longlong)param_1 + 0x2605);
-    uStackX_11 = *(undefined1 *)((longlong)param_1 + 0x2606);
+    *(int32_t *)((longlong)param_1 + 0x347c) = *(int32_t *)((longlong)param_1 + 0x25bc);
+    uStackX_10 = *(int8_t *)((longlong)param_1 + 0x2605);
+    uStackX_11 = *(int8_t *)((longlong)param_1 + 0x2606);
     if (param_1[0x4a3] == 0) {
       uVar7 = 0;
     }
     else {
-      uVar7 = *(undefined1 *)(param_1[0x4a3] + 0x134);
+      uVar7 = *(int8_t *)(param_1[0x4a3] + 0x134);
     }
     FUN_1806596a0(param_1 + 0x68c,param_2,param_3,uVar7,(char)param_1[0x17],
-                  *(undefined1 *)((longlong)param_1 + 0xb9));
+                  *(int8_t *)((longlong)param_1 + 0xb9));
   }
   (**(code **)param_1[0x1e])(param_1 + 0x1e,param_2,param_3);
                     // WARNING: Could not recover jumptable at 0x0001805735b5. Too many branches

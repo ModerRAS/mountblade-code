@@ -24,12 +24,12 @@ void clear_rendering_resource_array(longlong resource_manager)
                     // WARNING: Subroutine does not return
         free_memory(resource_ptr);
       }
-      *(undefined8 *)(resource_array_ptr + index * 8) = 0;
+      *(uint64_t *)(resource_array_ptr + index * 8) = 0;
       index = index + 1;
     } while (index < resource_count);
     resource_count = *(ulonglong *)(resource_manager + 0x10);
   }
-  *(undefined8 *)(resource_manager + 0x18) = 0;
+  *(uint64_t *)(resource_manager + 0x18) = 0;
   if ((1 < resource_count) && (*(longlong *)(resource_manager + 8) != 0)) {
                     // WARNING: Subroutine does not return
     free_memory();
@@ -63,12 +63,12 @@ void reset_rendering_resource_manager(longlong resource_manager)
                     // WARNING: Subroutine does not return
         free_memory(resource_ptr);
       }
-      *(undefined8 *)(resource_array_ptr + index * 8) = 0;
+      *(uint64_t *)(resource_array_ptr + index * 8) = 0;
       index = index + 1;
     } while (index < resource_count);
     resource_count = *(ulonglong *)(resource_manager + 0x10);
   }
-  *(undefined8 *)(resource_manager + 0x18) = 0;
+  *(uint64_t *)(resource_manager + 0x18) = 0;
   if ((1 < resource_count) && (*(longlong *)(resource_manager + 8) != 0)) {
                     // WARNING: Subroutine does not return
     free_memory();

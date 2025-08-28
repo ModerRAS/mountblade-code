@@ -269,7 +269,7 @@ ulonglong NetworkingDataProcessor(longlong param_1, longlong *param_2) {
     int iVar4;
     uint auStackX_18[2];
     uint auStackX_20[2];
-    undefined1 auStack_38[32];
+    int8_t auStack_38[32];
     
     // 初始化网络协议验证
     uVar3 = FUN_1808ddc20(param_2, auStack_38, 0, NETWORK_PROTOCOL_FEMP);
@@ -448,7 +448,7 @@ LAB_18089cd76:
  * - 包含内存泄漏检查和资源回收
  * - 采用安全的清理机制避免数据残留
  */
-undefined8 NetworkingDataCleaner(void) {
+uint64_t NetworkingDataCleaner(void) {
     return NETWORK_ERROR_SUCCESS;
 }
 
@@ -464,7 +464,7 @@ undefined8 NetworkingDataCleaner(void) {
  * - 包含错误恢复和重试机制
  * - 采用统一的错误处理流程
  */
-undefined8 NetworkingDataErrorHandler(void) {
+uint64_t NetworkingDataErrorHandler(void) {
     return NETWORK_ERROR_INVALID_PARAMETER;
 }
 
@@ -503,7 +503,7 @@ ulonglong NetworkingConnectionValidator(longlong param_1, longlong *param_2) {
     bool bVar4;
     uint auStackX_18[2];
     uint auStackX_20[2];
-    undefined1 auStack_48[32];
+    int8_t auStack_48[32];
     
     // 初始化传输层安全协议验证
     uVar2 = FUN_1808ddc20(param_2, auStack_48, 0, NETWORK_PROTOCOL_TSLP);
@@ -626,7 +626,7 @@ LAB_18089cf93:
         return (ulonglong)uVar3;
     }
     if (bVar4) {
-        *(undefined4 *)(param_1 + NETWORK_OFFSET_CONNECTION_DATA) = 3;
+        *(int32_t *)(param_1 + NETWORK_OFFSET_CONNECTION_DATA) = 3;
     }
 LAB_18089d07f:
     // 清理连接验证资源
@@ -771,7 +771,7 @@ LAB_18089cf93:
         return (ulonglong)uVar3;
     }
     if (bVar4) {
-        *(undefined4 *)(unaff_R14 + NETWORK_OFFSET_CONNECTION_DATA) = 3;
+        *(int32_t *)(unaff_R14 + NETWORK_OFFSET_CONNECTION_DATA) = 3;
     }
 LAB_18089d07f:
     // 清理连接处理资源
@@ -828,7 +828,7 @@ ulonglong NetworkingConnectionFinalizer(void) {
         return unaff_RBX & 0xffffffff;
     }
     if (uVar2 == 0 && in_stack_00000090 != (char)unaff_R15) {
-        *(undefined4 *)(unaff_R14 + NETWORK_OFFSET_CONNECTION_DATA) = 3;
+        *(int32_t *)(unaff_R14 + NETWORK_OFFSET_CONNECTION_DATA) = 3;
     }
 LAB_18089d07f:
     // 清理连接终结资源
@@ -876,7 +876,7 @@ void NetworkingProtocolValidator(void) {
  * - 包含协议状态管理和错误处理
  * - 采用高效的协议处理算法
  */
-void NetworkingProtocolProcessor(longlong param_1, undefined8 param_2) {
+void NetworkingProtocolProcessor(longlong param_1, uint64_t param_2) {
     int iVar1;
     
     iVar1 = NetworkingConnectionValidator(param_1 + 0xd8);
@@ -900,12 +900,12 @@ void NetworkingProtocolProcessor(longlong param_1, undefined8 param_2) {
  * - 包含传输状态监控和错误恢复
  * - 采用高效的传输算法提高性能
  */
-ulonglong NetworkingTransferManager(longlong param_1, undefined8 *param_2) {
+ulonglong NetworkingTransferManager(longlong param_1, uint64_t *param_2) {
     uint uVar1;
     ulonglong uVar2;
     ulonglong uVar3;
-    undefined1 auStack_48[32];
-    undefined1 auStack_28[32];
+    int8_t auStack_48[32];
+    int8_t auStack_28[32];
     
     // 初始化快速前端协议验证
     uVar2 = FUN_1808ddc20(param_2, auStack_28, 1, NETWORK_PROTOCOL_FFEP);
@@ -969,7 +969,7 @@ ulonglong NetworkingTransferValidator(void) {
     uint uVar1;
     longlong in_RAX;
     ulonglong uVar2;
-    undefined8 *unaff_RBX;
+    uint64_t *unaff_RBX;
     longlong unaff_RSI;
     ulonglong uVar3;
     
@@ -1024,7 +1024,7 @@ ulonglong NetworkingTransferValidator(void) {
 ulonglong NetworkingTransferProcessor(void) {
     uint uVar1;
     ulonglong uVar2;
-    undefined8 *unaff_RBX;
+    uint64_t *unaff_RBX;
     longlong unaff_RSI;
     ulonglong uVar3;
     
@@ -1115,7 +1115,7 @@ void NetworkingResourceCleaner(void) {
  * - 包含配置安全检查和权限验证
  * - 采用高效的验证算法提高性能
  */
-undefined8 NetworkingConfigValidator(void) {
+uint64_t NetworkingConfigValidator(void) {
     return NETWORK_ERROR_DATA_CORRUPTED;
 }
 
@@ -1133,8 +1133,8 @@ undefined8 NetworkingConfigValidator(void) {
  * - 包含配置验证和错误处理
  * - 采用高效的配置处理算法
  */
-undefined8 NetworkingConfigProcessor(longlong param_1, undefined8 *param_2) {
-    undefined8 uVar1;
+uint64_t NetworkingConfigProcessor(longlong param_1, uint64_t *param_2) {
+    uint64_t uVar1;
     
     uVar1 = FUN_1808dde10(param_2, 0);
     if ((int)uVar1 == 0) {
@@ -1168,10 +1168,10 @@ undefined8 NetworkingConfigProcessor(longlong param_1, undefined8 *param_2) {
  * - 包含配置验证和应用逻辑
  * - 采用高效的配置管理算法
  */
-void NetworkingConfigManager(longlong param_1, undefined8 *param_2) {
+void NetworkingConfigManager(longlong param_1, uint64_t *param_2) {
     int iVar1;
-    undefined1 auStack_48[32];
-    undefined1 auStack_28[32];
+    int8_t auStack_48[32];
+    int8_t auStack_28[32];
     
     // 初始化联合操作协议验证
     iVar1 = FUN_1808ddc20(param_2, auStack_28, 1, NETWORK_PROTOCOL_JORP);
@@ -1187,7 +1187,7 @@ void NetworkingConfigManager(longlong param_1, undefined8 *param_2) {
             iVar1 = NETWORK_ERROR_DATA_CORRUPTED;
         }
         if (iVar1 == 0) {
-            *(undefined4 *)(param_1 + 0x218) = *(undefined4 *)(param_2 + 8);
+            *(int32_t *)(param_1 + 0x218) = *(int32_t *)(param_2 + 8);
             if (*(uint *)(param_2 + 8) < NETWORK_DATA_SIZE_MIN_4) {
                 iVar1 = 0;
             }
@@ -1209,10 +1209,10 @@ void NetworkingConfigManager(longlong param_1, undefined8 *param_2) {
                 }
                 if (iVar1 == 0) {
                     // 复制配置数据
-                    *(undefined4 *)(param_1 + 0x200) = *(undefined4 *)(param_1 + NETWORK_OFFSET_CONNECTION_DATA);
-                    *(undefined4 *)(param_1 + 0x204) = *(undefined4 *)(param_1 + NETWORK_OFFSET_CONNECTION_COUNT);
-                    *(undefined4 *)(param_1 + 0x208) = *(undefined4 *)(param_1 + 0x18);
-                    *(undefined4 *)(param_1 + 0x20c) = *(undefined4 *)(param_1 + 0x1c);
+                    *(int32_t *)(param_1 + 0x200) = *(int32_t *)(param_1 + NETWORK_OFFSET_CONNECTION_DATA);
+                    *(int32_t *)(param_1 + 0x204) = *(int32_t *)(param_1 + NETWORK_OFFSET_CONNECTION_COUNT);
+                    *(int32_t *)(param_1 + 0x208) = *(int32_t *)(param_1 + 0x18);
+                    *(int32_t *)(param_1 + 0x20c) = *(int32_t *)(param_1 + 0x1c);
                     // 清理配置资源
                     FUN_1808ddf80(param_2, auStack_48);
                 }
@@ -1234,11 +1234,11 @@ void NetworkingConfigManager(longlong param_1, undefined8 *param_2) {
  * - 包含配置状态清理和内存回收
  * - 采用安全的终止机制避免资源泄漏
  */
-void NetworkingConfigFinalizer(undefined4 param_1) {
+void NetworkingConfigFinalizer(int32_t param_1) {
     int iVar1;
-    undefined8 *unaff_RBX;
+    uint64_t *unaff_RBX;
     longlong unaff_RDI;
-    undefined4 extraout_XMM0_Da;
+    int32_t extraout_XMM0_Da;
     
     iVar1 = FUN_1808ddc20(param_1, &stack0x00000030, 0);
     if (iVar1 == 0) {
@@ -1254,7 +1254,7 @@ void NetworkingConfigFinalizer(undefined4 param_1) {
                 iVar1 = NETWORK_ERROR_DATA_CORRUPTED;
             }
             if (iVar1 == 0) {
-                *(undefined4 *)(unaff_RDI + 0x218) = *(undefined4 *)(unaff_RBX + 8);
+                *(int32_t *)(unaff_RDI + 0x218) = *(int32_t *)(unaff_RBX + 8);
                 if (*(uint *)(unaff_RBX + 8) < NETWORK_DATA_SIZE_MIN_4) {
                     iVar1 = 0;
                 }
@@ -1276,12 +1276,12 @@ void NetworkingConfigFinalizer(undefined4 param_1) {
                     }
                     if (iVar1 == 0) {
                         // 复制配置数据
-                        *(undefined4 *)(unaff_RDI + 0x200) = *(undefined4 *)(unaff_RDI + NETWORK_OFFSET_CONNECTION_DATA);
-                        *(undefined4 *)(unaff_RDI + 0x204) = *(undefined4 *)(unaff_RDI + NETWORK_OFFSET_CONNECTION_COUNT);
-                        *(undefined4 *)(unaff_RDI + 0x208) = *(undefined4 *)(unaff_RDI + 0x18);
-                        *(undefined4 *)(unaff_RDI + 0x20c) = *(undefined4 *)(unaff_RDI + 0x1c);
+                        *(int32_t *)(unaff_RDI + 0x200) = *(int32_t *)(unaff_RDI + NETWORK_OFFSET_CONNECTION_DATA);
+                        *(int32_t *)(unaff_RDI + 0x204) = *(int32_t *)(unaff_RDI + NETWORK_OFFSET_CONNECTION_COUNT);
+                        *(int32_t *)(unaff_RDI + 0x208) = *(int32_t *)(unaff_RDI + 0x18);
+                        *(int32_t *)(unaff_RDI + 0x20c) = *(int32_t *)(unaff_RDI + 0x1c);
                         // 清理配置终结资源
-                        FUN_1808ddf80(*(undefined4 *)(unaff_RDI + NETWORK_OFFSET_CONNECTION_DATA), &stack0x00000030);
+                        FUN_1808ddf80(*(int32_t *)(unaff_RDI + NETWORK_OFFSET_CONNECTION_DATA), &stack0x00000030);
                     }
                 }
             }

@@ -13,23 +13,23 @@
 #define RENDERING_TEXTURE_TILE_SIZE 0x4000
 
 // 函数别名定义
-void rendering_system_advanced_batch_processor(longlong rendering_context, undefined8 texture_data, undefined4 render_param1, undefined4 render_param2,
-                                             undefined8 render_param3, uint texture_count, longlong output_buffer1, longlong output_buffer2, longlong output_buffer3,
+void rendering_system_advanced_batch_processor(longlong rendering_context, uint64_t texture_data, int32_t render_param1, int32_t render_param2,
+                                             uint64_t render_param3, uint texture_count, longlong output_buffer1, longlong output_buffer2, longlong output_buffer3,
                                              longlong output_buffer4, char texture_flag, uint texture_index);
-void rendering_system_initialize_texture_handler(undefined8 param1, undefined8 param2);
-void rendering_system_process_texture_data(undefined8 param1);
-void rendering_system_create_texture_manager(undefined8 *param1, ulonglong param2, undefined8 param3, undefined8 param4);
-void rendering_system_cleanup_texture_manager(undefined8 param1, ulonglong param2, undefined8 param3, undefined8 param4);
-void rendering_system_initialize_shader_manager(undefined8 param1, undefined8 param2);
-void rendering_system_create_shader_object(undefined8 param1, undefined4 param2);
-void rendering_system_cleanup_shader_object(undefined8 param1, ulonglong param2, undefined8 param3, undefined8 param4);
-void rendering_system_initialize_render_manager(undefined8 *param1);
-void rendering_system_process_render_data(undefined8 param1, longlong *param2, undefined8 param3, undefined8 param4);
+void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param2);
+void rendering_system_process_texture_data(uint64_t param1);
+void rendering_system_create_texture_manager(uint64_t *param1, ulonglong param2, uint64_t param3, uint64_t param4);
+void rendering_system_cleanup_texture_manager(uint64_t param1, ulonglong param2, uint64_t param3, uint64_t param4);
+void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2);
+void rendering_system_create_shader_object(uint64_t param1, int32_t param2);
+void rendering_system_cleanup_shader_object(uint64_t param1, ulonglong param2, uint64_t param3, uint64_t param4);
+void rendering_system_initialize_render_manager(uint64_t *param1);
+void rendering_system_process_render_data(uint64_t param1, longlong *param2, uint64_t param3, uint64_t param4);
 void rendering_system_update_texture_cache(void);
 void rendering_system_update_render_cache(void);
 void rendering_system_empty_function_1(void);
 void rendering_system_empty_function_2(void);
-void rendering_system_initialize_rendering_system(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4);
+void rendering_system_initialize_rendering_system(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4);
 void rendering_system_setup_render_pipeline(void);
 
 /**
@@ -50,19 +50,19 @@ void rendering_system_setup_render_pipeline(void);
  * @param texture_flag 纹理标志，控制纹理处理方式
  * @param texture_index 纹理索引，指定当前处理的纹理
  */
-void rendering_system_advanced_batch_processor(longlong rendering_context, undefined8 texture_data, undefined4 render_param1, undefined4 render_param2,
-                                             undefined8 render_param3, uint texture_count, longlong output_buffer1, longlong output_buffer2, longlong output_buffer3,
+void rendering_system_advanced_batch_processor(longlong rendering_context, uint64_t texture_data, int32_t render_param1, int32_t render_param2,
+                                             uint64_t render_param3, uint texture_count, longlong output_buffer1, longlong output_buffer2, longlong output_buffer3,
                                              longlong output_buffer4, char texture_flag, uint texture_index)
 
 {
-  undefined8 *texture_ptr1;
+  uint64_t *texture_ptr1;
   float *texture_coords;
   uint current_texture;
   int texture_width;
-  undefined8 texture_data1;
-  undefined8 texture_data2;
-  undefined8 texture_data3;
-  undefined8 texture_data4;
+  uint64_t texture_data1;
+  uint64_t texture_data2;
+  uint64_t texture_data3;
+  uint64_t texture_data4;
   int texture_height;
   longlong texture_offset;
   int *output_index_ptr;
@@ -80,14 +80,14 @@ void rendering_system_advanced_batch_processor(longlong rendering_context, undef
   int tile_width_count;
   longlong batch_width;
   longlong batch_height;
-  undefined8 batch_param1;
-  undefined8 batch_param2;
+  uint64_t batch_param1;
+  uint64_t batch_param2;
   float tex_coord_u;
   float tex_coord_v;
   float tex_coord_s;
   float tex_coord_t;
-  undefined8 u_coord_data;
-  undefined8 v_coord_data;
+  uint64_t u_coord_data;
+  uint64_t v_coord_data;
   ulonglong security_hash;
   
   security_hash = _DAT_180bf00a8 ^ (ulonglong)batch_index_ptr;
@@ -97,7 +97,7 @@ void rendering_system_advanced_batch_processor(longlong rendering_context, undef
   do {
     texture_base = *(longlong *)(rendering_context + 0x28 + (ulonglong)texture_index * 8);
     texture_stride = *(longlong *)(*(longlong *)(rendering_context + 8) + 0x68);
-    texture_ptr1 = (undefined8 *)(texture_base + (ulonglong)*(uint *)(batch_width + -4 + texture_stride) * 0x10);
+    texture_ptr1 = (uint64_t *)(texture_base + (ulonglong)*(uint *)(batch_width + -4 + texture_stride) * 0x10);
     texture_data1 = *texture_ptr1;
     texture_data2 = texture_ptr1[1];
     if (texture_flag == '\0') {
@@ -117,7 +117,7 @@ void rendering_system_advanced_batch_processor(longlong rendering_context, undef
       texture_flag_internal = *(uint *)(batch_width + texture_stride);
     }
     u_coord_data._4_4_ = (float)((ulonglong)texture_data1 >> 0x20);
-    texture_ptr1 = (undefined8 *)(texture_base + (ulonglong)texture_flag_internal * 0x10);
+    texture_ptr1 = (uint64_t *)(texture_base + (ulonglong)texture_flag_internal * 0x10);
     texture_data3 = *texture_ptr1;
     texture_data4 = texture_ptr1[1];
     u_coord_data._0_4_ = (float)texture_data1;
@@ -218,8 +218,8 @@ LAB_18049ce60:
                 texture_min_x = texture_min_x + RENDERING_TEXTURE_TILE_SIZE;
                 texture_offset = (longlong)(texture_height + *batch_index_ptr);
                 *(uint *)(output_buffer1 + texture_offset * 4) = current_texture;
-                *(undefined4 *)(output_buffer2 + texture_offset * 4) = render_param1;
-                *(undefined4 *)(output_buffer3 + texture_offset * 4) = render_param2;
+                *(int32_t *)(output_buffer2 + texture_offset * 4) = render_param1;
+                *(int32_t *)(output_buffer3 + texture_offset * 4) = render_param2;
                 *batch_index_ptr = *batch_index_ptr + 1;
                 texture_base = texture_base + -1;
                 batch_index_ptr = batch_index_ptr + 1;
@@ -254,34 +254,34 @@ LAB_18049ce60:
  * @param param1 参数1，包含初始化所需的上下文信息
  * @param param2 参数2，包含初始化所需的配置信息
  */
-void rendering_system_initialize_texture_handler(undefined8 param1, undefined8 param2)
+void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param2)
 
 {
-  undefined4 texture_config;
-  undefined8 *texture_manager;
-  undefined8 *texture_ptr;
-  undefined *init_stack_ptr;
-  undefined8 *alloc_ptr;
-  undefined4 alloc_size;
-  undefined8 alloc_context;
+  int32_t texture_config;
+  uint64_t *texture_manager;
+  uint64_t *texture_ptr;
+  void *init_stack_ptr;
+  uint64_t *alloc_ptr;
+  int32_t alloc_size;
+  uint64_t alloc_context;
   
-  texture_manager = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x78,8,3,0xfffffffffffffffe);
+  texture_manager = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x78,8,3,0xfffffffffffffffe);
   texture_ptr = texture_manager;
   FUN_1803456e0(texture_ptr,param2,param1);
   *texture_ptr = &UNK_180a2d6a0;
-  *(undefined4 *)(texture_ptr + 0xe) = 0x1f;
+  *(int32_t *)(texture_ptr + 0xe) = 0x1f;
   init_stack_ptr = &UNK_180a3c3e0;
   alloc_context = 0;
-  alloc_ptr = (undefined8 *)0x0;
+  alloc_ptr = (uint64_t *)0x0;
   alloc_size = 0;
-  texture_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)texture_ptr = 0;
+  texture_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  *(int8_t *)texture_ptr = 0;
   alloc_ptr = texture_ptr;
   texture_config = FUN_18064e990(texture_ptr);
   alloc_context = CONCAT44(alloc_context._4_4_,texture_config);
   *texture_ptr = 0x20726574736c6f48;
-  *(undefined4 *)(texture_ptr + 1) = 0x65646e49;
-  *(undefined2 *)((longlong)texture_ptr + 0xc) = 0x78;
+  *(int32_t *)(texture_ptr + 1) = 0x65646e49;
+  *(int16_t *)((longlong)texture_ptr + 0xc) = 0x78;
   alloc_size = 0xd;
   FUN_1803460a0(texture_manager,&init_stack_ptr,texture_manager + 0xe,4);
   init_stack_ptr = &UNK_180a3c3e0;
@@ -296,19 +296,19 @@ void rendering_system_initialize_texture_handler(undefined8 param1, undefined8 p
  * 
  * @param param1 参数1，包含处理所需的上下文信息
  */
-void rendering_system_process_texture_data(undefined8 param1)
+void rendering_system_process_texture_data(uint64_t param1)
 
 {
-  undefined1 texture_buffer[32];
-  undefined4 process_param;
-  undefined8 process_context;
-  undefined **process_array[2];
-  undefined *process_ptr;
-  undefined1 *texture_data_ptr;
-  undefined4 data_size;
-  undefined1 data_buffer[136];
-  undefined *data_array[19];
-  undefined4 array_size;
+  int8_t texture_buffer[32];
+  int32_t process_param;
+  uint64_t process_context;
+  void **process_array[2];
+  void *process_ptr;
+  int8_t *texture_data_ptr;
+  int32_t data_size;
+  int8_t data_buffer[136];
+  void *data_array[19];
+  int32_t array_size;
   ulonglong security_hash;
   
   process_context = 0xfffffffffffffffe;
@@ -342,11 +342,11 @@ void rendering_system_process_texture_data(undefined8 param1)
  * @param param4 参数4，包含创建所需的资源信息
  * @return 返回创建的纹理管理器指针
  */
-undefined8 *
-rendering_system_create_texture_manager(undefined8 *param1, ulonglong param2, undefined8 param3, undefined8 param4)
+uint64_t *
+rendering_system_create_texture_manager(uint64_t *param1, ulonglong param2, uint64_t param3, uint64_t param4)
 
 {
-  undefined8 alloc_flag;
+  uint64_t alloc_flag;
   
   alloc_flag = 0xfffffffffffffffe;
   *param1 = &UNK_180a2d6a0;
@@ -365,71 +365,71 @@ rendering_system_create_texture_manager(undefined8 *param1, ulonglong param2, un
  * @param param1 参数1，包含清理所需的上下文信息
  * @param param2 参数2，包含清理所需的配置信息
  */
-void rendering_system_cleanup_texture_manager(undefined8 param1, undefined8 param2)
+void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2)
 
 {
-  undefined4 manager_config;
-  undefined8 *manager_ptr;
-  undefined8 *texture_ptr;
-  undefined8 *resource_ptr;
-  undefined8 resource_data;
-  undefined *cleanup_stack_ptr;
-  undefined8 *alloc_ptr;
-  undefined4 alloc_size;
-  undefined8 alloc_context;
+  int32_t manager_config;
+  uint64_t *manager_ptr;
+  uint64_t *texture_ptr;
+  uint64_t *resource_ptr;
+  uint64_t resource_data;
+  void *cleanup_stack_ptr;
+  uint64_t *alloc_ptr;
+  int32_t alloc_size;
+  uint64_t alloc_context;
   
-  manager_ptr = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x118,8,3);
+  manager_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x118,8,3);
   resource_data = 0xfffffffffffffffe;
   resource_ptr = manager_ptr;
   FUN_1803456e0(manager_ptr,param2,param1);
   *resource_ptr = &UNK_180a2dcc8;
   resource_ptr[0xe] = &UNK_18098bcb0;
   resource_ptr[0xf] = 0;
-  *(undefined4 *)(resource_ptr + 0x10) = 0;
+  *(int32_t *)(resource_ptr + 0x10) = 0;
   resource_ptr[0xe] = &UNK_180a3c3e0;
   resource_ptr[0x11] = 0;
   resource_ptr[0xf] = 0;
-  *(undefined4 *)(resource_ptr + 0x10) = 0;
+  *(int32_t *)(resource_ptr + 0x10) = 0;
   manager_ptr[0x12] = &UNK_18098bcb0;
   manager_ptr[0x13] = 0;
-  *(undefined4 *)(manager_ptr + 0x14) = 0;
+  *(int32_t *)(manager_ptr + 0x14) = 0;
   manager_ptr[0x12] = &UNK_180a3c3e0;
   manager_ptr[0x15] = 0;
   manager_ptr[0x13] = 0;
-  *(undefined4 *)(manager_ptr + 0x14) = 0;
+  *(int32_t *)(manager_ptr + 0x14) = 0;
   texture_ptr = manager_ptr + 0x16;
   *texture_ptr = &UNK_18098bcb0;
   manager_ptr[0x17] = 0;
-  *(undefined4 *)(manager_ptr + 0x18) = 0;
+  *(int32_t *)(manager_ptr + 0x18) = 0;
   *texture_ptr = &UNK_180a3c3e0;
   manager_ptr[0x19] = 0;
   manager_ptr[0x17] = 0;
-  *(undefined4 *)(manager_ptr + 0x18) = 0;
+  *(int32_t *)(manager_ptr + 0x18) = 0;
   manager_ptr[0x1a] = &UNK_18098bcb0;
   manager_ptr[0x1b] = 0;
-  *(undefined4 *)(manager_ptr + 0x1c) = 0;
+  *(int32_t *)(manager_ptr + 0x1c) = 0;
   manager_ptr[0x1a] = &UNK_180a3c3e0;
   manager_ptr[0x1d] = 0;
   manager_ptr[0x1b] = 0;
-  *(undefined4 *)(manager_ptr + 0x1c) = 0;
+  *(int32_t *)(manager_ptr + 0x1c) = 0;
   manager_ptr[0x1e] = &UNK_18098bcb0;
   manager_ptr[0x1f] = 0;
-  *(undefined4 *)(manager_ptr + 0x20) = 0;
+  *(int32_t *)(manager_ptr + 0x20) = 0;
   manager_ptr[0x1e] = &UNK_180a3c3e0;
   manager_ptr[0x21] = 0;
   manager_ptr[0x1f] = 0;
-  *(undefined4 *)(manager_ptr + 0x20) = 0;
+  *(int32_t *)(manager_ptr + 0x20) = 0;
   cleanup_stack_ptr = &UNK_180a3c3e0;
   alloc_context = 0;
-  alloc_ptr = (undefined8 *)0x0;
+  alloc_ptr = (uint64_t *)0x0;
   alloc_size = 0;
-  texture_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)texture_ptr = 0;
+  texture_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  *(int8_t *)texture_ptr = 0;
   alloc_ptr = texture_ptr;
   manager_config = FUN_18064e990(texture_ptr);
   alloc_context = CONCAT44(alloc_context._4_4_,manager_config);
   *texture_ptr = 0x656d614e6873654d;
-  *(undefined1 *)(texture_ptr + 1) = 0;
+  *(int8_t *)(texture_ptr + 1) = 0;
   alloc_size = 8;
   FUN_1803460a0(manager_ptr,&cleanup_stack_ptr,texture_ptr,0,resource_data);
   cleanup_stack_ptr = &UNK_180a3c3e0;
@@ -445,33 +445,33 @@ void rendering_system_cleanup_texture_manager(undefined8 param1, undefined8 para
  * @param param1 参数1，包含初始化所需的上下文信息
  * @param param2 参数2，包含初始化所需的配置信息
  */
-void rendering_system_initialize_shader_manager(undefined8 param1, undefined8 param2)
+void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2)
 
 {
-  undefined4 shader_config;
-  undefined8 *shader_manager;
-  undefined8 *shader_ptr;
-  undefined *init_stack_ptr;
-  undefined8 *alloc_ptr;
-  undefined4 alloc_size;
-  undefined8 alloc_context;
+  int32_t shader_config;
+  uint64_t *shader_manager;
+  uint64_t *shader_ptr;
+  void *init_stack_ptr;
+  uint64_t *alloc_ptr;
+  int32_t alloc_size;
+  uint64_t alloc_context;
   
-  shader_manager = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x78,8,3,0xfffffffffffffffe);
+  shader_manager = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x78,8,3,0xfffffffffffffffe);
   shader_ptr = shader_manager;
   FUN_1803456e0(shader_ptr,param2,param1);
   *shader_ptr = &UNK_180a2de60;
   init_stack_ptr = &UNK_180a3c3e0;
   alloc_context = 0;
-  alloc_ptr = (undefined8 *)0x0;
+  alloc_ptr = (uint64_t *)0x0;
   alloc_size = 0;
-  shader_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)shader_ptr = 0;
+  shader_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  *(int8_t *)shader_ptr = 0;
   alloc_ptr = shader_ptr;
   shader_config = FUN_18064e990(shader_ptr);
   alloc_context = CONCAT44(alloc_context._4_4_,shader_config);
   *shader_ptr = 0x20646c6975626552;
-  *(undefined4 *)(shader_ptr + 1) = 0x64697247;
-  *(undefined1 *)((longlong)shader_ptr + 0xc) = 0;
+  *(int32_t *)(shader_ptr + 1) = 0x64697247;
+  *(int8_t *)((longlong)shader_ptr + 0xc) = 0;
   alloc_size = 0xc;
   FUN_1803460a0(shader_manager,&init_stack_ptr,0,0xb);
   init_stack_ptr = &UNK_180a3c3e0;
@@ -488,12 +488,12 @@ void rendering_system_initialize_shader_manager(undefined8 param1, undefined8 pa
  * @param param2 参数2，包含创建所需的配置信息
  * @return 返回创建的着色器对象指针
  */
-undefined8 * rendering_system_create_shader_object(undefined8 param1, undefined4 param2)
+uint64_t * rendering_system_create_shader_object(uint64_t param1, int32_t param2)
 
 {
-  undefined8 *shader_ptr;
+  uint64_t *shader_ptr;
   
-  shader_ptr = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0xb8,8,0x1a,0xfffffffffffffffe);
+  shader_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0xb8,8,0x1a,0xfffffffffffffffe);
   FUN_1802565b0(shader_ptr,param1,param2);
   *shader_ptr = &UNK_180a2d5c0;
   shader_ptr[0x16] = 0;
@@ -511,10 +511,10 @@ undefined8 * rendering_system_create_shader_object(undefined8 param1, undefined4
  * @param param4 参数4，包含清理所需的资源信息
  * @return 返回清理后的对象指针
  */
-undefined8 rendering_system_cleanup_shader_object(undefined8 param1, ulonglong param2, undefined8 param3, undefined8 param4)
+uint64_t rendering_system_cleanup_shader_object(uint64_t param1, ulonglong param2, uint64_t param3, uint64_t param4)
 
 {
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   FUN_1802566c0();
@@ -531,23 +531,23 @@ undefined8 rendering_system_cleanup_shader_object(undefined8 param1, ulonglong p
  * 
  * @param param1 渲染管理器指针的指针
  */
-void rendering_system_initialize_render_manager(undefined8 *param1)
+void rendering_system_initialize_render_manager(uint64_t *param1)
 
 {
-  undefined *init_ptr;
+  void *init_ptr;
   uint init_flag;
   uint process_flag;
-  undefined1 init_buffer[32];
+  int8_t init_buffer[32];
   code *init_function;
-  undefined *stack_ptr;
-  undefined1 *data_ptr;
+  void *stack_ptr;
+  int8_t *data_ptr;
   uint data_size;
-  undefined8 data_context;
-  undefined4 data_param;
-  undefined8 data_buffer;
-  undefined8 *alloc_ptr;
-  undefined *alloc_ptr2;
-  undefined *alloc_ptr3;
+  uint64_t data_context;
+  int32_t data_param;
+  uint64_t data_buffer;
+  uint64_t *alloc_ptr;
+  void *alloc_ptr2;
+  void *alloc_ptr3;
   int string_size;
   undefined string_buffer[16];
   ulonglong security_hash;
@@ -561,10 +561,10 @@ void rendering_system_initialize_render_manager(undefined8 *param1)
   alloc_ptr = param1;
   FUN_1808fc838(param1 + 2,0x20,0x20,FUN_180627850);
   param1[0x83] = 0;
-  *(undefined4 *)(param1 + 0x82) = 0xffffffff;
+  *(int32_t *)(param1 + 0x82) = 0xffffffff;
   FUN_18049dc80();
   (**(code **)(_DAT_180c924d0 + 0x10))(&DAT_180c924d0,&DAT_1809fd128);
-  *(undefined4 *)(param1 + 1) = 0;
+  *(int32_t *)(param1 + 1) = 0;
   alloc_ptr2 = &UNK_1809fdc18;
   alloc_ptr3 = string_buffer;
   string_buffer[0] = 0;
@@ -573,20 +573,20 @@ void rendering_system_initialize_render_manager(undefined8 *param1)
   data_param = 1;
   stack_ptr = &UNK_180a3c3e0;
   data_context = 0;
-  data_ptr = (undefined1 *)0x0;
+  data_ptr = (int8_t *)0x0;
   data_size = 0;
   FUN_1806277c0(&stack_ptr,string_size);
   if (0 < string_size) {
     init_ptr = &DAT_18098bc73;
-    if (alloc_ptr3 != (undefined *)0x0) {
+    if (alloc_ptr3 != (void *)0x0) {
       init_ptr = alloc_ptr3;
     }
                     // WARNING: Subroutine does not return
     memcpy(data_ptr,init_ptr,(longlong)(string_size + 1));
   }
-  if (alloc_ptr3 != (undefined *)0x0) {
+  if (alloc_ptr3 != (void *)0x0) {
     data_size = 0;
-    if (data_ptr != (undefined1 *)0x0) {
+    if (data_ptr != (int8_t *)0x0) {
       *data_ptr = 0;
     }
   }
@@ -595,8 +595,8 @@ void rendering_system_initialize_render_manager(undefined8 *param1)
   alloc_ptr2 = &UNK_18098bcb0;
   init_flag = data_size + 8;
   FUN_1806277c0(&stack_ptr,init_flag);
-  *(undefined8 *)(data_ptr + data_size) = 0x2f73656c75646f4d;
-  *(undefined1 *)((longlong)(data_ptr + data_size) + 8) = 0;
+  *(uint64_t *)(data_ptr + data_size) = 0x2f73656c75646f4d;
+  *(int8_t *)((longlong)(data_ptr + data_size) + 8) = 0;
   data_size = init_flag;
   if (0 < _DAT_180c924e0) {
     FUN_1806277c0(&stack_ptr,init_flag + _DAT_180c924e0);
@@ -605,9 +605,9 @@ void rendering_system_initialize_render_manager(undefined8 *param1)
   }
   process_flag = process_flag + 9;
   FUN_1806277c0(&stack_ptr,(ulonglong)process_flag);
-  *(undefined2 *)(data_ptr + data_size) = 0x2f;
+  *(int16_t *)(data_ptr + data_size) = 0x2f;
   data_size = process_flag;
-  if (data_ptr != (undefined1 *)0x0) {
+  if (data_ptr != (int8_t *)0x0) {
     FUN_1806277c0(&DAT_180c924f0,process_flag);
   }
   if (process_flag != 0) {
@@ -616,16 +616,16 @@ void rendering_system_initialize_render_manager(undefined8 *param1)
   }
   _DAT_180c92500 = process_flag;
   if (_DAT_180c924f8 != 0) {
-    *(undefined1 *)((ulonglong)process_flag + _DAT_180c924f8) = 0;
+    *(int8_t *)((ulonglong)process_flag + _DAT_180c924f8) = 0;
   }
   _DAT_180c9250c = data_context._4_4_;
-  *(undefined4 *)(param1 + 0x84) = 0;
+  *(int32_t *)(param1 + 0x84) = 0;
   stack_ptr = &UNK_180a3c3e0;
-  if (data_ptr != (undefined1 *)0x0) {
+  if (data_ptr != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  data_ptr = (undefined1 *)0x0;
+  data_ptr = (int8_t *)0x0;
   data_context = (ulonglong)data_context._4_4_ << 0x20;
   stack_ptr = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
@@ -642,21 +642,21 @@ void rendering_system_initialize_render_manager(undefined8 *param1)
  * @param param3 参数3，包含处理所需的配置信息
  * @param param4 参数4，包含处理所需的资源信息
  */
-void rendering_system_process_render_data(undefined8 param1, longlong *param2, undefined8 param3, undefined8 param4)
+void rendering_system_process_render_data(uint64_t param1, longlong *param2, uint64_t param3, uint64_t param4)
 
 {
-  undefined4 data_config;
-  undefined4 *data_ptr;
-  undefined8 *texture_ptr;
-  undefined8 texture_data;
-  undefined *process_stack_ptr;
-  undefined8 *alloc_ptr;
-  undefined4 alloc_size;
-  undefined8 alloc_context;
-  undefined *alloc_stack_ptr;
-  undefined8 *alloc_ptr2;
-  undefined4 alloc_size2;
-  undefined8 alloc_context2;
+  int32_t data_config;
+  int32_t *data_ptr;
+  uint64_t *texture_ptr;
+  uint64_t texture_data;
+  void *process_stack_ptr;
+  uint64_t *alloc_ptr;
+  int32_t alloc_size;
+  uint64_t alloc_context;
+  void *alloc_stack_ptr;
+  uint64_t *alloc_ptr2;
+  int32_t alloc_size2;
+  uint64_t alloc_context2;
   
   texture_data = 0xfffffffffffffffe;
   FUN_180057110(param2);
@@ -664,74 +664,74 @@ void rendering_system_process_render_data(undefined8 param1, longlong *param2, u
   if ((param2[1] - *param2 & 0xffffffffffffffe0U) == 0) {
     process_stack_ptr = &UNK_180a3c3e0;
     alloc_context = 0;
-    alloc_ptr = (undefined8 *)0x0;
+    alloc_ptr = (uint64_t *)0x0;
     alloc_size = 0;
-    data_ptr = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param4,texture_data);
-    *(undefined1 *)data_ptr = 0;
-    alloc_ptr = (undefined8 *)data_ptr;
+    data_ptr = (int32_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param4,texture_data);
+    *(int8_t *)data_ptr = 0;
+    alloc_ptr = (uint64_t *)data_ptr;
     data_config = FUN_18064e990(data_ptr);
     *data_ptr = 0x6974614e;
-    *(undefined2 *)(data_ptr + 1) = 0x6576;
-    *(undefined1 *)((longlong)data_ptr + 6) = 0;
+    *(int16_t *)(data_ptr + 1) = 0x6576;
+    *(int8_t *)((longlong)data_ptr + 6) = 0;
     alloc_size = 6;
     alloc_context._0_4_ = data_config;
     FUN_180066df0(param2,&process_stack_ptr);
     process_stack_ptr = &UNK_180a3c3e0;
-    if (alloc_ptr != (undefined8 *)0x0) {
+    if (alloc_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    alloc_ptr = (undefined8 *)0x0;
+    alloc_ptr = (uint64_t *)0x0;
     alloc_context = (ulonglong)alloc_context._4_4_ << 0x20;
     process_stack_ptr = &UNK_18098bcb0;
     alloc_stack_ptr = &UNK_180a3c3e0;
     alloc_context2 = 0;
-    alloc_ptr2 = (undefined8 *)0x0;
+    alloc_ptr2 = (uint64_t *)0x0;
     alloc_size2 = 0;
-    texture_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-    *(undefined1 *)texture_ptr = 0;
+    texture_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    *(int8_t *)texture_ptr = 0;
     alloc_ptr2 = texture_ptr;
     data_config = FUN_18064e990(texture_ptr);
     *texture_ptr = 0x616c7069746c754d;
-    *(undefined4 *)(texture_ptr + 1) = 0x726579;
+    *(int32_t *)(texture_ptr + 1) = 0x726579;
     alloc_size2 = 0xb;
     alloc_context2._0_4_ = data_config;
     FUN_180066df0(param2,&alloc_stack_ptr);
     alloc_stack_ptr = &UNK_180a3c3e0;
-    if (alloc_ptr2 != (undefined8 *)0x0) {
+    if (alloc_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    alloc_ptr2 = (undefined8 *)0x0;
+    alloc_ptr2 = (uint64_t *)0x0;
     alloc_context2 = (ulonglong)alloc_context2._4_4_ << 0x20;
     alloc_stack_ptr = &UNK_18098bcb0;
     process_stack_ptr = &UNK_180a3c3e0;
     alloc_context = 0;
-    alloc_ptr = (undefined8 *)0x0;
+    alloc_ptr = (uint64_t *)0x0;
     alloc_size = 0;
-    texture_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-    *(undefined1 *)texture_ptr = 0;
+    texture_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    *(int8_t *)texture_ptr = 0;
     alloc_ptr = texture_ptr;
     data_config = FUN_18064e990(texture_ptr);
     *texture_ptr = 0x43786f42646e6153;
-    *(undefined4 *)(texture_ptr + 1) = 0x65726f;
+    *(int32_t *)(texture_ptr + 1) = 0x65726f;
     alloc_size = 0xb;
     alloc_context._0_4_ = data_config;
     FUN_180066df0(param2,&process_stack_ptr);
     process_stack_ptr = &UNK_180a3c3e0;
-    if (alloc_ptr != (undefined8 *)0x0) {
+    if (alloc_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    alloc_ptr = (undefined8 *)0x0;
+    alloc_ptr = (uint64_t *)0x0;
     alloc_context = (ulonglong)alloc_context._4_4_ << 0x20;
     process_stack_ptr = &UNK_18098bcb0;
     alloc_stack_ptr = &UNK_180a3c3e0;
     alloc_context2 = 0;
-    alloc_ptr2 = (undefined8 *)0x0;
+    alloc_ptr2 = (uint64_t *)0x0;
     alloc_size2 = 0;
-    texture_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-    *(undefined1 *)texture_ptr = 0;
+    texture_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    *(int8_t *)texture_ptr = 0;
     alloc_ptr2 = texture_ptr;
     data_config = FUN_18064e990(texture_ptr);
     *texture_ptr = 0x786f42646e6153;
@@ -739,50 +739,50 @@ void rendering_system_process_render_data(undefined8 param1, longlong *param2, u
     alloc_context2._0_4_ = data_config;
     FUN_180066df0(param2,&alloc_stack_ptr);
     alloc_stack_ptr = &UNK_180a3c3e0;
-    if (alloc_ptr2 != (undefined8 *)0x0) {
+    if (alloc_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    alloc_ptr2 = (undefined8 *)0x0;
+    alloc_ptr2 = (uint64_t *)0x0;
     alloc_context2 = (ulonglong)alloc_context2._4_4_ << 0x20;
     alloc_stack_ptr = &UNK_18098bcb0;
     process_stack_ptr = &UNK_180a3c3e0;
     alloc_context = 0;
-    alloc_ptr = (undefined8 *)0x0;
+    alloc_ptr = (uint64_t *)0x0;
     alloc_size = 0;
-    texture_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-    *(undefined1 *)texture_ptr = 0;
+    texture_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    *(int8_t *)texture_ptr = 0;
     alloc_ptr = texture_ptr;
     data_config = FUN_18064e990(texture_ptr);
     *texture_ptr = 0x61426d6f74737543;
-    *(undefined4 *)(texture_ptr + 1) = 0x656c7474;
-    *(undefined1 *)((longlong)texture_ptr + 0xc) = 0;
+    *(int32_t *)(texture_ptr + 1) = 0x656c7474;
+    *(int8_t *)((longlong)texture_ptr + 0xc) = 0;
     alloc_size = 0xc;
     alloc_context._0_4_ = data_config;
     FUN_180066df0(param2,&process_stack_ptr);
     process_stack_ptr = &UNK_180a3c3e0;
-    if (alloc_ptr != (undefined8 *)0x0) {
+    if (alloc_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    alloc_ptr = (undefined8 *)0x0;
+    alloc_ptr = (uint64_t *)0x0;
     alloc_context = (ulonglong)alloc_context._4_4_ << 0x20;
     process_stack_ptr = &UNK_18098bcb0;
     alloc_stack_ptr = &UNK_180a3c3e0;
     alloc_context2 = 0;
-    alloc_ptr2 = (undefined8 *)0x0;
+    alloc_ptr2 = (uint64_t *)0x0;
     alloc_size2 = 0;
-    texture_ptr = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-    *(undefined1 *)texture_ptr = 0;
+    texture_ptr = (uint64_t *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    *(int8_t *)texture_ptr = 0;
     alloc_ptr2 = texture_ptr;
     data_config = FUN_18064e990(texture_ptr);
     alloc_context2 = CONCAT44(alloc_context2._4_4_,data_config);
     *texture_ptr = 0x646f4d79726f7453;
-    *(undefined2 *)(texture_ptr + 1) = 0x65;
+    *(int16_t *)(texture_ptr + 1) = 0x65;
     alloc_size2 = 9;
     FUN_180066df0(param2,&alloc_stack_ptr);
     alloc_stack_ptr = &UNK_180a3c3e0;
-    if (alloc_ptr2 != (undefined8 *)0x0) {
+    if (alloc_ptr2 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
@@ -800,10 +800,10 @@ void rendering_system_update_texture_cache(void)
 {
   int *cache_index_ptr;
   int cache_size;
-  undefined8 *texture_manager;
+  uint64_t *texture_manager;
   int *cache_end_ptr;
   longlong cache_base;
-  undefined8 manager_data;
+  uint64_t manager_data;
   longlong cache_offset;
   longlong *cache_entry_ptr;
   int *cache_start_ptr;
@@ -811,7 +811,7 @@ void rendering_system_update_texture_cache(void)
   float cache_time;
   longlong *cache_stack_ptr[2];
   longlong *cache_stack_ptr2;
-  undefined8 cache_param;
+  uint64_t cache_param;
   
   if ((((DAT_180c96098 != '\0') && (_DAT_180c96070 != 0)) &&
       (*(int *)(_DAT_180c96070 + 0x87b7a8) == 2)) && (*(char *)(_DAT_180c96070 + 0x87b750) != '\0'))
@@ -833,13 +833,13 @@ void rendering_system_update_texture_cache(void)
           return;
         }
         cache_size = *cache_start_ptr;
-        texture_manager = *(undefined8 **)(cache_base + 0x148);
-        if (texture_manager != (undefined8 *)0x0) {
-          if ((undefined *)*texture_manager == &UNK_180a1b2d8) {
+        texture_manager = *(uint64_t **)(cache_base + 0x148);
+        if (texture_manager != (uint64_t *)0x0) {
+          if ((void *)*texture_manager == &UNK_180a1b2d8) {
             cache_flag = *(char *)(texture_manager + 2) != '\0';
           }
           else {
-            cache_flag = (**(code **)((undefined *)*texture_manager + 0x68))();
+            cache_flag = (**(code **)((void *)*texture_manager + 0x68))();
           }
           manager_data = _DAT_180c82868;
           if (cache_flag == '\0') {
@@ -896,10 +896,10 @@ void rendering_system_update_render_cache(void)
 {
   int *cache_index_ptr;
   int cache_size;
-  undefined8 *texture_manager;
+  uint64_t *texture_manager;
   int *cache_end_ptr;
   longlong cache_base;
-  undefined8 manager_data;
+  uint64_t manager_data;
   longlong cache_offset;
   longlong *cache_entry_ptr;
   longlong in_RAX;
@@ -907,10 +907,10 @@ void rendering_system_update_render_cache(void)
   char cache_flag;
   float cache_time;
   longlong *in_stack_00000030;
-  undefined8 in_stack_00000038;
+  uint64_t in_stack_00000038;
   longlong *in_stack_00000040;
   longlong *in_stack_00000048;
-  undefined8 cache_param;
+  uint64_t cache_param;
   
   cache_base = *(longlong *)(in_RAX + 0x3d8);
   cache_time = *(float *)(in_RAX + 0x220) + *(float *)(cache_base + 0x144);
@@ -931,13 +931,13 @@ void rendering_system_update_render_cache(void)
       return;
     }
     cache_size = *cache_start_ptr;
-    texture_manager = *(undefined8 **)(cache_base + 0x148);
-    if (texture_manager != (undefined8 *)0x0) {
-      if ((undefined *)*texture_manager == &UNK_180a1b2d8) {
+    texture_manager = *(uint64_t **)(cache_base + 0x148);
+    if (texture_manager != (uint64_t *)0x0) {
+      if ((void *)*texture_manager == &UNK_180a1b2d8) {
         cache_flag = *(char *)(texture_manager + 2) != '\0';
       }
       else {
-        cache_flag = (**(code **)((undefined *)*texture_manager + 0x68))();
+        cache_flag = (**(code **)((void *)*texture_manager + 0x68))();
       }
       manager_data = _DAT_180c82868;
       if (cache_flag == '\0') {
@@ -1013,12 +1013,12 @@ void rendering_system_empty_function_2(void)
  * @param param3 参数3，包含初始化所需的资源信息
  * @param param4 参数4，包含初始化所需的系统信息
  */
-void rendering_system_initialize_rendering_system(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
+void rendering_system_initialize_rendering_system(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
 
 {
   longlong init_param1;
   longlong init_param2;
-  undefined8 init_flag;
+  uint64_t init_flag;
   
   init_flag = 0xfffffffffffffffe;
   _DAT_180c95ef8 = 0;
@@ -1037,14 +1037,14 @@ void rendering_system_initialize_rendering_system(undefined8 param1, undefined8 
 void rendering_system_setup_render_pipeline(void)
 
 {
-  undefined8 *pipeline_ptr;
-  undefined4 *config_ptr;
-  undefined8 *resource_ptr;
+  uint64_t *pipeline_ptr;
+  int32_t *config_ptr;
+  uint64_t *resource_ptr;
   
   FUN_1802567b0(_DAT_180c868a8[0x15],&DAT_180a2d688,&UNK_180a2ca80,rendering_system_create_shader_object,0xfffffffffffffffe);
-  config_ptr = (undefined4 *)FUN_18008d660(_DAT_180c868a8 + 0x1c,&DAT_180a2d688);
+  config_ptr = (int32_t *)FUN_18008d660(_DAT_180c868a8 + 0x1c,&DAT_180a2d688);
   *config_ptr = 1;
-  resource_ptr = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,3);
+  resource_ptr = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,3);
   resource_ptr[1] = 0;
   resource_ptr[2] = 0;
   resource_ptr[3] = 0;
@@ -1055,11 +1055,11 @@ void rendering_system_setup_render_pipeline(void)
   *resource_ptr = &UNK_180a2d418;
   pipeline_ptr = resource_ptr + 1;
   resource_ptr[4] = 0;
-  *(undefined4 *)(resource_ptr + 6) = 3;
+  *(int32_t *)(resource_ptr + 6) = 3;
   *pipeline_ptr = pipeline_ptr;
   resource_ptr[2] = pipeline_ptr;
   resource_ptr[3] = 0;
-  *(undefined1 *)(resource_ptr + 4) = 0;
+  *(int8_t *)(resource_ptr + 4) = 0;
   resource_ptr[5] = 0;
   *_DAT_180c868a8 = resource_ptr;
   return;

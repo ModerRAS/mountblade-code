@@ -2,8 +2,8 @@
 
 // 04_ui_system_part288.c - 1 个函数
 
-// 函数: void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *param_4)
-void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *param_4)
+// 函数: void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
+void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
 
 {
   int iVar1;
@@ -11,18 +11,18 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
   float *pfVar3;
   float *pfVar4;
   float fVar5;
-  undefined1 auVar6 [32];
-  undefined1 auVar7 [32];
-  undefined1 auVar8 [32];
-  undefined1 auVar9 [32];
-  undefined1 auVar10 [32];
-  undefined1 auVar11 [32];
-  undefined1 auVar12 [16];
-  undefined1 auVar13 [32];
-  undefined1 auVar14 [32];
-  undefined1 auVar15 [32];
-  undefined1 auVar16 [32];
-  undefined1 auVar17 [32];
+  int8_t auVar6 [32];
+  int8_t auVar7 [32];
+  int8_t auVar8 [32];
+  int8_t auVar9 [32];
+  int8_t auVar10 [32];
+  int8_t auVar11 [32];
+  int8_t auVar12 [16];
+  int8_t auVar13 [32];
+  int8_t auVar14 [32];
+  int8_t auVar15 [32];
+  int8_t auVar16 [32];
+  int8_t auVar17 [32];
   float fVar18;
   float fVar19;
   float fVar20;
@@ -52,20 +52,20 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
   int iVar38;
   int iVar39;
   longlong lVar40;
-  undefined1 auVar41 [32];
-  undefined1 auVar42 [32];
-  undefined1 auVar43 [32];
-  undefined1 in_ZMM4 [64];
-  undefined1 auVar44 [64];
-  undefined1 auVar45 [32];
-  undefined1 in_ZMM5 [64];
-  undefined1 auVar46 [64];
-  undefined1 in_ZMM6 [64];
-  undefined1 auVar47 [64];
-  undefined1 in_ZMM7 [64];
-  undefined1 auVar48 [64];
-  undefined1 in_ZMM8 [64];
-  undefined1 auVar49 [64];
+  int8_t auVar41 [32];
+  int8_t auVar42 [32];
+  int8_t auVar43 [32];
+  int8_t in_ZMM4 [64];
+  int8_t auVar44 [64];
+  int8_t auVar45 [32];
+  int8_t in_ZMM5 [64];
+  int8_t auVar46 [64];
+  int8_t in_ZMM6 [64];
+  int8_t auVar47 [64];
+  int8_t in_ZMM7 [64];
+  int8_t auVar48 [64];
+  int8_t in_ZMM8 [64];
+  int8_t auVar49 [64];
   float fVar50;
   float fVar52;
   float fVar53;
@@ -73,8 +73,8 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
   float fVar55;
   float fVar56;
   float fVar57;
-  undefined1 in_ZMM9 [64];
-  undefined1 auVar51 [64];
+  int8_t in_ZMM9 [64];
+  int8_t auVar51 [64];
   float *in_stack_00000080;
   longlong in_stack_00000160;
   float *in_stack_00000168;
@@ -103,31 +103,31 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
         iVar29 = iVar31;
         do {
           lVar26 = (longlong)iVar32;
-          auVar6 = vshufps_avx(*(undefined1 (*) [32])(param_4 + (iVar32 + -0x400)),
-                               *(undefined1 (*) [32])(param_4 + (iVar32 + -0x200)),0x44);
-          auVar7 = vshufps_avx(*(undefined1 (*) [32])(param_4 + (iVar32 + -0x400)),
-                               *(undefined1 (*) [32])(param_4 + (iVar32 + -0x200)),0xee);
+          auVar6 = vshufps_avx(*(int8_t (*) [32])(param_4 + (iVar32 + -0x400)),
+                               *(int8_t (*) [32])(param_4 + (iVar32 + -0x200)),0x44);
+          auVar7 = vshufps_avx(*(int8_t (*) [32])(param_4 + (iVar32 + -0x400)),
+                               *(int8_t (*) [32])(param_4 + (iVar32 + -0x200)),0xee);
           in_ZMM4 = ZEXT3264(auVar7);
           iVar39 = iVar32 + 0x200;
           iVar32 = iVar32 + 0x800;
-          auVar8 = vshufps_avx(*(undefined1 (*) [32])(param_4 + lVar26),
-                               *(undefined1 (*) [32])(param_4 + iVar39),0x44);
-          auVar9 = vshufps_avx(*(undefined1 (*) [32])(param_4 + lVar26),
-                               *(undefined1 (*) [32])(param_4 + iVar39),0xee);
+          auVar8 = vshufps_avx(*(int8_t (*) [32])(param_4 + lVar26),
+                               *(int8_t (*) [32])(param_4 + iVar39),0x44);
+          auVar9 = vshufps_avx(*(int8_t (*) [32])(param_4 + lVar26),
+                               *(int8_t (*) [32])(param_4 + iVar39),0xee);
           auVar10 = vshufps_avx(auVar6,auVar8,0x88);
           in_ZMM6 = ZEXT3264(auVar10);
           auVar6 = vshufps_avx(auVar6,auVar8,0xdd);
           auVar8 = vshufps_avx(auVar7,auVar9,0xdd);
-          *(undefined1 (*) [16])(in_R11 + iVar36) = auVar8._16_16_;
+          *(int8_t (*) [16])(in_R11 + iVar36) = auVar8._16_16_;
           auVar7 = vshufps_avx(auVar7,auVar9,0x88);
           in_ZMM5 = ZEXT3264(auVar7);
-          *(undefined1 (*) [16])(in_R11 + lVar40 + iVar36) = auVar7._16_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar38 + (longlong)iVar36) = auVar6._16_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar36 + (longlong)iVar33) = auVar10._16_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar37 + (longlong)iVar36) = auVar8._0_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar34 + (longlong)iVar36) = auVar7._0_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar1 + (longlong)iVar36) = auVar6._0_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar25 + (longlong)iVar36) = auVar10._0_16_;
+          *(int8_t (*) [16])(in_R11 + lVar40 + iVar36) = auVar7._16_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar38 + (longlong)iVar36) = auVar6._16_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar36 + (longlong)iVar33) = auVar10._16_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar37 + (longlong)iVar36) = auVar8._0_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar34 + (longlong)iVar36) = auVar7._0_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar1 + (longlong)iVar36) = auVar6._0_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar25 + (longlong)iVar36) = auVar10._0_16_;
           iVar29 = iVar29 + -1;
           iVar36 = iVar36 + 4;
           param_2 = in_stack_00000180;
@@ -157,7 +157,7 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
   auVar6 = _DAT_180980640;
                     // WARNING: Read-only address (ram,0x000180980640) is written
   for (iVar24 = (int)in_stack_00000190 >> 3; iVar24 != 0; iVar24 = iVar24 + -1) {
-    auVar7 = *(undefined1 (*) [32])(unaff_RDI + -0x20);
+    auVar7 = *(int8_t (*) [32])(unaff_RDI + -0x20);
     in_ZMM9 = ZEXT3264(auVar7);
     fVar5 = *unaff_RBX;
     fVar18 = unaff_RBX[1];
@@ -274,19 +274,19 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
         auVar41 = vshufps_avx(auVar43,auVar42,0xee);
         auVar8 = vshufps_avx(auVar8,auVar10,0xdd);
         auVar10 = vshufps_avx(auVar9,auVar41,0x88);
-        *(undefined1 (*) [16])(in_R11 + iVar33) = auVar11._0_16_;
-        *(undefined1 (*) [16])(in_R11 + (longlong)param_2 + (longlong)iVar33) = auVar8._0_16_;
-        *(undefined1 (*) [16])(in_R11 + (longlong)(param_2 * 2) + (longlong)iVar33) = auVar10._0_16_
+        *(int8_t (*) [16])(in_R11 + iVar33) = auVar11._0_16_;
+        *(int8_t (*) [16])(in_R11 + (longlong)param_2 + (longlong)iVar33) = auVar8._0_16_;
+        *(int8_t (*) [16])(in_R11 + (longlong)(param_2 * 2) + (longlong)iVar33) = auVar10._0_16_
         ;
         auVar9 = vshufps_avx(auVar9,auVar41,0xdd);
-        *(undefined1 (*) [16])(in_R11 + (longlong)(param_2 * 3) + (longlong)iVar33) = auVar9._0_16_;
-        *(undefined1 (*) [16])(in_R11 + (longlong)(param_2 * 4) + (longlong)iVar33) =
+        *(int8_t (*) [16])(in_R11 + (longlong)(param_2 * 3) + (longlong)iVar33) = auVar9._0_16_;
+        *(int8_t (*) [16])(in_R11 + (longlong)(param_2 * 4) + (longlong)iVar33) =
              auVar11._16_16_;
-        *(undefined1 (*) [16])(in_R11 + (longlong)(param_2 * 5) + (longlong)iVar33) = auVar8._16_16_
+        *(int8_t (*) [16])(in_R11 + (longlong)(param_2 * 5) + (longlong)iVar33) = auVar8._16_16_
         ;
-        *(undefined1 (*) [16])(in_R11 + (longlong)(param_2 * 6) + (longlong)iVar33) =
+        *(int8_t (*) [16])(in_R11 + (longlong)(param_2 * 6) + (longlong)iVar33) =
              auVar10._16_16_;
-        *(undefined1 (*) [16])(in_R11 + (longlong)(param_2 * 7) + (longlong)iVar33) = auVar9._16_16_
+        *(int8_t (*) [16])(in_R11 + (longlong)(param_2 * 7) + (longlong)iVar33) = auVar9._16_16_
         ;
         iVar37 = iVar37 + -1;
         unaff_RBX = in_stack_00000168;
@@ -322,7 +322,7 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
     in_stack_00000168 = unaff_RBX;
   }
   for (iVar24 = (int)in_stack_00000198 >> 3; iVar24 != 0; iVar24 = iVar24 + -1) {
-    auVar7 = vpermps_avx2(auVar6,*(undefined1 (*) [32])(unaff_RDI + -0x20));
+    auVar7 = vpermps_avx2(auVar6,*(int8_t (*) [32])(unaff_RDI + -0x20));
     fVar5 = *unaff_RBX;
     fVar18 = unaff_RBX[1];
     fVar19 = unaff_RBX[2];
@@ -394,7 +394,7 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
         auVar51._28_36_ = in_ZMM9._28_36_;
         auVar51._24_4_ = fVar57 * pfVar3[6];
         in_ZMM9 = ZEXT3264(auVar51._0_32_);
-        auVar8 = vpermps_avx2(auVar6,*(undefined1 (*) [32])(in_R10 + (iVar39 + -0x800)));
+        auVar8 = vpermps_avx2(auVar6,*(int8_t (*) [32])(in_R10 + (iVar39 + -0x800)));
         auVar46._0_4_ = auVar8._0_4_ * fVar5;
         auVar46._4_4_ = auVar8._4_4_ * fVar18;
         auVar46._8_4_ = auVar8._8_4_ * fVar19;
@@ -403,7 +403,7 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
         auVar46._20_4_ = auVar8._20_4_ * fVar22;
         auVar46._28_36_ = in_ZMM5._28_36_;
         auVar46._24_4_ = auVar8._24_4_ * fVar23;
-        auVar8 = vpermps_avx2(auVar6,*(undefined1 (*) [32])(in_R10 + (iVar39 + -0x400)));
+        auVar8 = vpermps_avx2(auVar6,*(int8_t (*) [32])(in_R10 + (iVar39 + -0x400)));
         auVar13._4_4_ = auVar8._4_4_ * fVar18;
         auVar13._0_4_ = auVar8._0_4_ * fVar5;
         auVar13._8_4_ = auVar8._8_4_ * fVar19;
@@ -412,7 +412,7 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
         auVar13._20_4_ = auVar8._20_4_ * fVar22;
         auVar13._24_4_ = auVar8._24_4_ * fVar23;
         auVar13._28_4_ = pfVar27[7];
-        auVar8 = vpermps_avx2(auVar6,*(undefined1 (*) [32])(in_R10 + iVar39));
+        auVar8 = vpermps_avx2(auVar6,*(int8_t (*) [32])(in_R10 + iVar39));
         auVar14._4_4_ = auVar8._4_4_ * fVar18;
         auVar14._0_4_ = auVar8._0_4_ * fVar5;
         auVar14._8_4_ = auVar8._8_4_ * fVar19;
@@ -420,12 +420,12 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
         auVar14._16_4_ = auVar8._16_4_ * fVar21;
         auVar14._20_4_ = auVar8._20_4_ * fVar22;
         auVar14._24_4_ = auVar8._24_4_ * fVar23;
-        auVar14._28_4_ = SUB324(*(undefined1 (*) [32])(in_R10 + iVar39),0x1c);
+        auVar14._28_4_ = SUB324(*(int8_t (*) [32])(in_R10 + iVar39),0x1c);
         auVar9 = vsubps_avx(auVar47._0_32_,auVar46._0_32_);
         auVar11 = vsubps_avx(auVar49._0_32_,auVar14);
         iVar2 = iVar39 + 0x400;
         iVar39 = iVar39 + 0x1000;
-        auVar10 = vpermps_avx2(auVar6,*(undefined1 (*) [32])(in_R10 + iVar2));
+        auVar10 = vpermps_avx2(auVar6,*(int8_t (*) [32])(in_R10 + iVar2));
         auVar15._4_4_ = auVar10._4_4_ * fVar18;
         auVar15._0_4_ = auVar10._0_4_ * fVar5;
         auVar15._8_4_ = auVar10._8_4_ * fVar19;
@@ -445,15 +445,15 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
         auVar8 = vshufps_avx(auVar8,auVar11,0xdd);
         in_ZMM5 = ZEXT3264(auVar8);
         auVar11 = vshufps_avx(auVar9,auVar10,0x88);
-        *(undefined1 (*) [16])(in_R11 + iVar36) = auVar41._0_16_;
-        *(undefined1 (*) [16])(in_R11 + lVar40 + iVar36) = auVar8._0_16_;
-        *(undefined1 (*) [16])(in_R11 + (longlong)iVar38 + (longlong)iVar36) = auVar11._0_16_;
+        *(int8_t (*) [16])(in_R11 + iVar36) = auVar41._0_16_;
+        *(int8_t (*) [16])(in_R11 + lVar40 + iVar36) = auVar8._0_16_;
+        *(int8_t (*) [16])(in_R11 + (longlong)iVar38 + (longlong)iVar36) = auVar11._0_16_;
         auVar9 = vshufps_avx(auVar9,auVar10,0xdd);
-        *(undefined1 (*) [16])(in_R11 + (longlong)iVar33 + (longlong)iVar36) = auVar9._0_16_;
-        *(undefined1 (*) [16])(in_R11 + (longlong)iVar37 + (longlong)iVar36) = auVar41._16_16_;
-        *(undefined1 (*) [16])(in_R11 + (longlong)iVar34 + (longlong)iVar36) = auVar8._16_16_;
-        *(undefined1 (*) [16])(in_R11 + (longlong)iVar1 + (longlong)iVar36) = auVar11._16_16_;
-        *(undefined1 (*) [16])(in_R11 + (longlong)iVar25 + (longlong)iVar36) = auVar9._16_16_;
+        *(int8_t (*) [16])(in_R11 + (longlong)iVar33 + (longlong)iVar36) = auVar9._0_16_;
+        *(int8_t (*) [16])(in_R11 + (longlong)iVar37 + (longlong)iVar36) = auVar41._16_16_;
+        *(int8_t (*) [16])(in_R11 + (longlong)iVar34 + (longlong)iVar36) = auVar8._16_16_;
+        *(int8_t (*) [16])(in_R11 + (longlong)iVar1 + (longlong)iVar36) = auVar11._16_16_;
+        *(int8_t (*) [16])(in_R11 + (longlong)iVar25 + (longlong)iVar36) = auVar9._16_16_;
         iVar29 = iVar29 + -1;
         unaff_RBX = in_stack_00000168;
         param_2 = in_stack_00000180;
@@ -555,16 +555,16 @@ void FUN_18082c579(undefined8 param_1,int param_2,undefined8 param_3,float *para
           auVar6 = vshufps_avx(auVar6,auVar8,0xdd);
           auVar8 = vshufps_avx(auVar44._0_32_,auVar17,0xee);
           auVar10 = vshufps_avx(auVar7,auVar8,0xdd);
-          *(undefined1 (*) [16])(in_R11 + iVar36) = auVar10._16_16_;
+          *(int8_t (*) [16])(in_R11 + iVar36) = auVar10._16_16_;
           auVar7 = vshufps_avx(auVar7,auVar8,0x88);
           in_ZMM4 = ZEXT3264(auVar7);
-          *(undefined1 (*) [16])(in_R11 + lVar40 + iVar36) = auVar7._16_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar38 + (longlong)iVar36) = auVar6._16_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar33 + (longlong)iVar36) = auVar9._16_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar36 + (longlong)iVar37) = auVar10._0_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar34 + (longlong)iVar36) = auVar7._0_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar1 + (longlong)iVar36) = auVar6._0_16_;
-          *(undefined1 (*) [16])(in_R11 + (longlong)iVar25 + (longlong)iVar36) = auVar9._0_16_;
+          *(int8_t (*) [16])(in_R11 + lVar40 + iVar36) = auVar7._16_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar38 + (longlong)iVar36) = auVar6._16_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar33 + (longlong)iVar36) = auVar9._16_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar36 + (longlong)iVar37) = auVar10._0_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar34 + (longlong)iVar36) = auVar7._0_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar1 + (longlong)iVar36) = auVar6._0_16_;
+          *(int8_t (*) [16])(in_R11 + (longlong)iVar25 + (longlong)iVar36) = auVar9._0_16_;
           iVar29 = iVar29 + -1;
           param_2 = in_stack_00000180;
           iVar36 = iVar36 + 4;

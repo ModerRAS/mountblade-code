@@ -218,12 +218,12 @@ void SystemInitializer(void)
  * @param mode_flag 模式标志
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-undefined8 AdvancedDataProcessor(longlong system_context, undefined8 operation_data, uint config_param, int mode_flag)
+uint64_t AdvancedDataProcessor(longlong system_context, uint64_t operation_data, uint config_param, int mode_flag)
 
 {
   char state_flag;
-  undefined1 validation_flag;
-  undefined1 processing_flag;
+  int8_t validation_flag;
+  int8_t processing_flag;
   uint current_size;
   ulonglong data_offset;
   int iteration_count;
@@ -282,13 +282,13 @@ undefined8 AdvancedDataProcessor(longlong system_context, undefined8 operation_d
               state_flag = *(char *)((longlong)(int)uVar4 + SYSTEM_OFFSET_290 + system_context);
             }
             if (*(char *)((longlong)(int)uVar4 + SYSTEM_OFFSET_290 + system_context) == -1) {
-              *(undefined4 *)(system_context + SYSTEM_OFFSET_BFC) = *(undefined4 *)(system_context + SYSTEM_OFFSET_BD0);
+              *(int32_t *)(system_context + SYSTEM_OFFSET_BFC) = *(int32_t *)(system_context + SYSTEM_OFFSET_BD0);
             }
-            *(undefined4 *)(system_context + SYSTEM_OFFSET_C0C) = 0xffffffff;
+            *(int32_t *)(system_context + SYSTEM_OFFSET_C0C) = 0xffffffff;
           }
           if (-1 < *(int *)(system_context + SYSTEM_OFFSET_C08)) {
             *(int *)(system_context + SYSTEM_OFFSET_BF8) = *(int *)(system_context + SYSTEM_OFFSET_C08);
-            *(undefined4 *)(system_context + SYSTEM_OFFSET_C08) = 0xffffffff;
+            *(int32_t *)(system_context + SYSTEM_OFFSET_C08) = 0xffffffff;
           }
           FUN_1807ce620(system_context, 1);
           if (*(int *)(system_context + SYSTEM_OFFSET_C08) == -1) {
@@ -300,9 +300,9 @@ undefined8 AdvancedDataProcessor(longlong system_context, undefined8 operation_d
               iteration_count = *(int *)(system_context + SYSTEM_OFFSET_BFC) + 1;
               *(int *)(system_context + SYSTEM_OFFSET_C0C) = iteration_count;
               if (*(int *)(system_context + SYSTEM_OFFSET_8EC) <= iteration_count) {
-                *(undefined4 *)(system_context + SYSTEM_OFFSET_C0C) = *(undefined4 *)(system_context + SYSTEM_OFFSET_BD0);
+                *(int32_t *)(system_context + SYSTEM_OFFSET_C0C) = *(int32_t *)(system_context + SYSTEM_OFFSET_BD0);
               }
-              *(undefined4 *)(system_context + SYSTEM_OFFSET_C08) = 0;
+              *(int32_t *)(system_context + SYSTEM_OFFSET_C08) = 0;
             }
           }
         }
@@ -314,24 +314,24 @@ undefined8 AdvancedDataProcessor(longlong system_context, undefined8 operation_d
         FUN_1807cd7f0(system_context);
       }
       if (*(int *)(system_context + SYSTEM_OFFSET_BF0) == 0) {
-        *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9) = 1;
+        *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = 1;
       }
       else {
         *(int *)(system_context + SYSTEM_OFFSET_BEC) = *(int *)(system_context + SYSTEM_OFFSET_BEC) + 1;
         if (*(int *)(system_context + SYSTEM_OFFSET_BF0) + *(int *)(system_context + SYSTEM_OFFSET_C00) <= *(int *)(system_context + SYSTEM_OFFSET_BEC)) {
-          *(undefined4 *)(system_context + SYSTEM_OFFSET_C00) = 0;
-          *(undefined4 *)(system_context + SYSTEM_OFFSET_BEC) = 0;
+          *(int32_t *)(system_context + SYSTEM_OFFSET_C00) = 0;
+          *(int32_t *)(system_context + SYSTEM_OFFSET_BEC) = 0;
         }
       }
       *(int *)(system_context + SYSTEM_BUFFER_SIZE) = *(int *)(system_context + SYSTEM_BUFFER_SIZE) + *(int *)(system_context + SYSTEM_OFFSET_854);
       current_size = *(uint *)(system_context + SYSTEM_BUFFER_SIZE);
     }
     if (is_less_than) {
-      validation_flag = *(undefined1 *)(system_context + SYSTEM_OFFSET_BE8);
-      processing_flag = *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9);
+      validation_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE8);
+      processing_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE9);
       FUN_18080d690(system_context);
-      *(undefined1 *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
-      *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
+      *(int8_t *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
+      *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
     }
   }
   return SYSTEM_SUCCESS;
@@ -351,12 +351,12 @@ undefined8 AdvancedDataProcessor(longlong system_context, undefined8 operation_d
  * @param system_context 系统上下文指针
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-undefined8 SimpleDataProcessor(undefined8 system_context)
+uint64_t SimpleDataProcessor(uint64_t system_context)
 
 {
   char state_flag;
-  undefined1 validation_flag;
-  undefined1 processing_flag;
+  int8_t validation_flag;
+  int8_t processing_flag;
   uint config_param;
   uint current_size;
   ulonglong data_offset;
@@ -393,13 +393,13 @@ undefined8 SimpleDataProcessor(undefined8 system_context)
               cVar1 = *(char *)((longlong)(int)uVar4 + 0x290 + unaff_RBX);
             }
             if (*(char *)((longlong)(int)uVar4 + 0x290 + unaff_RBX) == -1) {
-              *(undefined4 *)(unaff_RBX + 0xbfc) = *(undefined4 *)(unaff_RBX + 0xbd0);
+              *(int32_t *)(unaff_RBX + 0xbfc) = *(int32_t *)(unaff_RBX + 0xbd0);
             }
-            *(undefined4 *)(unaff_RBX + 0xc0c) = 0xffffffff;
+            *(int32_t *)(unaff_RBX + 0xc0c) = 0xffffffff;
           }
           if (-1 < *(int *)(unaff_RBX + 0xc08)) {
             *(int *)(unaff_RBX + 0xbf8) = *(int *)(unaff_RBX + 0xc08);
-            *(undefined4 *)(unaff_RBX + 0xc08) = 0xffffffff;
+            *(int32_t *)(unaff_RBX + 0xc08) = 0xffffffff;
           }
           FUN_1807ce620();
           if (*(int *)(unaff_RBX + 0xc08) == -1) {
@@ -412,9 +412,9 @@ undefined8 SimpleDataProcessor(undefined8 system_context)
               iVar6 = *(int *)(unaff_RBX + 0xbfc) + 1;
               *(int *)(unaff_RBX + 0xc0c) = iVar6;
               if (*(int *)(unaff_RBX + 0x8ec) <= iVar6) {
-                *(undefined4 *)(unaff_RBX + 0xc0c) = *(undefined4 *)(unaff_RBX + 0xbd0);
+                *(int32_t *)(unaff_RBX + 0xc0c) = *(int32_t *)(unaff_RBX + 0xbd0);
               }
-              *(undefined4 *)(unaff_RBX + 0xc08) = 0;
+              *(int32_t *)(unaff_RBX + 0xc08) = 0;
             }
           }
         }
@@ -426,25 +426,25 @@ undefined8 SimpleDataProcessor(undefined8 system_context)
         FUN_1807cd7f0();
       }
       if (*(int *)(unaff_RBX + 0xbf0) == 0) {
-        *(undefined1 *)(unaff_RBX + 0xbe9) = 1;
+        *(int8_t *)(unaff_RBX + 0xbe9) = 1;
       }
       else {
         *(int *)(unaff_RBX + 0xbec) = *(int *)(unaff_RBX + 0xbec) + 1;
         if (*(int *)(unaff_RBX + 0xbf0) + *(int *)(unaff_RBX + 0xc00) <= *(int *)(unaff_RBX + 0xbec)
            ) {
-          *(undefined4 *)(unaff_RBX + 0xc00) = 0;
-          *(undefined4 *)(unaff_RBX + 0xbec) = 0;
+          *(int32_t *)(unaff_RBX + 0xc00) = 0;
+          *(int32_t *)(unaff_RBX + 0xbec) = 0;
         }
       }
       *(int *)(unaff_RBX + 0x858) = *(int *)(unaff_RBX + 0x858) + *(int *)(unaff_RBX + 0x854);
       in_EAX = *(uint *)(unaff_RBX + 0x858);
     }
     if (bVar7) {
-      uVar2 = *(undefined1 *)(unaff_RBX + 0xbe8);
-      uVar3 = *(undefined1 *)(unaff_RBX + 0xbe9);
+      uVar2 = *(int8_t *)(unaff_RBX + 0xbe8);
+      uVar3 = *(int8_t *)(unaff_RBX + 0xbe9);
       FUN_18080d690();
-      *(undefined1 *)(unaff_RBX + 0xbe8) = uVar2;
-      *(undefined1 *)(unaff_RBX + 0xbe9) = uVar3;
+      *(int8_t *)(unaff_RBX + 0xbe8) = uVar2;
+      *(int8_t *)(unaff_RBX + 0xbe9) = uVar3;
     }
   }
   return 0;
@@ -463,12 +463,12 @@ undefined8 SimpleDataProcessor(undefined8 system_context)
  * 
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-undefined8 LoopDataProcessor(void)
+uint64_t LoopDataProcessor(void)
 
 {
   char state_flag;
-  undefined1 validation_flag;
-  undefined1 processing_flag;
+  int8_t validation_flag;
+  int8_t processing_flag;
   uint current_index;
   ulonglong data_offset;
   int iteration_count;
@@ -500,13 +500,13 @@ undefined8 LoopDataProcessor(void)
             state_flag = *(char *)((longlong)(int)current_index + SYSTEM_OFFSET_290 + system_context);
           }
           if (*(char *)((longlong)(int)current_index + SYSTEM_OFFSET_290 + system_context) == SYSTEM_INVALID_INDEX) {
-            *(undefined4 *)(system_context + SYSTEM_OFFSET_BFC) = *(undefined4 *)(system_context + SYSTEM_OFFSET_BD0);
+            *(int32_t *)(system_context + SYSTEM_OFFSET_BFC) = *(int32_t *)(system_context + SYSTEM_OFFSET_BD0);
           }
-          *(undefined4 *)(system_context + SYSTEM_OFFSET_C0C) = 0xffffffff;
+          *(int32_t *)(system_context + SYSTEM_OFFSET_C0C) = 0xffffffff;
         }
         if (-1 < *(int *)(system_context + SYSTEM_OFFSET_C08)) {
           *(int *)(system_context + SYSTEM_OFFSET_BF8) = *(int *)(system_context + SYSTEM_OFFSET_C08);
-          *(undefined4 *)(system_context + SYSTEM_OFFSET_C08) = 0xffffffff;
+          *(int32_t *)(system_context + SYSTEM_OFFSET_C08) = 0xffffffff;
         }
         ErrorCodeReturner();
         if (*(int *)(system_context + SYSTEM_OFFSET_C08) == -1) {
@@ -519,9 +519,9 @@ undefined8 LoopDataProcessor(void)
             iteration_count = *(int *)(system_context + SYSTEM_OFFSET_BFC) + 1;
             *(int *)(system_context + SYSTEM_OFFSET_C0C) = iteration_count;
             if (*(int *)(system_context + SYSTEM_OFFSET_8EC) <= iteration_count) {
-              *(undefined4 *)(system_context + SYSTEM_OFFSET_C0C) = *(undefined4 *)(system_context + SYSTEM_OFFSET_BD0);
+              *(int32_t *)(system_context + SYSTEM_OFFSET_C0C) = *(int32_t *)(system_context + SYSTEM_OFFSET_BD0);
             }
-            *(undefined4 *)(system_context + SYSTEM_OFFSET_C08) = 0;
+            *(int32_t *)(system_context + SYSTEM_OFFSET_C08) = 0;
           }
         }
       }
@@ -534,14 +534,14 @@ undefined8 LoopDataProcessor(void)
     }
     // 处理系统状态更新
     if (*(int *)(system_context + SYSTEM_OFFSET_BF0) == 0) {
-      *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9) = 1;
+      *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = 1;
     }
     else {
       *(int *)(system_context + SYSTEM_OFFSET_BEC) = *(int *)(system_context + SYSTEM_OFFSET_BEC) + 1;
       if (*(int *)(system_context + SYSTEM_OFFSET_BF0) + *(int *)(system_context + SYSTEM_OFFSET_C00) <= *(int *)(system_context + SYSTEM_OFFSET_BEC))
       {
-        *(undefined4 *)(system_context + SYSTEM_OFFSET_C00) = 0;
-        *(undefined4 *)(system_context + SYSTEM_OFFSET_BEC) = 0;
+        *(int32_t *)(system_context + SYSTEM_OFFSET_C00) = 0;
+        *(int32_t *)(system_context + SYSTEM_OFFSET_BEC) = 0;
       }
     }
     // 更新系统缓冲区大小
@@ -550,11 +550,11 @@ undefined8 LoopDataProcessor(void)
   
   // 处理上下文状态恢复
   if (context_flag != '\0') {
-    validation_flag = *(undefined1 *)(system_context + SYSTEM_OFFSET_BE8);
-    processing_flag = *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9);
+    validation_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE8);
+    processing_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE9);
     FUN_18080d690();
-    *(undefined1 *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
-    *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
+    *(int8_t *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
+    *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
   }
   return SYSTEM_SUCCESS;
 }
@@ -572,21 +572,21 @@ undefined8 LoopDataProcessor(void)
  * 
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-undefined8 FastStateChecker(void)
+uint64_t FastStateChecker(void)
 
 {
-  undefined1 validation_flag;
-  undefined1 processing_flag;
+  int8_t validation_flag;
+  int8_t processing_flag;
   longlong system_context;
   char context_flag;
   
   // 检查上下文标志并处理状态恢复
   if (context_flag != '\0') {
-    validation_flag = *(undefined1 *)(system_context + SYSTEM_OFFSET_BE8);
-    processing_flag = *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9);
+    validation_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE8);
+    processing_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE9);
     FUN_18080d690();
-    *(undefined1 *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
-    *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
+    *(int8_t *)(system_context + SYSTEM_OFFSET_BE8) = validation_flag;
+    *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = processing_flag;
   }
   return SYSTEM_SUCCESS;
 }
@@ -603,7 +603,7 @@ undefined8 FastStateChecker(void)
  * 
  * @return 错误代码（0x13表示配置错误）
  */
-undefined8 ErrorCodeReturner(void)
+uint64_t ErrorCodeReturner(void)
 
 {
   return SYSTEM_ERROR_INVALID_CONFIG;
@@ -624,7 +624,7 @@ undefined8 ErrorCodeReturner(void)
  * @param operation_flag 操作标志
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-undefined8 ParameterizedDataProcessor(longlong system_context, char operation_flag)
+uint64_t ParameterizedDataProcessor(longlong system_context, char operation_flag)
 
 {
   char state_flag;
@@ -655,13 +655,13 @@ undefined8 ParameterizedDataProcessor(longlong system_context, char operation_fl
           state_flag = *(char *)((longlong)(int)current_index + SYSTEM_OFFSET_290 + system_context);
         }
         if (*(char *)((longlong)(int)current_index + SYSTEM_OFFSET_290 + system_context) == SYSTEM_INVALID_INDEX) {
-          *(undefined4 *)(system_context + SYSTEM_OFFSET_BFC) = *(undefined4 *)(system_context + SYSTEM_OFFSET_BD0);
+          *(int32_t *)(system_context + SYSTEM_OFFSET_BFC) = *(int32_t *)(system_context + SYSTEM_OFFSET_BD0);
         }
-        *(undefined4 *)(system_context + SYSTEM_OFFSET_C0C) = 0xffffffff;
+        *(int32_t *)(system_context + SYSTEM_OFFSET_C0C) = 0xffffffff;
       }
       if (-1 < *(int *)(system_context + SYSTEM_OFFSET_C08)) {
         *(int *)(system_context + SYSTEM_OFFSET_BF8) = *(int *)(system_context + SYSTEM_OFFSET_C08);
-        *(undefined4 *)(system_context + SYSTEM_OFFSET_C08) = 0xffffffff;
+        *(int32_t *)(system_context + SYSTEM_OFFSET_C08) = 0xffffffff;
       }
       FUN_1807ce620(system_context, operation_flag);
       if (*(int *)(system_context + SYSTEM_OFFSET_C08) == -1) {
@@ -673,9 +673,9 @@ undefined8 ParameterizedDataProcessor(longlong system_context, char operation_fl
           iteration_count = *(int *)(system_context + SYSTEM_OFFSET_BFC) + 1;
           *(int *)(system_context + SYSTEM_OFFSET_C0C) = iteration_count;
           if (*(int *)(system_context + SYSTEM_OFFSET_8EC) <= iteration_count) {
-            *(undefined4 *)(system_context + SYSTEM_OFFSET_C0C) = *(undefined4 *)(system_context + SYSTEM_OFFSET_BD0);
+            *(int32_t *)(system_context + SYSTEM_OFFSET_C0C) = *(int32_t *)(system_context + SYSTEM_OFFSET_BD0);
           }
-          *(undefined4 *)(system_context + SYSTEM_OFFSET_C08) = 0;
+          *(int32_t *)(system_context + SYSTEM_OFFSET_C08) = 0;
         }
       }
     }
@@ -689,13 +689,13 @@ undefined8 ParameterizedDataProcessor(longlong system_context, char operation_fl
   
   // 处理系统状态更新
   if (*(int *)(system_context + SYSTEM_OFFSET_BF0) == 0) {
-    *(undefined1 *)(system_context + SYSTEM_OFFSET_BE9) = 1;
+    *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = 1;
   }
   else {
     *(int *)(system_context + SYSTEM_OFFSET_BEC) = *(int *)(system_context + SYSTEM_OFFSET_BEC) + 1;
     if (*(int *)(system_context + SYSTEM_OFFSET_BF0) + *(int *)(system_context + SYSTEM_OFFSET_C00) <= *(int *)(system_context + SYSTEM_OFFSET_BEC)) {
-      *(undefined4 *)(system_context + SYSTEM_OFFSET_C00) = 0;
-      *(undefined4 *)(system_context + SYSTEM_OFFSET_BEC) = 0;
+      *(int32_t *)(system_context + SYSTEM_OFFSET_C00) = 0;
+      *(int32_t *)(system_context + SYSTEM_OFFSET_BEC) = 0;
     }
   }
   
@@ -719,19 +719,19 @@ undefined8 ParameterizedDataProcessor(longlong system_context, char operation_fl
  * @param system_context 系统上下文指针
  * @return 处理状态码（0表示成功，非0表示错误）
  */
-undefined8 SystemResourceManager(longlong system_context)
+uint64_t SystemResourceManager(longlong system_context)
 
 {
   longlong *plVar1;
   int *piVar2;
-  undefined1 uVar3;
+  int8_t uVar3;
   int iVar4;
   longlong lVar5;
   longlong lVar6;
   byte bVar7;
   int iVar8;
   int iVar9;
-  undefined *puVar10;
+  void *puVar10;
   int iVar11;
   uint uVar12;
   byte bVar14;
@@ -743,7 +743,7 @@ undefined8 SystemResourceManager(longlong system_context)
   longlong lVar20;
   int iStackX_18;
   longlong lStackX_20;
-  undefined *puStack_68;
+  void *puStack_68;
   longlong lStack_58;
   ulonglong uVar13;
   
@@ -764,9 +764,9 @@ undefined8 SystemResourceManager(longlong system_context)
         lVar20 = (ulonglong)*(byte *)(lVar5 + 0xd0) * 0x618 + *(longlong *)(param_1 + 0x900);
         bVar7 = *(byte *)((ulonglong)*(byte *)(lVar5 + 0xd1) + 0x3a0 + lVar20);
         if (bVar7 < 0x10) {
-          puVar10 = (undefined *)((ulonglong)bVar7 * 0x38 + 0x20 + lVar20);
+          puVar10 = (void *)((ulonglong)bVar7 * 0x38 + 0x20 + lVar20);
           puStack_68 = &DAT_180be7a80;
-          if (puVar10 != (undefined *)0x0) {
+          if (puVar10 != (void *)0x0) {
             puStack_68 = puVar10;
           }
         }
@@ -779,28 +779,28 @@ undefined8 SystemResourceManager(longlong system_context)
         puStack_68 = &DAT_180be7a80;
         _DAT_180be7a80 = 0;
       }
-      uVar3 = *(undefined1 *)(lVar16 + 3);
+      uVar3 = *(int8_t *)(lVar16 + 3);
       bVar7 = *(byte *)(lVar16 + 4);
-      *(undefined4 *)(lStackX_20 + 0x4c) = 0;
+      *(int32_t *)(lStackX_20 + 0x4c) = 0;
       bVar19 = bVar7 & 0xf;
-      *(undefined4 *)(lStackX_20 + 0x50) = 0;
-      *(undefined1 *)(lStackX_20 + 0x3c) = 0;
+      *(int32_t *)(lStackX_20 + 0x50) = 0;
+      *(int8_t *)(lStackX_20 + 0x3c) = 0;
       if (((*(byte *)(lVar20 + 0x400) & 1) != 0) && (*(char *)(lStackX_20 + 0x78) == '\0')) {
-        FUN_1807ccbe0(param_1,lStackX_20 + 100,lStackX_20,*(undefined1 *)(lVar20 + 0x401),
-                      lVar20 + 0x402,*(byte *)(lVar20 + 0x400),*(undefined1 *)(lVar20 + 0x453),
-                      *(undefined1 *)(lVar20 + 0x454),*(undefined1 *)(lVar20 + 0x452),2);
+        FUN_1807ccbe0(param_1,lStackX_20 + 100,lStackX_20,*(int8_t *)(lVar20 + 0x401),
+                      lVar20 + 0x402,*(byte *)(lVar20 + 0x400),*(int8_t *)(lVar20 + 0x453),
+                      *(int8_t *)(lVar20 + 0x454),*(int8_t *)(lVar20 + 0x452),2);
       }
       uVar12 = (uint)(bVar7 >> 4);
       if (((*(byte *)(lVar20 + 0x457) & 1) != 0) && (*(char *)(lStackX_20 + 0x90) == '\0')) {
-        FUN_1807ccbe0(param_1,lStackX_20 + 0x7c,lStackX_20,*(undefined1 *)(lVar20 + 0x458),
-                      lVar20 + 0x45a,*(byte *)(lVar20 + 0x457),*(undefined1 *)(lVar20 + 0x4ab),
-                      *(undefined1 *)(lVar20 + 0x4ac),*(undefined1 *)(lVar20 + 0x4aa),4);
+        FUN_1807ccbe0(param_1,lStackX_20 + 0x7c,lStackX_20,*(int8_t *)(lVar20 + 0x458),
+                      lVar20 + 0x45a,*(byte *)(lVar20 + 0x457),*(int8_t *)(lVar20 + 0x4ab),
+                      *(int8_t *)(lVar20 + 0x4ac),*(int8_t *)(lVar20 + 0x4aa),4);
       }
       if (*(char *)(lStackX_20 + 0xbc) != '\0') {
         *(int *)(lStackX_20 + 0xb0) =
              *(int *)(lStackX_20 + 0xb0) - (uint)*(ushort *)(lVar20 + 0x50c);
         if (*(int *)(lStackX_20 + 0xb0) < 0) {
-          *(undefined4 *)(lStackX_20 + 0xb0) = 0;
+          *(int32_t *)(lStackX_20 + 0xb0) = 0;
         }
         *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 2;
       }
@@ -811,14 +811,14 @@ undefined8 SystemResourceManager(longlong system_context)
         case 6:
           *(int *)(lStackX_20 + 0x44) = *(int *)(lStackX_20 + 0x44) - (uVar15 & 0xf);
           if (*(int *)(lStackX_20 + 0x44) < 0) {
-            *(undefined4 *)(lStackX_20 + 0x44) = 0;
+            *(int32_t *)(lStackX_20 + 0x44) = 0;
           }
           *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 2;
           break;
         case 7:
           *(int *)(lStackX_20 + 0x44) = *(int *)(lStackX_20 + 0x44) + (uVar15 & 0xf);
           if (0x40 < *(int *)(lStackX_20 + 0x44)) {
-            *(undefined4 *)(lStackX_20 + 0x44) = 0x40;
+            *(int32_t *)(lStackX_20 + 0x44) = 0x40;
           }
           *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 2;
           break;
@@ -917,22 +917,22 @@ code_r0x0001807cdce3:
         }
         break;
       case 1:
-        *(undefined4 *)(lStackX_20 + 0x50) = 0;
+        *(int32_t *)(lStackX_20 + 0x50) = 0;
         *(int *)(lStackX_20 + 0x40) =
              *(int *)(lStackX_20 + 0x40) + (uint)*(byte *)(lVar5 + 0xf6) * -4;
         if (*(int *)(lStackX_20 + 0x40) < 0x38) {
-          *(undefined4 *)(lStackX_20 + 0x40) = 0x38;
+          *(int32_t *)(lStackX_20 + 0x40) = 0x38;
         }
         *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 1;
         break;
       case 2:
-        *(undefined4 *)(lStackX_20 + 0x50) = 0;
+        *(int32_t *)(lStackX_20 + 0x50) = 0;
         *(int *)(lStackX_20 + 0x40) =
              *(int *)(lStackX_20 + 0x40) + (uint)*(byte *)(lVar5 + 0xf5) * 4;
         *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 1;
         break;
       case 3:
-        *(undefined4 *)(lStackX_20 + 0x50) = 0;
+        *(int32_t *)(lStackX_20 + 0x50) = 0;
         func_0x0001807ccb80(lVar5);
         break;
       case 4:
@@ -943,21 +943,21 @@ code_r0x0001807cdce3:
         }
         goto code_r0x0001807ce2c1;
       case 5:
-        *(undefined4 *)(lStackX_20 + 0x50) = 0;
+        *(int32_t *)(lStackX_20 + 0x50) = 0;
         func_0x0001807ccb80(lVar5);
         bVar7 = *(byte *)(lVar5 + 0xf9);
         if (bVar7 >> 4 == 0) {
           if (((bVar7 & 0xf) != 0) &&
              (*(int *)(lStackX_20 + 0x44) = *(int *)(lStackX_20 + 0x44) - (uint)(bVar7 & 0xf),
              *(int *)(lStackX_20 + 0x44) < 0)) {
-            *(undefined4 *)(lStackX_20 + 0x44) = 0;
+            *(int32_t *)(lStackX_20 + 0x44) = 0;
           }
         }
         else {
 code_r0x0001807cddae:
           *(int *)(lStackX_20 + 0x44) = *(int *)(lStackX_20 + 0x44) + (uint)(bVar7 >> 4);
           if (0x40 < *(int *)(lStackX_20 + 0x44)) {
-            *(undefined4 *)(lStackX_20 + 0x44) = 0x40;
+            *(int32_t *)(lStackX_20 + 0x44) = 0x40;
           }
         }
         goto code_r0x0001807ce2b1;
@@ -972,7 +972,7 @@ code_r0x0001807cddae:
         if (((bVar7 & 0xf) != 0) &&
            (*(int *)(lStackX_20 + 0x44) = *(int *)(lStackX_20 + 0x44) - (uint)(bVar7 & 0xf),
            *(int *)(lStackX_20 + 0x44) < 0)) {
-          *(undefined4 *)(lStackX_20 + 0x44) = 0;
+          *(int32_t *)(lStackX_20 + 0x44) = 0;
         }
         goto code_r0x0001807ce2b1;
       case 7:
@@ -996,7 +996,7 @@ code_r0x0001807cdea1:
             goto code_r0x0001807cdea1;
           }
           if (bVar19 == 2) {
-            *(undefined4 *)(lVar6 + 0x4c) = 0xff;
+            *(int32_t *)(lVar6 + 0x4c) = 0xff;
           }
           else if (bVar19 == 3) goto code_r0x0001807cde95;
         }
@@ -1023,13 +1023,13 @@ code_r0x0001807cdea1:
           if (((bVar7 & 0xf) != 0) &&
              (*(int *)(lStackX_20 + 0x44) = *(int *)(lStackX_20 + 0x44) - (uint)(bVar7 & 0xf),
              *(int *)(lStackX_20 + 0x44) < 0)) {
-            *(undefined4 *)(lStackX_20 + 0x44) = 0;
+            *(int32_t *)(lStackX_20 + 0x44) = 0;
           }
         }
         else {
           *(int *)(lStackX_20 + 0x44) = *(int *)(lStackX_20 + 0x44) + (uint)(bVar7 >> 4);
           if (0x40 < *(int *)(lStackX_20 + 0x44)) {
-            *(undefined4 *)(lStackX_20 + 0x44) = 0x40;
+            *(int32_t *)(lStackX_20 + 0x44) = 0x40;
             *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 2;
             break;
           }
@@ -1052,7 +1052,7 @@ code_r0x0001807cdea1:
                 if (lStackX_20 == 0x180be7ac0) {
                   FUN_18080d590(param_1,lVar5,puStack_68,&lStackX_20);
                 }
-                *(undefined4 *)(lStackX_20 + 0x40) = *(undefined4 *)(lVar5 + 0xd4);
+                *(int32_t *)(lStackX_20 + 0x40) = *(int32_t *)(lVar5 + 0xd4);
                 *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 1;
                 *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 8;
                 FUN_1807ccd60(param_1,lVar16,lVar5,lStackX_20,lVar20,puStack_68);
@@ -1066,7 +1066,7 @@ code_r0x0001807cdea1:
             break;
           }
           if (*(uint *)(param_1 + 0xbec) == (uint)bVar19) {
-            *(undefined4 *)(lStackX_20 + 0x44) = 0;
+            *(int32_t *)(lStackX_20 + 0x44) = 0;
             *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 2;
           }
         }
@@ -1078,13 +1078,13 @@ code_r0x0001807cdea1:
           piVar2 = (int *)(param_1 + 0xbe0);
           *piVar2 = *piVar2 - (uint)(bVar7 & 0xf);
           if (*piVar2 < 0) {
-            *(undefined4 *)(param_1 + 0xbe0) = 0;
+            *(int32_t *)(param_1 + 0xbe0) = 0;
           }
         }
         else {
           *(int *)(param_1 + 0xbe0) = *(int *)(param_1 + 0xbe0) + (uint)(bVar7 >> 4);
           if (0x40 < *(int *)(param_1 + 0xbe0)) {
-            *(undefined4 *)(param_1 + 0xbe0) = 0x40;
+            *(int32_t *)(param_1 + 0xbe0) = 0x40;
           }
         }
         goto code_r0x0001807ce2c1;
@@ -1094,13 +1094,13 @@ code_r0x0001807cdea1:
           if (((bVar7 & 0xf) != 0) &&
              (*(int *)(lStackX_20 + 0x48) = *(int *)(lStackX_20 + 0x48) - (uint)(bVar7 & 0xf),
              *(int *)(lStackX_20 + 0x48) < 0)) {
-            *(undefined4 *)(lStackX_20 + 0x48) = 0;
+            *(int32_t *)(lStackX_20 + 0x48) = 0;
           }
         }
         else {
           *(int *)(lStackX_20 + 0x48) = *(int *)(lStackX_20 + 0x48) + (uint)(bVar7 >> 4);
           if (0xff < *(int *)(lStackX_20 + 0x48)) {
-            *(undefined4 *)(lStackX_20 + 0x48) = 0xff;
+            *(int32_t *)(lStackX_20 + 0x48) = 0xff;
             *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 4;
             break;
           }
@@ -1158,10 +1158,10 @@ code_r0x0001807cdea1:
               *(int *)(lStackX_20 + 0x44) = *(int *)(lStackX_20 + 0x44) << 1;
             }
             if (0x40 < *(int *)(lStackX_20 + 0x44)) {
-              *(undefined4 *)(lStackX_20 + 0x44) = 0x40;
+              *(int32_t *)(lStackX_20 + 0x44) = 0x40;
             }
             if (*(int *)(lStackX_20 + 0x44) < 0) {
-              *(undefined4 *)(lStackX_20 + 0x44) = 0;
+              *(int32_t *)(lStackX_20 + 0x44) = 0;
             }
           }
           *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 2;
@@ -1216,49 +1216,49 @@ code_r0x0001807ce2c1:
  * - 处理各种数据格式和转换
  * - 维护系统同步和错误处理
  */
-undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefined8 data_block, ulonglong processing_params)
+uint64_t AdvancedDataProcessingCoordinator(uint64_t system_context, uint64_t data_block, ulonglong processing_params)
 
 {
   /* 系统状态和资源管理变量 */
   longlong *data_processor_ptr;
   byte *status_flags;
   int *operation_counters;
-  undefined1 operation_type;
+  int8_t operation_type;
   int temp_result;
   longlong system_state;
   int resource_index;
   int control_flags;
   int processing_mode;
-  undefined *configuration_data;
+  void *configuration_data;
   longlong timing_info;
   uint iteration_count;
-  undefined *resource_handle;
+  void *resource_handle;
   ulonglong memory_address;
   byte data_byte;
   uint data_word;
   longlong *context_ptr;
   byte control_byte;
-  undefined8 saved_registers[6];
+  uint64_t saved_registers[6];
   longlong unaff_RBP;
   longlong unaff_RDI;
   longlong stack_data;
   int process_id;
   ulonglong temp_ulong;
   longlong in_R11;
-  undefined8 unaff_R12;
+  uint64_t unaff_R12;
   byte status_mask;
-  undefined8 unaff_R13;
+  uint64_t unaff_R13;
   longlong unaff_R14;
-  undefined8 unaff_R15;
+  uint64_t unaff_R15;
   longlong calculation_result;
   
   /* 保存寄存器状态并初始化处理参数 */
-  *(undefined8 *)(in_R11 + -0x20) = saved_registers[0];
-  *(undefined8 *)(in_R11 + -0x28) = saved_registers[1];
-  *(undefined8 *)(in_R11 + -0x30) = saved_registers[2];
+  *(uint64_t *)(in_R11 + -0x20) = saved_registers[0];
+  *(uint64_t *)(in_R11 + -0x28) = saved_registers[1];
+  *(uint64_t *)(in_R11 + -0x30) = saved_registers[2];
   memory_address = processing_params & 0xffffffff;
-  *(undefined8 *)(in_R11 + -0x38) = saved_registers[3];
-  *(undefined8 *)(in_R11 + -0x40) = saved_registers[4];
+  *(uint64_t *)(in_R11 + -0x38) = saved_registers[3];
+  *(uint64_t *)(in_R11 + -0x40) = saved_registers[4];
   *(ulonglong *)(unaff_RBP + 7) = memory_address;
   /* 主要处理循环 */
   do {
@@ -1281,27 +1281,27 @@ undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefine
       
       /* 根据控制字节选择配置数据 */
       if (control_byte < 0x10) {
-        configuration_data = (undefined *)((ulonglong)control_byte * 0x38 + 0x20 + calculation_result);
+        configuration_data = (void *)((ulonglong)control_byte * 0x38 + 0x20 + calculation_result);
         resource_handle = &DAT_180be7a80;
-        if (configuration_data != (undefined *)0x0) {
+        if (configuration_data != (void *)0x0) {
           resource_handle = configuration_data;
         }
-        *(undefined **)(unaff_RBP + -9) = resource_handle;
+        *(void **)(unaff_RBP + -9) = resource_handle;
       }
       else {
-        *(undefined **)(unaff_RBP + -9) = &DAT_180be7a80; /* 默认配置 */
+        *(void **)(unaff_RBP + -9) = &DAT_180be7a80; /* 默认配置 */
       }
     }
     else {
       calculation_result = 0x180be7b90; /* 默认资源地址 */
-      *(undefined **)(unaff_RBP + -9) = &DAT_180be7a80;
+      *(void **)(unaff_RBP + -9) = &DAT_180be7a80;
       _DAT_180be7a80 = processing_params;
     }
     /* 状态标志处理和初始化 */
-    operation_type = *(undefined1 *)(unaff_RDI + 3);
+    operation_type = *(int8_t *)(unaff_RDI + 3);
     control_byte = *(byte *)(unaff_RDI + 4);
     *(int *)((longlong)context_ptr + 0x4c) = (int)processing_params;
-    *(undefined1 *)(unaff_RBP + 0x6f) = operation_type;
+    *(int8_t *)(unaff_RBP + 0x6f) = operation_type;
     status_mask = control_byte & 0xf; /* 低4位状态掩码 */
     control_byte = control_byte >> 4; /* 高4位控制标志 */
     iteration_count = (uint)control_byte;
@@ -1309,7 +1309,7 @@ undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefine
     
     /* 设置处理参数和状态 */
     *(int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x50) = (int)processing_params;
-    *(undefined1 *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c) = 0; /* 清除状态标志 */
+    *(int8_t *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c) = 0; /* 清除状态标志 */
     timing_info = *(longlong *)(unaff_RBP + 0x7f);
     /* 系统状态检查和处理 */
     if (((*(byte *)(calculation_result + 0x400) & 1) != 0) && (*(char *)(timing_info + 0x78) == '\0')) {
@@ -1328,7 +1328,7 @@ undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefine
       *(int *)(timing_info + 0xb0) = *(int *)(timing_info + 0xb0) - (uint)*(ushort *)(calculation_result + 0x50c);
       timing_info = *(longlong *)(unaff_RBP + 0x7f);
       if (*(int *)(timing_info + 0xb0) < 0) {
-        *(undefined4 *)(timing_info + 0xb0) = 0; /* 确保计数器不为负数 */
+        *(int32_t *)(timing_info + 0xb0) = 0; /* 确保计数器不为负数 */
         timing_info = *(longlong *)(unaff_RBP + 0x7f);
       }
       *(byte *)(timing_info + 0x3c) = *(byte *)(timing_info + 0x3c) | 2; /* 设置状态标志 */
@@ -1344,7 +1344,7 @@ undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefine
         *(int *)(timing_info + 0x44) = *(int *)(timing_info + 0x44) - (data_word & 0xf);
         timing_info = *(longlong *)(unaff_RBP + 0x7f);
         if (*(int *)(timing_info + 0x44) < 0) {
-          *(undefined4 *)(timing_info + 0x44) = 0; /* 确保不为负数 */
+          *(int32_t *)(timing_info + 0x44) = 0; /* 确保不为负数 */
           timing_info = *(longlong *)(unaff_RBP + 0x7f);
         }
         *(byte *)(timing_info + 0x3c) = *(byte *)(timing_info + 0x3c) | 2; /* 设置状态标志 */
@@ -1354,7 +1354,7 @@ undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefine
         *(int *)(timing_info + 0x44) = *(int *)(timing_info + 0x44) + (data_word & 0xf);
         timing_info = *(longlong *)(unaff_RBP + 0x7f);
         if (0x40 < *(int *)(timing_info + 0x44)) {
-          *(undefined4 *)(timing_info + 0x44) = 0x40; /* 限制最大值 */
+          *(int32_t *)(timing_info + 0x44) = 0x40; /* 限制最大值 */
           timing_info = *(longlong *)(unaff_RBP + 0x7f);
         }
         *(byte *)(timing_info + 0x3c) = *(byte *)(timing_info + 0x3c) | 2; /* 设置状态标志 */
@@ -1408,7 +1408,7 @@ undefined8 AdvancedDataProcessingCoordinator(undefined8 system_context, undefine
       timing_info = *(longlong *)(unaff_RBP + 0x7f);
     }
 LAB_1807cdb80:
-    switch(*(undefined1 *)(unaff_RBP + 0x6f)) {
+    switch(*(int8_t *)(unaff_RBP + 0x6f)) {
     case 0:
       if (*(char *)(lVar19 + 4) != '\0') {
         iVar9 = *(int *)(unaff_R14 + 0xbec);
@@ -1469,25 +1469,25 @@ code_r0x0001807cdce3:
       }
       break;
     case 1:
-      *(undefined4 *)(lVar11 + 0x50) = 0;
+      *(int32_t *)(lVar11 + 0x50) = 0;
       piVar3 = (int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x40);
       *piVar3 = *piVar3 + (uint)*(byte *)(lVar6 + 0xf6) * -4;
       lVar11 = *(longlong *)(unaff_RBP + 0x7f);
       if (*(int *)(lVar11 + 0x40) < 0x38) {
-        *(undefined4 *)(lVar11 + 0x40) = 0x38;
+        *(int32_t *)(lVar11 + 0x40) = 0x38;
         lVar11 = *(longlong *)(unaff_RBP + 0x7f);
       }
       *(byte *)(lVar11 + 0x3c) = *(byte *)(lVar11 + 0x3c) | 1;
       break;
     case 2:
-      *(undefined4 *)(lVar11 + 0x50) = 0;
+      *(int32_t *)(lVar11 + 0x50) = 0;
       piVar3 = (int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x40);
       *piVar3 = *piVar3 + (uint)*(byte *)(lVar6 + 0xf5) * 4;
       pbVar2 = (byte *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c);
       *pbVar2 = *pbVar2 | 1;
       break;
     case 3:
-      *(undefined4 *)(lVar11 + 0x50) = 0;
+      *(int32_t *)(lVar11 + 0x50) = 0;
       func_0x0001807ccb80(lVar6);
       break;
     case 4:
@@ -1499,7 +1499,7 @@ code_r0x0001807cdce3:
       }
       goto code_r0x0001807ce2c1;
     case 5:
-      *(undefined4 *)(lVar11 + 0x50) = 0;
+      *(int32_t *)(lVar11 + 0x50) = 0;
       func_0x0001807ccb80(lVar6);
       bVar18 = *(byte *)(lVar6 + 0xf9);
       if (bVar18 >> 4 == 0) {
@@ -1507,7 +1507,7 @@ code_r0x0001807cdce3:
           piVar3 = (int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44);
           *piVar3 = *piVar3 - (uint)(bVar18 & 0xf);
           if (*(int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44) < 0) {
-            *(undefined4 *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44) = 0;
+            *(int32_t *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44) = 0;
           }
         }
       }
@@ -1516,7 +1516,7 @@ code_r0x0001807cddae:
         piVar3 = (int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44);
         *piVar3 = *piVar3 + (uint)(bVar18 >> 4);
         if (0x40 < *(int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44)) {
-          *(undefined4 *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44) = 0x40;
+          *(int32_t *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44) = 0x40;
         }
       }
       goto code_r0x0001807ce2b1;
@@ -1532,7 +1532,7 @@ code_r0x0001807cddae:
         piVar3 = (int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44);
         *piVar3 = *piVar3 - (uint)(bVar18 & 0xf);
         if (*(int *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44) < 0) {
-          *(undefined4 *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44) = 0;
+          *(int32_t *)(*(longlong *)(unaff_RBP + 0x7f) + 0x44) = 0;
         }
       }
       goto code_r0x0001807ce2b1;
@@ -1557,7 +1557,7 @@ code_r0x0001807cdea1:
           goto code_r0x0001807cdea1;
         }
         if (bVar22 == 2) {
-          *(undefined4 *)(lVar11 + 0x4c) = 0xff;
+          *(int32_t *)(lVar11 + 0x4c) = 0xff;
         }
         else if (bVar22 == 3) goto code_r0x0001807cde95;
       }
@@ -1585,7 +1585,7 @@ code_r0x0001807cdea1:
           *(int *)(lVar11 + 0x44) = *(int *)(lVar11 + 0x44) - (uint)(bVar18 & 0xf);
           lVar11 = *(longlong *)(unaff_RBP + 0x7f);
           if (*(int *)(lVar11 + 0x44) < 0) {
-            *(undefined4 *)(lVar11 + 0x44) = 0;
+            *(int32_t *)(lVar11 + 0x44) = 0;
             lVar11 = *(longlong *)(unaff_RBP + 0x7f);
           }
         }
@@ -1594,7 +1594,7 @@ code_r0x0001807cdea1:
         *(int *)(lVar11 + 0x44) = *(int *)(lVar11 + 0x44) + (uint)(bVar18 >> 4);
         lVar11 = *(longlong *)(unaff_RBP + 0x7f);
         if (0x40 < *(int *)(lVar11 + 0x44)) {
-          *(undefined4 *)(lVar11 + 0x44) = 0x40;
+          *(int32_t *)(lVar11 + 0x44) = 0x40;
           pbVar2 = (byte *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c);
           *pbVar2 = *pbVar2 | 2;
           break;
@@ -1621,7 +1621,7 @@ code_r0x0001807cdea1:
                 FUN_18080d590();
                 lVar11 = *(longlong *)(unaff_RBP + 0x7f);
               }
-              *(undefined4 *)(lVar11 + 0x40) = *(undefined4 *)(lVar6 + 0xd4);
+              *(int32_t *)(lVar11 + 0x40) = *(int32_t *)(lVar6 + 0xd4);
               lVar11 = *(longlong *)(unaff_RBP + -1);
               pbVar2 = (byte *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c);
               *pbVar2 = *pbVar2 | 1;
@@ -1641,7 +1641,7 @@ code_r0x0001807cdea1:
           break;
         }
         if (*(uint *)(unaff_R14 + 0xbec) == (uint)bVar22) {
-          *(undefined4 *)(lVar11 + 0x44) = 0;
+          *(int32_t *)(lVar11 + 0x44) = 0;
           pbVar2 = (byte *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c);
           *pbVar2 = *pbVar2 | 2;
         }
@@ -1655,14 +1655,14 @@ code_r0x0001807cdea1:
         piVar3 = (int *)(unaff_R14 + 0xbe0);
         *piVar3 = *piVar3 - (uint)(bVar18 & 0xf);
         if (*piVar3 < 0) {
-          *(undefined4 *)(unaff_R14 + 0xbe0) = 0;
+          *(int32_t *)(unaff_R14 + 0xbe0) = 0;
         }
       }
       else {
         lVar11 = *(longlong *)(unaff_RBP + -1);
         *(int *)(unaff_R14 + 0xbe0) = *(int *)(unaff_R14 + 0xbe0) + (uint)(bVar18 >> 4);
         if (0x40 < *(int *)(unaff_R14 + 0xbe0)) {
-          *(undefined4 *)(unaff_R14 + 0xbe0) = 0x40;
+          *(int32_t *)(unaff_R14 + 0xbe0) = 0x40;
         }
       }
       goto code_r0x0001807ce2c1;
@@ -1673,7 +1673,7 @@ code_r0x0001807cdea1:
           *(int *)(lVar11 + 0x48) = *(int *)(lVar11 + 0x48) - (uint)(bVar18 & 0xf);
           lVar11 = *(longlong *)(unaff_RBP + 0x7f);
           if (*(int *)(lVar11 + 0x48) < 0) {
-            *(undefined4 *)(lVar11 + 0x48) = 0;
+            *(int32_t *)(lVar11 + 0x48) = 0;
             lVar11 = *(longlong *)(unaff_RBP + 0x7f);
           }
         }
@@ -1682,7 +1682,7 @@ code_r0x0001807cdea1:
         *(int *)(lVar11 + 0x48) = *(int *)(lVar11 + 0x48) + (uint)(bVar18 >> 4);
         lVar11 = *(longlong *)(unaff_RBP + 0x7f);
         if (0xff < *(int *)(lVar11 + 0x48)) {
-          *(undefined4 *)(lVar11 + 0x48) = 0xff;
+          *(int32_t *)(lVar11 + 0x48) = 0xff;
           pbVar2 = (byte *)(*(longlong *)(unaff_RBP + 0x7f) + 0x3c);
           *pbVar2 = *pbVar2 | 4;
           break;
@@ -1745,11 +1745,11 @@ code_r0x0001807cdea1:
         lVar11 = *(longlong *)(unaff_RBP + 0x7f);
 code_r0x0001807ce165:
         if (0x40 < *(int *)(lVar11 + 0x44)) {
-          *(undefined4 *)(lVar11 + 0x44) = 0x40;
+          *(int32_t *)(lVar11 + 0x44) = 0x40;
           lVar11 = *(longlong *)(unaff_RBP + 0x7f);
         }
         if (*(int *)(lVar11 + 0x44) < 0) {
-          *(undefined4 *)(lVar11 + 0x44) = 0;
+          *(int32_t *)(lVar11 + 0x44) = 0;
           lVar11 = *(longlong *)(unaff_RBP + 0x7f);
         }
       }
@@ -1809,7 +1809,7 @@ code_r0x0001807ce2c1:
  * - 处理状态冲突和不一致问题
  * - 确保系统整体的稳定性
  */
-undefined8 SystemStateSynchronizer(void)
+uint64_t SystemStateSynchronizer(void)
 
 {
   /* 系统状态同步器完整实现 */
@@ -1899,21 +1899,21 @@ undefined8 SystemStateSynchronizer(void)
  * - 根据不同的状态标志执行相应的处理
  * - 调用相应的系统回调函数
  */
-undefined8 SystemConfigurationProcessor(longlong system_context, longlong config_data, longlong state_object, undefined8 processor_handle)
+uint64_t SystemConfigurationProcessor(longlong system_context, longlong config_data, longlong state_object, uint64_t processor_handle)
 
 {
   longlong *processor_ptr;
-  undefined4 calculation_result;
+  int32_t calculation_result;
   int parameter_value;
   byte status_flags;
-  undefined8 extraout_XMM0_Qa;
-  undefined8 extraout_XMM0_Qb;
-  undefined1 temp_buffer1 [16];
-  undefined1 temp_buffer2 [16];
+  uint64_t extraout_XMM0_Qa;
+  uint64_t extraout_XMM0_Qb;
+  int8_t temp_buffer1 [16];
+  int8_t temp_buffer2 [16];
   char operation_status [16];
-  undefined1 temp_buffer3 [16];
-  undefined1 temp_buffer4 [16];
-  undefined4 temp_result;
+  int8_t temp_buffer3 [16];
+  int8_t temp_buffer4 [16];
+  int32_t temp_result;
   
   /* 初始化操作状态 */
   operation_status[0] = '\0';
@@ -1973,7 +1973,7 @@ undefined8 SystemConfigurationProcessor(longlong system_context, longlong config
         temp_buffer2._4_12_ = temp_buffer3._4_12_;
         temp_buffer2._0_4_ = (float)extraout_XMM0_Qa * 8363.0 + 0.5; /* 频率缩放系数 */
         if (((int)temp_buffer2._0_4_ != -0x80000000) && ((float)(int)temp_buffer2._0_4_ != temp_buffer2._0_4_)) {
-          temp_result = (undefined4)((ulonglong)extraout_XMM0_Qa >> 0x20);
+          temp_result = (int32_t)((ulonglong)extraout_XMM0_Qa >> 0x20);
           temp_buffer4._0_8_ = temp_buffer2._0_8_;
           temp_buffer4._8_4_ = temp_result;
           temp_buffer4._12_4_ = temp_result;
@@ -1985,14 +1985,14 @@ undefined8 SystemConfigurationProcessor(longlong system_context, longlong config
       }
       
       /* 应用音频处理 */
-      FUN_180757470(*(undefined8 *)(state_object + 0x20));
+      FUN_180757470(*(uint64_t *)(state_object + 0x20));
       status_flags = *(byte )(state_object + 0x3c);
     }
     
     /* 处理高级音频特性（标志位32） */
     if ((status_flags & 0x20) != 0) {
-      FUN_180758220(*(undefined8 )(state_object + 0x20), 0x80); /* 启用高级音频模式 */
-      *(undefined4 )(state_object + 0x58) = 0; /* 重置高级参数 */
+      FUN_180758220(*(uint64_t )(state_object + 0x20), 0x80); /* 启用高级音频模式 */
+      *(int32_t )(state_object + 0x58) = 0; /* 重置高级参数 */
     }
   }
   
@@ -2018,18 +2018,18 @@ undefined8 SystemConfigurationProcessor(longlong system_context, longlong config
  * - 更新系统状态和配置
  * - 处理音频相关的错误
  */
-undefined8 SystemErrorHandler(longlong system_context, char error_flag)
+uint64_t SystemErrorHandler(longlong system_context, char error_flag)
 
 {
   /* 错误处理相关的变量 */
   longlong *error_processor;
-  undefined4 saved_state1;
-  undefined4 saved_state2;
+  int32_t saved_state1;
+  int32_t saved_state2;
   longlong error_context;
   uint process_count;
   bool error_detected;
   bool recovery_needed;
-  undefined *recovery_data;
+  void *recovery_data;
   byte error_code;
   byte error_type;
   int error_index;
@@ -2046,7 +2046,7 @@ undefined8 SystemErrorHandler(longlong system_context, char error_flag)
   int iteration_index;
   longlong resource_addr;
   longlong context_data;
-  undefined *resource_handle;
+  void *resource_handle;
   longlong loop_counter;
   ulonglong temp_ulong;
   
@@ -2065,7 +2065,7 @@ undefined8 SystemErrorHandler(longlong system_context, char error_flag)
       error_message = (char *)((longlong)(*(int )(system_context + 0xbfc) * 0x100 + *(int )(system_context + 0xbf8)) +
                         *(longlong )(system_context + 0x288));
       if (*error_message != '\0') {
-        *(undefined1 )(system_context + 0xbe9) = 1; /* 设置错误状态标志 */
+        *(int8_t )(system_context + 0xbe9) = 1; /* 设置错误状态标志 */
         return 0; /* 错误已处理 */
       }
       *error_message = '\x01'; /* 标记错误消息 */
@@ -2113,13 +2113,13 @@ undefined8 SystemErrorHandler(longlong system_context, char error_flag)
           resource_addr = (ulonglong)*(byte )(error_context + 0xd0) * 0x618 + *(longlong )(system_context + 0x900);
           error_code = *(byte )((ulonglong)*(byte )(error_context + 0xd1) + 0x3a0 + resource_addr);
           if (error_code < 0x10) {
-            resource_handle = (undefined *)(resource_addr + 0x20 + (ulonglong)error_code * 0x38);
+            resource_handle = (void *)(resource_addr + 0x20 + (ulonglong)error_code * 0x38);
           }
           else {
             resource_handle = &DAT_180be7a80; /* 默认资源 */
           }
           if (!error_detected) {
-            *(undefined **)(context_data + 0x28) = resource_handle;
+            *(void **)(context_data + 0x28) = resource_handle;
           }
         }
         else {
@@ -2127,15 +2127,15 @@ undefined8 SystemErrorHandler(longlong system_context, char error_flag)
           resource_handle = &DAT_180be7a80;
           _DAT_180be7a80 = 0; /* 重置错误数据 */
         }
-        uVar2 = *(undefined4 *)(lStack_68 + 0x40);
+        uVar2 = *(int32_t *)(lStack_68 + 0x40);
         iVar18 = *(int *)(lStack_68 + 0x44);
-        uVar3 = *(undefined4 *)(lStack_68 + 0x48);
+        uVar3 = *(int32_t *)(lStack_68 + 0x48);
         if ((*(char *)(lVar4 + 0xd8) == '\a') && (pcVar22[3] != '\a')) {
           *(int *)(lStack_68 + 0x44) = *(int *)(lStack_68 + 0x4c) + iVar18;
         }
         *(char *)(lVar4 + 0xd8) = pcVar22[3];
-        *(undefined4 *)(lStack_68 + 0x4c) = 0;
-        *(undefined1 *)(lStack_68 + 0x3c) = 0;
+        *(int32_t *)(lStack_68 + 0x4c) = 0;
+        *(int8_t *)(lStack_68 + 0x3c) = 0;
         if ((byte)(*pcVar22 - 1U) < 0xfe) {
           if (lStack_68 == 0x180be7ac0) {
             FUN_18080d590(param_1,lVar4,puStack_60,&lStack_68);
@@ -2166,9 +2166,9 @@ undefined8 SystemErrorHandler(longlong system_context, char error_flag)
           if ((pcVar22[3] - 3U & 0xfd) != 0) {
             *(int *)(lStack_68 + 0x40) = iVar13;
           }
-          *(undefined1 *)(lStack_68 + 0x3c) = 8;
+          *(int8_t *)(lStack_68 + 0x3c) = 8;
         }
-        *(undefined4 *)(lStack_68 + 0x50) = 0;
+        *(int32_t *)(lStack_68 + 0x50) = 0;
         *(byte *)(lStack_68 + 0x3c) = *(byte *)(lStack_68 + 0x3c) | 1;
         *(byte *)(lStack_68 + 0x3c) = *(byte *)(lStack_68 + 0x3c) | 2;
         FUN_1807ccd60(param_1,pcVar22,lVar4,lStack_68,lStack_70,puStack_60);
@@ -2187,7 +2187,7 @@ undefined8 SystemErrorHandler(longlong system_context, char error_flag)
           if (pcVar22[4] != '\0') {
             *(char *)(lVar4 + 0x104) = pcVar22[4];
           }
-          *(undefined4 *)(lVar4 + 0x100) = *(undefined4 *)(lVar4 + 0xd4);
+          *(int32_t *)(lVar4 + 0x100) = *(int32_t *)(lVar4 + 0xd4);
           goto code_r0x0001807ce9f4;
         case '\x04':
           if (bVar10 >> 4 != 0) {
@@ -2199,7 +2199,7 @@ undefined8 SystemErrorHandler(longlong system_context, char error_flag)
           func_0x0001807cf230(lVar4);
           goto LAB_1807cf0c5;
         case '\x05':
-          *(undefined4 *)(lVar4 + 0x100) = *(undefined4 *)(lVar4 + 0xd4);
+          *(int32_t *)(lVar4 + 0x100) = *(int32_t *)(lVar4 + 0xd4);
           if (pcVar22[4] != '\0') {
             *(char *)(lVar4 + 0xf9) = pcVar22[4];
           }
@@ -2252,10 +2252,10 @@ code_r0x0001807ce9f4:
         case '\v':
           bVar10 = pcVar22[4];
           *(uint *)(param_1 + 0xc0c) = (uint)bVar10;
-          *(undefined4 *)(param_1 + 0xc08) = 0;
+          *(int32_t *)(param_1 + 0xc08) = 0;
           if (*(int *)(param_1 + 0x8ec) <= (int)(uint)bVar10) {
-            *(undefined4 *)(param_1 + 0xc0c) = 0;
-            *(undefined1 *)(param_1 + 0xbe9) = 1;
+            *(int32_t *)(param_1 + 0xc0c) = 0;
+            *(int8_t *)(param_1 + 0xbe9) = 1;
           }
           bVar7 = true;
           goto LAB_1807cf0c5;
@@ -2277,7 +2277,7 @@ code_r0x0001807ce9f4:
             *(int *)(param_1 + 0xc0c) = iVar18;
           }
           if (*(int *)(param_1 + 0x8ec) <= iVar18) {
-            *(undefined4 *)(param_1 + 0xc0c) = 0;
+            *(int32_t *)(param_1 + 0xc0c) = 0;
           }
           break;
         case '\x0e':
@@ -2312,7 +2312,7 @@ code_r0x0001807cf0be:
             goto code_r0x0001807cf0cd;
           case 6:
             if (bVar17 == 0) {
-              *(undefined4 *)(lVar4 + 0x11c) = *(undefined4 *)(param_1 + 0xbf8);
+              *(int32_t *)(lVar4 + 0x11c) = *(int32_t *)(param_1 + 0xbf8);
             }
             else {
               if (*(int *)(lVar4 + 0x120) == 0) {
@@ -2323,13 +2323,13 @@ code_r0x0001807cf0be:
               }
               *(uint *)(lVar4 + 0x120) = uVar15;
               if (((uVar15 != 0) &&
-                  (*(undefined4 *)(param_1 + 0xc08) = *(undefined4 *)(lVar4 + 0x11c),
+                  (*(int32_t *)(param_1 + 0xc08) = *(int32_t *)(lVar4 + 0x11c),
                   *(longlong *)(param_1 + 0x288) != 0)) &&
                  (iVar18 = *(int *)(lVar4 + 0x11c), iVar18 <= *(int *)(param_1 + 0xbf8))) {
                 do {
                   iVar20 = *(int *)(param_1 + 0xbfc) * 0x100 + iVar18;
                   iVar18 = iVar18 + 1;
-                  *(undefined1 *)((longlong)iVar20 + *(longlong *)(param_1 + 0x288)) = 0;
+                  *(int8_t *)((longlong)iVar20 + *(longlong *)(param_1 + 0x288)) = 0;
                 } while (iVar18 <= *(int *)(param_1 + 0xbf8));
               }
             }
@@ -2351,7 +2351,7 @@ code_r0x0001807cf0be:
             }
             *(int *)(lStack_68 + 0x44) = *(int *)(lStack_68 + 0x44) + (uint)bVar17;
             if (0x40 < *(int *)(lStack_68 + 0x44)) {
-              *(undefined4 *)(lStack_68 + 0x44) = 0x40;
+              *(int32_t *)(lStack_68 + 0x44) = 0x40;
             }
             *(byte *)(lStack_68 + 0x3c) = *(byte *)(lStack_68 + 0x3c) | 2;
             break;
@@ -2364,14 +2364,14 @@ code_r0x0001807cf0be:
             }
             *(int *)(lStack_68 + 0x44) = *(int *)(lStack_68 + 0x44) - (uint)bVar17;
             if (*(int *)(lStack_68 + 0x44) < 0) {
-              *(undefined4 *)(lStack_68 + 0x44) = 0;
+              *(int32_t *)(lStack_68 + 0x44) = 0;
             }
             *(byte *)(lStack_68 + 0x3c) = *(byte *)(lStack_68 + 0x3c) | 2;
             break;
           case 0xd:
             *(int *)(lStack_68 + 0x44) = iVar18;
-            *(undefined4 *)(lStack_68 + 0x40) = uVar2;
-            *(undefined4 *)(lStack_68 + 0x48) = uVar3;
+            *(int32_t *)(lStack_68 + 0x40) = uVar2;
+            *(int32_t *)(lStack_68 + 0x48) = uVar3;
             *(byte *)(lStack_68 + 0x3c) = *(byte *)(lStack_68 + 0x3c) & 0xfe;
             *(byte *)(lStack_68 + 0x3c) = *(byte *)(lStack_68 + 0x3c) & 0xfd;
             *(byte *)(lStack_68 + 0x3c) = *(byte *)(lStack_68 + 0x3c) & 0xfb;
@@ -2424,14 +2424,14 @@ code_r0x0001807cf0be:
             }
             *(uint *)(lStack_68 + 0x68) = uVar15;
             if ((int)uVar15 < (int)(*(byte *)(lStack_70 + 0x401) - 1)) {
-              *(undefined1 *)(lStack_68 + 0x78) = 0;
+              *(int8_t *)(lStack_68 + 0x78) = 0;
               *(uint *)(lStack_68 + 100) = (uint)(byte)pcVar22[4];
               iVar20 = *(int *)(lStack_68 + 0x68) + 1;
               uVar5 = (uint)*(ushort *)(lStack_70 + 0x404 + uVar19 * 4);
               uVar15 = (uint)*(ushort *)(lStack_70 + 0x402 + (longlong)(int)(uVar15 * 2) * 2);
               iVar18 = *(ushort *)(lStack_70 + 0x402 + (longlong)(iVar20 * 2) * 2) - uVar15;
               if (iVar18 == 0) {
-                *(undefined4 *)(lStack_68 + 0x74) = 0;
+                *(int32_t *)(lStack_68 + 0x74) = 0;
               }
               else {
                 *(int *)(lStack_68 + 0x74) =
@@ -2449,7 +2449,7 @@ code_r0x0001807cf0be:
                    (uint)*(ushort *)
                           (lStack_70 + 0x400 +
                           (ulonglong)((uint)*(byte *)(lStack_70 + 0x401) * 2) * 2);
-              *(undefined1 *)(lStack_68 + 0x78) = 1;
+              *(int8_t *)(lStack_68 + 0x78) = 1;
             }
             goto LAB_1807cf0c5;
           }
@@ -2546,7 +2546,7 @@ code_r0x0001807cf0cd:
  * - 处理资源回收
  * - 确保系统稳定性
  */
-undefined8 SystemCleaner(void)
+uint64_t SystemCleaner(void)
 
 {
   /* 清理相关的变量 */
@@ -2554,7 +2554,7 @@ undefined8 SystemCleaner(void)
   byte *memory_ptr;
   int *counter_ptr;
   char cleanup_type;
-  undefined4 cleanup_status;
+  int32_t cleanup_status;
   longlong resource_handle;
   uint cleanup_count;
   byte resource_type;
@@ -2570,7 +2570,7 @@ undefined8 SystemCleaner(void)
   longlong unaff_RBP;
   byte status_byte;
   longlong cleanup_data;
-  undefined *cleanup_resource;
+  void *cleanup_resource;
   int resource_id;
   ulonglong in_R11;
   byte resource_code;
@@ -2617,32 +2617,32 @@ undefined8 SystemCleaner(void)
       *(longlong *)(unaff_RBP + -0x11) = lVar19;
       bVar8 = *(byte *)((ulonglong)bVar8 + 0x3a0 + lVar19);
       if (bVar8 < 0x10) {
-        puVar20 = (undefined *)(lVar19 + 0x20 + (ulonglong)bVar8 * 0x38);
+        puVar20 = (void *)(lVar19 + 0x20 + (ulonglong)bVar8 * 0x38);
       }
       else {
         puVar20 = &DAT_180be7a80;
       }
-      *(undefined **)(unaff_RBP + -1) = puVar20;
+      *(void **)(unaff_RBP + -1) = puVar20;
       if (cVar23 == '\0') {
-        *(undefined **)((longlong)plVar16 + 0x28) = puVar20;
+        *(void **)((longlong)plVar16 + 0x28) = puVar20;
         plVar16 = *(longlong **)(unaff_RBP + -9);
       }
     }
     else {
-      *(undefined8 *)(unaff_RBP + -0x11) = 0x180be7b90;
-      *(undefined **)(unaff_RBP + -1) = &DAT_180be7a80;
+      *(uint64_t *)(unaff_RBP + -0x11) = 0x180be7b90;
+      *(void **)(unaff_RBP + -1) = &DAT_180be7a80;
       _DAT_180be7a80 = in_R11;
     }
     cVar4 = *(char *)(lVar6 + 0xd8);
     iVar14 = *(int *)((longlong)plVar16 + 0x44);
-    *(undefined4 *)(unaff_RBP + 0x7f) = *(undefined4 *)((longlong)plVar16 + 0x40);
-    *(undefined4 *)(unaff_RBP + -0x19) = *(undefined4 *)((longlong)plVar16 + 0x48);
+    *(int32_t *)(unaff_RBP + 0x7f) = *(int32_t *)((longlong)plVar16 + 0x40);
+    *(int32_t *)(unaff_RBP + -0x19) = *(int32_t *)((longlong)plVar16 + 0x48);
     if ((cVar4 == '\a') && (unaff_R14[3] != '\a')) {
       *(int *)((longlong)plVar16 + 0x44) = *(int *)((longlong)plVar16 + 0x4c) + iVar14;
     }
     *(char *)(lVar6 + 0xd8) = unaff_R14[3];
     *(int *)(*(longlong *)(unaff_RBP + -9) + 0x4c) = (int)in_R11;
-    *(undefined1 *)(*(longlong *)(unaff_RBP + -9) + 0x3c) = 0;
+    *(int8_t *)(*(longlong *)(unaff_RBP + -9) + 0x3c) = 0;
     if ((byte)(*unaff_R14 - 1U) < 0xfe) {
       lVar19 = *(longlong *)(unaff_RBP + -9);
       if (lVar19 == 0x180be7ac0) {
@@ -2651,7 +2651,7 @@ undefined8 SystemCleaner(void)
         in_R11 = 0;
       }
       if (lVar19 == 0) {
-        *(undefined8 *)(unaff_RBP + -9) = 0x180be7ac0;
+        *(uint64_t *)(unaff_RBP + -9) = 0x180be7ac0;
         _DAT_180be7ae8 = &DAT_180be7a80;
       }
       lVar19 = *(longlong *)(unaff_RBP + -1);
@@ -2677,7 +2677,7 @@ undefined8 SystemCleaner(void)
       if ((unaff_R14[3] - 3U & 0xfd) != 0) {
         *(int *)(*(longlong *)(unaff_RBP + -9) + 0x40) = iVar13;
       }
-      *(undefined1 *)(*(longlong *)(unaff_RBP + -9) + 0x3c) = 8;
+      *(int8_t *)(*(longlong *)(unaff_RBP + -9) + 0x3c) = 8;
     }
     *(int *)(*(longlong *)(unaff_RBP + -9) + 0x50) = (int)in_R11;
     pbVar2 = (byte *)(*(longlong *)(unaff_RBP + -9) + 0x3c);
@@ -2702,7 +2702,7 @@ undefined8 SystemCleaner(void)
       if (unaff_R14[4] != '\0') {
         *(char *)(lVar6 + 0x104) = unaff_R14[4];
       }
-      *(undefined4 *)(lVar6 + 0x100) = *(undefined4 *)(lVar6 + 0xd4);
+      *(int32_t *)(lVar6 + 0x100) = *(int32_t *)(lVar6 + 0xd4);
       goto code_r0x0001807ce9f4;
     case '\x04':
       if (bVar9 >> 4 != 0) {
@@ -2714,7 +2714,7 @@ undefined8 SystemCleaner(void)
       func_0x0001807cf230(lVar6);
       goto LAB_1807cf0c5;
     case '\x05':
-      *(undefined4 *)(lVar6 + 0x100) = *(undefined4 *)(lVar6 + 0xd4);
+      *(int32_t *)(lVar6 + 0x100) = *(int32_t *)(lVar6 + 0xd4);
       if (unaff_R14[4] != '\0') {
         *(char *)(lVar6 + 0xf9) = unaff_R14[4];
       }
@@ -2777,12 +2777,12 @@ code_r0x0001807ce9f4:
     case '\v':
       bVar9 = unaff_R14[4];
       *(uint *)(unaff_RBX + 0xc0c) = (uint)bVar9;
-      *(undefined4 *)(unaff_RBX + 0xc08) = 0;
+      *(int32_t *)(unaff_RBX + 0xc08) = 0;
       if (*(int *)(unaff_RBX + 0x8ec) <= (int)(uint)bVar9) {
-        *(undefined4 *)(unaff_RBX + 0xc0c) = 0;
-        *(undefined1 *)(unaff_RBX + 0xbe9) = 1;
+        *(int32_t *)(unaff_RBX + 0xc0c) = 0;
+        *(int8_t *)(unaff_RBX + 0xbe9) = 1;
       }
-      *(undefined1 *)(unaff_RBP + 0x67) = 1;
+      *(int8_t *)(unaff_RBP + 0x67) = 1;
       goto LAB_1807cf0c5;
     case '\f':
       *(uint *)(*(longlong *)(unaff_RBP + -9) + 0x44) = (uint)(byte)unaff_R14[4];
@@ -2804,7 +2804,7 @@ code_r0x0001807ce9f4:
       }
       lVar19 = *(longlong *)(unaff_RBP + -0x11);
       if (*(int *)(unaff_RBX + 0x8ec) <= iVar14) {
-        *(undefined4 *)(unaff_RBX + 0xc0c) = 0;
+        *(int32_t *)(unaff_RBX + 0xc0c) = 0;
       }
       break;
     case '\x0e':
@@ -2842,7 +2842,7 @@ code_r0x0001807cf0be:
         goto code_r0x0001807cf0cd;
       case 6:
         if (bVar18 == 0) {
-          *(undefined4 *)(lVar6 + 0x11c) = *(undefined4 *)(unaff_RBX + 0xbf8);
+          *(int32_t *)(lVar6 + 0x11c) = *(int32_t *)(unaff_RBX + 0xbf8);
         }
         else {
           if (*(int *)(lVar6 + 0x120) == 0) {
@@ -2853,13 +2853,13 @@ code_r0x0001807cf0be:
           }
           *(uint *)(lVar6 + 0x120) = uVar15;
           if (((uVar15 != 0) &&
-              (*(undefined4 *)(unaff_RBX + 0xc08) = *(undefined4 *)(lVar6 + 0x11c),
+              (*(int32_t *)(unaff_RBX + 0xc08) = *(int32_t *)(lVar6 + 0x11c),
               *(longlong *)(unaff_RBX + 0x288) != 0)) &&
              (iVar14 = *(int *)(lVar6 + 0x11c), iVar14 <= *(int *)(unaff_RBX + 0xbf8))) {
             do {
               iVar21 = *(int *)(unaff_RBX + 0xbfc) * 0x100 + iVar14;
               iVar14 = iVar14 + 1;
-              *(undefined1 *)((longlong)iVar21 + *(longlong *)(unaff_RBX + 0x288)) = 0;
+              *(int8_t *)((longlong)iVar21 + *(longlong *)(unaff_RBX + 0x288)) = 0;
             } while (iVar14 <= *(int *)(unaff_RBX + 0xbf8));
           }
         }
@@ -2884,7 +2884,7 @@ code_r0x0001807cf0be:
         *piVar3 = *piVar3 + (uint)bVar18;
         lVar19 = *(longlong *)(unaff_RBP + -9);
         if (0x40 < *(int *)(lVar19 + 0x44)) {
-          *(undefined4 *)(lVar19 + 0x44) = 0x40;
+          *(int32_t *)(lVar19 + 0x44) = 0x40;
           lVar19 = *(longlong *)(unaff_RBP + -9);
         }
         *(byte *)(lVar19 + 0x3c) = *(byte *)(lVar19 + 0x3c) | 2;
@@ -2900,16 +2900,16 @@ code_r0x0001807cf0be:
         *piVar3 = *piVar3 - (uint)bVar18;
         lVar19 = *(longlong *)(unaff_RBP + -9);
         if (*(int *)(lVar19 + 0x44) < 0) {
-          *(undefined4 *)(lVar19 + 0x44) = 0;
+          *(int32_t *)(lVar19 + 0x44) = 0;
           lVar19 = *(longlong *)(unaff_RBP + -9);
         }
         *(byte *)(lVar19 + 0x3c) = *(byte *)(lVar19 + 0x3c) | 2;
         break;
       case 0xd:
-        uVar5 = *(undefined4 *)(unaff_RBP + 0x7f);
+        uVar5 = *(int32_t *)(unaff_RBP + 0x7f);
         *(int *)(*(longlong *)(unaff_RBP + -9) + 0x44) = iVar14;
-        *(undefined4 *)(*(longlong *)(unaff_RBP + -9) + 0x40) = uVar5;
-        *(undefined4 *)(*(longlong *)(unaff_RBP + -9) + 0x48) = *(undefined4 *)(unaff_RBP + -0x19);
+        *(int32_t *)(*(longlong *)(unaff_RBP + -9) + 0x40) = uVar5;
+        *(int32_t *)(*(longlong *)(unaff_RBP + -9) + 0x48) = *(int32_t *)(unaff_RBP + -0x19);
         pbVar2 = (byte *)(*(longlong *)(unaff_RBP + -9) + 0x3c);
         *pbVar2 = *pbVar2 & 0xfe;
         pbVar2 = (byte *)(*(longlong *)(unaff_RBP + -9) + 0x3c);
@@ -2971,7 +2971,7 @@ code_r0x0001807cf0be:
         *(uint *)(*(longlong *)(unaff_RBP + -9) + 0x68) = uVar15;
         bVar9 = *(byte *)(*(longlong *)(unaff_RBP + -0x11) + 0x401);
         if ((int)uVar15 < (int)(bVar9 - 1)) {
-          *(undefined1 *)(*(longlong *)(unaff_RBP + -9) + 0x78) = 0;
+          *(int8_t *)(*(longlong *)(unaff_RBP + -9) + 0x78) = 0;
           *(uint *)(*(longlong *)(unaff_RBP + -9) + 100) = (uint)(byte)unaff_R14[4];
           lVar19 = *(longlong *)(unaff_RBP + -9);
           iVar21 = *(int *)(lVar19 + 0x68) + 1;
@@ -2983,7 +2983,7 @@ code_r0x0001807cf0be:
                     (*(longlong *)(unaff_RBP + -0x11) + 0x402 + (longlong)(iVar21 * 2) * 2) - uVar15
           ;
           if (iVar14 == 0) {
-            *(undefined4 *)(lVar19 + 0x74) = 0;
+            *(int32_t *)(lVar19 + 0x74) = 0;
           }
           else {
             *(int *)(lVar19 + 0x74) =
@@ -3003,7 +3003,7 @@ code_r0x0001807cf0be:
           *(uint *)(*(longlong *)(unaff_RBP + -9) + 0x70) =
                (uint)*(ushort *)
                       (*(longlong *)(unaff_RBP + -0x11) + 0x400 + (ulonglong)((uint)bVar9 * 2) * 2);
-          *(undefined1 *)(*(longlong *)(unaff_RBP + -9) + 0x78) = 1;
+          *(int8_t *)(*(longlong *)(unaff_RBP + -9) + 0x78) = 1;
         }
         goto LAB_1807cf0c5;
       }
@@ -3105,7 +3105,7 @@ code_r0x0001807cf0cd:
  * - 生成完成报告
  * - 通知相关组件操作已完成
  */
-undefined8 SystemCompletionProcessor(void)
+uint64_t SystemCompletionProcessor(void)
 
 {
   /* 系统完成处理器完整实现 */
@@ -3193,23 +3193,23 @@ undefined8 SystemCompletionProcessor(void)
  * - 验证系统完整性
  * - 返回初始化状态
  */
-undefined8 SystemFinalProcessor(longlong system_context, undefined8 config_data, longlong process_params)
+uint64_t SystemFinalProcessor(longlong system_context, uint64_t config_data, longlong process_params)
 
 {
   int process_type;
-  undefined1 temp_buffer [16];
-  undefined8 init_result;
+  int8_t temp_buffer [16];
+  uint64_t init_result;
   ulonglong buffer_size;
   
   /* 初始化系统数据结构 */
-  *(undefined4 )(system_context + 0x28) = 0xe; /* 设置系统类型 */
-  *(undefined8 )(system_context + 0x120) = 0; /* 清空数据缓冲区1 */
-  *(undefined8 )(system_context + 0x128) = 0; /* 清空数据缓冲区2 */
-  *(undefined8 )(system_context + 0x130) = 0; /* 清空数据缓冲区3 */
-  *(undefined8 )(system_context + 0x148) = 0; /* 清空数据缓冲区4 */
-  *(undefined8 )(system_context + 0x138) = 0; /* 清空数据缓冲区5 */
-  *(undefined8 )(system_context + 0x168) = 0; /* 清空数据缓冲区6 */
-  *(undefined4 )(system_context + 0x18) = 0; /* 重置状态标志 */
+  *(int32_t )(system_context + 0x28) = 0xe; /* 设置系统类型 */
+  *(uint64_t )(system_context + 0x120) = 0; /* 清空数据缓冲区1 */
+  *(uint64_t )(system_context + 0x128) = 0; /* 清空数据缓冲区2 */
+  *(uint64_t )(system_context + 0x130) = 0; /* 清空数据缓冲区3 */
+  *(uint64_t )(system_context + 0x148) = 0; /* 清空数据缓冲区4 */
+  *(uint64_t )(system_context + 0x138) = 0; /* 清空数据缓冲区5 */
+  *(uint64_t )(system_context + 0x168) = 0; /* 清空数据缓冲区6 */
+  *(int32_t )(system_context + 0x18) = 0; /* 重置状态标志 */
   *(longlong )(system_context + 8) = system_context + 0x178; /* 设置数据区域指针 */
   /* 检查处理参数类型 */
   if (*(int )(process_params + 0x14) - 1U < 5) {
@@ -3217,10 +3217,10 @@ undefined8 SystemFinalProcessor(longlong system_context, undefined8 config_data,
                       (*(longlong **)(system_context + 0x170), system_context + 0x18c);
     if ((int)init_result == 0) {
       /* 初始化成功，设置处理参数 */
-      *(undefined4 )(system_context + 0x110) = 0; /* 清空处理标志 */
-      *(undefined4 *)(*(longlong )(system_context + 8) + 8) = *(undefined4 )(process_params + 0x14);
-      *(undefined4 *)(*(longlong )(system_context + 8) + 0xc) = *(undefined4 )(process_params + 0xc);
-      *(undefined4 *)(*(longlong )(system_context + 8) + 0x10) = *(undefined4 )(process_params + 0x10);
+      *(int32_t )(system_context + 0x110) = 0; /* 清空处理标志 */
+      *(int32_t *)(*(longlong )(system_context + 8) + 8) = *(int32_t )(process_params + 0x14);
+      *(int32_t *)(*(longlong )(system_context + 8) + 0xc) = *(int32_t )(process_params + 0xc);
+      *(int32_t *)(*(longlong )(system_context + 8) + 0x10) = *(int32_t )(process_params + 0x10);
       /* 根据处理类型计算缓冲区大小 */
       if (*(uint )(process_params + 0xc) != 0) {
         process_type = *(int )(process_params + 0x14);
@@ -3237,7 +3237,7 @@ undefined8 SystemFinalProcessor(longlong system_context, undefined8 config_data,
           if ((process_type != 4) && (process_type != 5)) {
             /* 其他类型：直接设置大小 */
             *(uint *)(*(longlong )(system_context + 8) + 0x18) = *(uint )(process_params + 4);
-            *(undefined4 )(system_context + 0x18) = 0;
+            *(int32_t )(system_context + 0x18) = 0;
             return 0; /* 初始化成功 */
           }
           buffer_size = 0x20; /* 类型4/5：32字节 */
@@ -3251,7 +3251,7 @@ undefined8 SystemFinalProcessor(longlong system_context, undefined8 config_data,
                   (ulonglong)*(uint )(process_params + 0xc));
       }
       
-      *(undefined4 )(system_context + 0x18) = 0;
+      *(int32_t )(system_context + 0x18) = 0;
       return 0; /* 初始化成功 */
     }
   }

@@ -2,8 +2,8 @@
 
 // 03_rendering_part237_sub002.c - 1 个函数
 
-// 函数: void FUN_18039f8a0(longlong param_1,undefined1 param_2)
-void FUN_18039f8a0(longlong param_1,undefined1 param_2)
+// 函数: void FUN_18039f8a0(longlong param_1,int8_t param_2)
+void FUN_18039f8a0(longlong param_1,int8_t param_2)
 
 {
   longlong *plVar1;

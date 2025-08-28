@@ -101,18 +101,18 @@
  * ============================================================================ */
 
 // 基础类型别名
-typedef undefined8 HashHandle;               // 哈希表句柄
-typedef undefined8 MemoryHandle;             // 内存句柄
-typedef undefined8 MutexHandle;              // 互斥锁句柄
-typedef undefined8 BufferHandle;             // 缓冲区句柄
-typedef undefined4 DataIndex;                // 数据索引
-typedef undefined4 HashValue;                // 哈希值
-typedef undefined4 LockStatus;               // 锁定状态
-typedef undefined1 DataByte;                 // 数据字节
+typedef uint64_t HashHandle;               // 哈希表句柄
+typedef uint64_t MemoryHandle;             // 内存句柄
+typedef uint64_t MutexHandle;              // 互斥锁句柄
+typedef uint64_t BufferHandle;             // 缓冲区句柄
+typedef int32_t DataIndex;                // 数据索引
+typedef int32_t HashValue;                // 哈希值
+typedef int32_t LockStatus;               // 锁定状态
+typedef int8_t DataByte;                 // 数据字节
 typedef void* DataContext;                   // 数据上下文
-typedef undefined4 ErrorCode;                // 错误代码
-typedef undefined4 BufferSize;               // 缓冲区大小
-typedef undefined8 DataPointer;              // 数据指针
+typedef int32_t ErrorCode;                // 错误代码
+typedef int32_t BufferSize;               // 缓冲区大小
+typedef uint64_t DataPointer;              // 数据指针
 
 // 枚举类型定义
 typedef enum {
@@ -250,17 +250,17 @@ typedef struct {
 
 // 哈希表数据区域 - 主要哈希表状态信息
 extern undefined DAT_18098bc73;              // 哈希表数据区域
-extern undefined8 UNK_18094b480;              // 哈希表控制块
-extern undefined8 UNK_18094abe0;              // 哈希表状态标志
-extern undefined8 UNK_180d49830;              // 哈希表指针表
-extern undefined1 *UNK_180d498b8;             // 哈希表字节表
-extern undefined4 UNK_180d498c0;              // 哈希表计数器
+extern uint64_t UNK_18094b480;              // 哈希表控制块
+extern uint64_t UNK_18094abe0;              // 哈希表状态标志
+extern uint64_t UNK_180d49830;              // 哈希表指针表
+extern int8_t *UNK_180d498b8;             // 哈希表字节表
+extern int32_t UNK_180d498c0;              // 哈希表计数器
 extern longlong UNK_180d49908;                // 哈希表时间戳1
 extern longlong UNK_180d49910;                // 哈希表时间戳2
 extern longlong UNK_180d49928;                // 哈希表性能计数器1
 extern longlong UNK_180d49930;                // 哈希表性能计数器2
-extern undefined4 UNK_180d49948;              // 哈希表错误代码
-extern undefined4 UNK_180d4994c;              // 哈希表警告代码
+extern int32_t UNK_180d49948;              // 哈希表错误代码
+extern int32_t UNK_180d4994c;              // 哈希表警告代码
 extern undefined DAT_180d49950;               // 哈希表配置数据
 extern undefined DAT_180d49970;               // 哈希表资源数据
 extern undefined DAT_180bfc140;                // 哈希表缓存数据
@@ -468,7 +468,7 @@ void Buffer_Cleaner(void);
  * @param param_2 缓冲区操作参数
  * @return void 管理结果状态
  */
-void Buffer_Manager(longlong *param_1, undefined8 param_2);
+void Buffer_Manager(longlong *param_1, uint64_t param_2);
 
 /* ============================================================================
  * 查找和哈希函数声明
@@ -487,9 +487,9 @@ void Buffer_Manager(longlong *param_1, undefined8 param_2);
  * @param param_1 哈希表上下文参数
  * @param param_2 查找键值参数
  * @param param_3 查找范围参数
- * @return undefined2 查找结果状态
+ * @return int16_t 查找结果状态
  */
-undefined2 HashTable_Lookup(longlong param_1, longlong param_2, uint param_3);
+int16_t HashTable_Lookup(longlong param_1, longlong param_2, uint param_3);
 
 /**
  * @brief 哈希表插入器
@@ -563,9 +563,9 @@ int String_Insert(void);
  * - 字符串的同步和更新
  * - 错误的处理和恢复
  * 
- * @return undefined4 处理结果状态
+ * @return int32_t 处理结果状态
  */
-undefined4 String_Process(void);
+int32_t String_Process(void);
 
 /* ============================================================================
  * 内存管理函数声明
@@ -585,7 +585,7 @@ undefined4 String_Process(void);
  * @param param_2 内存输出参数
  * @return void 分配结果状态
  */
-void Memory_Allocate(longlong param_1, undefined4 *param_2);
+void Memory_Allocate(longlong param_1, int32_t *param_2);
 
 /**
  * @brief 内存扩展器
@@ -599,9 +599,9 @@ void Memory_Allocate(longlong param_1, undefined4 *param_2);
  * 
  * @param param_1 内存上下文参数
  * @param param_2 扩展数据参数
- * @return undefined8* 扩展结果状态
+ * @return uint64_t* 扩展结果状态
  */
-undefined8 * Memory_Expand(undefined8 *param_1, undefined8 *param_2);
+uint64_t * Memory_Expand(uint64_t *param_1, uint64_t *param_2);
 
 /**
  * @brief 内存调整器
@@ -615,9 +615,9 @@ undefined8 * Memory_Expand(undefined8 *param_1, undefined8 *param_2);
  * 
  * @param param_1 内存上下文参数
  * @param param_2 调整数据参数
- * @return undefined8* 调整结果状态
+ * @return uint64_t* 调整结果状态
  */
-undefined8 * Memory_Resize(undefined8 *param_1, undefined4 *param_2);
+uint64_t * Memory_Resize(uint64_t *param_1, int32_t *param_2);
 
 /**
  * @brief 缓冲区复制器
@@ -672,7 +672,7 @@ void Buffer_Append(longlong *param_1, longlong param_2, uint param_3);
  * @param param_3 事件标志参数
  * @return void 处理结果状态
  */
-void Event_Handler(longlong param_1, undefined8 param_2, undefined4 param_3);
+void Event_Handler(longlong param_1, uint64_t param_2, int32_t param_3);
 
 /**
  * @brief 事件处理器
@@ -719,8 +719,8 @@ void Event_Cleaner(void);
  * @param param_6 事件优先级参数
  * @return void 分发结果状态
  */
-void Event_Dispatcher(longlong param_1, undefined4 param_2, undefined8 param_3, 
-                      undefined8 param_4, undefined4 param_5, longlong param_6);
+void Event_Dispatcher(longlong param_1, int32_t param_2, uint64_t param_3, 
+                      uint64_t param_4, int32_t param_5, longlong param_6);
 
 /* ============================================================================
  * 主要功能函数实现
@@ -1684,7 +1684,7 @@ void Buffer_Cleaner(void)
  * @param param_2 缓冲区操作参数
  * @return void 管理结果状态
  */
-void Buffer_Manager(longlong *param_1, undefined8 param_2)
+void Buffer_Manager(longlong *param_1, uint64_t param_2)
 {
     // 缓冲区管理逻辑实现
     
@@ -1759,9 +1759,9 @@ void Buffer_Manager(longlong *param_1, undefined8 param_2)
  * @param param_1 哈希表上下文参数
  * @param param_2 查找键值参数
  * @param param_3 查找范围参数
- * @return undefined2 查找结果状态
+ * @return int16_t 查找结果状态
  */
-undefined2 HashTable_Lookup(longlong param_1, longlong param_2, uint param_3)
+int16_t HashTable_Lookup(longlong param_1, longlong param_2, uint param_3)
 {
     // 哈希表查找逻辑实现
     
@@ -2121,9 +2121,9 @@ int String_Insert(void)
  * - 可靠的错误处理
  * - 完整的数据验证
  * 
- * @return undefined4 处理结果状态
+ * @return int32_t 处理结果状态
  */
-undefined4 String_Process(void)
+int32_t String_Process(void)
 {
     // 字符串处理逻辑实现
     
@@ -2201,7 +2201,7 @@ undefined4 String_Process(void)
  * @param param_2 内存输出参数
  * @return void 分配结果状态
  */
-void Memory_Allocate(longlong param_1, undefined4 *param_2)
+void Memory_Allocate(longlong param_1, int32_t *param_2)
 {
     // 内存分配逻辑实现
     
@@ -2271,9 +2271,9 @@ void Memory_Allocate(longlong param_1, undefined4 *param_2)
  * 
  * @param param_1 内存上下文参数
  * @param param_2 扩展数据参数
- * @return undefined8* 扩展结果状态
+ * @return uint64_t* 扩展结果状态
  */
-undefined8 * Memory_Expand(undefined8 *param_1, undefined8 *param_2)
+uint64_t * Memory_Expand(uint64_t *param_1, uint64_t *param_2)
 {
     // 内存扩展逻辑实现
     
@@ -2345,9 +2345,9 @@ undefined8 * Memory_Expand(undefined8 *param_1, undefined8 *param_2)
  * 
  * @param param_1 内存上下文参数
  * @param param_2 调整数据参数
- * @return undefined8* 调整结果状态
+ * @return uint64_t* 调整结果状态
  */
-undefined8 * Memory_Resize(undefined8 *param_1, undefined4 *param_2)
+uint64_t * Memory_Resize(uint64_t *param_1, int32_t *param_2)
 {
     // 内存调整逻辑实现
     
@@ -2572,7 +2572,7 @@ void Buffer_Append(longlong *param_1, longlong param_2, uint param_3)
  * @param param_3 事件标志参数
  * @return void 处理结果状态
  */
-void Event_Handler(longlong param_1, undefined8 param_2, undefined4 param_3)
+void Event_Handler(longlong param_1, uint64_t param_2, int32_t param_3)
 {
     // 事件处理逻辑实现
     
@@ -2788,8 +2788,8 @@ void Event_Cleaner(void)
  * @param param_6 事件优先级参数
  * @return void 分配结果状态
  */
-void Event_Dispatcher(longlong param_1, undefined4 param_2, undefined8 param_3, 
-                      undefined8 param_4, undefined4 param_5, longlong param_6)
+void Event_Dispatcher(longlong param_1, int32_t param_2, uint64_t param_3, 
+                      uint64_t param_4, int32_t param_5, longlong param_6)
 {
     // 事件分配逻辑实现
     

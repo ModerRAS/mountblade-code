@@ -44,10 +44,10 @@
 #define REGISTRY_MAX_DEPTH      0x64        /* 注册表最大深度：100层 */
 
 /* 数据类型别名 */
-typedef undefined8  uint64;      /* 64位无符号整数 */
-typedef undefined4  uint32;      /* 32位无符号整数 */
-typedef undefined2  uint16;      /* 16位无符号整数 */
-typedef undefined1  uint8;       /* 8位无符号整数 */
+typedef uint64_t  uint64;      /* 64位无符号整数 */
+typedef int32_t  uint32;      /* 32位无符号整数 */
+typedef int16_t  uint16;      /* 16位无符号整数 */
+typedef int8_t  uint8;       /* 8位无符号整数 */
 typedef undefined   void_ptr;    /* 空指针 */
 typedef char        byte;        /* 字节类型 */
 
@@ -146,7 +146,7 @@ int FUN_18002d520(uint64 param_1, uint64 param_2, uint64 param_3, uint64 param_4
 void FUN_18002d550(void)
 {
   uint64 in_R9;
-  undefined *puStack_a0;
+  void *puStack_a0;
   uint8 *puStack_98;
   uint32 uStack_90;
   uint8 auStack_88 [136];
@@ -440,7 +440,7 @@ void FUN_18002dae0(void)
   uint64 *puVar7;
   uint64 *puVar8;
   uint64 *puStackX_10;
-  undefined *puStackX_18;
+  void *puStackX_18;
   
   plVar4 = (longlong *)FUN_18008d070();
   puVar2 = (uint64 *)*plVar4;

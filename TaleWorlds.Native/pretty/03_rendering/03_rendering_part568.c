@@ -48,14 +48,14 @@
  * @param render_context 渲染上下文指针，包含渲染状态和参数
  * @param math_params 数学参数指针，包含计算所需的数学常量和配置
  */
-void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 math_params)
+void RenderingSystem_AdvancedMathCalculator(longlong render_context, uint64_t math_params)
 
 {
   // 声明变量 - 用于各种数学计算和临时存储
   int mode_index;                                    // 模式索引，用于选择不同的渲染模式
   float temp_float1, temp_float2, temp_float3;       // 通用临时浮点变量
-  undefined8 temp_undefined1, temp_undefined2;       // 通用临时8字节变量
-  undefined8 temp_undefined3, temp_undefined4;       // 通用临时8字节变量
+  uint64_t temp_int8_t, temp_int16_t;       // 通用临时8字节变量
+  uint64_t temp_undefined3, temp_int32_t;       // 通用临时8字节变量
   float matrix_element1, matrix_element2;           // 矩阵元素变量
   float *result_array_ptr;                          // 结果数组指针
   longlong temp_long1;                               // 通用临时长整型变量
@@ -65,8 +65,8 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
   longlong resource_ptr;                             // 资源指针
   float simd_input1;                                // SIMD输入参数1
   float vector_x, vector_y, vector_z;                // 向量分量
-  undefined1 simd_input2[16];                        // SIMD输入参数2数组
-  undefined1 simd_result[16];                        // SIMD计算结果数组
+  int8_t simd_input2[16];                        // SIMD输入参数2数组
+  int8_t simd_result[16];                        // SIMD计算结果数组
   float normalized_value;                            // 标准化后的值
   float scale_factor;                                // 缩放因子
   float rotation_angle;                              // 旋转角度
@@ -83,7 +83,7 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
   float result_x;                                    // 计算结果X分量
   float result_y;                                    // 计算结果Y分量
   float result_z;                                    // 计算结果Z分量
-  undefined4 result_w;                               // 计算结果W分量
+  int32_t result_w;                               // 计算结果W分量
   float input_x;                                     // 输入X坐标
   int bone_index;                                    // 骨骼索引
   float input_time;                                  // 输入时间参数
@@ -128,8 +128,8 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
   result_array_ptr = (float *)RenderingSystem_GetMatrixData(render_context, math_params, simd_result._0_8_);
   
   // 提取渲染上下文中的变换矩阵参数
-  temp_undefined1 = *(undefined8 *)(render_context + 0x30);  // 矩阵第一部分
-  temp_undefined2 = *(undefined8 *)(render_context + 0x38);  // 矩阵第二部分
+  temp_int8_t = *(uint64_t *)(render_context + 0x30);  // 矩阵第一部分
+  temp_int16_t = *(uint64_t *)(render_context + 0x38);  // 矩阵第二部分
   
   // 从结果数组中提取位置和变换参数
   input_x = result_array_ptr[4];                    // 输入X坐标
@@ -145,13 +145,13 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
   vertex_x = *result_array_ptr;                     // 顶点X坐标
   vertex_y = result_array_ptr[1];                  // 顶点Y坐标
   vertex_z = result_array_ptr[2];                  // 顶点Z坐标
-  result_w = *(undefined4 *)(result_array_ptr + 3); // 结果W分量
+  result_w = *(int32_t *)(result_array_ptr + 3); // 结果W分量
   
   // 将变换矩阵参数存储到栈帧中以便后续计算
-  *(undefined8 *)(stack_frame_ptr + -0x1c) = temp_undefined1;  // 存储矩阵第一部分
-  *(undefined8 *)(stack_frame_ptr + -0x1a) = temp_undefined2;  // 存储矩阵第二部分
-  *(undefined8 *)(stack_frame_ptr + -0x10) = temp_undefined1;  // 备份矩阵第一部分
-  *(undefined8 *)(stack_frame_ptr + -0xe) = temp_undefined2;   // 备份矩阵第二部分
+  *(uint64_t *)(stack_frame_ptr + -0x1c) = temp_int8_t;  // 存储矩阵第一部分
+  *(uint64_t *)(stack_frame_ptr + -0x1a) = temp_int16_t;  // 存储矩阵第二部分
+  *(uint64_t *)(stack_frame_ptr + -0x10) = temp_int8_t;  // 备份矩阵第一部分
+  *(uint64_t *)(stack_frame_ptr + -0xe) = temp_int16_t;   // 备份矩阵第二部分
   
   // 存储四元数分量到栈帧
   stack_frame_ptr[-0x20] = quaternion_x;            // 存储四元数X
@@ -212,7 +212,7 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
     vertex_x = stack_frame_ptr[-8];                      // 顶点X坐标
     vertex_y = stack_frame_ptr[-7];                      // 顶点Y坐标
     vertex_z = stack_frame_ptr[-6];                      // 顶点Z坐标
-    result_w = *(undefined4 *)(stack_frame_ptr + -5);    // 顶点W分量
+    result_w = *(int32_t *)(stack_frame_ptr + -5);    // 顶点W分量
     
     // 牛顿迭代法提高四元数逆平方根精度
     normalized_value = normalized_value * INVERSE_RSQRT_FACTOR * (3.0f - distance_sq * normalized_value * normalized_value);
@@ -245,7 +245,7 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
     // 如果四元数长度超出标准化阈值范围，则跳转到标准化处理
     if ((distance_sq <= NORMALIZATION_THRESHOLD_LOW) ||
         (vertex_x = stack_frame_ptr[-8], vertex_y = stack_frame_ptr[-7], vertex_z = stack_frame_ptr[-6],
-         result_w = *(undefined4 *)(stack_frame_ptr + -5), NORMALIZATION_THRESHOLD_HIGH <= distance_sq)) {
+         result_w = *(int32_t *)(stack_frame_ptr + -5), NORMALIZATION_THRESHOLD_HIGH <= distance_sq)) {
       goto VECTOR_NORMALIZATION_PROCESS;
     }
   }
@@ -257,8 +257,8 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
   if (*(float *)(render_data_ptr + 0x68) == NEG_INFINITY) {
     
     // 提取渲染上下文中的变换矩阵参数
-    temp_undefined1 = *(undefined8 *)(render_context + 0x30);  // 矩阵第一部分
-    temp_undefined2 = *(undefined8 *)(render_context + 0x38);  // 矩阵第二部分
+    temp_int8_t = *(uint64_t *)(render_context + 0x30);  // 矩阵第一部分
+    temp_int16_t = *(uint64_t *)(render_context + 0x38);  // 矩阵第二部分
     
     // 初始化渲染数据缓冲区 - 存储顶点坐标数据
     *(float *)(render_data_ptr + 0x98) = vertex_x;              // 存储顶点X到缓冲区1
@@ -285,8 +285,8 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
     *(float *)(render_data_ptr + 0xe4) = weight_w;              // 备份标准化输入W
     
     // 存储变换矩阵参数到渲染数据
-    *(undefined8 *)(render_data_ptr + 0x68) = temp_undefined1; // 存储矩阵第一部分
-    *(undefined8 *)(render_data_ptr + 0x70) = temp_undefined2; // 存储矩阵第二部分
+    *(uint64_t *)(render_data_ptr + 0x68) = temp_int8_t; // 存储矩阵第一部分
+    *(uint64_t *)(render_data_ptr + 0x70) = temp_int16_t; // 存储矩阵第二部分
     
     // 存储标准化后的四元数数据
     *(float *)(render_data_ptr + 0xb8) = quaternion_x;          // 存储四元数X到缓冲区1
@@ -313,21 +313,21 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
     result_x = *(float *)(render_data_ptr + 200);   // 加载顶点X坐标
     result_y = *(float *)(render_data_ptr + 0xcc);  // 加载顶点Y坐标
     result_z = *(float *)(render_data_ptr + 0xd0);  // 加载顶点Z坐标
-    result_w = *(undefined4 *)(render_data_ptr + 0xd4);  // 加载顶点W分量
+    result_w = *(int32_t *)(render_data_ptr + 0xd4);  // 加载顶点W分量
   }
   else if (mode_index == 1) {
     // 模式1：从备份缓冲区加载标准化输入向量数据
     result_x = *(float *)(render_data_ptr + 0xd8);  // 加载标准化输入X
     result_y = *(float *)(render_data_ptr + 0xdc);  // 加载标准化输入Y
     result_z = *(float *)(render_data_ptr + 0xe0);  // 加载标准化输入Z
-    result_w = *(undefined4 *)(render_data_ptr + 0xe4);  // 加载标准化输入W
+    result_w = *(int32_t *)(render_data_ptr + 0xe4);  // 加载标准化输入W
   }
   else {
     // 模式2：从四元数缓冲区加载四元数数据
     result_x = *(float *)(render_data_ptr + 0xe8);  // 加载四元数X
     result_y = *(float *)(render_data_ptr + 0xec);  // 加载四元数Y
     result_z = *(float *)(render_data_ptr + 0xf0);  // 加载四元数W
-    result_w = *(undefined4 *)(render_data_ptr + 0xf4);  // 加载法线Z分量
+    result_w = *(int32_t *)(render_data_ptr + 0xf4);  // 加载法线Z分量
   }
   // 第五阶段：向量标准化处理和角度计算
   // 对四元数向量和顶点向量进行标准化处理
@@ -378,13 +378,13 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
   // 获取变换参数和矩阵数据
   interpolation_factor = *(float *)(render_data_ptr + 0xfc);
   quaternion_w = *(float *)(render_data_ptr + 0x6c);
-  temp_undefined1 = *(undefined8 *)(render_data_ptr + 0xe0);
-  temp_undefined2 = *(undefined8 *)(render_data_ptr + 200);
-  temp_undefined3 = *(undefined8 *)(render_data_ptr + 0xd0);
+  temp_int8_t = *(uint64_t *)(render_data_ptr + 0xe0);
+  temp_int16_t = *(uint64_t *)(render_data_ptr + 200);
+  temp_undefined3 = *(uint64_t *)(render_data_ptr + 0xd0);
   
   // 存储矩阵数据到栈帧
-  *(undefined8 *)(stack_frame_ptr + 0x10) = *(undefined8 *)(render_data_ptr + 0xd8);
-  *(undefined8 *)(stack_frame_ptr + 0x12) = temp_undefined1;
+  *(uint64_t *)(stack_frame_ptr + 0x10) = *(uint64_t *)(render_data_ptr + 0xd8);
+  *(uint64_t *)(stack_frame_ptr + 0x12) = temp_int8_t;
   
   // 计算X坐标变换结果（包含角度插值和缩放）
   result_x = (result_x * scale_factor + matrix_element1 + 
@@ -397,8 +397,8 @@ void RenderingSystem_AdvancedMathCalculator(longlong render_context, undefined8 
               interpolation_factor * (1.0f / scale_factor)) - stack_frame_ptr[-0x1b];
   
   // 存储矩阵数据到栈帧
-  *(undefined8 *)(stack_frame_ptr + 0xc) = temp_undefined2;
-  *(undefined8 *)(stack_frame_ptr + 0xe) = temp_undefined3;
+  *(uint64_t *)(stack_frame_ptr + 0xc) = temp_int16_t;
+  *(uint64_t *)(stack_frame_ptr + 0xe) = temp_undefined3;
   
   // 获取四元数数据
   quaternion_y = *(float *)(render_data_ptr + 0xec);
@@ -662,9 +662,9 @@ LAB_18057b6d9:
   result_w = 0x7f7fffff;  // 设置最大浮点数
   
   // 提取矩阵数据
-  temp_undefined1 = *(undefined8 *)(stack_frame_ptr + 0xe);
-  temp_undefined2 = *(undefined8 *)(stack_frame_ptr + 0x10);
-  temp_undefined3 = *(undefined8 *)(stack_frame_ptr + 0x12);
+  temp_int8_t = *(uint64_t *)(stack_frame_ptr + 0xe);
+  temp_int16_t = *(uint64_t *)(stack_frame_ptr + 0x10);
+  temp_undefined3 = *(uint64_t *)(stack_frame_ptr + 0x12);
   
   // 获取四元数数据
   quaternion_x = stack_frame_ptr[-0x20];              // 四元数X分量
@@ -678,22 +678,22 @@ LAB_18057b6d9:
   quaternion_x = stack_frame_ptr[-0x20];              // 备份四元数X分量
   
   // 存储变换结果到渲染数据缓冲区
-  *(undefined8 *)(render_data_ptr + 200) = *(undefined8 *)(stack_frame_ptr + 0xc);  // 存储变换矩阵X部分
-  *(undefined8 *)(render_data_ptr + 0xd0) = temp_undefined1;                       // 存储变换矩阵Y部分
+  *(uint64_t *)(render_data_ptr + 200) = *(uint64_t *)(stack_frame_ptr + 0xc);  // 存储变换矩阵X部分
+  *(uint64_t *)(render_data_ptr + 0xd0) = temp_int8_t;                       // 存储变换矩阵Y部分
   
   // 提取更多矩阵数据
-  temp_undefined1 = *(undefined8 *)(stack_frame_ptr + 0x14);
-  temp_undefined4 = *(undefined8 *)(stack_frame_ptr + 0x16);
+  temp_int8_t = *(uint64_t *)(stack_frame_ptr + 0x14);
+  temp_int32_t = *(uint64_t *)(stack_frame_ptr + 0x16);
   
   // 存储矩阵数据到渲染数据
-  *(undefined8 *)(render_data_ptr + 0xd8) = temp_undefined2;  // 存储矩阵数据1
-  *(undefined8 *)(render_data_ptr + 0xe0) = temp_undefined3;  // 存储矩阵数据2
-  *(undefined8 *)(render_data_ptr + 0xe8) = temp_undefined1;  // 存储矩阵数据3
-  *(undefined8 *)(render_data_ptr + 0xf0) = temp_undefined4;  // 存储矩阵数据4
+  *(uint64_t *)(render_data_ptr + 0xd8) = temp_int16_t;  // 存储矩阵数据1
+  *(uint64_t *)(render_data_ptr + 0xe0) = temp_undefined3;  // 存储矩阵数据2
+  *(uint64_t *)(render_data_ptr + 0xe8) = temp_int8_t;  // 存储矩阵数据3
+  *(uint64_t *)(render_data_ptr + 0xf0) = temp_int32_t;  // 存储矩阵数据4
   
   // 备份矩阵数据到栈帧
-  *(undefined8 *)(stack_frame_ptr + -0x10) = *(undefined8 *)(stack_frame_ptr + -0x1c);  // 备份矩阵数据1
-  *(undefined8 *)(stack_frame_ptr + -0xe) = *(undefined8 *)(stack_frame_ptr + -0x1a);   // 备份矩阵数据2
+  *(uint64_t *)(stack_frame_ptr + -0x10) = *(uint64_t *)(stack_frame_ptr + -0x1c);  // 备份矩阵数据1
+  *(uint64_t *)(stack_frame_ptr + -0xe) = *(uint64_t *)(stack_frame_ptr + -0x1a);   // 备份矩阵数据2
   
   // 存储四元数数据到栈帧
   stack_frame_ptr[-0x14] = quaternion_x;              // 存储四元数X
@@ -826,9 +826,9 @@ LAB_18057b6d9:
   }
   else {
     // 超出距离限制，重置为零
-    *(undefined8 *)(render_data_ptr + 0x58) = 0;         // 重置X变换参数
+    *(uint64_t *)(render_data_ptr + 0x58) = 0;         // 重置X变换参数
     input_x = 0.0f;                                      // 重置输入X
-    *(undefined8 *)(render_data_ptr + 0x60) = 0;         // 重置Z变换参数
+    *(uint64_t *)(render_data_ptr + 0x60) = 0;         // 重置Z变换参数
   }
   
   // 获取最终变换矩阵数据

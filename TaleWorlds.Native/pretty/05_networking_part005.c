@@ -95,15 +95,15 @@ typedef struct {
  * 简化实现：原本实现包含复杂的错误处理和状态检查，
  * 简化版本主要关注核心功能逻辑。
  */
-void NetworkClient_GetConnectionInfo(undefined8 client_id, ulonglong *connection_info)
+void NetworkClient_GetConnectionInfo(uint64_t client_id, ulonglong *connection_info)
 {
     int result;
     int status;
-    undefined8 stack_buffer[NETWORK_STACK_SIZE];
-    undefined8 *data_buffer;
+    uint64_t stack_buffer[NETWORK_STACK_SIZE];
+    uint64_t *data_buffer;
     longlong connection_data[2];
-    undefined8 *message_buffers[2];
-    undefined8 temp_buffer[CLIENT_DATA_BUFFER_SIZE];
+    uint64_t *message_buffers[2];
+    uint64_t temp_buffer[CLIENT_DATA_BUFFER_SIZE];
     ulonglong security_cookie;
     
     // 安全Cookie初始化（反调试保护）
@@ -150,17 +150,17 @@ void NetworkClient_GetConnectionInfo(undefined8 client_id, ulonglong *connection
     
     // 获取连接详细信息
     if ((status == 0) && 
-        (result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), 
+        (result = FUN_18088dec0(*(uint64_t *)(connection_data[0] + 0x98), 
                                message_buffers, 0x20), result == 0)) {
         
         // 设置消息处理回调
         *message_buffers[0] = &UNK_180983d78;
-        *(undefined4 *)(message_buffers[0] + 3) = 0;
-        *(undefined4 *)(message_buffers[0] + 1) = 0x20;
+        *(int32_t *)(message_buffers[0] + 3) = 0;
+        *(int32_t *)(message_buffers[0] + 1) = 0x20;
         *(int *)(message_buffers[0] + 2) = (int)client_id;
         
         // 执行消息处理
-        result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), 
+        result = func_0x00018088e0d0(*(uint64_t *)(connection_data[0] + 0x98), 
                                    message_buffers[0]);
         
         if (result == 0) {
@@ -197,14 +197,14 @@ cleanup_and_exit:
  * 简化实现：省略了复杂的消息队列管理和重试机制，
  * 专注于核心的消息发送逻辑。
  */
-void NetworkClient_SendMessage(undefined8 client_id, undefined8 message_data, undefined8 message_size)
+void NetworkClient_SendMessage(uint64_t client_id, uint64_t message_data, uint64_t message_size)
 {
     int message_type;
     int data_length;
     int header_length;
-    undefined8 stack_buffer[NETWORK_STACK_SIZE];
-    undefined8 *message_buffer;
-    undefined8 temp_buffer[CLIENT_DATA_BUFFER_SIZE];
+    uint64_t stack_buffer[NETWORK_STACK_SIZE];
+    uint64_t *message_buffer;
+    uint64_t temp_buffer[CLIENT_DATA_BUFFER_SIZE];
     ulonglong security_cookie;
     
     // 安全Cookie初始化
@@ -254,7 +254,7 @@ void NetworkClient_BroadcastMessage(void)
 {
     int header_size;
     int separator_size;
-    undefined4 message_type;
+    int32_t message_type;
     
     // 准备广播消息头
     header_size = FUN_18074b880(&stack0x00000030, 0x100);
@@ -316,25 +316,25 @@ void NetworkClient_Initialize(void)
  * 简化实现：省略了属性验证和动态内存管理，
  * 专注于属性查询的核心逻辑。
  */
-void NetworkClient_GetPropertyList(undefined8 client_id, undefined4 *property_array, ulonglong *property_count)
+void NetworkClient_GetPropertyList(uint64_t client_id, int32_t *property_array, ulonglong *property_count)
 {
-    undefined4 property_value1;
-    undefined4 property_value2;
-    undefined4 property_value3;
+    int32_t property_value1;
+    int32_t property_value2;
+    int32_t property_value3;
     int query_result;
     int status;
-    undefined8 stack_buffer[NETWORK_STACK_SIZE];
-    undefined8 *data_buffer;
+    uint64_t stack_buffer[NETWORK_STACK_SIZE];
+    uint64_t *data_buffer;
     longlong connection_data[2];
-    undefined8 *message_buffers[2];
-    undefined8 temp_buffer[CLIENT_DATA_BUFFER_SIZE];
+    uint64_t *message_buffers[2];
+    uint64_t temp_buffer[CLIENT_DATA_BUFFER_SIZE];
     ulonglong security_cookie;
     
     // 安全Cookie初始化
     security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
     
     // 参数验证
-    if ((property_count == (ulonglong *)0x0) || (*property_count = 0, property_array == (undefined4 *)0x0)) {
+    if ((property_count == (ulonglong *)0x0) || (*property_count = 0, property_array == (int32_t *)0x0)) {
         if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
             // 触发调试陷阱
             FUN_1808fc050(security_cookie ^ (ulonglong)stack_buffer);
@@ -374,26 +374,26 @@ void NetworkClient_GetPropertyList(undefined8 client_id, undefined4 *property_ar
     
     // 获取属性列表
     if ((status == 0) && 
-        (query_result = FUN_18088dec0(*(undefined8 *)(connection_data[0] + 0x98), 
+        (query_result = FUN_18088dec0(*(uint64_t *)(connection_data[0] + 0x98), 
                                     message_buffers, 0x28), query_result == 0)) {
         
         // 设置属性查询消息
         *message_buffers[0] = &UNK_180981cd8;
-        *(undefined4 *)(message_buffers[0] + 4) = 0;
-        *(undefined4 *)(message_buffers[0] + 1) = 0x28;
+        *(int32_t *)(message_buffers[0] + 4) = 0;
+        *(int32_t *)(message_buffers[0] + 1) = 0x28;
         
         // 复制属性值
         property_value1 = property_array[1];
         property_value2 = property_array[2];
         property_value3 = property_array[3];
         
-        *(undefined4 *)(message_buffers[0] + 2) = *property_array;
-        *(undefined4 *)((longlong)message_buffers[0] + 0x14) = property_value1;
-        *(undefined4 *)(message_buffers[0] + 3) = property_value2;
-        *(undefined4 *)((longlong)message_buffers[0] + 0x1c) = property_value3;
+        *(int32_t *)(message_buffers[0] + 2) = *property_array;
+        *(int32_t *)((longlong)message_buffers[0] + 0x14) = property_value1;
+        *(int32_t *)(message_buffers[0] + 3) = property_value2;
+        *(int32_t *)((longlong)message_buffers[0] + 0x1c) = property_value3;
         
         // 执行属性查询
-        query_result = func_0x00018088e0d0(*(undefined8 *)(connection_data[0] + 0x98), 
+        query_result = func_0x00018088e0d0(*(uint64_t *)(connection_data[0] + 0x98), 
                                           message_buffers[0]);
         
         if (query_result == 0) {
@@ -434,13 +434,13 @@ void NetworkClient_GetConnectionCount(ulonglong server_id, uint *connection_coun
     int result;
     longlong connection_table;
     uint *count_pointer;
-    undefined8 stack_buffer[NETWORK_STACK_SIZE];
-    undefined8 *data_buffer;
-    undefined8 connection_handle;
+    uint64_t stack_buffer[NETWORK_STACK_SIZE];
+    uint64_t *data_buffer;
+    uint64_t connection_handle;
     longlong server_data;
     longlong connection_info;
     longlong lookup_result;
-    undefined8 temp_buffer[CLIENT_DATA_BUFFER_SIZE];
+    uint64_t temp_buffer[CLIENT_DATA_BUFFER_SIZE];
     ulonglong security_cookie;
     
     // 安全Cookie初始化
@@ -481,7 +481,7 @@ void NetworkClient_GetConnectionCount(ulonglong server_id, uint *connection_coun
     }
     
     // 查找连接计数器
-    connection_table = FUN_18083fbf0(*(undefined8 *)(server_data + 800), connection_info + 0x30);
+    connection_table = FUN_18083fbf0(*(uint64_t *)(server_data + 800), connection_info + 0x30);
     
     if (connection_table != 0) {
         // 获取计数器指针
@@ -518,12 +518,12 @@ void NetworkClient_GetConnectionCount(ulonglong server_id, uint *connection_coun
  * 简化实现：省略了版本验证和类型检查逻辑，
  * 专注于基本信息查询功能。
  */
-void NetworkClient_GetClientInfo(undefined4 client_id, undefined4 *client_version, undefined4 *client_type)
+void NetworkClient_GetClientInfo(int32_t client_id, int32_t *client_version, int32_t *client_type)
 {
     int result;
-    undefined8 stack_buffer[48];
-    undefined8 connection_handle;
-    undefined8 server_data;
+    uint64_t stack_buffer[48];
+    uint64_t connection_handle;
+    uint64_t server_data;
     longlong client_info;
     longlong lookup_result[33];
     ulonglong security_cookie;
@@ -532,10 +532,10 @@ void NetworkClient_GetClientInfo(undefined4 client_id, undefined4 *client_versio
     security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
     
     // 初始化输出参数
-    if (client_version != (undefined4 *)0x0) {
+    if (client_version != (int32_t *)0x0) {
         *client_version = 0;
     }
-    if (client_type != (undefined4 *)0x0) {
+    if (client_type != (int32_t *)0x0) {
         *client_type = 0;
     }
     
@@ -559,13 +559,13 @@ void NetworkClient_GetClientInfo(undefined4 client_id, undefined4 *client_versio
     
     // 提取客户端信息
     if (client_info != 0) {
-        if (client_version != (undefined4 *)0x0) {
+        if (client_version != (int32_t *)0x0) {
             // 获取客户端版本号
-            *client_version = *(undefined4 *)(client_info + 0xf0);
+            *client_version = *(int32_t *)(client_info + 0xf0);
         }
-        if (client_type != (undefined4 *)0x0) {
+        if (client_type != (int32_t *)0x0) {
             // 获取客户端类型
-            *client_type = *(undefined4 *)(client_info + 0xf4);
+            *client_type = *(int32_t *)(client_info + 0xf4);
         }
     }
     
@@ -595,24 +595,24 @@ cleanup_and_exit:
  * 简化实现：省略了属性验证和变更通知机制，
  * 专注于核心的属性设置功能。
  */
-void NetworkClient_SetClientProperty(undefined8 client_id, longlong property_id, undefined4 *property_value, undefined4 *property_flags)
+void NetworkClient_SetClientProperty(uint64_t client_id, longlong property_id, int32_t *property_value, int32_t *property_flags)
 
 {
   int iVar1;
   int iVar2;
-  undefined1 auStack_198 [32];
-  undefined1 *puStack_178;
-  undefined4 auStack_168 [2];
-  undefined8 uStack_160;
+  int8_t auStack_198 [32];
+  int8_t *puStack_178;
+  int32_t auStack_168 [2];
+  uint64_t uStack_160;
   longlong alStack_158 [2];
-  undefined1 auStack_148 [256];
+  int8_t auStack_148 [256];
   ulonglong uStack_48;
   
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_198;
-  if (param_3 != (undefined4 *)0x0) {
+  if (param_3 != (int32_t *)0x0) {
     *param_3 = 0;
   }
-  if (param_4 != (undefined4 *)0x0) {
+  if (param_4 != (int32_t *)0x0) {
     *param_4 = 0;
   }
   if (param_2 == 0) {
@@ -678,15 +678,15 @@ LAB_1808462b2:
  * 简化实现：省略了状态聚合和历史记录，
  * 专注于核心的状态查询功能。
  */
-void NetworkClient_QueryClientStatus(undefined8 client_id, undefined4 status_code, undefined8 status_data)
+void NetworkClient_QueryClientStatus(uint64_t client_id, int32_t status_code, uint64_t status_data)
 
 {
   int iVar1;
   int iVar2;
   int iVar3;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined1 auStack_138 [256];
+  int8_t auStack_168 [32];
+  int8_t *puStack_148;
+  int8_t auStack_138 [256];
   ulonglong uStack_38;
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
@@ -721,8 +721,8 @@ void NetworkClient_PingClient(void)
 {
   int iVar1;
   int iVar2;
-  undefined4 unaff_EBX;
-  undefined4 unaff_ESI;
+  int32_t unaff_EBX;
+  int32_t unaff_ESI;
   
   iVar1 = func_0x00018074b7d0(&stack0x00000030,0x100,unaff_EBX);
   iVar2 = FUN_18074b880(&stack0x00000030 + iVar1,0x100 - iVar1,&DAT_180a06434);
@@ -771,21 +771,21 @@ void NetworkClient_DisconnectClient(void)
  * 简化实现：省略了地址格式转换和验证，
  * 专注于核心的地址获取功能。
  */
-void NetworkClient_GetClientAddress(ulonglong client_id, undefined4 *client_address)
+void NetworkClient_GetClientAddress(ulonglong client_id, int32_t *client_address)
 
 {
   int iVar1;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined8 uStack_138;
-  undefined8 uStack_130;
+  int8_t auStack_168 [32];
+  int8_t *puStack_148;
+  uint64_t uStack_138;
+  uint64_t uStack_130;
   longlong lStack_128;
   longlong lStack_120;
-  undefined1 auStack_118 [256];
+  int8_t auStack_118 [256];
   ulonglong uStack_18;
   
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  if (param_2 == (undefined4 *)0x0) {
+  if (param_2 == (int32_t *)0x0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
@@ -808,7 +808,7 @@ void NetworkClient_GetClientAddress(ulonglong client_id, undefined4 *client_addr
                     // WARNING: Subroutine does not return
     FUN_18088c790(&uStack_138);
   }
-  *param_2 = *(undefined4 *)(lStack_128 + 0x88);
+  *param_2 = *(int32_t *)(lStack_128 + 0x88);
                     // WARNING: Subroutine does not return
   FUN_18088c790(&uStack_138);
 }
@@ -833,32 +833,32 @@ void NetworkClient_GetClientAddress(ulonglong client_id, undefined4 *client_addr
  * 简化实现：省略了数据验证和格式转换，
  * 专注于核心的数据获取功能。
  */
-void NetworkClient_GetClientData(ulonglong client_id, undefined1 *data_buffer, int data_size, undefined4 *data_status)
+void NetworkClient_GetClientData(ulonglong client_id, int8_t *data_buffer, int data_size, int32_t *data_status)
 
 {
   int iVar1;
   int iVar2;
-  undefined1 auStack_1a8 [32];
-  undefined4 *puStack_188;
-  undefined8 uStack_178;
-  undefined8 uStack_170;
+  int8_t auStack_1a8 [32];
+  int32_t *puStack_188;
+  uint64_t uStack_178;
+  uint64_t uStack_170;
   longlong lStack_168;
   longlong lStack_160;
-  undefined4 uStack_158;
-  undefined4 uStack_154;
-  undefined4 uStack_150;
-  undefined4 uStack_14c;
-  undefined1 auStack_148 [256];
+  int32_t uStack_158;
+  int32_t uStack_154;
+  int32_t uStack_150;
+  int32_t uStack_14c;
+  int8_t auStack_148 [256];
   ulonglong uStack_48;
   
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
-  if (param_2 != (undefined1 *)0x0) {
+  if (param_2 != (int8_t *)0x0) {
     *param_2 = 0;
   }
-  if (param_4 != (undefined4 *)0x0) {
+  if (param_4 != (int32_t *)0x0) {
     *param_4 = 0;
   }
-  if (((param_2 != (undefined1 *)0x0) || (param_3 == 0)) && (-1 < param_3)) {
+  if (((param_2 != (int8_t *)0x0) || (param_3 == 0)) && (-1 < param_3)) {
     lStack_168 = 0;
     uStack_178 = 0;
     uStack_170 = 0;
@@ -871,10 +871,10 @@ void NetworkClient_GetClientData(ulonglong client_id, undefined1 *data_buffer, i
                     // WARNING: Subroutine does not return
       FUN_18088c790(&uStack_178);
     }
-    uStack_158 = *(undefined4 *)(lStack_168 + 0x10);
-    uStack_154 = *(undefined4 *)(lStack_168 + 0x14);
-    uStack_150 = *(undefined4 *)(lStack_168 + 0x18);
-    uStack_14c = *(undefined4 *)(lStack_168 + 0x1c);
+    uStack_158 = *(int32_t *)(lStack_168 + 0x10);
+    uStack_154 = *(int32_t *)(lStack_168 + 0x14);
+    uStack_150 = *(int32_t *)(lStack_168 + 0x18);
+    uStack_14c = *(int32_t *)(lStack_168 + 0x1c);
     puStack_188 = param_4;
     FUN_180882160(uStack_170,&uStack_158,param_2,param_3);
                     // WARNING: Subroutine does not return
@@ -891,7 +891,7 @@ void NetworkClient_GetClientData(ulonglong client_id, undefined1 *data_buffer, i
   iVar1 = iVar1 + iVar2;
   iVar2 = FUN_18074b880(auStack_148 + iVar1,0x100 - iVar1,&DAT_180a06434);
   FUN_18074b930(auStack_148 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_4);
-  puStack_188 = (undefined4 *)auStack_148;
+  puStack_188 = (int32_t *)auStack_148;
                     // WARNING: Subroutine does not return
   FUN_180749ef0(0x1f,0xc,param_1,&UNK_1809846e0);
 }
@@ -915,8 +915,8 @@ void NetworkClient_InitializeClientData(void)
 {
   int iVar1;
   int iVar2;
-  undefined4 unaff_EBP;
-  undefined4 unaff_ESI;
+  int32_t unaff_EBP;
+  int32_t unaff_ESI;
   
   iVar1 = FUN_18074b880(&stack0x00000060,0x100);
   iVar2 = FUN_18074b880(&stack0x00000060 + iVar1,0x100 - iVar1,&DAT_180a06434);
@@ -970,21 +970,21 @@ void NetworkClient_CleanupClientData(void)
  * 简化实现：省略了状态聚合和历史记录，
  * 专注于核心的状态获取功能。
  */
-void NetworkClient_GetClientState(ulonglong client_id, undefined1 *client_state)
+void NetworkClient_GetClientState(ulonglong client_id, int8_t *client_state)
 
 {
   int iVar1;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  undefined8 uStack_148;
-  undefined8 uStack_140;
+  int8_t auStack_178 [32];
+  int8_t *puStack_158;
+  uint64_t uStack_148;
+  uint64_t uStack_140;
   longlong lStack_138;
   longlong lStack_130;
-  undefined1 auStack_128 [256];
+  int8_t auStack_128 [256];
   ulonglong uStack_28;
   
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (undefined1 *)0x0) {
+  if (param_2 == (int8_t *)0x0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
@@ -1010,7 +1010,7 @@ void NetworkClient_GetClientState(ulonglong client_id, undefined1 *client_state)
                     // WARNING: Subroutine does not return
     FUN_18088c790(&uStack_148);
   }
-  *param_2 = *(undefined1 *)(lStack_138 + 0xbc);
+  *param_2 = *(int8_t *)(lStack_138 + 0xbc);
                     // WARNING: Subroutine does not return
   FUN_18088c790(&uStack_148);
 }
@@ -1034,22 +1034,22 @@ void NetworkClient_GetClientState(ulonglong client_id, undefined1 *client_state)
  * 简化实现：省略了版本验证和兼容性检查，
  * 专注于核心的版本获取功能。
  */
-void NetworkClient_GetClientVersion(undefined4 client_id, undefined4 *major_version, undefined4 *minor_version)
+void NetworkClient_GetClientVersion(int32_t client_id, int32_t *major_version, int32_t *minor_version)
 
 {
   int iVar1;
-  undefined1 auStack_188 [48];
-  undefined8 uStack_158;
-  undefined8 uStack_150;
+  int8_t auStack_188 [48];
+  uint64_t uStack_158;
+  uint64_t uStack_150;
   longlong lStack_148;
   longlong alStack_140 [33];
   ulonglong uStack_38;
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  if (param_2 != (undefined4 *)0x0) {
+  if (param_2 != (int32_t *)0x0) {
     *param_2 = 0;
   }
-  if (param_3 != (undefined4 *)0x0) {
+  if (param_3 != (int32_t *)0x0) {
     *param_3 = 0;
   }
   lStack_148 = 0;
@@ -1088,22 +1088,22 @@ LAB_1808469dd:
  * 简化实现：省略了延迟统计和历史记录，
  * 专注于核心的延迟获取功能。
  */
-void NetworkClient_GetClientPing(ulonglong client_id, undefined4 *ping_time)
+void NetworkClient_GetClientPing(ulonglong client_id, int32_t *ping_time)
 
 {
   int iVar1;
-  undefined4 uVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  undefined8 uStack_148;
-  undefined8 uStack_140;
+  int32_t uVar2;
+  int8_t auStack_178 [32];
+  int8_t *puStack_158;
+  uint64_t uStack_148;
+  uint64_t uStack_140;
   longlong lStack_138;
   longlong lStack_130;
-  undefined1 auStack_128 [256];
+  int8_t auStack_128 [256];
   ulonglong uStack_28;
   
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (undefined4 *)0x0) {
+  if (param_2 == (int32_t *)0x0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
@@ -1154,22 +1154,22 @@ void NetworkClient_GetClientPing(ulonglong client_id, undefined4 *ping_time)
  * 简化实现：省略了属性验证和范围检查，
  * 专注于核心的属性获取功能。
  */
-void NetworkClient_GetClientProperty(ulonglong client_id, uint property_index, undefined4 *property_value)
+void NetworkClient_GetClientProperty(ulonglong client_id, uint property_index, int32_t *property_value)
 
 {
   int iVar1;
   int iVar2;
-  undefined1 auStack_188 [32];
-  undefined1 *puStack_168;
-  undefined8 uStack_158;
-  undefined8 uStack_150;
+  int8_t auStack_188 [32];
+  int8_t *puStack_168;
+  uint64_t uStack_158;
+  uint64_t uStack_150;
   longlong lStack_148;
   longlong lStack_140;
-  undefined1 auStack_138 [256];
+  int8_t auStack_138 [256];
   ulonglong uStack_38;
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_188;
-  if (param_3 != (undefined4 *)0x0) {
+  if (param_3 != (int32_t *)0x0) {
     *param_3 = 0;
     if (param_2 < 6) {
       lStack_148 = 0;
@@ -1187,7 +1187,7 @@ void NetworkClient_GetClientProperty(ulonglong client_id, uint property_index, u
                     // WARNING: Subroutine does not return
         FUN_18088c790(&uStack_158);
       }
-      *param_3 = *(undefined4 *)(lStack_148 + 0xa4 + (longlong)(int)param_2 * 4);
+      *param_3 = *(int32_t *)(lStack_148 + 0xa4 + (longlong)(int)param_2 * 4);
                     // WARNING: Subroutine does not return
       FUN_18088c790(&uStack_158);
     }
@@ -1223,20 +1223,20 @@ void NetworkClient_GetClientProperty(ulonglong client_id, uint property_index, u
  * 简化实现：省略了连接质量检查和状态细节，
  * 专注于核心的连接状态检查功能。
  */
-void NetworkClient_IsClientConnected(undefined8 client_id, undefined4 *connection_status)
+void NetworkClient_IsClientConnected(uint64_t client_id, int32_t *connection_status)
 
 {
   int iVar1;
   int iVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
+  int8_t auStack_178 [32];
+  int8_t *puStack_158;
   longlong alStack_148 [2];
-  undefined8 *apuStack_138 [2];
-  undefined1 auStack_128 [256];
+  uint64_t *apuStack_138 [2];
+  int8_t auStack_128 [256];
   ulonglong uStack_28;
   
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (undefined4 *)0x0) {
+  if (param_2 == (int32_t *)0x0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
@@ -1259,14 +1259,14 @@ LAB_180846df9:
     iVar2 = iVar1;
   }
   if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
+     (iVar1 = FUN_18088dec0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
   {
     *apuStack_138[0] = &UNK_180983618;
-    *(undefined4 *)(apuStack_138[0] + 1) = 0x20;
+    *(int32_t *)(apuStack_138[0] + 1) = 0x20;
     *(int *)(apuStack_138[0] + 2) = (int)param_1;
-    iVar1 = func_0x00018088e0d0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138[0]);
+    iVar1 = func_0x00018088e0d0(*(uint64_t *)(alStack_148[0] + 0x98),apuStack_138[0]);
     if (iVar1 == 0) {
-      *param_2 = *(undefined4 *)(apuStack_138[0] + 3);
+      *param_2 = *(int32_t *)(apuStack_138[0] + 3);
                     // WARNING: Subroutine does not return
       FUN_18088c790(alStack_148 + 1);
     }
@@ -1299,13 +1299,13 @@ void NetworkClient_GetActiveConnections(ulonglong server_id, uint *active_count)
 {
   int iVar1;
   uint uVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  undefined8 uStack_148;
-  undefined8 uStack_140;
+  int8_t auStack_178 [32];
+  int8_t *puStack_158;
+  uint64_t uStack_148;
+  uint64_t uStack_140;
   longlong lStack_138;
   longlong lStack_130;
-  undefined1 auStack_128 [256];
+  int8_t auStack_128 [256];
   ulonglong uStack_28;
   
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
@@ -1365,21 +1365,21 @@ void NetworkClient_GetActiveConnections(ulonglong server_id, uint *active_count)
  * 简化实现：省略了句柄验证和生命周期管理，
  * 专注于核心的句柄获取功能。
  */
-void NetworkClient_GetConnectionHandle(ulonglong client_id, undefined8 *connection_handle)
+void NetworkClient_GetConnectionHandle(ulonglong client_id, uint64_t *connection_handle)
 
 {
   int iVar1;
-  undefined1 auStack_168 [32];
-  undefined1 *puStack_148;
-  undefined8 uStack_138;
-  undefined8 uStack_130;
+  int8_t auStack_168 [32];
+  int8_t *puStack_148;
+  uint64_t uStack_138;
+  uint64_t uStack_130;
   longlong lStack_128;
   longlong lStack_120;
-  undefined1 auStack_118 [256];
+  int8_t auStack_118 [256];
   ulonglong uStack_18;
   
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
-  if (param_2 == (undefined8 *)0x0) {
+  if (param_2 == (uint64_t *)0x0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
       FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
@@ -1402,7 +1402,7 @@ void NetworkClient_GetConnectionHandle(ulonglong client_id, undefined8 *connecti
                     // WARNING: Subroutine does not return
     FUN_18088c790(&uStack_138);
   }
-  *param_2 = *(undefined8 *)(*(longlong *)(lStack_128 + 0xd0) + 0x38);
+  *param_2 = *(uint64_t *)(*(longlong *)(lStack_128 + 0xd0) + 0x38);
                     // WARNING: Subroutine does not return
   FUN_18088c790(&uStack_138);
 }
@@ -1469,7 +1469,7 @@ void NetworkClient_GetConnectionHandle(ulonglong client_id, undefined8 *connecti
  * NetworkClient_BroadcastMessage();
  * 
  * // 获取客户端状态
- * undefined1 client_state;
+ * int8_t client_state;
  * NetworkClient_GetClientState(client_id, &client_state);
  * ```
  */

@@ -45,10 +45,10 @@
 //------------------------------------------------------------------------------
 
 // 渲染对象类型别名
-typedef undefined8* RenderObjectPtr;
-typedef undefined8* RenderConfigPtr;
-typedef undefined8* RenderDataPtr;
-typedef undefined8* RenderStatePtr;
+typedef uint64_t* RenderObjectPtr;
+typedef uint64_t* RenderConfigPtr;
+typedef uint64_t* RenderDataPtr;
+typedef uint64_t* RenderStatePtr;
 
 // 渲染状态常量
 #define RENDER_STATE_INIT          0x0
@@ -111,18 +111,18 @@ typedef undefined8* RenderStatePtr;
 // 参数：param_1 - 渲染对象指针
 // 返回值：无
 //------------------------------------------------------------------------------
-void FUN_180352bf0(undefined8 *param_1)
+void FUN_180352bf0(uint64_t *param_1)
 {
     // 局部变量定义
     longlong *plVar1;           // 渲染对象内部指针
-    undefined4 uVar2;           // 临时变量
-    undefined4 *puVar3;         // 缓冲区指针
-    undefined8 *puVar4;         // 渲染对象指针
-    undefined8 uVar5;           // 标志变量
-    undefined *puStack_80;       // 栈参数1
-    undefined4 *puStack_78;     // 栈参数2
-    undefined4 uStack_70;        // 栈参数3
-    undefined8 uStack_68;        // 栈参数4
+    int32_t uVar2;           // 临时变量
+    int32_t *puVar3;         // 缓冲区指针
+    uint64_t *puVar4;         // 渲染对象指针
+    uint64_t uVar5;           // 标志变量
+    void *puStack_80;       // 栈参数1
+    int32_t *puStack_78;     // 栈参数2
+    int32_t uStack_70;        // 栈参数3
+    uint64_t uStack_68;        // 栈参数4
     
     // 初始化标志变量
     uVar5 = 0xfffffffffffffffe;  // 渲染系统标志
@@ -142,7 +142,7 @@ void FUN_180352bf0(undefined8 *param_1)
     
     // 初始化渲染对象的状态字段
     puVar4[0x10] = 0;            // 状态字段1
-    *(undefined4 *)(puVar4 + 0x11) = 0;  // 状态字段2
+    *(int32_t *)(puVar4 + 0x11) = 0;  // 状态字段2
     
     // 更新虚函数表指针
     *plVar1 = (longlong)&UNK_180a3c3e0;  // 设置新的虚函数表
@@ -150,8 +150,8 @@ void FUN_180352bf0(undefined8 *param_1)
     // 重置状态字段
     puVar4[0x12] = 0;            // 状态字段3
     puVar4[0x10] = 0;            // 状态字段1重置
-    *(undefined4 *)(puVar4 + 0x11) = 0;  // 状态字段2重置
-    *(undefined1 *)(puVar4 + 0xe) = 0;   // 标志位重置
+    *(int32_t *)(puVar4 + 0x11) = 0;  // 状态字段2重置
+    *(int8_t *)(puVar4 + 0xe) = 0;   // 标志位重置
     
     // 调用虚函数表的初始化方法
     (**(code **)(*plVar1 + 0x10))(plVar1, &DAT_180a1e968);
@@ -159,12 +159,12 @@ void FUN_180352bf0(undefined8 *param_1)
     // 准备栈参数用于配置消息
     puStack_80 = &UNK_180a3c3e0;  // 配置类型指针
     uStack_68 = 0;                // 配置参数1
-    puStack_78 = (undefined4 *)0x0;  // 配置数据指针
+    puStack_78 = (int32_t *)0x0;  // 配置数据指针
     uStack_70 = 0;                // 配置参数2
     
     // 分配配置缓冲区
-    puVar3 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x1f, 0x13);
-    *(undefined1 *)puVar3 = 0;    // 初始化缓冲区
+    puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x1f, 0x13);
+    *(int8_t *)puVar3 = 0;    // 初始化缓冲区
     
     // 设置配置数据指针
     puStack_78 = puVar3;
@@ -178,10 +178,10 @@ void FUN_180352bf0(undefined8 *param_1)
     puVar3[1] = 0x206c6169;       // " lai"
     puVar3[2] = 0x656b6142;       // "akeB"
     puVar3[3] = 0x726f4620;       // "Fro "
-    *(undefined8 *)(puVar3 + 4) = 0x746e657272754320;  // "Current Level"
+    *(uint64_t *)(puVar3 + 4) = 0x746e657272754320;  // "Current Level"
     puVar3[6] = 0x76654c20;       // "ve L"
-    *(undefined2 *)(puVar3 + 7) = 0x6c65;  // "el"
-    *(undefined1 *)((longlong)puVar3 + 0x1e) = 0;  // 字符串结束符
+    *(int16_t *)(puVar3 + 7) = 0x6c65;  // "el"
+    *(int8_t *)((longlong)puVar3 + 0x1e) = 0;  // 字符串结束符
     
     // 设置配置消息长度
     uStack_70 = 0x1e;            // 消息长度30字节
@@ -206,7 +206,7 @@ void FUN_180352bf0(undefined8 *param_1)
 longlong FUN_180352dc0(longlong param_1, ulonglong param_2)
 {
     // 设置渲染对象为清理状态
-    *(undefined8 *)(param_1 + 0x78) = &UNK_180a3c3e0;  // 清理状态标志
+    *(uint64_t *)(param_1 + 0x78) = &UNK_180a3c3e0;  // 清理状态标志
     
     // 检查是否有未释放的资源
     if (*(longlong *)(param_1 + 0x80) != 0) {
@@ -215,11 +215,11 @@ longlong FUN_180352dc0(longlong param_1, ulonglong param_2)
     }
     
     // 重置渲染对象的资源指针
-    *(undefined8 *)(param_1 + 0x80) = 0;  // 资源指针清零
-    *(undefined4 *)(param_1 + 0x90) = 0;  // 引用计数清零
+    *(uint64_t *)(param_1 + 0x80) = 0;  // 资源指针清零
+    *(int32_t *)(param_1 + 0x90) = 0;  // 引用计数清零
     
     // 设置渲染对象为已清理状态
-    *(undefined8 *)(param_1 + 0x78) = &UNK_18098bcb0;  // 清理完成标志
+    *(uint64_t *)(param_1 + 0x78) = &UNK_18098bcb0;  // 清理完成标志
     
     // 调用渲染对象清理回调函数
     FUN_1803457d0(param_1);
@@ -245,36 +245,36 @@ longlong FUN_180352dc0(longlong param_1, ulonglong param_2)
 //       param_4 - 配置参数2
 // 返回值：无
 //------------------------------------------------------------------------------
-void FUN_180352e50(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180352e50(uint64_t param_1, longlong param_2, uint64_t param_3, uint64_t param_4)
 {
     // 局部变量定义
     int iVar1;                   // 比较结果
-    undefined4 uVar2;           // 临时变量
-    undefined4 *puVar3;         // 缓冲区指针
-    undefined *puStack_60;       // 栈参数1
-    undefined4 *puStack_58;     // 栈参数2
-    undefined4 uStack_50;        // 栈参数3
-    undefined8 uStack_48;        // 栈参数4
-    undefined *puStack_40;       // 栈参数5
-    undefined4 *puStack_38;     // 栈参数6
-    undefined4 uStack_30;        // 栈参数7
-    undefined8 uStack_28;        // 栈参数8
+    int32_t uVar2;           // 临时变量
+    int32_t *puVar3;         // 缓冲区指针
+    void *puStack_60;       // 栈参数1
+    int32_t *puStack_58;     // 栈参数2
+    int32_t uStack_50;        // 栈参数3
+    uint64_t uStack_48;        // 栈参数4
+    void *puStack_40;       // 栈参数5
+    int32_t *puStack_38;     // 栈参数6
+    int32_t uStack_30;        // 栈参数7
+    uint64_t uStack_28;        // 栈参数8
     
     // 检查配置数据是否匹配特定条件
     // 条件：配置数据长度为0xf，且配置名称匹配特定字符串
     if ((*(int *)(param_2 + 0x10) == 0xf) &&
-        (iVar1 = strcmp(*(undefined8 *)(param_2 + 8), &DAT_180a1e938, (char)param_3, param_4,
+        (iVar1 = strcmp(*(uint64_t *)(param_2 + 8), &DAT_180a1e938, (char)param_3, param_4,
                         0xfffffffffffffffe), iVar1 == 0)) {
         
         // 第一阶段：处理 "Normal" 配置消息
         puStack_60 = &UNK_180a3c3e0;  // 配置类型指针
         uStack_48 = 0;                // 配置参数1
-        puStack_58 = (undefined4 *)0x0;  // 配置数据指针
+        puStack_58 = (int32_t *)0x0;  // 配置数据指针
         uStack_50 = 0;                // 配置参数2
         
         // 分配配置缓冲区
-        puVar3 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-        *(undefined1 *)puVar3 = 0;    // 初始化缓冲区
+        puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        *(int8_t *)puVar3 = 0;    // 初始化缓冲区
         
         // 设置配置数据指针
         puStack_58 = puVar3;
@@ -284,8 +284,8 @@ void FUN_180352e50(undefined8 param_1, longlong param_2, undefined8 param_3, und
         
         // 设置配置消息内容："Normal"
         *puVar3 = 0x6d726f4e;         // "Norm"
-        *(undefined2 *)(puVar3 + 1) = 0x6c61;  // "al"
-        *(undefined1 *)((longlong)puVar3 + 6) = 0;  // 字符串结束符
+        *(int16_t *)(puVar3 + 1) = 0x6c61;  // "al"
+        *(int8_t *)((longlong)puVar3 + 6) = 0;  // 字符串结束符
         
         // 设置配置消息长度
         uStack_50 = 6;                // 消息长度6字节
@@ -296,24 +296,24 @@ void FUN_180352e50(undefined8 param_1, longlong param_2, undefined8 param_3, und
         
         // 清理第一阶段配置缓冲区
         puStack_60 = &UNK_180a3c3e0;
-        if (puStack_58 != (undefined4 *)0x0) {
+        if (puStack_58 != (int32_t *)0x0) {
             FUN_18064e900();  // 释放缓冲区内存
         }
         
         // 重置栈参数
-        puStack_58 = (undefined4 *)0x0;
+        puStack_58 = (int32_t *)0x0;
         uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
         puStack_60 = &UNK_18098bcb0;
         
         // 第二阶段：处理 "High" 配置消息
         puStack_40 = &UNK_180a3c3e0;  // 配置类型指针
         uStack_28 = 0;                // 配置参数1
-        puStack_38 = (undefined4 *)0x0;  // 配置数据指针
+        puStack_38 = (int32_t *)0x0;  // 配置数据指针
         uStack_30 = 0;                // 配置参数2
         
         // 分配配置缓冲区
-        puVar3 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-        *(undefined1 *)puVar3 = 0;    // 初始化缓冲区
+        puVar3 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+        *(int8_t *)puVar3 = 0;    // 初始化缓冲区
         
         // 设置配置数据指针
         puStack_38 = puVar3;
@@ -324,7 +324,7 @@ void FUN_180352e50(undefined8 param_1, longlong param_2, undefined8 param_3, und
         
         // 设置配置消息内容："High"
         *puVar3 = 0x68676948;         // "High"
-        *(undefined1 *)(puVar3 + 1) = 0;  // 字符串结束符
+        *(int8_t *)(puVar3 + 1) = 0;  // 字符串结束符
         
         // 设置配置消息长度
         uStack_30 = 4;                // 消息长度4字节
@@ -334,7 +334,7 @@ void FUN_180352e50(undefined8 param_1, longlong param_2, undefined8 param_3, und
         
         // 清理第二阶段配置缓冲区
         puStack_40 = &UNK_180a3c3e0;
-        if (puStack_38 != (undefined4 *)0x0) {
+        if (puStack_38 != (int32_t *)0x0) {
             FUN_18064e900();  // 释放缓冲区内存
         }
     }
@@ -352,20 +352,20 @@ void FUN_180352e50(undefined8 param_1, longlong param_2, undefined8 param_3, und
 //       param_2 - 数据对象指针
 //       param_3 - 创建参数1
 //       param_4 - 创建参数2
-// 返回值：undefined8* - 创建的数据对象指针
+// 返回值：uint64_t* - 创建的数据对象指针
 //------------------------------------------------------------------------------
-undefined8 * FUN_180352ff0(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
+uint64_t * FUN_180352ff0(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
     // 初始化数据对象的基本状态
     *param_2 = &UNK_18098bcb0;  // 设置初始状态
     param_2[1] = 0;             // 清空数据指针
-    *(undefined4 *)(param_2 + 2) = 0;  // 清空数据长度
+    *(int32_t *)(param_2 + 2) = 0;  // 清空数据长度
     
     // 设置数据对象的类型和配置
     *param_2 = &UNK_1809fcc28;  // 设置数据对象类型
     param_2[1] = param_2 + 3;   // 设置数据缓冲区指针
-    *(undefined1 *)(param_2 + 3) = 0;  // 初始化缓冲区
-    *(undefined4 *)(param_2 + 2) = 0x13;  // 设置缓冲区大小
+    *(int8_t *)(param_2 + 3) = 0;  // 初始化缓冲区
+    *(int32_t *)(param_2 + 2) = 0x13;  // 设置缓冲区大小
     
     // 复制配置数据到缓冲区
     strcpy_s(param_2[1], 0x80, &UNK_180a1eb30, param_4, 0, 0xfffffffffffffffe);
@@ -387,7 +387,7 @@ undefined8 * FUN_180352ff0(undefined8 param_1, undefined8 *param_2, undefined8 p
 //       param_4 - 属性值2
 // 返回值：无
 //------------------------------------------------------------------------------
-void FUN_180353070(undefined8 *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void FUN_180353070(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     // 设置渲染对象的属性类型
     *param_1 = &UNK_180a1cdc0;  // 属性类型标识
@@ -432,31 +432,31 @@ void FUN_180353070(undefined8 *param_1, undefined8 param_2, undefined8 param_3, 
 //       param_3 - 处理选项
 // 返回值：无
 //------------------------------------------------------------------------------
-void FUN_1803530c0(longlong *param_1, longlong param_2, undefined8 param_3)
+void FUN_1803530c0(longlong *param_1, longlong param_2, uint64_t param_3)
 {
     // 局部变量定义
-    undefined8 *puVar1;         // 数据指针1
-    undefined8 *puVar2;         // 数据指针2
+    uint64_t *puVar1;         // 数据指针1
+    uint64_t *puVar2;         // 数据指针2
     char *pcVar3;               // 字符指针
-    undefined1 *puVar5;         // 缓冲区指针
-    undefined1 auStack_7e8 [48]; // 栈缓冲区1
-    undefined *puStack_7b8;      // 栈参数1
-    undefined1 *puStack_7b0;     // 栈参数2
-    undefined4 uStack_7a8;       // 栈参数3
+    int8_t *puVar5;         // 缓冲区指针
+    int8_t auStack_7e8 [48]; // 栈缓冲区1
+    void *puStack_7b8;      // 栈参数1
+    int8_t *puStack_7b0;     // 栈参数2
+    int32_t uStack_7a8;       // 栈参数3
     ulonglong uStack_7a0;        // 栈参数4
-    undefined8 *puStack_798;     // 栈参数5
-    undefined8 *puStack_6d0;     // 栈参数6
-    undefined8 *puStack_6c8;     // 栈参数7
-    undefined8 uStack_6c0;       // 栈参数8
-    undefined4 uStack_6b8;       // 栈参数9
-    undefined8 uStack_6b0;       // 栈参数10
-    undefined8 *puStack_6a8;     // 栈参数11
+    uint64_t *puStack_798;     // 栈参数5
+    uint64_t *puStack_6d0;     // 栈参数6
+    uint64_t *puStack_6c8;     // 栈参数7
+    uint64_t uStack_6c0;       // 栈参数8
+    int32_t uStack_6b8;       // 栈参数9
+    uint64_t uStack_6b0;       // 栈参数10
+    uint64_t *puStack_6a8;     // 栈参数11
     longlong *plStack_6a0;       // 栈参数12
-    undefined *puStack_698;       // 栈参数13
+    void *puStack_698;       // 栈参数13
     longlong lStack_690;         // 栈参数14
-    undefined4 uStack_680;       // 栈参数15
-    undefined8 uStack_678;       // 栈参数16
-    undefined1 auStack_5a8 [1216]; // 栈缓冲区2
+    int32_t uStack_680;       // 栈参数15
+    uint64_t uStack_678;       // 栈参数16
+    int8_t auStack_5a8 [1216]; // 栈缓冲区2
     ulonglong uStack_e8;         // 栈参数17
     char *pcVar4;               // 字符指针
     
@@ -470,8 +470,8 @@ void FUN_1803530c0(longlong *param_1, longlong param_2, undefined8 param_3)
     FUN_180627ae0(&puStack_698, param_1[2] + 8);
     
     // 初始化数据处理参数
-    puStack_6d0 = (undefined8 *)0x0;  // 数据缓冲区1
-    puStack_6c8 = (undefined8 *)0x0;  // 数据缓冲区2
+    puStack_6d0 = (uint64_t *)0x0;  // 数据缓冲区1
+    puStack_6c8 = (uint64_t *)0x0;  // 数据缓冲区2
     uStack_6c0 = 0;                   // 数据长度1
     uStack_6b8 = 3;                   // 数据类型
     
@@ -489,11 +489,11 @@ void FUN_1803530c0(longlong *param_1, longlong param_2, undefined8 param_3)
         // 准备数据处理参数
         puStack_7b8 = &UNK_180a3c3e0;  // 数据类型指针
         uStack_7a0 = 0;                // 数据参数1
-        puStack_7b0 = (undefined1 *)0x0;  // 数据指针
+        puStack_7b0 = (int8_t *)0x0;  // 数据指针
         uStack_7a8 = 0;                // 数据参数2
         
         // 调用数据长度获取函数
-        FUN_1806277c0(&puStack_7b8, *(undefined4 *)(puStack_6d0 + 2));
+        FUN_1806277c0(&puStack_7b8, *(int32_t *)(puStack_6d0 + 2));
         
         // 检查数据长度
         if (*(int *)(puVar2 + 2) != 0) {
@@ -504,18 +504,18 @@ void FUN_1803530c0(longlong *param_1, longlong param_2, undefined8 param_3)
         // 检查数据有效性
         if (puVar2[1] != 0) {
             uStack_7a8 = 0;  // 重置数据参数
-            if (puStack_7b0 != (undefined1 *)0x0) {
+            if (puStack_7b0 != (int8_t *)0x0) {
                 *puStack_7b0 = 0;  // 初始化缓冲区
             }
             uStack_7a0 = uStack_7a0 & 0xffffffff;  // 截断参数
         }
         
         // 创建变量数据结构
-        puVar2 = (undefined8 *)FUN_1804c1300(param_2 + 0x60, 0x60);
+        puVar2 = (uint64_t *)FUN_1804c1300(param_2 + 0x60, 0x60);
         *puVar2 = 0;                    // 初始化字段1
         puVar2[1] = 0;                  // 初始化字段2
         puVar2[4] = 0;                  // 初始化字段3
-        *(undefined4 *)(puVar2 + 5) = 1;  // 设置标志位
+        *(int32_t *)(puVar2 + 5) = 1;  // 设置标志位
         puVar2[6] = 0;                  // 初始化字段4
         puVar2[8] = 0;                  // 初始化字段5
         
@@ -530,7 +530,7 @@ void FUN_1803530c0(longlong *param_1, longlong param_2, undefined8 param_3)
         *puVar2 = &UNK_180a19500;        // 变量类型
         puVar2[2] = pcVar4 + -0x180a194ff;  // 变量名称偏移
         puVar5 = &DAT_18098bc73;        // 默认值
-        if (puStack_7b0 != (undefined1 *)0x0) {
+        if (puStack_7b0 != (int8_t *)0x0) {
             puVar5 = puStack_7b0;       // 使用提供的值
         }
         
@@ -550,7 +550,7 @@ void FUN_1803530c0(longlong *param_1, longlong param_2, undefined8 param_3)
     }
     
     // 释放数据缓冲区
-    if (puStack_6d0 != (undefined8 *)0x0) {
+    if (puStack_6d0 != (uint64_t *)0x0) {
         FUN_18064e900();  // 释放内存
     }
     
@@ -659,32 +659,32 @@ void FUN_180353e50(longlong *param_1,longlong param_2)
     // 局部变量定义
     byte *pbVar1;                   // 字节指针1
     int iVar2;                     // 整数变量1
-    undefined8 *puVar3;            // 无定义指针3
-    undefined8 *puVar4;            // 无定义指针4
+    uint64_t *puVar3;            // 无定义指针3
+    uint64_t *puVar4;            // 无定义指针4
     byte *pbVar5;                   // 字节指针5
     int iVar6;                     // 整数变量6
-    undefined8 *puVar7;            // 无定义指针7
+    uint64_t *puVar7;            // 无定义指针7
     uint uVar8;                    // 无符号整数8
     longlong lVar10;               // 长整型10
     longlong lVar11;               // 长整型11
     ulonglong uVar12;              // 无符号长整型12
-    undefined1 auStack_3b8 [48];   // 栈缓冲区1
-    undefined8 *puStack_388;       // 栈参数1
-    undefined8 *puStack_380;       // 栈参数2
-    undefined8 uStack_378;         // 栈参数3
-    undefined4 uStack_370;         // 栈参数4
-    undefined8 *puStack_368;       // 栈参数5
-    undefined8 *puStack_360;       // 栈参数6
-    undefined8 uStack_358;         // 栈参数7
-    undefined4 uStack_350;         // 栈参数8
-    undefined *puStack_348;        // 栈参数9
+    int8_t auStack_3b8 [48];   // 栈缓冲区1
+    uint64_t *puStack_388;       // 栈参数1
+    uint64_t *puStack_380;       // 栈参数2
+    uint64_t uStack_378;         // 栈参数3
+    int32_t uStack_370;         // 栈参数4
+    uint64_t *puStack_368;       // 栈参数5
+    uint64_t *puStack_360;       // 栈参数6
+    uint64_t uStack_358;         // 栈参数7
+    int32_t uStack_350;         // 栈参数8
+    void *puStack_348;        // 栈参数9
     longlong lStack_340;           // 栈参数10
-    undefined4 uStack_330;         // 栈参数11
-    undefined *puStack_328;        // 栈参数12
+    int32_t uStack_330;         // 栈参数11
+    void *puStack_328;        // 栈参数12
     longlong lStack_320;           // 栈参数13
-    undefined4 uStack_310;         // 栈参数14
-    undefined8 uStack_308;         // 栈参数15
-    undefined1 auStack_278 [544];  // 栈缓冲区2
+    int32_t uStack_310;         // 栈参数14
+    uint64_t uStack_308;         // 栈参数15
+    int8_t auStack_278 [544];  // 栈缓冲区2
     ulonglong uStack_58;           // 栈参数16
     ulonglong uVar9;               // 无符号长整型9
     
@@ -697,8 +697,8 @@ void FUN_180353e50(longlong *param_1,longlong param_2)
     FUN_180627ae0(&puStack_348, param_1[2] + 8);
     
     // 初始化数据缓冲区
-    puStack_388 = (undefined8 *)0x0;  // 数据缓冲区1
-    puStack_380 = (undefined8 *)0x0;  // 数据缓冲区2
+    puStack_388 = (uint64_t *)0x0;  // 数据缓冲区1
+    puStack_380 = (uint64_t *)0x0;  // 数据缓冲区2
     uVar9 = 0;                       // 计数器
     uStack_378 = 0;                  // 数据长度1
     uStack_370 = 3;                  // 数据类型
@@ -707,8 +707,8 @@ void FUN_180353e50(longlong *param_1,longlong param_2)
     (**(code **)(*param_1 + 0xf8))(param_1, &puStack_388);
     
     // 初始化第二组数据缓冲区
-    puStack_368 = (undefined8 *)0x0;  // 数据缓冲区3
-    puStack_360 = (undefined8 *)0x0;  // 数据缓冲区4
+    puStack_368 = (uint64_t *)0x0;  // 数据缓冲区3
+    puStack_360 = (uint64_t *)0x0;  // 数据缓冲区4
     uStack_358 = 0;                  // 数据长度2
     uStack_350 = 3;                  // 数据类型
     
@@ -752,15 +752,15 @@ LAB_180353f85:
     (**(code **)*puVar7)(puVar7,0);
     puVar3 = puStack_380;
   }
-  if (puStack_368 != (undefined8 *)0x0) {
+  if (puStack_368 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puStack_368 = (undefined8 *)0x0;
+  puStack_368 = (uint64_t *)0x0;
   for (puVar7 = puStack_388; puVar7 != puVar3; puVar7 = puVar7 + 4) {
     (**(code **)*puVar7)(puVar7,0);
   }
-  if (puStack_388 != (undefined8 *)0x0) {
+  if (puStack_388 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
@@ -801,18 +801,18 @@ void FUN_180354170(longlong *param_1)
 
 {
     // 局部变量定义
-    undefined8 uVar1;              // 无定义变量1
+    uint64_t uVar1;              // 无定义变量1
     longlong *plVar2;              // 长整型指针2
     char cVar3;                   // 字符变量3
-    undefined *puVar4;             // 无定义指针4
-    undefined1 auStack_3e8 [48];   // 栈缓冲区1
-    undefined1 auStack_3b8 [8];    // 栈缓冲区2
-    undefined8 uStack_3b0;        // 栈参数1
-    undefined1 auStack_328 [544];  // 栈缓冲区3
-    undefined *puStack_108;       // 栈参数2
-    undefined1 *puStack_100;      // 栈参数3
-    undefined4 uStack_f8;          // 栈参数4
-    undefined1 auStack_f0 [136];  // 栈缓冲区4
+    void *puVar4;             // 无定义指针4
+    int8_t auStack_3e8 [48];   // 栈缓冲区1
+    int8_t auStack_3b8 [8];    // 栈缓冲区2
+    uint64_t uStack_3b0;        // 栈参数1
+    int8_t auStack_328 [544];  // 栈缓冲区3
+    void *puStack_108;       // 栈参数2
+    int8_t *puStack_100;      // 栈参数3
+    int32_t uStack_f8;          // 栈参数4
+    int8_t auStack_f0 [136];  // 栈缓冲区4
     ulonglong uStack_68;          // 栈参数5
     
     // 初始化安全检查标志
@@ -820,7 +820,7 @@ void FUN_180354170(longlong *param_1)
     uStack_68 = _DAT_180bf00a8 ^ (ulonglong)auStack_3e8;  // 安全检查异或值
     
     // 获取渲染对象数据
-    uVar1 = *(undefined8 *)(param_1[3] + 0x20);  // 渲染数据指针
+    uVar1 = *(uint64_t *)(param_1[3] + 0x20);  // 渲染数据指针
     plVar2 = (longlong *)param_1[5];              // 渲染对象指针
     
     // 检查渲染对象状态
@@ -828,10 +828,10 @@ void FUN_180354170(longlong *param_1)
     puStack_108 = &UNK_1809fcc28;
     puStack_100 = auStack_f0;
     auStack_f0[0] = 0;
-    uStack_f8 = (undefined4)plVar2[10];
+    uStack_f8 = (int32_t)plVar2[10];
     puVar4 = &DAT_18098bc73;
-    if ((undefined *)plVar2[9] != (undefined *)0x0) {
-      puVar4 = (undefined *)plVar2[9];
+    if ((void *)plVar2[9] != (void *)0x0) {
+      puVar4 = (void *)plVar2[9];
     }
     strcpy_s(auStack_f0,0x80,puVar4);
     FUN_1801b46a0(uVar1,auStack_3b8,&puStack_108);
@@ -852,23 +852,23 @@ LAB_18035436c:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_1803543b0(longlong param_1,undefined8 *param_2,char param_3,char param_4)
+longlong * FUN_1803543b0(longlong param_1,uint64_t *param_2,char param_3,char param_4)
 
 {
   int iVar1;
   longlong lVar2;
   char *pcVar3;
   longlong *plVar4;
-  undefined8 uVar5;
+  uint64_t uVar5;
   longlong *plVar6;
   longlong lVar7;
   longlong *aplStack_a0 [2];
   longlong *aplStack_90 [2];
   longlong **applStack_80 [2];
-  undefined *puStack_70;
+  void *puStack_70;
   longlong lStack_68;
-  undefined4 uStack_58;
-  undefined8 uStack_50;
+  int32_t uStack_58;
+  uint64_t uStack_50;
   longlong alStack_48 [4];
   
   lVar7 = _DAT_180c8ecc0;
@@ -926,11 +926,11 @@ longlong * FUN_1803543b0(longlong param_1,undefined8 *param_2,char param_3,char 
     }
     if (((param_3 != '\0') && (plVar6 != (longlong *)0x0)) && (lVar2 != 0)) {
       (**(code **)(*plVar6 + 0x68))(plVar6);
-      if ((undefined *)*plVar6 == &UNK_180a2ac38) {
+      if ((void *)*plVar6 == &UNK_180a2ac38) {
         (**(code **)(_DAT_180c8a9c0 + 0x1e0))((int)plVar6[10]);
       }
       else {
-        (**(code **)((undefined *)*plVar6 + 0x70))(plVar6);
+        (**(code **)((void *)*plVar6 + 0x70))(plVar6);
       }
     }
     lVar2 = _DAT_180c8a9c0;
@@ -952,7 +952,7 @@ longlong * FUN_1803543b0(longlong param_1,undefined8 *param_2,char param_3,char 
   *param_2 = &UNK_180a3c3e0;
   if (param_2[1] == 0) {
     param_2[1] = 0;
-    *(undefined4 *)(param_2 + 3) = 0;
+    *(int32_t *)(param_2 + 3) = 0;
     *param_2 = &UNK_18098bcb0;
     return plVar6;
   }
@@ -970,7 +970,7 @@ longlong * FUN_1803543b0(longlong param_1,undefined8 *param_2,char param_3,char 
 void FUN_1803549f0(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x80,8,3,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
@@ -987,7 +987,7 @@ void FUN_1803549f0(void)
 void FUN_180354b70(void)
 
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x80,8,3,0,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
@@ -998,17 +998,17 @@ void FUN_180354b70(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 *
-FUN_180354db0(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+uint64_t *
+FUN_180354db0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong lVar1;
   longlong *plVar2;
-  undefined1 auStack_48 [16];
-  undefined *puStack_38;
-  undefined8 uStack_30;
-  undefined4 uStack_28;
-  undefined8 uStack_20;
+  int8_t auStack_48 [16];
+  void *puStack_38;
+  uint64_t uStack_30;
+  int32_t uStack_28;
+  uint64_t uStack_20;
   
   lVar1 = *(longlong *)
            (*(longlong *)(_DAT_180c8ecc0 + 8) + *(longlong *)(_DAT_180c8ecc0 + 0x10) * 8);
@@ -1019,12 +1019,12 @@ FUN_180354db0(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
               (*(longlong **)(_DAT_180c86870 + 0x2b0),&puStack_38,param_2);
     *param_1 = &UNK_18098bcb0;
     param_1[1] = 0;
-    *(undefined4 *)(param_1 + 2) = 0;
+    *(int32_t *)(param_1 + 2) = 0;
     *param_1 = &UNK_180a3c3e0;
-    *(undefined4 *)(param_1 + 2) = uStack_28;
+    *(int32_t *)(param_1 + 2) = uStack_28;
     param_1[1] = uStack_30;
-    *(undefined4 *)((longlong)param_1 + 0x1c) = uStack_20._4_4_;
-    *(undefined4 *)(param_1 + 3) = (undefined4)uStack_20;
+    *(int32_t *)((longlong)param_1 + 0x1c) = uStack_20._4_4_;
+    *(int32_t *)(param_1 + 3) = (int32_t)uStack_20;
     uStack_28 = 0;
     uStack_30 = 0;
     uStack_20 = 0;
@@ -1035,21 +1035,21 @@ FUN_180354db0(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
       FUN_18064e900();
     }
     param_2[1] = 0;
-    *(undefined4 *)(param_2 + 3) = 0;
+    *(int32_t *)(param_2 + 3) = 0;
   }
   else {
     *param_1 = &UNK_18098bcb0;
     param_1[1] = 0;
-    *(undefined4 *)(param_1 + 2) = 0;
+    *(int32_t *)(param_1 + 2) = 0;
     *param_1 = &UNK_180a3c3e0;
     param_1[3] = 0;
     param_1[1] = 0;
-    *(undefined4 *)(param_1 + 2) = 0;
-    *(undefined4 *)(param_1 + 2) = *(undefined4 *)(param_2 + 2);
+    *(int32_t *)(param_1 + 2) = 0;
+    *(int32_t *)(param_1 + 2) = *(int32_t *)(param_2 + 2);
     param_1[1] = param_2[1];
-    *(undefined4 *)((longlong)param_1 + 0x1c) = *(undefined4 *)((longlong)param_2 + 0x1c);
-    *(undefined4 *)(param_1 + 3) = *(undefined4 *)(param_2 + 3);
-    *(undefined4 *)(param_2 + 2) = 0;
+    *(int32_t *)((longlong)param_1 + 0x1c) = *(int32_t *)((longlong)param_2 + 0x1c);
+    *(int32_t *)(param_1 + 3) = *(int32_t *)(param_2 + 3);
+    *(int32_t *)(param_2 + 2) = 0;
     param_2[1] = 0;
     param_2[3] = 0;
     *param_2 = &UNK_180a3c3e0;
@@ -1058,7 +1058,7 @@ FUN_180354db0(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
       FUN_18064e900();
     }
     param_2[1] = 0;
-    *(undefined4 *)(param_2 + 3) = 0;
+    *(int32_t *)(param_2 + 3) = 0;
   }
   *param_2 = &UNK_18098bcb0;
   return param_1;
@@ -1073,7 +1073,7 @@ void FUN_180354f20(longlong param_1)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   ulonglong uVar3;
   ulonglong uVar4;
   
@@ -1082,12 +1082,12 @@ void FUN_180354f20(longlong param_1)
   uVar4 = 0;
   if (uVar3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(lVar1 + uVar4 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
+      puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
+      if (puVar2 != (uint64_t *)0x0) {
         *puVar2 = &UNK_180a3c3e0;
         if (puVar2[1] == 0) {
           puVar2[1] = 0;
-          *(undefined4 *)(puVar2 + 3) = 0;
+          *(int32_t *)(puVar2 + 3) = 0;
           *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar2);
@@ -1095,12 +1095,12 @@ void FUN_180354f20(longlong param_1)
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
+      *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
       uVar4 = uVar4 + 1;
     } while (uVar4 < uVar3);
     uVar3 = *(ulonglong *)(param_1 + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
+  *(uint64_t *)(param_1 + 0x18) = 0;
   if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -1117,7 +1117,7 @@ void FUN_180354f40(longlong param_1)
 
 {
   longlong lVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   ulonglong uVar3;
   ulonglong uVar4;
   
@@ -1126,12 +1126,12 @@ void FUN_180354f40(longlong param_1)
   uVar4 = 0;
   if (uVar3 != 0) {
     do {
-      puVar2 = *(undefined8 **)(lVar1 + uVar4 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
+      puVar2 = *(uint64_t **)(lVar1 + uVar4 * 8);
+      if (puVar2 != (uint64_t *)0x0) {
         *puVar2 = &UNK_180a3c3e0;
         if (puVar2[1] == 0) {
           puVar2[1] = 0;
-          *(undefined4 *)(puVar2 + 3) = 0;
+          *(int32_t *)(puVar2 + 3) = 0;
           *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
           FUN_18064e900(puVar2);
@@ -1139,12 +1139,12 @@ void FUN_180354f40(longlong param_1)
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
+      *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
       uVar4 = uVar4 + 1;
     } while (uVar4 < uVar3);
     uVar3 = *(ulonglong *)(param_1 + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
+  *(uint64_t *)(param_1 + 0x18) = 0;
   if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -1217,7 +1217,7 @@ LAB_18035510c:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_180355140(longlong param_1,longlong *param_2,undefined8 param_3,longlong param_4)
+longlong * FUN_180355140(longlong param_1,longlong *param_2,uint64_t param_3,longlong param_4)
 
 {
   longlong lVar1;
@@ -1226,33 +1226,33 @@ longlong * FUN_180355140(longlong param_1,longlong *param_2,undefined8 param_3,l
   byte *pbVar4;
   longlong lVar5;
   ulonglong uVar6;
-  undefined8 *puVar7;
+  uint64_t *puVar7;
   byte *pbVar8;
   ulonglong uVar9;
   longlong lVar10;
   uint uVar11;
   ulonglong uVar12;
   ulonglong uVar13;
-  undefined8 uVar14;
+  uint64_t uVar14;
   
   uVar14 = 0xfffffffffffffffe;
-  puVar7 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18);
+  puVar7 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18);
   *puVar7 = &UNK_18098bcb0;
   uVar12 = 0;
   puVar7[1] = 0;
-  *(undefined4 *)(puVar7 + 2) = 0;
+  *(int32_t *)(puVar7 + 2) = 0;
   *puVar7 = &UNK_180a3c3e0;
   puVar7[3] = 0;
   puVar7[1] = 0;
-  *(undefined4 *)(puVar7 + 2) = 0;
-  *(undefined4 *)(puVar7 + 2) = *(undefined4 *)(param_4 + 0x10);
-  puVar7[1] = *(undefined8 *)(param_4 + 8);
-  *(undefined4 *)((longlong)puVar7 + 0x1c) = *(undefined4 *)(param_4 + 0x1c);
-  *(undefined4 *)(puVar7 + 3) = *(undefined4 *)(param_4 + 0x18);
-  *(undefined4 *)(param_4 + 0x10) = 0;
-  *(undefined8 *)(param_4 + 8) = 0;
-  *(undefined8 *)(param_4 + 0x18) = 0;
-  puVar7[4] = *(undefined8 *)(param_4 + 0x20);
+  *(int32_t *)(puVar7 + 2) = 0;
+  *(int32_t *)(puVar7 + 2) = *(int32_t *)(param_4 + 0x10);
+  puVar7[1] = *(uint64_t *)(param_4 + 8);
+  *(int32_t *)((longlong)puVar7 + 0x1c) = *(int32_t *)(param_4 + 0x1c);
+  *(int32_t *)(puVar7 + 3) = *(int32_t *)(param_4 + 0x18);
+  *(int32_t *)(param_4 + 0x10) = 0;
+  *(uint64_t *)(param_4 + 8) = 0;
+  *(uint64_t *)(param_4 + 0x18) = 0;
+  puVar7[4] = *(uint64_t *)(param_4 + 0x20);
   puVar7[5] = 0;
   uVar3 = *(uint *)(puVar7 + 2);
   pbVar4 = (byte *)puVar7[1];
@@ -1297,7 +1297,7 @@ LAB_180355291:
         lVar5 = *(longlong *)(param_1 + 8);
         *param_2 = lVar10;
         param_2[1] = lVar5 + lVar1;
-        *(undefined1 *)(param_2 + 2) = 0;
+        *(int8_t *)(param_2 + 2) = 0;
         return param_2;
       }
     }
@@ -1310,8 +1310,8 @@ LAB_180355291:
 
 
 
-// 函数: void FUN_1803552e0(undefined8 param_1,undefined8 *param_2)
-void FUN_1803552e0(undefined8 param_1,undefined8 *param_2)
+// 函数: void FUN_1803552e0(uint64_t param_1,uint64_t *param_2)
+void FUN_1803552e0(uint64_t param_1,uint64_t *param_2)
 
 {
   int *piVar1;
@@ -1324,15 +1324,15 @@ void FUN_1803552e0(undefined8 param_1,undefined8 *param_2)
     FUN_18064e900();
   }
   param_2[1] = 0;
-  *(undefined4 *)(param_2 + 3) = 0;
+  *(int32_t *)(param_2 + 3) = 0;
   *param_2 = &UNK_18098bcb0;
   uVar3 = (ulonglong)param_2 & 0xffffffffffc00000;
   if (uVar3 != 0) {
     lVar2 = uVar3 + 0x80 + ((longlong)param_2 - uVar3 >> 0x10) * 0x50;
     lVar2 = lVar2 - (ulonglong)*(uint *)(lVar2 + 4);
     if ((*(void ***)(uVar3 + 0x70) == &ExceptionList) && (*(char *)(lVar2 + 0xe) == '\0')) {
-      *param_2 = *(undefined8 *)(lVar2 + 0x20);
-      *(undefined8 **)(lVar2 + 0x20) = param_2;
+      *param_2 = *(uint64_t *)(lVar2 + 0x20);
+      *(uint64_t **)(lVar2 + 0x20) = param_2;
       piVar1 = (int *)(lVar2 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
@@ -1353,30 +1353,30 @@ void FUN_1803552e0(undefined8 param_1,undefined8 *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong *
-FUN_180355340(longlong param_1,longlong *param_2,ulonglong param_3,undefined8 param_4,
+FUN_180355340(longlong param_1,longlong *param_2,ulonglong param_3,uint64_t param_4,
              longlong param_5,longlong param_6)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   ulonglong auStackX_18 [2];
   
   auStackX_18[0] = param_3;
-  FUN_18066c220(param_1 + 0x20,auStackX_18,*(undefined4 *)(param_1 + 0x10),
-                *(undefined4 *)(param_1 + 0x18),1);
+  FUN_18066c220(param_1 + 0x20,auStackX_18,*(int32_t *)(param_1 + 0x10),
+                *(int32_t *)(param_1 + 0x18),1);
   if ((char)auStackX_18[0] != '\0') {
     lVar1 = (auStackX_18[0] >> 0x20) * 8;
-    uVar2 = FUN_18062b1e0(_DAT_180c8ed18,lVar1 + 8,8,*(undefined1 *)(param_1 + 0x2c));
+    uVar2 = FUN_18062b1e0(_DAT_180c8ed18,lVar1 + 8,8,*(int8_t *)(param_1 + 0x2c));
                     // WARNING: Subroutine does not return
     memset(uVar2,0,lVar1);
   }
-  *(undefined8 *)(param_6 + 0x28) = *(undefined8 *)(*(longlong *)(param_1 + 8) + param_5 * 8);
+  *(uint64_t *)(param_6 + 0x28) = *(uint64_t *)(*(longlong *)(param_1 + 8) + param_5 * 8);
   *(longlong *)(*(longlong *)(param_1 + 8) + param_5 * 8) = param_6;
   lVar1 = *(longlong *)(param_1 + 8);
   *(longlong *)(param_1 + 0x18) = *(longlong *)(param_1 + 0x18) + 1;
   *param_2 = param_6;
   param_2[1] = lVar1 + param_5 * 8;
-  *(undefined1 *)(param_2 + 2) = 1;
+  *(int8_t *)(param_2 + 2) = 1;
   return param_2;
 }
 
@@ -1384,12 +1384,12 @@ FUN_180355340(longlong param_1,longlong *param_2,ulonglong param_3,undefined8 pa
 
 
 
-// 函数: void FUN_180355393(undefined8 param_1)
-void FUN_180355393(undefined8 param_1)
+// 函数: void FUN_180355393(uint64_t param_1)
+void FUN_180355393(uint64_t param_1)
 
 {
   longlong lVar1;
-  undefined8 uVar2;
+  uint64_t uVar2;
   ulonglong in_stack_00000070;
   
   lVar1 = (in_stack_00000070 >> 0x20) * 8;
@@ -1438,9 +1438,9 @@ void FUN_1803553e1(void)
           uVar4 = (uVar4 ^ bVar1) * 0x100000001b3;
         } while (uVar6 < *(uint *)(lVar3 + 0x10));
       }
-      *(undefined8 *)(*(longlong *)(unaff_RDI + 8) + in_R11 * 8) = *(undefined8 *)(lVar3 + 0x28);
+      *(uint64_t *)(*(longlong *)(unaff_RDI + 8) + in_R11 * 8) = *(uint64_t *)(lVar3 + 0x28);
       uVar4 = uVar4 % unaff_RBP & 0xffffffff;
-      *(undefined8 *)(lVar3 + 0x28) = *(undefined8 *)(unaff_RSI + uVar4 * 8);
+      *(uint64_t *)(lVar3 + 0x28) = *(uint64_t *)(unaff_RSI + uVar4 * 8);
       *(longlong *)(unaff_RSI + uVar4 * 8) = lVar3;
       lVar2 = *(longlong *)(unaff_RDI + 8);
       lVar3 = *(longlong *)(lVar2 + in_R11 * 8);
@@ -1453,13 +1453,13 @@ void FUN_1803553e1(void)
   }
   *(ulonglong *)(unaff_RDI + 0x10) = unaff_RBP;
   *(longlong *)(unaff_RDI + 8) = unaff_RSI;
-  *(undefined8 *)(in_stack_00000088 + 0x28) = *(undefined8 *)(unaff_RSI + unaff_R15 * 8);
+  *(uint64_t *)(in_stack_00000088 + 0x28) = *(uint64_t *)(unaff_RSI + unaff_R15 * 8);
   *(longlong *)(*(longlong *)(unaff_RDI + 8) + unaff_R15 * 8) = in_stack_00000088;
   lVar2 = *(longlong *)(unaff_RDI + 8);
   *(longlong *)(unaff_RDI + 0x18) = *(longlong *)(unaff_RDI + 0x18) + 1;
   *unaff_R14 = in_stack_00000088;
   unaff_R14[1] = lVar2 + unaff_R15 * 8;
-  *(undefined1 *)(unaff_R14 + 2) = 1;
+  *(int8_t *)(unaff_R14 + 2) = 1;
   return;
 }
 

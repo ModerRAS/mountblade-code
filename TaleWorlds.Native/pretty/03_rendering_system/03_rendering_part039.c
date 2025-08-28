@@ -158,34 +158,34 @@ texture_processing_complete:
 }
 
 
-// 函数: undefined4 process_vertex_data(longlong vertex_buffer, longlong texture_data, int vertex_count)
+// 函数: int32_t process_vertex_data(longlong vertex_buffer, longlong texture_data, int vertex_count)
 // 功能: 处理顶点数据和纹理数据映射
 // 参数:
 //   vertex_buffer - 顶点缓冲区指针
 //   texture_data - 纹理数据指针
 //   vertex_count - 顶点数量
 // 返回值: 处理结果状态码
-undefined4 process_vertex_data(longlong vertex_buffer, longlong texture_data, int vertex_count)
+int32_t process_vertex_data(longlong vertex_buffer, longlong texture_data, int vertex_count)
 {
   ushort *texture_ptr;
   ushort texture_width;
   ushort texture_height;
   short *vertex_ptr;
-  undefined8 texture_offset;
+  uint64_t texture_offset;
   longlong *vertex_data_ptr;
   int result_index;
-  undefined8 *texture_data_ptr;
+  uint64_t *texture_data_ptr;
   ushort *vertex_buffer_ptr;
-  undefined4 process_result;
+  int32_t process_result;
   ushort *next_vertex_ptr;
   short *next_vertex_data;
   longlong buffer_size;
   short vertex_offset;
   int *index_ptr;
   short vertex_height;
-  undefined4 final_result;
+  int32_t final_result;
   longlong total_vertices;
-  undefined1 local_stack[16];
+  int8_t local_stack[16];
   
   process_result = 1;
   result_index = 0;
@@ -216,7 +216,7 @@ undefined4 process_vertex_data(longlong vertex_buffer, longlong texture_data, in
       }
       else {
         // 计算纹理坐标映射
-        texture_data_ptr = (undefined8 *)calculate_texture_coordinates(local_stack, vertex_buffer, texture_width, texture_height);
+        texture_data_ptr = (uint64_t *)calculate_texture_coordinates(local_stack, vertex_buffer, texture_width, texture_height);
         texture_offset = *texture_data_ptr;
         vertex_data_ptr = (longlong *)texture_data_ptr[1];
         
@@ -233,7 +233,7 @@ undefined4 process_vertex_data(longlong vertex_buffer, longlong texture_data, in
           vertex_ptr[1] = texture_height + vertex_height;
           vertex_offset = (short)texture_offset;
           *vertex_ptr = vertex_offset;
-          *(undefined8 *)(vertex_buffer + 0x20) = *(undefined8 *)(vertex_ptr + 4);
+          *(uint64_t *)(vertex_buffer + 0x20) = *(uint64_t *)(vertex_ptr + 4);
           
           vertex_buffer_ptr = (ushort *)*vertex_data_ptr;
           result_index = (int)texture_offset;
@@ -253,7 +253,7 @@ undefined4 process_vertex_data(longlong vertex_buffer, longlong texture_data, in
             next_vertex_ptr = *(ushort **)(vertex_buffer_ptr + 4);
             do {
               if ((int)(result_index + (uint)texture_width) < (int)(uint)*next_vertex_ptr) break;
-              *(undefined8 *)(vertex_buffer_ptr + 4) = *(undefined8 *)(vertex_buffer + 0x20);
+              *(uint64_t *)(vertex_buffer_ptr + 4) = *(uint64_t *)(vertex_buffer + 0x20);
               *(ushort **)(vertex_buffer + 0x20) = vertex_buffer_ptr;
               texture_ptr = next_vertex_ptr + 4;
               vertex_buffer_ptr = next_vertex_ptr;
@@ -314,10 +314,10 @@ int optimize_vertex_buffer(longlong vertex_buffer, longlong texture_data, int ve
   ushort texture_width;
   ushort texture_height;
   short *vertex_ptr;
-  undefined8 texture_offset;
+  uint64_t texture_offset;
   longlong *vertex_data_ptr;
   int result_index;
-  undefined8 *texture_data_ptr;
+  uint64_t *texture_data_ptr;
   ushort *vertex_buffer_ptr;
   int vertex_offset;
   int vertex_height;
@@ -360,7 +360,7 @@ int optimize_vertex_buffer(longlong vertex_buffer, longlong texture_data, int ve
       }
       else {
         // 计算纹理坐标映射
-        texture_data_ptr = (undefined8 *)calculate_texture_coordinates(&stack0x00000030, vertex_buffer, texture_width, texture_height);
+        texture_data_ptr = (uint64_t *)calculate_texture_coordinates(&stack0x00000030, vertex_buffer, texture_width, texture_height);
         texture_offset = *texture_data_ptr;
         vertex_data_ptr = (longlong *)texture_data_ptr[1];
         
@@ -378,7 +378,7 @@ int optimize_vertex_buffer(longlong vertex_buffer, longlong texture_data, int ve
           vertex_ptr[1] = texture_height + vertex_x;
           vertex_y = (short)texture_offset;
           *vertex_ptr = vertex_y;
-          *(undefined8 *)(vertex_buffer + 0x20) = *(undefined8 *)(vertex_ptr + 4);
+          *(uint64_t *)(vertex_buffer + 0x20) = *(uint64_t *)(vertex_ptr + 4);
           
           vertex_buffer_ptr = (ushort *)*vertex_data_ptr;
           result_index = (int)texture_offset;
@@ -398,7 +398,7 @@ int optimize_vertex_buffer(longlong vertex_buffer, longlong texture_data, int ve
             next_vertex_ptr = *(ushort **)(vertex_buffer_ptr + 4);
             do {
               if ((int)(result_index + (uint)texture_width) < (int)(uint)*next_vertex_ptr) break;
-              *(undefined8 *)(vertex_buffer_ptr + 4) = *(undefined8 *)(vertex_buffer + 0x20);
+              *(uint64_t *)(vertex_buffer_ptr + 4) = *(uint64_t *)(vertex_buffer + 0x20);
               *(ushort **)(vertex_buffer + 0x20) = vertex_buffer_ptr;
               texture_ptr = next_vertex_ptr + 4;
               vertex_buffer_ptr = next_vertex_ptr;
@@ -457,9 +457,9 @@ ulonglong calculate_texture_mapping(void)
   ushort texture_width;
   ushort texture_height;
   short *vertex_ptr;
-  undefined8 texture_offset;
+  uint64_t texture_offset;
   longlong *vertex_data_ptr;
-  undefined8 *texture_data_ptr;
+  uint64_t *texture_data_ptr;
   ushort *vertex_buffer_ptr;
   uint texture_hash;
   uint vertex_hash;
@@ -487,7 +487,7 @@ ulonglong calculate_texture_mapping(void)
     }
     else {
       // 计算纹理坐标映射
-      texture_data_ptr = (undefined8 *)calculate_texture_coordinates(&stack0x00000030);
+      texture_data_ptr = (uint64_t *)calculate_texture_coordinates(&stack0x00000030);
       texture_offset = *texture_data_ptr;
       vertex_data_ptr = (longlong *)texture_data_ptr[1];
       
@@ -505,7 +505,7 @@ ulonglong calculate_texture_mapping(void)
         vertex_ptr[1] = texture_height + vertex_height;
         vertex_offset = (short)texture_offset;
         *vertex_ptr = vertex_offset;
-        *(undefined8 *)(unaff_RSI + 0x20) = *(undefined8 *)(vertex_ptr + 4);
+        *(uint64_t *)(unaff_RSI + 0x20) = *(uint64_t *)(vertex_ptr + 4);
         
         vertex_buffer_ptr = (ushort *)*vertex_data_ptr;
         result_index = (int)texture_offset;
@@ -525,7 +525,7 @@ ulonglong calculate_texture_mapping(void)
           next_vertex_ptr = *(ushort **)(vertex_buffer_ptr + 4);
           do {
             if ((int)(result_index + (uint)texture_width) < (int)(uint)*next_vertex_ptr) break;
-            *(undefined8 *)(vertex_buffer_ptr + 4) = *(undefined8 *)(unaff_RSI + 0x20);
+            *(uint64_t *)(vertex_buffer_ptr + 4) = *(uint64_t *)(unaff_RSI + 0x20);
             *(ushort **)(unaff_RSI + 0x20) = vertex_buffer_ptr;
             texture_ptr = next_vertex_ptr + 4;
             vertex_buffer_ptr = next_vertex_ptr;
@@ -649,8 +649,8 @@ longlong *allocate_vertex_buffer(longlong *buffer_ptr, longlong *data_ptr)
 {
   int current_index;
   int max_index;
-  undefined1 byte1;
-  undefined1 byte2;
+  int8_t byte1;
+  int8_t byte2;
   byte byte3;
   longlong offset;
   int new_index;
@@ -664,7 +664,7 @@ longlong *allocate_vertex_buffer(longlong *buffer_ptr, longlong *data_ptr)
   // 读取前两个字节
   if (current_index < max_index) {
     new_index = current_index + 1;
-    byte1 = *(undefined1 *)((longlong)current_index + *buffer_ptr);
+    byte1 = *(int8_t *)((longlong)current_index + *buffer_ptr);
     *(int *)(data_ptr + 1) = new_index;
   }
   else {
@@ -676,7 +676,7 @@ longlong *allocate_vertex_buffer(longlong *buffer_ptr, longlong *data_ptr)
   if (new_index < max_index) {
     offset = (longlong)new_index;
     new_index = new_index + 1;
-    byte2 = *(undefined1 *)(offset + *buffer_ptr);
+    byte2 = *(int8_t *)(offset + *buffer_ptr);
     *(int *)(data_ptr + 1) = new_index;
   }
   else {
@@ -742,20 +742,20 @@ longlong *allocate_vertex_buffer(longlong *buffer_ptr, longlong *data_ptr)
   }
   
   *buffer_ptr = offset;
-  *(undefined4 *)(buffer_ptr + 1) = 0;
+  *(int32_t *)(buffer_ptr + 1) = 0;
   *(int *)((longlong)buffer_ptr + 0xc) = stack_size;
   return buffer_ptr;
 }
 
 
-// 函数: void process_render_batch(undefined8 render_context, int batch_size, uint texture_id, longlong *batch_data)
+// 函数: void process_render_batch(uint64_t render_context, int batch_size, uint texture_id, longlong *batch_data)
 // 功能: 处理渲染批次数据
 // 参数:
 //   render_context - 渲染上下文
 //   batch_size - 批次大小
 //   texture_id - 纹理ID
 //   batch_data - 批次数据指针
-void process_render_batch(undefined8 render_context, int batch_size, uint texture_id, longlong *batch_data)
+void process_render_batch(uint64_t render_context, int batch_size, uint texture_id, longlong *batch_data)
 {
   byte data_byte;
   longlong in_RAX;
@@ -763,7 +763,7 @@ void process_render_batch(undefined8 render_context, int batch_size, uint textur
   longlong *unaff_RDI;
   int in_R10D;
   int in_R11D;
-  undefined4 in_register_0000009c;
+  int32_t in_register_0000009c;
   int stack_size;
   
   // 读取批次数据
@@ -800,7 +800,7 @@ void process_render_batch(undefined8 render_context, int batch_size, uint textur
   }
   
   *unaff_RDI = offset;
-  *(undefined4 *)(unaff_RDI + 1) = 0;
+  *(int32_t *)(unaff_RDI + 1) = 0;
   *(int *)((longlong)unaff_RDI + 0xc) = stack_size;
   return;
 }

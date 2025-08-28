@@ -67,7 +67,7 @@ typedef int (*network_connection_validator_t)(void* connection, int mode);
  * 
  * @param connection_handle 连接句柄
  */
-void process_network_connection_init(undefined8 connection_handle)
+void process_network_connection_init(uint64_t connection_handle)
 {
     int result;
     byte stack_buffer[32];                     // 栈缓冲区
@@ -91,7 +91,7 @@ void process_network_connection_init(undefined8 connection_handle)
     
     if (result == 0) {
         // 验证连接
-        result = FUN_18088e0f0(*(undefined8*)(connection_info[0] + 0x98), 1);
+        result = FUN_18088e0f0(*(uint64_t*)(connection_info[0] + 0x98), 1);
         if (result == 0) {
             // 检查是否有活动数据
             if (*(int*)(*(longlong*)(connection_info[0] + 0x98) + 0x200) != 0) {
@@ -100,11 +100,11 @@ void process_network_connection_init(undefined8 connection_handle)
                 
                 // 处理数据格式化
                 if ((result == 0) && 
-                    (result = FUN_18088dec0(*(undefined8*)(connection_info[0] + 0x98), 
+                    (result = FUN_18088dec0(*(uint64_t*)(connection_info[0] + 0x98), 
                                            format_pointers, NETWORK_HEADER_SIZE), result == 0)) {
                     *format_pointers[0] = NETWORK_FORMAT_BASIC;
                     *(uint*)(format_pointers[0] + 1) = NETWORK_HEADER_SIZE;
-                    func_0x00018088e0d0(*(undefined8*)(connection_info[0] + 0x98));
+                    func_0x00018088e0d0(*(uint64_t*)(connection_info[0] + 0x98));
                     // 注意：此子函数不返回
                     FUN_18088c790(connection_info + 1);
                 }
@@ -1172,9 +1172,9 @@ void format_network_message_alt_5(void* target, uint32_t message_id, uint32_t pa
 }
 
 // 函数别名定义 - 保持向后兼容性
-void FUN_180840c00(undefined8 param_1) { process_network_connection_init(param_1); }
+void FUN_180840c00(uint64_t param_1) { process_network_connection_init(param_1); }
 int FUN_180840d60(longlong param_1, longlong param_2, int param_3) { return process_basic_network_data(param_1, param_2, param_3); }
-void FUN_180840dd0(longlong param_1, undefined8 param_2, undefined4 param_3) { format_network_message_basic(param_1, param_2, param_3); }
+void FUN_180840dd0(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_basic(param_1, param_2, param_3); }
 int FUN_180840e00(longlong param_1, longlong param_2, int param_3) { return process_extended_network_data(param_1, param_2, param_3); }
 int FUN_180840f10(longlong param_1, longlong param_2, int param_3) { return process_64bit_network_data(param_1, param_2, param_3); }
 int FUN_180840f80(longlong param_1, longlong param_2, int param_3) { return process_byte_network_data(param_1, param_2, param_3); }
@@ -1201,12 +1201,12 @@ int FUN_180841d30(longlong param_1, longlong param_2, int param_3) { return proc
 int FUN_180841df0(longlong param_1, longlong param_2, int param_3) { return process_smart_routing_network_data(param_1, param_2, param_3); }
 int FUN_180841ea0(longlong param_1, longlong param_2, int param_3) { return process_adaptive_routing_network_data(param_1, param_2, param_3); }
 int FUN_180841f50(longlong param_1, longlong param_2, int param_3) { return process_adaptive_routing_network_data(param_1, param_2, param_3); }
-void FUN_180842030(longlong param_1, undefined8 param_2, undefined4 param_3) { format_network_message_custom_1(param_1, param_2, param_3); }
-void FUN_180842060(longlong param_1, undefined8 param_2, undefined4 param_3) { format_network_message_custom_2(param_1, param_2, param_3); }
+void FUN_180842030(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_custom_1(param_1, param_2, param_3); }
+void FUN_180842060(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_custom_2(param_1, param_2, param_3); }
 int FUN_1808420a0(longlong param_1, longlong param_2, int param_3) { return process_custom_format_v1_network_data(param_1, param_2, param_3); }
-void FUN_1808421c0(longlong param_1, undefined8 param_2, undefined4 param_3) { format_network_message_alt_1(param_1, param_2, param_3); }
-void FUN_1808421f0(longlong param_1, undefined8 param_2, undefined4 param_3) { format_network_message_alt_2(param_1, param_2, param_3); }
+void FUN_1808421c0(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_1(param_1, param_2, param_3); }
+void FUN_1808421f0(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_2(param_1, param_2, param_3); }
 int FUN_180842230(longlong param_1, longlong param_2, int param_3) { return process_custom_format_v2_network_data(param_1, param_2, param_3); }
-void FUN_180842350(longlong param_1, undefined8 param_2, undefined4 param_3) { format_network_message_alt_3(param_1, param_2, param_3); }
-void FUN_180842380(longlong param_1, undefined8 param_2, undefined4 param_3) { format_network_message_alt_4(param_1, param_2, param_3); }
-void FUN_1808423b0(longlong param_1, undefined8 param_2, undefined4 param_3) { format_network_message_alt_5(param_1, param_2, param_3); }
+void FUN_180842350(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_3(param_1, param_2, param_3); }
+void FUN_180842380(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_4(param_1, param_2, param_3); }
+void FUN_1808423b0(longlong param_1, uint64_t param_2, int32_t param_3) { format_network_message_alt_5(param_1, param_2, param_3); }

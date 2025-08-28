@@ -2,19 +2,19 @@
 
 // 99_part_07_part040_sub002.c - 1 个函数
 
-// 函数: void FUN_1804c12a0(undefined8 param_1,undefined4 param_2,char *param_3)
-void FUN_1804c12a0(undefined8 param_1,undefined4 param_2,char *param_3)
+// 函数: void FUN_1804c12a0(uint64_t param_1,int32_t param_2,char *param_3)
+void FUN_1804c12a0(uint64_t param_1,int32_t param_2,char *param_3)
 
 {
   char cVar1;
-  undefined8 *puVar2;
+  uint64_t *puVar2;
   char *pcVar3;
   
-  puVar2 = (undefined8 *)FUN_1804c1300(param_1,0x60);
+  puVar2 = (uint64_t *)FUN_1804c1300(param_1,0x60);
   *puVar2 = 0;
   puVar2[1] = 0;
   puVar2[4] = 0;
-  *(undefined4 *)(puVar2 + 5) = param_2;
+  *(int32_t *)(puVar2 + 5) = param_2;
   puVar2[6] = 0;
   puVar2[8] = 0;
   if (param_3 != (char *)0x0) {
@@ -99,7 +99,7 @@ longlong FUN_1804c132d(longlong param_1,ulonglong param_2)
 
 
 
-longlong FUN_1804c13b3(undefined8 param_1,undefined8 param_2,longlong param_3)
+longlong FUN_1804c13b3(uint64_t param_1,uint64_t param_2,longlong param_3)
 
 {
   longlong unaff_RBP;

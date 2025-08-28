@@ -47,9 +47,9 @@ void FUN_180297321(void)
  * @param param_3 第三个参数（将被返回）
  * @return 直接返回第三个参数
  */
-undefined8 render_param_pass_through(undefined8 param_1, undefined8 param_2, undefined8 param_3) __attribute__((alias("FUN_180297337")));
+uint64_t render_param_pass_through(uint64_t param_1, uint64_t param_2, uint64_t param_3) __attribute__((alias("FUN_180297337")));
 
-undefined8 FUN_180297337(undefined8 param_1, undefined8 param_2, undefined8 param_3)
+uint64_t FUN_180297337(uint64_t param_1, uint64_t param_2, uint64_t param_3)
 {
   return param_3;
 }
@@ -75,10 +75,10 @@ undefined8 FUN_180297337(undefined8 param_1, undefined8 param_2, undefined8 para
  * @return 处理后的浮点数数组指针
  */
 float * process_render_float_data(float *param_1, float *param_2, float param_3, float param_4, float param_5,
-                                 char *param_6, char *param_7, undefined8 *param_8) __attribute__((alias("FUN_180297340")));
+                                 char *param_6, char *param_7, uint64_t *param_8) __attribute__((alias("FUN_180297340")));
 
 float * FUN_180297340(float *param_1, float *param_2, float param_3, float param_4, float param_5,
-                     char *param_6, char *param_7, undefined8 *param_8)
+                     char *param_6, char *param_7, uint64_t *param_8)
 
 {
   char cVar1;
@@ -199,7 +199,7 @@ FUN_180297510:
   if ((0.0 < fVar11) || (param_2[1] == 0.0)) {
     param_2[1] = param_3 + param_2[1];
   }
-  if (param_8 != (undefined8 *)0x0) {
+  if (param_8 != (uint64_t *)0x0) {
     *param_8 = pcVar6;
   }
   return param_2;
@@ -220,9 +220,9 @@ FUN_180297510:
  * @param param_3 缩放因子
  * @param param_4 边界阈值
  */
-void process_advanced_render_float_data(float *param_1, undefined8 *param_2, float param_3, float param_4) __attribute__((alias("FUN_180297357")));
+void process_advanced_render_float_data(float *param_1, uint64_t *param_2, float param_3, float param_4) __attribute__((alias("FUN_180297357")));
 
-void FUN_180297357(float *param_1, undefined8 *param_2, float param_3, float param_4)
+void FUN_180297357(float *param_1, uint64_t *param_2, float param_3, float param_4)
 {
   char cVar1;
   bool bVar2;
@@ -232,65 +232,65 @@ void FUN_180297357(float *param_1, undefined8 *param_2, float param_3, float par
   char *unaff_RBX;
   char *pcVar5;
   char *pcVar6;
-  undefined8 unaff_RBP;
+  uint64_t unaff_RBP;
   float *unaff_RSI;
-  undefined8 unaff_RDI;
+  uint64_t unaff_RDI;
   longlong lVar7;
   char *pcVar8;
-  undefined8 unaff_R12;
-  undefined8 unaff_R15;
+  uint64_t unaff_R12;
+  uint64_t unaff_R15;
   float fVar9;
-  undefined4 unaff_XMM6_Da;
+  int32_t unaff_XMM6_Da;
   float fVar10;
   float fVar11;
-  undefined4 unaff_XMM6_Db;
-  undefined4 unaff_XMM6_Dc;
-  undefined4 unaff_XMM6_Dd;
-  undefined4 unaff_XMM7_Da;
-  undefined4 unaff_XMM7_Db;
-  undefined4 unaff_XMM7_Dc;
-  undefined4 unaff_XMM7_Dd;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  undefined4 unaff_XMM9_Db;
-  undefined4 unaff_XMM9_Dc;
-  undefined4 unaff_XMM9_Dd;
-  undefined4 unaff_XMM10_Da;
-  undefined4 unaff_XMM10_Db;
-  undefined4 unaff_XMM10_Dc;
-  undefined4 unaff_XMM10_Dd;
+  int32_t unaff_XMM6_Db;
+  int32_t unaff_XMM6_Dc;
+  int32_t unaff_XMM6_Dd;
+  int32_t unaff_XMM7_Da;
+  int32_t unaff_XMM7_Db;
+  int32_t unaff_XMM7_Dc;
+  int32_t unaff_XMM7_Dd;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
+  int32_t unaff_XMM9_Da;
+  int32_t unaff_XMM9_Db;
+  int32_t unaff_XMM9_Dc;
+  int32_t unaff_XMM9_Dd;
+  int32_t unaff_XMM10_Da;
+  int32_t unaff_XMM10_Db;
+  int32_t unaff_XMM10_Dc;
+  int32_t unaff_XMM10_Dd;
   float in_stack_000000c0;
   char *in_stack_000000d0;
-  undefined8 *in_stack_000000d8;
+  uint64_t *in_stack_000000d8;
   
   // 保存寄存器状态
-  *(undefined8 *)(in_RAX + 8) = unaff_RBP;
-  *(undefined8 *)(in_RAX + 0x10) = unaff_RDI;
-  *(undefined8 *)(in_RAX + 0x18) = unaff_R12;
-  *(undefined8 *)(in_RAX + -0x18) = unaff_R15;
-  *(undefined4 *)(in_RAX + -0x28) = unaff_XMM6_Da;
-  *(undefined4 *)(in_RAX + -0x24) = unaff_XMM6_Db;
-  *(undefined4 *)(in_RAX + -0x20) = unaff_XMM6_Dc;
-  *(undefined4 *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
-  *(undefined4 *)(in_RAX + -0x38) = unaff_XMM7_Da;
-  *(undefined4 *)(in_RAX + -0x34) = unaff_XMM7_Db;
-  *(undefined4 *)(in_RAX + -0x30) = unaff_XMM7_Dc;
-  *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM7_Dd;
-  *(undefined4 *)(in_RAX + -0x48) = unaff_XMM8_Da;
-  *(undefined4 *)(in_RAX + -0x44) = unaff_XMM8_Db;
-  *(undefined4 *)(in_RAX + -0x40) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_RAX + -0x58) = unaff_XMM9_Da;
-  *(undefined4 *)(in_RAX + -0x54) = unaff_XMM9_Db;
-  *(undefined4 *)(in_RAX + -0x50) = unaff_XMM9_Dc;
-  *(undefined4 *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
-  *(undefined4 *)(in_RAX + -0x68) = unaff_XMM10_Da;
-  *(undefined4 *)(in_RAX + -100) = unaff_XMM10_Db;
-  *(undefined4 *)(in_RAX + -0x60) = unaff_XMM10_Dc;
-  *(undefined4 *)(in_RAX + -0x5c) = unaff_XMM10_Dd;
+  *(uint64_t *)(in_RAX + 8) = unaff_RBP;
+  *(uint64_t *)(in_RAX + 0x10) = unaff_RDI;
+  *(uint64_t *)(in_RAX + 0x18) = unaff_R12;
+  *(uint64_t *)(in_RAX + -0x18) = unaff_R15;
+  *(int32_t *)(in_RAX + -0x28) = unaff_XMM6_Da;
+  *(int32_t *)(in_RAX + -0x24) = unaff_XMM6_Db;
+  *(int32_t *)(in_RAX + -0x20) = unaff_XMM6_Dc;
+  *(int32_t *)(in_RAX + -0x1c) = unaff_XMM6_Dd;
+  *(int32_t *)(in_RAX + -0x38) = unaff_XMM7_Da;
+  *(int32_t *)(in_RAX + -0x34) = unaff_XMM7_Db;
+  *(int32_t *)(in_RAX + -0x30) = unaff_XMM7_Dc;
+  *(int32_t *)(in_RAX + -0x2c) = unaff_XMM7_Dd;
+  *(int32_t *)(in_RAX + -0x48) = unaff_XMM8_Da;
+  *(int32_t *)(in_RAX + -0x44) = unaff_XMM8_Db;
+  *(int32_t *)(in_RAX + -0x40) = unaff_XMM8_Dc;
+  *(int32_t *)(in_RAX + -0x3c) = unaff_XMM8_Dd;
+  *(int32_t *)(in_RAX + -0x58) = unaff_XMM9_Da;
+  *(int32_t *)(in_RAX + -0x54) = unaff_XMM9_Db;
+  *(int32_t *)(in_RAX + -0x50) = unaff_XMM9_Dc;
+  *(int32_t *)(in_RAX + -0x4c) = unaff_XMM9_Dd;
+  *(int32_t *)(in_RAX + -0x68) = unaff_XMM10_Da;
+  *(int32_t *)(in_RAX + -100) = unaff_XMM10_Db;
+  *(int32_t *)(in_RAX + -0x60) = unaff_XMM10_Dc;
+  *(int32_t *)(in_RAX + -0x5c) = unaff_XMM10_Dd;
   
   // 初始化字符串结束指针
   pcVar8 = in_stack_000000d0;
@@ -394,7 +394,7 @@ FUN_180297510:
   if ((0.0 < fVar10) || (unaff_RSI[1] == 0.0)) {
     unaff_RSI[1] = param_3 + unaff_RSI[1];
   }
-  if (in_stack_000000d8 != (undefined8 *)0x0) {
+  if (in_stack_000000d8 != (uint64_t *)0x0) {
     *in_stack_000000d8 = pcVar5;
   }
   return;
@@ -413,9 +413,9 @@ FUN_180297510:
  * @param param_1 渲染上下文指针
  * @param param_2 缩放因子
  */
-void process_rendering_characters(undefined8 param_1, float param_2) __attribute__((alias("FUN_1802973de")));
+void process_rendering_characters(uint64_t param_1, float param_2) __attribute__((alias("FUN_1802973de")));
 
-void FUN_1802973de(undefined8 param_1, float param_2)
+void FUN_1802973de(uint64_t param_1, float param_2)
 {
   char cVar1;
   int iVar2;
@@ -433,7 +433,7 @@ void FUN_1802973de(undefined8 param_1, float param_2)
   float unaff_XMM8_Da;
   float unaff_XMM10_Da;
   uint in_stack_000000c0;
-  undefined8 *in_stack_000000d8;
+  uint64_t *in_stack_000000d8;
   
   // 主处理循环
   do {
@@ -516,7 +516,7 @@ LAB_180297508:
   if ((unaff_XMM8_Da < unaff_XMM6_Da) || (unaff_XMM8_Da == unaff_RSI[1])) {
     unaff_RSI[1] = unaff_XMM7_Da + unaff_RSI[1];
   }
-  if (in_stack_000000d8 != (undefined8 *)0x0) {
+  if (in_stack_000000d8 != (uint64_t *)0x0) {
     *in_stack_000000d8 = pcVar3;
   }
   return;
@@ -536,12 +536,12 @@ void update_rendering_state(void) __attribute__((alias("FUN_180297510")));
 
 void FUN_180297510(void)
 {
-  undefined8 unaff_RBX;
+  uint64_t unaff_RBX;
   float *unaff_RSI;
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
   float unaff_XMM8_Da;
-  undefined8 *in_stack_000000d8;
+  uint64_t *in_stack_000000d8;
   
   // 更新渲染状态
   if (*unaff_RSI <= unaff_XMM6_Da && unaff_XMM6_Da != *unaff_RSI) {
@@ -550,7 +550,7 @@ void FUN_180297510(void)
   if ((unaff_XMM8_Da < unaff_XMM6_Da) || (unaff_XMM8_Da == unaff_RSI[1])) {
     unaff_RSI[1] = unaff_XMM7_Da + unaff_RSI[1];
   }
-  if (in_stack_000000d8 != (undefined8 *)0x0) {
+  if (in_stack_000000d8 != (uint64_t *)0x0) {
     *in_stack_000000d8 = unaff_RBX;
   }
   return;
@@ -570,19 +570,19 @@ void fast_update_rendering_state(void) __attribute__((alias("FUN_180297541")));
 
 void FUN_180297541(void)
 {
-  undefined8 unaff_RBX;
+  uint64_t unaff_RBX;
   float *unaff_RSI;
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
   float unaff_XMM8_Da;
-  undefined8 *in_stack_000000d8;
+  uint64_t *in_stack_000000d8;
   
   // 快速更新渲染状态
   *unaff_RSI = unaff_XMM6_Da;
   if ((unaff_XMM8_Da < unaff_XMM6_Da) || (unaff_XMM8_Da == unaff_RSI[1])) {
     unaff_RSI[1] = unaff_XMM7_Da + unaff_RSI[1];
   }
-  if (in_stack_000000d8 != (undefined8 *)0x0) {
+  if (in_stack_000000d8 != (uint64_t *)0x0) {
     *in_stack_000000d8 = unaff_RBX;
   }
   return;
@@ -602,17 +602,17 @@ void conditional_update_rendering_state(void) __attribute__((alias("FUN_18029755
 
 void FUN_180297550(void)
 {
-  undefined8 unaff_RBX;
+  uint64_t unaff_RBX;
   longlong unaff_RSI;
   float unaff_XMM7_Da;
   float unaff_XMM8_Da;
-  undefined8 *in_stack_000000d8;
+  uint64_t *in_stack_000000d8;
   
   // 条件更新渲染状态
   if (unaff_XMM8_Da == *(float *)(unaff_RSI + 4)) {
     *(float *)(unaff_RSI + 4) = unaff_XMM7_Da + *(float *)(unaff_RSI + 4);
   }
-  if (in_stack_000000d8 != (undefined8 *)0x0) {
+  if (in_stack_000000d8 != (uint64_t *)0x0) {
     *in_stack_000000d8 = unaff_RBX;
   }
   return;
@@ -632,8 +632,8 @@ void render_simple_assignment(void) __attribute__((alias("FUN_180297579")));
 
 void FUN_180297579(void)
 {
-  undefined8 *in_RAX;
-  undefined8 unaff_RBX;
+  uint64_t *in_RAX;
+  uint64_t unaff_RBX;
   
   // 执行简单赋值
   *in_RAX = unaff_RBX;
@@ -661,10 +661,10 @@ void FUN_180297579(void)
  * @param param_9 高度参数
  * @param param_10 渲染标志
  */
-void render_advanced_text(float *param_1, int *param_2, float param_3, undefined8 param_4, float param_5,
+void render_advanced_text(float *param_1, int *param_2, float param_3, uint64_t param_4, float param_5,
                         float *param_6, char *param_7, char *param_8, float param_9, char param_10) __attribute__((alias("FUN_180297590")));
 
-void FUN_180297590(float *param_1, int *param_2, float param_3, undefined8 param_4, float param_5,
+void FUN_180297590(float *param_1, int *param_2, float param_3, uint64_t param_4, float param_5,
                   float *param_6, char *param_7, char *param_8, float param_9, char param_10)
 {
   int *piVar1;

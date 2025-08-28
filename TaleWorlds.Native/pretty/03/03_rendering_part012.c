@@ -86,7 +86,7 @@ void serialize_render_data(longlong render_object, longlong *output_buffer)
     output_buffer[1] = buffer_pos + 4;
     
     // 处理材质标志位
-    undefined8 *flag_table = (undefined8 *)&UNK_18098e1c0;
+    uint64_t *flag_table = (uint64_t *)&UNK_18098e1c0;
     ulonglong flag_count = counter;
     do {
         if ((*(uint32_t *)(flag_table + 1) & material_flags) != 0) {
@@ -102,7 +102,7 @@ void serialize_render_data(longlong render_object, longlong *output_buffer)
     write_offset = counter;
     do {
         if (*material_type == *(char *)(render_object + 0x134)) {
-            FUN_180639de0(output_buffer, *(undefined8 *)((longlong)(int)write_offset * 0x10 + 0x180bf8ff0));
+            FUN_180639de0(output_buffer, *(uint64_t *)((longlong)(int)write_offset * 0x10 + 0x180bf8ff0));
             break;
         }
         write_offset = (ulonglong)((int)write_offset + 1);
@@ -254,7 +254,7 @@ void serialize_render_data(longlong render_object, longlong *output_buffer)
  * @param render_obj 渲染对象指针
  * @return 初始化后的渲染对象指针
  */
-undefined8 * initialize_render_object_base(undefined8 *render_obj)
+uint64_t * initialize_render_object_base(uint64_t *render_obj)
 {
     // 设置基础属性表
     *render_obj = &UNK_18098bcb0;
@@ -265,7 +265,7 @@ undefined8 * initialize_render_object_base(undefined8 *render_obj)
     *render_obj = &UNK_1809fcc58;
     render_obj[1] = render_obj + 3;
     *(uint32_t *)(render_obj + 2) = 0;
-    *(undefined1 *)(render_obj + 3) = 0;
+    *(int8_t *)(render_obj + 3) = 0;
     
     // 设置材质属性
     render_obj[0x22] = &UNK_18098bcb0;
@@ -291,7 +291,7 @@ undefined8 * initialize_render_object_base(undefined8 *render_obj)
     *(uint32_t *)(render_obj + 0x31) = 3;  // 深度模式
     
     // 初始化变换矩阵
-    *(undefined8 *)((longlong)render_obj + 0x5c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x5c) = 0;
     *(uint32_t *)((longlong)render_obj + 100) = 0;
     *(uint32_t *)(render_obj + 0x10) = 0;
     *(uint32_t *)((longlong)render_obj + 0x84) = 0;
@@ -339,14 +339,14 @@ undefined8 * initialize_render_object_base(undefined8 *render_obj)
  * @param param4 创建参数4
  * @return 创建的渲染对象指针
  */
-undefined8 * create_render_object_instance(undefined8 param1, undefined8 *render_obj, undefined8 param3, undefined8 param4)
+uint64_t * create_render_object_instance(uint64_t param1, uint64_t *render_obj, uint64_t param3, uint64_t param4)
 {
     *render_obj = &UNK_18098bcb0;
     render_obj[1] = 0;
     *(uint32_t *)(render_obj + 2) = 0;
     *render_obj = &UNK_1809fcc28;
     render_obj[1] = render_obj + 3;
-    *(undefined1 *)(render_obj + 3) = 0;
+    *(int8_t *)(render_obj + 3) = 0;
     *(uint32_t *)(render_obj + 2) = 0xc;
     strcpy_s(render_obj[1], 0x80, &UNK_180a167d0, param4, 0, 0xfffffffffffffffe);
     return render_obj;
@@ -359,7 +359,7 @@ undefined8 * create_render_object_instance(undefined8 param1, undefined8 *render
  * @param render_obj 渲染对象指针
  * @return 初始化后的渲染对象指针
  */
-undefined8 * initialize_advanced_render_object(undefined8 *render_obj)
+uint64_t * initialize_advanced_render_object(uint64_t *render_obj)
 {
     // 设置基础属性
     *render_obj = &UNK_180a21690;
@@ -393,35 +393,35 @@ undefined8 * initialize_advanced_render_object(undefined8 *render_obj)
     
     // 初始化渲染参数
     *(uint32_t *)((longlong)render_obj + 0x244) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x214) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x21c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x224) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x22c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x234) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x23c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x24c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x214) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x21c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x224) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x22c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x234) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x23c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x24c) = 0;
     
     // 设置边界框
-    *(undefined8 *)((longlong)render_obj + 0x254) = 0x7f7fffff00000000;  // 最大浮点数
-    *(undefined8 *)((longlong)render_obj + 0x25c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x264) = 0x7f7fffff00000000;  // 最大浮点数
-    *(undefined8 *)((longlong)render_obj + 0x26c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x274) = 0x7f7fffff00000000;  // 最大浮点数
+    *(uint64_t *)((longlong)render_obj + 0x254) = 0x7f7fffff00000000;  // 最大浮点数
+    *(uint64_t *)((longlong)render_obj + 0x25c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x264) = 0x7f7fffff00000000;  // 最大浮点数
+    *(uint64_t *)((longlong)render_obj + 0x26c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x274) = 0x7f7fffff00000000;  // 最大浮点数
     
     // 初始化其他参数
-    *(undefined8 *)((longlong)render_obj + 0x2fc) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x27c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x284) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x28c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x294) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x29c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2a4) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2ac) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2b4) = 0;
-    *(undefined8 *)((longlong)render_obj + 700) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2c4) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2cc) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2d4) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2fc) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x27c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x284) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x28c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x294) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x29c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2a4) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2ac) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2b4) = 0;
+    *(uint64_t *)((longlong)render_obj + 700) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2c4) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2cc) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2d4) = 0;
     *(uint32_t *)((longlong)render_obj + 0x2dc) = 0;
     *(uint32_t *)(render_obj + 0x5c) = 0;
     *(uint32_t *)((longlong)render_obj + 0x2e4) = 0;
@@ -456,7 +456,7 @@ undefined8 * initialize_advanced_render_object(undefined8 *render_obj)
  * @param flags 释放标志
  * @return 释放后的对象指针
  */
-undefined8 release_render_object_memory(undefined8 render_obj, ulonglong flags)
+uint64_t release_render_object_memory(uint64_t render_obj, ulonglong flags)
 {
     FUN_180275730();  // 执行清理函数
     if ((flags & 1) != 0) {
@@ -498,28 +498,28 @@ void execute_render_callbacks(longlong *callback_list)
 void cleanup_render_object_state(longlong render_obj)
 {
     // 清理材质状态
-    *(undefined8 *)(render_obj + 0x168) = &UNK_180a3c3e0;
+    *(uint64_t *)(render_obj + 0x168) = &UNK_180a3c3e0;
     if (*(longlong *)(render_obj + 0x170) != 0) {
         // 注意：此函数不会返回
         FUN_18064e900();
     }
-    *(undefined8 *)(render_obj + 0x170) = 0;
+    *(uint64_t *)(render_obj + 0x170) = 0;
     *(uint32_t *)(render_obj + 0x180) = 0;
-    *(undefined8 *)(render_obj + 0x168) = &UNK_18098bcb0;
+    *(uint64_t *)(render_obj + 0x168) = &UNK_18098bcb0;
     
     // 清理纹理状态
-    *(undefined8 *)(render_obj + 0x148) = &UNK_180a3c3e0;
+    *(uint64_t *)(render_obj + 0x148) = &UNK_180a3c3e0;
     if (*(longlong *)(render_obj + 0x150) != 0) {
         // 注意：此函数不会返回
         FUN_18064e900();
     }
-    *(undefined8 *)(render_obj + 0x150) = 0;
+    *(uint64_t *)(render_obj + 0x150) = 0;
     *(uint32_t *)(render_obj + 0x160) = 0;
-    *(undefined8 *)(render_obj + 0x148) = &UNK_18098bcb0;
+    *(uint64_t *)(render_obj + 0x148) = &UNK_18098bcb0;
     
     // 清理其他状态
-    *(undefined **)(render_obj + 0xb0) = &UNK_18098bcb0;
-    *(undefined **)(render_obj + 0x18) = &UNK_18098bcb0;
+    *(void **)(render_obj + 0xb0) = &UNK_18098bcb0;
+    *(void **)(render_obj + 0x18) = &UNK_18098bcb0;
     return;
 }
 
@@ -533,7 +533,7 @@ void cleanup_render_object_state(longlong render_obj)
  * @param param3 参数3
  * @return 创建的渲染对象指针
  */
-undefined8 * create_advanced_render_object_with_params(undefined8 *render_obj, undefined8 param1, undefined8 param2, undefined8 param3)
+uint64_t * create_advanced_render_object_with_params(uint64_t *render_obj, uint64_t param1, uint64_t param2, uint64_t param3)
 {
     // 设置基础属性
     *render_obj = &UNK_180a21690;
@@ -567,35 +567,35 @@ undefined8 * create_advanced_render_object_with_params(undefined8 *render_obj, u
     
     // 初始化渲染参数
     *(uint32_t *)((longlong)render_obj + 0x244) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x214) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x21c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x224) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x22c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x234) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x23c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x24c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x214) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x21c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x224) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x22c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x234) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x23c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x24c) = 0;
     
     // 设置边界框
-    *(undefined8 *)((longlong)render_obj + 0x254) = 0x7f7fffff00000000;  // 最大浮点数
-    *(undefined8 *)((longlong)render_obj + 0x25c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x264) = 0x7f7fffff00000000;  // 最大浮点数
-    *(undefined8 *)((longlong)render_obj + 0x26c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x274) = 0x7f7fffff00000000;  // 最大浮点数
+    *(uint64_t *)((longlong)render_obj + 0x254) = 0x7f7fffff00000000;  // 最大浮点数
+    *(uint64_t *)((longlong)render_obj + 0x25c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x264) = 0x7f7fffff00000000;  // 最大浮点数
+    *(uint64_t *)((longlong)render_obj + 0x26c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x274) = 0x7f7fffff00000000;  // 最大浮点数
     
     // 初始化其他参数
-    *(undefined8 *)((longlong)render_obj + 0x2fc) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x27c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x284) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x28c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x294) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x29c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2a4) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2ac) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2b4) = 0;
-    *(undefined8 *)((longlong)render_obj + 700) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2c4) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2cc) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2d4) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2fc) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x27c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x284) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x28c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x294) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x29c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2a4) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2ac) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2b4) = 0;
+    *(uint64_t *)((longlong)render_obj + 700) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2c4) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2cc) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2d4) = 0;
     *(uint32_t *)((longlong)render_obj + 0x2dc) = 0;
     *(uint32_t *)(render_obj + 0x5c) = 0;
     *(uint32_t *)((longlong)render_obj + 0x2e4) = 0;
@@ -633,7 +633,7 @@ undefined8 * create_advanced_render_object_with_params(undefined8 *render_obj, u
  * @param param3 参数3
  * @return 创建的渲染对象指针
  */
-undefined8 * create_render_object_with_material_params(undefined8 *render_obj, undefined8 param1, undefined8 param2, undefined8 param3)
+uint64_t * create_render_object_with_material_params(uint64_t *render_obj, uint64_t param1, uint64_t param2, uint64_t param3)
 {
     longlong material_handle;
     
@@ -669,35 +669,35 @@ undefined8 * create_render_object_with_material_params(undefined8 *render_obj, u
     
     // 初始化渲染参数
     *(uint32_t *)((longlong)render_obj + 0x244) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x214) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x21c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x224) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x22c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x234) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x23c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x24c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x214) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x21c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x224) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x22c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x234) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x23c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x24c) = 0;
     
     // 设置边界框
-    *(undefined8 *)((longlong)render_obj + 0x254) = 0x7f7fffff00000000;  // 最大浮点数
-    *(undefined8 *)((longlong)render_obj + 0x25c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x264) = 0x7f7fffff00000000;  // 最大浮点数
-    *(undefined8 *)((longlong)render_obj + 0x26c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x274) = 0x7f7fffff00000000;  // 最大浮点数
+    *(uint64_t *)((longlong)render_obj + 0x254) = 0x7f7fffff00000000;  // 最大浮点数
+    *(uint64_t *)((longlong)render_obj + 0x25c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x264) = 0x7f7fffff00000000;  // 最大浮点数
+    *(uint64_t *)((longlong)render_obj + 0x26c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x274) = 0x7f7fffff00000000;  // 最大浮点数
     
     // 初始化其他参数
-    *(undefined8 *)((longlong)render_obj + 0x2fc) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x27c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x284) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x28c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x294) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x29c) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2a4) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2ac) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2b4) = 0;
-    *(undefined8 *)((longlong)render_obj + 700) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2c4) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2cc) = 0;
-    *(undefined8 *)((longlong)render_obj + 0x2d4) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2fc) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x27c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x284) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x28c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x294) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x29c) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2a4) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2ac) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2b4) = 0;
+    *(uint64_t *)((longlong)render_obj + 700) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2c4) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2cc) = 0;
+    *(uint64_t *)((longlong)render_obj + 0x2d4) = 0;
     *(uint32_t *)((longlong)render_obj + 0x2dc) = 0;
     *(uint32_t *)(render_obj + 0x5c) = 0;
     *(uint32_t *)((longlong)render_obj + 0x2e4) = 0;
@@ -737,7 +737,7 @@ undefined8 * create_render_object_with_material_params(undefined8 *render_obj, u
  * 
  * @param render_obj 渲染对象指针
  */
-void destroy_render_object(undefined8 *render_obj)
+void destroy_render_object(uint64_t *render_obj)
 {
     *render_obj = &UNK_180a169b8;
     FUN_180275960();  // 执行清理
@@ -780,7 +780,7 @@ void destroy_render_object(undefined8 *render_obj)
  * @param render_obj 渲染对象指针
  * @return 获取的数据，失败时返回0
  */
-undefined8 get_render_object_data(longlong *render_obj)
+uint64_t get_render_object_data(longlong *render_obj)
 {
     char is_valid;
     
@@ -791,7 +791,7 @@ undefined8 get_render_object_data(longlong *render_obj)
         is_valid = (**(code **)(*render_obj + 0xc0))();
     }
     if (is_valid == '\0') {
-        return *(undefined8 *)render_obj[7];
+        return *(uint64_t *)render_obj[7];
     }
     return 0;
 }
@@ -803,18 +803,18 @@ undefined8 get_render_object_data(longlong *render_obj)
  * @param render_obj 渲染对象指针
  * @return 获取的材质数据，失败时返回0
  */
-undefined8 get_render_object_material_data(undefined8 *render_obj)
+uint64_t get_render_object_material_data(uint64_t *render_obj)
 {
     char is_valid;
     
-    if ((undefined *)*render_obj == &UNK_180a169b8) {
+    if ((void *)*render_obj == &UNK_180a169b8) {
         is_valid = (render_obj[8] - render_obj[7] & 0xfffffffffffffff0) == 0;
     }
     else {
-        is_valid = (**(code **)((undefined *)*render_obj + 0xc0))(render_obj);
+        is_valid = (**(code **)((void *)*render_obj + 0xc0))(render_obj);
     }
     if (is_valid == '\0') {
-        return *(undefined8 *)render_obj[7];
+        return *(uint64_t *)render_obj[7];
     }
     return 0;
 }
@@ -841,12 +841,12 @@ void set_render_object_visibility(longlong render_obj, char visibility)
             item_ptr = *(longlong *)(index + item_ptr);
             if (visibility == '\0') {
                 if (*(char *)(item_ptr + 0xfa) != '\0') {
-                    *(undefined1 *)(item_ptr + 0xfa) = 0;
+                    *(int8_t *)(item_ptr + 0xfa) = 0;
                     FUN_180079520();  // 通知可见性变更
                 }
             }
             else if (*(char *)(item_ptr + 0xfa) != '\x01') {
-                *(undefined1 *)(item_ptr + 0xfa) = 1;
+                *(int8_t *)(item_ptr + 0xfa) = 1;
                 FUN_180079520();  // 通知可见性变更
             }
             item_ptr = *(longlong *)(render_obj + 0x38);
@@ -866,7 +866,7 @@ void set_render_object_visibility(longlong render_obj, char visibility)
  * @param param2 参数2
  * @param render_obj 渲染对象指针
  */
-void batch_set_render_object_visibility(undefined8 param1, undefined8 param2, longlong render_obj)
+void batch_set_render_object_visibility(uint64_t param1, uint64_t param2, longlong render_obj)
 {
     longlong item_ptr;
     ulonglong index;
@@ -879,12 +879,12 @@ void batch_set_render_object_visibility(undefined8 param1, undefined8 param2, lo
         item_ptr = *(longlong *)(index + render_obj);
         if (visibility == '\0') {
             if (*(char *)(item_ptr + 0xfa) != '\0') {
-                *(undefined1 *)(item_ptr + 0xfa) = 0;
+                *(int8_t *)(item_ptr + 0xfa) = 0;
                 FUN_180079520();  // 通知可见性变更
             }
         }
         else if (*(char *)(item_ptr + 0xfa) != '\x01') {
-            *(undefined1 *)(item_ptr + 0xfa) = 1;
+            *(int8_t *)(item_ptr + 0xfa) = 1;
             FUN_180079520();  // 通知可见性变更
         }
         render_obj = *(longlong *)(unaff_RSI + 0x38);
@@ -922,7 +922,7 @@ void reset_render_object_state(longlong render_obj)
     max_items = (longlong)item_count;
     if (0 < item_count) {
         do {
-            *(undefined8 *)(*(longlong *)(loop_counter + *(longlong *)(render_obj + 0x38)) + 0x1c8) = 0;
+            *(uint64_t *)(*(longlong *)(loop_counter + *(longlong *)(render_obj + 0x38)) + 0x1c8) = 0;
             max_items = max_items + -1;
             loop_counter = loop_counter + 0x10;
         } while (max_items != 0);
@@ -950,9 +950,9 @@ void reset_render_object_state(longlong render_obj)
  * @param render_obj_ptr 渲染对象指针的指针
  * @return 渲染对象指针的指针
  */
-undefined8 * create_render_object_copy(undefined8 param1, undefined8 *render_obj_ptr)
+uint64_t * create_render_object_copy(uint64_t param1, uint64_t *render_obj_ptr)
 {
-    undefined8 new_obj;
+    uint64_t new_obj;
     longlong *created_obj;
     
     // 分配新对象内存

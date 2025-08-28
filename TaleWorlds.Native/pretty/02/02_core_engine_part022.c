@@ -9,10 +9,10 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
 {
     uint temp_uint1;
     int temp_int;
-    undefined8 *temp_ptr1;
-    undefined8 *temp_ptr2;
-    undefined1 *temp_ptr3;
-    undefined *temp_ptr4;
+    uint64_t *temp_ptr1;
+    uint64_t *temp_ptr2;
+    int8_t *temp_ptr3;
+    void *temp_ptr4;
     uint *temp_ptr5;
     ulonglong temp_ulong1;
     ulonglong temp_ulong2;
@@ -20,35 +20,35 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     longlong temp_long2;
     longlong temp_long3;
     ulonglong temp_ulong3;
-    undefined8 *temp_ptr6;
-    undefined1 stack_buffer1[32];
+    uint64_t *temp_ptr6;
+    int8_t stack_buffer1[32];
     longlong stack_long1;
-    undefined *stack_ptr1;
-    undefined1 *stack_ptr2;
-    undefined4 stack_uint1;
-    undefined8 stack_ulong1;
-    undefined4 stack_uint2;
-    undefined8 *stack_ptr7;
-    undefined8 stack_ulong2;
-    undefined8 *stack_ptr8;
-    undefined1 stack_byte1;
+    void *stack_ptr1;
+    int8_t *stack_ptr2;
+    int32_t stack_uint1;
+    uint64_t stack_ulong1;
+    int32_t stack_uint2;
+    uint64_t *stack_ptr7;
+    uint64_t stack_ulong2;
+    uint64_t *stack_ptr8;
+    int8_t stack_byte1;
     undefined7 stack_pad1;
-    undefined8 *stack_ptr9;
+    uint64_t *stack_ptr9;
     ulonglong stack_ulong3;
     uint stack_uint3;
-    undefined4 stack_uint4;
-    undefined4 stack_uint5;
-    undefined4 stack_uint6;
+    int32_t stack_uint4;
+    int32_t stack_uint5;
+    int32_t stack_uint6;
     ulonglong stack_ulong4;
     ulonglong stack_ulong5;
-    undefined1 stack_byte2;
+    int8_t stack_byte2;
     undefined7 stack_pad2;
     longlong stack_long2;
     ulonglong stack_ulong6;
     uint stack_uint7;
-    undefined4 stack_uint8;
-    undefined4 stack_uint9;
-    undefined4 stack_uint10;
+    int32_t stack_uint8;
+    int32_t stack_uint9;
+    int32_t stack_uint10;
     ulonglong stack_ulong7;
     ulonglong stack_ulong8;
     ulonglong stack_ulong9;
@@ -58,10 +58,10 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     stack_uint2 = 0;
     FUN_180057110();
     temp_ptr4 = &DAT_18098bc73;
-    if (*(undefined **)(source_path1 + 8) != (undefined *)0x0) {
-        temp_ptr4 = *(undefined **)(source_path1 + 8);
+    if (*(void **)(source_path1 + 8) != (void *)0x0) {
+        temp_ptr4 = *(void **)(source_path1 + 8);
     }
-    stack_ptr9 = (undefined8 *)0x0;
+    stack_ptr9 = (uint64_t *)0x0;
     stack_ulong3 = 0xf;
     stack_byte1 = 0;
     temp_long2 = -1;
@@ -71,8 +71,8 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     } while (temp_ptr4[temp_long3] != '\0');
     FUN_1800671b0(&stack_byte1);
     temp_ptr4 = &DAT_18098bc73;
-    if (*(undefined **)(source_path2 + 8) != (undefined *)0x0) {
-        temp_ptr4 = *(undefined **)(source_path2 + 8);
+    if (*(void **)(source_path2 + 8) != (void *)0x0) {
+        temp_ptr4 = *(void **)(source_path2 + 8);
     }
     stack_long2 = 0;
     stack_ulong6 = 0xf;
@@ -90,12 +90,12 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     temp_ulong2 = CONCAT44(stack_uint4, temp_uint1) & 0xffffffffffffff00;
     temp_ptr3 = &stack_byte1;
     if (0xf < stack_ulong3) {
-        temp_ptr3 = (undefined1 *)CONCAT71(stack_pad1, stack_byte1);
+        temp_ptr3 = (int8_t *)CONCAT71(stack_pad1, stack_byte1);
     }
     stack_long1 = stack_long2;
-    temp_ptr1 = (undefined8 *)FUN_180066f90(temp_ptr3, stack_ptr9);
+    temp_ptr1 = (uint64_t *)FUN_180066f90(temp_ptr3, stack_ptr9);
     stack_ptr7 = temp_ptr1;
-    if (temp_ptr1 == (undefined8 *)0xffffffffffffffff) {
+    if (temp_ptr1 == (uint64_t *)0xffffffffffffffff) {
         if (0xf < stack_ulong5) {
             temp_ulong1 = stack_ulong5 + 1;
             temp_ulong3 = temp_ulong2;
@@ -142,7 +142,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
             }
             free(temp_long2, temp_ulong2);
         }
-        stack_ptr9 = (undefined8 *)0x0;
+        stack_ptr9 = (uint64_t *)0x0;
         stack_ulong3 = 0xf;
         stack_byte1 = 0;
         // 警告：子函数不返回
@@ -157,7 +157,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     }
     temp_ptr3 = &stack_byte1;
     if (0xf < stack_ulong3) {
-        temp_ptr3 = (undefined1 *)CONCAT71(stack_pad1, stack_byte1);
+        temp_ptr3 = (int8_t *)CONCAT71(stack_pad1, stack_byte1);
     }
     FUN_1800671b0(&stack_uint7, temp_ptr3, temp_ptr2);
     stack_uint2 = 1;
@@ -178,7 +178,7 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
     temp_long2 = 0;
     stack_ptr1 = &UNK_180a3c3e0;
     stack_ulong1 = 0;
-    stack_ptr2 = (undefined1 *)0x0;
+    stack_ptr2 = (int8_t *)0x0;
     stack_uint1 = 0;
     stack_ulong4._0_4_ = (int)temp_ulong2;
     temp_int = (int)stack_ulong4;
@@ -193,25 +193,25 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
         memcpy(stack_ptr2, temp_ptr5, temp_ulong2 & 0xffffffff);
     }
     stack_uint1 = 0;
-    if (stack_ptr2 != (undefined1 *)0x0) {
+    if (stack_ptr2 != (int8_t *)0x0) {
         *stack_ptr2 = 0;
     }
-    temp_ptr2 = (undefined8 *)container_ptr[1];
-    if (temp_ptr2 < (undefined8 *)container_ptr[2]) {
+    temp_ptr2 = (uint64_t *)container_ptr[1];
+    if (temp_ptr2 < (uint64_t *)container_ptr[2]) {
         container_ptr[1] = (longlong)(temp_ptr2 + 4);
         *temp_ptr2 = &UNK_18098bcb0;
         temp_ptr2[1] = 0;
-        *(undefined4 *)(temp_ptr2 + 2) = 0;
+        *(int32_t *)(temp_ptr2 + 2) = 0;
         *temp_ptr2 = &UNK_180a3c3e0;
         temp_ptr2[3] = 0;
         temp_ptr2[1] = 0;
-        *(undefined4 *)(temp_ptr2 + 2) = 0;
-        *(undefined4 *)(temp_ptr2 + 2) = 0;
+        *(int32_t *)(temp_ptr2 + 2) = 0;
+        *(int32_t *)(temp_ptr2 + 2) = 0;
         temp_ptr2[1] = stack_ptr2;
-        *(undefined4 *)((longlong)temp_ptr2 + 0x1c) = stack_ulong1._4_4_;
-        *(undefined4 *)(temp_ptr2 + 3) = (undefined4)stack_ulong1;
+        *(int32_t *)((longlong)temp_ptr2 + 0x1c) = stack_ulong1._4_4_;
+        *(int32_t *)(temp_ptr2 + 3) = (int32_t)stack_ulong1;
         stack_uint1 = 0;
-        stack_ptr2 = (undefined1 *)0x0;
+        stack_ptr2 = (int8_t *)0x0;
         stack_ulong1 = 0;
         stack_ptr7 = temp_ptr2;
     }
@@ -222,39 +222,39 @@ void process_and_add_path_to_container(longlong *container_ptr, longlong source_
             temp_long1 = 1;
 EXPAND_CONTAINER:
             temp_long2 = FUN_18062b420(_DAT_180c8ed18, temp_long1 << 5, (char)container_ptr[3]);
-            temp_ptr2 = (undefined8 *)container_ptr[1];
+            temp_ptr2 = (uint64_t *)container_ptr[1];
             temp_long3 = *container_ptr;
         }
         else {
             temp_long1 = temp_long1 * 2;
             if (temp_long1 != 0) goto EXPAND_CONTAINER;
         }
-        stack_ptr8 = (undefined8 *)FUN_180059780(temp_long3, temp_ptr2, temp_long2);
+        stack_ptr8 = (uint64_t *)FUN_180059780(temp_long3, temp_ptr2, temp_long2);
         *stack_ptr8 = &UNK_18098bcb0;
         stack_ptr8[1] = 0;
-        *(undefined4 *)(stack_ptr8 + 2) = 0;
+        *(int32_t *)(stack_ptr8 + 2) = 0;
         *stack_ptr8 = &UNK_180a3c3e0;
         stack_ptr8[3] = 0;
         stack_ptr8[1] = 0;
-        *(undefined4 *)(stack_ptr8 + 2) = 0;
-        *(undefined4 *)(stack_ptr8 + 2) = stack_uint1;
+        *(int32_t *)(stack_ptr8 + 2) = 0;
+        *(int32_t *)(stack_ptr8 + 2) = stack_uint1;
         stack_ptr8[1] = stack_ptr2;
-        *(undefined4 *)((longlong)stack_ptr8 + 0x1c) = stack_ulong1._4_4_;
-        *(undefined4 *)(stack_ptr8 + 3) = (undefined4)stack_ulong1;
+        *(int32_t *)((longlong)stack_ptr8 + 0x1c) = stack_ulong1._4_4_;
+        *(int32_t *)(stack_ptr8 + 3) = (int32_t)stack_ulong1;
         stack_uint1 = 0;
-        stack_ptr2 = (undefined1 *)0x0;
+        stack_ptr2 = (int8_t *)0x0;
         stack_ulong1 = 0;
         temp_ptr6 = stack_ptr8 + 4;
-        temp_ptr1 = (undefined8 *)container_ptr[1];
-        temp_ptr2 = (undefined8 *)*container_ptr;
+        temp_ptr1 = (uint64_t *)container_ptr[1];
+        temp_ptr2 = (uint64_t *)*container_ptr;
         if (temp_ptr2 != temp_ptr1) {
             do {
                 (**(code **)*temp_ptr2)(temp_ptr2, 0);
                 temp_ptr2 = temp_ptr2 + 4;
             } while (temp_ptr2 != temp_ptr1);
-            temp_ptr2 = (undefined8 *)*container_ptr;
+            temp_ptr2 = (uint64_t *)*container_ptr;
         }
-        if (temp_ptr2 != (undefined8 *)0x0) {
+        if (temp_ptr2 != (uint64_t *)0x0) {
             // 警告：子函数不返回
             FUN_18064e900(temp_ptr2);
         }
@@ -265,23 +265,23 @@ EXPAND_CONTAINER:
         temp_ptr1 = stack_ptr7;
     }
     stack_ptr1 = &UNK_180a3c3e0;
-    if (stack_ptr2 != (undefined1 *)0x0) {
+    if (stack_ptr2 != (int8_t *)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
     }
-    stack_ptr2 = (undefined1 *)0x0;
+    stack_ptr2 = (int8_t *)0x0;
     stack_ulong1 = stack_ulong1 & 0xffffffff00000000;
     stack_ptr1 = &UNK_18098bcb0;
 PATH_PROCESSING_DONE:
-    temp_ptr2 = (undefined8 *)(temp_long3 + (longlong)temp_ptr1);
-    if (stack_ptr9 < (undefined8 *)(temp_long3 + (longlong)temp_ptr1)) {
+    temp_ptr2 = (uint64_t *)(temp_long3 + (longlong)temp_ptr1);
+    if (stack_ptr9 < (uint64_t *)(temp_long3 + (longlong)temp_ptr1)) {
         temp_ptr2 = stack_ptr9;
     }
     temp_ptr3 = &stack_byte1;
     if (0xf < stack_ulong3) {
-        temp_ptr3 = (undefined1 *)CONCAT71(stack_pad1, stack_byte1);
+        temp_ptr3 = (int8_t *)CONCAT71(stack_pad1, stack_byte1);
     }
-    stack_ptr9 = (undefined8 *)((longlong)stack_ptr9 - (longlong)temp_ptr2);
+    stack_ptr9 = (uint64_t *)((longlong)stack_ptr9 - (longlong)temp_ptr2);
     // 警告：子函数不返回
     memmove(temp_ptr3, temp_ptr3 + (longlong)temp_ptr2, (longlong)stack_ptr9 + 1);
 }
@@ -292,100 +292,100 @@ PATH_PROCESSING_DONE:
 
 // 函数：生成系统信息报告
 // 参数：param_1 - 报告输出参数
-void generate_system_info_report(undefined8 report_param)
+void generate_system_info_report(uint64_t report_param)
 {
     byte *byte_ptr1;
     int temp_int;
     bool temp_bool;
-    undefined8 *temp_ptr1;
-    undefined8 *temp_ptr2;
-    undefined8 *temp_ptr3;
+    uint64_t *temp_ptr1;
+    uint64_t *temp_ptr2;
+    uint64_t *temp_ptr3;
     char temp_char;
     int temp_int2;
     longlong temp_long1;
     ulonglong temp_ulong1;
-    undefined8 temp_ulong2;
+    uint64_t temp_ulong2;
     ulonglong temp_ulong3;
     byte *byte_ptr2;
     longlong temp_long2;
     int temp_int3;
-    undefined *temp_ptr4;
-    undefined8 *temp_ptr5;
-    undefined8 *temp_ptr6;
-    undefined8 *temp_ptr7;
-    undefined8 *temp_ptr8;
-    undefined4 temp_uint;
-    undefined1 stack_buffer1[32];
-    undefined *stack_ptr1;
-    undefined2 stack_short1[2];
-    undefined2 stack_short2[2];
-    undefined *stack_ptr2;
+    void *temp_ptr4;
+    uint64_t *temp_ptr5;
+    uint64_t *temp_ptr6;
+    uint64_t *temp_ptr7;
+    uint64_t *temp_ptr8;
+    int32_t temp_uint;
+    int8_t stack_buffer1[32];
+    void *stack_ptr1;
+    int16_t stack_short1[2];
+    int16_t stack_short2[2];
+    void *stack_ptr2;
     longlong stack_long1;
     int stack_int1;
     ulonglong stack_ulong1;
-    undefined4 stack_uint1;
-    undefined *stack_ptr3;
-    undefined *stack_ptr4;
-    undefined4 stack_uint2;
+    int32_t stack_uint1;
+    void *stack_ptr3;
+    void *stack_ptr4;
+    int32_t stack_uint2;
     ulonglong stack_ulong2;
-    undefined *stack_ptr5;
-    undefined *stack_ptr6;
-    undefined4 stack_uint3;
+    void *stack_ptr5;
+    void *stack_ptr6;
+    int32_t stack_uint3;
     ulonglong stack_ulong3;
     ulonglong stack_ulong4;
-    undefined *stack_ptr7;
-    undefined8 stack_ulong5;
-    undefined4 stack_uint4;
+    void *stack_ptr7;
+    uint64_t stack_ulong5;
+    int32_t stack_uint4;
     ulonglong stack_ulong6;
-    undefined *stack_ptr8;
+    void *stack_ptr8;
     char *char_ptr;
     int stack_int2;
-    undefined4 stack_uint5;
-    undefined8 stack_ulong7;
+    int32_t stack_uint5;
+    uint64_t stack_ulong7;
     longlong stack_long2;
     longlong stack_long3;
-    undefined8 *stack_ptr9;
-    undefined8 *stack_ptr10;
-    undefined8 stack_ulong8;
-    undefined4 stack_uint6;
-    undefined *stack_ptr11;
+    uint64_t *stack_ptr9;
+    uint64_t *stack_ptr10;
+    uint64_t stack_ulong8;
+    int32_t stack_uint6;
+    void *stack_ptr11;
     longlong stack_long4;
-    undefined4 stack_uint7;
-    undefined8 *stack_ptr12;
-    undefined8 *stack_ptr13;
-    undefined8 stack_ulong9;
-    undefined4 stack_uint8;
-    undefined *stack_ptr14;
-    undefined *stack_ptr15;
-    undefined4 stack_uint9;
-    undefined *stack_ptr16;
-    undefined *stack_ptr17;
-    undefined4 stack_uint10;
-    undefined *stack_ptr18;
-    undefined *stack_ptr19;
-    undefined4 stack_uint11;
-    undefined8 *stack_ptr20;
-    undefined8 *stack_ptr21;
-    undefined8 stack_ulong10;
-    undefined4 stack_uint12;
-    undefined8 *stack_ptr22;
-    undefined8 *stack_ptr23;
-    undefined8 stack_ulong11;
-    undefined4 stack_uint13;
-    undefined8 stack_ulong12;
-    undefined *stack_ptr24;
-    undefined1 *stack_ptr25;
-    undefined4 stack_uint14;
-    undefined1 stack_buffer2[16];
-    undefined *stack_ptr26;
-    undefined1 *stack_ptr27;
-    undefined4 stack_uint15;
-    undefined1 stack_buffer3[16];
-    undefined *stack_ptr28;
-    undefined *stack_ptr29;
-    undefined4 stack_uint16;
+    int32_t stack_uint7;
+    uint64_t *stack_ptr12;
+    uint64_t *stack_ptr13;
+    uint64_t stack_ulong9;
+    int32_t stack_uint8;
+    void *stack_ptr14;
+    void *stack_ptr15;
+    int32_t stack_uint9;
+    void *stack_ptr16;
+    void *stack_ptr17;
+    int32_t stack_uint10;
+    void *stack_ptr18;
+    void *stack_ptr19;
+    int32_t stack_uint11;
+    uint64_t *stack_ptr20;
+    uint64_t *stack_ptr21;
+    uint64_t stack_ulong10;
+    int32_t stack_uint12;
+    uint64_t *stack_ptr22;
+    uint64_t *stack_ptr23;
+    uint64_t stack_ulong11;
+    int32_t stack_uint13;
+    uint64_t stack_ulong12;
+    void *stack_ptr24;
+    int8_t *stack_ptr25;
+    int32_t stack_uint14;
+    int8_t stack_buffer2[16];
+    void *stack_ptr26;
+    int8_t *stack_ptr27;
+    int32_t stack_uint15;
+    int8_t stack_buffer3[16];
+    void *stack_ptr28;
+    void *stack_ptr29;
+    int32_t stack_uint16;
     undefined stack_buffer4[40];
-    undefined4 stack_buffer5[14];
+    int32_t stack_buffer5[14];
     ulonglong stack_ulong13;
     ulonglong stack_ulong14;
     
@@ -396,7 +396,7 @@ void generate_system_info_report(undefined8 report_param)
     stack_ulong7 = 0;
     stack_long2 = 0;
     temp_ptr4 = &DAT_18098bc73;
-    if (stack_ptr17 != (undefined *)0x0) {
+    if (stack_ptr17 != (void *)0x0) {
         temp_ptr4 = stack_ptr17;
     }
     temp_uint = FUN_18062dee0(&stack_ulong7, temp_ptr4, &UNK_1809fe80c);
@@ -412,8 +412,8 @@ void generate_system_info_report(undefined8 report_param)
     else {
         temp_long1 = (**(code **)(_DAT_180c8a9c0 + 0x30))();
         temp_ptr4 = &DAT_18098bc73;
-        if (*(undefined **)(temp_long1 + 8) != (undefined *)0x0) {
-            temp_ptr4 = *(undefined **)(temp_long1 + 8);
+        if (*(void **)(temp_long1 + 8) != (void *)0x0) {
+            temp_ptr4 = *(void **)(temp_long1 + 8);
         }
     }
     FUN_180627910(&stack_ptr18, temp_ptr4);
@@ -424,8 +424,8 @@ void generate_system_info_report(undefined8 report_param)
     else {
         temp_long1 = (**(code **)(_DAT_180c8a9c0 + 0x20))();
         temp_ptr4 = &DAT_18098bc73;
-        if (*(undefined **)(temp_long1 + 8) != (undefined *)0x0) {
-            temp_ptr4 = *(undefined **)(temp_long1 + 8);
+        if (*(void **)(temp_long1 + 8) != (void *)0x0) {
+            temp_ptr4 = *(void **)(temp_long1 + 8);
         }
     }
     FUN_180627910(&stack_ptr16, temp_ptr4);
@@ -436,7 +436,7 @@ void generate_system_info_report(undefined8 report_param)
     stack_uint1 = 4;
     FUN_18004b860(&stack_ptr28, &UNK_1809fd0a0, 0x130a7);
     stack_ptr1 = &DAT_18098bc73;
-    if (stack_ptr29 != (undefined *)0x0) {
+    if (stack_ptr29 != (void *)0x0) {
         stack_ptr1 = stack_ptr29;
     }
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba80);
@@ -447,29 +447,29 @@ void generate_system_info_report(undefined8 report_param)
     stack_ptr1 = &DAT_18098ba28;
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba40);
     stack_ptr1 = &DAT_18098bc73;
-    if (stack_ptr18 != (undefined *)0x0) {
+    if (stack_ptr18 != (void *)0x0) {
         stack_ptr1 = stack_ptr18;
     }
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba70);
     stack_ptr1 = &DAT_18098bc73;
-    if (stack_ptr16 != (undefined *)0x0) {
+    if (stack_ptr16 != (void *)0x0) {
         stack_ptr1 = stack_ptr16;
     }
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba60);
     stack_ptr16 = &UNK_180a3c3e0;
-    if (stack_ptr16 != (undefined *)0x0) {
+    if (stack_ptr16 != (void *)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
     }
-    stack_ptr16 = (undefined *)0x0;
+    stack_ptr16 = (void *)0x0;
     stack_uint10 = 0;
     stack_ptr16 = &UNK_18098bcb0;
     stack_ptr18 = &UNK_180a3c3e0;
-    if (stack_ptr18 != (undefined *)0x0) {
+    if (stack_ptr18 != (void *)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
     }
-    stack_ptr18 = (undefined *)0x0;
+    stack_ptr18 = (void *)0x0;
     stack_uint9 = 0;
     stack_ptr18 = &UNK_18098bcb0;
     stack_ptr7 = &UNK_180a3c3e0;
@@ -478,11 +478,11 @@ void generate_system_info_report(undefined8 report_param)
     stack_uint4 = 0;
     stack_ptr5 = &UNK_180a3c3e0;
     stack_ulong3 = 0;
-    stack_ptr6 = (undefined *)0x0;
+    stack_ptr6 = (void *)0x0;
     stack_uint3 = 0;
     stack_ptr3 = &UNK_180a3c3e0;
     stack_ulong2 = 0;
-    stack_ptr4 = (undefined *)0x0;
+    stack_ptr4 = (void *)0x0;
     stack_uint2 = 0;
     temp_ulong1 = FUN_180623ce0();
     FUN_180628040(&stack_ptr5, &UNK_1809fe8f8, temp_ulong1 / 0x100000 & 0xffffffff);
@@ -497,30 +497,30 @@ void generate_system_info_report(undefined8 report_param)
     stack_ptr1 = &DAT_18098bc73;
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_1809fe950);
     stack_ptr1 = &DAT_18098bc73;
-    if (stack_ptr6 != (undefined *)0x0) {
+    if (stack_ptr6 != (void *)0x0) {
         stack_ptr1 = stack_ptr6;
     }
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_1809fe968);
     stack_ptr1 = &DAT_18098bc73;
-    if (stack_ptr4 != (undefined *)0x0) {
+    if (stack_ptr4 != (void *)0x0) {
         stack_ptr1 = stack_ptr4;
     }
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_1809fe978);
     temp_long1 = _DAT_180c86870;
     stack_ptr3 = &UNK_180a3c3e0;
-    if (stack_ptr4 != (undefined *)0x0) {
+    if (stack_ptr4 != (void *)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
     }
-    stack_ptr4 = (undefined *)0x0;
+    stack_ptr4 = (void *)0x0;
     stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
     stack_ptr3 = &UNK_18098bcb0;
     stack_ptr5 = &UNK_180a3c3e0;
-    if (stack_ptr6 != (undefined *)0x0) {
+    if (stack_ptr6 != (void *)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
     }
-    stack_ptr6 = (undefined *)0x0;
+    stack_ptr6 = (void *)0x0;
     stack_ulong3 = stack_ulong3 & 0xffffffff00000000;
     stack_ptr5 = &UNK_18098bcb0;
     stack_ulong5 = 0;
@@ -531,20 +531,20 @@ void generate_system_info_report(undefined8 report_param)
         QueryPerformanceCounter(&stack_long3);
         temp_long2 = stack_long3;
     }
-    stack_ptr1 = (undefined *)
+    stack_ptr1 = (void *)
                 ((double)(temp_long2 - _DAT_180c8ed48) * _DAT_180c8ed50 - *(double *)(temp_long1 + 0x210));
     FUN_180628040(&stack_ptr2, &UNK_1809fe998, &UNK_18098ba10, &UNK_1809fe988);
     stack_ptr1 = &DAT_18098bc73;
-    if (stack_ptr15 != (undefined *)0x0) {
+    if (stack_ptr15 != (void *)0x0) {
         stack_ptr1 = stack_ptr15;
     }
     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_18098ba10, &UNK_18098ba50);
-    stack_ptr12 = (undefined8 *)0x0;
-    stack_ptr13 = (undefined8 *)0x0;
+    stack_ptr12 = (uint64_t *)0x0;
+    stack_ptr13 = (uint64_t *)0x0;
     stack_ulong9 = 0;
     stack_uint6 = 3;
-    stack_ptr20 = (undefined8 *)0x0;
-    stack_ptr21 = (undefined8 *)0x0;
+    stack_ptr20 = (uint64_t *)0x0;
+    stack_ptr21 = (uint64_t *)0x0;
     stack_ulong10 = 0;
     stack_uint12 = 3;
     stack_ptr26 = &UNK_1809fdc18;
@@ -570,7 +570,7 @@ void generate_system_info_report(undefined8 report_param)
         (**(code **)*temp_ptr5)(temp_ptr5, 0);
         temp_ptr2 = stack_ptr12;
     }
-    if (temp_ptr8 != (undefined8 *)0x0) {
+    if (temp_ptr8 != (uint64_t *)0x0) {
         // 警告：子函数不返回
         FUN_18064e900(temp_ptr8);
     }
@@ -583,13 +583,13 @@ void generate_system_info_report(undefined8 report_param)
         else {
             temp_long1 = (**(code **)(_DAT_180c8a9c0 + 0x28))();
             temp_ptr4 = &DAT_18098bc73;
-            if (*(undefined **)(temp_long1 + 8) != (undefined *)0x0) {
-                temp_ptr4 = *(undefined **)(temp_long1 + 8);
+            if (*(void **)(temp_long1 + 8) != (void *)0x0) {
+                temp_ptr4 = *(void **)(temp_long1 + 8);
             }
         }
         FUN_180627910(&stack_ptr11, temp_ptr4);
-        stack_ptr9 = (undefined8 *)0x0;
-        stack_ptr10 = (undefined8 *)0x0;
+        stack_ptr9 = (uint64_t *)0x0;
+        stack_ptr10 = (uint64_t *)0x0;
         stack_ulong8 = 0;
         stack_uint7 = 3;
         stack_short1[0] = 10;
@@ -603,8 +603,8 @@ void generate_system_info_report(undefined8 report_param)
         if ((int)temp_ulong3 != 0) {
             stack_ulong4 = temp_ulong3 & 0xffffffff;
             do {
-                stack_ptr22 = (undefined8 *)0x0;
-                stack_ptr23 = (undefined8 *)0x0;
+                stack_ptr22 = (uint64_t *)0x0;
+                stack_ptr23 = (uint64_t *)0x0;
                 stack_ulong11 = 0;
                 stack_uint8 = 3;
                 stack_short2[0] = 0x23;
@@ -654,12 +654,12 @@ void generate_system_info_report(undefined8 report_param)
 STRING_MATCH_FOUND:
                                 if (temp_int3 == 0) {
                                     stack_ptr1 = &DAT_18098bc73;
-                                    if ((undefined *)temp_ptr5[5] != (undefined *)0x0) {
-                                        stack_ptr1 = (undefined *)temp_ptr5[5];
+                                    if ((void *)temp_ptr5[5] != (void *)0x0) {
+                                        stack_ptr1 = (void *)temp_ptr5[5];
                                     }
                                     temp_ptr4 = &DAT_18098bc73;
-                                    if ((undefined *)temp_ptr5[1] != (undefined *)0x0) {
-                                        temp_ptr4 = (undefined *)temp_ptr5[1];
+                                    if ((void *)temp_ptr5[1] != (void *)0x0) {
+                                        temp_ptr4 = (void *)temp_ptr5[1];
                                     }
                                     FUN_180628040(&stack_ptr2, &UNK_1809fe940, &UNK_1809fe9c8, temp_ptr4);
                                     break;
@@ -687,7 +687,7 @@ STRING_MATCH_FOUND:
                         (**(code **)*temp_ptr7)(temp_ptr7, 0);
                     }
                 }
-                if (temp_ptr5 != (undefined8 *)0x0) {
+                if (temp_ptr5 != (uint64_t *)0x0) {
                     // 警告：子函数不返回
                     FUN_18064e900(temp_ptr5);
                 }
@@ -708,7 +708,7 @@ STRING_MATCH_FOUND:
             stack_ptr10 = temp_ptr6;
             stack_ptr9 = temp_ptr3;
         }
-        if (stack_ptr9 != (undefined8 *)0x0) {
+        if (stack_ptr9 != (uint64_t *)0x0) {
             stack_ptr9 = temp_ptr7;
             stack_ptr10 = temp_ptr5;
             // 警告：子函数不返回
@@ -736,21 +736,21 @@ STRING_MATCH_FOUND:
     if (((_DAT_180c86870 != 0) && (*(int *)(_DAT_180c86870 + 0x340) == 1)) && (temp_bool)) {
         temp_long1 = (**(code **)(_DAT_180c8a9c0 + 0x18))();
         temp_ptr4 = &DAT_18098bc73;
-        if (*(undefined **)(temp_long1 + 8) != (undefined *)0x0) {
-            temp_ptr4 = *(undefined **)(temp_long1 + 8);
+        if (*(void **)(temp_long1 + 8) != (void *)0x0) {
+            temp_ptr4 = *(void **)(temp_long1 + 8);
         }
         FUN_180627910(&stack_ptr14, temp_ptr4);
         temp_ptr4 = &DAT_18098bc73;
-        if (stack_ptr19 != (undefined *)0x0) {
+        if (stack_ptr19 != (void *)0x0) {
             temp_ptr4 = stack_ptr19;
         }
         FUN_180628040(&stack_ptr2, &UNK_1809fe7f8, temp_ptr4);
         stack_ptr14 = &UNK_180a3c3e0;
-        if (stack_ptr19 != (undefined *)0x0) {
+        if (stack_ptr19 != (void *)0x0) {
             // 警告：子函数不返回
             FUN_18064e900();
         }
-        stack_ptr19 = (undefined *)0x0;
+        stack_ptr19 = (void *)0x0;
         stack_uint11 = 0;
         stack_ptr14 = &UNK_18098bcb0;
     }
@@ -775,18 +775,18 @@ STRING_MATCH_FOUND:
         temp_ptr8 = stack_ptr13;
         stack_ptr13 = temp_ptr5;
     }
-    if (temp_ptr7 != (undefined8 *)0x0) {
+    if (temp_ptr7 != (uint64_t *)0x0) {
         stack_ptr13 = temp_ptr8;
         // 警告：子函数不返回
         FUN_18064e900(temp_ptr7);
     }
     stack_ptr15 = &UNK_180a3c3e0;
-    if (stack_ptr15 != (undefined *)0x0) {
+    if (stack_ptr15 != (void *)0x0) {
         stack_ptr13 = temp_ptr8;
         // 警告：子函数不返回
         FUN_18064e900();
     }
-    stack_ptr15 = (undefined *)0x0;
+    stack_ptr15 = (void *)0x0;
     stack_uint9 = 0;
     stack_ptr15 = &UNK_18098bcb0;
     stack_ptr2 = &UNK_180a3c3e0;
@@ -803,8 +803,8 @@ STRING_MATCH_FOUND:
             UNLOCK();
         }
         stack_ptr19 = &UNK_180a3c3e0;
-        if (stack_ptr17 == (undefined *)0x0) {
-            stack_ptr17 = (undefined *)0x0;
+        if (stack_ptr17 == (void *)0x0) {
+            stack_ptr17 = (void *)0x0;
             stack_uint8 = 0;
             stack_ptr19 = &UNK_18098bcb0;
             // 警告：子函数不返回
@@ -823,20 +823,20 @@ STRING_MATCH_FOUND:
 // 函数：初始化错误处理路径
 void initialize_error_handling_path(void)
 {
-    undefined1 stack_buffer1[104];
-    undefined8 stack_ulong1;
-    undefined8 stack_ulong2;
-    undefined4 stack_uint1;
-    undefined4 stack_uint2;
-    undefined4 stack_uint3;
-    undefined4 stack_uint4;
-    undefined4 stack_uint5;
-    undefined4 stack_uint6;
-    undefined4 stack_uint7;
-    undefined4 stack_uint8;
-    undefined4 stack_uint9;
-    undefined1 stack_byte1;
-    undefined1 stack_buffer2[512];
+    int8_t stack_buffer1[104];
+    uint64_t stack_ulong1;
+    uint64_t stack_ulong2;
+    int32_t stack_uint1;
+    int32_t stack_uint2;
+    int32_t stack_uint3;
+    int32_t stack_uint4;
+    int32_t stack_uint5;
+    int32_t stack_uint6;
+    int32_t stack_uint7;
+    int32_t stack_uint8;
+    int32_t stack_uint9;
+    int8_t stack_byte1;
+    int8_t stack_buffer2[512];
     ulonglong stack_ulong3;
     
     stack_ulong3 = _DAT_180bf00a8 ^ (ulonglong)stack_buffer1;
@@ -860,31 +860,31 @@ void initialize_error_handling_path(void)
 
 // 函数：执行引擎核心操作
 // 参数：param_1 - 操作类型，param_2 - 操作参数，param_3 - 附加数据1，param_4 - 附加数据2
-void execute_engine_core_operation(undefined8 operation_type, longlong operation_param, undefined8 extra_data1, undefined8 extra_data2)
+void execute_engine_core_operation(uint64_t operation_type, longlong operation_param, uint64_t extra_data1, uint64_t extra_data2)
 {
     code *code_ptr;
     char temp_char;
-    undefined8 temp_ulong;
+    uint64_t temp_ulong;
     longlong temp_long;
     int temp_int;
     longlong *long_ptr_ptr;
-    undefined *ptr1;
+    void *ptr1;
     longlong stack_long1;
     uint stack_uint;
-    undefined *ptr2;
+    void *ptr2;
     longlong stack_long2;
-    undefined4 stack_uint1;
-    undefined **ptr_ptr;
+    int32_t stack_uint1;
+    void **ptr_ptr;
     longlong **long_ptr_ptr_ptr;
-    undefined4 stack_uint2;
-    undefined8 stack_ulong;
+    int32_t stack_uint2;
+    uint64_t stack_ulong;
     
     stack_ulong = 0xfffffffffffffffe;
     long_ptr_ptr = *(longlong **)(_DAT_180c8ed08 + 0x18);
     FUN_180627ae0(&ptr1, _DAT_180c86870 + 0x170, extra_data1, extra_data2, 0);
     temp_int = stack_uint + 3;
     FUN_1806277c0(&ptr1, temp_int);
-    *(undefined4 *)((ulonglong)stack_uint + stack_long1) = 0x706d74;
+    *(int32_t *)((ulonglong)stack_uint + stack_long1) = 0x706d74;
     stack_uint = temp_int;
     temp_char = FUN_180624a00(&ptr1);
     if (temp_char == '\0') {
@@ -897,14 +897,14 @@ void execute_engine_core_operation(undefined8 operation_type, longlong operation
     code_ptr = *(code **)(*long_ptr_ptr + 0x40);
     temp_ulong = FUN_180627ae0(&ptr_ptr, _DAT_180c86928 + 0x28);
     (*code_ptr)(long_ptr_ptr, temp_ulong);
-    ptr_ptr = (undefined **)&UNK_180a3c3e0;
+    ptr_ptr = (void **)&UNK_180a3c3e0;
     if (long_ptr_ptr_ptr != (longlong **)0x0) {
         // 警告：子函数不返回
         FUN_18064e900();
     }
     long_ptr_ptr_ptr = (longlong **)0x0;
     stack_uint2 = 0;
-    ptr_ptr = (undefined **)&UNK_18098bcb0;
+    ptr_ptr = (void **)&UNK_18098bcb0;
     code_ptr = *(code **)(*long_ptr_ptr + 0x40);
     temp_ulong = FUN_180627ae0(&ptr2, _DAT_180c86928 + 0xe0);
     (*code_ptr)(long_ptr_ptr, temp_ulong);
@@ -918,7 +918,7 @@ void execute_engine_core_operation(undefined8 operation_type, longlong operation
     ptr2 = &UNK_18098bcb0;
     if (operation_param == 0) {
         temp_long = FUN_18005e890(_DAT_180c82868);
-        (**(code **)(*long_ptr_ptr + 8))(long_ptr_ptr, operation_type, *(undefined4 *)(temp_long + 0x38));
+        (**(code **)(*long_ptr_ptr + 8))(long_ptr_ptr, operation_type, *(int32_t *)(temp_long + 0x38));
     }
     else {
         code_ptr = *(code **)(*long_ptr_ptr + 0x10);

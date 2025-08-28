@@ -113,9 +113,9 @@ typedef void* SystemResourcePtr;
 typedef uint SystemStatus;
 typedef ulonglong SystemSize;
 typedef int SystemResult;
-typedef undefined8 SystemDataBlock;
-typedef undefined4 SystemParameter;
-typedef undefined1 SystemFlag;
+typedef uint64_t SystemDataBlock;
+typedef int32_t SystemParameter;
+typedef int8_t SystemFlag;
 
 // 系统状态枚举
 typedef enum {

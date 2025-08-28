@@ -34,7 +34,7 @@
  * - 处理错误情况下的清理工作
  * - 执行网络系统重新初始化
  =============================================================================*/
-void FUN_180883a30(undefined8 param_1)
+void FUN_180883a30(uint64_t param_1)
 {
   int network_status;
   
@@ -45,7 +45,7 @@ void FUN_180883a30(undefined8 param_1)
     FUN_180873460(param_1);
                     // WARNING: Subroutine does not return
     // 重新初始化网络系统
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_1,&UNK_180985b90,0x43b,1);
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),param_1,&UNK_180985b90,0x43b,1);
   }
   return;
 }
@@ -73,7 +73,7 @@ void FUN_180883a30(undefined8 param_1)
  * - 实现网络数据包的状态同步
  * - 提供高效的缓存和重传机制
  =============================================================================*/
-ulonglong FUN_180883a80(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180883a80(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 {
   longlong *hash_table_context;
   longlong *lock_context;
@@ -89,7 +89,7 @@ ulonglong FUN_180883a80(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong found_entry;
   longlong *packet_context;
   longlong *packet_data;
-  undefined8 packet_key;
+  uint64_t packet_key;
   uint packet_hash1;
   uint packet_hash2;
   
@@ -238,7 +238,7 @@ ENTRY_FOUND:
             // 找到条目，从链表中移除
             current_index = *previous_index;
             entry_offset = (longlong)current_index * 0x20;
-            *(undefined8 *)(entry_offset + 0x18 + hash_index) = 0;
+            *(uint64_t *)(entry_offset + 0x18 + hash_index) = 0;
             *previous_index = *(int *)(entry_offset + 0x10 + hash_index);
             *(int *)(entry_offset + 0x10 + hash_index) = (int)hash_table_context[4];
             *(int *)((longlong)hash_table_context + 0x24) = *(int *)((longlong)hash_table_context + 0x24) + -1;
@@ -356,7 +356,7 @@ PROCESS_PACKET:
  * - 区别在于使用FUN_18086f8b0而不是FUN_18086f7c0进行数据包处理
  * - 适用于不同类型的网络数据包处理场景
  =============================================================================*/
-ulonglong FUN_180883e00(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180883e00(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 {
   longlong *hash_table_context;
   longlong *lock_context;
@@ -372,7 +372,7 @@ ulonglong FUN_180883e00(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong found_entry;
   longlong *packet_context;
   longlong *packet_data;
-  undefined8 packet_key;
+  uint64_t packet_key;
   uint packet_hash1;
   uint packet_hash2;
   
@@ -521,7 +521,7 @@ ENTRY_FOUND:
             // 找到条目，从链表中移除
             current_index = *previous_index;
             entry_offset = (longlong)current_index * 0x20;
-            *(undefined8 *)(entry_offset + 0x18 + hash_index) = 0;
+            *(uint64_t *)(entry_offset + 0x18 + hash_index) = 0;
             *previous_index = *(int *)(entry_offset + 0x10 + hash_index);
             *(int *)(entry_offset + 0x10 + hash_index) = (int)hash_table_context[4];
             *(int *)((longlong)hash_table_context + 0x24) = *(int *)((longlong)hash_table_context + 0x24) + -1;
@@ -640,7 +640,7 @@ PROCESS_PACKET:
  * - 适用于不同类型的网络数据包处理场景
  * - 可能用于处理不同优先级或类型的网络数据包
  =============================================================================*/
-ulonglong FUN_180884180(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180884180(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 {
   longlong *hash_table_context;
   longlong *lock_context;
@@ -656,7 +656,7 @@ ulonglong FUN_180884180(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong found_entry;
   longlong *packet_context;
   longlong *packet_data;
-  undefined8 packet_key;
+  uint64_t packet_key;
   uint packet_hash1;
   uint packet_hash2;
   
@@ -805,7 +805,7 @@ ENTRY_FOUND:
             // 找到条目，从链表中移除
             current_index = *previous_index;
             entry_offset = (longlong)current_index * 0x20;
-            *(undefined8 *)(entry_offset + 0x18 + hash_index) = 0;
+            *(uint64_t *)(entry_offset + 0x18 + hash_index) = 0;
             *previous_index = *(int *)(entry_offset + 0x10 + hash_index);
             *(int *)(entry_offset + 0x10 + hash_index) = (int)hash_table_context[4];
             *(int *)((longlong)hash_table_context + 0x24) = *(int *)((longlong)hash_table_context + 0x24) + -1;
@@ -924,7 +924,7 @@ PROCESS_PACKET:
  * - 适用于不同类型的网络数据包处理场景
  * - 可能用于处理不同优先级或类型的网络数据包
  =============================================================================*/
-ulonglong FUN_180884500(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180884500(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 {
   // 注意：此函数与FUN_180883a80具有相同的哈希表算法结构
   // 主要区别在于使用FUN_18086fa90进行数据包处理
@@ -945,7 +945,7 @@ ulonglong FUN_180884500(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong found_entry;
   longlong *packet_context;
   longlong *packet_data;
-  undefined8 packet_key;
+  uint64_t packet_key;
   uint packet_hash1;
   uint packet_hash2;
   
@@ -1094,7 +1094,7 @@ ENTRY_FOUND:
             // 找到条目，从链表中移除
             current_index = *previous_index;
             entry_offset = (longlong)current_index * 0x20;
-            *(undefined8 *)(entry_offset + 0x18 + hash_index) = 0;
+            *(uint64_t *)(entry_offset + 0x18 + hash_index) = 0;
             *previous_index = *(int *)(entry_offset + 0x10 + hash_index);
             *(int *)(entry_offset + 0x10 + hash_index) = (int)hash_table_context[4];
             *(int *)((longlong)hash_table_context + 0x24) = *(int *)((longlong)hash_table_context + 0x24) + -1;
@@ -1191,7 +1191,7 @@ PROCESS_PACKET:
 
 
 
-ulonglong FUN_180884880(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180884880(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -1208,7 +1208,7 @@ ulonglong FUN_180884880(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -1319,7 +1319,7 @@ LAB_18088495e:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -1403,7 +1403,7 @@ LAB_180884b99:
 
 
 
-ulonglong FUN_180884c00(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180884c00(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -1420,7 +1420,7 @@ ulonglong FUN_180884c00(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -1531,7 +1531,7 @@ LAB_180884cde:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -1615,7 +1615,7 @@ LAB_180884f19:
 
 
 
-ulonglong FUN_180884f80(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180884f80(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -1632,7 +1632,7 @@ ulonglong FUN_180884f80(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -1743,7 +1743,7 @@ LAB_18088505e:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -1827,7 +1827,7 @@ LAB_180885299:
 
 
 
-ulonglong FUN_180885300(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180885300(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -1844,7 +1844,7 @@ ulonglong FUN_180885300(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -1955,7 +1955,7 @@ LAB_1808853de:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -2060,7 +2060,7 @@ LAB_180885619:
  * - 使用FUN_18086fd10作为数据包处理函数
  * - 提供网络数据包的状态同步机制
  =============================================================================*/
-ulonglong FUN_180885680(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180885680(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *hash_table_context;      // 哈希表上下文指针
@@ -2077,7 +2077,7 @@ ulonglong FUN_180885680(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong found_entry;              // 找到的条目
   longlong *packet_context;           // 数据包上下文指针
   longlong *packet_data;              // 数据包数据指针
-  undefined8 packet_key;              // 数据包键值
+  uint64_t packet_key;              // 数据包键值
   uint packet_hash1;                  // 数据包哈希值1
   uint packet_hash2;                  // 数据包哈希值2;
   
@@ -2205,7 +2205,7 @@ ENTRY_FOUND:
             // 找到条目，从链表中移除
             current_index = *previous_index;
             entry_offset = (longlong)current_index * 0x20;
-            *(undefined8 *)(entry_offset + 0x18 + hash_index) = 0;
+            *(uint64_t *)(entry_offset + 0x18 + hash_index) = 0;
             *previous_index = *(int *)(entry_offset + 0x10 + hash_index);
             *(int *)(entry_offset + 0x10 + hash_index) = (int)hash_table_context[4];
             *(int *)((longlong)hash_table_context + 0x24) = *(int *)((longlong)hash_table_context + 0x24) + -1;
@@ -2312,7 +2312,7 @@ LAB_180885999:
  * - 使用FUN_18086fe30作为数据包处理函数
  * - 提供网络数据包的状态同步机制
  =============================================================================*/
-ulonglong FUN_180885a00(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180885a00(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *hash_table_context;      // 哈希表上下文指针
@@ -2329,7 +2329,7 @@ ulonglong FUN_180885a00(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong found_entry;              // 找到的条目
   longlong *packet_context;           // 数据包上下文指针
   longlong *packet_data;              // 数据包数据指针
-  undefined8 packet_key;              // 数据包键值
+  uint64_t packet_key;              // 数据包键值
   uint packet_hash1;                  // 数据包哈希值1
   uint packet_hash2;                  // 数据包哈希值2;
   
@@ -2442,7 +2442,7 @@ LAB_180885ade:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -2526,7 +2526,7 @@ LAB_180885d19:
 
 
 
-ulonglong FUN_180885d80(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180885d80(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -2543,7 +2543,7 @@ ulonglong FUN_180885d80(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -2654,7 +2654,7 @@ LAB_180885e5e:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -2738,7 +2738,7 @@ LAB_180886099:
 
 
 
-ulonglong FUN_180886100(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180886100(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -2755,7 +2755,7 @@ ulonglong FUN_180886100(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -2866,7 +2866,7 @@ LAB_1808861de:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -2950,7 +2950,7 @@ LAB_180886419:
 
 
 
-ulonglong FUN_180886480(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180886480(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -2967,7 +2967,7 @@ ulonglong FUN_180886480(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -3078,7 +3078,7 @@ LAB_18088655e:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -3162,7 +3162,7 @@ LAB_180886799:
 
 
 
-ulonglong FUN_180886800(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180886800(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -3179,7 +3179,7 @@ ulonglong FUN_180886800(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -3290,7 +3290,7 @@ LAB_1808868de:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -3374,7 +3374,7 @@ LAB_180886b19:
 
 
 
-ulonglong FUN_180886b80(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180886b80(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -3391,7 +3391,7 @@ ulonglong FUN_180886b80(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -3502,7 +3502,7 @@ LAB_180886c5e:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -3586,7 +3586,7 @@ LAB_180886e99:
 
 
 
-ulonglong FUN_180886f00(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180886f00(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -3603,7 +3603,7 @@ ulonglong FUN_180886f00(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -3714,7 +3714,7 @@ LAB_180886fde:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -3798,7 +3798,7 @@ LAB_180887219:
 
 
 
-ulonglong FUN_180887280(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180887280(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -3815,7 +3815,7 @@ ulonglong FUN_180887280(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -3926,7 +3926,7 @@ LAB_18088735e:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -4010,7 +4010,7 @@ LAB_180887599:
 
 
 
-ulonglong FUN_180887600(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180887600(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -4027,7 +4027,7 @@ ulonglong FUN_180887600(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -4138,7 +4138,7 @@ LAB_1808876de:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -4222,7 +4222,7 @@ LAB_180887919:
 
 
 
-ulonglong FUN_180887980(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180887980(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -4239,7 +4239,7 @@ ulonglong FUN_180887980(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -4350,7 +4350,7 @@ LAB_180887a5e:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -4434,7 +4434,7 @@ LAB_180887c99:
 
 
 
-ulonglong FUN_180887d00(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180887d00(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -4451,7 +4451,7 @@ ulonglong FUN_180887d00(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -4562,7 +4562,7 @@ LAB_180887dde:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -4646,7 +4646,7 @@ LAB_180888019:
 
 
 
-ulonglong FUN_180888080(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180888080(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -4663,7 +4663,7 @@ ulonglong FUN_180888080(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -4774,7 +4774,7 @@ LAB_18088815e:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -4858,7 +4858,7 @@ LAB_180888399:
 
 
 
-ulonglong FUN_180888400(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180888400(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -4875,7 +4875,7 @@ ulonglong FUN_180888400(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -4986,7 +4986,7 @@ LAB_1808884de:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -5070,7 +5070,7 @@ LAB_180888719:
 
 
 
-ulonglong FUN_180888780(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180888780(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -5087,7 +5087,7 @@ ulonglong FUN_180888780(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -5198,7 +5198,7 @@ LAB_18088885e:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -5282,7 +5282,7 @@ LAB_180888a99:
 
 
 
-ulonglong FUN_180888b00(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180888b00(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -5299,7 +5299,7 @@ ulonglong FUN_180888b00(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -5410,7 +5410,7 @@ LAB_180888bde:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -5494,7 +5494,7 @@ LAB_180888e19:
 
 
 
-ulonglong FUN_180888e80(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180888e80(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -5511,7 +5511,7 @@ ulonglong FUN_180888e80(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -5622,7 +5622,7 @@ LAB_180888f5e:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -5706,7 +5706,7 @@ LAB_180889199:
 
 
 
-ulonglong FUN_180889200(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180889200(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -5723,7 +5723,7 @@ ulonglong FUN_180889200(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -5834,7 +5834,7 @@ LAB_1808892de:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -5940,7 +5940,7 @@ LAB_180889519:
  * - 适用于不同类型的网络数据包处理场景
  * - 可能用于处理不同优先级或类型的网络数据包
  =============================================================================*/
-ulonglong FUN_180889580(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180889580(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 {
   // 注意：此函数与FUN_180883a80具有相同的哈希表算法结构
   // 主要区别在于使用FUN_180871040进行数据包处理
@@ -5961,7 +5961,7 @@ ulonglong FUN_180889580(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong found_entry;
   longlong *packet_context;
   longlong *packet_data;
-  undefined8 packet_key;
+  uint64_t packet_key;
   uint packet_hash1;
   uint packet_hash2;
   
@@ -6110,7 +6110,7 @@ ENTRY_FOUND:
             // 找到条目，从链表中移除
             current_index = *previous_index;
             entry_offset = (longlong)current_index * 0x20;
-            *(undefined8 *)(entry_offset + 0x18 + hash_index) = 0;
+            *(uint64_t *)(entry_offset + 0x18 + hash_index) = 0;
             *previous_index = *(int *)(entry_offset + 0x10 + hash_index);
             *(int *)(entry_offset + 0x10 + hash_index) = (int)hash_table_context[4];
             *(int *)((longlong)hash_table_context + 0x24) = *(int *)((longlong)hash_table_context + 0x24) + -1;
@@ -6207,7 +6207,7 @@ PROCESS_PACKET:
 
 
 
-ulonglong FUN_180889900(longlong *param_1,longlong *param_2,undefined8 *param_3,ulonglong *param_4)
+ulonglong FUN_180889900(longlong *param_1,longlong *param_2,uint64_t *param_3,ulonglong *param_4)
 
 {
   longlong *plVar1;
@@ -6224,7 +6224,7 @@ ulonglong FUN_180889900(longlong *param_1,longlong *param_2,undefined8 *param_3,
   ulonglong uVar12;
   longlong *plStackX_8;
   longlong *plStackX_10;
-  undefined8 uStack_48;
+  uint64_t uStack_48;
   uint uStack_40;
   uint uStack_3c;
   
@@ -6335,7 +6335,7 @@ LAB_1808899de:
              (*(longlong *)(lVar8 + 8 + lVar9) == CONCAT44(uStack_3c,uStack_40))) {
             iVar4 = *piVar10;
             lVar8 = (longlong)iVar4 * 0x20;
-            *(undefined8 *)(lVar8 + 0x18 + lVar9) = 0;
+            *(uint64_t *)(lVar8 + 0x18 + lVar9) = 0;
             *piVar10 = *(int *)(lVar8 + 0x10 + lVar9);
             *(int *)(lVar8 + 0x10 + lVar9) = (int)plVar1[4];
             *(int *)((longlong)plVar1 + 0x24) = *(int *)((longlong)plVar1 + 0x24) + -1;
@@ -6480,26 +6480,26 @@ LAB_180889c19:
  * - 支持动态扩容以适应不同数量的数据
  * - 提供网络连接状态的综合分析
  =============================================================================*/
-undefined4 FUN_180889ce0(longlong param_1)
+int32_t FUN_180889ce0(longlong param_1)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
-  undefined8 uVar3;
+  uint64_t uVar3;
   int iVar4;
-  undefined4 uVar5;
+  int32_t uVar5;
   longlong lVar6;
   int iVar7;
   int iVar8;
   int iVar9;
   int iVar10;
-  undefined8 *puVar11;
+  uint64_t *puVar11;
   bool bVar12;
   longlong lStack_78;
   int iStack_70;
   int iStack_6c;
   longlong *plStack_68;
-  undefined8 uStack_60;
+  uint64_t uStack_60;
   int aiStack_58 [8];
   
   lVar2 = *(longlong *)(param_1 + 0xa0);
@@ -6520,12 +6520,12 @@ undefined4 FUN_180889ce0(longlong param_1)
     do {
       do {
         lVar6 = *(longlong *)(plStack_68[2] + 0x18 + (longlong)iVar10 * 0x20);
-        for (puVar11 = *(undefined8 **)(lVar6 + 0x288);
-            (*(undefined8 **)(lVar6 + 0x288) <= puVar11 &&
-            (puVar11 < (undefined8 *)
-                       ((longlong)*(undefined8 **)(lVar6 + 0x288) +
+        for (puVar11 = *(uint64_t **)(lVar6 + 0x288);
+            (*(uint64_t **)(lVar6 + 0x288) <= puVar11 &&
+            (puVar11 < (uint64_t *)
+                       ((longlong)*(uint64_t **)(lVar6 + 0x288) +
                        (longlong)*(int *)(lVar6 + 0x290) * 0x14)));
-            puVar11 = (undefined8 *)((longlong)puVar11 + 0x14)) {
+            puVar11 = (uint64_t *)((longlong)puVar11 + 0x14)) {
           iVar7 = iStack_70 + 1;
           iVar4 = iVar8;
           if (iVar8 < 0) {
@@ -6552,11 +6552,11 @@ undefined4 FUN_180889ce0(longlong param_1)
           else {
 LAB_180889e09:
             uVar3 = puVar11[1];
-            puVar1 = (undefined8 *)(lStack_78 + (longlong)iStack_70 * 0x14);
+            puVar1 = (uint64_t *)(lStack_78 + (longlong)iStack_70 * 0x14);
             *puVar1 = *puVar11;
             puVar1[1] = uVar3;
-            *(undefined4 *)(lStack_78 + 0x10 + (longlong)iStack_70 * 0x14) =
-                 *(undefined4 *)(puVar11 + 2);
+            *(int32_t *)(lStack_78 + 0x10 + (longlong)iStack_70 * 0x14) =
+                 *(int32_t *)(puVar11 + 2);
             iStack_70 = iStack_70 + 1;
           }
           iVar8 = iStack_6c;
@@ -6586,10 +6586,10 @@ LAB_180889e8c:
     } while (iVar10 != -1);
   }
   if (lVar2 == 0) {
-    puVar11 = (undefined8 *)FUN_180847820();
+    puVar11 = (uint64_t *)FUN_180847820();
     plStack_68 = (longlong *)*puVar11;
     uStack_60 = puVar11[1];
-    uVar5 = FUN_180866f50(*(undefined8 *)(param_1 + 0x80),&plStack_68,&lStack_78);
+    uVar5 = FUN_180866f50(*(uint64_t *)(param_1 + 0x80),&plStack_68,&lStack_78);
     FUN_180840100(&lStack_78);
     return uVar5;
   }
@@ -6599,15 +6599,15 @@ LAB_180889e8c:
 
 
 
-undefined4 FUN_180889cf9(longlong param_1)
+int32_t FUN_180889cf9(longlong param_1)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
+  uint64_t uVar3;
+  uint64_t uVar4;
   int iVar5;
-  undefined4 uVar6;
+  int32_t uVar6;
   ulonglong in_RAX;
   longlong lVar7;
   int iVar8;
@@ -6618,7 +6618,7 @@ undefined4 FUN_180889cf9(longlong param_1)
   longlong unaff_RDI;
   longlong *plVar12;
   int iVar13;
-  undefined8 *puVar14;
+  uint64_t *puVar14;
   bool bVar15;
   
   *(ulonglong *)(unaff_RBP + -0x58) = in_RAX;
@@ -6629,9 +6629,9 @@ undefined4 FUN_180889cf9(longlong param_1)
     FUN_180768360();
     uVar10 = (ulonglong)*(uint *)(unaff_RBP + -0x4c);
   }
-  *(undefined8 *)(unaff_RBP + -0x40) = 0xffffffffffffffff;
+  *(uint64_t *)(unaff_RBP + -0x40) = 0xffffffffffffffff;
   *(longlong *)(unaff_RBP + -0x48) = param_1 + 0x898;
-  *(undefined4 *)(unaff_RBP + -0x38) = 0xffffffff;
+  *(int32_t *)(unaff_RBP + -0x38) = 0xffffffff;
   FUN_1808741f0(param_1 + 0x898,unaff_RBP + -0x40,unaff_RBP + -0x38);
   iVar13 = *(int *)(unaff_RBP + -0x38);
   if (iVar13 != -1) {
@@ -6640,12 +6640,12 @@ undefined4 FUN_180889cf9(longlong param_1)
     do {
       do {
         lVar7 = *(longlong *)(plVar12[2] + 0x18 + (longlong)iVar13 * 0x20);
-        puVar14 = *(undefined8 **)(lVar7 + 0x288);
+        puVar14 = *(uint64_t **)(lVar7 + 0x288);
         while( true ) {
           iVar9 = (int)uVar10;
-          if ((puVar14 < *(undefined8 **)(lVar7 + 0x288)) ||
-             ((undefined8 *)
-              ((longlong)*(undefined8 **)(lVar7 + 0x288) + (longlong)*(int *)(lVar7 + 0x290) * 0x14)
+          if ((puVar14 < *(uint64_t **)(lVar7 + 0x288)) ||
+             ((uint64_t *)
+              ((longlong)*(uint64_t **)(lVar7 + 0x288) + (longlong)*(int *)(lVar7 + 0x290) * 0x14)
               <= puVar14)) break;
           iVar8 = *(int *)(unaff_RBP + -0x50) + 1;
           iVar5 = iVar9;
@@ -6675,14 +6675,14 @@ LAB_180889e09:
             iVar9 = *(int *)(unaff_RBP + -0x50);
             uVar3 = puVar14[1];
             lVar2 = *(longlong *)(unaff_RBP + -0x58);
-            puVar1 = (undefined8 *)(lVar2 + (longlong)iVar9 * 0x14);
+            puVar1 = (uint64_t *)(lVar2 + (longlong)iVar9 * 0x14);
             *puVar1 = *puVar14;
             puVar1[1] = uVar3;
-            *(undefined4 *)(lVar2 + 0x10 + (longlong)iVar9 * 0x14) = *(undefined4 *)(puVar14 + 2);
+            *(int32_t *)(lVar2 + 0x10 + (longlong)iVar9 * 0x14) = *(int32_t *)(puVar14 + 2);
             *(int *)(unaff_RBP + -0x50) = *(int *)(unaff_RBP + -0x50) + 1;
           }
           uVar10 = (ulonglong)*(uint *)(unaff_RBP + -0x4c);
-          puVar14 = (undefined8 *)((longlong)puVar14 + 0x14);
+          puVar14 = (uint64_t *)((longlong)puVar14 + 0x14);
         }
         plVar12 = *(longlong **)(unaff_RBP + -0x48);
       } while ((iVar13 != -1) &&
@@ -6715,11 +6715,11 @@ LAB_180889e8c:
                     // WARNING: Subroutine does not return
     FUN_180768400(unaff_RDI);
   }
-  puVar14 = (undefined8 *)FUN_180847820();
-  uVar3 = *(undefined8 *)(param_1 + 0x80);
+  puVar14 = (uint64_t *)FUN_180847820();
+  uVar3 = *(uint64_t *)(param_1 + 0x80);
   uVar4 = puVar14[1];
-  *(undefined8 *)(unaff_RBP + -0x48) = *puVar14;
-  *(undefined8 *)(unaff_RBP + -0x40) = uVar4;
+  *(uint64_t *)(unaff_RBP + -0x48) = *puVar14;
+  *(uint64_t *)(unaff_RBP + -0x40) = uVar4;
   uVar6 = FUN_180866f50(uVar3,unaff_RBP + -0x48,unaff_RBP + -0x58);
   FUN_180840100(unaff_RBP + -0x58);
   return uVar6;
@@ -6748,15 +6748,15 @@ LAB_180889e8c:
  * - 支持动态内存分配和数据缓存
  * - 提供网络性能监控功能
  =============================================================================*/
-undefined4 FUN_180889d5e(undefined8 param_1,undefined8 param_2,longlong *param_3)
+int32_t FUN_180889d5e(uint64_t param_1,uint64_t param_2,longlong *param_3)
 
 {
-  undefined8 *data_buffer;          // 数据缓冲区指针
+  uint64_t *data_buffer;          // 数据缓冲区指针
   longlong *hash_context;           // 哈希表上下文指针
-  undefined8 stat_param1;            // 统计参数1
-  undefined8 stat_param2;            // 统计参数2
+  uint64_t stat_param1;            // 统计参数1
+  uint64_t stat_param2;            // 统计参数2
   int collection_result;             // 数据收集结果
-  undefined4 stat_result;            // 统计处理结果
+  int32_t stat_result;            // 统计处理结果
   longlong entry_data;               // 条目数据指针
   int buffer_size;                   // 缓冲区大小
   int current_count;                 // 当前计数
@@ -6766,7 +6766,7 @@ undefined4 FUN_180889d5e(undefined8 param_1,undefined8 param_2,longlong *param_3
   longlong stack_base;               // 栈基址
   int data_index;                    // 数据索引
   int next_index;                    // 下一个索引
-  undefined8 *data_entry;            // 数据条目指针
+  uint64_t *data_entry;            // 数据条目指针
   bool needs_expansion;              // 是否需要扩展缓冲区;
   
   do {
@@ -6775,12 +6775,12 @@ undefined4 FUN_180889d5e(undefined8 param_1,undefined8 param_2,longlong *param_3
       entry_data = *(longlong *)(param_3[2] + 0x18 + (longlong)hash_index * 0x20);
       
       // 遍历数据缓冲区中的所有条目
-      for (data_entry = *(undefined8 **)(entry_data + 0x288);
-          (*(undefined8 **)(entry_data + 0x288) <= data_entry &&
-          (data_entry < (undefined8 *)
-                     ((longlong)*(undefined8 **)(entry_data + 0x288) +
+      for (data_entry = *(uint64_t **)(entry_data + 0x288);
+          (*(uint64_t **)(entry_data + 0x288) <= data_entry &&
+          (data_entry < (uint64_t *)
+                     ((longlong)*(uint64_t **)(entry_data + 0x288) +
                      (longlong)*(int *)(entry_data + 0x290) * 0x14)));
-          data_entry = (undefined8 *)((longlong)data_entry + 0x14)) {
+          data_entry = (uint64_t *)((longlong)data_entry + 0x14)) {
         
         // 计算新的缓冲区大小
         buffer_size = *(int *)(stack_base + -0x50) + 1;
@@ -6820,10 +6820,10 @@ COPY_DATA_ENTRY:
           buffer_capacity = *(int *)(stack_base + -0x50);
           stat_param2 = data_entry[1];
           hash_context = *(longlong *)(stack_base + -0x58);
-          data_buffer = (undefined8 *)(hash_context + (longlong)buffer_capacity * 0x14);
+          data_buffer = (uint64_t *)(hash_context + (longlong)buffer_capacity * 0x14);
           *data_buffer = *data_entry;
           data_buffer[1] = stat_param2;
-          *(undefined4 *)(hash_context + 0x10 + (longlong)buffer_capacity * 0x14) = *(undefined4 *)(data_entry + 2);
+          *(int32_t *)(hash_context + 0x10 + (longlong)buffer_capacity * 0x14) = *(int32_t *)(data_entry + 2);
           *(int *)(stack_base + -0x50) = *(int *)(stack_base + -0x50) + 1;
               }
         growth_factor = *(int *)(stack_base + -0x4c);
@@ -6866,11 +6866,11 @@ PROCESS_NEXT_ENTRY:
       }
       
       // 获取统计参数并处理
-      data_entry = (undefined8 *)FUN_180847820();
-      stat_param1 = *(undefined8 *)(entry_data + 0x80);
+      data_entry = (uint64_t *)FUN_180847820();
+      stat_param1 = *(uint64_t *)(entry_data + 0x80);
       stat_param2 = data_entry[1];
-      *(undefined8 *)(stack_base + -0x48) = *data_entry;
-      *(undefined8 *)(stack_base + -0x40) = stat_param2;
+      *(uint64_t *)(stack_base + -0x48) = *data_entry;
+      *(uint64_t *)(stack_base + -0x40) = stat_param2;
       stat_result = FUN_180866f50(stat_param1,stack_base + -0x48,stack_base + -0x58);
       FUN_180840100(stack_base + -0x58);
       return stat_result;
@@ -6898,15 +6898,15 @@ PROCESS_NEXT_ENTRY:
  * - 返回统计处理结果
  * - 提供网络性能监控的最终结果
  =============================================================================*/
-undefined4 FUN_180889eb2(void)
+int32_t FUN_180889eb2(void)
 
 {
-  undefined8 stat_context;           // 统计上下文指针
-  undefined4 stat_result1;           // 统计结果1
-  undefined4 stat_result2;           // 统计结果2
-  undefined4 stat_result3;           // 统计结果3
-  undefined4 stat_result4;           // 统计结果4
-  undefined4 *stat_buffer;           // 统计缓冲区指针
+  uint64_t stat_context;           // 统计上下文指针
+  int32_t stat_result1;           // 统计结果1
+  int32_t stat_result2;           // 统计结果2
+  int32_t stat_result3;           // 统计结果3
+  int32_t stat_result4;           // 统计结果4
+  int32_t *stat_buffer;           // 统计缓冲区指针
   longlong stack_base;               // 栈基址
   longlong network_context;          // 网络上下文指针
   longlong lock_context;             // 锁上下文指针;
@@ -6918,17 +6918,17 @@ undefined4 FUN_180889eb2(void)
   }
   
   // 获取统计缓冲区数据
-  stat_buffer = (undefined4 *)FUN_180847820();
-  stat_context = *(undefined8 *)(network_context + 0x80);
+  stat_buffer = (int32_t *)FUN_180847820();
+  stat_context = *(uint64_t *)(network_context + 0x80);
   stat_result4 = stat_buffer[1];
   stat_result2 = stat_buffer[2];
   stat_result3 = stat_buffer[3];
   
   // 复制统计数据到栈缓冲区
-  *(undefined4 *)(stack_base + -0x48) = *stat_buffer;
-  *(undefined4 *)(stack_base + -0x44) = stat_result4;
-  *(undefined4 *)(stack_base + -0x40) = stat_result2;
-  *(undefined4 *)(stack_base + -0x3c) = stat_result3;
+  *(int32_t *)(stack_base + -0x48) = *stat_buffer;
+  *(int32_t *)(stack_base + -0x44) = stat_result4;
+  *(int32_t *)(stack_base + -0x40) = stat_result2;
+  *(int32_t *)(stack_base + -0x3c) = stat_result3;
   
   // 执行统计处理
   stat_result4 = FUN_180866f50(stat_context,stack_base + -0x48,stack_base + -0x58);

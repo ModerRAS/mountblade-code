@@ -14,7 +14,7 @@ void FUN_180793ff0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180794140(longlong param_1,float *param_2,float *param_3,uint param_4,uint param_5)
+uint64_t FUN_180794140(longlong param_1,float *param_2,float *param_3,uint param_4,uint param_5)
 
 {
   float fVar1;
@@ -56,7 +56,7 @@ undefined8 FUN_180794140(longlong param_1,float *param_2,float *param_3,uint par
   if (param_2 != (float *)0x0) {
     if ((*(float *)(param_1 + 0x32c) != *(float *)(param_1 + 0x218)) ||
        (*(float *)(param_1 + 0x330) != *(float *)(param_1 + 0x21c))) {
-      *(undefined4 *)(param_1 + 0x21c) = *(undefined4 *)(param_1 + 0x330);
+      *(int32_t *)(param_1 + 0x21c) = *(int32_t *)(param_1 + 0x330);
       *(float *)(param_1 + 0x218) = *(float *)(param_1 + 0x32c);
       FUN_180794cc0();
     }
@@ -320,7 +320,7 @@ undefined8 FUN_180794140(longlong param_1,float *param_2,float *param_3,uint par
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1807942ce(void)
+uint64_t FUN_1807942ce(void)
 
 {
   float fVar1;
@@ -596,7 +596,7 @@ undefined8 FUN_1807942ce(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1807943f6(void)
+uint64_t FUN_1807943f6(void)
 
 {
   float fVar1;
@@ -838,7 +838,7 @@ undefined8 FUN_1807943f6(void)
 
 
 
-undefined8 FUN_180794b6e(void)
+uint64_t FUN_180794b6e(void)
 
 {
   return 0;
@@ -846,7 +846,7 @@ undefined8 FUN_180794b6e(void)
 
 
 
-undefined8 FUN_180794b9a(void)
+uint64_t FUN_180794b9a(void)
 
 {
   return 0;
@@ -854,7 +854,7 @@ undefined8 FUN_180794b9a(void)
 
 
 
-undefined8 FUN_180794cc0(longlong param_1,float param_2,float param_3)
+uint64_t FUN_180794cc0(longlong param_1,float param_2,float param_3)
 
 {
   float fVar1;
@@ -889,12 +889,12 @@ undefined8 FUN_180794cc0(longlong param_1,float param_2,float param_3)
 
 
 
-undefined8 FUN_180794dc0(longlong *param_1)
+uint64_t FUN_180794dc0(longlong *param_1)
 
 {
   longlong lVar1;
   longlong lVar2;
-  undefined8 uVar3;
+  uint64_t uVar3;
   int iVar4;
   longlong lVar5;
   
@@ -905,7 +905,7 @@ undefined8 FUN_180794dc0(longlong *param_1)
     lVar5 = 0;
     do {
       uVar3 = func_0x000180762a70(lVar1,iVar4,
-                                  *(undefined4 *)
+                                  *(int32_t *)
                                    (*(longlong *)(*(longlong *)(lVar2 + 0x68) + lVar5) + 0x38));
       if ((int)uVar3 != 0) {
         return uVar3;
@@ -916,7 +916,7 @@ undefined8 FUN_180794dc0(longlong *param_1)
     } while (iVar4 < *(int *)(lVar2 + 0x60));
   }
   func_0x0001807958a0(lVar1);
-  *(undefined4 *)(lVar1 + 0x218) = *(undefined4 *)(lVar1 + 800);
+  *(int32_t *)(lVar1 + 0x218) = *(int32_t *)(lVar1 + 800);
   func_0x000180795990(lVar1);
   return 0;
 }

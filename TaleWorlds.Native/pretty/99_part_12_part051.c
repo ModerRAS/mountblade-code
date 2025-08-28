@@ -192,7 +192,7 @@ void FUN_1807eb0c6(longlong param_1,int param_2,uint param_3,float *param_4)
     uVar16 = uVar13;
     uVar14 = uVar13;
     do {
-      *(undefined4 *)((longlong)pfVar11 + uVar16) = 0;
+      *(int32_t *)((longlong)pfVar11 + uVar16) = 0;
       iVar18 = (int)uVar14;
       if (0 < (int)param_3) {
         uVar14 = uVar13;
@@ -537,8 +537,8 @@ void FUN_1807ebaec(longlong param_1,int param_2,uint param_3,longlong param_4)
 
 
 
-// 函数: void FUN_1807ebafc(longlong param_1,undefined8 param_2,uint param_3,longlong param_4)
-void FUN_1807ebafc(longlong param_1,undefined8 param_2,uint param_3,longlong param_4)
+// 函数: void FUN_1807ebafc(longlong param_1,uint64_t param_2,uint param_3,longlong param_4)
+void FUN_1807ebafc(longlong param_1,uint64_t param_2,uint param_3,longlong param_4)
 
 {
   float *pfVar1;
@@ -665,12 +665,12 @@ void FUN_1807ebc30(longlong param_1)
     do {
       uVar1 = (int)uVar2 + 1;
       uVar2 = (ulonglong)uVar1;
-      *(undefined4 *)(uVar3 + *(longlong *)(param_1 + 8)) = 0;
+      *(int32_t *)(uVar3 + *(longlong *)(param_1 + 8)) = 0;
       uVar3 = uVar3 + 4;
     } while ((int)uVar1 < *(int *)(param_1 + 0x10));
   }
                     // WARNING: Subroutine does not return
-  memset(*(undefined8 *)(param_1 + 0x528),0,(longlong)*(int *)(param_1 + 0x5c8) << 2);
+  memset(*(uint64_t *)(param_1 + 0x528),0,(longlong)*(int *)(param_1 + 0x5c8) << 2);
 }
 
 

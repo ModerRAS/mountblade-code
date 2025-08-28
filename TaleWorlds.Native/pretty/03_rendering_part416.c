@@ -8,11 +8,11 @@ void FUN_180494b06(float param_1,longlong param_2,int param_3)
 {
   float *pfVar1;
   float *pfVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   float fVar4;
   float fVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
+  uint64_t uVar6;
+  uint64_t uVar7;
   bool bVar8;
   uint uVar9;
   uint uVar10;
@@ -51,10 +51,10 @@ void FUN_180494b06(float param_1,longlong param_2,int param_3)
   float fVar39;
   float fVar40;
   float in_XMM4_Da;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
+  int32_t unaff_XMM8_Da;
+  int32_t unaff_XMM8_Db;
+  int32_t unaff_XMM8_Dc;
+  int32_t unaff_XMM8_Dd;
   float fVar41;
   float fVar42;
   float fStackX_8;
@@ -83,10 +83,10 @@ void FUN_180494b06(float param_1,longlong param_2,int param_3)
   float fStack0000000000000080;
   float fStack0000000000000084;
   
-  *(undefined4 *)(in_R11 + -0x58) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -0x54) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x50) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
+  *(int32_t *)(in_R11 + -0x58) = unaff_XMM8_Da;
+  *(int32_t *)(in_R11 + -0x54) = unaff_XMM8_Db;
+  *(int32_t *)(in_R11 + -0x50) = unaff_XMM8_Dc;
+  *(int32_t *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
   lVar31 = (longlong)param_3;
   lVar11 = lVar31 * 0x40;
   fVar4 = *(float *)(lVar11 + 0x2c8 + in_RCX);
@@ -126,7 +126,7 @@ void FUN_180494b06(float param_1,longlong param_2,int param_3)
   fStack0000000000000074 = fVar4 * fVar36;
   lVar28 = 2;
   fVar4 = *(float *)(param_2 + 0x18);
-  puVar3 = (undefined8 *)(lVar11 + 0x2f8 + in_RCX);
+  puVar3 = (uint64_t *)(lVar11 + 0x2f8 + in_RCX);
   uVar6 = *puVar3;
   uVar7 = puVar3[1];
   fStackX_8 = (float)uVar7;
@@ -439,8 +439,8 @@ LAB_1804954a0:
 
 
 
-// 函数: void FUN_180494d60(undefined8 param_1,undefined8 param_2,float *param_3,longlong param_4)
-void FUN_180494d60(undefined8 param_1,undefined8 param_2,float *param_3,longlong param_4)
+// 函数: void FUN_180494d60(uint64_t param_1,uint64_t param_2,float *param_3,longlong param_4)
+void FUN_180494d60(uint64_t param_1,uint64_t param_2,float *param_3,longlong param_4)
 
 {
   float *pfVar1;

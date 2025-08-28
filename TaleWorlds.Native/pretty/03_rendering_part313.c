@@ -8,7 +8,7 @@ void FUN_180434100(longlong *param_1,longlong param_2,longlong param_3)
 {
   longlong lVar1;
   char cVar2;
-  undefined4 uVar3;
+  int32_t uVar3;
   
   cVar2 = '\0';
   if ('\0' < *(char *)(param_2 + 0x148)) {
@@ -16,7 +16,7 @@ void FUN_180434100(longlong *param_1,longlong param_2,longlong param_3)
       uVar3 = (**(code **)(*param_1 + 0x28))(param_1,param_2,cVar2);
       lVar1 = (longlong)cVar2;
       cVar2 = cVar2 + '\x01';
-      *(undefined4 *)(param_3 + lVar1 * 4) = uVar3;
+      *(int32_t *)(param_3 + lVar1 * 4) = uVar3;
     } while (cVar2 < *(char *)(param_2 + 0x148));
   }
   return;
@@ -24,7 +24,7 @@ void FUN_180434100(longlong *param_1,longlong param_2,longlong param_3)
 
 
 
-undefined8 * FUN_180434170(undefined8 *param_1)
+uint64_t * FUN_180434170(uint64_t *param_1)
 
 {
   *param_1 = &UNK_180a19ac8;
@@ -37,7 +37,7 @@ undefined8 * FUN_180434170(undefined8 *param_1)
 
 
 
-undefined8 * FUN_1804341e0(undefined8 *param_1,uint param_2)
+uint64_t * FUN_1804341e0(uint64_t *param_1,uint param_2)
 
 {
   FUN_1808fc8a8(param_1 + 3,0x48,4,FUN_180431c60,0xfffffffffffffffe);
@@ -52,8 +52,8 @@ undefined8 * FUN_1804341e0(undefined8 *param_1,uint param_2)
 
 
 
-// 函数: void FUN_180434250(undefined8 *param_1)
-void FUN_180434250(undefined8 *param_1)
+// 函数: void FUN_180434250(uint64_t *param_1)
+void FUN_180434250(uint64_t *param_1)
 
 {
   FUN_1808fc8a8(param_1 + 3,0x48,4,FUN_180431c60,0xfffffffffffffffe);
@@ -134,8 +134,8 @@ void FUN_180434349(longlong *param_1)
     lVar1 = lVar1 + -1;
   } while (lVar1 != 0);
   lVar2 = *param_1;
-  *(undefined1 *)(unaff_RBP + 0x11f0) = 0;
-  *(undefined8 *)(unaff_RBP + 0x9c0) = 0;
+  *(int8_t *)(unaff_RBP + 0x11f0) = 0;
+  *(uint64_t *)(unaff_RBP + 0x9c0) = 0;
   (**(code **)(lVar2 + 0x38))(param_1);
                     // WARNING: Subroutine does not return
   memset(unaff_RBP + 0x1b0,0,0x1050);
@@ -168,8 +168,8 @@ void FUN_180434370(longlong *param_1)
     unaff_RBX = unaff_RBX - 1;
   } while (unaff_RBX != 0);
   lVar1 = *param_1;
-  *(undefined1 *)(unaff_RBP + 0x11f0) = 0;
-  *(undefined8 *)(unaff_RBP + 0x9c0) = 0;
+  *(int8_t *)(unaff_RBP + 0x11f0) = 0;
+  *(uint64_t *)(unaff_RBP + 0x9c0) = 0;
   (**(code **)(lVar1 + 0x38))(param_1);
                     // WARNING: Subroutine does not return
   memset(unaff_RBP + 0x1b0,0,0x1050);

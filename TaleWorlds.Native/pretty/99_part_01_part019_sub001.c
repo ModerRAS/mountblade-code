@@ -16,10 +16,10 @@
 //------------------------------------------------------------------------------
 
 // 数据处理句柄类型
-typedef undefined8 DataConversionHandle;           // 数据转换句柄
-typedef undefined8 FormatHandle;                   // 格式化句柄
-typedef undefined8 ValidationHandle;               // 验证句柄
-typedef undefined8 SerializationHandle;           // 序列化句柄
+typedef uint64_t DataConversionHandle;           // 数据转换句柄
+typedef uint64_t FormatHandle;                   // 格式化句柄
+typedef uint64_t ValidationHandle;               // 验证句柄
+typedef uint64_t SerializationHandle;           // 序列化句柄
 
 // 数据处理状态常量
 #define CONVERSION_STATE_READY      0x00000001      // 转换就绪状态
@@ -68,7 +68,7 @@ typedef undefined8 SerializationHandle;           // 序列化句柄
 //   param_2 - 转换类型或参数，标识要执行的转换操作
 //
 // 返回值：
-//   undefined8 - 转换结果或状态码
+//   uint64_t - 转换结果或状态码
 //
 // 处理流程：
 //   1. 验证输入参数的有效性
@@ -95,13 +95,13 @@ typedef undefined8 SerializationHandle;           // 序列化句柄
 //   简化实现：基于高级数据转换模块架构，创建完整的转换处理功能
 //   优化点：添加完整的数据转换、验证、序列化、格式化功能
 //------------------------------------------------------------------------------
-undefined8 FUN_180012346(undefined8 param_1, undefined8 param_2)
+uint64_t FUN_180012346(uint64_t param_1, uint64_t param_2)
 {
     // 局部变量定义
-    undefined8 uVar1;                            // 转换结果
+    uint64_t uVar1;                            // 转换结果
     longlong lVar2;                              // 上下文指针
     int iVar3;                                  // 状态标志
-    undefined8 auStack_28 [4];                   // 栈缓冲区 (32字节)
+    uint64_t auStack_28 [4];                   // 栈缓冲区 (32字节)
     ulonglong uStack_8;                         // 安全检查值
     
     // 安全检查：栈保护机制

@@ -278,13 +278,13 @@ typedef struct {
 /* ================================================ */
 
 /** 网络系统全局数据指针 */
-undefined* UNK_1808633a0;
+void* UNK_1808633a0;
 
 /** 网络系统配置数据指针 */
-undefined* UNK_180863400;
+void* UNK_180863400;
 
 /** 网络系统连接表指针 */
-undefined* UNK_180984d50;
+void* UNK_180984d50;
 
 /** 网络系统状态标志 */
 undefined DAT_180c4eaac;
@@ -293,73 +293,73 @@ undefined DAT_180c4eaac;
 undefined DAT_180c4eaa8;
 
 /** 网络系统事件队列指针 */
-undefined* UNK_180984dd0;
+void* UNK_180984dd0;
 
 /** 网络系统统计信息指针 */
-undefined* UNK_180984e88;
+void* UNK_180984e88;
 
 /** 网络系统回调函数指针 */
-undefined* UNK_180984eb0;
+void* UNK_180984eb0;
 
 /** 网络系统配置结构指针 */
-undefined* UNK_180984ef0;
+void* UNK_180984ef0;
 
 /** 网络系统线程句柄 */
-undefined* UNK_1809874b0;
+void* UNK_1809874b0;
 
 /** 网络系统错误处理指针 */
 undefined DAT_180bef7b8;
 
 /** 网络系统连接池指针 */
-undefined* UNK_180985010;
+void* UNK_180985010;
 
 /** 网络系统数据包池指针 */
-undefined* UNK_180985080;
+void* UNK_180985080;
 
 /** 网络系统内存池指针 */
-undefined* UNK_180984ff8;
+void* UNK_180984ff8;
 
 /** 网络系统加密密钥指针 */
-undefined* UNK_180985140;
+void* UNK_180985140;
 
 /** 网络系统压缩算法指针 */
-undefined* UNK_180985170;
+void* UNK_180985170;
 
 /** 网络系统协议版本指针 */
-undefined* UNK_180985b90;
+void* UNK_180985b90;
 
 /** 网络系统调试信息指针 */
-undefined* UNK_180873e8c;
+void* UNK_180873e8c;
 
 /** 网络系统日志系统指针 */
-undefined* UNK_180873e94;
+void* UNK_180873e94;
 
 /** 网络系统性能监控指针 */
-undefined* UNK_1809855f8;
+void* UNK_1809855f8;
 
 /** 网络系统安全策略指针 */
-undefined* UNK_180985678;
+void* UNK_180985678;
 
 /** 网络系统负载均衡指针 */
-undefined* UNK_1809856a0;
+void* UNK_1809856a0;
 
 /** 网络系统故障恢复指针 */
-undefined* UNK_180985708;
+void* UNK_180985708;
 
 /** 网络系统带宽管理指针 */
-undefined* UNK_1809851e8;
+void* UNK_1809851e8;
 
 /** 网络系统QoS管理指针 */
 undefined DAT_180c4eaf0;
 
 /** 网络系统连接缓存指针 */
-undefined* UNK_180985738;
+void* UNK_180985738;
 
 /** 网络系统路由表指针 */
-undefined* UNK_180985c10;
+void* UNK_180985c10;
 
 /** 网络系统心跳检测指针 */
-undefined* UNK_180985f58;
+void* UNK_180985f58;
 
 /* ================================================ */
 /* 核心函数实现 */
@@ -615,7 +615,7 @@ undefined NetworkingSystem_InitializeManager(void* initParams) {
  * @param operation 操作类型
  * @return 管理结果，0表示成功，非0表示失败
  */
-undefined8 NetworkingSystem_ManageConnection(NetworkConnection* connection, uint32_t operation) {
+uint64_t NetworkingSystem_ManageConnection(NetworkConnection* connection, uint32_t operation) {
     // 实现网络连接管理逻辑
     return 0;
 }
@@ -731,7 +731,7 @@ undefined NetworkingSystem_CleanupMemory(void) {
  * @param connectionId 找到的连接ID
  * @return 查找结果，0表示成功，非0表示失败
  */
-undefined4 NetworkingSystem_FindConnection(void* searchCriteria, uint32_t* connectionId) {
+int32_t NetworkingSystem_FindConnection(void* searchCriteria, uint32_t* connectionId) {
     // 实现网络连接查找逻辑
     return 0;
 }
@@ -760,7 +760,7 @@ undefined NetworkingSystem_UpdateConnectionInfo(uint32_t connectionId, uint32_t 
  * @param connectionId 连接ID
  * @return 重置结果，0表示成功，非0表示失败
  */
-undefined4 NetworkingSystem_ResetConnectionState(uint32_t connectionId) {
+int32_t NetworkingSystem_ResetConnectionState(uint32_t connectionId) {
     // 实现网络连接状态重置逻辑
     return 0;
 }
@@ -802,7 +802,7 @@ undefined NetworkingSystem_ManageConnectionLookup(void* searchParams, int* resul
  * @param resultIndex 结果索引
  * @return 查找结果，0表示成功，非0表示失败
  */
-undefined8 NetworkingSystem_FindConnectionIndex(uint32_t* connectionTable, int* searchKey, int* resultIndex) {
+uint64_t NetworkingSystem_FindConnectionIndex(uint32_t* connectionTable, int* searchKey, int* resultIndex) {
     // 实现网络连接索引查找逻辑
     return 0;
 }
@@ -1316,9 +1316,9 @@ undefined UNK_1809856f0;
 undefined UNK_180985f78;
 undefined DAT_180c4eaf8;
 undefined UNK_180985a80;
-undefined4 UNK_180c4eafc;
-undefined4 UNK_180c4eb00;
-undefined4 UNK_180c4eb04;
+int32_t UNK_180c4eafc;
+int32_t UNK_180c4eb00;
+int32_t UNK_180c4eb04;
 undefined UNK_180985f90;
 undefined UNK_180986010;
 undefined UNK_180986090;

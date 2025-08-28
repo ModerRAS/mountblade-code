@@ -24,14 +24,14 @@
 // ============================================================================
 
 // 工具系统核心数据结构
-static undefined *utilities_core_data_table[UTILITIES_PART002_MAX_DATA_SIZE];
+static void *utilities_core_data_table[UTILITIES_PART002_MAX_DATA_SIZE];
 static undefined utilities_system_config[UTILITIES_PART002_MAX_STRING_LENGTH];
 static void *utilities_memory_pool[UTILITIES_PART02_MEMORY_POOL_SIZE];
 static char utilities_string_buffer[UTILITIES_PART002_MAX_STRING_LENGTH];
 
 // 异常处理系统数据
 static void *ExceptionList;                                          // 异常列表指针
-static undefined *utilities_exception_handlers[UTILITIES_PART02_MAX_EXCEPTIONS]; // 异常处理器数组
+static void *utilities_exception_handlers[UTILITIES_PART02_MAX_EXCEPTIONS]; // 异常处理器数组
 static undefined utilities_exception_context[UTILITIES_PART02_MAX_DATA_SIZE];    // 异常上下文数据
 
 // ============================================================================
@@ -366,32 +366,32 @@ static void utilities_resource_cleanup_manager(longlong param_1, longlong param_
 {
     // 实现资源清理和内存释放功能
     // 原始实现：FUN_1808900e0
-    undefined8 uVar1;
+    uint64_t uVar1;
     int iVar2;
     longlong lVar3;
     int iVar4;
-    undefined1 auStack_278 [32];
+    int8_t auStack_278 [32];
     longlong alStack_258 [2];
-    undefined1 *puStack_248;
+    int8_t *puStack_248;
     int iStack_240;
-    undefined4 uStack_23c;
-    undefined1 auStack_238 [512];
+    int32_t uStack_23c;
+    int8_t auStack_238 [512];
     ulonglong uStack_38;
     
     uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_278;
-    iVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10), alStack_258);
+    iVar2 = func_0x00018088c530(*(int32_t *)(param_1 + 0x10), alStack_258);
     if ((iVar2 == 0) && (*(longlong *)(alStack_258[0] + 8) != 0)) {
         puStack_248 = auStack_238;
         iVar4 = 0;
         iStack_240 = 0;
         uStack_23c = 0xffffffc0;
-        iVar2 = FUN_1808bf350(*(undefined8 *)(param_2 + 0x90), *(longlong *)(alStack_258[0] + 8),
+        iVar2 = FUN_1808bf350(*(uint64_t *)(param_2 + 0x90), *(longlong *)(alStack_258[0] + 8),
                               &puStack_248);
         if (iVar2 == 0) {
             if (0 < iStack_240) {
                 lVar3 = 0;
                 do {
-                    uVar1 = *(undefined8 *)(puStack_248 + lVar3);
+                    uVar1 = *(uint64_t *)(puStack_248 + lVar3);
                     iVar2 = FUN_1808605e0(uVar1);
                     if (iVar2 != 2) {
                         // WARNING: Subroutine does not return

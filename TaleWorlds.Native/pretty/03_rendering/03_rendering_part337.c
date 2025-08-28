@@ -13,7 +13,7 @@ int render_state_flags[8];
 // 渲染内存池
 longlong *render_memory_pool[4];
 // 渲染数据缓冲区
-undefined4 render_data_buffer[64];
+int32_t render_data_buffer[64];
 // 渲染控制参数
 int render_control_params[12];
 // 渲染处理队列
@@ -21,7 +21,7 @@ int render_processing_queue[10];
 // 渲染资源索引
 int render_resource_indices[8];
 // 渲染临时数据
-undefined4 render_temp_data[20];
+int32_t render_temp_data[20];
 // 渲染系统配置
 int render_system_config[6];
 // 渲染调试信息
@@ -29,20 +29,20 @@ int render_debug_info[4];
 
 // 函数：渲染系统高级对象处理器
 // 功能：处理渲染对象的创建、配置和管理，支持多种渲染参数和状态设置
-void render_system_advanced_object_processor(longlong *render_context, undefined4 *param_set_1, undefined4 *param_set_2, undefined8 *param_set_3,
-                                            undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined4 param_7)
+void render_system_advanced_object_processor(longlong *render_context, int32_t *param_set_1, int32_t *param_set_2, uint64_t *param_set_3,
+                                            uint64_t param_4, uint64_t param_5, uint64_t param_6, int32_t param_7)
 
 {
   longlong *render_obj_ptr;
-  undefined4 *render_param_ptr;
-  undefined8 *render_data_ptr;
+  int32_t *render_param_ptr;
+  uint64_t *render_data_ptr;
   int render_index;
   int buffer_size;
-  undefined8 render_value;
+  uint64_t render_value;
   longlong *memory_block;
-  undefined4 param_value_1;
-  undefined4 param_value_2;
-  undefined4 param_value_3;
+  int32_t param_value_1;
+  int32_t param_value_2;
+  int32_t param_value_3;
   int array_index;
   int temp_index;
   longlong *stack_pointer_1;
@@ -54,14 +54,14 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
   char cleanup_flag_2;
   char cleanup_flag_3;
   longlong *stack_pointer_5;
-  undefined8 stack_value_1;
-  undefined8 stack_value_2;
-  undefined8 stack_value_3;
-  undefined4 stack_value_4;
-  undefined4 stack_value_5;
-  undefined4 stack_value_6;
-  undefined4 stack_value_7;
-  undefined8 stack_value_8;
+  uint64_t stack_value_1;
+  uint64_t stack_value_2;
+  uint64_t stack_value_3;
+  int32_t stack_value_4;
+  int32_t stack_value_5;
+  int32_t stack_value_6;
+  int32_t stack_value_7;
+  uint64_t stack_value_8;
   longlong *stack_pointer_6;
   
   stack_value_8 = 0xfffffffffffffffe;
@@ -91,7 +91,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
     buffer_size = *(int *)((longlong)stack_pointer_3 + 0x14);
     if (buffer_size < temp_index) {
       if (buffer_size < 2) {
-        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
+        *(int32_t *)((longlong)stack_pointer_3 + 0x14) = 8;
       }
       else {
         *(int *)((longlong)stack_pointer_3 + 0x14) = (buffer_size >> 1) + buffer_size;
@@ -102,7 +102,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
     param_value_1 = param_set_1[1];
     param_value_2 = param_set_1[2];
     param_value_3 = param_set_1[3];
-    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
+    render_param_ptr = (int32_t *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
     *render_param_ptr = *param_set_1;
     render_param_ptr[1] = param_value_1;
     render_param_ptr[2] = param_value_2;
@@ -112,7 +112,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
       buffer_size = *(int *)((longlong)stack_pointer_3 + 0x3c);
       if (buffer_size < temp_index) {
         if (buffer_size < 2) {
-          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
+          *(int32_t *)((longlong)stack_pointer_3 + 0x3c) = 8;
         }
         else {
           *(int *)((longlong)stack_pointer_3 + 0x3c) = (buffer_size >> 1) + buffer_size;
@@ -123,7 +123,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
       param_value_1 = param_set_1[1];
       param_value_2 = param_set_1[2];
       param_value_3 = param_set_1[3];
-      render_param_ptr = (undefined4 *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
+      render_param_ptr = (int32_t *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
       *render_param_ptr = *param_set_1;
       render_param_ptr[1] = param_value_1;
       render_param_ptr[2] = param_value_2;
@@ -137,7 +137,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
     buffer_size = *(int *)((longlong)stack_pointer_3 + 0x14);
     if (buffer_size < temp_index) {
       if (buffer_size < 2) {
-        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
+        *(int32_t *)((longlong)stack_pointer_3 + 0x14) = 8;
       }
       else {
         *(int *)((longlong)stack_pointer_3 + 0x14) = (buffer_size >> 1) + buffer_size;
@@ -148,7 +148,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
     param_value_1 = param_set_2[1];
     param_value_2 = param_set_2[2];
     param_value_3 = param_set_2[3];
-    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
+    render_param_ptr = (int32_t *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
     *render_param_ptr = *param_set_2;
     render_param_ptr[1] = param_value_1;
     render_param_ptr[2] = param_value_2;
@@ -158,7 +158,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
       buffer_size = *(int *)((longlong)stack_pointer_3 + 0x3c);
       if (buffer_size < temp_index) {
         if (buffer_size < 2) {
-          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
+          *(int32_t *)((longlong)stack_pointer_3 + 0x3c) = 8;
         }
         else {
           *(int *)((longlong)stack_pointer_3 + 0x3c) = (buffer_size >> 1) + buffer_size;
@@ -169,7 +169,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
       param_value_1 = param_set_2[1];
       param_value_2 = param_set_2[2];
       param_value_3 = param_set_2[3];
-      render_param_ptr = (undefined4 *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
+      render_param_ptr = (int32_t *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
       *render_param_ptr = *param_set_2;
       render_param_ptr[1] = param_value_1;
       render_param_ptr[2] = param_value_2;
@@ -183,7 +183,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
     temp_index = *(int *)((longlong)stack_pointer_3 + 0x14);
     if (temp_index < array_index) {
       if (temp_index < 2) {
-        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
+        *(int32_t *)((longlong)stack_pointer_3 + 0x14) = 8;
       }
       else {
         *(int *)((longlong)stack_pointer_3 + 0x14) = (temp_index >> 1) + temp_index;
@@ -192,11 +192,11 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
     }
     memory_block = stack_pointer_3;
     *(int *)render_obj_ptr = array_index;
-    param_value_1 = *(undefined4 *)((longlong)param_set_3 + 4);
-    param_value_2 = *(undefined4 *)(param_set_3 + 1);
-    param_value_3 = *(undefined4 *)((longlong)param_set_3 + 0xc);
-    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)buffer_size * 0x10);
-    *render_param_ptr = *(undefined4 *)param_set_3;
+    param_value_1 = *(int32_t *)((longlong)param_set_3 + 4);
+    param_value_2 = *(int32_t *)(param_set_3 + 1);
+    param_value_3 = *(int32_t *)((longlong)param_set_3 + 0xc);
+    render_param_ptr = (int32_t *)(stack_pointer_3[3] + (longlong)buffer_size * 0x10);
+    *render_param_ptr = *(int32_t *)param_set_3;
     render_param_ptr[1] = param_value_1;
     render_param_ptr[2] = param_value_2;
     render_param_ptr[3] = param_value_3;
@@ -204,7 +204,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
       temp_index = *(int *)((longlong)stack_pointer_3 + 0x3c);
       if (temp_index < array_index) {
         if (temp_index < 2) {
-          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
+          *(int32_t *)((longlong)stack_pointer_3 + 0x3c) = 8;
         }
         else {
           *(int *)((longlong)stack_pointer_3 + 0x3c) = (temp_index >> 1) + temp_index;
@@ -213,7 +213,7 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
       }
       *(int *)(memory_block + 7) = array_index;
       render_value = param_set_3[1];
-      render_data_ptr = (undefined8 *)(stack_pointer_3[8] + (longlong)buffer_size * 0x10);
+      render_data_ptr = (uint64_t *)(stack_pointer_3[8] + (longlong)buffer_size * 0x10);
       *render_data_ptr = *param_set_3;
       render_data_ptr[1] = render_value;
     }
@@ -266,21 +266,21 @@ void render_system_advanced_object_processor(longlong *render_context, undefined
 
 // 函数：渲染系统扩展对象处理器
 // 功能：扩展的渲染对象处理功能，支持更多参数和更复杂的渲染操作
-void render_system_extended_object_processor(longlong *render_context, undefined4 *param_set_1, undefined4 *param_set_2, undefined8 *param_set_3,
-                                          undefined8 param_4, undefined8 param_5, undefined8 param_6, undefined4 param_7,
-                                          undefined4 param_8, undefined4 param_9)
+void render_system_extended_object_processor(longlong *render_context, int32_t *param_set_1, int32_t *param_set_2, uint64_t *param_set_3,
+                                          uint64_t param_4, uint64_t param_5, uint64_t param_6, int32_t param_7,
+                                          int32_t param_8, int32_t param_9)
 
 {
   longlong *render_obj_ptr;
-  undefined4 *render_param_ptr;
-  undefined8 *render_data_ptr;
+  int32_t *render_param_ptr;
+  uint64_t *render_data_ptr;
   int render_index;
   int buffer_size;
-  undefined8 render_value;
+  uint64_t render_value;
   longlong *memory_block;
-  undefined4 param_value_1;
-  undefined4 param_value_2;
-  undefined4 param_value_3;
+  int32_t param_value_1;
+  int32_t param_value_2;
+  int32_t param_value_3;
   int array_index;
   int temp_index;
   longlong *stack_pointer_1;
@@ -292,16 +292,16 @@ void render_system_extended_object_processor(longlong *render_context, undefined
   char cleanup_flag_2;
   char cleanup_flag_3;
   longlong *stack_pointer_5;
-  undefined4 stack_value_1;
-  undefined4 stack_value_2;
-  undefined8 stack_value_3;
-  undefined8 stack_value_4;
-  undefined8 stack_value_5;
-  undefined4 stack_value_6;
-  undefined4 stack_value_7;
-  undefined4 stack_value_8;
-  undefined4 stack_value_9;
-  undefined8 stack_value_10;
+  int32_t stack_value_1;
+  int32_t stack_value_2;
+  uint64_t stack_value_3;
+  uint64_t stack_value_4;
+  uint64_t stack_value_5;
+  int32_t stack_value_6;
+  int32_t stack_value_7;
+  int32_t stack_value_8;
+  int32_t stack_value_9;
+  uint64_t stack_value_10;
   longlong *stack_pointer_6;
   
   stack_value_10 = 0xfffffffffffffffe;
@@ -331,7 +331,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
     buffer_size = *(int *)((longlong)stack_pointer_3 + 0x14);
     if (buffer_size < temp_index) {
       if (buffer_size < 2) {
-        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
+        *(int32_t *)((longlong)stack_pointer_3 + 0x14) = 8;
       }
       else {
         *(int *)((longlong)stack_pointer_3 + 0x14) = (buffer_size >> 1) + buffer_size;
@@ -342,7 +342,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
     param_value_1 = param_set_1[1];
     param_value_2 = param_set_1[2];
     param_value_3 = param_set_1[3];
-    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
+    render_param_ptr = (int32_t *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
     *render_param_ptr = *param_set_1;
     render_param_ptr[1] = param_value_1;
     render_param_ptr[2] = param_value_2;
@@ -352,7 +352,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
       buffer_size = *(int *)((longlong)stack_pointer_3 + 0x3c);
       if (buffer_size < temp_index) {
         if (buffer_size < 2) {
-          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
+          *(int32_t *)((longlong)stack_pointer_3 + 0x3c) = 8;
         }
         else {
           *(int *)((longlong)stack_pointer_3 + 0x3c) = (buffer_size >> 1) + buffer_size;
@@ -363,7 +363,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
       param_value_1 = param_set_1[1];
       param_value_2 = param_set_1[2];
       param_value_3 = param_set_1[3];
-      render_param_ptr = (undefined4 *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
+      render_param_ptr = (int32_t *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
       *render_param_ptr = *param_set_1;
       render_param_ptr[1] = param_value_1;
       render_param_ptr[2] = param_value_2;
@@ -377,7 +377,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
     buffer_size = *(int *)((longlong)stack_pointer_3 + 0x14);
     if (buffer_size < temp_index) {
       if (buffer_size < 2) {
-        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
+        *(int32_t *)((longlong)stack_pointer_3 + 0x14) = 8;
       }
       else {
         *(int *)((longlong)stack_pointer_3 + 0x14) = (buffer_size >> 1) + buffer_size;
@@ -388,7 +388,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
     param_value_1 = param_set_2[1];
     param_value_2 = param_set_2[2];
     param_value_3 = param_set_2[3];
-    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
+    render_param_ptr = (int32_t *)(stack_pointer_3[3] + (longlong)render_index * 0x10);
     *render_param_ptr = *param_set_2;
     render_param_ptr[1] = param_value_1;
     render_param_ptr[2] = param_value_2;
@@ -398,7 +398,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
       buffer_size = *(int *)((longlong)stack_pointer_3 + 0x3c);
       if (buffer_size < temp_index) {
         if (buffer_size < 2) {
-          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
+          *(int32_t *)((longlong)stack_pointer_3 + 0x3c) = 8;
         }
         else {
           *(int *)((longlong)stack_pointer_3 + 0x3c) = (buffer_size >> 1) + buffer_size;
@@ -409,7 +409,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
       param_value_1 = param_set_2[1];
       param_value_2 = param_set_2[2];
       param_value_3 = param_set_2[3];
-      render_param_ptr = (undefined4 *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
+      render_param_ptr = (int32_t *)(stack_pointer_3[8] + (longlong)render_index * 0x10);
       *render_param_ptr = *param_set_2;
       render_param_ptr[1] = param_value_1;
       render_param_ptr[2] = param_value_2;
@@ -423,7 +423,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
     temp_index = *(int *)((longlong)stack_pointer_3 + 0x14);
     if (temp_index < array_index) {
       if (temp_index < 2) {
-        *(undefined4 *)((longlong)stack_pointer_3 + 0x14) = 8;
+        *(int32_t *)((longlong)stack_pointer_3 + 0x14) = 8;
       }
       else {
         *(int *)((longlong)stack_pointer_3 + 0x14) = (temp_index >> 1) + temp_index;
@@ -432,11 +432,11 @@ void render_system_extended_object_processor(longlong *render_context, undefined
     }
     memory_block = stack_pointer_3;
     *(int *)render_obj_ptr = array_index;
-    param_value_1 = *(undefined4 *)((longlong)param_set_3 + 4);
-    param_value_2 = *(undefined4 *)(param_set_3 + 1);
-    param_value_3 = *(undefined4 *)((longlong)param_set_3 + 0xc);
-    render_param_ptr = (undefined4 *)(stack_pointer_3[3] + (longlong)buffer_size * 0x10);
-    *render_param_ptr = *(undefined4 *)param_set_3;
+    param_value_1 = *(int32_t *)((longlong)param_set_3 + 4);
+    param_value_2 = *(int32_t *)(param_set_3 + 1);
+    param_value_3 = *(int32_t *)((longlong)param_set_3 + 0xc);
+    render_param_ptr = (int32_t *)(stack_pointer_3[3] + (longlong)buffer_size * 0x10);
+    *render_param_ptr = *(int32_t *)param_set_3;
     render_param_ptr[1] = param_value_1;
     render_param_ptr[2] = param_value_2;
     render_param_ptr[3] = param_value_3;
@@ -444,7 +444,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
       temp_index = *(int *)((longlong)stack_pointer_3 + 0x3c);
       if (temp_index < array_index) {
         if (temp_index < 2) {
-          *(undefined4 *)((longlong)stack_pointer_3 + 0x3c) = 8;
+          *(int32_t *)((longlong)stack_pointer_3 + 0x3c) = 8;
         }
         else {
           *(int *)((longlong)stack_pointer_3 + 0x3c) = (temp_index >> 1) + temp_index;
@@ -453,7 +453,7 @@ void render_system_extended_object_processor(longlong *render_context, undefined
       }
       *(int *)(memory_block + 7) = array_index;
       render_value = param_set_3[1];
-      render_data_ptr = (undefined8 *)(stack_pointer_3[8] + (longlong)buffer_size * 0x10);
+      render_data_ptr = (uint64_t *)(stack_pointer_3[8] + (longlong)buffer_size * 0x10);
       *render_data_ptr = *param_set_3;
       render_data_ptr[1] = render_value;
     }
@@ -511,7 +511,7 @@ void render_system_state_controller(longlong *render_context)
 {
   if ((render_context != (longlong *)0x0) &&
      ((**(code **)(*render_context + 0x28))(), *(char *)((longlong)render_context + 0xfb) != '\x01')) {
-    *(undefined1 *)((longlong)render_context + 0xfb) = 1;
+    *(int8_t *)((longlong)render_context + 0xfb) = 1;
     release_render_object_memory(render_context);
   }
   if (render_context == (longlong *)0x0) {
@@ -529,7 +529,7 @@ void render_system_flag_controller(longlong *render_context)
 {
   if ((render_context != (longlong *)0x0) &&
      ((**(code **)(*render_context + 0x28))(), *(char *)((longlong)render_context + 0xfa) != '\x01')) {
-    *(undefined1 *)((longlong)render_context + 0xfa) = 1;
+    *(int8_t *)((longlong)render_context + 0xfa) = 1;
     release_render_object_memory(render_context);
   }
   if (render_context == (longlong *)0x0) {
@@ -557,17 +557,17 @@ void render_system_cleaner(longlong *render_context)
 
 // 函数：渲染系统状态获取器
 // 功能：获取渲染系统的当前状态信息
-undefined1 render_system_state_getter(longlong *render_context)
+int8_t render_system_state_getter(longlong *render_context)
 
 {
-  undefined1 render_state;
+  int8_t render_state;
   
   if (render_context == (longlong *)0x0) {
     render_state = 0;
   }
   else {
     (**(code **)(*render_context + 0x28))();
-    render_state = *(undefined1 *)((longlong)render_context + 0xf7);
+    render_state = *(int8_t *)((longlong)render_context + 0xf7);
     (**(code **)(*render_context + 0x38))(render_context);
   }
   return render_state;
@@ -575,12 +575,12 @@ undefined1 render_system_state_getter(longlong *render_context)
 
 // 函数：渲染系统状态设置器
 // 功能：设置渲染系统的状态信息
-void render_system_state_setter(longlong *render_context, undefined1 render_state)
+void render_system_state_setter(longlong *render_context, int8_t render_state)
 
 {
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
-    *(undefined1 *)((longlong)render_context + 0xf7) = render_state;
+    *(int8_t *)((longlong)render_context + 0xf7) = render_state;
     (**(code **)(*render_context + 0x38))(render_context);
   }
   return;
@@ -588,17 +588,17 @@ void render_system_state_setter(longlong *render_context, undefined1 render_stat
 
 // 函数：渲染系统参数获取器
 // 功能：获取渲染系统的参数信息
-undefined4 render_system_parameter_getter(longlong *render_context)
+int32_t render_system_parameter_getter(longlong *render_context)
 
 {
-  undefined4 render_param;
+  int32_t render_param;
   
   if (render_context == (longlong *)0x0) {
     render_param = 0;
   }
   else {
     (**(code **)(*render_context + 0x28))();
-    render_param = (undefined4)render_context[0x4e];
+    render_param = (int32_t)render_context[0x4e];
     (**(code **)(*render_context + 0x38))(render_context);
   }
   return render_param;
@@ -606,12 +606,12 @@ undefined4 render_system_parameter_getter(longlong *render_context)
 
 // 函数：渲染系统参数设置器
 // 功能：设置渲染系统的参数信息
-void render_system_parameter_setter(longlong *render_context, undefined4 render_param)
+void render_system_parameter_setter(longlong *render_context, int32_t render_param)
 
 {
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
-    *(undefined4 *)(render_context + 0x4e) = render_param;
+    *(int32_t *)(render_context + 0x4e) = render_param;
     (**(code **)(*render_context + 0x38))(render_context);
   }
   return;
@@ -619,11 +619,11 @@ void render_system_parameter_setter(longlong *render_context, undefined4 render_
 
 // 函数：渲染系统高级参数获取器
 // 功能：获取渲染系统的高级参数信息
-undefined4 render_system_advanced_parameter_getter(longlong *render_context)
+int32_t render_system_advanced_parameter_getter(longlong *render_context)
 
 {
   longlong *render_obj_ptr;
-  undefined4 advanced_param;
+  int32_t advanced_param;
   
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
@@ -634,7 +634,7 @@ undefined4 render_system_advanced_parameter_getter(longlong *render_context)
     if ((*(byte *)((longlong)render_context + 0xfd) & 0x20) == 0) {
       render_obj_ptr = (longlong *)get_render_object_function(render_context[0x36]);
     }
-    advanced_param = (undefined4)render_obj_ptr[0x40];
+    advanced_param = (int32_t)render_obj_ptr[0x40];
   }
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x38))(render_context);
@@ -644,14 +644,14 @@ undefined4 render_system_advanced_parameter_getter(longlong *render_context)
 
 // 函数：渲染系统索引参数设置器
 // 功能：设置渲染系统的索引参数信息
-void render_system_index_parameter_setter(longlong *render_context, int param_index, undefined4 param_value)
+void render_system_index_parameter_setter(longlong *render_context, int param_index, int32_t param_value)
 
 {
   longlong *render_obj_ptr;
   longlong *stack_pointer_1;
   longlong *stack_pointer_2;
-  undefined1 stack_array[8];
-  undefined8 stack_value;
+  int8_t stack_array[8];
+  uint64_t stack_value;
   longlong *stack_pointer_3;
   char cleanup_flag_1;
   char cleanup_flag_2;
@@ -665,7 +665,7 @@ void render_system_index_parameter_setter(longlong *render_context, int param_in
     stack_value = 0;
     stack_array[0] = 0;
     initialize_render_object(&stack_pointer_1,render_context,0);
-    *(undefined4 *)((longlong)param_index * 0x5c + 0x54 + stack_pointer_2[0xd]) = param_value;
+    *(int32_t *)((longlong)param_index * 0x5c + 0x54 + stack_pointer_2[0xd]) = param_value;
     cleanup_flag_1 = '\x01';
     if ((stack_pointer_1 != (longlong *)0x0) && (stack_pointer_2 != (longlong *)0x0)) {
       if (cleanup_flag_3 != '\0') {
@@ -703,15 +703,15 @@ void render_system_index_parameter_setter(longlong *render_context, int param_in
 
 // 函数：渲染系统索引参数获取器
 // 功能：获取渲染系统的索引参数信息
-undefined4 render_system_index_parameter_getter(longlong *render_context, int param_index)
+int32_t render_system_index_parameter_getter(longlong *render_context, int param_index)
 
 {
-  undefined4 param_value;
+  int32_t param_value;
   
   param_value = 0xffffffff;
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
-    param_value = *(undefined4 *)((longlong)param_index * 0x5c + 0x54 + *(longlong *)(render_context[0x42] + 0x68));
+    param_value = *(int32_t *)((longlong)param_index * 0x5c + 0x54 + *(longlong *)(render_context[0x42] + 0x68));
     (**(code **)(*render_context + 0x38))(render_context);
   }
   return param_value;
@@ -722,19 +722,19 @@ undefined4 render_system_index_parameter_getter(longlong *render_context, int pa
 void render_system_resetter(longlong *render_context)
 
 {
-  undefined8 stack_value_1;
-  undefined4 stack_value_2;
-  undefined4 stack_value_3;
-  undefined2 stack_value_4;
-  undefined1 stack_value_5;
-  undefined4 stack_value_6;
-  undefined1 stack_value_7;
-  undefined8 stack_value_8;
+  uint64_t stack_value_1;
+  int32_t stack_value_2;
+  int32_t stack_value_3;
+  int16_t stack_value_4;
+  int8_t stack_value_5;
+  int32_t stack_value_6;
+  int8_t stack_value_7;
+  uint64_t stack_value_8;
   longlong stack_value_9;
-  undefined8 stack_value_10;
-  undefined8 stack_value_11;
-  undefined4 stack_value_12;
-  undefined8 stack_value_13;
+  uint64_t stack_value_10;
+  uint64_t stack_value_11;
+  int32_t stack_value_12;
+  uint64_t stack_value_13;
   
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
@@ -765,32 +765,32 @@ void render_system_resetter(longlong *render_context)
 
 // 函数：渲染系统高级资源分配器
 // 功能：分配渲染系统的高级资源和内存
-undefined4 *
-render_system_advanced_resource_allocator(undefined4 *resource_ptr, int resource_count, undefined4 *param_ptr, uint param_count, undefined4 *data_ptr,
+int32_t *
+render_system_advanced_resource_allocator(int32_t *resource_ptr, int resource_count, int32_t *param_ptr, uint param_count, int32_t *data_ptr,
              int data_count, longlong resource_handle)
 
 {
   int index;
   int buffer_size;
-  undefined4 param_value_1;
-  undefined4 param_value_2;
+  int32_t param_value_1;
+  int32_t param_value_2;
   longlong *resource_obj_ptr;
   longlong *resource_data_ptr;
-  undefined4 param_value_3;
-  undefined8 resource_value;
+  int32_t param_value_3;
+  uint64_t resource_value;
   longlong *memory_block;
-  undefined4 *data_pointer;
+  int32_t *data_pointer;
   ulonglong loop_counter;
   int array_index;
-  undefined4 stack_array[2];
-  undefined4 stack_value_1;
-  undefined4 stack_value_2;
-  undefined4 stack_value_3;
+  int32_t stack_array[2];
+  int32_t stack_value_1;
+  int32_t stack_value_2;
+  int32_t stack_value_3;
   longlong *stack_pointer_1;
   longlong *stack_pointer_2;
   longlong *stack_pointer_3;
-  undefined1 stack_array_2[8];
-  undefined8 stack_value_4;
+  int8_t stack_array_2[8];
+  uint64_t stack_value_4;
   longlong *stack_pointer_4;
   char cleanup_flag_1;
   char cleanup_flag_2;
@@ -815,7 +815,7 @@ render_system_advanced_resource_allocator(undefined4 *resource_ptr, int resource
     if (index < resource_count) {
       if (resource_count == 0) {
         if (index < 2) {
-          *(undefined4 *)((longlong)stack_pointer_2 + 0x14) = 8;
+          *(int32_t *)((longlong)stack_pointer_2 + 0x14) = 8;
         }
         else {
           *(int *)((longlong)stack_pointer_2 + 0x14) = (index >> 1) + index;
@@ -830,7 +830,7 @@ render_system_advanced_resource_allocator(undefined4 *resource_ptr, int resource
        (index = *(int *)((longlong)stack_pointer_2 + 0x3c), index < resource_count)) {
       if (resource_count == 0) {
         if (index < 2) {
-          *(undefined4 *)((longlong)stack_pointer_2 + 0x3c) = 8;
+          *(int32_t *)((longlong)stack_pointer_2 + 0x3c) = 8;
         }
         else {
           *(int *)((longlong)stack_pointer_2 + 0x3c) = (index >> 1) + index;
@@ -854,7 +854,7 @@ render_system_advanced_resource_allocator(undefined4 *resource_ptr, int resource
       buffer_size = *(int *)((longlong)stack_pointer_2 + 0x14);
       if (buffer_size < array_index) {
         if (buffer_size < 2) {
-          *(undefined4 *)((longlong)stack_pointer_2 + 0x14) = 8;
+          *(int32_t *)((longlong)stack_pointer_2 + 0x14) = 8;
         }
         else {
           *(int *)((longlong)stack_pointer_2 + 0x14) = (buffer_size >> 1) + buffer_size;
@@ -863,7 +863,7 @@ render_system_advanced_resource_allocator(undefined4 *resource_ptr, int resource
       }
       resource_data_ptr = stack_pointer_2;
       *(int *)(resource_data_ptr + 2) = array_index;
-      data_pointer = (undefined4 *)(stack_pointer_2[3] + (longlong)index * 0x10);
+      data_pointer = (int32_t *)(stack_pointer_2[3] + (longlong)index * 0x10);
       *data_pointer = param_value_3;
       data_pointer[1] = param_value_1;
       data_pointer[2] = param_value_2;
@@ -872,7 +872,7 @@ render_system_advanced_resource_allocator(undefined4 *resource_ptr, int resource
         buffer_size = *(int *)((longlong)stack_pointer_2 + 0x3c);
         if (buffer_size < array_index) {
           if (buffer_size < 2) {
-            *(undefined4 *)((longlong)stack_pointer_2 + 0x3c) = 8;
+            *(int32_t *)((longlong)stack_pointer_2 + 0x3c) = 8;
           }
           else {
             *(int *)((longlong)stack_pointer_2 + 0x3c) = (buffer_size >> 1) + buffer_size;
@@ -880,7 +880,7 @@ render_system_advanced_resource_allocator(undefined4 *resource_ptr, int resource
           resize_render_buffer(stack_pointer_2 + 7);
         }
         *(int *)(resource_data_ptr + 7) = array_index;
-        data_pointer = (undefined4 *)(stack_pointer_2[8] + (longlong)index * 0x10);
+        data_pointer = (int32_t *)(stack_pointer_2[8] + (longlong)index * 0x10);
         *data_pointer = param_value_3;
         data_pointer[1] = param_value_1;
         data_pointer[2] = param_value_2;
@@ -896,7 +896,7 @@ render_system_advanced_resource_allocator(undefined4 *resource_ptr, int resource
      (index = *(int *)((longlong)stack_pointer_2 + 100), index < (int)param_count)) {
     if (param_count == 0) {
       if (index < 2) {
-        *(undefined4 *)((longlong)stack_pointer_2 + 100) = 8;
+        *(int32_t *)((longlong)stack_pointer_2 + 100) = 8;
         execute_render_system_function();
       }
       else {
@@ -924,7 +924,7 @@ LAB_18044958b:
      (index = *(int *)((longlong)stack_pointer_2 + 0x8c), index < data_count)) {
     if (data_count == 0) {
       if (index < 2) {
-        *(undefined4 *)((longlong)stack_pointer_2 + 0x8c) = 8;
+        *(int32_t *)((longlong)stack_pointer_2 + 0x8c) = 8;
       }
       else {
         *(int *)((longlong)stack_pointer_2 + 0x8c) = (index >> 1) + index;
@@ -936,7 +936,7 @@ LAB_18044958b:
     execute_render_memory_function();
   }
   if (0 < data_count) {
-    data_pointer = (undefined4 *)(resource_handle + 4);
+    data_pointer = (int32_t *)(resource_handle + 4);
     do {
       execute_render_batch_operation(&stack_pointer_1,data_pointer[-1],*data_pointer,data_pointer[1]);
       data_pointer = data_pointer + 3;
@@ -946,7 +946,7 @@ LAB_18044958b:
   param_value_3 = (**(code **)(*resource_obj_ptr + 8))(resource_obj_ptr);
   (**(code **)(*resource_obj_ptr + 0x28))(resource_obj_ptr);
   stack_value_1 = convert_to_resource_id(resource_obj_ptr,0);
-  stack_value_2 = (undefined4)((ulonglong)resource_obj_ptr >> 0x20);
+  stack_value_2 = (int32_t)((ulonglong)resource_obj_ptr >> 0x20);
   *resource_ptr = stack_value_1;
   resource_ptr[1] = stack_value_2;
   resource_ptr[2] = param_value_3;
@@ -984,12 +984,12 @@ LAB_18044958b:
 
 // 函数：渲染系统参数配置器
 // 功能：配置渲染系统的参数和设置
-void render_system_parameter_configurator(longlong *render_context, undefined4 *param_ptr, byte param_flag, char config_flag)
+void render_system_parameter_configurator(longlong *render_context, int32_t *param_ptr, byte param_flag, char config_flag)
 
 {
-  undefined4 param_value_1;
-  undefined4 param_value_2;
-  undefined4 param_value_3;
+  int32_t param_value_1;
+  int32_t param_value_2;
+  int32_t param_value_3;
   char config_value;
   
   if (render_context != (longlong *)0x0) {
@@ -997,10 +997,10 @@ void render_system_parameter_configurator(longlong *render_context, undefined4 *
     param_value_1 = param_ptr[1];
     param_value_2 = param_ptr[2];
     param_value_3 = param_ptr[3];
-    *(undefined4 *)(render_context + 0x34) = *param_ptr;
-    *(undefined4 *)((longlong)render_context + 0x1a4) = param_value_1;
-    *(undefined4 *)(render_context + 0x35) = param_value_2;
-    *(undefined4 *)((longlong)render_context + 0x1ac) = param_value_3;
+    *(int32_t *)(render_context + 0x34) = *param_ptr;
+    *(int32_t *)((longlong)render_context + 0x1a4) = param_value_1;
+    *(int32_t *)(render_context + 0x35) = param_value_2;
+    *(int32_t *)((longlong)render_context + 0x1ac) = param_value_3;
     config_value = (param_flag ^ 1) + 1;
     if (config_flag != '\0') {
       config_value = '\x03';
@@ -1022,11 +1022,11 @@ void render_system_cleaner_extended(longlong *render_context)
     return;
   }
   (**(code **)(*render_context + 0x28))();
-  *(undefined1 *)(render_context + 0x1f) = 0;
-  *(undefined4 *)(render_context + 0x34) = 0;
-  *(undefined4 *)((longlong)render_context + 0x1a4) = 0;
-  *(undefined4 *)(render_context + 0x35) = 0;
-  *(undefined4 *)((longlong)render_context + 0x1ac) = 0x7f7fffff;
+  *(int8_t *)(render_context + 0x1f) = 0;
+  *(int32_t *)(render_context + 0x34) = 0;
+  *(int32_t *)((longlong)render_context + 0x1a4) = 0;
+  *(int32_t *)(render_context + 0x35) = 0;
+  *(int32_t *)((longlong)render_context + 0x1ac) = 0x7f7fffff;
   // 执行渲染清理操作
   (**(code **)(*render_context + 0x38))(render_context);
   return;
@@ -1034,12 +1034,12 @@ void render_system_cleaner_extended(longlong *render_context)
 
 // 函数：渲染系统内存分配器
 // 功能：分配渲染系统的内存和资源
-undefined8 * render_system_memory_allocator(longlong *render_context)
+uint64_t * render_system_memory_allocator(longlong *render_context)
 
 {
-  undefined8 *memory_ptr;
+  uint64_t *memory_ptr;
   
-  memory_ptr = (undefined8 *)allocate_render_memory(render_system_memory_pool,0x38,8,3,0xfffffffffffffffe);
+  memory_ptr = (uint64_t *)allocate_render_memory(render_system_memory_pool,0x38,8,3,0xfffffffffffffffe);
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))();
   }
@@ -1047,7 +1047,7 @@ undefined8 * render_system_memory_allocator(longlong *render_context)
   memory_ptr[1] = 0;
   memory_ptr[5] = 0;
   memory_ptr[3] = 0;
-  *(undefined1 *)(memory_ptr + 2) = 0;
+  *(int8_t *)(memory_ptr + 2) = 0;
   initialize_render_object(memory_ptr,render_context,0);
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x38))(render_context);

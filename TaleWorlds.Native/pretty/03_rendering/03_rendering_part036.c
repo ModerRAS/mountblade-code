@@ -9,62 +9,62 @@
  * 
  * @param render_manager 渲染管理器指针
  */
-void initialize_rendering_manager(undefined8 *render_manager)
+void initialize_rendering_manager(uint64_t *render_manager)
 {
     longlong *buffer_ptr;
-    undefined8 *resource_ptr;
-    undefined8 *texture_ptr;
-    undefined8 *shader_ptr;
+    uint64_t *resource_ptr;
+    uint64_t *texture_ptr;
+    uint64_t *shader_ptr;
     longlong buffer_size;
-    undefined8 resource_handle;
+    uint64_t resource_handle;
     int texture_index;
     longlong *texture_list;
     longlong *shader_list;
     uint texture_count;
-    undefined8 *material_ptr;
-    undefined4 material_id;
-    undefined4 extra_out_XMM0_Da;
-    undefined1 stack_buffer[32];
+    uint64_t *material_ptr;
+    int32_t material_id;
+    int32_t extra_out_XMM0_Da;
+    int8_t stack_buffer[32];
     uint stack_counter;
     longlong *stack_buffer_ptr;
     longlong *stack_texture_ptr;
     longlong *stack_shader_ptr;
     longlong *stack_material_ptr;
-    undefined4 stack_texture_id;
-    undefined4 stack_shader_id;
+    int32_t stack_texture_id;
+    int32_t stack_shader_id;
     int stack_index;
-    undefined4 stack_param;
+    int32_t stack_param;
     longlong *stack_resource_ptr;
     longlong *stack_buffer_ptr2;
-    undefined *stack_data_ptr;
+    void *stack_data_ptr;
     longlong stack_data_size;
-    undefined4 stack_param2;
-    undefined8 stack_resource_handle;
-    undefined4 stack_texture_size;
-    undefined4 stack_shader_size;
-    undefined2 stack_flags;
-    undefined1 stack_flag_byte;
-    undefined4 stack_buffer_size;
-    undefined1 stack_init_flag;
-    undefined8 stack_matrix_data;
+    int32_t stack_param2;
+    uint64_t stack_resource_handle;
+    int32_t stack_texture_size;
+    int32_t stack_shader_size;
+    int16_t stack_flags;
+    int8_t stack_flag_byte;
+    int32_t stack_buffer_size;
+    int8_t stack_init_flag;
+    uint64_t stack_matrix_data;
     longlong stack_matrix_array[3];
-    undefined4 stack_matrix_id;
-    undefined8 stack_transform_data;
-    undefined8 stack_projection_data;
-    undefined8 *stack_manager_ptr;
-    undefined *stack_render_ptr;
-    undefined1 *stack_texture_ptr2;
-    undefined4 stack_render_id;
-    undefined4 stack_shader_count;
-    undefined1 stack_buffer_array[8];
-    undefined8 stack_buffer_data;
+    int32_t stack_matrix_id;
+    uint64_t stack_transform_data;
+    uint64_t stack_projection_data;
+    uint64_t *stack_manager_ptr;
+    void *stack_render_ptr;
+    int8_t *stack_texture_ptr2;
+    int32_t stack_render_id;
+    int32_t stack_shader_count;
+    int8_t stack_buffer_array[8];
+    uint64_t stack_buffer_data;
     longlong stack_buffer_array2[3];
-    undefined4 stack_buffer_id;
-    undefined8 stack_buffer_handle;
-    undefined *stack_material_ptr2;
-    undefined1 *stack_color_ptr;
-    undefined4 stack_color_id;
-    undefined1 stack_array[72];
+    int32_t stack_buffer_id;
+    uint64_t stack_buffer_handle;
+    void *stack_material_ptr2;
+    int8_t *stack_color_ptr;
+    int32_t stack_color_id;
+    int8_t stack_array[72];
     ulonglong stack_checksum;
     
     // 初始化堆栈数据
@@ -82,17 +82,17 @@ void initialize_rendering_manager(undefined8 *render_manager)
     *buffer_ptr = 0;
     render_manager[0x20] = 0;
     render_manager[0x21] = 0;
-    *(undefined4 *)(render_manager + 0x22) = 3;
+    *(int32_t *)(render_manager + 0x22) = 3;
     render_manager[0x24] = 0;
     render_manager[0x25] = 0;
     shader_list = render_manager + 0x27;
     *shader_list = 0;
     render_manager[0x28] = 0;
     render_manager[0x29] = 0;
-    *(undefined4 *)(render_manager + 0x2a) = 3;
-    *(undefined1 *)((longlong)render_manager + 0x11c) = 1;
-    *(undefined1 *)(render_manager + 0x1e) = 0;
-    *(undefined4 *)(render_manager + 0x23) = 0;
+    *(int32_t *)(render_manager + 0x2a) = 3;
+    *(int8_t *)((longlong)render_manager + 0x11c) = 1;
+    *(int8_t *)(render_manager + 0x1e) = 0;
+    *(int32_t *)(render_manager + 0x23) = 0;
     
     // 获取渲染资源句柄
     resource_handle = _DAT_180c86930;
@@ -117,8 +117,8 @@ void initialize_rendering_manager(undefined8 *render_manager)
     }
     
     // 分配纹理资源
-    texture_ptr = (undefined8 *)FUN_1800bf050(material_id, &stack_buffer_ptr2);
-    texture_ptr = (undefined8 *)FUN_1800763c0(*texture_ptr, &stack_resource_ptr);
+    texture_ptr = (uint64_t *)FUN_1800bf050(material_id, &stack_buffer_ptr2);
+    texture_ptr = (uint64_t *)FUN_1800763c0(*texture_ptr, &stack_resource_ptr);
     resource_handle = *texture_ptr;
     *texture_ptr = 0;
     stack_buffer_ptr = (longlong *)render_manager[0x24];
@@ -155,14 +155,14 @@ void initialize_rendering_manager(undefined8 *render_manager)
         if (0 < (int)shader_list) {
             do {
                 texture_index = stack_index;
-                material_ptr = (undefined8 *)0x0;
+                material_ptr = (uint64_t *)0x0;
                 FUN_180627ae0(&stack_data_ptr, (longlong)stack_index * 0x20 + render_manager[0x27]);
                 FUN_1800b08e0(_DAT_180c86930, &stack_buffer_ptr, &stack_data_ptr, 1);
                 *(uint *)(stack_buffer_ptr + 0x65) = *(uint *)(stack_buffer_ptr + 0x65) | 0x20000000;
                 
                 // 添加纹理到队列
-                texture_ptr = (undefined8 *)render_manager[0x20];
-                if (texture_ptr < (undefined8 *)render_manager[0x21]) {
+                texture_ptr = (uint64_t *)render_manager[0x20];
+                if (texture_ptr < (uint64_t *)render_manager[0x21]) {
                     render_manager[0x20] = texture_ptr + 1;
                     *texture_ptr = stack_buffer_ptr;
                     if (stack_buffer_ptr != (longlong *)0x0) {
@@ -171,15 +171,15 @@ void initialize_rendering_manager(undefined8 *render_manager)
                 }
                 else {
                     // 重新分配纹理缓冲区
-                    shader_ptr = (undefined8 *)*buffer_ptr;
+                    shader_ptr = (uint64_t *)*buffer_ptr;
                     buffer_size = (longlong)texture_ptr - (longlong)shader_ptr >> 3;
                     if (buffer_size == 0) {
                         buffer_size = 1;
                     LAB_18028834f:
-                    material_ptr = (undefined8 *)
-                            FUN_18062b420(_DAT_180c8ed18, buffer_size * 8, *(undefined1 *)(render_manager + 0x22));
-                    texture_ptr = (undefined8 *)render_manager[0x20];
-                    shader_ptr = (undefined8 *)*buffer_ptr;
+                    material_ptr = (uint64_t *)
+                            FUN_18062b420(_DAT_180c8ed18, buffer_size * 8, *(int8_t *)(render_manager + 0x22));
+                    texture_ptr = (uint64_t *)render_manager[0x20];
+                    shader_ptr = (uint64_t *)*buffer_ptr;
                     resource_ptr = material_ptr;
                 }
                 else {
@@ -226,7 +226,7 @@ void initialize_rendering_manager(undefined8 *render_manager)
                 if (stack_buffer_ptr != (longlong *)0x0) {
                     resource_handle = 0;
                 LAB_18028843a:
-                    FUN_18022cd30(*(undefined8 *)(render_manager[0x24] + 0x1b8), resource_handle);
+                    FUN_18022cd30(*(uint64_t *)(render_manager[0x24] + 0x1b8), resource_handle);
                 }
             }
             else if ((texture_index == 1) && (stack_buffer_ptr != (longlong *)0x0)) {
@@ -235,7 +235,7 @@ void initialize_rendering_manager(undefined8 *render_manager)
             }
             
             if (((int)shader_list == 1) && (stack_buffer_ptr != (longlong *)0x0)) {
-                FUN_18022cd30(*(undefined8 *)(render_manager[0x24] + 0x1b8), (ulonglong)shader_list & 0xffffffff);
+                FUN_18022cd30(*(uint64_t *)(render_manager[0x24] + 0x1b8), (ulonglong)shader_list & 0xffffffff);
             }
             
             if (stack_buffer_ptr != (longlong *)0x0) {
@@ -255,8 +255,8 @@ void initialize_rendering_manager(undefined8 *render_manager)
     }
     
     // 设置最终渲染参数
-    stack_render_ptr = (undefined *)0x0;
-    stack_texture_ptr2 = (undefined1 *)0xffffffff00000000;
+    stack_render_ptr = (void *)0x0;
+    stack_texture_ptr2 = (int8_t *)0xffffffff00000000;
     stack_render_id = CONCAT13(stack_render_id._3_1_, 1);
     stack_shader_count = 0xffffffff;
     stack_buffer_array[0] = 1;
@@ -286,7 +286,7 @@ void initialize_rendering_manager(undefined8 *render_manager)
     FUN_1800b30d0(resource_handle, &stack_buffer_ptr, &stack_material_ptr2, 1);
     stack_counter = texture_count & 0xffffffef | 8;
     stack_material_ptr2 = &UNK_18098bcb0;
-    texture_ptr = (undefined8 *)FUN_18022cb40(stack_buffer_ptr, &stack_index);
+    texture_ptr = (uint64_t *)FUN_18022cb40(stack_buffer_ptr, &stack_index);
     buffer_ptr = (longlong *)*texture_ptr;
     *texture_ptr = 0;
     stack_material_ptr = stack_shader_ptr;
@@ -308,8 +308,8 @@ void initialize_rendering_manager(undefined8 *render_manager)
         material_id = (**(code **)(*stack_buffer_ptr + 0x38))();
     }
     
-    texture_ptr = (undefined8 *)FUN_1800bf6c0(material_id, &stack_resource_ptr);
-    texture_ptr = (undefined8 *)FUN_1800763c0(*texture_ptr, &stack_buffer_ptr2);
+    texture_ptr = (uint64_t *)FUN_1800bf6c0(material_id, &stack_resource_ptr);
+    texture_ptr = (uint64_t *)FUN_1800763c0(*texture_ptr, &stack_buffer_ptr2);
     resource_handle = *texture_ptr;
     *texture_ptr = 0;
     stack_material_ptr = (longlong *)render_manager[0x25];
@@ -348,7 +348,7 @@ void initialize_rendering_manager(undefined8 *render_manager)
     stack_shader_id = 0x7f7fffff;
     FUN_1800c12e0(render_manager[0x25], &stack_material_ptr);
     FUN_1800b6620();
-    *(undefined4 *)((longlong)render_manager + 0x15c) = 0xc0a00000;
+    *(int32_t *)((longlong)render_manager + 0x15c) = 0xc0a00000;
     stack_material_ptr = stack_matrix_array;
     if (stack_matrix_array[0] == 0) {
         if (stack_shader_ptr != (longlong *)0x0) {
@@ -367,7 +367,7 @@ void initialize_rendering_manager(undefined8 *render_manager)
  * @param free_flag 是否释放管理器内存的标志
  * @return 渲染管理器指针
  */
-undefined8 * cleanup_rendering_resources(undefined8 *render_manager, ulonglong free_flag)
+uint64_t * cleanup_rendering_resources(uint64_t *render_manager, ulonglong free_flag)
 {
     longlong *resource_ptr;
     
@@ -419,15 +419,15 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     int render_flags;
     longlong *resource_list1;
     longlong *resource_list2;
-    undefined4 render_param1;
-    undefined4 render_param2;
-    undefined8 scene_data;
+    int32_t render_param1;
+    int32_t render_param2;
+    uint64_t scene_data;
     longlong scene_id;
-    undefined8 *resource_ptr1;
-    undefined8 *resource_ptr2;
-    undefined1 resource_flag;
+    uint64_t *resource_ptr1;
+    uint64_t *resource_ptr2;
+    int8_t resource_flag;
     uint texture_index;
-    undefined4 material_param;
+    int32_t material_param;
     longlong resource_size;
     byte scene_active;
     float viewport_width;
@@ -436,83 +436,83 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     float projection_height;
     float ortho_width;
     float ortho_height;
-    undefined8 stack_scene_data;
-    undefined4 stack_render_id;
-    undefined4 stack_texture_id;
-    undefined2 stack_flags;
-    undefined1 stack_flag_byte;
-    undefined4 stack_param;
-    undefined1 stack_init_flag;
-    undefined8 stack_matrix_data;
+    uint64_t stack_scene_data;
+    int32_t stack_render_id;
+    int32_t stack_texture_id;
+    int16_t stack_flags;
+    int8_t stack_flag_byte;
+    int32_t stack_param;
+    int8_t stack_init_flag;
+    uint64_t stack_matrix_data;
     longlong stack_scene_id;
-    undefined8 stack_transform_data;
-    undefined8 stack_projection_data;
-    undefined4 stack_buffer_id;
-    undefined8 stack_buffer_data;
-    undefined8 stack_render_data;
-    undefined4 stack_material_id;
-    undefined2 stack_resource_flag;
-    undefined8 stack_resource_handle;
-    undefined4 stack_texture_size;
-    undefined1 stack_active_flag;
-    undefined4 stack_param2;
-    undefined8 stack_handle_data;
-    undefined2 stack_handle_flag;
-    undefined8 stack_scene_handle;
-    undefined4 stack_scene_id2;
-    undefined1 stack_scene_flag;
-    undefined8 stack_config_data;
-    undefined4 stack_config_id;
-    undefined4 stack_param3;
-    undefined4 stack_param4;
-    undefined4 stack_param5;
-    undefined4 stack_param6;
-    undefined4 stack_param7;
-    undefined4 stack_param8;
-    undefined4 stack_param9;
-    undefined4 stack_param10;
-    undefined4 stack_param11;
-    undefined4 stack_param12;
-    undefined4 stack_param13;
-    undefined4 stack_param14;
-    undefined4 stack_param15;
-    undefined4 stack_param16;
-    undefined4 stack_param17;
-    undefined4 stack_param18;
-    undefined4 stack_param19;
-    undefined4 stack_param20;
-    undefined4 stack_param21;
-    undefined4 stack_param22;
-    undefined4 stack_param23;
-    undefined4 stack_param24;
-    undefined4 stack_param25;
-    undefined4 stack_param26;
-    undefined4 stack_param27;
-    undefined4 stack_param28;
-    undefined4 stack_param29;
-    undefined4 stack_param30;
-    undefined4 stack_param31;
-    undefined4 stack_param32;
-    undefined4 stack_param33;
-    undefined4 stack_param34;
-    undefined4 stack_param35;
-    undefined4 stack_param36;
-    undefined4 stack_param37;
-    undefined4 stack_param38;
-    undefined4 stack_param39;
-    undefined4 stack_param40;
-    undefined4 stack_param41;
-    undefined4 stack_param42;
-    undefined4 stack_param43;
-    undefined4 stack_param44;
-    undefined4 stack_param45;
-    undefined4 stack_param46;
-    undefined4 stack_param47;
+    uint64_t stack_transform_data;
+    uint64_t stack_projection_data;
+    int32_t stack_buffer_id;
+    uint64_t stack_buffer_data;
+    uint64_t stack_render_data;
+    int32_t stack_material_id;
+    int16_t stack_resource_flag;
+    uint64_t stack_resource_handle;
+    int32_t stack_texture_size;
+    int8_t stack_active_flag;
+    int32_t stack_param2;
+    uint64_t stack_handle_data;
+    int16_t stack_handle_flag;
+    uint64_t stack_scene_handle;
+    int32_t stack_scene_id2;
+    int8_t stack_scene_flag;
+    uint64_t stack_config_data;
+    int32_t stack_config_id;
+    int32_t stack_param3;
+    int32_t stack_param4;
+    int32_t stack_param5;
+    int32_t stack_param6;
+    int32_t stack_param7;
+    int32_t stack_param8;
+    int32_t stack_param9;
+    int32_t stack_param10;
+    int32_t stack_param11;
+    int32_t stack_param12;
+    int32_t stack_param13;
+    int32_t stack_param14;
+    int32_t stack_param15;
+    int32_t stack_param16;
+    int32_t stack_param17;
+    int32_t stack_param18;
+    int32_t stack_param19;
+    int32_t stack_param20;
+    int32_t stack_param21;
+    int32_t stack_param22;
+    int32_t stack_param23;
+    int32_t stack_param24;
+    int32_t stack_param25;
+    int32_t stack_param26;
+    int32_t stack_param27;
+    int32_t stack_param28;
+    int32_t stack_param29;
+    int32_t stack_param30;
+    int32_t stack_param31;
+    int32_t stack_param32;
+    int32_t stack_param33;
+    int32_t stack_param34;
+    int32_t stack_param35;
+    int32_t stack_param36;
+    int32_t stack_param37;
+    int32_t stack_param38;
+    int32_t stack_param39;
+    int32_t stack_param40;
+    int32_t stack_param41;
+    int32_t stack_param42;
+    int32_t stack_param43;
+    int32_t stack_param44;
+    int32_t stack_param45;
+    int32_t stack_param46;
+    int32_t stack_param47;
     
     // 初始化场景数据
     stack_scene_handle = 0xfffffffffffffffe;
     if (*(char *)(scene_param + 0x11c) != '\0') {
-        *(undefined1 *)(scene_param + 0x11c) = 0;
+        *(int8_t *)(scene_param + 0x11c) = 0;
         *(float *)(scene_param + 0x15c) = (float)_DAT_180c8ed30 * 1e-05;
     }
     
@@ -548,8 +548,8 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     stack_handle_data = 0;
     
     // 设置场景参数
-    FUN_180076c50(*(undefined8 *)(scene_param + 0x120), &stack_buffer_id);
-    FUN_180076c50(*(undefined8 *)(scene_param + 0x128), &stack_scene_data);
+    FUN_180076c50(*(uint64_t *)(scene_param + 0x120), &stack_buffer_id);
+    FUN_180076c50(*(uint64_t *)(scene_param + 0x128), &stack_scene_data);
     FUN_1800b6620();
     
     scene_id = FUN_1800daa50();
@@ -566,16 +566,16 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
         (**(code **)(*resource_list2 + 0x38))();
     }
     resource_list1 = *(longlong **)(scene_id + 0x96a8);
-    *(undefined8 *)(scene_id + 0x96a8) = 0;
+    *(uint64_t *)(scene_id + 0x96a8) = 0;
     if (resource_list1 != (longlong *)0x0) {
         (**(code **)(*resource_list1 + 0x38))();
     }
     
     // 设置场景渲染参数
-    scene_data = *(undefined8 *)(scene_param + 0x24);
-    *(undefined8 *)(scene_id + 0x11c18) = *(undefined8 *)(scene_param + 0x1c);
-    *(undefined8 *)(scene_id + 0x11c20) = scene_data;
-    *(undefined8 *)(scene_id + 0x11c28) = *(undefined8 *)(scene_param + 0x2c);
+    scene_data = *(uint64_t *)(scene_param + 0x24);
+    *(uint64_t *)(scene_id + 0x11c18) = *(uint64_t *)(scene_param + 0x1c);
+    *(uint64_t *)(scene_id + 0x11c20) = scene_data;
+    *(uint64_t *)(scene_id + 0x11c28) = *(uint64_t *)(scene_param + 0x2c);
     
     // 计算投影参数
     resource_size = _DAT_180c86950;
@@ -605,9 +605,9 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     *(float *)(scene_id + 0x11c24) = projection_height * viewport_width - ortho_height;
     
     // 设置场景渲染标志
-    *(undefined4 *)(scene_id + 0x11cf0) = 0x1000000;
-    *(undefined2 *)(scene_id + 0x11c36) = 0x100;
-    *(undefined1 *)(scene_id + 0x9a31) = 0;
+    *(int32_t *)(scene_id + 0x11cf0) = 0x1000000;
+    *(int16_t *)(scene_id + 0x11c36) = 0x100;
+    *(int8_t *)(scene_id + 0x9a31) = 0;
     texture_index = *(uint *)(scene_param + 0xcc);
     *(uint *)(scene_id + 4) = texture_index | 0x10010082;
     
@@ -622,8 +622,8 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     
     // 复制场景数据
     resource_size = 2;
-    resource_ptr1 = (undefined8 *)(resource_size + 0x16a0);
-    resource_ptr2 = (undefined8 *)(scene_id + 0x30);
+    resource_ptr1 = (uint64_t *)(resource_size + 0x16a0);
+    resource_ptr2 = (uint64_t *)(scene_id + 0x30);
     do {
         resource_ptr2 = resource_ptr2;
         resource_ptr1 = resource_ptr1;
@@ -662,27 +662,27 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     scene_data = resource_ptr1[0x13];
     resource_ptr2[0x12] = resource_ptr1[0x12];
     resource_ptr2[0x13] = scene_data;
-    material_param = *(undefined4 *)((longlong)resource_ptr1 + 0xa4);
-    render_param1 = *(undefined4 *)(resource_ptr1 + 0x15);
-    render_param2 = *(undefined4 *)((longlong)resource_ptr1 + 0xac);
-    *(undefined4 *)(resource_ptr2 + 0x14) = *(undefined4 *)(resource_ptr1 + 0x14);
-    *(undefined4 *)((longlong)resource_ptr2 + 0xa4) = material_param;
-    *(undefined4 *)(resource_ptr2 + 0x15) = render_param1;
-    *(undefined4 *)((longlong)resource_ptr2 + 0xac) = render_param2;
-    material_param = *(undefined4 *)((longlong)resource_ptr1 + 0xb4);
-    render_param1 = *(undefined4 *)(resource_ptr1 + 0x17);
-    render_param2 = *(undefined4 *)((longlong)resource_ptr1 + 0xbc);
-    *(undefined4 *)(resource_ptr2 + 0x16) = *(undefined4 *)(resource_ptr1 + 0x16);
-    *(undefined4 *)((longlong)resource_ptr2 + 0xb4) = material_param;
-    *(undefined4 *)(resource_ptr2 + 0x17) = render_param1;
-    *(undefined4 *)((longlong)resource_ptr2 + 0xbc) = render_param2;
+    material_param = *(int32_t *)((longlong)resource_ptr1 + 0xa4);
+    render_param1 = *(int32_t *)(resource_ptr1 + 0x15);
+    render_param2 = *(int32_t *)((longlong)resource_ptr1 + 0xac);
+    *(int32_t *)(resource_ptr2 + 0x14) = *(int32_t *)(resource_ptr1 + 0x14);
+    *(int32_t *)((longlong)resource_ptr2 + 0xa4) = material_param;
+    *(int32_t *)(resource_ptr2 + 0x15) = render_param1;
+    *(int32_t *)((longlong)resource_ptr2 + 0xac) = render_param2;
+    material_param = *(int32_t *)((longlong)resource_ptr1 + 0xb4);
+    render_param1 = *(int32_t *)(resource_ptr1 + 0x17);
+    render_param2 = *(int32_t *)((longlong)resource_ptr1 + 0xbc);
+    *(int32_t *)(resource_ptr2 + 0x16) = *(int32_t *)(resource_ptr1 + 0x16);
+    *(int32_t *)((longlong)resource_ptr2 + 0xb4) = material_param;
+    *(int32_t *)(resource_ptr2 + 0x17) = render_param1;
+    *(int32_t *)((longlong)resource_ptr2 + 0xbc) = render_param2;
     
     // 初始化场景
     FUN_18024b8d0(scene_id);
     if (*(char *)(scene_param + 0xdc) != '\0') {
         *(uint *)(scene_id + 4) = *(uint *)(scene_id + 4) | 0x40000;
     }
-    *(undefined4 *)(scene_id + 0x9a2c) = 10000;
+    *(int32_t *)(scene_id + 0x9a2c) = 10000;
     
     // 设置渲染参数矩阵
     stack_param26 = 0x3f800000;
@@ -719,7 +719,7 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     stack_param28 = 0;
     stack_param27 = 0x7f7fffff;
     
-    *(undefined1 *)(scene_id + 0x1c60) = 1;
+    *(int8_t *)(scene_id + 0x1c60) = 1;
     stack_param38 = stack_param10;
     stack_param37 = stack_param9;
     stack_param36 = stack_param8;
@@ -733,14 +733,14 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     stack_param44 = stack_param33;
     stack_param45 = stack_param32;
     resource_flag = func_0x0001800e2bf0(_DAT_180c86890, scene_id);
-    *(undefined1 *)(scene_id + 0x1c61) = resource_flag;
+    *(int8_t *)(scene_id + 0x1c61) = resource_flag;
     
     if (*(int *)(scene_id + 8) != -1) {
-        scene_active = (byte)*(undefined4 *)(scene_id + 0x18);
+        scene_active = (byte)*(int32_t *)(scene_id + 0x18);
     }
     *(byte *)(scene_id + 0x1c62) = scene_active & 1;
     material_param = func_0x00018024c420(scene_id);
-    *(undefined4 *)(scene_id + 0x1c64) = material_param;
+    *(int32_t *)(scene_id + 0x1c64) = material_param;
     
     // 设置场景渲染数据
     stack_projection_data = 0;
@@ -761,9 +761,9 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     
     // 初始化场景渲染器
     if (*(char *)(scene_param + 0xf0) == '\0') {
-        FUN_180077750(*(undefined8 *)(scene_param + 0x120), scene_id, &stack_param26, 0, &stack_projection_data);
+        FUN_180077750(*(uint64_t *)(scene_param + 0x120), scene_id, &stack_param26, 0, &stack_projection_data);
     }
-    FUN_180077750(*(undefined8 *)(scene_param + 0x128), scene_id, &stack_param10, 0, &stack_projection_data);
+    FUN_180077750(*(uint64_t *)(scene_param + 0x128), scene_id, &stack_param10, 0, &stack_projection_data);
     
     // 锁定并更新场景计数器
     LOCK();
@@ -774,13 +774,13 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
     *(longlong *)(renderer_ptr + 0x9a48 + (longlong)render_flags * 8) = scene_id;
     
     // 复制场景参数
-    material_param = *(undefined4 *)(renderer_ptr + 0x9a38);
-    render_param1 = *(undefined4 *)(renderer_ptr + 0x9a3c);
-    render_param2 = *(undefined4 *)(renderer_ptr + 0x9a40);
-    *(undefined4 *)(scene_id + 0x9a34) = *(undefined4 *)(renderer_ptr + 0x9a34);
-    *(undefined4 *)(scene_id + 0x9a38) = material_param;
-    *(undefined4 *)(scene_id + 0x9a3c) = render_param1;
-    *(undefined4 *)(scene_id + 0x9a40) = render_param2;
+    material_param = *(int32_t *)(renderer_ptr + 0x9a38);
+    render_param1 = *(int32_t *)(renderer_ptr + 0x9a3c);
+    render_param2 = *(int32_t *)(renderer_ptr + 0x9a40);
+    *(int32_t *)(scene_id + 0x9a34) = *(int32_t *)(renderer_ptr + 0x9a34);
+    *(int32_t *)(scene_id + 0x9a38) = material_param;
+    *(int32_t *)(scene_id + 0x9a3c) = render_param1;
+    *(int32_t *)(scene_id + 0x9a40) = render_param2;
     
     if (stack_scene_id2 == 0) {
         if (stack_scene_id == 0) {
@@ -801,31 +801,31 @@ longlong create_rendering_scene(longlong scene_param, longlong renderer_ptr)
  * @param init_param2 初始化参数2
  * @return 管线数据指针
  */
-undefined8 *
-initialize_rendering_pipeline(undefined8 pipeline_param, undefined8 *pipeline_data, undefined8 init_param1, undefined8 init_param2)
+uint64_t *
+initialize_rendering_pipeline(uint64_t pipeline_param, uint64_t *pipeline_data, uint64_t init_param1, uint64_t init_param2)
 {
-    undefined8 *pipeline_ptr;
+    uint64_t *pipeline_ptr;
     
     // 初始化管线数据
     *pipeline_data = &UNK_18098bcb0;
     pipeline_data[1] = 0;
-    *(undefined4 *)(pipeline_data + 2) = 0;
+    *(int32_t *)(pipeline_data + 2) = 0;
     *pipeline_data = &UNK_180a3c3e0;
     pipeline_data[3] = 0;
     pipeline_data[1] = 0;
-    *(undefined4 *)(pipeline_data + 2) = 0;
+    *(int32_t *)(pipeline_data + 2) = 0;
     
     // 设置管线参数
     FUN_1806277c0(pipeline_data, 0x16, init_param1, init_param2, 0, 0xfffffffffffffffe);
-    pipeline_ptr = (undefined8 *)pipeline_data[1];
+    pipeline_ptr = (uint64_t *)pipeline_data[1];
     
     // 设置管线标识
     *pipeline_ptr = 0x6964616f4c6c6772;  // "GlobalLogic"
     pipeline_ptr[1] = 0x65657263735f676e;  // "ng_services"
-    *(undefined4 *)(pipeline_ptr + 2) = 0x69765f6e;  // "n_vi"
-    *(undefined2 *)((longlong)pipeline_ptr + 0x14) = 0x7765;  // "ew"
-    *(undefined1 *)((longlong)pipeline_ptr + 0x16) = 0;
-    *(undefined4 *)(pipeline_data + 2) = 0x16;
+    *(int32_t *)(pipeline_ptr + 2) = 0x69765f6e;  // "n_vi"
+    *(int16_t *)((longlong)pipeline_ptr + 0x14) = 0x7765;  // "ew"
+    *(int8_t *)((longlong)pipeline_ptr + 0x16) = 0;
+    *(int32_t *)(pipeline_data + 2) = 0x16;
     
     return pipeline_data;
 }
@@ -848,7 +848,7 @@ ulonglong process_rendering_events(longlong event_data)
     longlong resource_size;
     
     // 处理主渲染事件
-    FUN_180077040(*(undefined8 *)(event_data + 0x120));
+    FUN_180077040(*(uint64_t *)(event_data + 0x120));
     event_base = *(longlong *)(event_data + 0x128);
     
     if (*(longlong *)(event_base + 0x1b8) != 0) {
@@ -878,7 +878,7 @@ ulonglong process_rendering_events(longlong event_data)
         if (*(longlong *)(event_base + 0x1d8) != 0) {
             FUN_18064e900();
         }
-        *(undefined8 *)(event_base + 0x1d8) = 0;
+        *(uint64_t *)(event_base + 0x1d8) = 0;
         LOCK();
         event_flag = *(byte *)(event_base + 0xf9);
         *(byte *)(event_base + 0xf9) = 0;
@@ -890,7 +890,7 @@ ulonglong process_rendering_events(longlong event_data)
     if (*(longlong *)(event_base + 0x1e8) != 0) {
         FUN_180080060();
         event_result = *(ulonglong *)(event_base + 0x1f0);
-        *(undefined8 *)(event_base + 0x1e8) = 0;
+        *(uint64_t *)(event_base + 0x1e8) = 0;
         if (event_result != 0) {
             *(byte *)(event_result + 0xfe) = *(byte *)(event_result + 0xfe) & 0xfb;
         }

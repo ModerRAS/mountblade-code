@@ -59,16 +59,16 @@ char *RENDERING_TEXTURE_PATTERN_12 = (char *)0x18099128b;  // 纹理模式数据
 void rendering_texture_mapper(void)
 {
   ushort texture_width;
-  undefined1 fill_value;
+  int8_t fill_value;
   longlong pattern_index;
   int row_counter;
-  undefined1 fill_flag;
+  int8_t fill_flag;
   int col_counter;
   int texture_height;
   longlong render_context;
   longlong texture_params;
   longlong buffer_offset;
-  undefined1 max_fill_value;
+  int8_t max_fill_value;
   
   row_counter = 0;
   pattern_index = 0;
@@ -85,13 +85,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_1[pattern_index] == '.') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(buffer_offset + *(longlong *)(render_context + 0x18)) = fill_value;
+      *(int8_t *)(buffer_offset + *(longlong *)(render_context + 0x18)) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_1[pattern_index] == 'X') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(buffer_offset + 0x6d + *(longlong *)(render_context + 0x18)) = fill_value;
+      *(int8_t *)(buffer_offset + 0x6d + *(longlong *)(render_context + 0x18)) = fill_value;
       
       // 处理第二个纹理通道（G分量）
       buffer_offset = (longlong)
@@ -101,13 +101,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_2[pattern_index] == '.') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 1 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 1 + buffer_offset) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_2[pattern_index] == 'X') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 0x6e + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 0x6e + buffer_offset) = fill_value;
       
       // 处理第三个纹理通道（B分量）
       buffer_offset = (longlong)
@@ -117,13 +117,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_3[pattern_index] == '.') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 2 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 2 + buffer_offset) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_3[pattern_index] == 'X') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 0x6f + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 0x6f + buffer_offset) = fill_value;
       
       // 处理第四个纹理通道（A分量）
       buffer_offset = (longlong)
@@ -134,13 +134,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_4[pattern_index] == '.') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 3 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 3 + buffer_offset) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_4[pattern_index] == 'X') {
         fill_value = fill_flag;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 0x70 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 0x70 + buffer_offset) = fill_value;
       
       // 处理第五个纹理通道（辅助分量1）
       buffer_offset = (longlong)
@@ -150,13 +150,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_5[pattern_index] == '.') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 4 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 4 + buffer_offset) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_5[pattern_index] == 'X') {
         fill_value = fill_flag;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 0x71 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 0x71 + buffer_offset) = fill_value;
       
       // 处理第六个纹理通道（辅助分量2）
       buffer_offset = (longlong)
@@ -166,13 +166,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_6[pattern_index] == '.') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 5 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 5 + buffer_offset) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_6[pattern_index] == 'X') {
         fill_value = fill_flag;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 0x72 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 0x72 + buffer_offset) = fill_value;
       
       // 处理第七个纹理通道（辅助分量3）
       buffer_offset = (longlong)
@@ -182,13 +182,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_7[pattern_index] == '.') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 6 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 6 + buffer_offset) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_7[pattern_index] == 'X') {
         fill_value = fill_flag;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 0x73 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 0x73 + buffer_offset) = fill_value;
       
       // 处理第八个纹理通道（辅助分量4）
       buffer_offset = (longlong)
@@ -200,13 +200,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_8[pattern_index] == '.') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 7 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 7 + buffer_offset) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_8[pattern_index] == 'X') {
         fill_value = max_fill_value;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 0x74 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 0x74 + buffer_offset) = fill_value;
       
       // 处理第九个纹理通道（辅助分量5）
       buffer_offset = (longlong)
@@ -216,13 +216,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_9[pattern_index] == '.') {
         fill_value = 0xff;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 8 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 8 + buffer_offset) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_9[pattern_index] == 'X') {
         fill_value = max_fill_value;
       }
-      *(undefined1 *)(*(longlong *)(render_context + 0x18) + 0x75 + buffer_offset) = fill_value;
+      *(int8_t *)(*(longlong *)(render_context + 0x18) + 0x75 + buffer_offset) = fill_value;
       
       // 处理第十个纹理通道（辅助分量6）
       texture_height = (uint)*(ushort *)(texture_params + 8) +
@@ -231,13 +231,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_10[pattern_index] == '.') {
         fill_value = max_fill_value;
       }
-      *(undefined1 *)((longlong)texture_height + 9 + *(longlong *)(render_context + 0x18)) = fill_value;
+      *(int8_t *)((longlong)texture_height + 9 + *(longlong *)(render_context + 0x18)) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_10[pattern_index] == 'X') {
         fill_value = fill_flag;
       }
-      *(undefined1 *)((longlong)texture_height + 0x76 + *(longlong *)(render_context + 0x18)) = fill_value;
+      *(int8_t *)((longlong)texture_height + 0x76 + *(longlong *)(render_context + 0x18)) = fill_value;
       
       // 处理第十一个纹理通道（辅助分量7）
       texture_height = (uint)*(ushort *)(texture_params + 8) +
@@ -246,13 +246,13 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_11[pattern_index] == '.') {
         fill_value = max_fill_value;
       }
-      *(undefined1 *)((longlong)texture_height + 10 + *(longlong *)(render_context + 0x18)) = fill_value;
+      *(int8_t *)((longlong)texture_height + 10 + *(longlong *)(render_context + 0x18)) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_11[pattern_index] == 'X') {
         fill_value = fill_flag;
       }
-      *(undefined1 *)((longlong)texture_height + 0x77 + *(longlong *)(render_context + 0x18)) = fill_value;
+      *(int8_t *)((longlong)texture_height + 0x77 + *(longlong *)(render_context + 0x18)) = fill_value;
       
       // 处理第十二个纹理通道（辅助分量8）
       texture_height = (uint)*(ushort *)(texture_params + 8) +
@@ -261,7 +261,7 @@ void rendering_texture_mapper(void)
       if (RENDERING_TEXTURE_PATTERN_12[pattern_index] == '.') {
         fill_value = max_fill_value;
       }
-      *(undefined1 *)((longlong)texture_height + 0xb + *(longlong *)(render_context + 0x18)) = fill_value;
+      *(int8_t *)((longlong)texture_height + 0xb + *(longlong *)(render_context + 0x18)) = fill_value;
       
       fill_value = 0;
       if (RENDERING_TEXTURE_PATTERN_12[pattern_index] == 'X') {
@@ -269,7 +269,7 @@ void rendering_texture_mapper(void)
       }
       pattern_index = pattern_index + 0xc;  // 移动到下一个纹理模式
       col_counter = col_counter + 0xc;       // 移动到下一列
-      *(undefined1 *)((longlong)texture_height + 0x78 + *(longlong *)(render_context + 0x18)) = fill_value;
+      *(int8_t *)((longlong)texture_height + 0x78 + *(longlong *)(render_context + 0x18)) = fill_value;
     } while (col_counter < 0x6c);           // 列循环（108像素）
     row_counter = row_counter + 1;           // 移动到下一行
   } while (row_counter < 0x1b);              // 行循环（27行）
@@ -307,10 +307,10 @@ void rendering_texture_border_processor(void)
   texture_offset = (uint)*(ushort *)(texture_params + 10) * texture_width + (uint)*(ushort *)(texture_params + 8);
   
   // 填充纹理边界像素（四个角的像素）
-  *(undefined1 *)(*(longlong *)(render_context + 0x18) + 1 + (longlong)(texture_offset + texture_width)) = 0xff;
-  *(undefined1 *)((longlong)(texture_offset + texture_width) + *(longlong *)(render_context + 0x18)) = 0xff;
-  *(undefined1 *)(*(longlong *)(render_context + 0x18) + 1 + (longlong)texture_offset) = 0xff;
-  *(undefined1 *)((longlong)texture_offset + *(longlong *)(render_context + 0x18)) = 0xff;
+  *(int8_t *)(*(longlong *)(render_context + 0x18) + 1 + (longlong)(texture_offset + texture_width)) = 0xff;
+  *(int8_t *)((longlong)(texture_offset + texture_width) + *(longlong *)(render_context + 0x18)) = 0xff;
+  *(int8_t *)(*(longlong *)(render_context + 0x18) + 1 + (longlong)texture_offset) = 0xff;
+  *(int8_t *)((longlong)texture_offset + *(longlong *)(render_context + 0x18)) = 0xff;
   
   // 计算纹理坐标
   texture_height = *(ushort *)(texture_params + 10);
@@ -335,20 +335,20 @@ void rendering_texture_border_processor(void)
 longlong rendering_parameter_initializer(longlong param_context)
 {
   // 初始化指针成员为NULL
-  *(undefined8 *)(param_context + 8) = 0;      // 资源指针1
-  *(undefined8 *)(param_context + 0x10) = 0;     // 资源指针2
-  *(undefined8 *)(param_context + 0x18) = 0;     // 资源指针3
-  *(undefined8 *)(param_context + 0x20) = 0;     // 资源指针4
-  *(undefined8 *)(param_context + 0x28) = 0;     // 资源指针5
-  *(undefined8 *)(param_context + 0x30) = 0;     // 资源指针6
-  *(undefined8 *)(param_context + 0x38) = 0;     // 资源指针7
+  *(uint64_t *)(param_context + 8) = 0;      // 资源指针1
+  *(uint64_t *)(param_context + 0x10) = 0;     // 资源指针2
+  *(uint64_t *)(param_context + 0x18) = 0;     // 资源指针3
+  *(uint64_t *)(param_context + 0x20) = 0;     // 资源指针4
+  *(uint64_t *)(param_context + 0x28) = 0;     // 资源指针5
+  *(uint64_t *)(param_context + 0x30) = 0;     // 资源指针6
+  *(uint64_t *)(param_context + 0x38) = 0;     // 资源指针7
   
   // 初始化浮点参数
-  *(undefined8 *)(param_context + 4) = 0x3f800000;  // 缩放因子 (1.0f)
+  *(uint64_t *)(param_context + 4) = 0x3f800000;  // 缩放因子 (1.0f)
   
   // 初始化标志位
-  *(undefined2 *)(param_context + 0x4c) = 0x3f;     // 状态标志
-  *(undefined4 *)(param_context + 0xc) = 0;        // 控制标志
+  *(int16_t *)(param_context + 0x4c) = 0x3f;     // 状态标志
+  *(int32_t *)(param_context + 0xc) = 0;        // 控制标志
   
   // 调用参数处理函数进行进一步初始化
   rendering_state_reset(param_context);
@@ -369,10 +369,10 @@ longlong rendering_parameter_initializer(longlong param_context)
 // 注意：
 // - 底层函数FUN_180059ba0不返回（可能包含跳转或异常处理）
 // - 使用全局变量跟踪资源状态
-void rendering_resource_cleanup(longlong resource_context, undefined8 cleanup_param1, undefined8 cleanup_param2, undefined8 cleanup_param3)
+void rendering_resource_cleanup(longlong resource_context, uint64_t cleanup_param1, uint64_t cleanup_param2, uint64_t cleanup_param3)
 {
   longlong resource_ptr;
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;  // 清理标志位
   rendering_state_reset();            // 重置渲染状态
@@ -422,7 +422,7 @@ void rendering_resource_cleanup(longlong resource_context, undefined8 cleanup_pa
 // 
 // 注意：
 // - 底层函数FUN_180059ba0不返回（可能包含跳转或异常处理）
-void rendering_state_reset(undefined4 *state_context)
+void rendering_state_reset(int32_t *state_context)
 {
   longlong resource_ptr;
   longlong global_context;
@@ -434,7 +434,7 @@ void rendering_state_reset(undefined4 *state_context)
   // 释放第一个资源（位于偏移量6）
   resource_ptr = *(longlong *)(state_context + 6);
   if (resource_ptr != 0) {
-    *(undefined8 *)(state_context + 4) = 0;  // 清零资源指针
+    *(uint64_t *)(state_context + 4) = 0;  // 清零资源指针
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;  // 更新资源计数器
     }
@@ -445,7 +445,7 @@ void rendering_state_reset(undefined4 *state_context)
   // 释放第二个资源（位于偏移量10）
   resource_ptr = *(longlong *)(state_context + 10);
   if (resource_ptr != 0) {
-    *(undefined8 *)(state_context + 8) = 0;  // 清零资源指针
+    *(uint64_t *)(state_context + 8) = 0;  // 清零资源指针
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;  // 更新资源计数器
     }
@@ -456,7 +456,7 @@ void rendering_state_reset(undefined4 *state_context)
   // 释放第三个资源（位于偏移量14）
   resource_ptr = *(longlong *)(state_context + 0xe);
   if (resource_ptr != 0) {
-    *(undefined8 *)(state_context + 0xc) = 0;  // 清零资源指针
+    *(uint64_t *)(state_context + 0xc) = 0;  // 清零资源指针
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;  // 更新资源计数器
     }
@@ -465,13 +465,13 @@ void rendering_state_reset(undefined4 *state_context)
   }
   
   // 重置其他状态字段
-  *(undefined8 *)(state_context + 0x10) = 0;    // 清零扩展状态1
+  *(uint64_t *)(state_context + 0x10) = 0;    // 清零扩展状态1
   state_context[0x12] = 0;                       // 清零扩展状态2
-  *(undefined2 *)((longlong)state_context + 0x4e) = 0;  // 清零控制标志
-  *(undefined8 *)(state_context + 0x14) = 0;    // 清零数据指针1
-  *(undefined8 *)(state_context + 0x16) = 0;    // 清零数据指针2
-  *(undefined8 *)(state_context + 0x18) = 0;    // 清零数据指针3
-  *(undefined1 *)(state_context + 0x1a) = 1;     // 设置激活标志
+  *(int16_t *)((longlong)state_context + 0x4e) = 0;  // 清零控制标志
+  *(uint64_t *)(state_context + 0x14) = 0;    // 清零数据指针1
+  *(uint64_t *)(state_context + 0x16) = 0;    // 清零数据指针2
+  *(uint64_t *)(state_context + 0x18) = 0;    // 清零数据指针3
+  *(int8_t *)(state_context + 0x1a) = 1;     // 设置激活标志
   state_context[0x1b] = 0;                       // 清零保留字段
   return;
 }
@@ -494,11 +494,11 @@ void rendering_state_reset(undefined4 *state_context)
 // 4. 优化数据结构以提高性能
 void rendering_parameter_processor(longlong param_context)
 {
-  undefined8 *material_data;
+  uint64_t *material_data;
   ushort material_index;
-  undefined8 material_property;
+  uint64_t material_property;
   longlong resource_ptr;
-  undefined8 *material_ptr;
+  uint64_t *material_ptr;
   ushort *index_ptr;
   float *param_buffer;
   int param_count;
@@ -508,7 +508,7 @@ void rendering_parameter_processor(longlong param_context)
   ulonglong next_max_index;
   int capacity;
   float scale_factor;
-  undefined4 default_param;
+  int32_t default_param;
   
   global_context = RENDERING_GLOBAL_CONTEXT_1;
   next_max_index = 0;
@@ -537,7 +537,7 @@ void rendering_parameter_processor(longlong param_context)
     resource_ptr = *(longlong *)(param_context + 0x38);
     if (resource_ptr == 0) {
       // 初始化渲染状态
-      *(undefined1 *)(param_context + 0x68) = 0;
+      *(int8_t *)(param_context + 0x68) = 0;
       rendering_capacity_expander(param_context, current_max_index + 1);
       
       // 处理材质参数
@@ -547,8 +547,8 @@ void rendering_parameter_processor(longlong param_context)
         do {
           capacity = (int)next_max_index;
           max_index = (ulonglong)*(ushort *)(*(longlong *)(param_context + 0x18) + (longlong)capacity * 0x28);
-          *(undefined4 *)(*(longlong *)(param_context + 0x28) + max_index * 4) =
-               *(undefined4 *)(*(longlong *)(param_context + 0x18) + 4 + (longlong)capacity * 0x28);
+          *(int32_t *)(*(longlong *)(param_context + 0x28) + max_index * 4) =
+               *(int32_t *)(*(longlong *)(param_context + 0x18) + 4 + (longlong)capacity * 0x28);
           *(short *)(*(longlong *)(param_context + 0x38) + max_index * 2) = (short)next_max_index;
           next_max_index = (ulonglong)(capacity + 1U);
           param_count = *(int *)(param_context + 0x10);
@@ -579,32 +579,32 @@ void rendering_parameter_processor(longlong param_context)
         resource_ptr = (longlong)*(int *)(param_context + 0x10);
         global_context = *(longlong *)(param_context + 0x18);
         if (capacity < 0x21) {
-          material_ptr = *(undefined8 **)(param_context + 0x40);
+          material_ptr = *(uint64_t **)(param_context + 0x40);
         }
         else {
           material_index = *(ushort *)(*(longlong *)(param_context + 0x38) + 0x40);
           if (material_index == 0xffff) {
-            material_ptr = *(undefined8 **)(param_context + 0x40);
+            material_ptr = *(uint64_t **)(param_context + 0x40);
           }
           else {
-            material_ptr = (undefined8 *)(global_context + (ulonglong)material_index * 0x28);
+            material_ptr = (uint64_t *)(global_context + (ulonglong)material_index * 0x28);
           }
         }
         
         // 复制材质属性
         material_property = material_ptr[1];
-        material_data = (undefined8 *)(global_context + -0x28 + resource_ptr * 0x28);
+        material_data = (uint64_t *)(global_context + -0x28 + resource_ptr * 0x28);
         *material_data = *material_ptr;
         material_data[1] = material_property;
         material_property = material_ptr[3];
-        material_data = (undefined8 *)(global_context + -0x18 + resource_ptr * 0x28);
+        material_data = (uint64_t *)(global_context + -0x18 + resource_ptr * 0x28);
         *material_data = material_ptr[2];
         material_data[1] = material_property;
-        *(undefined8 *)(global_context + -8 + resource_ptr * 0x28) = material_ptr[4];
+        *(uint64_t *)(global_context + -8 + resource_ptr * 0x28) = material_ptr[4];
         
         // 计算缩放因子
         scale_factor = *(float *)(global_context + -0x24 + resource_ptr * 0x28) * 4.0;
-        *(undefined2 *)(global_context + -0x28 + resource_ptr * 0x28) = 9;
+        *(int16_t *)(global_context + -0x28 + resource_ptr * 0x28) = 9;
         *(float *)(global_context + -0x24 + resource_ptr * 0x28) = scale_factor;
         *(float *)(*(longlong *)(param_context + 0x28) + 0x24) = scale_factor;
         *(short *)(*(longlong *)(param_context + 0x38) +
@@ -626,10 +626,10 @@ void rendering_parameter_processor(longlong param_context)
         default_param = 0;
       }
       else {
-        default_param = *(undefined4 *)(next_max_index + 4);
+        default_param = *(int32_t *)(next_max_index + 4);
       }
       next_max_index = (ulonglong)(int)(current_max_index + 1);
-      *(undefined4 *)(param_context + 0x48) = default_param;
+      *(int32_t *)(param_context + 0x48) = default_param;
       
       // 优化参数缓冲区
       if (3 < next_max_index) {
@@ -660,7 +660,7 @@ void rendering_parameter_processor(longlong param_context)
         do {
           param_buffer = (float *)(global_context + next_max_index * 4);
           if (*param_buffer <= 0.0 && *param_buffer != 0.0) {
-            *(undefined4 *)(global_context + next_max_index * 4) = *(undefined4 *)(param_context + 0x48);
+            *(int32_t *)(global_context + next_max_index * 4) = *(int32_t *)(param_context + 0x48);
           }
           next_max_index = next_max_index + 1;
         } while ((longlong)next_max_index < (longlong)next_max_index);
@@ -669,7 +669,7 @@ void rendering_parameter_processor(longlong param_context)
     }
     
     // 清理资源（路径1）
-    *(undefined8 *)(param_context + 0x30) = 0;
+    *(uint64_t *)(param_context + 0x30) = 0;
     if (global_context != 0) {
       *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
     }
@@ -678,7 +678,7 @@ void rendering_parameter_processor(longlong param_context)
   }
   
   // 清理资源（路径2）
-  *(undefined8 *)(param_context + 0x20) = 0;
+  *(uint64_t *)(param_context + 0x20) = 0;
   if (global_context != 0) {
     *(int *)(global_context + 0x3a8) = *(int *)(global_context + 0x3a8) + -1;
   }
@@ -736,7 +736,7 @@ void rendering_capacity_expander(longlong param_context, int required_capacity)
     buffer_ptr = (longlong)*allocated_capacity;
     if (*allocated_capacity < required_capacity) {
       for (; buffer_ptr < required_capacity; buffer_ptr = buffer_ptr + 1) {
-        *(undefined4 *)(*(longlong *)(param_context + 0x28) + buffer_ptr * 4) = 0xbf800000;  // -1.0f
+        *(int32_t *)(*(longlong *)(param_context + 0x28) + buffer_ptr * 4) = 0xbf800000;  // -1.0f
       }
     }
     *allocated_capacity = required_capacity;
@@ -758,7 +758,7 @@ void rendering_capacity_expander(longlong param_context, int required_capacity)
     buffer_ptr = (longlong)*current_capacity;
     if (*current_capacity < required_capacity) {
       for (; buffer_ptr < required_capacity; buffer_ptr = buffer_ptr + 1) {
-        *(undefined2 *)(*(longlong *)(param_context + 0x38) + buffer_ptr * 2) = 0xffff;  // 无效索引
+        *(int16_t *)(*(longlong *)(param_context + 0x38) + buffer_ptr * 2) = 0xffff;  // 无效索引
       }
     }
     *current_capacity = required_capacity;
@@ -786,8 +786,8 @@ void rendering_array_initializer(void)
   ulonglong unaff_RBX;
   uint expansion_factor;
   int *unaff_RDI;
-  undefined4 default_value;
-  undefined4 stack_value;
+  int32_t default_value;
+  int32_t stack_value;
   
   expansion_factor = 8;  // 默认扩展因子
   array_capacity = (int *)(unaff_RBX + 0x20);
@@ -814,7 +814,7 @@ void rendering_array_initializer(void)
   array_ptr = (longlong)*array_capacity;
   if (*array_capacity < target_size) {
     for (; array_ptr < (longlong)unaff_RBX; array_ptr = array_ptr + 1) {
-      *(undefined4 *)(*(longlong *)(unaff_RBX + 0x28) + array_ptr * 4) = stack_value;
+      *(int32_t *)(*(longlong *)(unaff_RBX + 0x28) + array_ptr * 4) = stack_value;
     }
   }
   *array_capacity = target_size;
@@ -836,7 +836,7 @@ void rendering_array_initializer(void)
   array_ptr = (longlong)*unaff_RDI;
   if (*unaff_RDI < target_size) {
     for (; array_ptr < (longlong)unaff_RBX; array_ptr = array_ptr + 1) {
-      *(undefined2 *)(*(longlong *)(unaff_RDI + 2) + array_ptr * 2) = 0xffff;  // 无效索引
+      *(int16_t *)(*(longlong *)(unaff_RDI + 2) + array_ptr * 2) = 0xffff;  // 无效索引
     }
   }
   *unaff_RDI = target_size;
@@ -853,7 +853,7 @@ void rendering_array_initializer(void)
 // 参数：
 // - param_1: 初始化值
 // - 通过寄存器传递的渲染上下文
-void rendering_index_cleaner(undefined4 init_value)
+void rendering_index_cleaner(int32_t init_value)
 {
   int *array_capacity;
   int current_size;
@@ -865,7 +865,7 @@ void rendering_index_cleaner(undefined4 init_value)
   ulonglong unaff_RBX;
   uint expansion_factor;
   int *unaff_RDI;
-  undefined4 stack_value;
+  int32_t stack_value;
   
   array_capacity = (int *)(render_context + 0x20);
   current_size = *(int *)(render_context + 0x24);
@@ -889,7 +889,7 @@ void rendering_index_cleaner(undefined4 init_value)
   array_ptr = (longlong)*array_capacity;
   if (*array_capacity < target_size) {
     for (; array_ptr < (longlong)unaff_RBX; array_ptr = array_ptr + 1) {
-      *(undefined4 *)(*(longlong *)(render_context + 0x28) + array_ptr * 4) = stack_value;
+      *(int32_t *)(*(longlong *)(render_context + 0x28) + array_ptr * 4) = stack_value;
     }
   }
   *array_capacity = target_size;
@@ -911,7 +911,7 @@ void rendering_index_cleaner(undefined4 init_value)
   array_ptr = (longlong)*unaff_RDI;
   if (*unaff_RDI < target_size) {
     for (; array_ptr < (longlong)unaff_RBX; array_ptr = array_ptr + 1) {
-      *(undefined2 *)(*(longlong *)(unaff_RDI + 2) + array_ptr * 2) = 0xffff;  // 无效索引
+      *(int16_t *)(*(longlong *)(unaff_RDI + 2) + array_ptr * 2) = 0xffff;  // 无效索引
     }
   }
   *unaff_RDI = target_size;
@@ -934,7 +934,7 @@ void rendering_state_finalizer(void)
   array_ptr = (longlong)*array_capacity;
   if (*array_capacity < (int)target_size) {
     for (; array_ptr < target_size; array_ptr = array_ptr + 1) {
-      *(undefined2 *)(*(longlong *)(array_capacity + 2) + array_ptr * 2) = 0xffff;  // 无效索引
+      *(int16_t *)(*(longlong *)(array_capacity + 2) + array_ptr * 2) = 0xffff;  // 无效索引
     }
   }
   *array_capacity = (int)target_size;
@@ -951,11 +951,11 @@ void rendering_data_processor(void)
 {
   longlong current_index;
   longlong target_size;
-  undefined4 *array_context;
+  int32_t *array_context;
   
   if (current_index < target_size) {
     do {
-      *(undefined2 *)(*(longlong *)(array_context + 2) + current_index * 2) = 0xffff;  // 无效索引
+      *(int16_t *)(*(longlong *)(array_context + 2) + current_index * 2) = 0xffff;  // 无效索引
       current_index = current_index + 1;
     } while (current_index < target_size);
   }
@@ -1096,7 +1096,7 @@ SEGMENT_PROCESSING:
 // 
 // 返回值：
 // - 返回优化后的文本指针
-char *rendering_text_optimizer(undefined8 param1, undefined8 param2, float param3, float param4)
+char *rendering_text_optimizer(uint64_t param1, uint64_t param2, float param3, float param4)
 {
   char *char_ptr;
   int char_value;

@@ -10,7 +10,7 @@ void FUN_1805c8252(void)
   longlong lVar2;
   float *pfVar3;
   uint uVar4;
-  undefined8 uVar5;
+  uint64_t uVar5;
   longlong *unaff_RBX;
   uint unaff_EDI;
   ulonglong uVar6;
@@ -31,8 +31,8 @@ void FUN_1805c8252(void)
   uint uStack0000000000000040;
   uint uStack0000000000000044;
   uint in_stack_00000048;
-  undefined8 in_stack_00000050;
-  undefined8 in_stack_00000058;
+  uint64_t in_stack_00000050;
+  uint64_t in_stack_00000058;
   
   fVar9 = (unaff_XMM13_Da / (unaff_XMM6_Da + unaff_XMM11_Da)) * unaff_XMM12_Da;
   if ((unaff_XMM8_Da < unaff_XMM7_Da) &&
@@ -46,7 +46,7 @@ void FUN_1805c8252(void)
                          *(longlong *)(lVar2 + 0xd0)) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) == 0
       )))) {
     if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
-      bVar1 = (byte)((uint)*(undefined4 *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
+      bVar1 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
       *(byte *)((longlong)unaff_RBX + 0x11c) = bVar1;
     }
     else {
@@ -140,7 +140,7 @@ LAB_1805c855d:
     return;
   }
 LAB_1805c85d3:
-  *(undefined4 *)(unaff_RBX + 0x2f1) = 0;
+  *(int32_t *)(unaff_RBX + 0x2f1) = 0;
   unaff_RBX[0x2ed] =
        *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ee] * 8) + -0x8000000000000000;
   unaff_RBX[0x2e0] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e1] * 8) + 10000;
@@ -162,7 +162,7 @@ void FUN_1805c8278(void)
   longlong lVar2;
   float *pfVar3;
   uint uVar4;
-  undefined8 uVar5;
+  uint64_t uVar5;
   longlong *unaff_RBX;
   uint unaff_EDI;
   ulonglong in_R10;
@@ -181,8 +181,8 @@ void FUN_1805c8278(void)
   uint uStack0000000000000040;
   uint uStack0000000000000044;
   uint in_stack_00000048;
-  undefined8 in_stack_00000050;
-  undefined8 in_stack_00000058;
+  uint64_t in_stack_00000050;
+  uint64_t in_stack_00000058;
   
   lVar2 = func_0x0001805b6e80(unaff_RBX + 1);
   if ((((lVar2 == 0) || (lVar2 = func_0x0001805b6e80(unaff_RBX + 1), *(int *)(lVar2 + 0x30) < 1)) ||
@@ -193,7 +193,7 @@ void FUN_1805c8278(void)
                 *(int *)((longlong)*(int *)(lVar2 + 0xf0) * 0xa0 + 100 + *(longlong *)(lVar2 + 0xd0)
                         ) * 0x170 + 0x140 + _DAT_180c95ff0) & 0x10) == 0)) {
     if ((*(uint *)(unaff_RBX + 2) & 0x8000000) == 0) {
-      bVar1 = (byte)((uint)*(undefined4 *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
+      bVar1 = (byte)((uint)*(int32_t *)(*(longlong *)unaff_RBX[1] + 0x564) >> 0x1f) ^ 1;
       *(byte *)((longlong)unaff_RBX + 0x11c) = bVar1;
     }
     else {
@@ -287,7 +287,7 @@ LAB_1805c855d:
     return;
   }
 LAB_1805c85d3:
-  *(undefined4 *)(unaff_RBX + 0x2f1) = 0;
+  *(int32_t *)(unaff_RBX + 0x2f1) = 0;
   unaff_RBX[0x2ed] =
        *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ee] * 8) + -0x8000000000000000;
   unaff_RBX[0x2e0] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e1] * 8) + 10000;
@@ -299,13 +299,13 @@ LAB_1805c85d3:
 
 
 
-// 函数: void FUN_1805c8395(undefined4 param_1)
-void FUN_1805c8395(undefined4 param_1)
+// 函数: void FUN_1805c8395(int32_t param_1)
+void FUN_1805c8395(int32_t param_1)
 
 {
   float *pfVar1;
   uint uVar2;
-  undefined8 uVar3;
+  uint64_t uVar3;
   longlong *unaff_RBX;
   int unaff_EDI;
   int iVar4;
@@ -320,8 +320,8 @@ void FUN_1805c8395(undefined4 param_1)
   float unaff_XMM10_Da;
   float unaff_XMM13_Da;
   int in_stack_00000040;
-  undefined8 in_stack_00000050;
-  undefined8 in_stack_00000058;
+  uint64_t in_stack_00000050;
+  uint64_t in_stack_00000058;
   
   if ((unaff_XMM9_Da <= 1.0) || (unaff_XMM9_Da <= unaff_XMM10_Da)) {
     if (unaff_XMM10_Da <= 1.0) {
@@ -399,7 +399,7 @@ LAB_1805c855d:
     return;
   }
 LAB_1805c85d3:
-  *(undefined4 *)(unaff_RBX + 0x2f1) = 0;
+  *(int32_t *)(unaff_RBX + 0x2f1) = 0;
   unaff_RBX[0x2ed] =
        *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2ee] * 8) + -0x8000000000000000;
   unaff_RBX[0x2e0] = *(longlong *)(&DAT_180c8ed30 + (longlong)(int)unaff_RBX[0x2e1] * 8) + 10000;
@@ -425,7 +425,7 @@ void FUN_1805c8400(void)
   *(longlong *)(unaff_RBX + 0x1398) =
        *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 0x13a0) * 8) -
        (longlong)((float)(uVar1 - 1) * 0.00027939677 - 2e+06);
-  *(undefined4 *)(unaff_RBX + 0x1788) = 0;
+  *(int32_t *)(unaff_RBX + 0x1788) = 0;
   *(longlong *)(unaff_RBX + 0x1768) =
        *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(unaff_RBX + 6000) * 8) +
        -0x8000000000000000;

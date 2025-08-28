@@ -78,18 +78,18 @@ void rendering_system_memory_initializer(void)
     *(byte *)(unaff_RBX + 8) = *(byte *)(unaff_RBX + 8) & 0xfb;
     
     // 重置内存块指针和计数器
-    *(undefined8 *)(unaff_RBX + 10) = 0;    // 内存块指针1
-    *(undefined8 *)(unaff_RBX + 0x12) = 0;   // 内存块指针2
-    *(undefined2 *)(unaff_RBX + 0x1a) = 0;   // 计数器
-    *(undefined8 *)(unaff_RBX + 0x20) = 0;   // 内存池指针1
-    *(undefined8 *)(unaff_RBX + 0x28) = 0;   // 内存池指针2
-    *(undefined8 *)(unaff_RBX + 0x30) = 0;   // 缓存指针1
-    *(undefined8 *)(unaff_RBX + 0x38) = 0;   // 缓存指针2
-    *(undefined8 *)(unaff_RBX + 0x40) = 0;   // 资源指针1
-    *(undefined8 *)(unaff_RBX + 0x48) = 0;   // 资源指针2
+    *(uint64_t *)(unaff_RBX + 10) = 0;    // 内存块指针1
+    *(uint64_t *)(unaff_RBX + 0x12) = 0;   // 内存块指针2
+    *(int16_t *)(unaff_RBX + 0x1a) = 0;   // 计数器
+    *(uint64_t *)(unaff_RBX + 0x20) = 0;   // 内存池指针1
+    *(uint64_t *)(unaff_RBX + 0x28) = 0;   // 内存池指针2
+    *(uint64_t *)(unaff_RBX + 0x30) = 0;   // 缓存指针1
+    *(uint64_t *)(unaff_RBX + 0x38) = 0;   // 缓存指针2
+    *(uint64_t *)(unaff_RBX + 0x40) = 0;   // 资源指针1
+    *(uint64_t *)(unaff_RBX + 0x48) = 0;   // 资源指针2
     
     // 设置初始化标志
-    *(undefined4 *)(unaff_RBX + 0x1c) = 1;
+    *(int32_t *)(unaff_RBX + 0x1c) = 1;
     
     // 调用内存管理初始化函数
     FUN_18064b830();
@@ -118,11 +118,11 @@ void rendering_system_memory_initializer(void)
  * 
  * @note 这是一个核心的内存管理函数，包含了复杂的锁定机制
  */
-void rendering_system_memory_manager(ulonglong param_1, undefined8 param_2, longlong param_3)
+void rendering_system_memory_manager(ulonglong param_1, uint64_t param_2, longlong param_3)
 {
     // 局部变量声明
     longlong *plVar1;       // 长整型指针
-    undefined8 *puVar2;      // 无符号8字节指针
+    uint64_t *puVar2;      // 无符号8字节指针
     longlong lVar3;          // 长整型变量
     longlong lVar4;          // 长整型变量
     longlong lVar5;          // 长整型变量
@@ -190,23 +190,23 @@ void rendering_system_memory_manager(ulonglong param_1, undefined8 param_2, long
             }
 LAB_18064bfea:
             // 获取对应的哈希表项
-            puVar2 = (undefined8 *)(param_3 + uVar13 * 0x18);
+            puVar2 = (uint64_t *)(param_3 + uVar13 * 0x18);
             
             // 从链表中移除内存块
             if (*(longlong *)(puVar8 + 0x10) != 0) {
-                *(undefined8 *)(*(longlong *)(puVar8 + 0x10) + 0x38) = *(undefined8 *)(puVar8 + 0xe);
+                *(uint64_t *)(*(longlong *)(puVar8 + 0x10) + 0x38) = *(uint64_t *)(puVar8 + 0xe);
             }
             
             if (puVar8 == (uint *)*puVar2) {
-                *puVar2 = *(undefined8 *)(puVar8 + 0xe);
+                *puVar2 = *(uint64_t *)(puVar8 + 0xe);
             }
             
             if (*(longlong *)(puVar8 + 0xe) != 0) {
-                *(undefined8 *)(*(longlong *)(puVar8 + 0xe) + 0x40) = *(undefined8 *)(puVar8 + 0x10);
+                *(uint64_t *)(*(longlong *)(puVar8 + 0xe) + 0x40) = *(uint64_t *)(puVar8 + 0x10);
             }
             
             if (puVar8 == (uint *)puVar2[1]) {
-                puVar2[1] = *(undefined8 *)(puVar8 + 0x10);
+                puVar2[1] = *(uint64_t *)(puVar8 + 0x10);
             }
             
             // 标记内存块为已使用
@@ -304,7 +304,7 @@ LAB_18064bfea:
 void rendering_system_resource_cleaner(ulonglong param_1, longlong param_2)
 {
     // 局部变量声明
-    undefined8 *puVar1;      // 无符号8字节指针
+    uint64_t *puVar1;      // 无符号8字节指针
     longlong lVar2;          // 长整型变量
     longlong lVar3;          // 长整型变量
     uint *puVar4;            // 无符号整型指针
@@ -332,11 +332,11 @@ void rendering_system_resource_cleaner(ulonglong param_1, longlong param_2)
             
             // 重置内存管理器状态
             LOCK();
-            *(undefined8 *)(param_1 + 0x70) = 0;
+            *(uint64_t *)(param_1 + 0x70) = 0;
             UNLOCK();
             
-            *(undefined8 *)(param_1 + 0x28) = 0;
-            *(undefined8 *)(param_1 + 0x40) = 1;
+            *(uint64_t *)(param_1 + 0x28) = 0;
+            *(uint64_t *)(param_1 + 0x40) = 1;
             
             // 重置全局计数器
             uVar6 = _DAT_180ca8b80;
@@ -391,22 +391,22 @@ void rendering_system_resource_cleaner(ulonglong param_1, longlong param_2)
             }
 LAB_18064c5f1:
             // 从哈希表中移除
-            puVar1 = (undefined8 *)(param_2 + uVar6 * 0x18);
+            puVar1 = (uint64_t *)(param_2 + uVar6 * 0x18);
             
             if (*(longlong *)(puVar4 + 0x10) != 0) {
-                *(undefined8 *)(*(longlong *)(puVar4 + 0x10) + 0x38) = *(undefined8 *)(puVar4 + 0xe);
+                *(uint64_t *)(*(longlong *)(puVar4 + 0x10) + 0x38) = *(uint64_t *)(puVar4 + 0xe);
             }
             
             if (puVar4 == (uint *)*puVar1) {
-                *puVar1 = *(undefined8 *)(puVar4 + 0xe);
+                *puVar1 = *(uint64_t *)(puVar4 + 0xe);
             }
             
             if (*(longlong *)(puVar4 + 0xe) != 0) {
-                *(undefined8 *)(*(longlong *)(puVar4 + 0xe) + 0x40) = *(undefined8 *)(puVar4 + 0x10);
+                *(uint64_t *)(*(longlong *)(puVar4 + 0xe) + 0x40) = *(uint64_t *)(puVar4 + 0x10);
             }
             
             if (puVar4 == (uint *)puVar1[1]) {
-                puVar1[1] = *(undefined8 *)(puVar4 + 0x10);
+                puVar1[1] = *(uint64_t *)(puVar4 + 0x10);
             }
             
             // 标记为未使用
@@ -437,27 +437,27 @@ LAB_18064c5f1:
  * @param param_3 操作参数
  * @param param_4 上下文指针
  * 
- * @return undefined8 操作结果
+ * @return uint64_t 操作结果
  * 
  * @note 这是一个复杂的数据结构操作函数
  */
-undefined8 rendering_system_data_structure_operator(longlong param_1, ulonglong param_2, ulonglong param_3, longlong param_4)
+uint64_t rendering_system_data_structure_operator(longlong param_1, ulonglong param_2, ulonglong param_3, longlong param_4)
 {
     // 局部变量声明
     longlong *plVar1;       // 长整型指针
     longlong lVar2;          // 长整型变量
     longlong lVar3;          // 长整型变量
     longlong lVar4;          // 长整型变量
-    undefined8 *puVar5;     // 无符号8字节指针
-    undefined8 *puVar6;     // 无符号8字节指针
+    uint64_t *puVar5;     // 无符号8字节指针
+    uint64_t *puVar6;     // 无符号8字节指针
     ulonglong uVar7;         // 无符号长整型变量
     longlong lVar8;          // 长整型变量
     longlong lVar9;          // 长整型变量
     uint *puVar10;           // 无符号整型指针
     ulonglong uVar11;        // 无符号长整型变量
     uint uVar12;             // 无符号整型变量
-    undefined8 *puVar13;     // 无符号8字节指针
-    undefined8 uVar14;       // 无符号8字节变量
+    uint64_t *puVar13;     // 无符号8字节指针
+    uint64_t uVar14;       // 无符号8字节变量
     bool bVar15;             // 布尔变量
     
     // 获取数据结构大小
@@ -490,7 +490,7 @@ undefined8 rendering_system_data_structure_operator(longlong param_1, ulonglong 
                 
                 // 原子操作处理活跃元素
                 do {
-                    puVar13 = (undefined8 *)(uVar11 & 0xfffffffffffffffc);
+                    puVar13 = (uint64_t *)(uVar11 & 0xfffffffffffffffc);
                     LOCK();
                     uVar7 = *(ulonglong *)(puVar10 + 10);
                     bVar15 = uVar11 == uVar7;
@@ -505,12 +505,12 @@ undefined8 rendering_system_data_structure_operator(longlong param_1, ulonglong 
                 } while (!bVar15);
                 
                 // 处理链接关系
-                if (puVar13 != (undefined8 *)0x0) {
+                if (puVar13 != (uint64_t *)0x0) {
                     uVar12 = 1;
                     puVar5 = puVar13;
                     
                     // 遍历链表
-                    for (puVar6 = (undefined8 *)*puVar13; puVar6 != (undefined8 *)0x0; puVar6 = (undefined8 *)*puVar6) {
+                    for (puVar6 = (uint64_t *)*puVar13; puVar6 != (uint64_t *)0x0; puVar6 = (uint64_t *)*puVar6) {
                         if (*(ushort *)((longlong)puVar10 + 10) < uVar12) goto LAB_18064c807;
                         uVar12 = uVar12 + 1;
                         puVar5 = puVar6;
@@ -524,9 +524,9 @@ LAB_18064c807:
                     }
                     else {
                         // 正常处理链表
-                        *puVar5 = *(undefined8 *)(puVar10 + 8);
+                        *puVar5 = *(uint64_t *)(puVar10 + 8);
                         puVar10[6] = puVar10[6] - uVar12;
-                        *(undefined8 **)(puVar10 + 8) = puVar13;
+                        *(uint64_t **)(puVar10 + 8) = puVar13;
                     }
                 }
             }
@@ -544,8 +544,8 @@ LAB_18064c807:
                 lVar4 = *(longlong *)(param_4 + 0x398);
                 
                 // 更新内存统计
-                if (((undefined *)(lVar4 + 0xe0) < &DAT_180c8ed80) ||
-                   ((undefined *)0x180c8efbf < (undefined *)(lVar4 + 0xe0))) {
+                if (((void *)(lVar4 + 0xe0) < &DAT_180c8ed80) ||
+                   ((void *)0x180c8efbf < (void *)(lVar4 + 0xe0))) {
                     // 非安全区域的统计更新
                     *(longlong *)(lVar4 + 0xf8) = *(longlong *)(lVar4 + 0xf8) + -1;
                     
@@ -621,28 +621,28 @@ LAB_18064c900:
  * - 维护缓存的一致性
  * - 实现高效的缓存查找算法
  * 
- * @return undefined1 缓存查找结果
+ * @return int8_t 缓存查找结果
  * 
  * @note 这是一个缓存管理的辅助函数
  */
-undefined1 rendering_system_cache_manager(void)
+int8_t rendering_system_cache_manager(void)
 {
     // 局部变量声明
     longlong *plVar1;       // 长整型指针
     longlong lVar2;          // 长整型变量
     longlong lVar3;          // 长整型变量
-    undefined8 *puVar4;     // 无符号8字节指针
-    undefined8 *puVar5;     // 无符号8字节指针
+    uint64_t *puVar4;     // 无符号8字节指针
+    uint64_t *puVar5;     // 无符号8字节指针
     ulonglong uVar6;         // 无符号长整型变量
     longlong lVar7;          // 长整型变量
     longlong lVar8;          // 长整型变量
     ulonglong uVar9;         // 无符号长整型变量
     uint uVar10;             // 无符号整型变量
-    undefined8 *puVar11;    // 无符号8字节指针
+    uint64_t *puVar11;    // 无符号8字节指针
     uint *unaff_RBX;         // RBX寄存器值（指针）
     longlong unaff_RBP;      // RBP寄存器值
     longlong unaff_RSI;      // RSI寄存器值
-    undefined1 unaff_DIL;    // DIL寄存器值
+    int8_t unaff_DIL;    // DIL寄存器值
     ulonglong unaff_R12;     // R12寄存器值
     ulonglong unaff_R14;     // R14寄存器值
     uint *unaff_R15;         // R15寄存器值（指针）
@@ -666,7 +666,7 @@ undefined1 rendering_system_cache_manager(void)
                 
                 // 原子操作处理
                 do {
-                    puVar11 = (undefined8 *)(uVar9 & 0xfffffffffffffffc);
+                    puVar11 = (uint64_t *)(uVar9 & 0xfffffffffffffffc);
                     LOCK();
                     uVar6 = *(ulonglong *)(unaff_RBX + 10);
                     bVar12 = uVar9 == uVar6;
@@ -681,12 +681,12 @@ undefined1 rendering_system_cache_manager(void)
                 } while (!bVar12);
                 
                 // 处理链接关系
-                if (puVar11 != (undefined8 *)0x0) {
+                if (puVar11 != (uint64_t *)0x0) {
                     uVar10 = 1;
                     puVar4 = puVar11;
                     
                     // 遍历链表
-                    for (puVar5 = (undefined8 *)*puVar11; puVar5 != (undefined8 *)0x0; puVar5 = (undefined8 *)*puVar5) {
+                    for (puVar5 = (uint64_t *)*puVar11; puVar5 != (uint64_t *)0x0; puVar5 = (uint64_t *)*puVar5) {
                         if (*(ushort *)((longlong)unaff_RBX + 10) < uVar10) goto LAB_18064c807;
                         uVar10 = uVar10 + 1;
                         puVar4 = puVar5;
@@ -700,9 +700,9 @@ LAB_18064c807:
                     }
                     else {
                         // 正常处理链表
-                        *puVar4 = *(undefined8 *)(unaff_RBX + 8);
+                        *puVar4 = *(uint64_t *)(unaff_RBX + 8);
                         unaff_RBX[6] = unaff_RBX[6] - uVar10;
-                        *(undefined8 **)(unaff_RBX + 8) = puVar11;
+                        *(uint64_t **)(unaff_RBX + 8) = puVar11;
                     }
                 }
             }
@@ -720,8 +720,8 @@ LAB_18064c807:
                 lVar3 = *(longlong *)(unaff_RBP + 0x398);
                 
                 // 更新内存统计
-                if (((undefined *)(lVar3 + 0xe0) < &DAT_180c8ed80) ||
-                   ((undefined *)0x180c8efbf < (undefined *)(lVar3 + 0xe0))) {
+                if (((void *)(lVar3 + 0xe0) < &DAT_180c8ed80) ||
+                   ((void *)0x180c8efbf < (void *)(lVar3 + 0xe0))) {
                     // 非安全区域的统计更新
                     *(longlong *)(lVar3 + 0xf8) = *(longlong *)(lVar3 + 0xf8) + -1;
                     
@@ -801,13 +801,13 @@ LAB_18064c900:
  * - 支持状态监控和调试
  * - 简化状态查询接口
  * 
- * @return undefined1 当前系统状态
+ * @return int8_t 当前系统状态
  * 
  * @note 这是一个简单的状态查询函数
  */
-undefined1 rendering_system_status_checker(void)
+int8_t rendering_system_status_checker(void)
 {
-    undefined1 unaff_DIL;  // DIL寄存器值（状态标志）
+    int8_t unaff_DIL;  // DIL寄存器值（状态标志）
     
     return unaff_DIL;  // 返回当前状态
 }
@@ -832,15 +832,15 @@ undefined1 rendering_system_status_checker(void)
  * 
  * @note 这是一个核心的资源分配函数
  */
-longlong rendering_system_resource_allocator(longlong param_1, longlong param_2, ulonglong param_3, undefined1 *param_4, longlong param_5)
+longlong rendering_system_resource_allocator(longlong param_1, longlong param_2, ulonglong param_3, int8_t *param_4, longlong param_5)
 {
     // 局部变量声明
     longlong *plVar1;       // 长整型指针
     longlong lVar2;          // 长整型变量
     longlong lVar3;          // 长整型变量
     longlong lVar4;          // 长整型变量
-    undefined8 *puVar5;     // 无符号8字节指针
-    undefined8 *puVar6;     // 无符号8字节指针
+    uint64_t *puVar5;     // 无符号8字节指针
+    uint64_t *puVar6;     // 无符号8字节指针
     byte bVar7;              // 字节变量
     longlong lVar8;          // 长整型变量
     longlong lVar9;          // 长整型变量
@@ -848,11 +848,11 @@ longlong rendering_system_resource_allocator(longlong param_1, longlong param_2,
     ulonglong uVar11;        // 无符号长整型变量
     uint *puVar12;           // 无符号整型指针
     uint uVar13;             // 无符号整型变量
-    undefined8 *puVar14;     // 无符号8字节指针
+    uint64_t *puVar14;     // 无符号8字节指针
     bool bVar15;             // 布尔变量
     
     // 初始化分配结果标志
-    if (param_4 != (undefined1 *)0x0) {
+    if (param_4 != (int8_t *)0x0) {
         *param_4 = 0;
     }
     
@@ -862,7 +862,7 @@ longlong rendering_system_resource_allocator(longlong param_1, longlong param_2,
     UNLOCK();
     
     // 初始化资源管理器状态
-    *(undefined8 *)(param_1 + 0x40) = 0;
+    *(uint64_t *)(param_1 + 0x40) = 0;
     FUN_18064ae40(*(int *)(param_1 + 0x58) << 0x10, param_5);
     func_0x000180646ff0(*(longlong *)(param_5 + 0x398) + 0xc0, 0xffffffffffffffff);
     
@@ -890,8 +890,8 @@ longlong rendering_system_resource_allocator(longlong param_1, longlong param_2,
             // 更新资源统计
             lVar4 = *(longlong *)(param_5 + 0x398);
             
-            if (((undefined *)(lVar4 + 0xe0) < &DAT_180c8ed80) ||
-               ((undefined *)0x180c8efbf < (undefined *)(lVar4 + 0xe0))) {
+            if (((void *)(lVar4 + 0xe0) < &DAT_180c8ed80) ||
+               ((void *)0x180c8efbf < (void *)(lVar4 + 0xe0))) {
                 // 非安全区域的统计更新
                 *(longlong *)(lVar4 + 0xf8) = *(longlong *)(lVar4 + 0xf8) + -1;
                 
@@ -958,7 +958,7 @@ longlong rendering_system_resource_allocator(longlong param_1, longlong param_2,
                 uVar10 = *(ulonglong *)(puVar12 + 10);
                 
                 do {
-                    puVar14 = (undefined8 *)(uVar10 & 0xfffffffffffffffc);
+                    puVar14 = (uint64_t *)(uVar10 & 0xfffffffffffffffc);
                     LOCK();
                     uVar11 = *(ulonglong *)(puVar12 + 10);
                     bVar15 = uVar10 == uVar11;
@@ -973,11 +973,11 @@ longlong rendering_system_resource_allocator(longlong param_1, longlong param_2,
                 } while (!bVar15);
                 
                 // 处理链表
-                if (puVar14 != (undefined8 *)0x0) {
+                if (puVar14 != (uint64_t *)0x0) {
                     uVar13 = 1;
                     puVar5 = puVar14;
                     
-                    for (puVar6 = (undefined8 *)*puVar14; puVar6 != (undefined8 *)0x0; puVar6 = (undefined8 *)*puVar6) {
+                    for (puVar6 = (uint64_t *)*puVar14; puVar6 != (uint64_t *)0x0; puVar6 = (uint64_t *)*puVar6) {
                         if (*(ushort *)((longlong)puVar12 + 10) < uVar13) goto LAB_18064cae7;
                         uVar13 = uVar13 + 1;
                         puVar5 = puVar6;
@@ -991,9 +991,9 @@ LAB_18064cae7:
                     }
                     else {
                         // 正常处理链表
-                        *puVar5 = *(undefined8 *)(puVar12 + 8);
+                        *puVar5 = *(uint64_t *)(puVar12 + 8);
                         puVar12[6] = puVar12[6] - uVar13;
-                        *(undefined8 **)(puVar12 + 8) = puVar14;
+                        *(uint64_t **)(puVar12 + 8) = puVar14;
                     }
                 }
             }
@@ -1038,7 +1038,7 @@ LAB_18064cae7:
                 if ((param_3 == puVar12[7]) &&
                    (((puVar12[6] < (uint)(ushort)puVar12[3] ||
                      ((*(ulonglong *)(puVar12 + 10) & 0xfffffffffffffffc) != 0)) &&
-                    (param_4 != (undefined1 *)0x0)))) {
+                    (param_4 != (int8_t *)0x0)))) {
                     *param_4 = 1;  // 分配成功
                 }
             }
@@ -1069,24 +1069,24 @@ LAB_18064cae7:
  * 
  * @note 这是一个高级的内存池管理函数
  */
-ulonglong rendering_system_memory_pool_manager(undefined8 param_1, uint param_2, longlong param_3, undefined8 param_4, longlong param_5)
+ulonglong rendering_system_memory_pool_manager(uint64_t param_1, uint param_2, longlong param_3, uint64_t param_4, longlong param_5)
 {
     // 局部变量声明
     uint *puVar1;           // 无符号整型指针
     longlong lVar2;          // 长整型变量
     char cVar3;              // 字符变量
-    undefined8 *puVar4;      // 无符号8字节指针
+    uint64_t *puVar4;      // 无符号8字节指针
     ulonglong uVar5;         // 无符号长整型变量
     longlong lVar6;          // 长整型变量
     longlong lVar7;          // 长整型变量
     ulonglong uVar8;          // 无符号长整型变量
     int iVar9;               // 整型变量
     ulonglong uVar10;        // 无符号长整型变量
-    undefined8 uVar11;       // 无符号8字节变量
+    uint64_t uVar11;       // 无符号8字节变量
     ulonglong uVar12;        // 无符号长整型变量
     bool bVar13;             // 布尔变量
     uint auStackX_10 [4];    // 栈数组
-    undefined8 uStackX_20;   // 栈变量
+    uint64_t uStackX_20;   // 栈变量
     
     // 计算内存池索引
     uVar12 = param_3 + 0xffffU >> 0x10;
@@ -1097,7 +1097,7 @@ LAB_18064cc82:
     // 主分配循环
     do {
         uVar11 = 0;  // 初始分配结果
-        puVar4 = (undefined8 *)func_0x00018064ade0(uVar12, param_5);
+        puVar4 = (uint64_t *)func_0x00018064ade0(uVar12, param_5);
         uVar5 = uVar12;
         
         if (uVar12 == 0) {
@@ -1105,33 +1105,33 @@ LAB_18064cc82:
         }
         
         // 遍历内存块
-        for (; puVar4 <= (undefined8 *)(param_5 + 0x348U); puVar4 = puVar4 + 3) {
+        for (; puVar4 <= (uint64_t *)(param_5 + 0x348U); puVar4 = puVar4 + 3) {
             // 遍历内存块链表
             for (puVar1 = (uint *)*puVar4; puVar1 != (uint *)0x0; puVar1 = *(uint **)(puVar1 + 0xe)) {
                 // 检查内存块大小
                 if (uVar5 <= *puVar1) {
                     // 从链表中移除内存块
                     if (*(longlong *)(puVar1 + 0x10) != 0) {
-                        *(undefined8 *)(*(longlong *)(puVar1 + 0x10) + 0x38) = *(undefined8 *)(puVar1 + 0xe);
+                        *(uint64_t *)(*(longlong *)(puVar1 + 0x10) + 0x38) = *(uint64_t *)(puVar1 + 0xe);
                     }
                     
                     if (puVar1 == (uint *)*puVar4) {
-                        *puVar4 = *(undefined8 *)(puVar1 + 0xe);
+                        *puVar4 = *(uint64_t *)(puVar1 + 0xe);
                     }
                     
                     if (*(longlong *)(puVar1 + 0xe) != 0) {
-                        *(undefined8 *)(*(longlong *)(puVar1 + 0xe) + 0x40) = *(undefined8 *)(puVar1 + 0x10);
+                        *(uint64_t *)(*(longlong *)(puVar1 + 0xe) + 0x40) = *(uint64_t *)(puVar1 + 0x10);
                     }
                     
                     if (puVar1 == (uint *)puVar4[1]) {
-                        puVar4[1] = *(undefined8 *)(puVar1 + 0x10);
+                        puVar4[1] = *(uint64_t *)(puVar1 + 0x10);
                     }
                     
                     uVar10 = (ulonglong)*puVar1;
                     puVar1[7] = 1;  // 标记为已使用
                     uVar8 = (ulonglong)puVar1 & RENDERING_ALIGNMENT_MASK;
-                    *(undefined8 *)(puVar1 + 0x10) = uVar11;
-                    *(undefined8 *)(puVar1 + 0xe) = uVar11;
+                    *(uint64_t *)(puVar1 + 0x10) = uVar11;
+                    *(uint64_t *)(puVar1 + 0xe) = uVar11;
                     
                     // 处理内存块分割
                     if (uVar5 < uVar10) {
@@ -1244,15 +1244,15 @@ LAB_18064ce1d:
  * 
  * @note 这是一个哈希表优化的辅助函数
  */
-void rendering_system_hash_table_optimizer(longlong param_1, undefined8 *param_2)
+void rendering_system_hash_table_optimizer(longlong param_1, uint64_t *param_2)
 {
     // 局部变量声明
     longlong lVar1;          // 长整型变量
     byte bVar2;              // 字节变量
     ulonglong uVar3;         // 无符号长整型变量
-    undefined *puVar4;        // 无定义指针
+    void *puVar4;        // 无定义指针
     ulonglong uVar5;         // 无符号长整型变量
-    undefined8 *puVar6;      // 无符号8字节指针
+    uint64_t *puVar6;      // 无符号8字节指针
     char cVar7;              // 字符变量
     byte bVar8;              // 字节变量
     ulonglong uVar9;         // 无符号长整型变量
@@ -1261,15 +1261,15 @@ void rendering_system_hash_table_optimizer(longlong param_1, undefined8 *param_2
     if ((ulonglong)param_2[2] < 0x401) {
         puVar4 = &UNK_1809fb2d0;
         
-        if ((undefined *)*param_2 != (undefined *)0x0) {
-            puVar4 = (undefined *)*param_2;
+        if ((void *)*param_2 != (void *)0x0) {
+            puVar4 = (void *)*param_2;
         }
         
         // 计算哈希表索引
         uVar9 = param_2[2] + 7 >> 3;
         
         // 检查是否需要更新哈希表
-        if (*(undefined **)(param_1 + 8 + uVar9 * 8) != puVar4) {
+        if (*(void **)(param_1 + 8 + uVar9 * 8) != puVar4) {
             // 计算哈希表项的分类
             if (uVar9 < 2) {
                 uVar3 = 0;
@@ -1331,7 +1331,7 @@ void rendering_system_hash_table_optimizer(longlong param_1, undefined8 *param_2
                         bVar2 = 0x49;
                     }
                     
-                    if ((bVar8 != bVar2) || (param_2 <= (undefined8 *)(param_1 + 0x410))) break;
+                    if ((bVar8 != bVar2) || (param_2 <= (uint64_t *)(param_1 + 0x410))) break;
                     
                     param_2 = param_2 + -3;
                 }
@@ -1345,7 +1345,7 @@ void rendering_system_hash_table_optimizer(longlong param_1, undefined8 *param_2
             }
             
             // 更新哈希表
-            puVar6 = (undefined8 *)(param_1 + 8 + uVar3 * 8);
+            puVar6 = (uint64_t *)(param_1 + 8 + uVar3 * 8);
             
             for (uVar9 = (uVar9 - uVar3) * 8 + 8 >> 3; uVar9 != 0; uVar9 = uVar9 - 1) {
                 *puVar6 = puVar4;

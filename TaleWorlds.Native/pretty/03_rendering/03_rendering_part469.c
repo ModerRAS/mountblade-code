@@ -321,7 +321,7 @@ typedef struct {
  * 参数：param_1 - 渲染上下文句柄，param_2 - 输出数据缓冲区，param_3 - 计算模式，param_4 - 输入数据数组
  * 返回值：无
  */
-void RenderingSystem_AdvancedDataCalculator(longlong param_1, undefined8 *param_2, char param_3, float *param_4)
+void RenderingSystem_AdvancedDataCalculator(longlong param_1, uint64_t *param_2, char param_3, float *param_4)
 {
     RenderingSystem_FloatValue calculation_result;
     RenderingSystem_FloatValue transform_matrix[16];
@@ -344,8 +344,8 @@ void RenderingSystem_AdvancedDataCalculator(longlong param_1, undefined8 *param_
     } while ((lock_status & 1) != 0);
     
     // 提取渲染数据
-    undefined8 render_data_1 = *(undefined8 *)(data_pointer + 5);
-    undefined8 render_data_2 = *(undefined8 *)(data_pointer + 7);
+    uint64_t render_data_1 = *(uint64_t *)(data_pointer + 5);
+    uint64_t render_data_2 = *(uint64_t *)(data_pointer + 7);
     RenderingSystem_FloatValue material_param_1 = (float)data_pointer[2];
     RenderingSystem_FloatValue material_param_2 = (float)data_pointer[3];
     *data_pointer = 0;
@@ -377,7 +377,7 @@ void RenderingSystem_AdvancedDataCalculator(longlong param_1, undefined8 *param_
     
     // 执行高级光照计算
     RenderingSystem_FloatValue light_calculation_1 = material_result_2 + material_result_2 + material_result_1 + material_result_1;
-    undefined8 vector_data = render_data_1;
+    uint64_t vector_data = render_data_1;
     RenderingSystem_FloatValue vector_x = (float)vector_data;
     RenderingSystem_FloatValue vector_y = (float)((ulonglong)vector_data >> 0x20);
     RenderingSystem_FloatValue cross_product_doubled = cross_product + cross_product;
@@ -385,7 +385,7 @@ void RenderingSystem_AdvancedDataCalculator(longlong param_1, undefined8 *param_
     
     // 初始化输出数据
     *param_2 = 0;
-    *(undefined4 *)((longlong)param_2 + 0xc) = 0x7f7fffff;
+    *(int32_t *)((longlong)param_2 + 0xc) = 0x7f7fffff;
     
     // 执行最终渲染计算
     final_result = (input_param_1 - (vector_y * light_range + vector_x * light_attenuation_1 + light_color_r)) *
@@ -404,12 +404,12 @@ void RenderingSystem_AdvancedDataCalculator(longlong param_1, undefined8 *param_
     *(float *)(param_2 + 1) = final_result;
     
     // 准备清理数据
-    undefined8 cleanup_data_1 = render_data_1;
+    uint64_t cleanup_data_1 = render_data_1;
     RenderingSystem_FloatValue cleanup_param_1 = material_param_2;
     RenderingSystem_FloatValue cleanup_param_2 = material_param_2;
     RenderingSystem_FloatValue cleanup_param_3 = material_param_1;
     RenderingSystem_FloatValue cleanup_param_4 = material_param_1;
-    undefined8 cleanup_data_2 = render_data_2;
+    uint64_t cleanup_data_2 = render_data_2;
     
     // 执行清理操作
     FUN_1808fc050(stack_guard ^ (ulonglong)&temp_values[0]);
@@ -431,15 +431,15 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
     int texture_id;
     int material_id;
     ulonglong effect_data;
-    undefined8 transform_matrix;
+    uint64_t transform_matrix;
     float *vertex_data;
-    undefined4 *pixel_data;
-    undefined4 render_flags;
+    int32_t *pixel_data;
+    int32_t render_flags;
     uint random_seed;
     byte effect_intensity;
     longlong shader_ptr;
     ulonglong texture_handle;
-    undefined8 extraout_XMM0_Qa;
+    uint64_t extraout_XMM0_Qa;
     RenderingSystem_FloatValue vertex_x;
     RenderingSystem_FloatValue vertex_y;
     RenderingSystem_FloatValue vertex_z;
@@ -459,8 +459,8 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
     int stack_int_20[2];
     char *transform_buffer_1;
     char *transform_buffer_2;
-    undefined8 transform_output_1;
-    undefined8 transform_output_2;
+    uint64_t transform_output_1;
+    uint64_t transform_output_2;
     RenderingSystem_FloatValue transform_param_1;
     RenderingSystem_FloatValue transform_param_2;
     RenderingSystem_FloatValue transform_param_3;
@@ -468,22 +468,22 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
     RenderingSystem_FloatValue transform_param_5;
     RenderingSystem_FloatValue transform_param_6;
     RenderingSystem_FloatValue transform_param_7;
-    undefined4 transform_flags_1;
+    int32_t transform_flags_1;
     uint transform_flags_2;
     int stack_int_128[2];
-    undefined8 stack_data_120;
-    undefined4 stack_data_118;
-    undefined8 stack_data_110;
-    undefined8 stack_data_108;
-    undefined8 stack_data_100;
-    undefined8 stack_data_f8;
-    undefined8 stack_data_f0;
-    undefined4 stack_data_e8;
-    undefined4 stack_data_e4;
-    undefined2 stack_data_e0;
-    undefined1 stack_data_d8;
-    undefined4 stack_data_d4;
-    undefined4 stack_data_d0;
+    uint64_t stack_data_120;
+    int32_t stack_data_118;
+    uint64_t stack_data_110;
+    uint64_t stack_data_108;
+    uint64_t stack_data_100;
+    uint64_t stack_data_f8;
+    uint64_t stack_data_f0;
+    int32_t stack_data_e8;
+    int32_t stack_data_e4;
+    int16_t stack_data_e0;
+    int8_t stack_data_d8;
+    int32_t stack_data_d4;
+    int32_t stack_data_d0;
     RenderingSystem_FloatValue stack_data_cc;
     RenderingSystem_FloatValue stack_data_c8;
     RenderingSystem_FloatValue stack_data_c4;
@@ -494,11 +494,11 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
     RenderingSystem_FloatValue stack_data_b0;
     int stack_int_ac;
     int stack_int_a8;
-    undefined4 stack_data_a4;
-    undefined1 stack_data_a0;
-    undefined8 stack_data_9c;
+    int32_t stack_data_a4;
+    int8_t stack_data_a0;
+    uint64_t stack_data_9c;
     RenderingSystem_FloatValue stack_data_94;
-    undefined8 stack_data_90;
+    uint64_t stack_data_90;
     
     // 初始化变换环境
     stack_data_90 = 0xfffffffffffffffe;
@@ -516,9 +516,9 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
         if (texture_handle == 0) {
             render_flags = 0xffffffff;
         } else {
-            render_flags = *(undefined4 *)(texture_handle + 0x10);
+            render_flags = *(int32_t *)(texture_handle + 0x10);
         }
-        *(undefined4 *)(shader_ptr + 0x2020) = render_flags;
+        *(int32_t *)(shader_ptr + 0x2020) = render_flags;
         flag_pointer = (ushort *)(shader_ptr + 0x130);
         *flag_pointer = *flag_pointer | 2;
     }
@@ -531,12 +531,12 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                 if (shader_ptr != 0) {
                     effect_data = *(ulonglong *)(shader_ptr + 0x1d0);
                 }
-                effect_intensity = (byte)*(undefined8 *)(*(longlong *)(param_1 + 0x590) + 0x2470);
+                effect_intensity = (byte)*(uint64_t *)(*(longlong *)(param_1 + 0x590) + 0x2470);
                 if (effect_intensity == 0) {
                     effect_intensity = (byte)effect_data;
                 }
                 if (effect_intensity < 0x4a) {
-                    transform_output_2 = (undefined4 *)0x0;
+                    transform_output_2 = (int32_t *)0x0;
                     transform_param_1 = 0.0;
                     transform_flags_1 = 0x1000000;
                     transform_param_2 = 0.0;
@@ -545,7 +545,7 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                     transform_param_5 = -0.2;
                     transform_param_6 = 0.4;
                     transform_flags_2 = transform_flags_2 & 0xffffff00;
-                    transform_output_1 = (undefined *)((ulonglong)*(uint *)(*(longlong *)(param_1 + 0x598) + 0x1a4) << 0x20);
+                    transform_output_1 = (void *)((ulonglong)*(uint *)(*(longlong *)(param_1 + 0x598) + 0x1a4) << 0x20);
                     FUN_18051ec50(param_1, &transform_output_1);
                     return;
                 }
@@ -563,14 +563,14 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                     transform_output_1 = &UNK_180a3c3e0;
                     transform_param_3 = 0.0;
                     transform_param_4 = 0.0;
-                    transform_output_2 = (undefined4 *)0x0;
+                    transform_output_2 = (int32_t *)0x0;
                     transform_param_1 = 0.0;
-                    pixel_data = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-                    *(undefined1 *)pixel_data = 0;
+                    pixel_data = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+                    *(int8_t *)pixel_data = 0;
                     transform_output_2 = pixel_data;
                     transform_param_3 = (float)FUN_18064e990(pixel_data);
                     *pixel_data = 0x6e696150;
-                    *(undefined1 *)(pixel_data + 1) = 0;
+                    *(int8_t *)(pixel_data + 1) = 0;
                     transform_param_1 = 5.60519e-45;
                     _DAT_180d49ecc = FUN_180571e20(&DAT_180c960c0, &transform_output_1);
                     transform_output_1 = &UNK_180a3c3e0;
@@ -586,8 +586,8 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
         stack_int_128[0] = -1;
         transform_needed = false;
         stack_char_18 = '\0';
-        transform_output_1 = (undefined *)0x0;
-        transform_output_2 = (undefined4 *)0x7f7fffff00000000;
+        transform_output_1 = (void *)0x0;
+        transform_output_2 = (int32_t *)0x7f7fffff00000000;
         stack_buffer_10[0] = '\0';
         stack_buffer_8[0] = '\0';
         color_a = 1.0;
@@ -596,18 +596,18 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
             transform_buffer_2 = stack_buffer_8;
             transform_buffer_1 = stack_buffer_10;
             FUN_18052f6f0(param_1, param_2, stack_int_20, stack_int_128, transform_buffer_1, transform_buffer_2, &transform_output_1);
-            render_flags = (undefined4)((ulonglong)transform_buffer_1 >> 0x20);
+            render_flags = (int32_t)((ulonglong)transform_buffer_1 >> 0x20);
             
             if (stack_buffer_8[0] != '\0') {
-                texture_id = FUN_18053a410(&DAT_180c95f30, *(undefined4 *)(*(longlong *)(param_1 + 0x590) + 0xac), stack_int_20[0]);
+                texture_id = FUN_18053a410(&DAT_180c95f30, *(int32_t *)(*(longlong *)(param_1 + 0x590) + 0xac), stack_int_20[0]);
                 texture_id = *(int *)(_DAT_180c95f68 + (longlong)texture_id * 4);
                 if (texture_id != -1) {
                     effect_data = *(ulonglong *)(_DAT_180c95f88 + (longlong)texture_id * 8);
                 }
                 
                 shader_ptr = *(longlong *)(param_1 + 0x8d8) + 0x30a0 + (longlong)*(int *)(param_1 + 0x564) * 0xa60;
-                *(undefined4 *)(shader_ptr + 0x4c8) = 0;
-                *(undefined8 *)(shader_ptr + 0x4cc) = 0;
+                *(int32_t *)(shader_ptr + 0x4c8) = 0;
+                *(uint64_t *)(shader_ptr + 0x4cc) = 0;
                 flag_pointer = (ushort *)(*(longlong *)(shader_ptr + 0x6e0) + 0x130);
                 *flag_pointer = *flag_pointer | 0x200;
                 color_a = *(float *)(effect_data + 0x1dc);
@@ -617,15 +617,15 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                 
                 *(longlong *)(shader_ptr + 0x6c8) = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(shader_ptr + 0x6d0) * 8) - (longlong)(color_a * -100000.0);
                 *(longlong *)(shader_ptr + 0x6b8) = *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(shader_ptr + 0x6c0) * 8) + 200000;
-                *(undefined4 *)(param_1 + 0x670) = 0xffffffff;
+                *(int32_t *)(param_1 + 0x670) = 0xffffffff;
                 *(uint *)(param_1 + 0x584) = *(uint *)(effect_data + 0x1d8) ^ 0x80000000;
                 FUN_18052e130(shader_ptr, 0xffffffff, 0x180c8ed01);
                 
                 if (((_DAT_180c92514 - 2U & 0xfffffffc) == 0) && (_DAT_180c92514 != 4)) {
-                    FUN_1805ed670(_DAT_180c92514, 0, *(undefined4 *)(param_1 + 0x564), 0xffffffff, CONCAT44(render_flags, 0xffffffff), (ulonglong)transform_buffer_2 & 0xffffffff00000000);
+                    FUN_1805ed670(_DAT_180c92514, 0, *(int32_t *)(param_1 + 0x564), 0xffffffff, CONCAT44(render_flags, 0xffffffff), (ulonglong)transform_buffer_2 & 0xffffffff00000000);
                 }
-                FUN_1805b8920(*(undefined8 *)(shader_ptr + 0x6e0));
-                *(undefined4 *)(*(longlong *)(shader_ptr + 0x738) + 0xa4) = *(undefined4 *)(*(longlong *)(shader_ptr + 0x6e0) + 0x14a8);
+                FUN_1805b8920(*(uint64_t *)(shader_ptr + 0x6e0));
+                *(int32_t *)(*(longlong *)(shader_ptr + 0x738) + 0xa4) = *(int32_t *)(*(longlong *)(shader_ptr + 0x6e0) + 0x14a8);
                 FUN_180516f50(shader_ptr, &transform_output_1);
                 FUN_1808fd400();
             }
@@ -651,8 +651,8 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
             }
             
             if ((effect_data >> 0x18 & 1) == 0) {
-                *(undefined4 *)(param_1 + 0x584) = 0xbf19999a;
-                *(undefined4 *)(param_1 + 0x670) = *(undefined4 *)(param_2 + 0xb0);
+                *(int32_t *)(param_1 + 0x584) = 0xbf19999a;
+                *(int32_t *)(param_1 + 0x670) = *(int32_t *)(param_2 + 0xb0);
                 
                 if (((texture_handle == 0) || ((*(byte *)(texture_handle + 0x56c) & 0x40) == 0)) || (*(int *)(param_2 + 0xa8) - 1U < 2)) {
                     vertex_z = (float)transform_output_1;
@@ -702,8 +702,8 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
             vertex_y = 0.0;
             normal_x = 0.0;
             normal_y = 0.0;
-            transform_output_1 = (undefined *)0x0;
-            transform_output_2 = (undefined4 *)0x0;
+            transform_output_1 = (void *)0x0;
+            transform_output_2 = (int32_t *)0x0;
             vertex_w = vertex_x;
             color_r = vertex_y;
             color_g = normal_x;
@@ -727,8 +727,8 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                 vertex_y = vertex_x * *(float *)(param_1 + 0x534) + normal_y * *(float *)(param_1 + 0x530);
                 vertex_x = vertex_x * *(float *)(param_1 + 0x524) + normal_y * *(float *)(param_1 + 0x520);
                 normal_y = 3.4028235e+38;
-                transform_output_1 = (undefined *)CONCAT44(vertex_y, vertex_x);
-                transform_output_2 = (undefined4 *)CONCAT44(0x7f7fffff, normal_x);
+                transform_output_1 = (void *)CONCAT44(vertex_y, vertex_x);
+                transform_output_2 = (int32_t *)CONCAT44(0x7f7fffff, normal_x);
             }
             
             render_flags = 0;
@@ -737,14 +737,14 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                     transform_output_1 = &UNK_180a3c3e0;
                     transform_param_3 = 0.0;
                     transform_param_4 = 0.0;
-                    transform_output_2 = (undefined4 *)0x0;
+                    transform_output_2 = (int32_t *)0x0;
                     transform_param_1 = 0.0;
-                    pixel_data = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
-                    *(undefined1 *)pixel_data = 0;
+                    pixel_data = (int32_t *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
+                    *(int8_t *)pixel_data = 0;
                     transform_output_2 = pixel_data;
                     transform_param_3 = (float)FUN_18064e990(pixel_data);
                     *pixel_data = 0x6e696150;
-                    *(undefined1 *)(pixel_data + 1) = 0;
+                    *(int8_t *)(pixel_data + 1) = 0;
                     transform_param_1 = 5.60519e-45;
                     _DAT_180d49ed4 = FUN_180571e20(&DAT_180c960c0, &transform_output_1);
                     transform_output_1 = &UNK_180a3c3e0;
@@ -754,8 +754,8 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
             }
             
             if ((material_id == -1) && (stack_int_128[0] == -1)) {
-                transform_output_1 = (undefined *)0xffffffff00000003;
-                transform_output_2 = (undefined4 *)CONCAT44(color_r, vertex_w);
+                transform_output_1 = (void *)0xffffffff00000003;
+                transform_output_2 = (int32_t *)CONCAT44(color_r, vertex_w);
                 transform_flags_1._0_2_ = (ushort)*(byte *)(param_2 + 0xb4);
                 transform_flags_2 = 0;
                 transform_param_1 = color_g;
@@ -801,7 +801,7 @@ void RenderingSystem_CoordinateTransformer(longlong param_1, longlong param_2)
                 stack_data_e0 = 0x100;
                 stack_data_d4 = 0x12;
                 stack_data_d0 = 0xffffffff;
-                stack_data_a0 = *(undefined1 *)(param_2 + 0xb4);
+                stack_data_a0 = *(int8_t *)(param_2 + 0xb4);
                 stack_data_9c = 0;
                 stack_int_a8 = stack_int_128[0];
                 stack_data_cc = vertex_w;
@@ -835,12 +835,12 @@ void RenderingSystem_LightCalculator(longlong param_1, longlong param_2)
     int light_count;
     char light_type;
     int material_id;
-    undefined4 light_flags;
+    int32_t light_flags;
     bool shadow_casting;
-    undefined8 light_data;
+    uint64_t light_data;
     bool light_enabled;
-    undefined8 light_config;
-    undefined1 light_mode;
+    uint64_t light_config;
+    int8_t light_mode;
     RenderingSystem_FloatValue ambient_strength;
     RenderingSystem_FloatValue diffuse_strength;
     RenderingSystem_FloatValue specular_strength;
@@ -869,7 +869,7 @@ void RenderingSystem_LightCalculator(longlong param_1, longlong param_2)
             if (*(char *)(param_2 + 0xb4) < '\0') {
                 light_mode = 0xff;
             } else {
-                light_mode = *(undefined1 *)((*(longlong *)(*(longlong *)(*(longlong *)(param_1 + 0x658) + 0x208) + 0x140) + 0x104 + (longlong)*(char *)(param_2 + 0xb4) * 0x1b0);
+                light_mode = *(int8_t *)((*(longlong *)(*(longlong *)(*(longlong *)(param_1 + 0x658) + 0x208) + 0x140) + 0x104 + (longlong)*(char *)(param_2 + 0xb4) * 0x1b0);
             }
             
             light_type = func_0x000180522f60();
@@ -879,7 +879,7 @@ void RenderingSystem_LightCalculator(longlong param_1, longlong param_2)
                     material_id = 0;
                     goto LAB_18051cf48;
                 }
-                if ((((byte)*(undefined4 *)(param_2 + 0xac) & 0x90) != 0x10) || (*(int *)(param_2 + 0xb8) != 2)) {
+                if ((((byte)*(int32_t *)(param_2 + 0xac) & 0x90) != 0x10) || (*(int *)(param_2 + 0xb8) != 2)) {
                     material_id = -1;
                     goto LAB_18051cf48;
                 }
@@ -892,7 +892,7 @@ void RenderingSystem_LightCalculator(longlong param_1, longlong param_2)
                 ambient_strength = 0.5;
             }
             
-            light_data = *(undefined8 *)(param_1 + 0x598);
+            light_data = *(uint64_t *)(param_1 + 0x598);
             light_intensity = *(float *)(*(longlong *)(param_1 + 0x20) + 0x20);
             light_distance = *(float *)(*(longlong *)(param_1 + 0x20) + 0x1c);
             shadow_casting = ((float)*(int *)(param_2 + 0x88) / *(float *)(param_2 + 0xc0)) * ambient_strength < (float)*(int *)(param_2 + 0x88);
@@ -909,7 +909,7 @@ void RenderingSystem_LightCalculator(longlong param_1, longlong param_2)
         // 计算光照参数
         ambient_strength = *(float *)(*(longlong *)(param_1 + 0x20) + 0x20);
         light_intensity = *(float *)(*(longlong *)(param_1 + 0x20) + 0x1c);
-        light_flags = *(undefined4 *)((longlong)*(int *)(param_1 + 0x564) * 0xa60 + 0x3638 + *(longlong *)(param_1 + 0x8d8) + 0x20);
+        light_flags = *(int32_t *)((longlong)*(int *)(param_1 + 0x564) * 0xa60 + 0x3638 + *(longlong *)(param_1 + 0x8d8) + 0x20);
         shadow_casting = ((float)*(int *)(param_2 + 0x88) / *(float *)(param_2 + 0xc0)) * 0.25 < (float)*(int *)(param_2 + 0x88);
         ambient_strength = light_intensity * light_intensity + ambient_strength * ambient_strength;
         material_id = -1;
@@ -917,7 +917,7 @@ void RenderingSystem_LightCalculator(longlong param_1, longlong param_2)
     
     light_mode = 0xff;
     light_config = 0;
-    light_data = *(undefined8 *)(param_1 + 0x598);
+    light_data = *(uint64_t *)(param_1 + 0x598);
     light_enabled = 1.0 < ambient_strength;
     
 LAB_18051d023:
@@ -936,36 +936,36 @@ void RenderingSystem_EffectController(longlong param_1, byte param_2, int param_
 {
     ushort *effect_flags;
     ushort effect_mask;
-    undefined4 effect_id;
+    int32_t effect_id;
     int effect_slot;
     longlong effect_ptr;
-    undefined4 effect_param_1;
+    int32_t effect_param_1;
     int effect_priority;
-    undefined8 effect_data;
-    undefined4 effect_data_1;
-    undefined8 effect_data_2;
-    undefined8 effect_data_3;
-    undefined4 effect_data_4;
-    undefined4 effect_data_5;
-    undefined1 effect_data_6;
-    undefined4 effect_params[8];
-    undefined8 effect_config[8];
-    undefined8 effect_state[8];
-    undefined8 effect_buffers[8];
-    undefined8 effect_textures[8];
-    undefined4 effect_control;
-    undefined2 effect_control_2;
+    uint64_t effect_data;
+    int32_t effect_data_1;
+    uint64_t effect_data_2;
+    uint64_t effect_data_3;
+    int32_t effect_data_4;
+    int32_t effect_data_5;
+    int8_t effect_data_6;
+    int32_t effect_params[8];
+    uint64_t effect_config[8];
+    uint64_t effect_state[8];
+    uint64_t effect_buffers[8];
+    uint64_t effect_textures[8];
+    int32_t effect_control;
+    int16_t effect_control_2;
     undefined6 effect_control_3;
-    undefined8 effect_system;
-    undefined8 effect_memory[8];
-    undefined8 effect_allocator[8];
-    undefined8 effect_pool[8];
-    undefined8 effect_cache[8];
-    undefined4 effect_shader;
-    undefined4 effect_program;
-    undefined4 effect_texture;
-    undefined4 effect_buffer;
-    undefined8 effect_matrix;
+    uint64_t effect_system;
+    uint64_t effect_memory[8];
+    uint64_t effect_allocator[8];
+    uint64_t effect_pool[8];
+    uint64_t effect_cache[8];
+    int32_t effect_shader;
+    int32_t effect_program;
+    int32_t effect_texture;
+    int32_t effect_buffer;
+    uint64_t effect_matrix;
     
     // 初始化特效系统
     effect_system = 0xfffffffffffffffe;
@@ -981,7 +981,7 @@ void RenderingSystem_EffectController(longlong param_1, byte param_2, int param_
                 *effect_flags = *effect_flags & ~effect_mask;
                 effect_ptr = *(longlong *)(param_1 + 0x728);
             }
-            *(undefined4 *)(effect_ptr + 0x5a4) = 0xffffffff;
+            *(int32_t *)(effect_ptr + 0x5a4) = 0xffffffff;
         }
         
         // 初始化特效参数
@@ -1000,10 +1000,10 @@ void RenderingSystem_EffectController(longlong param_1, byte param_2, int param_
         
         // 配置特效系统
         if ((((*(uint *)(param_1 + 0x56c) & 0x800) != 0) && (*(longlong *)(param_1 + 0x590) != 0)) && (effect_ptr = *(longlong *)(*(longlong *)(param_1 + 0x590) + 0xabf0), effect_ptr != 0)) {
-            *(undefined4 *)(effect_ptr + 0x28) = 0xbe99999a;
-            *(undefined4 *)(effect_ptr + 0x2c) = 0x3f000000;
-            *(undefined4 *)(effect_ptr + 0x30) = 0x49742400;
-            *(undefined4 *)(effect_ptr + 0x34) = 0x3eccccd;
+            *(int32_t *)(effect_ptr + 0x28) = 0xbe99999a;
+            *(int32_t *)(effect_ptr + 0x2c) = 0x3f000000;
+            *(int32_t *)(effect_ptr + 0x30) = 0x49742400;
+            *(int32_t *)(effect_ptr + 0x34) = 0x3eccccd;
         }
     }
     
@@ -1023,7 +1023,7 @@ void RenderingSystem_EffectController(longlong param_1, byte param_2, int param_
     effect_matrix = 0;
     effect_allocator[0] = 0xffffffffffffffff;
     effect_control_2 = 0;
-    effect_id = *(undefined4 *)(param_1 + 0x568);
+    effect_id = *(int32_t *)(param_1 + 0x568);
     effect_slot = *(int *)(param_1 + 0x18);
     
     // 处理渲染回调
@@ -1042,14 +1042,14 @@ void RenderingSystem_EffectController(longlong param_1, byte param_2, int param_
     effect_state[0] = CONCAT44(effect_params[3], effect_params[2]);
     effect_buffers[1] = CONCAT44(effect_params[5], effect_params[4]);
     effect_textures[1] = CONCAT44(effect_buffer, effect_params[6]);
-    effect_shader = (undefined4)effect_matrix;
+    effect_shader = (int32_t)effect_matrix;
     effect_program = effect_matrix._4_4_;
-    effect_texture = (undefined4)effect_allocator[0];
+    effect_texture = (int32_t)effect_allocator[0];
     effect_buffer = effect_allocator[0]._4_4_;
     effect_system = CONCAT62(effect_control_3, effect_control_2);
     
     // 执行特效渲染
-    (**(code **)(effect_ptr + 0x238))(*(undefined4 *)(*(longlong *)(param_1 + 0x8d8) + 0x98d928), effect_slot, 0, effect_id, &effect_memory[0]);
+    (**(code **)(effect_ptr + 0x238))(*(int32_t *)(*(longlong *)(param_1 + 0x8d8) + 0x98d928), effect_slot, 0, effect_id, &effect_memory[0]);
     
     // 清理渲染状态
     if ((effect_slot != 0) && (_DAT_180c8f008 != 0)) {

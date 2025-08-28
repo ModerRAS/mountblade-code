@@ -235,7 +235,7 @@ typedef struct {
  * - 实现缓存友好的访问模式
  * - 提供最佳的复制性能
  */
-void MemoryCopyOperator(undefined8 param_1)
+void MemoryCopyOperator(uint64_t param_1)
 {
     uint in_EAX;
     int unaff_ESI;
@@ -280,7 +280,7 @@ void MemoryCopyOperator(undefined8 param_1)
  * - 实现快速分配路径
  * - 提供最佳的分配性能
  */
-void FastMemoryAllocator(undefined8 param_1)
+void FastMemoryAllocator(uint64_t param_1)
 {
     // 执行快速内存分配操作
     memcpy();
@@ -319,12 +319,12 @@ void FastMemoryAllocator(undefined8 param_1)
  * - 提供系统资源的统一管理
  * - 实现缓冲区的完整生命周期管理
  */
-void BufferSizeInitializer(undefined8 param_1)
+void BufferSizeInitializer(uint64_t param_1)
 {
     longlong unaff_RDI;
     
     // 初始化缓冲区大小和配置
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(undefined8 *)(unaff_RDI + 8),
+    FUN_180742250(*(uint64_t *)(_DAT_180be12f0 + 0x1a0),*(uint64_t *)(unaff_RDI + 8),
                 &UNK_180989010,MEMORY_BLOCK_SIZE_168,1);
     
     return;
@@ -366,9 +366,9 @@ void BufferSizeInitializer(undefined8 param_1)
  * - 提供详细的错误状态报告
  * - 实现错误恢复机制
  */
-undefined8 QueueSizeManager(longlong param_1, uint param_2)
+uint64_t QueueSizeManager(longlong param_1, uint param_2)
 {
-    undefined8 uVar1;
+    uint64_t uVar1;
     longlong lVar2;
     
     // 验证队列大小是否为2的幂
@@ -380,7 +380,7 @@ undefined8 QueueSizeManager(longlong param_1, uint param_2)
     uVar1 = FUN_1807682e0(param_1, 0);
     if ((int)uVar1 == 0) {
         // 分配队列节点内存
-        lVar2 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0), param_2, 
+        lVar2 = FUN_180741e10(*(uint64_t *)(_DAT_180be12f0 + 0x1a0), param_2, 
                             &UNK_180989010, MEMORY_BLOCK_SIZE_36, 0, (char)uVar1, 1);
         *(longlong *)(param_1 + 8) = lVar2;
         
@@ -389,10 +389,10 @@ undefined8 QueueSizeManager(longlong param_1, uint param_2)
         }
         
         // 初始化队列状态
-        *(undefined8 *)(param_1 + 0x1c) = 0;
+        *(uint64_t *)(param_1 + 0x1c) = 0;
         uVar1 = 0;
-        *(undefined8 *)(param_1 + 0x14) = 0;
-        *(undefined8 *)(param_1 + 0x24) = 0;
+        *(uint64_t *)(param_1 + 0x14) = 0;
+        *(uint64_t *)(param_1 + 0x24) = 0;
         *(uint *)(param_1 + 0x10) = param_2;
     }
     
@@ -545,7 +545,7 @@ longlong BufferDataReader(longlong param_1, longlong *param_2, int *param_3)
  * - 实现缓存友好的访问模式
  * - 提供最佳的写入性能
  */
-undefined8 BufferDataWriter(longlong param_1, undefined8 param_2, int param_3, longlong param_4)
+uint64_t BufferDataWriter(longlong param_1, uint64_t param_2, int param_3, longlong param_4)
 {
     uint uVar1;
     uint in_EAX;
@@ -602,7 +602,7 @@ undefined8 BufferDataWriter(longlong param_1, undefined8 param_2, int param_3, l
  * - 提供系统状态的统一接口
  * - 实现系统管理的完整性
  */
-undefined1 SystemStatusChecker(void)
+int8_t SystemStatusChecker(void)
 {
     return SYSTEM_SUCCESS;
 }
@@ -646,13 +646,13 @@ undefined1 SystemStatusChecker(void)
  * - 实现缓存友好的访问模式
  * - 提供最佳的空间管理性能
  */
-undefined8 BufferSpaceCalculator(longlong param_1, longlong *param_2, int param_3, 
+uint64_t BufferSpaceCalculator(longlong param_1, longlong *param_2, int param_3, 
                                 longlong *param_4, int *param_5)
 {
     int iVar1;
     int iVar2;
     uint uVar3;
-    undefined8 uVar4;
+    uint64_t uVar4;
     int iVar5;
     uint uVar6;
     

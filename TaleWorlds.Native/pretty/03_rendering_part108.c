@@ -47,8 +47,8 @@
  */
 void RenderingSystem_ProcessResourceData(longlong render_context, longlong output_handle, uint resource_data)
 {
-    undefined4 render_data;
-    undefined8 *resource_pool_ptr;
+    int32_t render_data;
+    uint64_t *resource_pool_ptr;
     longlong *memory_block_ptr;
     longlong *memory_block_ptr2;
     uint loop_counter;
@@ -61,34 +61,34 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
     int *hash_entry_ptr;
     ulonglong resource_id;
     int float_value;
-    undefined *string_data;
-    undefined4 *resource_array_ptr;
+    void *string_data;
+    int32_t *resource_array_ptr;
     ulonglong resource_size;
-    undefined8 *resource_manager_ptr;
+    uint64_t *resource_manager_ptr;
     uint item_count;
     longlong **context_ptr_ptr;
     ulonglong *output_buffer_ptr;
     longlong data_offset;
     longlong resource_offset;
     ulonglong *temp_buffer_ptr;
-    undefined1 float_buffer[16];
+    int8_t float_buffer[16];
     longlong output_handle_local;
     uint resource_data_param;
     uint count_array[2];
     longlong *memory_pool_ptr;
     uint *uint_buffer_ptr;
     longlong *long_buffer_ptr;
-    undefined4 memory_flag;
+    int32_t memory_flag;
     ulonglong write_data_1;
     ulonglong write_data_2;
     ulonglong *buffer_start_ptr;
     ulonglong *buffer_current_ptr;
     ulonglong *buffer_end_ptr;
-    undefined4 allocation_flag;
+    int32_t allocation_flag;
     longlong *stack_buffer_ptr;
-    undefined8 callback_data;
+    uint64_t callback_data;
     code *callback_function;
-    undefined *error_handler;
+    void *error_handler;
     ulonglong *resource_list_ptr;
     ulonglong *data_stream_ptr;
     longlong **context_manager_ptr;
@@ -96,13 +96,13 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
     longlong *file_handle_ptr;
     ulonglong **buffer_manager_ptr;
     longlong **thread_manager_ptr;
-    undefined1 thread_flag;
-    undefined8 thread_counter;
-    undefined1 stack_buffer[16];
+    int8_t thread_flag;
+    uint64_t thread_counter;
+    int8_t stack_buffer[16];
     ulonglong performance_counter;
-    undefined *cleanup_handler;
+    void *cleanup_handler;
     longlong cleanup_flag;
-    undefined4 status_flag;
+    int32_t status_flag;
     
     thread_counter = 0xfffffffffffffffe;
     resource_id = (ulonglong)resource_data;
@@ -115,21 +115,21 @@ void RenderingSystem_ProcessResourceData(longlong render_context, longlong outpu
     uint_buffer_ptr = (uint *)0x0;
     long_buffer_ptr = (longlong *)0x0;
     memory_flag = 3;
-    resource_pool_ptr = *(undefined8 **)(render_context + 0x9f8);
-    resource_array_ptr = (undefined4 *)*resource_pool_ptr;
+    resource_pool_ptr = *(uint64_t **)(render_context + 0x9f8);
+    resource_array_ptr = (int32_t *)*resource_pool_ptr;
     resource_manager_ptr = resource_pool_ptr;
-  if (resource_array_ptr == (undefined4 *)0x0) {
+  if (resource_array_ptr == (int32_t *)0x0) {
         resource_manager_ptr = resource_pool_ptr + 1;
-        resource_array_ptr = (undefined4 *)*resource_manager_ptr;
-        while (resource_array_ptr == (undefined4 *)0x0) {
+        resource_array_ptr = (int32_t *)*resource_manager_ptr;
+        while (resource_array_ptr == (int32_t *)0x0) {
             resource_manager_ptr = resource_manager_ptr + 1;
-            resource_array_ptr = (undefined4 *)*resource_manager_ptr;
+            resource_array_ptr = (int32_t *)*resource_manager_ptr;
         }
     }
     item_count = 0;
     output_handle_local = output_handle;
     resource_data_param = resource_data;
-    if (resource_array_ptr != (undefined4 *)resource_pool_ptr[*(longlong *)(render_context + 0xa00)]) {
+    if (resource_array_ptr != (int32_t *)resource_pool_ptr[*(longlong *)(render_context + 0xa00)]) {
         do {
             resource_offset = *(longlong *)(resource_array_ptr + 2);
             data_offset = *(longlong *)(resource_offset + 8);
@@ -146,7 +146,7 @@ LAB_180331625:
         if ((hash_entry_ptr != *(int **)(data_offset + resource_offset * 8)) &&
             (resource_offset = *(longlong *)(hash_entry_ptr + 2), resource_offset != 0)) {
         if (resource_buffer_end < resource_buffer_start) {
-          *(undefined4 *)resource_buffer_end = *resource_array_item;
+          *(int32_t *)resource_buffer_end = *resource_array_item;
           temp_buffer_ptr = resource_buffer_end;
         }
         else {
@@ -154,7 +154,7 @@ LAB_180331625:
           if (buffer_size == 0) {
             buffer_size = 1;
 LAB_180331688:
-            temp_buffer_ptr = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,buffer_size * 4,(undefined1)allocation_flag);
+            temp_buffer_ptr = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,buffer_size * 4,(int8_t)allocation_flag);
           }
           else {
             buffer_size = buffer_size * 2;
@@ -165,7 +165,7 @@ LAB_180331688:
                     // WARNING: Subroutine does not return
             memmove(temp_buffer_ptr,memory_pool_ptr,(longlong)resource_buffer_end - (longlong)memory_pool_ptr);
           }
-          *(undefined4 *)temp_buffer_ptr = *resource_array_item;
+          *(int32_t *)temp_buffer_ptr = *resource_array_item;
           if (memory_pool_ptr != (ulonglong *)0x0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
@@ -207,13 +207,13 @@ LAB_18033173f:
         resource_id = (ulonglong)resource_data_param;
         count_array[0] = item_count;
       }
-      resource_array_item = *(undefined4 **)(resource_array_item + 4);
-      while (resource_array_item == (undefined4 *)0x0) {
+      resource_array_item = *(int32_t **)(resource_array_item + 4);
+      while (resource_array_item == (int32_t *)0x0) {
         resource_manager_ptr = resource_manager_ptr + 1;
-        resource_array_item = (undefined4 *)*resource_manager_ptr;
+        resource_array_item = (int32_t *)*resource_manager_ptr;
       }
     } while (resource_array_item !=
-             *(undefined4 **)(*(longlong *)(render_context + 0x9f8) + *(longlong *)(render_context + 0xa00) * 8));
+             *(int32_t **)(*(longlong *)(render_context + 0x9f8) + *(longlong *)(render_context + 0xa00) * 8));
   }
   puVar7 = (ulonglong *)0x0;
   alignment_counter = 0x20;
@@ -244,7 +244,7 @@ LAB_18033173f:
     }
   }
   alignment_value = CONCAT44(alignment_value._4_4_,alignment_result);
-  fwrite(&write_buffer,4,1,*(undefined8 *)(output_handle_local + 8));
+  fwrite(&write_buffer,4,1,*(uint64_t *)(output_handle_local + 8));
   if ((int)uStack_128 != 0) {
     pplStack_a8 = &plStack_f8;
     puStack_d8 = &uStack_120;
@@ -281,18 +281,18 @@ LAB_18033173f:
   puStack_110 = (ulonglong *)0x0;
   puStack_108 = (ulonglong *)0x0;
   uStack_100 = 3;
-  puVar2 = *(undefined8 **)(param_1 + 0x6c0);
-  puVar16 = (undefined4 *)*puVar2;
+  puVar2 = *(uint64_t **)(param_1 + 0x6c0);
+  puVar16 = (int32_t *)*puVar2;
   puVar18 = puVar2;
-  if (puVar16 == (undefined4 *)0x0) {
+  if (puVar16 == (int32_t *)0x0) {
     puVar18 = puVar2 + 1;
-    puVar16 = (undefined4 *)*puVar18;
-    while (puVar16 == (undefined4 *)0x0) {
+    puVar16 = (int32_t *)*puVar18;
+    while (puVar16 == (int32_t *)0x0) {
       puVar18 = puVar18 + 1;
-      puVar16 = (undefined4 *)*puVar18;
+      puVar16 = (int32_t *)*puVar18;
     }
   }
-  if (puVar16 != (undefined4 *)puVar2[*(longlong *)(param_1 + 0x6c8)]) {
+  if (puVar16 != (int32_t *)puVar2[*(longlong *)(param_1 + 0x6c8)]) {
     puVar21 = (ulonglong *)0x0;
     puVar24 = (ulonglong *)0x0;
     pplVar20 = (longlong **)puVar7;
@@ -312,7 +312,7 @@ LAB_180331a35:
       if ((piVar12 != *(int **)(lVar22 + lVar9 * 8)) &&
          (uStack_120 = *(ulonglong *)(piVar12 + 2), uStack_120 != 0)) {
         if (puVar21 < pplVar20) {
-          *(undefined4 *)puVar21 = *puVar16;
+          *(int32_t *)puVar21 = *puVar16;
           puVar10 = puVar21;
         }
         else {
@@ -333,7 +333,7 @@ LAB_180331a9e:
                     // WARNING: Subroutine does not return
             memmove(puVar10,puStack_d8,uStack_128);
           }
-          *(undefined4 *)puVar10 = *puVar16;
+          *(int32_t *)puVar10 = *puVar16;
           if (puStack_d8 != (ulonglong *)0x0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
@@ -379,19 +379,19 @@ LAB_180331b54:
         pplVar20 = pplStack_c8;
         puStack_110 = puVar24;
       }
-      puVar16 = *(undefined4 **)(puVar16 + 4);
-      while (puVar16 == (undefined4 *)0x0) {
+      puVar16 = *(int32_t **)(puVar16 + 4);
+      while (puVar16 == (int32_t *)0x0) {
         puVar18 = puVar18 + 1;
-        puVar16 = (undefined4 *)*puVar18;
+        puVar16 = (int32_t *)*puVar18;
       }
     } while (puVar16 !=
-             *(undefined4 **)(*(longlong *)(param_1 + 0x6c0) + *(longlong *)(param_1 + 0x6c8) * 8));
+             *(int32_t **)(*(longlong *)(param_1 + 0x6c0) + *(longlong *)(param_1 + 0x6c8) * 8));
   }
-  fwrite(auStackX_20,4,1,*(undefined8 *)(lStackX_10 + 8));
+  fwrite(auStackX_20,4,1,*(uint64_t *)(lStackX_10 + 8));
   puVar21 = puStack_d8;
   puVar7 = puStack_118;
   if (auStackX_20[0] != 0) {
-    fwrite(puStack_d8,4,auStackX_20[0],*(undefined8 *)(lStackX_10 + 8));
+    fwrite(puStack_d8,4,auStackX_20[0],*(uint64_t *)(lStackX_10 + 8));
     plStack_148 = (longlong *)0x0;
     puStack_140 = (uint *)0x0;
     plStack_138 = (longlong *)0x0;
@@ -400,7 +400,7 @@ LAB_180331b54:
     puVar7 = puStack_118;
     plVar3 = plStack_148;
     if (auStackX_20[0] != 0) {
-      puVar16 = (undefined4 *)*puStack_118;
+      puVar16 = (int32_t *)*puStack_118;
       uVar1 = *puVar16;
       if ((ulonglong)(((longlong)plStack_138 - (longlong)puStack_140) + (longlong)plStack_148) < 5)
       {
@@ -464,8 +464,8 @@ LAB_180331b54:
       *puStack_140 = uVar19;
       puStack_140 = puStack_140 + 1;
       puVar15 = &DAT_18098bc73;
-      if (*(undefined **)(puVar16 + 0x16) != (undefined *)0x0) {
-        puVar15 = *(undefined **)(puVar16 + 0x16);
+      if (*(void **)(puVar16 + 0x16) != (void *)0x0) {
+        puVar15 = *(void **)(puVar16 + 0x16);
       }
                     // WARNING: Subroutine does not return
       memcpy(puStack_140,puVar15,(ulonglong)uVar19);
@@ -477,7 +477,7 @@ LAB_180331b54:
     plStack_f8 = (longlong *)0x0;
     uStack_f0 = 0;
     pcStack_e8 = (code *)0x0;
-    puStack_e0 = (undefined *)CONCAT53(puStack_e0._3_5_,0x30000);
+    puStack_e0 = (void *)CONCAT53(puStack_e0._3_5_,0x30000);
     uVar17 = uVar13 & 0xffffffff;
     FUN_180639bf0(&plStack_f8,uVar13 & 0xffffffff);
     plVar4 = plStack_f8;
@@ -487,9 +487,9 @@ LAB_180331b54:
     uStack_120 = uVar17;
     FUN_18021f4e0(&pplStack_a8,auStack_88,plVar3,uVar13 & 0xffffffff,plStack_f8,uVar17);
     uStack_120 = uStack_78;
-    fwrite(&uStack_128,8,1,*(undefined8 *)(lStackX_10 + 8));
-    fwrite(&uStack_120,8,1,*(undefined8 *)(lStackX_10 + 8));
-    fwrite(plVar4,uStack_120,1,*(undefined8 *)(lStackX_10 + 8));
+    fwrite(&uStack_128,8,1,*(uint64_t *)(lStackX_10 + 8));
+    fwrite(&uStack_120,8,1,*(uint64_t *)(lStackX_10 + 8));
+    fwrite(plVar4,uStack_120,1,*(uint64_t *)(lStackX_10 + 8));
     puStack_68 = &UNK_180a3c3e0;
     if (lStack_60 != 0) {
                     // WARNING: Subroutine does not return
@@ -535,7 +535,7 @@ LAB_180331b54:
  * @param end_index 结束索引
  * @return void
  */
-void RenderingSystem_ExecuteBatchOperations(undefined8 *batch_context, int start_index, int end_index)
+void RenderingSystem_ExecuteBatchOperations(uint64_t *batch_context, int start_index, int end_index)
 {
     int status_code;
     longlong *data_ptr;
@@ -547,35 +547,35 @@ void RenderingSystem_ExecuteBatchOperations(undefined8 *batch_context, int start
     longlong *next_ptr;
     longlong *end_ptr;
     int current_index;
-    undefined **item_ptr;
+    void **item_ptr;
     uint item_counter;
     longlong buffer_start;
     int loop_index;
     int count_array[2];
     longlong memory_pool;
     longlong memory_end;
-    undefined8 thread_counter;
-    undefined2 thread_flag;
-    undefined1 memory_flag;
+    uint64_t thread_counter;
+    int16_t thread_flag;
+    int8_t memory_flag;
     ulonglong pool_size;
-    undefined **item_list;
+    void **item_list;
     longlong buffer_array[3];
-    undefined2 cleanup_flag;
-    undefined1 cleanup_mode;
+    int16_t cleanup_flag;
+    int8_t cleanup_mode;
     longlong *data_buffer;
     longlong *temp_buffer;
     longlong *buffer_start_ptr;
-    undefined4 allocation_flag;
+    int32_t allocation_flag;
     ulonglong total_size;
-    undefined *output_ptr;
-    undefined1 output_flag;
-    undefined8 context_data;
+    void *output_ptr;
+    int8_t output_flag;
+    uint64_t context_data;
     longlong mutex_address;
-    undefined1 temp_buffer_array[16];
+    int8_t temp_buffer_array[16];
     ulonglong processed_size;
-    undefined *cleanup_ptr;
+    void *cleanup_ptr;
     longlong cleanup_status;
-    undefined4 final_flag;
+    int32_t final_flag;
     
     if (start_index < end_index) {
         context_data = 0xfffffffffffffffe;
@@ -599,7 +599,7 @@ void RenderingSystem_ExecuteBatchOperations(undefined8 *batch_context, int start
             offset = memory_end;
             data_ptr = data_buffer;
             if (item_counter < (uint)(current_index * *(int *)*batch_context)) {
-                item_ptr = (undefined **)((longlong)(int)item_counter * 8);
+                item_ptr = (void **)((longlong)(int)item_counter * 8);
                 current_ptr = data_buffer;
                 next_ptr = temp_buffer;
                 do {
@@ -641,7 +641,7 @@ LAB_180332267:
                         item_ptr = item_list;
                         next_ptr = next_ptr + 1;
                         temp_buffer = next_ptr;
-                        FUN_180336980(*(undefined8 *)((longlong)item_list + *(longlong *)batch_context[2]),
+                        FUN_180336980(*(uint64_t *)((longlong)item_list + *(longlong *)batch_context[2]),
                                       &memory_pool);
                         count_array[0] = count_array[0] + 1;
                         buffer_start = memory_pool;
@@ -677,13 +677,13 @@ LAB_180332267:
             if (status_code != 0) {
                 __Throw_C_error_std__YAXH_Z(status_code);
             }
-            fwrite(count_array, 4, 1, *(undefined8 *)(*(longlong *)batch_context[4] + 8));
+            fwrite(count_array, 4, 1, *(uint64_t *)(*(longlong *)batch_context[4] + 8));
             fwrite(*(longlong *)batch_context[5] + (ulonglong)(uint)(*(int *)*batch_context * loop_index) * 4, 4,
-                   count_array[0], *(undefined8 *)(*(longlong *)batch_context[4] + 8));
-            fwrite(data_ptr, 8, count_array[0], *(undefined8 *)(*(longlong *)batch_context[4] + 8));
-            fwrite(&total_size, 8, 1, *(undefined8 *)(*(longlong *)batch_context[4] + 8));
-            fwrite(&pool_size, 8, 1, *(undefined8 *)(*(longlong *)batch_context[4] + 8));
-            fwrite(buffer_start, pool_size, 1, *(undefined8 *)(*(longlong *)batch_context[4] + 8));
+                   count_array[0], *(uint64_t *)(*(longlong *)batch_context[4] + 8));
+            fwrite(data_ptr, 8, count_array[0], *(uint64_t *)(*(longlong *)batch_context[4] + 8));
+            fwrite(&total_size, 8, 1, *(uint64_t *)(*(longlong *)batch_context[4] + 8));
+            fwrite(&pool_size, 8, 1, *(uint64_t *)(*(longlong *)batch_context[4] + 8));
+            fwrite(buffer_start, pool_size, 1, *(uint64_t *)(*(longlong *)batch_context[4] + 8));
             status_code = _Mtx_unlock(offset);
             if (status_code != 0) {
                 __Throw_C_error_std__YAXH_Z(status_code);

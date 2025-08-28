@@ -190,7 +190,7 @@ typedef enum {
  * @param param_1 配置参数块指针
  * @return 初始化状态码
  */
-uint FUN_18016e8b0(undefined4 param_1)
+uint FUN_18016e8b0(int32_t param_1)
 {
     // 语义化变量定义
     InitializationConfigBlock* config_block;   // 配置块指针
@@ -410,7 +410,7 @@ uint FUN_18016e970(void* status_block)
  * @param param_block 参数块指针
  * @return 验证结果
  */
-uint FUN_18016e9b0(undefined4 param_block)
+uint FUN_18016e9b0(int32_t param_block)
 {
     // 语义化变量定义
     uint* param_data;                       // 参数数据指针

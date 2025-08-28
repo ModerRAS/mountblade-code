@@ -11,22 +11,22 @@
 void serialize_rendering_data(longlong render_context, longlong *data_buffer)
 
 {
-  undefined1 byte_value;
-  undefined4 uint_value;
+  int8_t byte_value;
+  int32_t uint_value;
   longlong range_size;
   longlong temp_size;
-  undefined1 *byte_ptr;
-  undefined4 *uint_ptr;
+  int8_t *byte_ptr;
+  int32_t *uint_ptr;
   int *int_ptr;
   uint counter;
   ulonglong index;
   ulonglong start_index;
   ulonglong current_index;
   
-  uint_ptr = (undefined4 *)data_buffer[1];
+  uint_ptr = (int32_t *)data_buffer[1];
   if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
     expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   start_index = 0;
   *uint_ptr = 0;
@@ -54,19 +54,19 @@ void serialize_rendering_data(longlong render_context, longlong *data_buffer)
              (ulonglong)((*(longlong *)(render_context + 0x28) - *(longlong *)(render_context + 0x20)) / 0x98));
   }
   write_buffer_data(data_buffer,render_context + 0x40);
-  byte_ptr = (undefined1 *)data_buffer[1];
-  byte_value = *(undefined1 *)(render_context + 0xd8);
+  byte_ptr = (int8_t *)data_buffer[1];
+  byte_value = *(int8_t *)(render_context + 0xd8);
   if ((ulonglong)((*data_buffer - (longlong)byte_ptr) + data_buffer[2]) < 2) {
     expand_buffer_if_needed(data_buffer,byte_ptr + (1 - *data_buffer));
-    byte_ptr = (undefined1 *)data_buffer[1];
+    byte_ptr = (int8_t *)data_buffer[1];
   }
   *byte_ptr = byte_value;
   data_buffer[1] = data_buffer[1] + 1;
-  uint_ptr = (undefined4 *)data_buffer[1];
-  uint_value = *(undefined4 *)(render_context + 0xdc);
+  uint_ptr = (int32_t *)data_buffer[1];
+  uint_value = *(int32_t *)(render_context + 0xdc);
   if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
     expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = uint_value;
   data_buffer[1] = data_buffer[1] + 4;
@@ -155,15 +155,15 @@ void serialize_rendering_data(longlong render_context, longlong *data_buffer)
             );
   }
   write_buffer_data(data_buffer,render_context + 0x10d8);
-  byte_ptr = (undefined1 *)data_buffer[1];
-  byte_value = *(undefined1 *)(render_context + 0x10f9);
+  byte_ptr = (int8_t *)data_buffer[1];
+  byte_value = *(int8_t *)(render_context + 0x10f9);
   if ((ulonglong)((*data_buffer - (longlong)byte_ptr) + data_buffer[2]) < 2) {
     expand_buffer_if_needed(data_buffer,byte_ptr + (1 - *data_buffer));
-    byte_ptr = (undefined1 *)data_buffer[1];
+    byte_ptr = (int8_t *)data_buffer[1];
   }
   *byte_ptr = byte_value;
   data_buffer[1] = data_buffer[1] + 1;
-  uint_ptr = (undefined4 *)data_buffer[1];
+  uint_ptr = (int32_t *)data_buffer[1];
   if (*(char *)(render_context + 0x10f9) != '\0') {
     write_buffer_data(data_buffer,render_context + 0x1100);
     write_buffer_data(data_buffer,render_context + 0x1198);
@@ -171,11 +171,11 @@ void serialize_rendering_data(longlong render_context, longlong *data_buffer)
     write_buffer_data(data_buffer,render_context + 0x12c8);
     write_buffer_data(data_buffer,render_context + 0x1360);
     write_buffer_data(data_buffer,render_context + 0x13f8);
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
     expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = 0x10;
   data_buffer[1] = data_buffer[1] + 4;
@@ -198,162 +198,162 @@ void serialize_rendering_data(longlong render_context, longlong *data_buffer)
 
 
 
-// 函数: undefined4 * initialize_rendering_pool(undefined4 *pool_manager)
+// 函数: int32_t * initialize_rendering_pool(int32_t *pool_manager)
 // 功能: 初始化渲染池管理器
 // 参数: 
 //   pool_manager - 渲染池管理器指针
 // 返回: 初始化后的渲染池管理器指针
-undefined4 * initialize_rendering_pool(undefined4 *pool_manager)
+int32_t * initialize_rendering_pool(int32_t *pool_manager)
 
 {
-  *(undefined **)(pool_manager + 2) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 4) = 0;
+  *(void **)(pool_manager + 2) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 4) = 0;
   pool_manager[6] = 0;
-  *(undefined **)(pool_manager + 2) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 8) = 0;
-  *(undefined8 *)(pool_manager + 4) = 0;
+  *(void **)(pool_manager + 2) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 8) = 0;
+  *(uint64_t *)(pool_manager + 4) = 0;
   pool_manager[6] = 0;
-  *(undefined **)(pool_manager + 10) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0xc) = 0;
+  *(void **)(pool_manager + 10) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0xc) = 0;
   pool_manager[0xe] = 0;
-  *(undefined **)(pool_manager + 10) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x10) = 0;
-  *(undefined8 *)(pool_manager + 0xc) = 0;
+  *(void **)(pool_manager + 10) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x10) = 0;
+  *(uint64_t *)(pool_manager + 0xc) = 0;
   pool_manager[0xe] = 0;
-  *(undefined **)(pool_manager + 0x12) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x14) = 0;
+  *(void **)(pool_manager + 0x12) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x14) = 0;
   pool_manager[0x16] = 0;
-  *(undefined **)(pool_manager + 0x12) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x18) = 0;
-  *(undefined8 *)(pool_manager + 0x14) = 0;
+  *(void **)(pool_manager + 0x12) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x18) = 0;
+  *(uint64_t *)(pool_manager + 0x14) = 0;
   pool_manager[0x16] = 0;
-  *(undefined **)(pool_manager + 0x1a) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x1c) = 0;
+  *(void **)(pool_manager + 0x1a) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x1c) = 0;
   pool_manager[0x1e] = 0;
-  *(undefined **)(pool_manager + 0x1a) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x20) = 0;
-  *(undefined8 *)(pool_manager + 0x1c) = 0;
+  *(void **)(pool_manager + 0x1a) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x20) = 0;
+  *(uint64_t *)(pool_manager + 0x1c) = 0;
   pool_manager[0x1e] = 0;
-  *(undefined **)(pool_manager + 0x22) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x24) = 0;
+  *(void **)(pool_manager + 0x22) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x24) = 0;
   pool_manager[0x26] = 0;
-  *(undefined **)(pool_manager + 0x22) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x28) = 0;
-  *(undefined8 *)(pool_manager + 0x24) = 0;
+  *(void **)(pool_manager + 0x22) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x28) = 0;
+  *(uint64_t *)(pool_manager + 0x24) = 0;
   pool_manager[0x26] = 0;
-  *(undefined **)(pool_manager + 0x2a) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x2c) = 0;
+  *(void **)(pool_manager + 0x2a) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x2c) = 0;
   pool_manager[0x2e] = 0;
-  *(undefined **)(pool_manager + 0x2a) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x30) = 0;
-  *(undefined8 *)(pool_manager + 0x2c) = 0;
+  *(void **)(pool_manager + 0x2a) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x30) = 0;
+  *(uint64_t *)(pool_manager + 0x2c) = 0;
   pool_manager[0x2e] = 0;
-  *(undefined **)(pool_manager + 0x32) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x34) = 0;
+  *(void **)(pool_manager + 0x32) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x34) = 0;
   pool_manager[0x36] = 0;
-  *(undefined **)(pool_manager + 0x32) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x38) = 0;
-  *(undefined8 *)(pool_manager + 0x34) = 0;
+  *(void **)(pool_manager + 0x32) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x38) = 0;
+  *(uint64_t *)(pool_manager + 0x34) = 0;
   pool_manager[0x36] = 0;
-  *(undefined **)(pool_manager + 0x3a) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x3c) = 0;
+  *(void **)(pool_manager + 0x3a) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x3c) = 0;
   pool_manager[0x3e] = 0;
-  *(undefined **)(pool_manager + 0x3a) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x40) = 0;
-  *(undefined8 *)(pool_manager + 0x3c) = 0;
+  *(void **)(pool_manager + 0x3a) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x40) = 0;
+  *(uint64_t *)(pool_manager + 0x3c) = 0;
   pool_manager[0x3e] = 0;
-  *(undefined **)(pool_manager + 0x42) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x44) = 0;
+  *(void **)(pool_manager + 0x42) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x44) = 0;
   pool_manager[0x46] = 0;
-  *(undefined **)(pool_manager + 0x42) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x48) = 0;
-  *(undefined8 *)(pool_manager + 0x44) = 0;
+  *(void **)(pool_manager + 0x42) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x48) = 0;
+  *(uint64_t *)(pool_manager + 0x44) = 0;
   pool_manager[0x46] = 0;
-  *(undefined8 *)(pool_manager + 0x4a) = 0;
-  *(undefined8 *)(pool_manager + 0x4c) = 0;
-  *(undefined8 *)(pool_manager + 0x4e) = 0;
+  *(uint64_t *)(pool_manager + 0x4a) = 0;
+  *(uint64_t *)(pool_manager + 0x4c) = 0;
+  *(uint64_t *)(pool_manager + 0x4e) = 0;
   pool_manager[0x50] = 3;
-  *(undefined **)(pool_manager + 0x52) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x54) = 0;
+  *(void **)(pool_manager + 0x52) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x54) = 0;
   pool_manager[0x56] = 0;
-  *(undefined **)(pool_manager + 0x52) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x58) = 0;
-  *(undefined8 *)(pool_manager + 0x54) = 0;
+  *(void **)(pool_manager + 0x52) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x58) = 0;
+  *(uint64_t *)(pool_manager + 0x54) = 0;
   pool_manager[0x56] = 0;
-  *(undefined **)(pool_manager + 0x5a) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x5c) = 0;
+  *(void **)(pool_manager + 0x5a) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x5c) = 0;
   pool_manager[0x5e] = 0;
-  *(undefined **)(pool_manager + 0x5a) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x60) = 0;
-  *(undefined8 *)(pool_manager + 0x5c) = 0;
+  *(void **)(pool_manager + 0x5a) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x60) = 0;
+  *(uint64_t *)(pool_manager + 0x5c) = 0;
   pool_manager[0x5e] = 0;
-  *(undefined **)(pool_manager + 0x62) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 100) = 0;
+  *(void **)(pool_manager + 0x62) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 100) = 0;
   pool_manager[0x66] = 0;
-  *(undefined **)(pool_manager + 0x62) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x68) = 0;
-  *(undefined8 *)(pool_manager + 100) = 0;
+  *(void **)(pool_manager + 0x62) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x68) = 0;
+  *(uint64_t *)(pool_manager + 100) = 0;
   pool_manager[0x66] = 0;
-  *(undefined **)(pool_manager + 0x6a) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x6c) = 0;
+  *(void **)(pool_manager + 0x6a) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x6c) = 0;
   pool_manager[0x6e] = 0;
-  *(undefined **)(pool_manager + 0x6a) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x70) = 0;
-  *(undefined8 *)(pool_manager + 0x6c) = 0;
+  *(void **)(pool_manager + 0x6a) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x70) = 0;
+  *(uint64_t *)(pool_manager + 0x6c) = 0;
   pool_manager[0x6e] = 0;
-  *(undefined **)(pool_manager + 0x72) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x74) = 0;
+  *(void **)(pool_manager + 0x72) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x74) = 0;
   pool_manager[0x76] = 0;
-  *(undefined **)(pool_manager + 0x72) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x78) = 0;
-  *(undefined8 *)(pool_manager + 0x74) = 0;
+  *(void **)(pool_manager + 0x72) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x78) = 0;
+  *(uint64_t *)(pool_manager + 0x74) = 0;
   pool_manager[0x76] = 0;
-  *(undefined **)(pool_manager + 0x7a) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x7c) = 0;
+  *(void **)(pool_manager + 0x7a) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x7c) = 0;
   pool_manager[0x7e] = 0;
-  *(undefined **)(pool_manager + 0x7a) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x80) = 0;
-  *(undefined8 *)(pool_manager + 0x7c) = 0;
+  *(void **)(pool_manager + 0x7a) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x80) = 0;
+  *(uint64_t *)(pool_manager + 0x7c) = 0;
   pool_manager[0x7e] = 0;
-  *(undefined **)(pool_manager + 0x82) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x84) = 0;
+  *(void **)(pool_manager + 0x82) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x84) = 0;
   pool_manager[0x86] = 0;
-  *(undefined **)(pool_manager + 0x82) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x88) = 0;
-  *(undefined8 *)(pool_manager + 0x84) = 0;
+  *(void **)(pool_manager + 0x82) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x88) = 0;
+  *(uint64_t *)(pool_manager + 0x84) = 0;
   pool_manager[0x86] = 0;
-  *(undefined **)(pool_manager + 0x8a) = &RENDERING_VTABLE_START;
-  *(undefined8 *)(pool_manager + 0x8c) = 0;
+  *(void **)(pool_manager + 0x8a) = &RENDERING_VTABLE_START;
+  *(uint64_t *)(pool_manager + 0x8c) = 0;
   pool_manager[0x8e] = 0;
-  *(undefined **)(pool_manager + 0x8a) = &RENDERING_VTABLE_ENTRY;
-  *(undefined8 *)(pool_manager + 0x90) = 0;
-  *(undefined8 *)(pool_manager + 0x8c) = 0;
+  *(void **)(pool_manager + 0x8a) = &RENDERING_VTABLE_ENTRY;
+  *(uint64_t *)(pool_manager + 0x90) = 0;
+  *(uint64_t *)(pool_manager + 0x8c) = 0;
   pool_manager[0x8e] = 0;
   initialize_rendering_component(pool_manager + 0x92,0x58,0x10,create_render_component,destroy_render_component);
   setup_rendering_instance(pool_manager + 500);
   *pool_manager = 0;
   pool_manager[0x1f2] = 0;
-  *(undefined1 *)(pool_manager + 499) = 0;
+  *(int8_t *)(pool_manager + 499) = 0;
   return pool_manager;
 }
 
 
 
-// 函数: void process_rendering_batch(longlong render_context, longlong *data_buffer, undefined8 batch_param1, undefined8 batch_param2)
+// 函数: void process_rendering_batch(longlong render_context, longlong *data_buffer, uint64_t batch_param1, uint64_t batch_param2)
 // 功能: 处理渲染批次数据
 // 参数: 
 //   render_context - 渲染上下文指针
 //   data_buffer - 数据缓冲区指针
 //   batch_param1 - 批次参数1
 //   batch_param2 - 批次参数2
-void process_rendering_batch(longlong render_context, longlong *data_buffer, undefined8 batch_param1, undefined8 batch_param2)
+void process_rendering_batch(longlong render_context, longlong *data_buffer, uint64_t batch_param1, uint64_t batch_param2)
 
 {
-  undefined1 byte_value;
-  undefined4 uint_value;
+  int8_t byte_value;
+  int32_t uint_value;
   longlong range_size;
-  undefined1 *byte_ptr;
-  undefined4 *uint_ptr;
+  int8_t *byte_ptr;
+  int32_t *uint_ptr;
   int *int_ptr;
   int item_count;
   uint counter;
@@ -361,26 +361,26 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, und
   int temp_int;
   longlong item_offset;
   ulonglong current_index;
-  undefined8 unused_param1;
+  uint64_t unused_param1;
   ulonglong start_index;
-  undefined8 unused_param2;
-  undefined8 unused_param3;
+  uint64_t unused_param2;
+  uint64_t unused_param3;
   
-  uint_ptr = (undefined4 *)data_buffer[1];
+  uint_ptr = (int32_t *)data_buffer[1];
   if ((ulonglong)((data_buffer[2] - (longlong)uint_ptr) + *data_buffer) < 5) {
     expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = 0;
   data_buffer[1] = data_buffer[1] + 4;
-  uint_ptr = (undefined4 *)data_buffer[1];
+  uint_ptr = (int32_t *)data_buffer[1];
   if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
     expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = 1;
   data_buffer[1] = data_buffer[1] + 4;
-  process_rendering_flags(&RENDERING_FLAG_TABLE,*(undefined4 *)(render_context + 8),data_buffer);
+  process_rendering_flags(&RENDERING_FLAG_TABLE,*(int32_t *)(render_context + 8),data_buffer);
   write_buffer_data(data_buffer,render_context + 0x10);
   write_buffer_data(data_buffer,render_context + 0x30);
   write_buffer_data(data_buffer,render_context + 0x50);
@@ -406,19 +406,19 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, und
     item_offset = 0;
     do {
       write_buffer_data(data_buffer,(longlong)temp_int * 0x60 + *(longlong *)(render_context + 0x130));
-      uint_ptr = (undefined4 *)data_buffer[1];
-      uint_value = *(undefined4 *)(item_offset + 0x58 + *(longlong *)(render_context + 0x130));
+      uint_ptr = (int32_t *)data_buffer[1];
+      uint_value = *(int32_t *)(item_offset + 0x58 + *(longlong *)(render_context + 0x130));
       if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
         expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-        uint_ptr = (undefined4 *)data_buffer[1];
+        uint_ptr = (int32_t *)data_buffer[1];
       }
       *uint_ptr = uint_value;
       data_buffer[1] = data_buffer[1] + 4;
-      uint_ptr = (undefined4 *)data_buffer[1];
-      uint_value = *(undefined4 *)(item_offset + 0x5c + *(longlong *)(render_context + 0x130));
+      uint_ptr = (int32_t *)data_buffer[1];
+      uint_value = *(int32_t *)(item_offset + 0x5c + *(longlong *)(render_context + 0x130));
       if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
         expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-        uint_ptr = (undefined4 *)data_buffer[1];
+        uint_ptr = (int32_t *)data_buffer[1];
       }
       *uint_ptr = uint_value;
       temp_int = temp_int + 1;
@@ -442,22 +442,22 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, und
     range_size = range_size + 0x58;
     item_offset = item_offset + -1;
   } while (item_offset != 0);
-  process_rendering_instance(&RENDERING_INSTANCE_TABLE,*(undefined4 *)(render_context + 2000),data_buffer);
-  byte_ptr = (undefined1 *)data_buffer[1];
-  byte_value = *(undefined1 *)(render_context + 0x7d4);
+  process_rendering_instance(&RENDERING_INSTANCE_TABLE,*(int32_t *)(render_context + 2000),data_buffer);
+  byte_ptr = (int8_t *)data_buffer[1];
+  byte_value = *(int8_t *)(render_context + 0x7d4);
   if ((ulonglong)((*data_buffer - (longlong)byte_ptr) + data_buffer[2]) < 2) {
     expand_buffer_if_needed(data_buffer,byte_ptr + (1 - *data_buffer));
-    byte_ptr = (undefined1 *)data_buffer[1];
+    byte_ptr = (int8_t *)data_buffer[1];
   }
   *byte_ptr = byte_value;
   data_buffer[1] = data_buffer[1] + 1;
   if (*(char *)(render_context + 0x7d4) == '\0') {
     return;
   }
-  uint_ptr = (undefined4 *)data_buffer[1];
+  uint_ptr = (int32_t *)data_buffer[1];
   if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
     expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   start_index = 0;
   *uint_ptr = 0;
@@ -486,19 +486,19 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, und
              (ulonglong)((*(longlong *)(render_context + 0x800) - *(longlong *)(render_context + 0x7f8)) / 0x98));
   }
   write_buffer_data(data_buffer,render_context + 0x818);
-  byte_ptr = (undefined1 *)data_buffer[1];
-  byte_value = *(undefined1 *)(render_context + 0x8b0);
+  byte_ptr = (int8_t *)data_buffer[1];
+  byte_value = *(int8_t *)(render_context + 0x8b0);
   if ((ulonglong)((*data_buffer - (longlong)byte_ptr) + data_buffer[2]) < 2) {
     expand_buffer_if_needed(data_buffer,byte_ptr + (1 - *data_buffer));
-    byte_ptr = (undefined1 *)data_buffer[1];
+    byte_ptr = (int8_t *)data_buffer[1];
   }
   *byte_ptr = byte_value;
   data_buffer[1] = data_buffer[1] + 1;
-  uint_ptr = (undefined4 *)data_buffer[1];
-  uint_value = *(undefined4 *)(render_context + 0x8b4);
+  uint_ptr = (int32_t *)data_buffer[1];
+  uint_value = *(int32_t *)(render_context + 0x8b4);
   if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
     expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = uint_value;
   data_buffer[1] = data_buffer[1] + 4;
@@ -587,15 +587,15 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, und
             );
   }
   write_buffer_data(data_buffer,render_context + 0x18b0);
-  byte_ptr = (undefined1 *)data_buffer[1];
-  byte_value = *(undefined1 *)(render_context + 0x18d1);
+  byte_ptr = (int8_t *)data_buffer[1];
+  byte_value = *(int8_t *)(render_context + 0x18d1);
   if ((ulonglong)((*data_buffer - (longlong)byte_ptr) + data_buffer[2]) < 2) {
     expand_buffer_if_needed(data_buffer,byte_ptr + (1 - *data_buffer));
-    byte_ptr = (undefined1 *)data_buffer[1];
+    byte_ptr = (int8_t *)data_buffer[1];
   }
   *byte_ptr = byte_value;
   data_buffer[1] = data_buffer[1] + 1;
-  uint_ptr = (undefined4 *)data_buffer[1];
+  uint_ptr = (int32_t *)data_buffer[1];
   if (*(char *)(render_context + 0x18d1) != '\0') {
     write_buffer_data(data_buffer,render_context + 0x18d8);
     write_buffer_data(data_buffer,render_context + 0x1970);
@@ -603,11 +603,11 @@ void process_rendering_batch(longlong render_context, longlong *data_buffer, und
     write_buffer_data(data_buffer,render_context + 0x1aa0);
     write_buffer_data(data_buffer,render_context + 0x1b38);
     write_buffer_data(data_buffer,render_context + 0x1bd0);
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
     expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   *uint_ptr = 0x10;
   data_buffer[1] = data_buffer[1] + 4;
@@ -651,9 +651,9 @@ void process_rendering_flags(longlong *flag_table, longlong context_offset, uint
   byte *temp_string;
   int temp_length;
   longlong *current_table;
-  undefined1 stack_guard[32];
-  undefined8 guard_value1;
-  undefined *guard_ptr1;
+  int8_t stack_guard[32];
+  uint64_t guard_value1;
+  void *guard_ptr1;
   byte *guard_ptr2;
   int guard_int;
   byte stack_buffer[1032];
@@ -717,25 +717,25 @@ FLAG_MATCH_FOUND:
 
 
 
-// 函数: void process_rendering_flag_table(undefined8 *flag_table, uint flag_mask, longlong *data_buffer)
+// 函数: void process_rendering_flag_table(uint64_t *flag_table, uint flag_mask, longlong *data_buffer)
 // 功能: 处理渲染标志表
 // 参数: 
 //   flag_table - 标志表指针
 //   flag_mask - 标志掩码
 //   data_buffer - 数据缓冲区指针
-void process_rendering_flag_table(undefined8 *flag_table, uint flag_mask, longlong *data_buffer)
+void process_rendering_flag_table(uint64_t *flag_table, uint flag_mask, longlong *data_buffer)
 
 {
-  undefined4 *uint_ptr;
+  int32_t *uint_ptr;
   longlong buffer_offset;
   longlong buffer_pos;
   int match_count;
   longlong buffer_size;
   
-  uint_ptr = (undefined4 *)data_buffer[1];
+  uint_ptr = (int32_t *)data_buffer[1];
   if ((ulonglong)((*data_buffer - (longlong)uint_ptr) + data_buffer[2]) < 5) {
     expand_buffer_if_needed(data_buffer,(longlong)uint_ptr + (4 - *data_buffer));
-    uint_ptr = (undefined4 *)data_buffer[1];
+    uint_ptr = (int32_t *)data_buffer[1];
   }
   match_count = 0;
   *uint_ptr = 0;
@@ -774,21 +774,21 @@ void process_rendering_flag_table(undefined8 *flag_table, uint flag_mask, longlo
 void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
 
 {
-  undefined *vtable_ptr;
-  undefined8 *buffer_ptr;
+  void *vtable_ptr;
+  uint64_t *buffer_ptr;
   ulonglong current_size;
-  undefined8 *end_ptr;
+  uint64_t *end_ptr;
   ulonglong temp_size;
-  undefined8 *new_buffer;
-  undefined8 *copy_src;
-  undefined *vtable_copy;
+  uint64_t *new_buffer;
+  uint64_t *copy_src;
+  void *vtable_copy;
   longlong offset_diff;
   
-  end_ptr = (undefined8 *)buffer_manager[1];
+  end_ptr = (uint64_t *)buffer_manager[1];
   buffer_pos = *buffer_manager;
   current_size = ((longlong)end_ptr - buffer_pos) / 0x98;
   if (new_size <= current_size) {
-    new_buffer = (undefined8 *)(new_size * 0x98 + buffer_pos);
+    new_buffer = (uint64_t *)(new_size * 0x98 + buffer_pos);
     if (new_buffer != end_ptr) {
       do {
         (**(code **)*new_buffer)(new_buffer,0);
@@ -800,9 +800,9 @@ void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
     return;
   }
   new_size = new_size - current_size;
-  end_ptr = (undefined8 *)buffer_manager[1];
+  end_ptr = (uint64_t *)buffer_manager[1];
   if ((ulonglong)((buffer_manager[2] - (longlong)end_ptr) / 0x98) < new_size) {
-    new_buffer = (undefined8 *)*buffer_manager;
+    new_buffer = (uint64_t *)*buffer_manager;
     buffer_pos = ((longlong)end_ptr - (longlong)new_buffer) / 0x98;
     current_size = buffer_pos * 2;
     if (buffer_pos == 0) {
@@ -811,13 +811,13 @@ void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
     if (current_size < buffer_pos + new_size) {
       current_size = buffer_pos + new_size;
     }
-    buffer_ptr = (undefined8 *)0x0;
+    buffer_ptr = (uint64_t *)0x0;
     if (current_size != 0) {
-      buffer_ptr = (undefined8 *)
+      buffer_ptr = (uint64_t *)
                allocate_rendering_memory(GLOBAL_MEMORY_MANAGER,current_size * 0x98,(char)buffer_manager[3],MEMORY_TAG_RENDERING,
                             0xfffffffffffffffe);
-      end_ptr = (undefined8 *)buffer_manager[1];
-      new_buffer = (undefined8 *)*buffer_manager;
+      end_ptr = (uint64_t *)buffer_manager[1];
+      new_buffer = (uint64_t *)*buffer_manager;
     }
     copy_src = buffer_ptr;
     if (new_buffer != end_ptr) {
@@ -825,20 +825,20 @@ void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
       do {
         *copy_src = &RENDERING_VTABLE_START;
         copy_src[1] = 0;
-        *(undefined4 *)(copy_src + 2) = 0;
+        *(int32_t *)(copy_src + 2) = 0;
         *copy_src = &RENDERING_DESTRUCTOR_TABLE;
         copy_src[1] = copy_src + 3;
-        *(undefined4 *)(copy_src + 2) = 0;
-        *(undefined1 *)(copy_src + 3) = 0;
-        *(undefined4 *)(copy_src + 2) = *(undefined4 *)((longlong)copy_src + buffer_pos + 0x10);
-        vtable_ptr = *(undefined **)((longlong)copy_src + buffer_pos + 8);
+        *(int32_t *)(copy_src + 2) = 0;
+        *(int8_t *)(copy_src + 3) = 0;
+        *(int32_t *)(copy_src + 2) = *(int32_t *)((longlong)copy_src + buffer_pos + 0x10);
+        vtable_ptr = *(void **)((longlong)copy_src + buffer_pos + 8);
         vtable_copy = &DEFAULT_STRING_DATA;
-        if (vtable_ptr != (undefined *)0x0) {
+        if (vtable_ptr != (void *)0x0) {
           vtable_copy = vtable_ptr;
         }
         strcpy_s(copy_src[1],0x80,vtable_copy);
         copy_src = copy_src + 0x13;
-      } while ((undefined8 *)((longlong)copy_src + buffer_pos) != end_ptr);
+      } while ((uint64_t *)((longlong)copy_src + buffer_pos) != end_ptr);
     }
     if (new_size != 0) {
       end_ptr = copy_src + 1;
@@ -846,25 +846,25 @@ void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
       do {
         end_ptr[-1] = &RENDERING_VTABLE_START;
         *end_ptr = 0;
-        *(undefined4 *)(end_ptr + 1) = 0;
+        *(int32_t *)(end_ptr + 1) = 0;
         end_ptr[-1] = &RENDERING_DESTRUCTOR_TABLE;
         *end_ptr = end_ptr + 2;
-        *(undefined4 *)(end_ptr + 1) = 0;
-        *(undefined1 *)(end_ptr + 2) = 0;
+        *(int32_t *)(end_ptr + 1) = 0;
+        *(int8_t *)(end_ptr + 2) = 0;
         end_ptr = end_ptr + 0x13;
         temp_size = temp_size - 1;
       } while (temp_size != 0);
     }
-    end_ptr = (undefined8 *)buffer_manager[1];
-    new_buffer = (undefined8 *)*buffer_manager;
+    end_ptr = (uint64_t *)buffer_manager[1];
+    new_buffer = (uint64_t *)*buffer_manager;
     if (new_buffer != end_ptr) {
       do {
         (**(code **)*new_buffer)(new_buffer,0);
         new_buffer = new_buffer + 0x13;
       } while (new_buffer != end_ptr);
-      new_buffer = (undefined8 *)*buffer_manager;
+      new_buffer = (uint64_t *)*buffer_manager;
     }
-    if (new_buffer != (undefined8 *)0x0) {
+    if (new_buffer != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       free_rendering_memory(new_buffer);
     }
@@ -878,15 +878,15 @@ void resize_rendering_buffer(longlong *buffer_manager, ulonglong new_size)
       do {
         *end_ptr = &RENDERING_VTABLE_START;
         end_ptr[1] = 0;
-        *(undefined4 *)(end_ptr + 2) = 0;
+        *(int32_t *)(end_ptr + 2) = 0;
         *end_ptr = &RENDERING_DESTRUCTOR_TABLE;
         end_ptr[1] = end_ptr + 3;
-        *(undefined4 *)(end_ptr + 2) = 0;
-        *(undefined1 *)(end_ptr + 3) = 0;
+        *(int32_t *)(end_ptr + 2) = 0;
+        *(int8_t *)(end_ptr + 3) = 0;
         end_ptr = end_ptr + 0x13;
         current_size = current_size - 1;
       } while (current_size != 0);
-      end_ptr = (undefined8 *)buffer_manager[1];
+      end_ptr = (uint64_t *)buffer_manager[1];
     }
     buffer_manager[1] = (longlong)(end_ptr + new_size * 0x13);
   }

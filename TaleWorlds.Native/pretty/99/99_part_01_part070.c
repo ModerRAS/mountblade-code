@@ -37,14 +37,14 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index);
 
 // 数据处理函数
 void process_data_chunks(longlong data_base, uint chunk_count);
-void sort_data_array(longlong *array_base, undefined8 *array_info);
-void sort_data_array_alt(undefined4 *array_base, undefined8 *array_info);
-void insert_data_element(undefined8 data, undefined8 *array_info);
+void sort_data_array(longlong *array_base, uint64_t *array_info);
+void sort_data_array_alt(int32_t *array_base, uint64_t *array_info);
+void insert_data_element(uint64_t data, uint64_t *array_info);
 
 // 内存管理函数
-undefined8 *allocate_memory_block(undefined8 *memory_ptr, ulonglong flags, undefined8 param3, undefined8 param4);
-undefined8 *free_memory_block(undefined8 *memory_ptr, ulonglong flags, undefined8 param3, undefined8 param4);
-void cleanup_memory_blocks(undefined8 *memory_ptr);
+uint64_t *allocate_memory_block(uint64_t *memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4);
+uint64_t *free_memory_block(uint64_t *memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4);
+void cleanup_memory_blocks(uint64_t *memory_ptr);
 void cleanup_memory_range(longlong memory_base);
 
 // 工具函数
@@ -134,8 +134,8 @@ void empty_function(void)
 void initialize_data_structure(longlong data_base, uint start_index)
 {
   longlong offset;
-  undefined8 *data_ptr;
-  undefined8 *temp_ptr;
+  uint64_t *data_ptr;
+  uint64_t *temp_ptr;
   uint current_index;
   ulonglong block_offset;
   
@@ -144,20 +144,20 @@ void initialize_data_structure(longlong data_base, uint start_index)
   if ((int)start_index < (int)(start_index + MEMORY_PAGE_SIZE)) {
     do {
       // 计算数据块地址
-      temp_ptr = (undefined8 *)
+      temp_ptr = (uint64_t *)
                (*(longlong *)(data_base + ARRAY_HEADER_SIZE + (block_offset >> BIT_SHIFT_0x9) * POINTER_SIZE) +
                (longlong)((int)block_offset + (int)(block_offset >> BIT_SHIFT_0x9) * -MEMORY_PAGE_SIZE) * MEMORY_SEGMENT_SIZE);
       
       // 初始化数据结构字段
       temp_ptr[0x11] = 0;                              // 清空标志位
-      *(undefined4 *)(temp_ptr + 0x12) = 0x1060101;   // 设置魔数
-      *(undefined4 *)((longlong)temp_ptr + 0x94) = 0xff000000; // 设置颜色掩码
-      *(undefined4 *)(temp_ptr + 0x13) = 0x40300ff;   // 设置渲染标志
-      *(undefined8 *)((longlong)temp_ptr + 0x9c) = 0x30503; // 设置纹理ID
-      *(undefined8 *)((longlong)temp_ptr + 0xa4) = 0;    // 清空扩展数据
-      *(undefined8 *)((longlong)temp_ptr + 0xac) = 0;    // 清空用户数据
-      *(undefined8 *)((longlong)temp_ptr + 0xb4) = 0;    // 清空保留字段
-      *(undefined4 *)((longlong)temp_ptr + 0xbc) = 0;    // 清空计数器
+      *(int32_t *)(temp_ptr + 0x12) = 0x1060101;   // 设置魔数
+      *(int32_t *)((longlong)temp_ptr + 0x94) = 0xff000000; // 设置颜色掩码
+      *(int32_t *)(temp_ptr + 0x13) = 0x40300ff;   // 设置渲染标志
+      *(uint64_t *)((longlong)temp_ptr + 0x9c) = 0x30503; // 设置纹理ID
+      *(uint64_t *)((longlong)temp_ptr + 0xa4) = 0;    // 清空扩展数据
+      *(uint64_t *)((longlong)temp_ptr + 0xac) = 0;    // 清空用户数据
+      *(uint64_t *)((longlong)temp_ptr + 0xb4) = 0;    // 清空保留字段
+      *(int32_t *)((longlong)temp_ptr + 0xbc) = 0;    // 清空计数器
       
       // 初始化基本属性
       temp_ptr[0x18] = 0x900;                          // 设置属性标志
@@ -169,16 +169,16 @@ void initialize_data_structure(longlong data_base, uint start_index)
       temp_ptr[0x3b] = 0;                              // 清空模式字段
       temp_ptr[0x3c] = 0;                              // 清空选项字段
       temp_ptr[0x3d] = 0;                              // 清空配置字段
-      *(undefined4 *)(temp_ptr + 0x3e) = 0xc;          // 设置默认配置
+      *(int32_t *)(temp_ptr + 0x3e) = 0xc;          // 设置默认配置
       
       // 初始化渲染属性
       temp_ptr[0x55] = 0;                              // 清空渲染状态
       temp_ptr[0x56] = 0;                              // 清空着色器ID
       temp_ptr[0x3f] = 0;                              // 清空纹理索引
       temp_ptr[0x40] = 0;                              // 清空材质索引
-      *(undefined4 *)(temp_ptr + 0x5c) = 0;            // 清空着色器参数
+      *(int32_t *)(temp_ptr + 0x5c) = 0;            // 清空着色器参数
       temp_ptr[0x50] = 0;                              // 清空光照参数
-      *(undefined4 *)(temp_ptr + 0x10) = 0;            // 清空变换矩阵
+      *(int32_t *)(temp_ptr + 0x10) = 0;            // 清空变换矩阵
       
       // 清空数据块头部
       data_ptr = temp_ptr;
@@ -188,9 +188,9 @@ void initialize_data_structure(longlong data_base, uint start_index)
       }
       
       // 初始化浮点属性
-      *(undefined1 *)((longlong)temp_ptr + 0x321) = 0; // 清空alpha值
-      *(undefined4 *)(temp_ptr + 0x62) = 0;            // 清空浮点参数1
-      *(undefined4 *)(temp_ptr + 0x5a) = 0;            // 清空浮点参数2
+      *(int8_t *)((longlong)temp_ptr + 0x321) = 0; // 清空alpha值
+      *(int32_t *)(temp_ptr + 0x62) = 0;            // 清空浮点参数1
+      *(int32_t *)(temp_ptr + 0x5a) = 0;            // 清空浮点参数2
       temp_ptr[0x19] = 0x3f800000;                     // 设置默认浮点值1.0
       temp_ptr[0x1a] = 0;                              // 清空扩展浮点值
       temp_ptr[0x1b] = 0x3f80000000000000;            // 设置默认双精度值1.0
@@ -217,15 +217,15 @@ void initialize_data_structure(longlong data_base, uint start_index)
       temp_ptr[0x53] = 0;                              // 清空碰撞材质
       
       // 初始化游戏逻辑属性
-      *(undefined4 *)((longlong)temp_ptr + 0x314) = 0;  // 清空游戏ID
+      *(int32_t *)((longlong)temp_ptr + 0x314) = 0;  // 清空游戏ID
       temp_ptr[0x41] = 0;                              // 清空游戏类型
       temp_ptr[0x54] = 0;                              // 清空游戏状态
       temp_ptr[0x57] = 0;                              // 清空游戏标志
-      *(undefined4 *)((longlong)temp_ptr + 0x30c) = 0xffffffff; // 设置活动标志
+      *(int32_t *)((longlong)temp_ptr + 0x30c) = 0xffffffff; // 设置活动标志
       temp_ptr[0x58] = 0;                              // 清空游戏模式
       temp_ptr[0x59] = 0;                              // 清空游戏难度
-      *(undefined1 *)(temp_ptr + 100) = 0;              // 清空玩家ID
-      *(undefined1 *)((longlong)temp_ptr + 0x322) = 0;  // 清空队伍ID
+      *(int8_t *)(temp_ptr + 100) = 0;              // 清空玩家ID
+      *(int8_t *)((longlong)temp_ptr + 0x322) = 0;  // 清空队伍ID
       
       // 更新索引
       current_index = (int)block_offset + 1;
@@ -282,9 +282,9 @@ void process_data_chunks(longlong data_base, uint chunk_count)
  * - param3: 保留参数3
  * - param4: 保留参数4
  * 
- * 返回值：undefined8* - 分配的内存块指针
+ * 返回值：uint64_t* - 分配的内存块指针
  */
-undefined8 *allocate_memory_block(undefined8 *memory_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
+uint64_t *allocate_memory_block(uint64_t *memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
 {
   *memory_ptr = &global_memory_pool_1;
   *memory_ptr = &global_memory_pool_2;
@@ -308,11 +308,11 @@ undefined8 *allocate_memory_block(undefined8 *memory_ptr, ulonglong flags, undef
  * - param3: 保留参数3
  * - param4: 保留参数4
  * 
- * 返回值：undefined8* - 释放后的内存指针
+ * 返回值：uint64_t* - 释放后的内存指针
  */
-undefined8 *free_memory_block(undefined8 *memory_ptr, ulonglong flags, undefined8 param3, undefined8 param4)
+uint64_t *free_memory_block(uint64_t *memory_ptr, ulonglong flags, uint64_t param3, uint64_t param4)
 {
-  undefined8 destructor_ptr;
+  uint64_t destructor_ptr;
   
   destructor_ptr = 0xfffffffffffffffe;
   if ((longlong *)memory_ptr[8] != (longlong *)0x0) {
@@ -349,18 +349,18 @@ undefined8 *free_memory_block(undefined8 *memory_ptr, ulonglong flags, undefined
  */
 void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
 {
-  undefined8 *data_ptr;
-  undefined8 *temp_ptr;
-  undefined4 *flags_ptr;
-  undefined8 data_value;
+  uint64_t *data_ptr;
+  uint64_t *temp_ptr;
+  int32_t *flags_ptr;
+  uint64_t data_value;
   int range_size;
   uint current_index;
   uint index_diff;
-  undefined4 flag_value1;
-  undefined4 flag_value2;
+  int32_t flag_value1;
+  int32_t flag_value2;
   ulonglong block_offset;
   ulonglong temp_offset;
-  undefined8 temp_value;
+  uint64_t temp_value;
   longlong block_addr;
   ulonglong *hash_ptr;
   ulonglong hash_value;
@@ -370,10 +370,10 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
   int bit_count;
   uint loop_index;
   bool comparison_result;
-  undefined4 stored_flag1;
-  undefined4 stored_flag2;
-  undefined4 stored_flag3;
-  undefined4 stored_flag4;
+  int32_t stored_flag1;
+  int32_t stored_flag2;
+  int32_t stored_flag3;
+  int32_t stored_flag4;
   
   range_size = (int)end_index;
   if (range_size != *(int *)(start_index + 1)) {
@@ -411,7 +411,7 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
         hash_ptr = (ulonglong *)(block_addr + hash_value * HASH_TABLE_SIZE);
         data_value = *hash_ptr;
         temp_offset = hash_ptr[1];
-        temp_value = *(undefined8 *)(block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
+        temp_value = *(uint64_t *)(block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
         current_index = loop_index;
         temp_index = loop_index;
         
@@ -430,18 +430,18 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
           
           // 移动数据块
           block_addr = *(longlong *)(temp_block_addr + ARRAY_HEADER_SIZE + (ulonglong)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-          data_ptr = (undefined8 *)(block_addr + new_hash_value * HASH_TABLE_SIZE);
+          data_ptr = (uint64_t *)(block_addr + new_hash_value * HASH_TABLE_SIZE);
           temp_offset = data_ptr[1];
-          flags_ptr = (undefined4 *)(block_addr + 0x10 + new_hash_value * HASH_TABLE_SIZE);
+          flags_ptr = (int32_t *)(block_addr + 0x10 + new_hash_value * HASH_TABLE_SIZE);
           stored_flag1 = *flags_ptr;
           stored_flag2 = flags_ptr[1];
           
           block_addr = *(longlong *)(temp_block_addr + ARRAY_HEADER_SIZE + (ulonglong)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
           hash_value = (ulonglong)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
-          temp_ptr = (undefined8 *)(block_addr + hash_value * HASH_TABLE_SIZE);
+          temp_ptr = (uint64_t *)(block_addr + hash_value * HASH_TABLE_SIZE);
           *temp_ptr = *data_ptr;
           temp_ptr[1] = temp_offset;
-          flags_ptr = (undefined4 *)(block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
+          flags_ptr = (int32_t *)(block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
           *flags_ptr = stored_flag1;
           flags_ptr[1] = stored_flag2;
           current_index = current_index - 1;
@@ -453,7 +453,7 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
         hash_ptr = (ulonglong *)(block_addr + hash_value * HASH_TABLE_SIZE);
         *hash_ptr = data_value;
         hash_ptr[1] = temp_offset;
-        *(undefined8 *)(block_addr + 0x10 + hash_value * HASH_TABLE_SIZE) = temp_value;
+        *(uint64_t *)(block_addr + 0x10 + hash_value * HASH_TABLE_SIZE) = temp_value;
       }
     }
   }
@@ -474,19 +474,19 @@ void clear_memory_range(longlong memory_base, uint start_index, uint end_index)
  * 
  * 返回值：无
  */
-void insert_data_element(undefined4 *array_base, undefined8 *array_info)
+void insert_data_element(int32_t *array_base, uint64_t *array_info)
 {
-  undefined8 *data_ptr;
-  undefined8 *temp_ptr;
-  undefined4 *flags_ptr;
-  undefined8 data_value;
+  uint64_t *data_ptr;
+  uint64_t *temp_ptr;
+  int32_t *flags_ptr;
+  uint64_t data_value;
   longlong base_addr;
   longlong temp_addr;
   ulonglong block_offset;
   uint current_index;
   uint end_index;
-  undefined8 temp_value;
-  undefined8 temp_value2;
+  uint64_t temp_value;
+  uint64_t temp_value2;
   longlong array_start;
   ulonglong *hash_ptr;
   ulonglong hash_value;
@@ -496,10 +496,10 @@ void insert_data_element(undefined4 *array_base, undefined8 *array_info)
   int bit_count;
   uint loop_index;
   bool comparison_result;
-  undefined4 stored_flag1;
-  undefined4 stored_flag2;
-  undefined4 stored_flag3;
-  undefined4 stored_flag4;
+  int32_t stored_flag1;
+  int32_t stored_flag2;
+  int32_t stored_flag3;
+  int32_t stored_flag4;
   
   bit_count = 0;
   for (temp_addr = array_start - array_end; temp_addr != 0; temp_addr = temp_addr >> 1) {
@@ -515,26 +515,26 @@ void insert_data_element(undefined4 *array_base, undefined8 *array_info)
   // 执行插入排序
   FUN_1800ea950(array_base, array_info, (longlong)(bit_count + -1) * 2);
   
-  stored_flag1 = *(undefined4 *)array_ptr;
-  stored_flag2 = *(undefined4 *)((longlong)array_ptr + 4);
-  stored_flag3 = *(undefined4 *)(array_ptr + 1);
-  stored_flag4 = *(undefined4 *)((longlong)array_ptr + 0xc);
+  stored_flag1 = *(int32_t *)array_ptr;
+  stored_flag2 = *(int32_t *)((longlong)array_ptr + 4);
+  stored_flag3 = *(int32_t *)(array_ptr + 1);
+  stored_flag4 = *(int32_t *)((longlong)array_ptr + 0xc);
   
   if (array_start - array_end < SORT_THRESHOLD) {
     temp_value = array_info[1];
-    *(undefined8 *)(temp_base + 7) = *array_info;
-    *(undefined8 *)(temp_base + 0xf) = temp_value;
-    *(undefined4 *)(temp_base + 0x17) = stored_flag1;
-    *(undefined4 *)(temp_base + 0x1b) = stored_flag2;
-    *(undefined4 *)(temp_base + 0x1f) = stored_flag3;
-    *(undefined4 *)(temp_base + 0x23) = stored_flag4;
+    *(uint64_t *)(temp_base + 7) = *array_info;
+    *(uint64_t *)(temp_base + 0xf) = temp_value;
+    *(int32_t *)(temp_base + 0x17) = stored_flag1;
+    *(int32_t *)(temp_base + 0x1b) = stored_flag2;
+    *(int32_t *)(temp_base + 0x1f) = stored_flag3;
+    *(int32_t *)(temp_base + 0x23) = stored_flag4;
     FUN_1800eac80(temp_base + 0x17, temp_base + 7);
   }
   else {
     // 处理大数据集的插入
     temp_value = *array_ptr;
     loop_index = (int)array_end + SORT_THRESHOLD;
-    *(undefined8 *)(temp_base + -0x59) = temp_value;
+    *(uint64_t *)(temp_base + -0x59) = temp_value;
     *(uint *)(temp_base + -0x51) = loop_index;
     
     // 执行插入操作
@@ -547,13 +547,13 @@ void insert_data_element(undefined4 *array_base, undefined8 *array_info)
       
       while (true) {
         // 查找插入位置
-        data_value = *(undefined8 *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
+        data_value = *(uint64_t *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
         hash_value = (ulonglong)(loop_index + (loop_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
         temp_block_addr = *(longlong *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-        data_ptr = (undefined8 *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
+        data_ptr = (uint64_t *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
         temp_value = *data_ptr;
         temp_value2 = data_ptr[1];
-        temp_value = *(undefined8 *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
+        temp_value = *(uint64_t *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
         current_index = *(uint *)(array_base + 1);
         temp_index = loop_index;
         
@@ -571,18 +571,18 @@ void insert_data_element(undefined4 *array_base, undefined8 *array_info)
           
           // 移动元素
           temp_block_addr = *(longlong *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-          data_ptr = (undefined8 *)(temp_block_addr + new_hash_value * HASH_TABLE_SIZE);
+          data_ptr = (uint64_t *)(temp_block_addr + new_hash_value * HASH_TABLE_SIZE);
           temp_value = data_ptr[1];
-          flags_ptr = (undefined4 *)(temp_block_addr + 0x10 + new_hash_value * HASH_TABLE_SIZE);
+          flags_ptr = (int32_t *)(temp_block_addr + 0x10 + new_hash_value * HASH_TABLE_SIZE);
           stored_flag1 = *flags_ptr;
           stored_flag2 = flags_ptr[1];
           
           temp_block_addr = *(longlong *)(base_addr + ARRAY_HEADER_SIZE + (ulonglong)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
           hash_value = (ulonglong)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
-          temp_ptr = (undefined8 *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
+          temp_ptr = (uint64_t *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
           *temp_ptr = *data_ptr;
           temp_ptr[1] = temp_value;
-          flags_ptr = (undefined4 *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
+          flags_ptr = (int32_t *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
           *flags_ptr = stored_flag1;
           flags_ptr[1] = stored_flag2;
           current_index = current_index - 1;
@@ -594,15 +594,15 @@ void insert_data_element(undefined4 *array_base, undefined8 *array_info)
         hash_ptr = (ulonglong *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
         *hash_ptr = temp_value;
         hash_ptr[1] = temp_value2;
-        *(undefined8 *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE) = temp_value;
+        *(uint64_t *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE) = temp_value;
         
         loop_index = loop_index + 1;
         if (loop_index == end_index) break;
         
-        stored_flag1 = *(undefined4 *)(temp_base + -0x59);
-        stored_flag2 = *(undefined4 *)(temp_base + -0x55);
-        stored_flag3 = *(undefined4 *)(temp_base + -0x51);
-        stored_flag4 = *(undefined4 *)(temp_base + -0x4d);
+        stored_flag1 = *(int32_t *)(temp_base + -0x59);
+        stored_flag2 = *(int32_t *)(temp_base + -0x55);
+        stored_flag3 = *(int32_t *)(temp_base + -0x51);
+        stored_flag4 = *(int32_t *)(temp_base + -0x4d);
       }
     }
   }
@@ -623,19 +623,19 @@ void insert_data_element(undefined4 *array_base, undefined8 *array_info)
  * 
  * 返回值：无
  */
-void sort_data_array(undefined8 data_value, undefined8 array_info)
+void sort_data_array(uint64_t data_value, uint64_t array_info)
 {
-  undefined8 *data_ptr;
-  undefined8 *temp_ptr;
-  undefined4 *flags_ptr;
-  undefined8 temp_data;
+  uint64_t *data_ptr;
+  uint64_t *temp_ptr;
+  int32_t *flags_ptr;
+  uint64_t temp_data;
   longlong base_addr;
   longlong temp_addr;
   ulonglong block_offset;
   uint current_index;
   uint end_index;
-  undefined8 temp_value;
-  undefined8 temp_value2;
+  uint64_t temp_value;
+  uint64_t temp_value2;
   longlong array_start;
   ulonglong *hash_ptr;
   ulonglong hash_value;
@@ -644,26 +644,26 @@ void sort_data_array(undefined8 data_value, undefined8 array_info)
   uint temp_index;
   uint loop_index;
   bool comparison_result;
-  undefined4 stored_flag1;
-  undefined4 stored_flag2;
-  undefined4 stored_flag3;
-  undefined4 stored_flag4;
+  int32_t stored_flag1;
+  int32_t stored_flag2;
+  int32_t stored_flag3;
+  int32_t stored_flag4;
   
   // 初始化排序参数
   *(int *)(temp_base + -9) = (int)array_info;
   *(int *)(temp_base + -5) = (int)((ulonglong)array_info >> 0x20);
-  *(undefined4 *)(temp_base + -1) = in_XMM1_Dc;
-  *(undefined4 *)(temp_base + 3) = in_XMM1_Dd;
+  *(int32_t *)(temp_base + -1) = in_XMM1_Dc;
+  *(int32_t *)(temp_base + 3) = in_XMM1_Dd;
   FUN_1800eac80();
   
   end_index = *(uint *)(array_ptr + 8);
-  *(undefined8 *)(temp_base + -0x59) = data_value;
+  *(uint64_t *)(temp_base + -0x59) = data_value;
   *(uint *)(temp_base + -0x51) = array_size;
   
-  stored_flag1 = *(undefined4 *)(temp_base + -0x59);
-  stored_flag2 = *(undefined4 *)(temp_base + -0x55);
-  stored_flag3 = *(undefined4 *)(temp_base + -0x51);
-  stored_flag4 = *(undefined4 *)(temp_base + -0x4d);
+  stored_flag1 = *(int32_t *)(temp_base + -0x59);
+  stored_flag2 = *(int32_t *)(temp_base + -0x55);
+  stored_flag3 = *(int32_t *)(temp_base + -0x51);
+  stored_flag4 = *(int32_t *)(temp_base + -0x4d);
   
   if (array_size != end_index) {
     base_addr = *(longlong *)(temp_base + -0x59);
@@ -674,10 +674,10 @@ void sort_data_array(undefined8 data_value, undefined8 array_info)
       temp_addr = *(longlong *)(temp_base + -0x49);
       block_offset = (ulonglong)(loop_index + (loop_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
       temp_block_addr = *(longlong *)(base_addr + ARRAY_HEADER_SIZE + (ulonglong)(loop_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-      data_ptr = (undefined8 *)(temp_block_addr + block_offset * HASH_TABLE_SIZE);
+      data_ptr = (uint64_t *)(temp_block_addr + block_offset * HASH_TABLE_SIZE);
       temp_value = *data_ptr;
       temp_value2 = data_ptr[1];
-      temp_data = *(undefined8 *)(temp_block_addr + 0x10 + block_offset * HASH_TABLE_SIZE);
+      temp_data = *(uint64_t *)(temp_block_addr + 0x10 + block_offset * HASH_TABLE_SIZE);
       
       // 查找插入位置
       current_index = *(uint *)(array_base + 1);
@@ -697,18 +697,18 @@ void sort_data_array(undefined8 data_value, undefined8 array_info)
         
         // 移动元素
         temp_block_addr = *(longlong *)(base_addr + ARRAY_HEADER_SIZE + (ulonglong)(temp_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
-        data_ptr = (undefined8 *)(temp_block_addr + new_hash_value * HASH_TABLE_SIZE);
+        data_ptr = (uint64_t *)(temp_block_addr + new_hash_value * HASH_TABLE_SIZE);
         temp_value = data_ptr[1];
-        flags_ptr = (undefined4 *)(temp_block_addr + 0x10 + new_hash_value * HASH_TABLE_SIZE);
+        flags_ptr = (int32_t *)(temp_block_addr + 0x10 + new_hash_value * HASH_TABLE_SIZE);
         stored_flag1 = *flags_ptr;
         stored_flag2 = flags_ptr[1];
         
         temp_block_addr = *(longlong *)(temp_addr + ARRAY_HEADER_SIZE + (ulonglong)(current_index >> BIT_SHIFT_0xB) * POINTER_SIZE);
         hash_value = (ulonglong)(current_index + (current_index >> BIT_SHIFT_0xB) * -BIT_MASK_0x7FF);
-        temp_ptr = (undefined8 *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
+        temp_ptr = (uint64_t *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
         *temp_ptr = *data_ptr;
         temp_ptr[1] = temp_value;
-        flags_ptr = (undefined4 *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
+        flags_ptr = (int32_t *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE);
         *flags_ptr = stored_flag1;
         flags_ptr[1] = stored_flag2;
         current_index = current_index - 1;
@@ -720,15 +720,15 @@ void sort_data_array(undefined8 data_value, undefined8 array_info)
       hash_ptr = (ulonglong *)(temp_block_addr + hash_value * HASH_TABLE_SIZE);
       *hash_ptr = temp_value;
       hash_ptr[1] = temp_value2;
-      *(undefined8 *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE) = temp_data;
+      *(uint64_t *)(temp_block_addr + 0x10 + hash_value * HASH_TABLE_SIZE) = temp_data;
       
       loop_index = loop_index + 1;
       if (loop_index == end_index) break;
       
-      stored_flag1 = *(undefined4 *)(temp_base + -0x59);
-      stored_flag2 = *(undefined4 *)(temp_base + -0x55);
-      stored_flag3 = *(undefined4 *)(temp_base + -0x51);
-      stored_flag4 = *(undefined4 *)(temp_base + -0x4d);
+      stored_flag1 = *(int32_t *)(temp_base + -0x59);
+      stored_flag2 = *(int32_t *)(temp_base + -0x55);
+      stored_flag3 = *(int32_t *)(temp_base + -0x51);
+      stored_flag4 = *(int32_t *)(temp_base + -0x4d);
     }
   }
   return;
@@ -748,25 +748,25 @@ void sort_data_array(undefined8 data_value, undefined8 array_info)
  * 
  * 返回值：无
  */
-void set_array_element(undefined8 array_ptr, undefined8 array_info)
+void set_array_element(uint64_t array_ptr, uint64_t array_info)
 {
-  undefined4 element1;
-  undefined4 element2;
-  undefined4 element3;
+  int32_t element1;
+  int32_t element2;
+  int32_t element3;
   longlong temp_base;
-  undefined4 *array_data;
-  undefined8 xmm1_value;
+  int32_t *array_data;
+  uint64_t xmm1_value;
   
   element1 = array_data[1];
   element2 = array_data[2];
   element3 = array_data[3];
   
-  *(undefined4 *)(temp_base + 7) = *array_data;
-  *(undefined4 *)(temp_base + 0xb) = element1;
-  *(undefined4 *)(temp_base + 0xf) = element2;
-  *(undefined4 *)(temp_base + 0x13) = element3;
-  *(undefined8 *)(temp_base + 0x17) = array_info;
-  *(undefined8 *)(temp_base + 0x1f) = xmm1_value;
+  *(int32_t *)(temp_base + 7) = *array_data;
+  *(int32_t *)(temp_base + 0xb) = element1;
+  *(int32_t *)(temp_base + 0xf) = element2;
+  *(int32_t *)(temp_base + 0x13) = element3;
+  *(uint64_t *)(temp_base + 0x17) = array_info;
+  *(uint64_t *)(temp_base + 0x1f) = xmm1_value;
   FUN_1800eac80(temp_base + 0x17, temp_base + 7);
   return;
 }
@@ -979,10 +979,10 @@ void cleanup_memory_block_array(void)
 // ============================================================================
 
 // 内存池
-undefined8 *global_memory_pool_1;
-undefined8 *global_memory_pool_2;
-undefined8 *global_memory_manager;
-undefined8 *global_memory_allocator;
+uint64_t *global_memory_pool_1;
+uint64_t *global_memory_pool_2;
+uint64_t *global_memory_manager;
+uint64_t *global_memory_allocator;
 
 // 数组指针
 longlong *array_ptr;
@@ -995,11 +995,11 @@ longlong array_start;
 longlong temp_base;
 longlong temp_block_addr;
 longlong temp_addr;
-undefined4 in_XMM1_Dc;
-undefined4 in_XMM1_Dd;
-undefined8 xmm1_value;
-undefined8 temp_value;
-undefined8 temp_value2;
+int32_t in_XMM1_Dc;
+int32_t in_XMM1_Dd;
+uint64_t xmm1_value;
+uint64_t temp_value;
+uint64_t temp_value2;
 uint current_index;
 uint temp_index;
 uint loop_index;

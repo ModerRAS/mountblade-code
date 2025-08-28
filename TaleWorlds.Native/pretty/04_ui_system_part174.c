@@ -109,8 +109,8 @@ void FUN_18076c6cf(ulonglong param_1,ulonglong param_2,uint *param_3,ulonglong p
 
 
 
-// 函数: void FUN_18076c743(undefined8 param_1,ulonglong param_2,longlong param_3,ulonglong param_4)
-void FUN_18076c743(undefined8 param_1,ulonglong param_2,longlong param_3,ulonglong param_4)
+// 函数: void FUN_18076c743(uint64_t param_1,ulonglong param_2,longlong param_3,ulonglong param_4)
+void FUN_18076c743(uint64_t param_1,ulonglong param_2,longlong param_3,ulonglong param_4)
 
 {
   ulonglong *puVar1;

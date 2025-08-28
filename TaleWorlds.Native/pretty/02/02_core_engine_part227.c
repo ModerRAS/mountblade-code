@@ -18,38 +18,38 @@ void process_game_object_rendering(longlong game_context)
   float render_offset_y;
   longlong object_manager;
   ulonglong *render_queue;
-  undefined8 render_flags;
-  undefined4 render_params_1;
-  undefined4 render_params_2;
-  undefined4 render_params_3;
+  uint64_t render_flags;
+  int32_t render_params_1;
+  int32_t render_params_2;
+  int32_t render_params_3;
   longlong *object_list;
   uint object_count;
   longlong render_target;
   ulonglong **texture_cache;
   longlong shader_program;
-  undefined8 *material_data;
+  uint64_t *material_data;
   ulonglong vertex_buffer;
   ulonglong index_buffer;
   ulonglong uniform_buffer;
   uint texture_id;
   ulonglong render_state;
-  undefined *texture_sampler;
+  void *texture_sampler;
   ulonglong *vertex_data;
   longlong matrix_transform;
   ulonglong *normal_data;
   ulonglong *tangent_data;
   ulonglong *bitangent_data;
-  undefined8 stack_data_1;
+  uint64_t stack_data_1;
   float stack_float_1;
   float stack_float_2;
-  undefined8 stack_data_2;
-  undefined1 stack_buffer_1 [8];
-  undefined *stack_ptr_1;
+  uint64_t stack_data_2;
+  int8_t stack_buffer_1 [8];
+  void *stack_ptr_1;
   ulonglong stack_ulong_1;
   ulonglong stack_ulong_2;
-  undefined4 stack_uint_1;
-  undefined4 stack_uint_2;
-  undefined4 stack_uint_3;
+  int32_t stack_uint_1;
+  int32_t stack_uint_2;
+  int32_t stack_uint_3;
   longlong *stack_ptr_2;
   longlong stack_array_1 [2];
   int stack_int_1;
@@ -57,18 +57,18 @@ void process_game_object_rendering(longlong game_context)
   float stack_float_3;
   float stack_float_4;
   float stack_float_5;
-  undefined4 stack_uint_4;
+  int32_t stack_uint_4;
   longlong stack_long_2;
   longlong *stack_ptr_3;
   ulonglong *stack_ptr_4;
-  undefined8 *stack_ptr_5;
+  uint64_t *stack_ptr_5;
   ulonglong *stack_ptr_6;
   longlong *stack_ptr_7;
   ulonglong *stack_ptr_8;
-  undefined8 *stack_ptr_9;
+  uint64_t *stack_ptr_9;
   ulonglong *stack_ptr_10;
   longlong *stack_ptr_11;
-  undefined8 stack_data_3;
+  uint64_t stack_data_3;
   longlong *stack_ptr_12;
   ulonglong stack_ulong_3;
   longlong stack_long_3;
@@ -78,7 +78,7 @@ void process_game_object_rendering(longlong game_context)
   longlong *stack_ptr_14;
   ulonglong stack_ulong_6;
   ulonglong stack_ulong_7;
-  undefined1 stack_buffer_2 [56];
+  int8_t stack_buffer_2 [56];
   
   // 初始化渲染状态
   stack_data_3 = 0xfffffffffffffffe;
@@ -138,7 +138,7 @@ void process_game_object_rendering(longlong game_context)
                 material_data != (ulonglong *)0x0; material_data = (ulonglong *)material_data[1]) {
               if (vertex_buffer == *material_data) {
                 stack_ptr_4 = material_data;
-                stack_ptr_5 = (undefined8 *)(texture_sampler + (vertex_buffer % (stack_ulong_1 & 0xffffffff)) * 8);
+                stack_ptr_5 = (uint64_t *)(texture_sampler + (vertex_buffer % (stack_ulong_1 & 0xffffffff)) * 8);
                 texture_cache = &stack_ptr_4;
                 goto texture_found;
               }
@@ -218,7 +218,7 @@ texture_processed:
         if (vertex_buffer == 0) {
           if (stack_ulong_1 != 0) {
             do {
-              *(undefined8 *)(texture_sampler + index_buffer * 8) = 0;
+              *(uint64_t *)(texture_sampler + index_buffer * 8) = 0;
               index_buffer = index_buffer + 1;
             } while (index_buffer < stack_ulong_1);
           }
@@ -244,7 +244,7 @@ texture_processed:
                     material_data != (ulonglong *)0x0; material_data = (ulonglong *)material_data[1]) {
                   if (vertex_buffer == *material_data) {
                     stack_ptr_8 = material_data;
-                    stack_ptr_9 = (undefined8 *)(texture_sampler + (vertex_buffer % (stack_ulong_1 & 0xffffffff)) * 8);
+                    stack_ptr_9 = (uint64_t *)(texture_sampler + (vertex_buffer % (stack_ulong_1 & 0xffffffff)) * 8);
                     texture_cache = &stack_ptr_8;
                     goto light_texture_found;
                   }
@@ -327,7 +327,7 @@ light_texture_processed:
             if (vertex_buffer == 0) {
               if (stack_ulong_1 != 0) {
                 do {
-                  *(undefined8 *)(stack_ptr_1 + index_buffer * 8) = 0;
+                  *(uint64_t *)(stack_ptr_1 + index_buffer * 8) = 0;
                   index_buffer = index_buffer + 1;
                 } while (index_buffer < stack_ulong_1);
               }
@@ -346,12 +346,12 @@ light_texture_processed:
                 stack_uint_4 = 0;
                 render_target = *(longlong *)(object_manager + 0x60b80);
                 if (render_target == 0) {
-                  render_flags = *(undefined8 *)(object_manager + 0x464);
+                  render_flags = *(uint64_t *)(object_manager + 0x464);
                   stack_data_2._0_4_ = (float)render_flags;
-                  stack_float_1 = (float)*(undefined8 *)(object_manager + 0x454);
+                  stack_float_1 = (float)*(uint64_t *)(object_manager + 0x454);
                   stack_float_1 = (float)stack_data_2 + stack_float_1;
                   stack_data_2._4_4_ = (float)((ulonglong)render_flags >> 0x20);
-                  stack_float_2 = (float)((ulonglong)*(undefined8 *)(object_manager + 0x454) >> 0x20);
+                  stack_float_2 = (float)((ulonglong)*(uint64_t *)(object_manager + 0x454) >> 0x20);
                   stack_float_4 = stack_data_2._4_4_ + stack_float_2;
                   stack_data_2 = render_flags;
                 }
@@ -369,25 +369,25 @@ light_texture_processed:
               }
               
               // 更新对象属性
-              material_data = (undefined8 *)get_object_properties(shader_program, stack_buffer_2);
+              material_data = (uint64_t *)get_object_properties(shader_program, stack_buffer_2);
               render_flags = material_data[1];
-              *(undefined8 *)(shader_program + 0x454) = *material_data;
-              *(undefined8 *)(shader_program + 0x45c) = render_flags;
-              render_params_1 = *(undefined4 *)((longlong)material_data + 0x14);
-              render_params_2 = *(undefined4 *)(material_data + 3);
-              render_params_3 = *(undefined4 *)((longlong)material_data + 0x1c);
-              *(undefined4 *)(shader_program + 0x464) = *(undefined4 *)(material_data + 2);
-              *(undefined4 *)(shader_program + 0x468) = render_params_1;
-              *(undefined4 *)(shader_program + 0x46c) = render_params_2;
-              *(undefined4 *)(shader_program + 0x470) = render_params_3;
-              render_params_1 = *(undefined4 *)((longlong)material_data + 0x24);
-              render_params_2 = *(undefined4 *)(material_data + 5);
-              render_params_3 = *(undefined4 *)((longlong)material_data + 0x2c);
-              *(undefined4 *)(shader_program + 0x474) = *(undefined4 *)(material_data + 4);
-              *(undefined4 *)(shader_program + 0x478) = render_params_1;
-              *(undefined4 *)(shader_program + 0x47c) = render_params_2;
-              *(undefined4 *)(shader_program + 0x480) = render_params_3;
-              *(undefined4 *)(shader_program + 0x484) = *(undefined4 *)(material_data + 6);
+              *(uint64_t *)(shader_program + 0x454) = *material_data;
+              *(uint64_t *)(shader_program + 0x45c) = render_flags;
+              render_params_1 = *(int32_t *)((longlong)material_data + 0x14);
+              render_params_2 = *(int32_t *)(material_data + 3);
+              render_params_3 = *(int32_t *)((longlong)material_data + 0x1c);
+              *(int32_t *)(shader_program + 0x464) = *(int32_t *)(material_data + 2);
+              *(int32_t *)(shader_program + 0x468) = render_params_1;
+              *(int32_t *)(shader_program + 0x46c) = render_params_2;
+              *(int32_t *)(shader_program + 0x470) = render_params_3;
+              render_params_1 = *(int32_t *)((longlong)material_data + 0x24);
+              render_params_2 = *(int32_t *)(material_data + 5);
+              render_params_3 = *(int32_t *)((longlong)material_data + 0x2c);
+              *(int32_t *)(shader_program + 0x474) = *(int32_t *)(material_data + 4);
+              *(int32_t *)(shader_program + 0x478) = render_params_1;
+              *(int32_t *)(shader_program + 0x47c) = render_params_2;
+              *(int32_t *)(shader_program + 0x480) = render_params_3;
+              *(int32_t *)(shader_program + 0x484) = *(int32_t *)(material_data + 6);
               stack_data_1 = *(ulonglong **)(shader_program + 0x464);
               object_manager = *(longlong *)(shader_program + 0x60b80);
               if (object_manager != 0) {
@@ -402,15 +402,15 @@ light_texture_processed:
                   stack_data_1 = (ulonglong *)CONCAT44(*(float *)(shader_program + 0x468), render_scale_x);
                 }
               }
-              *(undefined8 *)(shader_program + 0x60b68) = *(undefined8 *)(shader_program + 0x454);
+              *(uint64_t *)(shader_program + 0x60b68) = *(uint64_t *)(shader_program + 0x454);
               *(ulonglong **)(shader_program + 0x60b70) = stack_data_1;
               update_object_transform(shader_program);
               
               // 清理对象资源
               if ((*(char *)(shader_program + 0x560) == '\0') &&
                  (object_manager = *(longlong *)(shader_program + 0x448), object_manager != 0)) {
-                *(undefined4 *)(object_manager + 0x2150) =
-                     *(undefined4 *)(*(longlong *)(object_manager + 0x2148) + 0x3054);
+                *(int32_t *)(object_manager + 0x2150) =
+                     *(int32_t *)(*(longlong *)(object_manager + 0x2148) + 0x3054);
                 release_object_resources(object_manager);
                 cleanup_object_data(object_manager);
                 free_object_memory(*(longlong *)(shader_program + 0x448) + 0x21e0);
@@ -486,12 +486,12 @@ void initialize_game_object_array(longlong object_array)
   // 清零数组元素
   if (array_size != 0) {
     do {
-      *(undefined8 *)(array_data + index * 8) = 0;
+      *(uint64_t *)(array_data + index * 8) = 0;
       index = index + 1;
     } while (index < array_size);
   }
   
   // 重置数组状态
-  *(undefined8 *)(object_array + 0x18) = 0;
+  *(uint64_t *)(object_array + 0x18) = 0;
   return;
 }

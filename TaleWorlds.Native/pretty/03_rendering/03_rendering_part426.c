@@ -295,26 +295,26 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
     // 栈变量声明和初始化
     float *pfVar1, *pfVar2, *pfVar3;           // 浮点指针变量
     longlong lVar4, lVar11, lVar12, lVar16, lVar17, lVar18;  // 长整型变量
-    undefined4 uVar5, uVar6;                   // 未定义4字节变量
+    int32_t uVar5, uVar6;                   // 未定义4字节变量
     float fVar7, fVar8, fVar19, fVar27, fVar29, fVar31, fVar32, fVar34, fVar39, fVar40, fVar41, fVar42, fVar48, fVar49, fVar50, fVar55, fVar58, fVar61, fVar70, fVar76, fVar78, fVar80, fVar81, fVar82, fVar83, fVar84, fVar85, fVar88, fVar91, fVar92, fVar93;  // 浮点变量
     uint uVar10, uVar13, uVar15, uVar20, uVar28, uVar30, uVar33, uVar52, uVar57, uVar60, uVar63, uVar65, uVar67, uVar69, uVar72;  // 无符号整型变量
     int iVar51, iVar56, iVar59, iVar62, iVar64, iVar66, iVar68, iVar71, iVar77, iVar79, iVar94, iVar97;  // 整型变量
     
     // SIMD数据数组
-    undefined1 auVar9[16], auVar21[16], auVar22[16], auVar23[16], auVar24[16], auVar25[16], auVar26[16];  // SIMD变量数组
-    undefined1 auVar35[16], auVar36[16], auVar37[16], auVar38[16], auVar43[16], auVar44[16], auVar45[16];  // SIMD变量数组
-    undefined1 auVar46[16], auVar47[16], auVar53[16], auVar54[16], auVar73[16], auVar74[16], auVar75[16];  // SIMD变量数组
-    undefined1 auVar86[16], auVar87[16], auVar89[16], auVar90[16], auVar95[16], auVar96[16], auVar98[16], auVar99[16];  // SIMD变量数组
+    int8_t auVar9[16], auVar21[16], auVar22[16], auVar23[16], auVar24[16], auVar25[16], auVar26[16];  // SIMD变量数组
+    int8_t auVar35[16], auVar36[16], auVar37[16], auVar38[16], auVar43[16], auVar44[16], auVar45[16];  // SIMD变量数组
+    int8_t auVar46[16], auVar47[16], auVar53[16], auVar54[16], auVar73[16], auVar74[16], auVar75[16];  // SIMD变量数组
+    int8_t auVar86[16], auVar87[16], auVar89[16], auVar90[16], auVar95[16], auVar96[16], auVar98[16], auVar99[16];  // SIMD变量数组
     
     // 栈分配的变量
     uint uStack_208, uStack_204, uStack_200, uStack_1f8, uStack_1f4;  // 栈变量
-    undefined4 uStack_1fc;                   // 栈变量
-    undefined8 uStack_1e8, uStack_1d8, uStack_1c8;  // 栈变量
+    int32_t uStack_1fc;                   // 栈变量
+    uint64_t uStack_1e8, uStack_1d8, uStack_1c8;  // 栈变量
     float fStack_1e0, fStack_1dc, fStack_1d0, fStack_1cc, fStack_1c0, fStack_1bc, fStack_1a0, fStack_19c;  // 浮点栈变量
     longlong lStack_1b8, lStack_188;         // 长整型栈变量
-    undefined1 auStack_198[16];               // 栈数组
+    int8_t auStack_198[16];               // 栈数组
     longlong lStack_1a8;                      // 长整型栈变量
-    undefined1 auStack_138[16], auStack_128[16], auStack_118[16];  // 栈数组
+    int8_t auStack_138[16], auStack_128[16], auStack_118[16];  // 栈数组
     int aiStack_178[4], aiStack_158[4];      // 整型栈数组
     uint auStack_168[4], auStack_148[4];      // 无符号整型栈数组
     float afStack_108[4], afStack_f8[4], afStack_e8[4];  // 浮点栈数组
@@ -452,7 +452,7 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(
         pfVar1 = (float *)(lVar18 + (ulonglong)uVar20 * 0x10);
         lVar18 = lVar18 + (ulonglong)uVar20 * 0x10;
         fStack_1cc = *(float *)(lVar18 + 4);  // 获取最终数据Y
-        uVar5 = *(undefined4 *)(lVar18 + 8);   // 获取最终数据Z
+        uVar5 = *(int32_t *)(lVar18 + 8);   // 获取最终数据Z
         
         // SIMD数据打包和处理（继续原始逻辑）
         // ... 保持原有的SIMD处理逻辑 ...

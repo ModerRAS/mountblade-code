@@ -23,7 +23,7 @@ extern uint UNK_18011486c[];          // 函数跳转表2
  * @param param_5 浮点数值
  * @param param_6 格式化字符串
  */
-void process_formatted_text_render(float *param_1, int param_2, undefined8 param_3, undefined8 param_4, 
+void process_formatted_text_render(float *param_1, int param_2, uint64_t param_3, uint64_t param_4, 
                                   float *param_5, char *param_6)
 {
   longlong engine_context;
@@ -35,10 +35,10 @@ void process_formatted_text_render(float *param_1, int param_2, undefined8 param
   char *text_end;
   int buffer_size;
   bool is_format_specifier;
-  undefined1 security_buffer[32];
-  undefined8 security_check1;
-  undefined8 security_check2;
-  undefined8 security_check3;
+  int8_t security_buffer[32];
+  uint64_t security_check1;
+  uint64_t security_check2;
+  uint64_t security_check3;
   float width_value;
   float height_value;
   char format_buffer[31];
@@ -49,12 +49,12 @@ void process_formatted_text_render(float *param_1, int param_2, undefined8 param
   security_token = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
   
   // 初始化渲染状态
-  *(undefined1 *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
-  func_0x000180123e90(*(undefined4 *)(engine_context + 0x2da0), 
-                      *(undefined8 *)(engine_context + 0x1af8));
-  *(undefined4 *)(engine_context + 0x1b18) = 0;
-  *(undefined1 *)(engine_context + 0x1b1c) = 0;
-  *(undefined4 *)(engine_context + 0x1b44) = 0xc;
+  *(int8_t *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
+  func_0x000180123e90(*(int32_t *)(engine_context + 0x2da0), 
+                      *(uint64_t *)(engine_context + 0x1af8));
+  *(int32_t *)(engine_context + 0x1b18) = 0;
+  *(int8_t *)(engine_context + 0x1b1c) = 0;
+  *(int32_t *)(engine_context + 0x1b44) = 0xc;
   
   // 解析格式化字符串
   current_char = *param_6;
@@ -126,18 +126,18 @@ void process_formatted_text_render(float *param_1, int param_2, undefined8 param
   
   // 更新渲染上下文
   if (*(int *)(engine_context + 0x2da0) == 0) {
-    *(undefined4 *)(engine_context + 0x2da0) = *(undefined4 *)(engine_context + 0x1b2c);
+    *(int32_t *)(engine_context + 0x2da0) = *(int32_t *)(engine_context + 0x1b2c);
     temp_ptr = _DAT_180c8a9b0;
     *(int *)(engine_context + 0x1b18) = param_2;
-    *(undefined1 *)(temp_ptr + 0x1b1c) = 0;
+    *(int8_t *)(temp_ptr + 0x1b1c) = 0;
     if ((param_2 != 0) && (*(int *)(temp_ptr + 0x1b20) != param_2)) {
-      *(undefined8 *)(temp_ptr + 0x1b24) = 0;
+      *(uint64_t *)(temp_ptr + 0x1b24) = 0;
     }
   }
   
   if (current_char != '\0') {
     security_check1 = 0;
-    FUN_1801134b0(format_buffer, *(undefined8 *)(engine_context + 0x1ec8), 4, param_5);
+    FUN_1801134b0(format_buffer, *(uint64_t *)(engine_context + 0x1ec8), 4, param_5);
   }
   
   // 安全检查清理
@@ -167,17 +167,17 @@ void execute_numeric_operation(char *param_1, uint param_2, double *param_3, dou
   float timing_factor1;
   float timing_factor2;
   float timing_factor3;
-  undefined1 security_buffer[32];
-  undefined8 render_param1;
-  undefined8 render_param2;
-  undefined8 render_param3;
-  undefined8 render_param4;
-  undefined1 temp_buffer[64];
+  int8_t security_buffer[32];
+  uint64_t render_param1;
+  uint64_t render_param2;
+  uint64_t render_param3;
+  uint64_t render_param4;
+  int8_t temp_buffer[64];
   ulonglong security_token;
   
   engine_context = _DAT_180c8a9b0;
   security_token = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
-  *(undefined1 *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(longlong *)(engine_context + 0x1af8) + 0xb1) = 1;
   
   // 检查渲染状态
   if (*(char *)(*(longlong *)(engine_context + 0x1af8) + 0xb4) != '\0') goto cleanup_and_exit;
@@ -220,7 +220,7 @@ skip_format_conversion:
     operation_result = FUN_1801166f0(param_1, temp_buffer, 0x40, &render_param4);
     if (operation_result != '\0') {
       render_param1 = param_6;
-      FUN_1801134b0(temp_buffer, *(undefined8 *)(engine_context + 0x1ec8), param_2, param_3);
+      FUN_1801134b0(temp_buffer, *(uint64_t *)(engine_context + 0x1ec8), param_2, param_3);
     }
   }
   else {
@@ -245,12 +245,12 @@ skip_format_conversion:
     operation_result = FUN_1801166f0(&DAT_18098bc73, temp_buffer, 0x40, &render_param4);
     if (operation_result != '\0') {
       render_param1 = param_6;
-      FUN_1801134b0(temp_buffer, *(undefined8 *)(engine_context + 0x1ec8), param_2, param_3);
+      FUN_1801134b0(temp_buffer, *(uint64_t *)(engine_context + 0x1ec8), param_2, param_3);
     }
     
     func_0x00018012d640();
     operation_flags = (operation_flags & 0x4000 | 0x2040) >> 6;
-    func_0x00018012e760(0, *(undefined4 *)(engine_context + 0x1674));
+    func_0x00018012e760(0, *(int32_t *)(engine_context + 0x1674));
     render_param4 = CONCAT44(timing_factor3, timing_factor3);
     operation_result = FUN_18010f6f0(&DAT_180a063b4, &render_param4, operation_flags);
     
@@ -278,7 +278,7 @@ skip_format_conversion:
     }
     
     // 执行加法操作
-    func_0x00018012e760(0, *(undefined4 *)(engine_context + 0x1674));
+    func_0x00018012e760(0, *(int32_t *)(engine_context + 0x1674));
     render_param4 = CONCAT44(timing_factor3, timing_factor3);
     operation_result = FUN_18010f6f0(&UNK_180a063c0, &render_param4, operation_flags);
     if (operation_result != '\0') {
@@ -304,7 +304,7 @@ skip_format_conversion:
       }
     }
     
-    func_0x00018012e760(0, *(undefined4 *)(engine_context + 0x1674));
+    func_0x00018012e760(0, *(int32_t *)(engine_context + 0x1674));
     string_ptr = param_1;
     if (param_1 != (char *)0xffffffffffffffff) {
       while (*string_ptr != '\0') {
@@ -328,7 +328,7 @@ cleanup_and_exit:
  * @param param_2 数据类型
  * @param param_3 数值指针
  */
-void simplified_numeric_operation(undefined4 param_1, undefined8 param_2, double *param_3)
+void simplified_numeric_operation(int32_t param_1, uint64_t param_2, double *param_3)
 {
   int *render_counter;
   double converted_value;
@@ -340,19 +340,19 @@ void simplified_numeric_operation(undefined4 param_1, undefined8 param_2, double
   float timing_factor1;
   float timing_factor2;
   float timing_factor3;
-  undefined4 xmm6_value_a;
+  int32_t xmm6_value_a;
   float result_float;
-  undefined4 xmm6_value_c;
-  undefined8 stack_param1;
-  undefined4 format_param;
-  undefined8 stack_param2;
+  int32_t xmm6_value_c;
+  uint64_t stack_param1;
+  int32_t format_param;
+  uint64_t stack_param2;
   ulonglong security_token;
-  undefined4 stack_param3;
-  undefined4 stack_param4;
+  int32_t stack_param3;
+  int32_t stack_param4;
   longlong stack_param5;
   uint operation_flags;
   
-  format_param = (undefined4)((ulonglong)stack_param1 >> 0x20);
+  format_param = (int32_t)((ulonglong)stack_param1 >> 0x20);
   if (stack_param5 == 0) {
     stack_param5 = *(longlong *)(&UNK_18098d0f8 + 
             (CONCAT44(stack_param4, data_type) * 2 + CONCAT44(stack_param4, data_type)) * 8);
@@ -388,7 +388,7 @@ skip_format:
     operation_result = FUN_1801166f0(param_1, &stack0x00000050, 0x40, &stack_param2,
                           CONCAT44(format_param, operation_flags) | 0x10);
     if (operation_result != '\0') {
-      FUN_1801134b0(&stack0x00000050, *(undefined8 *)(context_ptr + 0x1ec8), data_type);
+      FUN_1801134b0(&stack0x00000050, *(uint64_t *)(context_ptr + 0x1ec8), data_type);
     }
   }
   else {
@@ -411,12 +411,12 @@ skip_format:
     operation_result = FUN_1801166f0(&DAT_18098bc73, &stack0x00000050, 0x40, &stack_param2,
                           CONCAT44(format_param, operation_flags) | 0x10);
     if (operation_result != '\0') {
-      FUN_1801134b0(&stack0x00000050, *(undefined8 *)(context_ptr + 0x1ec8), data_type);
+      FUN_1801134b0(&stack0x00000050, *(uint64_t *)(context_ptr + 0x1ec8), data_type);
     }
     
     func_0x00018012d640();
     operation_flags = (operation_flags & 0x4000 | 0x2040) >> 6;
-    func_0x00018012e760(0, *(undefined4 *)(context_ptr + 0x1674));
+    func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
     stack_param2 = CONCAT44(result_float, result_float);
     operation_result = FUN_18010f6f0(&DAT_180a063b4, &stack_param2, operation_flags);
     
@@ -430,7 +430,7 @@ skip_format:
       return;
     }
     
-    func_0x00018012e760(0, *(undefined4 *)(context_ptr + 0x1674));
+    func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
     stack_param2 = CONCAT44(result_float, result_float);
     operation_result = FUN_18010f6f0(&UNK_180a063c0, &stack_param2, operation_flags);
     if ((operation_result != '\0') && (data_type < 6)) {
@@ -443,7 +443,7 @@ skip_format:
       return;
     }
     
-    func_0x00018012e760(0, *(undefined4 *)(context_ptr + 0x1674));
+    func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
     if (target_string != (char *)0xffffffffffffffff) {
       while (*target_string != '\0') {
         if (((*target_string == '#') && (target_string[1] == '#')) ||
@@ -468,20 +468,20 @@ void execute_core_engine_operation(void)
   char operation_result;
   longlong engine_context;
   uint data_type;
-  undefined4 format_param;
+  int32_t format_param;
   uint operation_flags;
   char *target_string;
   longlong context_ptr;
   float timing_factor1;
   float timing_factor2;
   float timing_factor3;
-  undefined8 stack_param1;
-  undefined4 format_value;
-  undefined8 stack_param2;
+  uint64_t stack_param1;
+  int32_t format_value;
+  uint64_t stack_param2;
   ulonglong security_token;
-  undefined8 stack_param3;
+  uint64_t stack_param3;
   
-  format_value = (undefined4)((ulonglong)stack_param1 >> 0x20);
+  format_value = (int32_t)((ulonglong)stack_param1 >> 0x20);
   timing_factor3 = *(float *)(engine_context + 0x1660) + *(float *)(engine_context + 0x1660) + 
                   *(float *)(engine_context + 0x19f8);
   FUN_18012e3b0();
@@ -498,12 +498,12 @@ void execute_core_engine_operation(void)
   operation_result = FUN_1801166f0(&DAT_18098bc73, &stack0x00000050, 0x40, &stack_param2,
                         CONCAT44(format_value, operation_flags));
   if (operation_result != '\0') {
-    FUN_1801134b0(&stack0x00000050, *(undefined8 *)(context_ptr + 0x1ec8), data_type);
+    FUN_1801134b0(&stack0x00000050, *(uint64_t *)(context_ptr + 0x1ec8), data_type);
   }
   
   func_0x00018012d640();
   operation_flags = (operation_flags & 0x4000 | 0x2040) >> 6;
-  func_0x00018012e760(0, *(undefined4 *)(context_ptr + 0x1674));
+  func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
   stack_param2 = CONCAT44(timing_factor3, timing_factor3);
   operation_result = FUN_18010f6f0(&DAT_180a063b4, &stack_param2, operation_flags);
   
@@ -517,7 +517,7 @@ void execute_core_engine_operation(void)
     return;
   }
   
-  func_0x00018012e760(0, *(undefined4 *)(context_ptr + 0x1674));
+  func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
   stack_param2 = CONCAT44(timing_factor3, timing_factor3);
   operation_result = FUN_18010f6f0(&UNK_180a063c0, &stack_param2, operation_flags);
   if ((operation_result != '\0') && (data_type < 6)) {
@@ -530,7 +530,7 @@ void execute_core_engine_operation(void)
     return;
   }
   
-  func_0x00018012e760(0, *(undefined4 *)(context_ptr + 0x1674));
+  func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
   if (target_string != (char *)0xffffffffffffffff) {
     while (*target_string != '\0') {
       if (((*target_string == '#') && (target_string[1] == '#')) ||
@@ -551,7 +551,7 @@ void execute_core_engine_operation(void)
 void execute_addition_operation(void)
 {
   uint data_type;
-  undefined4 format_param;
+  int32_t format_param;
   char *target_string;
   longlong context_ptr;
   ulonglong security_token;
@@ -566,7 +566,7 @@ void execute_addition_operation(void)
     return;
   }
   
-  func_0x00018012e760(0, *(undefined4 *)(context_ptr + 0x1674));
+  func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
   if (target_string != (char *)0xffffffffffffffff) {
     while (*target_string != '\0') {
       if (((*target_string == '#') && (target_string[1] == '#')) ||
@@ -601,9 +601,9 @@ void cleanup_operation(void)
  * @param param_7 操作标志
  * @return 操作结果状态
  */
-ulonglong process_batch_numeric_operations(char *param_1, undefined8 param_2, longlong param_3, 
-                                         int param_4, undefined8 param_5, undefined8 param_6, 
-                                         undefined8 param_7)
+ulonglong process_batch_numeric_operations(char *param_1, uint64_t param_2, longlong param_3, 
+                                         int param_4, uint64_t param_5, uint64_t param_6, 
+                                         uint64_t param_7)
 {
   int operation_result;
   ulonglong status_flag;
@@ -616,10 +616,10 @@ ulonglong process_batch_numeric_operations(char *param_1, undefined8 param_2, lo
   int array_index;
   longlong context_base;
   byte batch_result;
-  undefined4 operation_flag;
+  int32_t operation_flag;
   
   context_base = _DAT_180c8a9b0;
-  *(undefined1 *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
+  *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
   status_flag = *(ulonglong *)(context_base + 0x1af8);
   
   // 检查渲染状态
@@ -639,23 +639,23 @@ ulonglong process_batch_numeric_operations(char *param_1, undefined8 param_2, lo
       FUN_18012e2d0(array_index);
       operation_success = FUN_180114450(&UNK_180a063b0, 4, param_3, 0, 0, param_7, 0);
       batch_result = batch_result | operation_success;
-      func_0x00018012e760(0, *(undefined4 *)(engine_context + 0x1674));
+      func_0x00018012e760(0, *(int32_t *)(engine_context + 0x1674));
       context_base = _DAT_180c8a9b0;
       render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
       *render_counter = *render_counter + -1;
-      *(undefined1 *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
+      *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
       render_context = *(longlong *)(context_base + 0x1af8);
       operation_result = *(int *)(render_context + 0x1c8);
       index = operation_result + -1;
       *(int *)(render_context + 0x1c8) = index;
       if (index == 0) {
-        operation_flag = *(undefined4 *)(render_context + 0x284);
+        operation_flag = *(int32_t *)(render_context + 0x284);
       }
       else {
-        operation_flag = *(undefined4 *)(*(longlong *)(render_context + 0x1d0) + -8 + (longlong)operation_result * 4);
+        operation_flag = *(int32_t *)(*(longlong *)(render_context + 0x1d0) + -8 + (longlong)operation_result * 4);
       }
       param_3 = param_3 + 4;
-      *(undefined4 *)(render_context + 0x1ac) = operation_flag;
+      *(int32_t *)(render_context + 0x1ac) = operation_flag;
       array_index = array_index + 1;
     } while (array_index < param_4);
   }
@@ -690,7 +690,7 @@ byte process_batch_numeric_operations_simple(void)
   int array_index;
   longlong context_base;
   byte batch_result;
-  undefined4 operation_flag;
+  int32_t operation_flag;
   
   batch_result = 0;
   FUN_18012e3b0();
@@ -704,23 +704,23 @@ byte process_batch_numeric_operations_simple(void)
       FUN_18012e2d0(array_index);
       operation_success = FUN_180114450(&UNK_180a063b0, 4, value_array, 0, 0);
       batch_result = batch_result | operation_success;
-      func_0x00018012e760(0, *(undefined4 *)(context_ptr + 0x1674));
+      func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
       context_base = _DAT_180c8a9b0;
       render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
       *render_counter = *render_counter + -1;
-      *(undefined1 *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
+      *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
       render_context = *(longlong *)(context_base + 0x1af8);
       operation_result = *(int *)(render_context + 0x1c8);
       index = operation_result + -1;
       *(int *)(render_context + 0x1c8) = index;
       if (index == 0) {
-        operation_flag = *(undefined4 *)(render_context + 0x284);
+        operation_flag = *(int32_t *)(render_context + 0x284);
       }
       else {
-        operation_flag = *(undefined4 *)(*(longlong *)(render_context + 0x1d0) + -8 + (longlong)operation_result * 4);
+        operation_flag = *(int32_t *)(*(longlong *)(render_context + 0x1d0) + -8 + (longlong)operation_result * 4);
       }
       value_array = value_array + 4;
-      *(undefined4 *)(render_context + 0x1ac) = operation_flag;
+      *(int32_t *)(render_context + 0x1ac) = operation_flag;
       array_index = array_index + 1;
     } while (array_index < operation_count);
   }
@@ -754,29 +754,29 @@ byte process_loop_batch_numeric_operations(void)
   int loop_index;
   longlong context_base;
   byte loop_result;
-  undefined4 operation_flag;
+  int32_t operation_flag;
   
   do {
     FUN_18012e2d0(loop_index);
     operation_success = FUN_180114450(&UNK_180a063b0, 4, value_array);
     loop_result = loop_result | operation_success;
-    func_0x00018012e760(0, *(undefined4 *)(context_ptr + 0x1674));
+    func_0x00018012e760(0, *(int32_t *)(context_ptr + 0x1674));
     context_base = _DAT_180c8a9b0;
     render_counter = (int *)(*(longlong *)(context_base + 0x1af8) + 0x218);
     *render_counter = *render_counter + -1;
-    *(undefined1 *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
+    *(int8_t *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;
     render_context = *(longlong *)(context_base + 0x1af8);
     operation_result = *(int *)(render_context + 0x1c8);
     index = operation_result + -1;
     *(int *)(render_context + 0x1c8) = index;
     if (index == 0) {
-      operation_flag = *(undefined4 *)(render_context + 0x284);
+      operation_flag = *(int32_t *)(render_context + 0x284);
     }
     else {
-      operation_flag = *(undefined4 *)(*(longlong *)(render_context + 0x1d0) + -8 + (longlong)operation_result * 4);
+      operation_flag = *(int32_t *)(*(longlong *)(render_context + 0x1d0) + -8 + (longlong)operation_result * 4);
     }
     value_array = value_array + 4;
-    *(undefined4 *)(render_context + 0x1ac) = operation_flag;
+    *(int32_t *)(render_context + 0x1ac) = operation_flag;
     loop_index = loop_index + 1;
   } while (loop_index < operation_count);
   
@@ -797,11 +797,11 @@ byte process_loop_batch_numeric_operations(void)
  * 清理渲染操作函数
  * @return 清理结果状态
  */
-undefined1 cleanup_render_operation(void)
+int8_t cleanup_render_operation(void)
 {
   int *render_counter;
   char *target_string;
-  undefined1 cleanup_result;
+  int8_t cleanup_result;
   
   render_counter = (int *)(*(longlong *)(engine_context + 0x1af8) + 0x218);
   *render_counter = *render_counter + -1;
@@ -822,9 +822,9 @@ undefined1 cleanup_render_operation(void)
  * @param param_2 目标字符串
  * @return 清理结果状态
  */
-undefined1 cleanup_string_operation(undefined8 param_1, char *param_2)
+int8_t cleanup_string_operation(uint64_t param_1, char *param_2)
 {
-  undefined1 cleanup_result;
+  int8_t cleanup_result;
   
   while (*param_2 != '\0') {
     if (((*param_2 == '#') && (param_2[1] == '#')) ||
@@ -846,7 +846,7 @@ undefined1 cleanup_string_operation(undefined8 param_1, char *param_2)
  * @return 输出浮点数组指针
  */
 float * process_ushort_array_to_float(float *param_1, ushort *param_2, ushort *param_3, 
-                                      undefined8 *param_4, undefined8 param_5, char param_6)
+                                      uint64_t *param_4, uint64_t param_5, char param_6)
 {
   float current_value;
   float scale_factor;
@@ -903,7 +903,7 @@ skip_accumulation:
   param_1[1] = current_value + param_1[1];
   
 finalize_output:
-  if (param_4 != (undefined8 *)0x0) {
+  if (param_4 != (uint64_t *)0x0) {
     *param_4 = param_2;
   }
   return param_1;
@@ -919,13 +919,13 @@ finalize_output:
  * @param param_6 上下文参数
  * @param param_7 操作标志
  */
-void optimized_ushort_array_processing(undefined8 param_1, ushort *param_2, float param_3, 
-                                       float param_4, undefined8 param_5, undefined8 param_6, 
+void optimized_ushort_array_processing(uint64_t param_1, ushort *param_2, float param_3, 
+                                       float param_4, uint64_t param_5, uint64_t param_6, 
                                        char param_7)
 {
   ushort current_ushort;
   ushort *array_end;
-  undefined8 *output_ptr;
+  uint64_t *output_ptr;
   float *result_ptr;
   longlong context_ptr;
   float accumulated_value;
@@ -966,7 +966,7 @@ finalize_processing:
   if ((timing_factor1 < param_3) || (timing_factor1 == result_ptr[1])) {
     result_ptr[1] = param_4 + result_ptr[1];
   }
-  if (output_ptr != (undefined8 *)0x0) {
+  if (output_ptr != (uint64_t *)0x0) {
     *output_ptr = param_2;
   }
   return;
@@ -979,8 +979,8 @@ finalize_processing:
  * @param param_3 浮点数值
  * @param param_4 输出位置指针
  */
-void simplified_float_value_setter(undefined8 param_1, undefined8 param_2, float param_3, 
-                                   undefined8 *param_4)
+void simplified_float_value_setter(uint64_t param_1, uint64_t param_2, float param_3, 
+                                   uint64_t *param_4)
 {
   float *result_ptr;
   float timing_factor1;
@@ -990,7 +990,7 @@ void simplified_float_value_setter(undefined8 param_1, undefined8 param_2, float
   if ((timing_factor2 < param_3) || (timing_factor2 == result_ptr[1])) {
     result_ptr[1] = timing_factor1 + result_ptr[1];
   }
-  if (param_4 != (undefined8 *)0x0) {
+  if (param_4 != (uint64_t *)0x0) {
     *param_4 = param_2;
   }
   return;

@@ -135,17 +135,17 @@ void FUN_180416cc0(longlong *param_1, longlong param_2, longlong param_3)
     ulonglong uVar4;               // 无符号长整型
     longlong lVar5;                // 长整型变量
     void *puVar6, *puVar7, *puVar9; // 通用指针
-    undefined8 uStackX_8;          // 栈变量
+    uint64_t uStackX_8;          // 栈变量
     int aiStackX_20[2];            // 整型数组
     float afStack_88[2];           // 浮点数组
     float afStack_80[2];           // 浮点数组
-    undefined8 uStack_78;          // 栈变量
+    uint64_t uStack_78;          // 栈变量
     int iStack_70;                 // 栈变量
     float fStack_6c, fStack_68;    // 浮点栈变量
-    undefined4 uStack_64;          // 栈变量
+    int32_t uStack_64;          // 栈变量
     int iStack_60;                 // 栈变量
     float fStack_5c, fStack_58;    // 浮点栈变量
-    undefined4 uStack_54;          // 栈变量
+    int32_t uStack_54;          // 栈变量
     
     // 初始化栈变量
     uStack_78 = 0xfffffffffffffffe;

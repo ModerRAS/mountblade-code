@@ -327,7 +327,7 @@ void rendering_system_animation_manager(float param_1)
     longlong long_variable_8;
     longlong register_rbx;
     longlong register_rbp;
-    undefined *register_rsi;
+    void *register_rsi;
     longlong long_variable_9;
     int int_variable_10;
     char register_r15b;

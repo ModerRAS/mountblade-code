@@ -2,18 +2,18 @@
 
 // 03_rendering_part081.c - 1 个函数
 
-// 函数: void FUN_180310a00(longlong *param_1,undefined8 *param_2)
-void FUN_180310a00(longlong *param_1,undefined8 *param_2)
+// 函数: void FUN_180310a00(longlong *param_1,uint64_t *param_2)
+void FUN_180310a00(longlong *param_1,uint64_t *param_2)
 
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   longlong lVar2;
-  undefined8 uVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
+  uint64_t uVar3;
+  uint64_t uVar4;
+  uint64_t uVar5;
   
-  puVar1 = (undefined8 *)param_1[6];
-  if (puVar1 + 2 != (undefined8 *)param_1[8]) {
+  puVar1 = (uint64_t *)param_1[6];
+  if (puVar1 + 2 != (uint64_t *)param_1[8]) {
     param_1[6] = (longlong)(puVar1 + 2);
     uVar3 = param_2[1];
     *puVar1 = *param_2;
@@ -26,8 +26,8 @@ void FUN_180310a00(longlong *param_1,undefined8 *param_2)
     FUN_1801ee9c0(param_1,1,1);
   }
   uVar5 = FUN_18062b420(_DAT_180c8ed18,0x100,(char)param_1[10]);
-  *(undefined8 *)(param_1[9] + 8) = uVar5;
-  puVar1 = (undefined8 *)param_1[6];
+  *(uint64_t *)(param_1[9] + 8) = uVar5;
+  puVar1 = (uint64_t *)param_1[6];
   *puVar1 = uVar3;
   puVar1[1] = uVar4;
   lVar2 = param_1[9];
@@ -41,12 +41,12 @@ void FUN_180310a00(longlong *param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_180310ad0(float *param_1)
+uint64_t FUN_180310ad0(float *param_1)
 
 {
   float fVar1;
   float fVar2;
-  undefined1 auVar3 [16];
+  int8_t auVar3 [16];
   float fVar4;
   float fVar5;
   

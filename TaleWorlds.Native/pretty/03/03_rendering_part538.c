@@ -269,7 +269,7 @@ void CopyRenderData(RenderBuffer* dest, RenderBuffer* src, size_t count)
 void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
 {
   ulonglong current_end;
-  undefined8 element_value;
+  uint64_t element_value;
   ulonglong source_size;
   ulonglong buffer_start;
   ulonglong *buffer_ptr;
@@ -328,10 +328,10 @@ void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
   buffer_start = elements_needed;
   if ((longlong)(current_end - *buffer_ptr) >> 3 != 0) {
     do {
-      element_value = (**(code **)**(undefined8 **)(buffer_start + *(longlong*)data_source))();
+      element_value = (**(code **)**(uint64_t **)(buffer_start + *(longlong*)data_source))();
       element_index = (int)elements_needed + 1;
       elements_needed = (ulonglong)element_index;
-      *(undefined8 *)(buffer_start + *buffer_ptr) = element_value;
+      *(uint64_t *)(buffer_start + *buffer_ptr) = element_value;
       buffer_start = buffer_start + 8;
     } while ((ulonglong)(longlong)(int)element_index <
              (ulonglong)((longlong)(buffer_ptr[1] - *buffer_ptr) >> 3));
@@ -360,7 +360,7 @@ void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
 void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_space)
 {
   ulonglong new_buffer;
-  undefined8 element_value;
+  uint64_t element_value;
   ulonglong *buffer_info;
   ulonglong new_capacity;
   uint element_index;
@@ -397,10 +397,10 @@ void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_s
     new_capacity = source_offset;
     if ((longlong)(source_offset - *buffer_info) >> 3 != 0) {
       do {
-        element_value = (**(code **)**(undefined8 **)(new_capacity + *data_source))();
+        element_value = (**(code **)**(uint64_t **)(new_capacity + *data_source))();
         element_index = (int)source_offset + 1;
         source_offset = (ulonglong)element_index;
-        *(undefined8 *)(new_capacity + *buffer_info) = element_value;
+        *(uint64_t *)(new_capacity + *buffer_info) = element_value;
         new_capacity = new_capacity + 8;
       } while ((ulonglong)(longlong)(int)element_index <
                (ulonglong)((longlong)(buffer_info[1] - *buffer_info) >> 3));
@@ -429,7 +429,7 @@ void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_s
 ===============================================================================*/
 void InitializeRenderElements(RenderBuffer* buffer, size_t element_count, void* data_source)
 {
-  undefined8 element_value;
+  uint64_t element_value;
   longlong *buffer_info;
   uint element_index;
   ulonglong source_offset;
@@ -443,10 +443,10 @@ void InitializeRenderElements(RenderBuffer* buffer, size_t element_count, void* 
     current_offset = source_offset;
     if (element_end - *buffer_info >> 3 != 0) {
       do {
-        element_value = (**(code **)**(undefined8 **)(current_offset + *data_ptr))();
+        element_value = (**(code **)**(uint64_t **)(current_offset + *data_ptr))();
         element_index = (int)source_offset + 1;
         source_offset = (ulonglong)element_index;
-        *(undefined8 *)(current_offset + *buffer_info) = element_value;
+        *(uint64_t *)(current_offset + *buffer_info) = element_value;
         current_offset = current_offset + 8;
       } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(buffer_info[1] - *buffer_info >> 3));
     }
@@ -473,7 +473,7 @@ void InitializeRenderElements(RenderBuffer* buffer, size_t element_count, void* 
 ===============================================================================*/
 void ProcessRenderElements(RenderBuffer* element_buffer, void* data_source)
 {
-  undefined8 element_value;
+  uint64_t element_value;
   longlong *buffer_info;
   uint element_index;
   ulonglong source_offset;
@@ -482,10 +482,10 @@ void ProcessRenderElements(RenderBuffer* element_buffer, void* data_source)
   
   current_offset = source_offset;
   do {
-    element_value = (**(code **)**(undefined8 **)(current_offset + *data_ptr))();
+    element_value = (**(code **)**(uint64_t **)(current_offset + *data_ptr))();
     element_index = (int)source_offset + 1;
     source_offset = (ulonglong)element_index;
-    *(undefined8 *)(current_offset + *buffer_info) = element_value;
+    *(uint64_t *)(current_offset + *buffer_info) = element_value;
     current_offset = current_offset + 8;
   } while ((ulonglong)(longlong)(int)element_index < (ulonglong)(buffer_info[1] - *buffer_info >> 3));
   return;
@@ -512,109 +512,109 @@ RenderObject* InitializeRenderObject(RenderObject* render_object)
   // 初始化渲染状态和参数
   render_object[0xb] = &UNK_18098bcb0;
   render_object[0xc] = 0;
-  *(undefined4 *)(render_object + 0xd) = 0;
+  *(int32_t *)(render_object + 0xd) = 0;
   render_object[0xb] = &UNK_180a3c3e0;
   render_object[0xe] = 0;
   render_object[0xc] = 0;
-  *(undefined4 *)(render_object + 0xd) = 0;
+  *(int32_t *)(render_object + 0xd) = 0;
   
   // 初始化纹理和材质参数
   render_object[0xf] = &UNK_18098bcb0;
   render_object[0x10] = 0;
-  *(undefined4 *)(render_object + 0x11) = 0;
+  *(int32_t *)(render_object + 0x11) = 0;
   render_object[0xf] = &UNK_180a3c3e0;
   render_object[0x12] = 0;
   render_object[0x10] = 0;
-  *(undefined4 *)(render_object + 0x11) = 0;
+  *(int32_t *)(render_object + 0x11) = 0;
   
   // 初始化着色器参数
   render_object[0x13] = &UNK_18098bcb0;
   render_object[0x14] = 0;
-  *(undefined4 *)(render_object + 0x15) = 0;
+  *(int32_t *)(render_object + 0x15) = 0;
   render_object[0x13] = &UNK_180a3c3e0;
   render_object[0x16] = 0;
   render_object[0x14] = 0;
-  *(undefined4 *)(render_object + 0x15) = 0;
+  *(int32_t *)(render_object + 0x15) = 0;
   
   // 初始化顶点缓冲区
   render_object[0x17] = &UNK_18098bcb0;
   render_object[0x18] = 0;
-  *(undefined4 *)(render_object + 0x19) = 0;
+  *(int32_t *)(render_object + 0x19) = 0;
   render_object[0x17] = &UNK_180a3c3e0;
   render_object[0x1a] = 0;
   render_object[0x18] = 0;
-  *(undefined4 *)(render_object + 0x19) = 0;
+  *(int32_t *)(render_object + 0x19) = 0;
   
   // 初始化索引缓冲区
   render_object[0x1b] = &UNK_18098bcb0;
   render_object[0x1c] = 0;
-  *(undefined4 *)(render_object + 0x1d) = 0;
+  *(int32_t *)(render_object + 0x1d) = 0;
   render_object[0x1b] = &UNK_180a3c3e0;
   render_object[0x1e] = 0;
   render_object[0x1c] = 0;
-  *(undefined4 *)(render_object + 0x1d) = 0;
+  *(int32_t *)(render_object + 0x1d) = 0;
   
   // 初始化常量缓冲区
   render_object[0x1f] = &UNK_18098bcb0;
   render_object[0x20] = 0;
-  *(undefined4 *)(render_object + 0x21) = 0;
+  *(int32_t *)(render_object + 0x21) = 0;
   render_object[0x1f] = &UNK_180a3c3e0;
   render_object[0x22] = 0;
   render_object[0x20] = 0;
-  *(undefined4 *)(render_object + 0x21) = 0;
+  *(int32_t *)(render_object + 0x21) = 0;
   
   // 初始化采样器状态
   render_object[0x23] = &UNK_18098bcb0;
   render_object[0x24] = 0;
-  *(undefined4 *)(render_object + 0x25) = 0;
+  *(int32_t *)(render_object + 0x25) = 0;
   render_object[0x23] = &UNK_180a3c3e0;
   render_object[0x26] = 0;
   render_object[0x24] = 0;
-  *(undefined4 *)(render_object + 0x25) = 0;
+  *(int32_t *)(render_object + 0x25) = 0;
   
   // 初始化渲染状态
   render_object[0x2a] = 0;
   render_object[0x2b] = 0;
   render_object[0x2c] = 0;
-  *(undefined4 *)(render_object + 0x2d) = 3;
+  *(int32_t *)(render_object + 0x2d) = 3;
   
   // 初始化混合状态
   render_object[0x2e] = &UNK_18098bcb0;
   render_object[0x2f] = 0;
-  *(undefined4 *)(render_object + 0x30) = 0;
+  *(int32_t *)(render_object + 0x30) = 0;
   render_object[0x2e] = &UNK_180a3c3e0;
   render_object[0x31] = 0;
   render_object[0x2f] = 0;
-  *(undefined4 *)(render_object + 0x30) = 0;
+  *(int32_t *)(render_object + 0x30) = 0;
   
   // 初始化深度模板状态
   render_object[0x32] = &UNK_18098bcb0;
   render_object[0x33] = 0;
-  *(undefined4 *)(render_object + 0x34) = 0;
+  *(int32_t *)(render_object + 0x34) = 0;
   render_object[0x32] = &UNK_180a3c3e0;
   render_object[0x35] = 0;
   render_object[0x33] = 0;
-  *(undefined4 *)(render_object + 0x34) = 0;
+  *(int32_t *)(render_object + 0x34) = 0;
   
   // 初始化变换矩阵和基础参数
   render_object[1] = 0;
   render_object[2] = 0;
   render_object[3] = 0;
-  *(undefined4 *)(render_object + 4) = 0;
-  *(undefined8 *)((longlong)render_object + 0x24) = 0;
-  *(undefined8 *)((longlong)render_object + 0x2c) = 0;
+  *(int32_t *)(render_object + 4) = 0;
+  *(uint64_t *)((longlong)render_object + 0x24) = 0;
+  *(uint64_t *)((longlong)render_object + 0x2c) = 0;
   render_object[7] = 0;
-  *(undefined4 *)(render_object + 8) = 0;
+  *(int32_t *)(render_object + 8) = 0;
   
   // 初始化浮点参数
-  *(undefined8 *)((longlong)render_object + 0x44) = FLOAT_BF800000BF800000;
-  *(undefined8 *)((longlong)render_object + 0x4c) = FLOAT_BF800000BF800000;
-  *(undefined4 *)(render_object + 0x27) = 3;
-  *(undefined4 *)((longlong)render_object + 0x13c) = 3;
+  *(uint64_t *)((longlong)render_object + 0x44) = FLOAT_BF800000BF800000;
+  *(uint64_t *)((longlong)render_object + 0x4c) = FLOAT_BF800000BF800000;
+  *(int32_t *)(render_object + 0x27) = 3;
+  *(int32_t *)((longlong)render_object + 0x13c) = 3;
   render_object[0x28] = FLOAT_0_3E99999A;
-  *(undefined1 *)(render_object + 0x29) = 0;
-  *(undefined2 *)(render_object + 0x36) = 0xff;
-  *(undefined1 *)((longlong)render_object + 0x1b2) = 0;
+  *(int8_t *)(render_object + 0x29) = 0;
+  *(int16_t *)(render_object + 0x36) = 0xff;
+  *(int8_t *)((longlong)render_object + 0x1b2) = 0;
   
   return render_object;
 }
@@ -667,7 +667,7 @@ void CleanupRenderObject(RenderObject* render_object)
     FUN_18064e900(); // 释放资源
   }
   render_object[0x33] = 0;
-  *(undefined4 *)(render_object + 0x35) = 0;
+  *(int32_t *)(render_object + 0x35) = 0;
   render_object[0x32] = &UNK_18098bcb0;
   
   // 清理混合状态
@@ -676,7 +676,7 @@ void CleanupRenderObject(RenderObject* render_object)
     FUN_18064e900(); // 释放资源
   }
   render_object[0x2f] = 0;
-  *(undefined4 *)(render_object + 0x31) = 0;
+  *(int32_t *)(render_object + 0x31) = 0;
   render_object[0x2e] = &UNK_18098bcb0;
   
   // 清理渲染状态
@@ -690,7 +690,7 @@ void CleanupRenderObject(RenderObject* render_object)
     FUN_18064e900(); // 释放资源
   }
   render_object[0x24] = 0;
-  *(undefined4 *)(render_object + 0x26) = 0;
+  *(int32_t *)(render_object + 0x26) = 0;
   render_object[0x23] = &UNK_18098bcb0;
   
   // 清理常量缓冲区
@@ -699,7 +699,7 @@ void CleanupRenderObject(RenderObject* render_object)
     FUN_18064e900(); // 释放资源
   }
   render_object[0x20] = 0;
-  *(undefined4 *)(render_object + 0x22) = 0;
+  *(int32_t *)(render_object + 0x22) = 0;
   render_object[0x1f] = &UNK_18098bcb0;
   
   // 清理索引缓冲区
@@ -708,7 +708,7 @@ void CleanupRenderObject(RenderObject* render_object)
     FUN_18064e900(); // 释放资源
   }
   render_object[0x1c] = 0;
-  *(undefined4 *)(render_object + 0x1e) = 0;
+  *(int32_t *)(render_object + 0x1e) = 0;
   render_object[0x1b] = &UNK_18098bcb0;
   
   // 清理顶点缓冲区
@@ -717,7 +717,7 @@ void CleanupRenderObject(RenderObject* render_object)
     FUN_18064e900(); // 释放资源
   }
   render_object[0x18] = 0;
-  *(undefined4 *)(render_object + 0x1a) = 0;
+  *(int32_t *)(render_object + 0x1a) = 0;
   render_object[0x17] = &UNK_18098bcb0;
   
   // 清理着色器参数
@@ -726,7 +726,7 @@ void CleanupRenderObject(RenderObject* render_object)
     FUN_18064e900(); // 释放资源
   }
   render_object[0x14] = 0;
-  *(undefined4 *)(render_object + 0x16) = 0;
+  *(int32_t *)(render_object + 0x16) = 0;
   render_object[0x13] = &UNK_18098bcb0;
   
   // 清理材质参数
@@ -735,7 +735,7 @@ void CleanupRenderObject(RenderObject* render_object)
     FUN_18064e900(); // 释放资源
   }
   render_object[0x10] = 0;
-  *(undefined4 *)(render_object + 0x12) = 0;
+  *(int32_t *)(render_object + 0x12) = 0;
   render_object[0xf] = &UNK_18098bcb0;
   
   // 清理纹理
@@ -744,7 +744,7 @@ void CleanupRenderObject(RenderObject* render_object)
     FUN_18064e900(); // 释放资源
   }
   render_object[0xc] = 0;
-  *(undefined4 *)(render_object + 0xe) = 0;
+  *(int32_t *)(render_object + 0xe) = 0;
   render_object[0xb] = &UNK_18098bcb0;
   
   // 重置虚函数表
@@ -767,42 +767,42 @@ void CleanupRenderObject(RenderObject* render_object)
 RenderContext* CreateRenderContext(RenderContext* parent_context)
 {
   RenderContext* context;
-  undefined* default_name;
+  void* default_name;
   
   // 分配渲染上下文内存
   context = (RenderContext*)FUN_18062b1e0(_DAT_180c8ed18, 0x208, 8, 4, 0xfffffffffffffffe);
   FUN_18034dd90(); // 初始化上下文
   
   // 初始化渲染状态对象
-  *(undefined8 *)(context + 0x1b0) = &UNK_18098bcb0;
-  *(undefined8 *)(context + 0x1b8) = 0;
-  *(undefined4 *)(context + 0x1c0) = 0;
-  *(undefined8 *)(context + 0x1b0) = &UNK_180a3c3e0;
-  *(undefined8 *)(context + 0x1c8) = 0;
-  *(undefined8 *)(context + 0x1b8) = 0;
-  *(undefined4 *)(context + 0x1c0) = 0;
+  *(uint64_t *)(context + 0x1b0) = &UNK_18098bcb0;
+  *(uint64_t *)(context + 0x1b8) = 0;
+  *(int32_t *)(context + 0x1c0) = 0;
+  *(uint64_t *)(context + 0x1b0) = &UNK_180a3c3e0;
+  *(uint64_t *)(context + 0x1c8) = 0;
+  *(uint64_t *)(context + 0x1b8) = 0;
+  *(int32_t *)(context + 0x1c0) = 0;
   
   // 初始化变换矩阵
-  *(undefined8 *)(context + 0x1d0) = 0;
-  *(undefined8 *)(context + 0x1d8) = 0;
-  *(undefined4 *)(context + 0x1e0) = 0;
+  *(uint64_t *)(context + 0x1d0) = 0;
+  *(uint64_t *)(context + 0x1d8) = 0;
+  *(int32_t *)(context + 0x1e0) = 0;
   
   // 初始化材质参数
-  *(undefined8 *)(context + 0x1e4) = FLOAT_0_3E99999A;
-  *(undefined8 *)(context + 0x1ec) = 0xffffffffffffffff;
+  *(uint64_t *)(context + 0x1e4) = FLOAT_0_3E99999A;
+  *(uint64_t *)(context + 0x1ec) = 0xffffffffffffffff;
   
   // 初始化渲染标志
-  *(undefined2 *)(context + 500) = 0xffff;
-  *(undefined4 *)(context + 0x1f8) = 0xffffffff;
+  *(int16_t *)(context + 500) = 0xffff;
+  *(int32_t *)(context + 0x1f8) = 0xffffffff;
   
   // 设置父上下文关联
-  *(undefined8 *)(context + 0x200) = 0;
+  *(uint64_t *)(context + 0x200) = 0;
   *(longlong *)(context + 0x200) = parent_context;
   
   // 获取上下文名称
   default_name = &DAT_18098bc73;
-  if (*(undefined **)(parent_context + 0x70) != (undefined *)0x0) {
-    default_name = *(undefined **)(parent_context + 0x70);
+  if (*(void **)(parent_context + 0x70) != (void *)0x0) {
+    default_name = *(void **)(parent_context + 0x70);
   }
   
   // 调用初始化回调
@@ -838,7 +838,7 @@ void ProcessRenderData(RenderContext* render_context)
   
   // 检查调试标志
   if (*(char *)(_DAT_180c868a8 + 0x130) != '\0') {
-    FUN_18053cee0(*(undefined8 *)(render_context + 0xb0));
+    FUN_18053cee0(*(uint64_t *)(render_context + 0xb0));
   }
   
   data_buffer = *(longlong *)(render_context + 0x20);
@@ -866,7 +866,7 @@ void ProcessRenderData(RenderContext* render_context)
   
   // 如果字符串匹配或为空
   if (str_len2 == 0) {
-    FUN_1804aa470(&DAT_180c961e0, *(undefined8 *)(render_context + 0xb0), 
+    FUN_1804aa470(&DAT_180c961e0, *(uint64_t *)(render_context + 0xb0), 
                   render_context + 0x68, render_context + 0x68, 0xff);
     return;
   }
@@ -876,9 +876,9 @@ PROCESS_EXTENDED_DATA:
   if (0 < *(int *)(data_buffer + 0x180)) {
     FUN_180086e40(_DAT_180c868a8, &DAT_180a2d688, data_buffer + 0x170);
     FUN_180086e40(_DAT_180c868a8, &DAT_180a2d688, data_buffer + 400);
-    FUN_1804aa470(&DAT_180c961e0, *(undefined8 *)(render_context + 0xb0), 
+    FUN_1804aa470(&DAT_180c961e0, *(uint64_t *)(render_context + 0xb0), 
                   data_buffer + 0x170, data_buffer + 400,
-                  *(undefined1 *)(data_buffer + 0x1b0));
+                  *(int8_t *)(data_buffer + 0x1b0));
   }
   return;
 }
@@ -903,16 +903,16 @@ void ProcessRenderBatch(void)
 {
   longlong batch_data;
   longlong context_ptr;
-  undefined8 render_target;
+  uint64_t render_target;
   
   // 处理批次数据第一部分
   FUN_180086e40(render_target, &DAT_180a2d688, batch_data + 0x170);
   // 处理批次数据第二部分
   FUN_180086e40(_DAT_180c868a8, &DAT_180a2d688, batch_data + 400);
   // 执行渲染操作
-  FUN_1804aa470(&DAT_180c961e0, *(undefined8 *)(context_ptr + 0xb0), 
+  FUN_1804aa470(&DAT_180c961e0, *(uint64_t *)(context_ptr + 0xb0), 
                 batch_data + 0x170, batch_data + 400,
-                *(undefined1 *)(batch_data + 0x1b0));
+                *(int8_t *)(batch_data + 0x1b0));
   return;
 }
 
@@ -955,18 +955,18 @@ void TransferRenderContext(RenderContext* source_context, RenderContext* target_
   // 检查目标是否已有渲染上下文
   if (*(longlong *)(target_context + 0xb0) == 0) {
     // 直接转移上下文
-    *(undefined8 *)(target_context + 0xb0) = *(undefined8 *)(source_context + 0xb0);
+    *(uint64_t *)(target_context + 0xb0) = *(uint64_t *)(source_context + 0xb0);
     // 更新上下文的父对象引用
     *(longlong *)(*(longlong *)(source_context + 0xb0) + 0x200) = target_context;
     // 清空源的上下文引用
-    *(undefined8 *)(source_context + 0xb0) = 0;
+    *(uint64_t *)(source_context + 0xb0) = 0;
     return;
   }
   
   // 目标已有上下文，需要释放源的上下文
-  FUN_18053a220(&DAT_180c95f30, *(undefined8 *)(source_context + 0xb0));
-  FUN_18053e3f0(*(undefined8 *)(source_context + 0xb0));
-  *(undefined8 *)(source_context + 0xb0) = 0;
+  FUN_18053a220(&DAT_180c95f30, *(uint64_t *)(source_context + 0xb0));
+  FUN_18053e3f0(*(uint64_t *)(source_context + 0xb0));
+  *(uint64_t *)(source_context + 0xb0) = 0;
   return;
 }
 
@@ -990,13 +990,13 @@ int InitializeRenderContext(RenderObject* render_object)
   longlong context;
   int context_id;
   char init_result;
-  undefined8 context_ptr;
+  uint64_t context_ptr;
   ulonglong hash_value;
   longlong *context_interface;
   byte *name_ptr;
-  undefined *object_name;
+  void *object_name;
   uint name_length;
-  undefined4 stack_buffer [2];
+  int32_t stack_buffer [2];
   longlong context_ref;
   longlong call_stack [4];
   
@@ -1004,14 +1004,14 @@ int InitializeRenderContext(RenderObject* render_object)
   if (*(longlong *)(render_object + 0xb0) == 0) {
     call_stack[1] = 0x180560daa;
     // 调用初始化回调
-    init_result = func_0x00018008a5c0(render_object, *(undefined8 *)(*(longlong *)(render_object + 0x88) + 8));
+    init_result = func_0x00018008a5c0(render_object, *(uint64_t *)(*(longlong *)(render_object + 0x88) + 8));
     if (init_result == '\0') {
       return 0;
     }
     call_stack[1] = 0x180560db6;
     // 创建新的渲染上下文
     context_ptr = CreateRenderContext(render_object);
-    *(undefined8 *)(render_object + 0xb0) = context_ptr;
+    *(uint64_t *)(render_object + 0xb0) = context_ptr;
     call_stack[1] = 0x180560dc5;
     // 执行上下文初始化
     FUN_18053cee0(context_ptr);
@@ -1022,8 +1022,8 @@ int InitializeRenderContext(RenderObject* render_object)
     FUN_18053a220(&DAT_180c95f30);
     context_interface = (longlong *)(*(longlong *)(render_object + 0xb0) + 0x10);
     object_name = &DAT_18098bc73;
-    if (*(undefined **)(render_object + 0x70) != (undefined *)0x0) {
-      object_name = *(undefined **)(render_object + 0x70);
+    if (*(void **)(render_object + 0x70) != (void *)0x0) {
+      object_name = *(void **)(render_object + 0x70);
     }
     call_stack[1] = 0x180560d98;
     // 调用接口更新方法
@@ -1057,7 +1057,7 @@ int InitializeRenderContext(RenderObject* render_object)
     // 注册哈希条目
     FUN_18053df50(0x180c95f38, call_stack, name_length, context + 0x10, hash_value);
     *(int *)(call_stack[0] + 0x58) = context_id;
-    stack_buffer[0] = (undefined4)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
+    stack_buffer[0] = (int32_t)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
     FUN_1800571e0(&DAT_180c95f68, stack_buffer);
     *(int *)(context + 0x68) = _DAT_180c95fa8;
     _DAT_180c95fa8 = _DAT_180c95fa8 + 1;
@@ -1067,8 +1067,8 @@ int InitializeRenderContext(RenderObject* render_object)
     // 检查哈希冲突
     if (*(int *)(_DAT_180c95f68 + (longlong)*(int *)(call_stack[0] + 0x58) * 4) != -1) {
       object_name = &DAT_18098bc73;
-      if (*(undefined **)(context + 0x18) != (undefined *)0x0) {
-        object_name = *(undefined **)(context + 0x18);
+      if (*(void **)(context + 0x18) != (void *)0x0) {
+        object_name = *(void **)(context + 0x18);
       }
       FUN_180627020(&UNK_180a338e0, object_name);
       return 0;
@@ -1113,12 +1113,12 @@ int InitializeRenderContext(RenderObject* render_object)
   - 确保所有资源引用正确复制
   - 处理内存分配失败的情况
 ===============================================================================*/
-RenderObject* CloneRenderObject(undefined8 allocator, RenderObject* source_object)
+RenderObject* CloneRenderObject(uint64_t allocator, RenderObject* source_object)
 {
-  undefined4 blend_flags;
-  undefined4 depth_flags;
-  undefined4 render_flags;
-  undefined8 object_ptr;
+  int32_t blend_flags;
+  int32_t depth_flags;
+  int32_t render_flags;
+  uint64_t object_ptr;
   RenderObject* cloned_object;
   
   // 分配新的渲染对象内存
@@ -1136,29 +1136,29 @@ RenderObject* CloneRenderObject(undefined8 allocator, RenderObject* source_objec
   // 如果源对象存在，进行深拷贝
   if (source_object) {
     // 复制基础变换属性
-    *(undefined4 *)(cloned_object + 8) = *(undefined4 *)(source_object + 8);
-    *(undefined4 *)(cloned_object + 0xc) = *(undefined4 *)(source_object + 0xc);
-    *(undefined4 *)(cloned_object + 0x10) = *(undefined4 *)(source_object + 0x10);
-    *(undefined4 *)(cloned_object + 0x14) = *(undefined4 *)(source_object + 0x14);
-    *(undefined4 *)(cloned_object + 0x18) = *(undefined4 *)(source_object + 0x18);
-    *(undefined4 *)(cloned_object + 0x1c) = *(undefined4 *)(source_object + 0x1c);
-    *(undefined4 *)(cloned_object + 0x20) = *(undefined4 *)(source_object + 0x20);
+    *(int32_t *)(cloned_object + 8) = *(int32_t *)(source_object + 8);
+    *(int32_t *)(cloned_object + 0xc) = *(int32_t *)(source_object + 0xc);
+    *(int32_t *)(cloned_object + 0x10) = *(int32_t *)(source_object + 0x10);
+    *(int32_t *)(cloned_object + 0x14) = *(int32_t *)(source_object + 0x14);
+    *(int32_t *)(cloned_object + 0x18) = *(int32_t *)(source_object + 0x18);
+    *(int32_t *)(cloned_object + 0x1c) = *(int32_t *)(source_object + 0x1c);
+    *(int32_t *)(cloned_object + 0x20) = *(int32_t *)(source_object + 0x20);
     
     // 复制变换矩阵和投影参数
-    object_ptr = *(undefined8 *)(source_object + 0x2c);
-    *(undefined8 *)(cloned_object + 0x24) = *(undefined8 *)(source_object + 0x24);
-    *(undefined8 *)(cloned_object + 0x2c) = object_ptr;
-    *(undefined8 *)(cloned_object + 0x38) = *(undefined8 *)(source_object + 0x38);
+    object_ptr = *(uint64_t *)(source_object + 0x2c);
+    *(uint64_t *)(cloned_object + 0x24) = *(uint64_t *)(source_object + 0x24);
+    *(uint64_t *)(cloned_object + 0x2c) = object_ptr;
+    *(uint64_t *)(cloned_object + 0x38) = *(uint64_t *)(source_object + 0x38);
     
     // 复制渲染状态标志
-    *(undefined4 *)(cloned_object + 0x40) = *(undefined4 *)(source_object + 0x40);
-    blend_flags = *(undefined4 *)(source_object + 0x48);
-    depth_flags = *(undefined4 *)(source_object + 0x4c);
-    render_flags = *(undefined4 *)(source_object + 0x50);
-    *(undefined4 *)(cloned_object + 0x44) = *(undefined4 *)(source_object + 0x44);
-    *(undefined4 *)(cloned_object + 0x48) = blend_flags;
-    *(undefined4 *)(cloned_object + 0x4c) = depth_flags;
-    *(undefined4 *)(cloned_object + 0x50) = render_flags;
+    *(int32_t *)(cloned_object + 0x40) = *(int32_t *)(source_object + 0x40);
+    blend_flags = *(int32_t *)(source_object + 0x48);
+    depth_flags = *(int32_t *)(source_object + 0x4c);
+    render_flags = *(int32_t *)(source_object + 0x50);
+    *(int32_t *)(cloned_object + 0x44) = *(int32_t *)(source_object + 0x44);
+    *(int32_t *)(cloned_object + 0x48) = blend_flags;
+    *(int32_t *)(cloned_object + 0x4c) = depth_flags;
+    *(int32_t *)(cloned_object + 0x50) = render_flags;
     
     // 深拷贝渲染资源
     FUN_180627be0(cloned_object + 0x58, source_object + 0x58);   // 纹理资源数组
@@ -1170,11 +1170,11 @@ RenderObject* CloneRenderObject(undefined8 allocator, RenderObject* source_objec
     FUN_180627be0(cloned_object + 0x118, source_object + 0x118); // 采样器状态数组
     
     // 复制渲染状态对象
-    *(undefined4 *)(cloned_object + 0x138) = *(undefined4 *)(source_object + 0x138);
-    *(undefined4 *)(cloned_object + 0x13c) = *(undefined4 *)(source_object + 0x13c);
-    *(undefined4 *)(cloned_object + 0x140) = *(undefined4 *)(source_object + 0x140);
-    *(undefined4 *)(cloned_object + 0x144) = *(undefined4 *)(source_object + 0x144);
-    *(undefined1 *)(cloned_object + 0x148) = *(undefined1 *)(source_object + 0x148);
+    *(int32_t *)(cloned_object + 0x138) = *(int32_t *)(source_object + 0x138);
+    *(int32_t *)(cloned_object + 0x13c) = *(int32_t *)(source_object + 0x13c);
+    *(int32_t *)(cloned_object + 0x140) = *(int32_t *)(source_object + 0x140);
+    *(int32_t *)(cloned_object + 0x144) = *(int32_t *)(source_object + 0x144);
+    *(int8_t *)(cloned_object + 0x148) = *(int8_t *)(source_object + 0x148);
     
     // 复制渲染数据和扩展属性
     CopyRenderData(cloned_object + 0x150, source_object + 0x150);
@@ -1182,9 +1182,9 @@ RenderObject* CloneRenderObject(undefined8 allocator, RenderObject* source_objec
     FUN_180627be0(cloned_object + 400, source_object + 400);      // 扩展数据区域2
     
     // 复制渲染标志位
-    *(undefined1 *)(cloned_object + 0x1b0) = *(undefined1 *)(source_object + 0x1b0);
-    *(undefined1 *)(cloned_object + 0x1b1) = *(undefined1 *)(source_object + 0x1b1);
-    *(undefined1 *)(cloned_object + 0x1b2) = *(undefined1 *)(source_object + 0x1b2);
+    *(int8_t *)(cloned_object + 0x1b0) = *(int8_t *)(source_object + 0x1b0);
+    *(int8_t *)(cloned_object + 0x1b1) = *(int8_t *)(source_object + 0x1b1);
+    *(int8_t *)(cloned_object + 0x1b2) = *(int8_t *)(source_object + 0x1b2);
   }
   
   return cloned_object;
@@ -1232,13 +1232,13 @@ int EnsureRenderContext(RenderObject* render_object)
 {
   byte hash_byte;
   int context_id;
-  undefined8 existing_context;
+  uint64_t existing_context;
   RenderContext* context;
   ulonglong hash_value;
   byte* name_ptr;
   void* object_name;
   uint name_length;
-  undefined4 hash_index;
+  int32_t hash_index;
   longlong context_ref;
   longlong call_stack[4];
   
@@ -1287,7 +1287,7 @@ int EnsureRenderContext(RenderObject* render_object)
     *(int *)(call_stack[0] + 0x58) = context_id;
     
     // 更新哈希表索引
-    hash_index = (undefined4)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
+    hash_index = (int32_t)(_DAT_180c95f90 - _DAT_180c95f88 >> 3);
     FUN_1800571e0(&DAT_180c95f68, &hash_index);
     
     // 设置上下文ID并更新全局计数器
@@ -1300,8 +1300,8 @@ int EnsureRenderContext(RenderObject* render_object)
     if (*(int *)(_DAT_180c95f68 + (longlong)*(int *)(call_stack[0] + 0x58) * 4) != -1) {
       // 获取对象名称用于错误报告
       object_name = &DAT_18098bc73;
-      if (*(undefined **)(context + 0x18) != (undefined *)0x0) {
-        object_name = *(undefined **)(context + 0x18);
+      if (*(void **)(context + 0x18) != (void *)0x0) {
+        object_name = *(void **)(context + 0x18);
       }
       // 记录哈希冲突错误
       FUN_180627020(&UNK_180a338e0, object_name);
@@ -1377,8 +1377,8 @@ void ReleaseRenderContext(RenderObject* render_object)
   if (*(longlong *)(render_object + 0xb0) != 0) {
     // 释放上下文关联的资源
     FUN_18053a220(&DAT_180c95f30);  // 通知资源管理器
-    FUN_18053e3f0(*(undefined8 *)(render_object + 0xb0));  // 释放上下文
-    *(undefined8 *)(render_object + 0xb0) = 0;  // 清除引用
+    FUN_18053e3f0(*(uint64_t *)(render_object + 0xb0));  // 释放上下文
+    *(uint64_t *)(render_object + 0xb0) = 0;  // 清除引用
     
     // 遍历全局资源列表进行深度清理
     current_context = *_DAT_180c961e8;
@@ -1398,15 +1398,15 @@ void ReleaseRenderContext(RenderObject* render_object)
     while (current_context != _DAT_180c961e8[_DAT_180c961f0]) {
       // 收集资源数据到栈缓冲区（避免动态分配）
       resource_data[0] = *(longlong *)(current_context + 0x10);  // 纹理资源
-      resource_data[1] = *(undefined8 *)(current_context + 0x18);  // 材质资源
-      resource_data[2] = *(undefined8 *)(current_context + 0x20);  // 着色器资源
-      resource_data[3] = *(undefined8 *)(current_context + 0x28);  // 顶点缓冲区
-      resource_data[4] = *(undefined8 *)(current_context + 0x30);  // 索引缓冲区
-      resource_data[5] = *(undefined8 *)(current_context + 0x38);  // 常量缓冲区
-      resource_data[6] = *(undefined8 *)(current_context + 0x40);  // 采样器状态
-      resource_data[7] = *(undefined8 *)(current_context + 0x48);  // 混合状态
-      resource_data[8] = *(undefined8 *)(current_context + 0x50);  // 深度状态
-      resource_data[9] = *(undefined8 *)(current_context + 0x58);  // 渲染目标
+      resource_data[1] = *(uint64_t *)(current_context + 0x18);  // 材质资源
+      resource_data[2] = *(uint64_t *)(current_context + 0x20);  // 着色器资源
+      resource_data[3] = *(uint64_t *)(current_context + 0x28);  // 顶点缓冲区
+      resource_data[4] = *(uint64_t *)(current_context + 0x30);  // 索引缓冲区
+      resource_data[5] = *(uint64_t *)(current_context + 0x38);  // 常量缓冲区
+      resource_data[6] = *(uint64_t *)(current_context + 0x40);  // 采样器状态
+      resource_data[7] = *(uint64_t *)(current_context + 0x48);  // 混合状态
+      resource_data[8] = *(uint64_t *)(current_context + 0x50);  // 深度状态
+      resource_data[9] = *(uint64_t *)(current_context + 0x58);  // 渲染目标
       
       // 验证所有资源都已正确释放
       resource_count = 0;

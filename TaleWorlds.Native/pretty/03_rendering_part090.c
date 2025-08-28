@@ -200,64 +200,64 @@
 void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
 {
     int iVar1;
-    undefined8 uVar2;
+    uint64_t uVar2;
     longlong lVar3;
     code *pcVar4;
-    undefined8 uVar5;
+    uint64_t uVar5;
     longlong *plVar6;
     longlong lVar7;
     code **ppcVar8;
     longlong lVar9;
-    undefined4 uVar10;
-    undefined1 auStack_268 [32];
-    undefined8 uStack_248;
-    undefined4 uStack_240;
-    undefined4 uStack_238;
-    undefined4 uStack_230;
-    undefined4 uStack_228;
-    undefined8 uStack_220;
-    undefined1 uStack_218;
-    undefined4 uStack_210;
-    undefined1 auStack_208 [8];
+    int32_t uVar10;
+    int8_t auStack_268 [32];
+    uint64_t uStack_248;
+    int32_t uStack_240;
+    int32_t uStack_238;
+    int32_t uStack_230;
+    int32_t uStack_228;
+    uint64_t uStack_220;
+    int8_t uStack_218;
+    int32_t uStack_210;
+    int8_t auStack_208 [8];
     code **ppcStack_200;
     code **ppcStack_1f8;
     code *pcStack_1f0;
     code *pcStack_1e8;
-    undefined4 uStack_1e0;
-    undefined2 uStack_1dc;
-    undefined2 uStack_1da;
+    int32_t uStack_1e0;
+    int16_t uStack_1dc;
+    int16_t uStack_1da;
     code *pcStack_1d8;
-    undefined *puStack_1d0;
+    void *puStack_1d0;
     code *apcStack_1c8 [2];
-    undefined *puStack_1b8;
+    void *puStack_1b8;
     code *pcStack_1b0;
-    undefined8 uStack_1a8;
-    undefined4 uStack_1a0;
+    uint64_t uStack_1a8;
+    int32_t uStack_1a0;
     longlong *plStack_198;
-    undefined *puStack_190;
+    void *puStack_190;
     longlong lStack_188;
-    undefined4 uStack_180;
+    int32_t uStack_180;
     ulonglong uStack_178;
-    undefined8 uStack_170;
-    undefined8 uStack_168;
+    uint64_t uStack_170;
+    uint64_t uStack_168;
     longlong *plStack_160;
-    undefined8 uStack_150;
-    undefined *puStack_148;
+    uint64_t uStack_150;
+    void *puStack_148;
     code *pcStack_140;
-    undefined4 uStack_138;
-    undefined4 uStack_134;
+    int32_t uStack_138;
+    int32_t uStack_134;
     uint auStack_130 [2];
-    undefined8 uStack_128;
-    undefined1 auStack_120 [32];
-    undefined4 uStack_100;
-    undefined4 uStack_fc;
-    undefined4 uStack_f8;
-    undefined4 uStack_f4;
+    uint64_t uStack_128;
+    int8_t auStack_120 [32];
+    int32_t uStack_100;
+    int32_t uStack_fc;
+    int32_t uStack_f8;
+    int32_t uStack_f4;
     longlong *plStack_f0;
-    undefined *puStack_e8;
-    undefined1 *puStack_e0;
-    undefined4 uStack_d8;
-    undefined1 auStack_d0 [136];
+    void *puStack_e8;
+    int8_t *puStack_e0;
+    int32_t uStack_d8;
+    int8_t auStack_d0 [136];
     ulonglong uStack_48;
     
     // 初始化栈保护和变量
@@ -284,7 +284,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
     uStack_248 = CONCAT44(uStack_248._4_4_, 4);
     
     // 处理渲染对象创建
-    FUN_1800b0a10(uVar10, &pcStack_1f0, *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0xa0), &puStack_148);
+    FUN_1800b0a10(uVar10, &pcStack_1f0, *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0xa0), &puStack_148);
     puStack_148 = &UNK_18098bcb0;
     lVar9 = *(longlong *)(param_1 + 0x88);
     
@@ -310,7 +310,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             
             // 创建渲染资源
             plVar6 = (longlong *)FUN_1800b31f0(_DAT_180c86930, &ppcStack_1f8, &puStack_e8, 1);
-            puStack_1b8 = (undefined *)*plVar6;
+            puStack_1b8 = (void *)*plVar6;
             
             if (ppcStack_1f8 != (code **)0x0) {
                 (**(code **)(*ppcStack_1f8 + 0x38))();
@@ -329,9 +329,9 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             uStack_1a0 = 2;
             uStack_170 = 0;
             uStack_168 = 0;
-            uVar2 = *(undefined8 *)(puStack_1b8 + 0x15b8);
+            uVar2 = *(uint64_t *)(puStack_1b8 + 0x15b8);
             ppcStack_200 = (code **)&puStack_148;
-            uStack_1a8._4_4_ = (undefined4)((ulonglong)uVar5 >> 0x20);
+            uStack_1a8._4_4_ = (int32_t)((ulonglong)uVar5 >> 0x20);
             pcStack_140 = pcStack_1e8;
             uStack_138 = uStack_1e0;
             uStack_134 = uStack_1a8._4_4_;
@@ -342,9 +342,9 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             
             // 处理渲染数据
             FUN_180627ae0(auStack_120, &puStack_190);
-            uStack_100 = (undefined4)uStack_170;
+            uStack_100 = (int32_t)uStack_170;
             uStack_fc = uStack_170._4_4_;
-            uStack_f8 = (undefined4)uStack_168;
+            uStack_f8 = (int32_t)uStack_168;
             uStack_f4 = uStack_168._4_4_;
             plStack_f0 = plStack_160;
             
@@ -357,34 +357,34 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             lVar3 = _DAT_180c86938;
             
             // 设置渲染参数
-            *(undefined4 *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d88) = *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0x30b0);
-            uVar10 = powf(0x40000000, *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0x320c));
-            *(undefined4 *)(*(longlong *)(lVar3 + 0x1cd8) + 0x1d58) = uVar10;
+            *(int32_t *)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x1d88) = *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0x30b0);
+            uVar10 = powf(0x40000000, *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0x320c));
+            *(int32_t *)(*(longlong *)(lVar3 + 0x1cd8) + 0x1d58) = uVar10;
             
             // 执行渲染管线
-            FUN_18029fc10(*(longlong *)(lVar3 + 0x1cd8), *(undefined8 *)(lVar3 + 0x1c88), *(longlong *)(lVar3 + 0x1cd8) + 0x1be0, 0x230);
+            FUN_18029fc10(*(longlong *)(lVar3 + 0x1cd8), *(uint64_t *)(lVar3 + 0x1c88), *(longlong *)(lVar3 + 0x1cd8) + 0x1be0, 0x230);
             
             // 处理渲染对象
             lVar3 = *(longlong *)(_DAT_180c86938 + 0x1c88);
             plVar6 = *(longlong **)(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x8400);
             pcVar4 = *(code **)(*plVar6 + 0x238);
-            *(undefined4 *)(lVar3 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+            *(int32_t *)(lVar3 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
             (*pcVar4)(plVar6, 2, 1, lVar3 + 0x10);
             
             // 更新渲染状态
             lVar3 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
             if ((lVar7 != 0) && (*(longlong *)(lVar3 + 0x82a0) != (longlong)**(int **)(lVar7 + 0x10))) {
-                (**(code **)(**(longlong **)(lVar3 + 0x8400) + 0x228))(*(longlong **)(lVar3 + 0x8400), *(undefined8 *)(*(int **)(lVar7 + 0x10) + 6), 0, 0);
+                (**(code **)(**(longlong **)(lVar3 + 0x8400) + 0x228))(*(longlong **)(lVar3 + 0x8400), *(uint64_t *)(*(int **)(lVar7 + 0x10) + 6), 0, 0);
                 *(longlong *)(lVar3 + 0x82a0) = (longlong)**(int **)(lVar7 + 0x10);
             }
             
             // 执行渲染变换
             uStack_248 = CONCAT44(uStack_248._4_4_, 0xffffffff);
-            FUN_18029d150(*(undefined8 *)(_DAT_180c86938 + 0x1cd8), 0, lVar9, 0x20);
+            FUN_18029d150(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), 0, lVar9, 0x20);
             lVar9 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
             
             if (pcStack_1f0 != (code *)0x0) {
-                *(undefined4 *)(pcStack_1f0 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+                *(int32_t *)(pcStack_1f0 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
                 ppcVar8 = *(code ***)(pcStack_1f0 + 0x20);
             }
             
@@ -410,7 +410,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             uStack_238 = 0x21;
             uStack_240 = 2;
             uStack_248 = CONCAT44(uStack_248._4_4_, 0x10);
-            FUN_1800b0a10(uVar10, apcStack_1c8, *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0xa0), &puStack_148);
+            FUN_1800b0a10(uVar10, apcStack_1c8, *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0xa0), &puStack_148);
             
             // 创建着色器资源
             puStack_148 = &UNK_18098bcb0;
@@ -469,7 +469,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
             }
             
             // 设置材质参数
-            *(undefined4 *)(ppcVar8 + 4) = *(undefined4 *)(*(longlong *)(param_1 + 0x88) + 0x30cc);
+            *(int32_t *)(ppcVar8 + 4) = *(int32_t *)(*(longlong *)(param_1 + 0x88) + 0x30cc);
             ppcVar8[3] = param_2;
             ppcStack_200 = &pcStack_1e8;
             pcStack_1d8 = (code *)&UNK_1802e4bc0;
@@ -516,7 +516,7 @@ void RenderingSystemAdvancedProcessor(code *param_1, code *param_2)
     *(int *)(param_2 + 0x4c) = iVar1 + 1;
     
     if (iVar1 + 1 == 0x18) {
-        *(undefined4 *)(param_2 + 0x5c) = 0xffffffff;
+        *(int32_t *)(param_2 + 0x5c) = 0xffffffff;
     }
     
 LAB_18031d4d2:
@@ -555,26 +555,26 @@ void RenderingSystemParameterProcessor(longlong *param_1)
     longlong lVar3;
     longlong *plVar4;
     code *pcVar5;
-    undefined4 uVar6;
-    undefined4 uVar7;
-    undefined4 uVar8;
+    int32_t uVar6;
+    int32_t uVar7;
+    int32_t uVar8;
     float fVar18;
-    undefined8 uVar11;
+    uint64_t uVar11;
     int iVar12;
     ulonglong uVar13;
     ulonglong uVar14;
     longlong lVar15;
     uint uVar16;
     float fVar18_renamed;
-    undefined1 auStack_d8 [32];
-    undefined4 uStack_b8;
-    undefined8 *puStack_b0;
-    undefined8 uStack_a8;
-    undefined8 uStack_a0;
+    int8_t auStack_d8 [32];
+    int32_t uStack_b8;
+    uint64_t *puStack_b0;
+    uint64_t uStack_a8;
+    uint64_t uStack_a0;
     float fStack_98;
     float fStack_94;
     float fStack_90;
-    undefined4 uStack_8c;
+    int32_t uStack_8c;
     float afStack_88 [4];
     float fStack_78;
     float fStack_74;
@@ -594,13 +594,13 @@ void RenderingSystemParameterProcessor(longlong *param_1)
     lVar15 = *param_1;
     uVar13 = 0;
     lVar3 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    *(undefined4 *)(lVar15 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(lVar15 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     plVar4 = *(longlong **)(lVar3 + 0x8400);
     puStack_b0 = &uStack_a8;
     uStack_b8 = 0;
     
     // 处理渲染对象
-    iVar12 = (**(code **)(*plVar4 + 0x70))(plVar4, *(undefined8 *)(lVar15 + 0x10), 0, 1);
+    iVar12 = (**(code **)(*plVar4 + 0x70))(plVar4, *(uint64_t *)(lVar15 + 0x10), 0, 1);
     if (iVar12 < 0) {
         FUN_180220810(iVar12, &UNK_180a17358);
     }
@@ -608,43 +608,43 @@ void RenderingSystemParameterProcessor(longlong *param_1)
     // 处理渲染数据
     lVar15 = param_1[2];
     uVar11 = uStack_a8[1];
-    *(undefined8 *)(lVar15 + 0x2a8) = *uStack_a8;
-    *(undefined8 *)(lVar15 + 0x2b0) = uVar11;
+    *(uint64_t *)(lVar15 + 0x2a8) = *uStack_a8;
+    *(uint64_t *)(lVar15 + 0x2b0) = uVar11;
     uVar11 = uStack_a8[3];
-    *(undefined8 *)(lVar15 + 0x2b8) = uStack_a8[2];
-    *(undefined8 *)(lVar15 + 0x2c0) = uVar11;
-    uVar6 = *(undefined4 *)((longlong)uStack_a8 + 0x24);
-    uVar7 = *(undefined4 *)(uStack_a8 + 5);
-    uVar8 = *(undefined4 *)((longlong)uStack_a8 + 0x2c);
-    *(undefined4 *)(lVar15 + 0x2c8) = *(undefined4 *)(uStack_a8 + 4);
-    *(undefined4 *)(lVar15 + 0x2cc) = uVar6;
-    *(undefined4 *)(lVar15 + 0x2d0) = uVar7;
-    *(undefined4 *)(lVar15 + 0x2d4) = uVar8;
+    *(uint64_t *)(lVar15 + 0x2b8) = uStack_a8[2];
+    *(uint64_t *)(lVar15 + 0x2c0) = uVar11;
+    uVar6 = *(int32_t *)((longlong)uStack_a8 + 0x24);
+    uVar7 = *(int32_t *)(uStack_a8 + 5);
+    uVar8 = *(int32_t *)((longlong)uStack_a8 + 0x2c);
+    *(int32_t *)(lVar15 + 0x2c8) = *(int32_t *)(uStack_a8 + 4);
+    *(int32_t *)(lVar15 + 0x2cc) = uVar6;
+    *(int32_t *)(lVar15 + 0x2d0) = uVar7;
+    *(int32_t *)(lVar15 + 0x2d4) = uVar8;
     
     // 处理材质参数
     lVar3 = _DAT_180c86938;
-    uVar6 = *(undefined4 *)((longlong)uStack_a8 + 0x34);
-    uVar7 = *(undefined4 *)(uStack_a8 + 7);
-    uVar8 = *(undefined4 *)((longlong)uStack_a8 + 0x3c);
-    *(undefined4 *)(lVar15 + 0x2d8) = *(undefined4 *)(uStack_a8 + 6);
-    *(undefined4 *)(lVar15 + 0x2dc) = uVar6;
-    *(undefined4 *)(lVar15 + 0x2e0) = uVar7;
-    *(undefined4 *)(lVar15 + 0x2e4) = uVar8;
+    uVar6 = *(int32_t *)((longlong)uStack_a8 + 0x34);
+    uVar7 = *(int32_t *)(uStack_a8 + 7);
+    uVar8 = *(int32_t *)((longlong)uStack_a8 + 0x3c);
+    *(int32_t *)(lVar15 + 0x2d8) = *(int32_t *)(uStack_a8 + 6);
+    *(int32_t *)(lVar15 + 0x2dc) = uVar6;
+    *(int32_t *)(lVar15 + 0x2e0) = uVar7;
+    *(int32_t *)(lVar15 + 0x2e4) = uVar8;
     
     // 执行着色器程序
     lVar15 = *param_1;
     plVar4 = *(longlong **)(*(longlong *)(lVar3 + 0x1cd8) + 0x8400);
     pcVar5 = *(code **)(*plVar4 + 0x78);
-    *(undefined4 *)(lVar15 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    (*pcVar5)(plVar4, *(undefined8 *)(lVar15 + 0x10), 0);
+    *(int32_t *)(lVar15 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    (*pcVar5)(plVar4, *(uint64_t *)(lVar15 + 0x10), 0);
     
     // 计算球谐函数参数
     fVar2 = *(float *)((longlong)param_1 + 0x24);
     fVar9 = *(float *)(param_1 + 5);
     fVar10 = *(float *)((longlong)param_1 + 0x2c);
     lVar15 = param_1[2];
-    uVar11 = *(undefined8 *)((longlong)param_1 + 0x34);
-    uStack_a0 = *(undefined8 *)((longlong)param_1 + 0x3c);
+    uVar11 = *(uint64_t *)((longlong)param_1 + 0x34);
+    uStack_a0 = *(uint64_t *)((longlong)param_1 + 0x3c);
     
     // 初始化球谐函数系数
     afStack_88[0] = 0.2820948;
@@ -701,10 +701,10 @@ void RenderingSystemParameterProcessor(longlong *param_1)
     *(int *)(lVar15 + 0x4c) = *(int *)(lVar15 + 0x4c) + 1;
     
     if (*(int *)(lVar15 + 0x4c) == 0x18) {
-        *(undefined4 *)(lVar15 + 0x5c) = 0xffffffff;
+        *(int32_t *)(lVar15 + 0x5c) = 0xffffffff;
     }
     
-    uStack_a8 = (undefined8 *)uVar11;
+    uStack_a8 = (uint64_t *)uVar11;
     RenderingSystemResourceFinalizer(param_1, fVar18);
     RenderingSystemMemoryManager(uStack_38 ^ (ulonglong)auStack_d8);
 }
@@ -731,21 +731,21 @@ void RenderingSystemDataProcessor(void)
     float fVar4;
     longlong lVar5;
     longlong *plVar6;
-    undefined8 *puVar7;
+    uint64_t *puVar7;
     code *pcVar8;
-    undefined4 uVar9;
-    undefined4 uVar10;
-    undefined4 uVar11;
+    int32_t uVar9;
+    int32_t uVar10;
+    int32_t uVar11;
     float fVar12;
-    undefined8 uVar13;
-    undefined8 uVar14;
+    uint64_t uVar13;
+    uint64_t uVar14;
     int iVar15;
     longlong in_RAX;
     ulonglong uVar16;
     ulonglong uVar17;
     longlong lVar18;
     uint uVar19;
-    undefined8 unaff_RBX;
+    uint64_t unaff_RBX;
     longlong unaff_RBP;
     longlong *unaff_RDI;
     longlong in_R11;
@@ -753,18 +753,18 @@ void RenderingSystemDataProcessor(void)
     float fVar22;
     float fVar23;
     float fVar24;
-    undefined4 unaff_XMM6_Da;
-    undefined4 unaff_XMM6_Db;
-    undefined4 unaff_XMM6_Dc;
-    undefined4 unaff_XMM6_Dd;
+    int32_t unaff_XMM6_Da;
+    int32_t unaff_XMM6_Db;
+    int32_t unaff_XMM6_Dc;
+    int32_t unaff_XMM6_Dd;
     ulonglong uVar20;
     
     // 初始化渲染参数
-    *(undefined8 *)(in_R11 + 0x10) = unaff_RBX;
-    *(undefined4 *)(in_R11 + -0x18) = unaff_XMM6_Da;
-    *(undefined4 *)(in_R11 + -0x14) = unaff_XMM6_Db;
-    *(undefined4 *)(in_R11 + -0x10) = unaff_XMM6_Dc;
-    *(undefined4 *)(in_R11 + -0xc) = unaff_XMM6_Dd;
+    *(uint64_t *)(in_R11 + 0x10) = unaff_RBX;
+    *(int32_t *)(in_R11 + -0x18) = unaff_XMM6_Da;
+    *(int32_t *)(in_R11 + -0x14) = unaff_XMM6_Db;
+    *(int32_t *)(in_R11 + -0x10) = unaff_XMM6_Dc;
+    *(int32_t *)(in_R11 + -0xc) = unaff_XMM6_Dd;
     
     // 执行渲染管线初始化
     (**(code **)(**(longlong **)(in_RAX + 0x1cd8) + 0x198))(*(longlong **)(in_RAX + 0x1cd8), *unaff_RDI, unaff_RDI[1]);
@@ -772,61 +772,61 @@ void RenderingSystemDataProcessor(void)
     lVar18 = *unaff_RDI;
     uVar16 = 0;
     lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    *(undefined4 *)(lVar18 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
+    *(int32_t *)(lVar18 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
     plVar6 = *(longlong **)(lVar5 + 0x8400);
     
     // 处理渲染对象
-    iVar15 = (**(code **)(*plVar6 + 0x70))(plVar6, *(undefined8 *)(lVar18 + 0x10), 0, 1, 0);
+    iVar15 = (**(code **)(*plVar6 + 0x70))(plVar6, *(uint64_t *)(lVar18 + 0x10), 0, 1, 0);
     if (iVar15 < 0) {
         FUN_180220810(iVar15, &UNK_180a17358);
     }
     
     // 处理渲染数据
     lVar18 = unaff_RDI[2];
-    puVar7 = *(undefined8 **)(unaff_RBP + -0x49);
+    puVar7 = *(uint64_t **)(unaff_RBP + -0x49);
     uVar13 = puVar7[1];
-    *(undefined8 *)(lVar18 + 0x2a8) = *puVar7;
-    *(undefined8 *)(lVar18 + 0x2b0) = uVar13;
+    *(uint64_t *)(lVar18 + 0x2a8) = *puVar7;
+    *(uint64_t *)(lVar18 + 0x2b0) = uVar13;
     uVar13 = puVar7[3];
-    *(undefined8 *)(lVar18 + 0x2b8) = puVar7[2];
-    *(undefined8 *)(lVar18 + 0x2c0) = uVar13;
-    uVar9 = *(undefined4 *)((longlong)puVar7 + 0x24);
-    uVar10 = *(undefined4 *)(puVar7 + 5);
-    uVar11 = *(undefined4 *)((longlong)puVar7 + 0x2c);
-    *(undefined4 *)(lVar18 + 0x2c8) = *(undefined4 *)(puVar7 + 4);
-    *(undefined4 *)(lVar18 + 0x2cc) = uVar9;
-    *(undefined4 *)(lVar18 + 0x2d0) = uVar10;
-    *(undefined4 *)(lVar18 + 0x2d4) = uVar11;
+    *(uint64_t *)(lVar18 + 0x2b8) = puVar7[2];
+    *(uint64_t *)(lVar18 + 0x2c0) = uVar13;
+    uVar9 = *(int32_t *)((longlong)puVar7 + 0x24);
+    uVar10 = *(int32_t *)(puVar7 + 5);
+    uVar11 = *(int32_t *)((longlong)puVar7 + 0x2c);
+    *(int32_t *)(lVar18 + 0x2c8) = *(int32_t *)(puVar7 + 4);
+    *(int32_t *)(lVar18 + 0x2cc) = uVar9;
+    *(int32_t *)(lVar18 + 0x2d0) = uVar10;
+    *(int32_t *)(lVar18 + 0x2d4) = uVar11;
     
     // 处理材质参数
     lVar5 = _DAT_180c86938;
-    uVar9 = *(undefined4 *)((longlong)puVar7 + 0x34);
-    uVar10 = *(undefined4 *)(puVar7 + 7);
-    uVar11 = *(undefined4 *)((longlong)puVar7 + 0x3c);
-    *(undefined4 *)(lVar18 + 0x2d8) = *(undefined4 *)(puVar7 + 6);
-    *(undefined4 *)(lVar18 + 0x2dc) = uVar9;
-    *(undefined4 *)(lVar18 + 0x2e0) = uVar10;
-    *(undefined4 *)(lVar18 + 0x2e4) = uVar11;
+    uVar9 = *(int32_t *)((longlong)puVar7 + 0x34);
+    uVar10 = *(int32_t *)(puVar7 + 7);
+    uVar11 = *(int32_t *)((longlong)puVar7 + 0x3c);
+    *(int32_t *)(lVar18 + 0x2d8) = *(int32_t *)(puVar7 + 6);
+    *(int32_t *)(lVar18 + 0x2dc) = uVar9;
+    *(int32_t *)(lVar18 + 0x2e0) = uVar10;
+    *(int32_t *)(lVar18 + 0x2e4) = uVar11;
     
     // 执行着色器程序
     lVar18 = *unaff_RDI;
     plVar6 = *(longlong **)(*(longlong *)(lVar5 + 0x1cd8) + 0x8400);
     pcVar8 = *(code **)(*plVar6 + 0x78);
-    *(undefined4 *)(lVar18 + 0x16c) = *(undefined4 *)(_DAT_180c86870 + 0x224);
-    (*pcVar8)(plVar6, *(undefined8 *)(lVar18 + 0x10), 0);
+    *(int32_t *)(lVar18 + 0x16c) = *(int32_t *)(_DAT_180c86870 + 0x224);
+    (*pcVar8)(plVar6, *(uint64_t *)(lVar18 + 0x10), 0);
     
     // 计算球谐函数参数
     fVar2 = *(float *)((longlong)unaff_RDI + 0x24);
     fVar3 = *(float *)(unaff_RDI + 5);
     fVar21 = *(float *)((longlong)unaff_RDI + 0x2c);
     lVar18 = unaff_RDI[2];
-    uVar13 = *(undefined8 *)((longlong)unaff_RDI + 0x34);
-    uVar14 = *(undefined8 *)((longlong)unaff_RDI + 0x3c);
+    uVar13 = *(uint64_t *)((longlong)unaff_RDI + 0x34);
+    uVar14 = *(uint64_t *)((longlong)unaff_RDI + 0x3c);
     
     // 初始化球谐函数系数
-    *(undefined4 *)(unaff_RBP + -0x29) = 0x3e906ebb;
-    *(undefined8 *)(unaff_RBP + -0x49) = uVar13;
-    *(undefined8 *)(unaff_RBP + -0x41) = uVar14;
+    *(int32_t *)(unaff_RBP + -0x29) = 0x3e906ebb;
+    *(uint64_t *)(unaff_RBP + -0x49) = uVar13;
+    *(uint64_t *)(unaff_RBP + -0x41) = uVar14;
     *(float *)(unaff_RBP + -0x25) = fVar3 * -0.48860252;
     *(float *)(unaff_RBP + -0x21) = fVar21 * 0.48860252;
     *(float *)(unaff_RBP + -0x19) = fVar3 * 1.0925485 * fVar2;
@@ -837,16 +837,16 @@ void RenderingSystemDataProcessor(void)
     *(float *)(unaff_RBP + -0x11) = (fVar21 * 3.0 * fVar21 - 1.0) * 0.31539157;
     
     // 初始化球谐函数权重
-    *(undefined4 *)(unaff_RBP + -1) = 0x3f71a444;
-    *(undefined4 *)(unaff_RBP + 3) = 0x3f71a444;
-    *(undefined4 *)(unaff_RBP + 7) = 0x3f71a444;
-    *(undefined4 *)(unaff_RBP + 0xb) = 0x3f71a444;
-    *(undefined4 *)(unaff_RBP + 0xf) = 0x3f71a444;
-    *(undefined4 *)(unaff_RBP + 0x13) = 0x3f71a444;
-    *(undefined4 *)(unaff_RBP + 0x17) = 0x3f71a444;
-    *(undefined4 *)(unaff_RBP + 0x1b) = 0x3f71a444;
+    *(int32_t *)(unaff_RBP + -1) = 0x3f71a444;
+    *(int32_t *)(unaff_RBP + 3) = 0x3f71a444;
+    *(int32_t *)(unaff_RBP + 7) = 0x3f71a444;
+    *(int32_t *)(unaff_RBP + 0xb) = 0x3f71a444;
+    *(int32_t *)(unaff_RBP + 0xf) = 0x3f71a444;
+    *(int32_t *)(unaff_RBP + 0x13) = 0x3f71a444;
+    *(int32_t *)(unaff_RBP + 0x17) = 0x3f71a444;
+    *(int32_t *)(unaff_RBP + 0x1b) = 0x3f71a444;
     fVar21 = 0.94391274;
-    *(undefined4 *)(unaff_RBP + 0x1f) = 0x3f71a444;
+    *(int32_t *)(unaff_RBP + 0x1f) = 0x3f71a444;
     *(float *)(unaff_RBP + -9) = (fVar2 * fVar2 - fVar3 * fVar3) * 0.31539157;
     
     // 处理球谐函数计算
@@ -854,7 +854,7 @@ void RenderingSystemDataProcessor(void)
         fVar2 = *(float *)(unaff_RBP + -0x41);
         fVar3 = *(float *)(unaff_RBP + -0x45);
         fVar4 = *(float *)(unaff_RBP + -0x49);
-        *(undefined4 *)(unaff_RBP + -0x2d) = 0x7f7fffff;
+        *(int32_t *)(unaff_RBP + -0x2d) = 0x7f7fffff;
         uVar17 = uVar16;
         uVar20 = uVar16;
         
@@ -887,7 +887,7 @@ void RenderingSystemDataProcessor(void)
     *(int *)(lVar18 + 0x4c) = *(int *)(lVar18 + 0x4c) + 1;
     
     if (*(int *)(lVar18 + 0x4c) == 0x18) {
-        *(undefined4 *)(lVar18 + 0x5c) = 0xffffffff;
+        *(int32_t *)(lVar18 + 0x5c) = 0xffffffff;
     }
     
     RenderingSystemResourceFinalizer(fVar21, fVar22);
@@ -922,7 +922,7 @@ void RenderingSystemTransformProcessor(longlong param_1, longlong param_2)
     int unaff_EBX;
     longlong unaff_RBP;
     longlong unaff_RDI;
-    undefined4 in_XMM0_Da;
+    int32_t in_XMM0_Da;
     float fVar6;
     float fVar7;
     float fVar8;
@@ -931,7 +931,7 @@ void RenderingSystemTransformProcessor(longlong param_1, longlong param_2)
     
     // 处理变换计算
     fVar2 = *(float *)(unaff_RBP + -0x49);
-    *(undefined4 *)(unaff_RBP + -0x2d) = in_XMM0_Da;
+    *(int32_t *)(unaff_RBP + -0x2d) = in_XMM0_Da;
     
     do {
         fVar3 = *(float *)(unaff_RBP + -0x29 + in_RAX);
@@ -960,7 +960,7 @@ void RenderingSystemTransformProcessor(longlong param_1, longlong param_2)
     *(int *)(lVar4 + 0x4c) = *(int *)(lVar4 + 0x4c) + 1;
     
     if (*(int *)(lVar4 + 0x4c) == 0x18) {
-        *(undefined4 *)(lVar4 + 0x5c) = 0xffffffff;
+        *(int32_t *)(lVar4 + 0x5c) = 0xffffffff;
     }
     
     RenderingSystemResourceFinalizer();
@@ -991,7 +991,7 @@ void RenderingSystemStateUpdater(void)
     *(int *)(lVar1 + 0x4c) = *(int *)(lVar1 + 0x4c) + 1;
     
     if (*(int *)(lVar1 + 0x4c) == 0x18) {
-        *(undefined4 *)(lVar1 + 0x5c) = 0xffffffff;
+        *(int32_t *)(lVar1 + 0x5c) = 0xffffffff;
     }
     
     RenderingSystemResourceFinalizer();
@@ -1019,7 +1019,7 @@ void RenderingSystemCleanupHandler(void)
     longlong unaff_RBP;
     
     // 清理渲染对象
-    *(undefined4 *)(in_RAX + 0x5c) = 0xffffffff;
+    *(int32_t *)(in_RAX + 0x5c) = 0xffffffff;
     RenderingSystemResourceFinalizer();
     RenderingSystemMemoryManager(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
 }
@@ -1035,20 +1035,20 @@ static longlong _DAT_180c86968 = 0;
 static longlong _DAT_180bf00a8 = 0;
 
 // 渲染系统常量数据
-static undefined8 UNK_180a1adf0 = 0;
-static undefined8 UNK_180a1add8 = 0;
-static undefined8 UNK_180a1adb8 = 0;
-static undefined8 UNK_1809fcc58 = 0;
-static undefined8 UNK_18098bcb0 = 0;
-static undefined8 UNK_1809fcc28 = 0;
-static undefined8 UNK_180a0db08 = 0;
-static undefined8 UNK_180a3c3e0 = 0;
-static undefined8 UNK_180a17358 = 0;
-static undefined8 UNK_180c86930 = 0;
-static undefined8 UNK_180c86870 = 0;
-static undefined8 UNK_180c8ed18 = 0;
-static undefined8 UNK_1802e4bc0 = 0;
-static undefined8 UNK_1800ee4c0 = 0;
+static uint64_t UNK_180a1adf0 = 0;
+static uint64_t UNK_180a1add8 = 0;
+static uint64_t UNK_180a1adb8 = 0;
+static uint64_t UNK_1809fcc58 = 0;
+static uint64_t UNK_18098bcb0 = 0;
+static uint64_t UNK_1809fcc28 = 0;
+static uint64_t UNK_180a0db08 = 0;
+static uint64_t UNK_180a3c3e0 = 0;
+static uint64_t UNK_180a17358 = 0;
+static uint64_t UNK_180c86930 = 0;
+static uint64_t UNK_180c86870 = 0;
+static uint64_t UNK_180c8ed18 = 0;
+static uint64_t UNK_1802e4bc0 = 0;
+static uint64_t UNK_1800ee4c0 = 0;
 
 // =============================================================================
 // 技术说明

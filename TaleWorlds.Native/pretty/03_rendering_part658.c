@@ -2,20 +2,20 @@
 
 // 03_rendering_part658.c - 2 个函数
 
-// 函数: void FUN_180640660(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3,undefined8 param_4)
-void FUN_180640660(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3,undefined8 param_4)
+// 函数: void FUN_180640660(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t param_4)
+void FUN_180640660(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3,uint64_t param_4)
 
 {
   char cVar1;
   longlong lVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong lVar4;
   longlong lVar5;
   longlong lVar6;
   longlong lVar7;
   bool bVar8;
-  undefined8 *apuStackX_10 [2];
-  undefined8 uStackX_20;
+  uint64_t *apuStackX_10 [2];
+  uint64_t uStackX_20;
   
   lVar7 = (longlong)param_2 - (longlong)param_1 >> 3;
   apuStackX_10[0] = param_2;
@@ -90,7 +90,7 @@ void FUN_180640660(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3,u
   if (1 < lVar7) {
     puVar3 = apuStackX_10[0] + -1;
     do {
-      apuStackX_10[0] = (undefined8 *)*puVar3;
+      apuStackX_10[0] = (uint64_t *)*puVar3;
       lVar7 = lVar7 + -1;
       lVar6 = 0;
       lVar2 = 2;
@@ -133,21 +133,21 @@ void FUN_180640660(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3,u
 
 
 
-// 函数: void FUN_18064067b(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3)
-void FUN_18064067b(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3)
+// 函数: void FUN_18064067b(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
+void FUN_18064067b(uint64_t *param_1,uint64_t *param_2,uint64_t *param_3)
 
 {
   char cVar1;
   longlong lVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   longlong lVar4;
   longlong lVar5;
   longlong lVar6;
   longlong unaff_R15;
   longlong lVar7;
   bool bVar8;
-  undefined8 *in_stack_00000068;
-  undefined8 in_stack_00000078;
+  uint64_t *in_stack_00000068;
+  uint64_t in_stack_00000078;
   
   lVar7 = unaff_R15 - (longlong)param_1 >> 3;
   puVar3 = param_2;
@@ -223,7 +223,7 @@ void FUN_18064067b(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3)
   if (1 < lVar7) {
     puVar3 = puVar3 + -1;
     do {
-      in_stack_00000068 = (undefined8 *)*puVar3;
+      in_stack_00000068 = (uint64_t *)*puVar3;
       lVar7 = lVar7 + -1;
       lVar6 = 0;
       lVar2 = 2;

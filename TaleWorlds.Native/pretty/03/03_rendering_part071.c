@@ -585,7 +585,7 @@ void render_system_data_cleaner(longlong *param_1) {
  * 该函数释放渲染系统的资源
  * 根据标志决定是否释放内存资源
  */
-undefined8* render_system_resource_releaser(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4) {
+uint64_t* render_system_resource_releaser(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4) {
     if (!param_1) {
         return NULL;
     }
@@ -613,7 +613,7 @@ undefined8* render_system_resource_releaser(undefined8 *param_1, ulonglong param
  * 该函数管理渲染系统的内存
  * 处理内存分配、释放、状态更新等操作
  */
-void render_system_memory_manager(undefined8 *param_1) {
+void render_system_memory_manager(uint64_t *param_1) {
     if (!param_1) {
         return;
     }

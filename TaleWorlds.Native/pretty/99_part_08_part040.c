@@ -9,7 +9,7 @@ void FUN_1805a18b2(void)
   longlong unaff_RBP;
   longlong unaff_R13;
   
-  *(undefined4 *)(unaff_R13 + 0x44) = *(undefined4 *)(unaff_RBP + -0x7c);
+  *(int32_t *)(unaff_R13 + 0x44) = *(int32_t *)(unaff_RBP + -0x7c);
   FUN_1805a0af0();
                     // WARNING: Subroutine does not return
   FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x700) ^ (ulonglong)&stack0x00000000);

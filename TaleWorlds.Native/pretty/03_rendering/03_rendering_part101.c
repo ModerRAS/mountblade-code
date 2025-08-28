@@ -26,7 +26,7 @@
  * - 简化版本专注于核心参数比较功能
  * - 保留了主要的参数验证流程
  */
-void RenderingSystem_ParameterComparator(undefined8 render_context, longlong *param_array1, longlong *param_array2)
+void RenderingSystem_ParameterComparator(uint64_t render_context, longlong *param_array1, longlong *param_array2)
 
 {
   // 参数比较状态
@@ -100,7 +100,7 @@ void RenderingSystem_ParameterComparator(undefined8 render_context, longlong *pa
  * - 简化版本专注于核心数据处理功能
  * - 保留了主要的数据处理流程
  */
-ulonglong RenderingSystem_DataProcessor(longlong data_context, undefined8 input_data, longlong *output_data)
+ulonglong RenderingSystem_DataProcessor(longlong data_context, uint64_t input_data, longlong *output_data)
 
 {
   // 数据处理状态
@@ -112,7 +112,7 @@ ulonglong RenderingSystem_DataProcessor(longlong data_context, undefined8 input_
   
   // 数据初始化
   FUN_18032bfc0(data_context, input_data, output_data, *(int *)(data_context + 0x150) + -1, 4);
-  FUN_18032bfc0(data_context, output_data, input_data, *(undefined4 *)(data_context + 0x150), 2);
+  FUN_18032bfc0(data_context, output_data, input_data, *(int32_t *)(data_context + 0x150), 2);
   
   // 数据处理循环
   data_ptr = (byte *)(output_data[1] - *output_data >> 2);
@@ -122,9 +122,9 @@ ulonglong RenderingSystem_DataProcessor(longlong data_context, undefined8 input_
     
     do {
       // 获取数据项
-      longlong data_item1 = FUN_18032b880(data_context, *(undefined4 *)(current_index + *output_data),
-                                         *(undefined4 *)(data_context + 0x150));
-      longlong data_item2 = FUN_18032b880(data_context, *(undefined4 *)(current_index + *output_data),
+      longlong data_item1 = FUN_18032b880(data_context, *(int32_t *)(current_index + *output_data),
+                                         *(int32_t *)(data_context + 0x150));
+      longlong data_item2 = FUN_18032b880(data_context, *(int32_t *)(current_index + *output_data),
                                          *(int *)(data_context + 0x150) + -1);
       
       // 数据验证
@@ -189,8 +189,8 @@ ulonglong RenderingSystem_FloatProcessor(float float_value)
   
   do {
     // 获取浮点数项
-    longlong float_item1 = FUN_18032b880(float_value, *(undefined4 *)(current_index + 0), *(undefined4 *)(0));
-    longlong float_item2 = FUN_18032b880(0, *(undefined4 *)(current_index + 0), *(int *)(0) + -1);
+    longlong float_item1 = FUN_18032b880(float_value, *(int32_t *)(current_index + 0), *(int32_t *)(0));
+    longlong float_item2 = FUN_18032b880(0, *(int32_t *)(current_index + 0), *(int *)(0) + -1);
     
     // 浮点数验证
     validation_result = func_0x000180285f10(float_item2 + 0xc, float_item1 + 0xc, 0x38d1b717);
@@ -224,7 +224,7 @@ ulonglong RenderingSystem_FloatProcessor(float float_value)
 /**
  * 渲染状态获取器 - 负责获取渲染系统的状态信息
  * 
- * @return undefined1 状态标志
+ * @return int8_t 状态标志
  * 
  * 技术说明：
  * - 获取渲染系统的当前状态
@@ -238,7 +238,7 @@ ulonglong RenderingSystem_FloatProcessor(float float_value)
  * - 简化版本专注于核心状态获取功能
  * - 保留了主要的状态获取流程
  */
-undefined1 RenderingSystem_StateGetter(void)
+int8_t RenderingSystem_StateGetter(void)
 
 {
   return 0;
@@ -270,12 +270,12 @@ undefined1 RenderingSystem_StateGetter(void)
  * - 简化版本专注于核心参数设置功能
  * - 保留了主要的参数设置流程
  */
-void RenderingSystem_ParameterSetter(undefined8 render_context, uint *param_flags, uint flag_mask, undefined4 flag_value, char recursive_flag)
+void RenderingSystem_ParameterSetter(uint64_t render_context, uint *param_flags, uint flag_mask, int32_t flag_value, char recursive_flag)
 
 {
   // 参数设置状态
   ulonglong param_count;
-  undefined8 param_value;
+  uint64_t param_value;
   longlong set_context;
   longlong current_index;
   
@@ -294,7 +294,7 @@ void RenderingSystem_ParameterSetter(undefined8 render_context, uint *param_flag
       
       do {
         // 递归设置参数
-        FUN_180329910(render_context, *(undefined8 *)(set_context + *(longlong *)(param_flags + 100)), flag_mask, recursive_flag);
+        FUN_180329910(render_context, *(uint64_t *)(set_context + *(longlong *)(param_flags + 100)), flag_mask, recursive_flag);
         set_context += 8;
         param_count--;
         
@@ -311,7 +311,7 @@ void RenderingSystem_ParameterSetter(undefined8 render_context, uint *param_flag
       
       do {
         // 获取子参数
-        param_value = FUN_18032ba60(render_context, *(undefined4 *)(current_index + *(longlong *)(param_flags + 0x5c)), flag_value);
+        param_value = FUN_18032ba60(render_context, *(int32_t *)(current_index + *(longlong *)(param_flags + 0x5c)), flag_value);
         
         // 递归设置子参数
         FUN_1803296c0(render_context, param_value, flag_mask, flag_value, recursive_flag);
@@ -509,7 +509,7 @@ void RenderingSystem_StateManager(void)
  * - 简化版本专注于核心参数验证功能
  * - 保留了主要的参数验证流程
  */
-void RenderingSystem_ParameterValidator(undefined8 verify_context, longlong verify_data, uint verify_mask, char recursive_flag)
+void RenderingSystem_ParameterValidator(uint64_t verify_context, longlong verify_data, uint verify_mask, char recursive_flag)
 
 {
   // 验证状态
@@ -531,7 +531,7 @@ void RenderingSystem_ParameterValidator(undefined8 verify_context, longlong veri
       
       do {
         // 验证参数
-        FUN_180329910(verify_context, *(undefined8 *)(current_index + *(longlong *)(verify_data + 0x88)), verify_mask, recursive_flag);
+        FUN_180329910(verify_context, *(uint64_t *)(current_index + *(longlong *)(verify_data + 0x88)), verify_mask, recursive_flag);
         current_index += 8;
         verify_count--;
         
@@ -557,7 +557,7 @@ void RenderingSystem_ParameterValidator(undefined8 verify_context, longlong veri
           sub_count = sub_count & 0xffffffff;
           
           do {
-            FUN_180329910(verify_context, *(undefined8 *)
+            FUN_180329910(verify_context, *(uint64_t *)
                          (*(longlong *)(current_index + 0x88 + *(longlong *)(verify_data + 0x68)) + sub_index),
                          verify_mask, recursive_flag);
             sub_index += 8;
@@ -599,7 +599,7 @@ void RenderingSystem_ParameterValidator(undefined8 verify_context, longlong veri
  * - 简化版本专注于核心参数优化功能
  * - 保留了主要的参数优化流程
  */
-void RenderingSystem_ParameterOptimizer(undefined8 optimize_context, uint optimize_mask)
+void RenderingSystem_ParameterOptimizer(uint64_t optimize_context, uint optimize_mask)
 
 {
   // 优化状态
@@ -690,7 +690,7 @@ void RenderingSystem_SystemCleaner(void)
  * - 简化版本专注于核心参数标记功能
  * - 保留了主要的参数标记流程
  */
-void RenderingSystem_ParameterMarker(undefined8 mark_context, longlong mark_data, uint mark_mask, char recursive_flag)
+void RenderingSystem_ParameterMarker(uint64_t mark_context, longlong mark_data, uint mark_mask, char recursive_flag)
 
 {
   // 标记状态
@@ -710,7 +710,7 @@ void RenderingSystem_ParameterMarker(undefined8 mark_context, longlong mark_data
       
       do {
         // 递归标记参数
-        FUN_180329910(mark_context, *(undefined8 *)(*(longlong *)(mark_data + 0xb8) + current_index), mark_mask, recursive_flag);
+        FUN_180329910(mark_context, *(uint64_t *)(*(longlong *)(mark_data + 0xb8) + current_index), mark_mask, recursive_flag);
         current_index += 8;
         mark_count--;
         

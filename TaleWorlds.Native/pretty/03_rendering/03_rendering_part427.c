@@ -35,18 +35,18 @@
  * @param param_11 渲染模式标志
  * @param param_12 索引偏移
  */
-void rendering_system_geometry_processor(longlong param_1, undefined8 param_2, undefined4 param_3, undefined4 param_4,
-                                       undefined8 param_5, uint param_6, longlong param_7, longlong param_8, longlong param_9,
+void rendering_system_geometry_processor(longlong param_1, uint64_t param_2, int32_t param_3, int32_t param_4,
+                                       uint64_t param_5, uint param_6, longlong param_7, longlong param_8, longlong param_9,
                                        longlong param_10, char param_11, uint param_12)
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   float *pfVar2;
   uint uVar3;
   int iVar4;
-  undefined8 uVar5;
-  undefined8 uVar6;
-  undefined8 uVar7;
-  undefined8 uVar8;
+  uint64_t uVar5;
+  uint64_t uVar6;
+  uint64_t uVar7;
+  uint64_t uVar8;
   int iVar9;
   longlong lVar10;
   int iVar11;
@@ -67,14 +67,14 @@ void rendering_system_geometry_processor(longlong param_1, undefined8 param_2, u
   longlong lStack_78;
   longlong lStack_70;
   longlong lStack_68;
-  undefined8 uStack_60;
-  undefined8 uStack_58;
+  uint64_t uStack_60;
+  uint64_t uStack_58;
   float fStack_50;
   float fStack_4c;
   float fStack_48;
   float fStack_44;
-  undefined8 uStack_40;
-  undefined8 uStack_38;
+  uint64_t uStack_40;
+  uint64_t uStack_38;
   ulonglong uStack_30;
   
   uStack_30 = _DAT_180bf00a8 ^ (ulonglong)aiStack_88;
@@ -84,7 +84,7 @@ void rendering_system_geometry_processor(longlong param_1, undefined8 param_2, u
   do {
     lVar17 = *(longlong *)(param_1 + 0x28 + (ulonglong)param_12 * 8);
     lVar14 = *(longlong *)(*(longlong *)(param_1 + 8) + 0x68);
-    puVar1 = (undefined8 *)(lVar17 + (ulonglong)*(uint *)(lStack_70 + -4 + lVar14) * 0x10);
+    puVar1 = (uint64_t *)(lVar17 + (ulonglong)*(uint *)(lStack_70 + -4 + lVar14) * 0x10);
     uVar5 = *puVar1;
     uVar6 = puVar1[1];
     if (param_11 == '\0') {
@@ -104,7 +104,7 @@ void rendering_system_geometry_processor(longlong param_1, undefined8 param_2, u
       uVar3 = *(uint *)(lStack_70 + lVar14);
     }
     uStack_60._4_4_ = (float)((ulonglong)uVar5 >> 0x20);
-    puVar1 = (undefined8 *)(lVar17 + (ulonglong)uVar3 * 0x10);
+    puVar1 = (uint64_t *)(lVar17 + (ulonglong)uVar3 * 0x10);
     uVar7 = *puVar1;
     uVar8 = puVar1[1];
     uStack_60._0_4_ = (float)uVar5;
@@ -205,8 +205,8 @@ LAB_18049ce60:
                 iVar16 = iVar16 + 0x4000;
                 lVar10 = (longlong)(iVar9 + *piVar12);
                 *(uint *)(param_7 + lVar10 * 4) = uVar15;
-                *(undefined4 *)(param_8 + lVar10 * 4) = param_3;
-                *(undefined4 *)(param_9 + lVar10 * 4) = param_4;
+                *(int32_t *)(param_8 + lVar10 * 4) = param_3;
+                *(int32_t *)(param_9 + lVar10 * 4) = param_4;
                 *piVar12 = *piVar12 + 1;
                 lVar17 = lVar17 + -1;
                 piVar12 = piVar12 + 1;
@@ -240,33 +240,33 @@ LAB_18049ce60:
  * @param param_1 接口配置指针
  * @param param_2 通信参数
  */
-void rendering_system_host_interface_initializer(undefined8 param_1, undefined8 param_2)
+void rendering_system_host_interface_initializer(uint64_t param_1, uint64_t param_2)
 {
-  undefined4 uVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
-  undefined *puStack_40;
-  undefined8 *puStack_38;
-  undefined4 uStack_30;
-  undefined8 uStack_28;
+  int32_t uVar1;
+  uint64_t *puVar2;
+  uint64_t *puVar3;
+  void *puStack_40;
+  uint64_t *puStack_38;
+  int32_t uStack_30;
+  uint64_t uStack_28;
   
-  puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_HOST_SIZE, 8, 3, 0xfffffffffffffffe);
+  puVar2 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_HOST_SIZE, 8, 3, 0xfffffffffffffffe);
   puVar3 = puVar2;
   FUN_1803456e0(puVar2, param_2, param_1);
   *puVar3 = &UNK_180a2d6a0;
-  *(undefined4 *)(puVar3 + 0xe) = 0x1f;
+  *(int32_t *)(puVar3 + 0xe) = 0x1f;
   puStack_40 = &UNK_180a3c3e0;
   uStack_28 = 0;
-  puStack_38 = (undefined8 *)0x0;
+  puStack_38 = (uint64_t *)0x0;
   uStack_30 = 0;
-  puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
-  *(undefined1 *)puVar3 = 0;
+  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
+  *(int8_t *)puVar3 = 0;
   puStack_38 = puVar3;
   uVar1 = FUN_18064e990(puVar3);
   uStack_28 = CONCAT44(uStack_28._4_4_, uVar1);
   *puVar3 = 0x20726574736c6f48;  // "Hostler "
-  *(undefined4 *)(puVar3 + 1) = 0x65646e49;  // "Inde"
-  *(undefined2 *)((longlong)puVar3 + 0xc) = 0x78;  // "x"
+  *(int32_t *)(puVar3 + 1) = 0x65646e49;  // "Inde"
+  *(int16_t *)((longlong)puVar3 + 0xc) = 0x78;  // "x"
   uStack_30 = 0xd;
   FUN_1803460a0(puVar2, &puStack_40, puVar2 + 0xe, 4);
   puStack_40 = &UNK_180a3c3e0;
@@ -280,18 +280,18 @@ void rendering_system_host_interface_initializer(undefined8 param_1, undefined8 
  * 
  * @param param_1 模块句柄
  */
-void rendering_system_module_loader(undefined8 param_1)
+void rendering_system_module_loader(uint64_t param_1)
 {
-  undefined1 auStack_198 [32];
-  undefined4 uStack_178;
-  undefined8 uStack_170;
-  undefined **appuStack_168 [2];
-  undefined *puStack_158;
-  undefined1 *puStack_150;
-  undefined4 uStack_148;
-  undefined1 auStack_140 [136];
-  undefined *apuStack_b8 [19];
-  undefined4 uStack_20;
+  int8_t auStack_198 [32];
+  int32_t uStack_178;
+  uint64_t uStack_170;
+  void **appuStack_168 [2];
+  void *puStack_158;
+  int8_t *puStack_150;
+  int32_t uStack_148;
+  int8_t auStack_140 [136];
+  void *apuStack_b8 [19];
+  int32_t uStack_20;
   ulonglong uStack_18;
   
   uStack_170 = 0xfffffffffffffffe;
@@ -324,9 +324,9 @@ void rendering_system_module_loader(undefined8 param_1)
  * @param param_4 内存参数2
  * @return 内存管理器指针
  */
-undefined8 *rendering_system_memory_manager(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
+uint64_t *rendering_system_memory_manager(uint64_t *param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &UNK_180a2d6a0;
@@ -344,70 +344,70 @@ undefined8 *rendering_system_memory_manager(undefined8 *param_1, ulonglong param
  * @param param_1 名称管理器指针
  * @param param_2 名称数据
  */
-void rendering_system_name_manager(undefined8 param_1, undefined8 param_2)
+void rendering_system_name_manager(uint64_t param_1, uint64_t param_2)
 {
-  undefined4 uVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
-  undefined8 *puVar4;
-  undefined8 uVar5;
-  undefined *puStack_a0;
-  undefined8 *puStack_98;
-  undefined4 uStack_90;
-  undefined8 uStack_88;
+  int32_t uVar1;
+  uint64_t *puVar2;
+  uint64_t *puVar3;
+  uint64_t *puVar4;
+  uint64_t uVar5;
+  void *puStack_a0;
+  uint64_t *puStack_98;
+  int32_t uStack_90;
+  uint64_t uStack_88;
   
-  puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_GRID_SIZE, 8, 3);
+  puVar2 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_GRID_SIZE, 8, 3);
   uVar5 = 0xfffffffffffffffe;
   puVar4 = puVar2;
   FUN_1803456e0(puVar2, param_2, param_1);
   *puVar4 = &UNK_180a2dcc8;
   puVar4[0xe] = &UNK_18098bcb0;
   puVar4[0xf] = 0;
-  *(undefined4 *)(puVar4 + 0x10) = 0;
+  *(int32_t *)(puVar4 + 0x10) = 0;
   puVar4[0xe] = &UNK_180a3c3e0;
   puVar4[0x11] = 0;
   puVar4[0xf] = 0;
-  *(undefined4 *)(puVar4 + 0x10) = 0;
+  *(int32_t *)(puVar4 + 0x10) = 0;
   puVar2[0x12] = &UNK_18098bcb0;
   puVar2[0x13] = 0;
-  *(undefined4 *)(puVar2 + 0x14) = 0;
+  *(int32_t *)(puVar2 + 0x14) = 0;
   puVar2[0x12] = &UNK_180a3c3e0;
   puVar2[0x15] = 0;
   puVar2[0x13] = 0;
-  *(undefined4 *)(puVar2 + 0x14) = 0;
+  *(int32_t *)(puVar2 + 0x14) = 0;
   puVar4 = puVar2 + 0x16;
   *puVar4 = &UNK_18098bcb0;
   puVar2[0x17] = 0;
-  *(undefined4 *)(puVar2 + 0x18) = 0;
+  *(int32_t *)(puVar2 + 0x18) = 0;
   *puVar4 = &UNK_180a3c3e0;
   puVar2[0x19] = 0;
   puVar2[0x17] = 0;
-  *(undefined4 *)(puVar2 + 0x18) = 0;
+  *(int32_t *)(puVar2 + 0x18) = 0;
   puVar2[0x1a] = &UNK_18098bcb0;
   puVar2[0x1b] = 0;
-  *(undefined4 *)(puVar2 + 0x1c) = 0;
+  *(int32_t *)(puVar2 + 0x1c) = 0;
   puVar2[0x1a] = &UNK_180a3c3e0;
   puVar2[0x1d] = 0;
   puVar2[0x1b] = 0;
-  *(undefined4 *)(puVar2 + 0x1c) = 0;
+  *(int32_t *)(puVar2 + 0x1c) = 0;
   puVar2[0x1e] = &UNK_18098bcb0;
   puVar2[0x1f] = 0;
-  *(undefined4 *)(puVar2 + 0x20) = 0;
+  *(int32_t *)(puVar2 + 0x20) = 0;
   puVar2[0x1e] = &UNK_180a3c3e0;
   puVar2[0x21] = 0;
   puVar2[0x1f] = 0;
-  *(undefined4 *)(puVar2 + 0x20) = 0;
+  *(int32_t *)(puVar2 + 0x20) = 0;
   puStack_a0 = &UNK_180a3c3e0;
   uStack_88 = 0;
-  puStack_98 = (undefined8 *)0x0;
+  puStack_98 = (uint64_t *)0x0;
   uStack_90 = 0;
-  puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
-  *(undefined1 *)puVar3 = 0;
+  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
+  *(int8_t *)puVar3 = 0;
   puStack_98 = puVar3;
   uVar1 = FUN_18064e990(puVar3);
   uStack_88 = CONCAT44(uStack_88._4_4_, uVar1);
   *puVar3 = 0x656d614e6873654d;  // "MeshName "
-  *(undefined1 *)(puVar3 + 1) = 0;
+  *(int8_t *)(puVar3 + 1) = 0;
   uStack_90 = 8;
   FUN_1803460a0(puVar2, &puStack_a0, puVar4, 0, uVar5);
   puStack_a0 = &UNK_180a3c3e0;
@@ -422,32 +422,32 @@ void rendering_system_name_manager(undefined8 param_1, undefined8 param_2)
  * @param param_1 网格处理器指针
  * @param param_2 网格数据
  */
-void rendering_system_grid_handler(undefined8 param_1, undefined8 param_2)
+void rendering_system_grid_handler(uint64_t param_1, uint64_t param_2)
 {
-  undefined4 uVar1;
-  undefined8 *puVar2;
-  undefined8 *puVar3;
-  undefined *puStack_40;
-  undefined8 *puStack_38;
-  undefined4 uStack_30;
-  undefined8 uStack_28;
+  int32_t uVar1;
+  uint64_t *puVar2;
+  uint64_t *puVar3;
+  void *puStack_40;
+  uint64_t *puStack_38;
+  int32_t uStack_30;
+  uint64_t uStack_28;
   
-  puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_HOST_SIZE, 8, 3, 0xfffffffffffffffe);
+  puVar2 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_HOST_SIZE, 8, 3, 0xfffffffffffffffe);
   puVar3 = puVar2;
   FUN_1803456e0(puVar2, param_2, param_1);
   *puVar3 = &UNK_180a2de60;
   puStack_40 = &UNK_180a3c3e0;
   uStack_28 = 0;
-  puStack_38 = (undefined8 *)0x0;
+  puStack_38 = (uint64_t *)0x0;
   uStack_30 = 0;
-  puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
-  *(undefined1 *)puVar3 = 0;
+  puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
+  *(int8_t *)puVar3 = 0;
   puStack_38 = puVar3;
   uVar1 = FUN_18064e990(puVar3);
   uStack_28 = CONCAT44(uStack_28._4_4_, uVar1);
   *puVar3 = 0x20646c6975626552;  // "Rubuild "
-  *(undefined4 *)(puVar3 + 1) = 0x64697247;  // "Grid"
-  *(undefined1 *)((longlong)puVar3 + 0xc) = 0;
+  *(int32_t *)(puVar3 + 1) = 0x64697247;  // "Grid"
+  *(int8_t *)((longlong)puVar3 + 0xc) = 0;
   uStack_30 = 0xc;
   FUN_1803460a0(puVar2, &puStack_40, 0, 0xb);
   puStack_40 = &UNK_180a3c3e0;
@@ -463,11 +463,11 @@ void rendering_system_grid_handler(undefined8 param_1, undefined8 param_2)
  * @param param_2 纹理参数
  * @return 纹理管理器指针
  */
-undefined8 *rendering_system_texture_allocator(undefined8 param_1, undefined4 param_2)
+uint64_t *rendering_system_texture_allocator(uint64_t param_1, int32_t param_2)
 {
-  undefined8 *puVar1;
+  uint64_t *puVar1;
   
-  puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_TEXTURE_SIZE, 8, 0x1a, 0xfffffffffffffffe);
+  puVar1 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, RENDERING_TEXTURE_SIZE, 8, 0x1a, 0xfffffffffffffffe);
   FUN_1802565b0(puVar1, param_1, param_2);
   *puVar1 = &UNK_180a2d5c0;
   puVar1[0x16] = 0;
@@ -484,9 +484,9 @@ undefined8 *rendering_system_texture_allocator(undefined8 param_1, undefined4 pa
  * @param param_4 释放参数2
  * @return 释放状态
  */
-undefined8 rendering_system_texture_deallocator(undefined8 param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
+uint64_t rendering_system_texture_deallocator(uint64_t param_1, ulonglong param_2, uint64_t param_3, uint64_t param_4)
 {
-  undefined8 uVar1;
+  uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
   FUN_1802566c0();
@@ -502,22 +502,22 @@ undefined8 rendering_system_texture_deallocator(undefined8 param_1, ulonglong pa
  * 
  * @param param_1 着色器管理器指针
  */
-void rendering_system_shader_manager(undefined8 *param_1)
+void rendering_system_shader_manager(uint64_t *param_1)
 {
-  undefined *puVar1;
+  void *puVar1;
   uint uVar2;
   uint uVar3;
-  undefined1 auStack_b8 [32];
+  int8_t auStack_b8 [32];
   code *pcStack_98;
-  undefined *puStack_88;
-  undefined1 *puStack_80;
+  void *puStack_88;
+  int8_t *puStack_80;
   uint uStack_78;
-  undefined8 uStack_70;
-  undefined4 uStack_68;
-  undefined8 uStack_60;
-  undefined8 *puStack_58;
-  undefined *puStack_50;
-  undefined *puStack_48;
+  uint64_t uStack_70;
+  int32_t uStack_68;
+  uint64_t uStack_60;
+  uint64_t *puStack_58;
+  void *puStack_50;
+  void *puStack_48;
   int iStack_40;
   undefined auStack_38 [16];
   ulonglong uStack_28;
@@ -531,10 +531,10 @@ void rendering_system_shader_manager(undefined8 *param_1)
   puStack_58 = param_1;
   FUN_1808fc838(param_1 + 2, 0x20, 0x20, FUN_180627850);
   param_1[0x83] = 0;
-  *(undefined4 *)(param_1 + 0x82) = 0xffffffff;
+  *(int32_t *)(param_1 + 0x82) = 0xffffffff;
   FUN_18049dc80();
   (**(code **)(_DAT_180c924d0 + 0x10))(&DAT_180c924d0, &DAT_1809fd128);
-  *(undefined4 *)(param_1 + 1) = 0;
+  *(int32_t *)(param_1 + 1) = 0;
   puStack_50 = &UNK_1809fdc18;
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
@@ -543,20 +543,20 @@ void rendering_system_shader_manager(undefined8 *param_1)
   uStack_68 = 1;
   puStack_88 = &UNK_180a3c3e0;
   uStack_70 = 0;
-  puStack_80 = (undefined1 *)0x0;
+  puStack_80 = (int8_t *)0x0;
   uStack_78 = 0;
   FUN_1806277c0(&puStack_88, iStack_40);
   if (0 < iStack_40) {
     puVar1 = &DAT_18098bc73;
-    if (puStack_48 != (undefined *)0x0) {
+    if (puStack_48 != (void *)0x0) {
       puVar1 = puStack_48;
     }
                     // WARNING: Subroutine does not return
     memcpy(puStack_80, puVar1, (longlong)(iStack_40 + 1));
   }
-  if (puStack_48 != (undefined *)0x0) {
+  if (puStack_48 != (void *)0x0) {
     uStack_78 = 0;
-    if (puStack_80 != (undefined1 *)0x0) {
+    if (puStack_80 != (int8_t *)0x0) {
       *puStack_80 = 0;
     }
   }
@@ -565,8 +565,8 @@ void rendering_system_shader_manager(undefined8 *param_1)
   puStack_50 = &UNK_18098bcb0;
   uVar2 = uStack_78 + 8;
   FUN_1806277c0(&puStack_88, uVar2);
-  *(undefined8 *)(puStack_80 + uStack_78) = 0x2f73656c75646f4d;  // "Modules/"
-  *(undefined1 *)((longlong)(puStack_80 + uStack_78) + 8) = 0;
+  *(uint64_t *)(puStack_80 + uStack_78) = 0x2f73656c75646f4d;  // "Modules/"
+  *(int8_t *)((longlong)(puStack_80 + uStack_78) + 8) = 0;
   uStack_78 = uVar2;
   if (0 < _DAT_180c924e0) {
     FUN_1806277c0(&puStack_88, uVar2 + _DAT_180c924e0);
@@ -575,9 +575,9 @@ void rendering_system_shader_manager(undefined8 *param_1)
   }
   uVar3 = uVar3 + 9;
   FUN_1806277c0(&puStack_88, (ulonglong)uVar3);
-  *(undefined2 *)(puStack_80 + uStack_78) = 0x2f;
+  *(int16_t *)(puStack_80 + uStack_78) = 0x2f;
   uStack_78 = uVar3;
-  if (puStack_80 != (undefined1 *)0x0) {
+  if (puStack_80 != (int8_t *)0x0) {
     FUN_1806277c0(&DAT_180c924f0, uVar3);
   }
   if (uVar3 != 0) {
@@ -586,16 +586,16 @@ void rendering_system_shader_manager(undefined8 *param_1)
   }
   _DAT_180c92500 = uVar3;
   if (_DAT_180c924f8 != 0) {
-    *(undefined1 *)((ulonglong)uVar3 + _DAT_180c924f8) = 0;
+    *(int8_t *)((ulonglong)uVar3 + _DAT_180c924f8) = 0;
   }
   _DAT_180c9250c = uStack_70._4_4_;
-  *(undefined4 *)(param_1 + 0x84) = 0;
+  *(int32_t *)(param_1 + 0x84) = 0;
   puStack_88 = &UNK_180a3c3e0;
-  if (puStack_80 != (undefined1 *)0x0) {
+  if (puStack_80 != (int8_t *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  puStack_80 = (undefined1 *)0x0;
+  puStack_80 = (int8_t *)0x0;
   uStack_70 = (ulonglong)uStack_70._4_4_ << 0x20;
   puStack_88 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
@@ -611,20 +611,20 @@ void rendering_system_shader_manager(undefined8 *param_1)
  * @param param_3 处理参数1
  * @param param_4 处理参数2
  */
-void rendering_system_material_processor(undefined8 param_1, longlong *param_2, undefined8 param_3, undefined8 param_4)
+void rendering_system_material_processor(uint64_t param_1, longlong *param_2, uint64_t param_3, uint64_t param_4)
 {
-  undefined4 uVar1;
-  undefined4 *puVar2;
-  undefined8 *puVar3;
-  undefined8 uVar4;
-  undefined *puStack_60;
-  undefined8 *puStack_58;
-  undefined4 uStack_50;
-  undefined8 uStack_48;
-  undefined *puStack_40;
-  undefined8 *puStack_38;
-  undefined4 uStack_30;
-  undefined8 uStack_28;
+  int32_t uVar1;
+  int32_t *puVar2;
+  uint64_t *puVar3;
+  uint64_t uVar4;
+  void *puStack_60;
+  uint64_t *puStack_58;
+  int32_t uStack_50;
+  uint64_t uStack_48;
+  void *puStack_40;
+  uint64_t *puStack_38;
+  int32_t uStack_30;
+  uint64_t uStack_28;
   
   uVar4 = 0xfffffffffffffffe;
   FUN_180057110(param_2);
@@ -632,74 +632,74 @@ void rendering_system_material_processor(undefined8 param_1, longlong *param_2, 
   if ((param_2[1] - *param_2 & 0xffffffffffffffe0U) == 0) {
     puStack_60 = &UNK_180a3c3e0;
     uStack_48 = 0;
-    puStack_58 = (undefined8 *)0x0;
+    puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
-    puVar2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13, param_4, uVar4);
-    *(undefined1 *)puVar2 = 0;
-    puStack_58 = (undefined8 *)puVar2;
+    puVar2 = (int32_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13, param_4, uVar4);
+    *(int8_t *)puVar2 = 0;
+    puStack_58 = (uint64_t *)puVar2;
     uVar1 = FUN_18064e990(puVar2);
     *puVar2 = 0x6974614e;  // "Nati"
-    *(undefined2 *)(puVar2 + 1) = 0x6576;  // "ve"
-    *(undefined1 *)((longlong)puVar2 + 6) = 0;
+    *(int16_t *)(puVar2 + 1) = 0x6576;  // "ve"
+    *(int8_t *)((longlong)puVar2 + 6) = 0;
     uStack_50 = 6;
     uStack_48._0_4_ = uVar1;
     FUN_180066df0(param_2, &puStack_60);
     puStack_60 = &UNK_180a3c3e0;
-    if (puStack_58 != (undefined8 *)0x0) {
+    if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    puStack_58 = (undefined8 *)0x0;
+    puStack_58 = (uint64_t *)0x0;
     uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
     puStack_60 = &UNK_18098bcb0;
     puStack_40 = &UNK_180a3c3e0;
     uStack_28 = 0;
-    puStack_38 = (undefined8 *)0x0;
+    puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
-    puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
-    *(undefined1 *)puVar3 = 0;
+    puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
+    *(int8_t *)puVar3 = 0;
     puStack_38 = puVar3;
     uVar1 = FUN_18064e990(puVar3);
     *puVar3 = 0x616c7069746c754d;  // "Multiplat "
-    *(undefined4 *)(puVar3 + 1) = 0x726579;  // "yer"
+    *(int32_t *)(puVar3 + 1) = 0x726579;  // "yer"
     uStack_30 = 0xb;
     uStack_28._0_4_ = uVar1;
     FUN_180066df0(param_2, &puStack_40);
     puStack_40 = &UNK_180a3c3e0;
-    if (puStack_38 != (undefined8 *)0x0) {
+    if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    puStack_38 = (undefined8 *)0x0;
+    puStack_38 = (uint64_t *)0x0;
     uStack_28 = (ulonglong)uStack_28._4_4_ << 0x20;
     puStack_40 = &UNK_18098bcb0;
     puStack_60 = &UNK_180a3c3e0;
     uStack_48 = 0;
-    puStack_58 = (undefined8 *)0x0;
+    puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
-    puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
-    *(undefined1 *)puVar3 = 0;
+    puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
+    *(int8_t *)puVar3 = 0;
     puStack_58 = puVar3;
     uVar1 = FUN_18064e990(puVar3);
     *puVar3 = 0x43786f42646e6153;  // "SandBoxC"
-    *(undefined4 *)(puVar3 + 1) = 0x65726f;  // "ore"
+    *(int32_t *)(puVar3 + 1) = 0x65726f;  // "ore"
     uStack_50 = 0xb;
     uStack_48._0_4_ = uVar1;
     FUN_180066df0(param_2, &puStack_60);
     puStack_60 = &UNK_180a3c3e0;
-    if (puStack_58 != (undefined8 *)0x0) {
+    if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    puStack_58 = (undefined8 *)0x0;
+    puStack_58 = (uint64_t *)0x0;
     uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
     puStack_60 = &UNK_18098bcb0;
     puStack_40 = &UNK_180a3c3e0;
     uStack_28 = 0;
-    puStack_38 = (undefined8 *)0x0;
+    puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
-    puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
-    *(undefined1 *)puVar3 = 0;
+    puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
+    *(int8_t *)puVar3 = 0;
     puStack_38 = puVar3;
     uVar1 = FUN_18064e990(puVar3);
     *puVar3 = 0x786f42646e6153;  // "SandBox"
@@ -707,50 +707,50 @@ void rendering_system_material_processor(undefined8 param_1, longlong *param_2, 
     uStack_28._0_4_ = uVar1;
     FUN_180066df0(param_2, &puStack_40);
     puStack_40 = &UNK_180a3c3e0;
-    if (puStack_38 != (undefined8 *)0x0) {
+    if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    puStack_38 = (undefined8 *)0x0;
+    puStack_38 = (uint64_t *)0x0;
     uStack_28 = (ulonglong)uStack_28._4_4_ << 0x20;
     puStack_40 = &UNK_18098bcb0;
     puStack_60 = &UNK_180a3c3e0;
     uStack_48 = 0;
-    puStack_58 = (undefined8 *)0x0;
+    puStack_58 = (uint64_t *)0x0;
     uStack_50 = 0;
-    puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
-    *(undefined1 *)puVar3 = 0;
+    puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
+    *(int8_t *)puVar3 = 0;
     puStack_58 = puVar3;
     uVar1 = FUN_18064e990(puVar3);
     *puVar3 = 0x61426d6f74737543;  // "CustomBla"
-    *(undefined4 *)(puVar3 + 1) = 0x656c7474;  // "ttle"
-    *(undefined1 *)((longlong)puVar3 + 0xc) = 0;
+    *(int32_t *)(puVar3 + 1) = 0x656c7474;  // "ttle"
+    *(int8_t *)((longlong)puVar3 + 0xc) = 0;
     uStack_50 = 0xc;
     uStack_48._0_4_ = uVar1;
     FUN_180066df0(param_2, &puStack_60);
     puStack_60 = &UNK_180a3c3e0;
-    if (puStack_58 != (undefined8 *)0x0) {
+    if (puStack_58 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
-    puStack_58 = (undefined8 *)0x0;
+    puStack_58 = (uint64_t *)0x0;
     uStack_48 = (ulonglong)uStack_48._4_4_ << 0x20;
     puStack_60 = &UNK_18098bcb0;
     puStack_40 = &UNK_180a3c3e0;
     uStack_28 = 0;
-    puStack_38 = (undefined8 *)0x0;
+    puStack_38 = (uint64_t *)0x0;
     uStack_30 = 0;
-    puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
-    *(undefined1 *)puVar3 = 0;
+    puVar3 = (uint64_t *)FUN_18062b420(_DAT_180c8ed18, RENDERING_MODULE_SIZE, 0x13);
+    *(int8_t *)puVar3 = 0;
     puStack_38 = puVar3;
     uVar1 = FUN_18064e990(puVar3);
     uStack_28 = CONCAT44(uStack_28._4_4_, uVar1);
     *puVar3 = 0x646f4d79726f7453;  // "StoryMod"
-    *(undefined2 *)(puVar3 + 1) = 0x65;  // "e"
+    *(int16_t *)(puVar3 + 1) = 0x65;  // "e"
     uStack_30 = 9;
     FUN_180066df0(param_2, &puStack_40);
     puStack_40 = &UNK_180a3c3e0;
-    if (puStack_38 != (undefined8 *)0x0) {
+    if (puStack_38 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
@@ -766,10 +766,10 @@ void rendering_system_queue_manager(void)
 {
   int *piVar1;
   int iVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   int *piVar4;
   longlong lVar5;
-  undefined8 uVar6;
+  uint64_t uVar6;
   longlong lVar7;
   longlong *plVar8;
   int *piVar9;
@@ -778,7 +778,7 @@ void rendering_system_queue_manager(void)
   longlong *aplStackX_8 [2];
   longlong *plStackX_18;
   longlong *plStackX_20;
-  undefined8 uVar12;
+  uint64_t uVar12;
   
   if ((((DAT_180c96098 != '\0') && (_DAT_180c96070 != 0)) &&
       (*(int *)(_DAT_180c96070 + 0x87b7a8) == 2)) && (*(char *)(_DAT_180c96070 + 0x87b750) != '\0'))
@@ -800,13 +800,13 @@ void rendering_system_queue_manager(void)
           return;
         }
         iVar2 = *piVar9;
-        puVar3 = *(undefined8 **)(lVar5 + 0x148);
-        if (puVar3 != (undefined8 *)0x0) {
-          if ((undefined *)*puVar3 == &UNK_180a1b2d8) {
+        puVar3 = *(uint64_t **)(lVar5 + 0x148);
+        if (puVar3 != (uint64_t *)0x0) {
+          if ((void *)*puVar3 == &UNK_180a1b2d8) {
             cVar10 = *(char *)(puVar3 + 2) != '\0';
           }
           else {
-            cVar10 = (**(code **)((undefined *)*puVar3 + 0x68))();
+            cVar10 = (**(code **)((void *)*puVar3 + 0x68))();
           }
           uVar6 = _DAT_180c82868;
           if (cVar10 == '\0') {
@@ -863,10 +863,10 @@ void rendering_system_queue_handler(void)
 {
   int *piVar1;
   int iVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar3;
   int *piVar4;
   longlong lVar5;
-  undefined8 uVar6;
+  uint64_t uVar6;
   longlong lVar7;
   longlong *plVar8;
   longlong in_RAX;
@@ -874,10 +874,10 @@ void rendering_system_queue_handler(void)
   char cVar10;
   float fVar11;
   longlong *in_stack_00000030;
-  undefined8 in_stack_00000038;
+  uint64_t in_stack_00000038;
   longlong *in_stack_00000040;
   longlong *in_stack_00000048;
-  undefined8 uVar12;
+  uint64_t uVar12;
   
   lVar5 = *(longlong *)(in_RAX + 0x3d8);
   fVar11 = *(float *)(in_RAX + 0x220) + *(float *)(lVar5 + 0x144);
@@ -898,13 +898,13 @@ void rendering_system_queue_handler(void)
       return;
     }
     iVar2 = *piVar9;
-    puVar3 = *(undefined8 **)(lVar5 + 0x148);
-    if (puVar3 != (undefined8 *)0x0) {
-      if ((undefined *)*puVar3 == &UNK_180a1b2d8) {
+    puVar3 = *(uint64_t **)(lVar5 + 0x148);
+    if (puVar3 != (uint64_t *)0x0) {
+      if ((void *)*puVar3 == &UNK_180a1b2d8) {
         cVar10 = *(char *)(puVar3 + 2) != '\0';
       }
       else {
-        cVar10 = (**(code **)((undefined *)*puVar3 + 0x68))();
+        cVar10 = (**(code **)((void *)*puVar3 + 0x68))();
       }
       uVar6 = _DAT_180c82868;
       if (cVar10 == '\0') {
@@ -975,11 +975,11 @@ void rendering_system_noop_2(void)
  * @param param_3 配置参数3
  * @param param_4 配置参数4
  */
-void rendering_system_config_initializer(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void rendering_system_config_initializer(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
   longlong lVar1;
   longlong lVar2;
-  undefined8 uVar3;
+  uint64_t uVar3;
   
   uVar3 = 0xfffffffffffffffe;
   _DAT_180c95ef8 = 0;
@@ -996,14 +996,14 @@ void rendering_system_config_initializer(undefined8 param_1, undefined8 param_2,
  */
 void rendering_system_global_initializer(void)
 {
-  undefined8 *puVar1;
-  undefined4 *puVar2;
-  undefined8 *puVar3;
+  uint64_t *puVar1;
+  int32_t *puVar2;
+  uint64_t *puVar3;
   
   FUN_1802567b0(_DAT_180c868a8[0x15], &DAT_180a2d688, &UNK_180a2ca80, rendering_system_texture_allocator, 0xfffffffffffffffe);
-  puVar2 = (undefined4 *)FUN_18008d660(_DAT_180c868a8 + 0x1c, &DAT_180a2d688);
+  puVar2 = (int32_t *)FUN_18008d660(_DAT_180c868a8 + 0x1c, &DAT_180a2d688);
   *puVar2 = 1;
-  puVar3 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, 3);
+  puVar3 = (uint64_t *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, 3);
   puVar3[1] = 0;
   puVar3[2] = 0;
   puVar3[3] = 0;
@@ -1014,11 +1014,11 @@ void rendering_system_global_initializer(void)
   *puVar3 = &UNK_180a2d418;
   puVar1 = puVar3 + 1;
   puVar3[4] = 0;
-  *(undefined4 *)(puVar3 + 6) = 3;
+  *(int32_t *)(puVar3 + 6) = 3;
   *puVar1 = puVar1;
   puVar3[2] = puVar1;
   puVar3[3] = 0;
-  *(undefined1 *)(puVar3 + 4) = 0;
+  *(int8_t *)(puVar3 + 4) = 0;
   puVar3[5] = 0;
   *_DAT_180c868a8 = puVar3;
   return;

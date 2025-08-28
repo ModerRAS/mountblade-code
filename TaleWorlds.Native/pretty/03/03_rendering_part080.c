@@ -26,46 +26,46 @@ void rendering_system_process_parameters(void) {
     ulonglong render_data_ptr;
     byte render_flag;
     int pixel_value;
-    undefined4 render_param;
+    int32_t render_param;
     longlong render_context_ptr;
     longlong scene_data_ptr;
     char render_char;
     int scene_id;
-    undefined4 scene_param;
+    int32_t scene_param;
     byte scene_flag;
     int render_counter;
     longlong render_timestamp;
     float render_scale;
-    undefined8 texture_data;
-    undefined1 render_buffer_1[16];
-    undefined1 render_buffer_2[16];
-    undefined1 render_buffer_3[16];
-    undefined1 render_buffer_4[16];
+    uint64_t texture_data;
+    int8_t render_buffer_1[16];
+    int8_t render_buffer_2[16];
+    int8_t render_buffer_3[16];
+    int8_t render_buffer_4[16];
     float depth_value;
-    undefined1 render_buffer_5[16];
-    undefined1 render_buffer_6[16];
-    undefined1 render_buffer_7[16];
+    int8_t render_buffer_5[16];
+    int8_t render_buffer_6[16];
+    int8_t render_buffer_7[16];
     ulonglong color_data;
-    undefined1 render_buffer_8[16];
-    undefined1 render_buffer_9[16];
+    int8_t render_buffer_8[16];
+    int8_t render_buffer_9[16];
     float light_intensity;
     float ambient_light;
     float specular_light;
     uint material_flags;
     float diffuse_light;
-    undefined2 texture_flags;
+    int16_t texture_flags;
     float shadow_value;
     float render_distance;
     float fog_density;
     int render_quality;
-    undefined1 render_quality_flag;
+    int8_t render_quality_flag;
     float reflection_value;
     float refraction_value;
     int render_passes;
     int render_stages;
-    undefined8 render_config;
-    undefined8 extra_render_data;
-    undefined1 render_buffer_10[16];
+    uint64_t render_config;
+    uint64_t extra_render_data;
+    int8_t render_buffer_10[16];
     
     // 计算渲染缩放比例
     render_scale = (float)*(byte *)(render_context_ptr + 0xa9) * render_distance;
@@ -161,7 +161,7 @@ void rendering_system_process_parameters(void) {
     rendering_system_execute_render_pipeline();
     
     // 获取纹理标志
-    texture_flags = (undefined2)((uint)render_scale >> 0x10);
+    texture_flags = (int16_t)((uint)render_scale >> 0x10);
     rendering_state = *(int *)(RENDERING_SYSTEM_GLOBAL_STATE + 0x2300);
     render_char = (char)scene_id;
     
@@ -183,9 +183,9 @@ void rendering_system_process_parameters(void) {
         render_quality_flag = 0xe7;
         rendering_system_execute_render_pipeline();
         *(char *)(scene_data_ptr + 0x7c) = render_char;
-        *(undefined4 *)(scene_data_ptr + 0x68) = RENDERING_SYSTEM_NEGATIVE_FLOAT;
-        *(undefined8 *)(scene_data_ptr + 0x6c) = 0;
-        *(undefined8 *)(scene_data_ptr + 0x74) = 0;
+        *(int32_t *)(scene_data_ptr + 0x68) = RENDERING_SYSTEM_NEGATIVE_FLOAT;
+        *(uint64_t *)(scene_data_ptr + 0x6c) = 0;
+        *(uint64_t *)(scene_data_ptr + 0x74) = 0;
         render_flag = 0;
     } else {
         if (render_flag != 0) {
@@ -196,7 +196,7 @@ void rendering_system_process_parameters(void) {
             rendering_system_set_render_pipeline_parameters(
                 CONCAT44((float)*(ushort *)(render_context_ptr + -0x22),
                         (float)*(ushort *)(render_context_ptr + -0x24)));
-            *(undefined8 *)(scene_data_ptr + 0x6c) = rendering_system_get_render_pipeline_parameters();
+            *(uint64_t *)(scene_data_ptr + 0x6c) = rendering_system_get_render_pipeline_parameters();
         } else {
             render_scale = *(float *)(scene_data_ptr + 0x68) + RENDERING_SYSTEM_TIME_DELTA;
         }
@@ -207,7 +207,7 @@ void rendering_system_process_parameters(void) {
         rendering_system_set_render_pipeline_parameters(
             CONCAT44((float)*(ushort *)(render_context_ptr + -0x22),
                     (float)*(ushort *)(render_context_ptr + -0x24)));
-        *(undefined8 *)(scene_data_ptr + 0x74) = rendering_system_get_render_pipeline_parameters();
+        *(uint64_t *)(scene_data_ptr + 0x74) = rendering_system_get_render_pipeline_parameters();
         render_flag = scene_flag;
     }
     *(byte *)(scene_data_ptr + 0x7d) = render_flag;
@@ -240,7 +240,7 @@ void rendering_system_process_parameters(void) {
         }
         *(float *)(render_context_ptr + -0x78) = render_scale;
         *(float *)(render_context_ptr + -0x74) = reflection_value;
-        texture_data = *(undefined8 *)(render_context_ptr + -0x78);
+        texture_data = *(uint64_t *)(render_context_ptr + -0x78);
         *(char *)(render_timestamp + 0x2028) = render_char;
     } else {
         texture_data = 0;
@@ -248,11 +248,11 @@ void rendering_system_process_parameters(void) {
     
     // 更新渲染状态
     render_time_delta = RENDERING_SYSTEM_GLOBAL_STATE;
-    render_param = *(undefined4 *)(render_context_ptr + -0x34);
-    *(undefined4 *)(scene_data_ptr + 0x338) = *(undefined4 *)(render_context_ptr + -0x38);
-    *(undefined4 *)(scene_data_ptr + 0x340) = *(undefined4 *)(render_context_ptr + -0x30);
-    *(undefined4 *)(scene_data_ptr + 0x33c) = render_param;
-    *(undefined8 *)(render_context_ptr + -0x78) = texture_data;
+    render_param = *(int32_t *)(render_context_ptr + -0x34);
+    *(int32_t *)(scene_data_ptr + 0x338) = *(int32_t *)(render_context_ptr + -0x38);
+    *(int32_t *)(scene_data_ptr + 0x340) = *(int32_t *)(render_context_ptr + -0x30);
+    *(int32_t *)(scene_data_ptr + 0x33c) = render_param;
+    *(uint64_t *)(render_context_ptr + -0x78) = texture_data;
     
     if (*(int *)(render_time_delta + 0x2530) != scene_id) {
         if (*(byte *)(render_context_ptr + -0x2c) < scene_flag) {
@@ -279,7 +279,7 @@ void rendering_system_process_parameters(void) {
                 render_timestamp = RENDERING_SYSTEM_TIMESTAMP;
                 if (*(char *)(RENDERING_SYSTEM_SCENE_DATA + 0x1609) != render_char) {
                     rendering_system_set_render_pipeline_parameters(CONCAT44(render_counter, pixel_value));
-                    rendering_system_process_scene_data(*(undefined8 *)(RENDERING_SYSTEM_RENDER_DATA + 8), 
+                    rendering_system_process_scene_data(*(uint64_t *)(RENDERING_SYSTEM_RENDER_DATA + 8), 
                                                          rendering_system_get_render_pipeline_parameters());
                     render_timestamp = RENDERING_SYSTEM_TIMESTAMP;
                 }
@@ -431,7 +431,7 @@ void rendering_system_process_parameters(void) {
         render_buffer_7._0_4_ = render_buffer_6._0_4_ * 255.0f;
         render_buffer_9._4_12_ = render_buffer_10._4_12_;
         render_buffer_9._0_4_ = render_buffer_10._0_4_ * 255.0f;
-        rendering_system_process_color_data(*(undefined4 *)(scene_data_ptr + 0x330), &render_quality,
+        rendering_system_process_color_data(*(int32_t *)(scene_data_ptr + 0x330), &render_quality,
                                           render_buffer_7._0_8_, render_buffer_9._0_8_,
                                           CONCAT22(texture_flags, 
                                                    CONCAT11((char)(int)render_buffer_9._0_4_,
@@ -442,16 +442,16 @@ void rendering_system_process_parameters(void) {
     // 处理渲染模式
     if (*(char *)(scene_data_ptr + 0x192) == render_char) {
         render_param = 4;
-        *(undefined4 *)(scene_data_ptr + 100) = 4;
-        rendering_state = rendering_system_validate_render_mode(*(undefined4 *)(scene_data_ptr + 0x330), 
+        *(int32_t *)(scene_data_ptr + 100) = 4;
+        rendering_state = rendering_system_validate_render_mode(*(int32_t *)(scene_data_ptr + 0x330), 
                                                                &render_quality);
         if ((rendering_state == 0) && (render_quality != 0)) {
             if (render_quality == 1) {
                 render_param = 2;
             }
-            *(undefined4 *)(scene_data_ptr + 100) = render_param;
+            *(int32_t *)(scene_data_ptr + 100) = render_param;
         }
-        *(undefined1 *)(scene_data_ptr + 0x7e) = 1;
+        *(int8_t *)(scene_data_ptr + 0x7e) = 1;
         // 警告：此子函数不返回
         rendering_system_execute_final_render(*(ulonglong *)(render_context_ptr + 0xc0) ^ 
                                               (ulonglong)&render_quality);
@@ -486,19 +486,19 @@ void rendering_system_process_parameters(void) {
 // 渲染系统模式设置函数
 // 原始函数名: FUN_180310903
 void rendering_system_set_render_mode(void) {
-    undefined4 render_mode;
+    int32_t render_mode;
     longlong render_context_ptr;
     longlong scene_data_ptr;
-    undefined4 scene_flags;
+    int32_t scene_flags;
     int mode_param;
     
     if (mode_param != 0) {
         if (mode_param == 1) {
             render_mode = scene_flags;
         }
-        *(undefined4 *)(scene_data_ptr + 100) = render_mode;
+        *(int32_t *)(scene_data_ptr + 100) = render_mode;
     }
-    *(undefined1 *)(scene_data_ptr + 0x7e) = 1;
+    *(int8_t *)(scene_data_ptr + 0x7e) = 1;
     // 警告：此子函数不返回
     rendering_system_execute_final_render(*(ulonglong *)(render_context_ptr + 0xc0) ^ 
                                           (ulonglong)&render_quality);
@@ -506,10 +506,10 @@ void rendering_system_set_render_mode(void) {
 
 // 渲染系统纹理参数设置函数
 // 原始函数名: FUN_1803109a0
-void rendering_system_set_texture_parameter(undefined4 texture_data, undefined1 param_type, char param_value) {
-    undefined1 render_stack[4];
-    undefined1 stack_param;
-    undefined8 render_config;
+void rendering_system_set_texture_parameter(int32_t texture_data, int8_t param_type, char param_value) {
+    int8_t render_stack[4];
+    int8_t stack_param;
+    uint64_t render_config;
     
     stack_param = param_type;
     if (param_value != '\0') {

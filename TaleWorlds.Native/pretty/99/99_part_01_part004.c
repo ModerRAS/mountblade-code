@@ -101,16 +101,16 @@
  * - 处理字符转义和特殊字符
  * - 管理输出缓冲区
  */
-void SystemStreamFormatter(longlong *output_stream, longlong *format_params, undefined8 *data_buffer, byte format_flags, uint data_length)
+void SystemStreamFormatter(longlong *output_stream, longlong *format_params, uint64_t *data_buffer, byte format_flags, uint data_length)
 {
-  undefined1 current_char;
+  int8_t current_char;
   longlong stream_state1;
-  undefined1 *char_pointer;
+  int8_t *char_pointer;
   longlong stream_state2;
-  undefined1 *data_pointer;
+  int8_t *data_pointer;
   longlong loop_counter;
   ulonglong remaining_length;
-  undefined1 *end_pointer;
+  int8_t *end_pointer;
   longlong format_result;
   
   // 检查是否启用简单模式
@@ -148,21 +148,21 @@ void SystemStreamFormatter(longlong *output_stream, longlong *format_params, und
   }
   
   // 处理数据缓冲区内容
-  char_pointer = (undefined1 *)*data_buffer;
+  char_pointer = (int8_t *)*data_buffer;
   stream_state2 = *format_params;
   stream_state1 = format_params[1];
   format_result = 0;
   
-  if (char_pointer == (undefined1 *)0x0) {
-    data_pointer = (undefined1 *)0x180d48d24;
+  if (char_pointer == (int8_t *)0x0) {
+    data_pointer = (int8_t *)0x180d48d24;
     stream_state2 = format_result;
   } else {
     data_pointer = char_pointer;
     stream_state2 = data_buffer[2];
   }
   
-  end_pointer = (undefined1 *)0x180d48d24;
-  if (char_pointer != (undefined1 *)0x0) {
+  end_pointer = (int8_t *)0x180d48d24;
+  if (char_pointer != (int8_t *)0x0) {
     end_pointer = char_pointer;
   }
   
@@ -187,16 +187,16 @@ void SystemStreamFormatter(longlong *output_stream, longlong *format_params, und
   }
   
   // 处理第二个数据缓冲区
-  char_pointer = (undefined1 *)data_buffer[1];
-  if (char_pointer == (undefined1 *)0x0) {
-    data_pointer = (undefined1 *)0x180d48d24;
+  char_pointer = (int8_t *)data_buffer[1];
+  if (char_pointer == (int8_t *)0x0) {
+    data_pointer = (int8_t *)0x180d48d24;
   } else {
     format_result = data_buffer[3];
     data_pointer = char_pointer;
   }
   
-  end_pointer = (undefined1 *)0x180d48d24;
-  if (char_pointer != (undefined1 *)0x0) {
+  end_pointer = (int8_t *)0x180d48d24;
+  if (char_pointer != (int8_t *)0x0) {
     end_pointer = char_pointer;
   }
   
@@ -247,7 +247,7 @@ void SystemStreamFormatter(longlong *output_stream, longlong *format_params, und
  * - 处理流错误和异常
  * - 支持多种输出模式
  */
-longlong *SystemStreamProcessor(longlong *stream_handle, undefined1 output_char, undefined8 param3, undefined8 param4)
+longlong *SystemStreamProcessor(longlong *stream_handle, int8_t output_char, uint64_t param3, uint64_t param4)
 {
   longlong *buffer_handle;
   char exception_status;
@@ -280,7 +280,7 @@ longlong *SystemStreamProcessor(longlong *stream_handle, undefined1 output_char,
     if ((*(uint *)((longlong)*(int *)(stream_info + 4) + 0x18 + (longlong)stream_handle) & 0x1c0) == 0x40) {
       // 快速输出模式
       output_result = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                        (*(undefined8 *)((longlong)*(int *)(stream_info + 4) + 0x48 + (longlong)stream_handle),
+                        (*(uint64_t *)((longlong)*(int *)(stream_info + 4) + 0x48 + (longlong)stream_handle),
                          output_char);
       if (output_result == -1) {
         error_code = retry_count;
@@ -289,9 +289,9 @@ longlong *SystemStreamProcessor(longlong *stream_handle, undefined1 output_char,
       // 循环处理缓冲区内容
       for (; (output_result = error_code, error_code == 0 && (0 < buffer_capacity)); buffer_capacity = buffer_capacity + -1) {
         output_result = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                          (*(undefined8 *)
+                          (*(uint64_t *)
                             ((longlong)*(int *)(*stream_handle + 4) + 0x48 + (longlong)stream_handle),
-                           *(undefined1 *)
+                           *(int8_t *)
                             ((longlong)*(int *)(*stream_handle + 4) + 0x58 + (longlong)stream_handle));
         if (output_result == -1) {
           error_code = retry_count;
@@ -304,7 +304,7 @@ longlong *SystemStreamProcessor(longlong *stream_handle, undefined1 output_char,
           stream_info = *stream_handle;
           // 跳转到快速输出模式
           output_result = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                            (*(undefined8 *)
+                            (*(uint64_t *)
                               ((longlong)*(int *)(*stream_handle + 4) + 0x48 + (longlong)stream_handle),
                              output_char);
           if (output_result == -1) {
@@ -312,9 +312,9 @@ longlong *SystemStreamProcessor(longlong *stream_handle, undefined1 output_char,
           }
         } else {
           output_result = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                            (*(undefined8 *)
+                            (*(uint64_t *)
                               ((longlong)*(int *)(*stream_handle + 4) + 0x48 + (longlong)stream_handle),
-                             *(undefined1 *)
+                             *(int8_t *)
                               ((longlong)*(int *)(*stream_handle + 4) + 0x58 + (longlong)stream_handle));
           if (output_result == -1) {
             error_code = retry_count;
@@ -327,7 +327,7 @@ longlong *SystemStreamProcessor(longlong *stream_handle, undefined1 output_char,
   }
   
   // 重置流状态
-  *(undefined8 *)((longlong)*(int *)(*stream_handle + 4) + 0x28 + (longlong)stream_handle) = 0;
+  *(uint64_t *)((longlong)*(int *)(*stream_handle + 4) + 0x28 + (longlong)stream_handle) = 0;
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             ((longlong)*(int *)(*stream_handle + 4) + (longlong)stream_handle, error_code, 0, param4, output_result);
   
@@ -366,7 +366,7 @@ longlong *SystemStreamProcessor(longlong *stream_handle, undefined1 output_char,
  * - 处理文件锁定
  * - 准备输出环境
  */
-undefined8 *SystemOutputInitializer(undefined8 *init_buffer, longlong *stream_handle)
+uint64_t *SystemOutputInitializer(uint64_t *init_buffer, longlong *stream_handle)
 {
   longlong *buffer_handle;
   longlong stream_info;
@@ -481,15 +481,15 @@ void SystemOutputCleaner(longlong *cleanup_handle)
  * - 管理写入错误
  * - 支持大数据量写入
  */
-longlong *SystemDataWriter(longlong *stream_handle, longlong data_pointer, undefined8 param3, undefined8 param4)
+longlong *SystemDataWriter(longlong *stream_handle, longlong data_pointer, uint64_t param3, uint64_t param4)
 {
   longlong *buffer_handle;
   char exception_status;
   int write_result;
   longlong buffer_capacity;
-  undefined4 error_flag1;
+  int32_t error_flag1;
   longlong available_space;
-  undefined4 error_flag2;
+  int32_t error_flag2;
   longlong *stack_buffer;
   char stack_flag;
   
@@ -520,9 +520,9 @@ longlong *SystemDataWriter(longlong *stream_handle, longlong data_pointer, undef
       // 标准写入模式
       for (; 0 < buffer_capacity; buffer_capacity = buffer_capacity + -1) {
         write_result = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                          (*(undefined8 *)
+                          (*(uint64_t *)
                             ((longlong)*(int *)(*stream_handle + 4) + 0x48 + (longlong)stream_handle),
-                           *(undefined1 *)
+                           *(int8_t *)
                             ((longlong)*(int *)(*stream_handle + 4) + 0x58 + (longlong)stream_handle));
         if (write_result == -1) {
           error_flag1 = 4;
@@ -535,15 +535,15 @@ longlong *SystemDataWriter(longlong *stream_handle, longlong data_pointer, undef
     
     // 批量写入数据
     available_space = _sputn___basic_streambuf_DU__char_traits_D_std___std__QEAA_JPEBD_J_Z
-                      (*(undefined8 *)((longlong)*(int *)(available_space + 4) + 0x48 + (longlong)stream_handle),
+                      (*(uint64_t *)((longlong)*(int *)(available_space + 4) + 0x48 + (longlong)stream_handle),
                        data_pointer, available_space);
     
     if (available_space == available_space) {
       for (; 0 < buffer_capacity; buffer_capacity = buffer_capacity + -1) {
         write_result = _sputc___basic_streambuf_DU__char_traits_D_std___std__QEAAHD_Z
-                          (*(undefined8 *)
+                          (*(uint64_t *)
                             ((longlong)*(int *)(*stream_handle + 4) + 0x48 + (longlong)stream_handle),
-                           *(undefined1 *)
+                           *(int8_t *)
                             ((longlong)*(int *)(*stream_handle + 4) + 0x58 + (longlong)stream_handle));
         if (write_result == -1) {
           error_flag1 = 4;
@@ -556,7 +556,7 @@ longlong *SystemDataWriter(longlong *stream_handle, longlong data_pointer, undef
       error_flag2 = 4;
     }
     
-    *(undefined8 *)((longlong)*(int *)(*stream_handle + 4) + 0x28 + (longlong)stream_handle) = 0;
+    *(uint64_t *)((longlong)*(int *)(*stream_handle + 4) + 0x28 + (longlong)stream_handle) = 0;
   }
   
   // 设置流状态
@@ -612,10 +612,10 @@ longlong *SystemFormatController(longlong *output_buffer, longlong *format_param
   longlong temp_value;
   longlong *stack_buffer;
   longlong stack_value;
-  undefined1 local_buffer[32];
+  int8_t local_buffer[32];
   
   // 根据格式化类型选择处理方式
-  switch(*(undefined4 *)(format_info + 0x28)) {
+  switch(*(int32_t *)(format_info + 0x28)) {
     case 0:
       // 递归格式化处理
       temp_params = (longlong *)*format_params;
@@ -815,24 +815,24 @@ format_complete:
  * - 处理分支跳转
  * - 支持多种流处理模式
  */
-longlong *SystemStreamHandler(longlong *output_buffer, undefined8 param2, undefined8 param3, uint data_length)
+longlong *SystemStreamHandler(longlong *output_buffer, uint64_t param2, uint64_t param3, uint data_length)
 {
   longlong param_value;
   longlong register_value;
   longlong *result_handle;
   longlong *unaff_rbx;
-  undefined8 unaff_rsi;
+  uint64_t unaff_rsi;
   longlong unaff_r11;
-  undefined8 unaff_r13;
-  undefined8 unaff_r14;
-  undefined8 unaff_r15;
+  uint64_t unaff_r13;
+  uint64_t unaff_r14;
+  uint64_t unaff_r15;
   
-  *(undefined8 *)(unaff_r11 + 0x10) = unaff_r13;
-  *(undefined8 *)(unaff_r11 + -0x28) = unaff_r15;
+  *(uint64_t *)(unaff_r11 + 0x10) = unaff_r13;
+  *(uint64_t *)(unaff_r11 + -0x28) = unaff_r15;
   
   if ((uint)register_value < 8) {
-    *(undefined8 *)(unaff_r11 + 8) = unaff_rsi;
-    *(undefined8 *)(unaff_r11 + 0x18) = unaff_r14;
+    *(uint64_t *)(unaff_r11 + 8) = unaff_rsi;
+    *(uint64_t *)(unaff_r11 + 0x18) = unaff_r14;
     // 警告：无法恢复跳转表，将间接跳转作为调用处理
     result_handle = (longlong *)
              (*(code *)((ulonglong)*(uint *)(&UNK_1800a1660 + register_value * 4) + 0x180000000))();
@@ -866,12 +866,12 @@ longlong *SystemStreamHandler(longlong *output_buffer, undefined8 param2, undefi
 void SystemStreamProcessorAdvanced(void)
 {
   longlong register_value;
-  undefined8 unaff_rsi;
+  uint64_t unaff_rsi;
   longlong unaff_r11;
-  undefined8 unaff_r14;
+  uint64_t unaff_r14;
   
-  *(undefined8 *)(unaff_r11 + 8) = unaff_rsi;
-  *(undefined8 *)(unaff_r11 + 0x18) = unaff_r14;
+  *(uint64_t *)(unaff_r11 + 8) = unaff_rsi;
+  *(uint64_t *)(unaff_r11 + 0x18) = unaff_r14;
   // 警告：无法恢复跳转表，将间接跳转作为调用处理
   (*(code *)((ulonglong)*(uint *)(&UNK_1800a1660 + register_value * 4) + 0x180000000))();
   return;
@@ -889,12 +889,12 @@ void SystemStreamProcessorAdvanced(void)
  * - 管理输出格式
  * - 支持资源清理
  */
-void SystemResourceFormatter(undefined8 param1, undefined8 *resource_params)
+void SystemResourceFormatter(uint64_t param1, uint64_t *resource_params)
 {
-  undefined8 param_value1;
+  uint64_t param_value1;
   longlong resource_state1;
   longlong resource_state2;
-  undefined8 param_value2;
+  uint64_t param_value2;
   longlong *resource_handle;
   longlong *unaff_rbx;
   longlong unaff_rbp;
@@ -904,15 +904,15 @@ void SystemResourceFormatter(undefined8 param1, undefined8 *resource_params)
   
   param_value1 = *resource_params;
   param_value2 = resource_params[1];
-  *(undefined8 *)(unaff_rbp + -0x38) = param_value1;
-  *(undefined8 *)(unaff_rbp + -0x30) = param_value2;
+  *(uint64_t *)(unaff_rbp + -0x38) = param_value1;
+  *(uint64_t *)(unaff_rbp + -0x30) = param_value2;
   
   if ((unaff_r15 & 1) == 0) {
-    *(undefined8 *)(unaff_rbp + -0x38) = param_value1;
-    *(undefined8 *)(unaff_rbp + -0x30) = param_value2;
+    *(uint64_t *)(unaff_rbp + -0x38) = param_value1;
+    *(uint64_t *)(unaff_rbp + -0x30) = param_value2;
     
     if (0 < (int)*(uint *)(unaff_rbp + 0x48)) {
-      param_value1 = *(undefined8 *)(unaff_rbp + -0x30);
+      param_value1 = *(uint64_t *)(unaff_rbp + -0x30);
       loop_counter = (ulonglong)*(uint *)(unaff_rbp + 0x48);
       resource_state1 = *(longlong *)(unaff_rbp + -0x38);
       do {
@@ -929,7 +929,7 @@ void SystemResourceFormatter(undefined8 param1, undefined8 *resource_params)
     *(longlong *)(unaff_rbp + -0x30) = resource_state1;
   }
   
-  param_value1 = *(undefined8 *)(unaff_rbp + -0x30);
+  param_value1 = *(uint64_t *)(unaff_rbp + -0x30);
   SystemStreamProcessor(param_value1, '<');
   resource_state1 = *(longlong *)(unaff_rbp + -0x38);
   if (resource_state1 != 0) {
@@ -1005,13 +1005,13 @@ void SystemResourceFormatter(undefined8 param1, undefined8 *resource_params)
  * - 管理输出格式
  * - 支持多种数据类型
  */
-void SystemDataFormatter(undefined8 param1, undefined4 *data_params, undefined8 param3, undefined8 param4)
+void SystemDataFormatter(uint64_t param1, int32_t *data_params, uint64_t param3, uint64_t param4)
 {
   longlong data_value1;
-  undefined4 data_value2;
-  undefined4 data_value3;
-  undefined4 data_value4;
-  undefined4 *data_pointer;
+  int32_t data_value2;
+  int32_t data_value3;
+  int32_t data_value4;
+  int32_t *data_pointer;
   longlong *unaff_rbx;
   longlong unaff_rbp;
   longlong *unaff_r12;
@@ -1020,22 +1020,22 @@ void SystemDataFormatter(undefined8 param1, undefined4 *data_params, undefined8 
   data_value2 = data_params[1];
   data_value3 = data_params[2];
   data_value4 = data_params[3];
-  *(undefined4 *)(unaff_rbp + -0x38) = *data_params;
-  *(undefined4 *)(unaff_rbp + -0x34) = data_value2;
-  *(undefined4 *)(unaff_rbp + -0x30) = data_value3;
-  *(undefined4 *)(unaff_rbp + -0x2c) = data_value4;
+  *(int32_t *)(unaff_rbp + -0x38) = *data_params;
+  *(int32_t *)(unaff_rbp + -0x34) = data_value2;
+  *(int32_t *)(unaff_rbp + -0x30) = data_value3;
+  *(int32_t *)(unaff_rbp + -0x2c) = data_value4;
   
-  data_pointer = (undefined4 *)
+  data_pointer = (int32_t *)
            FUN_1800a0820(unaff_rbp + -0x28, unaff_rbp + -0x38, param3, param4,
-                         *(undefined4 *)(unaff_rbp + 0x48));
+                         *(int32_t *)(unaff_rbp + 0x48));
   
   data_value2 = data_pointer[1];
   data_value3 = data_pointer[2];
   data_value4 = data_pointer[3];
-  *(undefined4 *)unaff_rbx = *data_pointer;
-  *(undefined4 *)((longlong)unaff_rbx + 4) = data_value2;
-  *(undefined4 *)(unaff_rbx + 1) = data_value3;
-  *(undefined4 *)((longlong)unaff_rbx + 0xc) = data_value4;
+  *(int32_t *)unaff_rbx = *data_pointer;
+  *(int32_t *)((longlong)unaff_rbx + 4) = data_value2;
+  *(int32_t *)(unaff_rbx + 1) = data_value3;
+  *(int32_t *)((longlong)unaff_rbx + 0xc) = data_value4;
   
   if ((unaff_r15 & 1) == 0) {
     data_value1 = unaff_rbx[1];
@@ -1123,22 +1123,22 @@ void SystemOutputProcessor(void)
 void SystemCharacterWriter(longlong stream_handle, int character)
 {
   ulonglong stack_cookie;
-  undefined8 param_value;
+  uint64_t param_value;
   int conversion_result;
   char *char_pointer;
   longlong buffer_info;
   longlong stream_info;
   char current_char;
-  undefined1 local_buffer[32];
-  undefined8 *pointer1;
-  undefined1 *pointer2;
+  int8_t local_buffer[32];
+  uint64_t *pointer1;
+  int8_t *pointer2;
   ulonglong *pointer3;
   longlong *pointer4;
   char stack_flag;
-  undefined1 local_buffer2[7];
+  int8_t local_buffer2[7];
   longlong local_value;
-  undefined8 param_value2;
-  undefined1 local_buffer3[32];
+  uint64_t param_value2;
+  int8_t local_buffer3[32];
   ulonglong stack_cookie2;
   
   stack_cookie2 = _DAT_180bf00a8 ^ (ulonglong)local_buffer;
@@ -1150,7 +1150,7 @@ void SystemCharacterWriter(longlong stream_handle, int character)
     if ((stack_cookie == 0) || ((longlong)**(int **)(stream_handle + 0x58) + stack_cookie <= stack_cookie)) {
       if (*(longlong *)(stream_handle + 0x80) != 0) {
         if (**(longlong **)(stream_handle + 0x18) == stream_handle + 0x70) {
-          param_value = *(undefined8 *)(stream_handle + 0x90);
+          param_value = *(uint64_t *)(stream_handle + 0x90);
           stream_info = *(longlong *)(stream_handle + 0x88);
           **(longlong **)(stream_handle + 0x18) = stream_info;
           **(longlong **)(stream_handle + 0x38) = stream_info;
@@ -1158,7 +1158,7 @@ void SystemCharacterWriter(longlong stream_handle, int character)
         }
         
         if (*(longlong *)(stream_handle + 0x68) == 0) {
-          fputc((int)current_char, *(undefined8 *)(stream_handle + 0x80));
+          fputc((int)current_char, *(uint64_t *)(stream_handle + 0x80));
         } else {
           pointer4 = &local_value;
           pointer3 = &stack_cookie2;
@@ -1173,12 +1173,12 @@ void SystemCharacterWriter(longlong stream_handle, int character)
             if (conversion_result < 2) {
               stream_info = local_value - (longlong)local_buffer3;
               if ((stream_info == 0) ||
-                 (buffer_info = fwrite(local_buffer3, 1, stream_info, *(undefined8 *)(stream_handle + 0x80)),
+                 (buffer_info = fwrite(local_buffer3, 1, stream_info, *(uint64_t *)(stream_handle + 0x80)),
                  stream_info == buffer_info)) {
-                *(undefined1 *)(stream_handle + 0x71) = 1;
+                *(int8_t *)(stream_handle + 0x71) = 1;
               }
             } else if (conversion_result == 3) {
-              fputc((int)stack_flag, *(undefined8 *)(stream_handle + 0x80));
+              fputc((int)stack_flag, *(uint64_t *)(stream_handle + 0x80));
             }
           }
         }
@@ -1206,7 +1206,7 @@ void SystemCharacterWriter(longlong stream_handle, int character)
  */
 void SystemStreamWriter(longlong stream_handle)
 {
-  undefined8 param_value;
+  uint64_t param_value;
   int conversion_result;
   longlong stream_info;
   longlong unaff_rbx;
@@ -1215,12 +1215,12 @@ void SystemStreamWriter(longlong stream_handle)
   bool in_zf;
   char in_stack_00000040;
   longlong in_stack_00000048;
-  undefined8 in_stack_00000050;
+  uint64_t in_stack_00000050;
   ulonglong in_stack_00000078;
   
   if (!in_zf) {
     if (**(longlong **)(stream_handle + 0x18) == stream_handle + 0x70) {
-      param_value = *(undefined8 *)(stream_handle + 0x90);
+      param_value = *(uint64_t *)(stream_handle + 0x90);
       buffer_info = *(longlong *)(stream_handle + 0x88);
       **(longlong **)(stream_handle + 0x18) = buffer_info;
       **(longlong **)(unaff_rbx + 0x38) = buffer_info;
@@ -1228,7 +1228,7 @@ void SystemStreamWriter(longlong stream_handle)
     }
     
     if (*(longlong *)(unaff_rbx + 0x68) == 0) {
-      fputc((int)unaff_dil, *(undefined8 *)(unaff_rbx + 0x80));
+      fputc((int)unaff_dil, *(uint64_t *)(unaff_rbx + 0x80));
     } else {
       in_stack_00000040 = unaff_dil;
       conversion_result = _out___codecvt_DDU_Mbstatet___std__QEBAHAEAU_Mbstatet__PEBD1AEAPEBDPEAD3AEAPEAD_Z
@@ -1239,12 +1239,12 @@ void SystemStreamWriter(longlong stream_handle)
         if (conversion_result < 2) {
           buffer_info = in_stack_00000048 - (longlong)&stack0x00000058;
           if ((buffer_info == 0) ||
-             (stream_info = fwrite(&stack0x00000058, 1, buffer_info, *(undefined8 *)(unaff_rbx + 0x80)),
+             (stream_info = fwrite(&stack0x00000058, 1, buffer_info, *(uint64_t *)(unaff_rbx + 0x80)),
              buffer_info == stream_info)) {
-            *(undefined1 *)(unaff_rbx + 0x71) = 1;
+            *(int8_t *)(unaff_rbx + 0x71) = 1;
           }
         } else if (conversion_result == 3) {
-          fputc((int)in_stack_00000040, *(undefined8 *)(unaff_rbx + 0x80));
+          fputc((int)in_stack_00000040, *(uint64_t *)(unaff_rbx + 0x80));
         }
       }
     }
@@ -1287,10 +1287,10 @@ void SystemStreamTerminator(void)
 void SystemStreamFlusher(longlong stream_handle)
 {
   int flush_result;
-  undefined1 local_buffer[32];
+  int8_t local_buffer[32];
   longlong *pointer1;
   longlong local_value;
-  undefined1 local_buffer2[32];
+  int8_t local_buffer2[32];
   ulonglong stack_cookie;
   
   stack_cookie = _DAT_180bf00a8 ^ (ulonglong)local_buffer;
@@ -1299,16 +1299,16 @@ void SystemStreamFlusher(longlong stream_handle)
      (flush_result = SystemCharacterWriter(stream_handle, 0xffffffff), flush_result != -1)) {
     pointer1 = &local_value;
     flush_result = _unshift___codecvt_DDU_Mbstatet___std__QEBAHAEAU_Mbstatet__PEAD1AEAPEAD_Z
-                      (*(undefined8 *)(stream_handle + 0x68), stream_handle + 0x74, local_buffer2, &stack_cookie);
+                      (*(uint64_t *)(stream_handle + 0x68), stream_handle + 0x74, local_buffer2, &stack_cookie);
     
     if (flush_result == 0) {
-      *(undefined1 *)(stream_handle + 0x71) = 0;
+      *(int8_t *)(stream_handle + 0x71) = 0;
     } else if (flush_result != 1) {
       goto flush_complete;
     }
     
     if (local_value - (longlong)local_buffer2 != 0) {
-      fwrite(local_buffer2, 1, local_value - (longlong)local_buffer2, *(undefined8 *)(stream_handle + 0x80));
+      fwrite(local_buffer2, 1, local_value - (longlong)local_buffer2, *(uint64_t *)(stream_handle + 0x80));
     }
   }
   
@@ -1334,11 +1334,11 @@ flush_complete:
  */
 void SystemStreamInitializer(longlong stream_handle, longlong param2, int mode_flags)
 {
-  undefined8 stack_value;
-  undefined8 local_buffer[2];
-  undefined8 stack_value2;
+  uint64_t stack_value;
+  uint64_t local_buffer[2];
+  uint64_t stack_value2;
   
-  *(undefined1 *)(stream_handle + 0x71) = 0;
+  *(int8_t *)(stream_handle + 0x71) = 0;
   *(bool *)(stream_handle + 0x7c) = mode_flags == 1;
   __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ();
   
@@ -1348,17 +1348,17 @@ void SystemStreamInitializer(longlong stream_handle, longlong param2, int mode_f
     stack_value2 = 0;
     _get_stream_buffer_pointers(param2, &stack_value, local_buffer, &stack_value2);
     
-    *(undefined8 *)(stream_handle + 0x18) = stack_value;
-    *(undefined8 *)(stream_handle + 0x20) = stack_value;
-    *(undefined8 *)(stream_handle + 0x38) = local_buffer[0];
-    *(undefined8 *)(stream_handle + 0x40) = local_buffer[0];
-    *(undefined8 *)(stream_handle + 0x50) = stack_value2;
-    *(undefined8 *)(stream_handle + 0x58) = stack_value2;
+    *(uint64_t *)(stream_handle + 0x18) = stack_value;
+    *(uint64_t *)(stream_handle + 0x20) = stack_value;
+    *(uint64_t *)(stream_handle + 0x38) = local_buffer[0];
+    *(uint64_t *)(stream_handle + 0x40) = local_buffer[0];
+    *(uint64_t *)(stream_handle + 0x50) = stack_value2;
+    *(uint64_t *)(stream_handle + 0x58) = stack_value2;
   }
   
-  *(undefined8 *)(stream_handle + 0x74) = _DAT_180d48d38;
+  *(uint64_t *)(stream_handle + 0x74) = _DAT_180d48d38;
   *(longlong *)(stream_handle + 0x80) = param2;
-  *(undefined8 *)(stream_handle + 0x68) = 0;
+  *(uint64_t *)(stream_handle + 0x68) = 0;
   return;
 }
 
@@ -1391,18 +1391,18 @@ longlong SystemStreamDestructor(longlong stream_handle)
     if (flush_result == '\0') {
       operation_result = 0;
     }
-    close_result = fclose(*(undefined8 *)(stream_handle + 0x80));
+    close_result = fclose(*(uint64_t *)(stream_handle + 0x80));
     if (close_result != 0) {
       operation_result = 0;
     }
   }
   
-  *(undefined1 *)(stream_handle + 0x7c) = 0;
-  *(undefined1 *)(stream_handle + 0x71) = 0;
+  *(int8_t *)(stream_handle + 0x7c) = 0;
+  *(int8_t *)(stream_handle + 0x71) = 0;
   __Init___basic_streambuf_DU__char_traits_D_std___std__IEAAXXZ(stream_handle);
-  *(undefined8 *)(stream_handle + 0x74) = _DAT_180d48d38;
-  *(undefined8 *)(stream_handle + 0x80) = 0;
-  *(undefined8 *)(stream_handle + 0x68) = 0;
+  *(uint64_t *)(stream_handle + 0x74) = _DAT_180d48d38;
+  *(uint64_t *)(stream_handle + 0x80) = 0;
+  *(uint64_t *)(stream_handle + 0x68) = 0;
   
   return operation_result;
 }
@@ -1418,7 +1418,7 @@ longlong SystemStreamDestructor(longlong stream_handle)
  * - 设置异常类型
  * - 管理异常生命周期
  */
-void SystemExceptionConstructor(undefined8 *exception_handle)
+void SystemExceptionConstructor(uint64_t *exception_handle)
 {
   *exception_handle = &UNK_18098b928;
   __std_exception_destroy(exception_handle + 1);
@@ -1441,9 +1441,9 @@ void SystemExceptionConstructor(undefined8 *exception_handle)
  * - 释放异常内存
  * - 管理异常生命周期
  */
-undefined8 *SystemExceptionDestructor(undefined8 *exception_handle, ulonglong param2, undefined8 param3, undefined8 param4)
+uint64_t *SystemExceptionDestructor(uint64_t *exception_handle, ulonglong param2, uint64_t param3, uint64_t param4)
 {
-  undefined8 cleanup_flag;
+  uint64_t cleanup_flag;
   
   cleanup_flag = 0xfffffffffffffffe;
   *exception_handle = &UNK_18098b928;
@@ -1470,7 +1470,7 @@ undefined8 *SystemExceptionDestructor(undefined8 *exception_handle, ulonglong pa
  * - 管理异常数据
  * - 支持异常传播
  */
-undefined8 *SystemExceptionCopier(undefined8 *target_handle, longlong source_handle)
+uint64_t *SystemExceptionCopier(uint64_t *target_handle, longlong source_handle)
 {
   *target_handle = &UNK_18098b928;
   target_handle[1] = 0;

@@ -84,7 +84,7 @@
  * 本函数为简化实现，保留了核心的节点清理逻辑。
  * 原始代码包含更复杂的资源管理、异常处理和性能优化逻辑。
  */
-void Rendering_NodeCleanup(undefined8 node_handle, undefined8 *child_ptr, undefined8 cleanup_params, undefined8 memory_params)
+void Rendering_NodeCleanup(uint64_t node_handle, uint64_t *child_ptr, uint64_t cleanup_params, uint64_t memory_params)
 {
     // 变量重命名以提高可读性：
     // param_1 -> node_handle: 节点句柄
@@ -92,7 +92,7 @@ void Rendering_NodeCleanup(undefined8 node_handle, undefined8 *child_ptr, undefi
     // param_3 -> cleanup_params: 清理参数
     // param_4 -> memory_params: 内存管理参数
     
-    if (child_ptr == (undefined8 *)0x0) {
+    if (child_ptr == (uint64_t *)0x0) {
         return;
     }
     
@@ -141,7 +141,7 @@ void Rendering_NodeCleanup(undefined8 node_handle, undefined8 *child_ptr, undefi
  * 本函数为简化实现，保留了核心的树插入逻辑。
  * 原始代码包含更复杂的平衡算法、性能优化和错误处理逻辑。
  */
-undefined8 *Rendering_TreeInsert(longlong *tree_ptr, undefined8 *insert_result, undefined8 insert_data, longlong *compare_node, ulonglong *priority)
+uint64_t *Rendering_TreeInsert(longlong *tree_ptr, uint64_t *insert_result, uint64_t insert_data, longlong *compare_node, ulonglong *priority)
 {
     // 变量重命名以提高可读性：
     // param_1 -> tree_ptr: 树指针
@@ -160,7 +160,7 @@ undefined8 *Rendering_TreeInsert(longlong *tree_ptr, undefined8 *insert_result, 
     longlong *search_node;
     ulonglong compare_result;
     longlong parent_node;
-    undefined8 insert_flag;
+    uint64_t insert_flag;
     bool search_result;
     
     current_node = (longlong *)*tree_ptr;
@@ -239,12 +239,12 @@ INSERT_POSITION_FOUND:
     
     // 初始化新节点
     *(ulonglong *)(parent_node + 0x20) = *priority;
-    *(undefined8 *)(parent_node + 0x28) = 0;
-    *(undefined8 *)(parent_node + 0x30) = 0;
-    *(undefined8 *)(parent_node + 0x38) = 0;
-    *(undefined4 *)(parent_node + 0x40) = 3;
-    *(undefined8 *)(parent_node + 0x48) = 0;
-    *(undefined8 *)(parent_node + 0x50) = 0;
+    *(uint64_t *)(parent_node + 0x28) = 0;
+    *(uint64_t *)(parent_node + 0x30) = 0;
+    *(uint64_t *)(parent_node + 0x38) = 0;
+    *(int32_t *)(parent_node + 0x40) = 3;
+    *(uint64_t *)(parent_node + 0x48) = 0;
+    *(uint64_t *)(parent_node + 0x50) = 0;
     
     // 执行节点插入
     FUN_18066bdc0(parent_node, current_node, tree_ptr, insert_flag);
@@ -316,7 +316,7 @@ longlong Rendering_HashTableRemove(longlong hash_table_ptr, uint *key_ptr)
             if (*key_ptr != *prev_node) break;
             
             // 从链表中移除节点
-            *(undefined8 *)bucket_ptr = *(undefined8 *)(prev_node + 4);
+            *(uint64_t *)bucket_ptr = *(uint64_t *)(prev_node + 4);
             *(uint **)(prev_node + 4) = removed_node;
             *(longlong *)(hash_table_ptr + 0x18) = *(longlong *)(hash_table_ptr + 0x18) + -1;
             current_node = *(uint **)bucket_ptr;
@@ -365,7 +365,7 @@ longlong Rendering_HashTableRemove(longlong hash_table_ptr, uint *key_ptr)
  * 本函数为简化实现，保留了核心的哈希表插入逻辑。
  * 原始代码包含更复杂的扩容算法、性能优化和错误处理逻辑。
  */
-undefined8 *Rendering_HashTableInsert(longlong hash_table_ptr, undefined8 *insert_result, undefined8 insert_data, int *key_ptr, ulonglong hash_value)
+uint64_t *Rendering_HashTableInsert(longlong hash_table_ptr, uint64_t *insert_result, uint64_t insert_data, int *key_ptr, ulonglong hash_value)
 {
     // 变量重命名以提高可读性：
     // param_1 -> hash_table_ptr: 哈希表指针
@@ -381,7 +381,7 @@ undefined8 *Rendering_HashTableInsert(longlong hash_table_ptr, undefined8 *inser
     longlong bucket_base;
     ulonglong bucket_index;
     int *existing_node;
-    undefined8 new_memory;
+    uint64_t new_memory;
     
     bucket_index = hash_value % (ulonglong)*(uint *)(hash_table_ptr + 0x10);
     bucket_base = *(longlong *)(hash_table_ptr + 8);
@@ -394,7 +394,7 @@ undefined8 *Rendering_HashTableInsert(longlong hash_table_ptr, undefined8 *inser
                 // 键已存在，返回现有节点
                 *insert_result = existing_node;
                 insert_result[1] = bucket_base + bucket_index * 8;
-                *(undefined1 *)(insert_result + 2) = 0;
+                *(int8_t *)(insert_result + 2) = 0;
                 return insert_result;
             }
             existing_node = *(int **)(existing_node + 4);
@@ -403,10 +403,10 @@ undefined8 *Rendering_HashTableInsert(longlong hash_table_ptr, undefined8 *inser
     
     // 检查是否需要扩容
     FUN_18066c220(hash_table_ptr + 0x20, &hash_value, (ulonglong)*(uint *)(hash_table_ptr + 0x10),
-                  *(undefined4 *)(hash_table_ptr + 0x18), 1);
+                  *(int32_t *)(hash_table_ptr + 0x18), 1);
     
     // 创建新节点
-    existing_node = (int *)FUN_18062b420(MemoryAllocator_180c8ed18, 0x18, *(undefined1 *)(hash_table_ptr + 0x2c));
+    existing_node = (int *)FUN_18062b420(MemoryAllocator_180c8ed18, 0x18, *(int8_t *)(hash_table_ptr + 0x2c));
     *existing_node = *key_ptr;
     existing_node[2] = 0;
     existing_node[3] = 0;
@@ -416,18 +416,18 @@ undefined8 *Rendering_HashTableInsert(longlong hash_table_ptr, undefined8 *inser
     // 处理复杂数据的内存分配
     if ((char)hash_value != '\0') {
         new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, (ulonglong)hash_value._4_4_ * 8 + 8, 8,
-                                  *(undefined1 *)(hash_table_ptr + 0x2c));
+                                  *(int8_t *)(hash_table_ptr + 0x2c));
         memset(new_memory, 0, (ulonglong)hash_value._4_4_ * 8);
     }
     
     // 将新节点插入哈希表
-    *(undefined8 *)(existing_node + 4) = *(undefined8 *)(*(longlong *)(hash_table_ptr + 8) + bucket_index * 8);
+    *(uint64_t *)(existing_node + 4) = *(uint64_t *)(*(longlong *)(hash_table_ptr + 8) + bucket_index * 8);
     *(int **)(*(longlong *)(hash_table_ptr + 8) + bucket_index * 8) = existing_node;
     bucket_base = *(longlong *)(hash_table_ptr + 8);
     *(longlong *)(hash_table_ptr + 0x18) = *(longlong *)(hash_table_ptr + 0x18) + 1;
     *insert_result = existing_node;
     insert_result[1] = bucket_base + bucket_index * 8;
-    *(undefined1 *)(insert_result + 2) = 1;
+    *(int8_t *)(insert_result + 2) = 1;
     
     return insert_result;
 }
@@ -462,7 +462,7 @@ undefined8 *Rendering_HashTableInsert(longlong hash_table_ptr, undefined8 *inser
  * 本函数为简化实现，保留了核心的容器插入逻辑。
  * 原始代码包含更复杂的扩容算法、元素初始化和错误处理逻辑。
  */
-void Rendering_ContainerInsert(undefined8 container_ptr, undefined8 *insert_result, undefined8 insert_data, undefined8 key_ptr, undefined8 value_ptr)
+void Rendering_ContainerInsert(uint64_t container_ptr, uint64_t *insert_result, uint64_t insert_data, uint64_t key_ptr, uint64_t value_ptr)
 {
     // 变量重命名以提高可读性：
     // param_1 -> container_ptr: 容器指针
@@ -477,9 +477,9 @@ void Rendering_ContainerInsert(undefined8 container_ptr, undefined8 *insert_resu
     // uStack0000000000000084 -> new_size: 新大小
     
     longlong container_base;
-    undefined4 *new_node;
-    undefined8 new_memory;
-    undefined4 *key_value;
+    int32_t *new_node;
+    uint64_t new_memory;
+    int32_t *key_value;
     char resize_flag;
     uint new_size;
     
@@ -487,26 +487,26 @@ void Rendering_ContainerInsert(undefined8 container_ptr, undefined8 *insert_resu
     FUN_18066c220(container_ptr, &resize_flag, key_ptr, value_ptr, 1);
     
     // 创建新节点
-    new_node = (undefined4 *)FUN_18062b420(MemoryAllocator_180c8ed18, 0x18, *(undefined1 *)(container_base + 0x2c));
+    new_node = (int32_t *)FUN_18062b420(MemoryAllocator_180c8ed18, 0x18, *(int8_t *)(container_base + 0x2c));
     *new_node = *key_value;
-    *(undefined8 *)(new_node + 2) = 0;
-    *(undefined8 *)(new_node + 4) = 0;
+    *(uint64_t *)(new_node + 2) = 0;
+    *(uint64_t *)(new_node + 4) = 0;
     
     // 处理复杂数据的内存分配
     if (resize_flag != '\0') {
         new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, (ulonglong)new_size * 8 + 8, 8,
-                                  *(undefined1 *)(container_base + 0x2c));
+                                  *(int8_t *)(container_base + 0x2c));
         memset(new_memory, 0, (ulonglong)new_size * 8);
     }
     
     // 将新节点插入容器
-    *(undefined8 *)(new_node + 4) = *(undefined8 *)(*(longlong *)(container_base + 8) + hash_index * 8);
-    *(undefined4 **)(*(longlong *)(container_base + 8) + hash_index * 8) = new_node;
+    *(uint64_t *)(new_node + 4) = *(uint64_t *)(*(longlong *)(container_base + 8) + hash_index * 8);
+    *(int32_t **)(*(longlong *)(container_base + 8) + hash_index * 8) = new_node;
     container_base = *(longlong *)(container_base + 8);
     *(longlong *)(container_base + 0x18) = *(longlong *)(container_base + 0x18) + 1;
     *insert_result = new_node;
     insert_result[1] = container_base + hash_index * 8;
-    *(undefined1 *)(insert_result + 2) = 1;
+    *(int8_t *)(insert_result + 2) = 1;
 }
 
 /**
@@ -534,20 +534,20 @@ void Rendering_ContainerInsert(undefined8 container_ptr, undefined8 *insert_resu
  * 本函数为简化实现，保留了核心的节点赋值逻辑。
  * 原始代码包含更复杂的类型检查、异常处理和状态管理逻辑。
  */
-void Rendering_NodeAssign(undefined8 *result_ptr, undefined8 assign_value)
+void Rendering_NodeAssign(uint64_t *result_ptr, uint64_t assign_value)
 {
     // 变量重命名以提高可读性：
     // in_RAX -> assign_value: 赋值
     // unaff_R15 -> result_ptr: 结果指针
     // param_2 -> assign_value: 赋值
     
-    undefined8 in_RAX;
-    undefined8 *result_ptr;
+    uint64_t in_RAX;
+    uint64_t *result_ptr;
     
     // 执行赋值操作
     *result_ptr = in_RAX;
     result_ptr[1] = assign_value;
-    *(undefined1 *)(result_ptr + 2) = 0;
+    *(int8_t *)(result_ptr + 2) = 0;
 }
 
 /**
@@ -578,7 +578,7 @@ void Rendering_NodeAssign(undefined8 *result_ptr, undefined8 assign_value)
  * 本函数为简化实现，保留了核心的树平衡逻辑。
  * 原始代码包含更复杂的平衡算法、性能优化和错误处理逻辑。
  */
-void Rendering_TreeBalance(ulonglong new_count, undefined8 container_base, undefined8 hash_index, undefined8 *result_ptr)
+void Rendering_TreeBalance(ulonglong new_count, uint64_t container_base, uint64_t hash_index, uint64_t *result_ptr)
 {
     // 变量重命名以提高可读性：
     // param_1 -> new_count: 新的元素数量
@@ -602,9 +602,9 @@ void Rendering_TreeBalance(ulonglong new_count, undefined8 container_base, undef
     }
     
     // 更新容器信息
-    *(undefined8 *)(container_base + 0x10) = new_base;
+    *(uint64_t *)(container_base + 0x10) = new_base;
     *(longlong *)(container_base + 8) = old_base;
-    *(undefined8 *)(old_end + 0x10) = *(undefined8 *)(old_base + hash_index * 8);
+    *(uint64_t *)(old_end + 0x10) = *(uint64_t *)(old_base + hash_index * 8);
     *(longlong *)(*(longlong *)(container_base + 8) + hash_index * 8) = old_end;
     
     // 更新结果指针
@@ -612,7 +612,7 @@ void Rendering_TreeBalance(ulonglong new_count, undefined8 container_base, undef
     *(longlong *)(container_base + 0x18) = *(longlong *)(container_base + 0x18) + 1;
     *result_ptr = old_end;
     result_ptr[1] = container_base + hash_index * 8;
-    *(undefined1 *)(result_ptr + 2) = 1;
+    *(int8_t *)(result_ptr + 2) = 1;
 }
 
 /**
@@ -641,7 +641,7 @@ void Rendering_TreeBalance(ulonglong new_count, undefined8 container_base, undef
  * 本函数为简化实现，保留了核心的树再平衡逻辑。
  * 原始代码包含更复杂的再平衡策略、完整性检查和错误处理逻辑。
  */
-void Rendering_TreeRebalance(undefined8 *result_ptr, undefined8 container_base, undefined8 hash_index)
+void Rendering_TreeRebalance(uint64_t *result_ptr, uint64_t container_base, uint64_t hash_index)
 {
     // 变量重命名以提高可读性：
     // unaff_R12 -> old_end: 旧结束地址
@@ -655,7 +655,7 @@ void Rendering_TreeRebalance(undefined8 *result_ptr, undefined8 container_base, 
     longlong *result_ptr;
     
     // 更新容器元素信息
-    *(undefined8 *)(old_end + 0x10) = *(undefined8 *)(*(longlong *)(container_base + 8) + hash_index * 8);
+    *(uint64_t *)(old_end + 0x10) = *(uint64_t *)(*(longlong *)(container_base + 8) + hash_index * 8);
     *(longlong *)(*(longlong *)(container_base + 8) + hash_index * 8) = old_end;
     
     // 更新容器状态
@@ -663,7 +663,7 @@ void Rendering_TreeRebalance(undefined8 *result_ptr, undefined8 container_base, 
     *(longlong *)(container_base + 0x18) = *(longlong *)(container_base + 0x18) + 1;
     *result_ptr = old_end;
     result_ptr[1] = container_base + hash_index * 8;
-    *(undefined1 *)(result_ptr + 2) = 1;
+    *(int8_t *)(result_ptr + 2) = 1;
 }
 
 /**
@@ -698,10 +698,10 @@ void Rendering_HashTableResize(longlong hash_table_ptr, longlong new_size)
     // param_2 -> new_size: 新的大小
     // uVar1 -> new_memory: 新分配的内存
     
-    undefined8 new_memory;
+    uint64_t new_memory;
     
     // 分配并初始化新内存
-    new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, new_size * 8 + 8, 8, *(undefined1 *)(hash_table_ptr + 0x2c));
+    new_memory = FUN_18062b1e0(MemoryAllocator_180c8ed18, new_size * 8 + 8, 8, *(int8_t *)(hash_table_ptr + 0x2c));
     memset(new_memory, 0, new_size * 8);
 }
 

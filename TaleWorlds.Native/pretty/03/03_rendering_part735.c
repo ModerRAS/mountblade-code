@@ -80,12 +80,12 @@ typedef struct {
 // ============================================================================
 // 外部函数声明
 // ============================================================================
-extern undefined2 func_0x00018069eed0(int index, uint param2);
-extern undefined2 func_0x00018069ee90(int index, uint param2);
-extern undefined2 func_0x00018069ef00(int index, uint param2);
-extern undefined2 func_0x00018069ee60(int index);
-extern undefined2 func_0x00018069edf0(int index, uint param2);
-extern undefined2 func_0x00018069ee30(int index, uint param2);
+extern int16_t func_0x00018069eed0(int index, uint param2);
+extern int16_t func_0x00018069ee90(int index, uint param2);
+extern int16_t func_0x00018069ef00(int index, uint param2);
+extern int16_t func_0x00018069ee60(int index);
+extern int16_t func_0x00018069edf0(int index, uint param2);
+extern int16_t func_0x00018069ee30(int index, uint param2);
 extern void FUN_18069ec80(void);
 extern void LOCK(void);
 extern void UNLOCK(void);
@@ -98,9 +98,9 @@ extern void free(void* ptr);
 extern void FUN_1808fc050(ulonglong param);
 extern void func_0x000180029620(void* param1, ...);
 extern void func_0x0001800296e1(void);
-extern void func_0x00018002acc0(undefined8 param1, ...);
+extern void func_0x00018002acc0(uint64_t param1, ...);
 extern void func_0x00018001a840(void* param1, ...);
-extern void func_0x00018002b38a(undefined8 param1, ...);
+extern void func_0x00018002b38a(uint64_t param1, ...);
 extern void func_0x00018001b1ed(void* param1, ...);
 
 // ============================================================================
@@ -111,20 +111,20 @@ extern ulonglong _DAT_180c0c210;              // 临界区指针
 extern int _DAT_180c0c218;                    // 引用计数
 extern int _DAT_180c0c21c;                    // 初始化标志
 extern byte UNK_1809495c0[];                   // 未知数据表
-extern undefined1 _DAT_180d9e5c0[16];          // 数据掩码
-extern undefined1 _DAT_180d9e5d0[16];          // 数据基准
-extern undefined1 _DAT_180d9e5f0[16];          // 偏移量1
-extern undefined1 _DAT_180d9e600[16];          // 偏移量2
-extern undefined1 _DAT_180d9e640[16];          // 掩码1
-extern undefined1 _DAT_180d9e650[16];          // 掩码2
+extern int8_t _DAT_180d9e5c0[16];          // 数据掩码
+extern int8_t _DAT_180d9e5d0[16];          // 数据基准
+extern int8_t _DAT_180d9e5f0[16];          // 偏移量1
+extern int8_t _DAT_180d9e600[16];          // 偏移量2
+extern int8_t _DAT_180d9e640[16];          // 掩码1
+extern int8_t _DAT_180d9e650[16];          // 掩码2
 
 // ============================================================================
 // SIMD函数声明
 // ============================================================================
-extern undefined1 psubusb(undefined1 a, undefined1 b);
-extern undefined1 paddusb(undefined1 a, undefined1 b);
-extern undefined1 psubsb(undefined1 a, undefined1 b);
-extern undefined1 paddsb(undefined1 a, undefined1 b);
+extern int8_t psubusb(int8_t a, int8_t b);
+extern int8_t paddusb(int8_t a, int8_t b);
+extern int8_t psubsb(int8_t a, int8_t b);
+extern int8_t paddsb(int8_t a, int8_t b);
 
 // ============================================================================
 // 函数实现: 渲染数据处理器初始化数据缓冲区
@@ -134,12 +134,12 @@ extern undefined1 paddsb(undefined1 a, undefined1 b);
 // ============================================================================
 void FUN_18069bb20(longlong param_1)
 {
-    undefined2 data_value;
+    int16_t data_value;
     int iteration_index;
-    undefined2* buffer_ptr;
+    int16_t* buffer_ptr;
     
     // 获取缓冲区指针并初始化迭代器
-    buffer_ptr = (undefined2 *)(param_1 + RENDER_DATA_BUFFER_SIZE);
+    buffer_ptr = (int16_t *)(param_1 + RENDER_DATA_BUFFER_SIZE);
     iteration_index = 0;
     
     // 循环处理渲染数据
@@ -267,7 +267,7 @@ void FUN_18069bc50(longlong param_1)
 //         param_2 - 填充值指针
 // 返回值: 无
 // ============================================================================
-void FUN_18069bd60(longlong param_1, undefined1 *param_2)
+void FUN_18069bd60(longlong param_1, int8_t *param_2)
 {
     memset((longlong)param_2 - (ulonglong)*(uint *)(param_1 + 100), *param_2, *(uint *)(param_1 + 100));
 }
@@ -531,29 +531,29 @@ void FUN_18069c023(void)
 //         param_9 - 渲染标志
 // 返回值: 无
 // ============================================================================
-void FUN_18069c080(longlong param_1, undefined8 param_2, undefined8 param_3, undefined1 *param_4,
-                  undefined1 *param_5, int param_6, undefined8 param_7, undefined8 param_8, int param_9)
+void FUN_18069c080(longlong param_1, uint64_t param_2, uint64_t param_3, int8_t *param_4,
+                  int8_t *param_5, int param_6, uint64_t param_7, uint64_t param_8, int param_9)
 {
     byte render_mode;
     longlong data_offset;
     code *texture_processor;
-    undefined1 stack_buffer[RENDER_STACK_BUFFER_SIZE];
-    undefined1 uStack_48;
-    undefined1 uStack_47;
-    undefined1 uStack_46;
-    undefined1 uStack_45;
-    undefined1 uStack_44;
-    undefined1 uStack_43;
-    undefined1 uStack_42;
-    undefined1 uStack_41;
-    undefined1 uStack_40;
-    undefined1 uStack_3f;
-    undefined1 uStack_3e;
-    undefined1 uStack_3d;
-    undefined1 uStack_3c;
-    undefined1 uStack_3b;
-    undefined1 uStack_3a;
-    undefined1 uStack_39;
+    int8_t stack_buffer[RENDER_STACK_BUFFER_SIZE];
+    int8_t uStack_48;
+    int8_t uStack_47;
+    int8_t uStack_46;
+    int8_t uStack_45;
+    int8_t uStack_44;
+    int8_t uStack_43;
+    int8_t uStack_42;
+    int8_t uStack_41;
+    int8_t uStack_40;
+    int8_t uStack_3f;
+    int8_t uStack_3e;
+    int8_t uStack_3d;
+    int8_t uStack_3c;
+    int8_t uStack_3b;
+    int8_t uStack_3a;
+    int8_t uStack_39;
     ulonglong security_cookie;
     
     // 设置安全cookie
@@ -609,15 +609,15 @@ void FUN_18069c080(longlong param_1, undefined8 param_2, undefined8 param_3, und
 //         param_6 - 渲染标志
 // 返回值: 无
 // ============================================================================
-void FUN_18069c200(longlong param_1, undefined8 param_2, undefined1 *param_3, int param_4,
-                  undefined8 param_5, int param_6)
+void FUN_18069c200(longlong param_1, uint64_t param_2, int8_t *param_3, int param_4,
+                  uint64_t param_5, int param_6)
 {
     byte render_mode;
-    undefined1 data_value;
+    int8_t data_value;
     longlong data_index;
     code *texture_processor;
-    undefined1 stack_buffer[RENDER_STACK_BUFFER_SIZE];
-    undefined1 data_chunk[RENDER_DATA_CHUNK_SIZE];
+    int8_t stack_buffer[RENDER_STACK_BUFFER_SIZE];
+    int8_t data_chunk[RENDER_DATA_CHUNK_SIZE];
     ulonglong security_cookie;
     
     // 设置安全cookie
@@ -662,7 +662,7 @@ void FUN_18069c200(longlong param_1, undefined8 param_2, undefined1 *param_3, in
 //         param_8 - 参数8
 // 返回值: 无
 // ============================================================================
-void FUN_18069c3b0(undefined1 *param_1, int param_2, int param_3, int param_4, int param_5, int param_6,
+void FUN_18069c3b0(int8_t *param_1, int param_2, int param_3, int param_4, int param_5, int param_6,
                   int param_7, int param_8)
 {
     longlong data_offset;
@@ -698,21 +698,21 @@ void FUN_18069c3b0(undefined1 *param_1, int param_2, int param_3, int param_4, i
 //         param_4 - 参数4
 // 返回值: 无
 // ============================================================================
-void FUN_18069c3f3(int param_1, int param_2, undefined8 param_3, longlong param_4)
+void FUN_18069c3f3(int param_1, int param_2, uint64_t param_3, longlong param_4)
 {
     longlong in_RAX;
     longlong in_R10;
     int in_R11D;
-    undefined8 unaff_R12;
+    uint64_t unaff_R12;
     int unaff_R13D;
-    undefined8 unaff_R15;
+    uint64_t unaff_R15;
     int in_stack_000000a0;
     int iStack00000000000000a8;
     int in_stack_000000b0;
     
-    *(undefined8 *)(in_RAX + 0x18) = unaff_R12;
+    *(uint64_t *)(in_RAX + 0x18) = unaff_R12;
     iStack00000000000000a8 = param_2 + param_1;
-    *(undefined8 *)(in_RAX + -0x38) = unaff_R15;
+    *(uint64_t *)(in_RAX + -0x38) = unaff_R15;
     
     if (0 < in_R11D) {
         memset();
@@ -754,30 +754,30 @@ void FUN_18069c540(int *param_1, int *param_2)
     
     // 复制主要数据块
     if (0 < param_1[1]) {
-        memcpy(*(undefined8 *)(param_2 + 0xe), *(undefined8 *)(param_1 + 0xe), (longlong)*param_1);
+        memcpy(*(uint64_t *)(param_2 + 0xe), *(uint64_t *)(param_1 + 0xe), (longlong)*param_1);
     }
     
     // 复制次要数据块1
     if (0 < param_1[6]) {
-        memcpy(*(undefined8 *)(param_2 + 0x10), *(undefined8 *)(param_1 + 0x10), (longlong)param_1[5]);
+        memcpy(*(uint64_t *)(param_2 + 0x10), *(uint64_t *)(param_1 + 0x10), (longlong)param_1[5]);
     }
     
     // 复制次要数据块2
     if (0 < param_1[6]) {
-        memcpy(*(undefined8 *)(param_2 + 0x12), *(undefined8 *)(param_1 + 0x12), (longlong)param_1[5]);
+        memcpy(*(uint64_t *)(param_2 + 0x12), *(uint64_t *)(param_1 + 0x12), (longlong)param_1[5]);
     }
     
     // 处理数据块
     data_size = param_2[0x19];
     block_count = data_size / 2;
     
-    FUN_18069c3b0(*(undefined8 *)(param_2 + 0xe), param_2[4], param_2[2], param_2[3], data_size, data_size,
+    FUN_18069c3b0(*(uint64_t *)(param_2 + 0xe), param_2[4], param_2[2], param_2[3], data_size, data_size,
                   (param_2[1] - param_2[3]) + data_size, (data_size - param_2[2]) + *param_2);
     
-    FUN_18069c3b0(*(undefined8 *)(param_2 + 0x10), param_2[9], param_2[7], param_2[8], block_count, block_count,
+    FUN_18069c3b0(*(uint64_t *)(param_2 + 0x10), param_2[9], param_2[7], param_2[8], block_count, block_count,
                   (param_2[6] - param_2[8]) + block_count, (param_2[5] - param_2[7]) + block_count);
     
-    FUN_18069c3b0(*(undefined8 *)(param_2 + 0x12), param_2[9], param_2[7], param_2[8], block_count, block_count,
+    FUN_18069c3b0(*(uint64_t *)(param_2 + 0x12), param_2[9], param_2[7], param_2[8], block_count, block_count,
                   (param_2[6] - param_2[8]) + block_count, (param_2[5] - param_2[7]) + block_count);
     
     return;
@@ -797,13 +797,13 @@ void FUN_18069c640(int *param_1)
     data_size = param_1[0x19];
     block_count = data_size / 2;
     
-    FUN_18069c3b0(*(undefined8 *)(param_1 + 0xe), param_1[4], param_1[2], param_1[3], data_size, data_size,
+    FUN_18069c3b0(*(uint64_t *)(param_1 + 0xe), param_1[4], param_1[2], param_1[3], data_size, data_size,
                   (param_1[1] - param_1[3]) + data_size, (data_size - param_1[2]) + *param_1);
     
-    FUN_18069c3b0(*(undefined8 *)(param_1 + 0x10), param_1[9], param_1[7], param_1[8], block_count, block_count,
+    FUN_18069c3b0(*(uint64_t *)(param_1 + 0x10), param_1[9], param_1[7], param_1[8], block_count, block_count,
                   (param_1[6] - param_1[8]) + block_count, (param_1[5] - param_1[7]) + block_count);
     
-    FUN_18069c3b0(*(undefined8 *)(param_1 + 0x12), param_1[9], param_1[7], param_1[8], block_count, block_count,
+    FUN_18069c3b0(*(uint64_t *)(param_1 + 0x12), param_1[9], param_1[7], param_1[8], block_count, block_count,
                   (param_1[6] - param_1[8]) + block_count, (param_1[5] - param_1[7]) + block_count);
     
     return;
@@ -820,7 +820,7 @@ void FUN_18069c640(int *param_1)
 //         param_6 - 纹理标志数组
 // 返回值: 无
 // ============================================================================
-void FUN_18069c710(longlong param_1, undefined8 param_2, longlong param_3, longlong param_4, int param_5,
+void FUN_18069c710(longlong param_1, uint64_t param_2, longlong param_3, longlong param_4, int param_5,
                   ushort *param_6)
 {
     // 处理第一个纹理
@@ -876,7 +876,7 @@ void FUN_18069c710(longlong param_1, undefined8 param_2, longlong param_3, longl
 //         param_5 - 纹理标志数组
 // 返回值: 无
 // ============================================================================
-void FUN_18069c820(longlong param_1, undefined8 param_2, longlong param_3, int param_4, ushort *param_5)
+void FUN_18069c820(longlong param_1, uint64_t param_2, longlong param_3, int param_4, ushort *param_5)
 {
     longlong texture_count;
     
@@ -923,15 +923,15 @@ void FUN_18069c820(longlong param_1, undefined8 param_2, longlong param_3, int p
 //         param_6 - 参数数据指针
 // 返回值: 无
 // ============================================================================
-void FUN_18069c900(undefined8 param_1, longlong param_2, longlong param_3, undefined4 param_4,
+void FUN_18069c900(uint64_t param_1, longlong param_2, longlong param_3, int32_t param_4,
                   int param_5, longlong param_6)
 {
-    func_0x00018002acc0(param_1, param_4, *(undefined8 *)(param_6 + 8), *(undefined8 *)(param_6 + 0x10),
-                        *(undefined8 *)(param_6 + 0x18), 2);
+    func_0x00018002acc0(param_1, param_4, *(uint64_t *)(param_6 + 8), *(uint64_t *)(param_6 + 0x10),
+                        *(uint64_t *)(param_6 + 0x18), 2);
     
     if (param_2 != 0) {
-        func_0x00018001a840(param_5 * 4 + param_2, param_5, *(undefined8 *)(param_6 + 8),
-                            *(undefined8 *)(param_6 + 0x10), *(undefined8 *)(param_6 + 0x18),
+        func_0x00018001a840(param_5 * 4 + param_2, param_5, *(uint64_t *)(param_6 + 8),
+                            *(uint64_t *)(param_6 + 0x10), *(uint64_t *)(param_6 + 0x18),
                             param_5 * 4 + param_3);
     }
     
@@ -946,31 +946,31 @@ void FUN_18069c900(undefined8 param_1, longlong param_2, longlong param_3, undef
 //         param_3 - 像素数据数组
 // 返回值: 无
 // ============================================================================
-void FUN_18069c990(longlong param_1, int param_2, undefined1 (*param_3) [16])
+void FUN_18069c990(longlong param_1, int param_2, int8_t (*param_3) [16])
 {
-    undefined1 base_vector[16];
+    int8_t base_vector[16];
     longlong data_offset;
-    undefined1 (*current_pixel) [16];
-    undefined1 pixel_data1[16];
-    undefined1 pixel_data2[16];
-    undefined1 pixel_data3[16];
-    undefined1 pixel_data4[16];
-    undefined1 pixel_data5[16];
-    undefined1 pixel_data6[16];
-    undefined1 pixel_data7[16];
-    undefined1 pixel_data8[16];
-    undefined1 pixel_data9[16];
-    undefined1 pixel_data10[16];
-    undefined1 pixel_data11[16];
+    int8_t (*current_pixel) [16];
+    int8_t pixel_data1[16];
+    int8_t pixel_data2[16];
+    int8_t pixel_data3[16];
+    int8_t pixel_data4[16];
+    int8_t pixel_data5[16];
+    int8_t pixel_data6[16];
+    int8_t pixel_data7[16];
+    int8_t pixel_data8[16];
+    int8_t pixel_data9[16];
+    int8_t pixel_data10[16];
+    int8_t pixel_data11[16];
     
     // 初始化基础向量
     base_vector = _DAT_180d9e5d0;
-    current_pixel = (undefined1 (*) [16])(param_2 * 4 + param_1);
+    current_pixel = (int8_t (*) [16])(param_2 * 4 + param_1);
     data_offset = (longlong)param_2;
     
     // 提取像素数据
-    pixel_data5 = *(undefined1 (*) [16])(*current_pixel + data_offset);
-    pixel_data7 = *(undefined1 (*) [16])((longlong)current_pixel + data_offset * -2);
+    pixel_data5 = *(int8_t (*) [16])(*current_pixel + data_offset);
+    pixel_data7 = *(int8_t (*) [16])((longlong)current_pixel + data_offset * -2);
     
     // 计算像素差异
     pixel_data4 = psubusb(pixel_data5, pixel_data7);
@@ -988,7 +988,7 @@ void FUN_18069c990(longlong param_1, int param_2, undefined1 (*param_3) [16])
     pixel_data10._14_2_ = pixel_data4._14_2_ >> 1;
     
     // 处理相邻像素
-    pixel_data4 = *(undefined1 (*) [16])((longlong)current_pixel + -data_offset);
+    pixel_data4 = *(int8_t (*) [16])((longlong)current_pixel + -data_offset);
     pixel_data6 = *current_pixel;
     pixel_data9 = psubusb(pixel_data4, pixel_data6);
     pixel_data8 = psubusb(pixel_data6, pixel_data4);
@@ -1085,7 +1085,7 @@ void FUN_18069c990(longlong param_1, int param_2, undefined1 (*param_3) [16])
     // 最终像素处理
     pixel_data7 = paddsb(pixel_data4 ^ _DAT_180d9e5d0, pixel_data6 & _DAT_180d9e650 | pixel_data11 & _DAT_180d9e640);
     *current_pixel = pixel_data5 ^ _DAT_180d9e5d0;
-    *(undefined1 (*) [16])((longlong)current_pixel + -data_offset) = pixel_data7 ^ base_vector;
+    *(int8_t (*) [16])((longlong)current_pixel + -data_offset) = pixel_data7 ^ base_vector;
     
     return;
 }
@@ -1101,15 +1101,15 @@ void FUN_18069c990(longlong param_1, int param_2, undefined1 (*param_3) [16])
 //         param_6 - 常量数据指针
 // 返回值: 无
 // ============================================================================
-void FUN_18069ca00(undefined8 param_1, longlong param_2, longlong param_3, undefined4 param_4,
-                  undefined4 param_5, longlong param_6)
+void FUN_18069ca00(uint64_t param_1, longlong param_2, longlong param_3, int32_t param_4,
+                  int32_t param_5, longlong param_6)
 {
-    func_0x00018002b38a(param_1, param_4, *(undefined8 *)(param_6 + 8), *(undefined8 *)(param_6 + 0x10),
-                        *(undefined8 *)(param_6 + 0x18), 2);
+    func_0x00018002b38a(param_1, param_4, *(uint64_t *)(param_6 + 8), *(uint64_t *)(param_6 + 0x10),
+                        *(uint64_t *)(param_6 + 0x18), 2);
     
     if (param_2 != 0) {
-        func_0x00018001b1ed(param_2 + 4, param_5, *(undefined8 *)(param_6 + 8),
-                            *(undefined8 *)(param_6 + 0x10), *(undefined8 *)(param_6 + 0x18), param_3 + 4);
+        func_0x00018001b1ed(param_2 + 4, param_5, *(uint64_t *)(param_6 + 8),
+                            *(uint64_t *)(param_6 + 0x10), *(uint64_t *)(param_6 + 0x18), param_3 + 4);
     }
     
     return;

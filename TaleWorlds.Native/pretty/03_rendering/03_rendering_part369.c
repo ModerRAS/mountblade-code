@@ -120,7 +120,7 @@
  * - 支持批量处理机制
  * - 包含错误处理和状态验证
  */
-void BoundingBoxProcessor(longlong param_1, undefined8 param_2, undefined4 param_3)
+void BoundingBoxProcessor(longlong param_1, uint64_t param_2, int32_t param_3)
 {
     longlong *plVar1;
     int iVar2;
@@ -249,40 +249,40 @@ void EmptyFunctionHandler(void)
  * - 支持多种碰撞类型
  * - 包含状态管理和优化
  */
-ulonglong CollisionDetector(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4,
-                          undefined8 *param_5)
+ulonglong CollisionDetector(longlong param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4,
+                          uint64_t *param_5)
 {
-    undefined8 *puVar1;
-    undefined8 uVar2;
+    uint64_t *puVar1;
+    uint64_t uVar2;
     ulonglong uVar3;
-    undefined1 uVar4;
-    undefined8 *puVar5;
-    undefined8 uStack_c8;
-    undefined8 uStack_c0;
-    undefined8 uStack_b8;
-    undefined8 uStack_b0;
-    undefined8 uStack_a8;
-    undefined8 uStack_a0;
-    undefined8 uStack_98;
-    undefined8 uStack_90;
-    undefined8 uStack_88;
-    undefined8 uStack_80;
-    undefined8 uStack_78;
-    undefined8 uStack_70;
-    undefined8 uStack_68;
-    undefined8 uStack_60;
+    int8_t uVar4;
+    uint64_t *puVar5;
+    uint64_t uStack_c8;
+    uint64_t uStack_c0;
+    uint64_t uStack_b8;
+    uint64_t uStack_b0;
+    uint64_t uStack_a8;
+    uint64_t uStack_a0;
+    uint64_t uStack_98;
+    uint64_t uStack_90;
+    uint64_t uStack_88;
+    uint64_t uStack_80;
+    uint64_t uStack_78;
+    uint64_t uStack_70;
+    uint64_t uStack_68;
+    uint64_t uStack_60;
     longlong *plStack_58;
-    undefined8 uStack_50;
-    undefined8 uStack_48;
-    undefined8 uStack_40;
-    undefined8 uStack_38;
-    undefined8 uStack_30;
-    undefined4 uStack_28;
-    undefined4 uStack_24;
-    undefined4 uStack_20;
-    undefined4 uStack_1c;
-    undefined8 uStack_18;
-    undefined8 uStack_10;
+    uint64_t uStack_50;
+    uint64_t uStack_48;
+    uint64_t uStack_40;
+    uint64_t uStack_38;
+    uint64_t uStack_30;
+    int32_t uStack_28;
+    int32_t uStack_24;
+    int32_t uStack_20;
+    int32_t uStack_1c;
+    uint64_t uStack_18;
+    uint64_t uStack_10;
     
     // 复制边界框数据
     uStack_c8 = *param_5;
@@ -303,15 +303,15 @@ ulonglong CollisionDetector(longlong param_1, undefined8 param_2, undefined8 par
     
     // 检查特殊状态
     if (*(char *)(param_1 + BOUNDING_BOX_OFFSET_0x84) != '\0') {
-        uStack_70 = *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x88);
-        uStack_68 = *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x90);
+        uStack_70 = *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x88);
+        uStack_68 = *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x90);
         uStack_78._5_3_ = (undefined3)((ulonglong)uVar2 >> 0x28);
         uStack_78._0_5_ = CONCAT14(1, (int)uVar2);
     }
     
     // 遍历边界框数组
-    puVar1 = *(undefined8 **)(param_1 + BOUNDING_BOX_OFFSET_0x38);
-    for (puVar5 = *(undefined8 **)(param_1 + BOUNDING_BOX_OFFSET_0x30); puVar5 != puVar1; puVar5 = puVar5 + 10) {
+    puVar1 = *(uint64_t **)(param_1 + BOUNDING_BOX_OFFSET_0x38);
+    for (puVar5 = *(uint64_t **)(param_1 + BOUNDING_BOX_OFFSET_0x30); puVar5 != puVar1; puVar5 = puVar5 + 10) {
         uStack_38 = puVar5[4];
         uStack_30 = puVar5[5];
         uStack_48 = puVar5[2];
@@ -320,18 +320,18 @@ ulonglong CollisionDetector(longlong param_1, undefined8 param_2, undefined8 par
         uStack_50 = puVar5[1];
         uStack_18 = puVar5[8];
         uStack_10 = puVar5[9];
-        uStack_28 = *(undefined4 *)(puVar5 + 6);
-        uStack_24 = *(undefined4 *)((longlong)puVar5 + 0x34);
-        uStack_20 = *(undefined4 *)(puVar5 + 7);
-        uStack_1c = *(undefined4 *)((longlong)puVar5 + 0x3c);
+        uStack_28 = *(int32_t *)(puVar5 + 6);
+        uStack_24 = *(int32_t *)((longlong)puVar5 + 0x34);
+        uStack_20 = *(int32_t *)(puVar5 + 7);
+        uStack_1c = *(int32_t *)((longlong)puVar5 + 0x3c);
         uVar4 = 4;
         if ((char)uStack_10 != '\0') {
             uVar4 = 0;
         }
         uVar3 = (ulonglong)uStack_98 >> 0x30;
-        uStack_98._6_2_ = (undefined2)uVar3;
+        uStack_98._6_2_ = (int16_t)uVar3;
         uStack_98._0_6_ = CONCAT15(uVar4, 0x100000000);
-        param_5 = (undefined8 *)
+        param_5 = (uint64_t *)
                  (**(code **)(*plStack_58 + 0x1c8))(plStack_58, param_2, param_3, &uStack_50, &uStack_c8);
     }
     return (ulonglong)param_5 & 0xffffffffffffff00;
@@ -361,23 +361,23 @@ ulonglong CollisionDetector(longlong param_1, undefined8 param_2, undefined8 par
 ulonglong BoundingBoxCalculator(void)
 {
     ulonglong uVar1;
-    undefined8 *unaff_RBX;
-    undefined8 *unaff_RDI;
-    undefined4 uStack0000000000000060;
-    undefined1 uStack0000000000000064;
-    undefined1 uStack0000000000000065;
+    uint64_t *unaff_RBX;
+    uint64_t *unaff_RDI;
+    int32_t uStack0000000000000060;
+    int8_t uStack0000000000000064;
+    int8_t uStack0000000000000065;
     longlong *plStack00000000000000a0;
-    undefined8 uStack00000000000000a8;
-    undefined8 uStack00000000000000b0;
-    undefined8 uStack00000000000000b8;
-    undefined8 uStack00000000000000c0;
-    undefined8 uStack00000000000000c8;
-    undefined4 uStack00000000000000d0;
-    undefined4 uStack00000000000000d4;
-    undefined4 uStack00000000000000d8;
-    undefined4 uStack00000000000000dc;
-    undefined8 uStack00000000000000e0;
-    undefined8 uStack00000000000000e8;
+    uint64_t uStack00000000000000a8;
+    uint64_t uStack00000000000000b0;
+    uint64_t uStack00000000000000b8;
+    uint64_t uStack00000000000000c0;
+    uint64_t uStack00000000000000c8;
+    int32_t uStack00000000000000d0;
+    int32_t uStack00000000000000d4;
+    int32_t uStack00000000000000d8;
+    int32_t uStack00000000000000dc;
+    uint64_t uStack00000000000000e0;
+    uint64_t uStack00000000000000e8;
     
     do {
         // 复制边界框数据
@@ -389,10 +389,10 @@ ulonglong BoundingBoxCalculator(void)
         uStack00000000000000a8 = unaff_RBX[1];
         uStack00000000000000e0 = unaff_RBX[8];
         uStack00000000000000e8 = unaff_RBX[9];
-        uStack00000000000000d0 = *(undefined4 *)(unaff_RBX + 6);
-        uStack00000000000000d4 = *(undefined4 *)((longlong)unaff_RBX + 0x34);
-        uStack00000000000000d8 = *(undefined4 *)(unaff_RBX + 7);
-        uStack00000000000000dc = *(undefined4 *)((longlong)unaff_RBX + 0x3c);
+        uStack00000000000000d0 = *(int32_t *)(unaff_RBX + 6);
+        uStack00000000000000d4 = *(int32_t *)((longlong)unaff_RBX + 0x34);
+        uStack00000000000000d8 = *(int32_t *)(unaff_RBX + 7);
+        uStack00000000000000dc = *(int32_t *)((longlong)unaff_RBX + 0x3c);
         uStack0000000000000060 = 0;
         uStack0000000000000064 = 1;
         uStack0000000000000065 = 4;
@@ -422,14 +422,14 @@ ulonglong BoundingBoxCalculator(void)
  * 无参数
  * 
  * 返回值：
- * @return undefined1 - 优化状态
+ * @return int8_t - 优化状态
  * 
  * 技术说明：
  * - 实现了简单的优化逻辑
  * - 用于性能优化和状态管理
  * - 支持系统监控和调试
  */
-undefined1 BoundingBoxOptimizer(void)
+int8_t BoundingBoxOptimizer(void)
 {
     return 0;
 }
@@ -458,121 +458,121 @@ undefined1 BoundingBoxOptimizer(void)
 void BoundingBoxFinalizer(longlong param_1)
 {
     float *pfVar1;
-    undefined8 *puVar2;
-    undefined8 *puVar3;
-    undefined8 *puVar4;
+    uint64_t *puVar2;
+    uint64_t *puVar3;
+    uint64_t *puVar4;
     longlong lVar5;
     longlong lVar6;
-    undefined8 *puVar7;
+    uint64_t *puVar7;
     float fVar8;
     float fVar9;
     float fVar10;
-    undefined4 uStack_168;
-    undefined4 uStack_164;
-    undefined4 uStack_160;
-    undefined4 uStack_15c;
-    undefined4 uStack_158;
-    undefined4 uStack_154;
-    undefined4 uStack_150;
-    undefined4 uStack_14c;
-    undefined4 uStack_148;
-    undefined4 uStack_144;
-    undefined4 uStack_140;
-    undefined4 uStack_13c;
-    undefined4 uStack_138;
-    undefined4 uStack_134;
-    undefined4 uStack_130;
-    undefined4 uStack_12c;
-    undefined8 uStack_128;
+    int32_t uStack_168;
+    int32_t uStack_164;
+    int32_t uStack_160;
+    int32_t uStack_15c;
+    int32_t uStack_158;
+    int32_t uStack_154;
+    int32_t uStack_150;
+    int32_t uStack_14c;
+    int32_t uStack_148;
+    int32_t uStack_144;
+    int32_t uStack_140;
+    int32_t uStack_13c;
+    int32_t uStack_138;
+    int32_t uStack_134;
+    int32_t uStack_130;
+    int32_t uStack_12c;
+    uint64_t uStack_128;
     ulonglong uStack_120;
-    undefined8 uStack_118;
+    uint64_t uStack_118;
     ulonglong uStack_110;
-    undefined4 uStack_108;
-    undefined4 uStack_104;
-    undefined4 uStack_100;
-    undefined4 uStack_fc;
-    undefined4 uStack_f8;
-    undefined4 uStack_f4;
-    undefined4 uStack_f0;
-    undefined4 uStack_ec;
-    undefined8 *puStack_e8;
-    undefined8 uStack_e0;
+    int32_t uStack_108;
+    int32_t uStack_104;
+    int32_t uStack_100;
+    int32_t uStack_fc;
+    int32_t uStack_f8;
+    int32_t uStack_f4;
+    int32_t uStack_f0;
+    int32_t uStack_ec;
+    uint64_t *puStack_e8;
+    uint64_t uStack_e0;
     ulonglong uStack_d8;
-    undefined8 uStack_d0;
+    uint64_t uStack_d0;
     ulonglong uStack_c8;
-    undefined8 uStack_c0;
-    undefined4 uStack_b8;
-    undefined4 uStack_b4;
-    undefined4 uStack_b0;
-    undefined4 uStack_ac;
-    undefined4 uStack_a8;
-    undefined4 uStack_a4;
-    undefined4 uStack_a0;
-    undefined4 uStack_9c;
-    undefined8 uStack_98;
-    undefined8 uStack_90;
-    undefined8 uStack_88;
-    undefined8 uStack_80;
-    undefined4 uStack_78;
-    undefined4 uStack_74;
-    undefined4 uStack_70;
-    undefined4 uStack_6c;
-    undefined4 uStack_68;
-    undefined4 uStack_64;
-    undefined4 uStack_60;
-    undefined4 uStack_5c;
-    undefined1 auStack_58[64];
+    uint64_t uStack_c0;
+    int32_t uStack_b8;
+    int32_t uStack_b4;
+    int32_t uStack_b0;
+    int32_t uStack_ac;
+    int32_t uStack_a8;
+    int32_t uStack_a4;
+    int32_t uStack_a0;
+    int32_t uStack_9c;
+    uint64_t uStack_98;
+    uint64_t uStack_90;
+    uint64_t uStack_88;
+    uint64_t uStack_80;
+    int32_t uStack_78;
+    int32_t uStack_74;
+    int32_t uStack_70;
+    int32_t uStack_6c;
+    int32_t uStack_68;
+    int32_t uStack_64;
+    int32_t uStack_60;
+    int32_t uStack_5c;
+    int8_t auStack_58[64];
     
     // 计算边界框数量
     lVar6 = *(longlong *)(param_1 + BOUNDING_BOX_OFFSET_0x38) - 
             *(longlong *)(param_1 + BOUNDING_BOX_OFFSET_0x30);
-    *(undefined4 *)(param_1 + BOUNDING_BOX_OFFSET_0x80) = 0;
+    *(int32_t *)(param_1 + BOUNDING_BOX_OFFSET_0x80) = 0;
     lVar5 = lVar6 >> 0x3f;
     
     // 检查是否有边界框需要处理
     if (lVar6 / BOUNDING_BOX_BLOCK_SIZE + lVar5 == lVar5) {
         // 初始化边界框数据
-        *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x50) = 0;
-        *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x58) = 0;
-        *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x60) = 0;
-        *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x68) = 0;
-        *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x70) = 0;
-        *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x78) = 0;
+        *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x50) = 0;
+        *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x58) = 0;
+        *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x60) = 0;
+        *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x68) = 0;
+        *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x70) = 0;
+        *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x78) = 0;
         return;
     }
     
     // 设置边界框初始值
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x50) = 0x4cbebc204cbebc20;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x58) = 0x7f7fffff4cbebc20;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x70) = 0;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x78) = 0x7f7fffff00000000;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x60) = 0xccbebc20ccbebc20;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x68) = 0x7f7fffffccbebc20;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x50) = 0x4cbebc204cbebc20;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x58) = 0x7f7fffff4cbebc20;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x70) = 0;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x78) = 0x7f7fffff00000000;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x60) = 0xccbebc20ccbebc20;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x68) = 0x7f7fffffccbebc20;
     
     // 遍历边界框数组
-    puVar2 = *(undefined8 **)(param_1 + BOUNDING_BOX_OFFSET_0x38);
-    for (puVar7 = *(undefined8 **)(param_1 + BOUNDING_BOX_OFFSET_0x30); puVar7 != puVar2; puVar7 = puVar7 + 10) {
-        puVar3 = (undefined8 *)*puVar7;
+    puVar2 = *(uint64_t **)(param_1 + BOUNDING_BOX_OFFSET_0x38);
+    for (puVar7 = *(uint64_t **)(param_1 + BOUNDING_BOX_OFFSET_0x30); puVar7 != puVar2; puVar7 = puVar7 + 10) {
+        puVar3 = (uint64_t *)*puVar7;
         uStack_e0 = puVar7[1];
         uStack_d8 = puVar7[2];
         uStack_d0 = puVar7[3];
         uStack_c8 = puVar7[4];
         uStack_c0 = puVar7[5];
-        uStack_b8 = *(undefined4 *)(puVar7 + 6);
-        uStack_b4 = *(undefined4 *)((longlong)puVar7 + 0x34);
-        uStack_b0 = *(undefined4 *)(puVar7 + 7);
-        uStack_ac = *(undefined4 *)((longlong)puVar7 + 0x3c);
-        uStack_a8 = *(undefined4 *)(puVar7 + 8);
-        uStack_a4 = *(undefined4 *)((longlong)puVar7 + 0x44);
-        uStack_a0 = *(undefined4 *)(puVar7 + 9);
-        uStack_9c = *(undefined4 *)((longlong)puVar7 + 0x4c);
+        uStack_b8 = *(int32_t *)(puVar7 + 6);
+        uStack_b4 = *(int32_t *)((longlong)puVar7 + 0x34);
+        uStack_b0 = *(int32_t *)(puVar7 + 7);
+        uStack_ac = *(int32_t *)((longlong)puVar7 + 0x3c);
+        uStack_a8 = *(int32_t *)(puVar7 + 8);
+        uStack_a4 = *(int32_t *)((longlong)puVar7 + 0x44);
+        uStack_a0 = *(int32_t *)(puVar7 + 9);
+        uStack_9c = *(int32_t *)((longlong)puVar7 + 0x4c);
         puStack_e8 = puVar3;
         
         // 处理边界框数据
-        if ((undefined *)*puVar3 == &UNK_180a169b8) {
+        if ((void *)*puVar3 == &UNK_180a169b8) {
             FUN_180276f30(puVar3, (longlong)puVar3 + 0x214, 0);
         } else {
-            (**(code **)((undefined *)*puVar3 + 0x160))(puVar3);
+            (**(code **)((void *)*puVar3 + 0x160))(puVar3);
         }
         
         // 获取边界框数据
@@ -580,18 +580,18 @@ void BoundingBoxFinalizer(longlong param_1)
         uStack_15c = 0;
         uStack_14c = 0;
         uStack_13c = 0;
-        uStack_168 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0x70);
-        uStack_164 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0x74);
-        uStack_160 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0x78);
-        uStack_158 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0x80);
-        uStack_154 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0x84);
-        uStack_150 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0x88);
-        uStack_148 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0x90);
-        uStack_144 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0x94);
-        uStack_140 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0x98);
-        uStack_138 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0xa0);
-        uStack_134 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0xa4);
-        uStack_130 = *(undefined4 *)(lVar5 + BOUNDING_BOX_OFFSET_0xa8);
+        uStack_168 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0x70);
+        uStack_164 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0x74);
+        uStack_160 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0x78);
+        uStack_158 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0x80);
+        uStack_154 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0x84);
+        uStack_150 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0x88);
+        uStack_148 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0x90);
+        uStack_144 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0x94);
+        uStack_140 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0x98);
+        uStack_138 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0xa0);
+        uStack_134 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0xa4);
+        uStack_130 = *(int32_t *)(lVar5 + BOUNDING_BOX_OFFSET_0xa8);
         uStack_12c = FLOAT_ONE_3f800000;
         
         // 处理边界框数据
@@ -600,7 +600,7 @@ void BoundingBoxFinalizer(longlong param_1)
         uStack_120 = uStack_d8 & 0xffffffff;
         uStack_118 = uStack_d0;
         uStack_110 = uStack_c8 & 0xffffffff;
-        uStack_108 = (undefined4)uStack_c0;
+        uStack_108 = (int32_t)uStack_c0;
         uStack_104 = uStack_c0._4_4_;
         uStack_100 = uStack_b8;
         uStack_f8 = uStack_b0;
@@ -610,25 +610,25 @@ void BoundingBoxFinalizer(longlong param_1)
         uStack_ec = FLOAT_ONE_3f800000;
         
         // 计算边界框
-        puVar4 = (undefined8 *)FUN_1800946d0(&uStack_128, &uStack_168, auStack_58);
+        puVar4 = (uint64_t *)FUN_1800946d0(&uStack_128, &uStack_168, auStack_58);
         uStack_98 = *puVar4;
         uStack_90 = puVar4[1];
         uStack_88 = puVar4[2];
         uStack_80 = puVar4[3];
-        uStack_78 = *(undefined4 *)(puVar4 + 4);
-        uStack_74 = *(undefined4 *)((longlong)puVar4 + 0x24);
-        uStack_70 = *(undefined4 *)(puVar4 + 5);
-        uStack_6c = *(undefined4 *)((longlong)puVar4 + 0x2c);
-        uStack_68 = *(undefined4 *)(puVar4 + 6);
-        uStack_64 = *(undefined4 *)((longlong)puVar4 + 0x34);
-        uStack_60 = *(undefined4 *)(puVar4 + 7);
-        uStack_5c = *(undefined4 *)((longlong)puVar4 + 0x3c);
+        uStack_78 = *(int32_t *)(puVar4 + 4);
+        uStack_74 = *(int32_t *)((longlong)puVar4 + 0x24);
+        uStack_70 = *(int32_t *)(puVar4 + 5);
+        uStack_6c = *(int32_t *)((longlong)puVar4 + 0x2c);
+        uStack_68 = *(int32_t *)(puVar4 + 6);
+        uStack_64 = *(int32_t *)((longlong)puVar4 + 0x34);
+        uStack_60 = *(int32_t *)(puVar4 + 7);
+        uStack_5c = *(int32_t *)((longlong)puVar4 + 0x3c);
         
         // 处理边界框数据
-        if ((undefined *)*puVar3 == &UNK_180a169b8) {
+        if ((void *)*puVar3 == &UNK_180a169b8) {
             lVar5 = (longlong)puVar3 + 0x214;
         } else {
-            lVar5 = (**(code **)((undefined *)*puVar3 + 0x198))(puVar3);
+            lVar5 = (**(code **)((void *)*puVar3 + 0x198))(puVar3);
         }
         FUN_18063a240(param_1 + BOUNDING_BOX_OFFSET_0x50, lVar5);
     }
@@ -643,7 +643,7 @@ void BoundingBoxFinalizer(longlong param_1)
              (*(float *)(param_1 + 100) + *(float *)(param_1 + BOUNDING_BOX_OFFSET_0x54)) * 0.5;
         *(float *)(param_1 + BOUNDING_BOX_OFFSET_0x78) = 
              (*(float *)(param_1 + BOUNDING_BOX_OFFSET_0x68) + *(float *)(param_1 + BOUNDING_BOX_OFFSET_0x58)) * 0.5;
-        *(undefined4 *)(param_1 + BOUNDING_BOX_OFFSET_0x7c) = FLOAT_MAX_7f7fffff;
+        *(int32_t *)(param_1 + BOUNDING_BOX_OFFSET_0x7c) = FLOAT_MAX_7f7fffff;
         fVar10 = fVar10 - fVar9;
         fVar9 = *(float *)(param_1 + BOUNDING_BOX_OFFSET_0x68) - *(float *)(param_1 + BOUNDING_BOX_OFFSET_0x78);
         fVar8 = *(float *)(param_1 + 100) - *(float *)(param_1 + BOUNDING_BOX_OFFSET_0x74);
@@ -652,14 +652,14 @@ void BoundingBoxFinalizer(longlong param_1)
     }
     
     // 重置边界框数据
-    *(undefined4 *)(param_1 + BOUNDING_BOX_OFFSET_0x80) = 0;
+    *(int32_t *)(param_1 + BOUNDING_BOX_OFFSET_0x80) = 0;
     pfVar1[0] = 0.0;
     pfVar1[1] = 0.0;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x58) = 0;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x60) = 0;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x68) = 0;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x70) = 0;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x78) = 0;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x58) = 0;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x60) = 0;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x68) = 0;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x70) = 0;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x78) = 0;
     return;
 }
 
@@ -685,80 +685,80 @@ void BoundingBoxFinalizer(longlong param_1)
  * - 支持状态管理和配置
  * - 包含错误处理和验证
  */
-void BoundingBoxInitializer(longlong param_1, undefined8 param_2)
+void BoundingBoxInitializer(longlong param_1, uint64_t param_2)
 {
     float *pfVar1;
-    undefined8 *puVar2;
-    undefined *puVar3;
-    undefined4 uVar4;
-    undefined4 uVar5;
-    undefined4 uVar6;
-    undefined4 uVar7;
-    undefined4 uVar8;
-    undefined4 uVar9;
-    undefined4 uVar10;
-    undefined4 uVar11;
-    undefined8 *puVar12;
-    undefined8 uVar13;
-    undefined8 uVar14;
-    undefined8 uVar15;
-    undefined8 uVar16;
-    undefined8 *puVar17;
+    uint64_t *puVar2;
+    void *puVar3;
+    int32_t uVar4;
+    int32_t uVar5;
+    int32_t uVar6;
+    int32_t uVar7;
+    int32_t uVar8;
+    int32_t uVar9;
+    int32_t uVar10;
+    int32_t uVar11;
+    uint64_t *puVar12;
+    uint64_t uVar13;
+    uint64_t uVar14;
+    uint64_t uVar15;
+    uint64_t uVar16;
+    uint64_t *puVar17;
     longlong lVar18;
-    undefined8 *puVar19;
-    undefined8 *unaff_RBP;
+    uint64_t *puVar19;
+    uint64_t *unaff_RBP;
     longlong unaff_R14;
     float fVar20;
-    undefined4 in_XMM1_Dc;
-    undefined4 in_XMM1_Dd;
+    int32_t in_XMM1_Dc;
+    int32_t in_XMM1_Dd;
     float fVar21;
     float fVar22;
-    undefined4 uStackX_20;
-    undefined4 uStackX_24;
-    undefined8 in_stack_00000060;
+    int32_t uStackX_20;
+    int32_t uStackX_24;
+    uint64_t in_stack_00000060;
     ulonglong in_stack_00000068;
-    undefined8 in_stack_00000070;
+    uint64_t in_stack_00000070;
     ulonglong in_stack_00000078;
     
     // 初始化边界框数据
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x70) = 0;
-    *(undefined8 *)(param_1 + BOUNDING_BOX_OFFSET_0x78) = 0x7f7fffff00000000;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x70) = 0;
+    *(uint64_t *)(param_1 + BOUNDING_BOX_OFFSET_0x78) = 0x7f7fffff00000000;
     *(int *)(param_1 + BOUNDING_BOX_OFFSET_0x60) = (int)param_2;
     *(int *)(param_1 + 100) = (int)((ulonglong)param_2 >> 0x20);
-    *(undefined4 *)(param_1 + BOUNDING_BOX_OFFSET_0x68) = in_XMM1_Dc;
-    *(undefined4 *)(param_1 + BOUNDING_BOX_OFFSET_0x6c) = in_XMM1_Dd;
+    *(int32_t *)(param_1 + BOUNDING_BOX_OFFSET_0x68) = in_XMM1_Dc;
+    *(int32_t *)(param_1 + BOUNDING_BOX_OFFSET_0x6c) = in_XMM1_Dd;
     
     // 遍历边界框数组
-    puVar2 = *(undefined8 **)(param_1 + BOUNDING_BOX_OFFSET_0x38);
-    for (puVar19 = *(undefined8 **)(param_1 + BOUNDING_BOX_OFFSET_0x30); puVar19 != puVar2; puVar19 = puVar19 + 10) {
-        puVar12 = (undefined8 *)*puVar19;
+    puVar2 = *(uint64_t **)(param_1 + BOUNDING_BOX_OFFSET_0x38);
+    for (puVar19 = *(uint64_t **)(param_1 + BOUNDING_BOX_OFFSET_0x30); puVar19 != puVar2; puVar19 = puVar19 + 10) {
+        puVar12 = (uint64_t *)*puVar19;
         uVar13 = puVar19[1];
         uVar14 = puVar19[3];
         uVar15 = puVar19[4];
         uVar16 = puVar19[5];
         unaff_RBP[-10] = puVar19[2];
         unaff_RBP[-9] = uVar14;
-        uVar4 = *(undefined4 *)(puVar19 + 6);
-        uVar5 = *(undefined4 *)((longlong)puVar19 + 0x34);
-        uVar6 = *(undefined4 *)(puVar19 + 7);
-        uVar7 = *(undefined4 *)((longlong)puVar19 + 0x3c);
+        uVar4 = *(int32_t *)(puVar19 + 6);
+        uVar5 = *(int32_t *)((longlong)puVar19 + 0x34);
+        uVar6 = *(int32_t *)(puVar19 + 7);
+        uVar7 = *(int32_t *)((longlong)puVar19 + 0x3c);
         unaff_RBP[-8] = uVar15;
         unaff_RBP[-7] = uVar16;
-        uVar8 = *(undefined4 *)(puVar19 + 8);
-        uVar9 = *(undefined4 *)((longlong)puVar19 + 0x44);
-        uVar10 = *(undefined4 *)(puVar19 + 9);
-        uVar11 = *(undefined4 *)((longlong)puVar19 + 0x4c);
-        puVar3 = (undefined *)*puVar12;
+        uVar8 = *(int32_t *)(puVar19 + 8);
+        uVar9 = *(int32_t *)((longlong)puVar19 + 0x44);
+        uVar10 = *(int32_t *)(puVar19 + 9);
+        uVar11 = *(int32_t *)((longlong)puVar19 + 0x4c);
+        puVar3 = (void *)*puVar12;
         unaff_RBP[-0xc] = puVar12;
         unaff_RBP[-0xb] = uVar13;
-        *(undefined4 *)(unaff_RBP + -6) = uVar4;
-        *(undefined4 *)((longlong)unaff_RBP + -0x2c) = uVar5;
-        *(undefined4 *)(unaff_RBP + -5) = uVar6;
-        *(undefined4 *)((longlong)unaff_RBP + -0x24) = uVar7;
-        *(undefined4 *)(unaff_RBP + -4) = uVar8;
-        *(undefined4 *)((longlong)unaff_RBP + -0x1c) = uVar9;
-        *(undefined4 *)(unaff_RBP + -3) = uVar10;
-        *(undefined4 *)((longlong)unaff_RBP + -0x14) = uVar11;
+        *(int32_t *)(unaff_RBP + -6) = uVar4;
+        *(int32_t *)((longlong)unaff_RBP + -0x2c) = uVar5;
+        *(int32_t *)(unaff_RBP + -5) = uVar6;
+        *(int32_t *)((longlong)unaff_RBP + -0x24) = uVar7;
+        *(int32_t *)(unaff_RBP + -4) = uVar8;
+        *(int32_t *)((longlong)unaff_RBP + -0x1c) = uVar9;
+        *(int32_t *)(unaff_RBP + -3) = uVar10;
+        *(int32_t *)((longlong)unaff_RBP + -0x14) = uVar11;
         
         // 处理边界框数据
         if (puVar3 == &UNK_180a169b8) {
@@ -768,50 +768,50 @@ void BoundingBoxInitializer(longlong param_1, undefined8 param_2)
         }
         
         // 获取边界框数据
-        uStackX_20 = *(undefined4 *)(*(longlong *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x28) + BOUNDING_BOX_OFFSET_0x70);
-        uStackX_24 = *(undefined4 *)(*(longlong *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x28) + BOUNDING_BOX_OFFSET_0x74);
+        uStackX_20 = *(int32_t *)(*(longlong *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x28) + BOUNDING_BOX_OFFSET_0x70);
+        uStackX_24 = *(int32_t *)(*(longlong *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x28) + BOUNDING_BOX_OFFSET_0x74);
         FUN_180084760(&uStackX_20, unaff_RBP + 6);
         in_stack_00000060 = unaff_RBP[-0xb];
         in_stack_00000070 = unaff_RBP[-9];
         in_stack_00000068 = unaff_RBP[-10] & 0xffffffff;
         in_stack_00000078 = unaff_RBP[-8] & 0xffffffff;
-        *(undefined4 *)(unaff_RBP + -0x10) = *(undefined4 *)(unaff_RBP + -7);
-        *(undefined4 *)((longlong)unaff_RBP + -0x7c) = *(undefined4 *)((longlong)unaff_RBP + -0x34);
-        *(undefined4 *)(unaff_RBP + -0xf) = *(undefined4 *)(unaff_RBP + -6);
-        *(undefined4 *)((longlong)unaff_RBP + -0x74) = *(undefined4 *)((longlong)unaff_RBP + -0x2c);
-        *(undefined4 *)(unaff_RBP + -0xe) = *(undefined4 *)(unaff_RBP + -5);
-        *(undefined4 *)((longlong)unaff_RBP + -0x6c) = *(undefined4 *)((longlong)unaff_RBP + -0x24);
-        *(undefined4 *)(unaff_RBP + -0xd) = *(undefined4 *)(unaff_RBP + -4);
-        *(undefined4 *)((longlong)unaff_RBP + -100) = *(undefined4 *)((longlong)unaff_RBP + -0x1c);
-        *(undefined4 *)((longlong)unaff_RBP + -0x74) = 0;
-        *(undefined4 *)((longlong)unaff_RBP + -100) = FLOAT_ONE_3f800000;
+        *(int32_t *)(unaff_RBP + -0x10) = *(int32_t *)(unaff_RBP + -7);
+        *(int32_t *)((longlong)unaff_RBP + -0x7c) = *(int32_t *)((longlong)unaff_RBP + -0x34);
+        *(int32_t *)(unaff_RBP + -0xf) = *(int32_t *)(unaff_RBP + -6);
+        *(int32_t *)((longlong)unaff_RBP + -0x74) = *(int32_t *)((longlong)unaff_RBP + -0x2c);
+        *(int32_t *)(unaff_RBP + -0xe) = *(int32_t *)(unaff_RBP + -5);
+        *(int32_t *)((longlong)unaff_RBP + -0x6c) = *(int32_t *)((longlong)unaff_RBP + -0x24);
+        *(int32_t *)(unaff_RBP + -0xd) = *(int32_t *)(unaff_RBP + -4);
+        *(int32_t *)((longlong)unaff_RBP + -100) = *(int32_t *)((longlong)unaff_RBP + -0x1c);
+        *(int32_t *)((longlong)unaff_RBP + -0x74) = 0;
+        *(int32_t *)((longlong)unaff_RBP + -100) = FLOAT_ONE_3f800000;
         
         // 计算边界框
-        puVar17 = (undefined8 *)FUN_1800946d0(&stack0x00000060, &uStackX_20, unaff_RBP + 6);
+        puVar17 = (uint64_t *)FUN_1800946d0(&stack0x00000060, &uStackX_20, unaff_RBP + 6);
         uVar13 = puVar17[1];
         uVar14 = puVar17[2];
         uVar15 = puVar17[3];
         unaff_RBP[-2] = *puVar17;
         unaff_RBP[-1] = uVar13;
-        uVar4 = *(undefined4 *)(puVar17 + 4);
-        uVar5 = *(undefined4 *)((longlong)puVar17 + 0x24);
-        uVar6 = *(undefined4 *)(puVar17 + 5);
-        uVar7 = *(undefined4 *)((longlong)puVar17 + 0x2c);
+        uVar4 = *(int32_t *)(puVar17 + 4);
+        uVar5 = *(int32_t *)((longlong)puVar17 + 0x24);
+        uVar6 = *(int32_t *)(puVar17 + 5);
+        uVar7 = *(int32_t *)((longlong)puVar17 + 0x2c);
         *unaff_RBP = uVar14;
         unaff_RBP[1] = uVar15;
-        uVar8 = *(undefined4 *)(puVar17 + 6);
-        uVar9 = *(undefined4 *)((longlong)puVar17 + 0x34);
-        uVar10 = *(undefined4 *)(puVar17 + 7);
-        uVar11 = *(undefined4 *)((longlong)puVar17 + 0x3c);
-        puVar3 = (undefined *)*puVar12;
-        *(undefined4 *)(unaff_RBP + 2) = uVar4;
-        *(undefined4 *)((longlong)unaff_RBP + 0x14) = uVar5;
-        *(undefined4 *)(unaff_RBP + 3) = uVar6;
-        *(undefined4 *)((longlong)unaff_RBP + 0x1c) = uVar7;
-        *(undefined4 *)(unaff_RBP + 4) = uVar8;
-        *(undefined4 *)((longlong)unaff_RBP + 0x24) = uVar9;
-        *(undefined4 *)(unaff_RBP + 5) = uVar10;
-        *(undefined4 *)((longlong)unaff_RBP + 0x2c) = uVar11;
+        uVar8 = *(int32_t *)(puVar17 + 6);
+        uVar9 = *(int32_t *)((longlong)puVar17 + 0x34);
+        uVar10 = *(int32_t *)(puVar17 + 7);
+        uVar11 = *(int32_t *)((longlong)puVar17 + 0x3c);
+        puVar3 = (void *)*puVar12;
+        *(int32_t *)(unaff_RBP + 2) = uVar4;
+        *(int32_t *)((longlong)unaff_RBP + 0x14) = uVar5;
+        *(int32_t *)(unaff_RBP + 3) = uVar6;
+        *(int32_t *)((longlong)unaff_RBP + 0x1c) = uVar7;
+        *(int32_t *)(unaff_RBP + 4) = uVar8;
+        *(int32_t *)((longlong)unaff_RBP + 0x24) = uVar9;
+        *(int32_t *)(unaff_RBP + 5) = uVar10;
+        *(int32_t *)((longlong)unaff_RBP + 0x2c) = uVar11;
         
         // 处理边界框数据
         if (puVar3 == &UNK_180a169b8) {
@@ -832,7 +832,7 @@ void BoundingBoxInitializer(longlong param_1, undefined8 param_2)
              (*(float *)(unaff_R14 + 100) + *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x54)) * 0.5;
         *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78) = 
              (*(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) + *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x58)) * 0.5;
-        *(undefined4 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x7c) = FLOAT_MAX_7f7fffff;
+        *(int32_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x7c) = FLOAT_MAX_7f7fffff;
         fVar22 = fVar22 - fVar21;
         fVar21 = *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) - *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78);
         fVar20 = *(float *)(unaff_R14 + 100) - *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x74);
@@ -841,14 +841,14 @@ void BoundingBoxInitializer(longlong param_1, undefined8 param_2)
     }
     
     // 重置边界框数据
-    *(undefined4 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x80) = 0;
+    *(int32_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x80) = 0;
     pfVar1[0] = 0.0;
     pfVar1[1] = 0.0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x58) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x60) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x70) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x58) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x60) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x70) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78) = 0;
     return;
 }
 
@@ -876,65 +876,65 @@ void BoundingBoxInitializer(longlong param_1, undefined8 param_2)
 void BoundingBoxManager(void)
 {
     float *pfVar1;
-    undefined *puVar2;
-    undefined4 uVar3;
-    undefined4 uVar4;
-    undefined4 uVar5;
-    undefined4 uVar6;
-    undefined4 uVar7;
-    undefined4 uVar8;
-    undefined4 uVar9;
-    undefined4 uVar10;
-    undefined8 *puVar11;
-    undefined8 uVar12;
-    undefined8 uVar13;
-    undefined8 uVar14;
-    undefined8 uVar15;
-    undefined8 *puVar16;
+    void *puVar2;
+    int32_t uVar3;
+    int32_t uVar4;
+    int32_t uVar5;
+    int32_t uVar6;
+    int32_t uVar7;
+    int32_t uVar8;
+    int32_t uVar9;
+    int32_t uVar10;
+    uint64_t *puVar11;
+    uint64_t uVar12;
+    uint64_t uVar13;
+    uint64_t uVar14;
+    uint64_t uVar15;
+    uint64_t *puVar16;
     longlong lVar17;
-    undefined8 *unaff_RBX;
-    undefined8 *unaff_RBP;
+    uint64_t *unaff_RBX;
+    uint64_t *unaff_RBP;
     longlong unaff_R14;
-    undefined8 *unaff_R15;
+    uint64_t *unaff_R15;
     float fVar18;
     float fVar19;
     float fVar20;
-    undefined4 uStackX_20;
-    undefined4 uStackX_24;
-    undefined8 in_stack_00000060;
+    int32_t uStackX_20;
+    int32_t uStackX_24;
+    uint64_t in_stack_00000060;
     ulonglong in_stack_00000068;
-    undefined8 in_stack_00000070;
+    uint64_t in_stack_00000070;
     ulonglong in_stack_00000078;
     
     do {
-        puVar11 = (undefined8 *)*unaff_RBX;
+        puVar11 = (uint64_t *)*unaff_RBX;
         uVar12 = unaff_RBX[1];
         uVar13 = unaff_RBX[3];
         uVar14 = unaff_RBX[4];
         uVar15 = unaff_RBX[5];
         unaff_RBP[-10] = unaff_RBX[2];
         unaff_RBP[-9] = uVar13;
-        uVar3 = *(undefined4 *)(unaff_RBX + 6);
-        uVar4 = *(undefined4 *)((longlong)unaff_RBX + 0x34);
-        uVar5 = *(undefined4 *)(unaff_RBX + 7);
-        uVar6 = *(undefined4 *)((longlong)unaff_RBX + 0x3c);
+        uVar3 = *(int32_t *)(unaff_RBX + 6);
+        uVar4 = *(int32_t *)((longlong)unaff_RBX + 0x34);
+        uVar5 = *(int32_t *)(unaff_RBX + 7);
+        uVar6 = *(int32_t *)((longlong)unaff_RBX + 0x3c);
         unaff_RBP[-8] = uVar14;
         unaff_RBP[-7] = uVar15;
-        uVar7 = *(undefined4 *)(unaff_RBX + 8);
-        uVar8 = *(undefined4 *)((longlong)unaff_RBX + 0x44);
-        uVar9 = *(undefined4 *)(unaff_RBX + 9);
-        uVar10 = *(undefined4 *)((longlong)unaff_RBX + 0x4c);
-        puVar2 = (undefined *)*puVar11;
+        uVar7 = *(int32_t *)(unaff_RBX + 8);
+        uVar8 = *(int32_t *)((longlong)unaff_RBX + 0x44);
+        uVar9 = *(int32_t *)(unaff_RBX + 9);
+        uVar10 = *(int32_t *)((longlong)unaff_RBX + 0x4c);
+        puVar2 = (void *)*puVar11;
         unaff_RBP[-0xc] = puVar11;
         unaff_RBP[-0xb] = uVar12;
-        *(undefined4 *)(unaff_RBP + -6) = uVar3;
-        *(undefined4 *)((longlong)unaff_RBP + -0x2c) = uVar4;
-        *(undefined4 *)(unaff_RBP + -5) = uVar5;
-        *(undefined4 *)((longlong)unaff_RBP + -0x24) = uVar6;
-        *(undefined4 *)(unaff_RBP + -4) = uVar7;
-        *(undefined4 *)((longlong)unaff_RBP + -0x1c) = uVar8;
-        *(undefined4 *)(unaff_RBP + -3) = uVar9;
-        *(undefined4 *)((longlong)unaff_RBP + -0x14) = uVar10;
+        *(int32_t *)(unaff_RBP + -6) = uVar3;
+        *(int32_t *)((longlong)unaff_RBP + -0x2c) = uVar4;
+        *(int32_t *)(unaff_RBP + -5) = uVar5;
+        *(int32_t *)((longlong)unaff_RBP + -0x24) = uVar6;
+        *(int32_t *)(unaff_RBP + -4) = uVar7;
+        *(int32_t *)((longlong)unaff_RBP + -0x1c) = uVar8;
+        *(int32_t *)(unaff_RBP + -3) = uVar9;
+        *(int32_t *)((longlong)unaff_RBP + -0x14) = uVar10;
         
         // 处理边界框数据
         if (puVar2 == &UNK_180a169b8) {
@@ -944,50 +944,50 @@ void BoundingBoxManager(void)
         }
         
         // 获取边界框数据
-        uStackX_20 = *(undefined4 *)(*(longlong *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x28) + BOUNDING_BOX_OFFSET_0x70);
-        uStackX_24 = *(undefined4 *)(*(longlong *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x28) + BOUNDING_BOX_OFFSET_0x74);
+        uStackX_20 = *(int32_t *)(*(longlong *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x28) + BOUNDING_BOX_OFFSET_0x70);
+        uStackX_24 = *(int32_t *)(*(longlong *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x28) + BOUNDING_BOX_OFFSET_0x74);
         FUN_180084760(&uStackX_20, unaff_RBP + 6);
         in_stack_00000060 = unaff_RBP[-0xb];
         in_stack_00000070 = unaff_RBP[-9];
         in_stack_00000068 = unaff_RBP[-10] & 0xffffffff;
         in_stack_00000078 = unaff_RBP[-8] & 0xffffffff;
-        *(undefined4 *)(unaff_RBP + -0x10) = *(undefined4 *)(unaff_RBP + -7);
-        *(undefined4 *)((longlong)unaff_RBP + -0x7c) = *(undefined4 *)((longlong)unaff_RBP + -0x34);
-        *(undefined4 *)(unaff_RBP + -0xf) = *(undefined4 *)(unaff_RBP + -6);
-        *(undefined4 *)((longlong)unaff_RBP + -0x74) = *(undefined4 *)((longlong)unaff_RBP + -0x2c);
-        *(undefined4 *)(unaff_RBP + -0xe) = *(undefined4 *)(unaff_RBP + -5);
-        *(undefined4 *)((longlong)unaff_RBP + -0x6c) = *(undefined4 *)((longlong)unaff_RBP + -0x24);
-        *(undefined4 *)(unaff_RBP + -0xd) = *(undefined4 *)(unaff_RBP + -4);
-        *(undefined4 *)((longlong)unaff_RBP + -100) = *(undefined4 *)((longlong)unaff_RBP + -0x1c);
-        *(undefined4 *)((longlong)unaff_RBP + -0x74) = 0;
-        *(undefined4 *)((longlong)unaff_RBP + -100) = FLOAT_ONE_3f800000;
+        *(int32_t *)(unaff_RBP + -0x10) = *(int32_t *)(unaff_RBP + -7);
+        *(int32_t *)((longlong)unaff_RBP + -0x7c) = *(int32_t *)((longlong)unaff_RBP + -0x34);
+        *(int32_t *)(unaff_RBP + -0xf) = *(int32_t *)(unaff_RBP + -6);
+        *(int32_t *)((longlong)unaff_RBP + -0x74) = *(int32_t *)((longlong)unaff_RBP + -0x2c);
+        *(int32_t *)(unaff_RBP + -0xe) = *(int32_t *)(unaff_RBP + -5);
+        *(int32_t *)((longlong)unaff_RBP + -0x6c) = *(int32_t *)((longlong)unaff_RBP + -0x24);
+        *(int32_t *)(unaff_RBP + -0xd) = *(int32_t *)(unaff_RBP + -4);
+        *(int32_t *)((longlong)unaff_RBP + -100) = *(int32_t *)((longlong)unaff_RBP + -0x1c);
+        *(int32_t *)((longlong)unaff_RBP + -0x74) = 0;
+        *(int32_t *)((longlong)unaff_RBP + -100) = FLOAT_ONE_3f800000;
         
         // 计算边界框
-        puVar16 = (undefined8 *)FUN_1800946d0(&stack0x00000060, &uStackX_20, unaff_RBP + 6);
+        puVar16 = (uint64_t *)FUN_1800946d0(&stack0x00000060, &uStackX_20, unaff_RBP + 6);
         uVar12 = puVar16[1];
         uVar13 = puVar16[2];
         uVar14 = puVar16[3];
         unaff_RBP[-2] = *puVar16;
         unaff_RBP[-1] = uVar12;
-        uVar3 = *(undefined4 *)(puVar16 + 4);
-        uVar4 = *(undefined4 *)((longlong)puVar16 + 0x24);
-        uVar5 = *(undefined4 *)(puVar16 + 5);
-        uVar6 = *(undefined4 *)((longlong)puVar16 + 0x2c);
+        uVar3 = *(int32_t *)(puVar16 + 4);
+        uVar4 = *(int32_t *)((longlong)puVar16 + 0x24);
+        uVar5 = *(int32_t *)(puVar16 + 5);
+        uVar6 = *(int32_t *)((longlong)puVar16 + 0x2c);
         *unaff_RBP = uVar13;
         unaff_RBP[1] = uVar14;
-        uVar7 = *(undefined4 *)(puVar16 + 6);
-        uVar8 = *(undefined4 *)((longlong)puVar16 + 0x34);
-        uVar9 = *(undefined4 *)(puVar16 + 7);
-        uVar10 = *(undefined4 *)((longlong)puVar16 + 0x3c);
-        puVar2 = (undefined *)*puVar11;
-        *(undefined4 *)(unaff_RBP + 2) = uVar3;
-        *(undefined4 *)((longlong)unaff_RBP + 0x14) = uVar4;
-        *(undefined4 *)(unaff_RBP + 3) = uVar5;
-        *(undefined4 *)((longlong)unaff_RBP + 0x1c) = uVar6;
-        *(undefined4 *)(unaff_RBP + 4) = uVar7;
-        *(undefined4 *)((longlong)unaff_RBP + 0x24) = uVar8;
-        *(undefined4 *)(unaff_RBP + 5) = uVar9;
-        *(undefined4 *)((longlong)unaff_RBP + 0x2c) = uVar10;
+        uVar7 = *(int32_t *)(puVar16 + 6);
+        uVar8 = *(int32_t *)((longlong)puVar16 + 0x34);
+        uVar9 = *(int32_t *)(puVar16 + 7);
+        uVar10 = *(int32_t *)((longlong)puVar16 + 0x3c);
+        puVar2 = (void *)*puVar11;
+        *(int32_t *)(unaff_RBP + 2) = uVar3;
+        *(int32_t *)((longlong)unaff_RBP + 0x14) = uVar4;
+        *(int32_t *)(unaff_RBP + 3) = uVar5;
+        *(int32_t *)((longlong)unaff_RBP + 0x1c) = uVar6;
+        *(int32_t *)(unaff_RBP + 4) = uVar7;
+        *(int32_t *)((longlong)unaff_RBP + 0x24) = uVar8;
+        *(int32_t *)(unaff_RBP + 5) = uVar9;
+        *(int32_t *)((longlong)unaff_RBP + 0x2c) = uVar10;
         
         // 处理边界框数据
         if (puVar2 == &UNK_180a169b8) {
@@ -1009,7 +1009,7 @@ void BoundingBoxManager(void)
              (*(float *)(unaff_R14 + 100) + *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x54)) * 0.5;
         *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78) = 
              (*(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) + *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x58)) * 0.5;
-        *(undefined4 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x7c) = FLOAT_MAX_7f7fffff;
+        *(int32_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x7c) = FLOAT_MAX_7f7fffff;
         fVar20 = fVar20 - fVar19;
         fVar19 = *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) - *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78);
         fVar18 = *(float *)(unaff_R14 + 100) - *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x74);
@@ -1018,14 +1018,14 @@ void BoundingBoxManager(void)
     }
     
     // 重置边界框数据
-    *(undefined4 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x80) = 0;
+    *(int32_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x80) = 0;
     pfVar1[0] = 0.0;
     pfVar1[1] = 0.0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x58) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x60) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x70) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x58) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x60) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x70) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78) = 0;
     return;
 }
 
@@ -1067,7 +1067,7 @@ void BoundingBoxCleanup(void)
              (*(float *)(unaff_R14 + 100) + *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x54)) * 0.5;
         *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78) = 
              (*(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) + *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x58)) * 0.5;
-        *(undefined4 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x7c) = FLOAT_MAX_7f7fffff;
+        *(int32_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x7c) = FLOAT_MAX_7f7fffff;
         fVar4 = fVar4 - fVar3;
         fVar3 = *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) - *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78);
         fVar2 = *(float *)(unaff_R14 + 100) - *(float *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x74);
@@ -1076,14 +1076,14 @@ void BoundingBoxCleanup(void)
     }
     
     // 重置边界框数据
-    *(undefined4 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x80) = 0;
+    *(int32_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x80) = 0;
     pfVar1[0] = 0.0;
     pfVar1[1] = 0.0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x58) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x60) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x70) = 0;
-    *(undefined8 *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x58) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x60) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x68) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x70) = 0;
+    *(uint64_t *)(unaff_R14 + BOUNDING_BOX_OFFSET_0x78) = 0;
     return;
 }
 

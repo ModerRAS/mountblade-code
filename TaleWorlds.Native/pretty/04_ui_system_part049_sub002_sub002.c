@@ -2,18 +2,18 @@
 
 // 04_ui_system_part049_sub002_sub002.c - 1 个函数
 
-// 函数: void FUN_180690700(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4,
-void FUN_180690700(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) [32],int param_4,
+// 函数: void FUN_180690700(int8_t (*param_1) [32],int param_2,int8_t (*param_3) [32],int param_4,
+void FUN_180690700(int8_t (*param_1) [32],int param_2,int8_t (*param_3) [32],int param_4,
                   int *param_5,int *param_6)
 
 {
-  undefined1 auVar1 [32];
-  undefined1 auVar2 [32];
-  undefined1 auVar3 [32];
+  int8_t auVar1 [32];
+  int8_t auVar2 [32];
+  int8_t auVar3 [32];
   longlong lVar4;
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
-  undefined1 auVar7 [32];
+  int8_t auVar5 [32];
+  int8_t auVar6 [32];
+  int8_t auVar7 [32];
   
   auVar5 = ZEXT832(0) << 0x40;
   lVar4 = 0x10;
@@ -30,8 +30,8 @@ void FUN_180690700(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) 
     auVar3 = vpmaddwd_avx2(auVar3,auVar3);
     auVar2 = vpmaddwd_avx2(auVar2,auVar2);
     auVar6 = vpaddw_avx2(auVar7,auVar6);
-    param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-    param_3 = (undefined1 (*) [32])(*param_3 + param_4);
+    param_1 = (int8_t (*) [32])(*param_1 + param_2);
+    param_3 = (int8_t (*) [32])(*param_3 + param_4);
     auVar7 = vpaddd_avx2(auVar2,auVar3);
     auVar1 = vpaddd_avx2(auVar7,auVar1);
     lVar4 = lVar4 + -1;
@@ -60,21 +60,21 @@ void FUN_180690700(undefined1 (*param_1) [32],int param_2,undefined1 (*param_3) 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4,
-                 undefined1 (*param_5) [32],int param_6,undefined1 (*param_7) [32],int param_8,
+int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
+                 int8_t (*param_5) [32],int param_6,int8_t (*param_7) [32],int param_8,
                  uint param_9,int *param_10)
 
 {
   ulonglong uVar1;
-  undefined1 auVar2 [32];
-  undefined1 auVar3 [32];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
-  undefined1 auVar7 [32];
-  undefined1 auVar8 [32];
-  undefined1 auVar9 [64];
-  undefined1 auVar10 [64];
+  int8_t auVar2 [32];
+  int8_t auVar3 [32];
+  int8_t auVar4 [32];
+  int8_t auVar5 [32];
+  int8_t auVar6 [32];
+  int8_t auVar7 [32];
+  int8_t auVar8 [32];
+  int8_t auVar9 [64];
+  int8_t auVar10 [64];
   
   auVar3 = ZEXT832(0) << 0x40;
   auVar9 = ZEXT3264(auVar3);
@@ -97,9 +97,9 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           auVar5 = vpmaddwd_avx2(auVar5,auVar5);
           auVar4 = vpaddw_avx2(auVar4,auVar7);
           auVar9 = ZEXT3264(auVar4);
-          param_7 = (undefined1 (*) [32])(*param_7 + param_8);
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+          param_7 = (int8_t (*) [32])(*param_7 + param_8);
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
           auVar5 = vpaddd_avx2(auVar5,auVar10._0_32_);
           auVar7 = vpmaddwd_avx2(auVar7,auVar7);
           auVar5 = vpaddd_avx2(auVar5,auVar7);
@@ -112,11 +112,11 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       if (0 < (int)param_9) {
         uVar1 = (ulonglong)param_9;
         do {
-          auVar4 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + param_2));
+          auVar4 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + param_2));
           auVar4 = vpavgb_avx2(auVar4,*param_7);
           auVar5 = vpunpcklbw_avx2(auVar4,auVar3);
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_7 = (undefined1 (*) [32])(*param_7 + param_8);
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_7 = (int8_t (*) [32])(*param_7 + param_8);
           auVar7 = vpunpcklbw_avx2(*param_5,auVar3);
           auVar5 = vpsubw_avx2(auVar5,auVar7);
           auVar4 = vpunpckhbw_avx2(auVar4,auVar3);
@@ -126,7 +126,7 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           auVar5 = vpmaddwd_avx2(auVar5,auVar5);
           auVar4 = vpaddw_avx2(auVar4,auVar7);
           auVar9 = ZEXT3264(auVar4);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
           auVar5 = vpaddd_avx2(auVar5,auVar10._0_32_);
           auVar7 = vpmaddwd_avx2(auVar7,auVar7);
           auVar5 = vpaddd_avx2(auVar5,auVar7);
@@ -140,13 +140,13 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       do {
         auVar4 = *param_1;
         auVar5 = *param_5;
-        param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-        param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+        param_1 = (int8_t (*) [32])(*param_1 + param_2);
+        param_5 = (int8_t (*) [32])(*param_5 + param_6);
         auVar7 = vpunpckhbw_avx2(auVar4,*param_1);
-        auVar7 = vpmaddubsw_avx2(auVar7,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)));
+        auVar7 = vpmaddubsw_avx2(auVar7,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)));
         auVar2 = vpunpcklbw_avx2(auVar4,*param_1);
         auVar4 = vpaddw_avx2(auVar7,_DAT_180948080);
-        auVar7 = vpmaddubsw_avx2(auVar2,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)));
+        auVar7 = vpmaddubsw_avx2(auVar2,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)));
         auVar2 = vpsraw_avx2(auVar4,4);
         auVar4 = vpaddw_avx2(auVar7,_DAT_180948080);
         auVar4 = vpsraw_avx2(auVar4,4);
@@ -162,7 +162,7 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
         auVar5 = vpmaddwd_avx2(auVar7,auVar7);
         auVar4 = vpaddw_avx2(auVar4,auVar2);
         auVar9 = ZEXT3264(auVar4);
-        param_7 = (undefined1 (*) [32])(*param_7 + param_8);
+        param_7 = (int8_t (*) [32])(*param_7 + param_8);
         auVar5 = vpaddd_avx2(auVar5,auVar10._0_32_);
         auVar7 = vpmaddwd_avx2(auVar2,auVar2);
         auVar5 = vpaddd_avx2(auVar5,auVar7);
@@ -176,7 +176,7 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       if (0 < (int)param_9) {
         uVar1 = (ulonglong)param_9;
         do {
-          auVar4 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+          auVar4 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar4 = vpavgb_avx2(auVar4,*param_7);
           auVar5 = vpunpcklbw_avx2(auVar4,auVar3);
           auVar7 = vpunpcklbw_avx2(*param_5,auVar3);
@@ -188,9 +188,9 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           auVar5 = vpmaddwd_avx2(auVar5,auVar5);
           auVar4 = vpaddw_avx2(auVar4,auVar7);
           auVar9 = ZEXT3264(auVar4);
-          param_7 = (undefined1 (*) [32])(*param_7 + param_8);
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+          param_7 = (int8_t (*) [32])(*param_7 + param_8);
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
           auVar5 = vpaddd_avx2(auVar5,auVar10._0_32_);
           auVar7 = vpmaddwd_avx2(auVar7,auVar7);
           auVar5 = vpaddd_avx2(auVar5,auVar7);
@@ -200,14 +200,14 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       }
     }
     else if (param_4 == 8) {
-      auVar7 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+      auVar7 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
       if (0 < (int)param_9) {
         uVar1 = (ulonglong)param_9;
         do {
           auVar4 = *param_5;
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
-          auVar2 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
+          auVar2 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar5 = vpavgb_avx2(auVar7,auVar2);
           auVar5 = vpavgb_avx2(auVar5,*param_7);
           auVar7 = vpunpcklbw_avx2(auVar5,auVar3);
@@ -220,7 +220,7 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           auVar5 = vpmaddwd_avx2(auVar7,auVar7);
           auVar4 = vpaddw_avx2(auVar4,auVar6);
           auVar9 = ZEXT3264(auVar4);
-          param_7 = (undefined1 (*) [32])(*param_7 + param_8);
+          param_7 = (int8_t (*) [32])(*param_7 + param_8);
           auVar5 = vpaddd_avx2(auVar5,auVar10._0_32_);
           auVar7 = vpmaddwd_avx2(auVar6,auVar6);
           auVar5 = vpaddd_avx2(auVar5,auVar7);
@@ -231,20 +231,20 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       }
     }
     else {
-      auVar7 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+      auVar7 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
       if (0 < (int)param_9) {
         uVar1 = (ulonglong)param_9;
         do {
           auVar4 = *param_5;
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
-          auVar2 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
+          auVar2 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar5 = vpunpckhbw_avx2(auVar7,auVar2);
-          auVar5 = vpmaddubsw_avx2(auVar5,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)));
+          auVar5 = vpmaddubsw_avx2(auVar5,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)));
           auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
           auVar6 = vpsraw_avx2(auVar5,4);
           auVar5 = vpunpcklbw_avx2(auVar7,auVar2);
-          auVar5 = vpmaddubsw_avx2(auVar5,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)));
+          auVar5 = vpmaddubsw_avx2(auVar5,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)));
           auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
           auVar5 = vpsraw_avx2(auVar5,4);
           auVar5 = vpackuswb_avx2(auVar5,auVar6);
@@ -259,7 +259,7 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           auVar5 = vpmaddwd_avx2(auVar7,auVar7);
           auVar4 = vpaddw_avx2(auVar4,auVar6);
           auVar9 = ZEXT3264(auVar4);
-          param_7 = (undefined1 (*) [32])(*param_7 + param_8);
+          param_7 = (int8_t (*) [32])(*param_7 + param_8);
           auVar5 = vpaddd_avx2(auVar5,auVar10._0_32_);
           auVar7 = vpmaddwd_avx2(auVar6,auVar6);
           auVar5 = vpaddd_avx2(auVar5,auVar7);
@@ -276,11 +276,11 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       if (0 < (int)param_9) {
         uVar1 = (ulonglong)param_9;
         do {
-          auVar4 = vpunpckhbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
-          auVar4 = vpmaddubsw_avx2(auVar4,*(undefined1 (*) [32])(&UNK_180947e80 + param_3));
-          auVar5 = vpunpcklbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+          auVar4 = vpunpckhbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
+          auVar4 = vpmaddubsw_avx2(auVar4,*(int8_t (*) [32])(&UNK_180947e80 + param_3));
+          auVar5 = vpunpcklbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar4 = vpaddw_avx2(auVar4,_DAT_180948080);
-          auVar5 = vpmaddubsw_avx2(auVar5,*(undefined1 (*) [32])(&UNK_180947e80 + param_3));
+          auVar5 = vpmaddubsw_avx2(auVar5,*(int8_t (*) [32])(&UNK_180947e80 + param_3));
           auVar7 = vpsraw_avx2(auVar4,4);
           auVar4 = vpaddw_avx2(auVar5,_DAT_180948080);
           auVar4 = vpsraw_avx2(auVar4,4);
@@ -296,9 +296,9 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           auVar5 = vpmaddwd_avx2(auVar5,auVar5);
           auVar4 = vpaddw_avx2(auVar4,auVar7);
           auVar9 = ZEXT3264(auVar4);
-          param_7 = (undefined1 (*) [32])(*param_7 + param_8);
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+          param_7 = (int8_t (*) [32])(*param_7 + param_8);
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
           auVar5 = vpaddd_avx2(auVar5,auVar10._0_32_);
           auVar7 = vpmaddwd_avx2(auVar7,auVar7);
           auVar5 = vpaddd_avx2(auVar5,auVar7);
@@ -309,11 +309,11 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
     }
     else {
       auVar7 = *param_1;
-      auVar2 = vpunpckhbw_avx2(auVar7,*(undefined1 (*) [32])(*param_1 + 1));
+      auVar2 = vpunpckhbw_avx2(auVar7,*(int8_t (*) [32])(*param_1 + 1));
       if (param_4 == 8) {
-        auVar6 = *(undefined1 (*) [32])(&UNK_180947e80 + param_3);
+        auVar6 = *(int8_t (*) [32])(&UNK_180947e80 + param_3);
         auVar2 = vpmaddubsw_avx2(auVar2,auVar6);
-        auVar8 = vpunpcklbw_avx2(auVar7,*(undefined1 (*) [32])(*param_1 + 1));
+        auVar8 = vpunpcklbw_avx2(auVar7,*(int8_t (*) [32])(*param_1 + 1));
         auVar7 = vpaddw_avx2(auVar2,_DAT_180948080);
         auVar2 = vpsraw_avx2(auVar7,4);
         auVar7 = vpmaddubsw_avx2(auVar8,auVar6);
@@ -324,11 +324,11 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           uVar1 = (ulonglong)param_9;
           do {
             auVar4 = *param_5;
-            param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-            param_5 = (undefined1 (*) [32])(*param_5 + param_6);
-            auVar5 = vpunpckhbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+            param_1 = (int8_t (*) [32])(*param_1 + param_2);
+            param_5 = (int8_t (*) [32])(*param_5 + param_6);
+            auVar5 = vpunpckhbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
             auVar5 = vpmaddubsw_avx2(auVar5,auVar6);
-            auVar2 = vpunpcklbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+            auVar2 = vpunpcklbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
             auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
             auVar2 = vpmaddubsw_avx2(auVar2,auVar6);
             auVar8 = vpsraw_avx2(auVar5,4);
@@ -347,7 +347,7 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
             auVar4 = vpaddw_avx2(auVar4,auVar8);
             auVar9 = ZEXT3264(auVar4);
             auVar5 = vpmaddwd_avx2(auVar7,auVar7);
-            param_7 = (undefined1 (*) [32])(*param_7 + param_8);
+            param_7 = (int8_t (*) [32])(*param_7 + param_8);
             auVar5 = vpaddd_avx2(auVar5,auVar10._0_32_);
             auVar7 = vpmaddwd_avx2(auVar8,auVar8);
             auVar5 = vpaddd_avx2(auVar5,auVar7);
@@ -358,9 +358,9 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
         }
       }
       else {
-        auVar6 = *(undefined1 (*) [32])(&UNK_180947e80 + param_3);
+        auVar6 = *(int8_t (*) [32])(&UNK_180947e80 + param_3);
         auVar2 = vpmaddubsw_avx2(auVar2,auVar6);
-        auVar8 = vpunpcklbw_avx2(auVar7,*(undefined1 (*) [32])(*param_1 + 1));
+        auVar8 = vpunpcklbw_avx2(auVar7,*(int8_t (*) [32])(*param_1 + 1));
         auVar7 = vpaddw_avx2(auVar2,_DAT_180948080);
         auVar2 = vpsraw_avx2(auVar7,4);
         auVar7 = vpmaddubsw_avx2(auVar8,auVar6);
@@ -371,11 +371,11 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           uVar1 = (ulonglong)param_9;
           do {
             auVar4 = *param_5;
-            param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-            param_5 = (undefined1 (*) [32])(*param_5 + param_6);
-            auVar5 = vpunpckhbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+            param_1 = (int8_t (*) [32])(*param_1 + param_2);
+            param_5 = (int8_t (*) [32])(*param_5 + param_6);
+            auVar5 = vpunpckhbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
             auVar5 = vpmaddubsw_avx2(auVar5,auVar6);
-            auVar2 = vpunpcklbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+            auVar2 = vpunpcklbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
             auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
             auVar2 = vpmaddubsw_avx2(auVar2,auVar6);
             auVar8 = vpsraw_avx2(auVar5,4);
@@ -383,12 +383,12 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
             auVar5 = vpsraw_avx2(auVar5,4);
             auVar2 = vpackuswb_avx2(auVar5,auVar8);
             auVar5 = vpunpckhbw_avx2(auVar7,auVar2);
-            auVar5 = vpmaddubsw_avx2(auVar5,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)))
+            auVar5 = vpmaddubsw_avx2(auVar5,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)))
             ;
             auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
             auVar8 = vpsraw_avx2(auVar5,4);
             auVar5 = vpunpcklbw_avx2(auVar7,auVar2);
-            auVar5 = vpmaddubsw_avx2(auVar5,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)))
+            auVar5 = vpmaddubsw_avx2(auVar5,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)))
             ;
             auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
             auVar5 = vpsraw_avx2(auVar5,4);
@@ -404,7 +404,7 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
             auVar4 = vpaddw_avx2(auVar4,auVar7);
             auVar9 = ZEXT3264(auVar4);
             auVar5 = vpmaddwd_avx2(auVar5,auVar5);
-            param_7 = (undefined1 (*) [32])(*param_7 + param_8);
+            param_7 = (int8_t (*) [32])(*param_7 + param_8);
             auVar5 = vpaddd_avx2(auVar5,auVar10._0_32_);
             auVar7 = vpmaddwd_avx2(auVar7,auVar7);
             auVar5 = vpaddd_avx2(auVar5,auVar7);
@@ -436,21 +436,21 @@ int FUN_180690800(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4,
-                 undefined1 (*param_5) [32],int param_6,uint param_7,int *param_8)
+int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
+                 int8_t (*param_5) [32],int param_6,uint param_7,int *param_8)
 
 {
   ulonglong uVar1;
-  undefined1 auVar2 [32];
-  undefined1 auVar3 [32];
-  undefined1 auVar4 [32];
-  undefined1 auVar5 [32];
-  undefined1 auVar6 [32];
-  undefined1 auVar7 [32];
-  undefined1 auVar8 [32];
-  undefined1 auVar9 [32];
-  undefined1 auVar10 [64];
-  undefined1 auVar11 [64];
+  int8_t auVar2 [32];
+  int8_t auVar3 [32];
+  int8_t auVar4 [32];
+  int8_t auVar5 [32];
+  int8_t auVar6 [32];
+  int8_t auVar7 [32];
+  int8_t auVar8 [32];
+  int8_t auVar9 [32];
+  int8_t auVar10 [64];
+  int8_t auVar11 [64];
   
   auVar3 = ZEXT832(0) << 0x40;
   auVar10 = ZEXT3264(auVar3);
@@ -472,8 +472,8 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           auVar5 = vpmaddwd_avx2(auVar5,auVar5);
           auVar9 = vpaddw_avx2(auVar9,auVar6);
           auVar10 = ZEXT3264(auVar9);
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
           auVar5 = vpaddd_avx2(auVar5,auVar11._0_32_);
           auVar6 = vpmaddwd_avx2(auVar6,auVar6);
           auVar5 = vpaddd_avx2(auVar5,auVar6);
@@ -486,13 +486,13 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       if (0 < (int)param_7) {
         uVar1 = (ulonglong)param_7;
         do {
-          auVar5 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + param_2));
+          auVar5 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + param_2));
           auVar9 = *param_5;
           auVar6 = vpunpcklbw_avx2(auVar9,auVar3);
           auVar2 = vpunpcklbw_avx2(auVar5,auVar3);
           auVar6 = vpsubw_avx2(auVar2,auVar6);
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
           auVar5 = vpunpckhbw_avx2(auVar5,auVar3);
           auVar9 = vpunpckhbw_avx2(auVar9,auVar3);
           auVar2 = vpsubw_avx2(auVar5,auVar9);
@@ -513,16 +513,16 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       do {
         auVar9 = *param_1;
         auVar5 = *param_5;
-        param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-        param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+        param_1 = (int8_t (*) [32])(*param_1 + param_2);
+        param_5 = (int8_t (*) [32])(*param_5 + param_6);
         auVar6 = vpunpcklbw_avx2(auVar9,*param_1);
-        auVar6 = vpmaddubsw_avx2(auVar6,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)));
+        auVar6 = vpmaddubsw_avx2(auVar6,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)));
         auVar6 = vpaddw_avx2(auVar6,_DAT_180948080);
         auVar9 = vpunpckhbw_avx2(auVar9,*param_1);
         auVar2 = vpsraw_avx2(auVar6,4);
         auVar6 = vpunpcklbw_avx2(auVar5,auVar3);
         auVar6 = vpsubw_avx2(auVar2,auVar6);
-        auVar9 = vpmaddubsw_avx2(auVar9,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)));
+        auVar9 = vpmaddubsw_avx2(auVar9,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)));
         auVar9 = vpaddw_avx2(auVar9,_DAT_180948080);
         auVar2 = vpsraw_avx2(auVar9,4);
         auVar9 = vpunpckhbw_avx2(auVar5,auVar3);
@@ -544,7 +544,7 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       if (0 < (int)param_7) {
         uVar1 = (ulonglong)param_7;
         do {
-          auVar9 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+          auVar9 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar5 = vpunpcklbw_avx2(*param_5,auVar3);
           auVar6 = vpunpcklbw_avx2(auVar9,auVar3);
           auVar5 = vpsubw_avx2(auVar6,auVar5);
@@ -555,8 +555,8 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           auVar5 = vpmaddwd_avx2(auVar5,auVar5);
           auVar9 = vpaddw_avx2(auVar9,auVar6);
           auVar10 = ZEXT3264(auVar9);
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
           auVar5 = vpaddd_avx2(auVar5,auVar11._0_32_);
           auVar6 = vpmaddwd_avx2(auVar6,auVar6);
           auVar5 = vpaddd_avx2(auVar5,auVar6);
@@ -566,15 +566,15 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       }
     }
     else if (param_4 == 8) {
-      auVar6 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+      auVar6 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
       if (0 < (int)param_7) {
         uVar1 = (ulonglong)param_7;
         do {
           auVar9 = *param_5;
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
           auVar4 = vpunpcklbw_avx2(auVar9,auVar3);
-          auVar2 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+          auVar2 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar5 = vpavgb_avx2(auVar6,auVar2);
           auVar6 = vpunpcklbw_avx2(auVar5,auVar3);
           auVar6 = vpsubw_avx2(auVar6,auVar4);
@@ -595,22 +595,22 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       }
     }
     else {
-      auVar6 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+      auVar6 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
       if (0 < (int)param_7) {
         uVar1 = (ulonglong)param_7;
         do {
           auVar9 = *param_5;
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
-          auVar2 = vpavgb_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
+          auVar2 = vpavgb_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar5 = vpunpcklbw_avx2(auVar6,auVar2);
-          auVar5 = vpmaddubsw_avx2(auVar5,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)));
+          auVar5 = vpmaddubsw_avx2(auVar5,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)));
           auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
           auVar4 = vpsraw_avx2(auVar5,4);
           auVar5 = vpunpckhbw_avx2(auVar6,auVar2);
           auVar6 = vpunpcklbw_avx2(auVar9,auVar3);
           auVar6 = vpsubw_avx2(auVar4,auVar6);
-          auVar5 = vpmaddubsw_avx2(auVar5,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)));
+          auVar5 = vpmaddubsw_avx2(auVar5,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)));
           auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
           auVar5 = vpsraw_avx2(auVar5,4);
           auVar9 = vpunpckhbw_avx2(auVar9,auVar3);
@@ -635,14 +635,14 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
       if (0 < (int)param_7) {
         uVar1 = (ulonglong)param_7;
         do {
-          auVar9 = vpunpcklbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
-          auVar9 = vpmaddubsw_avx2(auVar9,*(undefined1 (*) [32])(&UNK_180947e80 + param_3));
+          auVar9 = vpunpcklbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
+          auVar9 = vpmaddubsw_avx2(auVar9,*(int8_t (*) [32])(&UNK_180947e80 + param_3));
           auVar9 = vpaddw_avx2(auVar9,_DAT_180948080);
-          auVar6 = vpunpckhbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+          auVar6 = vpunpckhbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
           auVar5 = vpsraw_avx2(auVar9,4);
           auVar9 = vpunpcklbw_avx2(*param_5,auVar3);
           auVar5 = vpsubw_avx2(auVar5,auVar9);
-          auVar9 = vpmaddubsw_avx2(auVar6,*(undefined1 (*) [32])(&UNK_180947e80 + param_3));
+          auVar9 = vpmaddubsw_avx2(auVar6,*(int8_t (*) [32])(&UNK_180947e80 + param_3));
           auVar9 = vpaddw_avx2(auVar9,_DAT_180948080);
           auVar6 = vpsraw_avx2(auVar9,4);
           auVar9 = vpunpckhbw_avx2(*param_5,auVar3);
@@ -651,8 +651,8 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           auVar9 = vpaddw_avx2(auVar9,auVar6);
           auVar10 = ZEXT3264(auVar9);
           auVar5 = vpmaddwd_avx2(auVar5,auVar5);
-          param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-          param_5 = (undefined1 (*) [32])(*param_5 + param_6);
+          param_1 = (int8_t (*) [32])(*param_1 + param_2);
+          param_5 = (int8_t (*) [32])(*param_5 + param_6);
           auVar5 = vpaddd_avx2(auVar5,auVar11._0_32_);
           auVar6 = vpmaddwd_avx2(auVar6,auVar6);
           auVar5 = vpaddd_avx2(auVar5,auVar6);
@@ -663,11 +663,11 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
     }
     else {
       auVar6 = *param_1;
-      auVar2 = vpunpckhbw_avx2(auVar6,*(undefined1 (*) [32])(*param_1 + 1));
+      auVar2 = vpunpckhbw_avx2(auVar6,*(int8_t (*) [32])(*param_1 + 1));
       if (param_4 == 8) {
-        auVar4 = *(undefined1 (*) [32])(&UNK_180947e80 + param_3);
+        auVar4 = *(int8_t (*) [32])(&UNK_180947e80 + param_3);
         auVar2 = vpmaddubsw_avx2(auVar2,auVar4);
-        auVar7 = vpunpcklbw_avx2(auVar6,*(undefined1 (*) [32])(*param_1 + 1));
+        auVar7 = vpunpcklbw_avx2(auVar6,*(int8_t (*) [32])(*param_1 + 1));
         auVar6 = vpaddw_avx2(auVar2,_DAT_180948080);
         auVar2 = vpsraw_avx2(auVar6,4);
         auVar6 = vpmaddubsw_avx2(auVar7,auVar4);
@@ -678,11 +678,11 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           uVar1 = (ulonglong)param_7;
           do {
             auVar9 = *param_5;
-            param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-            param_5 = (undefined1 (*) [32])(*param_5 + param_6);
-            auVar5 = vpunpckhbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+            param_1 = (int8_t (*) [32])(*param_1 + param_2);
+            param_5 = (int8_t (*) [32])(*param_5 + param_6);
+            auVar5 = vpunpckhbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
             auVar5 = vpmaddubsw_avx2(auVar5,auVar4);
-            auVar2 = vpunpcklbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+            auVar2 = vpunpcklbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
             auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
             auVar7 = vpsraw_avx2(auVar5,4);
             auVar5 = vpmaddubsw_avx2(auVar2,auVar4);
@@ -710,9 +710,9 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
         }
       }
       else {
-        auVar4 = *(undefined1 (*) [32])(&UNK_180947e80 + param_3);
+        auVar4 = *(int8_t (*) [32])(&UNK_180947e80 + param_3);
         auVar2 = vpmaddubsw_avx2(auVar2,auVar4);
-        auVar7 = vpunpcklbw_avx2(auVar6,*(undefined1 (*) [32])(*param_1 + 1));
+        auVar7 = vpunpcklbw_avx2(auVar6,*(int8_t (*) [32])(*param_1 + 1));
         auVar6 = vpaddw_avx2(auVar2,_DAT_180948080);
         auVar2 = vpsraw_avx2(auVar6,4);
         auVar6 = vpmaddubsw_avx2(auVar7,auVar4);
@@ -723,11 +723,11 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
           uVar1 = (ulonglong)param_7;
           do {
             auVar9 = *param_5;
-            param_1 = (undefined1 (*) [32])(*param_1 + param_2);
-            param_5 = (undefined1 (*) [32])(*param_5 + param_6);
-            auVar5 = vpunpckhbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+            param_1 = (int8_t (*) [32])(*param_1 + param_2);
+            param_5 = (int8_t (*) [32])(*param_5 + param_6);
+            auVar5 = vpunpckhbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
             auVar5 = vpmaddubsw_avx2(auVar5,auVar4);
-            auVar2 = vpunpcklbw_avx2(*param_1,*(undefined1 (*) [32])(*param_1 + 1));
+            auVar2 = vpunpcklbw_avx2(*param_1,*(int8_t (*) [32])(*param_1 + 1));
             auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
             auVar2 = vpmaddubsw_avx2(auVar2,auVar4);
             auVar7 = vpsraw_avx2(auVar5,4);
@@ -735,11 +735,11 @@ int FUN_180691080(undefined1 (*param_1) [32],int param_2,int param_3,int param_4
             auVar5 = vpsraw_avx2(auVar5,4);
             auVar2 = vpackuswb_avx2(auVar5,auVar7);
             auVar5 = vpunpcklbw_avx2(auVar6,auVar2);
-            auVar5 = vpmaddubsw_avx2(auVar5,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)))
+            auVar5 = vpmaddubsw_avx2(auVar5,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)))
             ;
             auVar5 = vpaddw_avx2(auVar5,_DAT_180948080);
             auVar6 = vpunpckhbw_avx2(auVar6,auVar2);
-            auVar6 = vpmaddubsw_avx2(auVar6,*(undefined1 (*) [32])(&UNK_180947e80 + (param_4 << 5)))
+            auVar6 = vpmaddubsw_avx2(auVar6,*(int8_t (*) [32])(&UNK_180947e80 + (param_4 << 5)))
             ;
             auVar8 = vpsraw_avx2(auVar5,4);
             auVar5 = vpaddw_avx2(auVar6,_DAT_180948080);

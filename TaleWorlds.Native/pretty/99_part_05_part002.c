@@ -2,8 +2,8 @@
 
 // 99_part_05_part002.c - 5 个函数
 
-// 函数: void FUN_1802d52fa(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1802d52fa(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void FUN_1802d52fa(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void FUN_1802d52fa(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong lVar1;
@@ -46,8 +46,8 @@ void FUN_1802d52fa(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   char cStack0000000000000040;
   char cStack0000000000000044;
   longlong in_stack_00000048;
-  undefined8 in_stack_00000050;
-  undefined8 uStack0000000000000058;
+  uint64_t in_stack_00000050;
+  uint64_t uStack0000000000000058;
   char in_stack_00000150;
   char in_stack_00000158;
   int in_stack_00000160;

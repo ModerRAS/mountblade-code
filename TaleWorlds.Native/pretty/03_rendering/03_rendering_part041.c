@@ -129,8 +129,8 @@ void update_render_bounds(int *bounds_data, char update_mode, int x1, int y1, in
 //   - x1, y1: 第一个点坐标
 //   - x2, y2: 第二个点坐标
 //   - x3, y3: 第三个点坐标
-void update_render_bounds_extended(longlong bounds_ptr, undefined8 param_2, int x1, int y1, 
-                                 undefined8 param_5, int x2, int y2, int x3, int y3)
+void update_render_bounds_extended(longlong bounds_ptr, uint64_t param_2, int x1, int y1, 
+                                 uint64_t param_5, int x2, int y2, int x3, int y3)
 {
     int current_max_x, current_max_y;
     int current_min_x, current_min_y;
@@ -163,7 +163,7 @@ void update_render_bounds_extended(longlong bounds_ptr, undefined8 param_2, int 
         current_min_y = y1;
     }
     
-    *(undefined4 *)(bounds_ptr + 4) = 1;
+    *(int32_t *)(bounds_ptr + 4) = 1;
     
     // 扩展模式处理
     if (update_mode == BOUNDS_UPDATE_MODE_EXTEND) {
@@ -213,8 +213,8 @@ void update_render_bounds_extended(longlong bounds_ptr, undefined8 param_2, int 
 //   - param_5: 保留参数
 //   - x2, y2: 第二个点坐标
 //   - x3, y3: 第三个点坐标
-void add_render_bounds_data(longlong bounds_ptr, undefined8 param_2, undefined8 param_3, 
-                           unsigned short x1, undefined8 param_5, unsigned short y1, 
+void add_render_bounds_data(longlong bounds_ptr, uint64_t param_2, uint64_t param_3, 
+                           unsigned short x1, uint64_t param_5, unsigned short y1, 
                            unsigned short x2, unsigned short y2, unsigned short x3)
 {
     int data_count;
@@ -295,7 +295,7 @@ void update_render_position(int *render_data, float delta_x, float delta_y)
     
     // 存储位置数据
     *(unsigned short *)(data_offset + 2 + data_ptr) = (unsigned short)new_y;
-    *(undefined8 *)(data_offset + 4 + data_ptr) = 0;
+    *(uint64_t *)(data_offset + 4 + data_ptr) = 0;
     *(unsigned char *)(data_offset + 0xc + data_ptr) = 1;
     *(unsigned short *)(data_offset + data_ptr) = (unsigned short)new_x;
     
@@ -339,10 +339,10 @@ void extend_render_bounds_float(longlong render_ptr, float offset_x, float offse
 //   - data_ptr: 数据指针
 //   - search_index: 搜索索引
 // 返回值: 找到的数据指针
-undefined8 *search_render_data_by_index(undefined8 *result_ptr, longlong data_ptr, int search_index)
+uint64_t *search_render_data_by_index(uint64_t *result_ptr, longlong data_ptr, int search_index)
 {
     char *data_buffer;
-    undefined8 temp_data;
+    uint64_t temp_data;
     char first_char;
     char second_char;
     char third_char;
@@ -350,17 +350,17 @@ undefined8 *search_render_data_by_index(undefined8 *result_ptr, longlong data_pt
     byte data_byte;
     char fifth_char;
     longlong buffer_offset;
-    undefined8 *found_ptr;
+    uint64_t *found_ptr;
     int current_index;
     uint search_value;
     int data_length;
     uint chunk_value;
-    undefined8 stack_data_1;
-    undefined8 stack_data_2;
-    undefined8 stack_data_3;
-    undefined8 stack_data_4;
-    undefined1 temp_buffer_1[16];
-    undefined1 temp_buffer_2[16];
+    uint64_t stack_data_1;
+    uint64_t stack_data_2;
+    uint64_t stack_data_3;
+    uint64_t stack_data_4;
+    int8_t temp_buffer_1[16];
+    int8_t temp_buffer_2[16];
     
     data_buffer = *(char **)(data_ptr + 0x90);
     current_index = 0;
@@ -453,15 +453,15 @@ undefined8 *search_render_data_by_index(undefined8 *result_ptr, longlong data_pt
     }
     
     // 处理搜索结果
-    stack_data_1 = *(undefined8 *)(data_ptr + 0x80);
-    stack_data_2 = *(undefined8 *)(data_ptr + 0x88);
-    found_ptr = (undefined8 *)FUN_18028b4c0(temp_buffer_1, &stack_data_1, search_value);
+    stack_data_1 = *(uint64_t *)(data_ptr + 0x80);
+    stack_data_2 = *(uint64_t *)(data_ptr + 0x88);
+    found_ptr = (uint64_t *)FUN_18028b4c0(temp_buffer_1, &stack_data_1, search_value);
     
-    stack_data_3 = *(undefined8 *)(data_ptr + 0x40);
-    stack_data_4 = *(undefined8 *)(data_ptr + 0x48);
+    stack_data_3 = *(uint64_t *)(data_ptr + 0x40);
+    stack_data_4 = *(uint64_t *)(data_ptr + 0x48);
     stack_data_1 = *found_ptr;
     stack_data_2 = found_ptr[1];
-    found_ptr = (undefined8 *)FUN_18028b820(temp_buffer_2, &stack_data_3, &stack_data_1);
+    found_ptr = (uint64_t *)FUN_18028b820(temp_buffer_2, &stack_data_3, &stack_data_1);
     
     temp_data = found_ptr[1];
     *result_ptr = *found_ptr;
@@ -478,33 +478,33 @@ undefined8 *search_render_data_by_index(undefined8 *result_ptr, longlong data_pt
 //   - data_ptr: 数据指针
 //   - result_ptr: 结果指针
 //   - param_6, param_7: 保留参数
-void process_render_data_sequence(int start_index, undefined8 param_2, int end_index, 
-                                  longlong data_ptr, undefined8 result_ptr, 
-                                  undefined4 param_6, undefined4 param_7)
+void process_render_data_sequence(int start_index, uint64_t param_2, int end_index, 
+                                  longlong data_ptr, uint64_t result_ptr, 
+                                  int32_t param_6, int32_t param_7)
 {
-    undefined8 result_data;
-    undefined1 first_byte;
-    undefined1 second_byte;
-    undefined1 third_byte;
+    uint64_t result_data;
+    int8_t first_byte;
+    int8_t second_byte;
+    int8_t third_byte;
     byte data_byte;
-    undefined1 fourth_byte;
+    int8_t fourth_byte;
     longlong offset;
-    undefined8 *processed_ptr;
+    uint64_t *processed_ptr;
     uint search_value;
     int data_length;
     uint chunk_value;
     longlong context_ptr;
-    undefined8 *output_ptr;
+    uint64_t *output_ptr;
     uint temp_value;
     int current_index;
     uint chunk_data;
-    undefined4 stack_param_1;
-    undefined4 stack_param_2;
+    int32_t stack_param_1;
+    int32_t stack_param_2;
     
     if (start_index < end_index) {
         offset = (longlong)start_index;
         start_index = start_index + 1;
-        first_byte = *(undefined1 *)(offset + data_ptr);
+        first_byte = *(int8_t *)(offset + data_ptr);
     } else {
         first_byte = 0;
     }
@@ -512,7 +512,7 @@ void process_render_data_sequence(int start_index, undefined8 param_2, int end_i
     if (start_index < end_index) {
         offset = (longlong)start_index;
         start_index = start_index + 1;
-        second_byte = *(undefined1 *)(offset + data_ptr);
+        second_byte = *(int8_t *)(offset + data_ptr);
     } else {
         second_byte = 0;
     }
@@ -520,7 +520,7 @@ void process_render_data_sequence(int start_index, undefined8 param_2, int end_i
     if (start_index < end_index) {
         offset = (longlong)start_index;
         start_index = start_index + 1;
-        fourth_byte = *(undefined1 *)(offset + data_ptr);
+        fourth_byte = *(int8_t *)(offset + data_ptr);
     } else {
         fourth_byte = 0;
     }
@@ -528,7 +528,7 @@ void process_render_data_sequence(int start_index, undefined8 param_2, int end_i
     if (start_index < end_index) {
         offset = (longlong)start_index;
         start_index = start_index + 1;
-        third_byte = *(undefined1 *)(offset + data_ptr);
+        third_byte = *(int8_t *)(offset + data_ptr);
     } else {
         third_byte = 0;
     }
@@ -549,14 +549,14 @@ void process_render_data_sequence(int start_index, undefined8 param_2, int end_i
             if (start_index < end_index) {
                 offset = (longlong)start_index;
                 start_index = start_index + 1;
-                fourth_byte = *(undefined1 *)(offset + data_ptr);
+                fourth_byte = *(int8_t *)(offset + data_ptr);
             } else {
                 fourth_byte = 0;
             }
             if (start_index < end_index) {
                 offset = (longlong)start_index;
                 start_index = start_index + 1;
-                third_byte = *(undefined1 *)(offset + data_ptr);
+                third_byte = *(int8_t *)(offset + data_ptr);
             } else {
                 third_byte = 0;
             }
@@ -567,21 +567,21 @@ void process_render_data_sequence(int start_index, undefined8 param_2, int end_i
     }
     
     // 设置结果参数
-    result_ptr._0_4_ = *(undefined4 *)(context_ptr + 0x88);
-    result_ptr._4_4_ = *(undefined4 *)(context_ptr + 0x8c);
+    result_ptr._0_4_ = *(int32_t *)(context_ptr + 0x88);
+    result_ptr._4_4_ = *(int32_t *)(context_ptr + 0x8c);
     
     offset = FUN_18028b4c0(&stack0x00000040, &stack0x00000020, search_value, data_ptr, 
-                          *(undefined4 *)(context_ptr + 0x80));
+                          *(int32_t *)(context_ptr + 0x80));
     
-    param_6 = *(undefined4 *)(context_ptr + 0x40);
-    stack_param_1 = *(undefined4 *)(context_ptr + 0x44);
-    param_7 = *(undefined4 *)(context_ptr + 0x48);
-    stack_param_2 = *(undefined4 *)(context_ptr + 0x4c);
+    param_6 = *(int32_t *)(context_ptr + 0x40);
+    stack_param_1 = *(int32_t *)(context_ptr + 0x44);
+    param_7 = *(int32_t *)(context_ptr + 0x48);
+    stack_param_2 = *(int32_t *)(context_ptr + 0x4c);
     
-    result_ptr._0_4_ = *(undefined4 *)(offset + 8);
-    result_ptr._4_4_ = *(undefined4 *)(offset + 0xc);
+    result_ptr._0_4_ = *(int32_t *)(offset + 8);
+    result_ptr._4_4_ = *(int32_t *)(offset + 0xc);
     
-    processed_ptr = (undefined8 *)FUN_18028b820(&stack0x00000050, &param_6, &stack0x00000020);
+    processed_ptr = (uint64_t *)FUN_18028b820(&stack0x00000050, &param_6, &stack0x00000020);
     result_data = processed_ptr[1];
     *output_ptr = *processed_ptr;
     output_ptr[1] = result_data;
@@ -597,25 +597,25 @@ void process_render_data_sequence(int start_index, undefined8 param_2, int end_i
 //   - data_ptr: 数据指针
 //   - result_ptr: 结果指针
 //   - param_6, param_7: 保留参数
-void process_render_data_stream(int start_index, undefined8 param_2, int end_index, 
-                                longlong data_ptr, undefined8 result_ptr, 
-                                undefined4 param_6, undefined4 param_7)
+void process_render_data_stream(int start_index, uint64_t param_2, int end_index, 
+                                longlong data_ptr, uint64_t result_ptr, 
+                                int32_t param_6, int32_t param_7)
 {
-    undefined8 result_data;
+    uint64_t result_data;
     byte data_byte;
-    undefined1 second_byte;
-    undefined1 third_byte;
+    int8_t second_byte;
+    int8_t third_byte;
     longlong offset;
-    undefined8 *processed_ptr;
+    uint64_t *processed_ptr;
     uint search_value;
     int data_length;
     uint chunk_value;
     longlong context_ptr;
-    undefined8 *output_ptr;
+    uint64_t *output_ptr;
     int current_index;
     uint stream_data;
-    undefined4 stack_param_1;
-    undefined4 stack_param_2;
+    int32_t stack_param_1;
+    int32_t stack_param_2;
     
     // 处理数据流
     do {
@@ -629,14 +629,14 @@ void process_render_data_stream(int start_index, undefined8 param_2, int end_ind
         if (start_index < end_index) {
             offset = (longlong)start_index;
             start_index = start_index + 1;
-            second_byte = *(undefined1 *)(offset + data_ptr);
+            second_byte = *(int8_t *)(offset + data_ptr);
         } else {
             second_byte = 0;
         }
         if (start_index < end_index) {
             offset = (longlong)start_index;
             start_index = start_index + 1;
-            third_byte = *(undefined1 *)(offset + data_ptr);
+            third_byte = *(int8_t *)(offset + data_ptr);
         } else {
             third_byte = 0;
         }
@@ -646,21 +646,21 @@ void process_render_data_stream(int start_index, undefined8 param_2, int end_ind
              search_value = 0, current_index < data_length));
     
     // 设置结果参数
-    result_ptr._0_4_ = *(undefined4 *)(context_ptr + 0x88);
-    result_ptr._4_4_ = *(undefined4 *)(context_ptr + 0x8c);
+    result_ptr._0_4_ = *(int32_t *)(context_ptr + 0x88);
+    result_ptr._4_4_ = *(int32_t *)(context_ptr + 0x8c);
     
     offset = FUN_18028b4c0(&stack0x00000040, &stack0x00000020, search_value, data_ptr, 
-                          *(undefined4 *)(context_ptr + 0x80));
+                          *(int32_t *)(context_ptr + 0x80));
     
-    param_6 = *(undefined4 *)(context_ptr + 0x40);
-    stack_param_1 = *(undefined4 *)(context_ptr + 0x44);
-    param_7 = *(undefined4 *)(context_ptr + 0x48);
-    stack_param_2 = *(undefined4 *)(context_ptr + 0x4c);
+    param_6 = *(int32_t *)(context_ptr + 0x40);
+    stack_param_1 = *(int32_t *)(context_ptr + 0x44);
+    param_7 = *(int32_t *)(context_ptr + 0x48);
+    stack_param_2 = *(int32_t *)(context_ptr + 0x4c);
     
-    result_ptr._0_4_ = *(undefined4 *)(offset + 8);
-    result_ptr._4_4_ = *(undefined4 *)(offset + 0xc);
+    result_ptr._0_4_ = *(int32_t *)(offset + 8);
+    result_ptr._4_4_ = *(int32_t *)(offset + 0xc);
     
-    processed_ptr = (undefined8 *)FUN_18028b820(&stack0x00000050, &param_6, &stack0x00000020);
+    processed_ptr = (uint64_t *)FUN_18028b820(&stack0x00000050, &param_6, &stack0x00000020);
     result_data = processed_ptr[1];
     *output_ptr = *processed_ptr;
     output_ptr[1] = result_data;
@@ -671,36 +671,36 @@ void process_render_data_stream(int start_index, undefined8 param_2, int end_ind
 // 功能: 完成渲染数据处理
 void finalize_render_data_processing(void)
 {
-    undefined8 result_data;
-    undefined4 *temp_ptr;
-    undefined8 *processed_ptr;
-    undefined4 process_flag;
-    undefined8 context_data;
+    uint64_t result_data;
+    int32_t *temp_ptr;
+    uint64_t *processed_ptr;
+    int32_t process_flag;
+    uint64_t context_data;
     longlong context_ptr;
-    undefined8 *output_ptr;
-    undefined4 stack_param_1;
-    undefined4 stack_param_2;
-    undefined4 in_param_1;
-    undefined4 stack_param_3;
-    undefined4 in_param_2;
-    undefined4 stack_param_4;
+    uint64_t *output_ptr;
+    int32_t stack_param_1;
+    int32_t stack_param_2;
+    int32_t in_param_1;
+    int32_t stack_param_3;
+    int32_t in_param_2;
+    int32_t stack_param_4;
     
     // 设置处理参数
-    stack_param_1 = *(undefined4 *)(context_ptr + 0x88);
-    stack_param_2 = *(undefined4 *)(context_ptr + 0x8c);
+    stack_param_1 = *(int32_t *)(context_ptr + 0x88);
+    stack_param_2 = *(int32_t *)(context_ptr + 0x8c);
     
-    temp_ptr = (undefined4 *)FUN_18028b4c0(&stack0x00000040, &stack0x00000020, process_flag, context_data, 
-                                          *(undefined4 *)(context_ptr + 0x80));
+    temp_ptr = (int32_t *)FUN_18028b4c0(&stack0x00000040, &stack0x00000020, process_flag, context_data, 
+                                          *(int32_t *)(context_ptr + 0x80));
     
-    in_param_1 = *(undefined4 *)(context_ptr + 0x40);
-    stack_param_3 = *(undefined4 *)(context_ptr + 0x44);
-    in_param_2 = *(undefined4 *)(context_ptr + 0x48);
-    stack_param_4 = *(undefined4 *)(context_ptr + 0x4c);
+    in_param_1 = *(int32_t *)(context_ptr + 0x40);
+    stack_param_3 = *(int32_t *)(context_ptr + 0x44);
+    in_param_2 = *(int32_t *)(context_ptr + 0x48);
+    stack_param_4 = *(int32_t *)(context_ptr + 0x4c);
     
     stack_param_1 = temp_ptr[2];
     stack_param_2 = temp_ptr[3];
     
-    processed_ptr = (undefined8 *)FUN_18028b820(&stack0x00000050, &in_param_1, &stack0x00000020, context_data, *temp_ptr);
+    processed_ptr = (uint64_t *)FUN_18028b820(&stack0x00000050, &in_param_1, &stack0x00000020, context_data, *temp_ptr);
     result_data = processed_ptr[1];
     *output_ptr = *processed_ptr;
     output_ptr[1] = result_data;
@@ -711,36 +711,36 @@ void finalize_render_data_processing(void)
 // 功能: 完成渲染数据处理（简化版本）
 void complete_render_data_processing(void)
 {
-    undefined8 result_data;
-    undefined4 *temp_ptr;
-    undefined8 *processed_ptr;
-    undefined4 process_flag;
-    undefined8 context_data;
+    uint64_t result_data;
+    int32_t *temp_ptr;
+    uint64_t *processed_ptr;
+    int32_t process_flag;
+    uint64_t context_data;
     longlong context_ptr;
-    undefined8 *output_ptr;
-    undefined4 stack_param_1;
-    undefined4 stack_param_2;
-    undefined4 in_param_1;
-    undefined4 stack_param_3;
-    undefined4 in_param_2;
-    undefined4 stack_param_4;
+    uint64_t *output_ptr;
+    int32_t stack_param_1;
+    int32_t stack_param_2;
+    int32_t in_param_1;
+    int32_t stack_param_3;
+    int32_t in_param_2;
+    int32_t stack_param_4;
     
     // 设置处理参数
-    stack_param_1 = *(undefined4 *)(context_ptr + 0x88);
-    stack_param_2 = *(undefined4 *)(context_ptr + 0x8c);
+    stack_param_1 = *(int32_t *)(context_ptr + 0x88);
+    stack_param_2 = *(int32_t *)(context_ptr + 0x8c);
     
-    temp_ptr = (undefined4 *)FUN_18028b4c0(&stack0x00000040, &stack0x00000020, process_flag, context_data, 
-                                          *(undefined4 *)(context_ptr + 0x80));
+    temp_ptr = (int32_t *)FUN_18028b4c0(&stack0x00000040, &stack0x00000020, process_flag, context_data, 
+                                          *(int32_t *)(context_ptr + 0x80));
     
-    in_param_1 = *(undefined4 *)(context_ptr + 0x40);
-    stack_param_3 = *(undefined4 *)(context_ptr + 0x44);
-    in_param_2 = *(undefined4 *)(context_ptr + 0x48);
-    stack_param_4 = *(undefined4 *)(context_ptr + 0x4c);
+    in_param_1 = *(int32_t *)(context_ptr + 0x40);
+    stack_param_3 = *(int32_t *)(context_ptr + 0x44);
+    in_param_2 = *(int32_t *)(context_ptr + 0x48);
+    stack_param_4 = *(int32_t *)(context_ptr + 0x4c);
     
     stack_param_1 = temp_ptr[2];
     stack_param_2 = temp_ptr[3];
     
-    processed_ptr = (undefined8 *)FUN_18028b820(&stack0x00000050, &in_param_1, &stack0x00000020, context_data, *temp_ptr);
+    processed_ptr = (uint64_t *)FUN_18028b820(&stack0x00000050, &in_param_1, &stack0x00000020, context_data, *temp_ptr);
     result_data = processed_ptr[1];
     *output_ptr = *processed_ptr;
     output_ptr[1] = result_data;

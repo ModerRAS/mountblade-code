@@ -2,8 +2,8 @@
 
 // 04_ui_system_part281.c - 4 个函数
 
-// 函数: void FUN_1808267df(undefined8 param_1,ulonglong param_2,int *param_3,uint param_4,undefined8 param_5
-void FUN_1808267df(undefined8 param_1,ulonglong param_2,int *param_3,uint param_4,undefined8 param_5
+// 函数: void FUN_1808267df(uint64_t param_1,ulonglong param_2,int *param_3,uint param_4,uint64_t param_5
+void FUN_1808267df(uint64_t param_1,ulonglong param_2,int *param_3,uint param_4,uint64_t param_5
                   ,byte param_6,longlong param_7)
 
 {
@@ -335,11 +335,11 @@ void FUN_1808271e1(void)
 
 
 
-undefined8
-FUN_180827240(longlong param_1,undefined8 param_2,ulonglong param_3,uint param_4,uint param_5)
+uint64_t
+FUN_180827240(longlong param_1,uint64_t param_2,ulonglong param_3,uint param_4,uint param_5)
 
 {
-  undefined1 auVar1 [16];
+  int8_t auVar1 [16];
   uint uVar2;
   ulonglong uVar3;
   longlong lVar4;
@@ -359,9 +359,9 @@ FUN_180827240(longlong param_1,undefined8 param_2,ulonglong param_3,uint param_4
     return 0;
   }
   if (*(ulonglong *)(param_1 + 0x60) < uVar8) {
-    lVar4 = realloc(*(undefined8 *)(param_1 + 0x58),uVar8);
+    lVar4 = realloc(*(uint64_t *)(param_1 + 0x58),uVar8);
     if (lVar4 == 0) {
-      free(*(undefined8 *)(param_1 + 0x58));
+      free(*(uint64_t *)(param_1 + 0x58));
       uVar3 = 1;
       if (uVar8 != 0) {
         uVar3 = uVar8;
@@ -375,7 +375,7 @@ FUN_180827240(longlong param_1,undefined8 param_2,ulonglong param_3,uint param_4
     *(longlong *)(param_1 + 0x58) = lVar4;
     *(ulonglong *)(param_1 + 0x60) = uVar8;
   }
-  FUN_180827cb0(*(undefined8 *)(param_1 + 0x58),param_2,uVar9,param_4,param_5);
+  FUN_180827cb0(*(uint64_t *)(param_1 + 0x58),param_2,uVar9,param_4,param_5);
   uVar7 = *(uint *)(param_1 + 0x50);
   uVar2 = uVar7 + (uint)uVar8;
   *(uint *)(param_1 + 0x50) = uVar2;
@@ -386,18 +386,18 @@ FUN_180827240(longlong param_1,undefined8 param_2,ulonglong param_3,uint param_4
   lVar4 = (param_1 - (ulonglong)uVar7) + 0x40;
   if ((uint)uVar8 < uVar7) {
                     // WARNING: Subroutine does not return
-    memcpy(lVar4,*(undefined8 *)(param_1 + 0x58),uVar8 & 0xffffffff);
+    memcpy(lVar4,*(uint64_t *)(param_1 + 0x58),uVar8 & 0xffffffff);
   }
                     // WARNING: Subroutine does not return
-  memcpy(lVar4,*(undefined8 *)(param_1 + 0x58),(ulonglong)uVar7);
+  memcpy(lVar4,*(uint64_t *)(param_1 + 0x58),(ulonglong)uVar7);
 }
 
 
 
 
 
-// 函数: void FUN_1808273e0(undefined8 param_1,longlong param_2)
-void FUN_1808273e0(undefined8 param_1,longlong param_2)
+// 函数: void FUN_1808273e0(uint64_t param_1,longlong param_2)
+void FUN_1808273e0(uint64_t param_1,longlong param_2)
 
 {
   uint uVar1;
@@ -405,7 +405,7 @@ void FUN_1808273e0(undefined8 param_1,longlong param_2)
   longlong lVar3;
   
   uVar1 = *(uint *)(param_2 + 0x50) & 0x3f;
-  *(undefined1 *)(param_2 + (ulonglong)uVar1) = 0x80;
+  *(int8_t *)(param_2 + (ulonglong)uVar1) = 0x80;
   lVar3 = param_2 + (ulonglong)uVar1 + 1;
   iVar2 = -uVar1 + 0x37;
   if (iVar2 < 0) {

@@ -40,66 +40,66 @@
 void process_render_object_data(longlong *render_context, longlong param_2, longlong param_3, longlong param_4, uint render_flags)
 
 {
-  undefined8 temp_var1;
-  undefined4 *material_data_ptr;
+  uint64_t temp_var1;
+  int32_t *material_data_ptr;
   longlong resource_offset;
   uint object_index;
   ulonglong loop_counter;
   uint object_count;
   longlong array_offset;
-  undefined4 material_values[16];
-  undefined4 texture_values[16];
+  int32_t material_values[16];
+  int32_t texture_values[16];
   longlong *shader_array[2];
-  undefined4 stack_material_b8;
-  undefined4 stack_material_b4;
-  undefined4 stack_material_b0;
-  undefined4 stack_material_ac;
-  undefined4 stack_material_a8;
-  undefined4 stack_material_a4;
-  undefined4 stack_material_a0;
-  undefined4 stack_material_9c;
-  undefined4 stack_material_98;
-  undefined4 stack_material_94;
-  undefined4 stack_material_90;
-  undefined4 stack_material_8c;
-  undefined4 stack_material_88;
-  undefined4 stack_material_84;
-  undefined4 stack_material_80;
-  undefined4 stack_material_7c;
-  undefined1 temp_buffer[64];
+  int32_t stack_material_b8;
+  int32_t stack_material_b4;
+  int32_t stack_material_b0;
+  int32_t stack_material_ac;
+  int32_t stack_material_a8;
+  int32_t stack_material_a4;
+  int32_t stack_material_a0;
+  int32_t stack_material_9c;
+  int32_t stack_material_98;
+  int32_t stack_material_94;
+  int32_t stack_material_90;
+  int32_t stack_material_8c;
+  int32_t stack_material_88;
+  int32_t stack_material_84;
+  int32_t stack_material_80;
+  int32_t stack_material_7c;
+  int8_t temp_buffer[64];
   
   // 检查渲染标志位，决定是否执行渲染处理
   if ((render_flags >> 2 & 1) == 0) {
     if ((render_flags & 10) != 0) {
       // 复制渲染对象的变换矩阵数据
-      temp_var1 = *(undefined8 *)(param_3 + 0x60);
-      *(undefined8 *)((longlong)render_context + 0x214) = *(undefined8 *)(param_3 + 0x58);
-      *(undefined8 *)((longlong)render_context + 0x21c) = temp_var1;
-      temp_var1 = *(undefined8 *)(param_3 + 0x70);
-      *(undefined8 *)((longlong)render_context + 0x224) = *(undefined8 *)(param_3 + 0x68);
-      *(undefined8 *)((longlong)render_context + 0x22c) = temp_var1;
-      temp_var1 = *(undefined8 *)(param_3 + 0x80);
-      *(undefined8 *)((longlong)render_context + 0x234) = *(undefined8 *)(param_3 + 0x78);
-      *(undefined8 *)((longlong)render_context + 0x23c) = temp_var1;
-      *(undefined4 *)((longlong)render_context + 0x244) = *(undefined4 *)(param_3 + 0x88);
+      temp_var1 = *(uint64_t *)(param_3 + 0x60);
+      *(uint64_t *)((longlong)render_context + 0x214) = *(uint64_t *)(param_3 + 0x58);
+      *(uint64_t *)((longlong)render_context + 0x21c) = temp_var1;
+      temp_var1 = *(uint64_t *)(param_3 + 0x70);
+      *(uint64_t *)((longlong)render_context + 0x224) = *(uint64_t *)(param_3 + 0x68);
+      *(uint64_t *)((longlong)render_context + 0x22c) = temp_var1;
+      temp_var1 = *(uint64_t *)(param_3 + 0x80);
+      *(uint64_t *)((longlong)render_context + 0x234) = *(uint64_t *)(param_3 + 0x78);
+      *(uint64_t *)((longlong)render_context + 0x23c) = temp_var1;
+      *(int32_t *)((longlong)render_context + 0x244) = *(int32_t *)(param_3 + 0x88);
       
       // 复制材质数据到栈变量
-      material_values[0] = *(undefined4 *)(param_3 + 0x18);
-      material_values[1] = *(undefined4 *)(param_3 + 0x1c);
-      material_values[2] = *(undefined4 *)(param_3 + 0x20);
-      material_values[3] = *(undefined4 *)(param_3 + 0x24);
-      material_values[4] = *(undefined4 *)(param_3 + 0x28);
-      material_values[5] = *(undefined4 *)(param_3 + 0x2c);
-      material_values[6] = *(undefined4 *)(param_3 + 0x30);
-      material_values[7] = *(undefined4 *)(param_3 + 0x34);
-      material_values[8] = *(undefined4 *)(param_3 + 0x38);
-      material_values[9] = *(undefined4 *)(param_3 + 0x3c);
-      material_values[10] = *(undefined4 *)(param_3 + 0x40);
-      material_values[11] = *(undefined4 *)(param_3 + 0x44);
-      material_values[12] = *(undefined4 *)(param_3 + 0x48);
-      material_values[13] = *(undefined4 *)(param_3 + 0x4c);
-      material_values[14] = *(undefined4 *)(param_3 + 0x50);
-      material_values[15] = *(undefined4 *)(param_3 + 0x54);
+      material_values[0] = *(int32_t *)(param_3 + 0x18);
+      material_values[1] = *(int32_t *)(param_3 + 0x1c);
+      material_values[2] = *(int32_t *)(param_3 + 0x20);
+      material_values[3] = *(int32_t *)(param_3 + 0x24);
+      material_values[4] = *(int32_t *)(param_3 + 0x28);
+      material_values[5] = *(int32_t *)(param_3 + 0x2c);
+      material_values[6] = *(int32_t *)(param_3 + 0x30);
+      material_values[7] = *(int32_t *)(param_3 + 0x34);
+      material_values[8] = *(int32_t *)(param_3 + 0x38);
+      material_values[9] = *(int32_t *)(param_3 + 0x3c);
+      material_values[10] = *(int32_t *)(param_3 + 0x40);
+      material_values[11] = *(int32_t *)(param_3 + 0x44);
+      material_values[12] = *(int32_t *)(param_3 + 0x48);
+      material_values[13] = *(int32_t *)(param_3 + 0x4c);
+      material_values[14] = *(int32_t *)(param_3 + 0x50);
+      material_values[15] = *(int32_t *)(param_3 + 0x54);
       
       stack_material_b8 = material_values[0];
       stack_material_b4 = material_values[1];
@@ -120,7 +120,7 @@ void process_render_object_data(longlong *render_context, longlong param_2, long
       
       // 如果有额外的渲染参数，处理材质数据
       if (param_4 != 0) {
-        material_data_ptr = (undefined4 *)
+        material_data_ptr = (int32_t *)
                  FUN_1803310f0(render_flags & 10, temp_buffer, &stack_material_b8, param_4 + 0x18,
                                1.0 - (*(float *)(param_2 + 0x13c) - *(float *)(param_2 + 0x144)) /
                                      *(float *)(param_2 + 0x13c));
@@ -142,25 +142,25 @@ void process_render_object_data(longlong *render_context, longlong param_2, long
       }
       
       // 将处理后的材质数据写入渲染上下文
-      *(undefined4 *)(render_context + 0x66) = material_values[0];
-      *(undefined4 *)((longlong)render_context + 0x334) = material_values[1];
-      *(undefined4 *)(render_context + 0x67) = material_values[2];
-      *(undefined4 *)((longlong)render_context + 0x33c) = material_values[3];
-      *(undefined4 *)(render_context + 0x68) = material_values[4];
-      *(undefined4 *)((longlong)render_context + 0x344) = material_values[5];
-      *(undefined4 *)(render_context + 0x69) = material_values[6];
-      *(undefined4 *)((longlong)render_context + 0x34c) = material_values[7];
-      *(undefined4 *)(render_context + 0x6a) = material_values[8];
-      *(undefined4 *)((longlong)render_context + 0x354) = material_values[9];
-      *(undefined4 *)(render_context + 0x6b) = material_values[10];
-      *(undefined4 *)((longlong)render_context + 0x35c) = material_values[11];
-      *(undefined4 *)(render_context + 0x6c) = material_values[12];
-      *(undefined4 *)((longlong)render_context + 0x364) = material_values[13];
-      *(undefined4 *)(render_context + 0x6d) = material_values[14];
-      *(undefined4 *)((longlong)render_context + 0x36c) = material_values[15];
+      *(int32_t *)(render_context + 0x66) = material_values[0];
+      *(int32_t *)((longlong)render_context + 0x334) = material_values[1];
+      *(int32_t *)(render_context + 0x67) = material_values[2];
+      *(int32_t *)((longlong)render_context + 0x33c) = material_values[3];
+      *(int32_t *)(render_context + 0x68) = material_values[4];
+      *(int32_t *)((longlong)render_context + 0x344) = material_values[5];
+      *(int32_t *)(render_context + 0x69) = material_values[6];
+      *(int32_t *)((longlong)render_context + 0x34c) = material_values[7];
+      *(int32_t *)(render_context + 0x6a) = material_values[8];
+      *(int32_t *)((longlong)render_context + 0x354) = material_values[9];
+      *(int32_t *)(render_context + 0x6b) = material_values[10];
+      *(int32_t *)((longlong)render_context + 0x35c) = material_values[11];
+      *(int32_t *)(render_context + 0x6c) = material_values[12];
+      *(int32_t *)((longlong)render_context + 0x364) = material_values[13];
+      *(int32_t *)(render_context + 0x6d) = material_values[14];
+      *(int32_t *)((longlong)render_context + 0x36c) = material_values[15];
       
-      *(undefined1 *)(render_context + 100) = 0;
-      *(undefined4 *)(render_context + 0x42) = *(undefined4 *)(param_3 + 0x14);
+      *(int8_t *)(render_context + 100) = 0;
+      *(int32_t *)(render_context + 0x42) = *(int32_t *)(param_3 + 0x14);
       
       object_index = 0;
       object_count = (uint)(render_context[8] - render_context[7] >> 4);
@@ -182,7 +182,7 @@ void process_render_object_data(longlong *render_context, longlong param_2, long
           }
           // 处理渲染对象数据
           FUN_1803269f0(*(longlong *)(param_3 + 0x90) + loop_counter * 0x1a0, param_2,
-                        *(undefined8 *)(array_offset + render_context[7]), render_flags, resource_offset);
+                        *(uint64_t *)(array_offset + render_context[7]), render_flags, resource_offset);
           object_index = object_index + 1;
           array_offset = array_offset + 0x10;
         } while (object_index < object_count);
@@ -209,58 +209,58 @@ void process_render_object_data(longlong *render_context, longlong param_2, long
 
 
 
-// 函数: void create_render_object_context(undefined8 *render_object, undefined8 context_data)
+// 函数: void create_render_object_context(uint64_t *render_object, uint64_t context_data)
 // 创建渲染对象上下文，初始化渲染对象的各种属性和数据结构
 // 参数: render_object - 渲染对象指针, context_data - 上下文数据
-void create_render_object_context(undefined8 *render_object, undefined8 context_data)
+void create_render_object_context(uint64_t *render_object, uint64_t context_data)
 
 {
-  undefined4 render_value1;
-  undefined4 render_value2;
-  undefined4 render_value3;
+  int32_t render_value1;
+  int32_t render_value2;
+  int32_t render_value3;
   char comparison_result;
   int string_length;
-  undefined8 memory_handle;
+  uint64_t memory_handle;
   longlong context_handle;
   longlong object_data;
   longlong resource_data;
   longlong texture_data;
-  undefined *string_ptr;
+  void *string_ptr;
   longlong *array_ptr;
   ulonglong resource_count;
   uint resource_index;
   int index_offset;
   longlong data_offset;
   ulonglong object_count;
-  undefined *resource_name;
-  undefined *temp_string;
+  void *resource_name;
+  void *temp_string;
   bool has_valid_data;
-  undefined1 name_buffer[32];
+  int8_t name_buffer[32];
   uint name_length;
-  undefined **string_ptr_ptr;
-  undefined8 context_param;
-  undefined *name_buffer_ptr;
-  undefined *texture_buffer_ptr;
+  void **string_ptr_ptr;
+  uint64_t context_param;
+  void *name_buffer_ptr;
+  void *texture_buffer_ptr;
   uint texture_buffer_size;
   longlong context_offset;
-  undefined8 security_param;
-  undefined *material_buffer_ptr;
+  uint64_t security_param;
+  void *material_buffer_ptr;
   undefined material_buffer[136];
-  undefined *vertex_buffer_ptr;
-  undefined *index_buffer_ptr;
-  undefined4 vertex_buffer_size;
-  undefined1 vertex_data[136];
-  undefined *vertex_array[34];
-  undefined *shader_buffer_ptr;
+  void *vertex_buffer_ptr;
+  void *index_buffer_ptr;
+  int32_t vertex_buffer_size;
+  int8_t vertex_data[136];
+  void *vertex_array[34];
+  void *shader_buffer_ptr;
   longlong shader_offset;
-  undefined4 shader_buffer_size;
+  int32_t shader_buffer_size;
   longlong vertex_offsets[4];
   longlong index_offsets[4];
   longlong texture_offsets[6];
-  undefined *texture_array[34];
-  undefined *normal_buffer_ptr;
+  void *texture_array[34];
+  void *normal_buffer_ptr;
   longlong normal_offset;
-  undefined4 normal_buffer_size;
+  int32_t normal_buffer_size;
   longlong normal_offsets[4];
   longlong normal_offsets_2[4];
   longlong material_offsets[6];
@@ -298,9 +298,9 @@ void create_render_object_context(undefined8 *render_object, undefined8 context_
     texture_buffer_ptr[texture_buffer_size] = 0;
   }
   
-  *(undefined4 *)(context_handle + 0x10) = 0;
+  *(int32_t *)(context_handle + 0x10) = 0;
   string_ptr = &RENDER_EMPTY_STRING;
-  if (texture_buffer_ptr != (undefined *)0x0) {
+  if (texture_buffer_ptr != (void *)0x0) {
     string_ptr = texture_buffer_ptr;
   }
   
@@ -308,42 +308,42 @@ void create_render_object_context(undefined8 *render_object, undefined8 context_
   (**(code **)(*(longlong *)(context_handle + 0xb0) + 0x10))((longlong *)(context_handle + 0xb0), string_ptr);
   
   // 复制渲染对象的变换数据
-  memory_handle = *(undefined8 *)((longlong)render_object + 0x21c);
-  *(undefined8 *)(context_handle + 0x58) = *(undefined8 *)((longlong)render_object + 0x214);
-  *(undefined8 *)(context_handle + 0x60) = memory_handle;
-  memory_handle = *(undefined8 *)((longlong)render_object + 0x22c);
-  *(undefined8 *)(context_handle + 0x68) = *(undefined8 *)((longlong)render_object + 0x224);
-  *(undefined8 *)(context_handle + 0x70) = memory_handle;
-  memory_handle = *(undefined8 *)((longlong)render_object + 0x23c);
-  *(undefined8 *)(context_handle + 0x78) = *(undefined8 *)((longlong)render_object + 0x234);
-  *(undefined8 *)(context_handle + 0x80) = memory_handle;
-  *(undefined4 *)(context_handle + 0x88) = *(undefined4 *)((longlong)render_object + 0x244);
+  memory_handle = *(uint64_t *)((longlong)render_object + 0x21c);
+  *(uint64_t *)(context_handle + 0x58) = *(uint64_t *)((longlong)render_object + 0x214);
+  *(uint64_t *)(context_handle + 0x60) = memory_handle;
+  memory_handle = *(uint64_t *)((longlong)render_object + 0x22c);
+  *(uint64_t *)(context_handle + 0x68) = *(uint64_t *)((longlong)render_object + 0x224);
+  *(uint64_t *)(context_handle + 0x70) = memory_handle;
+  memory_handle = *(uint64_t *)((longlong)render_object + 0x23c);
+  *(uint64_t *)(context_handle + 0x78) = *(uint64_t *)((longlong)render_object + 0x234);
+  *(uint64_t *)(context_handle + 0x80) = memory_handle;
+  *(int32_t *)(context_handle + 0x88) = *(int32_t *)((longlong)render_object + 0x244);
   
   // 复制材质数据
   memory_handle = render_object[0x67];
-  *(undefined8 *)(context_handle + 0x18) = render_object[0x66];
-  *(undefined8 *)(context_handle + 0x20) = memory_handle;
+  *(uint64_t *)(context_handle + 0x18) = render_object[0x66];
+  *(uint64_t *)(context_handle + 0x20) = memory_handle;
   memory_handle = render_object[0x69];
-  *(undefined8 *)(context_handle + 0x28) = render_object[0x68];
-  *(undefined8 *)(context_handle + 0x30) = memory_handle;
+  *(uint64_t *)(context_handle + 0x28) = render_object[0x68];
+  *(uint64_t *)(context_handle + 0x30) = memory_handle;
   
-  render_value1 = *(undefined4 *)((longlong)render_object + 0x354);
-  render_value2 = *(undefined4 *)(render_object + 0x6b);
-  render_value3 = *(undefined4 *)((longlong)render_object + 0x35c);
-  *(undefined4 *)(context_handle + 0x38) = *(undefined4 *)(render_object + 0x6a);
-  *(undefined4 *)(context_handle + 0x3c) = render_value1;
-  *(undefined4 *)(context_handle + 0x40) = render_value2;
-  *(undefined4 *)(context_handle + 0x44) = render_value3;
+  render_value1 = *(int32_t *)((longlong)render_object + 0x354);
+  render_value2 = *(int32_t *)(render_object + 0x6b);
+  render_value3 = *(int32_t *)((longlong)render_object + 0x35c);
+  *(int32_t *)(context_handle + 0x38) = *(int32_t *)(render_object + 0x6a);
+  *(int32_t *)(context_handle + 0x3c) = render_value1;
+  *(int32_t *)(context_handle + 0x40) = render_value2;
+  *(int32_t *)(context_handle + 0x44) = render_value3;
   
-  render_value1 = *(undefined4 *)((longlong)render_object + 0x364);
-  render_value2 = *(undefined4 *)(render_object + 0x6d);
-  render_value3 = *(undefined4 *)((longlong)render_object + 0x36c);
-  *(undefined4 *)(context_handle + 0x48) = *(undefined4 *)(render_object + 0x6c);
-  *(undefined4 *)(context_handle + 0x4c) = render_value1;
-  *(undefined4 *)(context_handle + 0x50) = render_value2;
-  *(undefined4 *)(context_handle + 0x54) = render_value3;
+  render_value1 = *(int32_t *)((longlong)render_object + 0x364);
+  render_value2 = *(int32_t *)(render_object + 0x6d);
+  render_value3 = *(int32_t *)((longlong)render_object + 0x36c);
+  *(int32_t *)(context_handle + 0x48) = *(int32_t *)(render_object + 0x6c);
+  *(int32_t *)(context_handle + 0x4c) = render_value1;
+  *(int32_t *)(context_handle + 0x50) = render_value2;
+  *(int32_t *)(context_handle + 0x54) = render_value3;
   
-  *(undefined4 *)(context_handle + 0x14) = *(undefined4 *)(render_object + 0x42);
+  *(int32_t *)(context_handle + 0x14) = *(int32_t *)(render_object + 0x42);
   
   // 处理渲染对象的纹理数据
   if (render_object[0x77] == 0) {
@@ -360,7 +360,7 @@ void create_render_object_context(undefined8 *render_object, undefined8 context_
     material_buffer_ptr = &RENDER_DATA_PTR_1;
     texture_buffer_ptr = material_buffer;
     material_buffer[0] = 0;
-    texture_buffer_size = *(undefined4 *)(render_object[0x77] + 0x20);
+    texture_buffer_size = *(int32_t *)(render_object[0x77] + 0x20);
     strcpy_s(material_buffer, 0x80);
     resource_count = 2;
     name_length = 2;
@@ -368,7 +368,7 @@ void create_render_object_context(undefined8 *render_object, undefined8 context_
   }
   
   temp_string = &RENDER_EMPTY_STRING;
-  if (string_ptr != (undefined *)0x0) {
+  if (string_ptr != (void *)0x0) {
     temp_string = string_ptr;
   }
   
@@ -386,16 +386,16 @@ void create_render_object_context(undefined8 *render_object, undefined8 context_
     vertex_buffer_ptr = &RENDER_DATA_PTR_3;
   }
   
-  *(undefined4 *)(context_handle + 0x8c) = 0;
+  *(int32_t *)(context_handle + 0x8c) = 0;
   
   // 获取渲染对象的实际数据
-  if ((undefined *)*render_object == &RENDER_DATA_PTR_4) {
+  if ((void *)*render_object == &RENDER_DATA_PTR_4) {
     if ((render_object[8] - (longlong)render_object[7] & 0xfffffffffffffff0U) != 0) {
       object_data = *(longlong *)render_object[7];
     }
   }
   else {
-    object_data = (**(code **)((undefined *)*render_object + 0x178))(render_object);
+    object_data = (**(code **)((void *)*render_object + 0x178))(render_object);
   }
   
   resource_data = *(longlong *)(object_data + 0x1b0);
@@ -403,7 +403,7 @@ void create_render_object_context(undefined8 *render_object, undefined8 context_
     resource_data = object_data;
   }
   
-  *(undefined4 *)(context_handle + 0x1b8) = *(undefined4 *)(resource_data + 0x2d8);
+  *(int32_t *)(context_handle + 0x1b8) = *(int32_t *)(resource_data + 0x2d8);
   has_valid_data = 0 < (int)texture_buffer_size;
   
   // 处理有效的渲染数据
@@ -438,8 +438,8 @@ void create_render_object_context(undefined8 *render_object, undefined8 context_
           // 清理顶点和索引缓冲区
           FUN_180274db0(texture_array);
           FUN_180274db0(vertex_array);
-          FUN_1803263e0(texture_array, context_param, *(undefined8 *)(resource_data + render_object[7]));
-          FUN_1803263e0(vertex_array, context_param, *(undefined8 *)(resource_data + 0x10 + render_object[7]));
+          FUN_1803263e0(texture_array, context_param, *(uint64_t *)(resource_data + render_object[7]));
+          FUN_1803263e0(vertex_array, context_param, *(uint64_t *)(resource_data + 0x10 + render_object[7]));
           comparison_result = FUN_180327250(texture_array, vertex_array);
           if (comparison_result != '\0') {
             has_valid_data = false;
@@ -450,17 +450,17 @@ void create_render_object_context(undefined8 *render_object, undefined8 context_
           }
           
           // 清理偏移量数组
-          string_ptr_ptr = (undefined **)texture_offsets;
+          string_ptr_ptr = (void **)texture_offsets;
           if (texture_offsets[0] != 0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
-          string_ptr_ptr = (undefined **)index_offsets;
+          string_ptr_ptr = (void **)index_offsets;
           if (index_offsets[0] != 0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
-          string_ptr_ptr = (undefined **)vertex_offsets;
+          string_ptr_ptr = (void **)vertex_offsets;
           if (vertex_offsets[0] != 0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
@@ -479,17 +479,17 @@ void create_render_object_context(undefined8 *render_object, undefined8 context_
           vertex_array[0] = &RENDER_DATA_PTR_3;
           
           // 清理法线缓冲区
-          string_ptr_ptr = (undefined **)material_offsets;
+          string_ptr_ptr = (void **)material_offsets;
           if (material_offsets[0] != 0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
-          string_ptr_ptr = (undefined **)normal_offsets;
+          string_ptr_ptr = (void **)normal_offsets;
           if (normal_offsets[0] != 0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
           }
-          string_ptr_ptr = (undefined **)normal_offsets_2;
+          string_ptr_ptr = (void **)normal_offsets_2;
           if (normal_offsets_2[0] != 0) {
                     // WARNING: Subroutine does not return
             FUN_18064e900();
@@ -536,8 +536,8 @@ LAB_180281d06:
       object_data = 0;
       data_offset = 0;
       do {
-        FUN_1803263e0(*array_ptr + data_offset, memory_handle, *(undefined8 *)(object_data + render_object[7]));
-        *(undefined4 *)(resource_data + 0x58 + *array_ptr) = *(undefined4 *)(object_data + 8 + render_object[7]);
+        FUN_1803263e0(*array_ptr + data_offset, memory_handle, *(uint64_t *)(object_data + render_object[7]));
+        *(int32_t *)(resource_data + 0x58 + *array_ptr) = *(int32_t *)(object_data + 8 + render_object[7]);
         data_offset = data_offset + 0x1a0;
         object_data = object_data + 0x10;
         resource_data = resource_data + 0x1a0;
@@ -548,19 +548,19 @@ LAB_180281d06:
   }
   else if ((longlong)(render_object[8] - render_object[7]) >> 4 != 0) {
     FUN_180284580(array_ptr, 1);
-    FUN_1803263e0(*array_ptr, context_data, *(undefined8 *)render_object[7]);
+    FUN_1803263e0(*array_ptr, context_data, *(uint64_t *)render_object[7]);
   }
   
   // 设置渲染对象的最终属性
-  *(undefined4 *)(context_handle + 0x1bc) = *(undefined4 *)(render_object + 99);
-  *(undefined4 *)(context_handle + 0x1c0) = *(undefined4 *)(render_object + 0x62);
+  *(int32_t *)(context_handle + 0x1bc) = *(int32_t *)(render_object + 99);
+  *(int32_t *)(context_handle + 0x1c0) = *(int32_t *)(render_object + 0x62);
   
   name_buffer_ptr = &RENDER_DATA_PTR_2;
-  if (texture_buffer_ptr != (undefined *)0x0) {
+  if (texture_buffer_ptr != (void *)0x0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  texture_buffer_ptr = (undefined *)0x0;
+  texture_buffer_ptr = (void *)0x0;
   texture_buffer_size = 0;
   name_buffer_ptr = &RENDER_DATA_PTR_3;
                     // WARNING: Subroutine does not return
@@ -570,10 +570,10 @@ LAB_180281d06:
 
 
 
-// 函数: void cleanup_render_object_memory(undefined8 *render_object)
+// 函数: void cleanup_render_object_memory(uint64_t *render_object)
 // 清理渲染对象的内存，释放所有分配的资源
 // 参数: render_object - 渲染对象指针
-void cleanup_render_object_memory(undefined8 *render_object)
+void cleanup_render_object_memory(uint64_t *render_object)
 
 {
   // 检查并清理各种资源指针
@@ -597,7 +597,7 @@ void cleanup_render_object_memory(undefined8 *render_object)
     FUN_18064e900();
   }
   render_object[0x23] = 0;
-  *(undefined4 *)(render_object + 0x25) = 0;
+  *(int32_t *)(render_object + 0x25) = 0;
   render_object[0x22] = &RENDER_DATA_PTR_3;
   *render_object = &RENDER_DATA_PTR_3;
   return;
@@ -605,7 +605,7 @@ void cleanup_render_object_memory(undefined8 *render_object)
 
 
 
-bool compare_render_objects(undefined8 render_object1, longlong render_data1, longlong render_data2)
+bool compare_render_objects(uint64_t render_object1, longlong render_data1, longlong render_data2)
 
 {
   byte *data_ptr1;
@@ -695,7 +695,7 @@ LAB_180281ff6:
 
 
 
-undefined1 validate_render_data(undefined8 render_param1, undefined8 render_param2, longlong render_data1, longlong render_data2)
+int8_t validate_render_data(uint64_t render_param1, uint64_t render_param2, longlong render_data1, longlong render_data2)
 
 {
   char validation_result;
@@ -703,7 +703,7 @@ undefined1 validate_render_data(undefined8 render_param1, undefined8 render_para
   longlong object_offset;
   int texture_count;
   longlong context_offset;
-  undefined1 render_flag;
+  int8_t render_flag;
   ulonglong loop_counter;
   longlong material_offset;
   
@@ -759,7 +759,7 @@ void FUN_1802814d0;
 void FUN_180281770;
 void FUN_180281e80;
 bool FUN_180281f40;
-undefined1 FUN_180282078;
+int8_t FUN_180282078;
 void FUN_1802820ec;
 
 // =============================================================================

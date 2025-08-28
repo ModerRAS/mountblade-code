@@ -167,7 +167,7 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
                         light_type_flag = *(char *)(light_context + 0x5f);
                         longlong *stack_ptr = &rendering_temp_data[0];
                         uint object_params = *(uint *)(light_context + 0x67);
-                        *(undefined4 *)(object_data + 0x110) = render_flags;
+                        *(int32_t *)(object_data + 0x110) = render_flags;
                         uint render_params = *(uint *)(light_context + 0xb8);
                         char render_state = *(char *)(light_context + 0x44);
                         longlong stack_offset = light_context - 0x71;
@@ -175,7 +175,7 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
                         
                         FUN_18024c560(render_params, render_object, (int)light_type_flag, object_params,
                                       *(uint *)(light_context + 0x6f));
-                        *(undefined4 *)(object_data + 0x118) = 0;
+                        *(int32_t *)(object_data + 0x118) = 0;
                     }
                 }
                 object_index = object_index + 0x10;
@@ -184,7 +184,7 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
         }
         
         if ((*(char *)(light_context + 0x44) != '\0') && (light_active)) {
-            *(undefined1 *)(light_context + 0x44) = 0;
+            *(int8_t *)(light_context + 0x44) = 0;
         }
     }
     else {
@@ -194,12 +194,12 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
             light_type_flag = *(char *)(light_context + 0x5f);
             uint render_flags = *(uint *)(light_context + 0x67);
             char object_state = *(char *)(render_context + 0x13d);
-            *(undefined4 *)(render_context + 0x110) = *(uint *)(light_context + 0x7f);
+            *(int32_t *)(render_context + 0x110) = *(uint *)(light_context + 0x7f);
             uint render_params = *(uint *)(light_context + 0xb8);
             char render_state = *(char *)(light_context + 0x44);
             longlong stack_offset = light_context - 0x71;
             
-            FUN_18024c560(render_params, *(undefined8 *)(light_context + 0x38), (int)light_type_flag, 
+            FUN_18024c560(render_params, *(uint64_t *)(light_context + 0x38), (int)light_type_flag, 
                           render_flags, *(uint *)(light_context + 0x6f));
             
             longlong object_index = 0;
@@ -212,14 +212,14 @@ void rendering_system_advanced_lighting_processor(float light_param_1, float lig
                                           (*(longlong *)(*(longlong *)(*(longlong *)(light_context + 0x48) + 0x38) + 
                                           object_index) + 0x118);
                     if (object_data != 0) {
-                        *(undefined1 *)(object_data + 0x13d) = 1;
+                        *(int8_t *)(object_data + 0x13d) = 1;
                     }
                     object_index = object_index + 0x10;
                     render_context = render_context + -1;
                 } while (render_context != 0);
             }
-            *(undefined1 *)(light_context + 0x44) = 0;
-            *(undefined4 *)(render_context + 0x118) = 0;
+            *(int8_t *)(light_context + 0x44) = 0;
+            *(int32_t *)(render_context + 0x118) = 0;
         }
     }
 }
@@ -285,14 +285,14 @@ void rendering_system_advanced_color_processor(float color_param_1, int color_mo
                         blend_mode = *(char *)(color_context + 0x5f);
                         longlong *stack_ptr = &rendering_temp_data[0];
                         uint object_params = *(uint *)(color_context + 0x67);
-                        *(undefined4 *)(object_data + 0x110) = render_flags;
+                        *(int32_t *)(object_data + 0x110) = render_flags;
                         uint render_params = *(uint *)(color_context + 0xb8);
                         char render_state = *(char *)(color_context + 0x44);
                         longlong stack_offset = color_context - 0x71;
                         
                         FUN_18024c560(render_params, render_object, (int)blend_mode, object_params,
                                       *(uint *)(color_context + 0x6f));
-                        *(undefined4 *)(object_data + 0x118) = 0;
+                        *(int32_t *)(object_data + 0x118) = 0;
                     }
                 }
                 object_index = object_index + 0x10;
@@ -301,7 +301,7 @@ void rendering_system_advanced_color_processor(float color_param_1, int color_mo
         }
         
         if ((*(char *)(color_context + 0x44) != '\0') && (color_active)) {
-            *(undefined1 *)(color_context + 0x44) = 0;
+            *(int8_t *)(color_context + 0x44) = 0;
         }
     }
     else {
@@ -311,12 +311,12 @@ void rendering_system_advanced_color_processor(float color_param_1, int color_mo
             blend_mode = *(char *)(color_context + 0x5f);
             uint render_flags = *(uint *)(color_context + 0x67);
             color_space = *(char *)(render_context + 0x13d);
-            *(undefined4 *)(render_context + 0x110) = *(uint *)(color_context + 0x7f);
+            *(int32_t *)(render_context + 0x110) = *(uint *)(color_context + 0x7f);
             uint render_params = *(uint *)(color_context + 0xb8);
             char render_state = *(char *)(color_context + 0x44);
             longlong stack_offset = color_context - 0x71;
             
-            FUN_18024c560(render_params, *(undefined8 *)(color_context + 0x38), (int)blend_mode, 
+            FUN_18024c560(render_params, *(uint64_t *)(color_context + 0x38), (int)blend_mode, 
                           render_flags, *(uint *)(color_context + 0x6f));
             
             longlong object_index = 0;
@@ -329,14 +329,14 @@ void rendering_system_advanced_color_processor(float color_param_1, int color_mo
                                           (*(longlong *)(*(longlong *)(*(longlong *)(color_context + 0x48) + 0x38) + 
                                           object_index) + 0x118);
                     if (object_data != 0) {
-                        *(undefined1 *)(object_data + 0x13d) = 1;
+                        *(int8_t *)(object_data + 0x13d) = 1;
                     }
                     object_index = object_index + 0x10;
                     render_context = render_context + -1;
                 } while (render_context != 0);
             }
-            *(undefined1 *)(color_context + 0x44) = 0;
-            *(undefined4 *)(render_context + 0x118) = 0;
+            *(int8_t *)(color_context + 0x44) = 0;
+            *(int32_t *)(render_context + 0x118) = 0;
         }
     }
 }
@@ -388,14 +388,14 @@ void rendering_system_object_state_updater(longlong render_context)
                     object_state = *(char *)(render_context + 0x5f);
                     longlong *stack_ptr = &rendering_temp_data[0];
                     object_params = *(uint *)(render_context + 0x67);
-                    *(undefined4 *)(object_data + 0x110) = render_flags;
+                    *(int32_t *)(object_data + 0x110) = render_flags;
                     uint render_params = *(uint *)(render_context + 0xb8);
                     char render_state = *(char *)(render_context + 0x44);
                     longlong stack_offset = render_context - 0x71;
                     
                     FUN_18024c560(render_params, render_object, (int)object_state, object_params,
                                   *(uint *)(render_context + 0x6f));
-                    *(undefined4 *)(object_data + 0x118) = 0;
+                    *(int32_t *)(object_data + 0x118) = 0;
                 }
             }
             object_index = object_index + 0x10;
@@ -404,7 +404,7 @@ void rendering_system_object_state_updater(longlong render_context)
     }
     
     if ((*(char *)(render_context + 0x44) != '\0') && (all_objects_complete)) {
-        *(undefined1 *)(render_context + 0x44) = 0;
+        *(int8_t *)(render_context + 0x44) = 0;
     }
 }
 
@@ -454,14 +454,14 @@ void rendering_system_batch_state_processor(longlong render_context)
                     object_state = *(char *)(render_context + 0x5f);
                     longlong *stack_ptr = &rendering_temp_data[0];
                     object_params = *(uint *)(render_context + 0x67);
-                    *(undefined4 *)(object_data + 0x110) = render_flags;
+                    *(int32_t *)(object_data + 0x110) = render_flags;
                     uint render_params = *(uint *)(render_context + 0xb8);
                     char render_state = *(char *)(render_context + 0x44);
                     longlong stack_offset = render_context - 0x71;
                     
                     FUN_18024c560(render_params, render_object, (int)object_state, object_params,
                                   *(uint *)(render_context + 0x6f));
-                    *(undefined4 *)(object_data + 0x118) = 0;
+                    *(int32_t *)(object_data + 0x118) = 0;
                 }
             }
             object_index = object_index + 0x10;
@@ -470,7 +470,7 @@ void rendering_system_batch_state_processor(longlong render_context)
     }
     
     if ((*(char *)(render_context + 0x44) != '\0') && (batch_complete != '\0')) {
-        *(undefined1 *)(render_context + 0x44) = 0;
+        *(int8_t *)(render_context + 0x44) = 0;
     }
 }
 
@@ -493,7 +493,7 @@ void rendering_system_state_resetter(void)
     char state_flag;
     
     if (state_flag != '\0') {
-        *(undefined1 *)(render_context + 0x44) = 0;
+        *(int8_t *)(render_context + 0x44) = 0;
     }
 }
 
@@ -534,7 +534,7 @@ void rendering_system_nop_function_3(void)
 // 功能：处理高级渲染管线，包括着色器、纹理、光照等综合处理
 // 输入：param_1 - 渲染参数，param_2 - 渲染回调函数
 // 输出：处理后的渲染结果
-void rendering_system_advanced_pipeline_processor(undefined8 render_params, code *render_callback)
+void rendering_system_advanced_pipeline_processor(uint64_t render_params, code *render_callback)
 {
     // 函数实现：渲染系统高级渲染管线处理器
     // 输入：render_params - 渲染参数，render_callback - 渲染回调函数
@@ -664,7 +664,7 @@ void rendering_system_advanced_pipeline_processor(undefined8 render_params, code
         
         render_flags = *(int *)(render_context + 0x77);
         if (render_flags <= *(int *)(rendering_light_calculation_params[0] + 0x2f8)) {
-            *(undefined1 *)(render_context + 0x44) = 1;
+            *(int8_t *)(render_context + 0x44) = 1;
         }
         
         longlong render_data = *(longlong *)(render_context + 0x48);
@@ -672,7 +672,7 @@ void rendering_system_advanced_pipeline_processor(undefined8 render_params, code
             if (((*(char *)(render_context + 0xbc) == '\0') &&
                 ((*(byte *)(*(longlong *)(render_data + 0x3c8) + 0x28) & 1) == 0)) &&
                (*(int *)(rendering_light_calculation_params[0] + 0x224) + -1 != render_flags)) {
-                *(undefined1 *)(render_context + 0x44) = 1;
+                *(int8_t *)(render_context + 0x44) = 1;
             }
             
             if (*(int *)(render_context + 0x30) == *(int *)(*(longlong *)(render_data + 0x3c8) + 0x10)) {
@@ -771,11 +771,11 @@ void rendering_system_advanced_pipeline_processor(undefined8 render_params, code
                                 else {
                                     render_mode = *(char *)(render_context + 0x5f);
                                     uint object_params = *(uint *)(render_context + 0x67);
-                                    *(undefined4 *)(pipeline_data + 0x110) = pipeline_flags;
+                                    *(int32_t *)(pipeline_data + 0x110) = pipeline_flags;
                                     
                                     FUN_18024c560(*(uint *)(render_context + 0xb8), object_data, (int)render_mode, 
                                                   object_params, *(uint *)(render_context + 0x6f));
-                                    *(undefined4 *)(pipeline_data + 0x118) = 0;
+                                    *(int32_t *)(pipeline_data + 0x118) = 0;
                                 }
                             }
                             object_index = object_index + 0x10;
@@ -784,7 +784,7 @@ void rendering_system_advanced_pipeline_processor(undefined8 render_params, code
                     }
                     
                     if ((*(char *)(render_context + 0x44) != '\0') && (pipeline_active)) {
-                        *(undefined1 *)(render_context + 0x44) = 0;
+                        *(int8_t *)(render_context + 0x44) = 0;
                     }
                 }
                 else {
@@ -793,9 +793,9 @@ void rendering_system_advanced_pipeline_processor(undefined8 render_params, code
                         render_mode = *(char *)(render_context + 0x5f);
                         uint pipeline_flags = *(uint *)(render_context + 0x67);
                         char pipeline_state = *(char *)(render_data + 0x13d);
-                        *(undefined4 *)(render_data + 0x110) = *(uint *)(render_context + 0x7f);
+                        *(int32_t *)(render_data + 0x110) = *(uint *)(render_context + 0x7f);
                         
-                        FUN_18024c560(*(uint *)(render_context + 0xb8), *(undefined8 *)(render_context + 0x38),
+                        FUN_18024c560(*(uint *)(render_context + 0xb8), *(uint64_t *)(render_context + 0x38),
                                       (int)render_mode, pipeline_flags, *(uint *)(render_context + 0x6f));
                         
                         object_index = 0;
@@ -808,14 +808,14 @@ void rendering_system_advanced_pipeline_processor(undefined8 render_params, code
                                               (*(longlong *)(*(longlong *)(*(longlong *)(render_context + 0x48) + 0x38) + 
                                               object_index) + 0x118);
                                 if (pipeline_data != 0) {
-                                    *(undefined1 *)(pipeline_data + 0x13d) = 1;
+                                    *(int8_t *)(pipeline_data + 0x13d) = 1;
                                 }
                                 object_index = object_index + 0x10;
                                 render_data = render_data + -1;
                             } while (render_data != 0);
                         }
-                        *(undefined1 *)(render_context + 0x44) = 0;
-                        *(undefined4 *)(render_data + 0x118) = 0;
+                        *(int8_t *)(render_context + 0x44) = 0;
+                        *(int32_t *)(render_data + 0x118) = 0;
                     }
                 }
             }
@@ -827,9 +827,9 @@ void rendering_system_advanced_pipeline_processor(undefined8 render_params, code
 // 功能：处理渲染结果，包括深度测试、模板测试、混合等
 // 输入：param_1 - 渲染上下文，param_2-4 - 渲染参数，param_5 - 渲染数据
 // 输出：处理后的渲染结果
-undefined1 rendering_system_render_result_processor(longlong render_context, undefined8 render_param_1, 
-                                                   undefined8 render_param_2, undefined8 render_param_3,
-                                                   undefined8 *render_data)
+int8_t rendering_system_render_result_processor(longlong render_context, uint64_t render_param_1, 
+                                                   uint64_t render_param_2, uint64_t render_param_3,
+                                                   uint64_t *render_data)
 {
     // 函数实现：渲染系统渲染结果处理器
     // 输入：render_context - 渲染上下文，render_param_1-3 - 渲染参数，render_data - 渲染数据
@@ -842,7 +842,7 @@ undefined1 rendering_system_render_result_processor(longlong render_context, und
     
     longlong depth_buffer;
     longlong *stencil_buffer;
-    undefined1 render_result;
+    int8_t render_result;
     char blend_mode;
     uint blend_flags;
     uint render_state;
@@ -867,7 +867,7 @@ undefined1 rendering_system_render_result_processor(longlong render_context, und
     render_state = 0;
     if ((*(longlong *)(render_context + 0x28) != 0) &&
         (depth_buffer = *(longlong *)(*(longlong *)(render_context + 0x28) + 0x260), depth_buffer != 0)) {
-        render_state = *(undefined4 *)(depth_buffer + 0x180);
+        render_state = *(int32_t *)(depth_buffer + 0x180);
     }
     
     stencil_buffer = *(longlong **)(render_context + 0x48);
@@ -877,11 +877,11 @@ undefined1 rendering_system_render_result_processor(longlong render_context, und
     // 执行渲染操作
     render_result = (**(code **)(*stencil_buffer + 0x1c8))(stencil_buffer, render_param_1, render_param_2, 
                                                           render_param_3, &blend_factor[0]);
-    blend_mode = func_0x000180282950(*(undefined8 *)(render_context + 0x48));
+    blend_mode = func_0x000180282950(*(uint64_t *)(render_context + 0x48));
     
     if (blend_mode != '\0') {
         FUN_18030aab0(render_context, render_param_1, render_param_2, render_param_3, 
-                      color_values[0] >> 0x20 & 0xff, (undefined4)color_values[0],
+                      color_values[0] >> 0x20 & 0xff, (int32_t)color_values[0],
                       color_values[1]._4_4_, (int)depth_buffer, render_state);
     }
     
@@ -930,13 +930,13 @@ void nop_function_3(void) {
 }
 
 // 高级渲染管线处理器别名
-void advanced_pipeline_processor(undefined8 param_1, code *param_2) { 
+void advanced_pipeline_processor(uint64_t param_1, code *param_2) { 
     rendering_system_advanced_pipeline_processor(param_1, param_2); 
 }
 
 // 渲染结果处理器别名
-undefined1 render_result_processor(longlong param_1, undefined8 param_2, undefined8 param_3, 
-                                 undefined8 param_4, undefined8 *param_5) { 
+int8_t render_result_processor(longlong param_1, uint64_t param_2, uint64_t param_3, 
+                                 uint64_t param_4, uint64_t *param_5) { 
     return rendering_system_render_result_processor(param_1, param_2, param_3, param_4, param_5); 
 }
 

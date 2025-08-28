@@ -18,9 +18,9 @@
 
 // 渲染资源数据类型别名
 typedef longlong* RenderResourcePtr;
-typedef undefined8 RenderResourceHandle;
-typedef undefined4 RenderResourceID;
-typedef undefined1* RenderMemoryBlock;
+typedef uint64_t RenderResourceHandle;
+typedef int32_t RenderResourceID;
+typedef int8_t* RenderMemoryBlock;
 typedef int* RenderResourceFlag;
 typedef short* RenderResourceIndex;
 
@@ -110,11 +110,11 @@ typedef short* RenderResourceIndex;
 //   - 使用位运算进行高效的资源状态操作
 //   - 支持并发访问和同步控制
 //------------------------------------------------------------------------------
-void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
+void FUN_180535c60(longlong *param_1,uint64_t param_2,uint64_t param_3)
 
 {
   // 语义化变量定义
-  undefined4 *resource_data_ptr;                    // 资源数据指针
+  int32_t *resource_data_ptr;                    // 资源数据指针
   short resource_index;                             // 资源索引
   longlong render_context;                          // 渲染上下文
   char resource_status_flag;                         // 资源状态标志
@@ -134,8 +134,8 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
   longlong resource_base_ptr;                        // 资源基地址
   float performance_factor;                          // 性能因子
   ulonglong stack_resource_id;                       // 堆栈资源ID
-  undefined4 resource_param;                         // 资源参数
-  undefined8 resource_control;                      // 资源控制
+  int32_t resource_param;                         // 资源参数
+  uint64_t resource_control;                      // 资源控制
   
   // 步骤1：验证渲染上下文有效性
   render_context = *param_1;
@@ -186,7 +186,7 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
         resource_config_ptr = (ulonglong)((uint)resource_pool_size & 0xf) * 0xbe0 +
                      *(longlong *)(*(longlong *)(render_context + 0x87b340) + (resource_pool_size >> 4) * 8);
         if (*(int *)(resource_config_ptr + 0x2a0) == (int)stack_resource_id) {
-          *(undefined4 *)(resource_config_ptr + 0x2a0) = 0xffffffff;
+          *(int32_t *)(resource_config_ptr + 0x2a0) = 0xffffffff;
         }
         resource_type = (uint)resource_pool_size + 1;
         resource_pool_size = (ulonglong)resource_type;
@@ -205,8 +205,8 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
     stack_resource_id = resource_address;
     if (-1 < *(int *)(resource_address + 0x6a0)) {
       FUN_1804fc920((longlong)
-                    ((int)*(undefined8 *)(resource_address + 0x6a0) +
-                    (int)((ulonglong)*(undefined8 *)(resource_address + 0x6a0) >> 0x20) *
+                    ((int)*(uint64_t *)(resource_address + 0x6a0) +
+                    (int)((ulonglong)*(uint64_t *)(resource_address + 0x6a0) >> 0x20) *
                     *(int *)(render_context + 0x98d238)) * 9 + *(longlong *)(render_context + 0x98d248));
     }
     
@@ -290,25 +290,25 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
             if ((int)resource_handle < 0) {
               resource_handle = (resource_handle - 1 | 0xfffffff0) + 1;
             }
-            *(undefined8 *)(resource_pool_ptr + 0xd0 + resource_memory_ptr) = _DAT_180c966e8;
+            *(uint64_t *)(resource_pool_ptr + 0xd0 + resource_memory_ptr) = _DAT_180c966e8;
             *(float *)(resource_pool_ptr + 0xd8 + resource_memory_ptr) = performance_factor;
-            *(undefined1 *)(resource_pool_ptr + 0xdc + resource_memory_ptr) = 0;
+            *(int8_t *)(resource_pool_ptr + 0xdc + resource_memory_ptr) = 0;
             switch(resource_handle) {
             case 0:
             case 9:
               func_0x0001805b2c90(resource_pool_ptr + 0x10 + resource_memory_ptr, resource_address, resource_memory_ptr, resource_pool_ptr, resource_param, resource_control);
               break;
             case 1:
-              *(undefined8 *)(resource_pool_ptr + 0xa0 + resource_memory_ptr) = 0xffffffffffffffff;
-              *(undefined2 *)(resource_pool_ptr + 200 + resource_memory_ptr) = 0xff;
-              *(undefined8 *)(resource_pool_ptr + 0xa8 + resource_memory_ptr) = 0;
-              *(undefined8 *)(resource_pool_ptr + 0xb0 + resource_memory_ptr) = 0;
-              *(undefined8 *)(resource_pool_ptr + 0xb8 + resource_memory_ptr) = 0;
-              *(undefined8 *)(resource_pool_ptr + 0xc0 + resource_memory_ptr) = 0;
-              *(undefined4 *)(resource_pool_ptr + 0xcc + resource_memory_ptr) = 0;
+              *(uint64_t *)(resource_pool_ptr + 0xa0 + resource_memory_ptr) = 0xffffffffffffffff;
+              *(int16_t *)(resource_pool_ptr + 200 + resource_memory_ptr) = 0xff;
+              *(uint64_t *)(resource_pool_ptr + 0xa8 + resource_memory_ptr) = 0;
+              *(uint64_t *)(resource_pool_ptr + 0xb0 + resource_memory_ptr) = 0;
+              *(uint64_t *)(resource_pool_ptr + 0xb8 + resource_memory_ptr) = 0;
+              *(uint64_t *)(resource_pool_ptr + 0xc0 + resource_memory_ptr) = 0;
+              *(int32_t *)(resource_pool_ptr + 0xcc + resource_memory_ptr) = 0;
               break;
             case 2:
-              resource_data_ptr = (undefined4 *)(resource_pool_ptr + resource_memory_ptr);
+              resource_data_ptr = (int32_t *)(resource_pool_ptr + resource_memory_ptr);
               *resource_data_ptr = 0;
               resource_data_ptr[1] = 0;
               resource_data_ptr[2] = 0;
@@ -324,13 +324,13 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
             case 0xc:
             case 0xd:
             case 0xe:
-              *(undefined4 *)(resource_pool_ptr + resource_memory_ptr) = 0;
+              *(int32_t *)(resource_pool_ptr + resource_memory_ptr) = 0;
               break;
             case 6:
-              *(undefined4 *)(resource_pool_ptr + resource_memory_ptr) = 1;
+              *(int32_t *)(resource_pool_ptr + resource_memory_ptr) = 1;
               break;
             case 0xf:
-              *(undefined4 *)(resource_pool_ptr + resource_memory_ptr) = 0xffffffff;
+              *(int32_t *)(resource_pool_ptr + resource_memory_ptr) = 0xffffffff;
             }
           }
           resource_type = resource_type + 1;
@@ -348,17 +348,17 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
     if ((resource_active_count != 0) && (_DAT_180c8f008 != 0)) {
       (**(code **)(_DAT_180c8f008 + 0x30))(resource_active_count);
     }
-    (**(code **)(resource_config_ptr + 0x228))(*(undefined4 *)(render_context + 0x98d928), resource_active_count);
+    (**(code **)(resource_config_ptr + 0x228))(*(int32_t *)(render_context + 0x98d928), resource_active_count);
     resource_param = 0;
     if ((resource_active_count != 0) && (_DAT_180c8f008 != 0)) {
       (**(code **)(_DAT_180c8f008 + 0x18))(resource_active_count);
     }
     FUN_18051aff0(resource_address, 1, render_context + 0x87a948);
     FUN_180507360(resource_address, 0);
-    *(undefined1 *)(resource_address + 0x1c) = 1;
+    *(int8_t *)(resource_address + 0x1c) = 1;
     resource_manager_ptr = (longlong *)(resource_block_ptr * 0xa60 + resource_memory_ptr);
     (**(code **)(*resource_manager_ptr + 0x68))(resource_manager_ptr);
-    *(undefined4 *)(resource_manager_ptr + 2) = 0xffffffff;
+    *(int32_t *)(resource_manager_ptr + 2) = 0xffffffff;
     *(int *)(render_context + 0x52ed90) = *(int *)(render_context + 0x52ed90) + -1;
     resource_active_count = resource_id + -1;
     resource_address = (ulonglong)resource_active_count;
@@ -381,9 +381,9 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
         resource_pool_size = resource_pool_size - 1;
       } while (-1 < (longlong)resource_pool_size);
     }
-    *(undefined2 *)(render_context + 0x52dda0 + resource_block_ptr * 2) = 0xffff;
+    *(int16_t *)(render_context + 0x52dda0 + resource_block_ptr * 2) = 0xffff;
     if ((*(int *)(render_context + 0x52ed94) == resource_id + 1) &&
-       (*(undefined4 *)(render_context + 0x52ed94) = 0, -1 < (longlong)resource_address)) {
+       (*(int32_t *)(render_context + 0x52ed94) = 0, -1 < (longlong)resource_address)) {
       resource_manager_ptr = (int *)(resource_address * 0xa60 + 0x10 + resource_memory_ptr);
       resource_pool_size = resource_address;
       resource_pool_size = resource_active_count;
@@ -397,7 +397,7 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
         resource_address = resource_address - 1;
       } while (-1 < (longlong)resource_address);
     }
-    *(undefined4 *)(resource_block_ptr * 0x200 + 0x52edbc + render_context) = 0xffffffff;
+    *(int32_t *)(resource_block_ptr * 0x200 + 0x52edbc + render_context) = 0xffffffff;
     *(int *)(render_context + 0x62ed90) = *(int *)(render_context + 0x62ed90) + -1;
     resource_pool_size = resource_active_count;
     if (-1 < (longlong)resource_address) {
@@ -418,9 +418,9 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
         resource_address = resource_address - 1;
       } while (-1 < (longlong)resource_address);
     }
-    *(undefined2 *)(render_context + 0x62dda0 + resource_block_ptr * 2) = 0xffff;
+    *(int16_t *)(render_context + 0x62dda0 + resource_block_ptr * 2) = 0xffff;
     if ((*(int *)(render_context + 0x62ed94) == resource_id + 1) &&
-       (*(undefined4 *)(render_context + 0x62ed94) = 0, -1 < (longlong)resource_address)) {
+       (*(int32_t *)(render_context + 0x62ed94) = 0, -1 < (longlong)resource_address)) {
       resource_manager_ptr = (int *)(render_context + 0x52edbc + resource_address * 0x200);
       do {
         if (-1 < *resource_manager_ptr) {
@@ -434,8 +434,8 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
     }
     FUN_1804fc230(render_context + 0x62ed98, resource_handle, resource_pool_size, resource_address, resource_param);
     FUN_1804fc230(render_context + 0x74eb90, resource_handle);
-    *(undefined1 *)(render_context + 0x87a940) = 1;
-    *(undefined1 *)(render_context + 0x87b728) = 1;
+    *(int8_t *)(render_context + 0x87a940) = 1;
+    *(int8_t *)(render_context + 0x87b728) = 1;
   }
   
   // 步骤6：完成资源管理并返回
@@ -468,11 +468,11 @@ void FUN_180535c60(longlong *param_1,undefined8 param_2,undefined8 param_3)
 //   - 使用高效的内存访问模式
 //   - 实现了资源生命周期的完整管理
 //------------------------------------------------------------------------------
-void FUN_180535c78(undefined4 param_1)
+void FUN_180535c78(int32_t param_1)
 
 {
   // 语义化变量定义
-  undefined4 *resource_data_ptr;                    // 资源数据指针
+  int32_t *resource_data_ptr;                    // 资源数据指针
   short resource_index;                             // 资源索引
   char resource_status_flag;                         // 资源状态标志
   int resource_id;                                   // 资源标识符
@@ -493,7 +493,7 @@ void FUN_180535c78(undefined4 param_1)
   longlong resource_system_ptr;                      // 资源系统指针
   float performance_factor;                          // 性能因子
   int stack_resource_id;                             // 堆栈资源ID
-  undefined4 resource_param;                         // 资源参数
+  int32_t resource_param;                         // 资源参数
   
   // 步骤1：执行资源状态初始化和验证
   resource_status_flag = FUN_18055f260(param_1, &stack_resource_id);
@@ -536,7 +536,7 @@ void FUN_180535c78(undefined4 param_1)
         resource_config_ptr = (ulonglong)((uint)resource_pool_size & 0xf) * 0xbe0 +
                  *(longlong *)(*(longlong *)(render_context_base + 0x87b340) + (resource_pool_size >> 4) * 8);
         if (*(int *)(resource_config_ptr + 0x2a0) == stack_resource_id) {
-          *(undefined4 *)(resource_config_ptr + 0x2a0) = 0xffffffff;
+          *(int32_t *)(resource_config_ptr + 0x2a0) = 0xffffffff;
         }
         resource_type = (uint)resource_pool_size + 1;
         resource_pool_size = (ulonglong)resource_type;
@@ -555,8 +555,8 @@ void FUN_180535c78(undefined4 param_1)
     stack_resource_id = resource_system_ptr;
     if (-1 < *(int *)(resource_system_ptr + 0x6a0)) {
       FUN_1804fc920((longlong)
-                    ((int)*(undefined8 *)(resource_system_ptr + 0x6a0) +
-                    (int)((ulonglong)*(undefined8 *)(resource_system_ptr + 0x6a0) >> 0x20) *
+                    ((int)*(uint64_t *)(resource_system_ptr + 0x6a0) +
+                    (int)((ulonglong)*(uint64_t *)(resource_system_ptr + 0x6a0) >> 0x20) *
                     *(int *)(render_context_base + 0x98d238)) * 9 + *(longlong *)(render_context_base + 0x98d248));
     }
     
@@ -640,25 +640,25 @@ void FUN_180535c78(undefined4 param_1)
             if ((int)resource_handle < 0) {
               resource_handle = (resource_handle - 1 | 0xfffffff0) + 1;
             }
-            *(undefined8 *)(resource_system_ptr + 0xd0 + resource_memory_ptr) = _DAT_180c966e8;
+            *(uint64_t *)(resource_system_ptr + 0xd0 + resource_memory_ptr) = _DAT_180c966e8;
             *(float *)(resource_system_ptr + 0xd8 + resource_memory_ptr) = performance_factor;
-            *(undefined1 *)(resource_system_ptr + 0xdc + resource_memory_ptr) = 0;
+            *(int8_t *)(resource_system_ptr + 0xdc + resource_memory_ptr) = 0;
             switch(resource_handle) {
             case 0:
             case 9:
               func_0x0001805b2c90(resource_system_ptr + 0x10 + resource_memory_ptr);
               break;
             case 1:
-              *(undefined8 *)(resource_system_ptr + 0xa0 + resource_memory_ptr) = 0xffffffffffffffff;
-              *(undefined2 *)(resource_system_ptr + 200 + resource_memory_ptr) = 0xff;
-              *(undefined8 *)(resource_system_ptr + 0xa8 + resource_memory_ptr) = 0;
-              *(undefined8 *)(resource_system_ptr + 0xb0 + resource_memory_ptr) = 0;
-              *(undefined8 *)(resource_system_ptr + 0xb8 + resource_memory_ptr) = 0;
-              *(undefined8 *)(resource_system_ptr + 0xc0 + resource_memory_ptr) = 0;
-              *(undefined4 *)(resource_system_ptr + 0xcc + resource_memory_ptr) = 0;
+              *(uint64_t *)(resource_system_ptr + 0xa0 + resource_memory_ptr) = 0xffffffffffffffff;
+              *(int16_t *)(resource_system_ptr + 200 + resource_memory_ptr) = 0xff;
+              *(uint64_t *)(resource_system_ptr + 0xa8 + resource_memory_ptr) = 0;
+              *(uint64_t *)(resource_system_ptr + 0xb0 + resource_memory_ptr) = 0;
+              *(uint64_t *)(resource_system_ptr + 0xb8 + resource_memory_ptr) = 0;
+              *(uint64_t *)(resource_system_ptr + 0xc0 + resource_memory_ptr) = 0;
+              *(int32_t *)(resource_system_ptr + 0xcc + resource_memory_ptr) = 0;
               break;
             case 2:
-              resource_data_ptr = (undefined4 *)(resource_system_ptr + resource_memory_ptr);
+              resource_data_ptr = (int32_t *)(resource_system_ptr + resource_memory_ptr);
               *resource_data_ptr = 0;
               resource_data_ptr[1] = 0;
               resource_data_ptr[2] = 0;
@@ -674,13 +674,13 @@ void FUN_180535c78(undefined4 param_1)
             case 0xc:
             case 0xd:
             case 0xe:
-              *(undefined4 *)(resource_system_ptr + resource_memory_ptr) = 0;
+              *(int32_t *)(resource_system_ptr + resource_memory_ptr) = 0;
               break;
             case 6:
-              *(undefined4 *)(resource_system_ptr + resource_memory_ptr) = 1;
+              *(int32_t *)(resource_system_ptr + resource_memory_ptr) = 1;
               break;
             case 0xf:
-              *(undefined4 *)(resource_system_ptr + resource_memory_ptr) = 0xffffffff;
+              *(int32_t *)(resource_system_ptr + resource_memory_ptr) = 0xffffffff;
             }
           }
           resource_type = resource_type + 1;
@@ -698,17 +698,17 @@ void FUN_180535c78(undefined4 param_1)
     if ((resource_active_count != 0) && (_DAT_180c8f008 != 0)) {
       (**(code **)(_DAT_180c8f008 + 0x30))(resource_active_count);
     }
-    (**(code **)(resource_config_ptr + 0x228))(*(undefined4 *)(render_context_base + 0x98d928), resource_active_count);
+    (**(code **)(resource_config_ptr + 0x228))(*(int32_t *)(render_context_base + 0x98d928), resource_active_count);
     resource_param = 0;
     if ((resource_active_count != 0) && (_DAT_180c8f008 != 0)) {
       (**(code **)(_DAT_180c8f008 + 0x18))(resource_active_count);
     }
     FUN_18051aff0(resource_system_ptr, 1, render_context_base + 0x87a948);
     FUN_180507360(resource_system_ptr, 0);
-    *(undefined1 *)(resource_system_ptr + 0x1c) = 1;
+    *(int8_t *)(resource_system_ptr + 0x1c) = 1;
     resource_pool_ptr = (longlong *)(resource_block_ptr * 0xa60 + resource_memory_ptr);
     (**(code **)(*resource_pool_ptr + 0x68))(resource_pool_ptr);
-    *(undefined4 *)(resource_pool_ptr + 2) = 0xffffffff;
+    *(int32_t *)(resource_pool_ptr + 2) = 0xffffffff;
     *(int *)(render_context_base + 0x52ed90) = *(int *)(render_context_base + 0x52ed90) + -1;
     resource_active_count = resource_id + -1;
     resource_pool_size = (ulonglong)resource_active_count;
@@ -731,9 +731,9 @@ void FUN_180535c78(undefined4 param_1)
         resource_handle = resource_handle - 1;
       } while (-1 < (longlong)resource_handle);
     }
-    *(undefined2 *)(render_context_base + 0x52dda0 + resource_block_ptr * 2) = 0xffff;
+    *(int16_t *)(render_context_base + 0x52dda0 + resource_block_ptr * 2) = 0xffff;
     if ((*(int *)(render_context_base + 0x52ed94) == resource_id + 1) &&
-       (*(undefined4 *)(render_context_base + 0x52ed94) = 0, -1 < (longlong)resource_pool_size)) {
+       (*(int32_t *)(render_context_base + 0x52ed94) = 0, -1 < (longlong)resource_pool_size)) {
       resource_manager_ptr = (int *)(resource_pool_size * 0xa60 + 0x10 + resource_memory_ptr);
       resource_handle = resource_pool_size;
       resource_pool_capacity = resource_active_count;
@@ -747,7 +747,7 @@ void FUN_180535c78(undefined4 param_1)
         resource_handle = resource_handle - 1;
       } while (-1 < (longlong)resource_handle);
     }
-    *(undefined4 *)(resource_block_ptr * 0x200 + 0x52edbc + render_context_base) = 0xffffffff;
+    *(int32_t *)(resource_block_ptr * 0x200 + 0x52edbc + render_context_base) = 0xffffffff;
     *(int *)(render_context_base + 0x62ed90) = *(int *)(render_context_base + 0x62ed90) + -1;
     resource_pool_capacity = resource_active_count;
     if (-1 < (longlong)resource_pool_size) {
@@ -768,9 +768,9 @@ void FUN_180535c78(undefined4 param_1)
         resource_handle = resource_handle - 1;
       } while (-1 < (longlong)resource_handle);
     }
-    *(undefined2 *)(render_context_base + 0x62dda0 + resource_block_ptr * 2) = 0xffff;
+    *(int16_t *)(render_context_base + 0x62dda0 + resource_block_ptr * 2) = 0xffff;
     if ((*(int *)(render_context_base + 0x62ed94) == resource_id + 1) &&
-       (*(undefined4 *)(render_context_base + 0x62ed94) = 0, -1 < (longlong)resource_pool_size)) {
+       (*(int32_t *)(render_context_base + 0x62ed94) = 0, -1 < (longlong)resource_pool_size)) {
       resource_manager_ptr = (int *)(render_context_base + 0x52edbc + resource_pool_size * 0x200);
       do {
         if (-1 < *resource_manager_ptr) {
@@ -784,8 +784,8 @@ void FUN_180535c78(undefined4 param_1)
     }
     FUN_1804fc230(render_context_base + 0x62ed98, resource_handle, resource_pool_capacity, resource_pool_size, resource_param);
     FUN_1804fc230(render_context_base + 0x74eb90, resource_handle);
-    *(undefined1 *)(render_context_base + 0x87a940) = 1;
-    *(undefined1 *)(render_context_base + 0x87b728) = 1;
+    *(int8_t *)(render_context_base + 0x87a940) = 1;
+    *(int8_t *)(render_context_base + 0x87b728) = 1;
   }
   
   // 步骤5：完成资源管理并返回

@@ -40,8 +40,8 @@ void InitializeDataConversion(void)
   for (; data_count < data_size; data_count = data_count + 1) {
     *(float *)(**(longlong **)(context_ptr + 0x2d0) + data_count * 8) =
          (float)*(int *)(source_base + data_count * 8);
-    *(undefined4 *)(**(longlong **)(context_ptr + 0x2d0) + 4 + data_count * 8) =
-         *(undefined4 *)(source_base + 4 + data_count * 8);
+    *(int32_t *)(**(longlong **)(context_ptr + 0x2d0) + 4 + data_count * 8) =
+         *(int32_t *)(source_base + 4 + data_count * 8);
   }
   *(int *)(*(longlong *)(context_ptr + 0x2d0) + 8) = (int)data_size;
   return;
@@ -67,8 +67,8 @@ void ConvertDataBlock(void)
     do {
       *(float *)(**(longlong **)(context_ptr + 0x2d0) + start_index * 8) =
            (float)*(int *)(source_base + start_index * 8);
-      *(undefined4 *)(**(longlong **)(context_ptr + 0x2d0) + 4 + start_index * 8) =
-           *(undefined4 *)(source_base + 4 + start_index * 8);
+      *(int32_t *)(**(longlong **)(context_ptr + 0x2d0) + 4 + start_index * 8) =
+           *(int32_t *)(source_base + 4 + start_index * 8);
       start_index = start_index + 1;
     } while (start_index < end_index);
   }
@@ -88,9 +88,9 @@ void SetDataSize(void)
 
 {
   longlong context_ptr;
-  undefined4 data_size;
+  int32_t data_size;
   
-  *(undefined4 *)(*(longlong *)(context_ptr + 0x2d0) + 8) = data_size;
+  *(int32_t *)(*(longlong *)(context_ptr + 0x2d0) + 8) = data_size;
   return;
 }
 
@@ -100,36 +100,36 @@ void SetDataSize(void)
  * 初始化数据结构函数 - 初始化数据结构指针和标志位
  * 功能：设置数据结构的指针指向全局常量，并初始化各个标志位
  */
-undefined8 * InitializeDataStructure(undefined8 *data_structure)
+uint64_t * InitializeDataStructure(uint64_t *data_structure)
 
 {
   *data_structure = &GLOBAL_DATA_TABLE_180a21690;
   *data_structure = &GLOBAL_DATA_TABLE_180a21720;
-  *(undefined4 *)(data_structure + 1) = 0;
+  *(int32_t *)(data_structure + 1) = 0;
   *data_structure = &GLOBAL_DATA_BASE_1809fffc8;
   data_structure[2] = 0;
   data_structure[3] = 0;
-  *(undefined1 *)(data_structure + 6) = 3;
+  *(int8_t *)(data_structure + 6) = 3;
   data_structure[7] = 0;
   data_structure[8] = 0;
-  *(undefined1 *)(data_structure + 0xb) = 3;
+  *(int8_t *)(data_structure + 0xb) = 3;
   data_structure[0xc] = 0;
   data_structure[0xd] = 0;
-  *(undefined1 *)(data_structure + 0x10) = 3;
+  *(int8_t *)(data_structure + 0x10) = 3;
   data_structure[0x11] = 0;
   data_structure[0x12] = 0;
-  *(undefined1 *)(data_structure + 0x15) = 3;
-  *(undefined2 *)(data_structure + 0x18) = 0;
+  *(int8_t *)(data_structure + 0x15) = 3;
+  *(int16_t *)(data_structure + 0x18) = 0;
   data_structure[0x16] = 0;
   data_structure[0x17] = 0;
   data_structure[0x19] = 0;
   data_structure[0x1a] = 0;
-  *(undefined1 *)(data_structure + 0x1d) = 3;
-  *(undefined1 *)(data_structure + 6) = 0xf;
-  *(undefined1 *)(data_structure + 0xb) = 0xf;
-  *(undefined1 *)(data_structure + 0x10) = 0xf;
-  *(undefined1 *)(data_structure + 0x15) = 0xf;
-  *(undefined1 *)(data_structure + 0x1d) = 0xf;
+  *(int8_t *)(data_structure + 0x1d) = 3;
+  *(int8_t *)(data_structure + 6) = 0xf;
+  *(int8_t *)(data_structure + 0xb) = 0xf;
+  *(int8_t *)(data_structure + 0x10) = 0xf;
+  *(int8_t *)(data_structure + 0x15) = 0xf;
+  *(int8_t *)(data_structure + 0x1d) = 0xf;
   return data_structure;
 }
 
@@ -139,7 +139,7 @@ undefined8 * InitializeDataStructure(undefined8 *data_structure)
  * 清理数据结构函数 - 清理数据结构并释放资源
  * 功能：检查并清理数据结构的各个状态，根据标志位决定是否释放内存
  */
-undefined8 * CleanupDataStructure(undefined8 *data_structure,ulonglong cleanup_flags)
+uint64_t * CleanupDataStructure(uint64_t *data_structure,ulonglong cleanup_flags)
 
 {
   *data_structure = &GLOBAL_DATA_BASE_1809fffc8;
@@ -188,7 +188,7 @@ undefined8 * CleanupDataStructure(undefined8 *data_structure,ulonglong cleanup_f
  * 线程同步处理函数 - 处理线程同步和资源管理
  * 功能：处理线程同步，检查状态标志，管理资源生命周期
  */
-void ThreadSyncHandler(undefined1 *sync_context,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void ThreadSyncHandler(int8_t *sync_context,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong index;
@@ -196,11 +196,11 @@ void ThreadSyncHandler(undefined1 *sync_context,undefined8 param_2,undefined8 pa
   longlong *previous_resource;
   char status_flag;
   int thread_id;
-  undefined4 thread_id_copy;
+  int32_t thread_id_copy;
   longlong context_base;
-  undefined *message_ptr;
+  void *message_ptr;
   bool wait_condition;
-  undefined8 timeout_value;
+  uint64_t timeout_value;
   
   timeout_value = 0xfffffffffffffffe;
   wait_condition = false;
@@ -223,8 +223,8 @@ void ThreadSyncHandler(undefined1 *sync_context,undefined8 param_2,undefined8 pa
        ((context_base = *(longlong *)(sync_context + 8), *(char *)(context_base + 0xfa) == '\0' ||
         (*(char *)(context_base + 0xfb) == '\0')))) {
       message_ptr = &GLOBAL_ERROR_MESSAGE_18098bc73;
-      if (*(undefined **)(context_base + 0x18) != (undefined *)0x0) {
-        message_ptr = *(undefined **)(context_base + 0x18);
+      if (*(void **)(context_base + 0x18) != (void *)0x0) {
+        message_ptr = *(void **)(context_base + 0x18);
       }
                     // WARNING: Subroutine does not return
       SendMessageToHandler(GLOBAL_HANDLER_TABLE_180c86928,&GLOBAL_MESSAGE_QUEUE_1809ffc28,message_ptr,param_4,timeout_value);
@@ -248,7 +248,7 @@ void ThreadSyncHandler(undefined1 *sync_context,undefined8 param_2,undefined8 pa
   status_flag = '\0';
 ACQUIRE_LOCK_SUCCESS:
   thread_id_copy = _Thrd_id();
-  *(undefined4 *)(context_base + 0xf0) = thread_id_copy;
+  *(int32_t *)(context_base + 0xf0) = thread_id_copy;
   if (status_flag == '\0') {
     *sync_context = 1;
   }
@@ -256,7 +256,7 @@ ACQUIRE_LOCK_SUCCESS:
     Sleep(0);
   }
   if ((*(uint *)(sync_context + 0x10) & 1) == 0) {
-    ProcessResourceFlags(*(undefined8 *)(sync_context + 8),(byte)(*(uint *)(sync_context + 0x10) >> 2) & 1);
+    ProcessResourceFlags(*(uint64_t *)(sync_context + 8),(byte)(*(uint *)(sync_context + 0x10) >> 2) & 1);
   }
   current_resource = *(longlong **)(*(longlong *)(sync_context + 8) + 0x210);
   if (current_resource != (longlong *)0x0) {
@@ -296,14 +296,14 @@ void ReleaseResource(longlong resource_handle)
  * 资源上下文清理函数 - 清理资源上下文和相关数据
  * 功能：释放资源，清理上下文数据，重置状态标志
  */
-void CleanupResourceContext(char *context_ptr,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void CleanupResourceContext(char *context_ptr,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   longlong context_data;
   longlong *current_resource;
   longlong *next_resource;
   longlong resource_base;
-  undefined8 timeout_value;
+  uint64_t timeout_value;
   
   timeout_value = 0xfffffffffffffffe;
   context_data = *(longlong *)(context_ptr + 8);
@@ -322,13 +322,13 @@ void CleanupResourceContext(char *context_ptr,undefined8 param_2,undefined8 para
       resource_base = context_data;
       if ((context_ptr[0x10] & 2U) == 0) {
         ReleaseMemoryBlock(context_data);
-        ReleaseMemoryBlock(*(undefined8 *)(context_ptr + 8));
+        ReleaseMemoryBlock(*(uint64_t *)(context_ptr + 8));
         resource_base = *(longlong *)(context_ptr + 8);
       }
       FinalizeResource(resource_base,1,param_3,param_4,timeout_value);
-      *(undefined4 *)(context_data + 0xf0) = 0;
+      *(int32_t *)(context_data + 0xf0) = 0;
       LOCK();
-      *(undefined1 *)(context_data + 0xec) = 0;
+      *(int8_t *)(context_data + 0xec) = 0;
       UNLOCK();
     }
   }
@@ -396,7 +396,7 @@ LOCK_ACQUIRED:
   }
   if (lock_status == '\0') {
     LOCK();
-    *(undefined1 *)(resource_handle + 0xec) = 0;
+    *(int8_t *)(resource_handle + 0xec) = 0;
     UNLOCK();
   }
   resource_ptr[2] = *(longlong *)(*resource_ptr + 0x210);
@@ -463,7 +463,7 @@ LOCK_ACQUIRED:
         FinalizeResource(*resource_ptr,0);
       }
       LOCK();
-      *(undefined1 *)(resource_handle + 0xec) = 0;
+      *(int8_t *)(resource_handle + 0xec) = 0;
       UNLOCK();
     }
     *resource_ptr = 0;
@@ -486,7 +486,7 @@ uint DecrementResourceReference(void)
   int thread_id;
   uint return_value;
   longlong resource_handle;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   bool lock_acquired;
   
   while( true ) {
@@ -531,20 +531,20 @@ LOCK_ACQUIRED:
  * 资源状态重置函数 - 重置资源状态并清理指针
  * 功能：根据条件释放资源，重置锁状态，清理资源指针
  */
-undefined1 ResetResourceStatus(void)
+int8_t ResetResourceStatus(void)
 
 {
-  undefined1 previous_status;
+  int8_t previous_status;
   int release_condition;
   longlong resource_handle;
-  undefined8 *resource_ptr;
+  uint64_t *resource_ptr;
   
   if (release_condition == 1) {
     FinalizeResource(*resource_ptr,0);
   }
   LOCK();
-  previous_status = *(undefined1 *)(resource_handle + 0xec);
-  *(undefined1 *)(resource_handle + 0xec) = 0;
+  previous_status = *(int8_t *)(resource_handle + 0xec);
+  *(int8_t *)(resource_handle + 0xec) = 0;
   UNLOCK();
   *resource_ptr = 0;
   return previous_status;
@@ -567,7 +567,7 @@ void UpdateDataTable(longlong table_handle)
   longlong *temp_ptr;
   byte *data_ptr;
   char table_size;
-  undefined4 buffer_handle;
+  int32_t buffer_handle;
   uint index_value;
   longlong *data_buffer;
   longlong allocated_memory;
@@ -581,7 +581,7 @@ void UpdateDataTable(longlong table_handle)
   uint current_offset;
   int block_start;
   int block_end;
-  undefined4 *source_data;
+  int32_t *source_data;
   uint *target_ptr;
   ulonglong start_block;
   ulonglong end_block;
@@ -593,11 +593,11 @@ void UpdateDataTable(longlong table_handle)
     if (0 < total_items) {
       table_base = (longlong)*(int *)(GLOBAL_MEMORY_TABLE_180c86890 + 0xe78) * 0x128 + GLOBAL_MEMORY_TABLE_180c86890 + 0xc28;
       buffer_handle = AllocateMemoryBlock(table_base,total_items);
-      *(undefined4 *)(table_handle + 0x30) = buffer_handle;
+      *(int32_t *)(table_handle + 0x30) = buffer_handle;
       InitializeMemoryBlock(table_base,buffer_handle);
       if (*(longlong *)(table_handle + 0x10) == 0) {
         if (*(int *)(table_handle + 0x18) != 0) {
-          *(undefined4 *)(table_handle + 0x2c) = *(undefined4 *)(table_handle + 0x30);
+          *(int32_t *)(table_handle + 0x2c) = *(int32_t *)(table_handle + 0x30);
           return;
         }
       }
@@ -710,7 +710,7 @@ void UpdateDataTable(longlong table_handle)
                 UNLOCK();
                 if (allocation_success) {
                   LOCK();
-                  *(undefined1 *)((longlong)block_end + 0x108 + (longlong)global_counter) = 0;
+                  *(int8_t *)((longlong)block_end + 0x108 + (longlong)global_counter) = 0;
                   UNLOCK();
                 }
                 else {
@@ -733,7 +733,7 @@ void UpdateDataTable(longlong table_handle)
             } while (table_base != 0);
           }
         }
-        source_data = *(undefined4 **)(table_handle + 0x38);
+        source_data = *(int32_t **)(table_handle + 0x38);
         index_value = current_offset >> 0xb;
         *(uint *)(table_handle + 0x2c) = current_offset;
         if (index_value == (int)table_size + current_offset >> 0xb) {
@@ -746,7 +746,7 @@ void UpdateDataTable(longlong table_handle)
           do {
             buffer_handle = *source_data;
             source_data = source_data + 1;
-            *(undefined4 *)
+            *(int32_t *)
              (*(longlong *)(global_counter + (ulonglong)(current_offset >> 0xb) * 2 + 2) +
              (ulonglong)(current_offset + (current_offset >> 0xb) * -0x800) * 4) = buffer_handle;
             data_count = data_count - 1;
@@ -769,14 +769,14 @@ void UpdateDataTable(longlong table_handle)
  * 数据表更新函数（参数版本）- 更新数据表结构和索引
  * 功能：检查版本号，分配内存，更新索引表，处理数据块复制
  */
-void UpdateDataTableWithVersion(undefined4 version_number)
+void UpdateDataTableWithVersion(int32_t version_number)
 
 {
   longlong *index_ptr;
   longlong *temp_ptr;
   byte *data_ptr;
   char table_size;
-  undefined4 buffer_handle;
+  int32_t buffer_handle;
   uint index_value;
   longlong *data_buffer;
   longlong allocated_memory;
@@ -790,7 +790,7 @@ void UpdateDataTableWithVersion(undefined4 version_number)
   uint current_offset;
   int block_start;
   int block_end;
-  undefined4 *source_data;
+  int32_t *source_data;
   uint *target_ptr;
   ulonglong start_block;
   ulonglong end_block;
@@ -798,15 +798,15 @@ void UpdateDataTableWithVersion(undefined4 version_number)
   longlong table_handle;
   
   total_items = *(int *)(table_handle + 0x1c) + *(int *)(table_handle + 0x18);
-  *(undefined4 *)(table_handle + 0x28) = version_number;
+  *(int32_t *)(table_handle + 0x28) = version_number;
   if (0 < total_items) {
     table_base = (longlong)*(int )(GLOBAL_MEMORY_TABLE_180c86890 + 0xe78) * 0x128 + GLOBAL_MEMORY_TABLE_180c86890 + 0xc28;
     buffer_handle = AllocateMemoryBlock(table_base,total_items);
-    *(undefined4 *)(table_handle + 0x30) = buffer_handle;
+    *(int32_t *)(table_handle + 0x30) = buffer_handle;
     InitializeMemoryBlock(table_base,buffer_handle);
     if (*(longlong *)(table_handle + 0x10) == 0) {
       if (*(int )(table_handle + 0x18) != 0) {
-        *(undefined4 *)(table_handle + 0x2c) = *(undefined4 *)(table_handle + 0x30);
+        *(int32_t *)(table_handle + 0x2c) = *(int32_t *)(table_handle + 0x30);
         return;
       }
     }
@@ -919,7 +919,7 @@ void UpdateDataTableWithVersion(undefined4 version_number)
               UNLOCK();
               if (allocation_success) {
                 LOCK();
-                *(undefined1 *)((longlong)block_end + 0x108 + (longlong)global_counter) = 0;
+                *(int8_t *)((longlong)block_end + 0x108 + (longlong)global_counter) = 0;
                 UNLOCK();
               }
               else {
@@ -942,7 +942,7 @@ void UpdateDataTableWithVersion(undefined4 version_number)
           } while (table_base != 0);
         }
       }
-      source_data = *(undefined4 **)(table_handle + 0x38);
+      source_data = *(int32_t **)(table_handle + 0x38);
       index_value = current_offset >> 0xb;
       *(uint )(table_handle + 0x2c) = current_offset;
       if (index_value == (int)table_size + current_offset >> 0xb) {
@@ -955,7 +955,7 @@ void UpdateDataTableWithVersion(undefined4 version_number)
         do {
           buffer_handle = *source_data;
           source_data = source_data + 1;
-          *(undefined4 *)
+          *(int32_t *)
            (*(longlong *)(global_counter + (ulonglong)(current_offset >> 0xb) * 2 + 2) +
            (ulonglong)(current_offset + (current_offset >> 0xb) * -0x800) * 4) = buffer_handle;
           data_count = data_count - 1;

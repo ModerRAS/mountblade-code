@@ -58,12 +58,12 @@
  * - 管理数据传输过程
  * - 处理错误情况
  */
-void process_network_connection_state(undefined8 *network_context, undefined8 connection_id, 
-                                      longlong connection_params, undefined8 *result_output)
+void process_network_connection_state(uint64_t *network_context, uint64_t connection_id, 
+                                      longlong connection_params, uint64_t *result_output)
 {
-  undefined8 connection_handle;
+  uint64_t connection_handle;
   longlong *session_manager;
-  undefined1 connection_type;
+  int8_t connection_type;
   short connection_status;
   int transfer_result;
   int packet_count;
@@ -76,16 +76,16 @@ void process_network_connection_state(undefined8 *network_context, undefined8 co
   uint receive_flags;
   uint control_flags;
   longlong timeout_value;
-  undefined *protocol_handler;
+  void *protocol_handler;
   longlong security_context;
-  undefined4 connection_flags;
+  int32_t connection_flags;
   longlong connection_start;
   longlong connection_end;
   longlong authentication_context;
   longlong encryption_context;
   longlong compression_context;
   longlong *connection_pool;
-  undefined1 encryption_buffer[32];
+  int8_t encryption_buffer[32];
   longlong connection_timeout;
   longlong *active_connections;
   longlong *pending_connections;
@@ -102,13 +102,13 @@ void process_network_connection_state(undefined8 *network_context, undefined8 co
   int connection_quality;
   longlong connection_metrics;
   longlong *session_data;
-  undefined8 *network_adapter;
+  uint64_t *network_adapter;
   longlong adapter_config;
-  undefined8 adapter_status;
-  undefined8 adapter_info;
+  uint64_t adapter_status;
+  uint64_t adapter_info;
   longlong *driver_interface;
-  undefined8 *protocol_stack;
-  undefined1 protocol_buffer[40];
+  uint64_t *protocol_stack;
+  int8_t protocol_buffer[40];
   ulonglong security_checksum;
   
   // 初始化安全校验和
@@ -118,7 +118,7 @@ void process_network_connection_state(undefined8 *network_context, undefined8 co
   protocol_stack = result_output;
   
   // 验证输出参数有效性
-  if (result_output == (undefined8 *)0x0) goto handle_connection_error;
+  if (result_output == (uint64_t *)0x0) goto handle_connection_error;
   *result_output = 0;
   
   // 获取连接句柄
@@ -134,7 +134,7 @@ void process_network_connection_state(undefined8 *network_context, undefined8 co
   // 检查连接状态
   if ((*(byte *)(connection_handle + 0xc4) & 1) == 0) {
     if (connection_params == 0) goto handle_connection_error;
-    connection_flags = *(undefined4 *)(connection_params + 0x2dc);
+    connection_flags = *(int32_t *)(connection_params + 0x2dc);
   }
   else {
     connection_flags = 0xffffffff;
@@ -306,9 +306,9 @@ void process_network_connection_state(undefined8 *network_context, undefined8 co
   process_transfer_complete:
     // 完成数据传输处理
     connection_handle = (**(code **)*session_manager)();
-    adapter_status = *(undefined8 *)(connection_handle + 0x10);
-    adapter_info = *(undefined4 *)(connection_handle + 0x18);
-    driver_interface = *(undefined4 *)(connection_handle + 0x1c);
+    adapter_status = *(uint64_t *)(connection_handle + 0x10);
+    adapter_info = *(int32_t *)(connection_handle + 0x18);
+    driver_interface = *(int32_t *)(connection_handle + 0x1c);
     transfer_result = FUN_180852d40(network_context[1], &adapter_status, session_manager);
     
     buffer_address = packet_loss_rate;
@@ -372,7 +372,7 @@ void process_network_connection_state(undefined8 *network_context, undefined8 co
             connection_type = (**(code **)(*session_manager + 0x20))(session_manager);
             pending_connections = &bandwidth_limit;
             
-            bandwidth_limit = CONCAT44(bandwidth_limit._4_4_, *(undefined4 *)(connection_handle + message_index * 4));
+            bandwidth_limit = CONCAT44(bandwidth_limit._4_4_, *(int32_t *)(connection_handle + message_index * 4));
             
             message_count = FUN_1808b4570(authentication_context + 0x388, 
                                           (longlong)(int)data_length * 0x10 + stream_handle, 
@@ -387,7 +387,7 @@ void process_network_connection_state(undefined8 *network_context, undefined8 co
             
             FUN_180853260(session_manager + 0x10, &bandwidth_limit);
             message_count = FUN_18073c020(session_manager[0xf], error_count + 1, 
-                                          *(undefined8 *)(bandwidth_limit + 0x30));
+                                          *(uint64_t *)(bandwidth_limit + 0x30));
             
             buffer_address = packet_loss_rate;
             connection_start = compression_context;
@@ -424,7 +424,7 @@ void process_network_connection_state(undefined8 *network_context, undefined8 co
               connection_type = (**(code **)(*session_manager + 0x20))(session_manager);
               pending_connections = &bandwidth_limit;
               
-              bandwidth_limit = CONCAT44(bandwidth_limit._4_4_, *(undefined4 *)(connection_handle + message_index * 4));
+              bandwidth_limit = CONCAT44(bandwidth_limit._4_4_, *(int32_t *)(connection_handle + message_index * 4));
               
               transfer_result = FUN_1808b4570(authentication_context + 0x388, 
                                             (longlong)(int)data_length * 0x10 + stream_handle, 
@@ -439,7 +439,7 @@ void process_network_connection_state(undefined8 *network_context, undefined8 co
               
               FUN_180853260(session_manager + 0x12, &bandwidth_limit);
               transfer_result = FUN_18073c020(session_manager[0xf], error_count, 
-                                            *(undefined8 *)(bandwidth_limit + 0x30));
+                                            *(uint64_t *)(bandwidth_limit + 0x30));
               
               buffer_address = packet_loss_rate;
               connection_start = compression_context;
@@ -596,19 +596,19 @@ void process_network_connection_state(undefined8 *network_context, undefined8 co
   
   // 清理连接资源
   if ((char)successful_transfers == '\0') {
-    *(undefined4 *)(connection_start + 0x60) = 0;
+    *(int32_t *)(connection_start + 0x60) = 0;
     FUN_18084f560(connection_start + 0x30);
   }
   if ((char)send_flags == '\0') {
-    *(undefined4 *)(buffer_address + 0x60) = 0;
+    *(int32_t *)(buffer_address + 0x60) = 0;
     FUN_18084f040(buffer_address + 0x30);
   }
   if ((char)receive_flags == '\0') {
-    *(undefined4 *)(encryption_context + 0x1d0) = 0;
+    *(int32_t *)(encryption_context + 0x1d0) = 0;
     FUN_18084f040(encryption_context + 0x1a0);
   }
   if ((char)control_flags == '\0') {
-    *(undefined4 *)(authentication_context + 0x60) = 0;
+    *(int32_t *)(authentication_context + 0x60) = 0;
     FUN_18084f2d0(authentication_context + 0x30);
   }
   
@@ -618,7 +618,7 @@ handle_connection_error:
 }
 
 // 函数别名：保持向后兼容性
-void FUN_180850b70(undefined8 *param_1, undefined8 param_2, longlong param_3, undefined8 *param_4)
+void FUN_180850b70(uint64_t *param_1, uint64_t param_2, longlong param_3, uint64_t *param_4)
 {
   process_network_connection_state(param_1, param_2, param_3, param_4);
 }
@@ -645,11 +645,11 @@ void FUN_180850b70(undefined8 *param_1, undefined8 param_2, longlong param_3, un
  */
 void optimize_network_data_transfer(longlong transfer_context)
 {
-  undefined8 adapter_handle;
-  undefined4 bandwidth_info;
-  undefined4 latency_info;
-  undefined4 throughput_info;
-  undefined1 compression_flag;
+  uint64_t adapter_handle;
+  int32_t bandwidth_info;
+  int32_t latency_info;
+  int32_t throughput_info;
+  int8_t compression_flag;
   short optimization_level;
   int optimization_result;
   int queue_size;
@@ -659,13 +659,13 @@ void optimize_network_data_transfer(longlong transfer_context)
   uint compression_ratio;
   uint error_rate;
   uint transfer_efficiency;
-  undefined *optimization_strategy;
+  void *optimization_strategy;
   longlong context_base;
   longlong transfer_start;
   longlong transfer_end;
   longlong compression_context;
   longlong *connection_pool;
-  undefined1 optimization_buffer[32];
+  int8_t optimization_buffer[32];
   longlong bandwidth_limit;
   longlong *active_transfers;
   longlong *pending_transfers;
@@ -682,13 +682,13 @@ void optimize_network_data_transfer(longlong transfer_context)
   int connection_stability;
   longlong optimization_params;
   longlong *transfer_queue;
-  undefined8 *transfer_manager;
+  uint64_t *transfer_manager;
   longlong manager_config;
-  undefined8 manager_status;
-  undefined8 manager_info;
+  uint64_t manager_status;
+  uint64_t manager_info;
   longlong *driver_interface;
-  undefined8 *protocol_stack;
-  undefined1 strategy_buffer[40];
+  uint64_t *protocol_stack;
+  int8_t strategy_buffer[40];
   ulonglong performance_checksum;
   
   // 初始化性能校验和
@@ -709,7 +709,7 @@ void optimize_network_data_transfer(longlong transfer_context)
   compression_context = transfer_context + 0x1d8;
   *(int *)(transfer_context + 0x238) = *(int *)(transfer_context + 0x238) + 1;
   
-  adapter_handle = *(undefined8 *)(transfer_context + 0x18);
+  adapter_handle = *(uint64_t *)(transfer_context + 0x18);
   throughput_target = 0;
   quality_metrics = 0;
   
@@ -805,7 +805,7 @@ void optimize_network_data_transfer(longlong transfer_context)
         goto optimization_complete;
       
       bandwidth_limit = 0;
-      optimization_result = FUN_1808bc240(*(undefined8 *)(transfer_context + 0x10), 
+      optimization_result = FUN_1808bc240(*(uint64_t *)(transfer_context + 0x10), 
                                           data_throughput, 0xffffffff, &bandwidth_limit);
       
       if ((optimization_result != 0) ||
@@ -821,15 +821,15 @@ void optimize_network_data_transfer(longlong transfer_context)
   optimization_complete:
     // 完成优化处理
     performance_metrics = (**(code **)*transfer_queue)();
-    manager_status = *(undefined8 *)(transfer_context + 0x8);
-    bandwidth_info = *(undefined4 *)(performance_metrics + 0x14);
-    latency_info = *(undefined4 *)(performance_metrics + 0x18);
-    throughput_info = *(undefined4 *)(performance_metrics + 0x1c);
+    manager_status = *(uint64_t *)(transfer_context + 0x8);
+    bandwidth_info = *(int32_t *)(performance_metrics + 0x14);
+    latency_info = *(int32_t *)(performance_metrics + 0x18);
+    throughput_info = *(int32_t *)(performance_metrics + 0x1c);
     
     optimization_result = FUN_180852d40(adapter_handle, &manager_status, transfer_queue);
     
     if ((((optimization_result != 0) ||
-         (optimization_result = FUN_1808c18c0(*(undefined8 *)(transfer_context + 0x10), 
+         (optimization_result = FUN_1808c18c0(*(uint64_t *)(transfer_context + 0x10), 
                                              transfer_queue), optimization_result != 0)) ||
         (optimization_result = FUN_18084e4b0(transfer_queue), optimization_result != 0)) ||
        (optimization_result = FUN_18084ead0(transfer_queue, 0), 
@@ -869,14 +869,14 @@ void optimize_network_data_transfer(longlong transfer_context)
             
             queue_size = FUN_1808b4570(performance_metrics + 0x388, 
                                       (longlong)(int)data_throughput * 0x10 + current_latency, 
-                                      *(undefined8 *)(transfer_context + 0x70), compression_flag,
-                                      *(undefined4 *)(performance_metrics + transfer_index * 4));
+                                      *(uint64_t *)(transfer_context + 0x70), compression_flag,
+                                      *(int32_t *)(performance_metrics + transfer_index * 4));
             
             if (queue_size != 0) goto handle_basic_optimization;
             
             FUN_180853260(transfer_queue + 0x10, &bandwidth_limit);
             queue_size = FUN_18073c020(transfer_queue[0xf], packet_loss_count + 1, 
-                                      *(undefined8 *)(bandwidth_limit + 0x30));
+                                      *(uint64_t *)(bandwidth_limit + 0x30));
             
             if (queue_size != 0) goto handle_basic_optimization;
             
@@ -907,14 +907,14 @@ void optimize_network_data_transfer(longlong transfer_context)
               
               queue_size = FUN_1808b4570(performance_metrics + 0x388, 
                                         (longlong)(int)data_throughput * 0x10 + current_latency, 
-                                        *(undefined8 *)(transfer_context + 0x70), compression_flag,
-                                        *(undefined4 *)(performance_metrics + transfer_index * 4));
+                                        *(uint64_t *)(transfer_context + 0x70), compression_flag,
+                                        *(int32_t *)(performance_metrics + transfer_index * 4));
               
               if (queue_size != 0) goto handle_basic_optimization;
               
               FUN_180853260(transfer_queue + 0x12, &bandwidth_limit);
               queue_size = FUN_18073c020(transfer_queue[0xf], packet_loss_count, 
-                                        *(undefined8 *)(bandwidth_limit + 0x30));
+                                        *(uint64_t *)(bandwidth_limit + 0x30));
               
               if (queue_size != 0) goto handle_basic_optimization;
               
@@ -1057,19 +1057,19 @@ void optimize_network_data_transfer(longlong transfer_context)
   
   // 释放优化缓冲区
   if (strategy_buffer[2] == '\0') {
-    *(undefined4 *)(compression_context + 0x60) = 0;
+    *(int32_t *)(compression_context + 0x60) = 0;
     FUN_18084f560(compression_context + 0x30);
   }
   if (strategy_buffer[1] == '\0') {
-    *(undefined4 *)(transfer_start + 0x60) = 0;
+    *(int32_t *)(transfer_start + 0x60) = 0;
     FUN_18084f040(transfer_start + 0x30);
   }
   if (strategy_buffer[0] == '\0') {
-    *(undefined4 *)(manager_config + 0x1d0) = 0;
+    *(int32_t *)(manager_config + 0x1d0) = 0;
     FUN_18084f040(manager_config + 0x1a0);
   }
   if (optimization_buffer[0] == '\0') {
-    *(undefined4 *)(performance_metrics + 0x60) = 0;
+    *(int32_t *)(performance_metrics + 0x60) = 0;
     FUN_18084f2d0(performance_metrics + 0x30);
   }
   
@@ -1105,9 +1105,9 @@ void cleanup_network_connection_resources(void)
   longlong context_base;
   longlong connection_context;
   longlong transfer_context;
-  undefined4 connection_flags;
-  undefined8 connection_handle;
-  undefined8 transfer_handle;
+  int32_t connection_flags;
+  uint64_t connection_handle;
+  uint64_t transfer_handle;
   char resource_flag1;
   char resource_flag2;
   char cleanup_flag;
@@ -1117,22 +1117,22 @@ void cleanup_network_connection_resources(void)
   
   // 根据资源标志执行清理
   if (transfer_handle._4_1_ == '\0') {
-    *(undefined4 *)(transfer_context + 0x60) = connection_flags;
+    *(int32_t *)(transfer_context + 0x60) = connection_flags;
     FUN_18084f560(transfer_context + 0x30);
   }
   
   if (resource_flag1 == '\0') {
-    *(undefined4 *)(connection_context + 0x60) = connection_flags;
+    *(int32_t *)(connection_context + 0x60) = connection_flags;
     FUN_18084f040(connection_context + 0x30);
   }
   
   if (resource_flag2 == '\0') {
-    *(undefined4 *)(context_base + 0x1d0) = connection_flags;
+    *(int32_t *)(context_base + 0x1d0) = connection_flags;
     FUN_18084f040(context_base + 0x1a0);
   }
   
   if (cleanup_flag == '\0') {
-    *(undefined4 *)(transfer_context + 0x60) = connection_flags;
+    *(int32_t *)(transfer_context + 0x60) = connection_flags;
     FUN_18084f2d0(transfer_context + 0x30);
   }
   
