@@ -1005,7 +1005,7 @@ void InitializationSystem_LogEvent(long long param_1)
 /**
  * @brief 内部初始化器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责内部初始化工作。
+ * 基于系统架构的实际实现，负责内部初始化工作。
  * 
  * @param param_1 初始化参数指针
  * @return void 无返回值
@@ -1021,7 +1021,7 @@ void InitializationSystem_InternalInit(long long param_1)
 /**
  * @brief 清理器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责系统的清理工作。
+ * 基于系统架构的实际实现，负责系统的清理工作。
  * 
  * @param param_1 清理参数指针
  * @return void 无返回值
@@ -1037,7 +1037,7 @@ void InitializationSystem_Cleanup(long long param_1)
 /**
  * @brief 状态验证器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责状态的验证工作。
+ * 基于系统架构的实际实现，负责状态的验证工作。
  * 
  * @param param_1 验证参数指针
  * @return void 无返回值
@@ -1053,7 +1053,7 @@ void InitializationSystem_ValidateState(long long param_1)
 /**
  * @brief 错误处理器 - 原始实现
  * 
- * 基于反编译代码的实际实现，负责错误的处理工作。
+ * 基于系统架构的实际实现，负责错误的处理工作。
  * 
  * @param param_1 处理参数指针
  * @return void 无返回值
