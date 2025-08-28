@@ -936,28 +936,36 @@ void set_config_value_type1(longlong config_context, undefined4 value)
 
 
 
-// 函数: void FUN_18010ccf0(longlong param_1,undefined4 param_2)
-void FUN_18010ccf0(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型2）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第二种类型的值
+ */
+void set_config_value_type2(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0x1fe0) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x1fe8))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0x1fe0) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1fe8))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x1f90) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0x1f90);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0x1f90) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0x1f90);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0x1f80) = *(undefined4 *)(param_1 + 0x1fc8);
+    *(undefined4 *)(config_context + 0x1f80) = *(undefined4 *)(config_context + 0x1fc8);
     return;
   }
-  *(undefined4 *)(param_1 + 0x1f80) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0x1f80) = value;
   return;
 }
 
@@ -965,28 +973,36 @@ void FUN_18010ccf0(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_18010cd70(longlong param_1,undefined4 param_2)
-void FUN_18010cd70(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型3）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第三种类型的值
+ */
+void set_config_value_type3(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0x20c0) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x20c8))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0x20c0) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x20c8))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x2070) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0x2070);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0x2070) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0x2070);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0x2060) = *(undefined4 *)(param_1 + 0x20a8);
+    *(undefined4 *)(config_context + 0x2060) = *(undefined4 *)(config_context + 0x20a8);
     return;
   }
-  *(undefined4 *)(param_1 + 0x2060) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0x2060) = value;
   return;
 }
 
@@ -994,28 +1010,36 @@ void FUN_18010cd70(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_18010cdf0(longlong param_1,undefined4 param_2)
-void FUN_18010cdf0(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型4）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第四种类型的值
+ */
+void set_config_value_type4(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0x2210) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x2218))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0x2210) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x2218))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x21c0) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0x21c0);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0x21c0) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0x21c0);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0x21b0) = *(undefined4 *)(param_1 + 0x21f8);
+    *(undefined4 *)(config_context + 0x21b0) = *(undefined4 *)(config_context + 0x21f8);
     return;
   }
-  *(undefined4 *)(param_1 + 0x21b0) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0x21b0) = value;
   return;
 }
 
@@ -1023,28 +1047,36 @@ void FUN_18010cdf0(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_18010ce70(longlong param_1,undefined4 param_2)
-void FUN_18010ce70(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型5）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第五种类型的值
+ */
+void set_config_value_type5(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0x2280) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x2288))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0x2280) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x2288))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x2230) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0x2230);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0x2230) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0x2230);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0x2220) = *(undefined4 *)(param_1 + 0x2268);
+    *(undefined4 *)(config_context + 0x2220) = *(undefined4 *)(config_context + 0x2268);
     return;
   }
-  *(undefined4 *)(param_1 + 0x2220) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0x2220) = value;
   return;
 }
 
@@ -1052,28 +1084,36 @@ void FUN_18010ce70(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_18010cef0(longlong param_1,undefined4 param_2)
-void FUN_18010cef0(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型6）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第六种类型的值
+ */
+void set_config_value_type6(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0x21a0) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x21a8))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0x21a0) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x21a8))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x2150) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0x2150);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0x2150) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0x2150);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0x2140) = *(undefined4 *)(param_1 + 0x2188);
+    *(undefined4 *)(config_context + 0x2140) = *(undefined4 *)(config_context + 0x2188);
     return;
   }
-  *(undefined4 *)(param_1 + 0x2140) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0x2140) = value;
   return;
 }
 
@@ -1081,28 +1121,36 @@ void FUN_18010cef0(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_18010cf70(longlong param_1,undefined4 param_2)
-void FUN_18010cf70(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型7）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第七种类型的值
+ */
+void set_config_value_type7(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0x2130) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x2138))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0x2130) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x2138))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x20e0) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0x20e0);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0x20e0) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0x20e0);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0x20d0) = *(undefined4 *)(param_1 + 0x2118);
+    *(undefined4 *)(config_context + 0x20d0) = *(undefined4 *)(config_context + 0x2118);
     return;
   }
-  *(undefined4 *)(param_1 + 0x20d0) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0x20d0) = value;
   return;
 }
 
@@ -1110,28 +1158,36 @@ void FUN_18010cf70(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_18010cff0(longlong param_1,undefined4 param_2)
-void FUN_18010cff0(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型8）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第八种类型的值
+ */
+void set_config_value_type8(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0x1330) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x1338))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0x1330) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1338))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x12e0) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0x12e0);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0x12e0) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0x12e0);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0x12d0) = *(undefined4 *)(param_1 + 0x1318);
+    *(undefined4 *)(config_context + 0x12d0) = *(undefined4 *)(config_context + 0x1318);
     return;
   }
-  *(undefined4 *)(param_1 + 0x12d0) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0x12d0) = value;
   return;
 }
 
@@ -1139,28 +1195,36 @@ void FUN_18010cff0(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_18010d070(longlong param_1,undefined4 param_2)
-void FUN_18010d070(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型9）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第九种类型的值
+ */
+void set_config_value_type9(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0x1100) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x1108))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0x1100) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1108))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x10b0) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0x10b0);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0x10b0) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0x10b0);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0x10a0) = *(undefined4 *)(param_1 + 0x10e8);
+    *(undefined4 *)(config_context + 0x10a0) = *(undefined4 *)(config_context + 0x10e8);
     return;
   }
-  *(undefined4 *)(param_1 + 0x10a0) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0x10a0) = value;
   return;
 }
 
@@ -1168,28 +1232,36 @@ void FUN_18010d070(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_18010d0f0(longlong param_1,undefined4 param_2)
-void FUN_18010d0f0(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型10）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第十种类型的值
+ */
+void set_config_value_type10(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0x1090) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x1098))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0x1090) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1098))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x1040) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0x1040);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0x1040) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0x1040);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0x1030) = *(undefined4 *)(param_1 + 0x1078);
+    *(undefined4 *)(config_context + 0x1030) = *(undefined4 *)(config_context + 0x1078);
     return;
   }
-  *(undefined4 *)(param_1 + 0x1030) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0x1030) = value;
   return;
 }
 
@@ -1197,28 +1269,36 @@ void FUN_18010d0f0(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_18010d170(longlong param_1,undefined4 param_2)
-void FUN_18010d170(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型11）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第十一种类型的值
+ */
+void set_config_value_type11(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0x1020) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0x1028))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0x1020) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0x1028))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0xfd0) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0xfd0);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0xfd0) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0xfd0);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0xfc0) = *(undefined4 *)(param_1 + 0x1008);
+    *(undefined4 *)(config_context + 0xfc0) = *(undefined4 *)(config_context + 0x1008);
     return;
   }
-  *(undefined4 *)(param_1 + 0xfc0) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0xfc0) = value;
   return;
 }
 
@@ -1226,28 +1306,36 @@ void FUN_18010d170(longlong param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_18010d1f0(longlong param_1,undefined4 param_2)
-void FUN_18010d1f0(longlong param_1,undefined4 param_2)
+/**
+ * 配置值设置函数（类型12）
+ * @param config_context 配置上下文指针
+ * @param value 要设置的值
+ * 功能：在配置上下文中设置第十二种类型的值
+ */
+void set_config_value_type12(longlong config_context, undefined4 value)
 
 {
-  char cVar1;
-  undefined *puVar2;
-  undefined4 auStackX_10 [6];
+  char validation_result;
+  undefined *default_string;
+  undefined4 temp_params [6];
   
-  if ((*(longlong *)(param_1 + 0xfb0) != 0) &&
-     (auStackX_10[0] = param_2, cVar1 = (**(code **)(param_1 + 0xfb8))(auStackX_10),
-     param_2 = auStackX_10[0], cVar1 == '\0')) {
+  // 检查是否需要验证设置值
+  if ((*(longlong *)(config_context + 0xfb0) != 0) &&
+     (temp_params[0] = value, validation_result = (**(code **)(config_context + 0xfb8))(temp_params),
+     value = temp_params[0], validation_result == '\0')) {
+    // 如果验证通过且调试模式未启用，则使用默认值
     if (DAT_180c82860 == '\0') {
-      puVar2 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0xf60) != (undefined *)0x0) {
-        puVar2 = *(undefined **)(param_1 + 0xf60);
+      default_string = &DAT_18098bc73;
+      if (*(undefined **)(config_context + 0xf60) != (undefined *)0x0) {
+        default_string = *(undefined **)(config_context + 0xf60);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar2);
+      FUN_180626f80(&UNK_18098bc00,default_string);
     }
-    *(undefined4 *)(param_1 + 0xf50) = *(undefined4 *)(param_1 + 0xf98);
+    *(undefined4 *)(config_context + 0xf50) = *(undefined4 *)(config_context + 0xf98);
     return;
   }
-  *(undefined4 *)(param_1 + 0xf50) = param_2;
+  // 直接设置值
+  *(undefined4 *)(config_context + 0xf50) = value;
   return;
 }
 

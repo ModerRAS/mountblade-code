@@ -2,55 +2,103 @@
 
 // 02_core_engine_part075_sub002_sub002.c - 1 个函数
 
-// 函数: void FUN_180108190(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180108190(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 渲染系统偏移量常量定义
+#define RENDER_STATE_OFFSET     0x198
+#define TEXTURE_PTR_OFFSET      0x1a0
+#define CLEANUP_FUNC_OFFSET     0x1b0
+#define PARAM_HANDLER_OFFSET    0x1b8
+#define SHADER_CONTEXT_OFFSET   0x158
+#define RENDER_PARAM_1_OFFSET   0x150
+#define RENDER_STATE_FLAG_OFFSET 0x88
+#define ERROR_HANDLER_OFFSET    0x160
 
+// 材质参数偏移量（示例）
+#define MATERIAL_PARAM_1_OFFSET 0x2e8
+#define MATERIAL_PARAM_2_OFFSET 0x208
+#define MATERIAL_PARAM_3_OFFSET 0x278
+
+// 函数指针和全局变量（美化后的命名）
+// 注意：这些是原始代码中引用的外部符号，在此声明为外部引用
+extern code *material_cleanup_function_1;
+extern undefined *default_parameter_handler;
+extern undefined1 *default_texture_ptr;
+extern undefined *shader_parameter_table_1;
+extern char global_debug_flag;
+extern undefined *error_message_table;
+extern undefined *default_error_handler;
+
+// 函数: void initialize_render_parameters(longlong engine_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 功能: 初始化渲染参数，配置材质和着色器参数
+void initialize_render_parameters(longlong engine_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  undefined1 *puVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  char cVar4;
-  undefined4 uVar5;
-  undefined8 uVar6;
-  undefined *puVar7;
-  undefined8 uStackX_8;
-  undefined1 auStack_50 [16];
-  code *pcStack_40;
-  undefined *puStack_38;
+  // 材质和纹理相关变量
+  undefined1 *texture_ptr;
+  ulonglong texture_data;
+  longlong render_offset;
+  char success_flag;
+  undefined4 render_value;
+  undefined8 shader_handle;
+  undefined *material_ptr;
   
-  pcStack_40 = (code *)&UNK_18010c5b0;
-  puStack_38 = &UNK_18010c300;
-  *(undefined4 *)(param_1 + 0x198) = 0;
-  puVar1 = (undefined1 *)(param_1 + 0x1a0);
-  if (puVar1 != auStack_50) {
-    if (*(code **)(param_1 + 0x1b0) != (code *)0x0) {
-      (**(code **)(param_1 + 0x1b0))(puVar1,0,0,param_4,0xfffffffffffffffe);
+  // 栈缓冲区和函数指针
+  undefined8 stack_buffer;
+  undefined1 local_buffer[16];
+  code *render_function;
+  undefined *shader_program;
+  
+  // 清理函数和参数处理函数
+  code *cleanup_function;
+  undefined *parameter_handler;
+  
+  // 初始化清理函数和参数处理器
+  cleanup_function = (code *)&material_cleanup_function_1;
+  parameter_handler = &default_parameter_handler;
+  
+  // 重置渲染状态
+  *(undefined4 *)(engine_context + RENDER_STATE_OFFSET) = 0;
+  texture_ptr = (undefined1 *)(engine_context + TEXTURE_PTR_OFFSET);
+  
+  // 清理现有的纹理资源
+  if (texture_ptr != default_texture_ptr) {
+    if (*(code **)(engine_context + CLEANUP_FUNC_OFFSET) != (code *)0x0) {
+      // 调用现有的清理函数
+      (*(code **)(engine_context + CLEANUP_FUNC_OFFSET))(texture_ptr, 0, 0, param_4, 0xfffffffffffffffe);
     }
-    if (pcStack_40 != (code *)0x0) {
-      (*pcStack_40)(puVar1,auStack_50,1);
+    if (cleanup_function != (code *)0x0) {
+      // 调用新的清理函数
+      (*cleanup_function)(texture_ptr, default_texture_ptr, 1);
     }
-    *(code **)(param_1 + 0x1b0) = pcStack_40;
-    *(undefined **)(param_1 + 0x1b8) = puStack_38;
+    // 更新清理函数指针
+    *(code **)(engine_context + CLEANUP_FUNC_OFFSET) = cleanup_function;
+    *(undefined **)(engine_context + PARAM_HANDLER_OFFSET) = parameter_handler;
   }
-  if (pcStack_40 != (code *)0x0) {
-    (*pcStack_40)(auStack_50,0,0);
+  // 执行清理操作
+  if (cleanup_function != (code *)0x0) {
+    (*cleanup_function)(default_texture_ptr, 0, 0);
   }
-  (**(code **)(*(longlong *)(param_1 + 0x158) + 0x10))(param_1 + 0x158,&UNK_180a05d50);
-  uStackX_8._0_4_ = 0;
-  uVar5 = 0;
-  if ((*(longlong *)(param_1 + 0x1b0) != 0) &&
-     (cVar4 = (**(code **)(param_1 + 0x1b8))(&uStackX_8), uVar5 = (undefined4)uStackX_8,
-     cVar4 == '\0')) {
-    if (DAT_180c82860 == '\0') {
-      puVar7 = &DAT_18098bc73;
-      if (*(undefined **)(param_1 + 0x160) != (undefined *)0x0) {
-        puVar7 = *(undefined **)(param_1 + 0x160);
+  
+  // 初始化渲染参数
+  (*(code **)(*(longlong *)(engine_context + SHADER_CONTEXT_OFFSET) + 0x10))(engine_context + SHADER_CONTEXT_OFFSET, &shader_parameter_table_1);
+  
+  // 设置默认参数值
+  render_parameter._0_4_ = 0;
+  render_value = 0;
+  if ((*(longlong *)(engine_context + CLEANUP_FUNC_OFFSET) != 0) &&
+      (success_flag = (**(code **)(engine_context + PARAM_HANDLER_OFFSET))(&render_parameter), render_value = (undefined4)render_parameter,
+       success_flag == '\0')) {
+    // 处理参数设置失败的情况
+    if (global_debug_flag == '\0') {
+      parameter_handler = &default_error_handler;
+      if (*(undefined **)(engine_context + ERROR_HANDLER_OFFSET) != (undefined *)0x0) {
+        parameter_handler = *(undefined **)(engine_context + ERROR_HANDLER_OFFSET);
       }
-      FUN_180626f80(&UNK_18098bc00,puVar7);
+      log_render_error(&error_message_table, parameter_handler);
     }
-    uVar5 = *(undefined4 *)(param_1 + 0x198);
+    render_value = *(undefined4 *)(engine_context + RENDER_STATE_OFFSET);
   }
-  *(undefined4 *)(param_1 + 0x150) = uVar5;
+  
+  // 保存渲染参数
+  *(undefined4 *)(engine_context + RENDER_PARAM_1_OFFSET) = render_value;
   uStackX_8 = (undefined8 *)((ulonglong)uStackX_8._4_4_ << 0x20);
   uVar5 = 0;
   if (*(longlong *)(param_1 + 0x1b0) != 0) {
@@ -957,7 +1005,13 @@ void FUN_180108190(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   FUN_1800b0710(lVar3,&uStackX_8);
   uStackX_8 = (undefined8 *)lVar3;
   FUN_18005ea90(param_1 + 8,&uStackX_8);
-  *(undefined4 *)(param_1 + 0x88) = 1;
+  // 继续处理其他渲染参数...
+  // 注意：此函数包含大量重复的参数设置模式，
+  // 这些都是游戏引擎中常见的材质参数配置
+  
+  // 最终设置渲染状态标志
+  *(undefined4 *)(engine_context + RENDER_STATE_FLAG_OFFSET) = 1;
+  
   return;
 }
 

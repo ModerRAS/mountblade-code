@@ -127,87 +127,122 @@ void initialize_engine_parameters(longlong engine_context)
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
   FUN_18005ea90(engine_context + 8, &uStackX_8);
-  func_0x00018010bfe0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x2e8) = 2;
-  FUN_18010bd10(param_1 + 0x2f0,auStack_148);
+  // 初始化场景系统参数
+  func_0x00018010bfe0(auStack_148, 0);
+  
+  // 设置场景系统参数 (值为2)
+  *(undefined4 *)(engine_context + 0x2e8) = 2;
+  FUN_18010bd10(engine_context + 0x2f0, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x2a0;
-  (**(code **)(*(longlong *)(param_1 + 0x2a8) + 0x10))((longlong *)(param_1 + 0x2a8),&UNK_180a055f0)
-  ;
+  
+  // 获取场景组件指针并初始化场景参数
+  component_ptr = engine_context + 0x2a0;
+  (**(code **)(*(longlong *)(engine_context + 0x2a8) + 0x10))((longlong *)(engine_context + 0x2a8), &UNK_180a055f0);
+  
+  // 设置场景系统参数 (值为2)
   uStackX_8._0_4_ = 2;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010c000(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x358) = 1;
-  FUN_18010bd10(param_1 + 0x360,auStack_148);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化特效系统参数
+  func_0x00018010c000(auStack_148, 0);
+  
+  // 设置特效系统参数 (值为1)
+  *(undefined4 *)(engine_context + 0x358) = 1;
+  FUN_18010bd10(engine_context + 0x360, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x310;
-  (**(code **)(*(longlong *)(param_1 + 0x318) + 0x10))((longlong *)(param_1 + 0x318),&UNK_180a055d8)
-  ;
+  
+  // 获取特效组件指针并初始化特效参数
+  component_ptr = engine_context + 0x310;
+  (**(code **)(*(longlong *)(engine_context + 0x318) + 0x10))((longlong *)(engine_context + 0x318), &UNK_180a055d8);
+  
+  // 设置特效系统参数 (值为1)
   uStackX_8._0_4_ = 1;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  uVar1 = param_1 + 0x1810;
-  (**(code **)(*(longlong *)(param_1 + 0x1818) + 0x10))
-            ((longlong *)(param_1 + 0x1818),&UNK_180a05610);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 获取光照系统组件指针并初始化光照参数
+  component_ptr = engine_context + 0x1810;
+  (**(code **)(*(longlong *)(engine_context + 0x1818) + 0x10))
+            ((longlong *)(engine_context + 0x1818), &UNK_180a05610);
+  
+  // 设置光照系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  func_0x00018010c020(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x1a88) = 1;
-  FUN_18010bd10(param_1 + 0x1a90,auStack_148);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 初始化阴影系统参数
+  func_0x00018010c020(auStack_148, 0);
+  
+  // 设置阴影系统参数 (值为1)
+  *(undefined4 *)(engine_context + 0x1a88) = 1;
+  FUN_18010bd10(engine_context + 0x1a90, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0x1a40;
-  (**(code **)(*(longlong *)(param_1 + 0x1a48) + 0x10))
-            ((longlong *)(param_1 + 0x1a48),&UNK_180a05600);
+  
+  // 获取阴影组件指针并初始化阴影参数
+  component_ptr = engine_context + 0x1a40;
+  (**(code **)(*(longlong *)(engine_context + 0x1a48) + 0x10))
+            ((longlong *)(engine_context + 0x1a48), &UNK_180a05600);
+  
+  // 设置阴影系统参数 (值为1)
   uStackX_8._0_4_ = 1;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  uVar1 = param_1 + 0x1ab0;
-  (**(code **)(*(longlong *)(param_1 + 0x1ab8) + 0x10))
-            ((longlong *)(param_1 + 0x1ab8),&UNK_180a05638);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 获取后处理系统组件指针并初始化后处理参数
+  component_ptr = engine_context + 0x1ab0;
+  (**(code **)(*(longlong *)(engine_context + 0x1ab8) + 0x10))
+            ((longlong *)(engine_context + 0x1ab8), &UNK_180a05638);
+  
+  // 设置后处理系统参数 (清除低32位)
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_180046240(uVar1,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
   uStackX_8 = uStackX_8 & 0xffffffff00000000;
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  uVar1 = param_1 + 0x380;
-  (**(code **)(*(longlong *)(param_1 + 0x388) + 0x10))((longlong *)(param_1 + 0x388),&UNK_180a05628)
-  ;
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 获取材质系统组件指针并初始化材质参数
+  component_ptr = engine_context + 0x380;
+  (**(code **)(*(longlong *)(engine_context + 0x388) + 0x10))((longlong *)(engine_context + 0x388), &UNK_180a05628);
+  
+  // 设置材质系统参数 (值为2)
   uStackX_8._0_4_ = 2;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
-  uVar1 = param_1 + 0x3f0;
-  (**(code **)(*(longlong *)(param_1 + 0x3f8) + 0x10))((longlong *)(param_1 + 0x3f8),&UNK_180a05660)
-  ;
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
+  // 获取纹理系统组件指针并初始化纹理参数
+  component_ptr = engine_context + 0x3f0;
+  (**(code **)(*(longlong *)(engine_context + 0x3f8) + 0x10))((longlong *)(engine_context + 0x3f8), &UNK_180a05660);
+  
+  // 设置纹理系统参数 (值为1)
   uStackX_8._0_4_ = 1;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,1);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 1);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
   func_0x00018010c040(auStack_148,0);
   *(undefined4 *)(param_1 + 0x1b68) = 0;
   FUN_18010bd10(param_1 + 0x1b70,auStack_148);

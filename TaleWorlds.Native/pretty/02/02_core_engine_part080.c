@@ -1,282 +1,290 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part080.c - 3 个函数
+// 02_core_engine_part080.c - 文本渲染引擎模块
+// 包含3个函数：文本布局计算、文本渲染处理、文本区域管理
 
-// 函数: void FUN_18010e8a0(ulonglong param_1,ulonglong param_2)
-void FUN_18010e8a0(ulonglong param_1,ulonglong param_2)
-
+/**
+ * 函数：calculate_text_layout - 计算文本布局
+ * 功能：根据给定的文本内容和渲染参数，计算文本的布局信息
+ * 参数：
+ *   param_1 - 渲染上下文指针
+ *   param_2 - 文本内容指针
+ */
+void calculate_text_layout(ulonglong render_context, ulonglong text_content)
 {
-  undefined8 *puVar1;
-  float *pfVar2;
-  undefined8 uVar3;
-  int iVar4;
-  char cVar5;
-  uint uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong lVar10;
-  longlong lVar11;
-  int iVar12;
-  int iVar13;
-  int iVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  undefined8 uStackX_18;
-  float fStackX_20;
-  float fStackX_24;
-  undefined8 uStack_d8;
-  undefined8 uStack_d0;
+  undefined8 *layout_data;
+  float *font_metrics;
+  undefined8 temp_data;
+  int line_count;
+  char layout_flag;
+  uint text_flags;
+  ulonglong text_end;
+  longlong context_base;
+  longlong render_data;
+  longlong font_data;
+  longlong text_length;
+  longlong char_position;
+  int current_line;
+  int total_lines;
+  int max_lines;
+  float line_height;
+  float font_size;
+  float vertical_offset;
+  float horizontal_offset;
+  float text_width;
+  float text_height;
+  float max_width;
+  float min_width;
+  float current_x;
+  float current_y;
+  float baseline;
+  undefined8 bounding_box_data;
+  float temp_width;
+  float temp_height;
+  undefined8 margin_data;
+  undefined8 padding_data;
   
-  lVar11 = _DAT_180c8a9b0;
-  *(undefined1 *)(*(longlong *)(_DAT_180c8a9b0 + 0x1af8) + 0xb1) = 1;
-  lVar10 = *(longlong *)(lVar11 + 0x1af8);
-  if (*(char *)(lVar10 + 0xb4) != '\0') {
+  context_base = _DAT_180c8a9b0;  // 获取全局渲染上下文
+  *(undefined1 *)(*(longlong *)(context_base + 0x1af8) + 0xb1) = 1;  // 设置布局标志
+  render_data = *(longlong *)(context_base + 0x1af8);  // 获取渲染数据指针
+  if (*(char *)(render_data + 0xb4) != '\0') {  // 检查是否已完成布局
     return;
   }
-  if (param_2 == 0) {
-    lVar9 = -1;
+  if (text_content == 0) {  // 如果文本内容为空，计算长度
+    text_length = -1;
     do {
-      lVar9 = lVar9 + 1;
-    } while (*(char *)(param_1 + lVar9) != '\0');
-    param_2 = lVar9 + param_1;
+      text_length = text_length + 1;
+    } while (*(char *)(text_content + text_length) != '\0');
+    text_end = text_length + text_content;
   }
-  fVar18 = *(float *)(lVar10 + 0x1b0);
-  fVar17 = *(float *)(lVar10 + 0x100);
-  fVar23 = *(float *)(lVar10 + 0x128) + *(float *)(lVar10 + 0x104);
-  if ((longlong)(param_2 - param_1) < 0x7d1) {
-    if (0.0 <= fVar18) goto LAB_18010ecde;
+  line_height = *(float *)(render_data + 0x1b0);  // 获取行高
+  font_size = *(float *)(render_data + 0x100);  // 获取字体大小
+  text_height = *(float *)(render_data + 0x128) + *(float *)(render_data + 0x104);  // 计算文本高度
+  if ((longlong)(text_end - text_content) < 0x7d1) {  // 检查文本长度
+    if (0.0 <= line_height) goto LAYOUT_PROCESS;  // 如果行高有效，跳转到布局处理
   }
   else {
-    if (0.0 > fVar18) {
-      uStack_d8 = *(undefined8 *)(lVar10 + 0x228);
-      uStack_d0 = *(undefined8 *)(lVar10 + 0x230);
-      fVar18 = *(float *)(lVar11 + 0x19f8);
-      fVar22 = 0.0;
-      fStackX_20 = 0.0;
-      fStackX_24 = 0.0;
-      if (fVar23 <= *(float *)(lVar10 + 0x234)) {
-        uStackX_18 = CONCAT44(fVar23,fVar17);
-        iVar13 = 0;
-        fVar19 = fVar23;
-        if (*(char *)(lVar11 + 0x2e38) == '\0') {
-          uStackX_18 = CONCAT44(fVar23,fVar17);
-          iVar14 = (int)((*(float *)(lVar10 + 0x22c) - fVar23) / fVar18);
-          if (0 < iVar14) {
-            iVar12 = iVar13;
-            iVar4 = 0;
-            if (param_1 < param_2) {
+    if (0.0 > line_height) {  // 处理负行高情况
+      margin_data = *(undefined8 *)(render_data + 0x228);  // 获取边距数据
+      padding_data = *(undefined8 *)(render_data + 0x230);  // 获取内边距数据
+      line_height = *(float *)(context_base + 0x19f8);  // 获取上下文行高
+      max_width = 0.0;  // 初始化最大宽度
+      temp_width = 0.0;  // 临时宽度
+      temp_height = 0.0;  // 临时高度
+      if (text_height <= *(float *)(render_data + 0x234)) {  // 检查文本高度限制
+        bounding_box_data = CONCAT44(text_height, font_size);  // 构建边界框数据
+        total_lines = 0;  // 总行数
+        baseline = text_height;  // 基线位置
+        if (*(char *)(context_base + 0x2e38) == '\0') {  // 检查布局标志
+          bounding_box_data = CONCAT44(text_height, font_size);  // 重新构建边界框
+          max_lines = (int)((*(float *)(render_data + 0x22c) - text_height) / line_height);  // 计算最大行数
+          if (0 < max_lines) {  // 如果有行数限制
+            current_line = total_lines;
+            line_count = 0;
+            if (text_content < text_end) {  // 遍历文本内容
               do {
-                iVar12 = iVar4;
-                if (iVar14 <= iVar12) break;
-                param_1 = memchr(param_1,10,param_2 - param_1);
-                if (param_1 == 0) {
-                  param_1 = param_2;
+                current_line = line_count;
+                if (max_lines <= current_line) break;  // 超过最大行数则停止
+                text_content = memchr(text_content, 10, text_end - text_content);  // 查找换行符
+                if (text_content == 0) {
+                  text_content = text_end;  // 到达文本末尾
                 }
-                iVar12 = iVar12 + 1;
-                param_1 = param_1 + 1;
-                iVar4 = iVar12;
-              } while (param_1 < param_2);
+                current_line = current_line + 1;  // 增加行数
+                text_content = text_content + 1;  // 移动到下一行开始
+                line_count = current_line;
+              } while (text_content < text_end);
             }
-            fVar19 = (float)iVar12 * fVar18 + fVar23;
-            uStackX_18 = CONCAT44(fVar19,(undefined4)uStackX_18);
+            baseline = (float)current_line * line_height + text_height;  // 计算基线位置
+            bounding_box_data = CONCAT44(baseline, (undefined4)bounding_box_data);  // 更新边界框
           }
         }
-        if (param_1 < param_2) {
-          fVar21 = fVar19;
-          fVar20 = fVar19;
+        if (text_content < text_end) {  // 处理剩余文本
+          horizontal_offset = baseline;  // 水平偏移
+          vertical_offset = baseline;  // 垂直偏移
           do {
-            fVar21 = fVar21 + fVar18;
-            lVar10 = *(longlong *)(lVar11 + 0x1af8);
-            if (((((fVar21 < *(float *)(lVar10 + 0x22c) || fVar21 == *(float *)(lVar10 + 0x22c)) ||
-                  (*(float *)(lVar10 + 0x234) <= fVar19)) ||
-                 (fVar17 + 3.4028235e+38 < *(float *)(lVar10 + 0x228) ||
-                  fVar17 + 3.4028235e+38 == *(float *)(lVar10 + 0x228))) ||
-                (*(float *)(lVar10 + 0x230) <= fVar17)) && (*(char *)(lVar11 + 0x2e38) == '\0'))
-            break;
-            uVar7 = memchr(param_1,10,param_2 - param_1);
-            pfVar2 = *(float **)(lVar11 + 0x19f0);
-            fVar16 = *(float *)(lVar11 + 0x19f8);
-            if (uVar7 == 0) {
-              uVar7 = param_2;
+            horizontal_offset = horizontal_offset + line_height;  // 增加水平偏移
+            render_data = *(longlong *)(context_base + 0x1af8);  // 重新获取渲染数据
+            if (((((horizontal_offset < *(float *)(render_data + 0x22c) || horizontal_offset == *(float *)(render_data + 0x22c)) ||
+                  (text_height <= baseline)) ||
+                 (font_size + 3.4028235e+38 < *(float *)(render_data + 0x228) ||
+                  font_size + 3.4028235e+38 == *(float *)(render_data + 0x228))) ||
+                (*(float *)(render_data + 0x230) <= font_size)) && (*(char *)(context_base + 0x2e38) == '\0'))
+              break;
+            text_end = memchr(text_content, 10, text_end - text_content);  // 查找换行符
+            font_metrics = *(float **)(context_base + 0x19f0);  // 获取字体度量
+            font_size = *(float *)(context_base + 0x19f8);  // 获取字体大小
+            if (text_end == 0) {
+              text_end = text_end;  // 到达文本末尾
             }
-            if (param_1 == uVar7) {
-              fVar16 = 0.0;
+            if (text_content == text_end) {
+              font_size = 0.0;  // 空行，字体大小为0
             }
             else {
-              FUN_180297340(pfVar2,&uStack_d8,fVar16,0x7f7fffff,0xbf800000,param_1,uVar7,0);
-              fVar15 = (float)uStack_d8;
-              if (0.0 < (float)uStack_d8) {
-                fVar15 = (float)uStack_d8 - fVar16 / *pfVar2;
+              measure_text_width(font_metrics, &margin_data, font_size, 0x7f7fffff, 0xbf800000, text_content, text_end, 0);  // 测量文本宽度
+              text_width = (float)margin_data;
+              if (0.0 < (float)margin_data) {
+                text_width = (float)margin_data - font_size / *font_metrics;  // 调整文本宽度
               }
-              fVar16 = (float)(int)(fVar15 + 0.95);
-              uStack_d8 = CONCAT44(uStack_d8._4_4_,fVar16);
+              font_size = (float)(int)(text_width + 0.95);  // 四舍五入字体大小
+              margin_data = CONCAT44(margin_data._4_4_, font_size);  // 更新边距数据
             }
-            if (fVar22 < fVar16) {
-              fVar22 = fVar16;
-              fStackX_20 = fVar16;
+            if (max_width < font_size) {
+              max_width = font_size;  // 更新最大宽度
+              temp_width = font_size;  // 保存临时宽度
             }
-            FUN_180122320(uStackX_18,param_1,uVar7,0);
-            fVar20 = fVar20 + fVar18;
-            param_1 = uVar7 + 1;
-            fVar19 = fVar19 + fVar18;
-            uStackX_18 = CONCAT44(fVar20,(undefined4)uStackX_18);
-            lVar11 = _DAT_180c8a9b0;
-          } while (param_1 < param_2);
-          for (; param_1 < param_2; param_1 = param_1 + 1) {
-            param_1 = memchr(param_1,10,param_2 - param_1);
-            if (param_1 == 0) {
-              param_1 = param_2;
+            render_text_line(bounding_box_data, text_content, text_end, 0);  // 渲染文本行
+            vertical_offset = vertical_offset + line_height;  // 增加垂直偏移
+            text_content = text_end + 1;  // 移动到下一行
+            baseline = baseline + line_height;  // 更新基线位置
+            bounding_box_data = CONCAT44(vertical_offset, (undefined4)bounding_box_data);  // 更新边界框
+            context_base = _DAT_180c8a9b0;  // 重新获取上下文
+          } while (text_content < text_end);
+          for (; text_content < text_end; text_content = text_content + 1) {
+            text_content = memchr(text_content, 10, text_end - text_content);  // 查找剩余换行符
+            if (text_content == 0) {
+              text_content = text_end;  // 到达文本末尾
             }
-            iVar13 = iVar13 + 1;
+            total_lines = total_lines + 1;  // 增加总行数
           }
-          fVar19 = fVar20 + (float)iVar13 * fVar18;
+          baseline = vertical_offset + (float)total_lines * line_height;  // 计算最终基线位置
         }
-        fStackX_24 = fVar19 - fVar23;
+        temp_height = baseline - text_height;  // 计算高度差
       }
-      fVar18 = fVar23 + fStackX_24;
-      fVar22 = fVar17 + fVar22;
-      func_0x000180124080(&fStackX_20,0);
-      lVar10 = *(longlong *)(lVar11 + 0x1af8);
-      *(undefined8 *)(lVar10 + 0x144) = 0;
-      *(float *)(lVar10 + 0x14c) = fVar17;
-      *(float *)(lVar10 + 0x150) = fVar23;
-      *(float *)(lVar10 + 0x154) = fVar22;
-      *(float *)(lVar10 + 0x158) = fVar18;
-      lVar9 = *(longlong *)(lVar11 + 0x1af8);
-      uStack_d8 = CONCAT44(fVar23,fVar17);
-      uStack_d0 = CONCAT44(fVar18,fVar22);
-      if ((((fVar18 < *(float *)(lVar9 + 0x22c) || fVar18 == *(float *)(lVar9 + 0x22c)) ||
-           (*(float *)(lVar9 + 0x234) <= fVar23)) ||
-          ((fVar22 < *(float *)(lVar9 + 0x228) || fVar22 == *(float *)(lVar9 + 0x228) ||
-           (*(float *)(lVar9 + 0x230) <= fVar17)))) && (*(char *)(lVar11 + 0x2e38) == '\0')) {
-        return;
+      text_height = text_height + temp_height;  // 更新文本高度
+      max_width = font_size + max_width;  // 更新最大宽度
+      update_text_metrics(&temp_width, 0);  // 更新文本度量
+      render_data = *(longlong *)(context_base + 0x1af8);  // 重新获取渲染数据
+      *(undefined8 *)(render_data + 0x144) = 0;  // 清除渲染标志
+      *(float *)(render_data + 0x14c) = font_size;  // 设置字体大小
+      *(float *)(render_data + 0x150) = text_height;  // 设置文本高度
+      *(float *)(render_data + 0x154) = max_width;  // 设置最大宽度
+      *(float *)(render_data + 0x158) = text_height;  // 设置最终高度
+      char_position = *(longlong *)(context_base + 0x1af8);  // 获取字符位置
+      margin_data = CONCAT44(text_height, font_size);  // 构建边距数据
+      padding_data = CONCAT44(text_height, max_width);  // 构建内边距数据
+      if ((((text_height < *(float *)(char_position + 0x22c) || text_height == *(float *)(char_position + 0x22c)) ||
+           (text_height <= text_height)) ||
+          ((max_width < *(float *)(char_position + 0x228) || max_width == *(float *)(char_position + 0x228) ||
+           (font_size <= *(float *)(char_position + 0x230))))) && (*(char *)(context_base + 0x2e38) == '\0')) {
+        return;  // 如果在边界内，直接返回
       }
-      cVar5 = FUN_180128040(&uStack_d8,&uStack_d0,1);
-      if (cVar5 == '\0') {
-        return;
+      layout_flag = validate_layout(&margin_data, &padding_data, 1);  // 验证布局
+      if (layout_flag == '\0') {
+        return;  // 布局验证失败，返回
       }
-      *(uint *)(lVar10 + 0x148) = *(uint *)(lVar10 + 0x148) | 1;
+      *(uint *)(render_data + 0x148) = *(uint *)(render_data + 0x148) | 1;  // 设置布局完成标志
       return;
     }
-LAB_18010ecde:
-    if (0.0 <= fVar18) {
-      if (fVar18 == 0.0) {
-        lVar9 = *(longlong *)(lVar10 + 0x210);
-        fVar18 = *(float *)(lVar10 + 0x278) - *(float *)(lVar10 + 0x40);
-        if (lVar9 != 0) {
-          iVar13 = *(int *)(lVar9 + 0xc) + 1;
-          iVar14 = *(int *)(lVar9 + 0xc);
-          if (-1 < iVar13) {
-            iVar14 = iVar13;
+LAYOUT_PROCESS:
+    if (0.0 <= line_height) {  // 处理正行高情况
+      if (line_height == 0.0) {  // 行高为0的特殊处理
+        text_length = *(longlong *)(render_data + 0x210);  // 获取文本长度
+        line_height = *(float *)(render_data + 0x278) - *(float *)(render_data + 0x40);  // 计算行高
+        if (text_length != 0) {  // 如果有文本长度数据
+          total_lines = *(int *)(text_length + 0xc) + 1;  // 计算总行数
+          max_lines = *(int *)(text_length + 0xc);  // 获取最大行数
+          if (-1 < total_lines) {
+            max_lines = total_lines;  // 调整最大行数
           }
-          fVar18 = ((*(float *)(lVar9 + 0x18) - *(float *)(lVar9 + 0x14)) *
-                    *(float *)((longlong)iVar14 * 0x1c + *(longlong *)(lVar9 + 0x38)) +
-                   *(float *)(lVar9 + 0x14)) - *(float *)(lVar10 + 0x70);
+          line_height = ((*(float *)(text_length + 0x18) - *(float *)(text_length + 0x14)) *
+                        *(float *)((longlong)max_lines * 0x1c + *(longlong *)(text_length + 0x38)) +
+                       *(float *)(text_length + 0x14)) - *(float *)(render_data + 0x70);  // 重新计算行高
         }
-        fVar18 = (fVar18 + *(float *)(lVar10 + 0x40)) - fVar17;
-        if (fVar18 <= 1.0) {
-          fVar18 = 1.0;
+        line_height = (line_height + *(float *)(render_data + 0x40)) - font_size;  // 调整行高
+        if (line_height <= 1.0) {
+          line_height = 1.0;  // 最小行高为1
         }
       }
       else {
-        if (0.0 < fVar18) {
-          fVar18 = (*(float *)(lVar10 + 0x40) - *(float *)(lVar10 + 0x8c)) + fVar18;
+        if (0.0 < line_height) {  // 正行高处理
+          line_height = (*(float *)(render_data + 0x40) - *(float *)(render_data + 0x8c)) + line_height;  // 调整行高
         }
-        fVar18 = fVar18 - fVar17;
-        if (fVar18 <= 1.0) {
-          fVar18 = 1.0;
+        line_height = line_height - font_size;  // 减去字体大小
+        if (line_height <= 1.0) {
+          line_height = 1.0;  // 最小行高为1
         }
       }
-      goto LAB_18010ed80;
+      goto LAYOUT_FINALIZE;  // 跳转到最终处理
     }
   }
-  fVar18 = 0.0;
-LAB_18010ed80:
-  pfVar2 = *(float **)(lVar11 + 0x19f0);
-  fVar22 = *(float *)(lVar11 + 0x19f8);
-  if (param_1 == param_2) {
-    fVar19 = 0.0;
-    fStackX_24 = fVar22;
+  line_height = 0.0;  // 行高为0
+LAYOUT_FINALIZE:
+  font_metrics = *(float **)(context_base + 0x19f0);  // 获取字体度量
+  max_width = *(float *)(context_base + 0x19f8);  // 获取最大宽度
+  if (text_content == text_end) {
+    baseline = 0.0;  // 空文本，基线为0
+    temp_height = max_width;  // 高度为最大宽度
   }
   else {
-    FUN_180297340(pfVar2,&fStackX_20,fVar22,0x7f7fffff,fVar18,param_1,param_2,0);
-    if (0.0 < fStackX_20) {
-      fStackX_20 = fStackX_20 - fVar22 / *pfVar2;
+    measure_text_width(font_metrics, &temp_width, max_width, 0x7f7fffff, line_height, text_content, text_end, 0);  // 测量文本宽度
+    if (0.0 < temp_width) {
+      temp_width = temp_width - max_width / *font_metrics;  // 调整文本宽度
     }
-    fVar19 = (float)(int)(fStackX_20 + 0.95);
+    baseline = (float)(int)(temp_width + 0.95);  // 四舍五入基线位置
   }
-  uStackX_18 = CONCAT44(fStackX_24,fVar19);
-  fVar22 = fStackX_24 + fVar23;
-  fVar19 = fVar19 + fVar17;
-  func_0x000180124080(&uStackX_18,0);
-  lVar10 = *(longlong *)(lVar11 + 0x1af8);
-  *(undefined8 *)(lVar10 + 0x144) = 0;
-  *(float *)(lVar10 + 0x14c) = fVar17;
-  *(float *)(lVar10 + 0x150) = fVar23;
-  *(float *)(lVar10 + 0x154) = fVar19;
-  *(float *)(lVar10 + 0x158) = fVar22;
-  lVar9 = *(longlong *)(lVar11 + 0x1af8);
-  uStack_d8 = CONCAT44(fVar23,fVar17);
-  uStack_d0 = CONCAT44(fVar22,fVar19);
-  if ((((*(float *)(lVar9 + 0x22c) <= fVar22 && fVar22 != *(float *)(lVar9 + 0x22c)) &&
-       (fVar23 < *(float *)(lVar9 + 0x234))) &&
-      ((*(float *)(lVar9 + 0x228) <= fVar19 && fVar19 != *(float *)(lVar9 + 0x228) &&
-       (fVar17 < *(float *)(lVar9 + 0x230))))) || (*(char *)(lVar11 + 0x2e38) != '\0')) {
-    cVar5 = FUN_180128040(&uStack_d8,&uStack_d0,1);
-    uVar3 = uStack_d8;
-    if (cVar5 != '\0') {
-      *(uint *)(lVar10 + 0x148) = *(uint *)(lVar10 + 0x148) | 1;
+  bounding_box_data = CONCAT44(temp_height, baseline);  // 构建边界框
+  max_width = temp_height + text_height;  // 更新最大宽度
+  baseline = baseline + font_size;  // 更新基线位置
+  update_text_metrics(&bounding_box_data, 0);  // 更新文本度量
+  render_data = *(longlong *)(context_base + 0x1af8);  // 重新获取渲染数据
+  *(undefined8 *)(render_data + 0x144) = 0;  // 清除渲染标志
+  *(float *)(render_data + 0x14c) = font_size;  // 设置字体大小
+  *(float *)(render_data + 0x150) = text_height;  // 设置文本高度
+  *(float *)(render_data + 0x154) = baseline;  // 设置基线位置
+  *(float *)(render_data + 0x158) = max_width;  // 设置最大宽度
+  text_length = *(longlong *)(context_base + 0x1af8);  // 获取文本长度
+  margin_data = CONCAT44(text_height, font_size);  // 构建边距数据
+  padding_data = CONCAT44(max_width, baseline);  // 构建内边距数据
+  if ((((*(float *)(text_length + 0x22c) <= max_width && max_width != *(float *)(text_length + 0x22c)) &&
+       (text_height < *(float *)(text_length + 0x234))) &&
+      ((*(float *)(text_length + 0x228) <= baseline && baseline != *(float *)(text_length + 0x228) &&
+       (font_size < *(float *)(text_length + 0x230))))) || (*(char *)(context_base + 0x2e38) != '\0')) {
+    layout_flag = validate_layout(&margin_data, &padding_data, 1);  // 验证布局
+    temp_data = margin_data;
+    if (layout_flag != '\0') {
+      *(uint *)(render_data + 0x148) = *(uint *)(render_data + 0x148) | 1;  // 设置布局完成标志
     }
-    uStackX_18 = uStack_d8;
-    if (param_2 == 0) {
-      lVar10 = -1;
+    bounding_box_data = margin_data;
+    if (text_end == 0) {  // 如果文本结束为空，计算长度
+      render_data = -1;
       do {
-        lVar10 = lVar10 + 1;
-      } while (*(char *)(param_1 + lVar10) != '\0');
-      param_2 = lVar10 + param_1;
+        render_data = render_data + 1;
+      } while (*(char *)(text_content + render_data) != '\0');
+      text_end = render_data + text_content;
     }
-    if (param_1 != param_2) {
-      uStack_d8 = *(undefined8 *)(lVar11 + 0x16c8);
-      lVar10 = *(longlong *)(*(longlong *)(lVar11 + 0x1af8) + 0x2e8);
-      uStack_d0 = CONCAT44(*(float *)(lVar11 + 0x16d4) * *(float *)(lVar11 + 0x1628),
-                           *(undefined4 *)(lVar11 + 0x16d0));
-      uVar6 = func_0x000180121e20(&uStack_d8);
-      fVar17 = *(float *)(lVar11 + 0x19f8);
-      lVar9 = *(longlong *)(lVar11 + 0x19f0);
-      if ((uVar6 & 0xff000000) != 0) {
-        uVar7 = param_2;
-        if (param_2 == 0) {
-          lVar8 = -1;
+    if (text_content != text_end) {  // 如果有文本内容
+      margin_data = *(undefined8 *)(context_base + 0x16c8);  // 获取边距数据
+      render_data = *(longlong *)(*(longlong *)(context_base + 0x1af8) + 0x2e8);  // 获取渲染数据
+      padding_data = CONCAT44(*(float *)(context_base + 0x16d4) * *(float *)(context_base + 0x1628),
+                           *(undefined4 *)(context_base + 0x16d0));  // 构建内边距数据
+      text_flags = create_text_texture(&margin_data);  // 创建文本纹理
+      font_size = *(float *)(context_base + 0x19f8);  // 获取字体大小
+      text_length = *(longlong *)(context_base + 0x19f0);  // 获取文本长度
+      if ((text_flags & 0xff000000) != 0) {  // 检查纹理标志
+        text_end = text_end;  // 保存文本结束位置
+        if (text_end == 0) {  // 如果文本结束为空，计算长度
+          char_position = -1;
           do {
-            lVar8 = lVar8 + 1;
-          } while (*(char *)(param_1 + lVar8) != '\0');
-          uVar7 = lVar8 + param_1;
+            char_position = char_position + 1;
+          } while (*(char *)(text_content + char_position) != '\0');
+          text_end = char_position + text_content;
         }
-        if (param_1 != uVar7) {
-          if (lVar9 == 0) {
-            lVar9 = *(longlong *)(*(longlong *)(lVar10 + 0x38) + 8);
+        if (text_content != text_end) {  // 如果有文本内容
+          if (text_length == 0) {
+            text_length = *(longlong *)(*(longlong *)(render_data + 0x38) + 8);  // 获取文本长度
           }
-          if (fVar17 == 0.0) {
-            fVar17 = *(float *)(*(longlong *)(lVar10 + 0x38) + 0x10);
+          if (font_size == 0.0) {
+            font_size = *(float *)(*(longlong *)(render_data + 0x38) + 0x10);  // 获取字体大小
           }
-          puVar1 = (undefined8 *)
-                   (*(longlong *)(lVar10 + 0x68) + -0x10 + (longlong)*(int *)(lVar10 + 0x60) * 0x10)
-          ;
-          uStack_d8 = *puVar1;
-          uStack_d0 = puVar1[1];
-          FUN_180297590(lVar9,lVar10,fVar17,uVar3,uVar6,&uStack_d8,param_1,uVar7,fVar18,0);
+          layout_data = (undefined8 *)
+                   (*(longlong *)(render_data + 0x68) + -0x10 + (longlong)*(int *)(render_data + 0x60) * 0x10);  // 获取布局数据
+          margin_data = *layout_data;  // 获取边距数据
+          padding_data = layout_data[1];  // 获取内边距数据
+          render_text_with_texture(text_length, render_data, font_size, temp_data, text_flags, &margin_data, text_content, text_end, line_height, 0);  // 渲染文本
         }
       }
-      if (*(char *)(lVar11 + 0x2e38) != '\0') {
-        FUN_18013c800(&uStackX_18,param_1,param_2);
+      if (*(char *)(context_base + 0x2e38) != '\0') {  // 检查布局标志
+        render_text_to_cache(&bounding_box_data, text_content, text_end);  // 渲染文本到缓存
       }
     }
   }
@@ -289,92 +297,103 @@ LAB_18010ed80:
 
 
 
-// 函数: void FUN_18010e8e1(longlong param_1,longlong param_2)
-void FUN_18010e8e1(longlong param_1,longlong param_2)
+/**
+ * 函数：render_text_with_params - 使用指定参数渲染文本
+ * 功能：根据渲染参数和文本内容，进行文本渲染处理
+ * 参数：
+ *   param_1 - 渲染参数结构体指针
+ *   param_2 - 文本内容指针
+ */
+void render_text_with_params(longlong render_params, longlong text_content)
 
 {
-  undefined8 *puVar1;
-  float fVar2;
-  float *pfVar3;
-  undefined8 uVar4;
-  int iVar5;
-  char cVar6;
-  uint uVar7;
-  ulonglong uVar8;
-  longlong lVar9;
-  ulonglong unaff_RBX;
-  longlong lVar10;
-  longlong lVar11;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  ulonglong unaff_RDI;
-  longlong in_R11;
-  int iVar12;
-  int iVar13;
-  int iVar14;
-  float fVar15;
-  float fVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  undefined8 unaff_XMM6_Qa;
-  undefined8 unaff_XMM6_Qb;
-  undefined4 unaff_XMM8_Da;
-  undefined4 unaff_XMM8_Db;
-  undefined4 unaff_XMM8_Dc;
-  undefined4 unaff_XMM8_Dd;
-  undefined4 unaff_XMM9_Da;
-  float fVar20;
-  undefined4 unaff_XMM9_Dc;
-  float fVar21;
-  undefined4 unaff_XMM12_Da;
-  undefined4 unaff_XMM12_Dc;
-  undefined4 unaff_XMM13_Da;
-  float fVar22;
-  undefined4 unaff_XMM13_Db;
-  undefined4 unaff_XMM13_Dc;
-  undefined4 unaff_XMM13_Dd;
-  undefined4 unaff_XMM15_Da;
-  undefined4 unaff_XMM15_Dc;
-  float fStack0000000000000050;
-  undefined4 uStack0000000000000054;
-  undefined8 in_stack_00000058;
-  undefined4 in_stack_00000060;
-  undefined4 in_stack_00000068;
-  undefined4 in_stack_00000090;
-  undefined4 in_stack_00000098;
-  undefined4 in_stack_000000a0;
-  undefined4 in_stack_000000a8;
-  undefined4 in_stack_000000b0;
-  undefined4 in_stack_000000b8;
-  undefined4 in_stack_000000c0;
-  undefined4 in_stack_000000c8;
+  undefined8 *texture_data;
+  float font_scale;
+  float *font_metrics;
+  undefined8 render_flags;
+  int line_count;
+  char render_status;
+  uint texture_flags;
+  ulonglong text_end;
+  longlong context_data;
+  longlong render_context;
+  longlong font_data;
+  longlong text_length;
+  ulonglong text_ptr;
+  longlong stack_base;
+  longlong context_base;
+  longlong text_base;
+  ulonglong text_position;
+  int current_line;
+  int total_lines;
+  int max_lines;
+  float text_width;
+  float text_height;
+  float baseline;
+  float line_spacing;
+  float char_spacing;
+  float max_width;
+  float min_width;
+  undefined8 xmm6_data_a;
+  undefined8 xmm6_data_b;
+  undefined4 xmm8_data_a;
+  undefined4 xmm8_data_b;
+  undefined4 xmm8_data_c;
+  undefined4 xmm8_data_d;
+  undefined4 xmm9_data_a;
+  float offset_x;
+  undefined4 xmm9_data_c;
+  float offset_y;
+  undefined4 xmm12_data_a;
+  undefined4 xmm12_data_c;
+  undefined4 xmm13_data_a;
+  float spacing;
+  undefined4 xmm13_data_b;
+  undefined4 xmm13_data_c;
+  undefined4 xmm13_data_d;
+  undefined4 xmm15_data_a;
+  undefined4 xmm15_data_c;
+  float texture_width;
+  undefined4 texture_height;
+  undefined8 stack_data_58;
+  undefined4 stack_data_60;
+  undefined4 stack_data_68;
+  undefined4 stack_data_90;
+  undefined4 stack_data_98;
+  undefined4 stack_data_a0;
+  undefined4 stack_data_a8;
+  undefined4 stack_data_b0;
+  undefined4 stack_data_b8;
+  undefined4 stack_data_c0;
+  undefined4 stack_data_c8;
   
-  *(undefined8 *)(in_R11 + -0x38) = unaff_XMM6_Qa;
-  *(undefined8 *)(in_R11 + -0x30) = unaff_XMM6_Qb;
-  *(undefined4 *)(in_R11 + -0x58) = unaff_XMM8_Da;
-  *(undefined4 *)(in_R11 + -0x54) = unaff_XMM8_Db;
-  *(undefined4 *)(in_R11 + -0x50) = unaff_XMM8_Dc;
-  *(undefined4 *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
-  *(undefined4 *)(in_R11 + -0xa8) = unaff_XMM13_Da;
-  *(undefined4 *)(in_R11 + -0xa4) = unaff_XMM13_Db;
-  *(undefined4 *)(in_R11 + -0xa0) = unaff_XMM13_Dc;
-  *(undefined4 *)(in_R11 + -0x9c) = unaff_XMM13_Dd;
-  if (param_2 == 0) {
-    lVar10 = -1;
+  // 保存寄存器数据到栈
+  *(undefined8 *)(stack_base + -0x38) = xmm6_data_a;
+  *(undefined8 *)(stack_base + -0x30) = xmm6_data_b;
+  *(undefined4 *)(stack_base + -0x58) = xmm8_data_a;
+  *(undefined4 *)(stack_base + -0x54) = xmm8_data_b;
+  *(undefined4 *)(stack_base + -0x50) = xmm8_data_c;
+  *(undefined4 *)(stack_base + -0x4c) = xmm8_data_d;
+  *(undefined4 *)(stack_base + -0xa8) = xmm13_data_a;
+  *(undefined4 *)(stack_base + -0xa4) = xmm13_data_b;
+  *(undefined4 *)(stack_base + -0xa0) = xmm13_data_c;
+  *(undefined4 *)(stack_base + -0x9c) = xmm13_data_d;
+  
+  if (text_content == 0) {  // 如果文本内容为空，计算长度
+    text_length = -1;
     do {
-      lVar10 = lVar10 + 1;
-    } while (*(char *)(unaff_RDI + lVar10) != '\0');
-    unaff_RBX = lVar10 + unaff_RDI;
+      text_length = text_length + 1;
+    } while (*(char *)(text_base + text_length) != '\0');
+    text_ptr = text_length + text_base;
   }
-  fVar19 = *(float *)(param_1 + 0x1b0);
-  fVar2 = *(float *)(param_1 + 0x100);
-  fVar22 = *(float *)(param_1 + 0x128) + *(float *)(param_1 + 0x104);
-  if ((longlong)(unaff_RBX - unaff_RDI) < 0x7d1) {
-    if (fVar19 >= 0.0) goto LAB_18010ecde;
+  line_spacing = *(float *)(render_params + 0x1b0);  // 获取行间距
+  font_scale = *(float *)(render_params + 0x100);  // 获取字体缩放
+  text_height = *(float *)(render_params + 0x128) + *(float *)(render_params + 0x104);  // 计算文本高度
+  if ((longlong)(text_ptr - text_base) < 0x7d1) {  // 检查文本长度
+    if (line_spacing >= 0.0) goto TEXT_RENDER_PROCESS;  // 如果行间距有效，跳转到渲染处理
   }
   else {
-    if (fVar19 < 0.0) {
+    if (line_spacing < 0.0) {  // 处理负行间距情况
       fVar20 = *(float *)(param_1 + 0x22c);
       _fStack0000000000000050 = *(undefined8 *)(param_1 + 0x228);
       fVar18 = *(float *)(param_1 + 0x234);
