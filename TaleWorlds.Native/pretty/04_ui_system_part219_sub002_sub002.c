@@ -1,22 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part219_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_180793ff0(void)
-void FUN_180793ff0(void)
-
+// 函数: void function_793ff0(void)
+void function_793ff0(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(0x180c10bb4,0,0x5c);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_180794140(int64_t param_1,float *param_2,float *param_3,uint param_4,uint param_5)
-
+uint64_t function_794140(int64_t param_1,float *param_2,float *param_3,uint param_4,uint param_5)
 {
   float fVar1;
   float *pfVar2;
@@ -52,18 +44,17 @@ uint64_t FUN_180794140(int64_t param_1,float *param_2,float *param_3,uint param_
   float fStack_bc;
   float fStack_b8;
   float fStack_b4;
-  
   uVar7 = (uint64_t)param_4;
   if (param_2 != (float *)0x0) {
     if ((*(float *)(param_1 + 0x32c) != *(float *)(param_1 + 0x218)) ||
        (*(float *)(param_1 + 0x330) != *(float *)(param_1 + 0x21c))) {
       *(int32_t *)(param_1 + 0x21c) = *(int32_t *)(param_1 + 0x330);
       *(float *)(param_1 + 0x218) = *(float *)(param_1 + 0x32c);
-      FUN_180794cc0();
+      function_794cc0();
     }
     if (((*(float *)(param_1 + 800) == 0.0) && (*(float *)(param_1 + 0x324) == 2.0)) &&
        (*(float *)(param_1 + 0x328) == -1.0)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(param_3,0,uVar7 * (int64_t)(int)param_5 * 4);
     }
     if (param_5 == 1) {
@@ -316,13 +307,8 @@ uint64_t FUN_180794140(int64_t param_1,float *param_2,float *param_3,uint param_
   }
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1807942ce(void)
-
+uint64_t function_7942ce(void)
 {
   float fVar1;
   float *pfVar2;
@@ -361,7 +347,6 @@ uint64_t FUN_1807942ce(void)
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000108;
-  
   iVar4 = (int)in_R9;
   if (iVar4 == 2) {
     fVar20 = *(float *)(unaff_RBX + 0x220);
@@ -592,13 +577,8 @@ uint64_t FUN_1807942ce(void)
   }
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1807943f6(void)
-
+uint64_t function_7943f6(void)
 {
   float fVar1;
   float *pfVar2;
@@ -637,7 +617,6 @@ uint64_t FUN_1807943f6(void)
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000108;
-  
   iVar4 = (int)in_R9;
   if (iVar4 == 6) {
     fVar23 = *(float *)(unaff_RBX + 0x234);
@@ -836,33 +815,20 @@ uint64_t FUN_1807943f6(void)
   }
   return 0;
 }
-
-
-
-uint64_t FUN_180794b6e(void)
-
+uint64_t function_794b6e(void)
 {
   return 0;
 }
-
-
-
-uint64_t FUN_180794b9a(void)
-
+uint64_t function_794b9a(void)
 {
   return 0;
 }
-
-
-
-uint64_t FUN_180794cc0(int64_t param_1,float param_2,float param_3)
-
+uint64_t function_794cc0(int64_t param_1,float param_2,float param_3)
 {
   float fVar1;
   float fVar2;
   float fVar3;
   float fVar4;
-  
   param_3 = (6.2831855 / (float)*(int *)(*(int64_t *)(param_1 + 0xa8) + 0x6d0)) * param_3;
   fVar1 = (float)powf(0x41200000,param_2 * -0.009375);
   fVar3 = 1.0 / param_3;
@@ -887,25 +853,20 @@ uint64_t FUN_180794cc0(int64_t param_1,float param_2,float param_3)
   *(float *)(param_1 + 0x328) = fVar2;
   return 0;
 }
-
-
-
-uint64_t FUN_180794dc0(int64_t *param_1)
-
+uint64_t function_794dc0(int64_t *param_1)
 {
   int64_t lVar1;
   int64_t lVar2;
   uint64_t uVar3;
   int iVar4;
   int64_t lVar5;
-  
   lVar1 = *param_1;
   iVar4 = 0;
   lVar2 = *(int64_t *)(lVar1 + 0xe8);
   if (0 < *(int *)(lVar2 + 0x60)) {
     lVar5 = 0;
     do {
-      uVar3 = func_0x000180762a70(lVar1,iVar4,
+      uVar3 = Function_9c6a16e1(lVar1,iVar4,
                                   *(int32_t *)
                                    (*(int64_t *)(*(int64_t *)(lVar2 + 0x68) + lVar5) + 0x38));
       if ((int)uVar3 != 0) {
@@ -916,15 +877,8 @@ uint64_t FUN_180794dc0(int64_t *param_1)
       lVar5 = lVar5 + 8;
     } while (iVar4 < *(int *)(lVar2 + 0x60));
   }
-  func_0x0001807958a0(lVar1);
+  SystemFunction_0001807958a0(lVar1);
   *(int32_t *)(lVar1 + 0x218) = *(int32_t *)(lVar1 + 800);
-  func_0x000180795990(lVar1);
+  Function_4ead1516(lVar1);
   return 0;
 }
-
-
-
-
-
-
-

@@ -1,12 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 03_rendering_part070.c - 渲染系统高级资源管理和数据处理模块
 // 包含9个核心函数，涵盖渲染资源管理、数据处理、内存分配、状态同步等高级渲染功能
-
 // 常量定义
 #define RENDERING_SYSTEM_BUFFER_SIZE_0x28000 0x28000
 #define RENDERING_SYSTEM_BUFFER_SIZE_0xD8000 0xd8000
@@ -24,26 +20,22 @@
 #define RENDERING_SYSTEM_SCALE_FACTOR_0_875 0.875f
 #define RENDERING_SYSTEM_STRING_LENGTH_0X40 0x40
 #define RENDERING_SYSTEM_STACK_GUARD_VALUE 0xfffffffffffffffe
-
 // 函数别名定义
-#define rendering_system_resource_manager FUN_180307ca0
-#define rendering_system_data_processor FUN_180308500
-#define rendering_system_memory_clearer FUN_1803085c0
-#define rendering_system_memory_cleaner FUN_1803085e2
-#define rendering_system_empty_function FUN_180308660
-#define rendering_system_resource_handler FUN_180308670
-#define rendering_system_advanced_processor FUN_180308820
-#define rendering_system_memory_manager FUN_1803089a0
-#define rendering_system_data_synchronizer FUN_180308a90
-#define rendering_system_extended_processor FUN_180308aa7
-
+#define rendering_system_resource_manager RenderingSystem_07ca0
+#define rendering_system_data_processor RenderingSystem_08500
+#define rendering_system_memory_clearer RenderingSystem_085c0
+#define rendering_system_memory_cleaner RenderingSystem_085e2
+#define rendering_system_empty_function RenderingSystem_08660
+#define rendering_system_resource_handler RenderingSystem_08670
+#define rendering_system_advanced_processor RenderingSystem_08820
+#define rendering_system_memory_manager RenderingSystem_089a0
+#define rendering_system_data_synchronizer RenderingSystem_08a90
+#define rendering_system_extended_processor RenderingSystem_08aa7
 // 渲染系统资源管理器
 // 管理渲染系统的资源分配、数据处理和状态同步
-// 
 // @param render_context 渲染上下文指针
 // @param data_context 数据上下文指针
 void rendering_system_resource_manager(int64_t render_context, int64_t data_context)
-
 {
   int *resource_count;
   int64_t *resource_array;
@@ -135,7 +127,6 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
   int32_t temp_param_13;
   int8_t temp_buffer_5[72];
   uint64_t stack_checksum;
-  
   temp_var_3 = RENDERING_SYSTEM_STACK_GUARD_VALUE;
   stack_checksum = _DAT ^ (uint64_t)security_buffer;
   item_count = 0;
@@ -169,13 +160,13 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
           temp_var_4 = temp_var;
           temp_int_pointer_2 = resource_count;
           temp_long_2 = temp_long_3;
-          FUN_180308a90(&temp_int_pointer_2,&temp_int_pointer_3,(int64_t)(bit_count + -1) * 2);
+          RenderingSystem_08a90(&temp_int_pointer_2,&temp_int_pointer_3,(int64_t)(bit_count + -1) * 2);
           if (array_size < RENDERING_SYSTEM_THRESHOLD_0X1D) {
             temp_int_pointer_7 = resource_count;
             temp_var_7 = temp_var;
             temp_int_pointer_6 = resource_count;
             temp_long_3 = temp_long_3;
-            FUN_180308670(&temp_int_pointer_6,&temp_int_pointer_7);
+            RenderingSystem_08670(&temp_int_pointer_6,&temp_int_pointer_7);
           }
           else {
             temp_int_1 = RENDERING_SYSTEM_THRESHOLD_0X1C;
@@ -184,14 +175,14 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
             temp_int_pointer_5 = resource_count;
             temp_int_pointer_4 = resource_count;
             temp_long_5 = temp_long_3;
-            FUN_180308670(&temp_int_pointer_4,&temp_int_pointer_5);
+            RenderingSystem_08670(&temp_int_pointer_4,&temp_int_pointer_5);
             temp_int_1 = RENDERING_SYSTEM_THRESHOLD_0X1C;
             temp_var_5 = CONCAT44(temp_param_2,RENDERING_SYSTEM_THRESHOLD_0X1C);
             temp_pointer_array = (int64_t **)resource_count;
             temp_int_pointer_6 = resource_count;
             temp_var_6 = temp_var;
             temp_int_pointer_5 = resource_count;
-            FUN_180308820(&temp_int_pointer_5,&temp_int_pointer_6);
+            RenderingSystem_08820(&temp_int_pointer_5,&temp_int_pointer_6);
           }
         }
         scale_factor = (float)item_count * RENDERING_SYSTEM_SCALE_FACTOR_0_006666667;
@@ -200,7 +191,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
           normalized_factor = 1.0;
         }
         quality_factor = *(float *)(_DAT + 0x388);
-        FUN_180287b30(data_context + 0xf0,temp_buffer);
+        DataStructure_87b30(data_context + 0xf0,temp_buffer);
         temp_param_4 = 0;
         temp_param_5 = 0;
         temp_param_6 = 0;
@@ -288,7 +279,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
                 }
                 else {
                   if (base_address != 0) {
-                    // 警告：子函数不返回
+// 警告：子函数不返回
                     CoreMemoryPoolInitializer(base_address);
                   }
                   do {
@@ -328,14 +319,14 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
                 }
                 UNLOCK();
                 if (allocation_success) {
-                  FUN_1803085c0(temp_long_3,bit_count << RENDERING_SYSTEM_SHIFT_0XB);
+                  RenderingSystem_085c0(temp_long_3,bit_count << RENDERING_SYSTEM_SHIFT_0XB);
                   LOCK();
                   *(int8_t *)((int64_t)bit_count + 0x808 + temp_long_3) = 0;
                   UNLOCK();
                 }
                 else {
                   if (temp_address != 0) {
-                    // 警告：子函数不返回
+// 警告：子函数不返回
                     CoreMemoryPoolInitializer();
                   }
                   do {
@@ -355,7 +346,7 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
             temp_var_2 = temp_buffer;
             temp_float_1 = normalized_factor * RENDERING_SYSTEM_SCALE_FACTOR_0_875;
             temp_float_2 = 1.0 / quality_factor;
-            FUN_1803076d0(temp_long_4,
+            RenderingSystem_076d0(temp_long_4,
                           *(uint64_t *)
                            (*(int64_t *)(temp_long_4 + 0x80 + (uint64_t)(temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
                            (uint64_t)(temp_uint_2 + (temp_uint_2 >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8),
@@ -426,24 +417,20 @@ void rendering_system_resource_manager(int64_t render_context, int64_t data_cont
   }
   *(int32_t *)(data_context + 0x124b8) = 0;
 LAB_1803084bf:
-                    // 警告：子函数不返回
+// 警告：子函数不返回
   SystemSecurityChecker(stack_checksum ^ (uint64_t)security_buffer);
 }
-
 // 渲染系统数据处理器
 // 处理渲染系统的数据写入和锁定操作
-// 
 // @param data_pointer 数据指针
 // @param data_value 数据值指针
 void rendering_system_data_processor(uint *data_pointer, int32_t *data_value)
-
 {
   uint lock_value;
   uint resource_index;
   int64_t memory_block;
   uint64_t checksum_value;
   bool allocation_success;
-  
   LOCK();
   lock_value = *data_pointer;
   *data_pointer = *data_pointer + 1;
@@ -465,7 +452,7 @@ void rendering_system_data_processor(uint *data_pointer, int32_t *data_value)
     }
     else {
       if (memory_block != 0) {
-                    // 警告：子函数不返回
+// 警告：子函数不返回
         CoreMemoryPoolInitializer();
       }
       do {
@@ -480,52 +467,41 @@ void rendering_system_data_processor(uint *data_pointer, int32_t *data_value)
        = *data_value;
   return;
 }
-
 // 渲染系统内存清理器
 // 清理渲染系统的内存缓冲区
-// 
 // @param memory_base 内存基地址
 // @param memory_offset 内存偏移量
 void rendering_system_memory_clearer(int64_t memory_base, uint memory_offset)
-
 {
   if ((int)memory_offset < (int)(memory_offset + RENDERING_SYSTEM_SHIFT_0X800)) {
-                    // 警告：子函数不返回
+// 警告：子函数不返回
     memset(*(int64_t *)(memory_base + 8 + (uint64_t)(memory_offset >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
            (int64_t)(int)(memory_offset + (memory_offset >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * RENDERING_SYSTEM_SIZE_0X1B0,0,0x100);
   }
   return;
 }
-
 // 渲染系统内存清理器（简化版本）
 // 清理渲染系统的内存缓冲区（无参数版本）
 void rendering_system_memory_cleaner(void)
-
 {
   int64_t unaff_RBP;
   uint unaff_EDI;
-  
-                    // 警告：子函数不返回
+// 警告：子函数不返回
   memset(*(int64_t *)(unaff_RBP + 8 + (uint64_t)(unaff_EDI >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
          (int64_t)(int)(unaff_EDI + (unaff_EDI >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * RENDERING_SYSTEM_SIZE_0X1B0,0,0x100);
 }
-
 // 渲染系统空函数
 // 空函数占位符，用于系统初始化
 void rendering_system_empty_function(void)
-
 {
   return;
 }
-
 // 渲染系统资源处理器
 // 处理渲染系统的资源分配和释放
-// 
 // @param resource_pointer 资源指针
 // @param target_pointer 目标指针
 // @param param_3 参数3
 void rendering_system_resource_handler(int64_t *resource_pointer, int64_t target_pointer, uint64_t param_3)
-
 {
   uint source_size;
   int64_t *temp_pointer;
@@ -539,7 +515,6 @@ void rendering_system_resource_handler(int64_t *resource_pointer, int64_t target
   int64_t *temp_stack_pointer;
   uint64_t temp_var;
   int64_t *temp_stack_pointer_2;
-  
   temp_uint_3 = *(uint *)(resource_pointer + 1);
   temp_var = CONCAT44((int)((uint64_t)param_3 >> 0x20),temp_uint_3);
   source_size = *(uint *)(target_pointer + 8);
@@ -566,7 +541,7 @@ void rendering_system_resource_handler(int64_t *resource_pointer, int64_t target
           if (temp_pointer != (int64_t *)0x0) {
             (**(code **)(*temp_pointer + 0x28))(temp_pointer);
           }
-          operation_result = FUN_180306d20(&temp_stack_pointer_2,&temp_stack_pointer);
+          operation_result = RenderingSystem_06d20(&temp_stack_pointer_2,&temp_stack_pointer);
           temp_uint_3 = (uint)temp_var;
           if (operation_result == '\0') break;
           *(uint64_t *)
@@ -585,15 +560,12 @@ void rendering_system_resource_handler(int64_t *resource_pointer, int64_t target
   }
   return;
 }
-
 // 渲染系统高级处理器
 // 处理渲染系统的高级数据操作和资源管理
-// 
 // @param data_array 数据数组
 // @param target_address 目标地址
 // @param param_3 参数3
 void rendering_system_advanced_processor(int8_t (*data_array) [16], int64_t target_address, uint64_t param_3)
-
 {
   int64_t *resource_pointer;
   uint source_index;
@@ -612,7 +584,6 @@ void rendering_system_advanced_processor(int8_t (*data_array) [16], int64_t targ
   int64_t **temp_pointer_array;
   uint64_t temp_var_2;
   int8_t temp_buffer_3[16];
-  
   temp_buffer_3 = *data_array;
   temp_uint_2 = temp_buffer_3._8_4_;
   _temp_uint_3 = CONCAT44((int)((uint64_t)param_3 >> 0x20),*(uint *)(target_address + 8));
@@ -641,7 +612,7 @@ void rendering_system_advanced_processor(int8_t (*data_array) [16], int64_t targ
         if (resource_pointer != (int64_t *)0x0) {
           (**(code **)(*resource_pointer + 0x28))(resource_pointer);
         }
-        operation_result = FUN_180306d20(&temp_stack_pointer_2,&temp_stack_pointer);
+        operation_result = RenderingSystem_06d20(&temp_stack_pointer_2,&temp_stack_pointer);
         if (operation_result == '\0') break;
         *(uint64_t *)
          (*(int64_t *)(temp_var_2 + 8 + (uint64_t)(temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
@@ -667,21 +638,17 @@ void rendering_system_advanced_processor(int8_t (*data_array) [16], int64_t targ
   }
   return;
 }
-
 // 渲染系统内存管理器
 // 管理渲染系统的内存分配和释放
-// 
 // @param memory_pointer 内存指针
 // @param target_pointer 目标指针
 // @param operation_type 操作类型
 // @return 操作结果
 int64_t rendering_system_memory_manager(int64_t *memory_pointer, int64_t *target_pointer, int operation_type)
-
 {
   uint64_t *source_pointer;
   uint64_t temp_var;
   uint64_t *target_data;
-  
   if (operation_type == 3) {
     return 0x180c05030;
   }
@@ -690,7 +657,7 @@ int64_t rendering_system_memory_manager(int64_t *memory_pointer, int64_t *target
   }
   if (operation_type == 0) {
     if (*memory_pointer != 0) {
-                    // 警告：子函数不返回
+// 警告：子函数不返回
       CoreMemoryPoolInitializer();
     }
   }
@@ -719,16 +686,13 @@ int64_t rendering_system_memory_manager(int64_t *memory_pointer, int64_t *target
   }
   return 0;
 }
-
 // 渲染系统数据同步器
 // 同步渲染系统的数据状态和资源管理
-// 
 // @param source_pointer 源指针
 // @param target_pointer 目标指针
 // @param sync_count 同步计数
 // @param param_4 参数4
 void rendering_system_data_synchronizer(int64_t *source_pointer, int64_t *target_pointer, int64_t sync_count, uint64_t param_4)
-
 {
   uint source_size;
   int64_t temp_address;
@@ -766,7 +730,6 @@ void rendering_system_data_synchronizer(int64_t *source_pointer, int64_t *target
   int32_t temp_param_15;
   int32_t temp_param_16;
   int32_t temp_param_17;
-  
   source_size = *(uint *)(source_pointer + 1);
   temp_long_1 = (int64_t)(int)source_size;
   temp_address_2 = (int)target_pointer[1] - temp_long_1;
@@ -777,7 +740,7 @@ void rendering_system_data_synchronizer(int64_t *source_pointer, int64_t *target
     temp_uint_1 = (int)(((int)target_pointer[1] - temp_long_1) / 2) + source_size;
     temp_uint_3 = temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB;
     memory_block = (uint64_t *)
-             FUN_180308f10(*(int64_t *)(*source_pointer + 8 + (uint64_t)(source_size >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+             RenderingSystem_08f10(*(int64_t *)(*source_pointer + 8 + (uint64_t)(source_size >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
                            (uint64_t)(source_size + (source_size >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
                            *(int64_t *)(*source_pointer + 8 + (uint64_t)temp_uint_3 * 8) +
                            (uint64_t)(temp_uint_1 + temp_uint_3 * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
@@ -792,7 +755,7 @@ void rendering_system_data_synchronizer(int64_t *source_pointer, int64_t *target
     temp_param_7 = (int32_t)source_pointer[1];
     temp_param_8 = *(int32_t *)((int64_t)source_pointer + 0xc);
     temp_var = *memory_block;
-    FUN_1803090c0(&temp_long_9,&temp_param_5,&temp_param_1,&temp_var);
+    RenderingSystem_090c0(&temp_long_9,&temp_param_5,&temp_param_1,&temp_var);
     temp_address = temp_long_8;
     temp_address_2 = temp_long_9;
     temp_param_10 = (int32_t)*target_pointer;
@@ -802,7 +765,7 @@ void rendering_system_data_synchronizer(int64_t *source_pointer, int64_t *target
     sync_count = sync_count + -1;
     temp_long_7 = temp_long_9;
     temp_long_6 = temp_long_8;
-    FUN_180308a90(&temp_long_7,&temp_param_10,sync_count,FUN_180306d20);
+    RenderingSystem_08a90(&temp_long_7,&temp_param_10,sync_count,RenderingSystem_06d20);
     *target_pointer = temp_address_2;
     target_pointer[1] = temp_address;
     temp_address_2 = (int)target_pointer[1] - temp_long_1;
@@ -816,14 +779,12 @@ void rendering_system_data_synchronizer(int64_t *source_pointer, int64_t *target
     temp_param_17 = *(int32_t *)((int64_t)source_pointer + 0xc);
     temp_long_3 = temp_long_5;
     temp_long_2 = temp_long_4;
-    FUN_180308c30(&temp_param_14,&temp_long_3,&temp_long_5);
+    RenderingSystem_08c30(&temp_param_14,&temp_long_3,&temp_long_5);
   }
   return;
 }
-
 // 渲染系统扩展处理器
 // 扩展的渲染系统处理功能，支持更复杂的数据操作
-// 
 // @param source_pointer 源指针
 // @param param_2 参数2
 // @param param_3 参数3
@@ -851,7 +812,6 @@ void rendering_system_extended_processor(int64_t *source_pointer, uint64_t param
                                        uint64_t param_13, int64_t param_14, int64_t param_15, int64_t param_16,
                                        int64_t param_17, int64_t param_18, int64_t param_19, int32_t param_20,
                                        int32_t param_21)
-
 {
   uint source_size;
   int64_t temp_address;
@@ -874,8 +834,7 @@ void rendering_system_extended_processor(int64_t *source_pointer, uint64_t param
   int32_t unaff_XMM6_Dd;
   int32_t temp_param_1;
   int32_t temp_param_2;
-  uint64_t in_stack_000000f8;
-  
+  uint64_t local_var_f8;
   *(uint64_t *)(in_R11 + 8) = unaff_RBX;
   *(uint64_t *)(in_R11 + 0x10) = unaff_RBP;
   source_size = *(uint *)(source_pointer + 1);
@@ -893,7 +852,7 @@ void rendering_system_extended_processor(int64_t *source_pointer, uint64_t param
       temp_uint_1 = (int)(((int)unaff_RDI[1] - temp_address_3) / 2) + source_size;
       temp_uint_3 = temp_uint_1 >> RENDERING_SYSTEM_SHIFT_0XB;
       memory_block = (uint64_t *)
-               FUN_180308f10(*(int64_t *)(*source_pointer + 8 + (uint64_t)(source_size >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
+               RenderingSystem_08f10(*(int64_t *)(*source_pointer + 8 + (uint64_t)(source_size >> RENDERING_SYSTEM_SHIFT_0XB) * 8) +
                              (uint64_t)(source_size + (source_size >> RENDERING_SYSTEM_SHIFT_0XB) * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
                              *(int64_t *)(*source_pointer + 8 + (uint64_t)temp_uint_3 * 8) +
                              (uint64_t)(temp_uint_1 + temp_uint_3 * -RENDERING_SYSTEM_SHIFT_0X800) * 8,
@@ -907,8 +866,8 @@ void rendering_system_extended_processor(int64_t *source_pointer, uint64_t param
       param_8._4_4_ = *(int32_t *)((int64_t)source_pointer + 4);
       param_9._0_4_ = (int32_t)source_pointer[1];
       param_9._4_4_ = *(int32_t *)((int64_t)source_pointer + 0xc);
-      in_stack_000000f8 = *memory_block;
-      FUN_1803090c0(&param_10,&param_8,&param_6,&stack0x000000f8);
+      local_var_f8 = *memory_block;
+      RenderingSystem_090c0(&param_10,&param_8,&param_6,&local_buffer_000000f8);
       temp_address_2 = param_11;
       temp_address = param_10;
       param_12._0_4_ = (int32_t)*unaff_RDI;
@@ -918,7 +877,7 @@ void rendering_system_extended_processor(int64_t *source_pointer, uint64_t param
       param_3 = param_3 + -1;
       param_14 = param_10;
       param_15 = param_11;
-      FUN_180308a90(&param_14,&param_12,param_3,FUN_180306d20);
+      RenderingSystem_08a90(&param_14,&param_12,param_3,RenderingSystem_06d20);
       *unaff_RDI = temp_address;
       unaff_RDI[1] = temp_address_2;
     } while (RENDERING_SYSTEM_THRESHOLD_0X1C < (int)unaff_RDI[1] - temp_address_3);
@@ -932,39 +891,33 @@ void rendering_system_extended_processor(int64_t *source_pointer, uint64_t param
     temp_param_2 = *(int32_t *)((int64_t)source_pointer + 0xc);
     param_18 = param_16;
     param_19 = param_17;
-    FUN_180308c30(&param_20,&param_18,&param_16);
+    RenderingSystem_08c30(&param_20,&param_18,&param_16);
   }
   return;
 }
-
 // 模块信息：渲染系统高级资源管理和数据处理模块
-// 
 // 功能概述：
 // 本模块提供渲染系统的高级资源管理和数据处理功能，包括资源分配、数据处理、
 // 内存管理、状态同步等核心渲染功能。模块支持多种缓冲区大小、线程安全操作
 // 和复杂的数据处理流程。
-//
 // 主要特点：
 // - 支持多种缓冲区大小（0x28000、0xD8000、0x2000等）
 // - 线程安全的资源分配和释放
 // - 高效的数据处理和状态同步
 // - 复杂的内存管理和清理操作
 // - 支持递归和迭代的处理算法
-//
 // 使用场景：
 // - 渲染系统初始化和配置
 // - 渲染资源的管理和分配
 // - 渲染数据的处理和同步
 // - 渲染状态的更新和维护
 // - 渲染性能的优化和监控
-//
 // 依赖关系：
-// - 依赖FUN_180308a90进行数据同步
-// - 依赖FUN_1803090c0进行数据处理
-// - 依赖FUN_180306d20进行资源操作
+// - 依赖RenderingSystem_08a90进行数据同步
+// - 依赖RenderingSystem_090c0进行数据处理
+// - 依赖RenderingSystem_06d20进行资源操作
 // - 依赖_CoreMemoryPoolAllocator进行内存分配
 // - 依赖_CoreMemoryPoolInitializer进行资源清理
-//
 // 注意事项：
 // - 部分函数不返回，直接调用清理函数
 // - 需要正确处理内存分配失败的情况

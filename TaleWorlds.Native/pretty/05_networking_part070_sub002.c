@@ -1,22 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 05_networking_part070_sub002.c - 1 个函数
-
-// 函数: void FUN_180879c80(int64_t *param_1)
-void FUN_180879c80(int64_t *param_1)
-
+// 函数: void function_879c80(int64_t *param_1)
+void function_879c80(int64_t *param_1)
 {
   uint64_t uVar1;
-  
   uVar1 = SystemCoreProcessor();
-                    // WARNING: Could not recover jumptable at 0x000180879c9f. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x000180879c9f. Too many branches
+// WARNING: Treating indirect jump as call
   (**(code **)(*param_1 + 0x250))(param_1,uVar1,1);
   return;
 }
-
-
-
-
-
-

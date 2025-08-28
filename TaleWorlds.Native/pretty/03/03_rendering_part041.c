@@ -1,14 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part041.c - 渲染系统高级数据处理和边界计算模块
 // 包含9个核心函数，涵盖渲染边界计算、数据处理、坐标变换、内存管理、资源解析等高级渲染功能
-
 // 常量定义
 #define RENDER_BOUNDARY_FLAG 0x04
 #define RENDER_DATA_ENTRY_SIZE 0x0E
 #define RENDER_MAX_COORDINATE_VALUE 0xFFFF
 #define RENDER_MIN_COORDINATE_VALUE 0x0000
-
 // 渲染边界数据结构
 typedef struct {
     int boundary_min_x;      // 边界最小X坐标
@@ -22,7 +19,6 @@ typedef struct {
     void* boundary_data;     // 边界数据指针
     int boundary_data_count; // 边界数据计数
 } render_boundary_t;
-
 // 渲染数据条目结构
 typedef struct {
     short entry_x1;          // 条目X坐标1
@@ -34,7 +30,6 @@ typedef struct {
     char entry_type;         // 条目类型
     char entry_flags;        // 条目标志
 } render_data_entry_t;
-
 // 渲染坐标变换结构
 typedef struct {
     float transform_offset_x; // 变换偏移X
@@ -48,7 +43,6 @@ typedef struct {
     int transform_active;     // 变换激活状态
     int transform_data_count; // 变换数据计数
 } render_transform_t;
-
 // 渲染数据流结构
 typedef struct {
     void* stream_buffer;      // 流缓冲区指针
@@ -61,57 +55,53 @@ typedef struct {
     int stream_flags;         // 流标志
     int stream_reserved;      // 保留字段
 } render_data_stream_t;
-
 // 函数别名定义 - 保持向后兼容性
-void* FUN_18028d0b0 = update_render_boundary;
-void* FUN_18028d0c8 = process_render_boundary_data;
-void* FUN_18028d19a = add_render_data_entry;
-void* FUN_18028d290 = update_render_transform;
-void* FUN_18028d400 = process_render_transform_data;
-void* FUN_18028d4a0 = extract_render_data_info;
-void* FUN_18028d533 = process_render_data_stream;
-void* FUN_18028d5a4 = process_render_data_stream_alt;
-void* FUN_18028d617 = initialize_render_data_processor;
-void* FUN_18028d61f = finalize_render_data_processor;
-
+void* function_28d0b0 = update_render_boundary;
+void* function_28d0c8 = process_render_boundary_data;
+void* function_28d19a = add_render_data_entry;
+void* function_28d290 = update_render_transform;
+void* function_28d400 = process_render_transform_data;
+void* function_28d4a0 = extract_render_data_info;
+void* function_28d533 = process_render_data_stream;
+void* function_28d5a4 = process_render_data_stream_alt;
+void* function_28d617 = initialize_render_data_processor;
+void* function_28d61f = finalize_render_data_processor;
 // 函数声明
-void update_render_boundary(render_boundary_t* boundary, char boundary_type, 
+void update_render_boundary(render_boundary_t* boundary, char boundary_type,
                            int x1, int y1, int x2, int y2, int x3, int y3);
-void process_render_boundary_data(void* context, void* params, 
+void process_render_boundary_data(void* context, void* params,
                                   int min_x, int min_y, int max_x, int max_y,
                                   int test_x, int test_y, int ref_x, int ref_y);
 void add_render_data_entry(void* context, void* params, void* data,
                            short x1, short y1, short x2, short y2,
                            short x3, short x4, short x5);
-void update_render_transform(render_transform_t* transform, 
+void update_render_transform(render_transform_t* transform,
                              float delta_x, float delta_y);
 void process_render_transform_data(void* context, float offset_x, float offset_y,
-                                   float size_x, float size_y, 
+                                   float size_x, float size_y,
                                    float delta_x, float delta_y);
 void* extract_render_data_info(void** result, void* context, int offset);
 void process_render_data_stream(int position, void* stream, int stream_size,
-                               void* context, void* result, 
+                               void* context, void* result,
                                void* param1, void* param2);
 void process_render_data_stream_alt(int position, void* stream, int stream_size,
-                                     void* context, void* result, 
+                                     void* context, void* result,
                                      void* param1, void* param2);
 void initialize_render_data_processor(void);
 void finalize_render_data_processor(void);
-
-// 函数: 更新渲染边界 (FUN_18028d0b0)
+// 函数: 更新渲染边界 (function_28d0b0)
 // 功能: 根据输入坐标更新渲染边界信息，支持边界扩展和收缩
 // 参数: boundary - 渲染边界结构指针, boundary_type - 边界类型
-//       x1,y1,x2,y2,x3,y3 - 边界坐标点
-void update_render_boundary(render_boundary_t* boundary, char boundary_type, 
+// x1,y1,x2,y2,x3,y3 - 边界坐标点
+void update_render_boundary(render_boundary_t* boundary, char boundary_type,
                            int x1, int y1, int x2, int y2, int x3, int y3)
 {
     int current_max_x;
     int current_max_y;
     int current_min_x;
     int current_min_y;
-    
     if (boundary->boundary_active != 0) {
-        // 如果边界已激活，更新边界范围
+// 如果边界已激活，更新边界范围
         if ((boundary->boundary_max_x < x1) || (current_max_x = boundary->boundary_max_x, boundary->boundary_active == 0)) {
             boundary->boundary_max_x = x1;
             current_max_x = x1;
@@ -129,8 +119,7 @@ void update_render_boundary(render_boundary_t* boundary, char boundary_type,
             current_min_y = y1;
         }
         boundary->boundary_active = 1;
-        
-        // 如果边界类型为扩展标志，进行边界扩展
+// 如果边界类型为扩展标志，进行边界扩展
         if (boundary_type == RENDER_BOUNDARY_FLAG) {
             if (current_max_x < x2) {
                 boundary->boundary_max_x = x2;
@@ -164,8 +153,7 @@ void update_render_boundary(render_boundary_t* boundary, char boundary_type,
         boundary->boundary_data_count = boundary->boundary_data_count + 1;
         return;
     }
-    
-    // 如果边界未激活，创建新的数据条目
+// 如果边界未激活，创建新的数据条目
     current_max_x = boundary->boundary_data_count;
     render_data_entry_t* entry = (render_data_entry_t*)((int64_t)current_max_x * RENDER_DATA_ENTRY_SIZE + *(int64_t*)(boundary + 10));
     entry->entry_x2 = (short)x2;
@@ -178,13 +166,12 @@ void update_render_boundary(render_boundary_t* boundary, char boundary_type,
     boundary->boundary_data_count = current_max_x + 1;
     return;
 }
-
-// 函数: 处理渲染边界数据 (FUN_18028d0c8)
+// 函数: 处理渲染边界数据 (function_28d0c8)
 // 功能: 处理渲染边界数据，更新边界范围和状态
 // 参数: context - 上下文指针, params - 参数指针
-//       min_x,min_y,max_x,max_y - 边界范围
-//       test_x,test_y,ref_x,ref_y - 测试和参考坐标
-void process_render_boundary_data(void* context, void* params, 
+// min_x,min_y,max_x,max_y - 边界范围
+// test_x,test_y,ref_x,ref_y - 测试和参考坐标
+void process_render_boundary_data(void* context, void* params,
                                   int min_x, int min_y, int max_x, int max_y,
                                   int test_x, int test_y, int ref_x, int ref_y)
 {
@@ -193,7 +180,6 @@ void process_render_boundary_data(void* context, void* params,
     char boundary_type;
     int current_min_x;
     int current_min_y;
-    
     if ((min_x < test_x) || (*(int*)(context + 4) == 0)) {
         *(int*)(context + 0x1c) = test_x;
         min_x = test_x;
@@ -214,7 +200,6 @@ void process_render_boundary_data(void* context, void* params,
         current_min_y = max_y;
     }
     *(int*)(context + 4) = 1;
-    
     if (boundary_type == RENDER_BOUNDARY_FLAG) {
         if (min_x < ref_x) {
             *(int*)(context + 0x1c) = ref_x;
@@ -248,11 +233,10 @@ void process_render_boundary_data(void* context, void* params,
     *(int*)(context + 0x30) = *(int*)(context + 0x30) + 1;
     return;
 }
-
-// 函数: 添加渲染数据条目 (FUN_18028d19a)
+// 函数: 添加渲染数据条目 (function_28d19a)
 // 功能: 向渲染数据结构中添加新的数据条目
 // 参数: context - 上下文指针, params - 参数指针, data - 数据指针
-//       x1,y1,x2,y2,x3,x4,x5 - 条目坐标
+// x1,y1,x2,y2,x3,x4,x5 - 条目坐标
 void add_render_data_entry(void* context, void* params, void* data,
                            short x1, short y1, short x2, short y2,
                            short x3, short x4, short x5)
@@ -260,7 +244,6 @@ void add_render_data_entry(void* context, void* params, void* data,
     int entry_count;
     render_data_entry_t* entry;
     char entry_type;
-    
     entry_count = *(int*)(context + 0x30);
     entry = (render_data_entry_t*)((int64_t)entry_count * RENDER_DATA_ENTRY_SIZE + *(int64_t*)(context + 0x28));
     entry->entry_x2 = x2;
@@ -273,11 +256,10 @@ void add_render_data_entry(void* context, void* params, void* data,
     *(int*)(context + 0x30) = entry_count + 1;
     return;
 }
-
-// 函数: 更新渲染变换 (FUN_18028d290)
+// 函数: 更新渲染变换 (function_28d290)
 // 功能: 更新渲染变换结构，应用坐标变换
 // 参数: transform - 渲染变换结构指针, delta_x - X方向增量, delta_y - Y方向增量
-void update_render_transform(render_transform_t* transform, 
+void update_render_transform(render_transform_t* transform,
                              float delta_x, float delta_y)
 {
     int current_x;
@@ -286,23 +268,19 @@ void update_render_transform(render_transform_t* transform,
     int current_y;
     int new_x;
     int new_y;
-    
-    // 调用渲染初始化函数
+// 调用渲染初始化函数
     initialize_render_data_processor();
-    
-    // 应用变换增量
+// 应用变换增量
     delta_x = delta_x + (float)transform->transform_offset_x;
     delta_y = delta_y + (float)transform->transform_offset_y;
     transform->transform_offset_x = (int)delta_x;
     transform->transform_current_x = (int)delta_x;
     transform->transform_offset_y = (int)delta_y;
     transform->transform_current_y = (int)delta_y;
-    
     new_y = (int)delta_y;
     new_x = (int)delta_x;
-    
     if (transform->transform_active != 0) {
-        // 如果变换已激活，更新边界范围
+// 如果变换已激活，更新边界范围
         if ((transform->transform_max_x < new_x) || (transform->transform_active == 0)) {
             transform->transform_max_x = new_x;
         }
@@ -319,8 +297,7 @@ void update_render_transform(render_transform_t* transform,
         transform->transform_active = 1;
         return;
     }
-    
-    // 如果变换未激活，创建新的数据条目
+// 如果变换未激活，创建新的数据条目
     data_ptr = *(int64_t*)(transform + 10);
     current_x = transform->transform_data_count;
     entry_offset = (int64_t)current_x * RENDER_DATA_ENTRY_SIZE;
@@ -331,18 +308,16 @@ void update_render_transform(render_transform_t* transform,
     transform->transform_data_count = current_x + 1;
     return;
 }
-
-// 函数: 处理渲染变换数据 (FUN_18028d400)
+// 函数: 处理渲染变换数据 (function_28d400)
 // 功能: 处理渲染变换数据，更新变换参数
 // 参数: context - 上下文指针, offset_x,offset_y - 变换偏移
-//       size_x,size_y - 变换大小, delta_x,delta_y - 变换增量
+// size_x,size_y - 变换大小, delta_x,delta_y - 变换增量
 void process_render_transform_data(void* context, float offset_x, float offset_y,
-                                   float size_x, float size_y, 
+                                   float size_x, float size_y,
                                    float delta_x, float delta_y)
 {
     int transform_y;
-    
-    // 应用变换偏移
+// 应用变换偏移
     offset_x = offset_x + *(float*)(context + 0x10);
     offset_y = offset_y + *(float*)(context + 0x14);
     size_x = offset_x + size_x;
@@ -352,14 +327,12 @@ void process_render_transform_data(void* context, float offset_x, float offset_y
     *(float*)(context + 0x10) = delta_x;
     delta_y = offset_y + delta_y;
     *(float*)(context + 0x14) = delta_y;
-    
-    // 更新渲染边界
+// 更新渲染边界
     update_render_boundary(context, RENDER_BOUNDARY_FLAG, (int)delta_x, (int)delta_y,
                            (int)offset_x, transform_y, (int)size_x, (int)offset_y);
     return;
 }
-
-// 函数: 提取渲染数据信息 (FUN_18028d4a0)
+// 函数: 提取渲染数据信息 (function_28d4a0)
 // 功能: 从数据流中提取渲染数据信息
 // 参数: result - 结果指针数组, context - 上下文指针, offset - 数据偏移
 // 返回: 提取的数据信息指针
@@ -382,13 +355,11 @@ void* extract_render_data_info(void** result, void* context, int offset)
     void* stream_info[2];
     char temp_buffer1[16];
     char temp_buffer2[16];
-    
     data_stream = *(char**)(context + 0x90);
     data_offset = 0;
     stream_info[1] = (void*)((uint64_t)*(int64_t*)(context + 0x98) >> 0x20);
     stream_index = stream_info[1];
-    
-    // 读取流头部信息
+// 读取流头部信息
     if ((*(int64_t*)(context + 0x98) < 0) || (stream_index = 0, stream_info[1] < 1)) {
         stream_header = '\0';
     }
@@ -396,7 +367,6 @@ void* extract_render_data_info(void** result, void* context, int offset)
         stream_header = *data_stream;
         stream_index = 1;
     }
-    
     if (stream_header == '\0') {
         stream_index = stream_index + offset;
         if (((stream_info[1] < stream_index) || (stream_index < 0)) || (stream_info[1] <= stream_index)) {
@@ -409,7 +379,7 @@ void* extract_render_data_info(void** result, void* context, int offset)
     else {
         data_length = 0xffffffff;
         if (stream_header == '\x03') {
-            // 处理数据流头部
+// 处理数据流头部
             if (stream_index < stream_info[1]) {
                 stream_position = (int64_t)stream_index;
                 stream_index = stream_index + 1;
@@ -472,13 +442,12 @@ void* extract_render_data_info(void** result, void* context, int offset)
                     }
                 } while (((offset < (int)data_chunk_size) ||
                          (data_length = (uint)data_value, (int)(uint)CONCAT11(data_checksum, data_flags) <= offset)) &&
-                        (data_offset = data_offset + 1, data_chunk_size = (uint)CONCAT11(data_checksum, data_flags), 
+                        (data_offset = data_offset + 1, data_chunk_size = (uint)CONCAT11(data_checksum, data_flags),
                          data_length = 0xffffffff, data_offset < (int)(uint)CONCAT11(stream_header, data_type)));
             }
         }
     }
-    
-    // 处理数据流信息
+// 处理数据流信息
     stream_info[0] = *(void**)(context + 0x80);
     stream_info[1] = *(void**)(context + 0x88);
     stream_ptr = (void**)extract_render_data_info(temp_buffer1, &stream_info[0], data_length);
@@ -492,13 +461,12 @@ void* extract_render_data_info(void** result, void* context, int offset)
     result[1] = data_info;
     return result;
 }
-
 // 函数: 处理渲染数据流
 // 功能: 处理渲染数据流，提取和处理数据
 // 参数: position - 流位置, stream - 流指针, stream_size - 流大小
-//       context - 上下文指针, result - 结果指针, param1,param2 - 参数指针
+// context - 上下文指针, result - 结果指针, param1,param2 - 参数指针
 void process_render_data_stream(int position, void* stream, int stream_size,
-                               void* context, void* result, 
+                               void* context, void* result,
                                void* param1, void* param2)
 {
     void* data_info;
@@ -516,7 +484,6 @@ void process_render_data_stream(int position, void* stream, int stream_size,
     void stream_info[2];
     void temp_buffer1[16];
     void temp_buffer2[16];
-    
     if (position < stream_size) {
         stream_position = (int64_t)position;
         position = position + 1;
@@ -579,11 +546,10 @@ void process_render_data_stream(int position, void* stream, int stream_size,
             }
         } while (((data_index < (int)data_chunk_size) ||
                  (stream_flags = (uint)data_value, (int)(uint)CONCAT11(data_flags, data_type) <= data_index)) &&
-                (position = position + 1, data_chunk_size = (uint)CONCAT11(data_flags, data_type), 
+                (position = position + 1, data_chunk_size = (uint)CONCAT11(data_flags, data_type),
                  stream_flags = stream_flags, position < (int)(uint)CONCAT11(data_type, data_flags)));
     }
-    
-    // 处理流信息
+// 处理流信息
     stream_info[0] = *(void**)(context + 0x88);
     stream_info[1] = *(void**)(context + 0x8c);
     stream_position = extract_render_data_info(temp_buffer1, &stream_info[0], stream_flags, stream,
@@ -600,13 +566,12 @@ void process_render_data_stream(int position, void* stream, int stream_size,
     result_ptr[1] = data_info;
     return;
 }
-
 // 函数: 处理渲染数据流（替代版本）
 // 功能: 处理渲染数据流的替代实现，支持不同的数据处理模式
 // 参数: position - 流位置, stream - 流指针, stream_size - 流大小
-//       context - 上下文指针, result - 结果指针, param1,param2 - 参数指针
+// context - 上下文指针, result - 结果指针, param1,param2 - 参数指针
 void process_render_data_stream_alt(int position, void* stream, int stream_size,
-                                     void* context, void* result, 
+                                     void* context, void* result,
                                      void* param1, void* param2)
 {
     void* data_info;
@@ -624,7 +589,6 @@ void process_render_data_stream_alt(int position, void* stream, int stream_size,
     void stream_info[2];
     void temp_buffer1[16];
     void temp_buffer2[16];
-    
     do {
         if (position < stream_size) {
             stream_position = (int64_t)position;
@@ -652,10 +616,9 @@ void process_render_data_stream_alt(int position, void* stream, int stream_size,
         }
     } while (((data_index < (int)data_length) ||
              (stream_flags = (uint)data_value, (int)(uint)CONCAT11(data_type, data_flags) <= data_index)) &&
-            (position = position + 1, data_length = (uint)CONCAT11(data_type, data_flags), 
+            (position = position + 1, data_length = (uint)CONCAT11(data_type, data_flags),
              stream_flags = stream_flags, position < data_index));
-    
-    // 处理流信息
+// 处理流信息
     stream_info[0] = *(void**)(context + 0x88);
     stream_info[1] = *(void**)(context + 0x8c);
     stream_position = extract_render_data_info(temp_buffer1, &stream_info[0], stream_flags, stream,
@@ -672,7 +635,6 @@ void process_render_data_stream_alt(int position, void* stream, int stream_size,
     result_ptr[1] = data_info;
     return;
 }
-
 // 函数: 初始化渲染数据处理器
 // 功能: 初始化渲染数据处理器，设置处理参数
 void initialize_render_data_processor(void)
@@ -682,8 +644,7 @@ void initialize_render_data_processor(void)
     void stream_info[2];
     void temp_buffer1[16];
     void temp_buffer2[16];
-    
-    // 设置流信息
+// 设置流信息
     stream_info[0] = *(void**)(context + 0x88);
     stream_info[1] = *(void**)(context + 0x8c);
     stream_ptr = (void**)extract_render_data_info(temp_buffer1, &stream_info[0], stream_flags, context,
@@ -700,7 +661,6 @@ void initialize_render_data_processor(void)
     result_ptr[1] = data_info;
     return;
 }
-
 // 函数: 结束渲染数据处理器
 // 功能: 结束渲染数据处理器，清理资源
 void finalize_render_data_processor(void)
@@ -710,8 +670,7 @@ void finalize_render_data_processor(void)
     void stream_info[2];
     void temp_buffer1[16];
     void temp_buffer2[16];
-    
-    // 设置流信息
+// 设置流信息
     stream_info[0] = *(void**)(context + 0x88);
     stream_info[1] = *(void**)(context + 0x8c);
     stream_ptr = (void**)extract_render_data_info(temp_buffer1, &stream_info[0], stream_flags, context,
@@ -728,7 +687,6 @@ void finalize_render_data_processor(void)
     result_ptr[1] = data_info;
     return;
 }
-
 // 警告: 移除了不可达的代码块 (ram,0x00018028d83d)
 // 警告: 移除了不可达的代码块 (ram,0x00018028d857)
 // 警告: 移除了不可达的代码块 (ram,0x00018028d875)

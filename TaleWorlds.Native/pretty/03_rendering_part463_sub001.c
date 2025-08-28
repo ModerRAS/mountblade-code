@@ -1,20 +1,11 @@
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
-
 // 03_rendering_part463_sub001.c - 5 个函数
-
-
 // 03_rendering_part463.c - 5 个函数
-
-
-// 函数: void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param_4)
-void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param_4)
-
+// 函数: void NetworkSystem_15a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param_4)
+void NetworkSystem_15a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param_4)
 {
   float fVar1;
   uint uVar2;
@@ -50,19 +41,18 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000048;
-  float in_stack_00000050;
+  float local_buffer_50;
   float fStack0000000000000054;
-  float in_stack_00000058;
+  float local_buffer_58;
   float fStack000000000000005c;
-  float in_stack_00000060;
+  float local_buffer_60;
   float fStack0000000000000064;
-  float in_stack_00000068;
+  float local_buffer_68;
   float fStack000000000000006c;
-  float in_stack_00000070;
+  float local_buffer_70;
   float fStack0000000000000074;
-  float in_stack_00000078;
+  float local_buffer_78;
   float fStack000000000000007c;
-  
   SystemSecurityManager();
   fVar22 = unaff_RBP[0x18];
   fVar24 = unaff_RBP[0x19];
@@ -87,8 +77,8 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
   *(uint64_t *)(unaff_RBP + 0x30) = uVar5;
   *(uint64_t *)(unaff_RBP + 0x32) = uVar6;
   fStack0000000000000064 = fVar27 * fVar12 + fVar20 * fVar13;
-  in_stack_00000060 = fVar27 * fVar1 + fVar20 * fVar28;
-  in_stack_00000058 = unaff_RBP[0x12] * fVar26;
+  local_buffer_60 = fVar27 * fVar1 + fVar20 * fVar28;
+  local_buffer_58 = unaff_RBP[0x12] * fVar26;
   unaff_RBP[0x28] = fVar27;
   unaff_RBP[0x29] = fVar20;
   unaff_RBP[0x2a] = unaff_RBP[0x16];
@@ -97,14 +87,14 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
   unaff_RBP[0x2d] = fVar24;
   unaff_RBP[0x2e] = unaff_RBP[0x1a];
   unaff_RBP[0x2f] = unaff_RBP[0x1b];
-  in_stack_00000050 = fVar25 * fVar1 + fVar14 * fVar28;
-  in_stack_00000068 = unaff_RBP[0x16] * fVar26;
+  local_buffer_50 = fVar25 * fVar1 + fVar14 * fVar28;
+  local_buffer_68 = unaff_RBP[0x16] * fVar26;
   fStack000000000000005c = unaff_RBP[-0x1c];
   fStack0000000000000054 = fVar25 * fVar12 + fVar14 * fVar13;
   fStack000000000000006c = unaff_RBP[-0x18];
-  unaff_RBP[-0x1f] = in_stack_00000050;
+  unaff_RBP[-0x1f] = local_buffer_50;
   unaff_RBP[-0x1e] = fStack0000000000000054;
-  unaff_RBP[-0x1d] = in_stack_00000058;
+  unaff_RBP[-0x1d] = local_buffer_58;
   unaff_RBP[-0x1c] = fStack000000000000005c;
   fStack0000000000000040 = (float)uVar5;
   fStack0000000000000044 = (float)((uint64_t)uVar5 >> 0x20);
@@ -118,9 +108,9 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
   fVar23 = *(float *)(param_4 + 0x98);
   fVar29 = *(float *)(param_4 + 0x9c);
   fVar27 = *(float *)(param_4 + 0x18);
-  unaff_RBP[-0x1b] = in_stack_00000060;
+  unaff_RBP[-0x1b] = local_buffer_60;
   unaff_RBP[-0x1a] = fStack0000000000000064;
-  unaff_RBP[-0x19] = in_stack_00000068;
+  unaff_RBP[-0x19] = local_buffer_68;
   unaff_RBP[-0x18] = fStack000000000000006c;
   unaff_RBP[-0x17] = fVar22 * fVar1 + fVar24 * fVar28;
   unaff_RBP[-0x16] = fVar22 * fVar12 + fVar24 * fVar13;
@@ -132,7 +122,7 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
   fVar18 = fVar29 * fVar25 * -1.0 + fVar20 * fVar23 * -1.0 + fVar17 * fVar14 + fVar21 * fVar16;
   fVar19 = fVar21 * fVar14 * -1.0 + fVar20 * fVar29 * -1.0 + fVar17 * fVar16 + fVar23 * fVar25;
   fVar20 = fVar29 * fVar16 * 1.0 + fVar20 * fVar17 * 1.0 + fVar23 * fVar14 + fVar21 * fVar25;
-  in_stack_00000070 = *(float *)(param_4 + 0x50);
+  local_buffer_70 = *(float *)(param_4 + 0x50);
   fVar24 = *(float *)(param_3 + 0xa0);
   fVar27 = (fStack0000000000000048 * *(float *)(param_3 + 0x98) + *(float *)(param_3 + 0xa8)) * 0.7
            + fVar27 * 0.3;
@@ -145,29 +135,29 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
   fStack0000000000000074 = *(float *)(param_4 + 0x54);
   fVar26 = (fStack0000000000000040 * fVar12 + fStack0000000000000044 * fVar13 +
            *(float *)(param_3 + 0xa4)) * 0.7 + fVar26 * 0.3;
-  in_stack_00000070 = in_stack_00000070 - fVar28;
-  in_stack_00000078 = *(float *)(param_4 + 0x58) - fVar27;
+  local_buffer_70 = local_buffer_70 - fVar28;
+  local_buffer_78 = *(float *)(param_4 + 0x58) - fVar27;
   unaff_RBP[-0x20] = fVar26;
   fStack0000000000000074 = fStack0000000000000074 - fVar26;
   fStack000000000000007c = 3.4028235e+38;
-  fVar13 = in_stack_00000070 * in_stack_00000070 + fStack0000000000000074 * fStack0000000000000074 +
-           in_stack_00000078 * in_stack_00000078;
-  _fStack0000000000000040 = CONCAT44(fStack0000000000000074,in_stack_00000070);
-  _fStack0000000000000048 = CONCAT44(0x7f7fffff,in_stack_00000078);
+  fVar13 = local_buffer_70 * local_buffer_70 + fStack0000000000000074 * fStack0000000000000074 +
+           local_buffer_78 * local_buffer_78;
+  _fStack0000000000000040 = CONCAT44(fStack0000000000000074,local_buffer_70);
+  _fStack0000000000000048 = CONCAT44(0x7f7fffff,local_buffer_78);
   auVar11 = rsqrtss(ZEXT416((uint)fVar13),ZEXT416((uint)fVar13));
   fVar26 = auVar11._0_4_;
   fVar26 = fVar26 * 0.5 * (3.0 - fVar13 * fVar26 * fVar26);
-  in_stack_00000070 = in_stack_00000070 * fVar26;
+  local_buffer_70 = local_buffer_70 * fVar26;
   fStack0000000000000074 = fStack0000000000000074 * fVar26;
-  in_stack_00000078 = in_stack_00000078 * fVar26;
+  local_buffer_78 = local_buffer_78 * fVar26;
   *(float *)(param_4 + 0x59c) = fVar26 * fVar13;
   lVar10 = *(int64_t *)(unaff_RBX + 0x728);
   if (0.1 < *(float *)(lVar10 + 0x59c) || *(float *)(lVar10 + 0x59c) == 0.1) {
-    fVar16 = in_stack_00000078 * fStack0000000000000064 - fStack0000000000000074 * in_stack_00000068
+    fVar16 = local_buffer_78 * fStack0000000000000064 - fStack0000000000000074 * local_buffer_68
     ;
-    fVar12 = in_stack_00000060 * fStack0000000000000074 - fStack0000000000000064 * in_stack_00000070
+    fVar12 = local_buffer_60 * fStack0000000000000074 - fStack0000000000000064 * local_buffer_70
     ;
-    fVar14 = in_stack_00000068 * in_stack_00000070 - in_stack_00000060 * in_stack_00000078;
+    fVar14 = local_buffer_68 * local_buffer_70 - local_buffer_60 * local_buffer_78;
     fVar26 = fVar14 * fVar14 + fVar16 * fVar16 + fVar12 * fVar12;
     auVar11 = rsqrtss(ZEXT416((uint)fVar26),ZEXT416((uint)fVar26));
     fVar13 = auVar11._0_4_;
@@ -175,9 +165,9 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
     fVar16 = fVar29 * fVar16;
     fVar14 = fVar29 * fVar14;
     fVar29 = fVar29 * fVar12;
-    fVar23 = fStack0000000000000074 * fVar29 - in_stack_00000078 * fVar14;
-    fVar17 = fVar14 * in_stack_00000070 - fStack0000000000000074 * fVar16;
-    fVar15 = in_stack_00000078 * fVar16 - fVar29 * in_stack_00000070;
+    fVar23 = fStack0000000000000074 * fVar29 - local_buffer_78 * fVar14;
+    fVar17 = fVar14 * local_buffer_70 - fStack0000000000000074 * fVar16;
+    fVar15 = local_buffer_78 * fVar16 - fVar29 * local_buffer_70;
     SystemSecurityManager(unaff_RBP + -0x13);
     fVar26 = unaff_RBP[-0xd];
     fVar13 = unaff_RBP[-9];
@@ -190,23 +180,23 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
     fVar22 = unaff_RBP[-0x13];
     fVar24 = unaff_RBP[-0xf];
     fVar25 = fVar24 * fStack000000000000006c;
-    in_stack_00000060 = fVar12 * fVar16 + fVar1 * fVar23 + fVar27 * in_stack_00000070;
+    local_buffer_60 = fVar12 * fVar16 + fVar1 * fVar23 + fVar27 * local_buffer_70;
     fStack0000000000000064 = fVar12 * fVar14 + fVar1 * fVar15 + fVar27 * fStack0000000000000074;
-    in_stack_00000068 = fVar12 * fVar29 + fVar1 * fVar17 + fVar27 * in_stack_00000078;
+    local_buffer_68 = fVar12 * fVar29 + fVar1 * fVar17 + fVar27 * local_buffer_78;
     fStack000000000000006c =
          fVar12 * fStack000000000000005c + fVar1 * fStack000000000000006c +
          fVar27 * fStack000000000000007c;
     fVar12 = unaff_RBP[-0xb];
-    in_stack_00000050 = fVar22 * fVar16 + fVar24 * fVar23 + fVar12 * in_stack_00000070;
+    local_buffer_50 = fVar22 * fVar16 + fVar24 * fVar23 + fVar12 * local_buffer_70;
     fStack0000000000000054 = fVar22 * fVar14 + fVar24 * fVar15 + fVar12 * fStack0000000000000074;
-    in_stack_00000058 = fVar22 * fVar29 + fVar24 * fVar17 + fVar12 * in_stack_00000078;
+    local_buffer_58 = fVar22 * fVar29 + fVar24 * fVar17 + fVar12 * local_buffer_78;
     fStack000000000000005c =
          fVar22 * fStack000000000000005c + fVar25 + fVar12 * fStack000000000000007c;
-    in_stack_00000070 = fVar28 * fVar16 + fVar26 * fVar23 + fVar13 * in_stack_00000070;
+    local_buffer_70 = fVar28 * fVar16 + fVar26 * fVar23 + fVar13 * local_buffer_70;
     fStack0000000000000074 = fVar28 * fVar14 + fVar26 * fVar15 + fVar13 * fStack0000000000000074;
-    in_stack_00000078 = fVar28 * fVar29 + fVar26 * fVar17 + fVar13 * in_stack_00000078;
+    local_buffer_78 = fVar28 * fVar29 + fVar26 * fVar17 + fVar13 * local_buffer_78;
     fStack000000000000007c = fVar21 + fVar20 + fVar13 * fStack000000000000007c;
-    AdvancedProcessor_StateManager0(unaff_RBP + 4,&stack0x00000050);
+    AdvancedProcessor_StateManager0(unaff_RBP + 4,&local_buffer_00000050);
     uVar5 = *(uint64_t *)(unaff_RBP + 6);
     *(uint64_t *)(lVar10 + 0x40) = *(uint64_t *)(unaff_RBP + 4);
     *(uint64_t *)(lVar10 + 0x48) = uVar5;
@@ -278,7 +268,7 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
                                       lVar9 + 0x50);
       _fStack0000000000000040 = CONCAT44(pfVar7[1] - fVar27,*pfVar7 - fVar1);
       _fStack0000000000000048 = CONCAT44(0x7f7fffff,pfVar7[2] - fVar22);
-      SystemCore_EventHandler(unaff_RBP + 8,unaff_RBP + -7,&stack0x00000040);
+      SystemCore_EventHandler(unaff_RBP + 8,unaff_RBP + -7,&local_buffer_00000040);
       puVar4 = *(uint64_t **)(unaff_RBX + 0x728);
       uVar5 = *(uint64_t *)(unaff_RBP + -5);
       *puVar4 = *(uint64_t *)(unaff_RBP + -7);
@@ -286,21 +276,14 @@ void FUN_180515a6e(uint64_t param_1,float *param_2,int64_t param_3,int64_t param
     }
   }
   lVar10 = *(int64_t *)(unaff_RBX + 0x728);
-  FUN_180575360(*(uint64_t *)(unaff_RBX + 0x590),lVar10 + 0x50,lVar10 + 0x40,
+  NetworkSystem_75360(*(uint64_t *)(unaff_RBX + 0x590),lVar10 + 0x50,lVar10 + 0x40,
                 *(float *)(lVar10 + 0x59c) / *(float *)(*(int64_t *)(unaff_RBX + 0x6d8) + 0x8c0),
                 0x7149f2ca);
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x44) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x44) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-
-// 函数: void FUN_180515e40(uint64_t param_1,uint64_t param_2,int64_t param_3)
-void FUN_180515e40(uint64_t param_1,uint64_t param_2,int64_t param_3)
-
+// 函数: void NetworkSystem_15e40(uint64_t param_1,uint64_t param_2,int64_t param_3)
+void NetworkSystem_15e40(uint64_t param_1,uint64_t param_2,int64_t param_3)
 {
   uint uVar1;
   int iVar2;
@@ -333,8 +316,7 @@ void FUN_180515e40(uint64_t param_1,uint64_t param_2,int64_t param_3)
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000048;
-  int32_t uStack000000000000004c;
-  
+  int32_t local_buffer_4c;
   *(int32_t *)(param_3 + 0x59c) = 0x3dcccccd;
   lVar3 = *(int64_t *)(unaff_RBX + 0x728);
   fVar19 = *(float *)(lVar3 + 0x40);
@@ -362,7 +344,7 @@ void FUN_180515e40(uint64_t param_1,uint64_t param_2,int64_t param_3)
   *(float *)(lVar3 + 0x54) = fStack0000000000000044;
   *(float *)(lVar3 + 0x58) = fStack0000000000000048;
   *(int32_t *)(lVar3 + 0x5c) = 0x7f7fffff;
-  uStack000000000000004c = 0x7f7fffff;
+  local_buffer_4c = 0x7f7fffff;
   iVar2 = *(int *)(*(int64_t *)(unaff_RBX + 0x728) + 0x5a4);
   if (-1 < iVar2) {
     lVar3 = *(int64_t *)(unaff_RBX + 0x8d8);
@@ -404,49 +386,33 @@ void FUN_180515e40(uint64_t param_1,uint64_t param_2,int64_t param_3)
     *(uint *)(unaff_RBP + 0x3c) = uVar11;
     pfVar13 = (float *)SystemCore_CleanupHandler0(*(int64_t *)(lVar3 + 0x8a8) + 0x70,unaff_RBP + 0x80,
                                      lVar15 + 0x50);
-    uStack000000000000004c = 0x7f7fffff;
+    local_buffer_4c = 0x7f7fffff;
     fStack0000000000000040 = *pfVar13 - fVar19;
     fStack0000000000000044 = pfVar13[1] - fVar5;
     fStack0000000000000048 = pfVar13[2] - fVar6;
-    SystemCore_EventHandler(unaff_RBP + 0x20,unaff_RBP + -0x1c,&stack0x00000040);
+    SystemCore_EventHandler(unaff_RBP + 0x20,unaff_RBP + -0x1c,&local_buffer_00000040);
     puVar4 = *(uint64_t **)(unaff_RBX + 0x728);
     uVar12 = *(uint64_t *)(unaff_RBP + -0x14);
     *puVar4 = *(uint64_t *)(unaff_RBP + -0x1c);
     puVar4[1] = uVar12;
   }
   lVar3 = *(int64_t *)(unaff_RBX + 0x728);
-  FUN_180575360(*(uint64_t *)(unaff_RBX + 0x590),lVar3 + 0x50,lVar3 + 0x40,
+  NetworkSystem_75360(*(uint64_t *)(unaff_RBX + 0x590),lVar3 + 0x50,lVar3 + 0x40,
                 *(float *)(lVar3 + 0x59c) / *(float *)(*(int64_t *)(unaff_RBX + 0x6d8) + 0x8c0),
                 0x7149f2ca);
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x110) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x110) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-
-// 函数: void FUN_180516299(void)
-void FUN_180516299(void)
-
+// 函数: void NetworkSystem_16299(void)
+void NetworkSystem_16299(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x110) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x110) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1805162e0(int64_t param_1)
-void FUN_1805162e0(int64_t param_1)
-
+// 函数: void NetworkSystem_162e0(int64_t param_1)
+void NetworkSystem_162e0(int64_t param_1)
 {
   int64_t lVar1;
   int8_t auVar2 [16];
@@ -479,25 +445,24 @@ void FUN_1805162e0(int64_t param_1)
   float fVar29;
   float fVar30;
   float fVar31;
-  int8_t auStack_138 [32];
-  int32_t uStack_118;
-  int8_t uStack_110;
-  int8_t uStack_108;
-  uint64_t uStack_100;
+  int8_t stack_array_138 [32];
+  int32_t local_var_118;
+  int8_t local_var_110;
+  int8_t local_var_108;
+  uint64_t local_var_100;
   float fStack_f8;
   float fStack_f4;
   float fStack_f0;
-  int32_t uStack_ec;
+  int32_t local_var_ec;
   float fStack_e8;
-  uint64_t uStack_d8;
-  uint64_t uStack_d0;
-  int32_t uStack_c8;
-  int32_t uStack_c4;
-  int32_t uStack_c0;
-  int32_t uStack_bc;
-  uint64_t uStack_b8;
-  
-  uStack_b8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_138;
+  uint64_t local_var_d8;
+  uint64_t local_var_d0;
+  int32_t local_var_c8;
+  int32_t local_var_c4;
+  int32_t local_var_c0;
+  int32_t local_var_bc;
+  uint64_t local_var_b8;
+  local_var_b8 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_138;
   fVar28 = 1.0 - *(float *)(*(int64_t *)(param_1 + 0x590) + 0xa600);
   lVar1 = *(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8);
   fVar28 = fVar28 + fVar28;
@@ -510,27 +475,27 @@ void FUN_1805162e0(int64_t param_1)
            *(float *)(lVar8 + 0xb0) * *(float *)(lVar1 + 0x70) + *(float *)(lVar1 + 0xa0);
   fVar29 = *(float *)(lVar8 + 0xb0) * *(float *)(lVar1 + 0x74) +
            *(float *)(lVar8 + 0xb4) * *(float *)(lVar1 + 0x84) + *(float *)(lVar1 + 0xa4);
-  uVar5 = AdvancedProcessor_StateManager0(&uStack_d8,param_1 + 0x520);
+  uVar5 = AdvancedProcessor_StateManager0(&local_var_d8,param_1 + 0x520);
   lVar1 = *(int64_t *)(param_1 + 0x728);
   fVar19 = *(float *)(lVar1 + 0x90);
   fVar21 = *(float *)(lVar1 + 0x94);
   fVar22 = *(float *)(lVar1 + 0x98);
   fVar23 = *(float *)(lVar1 + 0x9c);
-  fVar24 = (float)uStack_d0 * fVar23 * 1.0 + (float)uStack_d8 * fVar21 * 1.0 +
-           (fVar19 * uStack_d8._4_4_ - uStack_d0._4_4_ * fVar22);
-  fVar25 = uStack_d0._4_4_ * fVar21 * 1.0 + (float)uStack_d8 * fVar22 * 1.0 +
-           (fVar19 * (float)uStack_d0 - uStack_d8._4_4_ * fVar23);
-  fVar26 = uStack_d8._4_4_ * fVar22 * 1.0 + (float)uStack_d8 * fVar23 * 1.0 +
-           (fVar19 * uStack_d0._4_4_ - (float)uStack_d0 * fVar21);
-  fVar27 = uStack_d0._4_4_ * fVar23 * -1.0 + (float)uStack_d0 * fVar22 * -1.0 +
-           (fVar19 * (float)uStack_d8 - uStack_d8._4_4_ * fVar21);
+  fVar24 = (float)local_var_d0 * fVar23 * 1.0 + (float)local_var_d8 * fVar21 * 1.0 +
+           (fVar19 * local_var_d8._4_4_ - local_var_d0._4_4_ * fVar22);
+  fVar25 = local_var_d0._4_4_ * fVar21 * 1.0 + (float)local_var_d8 * fVar22 * 1.0 +
+           (fVar19 * (float)local_var_d0 - local_var_d8._4_4_ * fVar23);
+  fVar26 = local_var_d8._4_4_ * fVar22 * 1.0 + (float)local_var_d8 * fVar23 * 1.0 +
+           (fVar19 * local_var_d0._4_4_ - (float)local_var_d0 * fVar21);
+  fVar27 = local_var_d0._4_4_ * fVar23 * -1.0 + (float)local_var_d0 * fVar22 * -1.0 +
+           (fVar19 * (float)local_var_d8 - local_var_d8._4_4_ * fVar21);
   if ((*(byte *)(lVar1 + 0x5ac) & 0x40) == 0) {
     fVar21 = 1.0 - fVar28;
     fVar19 = fVar28 * 0.3 + 0.7;
     fStack_f8 = fVar21 * *(float *)(lVar1 + 0x10) * 0.3 + fVar30 * fVar19;
     fStack_f4 = *(float *)(lVar1 + 0x14) * 0.3 * fVar21 + fVar29 * fVar19;
     fStack_f0 = *(float *)(lVar1 + 0x18) * 0.3 * fVar21 + fVar31 * fVar19;
-    uStack_ec = 0x7f7fffff;
+    local_var_ec = 0x7f7fffff;
     if (0.001 <= fVar28) {
       if (fVar28 <= 0.999) {
         fVar19 = *(float *)(lVar1 + 0x40);
@@ -539,24 +504,24 @@ void FUN_1805162e0(int64_t param_1)
         fVar29 = *(float *)(lVar1 + 0x4c);
         fVar30 = fVar25 * fVar23;
         fVar31 = fVar26 * fVar29;
-        uStack_c8 = 0xbf800000;
-        uStack_c4 = 0xbf800000;
-        uStack_c0 = 0xbf800000;
-        uStack_bc = 0xbf800000;
+        local_var_c8 = 0xbf800000;
+        local_var_c4 = 0xbf800000;
+        local_var_c0 = 0xbf800000;
+        local_var_bc = 0xbf800000;
         auVar10._0_4_ = fVar30 + fVar27 * fVar19;
         auVar10._4_4_ = fVar31 + fVar24 * fVar22;
         auVar10._8_4_ = fVar30 + fVar30;
         auVar10._12_4_ = fVar31 + fVar31;
         auVar13._4_12_ = auVar10._4_12_;
         auVar13._0_4_ = auVar10._0_4_ + auVar10._4_4_;
-        uStack_d8 = 0x3f8000003f800000;
-        uStack_d0 = 0x3f8000003f800000;
+        local_var_d8 = 0x3f8000003f800000;
+        local_var_d0 = 0x3f8000003f800000;
         uVar6 = movmskps(uVar5,auVar13);
         uVar7 = (uint64_t)(uVar6 & 1);
-        fVar30 = *(float *)(&uStack_d8 + uVar7 * 2);
-        fVar31 = *(float *)(&uStack_d0 + uVar7 * 2);
-        fVar24 = *(float *)((int64_t)&uStack_d8 + uVar7 * 0x10 + 4) * fVar24;
-        fVar26 = *(float *)((int64_t)&uStack_d0 + uVar7 * 0x10 + 4) * fVar26;
+        fVar30 = *(float *)(&local_var_d8 + uVar7 * 2);
+        fVar31 = *(float *)(&local_var_d0 + uVar7 * 2);
+        fVar24 = *(float *)((int64_t)&local_var_d8 + uVar7 * 0x10 + 4) * fVar24;
+        fVar26 = *(float *)((int64_t)&local_var_d0 + uVar7 * 0x10 + 4) * fVar26;
         if (0.9995 < ABS(auVar13._0_4_)) {
           fVar27 = fVar21 * fVar19 + fVar28 * fVar30 * fVar27;
           fVar30 = fVar21 * fVar22 + fVar28 * fVar24;
@@ -592,23 +557,23 @@ void FUN_1805162e0(int64_t param_1)
           fVar31 = fVar16 * fVar23 + fVar28 * fVar31 * fVar25;
           fVar29 = fVar16 * fVar29 + fVar28 * fVar26;
         }
-        uStack_d8 = CONCAT44(fVar30,fVar27);
-        uStack_d0 = CONCAT44(fVar29,fVar31);
+        local_var_d8 = CONCAT44(fVar30,fVar27);
+        local_var_d0 = CONCAT44(fVar29,fVar31);
       }
       else {
-        uStack_d8 = CONCAT44(fVar24,fVar27);
-        uStack_d0 = CONCAT44(fVar26,fVar25);
+        local_var_d8 = CONCAT44(fVar24,fVar27);
+        local_var_d0 = CONCAT44(fVar26,fVar25);
       }
     }
     else {
-      uStack_d8 = *(uint64_t *)(lVar1 + 0x40);
-      uStack_d0 = *(uint64_t *)(lVar1 + 0x48);
+      local_var_d8 = *(uint64_t *)(lVar1 + 0x40);
+      local_var_d0 = *(uint64_t *)(lVar1 + 0x48);
     }
-    uStack_100 = *(uint64_t *)(param_1 + 0x658);
+    local_var_100 = *(uint64_t *)(param_1 + 0x658);
     fVar28 = 0.0;
     lVar8 = *(int64_t *)(param_1 + 0x590);
-    uStack_108 = *(int8_t *)(lVar8 + 0x2600);
-    uStack_118 = 0x7149f2ca;
+    local_var_108 = *(int8_t *)(lVar8 + 0x2600);
+    local_var_118 = 0x7149f2ca;
   }
   else {
     fVar14 = *(float *)(lVar1 + 0xa0);
@@ -631,7 +596,7 @@ void FUN_1805162e0(int64_t param_1)
     fStack_f0 = fVar9 * *(float *)(lVar1 + 0x58) +
                 ((1.0 - (fVar21 * fVar21 + fVar21 * fVar21 + fVar22 * fVar22 + fVar22 * fVar22)) *
                  fVar19 + fVar31) * fVar28;
-    uStack_ec = 0x7f7fffff;
+    local_var_ec = 0x7f7fffff;
     fVar21 = *(float *)(lVar1 + 0x40);
     fVar22 = *(float *)(lVar1 + 0x44);
     fVar23 = *(float *)(lVar1 + 0x48);
@@ -656,31 +621,31 @@ void FUN_1805162e0(int64_t param_1)
         fVar28 = 1.0;
       }
       fVar28 = (float)asinf(fVar28);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       AdvancedSystemController(fVar28 * 0.5);
     }
     if (0.001 <= fVar9) {
       if (fVar9 <= 0.999) {
         fVar28 = fVar23 * fVar25;
         fVar19 = fVar31 * fVar26;
-        uStack_c8 = 0xbf800000;
-        uStack_c4 = 0xbf800000;
-        uStack_c0 = 0xbf800000;
-        uStack_bc = 0xbf800000;
+        local_var_c8 = 0xbf800000;
+        local_var_c4 = 0xbf800000;
+        local_var_c0 = 0xbf800000;
+        local_var_bc = 0xbf800000;
         auVar11._0_4_ = fVar28 + fVar21 * fVar27;
         auVar11._4_4_ = fVar19 + fVar22 * fVar24;
         auVar11._8_4_ = fVar28 + fVar28;
         auVar11._12_4_ = fVar19 + fVar19;
         auVar12._4_12_ = auVar11._4_12_;
         auVar12._0_4_ = auVar11._0_4_ + auVar11._4_4_;
-        uStack_d8 = 0x3f8000003f800000;
-        uStack_d0 = 0x3f8000003f800000;
+        local_var_d8 = 0x3f8000003f800000;
+        local_var_d0 = 0x3f8000003f800000;
         uVar6 = movmskps(uVar5,auVar12);
         uVar7 = (uint64_t)(uVar6 & 1);
-        fVar28 = *(float *)(&uStack_d8 + uVar7 * 2);
-        fVar19 = *(float *)(&uStack_d0 + uVar7 * 2);
-        fVar22 = *(float *)((int64_t)&uStack_d8 + uVar7 * 0x10 + 4) * fVar22;
-        fVar31 = *(float *)((int64_t)&uStack_d0 + uVar7 * 0x10 + 4) * fVar31;
+        fVar28 = *(float *)(&local_var_d8 + uVar7 * 2);
+        fVar19 = *(float *)(&local_var_d0 + uVar7 * 2);
+        fVar22 = *(float *)((int64_t)&local_var_d8 + uVar7 * 0x10 + 4) * fVar22;
+        fVar31 = *(float *)((int64_t)&local_var_d0 + uVar7 * 0x10 + 4) * fVar31;
         if (0.9995 < ABS(auVar12._0_4_)) {
           fVar29 = 1.0 - fVar9;
           fVar21 = fVar29 * fVar27 + fVar9 * fVar28 * fVar21;
@@ -718,27 +683,21 @@ void FUN_1805162e0(int64_t param_1)
           fVar31 = fVar14 * fVar26 + fVar29 * fVar31;
         }
       }
-      uStack_d8 = CONCAT44(fVar22,fVar21);
-      uStack_d0 = CONCAT44(fVar31,fVar23);
+      local_var_d8 = CONCAT44(fVar22,fVar21);
+      local_var_d0 = CONCAT44(fVar31,fVar23);
     }
     else {
-      uStack_d8 = CONCAT44(fVar24,fVar27);
-      uStack_d0 = CONCAT44(fVar26,fVar25);
+      local_var_d8 = CONCAT44(fVar24,fVar27);
+      local_var_d0 = CONCAT44(fVar26,fVar25);
     }
     lVar8 = *(int64_t *)(param_1 + 0x590);
     fVar28 = *(float *)(lVar1 + 0x59c) / *(float *)(*(int64_t *)(param_1 + 0x6d8) + 0x8c0);
-    uStack_100 = *(uint64_t *)(param_1 + 0x658);
-    uStack_108 = *(int8_t *)(lVar8 + 0x2600);
-    uStack_118 = 0x3f800000;
+    local_var_100 = *(uint64_t *)(param_1 + 0x658);
+    local_var_108 = *(int8_t *)(lVar8 + 0x2600);
+    local_var_118 = 0x3f800000;
   }
-  uStack_110 = 0;
-  FUN_180575360(lVar8,&fStack_f8,&uStack_d8,fVar28);
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_b8 ^ (uint64_t)auStack_138);
+  local_var_110 = 0;
+  NetworkSystem_75360(lVar8,&fStack_f8,&local_var_d8,fVar28);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_b8 ^ (uint64_t)stack_array_138);
 }
-
-
-
-
-
-

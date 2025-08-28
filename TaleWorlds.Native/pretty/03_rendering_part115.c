@@ -1,10 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part115.c - 渲染系统高级资源管理和数据处理模块
 // 包含7个核心函数，涵盖渲染系统资源分配、数据处理、内存管理、缓冲区操作等功能
 // 主要函数：RenderingSystem_EmptyFunction1、RenderingSystem_ResourceAllocator、RenderingSystem_DataProcessor、RenderingSystem_EmptyFunction2、RenderingSystem_DataCopier、RenderingSystem_BufferManager、RenderingSystem_EmptyFunction3、RenderingSystem_Serializer
-
 // 常量定义
 #define RENDERING_SYSTEM_RESOURCE_SIZE_1 0x1a0
 #define RENDERING_SYSTEM_RESOURCE_SIZE_2 0x200
@@ -15,42 +13,39 @@
 #define RENDERING_SYSTEM_LONG_SIZE 8
 #define RENDERING_SYSTEM_MATRIX_SIZE 0x40
 #define RENDERING_SYSTEM_VECTOR_SIZE 0x10
-
 // 函数别名定义
-#define RenderingSystem_EmptyFunction1 FUN_180337b24
-#define RenderingSystem_ResourceAllocator FUN_180337b40
-#define RenderingSystem_DataProcessor FUN_180337d40
-#define RenderingSystem_BufferHandler FUN_180337d8a
-#define RenderingSystem_EmptyFunction2 FUN_180337e97
-#define RenderingSystem_DataCopier FUN_180337eb0
-#define RenderingSystem_BufferManager FUN_180337f5a
-#define RenderingSystem_EmptyFunction3 FUN_1803380ef
-#define RenderingSystem_Serializer FUN_180338100
-
+#define RenderingSystem_EmptyFunction1 function_337b24
+#define RenderingSystem_ResourceAllocator function_337b40
+#define RenderingSystem_DataProcessor function_337d40
+#define RenderingSystem_BufferHandler function_337d8a
+#define RenderingSystem_EmptyFunction2 function_337e97
+#define RenderingSystem_DataCopier function_337eb0
+#define RenderingSystem_BufferManager function_337f5a
+#define RenderingSystem_EmptyFunction3 function_3380ef
+#define RenderingSystem_Serializer function_338100
 /**
  * 渲染系统空函数1
- * 
+ *
  * 主要功能：
  * - 作为系统占位符函数
  * - 保持函数表完整性
  * - 用于未来功能扩展
- * 
+ *
  * @return void
  */
 void RenderingSystem_EmptyFunction1(void)
 {
   return;
 }
-
 /**
  * 渲染系统资源分配器
- * 
+ *
  * 主要功能：
  * - 根据类型分配渲染资源
  * - 管理不同类型的资源对象
  * - 初始化资源状态
  * - 处理资源创建和配置
- * 
+ *
  * @param param_1 资源参数指针
  * @return int64_t* 分配的资源对象指针
  */
@@ -59,27 +54,25 @@ int64_t * RenderingSystem_ResourceAllocator(int64_t param_1)
   int32_t uVar1;
   uint64_t uVar2;
   int64_t *plVar3;
-  
   uVar1 = **(int32_t **)(param_1 + 8);
   *(int32_t **)(param_1 + 8) = *(int32_t **)(param_1 + 8) + 1;
-  
   switch(uVar1) {
   case 0:
   case 7:
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_1,RENDERING_SYSTEM_LONG_SIZE,3);
-    plVar3 = (int64_t *)FUN_180339110(uVar2);
+    plVar3 = (int64_t *)function_339110(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((int64_t)plVar3 + 0x8c) = uVar1;
     return plVar3;
   case 1:
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_2,RENDERING_SYSTEM_LONG_SIZE,3);
-    plVar3 = (int64_t *)FUN_180339920(uVar2);
+    plVar3 = (int64_t *)function_339920(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((int64_t)plVar3 + 0x8c) = 1;
     return plVar3;
   case 2:
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_3,RENDERING_SYSTEM_LONG_SIZE,3);
-    plVar3 = (int64_t *)FUN_18033a200(uVar2);
+    plVar3 = (int64_t *)function_33a200(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((int64_t)plVar3 + 0x8c) = 2;
     return plVar3;
@@ -87,7 +80,7 @@ int64_t * RenderingSystem_ResourceAllocator(int64_t param_1)
     return (int64_t *)0x0;
   case 4:
     uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,RENDERING_SYSTEM_RESOURCE_SIZE_4,RENDERING_SYSTEM_LONG_SIZE,3);
-    plVar3 = (int64_t *)FUN_180339d70(uVar2);
+    plVar3 = (int64_t *)function_339d70(uVar2);
     (**(code **)(*plVar3 + 0x20))(plVar3,param_1,0);
     *(int32_t *)((int64_t)plVar3 + 0x8c) = 4;
     return plVar3;
@@ -98,16 +91,15 @@ int64_t * RenderingSystem_ResourceAllocator(int64_t param_1)
     return plVar3;
   }
 }
-
 /**
  * 渲染系统数据处理器
- * 
+ *
  * 主要功能：
  * - 处理渲染数据批量操作
  * - 管理数据缓冲区扩展
  * - 执行数据内存分配
  * - 处理数据块序列化
- * 
+ *
  * @param param_1 渲染数据指针
  * @param param_2 数据参数
  * @param param_3 序列化缓冲区指针
@@ -123,7 +115,6 @@ void RenderingSystem_DataProcessor(int64_t param_1,uint64_t param_2,uint64_t *pa
   uint64_t uVar6;
   int64_t lVar7;
   int iVar8;
-  
   lVar7 = *(int64_t *)(param_1 + 0x90);
   lVar3 = *(int64_t *)(param_1 + 0x98) - lVar7;
   iVar8 = 0;
@@ -170,16 +161,15 @@ LAB_180337de9:
   }
   return;
 }
-
 /**
  * 渲染系统缓冲区处理器
- * 
+ *
  * 主要功能：
  * - 处理缓冲区数据写入
  * - 管理缓冲区扩展
  * - 执行内存重分配
  * - 处理数据块移动
- * 
+ *
  * @param param_1 数据参数1
  * @param param_2 数据参数2
  * @param param_3 数据指针
@@ -196,7 +186,6 @@ void RenderingSystem_BufferHandler(uint64_t param_1,uint64_t param_2,int64_t par
   int64_t unaff_R12;
   int64_t unaff_R13;
   int unaff_R15D;
-  
   uVar5 = 0;
   do {
     plVar4 = (int64_t *)unaff_RBX[1];
@@ -240,31 +229,29 @@ LAB_180337de9:
     }
   } while( true );
 }
-
 /**
  * 渲染系统空函数2
- * 
+ *
  * 主要功能：
  * - 作为系统占位符函数
  * - 保持函数表完整性
  * - 用于未来功能扩展
- * 
+ *
  * @return void
  */
 void RenderingSystem_EmptyFunction2(void)
 {
   return;
 }
-
 /**
  * 渲染系统数据复制器
- * 
+ *
  * 主要功能：
  * - 复制渲染数据结构
  * - 管理数据深度复制
  * - 处理资源引用复制
  * - 执行内存分配和复制
- * 
+ *
  * @param param_1 目标数据指针
  * @param param_2 源数据指针
  * @return int64_t 复制结果
@@ -284,7 +271,6 @@ int64_t RenderingSystem_DataCopier(int64_t param_1,int64_t param_2)
   uint64_t uVar11;
   int iVar12;
   int64_t lStackX_8;
-  
   /* 复制基础数据字段 */
   *(int32_t *)(param_1 + 8) = *(int32_t *)(param_2 + 8);
   *(int32_t *)(param_1 + 0x10) = *(int32_t *)(param_2 + 0x10);
@@ -317,7 +303,6 @@ int64_t RenderingSystem_DataCopier(int64_t param_1,int64_t param_2)
   *(int32_t *)(param_1 + 0x84) = uVar3;
   *(int32_t *)(param_1 + 0x88) = *(int32_t *)(param_2 + 0x88);
   *(int32_t *)(param_1 + 0x8c) = *(int32_t *)(param_2 + 0x8c);
-  
   /* 处理数据块复制 */
   lVar8 = *(int64_t *)(param_2 + 0x90);
   lVar7 = *(int64_t *)(param_2 + 0x98) - lVar8;
@@ -329,7 +314,7 @@ int64_t RenderingSystem_DataCopier(int64_t param_1,int64_t param_2)
       lVar8 = uVar11 * RENDERING_SYSTEM_RESOURCE_SIZE_1 + lVar8;
       if (uVar10 < *(uint64_t *)(param_1 + 0xa0)) {
         *(uint64_t *)(param_1 + 0x98) = uVar10 + RENDERING_SYSTEM_RESOURCE_SIZE_1;
-        FUN_18033b460(uVar10,lVar8);
+        function_33b460(uVar10,lVar8);
       }
       else {
         lVar9 = *(int64_t *)(param_1 + 0x90);
@@ -346,14 +331,14 @@ LAB_180337feb:
           if (lVar7 != 0) goto LAB_180337feb;
           lVar6 = 0;
         }
-        FUN_180285440(&lStackX_8,lVar9,uVar10,lVar6);
+        function_285440(&lStackX_8,lVar9,uVar10,lVar6);
         lVar5 = lStackX_8;
-        FUN_18033b460(lStackX_8,lVar8);
+        function_33b460(lStackX_8,lVar8);
         lVar8 = *(int64_t *)(param_1 + 0x98);
         lVar9 = *(int64_t *)(param_1 + 0x90);
         if (lVar9 != lVar8) {
           do {
-            FUN_180281e80(lVar9);
+            function_281e80(lVar9);
             lVar9 = lVar9 + RENDERING_SYSTEM_RESOURCE_SIZE_1;
           } while (lVar9 != lVar8);
           lVar9 = *(int64_t *)(param_1 + 0x90);
@@ -372,16 +357,15 @@ LAB_180337feb:
   }
   return param_1;
 }
-
 /**
  * 渲染系统缓冲区管理器
- * 
+ *
  * 主要功能：
  * - 管理渲染缓冲区
  * - 处理缓冲区扩展
  * - 执行内存分配
  * - 管理数据块移动
- * 
+ *
  * @return void
  */
 void RenderingSystem_BufferManager(void)
@@ -398,15 +382,14 @@ void RenderingSystem_BufferManager(void)
   int64_t in_R11;
   int unaff_R12D;
   int64_t unaff_R13;
-  int64_t in_stack_00000060;
-  
+  int64_t local_buffer_60;
   uVar6 = 0;
   do {
     uVar5 = *(uint64_t *)(unaff_RDI + 0x98);
     in_R9 = uVar6 * RENDERING_SYSTEM_RESOURCE_SIZE_1 + in_R9;
     if (uVar5 < *(uint64_t *)(unaff_RDI + 0xa0)) {
       *(uint64_t *)(unaff_RDI + 0x98) = uVar5 + RENDERING_SYSTEM_RESOURCE_SIZE_1;
-      FUN_18033b460(uVar5,in_R9);
+      function_33b460(uVar5,in_R9);
     }
     else {
       lVar7 = *(int64_t *)(unaff_RDI + 0x90);
@@ -424,14 +407,14 @@ LAB_180337feb:
         if (lVar3 != 0) goto LAB_180337feb;
         lVar2 = 0;
       }
-      FUN_180285440(&stack0x00000060,lVar7,uVar5,lVar2);
-      lVar1 = in_stack_00000060;
-      FUN_18033b460(in_stack_00000060,in_R9);
+      function_285440(&local_buffer_00000060,lVar7,uVar5,lVar2);
+      lVar1 = local_buffer_60;
+      function_33b460(local_buffer_60,in_R9);
       lVar7 = *(int64_t *)(unaff_RDI + 0x98);
       lVar4 = *(int64_t *)(unaff_RDI + 0x90);
       if (lVar4 != lVar7) {
         do {
-          FUN_180281e80(lVar4);
+          function_281e80(lVar4);
           lVar4 = lVar4 + RENDERING_SYSTEM_RESOURCE_SIZE_1;
         } while (lVar4 != lVar7);
         lVar4 = *(int64_t *)(unaff_RDI + 0x90);
@@ -452,31 +435,29 @@ LAB_180337feb:
     }
   } while( true );
 }
-
 /**
  * 渲染系统空函数3
- * 
+ *
  * 主要功能：
  * - 作为系统占位符函数
  * - 保持函数表完整性
  * - 用于未来功能扩展
- * 
+ *
  * @return void
  */
 void RenderingSystem_EmptyFunction3(void)
 {
   return;
 }
-
 /**
  * 渲染系统序列化器
- * 
+ *
  * 主要功能：
  * - 序列化渲染数据
  * - 处理缓冲区管理
  * - 执行数据压缩
  * - 管理数据写入操作
- * 
+ *
  * @param param_1 渲染数据指针
  * @param param_2 序列化缓冲区指针
  * @return void
@@ -496,7 +477,6 @@ void RenderingSystem_Serializer(int64_t param_1,int64_t *param_2)
   int64_t lVar11;
   uint uVar12;
   uint64_t uVar13;
-  
   System_QueueProcessor(param_2,param_1);
   puVar5 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0x5c);
@@ -522,7 +502,6 @@ void RenderingSystem_Serializer(int64_t param_1,int64_t *param_2)
   }
   *puVar5 = uVar1;
   param_2[1] = param_2[1] + RENDERING_SYSTEM_INT_SIZE;
-  
   /* 处理矩阵标识符 */
   pcVar3 = (char *)param_2[1];
   if (((((*(float *)(param_1 + 0x100) == 0.0) && (*(float *)(param_1 + 0x104) == 0.0)) &&
@@ -546,10 +525,9 @@ void RenderingSystem_Serializer(int64_t param_1,int64_t *param_2)
   param_2[1] = param_2[1] + 1;
   puVar5 = (int32_t *)param_2[1];
   if (cVar7 == '\0') {
-    FUN_18063a110(param_2,(float *)(param_1 + 0xd0));
+    function_63a110(param_2,(float *)(param_1 + 0xd0));
     puVar5 = (int32_t *)param_2[1];
   }
-  
   /* 处理矩阵数据 */
   uVar1 = *(int32_t *)(param_1 + 100);
   if ((uint64_t)((*param_2 - (int64_t)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
@@ -563,7 +541,6 @@ void RenderingSystem_Serializer(int64_t param_1,int64_t *param_2)
   Audio_SoundManager(param_2,param_1 + 0xa0);
   Audio_SoundManager(param_2,param_1 + 0xb0);
   Audio_SoundManager(param_2,param_1 + 0xc0);
-  
   /* 处理变换数据 */
   puVar5 = (int32_t *)param_2[1];
   uVar1 = *(int32_t *)(param_1 + 0x68);
@@ -581,7 +558,6 @@ void RenderingSystem_Serializer(int64_t param_1,int64_t *param_2)
   }
   *puVar5 = uVar1;
   param_2[1] = param_2[1] + RENDERING_SYSTEM_INT_SIZE;
-  
   /* 处理数据块 */
   piVar4 = (int *)param_2[1];
   lVar6 = *(int64_t *)(param_1 + 0x138);
@@ -612,7 +588,6 @@ void RenderingSystem_Serializer(int64_t param_1,int64_t *param_2)
       uVar10 = uVar9;
     } while ((int64_t)uVar9 < (int64_t)iVar8);
   }
-  
   /* 处理附加数据 */
   uVar1 = *(int32_t *)(param_1 + 0x7c);
   if ((uint64_t)((*param_2 - (int64_t)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
@@ -700,7 +675,6 @@ void RenderingSystem_Serializer(int64_t param_1,int64_t *param_2)
       uVar9 = (uint64_t)uVar12;
     } while (uVar12 < *(uint *)(param_1 + 0x74));
   }
-  
   /* 处理剩余数据 */
   uVar1 = *(int32_t *)(param_1 + 0x78);
   if ((uint64_t)((*param_2 - (int64_t)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
@@ -725,7 +699,6 @@ void RenderingSystem_Serializer(int64_t param_1,int64_t *param_2)
       param_2[1] = (int64_t)puVar5;
     } while (uVar12 < *(uint *)(param_1 + 0x78));
   }
-  
   /* 处理最终数据 */
   uVar1 = *(int32_t *)(param_1 + 0x6c);
   if ((uint64_t)((*param_2 - (int64_t)puVar5) + param_2[2]) < RENDERING_SYSTEM_BUFFER_THRESHOLD) {
@@ -747,46 +720,45 @@ void RenderingSystem_Serializer(int64_t param_1,int64_t *param_2)
   param_2[1] = param_2[1] + RENDERING_SYSTEM_INT_SIZE;
   return;
 }
-
 /* 技术说明：
- * 
+ *
  * 本模块实现了渲染系统的高级资源管理和数据处理功能，主要特点包括：
- * 
+ *
  * 1. 资源管理优化：
  *    - 支持多种资源类型的动态分配
  *    - 实现资源池管理提高性能
  *    - 提供资源状态跟踪和清理
  *    - 支持资源引用计数管理
- * 
+ *
  * 2. 数据处理能力：
  *    - 批量处理渲染数据提高效率
  *    - 支持数据序列化和反序列化
  *    - 实现数据深度复制和移动
  *    - 提供数据压缩和优化
- * 
+ *
  * 3. 内存管理机制：
  *    - 动态内存分配和释放
  *    - 缓冲区扩展和收缩
  *    - 内存碎片整理
  *    - 内存泄漏防护
- * 
+ *
  * 4. 性能优化策略：
  *    - 使用常量定义提高可读性
  *    - 实现批量数据处理
  *    - 优化内存访问模式
  *    - 减少内存分配次数
- * 
+ *
  * 5. 错误处理机制：
  *    - 边界检查和验证
  *    - 内存分配失败处理
  *    - 缓冲区溢出防护
  *    - 状态一致性检查
- * 
+ *
  * 6. 线程安全考虑：
  *    - 原子操作支持
  *    - 线程局部存储
  *    - 同步机制集成
  *    - 无锁数据结构
- * 
+ *
  * 本模块为渲染系统提供了完整的数据处理和资源管理解决方案，确保系统的高效稳定运行。
  */

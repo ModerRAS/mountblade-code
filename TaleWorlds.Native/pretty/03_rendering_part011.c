@@ -1,35 +1,28 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part011.c - 渲染系统高级数据处理模块
 // 该模块包含3个核心函数，涵盖渲染系统高级数据处理、数据序列化、
 // 内存管理、初始化、参数处理、优化处理和状态管理等功能
-
 /*===================================================================================
     常量定义
 ===================================================================================*/
-
 // 渲染系统数据结构大小常量
 #define RENDERING_DATA_BLOCK_SIZE      0x58        // 数据块大小 (88字节)
 #define RENDERING_DATA_CHUNK_SIZE      0x10        // 数据块大小 (16字节)
 #define RENDERING_BUFFER_SIZE         0x40        // 缓冲区大小 (64字节)
 #define RENDERING_ARRAY_SIZE          0xb         // 数组大小 (11个元素)
-
 // 渲染系统标志常量
 #define RENDERING_FLAG_FFFFFFFE       0xfffffffe   // 通用标志掩码
 #define RENDERING_FLAG_INITIALIZED    0x01         // 已初始化标志
 #define RENDERING_FLAG_ACTIVE         0x02         // 活动标志
-
 // 渲染系统地址常量
 #define RENDERING_TESSELLATION_BASE   0x18098e220  // 曲面细分基础地址
 #define RENDERING_SHADER_BASE         0x180bf8ff0  // 着色器基础地址
 #define RENDERING_SHADER_END          0x180bf90b8  // 着色器结束地址
-
 // 渲染系统浮点常量
 #define RENDERING_FLOAT_ONE           0x3f800000    // 浮点数1.0
 #define RENDERING_FLOAT_0_6           0x3f266666    // 浮点数0.6
 #define RENDERING_FLOAT_0_5           0x3f000000    // 浮点数0.5
-
 // 渲染系统偏移量常量
 #define RENDERING_OFFSET_4            0x04         // 偏移量4
 #define RENDERING_OFFSET_8            0x08         // 偏移量8
@@ -45,21 +38,17 @@
 #define RENDERING_OFFSET_19C          0x19c        // 偏移量412
 #define RENDERING_OFFSET_1A4          0x1a4        // 偏移量420
 #define RENDERING_OFFSET_1AC          0x1ac        // 偏移量428
-
 // 渲染系统指针常量
 #define RENDERING_NULL_PTR            0x0           // 空指针
 #define RENDERING_BASE_PTR            &system_state_ptr     // 系统状态基础指针
 #define RENDERING_MEM_PTR            &memory_allocator_3480_ptr  // 内存分配器指针
-
 /*===================================================================================
     函数声明和别名定义
 ===================================================================================*/
-
 // 渲染系统高级数据处理函数
 void RenderingSystem_AdvancedDataProcessor(int64_t *render_context, int64_t *data_stream);
 void RenderingSystem_DataSerializer(int32_t *data_params, int64_t *stream_buffer);
 uint64_t *RenderingSystem_ContextInitializer(uint64_t *context_ptr);
-
 // 渲染系统内存管理函数别名
 #define RenderingSystem_MemoryAllocator CoreMemoryPoolAllocator    // 渲染系统内存分配器
 #define RenderingSystem_MemoryInitializer CoreMemoryPoolInitializer // 渲染系统内存初始化器
@@ -67,24 +56,21 @@ uint64_t *RenderingSystem_ContextInitializer(uint64_t *context_ptr);
 #define RenderingSystem_DataSerializer System_DataSerializer        // 渲染系统数据序列化器
 #define RenderingSystem_QueueProcessor System_QueueProcessor        // 渲染系统队列处理器
 #define RenderingSystem_SecurityChecker SystemSecurityChecker      // 渲染系统安全检查器
-
 // 渲染系统专用指针
 #define RenderingSharpenPtr &rendering_sharpen_ptr    // 渲染锐化指针
 #define RenderingRipplePtr &rendering_ripple_ptr      // 渲染波纹指针
 #define RenderingLinePtr &rendering_line_ptr          // 渲染线条指针
 #define RenderingTessellationPtr &rendering_tessellation_ptr  // 渲染曲面细分指针
-
 /*===================================================================================
     核心函数实现
 ===================================================================================*/
-
 /**
  * 渲染系统高级数据处理器
  * 处理渲染系统的高级数据，包括曲面细分、着色器、纹理等数据的解析和处理
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param data_stream 数据流指针
- * 
+ *
  * 处理流程：
  * 1. 初始化渲染锐化处理
  * 2. 处理曲面细分数据
@@ -141,7 +127,6 @@ void RenderingSystem_AdvancedDataProcessor(int64_t *render_context, int64_t *dat
     int stack_val8;
     byte stack_buffer4[1032];
     uint64_t stack_val9;
-    
     stack_val5 = RENDERING_FLAG_FFFFFFFE;
     stack_val9 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
     uint_val1 = **(uint **)(data_stream + 8);
@@ -149,7 +134,7 @@ void RenderingSystem_AdvancedDataProcessor(int64_t *render_context, int64_t *dat
     stack_val1 = uint_val1;
     stack_val3 = data_stream;
     stack_val4 = render_context;
-    FUN_180272bd0(RenderingSharpenPtr, data_stream, render_context);
+    function_272bd0(RenderingSharpenPtr, data_stream, render_context);
     *(int64_t *)(data_stream + 8) = *(int64_t *)(data_stream + 8) + 4;
     uint64_val2 = 0;
     *(int32_t *)(render_context + 4) = 0;
@@ -324,7 +309,7 @@ void RenderingSystem_AdvancedDataProcessor(int64_t *render_context, int64_t *dat
             uint_val1 = **(uint **)(data_stream + 8);
             *(uint **)(data_stream + 8) = *(uint **)(data_stream + 8) + 1;
             if (uint_val1 != 0) {
-                FUN_180049c70(&stack_ptr2);
+                function_049c70(&stack_ptr2);
                 *(int64_t *)(data_stream + 8) = *(int64_t *)(data_stream + 8) + (uint64_t)uint_val1;
             }
             uint64_ptr1 = (uint64_t *)0x0;
@@ -400,7 +385,7 @@ void RenderingSystem_AdvancedDataProcessor(int64_t *render_context, int64_t *dat
                     uint64_ptr3 = *(uint64_t **)(render_context + 0x120);
                 }
                 if (uint64_ptr3 != (uint64_t *)0x0) {
-                            // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     RenderingSystem_MemoryInitializer(uint64_ptr3);
                 }
                 *(uint64_t **)(render_context + 0x120) = uint64_ptr1;
@@ -501,17 +486,16 @@ void RenderingSystem_AdvancedDataProcessor(int64_t *render_context, int64_t *dat
         *(int32_t *)(render_context + 0x1ac) = *int32_ptr;
         *(int64_t *)(data_stream + 8) = *(int64_t *)(data_stream + 8) + 4;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     RenderingSystem_SecurityChecker(stack_val9 ^ (uint64_t)stack_buffer1);
 }
-
 /**
  * 渲染系统数据序列化器
  * 将渲染数据序列化为可传输或存储的格式
- * 
+ *
  * @param data_params 数据参数指针
  * @param stream_buffer 流缓冲区指针
- * 
+ *
  * 处理流程：
  * 1. 设置序列化头部信息
  * 2. 序列化渲染锐化数据
@@ -539,7 +523,6 @@ void RenderingSystem_DataSerializer(int32_t *data_params, int64_t *stream_buffer
     int64_t *int64_ptr2;
     int32_t *int32_ptr1;
     uint64_t uint64_val3;
-    
     int32_ptr1 = (int32_t *)stream_buffer[1];
     if ((uint64_t)((*stream_buffer - (int64_t)int32_ptr1) + stream_buffer[2]) < 5) {
         RenderingSystem_BufferManager(stream_buffer, (int64_t)int32_ptr1 + (4 - *stream_buffer));
@@ -858,14 +841,13 @@ void RenderingSystem_DataSerializer(int32_t *data_params, int64_t *stream_buffer
     stream_buffer[1] = stream_buffer[1] + 4;
     return;
 }
-
 /**
  * 渲染系统上下文初始化器
  * 初始化渲染系统的上下文数据结构，设置默认参数和状态
- * 
+ *
  * @param context_ptr 上下文指针
  * @return 初始化后的上下文指针
- * 
+ *
  * 处理流程：
  * 1. 清零上下文数据结构
  * 2. 设置默认渲染参数
@@ -937,51 +919,42 @@ uint64_t *RenderingSystem_ContextInitializer(uint64_t *context_ptr)
     context_ptr[0x22] = 0;
     return context_ptr;
 }
-
 /*===================================================================================
     技术说明
 ===================================================================================*/
-
 /*
     渲染系统高级数据处理模块技术说明：
-
     1. 模块概述：
        - 本模块是渲染系统的高级数据处理组件
        - 包含3个核心函数，涵盖渲染系统数据处理的各个方面
        - 提供完整的渲染数据生命周期管理功能
-
     2. 核心功能：
        - 高级数据处理器：处理复杂的渲染数据，包括曲面细分、着色器、纹理等
        - 数据序列化器：将渲染数据序列化为可传输或存储的格式
        - 上下文初始化器：初始化渲染系统的上下文数据结构
-
     3. 技术特点：
        - 高级数据处理：支持复杂的渲染数据结构和算法
        - 序列化支持：提供完整的数据序列化和反序列化功能
        - 内存管理：智能的内存分配和释放策略
        - 性能优化：批处理和缓存机制提高处理效率
        - 错误处理：完善的错误检测和恢复机制
-
     4. 使用场景：
        - 3D游戏引擎的高级渲染数据处理
        - 图形用户界面的数据序列化
        - 多媒体应用的数据管理
        - 实时渲染系统的数据处理
        - 虚拟现实应用的数据管理
-
     5. 性能优化：
        - 批量处理：减少函数调用开销
        - 内存池管理：高效的内存分配策略
        - 数据缓存：减少重复计算
        - 智能扩容：根据需求自动调整内存容量
-
     6. 注意事项：
        - 需要正确初始化渲染上下文
        - 注意内存的生命周期管理
        - 避免内存泄漏和访问越界
        - 正确处理错误情况
        - 及时释放不再使用的资源
-
     7. 依赖关系：
        - 依赖于系统内存管理函数
        - 依赖于数据结构定义

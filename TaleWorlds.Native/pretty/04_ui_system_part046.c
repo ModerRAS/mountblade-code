@@ -1,25 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part046.c - 4 个函数
-
-// 函数: void FUN_18067c470(void)
-void FUN_18067c470(void)
-
+// 函数: void function_67c470(void)
+void function_67c470(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180683f90(int8_t (*param_1) [16],int8_t (*param_2) [16],int param_3)
-void FUN_180683f90(int8_t (*param_1) [16],int8_t (*param_2) [16],int param_3)
-
+// 函数: void function_683f90(int8_t (*param_1) [16],int8_t (*param_2) [16],int param_3)
+void function_683f90(int8_t (*param_1) [16],int8_t (*param_2) [16],int param_3)
 {
   int8_t auVar1 [12];
   int8_t auVar2 [12];
@@ -157,7 +147,6 @@ void FUN_180683f90(int8_t (*param_1) [16],int8_t (*param_2) [16],int param_3)
   int8_t auVar101 [16];
   int8_t auVar112 [12];
   int8_t auVar116 [16];
-  
   auVar128 = psllw(*param_1,2);
   auVar119 = psllw(*(int8_t (*) [16])(*param_1 + (int64_t)param_3 * 2),2);
   auVar125 = psllw(*(int8_t (*) [16])(*param_1 + (int64_t)(param_3 * 2) * 2),2);
@@ -630,32 +619,15 @@ void FUN_180683f90(int8_t (*param_1) [16],int8_t (*param_2) [16],int param_3)
   param_2[7] = auVar52;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1806844a0(void)
-void FUN_1806844a0(void)
-
+// 函数: void function_6844a0(void)
+void function_6844a0(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-
-// 函数: void FUN_18068b080(void)
-void FUN_18068b080(void)
-
+// 函数: void function_68b080(void)
+void function_68b080(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-

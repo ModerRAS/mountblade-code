@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_09_part094.c - 11 个函数
-
-// 函数: void FUN_1806a0150(int64_t param_1,int64_t param_2)
-void FUN_1806a0150(int64_t param_1,int64_t param_2)
-
+// 函数: void UtilitiesSystem_a0150(int64_t param_1,int64_t param_2)
+void UtilitiesSystem_a0150(int64_t param_1,int64_t param_2)
 {
   byte bVar1;
   uint64_t uVar2;
@@ -18,7 +15,6 @@ void FUN_1806a0150(int64_t param_1,int64_t param_2)
   bool bVar9;
   byte *pbStackX_8;
   int64_t lStackX_18;
-  
   lStackX_18 = 2;
   pbStackX_8 = &ui_system_data_1152_ptr;
   do {
@@ -78,11 +74,7 @@ void FUN_1806a0150(int64_t param_1,int64_t param_2)
   } while (lStackX_18 != 0);
   return;
 }
-
-
-
-int FUN_1806a02d0(int64_t param_1,int64_t param_2)
-
+int UtilitiesSystem_a02d0(int64_t param_1,int64_t param_2)
 {
   byte bVar1;
   char cVar2;
@@ -90,7 +82,6 @@ int FUN_1806a02d0(int64_t param_1,int64_t param_2)
   uint64_t uVar4;
   uint uVar5;
   bool bVar6;
-  
   cVar2 = '\0';
   do {
     uVar5 = ((uint)*(byte *)(((int64_t)cVar2 >> 1) + param_2) * (*(int *)(param_1 + 0x1c) + -1) >>
@@ -113,11 +104,7 @@ int FUN_1806a02d0(int64_t param_1,int64_t param_2)
   } while ('\0' < cVar2);
   return -(int)cVar2;
 }
-
-
-
-int FUN_1806a03a0(int64_t param_1,int64_t param_2)
-
+int UtilitiesSystem_a03a0(int64_t param_1,int64_t param_2)
 {
   byte bVar1;
   char cVar2;
@@ -125,7 +112,6 @@ int FUN_1806a03a0(int64_t param_1,int64_t param_2)
   uint64_t uVar4;
   uint uVar5;
   bool bVar6;
-  
   cVar2 = '\0';
   do {
     uVar5 = ((uint)*(byte *)(((int64_t)cVar2 >> 1) + param_2) * (*(int *)(param_1 + 0x1c) + -1) >>
@@ -148,15 +134,8 @@ int FUN_1806a03a0(int64_t param_1,int64_t param_2)
   } while ('\0' < cVar2);
   return -(int)cVar2;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a0470(int64_t param_1)
-void FUN_1806a0470(int64_t param_1)
-
+// 函数: void UtilitiesSystem_a0470(int64_t param_1)
+void UtilitiesSystem_a0470(int64_t param_1)
 {
   int64_t lVar1;
   byte bVar2;
@@ -170,9 +149,8 @@ void FUN_1806a0470(int64_t param_1)
   int iVar10;
   bool bVar11;
   int iStackX_8;
-  
   lVar6 = *(int64_t *)(param_1 + 0x1eb0);
-  FUN_18069f2f0();
+  UtilitiesSystem_9f2f0();
   *(int32_t *)(param_1 + 0xf8c) = 0;
   iStackX_8 = 0;
   *(int *)(param_1 + 0xf90) = *(int *)(param_1 + 0x1e74) * 0x80 + -0x80;
@@ -273,10 +251,10 @@ void FUN_1806a0470(int64_t param_1)
           }
           *(int8_t *)(lVar6 + 3) = 0;
           if (*(int *)(param_1 + 0x1e64) == 0) {
-            FUN_18069f770();
+            UtilitiesSystem_9f770();
           }
           else {
-            FUN_18069f9c0(param_1,lVar6,lVar6);
+            UtilitiesSystem_9f9c0(param_1,lVar6,lVar6);
           }
           *(int *)(param_1 + 0xf84) = *(int *)(param_1 + 0xf84) + -0x80;
           lVar6 = lVar6 + 0x4c;
@@ -292,15 +270,8 @@ void FUN_1806a0470(int64_t param_1)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a04c6(void)
-void FUN_1806a04c6(void)
-
+// 函数: void UtilitiesSystem_a04c6(void)
+void UtilitiesSystem_a04c6(void)
 {
   int64_t lVar1;
   byte bVar2;
@@ -315,9 +286,8 @@ void FUN_1806a04c6(void)
   int iVar8;
   int unaff_R13D;
   bool bVar9;
-  int in_stack_00000060;
-  int32_t in_stack_00000068;
-  
+  int local_var_60;
+  int32_t local_var_68;
   do {
     iVar8 = 0;
     *(int32_t *)(unaff_RBX + 0xf84) = 0;
@@ -413,103 +383,67 @@ void FUN_1806a04c6(void)
         }
         *(int8_t *)(unaff_RBP + 3) = 0;
         if (*(int *)(unaff_RBX + 0x1e64) == 0) {
-          FUN_18069f770();
+          UtilitiesSystem_9f770();
         }
         else {
-          FUN_18069f9c0();
+          UtilitiesSystem_9f9c0();
         }
         *(int *)(unaff_RBX + 0xf84) = *(int *)(unaff_RBX + 0xf84) + -0x80;
         unaff_RBP = unaff_RBP + 0x4c;
         *(int *)(unaff_RBX + 0xf88) = *(int *)(unaff_RBX + 0xf88) + -0x80;
         iVar8 = iVar8 + 1;
-        in_EAX = in_stack_00000068;
-        unaff_R13D = in_stack_00000060;
+        in_EAX = local_var_68;
+        unaff_R13D = local_var_60;
       } while (iVar8 < *(int *)(unaff_RBX + 0x1e78));
     }
     *(int *)(unaff_RBX + 0xf8c) = *(int *)(unaff_RBX + 0xf8c) + -0x80;
     unaff_R13D = unaff_R13D + 1;
     *(int *)(unaff_RBX + 0xf90) = *(int *)(unaff_RBX + 0xf90) + -0x80;
     unaff_RBP = unaff_RBP + 0x4c;
-    in_stack_00000060 = unaff_R13D;
+    local_var_60 = unaff_R13D;
   } while (unaff_R13D < *(int *)(unaff_RBX + 0x1e74));
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a0772(void)
-void FUN_1806a0772(void)
-
+// 函数: void UtilitiesSystem_a0772(void)
+void UtilitiesSystem_a0772(void)
 {
   return;
 }
-
-
-
 void PxGetFoundation(void)
-
 {
-                    // WARNING: Could not recover jumptable at 0x0001806a077b. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001806a077b. Too many branches
+// WARNING: Treating indirect jump as call
   PxGetFoundation();
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a0790(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1806a0790(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void UtilitiesSystem_a0790(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void UtilitiesSystem_a0790(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t *plVar1;
-  
   plVar1 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
-                    // WARNING: Could not recover jumptable at 0x0001806a07cb. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001806a07cb. Too many branches
+// WARNING: Treating indirect jump as call
   (**(code **)(*plVar1 + 8))(plVar1,param_2,param_3,param_4);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a07d0(uint64_t param_1,uint64_t param_2)
-void FUN_1806a07d0(uint64_t param_1,uint64_t param_2)
-
+// 函数: void UtilitiesSystem_a07d0(uint64_t param_1,uint64_t param_2)
+void UtilitiesSystem_a07d0(uint64_t param_1,uint64_t param_2)
 {
   int64_t *plVar1;
-  
   plVar1 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
-                    // WARNING: Could not recover jumptable at 0x0001806a07ec. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001806a07ec. Too many branches
+// WARNING: Treating indirect jump as call
   (**(code **)(*plVar1 + 0x10))(plVar1,param_2);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1806a07f0(int64_t *param_1)
-
+uint64_t UtilitiesSystem_a07f0(int64_t *param_1)
 {
   system_system_buffer_config = (**(code **)(*param_1 + 0x20))();
-  FUN_1806a1b30();
+  UtilitiesSystem_a1b30();
   return system_system_config;
 }
-
-
-
-uint64_t * FUN_1806a0810(uint64_t param_1,int16_t param_2,int32_t param_3)
-
+uint64_t * UtilitiesSystem_a0810(uint64_t param_1,int16_t param_2,int32_t param_3)
 {
   char cVar1;
   int iVar2;
@@ -519,7 +453,6 @@ uint64_t * FUN_1806a0810(uint64_t param_1,int16_t param_2,int32_t param_3)
   uint64_t *puVar6;
   uint64_t uVar7;
   void *puVar8;
-  
   plVar3 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
   plVar4 = (int64_t *)PxGetFoundation();
   cVar1 = (**(code **)(*plVar4 + 0x28))(plVar4);
@@ -558,12 +491,8 @@ uint64_t * FUN_1806a0810(uint64_t param_1,int16_t param_2,int32_t param_3)
   }
   return puVar6;
 }
-
-
-
 uint64_t *
-FUN_1806a0960(uint64_t *param_1,uint64_t param_2,int16_t param_3,int32_t param_4)
-
+UtilitiesSystem_a0960(uint64_t *param_1,uint64_t param_2,int16_t param_3,int32_t param_4)
 {
   char cVar1;
   int iVar2;
@@ -571,7 +500,6 @@ FUN_1806a0960(uint64_t *param_1,uint64_t param_2,int16_t param_3,int32_t param_4
   int64_t *plVar4;
   void *puVar5;
   uint64_t uVar6;
-  
   *param_1 = &ui_system_data_1496_ptr;
   __0Socket_shdfnd_physx__QEAA__N0_Z(param_1 + 1,1);
   param_1[3] = param_2;
@@ -597,19 +525,11 @@ FUN_1806a0960(uint64_t *param_1,uint64_t param_2,int16_t param_3,int32_t param_4
   __0MutexImpl_shdfnd_physx__QEAA_XZ(uVar6);
   return param_1;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a0a50(uint64_t *param_1)
-void FUN_1806a0a50(uint64_t *param_1)
-
+// 函数: void UtilitiesSystem_a0a50(uint64_t *param_1)
+void UtilitiesSystem_a0a50(uint64_t *param_1)
 {
   int64_t lVar1;
   int64_t *plVar2;
-  
   *param_1 = &ui_system_data_1496_ptr;
   __1MutexImpl_shdfnd_physx__QEAA_XZ(param_1[7]);
   lVar1 = param_1[7];
@@ -621,14 +541,9 @@ void FUN_1806a0a50(uint64_t *param_1)
   *param_1 = &ui_system_data_1416_ptr;
   return;
 }
-
-
-
-int8_t FUN_1806a0ab0(int64_t param_1)
-
+int8_t UtilitiesSystem_a0ab0(int64_t param_1)
 {
   char cVar1;
-  
   if (*(char *)(param_1 + 0x28) != '\0') {
     return 1;
   }
@@ -642,15 +557,10 @@ int8_t FUN_1806a0ab0(int64_t param_1)
   }
   return *(int8_t *)(param_1 + 0x28);
 }
-
-
-
-int8_t FUN_1806a0ad8(void)
-
+int8_t UtilitiesSystem_a0ad8(void)
 {
   char cVar1;
   int64_t unaff_RBX;
-  
   cVar1 = _connect_Socket_shdfnd_physx__QEAA_NPEBDGI_Z();
   if (cVar1 != '\0') {
     _setBlocking_Socket_shdfnd_physx__QEAAX_N_Z(unaff_RBX + 8,1);
@@ -659,40 +569,23 @@ int8_t FUN_1806a0ad8(void)
   }
   return *(int8_t *)(unaff_RBX + 0x28);
 }
-
-
-
-int8_t FUN_1806a0b02(void)
-
+int8_t UtilitiesSystem_a0b02(void)
 {
   int64_t unaff_RBX;
-  
   return *(int8_t *)(unaff_RBX + 0x28);
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a0b20(int64_t param_1)
-void FUN_1806a0b20(int64_t param_1)
-
+// 函数: void UtilitiesSystem_a0b20(int64_t param_1)
+void UtilitiesSystem_a0b20(int64_t param_1)
 {
   _flush_Socket_shdfnd_physx__QEAA_NXZ(param_1 + 8);
   _disconnect_Socket_shdfnd_physx__QEAAXXZ(param_1 + 8);
   *(int8_t *)(param_1 + 0x28) = 0;
   return;
 }
-
-
-
-uint64_t FUN_1806a0b70(int64_t param_1,int64_t param_2,int param_3)
-
+uint64_t UtilitiesSystem_a0b70(int64_t param_1,int64_t param_2,int param_3)
 {
   uint uVar1;
   uint uVar2;
-  
   if (*(char *)(param_1 + 0x28) != '\0') {
     if (param_3 == 0) {
       return 1;
@@ -714,24 +607,15 @@ uint64_t FUN_1806a0b70(int64_t param_1,int64_t param_2,int param_3)
   }
   return 0;
 }
-
-
-
-int64_t FUN_1806a0c00(int64_t param_1)
-
+int64_t UtilitiesSystem_a0c00(int64_t param_1)
 {
   _lock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(param_1 + 0x38));
   return param_1;
 }
-
-
-
-uint64_t * FUN_1806a0c70(uint64_t *param_1,uint64_t param_2)
-
+uint64_t * UtilitiesSystem_a0c70(uint64_t *param_1,uint64_t param_2)
 {
   int64_t lVar1;
   int64_t *plVar2;
-  
   *param_1 = &ui_system_data_1496_ptr;
   __1MutexImpl_shdfnd_physx__QEAA_XZ(param_1[7]);
   lVar1 = param_1[7];
@@ -751,11 +635,7 @@ uint64_t * FUN_1806a0c70(uint64_t *param_1,uint64_t param_2)
   }
   return param_1;
 }
-
-
-
-uint64_t * FUN_1806a0d20(uint64_t *param_1,uint64_t param_2)
-
+uint64_t * UtilitiesSystem_a0d20(uint64_t *param_1,uint64_t param_2)
 {
   *param_1 = &ui_system_data_1416_ptr;
   if ((param_2 & 1) != 0) {
@@ -763,11 +643,7 @@ uint64_t * FUN_1806a0d20(uint64_t *param_1,uint64_t param_2)
   }
   return param_1;
 }
-
-
-
-uint64_t * FUN_1806a0d50(uint64_t *param_1,uint64_t param_2)
-
+uint64_t * UtilitiesSystem_a0d50(uint64_t *param_1,uint64_t param_2)
 {
   *param_1 = &ui_system_data_1760_ptr;
   if ((param_2 & 1) != 0) {
@@ -775,13 +651,8 @@ uint64_t * FUN_1806a0d50(uint64_t *param_1,uint64_t param_2)
   }
   return param_1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t * FUN_1806a0d90(uint64_t *param_1)
-
+uint64_t * UtilitiesSystem_a0d90(uint64_t *param_1)
 {
   char cVar1;
   int iVar2;
@@ -790,7 +661,6 @@ uint64_t * FUN_1806a0d90(uint64_t *param_1)
   void *puVar5;
   uint64_t uVar6;
   int64_t lVar7;
-  
   uVar6 = 0;
   param_1[2] = 0;
   *param_1 = &rendering_buffer_2320_ptr;
@@ -807,7 +677,7 @@ uint64_t * FUN_1806a0d90(uint64_t *param_1)
   *(int32_t *)(param_1 + 0xc) = 0x3f400000;
   *(int32_t *)((int64_t)param_1 + 100) = 0xffffffff;
   param_1[0xd] = 0;
-  FUN_1806a2bd0(param_1 + 7,0x40);
+  UtilitiesSystem_a2bd0(param_1 + 7,0x40);
   iVar2 = _getSize_MutexImpl_shdfnd_physx__SAIXZ();
   if (iVar2 != 0) {
     plVar3 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
@@ -831,7 +701,7 @@ uint64_t * FUN_1806a0d90(uint64_t *param_1)
   param_1[0x13] = 0;
   param_1[0x14] = 0;
   uVar6 = _getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
-  uVar6 = FUN_1806b20f0(uVar6);
+  uVar6 = UtilitiesSystem_b20f0(uVar6);
   param_1[0x12] = uVar6;
   lVar7 = (**(code **)(*system_system_buffer_config + 8))(system_system_buffer_config,0x40,&rendering_buffer_2528_ptr,&rendering_buffer_2472_ptr,0x5e)
   ;
@@ -839,17 +709,12 @@ uint64_t * FUN_1806a0d90(uint64_t *param_1)
     param_1[0x13] = 0;
     return param_1;
   }
-  uVar6 = FUN_1806b6ae0(lVar7,param_1);
+  uVar6 = UtilitiesSystem_b6ae0(lVar7,param_1);
   param_1[0x13] = uVar6;
   return param_1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t * FUN_1806a0d9c(uint64_t *param_1)
-
+uint64_t * UtilitiesSystem_a0d9c(uint64_t *param_1)
 {
   char cVar1;
   int iVar2;
@@ -859,7 +724,6 @@ uint64_t * FUN_1806a0d9c(uint64_t *param_1)
   uint64_t uVar6;
   int64_t lVar7;
   uint64_t unaff_RBP;
-  
   param_1[2] = unaff_RBP;
   *param_1 = &rendering_buffer_2320_ptr;
   param_1[1] = &rendering_buffer_2448_ptr;
@@ -875,7 +739,7 @@ uint64_t * FUN_1806a0d9c(uint64_t *param_1)
   *(int32_t *)(param_1 + 0xc) = 0x3f400000;
   *(int32_t *)((int64_t)param_1 + 100) = 0xffffffff;
   param_1[0xd] = unaff_RBP;
-  FUN_1806a2bd0(param_1 + 7,(int)unaff_RBP + 0x40);
+  UtilitiesSystem_a2bd0(param_1 + 7,(int)unaff_RBP + 0x40);
   iVar2 = _getSize_MutexImpl_shdfnd_physx__SAIXZ();
   uVar6 = unaff_RBP;
   if (iVar2 != 0) {
@@ -900,7 +764,7 @@ uint64_t * FUN_1806a0d9c(uint64_t *param_1)
   param_1[0x13] = unaff_RBP;
   param_1[0x14] = unaff_RBP;
   uVar6 = _getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
-  uVar6 = FUN_1806b20f0(uVar6);
+  uVar6 = UtilitiesSystem_b20f0(uVar6);
   param_1[0x12] = uVar6;
   lVar7 = (**(code **)(*system_system_buffer_config + 8))(system_system_buffer_config,0x40,&rendering_buffer_2528_ptr,&rendering_buffer_2472_ptr,0x5e)
   ;
@@ -908,21 +772,13 @@ uint64_t * FUN_1806a0d9c(uint64_t *param_1)
     param_1[0x13] = unaff_RBP;
     return param_1;
   }
-  uVar6 = FUN_1806b6ae0(lVar7,param_1);
+  uVar6 = UtilitiesSystem_b6ae0(lVar7,param_1);
   param_1[0x13] = uVar6;
   return param_1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1806a0e10(void)
-void FUN_1806a0e10(void)
-
+// 函数: void UtilitiesSystem_a0e10(void)
+void UtilitiesSystem_a0e10(void)
 {
   char cVar1;
   int64_t *plVar2;
@@ -931,7 +787,6 @@ void FUN_1806a0e10(void)
   int64_t lVar5;
   int64_t unaff_RBX;
   uint64_t unaff_RBP;
-  
   plVar2 = (int64_t *)_getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
   plVar3 = (int64_t *)PxGetFoundation();
   cVar1 = (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -949,7 +804,7 @@ void FUN_1806a0e10(void)
   *(uint64_t *)(unaff_RBX + 0x98) = unaff_RBP;
   *(uint64_t *)(unaff_RBX + 0xa0) = unaff_RBP;
   uVar4 = _getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
-  uVar4 = FUN_1806b20f0(uVar4);
+  uVar4 = UtilitiesSystem_b20f0(uVar4);
   *(uint64_t *)(unaff_RBX + 0x90) = uVar4;
   lVar5 = (**(code **)(*system_system_buffer_config + 8))(system_system_buffer_config,0x40,&rendering_buffer_2528_ptr,&rendering_buffer_2472_ptr,0x5e)
   ;
@@ -957,27 +812,18 @@ void FUN_1806a0e10(void)
     *(uint64_t *)(unaff_RBX + 0x98) = unaff_RBP;
     return;
   }
-  uVar4 = FUN_1806b6ae0(lVar5);
+  uVar4 = UtilitiesSystem_b6ae0(lVar5);
   *(uint64_t *)(unaff_RBX + 0x98) = uVar4;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1806a0e71(void)
-void FUN_1806a0e71(void)
-
+// 函数: void UtilitiesSystem_a0e71(void)
+void UtilitiesSystem_a0e71(void)
 {
   uint64_t uVar1;
   int64_t lVar2;
   int64_t unaff_RBX;
   uint64_t unaff_RBP;
-  
   *(uint64_t *)(unaff_RBX + 0x70) = unaff_RBP;
   __0MutexImpl_shdfnd_physx__QEAA_XZ();
   *(uint64_t *)(unaff_RBX + 0x78) = unaff_RBP;
@@ -988,40 +834,25 @@ void FUN_1806a0e71(void)
   *(uint64_t *)(unaff_RBX + 0x98) = unaff_RBP;
   *(uint64_t *)(unaff_RBX + 0xa0) = unaff_RBP;
   uVar1 = _getAllocator_shdfnd_physx__YAAEAVPxAllocatorCallback_2_XZ();
-  uVar1 = FUN_1806b20f0(uVar1);
+  uVar1 = UtilitiesSystem_b20f0(uVar1);
   *(uint64_t *)(unaff_RBX + 0x90) = uVar1;
   lVar2 = (**(code **)(*system_system_buffer_config + 8))(system_system_buffer_config,0x40,&rendering_buffer_2528_ptr,&rendering_buffer_2472_ptr,0x5e)
   ;
   if (lVar2 != 0) {
-    uVar1 = FUN_1806b6ae0(lVar2);
+    uVar1 = UtilitiesSystem_b6ae0(lVar2);
     *(uint64_t *)(unaff_RBX + 0x98) = uVar1;
     return;
   }
   *(uint64_t *)(unaff_RBX + 0x98) = unaff_RBP;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a0ef7(void)
-void FUN_1806a0ef7(void)
-
+// 函数: void UtilitiesSystem_a0ef7(void)
+void UtilitiesSystem_a0ef7(void)
 {
   uint64_t uVar1;
   int64_t unaff_RBX;
-  
-  uVar1 = FUN_1806b6ae0();
+  uVar1 = UtilitiesSystem_b6ae0();
   *(uint64_t *)(unaff_RBX + 0x98) = uVar1;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

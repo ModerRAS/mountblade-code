@@ -1,36 +1,35 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 /**
  * @file 03_rendering_part305.c
  * @brief 渲染系统数据压缩和颜色处理模块
- * 
+ *
  * 本模块实现了渲染系统中的数据压缩算法和颜色处理功能。
  * 包含LZ77风格的压缩算法和颜色距离计算函数，用于优化渲染数据存储和处理。
- * 
+ *
  * 主要功能：
  * - 基于哈希表的数据压缩算法
  * - 颜色值距离计算和插值
  * - 滑动窗口压缩优化
  * - 字节级数据处理
  * - 内存动态分配和管理
- * 
+ *
  * @author 美化生成
  * @version 1.0
  * @date 2025-08-28
  */
 /**
  * @brief 基于哈希表的数据压缩算法
- * 
+ *
  * 实现了一个LZ77风格的数据压缩算法，使用哈希表来查找重复模式。
  * 该函数主要用于压缩渲染数据，优化内存使用和提高数据处理效率。
- * 
+ *
  * 算法特点：
  * - 使用16位哈希表快速查找重复模式
  * - 支持最长匹配和距离编码
  * - 动态内存分配和缓冲区管理
  * - 字节级压缩处理
- * 
+ *
  * @param input_data 输入数据指针
  * @param data_size 输入数据大小
  * @param output_size 输出数据大小指针
@@ -38,7 +37,6 @@
  * @return 无返回值
  */
 void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* output_size, int64_t* hash_table)
-
 {
   int iVar1;
   uint uVar2;
@@ -65,11 +63,10 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
   byte *pbVar23;
   uint64_t uVar24;
   int iStackX_8;
-  uint uStack_78;
+  uint local_var_78;
   int64_t lStack_70;
   int *piStack_60;
   int64_t lStack_58;
-  
   piStack_60 = (int *)0x0;
   puVar3 = (int32_t *)realloc(0,10);
   if (puVar3 != (int32_t *)0x0) {
@@ -106,7 +103,7 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
       lVar22 = (int64_t)iVar19;
       uVar14 = 3;
       pbVar23 = (byte *)(param_1 + lVar22);
-      uStack_78 = 3;
+      local_var_78 = 3;
       lStack_70 = 0;
       uVar13 = (uint)pbVar23[2] * 0x10000 + (uint)pbVar23[1] * 0x100 + (uint)*pbVar23;
       uVar13 = uVar13 ^ uVar13 * 8;
@@ -132,7 +129,7 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
               uVar24 = 0;
               do {
                 uVar13 = (uint)uVar24;
-                uVar14 = uStack_78;
+                uVar14 = local_var_78;
                 if ((0x101 < (int64_t)uVar11) || (*(byte *)(lVar12 + uVar11) != pbVar23[uVar11]))
                 break;
                 uVar13 = uVar13 + 1;
@@ -141,7 +138,7 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
               } while ((int64_t)uVar11 < (int64_t)(param_2 - iVar19));
             }
             if ((int)uVar14 <= (int)uVar13) {
-              uStack_78 = uVar13;
+              local_var_78 = uVar13;
               lStack_70 = lVar12;
               uVar14 = uVar13;
             }
@@ -151,7 +148,7 @@ void RenderingData_CompressHashBased(int64_t input_data, int data_size, int* out
       }
       iVar15 = 2;
       if ((lVar10 != 0) && (*(int *)(lVar10 + -4) == 0x10)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memmove(lVar10,lVar10 + 0x40,0x40);
       }
       if (lVar10 == 0) {
@@ -271,7 +268,7 @@ LAB_18042e54d:
             } while (uVar11 != 0);
           }
         }
-        uStack_78 = 1;
+        local_var_78 = 1;
       }
       else {
         uVar14 = (uint)*(byte *)(lVar22 + 3 + param_1) * 0x10000 +
@@ -302,7 +299,7 @@ LAB_18042e54d:
                   lVar12 = lVar12 + 1;
                 } while (lVar12 < iVar1);
               }
-              if ((int)uStack_78 < iVar16) goto LAB_18042e428;
+              if ((int)local_var_78 < iVar16) goto LAB_18042e428;
             }
             lVar21 = lVar21 + 1;
           } while (lVar21 < iVar15);
@@ -313,13 +310,13 @@ LAB_18042e54d:
         iVar15 = (iStackX_8 - (int)lStack_70) + iVar19;
         uVar11 = uVar17;
         uVar24 = uVar17;
-        if (3 < (int)uStack_78) {
+        if (3 < (int)local_var_78) {
           do {
             lVar10 = uVar24 * 2;
             uVar24 = uVar24 + 1;
             uVar14 = (int)uVar11 + 1;
             uVar11 = (uint64_t)uVar14;
-          } while ((int)(*(ushort *)(&processed_var_5140_ptr + lVar10) - 1) < (int)uStack_78);
+          } while ((int)(*(ushort *)(&processed_var_5140_ptr + lVar10) - 1) < (int)local_var_78);
         }
         iVar16 = uVar14 + 0x101;
         if (iVar16 < 0x90) {
@@ -505,7 +502,7 @@ LAB_18042e17e:
         if ((&processed_var_5104_ptr)[uVar24] != 0) {
           bVar7 = (byte)uVar14;
           uVar14 = uVar14 + (byte)(&processed_var_5104_ptr)[uVar24];
-          uVar18 = uVar18 | uStack_78 - *(ushort *)(&processed_var_5136_ptr + uVar24 * 2) << (bVar7 & 0x1f);
+          uVar18 = uVar18 | local_var_78 - *(ushort *)(&processed_var_5136_ptr + uVar24 * 2) << (bVar7 & 0x1f);
           if (7 < (int)uVar14) {
             uVar11 = (uint64_t)(uVar14 >> 3);
             uVar14 = uVar14 + (uVar14 >> 3) * -8;
@@ -622,7 +619,7 @@ LAB_18042e3d3:
           }
         }
       }
-      iVar15 = iVar19 + uStack_78;
+      iVar15 = iVar19 + local_var_78;
       iVar19 = iVar15;
     } while (iVar15 < param_2 + -3);
   }
@@ -881,25 +878,21 @@ LAB_18042e9f9:
   piStack_60[-1] = piStack_60[-1] + 1;
   iVar15 = piStack_60[-1];
   *param_3 = iVar15;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memmove(piVar5,piStack_60,(int64_t)iVar15);
 }
-
-
-
 /**
  * @brief 颜色距离计算函数
- * 
+ *
  * 计算三个颜色值之间的距离，返回最接近的颜色值。
  * 使用曼哈顿距离或欧几里得距离来确定颜色相似度。
- * 
+ *
  * @param color1 第一个颜色值
  * @param color2 第二个颜色值
  * @param color3 第三个颜色值
  * @return 最接近的颜色值（低8位）
  */
 uint RenderingColor_CalculateDistance(uint color1, uint color2, uint color3)
-
 {
   uint uVar1;
   int iVar2;
@@ -908,7 +901,6 @@ uint RenderingColor_CalculateDistance(uint color1, uint color2, uint color3)
   uint uVar5;
   uint uVar6;
   int iVar7;
-  
   uVar5 = param_1 - param_3;
   uVar6 = (uVar5 + param_2) - param_3;
   uVar1 = (uVar5 + param_2) - param_1;
@@ -928,26 +920,23 @@ uint RenderingColor_CalculateDistance(uint color1, uint color2, uint color3)
 }// =============================================================================
 // 函数别名映射
 // =============================================================================
-
 // 原始函数名称映射
-void FUN_18042dad0(int64_t param_1, int param_2, int* param_3, int64_t* param_4)
+void function_42dad0(int64_t param_1, int param_2, int* param_3, int64_t* param_4)
     __attribute__((alias("RenderingData_CompressHashBased")));
-uint FUN_18042eb00(uint param_1, uint param_2, uint param_3)
+uint function_42eb00(uint param_1, uint param_2, uint param_3)
     __attribute__((alias("RenderingColor_CalculateDistance")));
-
 // =============================================================================
 // 技术架构文档
 // =============================================================================
-
 /*
  * 渲染数据压缩算法技术架构
  * =========================
- * 
+ *
  * 1. 系统概述
  * ------------
  * 本模块实现了渲染系统中的数据压缩和颜色处理功能。
  * 通过高效的压缩算法减少内存占用，提高数据处理性能。
- * 
+ *
  * 2. 核心功能
  * ------------
  * - LZ77风格的数据压缩算法
@@ -955,7 +944,7 @@ uint FUN_18042eb00(uint param_1, uint param_2, uint param_3)
  * - 颜色距离计算和插值
  * - 动态内存管理
  * - 字节级数据处理
- * 
+ *
  * 3. 技术特点
  * ------------
  * - 使用16位哈希表快速查找重复模式
@@ -963,21 +952,21 @@ uint FUN_18042eb00(uint param_1, uint param_2, uint param_3)
  * - 距离编码优化
  * - 内存对齐和缓存优化
  * - 错误处理和边界检查
- * 
+ *
  * 4. 算法优化
  * ------------
  * - 哈希函数：使用多项式滚动哈希
  * - 模式匹配：最长前缀匹配
  * - 距离计算：快速整数运算
  * - 内存管理：动态扩容策略
- * 
+ *
  * 5. 性能指标
  * ------------
  * - 压缩比：2:1 到 4:1 取决于数据冗余度
  * - 处理速度：O(n) 时间复杂度
  * - 内存使用：动态调整，平均占用输入大小的25%
  * - 查找效率：哈希表O(1)查找复杂度
- * 
+ *
  * 6. 应用场景
  * ------------
  * - 纹理数据压缩
@@ -985,7 +974,7 @@ uint FUN_18042eb00(uint param_1, uint param_2, uint param_3)
  * - 颜色表压缩
  * - 渲染状态数据压缩
  * - 网络传输优化
- * 
+ *
  * 7. 简化实现说明
  * -----------------
  * 本文件包含以下简化实现：
@@ -993,46 +982,44 @@ uint FUN_18042eb00(uint param_1, uint param_2, uint param_3)
  * - 内存分配：使用标准realloc，完整实现应使用内存池技术
  * - 压缩算法：实现了基础LZ77，完整实现可加入霍夫曼编码等进一步压缩
  * - 错误处理：简化了错误检查，完整实现应包含全面的错误恢复机制
- * 
+ *
  * 完整实现应参考DEFLATE算法和最佳实践。
  */
-
 // =============================================================================
 // 性能优化策略
 // =============================================================================
-
 /*
  * 性能优化策略
  * =============
- * 
+ *
  * 1. 哈希表优化
  * ----------------
  * - 使用位掩码代替取模运算
  * - 哈希冲突处理：链表法
  * - 缓存友好的数据布局
  * - 预分配哈希表内存
- * 
+ *
  * 2. 内存访问优化
  * ----------------
  * - 连续内存访问模式
  * - 避免内存碎片
  * - 批量处理数据
  * - 内存对齐访问
- * 
+ *
  * 3. 算法优化
  * ------------
  * - 快速失败策略
  * - 循环展开技术
  * - 分支预测优化
  * - 内联关键函数
- * 
+ *
  * 4. 数据结构优化
  * ----------------
  * - 使用数组代替链表
  * - 位域压缩存储
  * - 紧凑数据布局
  * - 预分配缓冲区
- * 
+ *
  * 5. 编译器优化
  * --------------
  * - 使用restrict关键字

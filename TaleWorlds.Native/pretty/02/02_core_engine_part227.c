@@ -1,14 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 核心引擎模块第227部分
 // 该文件包含核心引擎的复杂函数实现
-
 /**
  * 处理游戏对象渲染和更新逻辑
- * 
+ *
  * 该函数负责处理游戏对象的渲染队列、更新状态、管理内存分配等核心功能
- * 
+ *
  * @param game_context 游戏上下文指针
  */
 void process_game_object_rendering(int64_t game_context)
@@ -80,8 +78,7 @@ void process_game_object_rendering(int64_t game_context)
   uint64_t stack_ulong_6;
   uint64_t stack_ulong_7;
   int8_t stack_buffer_2 [56];
-  
-  // 初始化渲染状态
+// 初始化渲染状态
   stack_data_3 = 0xfffffffffffffffe;
   stack_long_2 = game_context;
   initialize_render_system(game_context + 0x607e0);
@@ -95,12 +92,11 @@ void process_game_object_rendering(int64_t game_context)
   get_object_list(game_context + 0x60830, &stack_ptr_12);
   object_manager = game_context + 0x60830;
   bitangent_data = render_queue;
-  
-  // 主渲染循环
+// 主渲染循环
   do {
     texture_id = (uint)bitangent_data;
     if (stack_ulong_3 == *(uint64_t *)(game_context + 0x60838)) {
-      // 设置渲染参数
+// 设置渲染参数
       stack_uint_1 = 0x3f800000;  // 1.0f
       stack_uint_2 = 0x40000000;  // 2.0f
       stack_ptr_2 = stack_array_1;
@@ -111,8 +107,7 @@ void process_game_object_rendering(int64_t game_context)
       bitangent_data = render_queue;
       stack_data_1 = render_queue;
       stack_long_1 = object_manager;
-      
-      // 分配渲染内存
+// 分配渲染内存
       if (texture_id * 2 != 0) {
         vertex_buffer = (int64_t)(stack_int_1 + 0xf) & 0xfffffffffffffff0;
         stack_int_1 = (int)vertex_buffer + texture_id * 0x10;
@@ -120,8 +115,7 @@ void process_game_object_rendering(int64_t game_context)
         render_queue = stack_data_1 + (int)(texture_id * 2);
         bitangent_data = stack_data_1;
       }
-      
-      // 处理渲染队列
+// 处理渲染队列
       do {
         get_object_list(object_manager);
         object_list = stack_ptr_13;
@@ -129,8 +123,7 @@ void process_game_object_rendering(int64_t game_context)
         vertex_buffer = stack_ulong_5;
         texture_sampler = stack_ptr_1;
         tangent_data = bitangent_data;
-        
-        // 处理纹理缓存
+// 处理纹理缓存
         index_buffer = 0;
         if (render_state != *(uint64_t *)(object_manager + 8)) {
           if (*(int64_t *)(vertex_buffer + 0x208) - *(int64_t *)(vertex_buffer + 0x200) >> 3 != 0) {
@@ -165,7 +158,7 @@ alloc_memory:
                   normal_data = (uint64_t *)0x0;
                 }
                 if (stack_data_1 != bitangent_data) {
-                  // 移动内存数据
+// 移动内存数据
                   memmove(normal_data);
                 }
                 render_queue = normal_data + object_manager;
@@ -212,8 +205,7 @@ texture_processed:
           } while (render_state != object_list[1]);
           goto process_next_object;
         }
-        
-        // 清理渲染状态
+// 清理渲染状态
         vertex_buffer = (int64_t)bitangent_data - (int64_t)tangent_data >> 3;
         normal_data = tangent_data;
         if (vertex_buffer == 0) {
@@ -224,8 +216,7 @@ texture_processed:
             } while (index_buffer < stack_ulong_1);
           }
           stack_ulong_2 = 0;
-          
-          // 处理阴影和光照
+// 处理阴影和光照
           do {
             get_object_list(object_manager);
             object_list = stack_ptr_14;
@@ -234,8 +225,7 @@ texture_processed:
             normal_data = bitangent_data;
             texture_sampler = stack_ptr_1;
             bitangent_data = tangent_data;
-            
-            // 处理光照计算
+// 处理光照计算
             matrix_transform = stack_long_2;
             index_buffer = 0;
             if (render_state != *(uint64_t *)(object_manager + 8)) {
@@ -271,7 +261,7 @@ light_alloc_memory:
                       tangent_data = (uint64_t *)0x0;
                     }
                     if (stack_data_1 != normal_data) {
-                      // 移动光照数据
+// 移动光照数据
                       memmove(tangent_data);
                     }
                     render_queue = tangent_data + object_manager;
@@ -321,8 +311,7 @@ light_texture_processed:
               } while (render_state != object_list[1]);
               goto process_light_object;
             }
-            
-            // 清理光照状态
+// 清理光照状态
             vertex_buffer = (int64_t)normal_data - (int64_t)bitangent_data >> 3;
             normal_data = bitangent_data;
             if (vertex_buffer == 0) {
@@ -333,14 +322,12 @@ light_texture_processed:
                 } while (index_buffer < stack_ulong_1);
               }
               stack_ulong_2 = 0;
-              
-              // 释放内存资源
+// 释放内存资源
               if (stack_array_1[0] != 0) {
                 free_render_memory();
               }
               stack_array_1[0] = 0;
-              
-              // 处理相机和视口
+// 处理相机和视口
               if ((*(char *)(stack_long_2 + 0x60c1c) != '\0') &&
                  (*(int *)(stack_long_2 + 0x60c40) == -1)) {
                 object_manager = *(int64_t *)(stack_long_2 + 0x60c48);
@@ -368,8 +355,7 @@ light_texture_processed:
                   (**(code **)(*stack_ptr_3 + 0x38))();
                 }
               }
-              
-              // 更新对象属性
+// 更新对象属性
               material_data = (uint64_t *)get_object_properties(shader_program, stack_buffer_2);
               render_flags = material_data[1];
               *(uint64_t *)(shader_program + 0x454) = *material_data;
@@ -406,8 +392,7 @@ light_texture_processed:
               *(uint64_t *)(shader_program + 0x60b68) = *(uint64_t *)(shader_program + 0x454);
               *(uint64_t **)(shader_program + 0x60b70) = stack_data_1;
               update_object_transform(shader_program);
-              
-              // 清理对象资源
+// 清理对象资源
               if ((*(char *)(shader_program + 0x560) == '\0') &&
                  (object_manager = *(int64_t *)(shader_program + 0x448), object_manager != 0)) {
                 *(int32_t *)(object_manager + 0x2150) =
@@ -417,15 +402,13 @@ light_texture_processed:
                 free_object_memory(*(int64_t *)(shader_program + 0x448) + 0x21e0);
                 free_object_memory(shader_program + 0x81b0);
               }
-              
-              // 检查调试模式
+// 检查调试模式
               if (system_memory_2847 == '\0') {
                 debug_object_info(shader_program);
               }
               return;
             }
-            
-            // 释放渲染资源
+// 释放渲染资源
             do {
               release_render_resource(*normal_data);
               texture_id = (int)index_buffer + 1;
@@ -435,8 +418,7 @@ light_texture_processed:
             } while ((uint64_t)(int64_t)(int)texture_id < vertex_buffer);
           } while( true );
         }
-        
-        // 释放纹理资源
+// 释放纹理资源
         do {
           release_texture_resource(*normal_data);
           texture_id = (int)index_buffer + 1;
@@ -466,12 +448,11 @@ light_texture_processed:
     } while (stack_ulong_3 != stack_ptr_12[1]);
   } while( true );
 }
-
 /**
  * 初始化游戏对象数组
- * 
+ *
  * 该函数负责初始化游戏对象数组，将所有元素设置为0
- * 
+ *
  * @param object_array 对象数组指针
  */
 void initialize_game_object_array(int64_t object_array)
@@ -479,20 +460,17 @@ void initialize_game_object_array(int64_t object_array)
   uint64_t array_size;
   int64_t array_data;
   uint64_t index;
-  
   array_size = *(uint64_t *)(object_array + 0x10);
   array_data = *(int64_t *)(object_array + 8);
   index = 0;
-  
-  // 清零数组元素
+// 清零数组元素
   if (array_size != 0) {
     do {
       *(uint64_t *)(array_data + index * 8) = 0;
       index = index + 1;
     } while (index < array_size);
   }
-  
-  // 重置数组状态
+// 重置数组状态
   *(uint64_t *)(object_array + 0x18) = 0;
   return;
 }

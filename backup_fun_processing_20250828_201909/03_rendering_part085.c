@@ -680,7 +680,7 @@ void rendering_system_advanced_render_control(int64_t render_context, int64_t re
     *(int8_t *)(shader_params + 0x718) = 1;
     
     // 执行渲染函数
-    render_flag = func_0x0001800e2bf0(system_parameter_buffer, shader_params);
+    render_flag = RenderingSystem_SetShaderParams(system_parameter_buffer, shader_params);
     *(int8_t *)((int64_t)shader_params + 0x1c61) = render_flag;
     
     // 检查渲染状态
@@ -689,7 +689,7 @@ void rendering_system_advanced_render_control(int64_t render_context, int64_t re
     }
     *(byte *)((int64_t)shader_params + 0x1c62) = resource_flag & 1;
     
-    mode_param = func_0x00018024c420(shader_params);
+    mode_param = RenderingSystem_GetRenderMode(shader_params);
     shader_params[0x719] = mode_param;
     
     // 设置渲染缓冲区参数

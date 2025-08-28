@@ -1,23 +1,16 @@
 #include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 03_rendering_part167.c - 1 个函数
-
-// 函数: void FUN_180372b14(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
-void FUN_180372b14(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+// 函数: void function_372b14(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+void function_372b14(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
                   uint64_t param_5,int *param_6,int64_t param_7,uint64_t param_8,
                   int64_t param_9,int param_10,uint64_t param_11,uint64_t param_12,
                   int64_t param_13,int *param_14,int64_t param_15)
-
 {
   int8_t auVar1 [16];
   uint uVar2;
@@ -62,7 +55,6 @@ void FUN_180372b14(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   float fVar38;
   float fVar39;
   int *piStackX_20;
-  
   *(uint64_t *)(unaff_RBP + -0x78) = param_3;
   *(uint64_t *)(unaff_RBP + -0x80) = param_2;
   if (in_ZF) {
@@ -260,7 +252,7 @@ LAB_18037309e:
         puVar19 = (uint64_t *)SystemCore_MessageQueueManager(param_1 + 0x108,unaff_RBP + -0x30,&param_14);
         piVar22 = (int *)*puVar19;
       }
-      FUN_18037d8b0(*(uint64_t *)(piVar22 + 2),pfVar29,unaff_R12);
+      function_37d8b0(*(uint64_t *)(piVar22 + 2),pfVar29,unaff_R12);
       plVar5 = *(int64_t **)
                 (*(int64_t *)
                   (*(int64_t *)(unaff_R12 + 8) +
@@ -586,13 +578,7 @@ LAB_180373878:
       iVar14 = *(int *)(param_1 + 0x54);
     } while (iVar15 < iVar14 * iVar30);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x150) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x150) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

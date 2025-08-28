@@ -2,10 +2,10 @@
  * TaleWorlds.Native - 代码美化版本
  * 文件名: 99_part_01_part002.c
  * 模块: 模块99未匹配函数第1部分第2个文件
- * 
+ *
  * 本文件包含56个核心函数，涵盖系统底层功能、数据处理、内存管理、
  * 字符串操作、文件处理、异常处理等高级系统功能。
- * 
+ *
  * 主要功能包括：
  * - 系统底层函数调用和参数处理
  * - 数据结构操作和内存管理
@@ -18,13 +18,10 @@
  * - 网络通信和数据传输
  * - 硬件设备交互和控制
  *******************************************************************************/
-
 #include "TaleWorlds.Native.Split.h"
-
 /*******************************************************************************
  * 常量定义和宏定义
  *******************************************************************************/
-
 /**
  * 系统常量定义
  */
@@ -39,7 +36,6 @@
 #define SYSTEM_FLAG_TRANSMITTED 0x54        // 数据传输标志
 #define SYSTEM_FLAG_RECEIVED 0x5D          // 数据接收标志
 #define SYSTEM_FLAG_TERMINATED 0x3E         // 系统终止标志
-
 /**
  * 内存管理常量
  */
@@ -47,14 +43,12 @@
 #define MEMORY_ALIGNMENT 0x8                // 内存对齐边界
 #define MEMORY_POOL_SIZE 0x100000           // 内存池大小
 #define MAX_MEMORY_BLOCKS 0x100             // 最大内存块数
-
 /**
  * 字符串操作常量
  */
 #define STRING_MAX_LENGTH 0x1000           // 字符串最大长度
 #define STRING_BUFFER_SIZE 0x2000           // 字符串缓冲区大小
 #define STRING_TERMINATOR 0x00              // 字符串终止符
-
 /**
  * 文件操作常量
  */
@@ -63,7 +57,6 @@
 #define FILE_ACCESS_READ 0x01               // 文件读取权限
 #define FILE_ACCESS_WRITE 0x02              // 文件写入权限
 #define FILE_ACCESS_EXECUTE 0x04            // 文件执行权限
-
 /**
  * 网络通信常量
  */
@@ -72,7 +65,6 @@
 #define NETWORK_TIMEOUT_VALUE 0x1E          // 网络超时值
 #define NETWORK_PORT_RANGE_START 0x1F90    // 网络端口范围起始
 #define NETWORK_PORT_RANGE_END 0x270F      // 网络端口范围结束
-
 /**
  * 线程同步常量
  */
@@ -81,7 +73,6 @@
 #define THREAD_PRIORITY_NORMAL 0x00        // 线程普通优先级
 #define THREAD_PRIORITY_HIGH 0x01           // 线程高优先级
 #define THREAD_PRIORITY_LOW 0xFF            // 线程低优先级
-
 /**
  * 错误代码定义
  */
@@ -93,113 +84,102 @@
 #define ERROR_TIMEOUT 0x800705B4            // 操作超时
 #define ERROR_NETWORK_FAILURE 0x8007274C    // 网络故障
 #define ERROR_SYSTEM_FAILURE 0x8007FFFF     // 系统故障
-
 /*******************************************************************************
  * 函数别名定义
  *******************************************************************************/
-
 /**
  * 系统核心函数别名
  */
-#define system_core_initializer_1                    FUN_1803f5b70    // 系统核心初始化器1
-#define system_core_processor_1                      FUN_1801f34f0    // 系统核心处理器1
-#define system_core_controller_1                     FUN_1801f9cf0    // 系统核心控制器1
-#define system_core_manager_1                        FUN_1801feca0    // 系统核心管理器1
-#define system_data_transmitter_1                    FUN_180239530    // 系统数据传输器1
-#define system_data_receiver_1                       FUN_180239610    // 系统数据接收器1
-#define system_data_validator_1                      FUN_180239720    // 系统数据验证器1
-#define system_memory_allocator_1                    FUN_180234880    // 系统内存分配器1
-#define system_memory_manager_1                      FUN_18023eac0    // 系统内存管理器1
-#define system_resource_handler_1                    FUN_18023e030    // 系统资源处理器1
-
+#define system_core_initializer_1                    RenderingSystem_f5b70    // 系统核心初始化器1
+#define system_core_processor_1                      GenericFunction_1801f34f0    // 系统核心处理器1
+#define system_core_controller_1                     GenericFunction_1801f9cf0    // 系统核心控制器1
+#define system_core_manager_1                        GenericFunction_1801feca0    // 系统核心管理器1
+#define system_data_transmitter_1                    DataStructure_39530    // 系统数据传输器1
+#define system_data_receiver_1                       DataStructure_39610    // 系统数据接收器1
+#define system_data_validator_1                      DataStructure_39720    // 系统数据验证器1
+#define system_memory_allocator_1                    DataStructure_34880    // 系统内存分配器1
+#define system_memory_manager_1                      DataStructure_3eac0    // 系统内存管理器1
+#define system_resource_handler_1                    DataStructure_3e030    // 系统资源处理器1
 /**
  * 数据处理函数别名
  */
-#define data_processor_advanced_1                     FUN_1802e51e0    // 高级数据处理器1
-#define data_processor_advanced_2                     FUN_18023ded0    // 高级数据处理器2
-#define data_processor_advanced_3                     FUN_18023e880    // 高级数据处理器3
-#define data_processor_advanced_4                     FUN_18023e750    // 高级数据处理器4
-#define data_processor_advanced_5                     FUN_18023e4f0    // 高级数据处理器5
-#define data_processor_advanced_6                     FUN_18023e620    // 高级数据处理器6
-#define data_processor_advanced_7                     FUN_18023e240    // 高级数据处理器7
-#define data_processor_advanced_8                     FUN_18023e3d0    // 高级数据处理器8
-
+#define data_processor_advanced_1                     DataStructure_e51e0    // 高级数据处理器1
+#define data_processor_advanced_2                     DataStructure_3ded0    // 高级数据处理器2
+#define data_processor_advanced_3                     DataStructure_3e880    // 高级数据处理器3
+#define data_processor_advanced_4                     DataStructure_3e750    // 高级数据处理器4
+#define data_processor_advanced_5                     DataStructure_3e4f0    // 高级数据处理器5
+#define data_processor_advanced_6                     DataStructure_3e620    // 高级数据处理器6
+#define data_processor_advanced_7                     DataStructure_3e240    // 高级数据处理器7
+#define data_processor_advanced_8                     DataStructure_3e3d0    // 高级数据处理器8
 /**
  * 系统控制函数别名
  */
-#define system_controller_1                            FUN_180242760    // 系统控制器1
-#define system_controller_2                            FUN_1802436f0    // 系统控制器2
-#define system_controller_3                            FUN_1801bbf00    // 系统控制器3
-#define system_controller_4                            FUN_1801bbfb0    // 系统控制器4
-#define system_controller_5                            FUN_1802541c0    // 系统控制器5
-#define system_controller_6                            FUN_180253fe0    // 系统控制器6
-#define system_controller_7                            FUN_1802540d0    // 系统控制器7
-#define system_controller_8                            FUN_180255e50    // 系统控制器8
-#define system_controller_9                            FUN_180255ea0    // 系统控制器9
-#define system_controller_10                           FUN_180255d70    // 系统控制器10
-
+#define system_controller_1                            DataStructure_42760    // 系统控制器1
+#define system_controller_2                            DataStructure_436f0    // 系统控制器2
+#define system_controller_3                            GenericFunction_1801bbf00    // 系统控制器3
+#define system_controller_4                            GenericFunction_1801bbfb0    // 系统控制器4
+#define system_controller_5                            DataStructure_541c0    // 系统控制器5
+#define system_controller_6                            DataStructure_53fe0    // 系统控制器6
+#define system_controller_7                            DataStructure_540d0    // 系统控制器7
+#define system_controller_8                            DataStructure_55e50    // 系统控制器8
+#define system_controller_9                            DataStructure_55ea0    // 系统控制器9
+#define system_controller_10                           DataStructure_55d70    // 系统控制器10
 /**
  * 系统状态管理函数别名
  */
-#define state_manager_system_1                         FUN_180255d20    // 系统状态管理器1
-#define state_manager_system_2                         FUN_180257970    // 系统状态管理器2
-#define state_manager_system_3                         FUN_18025dd00    // 系统状态管理器3
-#define state_manager_system_4                         FUN_1802ca760    // 系统状态管理器4
-#define state_manager_system_5                         FUN_1802d9840    // 系统状态管理器5
-#define state_manager_system_6                         FUN_1802d9930    // 系统状态管理器6
-#define state_manager_system_7                         FUN_1802d9500    // 系统状态管理器7
-#define state_manager_system_8                         FUN_1802d95a0    // 系统状态管理器8
-#define state_manager_system_9                         FUN_1802d9750    // 系统状态管理器9
-
+#define state_manager_system_1                         DataStructure_55d20    // 系统状态管理器1
+#define state_manager_system_2                         DataStructure_57970    // 系统状态管理器2
+#define state_manager_system_3                         DataStructure_5dd00    // 系统状态管理器3
+#define state_manager_system_4                         DataStructure_ca760    // 系统状态管理器4
+#define state_manager_system_5                         DataStructure_d9840    // 系统状态管理器5
+#define state_manager_system_6                         DataStructure_d9930    // 系统状态管理器6
+#define state_manager_system_7                         DataStructure_d9500    // 系统状态管理器7
+#define state_manager_system_8                         DataStructure_d95a0    // 系统状态管理器8
+#define state_manager_system_9                         DataStructure_d9750    // 系统状态管理器9
 /**
  * 系统初始化函数别名
  */
-#define initializer_system_1                            FUN_1802e3970    // 系统初始化器1
-#define initializer_system_2                            FUN_1802e3db0    // 系统初始化器2
-#define initializer_system_3                            FUN_1802e7dc0    // 系统初始化器3
-#define initializer_system_4                            FUN_1803aed40    // 系统初始化器4
-#define initializer_system_5                            FUN_1803aee20    // 系统初始化器5
-#define initializer_system_6                            FUN_1803aec00    // 系统初始化器6
-#define initializer_system_7                            FUN_1803ba1b0    // 系统初始化器7
-#define initializer_system_8                            FUN_1803ba220    // 系统初始化器8
-#define initializer_system_9                            FUN_1803ba0b0    // 系统初始化器9
-#define initializer_system_10                           FUN_1803b9640    // 系统初始化器10
-
+#define initializer_system_1                            DataStructure_e3970    // 系统初始化器1
+#define initializer_system_2                            DataStructure_e3db0    // 系统初始化器2
+#define initializer_system_3                            DataStructure_e7dc0    // 系统初始化器3
+#define initializer_system_4                            RenderingSystem_aed40    // 系统初始化器4
+#define initializer_system_5                            RenderingSystem_aee20    // 系统初始化器5
+#define initializer_system_6                            RenderingSystem_aec00    // 系统初始化器6
+#define initializer_system_7                            RenderingSystem_ba1b0    // 系统初始化器7
+#define initializer_system_8                            RenderingSystem_ba220    // 系统初始化器8
+#define initializer_system_9                            RenderingSystem_ba0b0    // 系统初始化器9
+#define initializer_system_10                           RenderingSystem_b9640    // 系统初始化器10
 /**
  * 系统处理函数别名
  */
-#define processor_system_1                              FUN_1803c56d0    // 系统处理器1
-#define processor_system_2                              FUN_1803c5710    // 系统处理器2
-#define processor_system_3                              FUN_1803c5580    // 系统处理器3
-#define processor_system_4                              FUN_1803c5480    // 系统处理器4
-#define processor_system_5                              FUN_1803d5530    // 系统处理器5
-#define processor_system_6                              FUN_1803d9750    // 系统处理器6
-#define processor_system_7                              FUN_1803f4d50    // 系统处理器7
-#define processor_system_8                              FUN_1803f4dc0    // 系统处理器8
-#define processor_system_9                              FUN_1800a0051    // 系统处理器9
-
+#define processor_system_1                              RenderingSystem_c56d0    // 系统处理器1
+#define processor_system_2                              RenderingSystem_c5710    // 系统处理器2
+#define processor_system_3                              RenderingSystem_c5580    // 系统处理器3
+#define processor_system_4                              RenderingSystem_c5480    // 系统处理器4
+#define processor_system_5                              RenderingSystem_d5530    // 系统处理器5
+#define processor_system_6                              RenderingSystem_d9750    // 系统处理器6
+#define processor_system_7                              RenderingSystem_f4d50    // 系统处理器7
+#define processor_system_8                              RenderingSystem_f4dc0    // 系统处理器8
+#define processor_system_9                              GenericFunction_1800a0051    // 系统处理器9
 /**
  * 数据传输函数别名
  */
-#define data_transmitter_system_1                      FUN_1803f5b70    // 系统数据传输器1
-#define data_transmitter_system_2                      FUN_1801f34f0    // 系统数据传输器2
-#define data_transmitter_system_3                      FUN_1801f9cf0    // 系统数据传输器3
-#define data_transmitter_system_4                      FUN_1801feca0    // 系统数据传输器4
-#define data_transmitter_system_5                      FUN_180239530    // 系统数据传输器5
-#define data_transmitter_system_6                      FUN_180239610    // 系统数据传输器6
-#define data_transmitter_system_7                      FUN_180239720    // 系统数据传输器7
-#define data_transmitter_system_8                      FUN_180234880    // 系统数据传输器8
-#define data_transmitter_system_9                      FUN_18023eac0    // 系统数据传输器9
-
+#define data_transmitter_system_1                      RenderingSystem_f5b70    // 系统数据传输器1
+#define data_transmitter_system_2                      GenericFunction_1801f34f0    // 系统数据传输器2
+#define data_transmitter_system_3                      GenericFunction_1801f9cf0    // 系统数据传输器3
+#define data_transmitter_system_4                      GenericFunction_1801feca0    // 系统数据传输器4
+#define data_transmitter_system_5                      DataStructure_39530    // 系统数据传输器5
+#define data_transmitter_system_6                      DataStructure_39610    // 系统数据传输器6
+#define data_transmitter_system_7                      DataStructure_39720    // 系统数据传输器7
+#define data_transmitter_system_8                      DataStructure_34880    // 系统数据传输器8
+#define data_transmitter_system_9                      DataStructure_3eac0    // 系统数据传输器9
 /**
  * 字符串处理函数别名
  */
-#define string_processor_system_1                      FUN_1800a0051    // 系统字符串处理器1
-
+#define string_processor_system_1                      GenericFunction_1800a0051    // 系统字符串处理器1
 /*******************************************************************************
  * 全局变量声明
  *******************************************************************************/
-
 /**
  * 系统核心数据区域
  */
@@ -250,7 +230,6 @@ extern uint8_t global_state_5944;                       // 系统未知数据42
 extern uint8_t global_state_5960;                       // 系统未知数据43
 extern uint8_t global_state_6008;                       // 系统未知数据44
 extern uint8_t global_state_6024;                       // 系统未知数据45
-
 /**
  * 系统处理器数据区域
  */
@@ -282,7 +261,6 @@ extern uint8_t global_state_6264;                       // 处理器数据25
 extern uint8_t global_state_7680;                       // 处理器数据26
 extern uint8_t global_state_7688;                       // 处理器数据27
 extern uint8_t global_state_5412;                       // 处理器数据28
-
 /**
  * 系统控制器数据区域
  */
@@ -360,7 +338,6 @@ extern uint8_t global_state_7168;                       // 控制器数据71
 extern uint8_t global_state_7200;                       // 控制器数据72
 extern uint8_t global_state_8248;                       // 控制器数据73
 extern uint8_t system_memory_aa30;                       // 控制器数据74
-
 /**
  * 系统数据管理器数据区域
  */
@@ -472,7 +449,6 @@ extern uint8_t system_memory_1d00;                       // 数据管理器数�
 extern uint8_t system_memory_1cf0;                       // 数据管理器数据106
 extern int8_t system_memory_1d14;                       // 数据管理器数据107
 extern int8_t system_memory_1d08;                       // 数据管理器数据108
-
 /**
  * 数据验证器数据区域
  */
@@ -482,7 +458,6 @@ extern uint8_t global_state_3024;                       // 验证器数据3
 extern uint8_t global_state_3040;                       // 验证器数据4
 extern uint8_t global_state_3120;                       // 验证器数据5
 extern uint8_t global_state_3184;                       // 验证器数据6
-
 /**
  * 内存分配器数据区域
  */
@@ -490,18 +465,15 @@ extern uint8_t global_state_8000;                       // 内存分配器数据
 extern uint8_t SUB_180233670;                       // 内存分配器数据2
 extern uint8_t global_state_128;                       // 内存分配器数据3
 extern uint8_t global_state_5040;                       // 内存分配器数据4
-
 /**
  * 内存管理器数据区域
  */
 extern uint8_t global_state_8200;                       // 内存管理器数据1
-
 /**
  * 资源处理器数据区域
  */
 extern uint8_t global_state_4736;                       // 资源处理器数据1
 extern uint8_t global_state_8112;                       // 资源处理器数据2
-
 /**
  * 高级数据处理器数据区域
  */
@@ -518,24 +490,20 @@ extern uint8_t global_state_1680;                       // 高级数据处理器
 extern uint8_t global_state_1904;                       // 高级数据处理器数据11
 extern uint8_t global_state_1968;                       // 高级数据处理器数据12
 extern uint8_t global_state_2032;                       // 高级数据处理器数据13
-
 /**
  * 高级数据处理器2数据区域
  */
 extern uint8_t global_state_4208;                       // 高级数据处理器2数据1
-
 /**
  * 高级数据处理器3数据区域
  */
 extern uint8_t global_state_3904;                       // 高级数据处理器3数据1
-
 /**
  * 高级数据处理器8数据区域
  */
 extern uint8_t global_state_9168;                       // 高级数据处理器8数据1
 extern uint8_t global_state_8944;                       // 高级数据处理器8数据2
 extern uint8_t global_state_9328;                       // 高级数据处理器8数据3
-
 /**
  * 系统控制器数据区域
  */
@@ -543,7 +511,6 @@ extern uint8_t global_state_9624;                       // 系统控制器数据
 extern uint8_t global_state_9768;                       // 系统控制器数据2
 extern uint8_t global_state_9896;                       // 系统控制器数据3
 extern uint8_t global_state_232;                       // 系统控制器数据4
-
 /**
  * 系统控制器2数据区域
  */
@@ -556,12 +523,10 @@ extern uint8_t global_state_624;                       // 系统控制器2数据
 extern uint8_t global_state_600;                       // 系统控制器2数据7
 extern uint8_t global_state_9424;                       // 系统控制器2数据8
 extern uint8_t global_state_9920;                       // 系统控制器2数据9
-
 /**
  * 系统控制器5数据区域
  */
 extern uint8_t global_state_2112;                       // 系统控制器5数据1
-
 /**
  * 系统控制器7数据区域
  */
@@ -578,7 +543,6 @@ extern uint64_t global_state_792;                      // 系统控制器7数据
 extern uint64_t global_state_808;                      // 系统控制器7数据11
 extern uint64_t global_state_824;                      // 系统控制器7数据12
 extern uint8_t global_state_1352;                       // 系统控制器7数据13
-
 /**
  * 系统状态管理器1数据区域
  */
@@ -591,7 +555,6 @@ extern uint8_t global_state_7824;                       // 系统状态管理器
 extern uint8_t global_state_1520;                       // 系统状态管理器1数据7
 extern uint8_t global_state_6848;                       // 系统状态管理器1数据8
 extern uint8_t global_state_7168;                       // 系统状态管理器1数据9
-
 /**
  * 系统状态管理器2数据区域
  */
@@ -611,7 +574,6 @@ extern uint8_t global_state_8176;                       // 系统状态管理器
 extern uint8_t global_state_8184;                       // 系统状态管理器2数据14
 extern uint8_t global_state_3616;                       // 系统状态管理器2数据15
 extern uint8_t global_state_2656;                       // 系统状态管理器2数据16
-
 /**
  * 系统状态管理器3数据区域
  */
@@ -800,7 +762,6 @@ extern uint8_t global_state_848;                       // 系统状态管理器3
 extern uint8_t global_state_864;                       // 系统状态管理器3数据183
 extern uint8_t global_state_888;                       // 系统状态管理器3数据184
 extern uint8_t global_state_904;                       // 系统状态管理器3数据185
-
 /**
  * 系统状态管理器4数据区域
  */
@@ -835,7 +796,6 @@ extern uint8_t global_state_9328;                       // 系统状态管理器
 extern uint8_t global_state_9024;                       // 系统状态管理器4数据29
 extern uint8_t global_state_9264;                       // 系统状态管理器4数据30
 extern uint8_t global_state_9424;                       // 系统状态管理器4数据31
-
 /**
  * 系统状态管理器6数据区域
  */
@@ -845,7 +805,6 @@ extern uint8_t global_state_9464;                       // 系统状态管理器
 extern uint8_t global_state_9496;                       // 系统状态管理器6数据4
 extern uint8_t global_state_5136;                       // 系统状态管理器6数据5
 extern uint8_t global_state_8304;                       // 系统状态管理器6数据6
-
 /**
  * 系统状态管理器8数据区域
  */
@@ -855,7 +814,6 @@ extern uint8_t global_state_9528;                       // 系统状态管理器
 extern uint8_t global_state_9696;                       // 系统状态管理器8数据4
 extern uint8_t global_state_9592;                       // 系统状态管理器8数据5
 extern uint8_t global_state_8784;                       // 系统状态管理器8数据6
-
 /**
  * 系统状态管理器9数据区域
  */
@@ -877,12 +835,10 @@ extern uint8_t global_state_9976;                       // 系统状态管理器
 extern uint8_t global_state_64;                       // 系统状态管理器9数据16
 extern uint8_t global_state_2792;                       // 系统状态管理器9数据17
 extern uint8_t global_state_4992;                       // 系统状态管理器9数据18
-
 /**
  * 系统初始化器1数据区域
  */
 extern uint8_t global_state_40;                       // 系统初始化器1数据1
-
 /**
  * 系统初始化器2数据区域
  */
@@ -936,12 +892,10 @@ extern uint8_t global_state_2360;                       // 系统初始化器2�
 extern uint8_t global_state_2480;                       // 系统初始化器2数据48
 extern uint8_t global_state_2384;                       // 系统初始化器2数据49
 extern uint8_t system_memory_9678;                       // 系统初始化器2数据50
-
 /**
  * 系统初始化器5数据区域
  */
 extern uint8_t global_state_376;                       // 系统初始化器5数据1
-
 /**
  * 系统初始化器6数据区域
  */
@@ -952,7 +906,6 @@ extern uint8_t global_state_288;                       // 系统初始化器6数
 extern uint8_t global_state_952;                       // 系统初始化器6数据5
 extern uint8_t global_state_9008;                       // 系统初始化器6数据6
 extern uint8_t global_state_9104;                       // 系统初始化器6数据7
-
 /**
  * 系统初始化器8数据区域
  */
@@ -964,7 +917,6 @@ extern uint8_t global_state_440;                       // 系统初始化器8数
 extern uint8_t global_state_496;                       // 系统初始化器8数据6
 extern uint8_t global_state_5936;                       // 系统初始化器8数据7
 extern uint8_t global_state_5952;                       // 系统初始化器8数据8
-
 /**
  * 系统初始化器9数据区域
  */
@@ -974,7 +926,6 @@ extern uint8_t global_state_8896;                       // 系统初始化器9�
 extern uint8_t global_state_8528;                       // 系统初始化器9数据4
 extern uint8_t global_state_8544;                       // 系统初始化器9数据5
 extern uint8_t global_state_6016;                       // 系统初始化器9数据6
-
 /**
  * 系统初始化器10数据区域
  */
@@ -1034,7 +985,6 @@ extern uint8_t global_state_2648;                       // 系统初始化器10�
 extern uint8_t system_memory_1400;                       // 系统初始化器10数据54
 extern uint8_t global_state_5232;                       // 系统初始化器10数据55
 extern uint8_t global_state_5264;                       // 系统初始化器10数据56
-
 /**
  * 系统处理器4数据区域
  */
@@ -1059,13 +1009,11 @@ extern uint8_t global_state_3920;                       // 系统处理器4数�
 extern uint8_t global_state_3936;                       // 系统处理器4数据19
 extern uint8_t global_state_3128;                       // 系统处理器4数据20
 extern uint8_t global_state_3172;                       // 系统处理器4数据21
-
 /**
  * 系统处理器5数据区域
  */
 extern uint8_t global_state_5704;                       // 系统处理器5数据1
 extern uint8_t global_state_7360;                       // 系统处理器5数据2
-
 /**
  * 系统处理器6数据区域
  */
@@ -1154,7 +1102,6 @@ extern uint8_t global_state_448;                       // 系统处理器6数据
 extern uint8_t global_state_592;                       // 系统处理器6数据83
 extern uint8_t global_state_656;                       // 系统处理器6数据84
 extern uint8_t global_state_672;                       // 系统处理器6数据85
-
 /**
  * 系统处理器7数据区域
  */
@@ -1208,21 +1155,19 @@ extern uint8_t global_state_6680;                       // 系统处理器7数�
 extern uint8_t global_state_6696;                       // 系统处理器7数据48
 extern uint8_t global_state_6816;                       // 系统处理器7数据49
 extern uint8_t global_state_8424;                       // 系统处理器7数据50
-
 /*******************************************************************************
  * 函数实现
  *******************************************************************************/
-
 /**
  * 系统字符串处理器 - 处理系统级字符串操作和数据格式化
- * 
+ *
  * 该函数负责处理系统级的字符串操作，包括：
  * - 字符串缓冲区管理和初始化
  * - 字符串数据的写入和格式化
  * - 系统标志位处理和状态管理
  * - 数据块传输和内存操作
  * - 错误处理和异常管理
- * 
+ *
  * @param param_1 系统上下文参数，包含系统状态和配置信息
  * @param param_2 字符串缓冲区指针数组，用于存储处理结果
  * @param param_3 数据源参数，包含要处理的数据和信息
@@ -1241,228 +1186,197 @@ void string_processor_system_1(uint64_t param_1, int64_t *param_2, int64_t param
     uint64_t uVar8;               // 无符号长整型，用于循环计数
     int8_t *puVar9;            // 字符串数据指针
     int64_t *unaff_R15;           // 未使用的寄存器变量
-    uint in_stack_00000080;        // 栈参数，用于传递附加信息
-    
+    uint local_var_80;        // 栈参数，用于传递附加信息
     /**
      * 检查控制标志，决定是否执行初始化操作
      */
     if ((param_4 & 1) == 0) {
-        // 获取当前缓冲区状态
+// 获取当前缓冲区状态
         lVar2 = *param_2;
         lVar3 = param_2[1];
-        
-        // 如果有数据需要处理，执行初始化循环
-        if (0 < (int)in_stack_00000080) {
-            uVar8 = (uint64_t)in_stack_00000080;
+// 如果有数据需要处理，执行初始化循环
+        if (0 < (int)local_var_80) {
+            uVar8 = (uint64_t)local_var_80;
             do {
-                // 写入超时标记
+// 写入超时标记
                 SystemCore_ResourceManager(lVar3, SYSTEM_TIMEOUT_VALUE);
-                
-                // 如果有数据指针，执行数据传输
+// 如果有数据指针，执行数据传输
                 if (lVar2 != 0) {
                     SystemCore_Synchronizer(lVar3, lVar2);
                 }
-                
-                // 更新循环计数器
+// 更新循环计数器
                 uVar8 = uVar8 - 1;
             } while (uVar8 != 0);
         }
-        
-        // 更新缓冲区状态
+// 更新缓冲区状态
         *param_2 = lVar2;
         param_2[1] = lVar3;
     }
-    
-    // 获取当前缓冲区状态
+// 获取当前缓冲区状态
     lVar2 = param_2[1];
-    
-    // 写入系统初始化标志
+// 写入系统初始化标志
     SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_INITIALIZED);
     lVar3 = *param_2;
-    
-    // 如果有数据指针，执行数据传输
+// 如果有数据指针，执行数据传输
     if (lVar3 != 0) {
         SystemCore_Synchronizer(lVar2, lVar3);
     }
-    
-    // 写入系统活动标志
+// 写入系统活动标志
     SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_ACTIVE);
     if (lVar3 != 0) {
         SystemCore_Synchronizer(lVar2, lVar3);
     }
-    
-    // 写入系统完成标志
+// 写入系统完成标志
     SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_COMPLETED);
     if (lVar3 != 0) {
         SystemCore_Synchronizer(lVar2, lVar3);
     }
-    
-    // 写入数据就绪标志
+// 写入数据就绪标志
     SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_DATA_READY);
     if (lVar3 != 0) {
         SystemCore_Synchronizer(lVar2, lVar3);
     }
-    
-    // 写入分配标志
+// 写入分配标志
     SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_ALLOCATED);
     if (lVar3 != 0) {
         SystemCore_Synchronizer(lVar2, lVar3);
     }
-    
-    // 写入传输标志
+// 写入传输标志
     SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_TRANSMITTED);
     if (lVar3 != 0) {
         SystemCore_Synchronizer(lVar2, lVar3);
     }
-    
-    // 写入接收标志
+// 写入接收标志
     SystemCore_ResourceManager(lVar2, SYSTEM_FLAG_RECEIVED);
     if (lVar3 != 0) {
         SystemCore_Synchronizer(lVar2, lVar3);
     }
-    
-    // 写入终止符
+// 写入终止符
     SystemCore_ResourceManager(lVar2, STRING_TERMINATOR);
     if (lVar3 != 0) {
         SystemCore_Synchronizer(lVar2, lVar3);
     }
-    
-    // 获取字符串数据源
+// 获取字符串数据源
     puVar4 = *(int8_t **)(param_3 + 8);
     lVar2 = *param_2;
     lVar3 = param_2[1];
-    
-    // 检查数据源是否为空
+// 检查数据源是否为空
     if (puVar4 == (int8_t *)0x0) {
-        // 使用默认数据源
+// 使用默认数据源
         puVar6 = (int8_t *)0x180d48d24;
         lVar7 = 0;
     }
     else {
-        // 获取数据源长度
+// 获取数据源长度
         lVar7 = *(int64_t *)(param_3 + 0x18);
         puVar6 = puVar4;
     }
-    
-    // 设置默认数据源指针
+// 设置默认数据源指针
     puVar9 = (int8_t *)0x180d48d24;
     if (puVar4 != (int8_t *)0x0) {
         puVar9 = puVar4;
     }
-    
-    // 处理字符串数据
+// 处理字符串数据
     while (puVar9 != puVar6 + lVar7) {
-        // 读取字符数据
+// 读取字符数据
         uVar1 = *puVar9;
         puVar9 = puVar9 + 1;
-        
-        // 写入字符数据到缓冲区
+// 写入字符数据到缓冲区
         SystemCore_ResourceManager(lVar3, uVar1);
-        
-        // 如果有数据指针，执行数据传输
+// 如果有数据指针，执行数据传输
         if (lVar2 != 0) {
             SystemCore_Synchronizer(lVar3, lVar2);
         }
     }
-    
-    // 更新缓冲区状态
+// 更新缓冲区状态
     *param_2 = lVar2;
     param_2[1] = lVar3;
-    
-    // 获取最终缓冲区状态
+// 获取最终缓冲区状态
     lVar7 = param_2[1];
-    
-    // 写入结束标记
+// 写入结束标记
     SystemCore_ResourceManager(lVar7, SYSTEM_FLAG_TERMINATED);
     lVar5 = *param_2;
-    
-    // 如果有数据指针，执行数据传输
+// 如果有数据指针，执行数据传输
     if (lVar5 != 0) {
         SystemCore_Synchronizer(lVar7, lVar5);
     }
-    
-    // 写入第二个结束标记
+// 写入第二个结束标记
     SystemCore_ResourceManager(lVar7, SYSTEM_FLAG_TERMINATED);
     if (lVar5 != 0) {
         SystemCore_Synchronizer(lVar7, lVar5);
     }
-    
-    // 写入系统结束标记
+// 写入系统结束标记
     SystemCore_ResourceManager(lVar7, SYSTEM_FLAG_TERMINATED);
     if (lVar5 != 0) {
         SystemCore_Synchronizer(lVar7, lVar5);
     }
-    
-    // 更新输出缓冲区
+// 更新输出缓冲区
     *unaff_R15 = lVar2;
     unaff_R15[1] = lVar3;
-    
     return;
 }
-
 /*******************************************************************************
  * 技术说明和实现细节
  *******************************************************************************/
-
 /**
  * 系统架构说明：
- * 
+ *
  * 本文件实现了一个高级系统模块，包含56个核心函数，主要用于：
- * 
+ *
  * 1. 系统底层功能实现
  *    - 内存管理和分配
  *    - 数据结构操作
  *    - 系统状态控制
  *    - 资源管理和清理
- * 
+ *
  * 2. 数据处理功能
  *    - 字符串处理和格式化
  *    - 数据验证和转换
  *    - 批量数据处理
  *    - 异常处理和错误管理
- * 
+ *
  * 3. 系统通信功能
  *    - 网络数据传输
  *    - 进程间通信
  *    - 消息队列管理
  *    - 同步机制实现
- * 
+ *
  * 4. 硬件交互功能
  *    - 设备驱动接口
  *    - 硬件资源管理
  *    - 系统中断处理
  *    - DMA操作控制
- * 
+ *
  * 性能优化特点：
  * - 使用高效的内存管理策略
  * - 实现了线程安全的数据访问
  * - 采用了批处理和缓存优化
  * - 支持异步操作和事件驱动
- * 
+ *
  * 安全性考虑：
  * - 实现了完整的错误处理机制
  * - 包含数据验证和边界检查
  * - 支持内存保护机制
  * - 提供了系统状态监控
- * 
+ *
  * 可扩展性设计：
  * - 模块化的函数架构
  * - 清晰的接口定义
  * - 可配置的参数系统
  * - 支持插件式扩展
- * 
+ *
  * 兼容性保证：
  * - 支持多平台运行
  * - 提供向后兼容性
  * - 实现了标准接口
  * - 支持多种数据格式
- * 
+ *
  * 维护性考虑：
  * - 详细的代码注释
  * - 清晰的函数命名
  * - 统一的编码风格
  * - 完善的错误处理
- * 
+ *
  * 本文件是TaleWorlds.Native项目的核心组件之一，为整个系统提供了
  * 底层功能支持和系统级服务。
  */

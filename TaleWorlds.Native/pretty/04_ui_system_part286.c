@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part286.c - 4 个函数
-
-// 函数: void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
-void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
-
+// 函数: void NetworkProtocol_2b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
+void NetworkProtocol_2b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
 {
   int iVar1;
   float *pfVar2;
@@ -68,12 +65,11 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
   uint unaff_R14D;
   int iVar54;
   int64_t unaff_R15;
-  int in_stack_00000110;
-  uint in_stack_00000120;
-  uint in_stack_00000130;
-  uint in_stack_00000138;
-  uint in_stack_00000140;
-  
+  int local_var_110;
+  uint local_var_120;
+  uint local_var_130;
+  uint local_var_138;
+  uint local_var_140;
   param_1 = param_1 >> 2;
   if (param_1 != 0) {
     iVar44 = unaff_R14D * 4;
@@ -162,7 +158,7 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
           pfVar45[2] = fVar18 * fVar3 + fVar36 * fVar10;
           pfVar45[3] = fVar22 * fVar3 + fVar40 * fVar10;
           iVar48 = iVar48 + -1;
-          unaff_R13D = in_stack_00000110;
+          unaff_R13D = local_var_110;
           iVar52 = iVar46;
         } while (iVar48 != 0);
       }
@@ -189,7 +185,7 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
           in_R11[(int64_t)iVar46 + (int64_t)unaff_R12D] = fVar12 * fVar4 + fVar15 * fVar9;
           in_R11[iVar46 + lVar41] = fVar11 * fVar3 + fVar16 * fVar10;
           uVar50 = uVar50 - 1;
-          unaff_R13D = in_stack_00000110;
+          unaff_R13D = local_var_110;
           iVar46 = iVar46 + 1;
         } while (uVar50 != 0);
       }
@@ -197,8 +193,8 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
       in_R10 = in_R10 + 4;
       unaff_RDI = unaff_RDI + 4;
       param_1 = param_1 + -1;
-      unaff_R14D = in_stack_00000120;
-      unaff_EBX = in_stack_00000130;
+      unaff_R14D = local_var_120;
+      unaff_EBX = local_var_130;
     } while (param_1 != 0);
   }
   for (uVar51 = unaff_EBX & 3; uVar51 != 0; uVar51 = uVar51 - 1) {
@@ -219,7 +215,7 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
     in_R10 = in_R10 + 1;
     unaff_RDI = unaff_RDI + 1;
   }
-  iVar44 = (int)in_stack_00000138 >> 2;
+  iVar44 = (int)local_var_138 >> 2;
   if (iVar44 != 0) {
     iVar47 = unaff_R14D * 4;
     iVar46 = (int)unaff_R14D >> 2;
@@ -308,7 +304,7 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
           pfVar45[2] = fVar21 * fVar3 - fVar29 * fVar10;
           pfVar45[3] = fVar25 * fVar3 - fVar37 * fVar10;
           iVar49 = iVar49 + -1;
-          unaff_R13D = in_stack_00000110;
+          unaff_R13D = local_var_110;
           iVar52 = iVar48;
         } while (iVar49 != 0);
       }
@@ -335,7 +331,7 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
           in_R11[(int64_t)iVar48 + (int64_t)unaff_R12D] = fVar15 * fVar4 - fVar12 * fVar9;
           in_R11[iVar48 + lVar41] = fVar16 * fVar3 - fVar11 * fVar10;
           uVar50 = uVar50 - 1;
-          unaff_R13D = in_stack_00000110;
+          unaff_R13D = local_var_110;
           iVar48 = iVar48 + 1;
         } while (uVar50 != 0);
       }
@@ -343,11 +339,11 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
       param_4 = param_4 + 4;
       unaff_RDI = unaff_RDI + 4;
       iVar44 = iVar44 + -1;
-      unaff_R14D = in_stack_00000120;
+      unaff_R14D = local_var_120;
     } while (iVar44 != 0);
   }
-  in_stack_00000138 = in_stack_00000138 & 3;
-  if (in_stack_00000138 != 0) {
+  local_var_138 = local_var_138 & 3;
+  if (local_var_138 != 0) {
     lVar42 = unaff_R15 - (int64_t)in_R10;
     lVar41 = (int64_t)param_4 - (int64_t)unaff_RDI;
     pfVar45 = in_R10;
@@ -370,11 +366,11 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
         } while (uVar51 != 0);
       }
       unaff_RDI = unaff_RDI + 1;
-      in_stack_00000138 = in_stack_00000138 - 1;
+      local_var_138 = local_var_138 - 1;
       pfVar45 = in_R10;
-    } while (in_stack_00000138 != 0);
+    } while (local_var_138 != 0);
   }
-  iVar44 = (int)in_stack_00000140 >> 2;
+  iVar44 = (int)local_var_140 >> 2;
   if (iVar44 != 0) {
     iVar46 = (int)unaff_R14D >> 2;
     uVar51 = unaff_R14D & 3;
@@ -453,11 +449,11 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
       }
       in_R11 = in_R11 + iVar47;
       iVar44 = iVar44 + -1;
-      unaff_R14D = in_stack_00000120;
+      unaff_R14D = local_var_120;
     } while (iVar44 != 0);
   }
-  for (in_stack_00000140 = in_stack_00000140 & 3; in_stack_00000140 != 0;
-      in_stack_00000140 = in_stack_00000140 - 1) {
+  for (local_var_140 = local_var_140 & 3; local_var_140 != 0;
+      local_var_140 = local_var_140 - 1) {
     in_R10 = in_R10 + -1;
     pfVar45 = in_R10;
     for (uVar51 = unaff_R14D; uVar51 != 0; uVar51 = uVar51 - 1) {
@@ -469,14 +465,8 @@ void FUN_18082b693(int param_1,uint64_t param_2,int64_t param_3,float *param_4)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18082bc49(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
-void FUN_18082bc49(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
-
+// 函数: void NetworkProtocol_2bc49(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
+void NetworkProtocol_2bc49(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
 {
   int iVar1;
   float fVar2;
@@ -514,9 +504,8 @@ void FUN_18082bc49(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
   uint unaff_R14D;
   int iVar28;
   int64_t unaff_R15;
-  uint in_stack_00000120;
-  uint in_stack_00000140;
-  
+  uint local_var_120;
+  uint local_var_140;
   param_4 = param_4 - (int64_t)unaff_RDI;
   pfVar20 = in_R10;
   do {
@@ -541,7 +530,7 @@ void FUN_18082bc49(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
     unaff_EBX = unaff_EBX + -1;
     pfVar20 = pfVar27;
   } while (unaff_EBX != 0);
-  iVar28 = (int)in_stack_00000140 >> 2;
+  iVar28 = (int)local_var_140 >> 2;
   if (iVar28 != 0) {
     iVar17 = (int)unaff_R14D >> 2;
     uVar21 = unaff_R14D & 3;
@@ -620,11 +609,11 @@ void FUN_18082bc49(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
       }
       in_R11 = in_R11 + iVar1;
       iVar28 = iVar28 + -1;
-      unaff_R14D = in_stack_00000120;
+      unaff_R14D = local_var_120;
     } while (iVar28 != 0);
   }
-  for (in_stack_00000140 = in_stack_00000140 & 3; in_stack_00000140 != 0;
-      in_stack_00000140 = in_stack_00000140 - 1) {
+  for (local_var_140 = local_var_140 & 3; local_var_140 != 0;
+      local_var_140 = local_var_140 - 1) {
     pfVar27 = pfVar27 + -1;
     pfVar20 = pfVar27;
     for (uVar21 = unaff_R14D; uVar21 != 0; uVar21 = uVar21 - 1) {
@@ -636,14 +625,8 @@ void FUN_18082bc49(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18082be99(void)
-void FUN_18082be99(void)
-
+// 函数: void NetworkProtocol_2be99(void)
+void NetworkProtocol_2be99(void)
 {
   uint *puVar1;
   int iVar2;
@@ -651,7 +634,6 @@ void FUN_18082be99(void)
   uint *in_R10;
   uint *in_R11;
   int unaff_R14D;
-  
   do {
     in_R10 = in_R10 + -1;
     puVar1 = in_R10;
@@ -668,16 +650,10 @@ void FUN_18082be99(void)
   } while (unaff_EBP != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18082c150(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5,
-void FUN_18082c150(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5,
+// 函数: void NetworkProtocol_2c150(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5,
+void NetworkProtocol_2c150(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5,
                   float *param_6,float *param_7,uint param_8,uint param_9,uint param_10,
                   uint param_11)
-
 {
   float *pfVar1;
   float fVar2;
@@ -707,7 +683,6 @@ void FUN_18082c150(float *param_1,float *param_2,float *param_3,float *param_4,f
   float *pfVar26;
   int64_t lVar27;
   int64_t lVar28;
-  
   for (iVar25 = (int)param_8 >> 2; iVar25 != 0; iVar25 = iVar25 + -1) {
     fVar2 = param_4[-4];
     fVar3 = param_4[-3];
@@ -883,9 +858,6 @@ void FUN_18082c150(float *param_1,float *param_2,float *param_3,float *param_4,f
   }
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x00018082cd15)
 // WARNING: Removing unreachable block (ram,0x00018082cd09)
 // WARNING: Removing unreachable block (ram,0x00018082c9e7)
@@ -903,6 +875,3 @@ void FUN_18082c150(float *param_1,float *param_2,float *param_3,float *param_4,f
 // WARNING: Removing unreachable block (ram,0x00018082cffe)
 // WARNING: Removing unreachable block (ram,0x00018082d00e)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

@@ -1,8 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part068.c - 渲染系统高级管线控制和资源管理模块
 // 包含6个核心函数，涵盖渲染管线控制、资源管理、状态更新、数据比较等高级渲染功能
-
 // 函数：渲染系统高级管线处理器
 // 功能：处理渲染管线的高级操作，包括资源管理、状态同步、批量处理等
 void rendering_system_advanced_pipeline_processor(int64_t render_context, int64_t resource_manager, int64_t state_manager)
@@ -36,7 +34,6 @@ void rendering_system_advanced_pipeline_processor(int64_t render_context, int64_
     int64_t **stack_ptr_ptr;
     int stack_params_array[6];
     uint64_t stack_guard3;
-    
     stack_guard2 = 0xfffffffffffffffe;
     stack_guard3 = render_system_checksum_table ^ (uint64_t)stack_buffer;
     LOCK();
@@ -165,7 +162,6 @@ void rendering_system_advanced_pipeline_processor(int64_t render_context, int64_
     }
     render_system_final_processor(stack_guard3 ^ (uint64_t)stack_buffer);
 }
-
 // 函数：渲染系统批量数据处理器
 // 功能：批量处理渲染数据，包括数据转换、状态更新、资源分配等
 void rendering_system_batch_data_processor(uint64_t *data_array, int start_index, int end_index)
@@ -183,7 +179,6 @@ void rendering_system_batch_data_processor(uint64_t *data_array, int start_index
     int64_t alloc_data;
     bool alloc_success;
     int current_index;
-    
     current_index = start_index;
     if (start_index < end_index) {
         do {
@@ -258,7 +253,6 @@ LAB_CONTINUE_PROCESSING:
     }
     return;
 }
-
 // 函数：渲染系统高级数据处理器
 // 功能：高级渲染数据处理，包括复杂数据转换、状态同步和资源管理
 void rendering_system_advanced_data_processor(uint64_t *data_array, int start_index, int end_index)
@@ -289,7 +283,6 @@ void rendering_system_advanced_data_processor(uint64_t *data_array, int start_in
     int32_t unused_simd7;
     int32_t unused_simd8;
     int stack_param;
-    
     *(uint64_t *)(register_data + 8) = unused_reg1;
     *(uint64_t *)(register_data + 0x20) = unused_reg2;
     *(uint64_t *)(register_data + -0x20) = unused_reg3;
@@ -380,14 +373,12 @@ LAB_CONTINUE_PROCESSING:
         }
     } while( true );
 }
-
 // 函数：渲染系统空操作
 // 功能：空操作函数，用于系统初始化或占位
 void rendering_system_empty_operation(void)
 {
     return;
 }
-
 // 函数：渲染系统碰撞检测处理器
 // 功能：处理渲染系统中的碰撞检测，包括空间计算、距离检测等
 bool rendering_system_collision_detection_processor(uint64_t render_object, int64_t *object_data, int64_t transform_data, int64_t geometry_data, uint64_t material_data, float detection_threshold)
@@ -410,7 +401,6 @@ bool rendering_system_collision_detection_processor(uint64_t render_object, int6
     float matrix_stack7[3];
     float matrix_stack8[3];
     int32_t padding3;
-    
     (**(code **)(*object_data + 0x218))(object_data);
     (**(code **)(*object_data + 0x218))(object_data);
     if ((void *)*object_data == &render_system_collision_object) {
@@ -463,7 +453,6 @@ bool rendering_system_collision_detection_processor(uint64_t render_object, int6
     }
     return false;
 }
-
 // 函数：渲染系统简化碰撞检测
 // 功能：简化版本的碰撞检测处理器，用于性能优化
 bool rendering_system_simplified_collision_detection(void)
@@ -493,7 +482,6 @@ bool rendering_system_simplified_collision_detection(void)
     float matrix_stack7[3];
     float matrix_stack8[3];
     float stack_param4;
-    
     if (((register_data & 1) != 0) &&
        ((mask_val = *(uint *)(transform_data + 0x60300) & 0xfffffffe,
         (mask_val & *(uint *)(object_ptr + 0x2e)) == mask_val || ((*(uint *)(object_ptr + 0x2e) & 1) != 0)))) {
@@ -545,7 +533,6 @@ bool rendering_system_simplified_collision_detection(void)
     }
     return false;
 }
-
 // 函数：渲染系统高级碰撞检测
 // 功能：高级版本的碰撞检测处理器，支持复杂的碰撞检测算法
 bool rendering_system_advanced_collision_detection(void)
@@ -580,7 +567,6 @@ bool rendering_system_advanced_collision_detection(void)
     float matrix_stack7[3];
     float matrix_stack8[3];
     float stack_param8;
-    
     mask_val = (**(code **)(register_data + 0x130))();
     if (((mask_val & 1) != 0) &&
        ((mask_val2 = *(uint *)(transform_data + 0x60300) & 0xfffffffe,
@@ -633,14 +619,12 @@ bool rendering_system_advanced_collision_detection(void)
     }
     return false;
 }
-
 // 函数：渲染系统资源释放器
 // 功能：释放渲染系统中的资源，包括内存清理和状态重置
 void rendering_system_resource_releaser(int64_t render_context)
 {
     uint *flag_ptr;
     int64_t *resource_ptr;
-    
     if (*(int64_t *)(render_context + 0x1c48) != 0) {
         flag_ptr = (uint *)(*(int64_t *)(render_context + 0x1c48) + 0x328);
         *flag_ptr = *flag_ptr & 0xdfffffff;
@@ -653,7 +637,6 @@ void rendering_system_resource_releaser(int64_t render_context)
     }
     return;
 }
-
 // 函数：渲染系统资源查找器
 // 功能：在渲染系统中查找指定的资源
 int64_t rendering_system_resource_finder(int64_t render_context, int64_t search_params)
@@ -666,7 +649,6 @@ int64_t rendering_system_resource_finder(int64_t render_context, int64_t search_
     int compare_result;
     int64_t string_diff;
     int64_t *resource_ptr;
-    
     resource_ptr = *(int64_t **)(render_context + 0x1b90);
     if (resource_ptr != *(int64_t **)(render_context + 0x1b98)) {
         string_len1 = *(int *)(search_params + 0x10);
@@ -696,7 +678,6 @@ LAB_CONTINUE_SEARCH:
     }
     return 0;
 }
-
 // 函数：渲染系统资源清理器
 // 功能：清理渲染系统中的资源，包括批量清理和内存管理
 void rendering_system_resource_cleaner(int64_t render_context)
@@ -706,7 +687,6 @@ void rendering_system_resource_cleaner(int64_t render_context)
     int status_code;
     int64_t *queue_start;
     int64_t *queue_end;
-    
     status_code = _Mtx_lock(render_context + 0x1bb0);
     if (status_code != 0) {
         render_system_throw_error(status_code);
@@ -744,14 +724,12 @@ void rendering_system_resource_cleaner(int64_t render_context)
     }
     return;
 }
-
 // 函数：渲染系统数据比较器
 // 功能：比较渲染系统中的数据，用于排序和查找
 bool rendering_system_data_comparator(int64_t *data1, int64_t *data2)
 {
     uint priority1;
     uint priority2;
-    
     priority1 = *(uint *)(*data2 + 0x4c);
     priority2 = *(uint *)(*data1 + 0x4c);
     if ((int64_t *)*data1 != (int64_t *)0x0) {
@@ -762,32 +740,27 @@ bool rendering_system_data_comparator(int64_t *data1, int64_t *data2)
     }
     return priority1 < priority2;
 }
-
 // 渲染系统常量定义
 // 渲染管线状态常量
 const int RENDER_PIPELINE_STATE_READY = 0;
 const int RENDER_PIPELINE_STATE_PROCESSING = 1;
 const int RENDER_PIPELINE_STATE_COMPLETED = 2;
 const int RENDER_PIPELINE_STATE_ERROR = 3;
-
 // 渲染资源类型常量
 const int RENDER_RESOURCE_TYPE_TEXTURE = 1;
 const int RENDER_RESOURCE_TYPE_SHADER = 2;
 const int RENDER_RESOURCE_TYPE_BUFFER = 4;
 const int RENDER_RESOURCE_TYPE_MATERIAL = 8;
-
 // 渲染处理模式常量
 const int RENDER_MODE_NORMAL = 0;
 const int RENDER_MODE_BATCH = 1;
 const int RENDER_MODE_STREAMING = 2;
 const int RENDER_MODE_DEFERRED = 4;
-
 // 碰撞检测精度常量
 const int COLLISION_PRECISION_LOW = 1;
 const int COLLISION_PRECISION_MEDIUM = 2;
 const int COLLISION_PRECISION_HIGH = 4;
 const int COLLISION_PRECISION_ULTRA = 8;
-
 // 渲染系统工作变量
 // 渲染管线状态标志
 int render_pipeline_status_flags;
@@ -805,7 +778,6 @@ unsigned int64_t render_processing_timestamp;
 int render_system_error_code;
 // 性能计数器
 int render_performance_counter;
-
 // 渲染系统全局数据
 // 渲染系统校验和表
 uint64_t *render_system_checksum_table;
@@ -821,7 +793,6 @@ int64_t *render_system_memory_flags;
 float *render_system_float_table;
 // 渲染系统碰撞对象
 int64_t *render_system_collision_object;
-
 // 渲染系统函数别名定义
 // 高级管线处理器别名
 void render_system_pipeline_processor(int64_t render_context, int64_t resource_manager, int64_t state_manager) { rendering_system_advanced_pipeline_processor(render_context, resource_manager, state_manager); }
@@ -845,25 +816,22 @@ int64_t render_system_find_resource(int64_t render_context, int64_t search_param
 void render_system_cleanup_resources(int64_t render_context) { rendering_system_resource_cleaner(render_context); }
 // 数据比较器别名
 bool render_system_compare_data(int64_t *data1, int64_t *data2) { return rendering_system_data_comparator(data1, data2); }
-
 // 简化实现的辅助函数
 // 注意：这些是简化实现，实际实现可能需要更复杂的渲染处理逻辑
 void render_system_helper_initialize(void)
 {
-    // 初始化渲染系统的辅助数据结构
-    // 设置默认渲染参数
-    // 初始化资源管理器
-    // 配置管线状态
+// 初始化渲染系统的辅助数据结构
+// 设置默认渲染参数
+// 初始化资源管理器
+// 配置管线状态
 }
-
 void render_system_helper_cleanup(void)
 {
-    // 清理渲染系统的辅助数据结构
-    // 释放渲染资源
-    // 清空处理队列
-    // 重置系统状态
+// 清理渲染系统的辅助数据结构
+// 释放渲染资源
+// 清空处理队列
+// 重置系统状态
 }
-
 // 渲染系统的简化实现
 // 这些函数提供了基础的渲染处理功能
 // 在实际应用中，可能需要根据具体需求进行优化和扩展

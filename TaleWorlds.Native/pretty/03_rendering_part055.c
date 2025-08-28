@@ -1,16 +1,13 @@
+// 原始函数语义化别名定义
+// 本文件包含当前文件中使用的原始函数的语义化别名
+// 这些别名提高了代码的可读性和维护性
 /* 函数别名定义: MathInterpolationCalculator */
 #define MathInterpolationCalculator MathInterpolationCalculator
-
-
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part055.c - 渲染系统高级粒子效果和动画处理模块 - 8 个函数
-
 /**
  * 渲染系统主粒子更新函数
  * 处理粒子系统的更新逻辑，包括位置计算、边界检测和碰撞处理
@@ -77,43 +74,40 @@ void RenderSystem_ParticleSystem_Update(void)
   float fStack0000000000000074;
   float fStack0000000000000078;
   float fStack000000000000007c;
-  int32_t in_stack_00000090;
-  int32_t in_stack_00000098;
-  int32_t in_stack_000000a0;
-  int32_t in_stack_000000a8;
-  int32_t in_stack_000000b0;
-  int32_t in_stack_000000b8;
-  int32_t in_stack_000000c0;
-  int32_t in_stack_000000c8;
-  int32_t in_stack_000000d0;
-  int32_t in_stack_000000d8;
-  int32_t in_stack_000000f0;
-  int32_t in_stack_000000f8;
-  int32_t in_stack_00000100;
-  int32_t in_stack_00000108;
-  int32_t in_stack_00000110;
-  int32_t in_stack_00000118;
-  
-  // 初始化渲染系统参数
+  int32_t local_buffer_90;
+  int32_t local_buffer_98;
+  int32_t local_buffer_a0;
+  int32_t local_buffer_a8;
+  int32_t local_buffer_b0;
+  int32_t local_buffer_b8;
+  int32_t local_buffer_c0;
+  int32_t local_buffer_c8;
+  int32_t local_buffer_d0;
+  int32_t local_buffer_d8;
+  int32_t local_buffer_f0;
+  int32_t local_buffer_f8;
+  int32_t local_var_100;
+  int32_t local_var_108;
+  int32_t local_var_110;
+  int32_t local_var_118;
+// 初始化渲染系统参数
   *(uint64_t *)(in_R11 + 0x10) = unaff_RBX;
-  puVar7 = (uint64_t *)&stack0x00000068;
+  puVar7 = (uint64_t *)&local_buffer_00000068;
   *(uint64_t *)(in_R11 + 0x18) = unaff_RDI;
   lVar8 = 4;
   *(uint64_t *)(in_R11 + -0x18) = unaff_R13;
   lVar5 = SYSTEM_DATA_MANAGER_A;
   *(uint64_t *)(in_R11 + -0x20) = unaff_R14;
   lVar3 = *(int64_t *)(lVar5 + 0xa0);
-  
-  // 执行初始化循环
+// 执行初始化循环
   do {
-    func_0x00018005d390(puVar7);
+    Function_62fa2961(puVar7);
     puVar7 = puVar7 + 1;
     lVar8 = lVar8 + -1;
   } while (lVar8 != 0);
-  
-  // 检查渲染条件
+// 检查渲染条件
   if ((unaff_ESI < 8) && ((*(byte *)(lVar3 + 4) & 2) == 0)) {
-    // 计算粒子位置和速度参数
+// 计算粒子位置和速度参数
     lVar8 = CONCAT44(unaff_00000034,unaff_ESI) + CONCAT44(unaff_00000034,unaff_ESI) * 2;
     fVar13 = fStack0000000000000034 - *(float *)(lVar8 * 8 + 0x180bf9104);
     fVar14 = fStack0000000000000030 - *(float *)(lVar8 * 8 + 0x180bf9100);
@@ -135,34 +129,33 @@ void RenderSystem_ParticleSystem_Update(void)
     iVar9 = 0;
     fStack0000000000000030 = fVar14;
     fStack0000000000000034 = fVar13;
-    in_stack_00000090 = unaff_XMM14_Da;
-    in_stack_00000098 = unaff_XMM14_Dc;
-    in_stack_000000a0 = unaff_XMM13_Da;
-    in_stack_000000a8 = unaff_XMM13_Dc;
-    in_stack_000000d0 = unaff_XMM10_Da;
-    in_stack_000000d8 = unaff_XMM10_Dc;
-    in_stack_000000f0 = unaff_XMM8_Da;
-    in_stack_000000f8 = unaff_XMM8_Dc;
-    
-    // 粒子系统主要处理循环
+    local_buffer_90 = unaff_XMM14_Da;
+    local_buffer_98 = unaff_XMM14_Dc;
+    local_buffer_a0 = unaff_XMM13_Da;
+    local_buffer_a8 = unaff_XMM13_Dc;
+    local_buffer_d0 = unaff_XMM10_Da;
+    local_buffer_d8 = unaff_XMM10_Dc;
+    local_buffer_f0 = unaff_XMM8_Da;
+    local_buffer_f8 = unaff_XMM8_Dc;
+// 粒子系统主要处理循环
     if (0 < *(int *)(lVar5 + 0x1c68)) {
       lVar8 = 0;
-      in_stack_000000b0 = unaff_XMM12_Da;
-      in_stack_000000b8 = unaff_XMM12_Dc;
-      in_stack_000000c0 = unaff_XMM11_Da;
-      in_stack_000000c8 = unaff_XMM11_Dc;
-      in_stack_00000100 = unaff_XMM7_Da;
-      in_stack_00000108 = unaff_XMM7_Dc;
-      in_stack_00000110 = unaff_XMM6_Da;
-      in_stack_00000118 = unaff_XMM6_Dc;
+      local_buffer_b0 = unaff_XMM12_Da;
+      local_buffer_b8 = unaff_XMM12_Dc;
+      local_buffer_c0 = unaff_XMM11_Da;
+      local_buffer_c8 = unaff_XMM11_Dc;
+      local_var_100 = unaff_XMM7_Da;
+      local_var_108 = unaff_XMM7_Dc;
+      local_var_110 = unaff_XMM6_Da;
+      local_var_118 = unaff_XMM6_Dc;
       do {
         lVar6 = *(int64_t *)(lVar8 + *(int64_t *)(lVar5 + 0x1c70));
-        // 边界检测和碰撞处理
+// 边界检测和碰撞处理
         if ((((fVar13 < *(float *)(lVar6 + 0xc) + *(float *)(lVar6 + 0x14)) &&
              (*(float *)(lVar6 + 0xc) < (fVar2 + 2.0) * unaff_XMM9_Da + fVar13)) &&
             (fVar14 < *(float *)(lVar6 + 8) + *(float *)(lVar6 + 0x10))) &&
            (*(float *)(lVar6 + 8) < (fVar1 + 2.0) * unaff_XMM9_Da + fVar14)) {
-          lVar6 = FUN_1801247c0();
+          lVar6 = GenericFunction_1801247c0();
           RenderingSystem_TextureLoader(lVar6,lVar3);
           fVar10 = fVar2 * unaff_XMM9_Da;
           fStack0000000000000040 = fVar14 + unaff_XMM9_Da;
@@ -181,7 +174,7 @@ void RenderSystem_ParticleSystem_Update(void)
             bVar4 = false;
           }
           NetworkSystem_PacketSerializer(lVar6,6,4);
-          FUN_180292290(lVar6,&stack0x00000040,&stack0x00000038,&stack0x00000078,unaff_RBP + -0x80);
+          DataStructure_92290(lVar6,&local_buffer_00000040,&local_buffer_00000038,&local_buffer_00000078,unaff_RBP + -0x80);
           if (bVar4) {
             *(int *)(lVar6 + 0x70) = *(int *)(lVar6 + 0x70) + -1;
             SystemCore_Initialize(lVar6);
@@ -201,7 +194,7 @@ void RenderSystem_ParticleSystem_Update(void)
             bVar4 = false;
           }
           NetworkSystem_PacketSerializer(lVar6,6,4);
-          FUN_180292290(lVar6,&stack0x00000050,&stack0x00000048,&stack0x00000078,unaff_RBP + -0x80);
+          DataStructure_92290(lVar6,&local_buffer_00000050,&local_buffer_00000048,&local_buffer_00000078,unaff_RBP + -0x80);
           if (bVar4) {
             *(int *)(lVar6 + 0x70) = *(int *)(lVar6 + 0x70) + -1;
             SystemCore_Initialize(lVar6);
@@ -221,7 +214,7 @@ void RenderSystem_ParticleSystem_Update(void)
             bVar4 = false;
           }
           NetworkSystem_PacketSerializer(lVar6,6,4);
-          FUN_180292290(lVar6,&stack0x00000030,&stack0x00000058,&stack0x00000078,unaff_RBP + -0x80);
+          DataStructure_92290(lVar6,&local_buffer_00000030,&local_buffer_00000058,&local_buffer_00000078,unaff_RBP + -0x80);
           if (bVar4) {
             *(int *)(lVar6 + 0x70) = *(int *)(lVar6 + 0x70) + -1;
             SystemCore_Initialize(lVar6);
@@ -239,7 +232,7 @@ void RenderSystem_ParticleSystem_Update(void)
             bVar4 = false;
           }
           NetworkSystem_PacketSerializer(lVar6,6,4);
-          FUN_180292290(lVar6,&stack0x00000030,&stack0x00000060,&stack0x00000068,&stack0x00000070);
+          DataStructure_92290(lVar6,&local_buffer_00000030,&local_buffer_00000060,&local_buffer_00000068,&local_buffer_00000070);
           if (bVar4) {
             *(int *)(lVar6 + 0x70) = *(int *)(lVar6 + 0x70) + -1;
             SystemCore_Initialize(lVar6);
@@ -252,10 +245,9 @@ void RenderSystem_ParticleSystem_Update(void)
       } while (iVar9 < *(int *)(lVar5 + 0x1c68));
     }
   }
-  // 调用渲染系统底层函数
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+// 调用渲染系统底层函数
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&local_buffer_00000000);
 }
-
 /**
  * 渲染系统粒子效果处理函数
  * 处理粒子效果的多参数渲染和变换
@@ -295,16 +287,15 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
   float fStack0000000000000074;
   float fStack0000000000000078;
   float fStack000000000000007c;
-  int32_t in_stack_000000b0;
-  int32_t in_stack_000000b8;
-  int32_t in_stack_000000c0;
-  int32_t in_stack_000000c8;
-  int32_t in_stack_00000100;
-  int32_t in_stack_00000108;
-  int32_t in_stack_00000110;
-  int32_t in_stack_00000118;
-  
-  // 计算粒子效果参数
+  int32_t local_buffer_b0;
+  int32_t local_buffer_b8;
+  int32_t local_buffer_c0;
+  int32_t local_buffer_c8;
+  int32_t local_var_100;
+  int32_t local_var_108;
+  int32_t local_var_110;
+  int32_t local_var_118;
+// 计算粒子效果参数
   fVar11 = param_6._4_4_ - *(float *)(param_3 + 0x14 + param_2 * 8);
   fVar12 = (float)param_6 - *(float *)(param_3 + 0x10 + param_2 * 8);
   lVar5 = param_1 * 0x20 + *(int64_t *)(unaff_R14 + 0x58);
@@ -325,26 +316,25 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
   iVar6 = 0;
   param_6._0_4_ = fVar12;
   param_6._4_4_ = fVar11;
-  
-  // 粒子效果处理主循环
+// 粒子效果处理主循环
   if (0 < *(int *)(unaff_R13 + 0x1c68)) {
     lVar7 = 0;
-    in_stack_000000b0 = unaff_XMM12_Da;
-    in_stack_000000b8 = unaff_XMM12_Dc;
-    in_stack_000000c0 = unaff_XMM11_Da;
-    in_stack_000000c8 = unaff_XMM11_Dc;
-    in_stack_00000100 = unaff_XMM7_Da;
-    in_stack_00000108 = unaff_XMM7_Dc;
-    in_stack_00000110 = unaff_XMM6_Da;
-    in_stack_00000118 = unaff_XMM6_Dc;
+    local_buffer_b0 = unaff_XMM12_Da;
+    local_buffer_b8 = unaff_XMM12_Dc;
+    local_buffer_c0 = unaff_XMM11_Da;
+    local_buffer_c8 = unaff_XMM11_Dc;
+    local_var_100 = unaff_XMM7_Da;
+    local_var_108 = unaff_XMM7_Dc;
+    local_var_110 = unaff_XMM6_Da;
+    local_var_118 = unaff_XMM6_Dc;
     do {
       lVar4 = *(int64_t *)(lVar7 + *(int64_t *)(unaff_R13 + 0x1c70));
-      // 粒子效果边界检测
+// 粒子效果边界检测
       if ((((fVar11 < *(float *)(lVar4 + 0xc) + *(float *)(lVar4 + 0x14)) &&
            (*(float *)(lVar4 + 0xc) < (fVar2 + 2.0) * unaff_XMM9_Da + fVar11)) &&
           (fVar12 < *(float *)(lVar4 + 8) + *(float *)(lVar4 + 0x10))) &&
          (*(float *)(lVar4 + 8) < (fVar1 + 2.0) * unaff_XMM9_Da + fVar12)) {
-        lVar4 = FUN_1801247c0();
+        lVar4 = GenericFunction_1801247c0();
         RenderingSystem_TextureLoader(lVar4,lVar5);
         fVar8 = fVar2 * unaff_XMM9_Da;
         param_8._0_4_ = fVar12 + unaff_XMM9_Da;
@@ -362,7 +352,7 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
           bVar3 = false;
         }
         NetworkSystem_PacketSerializer(lVar4,6,4);
-        FUN_180292290(lVar4,&param_8,&param_7,&stack0x00000078,unaff_RBP + -0x80);
+        DataStructure_92290(lVar4,&param_8,&param_7,&local_buffer_00000078,unaff_RBP + -0x80);
         if (bVar3) {
           *(int *)(lVar4 + 0x70) = *(int *)(lVar4 + 0x70) + -1;
           SystemCore_Initialize(lVar4);
@@ -381,7 +371,7 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
           bVar3 = false;
         }
         NetworkSystem_PacketSerializer(lVar4,6,4);
-        FUN_180292290(lVar4,&param_10,&param_9,&stack0x00000078,unaff_RBP + -0x80);
+        DataStructure_92290(lVar4,&param_10,&param_9,&local_buffer_00000078,unaff_RBP + -0x80);
         if (bVar3) {
           *(int *)(lVar4 + 0x70) = *(int *)(lVar4 + 0x70) + -1;
           SystemCore_Initialize(lVar4);
@@ -400,7 +390,7 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
           bVar3 = false;
         }
         NetworkSystem_PacketSerializer(lVar4,6,4);
-        FUN_180292290(lVar4,&param_6,&param_11,&stack0x00000078,unaff_RBP + -0x80);
+        DataStructure_92290(lVar4,&param_6,&param_11,&local_buffer_00000078,unaff_RBP + -0x80);
         if (bVar3) {
           *(int *)(lVar4 + 0x70) = *(int *)(lVar4 + 0x70) + -1;
           SystemCore_Initialize(lVar4);
@@ -417,7 +407,7 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
           bVar3 = false;
         }
         NetworkSystem_PacketSerializer(lVar4,6,4);
-        FUN_180292290(lVar4,&param_6,&param_12,&stack0x00000068,&stack0x00000070);
+        DataStructure_92290(lVar4,&param_6,&param_12,&local_buffer_00000068,&local_buffer_00000070);
         if (bVar3) {
           *(int *)(lVar4 + 0x70) = *(int *)(lVar4 + 0x70) + -1;
           SystemCore_Initialize(lVar4);
@@ -429,10 +419,9 @@ void RenderSystem_ParticleEffect_Process(int64_t param_1,int64_t param_2,int64_t
       lVar7 = lVar7 + 8;
     } while (iVar6 < *(int *)(unaff_R13 + 0x1c68));
   }
-  // 调用渲染系统底层函数
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+// 调用渲染系统底层函数
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&local_buffer_00000000);
 }
-
 /**
  * 渲染系统高级粒子效果处理函数
  * 处理复杂的粒子效果计算和变换
@@ -456,30 +445,29 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
   float unaff_XMM14_Da;
   float fStack0000000000000038;
   float fStack000000000000003c;
-  float in_stack_00000040;
+  float local_var_40;
   float fStack0000000000000048;
   float fStack000000000000004c;
-  float in_stack_00000050;
+  float local_buffer_50;
   float fStack0000000000000058;
   float fStack000000000000005c;
   float fStack0000000000000060;
   float fStack0000000000000064;
-  
   uVar3 = (uint64_t)unaff_R14D;
   do {
     lVar2 = *(int64_t *)(uVar3 + *(int64_t *)(unaff_R13 + 0x1c70));
-    // 高级粒子效果边界检测和计算
+// 高级粒子效果边界检测和计算
     if ((((unaff_XMM8_Da < *(float *)(lVar2 + 0xc) + *(float *)(lVar2 + 0x14)) &&
          (*(float *)(lVar2 + 0xc) < (unaff_XMM14_Da + 2.0) * unaff_XMM9_Da + unaff_XMM8_Da)) &&
         (unaff_XMM10_Da < *(float *)(lVar2 + 8) + *(float *)(lVar2 + 0x10))) &&
        (*(float *)(lVar2 + 8) < (unaff_XMM13_Da + 2.0) * unaff_XMM9_Da + unaff_XMM10_Da)) {
-      lVar2 = FUN_1801247c0();
+      lVar2 = GenericFunction_1801247c0();
       RenderingSystem_TextureLoader(lVar2);
       fVar5 = unaff_XMM14_Da * unaff_XMM9_Da;
-      in_stack_00000040 = unaff_XMM10_Da + unaff_XMM9_Da;
+      local_var_40 = unaff_XMM10_Da + unaff_XMM9_Da;
       fVar4 = unaff_XMM13_Da * unaff_XMM9_Da;
       fStack000000000000003c = fVar5 + unaff_XMM8_Da;
-      fStack0000000000000038 = in_stack_00000040 + fVar4;
+      fStack0000000000000038 = local_var_40 + fVar4;
       if ((*(int *)(lVar2 + 0x70) == 0) ||
          (unaff_RDI !=
           *(int64_t *)(*(int64_t *)(lVar2 + 0x78) + -8 + (int64_t)*(int *)(lVar2 + 0x70) * 8))) {
@@ -490,14 +478,14 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
         bVar1 = false;
       }
       NetworkSystem_PacketSerializer(lVar2,6,4);
-      FUN_180292290(lVar2,&stack0x00000040,&stack0x00000038,&stack0x00000078,unaff_RBP + -0x80);
+      DataStructure_92290(lVar2,&local_buffer_00000040,&local_buffer_00000038,&local_buffer_00000078,unaff_RBP + -0x80);
       if (bVar1) {
         *(int *)(lVar2 + 0x70) = *(int *)(lVar2 + 0x70) + -1;
         SystemCore_Initialize(lVar2);
       }
       fStack000000000000004c = unaff_XMM8_Da + fVar5;
-      in_stack_00000050 = unaff_XMM9_Da + unaff_XMM9_Da + unaff_XMM10_Da;
-      fStack0000000000000048 = in_stack_00000050 + fVar4;
+      local_buffer_50 = unaff_XMM9_Da + unaff_XMM9_Da + unaff_XMM10_Da;
+      fStack0000000000000048 = local_buffer_50 + fVar4;
       if ((*(int *)(lVar2 + 0x70) == 0) ||
          (unaff_RDI !=
           *(int64_t *)(*(int64_t *)(lVar2 + 0x78) + -8 + (int64_t)*(int *)(lVar2 + 0x70) * 8))) {
@@ -508,7 +496,7 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
         bVar1 = false;
       }
       NetworkSystem_PacketSerializer(lVar2,6,4);
-      FUN_180292290(lVar2,&stack0x00000050,&stack0x00000048,&stack0x00000078,unaff_RBP + -0x80);
+      DataStructure_92290(lVar2,&local_buffer_00000050,&local_buffer_00000048,&local_buffer_00000078,unaff_RBP + -0x80);
       if (bVar1) {
         *(int *)(lVar2 + 0x70) = *(int *)(lVar2 + 0x70) + -1;
         SystemCore_Initialize(lVar2);
@@ -527,7 +515,7 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
         bVar1 = false;
       }
       NetworkSystem_PacketSerializer(lVar2,6,4);
-      FUN_180292290(lVar2,&stack0x00000030,&stack0x00000058,&stack0x00000078,unaff_RBP + -0x80);
+      DataStructure_92290(lVar2,&local_buffer_00000030,&local_buffer_00000058,&local_buffer_00000078,unaff_RBP + -0x80);
       if (bVar1) {
         *(int *)(lVar2 + 0x70) = *(int *)(lVar2 + 0x70) + -1;
         SystemCore_Initialize(lVar2);
@@ -544,7 +532,7 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
         bVar1 = false;
       }
       NetworkSystem_PacketSerializer(lVar2,6,4);
-      FUN_180292290(lVar2,&stack0x00000030,&stack0x00000060,&stack0x00000068,&stack0x00000070);
+      DataStructure_92290(lVar2,&local_buffer_00000030,&local_buffer_00000060,&local_buffer_00000068,&local_buffer_00000070);
       if (bVar1) {
         *(int *)(lVar2 + 0x70) = *(int *)(lVar2 + 0x70) + -1;
         SystemCore_Initialize(lVar2);
@@ -555,10 +543,9 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
     unaff_R14D = unaff_R14D + 1;
     uVar3 = uVar3 + 8;
   } while ((int)unaff_R14D < *(int *)(unaff_R13 + 0x1c68));
-  // 调用渲染系统底层函数
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+// 调用渲染系统底层函数
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&local_buffer_00000000);
 }
-
 /**
  * 渲染系统空函数占位符1
  * 用于系统架构完整性，暂时不实现具体功能
@@ -566,11 +553,9 @@ void RenderSystem_AdvancedParticleEffect_Process(void)
 void RenderSystem_EmptyFunction_1(void)
 {
   int64_t unaff_RBP;
-  
-  // 调用渲染系统底层函数
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+// 调用渲染系统底层函数
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&local_buffer_00000000);
 }
-
 /**
  * 渲染系统空函数占位符2
  * 用于系统架构完整性，暂时不实现具体功能
@@ -578,11 +563,9 @@ void RenderSystem_EmptyFunction_1(void)
 void RenderSystem_EmptyFunction_2(void)
 {
   int64_t unaff_RBP;
-  
-  // 调用渲染系统底层函数
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+// 调用渲染系统底层函数
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&local_buffer_00000000);
 }
-
 /**
  * 渲染系统空函数占位符3
  * 用于系统架构完整性，暂时不实现具体功能
@@ -590,11 +573,9 @@ void RenderSystem_EmptyFunction_2(void)
 void RenderSystem_EmptyFunction_3(void)
 {
   int64_t unaff_RBP;
-  
-  // 调用渲染系统底层函数
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&stack0x00000000);
+// 调用渲染系统底层函数
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x78) ^ (uint64_t)&local_buffer_00000000);
 }
-
 /**
  * 渲染系统浮点数计算处理函数
  * 处理渲染系统中的浮点数计算和参数传递
@@ -603,28 +584,26 @@ void RenderSystem_EmptyFunction_3(void)
 void RenderSystem_FloatCalculation_Process(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
                   int32_t param_5)
 {
-  uint64_t uStack_28;
-  uint64_t uStack_20;
+  uint64_t local_var_28;
+  uint64_t local_var_20;
   float fStack_18;
   float fStack_14;
   float fStack_10;
   float fStack_c;
-  
-  // 浮点数计算处理
-  uStack_28._0_4_ = (float)param_2;
-  uStack_28._4_4_ = (float)((uint64_t)param_2 >> 0x20);
-  uStack_20._0_4_ = (float)param_3;
-  uStack_20._4_4_ = (float)((uint64_t)param_3 >> 0x20);
-  fStack_14 = uStack_28._4_4_ - uStack_20._4_4_;
-  fStack_18 = (float)uStack_20 + (float)uStack_28;
-  fStack_10 = (float)uStack_28 - (float)uStack_20;
-  uStack_28 = param_2;
-  uStack_20 = param_3;
+// 浮点数计算处理
+  local_var_28._0_4_ = (float)param_2;
+  local_var_28._4_4_ = (float)((uint64_t)param_2 >> 0x20);
+  local_var_20._0_4_ = (float)param_3;
+  local_var_20._4_4_ = (float)((uint64_t)param_3 >> 0x20);
+  fStack_14 = local_var_28._4_4_ - local_var_20._4_4_;
+  fStack_18 = (float)local_var_20 + (float)local_var_28;
+  fStack_10 = (float)local_var_28 - (float)local_var_20;
+  local_var_28 = param_2;
+  local_var_20 = param_3;
   fStack_c = fStack_14;
-  FUN_1802940f0(fStack_18,&fStack_10,&fStack_18,&uStack_28,param_5);
+  DataStructure_940f0(fStack_18,&fStack_10,&fStack_18,&local_var_28,param_5);
   return;
 }
-
 /**
  * 渲染系统高级曲线绘制函数
  * 处理复杂的曲线绘制和贝塞尔曲线计算
@@ -651,8 +630,7 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
   float fStack_d4;
   float fStack_d0;
   float fStack_cc;
-  
-  // 曲线参数初始化
+// 曲线参数初始化
   fVar2 = *param_2;
   fVar10 = param_2[2] - fVar2;
   fVar3 = param_2[1];
@@ -671,13 +649,12 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
   fStack_d4 = fVar4;
   fStack_d0 = fStackX_10;
   fStack_cc = fVar3;
-  
-  // 曲线绘制处理
+// 曲线绘制处理
   if (param_5 == 0.0) {
     MathInterpolationCalculator0(param_1,&fStack_d0,&fStack_d8,param_3,0,0xf);
   }
   else {
-    // 复杂的曲线计算
+// 复杂的曲线计算
     fVar9 = (fVar4 - fVar3) * 0.5;
     if (fVar10 * 0.5 <= fVar9) {
       fVar9 = fVar10 * 0.5;
@@ -775,10 +752,10 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
     }
     else {
       fStack_cc = fVar4 - param_5;
-      FUN_180293860(param_1,&fStack_d0,param_5,3.1415927 - fVar12,3.1415927 - fVar10,3);
+      DataStructure_93860(param_1,&fStack_d0,param_5,3.1415927 - fVar12,3.1415927 - fVar10,3);
       fStack_cc = fVar3 + param_5;
       fStack_d0 = fVar11;
-      FUN_180293860(param_1,&fStack_d0,param_5,fVar10 + 3.1415927,fVar12 + 3.1415927,3);
+      DataStructure_93860(param_1,&fStack_d0,param_5,fVar10 + 3.1415927,fVar12 + 3.1415927,3);
     }
     fVar2 = fStackX_20;
     if (param_5 + *param_2 < fStackX_20) {
@@ -862,13 +839,13 @@ void RenderSystem_AdvancedCurve_Draw(int64_t param_1,float *param_2,int32_t para
       }
       else {
         fStackX_14 = fVar3 + param_5;
-        FUN_180293860(param_1,&fStackX_10,param_5,-fVar9,-fVar10,3);
+        DataStructure_93860(param_1,&fStackX_10,param_5,-fVar9,-fVar10,3);
         fStackX_14 = fVar4 - param_5;
         fStackX_10 = fVar11;
-        FUN_180293860(param_1,&fStackX_10,param_5,fVar10,fVar9,3);
+        DataStructure_93860(param_1,&fStackX_10,param_5,fVar10,fVar9,3);
       }
     }
-    FUN_180293190(param_1,*(uint64_t *)(param_1 + 0x88),*(int32_t *)(param_1 + 0x80),param_3);
+    DataStructure_93190(param_1,*(uint64_t *)(param_1 + 0x88),*(int32_t *)(param_1 + 0x80),param_3);
     *(int32_t *)(param_1 + 0x80) = 0;
   }
   return;

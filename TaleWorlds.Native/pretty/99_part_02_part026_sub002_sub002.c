@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_02_part026_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_1800fe720(void)
-void FUN_1800fe720(void)
-
+// 函数: void GenericFunction_1800fe720(void)
+void GenericFunction_1800fe720(void)
 {
   uint64_t uVar1;
   uint64_t uVar2;
@@ -269,10 +266,10 @@ void FUN_1800fe720(void)
   int8_t auVar243 [16];
   short sVar257;
   int8_t auVar250 [16];
-  int in_stack_00000120;
-  int in_stack_00000128;
-  int64_t in_stack_00000130;
-  int64_t in_stack_00000138;
+  int local_var_120;
+  int local_var_128;
+  int64_t local_var_130;
+  int64_t local_var_138;
   char cVar4;
   char cVar5;
   char cVar6;
@@ -325,7 +322,6 @@ void FUN_1800fe720(void)
   int8_t auVar247 [16];
   int8_t auVar248 [16];
   int8_t auVar249 [16];
-  
   pauVar86 = (int8_t (*) [16])(unaff_R14 + unaff_R15);
   lVar95 = unaff_R14 - (int64_t)pauVar86;
   pauVar91 = (int8_t (*) [16])(unaff_EDI + unaff_RSI);
@@ -333,7 +329,7 @@ void FUN_1800fe720(void)
   do {
     pauVar88 = (int8_t (*) [16])(lVar95 + (int64_t)pauVar86);
     pauVar87 = (int8_t (*) [16])(lVar89 + (int64_t)pauVar91);
-    puVar93 = (uint64_t *)((int)((in_R9D >> 1) * in_R11D) + in_stack_00000130);
+    puVar93 = (uint64_t *)((int)((in_R9D >> 1) * in_R11D) + local_var_130);
     puVar92 = (uint64_t *)((int)((in_R9D >> 1) * in_R10D) + unaff_R12);
     uVar145 = in_XMM4_Ba;
     uVar153 = in_XMM4_Bb;
@@ -1159,7 +1155,7 @@ void FUN_1800fe720(void)
         pauVar90[3] = auVar234;
         uVar94 = uVar94 - 1;
         pauVar90 = pauVar90 + 4;
-        unaff_R12 = in_stack_00000138;
+        unaff_R12 = local_var_138;
       } while (uVar94 != 0);
     }
     pauVar86 = (int8_t (*) [16])(*pauVar86 + (int)unaff_R15 * 2);
@@ -1189,8 +1185,8 @@ void FUN_1800fe720(void)
     in_XMM5_Wf = 0x4a;
     in_XMM5_Wg = 0x4a;
     in_XMM5_Wh = 0x4a;
-    in_R11D = in_stack_00000128;
-    in_R10D = in_stack_00000120;
+    in_R11D = local_var_128;
+    in_R10D = local_var_120;
     in_XMM4_Ba = uVar145;
     in_XMM4_Bb = uVar153;
     in_XMM4_Bc = uVar154;
@@ -1206,11 +1202,3 @@ void FUN_1800fe720(void)
   } while ((int)in_R9D < unaff_R13D);
   return;
 }
-
-
-
-
-
-
-
-

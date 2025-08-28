@@ -1,11 +1,11 @@
+// 原始函数语义化别名定义
+// 本文件包含当前文件中使用的原始函数的语义化别名
+// 这些别名提高了代码的可读性和维护性
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part728.c - 4 个函数
-
-// 函数: void FUN_180695c4d(uint64_t param_1,int64_t param_2,uint64_t param_3,short *param_4)
-void FUN_180695c4d(uint64_t param_1,int64_t param_2,uint64_t param_3,short *param_4)
-
+// 函数: void UtilitiesSystem_95c4d(uint64_t param_1,int64_t param_2,uint64_t param_3,short *param_4)
+void UtilitiesSystem_95c4d(uint64_t param_1,int64_t param_2,uint64_t param_3,short *param_4)
 {
   ushort *puVar1;
   short *psVar2;
@@ -88,14 +88,13 @@ void FUN_180695c4d(uint64_t param_1,int64_t param_2,uint64_t param_3,short *para
   int8_t auVar71 [16];
   int8_t auVar72 [16];
   int8_t auVar73 [16];
-  int8_t (*in_stack_000000b8) [16];
-  int8_t (*in_stack_000000c0) [16];
-  short *in_stack_000000d8;
-  ushort *in_stack_000000e0;
+  int8_t (*local_buffer_b8) [16];
+  int8_t (*local_buffer_c0) [16];
+  short *local_buffer_d8;
+  ushort *local_buffer_e0;
   short sVar62;
   short sVar65;
   short sVar66;
-  
   sVar67 = param_4[4] + -1;
   sVar68 = param_4[5] + -1;
   sVar69 = param_4[6] + -1;
@@ -113,7 +112,7 @@ void FUN_180695c4d(uint64_t param_1,int64_t param_2,uint64_t param_3,short *para
   auVar31._12_2_ = auVar30._12_2_ - auVar40._12_2_;
   auVar31._14_2_ = auVar30._14_2_ - auVar40._14_2_;
   auVar30 = paddsw(auVar31,*in_RAX);
-  auVar44 = pmulhw(auVar30,*in_stack_000000b8);
+  auVar44 = pmulhw(auVar30,*local_buffer_b8);
   auVar41._0_2_ = auVar39._0_2_ - auVar42._0_2_;
   auVar41._2_2_ = auVar39._2_2_ - auVar42._2_2_;
   auVar41._4_2_ = auVar39._4_2_ - auVar42._4_2_;
@@ -122,14 +121,14 @@ void FUN_180695c4d(uint64_t param_1,int64_t param_2,uint64_t param_3,short *para
   auVar41._10_2_ = auVar39._10_2_ - auVar42._10_2_;
   auVar41._12_2_ = auVar39._12_2_ - auVar42._12_2_;
   auVar41._14_2_ = auVar39._14_2_ - auVar42._14_2_;
-  sVar43 = *in_stack_000000d8;
-  sVar47 = in_stack_000000d8[1];
-  sVar48 = in_stack_000000d8[2];
-  sVar49 = in_stack_000000d8[3];
-  sVar62 = in_stack_000000d8[4];
-  sVar65 = in_stack_000000d8[5];
-  sVar66 = in_stack_000000d8[6];
-  sVar4 = in_stack_000000d8[7];
+  sVar43 = *local_buffer_d8;
+  sVar47 = local_buffer_d8[1];
+  sVar48 = local_buffer_d8[2];
+  sVar49 = local_buffer_d8[3];
+  sVar62 = local_buffer_d8[4];
+  sVar65 = local_buffer_d8[5];
+  sVar66 = local_buffer_d8[6];
+  sVar4 = local_buffer_d8[7];
   auVar45._0_2_ = auVar44._0_2_ + auVar30._0_2_;
   auVar45._2_2_ = auVar44._2_2_ + auVar30._2_2_;
   auVar45._4_2_ = auVar44._4_2_ + auVar30._4_2_;
@@ -141,11 +140,11 @@ void FUN_180695c4d(uint64_t param_1,int64_t param_2,uint64_t param_3,short *para
   auVar71._8_8_ = SUB168(*in_RAX,8);
   auVar71._0_8_ = auVar71._8_8_;
   auVar44 = paddsw(auVar41,auVar71);
-  auVar72._8_8_ = SUB168(*in_stack_000000b8,8);
+  auVar72._8_8_ = SUB168(*local_buffer_b8,8);
   auVar72._0_8_ = auVar72._8_8_;
   auVar30 = pmulhw(auVar44,auVar72);
-  auVar45 = pmulhw(auVar45,*in_stack_000000c0);
-  auVar73._8_8_ = SUB168(*in_stack_000000c0,8);
+  auVar45 = pmulhw(auVar45,*local_buffer_c0);
+  auVar73._8_8_ = SUB168(*local_buffer_c0,8);
   auVar73._0_8_ = auVar73._8_8_;
   auVar39._0_2_ = auVar30._0_2_ + auVar44._0_2_;
   auVar39._2_2_ = auVar30._2_2_ + auVar44._2_2_;
@@ -525,19 +524,13 @@ void FUN_180695c4d(uint64_t param_1,int64_t param_2,uint64_t param_3,short *para
        ((short)auVar63._14_2_ >= sVar43) * auVar63._14_2_;
   auVar30 = pshuflw(auVar30,auVar64,1);
   sVar43 = auVar30._2_2_;
-  *in_stack_000000e0 =
+  *local_buffer_e0 =
        (ushort)((short)auVar64._2_2_ < sVar43) * sVar43 |
        ((short)auVar64._2_2_ >= sVar43) * auVar64._2_2_;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180695f0f(uint64_t param_1,int64_t param_2)
-void FUN_180695f0f(uint64_t param_1,int64_t param_2)
-
+// 函数: void UtilitiesSystem_95f0f(uint64_t param_1,int64_t param_2)
+void UtilitiesSystem_95f0f(uint64_t param_1,int64_t param_2)
 {
   int32_t *puVar1;
   int32_t *puVar2;
@@ -547,8 +540,7 @@ void FUN_180695f0f(uint64_t param_1,int64_t param_2)
   int32_t unaff_XMM7_Db;
   int32_t unaff_XMM7_Dc;
   int32_t unaff_XMM7_Dd;
-  int16_t *in_stack_000000e0;
-  
+  int16_t *local_buffer_e0;
   puVar2 = (int32_t *)(in_R11 + (param_2 + 8) * 2);
   do {
     param_2 = param_2 + 0x10;
@@ -572,31 +564,18 @@ void FUN_180695f0f(uint64_t param_1,int64_t param_2)
     puVar2[3] = unaff_XMM7_Dd;
     puVar2 = puVar2 + 8;
   } while (param_2 < 0);
-  *in_stack_000000e0 = 0;
+  *local_buffer_e0 = 0;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180695f70(void)
-void FUN_180695f70(void)
-
+// 函数: void UtilitiesSystem_95f70(void)
+void UtilitiesSystem_95f70(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1806961a0(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
-void FUN_1806961a0(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
-
+// 函数: void UtilitiesSystem_961a0(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
+void UtilitiesSystem_961a0(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
 {
   int iVar1;
   uint *puVar2;
@@ -625,7 +604,6 @@ void FUN_1806961a0(int64_t param_1,int param_2,int64_t param_3,int param_4,int *
   int8_t auVar24 [16];
   int64_t lStackX_18;
   int64_t lStack_48;
-  
   iVar1 = render_system_control_config;
   lStack_48 = 3;
   lStackX_18 = param_3;
@@ -712,10 +690,4 @@ void FUN_1806961a0(int64_t param_1,int param_2,int64_t param_3,int param_4,int *
   } while (lStack_48 != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

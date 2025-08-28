@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_07_part011_sub002.c - 1 个函数
-
-// 函数: void FUN_1804a5260(void)
-void FUN_1804a5260(void)
-
+// 函数: void function_4a5260(void)
+void function_4a5260(void)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
@@ -20,27 +17,26 @@ void FUN_1804a5260(void)
   uint64_t uVar11;
   uint64_t uVar12;
   uint64_t uVar13;
-  int8_t auStack_178 [48];
+  int8_t stack_array_178 [48];
   int64_t lStack_148;
   int64_t lStack_140;
-  int8_t auStack_138 [256];
-  uint64_t uStack_38;
-  uint64_t uStack_30;
-  
+  int8_t stack_array_138 [256];
+  uint64_t local_var_38;
+  uint64_t local_var_30;
   if (system_system_memory != 0) {
-    uStack_30 = 0x1804a5275;
-    FUN_18056de00();
+    local_var_30 = 0x1804a5275;
+    function_56de00();
   }
   if (system_system_memory != 0) {
-    uStack_30 = 0x1804a5286;
-    FUN_1805f6af0();
+    local_var_30 = 0x1804a5286;
+    function_5f6af0();
   }
-  uStack_30 = 0x1804a5297;
+  local_var_30 = 0x1804a5297;
   cVar3 = (**(code **)(system_system_memory + 0x30))(&system_counter_25c8);
   if (cVar3 == '\0') {
     return;
   }
-  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_178;
+  local_var_38 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_178;
   uVar9 = 0;
   do {
     puVar7 = puRam0000000180c92bb8;
@@ -60,11 +56,11 @@ void FUN_1804a5260(void)
               do {
                 if (*plVar5 == *(int64_t *)(uVar13 + lRam0000000180c95b78)) {
                   if ((int)uVar11 != -1) {
-                    FUN_18055c930(&system_counter_25a0,uVar11,0);
+                    function_55c930(&system_counter_25a0,uVar11,0);
                     lVar10 = lRam0000000180c95b78 + (int64_t)iVar8 * 8;
                     uVar11 = lVar10 + 8;
                     if (uVar11 < uRam0000000180c95b80) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                       memmove(lVar10,uVar11,uRam0000000180c95b80 - uVar11);
                     }
                     uRam0000000180c95b80 = uRam0000000180c95b80 - 8;
@@ -96,7 +92,7 @@ void FUN_1804a5260(void)
               }
               if (*(double *)(lVar10 + 0x20) + 20.0 <
                   (double)(lVar4 - system_system_data_memory) * system_system_data_memory) {
-                FUN_18055c930(&system_counter_25a0,uVar9,1);
+                function_55c930(&system_counter_25a0,uVar9,1);
                 iVar8 = iVar8 + -1;
                 uVar11 = uVar11 - 8;
               }
@@ -106,8 +102,8 @@ void FUN_1804a5260(void)
           } while ((uint64_t)(int64_t)(int)(iVar8 + 1U) <
                    (uint64_t)(system_system_memory - (int64_t)system_system_memory >> 3));
         }
-                    // WARNING: Subroutine does not return
-        SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_178);
+// WARNING: Subroutine does not return
+        SystemSecurityChecker(local_var_38 ^ (uint64_t)stack_array_178);
       }
       puVar1 = puRam0000000180c92bb8 + 8;
       puRam0000000180c92bb8[1] = *puVar1;
@@ -128,21 +124,13 @@ LAB_18055c268:
     }
     *puVar7 = uVar13 & uVar11 + 1;
     *(int32_t *)(lVar10 + 0x5c4) = 0;
-    cVar3 = FUN_18055cde0(&system_counter_25a0,lVar10,lVar10 + 0x5d0);
+    cVar3 = function_55cde0(&system_counter_25a0,lVar10,lVar10 + 0x5d0);
     if (cVar3 == '\0') {
-                    // WARNING: Subroutine does not return
-      memset(auStack_138,0,0x100);
+// WARNING: Subroutine does not return
+      memset(stack_array_138,0,0x100);
     }
     lStack_148 = lVar10;
-    FUN_1805603c0(0x180c92c08,&lStack_148);
+    function_5603c0(0x180c92c08,&lStack_148);
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-

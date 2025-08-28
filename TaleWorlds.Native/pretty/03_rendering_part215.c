@@ -1,20 +1,13 @@
 #include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 03_rendering_part215.c - 5 个函数
-
-// 函数: void FUN_180390c80(int64_t param_1,int param_2,int param_3)
-void FUN_180390c80(int64_t param_1,int param_2,int param_3)
-
+// 函数: void RenderingSystem_90c80(int64_t param_1,int param_2,int param_3)
+void RenderingSystem_90c80(int64_t param_1,int param_2,int param_3)
 {
   uint64_t uVar1;
   int64_t lVar2;
@@ -30,7 +23,6 @@ void FUN_180390c80(int64_t param_1,int param_2,int param_3)
   uint64_t uVar12;
   bool bVar13;
   int64_t *plStackX_8;
-  
   puVar7 = *(uint64_t **)(param_1 + 0x478);
   uVar5 = 0;
   uVar6 = 0;
@@ -143,14 +135,8 @@ void FUN_180390c80(int64_t param_1,int param_2,int param_3)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180390d17(int param_1)
-void FUN_180390d17(int param_1)
-
+// 函数: void RenderingSystem_90d17(int param_1)
+void RenderingSystem_90d17(int param_1)
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -162,8 +148,7 @@ void FUN_180390d17(int param_1)
   int64_t unaff_R15;
   char cVar6;
   int64_t *plStack0000000000000060;
-  int in_stack_00000078;
-  
+  int local_var_78;
   plStack0000000000000060 = (int64_t *)(unaff_R15 + 0x60);
   do {
     lVar1 = *plStack0000000000000060;
@@ -236,37 +221,24 @@ void FUN_180390d17(int param_1)
           }
           iVar4 = iVar4 + 1;
           plVar5 = plVar5 + 1;
-          param_1 = in_stack_00000078;
+          param_1 = local_var_78;
         } while (iVar4 < (int)(uint)*(byte *)(lVar3 + 0xa8));
       }
     }
     plStack0000000000000060 = plStack0000000000000060 + 1;
     param_1 = param_1 + 1;
-    in_stack_00000078 = param_1;
+    local_var_78 = param_1;
   } while (param_1 < (int)(uint)*(byte *)(unaff_R15 + 0xa8));
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180390f30(void)
-void FUN_180390f30(void)
-
+// 函数: void RenderingSystem_90f30(void)
+void RenderingSystem_90f30(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180390f40(int64_t param_1,int param_2,int param_3)
-void FUN_180390f40(int64_t param_1,int param_2,int param_3)
-
+// 函数: void RenderingSystem_90f40(int64_t param_1,int param_2,int param_3)
+void RenderingSystem_90f40(int64_t param_1,int param_2,int param_3)
 {
   uint64_t uVar1;
   float *pfVar2;
@@ -304,7 +276,6 @@ void FUN_180390f40(int64_t param_1,int param_2,int param_3)
   float fVar34;
   float fVar35;
   float fVar36;
-  
   uVar12 = 0;
   puVar15 = *(uint64_t **)(param_1 + 0x478);
   uVar8 = *(int64_t *)(param_1 + 0x480) - (int64_t)puVar15 >> 3;
@@ -326,7 +297,7 @@ void FUN_180390f40(int64_t param_1,int param_2,int param_3)
       uVar19 = (uint64_t)uVar17;
     } while ((uint64_t)(int64_t)(int)uVar17 < uVar8);
     if ((uVar13 != 0) && (uVar14 != 0)) {
-      FUN_180390c80(param_1,param_2,param_3);
+      RenderingSystem_90c80(param_1,param_2,param_3);
       lVar9 = *(int64_t *)(param_1 + 0x478);
       bVar5 = false;
       uVar22 = uVar12;
@@ -494,7 +465,7 @@ void FUN_180390f40(int64_t param_1,int param_2,int param_3)
           puVar11 = puVar11 + 1;
         } while ((int)uVar17 < (int)(uint)*(byte *)(uVar13 + 0xa8));
         if (((int)uVar22 != -1) && (iVar21 != -1)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemParameterHandler(system_message_context,&processed_var_5304_ptr);
         }
       }
@@ -502,16 +473,9 @@ void FUN_180390f40(int64_t param_1,int param_2,int param_3)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180390fe4(uint64_t param_1)
-void FUN_180390fe4(uint64_t param_1)
-
+// 函数: void RenderingSystem_90fe4(uint64_t param_1)
+void RenderingSystem_90fe4(uint64_t param_1)
 {
   uint64_t uVar1;
   float *pfVar2;
@@ -551,8 +515,7 @@ void FUN_180390fe4(uint64_t param_1)
   float fVar31;
   float fVar32;
   uint64_t uVar14;
-  
-  FUN_180390c80(param_1,in_R11D,unaff_EBX);
+  RenderingSystem_90c80(param_1,in_R11D,unaff_EBX);
   lVar8 = *(int64_t *)(unaff_R13 + 0x478);
   bVar5 = false;
   uVar16 = unaff_RBP & 0xffffffff;
@@ -720,16 +683,10 @@ void FUN_180390fe4(uint64_t param_1)
       puVar10 = puVar10 + 1;
     } while ((int)uVar19 < (int)(uint)*(byte *)(unaff_RSI + 0xa8));
     if (((int)uVar18 != -1) && (iVar17 != -1)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       SystemParameterHandler(system_message_context,&processed_var_5304_ptr);
     }
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

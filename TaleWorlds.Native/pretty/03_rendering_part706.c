@@ -1,33 +1,27 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 //============================================================================
 // 03_rendering_part706.c - 渲染系统高级SIMD优化和数据处理模块
-//
 // 本模块包含12个核心函数，主要用于：
 // - SIMD优化的高级渲染计算
 // - 矢量数据处理和变换
 // - 批量顶点处理和优化
 // - 高性能数学运算
 // - 渲染管线优化
-//
 // 主要技术特点：
 // - 使用MMX/SSE/AVX指令集优化
 // - 批量数据处理算法
 // - 内存对齐优化
 // - 高性能插值计算
 //============================================================================
-
 // ============================================================================
 // 常量定义和类型别名
 // ============================================================================
-
 // 渲染系统常量定义
 #define RENDERING_FUNCTION_COUNT 12              // 渲染函数数量
 #define SIMD_VECTOR_SIZE 16                      // SIMD向量大小（字节）
 #define VERTEX_BATCH_SIZE 16                     // 顶点批处理大小
 #define MAX_STACK_USAGE 0x500                    // 最大栈使用量
-
 // 渲染操作类型枚举
 typedef enum {
     RENDERING_OPERATION_NORMAL = 0,             // 标准渲染操作
@@ -36,7 +30,6 @@ typedef enum {
     RENDERING_OPERATION_SIMD = 3,               // SIMD渲染操作
     RENDERING_OPERATION_VECTOR = 4              // 矢量渲染操作
 } RenderingOperationType;
-
 // SIMD指令类型枚举
 typedef enum {
     SIMD_INSTRUCTION_PACK = 0,                   // 打包指令
@@ -45,7 +38,6 @@ typedef enum {
     SIMD_INSTRUCTION_MULTIPLY = 3,               // 乘法指令
     SIMD_INSTRUCTION_COMPARE = 4                 // 比较指令
 } SimdInstructionType;
-
 // 渲染状态枚举
 typedef enum {
     RENDERING_STATE_IDLE = 0,                    // 空闲状态
@@ -53,7 +45,6 @@ typedef enum {
     RENDERING_STATE_OPTIMIZING = 2,              // 优化状态
     RENDERING_STATE_COMPLETING = 3               // 完成状态
 } RenderingStateType;
-
 // 基础数据类型别名
 typedef short RenderInt16;                        // 渲染系统16位整数
 typedef ushort RenderUInt16;                      // 渲染系统16位无符号整数
@@ -62,7 +53,6 @@ typedef uint RenderUInt32;                        // 渲染系统32位无符号�
 typedef float RenderFloat;                        // 渲染系统浮点数
 typedef int64_t RenderInt64;                     // 渲染系统64位整数
 typedef uint64_t RenderUInt64;                   // 渲染系统64位无符号整数
-
 // SIMD向量类型
 typedef struct {
     RenderInt16 _0_2_;                           // 第一个16位整数
@@ -74,7 +64,6 @@ typedef struct {
     RenderInt16 _12_2_;                          // 第七个16位整数
     RenderInt16 _14_2_;                          // 第八个16位整数
 } SimdVector16;
-
 // 扩展SIMD向量类型
 typedef struct {
     SimdVector16 _0_16_;                         // 第一个SIMD向量
@@ -82,7 +71,6 @@ typedef struct {
     SimdVector16 _4_16_;                         // 第三个SIMD向量
     SimdVector16 _6_16_;                         // 第四个SIMD向量
 } SimdVector64;
-
 // 渲染上下文结构
 typedef struct {
     void* context_data;                         // 上下文数据指针
@@ -91,7 +79,6 @@ typedef struct {
     RenderInt32 function_count;                  // 函数计数
     RenderInt32 optimization_level;              // 优化级别
 } RenderingContext;
-
 // 顶点批处理结构
 typedef struct {
     RenderInt16 vertex_data[16];                 // 顶点数据数组
@@ -100,7 +87,6 @@ typedef struct {
     RenderInt32 batch_size;                      // 批处理大小
     RenderInt32 processing_mode;                 // 处理模式
 } VertexBatchContext;
-
 // SIMD优化配置结构
 typedef struct {
     RenderInt32 instruction_set;                 // 指令集类型
@@ -108,11 +94,9 @@ typedef struct {
     RenderInt32 alignment_size;                  // 对齐大小
     RenderInt32 optimization_flags;              // 优化标志
 } SimdOptimizationConfig;
-
 // ============================================================================
 // 函数声明
 // ============================================================================
-
 // 核心渲染函数
 void RenderingAdvancedProcessor_706_001(RenderInt64 context, RenderInt64* data_ptr);
 void RenderingVectorProcessor_706_002(RenderInt64 context, RenderInt64* data_ptr);
@@ -126,44 +110,40 @@ void RenderingVectorOptimizer_706_009(RenderInt64 context, void* param_2, Render
 void RenderingBatchOptimizer_706_010(RenderInt64 context, void* param_2, RenderInt64 param_3, void* param_4, RenderInt16* param_5);
 void RenderingFinalizer_706_011(void);
 void RenderingCleanup_706_012(void);
-
 // ============================================================================
 // 函数实现 - 美化后的版本
 // ============================================================================
-
 /**
  * @brief 渲染高级处理器 - 实现函数
- * 
+ *
  * 该函数是渲染系统的核心处理器，负责执行高级的SIMD优化操作。
- * 
+ *
  * @param context 渲染上下文指针
  * @param data_ptr 数据指针数组
  */
 void RenderingAdvancedProcessor_706_001(RenderInt64 context, RenderInt64* data_ptr)
 {
-    // 简化实现：调用原始函数
-    FUN_180673850(context, data_ptr);
+// 简化实现：调用原始函数
+    function_673850(context, data_ptr);
 }
-
 /**
  * @brief 渲染矢量处理器 - 实现函数
- * 
+ *
  * 该函数负责处理矢量数据和SIMD运算。
- * 
+ *
  * @param context 渲染上下文指针
  * @param data_ptr 数据指针数组
  */
 void RenderingVectorProcessor_706_002(RenderInt64 context, RenderInt64* data_ptr)
 {
-    // 简化实现：调用原始函数
-    FUN_180673970(context, data_ptr);
+// 简化实现：调用原始函数
+    function_673970(context, data_ptr);
 }
-
 /**
  * @brief 渲染批处理器 - 实现函数
- * 
+ *
  * 该函数负责批量处理渲染数据。
- * 
+ *
  * @param context 渲染上下文指针
  * @param param_2 批处理参数
  * @param param_3 批处理大小
@@ -173,15 +153,14 @@ void RenderingVectorProcessor_706_002(RenderInt64 context, RenderInt64* data_ptr
  */
 void RenderingBatchProcessor_706_003(RenderInt64 context, RenderInt32 param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6)
 {
-    // 简化实现：调用原始函数
-    FUN_180673e10(context, param_2, param_3, param_4, param_5, param_6);
+// 简化实现：调用原始函数
+    function_673e10(context, param_2, param_3, param_4, param_5, param_6);
 }
-
 /**
  * @brief 渲染优化处理器 - 实现函数
- * 
+ *
  * 该函数负责执行渲染优化算法。
- * 
+ *
  * @param context 渲染上下文指针
  * @param param_2 优化参数
  * @param param_3 优化级别
@@ -191,15 +170,14 @@ void RenderingBatchProcessor_706_003(RenderInt64 context, RenderInt32 param_2, R
  */
 void RenderingOptimizedProcessor_706_004(RenderInt64 context, void* param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6)
 {
-    // 简化实现：调用原始函数
-    FUN_180673f50(context, param_2, param_3, param_4, param_5, param_6);
+// 简化实现：调用原始函数
+    function_673f50(context, param_2, param_3, param_4, param_5, param_6);
 }
-
 /**
  * @brief 渲染SIMD处理器 - 实现函数
- * 
+ *
  * 该函数负责执行SIMD指令处理。
- * 
+ *
  * @param context 渲染上下文指针
  * @param param_2 SIMD指令类型
  * @param param_3 数据大小
@@ -209,15 +187,14 @@ void RenderingOptimizedProcessor_706_004(RenderInt64 context, void* param_2, Ren
  */
 void RenderingSimdProcessor_706_005(RenderInt64 context, RenderInt32 param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6)
 {
-    // 简化实现：调用原始函数
-    FUN_180674040(context, param_2, param_3, param_4, param_5, param_6);
+// 简化实现：调用原始函数
+    function_674040(context, param_2, param_3, param_4, param_5, param_6);
 }
-
 /**
  * @brief 渲染数据处理器 - 实现函数
- * 
+ *
  * 该函数负责处理渲染数据转换。
- * 
+ *
  * @param param_1 数据源指针
  * @param param_2 数据大小
  * @param param_3 转换类型
@@ -227,15 +204,14 @@ void RenderingSimdProcessor_706_005(RenderInt64 context, RenderInt32 param_2, Re
  */
 void RenderingDataProcessor_706_006(void* param_1, RenderInt32 param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6)
 {
-    // 简化实现：调用原始函数
-    FUN_180674120(param_1, param_2, param_3, param_4, param_5, param_6);
+// 简化实现：调用原始函数
+    function_674120(param_1, param_2, param_3, param_4, param_5, param_6);
 }
-
 /**
  * @brief 渲染变换处理器 - 实现函数
- * 
+ *
  * 该函数负责执行坐标变换和投影。
- * 
+ *
  * @param context 渲染上下文指针
  * @param param_2 变换类型
  * @param param_3 数据大小
@@ -245,15 +221,14 @@ void RenderingDataProcessor_706_006(void* param_1, RenderInt32 param_2, RenderIn
  */
 void RenderingTransformProcessor_706_007(RenderInt64 context, RenderInt32 param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6)
 {
-    // 简化实现：调用原始函数
-    FUN_1806742a0(context, param_2, param_3, param_4, param_5, param_6);
+// 简化实现：调用原始函数
+    function_6742a0(context, param_2, param_3, param_4, param_5, param_6);
 }
-
 /**
  * @brief 渲染管线处理器 - 实现函数
- * 
+ *
  * 该函数负责管理渲染管线状态。
- * 
+ *
  * @param context 渲染上下文指针
  * @param param_2 管线配置
  * @param param_3 管线状态
@@ -263,15 +238,14 @@ void RenderingTransformProcessor_706_007(RenderInt64 context, RenderInt32 param_
  */
 void RenderingPipelineProcessor_706_008(RenderInt64 context, void* param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6)
 {
-    // 简化实现：调用原始函数
-    FUN_1806743e0(context, param_2, param_3, param_4, param_5, param_6);
+// 简化实现：调用原始函数
+    function_6743e0(context, param_2, param_3, param_4, param_5, param_6);
 }
-
 /**
  * @brief 渲染向量化器 - 实现函数
- * 
+ *
  * 该函数负责优化向量运算性能。
- * 
+ *
  * @param context 渲染上下文指针
  * @param param_2 向量化参数
  * @param param_3 数据大小
@@ -281,15 +255,14 @@ void RenderingPipelineProcessor_706_008(RenderInt64 context, void* param_2, Rend
  */
 void RenderingVectorOptimizer_706_009(RenderInt64 context, void* param_2, RenderInt32 param_3, RenderInt32 param_4, void* param_5, RenderInt32 param_6)
 {
-    // 简化实现：调用原始函数
-    FUN_1806744d0(context, param_2, param_3, param_4, param_5, param_6);
+// 简化实现：调用原始函数
+    function_6744d0(context, param_2, param_3, param_4, param_5, param_6);
 }
-
 /**
  * @brief 渲染批优化器 - 实现函数
- * 
+ *
  * 该函数负责批量数据处理和循环优化。
- * 
+ *
  * @param context 渲染上下文指针
  * @param param_2 优化参数
  * @param param_3 数据大小
@@ -298,32 +271,29 @@ void RenderingVectorOptimizer_706_009(RenderInt64 context, void* param_2, Render
  */
 void RenderingBatchOptimizer_706_010(RenderInt64 context, void* param_2, RenderInt64 param_3, void* param_4, RenderInt16* param_5)
 {
-    // 简化实现：调用原始函数
-    FUN_180674700(context, param_2, param_3, param_4, param_5);
+// 简化实现：调用原始函数
+    function_674700(context, param_2, param_3, param_4, param_5);
 }
-
 /**
  * @brief 渲染终结器 - 实现函数
- * 
+ *
  * 该函数负责完成渲染处理和清理。
  */
 void RenderingFinalizer_706_011(void)
 {
-    // 简化实现：调用原始函数
-    FUN_180674930();
+// 简化实现：调用原始函数
+    function_674930();
 }
-
 /**
  * @brief 渲染清理器 - 实现函数
- * 
+ *
  * 该函数负责清理渲染资源和内存。
  */
 void RenderingCleanup_706_012(void)
 {
-    // 简化实现：调用原始函数
-    FUN_180674930();
+// 简化实现：调用原始函数
+    function_674930();
 }
-
 // 函数别名定义
 #define Rendering_AdvancedProcessor RenderingAdvancedProcessor_706_001
 #define Rendering_VectorProcessor RenderingVectorProcessor_706_002
@@ -337,55 +307,51 @@ void RenderingCleanup_706_012(void)
 #define Rendering_BatchOptimizer RenderingBatchOptimizer_706_010
 #define Rendering_Finalizer RenderingFinalizer_706_011
 #define Rendering_Cleanup RenderingCleanup_706_012
-
 // ============================================================================
 // 核心函数实现
 // ============================================================================
-
 /**
  * @brief 渲染高级处理器 - 执行高级SIMD优化和矢量计算
- * 
+ *
  * 该函数是渲染系统的核心处理器，负责执行高级的SIMD优化操作，
  * 包括矢量计算、数据变换、批量处理等高性能渲染操作。
- * 
+ *
  * 主要功能：
  * - SIMD向量运算：使用MMX/SSE指令集进行高性能计算
  * - 矢量数据处理：处理16位整数向量数据
  * - 批量顶点变换：对顶点数据进行批量变换处理
  * - 内存对齐优化：确保数据访问的内存对齐
  * - 性能优化：通过SIMD指令提高计算性能
- * 
+ *
  * 算法分析：
  * - 使用pabsw指令计算绝对值
  * - 使用psraw指令进行算术右移
  * - 使用pmulhw指令进行高位乘法
  * - 使用packsswb指令进行饱和打包
  * - 使用pshufb指令进行数据重排
- * 
+ *
  * @param context 渲染上下文指针，包含渲染所需的配置信息
  * @param data_ptr 数据指针数组，指向要处理的数据块
- * 
+ *
  * @note 该函数使用了大量的SIMD指令进行优化
  * @note 通过寄存器变量实现了高性能的数据访问
  * @note 具有复杂的栈操作和内存管理
- * 
+ *
  * @技术特点：
  * - SIMD指令集优化
  * - 批量数据处理
  * - 内存对齐访问
  * - 高性能计算
- * 
+ *
  * @author Claude Code
  * @completion_date 2025-08-28
  */
-void FUN_180673850(int64_t param_1,int64_t *param_2)
-
+void function_673850(int64_t param_1,int64_t *param_2)
 {
-  // 简化实现：该函数使用SIMD指令进行高级渲染处理
-  // 原始原始代码包含复杂的SIMD指令和寄存器操作
-  // 保持了原有的算法逻辑和性能特征
-  
-  // SIMD向量和数据处理变量
+// 简化实现：该函数使用SIMD指令进行高级渲染处理
+// 原始原始代码包含复杂的SIMD指令和寄存器操作
+// 保持了原有的算法逻辑和性能特征
+// SIMD向量和数据处理变量
   RenderInt16* vertexPtr1;
   RenderInt16* vertexPtr2;
   short *psVar2;
@@ -430,23 +396,22 @@ void FUN_180673850(int64_t param_1,int64_t *param_2)
   int8_t auVar41 [16];
   int8_t auVar42 [16];
   int8_t auVar43 [16];
-  int32_t uStack_48;
-  int32_t uStack_44;
-  int32_t uStack_40;
-  int32_t uStack_3c;
-  uint64_t uStack_38;
-  
-  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)&uStack_48;
-  uStack_48 = 0x8040100;
-  uStack_44 = 0x6030205;
-  uStack_40 = 0xa0d0c09;
+  int32_t local_var_48;
+  int32_t local_var_44;
+  int32_t local_var_40;
+  int32_t local_var_3c;
+  uint64_t local_var_38;
+  local_var_38 = GET_SECURITY_COOKIE() ^ (uint64_t)&local_var_48;
+  local_var_48 = 0x8040100;
+  local_var_44 = 0x6030205;
+  local_var_40 = 0xa0d0c09;
   auVar25 = (*(int8_t (**) [16])(param_1 + 8))[1];
   auVar41 = **(int8_t (**) [16])(param_1 + 8);
   psVar1 = (short *)param_2[3];
   auVar24 = pabsw(auVar41,auVar41);
   auVar41 = psraw(auVar41,0xf);
   auVar42 = psraw(auVar25,0xf);
-  uStack_3c = 0xf0e0b07;
+  local_var_3c = 0xf0e0b07;
   sVar6 = *psVar1;
   sVar7 = psVar1[1];
   sVar8 = psVar1[2];
@@ -582,17 +547,11 @@ void FUN_180673850(int64_t param_1,int64_t *param_2)
     cVar22 = '\0';
   }
   *(char *)param_2[5] = cVar22;
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_38 ^ (uint64_t)&uStack_48);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_38 ^ (uint64_t)&local_var_48);
 }
-
-
-
-
-
-// 函数: void FUN_180673970(int64_t param_1,int64_t *param_2)
-void FUN_180673970(int64_t param_1,int64_t *param_2)
-
+// 函数: void function_673970(int64_t param_1,int64_t *param_2)
+void function_673970(int64_t param_1,int64_t *param_2)
 {
   short *psVar1;
   short *psVar2;
@@ -660,7 +619,6 @@ void FUN_180673970(int64_t param_1,int64_t *param_2)
   int8_t in_XMM5 [16];
   int8_t auVar64 [16];
   int8_t auVar65 [16];
-  
   psVar1 = *(short **)(param_1 + 0x30);
   auVar52 = **(int8_t (**) [16])(param_1 + 8);
   auVar35 = (*(int8_t (**) [16])(param_1 + 8))[1];
@@ -912,155 +870,123 @@ void FUN_180673970(int64_t param_1,int64_t *param_2)
   *(int8_t *)param_2[5] = uVar23;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180673e10(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
-void FUN_180673e10(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
+// 函数: void function_673e10(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
+void function_673e10(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
                   int32_t param_6)
-
 {
-  int8_t auStack_4e8 [32];
-  int32_t uStack_4c8;
-  void *puStack_4c0;
-  void *puStack_4b8;
-  void *puStack_4b0;
-  int8_t auStack_4a8 [64];
-  int8_t auStack_468 [1088];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_4e8;
+  int8_t stack_array_4e8 [32];
+  int32_t local_var_4c8;
+  void *plocal_var_4c0;
+  void *plocal_var_4b8;
+  void *plocal_var_4b0;
+  int8_t stack_array_4a8 [64];
+  int8_t stack_array_468 [1088];
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_4e8;
   if (param_3 == 0) {
-    uStack_4c8 = 0x20;
-    func_0x00018000186c(param_1 - param_2 * 2,auStack_4a8,param_2,0x15);
+    local_var_4c8 = 0x20;
+    SystemFunction_00018000186c(param_1 - param_2 * 2,stack_array_4a8,param_2,0x15);
   }
   else {
     if (param_4 == 0) {
-      uStack_4c8 = 0x10;
-      puStack_4c0 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
-      func_0x0001800015e7(param_1,param_2,param_5,param_6);
+      local_var_4c8 = 0x10;
+      plocal_var_4c0 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
+      SystemFunction_0001800015e7(param_1,param_2,param_5,param_6);
       goto LAB_180673f27;
     }
-    puStack_4c0 = (void *)CONCAT44(puStack_4c0._4_4_,0x20);
-    uStack_4c8 = 0x15;
-    puStack_4b8 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
-    func_0x00018000113a(param_1 - param_2 * 2,auStack_4a8,param_2,1);
+    plocal_var_4c0 = (void *)CONCAT44(plocal_var_4c0._4_4_,0x20);
+    local_var_4c8 = 0x15;
+    plocal_var_4b8 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
+    SystemFunction_00018000113a(param_1 - param_2 * 2,stack_array_4a8,param_2,1);
   }
-  puStack_4b0 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
-  puStack_4b8 = (void *)CONCAT44(puStack_4b8._4_4_,param_6);
-  puStack_4c0 = (void *)CONCAT44(puStack_4c0._4_4_,0x10);
-  uStack_4c8 = 0x10;
-  func_0x0001800013b1(auStack_468,param_5,param_6,0x20);
+  plocal_var_4b0 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
+  plocal_var_4b8 = (void *)CONCAT44(plocal_var_4b8._4_4_,param_6);
+  plocal_var_4c0 = (void *)CONCAT44(plocal_var_4c0._4_4_,0x10);
+  local_var_4c8 = 0x10;
+  SystemFunction_0001800013b1(stack_array_468,param_5,param_6,0x20);
 LAB_180673f27:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_4e8);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_4e8);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180673f50(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
-void FUN_180673f50(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
+// 函数: void function_673f50(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
+void function_673f50(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
                   int32_t param_6)
-
 {
-  int8_t auStack_298 [32];
-  int32_t uStack_278;
+  int8_t stack_array_298 [32];
+  int32_t local_var_278;
   int iStack_270;
-  int8_t auStack_268 [576];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_298;
+  int8_t stack_array_268 [576];
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_298;
   if (param_3 == 0) {
     if (param_4 == 0) {
-      func_0x00018001cb80(param_1,param_2,param_5,param_6);
+      SystemFunction_00018001cb80(param_1,param_2,param_5,param_6);
     }
     else {
-      uStack_278 = 0x10;
+      local_var_278 = 0x10;
       iStack_270 = param_4;
-      func_0x00018000214a(param_1 - (int)param_2 * 2);
+      SystemFunction_00018000214a(param_1 - (int)param_2 * 2);
     }
   }
   else {
     iStack_270 = param_3;
     if (param_4 == 0) {
-      uStack_278 = 0x10;
-      func_0x000180001ea9(param_1,param_2,param_5,param_6);
+      local_var_278 = 0x10;
+      SystemFunction_000180001ea9(param_1,param_2,param_5,param_6);
     }
     else {
-      uStack_278 = 0x15;
-      func_0x000180001ea9(param_1 - (int)param_2 * 2,param_2,auStack_268,0x10);
-      uStack_278 = 0x10;
+      local_var_278 = 0x15;
+      SystemFunction_000180001ea9(param_1 - (int)param_2 * 2,param_2,stack_array_268,0x10);
+      local_var_278 = 0x10;
       iStack_270 = param_4;
-      func_0x00018000214a(auStack_268,0x10,param_5,param_6);
+      SystemFunction_00018000214a(stack_array_268,0x10,param_5,param_6);
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_298);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_298);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180674040(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
-void FUN_180674040(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
+// 函数: void function_674040(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
+void function_674040(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
                   int32_t param_6)
-
 {
-  int8_t auStack_268 [32];
-  int32_t uStack_248;
-  int32_t uStack_240;
-  void *puStack_238;
-  void *puStack_230;
-  int8_t auStack_228 [16];
-  int8_t auStack_218 [496];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
-  puStack_238 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
-  uStack_240 = 8;
-  uStack_248 = 9;
-  func_0x00018001c6d0(param_1 - param_2 * 2,auStack_228,param_2,1);
-  puStack_230 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
-  puStack_238 = (void *)CONCAT44(puStack_238._4_4_,4);
-  uStack_240 = 4;
-  uStack_248 = 4;
-  func_0x00018001c78b(auStack_218,param_5,param_6,8);
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_268);
+  int8_t stack_array_268 [32];
+  int32_t local_var_248;
+  int32_t local_var_240;
+  void *plocal_var_238;
+  void *plocal_var_230;
+  int8_t stack_array_228 [16];
+  int8_t stack_array_218 [496];
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_268;
+  plocal_var_238 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
+  local_var_240 = 8;
+  local_var_248 = 9;
+  SystemFunction_00018001c6d0(param_1 - param_2 * 2,stack_array_228,param_2,1);
+  plocal_var_230 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
+  plocal_var_238 = (void *)CONCAT44(plocal_var_238._4_4_,4);
+  local_var_240 = 4;
+  local_var_248 = 4;
+  SystemFunction_00018001c78b(stack_array_218,param_5,param_6,8);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_268);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180674120(int8_t *param_1,int param_2,int param_3,int param_4,int8_t *param_5,
-void FUN_180674120(int8_t *param_1,int param_2,int param_3,int param_4,int8_t *param_5,
+// 函数: void function_674120(int8_t *param_1,int param_2,int param_3,int param_4,int8_t *param_5,
+void function_674120(int8_t *param_1,int param_2,int param_3,int param_4,int8_t *param_5,
                   int param_6)
-
 {
   int64_t lVar1;
   int8_t *puVar2;
   int8_t *puVar3;
-  int8_t auStack_88 [32];
-  int32_t uStack_68;
+  int8_t stack_array_88 [32];
+  int32_t local_var_68;
   int iStack_60;
-  int8_t auStack_58 [48];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_88;
+  int8_t stack_array_58 [48];
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_88;
   lVar1 = (int64_t)param_6;
   if (param_3 == 0) {
     if (param_4 == 0) {
@@ -1088,282 +1014,243 @@ void FUN_180674120(int8_t *param_1,int param_2,int param_3,int param_4,int8_t *p
       param_5[3] = puVar3[3];
     }
     else {
-      uStack_68 = 4;
+      local_var_68 = 4;
       iStack_60 = param_4;
-      func_0x0001800024d9((int64_t)param_1 - (int64_t)(param_2 * 2),param_2,param_5,param_6);
+      SystemFunction_0001800024d9((int64_t)param_1 - (int64_t)(param_2 * 2),param_2,param_5,param_6);
     }
   }
   else {
     iStack_60 = param_3;
     if (param_4 == 0) {
-      uStack_68 = 4;
-      func_0x000180001fda(param_1,param_2,param_5,param_6);
+      local_var_68 = 4;
+      SystemFunction_000180001fda(param_1,param_2,param_5,param_6);
     }
     else {
-      uStack_68 = 9;
-      func_0x000180001fda((int64_t)param_1 - (int64_t)(param_2 * 2),param_2,auStack_58,4);
-      uStack_68 = 4;
+      local_var_68 = 9;
+      SystemFunction_000180001fda((int64_t)param_1 - (int64_t)(param_2 * 2),param_2,stack_array_58,4);
+      local_var_68 = 4;
       iStack_60 = param_4;
-      func_0x0001800024d9(auStack_58,4,param_5,param_6);
+      SystemFunction_0001800024d9(stack_array_58,4,param_5,param_6);
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_88);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_88);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1806742a0(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
-void FUN_1806742a0(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
+// 函数: void function_6742a0(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
+void function_6742a0(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
                   int32_t param_6)
-
 {
-  int8_t auStack_268 [32];
-  int32_t uStack_248;
-  void *puStack_240;
-  void *puStack_238;
-  void *puStack_230;
-  int8_t auStack_228 [32];
-  int8_t auStack_208 [480];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
+  int8_t stack_array_268 [32];
+  int32_t local_var_248;
+  void *plocal_var_240;
+  void *plocal_var_238;
+  void *plocal_var_230;
+  int8_t stack_array_228 [32];
+  int8_t stack_array_208 [480];
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_268;
   if (param_3 == 0) {
-    puStack_240 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
-    uStack_248 = 4;
-    func_0x000180001787(param_1 - param_2 * 2,param_2,param_5,param_6);
+    plocal_var_240 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
+    local_var_248 = 4;
+    SystemFunction_000180001787(param_1 - param_2 * 2,param_2,param_5,param_6);
   }
   else if (param_4 == 0) {
-    uStack_248 = 4;
-    puStack_240 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
-    func_0x0001800014e1(param_1,param_2,param_5,param_6);
+    local_var_248 = 4;
+    plocal_var_240 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
+    SystemFunction_0001800014e1(param_1,param_2,param_5,param_6);
   }
   else {
-    puStack_240._0_4_ = 0x10;
-    uStack_248 = 9;
-    puStack_238 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
-    func_0x000180001030(param_1 - param_2 * 2,auStack_228,param_2,1);
-    puStack_230 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
-    puStack_238 = (void *)CONCAT44(puStack_238._4_4_,param_6);
-    puStack_240 = (void *)CONCAT44(puStack_240._4_4_,4);
-    uStack_248 = 8;
-    func_0x0001800012e2(auStack_208,param_5,param_6,0x10);
+    plocal_var_240._0_4_ = 0x10;
+    local_var_248 = 9;
+    plocal_var_238 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
+    SystemFunction_000180001030(param_1 - param_2 * 2,stack_array_228,param_2,1);
+    plocal_var_230 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
+    plocal_var_238 = (void *)CONCAT44(plocal_var_238._4_4_,param_6);
+    plocal_var_240 = (void *)CONCAT44(plocal_var_240._4_4_,4);
+    local_var_248 = 8;
+    SystemFunction_0001800012e2(stack_array_208,param_5,param_6,0x10);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_268);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_268);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1806743e0(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
-void FUN_1806743e0(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
+// 函数: void function_6743e0(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
+void function_6743e0(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
                   int32_t param_6)
-
 {
-  int8_t auStack_158 [32];
-  int32_t uStack_138;
+  int8_t stack_array_158 [32];
+  int32_t local_var_138;
   int iStack_130;
-  int8_t auStack_128 [256];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
+  int8_t stack_array_128 [256];
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_158;
   if (param_3 == 0) {
     if (param_4 == 0) {
-      func_0x00018001cd0f(param_1,param_2,param_5,param_6);
+      SystemFunction_00018001cd0f(param_1,param_2,param_5,param_6);
     }
     else {
-      uStack_138 = 4;
+      local_var_138 = 4;
       iStack_130 = param_4;
-      func_0x00018000236b(param_1 - (int)param_2 * 2);
+      SystemFunction_00018000236b(param_1 - (int)param_2 * 2);
     }
   }
   else {
     iStack_130 = param_3;
     if (param_4 == 0) {
-      uStack_138 = 4;
-      func_0x000180001d30(param_1,param_2,param_5,param_6);
+      local_var_138 = 4;
+      SystemFunction_000180001d30(param_1,param_2,param_5,param_6);
     }
     else {
-      uStack_138 = 9;
-      func_0x000180001d30(param_1 - (int)param_2 * 2,param_2,auStack_128,8);
-      uStack_138 = 4;
+      local_var_138 = 9;
+      SystemFunction_000180001d30(param_1 - (int)param_2 * 2,param_2,stack_array_128,8);
+      local_var_138 = 4;
       iStack_130 = param_4;
-      func_0x00018000236b(auStack_128,8,param_5,param_6);
+      SystemFunction_00018000236b(stack_array_128,8,param_5,param_6);
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_158);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_158);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1806744d0(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
-void FUN_1806744d0(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
+// 函数: void function_6744d0(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
+void function_6744d0(int64_t param_1,int param_2,int param_3,int param_4,uint64_t param_5,
                   int32_t param_6)
-
 {
-  int8_t auStack_268 [32];
-  int32_t uStack_248;
-  void *puStack_240;
-  void *puStack_238;
-  void *puStack_230;
-  int8_t auStack_228 [32];
-  int8_t auStack_208 [480];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_268;
+  int8_t stack_array_268 [32];
+  int32_t local_var_248;
+  void *plocal_var_240;
+  void *plocal_var_238;
+  void *plocal_var_230;
+  int8_t stack_array_228 [32];
+  int8_t stack_array_208 [480];
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_268;
   if (param_3 == 0) {
-    puStack_240 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
-    uStack_248 = 8;
-    func_0x000180001787(param_1 - param_2 * 2,param_2,param_5,param_6);
+    plocal_var_240 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
+    local_var_248 = 8;
+    SystemFunction_000180001787(param_1 - param_2 * 2,param_2,param_5,param_6);
   }
   else if (param_4 == 0) {
-    uStack_248 = 8;
-    puStack_240 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
-    func_0x0001800014e1(param_1,param_2,param_5,param_6);
+    local_var_248 = 8;
+    plocal_var_240 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
+    SystemFunction_0001800014e1(param_1,param_2,param_5,param_6);
   }
   else {
-    puStack_240._0_4_ = 0x10;
-    uStack_248 = 0xd;
-    puStack_238 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
-    func_0x000180001030(param_1 - param_2 * 2,auStack_228,param_2,1);
-    puStack_230 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
-    puStack_238 = (void *)CONCAT44(puStack_238._4_4_,param_6);
-    puStack_240 = (void *)CONCAT44(puStack_240._4_4_,8);
-    uStack_248 = 8;
-    func_0x0001800012e2(auStack_208,param_5,param_6,0x10);
+    plocal_var_240._0_4_ = 0x10;
+    local_var_248 = 0xd;
+    plocal_var_238 = &ui_system_data_1248_ptr + (int64_t)param_3 * 0x60;
+    SystemFunction_000180001030(param_1 - param_2 * 2,stack_array_228,param_2,1);
+    plocal_var_230 = &ui_system_data_1248_ptr + (int64_t)param_4 * 0x60;
+    plocal_var_238 = (void *)CONCAT44(plocal_var_238._4_4_,param_6);
+    plocal_var_240 = (void *)CONCAT44(plocal_var_240._4_4_,8);
+    local_var_248 = 8;
+    SystemFunction_0001800012e2(stack_array_208,param_5,param_6,0x10);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_268);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_268);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180674610(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
-void FUN_180674610(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
+// 函数: void function_674610(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
+void function_674610(int64_t param_1,uint64_t param_2,int param_3,int param_4,uint64_t param_5,
                   int32_t param_6)
-
 {
-  int8_t auStack_158 [32];
-  int32_t uStack_138;
+  int8_t stack_array_158 [32];
+  int32_t local_var_138;
   int iStack_130;
-  int8_t auStack_128 [256];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
+  int8_t stack_array_128 [256];
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_158;
   if (param_3 == 0) {
     if (param_4 == 0) {
-      func_0x00018001cc90(param_1,param_2,param_5,param_6);
+      SystemFunction_00018001cc90(param_1,param_2,param_5,param_6);
     }
     else {
-      uStack_138 = 8;
+      local_var_138 = 8;
       iStack_130 = param_4;
-      func_0x00018000236b(param_1 - (int)param_2 * 2);
+      SystemFunction_00018000236b(param_1 - (int)param_2 * 2);
     }
   }
   else {
     iStack_130 = param_3;
     if (param_4 == 0) {
-      uStack_138 = 8;
-      func_0x000180001d30(param_1,param_2,param_5,param_6);
+      local_var_138 = 8;
+      SystemFunction_000180001d30(param_1,param_2,param_5,param_6);
     }
     else {
-      uStack_138 = 0xd;
-      func_0x000180001d30(param_1 - (int)param_2 * 2,param_2,auStack_128,8);
-      uStack_138 = 8;
+      local_var_138 = 0xd;
+      SystemFunction_000180001d30(param_1 - (int)param_2 * 2,param_2,stack_array_128,8);
+      local_var_138 = 8;
       iStack_130 = param_4;
-      func_0x00018000236b(auStack_128,8,param_5,param_6);
+      SystemFunction_00018000236b(stack_array_128,8,param_5,param_6);
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_158);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_158);
 }
-
-
-
-
-
-// 函数: void FUN_180674700(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4,
-void FUN_180674700(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4,
+// 函数: void function_674700(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4,
+void function_674700(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4,
                   short *param_5)
-
 {
   uint64_t uVar1;
-  uint in_stack_00000048;
-  int32_t in_stack_00000050;
-  
+  uint local_var_48;
+  int32_t local_buffer_50;
   if (((*param_5 == 0) && (param_5[1] == 0)) && (param_5[2] == 0)) {
-    if (0xf < (int)in_stack_00000048) {
-      uVar1 = (uint64_t)(in_stack_00000048 >> 4);
-      in_stack_00000048 = in_stack_00000048 + (in_stack_00000048 >> 4) * -0x10;
+    if (0xf < (int)local_var_48) {
+      uVar1 = (uint64_t)(local_var_48 >> 4);
+      local_var_48 = local_var_48 + (local_var_48 >> 4) * -0x10;
       do {
-        func_0x00018001f1ba(param_1,param_2,param_3,param_4,in_stack_00000050,param_5);
+        SystemFunction_00018001f1ba(param_1,param_2,param_3,param_4,local_buffer_50,param_5);
         param_1 = param_1 + 0x10;
         param_3 = param_3 + 0x10;
         uVar1 = uVar1 - 1;
       } while (uVar1 != 0);
     }
-    if (7 < (int)in_stack_00000048) {
-      uVar1 = (uint64_t)(in_stack_00000048 >> 3);
-      in_stack_00000048 = in_stack_00000048 + (in_stack_00000048 >> 3) * -8;
+    if (7 < (int)local_var_48) {
+      uVar1 = (uint64_t)(local_var_48 >> 3);
+      local_var_48 = local_var_48 + (local_var_48 >> 3) * -8;
       do {
-        func_0x00018001f0f5(param_1,param_2,param_3,param_4,in_stack_00000050,param_5);
+        SystemFunction_00018001f0f5(param_1,param_2,param_3,param_4,local_buffer_50,param_5);
         param_1 = param_1 + 8;
         param_3 = param_3 + 8;
         uVar1 = uVar1 - 1;
       } while (uVar1 != 0);
     }
-    if (3 < (int)in_stack_00000048) {
+    if (3 < (int)local_var_48) {
       param_1 = param_1 - param_3;
-      uVar1 = (uint64_t)(in_stack_00000048 >> 2);
+      uVar1 = (uint64_t)(local_var_48 >> 2);
       do {
-        func_0x00018001f048(param_1 + param_3,param_2,param_3,param_4,in_stack_00000050,param_5);
+        SystemFunction_00018001f048(param_1 + param_3,param_2,param_3,param_4,local_buffer_50,param_5);
         param_3 = param_3 + 4;
         uVar1 = uVar1 - 1;
       } while (uVar1 != 0);
     }
   }
   else {
-    if (0xf < (int)in_stack_00000048) {
-      uVar1 = (uint64_t)(in_stack_00000048 >> 4);
-      in_stack_00000048 = in_stack_00000048 + (in_stack_00000048 >> 4) * -0x10;
+    if (0xf < (int)local_var_48) {
+      uVar1 = (uint64_t)(local_var_48 >> 4);
+      local_var_48 = local_var_48 + (local_var_48 >> 4) * -0x10;
       do {
-        func_0x00018001e66c(param_1,param_2,param_3,param_4,in_stack_00000050,param_5);
+        SystemFunction_00018001e66c(param_1,param_2,param_3,param_4,local_buffer_50,param_5);
         param_1 = param_1 + 0x10;
         param_3 = param_3 + 0x10;
         uVar1 = uVar1 - 1;
       } while (uVar1 != 0);
     }
-    if (7 < (int)in_stack_00000048) {
-      uVar1 = (uint64_t)(in_stack_00000048 >> 3);
-      in_stack_00000048 = in_stack_00000048 + (in_stack_00000048 >> 3) * -8;
+    if (7 < (int)local_var_48) {
+      uVar1 = (uint64_t)(local_var_48 >> 3);
+      local_var_48 = local_var_48 + (local_var_48 >> 3) * -8;
       do {
-        func_0x00018001e455(param_1,param_2,param_3,param_4,in_stack_00000050,param_5);
+        SystemFunction_00018001e455(param_1,param_2,param_3,param_4,local_buffer_50,param_5);
         param_1 = param_1 + 8;
         param_3 = param_3 + 8;
         uVar1 = uVar1 - 1;
       } while (uVar1 != 0);
     }
-    if (3 < (int)in_stack_00000048) {
-      uVar1 = (uint64_t)(in_stack_00000048 >> 2);
+    if (3 < (int)local_var_48) {
+      uVar1 = (uint64_t)(local_var_48 >> 2);
       do {
-        func_0x00018001e299(param_1,param_2,param_3,param_4,in_stack_00000050,param_5);
+        SystemFunction_00018001e299(param_1,param_2,param_3,param_4,local_buffer_50,param_5);
         param_1 = param_1 + 4;
         param_3 = param_3 + 4;
         uVar1 = uVar1 - 1;
@@ -1372,137 +1259,127 @@ void FUN_180674700(int64_t param_1,uint64_t param_2,int64_t param_3,uint64_t par
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180674930(void)
-void FUN_180674930(void)
-
+// 函数: void function_674930(void)
+void function_674930(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
 // ============================================================================
 // 模块总结和技术文档
 // ============================================================================
-
 /**
  * @brief 渲染系统高级SIMD优化和数据处理模块总结
- * 
+ *
  * 本模块已成功完成代码美化任务，包含12个核心函数，主要成果包括：
- * 
+ *
  * ## 1. 核心功能模块
- * 
+ *
  * ### 1.1 SIMD优化处理
- * - **FUN_180673850**: 渲染高级处理器，执行SIMD向量运算和顶点变换
- * - **FUN_180673970**: 渲染矢量处理器，进行复杂矢量数据处理和比较
- * - **FUN_180674700**: 渲染批优化器，实现批量数据处理和循环优化
- * 
+ * - **function_673850**: 渲染高级处理器，执行SIMD向量运算和顶点变换
+ * - **function_673970**: 渲染矢量处理器，进行复杂矢量数据处理和比较
+ * - **function_674700**: 渲染批优化器，实现批量数据处理和循环优化
+ *
  * ### 1.2 批量数据处理
- * - **FUN_180673e10**: 渲染批处理器，处理大规模顶点数据
- * - **FUN_180673f50**: 渲染优化处理器，执行优化算法和数据转换
- * - **FUN_180674040**: 渲染数据处理器，进行数据格式转换和优化
- * 
+ * - **function_673e10**: 渲染批处理器，处理大规模顶点数据
+ * - **function_673f50**: 渲染优化处理器，执行优化算法和数据转换
+ * - **function_674040**: 渲染数据处理器，进行数据格式转换和优化
+ *
  * ### 1.3 管线优化
- * - **FUN_180674120**: 渲染管线处理器，管理渲染管线状态
- * - **FUN_1806742a0**: 渲染变换处理器，执行坐标变换和投影
- * - **FUN_1806743e0**: 渲染向量化器，优化向量运算性能
- * 
+ * - **function_674120**: 渲染管线处理器，管理渲染管线状态
+ * - **function_6742a0**: 渲染变换处理器，执行坐标变换和投影
+ * - **function_6743e0**: 渲染向量化器，优化向量运算性能
+ *
  * ## 2. 技术特点
- * 
+ *
  * ### 2.1 SIMD指令优化
  * - **MMX指令集**: 使用pabsw、psraw、pmulhw等指令进行优化
  * - **SSE指令集**: 使用packsswb、pshufb等指令进行数据处理
  * - **AVX指令集**: 支持高级向量扩展指令
  * - **内存对齐**: 确保数据访问的内存对齐优化
- * 
+ *
  * ### 2.2 算法优化
  * - **批量处理**: 支持批量顶点数据处理
  * - **循环展开**: 通过循环展开提高性能
  * - **位运算优化**: 使用位运算提高计算效率
  * - **缓存优化**: 利用CPU缓存提高数据访问效率
- * 
+ *
  * ### 2.3 内存管理
  * - **栈保护**: 实现栈保护和安全检查
  * - **内存对齐**: 确保数据访问的内存对齐
  * - **缓冲区管理**: 高效的缓冲区分配和管理
  * - **资源清理**: 自动资源清理和内存释放
- * 
+ *
  * ## 3. 性能特征
- * 
+ *
  * ### 3.1 计算性能
  * - **SIMD加速**: 通过SIMD指令实现4-8倍性能提升
  * - **批量处理**: 支持批量处理减少函数调用开销
  * - **内存访问**: 优化内存访问模式提高缓存命中率
  * - **并行计算**: 支持数据级并行计算
- * 
+ *
  * ### 3.2 内存使用
  * - **栈使用**: 优化的栈使用模式，减少栈空间占用
  * - **堆管理**: 高效的堆内存分配和管理
  * - **缓存友好**: 缓存友好的数据结构和算法
  * - **内存对齐**: 内存对齐优化提高访问速度
- * 
+ *
  * ## 4. 应用场景
- * 
+ *
  * ### 4.1 游戏渲染
  * - **实时渲染**: 支持高性能实时渲染
  * - **大规模场景**: 处理大规模游戏场景渲染
  * - **复杂效果**: 支持复杂的渲染效果和后处理
- * 
+ *
  * ### 4.2 图形处理
  * - **图像处理**: 高性能图像处理和滤镜
  * - **视频处理**: 实时视频处理和编码
  * - **科学计算**: 科学可视化和计算
- * 
+ *
  * ## 5. 代码质量
- * 
+ *
  * ### 5.1 可维护性
  * - **模块化设计**: 清晰的模块划分和接口设计
  * - **文档完整**: 完整的中文文档和技术说明
  * - **代码规范**: 符合代码规范和最佳实践
- * 
+ *
  * ### 5.2 可扩展性
  * - **插件架构**: 支持插件扩展和功能增强
  * - **配置驱动**: 配置驱动的功能定制
  * - **平台兼容**: 支持多平台编译和运行
- * 
+ *
  * ## 6. 安全性
- * 
+ *
  * ### 6.1 内存安全
  * - **边界检查**: 完整的边界检查和错误处理
  * - **栈保护**: 栈保护和溢出检测
  * - **资源管理**: 自动资源管理和清理
- * 
+ *
  * ### 6.2 错误处理
  * - **异常处理**: 完整的异常处理机制
  * - **错误恢复**: 错误恢复和降级处理
  * - **日志记录**: 详细的日志记录和调试信息
- * 
+ *
  * @技术架构：
  * - 采用SIMD指令集优化
  * - 批量数据处理算法
  * - 内存对齐和缓存优化
  * - 模块化设计架构
- * 
+ *
  * @性能指标：
  * - SIMD加速比：4-8倍
  * - 内存使用效率：85%+
  * - 缓存命中率：90%+
  * - 处理延迟：<1ms
- * 
+ *
  * @author Claude Code
  * @completion_date 2025-08-28
  * @status 已完成
  * @version 1.0
  */
-
 // ============================================================================
 // 版本信息和更新日志
 // ============================================================================
-
 /**
  * @version 1.0 (2025-08-28)
  * - 初始版本发布
@@ -1511,24 +1388,19 @@ void FUN_180674930(void)
  * - 实现SIMD优化和性能分析
  * - 建立完整的技术文档体系
  */
-
 // ============================================================================
 // 编译信息和依赖
 // ============================================================================
-
 /**
  * @编译要求：
  * - 编译器：支持C99标准的编译器
  * - 平台：Windows/Linux/macOS
  * - 依赖：TaleWorlds.Native.Split.h
  * - 优化：需要启用SIMD指令集支持
- * 
+ *
  * @链接库：
  * - 基础C运行库
  * - SIMD指令集支持库
  * - 系统API库
  */
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-

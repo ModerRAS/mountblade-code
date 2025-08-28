@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part229.c - 3 个函数
-
-// 函数: void FUN_18079c2e0(float *param_1,float *param_2,int param_3,float *param_4,float *param_5,
-void FUN_18079c2e0(float *param_1,float *param_2,int param_3,float *param_4,float *param_5,
+// 函数: void SystemCore_9c2e0(float *param_1,float *param_2,int param_3,float *param_4,float *param_5,
+void SystemCore_9c2e0(float *param_1,float *param_2,int param_3,float *param_4,float *param_5,
                   float *param_6,float param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -39,7 +36,6 @@ void FUN_18079c2e0(float *param_1,float *param_2,int param_3,float *param_4,floa
   float fVar30;
   float fStackX_18;
   float fStack_d0;
-  
   fVar1 = *param_4;
   fVar2 = param_4[1];
   fVar3 = param_4[2];
@@ -221,14 +217,8 @@ void FUN_18079c2e0(float *param_1,float *param_2,int param_3,float *param_4,floa
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18079c63c(float param_1,float *param_2,float param_3,int64_t param_4)
-void FUN_18079c63c(float param_1,float *param_2,float param_3,int64_t param_4)
-
+// 函数: void SystemCore_9c63c(float param_1,float *param_2,float param_3,int64_t param_4)
+void SystemCore_9c63c(float param_1,float *param_2,float param_3,int64_t param_4)
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -258,17 +248,16 @@ void FUN_18079c63c(float param_1,float *param_2,float param_3,int64_t param_4)
   float fStackX_10;
   float fStackX_14;
   float fStackX_18;
-  float in_stack_000000e8;
-  float in_stack_000000f0;
-  float in_stack_000000f8;
-  int64_t in_stack_00000108;
-  
+  float local_var_e8;
+  float local_var_f0;
+  float local_var_f8;
+  int64_t local_var_108;
   do {
     lVar1 = 0;
     if (3 < param_4) {
       fVar6 = unaff_XMM9_Da + param_3;
       lVar2 = (param_4 - 4U >> 2) + 1;
-      pfVar3 = (float *)(in_stack_00000108 + 0x28);
+      pfVar3 = (float *)(local_var_108 + 0x28);
       fVar7 = unaff_XMM13_Da + param_1;
       fVar8 = unaff_XMM15_Da + in_XMM3_Da;
       lVar1 = lVar2 * 4;
@@ -335,16 +324,16 @@ void FUN_18079c63c(float param_1,float *param_2,float param_3,int64_t param_4)
         param_2[3] = fVar4;
         param_2 = param_2 + 4;
         lVar2 = lVar2 + -1;
-        param_1 = in_stack_000000f8;
+        param_1 = local_var_f8;
         in_XMM1_Da = unaff_retaddr;
-        param_3 = in_stack_000000e8;
+        param_3 = local_var_e8;
         in_XMM3_Da = unaff_retaddr_00;
         unaff_XMM10_Da = fStackX_c;
       } while (lVar2 != 0);
     }
     if (lVar1 < param_4) {
-      fVar6 = in_stack_000000f0 + unaff_XMM11_Da;
-      pfVar3 = (float *)(in_stack_00000108 + 8 + lVar1 * 0x20);
+      fVar6 = local_var_f0 + unaff_XMM11_Da;
+      pfVar3 = (float *)(local_var_108 + 8 + lVar1 * 0x20);
       param_3 = unaff_XMM9_Da + param_3;
       param_1 = unaff_XMM13_Da + param_1;
       in_XMM3_Da = unaff_XMM15_Da + in_XMM3_Da;
@@ -369,7 +358,7 @@ void FUN_18079c63c(float param_1,float *param_2,float param_3,int64_t param_4)
         *param_2 = fVar7;
         param_2 = param_2 + 1;
         lVar1 = lVar1 + -1;
-        in_XMM4_Da = in_stack_000000f0;
+        in_XMM4_Da = local_var_f0;
       } while (lVar1 != 0);
     }
     unaff_XMM9_Da = unaff_XMM9_Da + unaff_XMM10_Da;
@@ -378,34 +367,23 @@ void FUN_18079c63c(float param_1,float *param_2,float param_3,int64_t param_4)
     unaff_XMM14_Da = unaff_XMM14_Da + fStackX_10;
     unaff_XMM15_Da = unaff_XMM15_Da + fStackX_14;
     in_R11D = in_R11D + -1;
-    param_1 = in_stack_000000f8;
+    param_1 = local_var_f8;
     in_XMM1_Da = unaff_retaddr;
-    param_3 = in_stack_000000e8;
+    param_3 = local_var_e8;
     in_XMM3_Da = unaff_retaddr_00;
-    in_stack_000000f0 = in_XMM4_Da;
+    local_var_f0 = in_XMM4_Da;
   } while (in_R11D != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18079ccda(void)
-void FUN_18079ccda(void)
-
+// 函数: void SystemCore_9ccda(void)
+void SystemCore_9ccda(void)
 {
   return;
 }
-
-
-
-uint64_t FUN_18079cd20(int64_t param_1)
-
+uint64_t SystemCore_9cd20(int64_t param_1)
 {
   int64_t *plVar1;
   int64_t lVar2;
-  
   if (*(int64_t *)(param_1 + 8) != 0) {
     plVar1 = (int64_t *)(*(int64_t *)(param_1 + 8) + 0xb0);
     lVar2 = 5;
@@ -422,17 +400,12 @@ uint64_t FUN_18079cd20(int64_t param_1)
   }
   return 0;
 }
-
-
-
-uint64_t FUN_18079cd36(void)
-
+uint64_t SystemCore_9cd36(void)
 {
   int64_t unaff_RBX;
   int64_t *plVar1;
   int64_t unaff_RSI;
   int64_t lVar2;
-  
   plVar1 = (int64_t *)(unaff_RBX + 0xb0);
   lVar2 = 5;
   do {
@@ -447,16 +420,7 @@ uint64_t FUN_18079cd36(void)
   *(uint64_t *)(unaff_RSI + 8) = 0;
   return 0;
 }
-
-
-
-uint64_t FUN_18079cd86(void)
-
+uint64_t SystemCore_9cd86(void)
 {
   return 0;
 }
-
-
-
-
-

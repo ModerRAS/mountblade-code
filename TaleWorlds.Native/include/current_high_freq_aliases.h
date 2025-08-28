@@ -35,7 +35,7 @@ extern "C" {
  * @param format 纹理格式
  * @return int 成功返回0，失败返回错误码
  */
-#define RenderingSystem_TextureManager FUN_18084d3f0
+#define RenderingSystem_TextureManager function_84d3f0
 
 /**
  * @brief 材质处理器
@@ -49,7 +49,7 @@ extern "C" {
  * @param param_count 参数数量
  * @return int 成功返回0，失败返回错误码
  */
-#define RenderingSystem_MaterialProcessor FUN_1807703c0
+#define RenderingSystem_MaterialProcessor function_7703c0
 
 /**
  * @brief 着色器编译器
@@ -62,7 +62,7 @@ extern "C" {
  * @param source_length 源代码长度
  * @return uint32_t 编译成功返回着色器ID，失败返回0
  */
-#define RenderingSystem_ShaderCompiler FUN_1807681a0
+#define RenderingSystem_ShaderCompiler function_7681a0
 
 /**
  * @brief 顶点缓冲区管理器
@@ -76,7 +76,7 @@ extern "C" {
  * @param usage 使用模式
  * @return int 成功返回0，失败返回错误码
  */
-#define RenderingSystem_VertexBufferManager FUN_180645fa0
+#define RenderingSystem_VertexBufferManager function_645fa0
 
 /**
  * @brief 光照管理器
@@ -91,7 +91,7 @@ extern "C" {
  * @param intensity 光源强度
  * @return int 成功返回0，失败返回错误码
  */
-#define RenderingSystem_LightManager FUN_1805b7740
+#define RenderingSystem_LightManager function_5b7740
 
 /**
  * @brief 相机处理器
@@ -106,7 +106,7 @@ extern "C" {
  * @param fov 视场角
  * @return int 成功返回0，失败返回错误码
  */
-#define RenderingSystem_CameraProcessor FUN_18020f150
+#define RenderingSystem_CameraProcessor function_20f150
 
 /**
  * @brief 渲染目标管理器
@@ -120,7 +120,7 @@ extern "C" {
  * @param format 格式
  * @return int 成功返回0，失败返回错误码
  */
-#define RenderingSystem_RenderTargetManager FUN_1801f20c0
+#define RenderingSystem_RenderTargetManager function_1f20c0
 
 /**
  * @brief 管线处理器
@@ -133,7 +133,7 @@ extern "C" {
  * @param shaders 着色器数组
  * @return int 成功返回0，失败返回错误码
  */
-#define RenderingSystem_PipelineProcessor FUN_180124190
+#define RenderingSystem_PipelineProcessor function_124190
 
 /**
  * @brief 几何处理器
@@ -148,7 +148,7 @@ extern "C" {
  * @param index_count 索引数量
  * @return int 成功返回0，失败返回错误码
  */
-#define RenderingSystem_GeometryProcessor FUN_1800846d0
+#define RenderingSystem_GeometryProcessor function_0846d0
 
 /* ============================================================================
  * 网络系统函数别名定义
@@ -165,7 +165,7 @@ extern "C" {
  * @param length 数据长度
  * @return int 处理结果
  */
-#define NetworkSystem_ProtocolHandler FUN_1808ca6f0
+#define NetworkSystem_ProtocolHandler function_8ca6f0
 
 /**
  * @brief 网络连接管理器
@@ -178,7 +178,7 @@ extern "C" {
  * @param port 目标端口
  * @return int 成功返回0，失败返回错误码
  */
-#define NetworkSystem_ConnectionManager FUN_1808aef40
+#define NetworkSystem_ConnectionManager function_8aef40
 
 /**
  * @brief 网络数据处理器
@@ -191,7 +191,7 @@ extern "C" {
  * @param connection_id 连接ID
  * @return int 处理结果
  */
-#define NetworkSystem_DataProcessor FUN_1808532e0
+#define NetworkSystem_DataProcessor function_8532e0
 
 /**
  * @brief 网络状态验证器
@@ -203,7 +203,7 @@ extern "C" {
  * @param timeout 超时时间
  * @return int 状态验证结果
  */
-#define NetworkSystem_StateValidator FUN_18074bd40
+#define NetworkSystem_StateValidator function_74bd40
 
 /**
  * @brief 网络缓冲区管理器
@@ -215,7 +215,7 @@ extern "C" {
  * @param size 缓冲区大小
  * @return void* 缓冲区指针，失败返回NULL
  */
-#define NetworkSystem_BufferManager FUN_18063a240
+#define NetworkSystem_BufferManager function_63a240
 
 /**
  * @brief 网络事件处理器
@@ -228,7 +228,7 @@ extern "C" {
  * @param handler 处理函数指针
  * @return int 处理结果
  */
-#define NetworkSystem_EventHandler FUN_180534930
+#define NetworkSystem_EventHandler function_534930
 
 /**
  * @brief 网络安全管理器
@@ -241,7 +241,7 @@ extern "C" {
  * @param key 加密密钥
  * @return int 安全处理结果
  */
-#define NetworkSystem_SecurityManager FUN_1802e8c60
+#define NetworkSystem_SecurityManager function_2e8c60
 
 /**
  * @brief 网络包序列化器
@@ -254,7 +254,7 @@ extern "C" {
  * @param length 数据长度
  * @return int 序列化结果
  */
-#define NetworkSystem_PacketSerializer FUN_1802921e0
+#define NetworkSystem_PacketSerializer function_2921e0
 
 /**
  * @brief 网络流处理器
@@ -268,7 +268,7 @@ extern "C" {
  * @param mode 处理模式
  * @return int 处理结果
  */
-#define NetworkSystem_StreamProcessor FUN_180194a50
+#define NetworkSystem_StreamProcessor function_194a50
 
 /**
  * @brief 网络错误处理器
@@ -281,7 +281,7 @@ extern "C" {
  * @param recovery 恢复函数指针
  * @return int 错误处理结果
  */
-#define NetworkSystem_ErrorHandler FUN_18011dd10
+#define NetworkSystem_ErrorHandler function_11dd10
 
 /**
  * @brief 网络性能监控器
@@ -293,7 +293,7 @@ extern "C" {
  * @param metric_id 性能指标ID
  * @return int 性能数据
  */
-#define NetworkSystem_PerformanceMonitor FUN_180084ae0
+#define NetworkSystem_PerformanceMonitor function_084ae0
 
 #ifdef __cplusplus
 }

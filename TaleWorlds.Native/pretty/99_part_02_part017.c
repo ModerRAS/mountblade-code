@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_02_part017.c - 5 个函数
-
-// 函数: void FUN_1800f5d13(void)
-void FUN_1800f5d13(void)
-
+// 函数: void function_0f5d13(void)
+void function_0f5d13(void)
 {
   uint64_t *puVar1;
   char *pcVar2;
@@ -16,7 +13,6 @@ void FUN_1800f5d13(void)
   int64_t in_R9;
   int64_t in_R10;
   char *pcVar5;
-  
   while( true ) {
     do {
       unaff_RBX = (uint64_t *)unaff_RBX[0xb];
@@ -37,10 +33,10 @@ void FUN_1800f5d13(void)
     lVar4 = in_R10 - (int64_t)pcVar2;
     while (*pcVar2 == pcVar2[lVar4]) {
       pcVar2 = pcVar2 + 1;
-      if (pcVar5 <= pcVar2) goto FUN_1800f5cd6;
+      if (pcVar5 <= pcVar2) goto label_0f5cd6;
     }
   }
-FUN_1800f5cd6:
+label_0f5cd6:
   pcVar2 = "stretching_stiffness";
   do {
     pcVar5 = pcVar2;
@@ -452,15 +448,8 @@ LAB_1800f63a0:
     puVar1 = (uint64_t *)puVar1[6];
   } while( true );
 }
-
-
-
-
-
-
-// 函数: void FUN_1800f5d30(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
-void FUN_1800f5d30(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
-
+// 函数: void function_0f5d30(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
+void function_0f5d30(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
 {
   uint64_t *puVar1;
   char *pcVar2;
@@ -473,7 +462,6 @@ void FUN_1800f5d30(uint64_t param_1,uint64_t param_2,uint64_t *param_3)
   int64_t in_R10;
   char *pcVar5;
   int64_t in_R11;
-  
 code_r0x0001800f5d30:
   lVar4 = 0;
   pcVar2 = unaff_RDI;
@@ -882,15 +870,8 @@ LAB_1800f6310:
     puVar1 = (uint64_t *)puVar1[6];
   } while( true );
 }
-
-
-
-
-
-
-// 函数: void FUN_1800f6325(int64_t param_1)
-void FUN_1800f6325(int64_t param_1)
-
+// 函数: void function_0f6325(int64_t param_1)
+void function_0f6325(int64_t param_1)
 {
   uint64_t *puVar1;
   char *pcVar2;
@@ -900,7 +881,6 @@ void FUN_1800f6325(int64_t param_1)
   char *unaff_RDI;
   char *pcVar4;
   char *pcVar5;
-  
   if (param_1 != 0) {
     AdvancedSystemOptimizer(param_1,&system_data_6430);
   }
@@ -945,11 +925,7 @@ LAB_1800f63a0:
     puVar1 = (uint64_t *)puVar1[6];
   } while( true );
 }
-
-
-
-uint64_t * FUN_1800f63f0(uint64_t *param_1)
-
+uint64_t * function_0f63f0(uint64_t *param_1)
 {
   *param_1 = &system_state_ptr;
   param_1[1] = 0;
@@ -972,14 +948,9 @@ uint64_t * FUN_1800f63f0(uint64_t *param_1)
   *(int32_t *)((int64_t)param_1 + 0x4c) = 0x3f800000;
   return param_1;
 }
-
-
-
-int64_t FUN_1800f6490(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+int64_t function_0f6490(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t uVar1;
-  
   uVar1 = 0xfffffffffffffffe;
   if (*(int64_t **)(param_1 + 0xc0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xc0) + 0x38))();
@@ -990,15 +961,8 @@ int64_t FUN_1800f6490(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
   }
   return param_1;
 }
-
-
-
-
-
-
-// 函数: void FUN_1800f64f0(int64_t param_1)
-void FUN_1800f64f0(int64_t param_1)
-
+// 函数: void function_0f64f0(int64_t param_1)
+void function_0f64f0(int64_t param_1)
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -1012,8 +976,7 @@ void FUN_1800f64f0(int64_t param_1)
   code *pcStack_58;
   int64_t alStack_50 [2];
   code *pcStack_40;
-  void *puStack_38;
-  
+  void *plocal_var_38;
   uVar7 = 0xfffffffffffffffe;
   iVar3 = (int)(*(int64_t *)(*(int64_t *)(param_1 + 0xc0) + 0x40) -
                 *(int64_t *)(*(int64_t *)(param_1 + 0xc0) + 0x38) >> 4);
@@ -1024,7 +987,7 @@ void FUN_1800f64f0(int64_t param_1)
       lVar4 = *(int64_t *)(param_1 + 0xc0);
       lVar2 = *(int64_t *)(lVar6 + *(int64_t *)(lVar4 + 0x38));
       if ((*(byte *)(lVar2 + 0xfd) & 0x20) == 0) {
-        lVar2 = func_0x000180085de0(*(uint64_t *)(lVar2 + 0x1b0));
+        lVar2 = SystemFunction_000180085de0(*(uint64_t *)(lVar2 + 0x1b0));
       }
       if (*(char *)(lVar2 + 0x2e9) == '\x01') {
         if (*(int64_t *)(lVar4 + 0x30) == 0) {
@@ -1032,9 +995,9 @@ void FUN_1800f64f0(int64_t param_1)
         }
         plVar1 = *(int64_t **)(*(int64_t *)(lVar4 + 0x30) + 0x88);
         pcStack_40 = (code *)&processed_var_7264_ptr;
-        puStack_38 = &processed_var_7248_ptr;
+        plocal_var_38 = &processed_var_7248_ptr;
         pcStack_60 = (code *)&processed_var_7712_ptr;
-        pcStack_58 = FUN_1800f8240;
+        pcStack_58 = function_0f8240;
         alStack_70[0] = lVar2;
         alStack_50[0] = lVar2;
         (**(code **)(*plVar1 + 0x70))
@@ -1052,14 +1015,9 @@ void FUN_1800f64f0(int64_t param_1)
   }
   return;
 }
-
-
-
-int64_t FUN_1800f66b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+int64_t function_0f66b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t uVar1;
-  
   uVar1 = 0xfffffffffffffffe;
   if (*(int64_t **)(param_1 + 0xc0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xc0) + 0x38))();
@@ -1070,15 +1028,8 @@ int64_t FUN_1800f66b0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t
   }
   return param_1;
 }
-
-
-
-
-
-
-// 函数: void FUN_1800f6710(int64_t param_1)
-void FUN_1800f6710(int64_t param_1)
-
+// 函数: void function_0f6710(int64_t param_1)
+void function_0f6710(int64_t param_1)
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -1092,8 +1043,7 @@ void FUN_1800f6710(int64_t param_1)
   code *pcStack_58;
   int64_t alStack_50 [2];
   code *pcStack_40;
-  void *puStack_38;
-  
+  void *plocal_var_38;
   uVar7 = 0xfffffffffffffffe;
   iVar3 = (int)(*(int64_t *)(*(int64_t *)(param_1 + 0xc0) + 0x40) -
                 *(int64_t *)(*(int64_t *)(param_1 + 0xc0) + 0x38) >> 4);
@@ -1104,7 +1054,7 @@ void FUN_1800f6710(int64_t param_1)
       lVar4 = *(int64_t *)(param_1 + 0xc0);
       lVar2 = *(int64_t *)(lVar6 + *(int64_t *)(lVar4 + 0x38));
       if ((*(byte *)(lVar2 + 0xfd) & 0x20) == 0) {
-        lVar2 = func_0x000180085de0(*(uint64_t *)(lVar2 + 0x1b0));
+        lVar2 = SystemFunction_000180085de0(*(uint64_t *)(lVar2 + 0x1b0));
       }
       if (*(char *)(lVar2 + 0x2f9) == '\x01') {
         if (*(int64_t *)(lVar4 + 0x30) == 0) {
@@ -1112,9 +1062,9 @@ void FUN_1800f6710(int64_t param_1)
         }
         plVar1 = *(int64_t **)(*(int64_t *)(lVar4 + 0x30) + 0x88);
         pcStack_40 = (code *)&processed_var_7040_ptr;
-        puStack_38 = &processed_var_7024_ptr;
+        plocal_var_38 = &processed_var_7024_ptr;
         pcStack_60 = (code *)&processed_var_7184_ptr;
-        pcStack_58 = FUN_1800f8160;
+        pcStack_58 = function_0f8160;
         alStack_70[0] = lVar2;
         alStack_50[0] = lVar2;
         (**(code **)(*plVar1 + 0x70))
@@ -1132,11 +1082,4 @@ void FUN_1800f6710(int64_t param_1)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

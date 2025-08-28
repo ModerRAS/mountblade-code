@@ -1,9 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_07_part007.c - 1 个函数
-
-// 函数: uint8_t FUN_1806f5090;
-uint8_t FUN_1806f5090;
+// 函数: uint8_t function_6f5090;
+uint8_t function_6f5090;
 uint8_t processed_var_6208;
 uint8_t processed_var_6368;
 uint8_t processed_var_6192;
@@ -262,6 +260,3 @@ uint8_t processed_var_7744;
 uint8_t processed_var_8040;
 uint8_t processed_var_8064;
 uint8_t processed_var_8096;
-
-
-

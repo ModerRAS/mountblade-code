@@ -1,29 +1,18 @@
 #include "SystemDataAdvancedOptimizer_definition.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* 函数别名定义: RenderingShaderProcessor */
 #define RenderingShaderProcessor RenderingShaderProcessor
-
-
-
 // 03_rendering_part058.c - 8 个函数
-
 // 函数: void render_advanced_data_processing_controller(void)
 // 渲染系统高级数据处理和渲染控制模块
 // 负责处理渲染数据的高级计算、纹理映射和渲染管线控制
 // 包括投影矩阵、模型视图矩阵、纹理坐标、法向量、光照计算等高级渲染功能
 void render_advanced_data_processing_controller(void)
-
 {
   code *render_function_ptr;
   int64_t data_offset_1;
@@ -76,30 +65,29 @@ void render_advanced_data_processing_controller(void)
   float clip_plane_near;
   float clip_plane_far;
   uint64_t render_state_flags;
-  
-  // 初始化渲染管线状态和参数
+// 初始化渲染管线状态和参数
   render_flag = SystemCore_HashCalculator(&texture_handle,&render_mode,1);
   texture_id_2 = (int32_t)((uint64_t)render_target >> 0x20);
   if (render_flag != '\0') {
     *(uint *)(viewport_width + 0x148) = *(uint *)(viewport_width + 0x148) | 1;
   }
-  // 获取渲染上下文参数（环境光、帧缓冲区、渲染函数、漫反射光）
+// 获取渲染上下文参数（环境光、帧缓冲区、渲染函数、漫反射光）
   ambient_light = *(float *)(camera_matrix_ptr + 0xd0);
   frame_buffer_id = *(int *)(camera_matrix_ptr + 200);
   render_function_ptr = *(code **)(camera_matrix_ptr + 0xb8);
   diffuse_light = *(float *)(camera_matrix_ptr + 0xd8);
-  // 计算光照范围和纹理坐标映射
+// 计算光照范围和纹理坐标映射
   if ((ambient_light == fog_density) || (diffuse_light == fog_density)) {
     specular_light = -3.4028235e+38; // 最小浮点数，用于光照范围计算
     texture_coords[0] = fog_density; // 初始化纹理坐标
-    // 遍历深度缓冲区处理纹理数组和渲染标志
+// 遍历深度缓冲区处理纹理数组和渲染标志
     if (0 < (int)depth_buffer_ptr) {
       texture_array_ptr = *(uint64_t **)(camera_matrix_ptr + 0xc0);
       render_flags = depth_buffer_ptr;
       do {
         shader_param = 0;
         if (0 < frame_buffer_id) {
-          // 处理着色器参数和模型视图矩阵计算
+// 处理着色器参数和模型视图矩阵计算
           do {
             modelview_matrix[0] = (float)(*render_function_ptr)(*texture_array_ptr,shader_param);
             if (modelview_matrix[0] <= texture_coords[0]) {
@@ -126,12 +114,12 @@ void render_advanced_data_processing_controller(void)
       fVar26 = fVar24;
     }
   }
-  in_stack_00000040 = *(uint64_t *)(unaff_RBX + 0x1738);
-  in_stack_00000048 = *(int32_t *)(unaff_RBX + 0x1740);
+  local_var_40 = *(uint64_t *)(unaff_RBX + 0x1738);
+  local_var_48 = *(int32_t *)(unaff_RBX + 0x1740);
   fStack000000000000004c = *(float *)(unaff_RBX + 0x1744) * *(float *)(unaff_RBX + 0x1628);
-  uVar6 = func_0x000180121e20(&stack0x00000040);
+  uVar6 = SystemFunction_000180121e20(&local_buffer_00000040);
   uVar27 = CONCAT44(uVar7,*(int32_t *)(in_R11 + 0x1664));
-  SystemCore_ResourceManager(CONCAT44(fStack0000000000000074,fStack0000000000000070),in_stack_00000078,uVar6,1,
+  SystemCore_ResourceManager(CONCAT44(fStack0000000000000074,fStack0000000000000070),local_buffer_78,uVar6,1,
                 uVar27);
   iVar9 = iVar16 + -1;
   iStack0000000000000050 = -1;
@@ -141,7 +129,7 @@ void render_advanced_data_processing_controller(void)
     iVar13 = (int)unaff_XMM11_Da;
   }
   uVar12 = iVar13 - 1;
-  uStack000000000000005c = uVar12;
+  local_buffer_5c = uVar12;
   if ((*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d07) == '\0') || (*(char *)(SYSTEM_DATA_MANAGER_A + 0x1d06) != '\0'))
   {
     if ((((((*(byte *)(lVar15 + 0x148) & 1) == 0) ||
@@ -174,7 +162,7 @@ joined_r0x0001802999aa:
       if (cVar5 != '\0') goto LAB_180299abc;
     }
   }
-  fVar18 = (*(float *)(in_stack_00000068 + 0x118) - unaff_XMM12_Da) /
+  fVar18 = (*(float *)(local_buffer_68 + 0x118) - unaff_XMM12_Da) /
            (unaff_XMM15_Da - unaff_XMM12_Da);
   fVar24 = unaff_XMM7_Da;
   if ((unaff_XMM7_Da <= fVar18) && (fVar24 = fVar18, 0.9999 <= fVar18)) {
@@ -182,7 +170,7 @@ joined_r0x0001802999aa:
   }
   iVar9 = (int)((float)iVar9 * fVar24);
   iStack0000000000000050 = iVar9;
-  FUN_18012e810();
+  GenericFunction_18012e810();
   SystemCore_CacheManager0(&processed_var_728_ptr,iVar9);
   if (0 < (int64_t)unaff_R14) {
     puVar10 = *(uint64_t **)(unaff_RBP + 0xc0);
@@ -192,17 +180,17 @@ joined_r0x0001802999aa:
     do {
       fVar24 = (float)(*pcVar1)(*puVar10,(int64_t)iVar9 % (int64_t)iVar16 & 0xffffffff);
       fVar18 = (float)(*pcVar1)(*puVar10,(int64_t)(iVar9 + 1) % (int64_t)iVar16 & 0xffffffff);
-      in_stack_00000040 = *puVar14;
-      in_stack_00000048 = *(int32_t *)(puVar14 + 1);
+      local_var_40 = *puVar14;
+      local_var_48 = *(int32_t *)(puVar14 + 1);
       fStack000000000000004c = *(float *)((int64_t)puVar14 + 0xc);
       uVar27 = *(uint64_t *)(lVar15 + (int64_t)puVar10);
-      FUN_18010f0d0(&stack0x00000040,&processed_var_744_ptr,(double)fVar24,(double)fVar18,uVar27);
+      GenericFunction_18010f0d0(&local_buffer_00000040,&processed_var_744_ptr,(double)fVar24,(double)fVar18,uVar27);
       puVar14 = puVar14 + 2;
       puVar10 = puVar10 + 1;
       unaff_R14 = unaff_R14 - 1;
     } while (unaff_R14 != 0);
     iVar16 = *(int *)(unaff_RBP + 200);
-    uVar12 = uStack000000000000005c;
+    uVar12 = local_buffer_5c;
   }
   HighFreq_CacheSystem1();
   unaff_R14 = (uint64_t)*(uint *)(unaff_RBP + 0xa0);
@@ -212,10 +200,10 @@ LAB_180299abc:
     uVar11 = unaff_R14 & 0xffffffff;
     puVar14 = *(uint64_t **)(unaff_RBP + 0xc0);
     fVar26 = 1.0 / (fVar26 - fVar25);
-    in_stack_00000060 = 1.0 / (float)(int)uVar12;
-    in_stack_00000058 = fVar26;
+    local_buffer_60 = 1.0 / (float)(int)uVar12;
+    local_buffer_58 = fVar26;
     do {
-      in_stack_00000040 = uVar11;
+      local_var_40 = uVar11;
       fVar24 = (float)(*pcVar1)(*puVar14,0);
       fVar18 = (fVar24 - fVar25) * fVar26;
       fVar24 = unaff_XMM7_Da;
@@ -225,9 +213,9 @@ LAB_180299abc:
       lVar15 = *(int64_t *)(unaff_RBP + 0xb0);
       fVar24 = 1.0 - fVar24;
       fStack0000000000000054 = unaff_XMM7_Da;
-      uVar7 = func_0x000180121e20(lVar15);
+      uVar7 = SystemFunction_000180121e20(lVar15);
       *(int32_t *)(unaff_RBP + -0x78) = uVar7;
-      uVar8 = func_0x000180121e20();
+      uVar8 = SystemFunction_000180121e20();
       fVar22 = 1.0 - (float)(uVar8 >> 8 & 0xff) * 0.003921569;
       fVar17 = (float)(uVar8 >> 0x18) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628) * 0.003921569;
       fVar21 = 1.0 - (float)(uVar8 >> 0x10 & 0xff) * 0.003921569;
@@ -257,11 +245,11 @@ LAB_180299abc:
         do {
           uVar7 = (int32_t)((uint64_t)uVar27 >> 0x20);
           fVar19 = (float)iVar9 * fVar25;
-          fVar25 = fVar25 + in_stack_00000060;
+          fVar25 = fVar25 + local_buffer_60;
           iVar13 = (int)(fVar19 + 0.5);
           fVar19 = (float)(*pcVar1)(*puVar14,(int64_t)(iVar13 + 1) % (int64_t)iVar16 & 0xffffffff)
           ;
-          fVar20 = (fVar19 - *(float *)(unaff_RBP + 0xd0)) * in_stack_00000058;
+          fVar20 = (fVar19 - *(float *)(unaff_RBP + 0xd0)) * local_buffer_58;
           fVar19 = unaff_XMM7_Da;
           if ((unaff_XMM7_Da <= fVar20) && (fVar19 = fVar20, 1.0 <= fVar20)) {
             fVar19 = 1.0;
@@ -280,15 +268,15 @@ LAB_180299abc:
           fStack0000000000000070 = fStack0000000000000054 * fVar26 + *(float *)(unaff_RBP + 0x98);
           *(float *)(unaff_RBP + -0x6c) = fVar24 * fVar17 + *(float *)(unaff_RBP + 0x90);
           *(float *)(unaff_RBP + -0x70) = fVar25 * fVar26 + *(float *)(unaff_RBP + 0x98);
-          SystemCore_SystemMonitor(uVar4,&stack0x00000070,unaff_RBP + -0x70,uVar12,uVar27);
+          SystemCore_SystemMonitor(uVar4,&local_buffer_00000070,unaff_RBP + -0x70,uVar12,uVar27);
           uVar11 = uVar11 - 1;
           fStack0000000000000054 = fVar25;
         } while (uVar11 != 0);
         fVar25 = *(float *)(unaff_RBP + 0xd0);
         lVar15 = *(int64_t *)(unaff_RBP + 0xb0);
-        uVar11 = in_stack_00000040;
-        fVar26 = in_stack_00000058;
-        uVar12 = uStack000000000000005c;
+        uVar11 = local_var_40;
+        fVar26 = local_buffer_58;
+        uVar12 = local_buffer_5c;
       }
       iVar9 = iVar16 + -1;
       puVar14 = puVar14 + 1;
@@ -296,52 +284,33 @@ LAB_180299abc:
       uVar11 = uVar11 - 1;
     } while (uVar11 != 0);
     unaff_XMM13_Da = *(float *)(unaff_RBP + -0x74);
-    in_stack_00000040 = 0;
+    local_var_40 = 0;
   }
   SystemCore_ManageMemory(CONCAT44(*(int32_t *)(unaff_RBP + 0x90),
-                         unaff_XMM13_Da + *(float *)(in_stack_00000068 + 0x1674)),&system_buffer_ptr,0,1
+                         unaff_XMM13_Da + *(float *)(local_buffer_68 + 0x1674)),&system_buffer_ptr,0,1
                );
   return;
 }
-
-
-
-
-
 // 函数: void render_empty_function_1(void)
 // 渲染系统空函数1 - 占位符函数，用于保持API兼容性
 // 在渲染管线中作为预留接口，可能用于未来扩展
 void render_empty_function_1(void)
-
 {
   return;
 }
-
-
-
-
-
 // 函数: void render_empty_function_2(void)
 // 渲染系统空函数2 - 占位符函数，用于保持API兼容性
 // 在渲染管线中作为预留接口，可能用于未来扩展
 void render_empty_function_2(void)
-
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void render_resource_manager_process(int64_t resource_pool,int64_t context_id,int64_t *resource_data,int8_t *status_flag)
 // 渲染资源管理器处理函数 - 管理渲染资源的分配、释放和状态跟踪
 // 负责纹理、着色器、材质、网格、光照等资源的生命周期管理
 // 包含资源池管理、哈希表操作、互斥锁同步和内存分配功能
 void render_resource_manager_process(int64_t resource_pool,int64_t context_id,int64_t *resource_data,int8_t *status_flag)
-
 {
   int64_t **resource_pool_ptr;
   int resource_type;
@@ -381,42 +350,41 @@ void render_resource_manager_process(int64_t resource_pool,int64_t context_id,in
   int32_t light_color;
   uint light_type;
   uint64_t resource_id;
-  
-  // 初始化资源管理器状态和资源ID计算
+// 初始化资源管理器状态和资源ID计算
   resource_metadata = 0xfffffffffffffffe;
   resource_id = GET_SECURITY_COOKIE() ^ (uint64_t)resource_buffer;
   status_output = status_flag;
   vertex_buffer = resource_data;
-  resource_hash = FUN_180241250(*resource_data); // 计算资源哈希值
+  resource_hash = DataStructure_41250(*resource_data); // 计算资源哈希值
   resource_data[1] = resource_data[1] & ~resource_hash; // 清除哈希位
   resource_handle = *resource_data; // 获取资源句柄
   resource_type = (int)resource_data[3]; // 获取资源类型
-  // 获取共享锁并查找资源池中的资源条目
+// 获取共享锁并查找资源池中的资源条目
   acStack_208[0] = '\0';
   pplStack_1f8 = (int64_t **)0x180c91dc8;
-  uStack_1f0 = 1;
+  local_var_1f0 = 1;
   AcquireSRWLockShared(0x180c91dc8); // 获取共享读锁
   plStack_1d8 = (int64_t *)param_3[1];
   uVar8 = param_3[2];
   lVar10 = *(int64_t *)(param_1 + 8);
-  // 在哈希表中查找资源条目
+// 在哈希表中查找资源条目
   plVar11 = *(int64_t **)
              (lVar10 + (((uVar8 & 0xffffffff) + (int64_t)plStack_1d8) %
                        (uint64_t)*(uint *)(param_1 + 0x10)) * 8);
-  // 遍历哈希链表查找匹配的资源条目
+// 遍历哈希链表查找匹配的资源条目
   if (plVar11 != (int64_t *)0x0) {
-    uStack_1d0._4_2_ = (short)(uVar8 >> 0x20);
+    local_var_1d0._4_2_ = (short)(uVar8 >> 0x20);
     do {
-      // 检查资源条目是否匹配（资源数据、资源ID、资源类型）
+// 检查资源条目是否匹配（资源数据、资源ID、资源类型）
       if ((((int64_t *)*plVar11 == plStack_1d8) && ((int)plVar11[1] == (int)uVar8)) &&
-         (*(short *)((int64_t)plVar11 + 0xc) == uStack_1d0._4_2_)) {
+         (*(short *)((int64_t)plVar11 + 0xc) == local_var_1d0._4_2_)) {
         lVar9 = *(int64_t *)(param_1 + 0x10);
         goto LAB_180299f92;
       }
       plVar11 = (int64_t *)plVar11[3]; // 移动到下一个条目
     } while (plVar11 != (int64_t *)0x0);
   }
-  // 处理资源条目未找到的情况，获取独占锁并创建新条目
+// 处理资源条目未找到的情况，获取独占锁并创建新条目
   lVar9 = *(int64_t *)(param_1 + 0x10);
   plVar11 = *(int64_t **)(lVar10 + lVar9 * 8);
 LAB_180299f92:
@@ -426,26 +394,26 @@ LAB_180299f92:
   else {
     lVar10 = plVar11[2];
   }
-  uStack_1d0 = uVar8;
+  local_var_1d0 = uVar8;
   ReleaseSRWLockShared(0x180c91dc8); // 释放共享锁
   cVar13 = '\0';
   if (lVar10 == 0) {
-    // 获取独占锁并创建新的资源条目
+// 获取独占锁并创建新的资源条目
     pplStack_1f8 = (int64_t **)0x180c91dc8;
-    uStack_1f0 = 0;
+    local_var_1f0 = 0;
     AcquireSRWLockExclusive(0x180c91dc8); // 获取独占写锁
-    uStack_1f0 = 1;
+    local_var_1f0 = 1;
     plStack_1d8 = (int64_t *)param_3[1];
-    uStack_1d0 = param_3[2];
-    lVar10 = FUN_18029a790(param_1,&plStack_1d8,acStack_208); // 创建新条目
+    local_var_1d0 = param_3[2];
+    lVar10 = DataStructure_9a790(param_1,&plStack_1d8,acStack_208); // 创建新条目
     ReleaseSRWLockExclusive(0x180c91dc8); // 释放独占锁
     cVar13 = acStack_208[0];
   }
-  // 处理资源状态和标志位设置
-  *puStack_1e8 = 0;
+// 处理资源状态和标志位设置
+  *plocal_var_1e8 = 0;
   if (*(char *)(lVar10 + 0x81) == '\0') {
     if (cVar13 != '\0') {
-      // 设置资源标志和状态
+// 设置资源标志和状态
       uVar6 = *(uint *)(lVar3 + 0x1588) >> 6;
       *(byte *)(lVar10 + 0x80) = (byte)uVar6 & 1;
       uVar14 = 0x11;
@@ -454,18 +422,18 @@ LAB_180299f92:
       }
       uVar8 = *(uint64_t *)(lVar3 + 0x15c0);
       if (uVar8 == 0xffffffffffffffff) {
-        FUN_180240b30(lVar3);
+        DataStructure_40b30(lVar3);
         uVar8 = *(uint64_t *)(lVar3 + 0x15c0);
       }
       if ((*(int *)(SYSTEM_STATE_MANAGER + 0xa80) != 0) && ((param_3[1] & uVar8 & 0xffffffff) != 0)) {
         uVar14 = uVar14 | 6;
       }
       uVar6 = *(uint *)(lVar3 + 0x1588);
-      FUN_1801eb9b0(auStack_108);
-      uVar15 = FUN_18029a300(auStack_108,param_3);
-      uStack_60 = uVar14 | 8;
+      GenericFunction_1801eb9b0(stack_array_108);
+      uVar15 = DataStructure_9a300(stack_array_108,param_3);
+      local_var_60 = uVar14 | 8;
       if ((uVar6 >> 9 & 1) == 0) {
-        uStack_60 = uVar14;
+        local_var_60 = uVar14;
       }
       if ((*(int *)(system_module_state + 0x620) == 0) &&
          (*(char *)((int64_t)system_global_data_ptr + 10) == '\0')) {
@@ -474,13 +442,13 @@ LAB_180299f92:
       else {
         bVar4 = true;
       }
-      cVar5 = FUN_1801d8920(uVar15,auStack_108);
+      cVar5 = GenericFunction_1801d8920(uVar15,stack_array_108);
       if ((cVar5 == '\0') && (system_memory_2846 == '\0')) {
         puVar12 = &system_buffer_ptr;
         if (*(void **)(*param_3 + 0x18) != (void *)0x0) {
           puVar12 = *(void **)(*param_3 + 0x18);
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemParameterHandler(system_message_context,&processed_var_776_ptr,puVar12);
       }
       if ((iVar2 == 2) || (*system_global_data_ptr != 0)) {
@@ -491,13 +459,13 @@ LAB_180299f92:
           __Throw_C_error_std__YAXH_Z(iVar7);
         }
         plStack_1d8 = alStack_1c0;
-        FUN_18009e8e0(alStack_1c0,auStack_108);
-        CoreEngineDataTransformer(auStack_160,auStack_a8);
-        uVar15 = CoreEngineDataTransformer(auStack_140,auStack_88);
-        uStack_120 = uStack_68;
-        uStack_11c = uStack_64;
-        uStack_118 = uStack_60;
-        FUN_1801c8b50(uVar15,lVar10,alStack_1c0);
+        GenericFunction_18009e8e0(alStack_1c0,stack_array_108);
+        CoreEngineDataTransformer(stack_array_160,stack_array_a8);
+        uVar15 = CoreEngineDataTransformer(stack_array_140,stack_array_88);
+        local_var_120 = local_var_68;
+        local_var_11c = local_var_64;
+        local_var_118 = local_var_60;
+        GenericFunction_1801c8b50(uVar15,lVar10,alStack_1c0);
         iVar7 = _Mtx_unlock(pplVar1);
         if (iVar7 != 0) {
           __Throw_C_error_std__YAXH_Z(iVar7);
@@ -505,7 +473,7 @@ LAB_180299f92:
       }
       else {
         uVar15 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
-        plVar11 = (int64_t *)FUN_18041bf60(uVar15,lVar10,auStack_108);
+        plVar11 = (int64_t *)UISystem_1bf60(uVar15,lVar10,stack_array_108);
         plStack_1d8 = plVar11;
         if (plVar11 != (int64_t *)0x0) {
           (**(code **)(*plVar11 + 0x28))(plVar11);
@@ -523,20 +491,20 @@ LAB_180299f92:
           if (plVar11 != (int64_t *)0x0) {
             (**(code **)(*plVar11 + 0x28))(plVar11);
           }
-          FUN_18005e450(uVar15,&plStack_200);
+          GenericFunction_18005e450(uVar15,&plStack_200);
         }
         if (plVar11 != (int64_t *)0x0) {
           (**(code **)(*plVar11 + 0x38))(plVar11);
         }
       }
-      FUN_1801c92a0(auStack_108);
+      GenericFunction_1801c92a0(stack_array_108);
     }
     if (iVar2 == 0) {
-      *puStack_1e8 = 1;
+      *plocal_var_1e8 = 1;
       if (param_2 != 0) {
         *(int *)(param_2 + 0x124ec) = *(int *)(param_2 + 0x124ec) + 1;
       }
-      FUN_18009e960(param_3);
+      GenericFunction_18009e960(param_3);
       goto LAB_18029a2da;
     }
     if (iVar2 == 1) {
@@ -545,23 +513,19 @@ LAB_180299f92:
       }
     }
     else if (((iVar2 == 2) && (cVar13 == '\0')) && (*(char *)(lVar10 + 0x81) == '\0')) {
-      FUN_1801d7510(system_global_data_ptr);
+      GenericFunction_1801d7510(system_global_data_ptr);
     }
   }
-  FUN_18009e960(param_3);
+  GenericFunction_18009e960(param_3);
 LAB_18029a2da:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_228);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_58 ^ (uint64_t)stack_array_228);
 }
-
-
-
 // 函数: uint64_t *render_data_structure_copy(uint64_t *dest_buffer,uint64_t *src_buffer,uint64_t copy_params,uint64_t copy_flags)
 // 渲染数据结构复制函数 - 在渲染系统之间复制数据结构
 // 支持纹理、着色器、材质等资源数据的深度复制和引用计数管理
 // 包含资源引用计数更新和内存安全复制功能
 uint64_t *render_data_structure_copy(uint64_t *dest_buffer,uint64_t *src_buffer,uint64_t copy_params,uint64_t copy_flags)
-
 {
   int64_t *src_resource;
   int64_t *dest_resource;
@@ -569,20 +533,19 @@ uint64_t *render_data_structure_copy(uint64_t *dest_buffer,uint64_t *src_buffer,
   int32_t shader_id;
   int32_t material_id;
   uint64_t copy_flags;
-  
-  // 执行数据结构复制和资源引用计数管理
+// 执行数据结构复制和资源引用计数管理
   uVar6 = 0xfffffffffffffffe;
   *param_1 = *param_2; // 复制基础数据
   uVar3 = *(int32_t *)((int64_t)param_2 + 0xc); // 获取纹理ID
   uVar4 = *(int32_t *)(param_2 + 2); // 获取着色器ID
   uVar5 = *(int32_t *)((int64_t)param_2 + 0x14); // 获取材质ID
-  // 复制ID数据和资源指针
+// 复制ID数据和资源指针
   *(int32_t *)(param_1 + 1) = *(int32_t *)(param_2 + 1);
   *(int32_t *)((int64_t)param_1 + 0xc) = uVar3; // 纹理ID
   *(int32_t *)(param_1 + 2) = uVar4; // 着色器ID
   *(int32_t *)((int64_t)param_1 + 0x14) = uVar5; // 材质ID
   *(int32_t *)(param_1 + 3) = *(int32_t *)(param_2 + 3);
-  // 处理资源引用计数：增加源资源引用，减少目标资源引用
+// 处理资源引用计数：增加源资源引用，减少目标资源引用
   plVar1 = (int64_t *)param_2[4];
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1); // 增加源资源引用计数
@@ -592,17 +555,17 @@ uint64_t *render_data_structure_copy(uint64_t *dest_buffer,uint64_t *src_buffer,
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x38))(); // 减少目标资源引用计数
   }
-  // 执行深度数据复制和递归资源处理
+// 执行深度数据复制和递归资源处理
   SystemCore_ConfigurationHandler0(param_1 + 5,param_2 + 5,param_3,param_4,uVar6);
   uVar3 = *(int32_t *)((int64_t)param_2 + 0x4c); // 获取辅助纹理ID
   uVar4 = *(int32_t *)(param_2 + 10); // 获取辅助着色器ID
   uVar5 = *(int32_t *)((int64_t)param_2 + 0x54); // 获取辅助材质ID
-  // 复制辅助ID数据和递归资源引用计数管理
+// 复制辅助ID数据和递归资源引用计数管理
   *(int32_t *)(param_1 + 9) = *(int32_t *)(param_2 + 9);
   *(int32_t *)((int64_t)param_1 + 0x4c) = uVar3; // 辅助纹理ID
   *(int32_t *)(param_1 + 10) = uVar4; // 辅助着色器ID
   *(int32_t *)((int64_t)param_1 + 0x54) = uVar5; // 辅助材质ID
-  // 处理辅助资源引用计数
+// 处理辅助资源引用计数
   plVar1 = (int64_t *)param_2[0xb];
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x28))(plVar1); // 增加源辅助资源引用计数
@@ -614,17 +577,13 @@ uint64_t *render_data_structure_copy(uint64_t *dest_buffer,uint64_t *src_buffer,
   }
   return param_1; // 返回目标缓冲区指针
 }
-
-
-
 // 函数: uint64_t *render_mutex_initialize(uint64_t *mutex_data)
 // 渲染互斥锁初始化函数 - 初始化渲染线程同步所需的互斥锁
 // 为多线程渲染环境提供同步机制，确保资源访问的线程安全性
 // 支持递归锁和超时机制
 uint64_t *render_mutex_initialize(uint64_t *mutex_data)
-
 {
-  // 初始化互斥锁结构和同步机制
+// 初始化互斥锁结构和同步机制
   _Mtx_init_in_situ(); // 就地初始化互斥锁
   mutex_data[0x11] = &system_state_ptr; // 设置互斥锁类型
   mutex_data[0x12] = 0; // 清空锁状态
@@ -634,7 +593,7 @@ uint64_t *render_mutex_initialize(uint64_t *mutex_data)
   *(int32_t *)(mutex_data + 0x13) = 0; // 清空递归计数
   *(int8_t *)(mutex_data + 0x14) = 0; // 清空锁标志
   *(int16_t *)(mutex_data + 0x10) = 0; // 清空锁状态字
-  // 清空互斥锁数据区域
+// 清空互斥锁数据区域
   *mutex_data = 0;
   mutex_data[1] = 0;
   mutex_data[2] = 0;
@@ -643,21 +602,14 @@ uint64_t *render_mutex_initialize(uint64_t *mutex_data)
   mutex_data[5] = 0;
   return mutex_data; // 返回初始化完成的互斥锁
 }
-
-
-
-
-
 // 函数: void render_memory_cleanup(int64_t *memory_pool)
 // 渲染内存清理函数 - 清理渲染系统分配的内存资源
 // 安全释放纹理、着色器、材质、顶点缓冲区、索引缓冲区、帧缓冲区等资源
 // 包含内存安全检查和防止内存泄漏机制
 void render_memory_cleanup(int64_t *memory_pool)
-
 {
   int64_t memory_block;
-  
-  // 清理纹理内存块：设置安全标记并清空数据
+// 清理纹理内存块：设置安全标记并清空数据
   memory_block = *memory_pool;
   if (memory_block != 0) {
     *(uint64_t *)(memory_block + 0x28) = 0xdeadbeef; // 设置安全标记
@@ -665,7 +617,7 @@ void render_memory_cleanup(int64_t *memory_pool)
     *(uint64_t *)(memory_block + 0x18) = 0; // 清空指针
     memset(memory_block + 0x48,0,0x70); // 清空数据区域
   }
-  // 清理着色器内存块：设置安全标记并清空数据
+// 清理着色器内存块：设置安全标记并清空数据
   memory_block = memory_pool[1];
   if (memory_block != 0) {
     *(uint64_t *)(memory_block + 0x28) = 0xdeadbeef; // 设置安全标记
@@ -673,7 +625,7 @@ void render_memory_cleanup(int64_t *memory_pool)
     *(uint64_t *)(memory_block + 0x18) = 0; // 清空指针
     memset(memory_block + 0x48,0,0x70); // 清空数据区域
   }
-  // 清理材质内存块：设置安全标记并清空数据
+// 清理材质内存块：设置安全标记并清空数据
   memory_block = memory_pool[2];
   if (memory_block != 0) {
     *(uint64_t *)(memory_block + 0x28) = 0xdeadbeef; // 设置安全标记
@@ -681,7 +633,7 @@ void render_memory_cleanup(int64_t *memory_pool)
     *(uint64_t *)(memory_block + 0x18) = 0; // 清空指针
     memset(memory_block + 0x48,0,0x70); // 清空数据区域
   }
-  // 清理顶点缓冲区内存块：设置安全标记并清空数据
+// 清理顶点缓冲区内存块：设置安全标记并清空数据
   memory_block = memory_pool[5];
   if (memory_block != 0) {
     *(uint64_t *)(memory_block + 0x28) = 0xdeadbeef; // 设置安全标记
@@ -689,7 +641,7 @@ void render_memory_cleanup(int64_t *memory_pool)
     *(uint64_t *)(memory_block + 0x18) = 0; // 清空指针
     memset(memory_block + 0x48,0,0x70); // 清空数据区域
   }
-  // 清理索引缓冲区内存块：设置安全标记并清空数据
+// 清理索引缓冲区内存块：设置安全标记并清空数据
   memory_block = memory_pool[4];
   if (memory_block != 0) {
     *(uint64_t *)(memory_block + 0x28) = 0xdeadbeef; // 设置安全标记
@@ -697,7 +649,7 @@ void render_memory_cleanup(int64_t *memory_pool)
     *(uint64_t *)(memory_block + 0x18) = 0; // 清空指针
     memset(memory_block + 0x48,0,0x70); // 清空数据区域
   }
-  // 清理帧缓冲区内存块：设置安全标记并清空数据
+// 清理帧缓冲区内存块：设置安全标记并清空数据
   memory_block = memory_pool[3];
   if (memory_block != 0) {
     *(uint64_t *)(memory_block + 0x28) = 0xdeadbeef; // 设置安全标记
@@ -705,7 +657,7 @@ void render_memory_cleanup(int64_t *memory_pool)
     *(uint64_t *)(memory_block + 0x18) = 0; // 清空指针
     memset(memory_block + 0x48,0,0x70); // 清空数据区域
   }
-  // 安全检查并清空内存池指针
+// 安全检查并清空内存池指针
   if (*param_1 != 0) {
     CoreEngineMemoryPoolCleaner(); // 执行内存安全检查
   }
@@ -733,15 +685,11 @@ void render_memory_cleanup(int64_t *memory_pool)
   param_1[3] = 0; // 清空帧缓冲区内存池指针
   return; // 完成内存清理
 }
-
-
-
 // 函数: uint64_t render_cache_clear(int64_t cache_manager)
 // 渲染缓存清理函数 - 清理渲染系统的各种缓存
 // 包括纹理缓存、着色器缓存、材质缓存等资源的清理和内存回收
 // 支持线程安全的缓存清理操作
 uint64_t render_cache_clear(int64_t cache_manager)
-
 {
   int64_t *cache_ptr;
   uint64_t cache_index;
@@ -749,8 +697,7 @@ uint64_t render_cache_clear(int64_t cache_manager)
   int64_t *cache_bucket;
   int64_t cache_size;
   uint64_t bucket_count;
-  
-  // 获取独占锁并准备缓存清理操作
+// 获取独占锁并准备缓存清理操作
   AcquireSRWLockExclusive(0x180c91dc8); // 获取独占锁
   plVar1 = *(int64_t **)(param_1 + 8);
   lVar5 = *plVar1;
@@ -763,11 +710,11 @@ uint64_t render_cache_clear(int64_t cache_manager)
       lVar5 = *plVar4;
     }
   }
-  // 遍历缓存链表并清理缓存条目
+// 遍历缓存链表并清理缓存条目
   if (lVar5 != plVar1[*(int64_t *)(param_1 + 0x10)]) {
     do {
       if (*(int64_t *)(lVar5 + 0x10) != 0) {
-        FUN_18029a450(); // 执行缓存条目清理
+        DataStructure_9a450(); // 执行缓存条目清理
       }
       lVar5 = *(int64_t *)(lVar5 + 0x18);
       while (lVar5 == 0) {
@@ -777,7 +724,7 @@ uint64_t render_cache_clear(int64_t cache_manager)
     } while (lVar5 != *(int64_t *)(*(int64_t *)(param_1 + 8) + *(int64_t *)(param_1 + 0x10) * 8))
     ;
   }
-  // 重置缓存管理器状态和统计数据
+// 重置缓存管理器状态和统计数据
   uVar6 = 0;
   *(uint64_t *)(param_1 + 0x20) = 0x400000003f800000; // 重置缓存统计
   *(int32_t *)(param_1 + 0x28) = 0; // 清空计数器
@@ -786,7 +733,7 @@ uint64_t render_cache_clear(int64_t cache_manager)
   uVar2 = *(uint64_t *)(param_1 + 0x10);
   *(uint64_t *)(param_1 + 0x10) = 1; // 重置缓存大小
   *(uint64_t *)(param_1 + 0x18) = 0; // 清空条目计数
-  // 清理缓存桶并释放内存
+// 清理缓存桶并释放内存
   if (uVar2 != 0) {
     do {
       lVar3 = *(int64_t *)(lVar5 + uVar6 * 8);
@@ -797,24 +744,19 @@ uint64_t render_cache_clear(int64_t cache_manager)
       uVar6 = uVar6 + 1;
     } while (uVar6 < uVar2);
   }
-  // 释放缓存管理器主内存并返回成功状态
+// 释放缓存管理器主内存并返回成功状态
   if ((1 < uVar2) && (lVar5 != 0)) {
     CoreEngineMemoryPoolCleaner(lVar5); // 释放主缓存内存
   }
   ReleaseSRWLockExclusive(0x180c91dc8); // 释放独占锁
   return 1; // 返回成功状态
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // 函数: int64_t render_hash_table_lookup(int64_t hash_table,int64_t *key_data,int8_t *found_flag)
 // 渲染哈希表查找函数 - 在哈希表中查找指定的键值
 // 支持线程安全的哈希表查找操作，返回找到的条目或创建新条目
 // 包含哈希冲突处理和动态扩容功能
 int64_t render_hash_table_lookup(int64_t hash_table,int64_t *key_data,int8_t *found_flag)
-
 {
   uint table_size;
   int64_t *hash_entry;
@@ -822,26 +764,25 @@ int64_t render_hash_table_lookup(int64_t hash_table,int64_t *key_data,int8_t *fo
   int64_t table_base;
   int64_t bucket_index;
   int64_t temp_array[4];
-  
-  // 初始化哈希表查找参数和内存分配器
+// 初始化哈希表查找参数和内存分配器
   uVar3 = system_memory_pool_ptr; // 获取内存分配器
   uVar1 = *(uint *)(param_1 + 0x10); // 获取哈希表大小
   lVar4 = *(int64_t *)(param_1 + 8); // 获取哈希表基址
-  // 计算哈希桶索引并开始查找
+// 计算哈希桶索引并开始查找
   plVar2 = *(int64_t **)
             (lVar4 + (((uint64_t)*(uint *)(param_2 + 1) + *param_2) % (uint64_t)uVar1) * 8);
-  // 遍历哈希链表查找匹配的键值
+// 遍历哈希链表查找匹配的键值
   do {
     if (plVar2 == (int64_t *)0x0) {
-      // 未找到键值，准备创建新条目
+// 未找到键值，准备创建新条目
       lVar5 = *(int64_t *)(param_1 + 0x10);
       plVar2 = *(int64_t **)(lVar4 + lVar5 * 8);
 LAB_18029a7f6:
       if (plVar2 == *(int64_t **)(lVar4 + lVar5 * 8)) {
         *param_3 = 1; // 设置未找到标志
         uVar3 = CoreEngineMemoryPoolReallocator(uVar3,0x120,8,CONCAT71((uint7)(uint3)(uVar1 >> 8),0x11));
-        lVar4 = FUN_18029a3c0(uVar3); // 创建新条目
-        FUN_18029a870(param_1,alStack_28); // 插入新条目
+        lVar4 = DataStructure_9a3c0(uVar3); // 创建新条目
+        DataStructure_9a870(param_1,alStack_28); // 插入新条目
         *(int64_t *)(alStack_28[0] + 0x10) = lVar4; // 设置条目数据
       }
       else {
@@ -850,7 +791,7 @@ LAB_18029a7f6:
       }
       return lVar4; // 返回查找结果
     }
-    // 检查键值是否匹配（主键、次键、类型）
+// 检查键值是否匹配（主键、次键、类型）
     if (((*plVar2 == *param_2) && (*(uint *)(plVar2 + 1) == *(uint *)(param_2 + 1))) &&
        (*(short *)((int64_t)plVar2 + 0xc) == *(short *)((int64_t)param_2 + 0xc))) {
       lVar5 = *(int64_t *)(param_1 + 0x10);
@@ -859,17 +800,12 @@ LAB_18029a7f6:
     plVar2 = (int64_t *)plVar2[3]; // 移动到下一个条目
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // 函数: uint64_t *render_hash_table_insert(int64_t hash_table,uint64_t *result_buffer,uint64_t param_3,int64_t *key_data,uint64_t hash_value)
 // 渲染哈希表插入函数 - 向哈希表中插入新的键值对
 // 支持线程安全的哈希表插入操作，处理哈希冲突和重复键检查
 // 包含动态内存分配和条目链接管理
 uint64_t *render_hash_table_insert(int64_t hash_table,uint64_t *result_buffer,uint64_t param_3,int64_t *key_data,uint64_t hash_value)
-
 {
   int64_t table_base;
   uint64_t bucket_index;
@@ -878,15 +814,14 @@ uint64_t *render_hash_table_insert(int64_t hash_table,uint64_t *result_buffer,ui
   int32_t *new_entry;
   uint64_t entry_data;
   int64_t *existing_entry;
-  
-  // 计算哈希桶索引并检查现有条目
+// 计算哈希桶索引并检查现有条目
   uVar2 = param_5 % (uint64_t)*(uint *)(param_1 + 0x10); // 计算桶索引
   lVar1 = *(int64_t *)(param_1 + 8); // 获取哈希表基址
   plVar7 = *(int64_t **)(lVar1 + uVar2 * 8); // 获取桶链表头
-  // 遍历哈希链表检查键是否已存在
+// 遍历哈希链表检查键是否已存在
   if (plVar7 != (int64_t *)0x0) {
     do {
-      // 检查键值是否匹配（主键、次键、类型）
+// 检查键值是否匹配（主键、次键、类型）
       if (((*plVar7 == *param_4) && ((int)plVar7[1] == (int)param_4[1])) &&
          (*(short *)((int64_t)plVar7 + 0xc) == *(short *)((int64_t)param_4 + 0xc))) {
         *param_2 = plVar7; // 返回现有条目
@@ -897,11 +832,11 @@ uint64_t *render_hash_table_insert(int64_t hash_table,uint64_t *result_buffer,ui
       plVar7 = (int64_t *)plVar7[3]; // 移动到下一个条目
     } while (plVar7 != (int64_t *)0x0);
   }
-  // 更新哈希表统计信息并分配新条目内存
+// 更新哈希表统计信息并分配新条目内存
   RenderingShaderProcessor0(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1); // 更新统计
   puVar5 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(param_1 + 0x2c)); // 分配条目内存
-  // 复制键值数据到新条目
+// 复制键值数据到新条目
   uVar3 = *(int32_t *)((int64_t)param_4 + 4); // 获取键的次部分
   lVar1 = param_4[1]; // 获取键的第三部分
   uVar4 = *(int32_t *)((int64_t)param_4 + 0xc); // 获取键的类型信息
@@ -909,16 +844,16 @@ uint64_t *render_hash_table_insert(int64_t hash_table,uint64_t *result_buffer,ui
   puVar5[1] = uVar3; // 设置次键
   puVar5[2] = (int)lVar1; // 设置第三部分键
   puVar5[3] = uVar4; // 设置类型信息
-  // 初始化新条目的指针和链接
+// 初始化新条目的指针和链接
   *(uint64_t *)(puVar5 + 4) = 0; // 清空数据指针
   *(uint64_t *)(puVar5 + 6) = 0; // 清空链表指针
   if ((char)param_5 != '\0') {
-    // 为条目分配额外的数据内存
+// 为条目分配额外的数据内存
     uVar6 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,(uint64_t)param_5._4_4_ * 8 + 8,8,
                           *(int8_t *)(param_1 + 0x2c));
     memset(uVar6,0,(uint64_t)param_5._4_4_ * 8); // 清空数据内存
   }
-  // 将新条目插入哈希链表并更新统计
+// 将新条目插入哈希链表并更新统计
   *(uint64_t *)(puVar5 + 6) = *(uint64_t *)(*(int64_t *)(param_1 + 8) + uVar2 * 8); // 设置链表链接
   *(int32_t **)(*(int64_t *)(param_1 + 8) + uVar2 * 8) = puVar5; // 更新桶头指针
   lVar1 = *(int64_t *)(param_1 + 8);
@@ -928,19 +863,12 @@ uint64_t *render_hash_table_insert(int64_t hash_table,uint64_t *result_buffer,ui
   *(int8_t *)(param_2 + 2) = 1; // 设置新建标志
   return param_2; // 返回插入结果
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t param_3,uint64_t param_4)
 // 渲染哈希表添加函数 - 添加新的条目到哈希表
 // 支持线程安全的哈希表添加操作，处理键值冲突和内存分配
 // 包含动态扩容和条目管理功能
 void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t param_3,uint64_t param_4)
-
 {
   int64_t lVar1;
   int32_t uVar2;
@@ -954,12 +882,11 @@ void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t p
   int64_t unaff_R12;
   uint64_t *unaff_R15;
   char cStack0000000000000080;
-  uint uStack0000000000000084;
-  
-  // 更新哈希表统计信息并分配新条目内存
-  RenderingShaderProcessor0(param_1,&stack0x00000080,in_R10D,param_4,1); // 更新统计信息
+  uint local_buffer_84;
+// 更新哈希表统计信息并分配新条目内存
+  RenderingShaderProcessor0(param_1,&local_buffer_00000080,in_R10D,param_4,1); // 更新统计信息
   puVar5 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(unaff_RDI + 0x2c)); // 分配条目内存
-  // 复制键值数据到新条目
+// 复制键值数据到新条目
   uVar2 = unaff_RBX[1]; // 获取键的次部分
   uVar3 = unaff_RBX[2]; // 获取键的第三部分
   uVar4 = unaff_RBX[3]; // 获取键的类型信息
@@ -967,16 +894,16 @@ void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t p
   puVar5[1] = uVar2; // 设置次键
   puVar5[2] = uVar3; // 设置第三部分键
   puVar5[3] = uVar4; // 设置类型信息
-  // 初始化新条目的指针和链接
+// 初始化新条目的指针和链接
   *(uint64_t *)(puVar5 + 4) = 0; // 清空数据指针
   *(uint64_t *)(puVar5 + 6) = 0; // 清空链表指针
   if (cStack0000000000000080 != '\0') {
-    // 为条目分配额外的数据内存
-    uVar6 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,(uint64_t)uStack0000000000000084 * 8 + 8,8,
+// 为条目分配额外的数据内存
+    uVar6 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,(uint64_t)local_buffer_84 * 8 + 8,8,
                           *(int8_t *)(unaff_RDI + 0x2c));
-    memset(uVar6,0,(uint64_t)uStack0000000000000084 * 8); // 清空数据内存
+    memset(uVar6,0,(uint64_t)local_buffer_84 * 8); // 清空数据内存
   }
-  // 将新条目插入哈希链表并更新统计
+// 将新条目插入哈希链表并更新统计
   *(uint64_t *)(puVar5 + 6) = *(uint64_t *)(*(int64_t *)(unaff_RDI + 8) + unaff_R12 * 8); // 设置链表链接
   *(int32_t **)(*(int64_t *)(unaff_RDI + 8) + unaff_R12 * 8) = puVar5; // 更新桶头指针
   lVar1 = *(int64_t *)(unaff_RDI + 8);
@@ -986,37 +913,24 @@ void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t p
   *(int8_t *)(unaff_R15 + 2) = 1; // 设置新建标志
   return; // 完成添加操作
 }
-
-
-
-
-
 // 函数: void render_pointer_assign(uint64_t target_ptr,uint64_t source_ptr,uint64_t param_3)
 // 渲染指针赋值函数 - 为渲染相关的指针结构赋值
 // 支持安全的指针操作和状态管理
 // 用于渲染系统中的指针结构和引用管理
 void render_pointer_assign(uint64_t target_ptr,uint64_t source_ptr,uint64_t param_3)
-
 {
   uint64_t *unaff_R15;
-  
-  // 执行指针赋值和状态设置
+// 执行指针赋值和状态设置
   *unaff_R15 = param_1; // 设置目标指针
   unaff_R15[1] = param_3; // 设置附加参数
   *(int8_t *)(unaff_R15 + 2) = 0; // 清空状态标志
   return; // 完成指针赋值
 }
-
-
-
-
-
 // 函数: void render_hash_table_resize(uint64_t new_size)
 // 渲染哈希表调整大小函数 - 调整哈希表的大小以优化性能
 // 支持动态扩容和重新哈希操作，提高查找效率
 // 包含线程安全的扩容机制和数据迁移
 void render_hash_table_resize(uint64_t new_size)
-
 {
   int64_t lVar1;
   uint64_t unaff_RBP;
@@ -1025,12 +939,11 @@ void render_hash_table_resize(uint64_t new_size)
   int64_t unaff_R13;
   int64_t unaff_R14;
   int64_t *unaff_R15;
-  
-  // 执行哈希表扩容操作和数据迁移
+// 执行哈希表扩容操作和数据迁移
   if ((1 < param_1) && (*(int64_t *)(unaff_RDI + 8) != 0)) {
     CoreEngineMemoryPoolCleaner(*(int64_t *)(unaff_RDI + 8)); // 释放旧的哈希表内存
   }
-  // 更新哈希表参数和插入新条目
+// 更新哈希表参数和插入新条目
   *(uint64_t *)(unaff_RDI + 0x10) = unaff_RBP; // 设置新的表大小
   *(int64_t *)(unaff_RDI + 8) = unaff_R14; // 设置新的表基址
   *(uint64_t *)(unaff_R13 + 0x18) = *(uint64_t *)(unaff_R14 + unaff_R12 * 8); // 设置条目数据
@@ -1042,8 +955,3 @@ void render_hash_table_resize(uint64_t new_size)
   *(int8_t *)(unaff_R15 + 2) = 1; // 设置新建标志
   return; // 完成扩容操作
 }
-
-
-
-
-

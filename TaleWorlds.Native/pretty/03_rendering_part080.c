@@ -1,9 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part080.c - 3 个函数
 // 渲染系统高级处理模块
-
 // 渲染系统全局常量
 #define RENDERING_CONTEXT_GLOBAL    0x180c86920
 #define RENDERING_SHADER_CONTEXT    0x180c868d0
@@ -11,7 +9,6 @@
 #define RENDERING_BUFFER_CONTEXT    0x180c86870
 #define RENDERING_TIME_DELTA        0x180bf3ff8
 #define RENDERING_PI_CONSTANT       0x180a401f0
-
 // 渲染操作码常量
 #define RENDER_OPCODE_DEPTH_TEST   0xde
 #define RENDER_OPCODE_TRANSFORM    0xdf
@@ -23,12 +20,10 @@
 #define RENDER_OPCODE_COLOR_G       0xed
 #define RENDER_OPCODE_COLOR_B       0xee
 #define RENDER_OPCODE_ALPHA         0xef
-
 // 渲染状态常量
 #define RENDER_STATE_VISIBLE       0xe7
 #define RENDER_STATE_TRANSPARENT   0xfe
 #define RENDER_STATE_OPAQUE        0xff
-
 // 函数声明
 void rendering_system_execute_render_command(uint64_t param_1, int8_t *param_2);
 void rendering_system_cleanup_render_context(uint64_t param_1);
@@ -37,16 +32,13 @@ void rendering_system_update_vertex_buffer(uint64_t param_1, uint64_t param_2);
 void rendering_system_apply_material(int32_t param_1, void *param_2, uint64_t param_3, uint64_t param_4, int32_t param_5);
 void rendering_system_check_render_state(int32_t param_1, void *param_2);
 void rendering_system_finalize_render(uint64_t param_1);
-
 // 函数: void rendering_system_process_render_data(void)
 // 渲染系统数据处理函数 (简化实现)
 // 处理渲染对象的坐标变换、颜色计算和渲染参数设置
-// 
 // 注意：这是一个简化的实现版本。原始代码过于复杂（400+行），
 // 包含大量的位操作、矩阵计算和渲染状态管理。
 // 简化版本保留了核心功能结构，但使用了更清晰的变量命名
 // 和注释来提高代码可读性。
-// 
 // 主要功能：
 // 1. 计算对象的位置、旋转和缩放参数
 // 2. 处理颜色变换和透明度混合
@@ -55,7 +47,6 @@ void rendering_system_finalize_render(uint64_t param_1);
 // 5. 更新纹理和材质参数
 // 6. 处理动画帧和缓存管理
 void rendering_system_process_render_data(void)
-
 {
   uint render_flags;
   ushort coord_x;
@@ -120,7 +111,6 @@ void rendering_system_process_render_data(void)
   uint64_t transform_result;
   uint64_t extraout_XMM0_Qb;
   int8_t final_matrix[16];
-  
   fVar15 = (float)*(byte *)(unaff_RBP + 0xa9) * unaff_XMM10_Da;
   if (unaff_XMM12_Da <= (float)in_EAX * unaff_XMM10_Da) {
     unaff_XMM14_Da = (float)in_EAX * unaff_XMM10_Da;
@@ -142,7 +132,7 @@ void rendering_system_process_render_data(void)
   fVar15 = (float)*(byte *)(unaff_RBP + -0x59) * unaff_XMM10_Da;
   _fStack0000000000000058 = CONCAT44(fStack000000000000005c,unaff_XMM11_Da - (fVar15 + fVar15));
   _fStack0000000000000048 =
-       CONCAT44(uStack000000000000004c,(float)*(byte *)(unaff_RBP + -0x58) * unaff_XMM10_Da);
+       CONCAT44(local_buffer_4c,(float)*(byte *)(unaff_RBP + -0x58) * unaff_XMM10_Da);
   bVar9 = (byte)(*(uint *)(unaff_RBP + -0x60) >> 0x14) & unaff_R14B;
   fVar15 = (float)*(byte *)(unaff_RBP + -0x57) * unaff_XMM10_Da;
   uVar16 = PhysicsSystem_SpatialPartitioning(fVar15,0xf0,(byte)(*(uint *)(unaff_RBP + -0x60) >> 4) & unaff_R14B);
@@ -184,20 +174,20 @@ void rendering_system_process_render_data(void)
                 CONCAT31((uint3)(*(uint *)(unaff_RBP + -0x60) >> 10),
                          (byte)(*(uint *)(unaff_RBP + -0x60) >> 2) & unaff_R14B));
   if (fStack0000000000000048 <= unaff_XMM12_Da) {
-    in_stack_00000050 = 0;
+    local_buffer_50 = 0;
   }
   else {
-    in_stack_00000050 = CONCAT44(unaff_R13D,fStack0000000000000048);
-    _fStack0000000000000048 = in_stack_00000050;
+    local_buffer_50 = CONCAT44(unaff_R13D,fStack0000000000000048);
+    _fStack0000000000000048 = local_buffer_50;
   }
   _fStack0000000000000048 = CONCAT14(0xfe,fStack0000000000000048);
   NetworkProtocol_ConnectionHandler();
   if (fVar15 <= unaff_XMM12_Da) {
-    in_stack_00000050 = 0;
+    local_buffer_50 = 0;
   }
   else {
     _fStack0000000000000048 = CONCAT44(unaff_R13D,fVar15);
-    in_stack_00000050 = _fStack0000000000000048;
+    local_buffer_50 = _fStack0000000000000048;
   }
   _fStack0000000000000048 = CONCAT14(0xff,fStack0000000000000048);
   NetworkProtocol_ConnectionHandler();
@@ -212,11 +202,11 @@ void rendering_system_process_render_data(void)
        fVar15 = SQRT(fVar15 * fVar15 + fVar22 * fVar22), fVar15 <= 35.0)) {
       _fStack0000000000000048 = 0x3f800000;
       _fStack0000000000000070 = 0x3f800000;
-      uStack000000000000006c = 0xe7;
-      NetworkProtocol_ConnectionHandler(fVar15,&stack0x00000068);
+      local_buffer_6c = 0xe7;
+      NetworkProtocol_ConnectionHandler(fVar15,&local_buffer_00000068);
     }
     _fStack0000000000000070 = 0;
-    uStack000000000000006c = 0xe7;
+    local_buffer_6c = 0xe7;
     NetworkProtocol_ConnectionHandler();
     *(char *)(unaff_RSI + 0x7c) = cVar12;
     *(int32_t *)(unaff_RSI + 0x68) = 0xbf800000;
@@ -238,7 +228,7 @@ void rendering_system_process_render_data(void)
       fVar15 = *(float *)(unaff_RSI + 0x68) + render_system_control_memory;
     }
     *(float *)(unaff_RSI + 0x68) = fVar15;
-    in_stack_00000050 = 0;
+    local_buffer_50 = 0;
     _fStack0000000000000048 = CONCAT14(0xe7,fStack0000000000000048);
     NetworkProtocol_ConnectionHandler();
     _fStack0000000000000048 =
@@ -311,7 +301,7 @@ void rendering_system_process_render_data(void)
         lVar14 = render_system_data_memory;
         if (*(char *)(system_operation_state + 0x1609) != cVar12) {
           _fStack0000000000000048 = CONCAT44(iVar13,iVar10);
-          FUN_180174080(*(uint64_t *)(system_main_module_state + 8),_fStack0000000000000048);
+          GenericFunction_180174080(*(uint64_t *)(system_main_module_state + 8),_fStack0000000000000048);
           lVar14 = render_system_data_memory;
         }
       }
@@ -357,51 +347,51 @@ void rendering_system_process_render_data(void)
   if (*(int *)(unaff_RBP + -0x60) != unaff_R13D) {
     *(char *)(lVar14 + 0x2028) = cVar12;
   }
-  uStack000000000000006c = 0xde;
+  local_buffer_6c = 0xde;
   _fStack0000000000000070 = uVar16;
   fStack0000000000000058 = fVar15;
   fStack000000000000005c = unaff_XMM7_Da;
-  uVar16 = NetworkProtocol_ConnectionHandler(uVar17,&stack0x00000068);
-  uStack000000000000006c = 0xdf;
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar17,&local_buffer_00000068);
+  local_buffer_6c = 0xdf;
   fStack0000000000000070 = fVar15;
   fStack0000000000000074 = unaff_XMM7_Da;
-  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&local_buffer_00000068);
   uVar1 = *(uint *)(unaff_RBP + -0x74);
   _fStack0000000000000070 = CONCAT44(unaff_R13D,uVar1);
-  uStack000000000000006c = 0xe8;
+  local_buffer_6c = 0xe8;
   fStack0000000000000028 = (float)uVar1;
-  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&local_buffer_00000068);
   fStack0000000000000028 = (float)(uVar1 ^ unaff_XMM9_Da);
   _fStack0000000000000070 = CONCAT44(unaff_R13D,fStack0000000000000028);
-  uStack000000000000006c = 0xe9;
-  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
+  local_buffer_6c = 0xe9;
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&local_buffer_00000068);
   uVar1 = *(uint *)(unaff_RBP + -0x78);
   _fStack0000000000000070 = CONCAT44(unaff_R13D,uVar1);
-  uStack000000000000006c = 0xeb;
+  local_buffer_6c = 0xeb;
   fStack0000000000000028 = (float)uVar1;
-  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&local_buffer_00000068);
   fStack0000000000000028 = (float)(uVar1 ^ unaff_XMM9_Da);
   _fStack0000000000000070 = CONCAT44(unaff_R13D,fStack0000000000000028);
-  uStack000000000000006c = 0xea;
-  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
+  local_buffer_6c = 0xea;
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&local_buffer_00000068);
   fVar15 = fStack000000000000005c;
   fStack0000000000000028 = fStack000000000000005c;
   _fStack0000000000000070 = CONCAT44(unaff_R13D,fStack000000000000005c);
-  uStack000000000000006c = 0xec;
-  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
+  local_buffer_6c = 0xec;
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&local_buffer_00000068);
   fStack0000000000000028 = (float)((uint)fVar15 ^ unaff_XMM9_Da);
   _fStack0000000000000070 = CONCAT44(unaff_R13D,fStack0000000000000028);
-  uStack000000000000006c = 0xed;
-  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
+  local_buffer_6c = 0xed;
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&local_buffer_00000068);
   fVar15 = fStack0000000000000058;
   _fStack0000000000000058 = CONCAT44(unaff_R13D,fStack0000000000000058);
   _fStack0000000000000070 = _fStack0000000000000058;
-  uStack000000000000006c = 0xef;
-  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
+  local_buffer_6c = 0xef;
+  uVar16 = NetworkProtocol_ConnectionHandler(uVar16,&local_buffer_00000068);
   _fStack0000000000000058 = CONCAT44(unaff_R13D,(uint)fVar15 ^ unaff_XMM9_Da);
   _fStack0000000000000070 = _fStack0000000000000058;
-  uStack000000000000006c = 0xee;
-  NetworkProtocol_ConnectionHandler(uVar16,&stack0x00000068);
+  local_buffer_6c = 0xee;
+  NetworkProtocol_ConnectionHandler(uVar16,&local_buffer_00000068);
   fVar15 = render_system_control_memory;
   uVar8 = 0;
   uVar26 = 0;
@@ -447,23 +437,23 @@ void rendering_system_process_render_data(void)
     auVar25._0_4_ = auVar24._0_4_ * 255.0;
     auVar29._4_12_ = auVar28._4_12_;
     auVar29._0_4_ = auVar28._0_4_ * 255.0;
-    FUN_1808eecf0(*(int32_t *)(unaff_RSI + 0x330),&stack0x00000020,auVar25._0_8_,auVar29._0_8_,
+    NetworkProtocol_eecf0(*(int32_t *)(unaff_RSI + 0x330),&local_buffer_00000020,auVar25._0_8_,auVar29._0_8_,
                   CONCAT22(uVar33,CONCAT11((char)(int)auVar29._0_4_,(char)(int)auVar25._0_4_)));
     fVar15 = render_system_control_memory;
   }
   if (*(char *)(unaff_RSI + 0x192) == cVar12) {
     uVar11 = 4;
     *(int32_t *)(unaff_RSI + 100) = 4;
-    iVar7 = FUN_1808ee530(*(int32_t *)(unaff_RSI + 0x330),&stack0x00000038);
-    if ((iVar7 == 0) && (in_stack_00000038 != 0)) {
-      if (in_stack_00000038 == 1) {
+    iVar7 = NetworkProtocol_ee530(*(int32_t *)(unaff_RSI + 0x330),&local_buffer_00000038);
+    if ((iVar7 == 0) && (local_var_38 != 0)) {
+      if (local_var_38 == 1) {
         uVar11 = 2;
       }
       *(int32_t *)(unaff_RSI + 100) = uVar11;
     }
     *(int8_t *)(unaff_RSI + 0x7e) = 1;
-                    // WARNING: Subroutine does not return
-    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xc0) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0xc0) ^ (uint64_t)&local_buffer_00000000);
   }
   bVar9 = *(byte *)(unaff_RSI + 0x318);
   *(char *)(unaff_RSI + 0x192) = cVar12;
@@ -486,54 +476,39 @@ void rendering_system_process_render_data(void)
     }
     *(byte *)(unaff_RSI + 0x192) = unaff_R14B;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(unaff_RBP + 0x20,0,0x78);
 }
-
-
-
-
-
 // 函数: void rendering_system_finalize_render_process(void)
 // 渲染系统最终处理函数
 // 完成渲染流程的最后步骤，设置渲染状态并清理资源
 void rendering_system_finalize_render_process(void)
-
 {
   int32_t render_result;
   int64_t render_context;
   int64_t scene_object;
   int32_t render_flags;
   int render_mode;
-  
-  // 根据渲染模式设置最终结果
+// 根据渲染模式设置最终结果
   if (render_mode != 0) {
     if (render_mode == 1) {
       render_result = render_flags;
     }
     *(int32_t *)(scene_object + 100) = render_result;
   }
-  
-  // 标记渲染完成并执行最终清理
+// 标记渲染完成并执行最终清理
   *(int8_t *)(scene_object + 0x7e) = 1;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   rendering_system_cleanup_render_context(*(uint64_t *)(render_context + 0xc0) ^ (uint64_t)&render_mode);
 }
-
-
-
-
-
 // 函数: void rendering_system_set_render_parameter(int32_t param_1,int8_t param_2,char param_3)
 // 渲染系统参数设置函数
 // 设置渲染参数，包括透明度、混合模式等渲染状态
 void rendering_system_set_render_parameter(int32_t param_1,int8_t param_2,char param_3)
-
 {
   int8_t render_stack[4];
   int8_t parameter_type;
   uint64_t parameter_value;
-  
   parameter_type = param_2;
   if (param_3 != '\0') {
     parameter_value = 0x3f800000;  // 1.0f - 完全不透明
@@ -544,10 +519,4 @@ void rendering_system_set_render_parameter(int32_t param_1,int8_t param_2,char p
   rendering_system_execute_render_command(param_1,render_stack);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

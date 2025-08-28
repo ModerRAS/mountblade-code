@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_05_part004.c - 3 个函数
-
-// 函数: void FUN_1802d6c70(int64_t param_1,int64_t param_2,int param_3,float *param_4)
-void FUN_1802d6c70(int64_t param_1,int64_t param_2,int param_3,float *param_4)
-
+// 函数: void DataStructure_d6c70(int64_t param_1,int64_t param_2,int param_3,float *param_4)
+void DataStructure_d6c70(int64_t param_1,int64_t param_2,int param_3,float *param_4)
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -53,7 +50,6 @@ void FUN_1802d6c70(int64_t param_1,int64_t param_2,int param_3,float *param_4)
   float fVar45;
   float fVar46;
   float fStack_f4;
-  
   lVar7 = *(int64_t *)(param_2 + 0x48);
   lVar27 = *(int64_t *)(*(int64_t *)(param_1 + 0x310) + 0x10);
   uVar5 = *(uint *)(lVar7 + 0x68);
@@ -66,7 +62,7 @@ void FUN_1802d6c70(int64_t param_1,int64_t param_2,int param_3,float *param_4)
   }
   lVar38 = (int64_t)(int)((*(int64_t *)(param_2 + 0x60) - *(int64_t *)(param_2 + 0x58)) / 0x70);
   plVar1 = (int64_t *)(param_2 + 0xf8);
-  FUN_1802ab620(plVar1,lVar38);
+  DataStructure_ab620(plVar1,lVar38);
   lVar22 = *(int64_t *)(param_2 + 0x138) - *(int64_t *)(param_2 + 0x130);
   lVar23 = lVar22 >> 0x3f;
   if (lVar22 / 0xc + lVar23 == lVar23) {
@@ -136,13 +132,13 @@ void FUN_1802d6c70(int64_t param_1,int64_t param_2,int param_3,float *param_4)
       for (lVar23 = lVar22; lVar23 != 0; lVar23 = lVar23 >> 1) {
         iVar24 = iVar24 + 1;
       }
-      FUN_1802da5e0(puVar35,puVar11,(int64_t)(iVar24 + -1) * 2,0);
+      DataStructure_da5e0(puVar35,puVar11,(int64_t)(iVar24 + -1) * 2,0);
       if (lVar22 < 0x1d) {
-        func_0x0001802d9f80(puVar35,puVar11);
+        SystemFunction_0001802d9f80(puVar35,puVar11);
       }
       else {
         puVar29 = puVar35 + 0x1c;
-        func_0x0001802d9f80(puVar35,puVar29);
+        SystemFunction_0001802d9f80(puVar35,puVar29);
         if (puVar29 != puVar11) {
           puVar35 = puVar35 + 0x1b;
           do {
@@ -184,13 +180,13 @@ void FUN_1802d6c70(int64_t param_1,int64_t param_2,int param_3,float *param_4)
       for (lVar23 = lVar22; lVar23 != 0; lVar23 = lVar23 >> 1) {
         iVar24 = iVar24 + 1;
       }
-      FUN_1802da450(puVar34,puVar8,(int64_t)(iVar24 + -1) * 2,param_2);
+      DataStructure_da450(puVar34,puVar8,(int64_t)(iVar24 + -1) * 2,param_2);
       if (lVar22 < 0x1d) {
-        FUN_1802d9ee0(puVar34,puVar8,param_2);
+        DataStructure_d9ee0(puVar34,puVar8,param_2);
       }
       else {
         puVar28 = puVar34 + 0x1c;
-        FUN_1802d9ee0(puVar34,puVar28,param_2);
+        DataStructure_d9ee0(puVar34,puVar28,param_2);
         for (; puVar28 != puVar8; puVar28 = puVar28 + 1) {
           puVar34 = puVar28 + -1;
           uVar19 = *puVar28;
@@ -413,15 +409,8 @@ void FUN_1802d6c70(int64_t param_1,int64_t param_2,int param_3,float *param_4)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802d7151(int64_t param_1)
-void FUN_1802d7151(int64_t param_1)
-
+// 函数: void DataStructure_d7151(int64_t param_1)
+void DataStructure_d7151(int64_t param_1)
 {
   short sVar1;
   float fVar2;
@@ -459,10 +448,9 @@ void FUN_1802d7151(int64_t param_1)
   float fVar27;
   char cStackX_20;
   char cStackX_24;
-  char in_stack_00000028;
-  char in_stack_00000130;
-  char in_stack_00000140;
-  
+  char local_var_28;
+  char local_var_130;
+  char local_var_140;
   iVar15 = (int)unaff_R14 + 0x31;
   pfVar14 = (float *)(param_1 + unaff_RBX * 8);
   do {
@@ -497,7 +485,7 @@ void FUN_1802d7151(int64_t param_1)
     pfVar14[0xc] = pfVar19[0x19];
     pfVar14[0xd] = pfVar19[0x1a];
     fVar26 = *pfVar19 - pfVar19[4];
-    if (in_stack_00000130 == '\0') {
+    if (local_var_130 == '\0') {
       pfVar14[7] = fVar26;
       fVar22 = pfVar19[1] - pfVar19[5];
       pfVar14[8] = fVar22;
@@ -609,8 +597,8 @@ void FUN_1802d7151(int64_t param_1)
       uVar12 = uVar16;
     }
     pfVar14[6] = (float)(((uVar18 << 8 | uVar7) << 8 | uVar11) << 8 | uVar12);
-    if ((cStackX_20 == '\0') || (in_stack_00000140 == '\0')) {
-      if ((in_stack_00000028 == '\0') || (in_stack_00000140 == '\0')) {
+    if ((cStackX_20 == '\0') || (local_var_140 == '\0')) {
+      if ((local_var_28 == '\0') || (local_var_140 == '\0')) {
         pfVar14[2] = 0.0;
         fVar26 = 0.0;
       }
@@ -663,21 +651,8 @@ void FUN_1802d7151(int64_t param_1)
   } while (unaff_R14 < unaff_R13);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802d777b(void)
-void FUN_1802d777b(void)
-
+// 函数: void DataStructure_d777b(void)
+void DataStructure_d777b(void)
 {
   return;
 }
-
-
-
-
-
-

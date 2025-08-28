@@ -1,32 +1,21 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part054.c - 2 个函数
-
-// 函数: void FUN_180694010(void)
-void FUN_180694010(void)
-
+// 函数: void function_694010(void)
+void function_694010(void)
 {
-  int in_stack_00000030;
-  
-  if (in_stack_00000030 == 1) {
-    FUN_1806935a0();
+  int local_var_30;
+  if (local_var_30 == 1) {
+    function_6935a0();
     return;
   }
-  FUN_1806922f0();
+  function_6922f0();
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180694040(int8_t (*param_1) [16],int param_2,int8_t *param_3,int8_t *param_4,
-void FUN_180694040(int8_t (*param_1) [16],int param_2,int8_t *param_3,int8_t *param_4,
+// 函数: void function_694040(int8_t (*param_1) [16],int param_2,int8_t *param_3,int8_t *param_4,
+void function_694040(int8_t (*param_1) [16],int param_2,int8_t *param_3,int8_t *param_4,
                   int8_t *param_5)
-
 {
   int8_t auVar1 [16];
   int8_t auVar2 [16];
@@ -101,7 +90,6 @@ void FUN_180694040(int8_t (*param_1) [16],int param_2,int8_t *param_3,int8_t *pa
   int8_t auVar71 [32];
   int8_t auVar72 [32];
   int8_t auVar73 [32];
-  
   auVar1 = *param_1;
   pauVar49 = (int8_t (*) [16])((int64_t)param_1 - (int64_t)param_2);
   lVar48 = (int64_t)(param_2 * 5);
@@ -587,10 +575,4 @@ void FUN_180694040(int8_t (*param_1) [16],int param_2,int8_t *param_3,int8_t *pa
   *(int8_t (*) [16])(*param_1 + param_2 * 6) = auVar1;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

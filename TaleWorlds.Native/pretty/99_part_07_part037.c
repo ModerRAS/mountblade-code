@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_07_part037.c - 1 个函数
-
-// 函数: void FUN_1804bd560(int64_t param_1,int64_t param_2,int32_t *param_3)
-void FUN_1804bd560(int64_t param_1,int64_t param_2,int32_t *param_3)
-
+// 函数: void function_4bd560(int64_t param_1,int64_t param_2,int32_t *param_3)
+void function_4bd560(int64_t param_1,int64_t param_2,int32_t *param_3)
 {
   int64_t lVar1;
   uint64_t *puVar2;
@@ -27,8 +24,7 @@ void FUN_1804bd560(int64_t param_1,int64_t param_2,int32_t *param_3)
   float fVar19;
   int8_t auVar20 [16];
   float fVar21;
-  int8_t auStackX_10 [8];
-  
+  int8_t astack_special_x_10 [8];
   uVar13 = 0;
   *(uint64_t *)(param_3 + 4) = 0;
   *(uint64_t *)(param_3 + 6) = 0;
@@ -85,7 +81,7 @@ void FUN_1804bd560(int64_t param_1,int64_t param_2,int32_t *param_3)
   *(uint64_t *)(param_3 + 0x12) = uVar10;
   *(uint64_t *)(param_3 + 0x12) =
        (int64_t)(int)(*(float *)(param_2 + 0x560) * 63.0) << 0x19 | uVar10 & 0xffffffff81ffffff;
-  uVar4 = func_0x0001804bb950(param_2);
+  uVar4 = SystemFunction_0001804bb950(param_2);
   puVar3 = (uint64_t *)puVar15[2];
   puVar6 = puVar15;
   while (puVar2 = puVar3, puVar2 != (uint64_t *)0x0) {
@@ -98,7 +94,7 @@ void FUN_1804bd560(int64_t param_1,int64_t param_2,int32_t *param_3)
     }
   }
   if ((puVar6 == puVar15) || (uVar4 < *(uint *)(puVar6 + 4))) {
-    puVar6 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar15,auStackX_10);
+    puVar6 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar15,astack_special_x_10);
     puVar6 = (uint64_t *)*puVar6;
   }
   lVar1 = puVar6[5];
@@ -168,11 +164,4 @@ LAB_1804bd89d:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

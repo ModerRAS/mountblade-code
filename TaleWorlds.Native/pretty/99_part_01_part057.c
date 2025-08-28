@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_01_part057.c - 1 个函数
-
-// 函数: void FUN_1800debc0(uint64_t param_1,int64_t param_2,char param_3)
-void FUN_1800debc0(uint64_t param_1,int64_t param_2,char param_3)
-
+// 函数: void function_0debc0(uint64_t param_1,int64_t param_2,char param_3)
+void function_0debc0(uint64_t param_1,int64_t param_2,char param_3)
 {
   int64_t lVar1;
   int64_t *plVar2;
@@ -56,10 +53,10 @@ void FUN_1800debc0(uint64_t param_1,int64_t param_2,char param_3)
   float fStack_13c;
   float fStack_138;
   float fStack_134;
-  int8_t auStack_128 [16];
-  int8_t auStack_118 [16];
-  int8_t auStack_108 [16];
-  int8_t auStack_f8 [16];
+  int8_t stack_array_128 [16];
+  int8_t stack_array_118 [16];
+  int8_t stack_array_108 [16];
+  int8_t stack_array_f8 [16];
   float fStack_e8;
   float fStack_e4;
   float fStack_e0;
@@ -69,7 +66,6 @@ void FUN_1800debc0(uint64_t param_1,int64_t param_2,char param_3)
   float fStack_d0;
   float fStack_cc;
   uint64_t extraout_XMM0_Qb;
-  
   lVar8 = system_message_buffer;
   lVar9 = SYSTEM_STATE_MANAGER;
   lVar1 = *(int64_t *)(system_message_buffer + 0x1cd8);
@@ -141,21 +137,21 @@ LAB_1800ded07:
   auVar13._0_4_ = (float)auVar12._0_8_ / *(float *)(param_2 + 0x150);
   fVar14 = (float)atanf(auVar13._0_8_);
   *(float *)(*(int64_t *)(lVar8 + 0x1cd8) + 0x1c68) = fVar14 + fVar14;
-  FUN_180094120((float *)(param_2 + 0x12bc0),&fStack_188);
-  auStack_128 = ZEXT416((uint)fStack_188);
+  function_094120((float *)(param_2 + 0x12bc0),&fStack_188);
+  stack_array_128 = ZEXT416((uint)fStack_188);
   fStack_140 = fStack_188 * -1.0 + fStack_178 * -1.0 + fStack_168 + fStack_158;
-  auStack_118 = ZEXT416((uint)fStack_140);
+  stack_array_118 = ZEXT416((uint)fStack_140);
   fStack_13c = fStack_184 * -1.0 + fStack_174 * -1.0 + fStack_164 + fStack_154;
   fStack_138 = fStack_180 * -1.0 + fStack_170 * -1.0 + fStack_160 + fStack_150;
   fStack_148 = fStack_17c * -1.0 + fStack_16c * -1.0 + fStack_15c + fStack_14c;
   fStack_d8 = fStack_178 + fStack_188 * -1.0 + fStack_168 + fStack_158;
-  auStack_f8 = ZEXT416((uint)fStack_d8);
+  stack_array_f8 = ZEXT416((uint)fStack_d8);
   fStack_cc = fStack_16c + fStack_17c * -1.0 + fStack_15c + fStack_14c;
   fStack_d4 = fStack_174 + fStack_184 * -1.0 + fStack_164 + fStack_154;
   fStack_d0 = fStack_170 + fStack_180 * -1.0 + fStack_160 + fStack_150;
   fStack_e4 = fStack_184 + fStack_174 * -1.0 + fStack_164 + fStack_154;
   fStack_e8 = fStack_188 + fStack_178 * -1.0 + fStack_168 + fStack_158;
-  auStack_108 = ZEXT416((uint)fStack_e8);
+  stack_array_108 = ZEXT416((uint)fStack_e8);
   fStack_e0 = fStack_180 + fStack_170 * -1.0 + fStack_160 + fStack_150;
   fStack_dc = fStack_17c + fStack_16c * -1.0 + fStack_15c + fStack_14c;
   fStack_158 = fStack_188 + fStack_178 + fStack_168 + fStack_158;
@@ -334,11 +330,4 @@ LAB_1800df320:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

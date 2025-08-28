@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part038.c - 1 个函数
-
-// 函数: void FUN_180675b40(int64_t param_1,int64_t param_2,char *param_3,int64_t param_4,int64_t param_5
-void FUN_180675b40(int64_t param_1,int64_t param_2,char *param_3,int64_t param_4,int64_t param_5
+// 函数: void function_675b40(int64_t param_1,int64_t param_2,char *param_3,int64_t param_4,int64_t param_5
+void function_675b40(int64_t param_1,int64_t param_2,char *param_3,int64_t param_4,int64_t param_5
                   ,uint param_6,int param_7,int param_8,uint param_9)
-
 {
   int8_t *puVar1;
   int8_t *puVar2;
@@ -78,14 +75,13 @@ void FUN_180675b40(int64_t param_1,int64_t param_2,char *param_3,int64_t param_4
   int8_t auVar54 [16];
   int8_t auVar55 [16];
   int8_t auVar56 [16];
-  
   if (0 < (int)param_9) {
     uVar18 = (uint64_t)param_9;
     do {
       auVar13 = ui_system_config;
       lVar14 = ((int64_t)(int)param_6 >> 4) * param_2 + param_1 + param_2 * -3;
       if ((param_6 & 0xf) == 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memcpy(param_3,param_2 * 3 + lVar14,(int64_t)param_8);
       }
       auVar67 = *(int8_t (*) [16])((uint64_t)(param_6 & 0xf) * 0x10 + param_5);
@@ -414,10 +410,4 @@ void FUN_180675b40(int64_t param_1,int64_t param_2,char *param_3,int64_t param_4
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

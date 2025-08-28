@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part285.c - 1 个函数
-
-// 函数: void FUN_18082b45b(void)
-void FUN_18082b45b(void)
-
+// 函数: void NetworkProtocol_2b45b(void)
+void NetworkProtocol_2b45b(void)
 {
   int iVar1;
   float *pfVar2;
@@ -68,16 +65,15 @@ void FUN_18082b45b(void)
   uint64_t uVar55;
   int64_t unaff_R15;
   int64_t lVar56;
-  float *in_stack_00000068;
-  uint in_stack_00000120;
-  uint in_stack_00000128;
-  uint in_stack_00000130;
-  uint in_stack_00000138;
-  uint in_stack_00000140;
-  
+  float *local_var_68;
+  uint local_var_120;
+  uint local_var_128;
+  uint local_var_130;
+  uint local_var_138;
+  uint local_var_140;
   uVar46 = (uint)unaff_R14;
   iVar8 = uVar46 * 2;
-  iVar45 = (int)in_stack_00000128 >> 2;
+  iVar45 = (int)local_var_128 >> 2;
   iVar7 = uVar46 * 3;
   uVar55 = unaff_R14;
   if (iVar45 != 0) {
@@ -156,12 +152,12 @@ void FUN_18082b45b(void)
       in_R11 = in_R11 + (int)(uVar46 * 4);
       iVar45 = iVar45 + -1;
     } while (iVar45 != 0);
-    uVar55 = (uint64_t)in_stack_00000120;
-    in_R10 = in_stack_00000068;
+    uVar55 = (uint64_t)local_var_120;
+    in_R10 = local_var_68;
   }
   uVar46 = (uint)uVar55;
-  for (in_stack_00000128 = in_stack_00000128 & 3; in_stack_00000128 != 0;
-      in_stack_00000128 = in_stack_00000128 - 1) {
+  for (local_var_128 = local_var_128 & 3; local_var_128 != 0;
+      local_var_128 = local_var_128 - 1) {
     in_R9 = in_R9 + -1;
     pfVar47 = in_R9;
     for (uVar53 = uVar46; uVar53 != 0; uVar53 = uVar53 - 1) {
@@ -171,7 +167,7 @@ void FUN_18082b45b(void)
       in_R11 = in_R11 + 1;
     }
   }
-  iVar45 = (int)in_stack_00000130 >> 2;
+  iVar45 = (int)local_var_130 >> 2;
   if (iVar45 != 0) {
     do {
       fVar6 = *(float *)(unaff_R15 + -0x10);
@@ -288,11 +284,11 @@ void FUN_18082b45b(void)
       unaff_RDI = unaff_RDI + 4;
       iVar45 = iVar45 + -1;
     } while (iVar45 != 0);
-    uVar55 = (uint64_t)in_stack_00000120;
+    uVar55 = (uint64_t)local_var_120;
   }
   uVar46 = (uint)uVar55;
-  for (in_stack_00000130 = in_stack_00000130 & 3; in_stack_00000130 != 0;
-      in_stack_00000130 = in_stack_00000130 - 1) {
+  for (local_var_130 = local_var_130 & 3; local_var_130 != 0;
+      local_var_130 = local_var_130 - 1) {
     fVar6 = *(float *)(unaff_R15 + -4);
     unaff_R15 = unaff_R15 + -4;
     fVar3 = *unaff_RDI;
@@ -310,7 +306,7 @@ void FUN_18082b45b(void)
     in_R10 = in_R10 + 1;
     unaff_RDI = unaff_RDI + 1;
   }
-  iVar45 = (int)in_stack_00000138 >> 2;
+  iVar45 = (int)local_var_138 >> 2;
   if (iVar45 != 0) {
     do {
       fVar6 = *(float *)(unaff_R15 + -0x10);
@@ -428,11 +424,11 @@ void FUN_18082b45b(void)
       unaff_RDI = unaff_RDI + 4;
       iVar45 = iVar45 + -1;
     } while (iVar45 != 0);
-    uVar55 = (uint64_t)in_stack_00000120;
+    uVar55 = (uint64_t)local_var_120;
   }
-  in_stack_00000138 = in_stack_00000138 & 3;
+  local_var_138 = local_var_138 & 3;
   uVar46 = (uint)uVar55;
-  if (in_stack_00000138 != 0) {
+  if (local_var_138 != 0) {
     lVar56 = unaff_R15 - (int64_t)in_R10;
     lVar43 = (int64_t)in_R9 - (int64_t)unaff_RDI;
     pfVar47 = in_R10;
@@ -455,11 +451,11 @@ void FUN_18082b45b(void)
         } while (uVar53 != 0);
       }
       unaff_RDI = unaff_RDI + 1;
-      in_stack_00000138 = in_stack_00000138 - 1;
+      local_var_138 = local_var_138 - 1;
       pfVar47 = in_R10;
-    } while (in_stack_00000138 != 0);
+    } while (local_var_138 != 0);
   }
-  iVar45 = (int)in_stack_00000140 >> 2;
+  iVar45 = (int)local_var_140 >> 2;
   if (iVar45 != 0) {
     do {
       in_R10 = in_R10 + -4;
@@ -536,10 +532,10 @@ void FUN_18082b45b(void)
       in_R11 = in_R11 + (int)(uVar46 * 4);
       iVar45 = iVar45 + -1;
     } while (iVar45 != 0);
-    uVar55 = (uint64_t)in_stack_00000120;
+    uVar55 = (uint64_t)local_var_120;
   }
-  for (in_stack_00000140 = in_stack_00000140 & 3; in_stack_00000140 != 0;
-      in_stack_00000140 = in_stack_00000140 - 1) {
+  for (local_var_140 = local_var_140 & 3; local_var_140 != 0;
+      local_var_140 = local_var_140 - 1) {
     in_R10 = in_R10 + -1;
     uVar46 = (uint)uVar55;
     uVar48 = uVar55 & 0xffffffff;
@@ -555,8 +551,3 @@ void FUN_18082b45b(void)
   }
   return;
 }
-
-
-
-
-

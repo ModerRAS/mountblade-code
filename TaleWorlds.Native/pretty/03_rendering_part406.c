@@ -1,11 +1,11 @@
+// 原始函数语义化别名定义
+// 本文件包含当前文件中使用的原始函数的语义化别名
+// 这些别名提高了代码的可读性和维护性
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part406.c - 4 个函数
-
-// 函数: void FUN_1804918d8(void)
-void FUN_1804918d8(void)
-
+// 函数: void UISystem_918d8(void)
+void UISystem_918d8(void)
 {
   float *pfVar1;
   int8_t (*pauVar2) [16];
@@ -100,20 +100,19 @@ void FUN_1804918d8(void)
   float fVar89;
   float fVar90;
   float fVar91;
-  int8_t auStack0000000000000030 [16];
+  int8_t alocal_var_30 [16];
   int iStack0000000000000040;
   int iStack0000000000000044;
   int iStack0000000000000048;
   int iStack000000000000004c;
-  uint uStack0000000000000050;
-  uint uStack0000000000000054;
-  uint uStack0000000000000058;
-  uint uStack000000000000005c;
-  int8_t auStack0000000000000060 [16];
-  int8_t auStack0000000000000070 [16];
+  uint local_var_50;
+  uint local_buffer_54;
+  uint local_var_58;
+  uint local_buffer_5c;
+  int8_t alocal_var_60 [16];
+  int8_t alocal_var_70 [16];
   float fVar34;
   float fVar35;
-  
   MXCSR = MXCSR | 0x8040;
   uVar18 = 0;
   do {
@@ -305,14 +304,14 @@ void FUN_1804918d8(void)
     unaff_RBP[1] = auVar29;
     auVar20 = pmulld(auVar39,auVar55);
     auVar25 = pmulld(auVar45,auVar51);
-    auStack0000000000000030._0_4_ = auVar20._0_4_ - auVar25._0_4_;
-    auStack0000000000000030._4_4_ = auVar20._4_4_ - auVar25._4_4_;
-    auStack0000000000000030._8_4_ = auVar20._8_4_ - auVar25._8_4_;
-    auStack0000000000000030._12_4_ = auVar20._12_4_ - auVar25._12_4_;
-    auVar20._0_4_ = (float)auStack0000000000000030._0_4_;
-    auVar20._4_4_ = (float)auStack0000000000000030._4_4_;
-    auVar20._8_4_ = (float)auStack0000000000000030._8_4_;
-    auVar20._12_4_ = (float)auStack0000000000000030._12_4_;
+    alocal_var_30._0_4_ = auVar20._0_4_ - auVar25._0_4_;
+    alocal_var_30._4_4_ = auVar20._4_4_ - auVar25._4_4_;
+    alocal_var_30._8_4_ = auVar20._8_4_ - auVar25._8_4_;
+    alocal_var_30._12_4_ = auVar20._12_4_ - auVar25._12_4_;
+    auVar20._0_4_ = (float)alocal_var_30._0_4_;
+    auVar20._4_4_ = (float)alocal_var_30._4_4_;
+    auVar20._8_4_ = (float)alocal_var_30._8_4_;
+    auVar20._12_4_ = (float)alocal_var_30._12_4_;
     auVar20 = rcpps(auVar29,auVar20);
     uVar70 = (uint)(auVar71._0_4_ < auVar65._0_4_) * auVar65._0_4_ |
              (uint)(auVar71._0_4_ >= auVar65._0_4_) * auVar71._0_4_;
@@ -346,18 +345,18 @@ void FUN_1804918d8(void)
              ((int)uVar75 >= auVar60._8_4_) * uVar75;
     uVar77 = (uint)((int)uVar77 < auVar60._12_4_) * auVar60._12_4_ |
              ((int)uVar77 >= auVar60._12_4_) * uVar77;
-    auStack0000000000000060._0_4_ =
+    alocal_var_60._0_4_ =
          (uint)(0x27f < (int)uVar70) * 0x27f | (0x27f >= (int)uVar70) * uVar70;
-    auStack0000000000000060._4_4_ =
+    alocal_var_60._4_4_ =
          (uint)(0x27f < (int)uVar73) * 0x27f | (0x27f >= (int)uVar73) * uVar73;
-    auStack0000000000000060._8_4_ =
+    alocal_var_60._8_4_ =
          (uint)(0x27f < (int)uVar75) * 0x27f | (0x27f >= (int)uVar75) * uVar75;
-    auStack0000000000000060._12_4_ =
+    alocal_var_60._12_4_ =
          (uint)(0x27f < (int)uVar77) * 0x27f | (0x27f >= (int)uVar77) * uVar77;
-    uStack0000000000000050 = (-1 < (int)uVar11) * uVar11 & 0xfffffffe;
-    uStack0000000000000054 = (-1 < (int)uVar22) * uVar22 & 0xfffffffe;
-    uStack0000000000000058 = (-1 < (int)uVar23) * uVar23 & 0xfffffffe;
-    uStack000000000000005c = (-1 < (int)uVar24) * uVar24 & 0xfffffffe;
+    local_var_50 = (-1 < (int)uVar11) * uVar11 & 0xfffffffe;
+    local_buffer_54 = (-1 < (int)uVar22) * uVar22 & 0xfffffffe;
+    local_var_58 = (-1 < (int)uVar23) * uVar23 & 0xfffffffe;
+    local_buffer_5c = (-1 < (int)uVar24) * uVar24 & 0xfffffffe;
     uVar11 = (uint)(auVar82._0_4_ < auVar83._0_4_) * auVar82._0_4_ |
              (uint)(auVar82._0_4_ >= auVar83._0_4_) * auVar83._0_4_;
     uVar22 = (uint)(auVar82._4_4_ < auVar83._4_4_) * auVar82._4_4_ |
@@ -403,7 +402,7 @@ void FUN_1804918d8(void)
     uVar24 = (uint)((int)uVar77 < auVar79._12_4_) * auVar79._12_4_ |
              ((int)uVar77 >= auVar79._12_4_) * uVar77;
     lVar17 = 0;
-    auStack0000000000000070 = auVar25 & render_system_ui;
+    alocal_var_70 = auVar25 & render_system_ui;
     *(uint *)unaff_RBP[-8] = (uint)(0x167 < (int)uVar11) * 0x167 | (0x167 >= (int)uVar11) * uVar11;
     *(uint *)(unaff_RBP[-8] + 4) =
          (uint)(0x167 < (int)uVar22) * 0x167 | (0x167 >= (int)uVar22) * uVar22;
@@ -412,9 +411,9 @@ void FUN_1804918d8(void)
     *(uint *)(unaff_RBP[-8] + 0xc) =
          (uint)(0x167 < (int)uVar24) * 0x167 | (0x167 >= (int)uVar24) * uVar24;
     do {
-      if (0 < *(int *)(&stack0x00000030 + lVar17)) {
-        iVar16 = *(int *)(&stack0x00000070 + lVar17);
-        iVar4 = *(int *)((int64_t)&stack0x00000050 + lVar17);
+      if (0 < *(int *)(&local_buffer_00000030 + lVar17)) {
+        iVar16 = *(int *)(&local_buffer_00000070 + lVar17);
+        iVar4 = *(int *)((int64_t)&local_buffer_00000050 + lVar17);
         uVar3 = *(int32_t *)(unaff_RBP[0x14] + lVar17);
         iVar15 = *(int *)(unaff_RBP[-4] + lVar17);
         iStack000000000000004c = *(int *)(unaff_RBP[-3] + lVar17);
@@ -428,7 +427,7 @@ void FUN_1804918d8(void)
         iVar68 = *(int *)(unaff_RBP[-1] + lVar17);
         iVar69 = *(int *)(*unaff_RBP + lVar17);
         iVar9 = *(int *)(unaff_RBP[-8] + lVar17);
-        iVar10 = *(int *)(&stack0x00000060 + lVar17);
+        iVar10 = *(int *)(&local_buffer_00000060 + lVar17);
         *(int32_t *)unaff_RBP[6] = uVar3;
         *(int32_t *)(unaff_RBP[6] + 4) = uVar3;
         *(int32_t *)(unaff_RBP[6] + 8) = uVar3;
@@ -550,7 +549,7 @@ void FUN_1804918d8(void)
               auVar30 = auVar53;
             } while (uVar14 != 0);
           }
-          if ((render_system_ui & auVar20) != (int8_t  [16])0x0) goto FUN_18049202a;
+          if ((render_system_ui & auVar20) != (int8_t  [16])0x0) goto UISystem_9202a;
           auVar81._0_4_ = auVar80._0_4_ + *(int *)unaff_RBP[8];
           auVar81._4_4_ = auVar80._4_4_ + *(int *)(unaff_RBP[8] + 4);
           auVar81._8_4_ = auVar80._8_4_ + *(int *)(unaff_RBP[8] + 8);
@@ -571,67 +570,35 @@ void FUN_1804918d8(void)
     } while (lVar17 < 0x10);
     uVar18 = uVar18 + 4;
   } while (uVar18 < 0xc);
-FUN_18049202a:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)unaff_RBP[0x1b] ^ (uint64_t)&stack0x00000000);
+UISystem_9202a:
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)unaff_RBP[0x1b] ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_18049202a(void)
-void FUN_18049202a(void)
-
+// 函数: void UISystem_9202a(void)
+void UISystem_9202a(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180492057(void)
-void FUN_180492057(void)
-
+// 函数: void UISystem_92057(void)
+void UISystem_92057(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180492067(void)
-void FUN_180492067(void)
-
+// 函数: void UISystem_92067(void)
+void UISystem_92067(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-void thunk_FUN_18049202a(void)
-
+void thunk_UISystem_9202a(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1b0) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

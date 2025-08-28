@@ -1,29 +1,22 @@
 n//  的语义化别名
-#define SystemCore_ProcessManager 
-
-
+#define SystemCore_ProcessManager
 // $fun 的语义化别名
 #define $alias_name $fun
-
-/* RenderingProcessor - FUN_180391980 的语义化别名 */
-#define RenderingProcessor FUN_180391980
-
-
+/* RenderingProcessor - function_391980 的语义化别名 */
+#define RenderingProcessor function_391980
 /**
  * @file 03_rendering_part217.c
  * @brief 渲染系统高级几何计算和边缘检测模块
  * @author Claude Code
  * @date 2025-08-28
- * 
+ *
  * 本模块包含渲染系统中的高级几何计算、边缘检测、向量标准化、
  * 距离计算、最优路径查找等核心功能。主要用于3D渲染管线中的
  * 几何处理、碰撞检测、可见性判断和优化计算。
  */
-
 /*==========================================
 =            常量定义和宏定义            =
 ==========================================*/
-
 /**
  * 渲染系统参数常量
  */
@@ -51,14 +44,12 @@ n//  的语义化别名
 #define RENDERING_PROPERTY_OFFSET_C0 0xc0
 #define RENDERING_PROPERTY_OFFSET_C8 0xc8
 #define RENDERING_PROPERTY_OFFSET_200 200
-
 /**
  * 数据结构类型常量
  */
 #define DATA_STRUCTURE_TYPE_EDGE 0x02
 #define DATA_STRUCTURE_TYPE_NODE 0x00
 #define DATA_STRUCTURE_TYPE_LINK 0x01
-
 /**
  * 渲染状态标志
  */
@@ -66,11 +57,9 @@ n//  的语义化别名
 #define RENDERING_FLAG_VALID 0x02
 #define RENDERING_FLAG_PROCESSED 0x04
 #define RENDERING_FLAG_OPTIMIZED 0x08
-
 /*==========================================
 =            全局变量声明            =
 ==========================================*/
-
 /**
  * 渲染系统核心功能全局变量
  */
@@ -84,7 +73,6 @@ static uint8_t rendering_system_visibility_calculator;
 static uint8_t rendering_system_mesh_processor;
 static uint8_t rendering_system_transform_manager;
 static uint8_t rendering_system_state_validator;
-
 /**
  * 几何计算系统全局变量
  */
@@ -96,7 +84,6 @@ static uint8_t path_finding_algorithm;
 static uint8_t collision_detection_system;
 static uint8_t visibility_culling_engine;
 static uint8_t mesh_optimization_processor;
-
 /**
  * 数据处理系统全局变量
  */
@@ -108,11 +95,9 @@ static uint8_t cache_manager;
 static uint8_t buffer_controller;
 static uint8_t stream_processor;
 static uint8_t pipeline_manager;
-
 /*==========================================
 =            函数声明            =
 ==========================================*/
-
 /**
  * 渲染系统核心功能函数
  */
@@ -126,7 +111,6 @@ static void rendering_system_visibility_calculator(uint64_t context, uint64_t pa
 static void rendering_system_mesh_processor(uint64_t context, uint64_t param1, uint64_t param2);
 static void rendering_system_transform_manager(uint64_t context, uint64_t param1, uint64_t param2);
 static void rendering_system_state_validator(uint64_t context, uint64_t param1, uint64_t param2);
-
 /**
  * 几何计算系统函数
  */
@@ -138,7 +122,6 @@ static void path_finding_algorithm(uint64_t context, uint64_t param1, uint64_t p
 static void collision_detection_system(uint64_t context, uint64_t param1, uint64_t param2);
 static void visibility_culling_engine(uint64_t context, uint64_t param1, uint64_t param2);
 static void mesh_optimization_processor(uint64_t context, uint64_t param1, uint64_t param2);
-
 /**
  * 数据处理系统函数
  */
@@ -150,18 +133,16 @@ static void cache_manager(uint64_t context, uint64_t param1, uint64_t param2);
 static void buffer_controller(uint64_t context, uint64_t param1, uint64_t param2);
 static void stream_processor(uint64_t context, uint64_t param1, uint64_t param2);
 static void pipeline_manager(uint64_t context, uint64_t param1, uint64_t param2);
-
 /*==========================================
 =            函数定义            =
 ==========================================*/
-
 /**
  * 渲染系统高级几何计算和边缘检测处理器
  * 实现3D渲染管线中的高级几何计算、边缘检测、向量标准化、距离计算等功能
- * 
+ *
  * @param param_1 渲染系统上下文指针
  * @param param_2 几何计算类型参数1
- * @param param_3 几何计算类型参数2  
+ * @param param_3 几何计算类型参数2
  * @param param_4 几何计算类型参数3
  */
 void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
@@ -219,14 +200,13 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
   float fVar52;
   float fVar53;
   char cStack0000000000000028;
-  uint uStack_124;
+  uint local_var_124;
   int iStack_110;
-  uint64_t uStack_108;
+  uint64_t local_var_108;
   float fStack_100;
-  uint uStack_fc;
+  uint local_var_fc;
   uint64_t uVar32;
-  
-  // 初始化渲染系统数据结构
+// 初始化渲染系统数据结构
   puVar34 = *(uint64_t **)(param_1 + RENDERING_PROPERTY_OFFSET_478);
   uVar22 = 0;
   uVar21 = 0;
@@ -236,32 +216,27 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
   uVar26 = uVar22;
   uVar17 = uVar22;
   uVar35 = uVar22;
-  
-  // 遍历渲染系统数据结构
+// 遍历渲染系统数据结构
   if (uVar20 != 0) {
     do {
       uVar32 = *puVar34;
       iVar14 = *(int *)(uVar32 + RENDERING_PROPERTY_OFFSET_130);
       uVar23 = uVar32;
       uVar39 = uVar35;
-      
-      // 匹配几何计算类型参数
+// 匹配几何计算类型参数
       if (((param_2 != iVar14) && (uVar23 = uVar12, uVar39 = uVar32, param_3 != iVar14)) &&
          (uVar39 = uVar35, param_4 == iVar14)) {
         uVar26 = uVar32;
       }
-      
-      // 检查是否找到所有需要的几何计算类型
+// 检查是否找到所有需要的几何计算类型
       if (((uVar23 != 0) && (uVar39 != 0)) && (uVar26 != 0)) break;
-      
       uVar36 = (int)uVar17 + 1;
       uVar17 = (uint64_t)uVar36;
       puVar34 = puVar34 + 1;
       uVar12 = uVar23;
       uVar35 = uVar39;
     } while ((uint64_t)(int64_t)(int)uVar36 < uVar20);
-    
-    // 处理几何计算和边缘检测
+// 处理几何计算和边缘检测
     if (((uVar23 != 0) && (uVar39 != 0)) && (uVar26 != 0)) {
       uVar36 = RENDERING_MAX_ITERATION_COUNT;
       cVar40 = false;
@@ -269,14 +244,13 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
       fStack_100 = RENDERING_MAXIMUM_VALID_DISTANCE;
       bVar1 = *(byte *)(uVar23 + RENDERING_PROPERTY_OFFSET_A8);
       iVar30 = -1;
-      uStack_fc = RENDERING_MAX_ITERATION_COUNT;
+      local_var_fc = RENDERING_MAX_ITERATION_COUNT;
       iVar14 = -1;
       iStack_110 = -1;
-      uStack_108 = 0;
+      local_var_108 = 0;
       cStack0000000000000028 = false;
-      uStack_124 = 0;
-      
-      // 处理边缘检测和向量计算
+      local_var_124 = 0;
+// 处理边缘检测和向量计算
       if (bVar1 != 0) {
         puVar18 = (uint64_t *)(uVar23 + RENDERING_DEFAULT_STACK_OFFSET);
         uVar12 = uVar22;
@@ -284,15 +258,13 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
         do {
           uVar16 = (uint)uVar12;
           puVar2 = (uint64_t *)*puVar18;
-          
-          // 检查数据结构类型
+// 检查数据结构类型
           if (*(char *)(puVar2 + 4) == DATA_STRUCTURE_TYPE_EDGE) {
             uVar12 = puVar2[2];
             if (uVar12 == uVar23) {
               uVar12 = puVar2[3];
             }
-            
-            // 计算向量和距离
+// 计算向量和距离
             pfVar3 = (float *)puVar2[1];
             bVar25 = false;
             uVar20 = RENDERING_MAX_ITERATION_COUNT;
@@ -307,22 +279,19 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
             fVar52 = (fVar42 + *pfVar3) * RENDERING_HALF_VALUE;
             fVar53 = (fVar46 + pfVar3[1]) * RENDERING_HALF_VALUE;
             fVar42 = fVar51 * fVar51 + fVar50 * fVar50;
-            
-            // 使用SIMD优化的逆平方根计算
+// 使用SIMD优化的逆平方根计算
             auVar43 = rsqrtss(ZEXT416((uint)fVar42), ZEXT416((uint)fVar42));
             fVar46 = auVar43._0_4_;
             fVar42 = fVar46 * RENDERING_HALF_VALUE * (RENDERING_NORMALIZATION_FACTOR - fVar42 * fVar46 * fVar46);
             fVar50 = fVar50 * fVar42;
             fVar51 = fVar51 * fVar42;
-            
-            // 检查几何方向和位置关系
+// 检查几何方向和位置关系
             if (0.0 < (*(float *)(uVar23 + RENDERING_PROPERTY_OFFSET_EC) - fVar53) * fVar51 +
                       (*(float *)(uVar23 + RENDERING_PROPERTY_OFFSET_E8) - fVar52) * fVar50) {
               fVar50 = -fVar50;
               fVar51 = -fVar51;
             }
-            
-            // 递归处理相邻边缘
+// 递归处理相邻边缘
             if (*(byte *)(uVar12 + RENDERING_PROPERTY_OFFSET_A8) != 0) {
               puVar24 = (uint64_t *)(uVar12 + RENDERING_DEFAULT_STACK_OFFSET);
               uVar32 = uVar22;
@@ -344,23 +313,20 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
                       fVar47 = (fVar42 + *pfVar3) * RENDERING_HALF_VALUE;
                       fVar48 = (fVar46 + pfVar3[1]) * RENDERING_HALF_VALUE;
                       fVar42 = fVar45 * fVar45 + fVar44 * fVar44;
-                      
-                      // 再次使用SIMD优化的逆平方根计算
+// 再次使用SIMD优化的逆平方根计算
                       auVar43 = rsqrtss(ZEXT416((uint)fVar42), ZEXT416((uint)fVar42));
                       fVar46 = auVar43._0_4_;
                       fVar42 = fVar46 * RENDERING_HALF_VALUE * (RENDERING_NORMALIZATION_FACTOR - fVar42 * fVar46 * fVar46);
                       fVar45 = fVar42 * fVar45;
                       fVar42 = fVar42 * fVar44;
-                      
-                      // 检查几何方向关系
+// 检查几何方向关系
                       bVar10 = 0.0 < (*(float *)(uVar26 + RENDERING_PROPERTY_OFFSET_EC) - fVar48) * fVar45 +
                                      (*(float *)(uVar26 + RENDERING_PROPERTY_OFFSET_E8) - fVar47) * fVar42;
                       if (bVar10) {
                         fVar42 = -fVar42;
                         fVar45 = -fVar45;
                       }
-                      
-                      // 检查距离阈值和优化条件
+// 检查距离阈值和优化条件
                       if (fVar45 * fVar51 + fVar42 * fVar50 <= -RENDERING_DISTANCE_THRESHOLD) {
                         fVar47 = fVar47 - fVar52;
                         fVar48 = fVar48 - fVar53;
@@ -387,13 +353,12 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
                 uVar31 = (int)uVar32 + 1;
                 uVar32 = (uint64_t)uVar31;
                 puVar24 = puVar24 + 1;
-                uVar17 = uStack_108;
-                uVar36 = uStack_fc;
-                uVar16 = uStack_124;
+                uVar17 = local_var_108;
+                uVar36 = local_var_fc;
+                uVar16 = local_var_124;
               } while ((int)uVar31 < (int)(uint)*(byte *)(uVar12 + RENDERING_PROPERTY_OFFSET_A8));
             }
-            
-            // 更新最优几何计算结果
+// 更新最优几何计算结果
             iVar13 = iVar14;
             iVar30 = iStack_110;
             cVar40 = cStack0000000000000028;
@@ -404,29 +369,27 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
               cVar40 = bVar25;
               uVar36 = uVar16;
               cStack0000000000000028 = bVar25;
-              uStack_108 = uVar12;
+              local_var_108 = uVar12;
               fStack_100 = fVar49;
-              uStack_fc = uVar16;
+              local_var_fc = uVar16;
               iStack_110 = iVar19;
               iVar14 = iVar37;
             }
           }
-          uStack_124 = uVar16 + 1;
-          uVar12 = (uint64_t)uStack_124;
+          local_var_124 = uVar16 + 1;
+          uVar12 = (uint64_t)local_var_124;
           puVar18 = puVar18 + 1;
-        } while ((int)uStack_124 < (int)(uint)bVar1);
-        
-        // 处理几何变换和优化
+        } while ((int)local_var_124 < (int)(uint)bVar1);
+// 处理几何变换和优化
         if (((((-1 < (int)uVar36) && ((int)uVar36 < (int)(uint)bVar1)) && (-1 < iVar13)) &&
             ((iVar13 < (int)(uint)*(byte *)(uVar39 + RENDERING_PROPERTY_OFFSET_A8) && (-1 < iVar30)))) &&
            ((iVar30 < (int)(uint)*(byte *)(uVar26 + RENDERING_PROPERTY_OFFSET_A8) && (uVar17 != 0)))) {
-          uStack_124 = 0;
+          local_var_124 = 0;
           lVar5 = *(int64_t *)(uVar23 + RENDERING_DEFAULT_STACK_OFFSET + (int64_t)(int)uVar36 * 8);
           lVar6 = *(int64_t *)(uVar26 + RENDERING_DEFAULT_STACK_OFFSET + (int64_t)iVar30 * 8);
           bVar1 = *(byte *)(uVar17 + RENDERING_PROPERTY_OFFSET_A8);
           lVar7 = *(int64_t *)(uVar17 + RENDERING_DEFAULT_STACK_OFFSET + (int64_t)iVar13 * 8);
-          
-          // 处理几何变换和连接关系
+// 处理几何变换和连接关系
           if (bVar1 != 0) {
             plVar29 = (int64_t *)(uVar17 + RENDERING_DEFAULT_STACK_OFFSET);
             uVar12 = uVar22;
@@ -434,8 +397,7 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
             do {
               uVar36 = (uint)uVar12;
               plVar11 = (int64_t *)*plVar29;
-              
-              // 检查几何连接关系
+// 检查几何连接关系
               if ((plVar11[2] != uVar23) && (((char)plVar11[4] != DATA_STRUCTURE_TYPE_EDGE || (plVar11[3] != uVar23)))
                  ) {
                 if (plVar11[2] != uVar39) {
@@ -459,8 +421,7 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
                       uVar12 = uVar12 + 1;
                       uVar16 = uVar36;
                     } while ((int64_t)uVar12 < 2);
-                    
-                    // 处理几何数据匹配和优化
+// 处理几何数据匹配和优化
                     do {
                       lVar8 = plVar11[uVar20];
                       plVar27 = plVar11;
@@ -481,10 +442,9 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
                             SystemCore_ProcessManager(plVar27[2]);
                           }
                           else {
-                            FUN_18038d8f0(param_1, plVar27);
+                            function_38d8f0(param_1, plVar27);
                           }
-                          
-                          // 处理几何数据优化
+// 处理几何数据优化
                           plVar38 = plVar27;
                           if (uVar20 == 0) {
                             if (bVar25) {
@@ -505,8 +465,7 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
                           else {
                             lVar33 = plVar27[1];
                           }
-                          
-                          // 更新渲染系统状态
+// 更新渲染系统状态
                           puVar18 = *(uint64_t **)(param_1 + RENDERING_PROPERTY_OFFSET_458);
                           uVar35 = *(int64_t *)(param_1 + RENDERING_PROPERTY_OFFSET_460) - (int64_t)puVar18 >> 3;
                           uVar17 = uVar22;
@@ -516,11 +475,11 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
                               if (((*plVar11 == *plVar38) && (plVar11[1] == lVar33)) ||
                                  ((*plVar11 == lVar33 && (plVar11[1] == *plVar38)))) {
                                 *(int8_t *)(plVar11 + 4) = 2;
-                                plVar11[3] = uStack_108;
+                                plVar11[3] = local_var_108;
                                 *plVar29 = (int64_t)plVar11;
                                 SystemCore_ProcessManager(plVar11[2]);
                                 lVar33 = lVar7;
-                                uVar17 = uStack_108;
+                                uVar17 = local_var_108;
                                 goto LAB_1803922c3;
                               }
                               uVar36 = (int)uVar17 + 1;
@@ -528,8 +487,7 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
                               puVar18 = puVar18 + 1;
                             } while ((uint64_t)(int64_t)(int)uVar36 < uVar35);
                           }
-                          
-                          // 处理几何数据转换
+// 处理几何数据转换
                           if (uVar20 == 1) {
                             if (bVar25) {
                               lVar33 = *(int64_t *)(lVar6 + (int64_t)(int)(uint)(uVar16 == 0) * 8);
@@ -548,17 +506,16 @@ void RenderingProcessor(int64_t param_1, int param_2, int param_3, int param_4)
                               plVar27 = (int64_t *)((int64_t)(int)uVar36 * 8 + lVar6);
                             }
                           }
-                          
-                          // 创建新的几何数据结构
+// 创建新的几何数据结构
                           lVar9 = *plVar27;
-                          plVar11 = (int64_t *)FUN_18038c180(param_1);
+                          plVar11 = (int64_t *)function_38c180(param_1);
                           plVar11[1] = lVar33;
                           *plVar11 = lVar9;
                           *(int8_t *)(plVar11 + 4) = 1;
-                          plVar11[2] = uStack_108;
+                          plVar11[2] = local_var_108;
                           *plVar29 = (int64_t)plVar11;
                           lVar33 = lVar7;
-                          uVar17 = uStack_108;
+                          uVar17 = local_var_108;
                         }
 LAB_1803922c3:
                         uVar12 = uVar12 + 1;
@@ -566,7 +523,7 @@ LAB_1803922c3:
                         cVar40 = cStack0000000000000028;
                       } while ((int64_t)uVar12 < 2);
                       uVar20 = uVar20 + 1;
-                      uVar36 = uStack_124;
+                      uVar36 = local_var_124;
                     } while ((int64_t)uVar20 < 2);
                     goto LAB_180392028;
                   }
@@ -574,21 +531,20 @@ LAB_1803922c3:
                 }
                 *(int8_t *)(plVar11 + 4) = 1;
                 plVar11[3] = 0;
-                func_0x00018038ac80(plVar11);
+                Function_9fe0b825(plVar11);
                 *plVar29 = lVar6;
                 *(int8_t *)(lVar6 + 0x20) = 2;
                 *(uint64_t *)(lVar6 + 0x18) = uVar17;
               }
 LAB_180392028:
               bVar1 = *(byte *)(uVar17 + RENDERING_PROPERTY_OFFSET_A8);
-              uStack_124 = uVar36 + 1;
-              uVar12 = (uint64_t)uStack_124;
+              local_var_124 = uVar36 + 1;
+              uVar12 = (uint64_t)local_var_124;
               plVar29 = plVar29 + 1;
               cVar40 = cStack0000000000000028;
-            } while ((int)uStack_124 < (int)(uint)bVar1);
+            } while ((int)local_var_124 < (int)(uint)bVar1);
           }
-          
-          // 处理几何状态更新和优化
+// 处理几何状态更新和优化
           if (bVar1 != 0) {
             plVar29 = (int64_t *)(uVar17 + RENDERING_DEFAULT_STACK_OFFSET);
             uVar12 = uVar22;
@@ -613,8 +569,7 @@ LAB_180392028:
               plVar29 = plVar29 + 1;
             } while ((int)uVar36 < (int)(uint)bVar1);
           }
-          
-          // 处理几何数据结构和优化
+// 处理几何数据结构和优化
           uVar12 = uVar22;
           uVar35 = uVar22;
           if (bVar1 != 0) {
@@ -626,29 +581,26 @@ LAB_180392028:
                 uVar12 = uVar35 + 1;
               }
               plVar11 = *(int64_t **)(uVar17 + RENDERING_DEFAULT_STACK_OFFSET + uVar12 * 8);
-              
-              // 检查几何数据匹配关系
+// 检查几何数据匹配关系
               if ((*plVar29 == *plVar11) || (iVar14 = -1, *plVar29 == plVar11[1])) {
                 iVar14 = 0;
               }
               if ((plVar29[1] == *plVar11) || (plVar29[1] == plVar11[1])) {
                 iVar14 = 1;
               }
-              
               uVar12 = uVar22;
               if (iVar14 == 0) {
                 uVar12 = RENDERING_COORDINATE_SCALE_FACTOR;
               }
-              *(uint64_t *)(uStack_108 + 0x80 + uVar35 * 8) =
+              *(uint64_t *)(local_var_108 + 0x80 + uVar35 * 8) =
                    *(uint64_t *)(uVar12 + (int64_t)plVar29);
-              bVar1 = *(byte *)(uStack_108 + RENDERING_PROPERTY_OFFSET_A8);
+              bVar1 = *(byte *)(local_var_108 + RENDERING_PROPERTY_OFFSET_A8);
               uVar12 = (uint64_t)uVar36;
               uVar35 = uVar35 + 1;
-              uVar17 = uStack_108;
+              uVar17 = local_var_108;
             } while ((int)uVar36 < (int)(uint)bVar1);
           }
-          
-          // 清理和释放几何数据资源
+// 清理和释放几何数据资源
           SystemCore_ProcessManager(uVar23);
           SystemCore_PerformanceMonitor(uVar23);
           uVar36 = uVar15;
@@ -669,8 +621,7 @@ LAB_180392028:
             uVar16 = uVar36;
           }
           *(uint *)(uVar23 + RENDERING_PROPERTY_OFFSET_134) = uVar16;
-          
-          // 释放和清理其他几何数据
+// 释放和清理其他几何数据
           SystemCore_ProcessManager(uVar39);
           SystemCore_PerformanceMonitor(uVar39);
           if (*(int64_t *)(uVar39 + RENDERING_PROPERTY_OFFSET_B0) != 0) {
@@ -690,7 +641,6 @@ LAB_180392028:
             uVar36 = uVar15;
           }
           *(uint *)(uVar39 + RENDERING_PROPERTY_OFFSET_134) = uVar36;
-          
           SystemCore_ProcessManager(uVar26);
           SystemCore_PerformanceMonitor(uVar26);
           uVar15 = uVar21;
@@ -711,32 +661,30 @@ LAB_180392028:
             uVar36 = uVar15;
           }
           *(uint *)(uVar26 + RENDERING_PROPERTY_OFFSET_134) = uVar36;
-          
-          SystemCore_ProcessManager(uStack_108);
-          uVar41 = SystemCore_PerformanceMonitor(uStack_108);
-          if (*(int64_t *)(uStack_108 + RENDERING_PROPERTY_OFFSET_B0) != 0) {
-            uVar21 = *(uint *)(*(int64_t *)(uStack_108 + RENDERING_PROPERTY_OFFSET_B0) + RENDERING_PROPERTY_OFFSET_134);
+          SystemCore_ProcessManager(local_var_108);
+          uVar41 = SystemCore_PerformanceMonitor(local_var_108);
+          if (*(int64_t *)(local_var_108 + RENDERING_PROPERTY_OFFSET_B0) != 0) {
+            uVar21 = *(uint *)(*(int64_t *)(local_var_108 + RENDERING_PROPERTY_OFFSET_B0) + RENDERING_PROPERTY_OFFSET_134);
           }
-          if (*(int64_t *)(uStack_108 + RENDERING_PROPERTY_OFFSET_B8) != 0) {
-            uVar21 = uVar21 | *(uint *)(*(int64_t *)(uStack_108 + RENDERING_PROPERTY_OFFSET_B8) + RENDERING_PROPERTY_OFFSET_134);
+          if (*(int64_t *)(local_var_108 + RENDERING_PROPERTY_OFFSET_B8) != 0) {
+            uVar21 = uVar21 | *(uint *)(*(int64_t *)(local_var_108 + RENDERING_PROPERTY_OFFSET_B8) + RENDERING_PROPERTY_OFFSET_134);
           }
-          if (*(int64_t *)(uStack_108 + RENDERING_PROPERTY_OFFSET_C0) != 0) {
-            uVar21 = uVar21 | *(uint *)(*(int64_t *)(uStack_108 + RENDERING_PROPERTY_OFFSET_C0) + RENDERING_PROPERTY_OFFSET_134);
+          if (*(int64_t *)(local_var_108 + RENDERING_PROPERTY_OFFSET_C0) != 0) {
+            uVar21 = uVar21 | *(uint *)(*(int64_t *)(local_var_108 + RENDERING_PROPERTY_OFFSET_C0) + RENDERING_PROPERTY_OFFSET_134);
           }
-          if (*(int64_t *)(uStack_108 + RENDERING_PROPERTY_OFFSET_200) != 0) {
-            uVar21 = uVar21 | *(uint *)(*(int64_t *)(uStack_108 + RENDERING_PROPERTY_OFFSET_200) + RENDERING_PROPERTY_OFFSET_134);
+          if (*(int64_t *)(local_var_108 + RENDERING_PROPERTY_OFFSET_200) != 0) {
+            uVar21 = uVar21 | *(uint *)(*(int64_t *)(local_var_108 + RENDERING_PROPERTY_OFFSET_200) + RENDERING_PROPERTY_OFFSET_134);
           }
           uVar15 = RENDERING_MAX_ITERATION_COUNT;
           if (uVar21 != 0) {
             uVar15 = uVar21;
           }
-          *(uint *)(uStack_108 + RENDERING_PROPERTY_OFFSET_134) = uVar15;
-          
-          // 更新渲染系统状态和计数器
+          *(uint *)(local_var_108 + RENDERING_PROPERTY_OFFSET_134) = uVar15;
+// 更新渲染系统状态和计数器
           uVar41 = SystemCore_Encoder(uVar41, uVar23, RENDERING_MAX_ITERATION_COUNT);
           uVar41 = SystemCore_Encoder(uVar41, uVar39, RENDERING_MAX_ITERATION_COUNT);
           uVar41 = SystemCore_Encoder(uVar41, uVar26, RENDERING_MAX_ITERATION_COUNT);
-          uVar41 = SystemCore_Encoder(uVar41, uStack_108, RENDERING_MAX_ITERATION_COUNT);
+          uVar41 = SystemCore_Encoder(uVar41, local_var_108, RENDERING_MAX_ITERATION_COUNT);
           *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) = *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) + 1;
           uVar41 = SystemCore_Encoder(uVar41, uVar23, *(int32_t *)(param_1 + RENDERING_PROPERTY_OFFSET_530));
           *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) = *(int *)(param_1 + RENDERING_PROPERTY_OFFSET_530) + 1;
@@ -747,103 +695,88 @@ LAB_180392028:
   }
   return;
 }
-
 /*==========================================
 =            函数别名定义            =
 ==========================================*/
-
 /**
  * 渲染系统核心功能函数别名
  */
 #define RenderingSystemGeometryCalculator RenderingProcessor
 #define RenderingSystemEdgeDetector SystemCore_ProcessManager
 #define RenderingSystemVectorNormalizer SystemCore_PerformanceMonitor
-#define RenderingSystemDistanceCalculator FUN_18038c180
-#define RenderingSystemPathOptimizer FUN_18038d8f0
-#define RenderingSystemCollisionDetector FUN_18038ac80
+#define RenderingSystemDistanceCalculator function_38c180
+#define RenderingSystemPathOptimizer function_38d8f0
+#define RenderingSystemCollisionDetector function_38ac80
 #define RenderingSystemVisibilityCalculator SystemCore_Encoder
 #define RenderingSystemMeshProcessor SystemCore_ProcessManager
 #define RenderingSystemTransformManager SystemCore_PerformanceMonitor
-#define RenderingSystemStateValidator FUN_18038c180
-
+#define RenderingSystemStateValidator function_38c180
 /**
  * 几何计算系统函数别名
  */
-#define GeometryProcessorBuffer FUN_18038d8f0
-#define EdgeDetectionHandler FUN_18038ac80
+#define GeometryProcessorBuffer function_38d8f0
+#define EdgeDetectionHandler function_38ac80
 #define VectorCalculationEngine SystemCore_ProcessManager
 #define DistanceMeasurementSystem SystemCore_PerformanceMonitor
-#define PathFindingAlgorithm FUN_18038c180
+#define PathFindingAlgorithm function_38c180
 #define CollisionDetectionSystem SystemCore_Encoder
 #define VisibilityCullingEngine SystemCore_ProcessManager
 #define MeshOptimizationProcessor SystemCore_PerformanceMonitor
-
 /**
  * 数据处理系统函数别名
  */
-#define DataStructureManager FUN_18038c180
+#define DataStructureManager function_38c180
 #define MemoryAllocationHandler SystemCore_Encoder
 #define StackFrameProcessor SystemCore_ProcessManager
 #define RegisterOptimizer SystemCore_PerformanceMonitor
-#define CacheManager FUN_18038c180
+#define CacheManager function_38c180
 #define BufferController SystemCore_Encoder
 #define StreamProcessor SystemCore_ProcessManager
 #define PipelineManager SystemCore_PerformanceMonitor
-
 /*==========================================
 =            模块初始化和清理            =
 ==========================================*/
-
 /**
  * 模块初始化函数
  */
 void module_initializer(void)
 {
-  // 初始化渲染系统核心功能
+// 初始化渲染系统核心功能
   rendering_system_geometry_calculator = 0;
   rendering_system_edge_detector = 0;
   rendering_system_vector_normalizer = 0;
-  
-  // 初始化几何计算系统
+// 初始化几何计算系统
   geometry_processor_buffer = 0;
   edge_detection_handler = 0;
   vector_calculation_engine = 0;
-  
-  // 初始化数据处理系统
+// 初始化数据处理系统
   data_structure_manager = 0;
   memory_allocation_handler = 0;
   stack_frame_processor = 0;
-  
   return;
 }
-
 /**
  * 模块清理函数
  */
 void module_cleanup(void)
 {
-  // 清理渲染系统核心功能
+// 清理渲染系统核心功能
   rendering_system_geometry_calculator = 0;
   rendering_system_edge_detector = 0;
   rendering_system_vector_normalizer = 0;
-  
-  // 清理几何计算系统
+// 清理几何计算系统
   geometry_processor_buffer = 0;
   edge_detection_handler = 0;
   vector_calculation_engine = 0;
-  
-  // 清理数据处理系统
+// 清理数据处理系统
   data_structure_manager = 0;
   memory_allocation_handler = 0;
   stack_frame_processor = 0;
-  
   return;
 }
-
 /*==========================================
 =            导出函数定义            =
 ==========================================*/
-
 /**
  * 导出函数：渲染系统高级几何计算和边缘检测处理器
  * 对应原始函数：RenderingProcessor
@@ -852,44 +785,42 @@ void RenderingSystemGeometryCalculator(int64_t param_1, int param_2, int param_3
 {
   RenderingProcessor(param_1, param_2, param_3, param_4);
 }
-
 /*==========================================
 =            技术说明            =
 ==========================================*/
-
 /**
  * 本模块实现了一个完整的渲染系统高级几何计算和边缘检测模块，包含以下特性：
- * 
+ *
  * 1. 高级几何计算功能：
  *    - 向量标准化和归一化处理
  *    - 距离计算和阈值判断
  *    - 几何变换和坐标映射
  *    - 边缘检测和连接关系处理
- * 
+ *
  * 2. SIMD优化计算：
  *    - 使用SIMD指令进行高效浮点运算
  *    - 牛顿迭代法优化逆平方根计算
  *    - 向量化数据处理和内存访问优化
  *    - 高性能数学计算支持
- * 
+ *
  * 3. 几何数据结构管理：
  *    - 边缘数据结构的创建和管理
  *    - 几何连接关系的建立和维护
  *    - 数据结构的动态分配和释放
  *    - 内存管理和资源优化
- * 
+ *
  * 4. 路径优化和碰撞检测：
  *    - 最优路径查找算法
  *    - 几何碰撞检测和响应
  *    - 可见性计算和剔除
  *    - 几何状态验证和更新
- * 
+ *
  * 5. 渲染状态管理：
  *    - 渲染系统状态跟踪
  *    - 几何数据状态更新
  *    - 渲染计数器和标志管理
  *    - 系统性能监控
- * 
+ *
  * 技术特点：
  * - 使用SIMD指令进行高性能计算
  * - 牛顿迭代法优化数学精度
@@ -897,6 +828,6 @@ void RenderingSystemGeometryCalculator(int64_t param_1, int param_2, int param_3
  * - 复杂的条件判断和分支优化
  * - 高效的内存管理和资源分配
  * - 完整的错误处理和状态验证
- * 
+ *
  * 该模块是3D渲染管线中的核心组件，为整个渲染系统提供高性能的几何计算支持。
  */

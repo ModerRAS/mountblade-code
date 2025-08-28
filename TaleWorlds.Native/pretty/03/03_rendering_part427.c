@@ -1,22 +1,13 @@
 #include "ultra_high_freq_fun_definitions.h"
 n//  的语义化别名
-#define SystemCore_SyncController 
-
-
+#define SystemCore_SyncController
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
 #define SystemCore_ConfigValidator SystemCore_ConfigValidator
-
-
 /* 函数别名定义: DataEncryptionHandler */
 #define DataEncryptionHandler DataEncryptionHandler
-
-
-
 // 03_rendering_part427.c - 渲染系统高级批处理和纹理映射模块 - 13个函数
-
 // 常量定义
 #define RENDERING_TEXTURE_SIZE_80 0x50
 #define RENDERING_TEXTURE_SIZE_96 0x60
@@ -26,7 +17,6 @@ n//  的语义化别名
 #define RENDERING_TILE_HEIGHT_SHIFT 0x11
 #define RENDERING_BATCH_TILE_SHIFT 0x20000
 #define RENDERING_TEXTURE_TILE_SIZE 0x4000
-
 // 函数别名定义
 void rendering_system_advanced_batch_processor(int64_t rendering_context, uint64_t texture_data, int32_t render_param1, int32_t render_param2,
                                              uint64_t render_param3, uint texture_count, int64_t output_buffer1, int64_t output_buffer2, int64_t output_buffer3,
@@ -46,12 +36,11 @@ void rendering_system_empty_function_1(void);
 void rendering_system_empty_function_2(void);
 void rendering_system_initialize_rendering_system(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4);
 void rendering_system_setup_render_pipeline(void);
-
 /**
  * 渲染系统高级批处理和纹理映射处理器
- * 
+ *
  * 功能：对渲染数据进行高级批处理和纹理映射操作，支持多种纹理格式的处理
- * 
+ *
  * @param rendering_context 渲染上下文指针，包含渲染所需的各种数据结构
  * @param texture_data 纹理数据指针，包含纹理映射信息
  * @param render_param1 渲染参数1，用于控制渲染行为
@@ -68,7 +57,6 @@ void rendering_system_setup_render_pipeline(void);
 void rendering_system_advanced_batch_processor(int64_t rendering_context, uint64_t texture_data, int32_t render_param1, int32_t render_param2,
                                              uint64_t render_param3, uint texture_count, int64_t output_buffer1, int64_t output_buffer2, int64_t output_buffer3,
                                              int64_t output_buffer4, char texture_flag, uint texture_index)
-
 {
   uint64_t *texture_ptr1;
   float *texture_coords;
@@ -104,7 +92,6 @@ void rendering_system_advanced_batch_processor(int64_t rendering_context, uint64
   uint64_t u_coord_data;
   uint64_t v_coord_data;
   uint64_t security_hash;
-  
   security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)batch_index_ptr;
   current_texture = 0;
   batch_width = 8;
@@ -255,22 +242,20 @@ LAB_18049ce60:
       batch_param2 = texture_data2;
       batch_param1 = texture_data3;
       batch_param1 = texture_data4;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       SystemSecurityChecker(security_hash ^ (uint64_t)batch_index_ptr);
     }
   } while( true );
 }
-
 /**
  * 渲染系统纹理处理器初始化函数
- * 
+ *
  * 功能：初始化纹理处理器的各种参数和数据结构
- * 
+ *
  * @param param1 参数1，包含初始化所需的上下文信息
  * @param param2 参数2，包含初始化所需的配置信息
  */
 void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param2)
-
 {
   int32_t texture_config;
   uint64_t *texture_manager;
@@ -279,7 +264,6 @@ void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param
   uint64_t *alloc_ptr;
   int32_t alloc_size;
   uint64_t alloc_context;
-  
   texture_manager = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
   texture_ptr = texture_manager;
   SystemCore_SyncController(texture_ptr,param2,param1);
@@ -300,19 +284,17 @@ void rendering_system_initialize_texture_handler(uint64_t param1, uint64_t param
   alloc_size = 0xd;
   SystemNetwork_Processor(texture_manager,&init_stack_ptr,texture_manager + 0xe,4);
   init_stack_ptr = &system_data_buffer_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreMemoryPoolInitializer(texture_ptr);
 }
-
 /**
  * 渲染系统纹理数据处理函数
- * 
+ *
  * 功能：处理纹理数据，执行纹理映射和相关操作
- * 
+ *
  * @param param1 参数1，包含处理所需的上下文信息
  */
 void rendering_system_process_texture_data(uint64_t param1)
-
 {
   int8_t texture_buffer[32];
   int32_t process_param;
@@ -325,7 +307,6 @@ void rendering_system_process_texture_data(uint64_t param1)
   void *data_array[19];
   int32_t array_size;
   uint64_t security_hash;
-  
   process_context = 0xfffffffffffffffe;
   security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)texture_buffer;
   process_param = 0;
@@ -337,20 +318,19 @@ void rendering_system_process_texture_data(uint64_t param1)
   SystemCore_EventHandler(data_array,&process_ptr);
   array_size = 4;
   process_param = 1;
-  FUN_1803617c0(param1,process_array,data_array);
+  RenderingSystem_617c0(param1,process_array,data_array);
   process_param = 0;
   process_array[0] = data_array;
   data_array[0] = &system_state_ptr;
   process_ptr = &system_state_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemSecurityChecker(security_hash ^ (uint64_t)texture_buffer);
 }
-
 /**
  * 渲染系统纹理管理器创建函数
- * 
+ *
  * 功能：创建纹理管理器，分配必要的内存和资源
- * 
+ *
  * @param param1 纹理管理器指针的指针
  * @param param2 参数2，包含创建所需的配置信息
  * @param param3 参数3，包含创建所需的上下文信息
@@ -359,10 +339,8 @@ void rendering_system_process_texture_data(uint64_t param1)
  */
 uint64_t *
 rendering_system_create_texture_manager(uint64_t *param1, uint64_t param2, uint64_t param3, uint64_t param4)
-
 {
   uint64_t alloc_flag;
-  
   alloc_flag = 0xfffffffffffffffe;
   *param1 = &rendering_buffer_2720_ptr;
   UIComponent_Manager();
@@ -371,17 +349,15 @@ rendering_system_create_texture_manager(uint64_t *param1, uint64_t param2, uint6
   }
   return param1;
 }
-
 /**
  * 渲染系统纹理管理器清理函数
- * 
+ *
  * 功能：清理纹理管理器，释放相关资源
- * 
+ *
  * @param param1 参数1，包含清理所需的上下文信息
  * @param param2 参数2，包含清理所需的配置信息
  */
 void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2)
-
 {
   int32_t manager_config;
   uint64_t *manager_ptr;
@@ -392,7 +368,6 @@ void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2)
   uint64_t *alloc_ptr;
   int32_t alloc_size;
   uint64_t alloc_context;
-  
   manager_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x118,8,3);
   resource_data = 0xfffffffffffffffe;
   resource_ptr = manager_ptr;
@@ -448,20 +423,18 @@ void rendering_system_cleanup_texture_manager(uint64_t param1, uint64_t param2)
   alloc_size = 8;
   SystemNetwork_Processor(manager_ptr,&cleanup_stack_ptr,texture_ptr,0,resource_data);
   cleanup_stack_ptr = &system_data_buffer_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreMemoryPoolInitializer(texture_ptr);
 }
-
 /**
  * 渲染系统着色器管理器初始化函数
- * 
+ *
  * 功能：初始化着色器管理器，设置着色器相关的参数
- * 
+ *
  * @param param1 参数1，包含初始化所需的上下文信息
  * @param param2 参数2，包含初始化所需的配置信息
  */
 void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2)
-
 {
   int32_t shader_config;
   uint64_t *shader_manager;
@@ -470,7 +443,6 @@ void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2
   uint64_t *alloc_ptr;
   int32_t alloc_size;
   uint64_t alloc_context;
-  
   shader_manager = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x78,8,3,0xfffffffffffffffe);
   shader_ptr = shader_manager;
   SystemCore_SyncController(shader_ptr,param2,param1);
@@ -490,36 +462,32 @@ void rendering_system_initialize_shader_manager(uint64_t param1, uint64_t param2
   alloc_size = 0xc;
   SystemNetwork_Processor(shader_manager,&init_stack_ptr,0,0xb);
   init_stack_ptr = &system_data_buffer_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreMemoryPoolInitializer(shader_ptr);
 }
-
 /**
  * 渲染系统着色器对象创建函数
- * 
+ *
  * 功能：创建着色器对象，分配必要的内存和资源
- * 
+ *
  * @param param1 参数1，包含创建所需的上下文信息
  * @param param2 参数2，包含创建所需的配置信息
  * @return 返回创建的着色器对象指针
  */
 uint64_t * rendering_system_create_shader_object(uint64_t param1, int32_t param2)
-
 {
   uint64_t *shader_ptr;
-  
   shader_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(shader_ptr,param1,param2);
+  DataStructure_565b0(shader_ptr,param1,param2);
   *shader_ptr = &rendering_buffer_2496_ptr;
   shader_ptr[0x16] = 0;
   return shader_ptr;
 }
-
 /**
  * 渲染系统着色器对象清理函数
- * 
+ *
  * 功能：清理着色器对象，释放相关资源
- * 
+ *
  * @param param1 参数1，包含清理所需的上下文信息
  * @param param2 参数2，包含清理所需的配置信息
  * @param param3 参数3，包含清理所需的上下文信息
@@ -527,27 +495,23 @@ uint64_t * rendering_system_create_shader_object(uint64_t param1, int32_t param2
  * @return 返回清理后的对象指针
  */
 uint64_t rendering_system_cleanup_shader_object(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
-
 {
   uint64_t cleanup_flag;
-  
   cleanup_flag = 0xfffffffffffffffe;
-  FUN_1802566c0();
+  DataStructure_566c0();
   if ((param2 & 1) != 0) {
     free(param1,0xb8,param3,param4,cleanup_flag);
   }
   return param1;
 }
-
 /**
  * 渲染系统渲染管理器初始化函数
- * 
+ *
  * 功能：初始化渲染管理器，设置渲染相关的参数和数据结构
- * 
+ *
  * @param param1 渲染管理器指针的指针
  */
 void rendering_system_initialize_render_manager(uint64_t *param1)
-
 {
   void *init_ptr;
   uint init_flag;
@@ -566,7 +530,6 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   int string_size;
   uint8_t string_buffer[16];
   uint64_t security_hash;
-  
   data_buffer = 0xfffffffffffffffe;
   security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)init_buffer;
   data_param = 0;
@@ -574,10 +537,10 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   *param1 = &rendering_buffer_2120_ptr;
   init_function = SystemValidator;
   alloc_ptr = param1;
-  DataStructureManager(param1 + 2,0x20,0x20,FUN_180627850);
+  DataStructureManager(param1 + 2,0x20,0x20,UtilitiesSystem_27850);
   param1[0x83] = 0;
   *(int32_t *)(param1 + 0x82) = 0xffffffff;
-  FUN_18049dc80();
+  UISystem_9dc80();
   (**(code **)(render_system_texture + 0x10))(&system_buffer_24d0,&system_buffer_d128);
   *(int32_t *)(param1 + 1) = 0;
   alloc_ptr2 = &system_config_ptr;
@@ -596,7 +559,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
     if (alloc_ptr3 != (void *)0x0) {
       init_ptr = alloc_ptr3;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memcpy(data_ptr,init_ptr,(int64_t)(string_size + 1));
   }
   if (alloc_ptr3 != (void *)0x0) {
@@ -615,7 +578,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   data_size = init_flag;
   if (0 < render_system_texture) {
     CoreMemoryPoolProcessor(&stack_ptr,init_flag + render_system_texture);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memcpy(data_ptr + data_size,render_system_texture,(int64_t)(render_system_texture + 1));
   }
   process_flag = process_flag + 9;
@@ -626,7 +589,7 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
     CoreMemoryPoolProcessor(&system_buffer_24f0,process_flag);
   }
   if (process_flag != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memcpy(render_system_texture,data_ptr,process_flag);
   }
   render_system_texture = process_flag;
@@ -637,28 +600,26 @@ void rendering_system_initialize_render_manager(uint64_t *param1)
   *(int32_t *)(param1 + 0x84) = 0;
   stack_ptr = &system_data_buffer_ptr;
   if (data_ptr != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
   data_ptr = (int8_t *)0x0;
   data_context = (uint64_t)data_context._4_4_ << 0x20;
   stack_ptr = &system_state_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemSecurityChecker(security_hash ^ (uint64_t)init_buffer,0);
 }
-
 /**
  * 渲染系统渲染数据处理函数
- * 
+ *
  * 功能：处理渲染数据，执行数据转换和优化操作
- * 
+ *
  * @param param1 参数1，包含处理所需的上下文信息
  * @param param2 参数2，包含处理所需的数据指针
  * @param param3 参数3，包含处理所需的配置信息
  * @param param4 参数4，包含处理所需的资源信息
  */
 void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint64_t param3, uint64_t param4)
-
 {
   int32_t data_config;
   int32_t *data_ptr;
@@ -672,10 +633,9 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
   uint64_t *alloc_ptr2;
   int32_t alloc_size2;
   uint64_t alloc_context2;
-  
   texture_data = 0xfffffffffffffffe;
   SystemCore_ConfigValidator(param2);
-  FUN_180052200(system_main_module_state,param2);
+  GenericFunction_180052200(system_main_module_state,param2);
   if ((param2[1] - *param2 & 0xffffffffffffffe0U) == 0) {
     process_stack_ptr = &system_data_buffer_ptr;
     alloc_context = 0;
@@ -693,7 +653,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     DataEncryptionHandler0(param2,&process_stack_ptr);
     process_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreMemoryPoolInitializer();
     }
     alloc_ptr = (uint64_t *)0x0;
@@ -714,7 +674,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     DataEncryptionHandler0(param2,&alloc_stack_ptr);
     alloc_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr2 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreMemoryPoolInitializer();
     }
     alloc_ptr2 = (uint64_t *)0x0;
@@ -735,7 +695,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     DataEncryptionHandler0(param2,&process_stack_ptr);
     process_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreMemoryPoolInitializer();
     }
     alloc_ptr = (uint64_t *)0x0;
@@ -755,7 +715,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     DataEncryptionHandler0(param2,&alloc_stack_ptr);
     alloc_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr2 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreMemoryPoolInitializer();
     }
     alloc_ptr2 = (uint64_t *)0x0;
@@ -777,7 +737,7 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     DataEncryptionHandler0(param2,&process_stack_ptr);
     process_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreMemoryPoolInitializer();
     }
     alloc_ptr = (uint64_t *)0x0;
@@ -798,20 +758,18 @@ void rendering_system_process_render_data(uint64_t param1, int64_t *param2, uint
     DataEncryptionHandler0(param2,&alloc_stack_ptr);
     alloc_stack_ptr = &system_data_buffer_ptr;
     if (alloc_ptr2 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreMemoryPoolInitializer();
     }
   }
   return;
 }
-
 /**
  * 渲染系统纹理缓存更新函数
- * 
+ *
  * 功能：更新纹理缓存，确保纹理数据的最新性
  */
 void rendering_system_update_texture_cache(void)
-
 {
   int *cache_index_ptr;
   int cache_size;
@@ -827,7 +785,6 @@ void rendering_system_update_texture_cache(void)
   int64_t *cache_stack_ptr[2];
   int64_t *cache_stack_ptr2;
   uint64_t cache_param;
-  
   if ((((system_buffer_6098 != '\0') && (render_system_texture != 0)) &&
       (*(int *)(render_system_texture + 0x87b7a8) == 2)) && (*(char *)(render_system_texture + 0x87b750) != '\0'))
   {
@@ -836,8 +793,8 @@ void rendering_system_update_texture_cache(void)
     *(float *)(cache_base + 0x144) = cache_time;
     if (*(float *)(cache_base + 0x13c) <= cache_time) {
       *(float *)(cache_base + 0x144) = cache_time - *(float *)(cache_base + 0x13c);
-      FUN_1803224b0(cache_base);
-      FUN_1803277f0(cache_base);
+      RenderingSystem_224b0(cache_base);
+      RenderingSystem_277f0(cache_base);
       *(int64_t *)(cache_base + 0x150) = *(int64_t *)(cache_base + 0x150) + 1;
       *(int64_t *)(cache_base + 0x160) = *(int64_t *)(cache_base + 0x160) + 1;
       cache_param = 0xfffffffffffffffe;
@@ -894,20 +851,18 @@ void rendering_system_update_texture_cache(void)
         cache_start_ptr = *(int **)(cache_base + 0x230);
         cache_offset = (int64_t)(cache_end_ptr + -1) - (int64_t)cache_start_ptr;
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memmove(cache_start_ptr,cache_index_ptr,(int64_t)cache_end_ptr - (int64_t)cache_index_ptr);
     }
   }
   return;
 }
-
 /**
  * 渲染系统渲染缓存更新函数
- * 
+ *
  * 功能：更新渲染缓存，确保渲染数据的最新性
  */
 void rendering_system_update_render_cache(void)
-
 {
   int *cache_index_ptr;
   int cache_size;
@@ -921,12 +876,11 @@ void rendering_system_update_render_cache(void)
   int *cache_start_ptr;
   char cache_flag;
   float cache_time;
-  int64_t *in_stack_00000030;
-  uint64_t in_stack_00000038;
-  int64_t *in_stack_00000040;
-  int64_t *in_stack_00000048;
+  int64_t *local_var_30;
+  uint64_t local_var_38;
+  int64_t *local_var_40;
+  int64_t *local_var_48;
   uint64_t cache_param;
-  
   cache_base = *(int64_t *)(in_RAX + 0x3d8);
   cache_time = *(float *)(in_RAX + 0x220) + *(float *)(cache_base + 0x144);
   *(float *)(cache_base + 0x144) = cache_time;
@@ -934,8 +888,8 @@ void rendering_system_update_render_cache(void)
     return;
   }
   *(float *)(cache_base + 0x144) = cache_time - *(float *)(cache_base + 0x13c);
-  FUN_1803224b0(cache_base);
-  FUN_1803277f0(cache_base);
+  RenderingSystem_224b0(cache_base);
+  RenderingSystem_277f0(cache_base);
   *(int64_t *)(cache_base + 0x150) = *(int64_t *)(cache_base + 0x150) + 1;
   *(int64_t *)(cache_base + 0x160) = *(int64_t *)(cache_base + 0x160) + 1;
   cache_param = 0xfffffffffffffffe;
@@ -956,32 +910,32 @@ void rendering_system_update_render_cache(void)
       }
       manager_data = system_context_ptr;
       if (cache_flag == '\0') {
-        in_stack_00000030 = *(int64_t **)(cache_base + 0x148);
-        if (in_stack_00000030 != (int64_t *)0x0) {
-          (**(code **)(*in_stack_00000030 + 0x28))();
+        local_var_30 = *(int64_t **)(cache_base + 0x148);
+        if (local_var_30 != (int64_t *)0x0) {
+          (**(code **)(*local_var_30 + 0x28))();
         }
-        SystemCore_ErrorHandler(manager_data,&in_stack_00000030,0);
+        SystemCore_ErrorHandler(manager_data,&local_var_30,0);
       }
     }
     cache_entry_ptr = (int64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3,cache_param);
-    in_stack_00000040 = cache_entry_ptr;
+    local_var_40 = cache_entry_ptr;
     UltraHighFreq_PerformanceMonitor1(cache_entry_ptr);
     *cache_entry_ptr = (int64_t)&processed_var_8024_ptr;
     *(int *)(cache_entry_ptr + 0x18) = cache_size;
     cache_entry_ptr[0x19] = cache_base;
-    in_stack_00000048 = cache_entry_ptr;
+    local_var_48 = cache_entry_ptr;
     (**(code **)(*cache_entry_ptr + 0x28))(cache_entry_ptr);
-    in_stack_00000048 = *(int64_t **)(cache_base + 0x148);
+    local_var_48 = *(int64_t **)(cache_base + 0x148);
     *(int64_t **)(cache_base + 0x148) = cache_entry_ptr;
-    if (in_stack_00000048 != (int64_t *)0x0) {
-      (**(code **)(*in_stack_00000048 + 0x38))();
+    if (local_var_48 != (int64_t *)0x0) {
+      (**(code **)(*local_var_48 + 0x38))();
     }
     manager_data = system_context_ptr;
-    in_stack_00000040 = *(int64_t **)(cache_base + 0x148);
-    if (in_stack_00000040 != (int64_t *)0x0) {
-      (**(code **)(*in_stack_00000040 + 0x28))();
+    local_var_40 = *(int64_t **)(cache_base + 0x148);
+    if (local_var_40 != (int64_t *)0x0) {
+      (**(code **)(*local_var_40 + 0x28))();
     }
-    SystemCore_TimerManager(manager_data,&in_stack_00000040);
+    SystemCore_TimerManager(manager_data,&local_var_40);
     cache_end_ptr = *(int **)(cache_base + 0x238);
     for (cache_start_ptr = *(int **)(cache_base + 0x230); (cache_start_ptr != cache_end_ptr && (*cache_start_ptr != cache_size));
         cache_start_ptr = cache_start_ptr + 1) {
@@ -992,49 +946,42 @@ void rendering_system_update_render_cache(void)
     cache_start_ptr = *(int **)(cache_base + 0x230);
     cache_offset = (int64_t)(cache_end_ptr + -1) - (int64_t)cache_start_ptr;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memmove(cache_start_ptr,cache_index_ptr,(int64_t)cache_end_ptr - (int64_t)cache_index_ptr);
 }
-
 /**
  * 渲染系统空函数1
- * 
+ *
  * 功能：空函数占位符，用于系统扩展
  */
 void rendering_system_empty_function_1(void)
-
 {
   return;
 }
-
 /**
  * 渲染系统空函数2
- * 
+ *
  * 功能：空函数占位符，用于系统扩展
  */
 void rendering_system_empty_function_2(void)
-
 {
   return;
 }
-
 /**
  * 渲染系统初始化函数
- * 
+ *
  * 功能：初始化渲染系统的各种参数和全局变量
- * 
+ *
  * @param param1 参数1，包含初始化所需的上下文信息
  * @param param2 参数2，包含初始化所需的配置信息
  * @param param3 参数3，包含初始化所需的资源信息
  * @param param4 参数4，包含初始化所需的系统信息
  */
 void rendering_system_initialize_rendering_system(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4)
-
 {
   int64_t init_param1;
   int64_t init_param2;
   uint64_t init_flag;
-  
   init_flag = 0xfffffffffffffffe;
   render_system_texture = 0;
   uRam0000000180c95f00 = 0;
@@ -1043,21 +990,18 @@ void rendering_system_initialize_rendering_system(uint64_t param1, uint64_t para
   render_system_texture = 0xffffffff;
   render_system_texture = 0;
 }
-
 /**
  * 渲染系统渲染管线设置函数
- * 
+ *
  * 功能：设置渲染管线，配置渲染相关的各种参数和状态
  */
 void rendering_system_setup_render_pipeline(void)
-
 {
   uint64_t *pipeline_ptr;
   int32_t *config_ptr;
   uint64_t *resource_ptr;
-  
-  FUN_1802567b0(render_system_data_texture[0x15],&system_buffer_d688,&processed_var_9616_ptr,rendering_system_create_shader_object,0xfffffffffffffffe);
-  config_ptr = (int32_t *)FUN_18008d660(render_system_data_texture + 0x1c,&system_buffer_d688);
+  DataStructure_567b0(render_system_data_texture[0x15],&system_buffer_d688,&processed_var_9616_ptr,rendering_system_create_shader_object,0xfffffffffffffffe);
+  config_ptr = (int32_t *)GenericFunction_18008d660(render_system_data_texture + 0x1c,&system_buffer_d688);
   *config_ptr = 1;
   resource_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x38,8,3);
   resource_ptr[1] = 0;
@@ -1079,8 +1023,6 @@ void rendering_system_setup_render_pipeline(void)
   *render_system_data_texture = resource_ptr;
   return;
 }
-
-
 // 技术说明：
 // 本文件实现了一个完整的渲染系统高级批处理和纹理映射模块，包含13个核心函数：
 // 1. rendering_system_advanced_batch_processor - 高级批处理和纹理映射处理器
@@ -1096,7 +1038,6 @@ void rendering_system_setup_render_pipeline(void)
 // 11. rendering_system_update_texture_cache - 纹理缓存更新
 // 12. rendering_system_update_render_cache - 渲染缓存更新
 // 13. rendering_system_setup_render_pipeline - 渲染管线设置
-//
 // 主要功能包括：
 // - 高级批处理操作，支持多种纹理格式的处理
 // - 纹理映射和坐标变换
@@ -1104,7 +1045,6 @@ void rendering_system_setup_render_pipeline(void)
 // - 着色器对象的生命周期管理
 // - 渲染管线的初始化和配置
 // - 内存管理和资源清理
-//
 // 优化特性：
 // - 使用分块处理提高渲染效率
 // - 实现纹理缓存机制减少重复计算

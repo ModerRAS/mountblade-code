@@ -1,11 +1,8 @@
 #include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_09_part040.c - 6 个函数
-
-// 函数: void FUN_1805cf6c9(void)
-void FUN_1805cf6c9(void)
-
+// 函数: void function_5cf6c9(void)
+void function_5cf6c9(void)
 {
   int iVar1;
   bool bVar2;
@@ -27,7 +24,6 @@ void FUN_1805cf6c9(void)
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
   float unaff_XMM10_Da;
-  
   if (((*(int *)(*unaff_RBX + 0x1fc) == 3) || (*(int *)((int64_t)unaff_RBX + 0x178c) != 7)) ||
      (*(int *)(*unaff_RBX + 0x1fc) != 1)) goto DataEncryptionEngine;
   if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
@@ -46,15 +42,15 @@ void FUN_1805cf6c9(void)
       if ((float)(*(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2dd] * 8) - unaff_RBX[0x2dc])
           * 1e-05 <= unaff_XMM10_Da) goto DataEncryptionEngine;
       if (bVar2) {
-        pcVar5 = (char *)func_0x000180507f80(unaff_RBX + 1);
+        pcVar5 = (char *)Function_a48d12a5(unaff_RBX + 1);
         if (*pcVar5 != '\0') goto DataEncryptionEngine;
         lVar7 = *unaff_RBX;
       }
 LAB_1805cf801:
       iVar11 = 0;
-      cVar3 = func_0x0001805b7bd0();
-      if ((cVar3 == '\0') && (cVar3 = func_0x0001805d1da0(), cVar3 != '\0')) {
-        lVar4 = func_0x0001805d1df0();
+      cVar3 = Function_02036713();
+      if ((cVar3 == '\0') && (cVar3 = SystemFunction_0001805d1da0(), cVar3 != '\0')) {
+        lVar4 = Function_90ed6f9f();
         iVar11 = *(int *)(lVar4 + 0x678);
       }
       iVar1 = *(int *)(lVar7 + 0x678);
@@ -131,7 +127,7 @@ LAB_1805cf801:
            *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ec] * 8) -
            (int64_t)(unaff_XMM6_Da - (float)(uVar9 - 1) * 1.1641532e-05);
     }
-    func_0x0001805cef70();
+    SystemFunction_0001805cef70();
     goto DataEncryptionEngine;
   }
   pfVar8 = (float *)SystemCore_StateManager(unaff_RBX + 1);
@@ -149,7 +145,7 @@ LAB_1805cfb42:
         fVar15 < *pfVar8 || fVar15 == *pfVar8)))) goto DataEncryptionEngine;
   }
   else {
-    lVar7 = func_0x0001805b7270(unaff_RBX + 1);
+    lVar7 = Function_ab0c15dc(unaff_RBX + 1);
     if (lVar7 == 0) {
       fVar15 = 5.0;
     }
@@ -177,13 +173,13 @@ DataEncryptionEngine:
           uVar9 = *(uint *)(unaff_RBX + 2);
         }
         if ((uVar9 >> 8 & 1) == 0) {
-          FUN_1805d4b40(unaff_RBX + 1);
+          function_5d4b40(unaff_RBX + 1);
         }
         if ((*(float *)(unaff_RBX + 0x1c) * 1.5 < *(float *)((int64_t)unaff_RBX + 0xa4)) &&
            (lVar7 = *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ea] * 8),
            lVar4 = unaff_RBX[0x2e9], pfVar8 = (float *)SystemCore_StateManager(unaff_RBX + 1),
            *pfVar8 * 3.0 < (float)(lVar7 - lVar4) * 1e-05)) {
-          func_0x0001805cef70();
+          SystemFunction_0001805cef70();
         }
       }
     }
@@ -206,15 +202,8 @@ DataEncryptionEngine:
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805cf6f4(int param_1)
-void FUN_1805cf6f4(int param_1)
-
+// 函数: void function_5cf6f4(int param_1)
+void function_5cf6f4(int param_1)
 {
   int iVar1;
   bool bVar2;
@@ -237,7 +226,6 @@ void FUN_1805cf6f4(int param_1)
   float unaff_XMM7_Da;
   float unaff_XMM8_Da;
   float unaff_XMM10_Da;
-  
   if ((*(int *)((int64_t)unaff_RBX + 0x178c) != 7) || (param_1 != 1)) goto DataEncryptionEngine;
   if ((*(byte *)(unaff_RBX + 2) & 0x80) == 0) {
     SystemCore_Validator(unaff_RBX + 1);
@@ -255,15 +243,15 @@ void FUN_1805cf6f4(int param_1)
       if ((float)(*(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2dd] * 8) - unaff_RBX[0x2dc])
           * unaff_XMM8_Da <= unaff_XMM10_Da) goto DataEncryptionEngine;
       if (bVar2) {
-        pcVar5 = (char *)func_0x000180507f80(unaff_RBX + 1);
+        pcVar5 = (char *)Function_a48d12a5(unaff_RBX + 1);
         if (*pcVar5 != '\0') goto DataEncryptionEngine;
         lVar7 = *unaff_RBX;
       }
 LAB_1805cf801:
       iVar11 = 0;
-      cVar3 = func_0x0001805b7bd0();
-      if ((cVar3 == '\0') && (cVar3 = func_0x0001805d1da0(), cVar3 != '\0')) {
-        lVar4 = func_0x0001805d1df0();
+      cVar3 = Function_02036713();
+      if ((cVar3 == '\0') && (cVar3 = SystemFunction_0001805d1da0(), cVar3 != '\0')) {
+        lVar4 = Function_90ed6f9f();
         iVar11 = *(int *)(lVar4 + 0x678);
       }
       iVar1 = *(int *)(lVar7 + 0x678);
@@ -340,7 +328,7 @@ LAB_1805cf801:
            *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ec] * 8) -
            (int64_t)(unaff_XMM6_Da - (float)(uVar9 - 1) * 1.1641532e-05);
     }
-    func_0x0001805cef70();
+    SystemFunction_0001805cef70();
     goto DataEncryptionEngine;
   }
   pfVar8 = (float *)SystemCore_StateManager(unaff_RBX + 1);
@@ -358,7 +346,7 @@ LAB_1805cfb42:
         fVar15 < *pfVar8 || fVar15 == *pfVar8)))) goto DataEncryptionEngine;
   }
   else {
-    lVar7 = func_0x0001805b7270(unaff_RBX + 1);
+    lVar7 = Function_ab0c15dc(unaff_RBX + 1);
     if (lVar7 == 0) {
       fVar15 = 5.0;
     }
@@ -386,13 +374,13 @@ DataEncryptionEngine:
           uVar9 = *(uint *)(unaff_RBX + 2);
         }
         if ((uVar9 >> 8 & 1) == 0) {
-          FUN_1805d4b40(unaff_RBX + 1);
+          function_5d4b40(unaff_RBX + 1);
         }
         if ((*(float *)(unaff_RBX + 0x1c) * 1.5 < *(float *)((int64_t)unaff_RBX + 0xa4)) &&
            (lVar7 = *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ea] * 8),
            lVar4 = unaff_RBX[0x2e9], pfVar8 = (float *)SystemCore_StateManager(unaff_RBX + 1),
            *pfVar8 * 3.0 < (float)(lVar7 - lVar4) * unaff_XMM8_Da)) {
-          func_0x0001805cef70();
+          SystemFunction_0001805cef70();
         }
       }
     }
@@ -415,15 +403,8 @@ DataEncryptionEngine:
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805cf9f7(void)
-void FUN_1805cf9f7(void)
-
+// 函数: void function_5cf9f7(void)
+void function_5cf9f7(void)
 {
   float fVar1;
   int64_t lVar2;
@@ -438,7 +419,6 @@ void FUN_1805cf9f7(void)
   float fVar7;
   float unaff_XMM8_Da;
   float unaff_XMM10_Da;
-  
   if (0.5 < (float)(*(int64_t *)(unaff_R13 + in_RAX * 8) - unaff_RBX[0x2e9]) * unaff_XMM8_Da) {
     pfVar3 = (float *)SystemCore_ConfigLoader();
     if (unaff_XMM10_Da != *pfVar3) {
@@ -457,7 +437,7 @@ void FUN_1805cf9f7(void)
            (int64_t)(unaff_XMM6_Da - (float)(uVar6 - 1) * 1.1641532e-05);
     }
 LAB_1805cfaaa:
-    func_0x0001805cef70();
+    SystemFunction_0001805cef70();
     goto LAB_1805cfbd7;
   }
   pfVar3 = (float *)SystemCore_StateManager();
@@ -476,7 +456,7 @@ LAB_1805cfb42:
     if (fVar7 < *pfVar3 || fVar7 == *pfVar3) goto LAB_1805cfbd7;
   }
   else {
-    lVar5 = func_0x0001805b7270(unaff_RBX + 1);
+    lVar5 = Function_ab0c15dc(unaff_RBX + 1);
     if (lVar5 == 0) {
       fVar7 = 5.0;
     }
@@ -504,14 +484,14 @@ LAB_1805cfbd7:
           uVar6 = *(uint *)(unaff_RBX + 2);
         }
         if ((uVar6 >> 8 & 1) == 0) {
-          FUN_1805d4b40(unaff_RBX + 1);
+          function_5d4b40(unaff_RBX + 1);
         }
         if (*(float *)(unaff_RBX + 0x1c) * 1.5 < *(float *)((int64_t)unaff_RBX + 0xa4)) {
           lVar5 = *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ea] * 8);
           lVar2 = unaff_RBX[0x2e9];
           pfVar3 = (float *)SystemCore_StateManager(unaff_RBX + 1);
           if (*pfVar3 * 3.0 < (float)(lVar5 - lVar2) * unaff_XMM8_Da) {
-            func_0x0001805cef70();
+            SystemFunction_0001805cef70();
           }
         }
       }
@@ -535,15 +515,8 @@ LAB_1805cfbd7:
   }
   return;
 }
-
-
-
-
-
-
 // 函数: void DataEncryptionEngine(void)
 void DataEncryptionEngine(void)
-
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -553,7 +526,6 @@ void DataEncryptionEngine(void)
   int64_t unaff_R13;
   float unaff_XMM8_Da;
   float unaff_XMM10_Da;
-  
   if (*(int *)((int64_t)unaff_RBX + 0x178c) == 7) {
     if (unaff_XMM10_Da <
         (float)(*(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2dd] * 8) - unaff_RBX[0x2dc]) *
@@ -565,14 +537,14 @@ void DataEncryptionEngine(void)
           uVar3 = *(uint *)(unaff_RBX + 2);
         }
         if ((uVar3 >> 8 & 1) == 0) {
-          FUN_1805d4b40(unaff_RBX + 1);
+          function_5d4b40(unaff_RBX + 1);
         }
         if (*(float *)(unaff_RBX + 0x1c) * 1.5 < *(float *)((int64_t)unaff_RBX + 0xa4)) {
           lVar1 = *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ea] * 8);
           lVar2 = unaff_RBX[0x2e9];
           pfVar4 = (float *)SystemCore_StateManager(unaff_RBX + 1);
           if (*pfVar4 * 3.0 < (float)(lVar1 - lVar2) * unaff_XMM8_Da) {
-            func_0x0001805cef70();
+            SystemFunction_0001805cef70();
           }
         }
       }
@@ -596,15 +568,8 @@ void DataEncryptionEngine(void)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805cfbef(void)
-void FUN_1805cfbef(void)
-
+// 函数: void function_5cfbef(void)
+void function_5cfbef(void)
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -614,7 +579,6 @@ void FUN_1805cfbef(void)
   int64_t unaff_R13;
   float unaff_XMM8_Da;
   float unaff_XMM10_Da;
-  
   if (unaff_XMM10_Da <
       (float)(*(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2dd] * 8) - unaff_RBX[0x2dc]) *
       unaff_XMM8_Da) {
@@ -625,14 +589,14 @@ void FUN_1805cfbef(void)
         uVar3 = *(uint *)(unaff_RBX + 2);
       }
       if ((uVar3 >> 8 & 1) == 0) {
-        FUN_1805d4b40(unaff_RBX + 1);
+        function_5d4b40(unaff_RBX + 1);
       }
       if (*(float *)(unaff_RBX + 0x1c) * 1.5 < *(float *)((int64_t)unaff_RBX + 0xa4)) {
         lVar1 = *(int64_t *)(unaff_R13 + (int64_t)(int)unaff_RBX[0x2ea] * 8);
         lVar2 = unaff_RBX[0x2e9];
         pfVar4 = (float *)SystemCore_StateManager(unaff_RBX + 1);
         if (*pfVar4 * 3.0 < (float)(lVar1 - lVar2) * unaff_XMM8_Da) {
-          func_0x0001805cef70();
+          SystemFunction_0001805cef70();
         }
       }
     }
@@ -655,20 +619,12 @@ void FUN_1805cfbef(void)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805cfd1d(void)
-void FUN_1805cfd1d(void)
-
+// 函数: void function_5cfd1d(void)
+void function_5cfd1d(void)
 {
   int64_t unaff_RBX;
   int64_t unaff_R13;
   float unaff_XMM8_Da;
-  
   if ((((float)(*(int64_t *)(unaff_R13 + (int64_t)*(int *)(unaff_RBX + 6000) * 8) -
                *(int64_t *)(unaff_RBX + 0x1768)) * unaff_XMM8_Da < -100.0) ||
       (9 < *(uint *)(unaff_RBX + 0x178c))) ||
@@ -677,12 +633,5 @@ void FUN_1805cfd1d(void)
   }
   return;
 }
-
-
-
 // WARNING: Possible PIC construction at 0x0001805d0206: Changing call to branch
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

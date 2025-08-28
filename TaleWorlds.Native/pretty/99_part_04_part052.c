@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_04_part052.c - 1 个函数
-
-// 函数: void FUN_1802b7360(int64_t *param_1,float param_2)
-void FUN_1802b7360(int64_t *param_1,float param_2)
-
+// 函数: void function_2b7360(int64_t *param_1,float param_2)
+void function_2b7360(int64_t *param_1,float param_2)
 {
   int64_t *plVar1;
   int *piVar2;
@@ -64,7 +61,6 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
   float fVar52;
   float fVar53;
   float fVar54;
-  
   lVar26 = param_1[0xc];
   plVar1 = param_1 + 0xb;
   lVar24 = *plVar1;
@@ -73,7 +69,7 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
   fVar34 = param_2 * param_2;
   uVar33 = (lVar26 - lVar24) / 0x70;
   iVar25 = (int)uVar33;
-  uVar35 = func_0x0001802b6b90(lVar32 + 0xb20,*(float *)(lVar28 + 0x3044) * 0.041666668);
+  uVar35 = Function_a7a0378c(lVar32 + 0xb20,*(float *)(lVar28 + 0x3044) * 0.041666668);
   if (*(char *)((int64_t)param_1 + 0xa1) == '\0') {
     fVar48 = *(float *)(lVar32 + 0xfa4);
     fVar54 = *(float *)(lVar32 + 0xfa8);
@@ -132,19 +128,19 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
       *(int32_t *)(uVar23 + 0x5c + lVar24) = uVar35;
       lVar28 = param_1[9];
       fVar44 = fVar3 * fVar5 * fVar42;
-      fVar36 = (float)func_0x0001802b6b90(lVar28 + 0xa68,*(int32_t *)(uVar23 + 0x24 + lVar24));
+      fVar36 = (float)Function_a7a0378c(lVar28 + 0xa68,*(int32_t *)(uVar23 + 0x24 + lVar24));
       fVar41 = *(float *)(uVar23 + 0xc + lVar24);
       fVar40 = *(float *)(uVar23 + 0x1c + lVar24);
       fVar50 = fVar3 * fVar4 * fVar42 * fVar36 * *(float *)(uVar23 + 0x40 + lVar24) + fVar52 +
                fVar46;
       fVar51 = fVar44 * fVar36 * *(float *)(uVar23 + 0x40 + lVar24) + fVar53 + fVar47;
       fVar44 = fVar48 + fVar54;
-      fVar36 = (float)func_0x0001802b6b90(lVar28 + 0x340);
+      fVar36 = (float)Function_a7a0378c(lVar28 + 0x340);
       fVar36 = fVar36 * *(float *)(uVar23 + 0x48 + lVar24);
       if (1.0 <= fVar36) {
         fVar36 = 1.0;
       }
-      fVar37 = (float)func_0x0001802b6b90(lVar28 + 0x3f8);
+      fVar37 = (float)Function_a7a0378c(lVar28 + 0x3f8);
       fVar37 = fVar37 * *(float *)(lVar28 + 0x3f4);
       lVar22 = *(int64_t *)(lVar28 + 0x100);
       fVar6 = *(float *)(uVar23 + lVar24);
@@ -162,7 +158,7 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
       fVar10 = fVar6;
       if (lVar22 != 0) {
         fVar10 = *(float *)(lVar28 + 0xcc);
-        fVar38 = (float)func_0x0001802b6b90(lVar28 + 0x118);
+        fVar38 = (float)Function_a7a0378c(lVar28 + 0x118);
         fVar38 = fVar38 * *(float *)(uVar23 + 0x4c + lVar24);
         fVar44 = 1.0 - fVar10;
         iVar25 = *(int *)(lVar22 + 0xc0);
@@ -201,7 +197,7 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
       *(float *)(uVar23 + 0x1c + lVar24) = fVar44;
       *(float *)(uVar23 + 0xc + lVar24) = (1.0 - fVar37 * fVar37) * (fVar41 - fVar40) + fVar44;
       lVar28 = param_1[9];
-      fVar40 = (float)func_0x0001802b6b90(lVar28 + 0x618,*(int32_t *)(uVar23 + 0x24 + lVar24));
+      fVar40 = (float)Function_a7a0378c(lVar28 + 0x618,*(int32_t *)(uVar23 + 0x24 + lVar24));
       fVar41 = *(float *)(uVar23 + 0x28 + lVar24);
       if (*(int *)(lVar28 + 0x6c) == 0) {
         fVar40 = fVar40 * fVar41;
@@ -222,12 +218,12 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
         lVar32 = lVar32 + -1;
         lVar26 = lVar26 + -0x70;
         if (param_1[0x1e] != 0) {
-          FUN_1802b0ad0(param_1[0x1e],(int64_t)(int)uVar29 * 0x70 + *plVar1);
+          function_2b0ad0(param_1[0x1e],(int64_t)(int)uVar29 * 0x70 + *plVar1);
           lVar24 = param_1[0x1e];
           lVar22 = *(int64_t *)(lVar24 + 0x38) - *(int64_t *)(lVar24 + 0x30);
           lVar28 = lVar22 >> 0x3f;
           if (lVar22 / 0x88 + lVar28 != lVar28) {
-            FUN_1802b09d0(lVar24,*(int32_t *)(uVar23 + 0x58 + *plVar1));
+            function_2b09d0(lVar24,*(int32_t *)(uVar23 + 0x58 + *plVar1));
           }
         }
         lVar24 = *plVar1;
@@ -285,7 +281,7 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
   puVar27 = (uint64_t *)param_1[0xc];
   if (uVar23 <= (uint64_t)((param_1[0xd] - (int64_t)puVar27) / 0x70)) {
     if (uVar23 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(puVar27,0,0x70,0x4924924924924925,unaff_R14,unaff_RDI,unaff_RBP);
     }
     param_1[0xc] = (int64_t)puVar27;
@@ -335,11 +331,11 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
     puVar16 = puVar16 + 0xe;
   }
   if (uVar23 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(puVar16,0,0x70);
   }
   if (*plVar1 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
   *plVar1 = (int64_t)puVar30;
@@ -347,11 +343,4 @@ void FUN_1802b7360(int64_t *param_1,float param_2)
   param_1[0xc] = (int64_t)puVar16;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

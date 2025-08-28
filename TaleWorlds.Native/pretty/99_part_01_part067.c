@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_01_part067.c - 3 个函数
-
-// 函数: void FUN_1800e5197(void)
-void FUN_1800e5197(void)
-
+// 函数: void GenericFunction_1800e5197(void)
+void GenericFunction_1800e5197(void)
 {
   int iVar1;
   uint64_t *puVar2;
@@ -42,7 +39,6 @@ void FUN_1800e5197(void)
   uint *puVar26;
   bool bVar27;
   int64_t lStack0000000000000030;
-  
   *(uint64_t *)(in_RAX + 8) = unaff_RBX;
   uVar22 = 0;
   *(uint64_t *)(in_RAX + 0x10) = unaff_RBP;
@@ -70,7 +66,7 @@ void FUN_1800e5197(void)
       uVar22 = (uint64_t)(uVar11 + 1);
     } while ((int)(uVar11 + 1) < (int)in_R10D);
   }
-  goto FUN_1800e545a;
+  goto GenericFunction_1800e545a;
 LAB_1800e5260:
   do {
     uVar22 = (uint64_t)(uVar11 >> 0xb);
@@ -111,7 +107,7 @@ LAB_1800e538e:
         *(uint *)(lVar19 + 0x2e0) = *(uint *)(lVar19 + 0x2e0) | 0x80;
         *(int *)(lVar19 + 0x2d0) = iVar25;
       }
-      if (uVar11 == in_R10D) goto FUN_1800e545a;
+      if (uVar11 == in_R10D) goto GenericFunction_1800e545a;
       uVar22 = (uint64_t)(uVar11 >> 0xb);
       lVar19 = (uint64_t)(uVar11 & 0x7ff) * 0x18;
       lVar14 = *(int64_t *)(*(int64_t *)(unaff_RDI + uVar22 * 2 + 2) + lVar19);
@@ -125,7 +121,7 @@ LAB_1800e538e:
     *(uint *)(lVar19 + 0x2e0) = *(uint *)(lVar19 + 0x2e0) | 0x80;
     *(int *)(lVar19 + 0x2d0) = iVar25;
   }
-FUN_1800e545a:
+GenericFunction_1800e545a:
   bVar27 = false;
   uVar22 = 0;
   uVar23 = 0x7fffffff;
@@ -215,7 +211,7 @@ FUN_1800e545a:
                 }
                 else {
                   if (lVar14 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     CoreEngineMemoryPoolCleaner();
                   }
                   do {
@@ -243,13 +239,8 @@ FUN_1800e545a:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1800e5205(uint64_t param_1,uint64_t param_2,int param_3,int64_t param_4)
-
+uint64_t GenericFunction_1800e5205(uint64_t param_1,uint64_t param_2,int param_3,int64_t param_4)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
@@ -282,8 +273,7 @@ uint64_t FUN_1800e5205(uint64_t param_1,uint64_t param_2,int param_3,int64_t par
   int unaff_R14D;
   uint *puVar26;
   bool bVar27;
-  uint64_t uStack0000000000000030;
-  
+  uint64_t local_var_30;
   lVar20 = (uint64_t)(in_EAX & 0x7ff) * 0x18;
   lVar14 = *(int64_t *)(*(int64_t *)(unaff_RDI + param_4 * 2 + 2) + lVar20);
   uVar25 = *(uint64_t *)(*(int64_t *)(unaff_RDI + param_4 * 2 + 2) + 8 + lVar20);
@@ -338,7 +328,7 @@ joined_r0x0001800e5391:
           *(uint *)(lVar20 + 0x2e0) = *(uint *)(lVar20 + 0x2e0) | 0x80;
           *(int *)(lVar20 + 0x2d0) = iVar24;
         }
-        if (uVar13 == in_R10D) goto FUN_1800e5450;
+        if (uVar13 == in_R10D) goto GenericFunction_1800e5450;
         uVar23 = uVar15 >> 0xb;
         lVar20 = (uint64_t)(uVar13 & 0x7ff) * 0x18;
         lVar14 = *(int64_t *)(*(int64_t *)(unaff_RDI + uVar23 * 2 + 2) + lVar20);
@@ -354,7 +344,7 @@ joined_r0x0001800e5391:
       *(int *)(lVar20 + 0x2d0) = iVar24;
     }
   }
-FUN_1800e5450:
+GenericFunction_1800e5450:
   iVar24 = 0;
   uVar23 = 0;
   uVar19 = 0x7fffffff;
@@ -364,7 +354,7 @@ FUN_1800e5450:
       uVar12 = (uint)uVar15;
       uVar23 = uVar15 >> 0xb;
       lVar20 = (uint64_t)(uVar12 & 0x7ff) * 0x18;
-      uStack0000000000000030 =
+      local_var_30 =
            *(uint64_t *)(*(int64_t *)(unaff_RDI + uVar23 * 2 + 2) + 0x10 + lVar20);
       puVar1 = (uint64_t *)(*(int64_t *)(unaff_RDI + uVar23 * 2 + 2) + lVar20);
       uVar25 = puVar1[1];
@@ -374,15 +364,15 @@ FUN_1800e5450:
       if (iVar24 == 0) {
         uVar21 = uVar15;
         iVar11 = unaff_R14D;
-        if ((*(uint *)(uStack0000000000000030 + 0x2e0) & 0x100) == 0) {
+        if ((*(uint *)(local_var_30 + 0x2e0) & 0x100) == 0) {
           uVar15 = uVar19;
           uVar21 = uVar19;
           iVar11 = iVar24;
         }
       }
       else {
-        uVar15 = uStack0000000000000030;
-        if ((*(uint *)(uStack0000000000000030 + 0x2e0) & 0x100) == 0) {
+        uVar15 = local_var_30;
+        if ((*(uint *)(local_var_30 + 0x2e0) & 0x100) == 0) {
           if ((int)uVar13 < (int)uVar12) {
             uVar15 = (uint64_t)(uVar13 & 0x7ff);
             puVar2 = (uint64_t *)
@@ -395,7 +385,7 @@ FUN_1800e5450:
             puVar2 = (uint64_t *)(lVar14 + uVar15 * 0x18);
             *puVar2 = *puVar1;
             puVar2[1] = uVar25;
-            *(uint64_t *)(lVar14 + 0x10 + uVar15 * 0x18) = uStack0000000000000030;
+            *(uint64_t *)(lVar14 + 0x10 + uVar15 * 0x18) = local_var_30;
             uVar15 = *(uint64_t *)(unaff_RDI + uVar23 * 2 + 2);
             *(uint64_t *)(uVar15 + lVar20) = uVar9;
             ((uint64_t *)(uVar15 + lVar20))[1] = uVar10;
@@ -455,7 +445,7 @@ FUN_1800e5450:
                 }
                 else {
                   if (lVar14 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     CoreEngineMemoryPoolCleaner();
                   }
                   do {
@@ -485,17 +475,9 @@ FUN_1800e5450:
   }
   return uVar15;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1800e5254(void)
-void FUN_1800e5254(void)
-
+// 函数: void GenericFunction_1800e5254(void)
+void GenericFunction_1800e5254(void)
 {
   int iVar1;
   uint64_t *puVar2;
@@ -530,7 +512,6 @@ void FUN_1800e5254(void)
   uint *puVar23;
   bool bVar24;
   int64_t lStack0000000000000030;
-  
   do {
     uVar21 = (uint64_t)(in_EAX >> 0xb);
     lVar17 = (uint64_t)(in_EAX & 0x7ff) * 0x18;
@@ -679,7 +660,7 @@ LAB_1800e544b:
                 }
                 else {
                   if (lVar11 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     CoreEngineMemoryPoolCleaner();
                   }
                   do {
@@ -707,17 +688,9 @@ LAB_1800e544b:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1800e5450(void)
-void FUN_1800e5450(void)
-
+// 函数: void GenericFunction_1800e5450(void)
+void GenericFunction_1800e5450(void)
 {
   int iVar1;
   uint64_t *puVar2;
@@ -744,7 +717,6 @@ void FUN_1800e5450(void)
   uint *puVar20;
   bool bVar21;
   int64_t lStack0000000000000030;
-  
   iVar18 = 0;
   uVar17 = 0;
   uVar19 = 0x7fffffff;
@@ -831,7 +803,7 @@ void FUN_1800e5450(void)
                 }
                 else {
                   if (lVar10 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     CoreEngineMemoryPoolCleaner();
                   }
                   do {
@@ -859,11 +831,4 @@ void FUN_1800e5450(void)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

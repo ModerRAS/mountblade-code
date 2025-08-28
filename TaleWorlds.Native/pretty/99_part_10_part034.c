@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_10_part034.c - 1 个函数
-
-// 函数: void FUN_1806bae08(void)
-void FUN_1806bae08(void)
-
+// 函数: void UtilitiesSystem_bae08(void)
+void UtilitiesSystem_bae08(void)
 {
   int64_t in_RAX;
   int64_t lVar1;
@@ -57,18 +54,17 @@ void FUN_1806bae08(void)
   int32_t unaff_XMM14_Db;
   int32_t unaff_XMM14_Dc;
   int32_t unaff_XMM14_Dd;
-  float in_stack_00000030;
+  float local_var_30;
   float fStack0000000000000034;
-  float in_stack_00000038;
+  float local_var_38;
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000048;
   float fStack000000000000004c;
   float fStack0000000000000050;
   float fStack0000000000000054;
-  float in_stack_00000058;
-  int8_t in_stack_00000140;
-  
+  float local_var_58;
+  int8_t local_var_140;
   *(int32_t *)(in_R11 + -0x18) = unaff_XMM6_Da;
   *(int32_t *)(in_R11 + -0x14) = unaff_XMM6_Db;
   *(int32_t *)(in_R11 + -0x10) = unaff_XMM6_Dc;
@@ -106,7 +102,7 @@ void FUN_1806bae08(void)
   *(int32_t *)(in_R11 + -0x90) = unaff_XMM14_Dc;
   *(int32_t *)(in_R11 + -0x8c) = unaff_XMM14_Dd;
   uVar2 = (**(code **)(in_RAX + 0x90))();
-  lVar1 = (**(code **)(*unaff_RSI + 0xd8))(uVar2,&stack0x00000060);
+  lVar1 = (**(code **)(*unaff_RSI + 0xd8))(uVar2,&local_buffer_00000060);
   fVar9 = *(float *)(lVar1 + 0x10) + *(float *)(lVar1 + 0x10);
   fVar6 = *(float *)(lVar1 + 0x14) + *(float *)(lVar1 + 0x14);
   fVar8 = *(float *)(lVar1 + 0x18) + *(float *)(lVar1 + 0x18);
@@ -124,18 +120,12 @@ void FUN_1806bae08(void)
   fVar6 = unaff_RBX[2] -
           ((fStack0000000000000040 * fVar6 - fStack0000000000000044 * fVar9) *
            fStack000000000000004c + fVar7 * fVar8 + fStack0000000000000048 * fVar4 +
-          in_stack_00000058);
-  in_stack_00000030 = fVar3 * unaff_RBP[2] - fVar6 * unaff_RBP[1];
+          local_var_58);
+  local_var_30 = fVar3 * unaff_RBP[2] - fVar6 * unaff_RBP[1];
   fVar4 = fVar5 * unaff_RBP[2];
-  in_stack_00000038 = fVar5 * unaff_RBP[1] - fVar3 * *unaff_RBP;
+  local_var_38 = fVar5 * unaff_RBP[1] - fVar3 * *unaff_RBP;
   fStack0000000000000034 = fVar6 * *unaff_RBP - fVar4;
-  uVar2 = (**(code **)(*unaff_RSI + 0x170))(fVar4,in_stack_00000030,unaff_EDI,in_stack_00000140);
-  (**(code **)(*unaff_RSI + 0x178))(uVar2,&stack0x00000030,unaff_EDI,in_stack_00000140);
+  uVar2 = (**(code **)(*unaff_RSI + 0x170))(fVar4,local_var_30,unaff_EDI,local_var_140);
+  (**(code **)(*unaff_RSI + 0x178))(uVar2,&local_buffer_00000030,unaff_EDI,local_var_140);
   return;
 }
-
-
-
-
-
-

@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part174.c - 2 个函数
-
-// 函数: void FUN_1803752a0(uint param_1)
-void FUN_1803752a0(uint param_1)
-
+// 函数: void RenderingSystem_752a0(uint param_1)
+void RenderingSystem_752a0(uint param_1)
 {
   float fVar1;
   float fVar2;
@@ -40,16 +37,15 @@ void FUN_1803752a0(uint param_1)
   int64_t unaff_R15;
   int64_t lVar23;
   int iStack0000000000000030;
-  uint uStack0000000000000034;
+  uint local_buffer_34;
   int64_t lStack0000000000000038;
-  uint64_t uStack0000000000000050;
+  uint64_t local_buffer_50;
   int64_t lStack0000000000000058;
-  uint64_t in_stack_00000060;
-  int32_t uStack0000000000000068;
-  int16_t uStack000000000000006c;
-  uint64_t in_stack_00000070;
-  uint64_t in_stack_00000078;
-  
+  uint64_t local_buffer_60;
+  int32_t local_buffer_68;
+  int16_t local_buffer_6c;
+  uint64_t local_buffer_70;
+  uint64_t local_buffer_78;
   *(uint64_t *)(in_R11 + -0x20) = unaff_RBX;
   *(uint64_t *)(in_R11 + -0x28) = unaff_RSI;
   *(uint64_t *)(in_R11 + -0x30) = unaff_RDI;
@@ -61,7 +57,7 @@ void FUN_1803752a0(uint param_1)
     uVar19 = *(uint64_t *)(lStack0000000000000058 + in_RAX);
     lVar10 = *(int64_t *)(unaff_R15 + 0x10);
     *(int64_t *)(unaff_RBP + -4) = lVar10;
-    uStack0000000000000050 = uVar19;
+    local_buffer_50 = uVar19;
     if (lVar10 != *(int64_t *)(unaff_R15 + 0x18)) {
       do {
         plVar18 = *(int64_t **)(lVar10 + 8);
@@ -69,7 +65,7 @@ void FUN_1803752a0(uint param_1)
         *(int64_t **)(unaff_RBP + -0xc) = plVar18;
         lVar17 = 8;
         *(uint64_t *)(unaff_RBP + -8) = 0;
-        uStack0000000000000034 = 1;
+        local_buffer_34 = 1;
         lVar10 = *plVar18;
         *(uint64_t *)(unaff_RBP + -6) = 8;
         do {
@@ -85,7 +81,7 @@ void FUN_1803752a0(uint param_1)
               *(uint64_t *)(unaff_RBP + -10) = 0;
               do {
                 iVar22 = 0;
-                if ((*(uint *)(lVar13 + 8 + lVar21) & uStack0000000000000034) != 0) {
+                if ((*(uint *)(lVar13 + 8 + lVar21) & local_buffer_34) != 0) {
                   lVar17 = *(int64_t *)(lVar13 + lVar21);
                   uVar15 = *(int64_t *)(lVar23 + 0x18 + lVar6) -
                            *(int64_t *)(lVar23 + 0x10 + lVar6) >> 5;
@@ -93,7 +89,7 @@ void FUN_1803752a0(uint param_1)
                   if (0 < (int)uVar15) {
                     do {
                       lVar21 = *(int64_t *)(lVar17 + 0x1b8);
-                      in_stack_00000070 = 0;
+                      local_buffer_70 = 0;
                       iVar14 = (int)uVar15;
                       unaff_RBP[-0x1d] = 0;
                       unaff_RBP[-0x18] = 0;
@@ -107,10 +103,10 @@ void FUN_1803752a0(uint param_1)
                            (int64_t)iVar22 * 0x20 + *(int64_t *)(lVar23 + 0x10 + lVar6);
                       unaff_RBP[2] = iVar16;
                       cVar8 = *(char *)(lVar21 + 0x38c);
-                      in_stack_00000060 = 0;
-                      uStack0000000000000068 = 0xffffffff;
-                      uStack000000000000006c = 0xff00;
-                      in_stack_00000078 = 0xffffffffffffffff;
+                      local_buffer_60 = 0;
+                      local_buffer_68 = 0xffffffff;
+                      local_buffer_6c = 0xff00;
+                      local_buffer_78 = 0xffffffffffffffff;
                       unaff_RBP[-0x20] = 0xffffffff;
                       *(int8_t *)(unaff_RBP + -0x1f) = 0xff;
                       unaff_RBP[-0x1e] = 0xffffffff;
@@ -165,11 +161,11 @@ void FUN_1803752a0(uint param_1)
                       }
                       *(int32_t **)(unaff_RBP + -0x1a) = unaff_RBP + 2;
                       unaff_RBP[8] = (float)iVar12;
-                      SystemHealthMonitor(lVar17,uVar19,&system_data_0300,0,&stack0x00000060);
+                      SystemHealthMonitor(lVar17,uVar19,&system_data_0300,0,&local_buffer_00000060);
                       plVar18 = *(int64_t **)(unaff_RBP + -0xc);
                       uVar15 = (uint64_t)(uint)(iVar14 - iVar16);
                       iVar22 = iVar22 + 0x200;
-                      uVar19 = uStack0000000000000050;
+                      uVar19 = local_buffer_50;
                       iVar20 = iVar20 + 1;
                     } while (0 < iVar14 - iVar16);
                     lVar21 = *(int64_t *)(unaff_RBP + -10);
@@ -188,8 +184,8 @@ void FUN_1803752a0(uint param_1)
             }
           }
           lVar21 = lVar21 + 1;
-          uStack0000000000000034 =
-               uStack0000000000000034 << 1 | (uint)((int)uStack0000000000000034 < 0);
+          local_buffer_34 =
+               local_buffer_34 << 1 | (uint)((int)local_buffer_34 < 0);
           lVar17 = lVar17 + -1;
           *(int64_t *)(unaff_RBP + -6) = lVar17;
           *(int64_t *)(unaff_RBP + -8) = lVar21;
@@ -200,7 +196,7 @@ void FUN_1803752a0(uint param_1)
       } while (lVar10 != *(int64_t *)(unaff_R15 + 0x18));
       param_1 = unaff_RBP[0x26];
     }
-    uVar19 = uStack0000000000000050;
+    uVar19 = local_buffer_50;
     lVar10 = lStack0000000000000038;
     iVar22 = 0;
     if (*(int64_t *)(unaff_R15 + 0x38) - *(int64_t *)(unaff_R15 + 0x30) >> 4 != 0) {
@@ -214,9 +210,9 @@ void FUN_1803752a0(uint param_1)
         unaff_RBP[1] = *(int32_t *)(lVar17 + 8 + lVar21);
         (**(code **)(*plVar18 + 400))(plVar18,unaff_RBP + -2);
         uVar7 = *(uint64_t *)(unaff_R13 + 0x2148);
-        uStack0000000000000068 = 0xffffffff;
-        in_stack_00000060 = 0;
-        in_stack_00000070 = 0;
+        local_buffer_68 = 0xffffffff;
+        local_buffer_60 = 0;
+        local_buffer_70 = 0;
         *(uint64_t *)(unaff_RBP + -0x1d) = 0;
         *(uint64_t *)(unaff_RBP + -0x1a) = 0;
         unaff_RBP[-0x18] = 0;
@@ -224,13 +220,13 @@ void FUN_1803752a0(uint param_1)
         unaff_RBP[-0x14] = 0;
         *(int8_t *)(unaff_RBP + -0x13) = 0;
         *(uint64_t *)(unaff_RBP + -0xe) = 0;
-        uStack000000000000006c = 0xff00;
-        in_stack_00000078 = 0xffffffffffffffff;
+        local_buffer_6c = 0xff00;
+        local_buffer_78 = 0xffffffffffffffff;
         unaff_RBP[-0x20] = 0xffffffff;
         *(int8_t *)(unaff_RBP + -0x1f) = 0xff;
         unaff_RBP[-0x1e] = 0xffffffff;
         *(int16_t *)(unaff_RBP + -0x1b) = 0x400;
-        (**(code **)(*plVar18 + 0x1c8))(plVar18,uVar19,uVar7,&system_data_0300,&stack0x00000060);
+        (**(code **)(*plVar18 + 0x1c8))(plVar18,uVar19,uVar7,&system_data_0300,&local_buffer_00000060);
         lVar21 = lVar21 + 0x10;
         iVar22 = iVar22 + 1;
       } while ((uint64_t)(int64_t)iVar22 <
@@ -245,21 +241,9 @@ void FUN_1803752a0(uint param_1)
   } while (param_1 < *(uint *)(in_RAX + 0x110));
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180375748(void)
-void FUN_180375748(void)
-
+// 函数: void RenderingSystem_75748(void)
+void RenderingSystem_75748(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

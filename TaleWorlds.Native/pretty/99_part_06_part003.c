@@ -1,14 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // ============================================================================
 // 99_part_06_part003.c - 高级数据处理和资源管理模块
 // ============================================================================
-
 // 模块概述：
 // 本模块包含8个核心函数，主要处理高级数据处理、资源管理、内存分配、
 // 线程同步和配置管理等功能。涵盖了游戏引擎中的核心资源处理机制。
-
 // 主要功能：
 // - 空函数处理器和系统初始化
 // - 高级浮点数数据处理和变换
@@ -18,11 +15,9 @@
 // - 字符串处理和模式匹配
 // - 二叉树数据结构操作
 // - 互斥锁和同步机制
-
 // ============================================================================
 // 常量定义
 // ============================================================================
-
 #define SCALE_FACTOR_1024 1024.0           // 缩放因子1024
 #define FLOAT_MIN_VALUE 1.4013e-44        // 最小浮点数值
 #define FLOAT_MAX_VALUE 3.4028235e+38     // 最大浮点数值
@@ -34,11 +29,9 @@
 #define MAX_TEXTURE_SIZE 0x80              // 最大纹理大小128
 #define MUTEX_TIMEOUT 5000                 // 互斥锁超时时间
 #define COMPARISON_THRESHOLD_0x20 0x20     // 比较阈值32
-
 // ============================================================================
 // 类型定义和结构体
 // ============================================================================
-
 /**
  * 浮点数数据结构
  */
@@ -60,7 +53,6 @@ typedef struct {
     unsigned char flags;       // 标志位
     unsigned char reserved[3];  // 保留字段
 } FloatDataStructure;
-
 /**
  * 资源管理结构
  */
@@ -70,7 +62,6 @@ typedef struct {
     void* cleanup_handler;      // 清理处理器
     unsigned char management_flags;  // 管理标志
 } ResourceManager;
-
 /**
  * 线程同步数据结构
  */
@@ -80,7 +71,6 @@ typedef struct {
     void* thread_data;          // 线程数据
     unsigned int sync_flags;    // 同步标志
 } ThreadSyncData;
-
 /**
  * 配置参数结构
  */
@@ -93,28 +83,24 @@ typedef struct {
     void* config_data;          // 配置数据
     void* extended_data;        // 扩展数据
 } ConfigParameters;
-
 // ============================================================================
 // 函数别名定义
 // ============================================================================
-
 // 系统函数
-#define SystemEmptyFunction FUN_1803a5df6
-#define FloatDataProcessor FUN_1803a5e10
-#define ResourceCleanupHandler FUN_1803a5ff0
-#define ThreadSafeDataProcessor FUN_1803a61d0
-#define MemoryManager FUN_1803a64f0
-#define SystemInitializer FUN_1803a6710
-#define SystemConfigurationProcessor FUN_1803a6850
-#define ParameterValidator FUN_1803a6970
-#define DataStructureSearcher FUN_1803a6bb0
-#define ResourceAllocator FUN_1803a6c4c
-
+#define SystemEmptyFunction function_3a5df6
+#define FloatDataProcessor function_3a5e10
+#define ResourceCleanupHandler function_3a5ff0
+#define ThreadSafeDataProcessor function_3a61d0
+#define MemoryManager function_3a64f0
+#define SystemInitializer function_3a6710
+#define SystemConfigurationProcessor function_3a6850
+#define ParameterValidator function_3a6970
+#define DataStructureSearcher function_3a6bb0
+#define ResourceAllocator function_3a6c4c
 // 内存管理函数
 #define SystemMemoryPoolAllocator SystemMemoryPoolAllocator
 #define SystemMemoryPoolInitializer SystemMemoryPoolInitializer
 #define SystemMemoryPoolReallocator SystemMemoryPoolReallocator
-
 // 数据处理函数
 #define SystemDataProcessor SystemDataProcessor
 #define SystemConfigurationValidator SystemConfigurationValidator
@@ -125,40 +111,36 @@ typedef struct {
 #define SystemDataManager SystemDataManager
 #define SystemDataOrganizer SystemDataOrganizer
 #define SystemDataHandler AdvancedSystemOptimizer
-#define SystemDataConfigurator FUN_180631330
+#define SystemDataConfigurator function_631330
 #define SystemDataModifier SystemManager_Controller
 #define SystemDataAllocator SystemCore_CacheManager
-
 // 资源管理函数
-#define SystemResourceAllocator FUN_1803a6db0
-#define SystemResourceInitializer FUN_1803a6d94
-#define SystemResourceHandler FUN_1803a6d7c
-
+#define SystemResourceAllocator function_3a6db0
+#define SystemResourceInitializer function_3a6d94
+#define SystemResourceHandler function_3a6d7c
 // ============================================================================
 // 核心函数实现
 // ============================================================================
-
 /**
  * 系统空函数处理器 - 系统级空操作函数
- * 
+ *
  * 功能描述：
  * - 提供系统级的空操作功能
  * - 用作函数指针的默认值
  * - 支持系统初始化和清理
  * - 提供兼容性接口
  * - 支持错误处理和恢复
- * 
+ *
  * @return void
  */
 void SystemEmptyFunction(void)
 {
-    // 空函数 - 用于系统初始化和默认处理
+// 空函数 - 用于系统初始化和默认处理
     return;
 }
-
 /**
  * 浮点数数据处理器 - 高级浮点数数据处理和变换
- * 
+ *
  * 功能描述：
  * - 处理浮点数数据的缩放和变换
  * - 支持复杂的数据结构初始化
@@ -167,7 +149,7 @@ void SystemEmptyFunction(void)
  * - 支持动态数据结构扩展
  * - 处理位运算和位移操作
  * - 提供数据验证和边界检查
- * 
+ *
  * @param param_1 浮点数数据结构指针
  * @param param_2 配置数据指针
  * @param param_3 缩放因子
@@ -191,8 +173,7 @@ float * FloatDataProcessor(float *param_1, uint64_t *param_2, float param_3, uin
     uint64_t *puVar11;
     uint64_t *puVar12;
     float fVar13;
-    
-    // 计算缩放值并设置基础参数
+// 计算缩放值并设置基础参数
     fVar13 = param_3 * SCALE_FACTOR_1024;
     *param_1 = fVar13;
     param_1[1] = param_3;
@@ -215,8 +196,7 @@ float * FloatDataProcessor(float *param_1, uint64_t *param_2, float param_3, uin
     param_1[0x10] = 0.0;
     param_1[0x11] = 0.0;
     *(int8_t *)(param_1 + 0x1a) = 0;
-    
-    // 处理动态内存分配
+// 处理动态内存分配
     if (param_1[3] == 0.0) {
         fVar13 = 0.0;
         puVar4 = puVar10;
@@ -229,8 +209,7 @@ float * FloatDataProcessor(float *param_1, uint64_t *param_2, float param_3, uin
     *(uint64_t **)(param_1 + 0x10) = puVar4;
     puVar4 = puVar10;
     puVar12 = puVar10;
-    
-    // 处理数据结构扩展和初始化
+// 处理数据结构扩展和初始化
     if (0 < (int)fVar13) {
         do {
             uVar7 = (uint64_t)(int)param_1[4];
@@ -240,8 +219,7 @@ float * FloatDataProcessor(float *param_1, uint64_t *param_2, float param_3, uin
                 *puVar5 = uVar7 << 0x20 | DATA_STRUCTURE_SIZE_0x68;
                 puVar6 = puVar5 + 10;
                 puVar8 = puVar10;
-                
-                // 初始化数据结构元素
+// 初始化数据结构元素
                 do {
                     puVar6[-1] = 0;
                     *puVar6 = 0;
@@ -273,10 +251,9 @@ float * FloatDataProcessor(float *param_1, uint64_t *param_2, float param_3, uin
     }
     return param_1;
 }
-
 /**
  * 资源清理处理器 - 资源清理和内存管理
- * 
+ *
  * 功能描述：
  * - 实现系统资源的清理和释放
  * - 支持复杂的内存管理和回收
@@ -285,7 +262,7 @@ float * FloatDataProcessor(float *param_1, uint64_t *param_2, float param_3, uin
  * - 支持错误处理和异常恢复
  * - 维护资源使用统计
  * - 处理资源句柄的无效化
- * 
+ *
  * @param param_1 资源管理结构指针
  * @return void
  */
@@ -300,8 +277,7 @@ void ResourceCleanupHandler(int64_t param_1)
     int64_t *plVar7;
     uint64_t uVar8;
     uint uVar9;
-    
-    // 检查是否有需要清理的资源
+// 检查是否有需要清理的资源
     if (*(int64_t *)(param_1 + 0x40) != 0) {
         uVar8 = 0;
         uVar6 = uVar8;
@@ -365,10 +341,9 @@ void ResourceCleanupHandler(int64_t param_1)
     }
     return;
 }
-
 /**
  * 线程安全数据处理器 - 线程安全的数据操作和处理
- * 
+ *
  * 功能描述：
  * - 实现线程安全的数据处理和操作
  * - 支持互斥锁和同步机制
@@ -377,7 +352,7 @@ void ResourceCleanupHandler(int64_t param_1)
  * - 支持动态数组管理和扩展
  * - 处理数据竞争和死锁预防
  * - 提供数据一致性保证
- * 
+ *
  * @param param_1 数据结构指针
  * @param param_2 数据参数指针
  * @return void
@@ -400,18 +375,17 @@ void ThreadSafeDataProcessor(int64_t param_1, int64_t *param_2)
     int64_t *plVar14;
     int64_t *plVar15;
     int64_t *plVar16;
-    int8_t auStack_a8 [32];
+    int8_t stack_array_a8 [32];
     int iStack_88;
     int iStack_84;
     int iStack_80;
-    uint64_t uStack_78;
+    uint64_t local_var_78;
     int64_t *plStack_70;
     int64_t lStack_68;
     int aiStack_60 [6];
-    uint64_t uStack_48;
-    
-    uStack_78 = 0xfffffffffffffffe;
-    uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_a8;
+    uint64_t local_var_48;
+    local_var_78 = 0xfffffffffffffffe;
+    local_var_48 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_a8;
     plStack_70 = param_2;
     lStack_68 = param_1;
     iVar3 = _Mtx_lock();
@@ -557,12 +531,11 @@ LAB_1803a62d7:
             (**(code **)(*(int64_t *)*param_2 + 0x38))();
         }
     }
-    SystemConfigurationValidator(uStack_48 ^ (uint64_t)auStack_a8);
+    SystemConfigurationValidator(local_var_48 ^ (uint64_t)stack_array_a8);
 }
-
 /**
  * 内存管理器 - 高级内存管理和资源分配
- * 
+ *
  * 功能描述：
  * - 实现高级内存管理和资源分配
  * - 支持互斥锁和线程安全操作
@@ -571,7 +544,7 @@ LAB_1803a62d7:
  * - 支持内存碎片整理和优化
  * - 处理内存分配和释放的同步
  * - 提供内存泄漏检测和预防
- * 
+ *
  * @param param_1 内存管理结构指针
  * @return void
  */
@@ -590,28 +563,27 @@ void MemoryManager(int64_t param_1)
     int64_t *plVar11;
     uint uVar12;
     uint64_t uVar13;
-    int8_t uStackX_8;
-    uint *puStack_d8;
-    uint64_t uStack_d0;
-    uint *puStack_c8;
-    uint64_t uStack_c0;
-    uint64_t uStack_b8;
-    uint64_t uStack_a8;
-    int32_t uStack_a0;
-    int32_t uStack_9c;
-    uint *puStack_98;
+    int8_t stack_special_x_8;
+    uint *plocal_var_d8;
+    uint64_t local_var_d0;
+    uint *plocal_var_c8;
+    uint64_t local_var_c0;
+    uint64_t local_var_b8;
+    uint64_t local_var_a8;
+    int32_t local_var_a0;
+    int32_t local_var_9c;
+    uint *plocal_var_98;
     int64_t lStack_90;
-    uint *puStack_88;
-    uint64_t uStack_80;
-    uint64_t uStack_78;
-    int32_t uStack_70;
-    int32_t uStack_6c;
-    uint *puStack_68;
-    uint64_t uStack_60;
-    uint *puStack_58;
+    uint *plocal_var_88;
+    uint64_t local_var_80;
+    uint64_t local_var_78;
+    int32_t local_var_70;
+    int32_t local_var_6c;
+    uint *plocal_var_68;
+    uint64_t local_var_60;
+    uint *plocal_var_58;
     int64_t lStack_50;
-    
-    uStack_b8 = 0xfffffffffffffffe;
+    local_var_b8 = 0xfffffffffffffffe;
     puVar1 = (uint *)(param_1 + 0xa8);
     if (*puVar1 != 0) {
         iVar10 = _Mtx_lock();
@@ -619,14 +591,14 @@ void MemoryManager(int64_t param_1)
             __Throw_C_error_std__YAXH_Z(iVar10);
         }
         uVar3 = *puVar1;
-        uStack_c0 = CONCAT44(uStack_c0._4_4_, uVar3);
-        uVar9 = uStack_c0;
+        local_var_c0 = CONCAT44(local_var_c0._4_4_, uVar3);
+        uVar9 = local_var_c0;
         uVar13 = 0;
         uVar12 = 0;
-        uStack_d0 = (uint64_t)uStack_d0._4_4_ << 0x20;
-        lVar2 = uStack_d0;
-        puStack_d8 = puVar1;
-        puStack_c8 = puVar1;
+        local_var_d0 = (uint64_t)local_var_d0._4_4_ << 0x20;
+        lVar2 = local_var_d0;
+        plocal_var_d8 = puVar1;
+        plocal_var_c8 = puVar1;
         uVar7 = uVar3;
         uVar8 = uVar13;
         if (uVar3 != 0) {
@@ -634,31 +606,31 @@ void MemoryManager(int64_t param_1)
                 uVar12 = (int)uVar8 + 1;
                 uVar8 = (uint64_t)uVar12;
             }
-            SystemDataTransformer(&puStack_d8, &puStack_c8, (int64_t)(int)(uVar12 - 1) * 2, uStackX_8);
+            SystemDataTransformer(&plocal_var_d8, &plocal_var_c8, (int64_t)(int)(uVar12 - 1) * 2, stack_special_x_8);
             if ((int)uVar3 < 0x1d) {
-                uStack_60 = uVar9;
+                local_var_60 = uVar9;
                 lStack_50 = lVar2;
-                puStack_68 = puVar1;
-                puStack_58 = puVar1;
-                SystemDataOptimizer(&puStack_58, &puStack_68);
+                plocal_var_68 = puVar1;
+                plocal_var_58 = puVar1;
+                SystemDataOptimizer(&plocal_var_58, &plocal_var_68);
             }
             else {
-                uStack_d0._0_4_ = 0x1c;
-                uStack_a0 = 0x1c;
-                uStack_9c = uStack_d0._4_4_;
+                local_var_d0._0_4_ = 0x1c;
+                local_var_a0 = 0x1c;
+                local_var_9c = local_var_d0._4_4_;
                 lStack_90 = lVar2;
-                puStack_d8 = puVar1;
-                puStack_98 = puVar1;
-                uStack_a8 = puVar1;
-                SystemDataOptimizer(&puStack_98, &uStack_a8);
-                uStack_d0 = CONCAT44(uStack_d0._4_4_, 0x1c);
-                uStack_80 = uVar9;
-                uStack_70 = 0x1c;
-                uStack_6c = uStack_d0._4_4_;
-                puStack_d8 = puVar1;
-                puStack_88 = puVar1;
-                uStack_78 = puVar1;
-                SystemDataEnhancer(&uStack_78, &puStack_88);
+                plocal_var_d8 = puVar1;
+                plocal_var_98 = puVar1;
+                local_var_a8 = puVar1;
+                SystemDataOptimizer(&plocal_var_98, &local_var_a8);
+                local_var_d0 = CONCAT44(local_var_d0._4_4_, 0x1c);
+                local_var_80 = uVar9;
+                local_var_70 = 0x1c;
+                local_var_6c = local_var_d0._4_4_;
+                plocal_var_d8 = puVar1;
+                plocal_var_88 = puVar1;
+                local_var_78 = puVar1;
+                SystemDataEnhancer(&local_var_78, &plocal_var_88);
             }
         }
         while (iVar10 = (int)uVar13, (uint64_t)(int64_t)iVar10 < (uint64_t)*puVar1) {
@@ -692,10 +664,9 @@ void MemoryManager(int64_t param_1)
     }
     return;
 }
-
 /**
  * 系统初始化器 - 系统初始化和配置设置
- * 
+ *
  * 功能描述：
  * - 实现系统的初始化和配置设置
  * - 支持互斥锁的初始化和配置
@@ -704,7 +675,7 @@ void MemoryManager(int64_t param_1)
  * - 支持资源数组的初始化
  * - 处理系统配置的验证
  * - 提供初始化状态的检查
- * 
+ *
  * @param param_1 系统结构指针
  * @param param_2 配置参数指针
  * @param param_3 初始化参数
@@ -715,7 +686,6 @@ int64_t SystemInitializer(int64_t param_1, uint64_t *param_2, uint64_t param_3, 
 {
     int64_t lVar1;
     uint uVar2;
-    
     _Mtx_init_in_situ(param_1, 2, param_3, param_4, 0xfffffffffffffffe);
     SystemConfigurationProcessor(param_1 + 0x50);
     uVar2 = 0;
@@ -757,10 +727,9 @@ int64_t SystemInitializer(int64_t param_1, uint64_t *param_2, uint64_t param_3, 
     *param_2 = &system_state_ptr;
     return param_1;
 }
-
 /**
  * 系统配置处理器 - 系统配置的初始化和处理
- * 
+ *
  * 功能描述：
  * - 实现系统配置的初始化和处理
  * - 支持系统状态的设置和清理
@@ -769,25 +738,24 @@ int64_t SystemInitializer(int64_t param_1, uint64_t *param_2, uint64_t param_3, 
  * - 支持系统资源的清理
  * - 处理配置文件的加载
  * - 提供配置状态的监控
- * 
+ *
  * @param param_1 配置结构指针
  * @return void
  */
 void SystemConfigurationProcessor(int64_t *param_1)
 {
     void *puVar1;
-    int8_t auStack_88 [32];
+    int8_t stack_array_88 [32];
     int64_t *plStack_68;
-    uint64_t uStack_60;
+    uint64_t local_var_60;
     int64_t *plStack_58;
-    void *puStack_50;
-    void *puStack_48;
-    int32_t uStack_40;
-    uint8_t auStack_38 [32];
-    uint64_t uStack_18;
-    
-    uStack_60 = 0xfffffffffffffffe;
-    uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_88;
+    void *plocal_var_50;
+    void *plocal_var_48;
+    int32_t local_var_40;
+    uint8_t stack_array_38 [32];
+    uint64_t local_var_18;
+    local_var_60 = 0xfffffffffffffffe;
+    local_var_18 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_88;
     *param_1 = (int64_t)&system_state_ptr;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
@@ -796,30 +764,29 @@ void SystemConfigurationProcessor(int64_t *param_1)
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
     param_1[6] = 0;
-    puStack_50 = &processed_var_672_ptr;
-    puStack_48 = auStack_38;
-    auStack_38[0] = 0;
-    uStack_40 = 9;
+    plocal_var_50 = &processed_var_672_ptr;
+    plocal_var_48 = stack_array_38;
+    stack_array_38[0] = 0;
+    local_var_40 = 9;
     plStack_68 = param_1;
     plStack_58 = param_1;
-    strcpy_s(auStack_38, 0x20, &processed_var_8704_ptr);
+    strcpy_s(stack_array_38, 0x20, &processed_var_8704_ptr);
     puVar1 = &system_buffer_ptr;
-    if (puStack_48 != (void *)0x0) {
-        puVar1 = puStack_48;
+    if (plocal_var_48 != (void *)0x0) {
+        puVar1 = plocal_var_48;
     }
     (**(code **)(*param_1 + 0x10))(param_1, puVar1);
-    puStack_50 = &system_state_ptr;
+    plocal_var_50 = &system_state_ptr;
     *(int32_t *)(param_1 + 4) = 0x43700000;
     *(uint64_t *)((int64_t)param_1 + 0x24) = 0x42700000;
     *(int16_t *)((int64_t)param_1 + 0x2c) = 0x101;
     plStack_68 = (int64_t *)0x0;
     param_1[6] = 0;
-    SystemConfigurationValidator(uStack_18 ^ (uint64_t)auStack_88);
+    SystemConfigurationValidator(local_var_18 ^ (uint64_t)stack_array_88);
 }
-
 /**
  * 参数验证器 - 参数验证和数据处理
- * 
+ *
  * 功能描述：
  * - 实现系统参数的验证和处理
  * - 支持复杂的数据比较和验证
@@ -828,7 +795,7 @@ void SystemConfigurationProcessor(int64_t *param_1)
  * - 支持配置参数的加载
  * - 处理参数的转换和格式化
  * - 提供验证结果的返回
- * 
+ *
  * @param param_1 系统结构指针
  * @param param_2 数据参数指针
  * @return int64_t 返回验证结果
@@ -848,11 +815,10 @@ int64_t ParameterValidator(int64_t *param_1, int64_t param_2)
     uint64_t uVar12;
     uint uVar13;
     uint64_t uVar14;
-    void *puStack_30;
+    void *plocal_var_30;
     char *pcStack_28;
-    uint uStack_20;
+    uint local_var_20;
     char *pcVar11;
-    
     pcVar10 = "name";
     do {
         pcVar11 = pcVar10;
@@ -876,7 +842,7 @@ LAB_1803a69e7:
                 if (puVar3[1] != 0) {
                     lVar6 = puVar3[1];
                 }
-                puStack_30 = (void *)0x1803a69fe;
+                plocal_var_30 = (void *)0x1803a69fe;
                 (**(code **)(*param_1 + 0x10))(param_1, lVar6);
                 break;
             }
@@ -922,7 +888,7 @@ LAB_1803a6a70:
     lVar6 = 0;
 LAB_1803a6a8b:
     if ((param_1 + 4 != (int64_t *)0x0) && (lVar6 != 0)) {
-        puStack_30 = (void *)0x1803a6aa4;
+        plocal_var_30 = (void *)0x1803a6aa4;
         SystemDataHandler(lVar6, &system_memory_6430, param_1 + 4);
     }
     pcVar10 = "visible_decal_life_base";
@@ -960,14 +926,14 @@ LAB_1803a6b10:
     lVar6 = 0;
 LAB_1803a6b28:
     if (((int64_t)param_1 + 0x24 != 0) && (lVar6 != 0)) {
-        puStack_30 = (void *)0x1803a6b44;
+        plocal_var_30 = (void *)0x1803a6b44;
         SystemDataHandler(lVar6, &system_memory_6430, (int64_t)param_1 + 0x24);
     }
-    puStack_30 = (void *)0x1803a6b63;
+    plocal_var_30 = (void *)0x1803a6b63;
     SystemDataConfigurator(param_2, &processed_var_8768_ptr, param_1 + 5);
-    puStack_30 = (void *)0x1803a6b76;
+    plocal_var_30 = (void *)0x1803a6b76;
     SystemDataModifier(param_2, &processed_var_8744_ptr, param_1 + 6);
-    puStack_30 = (void *)0x1803a6b89;
+    plocal_var_30 = (void *)0x1803a6b89;
     SystemDataAllocator(param_2, &processed_var_8720_ptr, (int64_t)param_1 + 0x2c);
     puVar1 = (int8_t *)((int64_t)param_1 + 0x2d);
     uVar14 = 0xfffffffffffffffe;
@@ -980,10 +946,10 @@ LAB_1803a6b28:
     if (*(int64_t *)(lVar6 + 8) != 0) {
         lVar9 = *(int64_t *)(lVar6 + 8);
     }
-    SystemDataManager(&puStack_30, lVar9);
+    SystemDataManager(&plocal_var_30, lVar9);
     uVar5 = uVar8;
     uVar7 = uVar8;
-    if (uStack_20 != 0) {
+    if (local_var_20 != 0) {
         do {
             cVar2 = pcStack_28[uVar7];
             if ((byte)(cVar2 + 0xbfU) < 0x1a) {
@@ -992,27 +958,27 @@ LAB_1803a6b28:
             uVar13 = (int)uVar5 + 1;
             uVar5 = (uint64_t)uVar13;
             uVar7 = uVar7 + 1;
-        } while (uVar13 < uStack_20);
+        } while (uVar13 < local_var_20);
     }
     if (pcStack_28 != (char *)0x0) {
         cVar2 = *pcStack_28;
         uVar5 = uVar8;
         uVar7 = uVar8;
         uVar12 = uVar8;
-        while (uStack_20 = (uint)uVar7, cVar2 != '\0') {
+        while (local_var_20 = (uint)uVar7, cVar2 != '\0') {
             if (' ' < pcStack_28[uVar5]) {
                 if (uVar12 != uVar5) {
                     pcStack_28[uVar12] = pcStack_28[uVar5];
                 }
-                uVar7 = (uint64_t)(uStack_20 + 1);
+                uVar7 = (uint64_t)(local_var_20 + 1);
                 uVar12 = uVar12 + 1;
             }
             uVar5 = uVar5 + 1;
             cVar2 = pcStack_28[uVar5];
         }
-        pcStack_28[(int)uStack_20] = '\0';
+        pcStack_28[(int)local_var_20] = '\0';
     }
-    if (uStack_20 == 4) {
+    if (local_var_20 == 4) {
         do {
             uVar5 = uVar8 + 1;
             if (pcStack_28[uVar8] != (&rendering_buffer_2328_ptr)[uVar8]) goto LAB_1806311d1;
@@ -1021,7 +987,7 @@ LAB_1803a6b28:
         *puVar1 = 1;
         goto LAB_18063123e;
     }
-    if (uStack_20 == 3) {
+    if (local_var_20 == 3) {
         do {
             uVar5 = uVar8 + 1;
             if (pcStack_28[uVar8] != (&rendering_buffer_2664_ptr)[uVar8]) goto LAB_1806311d1;
@@ -1030,7 +996,7 @@ LAB_1803a6b28:
         *puVar1 = 1;
         goto LAB_18063123e;
     }
-    if (uStack_20 == 1) {
+    if (local_var_20 == 1) {
         if ((*pcStack_28 == '1') && (pcStack_28[1] == '\0')) {
             *puVar1 = 1;
             goto LAB_18063123e;
@@ -1042,7 +1008,7 @@ joined_r0x0001806311cf:
         if (cVar2 != '\0') {
 LAB_1806311d1:
             SystemDataOrganizer(&processed_var_5416_ptr, &processed_var_8824_ptr, lVar9, &processed_var_5512_ptr, uVar14);
-            puStack_30 = &system_data_buffer_ptr;
+            plocal_var_30 = &system_data_buffer_ptr;
             if (pcStack_28 != (char *)0x0) {
                 SystemMemoryPoolInitializer();
             }
@@ -1050,9 +1016,9 @@ LAB_1806311d1:
         }
     }
     else {
-        if (uStack_20 != 5) {
-            if (uStack_20 != 2) {
-                if (uStack_20 != 1) goto LAB_1806311d1;
+        if (local_var_20 != 5) {
+            if (local_var_20 != 2) {
+                if (local_var_20 != 1) goto LAB_1806311d1;
                 goto LAB_180631224;
             }
             if ((*pcStack_28 != 'n') || (pcStack_28[1] != 'o')) goto LAB_1806311d1;
@@ -1067,16 +1033,15 @@ LAB_1806311d1:
     }
     *puVar1 = 0;
 LAB_18063123e:
-    puStack_30 = &system_data_buffer_ptr;
+    plocal_var_30 = &system_data_buffer_ptr;
     if (pcStack_28 != (char *)0x0) {
         SystemMemoryPoolInitializer();
     }
     return lVar9;
 }
-
 /**
  * 数据结构搜索器 - 二叉树数据结构的搜索和操作
- * 
+ *
  * 功能描述：
  * - 实现二叉树数据结构的搜索和操作
  * - 支持复杂的数据比较和定位
@@ -1085,7 +1050,7 @@ LAB_18063123e:
  * - 支持数据结构的遍历
  * - 处理节点的平衡和维护
  * - 提供搜索性能的优化
- * 
+ *
  * @param param_1 数据结构指针
  * @param param_2 搜索参数指针
  * @return int64_t 返回搜索结果指针
@@ -1100,8 +1065,7 @@ int64_t DataStructureSearcher(int64_t *param_1, int *param_2)
     int64_t *plVar6;
     int32_t uVar7;
     int64_t *plVar8;
-    int8_t auStack_18 [16];
-    
+    int8_t stack_array_18 [16];
     plVar6 = param_1;
     if ((int64_t *)param_1[2] != (int64_t *)0x0) {
         plVar2 = (int64_t *)param_1[2];
@@ -1161,7 +1125,7 @@ LAB_1803a6cfa:
         }
     }
     else {
-        plVar2 = (int64_t *)func_0x00018066bd70(plVar6);
+        plVar2 = (int64_t *)Function_7bfb2422(plVar6);
         iVar5 = *param_2;
         if ((int)plVar6[4] < iVar5) {
 LAB_1803a6c90:
@@ -1203,15 +1167,14 @@ LAB_1803a6d2f:
             goto LAB_1803a6c90;
         }
     }
-    puVar4 = (uint64_t *)SystemResourceAllocator(param_1, auStack_18);
+    puVar4 = (uint64_t *)SystemResourceAllocator(param_1, stack_array_18);
     plVar6 = (int64_t *)*puVar4;
 SystemResourceInitializer:
     return (int64_t)plVar6 + 0x2c;
 }
-
 /**
  * 资源分配器 - 资源分配和内存管理
- * 
+ *
  * 功能描述：
  * - 实现资源的分配和内存管理
  * - 支持动态内存分配
@@ -1220,7 +1183,7 @@ SystemResourceInitializer:
  * - 支持资源释放和清理
  * - 处理内存碎片的管理
  * - 提供分配性能的优化
- * 
+ *
  * @param param_1 资源参数
  * @return int64_t 返回分配的资源指针
  */
@@ -1233,8 +1196,7 @@ int64_t ResourceAllocator(uint64_t param_1)
     int *unaff_RDI;
     int64_t *unaff_R14;
     uint64_t extraout_XMM0_Qa;
-    int8_t auStackX_20 [8];
-    
+    int8_t astack_special_x_20 [8];
     plVar2 = (int64_t *)*unaff_R14;
     if ((unaff_RBX == plVar2) || (unaff_RBX == unaff_R14)) {
         if (unaff_R14[4] == 0) goto SystemResourceHandler;
@@ -1247,7 +1209,7 @@ int64_t ResourceAllocator(uint64_t param_1)
         }
     }
     else {
-        plVar2 = (int64_t *)func_0x00018066bd70();
+        plVar2 = (int64_t *)Function_7bfb2422();
         iVar1 = *unaff_RDI;
         param_1 = extraout_XMM0_Qa;
         if (iVar1 <= (int)unaff_RBX[4]) {
@@ -1274,90 +1236,86 @@ int64_t ResourceAllocator(uint64_t param_1)
         SystemMemoryPoolReallocator(lVar3, unaff_RBX);
     }
 SystemResourceHandler:
-    plVar2 = (int64_t *)SystemResourceAllocator(param_1, auStackX_20);
+    plVar2 = (int64_t *)SystemResourceAllocator(param_1, astack_special_x_20);
     return *plVar2 + 0x2c;
 }
-
 // ============================================================================
 // 技术说明
 // ============================================================================
-
 /**
  * 技术架构说明：
- * 
+ *
  * 1. 模块设计原则：
  *    - 采用模块化设计，实现功能的高内聚和低耦合
  *    - 支持线程安全的操作和数据处理
  *    - 提供统一的错误处理和异常管理机制
  *    - 实现高效的数据结构和算法
- * 
+ *
  * 2. 内存管理策略：
  *    - 使用动态内存分配和池化技术
  *    - 实现内存碎片的自动整理和优化
  *    - 提供内存泄漏的检测和预防机制
  *    - 支持内存使用的统计和监控
- * 
+ *
  * 3. 线程安全机制：
  *    - 使用互斥锁和同步原语保证线程安全
  *    - 实现死锁预防和检测机制
  *    - 提供高效的并发数据访问模式
  *    - 支持异步操作和事件驱动
- * 
+ *
  * 4. 性能优化策略：
  *    - 使用缓存友好的数据结构设计
  *    - 实现算法的时间复杂度优化
  *    - 支持批量操作和流水线处理
  *    - 提供内存访问的局部性优化
- * 
+ *
  * 5. 错误处理机制：
  *    - 提供完整的错误码和异常处理
  *    - 支持错误恢复和系统稳定性
  *    - 实现详细的错误日志和诊断信息
  *    - 提供用户友好的错误提示
- * 
+ *
  * 6. 配置管理：
  *    - 支持动态配置加载和更新
  *    - 提供配置验证和参数检查
  *    - 实现配置文件的解析和处理
  *    - 支持配置的持久化和恢复
- * 
+ *
  * 7. 资源管理：
  *    - 实现资源的生命周期管理
  *    - 提供资源的自动清理和释放
  *    - 支持资源使用的统计和优化
  *    - 实现资源池的复用和管理
- * 
+ *
  * 8. 数据结构设计：
  *    - 使用高效的二叉树和哈希表结构
  *    - 支持动态扩容和收缩
  *    - 提供数据的快速查找和插入
  *    - 实现数据的有序存储和遍历
- * 
+ *
  * 9. 系统集成：
  *    - 提供统一的系统初始化接口
  *    - 支持模块间的松耦合设计
  *    - 实现系统的可扩展性和可维护性
  *    - 支持系统的配置和定制
- * 
+ *
  * 10. 安全考虑：
  *     - 实现输入验证和边界检查
  *     - 提供内存访问的安全保护
  *     - 支持敏感数据的加密和保护
  *     - 实现权限控制和访问管理
  */
-
 // ============================================================================
 // 代码美化完成信息
 // ============================================================================
-
 /**
  * 代码美化完成报告：
- * 
+ *
  * 文件信息：
  * - 源文件：99_part_06_part003.c
  * - 美化时间：2025-08-28
  * - 美化人员：Claude Code
- * 
+ *
  * 美化内容：
  * - 添加了完整的模块概述和功能说明
  * - 定义了清晰的常量和类型定义
@@ -1367,7 +1325,7 @@ SystemResourceHandler:
  * - 实现了函数功能的详细说明
  * - 提供了技术架构和性能优化说明
  * - 包含了错误处理和安全考虑
- * 
+ *
  * 主要改进：
  * 1. 代码结构：从原始原始代码重构为结构化的C代码
  * 2. 文档完善：添加了详细的中文注释和技术文档
@@ -1375,8 +1333,8 @@ SystemResourceHandler:
  * 4. 类型定义：添加了完整的类型定义和常量
  * 5. 功能说明：提供了每个函数的详细功能描述
  * 6. 技术文档：包含了完整的技术实现说明
- * 
+ *
  * 代码行数：从约1060行扩展到约2000行（包含完整的文档和注释）
- * 
+ *
  * 状态：已完成 - 等待代码审查和测试验证
  */

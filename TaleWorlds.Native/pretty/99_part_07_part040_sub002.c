@@ -1,15 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_07_part040_sub002.c - 1 个函数
-
 // 函数: void SystemCore_Controller(uint64_t param_1,int32_t param_2,char *param_3)
 void SystemCore_Controller(uint64_t param_1,int32_t param_2,char *param_3)
-
 {
   char cVar1;
   uint64_t *puVar2;
   char *pcVar3;
-  
   puVar2 = (uint64_t *)DataPipelineManager(param_1,0x60);
   *puVar2 = 0;
   puVar2[1] = 0;
@@ -29,16 +25,11 @@ void SystemCore_Controller(uint64_t param_1,int32_t param_2,char *param_3)
   }
   return;
 }
-
-
-
 int64_t DataPipelineManager(int64_t *param_1,uint64_t param_2)
-
 {
   int64_t *plVar1;
   uint64_t uVar2;
   int64_t lVar3;
-  
   lVar3 = (uint64_t)(-(int)param_1[1] & 7) + param_1[1];
   if ((uint64_t)param_1[2] < lVar3 + param_2) {
     uVar2 = param_2;
@@ -64,17 +55,12 @@ int64_t DataPipelineManager(int64_t *param_1,uint64_t param_2)
   param_1[1] = lVar3 + param_2;
   return lVar3;
 }
-
-
-
-int64_t FUN_1804c132d(int64_t param_1,uint64_t param_2)
-
+int64_t function_4c132d(int64_t param_1,uint64_t param_2)
 {
   int64_t lVar1;
   int64_t *plVar2;
   int64_t unaff_RBP;
   int64_t *unaff_RDI;
-  
   if (param_2 < 0x3ffeb) {
     param_2 = 0x3ffea;
   }
@@ -96,22 +82,10 @@ int64_t FUN_1804c132d(int64_t param_1,uint64_t param_2)
   unaff_RDI[1] = lVar1 + unaff_RBP;
   return lVar1;
 }
-
-
-
-int64_t FUN_1804c13b3(uint64_t param_1,uint64_t param_2,int64_t param_3)
-
+int64_t function_4c13b3(uint64_t param_1,uint64_t param_2,int64_t param_3)
 {
   int64_t unaff_RBP;
   int64_t unaff_RDI;
-  
   *(int64_t *)(unaff_RDI + 8) = param_3 + unaff_RBP;
   return param_3;
 }
-
-
-
-
-
-
-

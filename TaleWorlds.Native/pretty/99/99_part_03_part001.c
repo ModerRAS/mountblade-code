@@ -1,46 +1,37 @@
-/* FUN_函数别名定义 */
+/* 原始函数别名定义 */
 #define ResourceManager_Allocate ResourceManager_Allocate  // ResourceManager_Allocate 的语义化别名
 #include "SystemDataAdvancedValidator_definition.h"
 #include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 /**
  * @file 99_part_03_part001.c
  * @brief 模块99：未匹配函数 - 第3部分第1个文件
  * @description 包含7个核心函数，涵盖字符串处理、文件操作、内存管理、系统调用等高级功能
  */
-
 // ============================================================================
 // 常量定义
 // ============================================================================
-
 #define MAX_PATH_LENGTH 260
 #define HASH_TABLE_SIZE 0x100
 #define LOCK_TIMEOUT 1000
 #define FILE_BUFFER_SIZE 0x1000000
-
 // ============================================================================
 // 函数别名定义
 // ============================================================================
-
-#define string_comparison_processor FUN_1801c4410
-#define memory_cleanup_handler FUN_1801c46e0
-#define file_data_processor FUN_1801c4730
-#define file_validator FUN_1801c4eb0
-#define shader_cache_processor FUN_1801c5160
-#define configuration_file_handler FUN_1801c5450
-#define path_builder FUN_1801c5700
-#define string_constructor FUN_1801c5870
-
+#define string_comparison_processor function_1c4410
+#define memory_cleanup_handler function_1c46e0
+#define file_data_processor function_1c4730
+#define file_validator function_1c4eb0
+#define shader_cache_processor function_1c5160
+#define configuration_file_handler function_1c5450
+#define path_builder function_1c5700
+#define string_constructor function_1c5870
 // ============================================================================
 // 全局变量引用
 // ============================================================================
-
 extern uint64_t system_global_data_ptr;    // 全局数据表指针
 extern uint64_t system_context_ptr;    // 系统状态标志
 extern uint64_t system_memory_pool_ptr;    // 内存分配器句柄
@@ -49,11 +40,9 @@ extern uint64_t system_stack_cookie;     // 安全检查常量
 extern uint64_t system_module_state;    // 系统配置状态
 extern char system_debug_flag;            // 调试模式标志
 extern char system_debug_flag2;            // 错误处理标志
-
 // ============================================================================
 // 字符串常量引用
 // ============================================================================
-
 extern uint64_t global_config_9584_ptr;     // 字符串常量 "shader_cache"
 extern uint64_t global_config_9540_ptr;     // 字符串常量 "shaders"
 extern uint64_t global_config_9552_ptr;     // 字符串常量 "data"
@@ -64,17 +53,15 @@ extern uint64_t global_config_9856_ptr;    // 错误消息标题
 extern uint64_t global_config_9600_ptr;    // 错误消息内容
 extern uint64_t global_config_9792_ptr;     // 对话框标题
 extern uint64_t global_config_6936_ptr;     // 系统消息
-
 // ============================================================================
 // 核心函数实现
 // ============================================================================
-
 /**
  * @brief 字符串比较处理器
  * @param param_1 双指针参数，用于存储处理结果
  * @param param_2 输入参数，包含要比较的字符串信息
  * @return void
- * 
+ *
  * 该函数实现高级字符串比较功能，支持多种字符串格式的比较和验证。
  * 主要用于系统初始化时的字符串匹配和验证过程。
  */
@@ -107,15 +94,13 @@ void string_comparison_processor(uint64_t **param_1, int64_t param_2)
     code *func_ptr1;
     code *func_ptr2;
     uint64_t stack_var1;
-    
-    // 初始化全局指针
+// 初始化全局指针
     global_ptr = system_global_data_ptr;
     stack_var1 = 0xfffffffffffffffe;
     match_flag = 0;
     string_length = *(int *)(param_2 + 0x10);
     temp_ptr2 = param_1;
-    
-    // 字符串长度为7时的比较逻辑
+// 字符串长度为7时的比较逻辑
     if (string_length == 7) {
         index = 0;
         do {
@@ -127,7 +112,7 @@ void string_comparison_processor(uint64_t **param_1, int64_t param_2)
     }
     else {
     mismatch_case_1:
-        // 字符串长度为5时的比较逻辑
+// 字符串长度为5时的比较逻辑
         if (string_length == 5) {
             index = 0;
             do {
@@ -139,48 +124,42 @@ void string_comparison_processor(uint64_t **param_1, int64_t param_2)
         }
         else {
         mismatch_case_2:
-            // 字符串长度为8时的比较逻辑
+// 字符串长度为8时的比较逻辑
             if ((string_length != 8) ||
                 ((string_length = strcmp(*(uint64_t *)(param_2 + 8), &global_config_9552_ptr), string_length != 0 &&
                  (string_length = strcmp(*(uint64_t *)(param_2 + 8), &global_config_9776_ptr), string_length != 0))))
                 goto final_mismatch;
         }
     }
-    
     match_flag = 1;
 final_mismatch:
-    // 执行系统初始化
+// 执行系统初始化
     SystemCore_FileSystem(system_context_ptr);
-    FUN_1801c9940(global_ptr);
-    
-    // 分配内存资源
+    function_1c9940(global_ptr);
+// 分配内存资源
     temp_var = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x580, 8, 3);
-    allocated_ptr = (int64_t *)FUN_1803e8a40(temp_var, param_2);
+    allocated_ptr = (int64_t *)function_3e8a40(temp_var, param_2);
     *global_ptr = allocated_ptr;
-    
-    // 执行初始化回调
+// 执行初始化回调
     (**(code **)(*allocated_ptr + 0x28))(allocated_ptr);
     *(int8_t *)(system_main_module_state + 0x60) = 1;
-    
-    // 分配更多资源并处理
+// 分配更多资源并处理
     temp_var = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0xe0, 8, 3);
     temp_ptr2 = ptr_array;
     temp_ptr3 = (uint64_t ***)&stack_ptr3;
     stack_ptr3 = global_ptr;
     stack_flag2 = match_flag;
     SystemCore_NetworkHandler0(&stack_ptr4, param_2);
-    
-    // 构建处理链
+// 构建处理链
     temp_ptr3 = (uint64_t ***)&stack_ptr3;
     temp_ptr4 = &stack_ptr1;
     stack_ptr1 = stack_ptr3;
     stack_flag1 = stack_flag2;
     SystemCore_NetworkHandler0(&stack_ptr2, &stack_ptr4);
     temp_ptr4 = &stack_ptr1;
-    func_ptr1 = FUN_1801eb5a0;
-    func_ptr2 = FUN_1801eb560;
-    
-    // 分配最终处理结构
+    func_ptr1 = function_1eb5a0;
+    func_ptr2 = function_1eb560;
+// 分配最终处理结构
     result_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x30, 8, system_stack_cookie);
     *result_ptr = stack_ptr1;
     *(int8_t *)(result_ptr + 1) = stack_flag1;
@@ -189,8 +168,7 @@ final_mismatch:
     temp_ptr4 = (uint64_t **)&stack_ptr2;
     stack_ptr2 = &global_config_3456_ptr;
     ptr_array[0] = result_ptr;
-    
-    // 执行最终处理
+// 执行最终处理
     if (stack_long2 != 0) {
         CoreEngine_MemoryPoolManager();
     }
@@ -199,7 +177,6 @@ final_mismatch:
     stack_ptr2 = &global_config_720_ptr;
     temp_ptr3 = (uint64_t ***)&stack_ptr4;
     stack_ptr4 = &global_config_3456_ptr;
-    
     if (stack_long1 != 0) {
         CoreEngine_MemoryPoolManager();
     }
@@ -207,14 +184,12 @@ final_mismatch:
     stack_uint1 = 0;
     stack_ptr4 = &global_config_720_ptr;
     temp_ptr1 = (uint64_t **)SystemCore_ErrorHandler(temp_var, ptr_array);
-    
-    // 执行回调处理
+// 执行回调处理
     if (temp_ptr1 != (uint64_t **)0x0) {
         temp_ptr2 = temp_ptr1;
         (*(code *)(*temp_ptr1)[5])(temp_ptr1);
     }
-    
-    // 更新全局状态
+// 更新全局状态
     temp_ptr2 = (uint64_t **)global_ptr[9];
     global_ptr[9] = temp_ptr1;
     if (temp_ptr2 != (uint64_t **)0x0) {
@@ -224,26 +199,23 @@ final_mismatch:
     temp_var = system_context_ptr;
     temp_ptr3 = &temp_ptr2;
     temp_ptr2 = (uint64_t **)global_ptr[9];
-    
     if (temp_ptr2 != (uint64_t **)0x0) {
         (*(code *)(*temp_ptr2)[5])();
     }
-    
-    // 清理资源
+// 清理资源
     SystemCore_TimerManager(temp_var, &temp_ptr2);
     return;
 }
-
 /**
  * @brief 内存清理处理器
  * @param param_1 内存块指针
  * @return void
- * 
+ *
  * 该函数负责清理和重置内存块的状态，确保内存资源被正确释放。
  */
 void memory_cleanup_handler(int64_t param_1)
 {
-    // 重置内存块指针
+// 重置内存块指针
     *(uint64_t *)(param_1 + 0x10) = &global_config_3456_ptr;
     if (*(int64_t *)(param_1 + 0x18) != 0) {
         CoreEngine_MemoryPoolManager();
@@ -253,13 +225,12 @@ void memory_cleanup_handler(int64_t param_1)
     *(uint64_t *)(param_1 + 0x10) = &global_config_720_ptr;
     return;
 }
-
 /**
  * @brief 文件数据处理器
  * @param param_1 输入参数1
  * @param param_2 输入参数2，包含文件路径信息
  * @return void
- * 
+ *
  * 该函数实现高级文件数据处理功能，包括文件读取、数据解析、哈希表操作等。
  * 支持多种文件格式的处理和数据验证。
  */
@@ -349,35 +320,30 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
     uint stack_uint7;
     int32_t stack_var9;
     uint64_t stack_ulong3;
-    
-    // 初始化全局变量和栈变量
+// 初始化全局变量和栈变量
     temp_long2 = system_global_data_ptr;
     stack_var8 = 0xfffffffffffffffe;
     stack_ulong3 = system_stack_cookie ^ (uint64_t)temp_buffer1;
     stack_long3 = system_global_data_ptr;
-    
-    // 执行初始化操作
-    FUN_1801d8e90(system_global_data_ptr, param_2, 0);
+// 执行初始化操作
+    function_1d8e90(system_global_data_ptr, param_2, 0);
     stack_ptr1 = &global_config_3456_ptr;
     stack_ulong1 = 0;
     stack_ptr2 = (void *)0x0;
     stack_uint1 = 0;
-    
-    // 构建路径字符串
-    FUN_1801c5870(&stack_ptr1, param_2);
+// 构建路径字符串
+    function_1c5870(&stack_ptr1, param_2);
     temp_int = stack_uint1 + 0x12;
     CoreMemoryPoolProcessor(&stack_ptr1, temp_int);
     temp_ptr4 = (int32_t *)(stack_ptr2 + stack_uint1);
-    
-    // 设置文件名
+// 设置文件名
     *temp_ptr4 = 0x64616873;  // "hash"
     temp_ptr4[1] = 0x6d5f7265; // "_rem"
     temp_ptr4[2] = 0x69707061; // "appi"
     temp_ptr4[3] = 0x622e676e; // "ng.b"
     *(int16_t *)(temp_ptr4 + 4) = 0x6e69; // "in"
     *(int8_t *)((int64_t)temp_ptr4 + 0x12) = 0;
-    
-    // 初始化文件操作
+// 初始化文件操作
     stack_var7 = 0;
     stack_long5 = 0;
     temp_ptr6 = &system_buffer_ptr;
@@ -387,9 +353,8 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
     stack_uint1 = temp_int;
     temp_int = SystemCore_Validator(&stack_var7, temp_ptr6, &global_config_4880_ptr);
     temp_long3 = stack_long5;
-    
     if (temp_int == 0) {
-        // 文件存在，开始读取数据
+// 文件存在，开始读取数据
         temp_var1 = _ftelli64(stack_long5);
         _fseeki64(temp_long3, 0, 2);
         temp_long1 = _ftelli64(temp_long3);
@@ -401,26 +366,22 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
         stack_var3 = 3;
         System_BufferManager(&stack_long1, temp_long1);
         fread(stack_long1, temp_long1, 1, temp_long3);
-        
-        // 处理读取的数据
+// 处理读取的数据
         stack_ptr3 = &global_config_3456_ptr;
         stack_ulong2 = 0;
         stack_long2 = 0;
         stack_int1 = 0;
         temp_uint1 = *(uint *)((int64_t)stack_uint_ptr2 + 4);
         uint_ptr = (uint *)((int64_t)stack_uint_ptr2 + 8);
-        
         if (temp_uint1 != 0) {
             stack_uint_ptr2 = uint_ptr;
-            FUN_180628f30(&stack_ptr3, uint_ptr, temp_uint1);
+            function_628f30(&stack_ptr3, uint_ptr, temp_uint1);
             uint_ptr = (uint *)((int64_t)uint_ptr + (uint64_t)temp_uint1);
         }
-        
         temp_int = stack_int1 + 8;
         stack_uint_ptr2 = uint_ptr;
-        
         if (param_2 == 0) {
-            // 处理全局数据
+// 处理全局数据
             temp_long2 = *(int64_t *)(temp_long2 + 0x50);
             stack_long6 = temp_long2 + 0x360;
             stack_flag3 = 0;
@@ -429,11 +390,10 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
             stack_flag3 = 1;
             temp_ulong = (uint64_t)(temp_long1 - temp_int) / 0x18;
             temp_long1 = stack_long6;
-            
             if (0 < (int)temp_ulong) {
                 temp_ulong = temp_ulong & 0xffffffff;
                 do {
-                    // 处理数据块
+// 处理数据块
                     stack_uint4 = *uint_ptr;
                     stack_uint5 = uint_ptr[1];
                     stack_uint6 = uint_ptr[2];
@@ -446,8 +406,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
                     stack_var9._0_2_ = (ushort)temp_uint1;
                     temp_ptr2 = temp_ptr1;
                     temp_ptr3 = (uint64_t *)temp_ptr1[2];
-                    
-                    // 搜索匹配的数据结构
+// 搜索匹配的数据结构
                     while (temp_ptr5 = temp_ptr2, temp_ptr3 != (uint64_t *)0x0) {
                         if ((*(uint *)(temp_ptr3 + 4) < stack_uint4) ||
                            ((*(uint *)(temp_ptr3 + 4) <= stack_uint4 &&
@@ -473,8 +432,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
                             temp_ptr2 = temp_ptr5;
                         }
                     }
-                    
-                    // 处理找到的数据
+// 处理找到的数据
                     stack_uint_ptr2 = uint_ptr;
                     if (((temp_ptr5 == temp_ptr1) || (stack_uint4 < *(uint *)(temp_ptr5 + 4))) ||
                        ((temp_ptr3 = stack_ptr4, stack_uint4 <= *(uint *)(temp_ptr5 + 4) &&
@@ -488,14 +446,14 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
                                ((stack_uint7 <= *(uint *)((int64_t)temp_ptr5 + 0x2c) &&
                                 (stack_var9._2_1_ < *(byte *)((int64_t)temp_ptr5 + 0x32))))))))))))))))))))) {
                         stack_var9 = temp_uint1;
-                        temp_long2 = FUN_1801ea180(temp_ptr1, temp_ptr5, &stack_flag1, &stack_uint4);
+                        temp_long2 = function_1ea180(temp_ptr1, temp_ptr5, &stack_flag1, &stack_uint4);
                         if (temp_long2 == 0) {
-                            temp_ptr5 = (uint64_t *)FUN_1801ea730(temp_ptr1, stack_char_array, &stack_uint4);
+                            temp_ptr5 = (uint64_t *)function_1ea730(temp_ptr1, stack_char_array, &stack_uint4);
                             temp_ptr3 = temp_ptr5;
                             temp_uint1 = stack_var9;
                             if (stack_char_array[0] != '\0') {
                                 stack_uint_ptr1 = &stack_uint4;
-                                FUN_1801ea0a0(temp_ptr1, &stack_ptr5, temp_ptr5, 0);
+                                function_1ea0a0(temp_ptr1, &stack_ptr5, temp_ptr5, 0);
                                 temp_ptr5 = stack_ptr5;
                                 temp_ptr3 = stack_ptr5;
                                 temp_uint1 = stack_var9;
@@ -503,14 +461,13 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
                         }
                         else {
                             stack_uint_ptr1 = &stack_uint4;
-                            FUN_1801ea0a0(temp_ptr1, &stack_ptr4, temp_long2, stack_flag1);
+                            function_1ea0a0(temp_ptr1, &stack_ptr4, temp_long2, stack_flag1);
                             temp_ptr5 = stack_ptr4;
                             temp_ptr3 = stack_ptr4;
                             temp_uint1 = stack_var9;
                         }
                     }
-                    
-                    // 更新数据结构
+// 更新数据结构
                     stack_var9 = temp_uint1;
                     stack_ptr4 = temp_ptr3;
                     *(uint *)((int64_t)temp_ptr5 + 0x34) = temp_uint2;
@@ -532,7 +489,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
             }
         }
         else {
-            // 处理特定模式的数据
+// 处理特定模式的数据
             temp_ptr1 = (uint64_t *)(param_2 + 0x328);
             stack_long3 = param_2 + 0x360;
             stack_flag2 = 0;
@@ -540,11 +497,10 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
             stack_flag2 = 1;
             temp_ulong = (temp_long1 - 4U) / 0x24;
             temp_long1 = stack_long3;
-            
             if (0 < (int)temp_ulong) {
                 temp_ulong = temp_ulong & 0xffffffff;
                 do {
-                    // 处理特定格式的数据块
+// 处理特定格式的数据块
                     stack_uint2 = *uint_ptr;
                     stack_uint3 = uint_ptr[1];
                     stack_var4 = *(uint64_t *)(uint_ptr + 2);
@@ -555,9 +511,8 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
                     temp_ptr2 = temp_ptr1;
                     stack_uint_ptr2 = uint_ptr;
                     temp_ptr3 = *(uint64_t **)(param_2 + 0x338);
-                    
                     while (temp_ptr3 != (uint64_t *)0x0) {
-                        // 数据比较逻辑
+// 数据比较逻辑
                         stack_ptr12 = temp_ptr3 + 4;
                         stack_long10 = (int64_t)&stack_var6 + 4;
                         stack_ptr6 = &stack_var6;
@@ -570,7 +525,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
                         stack_ptr10 = temp_ptr3 + 6;
                         stack_ptr11 = temp_ptr3 + 5;
                         stack_long13 = (int64_t)temp_ptr3 + 0x34;
-                        temp_char = func_0x0001801eb6f0(&stack_long12, &stack_long10);
+                        temp_char = Function_2d256794(&stack_long12, &stack_long10);
                         if (temp_char == '\0') {
                             temp_ptr2 = temp_ptr3;
                             temp_ptr3 = (uint64_t *)temp_ptr3[1];
@@ -579,15 +534,14 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
                             temp_ptr3 = (uint64_t *)*temp_ptr3;
                         }
                     }
-                    
                     if (temp_ptr2 == temp_ptr1) {
                     skip_to_new_entry:
                         stack_uint_ptr1 = &stack_uint2;
-                        temp_ptr2 = (uint64_t *)FUN_1801e8280(temp_ptr1, &stack_long3);
+                        temp_ptr2 = (uint64_t *)function_1e8280(temp_ptr1, &stack_long3);
                         temp_ptr2 = (uint64_t *)*temp_ptr2;
                     }
                     else {
-                        // 处理现有条目
+// 处理现有条目
                         stack_ptr17 = temp_ptr2 + 4;
                         stack_long15 = (int64_t)temp_ptr2 + 0x3c;
                         stack_ptr13 = temp_ptr2 + 7;
@@ -600,11 +554,10 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
                         stack_ptr19 = &stack_var4;
                         stack_long15 = (int64_t)&stack_var5 + 4;
                         stack_uint_ptr4 = &stack_uint2;
-                        temp_char = func_0x0001801eb6f0(&stack_long14, &stack_long15);
+                        temp_char = Function_2d256794(&stack_long14, &stack_long15);
                         if (temp_char != '\0') goto skip_to_new_entry;
                     }
-                    
-                    // 更新条目数据
+// 更新条目数据
                     *(uint *)(temp_ptr2 + 8) = temp_uint1;
                     temp_long2 = (stack_var6 & 0xff) * 0x70;
                     temp_long3 = param_2 + 0x70 + temp_long2;
@@ -622,8 +575,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
                 } while (temp_ulong != 0);
             }
         }
-        
-        // 释放锁
+// 释放锁
         ReleaseSRWLockExclusive(temp_long1);
         stack_ptr3 = &global_config_3456_ptr;
         if (stack_long2 != 0) {
@@ -636,8 +588,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
             CoreEngine_MemoryPoolManager();
         }
     }
-    
-    // 关闭文件句柄
+// 关闭文件句柄
     if (temp_long3 != 0) {
         fclose(temp_long3);
         stack_long5 = 0;
@@ -645,8 +596,7 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
         SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
     }
-    
-    // 清理资源
+// 清理资源
     stack_ptr1 = &global_config_3456_ptr;
     if (stack_ptr2 == (void *)0x0) {
         stack_ptr2 = (void *)0x0;
@@ -656,12 +606,11 @@ void file_data_processor(uint64_t param_1, int64_t param_2)
     }
     CoreEngine_MemoryPoolManager();
 }
-
 /**
  * @brief 文件验证器
  * @param param_1 文件路径参数
  * @return bool 验证结果
- * 
+ *
  * 该函数验证文件的完整性和有效性，支持多种文件格式的验证。
  * 主要用于系统初始化时的文件检查和验证过程。
  */
@@ -683,22 +632,19 @@ bool file_validator(int64_t param_1)
     void *stack_ptr2;
     uint stack_uint1;
     uint64_t stack_var1;
-    
-    // 初始化变量
+// 初始化变量
     validation_result = true;
     temp_ulong2 = 0;
     stack_ptr1 = &global_config_3456_ptr;
     stack_var1 = 0;
     stack_ptr2 = (void *)0x0;
     stack_uint1 = 0;
-    
-    // 构建文件路径
-    FUN_1801c5700(&stack_ptr1, param_1);
+// 构建文件路径
+    function_1c5700(&stack_ptr1, param_1);
     temp_int = stack_uint1 + 0x1c;
     CoreMemoryPoolProcessor(&stack_ptr1, temp_int);
     temp_ptr1 = (int32_t *)(stack_ptr2 + stack_uint1);
-    
-    // 设置进程名称
+// 设置进程名称
     *temp_ptr1 = 0x706d6f63;  // "comp"
     temp_ptr1[1] = 0x73736572; // "ress"
     temp_ptr1[2] = 0x735f6465; // "des_"
@@ -706,21 +652,19 @@ bool file_validator(int64_t param_1)
     *(uint64_t *)(temp_ptr1 + 4) = 0x2e65686361635f72; // "r_cache.ch"
     temp_ptr1[6] = 0x6b636173; // "sack"
     *(int8_t *)(temp_ptr1 + 7) = 0;
-    
-    // 初始化文件句柄
+// 初始化文件句柄
     temp_long_array[0] = -1;
     temp_ptr2 = &system_buffer_ptr;
     if (stack_ptr2 != (void *)0x0) {
         temp_ptr2 = stack_ptr2;
     }
     stack_uint1 = temp_int;
-    FUN_18063ba00(temp_long_array, temp_ptr2, 5, 0x104);
+    function_63ba00(temp_long_array, temp_ptr2, 5, 0x104);
     temp_long1 = temp_long_array[0];
     temp_array1[0] = 0;
     temp_ulong1 = temp_ulong2;
-    
     if (temp_long_array[0] != -1) {
-        // 读取文件头
+// 读取文件头
         do {
             temp_ulong3 = 0x1000000;
             if (4 - temp_ulong1 < 0x1000000) {
@@ -729,8 +673,7 @@ bool file_validator(int64_t param_1)
             temp_array2[0] = 0;
             temp_int = ReadFile(temp_long1, (int64_t)temp_array1 + temp_ulong1, temp_ulong3, temp_array2, 0);
         } while (((temp_int != 0) && (temp_array2[0] != 0)) && (temp_ulong1 = temp_ulong1 + temp_array2[0], temp_ulong1 < 4));
-        
-        // 读取验证数据
+// 读取验证数据
         do {
             temp_ulong1 = 0x1000000;
             if (4 - temp_ulong2 < 0x1000000) {
@@ -739,8 +682,7 @@ bool file_validator(int64_t param_1)
             temp_array3[0] = 0;
             temp_int = ReadFile(temp_long1, (int64_t)temp_array1 + temp_ulong2, temp_ulong1, temp_array3, 0);
         } while (((temp_int != 0) && (temp_array3[0] != 0)) && (temp_ulong2 = temp_ulong2 + temp_array3[0], temp_ulong2 < 4));
-        
-        // 清理文件句柄
+// 清理文件句柄
         LOCK();
         SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
         UNLOCK();
@@ -748,10 +690,8 @@ bool file_validator(int64_t param_1)
         temp_long_array[0] = -1;
         validation_result = temp_array1[0] == 0x5ef;
     }
-    
     temp_long1 = temp_long_array[0];
-    
-    // 错误处理
+// 错误处理
     if (((system_debug_flag == '\0') && (validation_result == false)) &&
        ((*(int *)(system_module_state + 0x620) == 0 && (param_1 == 0)))) {
         if (system_debug_flag2 == '\0') {
@@ -762,8 +702,7 @@ bool file_validator(int64_t param_1)
                           &global_config_9600_ptr);
         }
     }
-    
-    // 确保文件句柄关闭
+// 确保文件句柄关闭
     if (temp_long1 != -1) {
         LOCK();
         SYSTEM_HANDLE_COUNTER_ADDR = SYSTEM_HANDLE_COUNTER_ADDR + -1;
@@ -771,20 +710,18 @@ bool file_validator(int64_t param_1)
         CloseHandle(temp_long_array[0]);
         temp_long_array[0] = -1;
     }
-    
-    // 清理资源
+// 清理资源
     stack_ptr1 = &global_config_3456_ptr;
     if (stack_ptr2 == (void *)0x0) {
         return validation_result;
     }
     CoreEngine_MemoryPoolManager();
 }
-
 /**
  * @brief 着色器缓存处理器
  * @param param_1 输入参数
  * @return void
- * 
+ *
  * 该函数处理着色器缓存相关的操作，包括缓存读取、验证和更新。
  */
 void shader_cache_processor(uint64_t param_1)
@@ -809,8 +746,7 @@ void shader_cache_processor(uint64_t param_1)
     int32_t stack_var3;
     int8_t temp_buffer2[32];
     uint64_t stack_ulong2;
-    
-    // 初始化栈变量
+// 初始化栈变量
     stack_var2 = 0xfffffffffffffffe;
     stack_ulong2 = system_stack_cookie ^ (uint64_t)temp_buffer1;
     temp_var1 = 0;
@@ -819,22 +755,19 @@ void shader_cache_processor(uint64_t param_1)
     stack_ulong1 = 0;
     stack_ptr2 = (void *)0x0;
     stack_uint1 = 0;
-    
-    // 构建文件路径
-    FUN_1801c5870(&stack_ptr1, param_1);
+// 构建文件路径
+    function_1c5870(&stack_ptr1, param_1);
     temp_int = stack_uint1 + 0x12;
     CoreMemoryPoolProcessor(&stack_ptr1, temp_int);
     temp_ptr1 = (int32_t *)(stack_ptr2 + stack_uint1);
-    
-    // 设置文件名
+// 设置文件名
     *temp_ptr1 = 0x64616873;  // "hash"
     temp_ptr1[1] = 0x6d5f7265; // "_rem"
     temp_ptr1[2] = 0x69707061; // "appi"
     temp_ptr1[3] = 0x622e676e; // "ng.b"
     *(int16_t *)(temp_ptr1 + 4) = 0x6e69; // "in"
     *(int8_t *)((int64_t)temp_ptr1 + 0x12) = 0;
-    
-    // 初始化文件操作
+// 初始化文件操作
     stack_var1 = 0;
     stack_long1 = 0;
     temp_ptr2 = &system_buffer_ptr;
@@ -845,17 +778,16 @@ void shader_cache_processor(uint64_t param_1)
     SystemCore_Validator(&stack_var1, temp_ptr2, &global_config_4880_ptr);
     temp_long1 = stack_long1;
     temp_array1[0] = 0;
-    
     if (stack_long1 != 0) {
         fread(temp_array1, 4, 1, stack_long1);
         if (temp_array1[0] == 0x5ef) {
-            // 处理着色器缓存
+// 处理着色器缓存
             stack_ptr3 = &global_config_672_ptr;
             stack_ptr4 = temp_buffer2;
             stack_var3 = 0;
             temp_buffer2[0] = 0;
             temp_array1[1] = 1;
-            FUN_18004b860(&stack_ptr3, &global_config_4576_ptr, 0x130a7);
+            function_04b860(&stack_ptr3, &global_config_4576_ptr, 0x130a7);
             stack_int1 = 0;
             fread(&stack_int1, 4, 1, temp_long1);
             if (stack_int1 < 9) {
@@ -873,8 +805,7 @@ void shader_cache_processor(uint64_t param_1)
         SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
     }
-    
-    // 确保文件句柄关闭
+// 确保文件句柄关闭
     if (stack_long1 != 0) {
         fclose(stack_long1);
         stack_long1 = 0;
@@ -882,8 +813,7 @@ void shader_cache_processor(uint64_t param_1)
         SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
     }
-    
-    // 清理资源
+// 清理资源
     stack_ptr1 = &global_config_3456_ptr;
     if (stack_ptr2 == (void *)0x0) {
         stack_ptr2 = (void *)0x0;
@@ -893,11 +823,10 @@ void shader_cache_processor(uint64_t param_1)
     }
     CoreEngine_MemoryPoolManager();
 }
-
 /**
  * @brief 配置文件处理器
  * @return void
- * 
+ *
  * 该函数处理配置文件相关的操作，包括配置读取、验证和写入。
  */
 void configuration_file_handler(void)
@@ -927,28 +856,24 @@ void configuration_file_handler(void)
     int stack_int2;
     uint8_t temp_buffer2[32];
     uint64_t stack_ulong3;
-    
-    // 初始化栈变量
+// 初始化栈变量
     stack_var2 = 0xfffffffffffffffe;
     stack_ulong3 = system_stack_cookie ^ (uint64_t)temp_buffer1;
     temp_array1[1] = 0;
-    
     if (*(char *)(system_main_module_state + 0x168) == '\0') {
         stack_ptr3 = &global_config_3456_ptr;
         stack_ulong2 = 0;
         stack_long1 = 0;
         stack_int1 = 0;
-        FUN_1801c5870(&stack_ptr3);
+        function_1c5870(&stack_ptr3);
         stack_ptr1 = &global_config_3456_ptr;
         stack_ulong1 = 0;
         stack_ptr2 = (int8_t *)0x0;
         stack_uint1 = 0;
         CoreMemoryPoolProcessor(&stack_ptr1, stack_int1);
-        
         if (stack_int1 != 0) {
             memcpy(stack_ptr2, stack_long1, stack_int1 + 1);
         }
-        
         if (stack_long1 != 0) {
             stack_uint1 = 0;
             if (stack_ptr2 != (int8_t *)0x0) {
@@ -956,19 +881,16 @@ void configuration_file_handler(void)
             }
             stack_ulong1 = stack_ulong1 & 0xffffffff;
         }
-        
         temp_int = stack_uint1 + 0x12;
         CoreMemoryPoolProcessor(&stack_ptr1, temp_int);
         temp_ptr1 = (int32_t *)(stack_ptr2 + stack_uint1);
-        
-        // 设置文件名
+// 设置文件名
         *temp_ptr1 = 0x64616873;  // "hash"
         temp_ptr1[1] = 0x6d5f7265; // "_rem"
         temp_ptr1[2] = 0x69707061; // "appi"
         temp_ptr1[3] = 0x622e676e; // "ng.b"
         *(int16_t *)(temp_ptr1 + 4) = 0x6e69; // "in"
         *(int8_t *)((int64_t)temp_ptr1 + 0x12) = 0;
-        
         stack_uint1 = temp_int;
         temp_char = RenderingSystem_RenderQueue(&stack_ptr1);
         if (temp_char == '\0') {
@@ -981,12 +903,10 @@ void configuration_file_handler(void)
             }
             SystemCore_Validator(&stack_var1, temp_ptr2, &global_config_9772_ptr);
             temp_long1 = stack_long2;
-            
             if (stack_long2 == 0) {
                 SystemParameterHandler(system_message_context, &global_config_9856_ptr);
             }
-            
-            // 写入文件头
+// 写入文件头
             temp_array2[0] = 0x5ef;
             fwrite(temp_array2, 4, 1, stack_long2);
             stack_ptr4 = &global_config_672_ptr;
@@ -994,7 +914,7 @@ void configuration_file_handler(void)
             stack_int2 = 0;
             temp_buffer2[0] = 0;
             temp_array1[1] = 1;
-            FUN_18004b860(&stack_ptr4, &global_config_4576_ptr, 0x130a7);
+            function_04b860(&stack_ptr4, &global_config_4576_ptr, 0x130a7);
             temp_array1[0] = stack_int2;
             fwrite(temp_array1, 4, 1, temp_long1);
             temp_ptr3 = &system_buffer_ptr;
@@ -1010,8 +930,7 @@ void configuration_file_handler(void)
             temp_array1[1] = 0;
             stack_ptr4 = &global_config_720_ptr;
         }
-        
-        // 清理资源
+// 清理资源
         stack_ptr1 = &global_config_3456_ptr;
         if (stack_ptr2 != (int8_t *)0x0) {
             CoreEngine_MemoryPoolManager();
@@ -1029,13 +948,12 @@ void configuration_file_handler(void)
     }
     SystemSecurityChecker(stack_ulong3 ^ (uint64_t)temp_buffer1);
 }
-
 /**
  * @brief 路径构建器
  * @param param_1 输出缓冲区指针
  * @param param_2 输入参数
  * @return void
- * 
+ *
  * 该函数构建系统路径，支持默认路径和自定义路径两种模式。
  */
 void path_builder(int64_t *param_1, int64_t param_2)
@@ -1054,19 +972,16 @@ void path_builder(int64_t *param_1, int64_t param_2)
     int32_t stack_var3;
     uint8_t temp_buffer2[16];
     uint64_t stack_ulong1;
-    
-    // 初始化栈变量
+// 初始化栈变量
     stack_var2 = 0xfffffffffffffffe;
     stack_ulong1 = system_stack_cookie ^ (uint64_t)temp_buffer1;
     stack_var1 = 0;
     *(int32_t *)(param_1 + 2) = 0;
-    
     if ((int8_t *)param_1[1] != (int8_t *)0x0) {
         *(int8_t *)param_1[1] = 0;
     }
-    
     if (param_2 == 0) {
-        // 使用默认路径
+// 使用默认路径
         stack_ptr1 = &global_config_7512_ptr;
         stack_ptr2 = temp_buffer2;
         temp_buffer2[0] = 0;
@@ -1098,18 +1013,17 @@ void path_builder(int64_t *param_1, int64_t param_2)
         ResourceManager_Allocate(param_1, 1);
     }
     else {
-        // 使用自定义路径
+// 使用自定义路径
         SystemCore_ConfigurationHandler0(param_1, param_2 + 0x2d0);
     }
     SystemSecurityChecker(stack_ulong1 ^ (uint64_t)temp_buffer1);
 }
-
 /**
  * @brief 字符串构造器
  * @param param_1 输出缓冲区指针
  * @param param_2 输入参数
  * @return int64_t 处理结果
- * 
+ *
  * 该函数构造系统字符串，支持默认字符串和自定义字符串两种模式。
  */
 int64_t string_constructor(int64_t param_1, int64_t param_2)
@@ -1122,16 +1036,14 @@ int64_t string_constructor(int64_t param_1, int64_t param_2)
     void *stack_ptr1;
     int64_t stack_long1;
     int32_t stack_var1;
-    
-    // 初始化缓冲区
+// 初始化缓冲区
     *(int32_t *)(param_1 + 0x10) = 0;
     if (*(int8_t **)(param_1 + 8) != (int8_t *)0x0) {
         **(int8_t **)(param_1 + 8) = 0;
     }
-    
     if (param_2 == 0) {
-        // 使用默认字符串
-        temp_var1 = FUN_1800baa80(&stack_ptr1);
+// 使用默认字符串
+        temp_var1 = function_0baa80(&stack_ptr1);
         SystemScheduler(param_1, temp_var1);
         stack_ptr1 = &global_config_3456_ptr;
         if (stack_long1 != 0) {
@@ -1150,8 +1062,7 @@ int64_t string_constructor(int64_t param_1, int64_t param_2)
         *(int *)(param_1 + 0x10) = temp_int;
         return 0;
     }
-    
-    // 使用自定义字符串
+// 使用自定义字符串
     temp_uint1 = *(uint *)(param_2 + 0x2c0);
     temp_ulong = (uint64_t)temp_uint1;
     if (*(int64_t *)(param_2 + 0x2b8) != 0) {
@@ -1169,52 +1080,50 @@ int64_t string_constructor(int64_t param_1, int64_t param_2)
     *(int32_t *)(param_1 + 0x1c) = *(int32_t *)(param_2 + 0x2cc);
     return param_1;
 }
-
 // ============================================================================
 // 技术说明
 // ============================================================================
-
 /**
  * @section 技术实现说明
- * 
+ *
  * 本模块实现了TaleWorlds.Native引擎的核心功能，主要包括：
- * 
+ *
  * 1. 字符串处理和比较
  *    - 支持多种字符串格式的比较和验证
  *    - 实现高效的字符串匹配算法
  *    - 支持Unicode和多字节字符处理
- * 
+ *
  * 2. 文件操作和数据管理
  *    - 实现高级文件读写操作
  *    - 支持多种文件格式的解析
  *    - 实现数据缓存和优化机制
- * 
+ *
  * 3. 内存管理和资源分配
  *    - 实现高效的内存分配和释放
  *    - 支持内存池和缓存管理
  *    - 实现资源生命周期管理
- * 
+ *
  * 4. 系统调用和接口封装
  *    - 封装底层系统调用
  *    - 提供统一的接口访问
  *    - 实现跨平台兼容性
- * 
+ *
  * 5. 着色器和缓存管理
  *    - 实现着色器缓存系统
  *    - 支持着色器编译和优化
  *    - 实现缓存失效和更新机制
- * 
+ *
  * @section 性能优化
- * 
+ *
  * 本模块在实现过程中考虑了以下性能优化：
  * - 使用高效的字符串比较算法
  * - 实现内存池和缓存机制
  * - 优化文件I/O操作
  * - 使用线程安全的数据结构
  * - 实现延迟加载和按需分配
- * 
+ *
  * @section 安全性考虑
- * 
+ *
  * 本模块实现了以下安全机制：
  * - 输入参数验证和边界检查
  * - 内存访问保护
@@ -1222,11 +1131,9 @@ int64_t string_constructor(int64_t param_1, int64_t param_2)
  * - 资源泄漏防护
  * - 异常处理和错误恢复
  */
-
 // ============================================================================
 // 模块信息
 // ============================================================================
-
 /**
  * @module_info Module 99: Unmatched Functions
  * @file 99_part_03_part001.c

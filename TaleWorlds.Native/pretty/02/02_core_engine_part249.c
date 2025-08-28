@@ -1,15 +1,11 @@
 /* 函数别名定义: RenderingSystemProcessor */
 #define RenderingSystemProcessor RenderingSystemProcessor
-
-
 #include "RenderingSystemProcessor0_definition.h"
 #include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 02_core_engine_part249.c - 核心引擎模块第249部分
 // 本文件包含引擎渲染、资源管理和事件处理相关功能
-
 // 函数: 处理渲染管线状态更新
 // 参数: param_1 - 渲染上下文, param_2 - 操作类型, param_3 - 资源句柄, param_4 - 输出缓冲区
 void update_render_pipeline_state(int64_t render_context, int operation_type, int64_t resource_handle, int64_t output_buffer)
@@ -34,7 +30,6 @@ void update_render_pipeline_state(int64_t render_context, int operation_type, in
   int32_t stack_value_84;
   int32_t stack_value_80;
   uint64_t stack_value_58;
-  
   stack_value_178 = 0xfffffffffffffffe;
   stack_value_58 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer_1c8;
   if (((operation_type == 8) || (operation_type == 0x20)) &&
@@ -129,7 +124,6 @@ void update_render_pipeline_state(int64_t render_context, int operation_type, in
   }
   cleanup_stack_protection(stack_value_58 ^ (uint64_t)stack_buffer_1c8);
 }
-
 // 函数: 获取动画混合权重
 // 参数: param_1 - 动画控制器, param_2 - 动画轨道ID
 // 返回值: 混合权重值，失败返回-1.0
@@ -137,7 +131,6 @@ float get_animation_blend_weight(uint64_t animation_controller, uint64_t track_i
 {
   int64_t blend_state;
   int blend_weights[4];
-  
   blend_state = get_animation_state(animation_controller, track_id, 0);
   if (blend_state != 0) {
     blend_weights[0] = -1;
@@ -146,7 +139,6 @@ float get_animation_blend_weight(uint64_t animation_controller, uint64_t track_i
   }
   return -1.0;
 }
-
 // 函数: 创建和管理渲染对象
 // 参数: param_1 - 渲染设备, param_2 - 输出对象指针, param_3 - 配置参数, param_4 - 渲染标志, param_5 - 附加数据
 // 返回值: 创建的渲染对象指针
@@ -197,7 +189,6 @@ int64_t *create_render_object(int64_t render_device, int64_t **output_object, in
   uint64_t stack_value_68;
   int64_t *stack_ptr_60;
   int64_t *stack_ptr_58;
-  
   stack_value_68 = 0xfffffffffffffffe;
   if (*(char *)(render_device + 0x210) != '\0') {
     temp_ptr_long2 = *(int64_t **)(render_device + 0x1e8);
@@ -458,7 +449,6 @@ LAB_18021541f:
   stack_ptr_1a8 = &EMPTY_STRING_CONST;
   free_string_memory(stack_ptr_1a0);
 }
-
 // 函数: 清理渲染资源缓存
 // 参数: param_1 - 渲染设备上下文
 void cleanup_render_cache(int64_t render_context)
@@ -470,7 +460,6 @@ void cleanup_render_cache(int64_t render_context)
   uint64_t *current_resource;
   uint64_t resource_count;
   int cleanup_counter;
-  
   initialize_cleanup_system();
   cleanup_counter = 0;
   lock_result = _Mtx_lock(render_context + 0x60);
@@ -502,7 +491,6 @@ void cleanup_render_cache(int64_t render_context)
   }
   free_memory(resource_array);
 }
-
 // 函数: 查找渲染材质索引
 // 参数: param_1 - 材质管理器, param_2 - 材质名称
 // 返回值: 材质索引，失败返回-1
@@ -519,7 +507,6 @@ int find_material_index(int64_t material_manager, int64_t material_name)
   int64_t material_data;
   int64_t *material_entry;
   uint64_t stack_guard;
-  
   stack_guard = 0xfffffffffffffffe;
   current_material = get_material_database_handle(*(uint64_t *)(material_manager + 0x1f8));
   if (current_material == 0) {
@@ -572,7 +559,6 @@ LAB_180215cc5:
   }
   return comparison_result;
 }
-
 // 函数: 查找纹理资源索引
 // 参数: param_1 - 纹理管理器, param_2 - 纹理名称
 // 返回值: 纹理索引，失败返回-1
@@ -588,7 +574,6 @@ int find_texture_index(int64_t texture_manager, int64_t texture_name)
   int64_t current_texture;
   int64_t *texture_entry;
   int64_t name_offset;
-  
   texture_index = 0;
   texture_count = (int)((*(int64_t *)(texture_manager + 0x3e0) - *(int64_t *)(texture_manager + 0x3d8)) / 0x28);
   if (0 < texture_count) {
@@ -626,13 +611,11 @@ LAB_180215d8e:
   log_warning(GLOBAL_LOGGER_HANDLE, 0, 0x1000000000000, 3, &TEXTURE_NOT_FOUND, error_ptr);
   return -1;
 }
-
 // 函数: 重置渲染状态
 // 参数: param_1 - 渲染设备
 void reset_render_state(int64_t render_device)
 {
   int reset_result;
-  
   if (*(char *)(render_device + 0x210) == '\0') {
     reset_result = check_render_state_validity(*(uint64_t *)(render_device + 0x368));
     if (reset_result == 0) {
@@ -643,7 +626,6 @@ void reset_render_state(int64_t render_device)
   }
   return;
 }
-
 // 函数: 执行渲染对象方法
 // 参数: param_1 - 渲染对象
 void execute_render_object_method(int64_t *render_object)
@@ -651,7 +633,6 @@ void execute_render_object_method(int64_t *render_object)
   (**(code **)(*render_object + 0x68))();
   return;
 }
-
 // 函数: 处理渲染事件
 // 参数: param_1 - 渲染设备, param_2 - 事件数据, param_3 - 事件类型, param_4 - 事件参数, param_5 - 附加数据
 // 返回值: 事件处理结果
@@ -663,7 +644,6 @@ uint64_t process_render_event(int64_t render_device, int64_t event_data, uint64_
   uint64_t process_result;
   void *error_message;
   int64_t stack_temp;
-  
   if ((*(char *)(render_device + 0x210) == '\0') &&
      (return_value = GLOBAL_DEBUG_FLAG, *(int *)(GLOBAL_DEBUG_FLAG + 0xb60) == 1)) {
     if ((*(int64_t *)(render_device + 0x18) != 0) && (0 < *(int *)(event_data + 0x10))) {
@@ -690,7 +670,6 @@ uint64_t process_render_event(int64_t render_device, int64_t event_data, uint64_
   }
   return return_value & 0xffffffffffffff00;
 }
-
 // 函数: 处理全局渲染事件
 uint64_t process_global_render_event(void)
 {
@@ -698,15 +677,14 @@ uint64_t process_global_render_event(void)
   int64_t event_handler;
   uint64_t process_result;
   int32_t *unaff_R15;
-  int64_t in_stack_00000050;
-  
+  int64_t local_buffer_50;
   event_handler = find_global_event_handler();
   if (event_handler != 0) {
-    temp_result = get_event_handler_info(event_handler, &stack0x00000050);
+    temp_result = get_event_handler_info(event_handler, &local_buffer_00000050);
     validate_resource_handle(temp_result, &DEFAULT_STRING_CONST);
-    event_handler = in_stack_00000050;
-    if (in_stack_00000050 != 0) {
-      setup_event_handler(in_stack_00000050);
+    event_handler = local_buffer_50;
+    if (local_buffer_50 != 0) {
+      setup_event_handler(local_buffer_50);
       trigger_event_system();
       apply_event_parameters(event_handler, *unaff_R15);
       process_result = get_event_result(event_handler);
@@ -716,7 +694,6 @@ uint64_t process_global_render_event(void)
   process_result = log_warning(GLOBAL_LOGGER_HANDLE, 0, 0x1000000000000, 3, &GLOBAL_EVENT_ERROR);
   return process_result & 0xffffffffffffff00;
 }
-
 // 函数: 处理渲染设备事件
 uint64_t process_device_render_event(void)
 {
@@ -724,7 +701,6 @@ uint64_t process_device_render_event(void)
   int64_t unaff_RBX;
   int64_t unaff_RDI;
   int64_t stack_temp;
-  
   stack_temp = unaff_RBX;
   if (*(int64_t *)(unaff_RDI + 8) != 0) {
     stack_temp = *(int64_t *)(unaff_RDI + 8);
@@ -732,26 +708,22 @@ uint64_t process_device_render_event(void)
   process_result = log_warning(GLOBAL_LOGGER_HANDLE, 0, 0x1000000000000, 3, &DEVICE_EVENT_ERROR);
   return process_result & 0xffffffffffffff00;
 }
-
 // 函数: 检查渲染设备状态
 int8_t check_render_device_status(void)
 {
   return 0;
 }
-
 // 函数: 设置渲染参数
 // 参数: param_1 - 渲染对象, param_2 - 参数类型, param_3 - 参数值, param_4 - 附加数据
 void set_render_parameters(int64_t *render_object, uint64_t param_type, uint64_t param_value, uint64_t extra_data)
 {
   int32_t stack_temp_8;
   int32_t stack_temp_c;
-  
   stack_temp_8 = 0x3f800000;
   stack_temp_c = 0;
   (**(code **)(*render_object + 0x58))(0x3f800000, 0, param_value, &stack_temp_8, extra_data);
   return;
 }
-
 // 函数: 处理渲染命令
 // 参数: param_1 - 渲染设备, param_2 - 命令类型, param_3 - 命令数据, param_4 - 命令参数, param_5 - 附加数据
 uint64_t process_render_command(int64_t render_device, int command_type, uint64_t command_data, int32_t *command_params, uint64_t extra_data)
@@ -762,7 +734,6 @@ uint64_t process_render_command(int64_t render_device, int command_type, uint64_
   uint64_t command_result;
   int64_t resource_handle;
   int64_t *stack_temp;
-  
   if ((*(char *)(render_device + 0x210) == '\0') && (*(int *)(GLOBAL_DEBUG_FLAG + 0xb60) == 1)) {
     lock_result = *(int *)(*(int64_t *)(render_device + 0x1f8) + 0x50);
     if (command_type < lock_result) {
@@ -809,14 +780,12 @@ uint64_t process_render_command(int64_t render_device, int command_type, uint64_
   }
   return command_result;
 }
-
 // 函数: 获取渲染对象属性
 int32_t get_render_object_property(uint64_t render_object, uint64_t property_id)
 {
   int64_t property_value;
   int32_t property_data[2];
   int8_t temp_buffer[8];
-  
   property_value = find_event_handler(render_object, property_id, 0);
   if (property_value != 0) {
     extract_property_data(property_value, temp_buffer, property_data);
@@ -824,14 +793,12 @@ int32_t get_render_object_property(uint64_t render_object, uint64_t property_id)
   }
   return 0;
 }
-
 // 函数: 获取渲染对象状态
 int32_t get_render_object_status(uint64_t render_object, uint64_t status_id)
 {
   int64_t status_value;
   int32_t status_data[2];
   int8_t temp_buffer[8];
-  
   status_value = get_animation_state(render_object, status_id, 0);
   if (status_value != 0) {
     extract_property_data(status_value, temp_buffer, status_data);
@@ -839,7 +806,6 @@ int32_t get_render_object_status(uint64_t render_object, uint64_t status_id)
   }
   return 0;
 }
-
 // 全局常量定义
 #define DEFAULT_STRING_CONST system_buffer_ptr
 #define EMPTY_STRING_CONST memory_allocator_3456
@@ -860,47 +826,46 @@ int32_t get_render_object_status(uint64_t render_object, uint64_t status_id)
 #define RENDER_OBJECT_VTABLE2 memory_allocator_3696
 #define RENDER_OBJECT_VTABLE3 processed_var_7872
 #define RENDER_OBJECT_VTABLE4 rendering_buffer_2656
-
 // 函数指针映射表（简化实现）
-#define get_resource_info FUN_1808455f0
-#define process_resource_data FUN_180846fe0
-#define get_resource_properties FUN_180844f40
+#define get_resource_info function_8455f0
+#define process_resource_data function_846fe0
+#define get_resource_properties function_844f40
 #define validate_resource_handle SystemCore_NetworkHandler
-#define acquire_resource_lock FUN_180847110
-#define release_resource_reference FUN_18084a7a0
+#define acquire_resource_lock function_847110
+#define release_resource_reference function_84a7a0
 #define process_render_queue SystemSecurity_Manager
 #define update_render_state SystemDatabaseProcessor
 #define throw_thread_error __Throw_C_error_std__YAXH_Z
-#define create_shader_object FUN_180739270
-#define cleanup_shader_object FUN_18073ebd0
+#define create_shader_object function_739270
+#define cleanup_shader_object function_73ebd0
 #define cleanup_stack_protection SystemSecurityChecker
-#define get_animation_state FUN_180213700
-#define extract_blend_weights FUN_180845ef0
-#define find_resource_by_id FUN_180213440
+#define get_animation_state function_213700
+#define extract_blend_weights function_845ef0
+#define find_resource_by_id function_213440
 #define allocate_string_memory CoreMemoryPoolAllocator
 #define get_string_length CoreMemoryPoolCleaner
 #define format_error_message UtilitiesSystem_FileHandler
 #define free_string_memory CoreEngine_MemoryPoolManager
-#define initialize_render_object FUN_180159210
+#define initialize_render_object function_159210
 #define allocate_object_memory CoreMemoryPoolReallocator
-#define initialize_render_object_data FUN_18015c2b0
+#define initialize_render_object_data function_15c2b0
 #define log_debug_event SystemConfigurationManager
-#define configure_render_object FUN_180406a00
+#define configure_render_object function_406a00
 #define _guard_check_icall _guard_check_icall
 #define reallocate_string_memory DataValidator
-#define initialize_cleanup_system FUN_180156300
-#define release_resource_reference2 FUN_180849230
+#define initialize_cleanup_system function_156300
+#define release_resource_reference2 function_849230
 #define free_memory CoreEngine_MemoryPoolManager
-#define get_material_database_handle FUN_18020fa10
-#define check_render_state_validity FUN_18084b380
+#define get_material_database_handle function_20fa10
+#define check_render_state_validity function_84b380
 #define log_warning SystemConfigurationManager
-#define find_event_handler FUN_180213440
-#define get_event_handler_info FUN_180840490
-#define setup_event_handler FUN_180407630
-#define trigger_event_system FUN_1802164f0
-#define apply_event_parameters FUN_18084a280
-#define get_event_result FUN_180406800
-#define find_global_event_handler FUN_180213440
-#define get_property_data FUN_180846050
-#define extract_property_data FUN_180846050
-#define create_render_object_from_template FUN_1801582f0
+#define find_event_handler function_213440
+#define get_event_handler_info function_840490
+#define setup_event_handler function_407630
+#define trigger_event_system function_2164f0
+#define apply_event_parameters function_84a280
+#define get_event_result function_406800
+#define find_global_event_handler function_213440
+#define get_property_data function_846050
+#define extract_property_data function_846050
+#define create_render_object_from_template function_1582f0

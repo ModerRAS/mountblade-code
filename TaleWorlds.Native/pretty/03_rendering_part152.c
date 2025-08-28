@@ -1,29 +1,20 @@
 n//  的语义化别名
-#define SystemCore_DataSerializer 
-
+#define SystemCore_DataSerializer
 n//  的语义化别名
-#define SystemCore_Decoder 
-
-
+#define SystemCore_Decoder
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* 函数别名定义: MathOptimizationEngine */
 #define MathOptimizationEngine MathOptimizationEngine
-
-
 /* 函数别名定义: DataDeserializer */
 #define DataDeserializer DataDeserializer
-
-
-
 /**
  * @file 03_rendering_part152.c
  * @brief 渲染系统高级数据处理和优化器模块
- * 
+ *
  * 本模块包含2个核心函数，涵盖渲染系统高级数据处理、优化计算、
  * 纹理坐标映射、几何变换、内存管理、状态同步等高级渲染功能。
- * 
+ *
  * 主要功能：
  * - 高级数据采样和插值处理
  * - 纹理坐标映射和转换
@@ -31,105 +22,75 @@ n//  的语义化别名
  * - 高级数学计算和矩阵运算
  * - 内存管理和资源清理
  * - 系统状态管理和错误处理
- * 
+ *
  * @author Claude Code
  * @version 2.0
  * @date 2025-08-28
  */
-
 // =============================================================================
 // 常量定义区域
 // =============================================================================
-
 /** 渲染系统最大处理数量 */
 #define RENDERING_SYSTEM_MAX_PROCESS_COUNT 0xFFFF
-
 /** 渲染系统默认缩放因子 */
 #define RENDERING_SYSTEM_DEFAULT_SCALE_FACTOR 1.0f
-
 /** 渲染系统插值精度 */
 #define RENDERING_SYSTEM_INTERPOLATION_PRECISION 0.001f
-
 /** 渲染系统数据对齐大小 */
 #define RENDERING_SYSTEM_DATA_ALIGNMENT 8
-
 /** 渲染系统最大缓冲区大小 */
 #define RENDERING_SYSTEM_MAX_BUFFER_SIZE 0x400
-
 /** 渲染系统字符串最大长度 */
 #define RENDERING_SYSTEM_MAX_STRING_LENGTH 0x40
-
 /** 渲染系统坐标偏移量 */
 #define RENDERING_SYSTEM_COORDINATE_OFFSET 0.5f
-
 /** 渲染系统归一化因子 */
 #define RENDERING_SYSTEM_NORMALIZATION_FACTOR 0.33333334f
-
 /** 渲染系统采样步长 */
 #define RENDERING_SYSTEM_SAMPLING_STEP 0.05f
-
 /** 渲染系统采样起始值 */
 #define RENDERING_SYSTEM_SAMPLING_START 0.2f
-
 /** 渲染系统采样结束值 */
 #define RENDERING_SYSTEM_SAMPLING_END 0.8f
-
 /** 渲染系统阈值常数 */
 #define RENDERING_SYSTEM_THRESHOLD_CONSTANT 0.15f
-
 /** 渲染系统浮点精度掩码 */
 #define RENDERING_SYSTEM_FLOAT_PRECISION_MASK 0x7f7fffff
-
 /** 渲染系统颜色掩码 */
 #define RENDERING_SYSTEM_COLOR_MASK 0xffffff
-
 /** 渲染系统空指针标记 */
 #define RENDERING_SYSTEM_NULL_POINTER 0x0
-
 /** 渲染系统最大迭代次数 */
 #define RENDERING_SYSTEM_MAX_ITERATIONS 2
-
 /** 渲染系统堆栈保护大小 */
 #define RENDERING_SYSTEM_STACK_PROTECTION_SIZE 32
-
 /** 渲染系统内存分配标志 */
 #define RENDERING_SYSTEM_MEMORY_ALLOC_FLAG 0x16
-
 /** 渲染系统字符串处理标志 */
 #define RENDERING_SYSTEM_STRING_PROCESS_FLAG 0x12
-
 // =============================================================================
 // 类型别名定义区域
 // =============================================================================
-
 /** 渲染系统数据处理器类型 */
 typedef void* RenderingSystemDataProcessor;
-
 /** 渲染系统内存管理器类型 */
 typedef void* RenderingSystemMemoryManager;
-
 /** 渲染系统状态管理器类型 */
 typedef void* RenderingSystemStateManager;
-
 /** 渲染系统坐标代码分析器类型 */
 typedef void* RenderingSystemCoordinateTransformer;
-
 /** 渲染系统优化器类型 */
 typedef void* RenderingSystemOptimizer;
-
 /** 渲染系统采样器类型 */
 typedef void* RenderingSystemSampler;
-
 /** 渲染系统插值器类型 */
 typedef void* RenderingSystemInterpolator;
-
 // =============================================================================
 // 结构体定义区域
 // =============================================================================
-
 /**
  * @brief 渲染系统数据点结构体
- * 
+ *
  * 用于存储渲染系统中的数据点信息，包括坐标、
  * 纹理坐标、颜色值等渲染相关数据。
  */
@@ -145,10 +106,9 @@ typedef struct {
     float a;                    /**< 透明度分量 */
     float intensity;             /**< 强度值 */
 } RenderingSystemDataPoint;
-
 /**
  * @brief 渲染系统采样参数结构体
- * 
+ *
  * 用于存储渲染系统采样过程中的各种参数，
  * 包括采样位置、权重、偏移量等。
  */
@@ -163,10 +123,9 @@ typedef struct {
     int iteration_count;         /**< 迭代计数 */
     float threshold;             /**< 阈值 */
 } RenderingSystemSampleParams;
-
 /**
  * @brief 渲染系统变换矩阵结构体
- * 
+ *
  * 用于存储渲染系统中的变换矩阵数据，
  * 支持平移、旋转、缩放等变换操作。
  */
@@ -188,117 +147,80 @@ typedef struct {
     float m43;                   /**< 矩阵元素(4,3) */
     float m44;                   /**< 矩阵元素(4,4) */
 } RenderingSystemTransformMatrix;
-
 // =============================================================================
 // 函数别名定义区域
 // =============================================================================
-
 /** 渲染系统高级数据处理器和优化器 */
-#define RenderingSystem_AdvancedDataProcessorAndOptimizer FUN_18035ec60
-
+#define RenderingSystem_AdvancedDataProcessorAndOptimizer function_35ec60
 /** 渲染系统配置管理器 */
-#define RenderingSystem_ConfigurationManager FUN_18035fff0
-
+#define RenderingSystem_ConfigurationManager function_35fff0
 /** 渲染系统数据采样器 */
 #define RenderingSystem_DataSampler SystemCore_DataConverter
-
 /** 渲染系统内存池分配器 */
 #define RenderingSystem_MemoryPoolAllocator CoreMemoryPoolAllocator
-
 /** 渲染系统内存清理器 */
 #define RenderingSystem_MemoryCleaner CoreMemoryPoolInitializer
-
 /** 渲染系统纹理管理器 */
-#define RenderingSystem_TextureManager FUN_1802e9fa0
-
+#define RenderingSystem_TextureManager function_2e9fa0
 /** 渲染系统渲染管线初始化器 */
-#define RenderingSystem_RenderPipelineInitializer FUN_18046a8c0
-
+#define RenderingSystem_RenderPipelineInitializer function_46a8c0
 /** 渲染系统内存分配器 */
 #define RenderingSystem_MemoryAllocator CoreMemoryPoolReallocator
-
 /** 渲染系统资源管理器 */
 #define RenderingSystem_ResourceManager RenderingSystem_ShaderManager
-
 /** 渲染系统渲染队列管理器 */
 #define RenderingSystem_RenderQueueManager PhysicsSystem_TerrainCollider
-
 /** 渲染系统缓冲区管理器 */
-#define RenderingSystem_BufferManager FUN_180075030
-
+#define RenderingSystem_BufferManager FileSystem_Operator
 /** 渲染系统资源状态管理器 */
 #define RenderingSystem_ResourceStateManager SystemCore_PerformanceMonitor
-
 /** 渲染系统数据处理器 */
 #define RenderingSystem_DataProcessor SystemCore_LoggingSystem
-
 /** 渲染系统数据管理器 */
 #define RenderingSystem_DataManager RenderingSystem_MaterialProcessor
-
 /** 渲染系统坐标转换器 */
-#define RenderingSystem_CoordinateTransformer FUN_1803a5130
-
+#define RenderingSystem_CoordinateTransformer function_3a5130
 /** 渲染系统几何处理器 */
 #define RenderingSystem_GeometryProcessor SystemCore_DataSerializer
-
 /** 渲染系统几何优化器 */
 #define RenderingSystem_GeometryOptimizer SystemCore_Decoder
-
 /** 渲染系统几何渲染器 */
 #define RenderingSystem_GeometryRenderer SystemCore_RenderFrame
-
 /** 渲染系统状态管理器 */
-#define RenderingSystem_StateManager FUN_180234880
-
+#define RenderingSystem_StateManager function_234880
 /** 渲染系统数据流处理器 */
-#define RenderingSystem_DataFlowProcessor FUN_18040fa30
-
+#define RenderingSystem_DataFlowProcessor function_40fa30
 /** 渲染系统消息处理器 */
 #define RenderingSystem_MessageProcessor SystemConfigurationManager
-
 /** 渲染系统错误处理器 */
 #define RenderingSystem_ErrorHandler SystemConfig_Manager
-
 /** 渲染系统资源清理器 */
 #define RenderingSystem_ResourceCleaner SystemSecurityManager
-
 /** 渲染系统状态清理器 */
 #define RenderingSystem_StateCleaner SystemInitializer
-
 /** 渲染系统资源释放器 */
-#define RenderingSystem_ResourceReleaser FUN_180275cf0
-
+#define RenderingSystem_ResourceReleaser function_275cf0
 /** 渲染系统资源分配器 */
 #define RenderingSystem_ResourceAllocator SystemCore_UpdateState
-
 /** 渲染系统资源初始化器 */
-#define RenderingSystem_ResourceInitializer FUN_18007c860
-
+#define RenderingSystem_ResourceInitializer function_07c860
 /** 渲染系统数据管理器 */
-#define RenderingSystem_DataManager2 FUN_18022f390
-
+#define RenderingSystem_DataManager2 function_22f390
 /** 渲染系统字符串处理器 */
 #define RenderingSystem_StringProcessor DataDeserializer0
-
 /** 渲染系统数组管理器 */
 #define RenderingSystem_ArrayManager MathOptimizationEngine0
-
 /** 渲染系统安全检查器 */
 #define RenderingSystem_SecurityChecker SystemSecurityChecker
-
 /** 渲染系统内存管理器 */
 #define RenderingSystem_MemoryManager SystemManager_StateHandler0
-
 /** 渲染系统回调管理器 */
-#define RenderingSystem_CallbackManager FUN_180360210
-
+#define RenderingSystem_CallbackManager function_360210
 // =============================================================================
 // 核心函数实现区域
 // =============================================================================
-
 /*
 核心函数实现说明：
-
 1. RenderingSystem_AdvancedDataProcessorAndOptimizer - 渲染系统高级数据处理器和优化器
    实现细节：
    - 使用多层嵌套循环进行精确的浮点计算
@@ -306,7 +228,6 @@ typedef struct {
    - 支持复杂的几何变换和矩阵运算
    - 包含完整的内存管理和资源清理机制
    - 提供实时的数据处理和优化功能
-
 2. RenderingSystem_ConfigurationManager - 渲染系统配置管理器
    实现细节：
    - 管理系统配置参数和状态
@@ -314,7 +235,6 @@ typedef struct {
    - 提供参数验证和错误处理
    - 支持系统初始化和配置管理
    - 实现完整的配置管理流程
-
 技术特点：
 - 高性能的渲染算法实现
 - 精确的数值计算和插值处理
@@ -324,7 +244,6 @@ typedef struct {
 - 实现优化的数据处理流程
 - 支持实时渲染和动态更新
 - 包含完整的边界检查和安全验证
-
 优化策略：
 - 使用高效的内存访问模式
 - 实现智能的缓存机制
@@ -335,13 +254,12 @@ typedef struct {
 - 包含完整的内存池管理
 - 提供智能的资源分配策略
 */
-
 /**
  * @brief 渲染系统高级数据处理器和优化器
- * 
+ *
  * 这是渲染系统的核心数据处理函数，负责执行高级数据采样、
  * 插值处理、纹理坐标映射、几何变换、优化计算等复杂操作。
- * 
+ *
  * 主要功能：
  * - 高级数据采样和插值处理
  * - 纹理坐标映射和转换
@@ -349,17 +267,17 @@ typedef struct {
  * - 高级数学计算和矩阵运算
  * - 内存管理和资源清理
  * - 系统状态管理和错误处理
- * 
+ *
  * @param param_1 渲染系统上下文参数指针
- * 
+ *
  * @note 该函数使用了复杂的算法进行渲染数据的处理和优化，
  *       包含多层嵌套循环和精确的浮点计算。
  */
 void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
 {
-  // 渲染数据处理核心变量
+// 渲染数据处理核心变量
   float sample_weight_x;          // 采样权重X坐标
-  float sample_weight_y;          // 采样权重Y坐标  
+  float sample_weight_y;          // 采样权重Y坐标
   float interpolation_result;    // 插值计算结果
   int32_t color_mask;          // 颜色掩码
   int32_t temp_mask1;          // 临时掩码1
@@ -389,7 +307,7 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
   float normal_z;                 // 法线Z分量
   float scale_factor;             // 缩放因子
   float threshold_value;          // 阈值数值
-  // 栈变量区域 - 渲染系统工作内存
+// 栈变量区域 - 渲染系统工作内存
   int8_t stack_protection_buffer [32];        // 栈保护缓冲区
   float *sampling_buffer_ptr;                     // 采样缓冲区指针
   int64_t ***triple_context_ptr;                // 三重上下文指针
@@ -470,7 +388,7 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
   int64_t *index_buffer_ptr;                     // 索引缓冲区指针
   float *texture_buffer_ptr;                     // 纹理缓冲区指针
   float *normal_buffer_ptr;                      // 法线缓冲区指针
-  // 采样和渲染数据缓冲区
+// 采样和渲染数据缓冲区
   int8_t sample_buffer1 [16];                   // 采样缓冲区1
   int8_t sample_buffer2 [16];                   // 采样缓冲区2
   int8_t sample_buffer3 [16];                   // 采样缓冲区3
@@ -525,53 +443,52 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
   int32_t stencil_mask;                           // 模板掩码
   int8_t stencil_func;                           // 模板函数
   uint64_t stack_guard;                             // 栈保护器
-  
-  uStack_280 = 0xfffffffffffffffe;
-  uStack_d8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_458;
+  local_var_280 = 0xfffffffffffffffe;
+  local_var_d8 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_458;
   puVar9 = (uint64_t *)0x0;
   alStack_1b8[0] = 0;
   alStack_1b8[1] = 0;
-  uStack_1a8 = 0;
-  uStack_1a6 = 3;
-  uStack_156 = 0;
-  uStack_164 = 0;
-  uStack_15c = 0;
-  uStack_158 = 0;
-  uStack_152 = 0;
-  uStack_1a4 = 0;
-  uStack_19c = 0;
-  uStack_194 = 0;
-  uStack_18c = 0;
-  uStack_184 = 0;
-  uStack_17c = 0;
-  uStack_174 = 0;
-  uStack_16c = 0;
-  puStack_148 = (void *)0x0;
-  uStack_140 = 0;
-  uStack_138 = 0;
-  uStack_136 = 3;
-  uStack_e6 = 0;
-  uStack_f4 = 0;
-  uStack_ec = 0;
-  uStack_e8 = 0;
-  uStack_e2 = 0;
-  uStack_134 = 0;
-  uStack_12c = 0;
-  uStack_124 = 0;
-  uStack_11c = 0;
-  uStack_114 = 0;
-  uStack_10c = 0;
-  uStack_104 = 0;
-  uStack_fc = 0;
+  local_var_1a8 = 0;
+  local_var_1a6 = 3;
+  local_var_156 = 0;
+  local_var_164 = 0;
+  local_var_15c = 0;
+  local_var_158 = 0;
+  local_var_152 = 0;
+  local_var_1a4 = 0;
+  local_var_19c = 0;
+  local_var_194 = 0;
+  local_var_18c = 0;
+  local_var_184 = 0;
+  local_var_17c = 0;
+  local_var_174 = 0;
+  local_var_16c = 0;
+  plocal_var_148 = (void *)0x0;
+  local_var_140 = 0;
+  local_var_138 = 0;
+  local_var_136 = 3;
+  local_var_e6 = 0;
+  local_var_f4 = 0;
+  local_var_ec = 0;
+  local_var_e8 = 0;
+  local_var_e2 = 0;
+  local_var_134 = 0;
+  local_var_12c = 0;
+  local_var_124 = 0;
+  local_var_11c = 0;
+  local_var_114 = 0;
+  local_var_10c = 0;
+  local_var_104 = 0;
+  local_var_fc = 0;
   plStack_3b0 = (int64_t *)0x0;
   plStack_3f8 = (int64_t *)0x0;
   plVar11 = *(int64_t **)(param_1 + 0x70);
-  uStack_398 = param_1;
+  local_var_398 = param_1;
   if (plVar11 != (int64_t *)0x0) {
-    uStack_410 = (int64_t **)plVar11;
+    local_var_410 = (int64_t **)plVar11;
     (**(code **)(*plVar11 + 0x28))(plVar11);
   }
-  uStack_410 = (int64_t **)plStack_3b0;
+  local_var_410 = (int64_t **)plStack_3b0;
   if (plStack_3b0 != (int64_t *)0x0) {
     lVar7 = *plStack_3b0;
     plStack_3b0 = plVar11;
@@ -581,10 +498,10 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
   plStack_3b0 = plVar11;
   plVar11 = *(int64_t **)(param_1 + 0x78);
   if (plVar11 != (int64_t *)0x0) {
-    uStack_410 = (int64_t **)plVar11;
+    local_var_410 = (int64_t **)plVar11;
     (**(code **)(*plVar11 + 0x28))(plVar11);
   }
-  uStack_410 = (int64_t **)plStack_3f8;
+  local_var_410 = (int64_t **)plStack_3f8;
   if (plStack_3f8 != (int64_t *)0x0) {
     lVar7 = *plStack_3f8;
     plStack_3f8 = plVar11;
@@ -596,41 +513,41 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
     RenderingSystem_MemoryManager(&processed_var_5456_ptr);
   }
   else {
-    uStack_3e8 = (void **)alStack_1b8;
-    uStack_3e0 = &plStack_3b0;
+    local_var_3e8 = (void **)alStack_1b8;
+    local_var_3e0 = &plStack_3b0;
     pcStack_3c8 = (code *)&system_state_ptr;
     pcStack_3c0 = RenderingSystem_CallbackManager;
-    pfStack_438 = (float *)auStack_3d8;
-    auStack_3d8 = (int8_t  [8])uStack_3e8;
-    puStack_3d0 = uStack_3e0;
+    pfStack_438 = (float *)stack_array_3d8;
+    stack_array_3d8 = (int8_t  [8])local_var_3e8;
+    plocal_var_3d0 = local_var_3e0;
     (**(code **)(**(int64_t **)(plStack_3b0[0x15] + 0x88) + 0x60))
               (*(int64_t **)(plStack_3b0[0x15] + 0x88),&system_memory_1050,plStack_3b0[0x15] + 0xc,0);
     if (pcStack_3c8 != (code *)0x0) {
-      (*pcStack_3c8)(auStack_3d8,0,0);
+      (*pcStack_3c8)(stack_array_3d8,0,0);
     }
-    uStack_3e8 = &puStack_148;
-    uStack_3e0 = &plStack_3f8;
+    local_var_3e8 = &plocal_var_148;
+    local_var_3e0 = &plStack_3f8;
     pcStack_3c8 = (code *)&processed_var_656_ptr;
     pcStack_3c0 = RenderingSystem_CallbackManager;
-    puStack_3d0 = uStack_3e0;
-    auStack_3d8 = (int8_t  [8])uStack_3e8;
-    pfStack_438 = (float *)auStack_3d8;
+    plocal_var_3d0 = local_var_3e0;
+    stack_array_3d8 = (int8_t  [8])local_var_3e8;
+    pfStack_438 = (float *)stack_array_3d8;
     (**(code **)(**(int64_t **)(plStack_3f8[0x15] + 0x88) + 0x60))
               (*(int64_t **)(plStack_3f8[0x15] + 0x88),&system_memory_1050,plStack_3f8[0x15] + 0xc,0);
     if (pcStack_3c8 != (code *)0x0) {
-      (*pcStack_3c8)(auStack_3d8,0,0);
+      (*pcStack_3c8)(stack_array_3d8,0,0);
     }
     pcStack_3c8 = (code *)0x0;
     pcStack_3c0 = (code *)CONCAT44(pcStack_3c0._4_4_,3);
-    fVar24 = (float)(uStack_15c & 0xffff);
+    fVar24 = (float)(local_var_15c & 0xffff);
     fVar26 = 1.0 / fVar24;
     afStack_418[0] = 0.0;
-    puStack_3d0 = (uint64_t *)0x0;
-    auStack_3d8 = (int8_t  [8])0x0;
-    puVar15 = puStack_3d0;
-    auVar8 = auStack_3d8;
+    plocal_var_3d0 = (uint64_t *)0x0;
+    stack_array_3d8 = (int8_t  [8])0x0;
+    puVar15 = plocal_var_3d0;
+    auVar8 = stack_array_3d8;
     puVar20 = puVar9;
-    _auStack_3d8 = ZEXT816(0);
+    _stack_array_3d8 = ZEXT816(0);
     if (0 < (int)fVar24) {
       do {
         iVar18 = 0;
@@ -644,7 +561,7 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
           do {
             fVar23 = (float)iVar18 + 0.5;
             pfStack_3a8 = (float *)CONCAT44(pfStack_3a8._4_4_,fVar23 * fVar26);
-            lVar7 = RenderingSystem_DataSampler(alStack_1b8,&uStack_3e8,pfStack_3a8,1);
+            lVar7 = RenderingSystem_DataSampler(alStack_1b8,&local_var_3e8,pfStack_3a8,1);
             fVar27 = *(float *)(lVar7 + 8);
             iVar16 = -1;
             fVar22 = fVar27;
@@ -652,9 +569,9 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
               iVar14 = -1;
               do {
                 if ((iVar14 != 0) || (iVar16 != 0)) {
-                  uStack_3f0 = CONCAT44((fVar24 - ((float)iVar16 + fVar25)) * fVar26,
+                  local_var_3f0 = CONCAT44((fVar24 - ((float)iVar16 + fVar25)) * fVar26,
                                         ((float)iVar14 + fVar23) * fVar26);
-                  lVar7 = RenderingSystem_DataSampler(alStack_1b8,&fStack_2f0,uStack_3f0,1);
+                  lVar7 = RenderingSystem_DataSampler(alStack_1b8,&fStack_2f0,local_var_3f0,1);
                   fVar22 = fVar22 + *(float *)(lVar7 + 8);
                 }
                 iVar14 = iVar14 + 1;
@@ -664,11 +581,11 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
             puVar15 = puVar9;
             auVar8 = (int8_t  [8])puVar19;
             if (((fVar27 < 0.5) && (0.5 < fVar22)) && (fVar22 < 1.5)) {
-              uStack_408 = CONCAT44(fVar24 - fVar28,(float)iVar18);
+              local_var_408 = CONCAT44(fVar24 - fVar28,(float)iVar18);
               if (puVar9 < puVar20) {
                 puVar15 = puVar9 + 1;
-                puStack_3d0 = puVar15;
-                *puVar9 = uStack_408;
+                plocal_var_3d0 = puVar15;
+                *puVar9 = local_var_408;
               }
               else {
                 lVar7 = (int64_t)puVar9 - (int64_t)puVar19 >> 3;
@@ -683,17 +600,17 @@ LAB_18035f156:
                   auVar8 = (int8_t  [8])0x0;
                 }
                 if (puVar19 != puVar9) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                   memmove(auVar8,puVar19,(int64_t)puVar9 - (int64_t)puVar19);
                 }
-                *(uint64_t *)auVar8 = uStack_408;
+                *(uint64_t *)auVar8 = local_var_408;
                 puVar15 = (uint64_t *)((int64_t)auVar8 + 8);
                 if (puVar19 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                   RenderingSystem_MemoryCleaner(puVar19);
                 }
-                puStack_3d0 = puVar15;
-                auStack_3d8 = auVar8;
+                plocal_var_3d0 = puVar15;
+                stack_array_3d8 = auVar8;
                 puVar20 = (uint64_t *)((int64_t)auVar8 + lVar7 * 8);
                 pcStack_3c8 = (code *)puVar20;
               }
@@ -706,16 +623,16 @@ LAB_18035f156:
         }
         afStack_418[0] = (float)((int)fVar27 + 1);
         puVar9 = (uint64_t *)(uint64_t)(uint)afStack_418[0];
-        param_1 = uStack_398;
+        param_1 = local_var_398;
       } while ((int)afStack_418[0] < (int)fVar24);
     }
     RenderingSystem_TextureManager(*(uint64_t *)(param_1 + 0x18),1,0);
     if (((int64_t)puVar15 - (int64_t)auVar8 & 0xfffffffffffffff8U) != 0) {
-      puStack_1f0 = (void *)0x0;
-      ppuStack_1e8 = (void **)0x0;
-      uStack_1e0 = (void *)0x0;
+      plocal_var_1f0 = (void *)0x0;
+      pplocal_var_1e8 = (void **)0x0;
+      local_var_1e0 = (void *)0x0;
       ppplStack_430 = &pplStack_400;
-      pfStack_438 = (float *)&uStack_410;
+      pfStack_438 = (float *)&local_var_410;
       RenderingSystem_RenderPipelineInitializer();
       uVar10 = RenderingSystem_MemoryAllocator(system_memory_pool_ptr,0x3d0,8,0x16);
       plVar11 = (int64_t *)RenderingSystem_ResourceManager(uVar10);
@@ -728,7 +645,7 @@ LAB_18035f156:
       pplStack_400 = &plStack_3b8;
       plStack_3b8 = plVar11;
       (**(code **)(*plVar11 + 0x28))(plVar11);
-      uStack_410 = &plStack_3b8;
+      local_var_410 = &plStack_3b8;
       RenderingSystem_RenderQueueManager(uVar10,plStack_3b8,1);
       if (plStack_3b8 != (int64_t *)0x0) {
         (**(code **)(*plStack_3b8 + 0x38))();
@@ -741,28 +658,28 @@ LAB_18035f156:
         (**(code **)(*plVar12 + 0x28))(plVar12);
       }
       (**(code **)(plVar12[2] + 0x10))(plVar12 + 2,&processed_var_5584_ptr);
-      puStack_1f0 = &processed_var_672_ptr;
-      ppuStack_1e8 = &puStack_1d8;
-      puStack_1d8 = (void *)((uint64_t)puStack_1d8 & 0xffffffffffffff00);
-      uStack_1e0 = (void *)CONCAT44((int)((uint64_t)uStack_1e0 >> 0x20),0x12);
-      strcpy_s(&puStack_1d8,0x20,&processed_var_5560_ptr);
-      uVar10 = RenderingSystem_ResourceStateManager(system_resource_state,&uStack_410,&puStack_1f0,1);
+      plocal_var_1f0 = &processed_var_672_ptr;
+      pplocal_var_1e8 = &plocal_var_1d8;
+      plocal_var_1d8 = (void *)((uint64_t)plocal_var_1d8 & 0xffffffffffffff00);
+      local_var_1e0 = (void *)CONCAT44((int)((uint64_t)local_var_1e0 >> 0x20),0x12);
+      strcpy_s(&plocal_var_1d8,0x20,&processed_var_5560_ptr);
+      uVar10 = RenderingSystem_ResourceStateManager(system_resource_state,&local_var_410,&plocal_var_1f0,1);
       RenderingSystem_DataProcessor(plVar12,uVar10);
-      if (uStack_410 != (int64_t **)0x0) {
-        (*(code *)(*uStack_410)[7])();
+      if (local_var_410 != (int64_t **)0x0) {
+        (*(code *)(*local_var_410)[7])();
       }
-      puStack_1f0 = &system_state_ptr;
+      plocal_var_1f0 = &system_state_ptr;
       plStack_390 = (int64_t *)0x0;
       pplStack_388 = (int64_t **)0x0;
       pplStack_400 = &plStack_380;
       plStack_368 = (int64_t *)0x0;
-      uStack_378 = 0;
+      local_var_378 = 0;
       plStack_380._0_1_ = 0;
       RenderingSystem_DataManager(&plStack_390,plVar12,0);
       pplVar17 = *(int64_t ***)(*(int64_t *)(param_1 + 0x18) + 0x20);
       fStack_354 = *(float *)((int64_t)pplVar17 + 0x3ec4);
-      uStack_410 = (int64_t **)pplVar17[0xc170][4];
-      fStack_358 = (float)uStack_410 * fVar26;
+      local_var_410 = (int64_t **)pplVar17[0xc170][4];
+      fStack_358 = (float)local_var_410 * fVar26;
       pfStack_3a8 = pfStack_268;
       pplStack_400 = pplVar17;
       if (pfStack_270 != pfStack_268) {
@@ -777,7 +694,7 @@ LAB_18035f156:
               fVar25 = (pfVar21[-5] + fVar27 + pfVar21[-1]) * 0.33333334;
               fStack_304 = fVar28 * fVar26;
               fStack_308 = fVar25 * fVar26;
-              lVar7 = RenderingSystem_DataSampler(alStack_1b8,auStack_250,CONCAT44(fStack_304,fStack_308),1);
+              lVar7 = RenderingSystem_DataSampler(alStack_1b8,stack_array_250,CONCAT44(fStack_304,fStack_308),1);
               fVar24 = *(float *)(lVar7 + 8);
               afStack_418[0] = 1.0;
               fVar27 = 0.2;
@@ -788,15 +705,15 @@ LAB_18035f156:
                 fVar2 = pfVar21[-1];
                 fStack_2fc = ((pfVar21[-4] - fVar28) * fVar27 + fVar28 + 0.5) * fVar26;
                 fStack_300 = ((pfVar21[-5] - fVar25) * fVar27 + fVar25 + 0.5) * fVar26;
-                lVar7 = RenderingSystem_DataSampler(alStack_1b8,auStack_240,CONCAT44(fStack_2fc,fStack_300),1);
+                lVar7 = RenderingSystem_DataSampler(alStack_1b8,stack_array_240,CONCAT44(fStack_2fc,fStack_300),1);
                 fVar3 = *(float *)(lVar7 + 8);
                 fStack_2f4 = ((fVar22 - fVar28) * fVar27 + fVar28 + 0.5) * fVar26;
                 fStack_2f8 = ((fVar23 - fVar25) * fVar27 + fVar25 + 0.5) * fVar26;
-                lVar7 = RenderingSystem_DataSampler(alStack_1b8,auStack_230,CONCAT44(fStack_2f4,fStack_2f8),1);
+                lVar7 = RenderingSystem_DataSampler(alStack_1b8,stack_array_230,CONCAT44(fStack_2f4,fStack_2f8),1);
                 fVar22 = *(float *)(lVar7 + 8);
                 fStack_2e0 = ((fVar2 - fVar25) * fVar27 + fVar25 + 0.5) * fVar26;
                 fStack_2dc = ((fVar1 - fVar28) * fVar27 + fVar28 + 0.5) * fVar26;
-                lVar7 = RenderingSystem_DataSampler(alStack_1b8,auStack_220,CONCAT44(fStack_2dc,fStack_2e0),1);
+                lVar7 = RenderingSystem_DataSampler(alStack_1b8,stack_array_220,CONCAT44(fStack_2dc,fStack_2e0),1);
                 fVar23 = fStack_358;
                 fVar24 = fVar24 + fVar3 + fVar22 + *(float *)(lVar7 + 8);
                 afStack_418[0] = afStack_418[0] + 3.0;
@@ -808,12 +725,12 @@ LAB_18035f156:
                 fStack_2d4 = fStack_358 * pfVar21[-4];
                 fStack_2d8 = fStack_358 * pfVar21[-5];
                 if ((char)plVar11[0xd] == '\0') {
-                  uStack_3a0 = 0;
-                  lVar7 = RenderingSystem_CoordinateTransformer(plVar11,&fStack_2d8,&iStack_2d0,&uStack_3a0);
+                  local_var_3a0 = 0;
+                  lVar7 = RenderingSystem_CoordinateTransformer(plVar11,&fStack_2d8,&iStack_2d0,&local_var_3a0);
                   fVar24 = (float)(**(code **)(**(int64_t **)(lVar7 + 0x60) + 8))
                                             (*(int64_t **)(lVar7 + 0x60),
-                                             (float)iStack_2cc + uStack_3a0._4_4_,
-                                             (float)iStack_2d0 + (float)uStack_3a0);
+                                             (float)iStack_2cc + local_var_3a0._4_4_,
+                                             (float)iStack_2d0 + (float)local_var_3a0);
                 }
                 else {
                   fVar24 = (float)(**(code **)(*(int64_t *)plVar11[10] + 8))
@@ -828,12 +745,12 @@ LAB_18035f156:
                 fStack_348 = fVar23 * pfVar21[-2];
                 fStack_34c = fVar23 * pfVar21[-3];
                 if ((char)plVar11[0xd] == '\0') {
-                  uStack_3f0 = 0;
-                  lVar7 = RenderingSystem_CoordinateTransformer(plVar11,&fStack_34c,&iStack_340,&uStack_3f0);
+                  local_var_3f0 = 0;
+                  lVar7 = RenderingSystem_CoordinateTransformer(plVar11,&fStack_34c,&iStack_340,&local_var_3f0);
                   fVar27 = (float)(**(code **)(**(int64_t **)(lVar7 + 0x60) + 8))
                                             (*(int64_t **)(lVar7 + 0x60),
-                                             (float)iStack_33c + uStack_3f0._4_4_,
-                                             (float)iStack_340 + (float)uStack_3f0);
+                                             (float)iStack_33c + local_var_3f0._4_4_,
+                                             (float)iStack_340 + (float)local_var_3f0);
                 }
                 else {
                   fVar27 = (float)(**(code **)(*(int64_t *)plVar11[10] + 8))
@@ -848,12 +765,12 @@ LAB_18035f156:
                 fStack_334 = fVar23 * *pfVar21;
                 fStack_338 = fVar23 * pfVar21[-1];
                 if ((char)plVar11[0xd] == '\0') {
-                  uStack_408 = 0;
-                  lVar7 = RenderingSystem_CoordinateTransformer(plVar11,&fStack_338,&iStack_330,&uStack_408);
+                  local_var_408 = 0;
+                  lVar7 = RenderingSystem_CoordinateTransformer(plVar11,&fStack_338,&iStack_330,&local_var_408);
                   fVar25 = (float)(**(code **)(**(int64_t **)(lVar7 + 0x60) + 8))
                                             (*(int64_t **)(lVar7 + 0x60),
-                                             (float)iStack_32c + uStack_408._4_4_,
-                                             (float)iStack_330 + (float)uStack_408);
+                                             (float)iStack_32c + local_var_408._4_4_,
+                                             (float)iStack_330 + (float)local_var_408);
                 }
                 else {
                   fVar25 = (float)(**(code **)(*(int64_t *)plVar11[10] + 8))
@@ -866,53 +783,53 @@ LAB_18035f156:
                 }
                 fStack_328 = (pfVar21[-5] + 0.5) * fVar26;
                 fStack_324 = (pfVar21[-4] + 0.5) * fVar26;
-                pfVar13 = (float *)RenderingSystem_DataSampler(&puStack_148,auStack_210,
+                pfVar13 = (float *)RenderingSystem_DataSampler(&plocal_var_148,stack_array_210,
                                                  CONCAT44(fStack_324,fStack_328),1);
-                uStack_3e8 = (void **)
+                local_var_3e8 = (void **)
                              CONCAT44((pfVar13[1] + pfVar13[1]) - 1.0,(*pfVar13 + *pfVar13) - 1.0);
-                uStack_3e0 = (int64_t **)CONCAT44(0x7f7fffff,(pfVar13[2] + pfVar13[2]) - 1.0);
+                local_var_3e0 = (int64_t **)CONCAT44(0x7f7fffff,(pfVar13[2] + pfVar13[2]) - 1.0);
                 fStack_320 = (pfVar21[-3] + 0.5) * fVar26;
                 fStack_31c = (pfVar21[-2] + 0.5) * fVar26;
-                pfVar13 = (float *)RenderingSystem_DataSampler(&puStack_148,auStack_200,
+                pfVar13 = (float *)RenderingSystem_DataSampler(&plocal_var_148,stack_array_200,
                                                  CONCAT44(fStack_31c,fStack_320),1);
                 fStack_2e8 = (pfVar13[2] + pfVar13[2]) - 1.0;
                 fStack_2ec = (pfVar13[1] + pfVar13[1]) - 1.0;
                 fStack_2f0 = (*pfVar13 + *pfVar13) - 1.0;
-                uStack_2e4 = 0x7f7fffff;
+                local_var_2e4 = 0x7f7fffff;
                 fStack_318 = (pfVar21[-1] + 0.5) * fVar26;
                 fStack_314 = (*pfVar21 + 0.5) * fVar26;
-                pfVar13 = (float *)RenderingSystem_DataSampler(&puStack_148,&puStack_1f0,
+                pfVar13 = (float *)RenderingSystem_DataSampler(&plocal_var_148,&plocal_var_1f0,
                                                  CONCAT44(fStack_314,fStack_318),1);
                 fStack_2a0 = (pfVar13[2] + pfVar13[2]) - 1.0;
                 fStack_2a4 = (pfVar13[1] + pfVar13[1]) - 1.0;
                 fStack_2a8 = (*pfVar13 + *pfVar13) - 1.0;
-                uStack_29c = 0x7f7fffff;
+                local_var_29c = 0x7f7fffff;
                 uVar4 = 0xffffffff;
                 if (fVar24 < fStack_354) {
                   uVar4 = 0xffffff;
                 }
                 plStack_3b8 = (int64_t *)CONCAT44(plStack_3b8._4_4_,uVar4);
-                uStack_350 = 0xffffffff;
+                local_var_350 = 0xffffffff;
                 if (fVar27 < fStack_354) {
-                  uStack_350 = 0xffffff;
+                  local_var_350 = 0xffffff;
                 }
                 afStack_418[0] = -NAN;
                 if (fVar25 < fStack_354) {
                   afStack_418[0] = 2.3509886e-38;
                 }
-                uStack_410 = (int64_t **)CONCAT44(pfVar21[-4] * fVar26,pfVar21[-5] * fVar26);
-                uStack_398 = CONCAT44(pfVar21[-2] * fVar26,pfVar21[-3] * fVar26);
+                local_var_410 = (int64_t **)CONCAT44(pfVar21[-4] * fVar26,pfVar21[-5] * fVar26);
+                local_var_398 = CONCAT44(pfVar21[-2] * fVar26,pfVar21[-3] * fVar26);
                 fStack_30c = *pfVar21 * fVar26;
                 fStack_310 = pfVar21[-1] * fVar26;
                 fStack_2b4 = pfVar21[-4] * fVar23;
                 fStack_2b8 = pfVar21[-5] * fVar23;
-                uStack_2ac = 0x7f7fffff;
+                local_var_2ac = 0x7f7fffff;
                 fStack_2c4 = pfVar21[-2] * fVar23;
                 fStack_2c8 = pfVar21[-3] * fVar23;
-                uStack_2bc = 0x7f7fffff;
+                local_var_2bc = 0x7f7fffff;
                 fStack_294 = *pfVar21 * fVar23;
                 fStack_298 = pfVar21[-1] * fVar23;
-                uStack_28c = 0x7f7fffff;
+                local_var_28c = 0x7f7fffff;
                 fStack_2c0 = fVar27;
                 fStack_2b0 = fVar24;
                 fStack_290 = fVar25;
@@ -922,9 +839,9 @@ LAB_18035f156:
                 pfStack_438 = &fStack_2a8;
                 uVar4 = RenderingSystem_GeometryOptimizer(&plStack_390,uVar4,&fStack_310,afStack_418);
                 pfStack_438 = &fStack_2f0;
-                uVar5 = RenderingSystem_GeometryOptimizer(&plStack_390,uVar5,&uStack_398,&uStack_350);
-                pfStack_438 = (float *)&uStack_3e8;
-                uVar6 = RenderingSystem_GeometryOptimizer(&plStack_390,uVar6,&uStack_410,&plStack_3b8);
+                uVar5 = RenderingSystem_GeometryOptimizer(&plStack_390,uVar5,&local_var_398,&local_var_350);
+                pfStack_438 = (float *)&local_var_3e8;
+                uVar6 = RenderingSystem_GeometryOptimizer(&plStack_390,uVar6,&local_var_410,&plStack_3b8);
                 RenderingSystem_GeometryRenderer(&plStack_390,uVar4,uVar5,uVar6);
                 pfStack_268 = pfStack_3a8;
                 pplVar17 = pplStack_400;
@@ -936,22 +853,22 @@ LAB_18035f156:
           pfVar21 = pfVar21 + 7;
         } while (pfVar13 != pfStack_268);
       }
-      puStack_1f0 = &memory_allocator_3024_ptr;
-      ppuStack_1e8 = (void **)&processed_var_8160_ptr;
-      uStack_1e0 = &memory_allocator_3040_ptr;
-      puStack_1d8 = &memory_allocator_3120_ptr;
-      puStack_1d0 = &memory_allocator_3184_ptr;
+      plocal_var_1f0 = &memory_allocator_3024_ptr;
+      pplocal_var_1e8 = (void **)&processed_var_8160_ptr;
+      local_var_1e0 = &memory_allocator_3040_ptr;
+      plocal_var_1d8 = &memory_allocator_3120_ptr;
+      plocal_var_1d0 = &memory_allocator_3184_ptr;
       pcStack_1c8 = RenderingSystem_StateManager;
-      uStack_1c0 = 0;
-      uStack_3e8 = &puStack_1f0;
-      uStack_3e0 = pplStack_388;
-      RenderingSystem_DataFlowProcessor(&uStack_3e8);
+      local_var_1c0 = 0;
+      local_var_3e8 = &plocal_var_1f0;
+      local_var_3e0 = pplStack_388;
+      RenderingSystem_DataFlowProcessor(&local_var_3e8);
       if ((int)(*(int *)(pplStack_388 + 0x11) + (*(int *)(pplStack_388 + 0x11) >> 0x1f & 3U)) >> 2 <
           0) {
-        uStack_420 = *(int32_t *)(pplStack_388 + 0xc);
-        puStack_428 = &system_buffer_ptr;
+        local_var_420 = *(int32_t *)(pplStack_388 + 0xc);
+        plocal_var_428 = &system_buffer_ptr;
         if ((void *)plStack_390[3] != (void *)0x0) {
-          puStack_428 = (void *)plStack_390[3];
+          plocal_var_428 = (void *)plStack_390[3];
         }
         ppplStack_430 = (int64_t ***)((uint64_t)ppplStack_430 & 0xffffffff00000000);
         pfStack_438 = (float *)&processed_var_5472_ptr;
@@ -976,10 +893,10 @@ LAB_18035f156:
           (*(code *)(*pplVar17)[7])();
         }
       }
-      pplStack_400 = (int64_t **)&uStack_410;
-      uStack_410 = (int64_t **)plVar12;
+      pplStack_400 = (int64_t **)&local_var_410;
+      local_var_410 = (int64_t **)plVar12;
       (**(code **)(*plVar12 + 0x28))(plVar12);
-      RenderingSystem_ResourceReleaser(plVar11,0,&uStack_410,1);
+      RenderingSystem_ResourceReleaser(plVar11,0,&local_var_410,1);
       if (*(code **)(*plVar11 + 0x160) == (code *)&processed_var_6368_ptr) {
         RenderingSystem_ResourceAllocator(plVar11,(int64_t)plVar11 + 0x214,0);
       }
@@ -1004,13 +921,13 @@ LAB_18035f156:
       (**(code **)(*plVar12 + 0x38))(plVar12);
       (**(code **)(*plVar11 + 0x38))(plVar11);
       if (pfStack_270 != (float *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         RenderingSystem_MemoryCleaner();
       }
-      auVar8 = auStack_3d8;
+      auVar8 = stack_array_3d8;
     }
     if (auVar8 != (int8_t  [8])0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       RenderingSystem_MemoryCleaner(auVar8);
     }
   }
@@ -1020,47 +937,41 @@ LAB_18035f156:
   if (plStack_3b0 != (int64_t *)0x0) {
     (**(code **)(*plStack_3b0 + 0x38))();
   }
-  if (uStack_138._1_1_ == '\0') {
-    if (((char)uStack_138 == '\0') && (puStack_148 != (void *)0x0)) {
-                    // WARNING: Subroutine does not return
+  if (local_var_138._1_1_ == '\0') {
+    if (((char)local_var_138 == '\0') && (plocal_var_148 != (void *)0x0)) {
+// WARNING: Subroutine does not return
       RenderingSystem_MemoryCleaner();
     }
-    puStack_148 = (void *)0x0;
-    uStack_140 = 0;
-    uStack_138 = 0;
+    plocal_var_148 = (void *)0x0;
+    local_var_140 = 0;
+    local_var_138 = 0;
   }
-  if (uStack_1a8._1_1_ == '\0') {
-    if (((char)uStack_1a8 == '\0') && (alStack_1b8[0] != 0)) {
-                    // WARNING: Subroutine does not return
+  if (local_var_1a8._1_1_ == '\0') {
+    if (((char)local_var_1a8 == '\0') && (alStack_1b8[0] != 0)) {
+// WARNING: Subroutine does not return
       RenderingSystem_MemoryCleaner();
     }
     alStack_1b8[0] = 0;
     alStack_1b8[1] = 0;
-    uStack_1a8 = 0;
+    local_var_1a8 = 0;
   }
-                    // WARNING: Subroutine does not return
-  RenderingSystem_SecurityChecker(uStack_d8 ^ (uint64_t)auStack_458);
+// WARNING: Subroutine does not return
+  RenderingSystem_SecurityChecker(local_var_d8 ^ (uint64_t)stack_array_458);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * @brief 渲染系统配置管理器
- * 
+ *
  * 该函数负责渲染系统的配置管理，包括字符串处理、
  * 数组操作、参数设置等系统配置功能。
- * 
+ *
  * 主要功能：
  * - 系统配置参数管理
  * - 字符串处理和验证
  * - 数组操作和数据结构管理
  * - 参数设置和验证
  * - 系统状态初始化
- * 
+ *
  * 处理流程：
  * 1. 初始化配置管理器上下文
  * 2. 设置字符串处理参数
@@ -1068,102 +979,97 @@ LAB_18035f156:
  * 4. 执行系统配置初始化
  * 5. 验证配置参数有效性
  * 6. 完成系统状态设置
- * 
+ *
  * @param param_1 配置管理器上下文参数
- * 
+ *
  * @note 该函数主要用于系统初始化阶段的配置管理工作，
  *       确保渲染系统以正确的配置参数运行。
- * 
+ *
  * 技术特点：
  * - 支持多种字符串处理操作
  * - 实现数组管理和数据结构操作
  * - 包含参数验证和错误处理
  * - 支持系统状态管理和初始化
  * - 提供完整的配置管理功能
- * 
+ *
  * 简化实现：
  *   原始实现：复杂的配置管理逻辑，包含多个字符串和数组操作
  *   简化实现：保持原有功能逻辑，添加详细的参数说明和技术注释
  *   优化点：明确配置管理流程，添加字符串处理说明
  */
 void RenderingSystem_ConfigurationManager(uint64_t param_1)
-
 {
-  int8_t auStack_1e8 [32];
-  int32_t uStack_1c8;
-  void **appuStack_1c0 [2];
-  uint64_t uStack_1b0;
-  void *apuStack_1a8 [11];
-  int32_t uStack_150;
-  void *puStack_148;
-  int8_t *puStack_140;
-  int32_t uStack_138;
-  int8_t auStack_130 [72];
-  void *puStack_e8;
-  int8_t *puStack_e0;
-  int32_t uStack_d8;
-  int8_t auStack_d0 [72];
-  void *puStack_88;
-  int8_t *puStack_80;
-  int32_t uStack_78;
-  int8_t auStack_70 [72];
-  uint64_t uStack_28;
-  
-  uStack_1b0 = 0xfffffffffffffffe;
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1e8;
-  uStack_1c8 = 0;
-  puStack_148 = &memory_allocator_3480_ptr;
-  puStack_140 = auStack_130;
-  auStack_130[0] = 0;
-  uStack_138 = 7;
-  strcpy_s(auStack_130,0x40,&system_memory_f750);
-  RenderingSystem_StringProcessor(apuStack_1a8,&puStack_148);
-  uStack_150 = 0xb;
-  uStack_1c8 = 1;
-  RenderingSystem_ArrayManager(param_1,appuStack_1c0,apuStack_1a8);
-  uStack_1c8 = 0;
-  appuStack_1c0[0] = apuStack_1a8;
-  apuStack_1a8[0] = &system_state_ptr;
-  puStack_148 = &system_state_ptr;
-  puStack_e8 = &memory_allocator_3480_ptr;
-  puStack_e0 = auStack_d0;
-  auStack_d0[0] = 0;
-  uStack_d8 = 9;
-  strcpy_s(auStack_d0,0x40,&system_memory_ff18);
-  RenderingSystem_StringProcessor(apuStack_1a8,&puStack_e8);
-  uStack_150 = 7;
-  uStack_1c8 = 2;
-  RenderingSystem_ArrayManager(param_1,appuStack_1c0,apuStack_1a8);
-  uStack_1c8 = 0;
-  appuStack_1c0[0] = apuStack_1a8;
-  apuStack_1a8[0] = &system_state_ptr;
-  puStack_e8 = &system_state_ptr;
-  puStack_88 = &memory_allocator_3480_ptr;
-  puStack_80 = auStack_70;
-  auStack_70[0] = 0;
-  uStack_78 = 10;
-  strcpy_s(auStack_70,0x40,&system_memory_f740);
-  RenderingSystem_StringProcessor(apuStack_1a8,&puStack_88);
-  uStack_150 = 7;
-  uStack_1c8 = 4;
-  RenderingSystem_ArrayManager(param_1,appuStack_1c0,apuStack_1a8);
-  uStack_1c8 = 0;
-  appuStack_1c0[0] = apuStack_1a8;
-  apuStack_1a8[0] = &system_state_ptr;
-  puStack_88 = &system_state_ptr;
-                    // WARNING: Subroutine does not return
-  RenderingSystem_SecurityChecker(uStack_28 ^ (uint64_t)auStack_1e8);
+  int8_t stack_array_1e8 [32];
+  int32_t local_var_1c8;
+  void **applocal_var_1c0 [2];
+  uint64_t local_var_1b0;
+  void *aplocal_var_1a8 [11];
+  int32_t local_var_150;
+  void *plocal_var_148;
+  int8_t *plocal_var_140;
+  int32_t local_var_138;
+  int8_t stack_array_130 [72];
+  void *plocal_var_e8;
+  int8_t *plocal_var_e0;
+  int32_t local_var_d8;
+  int8_t stack_array_d0 [72];
+  void *plocal_var_88;
+  int8_t *plocal_var_80;
+  int32_t local_var_78;
+  int8_t stack_array_70 [72];
+  uint64_t local_var_28;
+  local_var_1b0 = 0xfffffffffffffffe;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_1e8;
+  local_var_1c8 = 0;
+  plocal_var_148 = &memory_allocator_3480_ptr;
+  plocal_var_140 = stack_array_130;
+  stack_array_130[0] = 0;
+  local_var_138 = 7;
+  strcpy_s(stack_array_130,0x40,&system_memory_f750);
+  RenderingSystem_StringProcessor(aplocal_var_1a8,&plocal_var_148);
+  local_var_150 = 0xb;
+  local_var_1c8 = 1;
+  RenderingSystem_ArrayManager(param_1,applocal_var_1c0,aplocal_var_1a8);
+  local_var_1c8 = 0;
+  applocal_var_1c0[0] = aplocal_var_1a8;
+  aplocal_var_1a8[0] = &system_state_ptr;
+  plocal_var_148 = &system_state_ptr;
+  plocal_var_e8 = &memory_allocator_3480_ptr;
+  plocal_var_e0 = stack_array_d0;
+  stack_array_d0[0] = 0;
+  local_var_d8 = 9;
+  strcpy_s(stack_array_d0,0x40,&system_memory_ff18);
+  RenderingSystem_StringProcessor(aplocal_var_1a8,&plocal_var_e8);
+  local_var_150 = 7;
+  local_var_1c8 = 2;
+  RenderingSystem_ArrayManager(param_1,applocal_var_1c0,aplocal_var_1a8);
+  local_var_1c8 = 0;
+  applocal_var_1c0[0] = aplocal_var_1a8;
+  aplocal_var_1a8[0] = &system_state_ptr;
+  plocal_var_e8 = &system_state_ptr;
+  plocal_var_88 = &memory_allocator_3480_ptr;
+  plocal_var_80 = stack_array_70;
+  stack_array_70[0] = 0;
+  local_var_78 = 10;
+  strcpy_s(stack_array_70,0x40,&system_memory_f740);
+  RenderingSystem_StringProcessor(aplocal_var_1a8,&plocal_var_88);
+  local_var_150 = 7;
+  local_var_1c8 = 4;
+  RenderingSystem_ArrayManager(param_1,applocal_var_1c0,aplocal_var_1a8);
+  local_var_1c8 = 0;
+  applocal_var_1c0[0] = aplocal_var_1a8;
+  aplocal_var_1a8[0] = &system_state_ptr;
+  plocal_var_88 = &system_state_ptr;
+// WARNING: Subroutine does not return
+  RenderingSystem_SecurityChecker(local_var_28 ^ (uint64_t)stack_array_1e8);
 }
-
 //==============================================================================
 // 渲染系统高级数据处理和优化器模块 - 完整技术实现文档
 //==============================================================================
-
 /*
 模块概述：
    该模块实现了渲染系统的高级数据处理和优化功能，包含2个核心函数，
    支持复杂的渲染计算、纹理采样、几何变换和优化算法。
-
 1. 核心功能架构：
    - 高级数据处理器和优化器 (RenderingSystem_AdvancedDataProcessorAndOptimizer)
      * 实现复杂的数据采样和插值处理
@@ -1171,14 +1077,12 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
      * 提供几何数据处理和优化功能
      * 包含完整的内存管理和资源清理机制
      * 实现实时的数据处理和优化算法
-   
    - 配置管理器 (RenderingSystem_ConfigurationManager)
      * 管理系统配置参数和状态
      * 处理字符串和数组操作
      * 提供参数验证和错误处理
      * 支持系统初始化和配置管理
      * 实现完整的配置管理流程
-
 2. 数据处理流程：
    - 输入数据验证和预处理
    - 高级数据采样和插值处理
@@ -1188,7 +1092,6 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
    - 高级数学计算和矩阵运算
    - 数据验证和错误处理
    - 输出数据后处理和优化
-
 3. 关键算法实现：
    - 多层嵌套循环优化算法
    - 精确的浮点计算和插值算法
@@ -1197,7 +1100,6 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
    - 动态的内存分配和释放算法
    - 实时的数据处理和优化算法
    - 完整的错误检测和恢复算法
-
 4. 内存管理策略：
    - 高效的内存分配和释放机制
    - 智能的内存池管理和复用
@@ -1206,7 +1108,6 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
    - 提供内存泄漏检测和报告
    - 支持内存访问保护和验证
    - 实现栈保护和异常处理
-
 5. 性能优化技术：
    - 优化数据处理算法和流程
    - 减少不必要的计算和开销
@@ -1215,7 +1116,6 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
    - 优化内存访问模式和效率
    - 提供完整的性能监控和统计
    - 实现动态的资源管理和调度
-
 6. 错误处理机制：
    - 完整的错误检测和诊断机制
    - 智能的错误恢复和容错策略
@@ -1224,7 +1124,6 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
    - 实现标准化的错误代码定义
    - 支持错误报告和诊断分析
    - 包含完整的边界检查和验证
-
 7. 可扩展性设计：
    - 支持多种数据格式和类型
    - 提供灵活的配置选项和参数
@@ -1232,7 +1131,6 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
    - 易于维护和升级的代码结构
    - 支持多平台部署和兼容性
    - 提供完整的API接口和文档
-
 8. 安全性保障：
    - 实现完整的边界检查和验证
    - 提供参数验证和数据清理
@@ -1240,7 +1138,6 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
    - 包含栈保护和异常处理机制
    - 支持权限控制和访问管理
    - 提供完整的安全审计和监控
-
 9. 代码质量保证：
    - 遵循标准的编码规范和风格
    - 提供详细的注释和文档
@@ -1248,7 +1145,6 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
    - 支持代码审查和质量检查
    - 提供持续集成和部署支持
    - 实现完整的版本控制和追踪
-
 10. 维护性和可读性：
     - 清晰的代码结构和组织
     - 详细的函数和变量命名
@@ -1256,7 +1152,6 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
     - 标准化的代码格式和风格
     - 支持代码重构和优化
     - 提供完整的维护指南和文档
-
 技术实现特点：
 - 采用高级的C语言编程技术
 - 实现完整的渲染管线支持
@@ -1266,12 +1161,7 @@ void RenderingSystem_ConfigurationManager(uint64_t param_1)
 - 提供详细的错误处理和恢复
 - 实现标准化的配置管理
 - 支持多平台和跨平台部署
-
 该模块是渲染系统的核心组件，为整个渲染系统提供了强大的数据处理和优化能力，
 确保了系统的高性能、稳定性和可扩展性。
 */
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

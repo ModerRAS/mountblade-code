@@ -1,25 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part107.c - 渲染系统纹理处理和数学计算模块
-// 
 // 本模块包含6个核心函数，主要功能：
 // - 纹理路径处理和文件操作
 // - 渲染参数插值计算
 // - 四元数旋转和矩阵变换
 // - 高级数学运算和向量处理
 // - 渲染数据变换和优化
-// 
 // 技术特点：
 // - 支持多种纹理格式处理
 // - 高性能数学计算优化
 // - 内存管理和资源清理
 // - 错误处理和异常安全
-
 // ===================================================================
 // 常量定义和宏
 // ===================================================================
-
 #define RENDERING_TEXTURE_PATH_MAX_LENGTH 1024
 #define RENDERING_TEXTURE_TABLEAU_PATH "/tableau_textures"
 #define RENDERING_TEXTURE_EXTENSION ".dds"
@@ -28,32 +23,28 @@
 #define RENDERING_NORMALIZATION_EPSILON 1.1754944e-38f
 #define RENDERING_QUATERNION_NORMALIZATION_THRESHOLD 0.9995f
 #define RENDERING_FLOAT_MAX_VALUE 3.4028235e+38f
-
 // 渲染系统错误码
 #define RENDERING_ERROR_INVALID_TEXTURE_HANDLE -1
 #define RENDERING_ERROR_PATH_TOO_LONG -2
 #define RENDERING_ERROR_MEMORY_ALLOCATION -3
 #define RENDERING_ERROR_FILE_OPERATION -4
 #define RENDERING_ERROR_INVALID_PARAMETERS -5
-
 // 渲染系统标志位
 #define RENDERING_FLAG_TEXTURE_LOADED 0x01
 #define RENDERING_FLAG_PATH_NORMALIZED 0x02
 #define RENDERING_FLAG_INTERPOLATION_ACTIVE 0x04
 #define RENDERING_FLAG_QUATERNION_NORMALIZED 0x08
-
 // ===================================================================
 // 函数实现：纹理路径处理器
 // ===================================================================
-
 /**
  * 渲染系统纹理路径处理器 - 负责纹理文件路径的处理和规范化
- * 
+ *
  * @param render_context 渲染上下文句柄
  * @param file_handle 文件句柄
  * @param texture_param 纹理参数
  * @return void
- * 
+ *
  * 技术说明：
  * - 读取纹理文件头信息
  * - 处理纹理路径规范化
@@ -61,21 +52,20 @@
  * - 处理路径分隔符转换
  * - 内存管理和资源清理
  * - 错误处理和异常安全
- * 
+ *
  * 性能优化：
  * - 使用高效的字符串处理
  * - 智能内存分配策略
  * - 批量文件操作优化
- * 
+ *
  * 安全特性：
  * - 边界检查和验证
  * - 内存泄漏防护
  * - 异常安全处理
  */
 void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_handle, uint64_t texture_param)
-
 {
-    // 局部变量声明
+// 局部变量声明
     char path_separator;
     uint texture_count;
     int path_length;
@@ -117,36 +107,30 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
     uint render_flag2;
     uint render_flag3;
     uint64_t frame_sync;
-    
-    // 初始化渲染系统基础地址
+// 初始化渲染系统基础地址
     base_address = system_parameter_buffer;
     frame_sync = GET_SECURITY_COOKIE() ^ (uint64_t)alignment_buffer;
     calculation_base = system_parameter_buffer + 0x7440;
-    
-    // 获取纹理索引指针
+// 获取纹理索引指针
     index_ptr = (uint *)((int64_t)*(int *)(system_parameter_buffer + 0x74e0) * 0x50 + calculation_base);
-    
-    // 原子操作获取纹理计数
+// 原子操作获取纹理计数
     LOCK();
     texture_count = *index_ptr;
     *index_ptr = *index_ptr + 1;
     UNLOCK();
-    
-    // 计算纹理块索引
+// 计算纹理块索引
     path_hash = texture_count >> 9;
     data_offset = (uint64_t)path_hash;
     current_path = (char *)((int64_t)index_ptr + data_offset + 0x48);
     param_ptr = index_ptr + (uint64_t)path_hash * 2 + 2;
-    
-    // 保存参数
+// 保存参数
     param_save1 = file_handle;
     param_save2 = texture_param;
-    
-    // 处理纹理数据分配
+// 处理纹理数据分配
     do {
-        // 检查纹理数据指针有效性
+// 检查纹理数据指针有效性
         if (*(int64_t *)param_ptr == 0) {
-            // 分配纹理数据内存
+// 分配纹理数据内存
             path_buffer = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, 0x48000, 0x25);
             LOCK();
             is_allocated = *(int64_t *)(param_ptr + (int64_t)path_index * 2 + 2) == 0;
@@ -154,64 +138,56 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                 *(int64_t *)(param_ptr + (int64_t)path_index * 2 + 2) = path_buffer;
             }
             UNLOCK();
-            
             if (is_allocated) {
                 LOCK();
                 *(int8_t *)((int64_t)path_index + 0x48 + (int64_t)param_ptr) = 0;
                 UNLOCK();
             }
             else {
-                // 清理未使用的内存
+// 清理未使用的内存
                 if (path_buffer != 0) {
                     CoreEngineMemoryPoolCleaner(path_buffer);
                 }
-                // 等待路径处理完成
+// 等待路径处理完成
                 do {
                 } while (*current_path != '\0');
             }
         }
         else {
-            // 等待路径处理完成
+// 等待路径处理完成
             do {
             } while (*current_path != '\0');
         }
-        
         path_buffer = param_save1;
         current_path = current_path + 1;
         texture_count = (uint64_t)(path_index + 1);
         param_ptr = param_ptr + 2;
     } while ((int64_t)(current_path + (-0x48 - (int64_t)param_ptr)) <= (int64_t)(uint64_t)texture_param);
-    
-    // 处理纹理路径规范化
+// 处理纹理路径规范化
     texture_ptr = (uint64_t *)
             (*(int64_t *)
               ((int64_t)*(int *)(base_address + 0x74e0) * 0x50 + calculation_base + 8 + (uint64_t)texture_param * 8) +
             (uint64_t)(texture_count - (texture_count & 0xfffffe00)) * 0x240);
-    
-    // 读取纹理数据
-    texture_data = (int8_t *)FUN_1803de8d0(path_buffer, workspace);
+// 读取纹理数据
+    texture_data = (int8_t *)function_3de8d0(path_buffer, workspace);
     texture_param = texture_data[1];
     *texture_ptr = *texture_data;
     texture_ptr[1] = texture_param;
-    
-    // 设置纹理参数
+// 设置纹理参数
     *(int32_t *)((int64_t)texture_ptr + 0xc) = *(int32_t *)(path_buffer + 0x34);
     *(int32_t *)(texture_ptr + 2) = *(int32_t *)(path_buffer + 0x38);
     *(int32_t *)((int64_t)texture_ptr + 0x14) = 0x7fc00001;
     *(float *)(texture_ptr + 3) = 1.0 / (float)*(int *)(path_buffer + 0x3ec);
     *(float *)((int64_t)texture_ptr + 0x1c) = (float)(*(int *)(path_buffer + 200) != 0);
-    
-    // 清理工作空间
-    FUN_180094c20(workspace + 0x88);
-    FUN_1803e0670(path_buffer, 0, workspace + 0x88);
-    
-    // 设置渲染标志
+// 清理工作空间
+    function_094c20(workspace + 0x88);
+    function_3e0670(path_buffer, 0, workspace + 0x88);
+// 设置渲染标志
     *(uint *)((int64_t)texture_ptr + 0x24) = render_flag1 ^ 0x80000000;
     *(uint *)(texture_ptr + 5) = render_flag2 ^ 0x80000000;
     *(uint *)((int64_t)texture_ptr + 0x2c) = render_flag3 ^ 0x80000000;
     *(float *)(texture_ptr + 4) = (float)(*(uint *)(path_buffer + 0xc0) & 0x80);
-    
-    // 计算纹理变换参数
+// 计算纹理变换参数
     texture_param = cosf(*(float *)(path_buffer + 0xec) * 0.017453292);
     *(int32_t *)(texture_ptr + 6) = texture_param;
     texture_param = cosf(*(float *)(path_buffer + 0xe8) * 0.017453292);
@@ -223,14 +199,12 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
     texture_param = *(uint64_t *)(path_buffer + 0xb8);
     texture_ptr[0x46] = *(uint64_t *)(path_buffer + 0xb0);
     texture_ptr[0x47] = texture_param;
-    
-    // 处理高级纹理特性
+// 处理高级纹理特性
     if (*(int *)(path_buffer + 200) != 0) {
         texture_data = (int8_t *)(path_buffer + 0x170);
         temp_path_buffer = (int16_t *)(param_save2 + 0x3580);
-        
         if ((*(byte *)(path_buffer + 0xc0) & 0x80) == 0) {
-            // 处理标准纹理路径
+// 处理标准纹理路径
             path_buffer = 0x28;
             base_address = 0x28;
             do {
@@ -247,23 +221,19 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                         }
                     } while (temp_ptr != (int8_t *)0x0);
                 }
-                
                 if ((texture_ptr == texture_data) || (*temp_path_buffer < (uint64_t)texture_ptr[4])) {
                     texture_ptr = (int8_t *)RenderingSystem_MaterialProcessor(texture_data, workspace + 0x168);
                     texture_ptr = (int8_t *)*texture_ptr;
                 }
-                
                 if (*(int64_t *)(base_address + (int64_t)texture_ptr) == 0) {
                     goto texture_processing_complete;
                 }
                 base_address = base_address + 8;
             } while (base_address < 0x58);
-            
-            // 处理纹理数据变换
+// 处理纹理数据变换
             temp_ptr = texture_ptr + 0x16;
             float_ptr = (float *)(texture_ptr + 10);
             base_address = path_buffer - (int64_t)texture_ptr;
-            
             do {
                 texture_ptr = *(int8_t **)(path_buffer + 0x180);
                 texture_data = texture_data;
@@ -278,12 +248,10 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                         }
                     } while (texture_ptr != (int8_t *)0x0);
                 }
-                
                 if ((texture_data == texture_data) || (*temp_path_buffer < (uint64_t)texture_data[4])) {
                     texture_data = (int8_t *)RenderingSystem_MaterialProcessor(texture_data, workspace + 0x200);
                     texture_data = (int8_t *)*texture_data;
                 }
-                
                 path_index = *(int *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 0xc);
                 path_length = *(int *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 0x10);
                 texture_ptr = *(int8_t **)(path_buffer + 0x180);
@@ -299,12 +267,10 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                         }
                     } while (texture_ptr != (int8_t *)0x0);
                 }
-                
                 if ((texture_data == texture_data) || (*temp_path_buffer < (uint64_t)texture_data[4])) {
                     texture_data = (int8_t *)RenderingSystem_MaterialProcessor(texture_data, workspace + 0x1f8);
                     texture_data = (int8_t *)*texture_data;
                 }
-                
                 texture_count = *(int *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 0xc);
                 texture_hash = *(int *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 0x10);
                 texture_ptr = *(int8_t **)(path_buffer + 0x180);
@@ -320,12 +286,10 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                         }
                     } while (texture_ptr != (int8_t *)0x0);
                 }
-                
                 if ((texture_data == texture_data) || (*temp_path_buffer < (uint64_t)texture_data[4])) {
                     texture_data = (int8_t *)RenderingSystem_MaterialProcessor(texture_data, workspace + 0x1f0);
                     texture_data = (int8_t *)*texture_data;
                 }
-                
                 path_hash = *(int *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 0x10);
                 texture_param = *(float *)(*(int64_t *)(path_buffer + (int64_t)texture_data) + 4);
                 texture_data = *(int8_t **)(path_buffer + 0x180);
@@ -341,12 +305,10 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
                         }
                     } while (texture_data != (int8_t *)0x0);
                 }
-                
                 if ((texture_ptr == texture_data) || (*temp_path_buffer < (uint64_t)texture_ptr[4])) {
                     texture_ptr = (int8_t *)RenderingSystem_MaterialProcessor(texture_data, workspace + 0x228);
                     texture_ptr = (int8_t *)*texture_ptr;
                 }
-                
                 texture_data = (int8_t *)(path_buffer + (int64_t)texture_ptr);
                 path_buffer = path_buffer + 8;
                 *float_ptr = 0.05 / (float)(int)((float *)*texture_data)[4] + *(float *)*texture_data;
@@ -374,23 +336,23 @@ void RenderingSystem_TexturePathProcessor(int64_t render_context, int64_t file_h
             } while (path_buffer < 0x58);
         }
         else {
-            // 处理高级纹理特性
-            shader_ptr = (int64_t *)FUN_180387380(texture_data, temp_path_buffer);
+// 处理高级纹理特性
+            shader_ptr = (int64_t *)function_387380(texture_data, temp_path_buffer);
             if (*shader_ptr == 0) {
 texture_processing_complete:
                 *(int32_t *)((int64_t)texture_ptr + 0x1c) = 0;
             }
             else {
-                shader_ptr = (int64_t *)FUN_180387380(texture_data, temp_path_buffer);
+                shader_ptr = (int64_t *)function_387380(texture_data, temp_path_buffer);
                 path_index = *(int *)(*shader_ptr + 0xc);
                 path_length = *(int *)(*shader_ptr + 0x10);
-                shader_ptr = (int64_t *)FUN_180387380(texture_data, temp_path_buffer);
+                shader_ptr = (int64_t *)function_387380(texture_data, temp_path_buffer);
                 texture_count = *(int *)(*shader_ptr + 0xc);
                 texture_hash = *(int *)(*shader_ptr + 0x10);
-                shader_ptr = (int64_t *)FUN_180387380(texture_data, temp_path_buffer);
+                shader_ptr = (int64_t *)function_387380(texture_data, temp_path_buffer);
                 path_hash = *(int *)(*shader_ptr + 0x10);
                 texture_param = *(float *)(*shader_ptr + 4);
-                texture_data = (int8_t *)FUN_180387380(texture_data, temp_path_buffer);
+                texture_data = (int8_t *)function_387380(texture_data, temp_path_buffer);
                 *(float *)(texture_ptr + 10) = 0.05 / (float)(int)((float *)*texture_data)[4] + *(float *)*texture_data;
                 *(float *)((int64_t)texture_ptr + 0x54) = 0.05 / (float)path_hash + texture_param;
                 *(float *)(texture_ptr + 0xb) = ((float)texture_count * 0.9) / (float)texture_hash;
@@ -410,28 +372,24 @@ texture_processing_complete:
             }
         }
     }
-    
-    // 清理资源并返回
+// 清理资源并返回
     SystemSecurityChecker(frame_sync ^ (uint64_t)workspace);
 }
-
 // 函数别名：保持向后兼容性
-void FUN_180330ab0(int64_t param_1, int64_t param_2, uint64_t param_3) __attribute__((alias("RenderingSystem_TexturePathProcessor")));
-
+void function_330ab0(int64_t param_1, int64_t param_2, uint64_t param_3) __attribute__((alias("RenderingSystem_TexturePathProcessor")));
 // ===================================================================
 // 函数实现：渲染参数插值器
 // ===================================================================
-
 /**
  * 渲染系统参数插值器 - 负责渲染参数的插值计算和变换
- * 
+ *
  * @param render_context 渲染上下文
  * @param target_buffer 目标缓冲区
  * @param source_buffer1 源缓冲区1
  * @param source_buffer2 源缓冲区2
  * @param interpolation_factor 插值因子
  * @return void
- * 
+ *
  * 技术说明：
  * - 执行高精度浮点插值计算
  * - 处理四元数旋转插值
@@ -439,13 +397,13 @@ void FUN_180330ab0(int64_t param_1, int64_t param_2, uint64_t param_3) __attribu
  * - 优化SIMD指令使用
  * - 处理数值归一化
  * - 内存对齐优化
- * 
+ *
  * 性能优化：
  * - 使用SIMD指令加速计算
  * - 智能分支预测优化
  * - 内存访问模式优化
  * - 数值稳定性处理
- * 
+ *
  * 算法特性：
  * - 球面线性插值(SLERP)
  * - 数值归一化处理
@@ -453,9 +411,8 @@ void FUN_180330ab0(int64_t param_1, int64_t param_2, uint64_t param_3) __attribu
  * - 边界条件处理
  */
 void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *target_buffer, uint64_t *source_buffer1, uint64_t *source_buffer2, float interpolation_factor)
-
 {
-    // 局部变量声明
+// 局部变量声明
     int8_t simd_vector1[16];
     uint64_t simd_result;
     int32_t interpolation_result;
@@ -505,19 +462,16 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     int32_t ustack_dc;
     float float_array[8];
     uint64_t frame_sync;
-    
-    // 初始化帧同步
+// 初始化帧同步
     frame_sync = GET_SECURITY_COOKIE() ^ (uint64_t)workspace;
-    
-    // 复制源数据到目标缓冲区
+// 复制源数据到目标缓冲区
     simd_result = source_buffer1[1];
     *(uint64_t *)target_buffer = *source_buffer1;
     *(uint64_t *)(target_buffer + 2) = simd_result;
     simd_result = source_buffer1[3];
     *(uint64_t *)(target_buffer + 4) = source_buffer1[2];
     *(uint64_t *)(target_buffer + 6) = simd_result;
-    
-    // 处理浮点参数
+// 处理浮点参数
     target_value1 = *(float *)((int64_t)source_buffer1 + 0x24);
     target_value2 = *(float *)(source_buffer1 + 5);
     target_value3 = *(float *)((int64_t)source_buffer1 + 0x2c);
@@ -532,13 +486,11 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     target_buffer[0xd] = target_value1;
     target_buffer[0xe] = target_value2;
     target_buffer[0xf] = target_value3;
-    
-    // 设置数据指针
+// 设置数据指针
     data_ptr = source_buffer2;
     source_ptr1 = (float *)RenderingSystem_LightSystem(source_buffer2, float_array);
     source_ptr2 = (float *)RenderingSystem_LightSystem(target_buffer, &temp_value1);
-    
-    // 保存源数据
+// 保存源数据
     ustack_138 = *source_buffer1;
     ustack_130 = source_buffer1[1];
     ustack_128 = *(int32_t *)(source_buffer1 + 2);
@@ -549,14 +501,12 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     ustack_114 = *(int32_t *)((int64_t)source_buffer1 + 0x24);
     ustack_110 = *(int32_t *)(source_buffer1 + 5);
     ustack_10c = *(int32_t *)((int64_t)source_buffer1 + 0x2c);
-    
-    // 计算插值结果
+// 计算插值结果
     target_value1 = (*source_ptr1 - *source_ptr2) * interpolation_factor + *source_ptr2;
     target_value2 = (source_ptr1[1] - source_ptr2[1]) * interpolation_factor + source_ptr2[1];
     target_value3 = (source_ptr1[2] - source_ptr2[2]) * interpolation_factor + source_ptr2[2];
-    
-    // 执行SIMD变换
-    FUN_1802bfc90(&ustack_138, float_array);
+// 执行SIMD变换
+    function_2bfc90(&ustack_138, float_array);
     ustack_108 = *data_ptr;
     ustack_100 = data_ptr[1];
     ustack_f8 = *(int32_t *)(data_ptr + 2);
@@ -567,76 +517,65 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     ustack_e4 = *(int32_t *)((int64_t)data_ptr + 0x24);
     ustack_e0 = *(int32_t *)(data_ptr + 5);
     ustack_dc = *(int32_t *)((int64_t)data_ptr + 0x2c);
-    
-    FUN_1802bfc90(&ustack_108, float_array);
+    function_2bfc90(&ustack_108, float_array);
     AdvancedProcessor_StateManager0(float_array, &ustack_108);
     interpolation_result = AdvancedProcessor_StateManager0(&temp_value1, &ustack_138);
-    
-    // 处理高精度插值
+// 处理高精度插值
     if (RENDERING_INTERPOLATION_THRESHOLD <= interpolation_factor) {
         target_value4 = float_array[0];
         target_value5 = float_array[1];
         target_value6 = float_array[2];
         target_value7 = float_array[3];
-        
         if (interpolation_factor <= 0.999) {
-            // 处理复杂插值计算
+// 处理复杂插值计算
             float_array[2] = float_array[2] * temp_value3;
             float_array[3] = float_array[3] * temp_value4;
             float_array[4] = -1.0;
             float_array[5] = -1.0;
             float_array[6] = -1.0;
             float_array[7] = -1.0;
-            
             simd_vector3._0_4_ = float_array[2] + float_array[0] * temp_value1;
             simd_vector3._4_4_ = float_array[3] + float_array[1] * temp_value2;
             simd_vector3._8_4_ = float_array[2] + float_array[2];
             simd_vector3._12_4_ = float_array[3] + float_array[3];
             simd_vector2._4_12_ = simd_vector3._4_12_;
             simd_vector2._0_4_ = simd_vector3._0_4_ + simd_vector3._4_4_;
-            
             float_array[0] = 1.0;
             float_array[1] = 1.0;
             float_array[2] = 1.0;
             float_array[3] = 1.0;
-            
             mask_result = movmskps(interpolation_result, simd_vector2);
             data_offset = (uint64_t)(mask_result & 1);
             target_value8 = float_array[data_offset * 4];
             target_value9 = float_array[data_offset * 4 + 1];
             target_value10 = float_array[data_offset * 4 + 2];
             target_value11 = float_array[data_offset * 4 + 3];
-            
             if (RENDERING_QUATERNION_NORMALIZATION_THRESHOLD < ABS(simd_vector2._0_4_)) {
                 target_value12 = 1.0 - interpolation_factor;
                 temp_value1 = target_value12 * temp_value1 + interpolation_factor * target_value8 * target_value4;
                 temp_value2 = target_value12 * temp_value2 + interpolation_factor * target_value9 * target_value5;
                 temp_value3 = target_value12 * temp_value3 + interpolation_factor * target_value10 * target_value6;
                 temp_value4 = target_value12 * temp_value4 + interpolation_factor * target_value11 * target_value7;
-                
                 target_value1 = temp_value4 * temp_value4 + temp_value1 * temp_value1;
                 target_value2 = temp_value3 * temp_value3 + temp_value2 * temp_value2;
                 target_value4 = target_value1 + temp_value2 * temp_value2 + temp_value3 * temp_value3;
                 target_value5 = target_value2 + temp_value1 * temp_value1 + temp_value4 * temp_value4;
-                
                 simd_vector1._4_4_ = target_value1 + target_value2 + RENDERING_NORMALIZATION_EPSILON;
                 simd_vector1._0_4_ = target_value2 + target_value1 + RENDERING_NORMALIZATION_EPSILON;
                 simd_vector1._8_4_ = target_value4 + RENDERING_NORMALIZATION_EPSILON;
                 simd_vector1._12_4_ = target_value5 + RENDERING_NORMALIZATION_EPSILON;
-                
                 simd_vector3 = rsqrtps(simd_vector2, simd_vector1);
                 target_value6 = simd_vector3._0_4_;
                 target_value7 = simd_vector3._4_4_;
                 target_value8 = simd_vector3._8_4_;
                 target_value9 = simd_vector3._12_4_;
-                
                 temp_value1 = temp_value1 * (3.0 - target_value6 * target_value6 * (target_value2 + target_value1)) * target_value6 * 0.5;
                 temp_value2 = temp_value2 * (3.0 - target_value7 * target_value7 * (target_value1 + target_value2)) * target_value7 * 0.5;
                 temp_value3 = temp_value3 * (3.0 - target_value8 * target_value8 * target_value4) * target_value8 * 0.5;
                 temp_value4 = temp_value4 * (3.0 - target_value9 * target_value9 * target_value5) * target_value9 * 0.5;
             }
             else {
-                // 处理球面线性插值
+// 处理球面线性插值
                 target_value12 = (float)acosf();
                 target_value5 = (float)sinf();
                 target_value6 = (float)sinf(target_value12 - target_value12 * interpolation_factor);
@@ -650,15 +589,14 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
             }
         }
         else {
-            // 直接使用目标值
+// 直接使用目标值
             temp_value1 = float_array[0];
             temp_value2 = float_array[1];
             temp_value3 = float_array[2];
             temp_value4 = float_array[3];
         }
     }
-    
-    // 应用变换结果
+// 应用变换结果
     SystemSecurityManager(&ustack_138, &temp_value1);
     *(uint64_t *)target_buffer = ustack_138;
     *(uint64_t *)(target_buffer + 2) = ustack_130;
@@ -666,7 +604,6 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     *(uint64_t *)(target_buffer + 6) = CONCAT44(ustack_11c, ustack_120);
     *(uint64_t *)(target_buffer + 8) = CONCAT44(ustack_114, ustack_118);
     *(uint64_t *)(target_buffer + 10) = CONCAT44(ustack_10c, ustack_110);
-    
     target_value1 = 1.0 - interpolation_factor;
     target_buffer[1] = target_value1 * target_buffer[1];
     *target_buffer = target_value1 * *target_buffer;
@@ -677,28 +614,23 @@ void RenderingSystem_ParameterInterpolator(uint64_t render_context, float *targe
     target_buffer[8] = target_value3 * target_buffer[8];
     target_buffer[9] = target_value3 * target_buffer[9];
     target_buffer[10] = target_value3 * target_buffer[10];
-    
     target_value1 = *(float *)(source_buffer2 + 7);
     target_value2 = interpolation_factor * *(float *)((int64_t)source_buffer2 + 0x34) + target_value1 * target_buffer[0xd];
     target_buffer[0xc] = interpolation_factor * *(float *)(source_buffer2 + 6) + target_value1 * target_buffer[0xc];
     target_buffer[0xd] = target_value2;
     target_buffer[0xe] = interpolation_factor * target_value1 + target_value1 * target_buffer[0xe];
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
-    
-    // 清理资源
+// 清理资源
     SystemSecurityChecker(frame_sync, target_value2);
 }
-
 // 函数别名：保持向后兼容性
-void FUN_1803310f0(uint64_t param_1, float *param_2, uint64_t *param_3, uint64_t *param_4, float param_5) __attribute__((alias("RenderingSystem_ParameterInterpolator")));
-
+void function_3310f0(uint64_t param_1, float *param_2, uint64_t *param_3, uint64_t *param_4, float param_5) __attribute__((alias("RenderingSystem_ParameterInterpolator")));
 // ===================================================================
 // 函数实现：高级矩阵变换器
 // ===================================================================
-
 /**
  * 渲染系统高级矩阵变换器 - 负责复杂的矩阵变换和数学计算
- * 
+ *
  * @param param1 变换参数1
  * @param param2 变换参数2
  * @param param3 变换参数3
@@ -711,7 +643,7 @@ void FUN_1803310f0(uint64_t param_1, float *param_2, uint64_t *param_3, uint64_t
  * @param param10 变换参数10
  * @param param11 变换参数11
  * @return void
- * 
+ *
  * 技术说明：
  * - 执行高级矩阵变换运算
  * - 处理四元数旋转计算
@@ -719,13 +651,13 @@ void FUN_1803310f0(uint64_t param_1, float *param_2, uint64_t *param_3, uint64_t
  * - 优化SIMD计算性能
  * - 处理数值归一化
  * - 内存对齐优化
- * 
+ *
  * 性能优化：
  * - 使用SIMD指令并行计算
  * - 智能分支预测
  * - 内存访问优化
  * - 数值稳定性处理
- * 
+ *
  * 算法特性：
  * - 球面线性插值算法
  * - 快速归一化处理
@@ -735,9 +667,8 @@ void FUN_1803310f0(uint64_t param_1, float *param_2, uint64_t *param_3, uint64_t
 void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4,
                                            uint64_t param5, uint64_t param6, uint64_t param7, uint64_t param8,
                                            uint64_t param9, uint64_t param10, uint64_t param11)
-
 {
-    // 局部变量声明
+// 局部变量声明
     float *target_buffer;
     int8_t simd_vector1[16];
     int32_t register_eax;
@@ -779,34 +710,28 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
     int32_t stack_param5;
     int32_t stack_param6;
     int32_t stack_param7;
-    
-    // 设置变换矩阵参数
+// 设置变换矩阵参数
     *(int *)(transform_matrix + -0x60) = (int)param2;
     *(int *)(transform_matrix + -0x5c) = (int)((uint64_t)param2 >> 0x20);
     *(int32_t *)(transform_matrix + -0x58) = register_xmm1_dc;
     *(int32_t *)(transform_matrix + -0x54) = register_xmm1_dd;
-    
-    // 计算SIMD向量变换
+// 计算SIMD向量变换
     simd_vector3._0_4_ = register_xmm0_dc + (float)param1;
     simd_vector3._4_4_ = register_xmm0_dd + (float)((uint64_t)param1 >> 0x20);
     simd_vector3._8_4_ = register_xmm0_dc + register_xmm0_dc;
     simd_vector3._12_4_ = register_xmm0_dd + register_xmm0_dd;
     simd_vector2._4_12_ = simd_vector3._4_12_;
     simd_vector2._0_4_ = simd_vector3._0_4_ + simd_vector3._4_4_;
-    
-    // 初始化单位矩阵
+// 初始化单位矩阵
     *(uint64_t *)(transform_matrix + -0x70) = 0x3f8000003f800000;
     *(uint64_t *)(transform_matrix + -0x68) = 0x3f8000003f800000;
-    
-    // 执行SIMD掩码操作
+// 执行SIMD掩码操作
     mask_result = movmskps(register_eax, simd_vector2);
     target_buffer = (float *)(transform_matrix + -0x70 + (uint64_t)(mask_result & 1) * 0x10);
-    
-    // 计算变换因子
+// 计算变换因子
     transform_factor5 = *target_buffer * (float)param4;
     transform_factor6 = target_buffer[1] * (float)((uint64_t)param4 >> 0x20);
-    
-    // 处理高精度变换
+// 处理高精度变换
     if (RENDERING_QUATERNION_NORMALIZATION_THRESHOLD < ABS(simd_vector2._0_4_)) {
         transform_factor1 = register_xmm11_da - register_xmm9_da;
         transform_factor3 = transform_factor1 * stack_temp1 + register_xmm9_da * transform_factor5;
@@ -817,14 +742,12 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
         transform_factor6 = transform_factor6 * transform_factor6;
         transform_factor1 = transform_factor6 + transform_factor3 * transform_factor3;
         transform_factor2 = transform_factor5 + transform_factor4 * transform_factor4;
-        
-        // 计算归一化因子
+// 计算归一化因子
         simd_vector1._4_4_ = transform_factor1 + transform_factor2 + RENDERING_NORMALIZATION_EPSILON;
         simd_vector1._0_4_ = transform_factor2 + transform_factor1 + RENDERING_NORMALIZATION_EPSILON;
         simd_vector1._8_4_ = transform_factor1 + transform_factor4 * transform_factor4 + transform_factor5 + RENDERING_NORMALIZATION_EPSILON;
         simd_vector1._12_4_ = transform_factor2 + transform_factor3 * transform_factor3 + transform_factor6 + RENDERING_NORMALIZATION_EPSILON;
-        
-        // 执行平方根倒数近似
+// 执行平方根倒数近似
         simd_vector3 = rsqrtps(simd_vector2, simd_vector1);
         transform_factor5 = simd_vector3._0_4_;
         transform_factor6 = simd_vector3._4_4_;
@@ -832,14 +755,13 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
         stack_temp2 = transform_factor4 * (3.0 - transform_factor6 * transform_factor6 * (transform_factor1 + transform_factor2)) * transform_factor6 * 0.5;
     }
     else {
-        // 处理球面线性插值
+// 处理球面线性插值
         stack_param1 = register_xmm8_da;
         stack_param2 = register_xmm8_dc;
         stack_param3 = register_xmm7_da;
         stack_param4 = register_xmm7_dc;
         stack_param5 = register_xmm6_da;
         stack_param6 = register_xmm6_dc;
-        
         transform_factor1 = (float)acosf();
         transform_factor2 = (float)sinf();
         transform_factor3 = (float)sinf(transform_factor1 - transform_factor1 * register_xmm9_da);
@@ -849,8 +771,7 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
         stack_temp1 = transform_factor3 * stack_temp1 + transform_factor1 * transform_factor5;
         stack_temp2 = transform_factor3 * stack_temp2 + transform_factor1 * transform_factor6;
     }
-    
-    // 应用变换结果
+// 应用变换结果
     SystemSecurityManager(&param6, &stack_temp1);
     *(uint64_t *)source_buffer = param6;
     *(uint64_t *)(source_buffer + 2) = param7;
@@ -858,8 +779,7 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
     *(uint64_t *)(source_buffer + 6) = param9;
     *(uint64_t *)(source_buffer + 8) = param10;
     *(uint64_t *)(source_buffer + 10) = param11;
-    
-    // 处理最终变换
+// 处理最终变换
     transform_factor1 = register_xmm11_da - register_xmm9_da;
     source_buffer[1] = register_xmm13_da * source_buffer[1];
     *source_buffer = register_xmm13_da * *source_buffer;
@@ -870,32 +790,27 @@ void RenderingSystem_AdvancedMatrixTransformer(uint64_t param1, uint64_t param2,
     source_buffer[8] = register_xmm15_da * source_buffer[8];
     source_buffer[9] = register_xmm15_da * source_buffer[9];
     source_buffer[10] = register_xmm15_da * source_buffer[10];
-    
     transform_factor5 = *(float *)(data_buffer + 0x38);
     transform_factor6 = register_xmm9_da * *(float *)(data_buffer + 0x34) + transform_factor1 * source_buffer[0xd];
     source_buffer[0xc] = register_xmm9_da * *(float *)(data_buffer + 0x30) + transform_factor1 * source_buffer[0xc];
     source_buffer[0xd] = transform_factor6;
     source_buffer[0xe] = register_xmm9_da * transform_factor5 + transform_factor1 * source_buffer[0xe];
     source_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
-    
-    // 清理资源
-    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000, transform_factor6);
+// 清理资源
+    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&local_buffer_00000000, transform_factor6);
 }
-
 // 函数别名：保持向后兼容性
-void FUN_180331284(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4,
+void function_331284(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t param4,
                    uint64_t param5, uint64_t param6, uint64_t param7, uint64_t param8,
                    uint64_t param9, uint64_t param10, uint64_t param11) __attribute__((alias("RenderingSystem_AdvancedMatrixTransformer")));
-
 // ===================================================================
 // 函数实现：四元数旋转处理器
 // ===================================================================
-
 /**
  * 渲染系统四元数旋转处理器 - 负责四元数旋转计算和变换
- * 
+ *
  * @return void
- * 
+ *
  * 技术说明：
  * - 执行四元数旋转计算
  * - 处理球面线性插值
@@ -903,13 +818,13 @@ void FUN_180331284(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t p
  * - 优化旋转计算性能
  * - 处理数值归一化
  * - 内存对齐优化
- * 
+ *
  * 性能优化：
  * - 使用SIMD指令加速计算
  * - 智能分支预测
  * - 内存访问优化
  * - 数值稳定性处理
- * 
+ *
  * 算法特性：
  * - 球面线性插值(SLERP)
  * - 四元数归一化处理
@@ -917,9 +832,8 @@ void FUN_180331284(uint64_t param1, uint64_t param2, uint64_t param3, uint64_t p
  * - 边界条件处理
  */
 void RenderingSystem_QuaternionRotationProcessor(void)
-
 {
-    // 局部变量声明
+// 局部变量声明
     float *target_buffer;
     int64_t transform_matrix;
     int64_t data_buffer;
@@ -941,29 +855,25 @@ void RenderingSystem_QuaternionRotationProcessor(void)
     uint64_t stack_param4;
     uint64_t stack_param5;
     uint64_t stack_param6;
-    
-    // 计算球面线性插值参数
+// 计算球面线性插值参数
     rotation_factor1 = (float)acosf();
     rotation_factor2 = (float)sinf();
     rotation_factor3 = (float)sinf(rotation_factor1 - rotation_factor1 * register_xmm9_da);
     rotation_factor3 = rotation_factor3 * (register_xmm11_da / rotation_factor2);
     rotation_factor1 = (float)sinf(rotation_factor1 * register_xmm9_da);
     rotation_factor1 = rotation_factor1 * (register_xmm11_da / rotation_factor2);
-    
-    // 计算旋转结果
+// 计算旋转结果
     stack_temp1 = rotation_factor3 * stack_temp1 + rotation_factor1 * register_xmm10_da;
     stack_temp2 = rotation_factor3 * stack_temp2 + rotation_factor1 * register_xmm10_db;
-    
-    // 应用变换结果
-    SystemSecurityManager(&stack0x00000030, &stack_temp1);
+// 应用变换结果
+    SystemSecurityManager(&local_buffer_00000030, &stack_temp1);
     *(uint64_t *)target_buffer = stack_param1;
     *(uint64_t *)(target_buffer + 2) = stack_param2;
     *(uint64_t *)(target_buffer + 4) = stack_param3;
     *(uint64_t *)(target_buffer + 6) = stack_param4;
     *(uint64_t *)(target_buffer + 8) = stack_param5;
     *(uint64_t *)(target_buffer + 10) = stack_param6;
-    
-    // 处理旋转变换
+// 处理旋转变换
     rotation_factor3 = register_xmm11_da - register_xmm9_da;
     target_buffer[1] = register_xmm13_da * target_buffer[1];
     *target_buffer = register_xmm13_da * *target_buffer;
@@ -974,30 +884,25 @@ void RenderingSystem_QuaternionRotationProcessor(void)
     target_buffer[8] = register_xmm15_da * target_buffer[8];
     target_buffer[9] = register_xmm15_da * target_buffer[9];
     target_buffer[10] = register_xmm15_da * target_buffer[10];
-    
     rotation_factor1 = *(float *)(data_buffer + 0x34);
     rotation_factor2 = *(float *)(data_buffer + 0x38);
     target_buffer[0xc] = register_xmm9_da * *(float *)(data_buffer + 0x30) + rotation_factor3 * target_buffer[0xc];
     target_buffer[0xd] = register_xmm9_da * rotation_factor1 + rotation_factor3 * target_buffer[0xd];
     target_buffer[0xe] = register_xmm9_da * rotation_factor2 + rotation_factor3 * target_buffer[0xe];
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
-    
-    // 清理资源
-    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000);
+// 清理资源
+    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&local_buffer_00000000);
 }
-
 // 函数别名：保持向后兼容性
-void FUN_1803312da(void) __attribute__((alias("RenderingSystem_QuaternionRotationProcessor")));
-
+void function_3312da(void) __attribute__((alias("RenderingSystem_QuaternionRotationProcessor")));
 // ===================================================================
 // 函数实现：向量归一化处理器
 // ===================================================================
-
 /**
  * 渲染系统向量归一化处理器 - 负责向量归一化和数值计算
- * 
+ *
  * @return void
- * 
+ *
  * 技术说明：
  * - 执行向量归一化计算
  * - 处理数值精度控制
@@ -1005,13 +910,13 @@ void FUN_1803312da(void) __attribute__((alias("RenderingSystem_QuaternionRotatio
  * - 优化归一化性能
  * - 处理数值稳定性
  * - 内存对齐优化
- * 
+ *
  * 性能优化：
  * - 使用SIMD指令并行计算
  * - 快速归一化算法
  * - 数值稳定性处理
  * - 内存访问优化
- * 
+ *
  * 算法特性：
  * - 平方根倒数近似
  * - 数值归一化处理
@@ -1019,9 +924,8 @@ void FUN_1803312da(void) __attribute__((alias("RenderingSystem_QuaternionRotatio
  * - 边界条件处理
  */
 void RenderingSystem_VectorNormalizationProcessor(void)
-
 {
-    // 局部变量声明
+// 局部变量声明
     float *target_buffer;
     int64_t transform_matrix;
     int64_t data_buffer;
@@ -1053,42 +957,36 @@ void RenderingSystem_VectorNormalizationProcessor(void)
     uint64_t stack_param5;
     uint64_t stack_param6;
     uint64_t stack_param7;
-    
-    // 计算向量归一化参数
+// 计算向量归一化参数
     normalization_factor3 = register_xmm11_da - register_xmm9_da;
     normalization_factor4 = normalization_factor3 * stack_param1 + register_xmm9_da * register_xmm10_da;
     normalization_factor5 = normalization_factor3 * stack_temp2 + register_xmm9_da * register_xmm10_db;
     normalization_factor6 = normalization_factor3 * stack_temp3 + register_xmm9_da * register_xmm10_dc;
     normalization_factor3 = normalization_factor3 * stack_temp4 + register_xmm9_da * register_xmm10_dd;
-    
-    // 计算归一化因子
+// 计算归一化因子
     normalization_factor5 = normalization_factor5 * normalization_factor5;
     normalization_factor6 = normalization_factor6 * normalization_factor6;
     normalization_factor3 = normalization_factor3 * normalization_factor3;
     normalization_factor1 = normalization_factor3 + normalization_factor4 * normalization_factor4;
     normalization_factor2 = normalization_factor6 + normalization_factor5;
-    
-    // 计算SIMD向量
+// 计算SIMD向量
     simd_vector._4_4_ = normalization_factor1 + normalization_factor2 + RENDERING_NORMALIZATION_EPSILON;
     simd_vector._0_4_ = normalization_factor2 + normalization_factor1 + RENDERING_NORMALIZATION_EPSILON;
     simd_vector._8_4_ = normalization_factor1 + normalization_factor5 + normalization_factor6 + RENDERING_NORMALIZATION_EPSILON;
     simd_vector._12_4_ = normalization_factor2 + normalization_factor4 * normalization_factor4 + normalization_factor3 + RENDERING_NORMALIZATION_EPSILON;
-    
-    // 执行平方根倒数近似
+// 执行平方根倒数近似
     simd_vector = rsqrtps(register_xmm2, simd_vector);
     normalization_factor5 = simd_vector._0_4_;
     normalization_factor5 = (3.0 - normalization_factor5 * normalization_factor5 * (normalization_factor2 + normalization_factor1)) * normalization_factor5 * 0.5;
-    
-    // 应用归一化结果
-    SystemSecurityManager(&stack0x00000030, &stack_param1, simd_vector._0_8_, normalization_factor5, normalization_factor4 * normalization_factor5);
+// 应用归一化结果
+    SystemSecurityManager(&local_buffer_00000030, &stack_param1, simd_vector._0_8_, normalization_factor5, normalization_factor4 * normalization_factor5);
     *(uint64_t *)target_buffer = stack_param2;
     *(uint64_t *)(target_buffer + 2) = stack_param3;
     *(uint64_t *)(target_buffer + 4) = stack_param4;
     *(uint64_t *)(target_buffer + 6) = stack_param5;
     *(uint64_t *)(target_buffer + 8) = stack_param6;
     *(uint64_t *)(target_buffer + 10) = stack_param7;
-    
-    // 处理最终归一化
+// 处理最终归一化
     normalization_factor3 = register_xmm11_da - register_xmm9_da;
     target_buffer[1] = register_xmm13_da * target_buffer[1];
     *target_buffer = register_xmm13_da * *target_buffer;
@@ -1099,30 +997,25 @@ void RenderingSystem_VectorNormalizationProcessor(void)
     target_buffer[8] = register_xmm15_da * target_buffer[8];
     target_buffer[9] = register_xmm15_da * target_buffer[9];
     target_buffer[10] = register_xmm15_da * target_buffer[10];
-    
     normalization_factor5 = *(float *)(data_buffer + 0x38);
     normalization_factor6 = register_xmm9_da * *(float *)(data_buffer + 0x34) + normalization_factor3 * target_buffer[0xd];
     target_buffer[0xc] = register_xmm9_da * *(float *)(data_buffer + 0x30) + normalization_factor3 * target_buffer[0xc];
     target_buffer[0xd] = normalization_factor6;
     target_buffer[0xe] = register_xmm9_da * normalization_factor5 + normalization_factor3 * target_buffer[0xe];
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
-    
-    // 清理资源
-    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000, normalization_factor6);
+// 清理资源
+    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&local_buffer_00000000, normalization_factor6);
 }
-
 // 函数别名：保持向后兼容性
-void FUN_180331369(void) __attribute__((alias("RenderingSystem_VectorNormalizationProcessor")));
-
+void function_331369(void) __attribute__((alias("RenderingSystem_VectorNormalizationProcessor")));
 // ===================================================================
 // 函数实现：快速变换处理器
 // ===================================================================
-
 /**
  * 渲染系统快速变换处理器 - 负责快速变换和优化计算
- * 
+ *
  * @return void
- * 
+ *
  * 技术说明：
  * - 执行快速变换计算
  * - 处理数值优化
@@ -1130,13 +1023,13 @@ void FUN_180331369(void) __attribute__((alias("RenderingSystem_VectorNormalizati
  * - 优化变换性能
  * - 处理数值稳定性
  * - 内存对齐优化
- * 
+ *
  * 性能优化：
  * - 使用SIMD指令加速计算
  * - 快速变换算法
  * - 数值稳定性处理
  * - 内存访问优化
- * 
+ *
  * 算法特性：
  * - 快速归一化处理
  * - 数值优化计算
@@ -1144,9 +1037,8 @@ void FUN_180331369(void) __attribute__((alias("RenderingSystem_VectorNormalizati
  * - 边界条件处理
  */
 void RenderingSystem_FastTransformProcessor(void)
-
 {
-    // 局部变量声明
+// 局部变量声明
     float transform_factor1;
     float transform_factor2;
     float *target_buffer;
@@ -1166,17 +1058,15 @@ void RenderingSystem_FastTransformProcessor(void)
     uint64_t stack_param5;
     uint64_t stack_param6;
     uint64_t stack_param7;
-    
-    // 应用快速变换
-    SystemSecurityManager(&stack0x00000030, alignment_buffer);
+// 应用快速变换
+    SystemSecurityManager(&local_buffer_00000030, alignment_buffer);
     *(uint64_t *)target_buffer = stack_param1;
     *(uint64_t *)(target_buffer + 2) = stack_param2;
     *(uint64_t *)(target_buffer + 4) = stack_param3;
     *(uint64_t *)(target_buffer + 6) = stack_param4;
     *(uint64_t *)(target_buffer + 8) = stack_param5;
     *(uint64_t *)(target_buffer + 10) = stack_param6;
-    
-    // 处理变换参数
+// 处理变换参数
     transform_factor3 = register_xmm11_da - register_xmm9_da;
     target_buffer[1] = register_xmm13_da * target_buffer[1];
     *target_buffer = register_xmm13_da * *target_buffer;
@@ -1187,120 +1077,113 @@ void RenderingSystem_FastTransformProcessor(void)
     target_buffer[8] = register_xmm15_da * target_buffer[8];
     target_buffer[9] = register_xmm15_da * target_buffer[9];
     target_buffer[10] = register_xmm15_da * target_buffer[10];
-    
-    // 计算最终变换结果
+// 计算最终变换结果
     transform_factor1 = *(float *)(data_buffer + 0x34);
     transform_factor2 = *(float *)(data_buffer + 0x38);
     target_buffer[0xc] = register_xmm9_da * *(float *)(data_buffer + 0x30) + transform_factor3 * target_buffer[0xc];
     target_buffer[0xd] = register_xmm9_da * transform_factor1 + transform_factor3 * target_buffer[0xd];
     target_buffer[0xe] = register_xmm9_da * transform_factor2 + transform_factor3 * target_buffer[0xe];
     target_buffer[0xf] = RENDERING_FLOAT_MAX_VALUE;
-    
-    // 清理资源
-    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&stack0x00000000);
+// 清理资源
+    SystemSecurityChecker(*(uint64_t *)(transform_matrix + -0x50) ^ (uint64_t)&local_buffer_00000000);
 }
-
 // 函数别名：保持向后兼容性
-void FUN_1803313e2(void) __attribute__((alias("RenderingSystem_FastTransformProcessor")));
-
+void function_3313e2(void) __attribute__((alias("RenderingSystem_FastTransformProcessor")));
 // ===================================================================
 // 技术说明和实现细节
 // ===================================================================
-
 /*
  * 渲染系统纹理处理和数学计算模块技术说明：
- * 
+ *
  * 1. 纹理路径处理：
  *    - 支持多种纹理格式处理
  *    - 路径规范化和分隔符转换
  *    - 内存管理和资源清理
  *    - 错误处理和异常安全
- * 
+ *
  * 2. 参数插值计算：
  *    - 高精度浮点插值
  *    - 球面线性插值(SLERP)
  *    - 四元数旋转插值
  *    - 数值归一化处理
- * 
+ *
  * 3. 矩阵变换：
  *    - 高级矩阵变换运算
  *    - SIMD指令优化
  *    - 数值稳定性处理
  *    - 内存对齐优化
- * 
+ *
  * 4. 性能优化：
  *    - 使用SIMD指令加速计算
  *    - 智能分支预测
  *    - 内存访问模式优化
  *    - 数值稳定性处理
- * 
+ *
  * 5. 内存管理：
  *    - 智能内存分配策略
  *    - 资源生命周期管理
  *    - 内存泄漏防护
  *    - 异常安全处理
- * 
+ *
  * 6. 错误处理：
  *    - 边界检查和验证
  *    - 数值范围检查
  *    - 内存访问保护
  *    - 异常安全机制
- * 
+ *
  * 7. 算法特性：
  *    - 快速归一化算法
  *    - 平方根倒数近似
  *    - 数值精度控制
  *    - 边界条件处理
- * 
+ *
  * 本模块为渲染系统提供核心的数学计算和变换功能，
  * 确保高性能和高精度的渲染计算。
  */
-
 // ===================================================================
 // 模块信息总结
 // ===================================================================
-
 /*
  * 模块功能总结：
- * 
+ *
  * 本模块实现了以下6个核心函数：
- * 
+ *
  * 1. RenderingSystem_TexturePathProcessor - 纹理路径处理器
  *    - 功能：处理纹理文件路径和资源管理
  *    - 特点：支持多种格式，内存优化
- * 
+ *
  * 2. RenderingSystem_ParameterInterpolator - 参数插值器
  *    - 功能：执行高精度参数插值计算
  *    - 特点：SLERP算法，SIMD优化
- * 
+ *
  * 3. RenderingSystem_AdvancedMatrixTransformer - 高级矩阵变换器
  *    - 功能：复杂矩阵变换和数学计算
  *    - 特点：并行计算，数值稳定
- * 
+ *
  * 4. RenderingSystem_QuaternionRotationProcessor - 四元数旋转处理器
  *    - 功能：四元数旋转计算和变换
  *    - 特点：球面插值，高性能
- * 
+ *
  * 5. RenderingSystem_VectorNormalizationProcessor - 向量归一化处理器
  *    - 功能：向量归一化和数值计算
  *    - 特点：快速算法，精度控制
- * 
+ *
  * 6. RenderingSystem_FastTransformProcessor - 快速变换处理器
  *    - 功能：快速变换和优化计算
  *    - 特点：优化算法，高性能
- * 
+ *
  * 技术特点：
  * - 高性能数学计算
  * - SIMD指令优化
  * - 内存管理优化
  * - 数值稳定性处理
  * - 异常安全机制
- * 
+ *
  * 应用场景：
  * - 3D渲染系统
  * - 游戏引擎
  * - 图形处理
  * - 科学计算
- * 
+ *
  * 本模块为整个渲染系统提供核心的数学计算和变换功能。
  */

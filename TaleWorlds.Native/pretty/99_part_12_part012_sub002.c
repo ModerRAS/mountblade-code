@@ -1,24 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_12_part012_sub002.c - 1 个函数
-
-// 函数: void FUN_1807d2655(void)
-void FUN_1807d2655(void)
-
+// 函数: void SystemCore_d2655(void)
+void SystemCore_d2655(void)
 {
-  uint64_t in_stack_00000038;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000038 ^ (uint64_t)&stack0x00000000);
+  uint64_t local_var_38;
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_38 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1807d2660(int64_t param_1,int64_t param_2)
-
+uint64_t SystemCore_d2660(int64_t param_1,int64_t param_2)
 {
   int *piVar1;
   uint64_t uVar2;
@@ -27,14 +18,13 @@ uint64_t FUN_1807d2660(int64_t param_1,int64_t param_2)
   uint64_t uVar5;
   int iVar6;
   int aiStackX_10 [2];
-  
   if (0x8000000 < *(uint *)(param_2 + 0x14)) {
     return 0x1c;
   }
   iVar6 = *(uint *)(param_2 + 0x14) + 0x21;
   if (*(int *)(param_1 + 0x40) < iVar6) {
     if (*(int64_t *)(param_1 + 0x30) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x30),
                     &rendering_buffer_208_ptr,0x289,1);
     }
@@ -72,10 +62,10 @@ uint64_t FUN_1807d2660(int64_t param_1,int64_t param_2)
         if (*(uint *)(lVar3 + lVar4 * 0x10) == *(uint *)(param_2 + 0xc)) {
           lVar3 = *(int64_t *)(lVar3 + 8 + lVar4 * 0x10);
           if (((lVar3 != 0) &&
-              (iVar6 = FUN_180768620(*(uint64_t *)(lVar3 + 0x10),*(int32_t *)(param_2 + 0x10)),
+              (iVar6 = SystemCore_68620(*(uint64_t *)(lVar3 + 0x10),*(int32_t *)(param_2 + 0x10)),
               iVar6 == 0)) &&
              (aiStackX_10[0] = iVar6,
-             uVar5 = FUN_1807685b0(*(uint64_t *)(lVar3 + 0x10),piVar1 + 8,
+             uVar5 = SystemCore_685b0(*(uint64_t *)(lVar3 + 0x10),piVar1 + 8,
                                    *(int32_t *)(param_2 + 0x14),aiStackX_10),
              (uVar5 & 0xffffffef) == 0)) {
             *piVar1 = *piVar1 + aiStackX_10[0];
@@ -88,13 +78,6 @@ uint64_t FUN_1807d2660(int64_t param_1,int64_t param_2)
       } while (iVar6 != -1);
     }
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemConfigManager(uVar2);
 }
-
-
-
-
-
-
-

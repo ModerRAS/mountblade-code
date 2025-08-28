@@ -1,13 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_12_part048.c - 6 个函数
-
-// 函数: void FUN_1807e9ca0(float *param_1,float *param_2,float *param_3,int param_4,float *param_5,
-void FUN_1807e9ca0(float *param_1,float *param_2,float *param_3,int param_4,float *param_5,
+// 函数: void function_7e9ca0(float *param_1,float *param_2,float *param_3,int param_4,float *param_5,
+void function_7e9ca0(float *param_1,float *param_2,float *param_3,int param_4,float *param_5,
                   float *param_6,int32_t param_7,float param_8,float param_9,float param_10,
                   float param_11,float param_12)
-
 {
   float fVar1;
   float fVar2;
@@ -30,11 +27,11 @@ void FUN_1807e9ca0(float *param_1,float *param_2,float *param_3,int param_4,floa
   float fVar17;
   float fVar18;
   float fVar19;
-  int8_t auStack_138 [32];
-  int32_t uStack_118;
-  int32_t uStack_114;
-  int32_t uStack_110;
-  int32_t uStack_10c;
+  int8_t stack_array_138 [32];
+  int32_t local_var_118;
+  int32_t local_var_114;
+  int32_t local_var_110;
+  int32_t local_var_10c;
   float fStack_108;
   float fStack_104;
   float fStack_100;
@@ -43,9 +40,8 @@ void FUN_1807e9ca0(float *param_1,float *param_2,float *param_3,int param_4,floa
   float fStack_f4;
   float fStack_f0;
   float fStack_ec;
-  uint64_t uStack_e8;
-  
-  uStack_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_138;
+  uint64_t local_var_e8;
+  local_var_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_138;
   iVar7 = 0;
   fVar19 = *param_6;
   fStack_108 = param_11;
@@ -59,10 +55,10 @@ void FUN_1807e9ca0(float *param_1,float *param_2,float *param_3,int param_4,floa
   if (3 < param_4) {
     iVar6 = 3;
     fVar10 = *param_5;
-    uStack_118 = param_7;
-    uStack_114 = param_7;
-    uStack_110 = param_7;
-    uStack_10c = param_7;
+    local_var_118 = param_7;
+    local_var_114 = param_7;
+    local_var_110 = param_7;
+    local_var_10c = param_7;
     do {
       fVar9 = *param_3 * *param_3 + param_3[1] * param_3[1];
       fVar11 = param_3[2] * param_3[2] + param_3[3] * param_3[3];
@@ -101,7 +97,7 @@ void FUN_1807e9ca0(float *param_1,float *param_2,float *param_3,int param_4,floa
       fStack_f4 = fVar9;
       fStack_f0 = fVar11;
       fStack_ec = fVar19;
-      uVar8 = FUN_1807eaa70(&fStack_108,&uStack_118);
+      uVar8 = function_7eaa70(&fStack_108,&local_var_118);
       param_3 = param_3 + 8;
       fVar12 = *param_1;
       fVar13 = param_1[1];
@@ -163,20 +159,13 @@ void FUN_1807e9ca0(float *param_1,float *param_2,float *param_3,int param_4,floa
     *param_6 = fVar19;
     *param_5 = fVar10;
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_138);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_e8 ^ (uint64_t)stack_array_138);
 }
-
-
-
-
-
-
-// 函数: void FUN_1807e9d6b(int32_t param_1,float param_2,uint64_t param_3,int param_4,
-void FUN_1807e9d6b(int32_t param_1,float param_2,uint64_t param_3,int param_4,
+// 函数: void function_7e9d6b(int32_t param_1,float param_2,uint64_t param_3,int param_4,
+void function_7e9d6b(int32_t param_1,float param_2,uint64_t param_3,int param_4,
                   uint64_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
                   uint64_t param_9,uint64_t param_10)
-
 {
   float fVar1;
   float fVar2;
@@ -221,9 +210,8 @@ void FUN_1807e9d6b(int32_t param_1,float param_2,uint64_t param_3,int param_4,
   float unaff_XMM12_Da;
   int32_t unaff_XMM13_Da;
   float unaff_XMM14_Da;
-  int32_t in_stack_00000170;
-  float in_stack_00000198;
-  
+  int32_t local_var_170;
+  float local_var_198;
   fVar4 = param_7._4_4_;
   fVar13 = (float)param_7;
   fVar9 = param_6._4_4_;
@@ -279,7 +267,7 @@ void FUN_1807e9d6b(int32_t param_1,float param_2,uint64_t param_3,int param_4,
       param_8._4_4_ = fVar14;
       param_9._0_4_ = fVar15;
       param_9._4_4_ = unaff_XMM7_Da;
-      uVar10 = FUN_1807eaa70(&param_6,&stack0x00000020,fVar15,fVar15,param_1);
+      uVar10 = function_7eaa70(&param_6,&local_buffer_00000020,fVar15,fVar15,param_1);
       unaff_RDI = unaff_RDI + 8;
       fVar8 = *unaff_RBP;
       fVar16 = unaff_RBP[1];
@@ -309,8 +297,8 @@ void FUN_1807e9d6b(int32_t param_1,float param_2,uint64_t param_3,int param_4,
       unaff_RBX[6] = fVar20 * fVar15;
       unaff_RBX[7] = fVar20 * fVar3;
       unaff_RBX = unaff_RBX + 8;
-      fVar8 = in_stack_00000198;
-      unaff_XMM13_Da = in_stack_00000170;
+      fVar8 = local_var_198;
+      unaff_XMM13_Da = local_var_170;
     } while (iVar7 < unaff_ESI);
   }
   *unaff_R13 = unaff_XMM7_Da;
@@ -343,18 +331,11 @@ void FUN_1807e9d6b(int32_t param_1,float param_2,uint64_t param_3,int param_4,
     *unaff_R13 = unaff_XMM7_Da;
     *unaff_R15 = fVar21;
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(param_10 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(param_10 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-
-// 函数: void FUN_1807e9d9b(int32_t param_1)
-void FUN_1807e9d9b(int32_t param_1)
-
+// 函数: void function_7e9d9b(int32_t param_1)
+void function_7e9d9b(int32_t param_1)
 {
   float fVar1;
   float fVar2;
@@ -415,10 +396,9 @@ void FUN_1807e9d9b(int32_t param_1)
   float fStack0000000000000044;
   float fStack0000000000000048;
   float fStack000000000000004c;
-  uint64_t in_stack_00000050;
-  int32_t in_stack_00000170;
-  float in_stack_00000198;
-  
+  uint64_t local_buffer_50;
+  int32_t local_var_170;
+  float local_var_198;
   *(uint64_t *)(in_R11 + 0x20) = unaff_R12;
   iVar8 = unaff_R14D + 3;
   *(int32_t *)(in_R11 + -0x88) = unaff_XMM10_Da;
@@ -464,9 +444,9 @@ void FUN_1807e9d9b(int32_t param_1)
     fStack0000000000000044 = fVar13;
     fStack0000000000000048 = fVar14;
     fStack000000000000004c = unaff_XMM7_Da;
-    uVar10 = FUN_1807eaa70(&stack0x00000030,&stack0x00000020,fVar14,fVar14,param_1);
-    fVar5 = in_stack_00000198;
-    uVar4 = in_stack_00000170;
+    uVar10 = function_7eaa70(&local_buffer_00000030,&local_buffer_00000020,fVar14,fVar14,param_1);
+    fVar5 = local_var_198;
+    uVar4 = local_var_170;
     unaff_RDI = unaff_RDI + 8;
     fVar9 = *unaff_RBP;
     fVar15 = unaff_RBP[1];
@@ -527,18 +507,11 @@ void FUN_1807e9d9b(int32_t param_1)
     *unaff_R13 = unaff_XMM7_Da;
     *unaff_R15 = fVar12;
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_buffer_50 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-
-// 函数: void FUN_1807e9f69(void)
-void FUN_1807e9f69(void)
-
+// 函数: void function_7e9f69(void)
+void function_7e9f69(void)
 {
   float *unaff_RBX;
   int64_t unaff_RBP;
@@ -559,8 +532,7 @@ void FUN_1807e9f69(void)
   float unaff_XMM11_Da;
   float unaff_XMM12_Da;
   float unaff_XMM14_Da;
-  uint64_t in_stack_00000050;
-  
+  uint64_t local_buffer_50;
   *unaff_R13 = unaff_XMM7_Da;
   if (unaff_R14D < unaff_ESI) {
     fVar6 = *unaff_R15;
@@ -591,18 +563,11 @@ void FUN_1807e9f69(void)
     *unaff_R13 = unaff_XMM7_Da;
     *unaff_R15 = fVar6;
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_buffer_50 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-
-// 函数: void FUN_1807e9f7e(void)
-void FUN_1807e9f7e(void)
-
+// 函数: void function_7e9f7e(void)
+void function_7e9f7e(void)
 {
   float *unaff_RBX;
   int64_t unaff_RBP;
@@ -623,8 +588,7 @@ void FUN_1807e9f7e(void)
   float unaff_XMM11_Da;
   float unaff_XMM12_Da;
   float unaff_XMM14_Da;
-  uint64_t in_stack_00000050;
-  
+  uint64_t local_buffer_50;
   fVar6 = *unaff_R15;
   lVar3 = unaff_RDI - (int64_t)unaff_RBX;
   lVar1 = unaff_RBP - (int64_t)unaff_RBX;
@@ -652,22 +616,14 @@ void FUN_1807e9f7e(void)
   } while (uVar2 != 0);
   *unaff_R13 = unaff_XMM7_Da;
   *unaff_R15 = fVar6;
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000050 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_buffer_50 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1807ea080(float *param_1,float *param_2,float *param_3,int param_4,float *param_5,
-void FUN_1807ea080(float *param_1,float *param_2,float *param_3,int param_4,float *param_5,
+// 函数: void function_7ea080(float *param_1,float *param_2,float *param_3,int param_4,float *param_5,
+void function_7ea080(float *param_1,float *param_2,float *param_3,int param_4,float *param_5,
                   float *param_6,int32_t param_7,float param_8,float param_9,float param_10,
                   float param_11,float param_12)
-
 {
   float *pfVar1;
   float fVar2;
@@ -691,12 +647,12 @@ void FUN_1807ea080(float *param_1,float *param_2,float *param_3,int param_4,floa
   float fVar18;
   float fVar19;
   float fVar20;
-  int8_t auStack_148 [32];
+  int8_t stack_array_148 [32];
   float *pfStack_128;
-  int32_t uStack_118;
-  int32_t uStack_114;
-  int32_t uStack_110;
-  int32_t uStack_10c;
+  int32_t local_var_118;
+  int32_t local_var_114;
+  int32_t local_var_110;
+  int32_t local_var_10c;
   float fStack_108;
   float fStack_104;
   float fStack_100;
@@ -705,9 +661,8 @@ void FUN_1807ea080(float *param_1,float *param_2,float *param_3,int param_4,floa
   float fStack_f4;
   float fStack_f0;
   float fStack_ec;
-  uint64_t uStack_e8;
-  
-  uStack_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_148;
+  uint64_t local_var_e8;
+  local_var_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_148;
   iVar8 = 0;
   fVar20 = *param_6;
   fStack_108 = param_11;
@@ -722,10 +677,10 @@ void FUN_1807ea080(float *param_1,float *param_2,float *param_3,int param_4,floa
   if (3 < param_4) {
     iVar6 = 3;
     fVar11 = *param_5;
-    uStack_118 = param_7;
-    uStack_114 = param_7;
-    uStack_110 = param_7;
-    uStack_10c = param_7;
+    local_var_118 = param_7;
+    local_var_114 = param_7;
+    local_var_110 = param_7;
+    local_var_10c = param_7;
     do {
       fVar10 = *param_3 * *param_3 + param_3[1] * param_3[1] +
                param_3[2] * param_3[2] + param_3[3] * param_3[3] +
@@ -772,7 +727,7 @@ void FUN_1807ea080(float *param_1,float *param_2,float *param_3,int param_4,floa
       fStack_f4 = fVar10;
       fStack_f0 = fVar12;
       fStack_ec = fVar20;
-      uVar9 = FUN_1807eaa70(&fStack_108,&uStack_118);
+      uVar9 = function_7eaa70(&fStack_108,&local_var_118);
       param_3 = param_3 + 0x18;
       fVar13 = param_1[1];
       fVar14 = param_1[2];
@@ -876,12 +831,6 @@ void FUN_1807ea080(float *param_1,float *param_2,float *param_3,int param_4,floa
     *param_5 = fVar11;
     *pfStack_128 = fVar20;
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_148);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_e8 ^ (uint64_t)stack_array_148);
 }
-
-
-
-
-
-

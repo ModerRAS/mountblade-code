@@ -1,29 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_12_part008.c - 1 个函数
-
-// 函数: void FUN_1807ccb6c(void)
-void FUN_1807ccb6c(void)
-
+// 函数: void function_7ccb6c(void)
+void function_7ccb6c(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x3e0) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x3e0) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 uint64_t
-FUN_1807ccbe0(uint64_t param_1,uint *param_2,int64_t param_3,int param_4,int64_t param_5,
+function_7ccbe0(uint64_t param_1,uint *param_2,int64_t param_3,int param_4,int64_t param_5,
              uint param_6,uint param_7,uint param_8,byte param_9,byte param_10)
-
 {
   ushort uVar1;
   uint uVar2;
   uint uVar3;
   int iVar4;
-  
   uVar2 = param_2[1];
   if ((int)uVar2 < param_4) {
     if ((*param_2 == 0) || (*param_2 == (uint)*(ushort *)(param_5 + (int64_t)(int)(uVar2 * 2) * 2))
@@ -71,17 +62,12 @@ LAB_1807ccc3e:
   *(byte *)(param_3 + 0x3c) = *(byte *)(param_3 + 0x3c) | param_10;
   return 0;
 }
-
-
-
 uint64_t
-FUN_1807ccd60(uint64_t param_1,char *param_2,int64_t param_3,int64_t param_4,int64_t param_5,
+function_7ccd60(uint64_t param_1,char *param_2,int64_t param_3,int64_t param_4,int64_t param_5,
              int64_t param_6)
-
 {
   int *piVar1;
   int32_t uVar2;
-  
   if (param_2[1] != '\0') {
     *(uint *)(param_4 + 0x44) = (uint)*(byte *)(param_6 + 0xc);
     *(uint *)(param_4 + 0x48) = (uint)*(byte *)(param_6 + 0xd);
@@ -104,7 +90,7 @@ FUN_1807ccd60(uint64_t param_1,char *param_2,int64_t param_3,int64_t param_4,int
     *(byte *)(param_4 + 0x3c) = *(byte *)(param_4 + 0x3c) | 6;
   }
   if (param_2[2] != '\0') {
-    func_0x0001807ccf60(param_3);
+    SystemFunction_0001807ccf60(param_3);
   }
   if ((*param_2 == -1) || (param_2[3] == '\x14')) {
     *(int8_t *)(param_4 + 0xbc) = 1;
@@ -115,12 +101,12 @@ FUN_1807ccd60(uint64_t param_1,char *param_2,int64_t param_3,int64_t param_4,int
     }
   }
   else if (*(char *)(param_4 + 0x78) == '\0') {
-    FUN_1807ccbe0(param_1,param_4 + 100,param_4,*(int8_t *)(param_5 + 0x401),param_5 + 0x402,
+    function_7ccbe0(param_1,param_4 + 100,param_4,*(int8_t *)(param_5 + 0x401),param_5 + 0x402,
                   *(byte *)(param_5 + 0x400),*(int8_t *)(param_5 + 0x453),
                   *(int8_t *)(param_5 + 0x454),*(int8_t *)(param_5 + 0x452),2);
   }
   if (((*(byte *)(param_5 + 0x457) & 1) != 0) && (*(char *)(param_4 + 0x90) == '\0')) {
-    FUN_1807ccbe0(param_1,param_4 + 0x7c,param_4,*(int8_t *)(param_5 + 0x458),param_5 + 0x45a,
+    function_7ccbe0(param_1,param_4 + 0x7c,param_4,*(int8_t *)(param_5 + 0x458),param_5 + 0x45a,
                   *(byte *)(param_5 + 0x457),*(int8_t *)(param_5 + 0x4ab),
                   *(int8_t *)(param_5 + 0x4ac),*(int8_t *)(param_5 + 0x4aa),4);
   }
@@ -136,9 +122,3 @@ FUN_1807ccd60(uint64_t param_1,char *param_2,int64_t param_3,int64_t param_4,int
   }
   return 0;
 }
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 /**
  * Mount & Blade II: Bannerlord
  * TaleWorlds.Native - UI系统模块第004部分
- * 
+ *
  * 本文件包含UI系统的核心功能实现：
  * - UI组件初始化与配置
  * - UI事件处理与回调
@@ -13,15 +13,13 @@
  * - UI字符串处理与本地化
  * - UI程序集加载与集成
  * - UI调试与监控
- * 
+ *
  * 共包含19个UI系统函数，提供完整的用户界面支持
  */
-
 #include "TaleWorlds.Native.Split.h"
 #include <stdint.h>
 #include <stddef.h>
 #include <string.h>
-
 // UI系统状态枚举
 typedef enum {
     UI_STATE_UNINITIALIZED = 0,    // 未初始化状态
@@ -31,7 +29,6 @@ typedef enum {
     UI_STATE_SHUTTING_DOWN = 4,    // 关闭中状态
     UI_STATE_ERROR = 5             // 错误状态
 } UI_SYSTEM_STATE;
-
 // UI系统配置结构体
 typedef struct {
     uint32_t window_width;         // 窗口宽度
@@ -41,7 +38,6 @@ typedef struct {
     uint8_t enable_vsync;          // 垂直同步使能
     uint8_t enable_touch;          // 触摸支持使能
 } UI_SYSTEM_CONFIG;
-
 // UI系统任务结构体
 typedef struct {
     void* task_data;              // 任务数据指针
@@ -49,7 +45,6 @@ typedef struct {
     uint8_t task_priority;        // 任务优先级
     uint8_t task_status;          // 任务状态
 } UI_TASK_ENTRY;
-
 // UI系统资源结构体
 typedef struct {
     void* resource_data;          // 资源数据指针
@@ -57,18 +52,16 @@ typedef struct {
     uint32_t resource_type;       // 资源类型
     uint8_t resource_flags;       // 资源标志位
 } UI_RESOURCE_ENTRY;
-
 // 全局变量声明
 static UI_SYSTEM_STATE g_ui_system_state = UI_STATE_UNINITIALIZED;  // UI系统状态
 static UI_SYSTEM_CONFIG g_ui_config = {0};                          // UI系统配置
 static void* g_ui_context = NULL;                                   // UI系统上下文
-
 /**
  * UI系统组件初始化函数
- * 
+ *
  * 初始化UI系统的各个组件，包括内存分配、
  * 回调系统初始化、渲染管线设置等。
- * 
+ *
  * @param ui_context UI上下文指针
  * @param config_data 配置数据指针
  * @return 无返回值
@@ -76,24 +69,17 @@ static void* g_ui_context = NULL;                                   // UI系统�
 void UI_Component_Initialize(int64_t ui_context, uint64_t config_data)
 {
   uint64_t stack_config[3];
-  
   stack_config[0] = config_data;
   System_Call_Initialize(ui_context + 0x168, stack_config);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * UI系统组件配置处理函数
- * 
+ *
  * 处理UI系统的配置数据，包括解析配置参数、
  * 应用设置到各个组件、验证配置有效性等。
- * 
+ *
  * @param ui_context UI上下文指针
  * @param config_ptr 配置数据指针
  * @param param_3 处理参数3
@@ -110,7 +96,6 @@ void UI_Component_Process_Config(int64_t ui_context, int64_t *config_ptr, uint64
   int32_t stack_value_38;
   void *stack_ptr_30;
   void *stack_ptr_28;
-  
   config_stack = config_ptr;
   System_Call_Initialize(ui_context + 0x168, &config_stack, param_3, param_4, 0xfffffffffffffffe);
   (**(code **)(*config_ptr + 8))(config_ptr, &stack_ptr_30);
@@ -127,7 +112,7 @@ void UI_Component_Process_Config(int64_t ui_context, int64_t *config_ptr, uint64
   (**(code **)*config_ptr)(config_ptr);
   stack_ptr_50 = &system_data_buffer_ptr;
   if (stack_ptr_48 != (void *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     System_Error_Handler();
   }
   stack_ptr_48 = (void *)0x0;
@@ -135,24 +120,18 @@ void UI_Component_Process_Config(int64_t ui_context, int64_t *config_ptr, uint64
   stack_ptr_50 = &system_state_ptr;
   stack_ptr_30 = &system_data_buffer_ptr;
   if (stack_ptr_28 != (void *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     System_Error_Handler();
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * UI系统事件处理函数
- * 
+ *
  * 处理UI系统接收到的各种事件，包括输入事件、
  * 系统事件、用户自定义事件等。
- * 
+ *
  * @param ui_context UI上下文指针
  * @param event_source 事件源指针
  * @param event_data 事件数据指针
@@ -163,7 +142,6 @@ void UI_System_Handle_Event(int64_t ui_context, int64_t event_source, int64_t ev
   code *callback_ptr;
   void *event_data_ptr1;
   void *event_data_ptr2;
-  
   callback_ptr = ui_system_data_buffer;
   *(int8_t *)(ui_context + 0x189) = 1;
   if (callback_ptr == (code *)0x0) {
@@ -224,21 +202,17 @@ event_processed:
   (**(code **)(ui_context + 0x78))(0x1f, _guard_check_icall);
   (**(code **)(ui_context + 0x78))(0x20, _guard_check_icall);
   (**(code **)(ui_context + 0x80))();
-                    // WARNING: Could not recover jumptable at 0x000180651d0e. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x000180651d0e. Too many branches
+// WARNING: Treating indirect jump as call
   (**(code **)(ui_context + 0x58))();
   return;
 }
-
-
-
-
 /**
  * UI系统任务队列处理函数
- * 
+ *
  * 处理UI系统中的任务队列，按优先级执行任务、
  * 管理任务状态、处理任务依赖关系等。
- * 
+ *
  * @param task_queue 任务队列指针
  * @return 无返回值
  */
@@ -247,7 +221,6 @@ void UI_System_Process_Task_Queue(int64_t task_queue)
   uint64_t task_index;
   uint task_count;
   uint64_t max_tasks;
-  
   task_index = 0;
   max_tasks = task_index;
   if (*(int64_t *)(task_queue + 0x170) - *(int64_t *)(task_queue + 0x168) >> 3 == 0) {
@@ -264,16 +237,12 @@ void UI_System_Process_Task_Queue(int64_t task_queue)
   *(int8_t *)(task_queue + 0x188) = 1;
   return;
 }
-
-
-
-
 /**
  * UI系统任务处理器（内联版本）
- * 
+ *
  * 内联版本的UI系统任务处理器，用于优化性能，
  * 直接处理任务队列中的任务。
- * 
+ *
  * @return 无返回值
  */
 void UI_System_Task_Handler_Inline(void)
@@ -281,7 +250,6 @@ void UI_System_Task_Handler_Inline(void)
   int64_t queue_context;
   uint64_t task_index;
   uint task_counter;
-  
   task_index = (uint64_t)task_counter;
   do {
     (**(code **)**(uint64_t **)(task_index + *(int64_t *)(queue_context + 0x168)))();
@@ -292,16 +260,12 @@ void UI_System_Task_Handler_Inline(void)
   *(int8_t *)(queue_context + 0x188) = 1;
   return;
 }
-
-
-
-
 /**
  * UI系统任务完成标记函数
- * 
+ *
  * 标记UI系统中的任务为已完成状态，更新任务状态、
  * 释放任务资源、触发后续任务等。
- * 
+ *
  * @param task_context 任务上下文指针
  * @return 无返回值
  */
@@ -310,15 +274,12 @@ void UI_System_Mark_Task_Complete(int64_t task_context)
   *(int8_t *)(task_context + 0x188) = 1;
   return;
 }
-
-
-
 /**
  * UI系统资源创建函数
- * 
+ *
  * 创建UI系统中的各种资源，包括纹理、字体、
  * 声音、着色器等UI所需的资源。
- * 
+ *
  * @param ui_context UI上下文指针
  * @param resource_data 资源数据指针
  * @param resource_type 资源类型
@@ -328,7 +289,6 @@ uint64_t UI_Create_Resource(int64_t ui_context, uint64_t resource_data, int32_t 
 {
   int64_t resource_handle;
   void *resource_name;
-  
   resource_handle = (**(code **)(ui_context + 0x148))(resource_type);
   resource_name = &system_buffer_ptr;
   if (*(void **)(resource_handle + 8) != (void *)0x0) {
@@ -337,15 +297,12 @@ uint64_t UI_Create_Resource(int64_t ui_context, uint64_t resource_data, int32_t 
   System_Resource_Register(resource_data, resource_name);
   return resource_data;
 }
-
-
-
 /**
  * UI系统数据处理函数
- * 
+ *
  * 处理UI系统中的各种数据，包括数据格式转换、
  * 数据验证、数据压缩、数据加密等。
- * 
+ *
  * @param ui_context UI上下文指针
  * @param data_dest 目标数据指针
  * @param data_source 源数据指针
@@ -364,7 +321,6 @@ uint64_t UI_Process_Data(int64_t ui_context, int64_t data_dest, int64_t data_sou
   int64_t buffer_handle;
   uint buffer_size;
   int32_t buffer_flags;
-  
   process_mode = 0xfffffffffffffffe;
   if (*(int *)(data_source + 0x10) == 0) {
     return result_status & 0xffffffffffffff00;
@@ -394,7 +350,7 @@ data_process:
       System_Data_Process(data_dest, buffer_size);
     }
     if (buffer_size != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy(*(uint64_t *)(data_dest + 8), buffer_handle, (uint64_t)buffer_size, process_flags, process_mode);
     }
     *(int32_t *)(data_dest + 0x10) = 0;
@@ -406,20 +362,17 @@ data_process:
   }
   stack_buffer = &system_data_buffer_ptr;
   if (buffer_handle != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     System_Error_Handler();
   }
   return result_status;
 }
-
-
-
 /**
  * UI系统资源激活函数
- * 
+ *
  * 激活UI系统中的资源，使资源可用状态，
  * 包括加载到内存、初始化资源状态等。
- * 
+ *
  * @param ui_context UI上下文指针
  * @param resource_handle 资源句柄
  * @return 激活成功返回1，失败返回0
@@ -427,7 +380,6 @@ data_process:
 uint64_t UI_Activate_Resource(int64_t ui_context, int64_t resource_handle)
 {
   void *resource_data;
-  
   resource_data = &system_buffer_ptr;
   if (*(void **)(resource_handle + 8) != (void *)0x0) {
     resource_data = *(void **)(resource_handle + 8);
@@ -435,15 +387,12 @@ uint64_t UI_Activate_Resource(int64_t ui_context, int64_t resource_handle)
   (**(code **)(ui_context + 0x110))(resource_data);
   return 1;
 }
-
-
-
 /**
  * UI系统资源停用函数
- * 
+ *
  * 停用UI系统中的资源，释放资源占用的内存、
  * 关闭资源句柄、清理资源状态等。
- * 
+ *
  * @param ui_context UI上下文指针
  * @param resource_handle 资源句柄
  * @return 停用成功返回1，失败返回0
@@ -451,7 +400,6 @@ uint64_t UI_Activate_Resource(int64_t ui_context, int64_t resource_handle)
 uint64_t UI_Deactivate_Resource(int64_t ui_context, int64_t resource_handle)
 {
   void *resource_data;
-  
   resource_data = &system_buffer_ptr;
   if (*(void **)(resource_handle + 8) != (void *)0x0) {
     resource_data = *(void **)(resource_handle + 8);
@@ -459,17 +407,13 @@ uint64_t UI_Deactivate_Resource(int64_t ui_context, int64_t resource_handle)
   (**(code **)(ui_context + 0x118))(resource_data);
   return 1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * UI系统批量处理函数
- * 
+ *
  * 批量处理UI系统中的数据，包括批量数据转换、
  * 批量资源加载、批量配置应用等。
- * 
+ *
  * @param ui_context UI上下文指针
  * @param result_count 结果计数指针
  * @param item_array 项目数组指针
@@ -487,7 +431,6 @@ int * UI_Batch_Process(int64_t ui_context, int *result_count, int64_t *item_arra
   void *item_name;
   int32_t item_flags;
   uint64_t process_params;
-  
   process_params = 0xfffffffffffffffe;
   current_index = 0;
   batch_size = (**(code **)(ui_context + 0x60))(item_array[1] - *item_array >> 5);
@@ -514,37 +457,27 @@ int * UI_Batch_Process(int64_t ui_context, int *result_count, int64_t *item_arra
   }
   return result_count;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 获取FTDN管理接口函数
- * 
+ *
  * 获取FTDN（Framework Data Native）管理接口，
  * 用于与托管代码进行数据交互。
- * 
+ *
  * @return FTDN管理接口指针
  */
 uint64_t Get_FTDN_Managed_Interface(void)
 {
-                    // 0x6523f0  33  get_ftdn_managed_interface
+// 0x6523f0  33  get_ftdn_managed_interface
   return system_cache_buffer;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * UI系统配置解析函数
- * 
+ *
  * 解析UI系统的配置数据，包括XML、JSON、INI等
  * 格式的配置文件，提取配置参数并应用到系统。
- * 
+ *
  * @param config_context 配置上下文指针
  * @param config_source 配置源数据指针
  * @return 无返回值
@@ -580,7 +513,6 @@ void UI_Parse_Config_Data(int64_t *config_context, int64_t config_source)
   uint64_t *stack_ptr_50;
   uint64_t stack_value_48;
   int32_t stack_value_40;
-  
   if (*(int *)(config_source + 0x10) != 0) {
     stack_ptr_98 = (uint64_t *)0x0;
     stack_ptr_90 = (uint64_t *)0x0;
@@ -658,7 +590,7 @@ resize_buffer:
             data_ptr5[1] = (int64_t)int_value1;
             data_ptr5[2] = (int64_t)int_value2;
             if (*config_context != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
               System_Error_Handler();
             }
             *config_context = (int64_t)data_ptr4;
@@ -668,7 +600,7 @@ resize_buffer:
           }
           stack_ptr_78 = &system_data_buffer_ptr;
           if (stack_value_70 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
             System_Error_Handler();
           }
           stack_value_70 = 0;
@@ -684,7 +616,7 @@ resize_buffer:
           }
         }
         if (data_ptr2 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           System_Error_Handler(data_ptr2);
         }
         data_ptr6 = data_ptr6 + 4;
@@ -708,25 +640,19 @@ resize_buffer:
     if (stack_ptr_98 != (uint64_t *)0x0) {
       stack_ptr_98 = data_ptr5;
       stack_ptr_90 = data_ptr2;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       System_Error_Handler(data_ptr3);
     }
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * UI系统安全清理函数
- * 
+ *
  * 安全地清理UI系统的敏感数据，包括内存擦除、
  * 密钥清理、缓冲区清零等安全操作。
- * 
+ *
  * @return 无返回值
  */
 void UI_System_Secure_Cleanup(void)
@@ -735,25 +661,18 @@ void UI_System_Secure_Cleanup(void)
   uint64_t cleanup_param;
   int8_t cleanup_area[288];
   uint64_t security_key;
-  
   cleanup_param = 0xfffffffffffffffe;
   security_key = GET_SECURITY_COOKIE() ^ (uint64_t)secure_buffer;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(cleanup_area, 0, 0x118);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * UI系统线程安全处理函数
- * 
+ *
  * 处理UI系统的线程安全问题，包括互斥锁管理、
  * 原子操作、线程同步等。
- * 
+ *
  * @param thread_param 线程参数
  * @param data_array 数据数组指针
  * @return 无返回值
@@ -768,7 +687,6 @@ void UI_Thread_Safe_Process(uint64_t thread_param, int64_t *data_array)
   uint64_t backup_handle;
   int8_t process_area[2048];
   uint64_t stack_guard;
-  
   mutex_handle = 0xfffffffffffffffe;
   stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)thread_buffer;
   System_Thread_Initialize();
@@ -780,25 +698,22 @@ void UI_Thread_Safe_Process(uint64_t thread_param, int64_t *data_array)
   array_size = (data_array[1] - *data_array) / 6 + (data_array[1] - *data_array >> 0x3f);
   if ((int)(array_size >> 2) != (int)(array_size >> 0x3f)) {
     System_Thread_Process(temp_storage);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(process_area, 0, 0x800);
   }
   mutex_result = _Mtx_unlock(0x180c96740);
   if (mutex_result != 0) {
     __Throw_C_error_std__YAXH_Z(mutex_result);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   System_Thread_Finalize(stack_guard ^ (uint64_t)thread_buffer);
 }
-
-
-
 /**
  * UI系统字符串处理函数
- * 
+ *
  * 处理UI系统中的字符串数据，包括字符串格式化、
  * 字符串连接、字符串分割、字符串编码转换等。
- * 
+ *
  * @param string_array 字符串数组指针
  * @param result_buffer 结果缓冲区指针
  * @param process_param 处理参数
@@ -819,7 +734,6 @@ uint64_t * UI_Process_String_Data(int64_t *string_array, uint64_t *result_buffer
   int32_t buffer_type;
   int32_t buffer_flags;
   int64_t temp_var;
-  
   current_pos = 0;
   System_String_Initialize(&stack_buffer, &system_buffer_ptr, process_param, process_flags, 0, 0xfffffffffffffffe);
   temp_var = -1;
@@ -836,7 +750,7 @@ uint64_t * UI_Process_String_Data(int64_t *string_array, uint64_t *result_buffer
       if (buffer_handle == 0) {
         return result_buffer;
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       System_Error_Handler();
     }
     array_size = array_size & 0xffffffff;
@@ -864,16 +778,12 @@ uint64_t * UI_Process_String_Data(int64_t *string_array, uint64_t *result_buffer
   *(int32_t *)(result_buffer + 3) = buffer_type;
   return result_buffer;
 }
-
-
-
-
 /**
  * UI系统字符串处理包装函数
- * 
+ *
  * 字符串处理的包装函数，提供统一的字符串处理接口，
  * 包括参数验证、错误处理、结果返回等。
- * 
+ *
  * @param string_param 字符串参数
  * @return 无返回值
  */
@@ -881,20 +791,18 @@ void UI_String_Process_Wrapper(int64_t string_param)
 {
   uint string_length;
   int64_t temp_var;
-  
   if (string_param == 0) {
-    // 处理空字符串参数
+// 处理空字符串参数
     return;
   }
-  // 字符串处理逻辑
+// 字符串处理逻辑
 }
-
 /**
  * UI系统字符串长度处理函数
- * 
+ *
  * 处理UI系统中的字符串长度，包括长度计算、
  * 长度验证、长度限制等。
- * 
+ *
  * @param string_data 字符串数据指针
  * @return 无返回值
  */
@@ -902,7 +810,6 @@ void UI_String_Length_Process(int64_t string_data)
 {
   uint string_length;
   int64_t char_index;
-  
   char_index = -1;
   do {
     char_index = char_index + 1;
@@ -911,39 +818,31 @@ void UI_String_Length_Process(int64_t string_data)
   if (0x1fff < string_length) {
     string_length = 0x1fff;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memcpy(&system_memory_f020, string_data, (int64_t)(int)string_length);
 }
-
-
-
-
 /**
  * UI系统系统调用函数
- * 
+ *
  * 执行UI系统的系统调用，包括底层硬件访问、
  * 操作系统调用、驱动程序调用等。
- * 
+ *
  * @return 无返回值
  */
 void UI_System_Call(void)
 {
   code *system_function;
-  
   System_Prepare_Call();
   system_function = (code *)swi(3);
   (*system_function)();
   return;
 }
-
-
-
 /**
  * UI系统Mono字符串处理函数
- * 
+ *
  * 处理UI系统中的Mono字符串，包括字符串转换、
  * 字符串编码、字符串本地化等。
- * 
+ *
  * @param result_buffer 结果缓冲区指针
  * @param mono_string Mono字符串指针
  * @param process_param 处理参数
@@ -960,7 +859,6 @@ uint64_t * UI_Process_Mono_String(uint64_t *result_buffer, int64_t mono_string, 
   int32_t buffer_length;
   int32_t buffer_type;
   int32_t buffer_flags;
-  
   process_mode = 0xfffffffffffffffe;
   buffer_size = 0;
   if ((mono_string != 0) && (*(int *)(mono_string + 0x10) != 0)) {
@@ -981,16 +879,12 @@ uint64_t * UI_Process_Mono_String(uint64_t *result_buffer, int64_t mono_string, 
   System_String_To_Handle(result_buffer, process_mode);
   return result_buffer;
 }
-
-
-
-
 /**
  * UI系统调试输出函数
- * 
+ *
  * 输出UI系统的调试信息，包括错误日志、
  * 性能统计、状态信息等。
- * 
+ *
  * @param debug_message 调试信息指针
  * @return 无返回值
  */
@@ -1000,13 +894,12 @@ void UI_Debug_Output(uint64_t debug_message)
   OutputDebugStringA(debug_message);
   System_Error_Reporter(&ui_system_data_16_ptr);
 }
-
 /**
  * UI系统内存分配函数
- * 
+ *
  * 为UI系统分配内存，包括缓冲区分配、
  * 对象分配、资源分配等。
- * 
+ *
  * @param element_size 元素大小
  * @param element_count 元素数量
  * @return 无返回值
@@ -1014,31 +907,23 @@ void UI_Debug_Output(uint64_t debug_message)
 void UI_Memory_Allocate(int64_t element_size, int64_t element_count)
 {
   uint64_t memory_handle;
-  
   memory_handle = System_Allocate_Buffer(system_memory_pool_ptr, element_size * element_count, 0x19);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(memory_handle, 0, element_size * element_count);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * UI系统Mono分配器初始化函数
- * 
+ *
  * 初始化UI系统的Mono内存分配器，设置分配器表、
  * 环境变量、内存管理函数等。
- * 
+ *
  * @return 无返回值
  */
 void UI_Mono_Allocator_Initialize(void)
 {
   uint64_t *allocator_table;
   int32_t *environment_var;
-  
   allocator_table = (uint64_t *)System_Allocate_Handle(system_memory_pool_ptr, 0x28, 8, 3, 0xfffffffffffffffe);
   *allocator_table = 1;
   allocator_table[1] = UI_Memory_Allocate;
@@ -1063,22 +948,16 @@ void UI_Mono_Allocator_Initialize(void)
   *(int16_t *)((int64_t)allocator_table + 0xc) = 0x534d;
   *(int8_t *)((int64_t)allocator_table + 0xe) = 0;
   SetEnvironmentVariableA(allocator_table, environment_var);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   System_Error_Handler(allocator_table);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * UI系统程序集加载函数
- * 
+ *
  * 加载UI系统的程序集，包括DLL文件加载、
  * 类加载、方法解析、依赖关系处理等。
- * 
+ *
  * @return 无返回值
  */
 void UI_Load_Assembly(void)
@@ -1102,7 +981,6 @@ void UI_Load_Assembly(void)
   uint64_t stack_value_78;
   uint64_t stack_value_50;
   uint64_t stack_guard;
-  
   domain_handle = ui_system_buffer;
   stack_value_50 = 0xfffffffffffffffe;
   stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
@@ -1129,7 +1007,7 @@ void UI_Load_Assembly(void)
   assembly_handle = mono_domain_assembly_open(ui_system_buffer, namespace_ptr);
   stack_ptr_b8 = &system_data_buffer_ptr;
   if (assembly_name != (int32_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     System_Error_Handler(assembly_name);
   }
   stack_ptr_b0 = (int32_t *)0x0;
@@ -1175,18 +1053,15 @@ void UI_Load_Assembly(void)
   stack_size_a8 = 0x11;
   mono_class_from_name(domain_handle[1], namespace_ptr, class_name);
   stack_ptr_b8 = &system_data_buffer_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   System_Error_Handler(namespace_ptr);
 }
-
-
-
 /**
  * UI系统字符串复制函数
- * 
+ *
  * 复制UI系统中的字符串，包括字符串拷贝、
  * 字符串格式化、字符串验证等。
- * 
+ *
  * @param source_string 源字符串指针
  * @param dest_buffer 目标缓冲区指针
  * @param copy_param 复制参数
@@ -1205,19 +1080,13 @@ uint64_t * UI_String_Copy(uint64_t source_string, uint64_t *dest_buffer, uint64_
   strcpy_s(dest_buffer[1], 0x80, &memory_allocator_384_ptr, copy_flags, 0, 0xfffffffffffffffe);
   return dest_buffer;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * UI系统缓冲区管理函数
- * 
+ *
  * 管理UI系统的缓冲区，包括缓冲区分配、
  * 缓冲区扩展、缓冲区压缩、缓冲区清理等。
- * 
+ *
  * @param buffer_context 缓冲区上下文指针
  * @param data_source 数据源指针
  * @param data_size 数据大小
@@ -1232,7 +1101,6 @@ void UI_Manage_Buffer(int64_t buffer_context, uint64_t data_source, int data_siz
   uint64_t required_size;
   uint64_t new_size;
   int data_offset;
-  
   data_offset = *(int *)(buffer_context + 0x18) - *(int *)(buffer_context + 0x10);
   buffer_start = *(int64_t *)(buffer_context + 0x18);
   buffer_end = *(int64_t *)(buffer_context + 0x10);
@@ -1258,22 +1126,22 @@ void UI_Manage_Buffer(int64_t buffer_context, uint64_t data_source, int data_siz
         buffer_capacity = *(int64_t *)(buffer_context + 0x18);
       }
       if (buffer_end != buffer_capacity) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memmove(buffer_start, buffer_end, buffer_capacity - buffer_end);
       }
       if (required_size != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memset(buffer_start, 0, required_size);
       }
       if (*(int64_t *)(buffer_context + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         System_Error_Handler();
       }
       *(int64_t *)(buffer_context + 0x10) = buffer_start;
       *(uint64_t *)(buffer_context + 0x20) = buffer_start + new_size;
     }
     else if (required_size != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(buffer_start, 0, required_size);
     }
   }
@@ -1281,25 +1149,19 @@ void UI_Manage_Buffer(int64_t buffer_context, uint64_t data_source, int data_siz
     buffer_start = buffer_end + required_size;
   }
   *(int64_t *)(buffer_context + 0x18) = buffer_start;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
+// WARNING: Subroutine does not return
+// WARNING: Treating indirect jump as call
   memcpy((int64_t)data_offset + *(int64_t *)(buffer_context + 0x10), data_source, (int64_t)data_size);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * UI系统动态缓冲区管理函数
- * 
+ *
  * 动态管理UI系统的缓冲区，包括动态内存分配、
  * 缓冲区扩展、数据迁移、内存优化等。
- * 
+ *
  * @param target_pos 目标位置指针
  * @param source_pos 源位置指针
  * @param data_source 数据源指针
@@ -1318,7 +1180,6 @@ void UI_Dynamic_Buffer_Manage(int64_t target_pos, int64_t source_pos, uint64_t d
   int buffer_offset;
   int64_t *buffer_ptr;
   uint64_t stack_param;
-  
   required_size = (target_pos - buffer_start) + data_size;
   if ((uint64_t)(current_buffer - buffer_start) < required_size) {
     new_capacity = source_pos * 2;
@@ -1338,15 +1199,15 @@ void UI_Dynamic_Buffer_Manage(int64_t target_pos, int64_t source_pos, uint64_t d
       new_buffer = *buffer_ptr;
     }
     if (target_pos != new_buffer) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memmove(buffer_start, target_pos, new_buffer - target_pos);
     }
     if (required_size != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(buffer_start, 0, required_size);
     }
     if (*(int64_t *)(buffer_context + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       System_Error_Handler();
     }
     *(int64_t *)(buffer_context + 0x10) = buffer_start;
@@ -1355,27 +1216,23 @@ void UI_Dynamic_Buffer_Manage(int64_t target_pos, int64_t source_pos, uint64_t d
   else {
     stack_param = buffer_data;
     if (required_size != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset();
     }
   }
   *buffer_ptr = buffer_start;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
+// WARNING: Subroutine does not return
+// WARNING: Treating indirect jump as call
   memcpy((int64_t)buffer_offset + *(int64_t *)(buffer_context + 0x10), stack_param);
   return;
 }
-
-
-
-
 /**
  * UI系统内联缓冲区管理函数
- * 
+ *
  * 内联版本的UI系统缓冲区管理函数，用于优化性能，
  * 直接处理缓冲区操作。
- * 
+ *
  * @return 无返回值
  */
 void UI_Buffer_Manage_Inline(void)
@@ -1385,32 +1242,27 @@ void UI_Buffer_Manage_Inline(void)
   int64_t buffer_capacity;
   int buffer_offset;
   uint64_t *buffer_ptr;
-  
   if (buffer_capacity != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset();
   }
   *buffer_ptr = buffer_start;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
+// WARNING: Subroutine does not return
+// WARNING: Treating indirect jump as call
   memcpy((int64_t)buffer_offset + *(int64_t *)(buffer_context + 0x10));
   return;
 }
-
 /**
  * UI系统模块结束函数
- * 
+ *
  * UI系统模块的结束占位符函数，用于标记
  * UI系统模块的结束位置。
- * 
+ *
  * @return 无返回值
  */
 void UI_System_Module_End(void)
 {
-  // UI系统模块结束占位符
-  // 用于标记模块的结束位置
+// UI系统模块结束占位符
+// 用于标记模块的结束位置
 }
-
-
-

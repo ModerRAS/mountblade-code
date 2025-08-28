@@ -1,18 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part281.c - 4 个函数
-
-// 函数: void FUN_1808267df(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
-void FUN_1808267df(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
+// 函数: void function_8267df(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
+void function_8267df(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
                   ,byte param_6,int64_t param_7)
-
 {
   int *piVar1;
   int *piVar2;
   int64_t lVar3;
   int iVar4;
   int *in_R10;
-  
   if (param_4 < 0xd) {
     if (param_4 < 9) {
       if (param_4 < 5) {
@@ -321,23 +317,13 @@ void FUN_1808267df(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,u
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1808271e1(void)
-void FUN_1808271e1(void)
-
+// 函数: void function_8271e1(void)
+void function_8271e1(void)
 {
   return;
 }
-
-
-
 uint64_t
-FUN_180827240(int64_t param_1,uint64_t param_2,uint64_t param_3,uint param_4,uint param_5)
-
+function_827240(int64_t param_1,uint64_t param_2,uint64_t param_3,uint param_4,uint param_5)
 {
   int8_t auVar1 [16];
   uint uVar2;
@@ -348,7 +334,6 @@ FUN_180827240(int64_t param_1,uint64_t param_2,uint64_t param_3,uint param_4,uin
   uint uVar7;
   uint64_t uVar8;
   uint64_t uVar9;
-  
   uVar9 = param_3 & 0xffffffff;
   auVar1._8_8_ = 0;
   auVar1._0_8_ = CONCAT44(0,param_5);
@@ -375,7 +360,7 @@ FUN_180827240(int64_t param_1,uint64_t param_2,uint64_t param_3,uint param_4,uin
     *(int64_t *)(param_1 + 0x58) = lVar4;
     *(uint64_t *)(param_1 + 0x60) = uVar8;
   }
-  FUN_180827cb0(*(uint64_t *)(param_1 + 0x58),param_2,uVar9,param_4,param_5);
+  function_827cb0(*(uint64_t *)(param_1 + 0x58),param_2,uVar9,param_4,param_5);
   uVar7 = *(uint *)(param_1 + 0x50);
   uVar2 = uVar7 + (uint)uVar8;
   *(uint *)(param_1 + 0x50) = uVar2;
@@ -385,44 +370,31 @@ FUN_180827240(int64_t param_1,uint64_t param_2,uint64_t param_3,uint param_4,uin
   uVar7 = 0x40 - (uVar7 & 0x3f);
   lVar4 = (param_1 - (uint64_t)uVar7) + 0x40;
   if ((uint)uVar8 < uVar7) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memcpy(lVar4,*(uint64_t *)(param_1 + 0x58),uVar8 & 0xffffffff);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memcpy(lVar4,*(uint64_t *)(param_1 + 0x58),(uint64_t)uVar7);
 }
-
-
-
-
-
-// 函数: void FUN_1808273e0(uint64_t param_1,int64_t param_2)
-void FUN_1808273e0(uint64_t param_1,int64_t param_2)
-
+// 函数: void function_8273e0(uint64_t param_1,int64_t param_2)
+void function_8273e0(uint64_t param_1,int64_t param_2)
 {
   uint uVar1;
   int iVar2;
   int64_t lVar3;
-  
   uVar1 = *(uint *)(param_2 + 0x50) & 0x3f;
   *(int8_t *)(param_2 + (uint64_t)uVar1) = 0x80;
   lVar3 = param_2 + (uint64_t)uVar1 + 1;
   iVar2 = -uVar1 + 0x37;
   if (iVar2 < 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(lVar3,0,(int64_t)(int)(-uVar1 + 0x3f));
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(lVar3,0,(int64_t)iVar2);
 }
-
-
-
-
-
-// 函数: void FUN_1808274c0(int *param_1,int *param_2)
-void FUN_1808274c0(int *param_1,int *param_2)
-
+// 函数: void function_8274c0(int *param_1,int *param_2)
+void function_8274c0(int *param_1,int *param_2)
 {
   int iVar1;
   int iVar2;
@@ -446,7 +418,6 @@ void FUN_1808274c0(int *param_1,int *param_2)
   uint uVar20;
   uint uVar21;
   uint uVar22;
-  
   uVar20 = param_1[1];
   uVar19 = param_1[2];
   uVar18 = param_1[3];
@@ -599,8 +570,3 @@ void FUN_1808274c0(int *param_1,int *param_2)
   param_1[3] = param_1[3] + uVar18;
   return;
 }
-
-
-
-
-

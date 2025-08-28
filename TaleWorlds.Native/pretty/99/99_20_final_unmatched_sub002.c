@@ -1,9 +1,9 @@
 /**
  * 99_20_final_unmatched_sub002.c - 系统核心功能和高级处理模块
- * 
+ *
  * 本模块包含48个核心函数，涵盖系统初始化、数据处理、状态管理、资源管理、
  * 内存管理、配置处理、调试功能等高级系统功能。
- * 
+ *
  * 主要功能包括：
  * - 系统初始化和配置
  * - 高级数据处理和验证
@@ -13,7 +13,7 @@
  * - 配置文件处理
  * - 调试和日志功能
  * - 系统性能优化
- * 
+ *
  * 核心函数：
  * - system_initialization_manager (系统初始化管理器)
  * - configuration_processor (配置处理器)
@@ -26,9 +26,7 @@
  * - system_cleaner (系统清理器)
  * - optimization_engine (优化引擎)
  */
-
 #include "TaleWorlds.Native.Split.h"
-
 /*
  * 常量定义
  */
@@ -46,123 +44,103 @@
 #define MAX_CONFIG_ENTRIES 0xffffffff
 #define DEFAULT_TIMEOUT 0x1000
 #define SYSTEM_VERSION "2.0"
-
 /*
  * 函数别名定义
  */
-#define system_initialization_manager FUN_1805ff2e0
-#define configuration_processor FUN_1805ff380
-#define resource_allocator FUN_1805ff540
-#define state_initializer FUN_1805ff5b0
-#define memory_pool_manager FUN_1805ff670
-#define debug_system_manager FUN_1805ff820
-#define performance_monitor FUN_1805ff8c0
-#define data_validator FUN_1805ff9e0
-#define system_cleaner FUN_1805ffac0
-#define optimization_engine FUN_1805ffc20
-#define configuration_loader FUN_1805ffd60
-#define resource_manager FUN_1805ffe20
-#define memory_manager FUN_1805ffe60
-#define system_initializer FUN_1805ffed0
-#define state_manager FUN_1805fffa0
-#define system_health_monitor FUN_1806e71c0
-#define resource_optimizer FUN_1805f3060
-#define memory_optimizer FUN_1805f32b0
-#define configuration_validator FUN_1804aa030
-#define system_debugger FUN_1805f8910
-#define performance_analyzer FUN_1805f8820
-#define state_synchronizer FUN_1805faf50
-#define resource_monitor FUN_1805fd350
-#define system_configurator FUN_1805f6f30
-#define memory_cleaner FUN_1805f6f50
-#define state_processor FUN_1805f7180
-#define data_processor FUN_1805f7330
-#define system_analyzer FUN_1806f1000
-#define optimization_manager FUN_1806f4900
-#define performance_manager FUN_1806f4940
-#define state_validator FUN_1806f4980
-#define resource_cleaner FUN_1806f49c0
-#define memory_validator FUN_1806f4a00
-#define configuration_manager FUN_1806f4a40
-#define system_manager FUN_1806f4a90
-#define debug_manager FUN_1806f4bc0
-#define optimization_processor FUN_1806f4bf0
-#define state_cleaner FUN_1806f4c40
-#define data_manager FUN_1806f4c80
-#define system_processor FUN_1806f4da0
-#define resource_processor FUN_1806f4dd0
-#define memory_processor FUN_1806f4e00
-#define configuration_processor_advanced FUN_1806f4eb0
-#define state_analyzer FUN_1806f4f50
-#define system_monitor FUN_1806f4f80
-#define debug_processor FUN_1806f5010
-#define performance_optimizer FUN_1806f5060
-#define resource_allocator_advanced FUN_1806f5090
-
+#define system_initialization_manager function_5ff2e0
+#define configuration_processor function_5ff380
+#define resource_allocator function_5ff540
+#define state_initializer function_5ff5b0
+#define memory_pool_manager function_5ff670
+#define debug_system_manager function_5ff820
+#define performance_monitor function_5ff8c0
+#define data_validator function_5ff9e0
+#define system_cleaner function_5ffac0
+#define optimization_engine function_5ffc20
+#define configuration_loader function_5ffd60
+#define resource_manager function_5ffe20
+#define memory_manager function_5ffe60
+#define system_initializer function_5ffed0
+#define state_manager function_5fffa0
+#define system_health_monitor function_6e71c0
+#define resource_optimizer function_5f3060
+#define memory_optimizer function_5f32b0
+#define configuration_validator function_4aa030
+#define system_debugger function_5f8910
+#define performance_analyzer function_5f8820
+#define state_synchronizer function_5faf50
+#define resource_monitor function_5fd350
+#define system_configurator function_5f6f30
+#define memory_cleaner function_5f6f50
+#define state_processor function_5f7180
+#define data_processor function_5f7330
+#define system_analyzer function_6f1000
+#define optimization_manager function_6f4900
+#define performance_manager function_6f4940
+#define state_validator function_6f4980
+#define resource_cleaner function_6f49c0
+#define memory_validator function_6f4a00
+#define configuration_manager function_6f4a40
+#define system_manager function_6f4a90
+#define debug_manager function_6f4bc0
+#define optimization_processor function_6f4bf0
+#define state_cleaner function_6f4c40
+#define data_manager function_6f4c80
+#define system_processor function_6f4da0
+#define resource_processor function_6f4dd0
+#define memory_processor function_6f4e00
+#define configuration_processor_advanced function_6f4eb0
+#define state_analyzer function_6f4f50
+#define system_monitor function_6f4f80
+#define debug_processor function_6f5010
+#define performance_optimizer function_6f5060
+#define resource_allocator_advanced function_6f5090
 /* 系统初始化管理器 - 负责系统初始化和配置 */
-uint8_t FUN_1805ff2e0;
-
+uint8_t function_5ff2e0;
 /* 配置处理器 - 负责配置文件的处理和验证 */
-uint8_t FUN_1805ff380;
-
+uint8_t function_5ff380;
 /* 资源分配器 - 负责系统资源的分配和管理 */
-uint8_t FUN_1805ff540;
-
+uint8_t function_5ff540;
 /* 状态初始化器 - 负责系统状态的初始化 */
-uint8_t FUN_1805ff5b0;
-
+uint8_t function_5ff5b0;
 /* 内存池管理器 - 负责内存池的管理和优化 */
-uint8_t FUN_1805ff670;
-
+uint8_t function_5ff670;
 /* 调试系统管理器 - 负责调试功能的管理 */
-uint8_t FUN_1805ff820;
-
+uint8_t function_5ff820;
 /* 性能监控器 - 负责系统性能的监控和分析 */
-uint8_t FUN_1805ff8c0;
-
+uint8_t function_5ff8c0;
 /* 数据验证器 - 负责数据的有效性验证 */
-uint8_t FUN_1805ff9e0;
-
+uint8_t function_5ff9e0;
 /* 系统清理器 - 负责系统资源的清理和释放 */
-uint8_t FUN_1805ffac0;
-
+uint8_t function_5ffac0;
 /* 优化引擎 - 负责系统性能的优化 */
-uint8_t FUN_1805ffc20;
-
+uint8_t function_5ffc20;
 /* 配置加载器 - 负责配置文件的加载 */
-uint8_t FUN_1805ffd60;
-
+uint8_t function_5ffd60;
 /* 资源管理器 - 负责系统资源的管理 */
-uint8_t FUN_1805ffe20;
-
+uint8_t function_5ffe20;
 /* 内存管理器 - 负责内存的管理 */
-uint8_t FUN_1805ffe60;
-
+uint8_t function_5ffe60;
 /* 系统初始化器 - 负责系统的初始化 */
-uint8_t FUN_1805ffed0;
-
+uint8_t function_5ffed0;
 /* 状态管理器 - 负责系统状态的管理 */
-uint8_t FUN_1805fffa0;
-
+uint8_t function_5fffa0;
 /* 系统健康监控器 - 负责系统健康状态的监控 */
-uint8_t FUN_1806e71c0;
+uint8_t function_6e71c0;
 uint8_t ui_system_data_1480;      // 系统健康监控主数据结构
 uint8_t ui_system_data_1592;      // 系统健康监控配置数据结构
 uint8_t ui_system_data_1560;      // 系统健康监控状态数据结构
 uint8_t ui_system_data_1904;      // 系统健康监控资源数据结构
 uint8_t ui_system_data_1712;      // 系统健康监控统计数据
-
 /* 资源优化器 - 负责系统资源的优化 */
-uint8_t FUN_1805f3060;
+uint8_t function_5f3060;
 uint8_t processed_var_4864;      // 资源优化器主数据结构
 uint8_t processed_var_5072;      // 资源优化器配置数据结构
 uint8_t processed_var_5272;      // 资源优化器状态数据结构
-
 /* 内存优化器 - 负责内存的优化 */
-uint8_t FUN_1805f32b0;
-
+uint8_t function_5f32b0;
 /* 配置验证器 - 负责配置文件的验证 */
-uint8_t FUN_1804aa030;
+uint8_t function_4aa030;
 uint8_t processed_var_5568;      // 配置验证器主数据结构
 uint8_t processed_var_5464;      // 配置验证器配置数据结构
 uint8_t processed_var_5880;      // 配置验证器状态数据结构
@@ -181,13 +159,11 @@ uint8_t processed_var_6744;      // 配置验证器分析数据结构
 uint8_t processed_var_7056;      // 配置验证器优化数据结构
 uint8_t processed_var_7112;      // 配置验证器调试数据结构
 uint8_t processed_var_7168;      // 配置验证器热重载数据结构
-
 /* 系统调试器 - 负责系统的调试功能 */
-uint8_t FUN_1805f8910;
+uint8_t function_5f8910;
 uint8_t ui_system_data_1696;      // 系统调试器主数据结构
-
 /* 性能分析器 - 负责系统性能的分析 */
-uint8_t FUN_1805f8820;
+uint8_t function_5f8820;
 uint8_t processed_var_5672;      // 性能分析器主数据结构
 uint8_t processed_var_5688;      // 性能分析器配置数据结构
 uint8_t processed_var_5704;      // 性能分析器状态数据结构
@@ -208,12 +184,10 @@ uint8_t processed_var_5960;      // 性能分析器调试数据结构
 uint8_t processed_var_5976;      // 性能分析器热重载数据结构
 uint8_t processed_var_5928;      // 性能分析器预加载数据结构
 uint8_t processed_var_5944;      // 性能分析器异步加载数据结构
-
 /* 状态同步器 - 负责系统状态的同步 */
-uint8_t FUN_1805faf50;
-
+uint8_t function_5faf50;
 /* 资源监控器 - 负责系统资源的监控 */
-uint8_t FUN_1805fd350;
+uint8_t function_5fd350;
 uint8_t processed_var_7224;      // 资源监控器主数据结构
 uint8_t processed_var_7240;      // 资源监控器配置数据结构
 uint8_t processed_var_7256;      // 资源监控器状态数据结构
@@ -230,18 +204,14 @@ uint8_t processed_var_7792;      // 资源监控器性能数据结构
 uint8_t processed_var_7848;      // 资源监控器监控数据结构
 uint8_t processed_var_7872;      // 资源监控器分析数据结构
 uint8_t processed_var_4208;      // 资源监控器优化数据结构
-
 /* 系统配置器 - 负责系统配置的管理 */
-uint8_t FUN_1805f6f30;
-
+uint8_t function_5f6f30;
 /* 内存清理器 - 负责内存的清理 */
-uint8_t FUN_1805f6f50;
-
+uint8_t function_5f6f50;
 /* 状态处理器 - 负责系统状态的处理 */
-uint8_t FUN_1805f7180;
-
+uint8_t function_5f7180;
 /* 数据处理器 - 负责数据的处理 */
-uint8_t FUN_1805f7330;
+uint8_t function_5f7330;
 uint8_t system_memory_5bd0;      // 数据处理器主数据
 uint8_t processed_var_400;      // 数据处理器主数据结构
 uint8_t processed_var_840;      // 数据处理器配置数据结构
@@ -261,9 +231,8 @@ uint8_t ui_system_data_1872;      // 数据处理器分析数据结构
 uint8_t rendering_buffer_2000;      // 数据处理器优化数据结构
 uint8_t rendering_buffer_2432;      // 数据处理器调试数据结构
 uint8_t rendering_buffer_2488;      // 数据处理器热重载数据结构
-
 /* 系统分析器 - 负责系统的分析 */
-uint8_t FUN_1806f1000;
+uint8_t function_6f1000;
 uint8_t processed_var_8664;      // 系统分析器主数据结构
 uint8_t processed_var_8672;      // 系统分析器配置数据结构
 uint8_t processed_var_8680;      // 系统分析器状态数据结构
@@ -316,43 +285,34 @@ uint8_t processed_var_9112;      // 系统分析器任务策略数据
 uint8_t processed_var_9128;      // 系统分析器线程策略数据
 uint8_t processed_var_9144;      // 系统分析器同步策略数据
 uint8_t processed_var_9160;      // 系统分析器错误策略数据
-
 /* 优化管理器 - 负责系统优化的管理 */
-uint8_t FUN_1806f4900;
+uint8_t function_6f4900;
 uint8_t processed_var_9176;      // 优化管理器主数据结构
-
 /* 性能管理器 - 负责系统性能的管理 */
-uint8_t FUN_1806f4940;
+uint8_t function_6f4940;
 uint8_t processed_var_9192;      // 性能管理器主数据结构
-
 /* 状态验证器 - 负责系统状态的验证 */
-uint8_t FUN_1806f4980;
+uint8_t function_6f4980;
 uint8_t processed_var_9212;      // 状态验证器主数据结构
-
 /* 资源清理器 - 负责系统资源的清理 */
-uint8_t FUN_1806f49c0;
+uint8_t function_6f49c0;
 uint8_t processed_var_9224;      // 资源清理器主数据结构
-
 /* 内存验证器 - 负责内存的验证 */
-uint8_t FUN_1806f4a00;
+uint8_t function_6f4a00;
 uint8_t processed_var_9240;      // 内存验证器主数据结构
-
 /* 配置管理器 - 负责配置的管理 */
-uint8_t FUN_1806f4a40;
+uint8_t function_6f4a40;
 uint8_t processed_var_9272;      // 配置管理器主数据结构
-
 /* 系统管理器 - 负责系统的管理 */
-uint8_t FUN_1806f4a90;
+uint8_t function_6f4a90;
 uint8_t processed_var_9304;      // 系统管理器主数据结构
 uint8_t processed_var_4656;      // 系统管理器配置数据结构
 uint8_t processed_var_4672;      // 系统管理器状态数据结构
-
 /* 调试管理器 - 负责调试的管理 */
-uint8_t FUN_1806f4bc0;
+uint8_t function_6f4bc0;
 uint8_t processed_var_4688;      // 调试管理器主数据结构
-
 /* 优化处理器 - 负责优化的处理 */
-uint8_t FUN_1806f4bf0;
+uint8_t function_6f4bf0;
 uint8_t processed_var_4704;      // 优化处理器主数据结构
 uint8_t processed_var_4720;      // 优化处理器配置数据结构
 uint8_t processed_var_4736;      // 优化处理器状态数据结构
@@ -372,13 +332,11 @@ uint8_t processed_var_9416;      // 优化处理器优化数据结构
 uint8_t processed_var_4944;      // 优化处理器调试数据结构
 uint8_t processed_var_5008;      // 优化处理器热重载数据结构
 uint8_t processed_var_5072;      // 优化处理器预加载数据结构
-
 /* 状态清理器 - 负责状态的清理 */
-uint8_t FUN_1806f4c40;
+uint8_t function_6f4c40;
 uint8_t processed_var_5088;      // 状态清理器主数据结构
-
 /* 数据管理器 - 负责数据的管理 */
-uint8_t FUN_1806f4c80;
+uint8_t function_6f4c80;
 uint8_t processed_var_5104;      // 数据管理器主数据结构
 uint8_t processed_var_5120;      // 数据管理器配置数据结构
 uint8_t processed_var_5136;      // 数据管理器状态数据结构
@@ -399,17 +357,14 @@ uint8_t processed_var_5280;      // 数据管理器调试数据结构
 uint8_t processed_var_5296;      // 数据管理器热重载数据结构
 uint8_t processed_var_5456;      // 数据管理器预加载数据结构
 uint8_t processed_var_5472;      // 数据管理器异步加载数据结构
-
 /* 系统处理器 - 负责系统的处理 */
-uint8_t FUN_1806f4da0;
+uint8_t function_6f4da0;
 uint8_t processed_var_5488;      // 系统处理器主数据结构
-
 /* 资源处理器 - 负责资源的处理 */
-uint8_t FUN_1806f4dd0;
+uint8_t function_6f4dd0;
 uint8_t processed_var_5504;      // 资源处理器主数据结构
-
 /* 内存处理器 - 负责内存的处理 */
-uint8_t FUN_1806f4e00;
+uint8_t function_6f4e00;
 uint8_t processed_var_5520;      // 内存处理器主数据结构
 uint8_t processed_var_9512;      // 内存处理器配置数据结构
 uint8_t processed_var_9528;      // 内存处理器状态数据结构
@@ -434,15 +389,12 @@ uint8_t processed_var_9584;      // 内存处理器流式加载数据结构
 uint8_t processed_var_9600;      // 内存处理器批处理数据结构
 uint8_t processed_var_9616;      // 内存处理器实例化数据结构
 uint8_t processed_var_9632;      // 内存处理器LOD数据结构
-
 /* 高级配置处理器 - 负责高级配置的处理 */
-uint8_t FUN_1806f4eb0;
-
+uint8_t function_6f4eb0;
 /* 状态分析器 - 负责状态的分析 */
-uint8_t FUN_1806f4f50;
-
+uint8_t function_6f4f50;
 /* 系统监控器 - 负责系统的监控 */
-uint8_t FUN_1806f4f80;
+uint8_t function_6f4f80;
 uint8_t processed_var_5920;      // 系统监控器主数据结构
 uint8_t processed_var_5984;      // 系统监控器配置数据结构
 uint8_t processed_var_6000;      // 系统监控器状态数据结构
@@ -450,16 +402,13 @@ uint8_t processed_var_6112;      // 系统监控器资源数据结构
 uint8_t processed_var_6128;      // 系统监控器缓存数据结构
 uint8_t processed_var_6144;      // 系统监控器任务数据结构
 uint8_t processed_var_9656;      // 系统监控器线程数据结构
-
 /* 调试处理器 - 负责调试的处理 */
-uint8_t FUN_1806f5010;
+uint8_t function_6f5010;
 uint8_t processed_var_9672;      // 调试处理器主数据结构
-
 /* 性能优化器 - 负责性能的优化 */
-uint8_t FUN_1806f5060;
-
+uint8_t function_6f5060;
 /* 高级资源分配器 - 负责高级资源的分配 */
-uint8_t FUN_1806f5090;
+uint8_t function_6f5090;
 uint8_t processed_var_6208;      // 高级资源分配器主数据结构
 uint8_t processed_var_6368;      // 高级资源分配器配置数据结构
 uint8_t processed_var_6192;      // 高级资源分配器状态数据结构
@@ -718,18 +667,15 @@ uint8_t processed_var_7744;      // 高级资源分配器生命周期策略数�
 uint8_t processed_var_8040;      // 高级资源分配器权限策略数据
 uint8_t processed_var_8064;      // 高级资源分配器配额策略数据
 uint8_t processed_var_8096;      // 高级资源分配器限制策略数据
-
-
 /*=============================================================================
  * 文件结束 - 99_20_final_unmatched_sub002.c
  *=============================================================================*/
-
 /**
  * @file 总结
- * 
+ *
  * 本文件包含TaleWorlds引擎系统核心功能和高级处理模块，总共48个函数，
  * 涵盖了以下主要功能模块：
- * 
+ *
  * 1. 系统初始化和配置管理
  * 2. 资源分配和管理优化
  * 3. 内存管理和清理
@@ -739,10 +685,10 @@ uint8_t processed_var_8096;      // 高级资源分配器限制策略数据
  * 7. 系统分析和优化
  * 8. 配置文件处理和验证
  * 9. 高级资源分配策略
- * 
+ *
  * 这些函数构成了游戏系统的核心架构，支持从基础的系统初始化
  * 到复杂的资源管理、性能优化、状态同步等高级系统功能。
- * 
+ *
  * @version 2.0
  * @date 2023
  * @author TaleWorlds Entertainment

@@ -1,31 +1,18 @@
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* 函数别名定义: RenderingTextureManager */
 #define RenderingTextureManager RenderingTextureManager
-
-
-
 // 99_part_13_part008.c - 6 个函数
-
-// 函数: void FUN_1808aa150(void)
-void FUN_1808aa150(void)
-
+// 函数: void NetworkProtocol_aa150(void)
+void NetworkProtocol_aa150(void)
 {
   uint64_t *unaff_RBX;
-  
   (**(code **)*unaff_RBX)();
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1808aa190(uint64_t param_1,int64_t param_2,int32_t param_3)
-
+uint64_t NetworkProtocol_aa190(uint64_t param_1,int64_t param_2,int32_t param_3)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -38,10 +25,9 @@ uint64_t FUN_1808aa190(uint64_t param_1,int64_t param_2,int32_t param_3)
   uint uVar9;
   int iVar10;
   int aiStack_58 [2];
-  uint64_t *puStack_50;
-  int8_t auStack_48 [32];
-  
-  uVar6 = DataFlowProcessor(param_1,auStack_48,1,param_3);
+  uint64_t *plocal_var_50;
+  int8_t stack_array_48 [32];
+  uVar6 = DataFlowProcessor(param_1,stack_array_48,1,param_3);
   if ((int)uVar6 == 0) {
     aiStack_58[0] = 0;
     uVar4 = SystemCore_EncryptionManager(param_1,aiStack_58);
@@ -94,31 +80,26 @@ uint64_t FUN_1808aa190(uint64_t param_1,int64_t param_2,int32_t param_3)
               *(int32_t *)(puVar7 + 7) = uVar2;
               *(int32_t *)((int64_t)puVar7 + 0x3c) = uVar3;
               *(int32_t *)(puVar7 + 8) = 0xffffffff;
-              puStack_50 = puVar7;
-              iVar5 = FUN_18089b2a0(puVar7,param_1);
-              if ((iVar5 != 0) || (iVar5 = DataStreamProcessor(param_2,&puStack_50), iVar5 != 0)) {
+              plocal_var_50 = puVar7;
+              iVar5 = NetworkProtocol_9b2a0(puVar7,param_1);
+              if ((iVar5 != 0) || (iVar5 = DataStreamProcessor(param_2,&plocal_var_50), iVar5 != 0)) {
                 (**(code **)*puVar7)(puVar7,0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                 SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&rendering_buffer_2144_ptr,0xc6,1);
               }
               iVar10 = iVar10 + 1;
             } while (iVar10 < aiStack_58[0]);
           }
         }
-                    // WARNING: Subroutine does not return
-        AdvancedSystemManager(param_1,auStack_48);
+// WARNING: Subroutine does not return
+        AdvancedSystemManager(param_1,stack_array_48);
       }
     }
   }
   return uVar6;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1808aa1bc(int32_t param_1)
-
+uint64_t NetworkProtocol_aa1bc(int32_t param_1)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -136,10 +117,9 @@ uint64_t FUN_1808aa1bc(int32_t param_1)
   int32_t extraout_XMM0_Da_02;
   int32_t uVar10;
   int iStack0000000000000040;
-  uint64_t *in_stack_00000048;
-  
+  uint64_t *local_var_48;
   iStack0000000000000040 = 0;
-  uVar3 = SystemCore_EncryptionManager(param_1,&stack0x00000040);
+  uVar3 = SystemCore_EncryptionManager(param_1,&local_buffer_00000040);
   if (iStack0000000000000040 < 0) {
     uVar5 = 0xd;
   }
@@ -191,12 +171,12 @@ uint64_t FUN_1808aa1bc(int32_t param_1)
             *(int32_t *)(puVar6 + 7) = uVar1;
             *(int32_t *)((int64_t)puVar6 + 0x3c) = uVar2;
             *(int32_t *)(puVar6 + 8) = 0xffffffff;
-            in_stack_00000048 = puVar6;
-            iVar4 = FUN_18089b2a0(puVar6);
+            local_var_48 = puVar6;
+            iVar4 = NetworkProtocol_9b2a0(puVar6);
             if ((iVar4 != 0) ||
-               (iVar4 = DataStreamProcessor(extraout_XMM0_Da_01,&stack0x00000048), iVar4 != 0)) {
+               (iVar4 = DataStreamProcessor(extraout_XMM0_Da_01,&local_buffer_00000048), iVar4 != 0)) {
               (**(code **)*puVar6)(puVar6,0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
               SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar6,&rendering_buffer_2144_ptr,0xc6,1);
             }
             iVar9 = iVar9 + 1;
@@ -204,19 +184,14 @@ uint64_t FUN_1808aa1bc(int32_t param_1)
           } while (iVar9 < iStack0000000000000040);
         }
       }
-                    // WARNING: Subroutine does not return
-      AdvancedSystemManager(uVar10,&stack0x00000050);
+// WARNING: Subroutine does not return
+      AdvancedSystemManager(uVar10,&local_buffer_00000050);
     }
   }
   return uVar5;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int FUN_1808aa213(int32_t param_1)
-
+int NetworkProtocol_aa213(int32_t param_1)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -229,9 +204,8 @@ int FUN_1808aa213(int32_t param_1)
   int unaff_R15D;
   int32_t extraout_XMM0_Da;
   int32_t extraout_XMM0_Da_00;
-  int in_stack_00000040;
-  uint64_t *in_stack_00000048;
-  
+  int local_var_40;
+  uint64_t *local_var_48;
   if (unaff_EBX != 0x12) {
     if (unaff_EBX != 0) {
       return unaff_EBX;
@@ -272,71 +246,43 @@ int FUN_1808aa213(int32_t param_1)
         *(int32_t *)(puVar5 + 7) = uVar2;
         *(int32_t *)((int64_t)puVar5 + 0x3c) = uVar3;
         *(int32_t *)(puVar5 + 8) = 0xffffffff;
-        in_stack_00000048 = puVar5;
-        iVar4 = FUN_18089b2a0(puVar5);
-        if ((iVar4 != 0) || (iVar4 = DataStreamProcessor(extraout_XMM0_Da,&stack0x00000048), iVar4 != 0))
+        local_var_48 = puVar5;
+        iVar4 = NetworkProtocol_9b2a0(puVar5);
+        if ((iVar4 != 0) || (iVar4 = DataStreamProcessor(extraout_XMM0_Da,&local_buffer_00000048), iVar4 != 0))
         {
           (**(code **)*puVar5)(puVar5,0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar5,&rendering_buffer_2144_ptr,0xc6,1);
         }
         unaff_R15D = unaff_R15D + 1;
         param_1 = extraout_XMM0_Da_00;
-      } while (unaff_R15D < in_stack_00000040);
+      } while (unaff_R15D < local_var_40);
     }
   }
-                    // WARNING: Subroutine does not return
-  AdvancedSystemManager(param_1,&stack0x00000050);
+// WARNING: Subroutine does not return
+  AdvancedSystemManager(param_1,&local_buffer_00000050);
 }
-
-
-
-
-
-
-// 函数: void FUN_1808aa33b(void)
-void FUN_1808aa33b(void)
-
+// 函数: void NetworkProtocol_aa33b(void)
+void NetworkProtocol_aa33b(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1808aa348(void)
-void FUN_1808aa348(void)
-
+// 函数: void NetworkProtocol_aa348(void)
+void NetworkProtocol_aa348(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1808aa353(void)
-void FUN_1808aa353(void)
-
+// 函数: void NetworkProtocol_aa353(void)
+void NetworkProtocol_aa353(void)
 {
   uint64_t *unaff_RBX;
-  
   (**(code **)*unaff_RBX)();
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1808aa3a0(uint64_t *param_1,int64_t param_2,int32_t param_3)
-
+uint64_t NetworkProtocol_aa3a0(uint64_t *param_1,int64_t param_2,int32_t param_3)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -349,11 +295,10 @@ uint64_t FUN_1808aa3a0(uint64_t *param_1,int64_t param_2,int32_t param_3)
   uint uVar9;
   int iVar10;
   int aiStack_78 [2];
-  uint64_t *puStack_70;
-  int8_t auStack_68 [32];
-  int8_t auStack_48 [32];
-  
-  uVar6 = DataFlowProcessor(param_1,auStack_48,1,param_3);
+  uint64_t *plocal_var_70;
+  int8_t stack_array_68 [32];
+  int8_t stack_array_48 [32];
+  uVar6 = DataFlowProcessor(param_1,stack_array_48,1,param_3);
   aiStack_78[0] = (int)uVar6;
   if (aiStack_78[0] == 0) {
     uVar4 = SystemCore_EncryptionManager(param_1,aiStack_78);
@@ -398,42 +343,37 @@ uint64_t FUN_1808aa3a0(uint64_t *param_1,int64_t param_2,int32_t param_3)
             *(int32_t *)((int64_t)puVar7 + 0x2c) = uVar3;
             puVar7[6] = 0;
             puVar7[7] = 0;
-            puStack_70 = puVar7;
-            iVar5 = DataFlowProcessor(param_1,auStack_68,0,0x56525543);
+            plocal_var_70 = puVar7;
+            iVar5 = DataFlowProcessor(param_1,stack_array_68,0,0x56525543);
             if ((iVar5 == 0) && (iVar5 = SystemCore_ConfigManager(param_1,puVar7 + 2), iVar5 == 0)) {
               if (*(int *)(param_1[1] + 0x18) == 0) {
                 iVar5 = UIEventHandler(*param_1,puVar7 + 4);
-                if ((iVar5 == 0) && (iVar5 = FUN_1808a4e60(param_1,puVar7 + 6,0), iVar5 == 0)) {
-                    // WARNING: Subroutine does not return
-                  AdvancedSystemManager(param_1,auStack_68);
+                if ((iVar5 == 0) && (iVar5 = NetworkProtocol_a4e60(param_1,puVar7 + 6,0), iVar5 == 0)) {
+// WARNING: Subroutine does not return
+                  AdvancedSystemManager(param_1,stack_array_68);
                 }
               }
               else {
                 iVar5 = 0x1c;
               }
             }
-            if ((iVar5 != 0) || (iVar5 = DataStreamProcessor(param_2,&puStack_70), iVar5 != 0)) {
+            if ((iVar5 != 0) || (iVar5 = DataStreamProcessor(param_2,&plocal_var_70), iVar5 != 0)) {
               (**(code **)*puVar7)(puVar7,0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
               SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&rendering_buffer_2144_ptr,0xc6,1);
             }
             iVar10 = iVar10 + 1;
           } while (iVar10 < aiStack_78[0]);
         }
       }
-                    // WARNING: Subroutine does not return
-      AdvancedSystemManager(param_1,auStack_48);
+// WARNING: Subroutine does not return
+      AdvancedSystemManager(param_1,stack_array_48);
     }
   }
   return uVar6;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1808aa3d1(void)
-
+uint64_t NetworkProtocol_aa3d1(void)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -457,8 +397,7 @@ uint64_t FUN_1808aa3d1(void)
   int32_t uVar11;
   int32_t extraout_XMM0_Da_05;
   int iStack0000000000000040;
-  uint64_t *in_stack_00000048;
-  
+  uint64_t *local_var_48;
   iStack0000000000000040 = in_EAX;
   uVar4 = SystemCore_EncryptionManager();
   if (iStack0000000000000040 < 0) {
@@ -506,8 +445,8 @@ uint64_t FUN_1808aa3d1(void)
         *(int32_t *)((int64_t)puVar7 + 0x2c) = uVar3;
         puVar7[6] = 0;
         puVar7[7] = 0;
-        in_stack_00000048 = puVar7;
-        iVar5 = DataFlowProcessor(uVar11,&stack0x00000050,0,0x56525543);
+        local_var_48 = puVar7;
+        iVar5 = DataFlowProcessor(uVar11,&local_buffer_00000050,0,0x56525543);
         uVar11 = extraout_XMM0_Da_01;
         if ((iVar5 == 0) &&
            (iVar5 = SystemCore_ConfigManager(extraout_XMM0_Da_01,puVar7 + 2), uVar11 = extraout_XMM0_Da_02,
@@ -516,19 +455,19 @@ uint64_t FUN_1808aa3d1(void)
             iVar5 = UIEventHandler(*unaff_RDI,puVar7 + 4);
             uVar11 = extraout_XMM0_Da_03;
             if ((iVar5 == 0) &&
-               (iVar5 = FUN_1808a4e60(extraout_XMM0_Da_03,puVar7 + 6,0),
+               (iVar5 = NetworkProtocol_a4e60(extraout_XMM0_Da_03,puVar7 + 6,0),
                uVar11 = extraout_XMM0_Da_04, iVar5 == 0)) {
-                    // WARNING: Subroutine does not return
-              AdvancedSystemManager(extraout_XMM0_Da_04,&stack0x00000050);
+// WARNING: Subroutine does not return
+              AdvancedSystemManager(extraout_XMM0_Da_04,&local_buffer_00000050);
             }
           }
           else {
             iVar5 = 0x1c;
           }
         }
-        if ((iVar5 != 0) || (iVar5 = DataStreamProcessor(uVar11,&stack0x00000048), iVar5 != 0)) {
+        if ((iVar5 != 0) || (iVar5 = DataStreamProcessor(uVar11,&local_buffer_00000048), iVar5 != 0)) {
           (**(code **)*puVar7)(puVar7,0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&rendering_buffer_2144_ptr,0xc6,1);
         }
         iVar10 = iVar10 + 1;
@@ -536,16 +475,11 @@ uint64_t FUN_1808aa3d1(void)
       } while (iVar10 < iStack0000000000000040);
     }
   }
-                    // WARNING: Subroutine does not return
-  AdvancedSystemManager(uVar11,&stack0x00000070);
+// WARNING: Subroutine does not return
+  AdvancedSystemManager(uVar11,&local_buffer_00000070);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1808aa407(int param_1)
-
+uint64_t NetworkProtocol_aa407(int param_1)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -567,13 +501,12 @@ uint64_t FUN_1808aa407(int param_1)
   int32_t extraout_XMM0_Da_03;
   int32_t uVar10;
   int32_t extraout_XMM0_Da_04;
-  int in_stack_00000040;
-  uint64_t *in_stack_00000048;
-  
+  int local_var_40;
+  uint64_t *local_var_48;
   uVar8 = (int)*(uint *)(unaff_R13 + 0xc) >> 0x1f;
   if (((int)((*(uint *)(unaff_R13 + 0xc) ^ uVar8) - uVar8) < param_1) &&
      (uVar5 = RenderingTextureManager0(in_XMM0_Da,param_1), in_XMM0_Da = extraout_XMM0_Da,
-     param_1 = in_stack_00000040, (int)uVar5 != 0)) {
+     param_1 = local_var_40, (int)uVar5 != 0)) {
     return uVar5;
   }
   if (unaff_EBX != 0x12) {
@@ -611,8 +544,8 @@ uint64_t FUN_1808aa407(int param_1)
         *(int32_t *)((int64_t)puVar6 + 0x2c) = uVar3;
         puVar6[6] = 0;
         puVar6[7] = 0;
-        in_stack_00000048 = puVar6;
-        iVar4 = DataFlowProcessor(uVar10,&stack0x00000050,0,0x56525543);
+        local_var_48 = puVar6;
+        iVar4 = DataFlowProcessor(uVar10,&local_buffer_00000050,0,0x56525543);
         uVar10 = extraout_XMM0_Da_00;
         if ((iVar4 == 0) &&
            (iVar4 = SystemCore_ConfigManager(extraout_XMM0_Da_00,puVar6 + 2), uVar10 = extraout_XMM0_Da_01,
@@ -621,36 +554,31 @@ uint64_t FUN_1808aa407(int param_1)
             iVar4 = UIEventHandler(*unaff_RDI,puVar6 + 4);
             uVar10 = extraout_XMM0_Da_02;
             if ((iVar4 == 0) &&
-               (iVar4 = FUN_1808a4e60(extraout_XMM0_Da_02,puVar6 + 6,0),
+               (iVar4 = NetworkProtocol_a4e60(extraout_XMM0_Da_02,puVar6 + 6,0),
                uVar10 = extraout_XMM0_Da_03, iVar4 == 0)) {
-                    // WARNING: Subroutine does not return
-              AdvancedSystemManager(extraout_XMM0_Da_03,&stack0x00000050);
+// WARNING: Subroutine does not return
+              AdvancedSystemManager(extraout_XMM0_Da_03,&local_buffer_00000050);
             }
           }
           else {
             iVar4 = 0x1c;
           }
         }
-        if ((iVar4 != 0) || (iVar4 = DataStreamProcessor(uVar10,&stack0x00000048), iVar4 != 0)) {
+        if ((iVar4 != 0) || (iVar4 = DataStreamProcessor(uVar10,&local_buffer_00000048), iVar4 != 0)) {
           (**(code **)*puVar6)(puVar6,0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar6,&rendering_buffer_2144_ptr,0xc6,1);
         }
         iVar9 = iVar9 + 1;
         in_XMM0_Da = extraout_XMM0_Da_04;
-      } while (iVar9 < in_stack_00000040);
+      } while (iVar9 < local_var_40);
     }
   }
-                    // WARNING: Subroutine does not return
-  AdvancedSystemManager(in_XMM0_Da,&stack0x00000070);
+// WARNING: Subroutine does not return
+  AdvancedSystemManager(in_XMM0_Da,&local_buffer_00000070);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int FUN_1808aa42a(int32_t param_1)
-
+int NetworkProtocol_aa42a(int32_t param_1)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -668,9 +596,8 @@ int FUN_1808aa42a(int32_t param_1)
   int32_t extraout_XMM0_Da_02;
   int32_t uVar8;
   int32_t extraout_XMM0_Da_03;
-  int in_stack_00000040;
-  uint64_t *in_stack_00000048;
-  
+  int local_var_40;
+  uint64_t *local_var_48;
   if (unaff_EBX != 0x12) {
     if (unaff_EBX != 0) {
       return unaff_EBX;
@@ -706,8 +633,8 @@ int FUN_1808aa42a(int32_t param_1)
         *(int32_t *)((int64_t)puVar5 + 0x2c) = uVar3;
         puVar5[6] = 0;
         puVar5[7] = 0;
-        in_stack_00000048 = puVar5;
-        iVar4 = DataFlowProcessor(uVar8,&stack0x00000050,0,0x56525543);
+        local_var_48 = puVar5;
+        iVar4 = DataFlowProcessor(uVar8,&local_buffer_00000050,0,0x56525543);
         uVar8 = extraout_XMM0_Da;
         if ((iVar4 == 0) &&
            (iVar4 = SystemCore_ConfigManager(extraout_XMM0_Da,puVar5 + 2), uVar8 = extraout_XMM0_Da_00,
@@ -716,58 +643,37 @@ int FUN_1808aa42a(int32_t param_1)
             iVar4 = UIEventHandler(*unaff_RDI,puVar5 + 4);
             uVar8 = extraout_XMM0_Da_01;
             if ((iVar4 == 0) &&
-               (iVar4 = FUN_1808a4e60(extraout_XMM0_Da_01,puVar5 + 6,0), uVar8 = extraout_XMM0_Da_02
+               (iVar4 = NetworkProtocol_a4e60(extraout_XMM0_Da_01,puVar5 + 6,0), uVar8 = extraout_XMM0_Da_02
                , iVar4 == 0)) {
-                    // WARNING: Subroutine does not return
-              AdvancedSystemManager(extraout_XMM0_Da_02,&stack0x00000050);
+// WARNING: Subroutine does not return
+              AdvancedSystemManager(extraout_XMM0_Da_02,&local_buffer_00000050);
             }
           }
           else {
             iVar4 = 0x1c;
           }
         }
-        if ((iVar4 != 0) || (iVar4 = DataStreamProcessor(uVar8,&stack0x00000048), iVar4 != 0)) {
+        if ((iVar4 != 0) || (iVar4 = DataStreamProcessor(uVar8,&local_buffer_00000048), iVar4 != 0)) {
           (**(code **)*puVar5)(puVar5,0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemInitializer(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar5,&rendering_buffer_2144_ptr,0xc6,1);
         }
         iVar7 = iVar7 + 1;
         param_1 = extraout_XMM0_Da_03;
-      } while (iVar7 < in_stack_00000040);
+      } while (iVar7 < local_var_40);
     }
   }
-                    // WARNING: Subroutine does not return
-  AdvancedSystemManager(param_1,&stack0x00000070);
+// WARNING: Subroutine does not return
+  AdvancedSystemManager(param_1,&local_buffer_00000070);
 }
-
-
-
-
-
-
-// 函数: void FUN_1808aa5d8(void)
-void FUN_1808aa5d8(void)
-
+// 函数: void NetworkProtocol_aa5d8(void)
+void NetworkProtocol_aa5d8(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1808aa5e0(void)
-void FUN_1808aa5e0(void)
-
+// 函数: void NetworkProtocol_aa5e0(void)
+void NetworkProtocol_aa5e0(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

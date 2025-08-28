@@ -1,15 +1,10 @@
 /* 函数别名定义: RenderingEngineCore */
 #define RenderingEngineCore RenderingEngineCore
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_01_part039.c - 2 个函数
-
-// 函数: void FUN_1800c7cb0(uint64_t param_1,int64_t param_2)
-void FUN_1800c7cb0(uint64_t param_1,int64_t param_2)
-
+// 函数: void function_0c7cb0(uint64_t param_1,int64_t param_2)
+void function_0c7cb0(uint64_t param_1,int64_t param_2)
 {
   float fVar1;
   float fVar2;
@@ -26,7 +21,6 @@ void FUN_1800c7cb0(uint64_t param_1,int64_t param_2)
   int32_t uVar13;
   float fVar14;
   int32_t uVar15;
-  
   if ((*(char *)(param_2 + 0x11cf4) == '\0') ||
      (lVar8 = *(int64_t *)(param_2 + 0x11d00), lVar8 == 0)) {
     lVar8 = system_system_data_ui + 0x58;
@@ -34,7 +28,7 @@ void FUN_1800c7cb0(uint64_t param_1,int64_t param_2)
   uVar3 = *(uint64_t *)(system_message_buffer + 0x1cd8);
   lVar7 = *(int64_t *)(param_2 + 0x9988);
   if (lVar7 == 0) {
-    lVar7 = FUN_1800bde30();
+    lVar7 = function_0bde30();
   }
   RenderingEngineCore0(uVar3,0x25,lVar7,0x10,0xffffffff);
   lVar7 = system_message_buffer;
@@ -157,17 +151,9 @@ void FUN_1800c7cb0(uint64_t param_1,int64_t param_2)
   *(float *)(lVar7 + 0x162c) = fVar1 * fVar2;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1800c8190(int64_t param_1,int64_t param_2)
-void FUN_1800c8190(int64_t param_1,int64_t param_2)
-
+// 函数: void function_0c8190(int64_t param_1,int64_t param_2)
+void function_0c8190(int64_t param_1,int64_t param_2)
 {
   uint64_t uVar1;
   int32_t uVar2;
@@ -191,19 +177,18 @@ void FUN_1800c8190(int64_t param_1,int64_t param_2)
   float fVar20;
   float fVar21;
   int64_t *plStackX_8;
-  int32_t uStack_d8;
-  int32_t uStack_d4;
-  int32_t uStack_d0;
-  uint64_t uStack_b8;
-  uint64_t uStack_b0;
-  uint64_t uStack_a8;
-  uint64_t uStack_a0;
-  uint64_t uStack_98;
-  uint64_t uStack_90;
-  uint64_t uStack_88;
-  uint64_t uStack_80;
-  int8_t auStack_78 [112];
-  
+  int32_t local_var_d8;
+  int32_t local_var_d4;
+  int32_t local_var_d0;
+  uint64_t local_var_b8;
+  uint64_t local_var_b0;
+  uint64_t local_var_a8;
+  uint64_t local_var_a0;
+  uint64_t local_var_98;
+  uint64_t local_var_90;
+  uint64_t local_var_88;
+  uint64_t local_var_80;
+  int8_t stack_array_78 [112];
   lVar18 = system_message_buffer;
   if ((*(byte *)(param_2 + 0x1bd8) & 0x40) != 0) {
     uVar1 = *(uint64_t *)(param_2 + 0x128);
@@ -212,13 +197,13 @@ void FUN_1800c8190(int64_t param_1,int64_t param_2)
     *(uint64_t *)(lVar17 + 0x1118) = uVar1;
   }
   if ((*(int *)(param_2 + 8) == -1) || (*(int *)(param_2 + 8) != 1)) {
-    uStack_d8 = (int32_t)*(uint64_t *)(param_2 + 0x120);
-    uStack_d4 = (int32_t)((uint64_t)*(uint64_t *)(param_2 + 0x120) >> 0x20);
-    uStack_d0 = (int32_t)*(uint64_t *)(param_2 + 0x128);
+    local_var_d8 = (int32_t)*(uint64_t *)(param_2 + 0x120);
+    local_var_d4 = (int32_t)((uint64_t)*(uint64_t *)(param_2 + 0x120) >> 0x20);
+    local_var_d0 = (int32_t)*(uint64_t *)(param_2 + 0x128);
     lVar17 = *(int64_t *)(lVar18 + 0x1cd8);
-    *(int32_t *)(lVar17 + 0x1100) = uStack_d8;
-    *(int32_t *)(lVar17 + 0x1104) = uStack_d4;
-    *(int32_t *)(lVar17 + 0x1108) = uStack_d0;
+    *(int32_t *)(lVar17 + 0x1100) = local_var_d8;
+    *(int32_t *)(lVar17 + 0x1104) = local_var_d4;
+    *(int32_t *)(lVar17 + 0x1108) = local_var_d0;
     *(int32_t *)(lVar17 + 0x110c) = 0;
   }
   else {
@@ -320,21 +305,21 @@ void FUN_1800c8190(int64_t param_1,int64_t param_2)
   *(int32_t *)(lVar17 + 0x14bc) = 0;
   *(int32_t *)(lVar17 + 0x14cc) = 0;
   *(int32_t *)(lVar17 + 0x14dc) = 0x3f800000;
-  FUN_180094120((uint64_t *)(param_2 + 0x12a80),&uStack_b8);
+  function_094120((uint64_t *)(param_2 + 0x12a80),&local_var_b8);
   lVar17 = *(int64_t *)(lVar18 + 0x1cd8);
-  *(uint64_t *)(lVar17 + 0x13b0) = uStack_b8;
-  *(uint64_t *)(lVar17 + 0x13b8) = uStack_b0;
-  *(uint64_t *)(lVar17 + 0x13c0) = uStack_a8;
-  *(uint64_t *)(lVar17 + 0x13c8) = uStack_a0;
-  *(uint64_t *)(lVar17 + 0x13d0) = uStack_98;
-  *(uint64_t *)(lVar17 + 0x13d8) = uStack_90;
-  *(uint64_t *)(lVar17 + 0x13e0) = uStack_88;
-  *(uint64_t *)(lVar17 + 0x13e8) = uStack_80;
+  *(uint64_t *)(lVar17 + 0x13b0) = local_var_b8;
+  *(uint64_t *)(lVar17 + 0x13b8) = local_var_b0;
+  *(uint64_t *)(lVar17 + 0x13c0) = local_var_a8;
+  *(uint64_t *)(lVar17 + 0x13c8) = local_var_a0;
+  *(uint64_t *)(lVar17 + 0x13d0) = local_var_98;
+  *(uint64_t *)(lVar17 + 0x13d8) = local_var_90;
+  *(uint64_t *)(lVar17 + 0x13e0) = local_var_88;
+  *(uint64_t *)(lVar17 + 0x13e8) = local_var_80;
   *(int32_t *)(*(int64_t *)(lVar18 + 0x1cd8) + 0x1748) = *(int32_t *)(param_2 + 0x12c00);
   *(int32_t *)(*(int64_t *)(lVar18 + 0x1cd8) + 0x174c) = *(int32_t *)(param_2 + 0x12c04);
   if ((*(byte *)(param_2 + 0x1bd8) & 0x20) != 0) {
-    FUN_180094120(param_2 + 0x12ac0,&uStack_b8);
-    puVar16 = (uint64_t *)ErrorRecoverySystem(&uStack_b8,auStack_78,param_2 + 0x12b40);
+    function_094120(param_2 + 0x12ac0,&local_var_b8);
+    puVar16 = (uint64_t *)ErrorRecoverySystem(&local_var_b8,stack_array_78,param_2 + 0x12b40);
     uVar1 = puVar16[1];
     uVar19 = puVar16[2];
     uVar10 = puVar16[3];
@@ -461,13 +446,13 @@ void FUN_1800c8190(int64_t param_1,int64_t param_2)
      (*(char *)(param_1 + 0x1320) != '\0')) {
     *(int32_t *)(*(int64_t *)(lVar18 + 0x1cd8) + 0x1750) = 0;
     uVar1 = *(uint64_t *)(lVar18 + 0x1cd8);
-    uVar19 = FUN_1800bdc80();
+    uVar19 = function_0bdc80();
     RenderingEngineCore0(uVar1,0x1c,uVar19,0x10,0xffffffff);
     lVar18 = system_message_buffer;
   }
   else if (*(float *)(lVar17 + 0x40) <= 0.0) {
     uVar1 = *(uint64_t *)(lVar18 + 0x1cd8);
-    puVar16 = (uint64_t *)FUN_1802c8dc0(lVar17,&plStackX_8);
+    puVar16 = (uint64_t *)function_2c8dc0(lVar17,&plStackX_8);
     RenderingEngineCore0(uVar1,0x1c,*puVar16,0x10,0xffffffff);
     if (plStackX_8 != (int64_t *)0x0) {
       (**(code **)(*plStackX_8 + 0x38))();
@@ -494,11 +479,4 @@ void FUN_1800c8190(int64_t param_1,int64_t param_2)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

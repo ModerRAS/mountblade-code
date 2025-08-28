@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_04_part028.c - 5 个函数
-
-// 函数: void FUN_18026fd74(int64_t param_1,int64_t param_2)
-void FUN_18026fd74(int64_t param_1,int64_t param_2)
-
+// 函数: void DataStructure_6fd74(int64_t param_1,int64_t param_2)
+void DataStructure_6fd74(int64_t param_1,int64_t param_2)
 {
   float *pfVar1;
   float fVar2;
@@ -38,7 +35,6 @@ void FUN_18026fd74(int64_t param_1,int64_t param_2)
   float fStack_40;
   float fStack_3c;
   float fStack_38;
-  
   uVar19 = param_1 * 2;
   if (param_1 == 0) {
     uVar19 = 1;
@@ -53,15 +49,15 @@ void FUN_18026fd74(int64_t param_1,int64_t param_2)
     unaff_R14 = *(int64_t *)(unaff_RSI + 0xd2);
   }
   if (param_2 != unaff_R14) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memmove(lVar11,param_2,unaff_R14 - param_2);
   }
   if (unaff_RBP != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(lVar11,0,unaff_RBP * 8);
   }
   if (*(int64_t *)(unaff_RSI + 0xd0) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
   *(int64_t *)(unaff_RSI + 0xd0) = lVar11;
@@ -128,12 +124,12 @@ void FUN_18026fd74(int64_t param_1,int64_t param_2)
     lVar11 = ((int64_t)pfVar12 - (int64_t)pfVar20) / 0x14;
     for (lVar10 = lVar11; lVar10 != 0; lVar10 = lVar10 >> 1) {
     }
-    FUN_18026f230(pfVar20,pfVar12);
+    DataStructure_6f230(pfVar20,pfVar12);
     if (lVar11 < 0x1d) {
-      FUN_18026f390(pfVar20);
+      DataStructure_6f390(pfVar20);
     }
     else {
-      FUN_18026f390(pfVar20);
+      DataStructure_6f390(pfVar20);
       for (pfVar20 = pfVar20 + 0x8c; pfVar20 != pfVar12; pfVar20 = pfVar20 + 5) {
         fVar2 = *pfVar20;
         fVar5 = pfVar20[1];
@@ -170,13 +166,13 @@ void FUN_18026fd74(int64_t param_1,int64_t param_2)
     lVar10 = (int64_t)pfVar20 - (int64_t)pfVar12 >> 3;
     for (lVar11 = lVar10; lVar11 != 0; lVar11 = lVar11 >> 1) {
     }
-    FUN_18026f6b0(pfVar12,pfVar20);
+    DataStructure_6f6b0(pfVar12,pfVar20);
     if (lVar10 < 0x1d) {
-      func_0x00018026f7f0(pfVar12,pfVar20);
+      Function_cad3ca20(pfVar12,pfVar20);
     }
     else {
       pfVar14 = pfVar12 + 0x38;
-      func_0x00018026f7f0(pfVar12);
+      Function_cad3ca20(pfVar12);
       for (; pfVar14 != pfVar20; pfVar14 = pfVar14 + 2) {
         fVar22 = *pfVar14;
         pfVar12 = pfVar14 + -2;
@@ -290,15 +286,8 @@ LAB_18026fba0:
     }
   } while( true );
 }
-
-
-
-
-
-
-// 函数: void FUN_18026fe36(int32_t param_1)
-void FUN_18026fe36(int32_t param_1)
-
+// 函数: void DataStructure_6fe36(int32_t param_1)
+void DataStructure_6fe36(int32_t param_1)
 {
   float *pfVar1;
   float fVar2;
@@ -332,9 +321,8 @@ void FUN_18026fe36(int32_t param_1)
   float fStack_40;
   float fStack_3c;
   float fStack_38;
-  
   if (unaff_RBP != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(param_1,0,unaff_RBP * 8);
   }
   *unaff_R12 = unaff_R14;
@@ -399,12 +387,12 @@ void FUN_18026fe36(int32_t param_1)
     lVar11 = ((int64_t)pfVar12 - (int64_t)pfVar20) / 0x14;
     for (lVar10 = lVar11; lVar10 != 0; lVar10 = lVar10 >> 1) {
     }
-    FUN_18026f230(pfVar20,pfVar12);
+    DataStructure_6f230(pfVar20,pfVar12);
     if (lVar11 < 0x1d) {
-      FUN_18026f390(pfVar20);
+      DataStructure_6f390(pfVar20);
     }
     else {
-      FUN_18026f390(pfVar20);
+      DataStructure_6f390(pfVar20);
       for (pfVar20 = pfVar20 + 0x8c; pfVar20 != pfVar12; pfVar20 = pfVar20 + 5) {
         fVar2 = *pfVar20;
         fVar5 = pfVar20[1];
@@ -441,13 +429,13 @@ void FUN_18026fe36(int32_t param_1)
     lVar10 = (int64_t)pfVar20 - (int64_t)pfVar12 >> 3;
     for (lVar11 = lVar10; lVar11 != 0; lVar11 = lVar11 >> 1) {
     }
-    FUN_18026f6b0(pfVar12,pfVar20);
+    DataStructure_6f6b0(pfVar12,pfVar20);
     if (lVar10 < 0x1d) {
-      func_0x00018026f7f0(pfVar12,pfVar20);
+      Function_cad3ca20(pfVar12,pfVar20);
     }
     else {
       pfVar14 = pfVar12 + 0x38;
-      func_0x00018026f7f0(pfVar12);
+      Function_cad3ca20(pfVar12);
       for (; pfVar14 != pfVar20; pfVar14 = pfVar14 + 2) {
         fVar22 = *pfVar14;
         pfVar12 = pfVar14 + -2;
@@ -561,15 +549,8 @@ LAB_18026fba0:
     }
   } while( true );
 }
-
-
-
-
-
-
-// 函数: void FUN_18026fe7f(void)
-void FUN_18026fe7f(void)
-
+// 函数: void DataStructure_6fe7f(void)
+void DataStructure_6fe7f(void)
 {
   float *pfVar1;
   float fVar2;
@@ -597,14 +578,13 @@ void FUN_18026fe7f(void)
   int64_t unaff_R15;
   float fVar21;
   float fVar22;
-  uint64_t in_stack_00000038;
-  uint64_t in_stack_00000040;
-  uint64_t uStack0000000000000050;
-  uint64_t uStack0000000000000060;
+  uint64_t local_var_38;
+  uint64_t local_var_40;
+  uint64_t local_buffer_50;
+  uint64_t local_buffer_60;
   float fStack_40;
   float fStack_3c;
   float fStack_38;
-  
   puVar15 = *(int32_t **)(unaff_RDI + 8);
   do {
     uVar4 = *puVar15;
@@ -657,8 +637,8 @@ void FUN_18026fe7f(void)
       unaff_RBX = unaff_RBX + 1;
     } while (unaff_RBX < unaff_R15);
   }
-  uStack0000000000000050 = in_stack_00000040;
-  uStack0000000000000060 = in_stack_00000038;
+  local_buffer_50 = local_var_40;
+  local_buffer_60 = local_var_38;
   pfVar12 = *(float **)(unaff_RSI + 0xca);
   pfVar1 = unaff_RSI + 200;
   pfVar20 = *(float **)pfVar1;
@@ -666,12 +646,12 @@ void FUN_18026fe7f(void)
     lVar11 = ((int64_t)pfVar12 - (int64_t)pfVar20) / 0x14;
     for (lVar10 = lVar11; lVar10 != 0; lVar10 = lVar10 >> 1) {
     }
-    FUN_18026f230(pfVar20,pfVar12);
+    DataStructure_6f230(pfVar20,pfVar12);
     if (lVar11 < 0x1d) {
-      FUN_18026f390(pfVar20);
+      DataStructure_6f390(pfVar20);
     }
     else {
-      FUN_18026f390(pfVar20);
+      DataStructure_6f390(pfVar20);
       for (pfVar20 = pfVar20 + 0x8c; pfVar20 != pfVar12; pfVar20 = pfVar20 + 5) {
         fVar2 = *pfVar20;
         fVar5 = pfVar20[1];
@@ -708,13 +688,13 @@ void FUN_18026fe7f(void)
     lVar10 = (int64_t)pfVar20 - (int64_t)pfVar12 >> 3;
     for (lVar11 = lVar10; lVar11 != 0; lVar11 = lVar11 >> 1) {
     }
-    FUN_18026f6b0(pfVar12,pfVar20);
+    DataStructure_6f6b0(pfVar12,pfVar20);
     if (lVar10 < 0x1d) {
-      func_0x00018026f7f0(pfVar12,pfVar20);
+      Function_cad3ca20(pfVar12,pfVar20);
     }
     else {
       pfVar14 = pfVar12 + 0x38;
-      func_0x00018026f7f0(pfVar12);
+      Function_cad3ca20(pfVar12);
       for (; pfVar14 != pfVar20; pfVar14 = pfVar14 + 2) {
         fVar22 = *pfVar14;
         pfVar12 = pfVar14 + -2;
@@ -828,17 +808,9 @@ LAB_18026fba0:
     }
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_18026ff90(int64_t *param_1,uint64_t param_2)
-void FUN_18026ff90(int64_t *param_1,uint64_t param_2)
-
+// 函数: void DataStructure_6ff90(int64_t *param_1,uint64_t param_2)
+void DataStructure_6ff90(int64_t *param_1,uint64_t param_2)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -852,7 +824,6 @@ void FUN_18026ff90(int64_t *param_1,uint64_t param_2)
   uint64_t uVar10;
   uint64_t *puVar11;
   uint64_t uVar12;
-  
   puVar11 = (uint64_t *)param_1[1];
   if (param_2 <= (uint64_t)(param_1[2] - (int64_t)puVar11 >> 5)) {
     if (param_2 != 0) {
@@ -927,20 +898,12 @@ void FUN_18026ff90(int64_t *param_1,uint64_t param_2)
     param_1[1] = (int64_t)(puVar9 + param_2 * 8);
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreEngine_MemoryPoolManager();
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_18026ffc6(int64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_18026ffc6(int64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void DataStructure_6ffc6(int64_t param_1,int64_t param_2,int64_t param_3)
+void DataStructure_6ffc6(int64_t param_1,int64_t param_2,int64_t param_3)
 {
   uint64_t *puVar1;
   int32_t uVar2;
@@ -955,7 +918,6 @@ void FUN_18026ffc6(int64_t param_1,int64_t param_2,int64_t param_3)
   uint64_t uVar10;
   int64_t *unaff_RSI;
   int64_t unaff_RDI;
-  
   lVar6 = in_RAX >> 5;
   uVar10 = lVar6 * 2;
   if (lVar6 == 0) {
@@ -1009,12 +971,6 @@ void FUN_18026ffc6(int64_t param_1,int64_t param_2,int64_t param_3)
     unaff_RSI[1] = (int64_t)(puVar9 + unaff_RDI * 8);
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreEngine_MemoryPoolManager();
 }
-
-
-
-
-
-

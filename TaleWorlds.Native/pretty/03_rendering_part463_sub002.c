@@ -1,21 +1,17 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part463_sub002.c - 1 个函数
-
-// 函数: void FUN_180516bd0(int64_t param_1,ushort param_2,int16_t param_3)
-void FUN_180516bd0(int64_t param_1,ushort param_2,int16_t param_3)
-
+// 函数: void CoreEngine_516BD0(int64_t param_1,ushort param_2,int16_t param_3)
+void CoreEngine_516BD0(int64_t param_1,ushort param_2,int16_t param_3)
 {
   ushort *puVar1;
   int64_t *plVar2;
   int64_t lVar3;
-  
   puVar1 = (ushort *)(*(int64_t *)(param_1 + 0x728) + 0x5aa);
   *puVar1 = *puVar1 | param_2;
-  FUN_180516e40(param_1,param_3);
+  function_516e40(param_1,param_3);
   if ((param_2 & 0x33ff) != 0) {
     lVar3 = *(int64_t *)(param_1 + 0x590);
-    *(code **)(lVar3 + 0x3448) = FUN_180516cb0;
+    *(code **)(lVar3 + 0x3448) = function_516cb0;
     *(int64_t *)(lVar3 + 0x3440) = param_1;
   }
   if ((param_2 & 0x2000) != 0) {
@@ -29,13 +25,7 @@ void FUN_180516bd0(int64_t param_1,ushort param_2,int16_t param_3)
         (lVar3 = *(int64_t *)(lVar3 + 0x210), lVar3 == 0)))) {
       lVar3 = 0;
     }
-    FUN_1805778d0(*(uint64_t *)(param_1 + 0x590),lVar3);
+    function_5778d0(*(uint64_t *)(param_1 + 0x590),lVar3);
   }
   return;
 }
-
-
-
-
-
-

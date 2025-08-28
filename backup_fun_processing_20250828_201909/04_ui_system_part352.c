@@ -612,7 +612,7 @@ uint64_t FUN_18085d650(int64_t param_1,int8_t *param_2)
       }
       if (lStack_30 != 0) break;
       if (lStack_28 == 0) goto LAB_18085d78f;
-      lVar4 = func_0x00018084d0b0(*(uint64_t *)(param_1 + 0x110),lStack_28 + 0x20);
+      lVar4 = SystemCore_ProcessRequest(*(uint64_t *)(param_1 + 0x110),lStack_28 + 0x20);
       uStackX_8 = *(uint *)(lVar4 + 0x20);
     } while (auStack_38[0] < uStackX_8);
     uVar5 = 0;
@@ -734,9 +734,9 @@ FUN_18085d860(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   param_1[0x68] = 0;
   param_1[0x69] = 0;
   param_1[0x6a] = 0;
-  func_0x0001808b62c0(puVar1,param_7,param_5,param_4,param_1);
-  func_0x0001808c92a0(param_1 + 0x6f,param_4,param_5,param_1,puVar1,0,0);
-  func_0x0001808c92a0(param_1 + 0x7f,param_4,param_5,param_1,puVar1,0,0);
+  RenderingSystem_RenderObject(puVar1,param_7,param_5,param_4,param_1);
+  RenderingSystem_ProcessParameters(param_1 + 0x6f,param_4,param_5,param_1,puVar1,0,0);
+  RenderingSystem_ProcessParameters(param_1 + 0x7f,param_4,param_5,param_1,puVar1,0,0);
   param_1[0x8f] = 0;
   puVar1 = param_1 + 0x92;
   param_1[0x90] = 0;

@@ -1,45 +1,40 @@
 /* 函数别名定义: MathStatisticsProcessor */
 #define MathStatisticsProcessor MathStatisticsProcessor
-
-
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
 #include "TaleWorlds.Native.Split.h"
-
 /**
  * @file 03_rendering_part683.c
  * @brief 渲染系统高级角度计算和向量处理模块
- * 
+ *
  * 本模块实现了渲染系统中的高级角度计算、向量处理和数学优化功能。
  * 包含角度归一化、向量运算、插值计算、性能优化等核心渲染功能。
- * 
+ *
  * 主要功能：
  * - 角度归一化和范围处理
  * - 向量插值和混合计算
  * - 数学优化和近似计算
  * - 渲染参数动态调整
  * - 内存管理和资源处理
- * 
+ *
  * 技术特点：
  * - 使用SIMD指令进行数学优化
  * - 实现快速平方根倒数计算
  * - 支持动态参数调整
  * - 包含完整错误处理机制
- * 
+ *
  * @优化策略：
  * - 使用快速数学函数近似
  * - 缓存常用计算结果
  * - 条件分支优化
  * - 内存访问模式优化
- * 
+ *
  * @安全考虑：
  * - 边界检查和溢出保护
  * - 除零错误防护
  * - 内存访问安全验证
  * - 数值稳定性保证
  */
-
 // 系统常量定义
 #define RENDER_PI 3.1415927f                    // 圆周率常量
 #define RENDER_TWO_PI 6.2831855f                 // 2倍圆周率
@@ -53,7 +48,6 @@
 #define RENDER_VECTOR_COMPONENTS 3               // 向量分量数量
 #define RENDER_MEMORY_ALIGNMENT 0x4d6             // 内存对齐系数
 #define RENDER_DATA_OFFSET 0x185d                // 数据偏移量
-
 // 渲染系统状态枚举
 typedef enum {
     RENDER_STATE_INACTIVE = 0,        // 渲染状态：未激活
@@ -62,7 +56,6 @@ typedef enum {
     RENDER_STATE_COMPLETED = 3,       // 渲染状态：已完成
     RENDER_STATE_ERROR = 4            // 渲染状态：错误
 } RenderSystemState;
-
 // 角度处理模式枚举
 typedef enum {
     ANGLE_MODE_NORMALIZE = 0,        // 角度模式：归一化
@@ -70,7 +63,6 @@ typedef enum {
     ANGLE_MODE_WRAP = 2,             // 角度模式：环绕
     ANGLE_MODE_MIRROR = 3            // 角度模式：镜像
 } AngleProcessingMode;
-
 // 向量处理类型枚举
 typedef enum {
     VECTOR_TYPE_2D = 2,              // 向量类型：2D
@@ -78,7 +70,6 @@ typedef enum {
     VECTOR_TYPE_4D = 4,              // 向量类型：4D
     VECTOR_TYPE_HOMOGENEOUS = 5      // 向量类型：齐次
 } VectorProcessingType;
-
 // 渲染参数结构体
 typedef struct {
     float angle;                      // 角度参数
@@ -89,7 +80,6 @@ typedef struct {
     AngleProcessingMode angle_mode;    // 角度模式
     RenderSystemState state;         // 渲染状态
 } RenderParameters;
-
 // 渲染数据缓冲区结构体
 typedef struct {
     float* data_buffer;               // 数据缓冲区
@@ -97,7 +87,6 @@ typedef struct {
     size_t current_position;          // 当前位置
     bool is_initialized;              // 初始化状态
 } RenderDataBuffer;
-
 // 角度计算结果结构体
 typedef struct {
     float normalized_angle;           // 归一化角度
@@ -105,30 +94,26 @@ typedef struct {
     float interpolation_factor;       // 插值因子
     bool is_valid;                    // 有效标志
 } AngleCalculationResult;
-
 // 函数别名定义
-#define RenderingSystem_AdvancedAngleCalculator FUN_1806598ca
+#define RenderingSystem_AdvancedAngleCalculator function_6598ca
 #define RenderingSystem_ErrorHandler AdvancedSystemController
-#define RenderingSystem_MathProcessor FUN_18065c070
-#define RenderingSystem_InterpolationCalculator FUN_18065bf60
+#define RenderingSystem_MathProcessor function_65c070
+#define RenderingSystem_InterpolationCalculator function_65bf60
 #define RenderingSystem_MemoryAccessor MathStatisticsProcessor0
 #define RenderingSystem_SecurityChecker SystemSecurityChecker
-
 // 核心函数声明
 void RenderingSystem_AdvancedAngleCalculator(uint64_t param_1, uint param_2, uint param_3, uint64_t param_4,
                                            uint64_t param_5, uint64_t param_6, uint64_t param_7, uint64_t param_8,
                                            uint64_t param_9, uint64_t param_10, uint64_t param_11, uint64_t param_12);
-
 // 辅助函数声明
 float RenderingSystem_NormalizeAngle(float angle);
 float RenderingSystem_CalculateAngleDifference(float angle1, float angle2);
 float RenderingSystem_PerformVectorInterpolation(float* vectors, int count, float factor);
 void RenderingSystem_OptimizeMathCalculations(float* input, float* output, int size);
 bool RenderingSystem_ValidateRenderParameters(const RenderParameters* params);
-
 // 内部函数实现
 static inline float RenderingSystem_FastRSQRT(float number) {
-    // 快速平方根倒数计算（使用SIMD指令）
+// 快速平方根倒数计算（使用SIMD指令）
     float result = number;
     __asm__ (
         "rsqrtss %1, %0"
@@ -137,30 +122,26 @@ static inline float RenderingSystem_FastRSQRT(float number) {
     );
     return result;
 }
-
 static inline float RenderingSystem_SafeDivide(float numerator, float denominator) {
-    // 安全除法运算，防止除零错误
+// 安全除法运算，防止除零错误
     return (ABS(denominator) < RENDER_EPSILON) ? 0.0f : (numerator / denominator);
 }
-
 static inline bool RenderingSystem_IsAngleValid(float angle) {
-    // 验证角度值的有效性
+// 验证角度值的有效性
     return !isnan(angle) && !isinf(angle);
 }
-
 static inline float RenderingSystem_ClampAngle(float angle, float min_val, float max_val) {
-    // 限制角度在指定范围内
+// 限制角度在指定范围内
     if (angle < min_val) return min_val;
     if (angle > max_val) return max_val;
     return angle;
 }
-
 /**
  * 渲染系统高级角度计算器主函数
- * 
+ *
  * 本函数实现了渲染系统中的高级角度计算和向量处理功能。
  * 包含复杂的数学运算、角度归一化、向量插值等核心渲染计算。
- * 
+ *
  * @param param_1 系统参数1（渲染上下文）
  * @param param_2 系统参数2（角度参数）
  * @param param_3 系统参数3（幅度参数）
@@ -177,9 +158,8 @@ static inline float RenderingSystem_ClampAngle(float angle, float min_val, float
 void RenderingSystem_AdvancedAngleCalculator(uint64_t param_1,uint param_2,uint param_3,uint64_t param_4,
                                            uint64_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
                                            uint64_t param_9,uint64_t param_10,uint64_t param_11,uint64_t param_12)
-
 {
-    // 局部变量声明和初始化
+// 局部变量声明和初始化
     float *pfVar1;                    // 浮点指针变量1
     char cVar2;                       // 字符变量2
     bool bVar3;                       // 布尔变量3
@@ -216,29 +196,26 @@ void RenderingSystem_AdvancedAngleCalculator(uint64_t param_1,uint param_2,uint 
     float fVar25;                     // 浮点变量25
     float unaff_XMM8_Da;              // XMM8寄存器值
     float unaff_XMM9_Da;              // XMM9寄存器值
-    
-    // 栈变量声明
+// 栈变量声明
     float fStack0000000000000038;     // 栈变量38
     float fStack000000000000003c;     // 栈变量3c
     float fStack000000000000006c;     // 栈变量6c
     float fStack0000000000000074;     // 栈变量74
     float fStack000000000000007c;     // 栈变量7c
     float afStack_60e8 [6200];        // 大型浮点数组（用于渲染计算）
-    uint64_t uStack_8;                // 栈变量8（用于调试和错误处理）
-  
-  // 错误处理和系统初始化检查
+    uint64_t local_var_8;                // 栈变量8（用于调试和错误处理）
+// 错误处理和系统初始化检查
   if (!in_ZF) {
-    // 零标志位未设置，触发错误处理
-    // WARNING: 此子程序不返回
-    uStack_8 = 0x1806598e8;  // 设置错误代码
+// 零标志位未设置，触发错误处理
+// WARNING: 此子程序不返回
+    local_var_8 = 0x1806598e8;  // 设置错误代码
     RenderingSystem_ErrorHandler(param_2 ^ param_3);  // 调用错误处理函数
   }
-  // 初始化变量并设置渲染参数
+// 初始化变量并设置渲染参数
   fVar25 = fStack000000000000003c;  // 初始化浮点变量25
   fVar15 = fStack0000000000000038;  // 初始化浮点变量15
   fVar16 = unaff_R14[RENDER_DATA_OFFSET];  // 获取渲染数据偏移量
-  
-  // 渲染状态检查和条件判断
+// 渲染状态检查和条件判断
   if (((unaff_R14[0x10] == unaff_XMM6_Da) || (unaff_R14[0x10] == 0.5)) || (fVar16 <= unaff_XMM6_Da))
   {
     bVar3 = false;  // 设置布尔标志为false
@@ -246,17 +223,14 @@ void RenderingSystem_AdvancedAngleCalculator(uint64_t param_1,uint param_2,uint 
   else {
     bVar3 = true;   // 设置布尔标志为true
   }
-  
-  // 设置调试栈位置并开始角度计算
-  uStack_8 = 0x1806599e0;  // 设置调试位置标记
-  
-  // 计算角度差异（使用atan2f函数）
+// 设置调试栈位置并开始角度计算
+  local_var_8 = 0x1806599e0;  // 设置调试位置标记
+// 计算角度差异（使用atan2f函数）
   fVar12 = (float)atan2f(*(uint *)(*(int64_t *)(unaff_R12 + 0x10) + 0x80) ^ param_3,
                          *(int32_t *)(*(int64_t *)(unaff_R12 + 0x10) + 0x84));
   fVar12 = fVar12 + unaff_R14[6];  // 添加角度偏移
   unaff_R14[0xb] = fVar12;  // 存储计算结果
-  
-  // 角度归一化处理
+// 角度归一化处理
   if (fVar12 <= RENDER_PI) {
     if (fVar12 < -RENDER_PI) {
       fVar12 = fVar12 + RENDER_TWO_PI;  // 角度归一化：加2π
@@ -376,7 +350,7 @@ LAB_180659b1a:
     fVar12 = -fVar17;
   }
   unaff_R14[1] = unaff_R14[1] + fVar12;
-  uStack_8 = 0x180659d72;
+  local_var_8 = 0x180659d72;
   fVar12 = (float)RenderingSystem_MathProcessor(ABS(fVar13),fVar12,param_12);  // 调用数学处理器
   if (fVar12 <= 0.75) {
     fVar12 = 0.75;
@@ -402,7 +376,7 @@ LAB_180659b1a:
         uVar10 = uVar10 - 1;
       } while (uVar10 != 0);
     }
-    uStack_8 = 0x180659e10;
+    local_var_8 = 0x180659e10;
     fVar12 = (float)fmodf(param_6._4_4_ / fVar12 + unaff_R14[0xf]);
     unaff_R14[0xf] = fVar12;
   }
@@ -412,7 +386,7 @@ LAB_180659b1a:
   if (0 < (int)fVar13) {
     pfVar5 = unaff_R14 + 0x1b;
     do {
-      uStack_8 = 0x180659e3d;
+      local_var_8 = 0x180659e3d;
       fVar12 = (float)RenderingSystem_InterpolationCalculator(fVar12,iVar9);  // 调用插值计算器
       fVar12 = fVar12 * *pfVar5;
       iVar9 = iVar9 + 1;
@@ -438,14 +412,14 @@ LAB_180659b1a:
         fVar12 = -1.0;
       }
       lVar7 = *(int64_t *)(unaff_R14 + (int64_t)(int)fVar13 * 0x4d6 + -0x26);
-      uStack_8 = 0x180659ea7;
+      local_var_8 = 0x180659ea7;
       lVar4 = RenderingSystem_MemoryAccessor(*(uint64_t *)(lVar7 + 8));  // 调用内存访问器
       lVar8 = 0x14;
       if (unaff_XMM6_Da <= (param_9._4_4_ - ABS((float)param_9)) * fVar12) {
         lVar8 = 0x18;
       }
       fVar12 = *(float *)(lVar8 + lVar4);
-      uStack_8 = 0x180659edd;
+      local_var_8 = 0x180659edd;
       RenderingSystem_MemoryAccessor(*(uint64_t *)(lVar7 + 8));  // 调用内存访问器
       unaff_R14[0xe] = fVar12;
     }
@@ -482,7 +456,7 @@ LAB_180659b1a:
       fStack000000000000003c = fStack000000000000003c + fVar25;
     }
   }
-  uStack_8 = 0x18065a04d;
+  local_var_8 = 0x18065a04d;
   fVar13 = (float)atan2f(-fStack0000000000000038,fStack000000000000003c);
   fVar13 = ABS(fVar13);
   if (1.5707964 < fVar13) {
@@ -550,7 +524,7 @@ LAB_18065a17c:
     if (unaff_XMM6_Da <= fVar13 * fVar15) {
       fVar15 = fVar25;
       if (*(char *)((int64_t)unaff_R14 + 0x5d) == '\0') {
-        uStack_8 = 0x18065a252;
+        local_var_8 = 0x18065a252;
         fVar15 = (float)fmodf(fVar25 + 0.5);
       }
       fVar15 = fVar15 - unaff_R14[0xe];
@@ -839,20 +813,18 @@ LAB_18065a765:
       else {
         *(uint64_t *)(unaff_R14 + 0x185e) = _fStack0000000000000038;
       }
-                    // WARNING: Subroutine does not return
-      uStack_8 = 0x18065aa9f;
+// WARNING: Subroutine does not return
+      local_var_8 = 0x18065aa9f;
       fStack000000000000007c = param_11._4_4_;
-      RenderingSystem_SecurityChecker(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);  // 调用安全检查器
+      RenderingSystem_SecurityChecker(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&local_buffer_00000000);  // 调用安全检查器
     }
   } while( true );
 }
-
 // 辅助函数实现
-
 /**
  * 角度归一化函数
  * 将角度归一化到[-π, π]范围内
- * 
+ *
  * @param angle 输入角度
  * @return 归一化后的角度
  */
@@ -865,11 +837,10 @@ float RenderingSystem_NormalizeAngle(float angle) {
     }
     return angle;
 }
-
 /**
  * 角度差值计算函数
  * 计算两个角度之间的最小差值
- * 
+ *
  * @param angle1 第一个角度
  * @param angle2 第二个角度
  * @return 角度差值
@@ -884,11 +855,10 @@ float RenderingSystem_CalculateAngleDifference(float angle1, float angle2) {
     }
     return diff;
 }
-
 /**
  * 向量插值函数
  * 对多个向量进行插值计算
- * 
+ *
  * @param vectors 向量数组
  * @param count 向量数量
  * @param factor 插值因子
@@ -901,18 +871,17 @@ float RenderingSystem_PerformVectorInterpolation(float* vectors, int count, floa
     }
     return result;
 }
-
 /**
  * 数学计算优化函数
  * 对输入数据进行数学优化处理
- * 
+ *
  * @param input 输入数据
  * @param output 输出数据
  * @param size 数据大小
  */
 void RenderingSystem_OptimizeMathCalculations(float* input, float* output, int size) {
     for (int i = 0; i < size; i++) {
-        // 使用快速平方根倒数进行优化
+// 使用快速平方根倒数进行优化
         if (ABS(input[i]) > RENDER_EPSILON) {
             output[i] = RenderingSystem_FastRSQRT(input[i]);
         } else {
@@ -920,40 +889,30 @@ void RenderingSystem_OptimizeMathCalculations(float* input, float* output, int s
         }
     }
 }
-
 /**
  * 渲染参数验证函数
  * 验证渲染参数的有效性
- * 
+ *
  * @param params 渲染参数结构体
  * @return 验证结果
  */
 bool RenderingSystem_ValidateRenderParameters(const RenderParameters* params) {
     if (!params) return false;
-    
-    // 验证角度值
+// 验证角度值
     if (!RenderingSystem_IsAngleValid(params->angle)) {
         return false;
     }
-    
-    // 验证幅度值
+// 验证幅度值
     if (isnan(params->magnitude) || isinf(params->magnitude)) {
         return false;
     }
-    
-    // 验证插值因子范围
+// 验证插值因子范围
     if (params->interpolation < 0.0f || params->interpolation > 1.0f) {
         return false;
     }
-    
-    // 验证阈值
+// 验证阈值
     if (params->threshold < 0.0f) {
         return false;
     }
-    
     return true;
 }
-
-
-
-

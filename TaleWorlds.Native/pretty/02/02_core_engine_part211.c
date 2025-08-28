@@ -1,12 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 02_core_engine_part211.c - 核心引擎模块第211部分
 // 包含游戏对象搜索和匹配相关的功能
-
 /**
  * 搜索并匹配游戏对象
  * 根据给定的参数在游戏对象列表中搜索匹配的对象
- * 
+ *
  * @param context 上下文指针
  * @param search_params 搜索参数
  * @param target_params 目标参数
@@ -48,8 +46,7 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
     unsigned long long stack_ulong4;
     int64_t stack_long3;
     int64_t stack_array1[24];
-    
-    // 初始化栈变量
+// 初始化栈变量
     stack_ulong4 = 0xfffffffffffffffe;
     stack_array1[2] = g_global_data_0x180bf00a8 ^ (unsigned long long)stack_buffer1;
     ptr_ulong3 = (unsigned long long*)0x0;
@@ -58,8 +55,7 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
     stack_ptr4 = (unsigned long long*)0x0;
     stack_ptr5 = (unsigned long long*)0x0;
     stack_uint2 = 3;
-    
-    // 计算对象数量
+// 计算对象数量
     temp_long = (*(int64_t*)(g_global_data_0x180c8a9f8 + 0x3a8) - *(int64_t*)(g_global_data_0x180c8a9f8 + 0x3a0)) / 0x348;
     stack_ulong3 = stack_ulong3 & 0xffffffff00000000;
     ptr_ulong4 = stack_ptr3;
@@ -67,8 +63,7 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
     stack_long2 = search_params;
     stack_long3 = search_params;
     stack_array1[0] = temp_long;
-    
-    // 遍历对象列表
+// 遍历对象列表
     if (0 < (int)temp_long) {
         ptr_ulong2 = (unsigned long long*)0x0;
         stack_ulong1 = (unsigned long long*)0x0;
@@ -81,15 +76,13 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
             stack_ulong2 = 0;
             stack_ptr2 = (unsigned char*)0x0;
             stack_uint1 = 0;
-            
-            // 处理字符串数据
+// 处理字符串数据
             process_string_data(&stack_ptr1, *(unsigned int*)(temp_long2 + 0x18));
             if (*(int*)(temp_long2 + 0x18) != 0) {
-                // 复制字符串数据
+// 复制字符串数据
                 memcpy(stack_ptr2, *(void**)(temp_long2 + 0x10), *(int*)(temp_long2 + 0x18) + 1);
             }
-            
-            // 初始化字符串
+// 初始化字符串
             if (*(int64_t*)(temp_long2 + 0x10) != 0) {
                 stack_uint1 = 0;
                 if (stack_ptr2 != (unsigned char*)0x0) {
@@ -97,13 +90,12 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
                 }
                 stack_ulong2 = stack_ulong2 & 0xffffffff;
             }
-            
-            // 处理字符转换
+// 处理字符转换
             ptr_ulong4 = ptr_ulong3;
             ptr_ulong1 = ptr_ulong3;
             if (stack_uint1 != 0) {
                 do {
-                    // 转换特殊字符为空格
+// 转换特殊字符为空格
                     if ((byte)(*(char*)((int64_t)ptr_ulong4 + (int64_t)stack_ptr2) + 0xbfU) < 0x1a) {
                         *(char*)((int64_t)ptr_ulong4 + (int64_t)stack_ptr2) =
                             *(char*)((int64_t)ptr_ulong4 + (int64_t)stack_ptr2) + ' ';
@@ -113,8 +105,7 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
                     ptr_ulong4 = (unsigned long long*)((int64_t)ptr_ulong4 + 1);
                 } while (temp_uint2 < stack_uint1);
             }
-            
-            // 字符串匹配
+// 字符串匹配
             ptr_uchar = &g_string_constant_0x18098bc73;
             if (stack_ptr2 != (unsigned char*)0x0) {
                 ptr_uchar = stack_ptr2;
@@ -124,12 +115,12 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
             if (temp_long3 == 0) {
                 stack_ptr1 = &g_string_constant_0x180a3c3e0;
                 if (stack_ptr2 != (unsigned char*)0x0) {
-                    // 释放内存
+// 释放内存
                     free_memory();
                 }
             }
             else {
-                // 计算匹配分数
+// 计算匹配分数
                 temp_float2 = ABS(*(float*)(target_params + 0x40) - *(float*)(temp_long2 + 0x9c));
                 if (temp_float2 <= 1.0) {
                     temp_float2 = 1.0;
@@ -140,8 +131,7 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
                 }
                 temp_float1 = 100.0 / temp_float1 + 2000.0 / temp_float2;
                 temp_float2 = *(float*)(target_params + 0x68);
-                
-                // 特殊条件处理
+// 特殊条件处理
                 if ((temp_float2 <= 0.0) || (*(float*)(temp_long2 + 0x128) <= 0.0)) {
                     if ((-0.01 < temp_float2) &&
                         (((temp_float2 < 0.01 && (-0.01 < *(float*)(temp_long2 + 0x128))) &&
@@ -152,14 +142,12 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
                 else {
                     temp_float1 = temp_float1 + 100000.0;
                 }
-                
-                // 计算总分
+// 计算总分
                 stack_ulong1 = (unsigned long long*)
                     ((24.0 - ABS(ABS(12.0 - *(float*)(temp_long2 + 0x2c)) -
                                 ABS(12.0 - *(float*)(target_params + 0xa8)))) * 500.0 +
                      temp_float1);
-                
-                // 存储匹配结果
+// 存储匹配结果
                 if (ptr_ulong2 < ptr_ulong5) {
                     *ptr_ulong2 = (unsigned long long)stack_ulong1;
                 }
@@ -176,7 +164,6 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
                         ptr_ulong1 = ptr_ulong3;
                         if (temp_long != 0) goto LABEL_MEMORY_ALLOC;
                     }
-                    
                     ptr_ulong5 = (unsigned long long*)(temp_long2 + 7U >> 3);
                     if (ptr_ulong2 < ptr_ulong4) {
                         ptr_ulong5 = ptr_ulong3;
@@ -192,7 +179,7 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
                     }
                     *ptr_ulong2 = (unsigned long long)stack_ulong1;
                     if (ptr_ulong4 != (unsigned long long*)0x0) {
-                        // 释放内存
+// 释放内存
                         free_memory(ptr_ulong4);
                     }
                     ptr_ulong5 = ptr_ulong1 + temp_long;
@@ -205,11 +192,10 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
                 stack_ptr1 = &g_string_constant_0x180a3c3e0;
                 stack_ptr4 = ptr_ulong2;
                 if (stack_ptr2 != (unsigned char*)0x0) {
-                    // 释放内存
+// 释放内存
                     free_memory();
                 }
             }
-            
             ptr_ulong4 = stack_ptr3;
             search_params = stack_long2;
             stack_ulong2 = stack_ulong2 & 0xffffffff00000000;
@@ -219,7 +205,6 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
             ptr_ulong1 = (unsigned long long*)(unsigned long long)temp_uint2;
             stack_ulong3 = ((unsigned int)stack_ulong3 << 32) | temp_uint2;
         } while ((int)temp_uint2 < (int)temp_long);
-        
         stack_ulong1 = ptr_ulong2;
         if (stack_ptr3 != ptr_ulong2) {
             temp_long2 = (int64_t)ptr_ulong2 - (int64_t)stack_ptr3 >> 3;
@@ -228,8 +213,7 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
                 temp_uint2 = (int)ptr_ulong3 + 1;
                 ptr_ulong3 = (unsigned long long*)(unsigned long long)temp_uint2;
             }
-            
-            // 排序匹配结果
+// 排序匹配结果
             sort_match_results(stack_ptr3, ptr_ulong2, (int64_t)(int)(temp_uint2 - 1) * 2);
             if (temp_long2 < 0x1d) {
                 quick_sort(ptr_ulong4, ptr_ulong2);
@@ -267,7 +251,6 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
             }
         }
     }
-    
     temp_long = stack_long1;
     process_match_results(search_params, (int64_t)*(int*)((int64_t)ptr_ulong4 + 4) * 0x348 +
                           *(int64_t*)(g_global_data_0x180c8a9f8 + 0x3a0));
@@ -283,8 +266,7 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
     if (*(int*)(search_params + 0x3c) != temp_int2) {
         *(unsigned int*)(search_params + 0x30c) = *(unsigned int*)(search_params + 0x30c) & 0xffffffef;
     }
-    
-    // 更新游戏对象状态
+// 更新游戏对象状态
     temp_int2 = *(int*)(search_params + 0x340);
     *(int*)(search_params + 0x340) = temp_int2 + 1;
     *(int*)(search_params + 0x3c) = temp_int2;
@@ -294,22 +276,19 @@ void search_and_match_game_objects(void* context, int64_t search_params, int64_t
     *(int*)(search_params + 0x340) = temp_int2 + 3;
     *(unsigned int*)(search_params + 0x124) = *(unsigned int*)(temp_long + 0xc0);
     *(int*)(search_params + 0x340) = temp_int2 + 4;
-    
-    // 特殊条件处理
+// 特殊条件处理
     if (0.4 < *(float*)(search_params + 0xb4)) {
         *(unsigned int*)(search_params + 0xa0) = *(unsigned int*)(temp_long + 0x44);
         *(unsigned int*)(search_params + 0x30c) = *(unsigned int*)(search_params + 0x30c) & 0xfffffff9;
         *(int*)(search_params + 0x340) = temp_int2 + 5;
     }
-    
-    // 释放内存
+// 释放内存
     free_memory(ptr_ulong4);
 }
-
 /**
  * 处理匹配结果
  * 初始化并配置匹配结果的数据结构
- * 
+ *
  * @param result_ptr 结果指针
  * @param data_ptr 数据指针
  * @param param3 参数3
@@ -323,13 +302,11 @@ void* process_match_results(void* result_ptr, int64_t data_ptr, void* param3, vo
     unsigned int temp_uint2;
     unsigned int temp_uint3;
     void* temp_ptr;
-    
     temp_ptr = (void*)0xfffffffffffffffe;
     *result_ptr = &g_global_object_0x180a07218;
     *result_ptr = &g_global_object_0x180a071f8;
     copy_object_data(result_ptr + 1, data_ptr + 8, param3, param4, (void*)0xfffffffffffffffe);
-    
-    // 复制基础数据
+// 复制基础数据
     *(unsigned int*)(result_ptr + 5) = *(unsigned int*)(data_ptr + 0x28);
     *(unsigned int*)((int64_t)result_ptr + 0x2c) = *(unsigned int*)(data_ptr + 0x2c);
     *(unsigned int*)(result_ptr + 6) = *(unsigned int*)(data_ptr + 0x30);
@@ -337,24 +314,21 @@ void* process_match_results(void* result_ptr, int64_t data_ptr, void* param3, vo
     *(unsigned int*)(result_ptr + 7) = *(unsigned int*)(data_ptr + 0x38);
     *(unsigned int*)((int64_t)result_ptr + 0x3c) = *(unsigned int*)(data_ptr + 0x3c);
     *(unsigned int*)(result_ptr + 8) = *(unsigned int*)(data_ptr + 0x40);
-    
     copy_object_data(result_ptr + 9, data_ptr + 0x48);
     ptr_long = *(int64_t***)(data_ptr + 0x68);
     result_ptr[0xd] = ptr_long;
     if (ptr_long != (int64_t**)0x0) {
-        // 调用对象方法
+// 调用对象方法
         (*(void(**)())(*ptr_long + 0x28))();
     }
-    
     copy_object_data(result_ptr + 0xe, data_ptr + 0x70, param3, param4, temp_ptr);
     ptr_long = *(int64_t***)(data_ptr + 0x90);
     result_ptr[0x12] = ptr_long;
     if (ptr_long != (int64_t**)0x0) {
-        // 调用对象方法
+// 调用对象方法
         (*(void(**)())(*ptr_long + 0x28))();
     }
-    
-    // 复制位置和旋转数据
+// 复制位置和旋转数据
     *(unsigned int*)(result_ptr + 0x13) = *(unsigned int*)(data_ptr + 0x98);
     *(unsigned int*)((int64_t)result_ptr + 0x9c) = *(unsigned int*)(data_ptr + 0x9c);
     *(unsigned int*)(result_ptr + 0x14) = *(unsigned int*)(data_ptr + 0xa0);
@@ -366,8 +340,7 @@ void* process_match_results(void* result_ptr, int64_t data_ptr, void* param3, vo
     *(unsigned int*)(result_ptr + 0x17) = *(unsigned int*)(data_ptr + 0xb8);
     *(unsigned int*)((int64_t)result_ptr + 0xbc) = *(unsigned int*)(data_ptr + 0xbc);
     *(unsigned int*)(result_ptr + 0x18) = *(unsigned int*)(data_ptr + 0xc0);
-    
-    // 复制向量数据
+// 复制向量数据
     temp_ptr = *(void**)(data_ptr + 0xcc);
     *(void**)((int64_t)result_ptr + 0xc4) = *(void**)(data_ptr + 0xc4);
     *(void**)((int64_t)result_ptr + 0xcc) = temp_ptr;
@@ -380,8 +353,7 @@ void* process_match_results(void* result_ptr, int64_t data_ptr, void* param3, vo
     temp_ptr = *(void**)(data_ptr + 0xfc);
     *(void**)((int64_t)result_ptr + 0xf4) = *(void**)(data_ptr + 0xf4);
     *(void**)((int64_t)result_ptr + 0xfc) = temp_ptr;
-    
-    // 复制颜色数据
+// 复制颜色数据
     temp_uint1 = *(unsigned int*)(data_ptr + 0x108);
     temp_uint2 = *(unsigned int*)(data_ptr + 0x10c);
     temp_uint3 = *(unsigned int*)(data_ptr + 0x110);
@@ -396,40 +368,35 @@ void* process_match_results(void* result_ptr, int64_t data_ptr, void* param3, vo
     *(unsigned int*)((int64_t)result_ptr + 0x124) = *(unsigned int*)(data_ptr + 0x124);
     *(unsigned int*)(result_ptr + 0x25) = *(unsigned int*)(data_ptr + 0x128);
     *(unsigned int*)((int64_t)result_ptr + 300) = *(unsigned int*)(data_ptr + 300);
-    
     copy_object_data(result_ptr + 0x26, data_ptr + 0x130);
     ptr_long = *(int64_t***)(data_ptr + 0x150);
     result_ptr[0x2a] = ptr_long;
     if (ptr_long != (int64_t**)0x0) {
-        // 调用对象方法
+// 调用对象方法
         (*(void(**)())(*ptr_long + 0x28))();
     }
-    
     copy_object_data(result_ptr + 0x2b, data_ptr + 0x158);
     ptr_long = *(int64_t***)(data_ptr + 0x178);
     result_ptr[0x2f] = ptr_long;
     if (ptr_long != (int64_t**)0x0) {
-        // 调用对象方法
+// 调用对象方法
         (*(void(**)())(*ptr_long + 0x28))();
     }
-    
     *(unsigned int*)(result_ptr + 0x30) = *(unsigned int*)(data_ptr + 0x180);
     copy_object_data(result_ptr + 0x31, data_ptr + 0x188);
     ptr_long = *(int64_t***)(data_ptr + 0x1a8);
     result_ptr[0x35] = ptr_long;
     if (ptr_long != (int64_t**)0x0) {
-        // 调用对象方法
+// 调用对象方法
         (*(void(**)())(*ptr_long + 0x28))();
     }
-    
     ptr_long = *(int64_t***)(data_ptr + 0x1b0);
     result_ptr[0x36] = ptr_long;
     if (ptr_long != (int64_t**)0x0) {
-        // 调用对象方法
+// 调用对象方法
         (*(void(**)())(*ptr_long + 0x28))();
     }
-    
-    // 复制更多数据
+// 复制更多数据
     *(unsigned int*)(result_ptr + 0x37) = *(unsigned int*)(data_ptr + 0x1b8);
     *(unsigned int*)((int64_t)result_ptr + 0x1bc) = *(unsigned int*)(data_ptr + 0x1bc);
     temp_uint1 = *(unsigned int*)(data_ptr + 0x1c4);
@@ -465,24 +432,21 @@ void* process_match_results(void* result_ptr, int64_t data_ptr, void* param3, vo
     *(unsigned int*)((int64_t)result_ptr + 0x22c) = *(unsigned int*)(data_ptr + 0x22c);
     *(unsigned int*)(result_ptr + 0x46) = *(unsigned int*)(data_ptr + 0x230);
     *(unsigned int*)((int64_t)result_ptr + 0x234) = *(unsigned int*)(data_ptr + 0x234);
-    
     copy_object_data(result_ptr + 0x47, data_ptr + 0x238);
     ptr_long = *(int64_t***)(data_ptr + 600);
     result_ptr[0x4b] = ptr_long;
     if (ptr_long != (int64_t**)0x0) {
-        // 调用对象方法
+// 调用对象方法
         (*(void(**)())(*ptr_long + 0x28))();
     }
-    
     copy_object_data(result_ptr + 0x4c, data_ptr + 0x260);
     ptr_long = *(int64_t***)(data_ptr + 0x280);
     result_ptr[0x50] = ptr_long;
     if (ptr_long != (int64_t**)0x0) {
-        // 调用对象方法
+// 调用对象方法
         (*(void(**)())(*ptr_long + 0x28))();
     }
-    
-    // 复制最终数据
+// 复制最终数据
     *(unsigned int*)(result_ptr + 0x51) = *(unsigned int*)(data_ptr + 0x288);
     *(unsigned int*)((int64_t)result_ptr + 0x28c) = *(unsigned int*)(data_ptr + 0x28c);
     *(unsigned int*)(result_ptr + 0x52) = *(unsigned int*)(data_ptr + 0x290);
@@ -525,12 +489,9 @@ void* process_match_results(void* result_ptr, int64_t data_ptr, void* param3, vo
     *(unsigned int*)(result_ptr + 0x62) = *(unsigned int*)(data_ptr + 0x310);
     *(unsigned int*)((int64_t)result_ptr + 0x314) = *(unsigned int*)(data_ptr + 0x314);
     *(unsigned char*)(result_ptr + 99) = *(unsigned char*)(data_ptr + 0x318);
-    
     copy_object_data(result_ptr + 100, data_ptr + 800);
     *(unsigned int*)(result_ptr + 0x68) = *(unsigned int*)(data_ptr + 0x340);
-    
     return result_ptr;
 }
-
 // 注意：这是一个简化实现，原始实现包含复杂的内存管理和对象操作
 // 简化实现保留了核心功能结构，但省略了一些底层细节

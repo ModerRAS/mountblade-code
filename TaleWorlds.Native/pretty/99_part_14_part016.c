@@ -1,24 +1,17 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_14_part016.c - 8 个函数
-
-// 函数: void FUN_1808f7cc0(int64_t param_1)
-void FUN_1808f7cc0(int64_t param_1)
-
+// 函数: void function_8f7cc0(int64_t param_1)
+void function_8f7cc0(int64_t param_1)
 {
   if (param_1 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(param_1 + 4,0,0x90);
   }
   return;
 }
-
-
-
-int FUN_1808f7ec0(int *param_1,short param_2,short param_3,short param_4,float *param_5,
+int function_8f7ec0(int *param_1,short param_2,short param_3,short param_4,float *param_5,
                  uint64_t param_6)
-
 {
   ushort uVar1;
   int iVar2;
@@ -36,7 +29,6 @@ int FUN_1808f7ec0(int *param_1,short param_2,short param_3,short param_4,float *
   float fVar14;
   float fVar15;
   float fVar16;
-  
   iVar5 = 0;
   if (*param_1 == 0) {
     return 0;
@@ -177,7 +169,7 @@ LAB_1808f7faa:
     }
     param_5[2] = (float)param_1[6] - fVar15;
 LAB_1808f823c:
-    func_0x0001808f7c40(fVar15,param_5,param_6);
+    SystemFunction_0001808f7c40(fVar15,param_5,param_6);
     param_1[4] = (int)*param_5;
     param_1[5] = (int)param_5[1];
     param_1[6] = (int)param_5[2];
@@ -201,11 +193,7 @@ LAB_1808f826b:
   param_1[0x23] = 0;
   return iVar5;
 }
-
-
-
-uint64_t FUN_1808f7fdb(int64_t param_1,float param_2,int param_3,int param_4)
-
+uint64_t function_8f7fdb(int64_t param_1,float param_2,int param_3,int param_4)
 {
   int iVar1;
   int iVar2;
@@ -227,9 +215,8 @@ uint64_t FUN_1808f7fdb(int64_t param_1,float param_2,int param_3,int param_4)
   float fVar9;
   float fVar10;
   float fVar11;
-  float *in_stack_00000080;
-  uint64_t in_stack_00000088;
-  
+  float *local_buffer_80;
+  uint64_t local_buffer_88;
   fVar6 = (float)unaff_EBX;
   fVar10 = (float)*(int *)(param_1 + 0x84) / fVar6;
   fVar11 = (float)*(int *)(param_1 + 0x88) / fVar6;
@@ -254,27 +241,27 @@ uint64_t FUN_1808f7fdb(int64_t param_1,float param_2,int param_3,int param_4)
     if ((fVar10 <= fVar7) && (fVar8 = -fVar7, -fVar7 <= fVar10)) {
       fVar8 = fVar10;
     }
-    *in_stack_00000080 = *(float *)(param_1 + 0x10) - fVar8;
+    *local_buffer_80 = *(float *)(param_1 + 0x10) - fVar8;
     fVar10 = *(float *)(param_1 + 0x54);
     fVar11 = *(float *)(param_1 + 0x14) - fVar11;
     fVar7 = fVar10;
     if ((fVar11 <= fVar10) && (fVar7 = -fVar10, -fVar10 <= fVar11)) {
       fVar7 = fVar11;
     }
-    in_stack_00000080[1] = *(float *)(param_1 + 0x14) - fVar7;
+    local_buffer_80[1] = *(float *)(param_1 + 0x14) - fVar7;
     fVar11 = *(float *)(param_1 + 0x58);
     fVar6 = *(float *)(param_1 + 0x18) - fVar6;
     fVar10 = fVar11;
     if ((fVar6 <= fVar11) && (fVar10 = -fVar11, -fVar11 <= fVar6)) {
       fVar10 = fVar6;
     }
-    in_stack_00000080[2] = *(float *)(param_1 + 0x18) - fVar10;
+    local_buffer_80[2] = *(float *)(param_1 + 0x18) - fVar10;
 LAB_1808f823c:
-    func_0x0001808f7c40(fVar10,in_stack_00000080,in_stack_00000088);
+    SystemFunction_0001808f7c40(fVar10,local_buffer_80,local_buffer_88);
     unaff_RBP = uVar5 & 0xffffffff;
-    *(float *)(param_1 + 0x10) = *in_stack_00000080;
-    *(float *)(param_1 + 0x14) = in_stack_00000080[1];
-    *(float *)(param_1 + 0x18) = in_stack_00000080[2];
+    *(float *)(param_1 + 0x10) = *local_buffer_80;
+    *(float *)(param_1 + 0x14) = local_buffer_80[1];
+    *(float *)(param_1 + 0x18) = local_buffer_80[2];
   }
   else {
     if (((fVar9 < *(float *)(param_1 + 0x2c)) &&
@@ -296,21 +283,21 @@ LAB_1808f823c:
       if ((fVar7 <= fVar6) && (fVar10 = -fVar6, -fVar6 <= fVar7)) {
         fVar10 = fVar7;
       }
-      *in_stack_00000080 = *(float *)(param_1 + 0x10) - fVar10;
+      *local_buffer_80 = *(float *)(param_1 + 0x10) - fVar10;
       fVar6 = *(float *)(param_1 + 0x24);
       fVar7 = *(float *)(param_1 + 0x14) - (float)iVar1 / fVar11;
       fVar10 = fVar6;
       if ((fVar7 <= fVar6) && (fVar10 = -fVar6, -fVar6 <= fVar7)) {
         fVar10 = fVar7;
       }
-      in_stack_00000080[1] = *(float *)(param_1 + 0x14) - fVar10;
+      local_buffer_80[1] = *(float *)(param_1 + 0x14) - fVar10;
       fVar6 = *(float *)(param_1 + 0x28);
       fVar11 = *(float *)(param_1 + 0x18) - (float)iVar2 / fVar11;
       fVar10 = fVar6;
       if ((fVar11 <= fVar6) && (fVar10 = -fVar6, -fVar6 <= fVar11)) {
         fVar10 = fVar11;
       }
-      in_stack_00000080[2] = *(float *)(param_1 + 0x18) - fVar10;
+      local_buffer_80[2] = *(float *)(param_1 + 0x18) - fVar10;
       goto LAB_1808f823c;
     }
   }
@@ -327,293 +314,199 @@ LAB_1808f826b:
   *(int32_t *)(param_1 + 0x8c) = 0;
   return unaff_RBP & 0xffffffff;
 }
-
-
-
-int32_t FUN_1808f829d(void)
-
+int32_t function_8f829d(void)
 {
   int32_t unaff_EBP;
-  
   return unaff_EBP;
 }
-
-
-
 void NVSDK_NGX_Parameter_GetD(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f82d0  11  NVSDK_NGX_Parameter_GetD
+// 0x8f82d0  11  NVSDK_NGX_Parameter_GetD
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x68);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f831f. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f831f. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_GetD3d11Resource(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f8330  12  NVSDK_NGX_Parameter_GetD3d11Resource
+// 0x8f8330  12  NVSDK_NGX_Parameter_GetD3d11Resource
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x50);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f837f. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f837f. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_GetD3d12Resource(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f8390  13  NVSDK_NGX_Parameter_GetD3d12Resource
+// 0x8f8390  13  NVSDK_NGX_Parameter_GetD3d12Resource
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x48);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f83df. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f83df. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_GetF(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f83f0  14  NVSDK_NGX_Parameter_GetF
+// 0x8f83f0  14  NVSDK_NGX_Parameter_GetF
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x70);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f843f. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f843f. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_GetI(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f8450  15  NVSDK_NGX_Parameter_GetI
+// 0x8f8450  15  NVSDK_NGX_Parameter_GetI
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x58);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f849f. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f849f. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_GetUI(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f84b0  16  NVSDK_NGX_Parameter_GetUI
+// 0x8f84b0  16  NVSDK_NGX_Parameter_GetUI
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x60);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f84ff. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f84ff. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_GetULL(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f8510  17  NVSDK_NGX_Parameter_GetULL
+// 0x8f8510  17  NVSDK_NGX_Parameter_GetULL
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x78);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f855f. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f855f. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_GetVoidPointer(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f8570  18  NVSDK_NGX_Parameter_GetVoidPointer
+// 0x8f8570  18  NVSDK_NGX_Parameter_GetVoidPointer
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x40);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f85bf. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f85bf. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_SetD(int64_t *param_1,uint64_t param_2,int32_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f85d0  19  NVSDK_NGX_Parameter_SetD
+// 0x8f85d0  19  NVSDK_NGX_Parameter_SetD
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x28);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f861d. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f861d. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_SetD3d11Resource(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f8620  20  NVSDK_NGX_Parameter_SetD3d11Resource
+// 0x8f8620  20  NVSDK_NGX_Parameter_SetD3d11Resource
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x10);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f866f. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f866f. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_SetD3d12Resource(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f8680  21  NVSDK_NGX_Parameter_SetD3d12Resource
+// 0x8f8680  21  NVSDK_NGX_Parameter_SetD3d12Resource
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 8);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f86cf. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f86cf. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_SetF(int64_t *param_1,uint64_t param_2,int32_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f86e0  22  NVSDK_NGX_Parameter_SetF
+// 0x8f86e0  22  NVSDK_NGX_Parameter_SetF
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x30);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f872d. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f872d. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_SetI(int64_t *param_1,uint64_t param_2,int32_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f8730  23  NVSDK_NGX_Parameter_SetI
+// 0x8f8730  23  NVSDK_NGX_Parameter_SetI
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x18);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f877f. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f877f. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_SetUI(int64_t *param_1,uint64_t param_2,int32_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f8790  24  NVSDK_NGX_Parameter_SetUI
+// 0x8f8790  24  NVSDK_NGX_Parameter_SetUI
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x20);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f87df. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f87df. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_SetULL(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f87f0  25  NVSDK_NGX_Parameter_SetULL
+// 0x8f87f0  25  NVSDK_NGX_Parameter_SetULL
   UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x38);
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f883f. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f883f. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 void NVSDK_NGX_Parameter_SetVoidPointer(uint64_t *param_1,uint64_t param_2,uint64_t param_3)
-
 {
   code *UNRECOVERED_JUMPTABLE;
-  
-                    // 0x8f8850  26  NVSDK_NGX_Parameter_SetVoidPointer
+// 0x8f8850  26  NVSDK_NGX_Parameter_SetVoidPointer
   UNRECOVERED_JUMPTABLE = *(code **)*param_1;
   _guard_check_icall(UNRECOVERED_JUMPTABLE);
-                    // WARNING: Could not recover jumptable at 0x0001808f889e. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f889e. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(param_1,param_2,param_3);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1808f88b0(code *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
-void FUN_1808f88b0(code *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+// 函数: void function_8f88b0(code *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+void function_8f88b0(code *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
                   int64_t param_5)
-
 {
   code *pcVar1;
   int64_t *plVar2;
-  
   pcVar1 = (code *)0x0;
   plVar2 = (int64_t *)
            (*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 0x40);
   if (param_5 != 0) {
-    pcVar1 = FUN_1808f8b00;
+    pcVar1 = function_8f8b00;
   }
   *plVar2 = param_5;
   _guard_check_icall(param_1);
@@ -621,29 +514,20 @@ void FUN_1808f88b0(code *param_1,uint64_t param_2,uint64_t param_3,uint64_t para
   *plVar2 = 0;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
-void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
-
+// 函数: void function_8f8940(uint64_t *param_1,uint64_t *param_2)
+void function_8f8940(uint64_t *param_1,uint64_t *param_2)
 {
   code *pcVar1;
   int64_t *plVar2;
   int iVar3;
-  int8_t auStack_188 [32];
+  int8_t stack_array_188 [32];
   int64_t *plStack_168;
   int64_t *plStack_160;
-  int8_t auStack_158 [296];
-  uint64_t uStack_30;
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_188;
+  int8_t stack_array_158 [296];
+  uint64_t local_var_30;
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_188;
   pcVar1 = *(code **)*param_1;
   _guard_check_icall(pcVar1);
   iVar3 = (*pcVar1)(param_1,&processed_var_6640_ptr,&plStack_168);
@@ -665,7 +549,7 @@ void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
     else {
       pcVar1 = *(code **)(*plStack_160 + 0x40);
       _guard_check_icall(pcVar1);
-      iVar3 = (*pcVar1)(plVar2,auStack_158);
+      iVar3 = (*pcVar1)(plVar2,stack_array_158);
       if (iVar3 < 0) {
         pcVar1 = *(code **)(*plStack_160 + 0x10);
         _guard_check_icall(pcVar1);
@@ -676,7 +560,7 @@ void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
         NetworkSystem_ConnectionHandler(&processed_var_5376_ptr,0x4f,&processed_var_5344_ptr,&processed_var_5504_ptr);
       }
       else {
-        *param_2 = uStack_30;
+        *param_2 = local_var_30;
         pcVar1 = *(code **)(*plStack_160 + 0x10);
         _guard_check_icall(pcVar1);
         (*pcVar1)(plStack_160);
@@ -686,28 +570,20 @@ void FUN_1808f8940(uint64_t *param_1,uint64_t *param_2)
       }
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_188);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_188);
 }
-
-
-
-
-
-
-// 函数: void FUN_1808f89b5(void)
-void FUN_1808f89b5(void)
-
+// 函数: void function_8f89b5(void)
+void function_8f89b5(void)
 {
   code *pcVar1;
   int iVar2;
   int64_t *unaff_RDI;
   uint64_t *unaff_R14;
   int64_t *plStackX_20;
-  int64_t *in_stack_00000028;
-  uint64_t in_stack_00000158;
-  uint64_t in_stack_00000160;
-  
+  int64_t *local_var_28;
+  uint64_t local_var_158;
+  uint64_t local_var_160;
   pcVar1 = *(code **)(*unaff_RDI + 0x38);
   _guard_check_icall(pcVar1);
   iVar2 = (*pcVar1)();
@@ -718,60 +594,43 @@ void FUN_1808f89b5(void)
     NetworkSystem_ConnectionHandler(&processed_var_5376_ptr,0x45,&processed_var_5344_ptr,&processed_var_5464_ptr);
   }
   else {
-    pcVar1 = *(code **)(*in_stack_00000028 + 0x40);
+    pcVar1 = *(code **)(*local_var_28 + 0x40);
     _guard_check_icall(pcVar1);
-    iVar2 = (*pcVar1)(in_stack_00000028,&stack0x00000030);
+    iVar2 = (*pcVar1)(local_var_28,&local_buffer_00000030);
     if (iVar2 < 0) {
-      pcVar1 = *(code **)(*in_stack_00000028 + 0x10);
+      pcVar1 = *(code **)(*local_var_28 + 0x10);
       _guard_check_icall(pcVar1);
-      (*pcVar1)(in_stack_00000028);
+      (*pcVar1)(local_var_28);
       pcVar1 = *(code **)(*plStackX_20 + 0x10);
       _guard_check_icall(pcVar1);
       (*pcVar1)(plStackX_20);
       NetworkSystem_ConnectionHandler(&processed_var_5376_ptr,0x4f,&processed_var_5344_ptr,&processed_var_5504_ptr);
     }
     else {
-      *unaff_R14 = in_stack_00000158;
-      pcVar1 = *(code **)(*in_stack_00000028 + 0x10);
+      *unaff_R14 = local_var_158;
+      pcVar1 = *(code **)(*local_var_28 + 0x10);
       _guard_check_icall(pcVar1);
-      (*pcVar1)(in_stack_00000028);
+      (*pcVar1)(local_var_28);
       pcVar1 = *(code **)(*plStackX_20 + 0x10);
       _guard_check_icall(pcVar1);
       (*pcVar1)(plStackX_20);
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_160 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-
-// 函数: void FUN_1808f8add(void)
-void FUN_1808f8add(void)
-
+// 函数: void function_8f8add(void)
+void function_8f8add(void)
 {
-  uint64_t in_stack_00000160;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000160 ^ (uint64_t)&stack0x00000000);
+  uint64_t local_var_160;
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_160 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1808f8b00(int32_t param_1,uint64_t param_2)
-void FUN_1808f8b00(int32_t param_1,uint64_t param_2)
-
+// 函数: void function_8f8b00(int32_t param_1,uint64_t param_2)
+void function_8f8b00(int32_t param_1,uint64_t param_2)
 {
   code *pcVar1;
-  
   pcVar1 = *(code **)(*(int64_t *)
                        ((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 0x40);
   if (pcVar1 != (code *)0x0) {
@@ -780,18 +639,12 @@ void FUN_1808f8b00(int32_t param_1,uint64_t param_2)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t NVSDK_NGX_D3D11_AllocateParameters(uint64_t param_1)
-
 {
   code *UNRECOVERED_JUMPTABLE;
   uint64_t uVar1;
-  
-                    // 0x8f8b60  1  NVSDK_NGX_D3D11_AllocateParameters
+// 0x8f8b60  1  NVSDK_NGX_D3D11_AllocateParameters
   UNRECOVERED_JUMPTABLE = system_system_config;
   if (system_system_config == 0) {
     return 0xbad00007;
@@ -800,64 +653,44 @@ uint64_t NVSDK_NGX_D3D11_AllocateParameters(uint64_t param_1)
     return 0xbad0000c;
   }
   _guard_check_icall(system_system_config);
-                    // WARNING: Could not recover jumptable at 0x0001808f8bb8. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f8bb8. Too many branches
+// WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)(param_1);
   return uVar1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1808f8b7e(void)
-
+uint64_t function_8f8b7e(void)
 {
   code *UNRECOVERED_JUMPTABLE;
   uint64_t uVar1;
-  
   UNRECOVERED_JUMPTABLE = system_system_config;
   if (system_system_config == (code *)0x0) {
     return 0xbad0000c;
   }
   _guard_check_icall(system_system_config);
-                    // WARNING: Could not recover jumptable at 0x0001808f8bb8. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f8bb8. Too many branches
+// WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)();
   return uVar1;
 }
-
-
-
-
-
-
-// 函数: void FUN_1808f8b9f(void)
-void FUN_1808f8b9f(void)
-
+// 函数: void function_8f8b9f(void)
+void function_8f8b9f(void)
 {
   code *UNRECOVERED_JUMPTABLE;
-  
   _guard_check_icall();
-                    // WARNING: Could not recover jumptable at 0x0001808f8bb8. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f8bb8. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)();
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t
 NVSDK_NGX_D3D11_CreateFeature
           (uint64_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
   code *pcVar1;
   uint64_t uVar2;
-  
-                    // 0x8f8bc0  2  NVSDK_NGX_D3D11_CreateFeature
+// 0x8f8bc0  2  NVSDK_NGX_D3D11_CreateFeature
   pcVar1 = system_system_config;
   if (system_system_config == (code *)0x0) {
     uVar2 = 0xbad00007;
@@ -868,18 +701,12 @@ NVSDK_NGX_D3D11_CreateFeature
   }
   return uVar2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t NVSDK_NGX_D3D11_DestroyParameters(uint64_t param_1)
-
 {
   code *UNRECOVERED_JUMPTABLE;
   uint64_t uVar1;
-  
-                    // 0x8f8c30  3  NVSDK_NGX_D3D11_DestroyParameters
+// 0x8f8c30  3  NVSDK_NGX_D3D11_DestroyParameters
   UNRECOVERED_JUMPTABLE = system_system_config;
   if (system_system_config == 0) {
     return 0xbad00007;
@@ -888,64 +715,44 @@ uint64_t NVSDK_NGX_D3D11_DestroyParameters(uint64_t param_1)
     return 0xbad0000c;
   }
   _guard_check_icall(system_system_config);
-                    // WARNING: Could not recover jumptable at 0x0001808f8c88. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f8c88. Too many branches
+// WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)(param_1);
   return uVar1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1808f8c4e(void)
-
+uint64_t function_8f8c4e(void)
 {
   code *UNRECOVERED_JUMPTABLE;
   uint64_t uVar1;
-  
   UNRECOVERED_JUMPTABLE = system_system_config;
   if (system_system_config == (code *)0x0) {
     return 0xbad0000c;
   }
   _guard_check_icall(system_system_config);
-                    // WARNING: Could not recover jumptable at 0x0001808f8c88. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f8c88. Too many branches
+// WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)();
   return uVar1;
 }
-
-
-
-
-
-
-// 函数: void FUN_1808f8c6f(void)
-void FUN_1808f8c6f(void)
-
+// 函数: void function_8f8c6f(void)
+void function_8f8c6f(void)
 {
   code *UNRECOVERED_JUMPTABLE;
-  
   _guard_check_icall();
-                    // WARNING: Could not recover jumptable at 0x0001808f8c88. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f8c88. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)();
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t
 NVSDK_NGX_D3D11_EvaluateFeature
           (uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
   code *pcVar1;
   uint64_t uVar2;
-  
-                    // 0x8f8c90  4  NVSDK_NGX_D3D11_EvaluateFeature
+// 0x8f8c90  4  NVSDK_NGX_D3D11_EvaluateFeature
   pcVar1 = system_system_config;
   if (system_system_config == (code *)0x0) {
     uVar2 = 0xbad00007;
@@ -956,37 +763,25 @@ NVSDK_NGX_D3D11_EvaluateFeature
   }
   return uVar2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t
 NVSDK_NGX_D3D11_EvaluateFeature_C
           (uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
   uint64_t uVar1;
-  
-                    // 0x8f8d00  5  NVSDK_NGX_D3D11_EvaluateFeature_C
+// 0x8f8d00  5  NVSDK_NGX_D3D11_EvaluateFeature_C
   if (system_system_config == 0) {
     return 0xbad00007;
   }
-  uVar1 = FUN_1808f88b0(system_system_config,param_1,param_2,param_3,param_4);
+  uVar1 = function_8f88b0(system_system_config,param_1,param_2,param_3,param_4);
   return uVar1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t NVSDK_NGX_D3D11_GetCapabilityParameters(uint64_t param_1)
-
 {
   code *UNRECOVERED_JUMPTABLE;
   uint64_t uVar1;
-  
-                    // 0x8f8d40  6  NVSDK_NGX_D3D11_GetCapabilityParameters
+// 0x8f8d40  6  NVSDK_NGX_D3D11_GetCapabilityParameters
   UNRECOVERED_JUMPTABLE = system_system_config;
   if (system_system_config == 0) {
     return 0xbad00007;
@@ -995,35 +790,23 @@ uint64_t NVSDK_NGX_D3D11_GetCapabilityParameters(uint64_t param_1)
     return 0xbad0000c;
   }
   _guard_check_icall(system_system_config);
-                    // WARNING: Could not recover jumptable at 0x0001808f8d98. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f8d98. Too many branches
+// WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)(param_1);
   return uVar1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1808f8d5e(void)
-
+uint64_t function_8f8d5e(void)
 {
   code *UNRECOVERED_JUMPTABLE;
   uint64_t uVar1;
-  
   UNRECOVERED_JUMPTABLE = system_system_config;
   if (system_system_config == (code *)0x0) {
     return 0xbad0000c;
   }
   _guard_check_icall(system_system_config);
-                    // WARNING: Could not recover jumptable at 0x0001808f8d98. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808f8d98. Too many branches
+// WARNING: Treating indirect jump as call
   uVar1 = (*UNRECOVERED_JUMPTABLE)();
   return uVar1;
 }
-
-
-
-
-
-

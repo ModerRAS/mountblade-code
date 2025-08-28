@@ -1,10 +1,10 @@
+// 原始函数语义化别名定义
+// 本文件包含当前文件中使用的原始函数的语义化别名
+// 这些别名提高了代码的可读性和维护性
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_12_part073.c - 2 个函数
-
-// 函数: void FUN_1807fb03f(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
-void FUN_1807fb03f(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
-
+// 函数: void function_7fb03f(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
+void function_7fb03f(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
 {
   float fVar1;
   float fVar2;
@@ -47,9 +47,8 @@ void FUN_1807fb03f(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
-  uint in_stack_000000b0;
-  int in_stack_000000b8;
-  
+  uint local_buffer_b0;
+  int local_buffer_b8;
   *(uint64_t *)(in_RAX + -0x30) = unaff_R13;
   lVar18 = in_R11 + 0x20;
   iVar17 = (int)unaff_R14 * 2;
@@ -391,8 +390,8 @@ void FUN_1807fb03f(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
     unaff_RBP = unaff_RBP + unaff_R12D;
     unaff_R15D = unaff_R15D + -1;
   } while (unaff_R15D != 0);
-  in_stack_000000b0 = in_stack_000000b0 & 3;
-  if (in_stack_000000b0 != 0) {
+  local_buffer_b0 = local_buffer_b0 & 3;
+  if (local_buffer_b0 != 0) {
     lVar19 = in_R11 + 0x20;
     pfVar20 = (float *)(lVar19 * 0x10 + unaff_RDI);
     lVar18 = (int64_t)unaff_RBP - (int64_t)unaff_RBX;
@@ -479,21 +478,14 @@ void FUN_1807fb03f(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
            (fVar26 * fVar2 + fVar7 * fVar10 + fVar8 * fVar9) * unaff_XMM9_Da +
            (fVar25 * fVar1 + fVar6 * fVar24 + fVar4 * fVar5) * unaff_XMM10_Da +
            (fVar27 * fVar3 + fVar13 * fVar14 + fVar11 * fVar12) * unaff_XMM8_Da;
-      unaff_RBX = unaff_RBX + in_stack_000000b8;
-      in_stack_000000b0 = in_stack_000000b0 - 1;
-    } while (in_stack_000000b0 != 0);
+      unaff_RBX = unaff_RBX + local_buffer_b8;
+      local_buffer_b0 = local_buffer_b0 - 1;
+    } while (local_buffer_b0 != 0);
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807fbba9(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
-void FUN_1807fbba9(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
-
+// 函数: void function_7fbba9(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
+void function_7fbba9(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
 {
   float fVar1;
   float fVar2;
@@ -532,7 +524,6 @@ void FUN_1807fbba9(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
-  
   uVar19 = unaff_ESI & 3;
   if (uVar19 != 0) {
     lVar20 = in_R11 + 0x20;
@@ -627,9 +618,3 @@ void FUN_1807fbba9(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
   }
   return;
 }
-
-
-
-
-
-

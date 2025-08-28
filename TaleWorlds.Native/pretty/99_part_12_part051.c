@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_12_part051.c - 7 个函数
-
-// 函数: void FUN_1807eb0c6(int64_t param_1,int param_2,uint param_3,float *param_4)
-void FUN_1807eb0c6(int64_t param_1,int param_2,uint param_3,float *param_4)
-
+// 函数: void function_7eb0c6(int64_t param_1,int param_2,uint param_3,float *param_4)
+void function_7eb0c6(int64_t param_1,int param_2,uint param_3,float *param_4)
 {
   float *pfVar1;
   float *pfVar2;
@@ -33,7 +30,6 @@ void FUN_1807eb0c6(int64_t param_1,int param_2,uint param_3,float *param_4)
   float fVar25;
   float fVar26;
   uint64_t uVar14;
-  
   uVar13 = 0;
   uVar10 = 0;
   if (param_3 == 6) {
@@ -251,15 +247,8 @@ void FUN_1807eb0c6(int64_t param_1,int param_2,uint param_3,float *param_4)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807eb538(int64_t param_1,int param_2,uint param_3,float *param_4)
-void FUN_1807eb538(int64_t param_1,int param_2,uint param_3,float *param_4)
-
+// 函数: void function_7eb538(int64_t param_1,int param_2,uint param_3,float *param_4)
+void function_7eb538(int64_t param_1,int param_2,uint param_3,float *param_4)
 {
   float *pfVar1;
   float *pfVar2;
@@ -289,7 +278,6 @@ void FUN_1807eb538(int64_t param_1,int param_2,uint param_3,float *param_4)
   float fVar24;
   float fVar25;
   float fVar26;
-  
   if (param_3 == 8) {
     pfVar11 = *(float **)(param_1 + 8);
     uVar15 = unaff_EBP >> 2;
@@ -435,15 +423,8 @@ void FUN_1807eb538(int64_t param_1,int param_2,uint param_3,float *param_4)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807ebaec(int64_t param_1,int param_2,uint param_3,int64_t param_4)
-void FUN_1807ebaec(int64_t param_1,int param_2,uint param_3,int64_t param_4)
-
+// 函数: void function_7ebaec(int64_t param_1,int param_2,uint param_3,int64_t param_4)
+void function_7ebaec(int64_t param_1,int param_2,uint param_3,int64_t param_4)
 {
   float *pfVar1;
   uint64_t uVar2;
@@ -466,7 +447,6 @@ void FUN_1807ebaec(int64_t param_1,int param_2,uint param_3,int64_t param_4)
   float fVar17;
   float fVar18;
   float fVar19;
-  
   uVar11 = unaff_R14 & 0xffffffff;
   if (param_2 != 0) {
     uVar2 = *(uint64_t *)(param_1 + 8);
@@ -531,15 +511,8 @@ void FUN_1807ebaec(int64_t param_1,int param_2,uint param_3,int64_t param_4)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807ebafc(int64_t param_1,uint64_t param_2,uint param_3,int64_t param_4)
-void FUN_1807ebafc(int64_t param_1,uint64_t param_2,uint param_3,int64_t param_4)
-
+// 函数: void function_7ebafc(int64_t param_1,uint64_t param_2,uint param_3,int64_t param_4)
+void function_7ebafc(int64_t param_1,uint64_t param_2,uint param_3,int64_t param_4)
 {
   float *pfVar1;
   uint64_t uVar2;
@@ -561,7 +534,6 @@ void FUN_1807ebafc(int64_t param_1,uint64_t param_2,uint param_3,int64_t param_4
   float fVar15;
   float fVar16;
   float fVar17;
-  
   uVar2 = *(uint64_t *)(param_1 + 8);
   uVar7 = unaff_R14;
   do {
@@ -622,44 +594,22 @@ void FUN_1807ebafc(int64_t param_1,uint64_t param_2,uint param_3,int64_t param_4
   } while (unaff_R15D < unaff_EBP);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807ebc15(void)
-void FUN_1807ebc15(void)
-
+// 函数: void function_7ebc15(void)
+void function_7ebc15(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807ebc1a(void)
-void FUN_1807ebc1a(void)
-
+// 函数: void function_7ebc1a(void)
+void function_7ebc1a(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807ebc30(int64_t param_1)
-void FUN_1807ebc30(int64_t param_1)
-
+// 函数: void function_7ebc30(int64_t param_1)
+void function_7ebc30(int64_t param_1)
 {
   uint uVar1;
   uint64_t uVar3;
   uint64_t uVar2;
-  
   uVar2 = 0;
   if ((*(int64_t *)(param_1 + 8) != 0) && (uVar3 = uVar2, 0 < *(int *)(param_1 + 0x10))) {
     do {
@@ -669,14 +619,7 @@ void FUN_1807ebc30(int64_t param_1)
       uVar3 = uVar3 + 4;
     } while ((int)uVar1 < *(int *)(param_1 + 0x10));
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(*(uint64_t *)(param_1 + 0x528),0,(int64_t)*(int *)(param_1 + 0x5c8) << 2);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

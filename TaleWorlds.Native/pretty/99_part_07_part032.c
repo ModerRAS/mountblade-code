@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_07_part032.c - 2 个函数
-
-// 函数: void FUN_1804b9540(int64_t param_1,int64_t param_2)
-void FUN_1804b9540(int64_t param_1,int64_t param_2)
-
+// 函数: void function_4b9540(int64_t param_1,int64_t param_2)
+void function_4b9540(int64_t param_1,int64_t param_2)
 {
   char *pcVar1;
   uint64_t uVar2;
@@ -20,7 +17,6 @@ void FUN_1804b9540(int64_t param_1,int64_t param_2)
   int iVar12;
   uint uVar13;
   char *pcVar10;
-  
   pcVar9 = "tattoo_color_gradient_points";
   do {
     pcVar10 = pcVar9;
@@ -459,17 +455,9 @@ LAB_1804b97ce:
   if (puVar8 == (uint64_t *)0x0) goto LAB_1804b98f8;
   goto LAB_1804b9710;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1804b9555(int64_t param_1,int64_t param_2)
-void FUN_1804b9555(int64_t param_1,int64_t param_2)
-
+// 函数: void function_4b9555(int64_t param_1,int64_t param_2)
+void function_4b9555(int64_t param_1,int64_t param_2)
 {
   char *pcVar1;
   uint64_t uVar2;
@@ -485,7 +473,6 @@ void FUN_1804b9555(int64_t param_1,int64_t param_2)
   char *in_R10;
   int iVar12;
   uint uVar13;
-  
   pcVar10 = in_R10;
   do {
     pcVar10 = pcVar10 + 1;
@@ -923,11 +910,4 @@ LAB_1804b97ce:
   if (puVar9 == (uint64_t *)0x0) goto LAB_1804b98f8;
   goto LAB_1804b9710;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

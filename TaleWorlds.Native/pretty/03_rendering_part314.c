@@ -1,11 +1,8 @@
 #include "CoreSystem_AuthenticationHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part314.c - 1 个函数
-
-// 函数: void FUN_180434565(void)
-void FUN_180434565(void)
-
+// 函数: void function_434565(void)
+void function_434565(void)
 {
   short *psVar1;
   uint *puVar2;
@@ -128,12 +125,11 @@ void FUN_180434565(void)
   float fStack0000000000000034;
   short sStack0000000000000040;
   int iStack0000000000000044;
-  int64_t in_stack_00000050;
+  int64_t local_buffer_50;
   float fStack0000000000000060;
   float fStack0000000000000064;
   float fStack0000000000000068;
   char cVar64;
-  
   if (!in_SF) {
     lVar66 = (int64_t)unaff_R14B;
     pfVar54 = unaff_RBP + lVar66 * 4 + 0x274;
@@ -232,7 +228,7 @@ void FUN_180434565(void)
       lVar66 = lVar66 + -1;
       pfVar54 = pfVar54 + -4;
       unaff_R14B = unaff_R14B + -1;
-      unaff_RSI = in_stack_00000050;
+      unaff_RSI = local_buffer_50;
       unaff_R12B = cStackX_20;
     } while (-1 < unaff_R14B);
   }
@@ -740,14 +736,9 @@ void FUN_180434565(void)
     psVar1 = (short *)(lVar66 + 0x2b0);
     *psVar1 = *psVar1 + 1;
     if (*(int64_t *)(lVar66 + 0x168) != 0) {
-      func_0x0001802eeba0();
+      Function_bcb0dca9();
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x480) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x480) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-

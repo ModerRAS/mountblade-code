@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_08_part005.c - 11 个函数
-
-// 函数: void FUN_1804df7cb(char *param_1,char *param_2,int64_t param_3)
-void FUN_1804df7cb(char *param_1,char *param_2,int64_t param_3)
-
+// 函数: void UISystem_df7cb(char *param_1,char *param_2,int64_t param_3)
+void UISystem_df7cb(char *param_1,char *param_2,int64_t param_3)
 {
   char cVar1;
   char cVar2;
@@ -24,12 +21,11 @@ void FUN_1804df7cb(char *param_1,char *param_2,int64_t param_3)
   char cStack0000000000000050;
   char cStack0000000000000051;
   char cStack0000000000000052;
-  
   lVar8 = in_RAX - (int64_t)param_1;
   do {
     if ((lVar8 < 0x57) || (param_3 < 1)) {
       if (param_3 == 0) {
-        FUN_1804dfad0(param_1,param_2);
+        UISystem_dfad0(param_1,param_2);
         pcVar10 = param_2 + -(int64_t)param_1;
         if (5 < (int64_t)pcVar10) {
           param_2 = param_2 + -3;
@@ -38,7 +34,7 @@ void FUN_1804df7cb(char *param_1,char *param_2,int64_t param_3)
             cStack0000000000000052 = param_2[2];
             *(int16_t *)param_2 = *(int16_t *)param_1;
             param_2[2] = param_1[2];
-            FUN_1804dfc80(param_1,0,(int64_t)pcVar10 / 3 + -1,0,&stack0x00000050);
+            UISystem_dfc80(param_1,0,(int64_t)pcVar10 / 3 + -1,0,&local_buffer_00000050);
             param_2 = param_2 + -3;
             pcVar10 = param_2 + (3 - (int64_t)param_1);
           } while (5 < (int64_t)pcVar10);
@@ -165,20 +161,13 @@ LAB_1804df88c:
     }
     param_3 = param_3 + -1;
     _cStack0000000000000050 = uVar5;
-    FUN_1804df7c0(pcVar11,param_2,param_3);
+    UISystem_df7c0(pcVar11,param_2,param_3);
     lVar8 = (int64_t)pcVar11 - (int64_t)param_1;
     param_2 = pcVar11;
   } while( true );
 }
-
-
-
-
-
-
-// 函数: void FUN_1804df7e6(void)
-void FUN_1804df7e6(void)
-
+// 函数: void UISystem_df7e6(void)
+void UISystem_df7e6(void)
 {
   char cVar1;
   char cVar2;
@@ -198,7 +187,6 @@ void FUN_1804df7e6(void)
   bool bVar13;
   char cStack0000000000000050;
   char cStack0000000000000051;
-  
   do {
     pcVar10 = unaff_RSI;
     if (unaff_RBP < 1) break;
@@ -318,84 +306,64 @@ LAB_1804df88c:
       pcVar8[-1] = cVar1;
     }
     unaff_RBP = unaff_RBP + -1;
-    FUN_1804df7c0(pcVar10,unaff_RSI,unaff_RBP);
+    UISystem_df7c0(pcVar10,unaff_RSI,unaff_RBP);
     unaff_RSI = pcVar10;
   } while (0x56 < (int64_t)pcVar10 - (int64_t)unaff_RDI);
-  if ((unaff_RBP == 0) && (FUN_1804dfad0(), 5 < (int64_t)pcVar10 - (int64_t)unaff_RDI)) {
+  if ((unaff_RBP == 0) && (UISystem_dfad0(), 5 < (int64_t)pcVar10 - (int64_t)unaff_RDI)) {
     pcVar10 = pcVar10 + -3;
     do {
       *(int16_t *)pcVar10 = *(int16_t *)unaff_RDI;
       pcVar10[2] = unaff_RDI[2];
-      FUN_1804dfc80();
+      UISystem_dfc80();
       pcVar10 = pcVar10 + -3;
     } while (5 < (int64_t)(pcVar10 + (3 - (int64_t)unaff_RDI)));
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804df935(void)
-void FUN_1804df935(void)
-
+// 函数: void UISystem_df935(void)
+void UISystem_df935(void)
 {
   int16_t *puVar1;
   int64_t unaff_RBP;
   int64_t unaff_RSI;
   int16_t *unaff_RDI;
-  int8_t uStack0000000000000052;
-  
+  int8_t local_buffer_52;
   if (unaff_RBP == 0) {
-    FUN_1804dfad0();
+    UISystem_dfad0();
     if (5 < unaff_RSI - (int64_t)unaff_RDI) {
       puVar1 = (int16_t *)(unaff_RSI + -3);
       do {
-        uStack0000000000000052 = *(int8_t *)(puVar1 + 1);
+        local_buffer_52 = *(int8_t *)(puVar1 + 1);
         *puVar1 = *unaff_RDI;
         *(int8_t *)(puVar1 + 1) = *(int8_t *)(unaff_RDI + 1);
-        FUN_1804dfc80();
+        UISystem_dfc80();
         puVar1 = (int16_t *)((int64_t)puVar1 + -3);
       } while (5 < (int64_t)puVar1 + (3 - (int64_t)unaff_RDI));
     }
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804df943(void)
-void FUN_1804df943(void)
-
+// 函数: void UISystem_df943(void)
+void UISystem_df943(void)
 {
   int16_t *puVar1;
   int64_t unaff_RSI;
   int16_t *unaff_RDI;
-  int8_t uStack0000000000000052;
-  
-  FUN_1804dfad0();
+  int8_t local_buffer_52;
+  UISystem_dfad0();
   if (5 < unaff_RSI - (int64_t)unaff_RDI) {
     puVar1 = (int16_t *)(unaff_RSI + -3);
     do {
-      uStack0000000000000052 = *(int8_t *)(puVar1 + 1);
+      local_buffer_52 = *(int8_t *)(puVar1 + 1);
       *puVar1 = *unaff_RDI;
       *(int8_t *)(puVar1 + 1) = *(int8_t *)(unaff_RDI + 1);
-      FUN_1804dfc80();
+      UISystem_dfc80();
       puVar1 = (int16_t *)((int64_t)puVar1 + -3);
     } while (5 < (int64_t)puVar1 + (3 - (int64_t)unaff_RDI));
   }
   return;
 }
-
-
-
-int64_t FUN_1804dfad0(int64_t param_1,int64_t param_2)
-
+int64_t UISystem_dfad0(int64_t param_1,int64_t param_2)
 {
   int16_t *puVar1;
   int16_t *puVar2;
@@ -415,7 +383,6 @@ int64_t FUN_1804dfad0(int64_t param_1,int64_t param_2)
   bool bVar16;
   char cStackX_8;
   char cStackX_9;
-  
   lVar9 = (param_2 - param_1) * 0x5555555555555556;
   lVar8 = (param_2 - param_1) / 3;
   if (1 < lVar8) {
@@ -492,15 +459,8 @@ int64_t FUN_1804dfad0(int64_t param_1,int64_t param_2)
   }
   return lVar9;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dfafd(int64_t param_1)
-void FUN_1804dfafd(int64_t param_1)
-
+// 函数: void UISystem_dfafd(int64_t param_1)
+void UISystem_dfafd(int64_t param_1)
 {
   int16_t *puVar1;
   int64_t lVar2;
@@ -521,7 +481,6 @@ void FUN_1804dfafd(int64_t param_1)
   bool bVar15;
   char cStack0000000000000030;
   char cStack0000000000000031;
-  
   lVar10 = (unaff_RSI + -2 >> 1) + 1;
   lVar11 = lVar10 * 2 + 2;
   lVar13 = param_1 + lVar10 * 3;
@@ -596,28 +555,14 @@ void FUN_1804dfafd(int64_t param_1)
     }
   } while( true );
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dfc75(void)
-void FUN_1804dfc75(void)
-
+// 函数: void UISystem_dfc75(void)
+void UISystem_dfc75(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dfc80(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,char *param_5
-void FUN_1804dfc80(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,char *param_5
+// 函数: void UISystem_dfc80(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,char *param_5
+void UISystem_dfc80(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4,char *param_5
                   )
-
 {
   int64_t lVar1;
   int16_t *puVar2;
@@ -629,7 +574,6 @@ void FUN_1804dfc80(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   int64_t lVar8;
   bool bVar9;
   bool bVar10;
-  
   lVar4 = param_4 * 2;
   while (lVar8 = lVar4 + 2, lVar8 < param_3) {
     lVar1 = param_1 + lVar8 * 2;
@@ -689,20 +633,12 @@ void FUN_1804dfc80(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   *(char *)(param_1 + 2 + param_4) = param_5[2];
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dfdb0(int64_t param_1,int64_t param_2)
-void FUN_1804dfdb0(int64_t param_1,int64_t param_2)
-
+// 函数: void UISystem_dfdb0(int64_t param_1,int64_t param_2)
+void UISystem_dfdb0(int64_t param_1,int64_t param_2)
 {
   uint uVar1;
   int iVar2;
   int64_t lVar3;
-  
   iVar2 = (int)(*(int64_t *)(param_1 + 0x20) - *(int64_t *)(param_1 + 0x18) >> 2);
   if (0 < iVar2) {
     lVar3 = 0;
@@ -713,7 +649,7 @@ void FUN_1804dfdb0(int64_t param_1,int64_t param_2)
                              (*(int64_t *)(param_2 + 11000) + (int64_t)((int)uVar1 >> 10) * 8) +
                             0x1c + (int64_t)(int)(*(uint *)(param_2 + 0x2b18) & uVar1) * 0xd8),
          uVar1 != 0xffffffff)) {
-        FUN_1802fb280(*(uint64_t *)
+        DataStructure_fb280(*(uint64_t *)
                        (*(int64_t *)
                          (*(int64_t *)(param_2 + 0x698) + (int64_t)((int)uVar1 >> 10) * 8) + 8 +
                        (int64_t)(int)(*(uint *)(param_2 + 0x6b8) & uVar1) * 0x30));
@@ -723,22 +659,14 @@ void FUN_1804dfdb0(int64_t param_1,int64_t param_2)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dfddc(void)
-void FUN_1804dfddc(void)
-
+// 函数: void UISystem_dfddc(void)
+void UISystem_dfddc(void)
 {
   uint uVar1;
   int64_t lVar2;
   int64_t unaff_RBP;
   int64_t unaff_RSI;
   int64_t unaff_RDI;
-  
   lVar2 = 0;
   do {
     uVar1 = *(uint *)(*(int64_t *)(unaff_RSI + 0x18) + lVar2 * 4);
@@ -747,7 +675,7 @@ void FUN_1804dfddc(void)
                          (*(int64_t *)(unaff_RDI + 11000) + (int64_t)((int)uVar1 >> 10) * 8) +
                         0x1c + (int64_t)(int)(*(uint *)(unaff_RDI + 0x2b18) & uVar1) * 0xd8);
       if (uVar1 != 0xffffffff) {
-        FUN_1802fb280(*(uint64_t *)
+        DataStructure_fb280(*(uint64_t *)
                        (*(int64_t *)
                          (*(int64_t *)(unaff_RDI + 0x698) + (int64_t)((int)uVar1 >> 10) * 8) + 8 +
                        (int64_t)(int)(*(uint *)(unaff_RDI + 0x6b8) & uVar1) * 0x30));
@@ -757,26 +685,14 @@ void FUN_1804dfddc(void)
   } while (lVar2 < unaff_RBP);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dfe6a(void)
-void FUN_1804dfe6a(void)
-
+// 函数: void UISystem_dfe6a(void)
+void UISystem_dfe6a(void)
 {
   return;
 }
-
-
-
-int64_t * FUN_1804dfe80(int64_t param_1,int64_t *param_2)
-
+int64_t * UISystem_dfe80(int64_t param_1,int64_t *param_2)
 {
   int64_t *plVar1;
-  
   plVar1 = *(int64_t **)(param_1 + 0x58);
   *param_2 = (int64_t)plVar1;
   if (plVar1 != (int64_t *)0x0) {
@@ -784,11 +700,7 @@ int64_t * FUN_1804dfe80(int64_t param_1,int64_t *param_2)
   }
   return param_2;
 }
-
-
-
-int64_t * FUN_1804dfed0(int64_t *param_1,int64_t *param_2)
-
+int64_t * UISystem_dfed0(int64_t *param_1,int64_t *param_2)
 {
   param_1 = (int64_t *)*param_1;
   *param_2 = (int64_t)param_1;
@@ -797,21 +709,13 @@ int64_t * FUN_1804dfed0(int64_t *param_1,int64_t *param_2)
   }
   return param_2;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dff20(int64_t *param_1)
-void FUN_1804dff20(int64_t *param_1)
-
+// 函数: void UISystem_dff20(int64_t *param_1)
+void UISystem_dff20(int64_t *param_1)
 {
   int64_t *plVar1;
   int64_t lVar2;
   int32_t *puVar3;
   int64_t *plVar4;
-  
   *(int8_t *)(param_1 + 1) = 1;
   plVar4 = (int64_t *)*param_1;
   *param_1 = 0;
@@ -840,9 +744,3 @@ void FUN_1804dff20(int64_t *param_1)
   *(int32_t *)(param_1 + 0x11) = 0x1010101;
   return;
 }
-
-
-
-
-
-

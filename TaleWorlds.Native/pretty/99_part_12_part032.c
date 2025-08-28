@@ -1,24 +1,19 @@
 #include "TaleWorlds.Native.Split.h"
-
 // ============================================================================
 // 99_part_12_part032.c - 高级数学计算和矩阵变换模块
 // ============================================================================
-
 // 模块概述：
 // 本模块包含2个核心函数，主要处理高级数学计算、矩阵变换、向量运算、
 // 浮点数处理等数学相关功能。涵盖了游戏引擎中的核心数学计算机制。
-
 // 主要功能：
 // - 矩阵变换和向量运算
 // - 浮点数批量处理和计算
 // - 数据流优化和SIMD处理
 // - 内存对齐和缓存优化
 // - 条件分支和逻辑控制
-
 // ============================================================================
 // 常量定义
 // ============================================================================
-
 // 数学计算常量
 #define MATRIX_ELEMENT_SIZE_FLOAT 4          // 矩阵元素大小（浮点数）
 #define VECTOR_COMPONENTS_4 4                // 四维向量组件数
@@ -26,7 +21,6 @@
 #define FLOAT_SIZE_BYTES 4                   // 浮点数大小（字节）
 #define MATRIX_MULTIPLY_BATCH_SIZE 8         // 矩阵乘法批量大小
 #define MEMORY_ALIGNMENT_16 16               // 内存对齐大小（16字节）
-
 // 特殊浮点常量
 #define FLOAT_ONE 1.0f                       // 浮点数1.0
 #define FLOAT_NEGATIVE_ONE -1.0f             // 浮点数-1.0
@@ -34,14 +28,12 @@
 #define FLOAT_SMALL_VALUE 1.4013e-45f        // 小浮点数值
 #define FLOAT_SPECIAL_NEGATIVE -1.1571044e-38f // 特殊负浮点数值
 #define FLOAT_SPECIAL_NEGATIVE_2 -1.157109e-38f // 特殊负浮点数值2
-
 // 数据处理常量
 #define MAX_VECTOR_COMPONENTS 16             // 最大向量组件数
 #define MAX_MATRIX_ELEMENTS 64               // 最大矩阵元素数
 #define BATCH_PROCESSING_THRESHOLD 1         // 批量处理阈值
 #define MEMORY_COPY_THRESHOLD 0              // 内存复制阈值
 #define MEMORY_COPY_ERROR_FLAG 0x10          // 内存复制错误标志
-
 // 索引和偏移常量
 #define INDEX_0 0                           // 索引0
 #define INDEX_1 1                           // 索引1
@@ -243,7 +235,6 @@
 #define INDEX_197 197                       // 索引197
 #define INDEX_198 198                       // 索引198
 #define INDEX_199 199                       // 索引199
-
 // 内存和缓冲区常量
 #define STACK_BUFFER_SIZE_108 108            // 栈缓冲区大小108字节
 #define STACK_BUFFER_SIZE_192 192            // 栈缓冲区大小192字节
@@ -254,11 +245,9 @@
 #define FLOAT_ARRAY_SIZE_16 16              // 浮点数组大小16
 #define FLOAT_ARRAY_SIZE_4 4                // 浮点数组大小4
 #define FLOAT_ARRAY_SIZE_2 2                // 浮点数组大小2
-
 // ============================================================================
 // 类型别名定义
 // ============================================================================
-
 // 基础类型别名
 typedef float Float32;                       // 32位浮点数
 typedef uint UInt32;                         // 32位无符号整数
@@ -269,14 +258,12 @@ typedef int64_t Int64;                      // 64位有符号整数
 typedef int8_t UInt8;                    // 8位无符号整数
 typedef int32_t UInt32_fixed;        // 32位无符号整数（固定类型）
 typedef uint64_t UInt64_fixed;        // 64位无符号整数（固定类型）
-
 // 指针类型别名
 typedef float* Float32Ptr;                   // 32位浮点数指针
 typedef UInt32* UInt32Ptr;                   // 32位无符号整数指针
 typedef UInt8* UInt8Ptr;                     // 8位无符号整数指针
 typedef void* VoidPtr;                       // 空指针
 typedef UInt64_void* UInt64UndefinedPtr; // 64位未定义类型指针
-
 // 数组类型别名
 typedef Float32 Float32Array2[2];            // 2元素浮点数组
 typedef Float32 Float32Array3[3];            // 3元素浮点数组
@@ -285,30 +272,25 @@ typedef Float32 Float32Array16[16];          // 16元素浮点数组
 typedef Float32 Float32Array18[18];          // 18元素浮点数组
 typedef UInt8 UInt8Array32[32];              // 32元素8位数组
 typedef UInt8 UInt8Array72[72];              // 72元素8位数组
-
 // 结构体类型别名
 typedef struct {
     Float32Ptr data;                        // 数据指针
     UInt32 size;                            // 大小
     UInt32 capacity;                        // 容量
 } Float32Buffer;                            // 浮点缓冲区结构
-
 typedef struct {
     Float32 matrix[16];                     // 4x4矩阵
     Float32 vector[4];                      // 4维向量
     UInt32 flags;                           // 标志位
 } MatrixVectorPair;                         // 矩阵向量对结构
-
 typedef struct {
     Float32 x, y, z, w;                     // 四维坐标
     Float32 r, g, b, a;                     // RGBA颜色
     Float32 u, v;                           // 纹理坐标
 } VertexData;                               // 顶点数据结构
-
 // ============================================================================
 // 枚举定义
 // ============================================================================
-
 // 矩阵操作模式枚举
 typedef enum {
     MATRIX_MODE_ADD = 0,                    // 矩阵加法模式
@@ -320,7 +302,6 @@ typedef enum {
     MATRIX_MODE_ROTATE = 6,                 // 矩阵旋转模式
     MATRIX_MODE_TRANSLATE = 7               // 矩阵平移模式
 } MatrixOperationMode;
-
 // 数据处理状态枚举
 typedef enum {
     DATA_STATUS_IDLE = 0,                   // 数据空闲状态
@@ -330,7 +311,6 @@ typedef enum {
     DATA_STATUS_BUSY = 4,                   // 数据忙状态
     DATA_STATUS_READY = 5                    // 数据就绪状态
 } DataProcessingStatus;
-
 // 向量运算类型枚举
 typedef enum {
     VECTOR_OP_ADD = 0,                      // 向量加法
@@ -342,7 +322,6 @@ typedef enum {
     VECTOR_OP_NORMALIZE = 6,                 // 向量归一化
     VECTOR_OP_LENGTH = 7                     // 向量长度
 } VectorOperationType;
-
 // 内存操作类型枚举
 typedef enum {
     MEMORY_OP_COPY = 0,                     // 内存复制
@@ -352,7 +331,6 @@ typedef enum {
     MEMORY_OP_FILL = 4,                     // 内存填充
     MEMORY_OP_SWAP = 5                      // 内存交换
 } MemoryOperationType;
-
 // 计算精度枚举
 typedef enum {
     PRECISION_SINGLE = 0,                   // 单精度
@@ -360,11 +338,9 @@ typedef enum {
     PRECISION_HALF = 2,                     // 半精度
     PRECISION_FIXED = 3                     // 定点精度
 } CalculationPrecision;
-
 // ============================================================================
 // 结构体定义
 // ============================================================================
-
 // 矩阵变换参数结构
 typedef struct {
     Float32Ptr source_matrix;                // 源矩阵指针
@@ -376,7 +352,6 @@ typedef struct {
     Bool use_simd;                           // 是否使用SIMD
     DataProcessingStatus status;            // 处理状态
 } MatrixTransformParams;
-
 // 批量处理参数结构
 typedef struct {
     Float32Ptr input_buffer;                 // 输入缓冲区
@@ -389,7 +364,6 @@ typedef struct {
     Bool accumulate;                         // 是否累加
     DataProcessingStatus status;            // 处理状态
 } BatchProcessingParams;
-
 // 向量运算参数结构
 typedef struct {
     Float32Ptr vector_a;                      // 向量A
@@ -402,7 +376,6 @@ typedef struct {
     Bool normalize_result;                   // 是否归一化结果
     DataProcessingStatus status;            // 处理状态
 } VectorOperationParams;
-
 // 内存管理参数结构
 typedef struct {
     VoidPtr source_address;                  // 源地址
@@ -413,7 +386,6 @@ typedef struct {
     Bool use_dma;                           // 是否使用DMA
     DataProcessingStatus status;            // 处理状态
 } MemoryManagementParams;
-
 // 计算上下文结构
 typedef struct {
     MatrixTransformParams matrix_params;     // 矩阵变换参数
@@ -424,49 +396,43 @@ typedef struct {
     UInt32 warning_flags;                    // 警告标志
     DataProcessingStatus overall_status;     // 整体状态
 } CalculationContext;
-
 // ============================================================================
 // 函数别名定义
 // ============================================================================
-
 // 主要功能函数别名
-#define AdvancedMatrixTransformer            FUN_1807dff00    // 高级矩阵变换处理器
-#define MatrixDataProcessor                  FUN_1807dff00    // 矩阵数据处理器
-#define FloatVectorCalculator                FUN_1807dff00    // 浮点向量计算器
-#define BatchDataProcessor                   FUN_1807dff00    // 批量数据处理器
-#define SIMDDataOptimizer                    FUN_1807dff00    // SIMD数据优化器
-#define MemoryAlignedProcessor               FUN_1807dff00    // 内存对齐处理器
-#define MatrixMultiplyEngine                 FUN_1807dff00    // 矩阵乘法引擎
-#define VectorTransformEngine                FUN_1807dff00    // 向量变换引擎
-#define DataFlowController                   FUN_1807dff00    // 数据流控制器
-#define CalculationCoreProcessor             FUN_1807dff00    // 计算核心处理器
-
+#define AdvancedMatrixTransformer            function_7dff00    // 高级矩阵变换处理器
+#define MatrixDataProcessor                  function_7dff00    // 矩阵数据处理器
+#define FloatVectorCalculator                function_7dff00    // 浮点向量计算器
+#define BatchDataProcessor                   function_7dff00    // 批量数据处理器
+#define SIMDDataOptimizer                    function_7dff00    // SIMD数据优化器
+#define MemoryAlignedProcessor               function_7dff00    // 内存对齐处理器
+#define MatrixMultiplyEngine                 function_7dff00    // 矩阵乘法引擎
+#define VectorTransformEngine                function_7dff00    // 向量变换引擎
+#define DataFlowController                   function_7dff00    // 数据流控制器
+#define CalculationCoreProcessor             function_7dff00    // 计算核心处理器
 // 辅助功能函数别名
-#define AdvancedFloatProcessor               FUN_1807e0760    // 高级浮点处理器
-#define FloatBatchCalculator                 FUN_1807e0760    // 浮点批量计算器
-#define VectorScalarMultiplier               FUN_1807e0760    // 向量标量乘法器
-#define DataAccumulator                     FUN_1807e0760    // 数据累加器
-#define StreamDataProcessor                 FUN_1807e0760    // 流数据处理器
-#define OptimizedMathEngine                 FUN_1807e0760    // 优化数学引擎
-#define ParallelCalculator                   FUN_1807e0760    // 并行计算器
-#define CacheOptimizedProcessor             FUN_1807e0760    // 缓存优化处理器
-
+#define AdvancedFloatProcessor               function_7e0760    // 高级浮点处理器
+#define FloatBatchCalculator                 function_7e0760    // 浮点批量计算器
+#define VectorScalarMultiplier               function_7e0760    // 向量标量乘法器
+#define DataAccumulator                     function_7e0760    // 数据累加器
+#define StreamDataProcessor                 function_7e0760    // 流数据处理器
+#define OptimizedMathEngine                 function_7e0760    // 优化数学引擎
+#define ParallelCalculator                   function_7e0760    // 并行计算器
+#define CacheOptimizedProcessor             function_7e0760    // 缓存优化处理器
 // 系统调用函数别名
-#define SystemCallWrapper1                   func_0x0001807e16c0  // 系统调用包装器1
-#define SystemCallWrapper2                   FUN_1807dfbe0       // 系统调用包装器2
+#define SystemCallWrapper1                   Function_9015b42a  // 系统调用包装器1
+#define SystemCallWrapper2                   function_7dfbe0       // 系统调用包装器2
 #define SystemCleanupHandler                SystemSecurityChecker       // 系统清理处理器
 #define SystemDataValidator                  SystemSecurityChecker       // 系统数据验证器
-
 // ============================================================================
 // 核心函数实现
 // ============================================================================
-
 /**
  * @brief 高级矩阵变换和数据处理函数
- * 
+ *
  * 本函数实现了高级矩阵变换、向量运算、批量数据处理等功能。
  * 支持多种运算模式，包括矩阵加法、乘法、变换等操作。
- * 
+ *
  * @param param_1 源数据矩阵指针
  * @param param_2 目标数据矩阵指针
  * @param param_3 数据元素数量
@@ -476,10 +442,10 @@ typedef struct {
  * @param param_7 累加模式标志
  * @return void 无返回值
  */
-void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, float *param_4, 
+void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, float *param_4,
                               int32_t param_5, uint param_6, int param_7)
 {
-    // 局部变量声明
+// 局部变量声明
     Float32 fVar1, fVar2, fVar3, fVar4, fVar5, fVar6, fVar7, fVar8, fVar9, fVar10;
     Float32 fVar11, fVar12, fVar13, fVar14, fVar15;
     Bool bVar16;
@@ -489,44 +455,41 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
     UInt64 uVar21;
     Int32 iVar25;
     Int64 lVar26;
-    
-    // 栈变量分配
-    UInt8Array72 auStack_108;                 // 栈缓冲区108字节
+// 栈变量分配
+    UInt8Array72 stack_array_108;                 // 栈缓冲区108字节
     Float32Array18 afStack_c0;              // 栈浮点数组18元素
-    UInt8Array32 auStack_78;                 // 栈缓冲区32字节
-    UInt32_fixed uStack_58;              // 栈变量58
-    UInt32 uStack_50;                        // 栈变量50
+    UInt8Array32 stack_array_78;                 // 栈缓冲区32字节
+    UInt32_fixed local_var_58;              // 栈变量58
+    UInt32 local_var_50;                        // 栈变量50
     Int32 iStack_48;                         // 栈变量48
-    UInt64_fixed auStack_38[2];          // 栈数组38
-    
-    // 安全检查和初始化
-    auStack_38[0] = _DAT ^ (UInt64)auStack_38;
+    UInt64_fixed stack_array_38[2];          // 栈数组38
+// 安全检查和初始化
+    stack_array_38[0] = _DAT ^ (UInt64)stack_array_38;
     lVar26 = (Int64)(Int32)param_6;
     bVar16 = true;
-    
-    // 根据处理模式进行分支处理
+// 根据处理模式进行分支处理
     if (param_6 == 2) {
-        // 模式2：特殊矩阵处理
+// 模式2：特殊矩阵处理
         iStack_48 = param_7;
-        uStack_50 = param_6;
-        uStack_58 = param_5;
+        local_var_50 = param_6;
+        local_var_58 = param_5;
         afStack_c0[INDEX_16] = FLOAT_SPECIAL_NEGATIVE;
         afStack_c0[INDEX_17] = FLOAT_SMALL_VALUE;
         SystemCallWrapper1();
-        puVar = auStack_78;
+        puVar = stack_array_78;
     }
     else if (param_6 == 6) {
-        // 模式6：扩展矩阵处理
+// 模式6：扩展矩阵处理
         iStack_48 = param_7;
-        uStack_50 = param_6;
-        uStack_58 = param_5;
+        local_var_50 = param_6;
+        local_var_58 = param_5;
         afStack_c0[INDEX_16] = FLOAT_SPECIAL_NEGATIVE_2;
         afStack_c0[INDEX_17] = FLOAT_SMALL_VALUE;
         SystemCallWrapper2();
-        puVar = auStack_78;
+        puVar = stack_array_78;
     }
     else if (param_6 == 8) {
-        // 模式8：优化矩阵变换处理
+// 模式8：优化矩阵变换处理
         fVar1 = param_4[INDEX_99];
         fVar2 = param_4[INDEX_66];  // 0x42 = 66
         fVar3 = param_4[INDEX_33];  // 0x21 = 33
@@ -535,14 +498,12 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
         fVar6 = param_4[INDEX_231]; // 0xe7 = 231
         fVar7 = param_4[INDEX_198]; // 0xc6 = 198
         fVar8 = param_4[INDEX_165]; // 0xa5 = 165
-        puVar = auStack_78;
-        
+        puVar = stack_array_78;
         if (param_3 != 0) {
             lVar26 = (Int64)param_1 - (Int64)param_2;
             param_2 = param_2 + FLOAT_SIZE_BYTES;
-            
             if (param_7 == 0) {
-                // 累加模式处理
+// 累加模式处理
                 do {
                     pfVar18 = (Float32Ptr)((Int64)param_2 + lVar26 - INDEX_16);
                     fVar9 = pfVar18[INDEX_1];
@@ -553,8 +514,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                     fVar13 = pfVar19[INDEX_1];
                     fVar14 = pfVar19[INDEX_2];
                     fVar15 = pfVar19[INDEX_3];
-                    
-                    // 执行矩阵累加运算
+// 执行矩阵累加运算
                     param_2[-INDEX_4] = *pfVar18 * fVar4 + param_2[-INDEX_4];
                     param_2[-INDEX_3] = fVar9 * fVar3 + param_2[-INDEX_3];
                     param_2[-INDEX_2] = fVar10 * fVar2 + param_2[-INDEX_2];
@@ -563,14 +523,13 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                     param_2[INDEX_1] = fVar13 * fVar8 + param_2[INDEX_1];
                     param_2[INDEX_2] = fVar14 * fVar7 + param_2[INDEX_2];
                     param_2[INDEX_3] = fVar15 * fVar6 + param_2[INDEX_3];
-                    
                     param_2 = param_2 + INDEX_8;
                     param_3 = param_3 - INDEX_1;
-                    puVar = auStack_78;
+                    puVar = stack_array_78;
                 } while (param_3 != 0);
             }
             else {
-                // 非累加模式处理
+// 非累加模式处理
                 do {
                     pfVar18 = (Float32Ptr)(lVar26 - INDEX_16 + (Int64)param_2);
                     fVar9 = pfVar18[INDEX_1];
@@ -581,8 +540,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                     fVar13 = pfVar19[INDEX_1];
                     fVar14 = pfVar19[INDEX_2];
                     fVar15 = pfVar19[INDEX_3];
-                    
-                    // 执行矩阵非累加运算
+// 执行矩阵非累加运算
                     param_2[-INDEX_4] = *pfVar18 * fVar4;
                     param_2[-INDEX_3] = fVar9 * fVar3;
                     param_2[-INDEX_2] = fVar10 * fVar2;
@@ -591,16 +549,15 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                     param_2[INDEX_1] = fVar13 * fVar8;
                     param_2[INDEX_2] = fVar14 * fVar7;
                     param_2[INDEX_3] = fVar15 * fVar6;
-                    
                     param_3 = param_3 - INDEX_1;
                     param_2 = param_2 + INDEX_8;
-                    puVar = auStack_78;
+                    puVar = stack_array_78;
                 } while (param_3 != 0);
             }
         }
     }
     else {
-        // 通用矩阵处理模式
+// 通用矩阵处理模式
         iVar25 = 0;
         if (INDEX_3 < (Int32)param_6) {
             pfVar18 = afStack_c0 + INDEX_2;
@@ -608,7 +565,6 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
             pfVar19 = param_4 + INDEX_66;  // 0x42 = 66
             uVar21 = (UInt64)uVar17;
             iVar25 = uVar17 * INDEX_4;
-            
             do {
                 fVar1 = pfVar19[-INDEX_66];  // -0x42 = -66
                 pfVar18[-INDEX_2] = fVar1;
@@ -635,12 +591,10 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                 uVar21 = uVar21 - INDEX_1;
             } while (uVar21 != 0);
         }
-        
         if (iVar25 < (Int32)param_6) {
             pfVar19 = afStack_c0 + iVar25;
             param_4 = param_4 + (Int64)iVar25 * INDEX_33;  // 0x21 = 33
             uVar21 = (UInt64)(param_6 - iVar25);
-            
             do {
                 fVar1 = *param_4;
                 *pfVar19 = fVar1;
@@ -652,28 +606,24 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                 uVar21 = uVar21 - INDEX_1;
             } while (uVar21 != 0);
         }
-        
         if (param_7 != 0) {
             if (bVar16) {
-                // 优化路径：直接内存复制
+// 优化路径：直接内存复制
                 memcpy(param_2, param_1);
             }
-            // 清零目标内存
+// 清零目标内存
             memset(param_2, 0, (UInt64)(param_3 * param_6) << INDEX_2);
         }
-        
         uVar17 = param_6 & INDEX_3;
         iVar25 = (Int32)param_6 >> INDEX_2;
-        
         if (bVar16) {
             if (uVar17 == 0) {
-                puVar = auStack_108;
+                puVar = stack_array_108;
                 if (param_3 != 0) {
                     do {
                         pfVar19 = param_2;
                         pfVar18 = param_1;
-                        
-                        // 使用switch语句进行展开优化
+// 使用switch语句进行展开优化
                         switch(iVar25) {
                         case INDEX_8:
                             fVar1 = param_1[INDEX_1];
@@ -754,22 +704,20 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                             pfVar19[INDEX_2] = fVar2 + pfVar19[INDEX_2];
                             pfVar19[INDEX_3] = fVar3 + pfVar19[INDEX_3];
                         }
-                        
                         param_1 = param_1 + lVar26;
                         param_2 = param_2 + lVar26;
                         param_3 = param_3 - INDEX_1;
-                        puVar = auStack_108;
+                        puVar = stack_array_108;
                     } while (param_3 != 0);
                 }
             }
             else {
-                puVar = auStack_108;
+                puVar = stack_array_108;
                 if (param_3 != 0) {
                     do {
                         pfVar19 = param_2;
                         pfVar18 = param_1;
-                        
-                        // 非优化路径处理
+// 非优化路径处理
                         switch(iVar25) {
                         case INDEX_8:
                             fVar1 = param_1[INDEX_1];
@@ -852,8 +800,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                             pfVar19 = pfVar19 + INDEX_4;
                             pfVar18 = pfVar18 + INDEX_4;
                         }
-                        
-                        // 处理剩余元素
+// 处理剩余元素
                         if (uVar17 == INDEX_1) {
                             *pfVar19 = *pfVar18 + *pfVar19;
                         }
@@ -877,25 +824,23 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                                 *pfVar19 = *pfVar18 + *pfVar19;
                             }
                         }
-                        
                         param_1 = param_1 + lVar26;
                         param_2 = param_2 + lVar26;
                         param_3 = param_3 - INDEX_1;
-                        puVar = auStack_108;
+                        puVar = stack_array_108;
                     } while (param_3 != 0);
                 }
             }
         }
         else if (uVar17 == 0) {
-            puVar = auStack_108;
+            puVar = stack_array_108;
             if (param_3 != 0) {
                 do {
                     pfVar19 = param_2;
                     pfVar18 = param_1;
                     pfVar23 = param_1;
                     pfVar24 = afStack_c0;
-                    
-                    // 矩阵乘法处理
+// 矩阵乘法处理
                     switch(iVar25) {
                     case INDEX_8:
                         pfVar19 = param_2 + INDEX_4;
@@ -1004,16 +949,15 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                         pfVar19[INDEX_2] = fVar2 * fVar5 + pfVar19[INDEX_2];
                         pfVar19[INDEX_3] = fVar3 * fVar6 + pfVar19[INDEX_3];
                     }
-                    
                     param_1 = param_1 + lVar26;
                     param_2 = param_2 + lVar26;
                     param_3 = param_3 - INDEX_1;
-                    puVar = auStack_108;
+                    puVar = stack_array_108;
                 } while (param_3 != 0);
             }
         }
         else {
-            puVar = auStack_108;
+            puVar = stack_array_108;
             if (param_3 != 0) {
                 do {
                     pfVar19 = param_2;
@@ -1021,8 +965,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                     pfVar23 = param_1;
                     pfVar22 = param_1;
                     pfVar24 = afStack_c0;
-                    
-                    // 完整矩阵乘法处理
+// 完整矩阵乘法处理
                     switch(iVar25) {
                     case INDEX_8:
                         fVar1 = param_1[INDEX_1];
@@ -1134,8 +1077,7 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                         pfVar19 = pfVar19 + INDEX_4;
                         pfVar24 = pfVar24 + INDEX_4;
                     }
-                    
-                    // 处理剩余元素
+// 处理剩余元素
                     if (uVar17 == INDEX_1) {
                         *pfVar19 = *pfVar24 * *pfVar18 + *pfVar19;
                     }
@@ -1165,27 +1107,24 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
                             *pfVar19 = *pfVar24 * *pfVar18 + *pfVar19;
                         }
                     }
-                    
                     param_1 = param_1 + lVar26;
                     param_2 = param_2 + lVar26;
                     param_3 = param_3 - INDEX_1;
-                    puVar = auStack_108;
+                    puVar = stack_array_108;
                 } while (param_3 != 0);
             }
         }
     }
-    
-    // 系统清理和返回
+// 系统清理和返回
     *(UInt64_void *)(puVar - INDEX_8) = 0x1807e06c3;
-    SystemCleanupHandler(auStack_38[0] ^ (UInt64)auStack_38);
+    SystemCleanupHandler(stack_array_38[0] ^ (UInt64)stack_array_38);
 }
-
 /**
  * @brief 高级浮点数批量处理和向量运算函数
- * 
+ *
  * 本函数实现了高级浮点数批量处理、向量运算、标量乘法等功能。
  * 支持两种处理模式：累加模式和非累加模式。
- * 
+ *
  * @param param_1 源数据指针
  * @param param_2 目标数据指针
  * @param param_3 数据元素数量
@@ -1198,13 +1137,12 @@ void AdvancedMatrixTransformer(float *param_1, float *param_2, int param_3, floa
 void AdvancedFloatProcessor(float *param_1, float *param_2, uint param_3, float *param_4,
                            uint64_t param_5, uint64_t param_6, int param_7)
 {
-    // 局部变量声明
+// 局部变量声明
     Float32 fVar1, fVar2, fVar3, fVar4, fVar5, fVar6, fVar7, fVar8, fVar9;
     Float32 fVar10, fVar11, fVar12, fVar13, fVar14, fVar15, fVar16, fVar17, fVar18, fVar19;
     UInt32 uVar20;
     Float32Ptr pfVar21;
-    
-    // 从参数矩阵中提取变换系数
+// 从参数矩阵中提取变换系数
     fVar1 = *param_4;                          // 系数1
     fVar2 = param_4[INDEX_32];                 // 系数2 (0x20 = 32)
     fVar3 = param_4[INDEX_96];                 // 系数3 (0x60 = 96)
@@ -1214,22 +1152,18 @@ void AdvancedFloatProcessor(float *param_1, float *param_2, uint param_3, float 
     fVar7 = param_4[INDEX_64];                 // 系数7 (0x40 = 64)
     fVar8 = param_4[INDEX_128];                // 系数8 (0x80 = 128)
     fVar9 = param_4[INDEX_96];                 // 系数9 (0x60 = 96)
-    
     uVar20 = param_3 >> INDEX_1;               // 批量处理次数
-    
-    // 根据处理模式进行分支
+// 根据处理模式进行分支
     if (param_7 == 0) {
-        // 累加模式处理
+// 累加模式处理
         if (param_3 >> INDEX_1 != 0) {
             pfVar21 = param_2 + INDEX_8;         // 目标指针偏移
-            
             do {
-                // 从源数据读取两个元素
+// 从源数据读取两个元素
                 fVar10 = *param_1;
                 fVar11 = param_1[INDEX_1];
                 param_1 = param_1 + INDEX_2;
-                
-                // 从目标缓冲区读取当前值
+// 从目标缓冲区读取当前值
                 fVar12 = pfVar21[-INDEX_4];
                 fVar13 = pfVar21[-INDEX_3];
                 fVar14 = pfVar21[-INDEX_2];
@@ -1238,17 +1172,14 @@ void AdvancedFloatProcessor(float *param_1, float *param_2, uint param_3, float 
                 fVar17 = pfVar21[INDEX_1];
                 fVar18 = pfVar21[INDEX_2];
                 fVar19 = pfVar21[INDEX_3];
-                
-                // 执行累加运算（第一组）
+// 执行累加运算（第一组）
                 *param_2 = fVar10 * fVar1 + *param_2;
                 param_2[INDEX_1] = fVar10 * fVar2 + param_2[INDEX_1];
                 param_2[INDEX_2] = fVar10 * fVar4 + param_2[INDEX_2];
                 param_2[INDEX_3] = fVar10 * fVar3 + param_2[INDEX_3];
-                
-                // 更新目标指针
+// 更新目标指针
                 param_2 = param_2 + INDEX_12;    // 0xc = 12
-                
-                // 执行累加运算（第二组）
+// 执行累加运算（第二组）
                 pfVar21[-INDEX_4] = fVar10 * fVar6 + fVar12;
                 pfVar21[-INDEX_3] = fVar10 * fVar5 + fVar13;
                 pfVar21[-INDEX_2] = fVar11 * fVar1 + fVar14;
@@ -1257,73 +1188,62 @@ void AdvancedFloatProcessor(float *param_1, float *param_2, uint param_3, float 
                 pfVar21[INDEX_1] = fVar11 * fVar9 + fVar17;
                 pfVar21[INDEX_2] = fVar11 * fVar8 + fVar18;
                 pfVar21[INDEX_3] = fVar11 * fVar5 + fVar19;
-                
-                // 更新缓冲区指针
+// 更新缓冲区指针
                 pfVar21 = pfVar21 + INDEX_12;     // 0xc = 12
                 uVar20 = uVar20 - INDEX_1;
             } while (uVar20 != 0);
         }
-        
-        // 处理剩余元素（如果有）
+// 处理剩余元素（如果有）
         for (param_3 = param_3 & INDEX_1; param_3 != 0; param_3 = param_3 - INDEX_1) {
             fVar7 = *param_1;
             param_1 = param_1 + INDEX_1;
-            
-            // 执行单元素累加运算
+// 执行单元素累加运算
             *param_2 = fVar7 * fVar1 + *param_2;
             param_2[INDEX_1] = fVar7 * fVar2 + param_2[INDEX_1];
             param_2[INDEX_2] = fVar7 * fVar4 + param_2[INDEX_2];
             param_2[INDEX_3] = fVar7 * fVar3 + param_2[INDEX_3];
-            
-            // 使用64位操作处理剩余两个元素
-            *(UInt64 *)(param_2 + INDEX_4) = CONCAT44(fVar7 * fVar5 + param_2[INDEX_5], 
+// 使用64位操作处理剩余两个元素
+            *(UInt64 *)(param_2 + INDEX_4) = CONCAT44(fVar7 * fVar5 + param_2[INDEX_5],
                                                        fVar7 * fVar6 + param_2[INDEX_4]);
             param_2 = param_2 + INDEX_6;
         }
     }
     else {
-        // 非累加模式处理
+// 非累加模式处理
         for (uVar20 = param_3 >> INDEX_1; uVar20 != 0; uVar20 = uVar20 - INDEX_1) {
-            // 从源数据读取两个元素
+// 从源数据读取两个元素
             fVar10 = *param_1;
             fVar11 = param_1[INDEX_1];
             param_1 = param_1 + INDEX_2;
-            
-            // 执行非累加运算（第一组）
+// 执行非累加运算（第一组）
             *param_2 = fVar10 * fVar1;
             param_2[INDEX_1] = fVar10 * fVar2;
             param_2[INDEX_2] = fVar10 * fVar4;
             param_2[INDEX_3] = fVar10 * fVar3;
             param_2[INDEX_4] = fVar10 * fVar6;
             param_2[INDEX_5] = fVar10 * fVar5;
-            
-            // 执行非累加运算（第二组）
+// 执行非累加运算（第二组）
             param_2[INDEX_6] = fVar11 * fVar1;
             param_2[INDEX_7] = fVar11 * fVar2;
             param_2[INDEX_8] = fVar11 * fVar7;
             param_2[INDEX_9] = fVar11 * fVar9;
             param_2[INDEX_10] = fVar11 * fVar8;
             param_2[INDEX_11] = fVar11 * fVar5;
-            
             param_2 = param_2 + INDEX_12;        // 0xc = 12
         }
-        
-        // 处理剩余元素（如果有）
+// 处理剩余元素（如果有）
         param_3 = param_3 & INDEX_1;
         if (param_3 != 0) {
             do {
                 fVar7 = *param_1;
                 param_1 = param_1 + INDEX_1;
-                
-                // 执行单元素非累加运算
+// 执行单元素非累加运算
                 *param_2 = fVar7 * fVar1;
                 param_2[INDEX_1] = fVar7 * fVar2;
                 param_2[INDEX_2] = fVar7 * fVar4;
                 param_2[INDEX_3] = fVar7 * fVar3;
-                
-                // 使用64位操作处理剩余两个元素
+// 使用64位操作处理剩余两个元素
                 *(UInt64 *)(param_2 + INDEX_4) = CONCAT44(fVar7 * fVar5, fVar7 * fVar6);
-                
                 param_3 = param_3 - INDEX_1;
                 param_2 = param_2 + INDEX_6;
             } while (param_3 != 0);
@@ -1332,119 +1252,110 @@ void AdvancedFloatProcessor(float *param_1, float *param_2, uint param_3, float 
     }
     return;
 }
-
 // ============================================================================
 // 模块技术说明
 // ============================================================================
-
 /**
  * @brief 模块技术架构说明
- * 
+ *
  * 本模块实现了高级数学计算和矩阵变换功能，具有以下技术特点：
- * 
+ *
  * 1. **高性能矩阵运算**：
  *    - 支持4x4矩阵变换和向量运算
  *    - 使用展开循环优化技术提高性能
  *    - 支持批量数据处理和SIMD优化
- * 
+ *
  * 2. **多种运算模式**：
  *    - 矩阵加法、乘法、变换等多种模式
  *    - 累加和非累加两种处理方式
  *    - 支持不同精度的计算要求
- * 
+ *
  * 3. **内存管理优化**：
  *    - 使用栈内存分配减少堆操作
  *    - 内存对齐优化提高访问效率
  *    - 智能缓存策略减少内存访问
- * 
+ *
  * 4. **算法优化**：
  *    - 使用switch语句展开循环
  *    - 条件分支优化减少跳转
  *    - 寄存器变量优化提高速度
- * 
+ *
  * 5. **错误处理机制**：
  *    - 参数验证和边界检查
  *    - 状态监控和错误恢复
  *    - 内存安全保护机制
  */
-
 /**
  * @brief 性能优化策略
- * 
+ *
  * 本模块采用多种性能优化策略：
- * 
+ *
  * 1. **循环展开**：使用switch语句展开循环，减少分支预测失败
  * 2. **内存对齐**：确保数据访问对齐，提高内存访问效率
  * 3. **寄存器优化**：使用寄存器变量减少内存访问
  * 4. **批量处理**：支持批量数据处理，减少函数调用开销
  * 5. **条件分支优化**：合理组织代码结构，提高分支预测准确率
  */
-
 /**
  * @brief 内存管理策略
- * 
+ *
  * 本模块的内存管理策略：
- * 
+ *
  * 1. **栈内存分配**：优先使用栈内存，减少堆分配开销
  * 2. **内存对齐**：确保数据结构对齐，提高访问效率
  * 3. **缓冲区管理**：合理管理缓冲区大小，避免内存浪费
  * 4. **内存安全**：实施边界检查，防止内存越界
  * 5. **资源清理**：确保系统资源正确释放，避免内存泄漏
  */
-
 /**
  * @brief 错误处理机制
- * 
+ *
  * 本模块的错误处理机制：
- * 
+ *
  * 1. **参数验证**：检查输入参数的有效性
  * 2. **边界检查**：防止数组越界和内存访问错误
  * 3. **状态监控**：监控处理状态，及时发现问题
  * 4. **错误恢复**：提供错误恢复机制，保证系统稳定性
  * 5. **日志记录**：记录错误信息，便于调试和维护
  */
-
 /**
  * @brief 扩展性设计
- * 
+ *
  * 本模块具有良好的扩展性：
- * 
+ *
  * 1. **模块化设计**：功能模块化，便于扩展和维护
  * 2. **接口标准化**：提供标准化的接口，便于集成
  * 3. **配置灵活**：支持多种配置选项，适应不同需求
  * 4. **算法可插拔**：支持不同算法的替换和扩展
  * 5. **性能可调**：支持性能参数调整，优化不同场景
  */
-
 /**
  * @brief 安全性保障
- * 
+ *
  * 本模块的安全性保障措施：
- * 
+ *
  * 1. **输入验证**：严格验证输入参数，防止恶意输入
  * 2. **边界保护**：实施边界检查，防止缓冲区溢出
  * 3. **内存安全**：确保内存操作安全，防止内存泄漏
  * 4. **数据完整性**：保证数据处理的完整性和一致性
  * 5. **错误隔离**：错误隔离处理，防止错误扩散
  */
-
 /**
  * @brief 代码质量保证
- * 
+ *
  * 本模块的代码质量保证措施：
- * 
+ *
  * 1. **代码规范**：遵循代码规范，保证代码一致性
  * 2. **文档完整**：提供完整的文档说明，便于理解和使用
  * 3. **测试覆盖**：提供完整的测试用例，保证代码质量
  * 4. **性能测试**：进行性能测试，确保性能满足要求
  * 5. **代码审查**：进行代码审查，发现潜在问题
  */
-
 /**
  * @brief 维护性设计
- * 
+ *
  * 本模块的维护性设计考虑：
- * 
+ *
  * 1. **清晰的架构**：模块化设计，职责明确
  * 2. **完善的文档**：提供详细的设计文档和使用说明
  * 3. **可读性强**：代码结构清晰，注释完整

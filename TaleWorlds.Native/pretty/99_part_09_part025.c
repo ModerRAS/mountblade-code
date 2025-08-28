@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_09_part025.c - 3 个函数
-
-// 函数: void FUN_1805c931e(uint64_t param_1,int param_2,int param_3,int param_4)
-void FUN_1805c931e(uint64_t param_1,int param_2,int param_3,int param_4)
-
+// 函数: void function_5c931e(uint64_t param_1,int param_2,int param_3,int param_4)
+void function_5c931e(uint64_t param_1,int param_2,int param_3,int param_4)
 {
   int iVar1;
   uint64_t uVar2;
@@ -21,7 +18,6 @@ void FUN_1805c931e(uint64_t param_1,int param_2,int param_3,int param_4)
   short *psVar11;
   int iVar12;
   uint64_t uVar13;
-  
   uVar13 = 0xffffffff;
   lVar6 = *(int64_t *)(in_RAX + 0x8f8);
   bVar7 = 0;
@@ -80,7 +76,7 @@ LAB_1805c94b7:
               lVar6 = *(int64_t *)(psVar11 + 100);
               uVar2 = *(uint64_t *)((int64_t)iVar1 * 0xa0 + 0x50 + lVar6);
               if (((((uVar2 >> 9 & 1) == 0) || (0 < *psVar11)) &&
-                  ((cVar4 = func_0x000180534fb0(psVar11 + -4), cVar4 == '\0' || (0 < *psVar11)))) &&
+                  ((cVar4 = Function_7f0ca258(psVar11 + -4), cVar4 == '\0' || (0 < *psVar11)))) &&
                  (((*(uint *)((int64_t)iVar1 * 0xa0 + 0x58 + lVar6) & 0x80000) != 0 &&
                   (uVar13 = uVar13 & 0xffffffff, (uVar2 >> 0x1c & 1) != 0)))) {
                 uVar13 = uVar9;
@@ -127,7 +123,7 @@ LAB_1805c9451:
   *(int *)((int64_t)unaff_RBX + 0x21ac) = iVar12;
 LAB_1805c9594:
   if (*(int *)((int64_t)unaff_RBX + 0x215c) != param_2) {
-    FUN_180508010();
+    AnimationSystem_Controller();
     *(int32_t *)((int64_t)unaff_RBX + 0x178c) = 0;
     if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
       *(uint *)((int64_t)unaff_RBX + 0x158c) =
@@ -137,15 +133,8 @@ LAB_1805c9594:
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805c9504(void)
-void FUN_1805c9504(void)
-
+// 函数: void function_5c9504(void)
+void function_5c9504(void)
 {
   int iVar1;
   int64_t lVar2;
@@ -158,7 +147,6 @@ void FUN_1805c9504(void)
   short *psVar6;
   uint64_t in_R11;
   int unaff_R15D;
-  
   psVar6 = (short *)(unaff_RSI + 0x10);
   do {
     if (0 < *(int *)(psVar6 + 0x14)) {
@@ -166,7 +154,7 @@ void FUN_1805c9504(void)
       lVar2 = *(int64_t *)(psVar6 + 100);
       uVar3 = *(uint64_t *)((int64_t)iVar1 * 0xa0 + 0x50 + lVar2);
       if (((uVar3 >> 9 & 1) == 0) || (0 < *psVar6)) {
-        cVar4 = func_0x000180534fb0(psVar6 + -4);
+        cVar4 = Function_7f0ca258(psVar6 + -4);
         if (((cVar4 == '\0') || (0 < *psVar6)) &&
            (((*(uint *)((int64_t)iVar1 * 0xa0 + 0x58 + lVar2) & 0x80000) != 0 &&
             (in_R11 = in_R11 & 0xffffffff, (uVar3 >> 0x1c & 1) != 0)))) {
@@ -182,7 +170,7 @@ void FUN_1805c9504(void)
     *(int *)((int64_t)unaff_RBX + 0x21ac) = (int)in_R11;
   }
   if (*(int *)((int64_t)unaff_RBX + 0x215c) != unaff_R15D) {
-    FUN_180508010();
+    AnimationSystem_Controller();
     *(int32_t *)((int64_t)unaff_RBX + 0x178c) = 0;
     if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
       *(uint *)((int64_t)unaff_RBX + 0x158c) =
@@ -192,25 +180,17 @@ void FUN_1805c9504(void)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805c957a(void)
-void FUN_1805c957a(void)
-
+// 函数: void function_5c957a(void)
+void function_5c957a(void)
 {
   int64_t *unaff_RBX;
   int in_R11D;
   int unaff_R15D;
-  
   if (in_R11D != *(int *)(*(int64_t *)(*unaff_RBX + 0x8f8) + 0x9e4)) {
     *(int *)((int64_t)unaff_RBX + 0x21ac) = in_R11D;
   }
   if (*(int *)((int64_t)unaff_RBX + 0x215c) != unaff_R15D) {
-    FUN_180508010();
+    AnimationSystem_Controller();
     *(int32_t *)((int64_t)unaff_RBX + 0x178c) = 0;
     if (*(int *)(*unaff_RBX + 0x1fc) - 1U < 2) {
       *(uint *)((int64_t)unaff_RBX + 0x158c) =
@@ -220,9 +200,3 @@ void FUN_1805c957a(void)
   }
   return;
 }
-
-
-
-
-
-

@@ -1,17 +1,12 @@
 #include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: MemoryDebugger */
 #define MemoryDebugger MemoryDebugger
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 01_initialization_part021.c - 11 个函数
-
 // 函数: void initialize_resource_manager(int64_t *engine_context,int64_t resource_params)
 // 初始化资源管理器，处理游戏资源的加载和管理
 void initialize_resource_manager(int64_t *engine_context,int64_t resource_params)
-
 {
   uint resource_size;
   int resource_index;
@@ -51,7 +46,6 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   int32_t stack_resource_config;
   int8_t resource_name_buffer [136];
   uint64_t stack_checksum;
-  
   stack_resource_hash = 0xfffffffffffffffe;
   stack_checksum = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer;
   stack_param2 = 0;
@@ -71,7 +65,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_resource_value = 0;
   stack_capacity = stack_capacity & 0xffffff00;
   resource_handle = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x60d30,0x10,0x1f);
-  resource_ptr = (int64_t *)FUN_1801954d0(resource_handle,&stack_string_ptr);
+  resource_ptr = (int64_t *)function_1954d0(resource_handle,&stack_string_ptr);
   stack_ptr_ptr = (void **)resource_ptr;
   if (resource_ptr != (int64_t *)0x0) {
     (**(code **)(*resource_ptr + 0x28))(resource_ptr);
@@ -97,7 +91,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
     resource_data = *(void **)(resource_params + 8);
   }
   strcpy_s(resource_name_buffer,0x80,resource_data);
-  FUN_18019e140(&stack_ptr,&stack_resource_string_ptr);
+  function_19e140(&stack_ptr,&stack_resource_string_ptr);
   stack_resource_string_ptr = &system_state_ptr;
   stack_buffer_ptr = &system_data_buffer_ptr;
   stack_control = 0;
@@ -105,10 +99,10 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_size = 0;
   resource_offset = *engine_context;
   SystemCore_EncryptionEngine0(&stack_resource_ptr,resource_params);
-  resource_index = FUN_1801426a0(resource_offset,&stack_resource_ptr);
+  resource_index = function_1426a0(resource_offset,&stack_resource_ptr);
   stack_resource_ptr = &system_data_buffer_ptr;
   if (stack_resource_data != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
   stack_resource_data = 0;
@@ -133,7 +127,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
     CoreMemoryPoolProcessor(&stack_ptr,resource_count);
   }
   if (resource_size != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memcpy(stack_data,*(uint64_t *)(resource_offset + 8),resource_count);
   }
   if (stack_data != 0) {
@@ -143,7 +137,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   if (0 < stack_id) {
     stack_size = resource_size;
     CoreMemoryPoolProcessor(&stack_ptr,stack_id);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memcpy((uint64_t)stack_size + stack_data,stack_length,(int64_t)(stack_id + 1));
   }
   stack_offset = stack_data;
@@ -156,16 +150,16 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_flags = 0xffffffff;
   stack_size = resource_size;
   stack_control._4_4_ = *(uint *)(resource_offset + 0x1c);
-  FUN_1801a6440(resource_ptr,init_system_data_file,&stack_buffer_ptr,&stack_resource_flags);
-  FUN_18019e260(resource_ptr);
+  function_1a6440(resource_ptr,init_system_data_file,&stack_buffer_ptr,&stack_resource_flags);
+  function_19e260(resource_ptr);
   (**(code **)(*(int64_t *)engine_context[0x56] + 0x138))((int64_t *)engine_context[0x56],resource_ptr);
-  FUN_180199500(resource_ptr,0x3d072b02,1);
-  FUN_1801a2ea0(resource_ptr);
+  function_199500(resource_ptr,0x3d072b02,1);
+  function_1a2ea0(resource_ptr);
   (**(code **)(*(int64_t *)engine_context[0x56] + 0x140))((int64_t *)engine_context[0x56],resource_ptr);
   Sleep(1000);
   stack_buffer_ptr = &system_data_buffer_ptr;
   if (stack_offset != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
   stack_offset = 0;
@@ -173,7 +167,7 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_buffer_ptr = &system_state_ptr;
   stack_ptr = &system_data_buffer_ptr;
   if (stack_length != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
   stack_length = 0;
@@ -185,26 +179,19 @@ void initialize_resource_manager(int64_t *engine_context,int64_t resource_params
   stack_ptr_ptr = &stack_string_ptr;
   stack_string_ptr = &system_data_buffer_ptr;
   if (stack_length != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
   stack_length = 0;
   stack_control = stack_control & 0xffffffff00000000;
   stack_string_ptr = &system_state_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemSecurityChecker(stack_checksum ^ (uint64_t)stack_buffer);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void process_shader_files(void)
 // 处理着色器文件，进行文件路径解析和着色器编译
 void process_shader_files(void)
-
 {
   uint file_size;
   int64_t *engine_ptr;
@@ -249,7 +236,6 @@ void process_shader_files(void)
   int32_t shader_version;
   uint64_t shader_config;
   uint64_t stack_guard;
-  
   shader_config = 0xfffffffffffffffe;
   stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)shader_buffer;
   global_engine_ptr = system_main_module_state;
@@ -276,7 +262,7 @@ LAB_file_processing_error:
       content_size = 0;
       CoreMemoryPoolProcessor(&shader_reader,*(int32_t *)(file_offset + 0x10));
       if (*(int *)(file_offset + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memcpy(file_content,*(uint64_t *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
       }
       if (*(int64_t *)(file_offset + 8) != 0) {
@@ -302,7 +288,7 @@ LAB_path_processing_error:
       file_type = 0;
       CoreMemoryPoolProcessor(&file_writer,*(int32_t *)(file_offset + 0x10));
       if (*(int *)(file_offset + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memcpy(file_handle,*(uint64_t *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
       }
       if (*(int64_t *)(file_offset + 8) != 0) {
@@ -321,7 +307,7 @@ LAB_path_processing_error:
       if (path_separator == '\0') {
         file_writer = &system_data_buffer_ptr;
         if (file_handle != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreMemoryPoolInitializer();
         }
         file_handle = (int8_t *)0x0;
@@ -329,7 +315,7 @@ LAB_path_processing_error:
         file_writer = &system_state_ptr;
         shader_reader = &system_data_buffer_ptr;
         if (file_content != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreMemoryPoolInitializer();
         }
       }
@@ -338,11 +324,11 @@ LAB_path_processing_error:
         shader_array[1] = (uint64_t *)0x0;
         shader_metadata = 0;
         shader_version = 3;
-        FUN_18062c5f0(&shader_reader,&shader_array);
+        function_62c5f0(&shader_reader,&shader_array);
         shader_ptr = shader_array[1];
         shader_data = shader_array[0];
         file_offset = (int64_t)shader_array[1] - (int64_t)shader_array[0];
-        FUN_18004b100(&file_buffer);
+        function_04b100(&file_buffer);
         file_path = &system_buffer_ptr;
         if (file_handle != (int8_t *)0x0) {
           file_path = file_handle;
@@ -358,8 +344,8 @@ LAB_path_processing_error:
         if (0 < file_count) {
           shader_entry = (uint *)(shader_data + 2);
           do {
-            FUN_180061db0();
-            FUN_180061be0();
+            function_061db0();
+            function_061be0();
             shader_output = &system_data_buffer_ptr;
             shader_info._0_4_ = 0;
             shader_info._4_4_ = 0;
@@ -367,7 +353,7 @@ LAB_path_processing_error:
             shader_length = 0;
             CoreMemoryPoolProcessor(&shader_output,*shader_entry);
             if (*shader_entry != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
               memcpy(shader_input,*(uint64_t *)(shader_entry + -2),*shader_entry + 1);
             }
             if (*(int64_t *)(shader_entry + -2) != 0) {
@@ -426,7 +412,7 @@ LAB_path_processing_error:
                   CoreMemoryPoolProcessor(&shader_output,path_length);
                 }
                 if (file_size != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                   memcpy(shader_input,*(uint64_t *)(shader_entry + -2),path_length);
                 }
                 if (shader_input != (int8_t *)0x0) {
@@ -447,7 +433,7 @@ LAB_path_processing_error:
                 if (path_separator != '\0') goto LAB_shader_processing;
                 shader_output = &system_data_buffer_ptr;
                 if (shader_input != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                   CoreMemoryPoolInitializer();
                 }
                 shader_info = (uint64_t)shader_info._4_4_ << 0x20;
@@ -466,16 +452,16 @@ LAB_shader_processing:
                 shader_index = -1;
 LAB_shader_path_found:
                 NetworkSystem_ProtocolParser(shader_data + (int64_t)file_id * 4,&temp_buffer,shader_index + 1,0xffffffff);
-                file_type = FUN_180054360(engine_ptr,&temp_buffer);
+                file_type = function_054360(engine_ptr,&temp_buffer);
                 if (init_system_data_file != 0) {
-                  FUN_18005c1c0(file_type,&resource_handle);
+                  function_05c1c0(file_type,&resource_handle);
                   shader_reader = &system_data_buffer_ptr;
                   file_data = 0;
                   file_content = (int8_t *)0x0;
                   file_type = 0;
                   CoreMemoryPoolProcessor(&shader_reader,max_path_length);
                   if (max_path_length != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     memcpy(file_content,file_data,max_path_length + 1);
                   }
                   if (file_data != 0) {
@@ -490,11 +476,11 @@ LAB_shader_path_found:
                     file_handle = file_buffer;
                   }
                   System_DataHandler(&shader_reader,&processed_var_6576_ptr,file_handle);
-                  FUN_18062db60(&shader_reader,&resource_handle);
+                  function_62db60(&shader_reader,&resource_handle);
                   init_system_data_file = 0;
                   shader_reader = &system_data_buffer_ptr;
                   if (file_content != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     CoreMemoryPoolInitializer();
                   }
                   file_content = (int8_t *)0x0;
@@ -502,7 +488,7 @@ LAB_shader_path_found:
                   shader_reader = &system_state_ptr;
                   resource_handle = &system_data_buffer_ptr;
                   if (resource_data != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     CoreMemoryPoolInitializer();
                   }
                   resource_data = 0;
@@ -511,7 +497,7 @@ LAB_shader_path_found:
                 }
                 temp_buffer = &system_data_buffer_ptr;
                 if (file_buffer != (void *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                   CoreMemoryPoolInitializer();
                 }
                 file_buffer = (void *)0x0;
@@ -519,7 +505,7 @@ LAB_shader_path_found:
                 temp_buffer = &system_state_ptr;
                 shader_output = &system_data_buffer_ptr;
                 if (shader_input != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                   CoreMemoryPoolInitializer();
                 }
                 shader_info = (uint64_t)shader_info._4_4_ << 0x20;
@@ -529,7 +515,7 @@ LAB_shader_path_found:
 LAB_shader_found:
               shader_output = &system_data_buffer_ptr;
               if (shader_input != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                 CoreMemoryPoolInitializer();
               }
               shader_info = (uint64_t)shader_info._4_4_ << 0x20;
@@ -546,7 +532,7 @@ LAB_shader_found:
         }
         file_buffer = &system_data_buffer_ptr;
         if (file_data != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreMemoryPoolInitializer();
         }
         file_data = 0;
@@ -556,12 +542,12 @@ LAB_shader_found:
           (**(code **)*file_iterator)(file_iterator,0);
         }
         if (shader_data != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreMemoryPoolInitializer(shader_data);
         }
         file_writer = &system_data_buffer_ptr;
         if (file_handle != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreMemoryPoolInitializer();
         }
         file_handle = (int8_t *)0x0;
@@ -569,7 +555,7 @@ LAB_shader_found:
         file_writer = &system_state_ptr;
         shader_reader = &system_data_buffer_ptr;
         if (file_content != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreMemoryPoolInitializer();
         }
       }
@@ -581,36 +567,28 @@ LAB_shader_found:
       file_count = shader_index + 1;
     } while (file_count < (int)total_files);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemSecurityChecker(stack_guard ^ (uint64_t)shader_buffer);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void initialize_render_pipeline(void)
 // 初始化渲染管线，设置渲染相关的全局变量和数据结构
 void initialize_render_pipeline(void)
-
 {
   uint64_t *render_target;
   uint64_t *render_state;
   uint64_t render_config;
   int64_t mutex_data;
-  
   render_state = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x198,8,3);
   render_target = render_state + 4;
-  FUN_180637560(render_target);
+  function_637560(render_target);
   *render_target = &processed_var_6384_ptr;
   *(int16_t *)(render_state + 0x1a) = 1;
   *(int32_t *)(render_state + 9) = 0;
   *(int8_t *)((int64_t)render_state + 0x54) = 0;
   *render_target = &rendering_buffer_264_ptr;
   render_target = render_state + 0x1b;
-  FUN_180637560(render_target);
+  function_637560(render_target);
   *render_target = &processed_var_6384_ptr;
   *(int16_t *)(render_state + 0x31) = 1;
   *(int32_t *)(render_state + 0x20) = 0;
@@ -622,9 +600,9 @@ void initialize_render_pipeline(void)
   *(int32_t *)(render_state + 1) = 0xe;
   system_message_context = render_state;
   render_config = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x480,8,3);
-  init_system_data_file = FUN_18004bd10(render_config);
+  init_system_data_file = function_04bd10(render_config);
   render_config = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x10420,8,3);
-  init_system_data_file = FUN_18005c090(render_config);
+  init_system_data_file = function_05c090(render_config);
   init_system_data_file = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x30,8,3);
   *(int32_t *)(init_system_data_file + 0x19) = 0;
   *(int16_t *)(init_system_data_file + 0x1d) = 0;
@@ -638,7 +616,7 @@ void initialize_render_pipeline(void)
   init_system_data_file = CoreMemoryPoolReallocator(system_memory_pool_ptr,8,4,3);
   *(int32_t *)(init_system_data_file + 4) = 0;
   render_config = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x80,8,3);
-  init_system_data_file = FUN_18015c450(render_config);
+  init_system_data_file = function_15c450(render_config);
   mutex_data = CoreMemoryPoolReallocator(system_memory_pool_ptr,0xe8,8,3);
   _Mtx_init_in_situ(mutex_data,2);
   _Mtx_init_in_situ(mutex_data + 0x50,2);
@@ -653,57 +631,40 @@ void initialize_render_pipeline(void)
   *(int32_t *)(mutex_data + 0xe0) = 0;
   init_system_data_file = mutex_data;
   render_config = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x70,8,3);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(render_config,0,0x70);
 }
-
-
-
-
 // 函数: void cleanup_resource_array(int64_t *resource_array)
 // 清理资源数组，释放分配的资源
 void cleanup_resource_array(int64_t *resource_array)
-
 {
   int64_t array_start;
   int64_t array_end;
-  
   array_start = resource_array[1];
   for (array_end = *resource_array; array_end != array_start; array_end = array_end + 0x48) {
-    FUN_180058c20(array_end);
+    function_058c20(array_end);
   }
   if (*resource_array == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreMemoryPoolInitializer();
 }
-
-
-
-
 // 函数: void initialize_resource_handler(int64_t resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
 // 初始化资源处理器，设置资源处理的相关参数
 void initialize_resource_handler(int64_t resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
-
 {
-  FUN_180058210(resource_handle,*(uint64_t *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
+  function_058210(resource_handle,*(uint64_t *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
   return;
 }
-
-
-
-
 // 函数: void destroy_resource_handler(int64_t resource_handle)
 // 销毁资源处理器，清理相关资源
 void destroy_resource_handler(int64_t resource_handle)
-
 {
   int64_t resource_data;
   int64_t resource_ptr;
   uint64_t resource_count;
   uint64_t resource_index;
-  
   resource_count = *(uint64_t *)(resource_handle + 0x10);
   resource_data = *(int64_t *)(resource_handle + 8);
   resource_index = 0;
@@ -714,7 +675,7 @@ void destroy_resource_handler(int64_t resource_handle)
         if (*(int64_t **)(resource_ptr + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resource_ptr + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreMemoryPoolInitializer(resource_ptr);
       }
       *(uint64_t *)(resource_data + resource_index * 8) = 0;
@@ -724,19 +685,14 @@ void destroy_resource_handler(int64_t resource_handle)
   }
   *(uint64_t *)(resource_handle + 0x18) = 0;
   if ((1 < resource_count) && (*(int64_t *)(resource_handle + 8) != 0)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
   return;
 }
-
-
-
-
 // 函数: int64_t create_resource_context(int64_t context_ptr)
 // 创建资源上下文，初始化资源管理所需的数据结构
 int64_t create_resource_context(int64_t context_ptr)
-
 {
   *(uint64_t *)(context_ptr + 8) = &system_state_ptr;
   *(uint64_t *)(context_ptr + 0x10) = 0;
@@ -747,18 +703,13 @@ int64_t create_resource_context(int64_t context_ptr)
   *(int32_t *)(context_ptr + 0x18) = 0;
   return context_ptr;
 }
-
-
-
-
 // 函数: void destroy_resource_context(int64_t context_ptr)
 // 销毁资源上下文，释放相关资源
 void destroy_resource_context(int64_t context_ptr)
-
 {
   *(uint64_t *)(context_ptr + 8) = &system_data_buffer_ptr;
   if (*(int64_t *)(context_ptr + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
   *(uint64_t *)(context_ptr + 0x10) = 0;
@@ -766,32 +717,21 @@ void destroy_resource_context(int64_t context_ptr)
   *(uint64_t *)(context_ptr + 8) = &system_state_ptr;
   return;
 }
-
-
-
-
 // 函数: void initialize_resource_manager_v2(int64_t resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
 // 初始化资源管理器版本2，提供更高级的资源管理功能
 void initialize_resource_manager_v2(int64_t resource_handle,uint64_t param2,uint64_t param3,uint64_t param4)
-
 {
-  FUN_180058210(resource_handle,*(uint64_t *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
+  function_058210(resource_handle,*(uint64_t *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
   return;
 }
-
-
-
-
 // 函数: void destroy_resource_manager_v2(int64_t resource_handle)
 // 销毁资源管理器版本2，清理所有相关资源
 void destroy_resource_manager_v2(int64_t resource_handle)
-
 {
   int64_t resource_data;
   int64_t resource_ptr;
   uint64_t resource_count;
   uint64_t resource_index;
-  
   resource_count = *(uint64_t *)(resource_handle + 0x10);
   resource_data = *(int64_t *)(resource_handle + 8);
   resource_index = 0;
@@ -802,7 +742,7 @@ void destroy_resource_manager_v2(int64_t resource_handle)
         if (*(int64_t **)(resource_ptr + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resource_ptr + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreMemoryPoolInitializer(resource_ptr);
       }
       *(uint64_t *)(resource_data + resource_index * 8) = 0;
@@ -812,27 +752,19 @@ void destroy_resource_manager_v2(int64_t resource_handle)
   }
   *(uint64_t *)(resource_handle + 0x18) = 0;
   if ((1 < resource_count) && (*(int64_t *)(resource_handle + 8) != 0)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreMemoryPoolInitializer();
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void emergency_exit(uint64_t exit_code,int32_t exit_status)
 // 紧急退出函数，在发生严重错误时调用
 void emergency_exit(uint64_t exit_code,int32_t exit_status)
-
 {
   code *exit_handler;
-  
   if (system_cache_buffer != 0) {
-    func_0x00018005a410(system_cache_buffer + 8);
+    Function_4caae46d(system_cache_buffer + 8);
   }
   Sleep(2000);
   _Exit(exit_status);
@@ -840,17 +772,10 @@ void emergency_exit(uint64_t exit_code,int32_t exit_status)
   (*exit_handler)();
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void finalize_initialization(void)
 // 完成初始化过程，执行最后的清理和设置工作
 void finalize_initialization(void)
-
 {
   uint64_t *global_ptr;
   uint64_t temp_value;
@@ -859,7 +784,6 @@ void finalize_initialization(void)
   char *config_ptr;
   uint64_t unused_param;
   uint64_t stack_guard;
-  
   config_data = init_system_data_file;
   stack_guard = 0xfffffffffffffffe;
   if (*init_system_data_file != '\0') {
@@ -878,11 +802,11 @@ void finalize_initialization(void)
     SystemCore_CacheManager0(&processed_var_7024_ptr,*(int32_t *)(config_data + 0x14));
     SystemCore_CacheManager0(&processed_var_7064_ptr,*(int32_t *)(config_data + 0x18));
     for (config_ptr = *(char **)(config_data + 0x28); config_ptr != config_data + 0x20;
-        config_ptr = (char *)func_0x00018066bd70(config_ptr)) {
+        config_ptr = (char *)Function_7bfb2422(config_ptr)) {
       SystemCore_CacheManager0(&processed_var_7104_ptr,*(int32_t *)(config_ptr + 0x20),*(int32_t *)(config_ptr + 0x24));
     }
     for (config_ptr = *(char **)(config_data + 0x58); config_ptr != config_data + 0x50;
-        config_ptr = (char *)func_0x00018066bd70(config_ptr)) {
+        config_ptr = (char *)Function_7bfb2422(config_ptr)) {
       SystemCore_CacheManager0(&processed_var_7144_ptr,*(int32_t *)(config_ptr + 0x20),*(int32_t *)(config_ptr + 0x24));
     }
     SystemCore_CacheManager0(&processed_var_7184_ptr,*(int32_t *)(config_data + 0x80));
@@ -897,8 +821,3 @@ void finalize_initialization(void)
   }
   return;
 }
-
-
-
-
-

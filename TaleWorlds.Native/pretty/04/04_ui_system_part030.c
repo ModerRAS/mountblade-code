@@ -1,8 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part030.c - UI系统高级数据处理和控制模块
 // 本模块包含4个核心函数，涵盖UI系统高级数据处理、信号量管理、资源初始化等高级UI功能
-
 // 常量定义
 #define UI_SYSTEM_DATA_BLOCK_SIZE 0x30
 #define UI_SYSTEM_BUFFER_SIZE 0x80
@@ -16,23 +14,21 @@
 #define UI_SYSTEM_BASE_OFFSET 0x15c
 #define UI_SYSTEM_DATA_ALIGNMENT 0x10
 #define UI_SYSTEM_PROCESSING_FLAG 0xffffffff
-
 // 函数别名定义
-#define ui_system_process_advanced_data FUN_18066f94e
-#define ui_system_release_semaphore_conditionally FUN_1806704b6
-#define ui_system_release_semaphore_unconditionally FUN_1806704db
-#define ui_system_initialize_data_buffers FUN_180670510
-
+#define ui_system_process_advanced_data function_66f94e
+#define ui_system_release_semaphore_conditionally function_6704b6
+#define ui_system_release_semaphore_unconditionally function_6704db
+#define ui_system_initialize_data_buffers function_670510
 /**
  * UI系统高级数据处理函数
- * 
+ *
  * 本函数是UI系统的核心数据处理函数，负责处理复杂的UI数据操作，
  * 包括内存管理、缓冲区操作、参数设置和状态更新等功能。
- * 
+ *
  * @param param_1 系统上下文指针
  * @param param_2 数据处理参数
  * @param param_3 处理标志
- * 
+ *
  * 处理流程：
  * 1. 初始化数据结构和缓冲区
  * 2. 设置内存偏移和参数
@@ -41,7 +37,7 @@
  * 5. 管理信号量同步
  * 6. 清理资源
  */
-void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3)
+void function_66f94e(uint64_t param_1, uint64_t param_2, int param_3)
 {
   int32_t *data_ptr_1;
   int32_t *data_ptr_2;
@@ -85,25 +81,21 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3)
   int stack_var_9;
   int64_t stack_param_3;
   int64_t stack_param_4;
-  
-  // 设置栈参数
+// 设置栈参数
   *(uint64_t *)(stack_base + -0x80) = size_param;
   size_var_1 = unaff_var;
   size_var_2 = unaff_var;
-  
   do {
-    // 初始化处理索引
+// 初始化处理索引
     stack_var_9 = index_var;
     *(int64_t *)(context_base + 0xfb8) = ((int64_t)(index_var % divisor_param) + UI_SYSTEM_BASE_OFFSET) * UI_SYSTEM_DATA_BLOCK_SIZE + data_base;
-    
-    // 设置指针和数据结构
+// 设置指针和数据结构
     if (index_var < 1) {
-      int_ptr = (int *)&stack0x00000054;
+      int_ptr = (int *)&local_buffer_00000054;
     }
     else {
       int_ptr = (int *)(*(int64_t *)(data_base + 0x43a8) + (int64_t)(index_var + -1) * 4);
     }
-    
     temp_var_2 = *(int64_t *)(data_base + 0x43a8);
     stack_var_1 = (int64_t)index_var;
     *(int **)(stack_base + -0x78) = int_ptr;
@@ -112,15 +104,13 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3)
     ptr_var = *(uint64_t **)(context_base + 0xf58);
     stack_var_4 = index_var * (int)size_var_2 * UI_SYSTEM_OFFSET_0X10;
     stack_var_5 = index_var * (int)size_param * 8;
-    
-    // 初始化缓冲区
+// 初始化缓冲区
     *ptr_var = 0;
     *(int8_t *)(ptr_var + 1) = 0;
     *(int32_t *)(context_base + 0xf14) = 0;
     *(int *)(context_base + 0xf8c) = index_var * -UI_SYSTEM_BUFFER_SIZE;
     *(int *)(context_base + 0xf90) = ((*(int *)(data_base + 0x1e74) - index_var) + -1) * UI_SYSTEM_BUFFER_SIZE;
-    
-    // 处理数据缓冲区
+// 处理数据缓冲区
     if (*(int *)(data_base + 0x2be0) == 0) {
       temp_var_2 = *(int64_t *)(stack_base + -0x60);
       *(int64_t *)(context_base + 0xf18) = (int64_t)stack_var_4 + *(int64_t *)(stack_base + -0x68);
@@ -140,15 +130,13 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3)
       temp_var_4 = (int64_t)*(int *)(context_base + 0xe94);
       byte_ptr_4 = *(int8_t **)(context_base + 0xf30);
       int_var = *(int *)(context_base + 0xe80);
-      
-      // 初始化数据块
+// 初始化数据块
       do {
         *byte_ptr_4 = UI_SYSTEM_FLAG_0X81;
         byte_ptr_4 = byte_ptr_4 + int_var;
         temp_var_2 = temp_var_2 + -1;
       } while (temp_var_2 != 0);
-      
-      // 设置数据标志
+// 设置数据标志
       *byte_ptr_1 = UI_SYSTEM_FLAG_0X81;
       byte_ptr_1[temp_var_4] = UI_SYSTEM_FLAG_0X81;
       byte_ptr_1[temp_var_4 * 2] = UI_SYSTEM_FLAG_0X81;
@@ -168,7 +156,7 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3)
       param_3 = stack_var_2;
     }
     else {
-      // 设置数据偏移
+// 设置数据偏移
       *(int64_t *)(context_base + 0xf18) = *(int64_t *)(*(int64_t *)(data_base + 0x43b0) + stack_var_1 * 8) + UI_SYSTEM_OFFSET_0X20;
       *(int64_t *)(context_base + 0xf20) = *(int64_t *)(*(int64_t *)(data_base + 0x43b8) + stack_var_1 * 8) + UI_SYSTEM_OFFSET_0X10;
       *(int64_t *)(context_base + 0xf28) = *(int64_t *)(*(int64_t *)(data_base + 0x43c0) + stack_var_1 * 8) + UI_SYSTEM_OFFSET_0X10;
@@ -178,16 +166,14 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3)
       *(int32_t *)(context_base + 0xf48) = 1;
       *(int32_t *)(context_base + 0xf4c) = 1;
     }
-    
-    // 处理数据块
+// 处理数据块
     counter = 0;
     if (0 < *(int *)(data_base + 0x1e78)) {
       stack_param_4 = UI_SYSTEM_OFFSET_0X10;
       stack_var_6 = 0;
       stack_param_3 = UI_SYSTEM_OFFSET_0X20;
-      
       do {
-        // 设置数据索引
+// 设置数据索引
         **(int **)(stack_base + -0x70) = counter - 1;
         if (((counter & param_3 - 1U) == 0) && (*int_ptr - param_3 < (int)counter)) {
           do {
@@ -195,8 +181,7 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3)
           } while (*int_ptr - stack_var_2 < (int)counter);
           size_var_1 = (uint64_t)(int)size_var_2;
         }
-        
-        // 处理数据块
+// 处理数据块
         temp_var_2 = *(int64_t *)(context_base + 0xf00);
         temp_var_3 = (int64_t)stack_var_5;
         *(int *)(context_base + 0xf84) = stack_var_6;
@@ -210,17 +195,14 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3)
         *(int64_t *)(context_base + 0xe20) = *(int64_t *)(stack_base + -8 + (uint64_t)*(byte *)(temp_var_2 + 2) * UI_SYSTEM_MULTIPLIER_0X18) + temp_var_3;
         *(int64_t *)(context_base + 0xe28) = *(int64_t *)(stack_base + (uint64_t)*(byte *)(temp_var_2 + 2) * UI_SYSTEM_MULTIPLIER_0X18) + temp_var_3;
         *(uint *)(context_base + 0xfc0) = *(uint *)(context_base + 0xfc0) | *(uint *)(stack_base + -0x20 + (uint64_t)*(byte *)(temp_var_2 + 2) * 4);
-        
-        // 调用处理函数
-        FUN_18066f3e0();
+// 调用处理函数
+        function_66f3e0();
         *(int32_t *)(context_base + 0xf14) = 1;
         *(uint *)(context_base + 0xfc0) = *(uint *)(context_base + 0xfc0) | (uint)(*(int *)(*(int64_t *)(context_base + 0xfb8) + 0x18) - 0x41U < UI_SYSTEM_MASK_0X3FFFFFBF);
-        
-        // 更新数据指针
+// 更新数据指针
         *(int64_t *)(context_base + 0xf18) = *(int64_t *)(context_base + 0xf18) + UI_SYSTEM_OFFSET_0X10;
         *(int64_t *)(context_base + 0xf20) = *(int64_t *)(context_base + 0xf20) + 8;
         *(int64_t *)(context_base + 0xf28) = *(int64_t *)(context_base + 0xf28) + 8;
-        
         if (*(int *)(data_base + 0x2be0) == 0) {
           *(int64_t *)(context_base + 0xf30) = *(int64_t *)(context_base + 0xf30) + UI_SYSTEM_OFFSET_0X10;
           *(int64_t *)(context_base + 0xf38) = *(int64_t *)(context_base + 0xf38) + 8;
@@ -229,7 +211,7 @@ void FUN_18066f94e(uint64_t param_1, uint64_t param_2, int param_3)
         }
         else {
 LAB_18066fdc2:
-          // 处理数据块标志
+// 处理数据块标志
           byte_ptr_3 = *(byte **)(context_base + 0xf00);
           byte_var = *byte_ptr_3;
           if (((byte_var == 4) || (byte_var == 9)) || (bool_var = true, byte_ptr_3[9] == 0)) {
@@ -237,9 +219,8 @@ LAB_18066fdc2:
           }
           byte_var = *(byte *)((uint64_t)*(byte *)((uint64_t)byte_var + 0xd00 + data_base + 0x1ed0) + data_base + 0x1ed0 + 0xc40 + ((uint64_t)byte_ptr_3[2] + (uint64_t)byte_ptr_3[0xb] * 4) * 4);
           stack_var_8 = (uint)byte_var;
-          
           if (stack_var_3 != *(int *)(data_base + 0x1e74) + -1) {
-            // 处理数据块
+// 处理数据块
             data_ptr_1 = (int32_t *)(size_var_1 * UI_SYSTEM_MULTIPLIER_0XF + *(int64_t *)(context_base + 0xea8));
             uint_var_1 = data_ptr_1[1];
             uint_var_2 = data_ptr_1[2];
@@ -253,8 +234,7 @@ LAB_18066fdc2:
             *(uint64_t *)(stack_param_4 + *(int64_t *)(*(int64_t *)(data_base + 0x43b8) + 8 + stack_var_1 * 8)) = *(uint64_t *)(temp_var_2 + *(int64_t *)(context_base + 0xeb0));
             *(uint64_t *)(stack_param_4 + *(int64_t *)(*(int64_t *)(data_base + 0x43c0) + 8 + stack_var_1 * 8)) = *(uint64_t *)(temp_var_2 + *(int64_t *)(context_base + 0xeb8));
           }
-          
-          // 处理数据块复制
+// 处理数据块复制
           if ((counter != *(int *)(data_base + 0x1e78) - 1U) && (*(char *)(*(int64_t *)(context_base + 0xf00) + 0x4e) == '\0')) {
             temp_var_4 = 0;
             temp_var_2 = unaff_var * 2;
@@ -268,7 +248,6 @@ LAB_18066fdc2:
               *(int8_t *)(*(int64_t *)(*(int64_t *)(data_base + 0x43c8) + stack_var_1 * 8) + 3 + temp_var_4) = *(int8_t *)(temp_var_3 + 0xf + *(int64_t *)(context_base + 0xea8));
               temp_var_4 = temp_var_4 + 4;
             } while (temp_var_4 < UI_SYSTEM_OFFSET_0X10);
-            
             temp_var_2 = *(int64_t *)(stack_base + -0x80);
             **(int8_t **)(*(int64_t *)(data_base + 0x43d0) + stack_var_1 * 8) = *(int8_t *)(*(int64_t *)(context_base + 0xeb0) + 7);
             **(int8_t **)(*(int64_t *)(data_base + 0x43d8) + stack_var_1 * 8) = *(int8_t *)(*(int64_t *)(context_base + 0xeb8) + 7);
@@ -288,50 +267,47 @@ LAB_18066fdc2:
             *(int8_t *)(*(int64_t *)(*(int64_t *)(data_base + 0x43d0) + stack_var_1 * 8) + 7) = *(int8_t *)(temp_var_2 * 7 + 7 + *(int64_t *)(context_base + 0xeb0));
             *(int8_t *)(*(int64_t *)(*(int64_t *)(data_base + 0x43d8) + stack_var_1 * 8) + 7) = *(int8_t *)(*(int64_t *)(context_base + 0xeb8) + 7 + temp_var_2 * 7);
           }
-          
           uint_var_4 = (uint)byte_var;
           temp_var_2 = data_base + 0x1ed0;
           if (uint_var_4 != 0) {
             if (*(int *)(data_base + 0x1ec0) == 0) {
-              // 处理数据块初始化
+// 处理数据块初始化
               temp_var_4 = (int64_t)(int)uint_var_4;
               *(int64_t *)(stack_base + -0x40) = temp_var_4 * UI_SYSTEM_OFFSET_0X10 + temp_var_2;
               *(int64_t *)(stack_base + -0x38) = (temp_var_4 + 0x40) * UI_SYSTEM_OFFSET_0X10 + temp_var_2;
               *(int64_t *)(stack_base + -0x30) = (temp_var_4 + 0x80) * UI_SYSTEM_OFFSET_0X10 + temp_var_2;
               *(uint64_t *)(stack_base + -0x28) = ((uint64_t)*(byte *)(((int64_t)*(int *)(data_base + 0x1e64) + 0x32) * 0x40 + temp_var_4 + temp_var_2) + 0xc0) * UI_SYSTEM_OFFSET_0X10 + temp_var_2;
-              
               if (0 < (int)counter) {
-                FUN_18069cb40(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
+                function_69cb40(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
               }
               if (!bool_var) {
-                FUN_18069ca00(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
+                function_69ca00(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
               }
               if (0 < stack_var_1) {
-                FUN_18069cad0(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
+                function_69cad0(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
               }
               if (!bool_var) {
-                FUN_18069c900(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
+                function_69c900(*(uint64_t *)(context_base + 0xea8), *(uint64_t *)(context_base + 0xeb0), *(uint64_t *)(context_base + 0xeb8), size_var_2 & 0xffffffff, stack_param_1);
               }
             }
             else {
-              // 处理替代数据路径
+// 处理替代数据路径
               if (0 < (int)counter) {
-                func_0x00018001c253(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, (int64_t)(int)uint_var_4 * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
+                SystemFunction_00018001c253(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, (int64_t)(int)uint_var_4 * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
               }
               if (!bool_var) {
-                FUN_18069ca80(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, ((int64_t)(int)uint_var_4 + 0x40) * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
+                function_69ca80(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, ((int64_t)(int)uint_var_4 + 0x40) * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
               }
               if (0 < stack_var_1) {
-                func_0x00018001c10b(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, (int64_t)(int)uint_var_4 * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
+                SystemFunction_00018001c10b(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, (int64_t)(int)uint_var_4 * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
               }
               if (!bool_var) {
-                FUN_18069c990(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, ((int64_t)(int)uint_var_4 + 0x40) * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
+                function_69c990(*(uint64_t *)(context_base + 0xea8), size_var_2 & 0xffffffff, ((int64_t)(int)uint_var_4 + 0x40) * UI_SYSTEM_OFFSET_0X10 + temp_var_2);
               }
             }
           }
         }
-        
-        // 更新循环变量
+// 更新循环变量
         counter = counter + 1;
         stack_var_6 = stack_var_6 + -UI_SYSTEM_BUFFER_SIZE;
         stack_var_4 = stack_var_4 + UI_SYSTEM_OFFSET_0X10;
@@ -346,10 +322,9 @@ LAB_18066fdc2:
       } while ((int)counter < *(int *)(data_base + 0x1e78));
       size_var_1 = (uint64_t)(int)size_var_2;
     }
-    
-    // 清理资源
+// 清理资源
     if (*(int *)(data_base + 0x2be0) == 0) {
-      func_0x00018069cbd0(*(uint64_t *)(stack_base + -0x48), *(int64_t *)(context_base + 0xea8) + UI_SYSTEM_OFFSET_0X10, *(int64_t *)(context_base + 0xeb0) + 8, *(int64_t *)(context_base + 0xeb8) + 8);
+      SystemFunction_00018069cbd0(*(uint64_t *)(stack_base + -0x48), *(int64_t *)(context_base + 0xea8) + UI_SYSTEM_OFFSET_0X10, *(int64_t *)(context_base + 0xeb0) + 8, *(int64_t *)(context_base + 0xeb8) + 8);
     }
     else if (stack_var_3 != *(int *)(data_base + 0x1e74) + -1) {
       temp_var_2 = 0;
@@ -365,8 +340,7 @@ LAB_18066fdc2:
         temp_var_2 = temp_var_2 + 1;
       } while (temp_var_2 < 4);
     }
-    
-    // 更新状态
+// 更新状态
     size_param = (uint64_t)stack_param_1;
     **(int **)(stack_base + -0x70) = counter + stack_var_2;
     *(int64_t *)(context_base + 0xf00) = *(int64_t *)(context_base + 0xf00) + UI_SYSTEM_OFFSET_0X4C;
@@ -376,74 +350,68 @@ LAB_18066fdc2:
     divisor_param = stack_param_2;
     param_3 = stack_var_2;
     stack_var_3 = index_var;
-    
     if (*(int *)(data_base + 0x1e74) <= index_var) {
       if (stack_var_9 == *(int *)(data_base + 0x1e74) + -1) {
         ReleaseSemaphore(*(uint64_t *)(data_base + 0x4400), 1);
       }
-      // 函数不返回
-      SystemSecurityChecker(*(uint64_t *)(stack_base + 0x50) ^ (uint64_t)&stack0x00000000);
+// 函数不返回
+      SystemSecurityChecker(*(uint64_t *)(stack_base + 0x50) ^ (uint64_t)&local_buffer_00000000);
     }
   } while( true );
 }
-
 /**
  * UI系统条件信号量释放函数
- * 
+ *
  * 本函数负责在特定条件下释放UI系统的信号量，
  * 用于线程同步和资源管理。
- * 
+ *
  * 处理流程：
  * 1. 检查条件是否满足
  * 2. 如果满足则释放信号量
  * 3. 执行系统调用
  */
-void FUN_1806704b6(void)
+void function_6704b6(void)
 {
   int64_t stack_base;
   int64_t data_base;
   int index_param;
-  
-  // 检查条件并释放信号量
+// 检查条件并释放信号量
   if (index_param == *(int *)(data_base + 0x1e74) + -1) {
     ReleaseSemaphore(*(uint64_t *)(data_base + 0x4400), 1);
   }
-  // 函数不返回
-  SystemSecurityChecker(*(uint64_t *)(stack_base + 0x50) ^ (uint64_t)&stack0x00000000);
+// 函数不返回
+  SystemSecurityChecker(*(uint64_t *)(stack_base + 0x50) ^ (uint64_t)&local_buffer_00000000);
 }
-
 /**
  * UI系统无条件信号量释放函数
- * 
+ *
  * 本函数负责无条件释放UI系统的信号量，
  * 用于线程同步和资源管理。
- * 
+ *
  * 处理流程：
  * 1. 释放信号量
  * 2. 执行系统调用
  */
-void FUN_1806704db(void)
+void function_6704db(void)
 {
   int64_t stack_base;
   int64_t data_base;
-  
-  // 释放信号量
+// 释放信号量
   ReleaseSemaphore(*(uint64_t *)(data_base + 0x4400), 1);
-  // 函数不返回
-  SystemSecurityChecker(*(uint64_t *)(stack_base + 0x50) ^ (uint64_t)&stack0x00000000);
+// 函数不返回
+  SystemSecurityChecker(*(uint64_t *)(stack_base + 0x50) ^ (uint64_t)&local_buffer_00000000);
 }
-
 /**
  * UI系统数据缓冲区初始化函数
- * 
+ *
  * 本函数负责初始化UI系统的数据缓冲区，
  * 包括数据复制、结构设置和状态初始化。
- * 
+ *
  * @param param_1 系统上下文指针
  * @param param_2 源数据指针
  * @param param_3 目标数据指针
  * @param param_4 数据项数量
- * 
+ *
  * 处理流程：
  * 1. 检查数据项数量
  * 2. 复制数据结构
@@ -451,7 +419,7 @@ void FUN_1806704db(void)
  * 4. 初始化缓冲区状态
  * 5. 清理和返回
  */
-void FUN_180670510(int64_t param_1, int64_t param_2, int64_t param_3, int param_4)
+void function_670510(int64_t param_1, int64_t param_2, int64_t param_3, int param_4)
 {
   int32_t uint_var_1;
   uint64_t data_var_1;
@@ -459,14 +427,12 @@ void FUN_180670510(int64_t param_1, int64_t param_2, int64_t param_3, int param_
   uint64_t *ptr_var;
   int int_var;
   int64_t temp_var;
-  
   temp_var = (int64_t)param_4;
   if (0 < temp_var) {
     int_var = 1;
     ptr_var = (uint64_t *)(param_3 + 4000);
-    
     do {
-      // 复制数据结构
+// 复制数据结构
       ptr_var[-1] = *(uint64_t *)(param_2 + 0xf98);
       *ptr_var = *(uint64_t *)(param_2 + 4000);
       ptr_var[1] = *(uint64_t *)(param_2 + 0xfa8);
@@ -474,8 +440,7 @@ void FUN_180670510(int64_t param_1, int64_t param_2, int64_t param_3, int param_
       ptr_var[-0x14] = (int64_t)(*(int *)(param_1 + 0x1e7c) * int_var) * UI_SYSTEM_OFFSET_0X4C + *(int64_t *)(param_1 + 0x1eb0);
       *(int32_t *)(ptr_var + -0x13) = *(int32_t *)(param_1 + 0x1e7c);
       *(int32_t *)((int64_t)ptr_var + -0x94) = *(int32_t *)(param_1 + 0x1e64);
-      
-      // 复制数据块
+// 复制数据块
       data_var_1 = *(uint64_t *)(param_2 + 0xde8);
       ptr_var[-0x38] = *(uint64_t *)(param_2 + 0xde0);
       ptr_var[-0x37] = data_var_1;
@@ -530,8 +495,7 @@ void FUN_180670510(int64_t param_1, int64_t param_2, int64_t param_3, int param_
       data_var_1 = *(uint64_t *)(param_2 + 0xef8);
       ptr_var[-0x16] = *(uint64_t *)(param_2 + 0xef0);
       ptr_var[-0x15] = data_var_1;
-      
-      // 设置标志位
+// 设置标志位
       *(int8_t *)(ptr_var + -8) = *(int8_t *)(param_2 + 0xf60);
       *(int8_t *)((int64_t)ptr_var + -0x3d) = *(int8_t *)(param_2 + 0xf63);
       *(uint64_t *)((int64_t)ptr_var + -0x39) = *(uint64_t *)(param_2 + 0xf67);
@@ -540,8 +504,7 @@ void FUN_180670510(int64_t param_1, int64_t param_2, int64_t param_3, int param_
       *(int8_t *)((int64_t)ptr_var + -0x31) = *(int8_t *)(param_2 + 0xf6f);
       *(int8_t *)(ptr_var + -6) = *(int8_t *)(param_2 + 0xf70);
       ptr_var[3] = param_1 + 0x4140;
-      
-      // 复制更多数据块
+// 复制更多数据块
       data_var_1 = *(uint64_t *)(param_2 + 0x808);
       ptr_var[-0xf4] = *(uint64_t *)(param_2 + 0x800);
       ptr_var[-0xf3] = data_var_1;
@@ -569,8 +532,7 @@ void FUN_180670510(int64_t param_1, int64_t param_2, int64_t param_3, int param_
       ptr_var[-0xea] = data_var_1;
       ptr_var[-0xe9] = data_var_2;
       uint_var_1 = *(int32_t *)(ptr_var + -0x39);
-      
-      // 设置特殊标志
+// 设置特殊标志
       if (*(int *)(param_1 + 0x1e8c) != 0) {
         uint_var_1 = 0xfffffff8;
       }
@@ -580,8 +542,7 @@ void FUN_180670510(int64_t param_1, int64_t param_2, int64_t param_3, int param_
       ptr_var = ptr_var + 0x254;
     } while (temp_var != 0);
   }
-  
-  // 初始化数据数组
+// 初始化数据数组
   int_var = 0;
   if (0 < *(int *)(param_1 + 0x1e74)) {
     temp_var = 0;

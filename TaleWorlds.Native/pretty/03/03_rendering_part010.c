@@ -1,8 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 03_rendering_part010.c - 6 个函数
-
 // 类型定义
 typedef struct {
     void *vtable_ptr;           // 虚函数表指针
@@ -13,9 +11,8 @@ typedef struct {
     void *material_ptr;         // 材质指针
     void *shader_ptr;           // 着色器指针
     void *render_state;         // 渲染状态
-    // ... 其他渲染对象属性
+// ... 其他渲染对象属性
 } render_object_t;
-
 typedef struct {
     render_object_t *object_array;      // 对象数组指针
     render_object_t *array_end;         // 数组结束指针
@@ -25,34 +22,30 @@ typedef struct {
     void *material_cache;               // 材质缓存
     uint32_t render_flags;               // 渲染标志
     char context_name[128];              // 上下文名称
-    // ... 其他渲染上下文属性
+// ... 其他渲染上下文属性
 } render_context_t;
-
 typedef struct {
     void *vtable_ptr;                    // 虚函数表指针
     render_object_t *object_list;        // 对象列表
     uint32_t manager_flags;              // 管理器标志
     char manager_name[128];              // 管理器名称
-    // ... 其他渲染管理器属性
+// ... 其他渲染管理器属性
 } render_manager_t;
-
 typedef struct texture_node {
     struct texture_node *left;           // 左子节点
     struct texture_node *right;          // 右子节点
     char texture_key[16];                // 纹理键值
     uint64_t property_value;             // 属性值
     uint64_t texture_id;                 // 纹理ID
-    // ... 其他纹理节点属性
+// ... 其他纹理节点属性
 } texture_node_t;
-
 // 函数: void resize_render_object_array(render_context_t *render_context, size_t new_size)
 // 功能: 调整渲染对象数组大小，处理内存重新分配和对象复制
 // 参数:
-//   render_context - 渲染上下文指针
-//   new_size - 新的数组大小
+// render_context - 渲染上下文指针
+// new_size - 新的数组大小
 // 返回值: 无
 void resize_render_object_array(render_context_t *render_context, size_t new_size)
-
 {
   render_object_t *object_ptr;
   render_object_t *new_array_start;
@@ -63,17 +56,14 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
   render_object_t *temp_ptr;
   char *string_data;
   int64_t size_diff;
-  
-  // 获取当前数组结束指针
+// 获取当前数组结束指针
   old_array_end = render_context->array_end;
-  
-  // 检查是否需要重新分配内存
+// 检查是否需要重新分配内存
   size_t current_capacity = (render_context->capacity_end - render_context->array_end) / sizeof(render_object_t);
   if (current_capacity < new_size) {
     new_array_ptr = render_context->object_array;
     size_diff = (old_array_end - new_array_ptr) / sizeof(render_object_t);
-    
-    // 计算新的容量增长因子
+// 计算新的容量增长因子
     growth_factor = size_diff * 2;
     if (size_diff == 0) {
       growth_factor = 1;
@@ -81,12 +71,11 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
     if (growth_factor < size_diff + new_size) {
       growth_factor = size_diff + new_size;
     }
-    
     new_array_start = NULL;
     if (growth_factor != 0) {
-      // 分配新的内存空间
+// 分配新的内存空间
       new_array_start = (render_object_t *)
-               allocate_render_memory(&system_memory_pool_ptr, growth_factor * sizeof(render_object_t), 
+               allocate_render_memory(&system_memory_pool_ptr, growth_factor * sizeof(render_object_t),
                                     render_context->render_flags, 0x6bca1af286bca1b, 0xfffffffffffffffe);
       old_array_end = render_context->array_end;
       new_array_ptr = render_context->object_array;
@@ -94,93 +83,82 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
     temp_ptr = new_array_start;
     if (new_array_ptr != old_array_end) {
       size_diff = (int64_t)new_array_ptr - (int64_t)temp_ptr;
-      
-      // 复制现有对象到新数组
+// 复制现有对象到新数组
       do {
-        // 初始化新对象的虚函数表
+// 初始化新对象的虚函数表
         temp_ptr->vtable_ptr = &system_state_ptr;
         temp_ptr->object_data = NULL;
         temp_ptr->flags = 0;
-        
-        // 设置对象名称相关属性
+// 设置对象名称相关属性
         temp_ptr->vtable_ptr = &memory_allocator_3432_ptr;
         temp_ptr->object_data = temp_ptr + 3;  // 名称数据指针
         temp_ptr->flags = 0;
         temp_ptr->name[0] = '\0';
-        
-        // 复制对象的属性数据
+// 复制对象的属性数据
         temp_ptr->flags = *(uint32_t *)((int64_t)temp_ptr + size_diff + 0x10);
         object_ptr = *(render_object_t **)((int64_t)temp_ptr + size_diff + 8);
         string_data = &system_buffer_ptr;  // 默认名称字符串
         if (object_ptr != NULL) {
           string_data = (char *)object_ptr;
         }
-        
-        // 复制对象名称
+// 复制对象名称
         strncpy_s(temp_ptr->name, sizeof(temp_ptr->name), string_data, _TRUNCATE);
         temp_ptr = temp_ptr + 1;  // 移动到下一个对象
       } while ((render_object_t *)((int64_t)temp_ptr + size_diff) != old_array_end);
     }
-    // 初始化新增的对象
+// 初始化新增的对象
     if (new_size != 0) {
       render_object_t *new_object_ptr = temp_ptr;
       size_t objects_to_create = new_size;
-      
       do {
-        // 初始化新对象的虚函数表
+// 初始化新对象的虚函数表
         new_object_ptr->vtable_ptr = &system_state_ptr;
         new_object_ptr->object_data = NULL;
         new_object_ptr->flags = 0;
-        
-        // 设置对象名称相关属性
+// 设置对象名称相关属性
         new_object_ptr->vtable_ptr = &memory_allocator_3432_ptr;
         new_object_ptr->object_data = new_object_ptr + 2;  // 名称数据指针
         new_object_ptr->flags = 0;
         new_object_ptr->name[0] = '\0';
-        
         new_object_ptr = new_object_ptr + 1;
         objects_to_create = objects_to_create - 1;
       } while (objects_to_create != 0);
     }
-    // 清理旧的渲染对象
+// 清理旧的渲染对象
     old_array_end = render_context->array_end;
     new_array_ptr = render_context->object_array;
     if (new_array_ptr != old_array_end) {
       do {
-        // 调用对象的析构函数
+// 调用对象的析构函数
         ((void (*)(render_object_t *, int))new_array_ptr->vtable_ptr)(new_array_ptr, 0);
         new_array_ptr = new_array_ptr + 1;
       } while (new_array_ptr != old_array_end);
       new_array_ptr = render_context->object_array;
     }
-    
-    // 释放旧的渲染对象数组
+// 释放旧的渲染对象数组
     if (new_array_ptr != NULL) {
       free_render_objects(new_array_ptr);
     }
-    
-    // 更新渲染上下文的指针
+// 更新渲染上下文的指针
     render_context->object_array = new_array_start;
     render_context->array_end = temp_ptr + new_size;
     render_context->capacity_end = new_array_start + growth_factor;
   }
   else {
-    // 不需要重新分配内存，直接扩展现有数组
+// 不需要重新分配内存，直接扩展现有数组
     growth_factor = new_size;
     if (new_size != 0) {
       render_object_t *array_ptr = old_array_end;
       do {
-        // 初始化新对象的虚函数表
+// 初始化新对象的虚函数表
         array_ptr->vtable_ptr = &system_state_ptr;
         array_ptr->object_data = NULL;
         array_ptr->flags = 0;
-        
-        // 设置对象名称相关属性
+// 设置对象名称相关属性
         array_ptr->vtable_ptr = &memory_allocator_3432_ptr;
         array_ptr->object_data = array_ptr + 3;  // 名称数据指针
         array_ptr->flags = 0;
         array_ptr->name[0] = '\0';
-        
         array_ptr = array_ptr + 1;
         growth_factor = growth_factor - 1;
       } while (growth_factor != 0);
@@ -190,133 +168,100 @@ void resize_render_object_array(render_context_t *render_context, size_t new_siz
   }
   return;
 }
-
-
-
 // 函数: void cleanup_render_object_list(render_context_t *render_context, void *param2, void *param3, void *param4)
 // 功能: 清理渲染对象列表，释放相关资源
 // 参数:
-//   render_context - 渲染上下文指针
-//   param2 - 清理参数2
-//   param3 - 清理参数3
-//   param4 - 清理参数4
+// render_context - 渲染上下文指针
+// param2 - 清理参数2
+// param3 - 清理参数3
+// param4 - 清理参数4
 // 返回值: 无
 void cleanup_render_object_list(render_context_t *render_context, void *param2, void *param3, void *param4)
-
 {
   render_object_t *current_object;
   render_object_t *list_end;
   uint64_t cleanup_flag;
-  
   cleanup_flag = 0xfffffffffffffffe;  // 清理标志
-  
-  // 获取对象列表的起始和结束位置
+// 获取对象列表的起始和结束位置
   current_object = *(render_object_t **)((uint8_t *)render_context + 0x128);
   list_end = *(render_object_t **)((uint8_t *)render_context + 0x120);
-  
-  // 遍历对象列表并清理每个对象
+// 遍历对象列表并清理每个对象
   for (; list_end != current_object; list_end = (render_object_t *)((uint8_t *)list_end + 0xb)) {
-    // 调用对象的清理函数
+// 调用对象的清理函数
     ((void (*)(render_object_t *, int, void *, void *, uint64_t))list_end->vtable_ptr)(
         list_end, 0, param3, param4, cleanup_flag);
   }
-  
-  // 检查是否还有对象需要清理
+// 检查是否还有对象需要清理
   if (*(int64_t *)((uint8_t *)render_context + 0x120) == 0) {
     return;
   }
-  
-  // 释放渲染对象列表内存
+// 释放渲染对象列表内存
   free_render_object_list();
 }
-
-
-
 // 函数: render_context_t *initialize_render_context(render_context_t *render_context, uint64_t init_flags, void *param3, void *param4)
 // 功能: 初始化渲染上下文，设置基本属性和虚函数表
 // 参数:
-//   render_context - 渲染上下文指针
-//   init_flags - 初始化标志
-//   param3 - 初始化参数3
-//   param4 - 初始化参数4
+// render_context - 渲染上下文指针
+// init_flags - 初始化标志
+// param3 - 初始化参数3
+// param4 - 初始化参数4
 // 返回值: 初始化后的渲染上下文指针
 render_context_t *
 initialize_render_context(render_context_t *render_context, uint64_t init_flags, void *param3, void *param4)
-
 {
   uint64_t cleanup_flag;
-  
   cleanup_flag = 0xfffffffffffffffe;  // 清理标志
-  
-  // 初始化渲染系统
+// 初始化渲染系统
   initialize_render_system();
-  
-  // 设置渲染上下文的虚函数表
+// 设置渲染上下文的虚函数表
   render_context->vtable_ptr = &processed_var_5192_ptr;
-  
-  // 如果需要重新初始化，先释放现有资源
+// 如果需要重新初始化，先释放现有资源
   if ((init_flags & 1) != 0) {
     free(render_context, 0x1c8, param3, param4, cleanup_flag);
   }
-  
   return render_context;
 }
-
-
-
 // 函数: render_object_t **create_render_object_instance(render_context_t *render_context, render_object_t **instance_ptr)
 // 功能: 创建渲染对象实例，分配内存并初始化对象属性
 // 参数:
-//   render_context - 渲染上下文指针
-//   instance_ptr - 实例指针的指针
+// render_context - 渲染上下文指针
+// instance_ptr - 实例指针的指针
 // 返回值: 实例指针的指针
 render_object_t **create_render_object_instance(render_context_t *render_context, render_object_t **instance_ptr)
-
 {
   void *memory_handle;
   render_object_t *new_instance;
   char *name_string;
-  
-  // 分配渲染对象内存
+// 分配渲染对象内存
   memory_handle = allocate_render_object_memory(&system_memory_pool_ptr, 0x470, 0x10, 0x15, 0, 0xfffffffffffffffe);
-  
-  // 初始化渲染对象实例
+// 初始化渲染对象实例
   new_instance = (render_object_t *)initialize_render_object_instance(memory_handle);
   *instance_ptr = new_instance;
-  
   if (new_instance != NULL) {
-    // 调用对象的初始化函数
+// 调用对象的初始化函数
     ((void (*)(render_object_t *))new_instance->vtable_ptr)(new_instance);
   }
-  
-  // 设置对象所属的渲染上下文
+// 设置对象所属的渲染上下文
   *(int64_t *)((uint8_t *)*instance_ptr + 0xa8) = (int64_t)render_context;
-  
-  // 设置对象名称
+// 设置对象名称
   name_string = &system_buffer_ptr;  // 默认名称
   if (*(void **)((uint8_t *)render_context + 0x70) != NULL) {
     name_string = *(char **)((uint8_t *)render_context + 0x70);
   }
-  
-  // 调用对象的名称设置函数
+// 调用对象的名称设置函数
   ((void (*)(render_object_t *, char *))(*(uint64_t *)((uint8_t *)*instance_ptr + 0x10) + 0x10))(
       (render_object_t *)((uint8_t *)*instance_ptr + 0x10), name_string);
-  
   return instance_ptr;
 }
-
-
-
 // 函数: void setup_render_object_properties(render_context_t *render_context, void *param2, void *param3, void *param4)
 // 功能: 设置渲染对象属性，包括纹理、材质等
 // 参数:
-//   render_context - 渲染上下文指针
-//   param2 - 设置参数2
-//   param3 - 设置参数3
-//   param4 - 设置参数4
+// render_context - 渲染上下文指针
+// param2 - 设置参数2
+// param3 - 设置参数3
+// param4 - 设置参数4
 // 返回值: 无
 void setup_render_object_properties(render_context_t *render_context, void *param2, void *param3, void *param4)
-
 {
   uint64_t property_value;
   render_manager_t *render_manager;
@@ -328,7 +273,6 @@ void setup_render_object_properties(render_context_t *render_context, void *para
   texture_node_t *texture_list;
   texture_node_t *property_node;
   render_object_t **instance_ptr;
-  
   if (*(int64_t *)(render_context + 0xb0) == 0) {
     texture_list = (uint64_t *)create_render_object_instance(render_context,&instance_ptr,param3,param4,0xfffffffffffffffe);
     property_value = *texture_list;
@@ -384,18 +328,13 @@ LAB_1802733d5:
   }
   return;
 }
-
-
-
 // 函数: void destroy_render_object_instance(int64_t render_context)
 // 功能: 销毁渲染对象实例，释放相关资源
 void destroy_render_object_instance(int64_t render_context)
-
 {
   int64_t *instance_ref;
   int64_t *instance_ptr;
   int64_t **object_manager;
-  
   instance_ref = *(int64_t **)(render_context + 0xb0);
   if (instance_ref != (int64_t *)0x0) {
     object_manager = &instance_ref;
@@ -404,24 +343,17 @@ void destroy_render_object_instance(int64_t render_context)
     instance_ptr = *(int64_t **)(render_context + 0xb0);
     *(uint64_t *)(render_context + 0xb0) = 0;
     if (instance_ptr != (int64_t *)0x0) {
-      // 调用对象销毁函数
+// 调用对象销毁函数
       (**(code **)(*instance_ptr + 0x38))();
       return;
     }
   }
   return;
 }
-
-
-
 // 警告: 以'_'开头的全局变量与同一地址的较小符号重叠
-
-
-
 // 函数: void process_render_object_creation(int64_t render_context, uint64_t param2, uint64_t param3, uint64_t param4)
 // 功能: 处理渲染对象创建过程，包括线程安全的对象管理
 void process_render_object_creation(int64_t render_context, uint64_t param2, uint64_t param3, uint64_t param4)
-
 {
   int64_t **thread_manager;
   char creation_result;
@@ -435,7 +367,6 @@ void process_render_object_creation(int64_t render_context, uint64_t param2, uin
   int64_t *queue_head;
   int64_t **queue_lock;
   uint64_t cleanup_flag;
-  
   object_instance = *(int64_t **)(render_context + 0xb0);
   if (object_instance == (int64_t *)0x0) {
     creation_result = check_render_object_creation(0,*(uint64_t *)(*(int64_t *)(render_context + 0x88) + 8),param3,param4
@@ -524,7 +455,7 @@ LAB_1802abea0:
     queue_head = (int64_t *)*buffer_ptr;
   }
   if (queue_head != (int64_t *)0x0) {
-    // 释放对象队列内存
+// 释放对象队列内存
     free_render_object_queue(queue_head);
   }
   *buffer_ptr = (int64_t)buffer_ptr;
@@ -538,20 +469,14 @@ LAB_1802abf36:
   }
   return;
 }
-
-
-
 // 警告: 以'_'开头的全局变量与同一地址的较小符号重叠
-
 uint64_t * clone_render_object_data(uint64_t source_object, int64_t clone_flags)
-
 {
   int32_t property_a;
   int32_t property_b;
   int32_t property_c;
   uint64_t data_ptr;
   uint64_t *new_object;
-  
   new_object = (uint64_t *)allocate_render_object_memory(system_memory_pool_ptr,0x1c8,8,3,0xfffffffffffffffe);
   *new_object = &processed_var_5192_ptr;
   *new_object = &processed_var_8792_ptr;
@@ -654,18 +579,13 @@ uint64_t * clone_render_object_data(uint64_t source_object, int64_t clone_flags)
   }
   return new_object;
 }
-
-
-
 // 函数: void transfer_render_object_ownership(int64_t source_context, int64_t target_context)
 // 功能: 转移渲染对象所有权，处理对象引用和资源管理
 void transfer_render_object_ownership(int64_t source_context, int64_t target_context)
-
 {
   int64_t *source_manager;
   int64_t *target_manager;
   int64_t **ownership_lock;
-  
   if (*(int64_t *)(target_context + 0xb0) == 0) {
     source_manager = *(int64_t **)(source_context + 0xb0);
     if (source_manager != (int64_t *)0x0) {
@@ -697,9 +617,4 @@ void transfer_render_object_ownership(int64_t source_context, int64_t target_con
   }
   return;
 }
-
-
-
 // 警告: 以'_'开头的全局变量与同一地址的较小符号重叠
-
-

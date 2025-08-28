@@ -11,14 +11,14 @@
 #define HIGH_FREQ_ALIASES_H
 
 /* 高频FUN_函数语义化别名 */
-#define SystemCore_PhysicsProcessor FUN_1802921e0
-#define SystemCore_AnimationProcessor FUN_1802e8c60
-#define SystemCore_EffectProcessor FUN_18084d3f0
-#define SystemCore_TransformProcessor FUN_1807681a0
-#define SystemCore_SceneProcessor FUN_18020f150
-#define SystemCore_NetworkProcessor FUN_1805b7740
-#define SystemCore_RayProcessor FUN_180645fa0
-#define SystemCore_MaterialProcessor FUN_1800846d0
-#define SystemCore_ParticleProcessor FUN_1807703c0
-#define SystemCore_CollisionProcessor FUN_18074bd40
+#define SystemCore_PhysicsProcessor function_2921e0
+#define SystemCore_AnimationProcessor function_2e8c60
+#define SystemCore_EffectProcessor function_84d3f0
+#define SystemCore_TransformProcessor function_7681a0
+#define SystemCore_SceneProcessor function_20f150
+#define SystemCore_NetworkProcessor function_5b7740
+#define SystemCore_RayProcessor function_645fa0
+#define SystemCore_MaterialProcessor function_0846d0
+#define SystemCore_ParticleProcessor function_7703c0
+#define SystemCore_CollisionProcessor function_74bd40
 #endif /* HIGH_FREQ_ALIASES_H */

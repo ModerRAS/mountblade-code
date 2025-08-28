@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part315.c - 3 个函数
-
-// 函数: void FUN_18043475a(void)
-void FUN_18043475a(void)
-
+// 函数: void UISystem_3475a(void)
+void UISystem_3475a(void)
 {
   short *psVar1;
   uint *puVar2;
@@ -113,8 +110,8 @@ void FUN_18043475a(void)
   char cStackX_20;
   float fStack0000000000000030;
   float fStack0000000000000034;
-  int32_t uStack0000000000000038;
-  int32_t uStack000000000000003c;
+  int32_t local_buffer_38;
+  int32_t local_buffer_3c;
   float fStack0000000000000050;
   float fStack0000000000000054;
   float fStack0000000000000058;
@@ -126,7 +123,6 @@ void FUN_18043475a(void)
   float fStack0000000000000074;
   float fStack0000000000000078;
   float fStack000000000000007c;
-  
   lVar55 = 2;
   do {
     lVar7 = *(int64_t *)(unaff_RDI + 0x18);
@@ -466,8 +462,8 @@ void FUN_18043475a(void)
     _fStack0000000000000060 = CONCAT44(fVar67,fVar65);
     _fStack0000000000000068 = CONCAT44(fVar71,fVar69);
     uVar51 = uVar56 + 2 >> 0xd;
-    uStack0000000000000038 = 0;
-    uStack000000000000003c = 0;
+    local_buffer_38 = 0;
+    local_buffer_3c = 0;
     pfVar58 = (float *)(*(int64_t *)(unaff_RSI + 8 + (uint64_t)uVar51 * 8) +
                        (uint64_t)(uVar56 + 2 + uVar51 * -0x2000) * 0x40);
     uVar51 = uVar56 + 3 >> 0xd;
@@ -637,20 +633,14 @@ void FUN_18043475a(void)
     psVar1 = (short *)(lVar55 + 0x2b0);
     *psVar1 = *psVar1 + 1;
     if (*(int64_t *)(lVar55 + 0x168) != 0) {
-      func_0x0001802eeba0();
+      Function_bcb0dca9();
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x480) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x480) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180434f18(void)
-void FUN_180434f18(void)
-
+// 函数: void UISystem_34f18(void)
+void UISystem_34f18(void)
 {
   short *psVar1;
   uint uVar2;
@@ -676,7 +666,6 @@ void FUN_180434f18(void)
   char unaff_R12B;
   char unaff_R14B;
   uint64_t uVar20;
-  
   if ((*(int64_t *)(unaff_RDI + 0x10) == 0) ||
      (*(int64_t *)(*(int64_t *)(unaff_RDI + 0x10) + 0x20) == 0)) {
     bVar14 = false;
@@ -763,20 +752,14 @@ void FUN_180434f18(void)
     psVar1 = (short *)(lVar18 + 0x2b0);
     *psVar1 = *psVar1 + 1;
     if (*(int64_t *)(lVar18 + 0x168) != 0) {
-      func_0x0001802eeba0();
+      Function_bcb0dca9();
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1200) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1200) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180434f39(void)
-void FUN_180434f39(void)
-
+// 函数: void UISystem_34f39(void)
+void UISystem_34f39(void)
 {
   short *psVar1;
   uint uVar2;
@@ -803,7 +786,6 @@ void FUN_180434f39(void)
   char unaff_R12B;
   char unaff_R14B;
   uint64_t uVar20;
-  
   lVar4 = *(int64_t *)(in_RAX + 0x20);
   if (unaff_R14B < unaff_R12B) {
     lVar18 = (int64_t)unaff_R14B;
@@ -884,14 +866,9 @@ void FUN_180434f39(void)
     psVar1 = (short *)(lVar4 + 0x2b0);
     *psVar1 = *psVar1 + 1;
     if (*(int64_t *)(lVar4 + 0x168) != 0) {
-      func_0x0001802eeba0();
+      Function_bcb0dca9();
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1200) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x1200) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-

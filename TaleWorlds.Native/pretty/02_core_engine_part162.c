@@ -1,15 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 02_core_engine_part162.c - 3 个函数
-
-// 函数: void FUN_18014b19e(int param_1,uint64_t param_2,float *param_3)
-void FUN_18014b19e(int param_1,uint64_t param_2,float *param_3)
-
+// 函数: void function_14b19e(int param_1,uint64_t param_2,float *param_3)
+void function_14b19e(int param_1,uint64_t param_2,float *param_3)
 {
   float fVar1;
   int64_t lVar2;
@@ -36,7 +31,6 @@ void FUN_18014b19e(int param_1,uint64_t param_2,float *param_3)
   int32_t uVar20;
   float fVar21;
   float fVar22;
-  
   do {
     fVar13 = *param_3;
     fVar16 = param_3[1];
@@ -205,14 +199,8 @@ void FUN_18014b19e(int param_1,uint64_t param_2,float *param_3)
   *(int32_t *)(unaff_RSI + 0x128) = uVar17;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18014b2f5(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-void FUN_18014b2f5(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-
+// 函数: void function_14b2f5(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+void function_14b2f5(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 {
   float fVar1;
   int64_t lVar2;
@@ -236,7 +224,6 @@ void FUN_18014b2f5(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   int32_t in_XMM2_Dc;
   int32_t in_XMM2_Dd;
   float fVar17;
-  
   uVar16 = (int32_t)((uint64_t)param_3 >> 0x20);
   uVar15 = (int32_t)param_3;
   lVar2 = *(int64_t *)(unaff_RSI + 0x20);
@@ -329,16 +316,9 @@ void FUN_18014b2f5(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   *(int32_t *)(unaff_RSI + 0x128) = uVar15;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18014b470(int64_t *param_1,uint64_t *param_2)
-void FUN_18014b470(int64_t *param_1,uint64_t *param_2)
-
+// 函数: void function_14b470(int64_t *param_1,uint64_t *param_2)
+void function_14b470(int64_t *param_1,uint64_t *param_2)
 {
   int64_t *plVar1;
   uint64_t uVar2;
@@ -351,7 +331,6 @@ void FUN_18014b470(int64_t *param_1,uint64_t *param_2)
   uint64_t uVar9;
   int iVar10;
   bool bVar11;
-  
   lVar5 = *param_1;
   iVar10 = 0;
   lVar8 = param_1[1] - lVar5 >> 0x3f;
@@ -375,7 +354,7 @@ void FUN_18014b470(int64_t *param_1,uint64_t *param_2)
       puVar4 = puVar3;
       if (bVar11) {
         if (puVar3 == (uint64_t *)param_2[1]) goto LAB_18014b52a;
-        puVar4 = (uint64_t *)func_0x00018066b9a0(puVar3);
+        puVar4 = (uint64_t *)SystemFunction_00018066b9a0(puVar3);
       }
       if ((uint64_t)puVar4[4] < uVar2) {
 LAB_18014b52a:
@@ -387,7 +366,7 @@ LAB_18014b52a:
         else {
           uVar9 = 1;
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemConfigProcessor(lVar5,puVar3,param_2,uVar9);
       }
       lVar5 = *param_1;
@@ -417,7 +396,7 @@ LAB_18014b52a:
       puVar4 = puVar3;
       if (bVar11) {
         if (puVar3 == (uint64_t *)param_2[1]) goto LAB_18014b61a;
-        puVar4 = (uint64_t *)func_0x00018066b9a0(puVar3);
+        puVar4 = (uint64_t *)SystemFunction_00018066b9a0(puVar3);
       }
       if ((uint64_t)puVar4[4] < uVar2) {
 LAB_18014b61a:
@@ -429,7 +408,7 @@ LAB_18014b61a:
         else {
           uVar9 = 1;
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemConfigProcessor(lVar5,puVar3,param_2,uVar9);
       }
       lVar5 = param_1[4];
@@ -466,7 +445,7 @@ LAB_18014b61a:
           puVar4 = puVar3;
           if (bVar11) {
             if (puVar3 == (uint64_t *)param_2[1]) goto LAB_18014b72a;
-            puVar4 = (uint64_t *)func_0x00018066b9a0(puVar3);
+            puVar4 = (uint64_t *)SystemFunction_00018066b9a0(puVar3);
           }
           if ((uint64_t)puVar4[4] < uVar2) {
 LAB_18014b72a:
@@ -478,7 +457,7 @@ LAB_18014b72a:
             else {
               uVar9 = 1;
             }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
             SystemConfigProcessor(lVar5,puVar3,param_2,uVar9);
           }
           lVar6 = *plVar1;
@@ -493,10 +472,4 @@ LAB_18014b72a:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

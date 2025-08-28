@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part091.c - 6 个函数
-
-// 函数: void FUN_18071ffb4(void)
-void FUN_18071ffb4(void)
-
+// 函数: void function_71ffb4(void)
+void function_71ffb4(void)
 {
   float *pfVar1;
   float *pfVar2;
@@ -58,8 +55,7 @@ void FUN_18071ffb4(void)
   float unaff_XMM13_Da;
   float unaff_XMM14_Da;
   float afStackX_8 [8];
-  uint64_t in_stack_00000190;
-  
+  uint64_t local_var_190;
   *(uint64_t *)(in_R11 + 0x10) = unaff_RDI;
   uVar15 = unaff_R14[1];
   if (0 < (int64_t)(int)uVar15) {
@@ -264,17 +260,11 @@ void FUN_18071ffb4(void)
       unaff_RSI = unaff_RSI + 1;
     } while (iVar21 < (int)unaff_R14[2]);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000190 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_190 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_18071ffc5(void)
-void FUN_18071ffc5(void)
-
+// 函数: void function_71ffc5(void)
+void function_71ffc5(void)
 {
   float *pfVar1;
   float *pfVar2;
@@ -326,8 +316,7 @@ void FUN_18071ffc5(void)
   float unaff_XMM13_Da;
   float unaff_XMM14_Da;
   float afStackX_8 [8];
-  uint64_t in_stack_00000190;
-  
+  uint64_t local_var_190;
   *(uint64_t *)(in_R11 + 8) = unaff_RBX;
   lVar19 = 0;
   uVar15 = *unaff_R14;
@@ -528,17 +517,11 @@ void FUN_18071ffc5(void)
       unaff_RSI = unaff_RSI + 1;
     } while (iVar20 < (int)unaff_R14[2]);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000190 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_190 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_1807201ce(void)
-void FUN_1807201ce(void)
-
+// 函数: void function_7201ce(void)
+void function_7201ce(void)
 {
   float *pfVar1;
   float *pfVar2;
@@ -585,8 +568,7 @@ void FUN_1807201ce(void)
   float unaff_XMM13_Da;
   float unaff_XMM14_Da;
   float afStackX_8 [8];
-  uint64_t in_stack_00000190;
-  
+  uint64_t local_var_190;
   iVar20 = 0;
   if (0 < *(int *)(unaff_R14 + 8)) {
     do {
@@ -688,17 +670,11 @@ void FUN_1807201ce(void)
       unaff_RSI = unaff_RSI + 1;
     } while (iVar20 < *(int *)(unaff_R14 + 8));
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000190 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_190 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_1807201f0(void)
-void FUN_1807201f0(void)
-
+// 函数: void function_7201f0(void)
+void function_7201f0(void)
 {
   float *pfVar1;
   float *pfVar2;
@@ -745,8 +721,7 @@ void FUN_1807201f0(void)
   float unaff_XMM13_Da;
   float unaff_XMM14_Da;
   float afStackX_8 [8];
-  uint64_t in_stack_00000190;
-  
+  uint64_t local_var_190;
   do {
     fVar24 = *in_R9;
     lVar17 = 0;
@@ -845,44 +820,25 @@ void FUN_1807201f0(void)
     in_R10D = in_R10D + 1;
     unaff_RSI = unaff_RSI + 1;
   } while (in_R10D < *(int *)(unaff_R14 + 8));
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000190 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_190 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180720430(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-void FUN_180720430(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-
+// 函数: void function_720430(uint64_t param_1,uint64_t param_2,uint64_t param_3)
+void function_720430(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 {
-  uint64_t uStack_48;
-  uint64_t uStack_40;
-  uint64_t uStack_38;
-  
-  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)&uStack_48;
-  uStack_48 = param_2;
-  uStack_40 = param_3;
-                    // WARNING: Subroutine does not return
+  uint64_t local_var_48;
+  uint64_t local_var_40;
+  uint64_t local_var_38;
+  local_var_38 = GET_SECURITY_COOKIE() ^ (uint64_t)&local_var_48;
+  local_var_48 = param_2;
+  local_var_40 = param_3;
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-
-// 函数: void FUN_1807207d0(uint64_t param_1,uint64_t param_2,int param_3)
-void FUN_1807207d0(uint64_t param_1,uint64_t param_2,int param_3)
-
+// 函数: void function_7207d0(uint64_t param_1,uint64_t param_2,int param_3)
+void function_7207d0(uint64_t param_1,uint64_t param_2,int param_3)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(param_1,0,(int64_t)param_3 << 2);
 }
-
-
-
-
-

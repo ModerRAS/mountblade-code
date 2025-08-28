@@ -1,19 +1,12 @@
 /* SystemCore_ConfigValidator - SystemCore_ConfigValidator */
 #define SystemCore_ConfigValidator SystemCore_ConfigValidator
-
-
 /* 函数别名定义: DataTransformer */
 #define DataTransformer DataTransformer
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 01_initialization_part023.c - 27 个函数
-
-// 函数: void FUN_180057550(int64_t param_1)
-void FUN_180057550(int64_t param_1)
-
+// 函数: void function_057550(int64_t param_1)
+void function_057550(int64_t param_1)
 {
   int *piVar1;
   int64_t lVar2;
@@ -21,7 +14,6 @@ void FUN_180057550(int64_t param_1)
   int64_t lVar4;
   uint64_t uVar5;
   uint64_t uVar6;
-  
   uVar6 = *(uint64_t *)(param_1 + 0x10);
   lVar4 = *(int64_t *)(param_1 + 8);
   uVar5 = 0;
@@ -29,7 +21,7 @@ void FUN_180057550(int64_t param_1)
     do {
       lVar2 = *(int64_t *)(lVar4 + uVar5 * 8);
       if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemCoreProcessor(lVar2);
       }
       *(uint64_t *)(lVar4 + uVar5 * 8) = 0;
@@ -54,7 +46,7 @@ void FUN_180057550(int64_t param_1)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
+        Function_2152bae1(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
                             puVar3,uVar6,0xfffffffffffffffe);
       }
     }
@@ -62,14 +54,8 @@ void FUN_180057550(int64_t param_1)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180057556(int64_t param_1)
-void FUN_180057556(int64_t param_1)
-
+// 函数: void function_057556(int64_t param_1)
+void function_057556(int64_t param_1)
 {
   int *piVar1;
   int64_t lVar2;
@@ -77,7 +63,6 @@ void FUN_180057556(int64_t param_1)
   int64_t lVar4;
   uint64_t uVar5;
   uint64_t uVar6;
-  
   uVar6 = *(uint64_t *)(param_1 + 0x10);
   lVar4 = *(int64_t *)(param_1 + 8);
   uVar5 = 0;
@@ -85,7 +70,7 @@ void FUN_180057556(int64_t param_1)
     do {
       lVar2 = *(int64_t *)(lVar4 + uVar5 * 8);
       if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemCoreProcessor(lVar2);
       }
       *(uint64_t *)(lVar4 + uVar5 * 8) = 0;
@@ -110,7 +95,7 @@ void FUN_180057556(int64_t param_1)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
+        Function_2152bae1(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
                             puVar3,uVar6,0xfffffffffffffffe);
       }
     }
@@ -118,14 +103,8 @@ void FUN_180057556(int64_t param_1)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180057580(void)
-void FUN_180057580(void)
-
+// 函数: void function_057580(void)
+void function_057580(void)
 {
   int *piVar1;
   uint64_t *puVar2;
@@ -136,11 +115,10 @@ void FUN_180057580(void)
   uint64_t uVar4;
   int64_t unaff_R14;
   uint64_t unaff_R15;
-  
   do {
     lVar3 = *(int64_t *)(unaff_R14 + unaff_RDI * 8);
     if (lVar3 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       SystemCoreProcessor(lVar3);
     }
     *(uint64_t *)(unaff_R14 + unaff_RDI * 8) = unaff_R15;
@@ -164,7 +142,7 @@ void FUN_180057580(void)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
+        Function_2152bae1(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
                             puVar2,uVar4,0xfffffffffffffffe);
       }
     }
@@ -172,14 +150,8 @@ void FUN_180057580(void)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1800575b6(void)
-void FUN_1800575b6(void)
-
+// 函数: void function_0575b6(void)
+void function_0575b6(void)
 {
   int *piVar1;
   uint64_t *puVar2;
@@ -188,7 +160,6 @@ void FUN_1800575b6(void)
   uint64_t unaff_RSI;
   uint64_t uVar4;
   uint64_t unaff_R15;
-  
   *(uint64_t *)(unaff_RBP + 0x18) = unaff_R15;
   if ((1 < unaff_RSI) && (puVar2 = *(uint64_t **)(unaff_RBP + 8), puVar2 != (uint64_t *)0x0)) {
     uVar4 = (uint64_t)puVar2 & 0xffffffffffc00000;
@@ -206,7 +177,7 @@ void FUN_1800575b6(void)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
+        Function_2152bae1(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
                             puVar2,uVar4,0xfffffffffffffffe);
       }
     }
@@ -214,21 +185,14 @@ void FUN_1800575b6(void)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1800575d4(void)
-void FUN_1800575d4(void)
-
+// 函数: void function_0575d4(void)
+void function_0575d4(void)
 {
   int *piVar1;
   uint64_t *puVar2;
   int64_t lVar3;
   int64_t unaff_RBP;
   uint64_t uVar4;
-  
   puVar2 = *(uint64_t **)(unaff_RBP + 8);
   if (puVar2 == (uint64_t *)0x0) {
     return;
@@ -248,37 +212,24 @@ void FUN_1800575d4(void)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
+      Function_2152bae1(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
                           puVar2,uVar4,0xfffffffffffffffe);
     }
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1800575f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1800575f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_0575f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_0575f0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
-  FUN_180058420(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  function_058420(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180057610(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057610(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_057610(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_057610(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
   uint64_t uVar3;
-  
   uVar3 = 0xfffffffffffffffe;
   puVar1 = (uint64_t *)param_1[1];
   for (puVar2 = (uint64_t *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 0x69) {
@@ -287,23 +238,16 @@ void FUN_180057610(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   if (*param_1 == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCoreProcessor();
 }
-
-
-
-
-
-// 函数: void FUN_180057680(int64_t param_1)
-void FUN_180057680(int64_t param_1)
-
+// 函数: void function_057680(int64_t param_1)
+void function_057680(int64_t param_1)
 {
   int64_t lVar1;
   int64_t lVar2;
   uint64_t uVar3;
   uint64_t uVar4;
-  
   uVar3 = *(uint64_t *)(param_1 + 0x10);
   lVar1 = *(int64_t *)(param_1 + 8);
   uVar4 = 0;
@@ -314,7 +258,7 @@ void FUN_180057680(int64_t param_1)
         if (*(int64_t **)(lVar2 + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(lVar2 + 0x10) + 0x38))();
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemCoreProcessor(lVar2);
       }
       *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
@@ -324,41 +268,28 @@ void FUN_180057680(int64_t param_1)
   }
   *(uint64_t *)(param_1 + 0x18) = 0;
   if ((1 < uVar3) && (*(int64_t *)(param_1 + 8) != 0)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemCoreProcessor();
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180057730(int64_t *param_1)
-void FUN_180057730(int64_t *param_1)
-
+// 函数: void function_057730(int64_t *param_1)
+void function_057730(int64_t *param_1)
 {
   int64_t lVar1;
   int64_t lVar2;
-  
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x18) {
-    FUN_18004bf50(lVar2);
+    function_04bf50(lVar2);
   }
   if (*param_1 == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCoreProcessor();
 }
-
-
-
-
-
-// 函数: void FUN_180057790(int64_t param_1)
-void FUN_180057790(int64_t param_1)
-
+// 函数: void function_057790(int64_t param_1)
+void function_057790(int64_t param_1)
 {
   int *piVar1;
   int64_t lVar2;
@@ -366,7 +297,6 @@ void FUN_180057790(int64_t param_1)
   int64_t lVar4;
   uint64_t uVar5;
   uint64_t uVar6;
-  
   uVar6 = *(uint64_t *)(param_1 + 0x10);
   lVar4 = *(int64_t *)(param_1 + 8);
   uVar5 = 0;
@@ -374,7 +304,7 @@ void FUN_180057790(int64_t param_1)
     do {
       lVar2 = *(int64_t *)(lVar4 + uVar5 * 8);
       if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemCoreProcessor(lVar2);
       }
       *(uint64_t *)(lVar4 + uVar5 * 8) = 0;
@@ -399,7 +329,7 @@ void FUN_180057790(int64_t param_1)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
+        Function_2152bae1(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
                             puVar3,uVar6,0xfffffffffffffffe);
       }
     }
@@ -407,14 +337,8 @@ void FUN_180057790(int64_t param_1)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180057796(int64_t param_1)
-void FUN_180057796(int64_t param_1)
-
+// 函数: void function_057796(int64_t param_1)
+void function_057796(int64_t param_1)
 {
   int *piVar1;
   int64_t lVar2;
@@ -422,7 +346,6 @@ void FUN_180057796(int64_t param_1)
   int64_t lVar4;
   uint64_t uVar5;
   uint64_t uVar6;
-  
   uVar6 = *(uint64_t *)(param_1 + 0x10);
   lVar4 = *(int64_t *)(param_1 + 8);
   uVar5 = 0;
@@ -430,7 +353,7 @@ void FUN_180057796(int64_t param_1)
     do {
       lVar2 = *(int64_t *)(lVar4 + uVar5 * 8);
       if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemCoreProcessor(lVar2);
       }
       *(uint64_t *)(lVar4 + uVar5 * 8) = 0;
@@ -455,7 +378,7 @@ void FUN_180057796(int64_t param_1)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
+        Function_2152bae1(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
                             puVar3,uVar6,0xfffffffffffffffe);
       }
     }
@@ -463,14 +386,8 @@ void FUN_180057796(int64_t param_1)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1800577c0(void)
-void FUN_1800577c0(void)
-
+// 函数: void function_0577c0(void)
+void function_0577c0(void)
 {
   int *piVar1;
   uint64_t *puVar2;
@@ -481,11 +398,10 @@ void FUN_1800577c0(void)
   uint64_t uVar4;
   int64_t unaff_R14;
   uint64_t unaff_R15;
-  
   do {
     lVar3 = *(int64_t *)(unaff_R14 + unaff_RDI * 8);
     if (lVar3 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       SystemCoreProcessor(lVar3);
     }
     *(uint64_t *)(unaff_R14 + unaff_RDI * 8) = unaff_R15;
@@ -509,7 +425,7 @@ void FUN_1800577c0(void)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
+        Function_2152bae1(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
                             puVar2,uVar4,0xfffffffffffffffe);
       }
     }
@@ -517,14 +433,8 @@ void FUN_1800577c0(void)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1800577f6(void)
-void FUN_1800577f6(void)
-
+// 函数: void function_0577f6(void)
+void function_0577f6(void)
 {
   int *piVar1;
   uint64_t *puVar2;
@@ -533,7 +443,6 @@ void FUN_1800577f6(void)
   uint64_t unaff_RSI;
   uint64_t uVar4;
   uint64_t unaff_R15;
-  
   *(uint64_t *)(unaff_RBP + 0x18) = unaff_R15;
   if ((1 < unaff_RSI) && (puVar2 = *(uint64_t **)(unaff_RBP + 8), puVar2 != (uint64_t *)0x0)) {
     uVar4 = (uint64_t)puVar2 & 0xffffffffffc00000;
@@ -551,7 +460,7 @@ void FUN_1800577f6(void)
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
+        Function_2152bae1(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
                             puVar2,uVar4,0xfffffffffffffffe);
       }
     }
@@ -559,21 +468,14 @@ void FUN_1800577f6(void)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180057814(void)
-void FUN_180057814(void)
-
+// 函数: void function_057814(void)
+void function_057814(void)
 {
   int *piVar1;
   uint64_t *puVar2;
   int64_t lVar3;
   int64_t unaff_RBP;
   uint64_t uVar4;
-  
   puVar2 = *(uint64_t **)(unaff_RBP + 8);
   if (puVar2 == (uint64_t *)0x0) {
     return;
@@ -593,24 +495,17 @@ void FUN_180057814(void)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
+      Function_2152bae1(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
                           puVar2,uVar4,0xfffffffffffffffe);
     }
   }
   return;
 }
-
-
-
-
-
 // 函数: void DataTransformer0(int64_t *param_1)
 void DataTransformer0(int64_t *param_1)
-
 {
   int64_t *plVar1;
   int64_t *plVar2;
-  
   plVar1 = (int64_t *)param_1[1];
   for (plVar2 = (int64_t *)*param_1; plVar2 != plVar1; plVar2 = plVar2 + 1) {
     if ((int64_t *)*plVar2 != (int64_t *)0x0) {
@@ -620,25 +515,17 @@ void DataTransformer0(int64_t *param_1)
   if (*param_1 == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCoreProcessor();
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1800578a0(void)
-void FUN_1800578a0(void)
-
+// 函数: void function_0578a0(void)
+void function_0578a0(void)
 {
   int *piVar1;
   uint64_t *puVar2;
   int64_t lVar3;
   uint64_t uVar4;
-  
   puVar2 = system_operation_state;
   if (system_operation_state == (uint64_t *)0x0) {
     return;
@@ -657,10 +544,10 @@ void FUN_1800578a0(void)
   if ((int64_t *)puVar2[0x2c0] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)puVar2[0x2c0] + 0x38))();
   }
-  FUN_180090420(puVar2 + 0x116);
-  FUN_180090380(puVar2 + 6);
+  function_090420(puVar2 + 0x116);
+  function_090380(puVar2 + 6);
   if (puVar2[2] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemCoreProcessor();
   }
   uVar4 = (uint64_t)puVar2 & 0xffffffffffc00000;
@@ -678,31 +565,24 @@ void FUN_1800578a0(void)
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
+      Function_2152bae1(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
                           puVar2,uVar4,0xfffffffffffffffe);
     }
   }
   return;
 }
-
-
-
-
-
 // 函数: void CoreSystem_DataCollector(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 void CoreSystem_DataCollector(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
   char cVar1;
   int64_t lVar2;
   char *pcVar3;
   char *pcVar4;
   uint64_t uVar5;
-  void *puStack_50;
+  void *plocal_var_50;
   int64_t lStack_48;
-  int32_t uStack_40;
-  uint64_t uStack_38;
-  
+  int32_t local_var_40;
+  uint64_t local_var_38;
   uVar5 = 0xfffffffffffffffe;
   pcVar3 = *(char **)(param_1 + 8);
   cVar1 = *pcVar3;
@@ -711,60 +591,55 @@ void CoreSystem_DataCollector(int64_t param_1,int64_t param_2,uint64_t param_3,u
     do {
       lVar2 = strchr(param_3,(int)cVar1);
       if ((lVar2 != 0) && (pcVar4 != pcVar3)) {
-        puStack_50 = &system_data_buffer_ptr;
-        uStack_38 = 0;
+        plocal_var_50 = &system_data_buffer_ptr;
+        local_var_38 = 0;
         lStack_48 = 0;
-        uStack_40 = 0;
-        FUN_180628210(&puStack_50,pcVar4,(int)pcVar3 - (int)pcVar4,param_4,uVar5);
+        local_var_40 = 0;
+        function_628210(&plocal_var_50,pcVar4,(int)pcVar3 - (int)pcVar4,param_4,uVar5);
         pcVar4 = pcVar3 + 1;
         if (*(uint64_t *)(param_2 + 8) < *(uint64_t *)(param_2 + 0x10)) {
           *(uint64_t *)(param_2 + 8) = *(uint64_t *)(param_2 + 8) + 0x20;
           SystemCore_NetworkHandler0();
         }
         else {
-          SystemCore_BackupSystem(param_2,&puStack_50);
+          SystemCore_BackupSystem(param_2,&plocal_var_50);
         }
-        puStack_50 = &system_data_buffer_ptr;
+        plocal_var_50 = &system_data_buffer_ptr;
         if (lStack_48 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemCoreProcessor();
         }
         lStack_48 = 0;
-        uStack_38 = uStack_38 & 0xffffffff00000000;
-        puStack_50 = &system_state_ptr;
+        local_var_38 = local_var_38 & 0xffffffff00000000;
+        plocal_var_50 = &system_state_ptr;
       }
       pcVar3 = pcVar3 + 1;
       cVar1 = *pcVar3;
     } while (cVar1 != '\0');
     if (pcVar4 != pcVar3) {
-      puStack_50 = &system_data_buffer_ptr;
-      uStack_38 = 0;
+      plocal_var_50 = &system_data_buffer_ptr;
+      local_var_38 = 0;
       lStack_48 = 0;
-      uStack_40 = 0;
-      FUN_180628210(&puStack_50,pcVar4,(int)pcVar3 - (int)pcVar4,param_4,uVar5);
+      local_var_40 = 0;
+      function_628210(&plocal_var_50,pcVar4,(int)pcVar3 - (int)pcVar4,param_4,uVar5);
       if (*(uint64_t *)(param_2 + 8) < *(uint64_t *)(param_2 + 0x10)) {
         *(uint64_t *)(param_2 + 8) = *(uint64_t *)(param_2 + 8) + 0x20;
         SystemCore_NetworkHandler0();
       }
       else {
-        SystemCore_BackupSystem(param_2,&puStack_50);
+        SystemCore_BackupSystem(param_2,&plocal_var_50);
       }
-      puStack_50 = &system_data_buffer_ptr;
+      plocal_var_50 = &system_data_buffer_ptr;
       if (lStack_48 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemCoreProcessor();
       }
     }
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t * FUN_180057b00(int64_t param_1,int64_t *param_2,uint64_t param_3)
-
+int64_t * function_057b00(int64_t param_1,int64_t *param_2,uint64_t param_3)
 {
   byte bVar1;
   uint uVar2;
@@ -774,12 +649,11 @@ int64_t * FUN_180057b00(int64_t param_1,int64_t *param_2,uint64_t param_3)
   int64_t lVar6;
   uint64_t uVar7;
   char acStackX_8 [8];
-  
   lVar3 = SystemMemoryManager(system_memory_pool_ptr,0x40,*(int8_t *)(param_1 + 0x28));
   SystemCore_NetworkHandler0(lVar3 + 0x20,param_3);
   lVar4 = SystemCore_SecurityValidator(param_1,acStackX_8,lVar3 + 0x20);
   if (acStackX_8[0] == '\0') {
-    FUN_18005d1f0();
+    function_05d1f0();
     *param_2 = lVar4;
     *(int8_t *)(param_2 + 1) = 0;
     return param_2;
@@ -804,28 +678,22 @@ LAB_180057b97:
   }
   uVar7 = 0;
 LAB_180057ba2:
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemConfigProcessor(lVar3,lVar4,param_1,uVar7);
 }
-
-
-
-
-
-// 函数: void FUN_180057bf0(uint64_t *param_1)
-void FUN_180057bf0(uint64_t *param_1)
-
+// 函数: void function_057bf0(uint64_t *param_1)
+void function_057bf0(uint64_t *param_1)
 {
   if (param_1 == (uint64_t *)0x0) {
     return;
   }
   if (param_1[9] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemCoreProcessor();
   }
   param_1[4] = &system_data_buffer_ptr;
   if (param_1[5] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemCoreProcessor();
   }
   param_1[5] = 0;
@@ -833,59 +701,47 @@ void FUN_180057bf0(uint64_t *param_1)
   param_1[4] = &system_state_ptr;
   *param_1 = &system_data_buffer_ptr;
   if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemCoreProcessor();
   }
   param_1[1] = 0;
   *(int32_t *)(param_1 + 3) = 0;
   *param_1 = &system_state_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCoreProcessor(param_1);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t * FUN_180057cb0(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_t param_4)
-
+uint64_t * function_057cb0(uint64_t *param_1,uint param_2,uint64_t param_3,uint64_t param_4)
 {
   *param_1 = &rendering_buffer_2976_ptr;
-  FUN_18005e570(system_context_ptr,param_1[0x28],param_3,param_4,0xfffffffffffffffe);
+  function_05e570(system_context_ptr,param_1[0x28],param_3,param_4,0xfffffffffffffffe);
   param_1[0x28] = 0;
   param_1[0x29] = &system_data_buffer_ptr;
   if (param_1[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemCoreProcessor();
   }
   param_1[0x2a] = 0;
   *(int32_t *)(param_1 + 0x2c) = 0;
   param_1[0x29] = &system_state_ptr;
-  FUN_180174950();
+  function_174950();
   if ((param_2 & 1) != 0) {
     free(param_1,0x170);
   }
   return param_1;
 }
-
-
-
-
-
-// 函数: void FUN_180057d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_057d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_057d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
   uint64_t uVar3;
-  
   uVar3 = 0xfffffffffffffffe;
-  FUN_180058020();
-  FUN_180058020();
+  function_058020();
+  function_058020();
   param_1[0x123] = (int64_t)&system_data_buffer_ptr;
   if (param_1[0x124] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemCoreProcessor();
   }
   param_1[0x124] = 0;
@@ -895,7 +751,7 @@ void FUN_180057d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   if (param_1[0x119] == 0) {
     DataSerializationEngine();
     DataSerializationEngine();
-    FUN_180058710(param_1 + 0x10b,param_1[0x10d]);
+    function_058710(param_1 + 0x10b,param_1[0x10d]);
     param_1[0x87] = (int64_t)&system_state_ptr;
     param_1[4] = (int64_t)&system_state_ptr;
     uVar3 = 0xfffffffffffffffe;
@@ -906,84 +762,52 @@ void FUN_180057d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     if (*param_1 == 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemCoreProcessor();
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCoreProcessor();
 }
-
-
-
-
-
-// 函数: void FUN_180057e90(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057e90(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_057e90(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_057e90(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
-  FUN_180058710(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  function_058710(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180057ec0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057ec0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_057ec0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_057ec0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
-  
   puVar1 = *(uint64_t **)(param_1 + 0x10);
   if (puVar1 != (uint64_t *)0x0) {
-    FUN_1800587d0(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
-                    // WARNING: Subroutine does not return
+    function_0587d0(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    function_05cb60(puVar1);
+// WARNING: Subroutine does not return
     SystemCoreProcessor(puVar1);
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180057ee0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057ee0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_057ee0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_057ee0(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
-  FUN_180058710(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  function_058710(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180057f10(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180057f10(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_057f10(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_057f10(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
-  
   puVar1 = *(uint64_t **)(param_1 + 0x10);
   if (puVar1 != (uint64_t *)0x0) {
-    FUN_1800587d0(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
-                    // WARNING: Subroutine does not return
+    function_0587d0(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    function_05cb60(puVar1);
+// WARNING: Subroutine does not return
     SystemCoreProcessor(puVar1);
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180057f30(int64_t *param_1)
-void FUN_180057f30(int64_t *param_1)
-
+// 函数: void function_057f30(int64_t *param_1)
+void function_057f30(int64_t *param_1)
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -992,7 +816,6 @@ void FUN_180057f30(int64_t *param_1)
   uint64_t *puVar5;
   int64_t lVar6;
   uint64_t *puVar7;
-  
   SystemCore_ConfigValidator();
   lVar1 = *param_1;
   *param_1 = 0;
@@ -1012,48 +835,31 @@ void FUN_180057f30(int64_t *param_1)
     (**(code **)*puVar7)(puVar7,0);
   }
   if (puVar4 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemCoreProcessor(puVar4);
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180058000(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180058000(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_058000(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_058000(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
-  FUN_180058710(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  function_058710(param_1,*(uint64_t *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180058020(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180058020(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_058020(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_058020(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
-  
   puVar1 = *(uint64_t **)(param_1 + 0x10);
   if (puVar1 != (uint64_t *)0x0) {
-    FUN_1800587d0(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
-    FUN_18005cb60(puVar1);
-                    // WARNING: Subroutine does not return
+    function_0587d0(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    function_05cb60(puVar1);
+// WARNING: Subroutine does not return
     SystemCoreProcessor(puVar1);
   }
   return;
 }
-
-
-
 uint64_t * > HighFreq_AnimationSystem1(uint64_t *param_1,uint64_t *param_2,int64_t param_3)
-
 {
   byte bVar1;
   bool bVar2;
@@ -1065,7 +871,6 @@ uint64_t * > HighFreq_AnimationSystem1(uint64_t *param_1,uint64_t *param_2,int64
   uint64_t *puVar8;
   uint64_t *puVar9;
   uint64_t *puVar10;
-  
   if ((uint64_t *)param_1[2] != (uint64_t *)0x0) {
     puVar7 = (uint64_t *)param_1[2];
     puVar10 = param_1;
@@ -1125,14 +930,8 @@ LAB_180058138:
   *param_2 = param_1;
   return param_2;
 }
-
-
-
-
-
-// 函数: void FUN_180058160(uint64_t *param_1)
-void FUN_180058160(uint64_t *param_1)
-
+// 函数: void function_058160(uint64_t *param_1)
+void function_058160(uint64_t *param_1)
 {
   int *piVar1;
   uint64_t uVar2;
@@ -1141,7 +940,6 @@ void FUN_180058160(uint64_t *param_1)
   uint64_t uVar5;
   int64_t lVar6;
   uint64_t uVar7;
-  
   param_1[1] = *param_1;
   uVar7 = *param_1;
   *param_1 = 0;
@@ -1174,14 +972,9 @@ void FUN_180058160(uint64_t *param_1)
       }
     }
     else {
-      func_0x00018064e870(uVar7,CONCAT71(0xff000000,*(void ***)(uVar7 + 0x70) == &ExceptionList),
+      Function_2152bae1(uVar7,CONCAT71(0xff000000,*(void ***)(uVar7 + 0x70) == &ExceptionList),
                           puVar4,uVar7,0xfffffffffffffffe);
     }
   }
   return;
 }
-
-
-
-
-

@@ -1,7 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part007.c - 4 个函数
-
 // 渲染系统常量定义
 #define RENDER_DATA_START_OFFSET    0x4a
 #define RENDER_DATA_END_OFFSET      0x4c
@@ -20,14 +18,12 @@
 #define RENDER_EXTENDED_OFFSET_2    0x1fe
 #define RENDER_LARGE_OFFSET_1       0x18c9
 #define RENDER_DATA_ARRAY_SIZE      0x10
-
 // 函数: void serialize_render_data(int32_t *render_params, int64_t *buffer_manager)
 // 功能: 序列化渲染数据，处理各种渲染参数和缓冲区管理
 // 参数: render_params - 渲染参数数组, buffer_manager - 缓冲区管理器指针
 // 返回: 无
 // 说明: 此函数负责序列化渲染数据到缓冲区，包括处理各种渲染参数和状态标志
 void serialize_render_data(int32_t *render_params, int64_t *buffer_manager)
-
 {
   int8_t uVar1;
   int32_t uVar2;
@@ -39,7 +35,6 @@ void serialize_render_data(int32_t *render_params, int64_t *buffer_manager)
   int iVar7;
   int iVar8;
   int64_t lVar9;
-  
   puVar4 = (int32_t *)buffer_manager[1];
   if ((uint64_t)((*buffer_manager - (int64_t)puVar4) + unaff_RBX[2]) < 5) {
     System_BufferManager();
@@ -105,7 +100,7 @@ void serialize_render_data(int32_t *render_params, int64_t *buffer_manager)
     System_QueueProcessor();
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
-  FUN_18025a940(&processed_var_9712_ptr,render_params[0x1f2]);
+  function_25a940(&processed_var_9712_ptr,render_params[0x1f2]);
   puVar3 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(render_params + RENDER_FLAG_OFFSET);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 2) {
@@ -265,14 +260,12 @@ void serialize_render_data(int32_t *render_params, int64_t *buffer_manager)
   } while (iVar8 < RENDER_DATA_ARRAY_SIZE);
   return;
 }
-
 // 函数: void process_render_batch(int32_t *render_params)
 // 功能: 处理渲染批次数据，执行批量渲染操作
 // 参数: render_params - 渲染参数数组
 // 返回: 无
 // 说明: 此函数负责处理渲染批次数据，包括批量渲染操作和状态管理
 void process_render_batch(int32_t *render_params)
-
 {
   int8_t uVar1;
   int32_t uVar2;
@@ -286,7 +279,6 @@ void process_render_batch(int32_t *render_params)
   int iVar8;
   int64_t lVar9;
   int32_t *unaff_RDI;
-  
   if ((uint64_t)((in_RAX - (int64_t)render_params) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     render_params = (int32_t *)unaff_RBX[1];
@@ -351,7 +343,7 @@ void process_render_batch(int32_t *render_params)
     System_QueueProcessor();
     lVar6 = lVar6 + -1;
   } while (lVar6 != 0);
-  FUN_18025a940(&processed_var_9712_ptr,unaff_RDI[0x1f2]);
+  function_25a940(&processed_var_9712_ptr,unaff_RDI[0x1f2]);
   puVar3 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + RENDER_FLAG_OFFSET);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 2) {
@@ -519,11 +511,9 @@ void process_render_batch(int32_t *render_params)
   } while (iVar8 < RENDER_DATA_ARRAY_SIZE);
   return;
 }
-
 // 函数: void serialize_vertex_attributes(void)
 // 功能: 序列化顶点属性数据，包括位置、纹理坐标、法线等信息
 void serialize_vertex_attributes(void)
-
 {
   int8_t byte_value;
   int32_t dword_value;
@@ -539,7 +529,6 @@ void serialize_vertex_attributes(void)
   uint64_t uVar10;
   int64_t unaff_RDI;
   int64_t unaff_R14;
-  
   uVar10 = (uint64_t)unaff_EBP;
   do {
     System_QueueProcessor();
@@ -562,8 +551,7 @@ void serialize_vertex_attributes(void)
     uVar10 = uVar10 + 0x60;
     unaff_R14 = unaff_R14 + -1;
   } while (unaff_R14 != 0);
-  
-  // 填充空白字节
+// 填充空白字节
   System_QueueProcessor();
   System_QueueProcessor();
   System_QueueProcessor();
@@ -577,9 +565,8 @@ void serialize_vertex_attributes(void)
     System_QueueProcessor();
     data_count = data_count + -1;
   } while (data_count != 0);
-  
-  // 处理材质标识符
-  FUN_18025a940(&processed_var_9712_ptr, *(int32_t *)(unaff_RDI + 0x7c8));
+// 处理材质标识符
+  function_25a940(&processed_var_9712_ptr, *(int32_t *)(unaff_RDI + 0x7c8));
   byte_ptr = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
   if ((uint64_t)((*unaff_RBX - (int64_t)byte_ptr) + unaff_RBX[2]) < 2) {
@@ -591,8 +578,7 @@ void serialize_vertex_attributes(void)
   if (*(char *)(unaff_RDI + 0x7cc) == '\0') {
     return;
   }
-  
-  // 序列化材质属性
+// 序列化材质属性
   dword_ptr = (int32_t *)unaff_RBX[1];
   if ((uint64_t)((*unaff_RBX - (int64_t)dword_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
@@ -639,8 +625,7 @@ void serialize_vertex_attributes(void)
   *dword_ptr = dword_value;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   System_QueueProcessor();
-  
-  // 序列化纹理坐标数据
+// 序列化纹理坐标数据
   data_count = *(int64_t *)(unaff_RDI + 0x950) - *(int64_t *)(unaff_RDI + 0x948);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
@@ -661,15 +646,13 @@ void serialize_vertex_attributes(void)
              (uint64_t)
              ((*(int64_t *)(unaff_RDI + 0x950) - *(int64_t *)(unaff_RDI + 0x948)) / 0x98));
   }
-  
-  // 填充纹理数据间隔
+// 填充纹理数据间隔
   data_count = 5;
   do {
     System_QueueProcessor();
     data_count = data_count + -1;
   } while (data_count != 0);
-  
-  // 序列化法线数据
+// 序列化法线数据
   data_count = *(int64_t *)(unaff_RDI + 0xc68) - *(int64_t *)(unaff_RDI + 0xc60);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
@@ -690,18 +673,15 @@ void serialize_vertex_attributes(void)
              (uint64_t)
              ((*(int64_t *)(unaff_RDI + 0xc68) - *(int64_t *)(unaff_RDI + 0xc60)) / 0x98));
   }
-  
-  // 填充法线数据间隔
+// 填充法线数据间隔
   data_count = 9;
   do {
     System_QueueProcessor();
     data_count = data_count + -1;
   } while (data_count != 0);
-  
   System_QueueProcessor();
   System_QueueProcessor();
-  
-  // 序列化颜色数据
+// 序列化颜色数据
   data_count = *(int64_t *)(unaff_RDI + 0x1890) - *(int64_t *)(unaff_RDI + 0x1888);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
@@ -747,8 +727,7 @@ void serialize_vertex_attributes(void)
   }
   *dword_ptr = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 序列化额外的渲染属性
+// 序列化额外的渲染属性
   do {
     int_ptr = (int *)unaff_RBX[1];
     if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {
@@ -762,13 +741,9 @@ void serialize_vertex_attributes(void)
   } while (item_count < 0x10);
   return;
 }
-
-
-
 // 函数: void serialize_material_properties(void)
 // 功能: 序列化材质属性数据，处理材质标识符和属性数组
 void serialize_material_properties(void)
-
 {
   int8_t byte_value;
   int32_t dword_value;
@@ -781,8 +756,7 @@ void serialize_material_properties(void)
   int64_t data_count;
   int item_count;
   int64_t unaff_RDI;
-  
-  // 填充空白字节
+// 填充空白字节
   System_QueueProcessor();
   System_QueueProcessor();
   System_QueueProcessor();
@@ -796,9 +770,8 @@ void serialize_material_properties(void)
     System_QueueProcessor();
     data_count = data_count + -1;
   } while (data_count != 0);
-  
-  // 处理材质标识符
-  FUN_18025a940(&processed_var_9712_ptr, *(int32_t *)(unaff_RDI + 0x7c8));
+// 处理材质标识符
+  function_25a940(&processed_var_9712_ptr, *(int32_t *)(unaff_RDI + 0x7c8));
   byte_ptr = (int8_t *)unaff_RBX[1];
   byte_value = *(int8_t *)(unaff_RDI + 0x7cc);
   if ((uint64_t)((*unaff_RBX - (int64_t)byte_ptr) + unaff_RBX[2]) < 2) {
@@ -810,8 +783,7 @@ void serialize_material_properties(void)
   if (*(char *)(unaff_RDI + 0x7cc) == '\0') {
     return;
   }
-  
-  // 序列化材质属性
+// 序列化材质属性
   dword_ptr = (int32_t *)unaff_RBX[1];
   if ((uint64_t)((*unaff_RBX - (int64_t)dword_ptr) + unaff_RBX[2]) < 5) {
     System_BufferManager();
@@ -858,8 +830,7 @@ void serialize_material_properties(void)
   *dword_ptr = dword_value;
   unaff_RBX[1] = unaff_RBX[1] + 4;
   System_QueueProcessor();
-  
-  // 序列化纹理坐标数据
+// 序列化纹理坐标数据
   data_count = *(int64_t *)(unaff_RDI + 0x950) - *(int64_t *)(unaff_RDI + 0x948);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
@@ -880,15 +851,13 @@ void serialize_material_properties(void)
              (uint64_t)
              ((*(int64_t *)(unaff_RDI + 0x950) - *(int64_t *)(unaff_RDI + 0x948)) / 0x98));
   }
-  
-  // 填充纹理数据间隔
+// 填充纹理数据间隔
   data_count = 5;
   do {
     System_QueueProcessor();
     data_count = data_count + -1;
   } while (data_count != 0);
-  
-  // 序列化法线数据
+// 序列化法线数据
   data_count = *(int64_t *)(unaff_RDI + 0xc68) - *(int64_t *)(unaff_RDI + 0xc60);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
@@ -909,18 +878,15 @@ void serialize_material_properties(void)
              (uint64_t)
              ((*(int64_t *)(unaff_RDI + 0xc68) - *(int64_t *)(unaff_RDI + 0xc60)) / 0x98));
   }
-  
-  // 填充法线数据间隔
+// 填充法线数据间隔
   data_count = 9;
   do {
     System_QueueProcessor();
     data_count = data_count + -1;
   } while (data_count != 0);
-  
   System_QueueProcessor();
   System_QueueProcessor();
-  
-  // 序列化颜色数据
+// 序列化颜色数据
   data_count = *(int64_t *)(unaff_RDI + 0x1890) - *(int64_t *)(unaff_RDI + 0x1888);
   data_count = data_count / 0x26 + (data_count >> 0x3f);
   int_ptr = (int *)unaff_RBX[1];
@@ -966,8 +932,7 @@ void serialize_material_properties(void)
   }
   *dword_ptr = 0x10;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 序列化额外的渲染属性
+// 序列化额外的渲染属性
   do {
     int_ptr = (int *)unaff_RBX[1];
     if ((uint64_t)((*unaff_RBX - (int64_t)int_ptr) + unaff_RBX[2]) < 5) {

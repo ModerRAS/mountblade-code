@@ -18,12 +18,9 @@
 // 函数别名定义 - 系统核心功能\n
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 02_core_engine_part107.c - 9 个函数
-
 // 函数: void CoreEngine_StateValidator(float param_1,float param_2,float param_3,float param_4)
 void CoreEngine_StateValidator(float param_1,float param_2,float param_3,float param_4)
-
 {
   int *piVar1;
   int64_t lVar2;
@@ -43,7 +40,6 @@ void CoreEngine_StateValidator(float param_1,float param_2,float param_3,float p
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
   float unaff_XMM14_Da;
-  
   fVar10 = unaff_XMM7_Da + param_1;
   fVar9 = unaff_XMM6_Da + param_1;
   param_1 = unaff_XMM8_Da - param_1;
@@ -67,7 +63,7 @@ void CoreEngine_StateValidator(float param_1,float param_2,float param_3,float p
   *(int32_t *)(unaff_RBP + -0x51) = uVar4;
   *(float *)(unaff_RBP + -0x4d) = fVar5;
   *(float *)(unaff_RBP + -0x4d) = fVar5 * *(float *)(lVar7 + 0x1628);
-  uVar8 = func_0x000180121e20(unaff_RBP + -0x59);
+  uVar8 = Function_56da4ab5(unaff_RBP + -0x59);
   *(float *)(unaff_RBP + 0x77) = unaff_XMM7_Da + 3.0;
   *(float *)(unaff_RBP + 0x7b) = unaff_XMM6_Da + 3.0;
   *(float *)(unaff_RBP + 0x83) = unaff_XMM8_Da - 3.0;
@@ -91,7 +87,7 @@ void CoreEngine_StateValidator(float param_1,float param_2,float param_3,float p
     *(int32_t *)(unaff_RBP + -0x51) = uVar4;
     *(float *)(unaff_RBP + -0x4d) = fVar5;
     *(float *)(unaff_RBP + -0x4d) = fVar5 * *(float *)(lVar7 + 0x1628);
-    uVar8 = func_0x000180121e20(unaff_RBP + -0x59);
+    uVar8 = Function_56da4ab5(unaff_RBP + -0x59);
     if ((uVar8 & 0xff000000) != 0) {
       if ((*(byte *)(lVar2 + 0x30) & 1) == 0) {
         fVar10 = fVar10 - 0.49;
@@ -112,16 +108,9 @@ void CoreEngine_StateValidator(float param_1,float param_2,float param_3,float p
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void CoreEngine_ErrorHandler(void)
 void CoreEngine_ErrorHandler(void)
-
 {
   int *piVar1;
   int64_t lVar2;
@@ -140,11 +129,10 @@ void CoreEngine_ErrorHandler(void)
   float fVar8;
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
-  int32_t uStack0000000000000028;
-  int32_t uStack0000000000000030;
-  
-  uStack0000000000000030 = 0x40000000;
-  uStack0000000000000028 = 0xf;
+  int32_t local_buffer_28;
+  int32_t local_buffer_30;
+  local_buffer_30 = 0x40000000;
+  local_buffer_28 = 0xf;
   CoreEngine_ScriptingEngine(*(uint64_t *)(unaff_RBX + 0x2e8),unaff_RBP + 0x7f,unaff_RBP + 0x77,in_EAX);
   if (unaff_SIL == '\0') {
     piVar1 = (int *)(*(int64_t *)(unaff_RBX + 0x2e8) + 0x60);
@@ -162,7 +150,7 @@ void CoreEngine_ErrorHandler(void)
     *(int32_t *)(unaff_RBP + -0x51) = uVar4;
     *(float *)(unaff_RBP + -0x4d) = fVar7;
     *(float *)(unaff_RBP + -0x4d) = fVar7 * *(float *)(lVar5 + 0x1628);
-    uVar6 = func_0x000180121e20(unaff_RBP + -0x59);
+    uVar6 = Function_56da4ab5(unaff_RBP + -0x59);
     if ((uVar6 & 0xff000000) != 0) {
       if ((*(byte *)(lVar2 + 0x30) & 1) == 0) {
         fVar8 = unaff_XMM7_Da - 0.49;
@@ -183,16 +171,9 @@ void CoreEngine_ErrorHandler(void)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void CoreEngine_ConfigLoader(void)
 void CoreEngine_ConfigLoader(void)
-
 {
   int *piVar1;
   int64_t lVar2;
@@ -209,7 +190,6 @@ void CoreEngine_ConfigLoader(void)
   float fVar8;
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
-  
   piVar1 = (int *)(*(int64_t *)(unaff_RBX + 0x2e8) + 0x60);
   *piVar1 = *piVar1 + -1;
   SystemCore_ErrorHandler();
@@ -224,7 +204,7 @@ void CoreEngine_ConfigLoader(void)
     *(int32_t *)(unaff_RBP + -0x51) = uVar4;
     *(float *)(unaff_RBP + -0x4d) = fVar7;
     *(float *)(unaff_RBP + -0x4d) = fVar7 * *(float *)(lVar5 + 0x1628);
-    uVar6 = func_0x000180121e20(unaff_RBP + -0x59);
+    uVar6 = Function_56da4ab5(unaff_RBP + -0x59);
     if ((uVar6 & 0xff000000) != 0) {
       if ((*(byte *)(lVar2 + 0x30) & 1) == 0) {
         fVar8 = unaff_XMM7_Da - 0.49;
@@ -245,35 +225,18 @@ void CoreEngine_ConfigLoader(void)
   }
   return;
 }
-
-
-
-
-
 // 函数: void CoreEngine_SystemInitializer(void)
 void CoreEngine_SystemInitializer(void)
-
 {
   return;
 }
-
-
-
-
-
 // 函数: void CoreEngine_NetworkHandler(void)
 void CoreEngine_NetworkHandler(void)
-
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t * CoreEngine_RenderingEngine(uint64_t *param_1,int64_t param_2,byte *param_3)
-
 {
   byte bVar1;
   byte *pbVar2;
@@ -282,7 +245,6 @@ uint64_t * CoreEngine_RenderingEngine(uint64_t *param_1,int64_t param_2,byte *pa
   int64_t lVar5;
   uint64_t *puVar6;
   uint uVar7;
-  
   *(uint64_t *)((int64_t)param_1 + 0x14) = 0;
   *(uint64_t *)((int64_t)param_1 + 0x1c) = 0;
   *(int8_t *)((int64_t)param_1 + 0x24) = 1;
@@ -338,7 +300,7 @@ uint64_t * CoreEngine_RenderingEngine(uint64_t *param_1,int64_t param_2,byte *pa
   puVar6 = param_1 + 0x7a;
   lVar5 = 2;
   do {
-    func_0x00018010e520(puVar6);
+    Function_aa9e5f04(puVar6);
     puVar6 = puVar6 + 2;
     lVar5 = lVar5 + -1;
   } while (lVar5 != 0);
@@ -446,25 +408,17 @@ uint64_t * CoreEngine_RenderingEngine(uint64_t *param_1,int64_t param_2,byte *pa
   *(byte *)((int64_t)param_1 + 0x432) = *(byte *)((int64_t)param_1 + 0x432) & 0xf8;
   return param_1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void CoreEngine_AudioSystem(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 void CoreEngine_AudioSystem(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
   int64_t lVar1;
-  
   lVar1 = *(int64_t *)(param_1 + 0xf0);
   if (lVar1 != 0) {
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(int64_t *)(param_1 + 0xe0);
@@ -472,7 +426,7 @@ void CoreEngine_AudioSystem(int64_t param_1,uint64_t param_2,uint64_t param_3,ui
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(int64_t *)(param_1 + 0xd0);
@@ -480,7 +434,7 @@ void CoreEngine_AudioSystem(int64_t param_1,uint64_t param_2,uint64_t param_3,ui
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(int64_t *)(param_1 + 0xc0);
@@ -488,7 +442,7 @@ void CoreEngine_AudioSystem(int64_t param_1,uint64_t param_2,uint64_t param_3,ui
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(int64_t *)(param_1 + 0x90);
@@ -496,34 +450,26 @@ void CoreEngine_AudioSystem(int64_t param_1,uint64_t param_2,uint64_t param_3,ui
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
   int64_t lVar1;
   int64_t lVar2;
   int iVar3;
   uint64_t uVar4;
-  
   uVar4 = 0xfffffffffffffffe;
   lVar2 = *param_1;
   if (lVar2 != 0) {
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   iVar3 = 0;
@@ -535,7 +481,7 @@ void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,
         if (SYSTEM_DATA_MANAGER_A != 0) {
           *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemResourceCleaner(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
       }
       iVar3 = iVar3 + 1;
@@ -548,7 +494,7 @@ void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar4);
   }
   lVar2 = param_1[0x58];
@@ -556,7 +502,7 @@ void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar4);
   }
   lVar2 = param_1[0x44];
@@ -564,7 +510,7 @@ void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,uVar4);
   }
   lVar2 = param_1[0x3e];
@@ -572,7 +518,7 @@ void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   lVar2 = param_1[0x3c];
@@ -580,7 +526,7 @@ void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   lVar2 = param_1[0x3a];
@@ -588,7 +534,7 @@ void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   lVar2 = param_1[0x38];
@@ -596,7 +542,7 @@ void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   lVar2 = param_1[0x32];
@@ -604,48 +550,32 @@ void CoreEngine_InputManager(int64_t *param_1,uint64_t param_2,uint64_t param_3,
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar2,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void CoreEngine_PhysicsEngine(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 void CoreEngine_PhysicsEngine(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
   int64_t lVar1;
-  
   lVar1 = *(int64_t *)(param_1 + 0x38);
   if (lVar1 != 0) {
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemResourceCleaner(lVar1,SYSTEM_DATA_MANAGER_B,param_3,param_4,0xfffffffffffffffe);
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void SystemCore_EventHandler(int64_t param_1,uint64_t param_2)
 void SystemCore_EventHandler(int64_t param_1,uint64_t param_2)
-
 {
   int64_t lVar1;
   int iVar2;
-  
   iVar2 = SystemCore_HandleInput(param_2,0,
                         *(int32_t *)
                          (*(int64_t *)(param_1 + 0x220) + -4 +
@@ -659,10 +589,4 @@ void SystemCore_EventHandler(int64_t param_1,uint64_t param_2)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

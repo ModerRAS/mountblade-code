@@ -179,7 +179,7 @@ uint64_t FUN_1808559c0(uint64_t *param_1)
     *(int64_t *)(*plVar4 + 8) = plVar4[1];
     plVar4[1] = (int64_t)plVar4;
     *plVar4 = (int64_t)plVar4;
-    func_0x0001808bef20(param_1[0x2d],plVar7);
+    RenderingSystem_SetRenderState(param_1[0x2d],plVar7);
     plVar4 = plVar9;
   }
   return 0x1c;
@@ -653,7 +653,7 @@ bool FUN_180855f70(int64_t param_1,int64_t param_2,int param_3)
   float fVar1;
   
   if ((param_3 != 1) && (*(float *)(param_2 + 0x58) != 100.0)) {
-    fVar1 = (float)func_0x0001808c1740(*(uint64_t *)(param_1 + 0x168),0);
+    fVar1 = (float)MathFunction_CalculateScale(*(uint64_t *)(param_1 + 0x168),0);
     return fVar1 < *(float *)(param_2 + 0x58);
   }
   return true;

@@ -1,24 +1,16 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 99_part_01_part030.c - 1 个函数
-
-// 函数: void FUN_1800bcab0(uint64_t *param_1)
-void FUN_1800bcab0(uint64_t *param_1)
-
+// 函数: void function_0bcab0(uint64_t *param_1)
+void function_0bcab0(uint64_t *param_1)
 {
   int64_t *plVar1;
   int64_t lVar2;
   int64_t *plVar3;
-  
   plVar3 = (int64_t *)param_1[9];
   param_1[9] = 0;
   if (plVar3 != (int64_t *)0x0) {
@@ -395,13 +387,8 @@ void FUN_1800bcab0(uint64_t *param_1)
   *(int32_t *)(param_1 + 0x8d) = 0xffffffff;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t FUN_1800bd410(int64_t param_1)
-
+int64_t function_0bd410(int64_t param_1)
 {
   uint *puVar1;
   uint64_t uVar2;
@@ -411,21 +398,20 @@ int64_t FUN_1800bd410(int64_t param_1)
   uint64_t *puVar6;
   int64_t lVar7;
   int64_t *plStackX_10;
-  uint64_t uStack_80;
-  uint64_t uStack_78;
+  uint64_t local_var_80;
+  uint64_t local_var_78;
   code *pcStack_70;
   code *pcStack_68;
-  uint64_t uStack_60;
-  uint64_t uStack_58;
+  uint64_t local_var_60;
+  uint64_t local_var_58;
   code *pcStack_50;
   code *pcStack_48;
-  uint64_t uStack_40;
-  uint64_t uStack_38;
+  uint64_t local_var_40;
+  uint64_t local_var_38;
   code *pcStack_30;
   code *pcStack_28;
-  
   if (*(int64_t *)(param_1 + 8) == 0) {
-    puVar6 = (uint64_t *)FUN_1800c1420(param_1,&plStackX_10,&processed_var_9032_ptr,1,0xfffffffffffffffe);
+    puVar6 = (uint64_t *)function_0c1420(param_1,&plStackX_10,&processed_var_9032_ptr,1,0xfffffffffffffffe);
     uVar2 = *puVar6;
     *puVar6 = 0;
     plVar3 = *(int64_t **)(param_1 + 8);
@@ -438,23 +424,23 @@ int64_t FUN_1800bd410(int64_t param_1)
     }
     puVar1 = (uint *)(*(int64_t *)(param_1 + 8) + 0x328);
     *puVar1 = *puVar1 | 0x20000000;
-    uStack_80 = 0;
-    uStack_78 = 0;
+    local_var_80 = 0;
+    local_var_78 = 0;
     pcStack_70 = (code *)0x0;
     pcStack_68 = _guard_check_icall;
-    SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 8),1,*(int32_t *)(param_1 + 0x468),&uStack_80);
+    SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 8),1,*(int32_t *)(param_1 + 0x468),&local_var_80);
     if (pcStack_70 != (code *)0x0) {
-      (*pcStack_70)(&uStack_80,0,0);
+      (*pcStack_70)(&local_var_80,0,0);
     }
   }
   if (*(int *)(*(int64_t *)(param_1 + 8) + 0x380) != 2) {
-    uStack_60 = 0;
-    uStack_58 = 0;
+    local_var_60 = 0;
+    local_var_58 = 0;
     pcStack_50 = (code *)0x0;
     pcStack_48 = _guard_check_icall;
-    SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 8),1,*(int32_t *)(param_1 + 0x468),&uStack_60);
+    SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 8),1,*(int32_t *)(param_1 + 0x468),&local_var_60);
     if (pcStack_50 != (code *)0x0) {
-      (*pcStack_50)(&uStack_60,0,0);
+      (*pcStack_50)(&local_var_60,0,0);
     }
   }
   iVar5 = _Thrd_id();
@@ -462,27 +448,22 @@ int64_t FUN_1800bd410(int64_t param_1)
   lVar7 = *(int64_t *)(param_1 + 8);
   if (iVar5 == *(int *)(lVar4 + 0x48)) {
     if (*(char *)(lVar7 + 900) == '\0') {
-      uStack_40 = 0;
-      uStack_38 = 0;
+      local_var_40 = 0;
+      local_var_38 = 0;
       pcStack_30 = (code *)0x0;
       pcStack_28 = _guard_check_icall;
       SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 8),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
-                    *(int32_t *)(param_1 + 0x468),&uStack_40);
+                    *(int32_t *)(param_1 + 0x468),&local_var_40);
       if (pcStack_30 != (code *)0x0) {
-        (*pcStack_30)(&uStack_40,0,0);
+        (*pcStack_30)(&local_var_40,0,0);
       }
     }
     lVar7 = *(int64_t *)(param_1 + 8);
   }
   return lVar7;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1800bd5c0(uint64_t param_1)
-
+uint64_t function_0bd5c0(uint64_t param_1)
 {
   uint *puVar1;
   uint64_t uVar2;
@@ -492,22 +473,21 @@ uint64_t FUN_1800bd5c0(uint64_t param_1)
   int iVar6;
   uint64_t *puVar7;
   int64_t *plStackX_10;
-  uint64_t uStack_80;
-  uint64_t uStack_78;
+  uint64_t local_var_80;
+  uint64_t local_var_78;
   code *pcStack_70;
   code *pcStack_68;
-  uint64_t uStack_60;
-  uint64_t uStack_58;
+  uint64_t local_var_60;
+  uint64_t local_var_58;
   code *pcStack_50;
   code *pcStack_48;
-  uint64_t uStack_40;
-  uint64_t uStack_38;
+  uint64_t local_var_40;
+  uint64_t local_var_38;
   code *pcStack_30;
   code *pcStack_28;
-  
   lVar5 = system_system_data_memory;
   if (*(int64_t *)(system_system_data_memory + 0xd0) == 0) {
-    puVar7 = (uint64_t *)FUN_1800c1420(param_1,&plStackX_10,&processed_var_9016_ptr,1,0xfffffffffffffffe);
+    puVar7 = (uint64_t *)function_0c1420(param_1,&plStackX_10,&processed_var_9016_ptr,1,0xfffffffffffffffe);
     uVar2 = *puVar7;
     *puVar7 = 0;
     plVar3 = *(int64_t **)(lVar5 + 0xd0);
@@ -520,61 +500,55 @@ uint64_t FUN_1800bd5c0(uint64_t param_1)
     }
     puVar1 = (uint *)(*(int64_t *)(lVar5 + 0xd0) + 0x328);
     *puVar1 = *puVar1 | 0x20000000;
-    uStack_80 = 0;
-    uStack_78 = 0;
+    local_var_80 = 0;
+    local_var_78 = 0;
     pcStack_70 = (code *)0x0;
     pcStack_68 = _guard_check_icall;
-    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0xd0),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0xd0),1,*(int32_t *)(lVar5 + 0x468),&local_var_80);
     if (pcStack_70 != (code *)0x0) {
-      (*pcStack_70)(&uStack_80,0,0);
+      (*pcStack_70)(&local_var_80,0,0);
     }
   }
   if (*(int *)(*(int64_t *)(lVar5 + 0xd0) + 0x380) != 2) {
-    uStack_60 = 0;
-    uStack_58 = 0;
+    local_var_60 = 0;
+    local_var_58 = 0;
     pcStack_50 = (code *)0x0;
     pcStack_48 = _guard_check_icall;
-    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0xd0),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0xd0),1,*(int32_t *)(lVar5 + 0x468),&local_var_60);
     if (pcStack_50 != (code *)0x0) {
-      (*pcStack_50)(&uStack_60,0,0);
+      (*pcStack_50)(&local_var_60,0,0);
     }
   }
   if (*(char *)(*(int64_t *)(lVar5 + 0xd0) + 900) == '\0') {
     iVar6 = _Thrd_id();
     lVar4 = *(int64_t *)(*(int64_t *)(system_context_ptr + 8) + 8);
     if (iVar6 == *(int *)(lVar4 + 0x48)) {
-      uStack_40 = 0;
-      uStack_38 = 0;
+      local_var_40 = 0;
+      local_var_38 = 0;
       pcStack_30 = (code *)0x0;
       pcStack_28 = _guard_check_icall;
       SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0xd0),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
-                    *(int32_t *)(lVar5 + 0x468),&uStack_40);
+                    *(int32_t *)(lVar5 + 0x468),&local_var_40);
       if (pcStack_30 != (code *)0x0) {
-        (*pcStack_30)(&uStack_40,0,0);
+        (*pcStack_30)(&local_var_40,0,0);
       }
     }
   }
   return *(uint64_t *)(lVar5 + 0xd0);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1800bd790(int64_t param_1)
-
+uint64_t function_0bd790(int64_t param_1)
 {
   int64_t *plVar1;
   uint64_t *puVar2;
   uint64_t uVar3;
   int64_t *plStackX_10;
-  uint64_t uStack_30;
-  uint64_t uStack_28;
+  uint64_t local_var_30;
+  uint64_t local_var_28;
   code *pcStack_20;
   code *pcStack_18;
-  
   if (*(int64_t *)(param_1 + 0x50) == 0) {
-    puVar2 = (uint64_t *)FUN_1800c1420(param_1,&plStackX_10,&processed_var_9064_ptr,1,0xfffffffffffffffe);
+    puVar2 = (uint64_t *)function_0c1420(param_1,&plStackX_10,&processed_var_9064_ptr,1,0xfffffffffffffffe);
     uVar3 = *puVar2;
     *puVar2 = 0;
     plVar1 = *(int64_t **)(param_1 + 0x50);
@@ -586,28 +560,23 @@ uint64_t FUN_1800bd790(int64_t param_1)
       (**(code **)(*plStackX_10 + 0x38))();
     }
     if (*(int64_t *)(param_1 + 0x50) == 0) {
-      FUN_1806272a0(&processed_var_9104_ptr);
-      uVar3 = FUN_1800bd410(system_system_data_memory);
+      function_6272a0(&processed_var_9104_ptr);
+      uVar3 = function_0bd410(system_system_data_memory);
       SystemCore_PointerManager(param_1 + 0x50,uVar3);
     }
   }
-  uStack_30 = 0;
-  uStack_28 = 0;
+  local_var_30 = 0;
+  local_var_28 = 0;
   pcStack_20 = (code *)0x0;
   pcStack_18 = _guard_check_icall;
-  SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 0x50),0,*(int32_t *)(param_1 + 0x468),&uStack_30);
+  SystemCore_DecryptionManager(*(uint64_t *)(param_1 + 0x50),0,*(int32_t *)(param_1 + 0x468),&local_var_30);
   if (pcStack_20 != (code *)0x0) {
-    (*pcStack_20)(&uStack_30,0,0);
+    (*pcStack_20)(&local_var_30,0,0);
   }
   return *(uint64_t *)(param_1 + 0x50);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t FUN_1800bd890(uint64_t param_1)
-
+int64_t function_0bd890(uint64_t param_1)
 {
   uint *puVar1;
   uint64_t uVar2;
@@ -618,22 +587,21 @@ int64_t FUN_1800bd890(uint64_t param_1)
   uint64_t *puVar7;
   int64_t lVar8;
   int64_t *plStackX_10;
-  uint64_t uStack_80;
-  uint64_t uStack_78;
+  uint64_t local_var_80;
+  uint64_t local_var_78;
   code *pcStack_70;
   code *pcStack_68;
-  uint64_t uStack_60;
-  uint64_t uStack_58;
+  uint64_t local_var_60;
+  uint64_t local_var_58;
   code *pcStack_50;
   code *pcStack_48;
-  uint64_t uStack_40;
-  uint64_t uStack_38;
+  uint64_t local_var_40;
+  uint64_t local_var_38;
   code *pcStack_30;
   code *pcStack_28;
-  
   lVar5 = system_system_data_memory;
   if (*(int64_t *)(system_system_data_memory + 0x18) == 0) {
-    puVar7 = (uint64_t *)FUN_1800c1420(param_1,&plStackX_10,&processed_var_9144_ptr,1,0xfffffffffffffffe);
+    puVar7 = (uint64_t *)function_0c1420(param_1,&plStackX_10,&processed_var_9144_ptr,1,0xfffffffffffffffe);
     uVar2 = *puVar7;
     *puVar7 = 0;
     plVar3 = *(int64_t **)(lVar5 + 0x18);
@@ -646,23 +614,23 @@ int64_t FUN_1800bd890(uint64_t param_1)
     }
     puVar1 = (uint *)(*(int64_t *)(lVar5 + 0x18) + 0x328);
     *puVar1 = *puVar1 | 0x20000000;
-    uStack_80 = 0;
-    uStack_78 = 0;
+    local_var_80 = 0;
+    local_var_78 = 0;
     pcStack_70 = (code *)0x0;
     pcStack_68 = _guard_check_icall;
-    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x18),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x18),1,*(int32_t *)(lVar5 + 0x468),&local_var_80);
     if (pcStack_70 != (code *)0x0) {
-      (*pcStack_70)(&uStack_80,0,0);
+      (*pcStack_70)(&local_var_80,0,0);
     }
   }
   if (*(int *)(*(int64_t *)(lVar5 + 0x18) + 0x380) != 2) {
-    uStack_60 = 0;
-    uStack_58 = 0;
+    local_var_60 = 0;
+    local_var_58 = 0;
     pcStack_50 = (code *)0x0;
     pcStack_48 = _guard_check_icall;
-    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x18),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x18),1,*(int32_t *)(lVar5 + 0x468),&local_var_60);
     if (pcStack_50 != (code *)0x0) {
-      (*pcStack_50)(&uStack_60,0,0);
+      (*pcStack_50)(&local_var_60,0,0);
     }
   }
   iVar6 = _Thrd_id();
@@ -670,31 +638,26 @@ int64_t FUN_1800bd890(uint64_t param_1)
   lVar8 = *(int64_t *)(lVar5 + 0x18);
   if (iVar6 == *(int *)(lVar4 + 0x48)) {
     if (*(char *)(lVar8 + 900) == '\0') {
-      uStack_40 = 0;
-      uStack_38 = 0;
+      local_var_40 = 0;
+      local_var_38 = 0;
       pcStack_30 = (code *)0x0;
       pcStack_28 = _guard_check_icall;
       SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x18),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
-                    *(int32_t *)(lVar5 + 0x468),&uStack_40);
+                    *(int32_t *)(lVar5 + 0x468),&local_var_40);
       if (pcStack_30 != (code *)0x0) {
-        (*pcStack_30)(&uStack_40,0,0);
+        (*pcStack_30)(&local_var_40,0,0);
       }
     }
     lVar8 = *(int64_t *)(lVar5 + 0x18);
   }
   return lVar8;
 }
-
-
-
-int64_t * FUN_1800bda40(int64_t param_1,int64_t *param_2)
-
+int64_t * function_0bda40(int64_t param_1,int64_t *param_2)
 {
   uint64_t uVar1;
   int64_t *plVar2;
   uint64_t *puVar3;
   int64_t *plStackX_18;
-  
   if (*(int64_t *)(param_1 + 0xe0) == 0) {
     puVar3 = (uint64_t *)InitializationSystem_CoreLoader(param_1,&plStackX_18,&processed_var_9176_ptr,1,0,0xfffffffffffffffe)
     ;
@@ -716,20 +679,14 @@ int64_t * FUN_1800bda40(int64_t param_1,int64_t *param_2)
   }
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t * FUN_1800bdaf0(uint64_t param_1,int64_t *param_2)
-
+int64_t * function_0bdaf0(uint64_t param_1,int64_t *param_2)
 {
   uint64_t uVar1;
   int64_t *plVar2;
   int64_t lVar3;
   uint64_t *puVar4;
   int64_t *plStackX_18;
-  
   lVar3 = system_system_data_memory;
   if (*(int64_t *)(system_system_data_memory + 0x278) == 0) {
     puVar4 = (uint64_t *)InitializationSystem_CoreLoader(param_1,&plStackX_18,&processed_var_9184_ptr,1,0,0xfffffffffffffffe)
@@ -752,27 +709,21 @@ int64_t * FUN_1800bdaf0(uint64_t param_1,int64_t *param_2)
   }
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1800bdbb0(uint64_t param_1)
-
+uint64_t function_0bdbb0(uint64_t param_1)
 {
   uint64_t uVar1;
   int64_t *plVar2;
   int64_t lVar3;
   uint64_t *puVar4;
   int64_t *aplStackX_10 [3];
-  uint64_t uStack_30;
-  uint64_t uStack_28;
+  uint64_t local_var_30;
+  uint64_t local_var_28;
   code *pcStack_20;
   code *pcStack_18;
-  
   lVar3 = system_system_data_memory;
   if (*(int64_t *)(system_system_data_memory + 0x30) == 0) {
-    puVar4 = (uint64_t *)FUN_1800c1420(param_1,aplStackX_10,&processed_var_9224_ptr,1,0xfffffffffffffffe);
+    puVar4 = (uint64_t *)function_0c1420(param_1,aplStackX_10,&processed_var_9224_ptr,1,0xfffffffffffffffe);
     uVar1 = *puVar4;
     *puVar4 = 0;
     plVar2 = *(int64_t **)(lVar3 + 0x30);
@@ -784,23 +735,18 @@ uint64_t FUN_1800bdbb0(uint64_t param_1)
       (**(code **)(*aplStackX_10[0] + 0x38))();
     }
   }
-  uStack_30 = 0;
-  uStack_28 = 0;
+  local_var_30 = 0;
+  local_var_28 = 0;
   pcStack_20 = (code *)0x0;
   pcStack_18 = _guard_check_icall;
-  SystemCore_DecryptionManager(*(uint64_t *)(lVar3 + 0x30),0,*(int32_t *)(lVar3 + 0x468),&uStack_30);
+  SystemCore_DecryptionManager(*(uint64_t *)(lVar3 + 0x30),0,*(int32_t *)(lVar3 + 0x468),&local_var_30);
   if (pcStack_20 != (code *)0x0) {
-    (*pcStack_20)(&uStack_30,0,0);
+    (*pcStack_20)(&local_var_30,0,0);
   }
   return *(uint64_t *)(lVar3 + 0x30);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t FUN_1800bdc80(uint64_t param_1)
-
+int64_t function_0bdc80(uint64_t param_1)
 {
   uint *puVar1;
   uint64_t uVar2;
@@ -811,22 +757,21 @@ int64_t FUN_1800bdc80(uint64_t param_1)
   uint64_t *puVar7;
   int64_t lVar8;
   int64_t *plStackX_10;
-  uint64_t uStack_80;
-  uint64_t uStack_78;
+  uint64_t local_var_80;
+  uint64_t local_var_78;
   code *pcStack_70;
   code *pcStack_68;
-  uint64_t uStack_60;
-  uint64_t uStack_58;
+  uint64_t local_var_60;
+  uint64_t local_var_58;
   code *pcStack_50;
   code *pcStack_48;
-  uint64_t uStack_40;
-  uint64_t uStack_38;
+  uint64_t local_var_40;
+  uint64_t local_var_38;
   code *pcStack_30;
   code *pcStack_28;
-  
   lVar5 = system_system_data_memory;
   if (*(int64_t *)(system_system_data_memory + 0x38) == 0) {
-    puVar7 = (uint64_t *)FUN_1800c1420(param_1,&plStackX_10,&processed_var_9208_ptr,1,0xfffffffffffffffe);
+    puVar7 = (uint64_t *)function_0c1420(param_1,&plStackX_10,&processed_var_9208_ptr,1,0xfffffffffffffffe);
     uVar2 = *puVar7;
     *puVar7 = 0;
     plVar3 = *(int64_t **)(lVar5 + 0x38);
@@ -839,23 +784,23 @@ int64_t FUN_1800bdc80(uint64_t param_1)
     }
     puVar1 = (uint *)(*(int64_t *)(lVar5 + 0x38) + 0x328);
     *puVar1 = *puVar1 | 0x20000000;
-    uStack_80 = 0;
-    uStack_78 = 0;
+    local_var_80 = 0;
+    local_var_78 = 0;
     pcStack_70 = (code *)0x0;
     pcStack_68 = _guard_check_icall;
-    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x38),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x38),1,*(int32_t *)(lVar5 + 0x468),&local_var_80);
     if (pcStack_70 != (code *)0x0) {
-      (*pcStack_70)(&uStack_80,0,0);
+      (*pcStack_70)(&local_var_80,0,0);
     }
   }
   if (*(int *)(*(int64_t *)(lVar5 + 0x38) + 0x380) != 2) {
-    uStack_60 = 0;
-    uStack_58 = 0;
+    local_var_60 = 0;
+    local_var_58 = 0;
     pcStack_50 = (code *)0x0;
     pcStack_48 = _guard_check_icall;
-    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x38),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x38),1,*(int32_t *)(lVar5 + 0x468),&local_var_60);
     if (pcStack_50 != (code *)0x0) {
-      (*pcStack_50)(&uStack_60,0,0);
+      (*pcStack_50)(&local_var_60,0,0);
     }
   }
   iVar6 = _Thrd_id();
@@ -863,27 +808,22 @@ int64_t FUN_1800bdc80(uint64_t param_1)
   lVar8 = *(int64_t *)(lVar5 + 0x38);
   if (iVar6 == *(int *)(lVar4 + 0x48)) {
     if (*(char *)(lVar8 + 900) == '\0') {
-      uStack_40 = 0;
-      uStack_38 = 0;
+      local_var_40 = 0;
+      local_var_38 = 0;
       pcStack_30 = (code *)0x0;
       pcStack_28 = _guard_check_icall;
       SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x38),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
-                    *(int32_t *)(lVar5 + 0x468),&uStack_40);
+                    *(int32_t *)(lVar5 + 0x468),&local_var_40);
       if (pcStack_30 != (code *)0x0) {
-        (*pcStack_30)(&uStack_40,0,0);
+        (*pcStack_30)(&local_var_40,0,0);
       }
     }
     lVar8 = *(int64_t *)(lVar5 + 0x38);
   }
   return lVar8;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t FUN_1800bde30(uint64_t param_1)
-
+int64_t function_0bde30(uint64_t param_1)
 {
   uint *puVar1;
   uint64_t uVar2;
@@ -894,22 +834,21 @@ int64_t FUN_1800bde30(uint64_t param_1)
   uint64_t *puVar7;
   int64_t lVar8;
   int64_t *plStackX_10;
-  uint64_t uStack_80;
-  uint64_t uStack_78;
+  uint64_t local_var_80;
+  uint64_t local_var_78;
   code *pcStack_70;
   code *pcStack_68;
-  uint64_t uStack_60;
-  uint64_t uStack_58;
+  uint64_t local_var_60;
+  uint64_t local_var_58;
   code *pcStack_50;
   code *pcStack_48;
-  uint64_t uStack_40;
-  uint64_t uStack_38;
+  uint64_t local_var_40;
+  uint64_t local_var_38;
   code *pcStack_30;
   code *pcStack_28;
-  
   lVar5 = system_system_data_memory;
   if (*(int64_t *)(system_system_data_memory + 0x40) == 0) {
-    puVar7 = (uint64_t *)FUN_1800c1420(param_1,&plStackX_10,&processed_var_9240_ptr,1,0xfffffffffffffffe);
+    puVar7 = (uint64_t *)function_0c1420(param_1,&plStackX_10,&processed_var_9240_ptr,1,0xfffffffffffffffe);
     uVar2 = *puVar7;
     *puVar7 = 0;
     plVar3 = *(int64_t **)(lVar5 + 0x40);
@@ -922,23 +861,23 @@ int64_t FUN_1800bde30(uint64_t param_1)
     }
     puVar1 = (uint *)(*(int64_t *)(lVar5 + 0x40) + 0x328);
     *puVar1 = *puVar1 | 0x20000000;
-    uStack_80 = 0;
-    uStack_78 = 0;
+    local_var_80 = 0;
+    local_var_78 = 0;
     pcStack_70 = (code *)0x0;
     pcStack_68 = _guard_check_icall;
-    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x40),1,*(int32_t *)(lVar5 + 0x468),&uStack_80);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x40),1,*(int32_t *)(lVar5 + 0x468),&local_var_80);
     if (pcStack_70 != (code *)0x0) {
-      (*pcStack_70)(&uStack_80,0,0);
+      (*pcStack_70)(&local_var_80,0,0);
     }
   }
   if (*(int *)(*(int64_t *)(lVar5 + 0x40) + 0x380) != 2) {
-    uStack_60 = 0;
-    uStack_58 = 0;
+    local_var_60 = 0;
+    local_var_58 = 0;
     pcStack_50 = (code *)0x0;
     pcStack_48 = _guard_check_icall;
-    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x40),1,*(int32_t *)(lVar5 + 0x468),&uStack_60);
+    SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x40),1,*(int32_t *)(lVar5 + 0x468),&local_var_60);
     if (pcStack_50 != (code *)0x0) {
-      (*pcStack_50)(&uStack_60,0,0);
+      (*pcStack_50)(&local_var_60,0,0);
     }
   }
   iVar6 = _Thrd_id();
@@ -946,25 +885,18 @@ int64_t FUN_1800bde30(uint64_t param_1)
   lVar8 = *(int64_t *)(lVar5 + 0x40);
   if (iVar6 == *(int *)(lVar4 + 0x48)) {
     if (*(char *)(lVar8 + 900) == '\0') {
-      uStack_40 = 0;
-      uStack_38 = 0;
+      local_var_40 = 0;
+      local_var_38 = 0;
       pcStack_30 = (code *)0x0;
       pcStack_28 = _guard_check_icall;
       SystemCore_DecryptionManager(*(uint64_t *)(lVar5 + 0x40),CONCAT71((int7)((uint64_t)lVar4 >> 8),1),
-                    *(int32_t *)(lVar5 + 0x468),&uStack_40);
+                    *(int32_t *)(lVar5 + 0x468),&local_var_40);
       if (pcStack_30 != (code *)0x0) {
-        (*pcStack_30)(&uStack_40,0,0);
+        (*pcStack_30)(&local_var_40,0,0);
       }
     }
     lVar8 = *(int64_t *)(lVar5 + 0x40);
   }
   return lVar8;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part452.c - 6 个函数
-
-// 函数: void FUN_180512bea(uint64_t param_1,float *param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180512bea(uint64_t param_1,float *param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void NetworkSystem_12bea(uint64_t param_1,float *param_2,uint64_t param_3,uint64_t param_4)
+void NetworkSystem_12bea(uint64_t param_1,float *param_2,uint64_t param_3,uint64_t param_4)
 {
   float *pfVar1;
   int64_t lVar2;
@@ -60,7 +57,6 @@ void FUN_180512bea(uint64_t param_1,float *param_2,uint64_t param_3,uint64_t par
   int32_t unaff_XMM9_Db;
   int32_t unaff_XMM9_Dc;
   int32_t unaff_XMM9_Dd;
-  
   uVar17 = (int32_t)((uint64_t)param_4 >> 0x20);
   fVar13 = (float)((uint64_t)in_XMM1_Qa >> 0x20);
   *(uint64_t *)(in_R11 + 0x10) = unaff_R14;
@@ -130,7 +126,7 @@ void FUN_180512bea(uint64_t param_1,float *param_2,uint64_t param_3,uint64_t par
       pfVar1 = pfVar7 + (int64_t)(iVar11 % iVar12) * 2;
       if ((0.0 <= fVar19 * *pfVar8 - fVar21 * pfVar8[1]) &&
          (fVar19 * *pfVar1 - fVar21 * pfVar1[1] <= 0.0)) {
-        FUN_18038a230(unaff_RBP + 0x7f,pfVar8,pfVar1,unaff_RBP + 0x67);
+        RenderingSystem_8a230(unaff_RBP + 0x7f,pfVar8,pfVar1,unaff_RBP + 0x67);
         fVar19 = SQRT(*(float *)(unaff_RBP + 0x7f) * *(float *)(unaff_RBP + 0x7f) +
                       *(float *)(unaff_RBP + 0x83) * *(float *)(unaff_RBP + 0x83));
         goto LAB_180512e2b;
@@ -213,7 +209,7 @@ LAB_180512e2b:
     *(int32_t *)(unaff_RBP + -0x15) = uVar17;
     *(int32_t *)(unaff_RBP + -0x11) = uVar3;
     *(int32_t *)(unaff_RBP + -0xd) = uVar4;
-    FUN_1801c1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
+    CoreEngine_1C1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
     lVar9 = *(int64_t *)(unaff_RSI + 0x728);
     fVar21 = *(float *)(unaff_RBP + -0x51) * render_system_ui;
     fVar19 = *(float *)(unaff_RBP + -0x59) * render_system_ui;
@@ -230,7 +226,7 @@ LAB_180512e2b:
     lVar10 = (int64_t)*(char *)(lVar10 * 0x100 + 0xa0 + *(int64_t *)(lVar9 + 0x18));
     iVar12 = *(int *)(lVar10 * 0x1b0 + 0x110 + lVar2);
   }
-  FUN_180534d00(lVar9,unaff_RBP + -0x39);
+  NetworkSystem_34d00(lVar9,unaff_RBP + -0x39);
   uVar6 = UtilitiesSystem_CryptoHandler();
   *(int32_t *)(unaff_RBP + -0x4d) = 0x7f7fffff;
   fVar13 = extraout_XMM0_Da - fVar13;
@@ -255,16 +251,9 @@ LAB_180512e2b:
         (&system_error_code + (int64_t)*(int *)(*(int64_t *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180512eba(void)
-void FUN_180512eba(void)
-
+// 函数: void NetworkSystem_12eba(void)
+void NetworkSystem_12eba(void)
 {
   float fVar1;
   int iVar2;
@@ -294,7 +283,6 @@ void FUN_180512eba(void)
   float fVar15;
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
-  
   if ((unaff_XMM6_Da != unaff_XMM8_Da) || (in_XMM5_Da != unaff_XMM8_Da)) {
     fVar14 = unaff_XMM6_Da * unaff_XMM6_Da + unaff_XMM9_Da * unaff_XMM9_Da + in_XMM5_Da * in_XMM5_Da
     ;
@@ -354,7 +342,7 @@ void FUN_180512eba(void)
     *(int32_t *)(unaff_RBP + -0x15) = uVar5;
     *(int32_t *)(unaff_RBP + -0x11) = uVar6;
     *(int32_t *)(unaff_RBP + -0xd) = uVar7;
-    FUN_1801c1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
+    CoreEngine_1C1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
     lVar3 = *(int64_t *)(unaff_RSI + 0x728);
     fVar14 = *(float *)(unaff_RBP + -0x51) * render_system_ui;
     fVar15 = *(float *)(unaff_RBP + -0x59) * render_system_ui;
@@ -371,7 +359,7 @@ void FUN_180512eba(void)
     lVar11 = (int64_t)*(char *)(lVar11 * 0x100 + 0xa0 + *(int64_t *)(lVar3 + 0x18));
     iVar2 = *(int *)(lVar11 * 0x1b0 + 0x110 + lVar4);
   }
-  FUN_180534d00(lVar3,unaff_RBP + -0x39);
+  NetworkSystem_34d00(lVar3,unaff_RBP + -0x39);
   uVar9 = UtilitiesSystem_CryptoHandler();
   *(int32_t *)(unaff_RBP + -0x4d) = 0x7f7fffff;
   fVar15 = extraout_XMM0_Da - unaff_XMM7_Da;
@@ -396,16 +384,9 @@ void FUN_180512eba(void)
         (&system_error_code + (int64_t)*(int *)(*(int64_t *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180512f48(uint64_t param_1,uint64_t param_2)
-void FUN_180512f48(uint64_t param_1,uint64_t param_2)
-
+// 函数: void NetworkSystem_12f48(uint64_t param_1,uint64_t param_2)
+void NetworkSystem_12f48(uint64_t param_1,uint64_t param_2)
 {
   float fVar1;
   int iVar2;
@@ -433,8 +414,7 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
   float unaff_XMM8_Da;
   float fVar18;
   float unaff_XMM9_Da;
-  
-  FUN_18038a230(unaff_RBP + 0x7f,param_1,param_2,unaff_RBP + 0x67);
+  RenderingSystem_8a230(unaff_RBP + 0x7f,param_1,param_2,unaff_RBP + 0x67);
   fVar13 = SQRT(*(float *)(unaff_RBP + 0x7f) * *(float *)(unaff_RBP + 0x7f) +
                 *(float *)(unaff_RBP + 0x83) * *(float *)(unaff_RBP + 0x83));
   if (fVar13 <= unaff_XMM9_Da) {
@@ -503,7 +483,7 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
     *(int32_t *)(unaff_RBP + -0x15) = uVar5;
     *(int32_t *)(unaff_RBP + -0x11) = uVar6;
     *(int32_t *)(unaff_RBP + -0xd) = uVar7;
-    FUN_1801c1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
+    CoreEngine_1C1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
     lVar3 = *(int64_t *)(unaff_RSI + 0x728);
     fVar15 = *(float *)(unaff_RBP + -0x51) * render_system_ui;
     fVar16 = *(float *)(unaff_RBP + -0x59) * render_system_ui;
@@ -520,7 +500,7 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
     lVar11 = (int64_t)*(char *)(lVar11 * 0x100 + 0xa0 + *(int64_t *)(lVar3 + 0x18));
     iVar2 = *(int *)(lVar11 * 0x1b0 + 0x110 + lVar4);
   }
-  FUN_180534d00(lVar3,unaff_RBP + -0x39);
+  NetworkSystem_34d00(lVar3,unaff_RBP + -0x39);
   uVar9 = UtilitiesSystem_CryptoHandler();
   *(int32_t *)(unaff_RBP + -0x4d) = 0x7f7fffff;
   fVar16 = extraout_XMM0_Da - fVar13;
@@ -545,16 +525,9 @@ void FUN_180512f48(uint64_t param_1,uint64_t param_2)
         (&system_error_code + (int64_t)*(int *)(*(int64_t *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180512f80(void)
-void FUN_180512f80(void)
-
+// 函数: void NetworkSystem_12f80(void)
+void NetworkSystem_12f80(void)
 {
   float fVar1;
   int iVar2;
@@ -576,7 +549,6 @@ void FUN_180512f80(void)
   float fVar13;
   float unaff_XMM7_Da;
   float unaff_XMM8_Da;
-  
   if (1.0 <= unaff_XMM7_Da) {
     unaff_XMM7_Da = 1.0;
   }
@@ -617,7 +589,7 @@ void FUN_180512f80(void)
   *(int32_t *)(unaff_RBP + -0x15) = uVar5;
   *(int32_t *)(unaff_RBP + -0x11) = uVar6;
   *(int32_t *)(unaff_RBP + -0xd) = uVar7;
-  FUN_1801c1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
+  CoreEngine_1C1720(unaff_RBP + -0x39,unaff_RBP + -0x59);
   lVar3 = *(int64_t *)(unaff_RSI + 0x728);
   fVar13 = *(float *)(unaff_RBP + -0x51) * render_system_ui;
   fVar12 = *(float *)(unaff_RBP + -0x59) * render_system_ui;
@@ -633,7 +605,7 @@ void FUN_180512f80(void)
     lVar11 = (int64_t)*(char *)(lVar11 * 0x100 + 0xa0 + *(int64_t *)(lVar3 + 0x18));
     iVar2 = *(int *)(lVar11 * 0x1b0 + 0x110 + lVar4);
   }
-  FUN_180534d00(lVar3,unaff_RBP + -0x39);
+  NetworkSystem_34d00(lVar3,unaff_RBP + -0x39);
   uVar9 = UtilitiesSystem_CryptoHandler();
   *(int32_t *)(unaff_RBP + -0x4d) = 0x7f7fffff;
   fVar12 = extraout_XMM0_Da - unaff_XMM7_Da;
@@ -658,16 +630,9 @@ void FUN_180512f80(void)
         (&system_error_code + (int64_t)*(int *)(*(int64_t *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1805130b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4)
-void FUN_1805130b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4)
-
+// 函数: void NetworkSystem_130b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4)
+void NetworkSystem_130b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param_4)
 {
   float fVar1;
   int64_t lVar2;
@@ -681,13 +646,12 @@ void FUN_1805130b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
   float fVar6;
   float unaff_XMM7_Da;
   float unaff_XMM8_Da;
-  
   do {
     if ((char)param_3 == -1) break;
     param_2 = (int64_t)*(char *)(param_2 * 0x100 + 0xa0 + *(int64_t *)(param_1 + 0x18));
     param_3 = param_2;
   } while (*(int *)(param_2 * 0x1b0 + 0x110 + param_4) == -1);
-  FUN_180534d00(param_1,unaff_RBP + -0x39);
+  NetworkSystem_34d00(param_1,unaff_RBP + -0x39);
   uVar3 = UtilitiesSystem_CryptoHandler();
   *(int32_t *)(unaff_RBP + -0x4d) = 0x7f7fffff;
   fVar5 = extraout_XMM0_Da - unaff_XMM7_Da;
@@ -712,21 +676,9 @@ void FUN_1805130b0(int64_t param_1,int64_t param_2,int64_t param_3,int64_t param
         (&system_error_code + (int64_t)*(int *)(*(int64_t *)(unaff_RSI + 0x728) + 0x570) * 8) + 40000;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1805131bc(void)
-void FUN_1805131bc(void)
-
+// 函数: void NetworkSystem_131bc(void)
+void NetworkSystem_131bc(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

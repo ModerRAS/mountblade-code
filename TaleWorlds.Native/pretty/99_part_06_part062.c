@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_06_part062.c - 3 个函数
-
-// 函数: void FUN_1803e306f(void)
-void FUN_1803e306f(void)
-
+// 函数: void RenderingSystem_e306f(void)
+void RenderingSystem_e306f(void)
 {
   int64_t *plVar1;
   bool bVar2;
@@ -32,14 +29,13 @@ void FUN_1803e306f(void)
   int iVar14;
   uint64_t unaff_R15;
   uint64_t uVar15;
-  uint64_t in_stack_00000030;
-  int in_stack_00000038;
+  uint64_t local_var_30;
+  int local_var_38;
   int iStack00000000000000b0;
   int iStack00000000000000b8;
-  int32_t uStack00000000000000c0;
-  int32_t uStack00000000000000c4;
-  uint64_t in_stack_000000c8;
-  
+  int32_t local_var_c0;
+  int32_t local_buffer_c4;
+  uint64_t local_var_c8;
   *(uint64_t *)(in_R11 + -0x18) = unaff_RBX;
   *(uint64_t *)(in_R11 + -0x20) = unaff_RBP;
   *(uint64_t *)(in_R11 + -0x28) = unaff_RDI;
@@ -62,7 +58,7 @@ void FUN_1803e306f(void)
             if (plVar6 == (int64_t *)0x0) {
 LAB_1803e33c4:
               puVar8 = *(uint64_t **)(unaff_R14 + 0x138);
-              in_stack_000000c8 = 0xffffffffffffffff;
+              local_var_c8 = 0xffffffffffffffff;
               if (*(uint64_t **)(unaff_R14 + 0x140) <= puVar8) {
                 puVar10 = *(uint64_t **)(unaff_R14 + 0x130);
                 lVar7 = (int64_t)puVar8 - (int64_t)puVar10 >> 3;
@@ -80,9 +76,9 @@ LAB_1803e3424:
                   if (lVar7 != 0) goto LAB_1803e3424;
                   puVar9 = (uint64_t *)0x0;
                 }
-                uVar15 = in_stack_000000c8;
+                uVar15 = local_var_c8;
                 if (puVar10 != puVar8) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                   memmove(puVar9,puVar10,(int64_t)puVar8 - (int64_t)puVar10);
                 }
                 goto LAB_1803e3474;
@@ -154,7 +150,7 @@ LAB_1803e326f:
                   }
                 }
                 else {
-                  plVar6 = (int64_t *)func_0x00018066bd70(plVar11);
+                  plVar6 = (int64_t *)SystemFunction_00018066bd70(plVar11);
                   if ((((int)plVar11[4] < iVar14) ||
                       (((int)plVar11[4] <= iVar14 &&
                        ((*(int *)((int64_t)plVar11 + 0x24) < unaff_R12D ||
@@ -184,18 +180,18 @@ LAB_1803e3271:
                       *(uint64_t *)(lVar7 + 0x20) = CONCAT44(unaff_R12D,iVar14);
                       *(int *)(lVar7 + 0x28) = iVar3;
                       *(uint64_t *)(lVar7 + 0x2c) = 0;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                       SystemNetworkHandler(lVar7,plVar11,plVar1,uVar15);
                     }
                   }
                 }
-                puVar8 = (uint64_t *)FUN_1803e8000(plVar1,&stack0x00000050);
+                puVar8 = (uint64_t *)RenderingSystem_e8000(plVar1,&local_buffer_00000050);
                 plVar11 = (int64_t *)*puVar8;
               }
               uVar15 = *(uint64_t *)((int64_t)plVar11 + 0x2c);
               puVar8 = *(uint64_t **)(unaff_R14 + 0x138);
-              uStack00000000000000c0 = (int32_t)uVar15;
-              uStack00000000000000c4 = (int32_t)((uint64_t)uVar15 >> 0x20);
+              local_var_c0 = (int32_t)uVar15;
+              local_buffer_c4 = (int32_t)((uint64_t)uVar15 >> 0x20);
               if (puVar8 < *(uint64_t **)(unaff_R14 + 0x140)) {
                 *(uint64_t **)(unaff_R14 + 0x138) = puVar8 + 1;
                 *puVar8 = uVar15;
@@ -217,14 +213,14 @@ LAB_1803e336f:
                 puVar9 = (uint64_t *)0x0;
               }
               if (puVar10 != puVar8) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                 memmove(puVar9,puVar10,(int64_t)puVar8 - (int64_t)puVar10);
               }
-              uVar15 = CONCAT44(uStack00000000000000c4,uStack00000000000000c0);
+              uVar15 = CONCAT44(local_buffer_c4,local_var_c0);
 LAB_1803e3474:
               *puVar9 = uVar15;
               if (*(int64_t *)(unaff_R14 + 0x130) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                 CoreEngineMemoryPoolCleaner();
               }
               *(uint64_t **)(unaff_R14 + 0x130) = puVar9;
@@ -261,12 +257,12 @@ LAB_1803e353c:
                 puVar9 = (uint64_t *)0x0;
               }
               if (puVar10 != puVar8) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                 memmove(puVar9,puVar10,(int64_t)puVar8 - (int64_t)puVar10);
               }
               *puVar9 = 0xffffffffffffffff;
               if (*(int64_t *)(unaff_R14 + 0x130) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                 CoreEngineMemoryPoolCleaner();
               }
               *(uint64_t **)(unaff_R14 + 0x130) = puVar9;
@@ -277,9 +273,9 @@ LAB_1803e353c:
           } while (uVar13 != 0);
         }
         iStack00000000000000b8 = iStack00000000000000b8 + 1;
-        in_EAX = in_stack_00000030._4_4_;
-        unaff_ESI = in_stack_00000038;
-      } while (iStack00000000000000b8 < in_stack_00000030._4_4_);
+        in_EAX = local_var_30._4_4_;
+        unaff_ESI = local_var_38;
+      } while (iStack00000000000000b8 < local_var_30._4_4_);
     }
     unaff_R12D = unaff_R12D + 1;
     if (unaff_ESI <= unaff_R12D) {
@@ -287,35 +283,14 @@ LAB_1803e353c:
     }
   } while( true );
 }
-
-
-
-
-
-
-// 函数: void FUN_1803e3616(void)
-void FUN_1803e3616(void)
-
+// 函数: void RenderingSystem_e3616(void)
+void RenderingSystem_e3616(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1803e361b(void)
-void FUN_1803e361b(void)
-
+// 函数: void RenderingSystem_e361b(void)
+void RenderingSystem_e361b(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

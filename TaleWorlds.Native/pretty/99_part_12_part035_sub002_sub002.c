@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_12_part035_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param_4)
-void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param_4)
-
+// 函数: void function_7e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param_4)
+void function_7e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param_4)
 {
   uint uVar1;
   float *pfVar2;
@@ -190,9 +187,8 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
   uint unaff_XMM11_Dd;
   uint unaff_retaddr;
   uint unaff_retaddr_00;
-  uint uStackX_8;
-  uint uStackX_c;
-  
+  uint stack_special_x_8;
+  uint stack_special_x_c;
   uVar137 = (uint)((uint64_t)param_4 >> 0x20);
   uVar136 = (uint)param_4;
   uVar1 = *(uint *)(unaff_RBP + 0x77);
@@ -237,8 +233,8 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
           pfVar132 = pfVar132 + 4;
           uVar136 = unaff_retaddr;
           uVar137 = unaff_retaddr_00;
-          in_XMM3_Dc = uStackX_8;
-          in_XMM3_Dd = uStackX_c;
+          in_XMM3_Dc = stack_special_x_8;
+          in_XMM3_Dd = stack_special_x_c;
         }
         for (uVar134 = uVar1 & 3; uVar134 != 0; uVar134 = uVar134 - 1) {
           *(float *)(unaff_RBP + 0x7f) = *pfVar132;
@@ -326,8 +322,8 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
           pfVar132 = pfVar132 + 4;
           uVar136 = unaff_retaddr;
           uVar137 = unaff_retaddr_00;
-          in_XMM3_Dc = uStackX_8;
-          in_XMM3_Dd = uStackX_c;
+          in_XMM3_Dc = stack_special_x_8;
+          in_XMM3_Dd = stack_special_x_c;
         }
         for (uVar134 = uVar1 & 3; uVar134 != 0; uVar134 = uVar134 - 1) {
           fVar155 = pfVar133[4];
@@ -442,8 +438,8 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
           pfVar133 = pfVar133 + 4;
           uVar136 = unaff_retaddr;
           uVar137 = unaff_retaddr_00;
-          in_XMM3_Dc = uStackX_8;
-          in_XMM3_Dd = uStackX_c;
+          in_XMM3_Dc = stack_special_x_8;
+          in_XMM3_Dd = stack_special_x_c;
         }
         uVar134 = uVar1 & 3;
         if (uVar134 != 0) {
@@ -593,8 +589,8 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
           pfVar133 = pfVar133 + 4;
           uVar136 = unaff_retaddr;
           uVar137 = unaff_retaddr_00;
-          in_XMM3_Dc = uStackX_8;
-          in_XMM3_Dd = uStackX_c;
+          in_XMM3_Dc = stack_special_x_8;
+          in_XMM3_Dd = stack_special_x_c;
         }
         uVar134 = uVar1 & 3;
         if (uVar134 != 0) {
@@ -783,8 +779,8 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
           pfVar133 = pfVar133 + 4;
           uVar136 = unaff_retaddr;
           uVar137 = unaff_retaddr_00;
-          in_XMM3_Dc = uStackX_8;
-          in_XMM3_Dd = uStackX_c;
+          in_XMM3_Dc = stack_special_x_8;
+          in_XMM3_Dd = stack_special_x_c;
         }
         uVar134 = uVar1 & 3;
         if (uVar134 != 0) {
@@ -997,8 +993,8 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
           pfVar132 = pfVar132 + 4;
           uVar136 = unaff_retaddr;
           uVar137 = unaff_retaddr_00;
-          in_XMM3_Dc = uStackX_8;
-          in_XMM3_Dd = uStackX_c;
+          in_XMM3_Dc = stack_special_x_8;
+          in_XMM3_Dd = stack_special_x_c;
         }
         uVar134 = uVar1 & 3;
         if (uVar134 != 0) {
@@ -1239,8 +1235,8 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
           pfVar132 = pfVar132 + 4;
           uVar136 = unaff_retaddr;
           uVar137 = unaff_retaddr_00;
-          in_XMM3_Dc = uStackX_8;
-          in_XMM3_Dd = uStackX_c;
+          in_XMM3_Dc = stack_special_x_8;
+          in_XMM3_Dd = stack_special_x_c;
         }
         uVar134 = uVar1 & 3;
         if (uVar134 != 0) {
@@ -1513,8 +1509,8 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
           pfVar132 = pfVar132 + 4;
           uVar136 = unaff_retaddr;
           uVar137 = unaff_retaddr_00;
-          in_XMM3_Dc = uStackX_8;
-          in_XMM3_Dd = uStackX_c;
+          in_XMM3_Dc = stack_special_x_8;
+          in_XMM3_Dd = stack_special_x_c;
         }
         uVar134 = uVar1 & 3;
         if (uVar134 != 0) {
@@ -1583,11 +1579,3 @@ void FUN_1807e184f(uint64_t param_1,uint64_t param_2,uint param_3,uint64_t param
   } while (uVar135 != 0);
   return;
 }
-
-
-
-
-
-
-
-

@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part261.c - 7 个函数
-
-// 函数: void FUN_1804120af(uint64_t param_1,uint64_t param_2,int param_3)
-void FUN_1804120af(uint64_t param_1,uint64_t param_2,int param_3)
-
+// 函数: void UISystem_120af(uint64_t param_1,uint64_t param_2,int param_3)
+void UISystem_120af(uint64_t param_1,uint64_t param_2,int param_3)
 {
   int64_t lVar1;
   int32_t uVar2;
@@ -37,7 +34,6 @@ void FUN_1804120af(uint64_t param_1,uint64_t param_2,int param_3)
   float fStack0000000000000054;
   float fStack0000000000000058;
   float fStack000000000000005c;
-  
   lVar11 = (int64_t)param_3;
   lVar5 = malloc(lVar11 * 0x28);
   piVar6 = (int *)malloc(lVar11 << 4);
@@ -199,14 +195,14 @@ void FUN_1804120af(uint64_t param_1,uint64_t param_2,int param_3)
                 lVar11 = lVar11 + 4;
               } while (iVar8 < *unaff_R12);
               if (1 < iVar10) {
-                FUN_1804134f0(piVar7,0);
+                UISystem_134f0(piVar7,0);
               }
             }
             lVar11 = malloc((int64_t)iVar10 << 2);
             if (lVar11 != 0) {
               *piVar6 = iVar10;
               *(int64_t *)(piVar6 + 2) = lVar11;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
               memcpy(lVar11,piVar7,(int64_t)iVar10 << 2);
             }
             lVar11 = unaff_RBP[-0xf];
@@ -221,7 +217,7 @@ void FUN_1804120af(uint64_t param_1,uint64_t param_2,int param_3)
             free(piVar6);
             free(piVar7);
             free(lVar5);
-            goto FUN_180412b34;
+            goto UISystem_12b34;
           }
           lVar11 = lVar11 + 1;
           unaff_R12 = unaff_R12 + 6;
@@ -231,7 +227,7 @@ void FUN_1804120af(uint64_t param_1,uint64_t param_2,int param_3)
       free(piVar6);
       free(piVar7);
       free(lVar5);
-      goto FUN_180412b34;
+      goto UISystem_12b34;
     }
     free();
   }
@@ -241,13 +237,10 @@ void FUN_1804120af(uint64_t param_1,uint64_t param_2,int param_3)
   if (piVar7 != (int *)0x0) {
     free(piVar7);
   }
-FUN_180412b34:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(unaff_RBP[0x21] ^ (uint64_t)&stack0x00000000);
+UISystem_12b34:
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(unaff_RBP[0x21] ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x000180412842)
 // WARNING: Removing unreachable block (ram,0x00018041284b)
 // WARNING: Removing unreachable block (ram,0x00018041286d)
@@ -272,12 +265,8 @@ FUN_180412b34:
 // WARNING: Removing unreachable block (ram,0x000180412a41)
 // WARNING: Removing unreachable block (ram,0x000180412a45)
 // WARNING: Removing unreachable block (ram,0x000180412a58)
-
-
-
-// 函数: void FUN_180412123(int64_t param_1)
-void FUN_180412123(int64_t param_1)
-
+// 函数: void UISystem_12123(int64_t param_1)
+void UISystem_12123(int64_t param_1)
 {
   int64_t lVar1;
   int32_t uVar2;
@@ -305,15 +294,14 @@ void FUN_180412123(int64_t param_1)
   float fVar18;
   float fVar19;
   float fVar20;
-  int32_t uStack0000000000000044;
-  int64_t in_stack_00000048;
+  int32_t local_buffer_44;
+  int64_t local_var_48;
   float fStack0000000000000050;
   float fStack0000000000000054;
   float fStack0000000000000058;
   float fStack000000000000005c;
-  int64_t in_stack_00000070;
-  
-  uStack0000000000000044 = 0;
+  int64_t local_var_70;
+  local_buffer_44 = 0;
   *unaff_RBP = unaff_RDI;
   if (0 < (int)unaff_RDI) {
     lVar8 = 0;
@@ -464,102 +452,74 @@ void FUN_180412123(int64_t param_1)
             lVar8 = lVar8 + 4;
           } while (iVar5 < *unaff_R12);
           if (1 < iVar6) {
-            FUN_1804134f0(fVar16,0);
+            UISystem_134f0(fVar16,0);
           }
         }
         lVar8 = malloc((int64_t)iVar6 << 2);
         if (lVar8 != 0) {
           *unaff_R13 = iVar6;
           *(int64_t *)(unaff_R13 + 2) = lVar8;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           memcpy(lVar8);
         }
         lVar8 = unaff_RBP[-0xf];
         if (0 < lVar8) {
-          puVar7 = (uint64_t *)(in_stack_00000070 + 8);
+          puVar7 = (uint64_t *)(local_var_70 + 8);
           do {
             free(*puVar7);
             puVar7 = puVar7 + 2;
             lVar8 = lVar8 + -1;
           } while (lVar8 != 0);
         }
-        free(in_stack_00000070);
+        free(local_var_70);
         free();
-        free(in_stack_00000048);
+        free(local_var_48);
         goto LAB_180412ad4;
       }
       lVar8 = lVar8 + 1;
       unaff_R12 = unaff_R12 + 6;
       unaff_RBP[-0x10] = lVar8;
-      param_1 = in_stack_00000048;
+      param_1 = local_var_48;
     } while (lVar8 < *unaff_RBP);
   }
   free(unaff_R13);
   free();
-  free(in_stack_00000048);
+  free(local_var_48);
 LAB_180412ad4:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(unaff_RBP[0x21] ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(unaff_RBP[0x21] ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180412b34(void)
-void FUN_180412b34(void)
-
+// 函数: void UISystem_12b34(void)
+void UISystem_12b34(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180412b4c(void)
-void FUN_180412b4c(void)
-
+// 函数: void UISystem_12b4c(void)
+void UISystem_12b4c(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180412b68(void)
-void FUN_180412b68(void)
-
+// 函数: void UISystem_12b68(void)
+void UISystem_12b68(void)
 {
   int64_t unaff_RBP;
-  uint64_t in_stack_00000048;
-  
+  uint64_t local_var_48;
   free();
   free();
-  free(in_stack_00000048);
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
+  free(local_var_48);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180412b8f(void)
-void FUN_180412b8f(void)
-
+// 函数: void UISystem_12b8f(void)
+void UISystem_12b8f(void)
 {
   int64_t unaff_RBP;
   int64_t unaff_R13;
   int64_t unaff_R14;
-  
   free();
   if (unaff_R13 != 0) {
     free();
@@ -567,27 +527,14 @@ void FUN_180412b8f(void)
   if (unaff_R14 != 0) {
     free();
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180412bb8(void)
-void FUN_180412bb8(void)
-
+// 函数: void UISystem_12bb8(void)
+void UISystem_12bb8(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x108) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

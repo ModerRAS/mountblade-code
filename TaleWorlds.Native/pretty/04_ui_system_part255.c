@@ -1,22 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part255.c - 1 个函数
-
-// 函数: void FUN_1808108af(void)
-void FUN_1808108af(void)
-
+// 函数: void function_8108af(void)
+void function_8108af(void)
 {
-  uint64_t in_stack_000000a0;
-  
-  func_0x000180815aa0();
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_000000a0 ^ (uint64_t)&stack0x00000000);
+  uint64_t local_buffer_a0;
+  Function_45d6d0bd();
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_buffer_a0 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *param_4)
-
+uint64_t function_8108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *param_4)
 {
   byte bVar1;
   byte bVar2;
@@ -25,7 +17,6 @@ uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *par
   uint64_t *puVar5;
   int iVar6;
   int iVar7;
-  
   uVar3 = param_3[3];
   *param_4 = 0;
   bVar1 = *(byte *)((uint64_t)uVar3 + 0x180beb628);
@@ -37,7 +28,7 @@ uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *par
     if (param_3[5] != 0) {
       iVar6 = 8;
       do {
-        uVar4 = func_0x000180815b30(param_1,bVar1);
+        uVar4 = Function_bcb86e71(param_1,bVar1);
         *(int32_t *)param_2 = uVar4;
         param_2 = (uint64_t *)((int64_t)param_2 + 4);
         iVar6 = iVar6 + -1;
@@ -46,14 +37,14 @@ uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *par
       iVar6 = 9;
     }
     do {
-      uVar4 = func_0x000180815b30(param_1,bVar1);
+      uVar4 = Function_bcb86e71(param_1,bVar1);
       *(int32_t *)param_2 = uVar4;
       param_2 = (uint64_t *)((int64_t)param_2 + 4);
       iVar6 = iVar6 + -1;
     } while (iVar6 != 0);
     do {
       puVar5 = param_2;
-      uVar4 = func_0x000180815b30(param_1,bVar2);
+      uVar4 = Function_bcb86e71(param_1,bVar2);
       *(int32_t *)puVar5 = uVar4;
       iVar7 = iVar7 + -1;
       param_2 = (uint64_t *)((int64_t)puVar5 + 4);
@@ -66,14 +57,14 @@ uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *par
     if ((int)uVar3 < 0) {
       iVar6 = 0xb;
       do {
-        uVar4 = func_0x000180815b30(param_1,bVar1);
+        uVar4 = Function_bcb86e71(param_1,bVar1);
         *(int32_t *)param_2 = uVar4;
         param_2 = (uint64_t *)((int64_t)param_2 + 4);
         iVar6 = iVar6 + -1;
       } while (iVar6 != 0);
       iVar6 = 10;
       do {
-        uVar4 = func_0x000180815b30(param_1,bVar2);
+        uVar4 = Function_bcb86e71(param_1,bVar2);
         *(int32_t *)param_2 = uVar4;
         param_2 = (uint64_t *)((int64_t)param_2 + 4);
         iVar6 = iVar6 + -1;
@@ -84,7 +75,7 @@ uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *par
       if ((uVar3 & 8) == 0) {
         iVar6 = 6;
         do {
-          uVar4 = func_0x000180815b30(param_1,bVar1);
+          uVar4 = Function_bcb86e71(param_1,bVar1);
           *(int32_t *)param_2 = uVar4;
           param_2 = (uint64_t *)((int64_t)param_2 + 4);
           iVar6 = iVar6 + -1;
@@ -98,7 +89,7 @@ uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *par
       if ((uVar3 & 4) == 0) {
         iVar7 = 5;
         do {
-          uVar4 = func_0x000180815b30(param_1,bVar1);
+          uVar4 = Function_bcb86e71(param_1,bVar1);
           *(int32_t *)param_2 = uVar4;
           param_2 = (uint64_t *)((int64_t)param_2 + 4);
           iVar7 = iVar7 + -1;
@@ -111,7 +102,7 @@ uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *par
       if ((uVar3 & 2) == 0) {
         iVar7 = 5;
         do {
-          uVar4 = func_0x000180815b30(param_1,bVar2);
+          uVar4 = Function_bcb86e71(param_1,bVar2);
           *(int32_t *)param_2 = uVar4;
           param_2 = (uint64_t *)((int64_t)param_2 + 4);
           iVar7 = iVar7 + -1;
@@ -123,7 +114,7 @@ uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *par
       }
       if ((uVar3 & 1) == 0) {
         do {
-          uVar4 = func_0x000180815b30(param_1,bVar2);
+          uVar4 = Function_bcb86e71(param_1,bVar2);
           *(int32_t *)param_2 = uVar4;
           param_2 = (uint64_t *)((int64_t)param_2 + 4);
           iVar6 = iVar6 + -1;
@@ -138,8 +129,3 @@ uint64_t FUN_1808108e0(uint64_t param_1,uint64_t *param_2,uint *param_3,int *par
   }
   return 0;
 }
-
-
-
-
-

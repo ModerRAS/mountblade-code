@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part721_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_1806917c0(int8_t (*param_1) [16],uint64_t *param_2,int param_3)
-void FUN_1806917c0(int8_t (*param_1) [16],uint64_t *param_2,int param_3)
-
+// 函数: void function_6917c0(int8_t (*param_1) [16],uint64_t *param_2,int param_3)
+void function_6917c0(int8_t (*param_1) [16],uint64_t *param_2,int param_3)
 {
   uint64_t uVar1;
   int8_t auVar2 [14];
@@ -216,7 +213,6 @@ void FUN_1806917c0(int8_t (*param_1) [16],uint64_t *param_2,int param_3)
   int8_t auVar185 [16];
   int8_t auVar186 [16];
   uint uVar195;
-  
   auVar203 = render_system_string;
   auVar121 = *param_1;
   auVar168._0_12_ = auVar121._0_12_;
@@ -1149,12 +1145,4 @@ void FUN_1806917c0(int8_t (*param_1) [16],uint64_t *param_2,int param_3)
                                                                       (0xff < sVar122))))))));
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-

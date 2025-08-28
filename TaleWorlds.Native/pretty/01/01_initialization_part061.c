@@ -1,13 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 01_initialization_part061.c - 11 个函数
-
 /**
  * 初始化数据转换函数 - 将源数据转换为浮点数和整数混合格式
  * 功能：将整数数组转换为浮点数和整数混合的格式，用于初始化数据结构
  */
 void InitializeDataConversion(void)
-
 {
   int *source_ptr;
   int64_t data_count;
@@ -17,7 +14,6 @@ void InitializeDataConversion(void)
   int64_t loop_counter;
   int64_t data_size;
   int64_t offset;
-  
   offset = -8 - source_base;
   loop_counter = (data_size - 4U >> 2) + 1;
   data_count = loop_counter * 4;
@@ -46,23 +42,16 @@ void InitializeDataConversion(void)
   *(int *)(*(int64_t *)(context_ptr + 0x2d0) + 8) = (int)data_size;
   return;
 }
-
-
-
-
-
 /**
  * 数据块转换函数 - 将源数据块转换为浮点数和整数混合格式
  * 功能：遍历数据块，将整数转换为浮点数和整数的混合格式
  */
 void ConvertDataBlock(void)
-
 {
   int64_t start_index;
   int64_t source_base;
   int64_t context_ptr;
   int64_t end_index;
-  
   if (start_index < end_index) {
     do {
       *(float *)(**(int64_t **)(context_ptr + 0x2d0) + start_index * 8) =
@@ -75,33 +64,22 @@ void ConvertDataBlock(void)
   *(int *)(*(int64_t *)(context_ptr + 0x2d0) + 8) = (int)end_index;
   return;
 }
-
-
-
-
-
 /**
  * 设置数据大小函数 - 设置数据结构的大小
  * 功能：将数据大小信息写入到指定的数据结构中
  */
 void SetDataSize(void)
-
 {
   int64_t context_ptr;
   int32_t data_size;
-  
   *(int32_t *)(*(int64_t *)(context_ptr + 0x2d0) + 8) = data_size;
   return;
 }
-
-
-
 /**
  * 初始化数据结构函数 - 初始化数据结构指针和标志位
  * 功能：设置数据结构的指针指向全局常量，并初始化各个标志位
  */
 uint64_t * InitializeDataStructure(uint64_t *data_structure)
-
 {
   *data_structure = &GLOBAL_DATA_TABLE_180a21690;
   *data_structure = &GLOBAL_DATA_TABLE_180a21720;
@@ -132,42 +110,38 @@ uint64_t * InitializeDataStructure(uint64_t *data_structure)
   *(int8_t *)(data_structure + 0x1d) = 0xf;
   return data_structure;
 }
-
-
-
 /**
  * 清理数据结构函数 - 清理数据结构并释放资源
  * 功能：检查并清理数据结构的各个状态，根据标志位决定是否释放内存
  */
 uint64_t * CleanupDataStructure(uint64_t *data_structure,uint64_t cleanup_flags)
-
 {
   *data_structure = &GLOBAL_DATA_BASE_1809fffc8;
   if (data_structure[0x1a] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     HandleErrorCondition();
   }
   CleanupResource(data_structure[0x16]);
   data_structure[0x16] = 0;
   if (data_structure[0x17] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     HandleErrorCondition();
   }
   data_structure[0x17] = 0;
   if (data_structure[0x12] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     HandleErrorCondition();
   }
   if (data_structure[0xd] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     HandleErrorCondition();
   }
   if (data_structure[8] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     HandleErrorCondition();
   }
   if (data_structure[3] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     HandleErrorCondition();
   }
   *data_structure = &GLOBAL_DATA_TABLE_180a21720;
@@ -177,19 +151,12 @@ uint64_t * CleanupDataStructure(uint64_t *data_structure,uint64_t cleanup_flags)
   }
   return data_structure;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * 线程同步处理函数 - 处理线程同步和资源管理
  * 功能：处理线程同步，检查状态标志，管理资源生命周期
  */
 void ThreadSyncHandler(int8_t *sync_context,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
   int64_t index;
   int64_t *current_resource;
@@ -201,7 +168,6 @@ void ThreadSyncHandler(int8_t *sync_context,uint64_t param_2,uint64_t param_3,ui
   void *message_ptr;
   bool wait_condition;
   uint64_t timeout_value;
-  
   timeout_value = 0xfffffffffffffffe;
   wait_condition = false;
   if ((*(byte *)(*(int64_t *)(sync_context + 8) + 0xfd) & 0x20) != 0) {
@@ -226,7 +192,7 @@ void ThreadSyncHandler(int8_t *sync_context,uint64_t param_2,uint64_t param_3,ui
       if (*(void **)(context_base + 0x18) != (void *)0x0) {
         message_ptr = *(void **)(context_base + 0x18);
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       SendMessageToHandler(GLOBAL_HANDLER_TABLE_180c86928,&GLOBAL_MESSAGE_QUEUE_1809ffc28,message_ptr,param_4,timeout_value);
     }
   }
@@ -269,17 +235,11 @@ ACQUIRE_LOCK_SUCCESS:
   }
   return;
 }
-
-
-
-
-
 /**
  * 资源释放函数 - 释放资源并调用清理函数
  * 功能：调用资源清理函数，并执行相关资源的释放操作
  */
 void ReleaseResource(int64_t resource_handle)
-
 {
   CleanupResourceContext();
   if (*(int64_t **)(resource_handle + 0x18) != (int64_t *)0x0) {
@@ -287,24 +247,17 @@ void ReleaseResource(int64_t resource_handle)
   }
   return;
 }
-
-
-
-
-
 /**
  * 资源上下文清理函数 - 清理资源上下文和相关数据
  * 功能：释放资源，清理上下文数据，重置状态标志
  */
 void CleanupResourceContext(char *context_ptr,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
   int64_t context_data;
   int64_t *current_resource;
   int64_t *next_resource;
   int64_t resource_base;
   uint64_t timeout_value;
-  
   timeout_value = 0xfffffffffffffffe;
   context_data = *(int64_t *)(context_ptr + 8);
   if (context_data != 0) {
@@ -354,23 +307,16 @@ void CleanupResourceContext(char *context_ptr,uint64_t param_2,uint64_t param_3,
   }
   return;
 }
-
-
-
-
-
 /**
  * 资源引用计数增加函数 - 增加资源引用计数并处理线程同步
  * 功能：获取资源锁，增加引用计数，处理资源标志
  */
 void IncrementResourceReference(int64_t *resource_ptr)
-
 {
   int64_t resource_handle;
   char lock_status;
   int thread_id;
   bool lock_acquired;
-  
   resource_handle = *resource_ptr;
   thread_id = _Thrd_id();
   while( true ) {
@@ -402,39 +348,26 @@ LOCK_ACQUIRED:
   resource_ptr[2] = *(int64_t *)(*resource_ptr + 0x210);
   return;
 }
-
-
-
-
-
 /**
  * 资源释放包装函数 - 包装资源释放功能
  * 功能：调用资源释放处理函数
  */
 void ReleaseResourceWrapper(void)
-
 {
   HandleResourceRelease();
   return;
 }
-
-
-
-
-
 /**
  * 资源引用计数减少函数 - 减少资源引用计数并处理释放
  * 功能：获取资源锁，减少引用计数，当计数为0时释放资源
  */
 void HandleResourceRelease(int64_t *resource_ptr)
-
 {
   int *reference_count;
   int64_t resource_handle;
   char lock_status;
   int thread_id;
   bool lock_acquired;
-  
   resource_handle = *resource_ptr;
   if (resource_handle != 0) {
     while( true ) {
@@ -470,15 +403,11 @@ LOCK_ACQUIRED:
   }
   return;
 }
-
-
-
 /**
  * 资源引用计数减少函数（返回值版本）- 减少引用计数并返回状态
  * 功能：线程安全地减少资源引用计数，返回操作状态
  */
 uint DecrementResourceReference(void)
-
 {
   uint *reference_count;
   byte lock_status;
@@ -488,7 +417,6 @@ uint DecrementResourceReference(void)
   int64_t resource_handle;
   uint64_t *resource_ptr;
   bool lock_acquired;
-  
   while( true ) {
     LOCK();
     status_flag = *(char *)(resource_handle + 0xec);
@@ -524,21 +452,16 @@ LOCK_ACQUIRED:
   *resource_ptr = 0;
   return return_value;
 }
-
-
-
 /**
  * 资源状态重置函数 - 重置资源状态并清理指针
  * 功能：根据条件释放资源，重置锁状态，清理资源指针
  */
 int8_t ResetResourceStatus(void)
-
 {
   int8_t previous_status;
   int release_condition;
   int64_t resource_handle;
   uint64_t *resource_ptr;
-  
   if (release_condition == 1) {
     FinalizeResource(*resource_ptr,0);
   }
@@ -549,19 +472,12 @@ int8_t ResetResourceStatus(void)
   *resource_ptr = 0;
   return previous_status;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * 数据表更新函数 - 更新数据表结构和索引
  * 功能：检查版本号，分配内存，更新索引表，处理数据块复制
  */
 void UpdateDataTable(int64_t table_handle)
-
 {
   int64_t *index_ptr;
   int64_t *temp_ptr;
@@ -586,7 +502,6 @@ void UpdateDataTable(int64_t table_handle)
   uint64_t start_block;
   uint64_t end_block;
   bool allocation_success;
-  
   if (*(int *)(table_handle + 0x28) != *(int *)(GLOBAL_VERSION_TABLE_180c86870 + 0x224)) {
     total_items = *(int *)(table_handle + 0x1c) + *(int *)(table_handle + 0x18);
     *(int *)(table_handle + 0x28) = *(int )(GLOBAL_VERSION_TABLE_180c86870 + 0x224);
@@ -612,7 +527,7 @@ void UpdateDataTable(int64_t table_handle)
         else {
           *(int *)(table_handle + 0x40) = total_items;
           if (*index_ptr != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
             HandleErrorCondition();
           }
           *index_ptr = 0;
@@ -715,7 +630,7 @@ void UpdateDataTable(int64_t table_handle)
                 }
                 else {
                   if (allocated_memory != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     HandleErrorCondition();
                   }
                   do {
@@ -737,7 +652,7 @@ void UpdateDataTable(int64_t table_handle)
         index_value = current_offset >> 0xb;
         *(uint *)(table_handle + 0x2c) = current_offset;
         if (index_value == (int)table_size + current_offset >> 0xb) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           memcpy(*(int64_t *)(global_counter + (uint64_t)index_value * 2 + 2) +
                  (uint64_t)(current_offset + index_value * -0x800) * 4,source_data,(data_count & 0xffffffff) << 2);
         }
@@ -758,19 +673,12 @@ void UpdateDataTable(int64_t table_handle)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * 数据表更新函数（参数版本）- 更新数据表结构和索引
  * 功能：检查版本号，分配内存，更新索引表，处理数据块复制
  */
 void UpdateDataTableWithVersion(int32_t version_number)
-
 {
   int64_t *index_ptr;
   int64_t *temp_ptr;
@@ -796,7 +704,6 @@ void UpdateDataTableWithVersion(int32_t version_number)
   uint64_t end_block;
   bool allocation_success;
   int64_t table_handle;
-  
   total_items = *(int *)(table_handle + 0x1c) + *(int *)(table_handle + 0x18);
   *(int32_t *)(table_handle + 0x28) = version_number;
   if (0 < total_items) {
@@ -821,7 +728,7 @@ void UpdateDataTableWithVersion(int32_t version_number)
       else {
         *(int )(table_handle + 0x40) = total_items;
         if (*index_ptr != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           HandleErrorCondition();
         }
         *index_ptr = 0;
@@ -924,7 +831,7 @@ void UpdateDataTableWithVersion(int32_t version_number)
               }
               else {
                 if (allocated_memory != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                   HandleErrorCondition();
                 }
                 do {
@@ -946,7 +853,7 @@ void UpdateDataTableWithVersion(int32_t version_number)
       index_value = current_offset >> 0xb;
       *(uint )(table_handle + 0x2c) = current_offset;
       if (index_value == (int)table_size + current_offset >> 0xb) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memcpy(*(int64_t *)(global_counter + (uint64_t)index_value * 2 + 2) +
                (uint64_t)(current_offset + index_value * -0x800) * 4,source_data,(data_count & 0xffffffff) << 2);
       }
@@ -966,10 +873,4 @@ void UpdateDataTableWithVersion(int32_t version_number)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

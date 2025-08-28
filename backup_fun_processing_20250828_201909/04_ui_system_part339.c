@@ -51,7 +51,7 @@ void FUN_18085219c(void)
   int iStack0000000000000078;
   int32_t uStack000000000000007c;
   
-  cVar1 = func_0x0001808c5700();
+  cVar1 = SystemTimer_GetCurrentTime();
   if (cVar1 != '\0') {
     iVar3 = SystemDataFlowProcessor(extraout_XMM0_Qa,0);
     if ((iVar3 != 0) || (iVar3 = SystemDataFlowProcessor(extraout_XMM0_Qa_00,1), iVar3 != 0))
@@ -132,7 +132,7 @@ LAB_180852302:
       FUN_18084e4b0();
       lVar4 = unaff_R15[8];
     }
-    sVar2 = func_0x00018084c3d0(lVar4);
+    sVar2 = NetworkingSystem_GetConnectionStatus(lVar4);
     if ((sVar2 != 4) || (iVar3 = FUN_18084edf0(), iVar3 == 0)) {
       puVar5 = unaff_R15 + 0x16;
       puVar11 = (uint64_t *)*puVar5;

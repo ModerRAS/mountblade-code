@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_01_part024_sub002.c - 2 个函数
-
-// 函数: void FUN_1800b8911(int64_t param_1,uint64_t param_2,int64_t *param_3)
-void FUN_1800b8911(int64_t param_1,uint64_t param_2,int64_t *param_3)
-
+// 函数: void function_0b8911(int64_t param_1,uint64_t param_2,int64_t *param_3)
+void function_0b8911(int64_t param_1,uint64_t param_2,int64_t *param_3)
 {
   int64_t *plVar1;
   int64_t *in_RAX;
@@ -15,7 +12,6 @@ void FUN_1800b8911(int64_t param_1,uint64_t param_2,int64_t *param_3)
   int64_t *unaff_RSI;
   int64_t *unaff_RDI;
   int64_t *plVar5;
-  
   plVar2 = (int64_t *)0x0;
   lVar3 = param_1 - (int64_t)in_RAX >> 3;
   if (lVar3 == 0) {
@@ -53,7 +49,7 @@ joined_r0x0001800b8970:
     plVar4 = (int64_t *)*unaff_RDI;
   }
   if (plVar4 != (int64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(plVar4);
   }
   *unaff_RDI = (int64_t)plVar5;
@@ -61,23 +57,8 @@ joined_r0x0001800b8970:
   unaff_RDI[2] = (int64_t)(plVar5 + lVar3);
   return;
 }
-
-
-
-
-
-
-
-// 函数: void FUN_1800b89fa(void)
-void FUN_1800b89fa(void)
-
+// 函数: void function_0b89fa(void)
+void function_0b89fa(void)
 {
   return;
 }
-
-
-
-
-
-
-

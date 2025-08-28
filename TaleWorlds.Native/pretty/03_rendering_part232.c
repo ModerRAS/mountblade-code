@@ -1,12 +1,9 @@
 #include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part232.c - 1 个函数
-
-// 函数: void FUN_18039a420(int64_t param_1,int64_t param_2)
-void FUN_18039a420(int64_t param_1,int64_t param_2)
-
+// 函数: void function_39a420(int64_t param_1,int64_t param_2)
+void function_39a420(int64_t param_1,int64_t param_2)
 {
   uint *puVar1;
   uint uVar2;
@@ -25,13 +22,12 @@ void FUN_18039a420(int64_t param_1,int64_t param_2)
   char *pcVar15;
   char *pcVar16;
   int aiStack_68 [2];
-  uint64_t uStack_60;
-  void *puStack_58;
+  uint64_t local_var_60;
+  void *plocal_var_58;
   int64_t lStack_50;
   int iStack_48;
-  uint64_t uStack_40;
-  
-  uStack_60 = 0xfffffffffffffffe;
+  uint64_t local_var_40;
+  local_var_60 = 0xfffffffffffffffe;
   pcVar16 = "nodes";
   do {
     pcVar15 = pcVar16;
@@ -59,8 +55,8 @@ void FUN_18039a420(int64_t param_1,int64_t param_2)
   }
   puVar14 = (uint64_t *)0x0;
 LAB_18039a4b5:
-  puStack_58 = &system_data_buffer_ptr;
-  uStack_40 = 0;
+  plocal_var_58 = &system_data_buffer_ptr;
+  local_var_40 = 0;
   lStack_50 = 0;
   iStack_48 = 0;
   pcVar16 = "node";
@@ -72,11 +68,11 @@ LAB_18039a4b5:
   do {
     if (puVar14 == (uint64_t *)0x0) {
 LAB_18039b34d:
-      puStack_58 = &system_data_buffer_ptr;
+      plocal_var_58 = &system_data_buffer_ptr;
       if (lStack_50 == 0) {
         return;
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner();
     }
     pcVar16 = (char *)*puVar14;
@@ -188,7 +184,7 @@ LAB_18039a6a1:
   lVar9 = *(int64_t *)(param_1 + 0x250);
   if (lVar9 == 0) {
     uVar7 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x6c00,4,3);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(uVar7,0,0x6c00);
   }
   UltraHighFreq_CacheSystem1(puVar14,&processed_var_6864_ptr,lVar9 + 0x68);
@@ -561,7 +557,7 @@ LAB_18039ada6:
                     if (puVar8[1] != 0) {
                       lVar11 = puVar8[1];
                     }
-                    (**(code **)(puStack_58 + 0x10))(&puStack_58,lVar11);
+                    (**(code **)(plocal_var_58 + 0x10))(&plocal_var_58,lVar11);
                     break;
                   }
                   lVar11 = (int64_t)&system_data_3a84 - (int64_t)pcVar16;
@@ -727,7 +723,7 @@ LAB_18039b05f:
               else if ((iStack_48 == 0x10) && (iVar4 = strcmp(lStack_50,&processed_var_7112_ptr), iVar4 == 0)
                       ) {
                 bVar3 = true;
-                puVar8 = (uint64_t *)FUN_18005d4b0(puVar13,&memory_allocator_384_ptr,0);
+                puVar8 = (uint64_t *)function_05d4b0(puVar13,&memory_allocator_384_ptr,0);
                 lVar11 = 0x10;
                 do {
                   aiStack_68[0] = -1;
@@ -747,7 +743,7 @@ LAB_18039b05f:
                     }
                     AdvancedSystemOptimizer(pcVar16,puVar10,aiStack_68);
                   }
-                  FUN_180631330(puVar8,&memory_allocator_3692_ptr,lVar9 + ((int64_t)aiStack_68[0] + 3) * 4);
+                  function_631330(puVar8,&memory_allocator_3692_ptr,lVar9 + ((int64_t)aiStack_68[0] + 3) * 4);
                   pcVar16 = "variable";
                   do {
                     pcVar15 = pcVar16;
@@ -871,10 +867,4 @@ LAB_18039b2ce:
   }
   goto LAB_18039a550;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

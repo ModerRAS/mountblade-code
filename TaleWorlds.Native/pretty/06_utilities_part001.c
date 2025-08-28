@@ -1,63 +1,58 @@
 /*
- * FUN_函数语义化别名定义
+ * 原始函数语义化别名定义
  * 自动生成的别名定义，用于提高代码可读性
  */
-
 #include "fun_aliases_batch.txt"
-
 #include "TaleWorlds.Native.Split.h"
-
 // 06_utilities_part001.c - 101 个函数
 // TaleWorlds.Native 工具模块 - 核心系统功能
-
 /**
  * TaleWorlds.Native 工具模块第一部分
- * 
+ *
  * 本模块包含游戏引擎的核心工具函数，主要负责：
- * 
+ *
  * 1. 内存管理系统
- *    - 主内存分配器 (FUN_1809414f0)
- *    - 内存池管理器 (FUN_180941900)
- *    - 垃圾回收器 (FUN_180941980)
- * 
+ *    - 主内存分配器 (function_9414f0)
+ *    - 内存池管理器 (function_941900)
+ *    - 垃圾回收器 (function_941980)
+ *
  * 2. 数据结构管理
- *    - 数据结构管理器 (FUN_180941590)
+ *    - 数据结构管理器 (function_941590)
  *    - 链表、哈希表、树结构、队列管理
- * 
+ *
  * 3. 系统核心服务
- *    - 字符串处理系统 (FUN_1809415b0)
- *    - 系统状态管理器 (FUN_1809415d0)
- *    - 线程本地存储管理器 (FUN_1809415f0)
- *    - 错误处理系统 (FUN_180941610)
- *    - 性能监控器 (FUN_180941630)
- *    - 日志系统 (FUN_180941650)
- *    - 配置管理器 (FUN_180941690)
- *    - 资源管理器 (FUN_1809416d0)
- * 
+ *    - 字符串处理系统 (function_9415b0)
+ *    - 系统状态管理器 (function_9415d0)
+ *    - 线程本地存储管理器 (function_9415f0)
+ *    - 错误处理系统 (function_941610)
+ *    - 性能监控器 (function_941630)
+ *    - 日志系统 (function_941650)
+ *    - 配置管理器 (function_941690)
+ *    - 资源管理器 (function_9416d0)
+ *
  * 4. 基础设施服务
- *    - 文件系统管理器 (FUN_180941710)
- *    - 网络通信管理器 (FUN_1809417a0)
- *    - 安全管理器 (FUN_1809417c0)
- *    - 时间管理器 (FUN_180941800)
- *    - 数学运算库 (FUN_180941820)
- *    - 线程管理器 (FUN_1809419a0)
- * 
+ *    - 文件系统管理器 (function_941710)
+ *    - 网络通信管理器 (function_9417a0)
+ *    - 安全管理器 (function_9417c0)
+ *    - 时间管理器 (function_941800)
+ *    - 数学运算库 (function_941820)
+ *    - 线程管理器 (function_9419a0)
+ *
  * 5. 用户界面和多媒体
- *    - 图形渲染管理器 (FUN_180941840)
- *    - 音频管理器 (FUN_180941860)
- *    - 输入管理器 (FUN_180941880)
- *    - 窗口管理器 (FUN_1809418a0)
- * 
+ *    - 图形渲染管理器 (function_941840)
+ *    - 音频管理器 (function_941860)
+ *    - 输入管理器 (function_941880)
+ *    - 窗口管理器 (function_9418a0)
+ *
  * 6. 事件和任务管理
- *    - 事件系统 (FUN_1809418c0)
- *    - 任务调度器 (FUN_1809418e0)
- * 
+ *    - 事件系统 (function_9418c0)
+ *    - 任务调度器 (function_9418e0)
+ *
  * 注意：这是简化的美化实现，原始代码包含更多的函数和数据结构。
  * 本文件主要展示了核心功能的组织结构和用途。
  */
-
 // 内存管理核心函数
-void* FUN_1809414f0;  // 主内存分配器
+void* function_9414f0;  // 主内存分配器
 void* system_ptr_5290;  // 内存池头部指针
 void* system_ptr_52a0;  // 内存池尾部指针
 void* system_ptr_52c0;  // 当前分配位置
@@ -76,91 +71,65 @@ void* system_ptr_5328;  // 内存释放回调表
 void* system_ptr_5330;  // 内存重分配回调表
 void* system_ptr_5338;  // 内存验证回调表
 void* memory_allocator_336;  // 内存调试信息
-
-
 // 数据结构管理器
-void* FUN_180941590;  // 数据结构管理器主函数
+void* function_941590;  // 数据结构管理器主函数
 uint8_t system_ptr_5770;  // 链表管理器状态
 uint8_t system_ptr_5778;  // 哈希表管理器状态
 uint8_t system_ptr_5780;  // 树结构管理器状态
 uint8_t system_ptr_5788;  // 队列管理器状态
-
-
 // 字符串处理系统
-uint8_t FUN_1809415b0;  // 字符串处理主函数
+uint8_t function_9415b0;  // 字符串处理主函数
 uint8_t system_ptr_5208;  // 字符串编码器状态
 uint8_t system_ptr_5210;  // 字符串解码器状态
 uint8_t system_ptr_5218;  // 字符串缓冲区状态
 uint8_t system_ptr_5220;  // 字符串格式化器状态
 uint8_t processed_var_672;  // 字符串池管理器
-
-
 // 系统状态管理器
-uint8_t FUN_1809415d0;  // 系统状态管理主函数
+uint8_t function_9415d0;  // 系统状态管理主函数
 uint8_t system_ptr_5bc0;  // 系统核心状态
 uint8_t system_ptr_5bc8;  // 子系统状态表
 uint8_t system_ptr_5bd0;  // 状态变化历史
 uint8_t system_ptr_5bd8;  // 状态同步标志
 uint8_t memory_allocator_3480;  // 状态事件管理器
-
-
 // 线程本地存储(TLS)管理器
-uint8_t FUN_1809415f0;  // TLS管理主函数
+uint8_t function_9415f0;  // TLS管理主函数
 uint8_t system_ptr_5c30;  // TLS分配器状态
 uint8_t system_ptr_5c38;  // TLS索引表
 uint8_t system_ptr_5c40;  // TLS数据块
 uint8_t system_ptr_5c48;  // TLS清理器
-
-
 // 错误处理系统
-uint8_t FUN_180941610;  // 错误处理主函数
+uint8_t function_941610;  // 错误处理主函数
 uint8_t system_ptr_6080;  // 错误代码表
 uint8_t system_ptr_6088;  // 错误消息表
 uint8_t system_ptr_6090;  // 错误堆栈
 uint8_t system_ptr_6098;  // 错误恢复处理器
-
-
 // 性能监控器
-uint8_t FUN_180941630;  // 性能监控主函数
+uint8_t function_941630;  // 性能监控主函数
 int8_t system_ptr_10f8;  // 监控器状态
-
-
 // 日志系统
-uint8_t FUN_180941650;  // 日志系统主函数
+uint8_t function_941650;  // 日志系统主函数
 int8_t system_ptr_1198;  // 日志管理器状态
-
-
 // 配置管理器
-uint8_t FUN_180941690;  // 配置管理主函数
+uint8_t function_941690;  // 配置管理主函数
 int8_t system_ptr_1238;  // 配置加载器状态
-
-
 // 资源管理器
-uint8_t FUN_1809416d0;  // 资源管理主函数
+uint8_t function_9416d0;  // 资源管理主函数
 int8_t system_ptr_12d8;  // 资源加载器状态
-
-
 // 文件系统管理器
-uint8_t FUN_180941710;  // 文件系统主函数
+uint8_t function_941710;  // 文件系统主函数
 uint8_t system_ptr_e0d0;  // 文件句柄表
 uint8_t processed_var_4632;  // 文件缓存管理器
-
-
 // 网络通信管理器
-uint8_t FUN_1809417a0;  // 网络通信主函数
-
-
+uint8_t function_9417a0;  // 网络通信主函数
 // 安全管理器
-uint8_t FUN_1809417c0;  // 安全管理主函数
+uint8_t function_9417c0;  // 安全管理主函数
 uint8_t system_ptr_190c;  // 权限检查器状态
 uint8_t memory_allocator_3432;  // 加密模块
 uint8_t processed_var_5216;  // 解密模块
 uint8_t system_ptr_10a0;  // 认证管理器
 uint8_t processed_var_7584;  // 安全日志记录器
-
-
 // 时间管理器
-uint8_t FUN_180941800;  // 时间管理主函数
+uint8_t function_941800;  // 时间管理主函数
 uint8_t system_ptr_64e0;  // 系统时钟状态
 uint8_t system_ptr_64e8;  // 定时器管理器
 uint8_t processed_var_7512;  // 时间戳生成器
@@ -168,97 +137,75 @@ uint8_t processed_var_7948;  // 时间格式化器
 uint8_t system_ptr_6530;  // 事件调度器
 uint8_t system_ptr_6538;  // 延迟执行队列
 uint8_t system_ptr_6540;  // 时间同步器
-
-
 // 数学运算库
-uint8_t FUN_180941820;  // 数学运算主函数
+uint8_t function_941820;  // 数学运算主函数
 uint8_t system_ptr_6548;  // 基础运算器状态
 uint8_t processed_var_7960;  // 向量计算器
 uint8_t system_ptr_6590;  // 矩阵运算器
 uint8_t system_ptr_6598;  // 三角函数表
 uint8_t system_ptr_65a0;  // 随机数生成器
 uint8_t system_ptr_65a8;  // 统计计算器
-
-
 // 图形渲染管理器
-uint8_t FUN_180941840;  // 渲染管理主函数
+uint8_t function_941840;  // 渲染管理主函数
 uint8_t processed_var_7976;  // 渲染管线
 uint8_t system_ptr_65c0;  // 着色器管理器
 uint8_t system_ptr_65c8;  // 纹理管理器
 uint8_t system_ptr_65d0;  // 缓冲区管理器
 uint8_t system_ptr_65d8;  // 渲染状态管理器
-
-
 // 音频管理器
-uint8_t FUN_180941860;  // 音频管理主函数
+uint8_t function_941860;  // 音频管理主函数
 uint8_t processed_var_7992;  // 音频引擎
 uint8_t system_ptr_65f0;  // 音效管理器
 uint8_t system_ptr_65f8;  // 音乐播放器
 uint8_t system_ptr_6600;  // 音频缓冲区
 uint8_t system_ptr_6608;  // 音频流管理器
-
-
 // 输入管理器
-uint8_t FUN_180941880;  // 输入管理主函数
+uint8_t function_941880;  // 输入管理主函数
 uint8_t processed_var_8008;  // 输入设备驱动
 uint8_t system_ptr_6620;  // 键盘管理器
 uint8_t system_ptr_6628;  // 鼠标管理器
 uint8_t system_ptr_6630;  // 手柄管理器
 uint8_t system_ptr_6638;  // 触摸屏管理器
 uint8_t processed_var_8024;  // 输入事件队列
-
-
 // 窗口管理器
-uint8_t FUN_1809418a0;  // 窗口管理主函数
+uint8_t function_9418a0;  // 窗口管理主函数
 uint8_t system_ptr_6650;  // 窗口创建器
 uint8_t system_ptr_6658;  // 窗口销毁器
 uint8_t system_ptr_6660;  // 窗口状态管理器
 uint8_t system_ptr_6668;  // 窗口事件处理器
 uint8_t processed_var_8040;  // 窗口样式管理器
-
-
 // 事件系统
-uint8_t FUN_1809418c0;  // 事件系统主函数
+uint8_t function_9418c0;  // 事件系统主函数
 uint8_t system_ptr_6680;  // 事件分发器
 uint8_t system_ptr_6688;  // 事件监听器
 uint8_t system_ptr_6690;  // 事件队列
 uint8_t system_ptr_6698;  // 事件过滤器
 uint8_t processed_var_8048;  // 事件优先级管理器
-
-
 // 任务调度器
-uint8_t FUN_1809418e0;  // 任务调度主函数
+uint8_t function_9418e0;  // 任务调度主函数
 uint8_t system_ptr_66b0;  // 任务创建器
 uint8_t system_ptr_66b8;  // 任务执行器
 uint8_t system_ptr_66c0;  // 任务队列管理器
 uint8_t system_ptr_66c8;  // 任务优先级调度器
 uint8_t processed_var_8056;  // 任务监控器
-
-
 // 内存池管理器
-uint8_t FUN_180941900;  // 内存池管理主函数
+uint8_t function_941900;  // 内存池管理主函数
 uint8_t system_ptr_52e8;  // 小对象池状态
 uint8_t system_ptr_52f0;  // 中对象池状态
 uint8_t system_ptr_52f8;  // 大对象池状态
 uint8_t system_ptr_5300;  // 池分配策略
 uint8_t ui_system_data_1568;  // 池回收器
-
-
 // 垃圾回收器
-uint8_t FUN_180941980;  // 垃圾回收主函数
+uint8_t function_941980;  // 垃圾回收主函数
 uint8_t system_ptr_5738;  // GC标记器
 uint8_t system_ptr_5740;  // GC清扫器
 uint8_t system_ptr_5748;  // GC压缩器
 uint8_t system_ptr_5750;  // GC统计器
 uint8_t ui_system_data_1616;  // GC调度器
-
-
 // 线程管理器
-uint8_t FUN_1809419a0;  // 线程管理主函数
-
-
-// 函数: uint8_t FUN_1809419c0;
-uint8_t FUN_1809419c0;
+uint8_t function_9419a0;  // 线程管理主函数
+// 函数: uint8_t function_9419c0;
+uint8_t function_9419c0;
 uint8_t system_ptr_196c;
 uint8_t processed_var_7352;
 uint8_t system_ptr_19e0;
@@ -427,29 +374,23 @@ uint8_t processed_var_9504;
 uint8_t system_ptr_7250;
 uint8_t system_ptr_7258;
 uint8_t system_ptr_7260;
-
-
-// 函数: uint8_t FUN_180941b90;
-uint8_t FUN_180941b90;
+// 函数: uint8_t function_941b90;
+uint8_t function_941b90;
 uint8_t system_ptr_7268;
 uint8_t processed_var_9144;
 uint8_t system_ptr_72b0;
 uint8_t system_ptr_72b8;
 uint8_t system_ptr_72c0;
 uint8_t system_ptr_72c8;
-
-
-// 函数: uint8_t FUN_180941bb0;
-uint8_t FUN_180941bb0;
+// 函数: uint8_t function_941bb0;
+uint8_t function_941bb0;
 uint8_t processed_var_9088;
 uint8_t system_ptr_7310;
 uint8_t system_ptr_7318;
 uint8_t system_ptr_7320;
 uint8_t system_ptr_7328;
-
-
-// 函数: uint8_t FUN_180941bd0;
-uint8_t FUN_180941bd0;
+// 函数: uint8_t function_941bd0;
+uint8_t function_941bd0;
 uint8_t processed_var_9160;
 uint8_t system_ptr_7370;
 uint8_t system_ptr_7378;
@@ -681,18 +622,14 @@ uint8_t system_ptr_90b0;
 uint8_t system_ptr_90b8;
 uint8_t system_ptr_90c0;
 uint8_t system_ptr_90c8;
-
-
-// 函数: uint8_t FUN_180941d00;
-uint8_t FUN_180941d00;
+// 函数: uint8_t function_941d00;
+uint8_t function_941d00;
 uint8_t system_ptr_5b88;
 uint8_t system_ptr_5b90;
 uint8_t system_ptr_5b98;
 uint8_t system_ptr_5ba0;
-
-
-// 函数: uint8_t FUN_180941d20;
-uint8_t FUN_180941d20;
+// 函数: uint8_t function_941d20;
+uint8_t function_941d20;
 uint8_t system_ptr_1da8;
 uint8_t system_ptr_6c50;
 uint8_t system_ptr_1dac;
@@ -724,431 +661,331 @@ uint8_t system_ptr_91b8;
 uint8_t system_ptr_91c0;
 uint8_t system_ptr_91c8;
 uint8_t processed_var_8840;
-
-
-// 函数: uint8_t FUN_180941f00;
-uint8_t FUN_180941f00;
+// 函数: uint8_t function_941f00;
+uint8_t function_941f00;
 uint8_t system_ptr_9210;
 uint8_t system_ptr_9218;
 uint8_t system_ptr_9220;
 uint8_t system_ptr_9228;
 uint8_t processed_var_8928;
-
-
-// 函数: uint8_t FUN_180941f20;
-uint8_t FUN_180941f20;
-
-
-// 函数: uint8_t FUN_180941f40;
-uint8_t FUN_180941f40;
+// 函数: uint8_t function_941f20;
+uint8_t function_941f20;
+// 函数: uint8_t function_941f40;
+uint8_t function_941f40;
 uint8_t system_ptr_9270;
 uint8_t system_ptr_9278;
 uint8_t system_ptr_9280;
 uint8_t system_ptr_9288;
 uint8_t processed_var_8904;
 uint8_t system_ptr_92d0;
-
-
-// 函数: uint8_t FUN_180941f60;
-uint8_t FUN_180941f60;
+// 函数: uint8_t function_941f60;
+uint8_t function_941f60;
 uint8_t system_ptr_92d8;
 uint8_t system_ptr_92e0;
 uint8_t system_ptr_92e8;
 uint8_t processed_var_8880;
 uint8_t system_ptr_9330;
 uint8_t system_ptr_9338;
-
-
-// 函数: uint8_t FUN_180941f80;
-uint8_t FUN_180941f80;
+// 函数: uint8_t function_941f80;
+uint8_t function_941f80;
 uint8_t system_ptr_9340;
 uint8_t system_ptr_9348;
 uint8_t processed_var_8864;
 uint8_t system_ptr_9390;
 uint8_t system_ptr_9398;
 uint8_t system_ptr_93a0;
-
-
-// 函数: uint8_t FUN_180941fa0;
-uint8_t FUN_180941fa0;
+// 函数: uint8_t function_941fa0;
+uint8_t function_941fa0;
 uint8_t system_ptr_93a8;
 uint8_t processed_var_9016;
 uint8_t system_ptr_93f0;
 uint8_t system_ptr_93f8;
 uint8_t system_ptr_9400;
 uint8_t system_ptr_9408;
-
-
-// 函数: uint8_t FUN_180941fc0;
-uint8_t FUN_180941fc0;
+// 函数: uint8_t function_941fc0;
+uint8_t function_941fc0;
 uint8_t processed_var_8992;
 uint8_t system_ptr_9450;
 uint8_t system_ptr_9458;
 uint8_t system_ptr_9460;
 uint8_t system_ptr_9468;
-
-
-// 函数: uint8_t FUN_180941fe0;
-uint8_t FUN_180941fe0;
+// 函数: uint8_t function_941fe0;
+uint8_t function_941fe0;
 uint8_t processed_var_8968;
 uint8_t system_ptr_94b0;
 uint8_t system_ptr_94b8;
 uint8_t system_ptr_94c0;
 uint8_t system_ptr_94c8;
-
-
-// 函数: uint8_t FUN_180942000;
-uint8_t FUN_180942000;
+// 函数: uint8_t function_942000;
+uint8_t function_942000;
 uint8_t processed_var_8952;
 uint8_t system_ptr_9510;
 uint8_t system_ptr_9518;
 uint8_t system_ptr_9520;
 uint8_t system_ptr_9528;
 uint8_t processed_var_9112;
-
-
-// 函数: uint8_t FUN_180942020;
-uint8_t FUN_180942020;
+// 函数: uint8_t function_942020;
+uint8_t function_942020;
 uint8_t system_ptr_9570;
 uint8_t system_ptr_9578;
 uint8_t system_ptr_9580;
 uint8_t system_ptr_9588;
 uint8_t processed_var_9088;
-
-
-// 函数: uint8_t FUN_180942040;
-uint8_t FUN_180942040;
+// 函数: uint8_t function_942040;
+uint8_t function_942040;
 uint8_t system_ptr_95d0;
 uint8_t system_ptr_95d8;
 uint8_t system_ptr_95e0;
 uint8_t system_ptr_95e8;
 uint8_t processed_var_9064;
-
-
-// 函数: uint8_t FUN_180942060;
-uint8_t FUN_180942060;
+// 函数: uint8_t function_942060;
+uint8_t function_942060;
 uint8_t system_ptr_9630;
 uint8_t system_ptr_9638;
 uint8_t system_ptr_9640;
 uint8_t system_ptr_9648;
 uint8_t processed_var_9040;
-
-
-// 函数: uint8_t FUN_180942080;
-uint8_t FUN_180942080;
+// 函数: uint8_t function_942080;
+uint8_t function_942080;
 uint8_t system_ptr_9690;
 uint8_t system_ptr_9698;
 uint8_t system_ptr_96a0;
 uint8_t system_ptr_96a8;
 uint8_t system_ptr_2cb0;
-
-
-// 函数: uint8_t FUN_1809420a0;
-uint8_t FUN_1809420a0;
+// 函数: uint8_t function_9420a0;
+uint8_t function_9420a0;
 uint8_t system_ptr_96f0;
 uint8_t system_ptr_96f8;
 uint8_t system_ptr_9700;
 uint8_t system_ptr_9708;
 uint8_t processed_var_9192;
-
-
-// 函数: uint8_t FUN_1809420c0;
-uint8_t FUN_1809420c0;
+// 函数: uint8_t function_9420c0;
+uint8_t function_9420c0;
 uint8_t system_ptr_9750;
 uint8_t system_ptr_9758;
 uint8_t system_ptr_9760;
 uint8_t system_ptr_9768;
 uint8_t processed_var_9152;
-
-
-// 函数: uint8_t FUN_1809420e0;
-uint8_t FUN_1809420e0;
+// 函数: uint8_t function_9420e0;
+uint8_t function_9420e0;
 uint8_t system_ptr_97b0;
 uint8_t system_ptr_97b8;
 uint8_t system_ptr_97c0;
 uint8_t system_ptr_97c8;
 uint8_t processed_var_9128;
-
-
-// 函数: uint8_t FUN_180942100;
-uint8_t FUN_180942100;
+// 函数: uint8_t function_942100;
+uint8_t function_942100;
 uint8_t system_ptr_9810;
 uint8_t system_ptr_9818;
 uint8_t system_ptr_9820;
 uint8_t system_ptr_9828;
 uint8_t processed_var_9336;
-
-
-// 函数: uint8_t FUN_180942120;
-uint8_t FUN_180942120;
-
-
-// 函数: uint8_t FUN_180942140;
-uint8_t FUN_180942140;
+// 函数: uint8_t function_942120;
+uint8_t function_942120;
+// 函数: uint8_t function_942140;
+uint8_t function_942140;
 uint8_t system_ptr_9870;
 uint8_t system_ptr_9878;
 uint8_t system_ptr_9880;
 uint8_t system_ptr_9888;
 uint8_t processed_var_9304;
 uint8_t system_ptr_98d0;
-
-
-// 函数: uint8_t FUN_180942160;
-uint8_t FUN_180942160;
+// 函数: uint8_t function_942160;
+uint8_t function_942160;
 uint8_t system_ptr_98d8;
 uint8_t system_ptr_98e0;
 uint8_t system_ptr_98e8;
 uint8_t processed_var_9272;
 uint8_t system_ptr_9930;
 uint8_t system_ptr_9938;
-
-
-// 函数: uint8_t FUN_180942180;
-uint8_t FUN_180942180;
+// 函数: uint8_t function_942180;
+uint8_t function_942180;
 uint8_t system_ptr_9940;
 uint8_t system_ptr_9948;
 uint8_t processed_var_9240;
 uint8_t system_ptr_9990;
 uint8_t system_ptr_9998;
 uint8_t system_ptr_99a0;
-
-
-// 函数: uint8_t FUN_1809421a0;
-uint8_t FUN_1809421a0;
+// 函数: uint8_t function_9421a0;
+uint8_t function_9421a0;
 uint8_t system_ptr_99a8;
 uint8_t processed_var_9472;
 uint8_t system_ptr_99f0;
 uint8_t system_ptr_99f8;
 uint8_t system_ptr_9a00;
 uint8_t system_ptr_9a08;
-
-
-// 函数: uint8_t FUN_1809421c0;
-uint8_t FUN_1809421c0;
+// 函数: uint8_t function_9421c0;
+uint8_t function_9421c0;
 uint8_t processed_var_9432;
 uint8_t system_ptr_9a50;
 uint8_t system_ptr_9a58;
 uint8_t system_ptr_9a60;
 uint8_t system_ptr_9a68;
-
-
-// 函数: uint8_t FUN_1809421e0;
-uint8_t FUN_1809421e0;
+// 函数: uint8_t function_9421e0;
+uint8_t function_9421e0;
 uint8_t processed_var_9400;
 uint8_t system_ptr_9ab0;
 uint8_t system_ptr_9ab8;
 uint8_t system_ptr_9ac0;
 uint8_t system_ptr_9ac8;
-
-
-// 函数: uint8_t FUN_180942200;
-uint8_t FUN_180942200;
+// 函数: uint8_t function_942200;
+uint8_t function_942200;
 uint8_t system_ptr_2d48;
 uint8_t system_ptr_9b10;
 uint8_t system_ptr_9b18;
 uint8_t system_ptr_9b20;
 uint8_t system_ptr_9b28;
 uint8_t processed_var_9616;
-
-
-// 函数: uint8_t FUN_180942220;
-uint8_t FUN_180942220;
+// 函数: uint8_t function_942220;
+uint8_t function_942220;
 uint8_t system_ptr_9b70;
 uint8_t system_ptr_9b78;
 uint8_t system_ptr_9b80;
 uint8_t system_ptr_9b88;
 uint8_t processed_var_9584;
-
-
-// 函数: uint8_t FUN_180942240;
-uint8_t FUN_180942240;
+// 函数: uint8_t function_942240;
+uint8_t function_942240;
 uint8_t system_ptr_9bd0;
 uint8_t system_ptr_9bd8;
 uint8_t system_ptr_9be0;
 uint8_t system_ptr_9be8;
 uint8_t processed_var_9544;
-
-
-// 函数: uint8_t FUN_180942260;
-uint8_t FUN_180942260;
+// 函数: uint8_t function_942260;
+uint8_t function_942260;
 uint8_t system_ptr_9c30;
 uint8_t system_ptr_9c38;
 uint8_t system_ptr_9c40;
 uint8_t system_ptr_9c48;
 uint8_t processed_var_9504;
-
-
-// 函数: uint8_t FUN_180942280;
-uint8_t FUN_180942280;
+// 函数: uint8_t function_942280;
+uint8_t function_942280;
 uint8_t system_ptr_9c90;
 uint8_t system_ptr_9c98;
 uint8_t system_ptr_9ca0;
 uint8_t system_ptr_9ca8;
 uint8_t processed_var_9728;
-
-
-// 函数: uint8_t FUN_1809422a0;
-uint8_t FUN_1809422a0;
+// 函数: uint8_t function_9422a0;
+uint8_t function_9422a0;
 uint8_t system_ptr_9cf0;
 uint8_t system_ptr_9cf8;
 uint8_t system_ptr_9d00;
 uint8_t system_ptr_9d08;
 uint8_t processed_var_9696;
-
-
-// 函数: uint8_t FUN_1809422c0;
-uint8_t FUN_1809422c0;
+// 函数: uint8_t function_9422c0;
+uint8_t function_9422c0;
 uint8_t system_ptr_9d50;
 uint8_t system_ptr_9d58;
 uint8_t system_ptr_9d60;
 uint8_t system_ptr_9d68;
 uint8_t processed_var_9664;
-
-
-// 函数: uint8_t FUN_1809422e0;
-uint8_t FUN_1809422e0;
+// 函数: uint8_t function_9422e0;
+uint8_t function_9422e0;
 uint8_t system_ptr_9db0;
 uint8_t system_ptr_9db8;
 uint8_t system_ptr_9dc0;
 uint8_t system_ptr_9dc8;
 uint8_t processed_var_9640;
-
-
-// 函数: uint8_t FUN_180942300;
-uint8_t FUN_180942300;
+// 函数: uint8_t function_942300;
+uint8_t function_942300;
 uint8_t system_ptr_9e10;
 uint8_t system_ptr_9e18;
 uint8_t system_ptr_9e20;
 uint8_t system_ptr_9e28;
 uint8_t processed_var_9848;
-
-
-// 函数: uint8_t FUN_180942320;
-uint8_t FUN_180942320;
-
-
-// 函数: uint8_t FUN_180942340;
-uint8_t FUN_180942340;
+// 函数: uint8_t function_942320;
+uint8_t function_942320;
+// 函数: uint8_t function_942340;
+uint8_t function_942340;
 uint8_t system_ptr_9e70;
 uint8_t system_ptr_9e78;
 uint8_t system_ptr_9e80;
 uint8_t system_ptr_9e88;
 uint8_t processed_var_9824;
 uint8_t system_ptr_9ed0;
-
-
-// 函数: uint8_t FUN_180942360;
-uint8_t FUN_180942360;
+// 函数: uint8_t function_942360;
+uint8_t function_942360;
 uint8_t system_ptr_9ed8;
 uint8_t system_ptr_9ee0;
 uint8_t system_ptr_9ee8;
 uint8_t processed_var_9800;
 uint8_t system_ptr_9f30;
 uint8_t system_ptr_9f38;
-
-
-// 函数: uint8_t FUN_180942380;
-uint8_t FUN_180942380;
+// 函数: uint8_t function_942380;
+uint8_t function_942380;
 uint8_t system_ptr_9f40;
 uint8_t system_ptr_9f48;
 uint8_t processed_var_9768;
 uint8_t system_ptr_9f90;
 uint8_t system_ptr_9f98;
 uint8_t system_ptr_9fa0;
-
-
-// 函数: uint8_t FUN_1809423a0;
-uint8_t FUN_1809423a0;
+// 函数: uint8_t function_9423a0;
+uint8_t function_9423a0;
 uint8_t system_ptr_9fa8;
 uint8_t processed_var_9952;
 uint8_t system_ptr_9ff0;
 uint8_t system_ptr_9ff8;
 uint8_t system_ptr_a000;
 uint8_t system_ptr_a008;
-
-
-// 函数: uint8_t FUN_1809423c0;
-uint8_t FUN_1809423c0;
+// 函数: uint8_t function_9423c0;
+uint8_t function_9423c0;
 uint8_t processed_var_9928;
 uint8_t system_ptr_a050;
 uint8_t system_ptr_a058;
 uint8_t system_ptr_a060;
 uint8_t system_ptr_a068;
-
-
-// 函数: uint8_t FUN_1809423e0;
-uint8_t FUN_1809423e0;
+// 函数: uint8_t function_9423e0;
+uint8_t function_9423e0;
 uint8_t processed_var_9904;
 uint8_t system_ptr_a0b0;
 uint8_t system_ptr_a0b8;
 uint8_t system_ptr_a0c0;
 uint8_t system_ptr_a0c8;
-
-
-// 函数: uint8_t FUN_180942400;
-uint8_t FUN_180942400;
+// 函数: uint8_t function_942400;
+uint8_t function_942400;
 uint8_t processed_var_9872;
 uint8_t system_ptr_a110;
 uint8_t system_ptr_a118;
 uint8_t system_ptr_a120;
 uint8_t system_ptr_a128;
 uint8_t processed_var_88;
-
-
-// 函数: uint8_t FUN_180942420;
-uint8_t FUN_180942420;
+// 函数: uint8_t function_942420;
+uint8_t function_942420;
 uint8_t system_ptr_a170;
 uint8_t system_ptr_a178;
 uint8_t system_ptr_a180;
 uint8_t system_ptr_a188;
 uint8_t processed_var_64;
-
-
-// 函数: uint8_t FUN_180942440;
-uint8_t FUN_180942440;
+// 函数: uint8_t function_942440;
+uint8_t function_942440;
 uint8_t system_ptr_a1d0;
 uint8_t system_ptr_a1d8;
 uint8_t system_ptr_a1e0;
 uint8_t system_ptr_a1e8;
 uint8_t system_ptr_2fd0;
-
-
-// 函数: uint8_t FUN_180942460;
-uint8_t FUN_180942460;
+// 函数: uint8_t function_942460;
+uint8_t function_942460;
 uint8_t system_ptr_a230;
 uint8_t system_ptr_a238;
 uint8_t system_ptr_a240;
 uint8_t system_ptr_a248;
 uint8_t system_ptr_2fa8;
-
-
-// 函数: uint8_t FUN_180942480;
-uint8_t FUN_180942480;
+// 函数: uint8_t function_942480;
+uint8_t function_942480;
 uint8_t system_ptr_a290;
 uint8_t system_ptr_a298;
 uint8_t system_ptr_a2a0;
 uint8_t system_ptr_a2a8;
 uint8_t ui_system_data_168;
-
-
-// 函数: uint8_t FUN_1809424a0;
-uint8_t FUN_1809424a0;
-
-
-// 函数: uint8_t FUN_1809424c0;
-uint8_t FUN_1809424c0;
-
-
-// 函数: uint8_t FUN_180942520;
-uint8_t FUN_180942520;
-
-
-// 函数: uint8_t FUN_180942580;
-uint8_t FUN_180942580;
-
-
-// 函数: uint8_t FUN_1809425e0;
-uint8_t FUN_1809425e0;
+// 函数: uint8_t function_9424a0;
+uint8_t function_9424a0;
+// 函数: uint8_t function_9424c0;
+uint8_t function_9424c0;
+// 函数: uint8_t function_942520;
+uint8_t function_942520;
+// 函数: uint8_t function_942580;
+uint8_t function_942580;
+// 函数: uint8_t function_9425e0;
+uint8_t function_9425e0;
 uint8_t system_ptr_1f6c;
 uint8_t processed_var_4992;
 uint8_t system_ptr_1fcc;
@@ -1247,10 +1084,8 @@ uint8_t system_ptr_ae20;
 uint8_t processed_var_64;
 uint8_t processed_var_7656;
 uint8_t processed_var_7680;
-
-
-// 函数: uint8_t FUN_180942660;
-uint8_t FUN_180942660;
+// 函数: uint8_t function_942660;
+uint8_t function_942660;
 uint8_t system_ptr_c150;
 int8_t system_cache_config;
 uint8_t system_ptr_c160;
@@ -1260,71 +1095,51 @@ uint8_t system_ptr_aec0;
 uint8_t system_ptr_aec8;
 uint8_t system_ptr_aed0;
 uint8_t system_ptr_aed8;
-
-
-// 函数: uint8_t FUN_180942750;
-uint8_t FUN_180942750;
+// 函数: uint8_t function_942750;
+uint8_t function_942750;
 uint8_t system_ptr_aee0;
 uint8_t system_ptr_aee8;
 uint8_t system_ptr_2050;
 uint8_t system_ptr_2058;
 uint8_t system_ptr_2060;
 uint8_t system_ptr_2068;
-
-
-// 函数: uint8_t FUN_180942790;
-uint8_t FUN_180942790;
+// 函数: uint8_t function_942790;
+uint8_t function_942790;
 uint8_t system_ptr_aef0;
 uint8_t system_ptr_aef8;
 uint8_t system_ptr_af00;
 uint8_t system_ptr_af08;
-
-
-// 函数: uint8_t FUN_1809427d0;
-uint8_t FUN_1809427d0;
+// 函数: uint8_t function_9427d0;
+uint8_t function_9427d0;
 uint8_t processed_var_9096;
 uint8_t system_ptr_b310;
 uint8_t system_ptr_b318;
 uint8_t system_ptr_b320;
 uint8_t system_ptr_b328;
 uint8_t processed_var_9116;
-
-
-// 函数: uint8_t FUN_1809427f0;
-uint8_t FUN_1809427f0;
+// 函数: uint8_t function_9427f0;
+uint8_t function_9427f0;
 uint8_t system_ptr_b730;
 uint8_t system_ptr_b738;
 uint8_t system_ptr_b740;
 uint8_t system_ptr_b748;
 uint8_t processed_var_9120;
-
-
-// 函数: uint8_t FUN_180942810;
-uint8_t FUN_180942810;
+// 函数: uint8_t function_942810;
+uint8_t function_942810;
 uint8_t system_ptr_246c;
 uint8_t ui_system_data_1824;
-
-
-// 函数: uint8_t FUN_180942890;
-uint8_t FUN_180942890;
+// 函数: uint8_t function_942890;
+uint8_t function_942890;
 uint8_t system_ptr_2490;
-
-
-// 函数: uint8_t FUN_1809428e0;
-uint8_t FUN_1809428e0;
+// 函数: uint8_t function_9428e0;
+uint8_t function_9428e0;
 uint8_t system_ptr_2480;
-
-
-// 函数: uint8_t FUN_180942930;
-uint8_t FUN_180942930;
-
-
-// 函数: uint8_t FUN_180942a20;
-uint8_t FUN_180942a20;
-
-
-// 函数: uint8_t FUN_1809429f0;
-uint8_t FUN_1809429f0;
+// 函数: uint8_t function_942930;
+uint8_t function_942930;
+// 函数: uint8_t function_942a20;
+uint8_t function_942a20;
+// 函数: uint8_t function_9429f0;
+uint8_t function_9429f0;
 uint8_t system_ptr_24ac;
 uint8_t processed_var_6688;
 uint8_t system_ptr_24b0;
@@ -1337,18 +1152,14 @@ uint8_t system_ptr_6048;
 uint8_t system_ptr_6050;
 uint8_t system_ptr_6058;
 uint8_t system_ptr_6060;
-
-
-// 函数: uint8_t FUN_180942a60;
-uint8_t FUN_180942a60;
+// 函数: uint8_t function_942a60;
+uint8_t function_942a60;
 uint8_t system_ptr_6498;
 uint8_t system_ptr_64a0;
 uint8_t system_ptr_64a8;
 uint8_t system_ptr_64b0;
-
-
-// 函数: uint8_t FUN_180942a80;
-uint8_t FUN_180942a80;
+// 函数: uint8_t function_942a80;
+uint8_t function_942a80;
 uint8_t system_ptr_d660;
 uint8_t processed_var_9632;
 uint8_t system_ptr_d590;
@@ -1356,42 +1167,30 @@ uint8_t processed_var_9664;
 uint8_t system_ptr_6310;
 uint8_t system_ptr_6320;
 uint8_t system_ptr_6328;
-
-
-// 函数: uint8_t FUN_180942fa0;
-uint8_t FUN_180942fa0;
+// 函数: uint8_t function_942fa0;
+uint8_t function_942fa0;
 uint8_t system_ptr_6558;
 uint8_t system_ptr_6560;
 uint8_t system_ptr_6568;
 uint8_t system_ptr_6570;
-
-
-// 函数: uint8_t FUN_180942fc0;
-uint8_t FUN_180942fc0;
+// 函数: uint8_t function_942fc0;
+uint8_t function_942fc0;
 uint8_t system_ptr_5ecc;
 uint8_t processed_var_9616;
-
-
-// 函数: uint8_t FUN_180943070;
-uint8_t FUN_180943070;
+// 函数: uint8_t function_943070;
+uint8_t function_943070;
 uint8_t system_ptr_606c;
 uint8_t rendering_buffer_2504;
 uint8_t system_ptr_6218;
 uint8_t rendering_buffer_2864;
-
-
-// 函数: uint8_t FUN_180943140;
-uint8_t FUN_180943140;
-
-
-// 函数: uint8_t FUN_180943160;
-uint8_t FUN_180943160;
+// 函数: uint8_t function_943140;
+uint8_t function_943140;
+// 函数: uint8_t function_943160;
+uint8_t function_943160;
 uint8_t system_ptr_6790;
 uint8_t system_ptr_6798;
-
-
-// 函数: uint8_t FUN_180943180;
-uint8_t FUN_180943180;
+// 函数: uint8_t function_943180;
+uint8_t function_943180;
 uint8_t system_ptr_67a0;
 uint8_t system_ptr_67a8;
 uint8_t system_ptr_67b0;
@@ -1399,10 +1198,8 @@ uint8_t system_ptr_67b8;
 uint8_t system_ptr_67d0;
 uint8_t memory_allocator_384;
 uint8_t processed_var_720;
-
-
-// 函数: uint8_t FUN_1809431a0;
-uint8_t FUN_1809431a0;
+// 函数: uint8_t function_9431a0;
+uint8_t function_9431a0;
 uint8_t _tls_index;
 void *ThreadLocalStoragePointer;
 uint8_t system_ptr_67d4;
@@ -1413,5 +1210,3 @@ uint8_t system_ptr_67e0;
 uint8_t system_ptr_67e8;
 uint8_t system_ptr_67f0;
 uint8_t system_ptr_67f8;
-
-

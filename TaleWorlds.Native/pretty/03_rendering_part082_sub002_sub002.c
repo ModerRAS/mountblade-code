@@ -7,346 +7,332 @@
  * RenderingSystem_CallbackRegister_函数语义化别名定义
  * 自动生成的别名定义，用于提高代码可读性
  */
-
 #include "fun_aliases_batch.txt"
-#define RenderingSystem_CallbackRegister_1804559d0 FUN_1804559d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804557b0 FUN_1804557b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804555a0 FUN_1804555a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180455430 FUN_180455430            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180455340 FUN_180455340            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180455250 FUN_180455250            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180455090 FUN_180455090            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180454ff0 FUN_180454ff0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180454ea0 FUN_180454ea0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804543f0 FUN_1804543f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180454230 FUN_180454230            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804541a0 FUN_1804541a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180454070 FUN_180454070            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453f90 FUN_180453f90            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453f70 FUN_180453f70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453e40 FUN_180453e40            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453de0 FUN_180453de0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453d60 FUN_180453d60            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453cb0 FUN_180453cb0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453b60 FUN_180453b60            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804539b0 FUN_1804539b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804538b0 FUN_1804538b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453860 FUN_180453860            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453810 FUN_180453810            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804537e0 FUN_1804537e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804537b0 FUN_1804537b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453750 FUN_180453750            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804534d0 FUN_1804534d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804531d0 FUN_1804531d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180453140 FUN_180453140            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804530a0 FUN_1804530a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180452fa0 FUN_180452fa0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180452f40 FUN_180452f40            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180452630 FUN_180452630            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804522d0 FUN_1804522d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804520a0 FUN_1804520a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180451e30 FUN_180451e30            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180451da0 FUN_180451da0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180451d20 FUN_180451d20            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180451ca0 FUN_180451ca0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180451bd0 FUN_180451bd0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804519d0 FUN_1804519d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180451890 FUN_180451890            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804517c0 FUN_1804517c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180451770 FUN_180451770            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804512f0 FUN_1804512f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804511e0 FUN_1804511e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804510a0 FUN_1804510a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180450d90 FUN_180450d90            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180450ba0 FUN_180450ba0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180450a20 FUN_180450a20            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804509e0 FUN_1804509e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804508a0 FUN_1804508a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180450360 FUN_180450360            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804502d0 FUN_1804502d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804501c0 FUN_1804501c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180450140 FUN_180450140            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180450070 FUN_180450070            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044ffa0 FUN_18044ffa0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044f370 FUN_18044f370            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044f210 FUN_18044f210            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044efd0 FUN_18044efd0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044ed20 FUN_18044ed20            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044ead0 FUN_18044ead0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044e890 FUN_18044e890            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044e650 FUN_18044e650            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044e620 FUN_18044e620            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044e2b0 FUN_18044e2b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044e0d0 FUN_18044e0d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044df40 FUN_18044df40            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044dc10 FUN_18044dc10            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044db70 FUN_18044db70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044da90 FUN_18044da90            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044d910 FUN_18044d910            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044d570 FUN_18044d570            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044d4f0 FUN_18044d4f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044d450 FUN_18044d450            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044d340 FUN_18044d340            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044d2d0 FUN_18044d2d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044d130 FUN_18044d130            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044d0f0 FUN_18044d0f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044d0b0 FUN_18044d0b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044cf20 FUN_18044cf20            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044ce10 FUN_18044ce10            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044cd30 FUN_18044cd30            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044c9c0 FUN_18044c9c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044c420 FUN_18044c420            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044c190 FUN_18044c190            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044be30 FUN_18044be30            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044bc50 FUN_18044bc50            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044baf0 FUN_18044baf0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044b910 FUN_18044b910            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044b7a0 FUN_18044b7a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044b6e0 FUN_18044b6e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044b610 FUN_18044b610            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044b4f0 FUN_18044b4f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044b3d0 FUN_18044b3d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044b1d0 FUN_18044b1d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044b110 FUN_18044b110            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044b010 FUN_18044b010            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044afb0 FUN_18044afb0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044ad90 FUN_18044ad90            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044ac20 FUN_18044ac20            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044aad0 FUN_18044aad0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044a810 FUN_18044a810            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18044a590 FUN_18044a590            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180449d70 FUN_180449d70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180449930 FUN_180449930            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804498f0 FUN_1804498f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180449850 FUN_180449850            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804496f0 FUN_1804496f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180449230 FUN_180449230            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804491c0 FUN_1804491c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180449070 FUN_180449070            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180448fb0 FUN_180448fb0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180448f50 FUN_180448f50            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180448ea0 FUN_180448ea0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180448e50 FUN_180448e50            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180448df0 FUN_180448df0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180448d90 FUN_180448d90            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804489a0 FUN_1804489a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804485c0 FUN_1804485c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180448540 FUN_180448540            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804484c0 FUN_1804484c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180448470 FUN_180448470            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180448420 FUN_180448420            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447f70 FUN_180447f70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447e40 FUN_180447e40            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447e10 FUN_180447e10            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447d40 FUN_180447d40            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447ca0 FUN_180447ca0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447990 FUN_180447990            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447850 FUN_180447850            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804477f0 FUN_1804477f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447710 FUN_180447710            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447660 FUN_180447660            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804475e0 FUN_1804475e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447430 FUN_180447430            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804473b0 FUN_1804473b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447360 FUN_180447360            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447320 FUN_180447320            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804472c0 FUN_1804472c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447220 FUN_180447220            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804471a0 FUN_1804471a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180447030 FUN_180447030            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446fd0 FUN_180446fd0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446fa0 FUN_180446fa0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446e70 FUN_180446e70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446dc0 FUN_180446dc0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446d20 FUN_180446d20            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446ca0 FUN_180446ca0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446ba0 FUN_180446ba0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446b20 FUN_180446b20            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446a60 FUN_180446a60            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446960 FUN_180446960            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446810 FUN_180446810            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446760 FUN_180446760            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446690 FUN_180446690            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446650 FUN_180446650            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446610 FUN_180446610            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446430 FUN_180446430            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804463f0 FUN_1804463f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804463b0 FUN_1804463b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446370 FUN_180446370            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446320 FUN_180446320            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804462e0 FUN_1804462e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804462a0 FUN_1804462a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804461b0 FUN_1804461b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446160 FUN_180446160            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446120 FUN_180446120            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804460f0 FUN_1804460f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804460c0 FUN_1804460c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180446010 FUN_180446010            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180445dc0 FUN_180445dc0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180445870 FUN_180445870            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804457b0 FUN_1804457b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180445570 FUN_180445570            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180445390 FUN_180445390            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180445060 FUN_180445060            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180444b70 FUN_180444b70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180444a20 FUN_180444a20            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804449a0 FUN_1804449a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804448a0 FUN_1804448a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804447c0 FUN_1804447c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804445b0 FUN_1804445b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804443c0 FUN_1804443c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804442e0 FUN_1804442e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804442c0 FUN_1804442c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180444070 FUN_180444070            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180444030 FUN_180444030            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180443df0 FUN_180443df0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180443d70 FUN_180443d70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180443b40 FUN_180443b40            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180443aa0 FUN_180443aa0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180443a40 FUN_180443a40            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180443820 FUN_180443820            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180443770 FUN_180443770            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180443320 FUN_180443320            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804431c0 FUN_1804431c0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180442950 FUN_180442950            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180442860 FUN_180442860            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180442720 FUN_180442720            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180442560 FUN_180442560            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804424d0 FUN_1804424d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180441e90 FUN_180441e90            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180441e50 FUN_180441e50            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180441e10 FUN_180441e10            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180441c50 FUN_180441c50            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804418e0 FUN_1804418e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180441890 FUN_180441890            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180441830 FUN_180441830            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180441730 FUN_180441730            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804415d0 FUN_1804415d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804414d0 FUN_1804414d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180441110 FUN_180441110            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804410a0 FUN_1804410a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180440aa0 FUN_180440aa0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180440910 FUN_180440910            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180440750 FUN_180440750            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180440660 FUN_180440660            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804403d0 FUN_1804403d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180440350 FUN_180440350            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804402e0 FUN_1804402e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180440220 FUN_180440220            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804401b0 FUN_1804401b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043ff20 FUN_18043ff20            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043fef0 FUN_18043fef0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043fe70 FUN_18043fe70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043fe10 FUN_18043fe10            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043fd70 FUN_18043fd70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043fd10 FUN_18043fd10            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043fc20 FUN_18043fc20            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043fb10 FUN_18043fb10            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043fae0 FUN_18043fae0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043f960 FUN_18043f960            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043f610 FUN_18043f610            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043f5f0 FUN_18043f5f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043f3f0 FUN_18043f3f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043f0d0 FUN_18043f0d0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043ef90 FUN_18043ef90            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043ed70 FUN_18043ed70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043ed10 FUN_18043ed10            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043ecc0 FUN_18043ecc0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043eb50 FUN_18043eb50            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043ea60 FUN_18043ea60            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043e9b0 FUN_18043e9b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043e990 FUN_18043e990            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043e7f0 FUN_18043e7f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043e720 FUN_18043e720            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043e630 FUN_18043e630            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043cbd0 FUN_18043cbd0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043cb50 FUN_18043cb50            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043cae0 FUN_18043cae0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043caa0 FUN_18043caa0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043ca10 FUN_18043ca10            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c8e0 FUN_18043c8e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c820 FUN_18043c820            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c7a0 FUN_18043c7a0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c740 FUN_18043c740            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c6e0 FUN_18043c6e0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c6b0 FUN_18043c6b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c510 FUN_18043c510            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c3b0 FUN_18043c3b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c370 FUN_18043c370            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c350 FUN_18043c350            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c290 FUN_18043c290            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c230 FUN_18043c230            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c160 FUN_18043c160            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c0f0 FUN_18043c0f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c0b0 FUN_18043c0b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c060 FUN_18043c060            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043c020 FUN_18043c020            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043bff0 FUN_18043bff0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043ab40 FUN_18043ab40            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_18043a140 FUN_18043a140            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180438c70 FUN_180438c70            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180438c50 FUN_180438c50            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804389f0 FUN_1804389f0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180438940 FUN_180438940            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804386b0 FUN_1804386b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_180438350 FUN_180438350            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_1804382b0 FUN_1804382b0            // 渲染系统回调注册器
-#define RenderingSystem_CallbackRegister_ FUN_            // 渲染系统回调注册器
-
+#define RenderingSystem_CallbackRegister_1804559d0 function_4559d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804557b0 function_4557b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804555a0 function_4555a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180455430 function_455430            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180455340 function_455340            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180455250 function_455250            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180455090 function_455090            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180454ff0 function_454ff0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180454ea0 function_454ea0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804543f0 function_4543f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180454230 function_454230            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804541a0 function_4541a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180454070 function_454070            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453f90 function_453f90            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453f70 function_453f70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453e40 function_453e40            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453de0 function_453de0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453d60 function_453d60            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453cb0 function_453cb0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453b60 function_453b60            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804539b0 function_4539b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804538b0 function_4538b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453860 function_453860            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453810 function_453810            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804537e0 function_4537e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804537b0 function_4537b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453750 function_453750            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804534d0 function_4534d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804531d0 function_4531d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180453140 function_453140            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804530a0 function_4530a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180452fa0 function_452fa0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180452f40 function_452f40            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180452630 function_452630            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804522d0 function_4522d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804520a0 function_4520a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180451e30 function_451e30            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180451da0 function_451da0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180451d20 function_451d20            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180451ca0 function_451ca0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180451bd0 function_451bd0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804519d0 function_4519d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180451890 function_451890            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804517c0 function_4517c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180451770 function_451770            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804512f0 function_4512f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804511e0 function_4511e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804510a0 function_4510a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180450d90 function_450d90            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180450ba0 function_450ba0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180450a20 function_450a20            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804509e0 function_4509e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804508a0 function_4508a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180450360 function_450360            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804502d0 function_4502d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804501c0 function_4501c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180450140 function_450140            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180450070 function_450070            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044ffa0 function_44ffa0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044f370 function_44f370            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044f210 function_44f210            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044efd0 function_44efd0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044ed20 function_44ed20            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044ead0 function_44ead0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044e890 function_44e890            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044e650 function_44e650            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044e620 function_44e620            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044e2b0 function_44e2b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044e0d0 function_44e0d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044df40 function_44df40            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044dc10 function_44dc10            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044db70 function_44db70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044da90 function_44da90            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044d910 function_44d910            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044d570 function_44d570            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044d4f0 function_44d4f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044d450 function_44d450            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044d340 function_44d340            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044d2d0 function_44d2d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044d130 function_44d130            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044d0f0 function_44d0f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044d0b0 function_44d0b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044cf20 function_44cf20            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044ce10 function_44ce10            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044cd30 function_44cd30            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044c9c0 function_44c9c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044c420 function_44c420            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044c190 function_44c190            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044be30 function_44be30            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044bc50 function_44bc50            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044baf0 function_44baf0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044b910 function_44b910            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044b7a0 function_44b7a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044b6e0 function_44b6e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044b610 function_44b610            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044b4f0 function_44b4f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044b3d0 function_44b3d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044b1d0 function_44b1d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044b110 function_44b110            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044b010 function_44b010            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044afb0 function_44afb0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044ad90 function_44ad90            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044ac20 function_44ac20            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044aad0 function_44aad0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044a810 function_44a810            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18044a590 function_44a590            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180449d70 function_449d70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180449930 function_449930            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804498f0 function_4498f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180449850 function_449850            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804496f0 function_4496f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180449230 function_449230            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804491c0 function_4491c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180449070 function_449070            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180448fb0 function_448fb0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180448f50 function_448f50            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180448ea0 function_448ea0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180448e50 function_448e50            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180448df0 function_448df0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180448d90 function_448d90            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804489a0 function_4489a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804485c0 function_4485c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180448540 function_448540            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804484c0 function_4484c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180448470 function_448470            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180448420 function_448420            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447f70 function_447f70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447e40 function_447e40            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447e10 function_447e10            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447d40 function_447d40            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447ca0 function_447ca0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447990 function_447990            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447850 function_447850            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804477f0 function_4477f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447710 function_447710            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447660 function_447660            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804475e0 function_4475e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447430 function_447430            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804473b0 function_4473b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447360 function_447360            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447320 function_447320            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804472c0 function_4472c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447220 function_447220            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804471a0 function_4471a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180447030 function_447030            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446fd0 function_446fd0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446fa0 function_446fa0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446e70 function_446e70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446dc0 function_446dc0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446d20 function_446d20            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446ca0 function_446ca0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446ba0 function_446ba0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446b20 function_446b20            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446a60 function_446a60            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446960 function_446960            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446810 function_446810            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446760 function_446760            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446690 function_446690            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446650 function_446650            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446610 function_446610            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446430 function_446430            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804463f0 function_4463f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804463b0 function_4463b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446370 function_446370            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446320 function_446320            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804462e0 function_4462e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804462a0 function_4462a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804461b0 function_4461b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446160 function_446160            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446120 function_446120            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804460f0 function_4460f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804460c0 function_4460c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180446010 function_446010            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180445dc0 function_445dc0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180445870 function_445870            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804457b0 function_4457b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180445570 function_445570            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180445390 function_445390            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180445060 function_445060            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180444b70 function_444b70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180444a20 function_444a20            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804449a0 function_4449a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804448a0 function_4448a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804447c0 function_4447c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804445b0 function_4445b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804443c0 function_4443c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804442e0 function_4442e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804442c0 function_4442c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180444070 function_444070            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180444030 function_444030            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180443df0 function_443df0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180443d70 function_443d70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180443b40 function_443b40            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180443aa0 function_443aa0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180443a40 function_443a40            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180443820 function_443820            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180443770 function_443770            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180443320 function_443320            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804431c0 function_4431c0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180442950 function_442950            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180442860 function_442860            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180442720 function_442720            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180442560 function_442560            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804424d0 function_4424d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180441e90 function_441e90            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180441e50 function_441e50            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180441e10 function_441e10            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180441c50 function_441c50            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804418e0 function_4418e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180441890 function_441890            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180441830 function_441830            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180441730 function_441730            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804415d0 function_4415d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804414d0 function_4414d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180441110 function_441110            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804410a0 function_4410a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180440aa0 function_440aa0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180440910 function_440910            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180440750 function_440750            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180440660 function_440660            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804403d0 function_4403d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180440350 function_440350            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804402e0 function_4402e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180440220 function_440220            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804401b0 function_4401b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043ff20 function_43ff20            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043fef0 function_43fef0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043fe70 function_43fe70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043fe10 function_43fe10            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043fd70 function_43fd70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043fd10 function_43fd10            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043fc20 function_43fc20            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043fb10 function_43fb10            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043fae0 function_43fae0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043f960 function_43f960            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043f610 function_43f610            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043f5f0 function_43f5f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043f3f0 function_43f3f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043f0d0 function_43f0d0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043ef90 function_43ef90            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043ed70 function_43ed70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043ed10 function_43ed10            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043ecc0 function_43ecc0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043eb50 function_43eb50            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043ea60 function_43ea60            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043e9b0 function_43e9b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043e990 function_43e990            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043e7f0 function_43e7f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043e720 function_43e720            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043e630 function_43e630            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043cbd0 function_43cbd0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043cb50 function_43cb50            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043cae0 function_43cae0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043caa0 function_43caa0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043ca10 function_43ca10            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c8e0 function_43c8e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c820 function_43c820            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c7a0 function_43c7a0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c740 function_43c740            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c6e0 function_43c6e0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c6b0 function_43c6b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c510 function_43c510            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c3b0 function_43c3b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c370 function_43c370            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c350 function_43c350            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c290 function_43c290            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c230 function_43c230            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c160 function_43c160            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c0f0 function_43c0f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c0b0 function_43c0b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c060 function_43c060            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043c020 function_43c020            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043bff0 function_43bff0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043ab40 function_43ab40            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_18043a140 function_43a140            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180438c70 function_438c70            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180438c50 function_438c50            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804389f0 function_4389f0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180438940 function_438940            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804386b0 function_4386b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_180438350 function_438350            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_1804382b0 function_4382b0            // 渲染系统回调注册器
+#define RenderingSystem_CallbackRegister_ 函数_            // 渲染系统回调注册器
 /* UIManager - UIManager 的语义化别名 */
 #define UIManager UIManager
-
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
 /* SystemEventHandler - SystemCore_MemoryManager0 的语义化别名 */
 #define SystemEventHandler SystemCore_MemoryManager0
-
 #include "TaleWorlds.Native.Split.h"
-
 // ============================================================================
 // 03_rendering_part082_sub002_sub002.c - 渲染系统高级函数注册和初始化模块
 // ============================================================================
-
 /**
  * @file 03_rendering_part082_sub002_sub002.c
  * @brief 渲染系统高级函数注册和初始化模块
- * 
+ *
  * 本模块包含渲染系统的高级函数注册、初始化、回调设置和系统配置功能。
  * 主要负责3D渲染系统的函数指针注册、系统初始化、回调设置和配置管理。
- * 
+ *
  * 主要功能：
  * - 渲染系统函数注册和初始化
  * - 回调函数设置和管理
  * - 系统配置和参数设置
  * - 内存管理和资源分配
  * - 安全检查和验证
- * 
+ *
  * @author Claude Code
  * @version 1.0
  * @date 2025-08-28
  */
-
 // ============================================================================
 // 常量定义
 // ============================================================================
-
 /** 渲染系统最大注册函数数量 */
 #define RENDERING_MAX_REGISTERED_FUNCTIONS 1024
-
 /** 渲染系统初始化标志 */
 #define RENDERING_INITIALIZATION_FLAG 0x01
-
 /** 渲染系统回调表大小 */
 #define RENDERING_CALLBACK_TABLE_SIZE 0x60
-
 /** 渲染系统安全检查级别 */
 #define RENDERING_SECURITY_CHECK_LEVEL 2
-
 // ============================================================================
 // 函数别名定义
 // ============================================================================
-
 // 系统初始化函数
 #define RenderingSystemInitializer RenderingSystem_Initializer        // 渲染系统初始化器
 #define RenderingSystemConfigurator RenderingSystem_Configurator       // 渲染系统配置器
@@ -485,10 +471,8 @@
 #define RenderingSystemRefiner RenderingSystem_Loader                // 渲染系统精炼器
 #define RenderingSystemPolisher RenderingSystem_AdvancedNumericProcessor46                // 渲染系统抛光器
 #define RenderingSystemFinisher RenderingSystem_CallbackRegister_e7                // 渲染系统完成器
-
 // 函数: void RenderingSystem_CoreValidator(int64_t param_1)
 void RenderingSystem_CoreValidator(int64_t param_1)
-
 {
   (**(code **)(param_1 + 0x60))(0,RenderingSystemInitializer);
   (**(code **)(param_1 + 0x60))(1,RenderingSystemConfigurator);
@@ -1432,19 +1416,11 @@ void RenderingSystem_CoreValidator(int64_t param_1)
   (**(code **)(param_1 + 0x60))(0x3ab,_guard_check_icall);
   (**(code **)(param_1 + 0x60))(0x3ac,&rendering_state_9664_ptr);
   (**(code **)(param_1 + 0x60))(0x3ad,&rendering_state_2576_ptr);
-                    // WARNING: Could not recover jumptable at 0x000180315fda. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x000180315fda. Too many branches
+// WARNING: Treating indirect jump as call
   (**(code **)(param_1 + 0x60))(0x3ae,&rendering_state_2640_ptr);
   return;
 }
-
-
-
-
-
-
-
-
 // 渲染系统高级组件和处理器别名定义
 #define RenderingSystemAdvancedInitializer RenderingSystemAdvancedInitializer    // 渲染系统高级初始化器
 #define RenderingSystemAdvancedConfigurator RenderingSystemAdvancedConfigurator    // 渲染系统高级配置器
@@ -1456,7 +1432,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemAdvancedAnalyzer RenderingSystemAdvancedAnalyzer      // 渲染系统高级分析器
 #define RenderingSystemAdvancedMonitor RenderingSystemAdvancedMonitor       // 渲染系统高级监控器
 #define RenderingSystemAdvancedDebugger RenderingSystemAdvancedDebugger       // 渲染系统高级调试器
-
 // 渲染系统数据流处理别名定义
 #define RenderingSystemDataFlowProcessor RenderingSystemDataFlowProcessor     // 渲染系统数据流处理器
 #define RenderingSystemDataFlowController RenderingSystemDataFlowController    // 渲染系统数据流控制器
@@ -1468,7 +1443,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemDataFlowSerializer RenderingSystemDataFlowSerializer    // 渲染系统数据流序列化器
 #define RenderingSystemDataFlowDeserializer RenderingSystemDataFlowDeserializer  // 渲染系统数据流反序列化器
 #define RenderingSystemDataFlowCompressor RenderingSystemDataFlowCompressor     // 渲染系统数据流压缩器
-
 // 渲染系统内存管理别名定义
 #define RenderingSystemMemoryManager2 RenderingSystemMemoryManager2        // 渲染系统内存管理器2
 #define RenderingSystemMemoryAllocator2 RenderingSystemMemoryAllocator2      // 渲染系统内存分配器2
@@ -1480,7 +1454,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemMemoryCompactor RenderingSystemMemoryCompactor       // 渲染系统内存压缩器
 #define RenderingSystemMemoryExpander RenderingSystemMemoryExpander        // 渲染系统内存扩展器
 #define RenderingSystemMemoryReallocator RenderingSystemMemoryReallocator     // 渲染系统内存重分配器
-
 // 渲染系统线程管理别名定义
 #define RenderingSystemThreadManager2 RenderingSystemThreadManager2         // 渲染系统线程管理器2
 #define RenderingSystemThreadScheduler RenderingSystemThreadScheduler       // 渲染系统线程调度器
@@ -1492,7 +1465,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemThreadCleaner RenderingSystemThreadCleaner         // 渲染系统线程清理器
 #define RenderingSystemThreadInitializer RenderingSystemThreadInitializer     // 渲染系统线程初始化器
 #define RenderingSystemThreadFinalizer RenderingSystemThreadFinalizer       // 渲染系统线程终结器
-
 // 渲染系统渲染管线别名定义
 #define RenderingSystemPipelineManager2 RenderingSystemPipelineManager2       // 渲染系统管线管理器2
 #define RenderingSystemPipelineProcessor RenderingSystemPipelineProcessor      // 渲染系统管线处理器
@@ -1504,7 +1476,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemPipelineDebugger RenderingSystemPipelineDebugger      // 渲染系统管线调试器
 #define RenderingSystemPipelineCleaner RenderingSystemPipelineCleaner       // 渲染系统管线清理器
 #define RenderingSystemPipelineInitializer RenderingSystemPipelineInitializer    // 渲染系统管线初始化器
-
 // 渲染系统纹理管理别名定义
 #define RenderingSystemTextureManager2 RenderingSystemTextureManager2       // 渲染系统纹理管理器2
 #define RenderingSystemTextureProcessor RenderingSystemTextureProcessor     // 渲染系统纹理处理器
@@ -1516,7 +1487,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemTextureCompressor2 RenderingSystemTextureCompressor2    // 渲染系统纹理压缩器2
 #define RenderingSystemTextureDecompressor RenderingSystemTextureDecompressor   // 渲染系统纹理解压器
 #define RenderingSystemTextureCacheManager RenderingSystemTextureCacheManager    // 渲染系统纹理缓存管理器
-
 // 渲染系统着色器管理别名定义
 #define RenderingSystemShaderManager RenderingSystemShaderManager         // 渲染系统着色器管理器
 #define RenderingSystemShaderProcessor RenderingSystemShaderProcessor        // 渲染系统着色器处理器
@@ -1528,7 +1498,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemShaderLinker RenderingSystemShaderLinker           // 渲染系统着色器链接器
 #define RenderingSystemShaderAnalyzer RenderingSystemShaderAnalyzer        // 渲染系统着色器分析器
 #define RenderingSystemShaderDebugger RenderingSystemShaderDebugger        // 渲染系统着色器调试器
-
 // 渲染系统缓冲区管理别名定义
 #define RenderingSystemBufferManager2 RenderingSystemBufferManager2        // 渲染系统缓冲区管理器2
 #define RenderingSystemBufferProcessor RenderingSystemBufferProcessor       // 渲染系统缓冲区处理器
@@ -1540,7 +1509,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemBufferCompressor RenderingSystemBufferCompressor       // 渲染系统缓冲区压缩器
 #define RenderingSystemBufferExpander RenderingSystemBufferExpander        // 渲染系统缓冲区扩展器
 #define RenderingSystemBufferReallocator RenderingSystemBufferReallocator     // 渲染系统缓冲区重分配器
-
 // 渲染系统渲染状态管理别名定义
 #define RenderingSystemStateManager2 RenderingSystemStateManager2         // 渲染系统状态管理器2
 #define RenderingSystemStateProcessor RenderingSystemStateProcessor       // 渲染系统状态处理器
@@ -1552,7 +1520,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemStateCleaner RenderingSystemStateCleaner          // 渲染系统状态清理器
 #define RenderingSystemStateInitializer RenderingSystemStateInitializer      // 渲染系统状态初始化器
 #define RenderingSystemStateFinalizer RenderingSystemStateFinalizer        // 渲染系统状态终结器
-
 // 渲染系统绘制调用管理别名定义
 #define RenderingSystemDrawManager RenderingSystemDrawManager           // 渲染系统绘制管理器
 #define RenderingSystemDrawProcessor RenderingSystemDrawProcessor         // 渲染系统绘制处理器
@@ -1564,7 +1531,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemDrawDebugger RenderingSystemDrawDebugger          // 渲染系统绘制调试器
 #define RenderingSystemDrawCleaner RenderingSystemDrawCleaner           // 渲染系统绘制清理器
 #define RenderingSystemDrawInitializer RenderingSystemDrawInitializer       // 渲染系统绘制初始化器
-
 // 渲染系统帧渲染管理别名定义
 #define RenderingSystemFrameManager2 RenderingSystemFrameManager2         // 渲染系统帧管理器2
 #define RenderingSystemFrameProcessor RenderingSystemFrameProcessor       // 渲染系统帧处理器
@@ -1576,7 +1542,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemFrameDebugger RenderingSystemFrameDebugger          // 渲染系统帧调试器
 #define RenderingSystemFrameCleaner RenderingSystemFrameCleaner           // 渲染系统帧清理器
 #define RenderingSystemFrameInitializer RenderingSystemFrameInitializer       // 渲染系统帧初始化器
-
 // 渲染系统后期处理别名定义
 #define RenderingSystemPostProcessor2 RenderingSystemPostProcessor2        // 渲染系统后期处理器2
 #define RenderingSystemPostProcessorManager RenderingSystemPostProcessorManager  // 渲染系统后期处理管理器
@@ -1588,7 +1553,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemPostProcessorDebugger RenderingSystemPostProcessorDebugger   // 渲染系统后期处理调试器
 #define RenderingSystemPostProcessorCleaner RenderingSystemPostProcessorCleaner   // 渲染系统后期处理清理器
 #define RenderingSystemPostProcessorInitializer RenderingSystemPostProcessorInitializer // 渲染系统后期处理初始化器
-
 // 渲染系统光照引擎别名定义
 #define RenderingSystemLightingEngine2 RenderingSystemLightingEngine2       // 渲染系统光照引擎2
 #define RenderingSystemLightingProcessor RenderingSystemLightingProcessor     // 渲染系统光照处理器
@@ -1600,7 +1564,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemLightingDebugger RenderingSystemLightingDebugger       // 渲染系统光照调试器
 #define RenderingSystemLightingCleaner RenderingSystemLightingCleaner        // 渲染系统光照清理器
 #define RenderingSystemLightingInitializer RenderingSystemLightingInitializer    // 渲染系统光照初始化器
-
 // 渲染系统阴影渲染别名定义
 #define RenderingSystemShadowManager RenderingSystemShadowManager         // 渲染系统阴影管理器
 #define RenderingSystemShadowProcessor RenderingSystemShadowProcessor       // 渲染系统阴影处理器
@@ -1612,7 +1575,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemShadowDebugger RenderingSystemShadowDebugger         // 渲染系统阴影调试器
 #define RenderingSystemShadowCleaner RenderingSystemShadowCleaner          // 渲染系统阴影清理器
 #define RenderingSystemShadowInitializer RenderingSystemShadowInitializer       // 渲染系统阴影初始化器
-
 // 渲染系统效果处理别名定义
 #define RenderingSystemEffectManager RenderingSystemEffectManager          // 渲染系统效果管理器
 #define RenderingSystemEffectProcessor2 RenderingSystemEffectProcessor2       // 渲染系统效果处理器2
@@ -1624,7 +1586,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemEffectDebugger RenderingSystemEffectDebugger         // 渲染系统效果调试器
 #define RenderingSystemEffectCleaner RenderingSystemEffectCleaner          // 渲染系统效果清理器
 #define RenderingSystemEffectInitializer RenderingSystemEffectInitializer      // 渲染系统效果初始化器
-
 // 渲染系统材质处理别名定义
 #define RenderingSystemMaterialManager2 RenderingSystemMaterialManager2       // 渲染系统材质管理器2
 #define RenderingSystemMaterialProcessor2 RenderingSystemMaterialProcessor2     // 渲染系统材质处理器2
@@ -1636,7 +1597,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemMaterialDebugger RenderingSystemMaterialDebugger        // 渲染系统材质调试器
 #define RenderingSystemMaterialCleaner RenderingSystemMaterialCleaner        // 渲染系统材质清理器
 #define RenderingSystemMaterialInitializer RenderingSystemMaterialInitializer    // 渲染系统材质初始化器
-
 // 渲染系统几何体处理别名定义
 #define RenderingSystemGeometryManager RenderingSystemGeometryManager         // 渲染系统几何体管理器
 #define RenderingSystemGeometryProcessor2 RenderingSystemGeometryProcessor2      // 渲染系统几何体处理器2
@@ -1648,7 +1608,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemGeometryDebugger RenderingSystemGeometryDebugger       // 渲染系统几何体调试器
 #define RenderingSystemGeometryCleaner RenderingSystemGeometryCleaner        // 渲染系统几何体清理器
 #define RenderingSystemGeometryInitializer RenderingSystemGeometryInitializer     // 渲染系统几何体初始化器
-
 // 渲染系统动画系统别名定义
 #define RenderingSystemAnimationManager RenderingSystemAnimationManager       // 渲染系统动画管理器
 #define RenderingSystemAnimationProcessor RenderingSystemAnimationProcessor     // 渲染系统动画处理器
@@ -1660,7 +1619,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemAnimationDebugger RenderingSystemAnimationDebugger      // 渲染系统动画调试器
 #define RenderingSystemAnimationCleaner RenderingSystemAnimationCleaner       // 渲染系统动画清理器
 #define RenderingSystemAnimationInitializer RenderingSystemAnimationInitializer   // 渲染系统动画初始化器
-
 // 渲染系统变换处理别名定义
 #define RenderingSystemTransformManager RenderingSystemTransformManager       // 渲染系统变换管理器
 #define RenderingSystemTransformProcessor RenderingSystemTransformProcessor     // 渲染系统变换处理器
@@ -1672,7 +1630,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemTransformDebugger RenderingSystemTransformDebugger       // 渲染系统变换调试器
 #define RenderingSystemTransformCleaner RenderingSystemTransformCleaner       // 渲染系统变换清理器
 #define RenderingSystemTransformInitializer RenderingSystemTransformInitializer   // 渲染系统变换初始化器
-
 // 渲染系统视口管理别名定义
 #define RenderingSystemViewportManager2 RenderingSystemViewportManager2       // 渲染系统视口管理器2
 #define RenderingSystemViewportProcessor RenderingSystemViewportProcessor      // 渲染系统视口处理器
@@ -1684,7 +1641,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemViewportDebugger RenderingSystemViewportDebugger       // 渲染系统视口调试器
 #define RenderingSystemViewportCleaner RenderingSystemViewportCleaner         // 渲染系统视口清理器
 #define RenderingSystemViewportInitializer RenderingSystemViewportInitializer     // 渲染系统视口初始化器
-
 // 渲染系统UI渲染别名定义
 #define RenderingSystemUIManager2 RenderingSystemUIManager2              // 渲染系统UI管理器2
 #define RenderingSystemUIProcessor RenderingSystemUIProcessor             // 渲染系统UI处理器
@@ -1696,7 +1652,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemUIDebugger RenderingSystemUIDebugger              // 渲染系统UI调试器
 #define RenderingSystemUICleaner RenderingSystemUICleaner               // 渲染系统UI清理器
 #define RenderingSystemUIInitializer RenderingSystemUIInitializer          // 渲染系统UI初始化器
-
 // 渲染系统字体渲染别名定义
 #define RenderingSystemFontManager RenderingSystemFontManager            // 渲染系统字体管理器
 #define RenderingSystemFontProcessor RenderingSystemFontProcessor          // 渲染系统字体处理器
@@ -1708,7 +1663,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemFontDebugger RenderingSystemFontDebugger            // 渲染系统字体调试器
 #define RenderingSystemFontCleaner RenderingSystemFontCleaner             // 渲染系统字体清理器
 #define RenderingSystemFontInitializer RenderingSystemFontInitializer         // 渲染系统字体初始化器
-
 // 渲染系统文本处理别名定义
 #define RenderingSystemTextManager RenderingSystemTextManager            // 渲染系统文本管理器
 #define RenderingSystemTextProcessor2 RenderingSystemTextProcessor2          // 渲染系统文本处理器2
@@ -1720,7 +1674,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemTextDebugger RenderingSystemTextDebugger            // 渲染系统文本调试器
 #define RenderingSystemTextCleaner RenderingSystemTextCleaner             // 渲染系统文本清理器
 #define RenderingSystemTextInitializer RenderingSystemTextInitializer         // 渲染系统文本初始化器
-
 // 渲染系统输入处理别名定义
 #define RenderingSystemInputManager RenderingSystemInputManager           // 渲染系统输入管理器
 #define RenderingSystemInputProcessor2 RenderingSystemInputProcessor2       // 渲染系统输入处理器2
@@ -1732,7 +1685,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemInputDebugger RenderingSystemInputDebugger           // 渲染系统输入调试器
 #define RenderingSystemInputCleaner RenderingSystemInputCleaner            // 渲染系统输入清理器
 #define RenderingSystemInputInitializer RenderingSystemInputInitializer       // 渲染系统输入初始化器
-
 // 渲染系统事件分发别名定义
 #define RenderingSystemEventManager RenderingSystemEventManager          // 渲染系统事件管理器
 #define RenderingSystemEventProcessor RenderingSystemEventProcessor        // 渲染系统事件处理器
@@ -1744,7 +1696,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemEventDebugger RenderingSystemEventDebugger          // 渲染系统事件调试器
 #define RenderingSystemEventCleaner RenderingSystemEventCleaner           // 渲染系统事件清理器
 #define RenderingSystemEventInitializer RenderingSystemEventInitializer       // 渲染系统事件初始化器
-
 // 渲染系统音频处理别名定义
 #define RenderingSystemAudioManager RenderingSystemAudioManager           // 渲染系统音频管理器
 #define RenderingSystemAudioProcessor2 RenderingSystemAudioProcessor2       // 渲染系统音频处理器2
@@ -1756,7 +1707,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemAudioDebugger RenderingSystemAudioDebugger           // 渲染系统音频调试器
 #define RenderingSystemAudioCleaner RenderingSystemAudioCleaner            // 渲染系统音频清理器
 #define RenderingSystemAudioInitializer RenderingSystemAudioInitializer        // 渲染系统音频初始化器
-
 // 渲染系统视频播放别名定义
 #define RenderingSystemVideoManager RenderingSystemVideoManager            // 渲染系统视频管理器
 #define RenderingSystemVideoProcessor RenderingSystemVideoProcessor          // 渲染系统视频处理器
@@ -1768,7 +1718,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemVideoDebugger RenderingSystemVideoDebugger           // 渲染系统视频调试器
 #define RenderingSystemVideoCleaner RenderingSystemVideoCleaner            // 渲染系统视频清理器
 #define RenderingSystemVideoInitializer RenderingSystemVideoInitializer         // 渲染系统视频初始化器
-
 // 渲染系统粒子引擎别名定义
 #define RenderingSystemParticleManager RenderingSystemParticleManager         // 渲染系统粒子管理器
 #define RenderingSystemParticleProcessor RenderingSystemParticleProcessor      // 渲染系统粒子处理器
@@ -1780,7 +1729,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemParticleDebugger RenderingSystemParticleDebugger        // 渲染系统粒子调试器
 #define RenderingSystemParticleCleaner RenderingSystemParticleCleaner         // 渲染系统粒子清理器
 #define RenderingSystemParticleInitializer RenderingSystemParticleInitializer      // 渲染系统粒子初始化器
-
 // 渲染系统物理模拟别名定义
 #define RenderingSystemPhysicsManager RenderingSystemPhysicsManager          // 渲染系统物理管理器
 #define RenderingSystemPhysicsProcessor RenderingSystemPhysicsProcessor        // 渲染系统物理处理器
@@ -1792,7 +1740,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemPhysicsDebugger RenderingSystemPhysicsDebugger          // 渲染系统物理调试器
 #define RenderingSystemPhysicsCleaner RenderingSystemPhysicsCleaner           // 渲染系统物理清理器
 #define RenderingSystemPhysicsInitializer RenderingSystemPhysicsInitializer       // 渲染系统物理初始化器
-
 // 渲染系统碰撞检测别名定义
 #define RenderingSystemCollisionManager RenderingSystemCollisionManager        // 渲染系统碰撞管理器
 #define RenderingSystemCollisionProcessor RenderingSystemCollisionProcessor      // 渲染系统碰撞处理器
@@ -1804,7 +1751,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemCollisionDebugger RenderingSystemCollisionDebugger        // 渲染系统碰撞调试器
 #define RenderingSystemCollisionCleaner RenderingSystemCollisionCleaner         // 渲染系统碰撞清理器
 #define RenderingSystemCollisionInitializer RenderingSystemCollisionInitializer      // 渲染系统碰撞初始化器
-
 // 渲染系统网络管理别名定义
 #define RenderingSystemNetworkManager2 RenderingSystemNetworkManager2         // 渲染系统网络管理器2
 #define RenderingSystemNetworkProcessor RenderingSystemNetworkProcessor        // 渲染系统网络处理器
@@ -1816,7 +1762,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemNetworkDebugger RenderingSystemNetworkDebugger          // 渲染系统网络调试器
 #define RenderingSystemNetworkCleaner RenderingSystemNetworkCleaner          // 渲染系统网络清理器
 #define RenderingSystemNetworkInitializer RenderingSystemNetworkInitializer       // 渲染系统网络初始化器
-
 // 渲染系统资源管理别名定义
 #define RenderingSystemResourceManager3 RenderingSystemResourceManager3         // 渲染系统资源管理器3
 #define RenderingSystemResourceProcessor RenderingSystemResourceProcessor        // 渲染系统资源处理器
@@ -1828,7 +1773,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemResourceDebugger RenderingSystemResourceDebugger          // 渲染系统资源调试器
 #define RenderingSystemResourceCleaner RenderingSystemResourceCleaner           // 渲染系统资源清理器
 #define RenderingSystemResourceInitializer RenderingSystemResourceInitializer       // 渲染系统资源初始化器
-
 // 渲染系统着色器编译别名定义
 #define RenderingSystemShaderCompiler3 RenderingSystemShaderCompiler3          // 渲染系统着色器编译器3
 #define RenderingSystemShaderCompilerManager RenderingSystemShaderCompilerManager    // 渲染系统着色器编译管理器
@@ -1840,7 +1784,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemShaderCompilerDebugger RenderingSystemShaderCompilerDebugger     // 渲染系统着色器编译调试器
 #define RenderingSystemShaderCompilerCleaner RenderingSystemShaderCompilerCleaner     // 渲染系统着色器编译清理器
 #define RenderingSystemShaderCompilerInitializer RenderingSystemShaderCompilerInitializer  // 渲染系统着色器编译初始化器
-
 // 渲染系统纹理压缩别名定义
 #define RenderingSystemTextureCompressor3 RenderingSystemTextureCompressor3      // 渲染系统纹理压缩器3
 #define RenderingSystemTextureCompressorManager RenderingSystemTextureCompressorManager // 渲染系统纹理压缩管理器
@@ -1852,7 +1795,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemTextureCompressorDebugger RenderingSystemTextureCompressorDebugger   // 渲染系统纹理压缩调试器
 #define RenderingSystemTextureCompressorCleaner RenderingSystemTextureCompressorCleaner   // 渲染系统纹理压缩清理器
 #define RenderingSystemTextureCompressorInitializer RenderingSystemTextureCompressorInitializer // 渲染系统纹理压缩初始化器
-
 // 渲染系统核心函数别名定义
 #define RenderingSystemCoreProcessor RenderingSystemCoreProcessor           // 渲染系统核心处理器
 #define RenderingSystemCoreManager RenderingSystemCoreManager             // 渲染系统核心管理器
@@ -1864,7 +1806,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemCoreDebugger RenderingSystemCoreDebugger             // 渲染系统核心调试器
 #define RenderingSystemCoreCleaner RenderingSystemCoreCleaner              // 渲染系统核心清理器
 #define RenderingSystemCoreInitializer RenderingSystemCoreInitializer          // 渲染系统核心初始化器
-
 // 渲染系统高级函数别名定义
 #define RenderingSystemAdvancedFunctionProcessor RenderingSystemAdvancedFunctionProcessor // 渲染系统高级函数处理器
 #define RenderingSystemAdvancedFunctionManager RenderingSystemAdvancedFunctionManager   // 渲染系统高级函数管理器
@@ -1876,7 +1817,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemAdvancedFunctionDebugger RenderingSystemAdvancedFunctionDebugger   // 渲染系统高级函数调试器
 #define RenderingSystemAdvancedFunctionCleaner RenderingSystemAdvancedFunctionCleaner     // 渲染系统高级函数清理器
 #define RenderingSystemAdvancedFunctionInitializer RenderingSystemAdvancedFunctionInitializer // 渲染系统高级函数初始化器
-
 // 渲染系统特殊功能别名定义
 #define RenderingSystemSpecialProcessor RenderingSystemSpecialProcessor         // 渲染系统特殊处理器
 #define RenderingSystemSpecialManager RenderingSystemSpecialManager           // 渲染系统特殊管理器
@@ -1888,7 +1828,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemSpecialDebugger RenderingSystemSpecialDebugger          // 渲染系统特殊调试器
 #define RenderingSystemSpecialCleaner RenderingSystemSpecialCleaner           // 渲染系统特殊清理器
 #define RenderingSystemSpecialInitializer RenderingSystemSpecialInitializer       // 渲染系统特殊初始化器
-
 // 渲染系统通用功能别名定义
 #define RenderingSystemGenericProcessor RenderingSystemGenericProcessor         // 渲染系统通用处理器
 #define RenderingSystemGenericManager RenderingSystemGenericManager           // 渲染系统通用管理器
@@ -1900,7 +1839,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemGenericDebugger RenderingSystemGenericDebugger           // 渲染系统通用调试器
 #define RenderingSystemGenericCleaner RenderingSystemGenericCleaner            // 渲染系统通用清理器
 #define RenderingSystemGenericInitializer RenderingSystemGenericInitializer        // 渲染系统通用初始化器
-
 // 渲染系统实用工具别名定义
 #define RenderingSystemUtilityProcessor RenderingSystemUtilityProcessor         // 渲染系统实用工具处理器
 #define RenderingSystemUtilityManager RenderingSystemUtilityManager           // 渲染系统实用工具管理器
@@ -1912,7 +1850,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemUtilityDebugger RenderingSystemUtilityDebugger          // 渲染系统实用工具调试器
 #define RenderingSystemUtilityCleaner RenderingSystemUtilityCleaner           // 渲染系统实用工具清理器
 #define RenderingSystemUtilityInitializer RenderingSystemUtilityInitializer        // 渲染系统实用工具初始化器
-
 // 渲染系统辅助功能别名定义
 #define RenderingSystemHelperProcessor RenderingSystemHelperProcessor           // 渲染系统辅助处理器
 #define RenderingSystemHelperManager RenderingSystemHelperManager             // 渲染系统辅助管理器
@@ -1924,7 +1861,6 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemHelperDebugger RenderingSystemHelperDebugger            // 渲染系统辅助调试器
 #define RenderingSystemHelperCleaner RenderingSystemHelperCleaner             // 渲染系统辅助清理器
 #define RenderingSystemHelperInitializer RenderingSystemHelperInitializer          // 渲染系统辅助初始化器
-
 // 渲染系统系统级功能别名定义
 #define RenderingSystemSystemProcessor RenderingSystemSystemProcessor           // 渲染系统系统处理器
 #define RenderingSystemSystemManager RenderingSystemSystemManager             // 渲染系统系统管理器
@@ -1936,4 +1872,3 @@ void RenderingSystem_CoreValidator(int64_t param_1)
 #define RenderingSystemSystemDebugger RenderingSystemSystemDebugger            // 渲染系统系统调试器
 #define RenderingSystemSystemCleaner RenderingSystemSystemCleaner             // 渲染系统系统清理器
 #define RenderingSystemSystemInitializer RenderingSystemSystemInitializer          // 渲染系统系统初始化器
-

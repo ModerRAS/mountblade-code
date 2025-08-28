@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part307.c - 6 个函数
-
-// 函数: void FUN_180837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,int64_t *param_5)
-void FUN_180837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,int64_t *param_5)
-
+// 函数: void function_837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,int64_t *param_5)
+void function_837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,int64_t *param_5)
 {
   int32_t uVar1;
   int64_t lVar2;
@@ -32,17 +29,16 @@ void FUN_180837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,
   int8_t auVar23 [64];
   int8_t auVar24 [64];
   int8_t auVar25 [64];
-  int8_t auStack_148 [8];
-  int8_t auStack_140 [32];
-  int8_t auStack_108 [8];
+  int8_t stack_array_148 [8];
+  int8_t stack_array_140 [32];
+  int8_t stack_array_108 [8];
   int64_t lStack_100;
   int64_t lStack_f8;
   int64_t lStack_f0;
   int64_t lStack_e8;
-  uint64_t uStack_e0;
-  
-  puVar16 = auStack_108;
-  uStack_e0 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_108;
+  uint64_t local_var_e0;
+  puVar16 = stack_array_108;
+  local_var_e0 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_108;
   iVar17 = (int)param_2 >> 2;
   if (iVar17 != 0) {
     lVar3 = *param_5;
@@ -59,36 +55,36 @@ void FUN_180837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,
     auVar20._16_16_ = auVar18;
     auVar20._0_16_ = auVar9;
     auVar20 = vpaddq_avx2(auVar20,auVar19);
-    puVar16 = auStack_148;
+    puVar16 = stack_array_148;
     auVar23 = ZEXT3264(ui_system_memory_config);
     auVar24 = ZEXT3264(ui_system_config);
     auVar25 = ZEXT3264(ui_system_memory_config);
     do {
-      auStack_140 = auVar20;
-      auVar20 = vpermd_avx2(auVar23._0_32_,auStack_140);
-      auVar19 = vpermd_avx2(SUB6432(ZEXT1664((int8_t  [16])0x0),0),auStack_140);
+      stack_array_140 = auVar20;
+      auVar20 = vpermd_avx2(auVar23._0_32_,stack_array_140);
+      auVar19 = vpermd_avx2(SUB6432(ZEXT1664((int8_t  [16])0x0),0),stack_array_140);
       auVar19 = vpsrld_avx2(auVar19,1);
       auVar4 = vcvtdq2ps_avx(auVar19);
-      auVar22 = vpermd_avx2(auVar24._0_32_,auStack_140);
+      auVar22 = vpermd_avx2(auVar24._0_32_,stack_array_140);
       auVar20 = vpsrld_avx2(auVar20,1);
       auVar5 = vcvtdq2ps_avx(auVar20);
-      auVar19 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_140._4_4_ << 3) * 2);
+      auVar19 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(stack_array_140._4_4_ << 3) * 2);
       auVar20 = vpsrld_avx2(auVar22,1);
       auVar6 = vcvtdq2ps_avx(auVar20);
-      auVar22 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_140._12_4_ << 3) * 2);
-      auVar21 = vpermd_avx2(auVar25._0_32_,auStack_140);
+      auVar22 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(stack_array_140._12_4_ << 3) * 2);
+      auVar21 = vpermd_avx2(auVar25._0_32_,stack_array_140);
       auVar10._8_8_ = lStack_100;
       auVar10._0_8_ = lStack_100;
       auVar10._16_8_ = lStack_100;
       auVar10._24_8_ = lStack_100;
-      auVar20 = vpaddq_avx2(auStack_140,auVar10);
+      auVar20 = vpaddq_avx2(stack_array_140,auVar10);
       auVar21 = vpsrld_avx2(auVar21,1);
       auVar21 = vcvtdq2ps_avx(auVar21);
       auVar10 = vpmovsxwd_avx2(auVar19._0_16_);
       auVar10 = vcvtdq2ps_avx(auVar10);
       auVar19 = vpmovsxwd_avx2(auVar19._16_16_);
       auVar7 = vcvtdq2ps_avx(auVar19);
-      auVar19 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_140._20_4_ << 3) * 2);
+      auVar19 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(stack_array_140._20_4_ << 3) * 2);
       auVar11 = vpmovsxwd_avx2(auVar22._0_16_);
       auVar11 = vcvtdq2ps_avx(auVar11);
       auVar22 = vpmovsxwd_avx2(auVar22._16_16_);
@@ -97,7 +93,7 @@ void FUN_180837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,
       auVar12 = vcvtdq2ps_avx(auVar12);
       auVar19 = vpmovsxwd_avx2(auVar19._16_16_);
       auVar8 = vcvtdq2ps_avx(auVar19);
-      auVar19 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_140._28_4_ << 3) * 2);
+      auVar19 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(stack_array_140._28_4_ << 3) * 2);
       auVar13 = vpmovsxwd_avx2(auVar19._0_16_);
       auVar13 = vcvtdq2ps_avx(auVar13);
       auVar14 = vpmovsxwd_avx2(auVar19._16_16_);
@@ -195,21 +191,14 @@ void FUN_180837990(float *param_1,uint param_2,int64_t param_3,int64_t *param_4,
     *param_4 = *param_4 + *param_5;
     param_1 = param_1 + 8;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   *(uint64_t *)(puVar16 + -8) = 0x180837cc0;
-  SystemSecurityChecker(uStack_e0 ^ (uint64_t)auStack_108);
+  SystemSecurityChecker(local_var_e0 ^ (uint64_t)stack_array_108);
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x000180837fdf)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180837d30(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
-void FUN_180837d30(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
-
+// 函数: void function_837d30(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
+void function_837d30(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -235,12 +224,11 @@ void FUN_180837d30(float *param_1,uint param_2,int64_t param_3,uint *param_4,int
   int8_t auVar22 [32];
   int8_t auVar23 [32];
   int8_t auVar24 [32];
-  
   uVar7 = (uint64_t)param_1 & 0x1f;
   auVar8 = ui_system_memory_config;
   auVar9 = ui_system_memory_config;
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
-                    // WARNING: Read-only address (ram,0x000180980cc0) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980cc0) is written
   for (; (ui_system_memory_config = auVar9, ui_system_memory_config = auVar8, uVar7 != 0 && (param_2 != 0));
       param_2 = param_2 - 1) {
     fVar4 = (float)(int)*(short *)(param_3 + (uint64_t)param_4[1] * 2) * 3.0517578e-05;
@@ -348,29 +336,22 @@ void FUN_180837d30(float *param_1,uint param_2,int64_t param_3,uint *param_4,int
     *(int64_t *)param_4 = auVar17._0_8_;
   }
   for (param_2 = param_2 & 7; param_2 != 0; param_2 = param_2 - 1) {
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
-                    // WARNING: Read-only address (ram,0x000180980cc0) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980cc0) is written
     fVar4 = (float)(int)*(short *)(param_3 + (uint64_t)param_4[1] * 2) * 3.0517578e-05;
     *param_1 = ((float)(int)*(short *)(param_3 + (uint64_t)(param_4[1] + 1) * 2) * 3.0517578e-05 -
                fVar4) * (float)(*param_4 >> 1) * 4.656613e-10 + fVar4;
     *(int64_t *)param_4 = *(int64_t *)param_4 + *param_5;
     param_1 = param_1 + 1;
   }
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
-                    // WARNING: Read-only address (ram,0x000180980cc0) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980cc0) is written
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x000180837fdf)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180837d61(float *param_1,uint64_t param_2,int64_t param_3,uint *param_4)
-void FUN_180837d61(float *param_1,uint64_t param_2,int64_t param_3,uint *param_4)
-
+// 函数: void function_837d61(float *param_1,uint64_t param_2,int64_t param_3,uint *param_4)
+void function_837d61(float *param_1,uint64_t param_2,int64_t param_3,uint *param_4)
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -403,13 +384,12 @@ void FUN_180837d61(float *param_1,uint64_t param_2,int64_t param_3,uint *param_4
   int8_t auVar23 [32];
   int8_t auVar24 [32];
   int8_t auVar25 [32];
-  
   *(uint64_t *)(in_RAX + 8) = unaff_R15;
   uVar7 = (uint64_t)param_1 & 0x1f;
   auVar8 = ui_system_memory_config;
   auVar9 = ui_system_memory_config;
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
-                    // WARNING: Read-only address (ram,0x000180980cc0) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980cc0) is written
   for (; (ui_system_memory_config = auVar8, ui_system_memory_config = auVar9, uVar7 != 0 && (unaff_ESI != 0));
       unaff_ESI = unaff_ESI - 1) {
     fVar4 = (float)(int)*(short *)(param_3 + (uint64_t)param_4[1] * 2) * 3.0517578e-05;
@@ -517,29 +497,22 @@ void FUN_180837d61(float *param_1,uint64_t param_2,int64_t param_3,uint *param_4
     *(int64_t *)unaff_RDI = auVar18._0_8_;
   }
   for (uVar12 = unaff_ESI & 7; uVar12 != 0; uVar12 = uVar12 - 1) {
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
-                    // WARNING: Read-only address (ram,0x000180980cc0) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980cc0) is written
     fVar4 = (float)(int)*(short *)(unaff_R14 + (uint64_t)unaff_RDI[1] * 2) * 3.0517578e-05;
     *param_1 = ((float)(int)*(short *)(unaff_R14 + (uint64_t)(unaff_RDI[1] + 1) * 2) *
                 3.0517578e-05 - fVar4) * (float)(*unaff_RDI >> 1) * 4.656613e-10 + fVar4;
     *(int64_t *)unaff_RDI = *(int64_t *)unaff_RDI + *unaff_R12;
     param_1 = param_1 + 1;
   }
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
-                    // WARNING: Read-only address (ram,0x000180980cc0) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980cc0) is written
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x000180837fdf)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180837e0a(uint64_t param_1)
-void FUN_180837e0a(uint64_t param_1)
-
+// 函数: void function_837e0a(uint64_t param_1)
+void function_837e0a(uint64_t param_1)
 {
   int64_t lVar1;
   float fVar2;
@@ -571,7 +544,6 @@ void FUN_180837e0a(uint64_t param_1)
   int8_t in_ZMM7 [64];
   int8_t auVar19 [32];
   int8_t auVar20 [32];
-  
   auVar6 = ui_system_memory_config;
   lVar1 = in_R11 * 8;
   iVar5 = (int)in_R11;
@@ -663,24 +635,18 @@ void FUN_180837e0a(uint64_t param_1)
   } while (unaff_R15D != 0);
   *(int64_t *)unaff_RDI = auVar13._0_8_;
   for (uVar9 = unaff_ESI & 7; uVar9 != 0; uVar9 = uVar9 - 1) {
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
     fVar2 = (float)(int)*(short *)(unaff_R14 + (uint64_t)unaff_RDI[1] * 2) * unaff_XMM6_Da;
     *unaff_RBX = ((float)(int)*(short *)(unaff_R14 + (uint64_t)(unaff_RDI[1] + 1) * 2) *
                   unaff_XMM6_Da - fVar2) * (float)(*unaff_RDI >> 1) * 4.656613e-10 + fVar2;
     *(int64_t *)unaff_RDI = *(int64_t *)unaff_RDI + *unaff_R12;
     unaff_RBX = unaff_RBX + 1;
   }
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180837fef(void)
-void FUN_180837fef(void)
-
+// 函数: void function_837fef(void)
+void function_837fef(void)
 {
   float fVar1;
   float *unaff_RBX;
@@ -691,7 +657,6 @@ void FUN_180837fef(void)
   int64_t unaff_R14;
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
-  
   for (uVar2 = unaff_ESI & 7; uVar2 != 0; uVar2 = uVar2 - 1) {
     fVar1 = (float)(int)*(short *)(unaff_R14 + (uint64_t)unaff_RDI[1] * 2) * unaff_XMM6_Da;
     *unaff_RBX = ((float)(int)*(short *)(unaff_R14 + (uint64_t)(unaff_RDI[1] + 1) * 2) *
@@ -701,14 +666,8 @@ void FUN_180837fef(void)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180838000(void)
-void FUN_180838000(void)
-
+// 函数: void function_838000(void)
+void function_838000(void)
 {
   float fVar1;
   float *unaff_RBX;
@@ -718,7 +677,6 @@ void FUN_180838000(void)
   int64_t unaff_R14;
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
-  
   do {
     fVar1 = (float)(int)*(short *)(unaff_R14 + (uint64_t)unaff_RDI[1] * 2) * unaff_XMM6_Da;
     *unaff_RBX = ((float)(int)*(short *)(unaff_R14 + (uint64_t)(unaff_RDI[1] + 1) * 2) *
@@ -729,15 +687,9 @@ void FUN_180838000(void)
   } while (unaff_ESI != 0);
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x000180838385)
 // WARNING: Removing unreachable block (ram,0x00018083836b)
 // WARNING: Removing unreachable block (ram,0x000180838344)
 // WARNING: Removing unreachable block (ram,0x00018083837a)
 // WARNING: Removing unreachable block (ram,0x0001808383db)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

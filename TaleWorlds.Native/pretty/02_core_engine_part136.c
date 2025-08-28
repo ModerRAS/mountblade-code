@@ -1,15 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 02_core_engine_part136.c - 1 个函数
-
-// 函数: void FUN_180131dad(void)
-void FUN_180131dad(void)
-
+// 函数: void function_131dad(void)
+void function_131dad(void)
 {
   uint64_t *puVar1;
   int32_t uVar2;
@@ -60,7 +55,6 @@ void FUN_180131dad(void)
   float fStack000000000000003c;
   float fStack00000000000000b0;
   float fStack00000000000000b4;
-  
   *(uint64_t *)(in_RAX + 0x10) = unaff_RBP;
   bVar17 = *(byte *)(unaff_RBX + 8);
   *(uint64_t *)(in_RAX + 0x18) = unaff_RSI;
@@ -408,7 +402,7 @@ void FUN_180131dad(void)
   *(int32_t *)(unaff_RBX + 0x1d0c) = 0;
   *(int32_t *)(unaff_RBX + 0x1cb8) = 0;
   if (*(char *)(unaff_RBX + 0x1d21) != '\0') {
-    FUN_180133110();
+    function_133110();
   }
   if (*(int *)(unaff_RBX + 0x1d28) == 2) {
     if ((*(int *)(unaff_RBX + 0x1d38) == 0) && (*(int *)(unaff_RBX + 0x1d98) == 0)) {
@@ -420,7 +414,7 @@ void FUN_180131dad(void)
     if ((((*(byte *)(unaff_RBX + 8) & 4) != 0) &&
         ((((*(byte *)(unaff_RBX + 0xc) & 4) != 0 && (*(char *)(unaff_RBX + 0x1d06) == '\0')) &&
          (*(char *)(unaff_RBX + 0x1d07) != '\0')))) && (*(int64_t *)(unaff_RBX + 0x1c98) != 0)) {
-      puVar13 = (int32_t *)func_0x000180131890(&stack0x000000b0);
+      puVar13 = (int32_t *)Function_b791fe18(&local_buffer_000000b0);
       uVar10 = *puVar13;
       uVar2 = puVar13[1];
       *(int32_t *)(unaff_RBX + 0x3b4) = uVar10;
@@ -447,7 +441,7 @@ void FUN_180131dad(void)
      ) {
     *(uint64_t *)(lVar18 + 0x3c0) = 0;
   }
-  FUN_180133790();
+  function_133790();
   if (((bVar17 == 0) && (!bVar5)) ||
      ((*(int64_t *)(unaff_RBX + 0x1c98) == 0 ||
       ((*(uint *)(*(int64_t *)(unaff_RBX + 0x1c98) + 0xc) & 0x40000) != 0)))) {
@@ -483,13 +477,13 @@ void FUN_180131dad(void)
             *(int32_t *)(unaff_RBX + 0x1ca0) = 0;
           }
           else {
-            func_0x000180131750(0);
+            Function_8d3390b5(0);
           }
         }
         else if ((*(uint *)(*(int64_t *)
                              (*(int64_t *)(unaff_RBX + 0x1bb8) + -0x28 + (int64_t)iVar11 * 0x30) +
                            0xc) & 0x8000000) == 0) {
-          FUN_18012ee20(iVar11 + -1,CONCAT71((int7)(int3)((uint)iVar11 >> 8),1));
+          function_12ee20(iVar11 + -1,CONCAT71((int7)(int3)((uint)iVar11 >> 8),1));
           lVar18 = SYSTEM_DATA_MANAGER_A;
         }
       }
@@ -579,7 +573,7 @@ LAB_1801327bd:
        (((int)uVar16 != 0 && ((*(uint *)(lVar14 + 0xc) & 0x40000) == 0)))) {
       if ((uVar16 & 1) != 0) {
         if (0.0 <= *(float *)(lVar18 + 0x1498)) {
-          iVar11 = func_0x000180128180(lVar14,*(float *)(lVar18 + 0x1498) -
+          iVar11 = Function_83ef5d71(lVar14,*(float *)(lVar18 + 0x1498) -
                                               *(float *)(lVar18 + 0x18),
                                        *(float *)(lVar18 + 0x90) * 0.8,
                                        *(float *)(lVar18 + 0x94) * 0.8);
@@ -589,7 +583,7 @@ LAB_1801327bd:
           fVar24 = 0.0;
         }
         if (0.0 <= *(float *)(lVar18 + 0x14cc)) {
-          iVar11 = func_0x000180128180();
+          iVar11 = Function_83ef5d71();
           fVar29 = (float)iVar11;
         }
         else {
@@ -603,14 +597,14 @@ LAB_1801327bd:
       }
       if ((uVar16 & 2) != 0) {
         if (0.0 <= *(float *)(lVar18 + 0x149c)) {
-          iVar11 = func_0x000180128180();
+          iVar11 = Function_83ef5d71();
           fVar24 = (float)iVar11;
         }
         else {
           fVar24 = 0.0;
         }
         if (0.0 <= *(float *)(lVar18 + 0x14d0)) {
-          iVar11 = func_0x000180128180();
+          iVar11 = Function_83ef5d71();
           fVar29 = (float)iVar11;
         }
         else {
@@ -624,14 +618,14 @@ LAB_1801327bd:
       }
       if ((uVar16 & 4) != 0) {
         if (0.0 <= *(float *)(lVar18 + 0x14a0)) {
-          iVar11 = func_0x000180128180();
+          iVar11 = Function_83ef5d71();
           fVar24 = (float)iVar11;
         }
         else {
           fVar24 = 0.0;
         }
         if (0.0 <= *(float *)(lVar18 + 0x14d4)) {
-          iVar11 = func_0x000180128180();
+          iVar11 = Function_83ef5d71();
           fVar29 = (float)iVar11;
         }
         else {
@@ -645,14 +639,14 @@ LAB_1801327bd:
       }
       if ((uVar16 & 8) != 0) {
         if (0.0 <= *(float *)(lVar18 + 0x14a4)) {
-          iVar11 = func_0x000180128180();
+          iVar11 = Function_83ef5d71();
           fVar24 = (float)iVar11;
         }
         else {
           fVar24 = 0.0;
         }
         if (0.0 <= *(float *)(lVar18 + 0x14d8)) {
-          iVar11 = func_0x000180128180();
+          iVar11 = Function_83ef5d71();
           fVar29 = (float)iVar11;
         }
         else {
@@ -672,7 +666,7 @@ LAB_1801327bd:
   }
   fVar24 = 0.0;
   if (bVar17 != 0) {
-    fVar24 = (float)FUN_1801333d0(uVar16 & 0xffffffff);
+    fVar24 = (float)function_1333d0(uVar16 & 0xffffffff);
   }
   if (*(int *)(unaff_RBX + 0x1d2c) == -1) {
     if (*(char *)(unaff_RBX + 0x1d21) != '\0') goto LAB_180132ba2;
@@ -728,7 +722,7 @@ LAB_180132c8d:
     *(float *)(lVar14 + 0x11c) = (fVar20 + *(float *)(lVar14 + 0x11c)) - fVar19;
   }
 LAB_180132d15:
-  SystemCore_ConfigLoader(&stack0x000000b0,4,0,0x3dcccccd,0x41200000);
+  SystemCore_ConfigLoader(&local_buffer_000000b0,4,0,0x3dcccccd,0x41200000);
   if ((fStack00000000000000b0 != 0.0) && (*(char *)(lVar14 + 0xac) != '\0')) {
     fVar19 = *(float *)(lVar14 + 0x8c);
     fVar20 = (float)(int)(fStack00000000000000b0 * fVar29 + fVar19);
@@ -852,8 +846,3 @@ LAB_180132de6:
   *(float *)(unaff_RBX + 0x1ccc) = fVar24;
   return;
 }
-
-
-
-
-

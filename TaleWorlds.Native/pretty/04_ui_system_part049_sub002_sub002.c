@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part049_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_180690700(int8_t (*param_1) [32],int param_2,int8_t (*param_3) [32],int param_4,
-void FUN_180690700(int8_t (*param_1) [32],int param_2,int8_t (*param_3) [32],int param_4,
+// 函数: void function_690700(int8_t (*param_1) [32],int param_2,int8_t (*param_3) [32],int param_4,
+void function_690700(int8_t (*param_1) [32],int param_2,int8_t (*param_3) [32],int param_4,
                   int *param_5,int *param_6)
-
 {
   int8_t auVar1 [32];
   int8_t auVar2 [32];
@@ -15,7 +12,6 @@ void FUN_180690700(int8_t (*param_1) [32],int param_2,int8_t (*param_3) [32],int
   int8_t auVar5 [32];
   int8_t auVar6 [32];
   int8_t auVar7 [32];
-  
   auVar5 = ZEXT832(0) << 0x40;
   lVar4 = 0x10;
   auVar6 = auVar5;
@@ -56,15 +52,10 @@ void FUN_180690700(int8_t (*param_1) [32],int param_2,int8_t (*param_3) [32],int
   *param_6 = auVar6._16_4_ + auVar6._0_4_;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
+int function_690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
                  int8_t (*param_5) [32],int param_6,int8_t (*param_7) [32],int param_8,
                  uint param_9,int *param_10)
-
 {
   uint64_t uVar1;
   int8_t auVar2 [32];
@@ -76,7 +67,6 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
   int8_t auVar8 [32];
   int8_t auVar9 [64];
   int8_t auVar10 [64];
-  
   auVar3 = ZEXT832(0) << 0x40;
   auVar9 = ZEXT3264(auVar3);
   auVar10 = ZEXT3264(auVar3);
@@ -432,14 +422,9 @@ int FUN_180690800(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
   *param_10 = auVar5._16_4_ + auVar5._0_4_;
   return auVar4._16_4_ + auVar4._0_4_;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
+int function_691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
                  int8_t (*param_5) [32],int param_6,uint param_7,int *param_8)
-
 {
   uint64_t uVar1;
   int8_t auVar2 [32];
@@ -452,7 +437,6 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
   int8_t auVar9 [32];
   int8_t auVar10 [64];
   int8_t auVar11 [64];
-  
   auVar3 = ZEXT832(0) << 0x40;
   auVar10 = ZEXT3264(auVar3);
   auVar11 = ZEXT3264(auVar3);
@@ -779,12 +763,4 @@ int FUN_180691080(int8_t (*param_1) [32],int param_2,int param_3,int param_4,
   *param_8 = auVar5._16_4_ + auVar5._0_4_;
   return auVar9._16_4_ + auVar9._0_4_;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-

@@ -1,15 +1,11 @@
 #include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: MemoryDebugger */
 #define MemoryDebugger MemoryDebugger
-
-
 #include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 02_core_engine_part253.c - 核心引擎模块第253部分
 // 包含20个函数，主要负责字符串比较、内存管理、数据结构操作和系统初始化
-
 /**
  * 三路快速排序的分区函数
  * 对三个指针指向的元素进行比较和交换
@@ -18,7 +14,6 @@
  * @param param_3 右边界指针
  */
 void quick_sort_three_way_partition(uint64_t *param_1, int64_t *param_2, int64_t *param_3)
-
 {
   byte temp_byte;
   int64_t offset;
@@ -31,29 +26,26 @@ void quick_sort_three_way_partition(uint64_t *param_1, int64_t *param_2, int64_t
   int64_t cmp_result;
   int64_t left_value;
   int64_t *current;
-  
-  // 计算中点位置
+// 计算中点位置
   current = param_2 + ((int64_t)param_3 - (int64_t)param_2 >> 4);
   offset = (int64_t)param_3 + (-8 - (int64_t)param_2) >> 3;
-  
   if (offset < 0x29) {
     middle = param_3 + -1;
     pivot = param_2;
   }
   else {
     offset = offset + 1 >> 3;
-    // 递归排序三个分区
+// 递归排序三个分区
     quick_sort_three_way_partition(param_2, param_2 + offset, param_2 + offset * 2);
     quick_sort_three_way_partition(current + -offset, current, current + offset);
     middle = param_3 + (-1 - offset);
     quick_sort_three_way_partition(param_3 + offset * -2 + -1, middle, param_3 + -1);
     pivot = param_2 + offset;
   }
-  // 执行三路分区
+// 执行三路分区
   quick_sort_three_way_partition(pivot, current, middle);
   pivot = current + 1;
-  
-  // 左分区处理
+// 左分区处理
   if (param_2 < current) {
     cmp_result = *current;
     do {
@@ -248,9 +240,6 @@ LAB_180219bd7:
     plVar5 = plVar5 + 1;
   } while( true );
 }
-
-
-
 /**
  * 批量复制和清理数据结构
  * @param param_1 源数据起始地址
@@ -259,38 +248,29 @@ LAB_180219bd7:
  * @return 返回处理后的目标地址
  */
 int64_t batch_copy_and_cleanup(int64_t param_1, int64_t param_2, int64_t param_3)
-
 {
   uint string_length;
   int64_t *data_ptr;
   uint64_t buffer_size;
   int64_t item_count;
-  
   item_count = (param_2 - param_1) / 0x28;  // 每个结构体40字节
-  
   if (0 < item_count) {
     data_ptr = (int64_t *)(param_1 + 8);
     param_1 = param_3 - param_1;
-    
     do {
       string_length = *(uint *)(data_ptr + 1);
       buffer_size = (uint64_t)string_length;
-      
       if (*data_ptr != 0) {
         release_memory_buffer(param_3, buffer_size);
       }
-      
       if (string_length != 0) {
-        // 复制字符串数据
+// 复制字符串数据
         memcpy(*(uint64_t *)(param_1 + (int64_t)data_ptr), *data_ptr, buffer_size);
       }
-      
       *(int32_t *)(param_1 + 8 + (int64_t)data_ptr) = 0;
-      
       if (*(int64_t *)(param_1 + (int64_t)data_ptr) != 0) {
         *(int8_t *)(buffer_size + *(int64_t *)(param_1 + (int64_t)data_ptr)) = 0;
       }
-      
       item_count = item_count + -1;
       *(int32_t *)(param_1 + 0x14 + (int64_t)data_ptr) = *(int32_t *)((int64_t)data_ptr + 0x14);
       param_3 = param_3 + 0x28;
@@ -300,9 +280,6 @@ int64_t batch_copy_and_cleanup(int64_t param_1, int64_t param_2, int64_t param_3
   }
   return param_3;
 }
-
-
-
 /**
  * 反向批量复制和清理数据结构
  * @param param_1 源数据起始地址
@@ -311,14 +288,12 @@ int64_t batch_copy_and_cleanup(int64_t param_1, int64_t param_2, int64_t param_3
  * @return 返回处理后的目标地址
  */
 int64_t reverse_batch_copy_and_cleanup(int64_t param_1, uint64_t param_2, int64_t param_3)
-
 {
   uint uVar1;
   int64_t *plVar2;
   int64_t unaff_RBP;
   uint64_t uVar3;
   int64_t unaff_R14;
-  
   plVar2 = (int64_t *)(param_1 + 8);
   param_3 = param_3 - param_1;
   do {
@@ -328,7 +303,7 @@ int64_t reverse_batch_copy_and_cleanup(int64_t param_1, uint64_t param_2, int64_
       CoreMemoryPoolProcessor(unaff_RBP,uVar3);
     }
     if (uVar1 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy(*(uint64_t *)(param_3 + (int64_t)plVar2),*plVar2,uVar3);
     }
     *(int32_t *)(param_3 + 8 + (int64_t)plVar2) = 0;
@@ -343,22 +318,13 @@ int64_t reverse_batch_copy_and_cleanup(int64_t param_1, uint64_t param_2, int64_
   } while (0 < unaff_R14);
   return unaff_RBP;
 }
-
-
-
-
-
 /**
  * 空函数 - 可能是占位符或调试用
  */
 void empty_function_placeholder(void)
-
 {
   return;
 }
-
-
-
 /**
  * 数据块移动函数
  * @param param_1 源起始地址
@@ -367,16 +333,13 @@ void empty_function_placeholder(void)
  * @return 返回处理后的目标地址
  */
 int64_t move_data_block(int64_t param_1, int64_t param_2, int64_t param_3)
-
 {
   int64_t offset_diff;
   int64_t target_offset;
   int64_t source_offset;
-  
   if (param_1 != param_2) {
     source_offset = param_1 - param_3;
     target_offset = param_3 - param_1;
-    
     do {
       release_data_structure(param_3, param_1);
       offset_diff = param_1 + target_offset;
@@ -387,11 +350,6 @@ int64_t move_data_block(int64_t param_1, int64_t param_2, int64_t param_3)
   }
   return param_3;
 }
-
-
-
-
-
 /**
  * 堆数据结构调整函数
  * @param param_1 堆数据结构指针
@@ -400,7 +358,6 @@ int64_t move_data_block(int64_t param_1, int64_t param_2, int64_t param_3)
  * @param param_4 新元素指针
  */
 void adjust_heap_structure(int64_t param_1, int64_t param_2, uint64_t param_3, int64_t *param_4)
-
 {
   byte bVar1;
   int64_t lVar2;
@@ -410,7 +367,6 @@ void adjust_heap_structure(int64_t param_1, int64_t param_2, uint64_t param_3, i
   int64_t lVar6;
   int64_t lVar7;
   int64_t lVar8;
-  
   lVar6 = (int64_t)(param_3 - 1) >> 1;
   lVar5 = param_2;
   lVar8 = param_2;
@@ -472,22 +428,16 @@ LAB_180219fcf:
   }
   return;
 }
-
-
-
-
-
 /**
  * 初始化数据结构
  * @param param_1 数据结构指针
  */
 void initialize_data_structure(uint64_t *param_1)
-
 {
-  FUN_180211720(param_1 + 4);
+  function_211720(param_1 + 4);
   *param_1 = &system_data_buffer_ptr;
   if (param_1[1] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
   param_1[1] = 0;
@@ -495,11 +445,6 @@ void initialize_data_structure(uint64_t *param_1)
   *param_1 = &system_state_ptr;
   return;
 }
-
-
-
-
-
 /**
  * 比较并交换三个元素
  * 对三个元素进行比较并根据比较结果进行排序
@@ -508,7 +453,6 @@ void initialize_data_structure(uint64_t *param_1)
  * @param param_3 第三个元素指针
  */
 void compare_and_swap_three_elements(int64_t *param_1, int64_t *param_2, int64_t *param_3)
-
 {
   byte char_diff;
   int64_t element1;
@@ -517,7 +461,6 @@ void compare_and_swap_three_elements(int64_t *param_1, int64_t *param_2, int64_t
   uint char_val2;
   int64_t str_diff;
   int64_t element2;
-  
   element1 = *param_1;
   element2 = *param_2;
   if (*(int *)(element1 + 0x10) != 0) {
@@ -579,9 +522,6 @@ void compare_and_swap_three_elements(int64_t *param_1, int64_t *param_2, int64_t
   }
   return;
 }
-
-
-
 /**
  * 分配并初始化内存
  * @param param_1 内存指针
@@ -591,32 +531,23 @@ void compare_and_swap_three_elements(int64_t *param_1, int64_t *param_2, int64_t
  * @return 返回分配的内存指针
  */
 uint64_t allocate_and_initialize_memory(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
-
 {
   uint64_t stack_cookie;
-  
   stack_cookie = 0xfffffffffffffffe;
-  FUN_180048980();
-  FUN_18006b6f0();
-  FUN_1801570c0(param_1);
+  function_048980();
+  function_06b6f0();
+  function_1570c0(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1, 0x2a0, param_3, param_4, stack_cookie);
   }
   return param_1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * 处理配置文件
  * @param param_1 配置处理上下文
  */
 void process_configuration_file(int64_t param_1)
-
 {
   byte stream_state;
   code *exception_handler;
@@ -645,18 +576,17 @@ void process_configuration_file(int64_t param_1)
   char line_buffer [1024];
   int8_t temp_buffer2 [512];
   uint64_t stack_cookie2;
-  
   stack_cookie1 = 0xfffffffffffffffe;
   stack_cookie2 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
-  FUN_180217c40(param_1 + 0x260);
-  FUN_1801596c0();
+  function_217c40(param_1 + 0x260);
+  function_1596c0();
   SystemCore_EncryptionEngine(temp_buffer, stack_buffer2);
-  FUN_1800c4720(stream_handle);
+  function_0c4720(stream_handle);
   default_ptr = &system_buffer_ptr;
   if (file_ptr != (void *)0x0) {
     default_ptr = file_ptr;
   }
-  line_length = FUN_1800c4800(config_buffer, default_ptr, 1);
+  line_length = function_0c4800(config_buffer, default_ptr, 1);
   if (line_length == 0) {
     _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
               ((int64_t)stream_handle + (int64_t)*(int *)(stream_handle[0] + 4), 2);
@@ -712,7 +642,7 @@ void process_configuration_file(int64_t param_1)
             line_length = line_length + 1;
           } while (line_length < 7);
           if ((config_name_length != 0xc) || (compare_result = strcmp(config_name, &memory_allocator_3472_ptr), compare_result != 0)) {
-            FUN_180217f60(param_1 + 0x260, &config_ptr);
+            function_217f60(param_1 + 0x260, &config_ptr);
           }
         }
 LAB_18021a863:
@@ -720,24 +650,18 @@ LAB_18021a863:
       }
       stream_state = stream_flags[*(int *)(stream_handle[0] + 4)];
     }
-    line_length = FUN_1800a19c0(config_buffer);
+    line_length = function_0a19c0(config_buffer);
     if (line_length == 0) {
       _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
                 ((int64_t)stream_handle + (int64_t)*(int *)(stream_handle[0] + 4), 2);
     }
   }
-  FUN_180217db0(param_1 + 0x260);
+  function_217db0(param_1 + 0x260);
   allocated_buffer = CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x58, 8, 3);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(allocated_buffer, 0, 0x58);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * 处理资源文件
  * @param param_1 资源管理器上下文
@@ -746,7 +670,6 @@ LAB_18021a863:
  * @param param_4 参数4
  */
 void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
-
 {
   uint64_t entry_count;
   int64_t file_handle;
@@ -777,9 +700,8 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
   uint64_t stack_cookie;
   int64_t temp_long2;
   uint64_t stack_cookie2;
-  
   stack_cookie2 = 0xfffffffffffffffe;
-  FUN_1801597a0(param_1, &cleanup_ptr, param_3, param_4, 0);
+  function_1597a0(param_1, &cleanup_ptr, param_3, param_4, 0);
   stack_cookie = 0;
   temp_long2 = 0;
   default_ptr = &system_buffer_ptr;
@@ -789,7 +711,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
   alloc_result = SystemCore_Validator(&stack_cookie, default_ptr, &processed_var_4880_ptr);
   file_handle = temp_long2;
   if (temp_long2 == 0) {
-    file_handle = FUN_1801595d0(alloc_result, &string_ptr);
+    file_handle = function_1595d0(alloc_result, &string_ptr);
     string_size = buffer_size2 + 0x13;
     CoreMemoryPoolProcessor(&string_ptr, string_size);
     header_ptr = (int32_t *)((uint64_t)buffer_size2 + data_offset);
@@ -806,7 +728,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
     SystemCore_ResourceManager0(&processed_var_5040_ptr, default_ptr);
     string_ptr = &system_data_buffer_ptr;
     if (data_offset != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager();
     }
     data_offset = 0;
@@ -845,7 +767,7 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
         data_ptr = data_ptr + 1;
         if (string_size != 0) {
           file_data = data_ptr;
-          FUN_180628f30(&temp_data_ptr, data_ptr, string_size);
+          function_628f30(&temp_data_ptr, data_ptr, string_size);
           data_ptr = (uint *)((int64_t)data_ptr + (uint64_t)string_size);
         }
         entry_data = *(uint64_t *)data_ptr;
@@ -858,11 +780,11 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
           *(uint64_t *)(current_entry + 0x20) = entry_data;
         }
         else {
-          FUN_1802195b0(param_1 + 0x280, &temp_data_ptr);
+          function_2195b0(param_1 + 0x280, &temp_data_ptr);
         }
         temp_data_ptr = &system_data_buffer_ptr;
         if (temp_long != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngine_MemoryPoolManager();
         }
         temp_long = 0;
@@ -871,22 +793,19 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
         entry_count = entry_count - 1;
       } while (entry_count != 0);
     }
-    FUN_1802187b0(param_1 + 0x280);
+    function_2187b0(param_1 + 0x280);
     if (((char)file_mode == '\0') && (buffer_size != 0)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager();
     }
   }
   cleanup_ptr = &system_data_buffer_ptr;
   if (file_ptr != (void *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
   return;
 }
-
-
-
 /**
  * 获取数据结构指针
  * @param param_1 数据结构容器
@@ -894,10 +813,8 @@ void process_resource_file(int64_t param_1, uint64_t param_2, uint64_t param_3, 
  * @return 返回输出参数指针
  */
 int64_t * get_data_structure_pointer(int64_t param_1, int64_t *param_2)
-
 {
   int64_t *data_ptr;
-  
   data_ptr = *(int64_t **)(param_1 + 0x1e8);
   *param_2 = (int64_t)data_ptr;
   if (data_ptr != (int64_t *)0x0) {
@@ -905,11 +822,7 @@ int64_t * get_data_structure_pointer(int64_t param_1, int64_t *param_2)
   }
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 在数据集合中查找元素索引
  * @param param_1 数据集合指针
@@ -917,7 +830,6 @@ int64_t * get_data_structure_pointer(int64_t param_1, int64_t *param_2)
  * @return 返回找到的索引，未找到返回-1
  */
 int find_element_index_in_collection(int64_t param_1, int64_t param_2)
-
 {
   byte *search_char;
   int search_length;
@@ -929,8 +841,7 @@ int find_element_index_in_collection(int64_t param_1, int64_t param_2)
   int current_index;
   int64_t string_diff;
   int64_t *table_entry;
-  
-  cache_result = FUN_18020fa10(*(uint64_t *)(param_1 + 0x1f8));
+  cache_result = function_20fa10(*(uint64_t *)(param_1 + 0x1f8));
   if (cache_result != 0) {
     return *(int *)(cache_result + 0x54);
   }
@@ -971,11 +882,7 @@ LAB_18021ae8e:
   SystemConfigurationManager(system_message_context, 0, 0x1000000000000, 3, &processed_var_4496_ptr, error_handler);
   return -1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 在指定范围内查找元素索引
  * @param param_1 范围大小参数
@@ -985,7 +892,6 @@ LAB_18021ae8e:
  * @return 返回找到的索引，未找到返回-1
  */
 int find_element_index_in_range(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
-
 {
   byte *search_char;
   int search_length;
@@ -999,7 +905,6 @@ int find_element_index_in_range(int64_t param_1, uint64_t param_2, uint64_t para
   int64_t *range_entry;
   int64_t entry_count;
   void *error_handler;
-  
   current_index = 0;
   range_length = (int)(SUB168(SEXT816(size_calc) * SEXT816(param_1), 8) >> 2) -
           (SUB164(SEXT816(size_calc) * SEXT816(param_1), 0xc) >> 0x1f);
@@ -1038,25 +943,16 @@ LAB_18021ae8e:
   SystemConfigurationManager(system_message_context, 0, 0x1000000000000, 3, &processed_var_4496_ptr);
   return -1;
 }
-
-
-
 /**
  * 获取寄存器值
  * @return 返回EBX寄存器的值
  */
 int32_t get_register_value(void)
-
 {
   int32_t register_value;
-  
   return register_value;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 在链表中查找元素索引
  * @param param_1 链表头指针
@@ -1064,7 +960,6 @@ int32_t get_register_value(void)
  * @return 返回找到的索引，未找到返回-1
  */
 int find_element_index_in_linked_list(int64_t param_1, int64_t param_2)
-
 {
   byte *search_char;
   int search_length;
@@ -1076,7 +971,6 @@ int find_element_index_in_linked_list(int64_t param_1, int64_t param_2)
   int64_t string_diff;
   int64_t *list_entry;
   int64_t entry_count;
-  
   current_index = 0;
   search_length = (int)((*(int64_t *)(param_1 + 0x288) - *(int64_t *)(param_1 + 0x280)) / 0x28);
   if (0 < search_length) {
@@ -1114,95 +1008,58 @@ LAB_18021af9e:
   SystemConfigurationManager(system_message_context, 0, 0x1000000000000, 3, &processed_var_4680_ptr, error_handler);
   return -1;
 }
-
-
-
-
-
 /**
  * 初始化系统模块1
  * 初始化系统的第一个模块
  */
 void initialize_system_module1(void)
-
 {
-  FUN_1800f0e70();
-                    // WARNING: Subroutine does not return
+  function_0f0e70();
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-
 /**
  * 初始化系统模块2
  * 初始化系统的第二个模块
  */
 void initialize_system_module2(void)
-
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-
 /**
  * 初始化系统模块3
  * 初始化系统的第三个模块
  */
 void initialize_system_module3(void)
-
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-
 /**
  * 初始化系统模块4
  * 初始化系统的第四个模块
  */
 void initialize_system_module4(void)
-
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-
 /**
  * 初始化系统模块5
  * 初始化系统的第五个模块
  */
 void initialize_system_module5(void)
-
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * 初始化消息处理系统
  * 初始化消息处理系统并设置消息队列
  */
 void initialize_message_system(void)
-
 {
   int32_t message_flags;
   int64_t queue_start;
@@ -1218,7 +1075,6 @@ void initialize_message_system(void)
   int8_t stack_buffer2 [32];
   uint64_t stack_cookie;
   uint64_t security_cookie;
-  
   stack_cookie = 0xfffffffffffffffe;
   security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
   queue_size = 0;
@@ -1255,46 +1111,28 @@ void initialize_message_system(void)
     message_count = 0xe;
     UtilitiesSystem_FileHandler(queue_start, stack_buffer2, &message_ptr);
     message_ptr = &system_data_buffer_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(message_handler);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer1);
 }
-
-
-
-
-
 /**
  * 初始化系统模块6
  * 初始化系统的第六个模块
  */
 void initialize_system_module6(void)
-
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-
 /**
  * 初始化系统模块7
  * 初始化系统的第七个模块
  */
 void initialize_system_module7(void)
-
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

@@ -1,19 +1,17 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 /**
  * 核心引擎模块第131部分
- * 
+ *
  * 本文件包含核心引擎的碰撞检测、空间查询和对象管理相关函数
  * 属于核心引擎模块(02)的空间管理和碰撞检测子系统
- * 
+ *
  * 主要功能：
  * - 对象碰撞检测和响应
  * - 空间分区和查询优化
  * - 对象属性的复制和更新
  * - 渲染状态的管理和优化
  */
-
 // 文件信息：
 // - 模块：02 (核心引擎)
 // - 子模块：131
@@ -21,18 +19,16 @@
 // - 包含函数数量：5个
 // - 创建日期：2025-08-28
 // - 最后更新：2025-08-28
-// 
 // 本文件作为核心引擎模块的空间管理组件，提供高效的碰撞检测和空间查询功能
-
 /**
  * 复制对象属性数据
- * 
+ *
  * 从源对象复制位置数据到目标对象
  * 用于同步对象间的变换信息
- * 
+ *
  * @param param_1 目标对象指针，用于接收复制的数据
  * @param param_2 源对象指针，提供要复制的数据
- * 
+ *
  * 注意：此函数简化实现，仅复制基本的变换数据
  */
 void copy_object_properties(uint64_t *param_1, int64_t param_2)
@@ -40,17 +36,16 @@ void copy_object_properties(uint64_t *param_1, int64_t param_2)
     *param_1 = *(uint64_t *)(param_2 + 0x40);
     return;
 }
-
 /**
  * 对象碰撞检测和处理
- * 
+ *
  * 检测两个对象之间的碰撞，并进行相应的处理
  * 包括边界框检测、碰撞响应和属性更新
- * 
+ *
  * @param param_1 第一个对象的指针
  * @param param_2 第二个对象的指针
  * @return 碰撞检测结果，1表示发生碰撞，0表示未碰撞
- * 
+ *
  * 注意：此函数简化实现，仅包含基本的碰撞检测逻辑
  */
 uint64_t process_object_collision(int64_t param_1, int32_t *param_2)
@@ -75,7 +70,6 @@ uint64_t process_object_collision(int64_t param_1, int32_t *param_2)
     float fStack_34;
     float fStack_30;
     float fStack_2c;
-    
     lVar5 = SYSTEM_DATA_MANAGER_A;
     if ((((param_2[1] & 0x400) != 0) && (puVar3 = *(int32_t **)(param_1 + 0x28), puVar3 != param_2)
         ) && (*(char *)((int64_t)param_2 + 0x77) == '\0')) {
@@ -85,7 +79,7 @@ uint64_t process_object_collision(int64_t param_1, int32_t *param_2)
         if ((((float)param_2[2] <= fVar1) && ((float)param_2[3] <= fVar11)) &&
            ((fVar12 <= (float)param_2[2] + (float)param_2[4] &&
             ((fVar11 + *(float *)(param_1 + 0x4c) <= (float)param_2[3] + (float)param_2[5] &&
-             (cVar6 = func_0x00018012fb90(), cVar6 == '\0')))))) {
+             (cVar6 = Function_ff23068c(), cVar6 == '\0')))))) {
             uVar8 = 0;
             uVar7 = uVar8;
             if (0 < *(int *)(lVar5 + 0x1aa0)) {
@@ -105,7 +99,7 @@ uint64_t process_object_collision(int64_t param_1, int32_t *param_2)
                         fStack_48 = fVar1;
                         fStack_44 = fVar11;
                         fStack_40 = fVar12;
-                        cVar6 = func_0x00018010e5e0(&fStack_38, &fStack_48);
+                        cVar6 = Function_16072f49(&fStack_38, &fStack_48);
                         if (cVar6 != '\0') {
                             return 0;
                         }
@@ -131,22 +125,21 @@ uint64_t process_object_collision(int64_t param_1, int32_t *param_2)
             *(int32_t **)(param_1 + 0x28) = param_2;
             *(int32_t *)(param_1 + 0x30) = *param_2;
             *(bool *)(param_1 + 0xae) = *(int64_t *)(param_2 + 0x1e) == param_1;
-            FUN_18012d230(param_1);
+            GenericFunction_18012d230(param_1);
             return 1;
         }
     }
     return 0;
 }
-
 /**
  * 空间查询和对象搜索
- * 
+ *
  * 在指定区域内搜索符合条件的对象
  * 使用空间分区技术提高查询效率
- * 
+ *
  * @param param_1 查询参数，包含位置和范围信息
  * @return 找到的对象指针，未找到时返回0
- * 
+ *
  * 注意：此函数简化实现，仅包含基本的空间查询逻辑
  */
 int64_t find_object_in_space(uint64_t param_1)
@@ -159,7 +152,6 @@ int64_t find_object_in_space(uint64_t param_1)
     int64_t lVar6;
     float fStack_18;
     float fStack_14;
-    
     lVar2 = 0;
     fStack_14 = (float)((uint64_t)param_1 >> 0x20);
     fStack_18 = (float)param_1;
@@ -234,13 +226,12 @@ int64_t find_object_in_space(uint64_t param_1)
     }
     return lVar2;
 }
-
 /**
  * 渲染状态更新和优化
- * 
+ *
  * 更新所有对象的渲染状态，优化渲染性能
  * 包括可见性检测、LOD选择和渲染队列管理
- * 
+ *
  * 注意：此函数简化实现，仅包含基本的渲染状态管理逻辑
  */
 void update_render_states(void)
@@ -264,13 +255,12 @@ void update_render_states(void)
     uint uVar17;
     float fVar18;
     float fVar19;
-    uint64_t uStackX_8;
-    uint64_t uStackX_10;
+    uint64_t stack_special_x_8;
+    uint64_t stack_special_x_10;
     float fStack_78;
     float fStack_74;
     float fStack_70;
     float fStack_6c;
-    
     lVar5 = SYSTEM_DATA_MANAGER_A;
     uVar10 = 0;
     uVar9 = uVar10;
@@ -294,19 +284,19 @@ void update_render_states(void)
             uVar12 = (uint64_t)uVar17;
         } while ((int)uVar17 < *(int *)(lVar5 + 0x1c68));
     }
-    uStackX_10 = *(uint64_t *)(lVar5 + 0x10);
-    uStackX_8 = 0;
+    stack_special_x_10 = *(uint64_t *)(lVar5 + 0x10);
+    stack_special_x_8 = 0;
     lVar2 = **(int64_t **)(lVar5 + 0x1c70);
     if ((*(uint *)(lVar5 + 0x19e8) & 0x400) != 0) {
         if (*(char *)(lVar2 + 0x77) == '\0') {
-            puVar8 = (uint64_t *)(**(code **)(lVar5 + 0x1560))(&uStackX_8, lVar2);
-            uStackX_8 = *puVar8;
+            puVar8 = (uint64_t *)(**(code **)(lVar5 + 0x1560))(&stack_special_x_8, lVar2);
+            stack_special_x_8 = *puVar8;
         }
         else {
-            uStackX_8 = *(uint64_t *)(lVar2 + 8);
+            stack_special_x_8 = *(uint64_t *)(lVar2 + 8);
         }
     }
-    FUN_180130830(0, 0x11111111, &uStackX_8, &uStackX_10, 0x400);
+    GenericFunction_180130830(0, 0x11111111, &stack_special_x_8, &stack_special_x_10, 0x400);
     *(uint64_t *)(lVar5 + 0x1c78) = 0;
     *(uint64_t *)(lVar5 + 0x1c80) = 0;
     uVar9 = uVar10;
@@ -346,13 +336,13 @@ void update_render_states(void)
             if ((*(uint *)(lVar5 + 0x19e8) & 0x400) != 0) {
                 if ((*(char *)(lVar11 + 0x77) == '\0') && (bVar4)) {
                     if (*(char *)(lVar11 + 0x49) != '\0') {
-                        puVar8 = (uint64_t *)(**(code **)(lVar5 + 0x1560))(&uStackX_8, lVar11);
+                        puVar8 = (uint64_t *)(**(code **)(lVar5 + 0x1560))(&stack_special_x_8, lVar11);
                         uVar1 = *puVar8;
                         *(uint64_t *)(lVar11 + 0xd8) = uVar1;
                         *(uint64_t *)(lVar11 + 8) = uVar1;
                     }
                     if (*(char *)(lVar11 + 0x4a) != '\0') {
-                        puVar8 = (uint64_t *)(**(code **)(lVar5 + 0x1570))(&uStackX_10, lVar11);
+                        puVar8 = (uint64_t *)(**(code **)(lVar5 + 0x1570))(&stack_special_x_10, lVar11);
                         uVar1 = *puVar8;
                         *(uint64_t *)(lVar11 + 0xe0) = uVar1;
                         *(uint64_t *)(lVar11 + 0x10) = uVar1;
@@ -362,7 +352,7 @@ void update_render_states(void)
                 fStack_74 = *(float *)(lVar11 + 0xc);
                 fStack_70 = fStack_78 + *(float *)(lVar11 + 0x10);
                 fStack_6c = fStack_74 + *(float *)(lVar11 + 0x14);
-                uVar7 = FUN_180130ec0(&fStack_78);
+                uVar7 = GenericFunction_180130ec0(&fStack_78);
                 *(int16_t *)(lVar11 + 0x74) = uVar7;
             }
             *(int32_t *)(lVar11 + 0x6c) = 0x3f800000;
@@ -435,7 +425,7 @@ void update_render_states(void)
                             iVar14 = (int)uVar15;
                             lVar3 = *(int64_t *)(uVar9 + *(int64_t *)(lVar16 + 0x1aa8));
                             if (*(int64_t *)(lVar3 + 0x28) == lVar11) {
-                                func_0x000180124d50(lVar3, fVar18 / fVar19);
+                                Function_fc3a89e9(lVar3, fVar18 / fVar19);
                             }
                             uVar9 = uVar9 + 8;
                             uVar15 = (uint64_t)(iVar14 + 1U);
@@ -443,7 +433,7 @@ void update_render_states(void)
                     }
                 }
                 else {
-                    func_0x000180124d50(*(int64_t *)(lVar11 + 0x78), fVar18 / fVar19);
+                    Function_fc3a89e9(*(int64_t *)(lVar11 + 0x78), fVar18 / fVar19);
                 }
             }
             *(float *)(lVar11 + 0x18) = fVar18;
@@ -457,7 +447,7 @@ void update_render_states(void)
     }
     if ((*(uint *)(lVar5 + 0xc) & 0x800) == 0) {
 LAB_180130765:
-        uVar9 = FUN_18012fe00(*(uint64_t *)(lVar5 + 0x118));
+        uVar9 = GenericFunction_18012fe00(*(uint64_t *)(lVar5 + 0x118));
 LAB_180130774:
         uVar12 = uVar9;
         if (uVar9 == 0) goto LAB_18013078e;
@@ -518,16 +508,15 @@ LAB_180130808:
     }
     return;
 }
-
 /**
  * 对象属性批量更新
- * 
+ *
  * 批量更新多个对象的属性，包括位置、旋转和缩放
  * 优化大量对象更新的性能
- * 
+ *
  * @param in_RAX 对象数组指针
  * @param unaff_RSI 对象数量和更新标志
- * 
+ *
  * 注意：此函数简化实现，仅包含基本的批量更新逻辑
  */
 void batch_update_object_properties(uint64_t *in_RAX, uint64_t unaff_RSI)
@@ -578,15 +567,14 @@ void batch_update_object_properties(uint64_t *in_RAX, uint64_t unaff_RSI)
     float fStack0000000000000034;
     float fStack0000000000000038;
     float fStack000000000000003c;
-    int32_t in_stack_00000040;
-    int32_t in_stack_00000048;
-    int32_t in_stack_00000060;
-    int32_t in_stack_00000068;
-    int32_t in_stack_00000070;
-    int32_t in_stack_00000078;
-    uint64_t in_stack_000000b0;
-    uint64_t in_stack_000000b8;
-    
+    int32_t local_var_40;
+    int32_t local_var_48;
+    int32_t local_var_60;
+    int32_t local_var_68;
+    int32_t local_var_70;
+    int32_t local_var_78;
+    uint64_t local_buffer_b0;
+    uint64_t local_buffer_b8;
     *(uint64_t *)(in_RAX_param + 0x18) = unaff_RBP;
     *(uint64_t *)(in_RAX_param + 0x20) = unaff_RDI;
     *(uint64_t *)(in_RAX_param + -0x20) = unaff_R14;
@@ -617,19 +605,19 @@ void batch_update_object_properties(uint64_t *in_RAX, uint64_t unaff_RSI)
             uVar21 = uVar21 + 1;
         } while ((int)uVar24 < *(int *)(unaff_RBX + 0x1c68));
     }
-    in_stack_000000b8 = *(uint64_t *)(unaff_RBX + 0x10);
+    local_buffer_b8 = *(uint64_t *)(unaff_RBX + 0x10);
     lVar2 = **(int64_t **)(unaff_RBX + 0x1c70);
-    in_stack_000000b0 = unaff_RSI_param;
+    local_buffer_b0 = unaff_RSI_param;
     if ((*(uint *)(unaff_RBX + 0x19e8) & 0x400) != 0) {
         if (*(char *)(lVar2 + 0x77) == cVar19) {
-            puVar13 = (uint64_t *)(**(code **)(unaff_RBX + 0x1560))(&stack0x000000b0, lVar2);
-            in_stack_000000b0 = *puVar13;
+            puVar13 = (uint64_t *)(**(code **)(unaff_RBX + 0x1560))(&local_buffer_000000b0, lVar2);
+            local_buffer_b0 = *puVar13;
         }
         else {
-            in_stack_000000b0 = *(uint64_t *)(lVar2 + 8);
+            local_buffer_b0 = *(uint64_t *)(lVar2 + 8);
         }
     }
-    FUN_180130830(0, 0x11111111, &stack0x000000b0, &stack0x000000b8, 0x400);
+    GenericFunction_180130830(0, 0x11111111, &local_buffer_000000b0, &local_buffer_000000b8, 0x400);
     uVar21 = unaff_RSI_param & 0xffffffff;
     *(uint64_t *)(unaff_RBX + 0x1c78) = unaff_RSI_param;
     *(uint64_t *)(unaff_RBX + 0x1c80) = unaff_RSI_param;
@@ -642,12 +630,12 @@ void batch_update_object_properties(uint64_t *in_RAX, uint64_t unaff_RSI)
     uVar10 = unaff_XMM6_Dc;
     if (iVar20 < *(int *)(unaff_RBX + 0x1c68)) {
         do {
-            in_stack_00000078 = uVar10;
-            in_stack_00000070 = uVar9;
-            in_stack_00000068 = uVar8;
-            in_stack_00000060 = uVar7;
-            in_stack_00000048 = uVar6;
-            in_stack_00000040 = uVar5;
+            local_var_78 = uVar10;
+            local_var_70 = uVar9;
+            local_var_68 = uVar8;
+            local_var_60 = uVar7;
+            local_var_48 = uVar6;
+            local_var_40 = uVar5;
             lVar16 = *(int64_t *)(uVar15 + *(int64_t *)(unaff_RBX + 0x1c70));
             iVar18 = (int)uVar21;
             *(int *)(lVar16 + 0x50) = iVar18;
@@ -682,13 +670,13 @@ void batch_update_object_properties(uint64_t *in_RAX, uint64_t unaff_RSI)
             if ((*(uint *)(unaff_RBX + 0x19e8) & 0x400) != 0) {
                 if ((*(char *)(lVar16 + 0x77) == cVar19) && (bVar4)) {
                     if (*(char *)(lVar16 + 0x49) != cVar19) {
-                        puVar14 = (uint64_t *)(**(code **)(unaff_RBX + 0x1560))(&stack0x000000b0, lVar16);
+                        puVar14 = (uint64_t *)(**(code **)(unaff_RBX + 0x1560))(&local_buffer_000000b0, lVar16);
                         uVar1 = *puVar14;
                         *(uint64_t *)(lVar16 + 0xd8) = uVar1;
                         *(uint64_t *)(lVar16 + 8) = uVar1;
                     }
                     if (*(char *)(lVar16 + 0x4a) != cVar19) {
-                        puVar14 = (uint64_t *)(**(code **)(unaff_RBX + 0x1570))(&stack0x000000b8, lVar16);
+                        puVar14 = (uint64_t *)(**(code **)(unaff_RBX + 0x1570))(&local_buffer_000000b8, lVar16);
                         uVar1 = *puVar14;
                         *(uint64_t *)(lVar16 + 0xe0) = uVar1;
                         *(uint64_t *)(lVar16 + 0x10) = uVar1;
@@ -698,7 +686,7 @@ void batch_update_object_properties(uint64_t *in_RAX, uint64_t unaff_RSI)
                 fStack0000000000000034 = *(float *)(lVar16 + 0xc);
                 fStack0000000000000038 = fStack0000000000000030 + *(float *)(lVar16 + 0x10);
                 fStack000000000000003c = fStack0000000000000034 + *(float *)(lVar16 + 0x14);
-                uVar12 = FUN_180130ec0(&stack0x00000030);
+                uVar12 = GenericFunction_180130ec0(&local_buffer_00000030);
                 *(int16_t *)(lVar16 + 0x74) = uVar12;
             }
             *(int32_t *)(lVar16 + 0x6c) = 0x3f800000;
@@ -772,7 +760,7 @@ void batch_update_object_properties(uint64_t *in_RAX, uint64_t unaff_RSI)
                             iVar22 = (int)uVar17;
                             lVar3 = *(int64_t *)(uVar21 + *(int64_t *)(lVar23 + 0x1aa8));
                             if (*(int64_t *)(lVar3 + 0x28) == lVar16) {
-                                func_0x000180124d50(lVar3, fVar25 / fVar26);
+                                Function_fc3a89e9(lVar3, fVar25 / fVar26);
                             }
                             uVar17 = (uint64_t)(iVar22 + 1U);
                             uVar21 = uVar21 + 8;
@@ -780,18 +768,18 @@ void batch_update_object_properties(uint64_t *in_RAX, uint64_t unaff_RSI)
                     }
                 }
                 else {
-                    func_0x000180124d50(*(int64_t *)(lVar16 + 0x78), fVar25 / fVar26);
+                    Function_fc3a89e9(*(int64_t *)(lVar16 + 0x78), fVar25 / fVar26);
                 }
             }
             *(float *)(lVar16 + 0x18) = fVar25;
             uVar21 = (uint64_t)(iVar18 + 1U);
             uVar15 = uVar15 + 8;
-            uVar5 = in_stack_00000040;
-            uVar6 = in_stack_00000048;
-            uVar7 = in_stack_00000060;
-            uVar8 = in_stack_00000068;
-            uVar9 = in_stack_00000070;
-            uVar10 = in_stack_00000078;
+            uVar5 = local_var_40;
+            uVar6 = local_var_48;
+            uVar7 = local_var_60;
+            uVar8 = local_var_68;
+            uVar9 = local_var_70;
+            uVar10 = local_var_78;
         } while ((int)(iVar18 + 1U) < *(int *)(unaff_RBX + 0x1c68));
     }
     if ((*(uint *)(unaff_RBX + 0x19e8) & 0x400) == 0) {
@@ -800,7 +788,7 @@ void batch_update_object_properties(uint64_t *in_RAX, uint64_t unaff_RSI)
     }
     if ((*(uint *)(unaff_RBX + 0xc) & 0x800) == 0) {
 LAB_180130765:
-        uVar15 = FUN_18012fe00(*(uint64_t *)(unaff_RBX + 0x118));
+        uVar15 = GenericFunction_18012fe00(*(uint64_t *)(unaff_RBX + 0x118));
 LAB_180130774:
         uVar21 = uVar15;
         if (uVar15 == 0) goto LAB_18013078e;

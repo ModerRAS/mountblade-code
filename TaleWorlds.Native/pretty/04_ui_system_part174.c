@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part174.c - 4 个函数
-
-// 函数: void FUN_18076c6cf(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
-void FUN_18076c6cf(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
-
+// 函数: void function_76c6cf(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
+void function_76c6cf(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
 {
   uint *puVar1;
   uint64_t *puVar2;
@@ -20,7 +17,6 @@ void FUN_18076c6cf(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t para
   int64_t unaff_RBP;
   int iVar12;
   int64_t in_R11;
-  
   *(uint64_t *)(in_R11 + 8) = param_1 & 0xfffffffffffffffe;
   *(uint64_t *)(param_2 + 8) = param_4 | 1;
   *(uint64_t *)(param_4 + param_2) = param_4;
@@ -104,14 +100,8 @@ void FUN_18076c6cf(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t para
   *(uint64_t *)(param_2 + 0x10) = param_2;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18076c743(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4)
-void FUN_18076c743(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4)
-
+// 函数: void function_76c743(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4)
+void function_76c743(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
   uint64_t uVar2;
@@ -124,7 +114,6 @@ void FUN_18076c743(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
   int64_t lVar9;
   int64_t unaff_RBP;
   int iVar10;
-  
   if (param_4 >> 8 == 0) {
     uVar5 = (uint)unaff_RBP;
   }
@@ -189,14 +178,8 @@ void FUN_18076c743(uint64_t param_1,uint64_t param_2,int64_t param_3,uint64_t pa
   *(uint64_t *)(param_2 + 0x10) = param_2;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18076c7fd(uint param_1,int64_t param_2,int64_t param_3,uint64_t param_4)
-void FUN_18076c7fd(uint param_1,int64_t param_2,int64_t param_3,uint64_t param_4)
-
+// 函数: void function_76c7fd(uint param_1,int64_t param_2,int64_t param_3,uint64_t param_4)
+void function_76c7fd(uint param_1,int64_t param_2,int64_t param_3,uint64_t param_4)
 {
   int64_t *plVar1;
   uint64_t uVar2;
@@ -206,7 +189,6 @@ void FUN_18076c7fd(uint param_1,int64_t param_2,int64_t param_3,uint64_t param_4
   int64_t lVar6;
   int64_t unaff_RBP;
   uint64_t *in_R10;
-  
   lVar6 = unaff_RBP;
   if (param_1 != 0x1f) {
     lVar6 = 0x3f - (uint64_t)((param_1 >> 1) + 6);
@@ -243,19 +225,8 @@ void FUN_18076c7fd(uint param_1,int64_t param_2,int64_t param_3,uint64_t param_4
   *(int64_t *)(param_2 + 0x10) = param_2;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18076c88f(void)
-void FUN_18076c88f(void)
-
+// 函数: void function_76c88f(void)
+void function_76c88f(void)
 {
   return;
 }
-
-
-
-
-

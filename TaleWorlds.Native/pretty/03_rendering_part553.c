@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part553.c - 9 个函数
-
-// 函数: void FUN_1805728b0(uint64_t param_1,int param_2,float param_3)
-void FUN_1805728b0(uint64_t param_1,int param_2,float param_3)
-
+// 函数: void function_5728b0(uint64_t param_1,int param_2,float param_3)
+void function_5728b0(uint64_t param_1,int param_2,float param_3)
 {
   float fVar1;
   int8_t uVar2;
@@ -15,7 +12,6 @@ void FUN_1805728b0(uint64_t param_1,int param_2,float param_3)
   float *unaff_RDI;
   int64_t *in_R11;
   float in_XMM1_Da;
-  
   lVar5 = (int64_t)param_2;
   lVar3 = *in_R11;
   fVar1 = *(float *)(lVar3 + lVar5 * 8);
@@ -30,22 +26,17 @@ void FUN_1805728b0(uint64_t param_1,int param_2,float param_3)
   *unaff_RDI = 1.0 - (in_XMM1_Da - fVar1) / (param_3 - fVar1);
   return;
 }
-
-
-
-uint64_t * FUN_180572910(uint64_t *param_1)
-
+uint64_t * function_572910(uint64_t *param_1)
 {
   uint64_t *puVar1;
   int64_t lVar2;
-  
-  FUN_1805887f0();
+  function_5887f0();
   *param_1 = &processed_var_568_ptr;
   param_1[0x4b6] = 0;
   puVar1 = param_1 + 0x4c4;
   lVar2 = 0x40;
   do {
-    func_0x0001801be8f0(puVar1);
+    SystemFunction_0001801be8f0(puVar1);
     puVar1 = puVar1 + 7;
     lVar2 = lVar2 + -1;
   } while (lVar2 != 0);
@@ -55,8 +46,8 @@ uint64_t * FUN_180572910(uint64_t *param_1)
   param_1[0x689] = 0;
   param_1[0x68a] = 0;
   param_1[0x68b] = 0;
-  FUN_180572bc0(param_1 + 0x68c);
-  FUN_180660100(param_1 + 0x12bc);
+  function_572bc0(param_1 + 0x68c);
+  function_660100(param_1 + 0x12bc);
   param_1[0x1443] = &ui_system_data_1864_ptr;
   param_1[0x1443] = &rendering_buffer_2024_ptr;
   param_1[0x1444] = 0;
@@ -64,7 +55,7 @@ uint64_t * FUN_180572910(uint64_t *param_1)
   *(int32_t *)(param_1 + 0x1446) = 0;
   param_1[0x1444] = 0;
   param_1[0x1445] = 0;
-  DataStructureManager(param_1 + 0x1448,0x1f0,5,FUN_180662260,FUN_180572c30);
+  DataStructureManager(param_1 + 0x1448,0x1f0,5,function_662260,function_572c30);
   *(int32_t *)(param_1 + 0x687) = 0xbf800000;
   *(int8_t *)((int64_t)param_1 + 0x3425) = 0;
   param_1[0x4a0] = 0;
@@ -98,18 +89,13 @@ uint64_t * FUN_180572910(uint64_t *param_1)
   *(int16_t *)((int64_t)param_1 + 0x261c) = 0xffff;
   return param_1;
 }
-
-
-
-uint64_t * FUN_180572b00(uint64_t *param_1,uint64_t param_2)
-
+uint64_t * function_572b00(uint64_t *param_1,uint64_t param_2)
 {
   uint64_t uVar1;
-  
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &processed_var_568_ptr;
-  FUN_180573240();
-  SystemMemoryManager(param_1 + 0x1448,0x1f0,5,FUN_180572c30,uVar1);
+  function_573240();
+  SystemMemoryManager(param_1 + 0x1448,0x1f0,5,function_572c30,uVar1);
   param_1[0x1443] = &ui_system_data_1864_ptr;
   param_1[0x1442] = 0;
   param_1[0x8e4] = 0;
@@ -117,56 +103,38 @@ uint64_t * FUN_180572b00(uint64_t *param_1,uint64_t param_2)
   param_1[0xdba] = 0;
   param_1[0x1025] = 0;
   param_1[0x12b0] = 0;
-  FUN_180588910(param_1);
+  function_588910(param_1);
   if ((param_2 & 1) != 0) {
     free(param_1,0xac00);
   }
   return param_1;
 }
-
-
-
-int64_t FUN_180572bc0(int64_t param_1)
-
+int64_t function_572bc0(int64_t param_1)
 {
   int64_t lVar1;
   int64_t lVar2;
-  
   lVar1 = param_1 + 0x68;
   *(uint64_t *)(param_1 + 8) = 0;
   *(uint64_t *)(param_1 + 0x10) = 0;
   lVar2 = 4;
   do {
-    FUN_18057c690(lVar1);
+    function_57c690(lVar1);
     lVar1 = lVar1 + 0x1358;
     lVar2 = lVar2 + -1;
   } while (lVar2 != 0);
-  FUN_18057c690(param_1 + 0x4dc8);
+  function_57c690(param_1 + 0x4dc8);
   *(uint64_t *)(param_1 + 0x6178) = 0;
   return param_1;
 }
-
-
-
-
-
-// 函数: void FUN_180572c30(uint64_t *param_1)
-void FUN_180572c30(uint64_t *param_1)
-
+// 函数: void function_572c30(uint64_t *param_1)
+void function_572c30(uint64_t *param_1)
 {
   *param_1 = &ui_system_data_1864_ptr;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180572c50(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180572c50(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_572c50(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t param_4)
+void function_572c50(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t param_4)
 {
   int32_t uVar1;
   int8_t uVar2;
@@ -188,10 +156,9 @@ void FUN_180572c50(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t pa
   float fVar17;
   float fVar18;
   float fVar19;
-  
   *(int32_t *)(param_1 + 0x3438) = 0xbf800000;
   *(int8_t *)(param_1 + 0x3425) = 0;
-  FUN_180588970();
+  function_588970();
   *(uint64_t *)(param_1 + 0x2520) = param_4;
   uVar10 = 0;
   uVar2 = *(int8_t *)(param_2 + 6);
@@ -263,7 +230,7 @@ void FUN_180572c50(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t pa
   *(int32_t *)(param_1 + 0x34b8) = 0x3f800000;
   *(int16_t *)(param_1 + 0x34bc) = 0;
   *(int32_t *)(param_1 + 0x34c0) = 0;
-  func_0x000180668820(param_1 + 0x8228);
+  SystemFunction_000180668820(param_1 + 0x8228);
   cVar14 = '\0';
   *(uint64_t *)(param_1 + 0x9580) = 0;
   fVar18 = 0.0;
@@ -317,21 +284,14 @@ LAB_180572fb3:
   *(int32_t *)(param_1 + 0x2564) = 0x3f800000;
   uVar4 = *(uint64_t *)(lVar15 + 0x58);
   RenderingSystem_GeometryProcessor0(param_1 + 0xf0,uVar4,fVar18,cVar14,unaff_RDI);
-  FUN_180431680(param_1 + 0xf0,uVar4,0);
+  function_431680(param_1 + 0xf0,uVar4,0);
   RenderingSystem_GeometryProcessor0(param_1 + 0x12a0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(param_1 + 0x13e0,0,0x1050);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180572c5b(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180572c5b(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_572c5b(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t param_4)
+void function_572c5b(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t param_4)
 {
   int32_t uVar1;
   int8_t uVar2;
@@ -352,10 +312,9 @@ void FUN_180572c5b(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t pa
   float fVar17;
   float fVar18;
   float fVar19;
-  
   *(int32_t *)(param_1 + 0x3438) = 0xbf800000;
   *(int8_t *)(param_1 + 0x3425) = 0;
-  FUN_180588970();
+  function_588970();
   *(uint64_t *)(param_1 + 0x2520) = param_4;
   uVar11 = 0;
   uVar2 = *(int8_t *)(param_2 + 6);
@@ -427,7 +386,7 @@ void FUN_180572c5b(int64_t param_1,int32_t *param_2,uint64_t param_3,uint64_t pa
   *(int32_t *)(param_1 + 0x34b8) = 0x3f800000;
   *(int16_t *)(param_1 + 0x34bc) = 0;
   *(int32_t *)(param_1 + 0x34c0) = 0;
-  func_0x000180668820(param_1 + 0x8228);
+  SystemFunction_000180668820(param_1 + 0x8228);
   bVar8 = false;
   *(uint64_t *)(param_1 + 0x9580) = 0;
   fVar18 = 0.0;
@@ -481,21 +440,14 @@ LAB_180572fb3:
   *(int32_t *)(param_1 + 0x2564) = 0x3f800000;
   uVar4 = *(uint64_t *)(lVar15 + 0x58);
   RenderingSystem_GeometryProcessor0(param_1 + 0xf0);
-  FUN_180431680(param_1 + 0xf0,uVar4,0);
+  function_431680(param_1 + 0xf0,uVar4,0);
   RenderingSystem_GeometryProcessor0(param_1 + 0x12a0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(param_1 + 0x13e0,0,0x1050);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180572c63(int64_t param_1,int32_t *param_2,uint64_t param_3)
-void FUN_180572c63(int64_t param_1,int32_t *param_2,uint64_t param_3)
-
+// 函数: void function_572c63(int64_t param_1,int32_t *param_2,uint64_t param_3)
+void function_572c63(int64_t param_1,int32_t *param_2,uint64_t param_3)
 {
   int32_t uVar1;
   int8_t uVar2;
@@ -517,10 +469,9 @@ void FUN_180572c63(int64_t param_1,int32_t *param_2,uint64_t param_3)
   float fVar17;
   float fVar18;
   float fVar19;
-  
   *(int32_t *)(param_1 + 0x3438) = 0xbf800000;
   *(int8_t *)(param_1 + 0x3425) = 0;
-  FUN_180588970();
+  function_588970();
   *(uint64_t *)(param_1 + 0x2520) = unaff_RBX;
   uVar11 = 0;
   uVar2 = *(int8_t *)(param_2 + 6);
@@ -592,7 +543,7 @@ void FUN_180572c63(int64_t param_1,int32_t *param_2,uint64_t param_3)
   *(int32_t *)(param_1 + 0x34b8) = 0x3f800000;
   *(int16_t *)(param_1 + 0x34bc) = 0;
   *(int32_t *)(param_1 + 0x34c0) = 0;
-  func_0x000180668820(param_1 + 0x8228);
+  SystemFunction_000180668820(param_1 + 0x8228);
   bVar8 = false;
   *(uint64_t *)(param_1 + 0x9580) = 0;
   fVar18 = 0.0;
@@ -646,19 +597,13 @@ LAB_180572fb3:
   *(int32_t *)(param_1 + 0x2564) = 0x3f800000;
   uVar4 = *(uint64_t *)(lVar15 + 0x58);
   RenderingSystem_GeometryProcessor0(param_1 + 0xf0);
-  FUN_180431680(param_1 + 0xf0,uVar4,0);
+  function_431680(param_1 + 0xf0,uVar4,0);
   RenderingSystem_GeometryProcessor0(param_1 + 0x12a0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(param_1 + 0x13e0,0,0x1050);
 }
-
-
-
-
-
-// 函数: void FUN_180572f52(uint64_t param_1,char param_2,float param_3,float param_4)
-void FUN_180572f52(uint64_t param_1,char param_2,float param_3,float param_4)
-
+// 函数: void function_572f52(uint64_t param_1,char param_2,float param_3,float param_4)
+void function_572f52(uint64_t param_1,char param_2,float param_3,float param_4)
 {
   uint64_t uVar1;
   int64_t lVar2;
@@ -672,9 +617,8 @@ void FUN_180572f52(uint64_t param_1,char param_2,float param_3,float param_4)
   float fVar3;
   float fVar4;
   float in_XMM5_Da;
-  uint64_t in_stack_00000040;
-  uint64_t uStack0000000000000050;
-  
+  uint64_t local_var_40;
+  uint64_t local_buffer_50;
   do {
     lVar2 = (int64_t)*(int *)((int64_t)param_2 * 0x1b0 + 0x110 + *(int64_t *)(in_R10 + 0x140)) *
             0x60;
@@ -702,21 +646,15 @@ LAB_180572fb3:
   *(uint64_t *)(unaff_RSI + 0x2510) = unaff_R12;
   *(int32_t *)(unaff_RSI + 0x2564) = 0x3f800000;
   uVar1 = *(uint64_t *)(unaff_R15 + 0x58);
-  uStack0000000000000050 = in_stack_00000040;
+  local_buffer_50 = local_var_40;
   RenderingSystem_GeometryProcessor0(unaff_RSI + 0xf0);
-  FUN_180431680(unaff_RSI + 0xf0,uVar1,0);
+  function_431680(unaff_RSI + 0xf0,uVar1,0);
   RenderingSystem_GeometryProcessor0(unaff_RSI + 0x12a0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(unaff_RSI + 0x13e0,0,0x1050);
 }
-
-
-
-
-
-// 函数: void FUN_180572f61(uint64_t param_1,char param_2,float param_3,float param_4)
-void FUN_180572f61(uint64_t param_1,char param_2,float param_3,float param_4)
-
+// 函数: void function_572f61(uint64_t param_1,char param_2,float param_3,float param_4)
+void function_572f61(uint64_t param_1,char param_2,float param_3,float param_4)
 {
   uint64_t uVar1;
   int64_t lVar2;
@@ -732,9 +670,8 @@ void FUN_180572f61(uint64_t param_1,char param_2,float param_3,float param_4)
   float fVar4;
   uint in_XMM4_Da;
   float in_XMM5_Da;
-  uint64_t in_stack_00000040;
-  uint64_t uStack0000000000000050;
-  
+  uint64_t local_var_40;
+  uint64_t local_buffer_50;
   do {
     lVar2 = (int64_t)*(int *)((int64_t)param_2 * 0x1b0 + 0x110 + unaff_RDI) * 0x60;
     fVar4 = (float)(*(uint *)(lVar2 + 0x38 + *(int64_t *)(in_R10 + 0x158)) & in_XMM4_Da);
@@ -761,21 +698,15 @@ LAB_180572fb3:
   *(uint64_t *)(unaff_RSI + 0x2510) = unaff_R12;
   *(int32_t *)(unaff_RSI + 0x2564) = 0x3f800000;
   uVar1 = *(uint64_t *)(unaff_R15 + 0x58);
-  uStack0000000000000050 = in_stack_00000040;
+  local_buffer_50 = local_var_40;
   RenderingSystem_GeometryProcessor0(unaff_RSI + 0xf0);
-  FUN_180431680(unaff_RSI + 0xf0,uVar1,0);
+  function_431680(unaff_RSI + 0xf0,uVar1,0);
   RenderingSystem_GeometryProcessor0(unaff_RSI + 0x12a0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(unaff_RSI + 0x13e0,0,0x1050);
 }
-
-
-
-
-
-// 函数: void FUN_180572fcf(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
-void FUN_180572fcf(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
-
+// 函数: void function_572fcf(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
+void function_572fcf(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
 {
   uint64_t uVar1;
   int8_t unaff_BL;
@@ -783,9 +714,8 @@ void FUN_180572fcf(uint64_t param_1,uint64_t param_2,float param_3,float param_4
   uint64_t unaff_R12;
   int64_t unaff_R15;
   float in_XMM5_Da;
-  uint64_t in_stack_00000040;
-  uint64_t uStack0000000000000050;
-  
+  uint64_t local_var_40;
+  uint64_t local_buffer_50;
   if (in_XMM5_Da < param_4) {
     in_XMM5_Da = param_3 / param_4;
   }
@@ -795,47 +725,34 @@ void FUN_180572fcf(uint64_t param_1,uint64_t param_2,float param_3,float param_4
   *(uint64_t *)(unaff_RSI + 0x2510) = unaff_R12;
   *(int32_t *)(unaff_RSI + 0x2564) = 0x3f800000;
   uVar1 = *(uint64_t *)(unaff_R15 + 0x58);
-  uStack0000000000000050 = in_stack_00000040;
+  local_buffer_50 = local_var_40;
   RenderingSystem_GeometryProcessor0(unaff_RSI + 0xf0);
-  FUN_180431680(unaff_RSI + 0xf0,uVar1,0);
+  function_431680(unaff_RSI + 0xf0,uVar1,0);
   RenderingSystem_GeometryProcessor0(unaff_RSI + 0x12a0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(unaff_RSI + 0x13e0,0,0x1050);
 }
-
-
-
-
-
-// 函数: void FUN_180572fd9(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
-void FUN_180572fd9(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
-
+// 函数: void function_572fd9(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
+void function_572fd9(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
 {
   uint64_t uVar1;
   int8_t unaff_BL;
   int64_t unaff_RSI;
   uint64_t unaff_R12;
   int64_t unaff_R15;
-  uint64_t in_stack_00000040;
-  uint64_t uStack0000000000000050;
-  
+  uint64_t local_var_40;
+  uint64_t local_buffer_50;
   *(float *)(unaff_RSI + 0x3420) = param_3 / param_4;
   *(int8_t *)(unaff_RSI + 0x58) = unaff_BL;
   *(uint64_t *)(unaff_RSI + 0x2500) = unaff_R12;
   *(uint64_t *)(unaff_RSI + 0x2510) = unaff_R12;
   *(int32_t *)(unaff_RSI + 0x2564) = 0x3f800000;
   uVar1 = *(uint64_t *)(unaff_R15 + 0x58);
-  uStack0000000000000050 = in_stack_00000040;
+  local_buffer_50 = local_var_40;
   RenderingSystem_GeometryProcessor0(unaff_RSI + 0xf0);
-  FUN_180431680(unaff_RSI + 0xf0,uVar1,0);
+  function_431680(unaff_RSI + 0xf0,uVar1,0);
   RenderingSystem_GeometryProcessor0(unaff_RSI + 0x12a0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(unaff_RSI + 0x13e0,0,0x1050);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

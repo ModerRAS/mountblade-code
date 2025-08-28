@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 01_initialization_part014.c - 初始化模块第14部分
 // 本文件包含21个函数，主要用于字符串处理、同步操作、内存管理和系统初始化
-
 // 函数: 字符串处理函数 - 类型1
 // 功能: 处理字符串拼接和内存操作，使用加密保护
 void process_string_with_encryption(int64_t string_param1, int64_t string_param2, int64_t string_param3)
-
 {
   int64_t string_length1;
   int64_t string_length2;
@@ -18,7 +15,6 @@ void process_string_with_encryption(int64_t string_param1, int64_t string_param2
   int32_t buffer_size;
   int8_t work_buffer[1032];
   uint64_t checksum;
-  
   encryption_key = 0xfffffffffffffffe;
   checksum = GLOBAL_CHECKSUM_00a8 ^ (uint64_t)encryption_buffer;
   string_table_ptr = &STRING_TABLE_bb30;
@@ -35,38 +31,28 @@ void process_string_with_encryption(int64_t string_param1, int64_t string_param2
     do {
       string_length2 = string_length2 + 1;
     } while (*(char *)(string_length2 + string_param3) != '\0');
-    // 复制字符串前缀到输出缓冲区
+// 复制字符串前缀到输出缓冲区
     copy_string_prefix(output_buffer, *(int64_t *)(string_param1 + 8), string_length1 - *(int64_t *)(string_param1 + 8));
   }
   string_table_ptr = &STRING_TABLE_bcb0;
-  // 执行加密保护的操作
+// 执行加密保护的操作
   execute_encrypted_operation(checksum ^ (uint64_t)encryption_buffer);
 }
-
-
-
 // 函数: 信号量释放函数
 // 功能: 循环释放信号量直到成功
 void release_semaphore_loop(uint64_t *semaphore_handle, int32_t release_count)
-
 {
   int release_result;
-  
   do {
     release_result = ReleaseSemaphore(*semaphore_handle, release_count, 0);
   } while (release_result == 0);
   return;
 }
-
-
-
 // 函数: 互斥锁解锁函数
 // 功能: 安全解锁互斥锁，处理错误情况
 void safe_mutex_unlock(uint64_t *mutex_handle)
-
 {
   int unlock_result;
-  
   if (*(char *)(mutex_handle + 1) != '\0') {
     unlock_result = _Mtx_unlock(*mutex_handle);
     if (unlock_result != 0) {
@@ -75,20 +61,15 @@ void safe_mutex_unlock(uint64_t *mutex_handle)
   }
   return;
 }
-
-
-
 // 函数: 条件变量等待函数
 // 功能: 等待条件变量满足，处理超时和错误
 uint64_t wait_for_condition_variable(int64_t condition_var, uint64_t timeout_param1, uint64_t timeout_param2, uint64_t timeout_param3)
-
 {
   char condition_status;
   int wait_result;
   int64_t mutex_ptr;
   uint64_t return_value;
   int8_t wait_flag;
-  
   return_value = 0xfffffffffffffffe;
   mutex_ptr = condition_var + 0x48;
   wait_result = _Mtx_lock();
@@ -113,18 +94,13 @@ uint64_t wait_for_condition_variable(int64_t condition_var, uint64_t timeout_par
   }
   return 1;
 }
-
-
-
 // 函数: 队列处理函数
 // 功能: 处理队列元素的插入和移除操作
 int64_t process_queue_element(int32_t *queue_head, int32_t *queue_element)
-
 {
   int32_t element_value;
   char processing_result;
   void *error_handler;
-  
   if (*(int64_t *)(queue_head + 0x18) != 0) {
     processing_result = (**(code **)(queue_head + 0x1a))(queue_element, queue_head + 0x14);
     if (processing_result == '\0') {
@@ -143,19 +119,14 @@ int64_t process_queue_element(int32_t *queue_head, int32_t *queue_element)
   *queue_head = element_value;
   return CONCAT71((uint7)(uint3)((uint)element_value >> 8), 1);
 }
-
-
-
 // 函数: 队列更新函数
 // 功能: 更新队列元素，处理验证和错误情况
 void update_queue_element(uint64_t queue_handle, int32_t element_value)
-
 {
   int64_t queue_ptr;
   char validation_result;
   void *error_handler;
   int32_t validation_buffer[6];
-  
   queue_ptr = GLOBAL_QUEUE_POINTER_86920;
   if ((*(int64_t *)(GLOBAL_QUEUE_POINTER_86920 + 0x22f0) != 0) &&
      (validation_buffer[0] = element_value, validation_result = (**(code **)(GLOBAL_QUEUE_POINTER_86920 + 0x22f8))(validation_buffer),
@@ -173,14 +144,10 @@ void update_queue_element(uint64_t queue_handle, int32_t element_value)
   *(int32_t *)(queue_ptr + 0x2290) = element_value;
   return;
 }
-
-
-
 // 函数: 内存释放包装器
 // 功能: 安全释放内存，支持条件释放
 uint64_t *
 safe_memory_free(uint64_t *memory_ptr, uint64_t free_flags, uint64_t param3, uint64_t param4)
-
 {
   *memory_ptr = &DEALLOCATED_MEMORY_bcb0;
   if ((free_flags & 1) != 0) {
@@ -188,16 +155,11 @@ safe_memory_free(uint64_t *memory_ptr, uint64_t free_flags, uint64_t param3, uin
   }
   return memory_ptr;
 }
-
-
-
 // 函数: 字符串设置函数
 // 功能: 安全设置字符串内容，处理长度限制
 void set_string_content(int64_t string_obj, int64_t string_source)
-
 {
   int64_t source_length;
-  
   if (string_source == 0) {
     *(int32_t *)(string_obj + 0x10) = 0;
     **(int8_t **)(string_obj + 8) = 0;
@@ -209,7 +171,7 @@ void set_string_content(int64_t string_obj, int64_t string_source)
   } while (*(char *)(string_source + source_length) != '\0');
   if ((int)source_length < 0x20) {
     *(int *)(string_obj + 0x10) = (int)source_length;
-    // 复制字符串到对象内部缓冲区
+// 复制字符串到对象内部缓冲区
     copy_to_internal_buffer(*(uint64_t *)(string_obj + 8), 0x20);
     return;
   }
@@ -218,53 +180,36 @@ void set_string_content(int64_t string_obj, int64_t string_source)
   **(int8_t **)(string_obj + 8) = 0;
   return;
 }
-
-
-
 // 函数: 字符串复制函数
 // 功能: 安全复制字符串内容，处理缓冲区大小
 void copy_string_content(int64_t string_obj, uint64_t source_ptr, int copy_length)
-
 {
   if (copy_length + 1 < 0x20) {
-    // 复制字符串到对象内部缓冲区
+// 复制字符串到对象内部缓冲区
     memcpy(*(int8_t **)(string_obj + 8), source_ptr, (int64_t)copy_length);
   }
   **(int8_t **)(string_obj + 8) = 0;
   *(int32_t *)(string_obj + 0x10) = 0;
   return;
 }
-
-
-
 // 函数: 内存复制包装器
 // 功能: 简单的内存复制操作
 void simple_memcpy_wrapper(void)
-
 {
   memcpy();
 }
-
-
-
 // 函数: 对象重置函数
 // 功能: 重置对象状态和计数器
 void reset_object_state(int8_t *object_ptr)
-
 {
   int64_t object_base;
-  
   *object_ptr = 0;
   *(int32_t *)(object_base + 0x10) = 0;
   return;
 }
-
-
-
 // 函数: 内存初始化函数
 // 功能: 初始化内存结构，设置默认值
 uint64_t * initialize_memory_structure(uint64_t *memory_ptr)
-
 {
   *memory_ptr = &DEALLOCATED_MEMORY_bcb0;
   memory_ptr[1] = 0;
@@ -275,13 +220,9 @@ uint64_t * initialize_memory_structure(uint64_t *memory_ptr)
   *(int8_t *)(memory_ptr + 3) = 0;
   return memory_ptr;
 }
-
-
-
 // 函数: 字符串处理函数 - 类型2
 // 功能: 处理字符串拼接和内存操作，使用加密保护
 void process_string_with_encryption_type2(int64_t string_param1, int64_t string_param2, int64_t string_param3)
-
 {
   int64_t string_length1;
   int64_t string_length2;
@@ -293,7 +234,6 @@ void process_string_with_encryption_type2(int64_t string_param1, int64_t string_
   int32_t buffer_size;
   int8_t work_buffer[32];
   uint64_t checksum;
-  
   encryption_key = 0xfffffffffffffffe;
   checksum = GLOBAL_CHECKSUM_00a8 ^ (uint64_t)encryption_buffer;
   string_table_ptr = &STRING_TABLE_bc80;
@@ -310,20 +250,16 @@ void process_string_with_encryption_type2(int64_t string_param1, int64_t string_
     do {
       string_length2 = string_length2 + 1;
     } while (*(char *)(string_length2 + string_param3) != '\0');
-    // 复制字符串前缀到输出缓冲区
+// 复制字符串前缀到输出缓冲区
     copy_string_prefix(output_buffer, *(int64_t *)(string_param1 + 8), string_length1 - *(int64_t *)(string_param1 + 8));
   }
   string_table_ptr = &STRING_TABLE_bcb0;
-  // 执行加密保护的操作
+// 执行加密保护的操作
   execute_encrypted_operation(checksum ^ (uint64_t)encryption_buffer);
 }
-
-
-
 // 函数: 小内存块释放函数
 // 功能: 释放小块内存，支持条件释放
 uint64_t * free_small_memory_block(uint64_t *memory_ptr, uint64_t free_flags)
-
 {
   *memory_ptr = &DEALLOCATED_MEMORY_bcb0;
   if ((free_flags & 1) != 0) {
@@ -331,32 +267,22 @@ uint64_t * free_small_memory_block(uint64_t *memory_ptr, uint64_t free_flags)
   }
   return memory_ptr;
 }
-
-
-
 // 函数: 互斥锁解锁函数 - 简化版
 // 功能: 简单的互斥锁解锁操作
 void simple_mutex_unlock(uint64_t *mutex_handle)
-
 {
   int unlock_result;
-  
   unlock_result = _Mtx_unlock(*mutex_handle);
   if (unlock_result != 0) {
     throw_c_standard_error(unlock_result);
   }
   return;
 }
-
-
-
 // 函数: 条件变量通知函数
 // 功能: 通知条件变量，广播等待的线程
 void notify_condition_variable(int64_t condition_var)
-
 {
   int notify_result;
-  
   notify_result = _Mtx_lock(condition_var + 0x48);
   if (notify_result != 0) {
     throw_c_standard_error(notify_result);
@@ -372,27 +298,19 @@ void notify_condition_variable(int64_t condition_var)
   }
   return;
 }
-
-
-
 // 函数: 指针初始化函数
 // 功能: 初始化全局指针变量
 void initialize_global_pointers(uint64_t *ptr_array)
-
 {
   *ptr_array = &GLOBAL_POINTER_bdc8;
   *ptr_array = &GLOBAL_POINTER_21720;
   *ptr_array = &GLOBAL_POINTER_21690;
   return;
 }
-
-
-
 // 函数: 指针初始化和释放函数
 // 功能: 初始化指针并支持条件释放
 uint64_t *
 initialize_and_free_pointers(uint64_t *ptr_array, uint64_t free_flags, uint64_t param3, uint64_t param4)
-
 {
   *ptr_array = &GLOBAL_POINTER_bdc8;
   *ptr_array = &GLOBAL_POINTER_21720;
@@ -402,18 +320,13 @@ initialize_and_free_pointers(uint64_t *ptr_array, uint64_t free_flags, uint64_t 
   }
   return ptr_array;
 }
-
-
-
 // 函数: 内存块清理函数
 // 功能: 清理内存块，逐个处理元素
 void cleanup_memory_blocks(int64_t *memory_range)
-
 {
   int64_t block_start;
   int64_t block_end;
   int64_t current_block;
-  
   block_start = memory_range[1];
   for (current_block = *memory_range; current_block != block_start; current_block = current_block + 0x100) {
     cleanup_single_block(current_block);
@@ -421,26 +334,21 @@ void cleanup_memory_blocks(int64_t *memory_range)
   if (*memory_range == 0) {
     return;
   }
-  // 清理剩余内存
+// 清理剩余内存
   cleanup_remaining_memory();
 }
-
-
-
 // 函数: 数组清理函数
 // 功能: 清理数组元素，重置状态
 void cleanup_array_elements(int64_t *array_range)
-
 {
   uint64_t *array_start;
   uint64_t *array_end;
   uint64_t *current_element;
-  
   array_start = (uint64_t *)array_range[1];
   for (current_element = (uint64_t *)*array_range; current_element != array_start; current_element = current_element + 5) {
     *current_element = &GLOBAL_ELEMENT_3c3e0;
     if (current_element[1] != 0) {
-      // 清理元素时发生错误
+// 清理元素时发生错误
       cleanup_remaining_memory();
     }
     current_element[1] = 0;
@@ -448,24 +356,19 @@ void cleanup_array_elements(int64_t *array_range)
     *current_element = &DEALLOCATED_MEMORY_bcb0;
   }
   if (*array_range != 0) {
-    // 清理剩余内存
+// 清理剩余内存
     cleanup_remaining_memory();
   }
   return;
 }
-
-
-
 // 函数: 指针释放函数
 // 功能: 安全释放指针，处理引用计数
 void release_pointer_safely(uint64_t *pointer_ref)
-
 {
   int *ref_count_ptr;
   uint64_t *pointer_to_free;
   int64_t memory_block;
   uint64_t block_base;
-  
   pointer_to_free = (uint64_t *)*pointer_ref;
   if (pointer_to_free == (uint64_t *)0x0) {
     return;
@@ -485,20 +388,16 @@ void release_pointer_safely(uint64_t *pointer_ref)
       }
     }
     else {
-      // 使用替代的释放方法
+// 使用替代的释放方法
       alternative_pointer_release(block_base, CONCAT71(0xff000000, *(void ***)(block_base + 0x70) == &ExceptionList),
                                   pointer_to_free, block_base, 0xfffffffffffffffe);
     }
   }
   return;
 }
-
-
-
 // 函数: 容器插入函数
 // 功能: 向容器中插入元素，处理扩容和错误
 int insert_into_container(int64_t container_ptr, int64_t element_ptr)
-
 {
   uint64_t ***container_manager;
   int64_t container_capacity;
@@ -544,7 +443,6 @@ int insert_into_container(int64_t container_ptr, int64_t element_ptr)
   uint64_t stack_data_48;
   int32_t stack_data_40;
   uint64_t stack_data_38;
-  
   stack_data_38 = 0xfffffffffffffffe;
   container_capacity = 0;
   element_ref = (uint64_t *)&GLOBAL_ELEMENT_3c3e0;
@@ -619,7 +517,7 @@ CALCULATE_NEW_SIZE:
     new_data = *(int64_t *)(container_ptr + 8);
   }
   if (new_data != 0) {
-    // 清理旧内存
+// 清理旧内存
     cleanup_remaining_memory(new_data);
   }
   *(int64_t *)(container_ptr + 8) = container_capacity;
@@ -635,21 +533,17 @@ INSERT_COMPLETE:
   if (stack_data_130 == 0) {
     return insert_index;
   }
-  // 清理临时数据
+// 清理临时数据
   cleanup_remaining_memory();
 }
-
-
-
 // 函数: 元素清理函数
 // 功能: 清理单个元素，释放资源
 void cleanup_single_element(uint64_t *element_ptr, uint64_t param2, uint64_t param3, uint64_t param4)
-
 {
   cleanup_element_resources(element_ptr + 0x1a, element_ptr[0x1c], param3, param4, 0xfffffffffffffffe);
   *element_ptr = &GLOBAL_ELEMENT_3c3e0;
   if (element_ptr[1] != 0) {
-    // 清理时发生错误
+// 清理时发生错误
     cleanup_remaining_memory();
   }
   element_ptr[1] = 0;
@@ -657,13 +551,9 @@ void cleanup_single_element(uint64_t *element_ptr, uint64_t param2, uint64_t par
   *element_ptr = &DEALLOCATED_MEMORY_bcb0;
   return;
 }
-
-
-
 // 函数: 元素查找函数
 // 功能: 在容器中查找元素，返回索引
 uint64_t find_element_in_container(int64_t container_ptr, int64_t search_key)
-
 {
   byte *element_name;
   int element_length;
@@ -677,7 +567,6 @@ uint64_t find_element_in_container(int64_t container_ptr, int64_t search_key)
   uint64_t total_elements;
   uint64_t search_index;
   uint64_t compare_result;
-  
   current_index = (uint64_t)*(int *)(container_ptr + 0x68);
   container_data = *(int64_t *)(container_ptr + 8);
   if (current_index < (uint64_t)(*(int64_t *)(container_ptr + 0x10) - container_data >> 8)) {
@@ -735,13 +624,9 @@ COMPARE_COMPLETE:
   }
   return 0xffffffff;
 }
-
-
-
 // 函数: 容器初始化函数
 // 功能: 初始化容器，设置管理器和回调
 void initialize_container(int64_t *container_ptr, uint64_t *config_ptr)
-
 {
   int64_t *allocated_memory;
   int64_t *temp_stack_8;
@@ -750,7 +635,6 @@ void initialize_container(int64_t *container_ptr, uint64_t *config_ptr)
   int64_t **temp_stack_20;
   int32_t allocation_flags;
   uint64_t allocation_params;
-  
   allocation_params = 0xfffffffffffffffe;
   allocation_flags = 0;
   temp_stack_8 = container_ptr;
@@ -773,7 +657,7 @@ void initialize_container(int64_t *container_ptr, uint64_t *config_ptr)
   configure_container_data(&GLOBAL_CONFIG_52c0, config_ptr);
   *config_ptr = &GLOBAL_ELEMENT_3c3e0;
   if (config_ptr[1] != 0) {
-    // 初始化时发生错误
+// 初始化时发生错误
     cleanup_remaining_memory();
   }
   config_ptr[1] = 0;
@@ -781,13 +665,9 @@ void initialize_container(int64_t *container_ptr, uint64_t *config_ptr)
   *config_ptr = &DEALLOCATED_MEMORY_bcb0;
   return;
 }
-
-
-
 // 函数: 系统初始化函数
 // 功能: 初始化游戏系统，配置各种参数
 void initialize_game_system(void)
-
 {
   uint64_t system_config;
   char config_status;
@@ -854,12 +734,11 @@ void initialize_game_system(void)
   int32_t stack_data_2f8;
   int8_t work_buffer_2f0[648];
   uint64_t checksum;
-  
   stack_data_4f8 = 0xfffffffffffffffe;
   checksum = GLOBAL_CHECKSUM_00a8 ^ (uint64_t)encryption_buffer;
   stack_data_5b8 = 0;
   if (*(int *)(GLOBAL_CONFIG_86920 + 0x224) - GLOBAL_COUNTER_52b0 < 0xfb) {
-    // 系统初始化失败
+// 系统初始化失败
     execute_encrypted_operation(checksum ^ (uint64_t)encryption_buffer);
   }
   *(int8_t *)(GLOBAL_CONFIG_86960 + 0x39) = 1;
@@ -968,7 +847,7 @@ void initialize_game_system(void)
     *(double *)(system_data + 0x20 + GLOBAL_CONFIG_5248) = (double)(config_key >> 0x14);
     stack_data_538 = &GLOBAL_ELEMENT_3c3e0;
     if (stack_data_530 != 0) {
-      // 系统初始化失败
+// 系统初始化失败
       cleanup_remaining_memory();
     }
     stack_data_530 = 0;
@@ -976,7 +855,7 @@ void initialize_game_system(void)
     stack_data_538 = &DEALLOCATED_MEMORY_bcb0;
     stack_data_558 = &GLOBAL_ELEMENT_3c3e0;
     if (stack_data_550 != 0) {
-      // 系统初始化失败
+// 系统初始化失败
       cleanup_remaining_memory();
     }
     stack_data_550 = 0;
@@ -993,7 +872,7 @@ void initialize_game_system(void)
   stack_data_608 = 0;
   initialize_system_buffer(&stack_data_618, stack_data_668);
   if (stack_data_668 != 0) {
-    // 复制系统配置数据
+// 复制系统配置数据
     memcpy(stack_data_610, stack_data_670, stack_data_668 + 1);
   }
   if (stack_data_670 != 0) {
@@ -1036,17 +915,13 @@ void initialize_game_system(void)
       UNLOCK();
     }
   }
-  // 系统初始化完成，清理临时数据
+// 系统初始化完成，清理临时数据
   cleanup_remaining_memory(config_ptr);
 }
-
-
-
 // 函数: 对象复制函数
 // 功能: 深度复制对象，包括所有属性
 uint64_t *
 deep_copy_object(uint64_t *dest_ptr, uint64_t *src_ptr, uint64_t param3, uint64_t param4)
-
 {
   *dest_ptr = *src_ptr;
   *(int32_t *)(dest_ptr + 1) = *(int32_t *)(src_ptr + 1);
@@ -1063,35 +938,23 @@ deep_copy_object(uint64_t *dest_ptr, uint64_t *src_ptr, uint64_t param3, uint64_
   *(int8_t *)((int64_t)dest_ptr + 0xcc) = *(int8_t *)((int64_t)src_ptr + 0xcc);
   return dest_ptr;
 }
-
-
-
 // 函数: 对象重置函数 - 简化版
 // 功能: 重置对象的特定字段
 void reset_object_field(int64_t object_ptr)
-
 {
   *(void **)(object_ptr + 0x10) = &DEALLOCATED_MEMORY_bcb0;
   return;
 }
-
-
-
 // 函数: 指针重置函数
 // 功能: 重置指针为默认值
 void reset_pointer_to_default(uint64_t *ptr_obj)
-
 {
   *ptr_obj = &DEALLOCATED_MEMORY_bcb0;
   return;
 }
-
-
-
 // 函数: 元素插入函数
 // 功能: 向数据结构中插入元素，处理排序和查找
 void insert_element_into_structure(uint64_t param1, uint64_t param2, int64_t element_data, uint64_t param4)
-
 {
   byte element_byte;
   bool comparison_result;
@@ -1103,7 +966,6 @@ void insert_element_into_structure(uint64_t param1, uint64_t param2, int64_t ele
   uint64_t *insertion_point;
   int64_t name_offset;
   uint64_t param_copy;
-  
   param_copy = param1;
   search_result = find_element_in_container(&GLOBAL_CONFIG_5240);
   if (search_result == -1) {

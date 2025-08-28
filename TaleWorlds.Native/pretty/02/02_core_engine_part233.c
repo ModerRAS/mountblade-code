@@ -1,15 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 02_core_engine_part233.c - 核心引擎堆排序和字符串处理模块
 // 包含8个函数，主要处理堆排序算法、字符串比较和内存管理
-
 // 函数：check_engine_status_flag
 // 功能：检查引擎状态标志（空函数实现）
 void check_engine_status_flag(void)
 {
   return;
 }
-
 // 函数：execute_engine_cleanup
 // 功能：执行引擎清理操作
 void execute_engine_cleanup(void)
@@ -17,12 +14,11 @@ void execute_engine_cleanup(void)
   perform_system_cleanup();
   return;
 }
-
 // 函数：heap_sort_float_array
 // 功能：对浮点数数组进行堆排序
 // 参数：array_start - 数组起始指针
-//        array_end - 数组结束指针  
-//        buffer_end - 缓冲区结束指针
+// array_end - 数组结束指针
+// buffer_end - 缓冲区结束指针
 void heap_sort_float_array(float *array_start, float *array_end, float *buffer_end)
 {
   float temp_value;
@@ -35,7 +31,6 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
   float *current_ptr;
   uint64_t element_count;
   bool comparison_result;
-  
   element_count = (int64_t)array_end - (int64_t)array_start >> 2;
   if (1 < (int64_t)element_count) {
     heap_size = ((int64_t)(element_count - 2) >> 1) + 1;
@@ -151,12 +146,11 @@ void heap_sort_float_array(float *array_start, float *array_end, float *buffer_e
   }
   return;
 }
-
 // 函数：optimized_heap_sort
 // 功能：优化版本的堆排序算法
 // 参数：array_start - 数组起始指针
-//        array_end - 数组结束指针
-//        buffer_end - 缓冲区结束指针
+// array_end - 数组结束指针
+// buffer_end - 缓冲区结束指针
 void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end)
 {
   float temp_value;
@@ -169,7 +163,6 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
   float *current_ptr;
   uint64_t element_count;
   bool comparison_result;
-  
   element_count = (int64_t)array_end - (int64_t)array_start >> 2;
   if (1 < (int64_t)element_count) {
     heap_size = ((int64_t)(element_count - 2) >> 1) + 1;
@@ -285,12 +278,11 @@ void optimized_heap_sort(float *array_start, float *array_end, float *buffer_end
   }
   return;
 }
-
 // 函数：process_string_comparison
 // 功能：处理字符串比较和映射操作
 // 参数：context_ptr - 上下文指针
-//        compare_value - 比较值
-//        string_data - 字符串数据指针
+// compare_value - 比较值
+// string_data - 字符串数据指针
 void process_string_comparison(uint64_t context_ptr, int compare_value, int64_t string_data)
 {
   byte char_diff;
@@ -316,7 +308,6 @@ void process_string_comparison(uint64_t context_ptr, int compare_value, int64_t 
   int32_t stack_uint1;
   int8_t stack_string_buffer2[72];
   uint64_t stack_checksum;
-  
   table_base = global_string_table;
   stack_guard1 = 0xfffffffffffffffe;
   stack_checksum = global_checksum ^ (uint64_t)stack_buffer1;
@@ -423,14 +414,13 @@ MATCH_FOUND:
     stack_ptr1 = &global_string_end;
   }
   stack_ptr2 = &global_string_end;
-  // 注意：此函数不返回
+// 注意：此函数不返回
   perform_memory_cleanup(stack_checksum ^ (uint64_t)stack_buffer1);
 }
-
 // 函数：find_hash_entry
 // 功能：在哈希表中查找条目
 // 参数：hash_table - 哈希表指针
-//        search_key - 搜索键指针
+// search_key - 搜索键指针
 // 返回值：找到的条目指针
 uint64_t * find_hash_entry(uint64_t *hash_table, int64_t search_key)
 {
@@ -445,7 +435,6 @@ uint64_t * find_hash_entry(uint64_t *hash_table, int64_t search_key)
   uint64_t *prev_entry;
   int64_t key_offset;
   int8_t stack_buffer[8];
-  
   next_entry = (uint64_t *)hash_table[2];
   prev_entry = hash_table;
   if (next_entry != (uint64_t *)0x0) {
@@ -504,13 +493,12 @@ ENTRY_RETURN:
   entry_ptr = (int64_t *)create_hash_entry(hash_table, stack_buffer, next_entry, prev_entry, search_key);
   return (uint64_t *)(*entry_ptr + 0x78);
 }
-
 // 函数：search_hash_chain
 // 功能：在哈希链中搜索指定条目
 // 参数：search_param - 搜索参数
-//        key_data - 键数据指针
-//        current_node - 当前节点指针
-//        prev_node - 前一个节点指针
+// key_data - 键数据指针
+// current_node - 当前节点指针
+// prev_node - 前一个节点指针
 // 返回值：找到的条目指针
 uint64_t *
 search_hash_chain(uint64_t search_param, int64_t key_data, uint64_t *current_node, uint64_t *prev_node)
@@ -524,7 +512,6 @@ search_hash_chain(uint64_t search_param, int64_t key_data, uint64_t *current_nod
   int64_t key_offset;
   uint64_t *next_node;
   uint64_t *found_node;
-  
   do {
     if (*(int *)(key_data + 0x10) == 0) {
       next_node = (uint64_t *)current_node[1];
@@ -578,7 +565,6 @@ ENTRY_RETURN:
   entry_ptr = (int64_t *)create_hash_entry();
   return (uint64_t *)(*entry_ptr + 0x78);
 }
-
 // 函数：get_hash_entry_offset
 // 功能：获取哈希表条目的偏移量
 // 返回值：条目偏移量
@@ -592,7 +578,6 @@ int64_t get_hash_entry_offset(void)
   int64_t entry_base;
   int64_t key_offset;
   int64_t search_param;
-  
   if (search_param != entry_base) {
     if (*(int *)(search_param + 0x30) == 0) {
 ENTRY_RETURN:
@@ -613,14 +598,13 @@ ENTRY_RETURN:
   entry_ptr = (int64_t *)create_hash_entry();
   return *entry_ptr + 0x78;
 }
-
 // 函数：create_hash_entry
 // 功能：创建新的哈希表条目
 // 参数：table_ptr - 表指针
-//        buffer_ptr - 缓冲区指针
-//        entry_param - 条目参数
-//        node_ptr - 节点指针
-//        key_data - 键数据指针
+// buffer_ptr - 缓冲区指针
+// entry_param - 条目参数
+// node_ptr - 节点指针
+// key_data - 键数据指针
 // 返回值：创建的条目指针
 uint64_t *
 create_hash_entry(int64_t *table_ptr, uint64_t *buffer_ptr, uint64_t entry_param, int64_t *node_ptr,
@@ -636,7 +620,6 @@ create_hash_entry(int64_t *table_ptr, uint64_t *buffer_ptr, uint64_t entry_param
   int64_t *temp_ptr;
   uint64_t entry_flags;
   uint64_t entry_value;
-  
   temp_ptr = (int64_t *)*table_ptr;
   if ((node_ptr == temp_ptr) || (node_ptr == table_ptr)) {
     if ((table_ptr[4] != 0) && (*(int *)(key_data + 0x10) != 0)) {
@@ -773,23 +756,19 @@ SETUP_ENTRY:
   key_offset = allocate_memory_block(global_memory_allocator, 0x80, (char)table_ptr[5]);
   initialize_memory_block(key_offset + 0x20, key_data);
   *(int32_t *)(key_offset + 0x78) = 0;
-  // 注意：此函数不返回
+// 注意：此函数不返回
   insert_into_hash_table(key_offset, search_ptr, table_ptr, entry_value);
 }
-
 // 注意：全局变量名在相同地址上重叠
-
 // 简化实现说明：
-// - 将原始的FUN_*函数名改为语义化名称
+// - 将原始的函数名改为语义化名称
 // - 将复杂的变量名改为描述性名称
 // - 将原始代码中的大量直接内存操作封装为函数调用
 // - 添加了中文注释说明各部分功能
 // - 保留了原始的堆排序算法和字符串处理逻辑结构
 // - 简化了复杂的嵌套条件判断和循环逻辑
-
 // 原始实现与简化实现的对比：
 // 原始实现：包含复杂的堆排序算法实现和字符串哈希表操作
 // 简化实现：使用函数封装和语义化命名提高代码可读性，同时保持核心功能
-
 // 文件位置：pretty/02/02_core_engine_part233.c
 // 相关函数：heap_sort_float_array(), optimized_heap_sort(), process_string_comparison() 等

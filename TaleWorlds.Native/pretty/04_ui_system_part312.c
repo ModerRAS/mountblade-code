@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part312.c - 4 个函数
-
-// 函数: void FUN_18083a510(float *param_1)
-void FUN_18083a510(float *param_1)
-
+// 函数: void function_83a510(float *param_1)
+void function_83a510(float *param_1)
 {
   float fVar1;
   float fVar2;
@@ -30,7 +27,6 @@ void FUN_18083a510(float *param_1)
   float fVar22;
   float fVar23;
   float fVar24;
-  
   fVar9 = *param_1 - param_1[0x10];
   fVar10 = param_1[1] - param_1[0x11];
   fVar11 = param_1[2] - param_1[0x12];
@@ -194,14 +190,8 @@ void FUN_18083a510(float *param_1)
   param_1[0x1f] = fVar18 * 1.0 + fVar22;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18083a850(int64_t param_1,float *param_2,int param_3,int param_4)
-void FUN_18083a850(int64_t param_1,float *param_2,int param_3,int param_4)
-
+// 函数: void function_83a850(int64_t param_1,float *param_2,int param_3,int param_4)
+void function_83a850(int64_t param_1,float *param_2,int param_3,int param_4)
 {
   float fVar1;
   float fVar2;
@@ -226,7 +216,6 @@ void FUN_18083a850(int64_t param_1,float *param_2,int param_3,int param_4)
   float fVar21;
   float fVar22;
   float fVar23;
-  
   lVar12 = (int64_t)(param_4 * 2);
   lVar13 = (int64_t)param_3 >> 1;
   pfVar10 = param_2 + lVar13 + -8;
@@ -281,14 +270,8 @@ void FUN_18083a850(int64_t param_1,float *param_2,int param_3,int param_4)
   } while (param_2 <= pfVar10);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18083a990(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
-void FUN_18083a990(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
-
+// 函数: void function_83a990(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
+void function_83a990(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
 {
   int8_t auVar1 [32];
   int8_t auVar2 [32];
@@ -296,7 +279,6 @@ void FUN_18083a990(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
   int8_t auVar4 [32];
   int8_t auVar5 [32];
   int8_t auVar6 [32];
-  
   for (param_3 = param_3 >> 3; param_3 != 0; param_3 = param_3 + -1) {
     auVar1 = *param_2;
     auVar2 = *param_1;
@@ -333,14 +315,8 @@ void FUN_18083a990(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18083a9a6(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
-void FUN_18083a9a6(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
-
+// 函数: void function_83a9a6(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
+void function_83a9a6(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
 {
   int8_t auVar1 [32];
   int8_t auVar2 [32];
@@ -349,7 +325,6 @@ void FUN_18083a9a6(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
   int8_t auVar5 [32];
   int8_t auVar6 [32];
   int8_t in_ZMM7 [64];
-  
   do {
     auVar1 = *param_2;
     auVar2 = *param_1;
@@ -387,8 +362,3 @@ void FUN_18083a9a6(int8_t (*param_1) [32],int8_t (*param_2) [32],int param_3)
   } while (param_3 != 0);
   return;
 }
-
-
-
-
-

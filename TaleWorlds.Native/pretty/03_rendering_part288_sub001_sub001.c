@@ -1,176 +1,66 @@
 /*
- * FUN_函数语义化别名定义
+ * 原始函数语义化别名定义
  * 自动生成的别名定义，用于提高代码可读性
  */
-
 #include "fun_aliases_batch.txt"
-
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part288_sub001_sub001.c - 151 个函数
-
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part288_sub001.c - 155 个函数
-
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part288.c - 157 个函数
-
-
-
-// 函数: uint8_t FUN_18060bf00;
-uint8_t FUN_18060bf00;
-
-
-
-
-// 函数: uint8_t FUN_18060bf40;
-uint8_t FUN_18060bf40;
-
-
-
-
-// 函数: uint8_t FUN_18060c100;
-uint8_t FUN_18060c100;
-
-
-
-
-// 函数: uint8_t FUN_18060c160;
-uint8_t FUN_18060c160;
-
-
-
-
-// 函数: uint8_t FUN_18060c1a0;
-uint8_t FUN_18060c1a0;
-
-
-
-
-// 函数: uint8_t FUN_18060c270;
-uint8_t FUN_18060c270;
-
-
-
-
-// 函数: uint8_t FUN_18060c310;
-uint8_t FUN_18060c310;
-
-
-
-
-// 函数: uint8_t FUN_18060c590;
-uint8_t FUN_18060c590;
-
-
-
-
-// 函数: uint8_t FUN_18060c6a0;
-uint8_t FUN_18060c6a0;
-
-
-
-
-// 函数: uint8_t FUN_18060cad0;
-uint8_t FUN_18060cad0;
-
-
-
-
-// 函数: uint8_t FUN_18060cb10;
-uint8_t FUN_18060cb10;
-
-
-
-
-// 函数: uint8_t FUN_18060cf50;
-uint8_t FUN_18060cf50;
-
-
-
-
-// 函数: uint8_t FUN_18060cfd0;
-uint8_t FUN_18060cfd0;
-
-
-
-
-// 函数: uint8_t FUN_18060d060;
-uint8_t FUN_18060d060;
-
-
-
-
-// 函数: uint8_t FUN_18060d4d0;
-uint8_t FUN_18060d4d0;
-
-
-
-
-// 函数: uint8_t FUN_18060d910;
-uint8_t FUN_18060d910;
-
-
-
-
-// 函数: uint8_t FUN_18060da20;
-uint8_t FUN_18060da20;
-
-
-
-
-// 函数: uint8_t FUN_18060de60;
-uint8_t FUN_18060de60;
-
-
-
-
-// 函数: uint8_t FUN_18060e170;
-uint8_t FUN_18060e170;
-
-
-
-
-// 函数: uint8_t FUN_18060e5e0;
-uint8_t FUN_18060e5e0;
-
-
-
-
-// 函数: uint8_t FUN_18060e650;
-uint8_t FUN_18060e650;
-
-
-
-
-// 函数: uint8_t FUN_18060e720;
-uint8_t FUN_18060e720;
-
-
-
-
-// 函数: uint8_t FUN_18060e7f0;
-uint8_t FUN_18060e7f0;
-
-
-
-
-// 函数: uint8_t FUN_18060e860;
-uint8_t FUN_18060e860;
-
-
-
-
-// 函数: uint8_t FUN_18060e8a0;
-uint8_t FUN_18060e8a0;
-
-
-
-
-// 函数: uint8_t FUN_18060ee30;
-uint8_t FUN_18060ee30;
+// 函数: uint8_t function_60bf00;
+uint8_t function_60bf00;
+// 函数: uint8_t function_60bf40;
+uint8_t function_60bf40;
+// 函数: uint8_t function_60c100;
+uint8_t function_60c100;
+// 函数: uint8_t function_60c160;
+uint8_t function_60c160;
+// 函数: uint8_t function_60c1a0;
+uint8_t function_60c1a0;
+// 函数: uint8_t function_60c270;
+uint8_t function_60c270;
+// 函数: uint8_t function_60c310;
+uint8_t function_60c310;
+// 函数: uint8_t function_60c590;
+uint8_t function_60c590;
+// 函数: uint8_t function_60c6a0;
+uint8_t function_60c6a0;
+// 函数: uint8_t function_60cad0;
+uint8_t function_60cad0;
+// 函数: uint8_t function_60cb10;
+uint8_t function_60cb10;
+// 函数: uint8_t function_60cf50;
+uint8_t function_60cf50;
+// 函数: uint8_t function_60cfd0;
+uint8_t function_60cfd0;
+// 函数: uint8_t function_60d060;
+uint8_t function_60d060;
+// 函数: uint8_t function_60d4d0;
+uint8_t function_60d4d0;
+// 函数: uint8_t function_60d910;
+uint8_t function_60d910;
+// 函数: uint8_t function_60da20;
+uint8_t function_60da20;
+// 函数: uint8_t function_60de60;
+uint8_t function_60de60;
+// 函数: uint8_t function_60e170;
+uint8_t function_60e170;
+// 函数: uint8_t function_60e5e0;
+uint8_t function_60e5e0;
+// 函数: uint8_t function_60e650;
+uint8_t function_60e650;
+// 函数: uint8_t function_60e720;
+uint8_t function_60e720;
+// 函数: uint8_t function_60e7f0;
+uint8_t function_60e7f0;
+// 函数: uint8_t function_60e860;
+uint8_t function_60e860;
+// 函数: uint8_t function_60e8a0;
+uint8_t function_60e8a0;
+// 函数: uint8_t function_60ee30;
+uint8_t function_60ee30;
 uint8_t processed_var_9520;
 uint8_t processed_var_8272;
 uint8_t processed_var_8568;
@@ -196,18 +86,10 @@ uint8_t processed_var_6336;
 uint8_t processed_var_8832;
 uint8_t processed_var_9560;
 uint8_t processed_var_9584;
-
-
-
-
-// 函数: uint8_t FUN_180662260;
-uint8_t FUN_180662260;
-
-
-
-
-// 函数: uint8_t FUN_180572c30;
-uint8_t FUN_180572c30;
+// 函数: uint8_t function_662260;
+uint8_t function_662260;
+// 函数: uint8_t function_572c30;
+uint8_t function_572c30;
 uint8_t processed_var_568;
 uint8_t rendering_buffer_2024;
 uint8_t memory_allocator_3264;
@@ -230,24 +112,12 @@ uint8_t processed_var_952;
 uint8_t ui_system_data_1984;
 uint8_t rendering_buffer_2120;
 uint8_t ui_system_data_1336;
-
-
-
-
-// 函数: uint8_t FUN_1805881e0;
-uint8_t FUN_1805881e0;
-
-
-
-
-// 函数: uint8_t FUN_180588260;
-uint8_t FUN_180588260;
-
-
-
-
-// 函数: uint8_t FUN_180588350;
-uint8_t FUN_180588350;
+// 函数: uint8_t function_5881e0;
+uint8_t function_5881e0;
+// 函数: uint8_t function_588260;
+uint8_t function_588260;
+// 函数: uint8_t function_588350;
+uint8_t function_588350;
 uint8_t ui_system_data_1672;
 uint8_t ui_system_data_1688;
 uint8_t ui_system_data_1808;
@@ -255,18 +125,10 @@ uint8_t ui_system_data_1856;
 int rendering_buffer_240;
 uint8_t ui_system_data_1664;
 uint8_t rendering_buffer_2040;
-
-
-
-
-// 函数: uint8_t FUN_180434170;
-uint8_t FUN_180434170;
-
-
-
-
-// 函数: uint8_t FUN_180434250;
-uint8_t FUN_180434250;
+// 函数: uint8_t function_434170;
+uint8_t function_434170;
+// 函数: uint8_t function_434250;
+uint8_t function_434250;
 uint8_t ui_system_data_1944;
 uint8_t rendering_buffer_2608;
 uint8_t rendering_buffer_2416;
@@ -401,27 +263,15 @@ uint8_t rendering_buffer_2136;
 uint8_t processed_var_4640;
 uint8_t processed_var_4848;
 uint8_t processed_var_9376;
-
-
-
-
-// 函数: uint8_t FUN_180607bb0;
-uint8_t FUN_180607bb0;
+// 函数: uint8_t function_607bb0;
+uint8_t function_607bb0;
 uint8_t processed_var_7992;
 uint8_t processed_var_8120;
 uint8_t processed_var_8048;
-
-
-
-
-// 函数: uint8_t FUN_180607a90;
-uint8_t FUN_180607a90;
-
-
-
-
-// 函数: uint8_t FUN_180607b10;
-uint8_t FUN_180607b10;
+// 函数: uint8_t function_607a90;
+uint8_t function_607a90;
+// 函数: uint8_t function_607b10;
+uint8_t function_607b10;
 uint8_t rendering_buffer_2072;
 uint64_t processed_var_464;
 uint8_t processed_var_8432;
@@ -445,18 +295,10 @@ uint8_t system_data_9fd8;
 uint8_t system_data_9fe0;
 uint8_t system_data_9fe8;
 uint8_t system_data_9ff0;
-
-
-
-
-// 函数: uint8_t FUN_180502660;
-uint8_t FUN_180502660;
-
-
-
-
-// 函数: uint8_t FUN_180502740;
-uint8_t FUN_180502740;
+// 函数: uint8_t function_502660;
+uint8_t function_502660;
+// 函数: uint8_t function_502740;
+uint8_t function_502740;
 uint8_t processed_var_8512;
 uint8_t processed_var_8584;
 uint8_t processed_var_8720;
@@ -527,21 +369,13 @@ int *processed_var_7128;
 int *processed_var_7136;
 int *processed_var_7144;
 int8_t processed_var_7152;
-
-
-
-
-// 函数: uint8_t FUN_18061cd80;
-uint8_t FUN_18061cd80;
+// 函数: uint8_t function_61cd80;
+uint8_t function_61cd80;
 uint8_t rendering_buffer_2376;
 uint8_t rendering_buffer_2456;
 uint8_t rendering_buffer_2112;
-
-
-
-
-// 函数: uint8_t FUN_18061cb70;
-uint8_t FUN_18061cb70;
+// 函数: uint8_t function_61cb70;
+uint8_t function_61cb70;
 uint8_t rendering_buffer_2256;
 uint8_t system_data_ecf0;
 uint8_t system_data_ece8;
@@ -560,18 +394,10 @@ uint8_t system_data_a068;
 uint8_t system_data_a070;
 uint8_t system_data_a078;
 uint8_t system_data_a080;
-
-
-
-
-// 函数: uint8_t FUN_18064fe90;
-uint8_t FUN_18064fe90;
-
-
-
-
-// 函数: uint8_t FUN_1806500b0;
-uint8_t FUN_1806500b0;
+// 函数: uint8_t function_64fe90;
+uint8_t function_64fe90;
+// 函数: uint8_t function_6500b0;
+uint8_t function_6500b0;
 uint8_t memory_allocator_3904;
 uint8_t processed_var_4248;
 uint8_t processed_var_4272;
@@ -730,10 +556,6 @@ uint8_t processed_var_7548;
 uint8_t processed_var_7552;
 uint8_t processed_var_7568;
 uint8_t processed_var_7576;
-
-
-
-
 // 函数: uint8_t RenderingSystem_MaterialManager;
 uint8_t RenderingSystem_MaterialManager;
 uint8_t system_data_8bc8;
@@ -826,26 +648,14 @@ uint8_t processed_var_8848;
 uint8_t processed_var_7056;
 uint8_t processed_var_8776;
 uint8_t system_data_4b20;
-
-
-
-
-// 函数: uint8_t FUN_18064dfc0;
-uint8_t FUN_18064dfc0;
-
-
-
-
-// 函数: uint8_t FUN_18064e080;
-uint8_t FUN_18064e080;
+// 函数: uint8_t function_64dfc0;
+uint8_t function_64dfc0;
+// 函数: uint8_t function_64e080;
+uint8_t function_64e080;
 uint8_t processed_var_8096;
 uint8_t processed_var_9024;
-
-
-
-
-// 函数: uint8_t FUN_18064f4b0;
-uint8_t FUN_18064f4b0;
+// 函数: uint8_t function_64f4b0;
+uint8_t function_64f4b0;
 uint8_t system_data_4bc0;
 uint8_t system_data_4b30;
 uint8_t system_data_4b38;
@@ -881,136 +691,64 @@ uint8_t processed_var_9664;
 int8_t system_data_67b8;
 uint8_t system_data_f018;
 uint8_t system_data_f010;
-
-
-
-
-// 函数: uint8_t FUN_180655f50;
-uint8_t FUN_180655f50;
-
-
-
-
-// 函数: uint8_t FUN_180656020;
-uint8_t FUN_180656020;
+// 函数: uint8_t function_655f50;
+uint8_t function_655f50;
+// 函数: uint8_t function_656020;
+uint8_t function_656020;
 uint8_t system_data_3ff4;
-
-
-
-
-// 函数: uint8_t FUN_180656110;
-uint8_t FUN_180656110;
+// 函数: uint8_t function_656110;
+uint8_t function_656110;
 uint8_t system_data_ecfc;
-
-
-
-
-// 函数: uint8_t FUN_180656160;
-uint8_t FUN_180656160;
-
-
-
-
-// 函数: uint8_t FUN_1806561d0;
-uint8_t FUN_1806561d0;
+// 函数: uint8_t function_656160;
+uint8_t function_656160;
+// 函数: uint8_t function_6561d0;
+uint8_t function_6561d0;
 uint8_t processed_var_9328;
 uint8_t memory_allocator_3232;
-
-
-
-
-// 函数: uint8_t FUN_180656340;
-uint8_t FUN_180656340;
+// 函数: uint8_t function_656340;
+uint8_t function_656340;
 uint8_t processed_var_8096;
-
-
-
-
-// 函数: uint8_t FUN_1806563a0;
-uint8_t FUN_1806563a0;
+// 函数: uint8_t function_6563a0;
+uint8_t function_6563a0;
 uint8_t processed_var_4448;
-
-
-
-
-// 函数: uint8_t FUN_180656410;
-uint8_t FUN_180656410;
+// 函数: uint8_t function_656410;
+uint8_t function_656410;
 uint8_t processed_var_4224;
 uint8_t processed_var_4448;
-
-
-
-
-// 函数: uint8_t FUN_1806565a0;
-uint8_t FUN_1806565a0;
+// 函数: uint8_t function_6565a0;
+uint8_t function_6565a0;
 uint8_t processed_var_4912;
-
-
-
-
-// 函数: uint8_t FUN_180656610;
-uint8_t FUN_180656610;
+// 函数: uint8_t function_656610;
+uint8_t function_656610;
 uint8_t processed_var_5088;
-
-
-
-
-// 函数: uint8_t FUN_1806566c0;
-uint8_t FUN_1806566c0;
+// 函数: uint8_t function_6566c0;
+uint8_t function_6566c0;
 uint8_t processed_var_5104;
 uint8_t processed_var_5456;
 uint8_t processed_var_5472;
 uint8_t processed_var_6448;
 uint8_t processed_var_9680;
 uint8_t processed_var_9720;
-
-
-
-
-// 函数: uint8_t FUN_1806552e0;
-uint8_t FUN_1806552e0;
-
-
-
-
-// 函数: uint8_t FUN_1806555f0;
-uint8_t FUN_1806555f0;
-
-
-
-
-// 函数: uint8_t FUN_180655e60;
-uint8_t FUN_180655e60;
+// 函数: uint8_t function_6552e0;
+uint8_t function_6552e0;
+// 函数: uint8_t function_6555f0;
+uint8_t function_6555f0;
+// 函数: uint8_t function_655e60;
+uint8_t function_655e60;
 uint8_t processed_var_768;
 uint8_t processed_var_9944;
 uint8_t system_data_f020;
 int8_t system_data_f020;
 uint8_t ui_system_data_16;
 uint8_t system_data_67c8;
-
-
-
-
-// 函数: uint8_t FUN_180653580;
-uint8_t FUN_180653580;
-
-
-
-
-// 函数: uint8_t FUN_1806535c0;
-uint8_t FUN_1806535c0;
-
-
-
-
-// 函数: uint8_t FUN_180653630;
-uint8_t FUN_180653630;
-
-
-
-
-// 函数: uint8_t FUN_180653670;
-uint8_t FUN_180653670;
+// 函数: uint8_t function_653580;
+uint8_t function_653580;
+// 函数: uint8_t function_6535c0;
+uint8_t function_6535c0;
+// 函数: uint8_t function_653630;
+uint8_t function_653630;
+// 函数: uint8_t function_653670;
+uint8_t function_653670;
 uint8_t system_data_dda8;
 uint8_t system_data_1028;
 uint8_t processed_var_80;
@@ -1087,120 +825,44 @@ uint8_t processed_var_656;
 uint8_t ui_system_data_1412;
 uint8_t rendering_buffer_2384;
 uint8_t rendering_buffer_2608;
-
-
-
-
-// 函数: uint8_t FUN_1806714a0;
-uint8_t FUN_1806714a0;
-
-
-
-
-// 函数: uint8_t FUN_1806718d0;
-uint8_t FUN_1806718d0;
-
-
-
-
-// 函数: uint8_t FUN_180671eb0;
-uint8_t FUN_180671eb0;
-
-
-
-
-// 函数: uint8_t FUN_1806721d0;
-uint8_t FUN_1806721d0;
-
-
-
-
-// 函数: uint8_t FUN_1806725c0;
-uint8_t FUN_1806725c0;
-
-
-
-
-// 函数: uint8_t FUN_180672a50;
-uint8_t FUN_180672a50;
-
-
-
-
-// 函数: uint8_t FUN_180672da0;
-uint8_t FUN_180672da0;
-
-
-
-
-// 函数: uint8_t FUN_180673220;
-uint8_t FUN_180673220;
-
-
-
-
-// 函数: uint8_t FUN_180673360;
-uint8_t FUN_180673360;
-
-
-
-
-// 函数: uint8_t FUN_180673850;
-uint8_t FUN_180673850;
-
-
-
-
-// 函数: uint8_t FUN_180673970;
-uint8_t FUN_180673970;
-
-
-
-
-// 函数: uint8_t FUN_180673e10;
-uint8_t FUN_180673e10;
-
-
-
-
-// 函数: uint8_t FUN_180673f50;
-uint8_t FUN_180673f50;
-
-
-
-
-// 函数: uint8_t FUN_180674040;
-uint8_t FUN_180674040;
-
-
-
-
-// 函数: uint8_t FUN_180674120;
-uint8_t FUN_180674120;
-
-
-
-
-// 函数: uint8_t FUN_1806742a0;
-uint8_t FUN_1806742a0;
-
-
-
-
-// 函数: uint8_t FUN_1806743e0;
-uint8_t FUN_1806743e0;
-
-
-
-
-// 函数: uint8_t FUN_1806744d0;
-uint8_t FUN_1806744d0;
-
-
-
-
-// 函数: uint8_t FUN_180674610;
-uint8_t FUN_180674610;
+// 函数: uint8_t function_6714a0;
+uint8_t function_6714a0;
+// 函数: uint8_t function_6718d0;
+uint8_t function_6718d0;
+// 函数: uint8_t function_671eb0;
+uint8_t function_671eb0;
+// 函数: uint8_t function_6721d0;
+uint8_t function_6721d0;
+// 函数: uint8_t function_6725c0;
+uint8_t function_6725c0;
+// 函数: uint8_t function_672a50;
+uint8_t function_672a50;
+// 函数: uint8_t function_672da0;
+uint8_t function_672da0;
+// 函数: uint8_t function_673220;
+uint8_t function_673220;
+// 函数: uint8_t function_673360;
+uint8_t function_673360;
+// 函数: uint8_t function_673850;
+uint8_t function_673850;
+// 函数: uint8_t function_673970;
+uint8_t function_673970;
+// 函数: uint8_t function_673e10;
+uint8_t function_673e10;
+// 函数: uint8_t function_673f50;
+uint8_t function_673f50;
+// 函数: uint8_t function_674040;
+uint8_t function_674040;
+// 函数: uint8_t function_674120;
+uint8_t function_674120;
+// 函数: uint8_t function_6742a0;
+uint8_t function_6742a0;
+// 函数: uint8_t function_6743e0;
+uint8_t function_6743e0;
+// 函数: uint8_t function_6744d0;
+uint8_t function_6744d0;
+// 函数: uint8_t function_674610;
+uint8_t function_674610;
 uint8_t system_data_c1dc;
 uint8_t system_data_c1d8;
 uint8_t system_data_c1d0;
@@ -1347,409 +1009,137 @@ uint8_t rendering_buffer_2672;
 uint8_t processed_var_5920;
 uint8_t processed_var_960;
 uint8_t ui_system_data_1008;
-
-
-
-
-// 函数: uint8_t FUN_180674700;
-uint8_t FUN_180674700;
-
-
-
-
-// 函数: uint8_t FUN_180674930;
-uint8_t FUN_180674930;
-
-
-
-
-// 函数: uint8_t FUN_180674aa0;
-uint8_t FUN_180674aa0;
-
-
-
-
-// 函数: uint8_t FUN_180674d10;
-uint8_t FUN_180674d10;
-
-
-
-
-// 函数: uint8_t FUN_180674f40;
-uint8_t FUN_180674f40;
-
-
-
-
-// 函数: uint8_t FUN_1806750b0;
-uint8_t FUN_1806750b0;
-
-
-
-
-// 函数: uint8_t FUN_1806760f0;
-uint8_t FUN_1806760f0;
-
-
-
-
-// 函数: uint8_t FUN_180676320;
-uint8_t FUN_180676320;
-
-
-
-
-// 函数: uint8_t FUN_180676490;
-uint8_t FUN_180676490;
-
-
-
-
-// 函数: uint8_t FUN_180676700;
-uint8_t FUN_180676700;
-
-
-
-
-// 函数: uint8_t FUN_180676930;
-uint8_t FUN_180676930;
-
-
-
-
-// 函数: uint8_t FUN_180676aa0;
-uint8_t FUN_180676aa0;
-
-
-
-
-// 函数: uint8_t FUN_180677100;
-uint8_t FUN_180677100;
-
-
-
-
-// 函数: uint8_t FUN_180677190;
-uint8_t FUN_180677190;
-
-
-
-
-// 函数: uint8_t FUN_180677300;
-uint8_t FUN_180677300;
-
-
-
-
-// 函数: uint8_t FUN_180677530;
-uint8_t FUN_180677530;
-
-
-
-
-// 函数: uint8_t FUN_1806780c0;
-uint8_t FUN_1806780c0;
-
-
-
-
-// 函数: uint8_t FUN_1806782c0;
-uint8_t FUN_1806782c0;
-
-
-
-
-// 函数: uint8_t FUN_180678430;
-uint8_t FUN_180678430;
-
-
-
-
-// 函数: uint8_t FUN_180678540;
-uint8_t FUN_180678540;
-
-
-
-
-// 函数: uint8_t FUN_180678810;
-uint8_t FUN_180678810;
-
-
-
-
-// 函数: uint8_t FUN_1806789c0;
-uint8_t FUN_1806789c0;
-
-
-
-
-// 函数: uint8_t FUN_180678b10;
-uint8_t FUN_180678b10;
-
-
-
-
-// 函数: uint8_t FUN_180678bc0;
-uint8_t FUN_180678bc0;
-
-
-
-
-// 函数: uint8_t FUN_180678e20;
-uint8_t FUN_180678e20;
-
-
-
-
-// 函数: uint8_t FUN_180678ef0;
-uint8_t FUN_180678ef0;
-
-
-
-
-// 函数: uint8_t FUN_180678fc0;
-uint8_t FUN_180678fc0;
-
-
-
-
-// 函数: uint8_t FUN_1806790b0;
-uint8_t FUN_1806790b0;
-
-
-
-
-// 函数: uint8_t FUN_180679310;
-uint8_t FUN_180679310;
-
-
-
-
-// 函数: uint8_t FUN_180679480;
-uint8_t FUN_180679480;
-
-
-
-
-// 函数: uint8_t FUN_1806795f0;
-uint8_t FUN_1806795f0;
-
-
-
-
-// 函数: uint8_t FUN_1806796f0;
-uint8_t FUN_1806796f0;
-
-
-
-
-// 函数: uint8_t FUN_180679ac0;
-uint8_t FUN_180679ac0;
-
-
-
-
-// 函数: uint8_t FUN_180679b20;
-uint8_t FUN_180679b20;
-
-
-
-
-// 函数: uint8_t FUN_180679d30;
-uint8_t FUN_180679d30;
-
-
-
-
-// 函数: uint8_t FUN_18067c470;
-uint8_t FUN_18067c470;
-
-
-
-
-// 函数: uint8_t FUN_180683f90;
-uint8_t FUN_180683f90;
-
-
-
-
-// 函数: uint8_t FUN_1806844a0;
-uint8_t FUN_1806844a0;
-
-
-
-
-// 函数: uint8_t FUN_18068b080;
-uint8_t FUN_18068b080;
-
-
-
-
-// 函数: uint8_t FUN_18068d2b0;
-uint8_t FUN_18068d2b0;
-
-
-
-
-// 函数: uint8_t FUN_18068d480;
-uint8_t FUN_18068d480;
-
-
-
-
-// 函数: uint8_t FUN_18068d4b0;
-uint8_t FUN_18068d4b0;
-
-
-
-
-// 函数: uint8_t FUN_18068d530;
-uint8_t FUN_18068d530;
-
-
-
-
-// 函数: uint8_t FUN_18068d5b0;
-uint8_t FUN_18068d5b0;
-
-
-
-
-// 函数: uint8_t FUN_18068d630;
-uint8_t FUN_18068d630;
-
-
-
-
-// 函数: uint8_t FUN_18068d6b0;
-uint8_t FUN_18068d6b0;
-
-
-
-
-// 函数: uint8_t FUN_18068d730;
-uint8_t FUN_18068d730;
-
-
-
-
-// 函数: uint8_t FUN_18068d7b0;
-uint8_t FUN_18068d7b0;
-
-
-
-
-// 函数: uint8_t FUN_18068d8d0;
-uint8_t FUN_18068d8d0;
-
-
-
-
-// 函数: uint8_t FUN_18068d9f0;
-uint8_t FUN_18068d9f0;
-
-
-
-
-// 函数: uint8_t FUN_18068db10;
-uint8_t FUN_18068db10;
-
-
-
-
-// 函数: uint8_t FUN_18068dc30;
-uint8_t FUN_18068dc30;
-
-
-
-
-// 函数: uint8_t FUN_18068dd50;
-uint8_t FUN_18068dd50;
-
-
-
-
-// 函数: uint8_t FUN_18068de70;
-uint8_t FUN_18068de70;
-
-
-
-
-// 函数: uint8_t FUN_18068def0;
-uint8_t FUN_18068def0;
-
-
-
-
-// 函数: uint8_t FUN_18068df70;
-uint8_t FUN_18068df70;
-
-
-
-
-// 函数: uint8_t FUN_18068dff0;
-uint8_t FUN_18068dff0;
-
-
-
-
-// 函数: uint8_t FUN_18068e070;
-uint8_t FUN_18068e070;
-
-
-
-
-// 函数: uint8_t FUN_18068e250;
-uint8_t FUN_18068e250;
-
-
-
-
-// 函数: uint8_t FUN_18068e430;
-uint8_t FUN_18068e430;
-
-
-
-
-// 函数: uint8_t FUN_18068e610;
-uint8_t FUN_18068e610;
-
-
-
-
-// 函数: uint8_t FUN_18068e7f0;
-uint8_t FUN_18068e7f0;
-
-
-
-
-// 函数: uint8_t FUN_18068e870;
-uint8_t FUN_18068e870;
-
-
-
-
-// 函数: uint8_t FUN_18068e8f0;
-uint8_t FUN_18068e8f0;
-
-
-
-
-// 函数: uint8_t FUN_18068e970;
-uint8_t FUN_18068e970;
-
-
-
-
-// 函数: uint8_t FUN_18068e9f0;
-uint8_t FUN_18068e9f0;
-
-
-
-
-// 函数: uint8_t FUN_18068ea70;
-uint8_t FUN_18068ea70;
-
-
-
-
+// 函数: uint8_t function_674700;
+uint8_t function_674700;
+// 函数: uint8_t function_674930;
+uint8_t function_674930;
+// 函数: uint8_t function_674aa0;
+uint8_t function_674aa0;
+// 函数: uint8_t function_674d10;
+uint8_t function_674d10;
+// 函数: uint8_t function_674f40;
+uint8_t function_674f40;
+// 函数: uint8_t function_6750b0;
+uint8_t function_6750b0;
+// 函数: uint8_t function_6760f0;
+uint8_t function_6760f0;
+// 函数: uint8_t function_676320;
+uint8_t function_676320;
+// 函数: uint8_t function_676490;
+uint8_t function_676490;
+// 函数: uint8_t function_676700;
+uint8_t function_676700;
+// 函数: uint8_t function_676930;
+uint8_t function_676930;
+// 函数: uint8_t function_676aa0;
+uint8_t function_676aa0;
+// 函数: uint8_t function_677100;
+uint8_t function_677100;
+// 函数: uint8_t function_677190;
+uint8_t function_677190;
+// 函数: uint8_t function_677300;
+uint8_t function_677300;
+// 函数: uint8_t function_677530;
+uint8_t function_677530;
+// 函数: uint8_t function_6780c0;
+uint8_t function_6780c0;
+// 函数: uint8_t function_6782c0;
+uint8_t function_6782c0;
+// 函数: uint8_t function_678430;
+uint8_t function_678430;
+// 函数: uint8_t function_678540;
+uint8_t function_678540;
+// 函数: uint8_t function_678810;
+uint8_t function_678810;
+// 函数: uint8_t function_6789c0;
+uint8_t function_6789c0;
+// 函数: uint8_t function_678b10;
+uint8_t function_678b10;
+// 函数: uint8_t function_678bc0;
+uint8_t function_678bc0;
+// 函数: uint8_t function_678e20;
+uint8_t function_678e20;
+// 函数: uint8_t function_678ef0;
+uint8_t function_678ef0;
+// 函数: uint8_t function_678fc0;
+uint8_t function_678fc0;
+// 函数: uint8_t function_6790b0;
+uint8_t function_6790b0;
+// 函数: uint8_t function_679310;
+uint8_t function_679310;
+// 函数: uint8_t function_679480;
+uint8_t function_679480;
+// 函数: uint8_t function_6795f0;
+uint8_t function_6795f0;
+// 函数: uint8_t function_6796f0;
+uint8_t function_6796f0;
+// 函数: uint8_t function_679ac0;
+uint8_t function_679ac0;
+// 函数: uint8_t function_679b20;
+uint8_t function_679b20;
+// 函数: uint8_t function_679d30;
+uint8_t function_679d30;
+// 函数: uint8_t function_67c470;
+uint8_t function_67c470;
+// 函数: uint8_t function_683f90;
+uint8_t function_683f90;
+// 函数: uint8_t function_6844a0;
+uint8_t function_6844a0;
+// 函数: uint8_t function_68b080;
+uint8_t function_68b080;
+// 函数: uint8_t function_68d2b0;
+uint8_t function_68d2b0;
+// 函数: uint8_t function_68d480;
+uint8_t function_68d480;
+// 函数: uint8_t function_68d4b0;
+uint8_t function_68d4b0;
+// 函数: uint8_t function_68d530;
+uint8_t function_68d530;
+// 函数: uint8_t function_68d5b0;
+uint8_t function_68d5b0;
+// 函数: uint8_t function_68d630;
+uint8_t function_68d630;
+// 函数: uint8_t function_68d6b0;
+uint8_t function_68d6b0;
+// 函数: uint8_t function_68d730;
+uint8_t function_68d730;
+// 函数: uint8_t function_68d7b0;
+uint8_t function_68d7b0;
+// 函数: uint8_t function_68d8d0;
+uint8_t function_68d8d0;
+// 函数: uint8_t function_68d9f0;
+uint8_t function_68d9f0;
+// 函数: uint8_t function_68db10;
+uint8_t function_68db10;
+// 函数: uint8_t function_68dc30;
+uint8_t function_68dc30;
+// 函数: uint8_t function_68dd50;
+uint8_t function_68dd50;
+// 函数: uint8_t function_68de70;
+uint8_t function_68de70;
+// 函数: uint8_t function_68def0;
+uint8_t function_68def0;
+// 函数: uint8_t function_68df70;
+uint8_t function_68df70;
+// 函数: uint8_t function_68dff0;
+uint8_t function_68dff0;
+// 函数: uint8_t function_68e070;
+uint8_t function_68e070;
+// 函数: uint8_t function_68e250;
+uint8_t function_68e250;
+// 函数: uint8_t function_68e430;
+uint8_t function_68e430;
+// 函数: uint8_t function_68e610;
+uint8_t function_68e610;
+// 函数: uint8_t function_68e7f0;
+uint8_t function_68e7f0;
+// 函数: uint8_t function_68e870;
+uint8_t function_68e870;
+// 函数: uint8_t function_68e8f0;
+uint8_t function_68e8f0;
+// 函数: uint8_t function_68e970;
+uint8_t function_68e970;
+// 函数: uint8_t function_68e9f0;
+uint8_t function_68e9f0;
+// 函数: uint8_t function_68ea70;
+uint8_t function_68ea70;

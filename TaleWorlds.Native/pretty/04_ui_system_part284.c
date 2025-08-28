@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part284.c - 1 个函数
-
-// 函数: void FUN_18082b380(int64_t param_1,float *param_2,float *param_3,float *param_4,int param_5,
-void FUN_18082b380(int64_t param_1,float *param_2,float *param_3,float *param_4,int param_5,
+// 函数: void function_82b380(int64_t param_1,float *param_2,float *param_3,float *param_4,int param_5,
+void function_82b380(int64_t param_1,float *param_2,float *param_3,float *param_4,int param_5,
                   int param_6,uint64_t param_7,uint param_8,uint param_9,uint param_10,
                   uint param_11)
-
 {
   float *pfVar1;
   float *pfVar2;
@@ -68,12 +65,11 @@ void FUN_18082b380(int64_t param_1,float *param_2,float *param_3,float *param_4,
   int8_t auVar58 [16];
   int8_t auVar59 [16];
   int8_t auVar60 [16];
-  
   uVar56 = (uint64_t)(int)(uint)param_7;
   pfVar42 = (float *)(*(int64_t *)(param_1 + 0x10) + (int64_t)param_5 * 4);
   pfVar46 = (float *)(*(int64_t *)(param_1 + 8) + (int64_t)param_6 * 4);
   if ((uint)param_7 == 1) {
-    func_0x00018082bef0(param_2,param_3,param_4,pfVar42,pfVar46,param_8,param_9,param_10,param_11);
+    SystemFunction_00018082bef0(param_2,param_3,param_4,pfVar42,pfVar46,param_8,param_9,param_10,param_11);
     return;
   }
   iVar39 = (int)param_8 >> 2;
@@ -710,8 +706,3 @@ void FUN_18082b380(int64_t param_1,float *param_2,float *param_3,float *param_4,
   }
   return;
 }
-
-
-
-
-

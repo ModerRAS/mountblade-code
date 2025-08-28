@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part310.c - 2 个函数
-
-// 函数: void FUN_180839208(void)
-void FUN_180839208(void)
-
+// 函数: void function_839208(void)
+void function_839208(void)
 {
   int64_t in_RAX;
   int64_t in_R11;
@@ -19,7 +16,6 @@ void FUN_180839208(void)
   uint64_t unaff_XMM8_Qb;
   uint64_t unaff_XMM9_Qa;
   uint64_t unaff_XMM9_Qb;
-  
   *(uint64_t *)(in_R11 + 0x10) = unaff_R12;
   *(uint64_t *)(in_R11 + -0x30) = unaff_R13;
   *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
@@ -31,17 +27,13 @@ void FUN_180839208(void)
   *(uint64_t *)(in_R11 + -0x60) = unaff_XMM8_Qb;
   *(uint64_t *)(in_R11 + -0x78) = unaff_XMM9_Qa;
   *(uint64_t *)(in_R11 + -0x70) = unaff_XMM9_Qb;
-                    // WARNING: Could not recover jumptable at 0x000180839239. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x000180839239. Too many branches
+// WARNING: Treating indirect jump as call
   (*(code *)((uint64_t)*(uint *)(&processed_var_4848_ptr + in_RAX * 4) + 0x180000000))
             ((code *)((uint64_t)*(uint *)(&processed_var_4848_ptr + in_RAX * 4) + 0x180000000));
   return;
 }
-
-
-
-uint64_t FUN_180839344(void)
-
+uint64_t function_839344(void)
 {
   float fVar1;
   float fVar2;
@@ -87,7 +79,6 @@ uint64_t FUN_180839344(void)
   float unaff_XMM13_Db;
   float unaff_XMM13_Dc;
   float unaff_XMM13_Dd;
-  
   do {
     fVar1 = *unaff_RBX;
     fVar2 = unaff_RBX[1];
@@ -105,7 +96,7 @@ uint64_t FUN_180839344(void)
     fVar14 = unaff_RBX[0xd];
     fVar15 = unaff_RBX[0xe];
     fVar16 = unaff_RBX[0xf];
-    FUN_180838f80();
+    function_838f80();
     auVar18 = ZEXT416(unaff_R14D);
     auVar19 = ZEXT416(unaff_R14D * 2);
     auVar20 = ZEXT416(unaff_R14D * 3);
@@ -150,7 +141,7 @@ uint64_t FUN_180839344(void)
     unaff_R15D = unaff_R15D + -1;
   } while (unaff_R15D != 0);
   for (uVar17 = unaff_EDI & 3; uVar17 != 0; uVar17 = uVar17 - 1) {
-    FUN_180838d80();
+    function_838d80();
     *unaff_RBX = *unaff_RBX +
                  (float)(int)(extraout_XMM0_Da_00 & unaff_XMM11_Da) * unaff_XMM13_Da +
                  unaff_XMM12_Da;
@@ -167,11 +158,7 @@ uint64_t FUN_180839344(void)
   }
   return 0;
 }
-
-
-
-uint64_t FUN_18083943c(void)
-
+uint64_t function_83943c(void)
 {
   float *unaff_RBX;
   uint unaff_EDI;
@@ -192,9 +179,8 @@ uint64_t FUN_18083943c(void)
   float unaff_XMM13_Db;
   float unaff_XMM13_Dc;
   float unaff_XMM13_Dd;
-  
   for (uVar1 = unaff_EDI & 3; uVar1 != 0; uVar1 = uVar1 - 1) {
-    FUN_180838d80();
+    function_838d80();
     *unaff_RBX = *unaff_RBX +
                  (float)(int)(extraout_XMM0_Da & unaff_XMM11_Da) * unaff_XMM13_Da + unaff_XMM12_Da;
     unaff_RBX[1] = unaff_RBX[1] +
@@ -210,19 +196,11 @@ uint64_t FUN_18083943c(void)
   }
   return 0;
 }
-
-
-
-uint64_t FUN_1808396fe(void)
-
+uint64_t function_8396fe(void)
 {
   return 0;
 }
-
-
-
-uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4)
-
+uint64_t function_839750(uint *param_1,float *param_2,uint64_t param_3,int param_4)
 {
   float *pfVar1;
   float *pfVar2;
@@ -258,7 +236,6 @@ uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4
   uint extraout_XMM0_Dd_00;
   uint extraout_XMM0_Dd_01;
   int8_t auVar22 [16];
-  
   uVar21 = (uint)*(char *)((int64_t)param_1 + 0x66);
   uVar14 = *param_1;
   uVar15 = param_1[1];
@@ -278,7 +255,7 @@ uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4
     case 0:
     case 1:
       for (; iVar20 != 0; iVar20 = iVar20 + -1) {
-        FUN_180838f80(param_1,param_3);
+        function_838f80(param_1,param_3);
         *param_2 = *param_2 + (float)(int)(extraout_XMM0_Da & uVar14) * fVar7 + fVar3;
         param_2[1] = param_2[1] + (float)(int)(extraout_XMM0_Db & uVar15) * fVar8 + fVar4;
         param_2[2] = param_2[2] + (float)(int)(extraout_XMM0_Dc & uVar16) * fVar9 + fVar5;
@@ -291,7 +268,7 @@ uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4
       param_4 = param_4 >> 3;
       if (param_4 != 0) {
         do {
-          FUN_180838f80(param_1,param_3);
+          function_838f80(param_1,param_3);
           auVar22 = ZEXT416(uVar21);
           *param_2 = (float)(int)(extraout_XMM0_Da_00 & uVar14) * fVar7 + fVar3 + *param_2;
           param_2[1] = (float)(int)(extraout_XMM0_Db_00 & uVar15) * fVar8 + fVar4 + param_2[1];
@@ -320,7 +297,7 @@ uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4
       if (iVar19 != 0) {
         lVar18 = (int64_t)((int)(iVar20 + (param_4 >> 0x1f & 3U)) >> 2);
         do {
-          FUN_180838f80(param_1,param_3);
+          function_838f80(param_1,param_3);
           auVar22 = ZEXT416(uVar21);
           *param_2 = (float)(int)(extraout_XMM0_Da_01 & uVar14) * fVar7 + fVar3 + *param_2;
           param_2[1] = (float)(int)(extraout_XMM0_Db_01 & uVar15) * fVar8 + fVar4 + param_2[1];
@@ -375,29 +352,18 @@ uint64_t FUN_180839750(uint *param_1,float *param_2,uint64_t param_3,int param_4
   }
   return 0;
 }
-
-
-
-
-
-// 函数: void FUN_1808397b0(uint64_t param_1,int64_t param_2)
-void FUN_1808397b0(uint64_t param_1,int64_t param_2)
-
+// 函数: void function_8397b0(uint64_t param_1,int64_t param_2)
+void function_8397b0(uint64_t param_1,int64_t param_2)
 {
   int64_t in_RAX;
   code *UNRECOVERED_JUMPTABLE;
-  
   UNRECOVERED_JUMPTABLE = (code *)((uint64_t)*(uint *)(param_2 + 0x83998c + in_RAX * 4) + param_2);
-                    // WARNING: Could not recover jumptable at 0x0001808397c2. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808397c2. Too many branches
+// WARNING: Treating indirect jump as call
   (*UNRECOVERED_JUMPTABLE)(UNRECOVERED_JUMPTABLE);
   return;
 }
-
-
-
-uint64_t FUN_180839883(void)
-
+uint64_t function_839883(void)
 {
   float *pfVar1;
   float *pfVar2;
@@ -426,10 +392,9 @@ uint64_t FUN_180839883(void)
   float unaff_XMM8_Db;
   float unaff_XMM8_Dc;
   float unaff_XMM8_Dd;
-  
   lVar6 = (int64_t)((int)(in_EAX + (in_EAX >> 0x1f & 3U)) >> 2);
   do {
-    FUN_180838f80();
+    function_838f80();
     auVar7 = ZEXT416(unaff_R15D);
     *unaff_RBX = (float)(int)(extraout_XMM0_Da & unaff_XMM6_Da) * unaff_XMM8_Da + unaff_XMM7_Da +
                  *unaff_RBX;
@@ -485,29 +450,17 @@ uint64_t FUN_180839883(void)
   } while (unaff_EBP != 0);
   return 0;
 }
-
-
-
-uint64_t FUN_180839966(void)
-
+uint64_t function_839966(void)
 {
   return 0;
 }
-
-
-
-uint64_t FUN_18083996e(void)
-
+uint64_t function_83996e(void)
 {
   return 0;
 }
-
-
-
 uint64_t
-FUN_1808399b0(int8_t (*param_1) [16],int64_t *param_2,int param_3,uint64_t param_4,
+function_8399b0(int8_t (*param_1) [16],int64_t *param_2,int param_3,uint64_t param_4,
              uint64_t param_5,int param_6)
-
 {
   int8_t auVar1 [16];
   float fVar2;
@@ -537,11 +490,10 @@ FUN_1808399b0(int8_t (*param_1) [16],int64_t *param_2,int param_3,uint64_t param
   int8_t auVar19 [16];
   int8_t auVar23 [16];
   int8_t auVar24 [16];
-  int8_t auStack_a8 [16];
-  int8_t auStack_98 [16];
-  int8_t auStack_88 [16];
-  int8_t aauStack_78 [5] [16];
-  
+  int8_t stack_array_a8 [16];
+  int8_t stack_array_98 [16];
+  int8_t stack_array_88 [16];
+  int8_t astack_array_78 [5] [16];
   uVar13 = (uint)(char)param_1[6][6];
   auVar1 = *param_1;
   fVar2 = *(float *)param_1[1];
@@ -561,10 +513,10 @@ FUN_1808399b0(int8_t (*param_1) [16],int64_t *param_2,int param_3,uint64_t param
     case 0:
     case 1:
       for (; iVar11 != 0; iVar11 = iVar11 + -1) {
-        auVar14._0_8_ = FUN_180838f80(param_1,param_5);
+        auVar14._0_8_ = function_838f80(param_1,param_5);
         auVar14._8_8_ = extraout_XMM0_Qb;
         auVar14 = auVar14 & auVar1;
-        auVar15._0_8_ = FUN_180838f80(param_1,param_5);
+        auVar15._0_8_ = function_838f80(param_1,param_5);
         auVar15._8_8_ = extraout_XMM0_Qb_00;
         auVar15 = auVar15 & auVar1;
         *pfVar12 = (float)auVar14._0_4_ * fVar6 + fVar2 + *pfVar12;
@@ -582,7 +534,7 @@ FUN_1808399b0(int8_t (*param_1) [16],int64_t *param_2,int param_3,uint64_t param
     case 2:
     case 3:
       for (; iVar11 != 0; iVar11 = iVar11 + -1) {
-        auVar17._0_8_ = FUN_180838f80(param_1,param_5);
+        auVar17._0_8_ = function_838f80(param_1,param_5);
         auVar17._8_8_ = extraout_XMM0_Qb_01;
         auVar16 = ZEXT416(uVar13);
         auVar18 = auVar17 & auVar1;
@@ -606,7 +558,7 @@ FUN_1808399b0(int8_t (*param_1) [16],int64_t *param_2,int param_3,uint64_t param
     default:
       if (param_6 != 0) {
         do {
-          auVar16._0_8_ = FUN_180838f80(param_1,param_5);
+          auVar16._0_8_ = function_838f80(param_1,param_5);
           auVar16._8_8_ = extraout_XMM0_Qb_02;
           auVar17 = auVar16 & auVar1;
           auVar18 = ZEXT416(uVar13);
@@ -655,37 +607,32 @@ FUN_1808399b0(int8_t (*param_1) [16],int64_t *param_2,int param_3,uint64_t param
       break;
     case 8:
       for (; param_6 != 0; param_6 = param_6 + -1) {
-        FUN_180838e50(param_1,param_5,auStack_a8,auStack_98);
-        FUN_180838e50(param_1,param_5,auStack_88,aauStack_78);
-        auStack_a8 = auStack_a8 & auVar1;
-        auStack_88 = auStack_88 & auVar1;
-        auStack_98 = auStack_98 & auVar1;
-        aauStack_78[0] = aauStack_78[0] & auVar1;
-        *pfVar12 = (float)auStack_a8._0_4_ * fVar6 + fVar2 + *pfVar12;
-        pfVar12[1] = (float)auStack_a8._8_4_ * fVar8 + fVar4 + pfVar12[1];
-        pfVar12[2] = (float)auStack_98._0_4_ * fVar6 + fVar2 + pfVar12[2];
-        pfVar12[3] = (float)auStack_98._8_4_ * fVar8 + fVar4 + pfVar12[3];
-        pfVar12[4] = (float)auStack_88._0_4_ * fVar6 + fVar2 + pfVar12[4];
-        pfVar12[5] = (float)auStack_88._8_4_ * fVar8 + fVar4 + pfVar12[5];
-        pfVar12[6] = (float)aauStack_78[0]._0_4_ * fVar6 + fVar2 + pfVar12[6];
-        pfVar12[7] = (float)aauStack_78[0]._8_4_ * fVar8 + fVar4 + pfVar12[7];
+        function_838e50(param_1,param_5,stack_array_a8,stack_array_98);
+        function_838e50(param_1,param_5,stack_array_88,astack_array_78);
+        stack_array_a8 = stack_array_a8 & auVar1;
+        stack_array_88 = stack_array_88 & auVar1;
+        stack_array_98 = stack_array_98 & auVar1;
+        astack_array_78[0] = astack_array_78[0] & auVar1;
+        *pfVar12 = (float)stack_array_a8._0_4_ * fVar6 + fVar2 + *pfVar12;
+        pfVar12[1] = (float)stack_array_a8._8_4_ * fVar8 + fVar4 + pfVar12[1];
+        pfVar12[2] = (float)stack_array_98._0_4_ * fVar6 + fVar2 + pfVar12[2];
+        pfVar12[3] = (float)stack_array_98._8_4_ * fVar8 + fVar4 + pfVar12[3];
+        pfVar12[4] = (float)stack_array_88._0_4_ * fVar6 + fVar2 + pfVar12[4];
+        pfVar12[5] = (float)stack_array_88._8_4_ * fVar8 + fVar4 + pfVar12[5];
+        pfVar12[6] = (float)astack_array_78[0]._0_4_ * fVar6 + fVar2 + pfVar12[6];
+        pfVar12[7] = (float)astack_array_78[0]._8_4_ * fVar8 + fVar4 + pfVar12[7];
         pfVar12 = pfVar12 + 8;
-        *pfVar10 = (float)auStack_a8._4_4_ * fVar7 + fVar3 + *pfVar10;
-        pfVar10[1] = (float)auStack_a8._12_4_ * fVar9 + fVar5 + pfVar10[1];
-        pfVar10[2] = (float)auStack_98._4_4_ * fVar7 + fVar3 + pfVar10[2];
-        pfVar10[3] = (float)auStack_98._12_4_ * fVar9 + fVar5 + pfVar10[3];
-        pfVar10[4] = (float)auStack_88._4_4_ * fVar7 + fVar3 + pfVar10[4];
-        pfVar10[5] = (float)auStack_88._12_4_ * fVar9 + fVar5 + pfVar10[5];
-        pfVar10[6] = (float)aauStack_78[0]._4_4_ * fVar7 + fVar3 + pfVar10[6];
-        pfVar10[7] = (float)aauStack_78[0]._12_4_ * fVar9 + fVar5 + pfVar10[7];
+        *pfVar10 = (float)stack_array_a8._4_4_ * fVar7 + fVar3 + *pfVar10;
+        pfVar10[1] = (float)stack_array_a8._12_4_ * fVar9 + fVar5 + pfVar10[1];
+        pfVar10[2] = (float)stack_array_98._4_4_ * fVar7 + fVar3 + pfVar10[2];
+        pfVar10[3] = (float)stack_array_98._12_4_ * fVar9 + fVar5 + pfVar10[3];
+        pfVar10[4] = (float)stack_array_88._4_4_ * fVar7 + fVar3 + pfVar10[4];
+        pfVar10[5] = (float)stack_array_88._12_4_ * fVar9 + fVar5 + pfVar10[5];
+        pfVar10[6] = (float)astack_array_78[0]._4_4_ * fVar7 + fVar3 + pfVar10[6];
+        pfVar10[7] = (float)astack_array_78[0]._12_4_ * fVar9 + fVar5 + pfVar10[7];
         pfVar10 = pfVar10 + 8;
       }
     }
   }
   return 0;
 }
-
-
-
-
-

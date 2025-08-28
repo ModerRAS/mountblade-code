@@ -1,26 +1,18 @@
 #include "ultra_high_freq_fun_definitions.h"
 #include "CoreSystem_ValidationEngine0_definition.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* 函数别名定义: RenderingShaderProcessor */
 #define RenderingShaderProcessor RenderingShaderProcessor
-
-
-
 /**
  * @file 03_rendering_part110.c
  * @brief 渲染系统高级资源管理和数据处理模块
- * 
+ *
  * 本模块包含6个核心函数，涵盖渲染系统高级资源管理、数据处理、
  * 内存分配、文件操作、线程同步和系统清理等高级渲染功能。
  */
-
 /**
  * @defgroup rendering_constants 渲染系统常量定义
  * @{
@@ -39,34 +31,31 @@
 #define RENDERING_CONTEXT_OFFSET 0x9f8
 #define RENDERING_OUTPUT_OFFSET 0xa00
 /* @} */
-
 /**
  * @defgroup rendering_function_aliases 渲染系统函数别名
  * @{
  */
-#define RenderingSystem_RemoveResourceData FUN_180333a00
-#define RenderingSystem_InitializeResourceHandler FUN_1803342d0
-#define RenderingSystem_CreateResourcePath FUN_180334430
-#define RenderingSystem_CreateDataPath FUN_180334500
-#define RenderingSystem_ProcessResourceData FUN_1803345c0
-#define RenderingSystem_ManageResourceData FUN_1803347d0
-#define RenderingSystem_OptimizeResourceData FUN_18033483c
-#define RenderingSystem_CleanupResourceHandler FUN_180334921
-#define RenderingSystem_GetResourceData FUN_180334930
+#define RenderingSystem_RemoveResourceData RenderingSystem_33a00
+#define RenderingSystem_InitializeResourceHandler RenderingSystem_342d0
+#define RenderingSystem_CreateResourcePath RenderingSystem_34430
+#define RenderingSystem_CreateDataPath RenderingSystem_34500
+#define RenderingSystem_ProcessResourceData RenderingSystem_345c0
+#define RenderingSystem_ManageResourceData RenderingSystem_347d0
+#define RenderingSystem_OptimizeResourceData RenderingSystem_3483c
+#define RenderingSystem_CleanupResourceHandler RenderingSystem_34921
+#define RenderingSystem_GetResourceData RenderingSystem_34930
 /* @} */
-
 /**
  * @brief 渲染系统资源数据移除器
- * 
+ *
  * 该函数负责移除渲染系统资源数据，包括资源查找、数据清理、
  * 内存释放、哈希表操作和线程同步等高级渲染功能。
- * 
+ *
  * @param resource_context 资源上下文指针
  * @param resource_id 资源ID
  * @return void
  */
 void RenderingSystem_RemoveResourceData(int64_t resource_context, uint resource_id)
-
 {
   uint64_t *puVar1;
   uint uVar2;
@@ -91,22 +80,21 @@ void RenderingSystem_RemoveResourceData(int64_t resource_context, uint resource_
   uint64_t uVar21;
   uint64_t *puVar22;
   uint64_t uVar23;
-  uint auStackX_10 [2];
-  uint64_t *puStackX_18;
-  uint64_t **ppuStackX_20;
-  uint *puStack_a8;
-  uint *puStack_a0;
-  uint64_t uStack_98;
-  int32_t uStack_90;
-  uint *puStack_88;
-  uint *puStack_80;
-  uint64_t uStack_78;
-  int32_t uStack_70;
-  uint64_t uStack_68;
-  uint64_t *puStack_60;
-  uint64_t **ppuStack_58;
-  
-  uStack_68 = 0xfffffffffffffffe;
+  uint astack_special_x_10 [2];
+  uint64_t *pstack_special_x_18;
+  uint64_t **ppstack_special_x_20;
+  uint *plocal_var_a8;
+  uint *plocal_var_a0;
+  uint64_t local_var_98;
+  int32_t local_var_90;
+  uint *plocal_var_88;
+  uint *plocal_var_80;
+  uint64_t local_var_78;
+  int32_t local_var_70;
+  uint64_t local_var_68;
+  uint64_t *plocal_var_60;
+  uint64_t **pplocal_var_58;
+  local_var_68 = 0xfffffffffffffffe;
   uVar21 = (uint64_t)param_2;
   puVar7 = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xe0,8,3);
   UltraHighFreq_PerformanceMonitor1(puVar7);
@@ -116,22 +104,22 @@ void RenderingSystem_RemoveResourceData(int64_t resource_context, uint resource_
   puVar7[0x19] = 0;
   puVar7[0x1a] = 0;
   *(int32_t *)(puVar7 + 0x1b) = 3;
-  puStackX_18 = puVar1;
-  puStack_60 = puVar7;
+  pstack_special_x_18 = puVar1;
+  plocal_var_60 = puVar7;
   (**(code **)(*puVar7 + 0x28))(puVar7);
   iVar6 = _Mtx_lock(param_1 + 0xa20);
   if (iVar6 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar6);
   }
-  puStack_88 = (uint *)0x0;
-  puStack_80 = (uint *)0x0;
-  uStack_78 = 0;
-  uStack_70 = 3;
-  FUN_18032b1c0(param_1,&puStack_88,param_2,1);
-  ppuStackX_20 = (uint64_t **)puStack_88;
-  if (puStack_88 != puStack_80) {
+  plocal_var_88 = (uint *)0x0;
+  plocal_var_80 = (uint *)0x0;
+  local_var_78 = 0;
+  local_var_70 = 3;
+  RenderingSystem_2b1c0(param_1,&plocal_var_88,param_2,1);
+  ppstack_special_x_20 = (uint64_t **)plocal_var_88;
+  if (plocal_var_88 != plocal_var_80) {
     do {
-      uVar2 = *(uint *)ppuStackX_20;
+      uVar2 = *(uint *)ppstack_special_x_20;
       uVar9 = (uint64_t)uVar2 % (uint64_t)*(uint *)(param_1 + 0xa00);
       for (puVar8 = *(uint **)(*(int64_t *)(param_1 + 0x9f8) + uVar9 * 8); puVar8 != (uint *)0x0;
           puVar8 = *(uint **)(puVar8 + 4)) {
@@ -140,7 +128,7 @@ void RenderingSystem_RemoveResourceData(int64_t resource_context, uint resource_
           break;
         }
       }
-      RenderingShaderProcessor0(param_1 + 0xa10,&puStackX_18,(uint64_t)*(uint *)(param_1 + 0xa00),
+      RenderingShaderProcessor0(param_1 + 0xa10,&pstack_special_x_18,(uint64_t)*(uint *)(param_1 + 0xa00),
                     *(int32_t *)(param_1 + 0xa08),1);
       puVar8 = (uint *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0xa1c));
       *puVar8 = uVar2;
@@ -148,9 +136,9 @@ void RenderingSystem_RemoveResourceData(int64_t resource_context, uint resource_
       puVar8[3] = 0;
       puVar8[4] = 0;
       puVar8[5] = 0;
-      if ((char)puStackX_18 != '\0') {
-        uVar9 = (uint64_t)uVar2 % ((uint64_t)puStackX_18 >> 0x20);
-        FUN_18033bf30(param_1 + 0x9f0);
+      if ((char)pstack_special_x_18 != '\0') {
+        uVar9 = (uint64_t)uVar2 % ((uint64_t)pstack_special_x_18 >> 0x20);
+        RenderingSystem_3bf30(param_1 + 0x9f0);
       }
       *(uint64_t *)(puVar8 + 4) = *(uint64_t *)(*(int64_t *)(param_1 + 0x9f8) + uVar9 * 8);
       *(uint **)(*(int64_t *)(param_1 + 0x9f8) + uVar9 * 8) = puVar8;
@@ -189,7 +177,7 @@ LAB_180333bee:
             puVar20 = puVar19;
           } while (*(uint **)puVar8 != (uint *)0x0);
           if (puVar20 != (uint *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
             CoreEngineMemoryPoolCleaner(puVar20);
           }
         }
@@ -215,23 +203,23 @@ LAB_180333cae:
           puVar11 = (uint64_t *)0x0;
         }
         if (puVar18 != puVar22) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           memmove(puVar11,puVar18,(int64_t)puVar22 - (int64_t)puVar18);
         }
         *puVar11 = uVar23;
         if (*puVar1 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner();
         }
         *puVar1 = (uint64_t)puVar11;
         puVar7[0x19] = (uint64_t)(puVar11 + 1);
         puVar7[0x1a] = (uint64_t)(puVar11 + lVar10);
       }
-      ppuStackX_20 = (uint64_t **)((int64_t)ppuStackX_20 + 4);
-    } while (ppuStackX_20 != (uint64_t **)puStack_80);
+      ppstack_special_x_20 = (uint64_t **)((int64_t)ppstack_special_x_20 + 4);
+    } while (ppstack_special_x_20 != (uint64_t **)plocal_var_80);
   }
-  if (puStack_88 != (uint *)0x0) {
-                    // WARNING: Subroutine does not return
+  if (plocal_var_88 != (uint *)0x0) {
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   iVar6 = _Mtx_unlock(param_1 + 0xa20);
@@ -239,17 +227,17 @@ LAB_180333cae:
     __Throw_C_error_std__YAXH_Z(iVar6);
   }
   uVar23 = system_context_ptr;
-  ppuStackX_20 = &puStackX_18;
-  puStackX_18 = puVar7;
+  ppstack_special_x_20 = &pstack_special_x_18;
+  pstack_special_x_18 = puVar7;
   (**(code **)(*puVar7 + 0x28))(puVar7);
-  SystemCore_TimerManager(uVar23,&puStackX_18);
-  puStack_a8 = (uint *)0x0;
-  puStack_a0 = (uint *)0x0;
-  uStack_98 = 0;
-  uStack_90 = 3;
-  FUN_18032afa0(param_1,&puStack_a8,param_2);
-  if (puStack_a8 != puStack_a0) {
-    puVar8 = puStack_a8;
+  SystemCore_TimerManager(uVar23,&pstack_special_x_18);
+  plocal_var_a8 = (uint *)0x0;
+  plocal_var_a0 = (uint *)0x0;
+  local_var_98 = 0;
+  local_var_90 = 3;
+  RenderingSystem_2afa0(param_1,&plocal_var_a8,param_2);
+  if (plocal_var_a8 != plocal_var_a0) {
+    puVar8 = plocal_var_a8;
     do {
       uVar2 = *puVar8;
       uVar9 = (uint64_t)uVar2 % (uint64_t)*(uint *)(param_1 + 0x6c8);
@@ -260,7 +248,7 @@ LAB_180333cae:
           break;
         }
       }
-      RenderingShaderProcessor0(param_1 + 0x6d8,&puStackX_18,(uint64_t)*(uint *)(param_1 + 0x6c8),
+      RenderingShaderProcessor0(param_1 + 0x6d8,&pstack_special_x_18,(uint64_t)*(uint *)(param_1 + 0x6c8),
                     *(int32_t *)(param_1 + 0x6d0),1);
       puVar12 = (uint *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,*(int8_t *)(param_1 + 0x6e4));
       *puVar12 = uVar2;
@@ -268,9 +256,9 @@ LAB_180333cae:
       puVar12[3] = 0;
       puVar12[4] = 0;
       puVar12[5] = 0;
-      if ((char)puStackX_18 != '\0') {
-        uVar9 = (uint64_t)uVar2 % ((uint64_t)puStackX_18 >> 0x20);
-        FUN_18033bf30(param_1 + 0x6b8);
+      if ((char)pstack_special_x_18 != '\0') {
+        uVar9 = (uint64_t)uVar2 % ((uint64_t)pstack_special_x_18 >> 0x20);
+        RenderingSystem_3bf30(param_1 + 0x6b8);
       }
       *(uint64_t *)(puVar12 + 4) = *(uint64_t *)(*(int64_t *)(param_1 + 0x6c0) + uVar9 * 8);
       *(uint **)(*(int64_t *)(param_1 + 0x6c0) + uVar9 * 8) = puVar12;
@@ -288,12 +276,12 @@ LAB_180333e7e:
       lVar13 = *(int64_t *)(lVar10 + 0x10);
       puVar12 = *(uint **)(lVar15 + lVar13 * 8);
 LAB_180333eb9:
-      ppuVar5 = ppuStackX_20;
+      ppuVar5 = ppstack_special_x_20;
       if (puVar12 != *(uint **)(lVar15 + lVar13 * 8)) {
-        ppuStackX_20 = *(uint64_t ***)(puVar12 + 2);
-        if (ppuStackX_20 != (uint64_t **)0x0) {
-          *(void **)((int64_t)ppuStackX_20 + 0x50) = &system_state_ptr;
-                    // WARNING: Subroutine does not return
+        ppstack_special_x_20 = *(uint64_t ***)(puVar12 + 2);
+        if (ppstack_special_x_20 != (uint64_t **)0x0) {
+          *(void **)((int64_t)ppstack_special_x_20 + 0x50) = &system_state_ptr;
+// WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner();
         }
         puVar12[2] = 0;
@@ -318,14 +306,14 @@ LAB_180333eb9:
             puVar19 = puVar14;
           } while (*(uint **)puVar12 != (uint *)0x0);
           if (puVar19 != (uint *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
             CoreEngineMemoryPoolCleaner(puVar19);
           }
         }
       }
-      ppuStackX_20 = ppuVar5;
+      ppstack_special_x_20 = ppuVar5;
       puVar8 = puVar8 + 1;
-    } while (puVar8 != puStack_a0);
+    } while (puVar8 != plocal_var_a0);
   }
   lVar10 = *(int64_t *)(param_1 + 0x570);
   for (puVar8 = *(uint **)(lVar10 + (uVar21 % (uint64_t)*(uint *)(param_1 + 0x578)) * 8);
@@ -339,13 +327,13 @@ LAB_180333eb9:
   puVar8 = *(uint **)(lVar10 + lVar15 * 8);
 LAB_180333fbc:
   if (puVar8 != *(uint **)(lVar10 + lVar15 * 8)) {
-    puStackX_18 = *(uint64_t **)(puVar8 + 2);
-    if (puStackX_18 != (uint64_t *)0x0) {
-      if (*puStackX_18 == 0) {
-                    // WARNING: Subroutine does not return
-        CoreEngineMemoryPoolCleaner(puStackX_18);
+    pstack_special_x_18 = *(uint64_t **)(puVar8 + 2);
+    if (pstack_special_x_18 != (uint64_t *)0x0) {
+      if (*pstack_special_x_18 == 0) {
+// WARNING: Subroutine does not return
+        CoreEngineMemoryPoolCleaner(pstack_special_x_18);
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner();
     }
     puVar8[2] = 0;
@@ -369,7 +357,7 @@ LAB_180333fbc:
         puVar20 = puVar19;
       } while (*(uint **)puVar8 != (uint *)0x0);
       if (puVar20 != (uint *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(puVar20);
       }
     }
@@ -386,7 +374,7 @@ LAB_180333fbc:
       puVar3 = (uint64_t *)*puVar3;
     }
   }
-  while (puVar8 = puStack_a8, puVar4 != (uint64_t *)0x0) {
+  while (puVar8 = plocal_var_a8, puVar4 != (uint64_t *)0x0) {
     if ((uint)puVar4[4] < param_2) {
       puVar4 = (uint64_t *)*puVar4;
     }
@@ -395,31 +383,31 @@ LAB_180333fbc:
       puVar4 = (uint64_t *)puVar4[1];
     }
   }
-  while (puStackX_18 = puVar1, puStack_a8 = puVar8, puVar16 != puVar17) {
+  while (pstack_special_x_18 = puVar1, plocal_var_a8 = puVar8, puVar16 != puVar17) {
     ppuVar5 = (uint64_t **)puVar16[5];
-    ppuStackX_20 = ppuVar5;
+    ppstack_special_x_20 = ppuVar5;
     if (ppuVar5 != (uint64_t **)0x0) {
       SystemDataValidator(ppuVar5 + 7,0x30,4,SystemCore_MemoryManager);
-      ppuStack_58 = ppuVar5 + 3;
-      *ppuStack_58 = (uint64_t *)&system_data_buffer_ptr;
+      pplocal_var_58 = ppuVar5 + 3;
+      *pplocal_var_58 = (uint64_t *)&system_data_buffer_ptr;
       if (ppuVar5[4] == (uint64_t *)0x0) {
         ppuVar5[4] = (uint64_t *)0x0;
         *(int32_t *)(ppuVar5 + 6) = 0;
-        *ppuStack_58 = (uint64_t *)&system_state_ptr;
-                    // WARNING: Subroutine does not return
+        *pplocal_var_58 = (uint64_t *)&system_state_ptr;
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(ppuVar5);
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner();
     }
-    puVar16 = (uint64_t *)func_0x00018066bd70(puVar16);
-    puVar1 = puStackX_18;
-    puVar8 = puStack_a8;
+    puVar16 = (uint64_t *)SystemFunction_00018066bd70(puVar16);
+    puVar1 = pstack_special_x_18;
+    puVar8 = plocal_var_a8;
   }
-  auStackX_10[0] = param_2;
-  FUN_18033ad80(param_1 + 0x4a8,auStackX_10);
-  auStackX_10[0] = param_2;
-  FUN_18033ad80(param_1 + 0x638,auStackX_10);
+  astack_special_x_10[0] = param_2;
+  RenderingSystem_3ad80(param_1 + 0x4a8,astack_special_x_10);
+  astack_special_x_10[0] = param_2;
+  RenderingSystem_3ad80(param_1 + 0x638,astack_special_x_10);
   puVar17 = (uint64_t *)puVar1[2];
   puVar3 = puVar1;
   while (puVar4 = puVar17, puVar16 = (uint64_t *)puVar1[2], puVar17 = puVar1,
@@ -441,13 +429,13 @@ LAB_180333fbc:
       puVar17 = puVar4;
     }
   }
-  for (; puVar16 != puVar3; puVar16 = (uint64_t *)func_0x00018066bd70(puVar16)) {
+  for (; puVar16 != puVar3; puVar16 = (uint64_t *)SystemFunction_00018066bd70(puVar16)) {
   }
   if ((puVar17 == (uint64_t *)puVar1[1]) && (puVar3 == puVar1)) {
     puVar22 = (uint64_t *)puVar1[2];
     if (puVar22 != (uint64_t *)0x0) {
       SystemCache_Manager(puVar1,*puVar22);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner(puVar22);
     }
     *puVar1 = (uint64_t)puVar1;
@@ -459,52 +447,44 @@ LAB_180333fbc:
   else {
     while (puVar4 = puVar17, puVar4 != puVar3) {
       puVar1[4] = puVar1[4] - 1;
-      puVar17 = (uint64_t *)func_0x00018066bd70(puVar4);
+      puVar17 = (uint64_t *)SystemFunction_00018066bd70(puVar4);
       RenderingSystem_BufferHandler(puVar4,puVar1);
       if (puVar4 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(puVar4);
       }
     }
   }
   if (puVar8 == (uint *)0x0) {
-                    // WARNING: Could not recover jumptable at 0x0001803342c7. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001803342c7. Too many branches
+// WARNING: Treating indirect jump as call
     (**(code **)(*puVar7 + 0x38))();
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar8);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * @brief 渲染系统资源处理器初始化器
- * 
+ *
  * 该函数负责初始化渲染系统资源处理器，包括文件操作、内存分配、
  * 资源清理和路径处理等高级渲染功能。
- * 
+ *
  * @param resource_manager 资源管理器指针
  * @param init_flag 初始化标志
  * @param process_flag 处理标志
  * @return void
  */
 void RenderingSystem_InitializeResourceHandler(int64_t resource_manager, char init_flag, char process_flag)
-
 {
   uint64_t *puVar1;
   int64_t lVar2;
   void *puVar3;
   void *puVar4;
   uint64_t uVar5;
-  void *puStack_40;
+  void *plocal_var_40;
   int64_t lStack_38;
-  
   uVar5 = 0xfffffffffffffffe;
   lVar2 = *(int64_t *)(param_1 + 0x200);
   if (lVar2 != 0) {
@@ -524,7 +504,7 @@ void RenderingSystem_InitializeResourceHandler(int64_t resource_manager, char in
         SYSTEM_FILE_COUNTER_ADDR = SYSTEM_FILE_COUNTER_ADDR + -1;
         UNLOCK();
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner(lVar2);
     }
     *(uint64_t *)(param_1 + 0x200) = 0;
@@ -539,7 +519,7 @@ void RenderingSystem_InitializeResourceHandler(int64_t resource_manager, char in
   else {
     puVar4 = &processed_var_4880_ptr;
   }
-  lVar2 = FUN_180334430(param_1,&puStack_40);
+  lVar2 = RenderingSystem_34430(param_1,&plocal_var_40);
   puVar3 = &system_buffer_ptr;
   if (*(void **)(lVar2 + 8) != (void *)0x0) {
     puVar3 = *(void **)(lVar2 + 8);
@@ -548,22 +528,19 @@ void RenderingSystem_InitializeResourceHandler(int64_t resource_manager, char in
   *(int8_t *)(puVar1 + 2) = 0;
   SystemCore_Validator(puVar1,puVar3,puVar4);
   *(uint64_t **)(param_1 + 0x200) = puVar1;
-  puStack_40 = &system_data_buffer_ptr;
+  plocal_var_40 = &system_data_buffer_ptr;
   if (lStack_38 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   return;
 }
-
-
-
 /**
  * @brief 渲染系统资源路径创建器
- * 
+ *
  * 该函数负责创建渲染系统资源路径，包括路径处理、字符串操作、
  * 缓冲区管理和路径验证等高级渲染功能。
- * 
+ *
  * @param resource_context 资源上下文指针
  * @param path_buffer 路径缓冲区指针
  * @param param3 参数3
@@ -572,11 +549,9 @@ void RenderingSystem_InitializeResourceHandler(int64_t resource_manager, char in
  */
 uint64_t *
 RenderingSystem_CreateResourcePath(int64_t resource_context, uint64_t *path_buffer, uint64_t param3, uint64_t param4)
-
 {
   int iVar1;
   uint64_t *puVar2;
-  
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -594,15 +569,12 @@ RenderingSystem_CreateResourcePath(int64_t resource_context, uint64_t *path_buff
   *(int *)(param_2 + 2) = iVar1 + 0xd;
   return param_2;
 }
-
-
-
 /**
  * @brief 渲染系统数据路径创建器
- * 
+ *
  * 该函数负责创建渲染系统数据路径，包括路径处理、字符串操作、
  * 缓冲区管理和数据验证等高级渲染功能。
- * 
+ *
  * @param resource_context 资源上下文指针
  * @param path_buffer 路径缓冲区指针
  * @param param3 参数3
@@ -611,11 +583,9 @@ RenderingSystem_CreateResourcePath(int64_t resource_context, uint64_t *path_buff
  */
 uint64_t *
 RenderingSystem_CreateDataPath(int64_t resource_context, uint64_t *path_buffer, uint64_t param3, uint64_t param4)
-
 {
   int iVar1;
   uint64_t *puVar2;
-  
   *param_2 = &system_state_ptr;
   param_2[1] = 0;
   *(int32_t *)(param_2 + 2) = 0;
@@ -633,57 +603,42 @@ RenderingSystem_CreateDataPath(int64_t resource_context, uint64_t *path_buffer, 
   *(int *)(param_2 + 2) = iVar1 + 0x10;
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * @brief 渲染系统资源数据处理器
- * 
+ *
  * 该函数负责处理渲染系统资源数据，包括数据读取、内存管理、
  * 缓冲区操作和数据验证等高级渲染功能。
- * 
+ *
  * @param resource_data 资源数据指针
  * @return void
  */
 void RenderingSystem_ProcessResourceData(uint64_t resource_data)
-
 {
-  int8_t auStack_1b8 [64];
-  int8_t auStack_178 [40];
-  uint64_t uStack_150;
-  int8_t auStack_148 [256];
-  uint64_t uStack_48;
-  
-  uStack_150 = 0xfffffffffffffffe;
-  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1b8;
-  FUN_180320f40(param_1,auStack_178);
-                    // WARNING: Subroutine does not return
-  memset(auStack_148,0,0x100);
+  int8_t stack_array_1b8 [64];
+  int8_t stack_array_178 [40];
+  uint64_t local_var_150;
+  int8_t stack_array_148 [256];
+  uint64_t local_var_48;
+  local_var_150 = 0xfffffffffffffffe;
+  local_var_48 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_1b8;
+  RenderingSystem_20f40(param_1,stack_array_178);
+// WARNING: Subroutine does not return
+  memset(stack_array_148,0,0x100);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * @brief 渲染系统资源数据管理器
- * 
+ *
  * 该函数负责管理渲染系统资源数据，包括数据遍历、资源查找、
  * 内存分配和动态扩容等高级渲染功能。
- * 
+ *
  * @param resource_context 资源上下文指针
  * @param data_array 数据数组指针
  * @param resource_id 资源ID
  * @return void
  */
 void RenderingSystem_ManageResourceData(int64_t resource_context, uint64_t *data_array, uint resource_id)
-
 {
   uint64_t uVar1;
   int64_t lVar2;
@@ -692,7 +647,6 @@ void RenderingSystem_ManageResourceData(int64_t resource_context, uint64_t *data
   uint64_t *puVar5;
   uint64_t *puVar6;
   uint64_t *puVar7;
-  
   puVar4 = (uint64_t *)(param_1 + 0x818);
   puVar7 = *(uint64_t **)(param_1 + 0x828);
   puVar5 = puVar7;
@@ -743,38 +697,31 @@ LAB_180334893:
         puVar3 = (uint64_t *)0x0;
       }
       if (puVar7 != puVar5) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memmove(puVar3,puVar7,(int64_t)puVar5 - (int64_t)puVar7);
       }
       *puVar3 = uVar1;
       if (*param_2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner();
       }
       *param_2 = (uint64_t)puVar3;
       param_2[2] = (uint64_t)(puVar3 + lVar2);
       param_2[1] = (uint64_t)(puVar3 + 1);
     }
-    puVar4 = (uint64_t *)func_0x00018066bd70(puVar4);
+    puVar4 = (uint64_t *)SystemFunction_00018066bd70(puVar4);
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * @brief 渲染系统资源数据优化器
- * 
+ *
  * 该函数负责优化渲染系统资源数据，包括数据重组、内存优化、
  * 性能提升和系统维护等高级渲染功能。
- * 
+ *
  * @return void
  */
 void RenderingSystem_OptimizeResourceData(void)
-
 {
   uint64_t uVar1;
   int64_t lVar2;
@@ -784,7 +731,6 @@ void RenderingSystem_OptimizeResourceData(void)
   int64_t unaff_RSI;
   uint64_t *puVar5;
   int64_t unaff_R12;
-  
   do {
     puVar5 = (uint64_t *)unaff_RBX[1];
     uVar1 = *(uint64_t *)(unaff_RSI + 0x28);
@@ -808,59 +754,48 @@ LAB_180334893:
         puVar3 = (uint64_t *)0x0;
       }
       if (puVar4 != puVar5) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memmove(puVar3,puVar4,(int64_t)puVar5 - (int64_t)puVar4);
       }
       *puVar3 = uVar1;
       if (*unaff_RBX != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner();
       }
       *unaff_RBX = (uint64_t)puVar3;
       unaff_RBX[2] = (uint64_t)(puVar3 + lVar2);
       unaff_RBX[1] = (uint64_t)(puVar3 + 1);
     }
-    unaff_RSI = func_0x00018066bd70(unaff_RSI);
+    unaff_RSI = SystemFunction_00018066bd70(unaff_RSI);
     if (unaff_RSI == unaff_R12) {
       return;
     }
   } while( true );
 }
-
-
-
-
-
 /**
  * @brief 渲染系统资源处理器清理器
- * 
+ *
  * 该函数负责清理渲染系统资源处理器，包括状态重置、
  * 内存释放和系统维护等高级渲染功能。
- * 
+ *
  * @return void
  */
 void RenderingSystem_CleanupResourceHandler(void)
-
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * @brief 渲染系统资源数据获取器
- * 
+ *
  * 该函数负责获取渲染系统资源数据，包括资源查找、数据访问、
  * 线程同步和内存管理等高级渲染功能。
- * 
+ *
  * @param resource_context 资源上下文指针
  * @param data_source 数据源指针
  * @return int64_t* 返回数据指针
  */
 int64_t * RenderingSystem_GetResourceData(int64_t resource_context, int64_t data_source)
-
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -875,11 +810,10 @@ int64_t * RenderingSystem_GetResourceData(int64_t resource_context, int64_t data
   int64_t *plStackX_20;
   int32_t uVar8;
   uint64_t uVar9;
-  int8_t auStack_68 [8];
+  int8_t stack_array_68 [8];
   int64_t *plStack_60;
-  int32_t uStack_58;
+  int32_t local_var_58;
   int64_t *plStack_50;
-  
   uVar9 = 0xfffffffffffffffe;
   uVar8 = 0;
   lVar1 = param_1 + 0xb78;
@@ -899,7 +833,7 @@ int64_t * RenderingSystem_GetResourceData(int64_t resource_context, int64_t data
 LAB_1803349b9:
       if (piVar7 == *(int **)(lVar2 + lVar4 * 8)) {
         plStackX_8 = (int64_t *)CONCAT44(plStackX_8._4_4_,iVar3);
-        plVar5 = (int64_t *)FUN_18033a740(param_1 + 0xb48,&plStackX_8);
+        plVar5 = (int64_t *)RenderingSystem_3a740(param_1 + 0xb48,&plStackX_8);
         lVar2 = *plVar5;
         uVar9 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x300,0x10,9,uVar8,uVar9);
         plVar5 = (int64_t *)InitializationSystem_EventInit(uVar9,0,1);
@@ -922,10 +856,10 @@ LAB_1803349b9:
         }
         plStackX_8 = (int64_t *)0x0;
         plStack_50 = (int64_t *)0x0;
-        auStack_68[0] = 0;
-        uStack_58 = 1;
+        stack_array_68[0] = 0;
+        local_var_58 = 1;
         plStack_60 = plVar5;
-        FUN_18007f4c0(auStack_68);
+        CoreEngine_07F4C0(stack_array_68);
         plVar6 = *(int64_t **)(lVar2 + 8);
         if (plVar6 != (int64_t *)0x0) {
           plStackX_10 = plVar6;
@@ -939,14 +873,14 @@ LAB_1803349b9:
           plVar6 = plStack_50;
         }
         plStack_50 = plVar6;
-        SystemSecurityManager(auStack_68);
+        SystemSecurityManager(stack_array_68);
         if (plStack_50 != (int64_t *)0x0) {
           (**(code **)(*plStack_50 + 0x38))();
         }
         if (plVar5 != (int64_t *)0x0) {
           (**(code **)(*plVar5 + 0x28))(plVar5);
         }
-        FUN_18033ca70(param_1 + 0x9c0,auStack_68);
+        RenderingSystem_3ca70(param_1 + 0x9c0,stack_array_68);
         if (plVar5 != (int64_t *)0x0) {
           (**(code **)(*plVar5 + 0x38))();
           (**(code **)(*plVar5 + 0x38))(plVar5);
@@ -968,10 +902,4 @@ LAB_1803349b9:
     piVar7 = *(int **)(piVar7 + 4);
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

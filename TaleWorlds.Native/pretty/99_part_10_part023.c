@@ -1,11 +1,8 @@
 #include "SystemDataAdvancedManager_definition.h"
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_10_part023.c - 4 个函数
-
-// 函数: void FUN_1806b3554(int64_t param_1)
-void FUN_1806b3554(int64_t param_1)
-
+// 函数: void function_6b3554(int64_t param_1)
+void function_6b3554(int64_t param_1)
 {
   int64_t lVar1;
   int32_t uVar2;
@@ -33,7 +30,6 @@ void FUN_1806b3554(int64_t param_1)
   uint64_t unaff_R14;
   uint64_t unaff_R15;
   uint64_t uVar17;
-  
   *(uint64_t *)(in_R11 + 0x18) = unaff_RBX;
   lVar4 = *(int64_t *)(param_1 + -0x48);
   *(uint64_t *)(in_R11 + -0x28) = unaff_R12;
@@ -104,7 +100,7 @@ void FUN_1806b3554(int64_t param_1)
     *puVar6 = (char)*(int16_t *)(unaff_RBP + 0x5f);
     puVar6[1] = *(int8_t *)(unaff_RBP + 0x60);
     *(int64_t *)(lVar12 + 0x18) = *(int64_t *)(lVar12 + 0x18) + 2;
-    FUN_1806b6980(param_1 + -0x38,&processed_var_6648_ptr,unaff_RBP + -0x29,uVar2);
+    GameLogic_StateMachine(param_1 + -0x38,&processed_var_6648_ptr,unaff_RBP + -0x29,uVar2);
     if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90)))
     {
       RenderingSystem_ShaderProcessor(lVar1);
@@ -168,18 +164,18 @@ void FUN_1806b3554(int64_t param_1)
     *puVar6 = (char)*(int16_t *)(unaff_RBP + 0x5f);
     puVar6[1] = *(int8_t *)(unaff_RBP + 0x60);
     *(int64_t *)(lVar12 + 0x18) = *(int64_t *)(lVar12 + 0x18) + 2;
-    FUN_1806b2670(unaff_RBP + -0x21,param_1 + -0x38,unaff_RBP + 0x57);
+    function_6b2670(unaff_RBP + -0x21,param_1 + -0x38,unaff_RBP + 0x57);
     if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90)))
     {
       RenderingSystem_ShaderProcessor(lVar1);
     }
   }
   if (*(int64_t *)(unaff_RBP + -0x31) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(*(int64_t *)(unaff_RBP + -0x31) + 8));
   }
   if (lVar4 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(lVar4 + 8));
   }
   lVar4 = *(int64_t *)(param_1 + -0x48);
@@ -240,7 +236,7 @@ void FUN_1806b3554(int64_t param_1)
     *puVar6 = (char)*(int16_t *)(unaff_RBP + 0x5f);
     puVar6[1] = *(int8_t *)(unaff_RBP + 0x60);
     *(int64_t *)(lVar7 + 0x18) = *(int64_t *)(lVar7 + 0x18) + 2;
-    FUN_1806b6980(param_1 + -0x38,&processed_var_6648_ptr,unaff_RBP + -0x31,uVar17);
+    GameLogic_StateMachine(param_1 + -0x38,&processed_var_6648_ptr,unaff_RBP + -0x31,uVar17);
   }
   else {
     *(int16_t *)(unaff_RBP + -0x33) = *(int16_t *)(unaff_RBP + 0x5f);
@@ -298,7 +294,7 @@ void FUN_1806b3554(int64_t param_1)
     *puVar6 = (char)*(int16_t *)(unaff_RBP + 0x5f);
     puVar6[1] = *(int8_t *)(unaff_RBP + 0x60);
     *(int64_t *)(lVar7 + 0x18) = *(int64_t *)(lVar7 + 0x18) + 2;
-    FUN_1806b2670(unaff_RBP + -9,param_1 + -0x38,unaff_RBP + -0x35);
+    function_6b2670(unaff_RBP + -9,param_1 + -0x38,unaff_RBP + -0x35);
   }
   if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90))) {
     RenderingSystem_ShaderProcessor(lVar1);
@@ -307,21 +303,14 @@ void FUN_1806b3554(int64_t param_1)
     if (lVar4 == 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(lVar4 + 8));
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(lVar12 + 8));
 }
-
-
-
-
-
-
-// 函数: void FUN_1806b355c(int64_t param_1)
-void FUN_1806b355c(int64_t param_1)
-
+// 函数: void function_6b355c(int64_t param_1)
+void function_6b355c(int64_t param_1)
 {
   int64_t lVar1;
   int32_t uVar2;
@@ -349,7 +338,6 @@ void FUN_1806b355c(int64_t param_1)
   uint64_t unaff_R14;
   uint64_t unaff_R15;
   uint64_t uVar17;
-  
   *(uint64_t *)(in_R11 + -0x28) = unaff_R12;
   *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
   lVar1 = param_1 + -0xb0;
@@ -418,7 +406,7 @@ void FUN_1806b355c(int64_t param_1)
     *puVar5 = (char)*(int16_t *)(unaff_RBP + 0x5f);
     puVar5[1] = *(int8_t *)(unaff_RBP + 0x60);
     *(int64_t *)(lVar11 + 0x18) = *(int64_t *)(lVar11 + 0x18) + 2;
-    FUN_1806b6980(param_1 + -0x38,&processed_var_6648_ptr,unaff_RBP + -0x29,uVar2);
+    GameLogic_StateMachine(param_1 + -0x38,&processed_var_6648_ptr,unaff_RBP + -0x29,uVar2);
     if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90)))
     {
       RenderingSystem_ShaderProcessor(lVar1);
@@ -482,18 +470,18 @@ void FUN_1806b355c(int64_t param_1)
     *puVar5 = (char)*(int16_t *)(unaff_RBP + 0x5f);
     puVar5[1] = *(int8_t *)(unaff_RBP + 0x60);
     *(int64_t *)(lVar11 + 0x18) = *(int64_t *)(lVar11 + 0x18) + 2;
-    FUN_1806b2670(unaff_RBP + -0x21,param_1 + -0x38,unaff_RBP + 0x57);
+    function_6b2670(unaff_RBP + -0x21,param_1 + -0x38,unaff_RBP + 0x57);
     if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90)))
     {
       RenderingSystem_ShaderProcessor(lVar1);
     }
   }
   if (*(int64_t *)(unaff_RBP + -0x31) != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(*(int64_t *)(unaff_RBP + -0x31) + 8));
   }
   if (unaff_RBX != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RBX + 8));
   }
   lVar11 = *(int64_t *)(param_1 + -0x48);
@@ -554,7 +542,7 @@ void FUN_1806b355c(int64_t param_1)
     *puVar5 = (char)*(int16_t *)(unaff_RBP + 0x5f);
     puVar5[1] = *(int8_t *)(unaff_RBP + 0x60);
     *(int64_t *)(lVar6 + 0x18) = *(int64_t *)(lVar6 + 0x18) + 2;
-    FUN_1806b6980(param_1 + -0x38,&processed_var_6648_ptr,unaff_RBP + -0x31,uVar17);
+    GameLogic_StateMachine(param_1 + -0x38,&processed_var_6648_ptr,unaff_RBP + -0x31,uVar17);
   }
   else {
     *(int16_t *)(unaff_RBP + -0x33) = *(int16_t *)(unaff_RBP + 0x5f);
@@ -612,7 +600,7 @@ void FUN_1806b355c(int64_t param_1)
     *puVar5 = (char)*(int16_t *)(unaff_RBP + 0x5f);
     puVar5[1] = *(int8_t *)(unaff_RBP + 0x60);
     *(int64_t *)(lVar6 + 0x18) = *(int64_t *)(lVar6 + 0x18) + 2;
-    FUN_1806b2670(unaff_RBP + -9,param_1 + -0x38,unaff_RBP + -0x35);
+    function_6b2670(unaff_RBP + -9,param_1 + -0x38,unaff_RBP + -0x35);
   }
   if (*(uint *)(param_1 + -0x60) <= (uint)(*(int *)(param_1 + -0x88) - *(int *)(param_1 + -0x90))) {
     RenderingSystem_ShaderProcessor(lVar1);
@@ -621,45 +609,23 @@ void FUN_1806b355c(int64_t param_1)
     if (lVar11 == 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(lVar11 + 8));
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(lVar14 + 8));
 }
-
-
-
-
-
-
-// 函数: void FUN_1806b3abc(void)
-void FUN_1806b3abc(void)
-
+// 函数: void function_6b3abc(void)
+void function_6b3abc(void)
 {
   int64_t unaff_RBX;
-  
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RBX + 8));
 }
-
-
-
-
-
-
-// 函数: void FUN_1806b3ad2(void)
-void FUN_1806b3ad2(void)
-
+// 函数: void function_6b3ad2(void)
+void function_6b3ad2(void)
 {
   int64_t unaff_RDI;
-  
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   _unlock_MutexImpl_shdfnd_physx__QEAAXXZ(*(uint64_t *)(unaff_RDI + 8));
 }
-
-
-
-
-
-

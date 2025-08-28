@@ -1,24 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part325.c - 32 个函数
-
-// 函数: void FUN_180439b36(void)
-void FUN_180439b36(void)
-
+// 函数: void UISystem_39b36(void)
+void UISystem_39b36(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1f00) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1f08))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1f08))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x1eb0) != (void *)0x0) {
@@ -32,16 +28,9 @@ void FUN_180439b36(void)
   *(int *)(lVar1 + 0x1ea0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439b55(void)
-void FUN_180439b55(void)
-
+// 函数: void UISystem_39b55(void)
+void UISystem_39b55(void)
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -50,7 +39,6 @@ void FUN_180439b55(void)
   void *puVar5;
   int64_t unaff_RBP;
   float unaff_XMM6_Da;
-  
   lVar2 = SYSTEM_STATE_MANAGER;
   iVar4 = (int)unaff_XMM6_Da;
   lVar1 = *(int64_t *)(SYSTEM_STATE_MANAGER + 0x1f70);
@@ -73,44 +61,29 @@ void FUN_180439b55(void)
   *(int *)(lVar2 + 0x1f10) = iVar4;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180439bc7(void)
-void FUN_180439bc7(void)
-
+// 函数: void UISystem_39bc7(void)
+void UISystem_39bc7(void)
 {
   int64_t unaff_RBX;
   int64_t unaff_RBP;
-  
   *(int32_t *)(unaff_RBX + 0x1f10) = *(int32_t *)(unaff_RBP + 0x10);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439be0(void)
-void FUN_180439be0(void)
-
+// 函数: void UISystem_39be0(void)
+void UISystem_39be0(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1870) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1878))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1878))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x1820) != (void *)0x0) {
@@ -124,29 +97,21 @@ void FUN_180439be0(void)
   *(int *)(lVar1 + 0x1810) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439bf8(void)
-void FUN_180439bf8(void)
-
+// 函数: void UISystem_39bf8(void)
+void UISystem_39bf8(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xbc0) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xbc8))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xbc8))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xb70) != (void *)0x0) {
@@ -160,29 +125,21 @@ void FUN_180439bf8(void)
   *(int *)(lVar1 + 0xb60) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439c17(void)
-void FUN_180439c17(void)
-
+// 函数: void UISystem_39c17(void)
+void UISystem_39c17(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xb50) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xb58))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xb58))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xb00) != (void *)0x0) {
@@ -196,29 +153,21 @@ void FUN_180439c17(void)
   *(int *)(lVar1 + 0xaf0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439c36(void)
-void FUN_180439c36(void)
-
+// 函数: void UISystem_39c36(void)
+void UISystem_39c36(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x3e0) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 1000))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 1000))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x390) != (void *)0x0) {
@@ -232,29 +181,21 @@ void FUN_180439c36(void)
   *(int *)(lVar1 + 0x380) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439c55(void)
-void FUN_180439c55(void)
-
+// 函数: void UISystem_39c55(void)
+void UISystem_39c55(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x450) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x458))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x458))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x400) != (void *)0x0) {
@@ -268,29 +209,21 @@ void FUN_180439c55(void)
   *(int *)(lVar1 + 0x3f0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439c74(uint64_t param_1,int32_t param_2)
-void FUN_180439c74(uint64_t param_1,int32_t param_2)
-
+// 函数: void UISystem_39c74(uint64_t param_1,int32_t param_2)
+void UISystem_39c74(uint64_t param_1,int32_t param_2)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
-  uint64_t uStack0000000000000030;
-  int32_t uStack0000000000000048;
-  
+  uint64_t local_buffer_30;
+  int32_t local_buffer_48;
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _uStack0000000000000048;
+  local_buffer_30 = _local_buffer_48;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1800) != 0) &&
-     (uStack0000000000000048 = param_2,
-     cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1808))(&stack0x00000048),
-     param_2 = uStack0000000000000048, cVar2 == '\0')) {
+     (local_buffer_48 = param_2,
+     cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1808))(&local_buffer_00000048),
+     param_2 = local_buffer_48, cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x17b0) != (void *)0x0) {
@@ -304,29 +237,21 @@ void FUN_180439c74(uint64_t param_1,int32_t param_2)
   *(int32_t *)(lVar1 + 0x17a0) = param_2;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439c88(void)
-void FUN_180439c88(void)
-
+// 函数: void UISystem_39c88(void)
+void UISystem_39c88(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x760) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x768))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x768))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x710) != (void *)0x0) {
@@ -340,29 +265,21 @@ void FUN_180439c88(void)
   *(int *)(lVar1 + 0x700) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439ca7(void)
-void FUN_180439ca7(void)
-
+// 函数: void UISystem_39ca7(void)
+void UISystem_39ca7(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x920) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x928))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x928))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x8d0) != (void *)0x0) {
@@ -376,29 +293,21 @@ void FUN_180439ca7(void)
   *(int *)(lVar1 + 0x8c0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439cc6(void)
-void FUN_180439cc6(void)
-
+// 函数: void UISystem_39cc6(void)
+void UISystem_39cc6(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x8b0) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x8b8))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x8b8))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x860) != (void *)0x0) {
@@ -412,29 +321,21 @@ void FUN_180439cc6(void)
   *(int *)(lVar1 + 0x850) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439ce5(void)
-void FUN_180439ce5(void)
-
+// 函数: void UISystem_39ce5(void)
+void UISystem_39ce5(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xae0) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xae8))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xae8))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xa90) != (void *)0x0) {
@@ -448,29 +349,21 @@ void FUN_180439ce5(void)
   *(int *)(lVar1 + 0xa80) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439d04(void)
-void FUN_180439d04(void)
-
+// 函数: void UISystem_39d04(void)
+void UISystem_39d04(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x990) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x998))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x998))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x940) != (void *)0x0) {
@@ -484,29 +377,21 @@ void FUN_180439d04(void)
   *(int *)(lVar1 + 0x930) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439d23(void)
-void FUN_180439d23(void)
-
+// 函数: void UISystem_39d23(void)
+void UISystem_39d23(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xa70) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa78))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa78))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xa20) != (void *)0x0) {
@@ -520,29 +405,21 @@ void FUN_180439d23(void)
   *(int *)(lVar1 + 0xa10) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439d42(void)
-void FUN_180439d42(void)
-
+// 函数: void UISystem_39d42(void)
+void UISystem_39d42(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 2000) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x7d8))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x7d8))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x780) != (void *)0x0) {
@@ -556,29 +433,21 @@ void FUN_180439d42(void)
   *(int *)(lVar1 + 0x770) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439d61(void)
-void FUN_180439d61(void)
-
+// 函数: void UISystem_39d61(void)
+void UISystem_39d61(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xa00) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa08))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa08))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x9b0) != (void *)0x0) {
@@ -592,29 +461,21 @@ void FUN_180439d61(void)
   *(int *)(lVar1 + 0x9a0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439d80(void)
-void FUN_180439d80(void)
-
+// 函数: void UISystem_39d80(void)
+void UISystem_39d80(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x840) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x848))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x848))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x7f0) != (void *)0x0) {
@@ -628,32 +489,24 @@ void FUN_180439d80(void)
   *(int *)(lVar1 + 0x7e0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439d9f(void)
-void FUN_180439d9f(void)
-
+// 函数: void UISystem_39d9f(void)
+void UISystem_39d9f(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
   if (*(int *)(render_system_data_memory + 0xcb0) == 0) {
     return;
   }
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xf40) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xf48))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xf48))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xef0) != (void *)0x0) {
@@ -667,32 +520,24 @@ void FUN_180439d9f(void)
   *(int *)(lVar1 + 0xee0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439dd2(void)
-void FUN_180439dd2(void)
-
+// 函数: void UISystem_39dd2(void)
+void UISystem_39dd2(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
   if (*(int *)(render_system_data_memory + 0xd20) == 0) {
     return;
   }
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xfb0) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xfb8))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xfb8))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xf60) != (void *)0x0) {
@@ -706,32 +551,24 @@ void FUN_180439dd2(void)
   *(int *)(lVar1 + 0xf50) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439e05(void)
-void FUN_180439e05(void)
-
+// 函数: void UISystem_39e05(void)
+void UISystem_39e05(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
   if (*(int *)(render_system_data_memory + 0xd90) == 0) {
     return;
   }
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1020) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1028))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1028))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xfd0) != (void *)0x0) {
@@ -745,32 +582,24 @@ void FUN_180439e05(void)
   *(int *)(lVar1 + 0xfc0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439e38(void)
-void FUN_180439e38(void)
-
+// 函数: void UISystem_39e38(void)
+void UISystem_39e38(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
   if (*(int *)(render_system_data_memory + 0xe70) == 0) {
     return;
   }
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1100) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1108))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1108))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x10b0) != (void *)0x0) {
@@ -784,32 +613,24 @@ void FUN_180439e38(void)
   *(int *)(lVar1 + 0x10a0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439e6b(void)
-void FUN_180439e6b(void)
-
+// 函数: void UISystem_39e6b(void)
+void UISystem_39e6b(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
   if (*(int *)(render_system_data_memory + 0xe00) == 0) {
     return;
   }
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1090) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1098))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1098))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x1040) != (void *)0x0) {
@@ -823,29 +644,21 @@ void FUN_180439e6b(void)
   *(int *)(lVar1 + 0x1030) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439e9e(void)
-void FUN_180439e9e(void)
-
+// 函数: void UISystem_39e9e(void)
+void UISystem_39e9e(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x140) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x148))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x148))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xf0) != (void *)0x0) {
@@ -859,29 +672,21 @@ void FUN_180439e9e(void)
   *(int *)(lVar1 + 0xe0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439ebd(void)
-void FUN_180439ebd(void)
-
+// 函数: void UISystem_39ebd(void)
+void UISystem_39ebd(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xe60) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xe68))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xe68))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xe10) != (void *)0x0) {
@@ -895,29 +700,21 @@ void FUN_180439ebd(void)
   *(int *)(lVar1 + 0xe00) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439edc(void)
-void FUN_180439edc(void)
-
+// 函数: void UISystem_39edc(void)
+void UISystem_39edc(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xdf0) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xdf8))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xdf8))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xda0) != (void *)0x0) {
@@ -931,29 +728,21 @@ void FUN_180439edc(void)
   *(int *)(lVar1 + 0xd90) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439efb(void)
-void FUN_180439efb(void)
-
+// 函数: void UISystem_39efb(void)
+void UISystem_39efb(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xed0) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xed8))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xed8))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xe80) != (void *)0x0) {
@@ -967,29 +756,21 @@ void FUN_180439efb(void)
   *(int *)(lVar1 + 0xe70) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439f1a(void)
-void FUN_180439f1a(void)
-
+// 函数: void UISystem_39f1a(void)
+void UISystem_39f1a(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1b0) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1b8))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1b8))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x160) != (void *)0x0) {
@@ -1003,29 +784,21 @@ void FUN_180439f1a(void)
   *(int *)(lVar1 + 0x150) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439f39(void)
-void FUN_180439f39(void)
-
+// 函数: void UISystem_39f39(void)
+void UISystem_39f39(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x220) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x228))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x228))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x1d0) != (void *)0x0) {
@@ -1039,29 +812,21 @@ void FUN_180439f39(void)
   *(int *)(lVar1 + 0x1c0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439f58(void)
-void FUN_180439f58(void)
-
+// 函数: void UISystem_39f58(void)
+void UISystem_39f58(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xc30) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xc38))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xc38))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0xbe0) != (void *)0x0) {
@@ -1075,29 +840,21 @@ void FUN_180439f58(void)
   *(int *)(lVar1 + 0xbd0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439f77(void)
-void FUN_180439f77(void)
-
+// 函数: void UISystem_39f77(void)
+void UISystem_39f77(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x300) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x308))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x308))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 0x2b0) != (void *)0x0) {
@@ -1111,29 +868,21 @@ void FUN_180439f77(void)
   *(int *)(lVar1 + 0x2a0) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180439f96(void)
-void FUN_180439f96(void)
-
+// 函数: void UISystem_39f96(void)
+void UISystem_39f96(void)
 {
   int64_t lVar1;
   char cVar2;
   void *puVar3;
   float unaff_XMM6_Da;
-  uint64_t uStack0000000000000030;
+  uint64_t local_buffer_30;
   int iStack0000000000000048;
-  
   lVar1 = SYSTEM_STATE_MANAGER;
-  uStack0000000000000030 = _iStack0000000000000048;
+  local_buffer_30 = _iStack0000000000000048;
   iStack0000000000000048 = (int)unaff_XMM6_Da;
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x370) != 0) &&
-     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x378))(&stack0x00000048), cVar2 == '\0')) {
+     (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x378))(&local_buffer_00000048), cVar2 == '\0')) {
     if (system_debug_flag == '\0') {
       puVar3 = &system_buffer_ptr;
       if (*(void **)(lVar1 + 800) != (void *)0x0) {
@@ -1147,10 +896,4 @@ void FUN_180439f96(void)
   *(int *)(lVar1 + 0x310) = iStack0000000000000048;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

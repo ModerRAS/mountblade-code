@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_12_part029.c - 5 个函数
-
-// 函数: void FUN_1807dc41f(void)
-void FUN_1807dc41f(void)
-
+// 函数: void function_7dc41f(void)
+void function_7dc41f(void)
 {
   float fVar1;
   float fVar2;
@@ -33,7 +30,6 @@ void FUN_1807dc41f(void)
   float *pfVar22;
   float *unaff_RSI;
   int64_t unaff_RDI;
-  
   pfVar22 = (float *)(unaff_RBP + 8);
   fVar1 = *unaff_RBX;
   fVar2 = unaff_RBX[1];
@@ -96,30 +92,15 @@ void FUN_1807dc41f(void)
   } while (unaff_RDI != 0);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807dc8f5(void)
-void FUN_1807dc8f5(void)
-
+// 函数: void function_7dc8f5(void)
+void function_7dc8f5(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1807dc910(float *param_1,float *param_2,int param_3,int64_t param_4,uint64_t param_5,
-void FUN_1807dc910(float *param_1,float *param_2,int param_3,int64_t param_4,uint64_t param_5,
+// 函数: void function_7dc910(float *param_1,float *param_2,int param_3,int64_t param_4,uint64_t param_5,
+void function_7dc910(float *param_1,float *param_2,int param_3,int64_t param_4,uint64_t param_5,
                   int param_6,int param_7)
-
 {
   float fVar1;
   bool bVar2;
@@ -129,11 +110,10 @@ void FUN_1807dc910(float *param_1,float *param_2,int param_3,int64_t param_4,uin
   int64_t lVar6;
   float *pfVar7;
   float *pfVar8;
-  int8_t auStack_d8 [32];
+  int8_t stack_array_d8 [32];
   float afStack_b8 [32];
-  uint64_t uStack_38;
-  
-  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
+  uint64_t local_var_38;
+  local_var_38 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_d8;
   lVar6 = (int64_t)param_6;
   lVar3 = 0;
   bVar2 = true;
@@ -178,10 +158,10 @@ void FUN_1807dc910(float *param_1,float *param_2,int param_3,int64_t param_4,uin
   }
   if (param_7 != 0) {
     if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy(param_2,param_1);
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(param_2,0,(uint64_t)(uint)(param_3 * param_6) << 2);
   }
   if (bVar2) {
@@ -554,19 +534,12 @@ void FUN_1807dc910(float *param_1,float *param_2,int param_3,int64_t param_4,uin
       param_3 = param_3 + -1;
     } while (param_3 != 0);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_d8);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_38 ^ (uint64_t)stack_array_d8);
 }
-
-
-
-
-
-
-// 函数: void FUN_1807dd240(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
-void FUN_1807dd240(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+// 函数: void function_7dd240(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void function_7dd240(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
                   uint64_t param_6,int param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -578,7 +551,6 @@ void FUN_1807dd240(float *param_1,float *param_2,uint param_3,float *param_4,uin
   float fVar8;
   uint uVar9;
   float *pfVar10;
-  
   fVar1 = *param_4;
   fVar2 = param_4[0x20];
   fVar3 = param_4[0x40];
@@ -687,16 +659,9 @@ void FUN_1807dd240(float *param_1,float *param_2,uint param_3,float *param_4,uin
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807dd6c0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
-void FUN_1807dd6c0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+// 函数: void function_7dd6c0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void function_7dd6c0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
                   uint64_t param_6,int param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -710,7 +675,6 @@ void FUN_1807dd6c0(float *param_1,float *param_2,uint param_3,float *param_4,uin
   float fVar10;
   uint uVar11;
   float *pfVar12;
-  
   fVar1 = *param_4;
   fVar2 = param_4[0x20];
   fVar3 = param_4[0x40];
@@ -805,9 +769,3 @@ void FUN_1807dd6c0(float *param_1,float *param_2,uint param_3,float *param_4,uin
   }
   return;
 }
-
-
-
-
-
-

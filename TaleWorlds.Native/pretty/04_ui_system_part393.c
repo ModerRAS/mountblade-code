@@ -1,34 +1,22 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part393.c - 7 个函数
-
-// 函数: void FUN_18087c319(void)
-void FUN_18087c319(void)
-
+// 函数: void function_87c319(void)
+void function_87c319(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemMemoryManager();
 }
-
-
-
-uint64_t FUN_18087c32f(void)
-
+uint64_t function_87c32f(void)
 {
   int64_t in_RAX;
   char unaff_SIL;
-  
   if (unaff_SIL != '\0') {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager();
   }
   return *(uint64_t *)(in_RAX + 0x18);
 }
-
-
-
-int64_t FUN_18087c360(int64_t param_1,uint *param_2,char param_3)
-
+int64_t function_87c360(int64_t param_1,uint *param_2,char param_3)
 {
   int64_t lVar1;
   uint uVar2;
@@ -41,7 +29,6 @@ int64_t FUN_18087c360(int64_t param_1,uint *param_2,char param_3)
   int64_t *plVar9;
   int iVar10;
   int64_t lVar11;
-  
   lVar11 = *(int64_t *)(param_1 + 8);
   if (lVar11 == 0) {
     return 0;
@@ -78,16 +65,12 @@ int64_t FUN_18087c360(int64_t param_1,uint *param_2,char param_3)
   lVar11 = 0;
 LAB_18087c41f:
   if (bVar6) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar11;
 }
-
-
-
-int64_t FUN_18087c37a(int64_t param_1,uint64_t param_2,char param_3)
-
+int64_t function_87c37a(int64_t param_1,uint64_t param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
@@ -96,9 +79,8 @@ int64_t FUN_18087c37a(int64_t param_1,uint64_t param_2,char param_3)
   int64_t unaff_RBX;
   int64_t lVar5;
   int64_t in_XMM0_Qb;
-  uint uStackX_24;
+  uint stack_special_x_24;
   int64_t lStack0000000000000028;
-  
   lVar1 = *(int64_t *)(unaff_RBX + 0x4d0);
   lStack0000000000000028 = in_XMM0_Qb;
   if ((lVar1 == 0) || (param_3 == '\0')) {
@@ -109,10 +91,10 @@ int64_t FUN_18087c37a(int64_t param_1,uint64_t param_2,char param_3)
     SystemMemoryAllocator(lVar1);
   }
   if ((*(int *)(unaff_RBX + 0x4cc) != 0) && (*(int *)(unaff_RBX + 0x4b0) != 0)) {
-    uStackX_24 = (uint)((uint64_t)param_1 >> 0x20);
+    stack_special_x_24 = (uint)((uint64_t)param_1 >> 0x20);
     iVar4 = *(int *)(*(int64_t *)(unaff_RBX + 0x4a8) +
                     (int64_t)
-                    (int)((uStackX_24 ^ (uint)param_1 ^ (uint)lStack0000000000000028 ^
+                    (int)((stack_special_x_24 ^ (uint)param_1 ^ (uint)lStack0000000000000028 ^
                           lStack0000000000000028._4_4_) & *(int *)(unaff_RBX + 0x4b0) - 1U) * 4);
     if (iVar4 != -1) {
       do {
@@ -128,50 +110,34 @@ int64_t FUN_18087c37a(int64_t param_1,uint64_t param_2,char param_3)
   lVar5 = 0;
 LAB_18087c41f:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-
-
-// 函数: void FUN_18087c429(void)
-void FUN_18087c429(void)
-
+// 函数: void function_87c429(void)
+void function_87c429(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemMemoryManager();
 }
-
-
-
-uint64_t FUN_18087c43f(void)
-
+uint64_t function_87c43f(void)
 {
   int64_t in_RAX;
   char unaff_SIL;
-  
   if (unaff_SIL != '\0') {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager();
   }
   return *(uint64_t *)(in_RAX + 0x18);
 }
-
-
-
-int64_t FUN_18087c470(int64_t param_1,uint *param_2,char param_3)
-
+int64_t function_87c470(int64_t param_1,uint *param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
   int64_t *plVar3;
   int iVar4;
   int64_t lVar5;
-  
   lVar5 = *(int64_t *)(param_1 + 8);
   if (lVar5 == 0) {
     return 0;
@@ -201,16 +167,12 @@ int64_t FUN_18087c470(int64_t param_1,uint *param_2,char param_3)
   lVar5 = 0;
 LAB_18087c526:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-int64_t FUN_18087c493(uint64_t param_1,uint64_t param_2,char param_3)
-
+int64_t function_87c493(uint64_t param_1,uint64_t param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
@@ -219,7 +181,6 @@ int64_t FUN_18087c493(uint64_t param_1,uint64_t param_2,char param_3)
   uint *unaff_RBX;
   int64_t lVar5;
   int64_t unaff_RDI;
-  
   lVar1 = *(int64_t *)(unaff_RDI + 0x5f0);
   if ((lVar1 == 0) || (param_3 == '\0')) {
     bVar2 = false;
@@ -245,50 +206,34 @@ int64_t FUN_18087c493(uint64_t param_1,uint64_t param_2,char param_3)
   lVar5 = 0;
 LAB_18087c526:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-
-
-// 函数: void FUN_18087c530(void)
-void FUN_18087c530(void)
-
+// 函数: void function_87c530(void)
+void function_87c530(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemMemoryManager();
 }
-
-
-
-uint64_t FUN_18087c54b(void)
-
+uint64_t function_87c54b(void)
 {
   int64_t in_RAX;
   char unaff_BPL;
-  
   if (unaff_BPL != '\0') {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager();
   }
   return *(uint64_t *)(in_RAX + 0x18);
 }
-
-
-
-int64_t FUN_18087c580(int64_t param_1,uint *param_2,char param_3)
-
+int64_t function_87c580(int64_t param_1,uint *param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
   int64_t *plVar3;
   int iVar4;
   int64_t lVar5;
-  
   lVar5 = *(int64_t *)(param_1 + 8);
   if (lVar5 == 0) {
     return 0;
@@ -318,16 +263,12 @@ int64_t FUN_18087c580(int64_t param_1,uint *param_2,char param_3)
   lVar5 = 0;
 LAB_18087c636:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-int64_t FUN_18087c5a3(uint64_t param_1,uint64_t param_2,char param_3)
-
+int64_t function_87c5a3(uint64_t param_1,uint64_t param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
@@ -336,7 +277,6 @@ int64_t FUN_18087c5a3(uint64_t param_1,uint64_t param_2,char param_3)
   uint *unaff_RBX;
   int64_t lVar5;
   int64_t unaff_RDI;
-  
   lVar1 = *(int64_t *)(unaff_RDI + 2000);
   if ((lVar1 == 0) || (param_3 == '\0')) {
     bVar2 = false;
@@ -362,50 +302,34 @@ int64_t FUN_18087c5a3(uint64_t param_1,uint64_t param_2,char param_3)
   lVar5 = 0;
 LAB_18087c636:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-
-
-// 函数: void FUN_18087c640(void)
-void FUN_18087c640(void)
-
+// 函数: void function_87c640(void)
+void function_87c640(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemMemoryManager();
 }
-
-
-
-uint64_t FUN_18087c65b(void)
-
+uint64_t function_87c65b(void)
 {
   int64_t in_RAX;
   char unaff_BPL;
-  
   if (unaff_BPL != '\0') {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager();
   }
   return *(uint64_t *)(in_RAX + 0x18);
 }
-
-
-
-int64_t FUN_18087c690(int64_t param_1,uint *param_2,char param_3)
-
+int64_t function_87c690(int64_t param_1,uint *param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
   int64_t *plVar3;
   int iVar4;
   int64_t lVar5;
-  
   lVar5 = *(int64_t *)(param_1 + 8);
   if (lVar5 == 0) {
     return 0;
@@ -435,16 +359,12 @@ int64_t FUN_18087c690(int64_t param_1,uint *param_2,char param_3)
   lVar5 = 0;
 LAB_18087c746:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-int64_t FUN_18087c6b3(uint64_t param_1,uint64_t param_2,char param_3)
-
+int64_t function_87c6b3(uint64_t param_1,uint64_t param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
@@ -453,7 +373,6 @@ int64_t FUN_18087c6b3(uint64_t param_1,uint64_t param_2,char param_3)
   uint *unaff_RBX;
   int64_t lVar5;
   int64_t unaff_RDI;
-  
   lVar1 = *(int64_t *)(unaff_RDI + 0x530);
   if ((lVar1 == 0) || (param_3 == '\0')) {
     bVar2 = false;
@@ -479,50 +398,34 @@ int64_t FUN_18087c6b3(uint64_t param_1,uint64_t param_2,char param_3)
   lVar5 = 0;
 LAB_18087c746:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-
-
-// 函数: void FUN_18087c750(void)
-void FUN_18087c750(void)
-
+// 函数: void function_87c750(void)
+void function_87c750(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemMemoryManager();
 }
-
-
-
-uint64_t FUN_18087c76b(void)
-
+uint64_t function_87c76b(void)
 {
   int64_t in_RAX;
   char unaff_BPL;
-  
   if (unaff_BPL != '\0') {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager();
   }
   return *(uint64_t *)(in_RAX + 0x18);
 }
-
-
-
-int64_t FUN_18087c7a0(int64_t param_1,uint *param_2,char param_3)
-
+int64_t function_87c7a0(int64_t param_1,uint *param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
   int64_t *plVar3;
   int iVar4;
   int64_t lVar5;
-  
   lVar5 = *(int64_t *)(param_1 + 8);
   if (lVar5 == 0) {
     return 0;
@@ -552,16 +455,12 @@ int64_t FUN_18087c7a0(int64_t param_1,uint *param_2,char param_3)
   lVar5 = 0;
 LAB_18087c856:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-int64_t FUN_18087c7c3(uint64_t param_1,uint64_t param_2,char param_3)
-
+int64_t function_87c7c3(uint64_t param_1,uint64_t param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
@@ -570,7 +469,6 @@ int64_t FUN_18087c7c3(uint64_t param_1,uint64_t param_2,char param_3)
   uint *unaff_RBX;
   int64_t lVar5;
   int64_t unaff_RDI;
-  
   lVar1 = *(int64_t *)(unaff_RDI + 0x500);
   if ((lVar1 == 0) || (param_3 == '\0')) {
     bVar2 = false;
@@ -596,50 +494,34 @@ int64_t FUN_18087c7c3(uint64_t param_1,uint64_t param_2,char param_3)
   lVar5 = 0;
 LAB_18087c856:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-
-
-// 函数: void FUN_18087c860(void)
-void FUN_18087c860(void)
-
+// 函数: void function_87c860(void)
+void function_87c860(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemMemoryManager();
 }
-
-
-
-uint64_t FUN_18087c87b(void)
-
+uint64_t function_87c87b(void)
 {
   int64_t in_RAX;
   char unaff_BPL;
-  
   if (unaff_BPL != '\0') {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager();
   }
   return *(uint64_t *)(in_RAX + 0x18);
 }
-
-
-
-int64_t FUN_18087c8b0(int64_t param_1,uint *param_2,char param_3)
-
+int64_t function_87c8b0(int64_t param_1,uint *param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
   int64_t *plVar3;
   int iVar4;
   int64_t lVar5;
-  
   lVar5 = *(int64_t *)(param_1 + 8);
   if (lVar5 == 0) {
     return 0;
@@ -669,16 +551,12 @@ int64_t FUN_18087c8b0(int64_t param_1,uint *param_2,char param_3)
   lVar5 = 0;
 LAB_18087c966:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-int64_t FUN_18087c8d3(uint64_t param_1,uint64_t param_2,char param_3)
-
+int64_t function_87c8d3(uint64_t param_1,uint64_t param_2,char param_3)
 {
   int64_t lVar1;
   bool bVar2;
@@ -687,7 +565,6 @@ int64_t FUN_18087c8d3(uint64_t param_1,uint64_t param_2,char param_3)
   uint *unaff_RBX;
   int64_t lVar5;
   int64_t unaff_RDI;
-  
   lVar1 = *(int64_t *)(unaff_RDI + 0x6b0);
   if ((lVar1 == 0) || (param_3 == '\0')) {
     bVar2 = false;
@@ -713,40 +590,24 @@ int64_t FUN_18087c8d3(uint64_t param_1,uint64_t param_2,char param_3)
   lVar5 = 0;
 LAB_18087c966:
   if (bVar2) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
   }
   return lVar5;
 }
-
-
-
-
-
-// 函数: void FUN_18087c970(void)
-void FUN_18087c970(void)
-
+// 函数: void function_87c970(void)
+void function_87c970(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemMemoryManager();
 }
-
-
-
-uint64_t FUN_18087c98b(void)
-
+uint64_t function_87c98b(void)
 {
   int64_t in_RAX;
   char unaff_BPL;
-  
   if (unaff_BPL != '\0') {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemMemoryManager();
   }
   return *(uint64_t *)(in_RAX + 0x18);
 }
-
-
-
-
-

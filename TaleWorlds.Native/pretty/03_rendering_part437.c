@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part437.c - 1 个函数
-
-// 函数: void FUN_180508d30(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180508d30(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_508d30(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4)
+void function_508d30(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4)
 {
   uint *puVar1;
   ushort *puVar2;
@@ -16,7 +13,6 @@ void FUN_180508d30(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
   int64_t lVar7;
   int iVar8;
   uint64_t unaff_RDI;
-  
   iVar8 = *(int *)(param_1 + 0x570);
   if (iVar8 == param_2) {
     return;
@@ -36,13 +32,13 @@ void FUN_180508d30(int64_t param_1,int param_2,uint64_t param_3,uint64_t param_4
     if (param_2 != 2) goto LAB_180508db8;
     uVar4 = *(int32_t *)(param_1 + 0x10);
   }
-  FUN_1804f1c90(*(uint64_t *)(param_1 + 0x8d8),uVar4,system_data_ec8a);
+  function_4f1c90(*(uint64_t *)(param_1 + 0x8d8),uVar4,system_data_ec8a);
 LAB_180508db8:
   if ((system_status_flag != 1) && (system_status_flag != 4)) {
     uVar6 = *(uint *)(param_1 + 0x56c);
     if (param_2 == 1) {
       if ((uVar6 & 0x800) != 0) {
-        FUN_180508bd0(param_1,1);
+        function_508bd0(param_1,1);
         uVar6 = *(uint *)(param_1 + 0x56c);
       }
       if ((uVar6 >> 0xe & 1) != 0) {
@@ -62,7 +58,7 @@ LAB_180508db8:
       }
     }
     else if ((uVar6 & 0x800) != 0) {
-      FUN_180508bd0(param_1,0);
+      function_508bd0(param_1,0);
     }
   }
   if ((*(uint *)(param_1 + 0x56c) & 0x800) != 0) {
@@ -80,8 +76,8 @@ LAB_180508db8:
   if ((iVar8 == 1) && (param_2 == 0)) {
     if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       iVar8 = *(int *)(param_1 + 0x10) * 0x10;
-      FUN_18055d4d0(&system_data_25a0,iVar8 + 0x10);
-      FUN_180560090((int64_t)(iVar8 + 9) * 0xd08 + render_system_ui);
+      function_55d4d0(&system_data_25a0,iVar8 + 0x10);
+      function_560090((int64_t)(iVar8 + 9) * 0xd08 + render_system_ui);
       lVar7 = (int64_t)iVar8 * 0xd08 + render_system_ui;
       *(uint64_t *)(lVar7 + 0xa0) = *(uint64_t *)(lVar7 + 0x10);
       *(uint64_t *)(lVar7 + 0xa8) = *(uint64_t *)(lVar7 + 0x18);
@@ -106,20 +102,14 @@ LAB_180508db8:
       *(int32_t *)(lVar7 + 0x128) = *(int32_t *)(lVar7 + 0x98);
       *(int32_t *)(lVar7 + 300) = *(int32_t *)(lVar7 + 0x9c);
       *(uint64_t *)(lVar7 + 0xcf4) = 0;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(*(uint64_t *)(lVar7 + 0xcc8),0,(int64_t)(*(int *)(lVar7 + 0xcc0) >> 3),param_4,
              unaff_RDI);
     }
   }
   else if ((param_2 == 2) && (((*(byte *)(param_1 + 0x56c) & 8) != 0 && (system_status_flag == 1)))) {
-    FUN_1805a3a20(param_1 + 0x28);
+    function_5a3a20(param_1 + 0x28);
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

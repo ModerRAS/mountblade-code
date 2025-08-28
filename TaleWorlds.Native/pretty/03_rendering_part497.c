@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part497.c - 8 个函数
-
-// 函数: void FUN_180532390(int64_t param_1,float param_2)
-void FUN_180532390(int64_t param_1,float param_2)
-
+// 函数: void function_532390(int64_t param_1,float param_2)
+void function_532390(int64_t param_1,float param_2)
 {
   int64_t lVar1;
   uint64_t *puVar2;
@@ -17,20 +14,19 @@ void FUN_180532390(int64_t param_1,float param_2)
   float fStack_98;
   float fStack_94;
   float fStack_90;
-  int32_t uStack_8c;
+  int32_t local_var_8c;
   float fStack_88;
   float fStack_84;
   float fStack_80;
-  int32_t uStack_7c;
+  int32_t local_var_7c;
   float fStack_78;
   float fStack_74;
   float fStack_70;
-  int32_t uStack_6c;
+  int32_t local_var_6c;
   float fStack_68;
   float fStack_64;
   float fStack_60;
-  int32_t uStack_5c;
-  
+  int32_t local_var_5c;
   if ((*(int *)(param_1 + 0x568) - 3U < 2) &&
      (lVar1 = *(int64_t *)(param_1 + 0x658), (ushort)(*(short *)(lVar1 + 0x40) - 3U) < 2)) {
     puVar2 = *(uint64_t **)(*(int64_t *)(lVar1 + 0x18) + 0xf0);
@@ -51,12 +47,12 @@ void FUN_180532390(int64_t param_1,float param_2)
       fVar5 = fStack_88 * fStack_88 + fStack_84 * fStack_84;
       auVar8 = rsqrtss(ZEXT416((uint)fVar5),ZEXT416((uint)fVar5));
       fVar6 = auVar8._0_4_;
-      uStack_8c = 0x7f7fffff;
+      local_var_8c = 0x7f7fffff;
       fStack_98 = fVar6 * 0.5 * (3.0 - fVar5 * fVar6 * fVar6);
       fStack_78 = 0.0;
       fStack_74 = 0.0;
       fStack_70 = 1.0;
-      uStack_6c = 0;
+      local_var_6c = 0;
       fStack_88 = fStack_88 * fStack_98;
       fStack_98 = fStack_84 * fStack_98;
       fStack_94 = -fStack_88;
@@ -69,20 +65,20 @@ void FUN_180532390(int64_t param_1,float param_2)
         auVar8._4_4_ = fStack_94;
         auVar8._0_4_ = fStack_98;
         auVar8._8_4_ = fStack_90;
-        auVar8._12_4_ = uStack_8c;
+        auVar8._12_4_ = local_var_8c;
         *(int8_t (*) [16])(param_1 + 0x520) = auVar8;
         *(float *)(param_1 + 0x530) = fStack_88;
         *(float *)(param_1 + 0x534) = fStack_84;
         *(float *)(param_1 + 0x538) = fStack_80;
-        *(int32_t *)(param_1 + 0x53c) = uStack_7c;
+        *(int32_t *)(param_1 + 0x53c) = local_var_7c;
         *(float *)(param_1 + 0x540) = fStack_78;
         *(float *)(param_1 + 0x544) = fStack_74;
         *(float *)(param_1 + 0x548) = fStack_70;
-        *(int32_t *)(param_1 + 0x54c) = uStack_6c;
+        *(int32_t *)(param_1 + 0x54c) = local_var_6c;
         *(float *)(param_1 + 0x550) = fStack_68;
         *(float *)(param_1 + 0x554) = fStack_64;
         *(float *)(param_1 + 0x558) = fStack_60;
-        *(int32_t *)(param_1 + 0x55c) = uStack_5c;
+        *(int32_t *)(param_1 + 0x55c) = local_var_5c;
         fVar5 = *(float *)(*(int64_t *)(param_1 + 0x6d8) + 0x8c0);
         fStack_98 = fStack_98 * fVar5;
         fStack_94 = fStack_94 * fVar5;
@@ -103,17 +99,17 @@ void FUN_180532390(int64_t param_1,float param_2)
              ((fStack_78 != *(float *)(lVar1 + 0x50) || (fStack_74 != *(float *)(lVar1 + 0x54)))))
             || (fStack_70 != *(float *)(lVar1 + 0x58))))) {
           *(uint64_t *)(lVar1 + 0x30) = CONCAT44(fStack_94,fStack_98);
-          *(uint64_t *)(lVar1 + 0x38) = CONCAT44(uStack_8c,fStack_90);
+          *(uint64_t *)(lVar1 + 0x38) = CONCAT44(local_var_8c,fStack_90);
           *(uint64_t *)(lVar1 + 0x40) = CONCAT44(fStack_84,fStack_88);
-          *(uint64_t *)(lVar1 + 0x48) = CONCAT44(uStack_7c,fStack_80);
+          *(uint64_t *)(lVar1 + 0x48) = CONCAT44(local_var_7c,fStack_80);
           *(float *)(lVar1 + 0x50) = fStack_78;
           *(float *)(lVar1 + 0x54) = fStack_74;
           *(float *)(lVar1 + 0x58) = fStack_70;
-          *(int32_t *)(lVar1 + 0x5c) = uStack_6c;
+          *(int32_t *)(lVar1 + 0x5c) = local_var_6c;
           *(float *)(lVar1 + 0x60) = fStack_68;
           *(float *)(lVar1 + 100) = fStack_64;
           *(float *)(lVar1 + 0x68) = fStack_60;
-          *(int32_t *)(lVar1 + 0x6c) = uStack_5c;
+          *(int32_t *)(lVar1 + 0x6c) = local_var_5c;
           RenderingSystem_CameraController();
           UtilitiesSystem_StringProcessor();
         }
@@ -122,14 +118,8 @@ void FUN_180532390(int64_t param_1,float param_2)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1805323c0(int64_t param_1)
-void FUN_1805323c0(int64_t param_1)
-
+// 函数: void function_5323c0(int64_t param_1)
+void function_5323c0(int64_t param_1)
 {
   float fVar1;
   int64_t lVar2;
@@ -163,7 +153,6 @@ void FUN_1805323c0(int64_t param_1)
   float fVar24;
   float fVar25;
   float fVar26;
-  
   *(uint64_t *)(in_R11 + 0x10) = unaff_RDI;
   lVar2 = *(int64_t *)(param_1 + 0x658);
   if ((ushort)(*(short *)(lVar2 + 0x40) - 3U) < 2) {
@@ -294,14 +283,8 @@ void FUN_1805323c0(int64_t param_1)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1805323e5(void)
-void FUN_1805323e5(void)
-
+// 函数: void function_5323e5(void)
+void function_5323e5(void)
 {
   float fVar1;
   uint64_t *puVar2;
@@ -335,7 +318,6 @@ void FUN_1805323e5(void)
   float fVar23;
   float fVar24;
   float fVar25;
-  
   *(uint64_t *)(in_R11 + 8) = unaff_RSI;
   puVar2 = *(uint64_t **)(in_RAX + 0xf0);
   (**(code **)(*(int64_t *)*puVar2 + 200))();
@@ -461,14 +443,8 @@ void FUN_1805323e5(void)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1805325cf(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
-void FUN_1805325cf(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
-
+// 函数: void function_5325cf(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
+void function_5325cf(uint64_t param_1,uint64_t param_2,float param_3,float param_4)
 {
   float fVar1;
   int64_t lVar2;
@@ -491,7 +467,6 @@ void FUN_1805325cf(uint64_t param_1,uint64_t param_2,float param_3,float param_4
   float fVar8;
   float fVar9;
   float fVar10;
-  
   fVar7 = *(float *)(unaff_RBP + -0x11);
   *(float *)(unaff_RBX + 0x540) = in_XMM4_Da;
   *(int32_t *)(unaff_RBX + 0x544) = in_XMM4_Db;
@@ -553,47 +528,23 @@ void FUN_1805325cf(uint64_t param_1,uint64_t param_2,float param_3,float param_4
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180532713(void)
-void FUN_180532713(void)
-
+// 函数: void function_532713(void)
+void function_532713(void)
 {
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18053271b(void)
-void FUN_18053271b(void)
-
+// 函数: void function_53271b(void)
+void function_53271b(void)
 {
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180532723(void)
-void FUN_180532723(void)
-
+// 函数: void function_532723(void)
+void function_532723(void)
 {
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180532740(int64_t param_1,float param_2)
-void FUN_180532740(int64_t param_1,float param_2)
-
+// 函数: void function_532740(int64_t param_1,float param_2)
+void function_532740(int64_t param_1,float param_2)
 {
   int64_t lVar1;
   uint64_t *puVar2;
@@ -606,20 +557,19 @@ void FUN_180532740(int64_t param_1,float param_2)
   float fStack_98;
   float fStack_94;
   float fStack_90;
-  int32_t uStack_8c;
+  int32_t local_var_8c;
   float fStack_88;
   float fStack_84;
   float fStack_80;
-  int32_t uStack_7c;
+  int32_t local_var_7c;
   float fStack_78;
   float fStack_74;
   float fStack_70;
-  int32_t uStack_6c;
+  int32_t local_var_6c;
   float fStack_68;
   float fStack_64;
   float fStack_60;
-  int32_t uStack_5c;
-  
+  int32_t local_var_5c;
   if ((*(int *)(param_1 + 0x568) - 3U < 2) &&
      (lVar1 = *(int64_t *)(param_1 + 0x658), (ushort)(*(short *)(lVar1 + 0x40) - 3U) < 2)) {
     puVar2 = *(uint64_t **)(*(int64_t *)(lVar1 + 0x18) + 0xf0);
@@ -640,12 +590,12 @@ void FUN_180532740(int64_t param_1,float param_2)
       fVar5 = fStack_88 * fStack_88 + fStack_84 * fStack_84;
       auVar8 = rsqrtss(ZEXT416((uint)fVar5),ZEXT416((uint)fVar5));
       fVar6 = auVar8._0_4_;
-      uStack_8c = 0x7f7fffff;
+      local_var_8c = 0x7f7fffff;
       fStack_98 = fVar6 * 0.5 * (3.0 - fVar5 * fVar6 * fVar6);
       fStack_78 = 0.0;
       fStack_74 = 0.0;
       fStack_70 = 1.0;
-      uStack_6c = 0;
+      local_var_6c = 0;
       fStack_88 = fStack_88 * fStack_98;
       fStack_98 = fStack_84 * fStack_98;
       fStack_94 = -fStack_88;
@@ -658,20 +608,20 @@ void FUN_180532740(int64_t param_1,float param_2)
         auVar8._4_4_ = fStack_94;
         auVar8._0_4_ = fStack_98;
         auVar8._8_4_ = fStack_90;
-        auVar8._12_4_ = uStack_8c;
+        auVar8._12_4_ = local_var_8c;
         *(int8_t (*) [16])(param_1 + 0x520) = auVar8;
         *(float *)(param_1 + 0x530) = fStack_88;
         *(float *)(param_1 + 0x534) = fStack_84;
         *(float *)(param_1 + 0x538) = fStack_80;
-        *(int32_t *)(param_1 + 0x53c) = uStack_7c;
+        *(int32_t *)(param_1 + 0x53c) = local_var_7c;
         *(float *)(param_1 + 0x540) = fStack_78;
         *(float *)(param_1 + 0x544) = fStack_74;
         *(float *)(param_1 + 0x548) = fStack_70;
-        *(int32_t *)(param_1 + 0x54c) = uStack_6c;
+        *(int32_t *)(param_1 + 0x54c) = local_var_6c;
         *(float *)(param_1 + 0x550) = fStack_68;
         *(float *)(param_1 + 0x554) = fStack_64;
         *(float *)(param_1 + 0x558) = fStack_60;
-        *(int32_t *)(param_1 + 0x55c) = uStack_5c;
+        *(int32_t *)(param_1 + 0x55c) = local_var_5c;
         fVar5 = *(float *)(*(int64_t *)(param_1 + 0x6d8) + 0x8c0);
         fStack_98 = fStack_98 * fVar5;
         fStack_94 = fStack_94 * fVar5;
@@ -692,17 +642,17 @@ void FUN_180532740(int64_t param_1,float param_2)
              ((fStack_78 != *(float *)(lVar1 + 0x50) || (fStack_74 != *(float *)(lVar1 + 0x54)))))
             || (fStack_70 != *(float *)(lVar1 + 0x58))))) {
           *(uint64_t *)(lVar1 + 0x30) = CONCAT44(fStack_94,fStack_98);
-          *(uint64_t *)(lVar1 + 0x38) = CONCAT44(uStack_8c,fStack_90);
+          *(uint64_t *)(lVar1 + 0x38) = CONCAT44(local_var_8c,fStack_90);
           *(uint64_t *)(lVar1 + 0x40) = CONCAT44(fStack_84,fStack_88);
-          *(uint64_t *)(lVar1 + 0x48) = CONCAT44(uStack_7c,fStack_80);
+          *(uint64_t *)(lVar1 + 0x48) = CONCAT44(local_var_7c,fStack_80);
           *(float *)(lVar1 + 0x50) = fStack_78;
           *(float *)(lVar1 + 0x54) = fStack_74;
           *(float *)(lVar1 + 0x58) = fStack_70;
-          *(int32_t *)(lVar1 + 0x5c) = uStack_6c;
+          *(int32_t *)(lVar1 + 0x5c) = local_var_6c;
           *(float *)(lVar1 + 0x60) = fStack_68;
           *(float *)(lVar1 + 100) = fStack_64;
           *(float *)(lVar1 + 0x68) = fStack_60;
-          *(int32_t *)(lVar1 + 0x6c) = uStack_5c;
+          *(int32_t *)(lVar1 + 0x6c) = local_var_5c;
           RenderingSystem_CameraController();
           UtilitiesSystem_StringProcessor();
         }
@@ -711,8 +661,3 @@ void FUN_180532740(int64_t param_1,float param_2)
   }
   return;
 }
-
-
-
-
-

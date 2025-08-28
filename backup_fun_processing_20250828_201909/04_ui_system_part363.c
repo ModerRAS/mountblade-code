@@ -128,7 +128,7 @@ LAB_180864477:
         if (((iVar6 != 0) || (iVar6 = FUN_180740410(uStackX_20,&uStackX_18), iVar6 != 0)) &&
            (iVar6 != 0)) goto LAB_180864627;
         if (((char)uStackX_18 != '\0') ||
-           (fVar12 = (float)func_0x000180851e30(*(uint64_t *)(param_1 + 0x2b0)), fVar12 == 0.0)) {
+           (fVar12 = (float)MathFunction_GetParameterValue(*(uint64_t *)(param_1 + 0x2b0)), fVar12 == 0.0)) {
           *(int32_t *)(param_1 + 0x2e4) = 7;
         }
       }
@@ -171,7 +171,7 @@ LAB_18086460a:
     iVar6 = FUN_18085ca30(param_1 + 200,uVar11);
     if ((((iVar6 != 0) || (iVar6 = FUN_1808d0d90(param_1 + 0x378,uVar11), iVar6 != 0)) ||
         (iVar6 = FUN_1808d0d90(param_1 + 0x3f8,uVar11), iVar6 != 0)) ||
-       (iVar6 = func_0x0001808d57c0(param_1 + 0x280,uVar11), iVar6 != 0)) goto LAB_180864627;
+       (iVar6 = MathFunction_CalculateTransform(param_1 + 0x280,uVar11), iVar6 != 0)) goto LAB_180864627;
     if (*(int *)(param_1 + 0x2e4) != 8) {
       if (*(int64_t *)(param_1 + 0x478) != 0) {
         uStackX_18 = 0;
@@ -216,7 +216,7 @@ LAB_18086460a:
       if ((((*(int *)(param_1 + 0x2e4) == 3) && (bVar3)) &&
           (plVar1 = (int64_t *)(param_1 + 0x400), (int64_t *)*plVar1 == plVar1)) &&
          ((*(int64_t **)(param_1 + 0x408) == plVar1 &&
-          (cVar5 = func_0x000180857b00(param_1 + 200), cVar5 != '\0')))) {
+          (cVar5 = SystemCore_CheckCondition(param_1 + 200), cVar5 != '\0')))) {
         iVar8 = *(int *)(param_1 + 0x2e4);
         if ((*(int64_t *)(param_1 + 0x2b8) != 0) && ((*(uint *)(param_1 + 0x2d8) >> 6 & 1) != 0)) {
           iVar6 = FUN_1808538a0(*(int64_t *)(param_1 + 0x2b8),param_1);
@@ -347,7 +347,7 @@ LAB_1808640fb:
       uVar7 = FUN_1808d0d90(unaff_RDI + 0x3f8,uVar11);
       uVar12 = (uint64_t)uVar7;
       if (uVar7 != 0) goto LAB_180864627;
-      uVar7 = func_0x0001808d57c0(unaff_RDI + 0x280,uVar11);
+      uVar7 = MathFunction_CalculateTransform(unaff_RDI + 0x280,uVar11);
       uVar12 = (uint64_t)uVar7;
       if (uVar7 != 0) goto LAB_180864627;
       uVar8 = extraout_XMM0_Da_00;
@@ -399,7 +399,7 @@ LAB_1808640fb:
         if ((((*(int *)(unaff_RDI + 0x2e4) == 3) && (bVar4)) &&
             (plVar1 = (int64_t *)(unaff_RDI + 0x400), (int64_t *)*plVar1 == plVar1)) &&
            ((*(int64_t **)(unaff_RDI + 0x408) == plVar1 &&
-            (cVar6 = func_0x000180857b00(unaff_RDI + 200), cVar6 != '\0')))) {
+            (cVar6 = SystemCore_CheckCondition(unaff_RDI + 200), cVar6 != '\0')))) {
           iVar9 = *(int *)(unaff_RDI + 0x2e4);
           uVar8 = extraout_XMM0_Da_03;
           if ((*(int64_t *)(unaff_RDI + 0x2b8) != 0) &&
@@ -484,7 +484,7 @@ LAB_180864477:
           (uVar7 = FUN_180740410(*(uint64_t *)(unaff_RBP + 0x30),unaff_RBP + 0x28), uVar7 != 0))
          && (uVar12 = (uint64_t)uVar7, uVar7 != 0)) goto LAB_180864627;
       if ((*(char *)(unaff_RBP + 0x28) != cVar13) ||
-         (fVar14 = (float)func_0x000180851e30(*(uint64_t *)(unaff_RDI + 0x2b0)), fVar14 == 0.0)) {
+         (fVar14 = (float)MathFunction_GetParameterValue(*(uint64_t *)(unaff_RDI + 0x2b0)), fVar14 == 0.0)) {
         *(int32_t *)(unaff_RDI + 0x2e4) = 7;
       }
     }
@@ -639,7 +639,7 @@ void FUN_180864780(int64_t param_1)
       return;
     }
   }
-  fVar4 = (float)func_0x000180851e30(*(uint64_t *)(param_1 + 0x2b0));
+  fVar4 = (float)MathFunction_GetParameterValue(*(uint64_t *)(param_1 + 0x2b0));
   *(float *)(param_1 + 0x2f4) = fVar4 * *(float *)(param_1 + 0x2f4);
   iVar2 = FUN_18085e860(*(int64_t *)(param_1 + 0x2b0) + 0x80,param_1 + 0x2f4);
   if (iVar2 == 0) {

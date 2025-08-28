@@ -1,21 +1,15 @@
 /* 函数别名定义: MathInterpolationCalculator */
 #define MathInterpolationCalculator MathInterpolationCalculator
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 02_core_engine_part111.c - 4 个函数
-
-// 函数: void FUN_180126d80(void)
-void FUN_180126d80(void)
-
+// 函数: void function_126d80(void)
+void function_126d80(void)
 {
   int *piVar1;
   uint64_t *puVar2;
   int64_t lVar3;
   uint64_t uVar4;
-  
   lVar3 = SYSTEM_DATA_MANAGER_A;
   *(int8_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0xb1) = 1;
   lVar3 = *(int64_t *)(lVar3 + 0x1af8);
@@ -30,16 +24,9 @@ void FUN_180126d80(void)
   *(uint64_t *)(lVar3 + 0x230) = uVar4;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180126e40(void)
-void FUN_180126e40(void)
-
+// 函数: void function_126e40(void)
+void function_126e40(void)
 {
   float *pfVar1;
   int64_t lVar2;
@@ -80,7 +67,6 @@ void FUN_180126e40(void)
   float fStack_a4;
   float fStack_a0;
   float fStack_9c;
-  
   lVar4 = SYSTEM_DATA_MANAGER_A;
   if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1bb0)) {
     lVar10 = (int64_t)*(int *)(SYSTEM_DATA_MANAGER_A + 0x1bb0) + -1;
@@ -106,7 +92,7 @@ LAB_180126e9d:
              (lVar2 != *(int64_t *)(*(int64_t *)(lVar4 + 0x1ce8) + 0x28))))) &&
            ((*(int64_t *)(lVar4 + 0x1ce0) == 0 ||
             (lVar2 != *(int64_t *)(*(int64_t *)(lVar4 + 0x1ce0) + 0x28))))) {
-          uVar7 = FUN_1801247c0(lVar2);
+          uVar7 = function_1247c0(lVar2);
           lVar9 = 0x3a0;
           if (lVar8 != 0) {
             lVar9 = 0x3b0;
@@ -118,7 +104,7 @@ LAB_180126e9d:
           fStack_bc = pfVar1[3] * *(float *)(lVar4 + 0x1dc8) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
           fStackX_8 = *(float *)(lVar2 + 0x10) + *(float *)(lVar2 + 8);
           fStackX_c = *(float *)(lVar2 + 0xc) + *(float *)(lVar2 + 0x14);
-          uVar5 = func_0x000180121e20(&fStack_c8);
+          uVar5 = Function_56da4ab5(&fStack_c8);
           MathInterpolationCalculator0(uVar7,lVar2 + 8,&fStackX_8,uVar5,0,0xf);
         }
         iVar13 = iVar13 + 1;
@@ -134,7 +120,7 @@ LAB_180126e9d:
         lVar14 = (int64_t)iVar13;
         do {
           if ((*(char *)(*plVar12 + 0xaf) != '\0') && (*(char *)(*plVar12 + 0xb6) == '\0')) {
-            lVar8 = func_0x000180126de0(*(uint64_t *)
+            lVar8 = Function_1c5a575a(*(uint64_t *)
                                          (*(int64_t *)(lVar8 + 400) + (int64_t)iVar13 * 8));
             break;
           }
@@ -145,7 +131,7 @@ LAB_180126e9d:
         } while (bVar3);
       }
       lVar8 = *(int64_t *)(lVar8 + 0x2e8);
-      FUN_180291b40(lVar8,*(uint64_t *)(*(int64_t *)(lVar8 + 0x38) + 0x18),
+      function_291b40(lVar8,*(uint64_t *)(*(int64_t *)(lVar8 + 0x38) + 0x18),
                     *(uint64_t *)(*(int64_t *)(lVar8 + 0x38) + 0x20),0);
       lVar14 = *(int64_t *)(lVar10 + 0x3a8);
       if (((*(byte *)(lVar14 + 0x432) & 1) != 0) &&
@@ -163,8 +149,8 @@ LAB_180126e9d:
         fStack_a4 = *(float *)(lVar14 + 0x44);
         fStack_9c = fStack_a4 + *(float *)(lVar14 + 0x4c);
         fStack_a0 = fStack_a8 + *(float *)(lVar14 + 0x48);
-        uVar5 = func_0x000180121e20(&fStack_b8);
-        FUN_180298890(lVar8,&fStack_c8,&fStack_a8,uVar5,*(int32_t *)(lVar4 + 0x1634));
+        uVar5 = Function_56da4ab5(&fStack_b8);
+        function_298890(lVar8,&fStack_c8,&fStack_a8,uVar5,*(int32_t *)(lVar4 + 0x1634));
       }
       fVar18 = *(float *)(lVar4 + 0x19f8);
       lVar14 = *(int64_t *)(lVar10 + 0x28);
@@ -247,16 +233,9 @@ LAB_180126e9d:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180126eb2(void)
-void FUN_180126eb2(void)
-
+// 函数: void function_126eb2(void)
+void function_126eb2(void)
 {
   float *pfVar1;
   int32_t *puVar2;
@@ -289,7 +268,6 @@ void FUN_180126eb2(void)
   float fVar25;
   float fVar26;
   float fVar27;
-  
   iVar16 = 0;
   if (0 < *(int *)(unaff_RDI + 0x1c68)) {
     lVar17 = 0;
@@ -300,7 +278,7 @@ void FUN_180126eb2(void)
            (lVar12 != *(int64_t *)(*(int64_t *)(unaff_RDI + 0x1ce8) + 0x28))))) &&
          ((*(int64_t *)(unaff_RDI + 0x1ce0) == 0 ||
           (lVar12 != *(int64_t *)(*(int64_t *)(unaff_RDI + 0x1ce0) + 0x28))))) {
-        uVar11 = FUN_1801247c0(lVar12);
+        uVar11 = function_1247c0(lVar12);
         fVar22 = *(float *)(unaff_RDI + 0x1dc8);
         lVar13 = 0x3a0;
         if (unaff_RBX != 0) {
@@ -322,7 +300,7 @@ void FUN_180126eb2(void)
         fVar19 = *(float *)(lVar12 + 0x14);
         *(float *)(unaff_RBP + 0x67) = fVar25 + fVar27;
         *(float *)(unaff_RBP + 0x6b) = fVar22 + fVar19;
-        uVar9 = func_0x000180121e20(unaff_RBP + -0x69);
+        uVar9 = Function_56da4ab5(unaff_RBP + -0x69);
         MathInterpolationCalculator0(uVar11,lVar12 + 8,unaff_RBP + 0x67,uVar9,0);
       }
       iVar16 = iVar16 + 1;
@@ -338,7 +316,7 @@ void FUN_180126eb2(void)
       lVar13 = (int64_t)iVar16;
       do {
         if ((*(char *)(*plVar14 + 0xaf) != '\0') && (*(char *)(*plVar14 + 0xb6) == '\0')) {
-          lVar12 = func_0x000180126de0(*(uint64_t *)
+          lVar12 = Function_1c5a575a(*(uint64_t *)
                                         (*(int64_t *)(lVar12 + 400) + (int64_t)iVar16 * 8));
           break;
         }
@@ -349,7 +327,7 @@ void FUN_180126eb2(void)
       } while (bVar5);
     }
     lVar12 = *(int64_t *)(lVar12 + 0x2e8);
-    FUN_180291b40(lVar12,*(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x18),
+    function_291b40(lVar12,*(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x18),
                   *(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x20),0);
     lVar13 = *(int64_t *)(lVar17 + 0x3a8);
     if (((*(byte *)(lVar13 + 0x432) & 1) != 0) &&
@@ -391,8 +369,8 @@ void FUN_180126eb2(void)
       *(float *)(unaff_RBP + -0x45) = fVar27;
       *(float *)(unaff_RBP + -0x41) = fVar19;
       *(float *)(unaff_RBP + -0x3d) = fVar20;
-      uVar9 = func_0x000180121e20(unaff_RBP + -0x59);
-      FUN_180298890(lVar12,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar9,
+      uVar9 = Function_56da4ab5(unaff_RBP + -0x59);
+      function_298890(lVar12,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar9,
                     *(int32_t *)(unaff_RDI + 0x1634));
     }
     fVar22 = *(float *)(unaff_RDI + 0x19f8);
@@ -481,16 +459,9 @@ void FUN_180126eb2(void)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180126eba(void)
-void FUN_180126eba(void)
-
+// 函数: void function_126eba(void)
+void function_126eba(void)
 {
   float *pfVar1;
   int32_t *puVar2;
@@ -523,7 +494,6 @@ void FUN_180126eba(void)
   float fVar25;
   float fVar26;
   float fVar27;
-  
   iVar16 = 0;
   if (0 < *(int *)(unaff_RDI + 0x1c68)) {
     lVar17 = 0;
@@ -534,7 +504,7 @@ void FUN_180126eba(void)
            (lVar12 != *(int64_t *)(*(int64_t *)(unaff_RDI + 0x1ce8) + 0x28))))) &&
          ((*(int64_t *)(unaff_RDI + 0x1ce0) == 0 ||
           (lVar12 != *(int64_t *)(*(int64_t *)(unaff_RDI + 0x1ce0) + 0x28))))) {
-        uVar11 = FUN_1801247c0(lVar12);
+        uVar11 = function_1247c0(lVar12);
         fVar22 = *(float *)(unaff_RDI + 0x1dc8);
         lVar13 = 0x3a0;
         if (unaff_RBX != 0) {
@@ -556,7 +526,7 @@ void FUN_180126eba(void)
         fVar19 = *(float *)(lVar12 + 0x14);
         *(float *)(unaff_RBP + 0x67) = fVar25 + fVar27;
         *(float *)(unaff_RBP + 0x6b) = fVar22 + fVar19;
-        uVar9 = func_0x000180121e20(unaff_RBP + -0x69);
+        uVar9 = Function_56da4ab5(unaff_RBP + -0x69);
         MathInterpolationCalculator0(uVar11,lVar12 + 8,unaff_RBP + 0x67,uVar9,0);
       }
       iVar16 = iVar16 + 1;
@@ -572,7 +542,7 @@ void FUN_180126eba(void)
       lVar13 = (int64_t)iVar16;
       do {
         if ((*(char *)(*plVar14 + 0xaf) != '\0') && (*(char *)(*plVar14 + 0xb6) == '\0')) {
-          lVar12 = func_0x000180126de0(*(uint64_t *)
+          lVar12 = Function_1c5a575a(*(uint64_t *)
                                         (*(int64_t *)(lVar12 + 400) + (int64_t)iVar16 * 8));
           break;
         }
@@ -583,7 +553,7 @@ void FUN_180126eba(void)
       } while (bVar5);
     }
     lVar12 = *(int64_t *)(lVar12 + 0x2e8);
-    FUN_180291b40(lVar12,*(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x18),
+    function_291b40(lVar12,*(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x18),
                   *(uint64_t *)(*(int64_t *)(lVar12 + 0x38) + 0x20),0);
     lVar13 = *(int64_t *)(lVar17 + 0x3a8);
     if (((*(byte *)(lVar13 + 0x432) & 1) != 0) &&
@@ -625,8 +595,8 @@ void FUN_180126eba(void)
       *(float *)(unaff_RBP + -0x45) = fVar27;
       *(float *)(unaff_RBP + -0x41) = fVar19;
       *(float *)(unaff_RBP + -0x3d) = fVar20;
-      uVar9 = func_0x000180121e20(unaff_RBP + -0x59);
-      FUN_180298890(lVar12,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar9,
+      uVar9 = Function_56da4ab5(unaff_RBP + -0x59);
+      function_298890(lVar12,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar9,
                     *(int32_t *)(unaff_RDI + 0x1634));
     }
     fVar22 = *(float *)(unaff_RDI + 0x19f8);
@@ -715,10 +685,4 @@ void FUN_180126eba(void)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

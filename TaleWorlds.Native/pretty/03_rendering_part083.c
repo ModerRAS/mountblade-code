@@ -1,14 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part083.c - 1 个函数
-
-// 函数: void FUN_1803162f0(int64_t param_1)
-void FUN_1803162f0(int64_t param_1)
-
+// 函数: void function_3162f0(int64_t param_1)
+void function_3162f0(int64_t param_1)
 {
   int64_t *plVar1;
   int64_t lVar2;
-  
   plVar1 = *(int64_t **)(param_1 + 0x100);
   *(uint64_t *)(param_1 + 0x100) = 0;
   if (plVar1 != (int64_t *)0x0) {
@@ -88,13 +84,7 @@ void FUN_1803162f0(int64_t param_1)
   *(int32_t *)(param_1 + 0x10) = 0;
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x0001803174b4)
 // WARNING: Removing unreachable block (ram,0x0001803174c4)
 // WARNING: Removing unreachable block (ram,0x0001803174d4)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

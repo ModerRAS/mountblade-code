@@ -1,18 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 02_core_engine_part166_sub002.c - 1 个函数
-
-// 函数: void FUN_18015036a(void)
-void FUN_18015036a(void)
-
+// 函数: void function_15036a(void)
+void function_15036a(void)
 {
   return;
 }
-
-
-
-float * FUN_1801503e0(float *param_1,float *param_2)
-
+float * function_1503e0(float *param_1,float *param_2)
 {
   float fVar1;
   float fVar2;
@@ -20,7 +13,6 @@ float * FUN_1801503e0(float *param_1,float *param_2)
   float fVar4;
   float fVar5;
   int8_t auVar6 [16];
-  
   fVar1 = *param_1;
   fVar2 = param_1[1];
   fVar3 = param_1[2];
@@ -38,11 +30,4 @@ float * FUN_1801503e0(float *param_1,float *param_2)
   param_2[2] = fVar3 * fVar4;
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

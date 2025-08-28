@@ -1,25 +1,19 @@
 /* 函数别名定义: DataValidator */
 #define DataValidator DataValidator
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 02_core_engine_part104.c - 9 个函数
-
-// 函数: void FUN_180121300(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180121300(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_121300(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_121300(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t lVar1;
   int iVar2;
   int iVar3;
   int64_t lVar4;
   int iVar5;
-  
-  iVar2 = FUN_1801219c0(param_1,0);
+  iVar2 = function_1219c0(param_1,0);
   iVar2 = iVar2 + 1;
-  iVar3 = FUN_1801219c0(param_2,0);
+  iVar3 = function_1219c0(param_2,0);
   iVar5 = iVar3 + 1 + iVar2;
   lVar4 = 0;
   if (0 < iVar5) {
@@ -31,40 +25,34 @@ void FUN_180121300(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      lVar4 = func_0x000180120ce0((int64_t)iVar5 * 2,SYSTEM_DATA_MANAGER_B);
+      lVar4 = Function_a18dbc9a((int64_t)iVar5 * 2,SYSTEM_DATA_MANAGER_B);
     }
   }
-  FUN_180121740(lVar4,iVar2,param_1,param_4,0);
+  function_121740(lVar4,iVar2,param_1,param_4,0);
   lVar1 = lVar4 + (int64_t)iVar2 * 2;
-  FUN_180121740(lVar1,iVar3 + 1,param_2,param_4,0);
+  function_121740(lVar1,iVar3 + 1,param_2,param_4,0);
   _wfopen(lVar4,lVar1);
   if (lVar4 != 0) {
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     DataValidator0(lVar4,SYSTEM_DATA_MANAGER_B);
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t FUN_180121420(uint64_t param_1,uint64_t param_2,int64_t *param_3)
-
+int64_t function_121420(uint64_t param_1,uint64_t param_2,int64_t *param_3)
 {
   int iVar1;
   int64_t lVar2;
   int64_t lVar3;
   int64_t lVar4;
   int64_t lVar5;
-  
   if (param_3 != (int64_t *)0x0) {
     *param_3 = 0;
   }
-  lVar2 = FUN_180121300(param_1,&processed_var_4880_ptr);
+  lVar2 = function_121300(param_1,&processed_var_4880_ptr);
   if (lVar2 == 0) {
     return 0;
   }
@@ -76,7 +64,7 @@ int64_t FUN_180121420(uint64_t param_1,uint64_t param_2,int64_t *param_3)
       if (SYSTEM_DATA_MANAGER_A != 0) {
         *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
       }
-      lVar3 = func_0x000180120ce0(lVar5,SYSTEM_DATA_MANAGER_B);
+      lVar3 = Function_a18dbc9a(lVar5,SYSTEM_DATA_MANAGER_B);
       if (lVar3 != 0) {
         lVar4 = fread(lVar3,1,lVar5,lVar2);
         if (lVar4 != lVar5) {
@@ -84,7 +72,7 @@ int64_t FUN_180121420(uint64_t param_1,uint64_t param_2,int64_t *param_3)
           if (SYSTEM_DATA_MANAGER_A != 0) {
             *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + -1;
           }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           DataValidator0(lVar3,SYSTEM_DATA_MANAGER_B);
         }
         fclose(lVar2);
@@ -99,15 +87,10 @@ int64_t FUN_180121420(uint64_t param_1,uint64_t param_2,int64_t *param_3)
   fclose(lVar2);
   return 0;
 }
-
-
-
-uint64_t FUN_180121550(uint *param_1,byte *param_2,int64_t param_3)
-
+uint64_t function_121550(uint *param_1,byte *param_2,int64_t param_3)
 {
   byte bVar1;
   uint uVar2;
-  
   bVar1 = *param_2;
   if (-1 < (char)bVar1) {
     *param_1 = (uint)bVar1;
@@ -167,15 +150,10 @@ uint64_t FUN_180121550(uint *param_1,byte *param_2,int64_t param_3)
   }
   return 4;
 }
-
-
-
-uint64_t FUN_18012167b(uint64_t param_1,int64_t param_2,uint64_t param_3,byte param_4)
-
+uint64_t function_12167b(uint64_t param_1,int64_t param_2,uint64_t param_3,byte param_4)
 {
   uint uVar1;
   uint *in_R10;
-  
   if (param_4 < 0xf5) {
     if (param_4 == 0xf0) {
       if (0x2f < (byte)(*(char *)(param_2 + 1) + 0x70U)) {
@@ -195,15 +173,10 @@ uint64_t FUN_18012167b(uint64_t param_1,int64_t param_2,uint64_t param_3,byte pa
   }
   return 4;
 }
-
-
-
-uint64_t FUN_1801216a7(uint64_t param_1,int64_t param_2,uint64_t param_3,byte param_4)
-
+uint64_t function_1216a7(uint64_t param_1,int64_t param_2,uint64_t param_3,byte param_4)
 {
   uint uVar1;
   uint *in_R10;
-  
   if ((((param_4 != 0xf4) || (*(byte *)(param_2 + 1) < 0x90)) &&
       ((*(byte *)(param_2 + 1) & 0xc0) == 0x80)) &&
      ((((*(byte *)(param_2 + 2) & 0xc0) == 0x80 && ((*(byte *)(param_2 + 3) & 0xc0) == 0x80)) &&
@@ -214,28 +187,19 @@ uint64_t FUN_1801216a7(uint64_t param_1,int64_t param_2,uint64_t param_3,byte pa
   }
   return 4;
 }
-
-
-
-uint64_t FUN_180121727(int32_t *param_1)
-
+uint64_t function_121727(int32_t *param_1)
 {
   *param_1 = 0x3f;
   return 1;
 }
-
-
-
-uint64_t FUN_180121740(int16_t *param_1,int param_2,byte *param_3,uint64_t param_4,
+uint64_t function_121740(int16_t *param_1,int param_2,byte *param_3,uint64_t param_4,
                        uint64_t *param_5)
-
 {
   byte bVar1;
   int iVar2;
   uint uVar3;
   uint uVar4;
   int16_t *puVar5;
-  
   puVar5 = param_1;
   if (param_1 < param_1 + (int64_t)param_2 + -1) {
     do {
@@ -347,19 +311,14 @@ LAB_18012195c:
   }
   return (int64_t)puVar5 - (int64_t)param_1 >> 1 & 0xffffffff;
 }
-
-
-
-uint64_t FUN_180121742(int16_t *param_1,int param_2,byte *param_3,uint64_t param_4,
+uint64_t function_121742(int16_t *param_1,int param_2,byte *param_3,uint64_t param_4,
                        uint64_t param_5,uint64_t *param_6)
-
 {
   byte bVar1;
   int iVar2;
   uint uVar3;
   uint uVar4;
   int16_t *puVar5;
-  
   puVar5 = param_1;
   if (param_1 < param_1 + (int64_t)param_2 + -1) {
     do {
@@ -471,12 +430,8 @@ LAB_18012195c:
   }
   return (int64_t)puVar5 - (int64_t)param_1 >> 1 & 0xffffffff;
 }
-
-
-
-uint64_t FUN_180121761(uint64_t param_1,uint64_t param_2,byte *param_3,uint64_t param_4,
+uint64_t function_121761(uint64_t param_1,uint64_t param_2,byte *param_3,uint64_t param_4,
                        uint64_t param_5,uint64_t *param_6)
-
 {
   byte bVar1;
   int iVar2;
@@ -485,7 +440,6 @@ uint64_t FUN_180121761(uint64_t param_1,uint64_t param_2,byte *param_3,uint64_t 
   int16_t *unaff_RSI;
   uint uVar4;
   int16_t *in_R10;
-  
   do {
     bVar1 = *param_3;
     if (bVar1 == 0) break;
@@ -594,47 +548,32 @@ LAB_18012195c:
   }
   return (int64_t)in_R10 - unaff_RBP >> 1 & 0xffffffff;
 }
-
-
-
-uint64_t FUN_18012198e(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
+uint64_t function_12198e(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4,
                        uint64_t param_5,uint64_t *param_6)
-
 {
   int64_t unaff_RBP;
   int16_t *in_R10;
-  
   *in_R10 = 0;
   if (param_6 != (uint64_t *)0x0) {
     *param_6 = param_3;
   }
   return (int64_t)in_R10 - unaff_RBP >> 1 & 0xffffffff;
 }
-
-
-
-uint64_t FUN_1801219a3(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-
+uint64_t function_1219a3(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 {
   uint64_t *in_RAX;
   int64_t unaff_RBP;
   int64_t in_R10;
-  
   *in_RAX = param_3;
   return in_R10 - unaff_RBP >> 1 & 0xffffffff;
 }
-
-
-
-int FUN_1801219c0(byte *param_1,byte *param_2)
-
+int function_1219c0(byte *param_1,byte *param_2)
 {
   byte bVar1;
   int iVar2;
   uint uVar3;
   int iVar4;
   uint uVar5;
-  
   iVar2 = 0;
   do {
     iVar4 = iVar2;
@@ -757,11 +696,7 @@ LAB_180121c13:
     }
   } while( true );
 }
-
-
-
-int FUN_180121c40(byte *param_1,int param_2,ushort *param_3,ushort *param_4)
-
+int function_121c40(byte *param_1,int param_2,ushort *param_3,ushort *param_4)
 {
   ushort uVar1;
   byte bVar2;
@@ -770,7 +705,6 @@ int FUN_180121c40(byte *param_1,int param_2,ushort *param_3,ushort *param_4)
   int iVar5;
   byte *pbVar6;
   byte *pbVar7;
-  
   pbVar7 = param_1 + param_2;
   pbVar6 = param_1;
   if (param_1 < pbVar7 + -1) {
@@ -829,15 +763,10 @@ int FUN_180121c40(byte *param_1,int param_2,ushort *param_3,ushort *param_4)
   *pbVar6 = 0;
   return (int)pbVar6 - (int)param_1;
 }
-
-
-
-int FUN_180121d80(ushort *param_1,ushort *param_2)
-
+int function_121d80(ushort *param_1,ushort *param_2)
 {
   ushort uVar1;
   int iVar2;
-  
   iVar2 = 0;
   while (((param_2 == (ushort *)0x0 || (param_1 < param_2)) && (uVar1 = *param_1, uVar1 != 0))) {
     param_1 = param_1 + 1;
@@ -853,43 +782,30 @@ int FUN_180121d80(ushort *param_1,ushort *param_2)
   }
   return iVar2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180121ed0(int param_1,float param_2)
-void FUN_180121ed0(int param_1,float param_2)
-
+// 函数: void function_121ed0(int param_1,float param_2)
+void function_121ed0(int param_1,float param_2)
 {
   int32_t *puVar1;
-  int32_t uStack_18;
-  int32_t uStack_14;
-  int32_t uStack_10;
+  int32_t local_var_18;
+  int32_t local_var_14;
+  int32_t local_var_10;
   float fStack_c;
-  
   puVar1 = (int32_t *)(SYSTEM_DATA_MANAGER_A + 0x1628 + ((int64_t)param_1 + 10) * 0x10);
-  uStack_18 = *puVar1;
-  uStack_14 = puVar1[1];
-  uStack_10 = puVar1[2];
+  local_var_18 = *puVar1;
+  local_var_14 = puVar1[1];
+  local_var_10 = puVar1[2];
   fStack_c = (float)puVar1[3] * param_2 * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
-  func_0x000180121e20(&uStack_18);
+  Function_56da4ab5(&local_var_18);
   return;
 }
-
-
-
-uint FUN_180121f20(int *param_1,uint param_2,uint param_3)
-
+uint function_121f20(int *param_1,uint param_2,uint param_3)
 {
   int iVar1;
   uint *puVar2;
   uint64_t uVar3;
   uint64_t uVar4;
   uint *puVar5;
-  
   iVar1 = *param_1;
   puVar2 = *(uint **)(param_1 + 2);
   uVar3 = (int64_t)iVar1;
@@ -909,18 +825,13 @@ uint FUN_180121f20(int *param_1,uint param_2,uint param_3)
   }
   return param_3;
 }
-
-
-
-uint64_t FUN_180121fa0(int *param_1,uint param_2)
-
+uint64_t function_121fa0(int *param_1,uint param_2)
 {
   int iVar1;
   uint *puVar2;
   uint64_t uVar3;
   uint64_t uVar4;
   uint *puVar5;
-  
   iVar1 = *param_1;
   puVar2 = *(uint **)(param_1 + 2);
   uVar3 = (int64_t)iVar1;
@@ -940,23 +851,16 @@ uint64_t FUN_180121fa0(int *param_1,uint param_2)
   }
   return 0;
 }
-
-
-
-
-
-// 函数: void FUN_1801220b0(int *param_1,uint param_2,uint param_3)
-void FUN_1801220b0(int *param_1,uint param_2,uint param_3)
-
+// 函数: void function_1220b0(int *param_1,uint param_2,uint param_3)
+void function_1220b0(int *param_1,uint param_2,uint param_3)
 {
   int iVar1;
   uint *puVar2;
   uint64_t uVar3;
   uint *puVar4;
   uint64_t uVar5;
-  uint auStack_18 [2];
-  uint uStack_10;
-  
+  uint stack_array_18 [2];
+  uint local_var_10;
   iVar1 = *param_1;
   puVar2 = *(uint **)(param_1 + 2);
   puVar4 = puVar2;
@@ -975,28 +879,21 @@ void FUN_1801220b0(int *param_1,uint param_2,uint param_3)
     puVar4[2] = param_3;
     return;
   }
-  auStack_18[0] = param_2;
-  uStack_10 = param_3;
-  FUN_18013e4c0(param_1,puVar4,auStack_18);
+  stack_array_18[0] = param_2;
+  local_var_10 = param_3;
+  function_13e4c0(param_1,puVar4,stack_array_18);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180122160(int *param_1,uint param_2,uint64_t param_3)
-void FUN_180122160(int *param_1,uint param_2,uint64_t param_3)
-
+// 函数: void function_122160(int *param_1,uint param_2,uint64_t param_3)
+void function_122160(int *param_1,uint param_2,uint64_t param_3)
 {
   int iVar1;
   uint *puVar2;
   uint64_t uVar3;
   uint *puVar4;
   uint64_t uVar5;
-  uint auStack_18 [2];
-  uint64_t uStack_10;
-  
+  uint stack_array_18 [2];
+  uint64_t local_var_10;
   iVar1 = *param_1;
   puVar2 = *(uint **)(param_1 + 2);
   puVar4 = puVar2;
@@ -1015,36 +912,23 @@ void FUN_180122160(int *param_1,uint param_2,uint64_t param_3)
     *(uint64_t *)(puVar4 + 2) = param_3;
     return;
   }
-  auStack_18[0] = param_2;
-  uStack_10 = param_3;
-  FUN_18013e4c0(param_1,puVar4,auStack_18);
+  stack_array_18[0] = param_2;
+  local_var_10 = param_3;
+  function_13e4c0(param_1,puVar4,stack_array_18);
   return;
 }
-
-
-
-
-
 // 函数: void CoreSystem_EncryptionManager0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 void CoreSystem_EncryptionManager0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
-  uint64_t uStackX_18;
-  uint64_t uStackX_20;
-  
-  uStackX_18 = param_3;
-  uStackX_20 = param_4;
-  FUN_180122240(param_1,param_2,&uStackX_18);
+  uint64_t stack_special_x_18;
+  uint64_t stack_special_x_20;
+  stack_special_x_18 = param_3;
+  stack_special_x_20 = param_4;
+  function_122240(param_1,param_2,&stack_special_x_18);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180122240(int *param_1,uint64_t param_2,uint64_t param_3)
-void FUN_180122240(int *param_1,uint64_t param_2,uint64_t param_3)
-
+// 函数: void function_122240(int *param_1,uint64_t param_2,uint64_t param_3)
+void function_122240(int *param_1,uint64_t param_2,uint64_t param_3)
 {
   int iVar1;
   int iVar2;
@@ -1052,8 +936,7 @@ void FUN_180122240(int *param_1,uint64_t param_2,uint64_t param_3)
   int iVar4;
   int iVar5;
   int64_t lVar6;
-  
-  iVar2 = FUN_18004b9b0(0,0,param_2,param_3);
+  iVar2 = function_04b9b0(0,0,param_2,param_3);
   if (0 < iVar2) {
     iVar4 = 1;
     if (*param_1 != 0) {
@@ -1065,7 +948,7 @@ void FUN_180122240(int *param_1,uint64_t param_2,uint64_t param_3)
       if (iVar3 < iVar5) {
         iVar3 = iVar5;
       }
-      FUN_18011da00(param_1,iVar3);
+      function_11da00(param_1,iVar3);
       iVar3 = param_1[1];
       if (iVar3 < iVar5) {
         if (iVar3 == 0) {
@@ -1078,12 +961,12 @@ void FUN_180122240(int *param_1,uint64_t param_2,uint64_t param_3)
         if (iVar5 < iVar3) {
           iVar1 = iVar3;
         }
-        FUN_18011da00(param_1,iVar1);
+        function_11da00(param_1,iVar1);
       }
     }
     *param_1 = iVar5;
     lVar6 = (int64_t)(iVar4 + -1) + *(int64_t *)(param_1 + 2);
-    iVar4 = FUN_18004b9b0(lVar6,(int64_t)iVar2 + 1,param_2,param_3);
+    iVar4 = function_04b9b0(lVar6,(int64_t)iVar2 + 1,param_2,param_3);
     if (lVar6 != 0) {
       iVar2 = (int)((int64_t)iVar2 + 1);
       if ((iVar4 == -1) || (iVar2 <= iVar4)) {
@@ -1094,14 +977,8 @@ void FUN_180122240(int *param_1,uint64_t param_2,uint64_t param_3)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18012227a(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
-void FUN_18012227a(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
-
+// 函数: void function_12227a(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
+void function_12227a(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
 {
   int iVar1;
   int iVar2;
@@ -1109,18 +986,17 @@ void FUN_18012227a(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
   int64_t lVar3;
   int *unaff_RDI;
   bool in_ZF;
-  
   iVar1 = 1;
   if (!in_ZF) {
     iVar1 = param_4;
   }
   iVar2 = iVar1 + (int)unaff_RBP;
-  if ((param_1 <= iVar2) && (FUN_18011da00(), unaff_RDI[1] < iVar2)) {
-    FUN_18011da00();
+  if ((param_1 <= iVar2) && (function_11da00(), unaff_RDI[1] < iVar2)) {
+    function_11da00();
   }
   *unaff_RDI = iVar2;
   lVar3 = (int64_t)(iVar1 + -1) + *(int64_t *)(unaff_RDI + 2);
-  iVar1 = FUN_18004b9b0(lVar3,unaff_RBP + 1);
+  iVar1 = function_04b9b0(lVar3,unaff_RBP + 1);
   if (lVar3 != 0) {
     iVar2 = (int)(unaff_RBP + 1);
     if ((iVar1 == -1) || (iVar2 <= iVar1)) {
@@ -1130,27 +1006,14 @@ void FUN_18012227a(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180122310(void)
-void FUN_180122310(void)
-
+// 函数: void function_122310(void)
+void function_122310(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void SystemCore_ManageMemory(uint64_t param_1,char *param_2,char *param_3,char param_4)
 void SystemCore_ManageMemory(uint64_t param_1,char *param_2,char *param_3,char param_4)
-
 {
   int32_t *puVar1;
   int64_t lVar2;
@@ -1160,12 +1023,11 @@ void SystemCore_ManageMemory(uint64_t param_1,char *param_2,char *param_3,char p
   int64_t lVar6;
   int64_t lVar7;
   float fVar8;
-  uint64_t uStack_38;
-  int32_t uStack_30;
-  int32_t uStack_2c;
-  int32_t uStack_28;
+  uint64_t local_var_38;
+  int32_t local_var_30;
+  int32_t local_var_2c;
+  int32_t local_var_28;
   float fStack_24;
-  
   lVar2 = SYSTEM_DATA_MANAGER_A;
   if (param_4 == '\0') {
     if (param_3 == (char *)0x0) {
@@ -1190,13 +1052,13 @@ void SystemCore_ManageMemory(uint64_t param_1,char *param_2,char *param_3,char p
     }
   }
   if (param_2 != param_3) {
-    uStack_30 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16c8);
-    uStack_2c = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16cc);
-    uStack_28 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16d0);
+    local_var_30 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16c8);
+    local_var_2c = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16cc);
+    local_var_28 = *(int32_t *)(SYSTEM_DATA_MANAGER_A + 0x16d0);
     lVar6 = *(int64_t *)(*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1af8) + 0x2e8);
     fStack_24 = *(float *)(SYSTEM_DATA_MANAGER_A + 0x16d4) * *(float *)(SYSTEM_DATA_MANAGER_A + 0x1628);
-    uStack_38 = param_1;
-    uVar3 = func_0x000180121e20(&uStack_30);
+    local_var_38 = param_1;
+    uVar3 = Function_56da4ab5(&local_var_30);
     fVar8 = *(float *)(lVar2 + 0x19f8);
     lVar7 = *(int64_t *)(lVar2 + 0x19f0);
     if ((uVar3 & 0xff000000) != 0) {
@@ -1217,23 +1079,17 @@ void SystemCore_ManageMemory(uint64_t param_1,char *param_2,char *param_3,char p
         }
         puVar1 = (int32_t *)
                  (*(int64_t *)(lVar6 + 0x68) + -0x10 + (int64_t)*(int *)(lVar6 + 0x60) * 0x10);
-        uStack_30 = *puVar1;
-        uStack_2c = puVar1[1];
-        uStack_28 = puVar1[2];
+        local_var_30 = *puVar1;
+        local_var_2c = puVar1[1];
+        local_var_28 = puVar1[2];
         fStack_24 = (float)puVar1[3];
-        FUN_180297590(lVar7,lVar6,fVar8,param_1,uVar3,&uStack_30,param_2,pcVar5,0,0);
+        function_297590(lVar7,lVar6,fVar8,param_1,uVar3,&local_var_30,param_2,pcVar5,0,0);
       }
     }
     if (*(char *)(lVar2 + 0x2e38) != '\0') {
-      SystemCore_ThreadController(&uStack_38,param_2,param_3);
+      SystemCore_ThreadController(&local_var_38,param_2,param_3);
     }
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

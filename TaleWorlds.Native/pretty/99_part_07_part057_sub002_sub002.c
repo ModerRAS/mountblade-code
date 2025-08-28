@@ -1,21 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_07_part057_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_1804d2a45(void)
-void FUN_1804d2a45(void)
-
+// 函数: void UISystem_d2a45(void)
+void UISystem_d2a45(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-bool FUN_1804d2a50(int64_t param_1,int64_t param_2,int param_3,uint param_4)
-
+bool UISystem_d2a50(int64_t param_1,int64_t param_2,int param_3,uint param_4)
 {
   int iVar1;
   int64_t lVar2;
@@ -58,7 +50,6 @@ bool FUN_1804d2a50(int64_t param_1,int64_t param_2,int param_3,uint param_4)
   float fStack_a4;
   float fStack_98;
   float fStack_94;
-  
   if ((*(int64_t *)(system_main_module_state + 0x3d8) != 0) &&
      (*(int *)(*(int64_t *)(system_main_module_state + 0x3d8) + 0x110) == 1)) {
     return true;
@@ -103,7 +94,7 @@ bool FUN_1804d2a50(int64_t param_1,int64_t param_2,int param_3,uint param_4)
     else {
       lVar15 = (*pcVar4)();
     }
-    iVar14 = FUN_1801b8ce0(lVar15 + 0x2998,lVar2 + 0x30,pfVar20 + 2,0,0,fVar34,1,
+    iVar14 = GenericFunction_1801b8ce0(lVar15 + 0x2998,lVar2 + 0x30,pfVar20 + 2,0,0,fVar34,1,
                            *(byte *)(lVar2 + 0x1bd8) >> 1 & 1);
     iVar18 = iVar14;
     if (iVar14 != 0) {
@@ -198,8 +189,8 @@ bool FUN_1804d2a50(int64_t param_1,int64_t param_2,int param_3,uint param_4)
               fStack_94 = auVar27._4_4_;
               if (fStack_94 <= fVar34 && fVar25 <= fStack_94) {
                 for (lVar15 = (int64_t)(iVar1 + 1); lVar15 < 4; lVar15 = lVar15 + 1) {
-                    // WARNING: Read-only address (ram,0x000180a400e0) is written
-                    // WARNING: Read-only address (ram,0x000180a40110) is written
+// WARNING: Read-only address (ram,0x000180a400e0) is written
+// WARNING: Read-only address (ram,0x000180a40110) is written
                   *(int8_t *)
                    ((int64_t)(int)(*(uint *)(param_1 + 0x2b18) & param_4) * 0xd8 +
                     *(int64_t *)(*(int64_t *)(param_1 + 11000) + lVar17 * 8) + 0x90 + lVar15) = 0;
@@ -214,13 +205,8 @@ bool FUN_1804d2a50(int64_t param_1,int64_t param_2,int param_3,uint param_4)
   }
   return bVar21;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-bool FUN_1804d2a94(int64_t param_1,int64_t param_2,uint64_t param_3,uint param_4)
-
+bool UISystem_d2a94(int64_t param_1,int64_t param_2,uint64_t param_3,uint param_4)
 {
   int iVar1;
   code *pcVar2;
@@ -265,7 +251,6 @@ bool FUN_1804d2a94(int64_t param_1,int64_t param_2,uint64_t param_3,uint param_4
   float fStack0000000000000044;
   float fStack0000000000000050;
   float fStack0000000000000054;
-  
   lVar15 = *(int64_t *)(in_RAX + param_1 * 8);
   uVar14 = *(uint *)(unaff_RBX + 0x2b18);
   lVar16 = (int64_t)((int)param_4 >> 10);
@@ -301,7 +286,7 @@ bool FUN_1804d2a94(int64_t param_1,int64_t param_2,uint64_t param_3,uint param_4
     else {
       lVar13 = (*pcVar2)();
     }
-    iVar12 = FUN_1801b8ce0(lVar13 + 0x2998,lVar15 + 0x30,pfVar19 + 2,0,0);
+    iVar12 = GenericFunction_1801b8ce0(lVar13 + 0x2998,lVar15 + 0x30,pfVar19 + 2,0,0);
     iVar17 = iVar12;
     if (iVar12 != 0) {
       iVar1 = *(int *)(lVar15 + 0x178);
@@ -395,8 +380,8 @@ bool FUN_1804d2a94(int64_t param_1,int64_t param_2,uint64_t param_3,uint param_4
             (fStack0000000000000054 = auVar27._4_4_,
             fStack0000000000000054 <= fVar24 && fVar25 <= fStack0000000000000054)))) {
           for (lVar15 = (int64_t)(iVar1 + 1); lVar15 < 4; lVar15 = lVar15 + 1) {
-                    // WARNING: Read-only address (ram,0x000180a400e0) is written
-                    // WARNING: Read-only address (ram,0x000180a40110) is written
+// WARNING: Read-only address (ram,0x000180a400e0) is written
+// WARNING: Read-only address (ram,0x000180a40110) is written
             *(int8_t *)
              ((int64_t)(int)(*(uint *)(unaff_RBX + 0x2b18) & param_4) * 0xd8 +
               *(int64_t *)(*(int64_t *)(unaff_RBX + 11000) + lVar16 * 8) + 0x90 + lVar15) = 0;
@@ -408,13 +393,8 @@ bool FUN_1804d2a94(int64_t param_1,int64_t param_2,uint64_t param_3,uint param_4
   }
   return bVar20;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-bool FUN_1804d2ae7(int param_1,int64_t param_2,int64_t param_3)
-
+bool UISystem_d2ae7(int param_1,int64_t param_2,int64_t param_3)
 {
   uint uVar1;
   int iVar2;
@@ -459,7 +439,6 @@ bool FUN_1804d2ae7(int param_1,int64_t param_2,int64_t param_3)
   float fStack0000000000000044;
   float fStack0000000000000050;
   float fStack0000000000000054;
-  
   if (in_ZF) {
     *(int8_t *)(param_3 + 0x90 + in_RAX) = 1;
     *(int8_t *)
@@ -486,7 +465,7 @@ bool FUN_1804d2ae7(int param_1,int64_t param_2,int64_t param_3)
   else {
     lVar14 = (*pcVar3)();
   }
-  iVar13 = FUN_1801b8ce0(lVar14 + 0x2998,unaff_RDI + 0x30,pfVar16 + 2,0,0);
+  iVar13 = GenericFunction_1801b8ce0(lVar14 + 0x2998,unaff_RDI + 0x30,pfVar16 + 2,0,0);
   iVar15 = iVar13;
   if (iVar13 != 0) {
     iVar2 = *(int *)(unaff_RDI + 0x178);
@@ -580,8 +559,8 @@ bool FUN_1804d2ae7(int param_1,int64_t param_2,int64_t param_3)
           (fStack0000000000000054 = auVar23._4_4_,
           fStack0000000000000054 <= fVar20 && fVar21 <= fStack0000000000000054)))) {
         for (lVar14 = (int64_t)(iVar2 + 1); lVar14 < 4; lVar14 = lVar14 + 1) {
-                    // WARNING: Read-only address (ram,0x000180a400e0) is written
-                    // WARNING: Read-only address (ram,0x000180a40110) is written
+// WARNING: Read-only address (ram,0x000180a400e0) is written
+// WARNING: Read-only address (ram,0x000180a40110) is written
           *(int8_t *)
            (((int64_t)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 +
             *(int64_t *)(*(int64_t *)(unaff_RBX + 11000) + unaff_RBP * 8) + 0x90 + lVar14) = 0;
@@ -591,13 +570,8 @@ bool FUN_1804d2ae7(int param_1,int64_t param_2,int64_t param_3)
   }
   return iVar15 != 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-bool FUN_1804d2aef(int param_1,int64_t param_2,int64_t param_3)
-
+bool UISystem_d2aef(int param_1,int64_t param_2,int64_t param_3)
 {
   uint uVar1;
   int iVar2;
@@ -642,7 +616,6 @@ bool FUN_1804d2aef(int param_1,int64_t param_2,int64_t param_3)
   float fStack0000000000000044;
   float fStack0000000000000050;
   float fStack0000000000000054;
-  
   if (in_ZF) {
     *(int8_t *)(param_3 + 0x90 + in_RAX) = 1;
     *(int8_t *)
@@ -669,7 +642,7 @@ bool FUN_1804d2aef(int param_1,int64_t param_2,int64_t param_3)
   else {
     lVar14 = (*pcVar3)();
   }
-  iVar13 = FUN_1801b8ce0(lVar14 + 0x2998,unaff_RDI + 0x30,pfVar16 + 2,0,0);
+  iVar13 = GenericFunction_1801b8ce0(lVar14 + 0x2998,unaff_RDI + 0x30,pfVar16 + 2,0,0);
   iVar15 = iVar13;
   if (iVar13 != 0) {
     iVar2 = *(int *)(unaff_RDI + 0x178);
@@ -763,8 +736,8 @@ bool FUN_1804d2aef(int param_1,int64_t param_2,int64_t param_3)
           (fStack0000000000000054 = auVar23._4_4_,
           fStack0000000000000054 <= fVar20 && fVar21 <= fStack0000000000000054)))) {
         for (lVar14 = (int64_t)(iVar2 + 1); lVar14 < 4; lVar14 = lVar14 + 1) {
-                    // WARNING: Read-only address (ram,0x000180a400e0) is written
-                    // WARNING: Read-only address (ram,0x000180a40110) is written
+// WARNING: Read-only address (ram,0x000180a400e0) is written
+// WARNING: Read-only address (ram,0x000180a40110) is written
           *(int8_t *)
            (((int64_t)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 +
             *(int64_t *)(*(int64_t *)(unaff_RBX + 11000) + unaff_RBP * 8) + 0x90 + lVar14) = 0;
@@ -774,13 +747,8 @@ bool FUN_1804d2aef(int param_1,int64_t param_2,int64_t param_3)
   }
   return iVar15 != 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-bool FUN_1804d2c61(void)
-
+bool UISystem_d2c61(void)
 {
   float *pfVar1;
   int iVar2;
@@ -824,7 +792,6 @@ bool FUN_1804d2c61(void)
   float fStack0000000000000044;
   float fStack0000000000000050;
   float fStack0000000000000054;
-  
   iVar2 = *(int *)(unaff_RDI + 0x178);
   iVar14 = in_R9D;
   if (((-1 < iVar2) &&
@@ -924,8 +891,8 @@ bool FUN_1804d2c61(void)
         ((uint)CONCAT71(uVar3,fStack0000000000000054 <= fVar19) &
         (uint)CONCAT71(uVar3,fVar20 <= fStack0000000000000054)) != 0)))) {
       for (lVar13 = (int64_t)(iVar2 + 1); lVar13 < 4; lVar13 = lVar13 + 1) {
-                    // WARNING: Read-only address (ram,0x000180a400e0) is written
-                    // WARNING: Read-only address (ram,0x000180a40110) is written
+// WARNING: Read-only address (ram,0x000180a400e0) is written
+// WARNING: Read-only address (ram,0x000180a40110) is written
         *(int8_t *)
          (((int64_t)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 +
           *(int64_t *)(*(int64_t *)(unaff_RBX + 11000) + unaff_RBP * 8) + 0x90 + lVar13) = 0;
@@ -934,11 +901,7 @@ bool FUN_1804d2c61(void)
   }
   return iVar14 != 0;
 }
-
-
-
-uint64_t FUN_1804d2ccd(uint64_t param_1,uint64_t param_2,int param_3,int param_4)
-
+uint64_t UISystem_d2ccd(uint64_t param_1,uint64_t param_2,int param_3,int param_4)
 {
   float *pfVar1;
   uint8_t uVar2;
@@ -983,7 +946,6 @@ uint64_t FUN_1804d2ccd(uint64_t param_1,uint64_t param_2,int param_3,int param_4
   float fStack0000000000000044;
   float fStack0000000000000050;
   float fStack0000000000000054;
-  
   fVar15 = (float)((uint64_t)param_2 >> 0x20);
   fVar12 = (float)param_2;
   fVar11 = (float)((uint64_t)param_1 >> 0x20);
@@ -1085,11 +1047,7 @@ uint64_t FUN_1804d2ccd(uint64_t param_1,uint64_t param_2,int param_3,int param_4
   }
   return CONCAT71((int7)(uVar6 >> 8),param_4 != 0);
 }
-
-
-
-uint64_t FUN_1804d2ef8(uint64_t param_1,float param_2,float param_3,float param_4)
-
+uint64_t UISystem_d2ef8(uint64_t param_1,float param_2,float param_3,float param_4)
 {
   uint8_t uVar1;
   uint64_t uVar2;
@@ -1102,14 +1060,13 @@ uint64_t FUN_1804d2ef8(uint64_t param_1,float param_2,float param_3,float param_
   int in_R9D;
   uint64_t unaff_R14;
   float in_XMM4_Da;
-  uint64_t in_stack_00000040;
+  uint64_t local_var_40;
   float fStack0000000000000050;
   float fStack0000000000000054;
-  
   uVar1 = (uint8_t)((uint64_t)unaff_RSI >> 8);
-  uVar2 = CONCAT71(uVar1,in_stack_00000040._4_4_ <= param_2);
+  uVar2 = CONCAT71(uVar1,local_var_40._4_4_ <= param_2);
   uVar3 = uVar2 & 0xffffffff;
-  if (((((uint)uVar2 & (uint)CONCAT71(uVar1,param_3 <= in_stack_00000040._4_4_)) != 0) &&
+  if (((((uint)uVar2 & (uint)CONCAT71(uVar1,param_3 <= local_var_40._4_4_)) != 0) &&
       (uVar2 = CONCAT71(uVar1,fStack0000000000000050 <= param_4), uVar3 = uVar2 & 0xffffffff,
       ((uint)uVar2 & (uint)CONCAT71(uVar1,in_XMM4_Da <= fStack0000000000000050)) != 0)) &&
      (uVar2 = CONCAT71(uVar1,param_3 <= fStack0000000000000054), uVar3 = uVar2 & 0xffffffff,
@@ -1124,21 +1081,12 @@ uint64_t FUN_1804d2ef8(uint64_t param_1,float param_2,float param_3,float param_
   }
   return CONCAT71((int7)(uVar3 >> 8),in_R9D != 0);
 }
-
-
-
-int8_t FUN_1804d2f9f(void)
-
+int8_t UISystem_d2f9f(void)
 {
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-bool FUN_1804d2fc2(uint64_t param_1,code *param_2)
-
+bool UISystem_d2fc2(uint64_t param_1,code *param_2)
 {
   float *pfVar1;
   int iVar2;
@@ -1180,9 +1128,8 @@ bool FUN_1804d2fc2(uint64_t param_1,code *param_2)
   float fStack0000000000000044;
   float fStack0000000000000050;
   float fStack0000000000000054;
-  
   lVar13 = (*param_2)();
-  iVar12 = FUN_1801b8ce0(lVar13 + 0x2998,unaff_RDI + 0x30,unaff_R15 + 8,0,0);
+  iVar12 = GenericFunction_1801b8ce0(lVar13 + 0x2998,unaff_RDI + 0x30,unaff_R15 + 8,0,0);
   iVar14 = iVar12;
   if (iVar12 != 0) {
     iVar2 = *(int *)(unaff_RDI + 0x178);
@@ -1278,8 +1225,8 @@ bool FUN_1804d2fc2(uint64_t param_1,code *param_2)
             fStack0000000000000054 = auVar22._4_4_;
             if (fStack0000000000000054 <= fVar19 && fVar20 <= fStack0000000000000054) {
               for (lVar13 = (int64_t)(iVar2 + 1); lVar13 < 4; lVar13 = lVar13 + 1) {
-                    // WARNING: Read-only address (ram,0x000180a400e0) is written
-                    // WARNING: Read-only address (ram,0x000180a40110) is written
+// WARNING: Read-only address (ram,0x000180a400e0) is written
+// WARNING: Read-only address (ram,0x000180a40110) is written
                 *(int8_t *)
                  (((int64_t)*(int *)(unaff_RBX + 0x2b18) & unaff_R14) * 0xd8 +
                   *(int64_t *)(*(int64_t *)(unaff_RBX + 11000) + unaff_RBP * 8) + 0x90 + lVar13) =
@@ -1293,14 +1240,5 @@ bool FUN_1804d2fc2(uint64_t param_1,code *param_2)
   }
   return iVar14 != 0;
 }
-
-
-
 // WARNING: Type propagation algorithm not settling
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-
-

@@ -1,18 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 02_core_engine_part205.c - 26 个函数
-
-// 函数: void FUN_180187bd0(int64_t *param_1)
-void FUN_180187bd0(int64_t *param_1)
-
+// 函数: void GenericFunction_180187bd0(int64_t *param_1)
+void GenericFunction_180187bd0(int64_t *param_1)
 {
   int64_t *plVar1;
-  
   plVar1 = (int64_t *)param_1[7];
   if (plVar1 != (int64_t *)0x0) {
     (**(code **)(*plVar1 + 0x20))(plVar1,plVar1 != param_1);
@@ -20,20 +14,13 @@ void FUN_180187bd0(int64_t *param_1)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180187c00(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180187c00(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void GenericFunction_180187c00(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void GenericFunction_180187c00(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t uVar1;
   int64_t lVar2;
   int64_t lVar3;
   uint64_t uVar4;
-  
   uVar4 = 0xfffffffffffffffe;
   lVar2 = *param_1;
   if (lVar2 != 0) {
@@ -50,7 +37,7 @@ void FUN_180187c00(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     if (0xfff < uVar1) {
       lVar3 = *(int64_t *)(lVar2 + -8);
       if (0x1f < (lVar2 - lVar3) - 8U) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn(param_1[2] - lVar2,uVar1 + 0x27,param_3,param_4,uVar4);
       }
     }
@@ -61,24 +48,17 @@ void FUN_180187c00(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180187cd0(int64_t *param_1)
-void FUN_180187cd0(int64_t *param_1)
-
+// 函数: void GenericFunction_180187cd0(int64_t *param_1)
+void GenericFunction_180187cd0(int64_t *param_1)
 {
   int64_t lVar1;
   int64_t lVar2;
-  
   lVar1 = *param_1;
   if (lVar1 != 0) {
     lVar2 = param_1[1];
     if (lVar1 != lVar2) {
       do {
-        FUN_180187950(lVar1);
+        GenericFunction_180187950(lVar1);
         lVar1 = lVar1 + 0x40;
       } while (lVar1 != lVar2);
       lVar1 = *param_1;
@@ -86,7 +66,7 @@ void FUN_180187cd0(int64_t *param_1)
     lVar2 = lVar1;
     if ((0xfff < (param_1[2] - lVar1 & 0xffffffffffffffc0U)) &&
        (lVar2 = *(int64_t *)(lVar1 + -8), 0x1f < (lVar1 - lVar2) - 8U)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn();
     }
     free(lVar2);
@@ -96,41 +76,27 @@ void FUN_180187cd0(int64_t *param_1)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180187d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180187d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void GenericFunction_180187d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void GenericFunction_180187d70(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t lVar1;
-  
   lVar1 = *param_1;
-  FUN_1801884d0(param_1,*(uint64_t *)(lVar1 + 8),param_3,param_4,0xfffffffffffffffe);
+  GenericFunction_1801884d0(param_1,*(uint64_t *)(lVar1 + 8),param_3,param_4,0xfffffffffffffffe);
   *(int64_t *)(*param_1 + 8) = lVar1;
   *(int64_t *)*param_1 = lVar1;
   *(int64_t *)(*param_1 + 0x10) = lVar1;
   param_1[1] = 0;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+// WARNING: Treating indirect jump as call
   free(*param_1,0x60);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180187dd0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180187dd0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void GenericFunction_180187dd0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void GenericFunction_180187dd0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t lVar1;
   int64_t lVar2;
   uint64_t uVar3;
-  
   lVar1 = *param_1;
   if (lVar1 != 0) {
     uVar3 = param_1[2] - lVar1 & 0xfffffffffffffff8;
@@ -138,7 +104,7 @@ void FUN_180187dd0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     if (0xfff < uVar3) {
       lVar2 = *(int64_t *)(lVar1 + -8);
       if (0x1f < (lVar1 - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn
                   (lVar1 - lVar2,uVar3 + 0x27,lVar2,param_4,0xfffffffffffffffe);
       }
@@ -150,28 +116,21 @@ void FUN_180187dd0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180187e50(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180187e50(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void GenericFunction_180187e50(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void GenericFunction_180187e50(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t lVar1;
   int64_t *plVar2;
   int64_t lVar3;
   int64_t *plVar4;
   uint64_t uVar5;
-  
   uVar5 = 0xfffffffffffffffe;
   lVar1 = *param_1;
   plVar4 = *(int64_t **)(lVar1 + 8);
   lVar3 = lVar1;
   if (*(char *)((int64_t)plVar4 + 0x19) == '\0') {
     do {
-      FUN_1801885a0(param_1,plVar4[2],param_3,param_4,uVar5);
+      GenericFunction_1801885a0(param_1,plVar4[2],param_3,param_4,uVar5);
       plVar2 = (int64_t *)*plVar4;
       free(plVar4,0x28);
       plVar4 = plVar2;
@@ -182,16 +141,12 @@ void FUN_180187e50(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   *(int64_t *)*param_1 = lVar1;
   *(int64_t *)(*param_1 + 0x10) = lVar1;
   param_1[1] = 0;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+// WARNING: Treating indirect jump as call
   free(*param_1,0x28);
   return;
 }
-
-
-
-uint64_t * FUN_180187f00(int64_t *param_1,uint64_t *param_2)
-
+uint64_t * GenericFunction_180187f00(int64_t *param_1,uint64_t *param_2)
 {
   uint64_t *puVar1;
   uint64_t uVar2;
@@ -205,7 +160,6 @@ uint64_t * FUN_180187f00(int64_t *param_1,uint64_t *param_2)
   uint64_t uVar10;
   uint64_t uVar11;
   int64_t alStackX_18 [2];
-  
   puVar1 = (uint64_t *)*param_1;
   puVar8 = puVar1;
   if (*(char *)((int64_t)puVar1[1] + 0x19) == '\0') {
@@ -264,15 +218,11 @@ LAB_18018802f:
     }
     else if (-1 < iVar4) goto LAB_18018802f;
   }
-  lVar5 = FUN_18018a130(param_1);
-  FUN_18018a1c0(param_1,alStackX_18,puVar8,lVar5 + 0x20,lVar5);
+  lVar5 = GenericFunction_18018a130(param_1);
+  GenericFunction_18018a1c0(param_1,alStackX_18,puVar8,lVar5 + 0x20,lVar5);
   return (uint64_t *)(alStackX_18[0] + 0x40);
 }
-
-
-
-uint64_t * FUN_180187f11(uint64_t param_1,int64_t param_2)
-
+uint64_t * GenericFunction_180187f11(uint64_t param_1,int64_t param_2)
 {
   uint64_t uVar1;
   uint64_t uVar2;
@@ -284,8 +234,7 @@ uint64_t * FUN_180187f11(uint64_t param_1,int64_t param_2)
   int64_t unaff_RSI;
   uint64_t *puVar7;
   uint64_t *puVar8;
-  int64_t in_stack_00000080;
-  
+  int64_t local_buffer_80;
   puVar6 = unaff_RBX;
   if (*(char *)((int64_t)unaff_RBX[1] + 0x19) == '\0') {
     uVar1 = *(uint64_t *)(param_2 + 0x10);
@@ -323,15 +272,11 @@ LAB_18018802f:
     }
     else if (-1 < iVar3) goto LAB_18018802f;
   }
-  lVar4 = FUN_18018a130(param_1);
-  FUN_18018a1c0(param_1,&stack0x00000080,puVar6,lVar4 + 0x20,lVar4);
-  return (uint64_t *)(in_stack_00000080 + 0x40);
+  lVar4 = GenericFunction_18018a130(param_1);
+  GenericFunction_18018a1c0(param_1,&local_buffer_00000080,puVar6,lVar4 + 0x20,lVar4);
+  return (uint64_t *)(local_buffer_80 + 0x40);
 }
-
-
-
-uint64_t * FUN_180187f26(uint64_t param_1,int64_t param_2)
-
+uint64_t * GenericFunction_180187f26(uint64_t param_1,int64_t param_2)
 {
   uint64_t uVar1;
   uint64_t uVar2;
@@ -342,8 +287,7 @@ uint64_t * FUN_180187f26(uint64_t param_1,int64_t param_2)
   uint64_t *unaff_RDI;
   uint64_t *puVar5;
   uint64_t *unaff_R13;
-  int64_t in_stack_00000080;
-  
+  int64_t local_buffer_80;
   uVar1 = *(uint64_t *)(param_2 + 0x10);
   do {
     plVar4 = unaff_RDI + 4;
@@ -377,15 +321,11 @@ LAB_18018802f:
     }
     else if (-1 < iVar3) goto LAB_18018802f;
   }
-  FUN_18018a130();
-  FUN_18018a1c0();
-  return (uint64_t *)(in_stack_00000080 + 0x40);
+  GenericFunction_18018a130();
+  GenericFunction_18018a1c0();
+  return (uint64_t *)(local_buffer_80 + 0x40);
 }
-
-
-
-int64_t FUN_180187f94(void)
-
+int64_t GenericFunction_180187f94(void)
 {
   uint64_t uVar1;
   uint64_t uVar2;
@@ -393,8 +333,7 @@ int64_t FUN_180187f94(void)
   int64_t unaff_RBX;
   int64_t unaff_RSI;
   int64_t unaff_R13;
-  int64_t in_stack_00000080;
-  
+  int64_t local_buffer_80;
   if (unaff_RBX != unaff_R13) {
     uVar1 = *(uint64_t *)(unaff_RBX + 0x30);
     uVar2 = *(uint64_t *)(unaff_RSI + 0x10);
@@ -407,23 +346,18 @@ LAB_18018802f:
     }
     else if (-1 < iVar3) goto LAB_18018802f;
   }
-  FUN_18018a130();
-  FUN_18018a1c0();
-  return in_stack_00000080 + 0x40;
+  GenericFunction_18018a130();
+  GenericFunction_18018a1c0();
+  return local_buffer_80 + 0x40;
 }
-
-
-
-int64_t FUN_180187f9e(void)
-
+int64_t GenericFunction_180187f9e(void)
 {
   uint64_t uVar1;
   uint64_t uVar2;
   int iVar3;
   int64_t unaff_RBX;
   int64_t unaff_RSI;
-  int64_t in_stack_00000080;
-  
+  int64_t local_buffer_80;
   uVar1 = *(uint64_t *)(unaff_RBX + 0x30);
   uVar2 = *(uint64_t *)(unaff_RSI + 0x10);
   iVar3 = memcmp();
@@ -434,15 +368,11 @@ LAB_18018802f:
     }
   }
   else if (-1 < iVar3) goto LAB_18018802f;
-  FUN_18018a130();
-  FUN_18018a1c0();
-  return in_stack_00000080 + 0x40;
+  GenericFunction_18018a130();
+  GenericFunction_18018a1c0();
+  return local_buffer_80 + 0x40;
 }
-
-
-
-uint64_t * FUN_18018801e(void)
-
+uint64_t * GenericFunction_18018801e(void)
 {
   uint64_t uVar1;
   uint64_t uVar2;
@@ -454,8 +384,7 @@ uint64_t * FUN_18018801e(void)
   uint64_t *unaff_R13;
   uint64_t unaff_R14;
   int8_t in_SF;
-  int64_t in_stack_00000080;
-  
+  int64_t local_buffer_80;
 code_r0x00018018801e:
   if (!(bool)in_SF) goto LAB_180187f7e;
 LAB_180188024:
@@ -474,9 +403,9 @@ LAB_18018802f:
         }
         else if (-1 < iVar3) goto LAB_18018802f;
       }
-      FUN_18018a130();
-      FUN_18018a1c0();
-      return (uint64_t *)(in_stack_00000080 + 0x40);
+      GenericFunction_18018a130();
+      GenericFunction_18018a1c0();
+      return (uint64_t *)(local_buffer_80 + 0x40);
     }
     plVar4 = unaff_RDI + 4;
     uVar1 = unaff_RDI[6];
@@ -492,36 +421,24 @@ LAB_180187f7e:
     unaff_RDI = (uint64_t *)*unaff_RBX;
   } while( true );
 }
-
-
-
-int64_t FUN_18018802d(void)
-
+int64_t GenericFunction_18018802d(void)
 {
   int64_t unaff_RBX;
   bool in_SF;
-  int64_t in_stack_00000080;
-  
+  int64_t local_buffer_80;
   if (!in_SF) {
     return unaff_RBX + 0x40;
   }
-  FUN_18018a130();
-  FUN_18018a1c0();
-  return in_stack_00000080 + 0x40;
+  GenericFunction_18018a130();
+  GenericFunction_18018a1c0();
+  return local_buffer_80 + 0x40;
 }
-
-
-
-
-
-// 函数: void FUN_180188040(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180188040(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void GenericFunction_180188040(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void GenericFunction_180188040(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t lVar1;
   int64_t lVar2;
   uint64_t uVar3;
-  
   lVar1 = *param_1;
   if (lVar1 != 0) {
     uVar3 = param_1[2] - lVar1 & 0xfffffffffffffffc;
@@ -529,7 +446,7 @@ void FUN_180188040(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
     if (0xfff < uVar3) {
       lVar2 = *(int64_t *)(lVar1 + -8);
       if (0x1f < (lVar1 - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn
                   (lVar1 - lVar2,uVar3 + 0x27,lVar2,param_4,0xfffffffffffffffe);
       }
@@ -541,50 +458,30 @@ void FUN_180188040(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t p
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1801880b0(uint64_t *param_1)
-void FUN_1801880b0(uint64_t *param_1)
-
+// 函数: void GenericFunction_1801880b0(uint64_t *param_1)
+void GenericFunction_1801880b0(uint64_t *param_1)
 {
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+// WARNING: Treating indirect jump as call
   free(*param_1,0x60);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1801880d0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1801880d0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void GenericFunction_1801880d0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void GenericFunction_1801880d0(int64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t lVar1;
-  
   lVar1 = *param_1;
-  FUN_1801884d0(param_1,*(uint64_t *)(lVar1 + 8),param_3,param_4,0xfffffffffffffffe);
+  GenericFunction_1801884d0(param_1,*(uint64_t *)(lVar1 + 8),param_3,param_4,0xfffffffffffffffe);
   *(int64_t *)(*param_1 + 8) = lVar1;
   *(int64_t *)*param_1 = lVar1;
   *(int64_t *)(*param_1 + 0x10) = lVar1;
   param_1[1] = 0;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180188120(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180188120(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void GenericFunction_180188120(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
+void GenericFunction_180188120(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t *plVar1;
-  
   if (param_2 != (int64_t *)0x0) {
     plVar1 = (int64_t *)param_2[7];
     if (plVar1 != (int64_t *)0x0) {
@@ -595,32 +492,19 @@ void FUN_180188120(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t p
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180188180(uint64_t *param_1)
-void FUN_180188180(uint64_t *param_1)
-
+// 函数: void GenericFunction_180188180(uint64_t *param_1)
+void GenericFunction_180188180(uint64_t *param_1)
 {
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+// WARNING: Treating indirect jump as call
   free(*param_1,0x28);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1801881a0(int64_t param_1,int64_t *param_2)
-void FUN_1801881a0(int64_t param_1,int64_t *param_2)
-
+// 函数: void GenericFunction_1801881a0(int64_t param_1,int64_t *param_2)
+void GenericFunction_1801881a0(int64_t param_1,int64_t *param_2)
 {
   int64_t *plVar1;
   uint64_t uVar2;
-  
   plVar1 = (int64_t *)param_2[7];
   if (plVar1 != (int64_t *)0x0) {
     if (plVar1 == param_2) {
@@ -640,89 +524,62 @@ void FUN_1801881a0(int64_t param_1,int64_t *param_2)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180188210(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_180188210(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void GenericFunction_180188210(uint64_t param_1,int64_t param_2,int64_t param_3)
+void GenericFunction_180188210(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   int64_t lVar1;
   uint64_t uVar2;
-  
   uVar2 = param_3 * 0x10;
   lVar1 = param_2;
   if (0xfff < uVar2) {
     lVar1 = *(int64_t *)(param_2 + -8);
     uVar2 = uVar2 + 0x27;
     if (0x1f < (param_2 - lVar1) - 8U) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn();
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+// WARNING: Treating indirect jump as call
   free(lVar1,uVar2);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180188270(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_180188270(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void GenericFunction_180188270(uint64_t param_1,int64_t param_2,int64_t param_3)
+void GenericFunction_180188270(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   int64_t lVar1;
-  
   lVar1 = param_2;
   if (0xfff < (uint64_t)(param_3 * 0x18)) {
     lVar1 = *(int64_t *)(param_2 + -8);
     if (0x1f < (param_2 - lVar1) - 8U) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn(lVar1,param_3 * 0x18 + 0x27);
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+// WARNING: Treating indirect jump as call
   free(lVar1);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1801882c0(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_1801882c0(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void GenericFunction_1801882c0(uint64_t param_1,int64_t param_2,int64_t param_3)
+void GenericFunction_1801882c0(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   int64_t lVar1;
-  
   lVar1 = param_2;
   if (0xfff < (uint64_t)(param_3 * 0x28)) {
     lVar1 = *(int64_t *)(param_2 + -8);
     if (0x1f < (param_2 - lVar1) - 8U) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn(lVar1,param_3 * 0x28 + 0x27);
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+// WARNING: Treating indirect jump as call
   free(lVar1);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180188310(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_180188310(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void GenericFunction_180188310(uint64_t param_1,int64_t param_2,int64_t param_3)
+void GenericFunction_180188310(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   if (param_2 != param_3) {
     do {
@@ -732,109 +589,75 @@ void FUN_180188310(uint64_t param_1,int64_t param_2,int64_t param_3)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180188360(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_180188360(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void GenericFunction_180188360(uint64_t param_1,int64_t param_2,int64_t param_3)
+void GenericFunction_180188360(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   if (param_2 != param_3) {
     do {
-      FUN_180187950(param_2);
+      GenericFunction_180187950(param_2);
       param_2 = param_2 + 0x40;
     } while (param_2 != param_3);
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1801883a0(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_1801883a0(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void GenericFunction_1801883a0(uint64_t param_1,int64_t param_2,int64_t param_3)
+void GenericFunction_1801883a0(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   int64_t lVar1;
   uint64_t uVar2;
-  
   uVar2 = param_3 * 0x40;
   lVar1 = param_2;
   if (0xfff < uVar2) {
     lVar1 = *(int64_t *)(param_2 + -8);
     uVar2 = uVar2 + 0x27;
     if (0x1f < (param_2 - lVar1) - 8U) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn();
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+// WARNING: Treating indirect jump as call
   free(lVar1,uVar2);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1801883f0(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_1801883f0(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void GenericFunction_1801883f0(uint64_t param_1,int64_t param_2,int64_t param_3)
+void GenericFunction_1801883f0(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   int64_t lVar1;
-  
   lVar1 = param_2;
   if (0xfff < (uint64_t)(param_3 * 8)) {
     lVar1 = *(int64_t *)(param_2 + -8);
     if (0x1f < (param_2 - lVar1) - 8U) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn(lVar1,param_3 * 8 + 0x27);
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+// WARNING: Treating indirect jump as call
   free(lVar1);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180188440(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_180188440(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void GenericFunction_180188440(uint64_t param_1,int64_t param_2,int64_t param_3)
+void GenericFunction_180188440(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   int64_t lVar1;
-  
   lVar1 = param_2;
   if (0xfff < (uint64_t)(param_3 * 4)) {
     lVar1 = *(int64_t *)(param_2 + -8);
     if (0x1f < (param_2 - lVar1) - 8U) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn(lVar1,param_3 * 4 + 0x27);
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
+// WARNING: Treating indirect jump as call
   free(lVar1);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180188490(void)
-void FUN_180188490(void)
-
+// 函数: void GenericFunction_180188490(void)
+void GenericFunction_180188490(void)
 {
   int64_t lVar1;
-  
   lVar1 = SystemCore_SyscallHandler(0x60);
   *(int64_t *)lVar1 = lVar1;
   *(int64_t *)(lVar1 + 8) = lVar1;
@@ -842,23 +665,16 @@ void FUN_180188490(void)
   *(int16_t *)(lVar1 + 0x18) = 0x101;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1801884d0(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1801884d0(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void GenericFunction_1801884d0(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
+void GenericFunction_1801884d0(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
 {
   char cVar1;
   int64_t *plVar2;
   uint64_t uVar3;
-  
   uVar3 = 0xfffffffffffffffe;
   cVar1 = *(char *)((int64_t)param_2 + 0x19);
   while (cVar1 == '\0') {
-    FUN_1801884d0(param_1,param_2[2],param_3,param_4,uVar3);
+    GenericFunction_1801884d0(param_1,param_2[2],param_3,param_4,uVar3);
     plVar2 = (int64_t *)*param_2;
     SystemResourceAllocator(param_2 + 8);
     SystemResourceAllocator(param_2 + 4);
@@ -868,17 +684,10 @@ void FUN_1801884d0(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t p
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180188560(void)
-void FUN_180188560(void)
-
+// 函数: void GenericFunction_180188560(void)
+void GenericFunction_180188560(void)
 {
   int64_t lVar1;
-  
   lVar1 = SystemCore_SyscallHandler(0x28);
   *(int64_t *)lVar1 = lVar1;
   *(int64_t *)(lVar1 + 8) = lVar1;
@@ -886,21 +695,14 @@ void FUN_180188560(void)
   *(int16_t *)(lVar1 + 0x18) = 0x101;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1801885a0(uint64_t param_1,int64_t *param_2)
-void FUN_1801885a0(uint64_t param_1,int64_t *param_2)
-
+// 函数: void GenericFunction_1801885a0(uint64_t param_1,int64_t *param_2)
+void GenericFunction_1801885a0(uint64_t param_1,int64_t *param_2)
 {
   char cVar1;
   int64_t *plVar2;
-  
   cVar1 = *(char *)((int64_t)param_2 + 0x19);
   while (cVar1 == '\0') {
-    FUN_1801885a0(param_1,param_2[2]);
+    GenericFunction_1801885a0(param_1,param_2[2]);
     plVar2 = (int64_t *)*param_2;
     free(param_2,0x28);
     param_2 = plVar2;
@@ -908,52 +710,44 @@ void FUN_1801885a0(uint64_t param_1,int64_t *param_2)
   }
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x000180188693)
 // WARNING: Removing unreachable block (ram,0x00018018869c)
 // WARNING: Removing unreachable block (ram,0x0001801886e8)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // WARNING: Restarted to delay deadcode elimination for space: stack
-
-
-
-// 函数: void FUN_180188620(int64_t param_1,uint64_t *param_2)
-void FUN_180188620(int64_t param_1,uint64_t *param_2)
-
+// 函数: void GenericFunction_180188620(int64_t param_1,uint64_t *param_2)
+void GenericFunction_180188620(int64_t param_1,uint64_t *param_2)
 {
   uint64_t uVar1;
-  int8_t auStack_c8 [32];
-  uint64_t uStack_a8;
-  void *puStack_98;
-  uint64_t uStack_90;
-  int8_t uStack_88;
-  int8_t uStack_87;
-  uint64_t uStack_80;
-  void **ppuStack_60;
+  int8_t stack_array_c8 [32];
+  uint64_t local_var_a8;
+  void *plocal_var_98;
+  uint64_t local_var_90;
+  int8_t local_var_88;
+  int8_t local_var_87;
+  uint64_t local_var_80;
+  void **pplocal_var_60;
   int64_t alStack_58 [7];
   int64_t *plStack_20;
-  uint64_t uStack_18;
-  
-  uStack_a8 = 0xfffffffffffffffe;
-  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_c8;
-  uStack_90 = *param_2;
-  uStack_88 = *(int8_t *)(param_2 + 1);
-  uStack_87 = *(int8_t *)((int64_t)param_2 + 9);
-  uStack_80 = param_2[2];
-  puStack_98 = &processed_var_424_ptr;
-  ppuStack_60 = &puStack_98;
+  uint64_t local_var_18;
+  local_var_a8 = 0xfffffffffffffffe;
+  local_var_18 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_c8;
+  local_var_90 = *param_2;
+  local_var_88 = *(int8_t *)(param_2 + 1);
+  local_var_87 = *(int8_t *)((int64_t)param_2 + 9);
+  local_var_80 = param_2[2];
+  plocal_var_98 = &processed_var_424_ptr;
+  pplocal_var_60 = &plocal_var_98;
   plStack_20 = (int64_t *)0x0;
-  if ((ppuStack_60 != (void **)0x0) &&
-     (plStack_20 = (int64_t *)(*(code *)&processed_var_5008_ptr)(ppuStack_60,alStack_58),
-     ppuStack_60 != (void **)0x0)) {
-    (**(code **)(*ppuStack_60 + 0x20))
-              (ppuStack_60,CONCAT71((int7)((uint64_t)&puStack_98 >> 8),ppuStack_60 != &puStack_98))
+  if ((pplocal_var_60 != (void **)0x0) &&
+     (plStack_20 = (int64_t *)(*(code *)&processed_var_5008_ptr)(pplocal_var_60,alStack_58),
+     pplocal_var_60 != (void **)0x0)) {
+    (**(code **)(*pplocal_var_60 + 0x20))
+              (pplocal_var_60,CONCAT71((int7)((uint64_t)&plocal_var_98 >> 8),pplocal_var_60 != &plocal_var_98))
     ;
-    ppuStack_60 = (void **)0x0;
+    pplocal_var_60 = (void **)0x0;
   }
-  FUN_1801881a0(&puStack_98,param_1);
+  GenericFunction_1801881a0(&plocal_var_98,param_1);
   if (plStack_20 != (int64_t *)0x0) {
     if (plStack_20 == alStack_58) {
       uVar1 = (**(code **)(*plStack_20 + 8))(plStack_20,param_1);
@@ -973,21 +767,15 @@ LAB_18018873e:
               (plStack_20,CONCAT71((int7)((uint64_t)alStack_58 >> 8),plStack_20 != alStack_58));
     plStack_20 = (int64_t *)0x0;
   }
-  if (ppuStack_60 != (void **)0x0) {
-    (**(code **)(*ppuStack_60 + 0x20))(ppuStack_60,ppuStack_60 != &puStack_98);
-    ppuStack_60 = (void **)0x0;
+  if (pplocal_var_60 != (void **)0x0) {
+    (**(code **)(*pplocal_var_60 + 0x20))(pplocal_var_60,pplocal_var_60 != &plocal_var_98);
+    pplocal_var_60 = (void **)0x0;
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_c8);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_18 ^ (uint64_t)stack_array_c8);
 }
-
-
-
-
-
-// 函数: void FUN_1801887a0(int64_t *param_1,int64_t param_2,int32_t *param_3,uint64_t param_4)
-void FUN_1801887a0(int64_t *param_1,int64_t param_2,int32_t *param_3,uint64_t param_4)
-
+// 函数: void GenericFunction_1801887a0(int64_t *param_1,int64_t param_2,int32_t *param_3,uint64_t param_4)
+void GenericFunction_1801887a0(int64_t *param_1,int64_t param_2,int32_t *param_3,uint64_t param_4)
 {
   code *pcVar1;
   int32_t uVar2;
@@ -998,29 +786,28 @@ void FUN_1801887a0(int64_t *param_1,int64_t param_2,int32_t *param_3,uint64_t pa
   uint64_t uVar7;
   int64_t lVar8;
   int32_t *puVar9;
-  int8_t auStackX_8 [8];
-  uint64_t uStackX_10;
+  int8_t astack_special_x_8 [8];
+  uint64_t stack_special_x_10;
   int64_t lStackX_20;
   uint64_t uVar10;
-  
   uVar10 = 0xfffffffffffffffe;
   lVar8 = *param_1;
   lVar6 = param_1[1] - lVar8 >> 4;
   if (lVar6 == 0xfffffffffffffff) {
-    FUN_180189990();
+    CoreEngine_189990();
     pcVar1 = (code *)swi(3);
     (*pcVar1)();
     return;
   }
   uVar7 = lVar6 + 1;
   uVar5 = param_1[2] - lVar8 >> 4;
-  uStackX_10 = uVar7;
+  stack_special_x_10 = uVar7;
   if ((uVar5 <= 0xfffffffffffffff - (uVar5 >> 1)) &&
-     (uStackX_10 = (uVar5 >> 1) + uVar5, uStackX_10 < uVar7)) {
-    uStackX_10 = uVar7;
+     (stack_special_x_10 = (uVar5 >> 1) + uVar5, stack_special_x_10 < uVar7)) {
+    stack_special_x_10 = uVar7;
   }
-  lVar6 = uStackX_10 << 4;
-  if (0xfffffffffffffff < uStackX_10) {
+  lVar6 = stack_special_x_10 << 4;
+  if (0xfffffffffffffff < stack_special_x_10) {
     lVar6 = -1;
   }
   lVar6 = SystemCore_SyscallHandler(lVar6);
@@ -1034,19 +821,15 @@ void FUN_1801887a0(int64_t *param_1,int64_t param_2,int32_t *param_3,uint64_t pa
   puVar9[3] = uVar4;
   lVar8 = param_1[1];
   lStackX_20 = lVar6;
-  func_0x00018018a000(auStackX_8,*param_1,lVar8,param_4,uVar10);
+  Function_c0557ad8(astack_special_x_8,*param_1,lVar8,param_4,uVar10);
   if (param_2 != lVar8) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memmove(lVar6);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memmove(lVar6);
 }
-
-
-
-uint64_t * FUN_180188910(int64_t *param_1,int64_t param_2,uint64_t *param_3)
-
+uint64_t * GenericFunction_180188910(int64_t *param_1,int64_t param_2,uint64_t *param_3)
 {
   uint64_t uVar1;
   code *pcVar2;
@@ -1061,13 +844,12 @@ uint64_t * FUN_180188910(int64_t *param_1,int64_t param_2,uint64_t *param_3)
   uint64_t *puVar11;
   uint64_t *puVar12;
   uint64_t uVar13;
-  
   uVar13 = 0xfffffffffffffffe;
   lVar8 = *param_1;
   lVar6 = (param_2 - lVar8) / 6 + (param_2 - lVar8 >> 0x3f);
   lVar5 = (param_1[1] - lVar8) / 0x18;
   if (lVar5 == 0xaaaaaaaaaaaaaaa) {
-    FUN_180189990();
+    CoreEngine_189990();
     pcVar2 = (code *)swi(3);
     puVar4 = (uint64_t *)(*pcVar2)();
     return puVar4;
@@ -1096,22 +878,22 @@ uint64_t * FUN_180188910(int64_t *param_1,int64_t param_2,uint64_t *param_3)
   puVar11 = puVar4;
   puVar12 = puVar3;
   if (param_2 != lVar8) {
-    FUN_180189aa0(*param_1,param_2,puVar3,param_1,puVar4,puVar3,uVar13);
+    GenericFunction_180189aa0(*param_1,param_2,puVar3,param_1,puVar4,puVar3,uVar13);
     lVar8 = param_1[1];
     lVar5 = param_2;
     puVar10 = puVar4 + 3;
     puVar11 = puVar3;
   }
-  FUN_180189aa0(lVar5,lVar8,puVar10,param_1,puVar11,puVar12,uVar13);
+  GenericFunction_180189aa0(lVar5,lVar8,puVar10,param_1,puVar11,puVar12,uVar13);
   if (*param_1 != 0) {
-    FUN_180189900(*param_1,param_1[1]);
+    GenericFunction_180189900(*param_1,param_1[1]);
     lVar8 = *param_1;
     uVar9 = ((param_1[2] - lVar8) / 0x18) * 0x18;
     lVar5 = lVar8;
     if (0xfff < uVar9) {
       lVar5 = *(int64_t *)(lVar8 + -8);
       if (0x1f < (lVar8 - lVar5) - 8U) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn(lVar5,uVar9 + 0x27);
       }
     }
@@ -1122,8 +904,3 @@ uint64_t * FUN_180188910(int64_t *param_1,int64_t param_2,uint64_t *param_3)
   param_1[2] = (int64_t)(puVar3 + uVar7 * 3);
   return puVar4;
 }
-
-
-
-
-

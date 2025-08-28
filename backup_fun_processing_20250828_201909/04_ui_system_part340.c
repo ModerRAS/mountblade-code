@@ -62,7 +62,7 @@ int FUN_180852d40(int64_t *param_1,int32_t *param_2,uint64_t *param_3)
   if (lVar5 != 0) {
     SystemMemoryAllocator(lVar5);
   }
-  puVar6 = (uint64_t *)func_0x000180851be0(plVar12,param_2);
+  puVar6 = (uint64_t *)MemoryManager_AllocateBuffer(plVar12,param_2);
   if (lVar5 != 0) {
                     // WARNING: Subroutine does not return
     SystemMemoryManager(lVar5);
@@ -152,7 +152,7 @@ LAB_180852f31:
     return 0;
   }
   puStackX_18 = (uint64_t *)CONCAT44(puStackX_18._4_4_,*(int32_t *)((int64_t)param_3 + 0xe4));
-  func_0x0001807d2ed0(puVar6,&puStackX_18);
+  RenderingSystem_BindTexture(puVar6,&puStackX_18);
 LAB_180852f9c:
   if (puVar7 == (uint64_t *)0x0) {
     return iVar10;
@@ -202,7 +202,7 @@ int FUN_180852d79(void)
   if (lVar1 != 0) {
     SystemMemoryAllocator(lVar1);
   }
-  puVar6 = (uint64_t *)func_0x000180851be0(plVar12);
+  puVar6 = (uint64_t *)MemoryManager_AllocateBuffer(plVar12);
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);
@@ -295,7 +295,7 @@ LAB_180852f31:
   }
   in_stack_000000a0 =
        (uint64_t *)CONCAT44(in_stack_000000a0._4_4_,*(int32_t *)(unaff_R13 + 0xe4));
-  func_0x0001807d2ed0(puVar6,&stack0x000000a0);
+  RenderingSystem_BindTexture(puVar6,&stack0x000000a0);
 LAB_180852f9c:
   if (puVar7 == (uint64_t *)0x0) {
     return iVar10;
@@ -320,7 +320,7 @@ int32_t FUN_180852f68(void)
                     // WARNING: Subroutine does not return
     SystemMemoryManager();
   }
-  func_0x0001807d2ed0();
+  RenderingSystem_BindTexture();
   if (unaff_RBX == 0) {
     return 0x1c;
   }
@@ -425,7 +425,7 @@ uint64_t FUN_180853180(int64_t param_1,int param_2,int32_t param_3)
   float fVar2;
   
   if (param_2 == 0) {
-    fVar2 = (float)func_0x0001808b2ef0(param_3);
+    fVar2 = (float)MathFunction_ApplyTransform(param_3);
     if (fVar2 < 0.0) {
       return 0x1f;
     }
@@ -440,7 +440,7 @@ uint64_t FUN_180853180(int64_t param_1,int param_2,int32_t param_3)
     if (param_2 != 1) {
       return 0x1c;
     }
-    fVar2 = (float)func_0x0001808b2ec0(param_3);
+    fVar2 = (float)MathFunction_InverseTransform(param_3);
     if (fVar2 < 0.0) {
       return 0x1f;
     }
@@ -483,7 +483,7 @@ void FUN_180853230(int64_t param_1)
   uVar1 = *(uint64_t *)(param_1 + 0x78);
   uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
   lStack_128 = 0;
-  iVar2 = func_0x00018074fb10(uVar1,&plStack_120,&lStack_128);
+  iVar2 = DataSerializer_ProcessFields(uVar1,&plStack_120,&lStack_128);
   if (iVar2 == 0) {
     iVar2 = (**(code **)(*plStack_120 + 0x10))(plStack_120,1);
     if (iVar2 == 0) goto LAB_18073d93d;
@@ -820,7 +820,7 @@ void FUN_180853840(int64_t param_1,uint64_t param_2)
   if (lVar1 != 0) {
     SystemMemoryAllocator(lVar1);
   }
-  func_0x0001808534b0(param_1,param_2);
+  RenderingSystem_ProcessCommand(param_1,param_2);
   if (lVar1 != 0) {
                     // WARNING: Subroutine does not return
     SystemMemoryManager(lVar1);

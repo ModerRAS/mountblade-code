@@ -1,24 +1,16 @@
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part594.c - 9 个函数
-
-// 函数: void FUN_180593ce0(void)
-void FUN_180593ce0(void)
-
+// 函数: void NetworkSystem_93ce0(void)
+void NetworkSystem_93ce0(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-char FUN_1805950c0(int64_t param_1,int64_t param_2,float *param_3,int64_t param_4,
+char NetworkSystem_950c0(int64_t param_1,int64_t param_2,float *param_3,int64_t param_4,
                   int64_t param_5)
-
 {
   float *pfVar1;
   int64_t lVar2;
@@ -32,7 +24,6 @@ char FUN_1805950c0(int64_t param_1,int64_t param_2,float *param_3,int64_t param_
   int8_t auVar10 [16];
   float fVar11;
   float fStack_a4;
-  
   uVar7 = *(uint *)(param_4 + 0x18) & 0x40;
   if ((((uVar7 != 0) && (0.2 < *(float *)(param_2 + 0x34))) &&
       (lVar2 = *(int64_t *)(param_4 + 0x10),
@@ -58,7 +49,7 @@ char FUN_1805950c0(int64_t param_1,int64_t param_2,float *param_3,int64_t param_
     fVar8 = fStack_a4 * fStack_a4 + fVar11 * fVar11;
     auVar10 = rsqrtss(ZEXT416((uint)fVar8),ZEXT416((uint)fVar8));
     fVar8 = fVar8 * auVar10._0_4_ * auVar10._0_4_;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     AdvancedSystemController(*(int32_t *)(param_5 + 0x4c),3.0 - fVar8,auVar10._0_8_,fVar8,fVar11,fVar3);
   }
   if (((param_3[5] + param_3[1]) * 0.5 - *(float *)(param_2 + 0x20)) * *(float *)(param_2 + 0x30) +
@@ -98,16 +89,12 @@ LAB_180595392:
       }
     }
     else {
-      func_0x0001805998d0(param_1,(byte)(*(uint *)(param_4 + 0x18) >> 6) & 1);
+      SystemFunction_0001805998d0(param_1,(byte)(*(uint *)(param_4 + 0x18) >> 6) & 1);
     }
   }
   return cVar6;
 }
-
-
-
-char FUN_180595103(byte param_1,int64_t param_2,float *param_3,int64_t param_4)
-
+char NetworkSystem_95103(byte param_1,int64_t param_2,float *param_3,int64_t param_4)
 {
   float *pfVar1;
   int64_t lVar2;
@@ -139,8 +126,7 @@ char FUN_180595103(byte param_1,int64_t param_2,float *param_3,int64_t param_4)
   float unaff_XMM10_Da;
   float fStackX_20;
   float fStackX_24;
-  int32_t uStack000000000000002c;
-  
+  int32_t local_buffer_2c;
   *(uint64_t *)(in_R11 + 0x10) = unaff_RBP;
   if (((((unaff_R12D & 0x40) != 0) && (unaff_XMM10_Da < *(float *)(param_2 + 0x34))) &&
       (lVar2 = *(int64_t *)(param_4 + 0x10),
@@ -154,7 +140,7 @@ char FUN_180595103(byte param_1,int64_t param_2,float *param_3,int64_t param_4)
     fStackX_20 = *(float *)(lVar2 + 0x80);
     fStackX_24 = *(float *)(lVar2 + 0x84);
     fVar5 = *(float *)(lVar2 + 0x88);
-    uStack000000000000002c = *(int32_t *)(lVar2 + 0x8c);
+    local_buffer_2c = *(int32_t *)(lVar2 + 0x8c);
     *(int32_t *)(in_R11 + -0x48) = unaff_XMM7_Da;
     *(int32_t *)(in_R11 + -0x44) = unaff_XMM7_Db;
     *(int32_t *)(in_R11 + -0x40) = unaff_XMM7_Dc;
@@ -176,7 +162,7 @@ char FUN_180595103(byte param_1,int64_t param_2,float *param_3,int64_t param_4)
     }
     fVar5 = fStackX_24 * fStackX_24 + fStackX_20 * fStackX_20;
     auVar7 = rsqrtss(ZEXT416((uint)fVar5),ZEXT416((uint)fVar5));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     AdvancedSystemController(*(int32_t *)(unaff_R14 + 0x4c),3.0 - fVar5 * auVar7._0_4_ * auVar7._0_4_);
   }
   if ((param_1 == 0) ||
@@ -220,19 +206,13 @@ LAB_180595392:
       }
     }
     else {
-      func_0x0001805998d0(fVar5,(byte)(unaff_ESI >> 6) & 1);
+      SystemFunction_0001805998d0(fVar5,(byte)(unaff_ESI >> 6) & 1);
     }
   }
   return cVar4;
 }
-
-
-
-
-
-// 函数: void FUN_180595151(char param_1,int64_t param_2)
-void FUN_180595151(char param_1,int64_t param_2)
-
+// 函数: void NetworkSystem_95151(char param_1,int64_t param_2)
+void NetworkSystem_95151(char param_1,int64_t param_2)
 {
   int64_t in_R11;
   int64_t unaff_R14;
@@ -251,20 +231,19 @@ void FUN_180595151(char param_1,int64_t param_2)
   int32_t unaff_XMM8_Db;
   int32_t unaff_XMM8_Dc;
   int32_t unaff_XMM8_Dd;
-  int32_t uStackX_20;
-  int32_t uStackX_24;
+  int32_t stack_special_x_20;
+  int32_t stack_special_x_24;
   float fStack0000000000000028;
-  int32_t uStack000000000000002c;
-  uint64_t uStack00000000000000d0;
-  
+  int32_t local_buffer_2c;
+  uint64_t local_var_d0;
   *(int32_t *)(in_R11 + -0x38) = unaff_XMM6_Da;
   *(int32_t *)(in_R11 + -0x34) = unaff_XMM6_Db;
   *(int32_t *)(in_R11 + -0x30) = unaff_XMM6_Dc;
   *(int32_t *)(in_R11 + -0x2c) = unaff_XMM6_Dd;
-  uStackX_20 = *(float *)(param_2 + 0x80);
-  uStackX_24 = *(float *)(param_2 + 0x84);
+  stack_special_x_20 = *(float *)(param_2 + 0x80);
+  stack_special_x_24 = *(float *)(param_2 + 0x84);
   fStack0000000000000028 = *(float *)(param_2 + 0x88);
-  uStack000000000000002c = *(int32_t *)(param_2 + 0x8c);
+  local_buffer_2c = *(int32_t *)(param_2 + 0x8c);
   *(int32_t *)(in_R11 + -0x48) = unaff_XMM7_Da;
   *(int32_t *)(in_R11 + -0x44) = unaff_XMM7_Db;
   *(int32_t *)(in_R11 + -0x40) = unaff_XMM7_Dc;
@@ -273,7 +252,7 @@ void FUN_180595151(char param_1,int64_t param_2)
   *(int32_t *)(in_R11 + -0x54) = unaff_XMM8_Db;
   *(int32_t *)(in_R11 + -0x50) = unaff_XMM8_Dc;
   *(int32_t *)(in_R11 + -0x4c) = unaff_XMM8_Dd;
-  fVar1 = uStackX_20 * uStackX_20 + uStackX_24 * uStackX_24 +
+  fVar1 = stack_special_x_20 * stack_special_x_20 + stack_special_x_24 * stack_special_x_24 +
           fStack0000000000000028 * fStack0000000000000028;
   if ((fVar1 <= 0.98010004) || (1.0201 <= fVar1)) {
     param_1 = '\0';
@@ -282,20 +261,16 @@ void FUN_180595151(char param_1,int64_t param_2)
     auVar3 = rsqrtss(ZEXT416((uint)fVar1),ZEXT416((uint)fVar1));
     fVar2 = auVar3._0_4_;
     fVar1 = fVar2 * 0.5 * (3.0 - fVar1 * fVar2 * fVar2);
-    uStackX_20 = uStackX_20 * fVar1;
-    uStackX_24 = uStackX_24 * fVar1;
+    stack_special_x_20 = stack_special_x_20 * fVar1;
+    stack_special_x_24 = stack_special_x_24 * fVar1;
   }
-  uStack00000000000000d0 = CONCAT44(uStackX_24,uStackX_20);
-  fVar1 = uStackX_24 * uStackX_24 + uStackX_20 * uStackX_20;
+  local_var_d0 = CONCAT44(stack_special_x_24,stack_special_x_20);
+  fVar1 = stack_special_x_24 * stack_special_x_24 + stack_special_x_20 * stack_special_x_20;
   auVar3 = rsqrtss(ZEXT416((uint)fVar1),ZEXT416((uint)fVar1));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   AdvancedSystemController(*(int32_t *)(unaff_R14 + 0x4c),3.0 - fVar1 * auVar3._0_4_ * auVar3._0_4_);
 }
-
-
-
-char FUN_1805952d9(float param_1,float param_2)
-
+char NetworkSystem_952d9(float param_1,float param_2)
 {
   float *pfVar1;
   byte bVar2;
@@ -312,7 +287,6 @@ char FUN_1805952d9(float param_1,float param_2)
   float unaff_XMM10_Da;
   float unaff_XMM11_Da;
   float unaff_XMM12_Da;
-  
   if ((0.8 < param_2 * unaff_XMM11_Da - param_1 * unaff_XMM12_Da) ||
      (((unaff_RBP[5] + unaff_RBP[1]) * 0.5 - *(float *)(unaff_RBX + 0x20)) *
       *(float *)(unaff_RBX + 0x30) +
@@ -355,16 +329,12 @@ LAB_180595392:
       }
     }
     else {
-      func_0x0001805998d0(fVar4,(byte)(unaff_ESI >> 6) & 1);
+      SystemFunction_0001805998d0(fVar4,(byte)(unaff_ESI >> 6) & 1);
     }
   }
   return cVar3;
 }
-
-
-
-char FUN_180595302(char param_1)
-
+char NetworkSystem_95302(char param_1)
 {
   float *pfVar1;
   byte bVar2;
@@ -379,7 +349,6 @@ char FUN_180595302(char param_1)
   float fVar4;
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
-  
   if ((param_1 == '\0') ||
      (((unaff_RBP[5] + unaff_RBP[1]) * 0.5 - *(float *)(unaff_RBX + 0x20)) *
       *(float *)(unaff_RBX + 0x30) +
@@ -422,16 +391,12 @@ LAB_180595392:
       }
     }
     else {
-      func_0x0001805998d0(fVar4,(byte)(unaff_ESI >> 6) & 1);
+      SystemFunction_0001805998d0(fVar4,(byte)(unaff_ESI >> 6) & 1);
     }
   }
   return cVar3;
 }
-
-
-
-char FUN_18059534f(uint64_t param_1,float param_2,float param_3,float param_4)
-
+char NetworkSystem_9534f(uint64_t param_1,float param_2,float param_3,float param_4)
 {
   float *pfVar1;
   byte bVar2;
@@ -445,7 +410,6 @@ char FUN_18059534f(uint64_t param_1,float param_2,float param_3,float param_4)
   float fVar4;
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
-  
   if (param_2 * *(float *)(unaff_RBX + 0x30) + param_3 * *(float *)(unaff_RBX + 0x2c) +
       param_4 * *(float *)(unaff_RBX + 0x34) < unaff_XMM9_Da) {
     bVar2 = *(byte *)(unaff_RDI + 0x40);
@@ -483,39 +447,24 @@ LAB_180595392:
       }
     }
     else {
-      func_0x0001805998d0(fVar4,(byte)(unaff_ESI >> 6) & 1);
+      SystemFunction_0001805998d0(fVar4,(byte)(unaff_ESI >> 6) & 1);
     }
   }
   return cVar3;
 }
-
-
-
-
-
-// 函数: void FUN_180595490(void)
-void FUN_180595490(void)
-
+// 函数: void NetworkSystem_95490(void)
+void NetworkSystem_95490(void)
 {
   int32_t in_XMM3_Da;
-  
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   AdvancedSystemController(in_XMM3_Da);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180595690(int64_t param_1,float param_2,float param_3,int64_t param_4)
-void FUN_180595690(int64_t param_1,float param_2,float param_3,int64_t param_4)
-
+// 函数: void NetworkSystem_95690(int64_t param_1,float param_2,float param_3,int64_t param_4)
+void NetworkSystem_95690(int64_t param_1,float param_2,float param_3,int64_t param_4)
 {
   float fVar1;
   float fVar2;
-  
   fVar2 = *(float *)(param_1 + 0x34) - param_2;
   if (fVar2 <= 3.1415927) {
     if (fVar2 < -3.1415927) {
@@ -535,23 +484,16 @@ void FUN_180595690(int64_t param_1,float param_2,float param_3,int64_t param_4)
       if (fVar2 < 0.0) {
         fVar1 = -fVar1;
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       AdvancedSystemController(fVar2 - fVar1);
     }
     *(float *)(param_1 + 0x34) = param_2;
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180595790(int64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_180595790(int64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void NetworkSystem_95790(int64_t param_1,int64_t param_2,int64_t param_3)
+void NetworkSystem_95790(int64_t param_1,int64_t param_2,int64_t param_3)
 {
   float fVar1;
   float fVar2;
@@ -563,7 +505,6 @@ void FUN_180595790(int64_t param_1,int64_t param_2,int64_t param_3)
   float fVar8;
   float fStackX_8;
   float fStackX_c;
-  
   fVar5 = *(float *)(*(int64_t *)(param_2 + 0x18) + 0x3ec4);
   fVar7 = 0.0;
   fVar8 = 1.0;
@@ -654,19 +595,12 @@ void FUN_180595790(int64_t param_1,int64_t param_2,int64_t param_3)
   fVar5 = fStackX_c * fStackX_c + fStackX_8 * fStackX_8;
   fVar5 = (float)(fVar5 <= 1.1754944e-38) * 1.1754944e-38 + fVar5;
   auVar6 = rsqrtss(ZEXT416((uint)fVar5),ZEXT416((uint)fVar5));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   AdvancedSystemController(*(int32_t *)(param_1 + 0x34),3.0 - fVar5 * auVar6._0_4_ * auVar6._0_4_);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1805957ac(int64_t param_1,float param_2,int64_t param_3)
-void FUN_1805957ac(int64_t param_1,float param_2,int64_t param_3)
-
+// 函数: void NetworkSystem_957ac(int64_t param_1,float param_2,int64_t param_3)
+void NetworkSystem_957ac(int64_t param_1,float param_2,int64_t param_3)
 {
   float fVar1;
   float fVar2;
@@ -682,7 +616,6 @@ void FUN_1805957ac(int64_t param_1,float param_2,int64_t param_3)
   float fVar9;
   float fStack00000000000000b0;
   float fStack00000000000000b4;
-  
   fVar8 = 0.0;
   fVar9 = 1.0;
   if ((param_2 < *(float *)(in_RAX + 0x3ec4)) &&
@@ -775,19 +708,12 @@ void FUN_1805957ac(int64_t param_1,float param_2,int64_t param_3)
   fVar8 = (float)(fVar8 <= 1.1754944e-38) * 1.1754944e-38 + fVar8;
   auVar7 = rsqrtss(ZEXT416((uint)fVar8),ZEXT416((uint)fVar8));
   _fStack00000000000000b0 = uVar3;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   AdvancedSystemController(*(int32_t *)(param_1 + 0x34),3.0 - fVar8 * auVar7._0_4_ * auVar7._0_4_);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1805957d0(float param_1,float param_2,int64_t param_3)
-void FUN_1805957d0(float param_1,float param_2,int64_t param_3)
-
+// 函数: void NetworkSystem_957d0(float param_1,float param_2,int64_t param_3)
+void NetworkSystem_957d0(float param_1,float param_2,int64_t param_3)
 {
   float fVar1;
   float fVar2;
@@ -806,7 +732,6 @@ void FUN_1805957d0(float param_1,float param_2,int64_t param_3)
   float fVar9;
   float fStack00000000000000b0;
   float fStack00000000000000b4;
-  
   fVar8 = 0.0;
   fVar9 = unaff_XMM9_Da;
   if ((in_CF) && (fVar9 = unaff_XMM9_Da - (param_1 - param_2) * 0.75, fVar9 <= 0.3)) {
@@ -897,17 +822,11 @@ void FUN_1805957d0(float param_1,float param_2,int64_t param_3)
   fVar9 = (float)(fVar9 <= 1.1754944e-38) * 1.1754944e-38 + fVar9;
   auVar7 = rsqrtss(ZEXT416((uint)fVar9),ZEXT416((uint)fVar9));
   _fStack00000000000000b0 = uVar3;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   AdvancedSystemController(*(int32_t *)(in_RCX + 0x34),3.0 - fVar9 * auVar7._0_4_ * auVar7._0_4_);
 }
-
-
-
-
-
-// 函数: void FUN_1805958f0(float param_1,uint64_t param_2,float param_3)
-void FUN_1805958f0(float param_1,uint64_t param_2,float param_3)
-
+// 函数: void NetworkSystem_958f0(float param_1,uint64_t param_2,float param_3)
+void NetworkSystem_958f0(float param_1,uint64_t param_2,float param_3)
 {
   int64_t in_RCX;
   int32_t uVar1;
@@ -916,7 +835,6 @@ void FUN_1805958f0(float param_1,uint64_t param_2,float param_3)
   int8_t auVar2 [16];
   int8_t auVar3 [16];
   float in_XMM4_Da;
-  
   uVar1 = (int32_t)((uint64_t)param_2 >> 0x20);
   param_3 = param_3 + param_1 * in_XMM4_Da;
   param_3 = (float)(param_3 <= 1.1754944e-38) * 1.1754944e-38 + param_3;
@@ -929,17 +847,11 @@ void FUN_1805958f0(float param_1,uint64_t param_2,float param_3)
   auVar3._8_4_ = in_XMM1_Dc;
   auVar3._12_4_ = in_XMM1_Dd;
   auVar3 = rsqrtss(auVar2,auVar3);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   AdvancedSystemController(*(int32_t *)(in_RCX + 0x34),3.0 - param_3 * auVar3._0_4_ * auVar3._0_4_);
 }
-
-
-
-
-
-// 函数: void FUN_180595900(float param_1,uint64_t param_2,float param_3)
-void FUN_180595900(float param_1,uint64_t param_2,float param_3)
-
+// 函数: void NetworkSystem_95900(float param_1,uint64_t param_2,float param_3)
+void NetworkSystem_95900(float param_1,uint64_t param_2,float param_3)
 {
   int32_t in_EAX;
   int64_t in_RCX;
@@ -949,7 +861,6 @@ void FUN_180595900(float param_1,uint64_t param_2,float param_3)
   int32_t in_XMM1_Dd;
   int8_t auVar3 [16];
   int8_t auVar4 [16];
-  
   uVar2 = (int32_t)((uint64_t)param_2 >> 0x20);
   fVar1 = (float)CONCAT31((int3)((uint)in_EAX >> 8),param_3 + param_1 <= 1.1754944e-38) *
           1.1754944e-38 + param_3 + param_1;
@@ -962,11 +873,6 @@ void FUN_180595900(float param_1,uint64_t param_2,float param_3)
   auVar4._8_4_ = in_XMM1_Dc;
   auVar4._12_4_ = in_XMM1_Dd;
   auVar4 = rsqrtss(auVar3,auVar4);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   AdvancedSystemController(*(int32_t *)(in_RCX + 0x34),3.0 - fVar1 * auVar4._0_4_ * auVar4._0_4_);
 }
-
-
-
-
-

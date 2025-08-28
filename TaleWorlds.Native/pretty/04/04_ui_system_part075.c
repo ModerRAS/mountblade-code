@@ -1,9 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 04_ui_system_part075.c - UI系统高级数据处理和控制模块
 // 包含8个核心函数，涵盖UI系统高级数据处理、位操作、编码解码、参数计算等高级UI功能
-
 // 全局常量定义
 #define UI_MAX_CHANNEL_COUNT 0x4fc
 #define UI_SAMPLE_RATE_BASE 48000
@@ -11,20 +9,16 @@
 #define UI_FLOAT_CLAMP_VALUE 2.0f
 #define UI_FLOAT_MIN_VALUE -2.0f
 #define UI_PROCESSING_CHSYSTEM_SIZE 16
-
 // 全局变量定义
 #define UI_FLOAT_ARRAY_MAX ui_system_counter
 #define UI_FLOAT_ARRAY_MIN ui_system_counter
-
 // 函数别名定义
-#define ui_system_calculate_audio_data_size func_0x0001807104d0
-
+#define ui_system_calculate_audio_data_size SystemFunction_0001807104d0
 // 函数别名定义
 typedef void (*ui_system_void_function)(void);
 typedef uint (*ui_system_data_processor)(int64_t *, uint);
 typedef uint64_t (*ui_system_audio_decoder)(byte *, int, int, byte *, int64_t, short *, int *, int *);
 typedef void (*ui_system_float_processor)(int64_t, int, int, float *);
-
 // 函数声明
 void ui_system_empty_function(void);
 uint ui_system_calculate_bit_allocation(int64_t *ui_context, uint bit_count);
@@ -35,7 +29,6 @@ uint64_t ui_system_process_audio_chunk(uint64_t param_1, uint64_t param_2, int p
 int ui_system_validate_audio_data(void);
 uint ui_system_return_error_code(void);
 void ui_system_process_float_array(int64_t array_ptr, int width, int height, float *output_buffer);
-
 /**
  * @brief UI系统空函数
  * 用作占位符或初始化函数
@@ -44,13 +37,12 @@ void ui_system_empty_function(void)
 {
   return;
 }
-
 /**
  * @brief UI系统位分配计算函数
  * @param ui_context UI上下文指针
  * @param bit_count 位数计数
  * @return uint 计算结果
- * 
+ *
  * 该函数根据输入参数计算位分配，用于UI系统的数据处理和资源分配
  */
 uint ui_system_calculate_bit_allocation(int64_t *ui_context, uint bit_count)
@@ -65,7 +57,6 @@ uint ui_system_calculate_bit_allocation(int64_t *ui_context, uint bit_count)
   uint temp_value;
   uint loop_counter;
   int adjustment_factor;
-  
   current_bits = *(uint *)(ui_context + 4);
   available_bits = bit_count - 1;
   processed_bits = *(uint *)((int64_t)ui_context + 0x24);
@@ -142,13 +133,12 @@ uint ui_system_calculate_bit_allocation(int64_t *ui_context, uint bit_count)
   }
   return result;
 }
-
 /**
  * @brief UI系统音频数据处理函数
  * @param audio_context 音频上下文参数
  * @param sample_count 采样数量
  * @return uint 处理结果
- * 
+ *
  * 该函数处理音频数据的位操作和编码，用于UI系统的音频处理模块
  */
 uint ui_system_process_audio_data(uint64_t audio_context, uint sample_count)
@@ -168,7 +158,6 @@ uint ui_system_process_audio_data(uint64_t audio_context, uint sample_count)
   int adjustment_value;
   uint bit_depth;
   int samples_per_frame;
-  
   bit_shift = (byte)bit_offset;
   total_bits = (available_bits >> (bit_shift & 0x1f)) + 1;
   sample_rate = ((uint64_t)sample_count << 0x20 | audio_data & 0xffffffff) / (uint64_t)total_bits;
@@ -215,22 +204,19 @@ uint ui_system_process_audio_data(uint64_t audio_context, uint sample_count)
   }
   return processed_bits;
 }
-
 /**
  * @brief UI系统状态设置函数
  * @return uint 返回状态码
- * 
+ *
  * 该函数用于设置UI系统的状态标志位
  */
 uint ui_system_set_status_flag(void)
 {
   uint status_code;
   int64_t context_ptr;
-  
   *(uint *)(context_ptr + 0x30) = 1;
   return status_code;
 }
-
 /**
  * @brief UI系统音频流解码函数
  * @param audio_data 音频数据指针
@@ -242,7 +228,7 @@ uint ui_system_set_status_flag(void)
  * @param bytes_processed 已处理字节数
  * @param total_size 总大小
  * @return uint64_t 解码结果
- * 
+ *
  * 该函数用于解码音频流数据，支持多种音频格式和编码方式
  */
 uint64_t ui_system_decode_audio_stream(byte *audio_data, int data_size, int decode_mode, byte *format_output, int64_t buffer_ptr, short *channel_sizes, int *bytes_processed, int *total_size)
@@ -263,7 +249,6 @@ uint64_t ui_system_decode_audio_stream(byte *audio_data, int data_size, int deco
   byte *data_ptr;
   uint remaining_data;
   uint skip_bytes;
-  
   result = 0;
   channels_per_frame = 0;
   skip_bytes = 0;
@@ -295,12 +280,10 @@ SAMPLE_RATE_CALCULATION:
     }
     sample_rate = 0xb40;
   }
-  
   remaining_data = data_size - 1;
   data_ptr = audio_data + 1;
   channel_mode = 0;
   total_frames = remaining_data;
-  
   if ((format_header & 3) == 0) {
     frame_count = 1;
     skip_bytes = channels_per_frame;
@@ -408,7 +391,6 @@ SAMPLE_RATE_CALCULATION:
       }
     }
   }
-  
   if (decode_mode == 0) {
     if ((int)total_frames < UI_MAX_CHANNEL_COUNT) {
       channel_sizes[frame_count - 1] = (short)total_frames;
@@ -458,14 +440,13 @@ DECODE_SUCCESS:
   }
   return 0xfffffffc;
 }
-
 /**
  * @brief UI系统音频块处理函数
  * @param param_1 参数1
  * @param param_2 参数2
  * @param param_3 参数3
  * @return uint64_t 处理结果
- * 
+ *
  * 该函数处理音频数据块，用于UI系统的音频处理模块
  */
 uint64_t ui_system_process_audio_chunk(uint64_t param_1, uint64_t param_2, int param_3)
@@ -484,7 +465,6 @@ uint64_t ui_system_process_audio_chunk(uint64_t param_1, uint64_t param_2, int p
   uint total_frames;
   byte *data_ptr;
   uint skip_bytes;
-  
   format_header = *param_1;
   if ((char)format_header < '\0') {
     sample_rate = UI_SAMPLE_RATE_BASE << (format_header >> 3 & 3);
@@ -507,11 +487,9 @@ SAMPLE_RATE_PROCESSING:
     }
     sample_rate = 0xb40;
   }
-  
   remaining_data = param_3 - 1;
   data_ptr = param_1 + 1;
   total_frames = result;
-  
   if ((format_header & 3) == 0) {
     frame_count = 1;
   }
@@ -614,7 +592,6 @@ SAMPLE_RATE_PROCESSING:
       }
     }
   }
-  
   if (param_3 == 0) {
     if ((int)total_frames < UI_MAX_CHANNEL_COUNT) {
       param_2[frame_count - 1] = (short)total_frames;
@@ -664,11 +641,10 @@ PROCESSING_SUCCESS:
   }
   return 0xfffffffc;
 }
-
 /**
  * @brief UI系统音频数据验证函数
  * @return int 验证结果
- * 
+ *
  * 该函数验证音频数据的完整性和有效性
  */
 int ui_system_validate_audio_data(void)
@@ -686,7 +662,6 @@ int ui_system_validate_audio_data(void)
   int *bytes_processed;
   int64_t buffer_ptr;
   int *total_size;
-  
   if (frame_count < UI_MAX_CHANNEL_COUNT) {
     *(short *)(data_ptr + -2 + result_ptr * 2) = (short)frame_count;
     if (bytes_processed != (int *)0x0) {
@@ -714,25 +689,23 @@ int ui_system_validate_audio_data(void)
   }
   return channel_count;
 }
-
 /**
  * @brief UI系统错误码返回函数
  * @return uint 错误码
- * 
+ *
  * 该函数返回UI系统的错误码
  */
 uint ui_system_return_error_code(void)
 {
   return 0xffffffff;
 }
-
 /**
  * @brief UI系统浮点数组处理函数
  * @param array_ptr 数组指针
  * @param width 宽度
  * @param height 高度
  * @param output_buffer 输出缓冲区
- * 
+ *
  * 该函数处理浮点数组的限制和归一化，用于UI系统的数据处理
  */
 void ui_system_process_float_array(int64_t array_ptr, int width, int height, float *output_buffer)
@@ -767,7 +740,6 @@ void ui_system_process_float_array(int64_t array_ptr, int width, int height, flo
   int8_t temp_array_3[16];
   float *stack_ptr;
   int64_t stack_offset;
-  
   temp_array_2 = UI_FLOAT_ARRAY_MAX;
   temp_array_1 = UI_FLOAT_ARRAY_MIN;
   offset_5 = (int64_t)height;

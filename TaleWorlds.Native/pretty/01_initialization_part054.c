@@ -3,17 +3,13 @@
 #define ResourceReleaser CoreEngine_MemoryPoolManager  // 资源释放器
 #define AdvancedMemoryAllocator CoreMemoryPoolAllocator  // 高级内存分配器
 #define MemoryPoolAllocator CoreMemoryPoolReallocator  // 内存池分配器
-#define StateQueryProcessor FUN_180080380  // 状态查询处理器
-#define SystemStateUpdater FUN_1800802e0  // 系统状态更新器
-
+#define StateQueryProcessor GenericFunction_180080380  // 状态查询处理器
+#define SystemStateUpdater GenericFunction_1800802e0  // 系统状态更新器
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 01_initialization_part054.c - 4 个函数
-
-// 函数: void FUN_1800792ea(void)
-void FUN_1800792ea(void)
-
+// 函数: void GenericFunction_1800792ea(void)
+void GenericFunction_1800792ea(void)
 {
   int64_t *plVar1;
   int64_t *plVar2;
@@ -67,9 +63,8 @@ void FUN_1800792ea(void)
   bool bVar48;
   int32_t unaff_XMM7_Da;
   int32_t unaff_XMM7_Db;
-  uint64_t uStack0000000000000050;
-  uint64_t in_stack_00000058;
-  
+  uint64_t local_buffer_50;
+  uint64_t local_var_58;
   uVar35 = (int)*(char *)(unaff_RDI + 0xd) + *(int *)(unaff_RDI + 0x18);
   pfVar15 = (float *)**(int64_t **)(unaff_RBX + 600);
   lVar43 = (int64_t)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
@@ -130,7 +125,7 @@ void FUN_1800792ea(void)
     iVar40 = *(int *)(lVar16 + 0x1c) + *(int *)(lVar16 + 0x18);
     *(int *)(lVar16 + 0x28) = *(int *)(system_main_module_state + 0x224);
     if (0 < iVar40) {
-      uStack0000000000000050 = in_stack_00000058;
+      local_buffer_50 = local_var_58;
       lVar31 = (int64_t)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
       uVar30 = StateQueryProcessor(lVar31,iVar40,lVar43,pfVar15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(int32_t *)(lVar16 + 0x30) = uVar30;
@@ -152,7 +147,7 @@ void FUN_1800792ea(void)
         else {
           *(int *)(lVar16 + 0x40) = iVar40;
           if (*plVar1 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
             ResourceReleaser();
           }
           *plVar1 = 0;
@@ -255,7 +250,7 @@ void FUN_1800792ea(void)
                 }
                 else {
                   if (lVar43 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     ResourceReleaser();
                   }
                   do {
@@ -277,7 +272,7 @@ void FUN_1800792ea(void)
         uVar35 = uVar33 >> 0xb;
         *(uint *)(lVar16 + 0x2c) = uVar33;
         if (uVar35 == (int)cVar14 + uVar33 >> 0xb) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           memcpy(*(int64_t *)(puVar39 + (uint64_t)uVar35 * 2 + 2) +
                  (uint64_t)(uVar33 + uVar35 * -0x800) * 4,puVar44,(uVar37 & 0xffffffff) << 2);
         }
@@ -298,16 +293,9 @@ void FUN_1800792ea(void)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180079309(int64_t param_1,uint param_2,uint64_t param_3,float *param_4)
-void FUN_180079309(int64_t param_1,uint param_2,uint64_t param_3,float *param_4)
-
+// 函数: void GenericFunction_180079309(int64_t param_1,uint param_2,uint64_t param_3,float *param_4)
+void GenericFunction_180079309(int64_t param_1,uint param_2,uint64_t param_3,float *param_4)
 {
   int64_t *plVar1;
   int64_t *plVar2;
@@ -360,9 +348,8 @@ void FUN_180079309(int64_t param_1,uint param_2,uint64_t param_3,float *param_4)
   bool bVar47;
   int32_t unaff_XMM7_Da;
   int32_t unaff_XMM7_Db;
-  uint64_t uStack0000000000000050;
-  uint64_t in_stack_00000058;
-  
+  uint64_t local_buffer_50;
+  uint64_t local_var_58;
   param_1 = (int64_t)*(int *)(param_1 + 0x250) * 0x128 + param_1;
   lVar15 = *(int64_t *)(param_1 + 8 + (uint64_t)(param_2 >> 0xd) * 8);
   lVar31 = (uint64_t)(param_2 + (param_2 >> 0xd) * -0x2000) * 0x40;
@@ -420,7 +407,7 @@ void FUN_180079309(int64_t param_1,uint param_2,uint64_t param_3,float *param_4)
     iVar39 = *(int *)(lVar15 + 0x1c) + *(int *)(lVar15 + 0x18);
     *(int *)(lVar15 + 0x28) = *(int *)(system_main_module_state + 0x224);
     if (0 < iVar39) {
-      uStack0000000000000050 = in_stack_00000058;
+      local_buffer_50 = local_var_58;
       lVar31 = (int64_t)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
       uVar29 = StateQueryProcessor(lVar31,iVar39,param_1,param_4,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(int32_t *)(lVar15 + 0x30) = uVar29;
@@ -442,7 +429,7 @@ void FUN_180079309(int64_t param_1,uint param_2,uint64_t param_3,float *param_4)
         else {
           *(int *)(lVar15 + 0x40) = iVar39;
           if (*plVar1 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
             ResourceReleaser();
           }
           *plVar1 = 0;
@@ -545,7 +532,7 @@ void FUN_180079309(int64_t param_1,uint param_2,uint64_t param_3,float *param_4)
                 }
                 else {
                   if (lVar33 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     ResourceReleaser();
                   }
                   do {
@@ -567,7 +554,7 @@ void FUN_180079309(int64_t param_1,uint param_2,uint64_t param_3,float *param_4)
         uVar30 = uVar40 >> 0xb;
         *(uint *)(lVar15 + 0x2c) = uVar40;
         if (uVar30 == (int)cVar14 + uVar40 >> 0xb) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           memcpy(*(int64_t *)(puVar38 + (uint64_t)uVar30 * 2 + 2) +
                  (uint64_t)(uVar40 + uVar30 * -0x800) * 4,puVar43,(uVar36 & 0xffffffff) << 2);
         }
@@ -588,16 +575,9 @@ void FUN_180079309(int64_t param_1,uint param_2,uint64_t param_3,float *param_4)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18007940e(void)
-void FUN_18007940e(void)
-
+// 函数: void GenericFunction_18007940e(void)
+void GenericFunction_18007940e(void)
 {
   int64_t *plVar1;
   int64_t *plVar2;
@@ -624,19 +604,18 @@ void FUN_18007940e(void)
   uint64_t uVar22;
   uint64_t uVar23;
   bool bVar24;
-  uint64_t uStack0000000000000050;
-  uint64_t in_stack_00000058;
-  
+  uint64_t local_buffer_50;
+  uint64_t local_var_58;
   lVar5 = *(int64_t *)(unaff_RBX + 600);
   if (*(int *)(lVar5 + 0x28) != *(int *)(system_main_module_state + 0x224)) {
     iVar16 = *(int *)(lVar5 + 0x1c) + *(int *)(lVar5 + 0x18);
     *(int *)(lVar5 + 0x28) = *(int *)(system_main_module_state + 0x224);
     if (0 < iVar16) {
-      uStack0000000000000050 = in_stack_00000058;
+      local_buffer_50 = local_var_58;
       lVar12 = (int64_t)*(int *)(system_parameter_buffer + 0xe78) * 0x128 + system_parameter_buffer + 0xc28;
       uVar6 = StateQueryProcessor(lVar12,iVar16);
       *(int32_t *)(lVar5 + 0x30) = uVar6;
-      FUN_1800802e0(lVar12,uVar6);
+      GenericFunction_1800802e0(lVar12,uVar6);
       if (*(int64_t *)(lVar5 + 0x10) == 0) {
         if (*(int *)(lVar5 + 0x18) != 0) {
           *(int32_t *)(lVar5 + 0x2c) = *(int32_t *)(lVar5 + 0x30);
@@ -654,7 +633,7 @@ void FUN_18007940e(void)
         else {
           *(int *)(lVar5 + 0x40) = iVar16;
           if (*plVar1 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
             ResourceReleaser();
           }
           *plVar1 = 0;
@@ -757,7 +736,7 @@ void FUN_18007940e(void)
                 }
                 else {
                   if (lVar9 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     ResourceReleaser();
                   }
                   do {
@@ -779,7 +758,7 @@ void FUN_18007940e(void)
         uVar7 = uVar17 >> 0xb;
         *(uint *)(lVar5 + 0x2c) = uVar17;
         if (uVar7 == (int)cVar4 + uVar17 >> 0xb) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           memcpy(*(int64_t *)(puVar15 + (uint64_t)uVar7 * 2 + 2) +
                  (uint64_t)(uVar17 + uVar7 * -0x800) * 4,puVar20,(uVar13 & 0xffffffff) << 2);
         }
@@ -800,16 +779,10 @@ void FUN_18007940e(void)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-void * FUN_180079430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+void * GenericFunction_180079430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t uVar1;
-  
   uVar1 = 0xfffffffffffffffe;
   if (*(int64_t *)(param_1 + 0x1b8) != 0) {
     return (void *)(*(int64_t *)(param_1 + 0x1b8) + 0x10);
@@ -820,16 +793,12 @@ void * FUN_180079430(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t 
     if (init_system_config_ui == -1) {
       init_system_config_ui = &memory_allocator_3432_ptr;
       init_system_config_ui = &system_ptr_9178;
-
-
 // 函数: void SystemInitializer(int64_t param_1)
 void SystemInitializer(int64_t param_1)
-
 {
   int64_t lVar1;
   int iVar2;
   int64_t lVar3;
-  
   if (((*(byte *)(param_1 + 0xfd) & 0x20) != 0) && (*(int64_t *)(param_1 + 0x1e0) != 0)) {
     iVar2 = 0;
     lVar3 = 0;
@@ -848,11 +817,7 @@ void SystemInitializer(int64_t param_1)
   }
   return;
 }
-
-
-
-int8_t FUN_18007953e(void)
-
+int8_t GenericFunction_18007953e(void)
 {
   int8_t *puVar1;
   int8_t uVar2;
@@ -860,7 +825,6 @@ int8_t FUN_18007953e(void)
   int64_t unaff_RBX;
   int iVar4;
   int64_t lVar5;
-  
   iVar4 = 0;
   lVar5 = 0;
   do {
@@ -879,7 +843,6 @@ int8_t FUN_18007953e(void)
   } while (iVar4 < 0x10);
   return uVar2;
 }
-
 /* ============================================================================
  * 文件结构总结
  * ============================================================================
@@ -895,12 +858,12 @@ int8_t FUN_18007953e(void)
  *    - SystemStateUpdater: 系统状态更新器
  *
  * 2. 核心函数实现
- *    - FUN_1800792ea: 系统初始化状态管理函数
- *    - FUN_180079309: 参数化系统初始化函数
- *    - FUN_18007940e: 简化系统初始化函数
- *    - FUN_180079430: 系统资源管理函数
+ *    - GenericFunction_1800792ea: 系统初始化状态管理函数
+ *    - GenericFunction_180079309: 参数化系统初始化函数
+ *    - GenericFunction_18007940e: 简化系统初始化函数
+ *    - GenericFunction_180079430: 系统资源管理函数
  *    - SystemInitializer: 系统状态控制函数
- *    - FUN_18007953e: 系统状态查询函数
+ *    - GenericFunction_18007953e: 系统状态查询函数
  *
  * 3. 技术特性
  *    - 内存管理优化
@@ -913,7 +876,7 @@ int8_t FUN_18007953e(void)
  * ============================================================================
  * 日期         | 版本    | 作者    | 描述
  * ------------|---------|---------|------
- * 2025-08-28  | 1.0     | Claude  | 初始版本，完成FUN_函数替换和文档添加
+ * 2025-08-28  | 1.0     | Claude  | 初始版本，完成原始函数替换和文档添加
  *
  * ============================================================================
  */

@@ -1,13 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part292.c - 2 个函数
-
-// 函数: void FUN_18082d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *param_4,
-void FUN_18082d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *param_4,
+// 函数: void function_82d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *param_4,
+void function_82d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *param_4,
                   float *param_5,float *param_6,float *param_7,uint param_8,uint param_9,
                   uint param_10,uint param_11)
-
 {
   float *pfVar1;
   float fVar2;
@@ -30,7 +27,6 @@ void FUN_18082d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *pa
   int8_t in_ZMM4 [64];
   int8_t auVar18 [64];
   int8_t auVar16 [64];
-  
   auVar7 = ui_system_memory_config;
   iVar8 = (int)param_8 >> 3;
   if (iVar8 != 0) {
@@ -55,7 +51,7 @@ void FUN_18082d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *pa
   auVar7 = ui_system_memory_config;
   for (param_8 = param_8 & 7; ui_system_memory_config = auVar7, param_8 != 0; param_8 = param_8 - 1) {
     pfVar1 = param_4 + -1;
-                    // WARNING: Read-only address (ram,0x000180980640) is written
+// WARNING: Read-only address (ram,0x000180980640) is written
     param_4 = param_4 + -1;
     param_5 = param_5 + -1;
     *(float *)*param_1 = *pfVar1;
@@ -63,7 +59,7 @@ void FUN_18082d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *pa
     param_1 = (int8_t (*) [32])(*param_1 + 8);
     auVar7 = ui_system_memory_config;
   }
-                    // WARNING: Read-only address (ram,0x000180980640) is written
+// WARNING: Read-only address (ram,0x000180980640) is written
   for (iVar8 = (int)param_9 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
     auVar11._0_4_ = (float)param_2[-8] * param_4[-8];
     auVar11._4_4_ = (float)param_2[-7] * param_4[-7];
@@ -259,16 +255,9 @@ void FUN_18082d350(int8_t (*param_1) [32],uint *param_2,float *param_3,float *pa
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *param_4)
-void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *param_4)
-
+// 函数: void function_82d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *param_4)
+void function_82d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *param_4)
 {
   float *pfVar1;
   float fVar2;
@@ -293,13 +282,12 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
   int8_t auVar17 [32];
   int8_t in_ZMM4 [64];
   int8_t auVar18 [64];
-  float *in_stack_00000048;
-  float *in_stack_00000050;
-  uint in_stack_00000060;
-  uint in_stack_00000068;
-  uint in_stack_00000070;
+  float *local_var_48;
+  float *local_buffer_50;
+  uint local_buffer_60;
+  uint local_buffer_68;
+  uint local_buffer_70;
   int8_t auVar16 [64];
-  
   auVar7 = ui_system_memory_config;
   if (in_EAX != 0) {
     in_ZMM4 = ZEXT3264(ui_system_memory_config);
@@ -323,7 +311,7 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
   auVar7 = ui_system_memory_config;
   for (param_2 = param_2 & 7; ui_system_memory_config = auVar7, param_2 != 0; param_2 = param_2 - 1) {
     pfVar1 = param_4 + -1;
-                    // WARNING: Read-only address (ram,0x000180980640) is written
+// WARNING: Read-only address (ram,0x000180980640) is written
     param_4 = param_4 + -1;
     in_R10 = in_R10 + -1;
     *(float *)*param_1 = *pfVar1;
@@ -331,8 +319,8 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     param_1 = (int8_t (*) [32])(*param_1 + 8);
     auVar7 = ui_system_memory_config;
   }
-                    // WARNING: Read-only address (ram,0x000180980640) is written
-  for (iVar8 = (int)in_stack_00000060 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
+// WARNING: Read-only address (ram,0x000180980640) is written
+  for (iVar8 = (int)local_buffer_60 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
     auVar11._0_4_ = (float)in_R11[-8] * param_4[-8];
     auVar11._4_4_ = (float)in_R11[-7] * param_4[-7];
     auVar11._8_4_ = (float)in_R11[-6] * param_4[-6];
@@ -343,13 +331,13 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     auVar11._24_4_ = (float)in_R11[-2] * param_4[-2];
     auVar14 = vpermps_avx2(auVar7,auVar11._0_32_);
     fVar2 = in_ZMM0._28_4_;
-    auVar17._0_4_ = auVar14._0_4_ + *param_3 * *in_stack_00000048;
-    auVar17._4_4_ = auVar14._4_4_ + param_3[1] * in_stack_00000048[1];
-    auVar17._8_4_ = auVar14._8_4_ + param_3[2] * in_stack_00000048[2];
-    auVar17._12_4_ = auVar14._12_4_ + param_3[3] * in_stack_00000048[3];
-    auVar17._16_4_ = auVar14._16_4_ + param_3[4] * in_stack_00000048[4];
-    auVar17._20_4_ = auVar14._20_4_ + param_3[5] * in_stack_00000048[5];
-    auVar17._24_4_ = auVar14._24_4_ + param_3[6] * in_stack_00000048[6];
+    auVar17._0_4_ = auVar14._0_4_ + *param_3 * *local_var_48;
+    auVar17._4_4_ = auVar14._4_4_ + param_3[1] * local_var_48[1];
+    auVar17._8_4_ = auVar14._8_4_ + param_3[2] * local_var_48[2];
+    auVar17._12_4_ = auVar14._12_4_ + param_3[3] * local_var_48[3];
+    auVar17._16_4_ = auVar14._16_4_ + param_3[4] * local_var_48[4];
+    auVar17._20_4_ = auVar14._20_4_ + param_3[5] * local_var_48[5];
+    auVar17._24_4_ = auVar14._24_4_ + param_3[6] * local_var_48[6];
     auVar17._28_4_ = auVar14._28_4_ + fVar2;
     in_ZMM4 = ZEXT3264(auVar17);
     auVar14._4_4_ = (float)in_R11[-7] * in_R10[-7];
@@ -361,19 +349,19 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     auVar14._24_4_ = (float)in_R11[-2] * in_R10[-2];
     auVar14._28_4_ = fVar2;
     auVar14 = vpermps_avx2(auVar7,auVar14);
-    auVar13._0_4_ = auVar14._0_4_ + *param_3 * *in_stack_00000050;
-    auVar13._4_4_ = auVar14._4_4_ + param_3[1] * in_stack_00000050[1];
-    auVar13._8_4_ = auVar14._8_4_ + param_3[2] * in_stack_00000050[2];
-    auVar13._12_4_ = auVar14._12_4_ + param_3[3] * in_stack_00000050[3];
-    auVar13._16_4_ = auVar14._16_4_ + param_3[4] * in_stack_00000050[4];
-    auVar13._20_4_ = auVar14._20_4_ + param_3[5] * in_stack_00000050[5];
-    auVar13._24_4_ = auVar14._24_4_ + param_3[6] * in_stack_00000050[6];
+    auVar13._0_4_ = auVar14._0_4_ + *param_3 * *local_buffer_50;
+    auVar13._4_4_ = auVar14._4_4_ + param_3[1] * local_buffer_50[1];
+    auVar13._8_4_ = auVar14._8_4_ + param_3[2] * local_buffer_50[2];
+    auVar13._12_4_ = auVar14._12_4_ + param_3[3] * local_buffer_50[3];
+    auVar13._16_4_ = auVar14._16_4_ + param_3[4] * local_buffer_50[4];
+    auVar13._20_4_ = auVar14._20_4_ + param_3[5] * local_buffer_50[5];
+    auVar13._24_4_ = auVar14._24_4_ + param_3[6] * local_buffer_50[6];
     auVar13._28_4_ = auVar14._28_4_ + fVar2;
     in_ZMM2 = ZEXT3264(auVar13);
     in_R11 = in_R11 + -8;
     param_4 = param_4 + -8;
     in_R10 = in_R10 + -8;
-    in_stack_00000048 = in_stack_00000048 + 8;
+    local_var_48 = local_var_48 + 8;
     auVar3 = vunpcklps_avx(auVar17,auVar13);
     auVar14 = vunpckhps_avx(auVar17,auVar13);
     auVar13 = vperm2f128_avx(auVar3,auVar14,0x20);
@@ -382,31 +370,31 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     auVar14 = vperm2f128_avx(auVar3,auVar14,0x31);
     param_1[1] = auVar14;
     param_1 = param_1 + 2;
-    in_stack_00000050 = in_stack_00000050 + 8;
+    local_buffer_50 = local_buffer_50 + 8;
     param_3 = param_3 + 8;
   }
   auVar7 = ui_system_memory_config;
-  for (in_stack_00000060 = in_stack_00000060 & 7; ui_system_memory_config = auVar7, in_stack_00000060 != 0;
-      in_stack_00000060 = in_stack_00000060 - 1) {
+  for (local_buffer_60 = local_buffer_60 & 7; ui_system_memory_config = auVar7, local_buffer_60 != 0;
+      local_buffer_60 = local_buffer_60 - 1) {
     auVar4 = vfmadd132ss_fma(ZEXT416((uint)param_4[-1]),
-                             ZEXT416((uint)(*in_stack_00000048 * *param_3)),ZEXT416(in_R11[-1]));
+                             ZEXT416((uint)(*local_var_48 * *param_3)),ZEXT416(in_R11[-1]));
     *(int *)*param_1 = auVar4._0_4_;
     in_ZMM0 = ZEXT464((uint)in_R10[-1]);
     fVar2 = in_R10[-1] * (float)in_R11[-1];
     in_ZMM2 = ZEXT464((uint)fVar2);
     auVar4 = vfmadd132ss_fma(ZEXT416((uint)*param_3),ZEXT416((uint)fVar2),
-                             ZEXT416((uint)*in_stack_00000050));
+                             ZEXT416((uint)*local_buffer_50));
     in_R11 = in_R11 + -1;
     param_4 = param_4 + -1;
     in_R10 = in_R10 + -1;
-    in_stack_00000048 = in_stack_00000048 + 1;
+    local_var_48 = local_var_48 + 1;
     *(int *)(*param_1 + 4) = auVar4._0_4_;
     param_1 = (int8_t (*) [32])(*param_1 + 8);
-    in_stack_00000050 = in_stack_00000050 + 1;
+    local_buffer_50 = local_buffer_50 + 1;
     param_3 = param_3 + 1;
     auVar7 = ui_system_memory_config;
   }
-  for (iVar8 = (int)in_stack_00000068 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
+  for (iVar8 = (int)local_buffer_68 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
     auVar3 = vpermps_avx2(auVar7,*(int8_t (*) [32])(in_R11 + -8));
     auVar12._0_4_ = auVar3._0_4_ * *param_4;
     auVar12._4_4_ = auVar3._4_4_ * param_4[1];
@@ -416,7 +404,7 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     auVar12._20_4_ = auVar3._20_4_ * param_4[5];
     auVar12._28_36_ = in_ZMM0._28_36_;
     auVar12._24_4_ = auVar3._24_4_ * param_4[6];
-    auVar14 = vpermps_avx2(auVar7,*(int8_t (*) [32])(in_stack_00000048 + -8));
+    auVar14 = vpermps_avx2(auVar7,*(int8_t (*) [32])(local_var_48 + -8));
     auVar15._0_4_ = auVar14._0_4_ * *param_3;
     auVar15._4_4_ = auVar14._4_4_ * param_3[1];
     auVar15._8_4_ = auVar14._8_4_ * param_3[2];
@@ -425,7 +413,7 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     auVar15._20_4_ = auVar14._20_4_ * param_3[5];
     auVar15._28_36_ = in_ZMM2._28_36_;
     auVar15._24_4_ = auVar14._24_4_ * param_3[6];
-    auVar13 = vpermps_avx2(auVar7,*(int8_t (*) [32])(in_stack_00000050 + -8));
+    auVar13 = vpermps_avx2(auVar7,*(int8_t (*) [32])(local_buffer_50 + -8));
     auVar14 = vsubps_avx(auVar12._0_32_,auVar15._0_32_);
     in_ZMM4 = ZEXT3264(auVar14);
     auVar5._4_4_ = auVar13._4_4_ * param_3[1];
@@ -446,8 +434,8 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     auVar6._28_4_ = in_ZMM0._28_4_;
     auVar3 = vsubps_avx(auVar6,auVar5);
     in_R11 = in_R11 + -8;
-    in_stack_00000048 = in_stack_00000048 + -8;
-    in_stack_00000050 = in_stack_00000050 + -8;
+    local_var_48 = local_var_48 + -8;
+    local_buffer_50 = local_buffer_50 + -8;
     param_4 = param_4 + 8;
     auVar13 = vunpcklps_avx(auVar14,auVar3);
     auVar14 = vunpckhps_avx(auVar14,auVar3);
@@ -461,30 +449,30 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     in_R10 = in_R10 + 8;
     param_3 = param_3 + 8;
   }
-  in_stack_00000068 = in_stack_00000068 & 7;
-  if (in_stack_00000068 != 0) {
+  local_buffer_68 = local_buffer_68 & 7;
+  if (local_buffer_68 != 0) {
     lVar9 = (int64_t)param_4 - (int64_t)param_3;
     lVar10 = (int64_t)in_R10 - (int64_t)param_3;
     do {
-      pfVar1 = in_stack_00000048 + -1;
-      in_stack_00000048 = in_stack_00000048 + -1;
+      pfVar1 = local_var_48 + -1;
+      local_var_48 = local_var_48 + -1;
       in_R11 = in_R11 + -1;
       auVar4 = vfmsub132ss_fma(ZEXT416(*in_R11),ZEXT416((uint)(*pfVar1 * *param_3)),
                                ZEXT416(*(uint *)(lVar9 + (int64_t)param_3)));
       *(int *)*param_1 = auVar4._0_4_;
-      in_ZMM2 = ZEXT464((uint)(in_stack_00000050[-1] * *param_3));
-      auVar4 = vfmsub132ss_fma(ZEXT416(*in_R11),ZEXT416((uint)(in_stack_00000050[-1] * *param_3)),
+      in_ZMM2 = ZEXT464((uint)(local_buffer_50[-1] * *param_3));
+      auVar4 = vfmsub132ss_fma(ZEXT416(*in_R11),ZEXT416((uint)(local_buffer_50[-1] * *param_3)),
                                ZEXT416(*(uint *)(lVar10 + (int64_t)param_3)));
-      in_stack_00000050 = in_stack_00000050 + -1;
+      local_buffer_50 = local_buffer_50 + -1;
       param_3 = param_3 + 1;
       *(int *)(*param_1 + 4) = auVar4._0_4_;
       param_1 = (int8_t (*) [32])(*param_1 + 8);
-      in_stack_00000068 = in_stack_00000068 - 1;
-    } while (in_stack_00000068 != 0);
+      local_buffer_68 = local_buffer_68 - 1;
+    } while (local_buffer_68 != 0);
   }
   auVar7 = ui_system_memory_config;
-  for (iVar8 = (int)in_stack_00000070 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
-    auVar14 = vpermps_avx2(auVar7,*(int8_t (*) [32])(in_stack_00000048 + -8));
+  for (iVar8 = (int)local_buffer_70 >> 3; iVar8 != 0; iVar8 = iVar8 + -1) {
+    auVar14 = vpermps_avx2(auVar7,*(int8_t (*) [32])(local_var_48 + -8));
     auVar18._0_4_ = auVar14._0_4_ * -1.0;
     auVar18._4_4_ = auVar14._4_4_ * -1.0;
     auVar18._8_4_ = auVar14._8_4_ * -1.0;
@@ -495,7 +483,7 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     auVar18._24_4_ = auVar14._24_4_ * -1.0;
     auVar13 = auVar18._0_32_;
     in_ZMM4 = ZEXT3264(auVar13);
-    auVar14 = vpermps_avx2(auVar7,*(int8_t (*) [32])(in_stack_00000050 + -8));
+    auVar14 = vpermps_avx2(auVar7,*(int8_t (*) [32])(local_buffer_50 + -8));
     auVar16._0_4_ = auVar14._0_4_ * -1.0;
     auVar16._4_4_ = auVar14._4_4_ * -1.0;
     auVar16._8_4_ = auVar14._8_4_ * -1.0;
@@ -506,8 +494,8 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     auVar16._24_4_ = auVar14._24_4_ * -1.0;
     auVar14 = auVar16._0_32_;
     in_ZMM2 = ZEXT3264(auVar14);
-    in_stack_00000048 = in_stack_00000048 + -8;
-    in_stack_00000050 = in_stack_00000050 + -8;
+    local_var_48 = local_var_48 + -8;
+    local_buffer_50 = local_buffer_50 + -8;
     auVar3 = vunpcklps_avx(auVar13,auVar14);
     auVar14 = vunpckhps_avx(auVar13,auVar14);
     auVar13 = vperm2f128_avx(auVar3,auVar14,0x20);
@@ -516,23 +504,17 @@ void FUN_18082d365(int8_t (*param_1) [32],uint param_2,float *param_3,float *par
     param_1[1] = auVar14;
     param_1 = param_1 + 2;
   }
-  in_stack_00000070 = in_stack_00000070 & 7;
-  if (in_stack_00000070 != 0) {
-    lVar9 = (int64_t)in_stack_00000048 - (int64_t)in_stack_00000050;
+  local_buffer_70 = local_buffer_70 & 7;
+  if (local_buffer_70 != 0) {
+    lVar9 = (int64_t)local_var_48 - (int64_t)local_buffer_50;
     do {
-      in_stack_00000050 = in_stack_00000050 + -1;
-      *(uint *)*param_1 = *(uint *)(lVar9 + (int64_t)in_stack_00000050) ^ 0x80000000;
-      *(float *)(*param_1 + 4) = -*in_stack_00000050;
-      in_stack_00000070 = in_stack_00000070 - 1;
+      local_buffer_50 = local_buffer_50 + -1;
+      *(uint *)*param_1 = *(uint *)(lVar9 + (int64_t)local_buffer_50) ^ 0x80000000;
+      *(float *)(*param_1 + 4) = -*local_buffer_50;
+      local_buffer_70 = local_buffer_70 - 1;
       param_1 = (int8_t (*) [32])(*param_1 + 8);
-    } while (in_stack_00000070 != 0);
+    } while (local_buffer_70 != 0);
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

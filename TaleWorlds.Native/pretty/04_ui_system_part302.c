@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part302.c - 1 个函数
-
-// 函数: void FUN_180834880(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
-void FUN_180834880(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
-
+// 函数: void function_834880(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
+void function_834880(float *param_1,uint param_2,int64_t param_3,uint *param_4,int64_t *param_5)
 {
   int64_t lVar1;
   int8_t auVar2 [16];
@@ -52,14 +49,14 @@ void FUN_180834880(float *param_1,uint param_2,int64_t param_3,uint *param_4,int
   int64_t lVar59;
   float fVar60;
   int8_t auVar61 [16];
-  int8_t auStack_f8 [24];
-  uint64_t uStack_e0;
-  uint64_t uStack_d8;
+  int8_t stack_array_f8 [24];
+  uint64_t local_var_e0;
+  uint64_t local_var_d8;
   int iStack_c8;
   int iStack_c4;
   int iStack_c0;
   int iStack_bc;
-  uint64_t uStack_b8;
+  uint64_t local_var_b8;
   int8_t auVar24 [16];
   int8_t auVar27 [16];
   int8_t auVar30 [16];
@@ -76,9 +73,8 @@ void FUN_180834880(float *param_1,uint param_2,int64_t param_3,uint *param_4,int
   int8_t auVar46 [16];
   int8_t auVar44 [16];
   int8_t auVar47 [16];
-  
   piVar21 = &iStack_c8;
-  uStack_b8 = GET_SECURITY_COOKIE() ^ (uint64_t)&iStack_c8;
+  local_var_b8 = GET_SECURITY_COOKIE() ^ (uint64_t)&iStack_c8;
   uVar20 = (uint64_t)param_1 & 0xf;
   for (; (uVar20 != 0 && (param_2 != 0)); param_2 = param_2 - 1) {
     uVar54 = param_4[1] * 6;
@@ -121,10 +117,10 @@ void FUN_180834880(float *param_1,uint param_2,int64_t param_3,uint *param_4,int
     auVar58._0_8_ = lVar10;
     auVar61._0_8_ = lVar59 * 2 + lVar10;
     auVar61._8_8_ = lVar59 * 3 + lVar10;
-    piVar21 = (int *)auStack_f8;
+    piVar21 = (int *)stack_array_f8;
     do {
-      uStack_d8 = CONCAT44(auVar61._12_4_,auVar61._4_4_);
-      uStack_e0 = CONCAT44(auVar58._12_4_,auVar58._4_4_);
+      local_var_d8 = CONCAT44(auVar61._12_4_,auVar61._4_4_);
+      local_var_e0 = CONCAT44(auVar58._12_4_,auVar58._4_4_);
       uVar20 = (uint64_t)(uint)(auVar58._4_4_ * 6);
       fVar53 = (float)(uVar54 >> 1) * 4.656613e-10;
       fVar60 = (float)(uVar55 >> 1) * 4.656613e-10;
@@ -339,14 +335,8 @@ void FUN_180834880(float *param_1,uint param_2,int64_t param_3,uint *param_4,int
       param_2 = param_2 - 1;
     } while (param_2 != 0);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   *(uint64_t *)((int64_t)piVar21 + -8) = 0x180834f5a;
-  SystemSecurityChecker(uStack_b8 ^ (uint64_t)&iStack_c8);
+  SystemSecurityChecker(local_var_b8 ^ (uint64_t)&iStack_c8);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

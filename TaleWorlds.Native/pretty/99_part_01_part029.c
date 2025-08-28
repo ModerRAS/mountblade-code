@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_01_part029.c - 1 个函数
-
-// 函数: void FUN_1800bc4a0(int64_t param_1)
-void FUN_1800bc4a0(int64_t param_1)
-
+// 函数: void function_0bc4a0(int64_t param_1)
+void function_0bc4a0(int64_t param_1)
 {
-  FUN_1800bcab0();
+  function_0bcab0();
   _Mtx_destroy_in_situ();
   if (*(int64_t **)(param_1 + 0x410) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0x410) + 0x38))();
@@ -128,7 +125,7 @@ void FUN_1800bc4a0(int64_t param_1)
   if (*(int64_t **)(param_1 + 0x2d0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0x2d0) + 0x38))();
   }
-  FUN_1800c0830();
+  function_0c0830();
   if (*(int64_t **)(param_1 + 0x298) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0x298) + 0x38))();
   }
@@ -239,9 +236,3 @@ void FUN_1800bc4a0(int64_t param_1)
   }
   return;
 }
-
-
-
-
-
-

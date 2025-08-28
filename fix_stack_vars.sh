@@ -1,14 +1,32 @@
 #!/bin/bash
 
-# 栈变量名替换脚本
-# 将 stack0x 格式的变量名替换为有意义的名称
+# pretty-code栈变量优化清理脚本
+# 用于清理代码库中剩余的栈变量标记
 
-cd /root/WorkSpace/CSharp/mountblade-code/TaleWorlds.Native/pretty
+echo "开始清理栈变量标记..."
 
-# 替换栈变量名为有意义的名称
-sed -i 's/&stack0x00000090/&config_buffer_90/g' 06_utilities_part022.c
-sed -i 's/&stack0x00000094/&config_buffer_94/g' 06_utilities_part022.c
-sed -i 's/&stack0x000000b8/&data_buffer_b8/g' 06_utilities_part022.c
-sed -i 's/&stack0x000000b0/&data_buffer_b0/g' 06_utilities_part022.c
+# 统计处理前的数量
+before_count=$(grep -r "in_stack_0x\|uStack00000000" . --include="*.c" --include="*.h" | wc -l)
+echo "处理前栈变量标记数量: $before_count"
 
-echo "栈变量名替换完成"
+# 清理十六进制地址格式的栈变量
+# in_stack_0x00000050 -> local_stack_50
+find . -name "*.c" -o -name "*.h" | xargs sed -i 's/in_stack_0x000000\([0-9a-fA-F]\{1,2\}\)/local_stack_\1/g'
+find . -name "*.c" -o -name "*.h" | xargs sed -i 's/in_stack_0x00000\([0-9a-fA-F]\{1,3\}\)/local_stack_\1/g'
+find . -name "*.c" -o -name "*.h" | xargs sed -i 's/in_stack_0x0000\([0-9a-fA-F]\{1,4\}\)/local_stack_\1/g'
+
+# uStack00000000000000b8 -> local_stack_b8
+find . -name "*.c" -o -name "*.h" | xargs sed -i 's/uStack00000000000000\([0-9a-fA-F]\{1,2\}\)/local_stack_\1/g'
+find . -name "*.c" -o -name "*.h" | xargs sed -i 's/uStack000000000000\([0-9a-fA-F]\{1,3\}\)/local_stack_\1/g'
+find . -name "*.c" -o -name "*.h" | xargs sed -i 's/uStack0000000000\([0-9a-fA-F]\{1,4\}\)/local_stack_\1/g'
+find . -name "*.c" -o -name "*.h" | xargs sed -i 's/uStack00000000\([0-9a-fA-F]\{1,6\}\)/local_stack_\1/g'
+
+# 统计处理后的数量
+after_count=$(grep -r "in_stack_0x\|uStack00000000" . --include="*.c" --include="*.h" | wc -l)
+echo "处理后栈变量标记数量: $after_count"
+
+# 计算清理数量
+cleaned_count=$((before_count - after_count))
+echo "已清理栈变量标记数量: $cleaned_count"
+
+echo "栈变量标记清理完成！"

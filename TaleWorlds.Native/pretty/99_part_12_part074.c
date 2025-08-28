@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_12_part074.c - 1 个函数
-
-// 函数: void FUN_1807fbbbf(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
-void FUN_1807fbbbf(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
-
+// 函数: void function_7fbbbf(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
+void function_7fbbbf(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t param_4)
 {
   float fVar1;
   float fVar2;
@@ -42,7 +39,6 @@ void FUN_1807fbbbf(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
-  
   lVar19 = in_R11 + 0x20;
   pfVar20 = (float *)(lVar19 * 0x10 + unaff_RDI);
   lVar18 = unaff_RBP - (int64_t)unaff_RBX;
@@ -133,9 +129,3 @@ void FUN_1807fbbbf(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t par
   } while (unaff_ESI != 0);
   return;
 }
-
-
-
-
-
-

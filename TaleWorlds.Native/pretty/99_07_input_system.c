@@ -1,8 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
-
 //============================================================================
 // 99_07_input_system.c - 输入系统高级管理和控制模块
-// 
 // 本模块包含14个核心函数，主要负责：
 // - 输入设备管理和初始化
 // - 输入事件处理和分发
@@ -11,7 +9,6 @@
 // - 输入缓冲区管理和优化
 // - 输入映射和转换处理
 // - 输入系统调试和监控
-//
 // 技术特点：
 // - 支持多种输入设备类型
 // - 实现实时输入事件处理
@@ -20,11 +17,9 @@
 // - 优化输入延迟和响应时间
 // - 提供输入映射和配置功能
 //============================================================================
-
 //============================================================================
 // 常量定义
 //============================================================================
-
 // 输入设备类型常量
 #define INPUT_DEVICE_TYPE_KEYBOARD      0x00000001  // 键盘设备
 #define INPUT_DEVICE_TYPE_MOUSE         0x00000002  // 鼠标设备
@@ -33,7 +28,6 @@
 #define INPUT_DEVICE_TYPE_TOUCH         0x00000010  // 触摸设备
 #define INPUT_DEVICE_TYPE_MOTION        0x00000020  // 运动控制设备
 #define INPUT_DEVICE_TYPE_VIRTUAL       0x00000040  // 虚拟输入设备
-
 // 输入事件类型常量
 #define INPUT_EVENT_TYPE_KEY_DOWN       0x00000001  // 按键按下事件
 #define INPUT_EVENT_TYPE_KEY_UP         0x00000002  // 按键释放事件
@@ -45,24 +39,20 @@
 #define INPUT_EVENT_TYPE_TOUCH_BEGIN    0x00000080  // 触摸开始事件
 #define INPUT_EVENT_TYPE_TOUCH_MOVE     0x00000100  // 触摸移动事件
 #define INPUT_EVENT_TYPE_TOUCH_END      0x00000200  // 触摸结束事件
-
 // 输入状态常量
 #define INPUT_STATE_IDLE               0x00000000  // 输入空闲状态
 #define INPUT_STATE_ACTIVE             0x00000001  // 输入活动状态
 #define INPUT_STATE_DISABLED           0x00000002  // 输入禁用状态
 #define INPUT_STATE_CALIBRATING        0x00000004  // 输入校准状态
 #define INPUT_STATE_ERROR              0x00000008  // 输入错误状态
-
 // 输入缓冲区常量
 #define INPUT_BUFFER_SIZE              1024         // 输入缓冲区大小
 #define INPUT_MAX_DEVICES              16           // 最大输入设备数
 #define INPUT_MAX_EVENTS_PER_FRAME     64           // 每帧最大事件数
 #define INPUT_DEAD_ZONE                0.1f         // 输入死区阈值
-
 //============================================================================
 // 类型定义
 //============================================================================
-
 // 输入设备类型枚举
 typedef enum {
     INPUT_DEVICE_UNKNOWN = 0,                    // 未知设备
@@ -75,7 +65,6 @@ typedef enum {
     INPUT_DEVICE_VIRTUAL,                         // 虚拟设备
     INPUT_DEVICE_COUNT                            // 设备类型总数
 } InputDeviceType;
-
 // 输入事件类型枚举
 typedef enum {
     INPUT_EVENT_UNKNOWN = 0,                      // 未知事件
@@ -93,7 +82,6 @@ typedef enum {
     INPUT_EVENT_TOUCH_END,                        // 触摸结束
     INPUT_EVENT_COUNT                             // 事件类型总数
 } InputEventType;
-
 // 输入状态枚举
 typedef enum {
     INPUT_STATE_INITIALIZING = 0,                 // 输入系统初始化中
@@ -103,14 +91,12 @@ typedef enum {
     INPUT_STATE_SHUTTING_DOWN,                    // 输入系统关闭中
     INPUT_STATE_ERROR                             // 输入系统错误
 } InputSystemState;
-
 //============================================================================
 // 结构体定义
 //============================================================================
-
 /**
  * @brief 输入设备信息结构体
- * 
+ *
  * 存储输入设备的基本信息和状态
  */
 typedef struct {
@@ -128,10 +114,9 @@ typedef struct {
     uint32_t last_update_time;                    // 最后更新时间
     uint32_t event_count;                         // 事件计数
 } InputDevice;
-
 /**
  * @brief 输入事件结构体
- * 
+ *
  * 存储输入事件的详细信息
  */
 typedef struct {
@@ -169,10 +154,9 @@ typedef struct {
         } touch;
     } event_data;                                 // 事件数据联合
 } InputEvent;
-
 /**
  * @brief 输入系统配置结构体
- * 
+ *
  * 存储输入系统的配置参数
  */
 typedef struct {
@@ -186,10 +170,9 @@ typedef struct {
     uint32_t enable_background_input;             // 启用后台输入
     uint32_t enable_device_hotplug;               // 启用设备热插拔
 } InputSystemConfig;
-
 /**
  * @brief 输入系统状态结构体
- * 
+ *
  * 存储输入系统的运行状态信息
  */
 typedef struct {
@@ -204,102 +187,84 @@ typedef struct {
     uint32_t error_count;                         // 错误计数
     uint32_t warning_count;                       // 警告计数
 } InputSystemState;
-
 //============================================================================
 // 全局变量声明
 //============================================================================
-
 // 输入设备管理
 static InputDevice g_input_devices[INPUT_MAX_DEVICES]; // 输入设备数组
 static uint32_t g_device_count = 0;                     // 设备数量
 static uint32_t g_next_device_id = 1;                   // 下一个设备ID
-
 // 输入事件管理
 static InputEvent g_input_events[INPUT_BUFFER_SIZE];     // 输入事件缓冲区
 static uint32_t g_event_head = 0;                        // 事件队列头
 static uint32_t g_event_tail = 0;                        // 事件队列尾
 static uint32_t g_event_count = 0;                       // 事件计数
-
 // 输入系统状态
 static InputSystemConfig g_system_config;               // 系统配置
 static InputSystemState g_system_state;                // 系统状态
 static uint32_t g_system_initialized = 0;               // 系统初始化标志
-
 // 输入映射和配置
 static uint32_t g_input_mapping[256];                   // 输入映射表
 static float g_axis_sensitivity[32];                   // 轴灵敏度
 static float g_axis_dead_zone[32];                     // 轴死区
-
 //============================================================================
 // 函数声明
 //============================================================================
-
 // 输入系统核心函数
 uint32_t InputSystem_Initialize(void);
 void InputSystem_Shutdown(void);
 uint32_t InputSystem_Update(void);
 uint32_t InputSystem_ProcessEvents(void);
-
 // 输入设备管理函数
 uint32_t InputDevice_Register(InputDeviceType type, const char* name, const char* vendor);
 uint32_t InputDevice_Unregister(uint32_t device_id);
 InputDevice* InputDevice_GetById(uint32_t device_id);
 uint32_t InputDevice_Initialize(InputDevice* device);
 void InputDevice_Shutdown(InputDevice* device);
-
 // 输入事件处理函数
 uint32_t InputEvent_Push(const InputEvent* event);
 uint32_t InputEvent_Pop(InputEvent* event);
 uint32_t InputEvent_Peek(InputEvent* event);
 void InputEvent_Clear(void);
-
 // 输入状态查询函数
 uint32_t InputSystem_GetState(void);
 uint32_t InputSystem_GetDeviceCount(void);
 uint32_t InputSystem_GetEventCount(void);
 float InputSystem_GetAverageLatency(void);
-
 // 输入配置函数
 void InputSystem_SetConfig(const InputSystemConfig* config);
 void InputSystem_GetConfig(InputSystemConfig* config);
 void InputSystem_SetSensitivity(float sensitivity);
 void InputSystem_SetDeadZone(float dead_zone);
-
 //============================================================================
 // 函数别名定义
 //============================================================================
-
 // 输入系统核心函数别名
-#define InputSystemInitializer FUN_18023e120
+#define InputSystemInitializer function_23e120
 #define InputSystemShutdown rendering_buffer_2320
 #define InputSystemUpdate processed_var_7792
 #define InputSystemProcessEvents processed_var_8232
-
 // 输入设备管理函数别名
 #define InputDeviceRegistrar processed_var_8264
 #define InputDeviceUnregistrar processed_var_8368
 #define InputDeviceFinder processed_var_8064
 #define InputDeviceInitializer processed_var_8088
 #define InputDeviceShutdowner processed_var_8120
-
 // 输入事件处理函数别名
 #define InputEventPusher processed_var_8160
 #define InputEventPopper processed_var_8192
 #define InputEventPeeker processed_var_8024
 #define InputEventCleaner processed_var_8032
-
 // 输入状态查询函数别名
 #define InputSystemStateGetter processed_var_8336
 #define InputSystemDeviceCounter processed_var_8408
 #define InputSystemEventCounter processed_var_8696
 #define InputSystemLatencyGetter processed_var_8752
-
 // 输入配置函数别名
 #define InputSystemConfigurator processed_var_8824
 #define InputSystemConfigGetter processed_var_8792
 #define InputSystemSensitivitySetter processed_var_8872
 #define InputSystemDeadZoneSetter processed_var_8848
-
 // 全局变量别名
 #define InputSystemGlobalState system_memory_8d40
 #define InputSystemGlobalConfig system_memory_2fe8
@@ -324,21 +289,19 @@ void InputSystem_SetDeadZone(float dead_zone);
 #define InputSystemAllocator processed_var_9536
 #define InputSystemDeallocator processed_var_9568
 #define InputSystemValidator processed_var_9600
-
 //============================================================================
 // 核心函数实现
 //============================================================================
-
 /**
  * @brief 输入系统初始化函数
- * 
+ *
  * 初始化输入系统，包括：
  * - 初始化系统配置
  * - 创建输入设备表
  * - 初始化事件队列
  * - 设置默认映射
  * - 启动输入线程
- * 
+ *
  * @return uint32_t 初始化结果
  * @retval 0 初始化成功
  * @retval 非0 初始化失败
@@ -347,8 +310,7 @@ uint32_t InputSystem_Initialize(void) {
     if (g_system_initialized) {
         return 0; // 已经初始化
     }
-    
-    // 初始化系统配置
+// 初始化系统配置
     memset(&g_system_config, 0, sizeof(InputSystemConfig));
     g_system_config.max_devices = INPUT_MAX_DEVICES;
     g_system_config.buffer_size = INPUT_BUFFER_SIZE;
@@ -359,39 +321,32 @@ uint32_t InputSystem_Initialize(void) {
     g_system_config.enable_exclusive_mode = 0;
     g_system_config.enable_background_input = 1;
     g_system_config.enable_device_hotplug = 1;
-    
-    // 初始化系统状态
+// 初始化系统状态
     memset(&g_system_state, 0, sizeof(InputSystemState));
     g_system_state.system_state = INPUT_STATE_INITIALIZING;
-    
-    // 初始化设备数组
+// 初始化设备数组
     memset(g_input_devices, 0, sizeof(g_input_devices));
     g_device_count = 0;
     g_next_device_id = 1;
-    
-    // 初始化事件队列
+// 初始化事件队列
     memset(g_input_events, 0, sizeof(g_input_events));
     g_event_head = 0;
     g_event_tail = 0;
     g_event_count = 0;
-    
-    // 初始化输入映射
+// 初始化输入映射
     memset(g_input_mapping, 0, sizeof(g_input_mapping));
     for (int i = 0; i < 32; i++) {
         g_axis_sensitivity[i] = 1.0f;
         g_axis_dead_zone[i] = INPUT_DEAD_ZONE;
     }
-    
-    // 设置系统状态为就绪
+// 设置系统状态为就绪
     g_system_state.system_state = INPUT_STATE_READY;
     g_system_initialized = 1;
-    
     return 0;
 }
-
 /**
  * @brief 输入系统关闭函数
- * 
+ *
  * 关闭输入系统，包括：
  * - 停止输入线程
  * - 注销所有设备
@@ -402,108 +357,90 @@ void InputSystem_Shutdown(void) {
     if (!g_system_initialized) {
         return;
     }
-    
-    // 设置系统状态为关闭中
+// 设置系统状态为关闭中
     g_system_state.system_state = INPUT_STATE_SHUTTING_DOWN;
-    
-    // 注销所有设备
+// 注销所有设备
     for (uint32_t i = 0; i < g_device_count; i++) {
         if (g_input_devices[i].device_id != 0) {
             InputDevice_Shutdown(&g_input_devices[i]);
         }
     }
-    
-    // 清理设备数组
+// 清理设备数组
     memset(g_input_devices, 0, sizeof(g_input_devices));
     g_device_count = 0;
     g_next_device_id = 1;
-    
-    // 清理事件队列
+// 清理事件队列
     memset(g_input_events, 0, sizeof(g_input_events));
     g_event_head = 0;
     g_event_tail = 0;
     g_event_count = 0;
-    
-    // 清理输入映射
+// 清理输入映射
     memset(g_input_mapping, 0, sizeof(g_input_mapping));
-    
-    // 设置系统状态为已关闭
+// 设置系统状态为已关闭
     g_system_state.system_state = INPUT_STATE_SHUTTING_DOWN;
     g_system_initialized = 0;
 }
-
 /**
  * @brief 输入系统更新函数
- * 
+ *
  * 更新输入系统状态，包括：
  * - 更新设备状态
  * - 处理输入事件
  * - 更新系统统计
- * 
+ *
  * @return uint32_t 更新结果
  */
 uint32_t InputSystem_Update(void) {
     if (!g_system_initialized) {
         return 1; // 系统未初始化
     }
-    
-    // 设置系统状态为运行中
+// 设置系统状态为运行中
     g_system_state.system_state = INPUT_STATE_RUNNING;
-    
-    // 更新所有设备状态
+// 更新所有设备状态
     for (uint32_t i = 0; i < g_device_count; i++) {
         if (g_input_devices[i].device_id != 0) {
-            // 这里可以添加设备状态更新逻辑
+// 这里可以添加设备状态更新逻辑
             g_input_devices[i].last_update_time = g_system_state.frame_count;
         }
     }
-    
-    // 处理输入事件
+// 处理输入事件
     InputSystem_ProcessEvents();
-    
-    // 更新系统统计
+// 更新系统统计
     g_system_state.frame_count++;
     g_system_state.last_update_time = g_system_state.frame_count;
-    
     return 0;
 }
-
 /**
  * @brief 输入事件处理函数
- * 
+ *
  * 处理输入事件队列中的所有事件
- * 
+ *
  * @return uint32_t 处理结果
  */
 uint32_t InputSystem_ProcessEvents(void) {
     if (!g_system_initialized) {
         return 1; // 系统未初始化
     }
-    
     uint32_t processed_count = 0;
-    
-    // 处理事件队列中的所有事件
+// 处理事件队列中的所有事件
     while (g_event_count > 0) {
         InputEvent event;
         if (InputEvent_Pop(&event) == 0) {
-            // 这里可以添加事件处理逻辑
+// 这里可以添加事件处理逻辑
             processed_count++;
             g_system_state.total_events_processed++;
         } else {
             break;
         }
     }
-    
     return processed_count;
 }
-
 //============================================================================
 // 输入设备管理函数实现
 //============================================================================
-
 /**
  * @brief 注册输入设备
- * 
+ *
  * @param type 设备类型
  * @param name 设备名称
  * @param vendor 设备制造商
@@ -513,8 +450,7 @@ uint32_t InputDevice_Register(InputDeviceType type, const char* name, const char
     if (!g_system_initialized || g_device_count >= INPUT_MAX_DEVICES) {
         return 0; // 系统未初始化或设备已满
     }
-    
-    // 查找空闲设备槽位
+// 查找空闲设备槽位
     uint32_t slot = 0;
     for (uint32_t i = 0; i < INPUT_MAX_DEVICES; i++) {
         if (g_input_devices[i].device_id == 0) {
@@ -522,30 +458,24 @@ uint32_t InputDevice_Register(InputDeviceType type, const char* name, const char
             break;
         }
     }
-    
     if (slot == 0) {
         return 0; // 无空闲槽位
     }
-    
-    // 初始化设备
+// 初始化设备
     InputDevice* device = &g_input_devices[slot];
     memset(device, 0, sizeof(InputDevice));
-    
     device->device_type = type;
     device->device_id = g_next_device_id++;
     device->state = INPUT_STATE_ACTIVE;
-    
-    // 设置设备名称
+// 设置设备名称
     if (name) {
         strncpy(device->device_name, name, sizeof(device->device_name) - 1);
     }
-    
-    // 设置设备制造商
+// 设置设备制造商
     if (vendor) {
         strncpy(device->device_vendor, vendor, sizeof(device->device_vendor) - 1);
     }
-    
-    // 根据设备类型设置默认能力
+// 根据设备类型设置默认能力
     switch (type) {
         case INPUT_DEVICE_KEYBOARD:
             device->capabilities = INPUT_EVENT_TYPE_KEY_DOWN | INPUT_EVENT_TYPE_KEY_UP;
@@ -565,21 +495,17 @@ uint32_t InputDevice_Register(InputDeviceType type, const char* name, const char
             device->capabilities = 0;
             break;
     }
-    
-    // 初始化设备
+// 初始化设备
     if (InputDevice_Initialize(device) != 0) {
         return 0; // 设备初始化失败
     }
-    
     g_device_count++;
     g_system_state.device_count = g_device_count;
-    
     return device->device_id;
 }
-
 /**
  * @brief 注销输入设备
- * 
+ *
  * @param device_id 设备ID
  * @return uint32_t 注销结果
  */
@@ -587,8 +513,7 @@ uint32_t InputDevice_Unregister(uint32_t device_id) {
     if (!g_system_initialized || device_id == 0) {
         return 1; // 系统未初始化或设备ID无效
     }
-    
-    // 查找设备
+// 查找设备
     InputDevice* device = NULL;
     for (uint32_t i = 0; i < INPUT_MAX_DEVICES; i++) {
         if (g_input_devices[i].device_id == device_id) {
@@ -596,26 +521,20 @@ uint32_t InputDevice_Unregister(uint32_t device_id) {
             break;
         }
     }
-    
     if (!device) {
         return 1; // 设备未找到
     }
-    
-    // 关闭设备
+// 关闭设备
     InputDevice_Shutdown(device);
-    
-    // 清理设备信息
+// 清理设备信息
     memset(device, 0, sizeof(InputDevice));
-    
     g_device_count--;
     g_system_state.device_count = g_device_count;
-    
     return 0;
 }
-
 /**
  * @brief 根据ID获取输入设备
- * 
+ *
  * @param device_id 设备ID
  * @return InputDevice* 设备指针，未找到返回NULL
  */
@@ -623,19 +542,16 @@ InputDevice* InputDevice_GetById(uint32_t device_id) {
     if (!g_system_initialized || device_id == 0) {
         return NULL;
     }
-    
     for (uint32_t i = 0; i < INPUT_MAX_DEVICES; i++) {
         if (g_input_devices[i].device_id == device_id) {
             return &g_input_devices[i];
         }
     }
-    
     return NULL;
 }
-
 /**
  * @brief 初始化输入设备
- * 
+ *
  * @param device 设备指针
  * @return uint32_t 初始化结果
  */
@@ -643,50 +559,41 @@ uint32_t InputDevice_Initialize(InputDevice* device) {
     if (!device) {
         return 1; // 设备指针无效
     }
-    
-    // 初始化设备状态
+// 初始化设备状态
     device->state = INPUT_STATE_ACTIVE;
     device->last_update_time = 0;
     device->event_count = 0;
-    
-    // 初始化按钮状态
+// 初始化按钮状态
     memset(device->button_states, 0, sizeof(device->button_states));
-    
-    // 初始化轴数值
+// 初始化轴数值
     for (int i = 0; i < 32; i++) {
         device->axis_values[i] = 0.0f;
     }
-    
     return 0;
 }
-
 /**
  * @brief 关闭输入设备
- * 
+ *
  * @param device 设备指针
  */
 void InputDevice_Shutdown(InputDevice* device) {
     if (!device) {
         return;
     }
-    
-    // 设置设备状态
+// 设置设备状态
     device->state = INPUT_STATE_DISABLED;
-    
-    // 清理设备上下文
+// 清理设备上下文
     if (device->device_context) {
-        // 这里可以添加设备特定的清理逻辑
+// 这里可以添加设备特定的清理逻辑
         device->device_context = NULL;
     }
 }
-
 //============================================================================
 // 输入事件处理函数实现
 //============================================================================
-
 /**
  * @brief 推送输入事件
- * 
+ *
  * @param event 事件指针
  * @return uint32_t 推送结果
  */
@@ -694,26 +601,21 @@ uint32_t InputEvent_Push(const InputEvent* event) {
     if (!g_system_initialized || !event) {
         return 1; // 系统未初始化或事件指针无效
     }
-    
-    // 检查事件队列是否已满
+// 检查事件队列是否已满
     if (g_event_count >= INPUT_BUFFER_SIZE) {
         g_system_state.dropped_events++;
         return 1; // 事件队列已满
     }
-    
-    // 复制事件到队列
+// 复制事件到队列
     memcpy(&g_input_events[g_event_tail], event, sizeof(InputEvent));
-    
-    // 更新队列尾指针
+// 更新队列尾指针
     g_event_tail = (g_event_tail + 1) % INPUT_BUFFER_SIZE;
     g_event_count++;
-    
     return 0;
 }
-
 /**
  * @brief 弹出输入事件
- * 
+ *
  * @param event 事件指针
  * @return uint32_t 弹出结果
  */
@@ -721,20 +623,16 @@ uint32_t InputEvent_Pop(InputEvent* event) {
     if (!g_system_initialized || !event || g_event_count == 0) {
         return 1; // 系统未初始化、事件指针无效或队列空
     }
-    
-    // 复制事件
+// 复制事件
     memcpy(event, &g_input_events[g_event_head], sizeof(InputEvent));
-    
-    // 更新队列头指针
+// 更新队列头指针
     g_event_head = (g_event_head + 1) % INPUT_BUFFER_SIZE;
     g_event_count--;
-    
     return 0;
 }
-
 /**
  * @brief 查看输入事件
- * 
+ *
  * @param event 事件指针
  * @return uint32_t 查看结果
  */
@@ -742,13 +640,10 @@ uint32_t InputEvent_Peek(InputEvent* event) {
     if (!g_system_initialized || !event || g_event_count == 0) {
         return 1; // 系统未初始化、事件指针无效或队列空
     }
-    
-    // 复制事件但不移动指针
+// 复制事件但不移动指针
     memcpy(event, &g_input_events[g_event_head], sizeof(InputEvent));
-    
     return 0;
 }
-
 /**
  * @brief 清空输入事件队列
  */
@@ -756,146 +651,123 @@ void InputEvent_Clear(void) {
     if (!g_system_initialized) {
         return;
     }
-    
-    // 清空事件队列
+// 清空事件队列
     memset(g_input_events, 0, sizeof(g_input_events));
     g_event_head = 0;
     g_event_tail = 0;
     g_event_count = 0;
 }
-
 //============================================================================
 // 输入状态查询函数实现
 //============================================================================
-
 /**
  * @brief 获取输入系统状态
- * 
+ *
  * @return uint32_t 系统状态
  */
 uint32_t InputSystem_GetState(void) {
     if (!g_system_initialized) {
         return INPUT_STATE_ERROR;
     }
-    
     return (uint32_t)g_system_state.system_state;
 }
-
 /**
  * @brief 获取输入设备数量
- * 
+ *
  * @return uint32_t 设备数量
  */
 uint32_t InputSystem_GetDeviceCount(void) {
     if (!g_system_initialized) {
         return 0;
     }
-    
     return g_device_count;
 }
-
 /**
  * @brief 获取输入事件数量
- * 
+ *
  * @return uint32_t 事件数量
  */
 uint32_t InputSystem_GetEventCount(void) {
     if (!g_system_initialized) {
         return 0;
     }
-    
     return g_event_count;
 }
-
 /**
  * @brief 获取平均输入延迟
- * 
+ *
  * @return float 平均延迟
  */
 float InputSystem_GetAverageLatency(void) {
     if (!g_system_initialized) {
         return 0.0f;
     }
-    
     return g_system_state.average_latency;
 }
-
 //============================================================================
 // 输入配置函数实现
 //============================================================================
-
 /**
  * @brief 设置输入系统配置
- * 
+ *
  * @param config 配置指针
  */
 void InputSystem_SetConfig(const InputSystemConfig* config) {
     if (!g_system_initialized || !config) {
         return;
     }
-    
     memcpy(&g_system_config, config, sizeof(InputSystemConfig));
 }
-
 /**
  * @brief 获取输入系统配置
- * 
+ *
  * @param config 配置指针
  */
 void InputSystem_GetConfig(InputSystemConfig* config) {
     if (!g_system_initialized || !config) {
         return;
     }
-    
     memcpy(config, &g_system_config, sizeof(InputSystemConfig));
 }
-
 /**
  * @brief 设置输入灵敏度
- * 
+ *
  * @param sensitivity 灵敏度值
  */
 void InputSystem_SetSensitivity(float sensitivity) {
     if (!g_system_initialized) {
         return;
     }
-    
     g_system_config.sensitivity = sensitivity;
-    
-    // 更新所有轴的灵敏度
+// 更新所有轴的灵敏度
     for (int i = 0; i < 32; i++) {
         g_axis_sensitivity[i] = sensitivity;
     }
 }
-
 /**
  * @brief 设置输入死区
- * 
+ *
  * @param dead_zone 死区值
  */
 void InputSystem_SetDeadZone(float dead_zone) {
     if (!g_system_initialized) {
         return;
     }
-    
     g_system_config.dead_zone = dead_zone;
-    
-    // 更新所有轴的死区
+// 更新所有轴的死区
     for (int i = 0; i < 32; i++) {
         g_axis_dead_zone[i] = dead_zone;
     }
 }
-
 //============================================================================
 // 模块功能说明
 //============================================================================
-
 /**
  * @module 输入系统模块
- * 
+ *
  * @description
  * 该模块实现了完整的输入系统功能，支持多种输入设备和事件处理。
- * 
+ *
  * 主要特性：
  * 1. 多设备支持 - 支持键盘、鼠标、游戏手柄、触摸等多种输入设备
  * 2. 事件驱动 - 采用事件驱动的架构，高效处理输入事件
@@ -903,7 +775,7 @@ void InputSystem_SetDeadZone(float dead_zone) {
  * 4. 热插拔支持 - 支持设备的动态连接和断开
  * 5. 配置灵活 - 提供丰富的配置选项和参数调整
  * 6. 状态管理 - 完整的设备状态和系统状态管理
- * 
+ *
  * 技术要点：
  * - 使用环形缓冲区管理输入事件
  * - 支持设备热插拔和动态注册
@@ -911,48 +783,46 @@ void InputSystem_SetDeadZone(float dead_zone) {
  * - 提供了性能监控和统计信息
  * - 支持多线程输入处理
  * - 实现了输入死区和灵敏度调整
- * 
+ *
  * 应用场景：
  * - 游戏输入处理
  * - 用户界面交互
  * - 系统控制操作
  * - 多媒体应用
  * - 虚拟现实应用
- * 
+ *
  * 性能特征：
  * - 时间复杂度：O(1) 到 O(n)
  * - 空间复杂度：O(n)
  * - 支持高频率输入更新
  * - 内存使用效率高
- * 
+ *
  * 可扩展性：
  * - 模块化设计便于扩展
  * - 支持自定义输入设备
  * - 可配置的输入映射
  * - 易于集成到现有系统
  */
-
 //============================================================================
 // 版权声明
 //============================================================================
-
 /**
  * @copyright
  * 本代码由 Claude Code 自动生成，仅供学习和研究使用。
- * 
+ *
  * @license
  * MIT License - 详见 LICENSE 文件
- * 
+ *
  * @disclaimer
  * 本代码按"原样"提供，不提供任何形式的明示或暗示的保证，
  * 包括但不限于适销性、特定用途适用性和非侵权性的保证。
- * 
+ *
  * @author
  * Claude Code - AI 代码生成器
- * 
+ *
  * @version
  * 1.0.0
- * 
+ *
  * @date
  * 2025-08-28
  */

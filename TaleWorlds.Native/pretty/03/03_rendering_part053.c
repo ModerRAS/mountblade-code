@@ -1,50 +1,39 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part053.c - 渲染系统高级标志位和材质处理子模块
 // 包含9个核心函数，涵盖渲染标志位处理、材质参数初始化、材质数据解析等高级渲染功能
-
 // 函数: void rendering_system_initialize(void)
 // 功能: 渲染系统初始化函数，占位符实现
 // 参数: 无
 // 返回值: 无
 void rendering_system_initialize(void)
-
 {
   return;
 }
-
-
-
 // 函数: uint64_t simple_rendering_return(uint64_t param1,uint64_t param2,uint64_t param3)
 // 功能: 简单的渲染返回函数，直接返回第三个参数
-// 参数: 
-//   param1 - 第一个参数（未使用）
-//   param2 - 第二个参数（未使用）
-//   param3 - 第三个参数（返回值）
+// 参数:
+// param1 - 第一个参数（未使用）
+// param2 - 第二个参数（未使用）
+// param3 - 第三个参数（返回值）
 // 返回值: 返回第三个参数
 uint64_t simple_rendering_return(uint64_t param1,uint64_t param2,uint64_t param3)
-
 {
   return param3;
 }
-
-
-
 // 函数: float * calculate_text_rendering_metrics(float *font_metrics,float *dimensions,float font_size,float max_width,float line_height,
 // 功能: 计算文本渲染指标，处理文本换行和尺寸计算
-// 参数: 
-//   font_metrics - 字体指标数组
-//   dimensions - 尺寸输出数组 [width, height]
-//   font_size - 字体大小
-//   max_width - 最大宽度
-//   line_height - 行高
-//   text_start - 文本起始位置
-//   text_end - 文本结束位置
-//   output_pos - 输出位置指针
+// 参数:
+// font_metrics - 字体指标数组
+// dimensions - 尺寸输出数组 [width, height]
+// font_size - 字体大小
+// max_width - 最大宽度
+// line_height - 行高
+// text_start - 文本起始位置
+// text_end - 文本结束位置
+// output_pos - 输出位置指针
 // 返回值: 尺寸数组指针
 float * calculate_text_rendering_metrics(float *font_metrics,float *dimensions,float font_size,float max_width,float line_height,
                      char *text_start,char *text_end,uint64_t *output_pos)
-
 {
   char current_char;
   bool is_wrapped;
@@ -59,7 +48,6 @@ float * calculate_text_rendering_metrics(float *font_metrics,float *dimensions,f
   float line_width;
   float accumulated_width;
   float scale_factor;
-  
   best_break_pos = text_end;
   if (text_end == (char *)0x0) {
     text_length = -1;
@@ -157,19 +145,15 @@ TEXT_PROCESSING_COMPLETE:
   }
   return dimensions;
 }
-
-
-
 // 函数: void process_rendering_text_metrics(float *font_metrics,uint64_t *output_pos,float font_size,float max_width)
 // 功能: 处理渲染文本指标，优化文本布局计算
-// 参数: 
-//   font_metrics - 字体指标数组
-//   output_pos - 输出位置指针
-//   font_size - 字体大小
-//   max_width - 最大宽度
+// 参数:
+// font_metrics - 字体指标数组
+// output_pos - 输出位置指针
+// font_size - 字体大小
+// max_width - 最大宽度
 // 返回值: 无
 void process_rendering_text_metrics(float *font_metrics,uint64_t *output_pos,float font_size,float max_width)
-
 {
   char current_char;
   bool is_wrapped;
@@ -192,7 +176,6 @@ void process_rendering_text_metrics(float *font_metrics,uint64_t *output_pos,flo
   float texture_width;
   float texture_height;
   float texture_depth;
-  
   *(uint64_t *)(render_context + 8) = render_params;
   *(uint64_t *)(render_context + 0x10) = font_cache;
   *(uint64_t *)(render_context + 0x18) = texture_manager;
@@ -312,17 +295,13 @@ TEXT_PROCESSING_COMPLETE:
   }
   return;
 }
-
-
-
 // 函数: void optimized_text_rendering_calculator(uint64_t render_context,float scale_factor)
 // 功能: 优化的文本渲染计算器，处理文本布局和换行
-// 参数: 
-//   render_context - 渲染上下文
-//   scale_factor - 缩放因子
+// 参数:
+// render_context - 渲染上下文
+// scale_factor - 缩放因子
 // 返回值: 无
 void optimized_text_rendering_calculator(uint64_t render_context,float scale_factor)
-
 {
   char current_char;
   int char_width;
@@ -340,7 +319,6 @@ void optimized_text_rendering_calculator(uint64_t render_context,float scale_fac
   float max_width;
   uint char_code;
   uint64_t *output_pos;
-  
   do {
     char_scale = accumulated_width;
     if (wrap_flag == '\0') {
@@ -419,15 +397,11 @@ TEXT_PROCESSING_COMPLETE:
   }
   return;
 }
-
-
-
 // 函数: void finalize_text_rendering_metrics(void)
 // 功能: 完成文本渲染指标计算，更新最终尺寸
 // 参数: 无 (使用寄存器传递参数)
 // 返回值: 无
 void finalize_text_rendering_metrics(void)
-
 {
   uint64_t text_context;
   float *dimensions;
@@ -435,7 +409,6 @@ void finalize_text_rendering_metrics(void)
   float accumulated_width;
   float max_width;
   uint64_t *output_pos;
-  
   if (*dimensions <= line_width && line_width != *dimensions) {
     *dimensions = line_width;
   }
@@ -447,15 +420,11 @@ void finalize_text_rendering_metrics(void)
   }
   return;
 }
-
-
-
 // 函数: void update_text_rendering_dimensions(void)
 // 功能: 更新文本渲染尺寸，直接设置尺寸值
 // 参数: 无 (使用寄存器传递参数)
 // 返回值: 无
 void update_text_rendering_dimensions(void)
-
 {
   uint64_t text_context;
   float *dimensions;
@@ -463,7 +432,6 @@ void update_text_rendering_dimensions(void)
   float accumulated_width;
   float max_width;
   uint64_t *output_pos;
-  
   *dimensions = line_width;
   if ((max_width < line_width) || (max_width == dimensions[1])) {
     dimensions[1] = accumulated_width + dimensions[1];
@@ -473,22 +441,17 @@ void update_text_rendering_dimensions(void)
   }
   return;
 }
-
-
-
 // 函数: void check_text_rendering_cache(void)
 // 功能: 检查文本渲染缓存，更新缓存值
 // 参数: 无 (使用寄存器传递参数)
 // 返回值: 无
 void check_text_rendering_cache(void)
-
 {
   uint64_t text_context;
   int64_t cache_ptr;
   float accumulated_width;
   float max_width;
   uint64_t *output_pos;
-  
   if (max_width == *(float *)(cache_ptr + 4)) {
     *(float *)(cache_ptr + 4) = accumulated_width + *(float *)(cache_ptr + 4);
   }
@@ -497,42 +460,33 @@ void check_text_rendering_cache(void)
   }
   return;
 }
-
-
-
 // 函数: void simple_text_assignment(void)
 // 功能: 简单的文本赋值函数
 // 参数: 无 (使用寄存器传递参数)
 // 返回值: 无
 void simple_text_assignment(void)
-
 {
   uint64_t *target_ptr;
   uint64_t source_value;
-  
   *target_ptr = source_value;
   return;
 }
-
-
-
 // 函数: void advanced_text_renderer(float *font_metrics,int *render_params,float line_spacing,uint64_t texture_handle,float z_depth,
 // 功能: 高级文本渲染器，处理复杂的文本布局和渲染
-// 参数: 
-//   font_metrics - 字体指标数组
-//   render_params - 渲染参数数组
-//   line_spacing - 行间距
-//   texture_handle - 纹理句柄
-//   z_depth - Z深度值
-//   viewport_data - 视口数据
-//   text_start - 文本起始位置
-//   text_end - 文本结束位置
-//   max_width - 最大宽度
-//   wrap_mode - 换行模式
+// 参数:
+// font_metrics - 字体指标数组
+// render_params - 渲染参数数组
+// line_spacing - 行间距
+// texture_handle - 纹理句柄
+// z_depth - Z深度值
+// viewport_data - 视口数据
+// text_start - 文本起始位置
+// text_end - 文本结束位置
+// max_width - 最大宽度
+// wrap_mode - 换行模式
 // 返回值: 无
 void advanced_text_renderer(float *font_metrics,int *render_params,float line_spacing,uint64_t texture_handle,float z_depth,
                   float *viewport_data,char *text_start,char *text_end,float max_width,char wrap_mode)
-
 {
   int *buffer_params;
   float font_size;
@@ -575,7 +529,6 @@ void advanced_text_renderer(float *font_metrics,int *render_params,float line_sp
   float vertex_v;
   float stack_x;
   float stack_y;
-  
   vertex_buffer = viewport_data;
   line_end = text_end;
   if (text_end == (char *)0x0) {
@@ -783,17 +736,13 @@ CHARACTER_PROCESSING_COMPLETE:
   }
   return;
 }
-
-
-
 // 函数: void optimized_text_rendering_pipeline(float *font_metrics,float max_width)
 // 功能: 优化的文本渲染管线，处理高性能文本渲染
-// 参数: 
-//   font_metrics - 字体指标数组
-//   max_width - 最大宽度
+// 参数:
+// font_metrics - 字体指标数组
+// max_width - 最大宽度
 // 返回值: 无
 void optimized_text_rendering_pipeline(float *font_metrics,float max_width)
-
 {
   int *buffer_params;
   float font_size;
@@ -840,7 +789,6 @@ void optimized_text_rendering_pipeline(float *font_metrics,float max_width)
   char cStack168;
   float in_stack170;
   char in_stack178;
-  
   vertex_y = in_stack170;
   font_size = vertex_buffer[1];
   scale_factor = texture_metrics / *font_metrics;
@@ -1052,5 +1000,3 @@ CHARACTER_PROCESSING_COMPLETE:
   }
   return;
 }
-
-

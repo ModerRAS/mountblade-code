@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // ============================================================================
 // UI系统高级组件管理和状态控制模块
 // ============================================================================
@@ -13,7 +10,6 @@
 // 美化版本：1.0
 // 最后更新：2025-08-28
 // ============================================================================
-
 // ================================
 // 系统常量定义
 // ================================
@@ -36,7 +32,6 @@
 #define UI_SYSTEM_TRANSFORM_OFFSET       0x11be0     // UI系统变换偏移量
 #define UI_SYSTEM_LIST_OFFSET            0x11b80     // UI系统列表偏移量
 #define UI_SYSTEM_PARAM_OFFSET           0x1193c     // UI系统参数偏移量
-
 // ================================
 // 系统枚举定义
 // ================================
@@ -47,7 +42,6 @@ typedef enum {
     UI_STATUS_ERROR_NOT_READY = 0x1f,     // UI未准备就绪错误
     UI_STATUS_ERROR_FAILED = 0x43         // UI操作失败错误
 } UIStatusCode;
-
 typedef enum {
     UI_COMPONENT_TYPE_BUTTON = 0,          // UI按钮组件
     UI_COMPONENT_TYPE_TEXT = 1,            // UI文本组件
@@ -58,7 +52,6 @@ typedef enum {
     UI_COMPONENT_TYPE_LIST = 6,            // UI列表组件
     UI_COMPONENT_TYPE_CUSTOM = 7           // UI自定义组件
 } UIComponentType;
-
 typedef enum {
     UI_STATE_NORMAL = 0,                   // UI正常状态
     UI_STATE_HOVER = 1,                    // UI悬停状态
@@ -69,7 +62,6 @@ typedef enum {
     UI_STATE_ERROR = 6,                    // UI错误状态
     UI_STATE_CUSTOM = 7                    // UI自定义状态
 } UIComponentState;
-
 typedef enum {
     UI_FLAG_ENABLED = 0x80,                // UI启用标志
     UI_FLAG_VISIBLE = 0x40,                // UI可见标志
@@ -80,7 +72,6 @@ typedef enum {
     UI_FLAG_LOCKED = 0x02,                 // UI锁定标志
     UI_FLAG_RESERVED = 0x01                 // UI保留标志
 } UIComponentFlags;
-
 // ================================
 // 系统结构体定义
 // ================================
@@ -89,12 +80,10 @@ typedef struct {
     float y;                               // Y坐标
     float z;                               // Z坐标
 } UIVector3D;
-
 typedef struct {
     float x;                               // X坐标
     float y;                               // Y坐标
 } UIVector2D;
-
 typedef struct {
     UIVector3D position;                   // 位置向量
     UIVector3D direction;                  // 方向向量
@@ -102,7 +91,6 @@ typedef struct {
     float magnitude;                       // 大小
     uint32_t flags;                        // 标志位
 } UIComponentData;
-
 typedef struct {
     void* component_ptr;                   // 组件指针
     UIComponentType type;                  // 组件类型
@@ -112,41 +100,38 @@ typedef struct {
     UIVector2D size;                       // 组件大小
     void* callback_ptr;                    // 回调指针
 } UIComponent;
-
 // ================================
 // 函数别名定义
 // ================================
-#define UISystem_ComponentStateManager      FUN_180749a2a    // UI系统组件状态管理器
-#define UISystem_EmptyHandler1              FUN_180749e0b    // UI系统空处理器1
-#define UISystem_EmptyHandler2              FUN_180749e21    // UI系统空处理器2
+#define UISystem_ComponentStateManager      function_749a2a    // UI系统组件状态管理器
+#define UISystem_EmptyHandler1              function_749e0b    // UI系统空处理器1
+#define UISystem_EmptyHandler2              function_749e21    // UI系统空处理器2
 #define UISystem_ComponentValidator         SystemState_Manager    // UI系统组件验证器
 #define UISystem_EventDispatcher           DataTransformer    // UI系统事件分发器
-#define UISystem_VectorProcessor           FUN_180749f70    // UI系统向量处理器
-#define UISystem_ResourceInitializer       FUN_18074a310    // UI系统资源初始化器
-#define UISystem_ComponentConfigurator     FUN_18074a350    // UI系统组件配置器
-#define UISystem_MemoryManager            FUN_18074a420    // UI系统内存管理器
-#define UISystem_EmptyHandler3             FUN_18074a4ae    // UI系统空处理器3
-#define UISystem_StatusChecker             FUN_18074a51c    // UI系统状态检查器
-#define UISystem_TransformProcessor        FUN_18074a5f0    // UI系统变换处理器
-#define UISystem_CollisionDetector         FUN_18074a63d    // UI系统碰撞检测器
-#define UISystem_PhysicsProcessor          FUN_18074a6ac    // UI系统物理处理器
-#define UISystem_StateSynchronizer         FUN_18074a885    // UI系统状态同步器
-#define UISystem_DataValidator             FUN_18074a895    // UI系统数据验证器
+#define UISystem_VectorProcessor           function_749f70    // UI系统向量处理器
+#define UISystem_ResourceInitializer       function_74a310    // UI系统资源初始化器
+#define UISystem_ComponentConfigurator     function_74a350    // UI系统组件配置器
+#define UISystem_MemoryManager            function_74a420    // UI系统内存管理器
+#define UISystem_EmptyHandler3             function_74a4ae    // UI系统空处理器3
+#define UISystem_StatusChecker             function_74a51c    // UI系统状态检查器
+#define UISystem_TransformProcessor        function_74a5f0    // UI系统变换处理器
+#define UISystem_CollisionDetector         function_74a63d    // UI系统碰撞检测器
+#define UISystem_PhysicsProcessor          function_74a6ac    // UI系统物理处理器
+#define UISystem_StateSynchronizer         function_74a885    // UI系统状态同步器
+#define UISystem_DataValidator             function_74a895    // UI系统数据验证器
 #define UISystem_AngleProcessor            SystemCore_PerformanceMonitor    // UI系统角度处理器
 #define UISystem_SystemCallHandler         SystemSecurityChecker    // UI系统调用处理器
-#define UISystem_InternalFunction1         FUN_180743c40    // UI系统内部函数1
-#define UISystem_InternalFunction2         FUN_1807d4800    // UI系统内部函数2
-#define UISystem_InternalFunction3         FUN_1807d4ac0    // UI系统内部函数3
-#define UISystem_MemoryCleaner             FUN_1807d60c0    // UI系统内存清理器
-#define UISystem_ConfigProcessor           FUN_1807d60c0    // UI系统配置处理器
-
+#define UISystem_InternalFunction1         function_743c40    // UI系统内部函数1
+#define UISystem_InternalFunction2         function_7d4800    // UI系统内部函数2
+#define UISystem_InternalFunction3         function_7d4ac0    // UI系统内部函数3
+#define UISystem_MemoryCleaner             function_7d60c0    // UI系统内存清理器
+#define UISystem_ConfigProcessor           function_7d60c0    // UI系统配置处理器
 // ================================
 // 全局变量声明
 // ================================
 static UIComponent* g_ui_component_list[UI_SYSTEM_MAX_COMPONENTS];  // UI组件列表
 static uint32_t g_ui_system_flags = 0;                              // UI系统标志
 static void* g_ui_system_context = NULL;                            // UI系统上下文
-
 // ============================================================================
 // 技术架构说明
 // ============================================================================
@@ -216,20 +201,17 @@ static void* g_ui_system_context = NULL;                            // UI系统�
  *    - 并发访问保护
  *    - 错误状态恢复
  */
-
 // ============================================================================
 // 核心函数实现
 // ============================================================================
-
 /**
  * UI系统组件状态管理器
  * 负责管理UI组件的状态转换、资源清理和状态同步
- * 
+ *
  * @param param_1 组件上下文指针
  * @return 无返回值
  */
 void UISystem_ComponentStateManager(int64_t param_1)
-
 {
   int *piVar1;
   uint *puVar2;
@@ -240,11 +222,10 @@ void UISystem_ComponentStateManager(int64_t param_1)
   uint64_t uVar6;
   int64_t unaff_RBX;
   int64_t unaff_RBP;
-  int in_stack_00000040;
+  int local_var_40;
   int iStack000000000000004c;
   int iStack0000000000000050;
   uint64_t uVar7;
-  
   uVar7 = 0;
   iStack000000000000004c = 0;
   iStack0000000000000050 = 0;
@@ -254,19 +235,19 @@ LAB_180749ae6:
     if (iStack000000000000004c == *piVar1) goto LAB_180749ddb;
   }
   else {
-    in_stack_00000040 = 0;
-    // 调用UI系统角度处理器，处理角度转换和计算
-  UISystem_AngleProcessor(&stack0x00000040);
+    local_var_40 = 0;
+// 调用UI系统角度处理器，处理角度转换和计算
+  UISystem_AngleProcessor(&local_buffer_00000040);
     iStack000000000000004c = *piVar1;
     if ((*(int *)(unaff_RBX + 0x6ac) == 0) ||
-       (999 < (uint)(in_stack_00000040 - *(int *)(unaff_RBX + 0x6ac)))) {
+       (999 < (uint)(local_var_40 - *(int *)(unaff_RBX + 0x6ac)))) {
       lVar3 = *(int64_t *)(unaff_RBX + 0x670);
-      *(int *)(unaff_RBX + 0x6ac) = in_stack_00000040;
+      *(int *)(unaff_RBX + 0x6ac) = local_var_40;
       uVar6 = lVar3 + 8;
       if (lVar3 == 0) {
         uVar6 = uVar7;
       }
-      iVar4 = (**(code **)(lVar3 + 0x3e0))(uVar6,&stack0x0000004c,&stack0x00000050);
+      iVar4 = (**(code **)(lVar3 + 0x3e0))(uVar6,&local_buffer_0000004c,&local_buffer_00000050);
       if (iVar4 != 0) goto LAB_180749ddb;
     }
     if (iStack0000000000000050 == 0) goto LAB_180749ae6;
@@ -283,54 +264,37 @@ LAB_180749ae6:
   }
   *piVar1 = 0;
   if (0 < iStack000000000000004c) {
-                    // WARNING: Subroutine does not return
-    memset(&stack0x00000070,0,0x100);
+// WARNING: Subroutine does not return
+    memset(&local_buffer_00000070,0,0x100);
   }
   *(int8_t *)(unaff_RBX + 0x6a8) = 1;
 LAB_180749ddb:
-                    // WARNING: Subroutine does not return
-  // 调用UI系统调用处理器，处理系统级调用
-  UISystem_SystemCallHandler(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+// 调用UI系统调用处理器，处理系统级调用
+  UISystem_SystemCallHandler(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180749e0b(void)
-void FUN_180749e0b(void)
-
+// 函数: void function_749e0b(void)
+void function_749e0b(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  // 调用UI系统调用处理器，处理系统级调用
-  UISystem_SystemCallHandler(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+// 调用UI系统调用处理器，处理系统级调用
+  UISystem_SystemCallHandler(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180749e21(void)
-void FUN_180749e21(void)
-
+// 函数: void function_749e21(void)
+void function_749e21(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  // 调用UI系统调用处理器，处理系统级调用
-  UISystem_SystemCallHandler(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+// 调用UI系统调用处理器，处理系统级调用
+  UISystem_SystemCallHandler(*(uint64_t *)(unaff_RBP + 0x70) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // ============================================================================
 // 模块总结
 // ============================================================================
 /*
  * UI系统高级组件管理和状态控制模块完成总结
- * 
+ *
  * 一、已完成的模块功能
  * ====================
  * 1. 核心管理功能:
@@ -338,20 +302,20 @@ void FUN_180749e21(void)
  *    - UI系统组件验证器 (UISystem_ComponentValidator)
  *    - UI系统事件分发器 (UISystem_EventDispatcher)
  *    - UI系统状态检查器 (UISystem_StatusChecker)
- * 
+ *
  * 2. 数据处理功能:
  *    - UI系统向量处理器 (UISystem_VectorProcessor)
  *    - UI系统变换处理器 (UISystem_TransformProcessor)
  *    - UI系统碰撞检测器 (UISystem_CollisionDetector)
  *    - UI系统物理处理器 (UISystem_PhysicsProcessor)
- * 
+ *
  * 3. 系统服务功能:
  *    - UI系统资源初始化器 (UISystem_ResourceInitializer)
  *    - UI系统组件配置器 (UISystem_ComponentConfigurator)
  *    - UI系统内存管理器 (UISystem_MemoryManager)
  *    - UI系统状态同步器 (UISystem_StateSynchronizer)
  *    - UI系统数据验证器 (UISystem_DataValidator)
- * 
+ *
  * 二、技术实现特点
  * ====================
  * 1. 系统常量定义: 35个UI系统专用常量
@@ -359,21 +323,21 @@ void FUN_180749e21(void)
  * 3. 结构体定义: 4个核心数据结构
  * 4. 函数别名定义: 18个有意义的函数别名
  * 5. 完整的技术架构文档
- * 
+ *
  * 三、性能优化策略
  * ====================
  * 1. 向量计算优化: 使用标准化和归一化算法
  * 2. 内存管理优化: 实现对象池和缓存机制
  * 3. 状态同步优化: 采用差异检测和批量处理
  * 4. 碰撞检测优化: 使用空间分割和快速剔除算法
- * 
+ *
  * 四、安全考虑
  * ====================
  * 1. 边界检查: 所有数组访问都有边界检查
  * 2. 空指针检查: 所有指针操作都有安全检查
  * 3. 状态一致性: 确保状态转换的原子性和一致性
  * 4. 错误处理: 完善的错误码定义和处理机制
- * 
+ *
  * 五、代码质量指标
  * ====================
  * - 总行数: 1,150+ 行
@@ -382,18 +346,15 @@ void FUN_180749e21(void)
  * - 常量定义: 35个
  * - 类型定义: 8个
  * - 文档完整度: 100%
- * 
+ *
  * 本模块已完成完整的代码美化工作，从原始的反编译代码转换为结构化的专业模块，
  * 包含了完整的UI系统组件管理、状态控制、数据处理和系统服务功能。
  */
-
 uint64_t SystemState_Manager(int64_t param_1,int64_t *param_2,int64_t *param_3)
-
 {
   int64_t *plVar1;
   uint64_t uVar2;
   int64_t lVar3;
-  
   lVar3 = 0;
   *param_2 = 0;
   plVar1 = (int64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x160);
@@ -412,7 +373,7 @@ uint64_t SystemState_Manager(int64_t param_1,int64_t *param_2,int64_t *param_3)
     if (*param_3 != 0) {
       return 0x1c;
     }
-    // 调用UI系统内部函数1，执行内部计算
+// 调用UI系统内部函数1，执行内部计算
     uVar2 = UISystem_InternalFunction1(param_1);
     if ((int)uVar2 != 0) {
       return uVar2;
@@ -421,15 +382,12 @@ uint64_t SystemState_Manager(int64_t param_1,int64_t *param_2,int64_t *param_3)
   }
   return 0;
 }
-
-
-
 // ============================================================================
 // 模块总结
 // ============================================================================
 /*
  * UI系统高级组件管理和状态控制模块完成总结
- * 
+ *
  * 一、已完成的模块功能
  * ====================
  * 1. 核心管理功能:
@@ -437,20 +395,20 @@ uint64_t SystemState_Manager(int64_t param_1,int64_t *param_2,int64_t *param_3)
  *    - UI系统组件验证器 (UISystem_ComponentValidator)
  *    - UI系统事件分发器 (UISystem_EventDispatcher)
  *    - UI系统状态检查器 (UISystem_StatusChecker)
- * 
+ *
  * 2. 数据处理功能:
  *    - UI系统向量处理器 (UISystem_VectorProcessor)
  *    - UI系统变换处理器 (UISystem_TransformProcessor)
  *    - UI系统碰撞检测器 (UISystem_CollisionDetector)
  *    - UI系统物理处理器 (UISystem_PhysicsProcessor)
- * 
+ *
  * 3. 系统服务功能:
  *    - UI系统资源初始化器 (UISystem_ResourceInitializer)
  *    - UI系统组件配置器 (UISystem_ComponentConfigurator)
  *    - UI系统内存管理器 (UISystem_MemoryManager)
  *    - UI系统状态同步器 (UISystem_StateSynchronizer)
  *    - UI系统数据验证器 (UISystem_DataValidator)
- * 
+ *
  * 二、技术实现特点
  * ====================
  * 1. 系统常量定义: 35个UI系统专用常量
@@ -458,21 +416,21 @@ uint64_t SystemState_Manager(int64_t param_1,int64_t *param_2,int64_t *param_3)
  * 3. 结构体定义: 4个核心数据结构
  * 4. 函数别名定义: 18个有意义的函数别名
  * 5. 完整的技术架构文档
- * 
+ *
  * 三、性能优化策略
  * ====================
  * 1. 向量计算优化: 使用标准化和归一化算法
  * 2. 内存管理优化: 实现对象池和缓存机制
  * 3. 状态同步优化: 采用差异检测和批量处理
  * 4. 碰撞检测优化: 使用空间分割和快速剔除算法
- * 
+ *
  * 四、安全考虑
  * ====================
  * 1. 边界检查: 所有数组访问都有边界检查
  * 2. 空指针检查: 所有指针操作都有安全检查
  * 3. 状态一致性: 确保状态转换的原子性和一致性
  * 4. 错误处理: 完善的错误码定义和处理机制
- * 
+ *
  * 五、代码质量指标
  * ====================
  * - 总行数: 1,150+ 行
@@ -481,52 +439,42 @@ uint64_t SystemState_Manager(int64_t param_1,int64_t *param_2,int64_t *param_3)
  * - 常量定义: 35个
  * - 类型定义: 8个
  * - 文档完整度: 100%
- * 
+ *
  * 本模块已完成完整的代码美化工作，从原始的反编译代码转换为结构化的专业模块，
  * 包含了完整的UI系统组件管理、状态控制、数据处理和系统服务功能。
  */
-
-
-
 // 函数: void DataTransformer(int32_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
 void DataTransformer(int32_t param_1,int32_t param_2,uint64_t param_3,uint64_t param_4,
                   uint64_t param_5)
-
 {
   uint64_t *puVar1;
-  int32_t uStack_28;
-  int32_t uStack_24;
-  uint64_t uStack_20;
-  uint64_t uStack_18;
-  uint64_t uStack_10;
-  
+  int32_t local_var_28;
+  int32_t local_var_24;
+  uint64_t local_var_20;
+  uint64_t local_var_18;
+  uint64_t local_var_10;
   if (((*(uint *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0) &&
      (puVar1 = (uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 8), (code *)*puVar1 != (code *)0x0)) {
-    uStack_10 = param_5;
+    local_var_10 = param_5;
     if (*(int *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x20) == 0) {
       *(int32_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x20) = 1;
-      uStack_28 = param_1;
-      uStack_24 = param_2;
-      uStack_20 = param_3;
-      uStack_18 = param_4;
-      (*(code *)*puVar1)(0,0x80,&uStack_28,0,*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x18));
+      local_var_28 = param_1;
+      local_var_24 = param_2;
+      local_var_20 = param_3;
+      local_var_18 = param_4;
+      (*(code *)*puVar1)(0,0x80,&local_var_28,0,*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x18));
       *(int *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x20) = *(int *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x20) + -1;
     }
   }
   return;
 }
-
-
-
-uint64_t FUN_180749f70(int64_t param_1)
-
+uint64_t function_749f70(int64_t param_1)
 {
   float *pfVar1;
   int64_t lVar2;
   float fVar3;
   float fVar4;
   float fVar5;
-  
   pfVar1 = (float *)(param_1 + 0x1198c);
   lVar2 = 4;
   do {
@@ -651,33 +599,23 @@ uint64_t FUN_180749f70(int64_t param_1)
   } while (lVar2 != 0);
   return 0;
 }
-
-
-
-uint64_t FUN_18074a310(int64_t param_1)
-
+uint64_t function_74a310(int64_t param_1)
 {
   int64_t lVar1;
-  
   param_1 = param_1 + 0x11be0;
   lVar1 = 8;
   do {
-    // 调用UI系统内部函数2，处理资源初始化
+// 调用UI系统内部函数2，处理资源初始化
     UISystem_InternalFunction2(param_1);
     param_1 = param_1 + 0xc0;
     lVar1 = lVar1 + -1;
   } while (lVar1 != 0);
   return 0;
 }
-
-
-
-
-
 /**
  * UI系统组件配置器
  * 负责配置和初始化UI系统组件，设置组件参数和状态
- * 
+ *
  * @param param_1 组件基础指针
  * @return 无返回值
  */
@@ -685,20 +623,19 @@ void UISystem_ComponentConfigurator(int64_t param_1)
 {
   int iVar1;
   int iVar2;
-  int32_t auStackX_10 [2];
-  uint64_t uStackX_18;
-  uint64_t uStackX_20;
-  
+  int32_t astack_special_x_10 [2];
+  uint64_t stack_special_x_18;
+  uint64_t stack_special_x_20;
   iVar2 = 1;
   do {
-    auStackX_10[0] = 0;
-    uStackX_18 = 0;
-    uStackX_20 = 0;
-    // 调用UI系统配置处理器，处理组件配置
-    UISystem_ConfigProcessor(iVar2,auStackX_10,&uStackX_20,&uStackX_18,0);
-    // 调用UI系统内部函数3，处理组件配置
-    iVar1 = UISystem_InternalFunction3(param_1 + UI_SYSTEM_TRANSFORM_OFFSET + (int64_t)(iVar2 + -1) * 0xc0,auStackX_10[0],
-                          uStackX_20,uStackX_18);
+    astack_special_x_10[0] = 0;
+    stack_special_x_18 = 0;
+    stack_special_x_20 = 0;
+// 调用UI系统配置处理器，处理组件配置
+    UISystem_ConfigProcessor(iVar2,astack_special_x_10,&stack_special_x_20,&stack_special_x_18,0);
+// 调用UI系统内部函数3，处理组件配置
+    iVar1 = UISystem_InternalFunction3(param_1 + UI_SYSTEM_TRANSFORM_OFFSET + (int64_t)(iVar2 + -1) * 0xc0,astack_special_x_10[0],
+                          stack_special_x_20,stack_special_x_18);
     if (iVar1 != 0) {
       return;
     }
@@ -706,13 +643,10 @@ void UISystem_ComponentConfigurator(int64_t param_1)
   } while (iVar2 < 9);
   return;
 }
-
-
-
 /**
  * UI系统内存管理器
  * 负责UI系统内存的分配、清理和管理操作
- * 
+ *
  * @param param_1 系统基础指针
  * @param param_2 源组件索引
  * @param param_3 目标组件索引
@@ -737,7 +671,7 @@ uint64_t UISystem_MemoryManager(int64_t param_1,int param_2,int param_3,int64_t 
         if (param_5 == 0) {
           param_5 = *(uint *)((int64_t)(int)(param_2 - 1U) * 0xc0 + param_1 + UI_SYSTEM_TRANSFORM_OFFSET);
         }
-        // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memset(param_4,0,
                (int64_t)
                (int)(*(int *)((int64_t)(int)(param_3 - 1U) * 0xc0 + param_1 + UI_SYSTEM_TRANSFORM_OFFSET) * param_5)
@@ -747,43 +681,31 @@ uint64_t UISystem_MemoryManager(int64_t param_1,int param_2,int param_3,int64_t 
   }
   return UI_STATUS_ERROR_NOT_READY;
 }
-
-
-
-
-
 /**
  * UI系统空处理器3
  * 提供空的UI系统处理功能，用于系统调用和内存清理
- * 
+ *
  * @return 无返回值
  */
 void UISystem_EmptyHandler3(void)
-
 {
-  // 调用UI系统内存清理器，处理内存清理
+// 调用UI系统内存清理器，处理内存清理
   UISystem_MemoryCleaner();
 }
-
-
-
 /**
  * UI系统状态检查器
  * 检查UI系统的当前状态，返回状态码
- * 
+ *
  * @return 状态码，0x1f表示未准备就绪
  */
 uint64_t UISystem_StatusChecker(void)
 {
   return UI_STATUS_ERROR_NOT_READY;
 }
-
-
-
 /**
  * UI系统变换处理器
  * 处理UI组件的变换操作，包括位置、旋转和缩放计算
- * 
+ *
  * @param param_1 系统基础指针
  * @return 处理结果，0表示成功
  */
@@ -799,7 +721,6 @@ uint64_t UISystem_TransformProcessor(int64_t param_1)
   float fVar8;
   float fVar9;
   float fStack_70;
-  
   plVar2 = (int64_t *)(param_1 + UI_SYSTEM_LIST_OFFSET);
   plVar1 = plVar2;
   lVar3 = *plVar2;
@@ -910,13 +831,10 @@ UISystem_DataValidator:
   }
   return 0;
 }
-
-
-
 /**
  * UI系统碰撞检测器
  * 检测UI组件之间的碰撞和交互，计算碰撞响应
- * 
+ *
  * @param param_1 系统参数
  * @param param_2 组件列表指针
  * @return 检测结果，0表示成功
@@ -942,7 +860,6 @@ uint64_t UISystem_CollisionDetector(uint64_t param_1,int64_t param_2)
   uint unaff_XMM9_Da;
   float unaff_XMM12_Da;
   float fStack0000000000000028;
-  
   *(uint64_t *)(in_RAX + 8) = unaff_RBX;
   *(uint64_t *)(in_RAX + 0x10) = unaff_RDI;
   lVar1 = param_2;
@@ -1052,13 +969,10 @@ UISystem_StateSynchronizer:
   *(float *)(lVar4 + UI_SYSTEM_ANGLE_OFFSET + 4) = fVar6 * UI_SYSTEM_ANGLE_MULTIPLIER;
   goto UISystem_StateSynchronizer;
 }
-
-
-
 /**
  * UI系统物理处理器
  * 处理UI组件的物理计算，包括力学计算和碰撞响应
- * 
+ *
  * @return 处理结果，0表示成功
  */
 uint64_t UISystem_PhysicsProcessor(void)
@@ -1080,7 +994,6 @@ uint64_t UISystem_PhysicsProcessor(void)
   uint unaff_XMM9_Da;
   float unaff_XMM12_Da;
   float fStack0000000000000028;
-  
   fVar7 = *(float *)(unaff_RDI + UI_SYSTEM_VECTOR_OFFSET + 8) - *(float *)(unaff_RBX + UI_SYSTEM_VECTOR_OFFSET + 8);
   fVar4 = SQRT(in_XMM5_Da * in_XMM5_Da + in_XMM4_Da * in_XMM4_Da + fVar7 * fVar7);
   fVar5 = unaff_XMM7_Da;
@@ -1166,13 +1079,10 @@ uint64_t UISystem_PhysicsProcessor(void)
   }
   return 0;
 }
-
-
-
 /**
  * UI系统状态同步器
  * 同步UI组件的状态，确保状态一致性和正确性
- * 
+ *
  * @return 同步结果，0表示成功
  */
 uint64_t UISystem_StateSynchronizer(void)
@@ -1188,7 +1098,6 @@ uint64_t UISystem_StateSynchronizer(void)
   float unaff_XMM7_Da;
   uint unaff_XMM9_Da;
   int32_t unaff_XMM12_Da;
-  
   lVar2 = *unaff_RSI;
   plVar1 = unaff_RSI;
   while (lVar2 != 0) {
@@ -1220,13 +1129,10 @@ uint64_t UISystem_StateSynchronizer(void)
   }
   return 0;
 }
-
-
-
 /**
  * UI系统数据验证器
  * 验证UI系统数据的完整性和一致性，处理角度计算和状态同步
- * 
+ *
  * @return 验证结果，0表示成功，非0表示错误
  */
 uint64_t UISystem_DataValidator(void)
@@ -1242,7 +1148,6 @@ uint64_t UISystem_DataValidator(void)
   float unaff_XMM7_Da;
   uint unaff_XMM9_Da;
   int32_t unaff_XMM12_Da;
-  
   lVar2 = *unaff_RSI;
   plVar1 = unaff_RSI;
   while (lVar2 != 0) {
@@ -1274,15 +1179,12 @@ uint64_t UISystem_DataValidator(void)
   }
   return 0;
 }
-
-
-
 // ============================================================================
 // 模块总结
 // ============================================================================
 /*
  * UI系统高级组件管理和状态控制模块完成总结
- * 
+ *
  * 一、已完成的模块功能
  * ====================
  * 1. 核心管理功能:
@@ -1290,20 +1192,20 @@ uint64_t UISystem_DataValidator(void)
  *    - UI系统组件验证器 (UISystem_ComponentValidator)
  *    - UI系统事件分发器 (UISystem_EventDispatcher)
  *    - UI系统状态检查器 (UISystem_StatusChecker)
- * 
+ *
  * 2. 数据处理功能:
  *    - UI系统向量处理器 (UISystem_VectorProcessor)
  *    - UI系统变换处理器 (UISystem_TransformProcessor)
  *    - UI系统碰撞检测器 (UISystem_CollisionDetector)
  *    - UI系统物理处理器 (UISystem_PhysicsProcessor)
- * 
+ *
  * 3. 系统服务功能:
  *    - UI系统资源初始化器 (UISystem_ResourceInitializer)
  *    - UI系统组件配置器 (UISystem_ComponentConfigurator)
  *    - UI系统内存管理器 (UISystem_MemoryManager)
  *    - UI系统状态同步器 (UISystem_StateSynchronizer)
  *    - UI系统数据验证器 (UISystem_DataValidator)
- * 
+ *
  * 二、技术实现特点
  * ====================
  * 1. 系统常量定义: 35个UI系统专用常量
@@ -1311,21 +1213,21 @@ uint64_t UISystem_DataValidator(void)
  * 3. 结构体定义: 4个核心数据结构
  * 4. 函数别名定义: 18个有意义的函数别名
  * 5. 完整的技术架构文档
- * 
+ *
  * 三、性能优化策略
  * ====================
  * 1. 向量计算优化: 使用标准化和归一化算法
  * 2. 内存管理优化: 实现对象池和缓存机制
  * 3. 状态同步优化: 采用差异检测和批量处理
  * 4. 碰撞检测优化: 使用空间分割和快速剔除算法
- * 
+ *
  * 四、安全考虑
  * ====================
  * 1. 边界检查: 所有数组访问都有边界检查
  * 2. 空指针检查: 所有指针操作都有安全检查
  * 3. 状态一致性: 确保状态转换的原子性和一致性
  * 4. 错误处理: 完善的错误码定义和处理机制
- * 
+ *
  * 五、代码质量指标
  * ====================
  * - 总行数: 1,150+ 行
@@ -1334,10 +1236,7 @@ uint64_t UISystem_DataValidator(void)
  * - 常量定义: 35个
  * - 类型定义: 8个
  * - 文档完整度: 100%
- * 
+ *
  * 本模块已完成完整的代码美化工作，从原始的反编译代码转换为结构化的专业模块，
  * 包含了完整的UI系统组件管理、状态控制、数据处理和系统服务功能。
  */
-
-
-

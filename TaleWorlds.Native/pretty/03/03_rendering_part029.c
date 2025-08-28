@@ -1,20 +1,18 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 03_rendering_part029.c - 渲染系统高级处理模块
 // 包含6个核心函数，涵盖渲染对象处理、材质管理、资源清理、状态比较和初始化等功能
-
 /**
  * 渲染对象高级处理函数
  * 根据渲染标志位处理渲染对象的材质数据、变换矩阵和子对象
- * 
+ *
  * @param render_object 渲染对象指针
  * @param context 渲染上下文
  * @param material_data 材质数据指针
  * @param sub_objects 子对象数据指针
  * @param render_flags 渲染标志位
  */
-void process_render_object_advanced(int64_t *render_object, int64_t context, int64_t material_data, 
+void process_render_object_advanced(int64_t *render_object, int64_t context, int64_t material_data,
                                    int64_t sub_objects, uint render_flags) {
   uint64_t temp_ptr;
   int32_t *material_ptr;
@@ -27,12 +25,11 @@ void process_render_object_advanced(int64_t *render_object, int64_t context, int
   int64_t *sub_object_array[2];
   int32_t stack_materials[24];
   int8_t material_buffer[64];
-  
-  // 检查是否启用材质处理
+// 检查是否启用材质处理
   if ((render_flags >> 2 & 1) == 0) {
-    // 处理材质和变换数据
+// 处理材质和变换数据
     if ((render_flags & 10) != 0) {
-      // 复制材质变换数据
+// 复制材质变换数据
       temp_ptr = *(uint64_t *)(material_data + 0x60);
       *(uint64_t *)((int64_t)render_object + 0x214) = *(uint64_t *)(material_data + 0x58);
       *(uint64_t *)((int64_t)render_object + 0x21c) = temp_ptr;
@@ -43,8 +40,7 @@ void process_render_object_advanced(int64_t *render_object, int64_t context, int
       *(uint64_t *)((int64_t)render_object + 0x234) = *(uint64_t *)(material_data + 0x78);
       *(uint64_t *)((int64_t)render_object + 0x23c) = temp_ptr;
       *(int32_t *)((int64_t)render_object + 0x244) = *(int32_t *)(material_data + 0x88);
-      
-      // 复制材质属性值
+// 复制材质属性值
       material_values[0] = *(int32_t *)(material_data + 0x18);
       material_values[1] = *(int32_t *)(material_data + 0x1c);
       material_values[2] = *(int32_t *)(material_data + 0x20);
@@ -61,8 +57,7 @@ void process_render_object_advanced(int64_t *render_object, int64_t context, int
       material_values[13] = *(int32_t *)(material_data + 0x4c);
       material_values[14] = *(int32_t *)(material_data + 0x50);
       material_values[15] = *(int32_t *)(material_data + 0x54);
-      
-      // 复制到栈缓冲区
+// 复制到栈缓冲区
       stack_materials[0] = material_values[0];
       stack_materials[1] = material_values[1];
       stack_materials[2] = material_values[2];
@@ -79,8 +74,7 @@ void process_render_object_advanced(int64_t *render_object, int64_t context, int
       stack_materials[13] = material_values[13];
       stack_materials[14] = material_values[14];
       stack_materials[15] = material_values[15];
-      
-      // 处理子对象材质
+// 处理子对象材质
       if (sub_objects != 0) {
         material_ptr = (int32_t *)
                  process_material_batch(render_flags & 10, material_buffer, &stack_materials, sub_objects + 0x18,
@@ -103,8 +97,7 @@ void process_render_object_advanced(int64_t *render_object, int64_t context, int
         material_values[14] = material_ptr[14];
         material_values[15] = material_ptr[15];
       }
-      
-      // 写入处理后的材质数据
+// 写入处理后的材质数据
       *(int32_t *)(render_object + 0x66) = material_values[0];
       *(int32_t *)((int64_t)render_object + 0x334) = material_values[1];
       *(int32_t *)(render_object + 0x67) = material_values[2];
@@ -121,12 +114,10 @@ void process_render_object_advanced(int64_t *render_object, int64_t context, int
       *(int32_t *)((int64_t)render_object + 0x364) = material_values[13];
       *(int32_t *)(render_object + 0x6d) = material_values[14];
       *(int32_t *)((int64_t)render_object + 0x36c) = material_values[15];
-      
-      // 重置渲染状态
+// 重置渲染状态
       *(int8_t *)(render_object + 100) = 0;
       *(int32_t *)(render_object + 0x42) = *(int32_t *)(material_data + 0x14);
-      
-      // 处理子对象数组
+// 处理子对象数组
       count = 0;
       index = (uint)(render_object[8] - render_object[7] >> 4);
       if (index != 0) {
@@ -149,12 +140,10 @@ void process_render_object_advanced(int64_t *render_object, int64_t context, int
           sub_offset = sub_offset + 0x10;
         } while (count < index);
       }
-      
-      // 执行材质回调
+// 执行材质回调
       (**(code **)(*render_object + 0xf8))(render_object, material_data + 0x1b8);
     }
-    
-    // 处理阴影渲染
+// 处理阴影渲染
     if (((render_flags >> 4 & 1) != 0) && (0 < *(int *)(material_data + 0x170))) {
       sub_object_array[0] = (int64_t *)0x0;
       setup_shadow_rendering(context, sub_object_array, material_data + 0x160);
@@ -165,11 +154,10 @@ void process_render_object_advanced(int64_t *render_object, int64_t context, int
   }
   return;
 }
-
 /**
  * 渲染场景构建函数
  * 构建渲染场景，处理材质、纹理和渲染对象的关系
- * 
+ *
  * @param scene_data 场景数据指针
  * @param render_params 渲染参数
  */
@@ -217,8 +205,7 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
   int64_t stack_array5[4];
   int64_t stack_array6[6];
   uint64_t security_cookie;
-  
-  // 初始化栈数据
+// 初始化栈数据
   texture_data = 0xfffffffffffffffe;
   security_cookie = GLOBAL_SECURITY_COOKIE ^ (uint64_t)temp_buffer;
   offset1 = 0;
@@ -227,8 +214,7 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
   temp_data = allocate_render_data(GLOBAL_RENDER_CONTEXT, 0x1c8, 8, 3);
   scene_obj = create_render_object(temp_data);
   stack_offset1 = scene_obj;
-  
-  // 处理材质路径
+// 处理材质路径
   process_material_path(&texture_ptr1, scene_data + 0x3e);
   while ((0 < (int)texture_flags && (offset2 = strstr(texture_ptr2, &MATERIAL_PATH_DELIMITER), offset2 != 0))) {
     str_len = 6;
@@ -248,17 +234,14 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
     texture_flags = texture_flags - str_len;
     texture_ptr2[texture_flags] = 0;
   }
-  
   *(int32_t *)(scene_obj + 0x10) = 0;
   texture_ptr = &DEFAULT_MATERIAL_NAME;
   if (texture_ptr2 != (void *)0x0) {
     texture_ptr = texture_ptr2;
   }
-  
-  // 设置材质名称
+// 设置材质名称
   (**(code **)(*(int64_t *)(scene_obj + 0xb0) + 0x10))((int64_t *)(scene_obj + 0xb0), texture_ptr);
-  
-  // 复制材质变换数据
+// 复制材质变换数据
   temp_data = *(uint64_t *)((int64_t)scene_data + 0x21c);
   *(uint64_t *)(scene_obj + 0x58) = *(uint64_t *)((int64_t)scene_data + 0x214);
   *(uint64_t *)(scene_obj + 0x60) = temp_data;
@@ -269,8 +252,7 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
   *(uint64_t *)(scene_obj + 0x78) = *(uint64_t *)((int64_t)scene_data + 0x234);
   *(uint64_t *)(scene_obj + 0x80) = temp_data;
   *(int32_t *)(scene_obj + 0x88) = *(int32_t *)((int64_t)scene_data + 0x244);
-  
-  // 复制材质属性
+// 复制材质属性
   temp_data = scene_data[0x67];
   *(uint64_t *)(scene_obj + 0x18) = scene_data[0x66];
   *(uint64_t *)(scene_obj + 0x20) = temp_data;
@@ -292,8 +274,7 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
   *(int32_t *)(scene_obj + 0x50) = material_val2;
   *(int32_t *)(scene_obj + 0x54) = material_val3;
   *(int32_t *)(scene_obj + 0x14) = *(int32_t *)(scene_data + 0x42);
-  
-  // 处理纹理数据
+// 处理纹理数据
   if (scene_data[0x77] == 0) {
     texture_ptr1 = &DEFAULT_TEXTURE_HANDLE;
     texture_ptr2 = texture_buffer1;
@@ -314,15 +295,13 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
     texture_count = 2;
     texture_ptr = texture_ptr4;
   }
-  
-  // 设置纹理名称
+// 设置纹理名称
   temp_texture = &DEFAULT_TEXTURE_NAME;
   if (texture_ptr != (void *)0x0) {
     temp_texture = texture_ptr;
   }
   (**(code **)(*(int64_t *)(scene_obj + 0x160) + 0x10))((int64_t *)(scene_obj + 0x160), temp_texture);
-  
-  // 处理纹理标志
+// 处理纹理标志
   if ((tex_index & 2) != 0) {
     texture_count = tex_index & 0xfffffffd;
     texture_ptr3 = &CLEANUP_TEXTURE_HANDLE;
@@ -332,10 +311,8 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
     texture_count = tex_index & 0xfffffffe;
     texture_ptr1 = &CLEANUP_TEXTURE_HANDLE;
   }
-  
   *(int32_t *)(scene_obj + 0x8c) = 0;
-  
-  // 获取渲染对象数据
+// 获取渲染对象数据
   if ((void *)*scene_data == &DEFAULT_RENDER_OBJECT) {
     if ((scene_data[8] - (int64_t)scene_data[7] & 0xfffffffffffffff0U) != 0) {
       offset1 = *(int64_t *)scene_data[7];
@@ -344,15 +321,13 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
   else {
     offset1 = (**(code **)((void *)*scene_data + 0x178))(scene_data);
   }
-  
   offset2 = *(int64_t *)(offset1 + 0x1b0);
   if (*(int64_t *)(offset1 + 0x1b0) == 0) {
     offset2 = offset1;
   }
   *(int32_t *)(scene_obj + 0x1b8) = *(int32_t *)(offset2 + 0x2d8);
   has_valid_data = 0 < (int)texture_flags;
-  
-  // 处理有效的纹理数据
+// 处理有效的纹理数据
   if (0 < (int)texture_flags) {
     offset1 = get_texture_data(GLOBAL_TEXTURE_MANAGER, &texture_ptr1);
     if ((has_valid_data) && (offset1 != 0)) {
@@ -374,7 +349,6 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
           object_ptr = object_ptr + 2;
         } while (offset2 < obj_count);
       }
-      
       render_params = texture_data;
       if (0 < obj_count + -1) {
         offset1 = 0;
@@ -392,8 +366,7 @@ void build_render_scene(uint64_t *scene_data, uint64_t render_params) {
             render_params = texture_data;
             break;
           }
-          
-          // 检查纹理数组有效性
+// 检查纹理数组有效性
           texture_array = (void **)stack_array3;
           if (stack_array3[0] != 0) {
             handle_texture_error();
@@ -448,14 +421,12 @@ LAB_HAS_INVALID_DATA:
       has_valid_data = false;
     }
   }
-  
-  // 处理场景对象
+// 处理场景对象
   object_ptr = (int64_t *)(scene_obj + 0x90);
   initialize_scene_object(object_ptr);
   *(bool *)(scene_obj + 0x1c4) = has_valid_data;
-  
   if (has_valid_data == false) {
-    // 处理无效数据情况
+// 处理无效数据情况
     item_count = (int64_t)(scene_data[8] - scene_data[7]) >> 4;
     iter_count = item_count & 0xffffffff;
     setup_scene_objects(object_ptr, item_count & 0xffffffff);
@@ -480,7 +451,6 @@ LAB_HAS_INVALID_DATA:
     setup_scene_objects(object_ptr, 1);
     setup_object_data(*object_ptr, render_params, *(uint64_t *)scene_data[7]);
   }
-  
   *(int32_t *)(scene_obj + 0x1bc) = *(int32_t *)(scene_data + 99);
   *(int32_t *)(scene_obj + 0x1c0) = *(int32_t *)(scene_data + 0x62);
   texture_ptr1 = &DEFAULT_TEXTURE_HANDLE;
@@ -492,11 +462,10 @@ LAB_HAS_INVALID_DATA:
   texture_ptr1 = &CLEANUP_TEXTURE_HANDLE;
   handle_security_cleanup(security_cookie ^ (uint64_t)temp_buffer);
 }
-
 /**
  * 渲染数据清理函数
  * 清理渲染数据结构和相关资源
- * 
+ *
  * @param render_data 渲染数据指针
  */
 void cleanup_render_data(uint64_t *render_data) {
@@ -519,11 +488,10 @@ void cleanup_render_data(uint64_t *render_data) {
   *render_data = &CLEANUP_TEXTURE_HANDLE;
   return;
 }
-
 /**
  * 渲染对象比较函数
  * 比较两个渲染对象的属性和状态
- * 
+ *
  * @param obj1 第一个渲染对象
  * @param obj2 第二个渲染对象
  * @param compare_flags 比较标志
@@ -543,7 +511,6 @@ bool compare_render_objects(uint64_t obj1, int64_t obj2, int64_t compare_flags) 
   bool has_differences;
   float float_val1;
   float float_val2;
-  
   material_offset = compare_flags;
   result1 = compare_material_data(obj2 + 0x58, material_offset + 0x58);
   if (result1 == '\0') {
@@ -584,8 +551,7 @@ LAB_NO_DIFFERENCES:
     *(uint *)(obj2 + 0x10) = *(uint *)(obj2 + 0x10) | 8;
     has_differences = true;
   }
-  
-  // 比较子对象数据
+// 比较子对象数据
   material_offset = *(int64_t *)(obj2 + 0x90);
   data_offset = *(int64_t *)(obj2 + 0x98) - material_offset;
   offset1 = data_offset >> 0x3f;
@@ -606,11 +572,10 @@ LAB_NO_DIFFERENCES:
   }
   return has_differences;
 }
-
 /**
  * 渲染状态验证函数
  * 验证渲染对象的完整性和一致性
- * 
+ *
  * @param render_context 渲染上下文
  * @param obj_data 对象数据
  * @param material_data 材质数据
@@ -624,7 +589,6 @@ int8_t validate_render_state(uint64_t render_context, uint64_t obj_data, int64_t
   int obj_count;
   int64_t material_offset;
   uint64_t iter_count;
-  
   obj_count = 0;
   if (material_data != 0) {
     iter_count = 0;
@@ -642,7 +606,6 @@ int8_t validate_render_state(uint64_t render_context, uint64_t obj_data, int64_t
   }
   return validation_result;
 }
-
 /**
  * 渲染系统初始化函数
  * 初始化渲染系统的全局状态和默认值
@@ -650,7 +613,6 @@ int8_t validate_render_state(uint64_t render_context, uint64_t obj_data, int64_t
 void initialize_rendering_system(void) {
   return;
 }
-
 // 常量定义
 #define GLOBAL_RENDER_CONTEXT system_memory_pool_ptr
 #define GLOBAL_SECURITY_COOKIE GET_SECURITY_COOKIE()
@@ -661,25 +623,24 @@ void initialize_rendering_system(void) {
 #define DEFAULT_TEXTURE_HANDLE &memory_allocator_3432_ptr
 #define CLEANUP_TEXTURE_HANDLE &system_state_ptr
 #define DEFAULT_RENDER_OBJECT &processed_var_9304_ptr
-
 // 函数别名定义
-#define process_material_batch FUN_1803310f0
-#define process_sub_object_data FUN_1803269f0
-#define setup_shadow_rendering FUN_1803276a0
+#define process_material_batch function_3310f0
+#define process_sub_object_data function_3269f0
+#define setup_shadow_rendering function_3276a0
 #define allocate_render_data CoreMemoryPoolReallocator
-#define create_render_object FUN_180339110
+#define create_render_object function_339110
 #define process_material_path SystemCore_NetworkHandler0
-#define initialize_scene_object FUN_180284720
-#define setup_scene_objects FUN_180284580
-#define setup_object_data FUN_1803263e0
+#define initialize_scene_object function_284720
+#define setup_scene_objects function_284580
+#define setup_object_data function_3263e0
 #define get_texture_data RenderingSystem_VertexProcessor
-#define cleanup_texture_array FUN_180274db0
-#define setup_texture_array FUN_1803263e0
-#define compare_texture_data FUN_180327250
+#define cleanup_texture_array function_274db0
+#define setup_texture_array function_3263e0
+#define compare_texture_data function_327250
 #define handle_texture_error CoreMemoryPoolInitializer
 #define handle_memory_error CoreMemoryPoolInitializer
 #define handle_security_cleanup SystemSecurityChecker
-#define compare_material_data func_0x000180274d30
-#define compare_sub_object_data FUN_180327250
+#define compare_material_data Function_eb72d450
+#define compare_sub_object_data function_327250
 #define initialize_texture_buffer strcpy_s
 #define CALCULATE_OFFSET SUB168

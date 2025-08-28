@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part711.c - 3 个函数
-
-// 函数: void FUN_180675e28(uint64_t param_1,uint64_t param_2,int64_t param_3)
-void FUN_180675e28(uint64_t param_1,uint64_t param_2,int64_t param_3)
-
+// 函数: void function_675e28(uint64_t param_1,uint64_t param_2,int64_t param_3)
+void function_675e28(uint64_t param_1,uint64_t param_2,int64_t param_3)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -42,16 +39,15 @@ void FUN_180675e28(uint64_t param_1,uint64_t param_2,int64_t param_3)
   int8_t auVar26 [16];
   int8_t auVar27 [16];
   int8_t auVar28 [16];
-  int64_t in_stack_00000070;
-  int in_stack_00000080;
-  int in_stack_00000088;
-  
+  int64_t local_buffer_70;
+  int local_buffer_80;
+  int local_buffer_88;
   uVar14 = (uint64_t)in_EAX;
   do {
     puVar13 = (int32_t *)(((int64_t)(int)unaff_EBX >> 4) * unaff_R14 + unaff_R12);
     if ((unaff_EBX & 0xf) == 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(param_3,(int64_t)puVar13 + unaff_R13,(int64_t)in_stack_00000088);
+// WARNING: Subroutine does not return
+      memcpy(param_3,(int64_t)puVar13 + unaff_R13,(int64_t)local_buffer_88);
     }
     uVar1 = *(int32_t *)((int64_t)puVar13 + unaff_R13);
     uVar2 = *(int32_t *)((int64_t)puVar13 + unaff_R14 * 2);
@@ -66,7 +62,7 @@ void FUN_180675e28(uint64_t param_1,uint64_t param_2,int64_t param_3)
     auVar27[0] = (int8_t)uVar2;
     auVar27[1] = (char)uVar1;
     auVar27._8_8_ = 0;
-    auVar25 = *(int8_t (*) [16])((uint64_t)(unaff_EBX & 0xf) * 0x10 + in_stack_00000070);
+    auVar25 = *(int8_t (*) [16])((uint64_t)(unaff_EBX & 0xf) * 0x10 + local_buffer_70);
     auVar16 = pshufb(auVar25,render_system_string);
     auVar28 = pmaddubsw(auVar27,auVar16);
     uVar1 = *(int32_t *)((int64_t)puVar13 + unaff_R14 * 5);
@@ -152,35 +148,22 @@ void FUN_180675e28(uint64_t param_1,uint64_t param_2,int64_t param_3)
                                             (0xff < sVar6),
                                             (0 < sVar5) * (sVar5 < 0x100) * auVar25[0] -
                                             (0xff < sVar5))));
-    unaff_EBX = unaff_EBX + in_stack_00000080;
+    unaff_EBX = unaff_EBX + local_buffer_80;
     param_3 = param_3 + unaff_R15;
     unaff_RSI = (int32_t *)((int64_t)unaff_RSI + unaff_R15);
     uVar14 = uVar14 - 1;
   } while (uVar14 != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180675f56(void)
-void FUN_180675f56(void)
-
+// 函数: void function_675f56(void)
+void function_675f56(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180675f70(int64_t param_1,int64_t param_2,uint64_t *param_3,int64_t param_4,
-void FUN_180675f70(int64_t param_1,int64_t param_2,uint64_t *param_3,int64_t param_4,
+// 函数: void function_675f70(int64_t param_1,int64_t param_2,uint64_t *param_3,int64_t param_4,
+void function_675f70(int64_t param_1,int64_t param_2,uint64_t *param_3,int64_t param_4,
                   int64_t param_5,uint param_6,int param_7,int param_8,uint param_9)
-
 {
   uint64_t uVar1;
   uint64_t uVar2;
@@ -238,13 +221,12 @@ void FUN_180675f70(int64_t param_1,int64_t param_2,uint64_t *param_3,int64_t par
   int8_t auVar53 [16];
   int8_t auVar54 [16];
   int8_t auVar55 [16];
-  
   if (0 < (int)param_9) {
     uVar14 = (uint64_t)param_9;
     do {
       puVar13 = (uint64_t *)(((int64_t)(int)param_6 >> 4) * param_2 + param_1 + param_2 * -3);
       if ((param_6 & 0xf) == 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memcpy(param_3,param_2 * 3 + (int64_t)puVar13,(int64_t)param_8);
       }
       uVar1 = *(uint64_t *)(param_2 * 3 + (int64_t)puVar13);
@@ -478,10 +460,4 @@ void FUN_180675f70(int64_t param_1,int64_t param_2,uint64_t *param_3,int64_t par
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

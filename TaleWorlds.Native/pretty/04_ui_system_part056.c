@@ -1,13 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part056.c - 1 个函数
-
-// 函数: void FUN_180695bf0(int64_t param_1,int64_t param_2,int param_3,short *param_4,
-void FUN_180695bf0(int64_t param_1,int64_t param_2,int param_3,short *param_4,
+// 函数: void function_695bf0(int64_t param_1,int64_t param_2,int param_3,short *param_4,
+void function_695bf0(int64_t param_1,int64_t param_2,int param_3,short *param_4,
                   int8_t (*param_5) [16],int8_t (*param_6) [16],int8_t (*param_7) [16],
                   int64_t param_8,int64_t param_9,short *param_10,ushort *param_11,
                   uint64_t param_12,int64_t param_13)
-
 {
   ushort *puVar1;
   short *psVar2;
@@ -75,7 +72,6 @@ void FUN_180695bf0(int64_t param_1,int64_t param_2,int param_3,short *param_4,
   short sVar55;
   short sVar58;
   short sVar59;
-  
   lVar8 = param_2 * 2;
   param_1 = param_1 + param_2 * 2;
   param_13 = param_13 + lVar8;
@@ -531,8 +527,3 @@ void FUN_180695bf0(int64_t param_1,int64_t param_2,int param_3,short *param_4,
   *param_11 = uVar15;
   return;
 }
-
-
-
-
-

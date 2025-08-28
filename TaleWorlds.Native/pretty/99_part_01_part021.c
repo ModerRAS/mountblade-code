@@ -1,14 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 //==============================================================================
 // 99_part_01_part021.c - 系统资源管理和参数处理模块
 //==============================================================================
-//
 // 本模块实现系统资源管理和参数处理功能，包括：
 // - 系统资源初始化和清理
 // - 字符串匹配和资源查找
@@ -18,19 +14,15 @@
 // - 资源状态管理
 // - 资源队列处理
 // - 系统数据内存管理
-//
 // 主要功能：
 // 1. 资源管理：管理系统资源的分配和释放
 // 2. 参数处理：处理各种类型的参数
 // 3. 状态管理：管理系统状态
 // 4. 内存管理：管理系统内存分配
-//
 //==============================================================================
-
-// 函数: void FUN_1800b4ec0(uint64_t param_1,char param_2,char param_3)
+// 函数: void function_0b4ec0(uint64_t param_1,char param_2,char param_3)
 // 系统资源管理函数 - 管理系统资源的初始化和清理
 void SystemResource_Manager_Init_Cleanup(uint64_t param_1,char param_2,char param_3)
-
 {
   uint64_t *puVar1;
   int64_t lVar2;
@@ -48,7 +40,7 @@ void SystemResource_Manager_Init_Cleanup(uint64_t param_1,char param_2,char para
   uint64_t uVar14;
   int64_t lVar15;
   uint64_t uVar16;
-  int8_t auStack_c8 [32];
+  int8_t stack_array_c8 [32];
   char cStack_a8;
   int64_t lStack_a0;
   int64_t lStack_98;
@@ -60,12 +52,11 @@ void SystemResource_Manager_Init_Cleanup(uint64_t param_1,char param_2,char para
   int64_t lStack_68;
   int64_t lStack_60;
   int64_t lStack_58;
-  uint64_t uStack_50;
+  uint64_t local_var_50;
   int64_t alStack_48 [4];
-  
   lVar4 = system_resource_state;
-  uStack_50 = 0xfffffffffffffffe;
-  alStack_48[3] = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_c8;
+  local_var_50 = 0xfffffffffffffffe;
+  alStack_48[3] = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_c8;
   lStack_a0 = system_resource_state;
   lStack_58 = system_resource_state + 0x770;
   cStack_a8 = param_2;
@@ -214,7 +205,7 @@ void SystemResource_Manager_Init_Cleanup(uint64_t param_1,char param_2,char para
         plVar9 = (int64_t *)*plVar8;
       }
       if (plVar9 != (int64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngine_MemoryPoolManager(plVar9);
       }
       *plVar8 = (int64_t)plVar12;
@@ -328,7 +319,7 @@ void SystemResource_Manager_Init_Cleanup(uint64_t param_1,char param_2,char para
           plVar9 = *(int64_t **)(lVar15 + 0x28);
         }
         if (plVar9 != (int64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngine_MemoryPoolManager(plVar9);
         }
         *(int64_t **)(lVar15 + 0x28) = plVar12;
@@ -350,11 +341,11 @@ void SystemResource_Manager_Init_Cleanup(uint64_t param_1,char param_2,char para
       LAB_1800b547f:
         *(int64_t **)(lVar15 + 0x30) = plVar8;
       }
-      lVar15 = func_0x00018066bd70(lVar15);
+      lVar15 = Function_7bfb2422(lVar15);
       param_2 = cStack_a8;
     } while (lVar15 != lVar4 + 0x740);
   }
-  FUN_18005cf50(lStack_a0);
+  function_05cf50(lStack_a0);
   iVar5 = _Mtx_unlock(lStack_98);
   if (iVar5 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar5);
@@ -391,21 +382,17 @@ void SystemResource_Manager_Init_Cleanup(uint64_t param_1,char param_2,char para
   if (iVar5 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar5);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(alStack_48[3] ^ (uint64_t)auStack_c8);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(alStack_48[3] ^ (uint64_t)stack_array_c8);
 }
-
 //==============================================================================
 // 函数别名定义
 //==============================================================================
-
 // 原始函数别名（保持向后兼容性）
-#define FUN_1800b4ec0                     SystemResource_Manager_Init_Cleanup
-
-// 函数: char FUN_1800b55b0(uint64_t param_1,int64_t *param_2)
+#define function_0b4ec0                     SystemResource_Manager_Init_Cleanup
+// 函数: char function_0b55b0(uint64_t param_1,int64_t *param_2)
 // 字符串匹配和资源查找函数 - 匹配字符串并查找相应资源
 char StringMatch_Resource_Find(uint64_t param_1,int64_t *param_2)
-
 {
   char cVar1;
   char cVar2;
@@ -421,7 +408,6 @@ char StringMatch_Resource_Find(uint64_t param_1,int64_t *param_2)
   uint64_t uVar12;
   char *pcVar13;
   uint64_t uVar14;
-  
   lVar3 = system_resource_state;
   uVar14 = 0xfffffffffffffffe;
   iVar4 = (**(code **)(*(int64_t *)*param_2 + 0x60))();
@@ -436,7 +422,7 @@ char StringMatch_Resource_Find(uint64_t param_1,int64_t *param_2)
   }
   cVar6 = '\0';
   if ((char)puVar8[0x12] == '\0') {
-    iVar4 = FUN_1802abf70(puVar8,pcVar13);
+    iVar4 = function_2abf70(puVar8,pcVar13);
     uVar10 = (uint64_t)*(int *)(puVar8[4] + 4 + (int64_t)iVar4 * 8);
     uVar12 = *puVar8;
     if (uVar10 < (uint64_t)((int64_t)(puVar8[1] - uVar12) >> 3)) {
@@ -454,7 +440,7 @@ char StringMatch_Resource_Find(uint64_t param_1,int64_t *param_2)
           pcVar5 = pcVar5 + 1;
         } while (cVar2 != '\0');
         if (cVar1 == cVar2) {
-          FUN_1800ba050(puVar8,uVar12 + (int64_t)(int)uVar10 * 8,
+          function_0ba050(puVar8,uVar12 + (int64_t)(int)uVar10 * 8,
                         (int64_t)puVar7 - (int64_t)pcVar13,uVar10,uVar14);
           cVar6 = '\x01';
           goto LAB_1800b56df;
@@ -487,7 +473,7 @@ char StringMatch_Resource_Find(uint64_t param_1,int64_t *param_2)
           pcVar5 = pcVar5 + 1;
         } while (cVar2 != '\0');
         if (cVar1 == cVar2) {
-          FUN_1800ba050(puVar8,plVar11,(int64_t)puVar7 - (int64_t)pcVar13,plVar11,uVar14);
+          function_0ba050(puVar8,plVar11,(int64_t)puVar7 - (int64_t)pcVar13,plVar11,uVar14);
           cVar6 = '\x01';
           break;
         }
@@ -511,14 +497,11 @@ char StringMatch_Resource_Find(uint64_t param_1,int64_t *param_2)
   }
   return cVar6;
 }
-
 // 原始函数别名（保持向后兼容性）
-#define FUN_1800b55b0                     StringMatch_Resource_Find
-
-// 函数: void FUN_1800b57a0(uint64_t param_1,int64_t *param_2)
+#define function_0b55b0                     StringMatch_Resource_Find
+// 函数: void function_0b57a0(uint64_t param_1,int64_t *param_2)
 // 参数处理和资源分配函数 - 处理参数并分配资源
 void ParameterProcess_Resource_Allocate(uint64_t param_1,int64_t *param_2)
-
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
@@ -530,35 +513,34 @@ void ParameterProcess_Resource_Allocate(uint64_t param_1,int64_t *param_2)
   int64_t lVar8;
   int64_t lVar9;
   int64_t lVar10;
-  int8_t auStack_d8 [32];
-  uint64_t *puStack_b8;
+  int8_t stack_array_d8 [32];
+  uint64_t *plocal_var_b8;
   int64_t *plStack_b0;
   int64_t lStack_a8;
-  uint64_t uStack_a0;
-  void *puStack_98;
-  void *puStack_90;
-  int32_t uStack_88;
-  uint8_t auStack_80 [72];
-  uint64_t uStack_38;
-  
-  uStack_a0 = 0xfffffffffffffffe;
-  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
+  uint64_t local_var_a0;
+  void *plocal_var_98;
+  void *plocal_var_90;
+  int32_t local_var_88;
+  uint8_t stack_array_80 [72];
+  uint64_t local_var_38;
+  local_var_a0 = 0xfffffffffffffffe;
+  local_var_38 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_d8;
   lStack_a8 = system_resource_state;
   plVar7 = *(int64_t **)(system_resource_state + 0x1d0);
   lVar8 = system_resource_state;
   plStack_b0 = param_2;
   if (plVar7 != *(int64_t **)(system_resource_state + 0x1d8)) {
     do {
-      puStack_98 = &memory_allocator_3480_ptr;
-      puStack_90 = auStack_80;
-      auStack_80[0] = 0;
-      uStack_88 = *(int32_t *)(*plVar7 + 0x20);
+      plocal_var_98 = &memory_allocator_3480_ptr;
+      plocal_var_90 = stack_array_80;
+      stack_array_80[0] = 0;
+      local_var_88 = *(int32_t *)(*plVar7 + 0x20);
       puVar6 = *(void **)(*plVar7 + 0x18);
       puVar5 = &system_buffer_ptr;
       if (puVar6 != (void *)0x0) {
         puVar5 = puVar6;
       }
-      strcpy_s(auStack_80,0x40,puVar5);
+      strcpy_s(stack_array_80,0x40,puVar5);
       puVar4 = (uint64_t *)param_2[1];
       if (puVar4 < (uint64_t *)param_2[2]) {
         param_2[1] = (int64_t)(puVar4 + 0xb);
@@ -569,12 +551,12 @@ void ParameterProcess_Resource_Allocate(uint64_t param_1,int64_t *param_2)
         puVar4[1] = puVar4 + 3;
         *(int32_t *)(puVar4 + 2) = 0;
         *(int8_t *)(puVar4 + 3) = 0;
-        *(int32_t *)(puVar4 + 2) = uStack_88;
+        *(int32_t *)(puVar4 + 2) = local_var_88;
         puVar6 = &system_buffer_ptr;
-        if (puStack_90 != (void *)0x0) {
-          puVar6 = puStack_90;
+        if (plocal_var_90 != (void *)0x0) {
+          puVar6 = plocal_var_90;
         }
-        puStack_b8 = puVar4;
+        plocal_var_b8 = puVar4;
         strcpy_s(puVar4[1],0x40,puVar6);
       }
       else {
@@ -609,7 +591,7 @@ void ParameterProcess_Resource_Allocate(uint64_t param_1,int64_t *param_2)
             if (puVar6 != (void *)0x0) {
               puVar5 = puVar6;
             }
-            puStack_b8 = puVar2;
+            plocal_var_b8 = puVar2;
             strcpy_s(puVar2[1],0x40,puVar5);
             puVar2 = puVar2 + 0xb;
             param_2 = plStack_b0;
@@ -623,12 +605,12 @@ void ParameterProcess_Resource_Allocate(uint64_t param_1,int64_t *param_2)
         puVar2[1] = puVar2 + 3;
         *(int32_t *)(puVar2 + 2) = 0;
         *(int8_t *)(puVar2 + 3) = 0;
-        *(int32_t *)(puVar2 + 2) = uStack_88;
+        *(int32_t *)(puVar2 + 2) = local_var_88;
         puVar6 = &system_buffer_ptr;
-        if (puStack_90 != (void *)0x0) {
-          puVar6 = puStack_90;
+        if (plocal_var_90 != (void *)0x0) {
+          puVar6 = plocal_var_90;
         }
-        puStack_b8 = puVar2;
+        plocal_var_b8 = puVar2;
         strcpy_s(puVar2[1],0x40,puVar6);
         puVar4 = (uint64_t *)param_2[1];
         puVar3 = (uint64_t *)*param_2;
@@ -640,28 +622,25 @@ void ParameterProcess_Resource_Allocate(uint64_t param_1,int64_t *param_2)
           puVar3 = (uint64_t *)*param_2;
         }
         if (puVar3 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngine_MemoryPoolManager(puVar3);
         }
         *param_2 = (int64_t)puVar1;
         param_2[1] = (int64_t)(puVar2 + 0xb);
         param_2[2] = (int64_t)(puVar1 + lVar10 * 0xb);
       }
-      puStack_98 = &system_state_ptr;
+      plocal_var_98 = &system_state_ptr;
       plVar7 = plVar7 + 1;
     } while (plVar7 != *(int64_t **)(lVar8 + 0x1d8));
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_d8);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_38 ^ (uint64_t)stack_array_d8);
 }
-
 // 原始函数别名（保持向后兼容性）
-#define FUN_1800b57a0                     ParameterProcess_Resource_Allocate
-
-// 函数: void FUN_1800b5ac0(uint64_t param_1,int64_t *param_2,float param_3)
+#define function_0b57a0                     ParameterProcess_Resource_Allocate
+// 函数: void function_0b5ac0(uint64_t param_1,int64_t *param_2,float param_3)
 // 浮点参数处理和初始化函数 - 处理浮点参数并执行初始化
 void FloatParameter_Process_Init(uint64_t param_1,int64_t *param_2,float param_3)
-
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -670,33 +649,32 @@ void FloatParameter_Process_Init(uint64_t param_1,int64_t *param_2,float param_3
   int64_t lVar5;
   int64_t *plVar6;
   int iVar7;
-  int8_t auStack_b8 [32];
-  int32_t uStack_98;
-  void *puStack_90;
+  int8_t stack_array_b8 [32];
+  int32_t local_var_98;
+  void *plocal_var_90;
   int64_t lStack_88;
-  uint uStack_80;
-  uint64_t uStack_78;
+  uint local_var_80;
+  uint64_t local_var_78;
   int64_t *plStack_70;
   int64_t *plStack_68;
-  uint64_t uStack_60;
+  uint64_t local_var_60;
   int64_t *plStack_58;
   char acStack_50 [16];
-  uint64_t uStack_40;
-  
+  uint64_t local_var_40;
   lVar1 = system_resource_state;
-  uStack_60 = 0xfffffffffffffffe;
-  uStack_40 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
+  local_var_60 = 0xfffffffffffffffe;
+  local_var_40 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_b8;
   iVar7 = 0;
-  uStack_98 = 0;
+  local_var_98 = 0;
   plVar6 = (int64_t *)(system_resource_state + 0xc60);
   plStack_58 = param_2;
   if (*plVar6 == 0) {
-    puStack_90 = &system_data_buffer_ptr;
-    uStack_78 = 0;
+    plocal_var_90 = &system_data_buffer_ptr;
+    local_var_78 = 0;
     lStack_88 = 0;
-    uStack_80 = 0;
+    local_var_80 = 0;
     do {
-      (**(code **)(puStack_90 + 0x10))(&puStack_90,&processed_var_7896_ptr);
+      (**(code **)(plocal_var_90 + 0x10))(&plocal_var_90,&processed_var_7896_ptr);
       RenderingEngine_BufferManager(acStack_50,&processed_var_4576_ptr,iVar7);
       lVar2 = -1;
       do {
@@ -705,12 +683,12 @@ void FloatParameter_Process_Init(uint64_t param_1,int64_t *param_2,float param_3
       } while (acStack_50[lVar5 + 1] != '\0');
       iVar4 = (int)(lVar5 + 1);
       if (0 < iVar4) {
-        CoreMemoryPoolProcessor(&puStack_90,uStack_80 + iVar4);
-                    // WARNING: Subroutine does not return
-        memcpy((uint64_t)uStack_80 + lStack_88,acStack_50,(int64_t)((int)lVar5 + 2));
+        CoreMemoryPoolProcessor(&plocal_var_90,local_var_80 + iVar4);
+// WARNING: Subroutine does not return
+        memcpy((uint64_t)local_var_80 + lStack_88,acStack_50,(int64_t)((int)lVar5 + 2));
       }
-      plVar3 = (int64_t *)SystemCore_GarbageCollector(lVar1,&plStack_68,&puStack_90,1);
-      uStack_98 = 2;
+      plVar3 = (int64_t *)SystemCore_GarbageCollector(lVar1,&plStack_68,&plocal_var_90,1);
+      local_var_98 = 2;
       plVar3 = (int64_t *)*plVar3;
       if (plVar3 != (int64_t *)0x0) {
         plStack_70 = plVar3;
@@ -721,39 +699,36 @@ void FloatParameter_Process_Init(uint64_t param_1,int64_t *param_2,float param_3
       if (plStack_70 != (int64_t *)0x0) {
         (**(code **)(*plStack_70 + 0x38))();
       }
-      uStack_98 = 0;
+      local_var_98 = 0;
       if (plStack_68 != (int64_t *)0x0) {
         (**(code **)(*plStack_68 + 0x38))();
       }
       iVar7 = iVar7 + 1;
       plVar6 = plVar6 + 1;
     } while (iVar7 < 0x14);
-    puStack_90 = &system_data_buffer_ptr;
+    plocal_var_90 = &system_data_buffer_ptr;
     if (lStack_88 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager();
     }
     lStack_88 = 0;
-    uStack_78 = uStack_78 & 0xffffffff00000000;
-    puStack_90 = &system_state_ptr;
+    local_var_78 = local_var_78 & 0xffffffff00000000;
+    plocal_var_90 = &system_state_ptr;
   }
   plVar6 = *(int64_t **)(lVar1 + 0xc60 + (int64_t)((int)param_3 % 0x14) * 8);
   *param_2 = (int64_t)plVar6;
   if (plVar6 != (int64_t *)0x0) {
     (**(code **)(*plVar6 + 0x28))();
   }
-  uStack_98 = 1;
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_b8);
+  local_var_98 = 1;
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_40 ^ (uint64_t)stack_array_b8);
 }
-
 // 原始函数别名（保持向后兼容性）
-#define FUN_1800b5ac0                     FloatParameter_Process_Init
-
-// 函数: void FUN_1800b5cc0(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
+#define function_0b5ac0                     FloatParameter_Process_Init
+// 函数: void function_0b5cc0(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
 // 多参数资源管理函数 - 管理多参数的资源操作
 void MultiParameter_Resource_Manager(uint64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4)
-
 {
   int64_t *plVar1;
   int iVar2;
@@ -765,7 +740,6 @@ void MultiParameter_Resource_Manager(uint64_t param_1,int64_t *param_2,uint64_t 
   uint64_t *puVar8;
   uint64_t *puVar9;
   uint64_t uVar10;
-  
   lVar6 = system_resource_state;
   iVar2 = (**(code **)(*param_2 + 0x60))(param_2);
   *(int8_t *)((int64_t)param_2 + 0xb2) = 1;
@@ -818,7 +792,7 @@ void MultiParameter_Resource_Manager(uint64_t param_1,int64_t *param_2,uint64_t 
     plVar7 = (int64_t *)*plVar5;
   }
   if (plVar7 != (int64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager(plVar7);
   }
   *plVar5 = (int64_t)puVar9;
@@ -832,14 +806,11 @@ LAB_1802abf36:
   }
   return;
 }
-
 // 原始函数别名（保持向后兼容性）
-#define FUN_1800b5cc0                     MultiParameter_Resource_Manager
-
-// 函数: void FUN_1800b5d10(uint64_t param_1,int64_t *param_2)
+#define function_0b5cc0                     MultiParameter_Resource_Manager
+// 函数: void function_0b5d10(uint64_t param_1,int64_t *param_2)
 // 资源状态管理函数 - 管理资源状态
 void ResourceState_Manager(uint64_t param_1,int64_t *param_2)
-
 {
   int64_t lVar1;
   int64_t *plVar2;
@@ -848,7 +819,6 @@ void ResourceState_Manager(uint64_t param_1,int64_t *param_2)
   int64_t *plVar5;
   int64_t *plVar6;
   int64_t *plVar7;
-  
   lVar1 = system_resource_state;
   plVar6 = *(int64_t **)(system_resource_state + 0x300);
   if (plVar6 != *(int64_t **)(system_resource_state + 0x308)) {
@@ -901,7 +871,7 @@ void ResourceState_Manager(uint64_t param_1,int64_t *param_2)
           plVar5 = (int64_t *)*param_2;
         }
         if (plVar5 != (int64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngine_MemoryPoolManager(plVar5);
         }
         *param_2 = (int64_t)plVar7;
@@ -913,14 +883,11 @@ void ResourceState_Manager(uint64_t param_1,int64_t *param_2)
   }
   return;
 }
-
 // 原始函数别名（保持向后兼容性）
-#define FUN_1800b5d10                     ResourceState_Manager
-
-// 函数: void FUN_1800b5d38(void)
+#define function_0b5d10                     ResourceState_Manager
+// 函数: void function_0b5d38(void)
 // 资源队列处理函数 - 处理资源队列操作
 void ResourceQueue_Process(void)
-
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -930,7 +897,6 @@ void ResourceQueue_Process(void)
   int64_t unaff_R13;
   int64_t *unaff_R14;
   int64_t *plVar5;
-  
   do {
     plVar1 = (int64_t *)0x0;
     plVar3 = (int64_t *)unaff_RDI[1];
@@ -980,7 +946,7 @@ void ResourceQueue_Process(void)
         plVar4 = (int64_t *)*unaff_RDI;
       }
       if (plVar4 != (int64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngine_MemoryPoolManager(plVar4);
       }
       *unaff_RDI = (int64_t)plVar5;
@@ -993,45 +959,34 @@ void ResourceQueue_Process(void)
     }
   } while( true );
 }
-
 // 原始函数别名（保持向后兼容性）
-#define FUN_1800b5d38                     ResourceQueue_Process
-
-// 函数: void FUN_1800b5e73(void)
+#define function_0b5d38                     ResourceQueue_Process
+// 函数: void function_0b5e73(void)
 // 空函数 - 不执行任何操作
 void Empty_Function(void)
-
 {
   return;
 }
-
 // 原始函数别名（保持向后兼容性）
-#define FUN_1800b5e73                     Empty_Function
-
-// 函数: uint64_t FUN_1800b5e80(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+#define function_0b5e73                     Empty_Function
+// 函数: uint64_t function_0b5e80(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 // 系统数据内存管理函数 - 管理系统数据内存
 uint64_t SystemData_Memory_Manager(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
 {
-  FUN_1800be9a0(system_system_data_memory,param_2,0,param_4,0,0xfffffffffffffffe);
+  function_0be9a0(system_system_data_memory,param_2,0,param_4,0,0xfffffffffffffffe);
   return param_2;
 }
-
 // 原始函数别名（保持向后兼容性）
-#define FUN_1800b5e80                     SystemData_Memory_Manager
-
-// 函数: uint64_t FUN_1800b5ec0(uint64_t param_1,uint64_t param_2)
+#define function_0b5e80                     SystemData_Memory_Manager
+// 函数: uint64_t function_0b5ec0(uint64_t param_1,uint64_t param_2)
 // 系统初始化函数 - 执行系统初始化操作
 uint64_t System_Init_Function(uint64_t param_1,uint64_t param_2)
-
 {
-  FUN_1800bed00();
+  function_0bed00();
   return param_2;
 }
-
 // 原始函数别名（保持向后兼容性）
-#define FUN_1800b5ec0                     System_Init_Function
-
+#define function_0b5ec0                     System_Init_Function
 // WARNING: Removing unreachable block (ram,0x0001800b6113)
 // WARNING: Removing unreachable block (ram,0x0001800b611a)
 // WARNING: Removing unreachable block (ram,0x0001800b614a)
@@ -1042,48 +997,45 @@ uint64_t System_Init_Function(uint64_t param_1,uint64_t param_2)
 // WARNING: Removing unreachable block (ram,0x0001800b616e)
 // WARNING: Removing unreachable block (ram,0x0001800b617c)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 //==============================================================================
 // 技术架构说明
 //==============================================================================
-
 /**
  * 系统资源管理架构
  * ===================
- * 
+ *
  * 本模块实现了复杂的系统资源管理功能，包括：
- * 
+ *
  * 1. 资源生命周期管理
  *    - 资源分配和释放
  *    - 资源状态跟踪
  *    - 资源清理和回收
- * 
+ *
  * 2. 并发控制
  *    - 互斥锁保护
  *    - 线程安全操作
  *    - 原子操作
- * 
+ *
  * 3. 内存管理
  *    - 动态内存分配
  *    - 内存池管理
  *    - 内存碎片整理
- * 
+ *
  * 4. 参数处理
  *    - 类型转换
  *    - 参数验证
  *    - 默认值处理
- * 
+ *
  * 关键数据结构：
  * - 系统资源状态表
  * - 互斥锁数组
  * - 内存池管理器
  * - 参数处理队列
- * 
+ *
  * 设计模式：
  * - 资源管理模式
  * - 观察者模式
  * - 工厂模式
  * - 状态模式
  */
-
 //==============================================================================

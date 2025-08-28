@@ -1,17 +1,13 @@
 #include "ultra_high_freq_fun_definitions.h"
 /* 函数别名定义: MemoryDebugger */
 #define MemoryDebugger MemoryDebugger
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 03_rendering_part022.c - 渲染系统网格组件处理文件
-
 /**
  * 渲染系统网格组件处理函数
  * 处理网格组件的创建、配置和材质应用
- * 
+ *
  * @param mesh_component_ptr 网格组件指针
  * @param render_context_ptr 渲染上下文指针
  * @param scene_object_ptr 场景对象指针
@@ -76,8 +72,7 @@ void process_mesh_component(uint64_t *mesh_component_ptr, int64_t render_context
   int64_t stack_long;
   int64_t stack_array [2];
   uint64_t stack_guard;
-  
-  // 初始化组件数据结构
+// 初始化组件数据结构
   stack_guard = 0xfffffffffffffffe;
   component_data_ptr = (uint64_t *)DataPipelineManager(render_context_ptr + 0x60, 0x60);
   *component_data_ptr = 0;
@@ -86,8 +81,7 @@ void process_mesh_component(uint64_t *mesh_component_ptr, int64_t render_context
   *(int32_t *)(component_data_ptr + 5) = 1;
   component_data_ptr[6] = 0;
   component_data_ptr[8] = 0;
-  
-  // 设置组件类型为元网格组件
+// 设置组件类型为元网格组件
   string_ptr = "meta_mesh_component";
   do {
     string_ptr2 = string_ptr;
@@ -95,8 +89,7 @@ void process_mesh_component(uint64_t *mesh_component_ptr, int64_t render_context
   } while (*string_ptr != '\0');
   *component_data_ptr = &system_buffer_9d80;
   component_data_ptr[2] = string_ptr2 + -0x180a09d7f;
-  
-  // 处理父网格为空的情况
+// 处理父网格为空的情况
   if (parent_mesh_ptr == (uint64_t *)0x0) {
     long_val = MemoryDebugger0();
     int_val = *(int *)(mesh_component_ptr + 0x40);
@@ -134,8 +127,7 @@ LAB_18027c7bb:
     }
     goto LAB_18027c801;
   }
-  
-  // 处理有父网格的情况
+// 处理有父网格的情况
   int_val = *(int *)(mesh_component_ptr + 0x40);
   stack_mesh_ptr = parent_mesh_ptr;
   if (int_val == *(int *)(parent_mesh_ptr + 0x40)) {
@@ -165,13 +157,11 @@ LAB_18027c73b:
   }
   SystemMemoryManager(render_context_ptr, component_data_ptr, &system_buffer_3a84, string_ptr2);
 LAB_18027c801:
-  
-  // 检查渲染标志差异
+// 检查渲染标志差异
   if (*(int *)((int64_t)mesh_component_ptr + 0x324) != *(int *)((int64_t)stack_mesh_ptr + 0x324)) {
-    FUN_180630c80(render_context_ptr, component_data_ptr, &processed_var_8904_ptr);
+    UtilitiesSystem_30c80(render_context_ptr, component_data_ptr, &processed_var_8904_ptr);
   }
-  
-  // 获取网格数据和纹理数据
+// 获取网格数据和纹理数据
   if ((void *)*stack_mesh_ptr == &processed_var_9304_ptr) {
     mesh_data_ptr = stack_mesh_ptr + 0x66;
   }
@@ -184,23 +174,21 @@ LAB_18027c801:
   else {
     texture_ptr = (uint64_t *)(**(code **)((void *)*mesh_component_ptr + 0x158))(mesh_component_ptr);
   }
-  
-  // 比较网格数据
-  char_val2 = func_0x000180285f10(mesh_data_ptr, texture_ptr, 0x3c23d70a);
+// 比较网格数据
+  char_val2 = Function_9bed5989(mesh_data_ptr, texture_ptr, 0x3c23d70a);
   if (char_val2 == '\0') {
-    // 处理网格位置、旋转和变换
+// 处理网格位置、旋转和变换
     float_val4 = *(float *)(mesh_component_ptr + 0x6c);
     float_val5 = *(float *)((int64_t)mesh_component_ptr + 0x364);
     float_val6 = *(float *)(mesh_component_ptr + 0x6d);
     float_pack2 = *(int32_t *)((int64_t)mesh_component_ptr + 0x36c);
-    FUN_1801c1720(mesh_component_ptr + 0x66, &float_val);
+    CoreEngine_1C1720(mesh_component_ptr + 0x66, &float_val);
     RenderingSystem_LightSystem(mesh_component_ptr + 0x66, stack_array);
     UltraHighFreq_NetworkHandler1(render_context_ptr, component_data_ptr, &processed_var_8872_ptr, &float_val4);
     UltraHighFreq_NetworkHandler1(render_context_ptr, component_data_ptr, &processed_var_8888_ptr, &float_val);
     UltraHighFreq_NetworkHandler1(render_context_ptr, component_data_ptr, &processed_var_8408_ptr, stack_array);
   }
-  
-  // 处理材质
+// 处理材质
   if (mesh_component_ptr[0x77] != 0) {
     render_obj_ptr = *(void **)(mesh_component_ptr[0x77] + 0x18);
     material_ptr = &system_buffer_ptr;
@@ -209,8 +197,7 @@ LAB_18027c801:
     }
     SystemMemoryManager(render_context_ptr, component_data_ptr, &processed_var_8928_ptr, material_ptr);
   }
-  
-  // 处理子网格
+// 处理子网格
   iStack_a8 = 0;
   long_val = mesh_component_ptr[7];
   if (mesh_component_ptr[8] - long_val >> 4 != 0) {
@@ -219,16 +206,14 @@ LAB_18027c801:
       mesh_index = stack_array[0];
       render_obj_ptr = &system_data_buffer_ptr;
       long_val = *(int64_t *)(long_val + mesh_index * 0x10);
-      
-      // 获取网格数据
+// 获取网格数据
       if (*(int64_t *)(long_val + 0x1b0) == 0) {
         long_val2 = long_val + 0x10;
       }
       else {
-        long_val2 = func_0x000180079240();
+        long_val2 = Function_756def3a();
       }
-      
-      // 处理网格名称
+// 处理网格名称
       buffer_capacity = 0;
       stack_buffer_ptr = (byte *)0x0;
       buffer_size = 0;
@@ -241,8 +226,7 @@ LAB_18027c801:
         }
         memcpy(stack_buffer_ptr, render_obj_ptr, (int64_t)(*(int *)(long_val2 + 0x10) + 1));
       }
-      
-      // 清理网格名称中的特殊字符
+// 清理网格名称中的特殊字符
       if ((*(int64_t *)(long_val2 + 8) != 0) && (buffer_size = 0, stack_buffer_ptr != (byte *)0x0)) {
         *stack_buffer_ptr = 0;
       }
@@ -264,8 +248,7 @@ LAB_18027c801:
         buffer_size = buffer_size - int_val2;
         stack_buffer_ptr[buffer_size] = 0;
       }
-      
-      // 创建子网格组件
+// 创建子网格组件
       mesh_data_ptr = (uint64_t *)DataPipelineManager(render_context_ptr + 0x60, 0x60);
       *mesh_data_ptr = 0;
       mesh_data_ptr[1] = 0;
@@ -280,8 +263,7 @@ LAB_18027c801:
       } while (*string_ptr != '\0');
       *mesh_data_ptr = &processed_var_9144_ptr;
       mesh_data_ptr[2] = string_ptr2 + -0x180a0f3e7;
-      
-      // 处理子网格数据
+// 处理子网格数据
       stack_index = 0;
       stack_long = 0;
       if ((int64_t)(mesh_component_ptr[8] - mesh_component_ptr[7]) >> 4 != 0) {
@@ -292,10 +274,9 @@ LAB_18027c801:
             long_val2 = mesh_index + 0x10;
           }
           else {
-            long_val2 = func_0x000180079240();
+            long_val2 = Function_756def3a();
           }
-          
-          // 处理子网格名称
+// 处理子网格名称
           stack_uint2 = (uint)data_ptr;
           stack_data_ptr = &system_data_buffer_ptr;
           stack_ulong2 = 0;
@@ -353,8 +334,7 @@ LAB_18027c801:
              (stack_uint2 = (uint)data_ptr, data_ptr != (int8_t *)0x0)) {
             *data_ptr = 0;
           }
-          
-          // 清理子网格名称
+// 清理子网格名称
           while ((0 < (int)stack_uint2 && (long_val2 = strstr(stack_char_ptr2, &system_buffer_ff10), long_val2 != 0))) {
             int_val2 = 6;
             int_val = (int)long_val2 - (int)stack_char_ptr2;
@@ -373,7 +353,6 @@ LAB_18027c801:
             stack_uint2 = stack_uint2 - int_val2;
             stack_char_ptr2[stack_uint2] = 0;
           }
-          
           bool_flag = true;
           uint_val6 = stack_uint2;
           if (buffer_size == stack_uint2) {
@@ -388,11 +367,11 @@ LAB_18027c801:
             }
 LAB_18027cd22:
             if (uint_val6 == 0) {
-              // 处理材质差异
+// 处理材质差异
               if ((*(int64_t *)(long_val + 0x1b8) != 0) &&
                  (*(int64_t *)(*(int64_t *)(long_val + 0x1b8) + 0xa8) != 0)) {
-                long_val2 = FUN_180079430(long_val);
-                long_val3 = FUN_180079430(mesh_index);
+                long_val2 = GenericFunction_180079430(long_val);
+                long_val3 = GenericFunction_180079430(mesh_index);
                 int_val = *(int *)(long_val2 + 0x10);
                 if (int_val == *(int *)(long_val3 + 0x10)) {
                   if (int_val == 0) {
@@ -424,7 +403,7 @@ LAB_18027cd98:
                   }
                   SystemMemoryManager(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
-                  long_val2 = FUN_180079430(long_val);
+                  long_val2 = GenericFunction_180079430(long_val);
                   stack_data_ptr = &system_data_buffer_ptr;
                   stack_ulong2 = 0;
                   stack_char_ptr2 = (int8_t *)0x0;
@@ -485,8 +464,7 @@ LAB_18027cd98:
                   stack_data_ptr = &system_state_ptr;
                 }
               }
-              
-              // 处理颜色属性差异
+// 处理颜色属性差异
               float_val = *(float *)(long_val + 0x238);
               float_val2 = *(float *)(long_val + 0x23c);
               float_val3 = *(float *)(long_val + 0x240);
@@ -524,11 +502,10 @@ LAB_18027cd98:
                 if (uint_val5 < 0xff) {
                   uint_val4 = uint_val5;
                 }
-                FUN_18062f640(render_context_ptr, mesh_data_ptr, &processed_var_8684_ptr,
+                UtilitiesSystem_2f640(render_context_ptr, mesh_data_ptr, &processed_var_8684_ptr,
                               ((uint_val6 << 8 | uint_val2) << 8 | uint_val3) << 8 | uint_val4);
               }
-              
-              // 处理第二组颜色属性
+// 处理第二组颜色属性
               float_val4 = *(float *)(long_val + 0x248);
               float_val5 = *(float *)(long_val + 0x24c);
               float_val6 = *(float *)(long_val + 0x250);
@@ -566,11 +543,10 @@ LAB_18027cd98:
                 if (uint_val5 < 0xff) {
                   uint_val4 = uint_val5;
                 }
-                FUN_18062f640(render_context_ptr, mesh_data_ptr, &processed_var_8864_ptr,
+                UtilitiesSystem_2f640(render_context_ptr, mesh_data_ptr, &processed_var_8864_ptr,
                               ((uint_val6 << 8 | uint_val2) << 8 | uint_val3) << 8 | uint_val4);
               }
-              
-              // 处理其他属性差异
+// 处理其他属性差异
               if (((*(float *)(mesh_index + 0x2a8) != *(float *)(long_val + 0x2a8)) ||
                   (*(float *)(mesh_index + 0x2ac) != *(float *)(long_val + 0x2ac))) ||
                  (*(float *)(mesh_index + 0x2b0) != *(float *)(long_val + 0x2b0))) {
@@ -582,7 +558,7 @@ LAB_18027cd98:
                   SystemMemoryManager(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                 }
-                FUN_180630010(render_context_ptr, mesh_data_ptr, &processed_var_8832_ptr, long_val + 0x2a8);
+                UtilitiesSystem_30010(render_context_ptr, mesh_data_ptr, &processed_var_8832_ptr, long_val + 0x2a8);
               }
               if (((*(float *)(mesh_index + 0x2b8) != *(float *)(long_val + 0x2b8)) ||
                   (*(float *)(mesh_index + 700) != *(float *)(long_val + 700))) ||
@@ -595,10 +571,9 @@ LAB_18027cd98:
                   SystemMemoryManager(render_context_ptr, mesh_data_ptr, &system_buffer_3a84, byte_ptr2);
                   bool_flag = false;
                 }
-                FUN_180630010(render_context_ptr, mesh_data_ptr, &processed_var_8848_ptr, long_val + 0x2b8);
+                UtilitiesSystem_30010(render_context_ptr, mesh_data_ptr, &processed_var_8848_ptr, long_val + 0x2b8);
               }
-              
-              // 添加子网格到组件
+// 添加子网格到组件
               if (!bool_flag) {
                 if (component_data_ptr[6] == 0) {
                   mesh_data_ptr[10] = 0;
@@ -640,11 +615,10 @@ LAB_18027cd98:
       long_val = mesh_component_ptr[7];
     } while ((uint64_t)(int64_t)iStack_a8 < (uint64_t)(mesh_component_ptr[8] - long_val >> 4));
   }
-  
-  // 将组件添加到场景对象
+// 将组件添加到场景对象
   if ((component_data_ptr[6] != 0) || (component_data_ptr[8] != 0)) {
     if (render_flags != 0) {
-      FUN_180630c80(render_context_ptr, component_data_ptr, &processed_var_9168_ptr);
+      UtilitiesSystem_30c80(render_context_ptr, component_data_ptr, &processed_var_9168_ptr);
     }
     if (*(int64_t *)(scene_object_ptr + 0x30) == 0) {
       component_data_ptr[10] = 0;
@@ -660,13 +634,11 @@ LAB_18027cd98:
   }
   return;
 }
-
 // 全局变量警告：以下全局变量可能与较小符号在相同地址重叠
-
 /**
  * 材质数据导出函数
  * 将网格材质数据导出为MMD格式文件
- * 
+ *
  * @param mesh_data_ptr 网格数据指针
  */
 void export_material_data(int64_t mesh_data_ptr)
@@ -700,13 +672,11 @@ void export_material_data(int64_t mesh_data_ptr)
   int64_t temp_size;
   int32_t temp_data;
   uint64_t stack_guard;
-  
   stack_guard = 0xfffffffffffffffe;
   if (*(int *)(mesh_data_ptr + 0x324) < 1) {
     return;
   }
-  
-  // 初始化文件路径缓冲区
+// 初始化文件路径缓冲区
   SystemCore_EncryptionEngine0(path_buffer);
   index = path_length + -1;
   file_offset = (int64_t)index;
@@ -723,8 +693,7 @@ LAB_18027d492:
   if (path_ptr != (void *)0x0) {
     CoreMemoryPoolInitializer();
   }
-  
-  // 创建MMD文件路径
+// 创建MMD文件路径
   write_count = 0;
   path_length = *(uint *)(file_offset + 0x10);
   path_ptr = *(void **)(file_offset + 8);
@@ -750,8 +719,7 @@ LAB_18027d492:
   *(int32_t *)(path_ptr + path_length) = 0x646d6d2e;  // ".mmd"
   *(int8_t *)((int64_t)(path_ptr + path_length) + 4) = 0;
   path_length = index;
-  
-  // 创建文件句柄
+// 创建文件句柄
   file_handle = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr, 0x18, 8, 3);
   data_ptr = &system_buffer_ptr;
   if (path_ptr != (void *)0x0) {
@@ -762,14 +730,13 @@ LAB_18027d492:
   SystemCore_Validator(file_handle, data_ptr, &processed_var_9772_ptr);
   magic_number = 0x31444d4d;  // "MMD1"
   fwrite(&magic_number, 4, 1, file_handle[1]);
-  
-  // 写入网格数量
+// 写入网格数量
   count_array[0] = (int)(*(int64_t *)(mesh_data_ptr + 0x40) - *(int64_t *)(mesh_data_ptr + 0x38) >> 4);
   fwrite(count_array, 4, 1, file_handle[1]);
   mesh_count = write_count;
   if (0 < count_array[0]) {
     do {
-      // 处理每个网格
+// 处理每个网格
       file_offset = *(int64_t *)(mesh_count + *(int64_t *)(mesh_data_ptr + 0x38));
       size_array[0] = *(int *)(file_offset + 0x20);
       fwrite(size_array, 4, 1, file_handle[1]);
@@ -782,7 +749,7 @@ LAB_18027d492:
       fwrite(&mesh_index, 4, 1, file_handle[1]);
       temp_data = 0;
       file_pos = file_offset;
-      FUN_18007f770(&file_pos);
+      CoreEngine_07F770(&file_pos);
       file_offset = temp_size;
       header_array[0] = *(int *)(temp_size + 0x60);
       fwrite(header_array, 4, 1, file_handle[1]);
@@ -803,8 +770,7 @@ LAB_18027d492:
       if (buffer_ptr != (int32_t *)0x0) {
         CoreMemoryPoolInitializer(buffer_ptr);
       }
-      
-      // 清理网格引用
+// 清理网格引用
       if (file_pos != 0) {
         while( true ) {
           LOCK();
@@ -830,7 +796,7 @@ LAB_18027d773:
         UNLOCK();
         if (char_val == '\0') {
           if ((((index == 1) && (*(int64_t *)(file_pos + 0x210) != 0)) &&
-              (mesh_offset = file_pos, FUN_1800791a0(file_pos), *(char *)(mesh_offset + 0xfc) == '\0')) &&
+              (mesh_offset = file_pos, GenericFunction_1800791a0(file_pos), *(char *)(mesh_offset + 0xfc) == '\0')) &&
              ((*(char *)(mesh_offset + 0xf4) == '\0' &&
               (((*(byte *)(mesh_offset + 0xfd) & 0x20) == 0 || ((*(byte *)(mesh_offset + 0xfe) & 1) == 0))))))
           {
@@ -851,8 +817,7 @@ LAB_18027d773:
       mesh_count = mesh_count + 0x10;
     } while ((int)file_size < count_array[0]);
   }
-  
-  // 关闭文件
+// 关闭文件
   if (file_handle[1] != 0) {
     fclose();
     file_handle[1] = 0;

@@ -1,18 +1,14 @@
 #include "SystemDataAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 /*=============================================================================
  * 03_rendering_part326.c - 渲染系统高级参数处理和状态管理模块
- * 
+ *
  * 本模块包含16个核心函数，涵盖渲染系统高级参数处理、状态管理、
  * 渲染控制、数值获取、参数设置、条件判断和系统清理等高级渲染功能。
  *=============================================================================*/
-
 /* 渲染系统常量定义 */
 #define RENDERING_SYSTEM_OFFSET_460     0x460   /* 渲染系统偏移量460 */
 #define RENDERING_SYSTEM_OFFSET_470     0x470   /* 渲染系统偏移量470 */
@@ -34,49 +30,46 @@
 #define RENDERING_SYSTEM_OFFSET_17E8    0x17E8  /* 渲染系统偏移量17E8 */
 #define RENDERING_SYSTEM_OFFSET_1800    0x1800  /* 渲染系统偏移量1800 */
 #define RENDERING_SYSTEM_OFFSET_1808    0x1808  /* 渲染系统偏移量1808 */
-
 /* 渲染系统函数别名定义 */
-#define RenderingSystem_ProcessParameterSet1                FUN_180439fb5  /* 渲染系统参数设置处理器1 */
-#define RenderingSystem_ProcessParameterSet2                FUN_180439fd4  /* 渲染系统参数设置处理器2 */
-#define RenderingSystem_ExecuteSimpleTransform              FUN_180439ff3  /* 渲染系统简单变换执行器 */
-#define RenderingSystem_EmptyFunction1                       FUN_18043a012  /* 渲染系统空函数1 */
-#define RenderingSystem_ProcessRenderConditions              FUN_18043a140  /* 渲染系统条件处理器 */
-#define RenderingSystem_GetRenderValue                      FUN_18043ab40  /* 渲染系统值获取器 */
-#define RenderingSystem_ExecuteJumpTable                    FUN_18043abac  /* 渲染系统跳转表执行器 */
-#define RenderingSystem_EmptyFunction2                       FUN_18043b139  /* 渲染系统空函数2 */
-#define RenderingSystem_ProcessRenderActions                 FUN_18043b290  /* 渲染系统动作处理器 */
-#define RenderingSystem_ExecuteRenderBatch                  FUN_18043b930  /* 渲染系统批处理执行器 */
-#define RenderingSystem_ProcessRenderString                 FUN_18043bbe0  /* 渲染系统字符串处理器 */
-#define RenderingSystem_ExecuteRenderCopy                   FUN_18043be00  /* 渲染系统复制执行器 */
-#define RenderingSystem_ExecuteRenderCopyEx                 FUN_18043be50  /* 渲染系统扩展复制执行器 */
-#define RenderingSystem_EmptyFunction3                       FUN_18043be7b  /* 渲染系统空函数3 */
-#define RenderingSystem_ProcessParameterSet3                FUN_18043be90  /* 渲染系统参数设置处理器3 */
-#define RenderingSystem_ProcessParameterSet4                FUN_18043bf20  /* 渲染系统参数设置处理器4 */
-#define RenderingSystem_ExecuteRenderCommand                FUN_18043bfb0  /* 渲染系统命令执行器 */
-
+#define RenderingSystem_ProcessParameterSet1                function_439fb5  /* 渲染系统参数设置处理器1 */
+#define RenderingSystem_ProcessParameterSet2                function_439fd4  /* 渲染系统参数设置处理器2 */
+#define RenderingSystem_ExecuteSimpleTransform              function_439ff3  /* 渲染系统简单变换执行器 */
+#define RenderingSystem_EmptyFunction1                       function_43a012  /* 渲染系统空函数1 */
+#define RenderingSystem_ProcessRenderConditions              function_43a140  /* 渲染系统条件处理器 */
+#define RenderingSystem_GetRenderValue                      function_43ab40  /* 渲染系统值获取器 */
+#define RenderingSystem_ExecuteJumpTable                    function_43abac  /* 渲染系统跳转表执行器 */
+#define RenderingSystem_EmptyFunction2                       function_43b139  /* 渲染系统空函数2 */
+#define RenderingSystem_ProcessRenderActions                 function_43b290  /* 渲染系统动作处理器 */
+#define RenderingSystem_ExecuteRenderBatch                  function_43b930  /* 渲染系统批处理执行器 */
+#define RenderingSystem_ProcessRenderString                 function_43bbe0  /* 渲染系统字符串处理器 */
+#define RenderingSystem_ExecuteRenderCopy                   function_43be00  /* 渲染系统复制执行器 */
+#define RenderingSystem_ExecuteRenderCopyEx                 function_43be50  /* 渲染系统扩展复制执行器 */
+#define RenderingSystem_EmptyFunction3                       function_43be7b  /* 渲染系统空函数3 */
+#define RenderingSystem_ProcessParameterSet3                function_43be90  /* 渲染系统参数设置处理器3 */
+#define RenderingSystem_ProcessParameterSet4                function_43bf20  /* 渲染系统参数设置处理器4 */
+#define RenderingSystem_ExecuteRenderCommand                function_43bfb0  /* 渲染系统命令执行器 */
 /* 系统函数别名定义 */
 #define SystemDataProcessor                                SystemDataInitializer  /* 系统数据处理器 */
-#define SystemTransformExecutor                            FUN_18010cdf0  /* 系统变换执行器 */
-#define SystemRenderObjectHandler                           FUN_180171f10  /* 系统渲染对象处理器 */
-#define SystemValueGetter                                   FUN_180438350  /* 系统值获取器 */
-#define SystemDataAccessor                                 FUN_1804386b0  /* 系统数据访问器 */
-#define SystemIndexProcessor                                FUN_180438940  /* 系统索引处理器 */
-#define SystemStatusChecker                                FUN_180104d00  /* 系统状态检查器 */
-#define SystemParameterProcessor1                          FUN_18010d9f0  /* 系统参数处理器1 */
-#define SystemParameterProcessor2                          FUN_18010da70  /* 系统参数处理器2 */
-#define SystemParameterProcessor3                          FUN_18010d870  /* 系统参数处理器3 */
-#define SystemParameterProcessor4                          FUN_18010daf0  /* 系统参数处理器4 */
-#define SystemParameterProcessor5                          FUN_18010cd70  /* 系统参数处理器5 */
-#define SystemInitializer                                  FUN_180103970  /* 系统初始化器 */
-#define SystemCleanupHandler                               FUN_1800b3a40  /* 系统清理处理器 */
+#define SystemTransformExecutor                            function_10cdf0  /* 系统变换执行器 */
+#define SystemRenderObjectHandler                           function_171f10  /* 系统渲染对象处理器 */
+#define SystemValueGetter                                   function_438350  /* 系统值获取器 */
+#define SystemDataAccessor                                 function_4386b0  /* 系统数据访问器 */
+#define SystemIndexProcessor                                function_438940  /* 系统索引处理器 */
+#define SystemStatusChecker                                function_104d00  /* 系统状态检查器 */
+#define SystemParameterProcessor1                          function_10d9f0  /* 系统参数处理器1 */
+#define SystemParameterProcessor2                          function_10da70  /* 系统参数处理器2 */
+#define SystemParameterProcessor3                          function_10d870  /* 系统参数处理器3 */
+#define SystemParameterProcessor4                          function_10daf0  /* 系统参数处理器4 */
+#define SystemParameterProcessor5                          function_10cd70  /* 系统参数处理器5 */
+#define SystemInitializer                                  function_103970  /* 系统初始化器 */
+#define SystemCleanupHandler                               function_0b3a40  /* 系统清理处理器 */
 #define SystemMemoryAllocator                              CoreEngineMemoryPoolReallocator  /* 系统内存分配器 */
 #define SystemPointerManager                               SystemCore_StreamController  /* 系统指针管理器 */
 #define SystemDataManager                                  SystemPerformance_Monitor  /* 系统数据管理器 */
-#define SystemExitHandler                                  FUN_18004b1f0  /* 系统退出处理器 */
+#define SystemExitHandler                                  function_04b1f0  /* 系统退出处理器 */
 #define SystemSecurityChecker                              SystemSecurityChecker  /* 系统安全检查器 */
-#define SystemStringFormatter                              FUN_180060680  /* 系统字符串格式化器 */
+#define SystemStringFormatter                              function_060680  /* 系统字符串格式化器 */
 #define SystemCommandProcessor                             SystemConfigurationManager  /* 系统命令处理器 */
-
 /* 渲染系统全局变量 */
 extern int64_t SYSTEM_STATE_MANAGER;      /* 渲染系统全局数据指针 */
 extern char system_debug_flag;           /* 渲染系统标志位 */
@@ -86,10 +79,9 @@ extern uint8_t global_var_3432_ptr;      /* 渲染系统配置数据 */
 extern uint8_t global_var_3480_ptr;      /* 渲染系统扩展配置数据 */
 extern uint8_t global_var_720_ptr;     /* 渲染系统缓冲区数据 */
 extern uint8_t global_var_4576_ptr;     /* 渲染系统格式化数据 */
-
 /*=============================================================================
  * 渲染系统参数设置处理器1
- * 
+ *
  * 处理渲染系统参数设置，包括状态检查、条件验证、数据更新等功能。
  * 支持多种渲染模式和参数配置，确保渲染系统正常运行。
  *=============================================================================*/
@@ -101,16 +93,13 @@ void RenderingSystem_ProcessParameterSet1(void)
   float parameter_value;
   uint64_t stack_data;
   int parameter_int;
-  
   render_context = SYSTEM_STATE_MANAGER;
   stack_data = _iStack0000000000000048;
   parameter_int = (int)parameter_value;
-  
   /* 检查渲染系统状态和条件 */
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_4C0) != 0) &&
-     (status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_4C8))(&stack0x00000048), 
+     (status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_4C8))(&local_buffer_00000048),
       status_check == '\0')) {
-    
     /* 处理标志位检查 */
     if (system_debug_flag == '\0') {
       data_pointer = &system_buffer_ptr;
@@ -119,21 +108,18 @@ void RenderingSystem_ProcessParameterSet1(void)
       }
       SystemDataInitializer(&global_var_544_ptr, data_pointer);
     }
-    
     /* 更新渲染参数 */
-    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_460) = 
+    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_460) =
         *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_4A8);
     return;
   }
-  
   /* 设置参数值 */
   *(int *)(render_context + RENDERING_SYSTEM_OFFSET_460) = parameter_int;
   return;
 }
-
 /*=============================================================================
  * 渲染系统参数设置处理器2
- * 
+ *
  * 处理渲染系统第二组参数设置，包括高级状态检查、数据验证和
  * 参数更新功能。支持多种渲染模式和状态管理。
  *=============================================================================*/
@@ -145,16 +131,13 @@ void RenderingSystem_ProcessParameterSet2(void)
   float parameter_value;
   uint64_t stack_data;
   int parameter_int;
-  
   render_context = SYSTEM_STATE_MANAGER;
   stack_data = _iStack0000000000000048;
   parameter_int = (int)parameter_value;
-  
   /* 检查渲染系统高级状态 */
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_21A0) != 0) &&
-     (status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_21A8))(&stack0x00000048), 
+     (status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_21A8))(&local_buffer_00000048),
       status_check == '\0')) {
-    
     /* 处理标志位检查 */
     if (system_debug_flag == '\0') {
       data_pointer = &system_buffer_ptr;
@@ -163,46 +146,40 @@ void RenderingSystem_ProcessParameterSet2(void)
       }
       SystemDataInitializer(&global_var_544_ptr, data_pointer);
     }
-    
     /* 更新高级渲染参数 */
-    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_2140) = 
+    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_2140) =
         *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_2188);
     return;
   }
-  
   /* 设置高级参数值 */
   *(int *)(render_context + RENDERING_SYSTEM_OFFSET_2140) = parameter_int;
   return;
 }
-
 /*=============================================================================
  * 渲染系统简单变换执行器
- * 
+ *
  * 执行渲染系统的简单变换操作，包括参数传递和函数调用。
  * 支持基本的渲染变换和状态更新。
  *=============================================================================*/
 void RenderingSystem_ExecuteSimpleTransform(void)
 {
   float parameter_value;
-  
   /* 执行渲染变换操作 */
   SystemTransformExecutor(SYSTEM_STATE_MANAGER, (int)parameter_value);
   return;
 }
-
 /*=============================================================================
  * 渲染系统空函数1
- * 
+ *
  * 空函数占位符，用于系统架构完整性和未来扩展。
  *=============================================================================*/
 void RenderingSystem_EmptyFunction1(void)
 {
   return;
 }
-
 /*=============================================================================
  * 渲染系统条件处理器
- * 
+ *
  * 处理渲染系统的各种条件判断，包括参数验证、状态检查和
  * 动作执行。支持多种渲染条件和操作模式。
  *=============================================================================*/
@@ -328,13 +305,13 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     }
     break;
   case 0x26:
-    func_0x00018010e1f0(SYSTEM_STATE_MANAGER);
+    SystemFunction_00018010e1f0(SYSTEM_STATE_MANAGER);
     return;
   case 0x27:
-    func_0x00018010d370(SYSTEM_STATE_MANAGER);
+    SystemFunction_00018010d370(SYSTEM_STATE_MANAGER);
     return;
   case 0x28:
-    func_0x00018010d430(SYSTEM_STATE_MANAGER);
+    SystemFunction_00018010d430(SYSTEM_STATE_MANAGER);
     return;
   case 0x29:
     if ((param_2 != 0) && (param_2 != 1)) {
@@ -351,7 +328,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     }
     break;
   case 0x2a:
-    func_0x00018010e130(SYSTEM_STATE_MANAGER);
+    SystemFunction_00018010e130(SYSTEM_STATE_MANAGER);
     return;
   case 0x2b:
     if (((param_2 != 0) && (param_2 != 1)) && (param_2 != 2)) {
@@ -379,7 +356,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     }
     break;
   case 0x2d:
-    func_0x00018010deb0(SYSTEM_STATE_MANAGER);
+    SystemFunction_00018010deb0(SYSTEM_STATE_MANAGER);
     return;
   case 0x2e:
     if (param_2 != 0) {
@@ -399,7 +376,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     }
     break;
   case 0x2f:
-    func_0x00018010ddf0(SYSTEM_STATE_MANAGER);
+    SystemFunction_00018010ddf0(SYSTEM_STATE_MANAGER);
     return;
   case 0x30:
     if (((param_2 != 0) && (param_2 != 1)) && ((param_2 != 2 && ((param_2 != 3 && (param_2 == 5)))))) {
@@ -424,7 +401,7 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
     }
     break;
   case 0x32:
-    func_0x00018010df70(SYSTEM_STATE_MANAGER);
+    SystemFunction_00018010df70(SYSTEM_STATE_MANAGER);
     return;
   case 0x33:
     if ((param_2 != 0) && (param_2 != 1)) {
@@ -641,10 +618,9 @@ void RenderingSystem_ProcessRenderConditions(int32_t param_1, int param_2)
   }
   return;
 }
-
 /*=============================================================================
  * 渲染系统值获取器
- * 
+ *
  * 根据参数类型获取渲染系统的各种值，包括浮点数值、整数值和
  * 状态值。支持多种渲染参数和配置选项。
  *=============================================================================*/
@@ -661,9 +637,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
   float temp_float1;
   float temp_float2;
   uint64_t stack_data;
-  
   render_context = SYSTEM_STATE_MANAGER;
-  
   /* 检查渲染系统状态 */
   if ((*(int64_t *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     system_status = false;
@@ -671,10 +645,8 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
   else {
     system_status = true;
   }
-  
   float_result = -1.0;
   temp_float1 = -1.0;
-  
   switch(param_1) {
   case 0:
     float_result = *(float *)(SYSTEM_STATE_MANAGER + 0x1340);
@@ -778,7 +750,7 @@ float RenderingSystem_GetRenderValue(int32_t param_1)
     }
     goto code_r0x00018043b131;
   case 0x18:
-    temp_value1 = func_0x0001804388d0();
+    temp_value1 = SystemFunction_0001804388d0();
     int_value = 0;
     if (0 < temp_value1) {
       temp_float1 = *(float *)(render_context + 0x1e30);
@@ -953,19 +925,18 @@ code_r0x00018043b0b3:
     int_value = *(int *)(SYSTEM_STATE_MANAGER + 0x21b0);
     break;
   default:
-    goto FUN_18043b139;
+    goto label_43b139;
   }
 code_r0x00018043b12e:
   float_result = (float)int_value;
 code_r0x00018043b131:
   temp_float1 = float_result;
-FUN_18043b139:
+label_43b139:
   return temp_float1;
 }
-
 /*=============================================================================
  * 渲染系统跳转表执行器
- * 
+ *
  * 执行渲染系统的跳转表操作，支持动态函数调用和参数传递。
  * 用于处理复杂的渲染操作和系统调用。
  *=============================================================================*/
@@ -973,34 +944,30 @@ void RenderingSystem_ExecuteJumpTable(uint64_t param_1, uint64_t param_2, int64_
 {
   int64_t register_data;
   code *jump_table;
-  
   jump_table = (code *)((uint64_t)*(uint *)(param_3 + 0x43b168 + register_data * 4) + param_3);
-                    // WARNING: Could not recover jumptable at 0x00018043abbf. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x00018043abbf. Too many branches
+// WARNING: Treating indirect jump as call
   (*jump_table)(jump_table);
   return;
 }
-
 /*=============================================================================
  * 渲染系统空函数2
- * 
+ *
  * 空函数占位符，用于系统架构完整性和未来扩展。
  *=============================================================================*/
 void RenderingSystem_EmptyFunction2(void)
 {
   return;
 }
-
 /*=============================================================================
  * 渲染系统动作处理器
- * 
+ *
  * 处理渲染系统的各种动作，包括条件检查、状态验证和
  * 动作执行。支持多种渲染模式和操作类型。
  *=============================================================================*/
 void RenderingSystem_ProcessRenderActions(int32_t param_1)
 {
   bool system_status;
-  
   /* 检查渲染系统状态 */
   if ((*(int64_t *)(system_parameter_buffer + 0x7ab8) == 0) || (*(int *)(SYSTEM_STATE_MANAGER + 0x540) < 1)) {
     system_status = false;
@@ -1008,7 +975,6 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
   else {
     system_status = true;
   }
-  
   switch(param_1) {
   case 0:
     return;
@@ -1188,10 +1154,9 @@ void RenderingSystem_ProcessRenderActions(int32_t param_1)
   }
   return;
 }
-
 /*=============================================================================
  * 渲染系统批处理执行器
- * 
+ *
  * 执行渲染系统的批处理操作，包括多个渲染参数的处理和
  * 系统状态的更新。支持复杂的批处理流程。
  *=============================================================================*/
@@ -1210,10 +1175,8 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   int8_t temp_buffer[128];
   int32_t buffer_value;
   uint64_t stack_guard;
-  
   stack_data = 0xfffffffffffffffe;
   stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
-  
   /* 处理渲染参数 */
   if (param_3 != 0) {
     SystemParameterProcessor1(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x8c0));
@@ -1236,13 +1199,11 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   if (param_10 != 0) {
     SystemTransformExecutor(SYSTEM_STATE_MANAGER, *(int32_t *)(SYSTEM_STATE_MANAGER + 0x21b0));
   }
-  
   /* 执行渲染系统初始化 */
   SystemInitializer();
   if (param_1 != 0) {
     SystemCleanupHandler();
   }
-  
   /* 设置渲染缓冲区 */
   pointer_stack = &buffer_pointer;
   buffer_pointer = &global_var_3432_ptr;
@@ -1250,40 +1211,32 @@ void RenderingSystem_ExecuteRenderBatch(int param_1, int param_2, int param_3, i
   temp_value = 0;
   temp_buffer[0] = 0;
   buffer_value = 0x1b;
-  
   /* 执行批处理操作 */
   temp_data = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x100, 8, 3);
   pointer_ptr = (void **)SystemPointerManager(temp_data, &buffer_pointer);
   temp_pointer = pointer_ptr;
-  
   if (pointer_ptr != (void **)0x0) {
     (**(code **)(*pointer_ptr + 0x28))(pointer_ptr);
   }
-  
   temp_data = system_context_ptr;
   triple_pointer = &pointer_stack;
   pointer_stack = pointer_ptr;
-  
   if (pointer_ptr != (void **)0x0) {
     (**(code **)(*pointer_ptr + 0x28))(pointer_ptr);
   }
-  
   SystemDataManager(temp_data, &pointer_stack);
-  
   if (pointer_ptr != (void **)0x0) {
     (**(code **)(*pointer_ptr + 0x38))(pointer_ptr);
   }
-  
   triple_pointer = (void ***)&buffer_pointer;
   buffer_pointer = &global_var_720_ptr;
   SystemExitHandler(0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemSecurityChecker(stack_guard ^ (uint64_t)temp_buffer);
 }
-
 /*=============================================================================
  * 渲染系统字符串处理器
- * 
+ *
  * 处理渲染系统的字符串操作，包括字符串格式化、复制和
  * 缓冲区管理。支持多种字符串处理操作。
  *=============================================================================*/
@@ -1302,10 +1255,8 @@ void RenderingSystem_ProcessRenderString(int param_1)
   int8_t work_buffer[72];
   char format_buffer[16];
   uint64_t stack_guard;
-  
   stack_data = 0xfffffffffffffffe;
   stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
-  
   base_address = (int64_t)param_1 * 0x70 + *(int64_t *)(*(int64_t *)(system_main_module_state + 8) + 0x18);
   stack_pointer = &global_var_3480_ptr;
   string_buffer = work_buffer;
@@ -1313,48 +1264,38 @@ void RenderingSystem_ProcessRenderString(int param_1)
   buffer_size = *(uint *)(base_address + 0x10);
   data_pointer = *(void **)(base_address + 8);
   temp_pointer = &system_buffer_ptr;
-  
   if (data_pointer != (void *)0x0) {
     temp_pointer = data_pointer;
   }
-  
   strcpy_s(work_buffer, 0x40, temp_pointer);
-  
   if (buffer_size + 2 < 0x3f) {
     *(int16_t *)(string_buffer + buffer_size) = 0x2820;
     *(int8_t *)((int64_t)(string_buffer + buffer_size) + 2) = 0;
     buffer_size = buffer_size + 2;
   }
-  
   SystemStringFormatter(format_buffer, &global_var_4576_ptr, param_1);
   data_offset = -1;
-  
   do {
     base_address = data_offset;
     data_offset = base_address + 1;
   } while (format_buffer[base_address + 1] != '\0');
-  
   string_length = (int)(base_address + 1);
-  
   if ((0 < string_length) && (buffer_size + string_length < 0x3f)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memcpy(string_buffer + buffer_size, format_buffer, (int64_t)((int)base_address + 2));
   }
-  
   if (buffer_size + 1 < 0x3f) {
     *(int16_t *)(string_buffer + buffer_size) = 0x29;
     buffer_size = buffer_size + 1;
   }
-  
   (**(code **)(*system_cache_buffer + 0x70))(system_cache_buffer, &stack_pointer);
   stack_pointer = &global_var_720_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemSecurityChecker(stack_guard ^ (uint64_t)temp_buffer);
 }
-
 /*=============================================================================
  * 渲染系统复制执行器
- * 
+ *
  * 执行渲染系统的数据复制操作，包括字符串复制和缓冲区管理。
  * 支持安全的数据复制和内存管理。
  *=============================================================================*/
@@ -1366,30 +1307,25 @@ void RenderingSystem_ExecuteRenderCopy(int64_t param_1, int32_t param_2)
   int8_t temp_buffer[32];
   char format_buffer[16];
   uint64_t stack_guard;
-  
   stack_guard = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   SystemStringFormatter(format_buffer, &global_var_4576_ptr, param_2);
-  
   data_offset = -1;
   do {
     temp_offset = data_offset;
     data_offset = temp_offset + 1;
   } while (format_buffer[temp_offset + 1] != '\0');
-  
   string_length = (int)(temp_offset + 1);
-  
   if ((0 < string_length) && (*(uint *)(param_1 + 0x10) + string_length < 0x3f)) {
-                    // WARNING: Subroutine does not return
-    memcpy((uint64_t)*(uint *)(param_1 + 0x10) + *(int64_t *)(param_1 + 8), 
+// WARNING: Subroutine does not return
+    memcpy((uint64_t)*(uint *)(param_1 + 0x10) + *(int64_t *)(param_1 + 8),
            format_buffer, (int64_t)((int)temp_offset + 2));
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemSecurityChecker(stack_guard ^ (uint64_t)temp_buffer);
 }
-
 /*=============================================================================
  * 渲染系统扩展复制执行器
- * 
+ *
  * 执行渲染系统的扩展数据复制操作，包括高级缓冲区管理和
  * 数据处理。支持更复杂的复制操作。
  *=============================================================================*/
@@ -1399,32 +1335,28 @@ void RenderingSystem_ExecuteRenderCopyEx(uint64_t param_1, uint param_2)
   int64_t target_address;
   int8_t source_buffer[8];
   uint64_t stack_data;
-  
   if (param_2 + copy_length < 0x3f) {
-                    // WARNING: Subroutine does not return
-    memcpy((uint64_t)param_2 + *(int64_t *)(target_address + 8), 
+// WARNING: Subroutine does not return
+    memcpy((uint64_t)param_2 + *(int64_t *)(target_address + 8),
            source_buffer, (int64_t)(copy_length + 1));
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(stack_data ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(stack_data ^ (uint64_t)&local_buffer_00000000);
 }
-
 /*=============================================================================
  * 渲染系统空函数3
- * 
+ *
  * 空函数占位符，用于系统架构完整性和未来扩展。
  *=============================================================================*/
 void RenderingSystem_EmptyFunction3(void)
 {
   uint64_t stack_data;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(stack_data ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(stack_data ^ (uint64_t)&local_buffer_00000000);
 }
-
 /*=============================================================================
  * 渲染系统参数设置处理器3
- * 
+ *
  * 处理渲染系统第三组参数设置，包括状态检查、条件验证和
  * 数据更新功能。支持高级渲染参数配置。
  *=============================================================================*/
@@ -1434,14 +1366,11 @@ void RenderingSystem_ProcessParameterSet3(uint64_t param_1, int32_t param_2)
   char status_check;
   void *data_pointer;
   int32_t temp_stack[6];
-  
   render_context = SYSTEM_STATE_MANAGER;
-  
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1800) != 0) &&
-     (temp_stack[0] = param_2, 
+     (temp_stack[0] = param_2,
       status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1808))(temp_stack),
       param_2 = temp_stack[0], status_check == '\0')) {
-    
     if (system_debug_flag == '\0') {
       data_pointer = &system_buffer_ptr;
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_17B0) != (void *)0x0) {
@@ -1449,19 +1378,16 @@ void RenderingSystem_ProcessParameterSet3(uint64_t param_1, int32_t param_2)
       }
       SystemDataInitializer(&global_var_544_ptr, data_pointer);
     }
-    
-    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) = 
+    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) =
         *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17E8);
     return;
   }
-  
   *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_17A0) = param_2;
   return;
 }
-
 /*=============================================================================
  * 渲染系统参数设置处理器4
- * 
+ *
  * 处理渲染系统第四组参数设置，包括高级状态检查、数据验证和
  * 参数更新功能。支持多种渲染模式和配置选项。
  *=============================================================================*/
@@ -1471,14 +1397,11 @@ void RenderingSystem_ProcessParameterSet4(uint64_t param_1, int32_t param_2)
   char status_check;
   void *data_pointer;
   int32_t temp_stack[6];
-  
   render_context = SYSTEM_STATE_MANAGER;
-  
   if ((*(int64_t *)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1170) != 0) &&
-     (temp_stack[0] = param_2, 
+     (temp_stack[0] = param_2,
       status_check = (**(code **)(SYSTEM_STATE_MANAGER + RENDERING_SYSTEM_OFFSET_1178))(temp_stack),
       param_2 = temp_stack[0], status_check == '\0')) {
-    
     if (system_debug_flag == '\0') {
       data_pointer = &system_buffer_ptr;
       if (*(void **)(render_context + RENDERING_SYSTEM_OFFSET_1120) != (void *)0x0) {
@@ -1486,19 +1409,16 @@ void RenderingSystem_ProcessParameterSet4(uint64_t param_1, int32_t param_2)
       }
       SystemDataInitializer(&global_var_544_ptr, data_pointer);
     }
-    
-    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1110) = 
+    *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1110) =
         *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1158);
     return;
   }
-  
   *(int32_t *)(render_context + RENDERING_SYSTEM_OFFSET_1110) = param_2;
   return;
 }
-
 /*=============================================================================
  * 渲染系统命令执行器
- * 
+ *
  * 执行渲染系统的命令操作，包括参数传递、函数调用和
  * 系统控制。支持复杂的渲染命令处理。
  *=============================================================================*/
@@ -1507,12 +1427,11 @@ void RenderingSystem_ExecuteRenderCommand(int32_t param_1, uint64_t param_2, int
   SystemCommandProcessor(system_message_context, param_1, param_4, param_3, &global_var_6496_ptr, param_2);
   return;
 }
-
 /*=============================================================================
  * 技术说明
- * 
+ *
  * 本模块实现了渲染系统的高级参数处理和状态管理功能，包含16个核心函数：
- * 
+ *
  * 1. 参数设置处理器：4个函数处理不同组的参数设置
  * 2. 空函数：3个函数用于系统架构完整性
  * 3. 条件处理器：处理复杂的渲染条件判断
@@ -1522,6 +1441,6 @@ void RenderingSystem_ExecuteRenderCommand(int32_t param_1, uint64_t param_2, int
  * 7. 字符串处理器：处理渲染相关的字符串操作
  * 8. 复制执行器：执行数据复制操作
  * 9. 命令执行器：执行渲染命令
- * 
+ *
  * 所有函数都经过详细的中文注释和文档说明，确保代码的可读性和维护性。
  *=============================================================================*/

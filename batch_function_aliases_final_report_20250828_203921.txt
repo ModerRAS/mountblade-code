@@ -1,0 +1,42 @@
+最终批次函数地址调用处理报告
+处理时间: 2025年 08月 28日 星期四 20:39:21 UTC
+初始函数地址调用数量: 73
+实际处理数量: 72
+剩余数量: 1
+处理文件数: 41
+
+处理的函数别名映射:
+  func_0x0001808c92a0 -> RenderingSystem_ProcessParameters
+  func_0x000180851be0 -> MemoryManager_AllocateBuffer
+  func_0x000180851e30 -> MathFunction_GetParameterValue
+  func_0x00018084e310 -> RenderingSystem_UpdateTexture
+  func_0x00018085f4a0 -> MathFunction_ComputeVector
+  func_0x000180853810 -> MathFunction_CalculateDistance
+  func_0x0001808d57c0 -> MathFunction_CalculateTransform
+  func_0x000180074f10 -> SystemCore_CleanupResource
+  func_0x0001808c3960 -> MathFunction_ConvertValue
+  func_0x0001808c0d90 -> SystemCore_ValidateRequest
+  func_0x00018084d0b0 -> SystemCore_ProcessRequest
+  func_0x0001808cf130 -> RenderingSystem_UpdateBuffer
+  func_0x0001808c16c0 -> MathFunction_ComputeValue
+  func_0x0001808bef10 -> RenderingSystem_GetRenderState
+  func_0x0001808cd390 -> MathFunction_ProcessMatrix
+  func_0x0001808b2ec0 -> MathFunction_InverseTransform
+  func_0x000180857b00 -> SystemCore_CheckCondition
+  func_0x00018076b8a0 -> MemoryManager_GetBufferData
+  func_0x0001800e2bf0 -> RenderingSystem_SetShaderParams
+  func_0x0001808534b0 -> RenderingSystem_ProcessCommand
+  func_0x0001808c1de0 -> MathFunction_ValidateResult
+  func_0x00018076a7d0 -> MemoryManager_CopyData
+  func_0x0001808cef10 -> RenderingSystem_UpdateTransform
+  func_0x00018076b450 -> MemoryManager_SecureBuffer
+  func_0x000180862c20 -> RenderingSystem_FlushPipeline
+  func_0x0001808b2ef0 -> MathFunction_ApplyTransform
+  func_0x0001808b62c0 -> RenderingSystem_RenderObject
+  func_0x0001808c1740 -> MathFunction_CalculateScale
+  func_0x0001808bc370 -> SystemCore_GetStatus
+  func_0x0001808cded0 -> RenderingSystem_ReleaseResource
+  func_0x00018024c420 -> RenderingSystem_GetRenderMode
+  func_0x0001807d2ed0 -> RenderingSystem_BindTexture
+  func_0x00018076b420 -> MemoryManager_ValidateBuffer
+  func_0x0001808bef20 -> RenderingSystem_SetRenderState

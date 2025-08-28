@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part414.c - 2 个函数
-
-// 函数: void FUN_1804945d6(void)
-void FUN_1804945d6(void)
-
+// 函数: void UISystem_945d6(void)
+void UISystem_945d6(void)
 {
   float fVar1;
   bool bVar2;
@@ -44,14 +41,13 @@ void FUN_1804945d6(void)
   float fVar30;
   float unaff_XMM9_Da;
   char cStackX_24;
-  uint uStack0000000000000040;
-  uint uStack0000000000000048;
-  uint uStack000000000000005c;
-  
+  uint local_buffer_40;
+  uint local_buffer_48;
+  uint local_buffer_5c;
   if (in_R10B != '\0') {
-    uStack000000000000005c = 0;
+    local_buffer_5c = 0;
     do {
-      uVar4 = uStack000000000000005c * 3;
+      uVar4 = local_buffer_5c * 3;
       uVar25 = *(uint64_t *)
                 (unaff_RBP +
                  (uint64_t)*(uint *)(unaff_RDI + 0x9f8100 + (uint64_t)uVar4 * 4) * 4 + 8 + 2);
@@ -133,11 +129,11 @@ void FUN_1804945d6(void)
       }
       fVar30 = (unaff_RBP[-2] - fVar1) * fVar27;
       fVar27 = (unaff_RBP[2] - fVar1) * fVar27;
-      uStack0000000000000040 = 0;
+      local_buffer_40 = 0;
       if (0 < (int)uVar11) {
-        uStack0000000000000040 = uVar11;
+        local_buffer_40 = uVar11;
       }
-      uStack0000000000000040 = uStack0000000000000040 & 0xfffffffe;
+      local_buffer_40 = local_buffer_40 & 0xfffffffe;
       uVar6 = uVar22;
       if ((int)uVar22 < (int)uVar14) {
         uVar6 = uVar14;
@@ -152,27 +148,27 @@ void FUN_1804945d6(void)
       }
       if (0 < iVar10) {
         fVar29 = (float)iVar12 * fVar27 + (float)iVar19 * fVar30;
-        uVar11 = (uVar17 * uVar21 - uVar20 * uVar22) + uStack0000000000000040 * (uVar20 - uVar17) +
+        uVar11 = (uVar17 * uVar21 - uVar20 * uVar22) + local_buffer_40 * (uVar20 - uVar17) +
                  uVar4 * iVar13;
-        uVar21 = (uStack0000000000000040 * iVar3 - uVar16 * uVar21) + uVar14 * uVar20 +
+        uVar21 = (local_buffer_40 * iVar3 - uVar16 * uVar21) + uVar14 * uVar20 +
                  uVar4 * iVar19;
-        uVar14 = uVar16 * uVar22 + (uStack0000000000000040 * iVar8 - uVar14 * uVar17) +
+        uVar14 = uVar16 * uVar22 + (local_buffer_40 * iVar8 - uVar14 * uVar17) +
                  uVar4 * iVar12;
-        if ((int)uStack0000000000000040 < (int)uVar6) {
-          lVar15 = (int64_t)(int)(uStack0000000000000040 * 0x280 + uVar4);
+        if ((int)local_buffer_40 < (int)uVar6) {
+          lVar15 = (int64_t)(int)(local_buffer_40 * 0x280 + uVar4);
           do {
             bVar2 = false;
             fVar28 = (float)(int)uVar21 * fVar30 + fVar1 + (float)(int)uVar14 * fVar27;
             if ((int)uVar4 < (int)uVar5) {
               lVar18 = lVar15;
-              uStack0000000000000048 = uVar4;
+              local_buffer_48 = uVar4;
               uVar9 = uVar11;
               uVar16 = uVar21;
               uVar22 = uVar14;
               if (3 < (int)(uVar5 - uVar4)) {
                 uVar7 = ((uVar5 - uVar4) - 4 >> 2) + 1;
                 uVar23 = (uint64_t)uVar7;
-                uStack0000000000000048 = uVar4 + uVar7 * 4;
+                local_buffer_48 = uVar4 + uVar7 * 4;
                 do {
                   if ((bVar2) ||
                      ((0 < (int)(uVar22 | uVar16 | uVar9) &&
@@ -226,9 +222,9 @@ void FUN_1804945d6(void)
                   uVar23 = uVar23 - 1;
                 } while (uVar23 != 0);
               }
-              if ((int)uStack0000000000000048 < (int)uVar5) {
+              if ((int)local_buffer_48 < (int)uVar5) {
                 lVar18 = lVar18 * 4;
-                lVar24 = (int64_t)(int)(uVar5 - uStack0000000000000048);
+                lVar24 = (int64_t)(int)(uVar5 - local_buffer_48);
                 do {
                   if ((bVar2) ||
                      ((0 < (int)(uVar22 | uVar16 | uVar9) &&
@@ -249,31 +245,25 @@ void FUN_1804945d6(void)
               }
               if (bVar2) goto LAB_180494a88;
             }
-            uStack0000000000000040 = uStack0000000000000040 + 1;
+            local_buffer_40 = local_buffer_40 + 1;
             lVar15 = lVar15 + 0x280;
             uVar11 = uVar11 + (uVar20 - uVar17);
             uVar14 = uVar14 + iVar8;
             uVar21 = uVar21 + iVar3;
-          } while ((int)uStack0000000000000040 < (int)uVar6);
+          } while ((int)local_buffer_40 < (int)uVar6);
         }
       }
       unaff_RDI = 0x180000000;
-      uStack000000000000005c = uStack000000000000005c + 1;
+      local_buffer_5c = local_buffer_5c + 1;
       unaff_BL = cStackX_24;
-    } while (uStack000000000000005c < 0xc);
+    } while (local_buffer_5c < 0xc);
   }
 LAB_180494a88:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x28) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x28) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_1804945ff(void)
-void FUN_1804945ff(void)
-
+// 函数: void UISystem_945ff(void)
+void UISystem_945ff(void)
 {
   float fVar1;
   uint uVar2;
@@ -307,19 +297,18 @@ void FUN_1804945ff(void)
   float fVar25;
   float unaff_XMM9_Da;
   char cStackX_24;
-  uint uStack0000000000000028;
-  uint uStack0000000000000040;
-  uint uStack0000000000000044;
-  uint uStack0000000000000048;
+  uint local_buffer_28;
+  uint local_buffer_40;
+  uint local_buffer_44;
+  uint local_buffer_48;
   int iStack000000000000004c;
   int iStack0000000000000050;
   int iStack0000000000000054;
-  uint uStack0000000000000058;
-  uint uStack000000000000005c;
-  
-  uStack000000000000005c = 0;
+  uint local_buffer_58;
+  uint local_buffer_5c;
+  local_buffer_5c = 0;
   do {
-    uVar4 = uStack000000000000005c * 3;
+    uVar4 = local_buffer_5c * 3;
     uVar20 = *(uint64_t *)
               (unaff_RBP + (uint64_t)*(uint *)(unaff_RDI + 0x9f8100 + (uint64_t)uVar4 * 4) * 4 + 8
               + 2);
@@ -388,9 +377,9 @@ void FUN_1804945ff(void)
     if ((int)uVar15 < (int)uVar6) {
       uVar2 = uVar6;
     }
-    uStack0000000000000044 = 0x27f;
+    local_buffer_44 = 0x27f;
     if ((int)uVar2 < 0x27f) {
-      uStack0000000000000044 = uVar2;
+      local_buffer_44 = uVar2;
     }
     uVar6 = uVar17;
     if ((int)uVar9 < (int)uVar17) {
@@ -402,11 +391,11 @@ void FUN_1804945ff(void)
     }
     fVar25 = (unaff_RBP[-2] - fVar1) * fVar22;
     fVar22 = (unaff_RBP[2] - fVar1) * fVar22;
-    uStack0000000000000040 = 0;
+    local_buffer_40 = 0;
     if (0 < (int)uVar2) {
-      uStack0000000000000040 = uVar2;
+      local_buffer_40 = uVar2;
     }
-    uStack0000000000000040 = uStack0000000000000040 & 0xfffffffe;
+    local_buffer_40 = local_buffer_40 & 0xfffffffe;
     uVar6 = uVar17;
     if ((int)uVar17 < (int)uVar9) {
       uVar6 = uVar9;
@@ -415,36 +404,36 @@ void FUN_1804945ff(void)
     if ((int)uVar16 < (int)uVar6) {
       uVar2 = uVar6;
     }
-    uStack0000000000000058 = 0x167;
+    local_buffer_58 = 0x167;
     if ((int)uVar2 < 0x167) {
-      uStack0000000000000058 = uVar2;
+      local_buffer_58 = uVar2;
     }
-    uStack0000000000000028 = uVar4;
+    local_buffer_28 = uVar4;
     if (0 < iVar5) {
       fVar24 = (float)iVar7 * fVar22 + (float)iVar14 * fVar25;
-      uVar6 = (uVar12 * uVar16 - uVar15 * uVar17) + uStack0000000000000040 * iStack000000000000004c
+      uVar6 = (uVar12 * uVar16 - uVar15 * uVar17) + local_buffer_40 * iStack000000000000004c
               + uVar4 * iVar8;
-      uVar15 = (uStack0000000000000040 * iStack0000000000000050 - uVar11 * uVar16) + uVar9 * uVar15
+      uVar15 = (local_buffer_40 * iStack0000000000000050 - uVar11 * uVar16) + uVar9 * uVar15
                + uVar4 * iVar14;
-      uStack0000000000000028 =
-           uVar11 * uVar17 + (uStack0000000000000040 * iStack0000000000000054 - uVar9 * uVar12) +
+      local_buffer_28 =
+           uVar11 * uVar17 + (local_buffer_40 * iStack0000000000000054 - uVar9 * uVar12) +
            uVar4 * iVar7;
-      if ((int)uStack0000000000000040 < (int)uStack0000000000000058) {
-        lVar10 = (int64_t)(int)(uStack0000000000000040 * 0x280 + uVar4);
+      if ((int)local_buffer_40 < (int)local_buffer_58) {
+        lVar10 = (int64_t)(int)(local_buffer_40 * 0x280 + uVar4);
         do {
           bVar3 = false;
-          fVar23 = (float)(int)uVar15 * fVar25 + fVar1 + (float)(int)uStack0000000000000028 * fVar22
+          fVar23 = (float)(int)uVar15 * fVar25 + fVar1 + (float)(int)local_buffer_28 * fVar22
           ;
-          if ((int)uVar4 < (int)uStack0000000000000044) {
+          if ((int)uVar4 < (int)local_buffer_44) {
             lVar13 = lVar10;
-            uStack0000000000000048 = uVar4;
+            local_buffer_48 = uVar4;
             uVar12 = uVar6;
             uVar9 = uVar15;
-            uVar11 = uStack0000000000000028;
-            if (3 < (int)(uStack0000000000000044 - uVar4)) {
-              uVar16 = ((uStack0000000000000044 - uVar4) - 4 >> 2) + 1;
+            uVar11 = local_buffer_28;
+            if (3 < (int)(local_buffer_44 - uVar4)) {
+              uVar16 = ((local_buffer_44 - uVar4) - 4 >> 2) + 1;
               uVar18 = (uint64_t)uVar16;
-              uStack0000000000000048 = uVar4 + uVar16 * 4;
+              local_buffer_48 = uVar4 + uVar16 * 4;
               do {
                 if ((bVar3) ||
                    ((0 < (int)(uVar11 | uVar9 | uVar12) &&
@@ -498,9 +487,9 @@ void FUN_1804945ff(void)
                 uVar18 = uVar18 - 1;
               } while (uVar18 != 0);
             }
-            if ((int)uStack0000000000000048 < (int)uStack0000000000000044) {
+            if ((int)local_buffer_48 < (int)local_buffer_44) {
               lVar13 = lVar13 * 4;
-              lVar19 = (int64_t)(int)(uStack0000000000000044 - uStack0000000000000048);
+              lVar19 = (int64_t)(int)(local_buffer_44 - local_buffer_48);
               do {
                 if ((bVar3) ||
                    ((0 < (int)(uVar11 | uVar9 | uVar12) &&
@@ -521,26 +510,20 @@ void FUN_1804945ff(void)
             }
             if (bVar3) goto LAB_180494a88;
           }
-          uStack0000000000000040 = uStack0000000000000040 + 1;
+          local_buffer_40 = local_buffer_40 + 1;
           lVar10 = lVar10 + 0x280;
           uVar6 = uVar6 + iStack000000000000004c;
-          uStack0000000000000028 = uStack0000000000000028 + iStack0000000000000054;
+          local_buffer_28 = local_buffer_28 + iStack0000000000000054;
           uVar15 = uVar15 + iStack0000000000000050;
-        } while ((int)uStack0000000000000040 < (int)uStack0000000000000058);
+        } while ((int)local_buffer_40 < (int)local_buffer_58);
       }
     }
     unaff_RDI = 0x180000000;
-    uStack000000000000005c = uStack000000000000005c + 1;
+    local_buffer_5c = local_buffer_5c + 1;
     unaff_BL = cStackX_24;
-  } while (uStack000000000000005c < 0xc);
+  } while (local_buffer_5c < 0xc);
 LAB_180494a88:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x28) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x28) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

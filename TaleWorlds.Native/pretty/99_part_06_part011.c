@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_06_part011.c - 1 个函数
-
-// 函数: void FUN_1803af3d0(uint64_t *param_1)
-void FUN_1803af3d0(uint64_t *param_1)
-
+// 函数: void function_3af3d0(uint64_t *param_1)
+void function_3af3d0(uint64_t *param_1)
 {
   char cVar1;
   char cVar2;
@@ -16,11 +13,10 @@ void FUN_1803af3d0(uint64_t *param_1)
   void *puVar7;
   int64_t lVar8;
   bool bVar9;
-  void *puStack_48;
-  int8_t *puStack_40;
+  void *plocal_var_48;
+  int8_t *plocal_var_40;
   int iStack_38;
-  uint64_t uStack_30;
-  
+  uint64_t local_var_30;
   *param_1 = &processed_var_952_ptr;
   param_1[4] = 0;
   *(int32_t *)(param_1 + 0xb) = 0x3f800000;
@@ -61,7 +57,7 @@ void FUN_1803af3d0(uint64_t *param_1)
   *(int8_t *)((int64_t)param_1 + 0x1c3a) = 3;
   param_1[0x389] = 0;
   param_1[0x38a] = 0;
-  FUN_1803aeff0(param_1 + 0x38c);
+  function_3aeff0(param_1 + 0x38c);
   param_1[0x3cb] = 0;
   param_1[0x3cc] = 0;
   param_1[0x3cd] = 0;
@@ -96,48 +92,48 @@ LAB_1803af5ea:
     *(bool *)(param_1 + 0x3ca) = bVar9;
   }
   if (*(char *)(system_global_data_ptr + 9) == '\0') goto LAB_1803af6d5;
-  puStack_48 = &system_data_buffer_ptr;
-  uStack_30 = 0;
-  puStack_40 = (int8_t *)0x0;
+  plocal_var_48 = &system_data_buffer_ptr;
+  local_var_30 = 0;
+  plocal_var_40 = (int8_t *)0x0;
   iStack_38 = 0;
-  CoreEngineDataBufferProcessor(&puStack_48,system_system_control_config);
+  CoreEngineDataBufferProcessor(&plocal_var_48,system_system_control_config);
   if (0 < system_system_control_config) {
     puVar7 = &system_buffer_ptr;
     if (system_system_control_config != (void *)0x0) {
       puVar7 = system_system_control_config;
     }
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_40,puVar7,(int64_t)(system_system_control_config + 1));
+// WARNING: Subroutine does not return
+    memcpy(plocal_var_40,puVar7,(int64_t)(system_system_control_config + 1));
   }
   if (system_system_control_config != (void *)0x0) {
     iStack_38 = 0;
-    if (puStack_40 != (int8_t *)0x0) {
-      *puStack_40 = 0;
+    if (plocal_var_40 != (int8_t *)0x0) {
+      *plocal_var_40 = 0;
     }
   }
   if (iStack_38 == 0xc) {
-    iVar5 = strcmp(puStack_40,&processed_var_4352_ptr);
+    iVar5 = strcmp(plocal_var_40,&processed_var_4352_ptr);
     if (iVar5 != 0) goto LAB_1803af6b0;
 LAB_1803af880:
     uVar4 = 1;
   }
   else {
     if (iStack_38 == 9) {
-      iVar5 = strcmp(puStack_40,&processed_var_4512_ptr);
+      iVar5 = strcmp(plocal_var_40,&processed_var_4512_ptr);
       if (iVar5 == 0) goto LAB_1803af880;
     }
 LAB_1803af6b0:
     uVar4 = 0;
   }
   *(int8_t *)(param_1 + 0x3ca) = uVar4;
-  puStack_48 = &system_data_buffer_ptr;
-  if (puStack_40 != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+  plocal_var_48 = &system_data_buffer_ptr;
+  if (plocal_var_40 != (int8_t *)0x0) {
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
-  puStack_40 = (int8_t *)0x0;
-  uStack_30 = uStack_30 & 0xffffffff00000000;
-  puStack_48 = &system_state_ptr;
+  plocal_var_40 = (int8_t *)0x0;
+  local_var_30 = local_var_30 & 0xffffffff00000000;
+  plocal_var_48 = &system_state_ptr;
 LAB_1803af6d5:
   param_1[0xd] = 0;
   plVar3 = (int64_t *)param_1[0x2c];
@@ -174,7 +170,7 @@ LAB_1803af6d5:
   *(int32_t *)(param_1 + 899) = 0;
   *(int32_t *)((int64_t)param_1 + 0x1c1c) = 0x3f800000;
   *(int32_t *)((int64_t)param_1 + 0x2c) = 0x40800000;
-  func_0x0001803b0980(param_1,0x3f800000);
+  SystemFunction_0001803b0980(param_1,0x3f800000);
   *(int8_t *)(param_1 + 0x2e) = 0;
   LOCK();
   *(int32_t *)(param_1 + 2) = 0;
@@ -198,24 +194,14 @@ LAB_1803af6d5:
     (**(code **)(*plVar3 + 0x38))();
   }
   param_1[0x38b] = 0;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(param_1 + 0x3e,0,0x1a00);
 }
-
-
-
-uint64_t FUN_1803af890(uint64_t param_1,uint64_t param_2)
-
+uint64_t function_3af890(uint64_t param_1,uint64_t param_2)
 {
-  FUN_1803af8d0();
+  function_3af8d0();
   if ((param_2 & 1) != 0) {
     free(param_1,0x1e80);
   }
   return param_1;
 }
-
-
-
-
-
-

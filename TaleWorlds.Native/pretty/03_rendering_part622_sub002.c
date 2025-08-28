@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part622_sub002.c - 1 个函数
-
-// 函数: void FUN_1806133ea(int64_t param_1,uint param_2,uint64_t param_3,float param_4)
-void FUN_1806133ea(int64_t param_1,uint param_2,uint64_t param_3,float param_4)
-
+// 函数: void function_6133ea(int64_t param_1,uint param_2,uint64_t param_3,float param_4)
+void function_6133ea(int64_t param_1,uint param_2,uint64_t param_3,float param_4)
 {
   float fVar1;
   float fVar2;
@@ -26,7 +23,6 @@ void FUN_1806133ea(int64_t param_1,uint param_2,uint64_t param_3,float param_4)
   uint64_t unaff_R15;
   float fVar15;
   float fVar16;
-  
   *(uint64_t *)(in_R11 + -0x30) = unaff_R14;
   piVar9 = *(int **)(unaff_RBP + 0x7f);
   *(uint64_t *)(in_R11 + -0x38) = unaff_R15;
@@ -37,7 +33,7 @@ void FUN_1806133ea(int64_t param_1,uint param_2,uint64_t param_3,float param_4)
   *(uint64_t *)(unaff_RBP + 0x57) = param_3;
   *(uint64_t *)(unaff_RBP + -0x21) = 0;
   *(uint64_t *)(unaff_RBP + -0x41) = 0;
-  FUN_1804ff330(param_1 + 0x98d230,unaff_RBP + -0x49,param_4,unaff_RBP + -0x41);
+  function_4ff330(param_1 + 0x98d230,unaff_RBP + -0x49,param_4,unaff_RBP + -0x41);
   plVar14 = *(int64_t **)(unaff_RBP + -0x41);
   if (plVar14 == (int64_t *)0x0) {
     return;
@@ -114,9 +110,3 @@ LAB_1806134a0:
   }
   goto LAB_1806134a0;
 }
-
-
-
-
-
-

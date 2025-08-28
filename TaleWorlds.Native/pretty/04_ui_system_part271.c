@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part271.c - 2 个函数
-
-// 函数: void FUN_18081e8fb(void)
-void FUN_18081e8fb(void)
-
+// 函数: void NetworkProtocol_1e8fb(void)
+void NetworkProtocol_1e8fb(void)
 {
   int *piVar1;
   int *piVar2;
@@ -40,8 +37,7 @@ void FUN_18081e8fb(void)
   float in_XMM5_Dc;
   float in_XMM5_Dd;
   float unaff_XMM8_Da;
-  int64_t *in_stack_000000c8;
-  
+  int64_t *local_buffer_c8;
   uVar16 = (uint64_t)(uint)*unaff_R14;
   uVar21 = *unaff_R14;
   do {
@@ -144,21 +140,15 @@ void FUN_18081e8fb(void)
         }
       }
     }
-    uVar16 = uVar21 + *in_stack_000000c8;
+    uVar16 = uVar21 + *local_buffer_c8;
     *unaff_R14 = uVar16;
     unaff_EDI = unaff_EDI + -1;
     uVar21 = uVar16;
   } while (unaff_EDI != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18081eb9c(void)
-void FUN_18081eb9c(void)
-
+// 函数: void NetworkProtocol_1eb9c(void)
+void NetworkProtocol_1eb9c(void)
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -188,16 +178,15 @@ void FUN_18081eb9c(void)
   uint64_t uVar22;
   float fVar23;
   float fVar24;
-  uint64_t *in_stack_000000c0;
-  int64_t *in_stack_000000c8;
-  
+  uint64_t *local_buffer_c0;
+  int64_t *local_buffer_c8;
   if (unaff_EDI != 0) {
     if (in_R10D == 1) {
-      uVar17 = *in_stack_000000c0;
-      uVar22 = (uint64_t)(uint)*in_stack_000000c0;
+      uVar17 = *local_buffer_c0;
+      uVar22 = (uint64_t)(uint)*local_buffer_c0;
       do {
-        uVar17 = uVar17 + *in_stack_000000c8;
-        uVar11 = *(uint *)((int64_t)in_stack_000000c0 + 4);
+        uVar17 = uVar17 + *local_buffer_c8;
+        uVar11 = *(uint *)((int64_t)local_buffer_c0 + 4);
         uVar18 = (uint64_t)uVar11;
         lVar1 = unaff_RBX + (uint64_t)uVar11 * 2;
         uVar3 = *(int8_t *)(uVar18 + 2 + lVar1);
@@ -209,7 +198,7 @@ void FUN_18081eb9c(void)
         uVar6 = *(int8_t *)(uVar21 + 1 + lVar2);
         uVar7 = *(int8_t *)(uVar21 + 2 + lVar2);
         uVar8 = *(int8_t *)(uVar21 + lVar2);
-        *in_stack_000000c0 = uVar17;
+        *local_buffer_c0 = uVar17;
         *in_R11 = (float)((int)((uint)CONCAT21(CONCAT11(uVar3,uVar4),uVar5) << 8) >> 8) *
                   1.1920929e-07 * (1.0 - fVar23) +
                   (float)((int)((uint)CONCAT21(CONCAT11(uVar7,uVar6),uVar8) << 8) >> 8) *
@@ -220,8 +209,8 @@ void FUN_18081eb9c(void)
       } while (unaff_EDI != 0);
     }
     else {
-      uVar22 = (uint64_t)(uint)*in_stack_000000c0;
-      uVar17 = *in_stack_000000c0;
+      uVar22 = (uint64_t)(uint)*local_buffer_c0;
+      uVar17 = *local_buffer_c0;
       do {
         iVar15 = 0;
         fVar23 = (float)(uVar22 & 0xffffffff) * 2.3283064e-10;
@@ -271,7 +260,7 @@ void FUN_18081eb9c(void)
           } while (uVar22 != 0);
         }
         if (iVar15 < in_R10D) {
-          uVar11 = *(uint *)((int64_t)in_stack_000000c0 + 4);
+          uVar11 = *(uint *)((int64_t)local_buffer_c0 + 4);
           iVar10 = uVar11 + 1;
           uVar16 = iVar10 * in_R10D + iVar15;
           uVar22 = (uint64_t)(uint)(in_R10D - iVar15);
@@ -288,8 +277,8 @@ void FUN_18081eb9c(void)
             uVar22 = uVar22 - 1;
           } while (uVar22 != 0);
         }
-        uVar22 = uVar17 + *in_stack_000000c8;
-        *in_stack_000000c0 = uVar22;
+        uVar22 = uVar17 + *local_buffer_c8;
+        *local_buffer_c0 = uVar22;
         unaff_EDI = unaff_EDI + -1;
         uVar17 = uVar22;
       } while (unaff_EDI != 0);
@@ -297,8 +286,3 @@ void FUN_18081eb9c(void)
   }
   return;
 }
-
-
-
-
-

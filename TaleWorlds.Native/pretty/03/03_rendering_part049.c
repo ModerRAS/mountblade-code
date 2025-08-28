@@ -1,21 +1,14 @@
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* 函数别名定义: DataProcessingEngine */
 #define DataProcessingEngine DataProcessingEngine
-
-
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
-
 // 03_rendering_part049.c - 渲染系统高级数据处理和渲染控制模块
 // 包含29个核心函数，涵盖渲染数据高级处理、渲染控制、数据转换、渲染状态管理等功能
-
 /**
  * 处理渲染索引缓冲区和顶点数据
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param data_ptr 数据指针数组
  * @param count_array 计数数组
@@ -33,17 +26,16 @@ void process_rendering_index_buffer(int64_t render_context, uint64_t *data_ptr, 
   short sVar6;
   int iVar7;
   short sVar8;
-  uint uStack_88;
+  uint local_var_88;
   int iStack_84;
-  uint64_t uStack_80;
-  
-  uStack_80 = GET_SECURITY_COOKIE() ^ (uint64_t)&uStack_88;
+  uint64_t local_var_80;
+  local_var_80 = GET_SECURITY_COOKIE() ^ (uint64_t)&local_var_88;
   uVar5 = (uint64_t)vertex_count;
   if (2 < (int)vertex_count) {
     uVar1 = **(int32_t **)(render_context + 0x38);
     uVar2 = (*(int32_t **)(render_context + 0x38))[1];
     if ((*(byte *)(render_context + 0x30) & 2) != 0) {
-      uStack_88 = param_4 & 0xffffff;
+      local_var_88 = param_4 & 0xffffff;
       iStack_84 = vertex_count * 2;
       NetworkSystem_PacketSerializer(render_context, vertex_count * 9 + -6, iStack_84);
       uVar1 = *(int32_t *)(render_context + 0x48);
@@ -64,7 +56,7 @@ void process_rendering_index_buffer(int64_t render_context, uint64_t *data_ptr, 
       if (uVar5 <= (uint64_t)((int64_t)(int)vertex_count * 8)) {
         uVar5 = 0xffffffffffffff0;
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       SystemCore_MemoryManager0(uVar5 & 0xfffffffffffffff0);
     }
     NetworkSystem_PacketSerializer(render_context, (vertex_count - 2) * 3, uVar5);
@@ -94,13 +86,12 @@ void process_rendering_index_buffer(int64_t render_context, uint64_t *data_ptr, 
     }
     *(int *)(render_context + 0x48) = *(int *)(render_context + 0x48) + (vertex_count & 0xffff);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_80 ^ (uint64_t)&uStack_88);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_80 ^ (uint64_t)&local_var_88);
 }
-
 /**
  * 处理渲染坐标变换和缩放
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param coord_ptr 坐标指针
  * @param scale_factor 缩放因子
@@ -118,7 +109,6 @@ void process_rendering_coordinate_transform(int64_t render_context, float *coord
   int iVar6;
   int iVar7;
   int iVar8;
-  
   if ((scale_factor == 0.0) || (end_index < start_index)) {
     SystemCore_InterruptHandler(render_context + 0x80);
   }
@@ -155,10 +145,9 @@ void process_rendering_coordinate_transform(int64_t render_context, float *coord
   }
   return;
 }
-
 /**
  * 处理渲染数据的高级变换
- * 
+ *
  * @param param_1 参数1
  * @param param_2 参数2
  * @param param_3 参数3
@@ -180,7 +169,6 @@ void process_rendering_advanced_transform(int64_t param_1, int param_2, uint64_t
   int iVar8;
   float *unaff_R14;
   float unaff_XMM6_Da;
-  
   piVar1 = (int *)(param_1 + 0x80);
   DataProcessingEngine0(piVar1, param_2 + (*piVar1 - param_4));
   iVar8 = *piVar1;
@@ -212,10 +200,9 @@ void process_rendering_advanced_transform(int64_t param_1, int param_2, uint64_t
   } while (unaff_EDI <= unaff_ESI);
   return;
 }
-
 /**
  * 清理渲染数据缓冲区
- * 
+ *
  * @param render_context 渲染上下文指针
  * @return void
  */
@@ -224,10 +211,9 @@ void cleanup_rendering_data_buffer(int64_t render_context)
   SystemCore_InterruptHandler(render_context + 0x80);
   return;
 }
-
 /**
  * 初始化渲染数据缓冲区
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param param_2 参数2
  * @param scale_factor 缩放因子
@@ -244,64 +230,58 @@ void initialize_rendering_data_buffer(int64_t render_context, uint64_t param_2, 
   else {
     DataProcessingEngine0((int *)(render_context + 0x80), param_6 + 1 + *(int *)(render_context + 0x80));
     if (-1 < param_6) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       AdvancedSystemController();
     }
   }
   return;
 }
-
 /**
  * 渲染数据缓冲区处理函数
- * 
+ *
  * @return void
  */
 void process_rendering_data_buffer(void)
 {
-  int in_stack_000000a8;
-  
+  int local_var_a8;
   DataProcessingEngine0();
-  if (-1 < in_stack_000000a8) {
-                    // WARNING: Subroutine does not return
+  if (-1 < local_var_a8) {
+// WARNING: Subroutine does not return
     AdvancedSystemController();
   }
   return;
 }
-
 /**
  * 渲染系统内存分配函数
- * 
+ *
  * @return void
  */
 void allocate_rendering_memory(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   AdvancedSystemController();
 }
-
 /**
  * 空渲染函数（占位符）
- * 
+ *
  * @return void
  */
 void empty_rendering_function_1(void)
 {
   return;
 }
-
 /**
  * 空渲染函数（占位符）
- * 
+ *
  * @return void
  */
 void empty_rendering_function_2(void)
 {
   return;
 }
-
 /**
  * 处理渲染坐标的插值计算
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param coord_start 起始坐标
  * @param coord_end 结束坐标
@@ -323,7 +303,6 @@ void process_rendering_coordinate_interpolation(int64_t render_context, float *c
   float fVar10;
   float fStackX_10;
   float fStackX_14;
-  
   fVar7 = 0.5;
   bVar1 = (byte)flags;
   if ((bVar1 & 3) == 3 || (bVar1 & 0xc) == 0xc) {
@@ -419,10 +398,9 @@ void process_rendering_coordinate_interpolation(int64_t render_context, float *c
   }
   return;
 }
-
 /**
  * 处理渲染坐标的高级变换
- * 
+ *
  * @param param_1 参数1
  * @return void
  */
@@ -438,7 +416,6 @@ void process_rendering_advanced_coordinate_transform(int32_t param_1)
   float unaff_XMM9_Da;
   float fStack0000000000000088;
   float fStack000000000000008c;
-  
   fStack000000000000008c = unaff_XMM6_Da;
   if ((in_R10B & 1) == 0) {
     fStack000000000000008c = 0.0;
@@ -456,22 +433,21 @@ void process_rendering_advanced_coordinate_transform(int32_t param_1)
   }
   fStack0000000000000088 = unaff_XMM9_Da + fStack000000000000008c;
   fStack000000000000008c = in_XMM4_Da + fStack000000000000008c;
-  UtilitiesSystem_FileHandler(param_1, &stack0x00000088);
+  UtilitiesSystem_FileHandler(param_1, &local_buffer_00000088);
   fStack000000000000008c = fVar2 + unaff_RBP[1];
   fStack0000000000000088 = *unaff_RSI - fVar2;
-  UtilitiesSystem_FileHandler(fStack0000000000000088, &stack0x00000088, fVar2, 9, 0xc);
+  UtilitiesSystem_FileHandler(fStack0000000000000088, &local_buffer_00000088, fVar2, 9, 0xc);
   fStack0000000000000088 = *unaff_RSI - fVar1;
   fStack000000000000008c = unaff_RSI[1] - fVar1;
-  UtilitiesSystem_FileHandler(fStack0000000000000088, &stack0x00000088, fVar1, 0, 3);
+  UtilitiesSystem_FileHandler(fStack0000000000000088, &local_buffer_00000088, fVar1, 0, 3);
   fStack0000000000000088 = unaff_XMM6_Da + *unaff_RBP;
   fStack000000000000008c = unaff_RSI[1] - unaff_XMM6_Da;
-  UtilitiesSystem_FileHandler(fStack0000000000000088, &stack0x00000088, unaff_XMM6_Da, 3, 6);
+  UtilitiesSystem_FileHandler(fStack0000000000000088, &local_buffer_00000088, unaff_XMM6_Da, 3, 6);
   return;
 }
-
 /**
  * 渲染数据批处理函数
- * 
+ *
  * @return void
  */
 void process_rendering_batch_data(void)
@@ -485,13 +461,12 @@ void process_rendering_batch_data(void)
   int32_t *unaff_RBP;
   int32_t *unaff_RSI;
   int iVar6;
-  int32_t uStack000000000000008c;
-  
+  int32_t local_buffer_8c;
   piVar5 = (int *)(unaff_RBX + 0x80);
   SystemCore_InterruptHandler(piVar5);
   uVar1 = *unaff_RSI;
   iVar6 = 8;
-  uStack000000000000008c = unaff_RBP[1];
+  local_buffer_8c = unaff_RBP[1];
   iVar3 = *piVar5;
   iVar2 = *(int *)(unaff_RBX + 0x84);
   if (iVar3 == iVar2) {
@@ -509,11 +484,11 @@ void process_rendering_batch_data(void)
     iVar3 = *piVar5;
   }
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x88) + (int64_t)iVar3 * 8) =
-       CONCAT44(uStack000000000000008c, uVar1);
+       CONCAT44(local_buffer_8c, uVar1);
   *piVar5 = *piVar5 + 1;
   SystemCore_InterruptHandler(piVar5);
   uVar1 = *unaff_RBP;
-  uStack000000000000008c = unaff_RSI[1];
+  local_buffer_8c = unaff_RSI[1];
   iVar3 = *piVar5;
   iVar2 = *(int *)(unaff_RBX + 0x84);
   if (iVar3 == iVar2) {
@@ -528,14 +503,13 @@ void process_rendering_batch_data(void)
     iVar3 = *piVar5;
   }
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x88) + (int64_t)iVar3 * 8) =
-       CONCAT44(uStack000000000000008c, uVar1);
+       CONCAT44(local_buffer_8c, uVar1);
   *piVar5 = *piVar5 + 1;
   return;
 }
-
 /**
  * 渲染数据流处理函数
- * 
+ *
  * @return void
  */
 void process_rendering_data_stream(void)
@@ -548,12 +522,11 @@ void process_rendering_data_stream(void)
   int32_t *unaff_RBP;
   int32_t *unaff_RSI;
   int iVar5;
-  int32_t uStack000000000000008c;
-  
+  int32_t local_buffer_8c;
   SystemCore_InterruptHandler();
   uVar1 = *unaff_RSI;
   iVar5 = 8;
-  uStack000000000000008c = unaff_RBP[1];
+  local_buffer_8c = unaff_RBP[1];
   iVar3 = *unaff_RBX;
   iVar2 = unaff_RBX[1];
   if (iVar3 == iVar2) {
@@ -571,11 +544,11 @@ void process_rendering_data_stream(void)
     iVar3 = *unaff_RBX;
   }
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar3 * 8) =
-       CONCAT44(uStack000000000000008c, uVar1);
+       CONCAT44(local_buffer_8c, uVar1);
   *unaff_RBX = *unaff_RBX + 1;
   SystemCore_InterruptHandler();
   uVar1 = *unaff_RBP;
-  uStack000000000000008c = unaff_RSI[1];
+  local_buffer_8c = unaff_RSI[1];
   iVar3 = *unaff_RBX;
   iVar2 = unaff_RBX[1];
   if (iVar3 == iVar2) {
@@ -590,24 +563,22 @@ void process_rendering_data_stream(void)
     iVar3 = *unaff_RBX;
   }
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar3 * 8) =
-       CONCAT44(uStack000000000000008c, uVar1);
+       CONCAT44(local_buffer_8c, uVar1);
   *unaff_RBX = *unaff_RBX + 1;
   return;
 }
-
 /**
  * 空渲染函数（占位符）
- * 
+ *
  * @return void
  */
 void empty_rendering_function_3(void)
 {
   return;
 }
-
 /**
  * 处理渲染坐标的偏移计算
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param coord_start 起始坐标
  * @param coord_end 结束坐标
@@ -624,7 +595,6 @@ void process_rendering_coordinate_offset(int64_t render_context, float *coord_st
   int iVar5;
   int iVar6;
   int iVar7;
-  
   if ((flags & 0xff000000) != 0) {
     fVar2 = *coord_start;
     piVar1 = (int *)(render_context + 0x80);
@@ -672,10 +642,9 @@ void process_rendering_coordinate_offset(int64_t render_context, float *coord_st
   }
   return;
 }
-
 /**
  * 处理渲染数据的浮点数计算
- * 
+ *
  * @param param_1 参数1
  * @param param_2 参数2
  * @param param_3 参数3
@@ -702,8 +671,7 @@ void process_rendering_float_calculation(float param_1, int64_t param_2, float *
   int32_t unaff_XMM6_Db;
   int32_t unaff_XMM6_Dc;
   int32_t unaff_XMM6_Dd;
-  int32_t in_stack_00000080;
-  
+  int32_t local_var_80;
   *(uint64_t *)(in_RAX + 0x10) = unaff_RDI;
   piVar1 = (int *)(in_RCX + 0x80);
   iVar5 = *(int *)(in_RCX + 0x84);
@@ -749,14 +717,13 @@ void process_rendering_float_calculation(float param_1, int64_t param_2, float *
   *(uint64_t *)(*(int64_t *)(in_RCX + 0x88) + (int64_t)iVar5 * 8) =
        CONCAT44(fVar3 + 0.5, fVar2 + 0.5);
   *piVar1 = *piVar1 + 1;
-  RenderingSystem_LightManager(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *piVar1, unaff_EBP, 0);
+  RenderingSystem_LightManager(local_var_80, *(uint64_t *)(unaff_RSI + 0x88), *piVar1, unaff_EBP, 0);
   *piVar1 = 0;
   return;
 }
-
 /**
  * 处理渲染数据的变换计算
- * 
+ *
  * @param param_1 参数1
  * @param param_2 参数2
  * @return void
@@ -778,9 +745,8 @@ void process_rendering_transform_calculation(float param_1, int64_t param_2)
   int32_t unaff_XMM6_Db;
   int32_t unaff_XMM6_Dc;
   int32_t unaff_XMM6_Dd;
-  uint64_t in_stack_00000030;
-  int32_t in_stack_00000080;
-  
+  uint64_t local_var_30;
+  int32_t local_var_80;
   *(int32_t *)(in_RAX + -0x18) = unaff_XMM6_Da;
   *(int32_t *)(in_RAX + -0x14) = unaff_XMM6_Db;
   *(int32_t *)(in_RAX + -0x10) = unaff_XMM6_Dc;
@@ -804,7 +770,7 @@ void process_rendering_transform_calculation(float param_1, int64_t param_2)
     DataProcessingEngine0(fVar5, iVar3);
     iVar2 = *unaff_RBX;
   }
-  *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar2 * 8) = in_stack_00000030;
+  *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar2 * 8) = local_var_30;
   *unaff_RBX = *unaff_RBX + 1;
   fVar5 = *unaff_R14;
   fVar1 = unaff_R14[1];
@@ -824,14 +790,13 @@ void process_rendering_transform_calculation(float param_1, int64_t param_2)
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)iVar2 * 8) =
        CONCAT44(fVar1 + 0.5, fVar5 + 0.5);
   *unaff_RBX = *unaff_RBX + 1;
-  RenderingSystem_LightManager(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
+  RenderingSystem_LightManager(local_var_80, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
   *unaff_RBX = 0;
   return;
 }
-
 /**
  * 处理渲染数据的数组操作
- * 
+ *
  * @param param_1 参数1
  * @param param_2 参数2
  * @param param_3 参数3
@@ -848,8 +813,7 @@ void process_rendering_array_operations(int32_t param_1, uint64_t param_2, int p
   int32_t unaff_EBP;
   int64_t unaff_RSI;
   int unaff_EDI;
-  int32_t in_stack_00000080;
-  
+  int32_t local_var_80;
   if (param_3 != 0) {
     unaff_EDI = param_3 + param_3 / 2;
   }
@@ -860,24 +824,22 @@ void process_rendering_array_operations(int32_t param_1, uint64_t param_2, int p
   DataProcessingEngine0(param_1, iVar1);
   *(uint64_t *)(*(int64_t *)(unaff_RBX + 2) + (int64_t)*unaff_RBX * 8) = param_6;
   *unaff_RBX = *unaff_RBX + 1;
-  RenderingSystem_LightManager(in_stack_00000080, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
+  RenderingSystem_LightManager(local_var_80, *(uint64_t *)(unaff_RSI + 0x88), *unaff_RBX, unaff_EBP, 0);
   *unaff_RBX = 0;
   return;
 }
-
 /**
  * 空渲染函数（占位符）
- * 
+ *
  * @return void
  */
 void empty_rendering_function_4(void)
 {
   return;
 }
-
 /**
  * 处理渲染数据的边界计算
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param coord_start 起始坐标
  * @param coord_end 结束坐标
@@ -893,7 +855,6 @@ void process_rendering_boundary_calculation(int64_t render_context, float *coord
   float fStackX_c;
   float fStack_18;
   float fStack_14;
-  
   fStack_18 = *coord_start + 0.5;
   fStack_14 = coord_start[1] + 0.5;
   if ((*(byte *)(render_context + 0x30) & 1) == 0) {
@@ -909,10 +870,9 @@ void process_rendering_boundary_calculation(int64_t render_context, float *coord
   *(int32_t *)(render_context + 0x80) = 0;
   return;
 }
-
 /**
  * 处理渲染数据的批量操作
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param data_ptr1 数据指针1
  * @param data_ptr2 数据指针2
@@ -931,7 +891,6 @@ void process_rendering_batch_operations(int64_t render_context, uint64_t *data_p
   int32_t uVar6;
   short sVar7;
   int64_t lVar8;
-  
   if ((flags & 0xff000000) != 0) {
     if (scale_factor <= 0.0) {
       NetworkSystem_PacketSerializer(0, 6, 4);
@@ -978,16 +937,15 @@ void process_rendering_batch_operations(int64_t render_context, uint64_t *data_p
     }
     else {
       UtilitiesSystem_LogManager(0, data_ptr1, data_ptr2, scale_factor, param_6);
-      FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags);
+      DataStructure_93190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags);
       *(int32_t *)(render_context + 0x80) = 0;
     }
   }
   return;
 }
-
 /**
  * 处理渲染数据的高级索引
- * 
+ *
  * @param param_1 参数1
  * @param param_2 参数2
  * @return void
@@ -1006,7 +964,6 @@ void process_rendering_advanced_index(uint64_t param_1, uint64_t param_2)
   uint64_t *unaff_RBP;
   uint64_t *unaff_RSI;
   int32_t unaff_EDI;
-  
   NetworkSystem_PacketSerializer(param_1, param_2, (int)param_2 + -2);
   sVar7 = *(short *)(unaff_RBX + 0x48);
   uVar1 = *(int32_t *)unaff_RSI;
@@ -1050,20 +1007,18 @@ void process_rendering_advanced_index(uint64_t param_1, uint64_t param_2)
   *(int64_t *)(unaff_RBX + 0x58) = *(int64_t *)(unaff_RBX + 0x58) + 0xc;
   return;
 }
-
 /**
  * 空渲染函数（占位符）
- * 
+ *
  * @return void
  */
 void empty_rendering_function_5(void)
 {
   return;
 }
-
 /**
  * 处理渲染数据的多重采样
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param param_2 参数2
  * @param param_3 参数3
@@ -1077,42 +1032,38 @@ void process_rendering_multisampling(int64_t render_context, uint64_t param_2, u
     SystemCore_InterruptHandler(render_context + 0x80);
     SystemCore_InterruptHandler(render_context + 0x80, param_3);
     SystemCore_InterruptHandler(render_context + 0x80, param_4);
-    FUN_180293190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags);
+    DataStructure_93190(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags);
     *(int32_t *)(render_context + 0x80) = 0;
   }
   return;
 }
-
 /**
  * 处理渲染数据的纹理映射
- * 
+ *
  * @return void
  */
 void process_rendering_texture_mapping(void)
 {
   int64_t unaff_RSI;
-  
   SystemCore_InterruptHandler();
   SystemCore_InterruptHandler(unaff_RSI + 0x80);
   SystemCore_InterruptHandler(unaff_RSI + 0x80);
-  FUN_180293190();
+  DataStructure_93190();
   *(int32_t *)(unaff_RSI + 0x80) = 0;
   return;
 }
-
 /**
  * 空渲染函数（占位符）
- * 
+ *
  * @return void
  */
 void empty_rendering_function_6(void)
 {
   return;
 }
-
 /**
  * 处理渲染数据的材质混合
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param param_2 参数2
  * @param param_3 参数3
@@ -1124,16 +1075,15 @@ void empty_rendering_function_6(void)
 void process_rendering_material_blending(int64_t render_context, uint64_t param_2, float param_3, uint flags, uint64_t param_5, int32_t param_6)
 {
   if ((flags & 0xff000000) != 0) {
-    FUN_180293860(0x40bc7edd, param_2, param_3 - 0.5, 0, 0x40bc7edd, 0xf);
+    DataStructure_93860(0x40bc7edd, param_2, param_3 - 0.5, 0, 0x40bc7edd, 0xf);
     RenderingSystem_LightManager(render_context, *(uint64_t *)(render_context + 0x88), *(int32_t *)(render_context + 0x80), flags, 1, param_6);
     *(int32_t *)(render_context + 0x80) = 0;
   }
   return;
 }
-
 /**
  * 处理渲染数据的字符串操作
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param param_2 参数2
  * @param param_3 参数3
@@ -1148,9 +1098,8 @@ void process_rendering_material_blending(int64_t render_context, uint64_t param_
 void process_rendering_string_operations(int64_t render_context, int64_t param_2, float param_3, uint64_t *data_ptr, uint flags, int64_t param_6, int64_t param_7, int32_t param_8, float *param_9)
 {
   uint64_t *puVar1;
-  uint64_t uStack_18;
-  uint64_t uStack_10;
-  
+  uint64_t local_var_18;
+  uint64_t local_var_10;
   if ((flags & 0xff000000) != 0) {
     if (param_7 == 0) {
       param_7 = -1;
@@ -1168,33 +1117,32 @@ void process_rendering_string_operations(int64_t render_context, int64_t param_2
       }
       puVar1 = (uint64_t *)
                (*(int64_t *)(render_context + 0x68) + -0x10 + (int64_t)*(int *)(render_context + 0x60) * 0x10);
-      uStack_18 = *puVar1;
-      uStack_10 = puVar1[1];
+      local_var_18 = *puVar1;
+      local_var_10 = puVar1[1];
       if (param_9 != (float *)0x0) {
-        if ((float)uStack_18 < *param_9) {
-          uStack_18._4_4_ = (float)((uint64_t)uStack_18 >> 0x20);
-          uStack_18 = CONCAT44(uStack_18._4_4_, *param_9);
+        if ((float)local_var_18 < *param_9) {
+          local_var_18._4_4_ = (float)((uint64_t)local_var_18 >> 0x20);
+          local_var_18 = CONCAT44(local_var_18._4_4_, *param_9);
         }
-        if (uStack_18._4_4_ < param_9[1]) {
-          uStack_18 = CONCAT44(param_9[1], (float)uStack_18);
+        if (local_var_18._4_4_ < param_9[1]) {
+          local_var_18 = CONCAT44(param_9[1], (float)local_var_18);
         }
-        if (param_9[2] <= (float)uStack_10) {
-          uStack_10._4_4_ = (float)((uint64_t)uStack_10 >> 0x20);
-          uStack_10 = CONCAT44(uStack_10._4_4_, param_9[2]);
+        if (param_9[2] <= (float)local_var_10) {
+          local_var_10._4_4_ = (float)((uint64_t)local_var_10 >> 0x20);
+          local_var_10 = CONCAT44(local_var_10._4_4_, param_9[2]);
         }
-        if (param_9[3] <= uStack_10._4_4_) {
-          uStack_10 = CONCAT44(param_9[3], (float)uStack_10);
+        if (param_9[3] <= local_var_10._4_4_) {
+          local_var_10 = CONCAT44(param_9[3], (float)local_var_10);
         }
       }
-      FUN_180297590(param_2, render_context, param_3, *data_ptr, flags, &uStack_18, param_6, param_7, param_8, param_9 != (float *)0x0);
+      DataStructure_97590(param_2, render_context, param_3, *data_ptr, flags, &local_var_18, param_6, param_7, param_8, param_9 != (float *)0x0);
     }
   }
   return;
 }
-
 /**
  * 处理渲染数据的缓冲区管理
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param data_ptr 数据指针
  * @param flags 标志位
@@ -1205,11 +1153,10 @@ void process_rendering_buffer_management(int64_t render_context, uint64_t *data_
 {
   int32_t *puVar1;
   int64_t lVar2;
-  int32_t uStack_18;
-  int32_t uStack_14;
-  int32_t uStack_10;
-  int32_t uStack_c;
-  
+  int32_t local_var_18;
+  int32_t local_var_14;
+  int32_t local_var_10;
+  int32_t local_var_c;
   if ((flags & 0xff000000) != 0) {
     lVar2 = -1;
     do {
@@ -1218,16 +1165,15 @@ void process_rendering_buffer_management(int64_t render_context, uint64_t *data_
     if (param_4 != lVar2 + param_4) {
       puVar1 = (int32_t *)
                (*(int64_t *)(render_context + 0x68) + -0x10 + (int64_t)*(int *)(render_context + 0x60) * 0x10);
-      uStack_18 = *puVar1;
-      uStack_14 = puVar1[1];
-      uStack_10 = puVar1[2];
-      uStack_c = puVar1[3];
-      FUN_180297590(*(uint64_t *)(*(int64_t *)(render_context + 0x38) + 8), render_context,
+      local_var_18 = *puVar1;
+      local_var_14 = puVar1[1];
+      local_var_10 = puVar1[2];
+      local_var_c = puVar1[3];
+      DataStructure_97590(*(uint64_t *)(*(int64_t *)(render_context + 0x38) + 8), render_context,
                     *(int32_t *)(*(int64_t *)(render_context + 0x38) + 0x10), *data_ptr, flags,
-                    &uStack_18, param_4, lVar2 + param_4, 0, 0);
+                    &local_var_18, param_4, lVar2 + param_4, 0, 0);
     }
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address

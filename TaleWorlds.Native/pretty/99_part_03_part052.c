@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_03_part052.c - 3 个函数
-
-// 函数: void FUN_180230ced(void)
-void FUN_180230ced(void)
-
+// 函数: void function_230ced(void)
+void function_230ced(void)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
@@ -39,7 +36,6 @@ void FUN_180230ced(void)
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
   float unaff_XMM11_Da;
-  
   *(int32_t *)(in_RAX + -0x18) = unaff_XMM6_Da;
   *(int32_t *)(in_RAX + -0x14) = unaff_XMM6_Db;
   *(int32_t *)(in_RAX + -0x10) = unaff_XMM6_Dc;
@@ -251,15 +247,8 @@ void FUN_180230ced(void)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_180230db8(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
-void FUN_180230db8(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
-
+// 函数: void function_230db8(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
+void function_230db8(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
@@ -283,7 +272,6 @@ void FUN_180230db8(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t par
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
   float unaff_XMM11_Da;
-  
   if (param_2 < in_R11) {
     pfVar5 = (float *)(param_2 * 0x10 + *(int64_t *)(unaff_RBX + 0x18));
     param_2 = in_R11 - param_2;
@@ -422,15 +410,8 @@ void FUN_180230db8(uint64_t param_1,int64_t param_2,uint64_t param_3,int64_t par
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_180230e22(float param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
-void FUN_180230e22(float param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
-
+// 函数: void function_230e22(float param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
+void function_230e22(float param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
@@ -452,7 +433,6 @@ void FUN_180230e22(float param_1,uint64_t param_2,uint64_t param_3,int64_t param
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
   float unaff_XMM11_Da;
-  
   if (unaff_XMM11_Da - unaff_XMM9_Da != param_1) {
     fVar11 = (unaff_RSI[1] - in_R10[1]) / (unaff_XMM11_Da - unaff_XMM9_Da);
     fVar10 = (*unaff_RSI - *in_R10) / unaff_XMM10_Da;
@@ -559,9 +539,3 @@ void FUN_180230e22(float param_1,uint64_t param_2,uint64_t param_3,int64_t param
   }
   return;
 }
-
-
-
-
-
-

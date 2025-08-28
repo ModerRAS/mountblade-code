@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_03_part065.c - 9 个函数
-
-// 函数: void FUN_18023703c(int64_t param_1,float *param_2,char param_3,float param_4)
-void FUN_18023703c(int64_t param_1,float *param_2,char param_3,float param_4)
-
+// 函数: void function_23703c(int64_t param_1,float *param_2,char param_3,float param_4)
+void function_23703c(int64_t param_1,float *param_2,char param_3,float param_4)
 {
   int32_t uVar1;
   int iVar2;
@@ -24,7 +21,6 @@ void FUN_18023703c(int64_t param_1,float *param_2,char param_3,float param_4)
   float fVar14;
   int8_t auVar15 [16];
   float fVar16;
-  
   uVar8 = (uint64_t)unaff_EBX;
   lVar10 = (int64_t)*(int *)(in_RAX + 0x10);
   if (3 < lVar10) {
@@ -232,15 +228,8 @@ void FUN_18023703c(int64_t param_1,float *param_2,char param_3,float param_4)
   *(int8_t *)(param_1 + 0x30) = 1;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_180237339(uint64_t param_1,int64_t param_2,uint64_t param_3,float *param_4)
-void FUN_180237339(uint64_t param_1,int64_t param_2,uint64_t param_3,float *param_4)
-
+// 函数: void function_237339(uint64_t param_1,int64_t param_2,uint64_t param_3,float *param_4)
+void function_237339(uint64_t param_1,int64_t param_2,uint64_t param_3,float *param_4)
 {
   int32_t uVar1;
   int iVar2;
@@ -260,7 +249,6 @@ void FUN_180237339(uint64_t param_1,int64_t param_2,uint64_t param_3,float *para
   int8_t auVar13 [16];
   float in_XMM3_Da;
   float fVar14;
-  
   if (*(int *)(in_RAX + 0x60) == 4) {
     lVar5 = *(int64_t *)(in_RAX + 0x68);
     in_XMM3_Da = (*(float *)(lVar5 + 0x48) - *(float *)(lVar5 + 0x100)) * in_XMM3_Da;
@@ -389,15 +377,8 @@ void FUN_180237339(uint64_t param_1,int64_t param_2,uint64_t param_3,float *para
   *(int8_t *)(in_R10 + 0x30) = 1;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802376ab(void)
-void FUN_1802376ab(void)
-
+// 函数: void function_2376ab(void)
+void function_2376ab(void)
 {
   int64_t lVar1;
   uint unaff_EBX;
@@ -409,7 +390,6 @@ void FUN_1802376ab(void)
   int8_t auVar5 [16];
   float fVar6;
   float fVar7;
-  
   if (unaff_EBX < *(uint *)(*(int64_t *)(in_R10 + 8) + 0x60)) {
     do {
       lVar1 = (int64_t)(int)unaff_EBX;
@@ -444,15 +424,8 @@ void FUN_1802376ab(void)
   *(int8_t *)(in_R10 + 0x30) = 1;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802376cc(void)
-void FUN_1802376cc(void)
-
+// 函数: void function_2376cc(void)
+void function_2376cc(void)
 {
   int64_t lVar1;
   uint unaff_EBX;
@@ -467,7 +440,6 @@ void FUN_1802376cc(void)
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
-  
   do {
     lVar1 = (int64_t)(int)unaff_EBX;
     unaff_EBX = unaff_EBX + 1;
@@ -500,30 +472,15 @@ void FUN_1802376cc(void)
   *(int8_t *)(in_R10 + 0x30) = 1;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_180237825(void)
-void FUN_180237825(void)
-
+// 函数: void function_237825(void)
+void function_237825(void)
 {
   int64_t in_R10;
-  
   *(int8_t *)(in_R10 + 0x30) = 1;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_180237850(int64_t param_1,float *param_2)
-void FUN_180237850(int64_t param_1,float *param_2)
-
+// 函数: void function_237850(int64_t param_1,float *param_2)
+void function_237850(int64_t param_1,float *param_2)
 {
   uint uVar1;
   uint64_t uVar2;
@@ -532,7 +489,6 @@ void FUN_180237850(int64_t param_1,float *param_2)
   uint64_t uVar5;
   uint64_t uVar6;
   uint64_t uVar7;
-  
   uVar6 = 0;
   lVar3 = *(int64_t *)(param_1 + 8);
   uVar2 = uVar6;
@@ -583,15 +539,8 @@ void FUN_180237850(int64_t param_1,float *param_2)
   *(int8_t *)(param_1 + 0x30) = 1;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_180237913(void)
-void FUN_180237913(void)
-
+// 函数: void function_237913(void)
+void function_237913(void)
 {
   int64_t lVar1;
   uint64_t uVar2;
@@ -603,7 +552,6 @@ void FUN_180237913(void)
   int64_t in_R9;
   float *in_R10;
   int64_t in_R11;
-  
   uVar5 = unaff_RSI;
   do {
     uVar4 = unaff_RSI & 0xffffffff;
@@ -627,31 +575,16 @@ void FUN_180237913(void)
   *(int8_t *)(in_R11 + 0x30) = 1;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802379b7(void)
-void FUN_1802379b7(void)
-
+// 函数: void function_2379b7(void)
+void function_2379b7(void)
 {
   int64_t in_R11;
-  
   *(int8_t *)(in_R11 + 0x32) = 1;
   *(int8_t *)(in_R11 + 0x30) = 1;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802379d0(int64_t param_1,float *param_2)
-void FUN_1802379d0(int64_t param_1,float *param_2)
-
+// 函数: void function_2379d0(int64_t param_1,float *param_2)
+void function_2379d0(int64_t param_1,float *param_2)
 {
   float *pfVar1;
   float fVar2;
@@ -678,7 +611,6 @@ void FUN_1802379d0(int64_t param_1,float *param_2)
   uint64_t uVar23;
   uint uVar24;
   uint64_t uVar25;
-  
   lVar21 = *(int64_t *)(param_1 + 8);
   uVar23 = 0;
   if (0 < *(int *)(lVar21 + 0x10)) {
@@ -761,9 +693,3 @@ void FUN_1802379d0(int64_t param_1,float *param_2)
   *(int8_t *)(param_1 + 0x30) = 1;
   return;
 }
-
-
-
-
-
-

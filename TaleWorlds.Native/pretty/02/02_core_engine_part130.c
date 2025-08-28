@@ -1,14 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 02_core_engine_part130.c - 核心引擎模块第130部分
 // 包含8个函数，主要处理UI元素位置计算、边界框处理和坐标变换
-
 // 全局变量定义
 int64_t *global_engine_context;          // 全局引擎上下文指针
 float global_ui_scale_factor;               // UI缩放因子
 float global_horizontal_offset;            // 水平偏移量
 float global_vertical_offset;              // 垂直偏移量
-
 // 函数: 更新UI元素位置和状态
 void update_ui_element_position_and_status(void)
 {
@@ -30,7 +27,6 @@ void update_ui_element_position_and_status(void)
   float adjusted_value;
   uint flag_bits;
   int32_t temp_flag;
-  
   context_base = global_engine_context;
   element_ptr = *(int64_t *)(global_engine_context + 0x1af8);
   if ((((*(int64_t *)(global_engine_context + 0x1c98) == element_ptr) &&
@@ -123,7 +119,7 @@ void update_ui_element_position_and_status(void)
             status_ptr = (int *)(dimension_ptr + 0x3a8);
             *status_ptr = *status_ptr + -1;
           }
-          // 释放内存资源
+// 释放内存资源
           free_memory_block(data_ptr,global_engine_context + 0xa8);
         }
       }
@@ -161,7 +157,7 @@ void update_ui_element_position_and_status(void)
       if (((*(int64_t *)(dimension_ptr + 0x1c78) != element_ptr) &&
           (*(int64_t *)(dimension_ptr + 0x1c78) = element_ptr, element_ptr != 0)) &&
          (*(code **)(dimension_ptr + 0x15c0) != (code *)0x0)) {
-        // 调用回调函数
+// 调用回调函数
         (**(code **)(dimension_ptr + 0x15c0))();
         return;
       }
@@ -169,7 +165,6 @@ void update_ui_element_position_and_status(void)
   }
   return;
 }
-
 // 函数: 计算UI元素的最佳位置
 void calculate_ui_element_optimal_position(float *output_position,float *reference_position,float *element_size,int *anchor_mode,float *boundary_bounds,
                   float *offset_bounds,int calculation_mode)
@@ -191,7 +186,6 @@ void calculate_ui_element_optimal_position(float *output_position,float *referen
   int32_t anchor_sequence;
   int32_t anchor_values;
   uint64_t guard_value;
-  
   guard_value = global_ui_scale_factor ^ (uint64_t)&stack_guard;
   ref_height = reference_position[1];
   element_height = *element_size;
@@ -329,12 +323,11 @@ LAB_anchor_mode_1:
       output_position[1] = stack_guard._4_4_;
       stack_guard = position_data;
 LAB_position_found:
-      // 安全检查函数
+// 安全检查函数
       perform_security_check(guard_value ^ (uint64_t)&stack_guard);
     }
   } while( true );
 }
-
 // 函数: 计算UI元素的边界框
 float * calculate_ui_element_bounding_box(float *bounding_box,int64_t element_data)
 {
@@ -343,7 +336,6 @@ float * calculate_ui_element_bounding_box(float *bounding_box,int64_t element_da
   int64_t array_ptr;
   float scale_x;
   float scale_y;
-  
   context_base = global_engine_context;
   *bounding_box = 3.4028235e+38;
   bounding_box[1] = 3.4028235e+38;
@@ -383,7 +375,6 @@ float * calculate_ui_element_bounding_box(float *bounding_box,int64_t element_da
   bounding_box[2] = bounding_box[2] + scale_y;
   return bounding_box;
 }
-
 // 函数: 计算UI元素的绝对位置
 uint64_t * calculate_ui_element_absolute_position(uint64_t *output_position,int64_t element_data)
 {
@@ -400,7 +391,6 @@ uint64_t * calculate_ui_element_absolute_position(uint64_t *output_position,int6
   float boundary_max_x;
   float boundary_max_y;
   int8_t bounding_box_buffer [64];
-  
   element_flags = *(uint *)(element_data + 0xc);
   if ((element_flags >> 0x1c & 1) == 0) {
     if ((element_flags >> 0x1a & 1) == 0) {
@@ -488,7 +478,6 @@ uint64_t * calculate_ui_element_absolute_position(uint64_t *output_position,int6
   }
   return output_position;
 }
-
 // 函数: 处理UI元素的边界约束
 void process_ui_element_boundary_constraints(uint64_t position_data,int64_t element_data)
 {
@@ -503,7 +492,6 @@ void process_ui_element_boundary_constraints(uint64_t position_data,int64_t elem
   float boundary_height;
   float parent_width;
   float parent_height;
-  
   element_ptr = *(int64_t *)(element_data + 0x398);
   calculate_ui_element_bounding_box();
   if (*(char *)(element_ptr + 0x17e) == '\0') {
@@ -556,7 +544,6 @@ void process_ui_element_boundary_constraints(uint64_t position_data,int64_t elem
   calculate_ui_element_optimal_position(constraint_value,element_data + 0x40,element_data + 0x48,element_data + 0xd4,context_base + 0x17);
   return;
 }
-
 // 函数: 计算工具提示位置
 void calculate_tooltip_position(uint64_t *output_position,int64_t element_data)
 {
@@ -572,7 +559,6 @@ void calculate_tooltip_position(uint64_t *output_position,int64_t element_data)
   float boundary_min_y;
   float boundary_max_x;
   float boundary_max_y;
-  
   if ((tooltip_flags >> 0x1a & 1) == 0) {
     if ((tooltip_flags >> 0x19 & 1) == 0) {
       *output_position = *(uint64_t *)(element_data + 0x40);
@@ -632,7 +618,6 @@ void calculate_tooltip_position(uint64_t *output_position,int64_t element_data)
   }
   return;
 }
-
 // 函数: 处理工具提示位置计算的简化版本
 void calculate_tooltip_position_simplified(void)
 {
@@ -645,7 +630,6 @@ void calculate_tooltip_position_simplified(void)
   float element_y;
   float boundary_width;
   float boundary_height;
-  
   tooltip_padding = *(float *)(parent_element + 0x16bc);
   get_element_screen_position(context_base + 0x6f);
   calculate_ui_element_bounding_box(context_base + 0x17,parent_element);
@@ -687,7 +671,6 @@ void calculate_tooltip_position_simplified(void)
   }
   return;
 }
-
 // 函数: 处理工具提示位置计算的另一个简化版本
 void calculate_tooltip_position_alternative(void)
 {
@@ -700,7 +683,6 @@ void calculate_tooltip_position_alternative(void)
   float element_y;
   float boundary_width;
   float boundary_height;
-  
   tooltip_padding = *(float *)(parent_element + 0x16bc);
   get_element_screen_position();
   calculate_ui_element_bounding_box(context_base + 0x17,parent_element);
@@ -742,24 +724,20 @@ void calculate_tooltip_position_alternative(void)
   }
   return;
 }
-
 // 函数: 设置工具提示偏移位置
 void set_tooltip_offset_position(void)
 {
   uint64_t *position_ptr;
   float horizontal_offset;
   float vertical_offset;
-  
   *position_ptr = CONCAT44(vertical_offset + 2.0,horizontal_offset + 2.0);
   return;
 }
-
 // 函数: 获取计算后的位置
 void get_calculated_position(void)
 {
   int64_t context_base;
   uint64_t *position_ptr;
-  
   *position_ptr = *(uint64_t *)(context_base + 0x77);
   return;
 }

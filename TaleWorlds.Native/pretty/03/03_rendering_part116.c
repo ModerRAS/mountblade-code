@@ -1,9 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 03_rendering_part116.c - 渲染系统高级数据序列化和资源管理模块
 // 包含6个核心函数，涵盖渲染系统数据序列化、资源管理、内存分配、数据比较等高级渲染功能
-
 // 常量定义
 #define RENDERING_SERIALIZATION_BUFFER_SIZE 0x1a0        // 渲染序列化缓冲区大小 (416字节)
 #define RENDERING_RESOURCE_FLAG_OFFSET 0x10             // 渲染资源标志偏移量
@@ -12,26 +10,22 @@
 #define RENDERING_MAX_RESOURCE_COUNT 0xffffffff        // 渲染最大资源数量
 #define RENDERING_DATA_BLOCK_SIZE 0x20                 // 渲染数据块大小 (32字节)
 #define RENDERING_POINTER_ALIGNMENT 8                  // 渲染指针对齐大小
-
 // 渲染系统标志位定义
 #define RENDERING_FLAG_MODIFIED 0x08                  // 渲染数据已修改标志
 #define RENDERING_FLAG_DIFFERENT 0x10                 // 渲染数据不同标志
 #define RENDERING_FLAG_INITIALIZED 0x20               // 渲染数据已初始化标志
-
 // 渲染系统内存管理常量
 #define RENDERING_MEMORY_POOL_SIZE 0x1000             // 渲染内存池大小 (4KB)
 #define RENDERING_CACHE_LINE_SIZE 64                   // 渲染缓存行大小
 #define RENDERING_ALIGNMENT_MASK 0x3f                 // 渲染对齐掩码
-
 // 渲染系统数据结构偏移量
 #define RENDERING_CONTEXT_OFFSET 0x08                 // 渲染上下文偏移量
 #define RENDERING_DATA_OFFSET 0xb0                    // 渲染数据偏移量
 #define RENDERING_RESOURCE_OFFSET 0x168               // 渲染资源偏移量
 #define RENDERING_STATE_OFFSET 0x1b8                  // 渲染状态偏移量
-
 /**
  * 渲染系统高级数据序列化函数
- * 原始函数名: FUN_1803387a0
+ * 原始函数名: function_3387a0
  * 功能: 对渲染系统的高级数据进行序列化处理，包括资源数据、对象数据和标志位的序列化
  * 参数: param_1 - 渲染上下文指针，param_2 - 数据上下文指针
  * 返回值: 无
@@ -74,19 +68,17 @@ void RenderingSystem_AdvancedSerializeData(int64_t *render_context, int64_t data
   int32_t stack_data_44;
   int32_t stack_data_40;
   int32_t stack_data_3c;
-  
-  // 获取数据大小并更新指针
+// 获取数据大小并更新指针
   data_size = **(uint **)(data_context + 8);
   uint_ptr = *(uint **)(data_context + 8) + 1;
   *(uint **)(data_context + 8) = uint_ptr;
   if (data_size != 0) {
-    // 处理数据块
+// 处理数据块
     (**(code **)(*render_context + 0x18))(render_context, uint_ptr);
     *(int64_t *)(data_context + 8) = *(int64_t *)(data_context + 8) + (uint64_t)data_size;
     uint_ptr = *(uint **)(data_context + 8);
   }
-  
-  // 序列化渲染状态数据
+// 序列化渲染状态数据
   *(uint *)((int64_t)render_context + 0x5c) = *uint_ptr;
   data_ptr = (int32_t *)(*(int64_t *)(data_context + 8) + 4);
   *(int32_t **)(data_context + 8) = data_ptr;
@@ -98,10 +90,9 @@ void RenderingSystem_AdvancedSerializeData(int64_t *render_context, int64_t data
   *(char **)(data_context + 8) = (char *)(offset + 4);
   condition_flag = *(char *)(offset + 4);
   *(int32_t **)(data_context + 8) = (int32_t *)(offset + 5);
-  
-  // 处理条件分支
+// 处理条件分支
   if (condition_flag == '\0') {
-    // 处理渲染参数数据
+// 处理渲染参数数据
     *(int32_t *)(render_context + 0x1a) = *(int32_t *)(offset + 5);
     *(int32_t *)((int64_t)render_context + 0xd4) = *(int32_t *)(offset + 9);
     *(int32_t *)(render_context + 0x1b) = *(int32_t *)(offset + 0xd);
@@ -123,7 +114,7 @@ void RenderingSystem_AdvancedSerializeData(int64_t *render_context, int64_t data
     *(int32_t *)((int64_t)render_context + 0x10c) = temp_data;
   }
   else {
-    // 设置默认渲染参数
+// 设置默认渲染参数
     render_context[0x1a] = RENDERING_DEFAULT_ALPHA;
     render_context[0x1b] = 0;
     render_context[0x1c] = RENDERING_DEFAULT_ALPHA;
@@ -136,8 +127,7 @@ void RenderingSystem_AdvancedSerializeData(int64_t *render_context, int64_t data
     render_context[0x21] = RENDERING_DEFAULT_ALPHA;
     data_ptr = *(int32_t **)(data_context + 8);
   }
-  
-  // 继续序列化渲染数据
+// 继续序列化渲染数据
   *(int32_t *)((int64_t)render_context + 100) = *data_ptr;
   offset = *(int64_t *)(data_context + 8);
   *(int32_t *)(render_context + 0x10) = *(int32_t *)(offset + 4);
@@ -173,11 +163,10 @@ void RenderingSystem_AdvancedSerializeData(int64_t *render_context, int64_t data
   array_size = (int64_t)resource_count;
   data_ptr = (int32_t *)(offset + 8);
   *(int32_t **)(data_context + 8) = data_ptr;
-  
-  // 处理资源数组
+// 处理资源数组
   if (0 < resource_count) {
     resource_ptr = render_context + 0x26;
-    FUN_18033a920(resource_ptr, array_size);
+    function_33a920(resource_ptr, array_size);
     data_ptr = *(int32_t **)(data_context + 8);
     offset = 0;
     if (3 < array_size) {
@@ -214,15 +203,14 @@ void RenderingSystem_AdvancedSerializeData(int64_t *render_context, int64_t data
       data_ptr = data_ptr + 2;
     }
   }
-  
-  // 处理渲染标志数据
+// 处理渲染标志数据
   flag_ptr = (uint64_t *)(render_context + 0x2a);
   *(int32_t *)((int64_t)render_context + 0x7c) = *data_ptr;
   data_ptr = (int32_t *)(*(int64_t *)(data_context + 8) + 4);
   *(int32_t **)(data_context + 8) = data_ptr;
   *(int32_t *)((int64_t)render_context + 0x74) = *data_ptr;
   *(int64_t *)(data_context + 8) = *(int64_t *)(data_context + 8) + 4;
-  FUN_180284120(flag_ptr, *(int32_t *)((int64_t)render_context + 0x74));
+  function_284120(flag_ptr, *(int32_t *)((int64_t)render_context + 0x74));
   data_size = 0;
   if (*(int *)((int64_t)render_context + 0x74) != 0) {
     do {
@@ -245,8 +233,7 @@ void RenderingSystem_AdvancedSerializeData(int64_t *render_context, int64_t data
       stack_data_44 = (int32_t)((uint64_t)data_qword5 >> 0x20);
       stack_data_40 = (int32_t)data_qword6;
       stack_data_3c = (int32_t)((uint64_t)data_qword6 >> 0x20);
-      
-      // 内存管理逻辑
+// 内存管理逻辑
       if (qword_ptr < (uint64_t *)render_context[0x2c]) {
         render_context[0x2b] = (int64_t)(qword_ptr + 8);
         *qword_ptr = data_qword;
@@ -300,8 +287,7 @@ LAB_180338b93:
       data_size = data_size + 1;
     } while (data_size < *(uint *)((int64_t)render_context + 0x74));
   }
-  
-  // 处理渲染标志位
+// 处理渲染标志位
   *(int32_t *)(render_context + 0xf) = **(int32_t **)(data_context + 8);
   *(int64_t *)(data_context + 8) = *(int64_t *)(data_context + 8) + 4;
   offset = render_context[0x2e];
@@ -362,8 +348,7 @@ LAB_180338d21:
       data_size = data_size + 1;
     } while (data_size < *(uint *)(render_context + 0xf));
   }
-  
-  // 最终数据序列化
+// 最终数据序列化
   *(int32_t *)((int64_t)render_context + 0x6c) = **(int32_t **)(data_context + 8);
   offset = *(int64_t *)(data_context + 8);
   uint_ptr = (uint *)(offset + 4);
@@ -380,10 +365,9 @@ LAB_180338d21:
   *(int64_t *)(data_context + 8) = *(int64_t *)(data_context + 8) + 4;
   return;
 }
-
 /**
  * 渲染系统数据序列化输出函数
- * 原始函数名: FUN_180338e10
+ * 原始函数名: function_338e10
  * 功能: 将渲染系统数据序列化到输出缓冲区
  * 参数: param_1 - 渲染数据指针，param_2 - 输出缓冲区指针
  * 返回值: 无
@@ -394,26 +378,22 @@ void RenderingSystem_SerializeOutput(int64_t render_data, int64_t *output_buffer
   int32_t output_word;
   int8_t *byte_ptr;
   int32_t *word_ptr;
-  
-  // 初始化序列化
-  FUN_1803377b0();
+// 初始化序列化
+  function_3377b0();
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 8);
-  
-  // 检查缓冲区空间
+// 检查缓冲区空间
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
     System_BufferManager(output_buffer, (int64_t)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
-  // 序列化渲染数据块
+// 序列化渲染数据块
   System_QueueProcessor(output_buffer, render_data + 0xb0);
   System_QueueProcessor(output_buffer, render_data + 0x108);
   System_QueueProcessor(output_buffer, render_data + 0x160);
-  
-  // 序列化渲染状态数据
+// 序列化渲染状态数据
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0x1b8);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -422,7 +402,6 @@ void RenderingSystem_SerializeOutput(int64_t render_data, int64_t *output_buffer
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0x1bc);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -431,7 +410,6 @@ void RenderingSystem_SerializeOutput(int64_t render_data, int64_t *output_buffer
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0x1c0);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -440,8 +418,7 @@ void RenderingSystem_SerializeOutput(int64_t render_data, int64_t *output_buffer
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
-  // 序列化标志位
+// 序列化标志位
   byte_ptr = (int8_t *)output_buffer[1];
   output_byte = *(int8_t *)(render_data + 0x1c4);
   if ((uint64_t)((output_buffer[2] - (int64_t)byte_ptr) + *output_buffer) < 2) {
@@ -454,10 +431,9 @@ void RenderingSystem_SerializeOutput(int64_t render_data, int64_t *output_buffer
   output_buffer[1] = output_buffer[1] + 1;
   return;
 }
-
 /**
  * 渲染系统数据反序列化函数
- * 原始函数名: FUN_180338f90
+ * 原始函数名: function_338f90
  * 功能: 从输入缓冲区反序列化渲染系统数据
  * 参数: param_1 - 渲染数据指针，param_2 - 输入缓冲区指针
  * 返回值: 无
@@ -466,13 +442,11 @@ void RenderingSystem_DeserializeInput(int64_t render_data, int64_t input_buffer)
 {
   uint data_size;
   uint *uint_ptr;
-  
-  // 初始化反序列化
-  FUN_180337990();
+// 初始化反序列化
+  function_337990();
   *(int32_t *)(render_data + 8) = **(int32_t **)(input_buffer + 8);
   *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + 4;
-  
-  // 反序列化数据块
+// 反序列化数据块
   data_size = **(uint **)(input_buffer + 8);
   uint_ptr = *(uint **)(input_buffer + 8) + 1;
   *(uint **)(input_buffer + 8) = uint_ptr;
@@ -481,7 +455,6 @@ void RenderingSystem_DeserializeInput(int64_t render_data, int64_t input_buffer)
     *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + (uint64_t)data_size;
     uint_ptr = *(uint **)(input_buffer + 8);
   }
-  
   data_size = *uint_ptr;
   uint_ptr = uint_ptr + 1;
   *(uint **)(input_buffer + 8) = uint_ptr;
@@ -490,7 +463,6 @@ void RenderingSystem_DeserializeInput(int64_t render_data, int64_t input_buffer)
     *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + (uint64_t)data_size;
     uint_ptr = *(uint **)(input_buffer + 8);
   }
-  
   data_size = *uint_ptr;
   uint_ptr = uint_ptr + 1;
   *(uint **)(input_buffer + 8) = uint_ptr;
@@ -499,8 +471,7 @@ void RenderingSystem_DeserializeInput(int64_t render_data, int64_t input_buffer)
     *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + (uint64_t)data_size;
     uint_ptr = *(uint **)(input_buffer + 8);
   }
-  
-  // 反序列化状态数据
+// 反序列化状态数据
   *(uint *)(render_data + 0x1b8) = *uint_ptr;
   *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + 4;
   *(int32_t *)(render_data + 0x1bc) = **(int32_t **)(input_buffer + 8);
@@ -511,31 +482,28 @@ void RenderingSystem_DeserializeInput(int64_t render_data, int64_t input_buffer)
   *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + 1;
   return;
 }
-
 /**
  * 渲染系统资源管理器初始化函数
- * 原始函数名: FUN_180339080
+ * 原始函数名: function_339080
  * 功能: 初始化渲染系统资源管理器，设置默认参数和内存布局
  * 参数: param_1 - 资源管理器指针
  * 返回值: 无
  */
 void RenderingSystem_InitializeResourceManager(int64_t resource_manager)
 {
-  // 设置资源管理器参数
+// 设置资源管理器参数
   *(int32_t *)(resource_manager + 0x8c) = 8;
   *(uint64_t *)(resource_manager + 8) = 0;
   *(uint64_t *)(resource_manager + 0x10) = 0;
-  
-  // 初始化渲染系统组件
-  FUN_180284720(resource_manager + 0x90);
+// 初始化渲染系统组件
+  function_284720(resource_manager + 0x90);
   *(int32_t *)(resource_manager + 0xc0) = 0;
   **(int8_t **)(resource_manager + 0xb8) = 0;
   *(int32_t *)(resource_manager + 0x118) = 0;
   **(int8_t **)(resource_manager + 0x110) = 0;
   *(int32_t *)(resource_manager + 0x170) = 0;
   **(int8_t **)(resource_manager + 0x168) = 0;
-  
-  // 重置资源管理器状态
+// 重置资源管理器状态
   *(int32_t *)(resource_manager + 0x8c) = 0;
   *(int8_t *)(resource_manager + 0x1c4) = 0;
   *(int32_t *)(resource_manager + 0x1bc) = RENDERING_MAX_RESOURCE_COUNT;
@@ -543,18 +511,17 @@ void RenderingSystem_InitializeResourceManager(int64_t resource_manager)
   *(int32_t *)(resource_manager + 0x1b8) = 0;
   return;
 }
-
 /**
  * 渲染系统资源管理器创建函数
- * 原始函数名: FUN_180339110
+ * 原始函数名: function_339110
  * 功能: 创建渲染系统资源管理器并初始化各项参数
  * 参数: param_1 - 资源管理器指针
  * 返回值: 创建的资源管理器指针
  */
 uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
 {
-  // 初始化资源管理器结构
-  FUN_180320470();
+// 初始化资源管理器结构
+  function_320470();
   *resource_manager = &processed_var_8368_ptr;
   resource_manager[0x16] = &system_state_ptr;
   resource_manager[0x17] = 0;
@@ -563,8 +530,7 @@ uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
   resource_manager[0x17] = resource_manager + 0x19;
   *(int32_t *)(resource_manager + 0x18) = 0;
   *(int8_t *)(resource_manager + 0x19) = 0;
-  
-  // 设置资源管理器参数
+// 设置资源管理器参数
   resource_manager[0x21] = &system_state_ptr;
   resource_manager[0x22] = 0;
   *(int32_t *)(resource_manager + 0x23) = 0;
@@ -572,8 +538,7 @@ uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
   resource_manager[0x22] = resource_manager + 0x24;
   *(int32_t *)(resource_manager + 0x23) = 0;
   *(int8_t *)(resource_manager + 0x24) = 0;
-  
-  // 初始化资源管理器
+// 初始化资源管理器
   resource_manager[0x2c] = &system_state_ptr;
   resource_manager[0x2d] = 0;
   *(int32_t *)(resource_manager + 0x2e) = 0;
@@ -581,15 +546,13 @@ uint64_t *RenderingSystem_CreateResourceManager(uint64_t *resource_manager)
   resource_manager[0x2d] = resource_manager + 0x2f;
   *(int32_t *)(resource_manager + 0x2e) = 0;
   *(int8_t *)(resource_manager + 0x2f) = 0;
-  
-  // 调用初始化函数
-  FUN_180339080(resource_manager);
+// 调用初始化函数
+  function_339080(resource_manager);
   return resource_manager;
 }
-
 /**
  * 渲染系统数据比较函数
- * 原始函数名: FUN_1803391e0
+ * 原始函数名: function_3391e0
  * 功能: 比较两个渲染系统数据对象的差异
  * 参数: param_1 - 第一个渲染数据对象，param_2 - 第二个渲染数据对象
  * 返回值: 布尔值，true表示有差异，false表示相同
@@ -609,26 +572,22 @@ bool RenderingSystem_CompareData(int64_t render_data1, int64_t render_data2)
   bool has_difference;
   float value1;
   float value2;
-  
-  // 比较渲染数据
-  compare_result1 = func_0x000180274d30(render_data1 + 0x58, render_data2 + 0x58);
+// 比较渲染数据
+  compare_result1 = Function_eb72d450(render_data1 + 0x58, render_data2 + 0x58);
   if (compare_result1 == '\0') {
     *(uint *)(render_data1 + 0x10) = *(uint *)(render_data1 + 0x10) | RENDERING_FLAG_MODIFIED;
   }
-  
   value2 = RENDERING_COMPARISON_TOLERANCE;
-  compare_result2 = func_0x000180285f10(render_data1 + 0x18, render_data2 + 0x18);
+  compare_result2 = Function_9bed5989(render_data1 + 0x18, render_data2 + 0x18);
   if (compare_result2 == '\0') {
     *(uint *)(render_data1 + 0x10) = *(uint *)(render_data1 + 0x10) | RENDERING_FLAG_MODIFIED;
   }
-  
   has_difference = *(int *)(render_data1 + 0x14) != *(int *)(render_data2 + 0x14);
   if (has_difference) {
     *(uint *)(render_data1 + 0x10) = *(uint *)(render_data1 + 0x10) | RENDERING_FLAG_MODIFIED;
   }
   has_difference = has_difference || (compare_result2 == '\0' || compare_result1 == '\0');
-  
-  // 比较资源数据
+// 比较资源数据
   size1 = *(int *)(render_data1 + 0x170);
   size2 = *(int *)(render_data2 + 0x170);
   if (size1 == size2) {
@@ -646,19 +605,16 @@ LAB_18033928d:
     if (size2 == 0) goto LAB_180339296;
   }
   else if (size1 == 0) goto LAB_18033928d;
-  
   *(uint *)(render_data1 + 0x10) = *(uint *)(render_data1 + 0x10) | RENDERING_FLAG_DIFFERENT;
   has_difference = true;
-  
 LAB_180339296:
-  // 比较浮点数值
+// 比较浮点数值
   value1 = *(float *)(render_data1 + 0x1b8) - *(float *)(render_data2 + 0x1b8);
   if ((value1 <= -RENDERING_COMPARISON_TOLERANCE) || (RENDERING_COMPARISON_TOLERANCE <= value1)) {
     *(uint *)(render_data1 + 0x10) = *(uint *)(render_data1 + 0x10) | RENDERING_FLAG_MODIFIED;
     has_difference = true;
   }
-  
-  // 比较渲染块数据
+// 比较渲染块数据
   data_offset = *(int64_t *)(render_data1 + 0x90);
   offset1 = *(int64_t *)(render_data1 + 0x98) - data_offset;
   offset2 = offset1 >> 0x3f;
@@ -668,7 +624,7 @@ LAB_180339296:
     if (offset1 != offset2) {
       index = 0;
       do {
-        compare_result1 = FUN_180327250(index * RENDERING_SERIALIZATION_BUFFER_SIZE + data_offset, *(int64_t *)(render_data2 + 0x90) + index * RENDERING_SERIALIZATION_BUFFER_SIZE);
+        compare_result1 = function_327250(index * RENDERING_SERIALIZATION_BUFFER_SIZE + data_offset, *(int64_t *)(render_data2 + 0x90) + index * RENDERING_SERIALIZATION_BUFFER_SIZE);
         if (compare_result1 != '\0') {
           *(uint *)(render_data1 + 0x10) = *(uint *)(render_data1 + 0x10) | RENDERING_FLAG_MODIFIED;
           has_difference = true;
@@ -684,10 +640,9 @@ LAB_180339296:
   }
   return has_difference;
 }
-
 /**
  * 渲染系统资源比较函数
- * 原始函数名: FUN_18033931a
+ * 原始函数名: function_33931a
  * 功能: 比较两个渲染系统资源的差异
  * 参数: param_1 - 资源管理器1，param_2 - 资源管理器2，param_3 - 资源数量，param_4 - 资源偏移量
  * 返回值: 无符号字符，表示比较结果
@@ -702,12 +657,11 @@ int8_t RenderingSystem_CompareResources(uint64_t resource_manager1, uint64_t res
   int8_t unaff_DIL;
   uint64_t resource_index;
   int64_t unaff_R14;
-  
   index = 0;
   if (resource_count != 0) {
     resource_index = 0;
     do {
-      compare_result = FUN_180327250(resource_index * RENDERING_SERIALIZATION_BUFFER_SIZE + resource_offset, *(int64_t *)(unaff_RSI + 0x90) + resource_index * RENDERING_SERIALIZATION_BUFFER_SIZE);
+      compare_result = function_327250(resource_index * RENDERING_SERIALIZATION_BUFFER_SIZE + resource_offset, *(int64_t *)(unaff_RSI + 0x90) + resource_index * RENDERING_SERIALIZATION_BUFFER_SIZE);
       if (compare_result != '\0') {
         *(uint *)(unaff_RBX + 0x10) = *(uint *)(unaff_RBX + 0x10) | RENDERING_FLAG_MODIFIED;
         unaff_DIL = 1;
@@ -720,10 +674,9 @@ int8_t RenderingSystem_CompareResources(uint64_t resource_manager1, uint64_t res
   }
   return unaff_DIL;
 }
-
 /**
  * 渲染系统空函数
- * 原始函数名: FUN_180339388
+ * 原始函数名: function_339388
  * 功能: 空函数，用于占位或调试
  * 参数: 无
  * 返回值: 无符号字符
@@ -731,13 +684,11 @@ int8_t RenderingSystem_CompareResources(uint64_t resource_manager1, uint64_t res
 int8_t RenderingSystem_EmptyFunction(void)
 {
   int8_t unaff_DIL;
-  
   return unaff_DIL;
 }
-
 /**
  * 渲染系统资源序列化函数
- * 原始函数名: FUN_1803393b0
+ * 原始函数名: function_3393b0
  * 功能: 序列化渲染系统资源到输出缓冲区
  * 参数: param_1 - 渲染数据指针，param_2 - 输出缓冲区指针，param_3 - 资源管理器1，param_4 - 资源管理器2
  * 返回值: 无
@@ -752,21 +703,18 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   uint *uint_ptr;
   void *data_ptr;
   uint64_t unaff_RDI;
-  
-  // 初始化序列化
-  FUN_1803377b0();
+// 初始化序列化
+  function_3377b0();
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xb0);
-  
-  // 检查缓冲区空间并写入数据
+// 检查缓冲区空间并写入数据
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
     System_BufferManager(output_buffer, (int64_t)word_ptr + (4 - *output_buffer));
     word_ptr = (int32_t *)output_buffer[1];
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
-  // 序列化渲染参数
+// 序列化渲染参数
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xb4);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -775,7 +723,6 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xb8);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -784,7 +731,6 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xbc);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -793,7 +739,6 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xc0);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -802,7 +747,6 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xc4);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -811,7 +755,6 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 200);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -820,7 +763,6 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xcc);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -829,7 +771,6 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xd0);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -838,7 +779,6 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
   word_ptr = (int32_t *)output_buffer[1];
   output_word = *(int32_t *)(render_data + 0xd4);
   if ((uint64_t)((output_buffer[2] - (int64_t)word_ptr) + *output_buffer) < 5) {
@@ -847,14 +787,12 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   }
   *word_ptr = output_word;
   output_buffer[1] = output_buffer[1] + 4;
-  
-  // 序列化渲染数据块
-  FUN_180639fd0(output_buffer, render_data + 0xd8);
-  FUN_180639fd0(output_buffer, render_data + 0xe8);
+// 序列化渲染数据块
+  function_639fd0(output_buffer, render_data + 0xd8);
+  function_639fd0(output_buffer, render_data + 0xe8);
   System_QueueProcessor(output_buffer, render_data + 0xf8);
   System_QueueProcessor(output_buffer, render_data + 0x150);
-  
-  // 序列化资源数据
+// 序列化资源数据
   data_size = *(uint *)(render_data + 0x1b8);
   uint_ptr = (uint *)output_buffer[1];
   buffer_size = (uint64_t)data_size + 4;
@@ -872,10 +810,9 @@ void RenderingSystem_SerializeResources(int64_t render_data, int64_t *output_buf
   }
   memcpy(temp_offset + 4, data_ptr, (uint64_t)data_size);
 }
-
 /**
  * 渲染系统资源反序列化函数
- * 原始函数名: FUN_180339680
+ * 原始函数名: function_339680
  * 功能: 从输入缓冲区反序列化渲染系统资源
  * 参数: param_1 - 渲染数据指针，param_2 - 输入缓冲区指针
  * 返回值: 无
@@ -885,11 +822,9 @@ void RenderingSystem_DeserializeResources(int64_t render_data, int64_t input_buf
   uint data_size;
   int64_t temp_offset;
   uint *uint_ptr;
-  
-  // 初始化反序列化
-  FUN_180337990();
-  
-  // 反序列化渲染参数
+// 初始化反序列化
+  function_337990();
+// 反序列化渲染参数
   *(int32_t *)(render_data + 0xb0) = **(int32_t **)(input_buffer + 8);
   *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + 4;
   *(int32_t *)(render_data + 0xb4) = **(int32_t **)(input_buffer + 8);
@@ -910,8 +845,7 @@ void RenderingSystem_DeserializeResources(int64_t render_data, int64_t input_buf
   *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + 4;
   *(int32_t *)(render_data + 0xd4) = **(int32_t **)(input_buffer + 8);
   *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + 4;
-  
-  // 反序列化渲染数据块
+// 反序列化渲染数据块
   *(int32_t *)(render_data + 0xd8) = **(int32_t **)(input_buffer + 8);
   *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + 4;
   *(int32_t *)(render_data + 0xdc) = **(int32_t **)(input_buffer + 8);
@@ -933,14 +867,12 @@ void RenderingSystem_DeserializeResources(int64_t render_data, int64_t input_buf
   data_size = *uint_ptr;
   uint_ptr = (uint *)(temp_offset + 8);
   *(uint **)(input_buffer + 8) = uint_ptr;
-  
-  // 反序列化资源数据
+// 反序列化资源数据
   if (data_size != 0) {
     (**(code **)(*(int64_t *)(render_data + 0xf8) + 0x18))((int64_t *)(render_data + 0xf8), uint_ptr, data_size);
     *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + (uint64_t)data_size;
     uint_ptr = *(uint **)(input_buffer + 8);
   }
-  
   data_size = *uint_ptr;
   uint_ptr = uint_ptr + 1;
   *(uint **)(input_buffer + 8) = uint_ptr;
@@ -949,7 +881,6 @@ void RenderingSystem_DeserializeResources(int64_t render_data, int64_t input_buf
     *(int64_t *)(input_buffer + 8) = *(int64_t *)(input_buffer + 8) + (uint64_t)data_size;
     uint_ptr = *(uint **)(input_buffer + 8);
   }
-  
   data_size = *uint_ptr;
   *(uint **)(input_buffer + 8) = uint_ptr + 1;
   if (data_size != 0) {
@@ -959,15 +890,14 @@ void RenderingSystem_DeserializeResources(int64_t render_data, int64_t input_buf
   }
   return;
 }
-
 // 函数别名定义 - 保持向后兼容性
-#define FUN_1803387a0 RenderingSystem_AdvancedSerializeData
-#define FUN_180338e10 RenderingSystem_SerializeOutput
-#define FUN_180338f90 RenderingSystem_DeserializeInput
-#define FUN_180339080 RenderingSystem_InitializeResourceManager
-#define FUN_180339110 RenderingSystem_CreateResourceManager
-#define FUN_1803391e0 RenderingSystem_CompareData
-#define FUN_18033931a RenderingSystem_CompareResources
-#define FUN_180339388 RenderingSystem_EmptyFunction
-#define FUN_1803393b0 RenderingSystem_SerializeResources
-#define FUN_180339680 RenderingSystem_DeserializeResources
+#define function_3387a0 RenderingSystem_AdvancedSerializeData
+#define function_338e10 RenderingSystem_SerializeOutput
+#define function_338f90 RenderingSystem_DeserializeInput
+#define function_339080 RenderingSystem_InitializeResourceManager
+#define function_339110 RenderingSystem_CreateResourceManager
+#define function_3391e0 RenderingSystem_CompareData
+#define function_33931a RenderingSystem_CompareResources
+#define function_339388 RenderingSystem_EmptyFunction
+#define function_3393b0 RenderingSystem_SerializeResources
+#define function_339680 RenderingSystem_DeserializeResources

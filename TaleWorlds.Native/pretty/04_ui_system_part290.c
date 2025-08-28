@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part290.c - 1 个函数
-
-// 函数: void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
-void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
-
+// 函数: void function_82c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
+void function_82c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
 {
   int iVar1;
   int iVar2;
@@ -76,12 +73,11 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
   float fVar57;
   int8_t in_ZMM9 [64];
   int8_t auVar51 [64];
-  float *in_stack_00000168;
-  int in_stack_00000180;
-  uint in_stack_00000190;
-  uint in_stack_00000198;
-  uint in_stack_000001a0;
-  
+  float *local_var_168;
+  int local_var_180;
+  uint local_var_190;
+  uint local_var_198;
+  uint local_var_1a0;
   iVar31 = param_2 >> 2;
   auVar8 = ui_system_memory_config;
   for (param_3 = param_3 >> 3; param_3 != 0; param_3 = param_3 + -1) {
@@ -218,15 +214,15 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
         *(int8_t (*) [16])(in_R11 + (int64_t)(param_2 * 7) + (int64_t)iVar33) =
              auVar10._16_16_;
         iVar37 = iVar37 + -1;
-        unaff_RBX = in_stack_00000168;
+        unaff_RBX = local_var_168;
         iVar33 = iVar33 + 4;
       } while (iVar37 != 0);
     }
     unaff_RBX = unaff_RBX + 8;
     in_R11 = in_R11 + unaff_R14D;
     in_R10 = in_R10 + 8;
-    unaff_ESI = in_stack_00000190;
-    in_stack_00000168 = unaff_RBX;
+    unaff_ESI = local_var_190;
+    local_var_168 = unaff_RBX;
     auVar8 = ui_system_memory_config;
   }
   for (uVar30 = unaff_ESI & 7; ui_system_memory_config = auVar8, uVar30 != 0; uVar30 = uVar30 - 1) {
@@ -252,9 +248,9 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
     in_R10 = in_R10 + 1;
     unaff_RBX = unaff_RBX + 1;
     auVar8 = ui_system_memory_config;
-    in_stack_00000168 = unaff_RBX;
+    local_var_168 = unaff_RBX;
   }
-  for (iVar37 = (int)in_stack_00000198 >> 3; iVar37 != 0; iVar37 = iVar37 + -1) {
+  for (iVar37 = (int)local_var_198 >> 3; iVar37 != 0; iVar37 = iVar37 + -1) {
     auVar7 = vpermps_avx2(auVar8,*(int8_t (*) [32])(unaff_RDI + -0x20));
     fVar6 = *unaff_RBX;
     fVar20 = unaff_RBX[1];
@@ -388,18 +384,18 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
         *(int8_t (*) [16])(in_R11 + (int64_t)iVar19 + (int64_t)iVar34) = auVar12._16_16_;
         *(int8_t (*) [16])(in_R11 + (int64_t)iVar26 + (int64_t)iVar34) = auVar10._16_16_;
         iVar38 = iVar38 + -1;
-        unaff_RBX = in_stack_00000168;
-        param_2 = in_stack_00000180;
+        unaff_RBX = local_var_168;
+        param_2 = local_var_180;
         iVar34 = iVar34 + 4;
       } while (iVar38 != 0);
     }
     unaff_RBX = unaff_RBX + 8;
     in_R11 = in_R11 + unaff_R14D;
     param_4 = param_4 + 8;
-    in_stack_00000168 = unaff_RBX;
+    local_var_168 = unaff_RBX;
   }
-  in_stack_00000198 = in_stack_00000198 & 7;
-  if (in_stack_00000198 != 0) {
+  local_var_198 = local_var_198 & 7;
+  if (local_var_198 != 0) {
     lVar28 = unaff_RDI - (int64_t)in_R10;
     lVar32 = (int64_t)param_4 - (int64_t)unaff_RBX;
     pfVar29 = in_R10;
@@ -422,11 +418,11 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
         } while (iVar31 != 0);
       }
       unaff_RBX = unaff_RBX + 1;
-      in_stack_00000198 = in_stack_00000198 - 1;
+      local_var_198 = local_var_198 - 1;
       pfVar29 = in_R10;
-    } while (in_stack_00000198 != 0);
+    } while (local_var_198 != 0);
   }
-  iVar31 = (int)in_stack_000001a0 >> 3;
+  iVar31 = (int)local_var_1a0 >> 3;
   if (iVar31 != 0) {
     iVar37 = param_2 >> 2;
     do {
@@ -499,7 +495,7 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar19 + (int64_t)iVar34) = auVar8._0_16_;
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar26 + (int64_t)iVar34) = auVar10._0_16_;
           iVar38 = iVar38 + -1;
-          param_2 = in_stack_00000180;
+          param_2 = local_var_180;
           iVar34 = iVar34 + 4;
         } while (iVar38 != 0);
       }
@@ -507,8 +503,8 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
       iVar31 = iVar31 + -1;
     } while (iVar31 != 0);
   }
-  in_stack_000001a0 = in_stack_000001a0 & 7;
-  if (in_stack_000001a0 != 0) {
+  local_var_1a0 = local_var_1a0 & 7;
+  if (local_var_1a0 != 0) {
     do {
       in_R10 = in_R10 + -1;
       pfVar29 = in_R10;
@@ -517,15 +513,12 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
         in_R11 = in_R11 + 1;
         pfVar29 = pfVar29 + 0x400;
       }
-      in_stack_000001a0 = in_stack_000001a0 - 1;
-    } while (in_stack_000001a0 != 0);
+      local_var_1a0 = local_var_1a0 - 1;
+    } while (local_var_1a0 != 0);
     return;
   }
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x00018082cd15)
 // WARNING: Removing unreachable block (ram,0x00018082cd09)
 // WARNING: Removing unreachable block (ram,0x00018082cd29)
@@ -534,6 +527,3 @@ void FUN_18082c7de(uint64_t param_1,int param_2,int param_3,uint *param_4)
 // WARNING: Removing unreachable block (ram,0x00018082cd3e)
 // WARNING: Removing unreachable block (ram,0x00018082cffe)
 // WARNING: Removing unreachable block (ram,0x00018082d00e)
-
-
-

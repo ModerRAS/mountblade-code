@@ -1,64 +1,58 @@
 n// SystemCore_Compression 函数的语义化别名: SystemCallbackHandler
 #define SystemCallbackHandler SystemCore_Compression
-
 /**
  * TaleWorlds.Native - 初始化系统事件处理和回调管理模块
- * 
+ *
  * 文件说明：
  * 这是 Mount & Blade II: Bannerlord Native DLL 的初始化系统事件处理模块
  * 包含系统回调注册、事件处理、互斥锁初始化等功能
- * 
+ *
  * 模块范围：地址 0x00000-0x0FFFF
- * 
+ *
  * 创建时间：2025-08-28
  * 版本：1.0
  */
-
 #include "../include/taleworlds_native_types.h"
 #include "taleworlds_native.h"
-
 /*=============================================================================
  * 模块说明
  *=============================================================================*/
-
 /**
  * 初始化系统事件处理模块功能概述：
- * 
+ *
  * 1. 系统回调注册
  *    - 注册各种系统事件回调函数
  *    - 管理回调函数的生命周期
  *    - 处理回调函数的优先级
  *    - 维护回调函数的执行顺序
- * 
+ *
  * 2. 事件处理机制
  *    - 事件队列管理
  *    - 事件分发和处理
  *    - 事件过滤和优先级处理
  *    - 事件状态跟踪
- * 
+ *
  * 3. 互斥锁和同步
  *    - 初始化系统互斥锁
  *    - 处理线程同步问题
  *    - 管理资源访问控制
  *    - 确保数据一致性
- * 
+ *
  * 4. 进程和线程管理
  *    - 获取当前进程信息
  *    - 管理线程生命周期
  *    - 处理线程同步
  *    - 优化线程性能
- * 
+ *
  * 5. 内存管理
  *    - 动态内存分配
  *    - 内存池管理
  *    - 内存泄漏检测
  *    - 内存使用优化
  */
-
 /*=============================================================================
  * 全局变量和状态
  *=============================================================================*/
-
 /**
  * 系统全局数据区域
  * 存储系统运行时的重要全局变量和状态信息
@@ -81,7 +75,6 @@ extern uint64_t global_state_2896;            /* 系统全局指针15 */
 extern uint64_t global_state_2912;            /* 系统全局指针16 */
 extern uint64_t global_state_2928;            /* 系统全局指针17 */
 extern uint64_t global_state_2944;            /* 系统全局指针18 */
-
 /**
  * 系统互斥锁和同步变量
  * 用于线程同步和资源访问控制
@@ -94,7 +87,6 @@ extern uint64_t system_memory_66f0;            /* 互斥锁区域2 */
 extern uint64_t system_memory_6740;            /* 互斥锁区域3 */
 extern uint64_t system_memory_6790;            /* 互斥锁数据区域 */
 extern uint64_t system_memory_67b8;            /* 互斥锁状态标志 */
-
 /**
  * 系统常量和标识符
  * 用于系统标识和配置
@@ -120,20 +112,18 @@ extern uint64_t system_memory_c990;            /* 系统标识符18 */
 extern uint64_t system_memory_c9e0;            /* 系统标识符19 */
 extern uint64_t system_memory_c8f0;            /* 系统标识符20 */
 extern uint64_t system_memory_c8c8;            /* 系统标识符21 */
-
 /**
  * 系统回调函数指针
  * 指向系统内部的回调处理函数
  */
 extern code *SystemCore_Compression;                 /* 系统回调函数1 */
-extern code *FUN_1802281a0;                /* 系统回调函数2 */
-extern code *FUN_1802285e0;                /* 系统回调函数3 */
+extern code *function_2281a0;                /* 系统回调函数2 */
+extern code *function_2285e0;                /* 系统回调函数3 */
 extern code *> HighFreq_FileSystem1;                /* 系统回调函数4 */
 extern code *> HighFreq_ConfigManager1;                /* 系统回调函数5 */
 extern code *> UltraHighFreq_NetworkHandler1;                /* 系统回调函数6 */
-extern code *FUN_180073930;                /* 系统回调函数7 */
-extern void *FUN_1800868c0;           /* 系统函数指针1 */
-
+extern code *CoreEngine_073930;                /* 系统回调函数7 */
+extern void *function_0868c0;           /* 系统函数指针1 */
 /**
  * 系统数据引用
  * 指向系统数据区域的指针
@@ -159,7 +149,6 @@ extern uint64_t global_state_3632_ptr;            /* 系统数据引用18 */
 extern uint64_t global_state_3728_ptr;            /* 系统数据引用19 */
 extern uint64_t global_state_3744_ptr;            /* 系统数据引用20 */
 extern uint64_t global_state_3768_ptr;            /* 系统数据引用21 */
-
 /**
  * 系统字符串常量
  * 用于系统配置和标识
@@ -167,63 +156,55 @@ extern uint64_t global_state_3768_ptr;            /* 系统数据引用21 */
 extern uint64_t global_state_3432_ptr;            /* 系统字符串1 */
 extern uint64_t global_state_9616_ptr;            /* 系统字符串2 */
 extern uint64_t global_state_2504_ptr;            /* 系统字符串3 */
-
 /*=============================================================================
  * 函数别名定义
  *=============================================================================*/
-
 // 系统回调注册函数
-#define SystemCallbackRegister_1 FUN_180041d10  // 系统回调注册1
-#define SystemCallbackRegister_2 FUN_180041e10  // 系统回调注册2
-#define SystemCallbackRegister_3 FUN_180041fd0  // 系统回调注册3
-#define SystemCallbackRegister_4 FUN_1800420d0  // 系统回调注册4
-#define SystemCallbackRegister_5 FUN_1800421d0  // 系统回调注册5
-#define SystemCallbackRegister_6 FUN_1800422d0  // 系统回调注册6
-#define SystemCallbackRegister_7 FUN_1800423d0  // 系统回调注册7
-#define SystemCallbackRegister_8 FUN_1800424d0  // 系统回调注册8
-#define SystemCallbackRegister_9 FUN_1800425d0  // 系统回调注册9
-#define SystemCallbackRegister_10 FUN_1800426d0 // 系统回调注册10
-#define SystemCallbackRegister_11 FUN_1800427d0 // 系统回调注册11
-#define SystemCallbackRegister_12 FUN_1800428d0 // 系统回调注册12
-#define SystemCallbackRegister_13 FUN_1800429d0 // 系统回调注册13
-#define SystemCallbackRegister_14 FUN_180042ad0 // 系统回调注册14
-#define SystemCallbackRegister_15 FUN_180042bd0 // 系统回调注册15
-#define SystemCallbackRegister_16 FUN_180042cd0 // 系统回调注册16
-#define SystemCallbackRegister_17 FUN_180042dd0 // 系统回调注册17
-#define SystemCallbackRegister_18 FUN_180042ed0 // 系统回调注册18
-#define SystemCallbackRegister_19 FUN_180042fd0 // 系统回调注册19
-#define SystemCallbackRegister_20 FUN_1800430d0 // 系统回调注册20
-#define SystemCallbackRegister_21 FUN_1800431d0 // 系统回调注册21
-#define SystemCallbackRegister_22 FUN_1800432d0 // 系统回调注册22
-#define SystemCallbackRegister_23 FUN_1800433d0 // 系统回调注册23
-
+#define SystemCallbackRegister_1 function_041d10  // 系统回调注册1
+#define SystemCallbackRegister_2 function_041e10  // 系统回调注册2
+#define SystemCallbackRegister_3 function_041fd0  // 系统回调注册3
+#define SystemCallbackRegister_4 function_0420d0  // 系统回调注册4
+#define SystemCallbackRegister_5 function_0421d0  // 系统回调注册5
+#define SystemCallbackRegister_6 function_0422d0  // 系统回调注册6
+#define SystemCallbackRegister_7 function_0423d0  // 系统回调注册7
+#define SystemCallbackRegister_8 function_0424d0  // 系统回调注册8
+#define SystemCallbackRegister_9 function_0425d0  // 系统回调注册9
+#define SystemCallbackRegister_10 function_0426d0 // 系统回调注册10
+#define SystemCallbackRegister_11 function_0427d0 // 系统回调注册11
+#define SystemCallbackRegister_12 function_0428d0 // 系统回调注册12
+#define SystemCallbackRegister_13 function_0429d0 // 系统回调注册13
+#define SystemCallbackRegister_14 function_042ad0 // 系统回调注册14
+#define SystemCallbackRegister_15 function_042bd0 // 系统回调注册15
+#define SystemCallbackRegister_16 function_042cd0 // 系统回调注册16
+#define SystemCallbackRegister_17 function_042dd0 // 系统回调注册17
+#define SystemCallbackRegister_18 function_042ed0 // 系统回调注册18
+#define SystemCallbackRegister_19 function_042fd0 // 系统回调注册19
+#define SystemCallbackRegister_20 function_0430d0 // 系统回调注册20
+#define SystemCallbackRegister_21 function_0431d0 // 系统回调注册21
+#define SystemCallbackRegister_22 function_0432d0 // 系统回调注册22
+#define SystemCallbackRegister_23 function_0433d0 // 系统回调注册23
 // 系统事件处理函数
-#define SystemEventProcessor_1 FUN_180041f10     // 系统事件处理1
-#define SystemEventProcessor_2 FUN_1800434d0     // 系统事件处理2
-
+#define SystemEventProcessor_1 function_041f10     // 系统事件处理1
+#define SystemEventProcessor_2 function_0434d0     // 系统事件处理2
 // 系统初始化函数
-#define SystemInitializer_1 FUN_180043560       // 系统初始化1
-#define SystemInitializer_2 FUN_180043580       // 系统初始化2
-#define SystemInitializer_3 FUN_1800435e0       // 系统初始化3
-#define SystemInitializer_4 FUN_180043610       // 系统初始化4
-
+#define SystemInitializer_1 function_043560       // 系统初始化1
+#define SystemInitializer_2 function_043580       // 系统初始化2
+#define SystemInitializer_3 function_0435e0       // 系统初始化3
+#define SystemInitializer_4 function_043610       // 系统初始化4
 // 系统互斥锁初始化函数
-#define MutexInitializer_1 FUN_180041fa0         // 互斥锁初始化1
-#define MutexInitializer_2 FUN_1800435a0         // 互斥锁初始化2
-#define MutexInitializer_3 FUN_1800435e0         // 互斥锁初始化3
-
+#define MutexInitializer_1 function_041fa0         // 互斥锁初始化1
+#define MutexInitializer_2 function_0435a0         // 互斥锁初始化2
+#define MutexInitializer_3 function_0435e0         // 互斥锁初始化3
 // 系统核心功能函数
 #define SystemCoreFunction_1 NetworkDataProcessor        // 系统核心功能1
 #define SystemCoreFunction_2 NetworkConnectionManager        // 系统核心功能2
 #define SystemCoreFunction_3 NetworkProtocolHandler        // 系统核心功能3
 #define SystemCoreFunction_4 SystemCore_ConfigManager        // 系统核心功能4
-#define SystemCoreFunction_5 FUN_180629770        // 系统核心功能5
-#define SystemCoreFunction_6 FUN_1808fc7d0        // 系统核心功能6
-
+#define SystemCoreFunction_5 function_629770        // 系统核心功能5
+#define SystemCoreFunction_6 SystemCore_FunctionDispatcher        // 系统核心功能6
 /*=============================================================================
  * 常量定义
  *=============================================================================*/
-
 // 系统回调类型常量
 #define CALLBACK_TYPE_SYSTEM_EVENT 0x46c54bc98fc3fc2a  // 系统事件回调类型
 #define CALLBACK_TYPE_INPUT_EVENT 0x41ffd0b76c1e136f   // 输入事件回调类型
@@ -243,7 +224,6 @@ extern uint64_t global_state_2504_ptr;            /* 系统字符串3 */
 #define CALLBACK_TYPE_DATA_EVENT 0x42d293584c8cf3e5  // 数据事件回调类型
 #define CALLBACK_TYPE_ASYNC_EVENT 0x421c3cedd07d816d  // 异步事件回调类型
 #define CALLBACK_TYPE_SYNC_EVENT 0x4c22bb0c326587ce  // 同步事件回调类型
-
 // 系统事件标识符常量
 #define EVENT_IDENTIFIER_SYSTEM 0x727b256e3af32585    // 系统事件标识符
 #define EVENT_IDENTIFIER_INPUT 0x25db30365f277abb     // 输入事件标识符
@@ -263,14 +243,12 @@ extern uint64_t global_state_2504_ptr;            /* 系统字符串3 */
 #define EVENT_IDENTIFIER_DATA 0x355ffeb2d29e668a    // 数据事件标识符
 #define EVENT_IDENTIFIER_ASYNC 0xbec25de793b7afa6    // 异步事件标识符
 #define EVENT_IDENTIFIER_SYNC 0x5e3cf00ce2978287    // 同步事件标识符
-
 // 系统优先级常量
 #define SYSTEM_PRIORITY_LOW 0x00000000             // 系统低优先级
 #define SYSTEM_PRIORITY_NORMAL 0x00000001          // 系统普通优先级
 #define SYSTEM_PRIORITY_HIGH 0x00000002            // 系统高优先级
 #define SYSTEM_PRIORITY_CRITICAL 0x00000003       // 系统关键优先级
 #define SYSTEM_PRIORITY_REALTIME 0x00000004        // 系统实时优先级
-
 // 系统状态常量
 #define SYSTEM_STATE_INITIALIZING 0x00000000       // 系统初始化状态
 #define SYSTEM_STATE_RUNNING 0x00000001           // 系统运行状态
@@ -278,23 +256,21 @@ extern uint64_t global_state_2504_ptr;            /* 系统字符串3 */
 #define SYSTEM_STATE_SHUTDOWN 0x00000003           // 系统关闭状态
 #define SYSTEM_STATE_ERROR 0x00000004             // 系统错误状态
 #define SYSTEM_STATE_MAINTENANCE 0x00000005        // 系统维护状态
-
 /*=============================================================================
  * 系统回调注册函数实现
  *=============================================================================*/
-
 /**
  * @brief 系统回调注册函数1
- * 
+ *
  * 该函数负责注册系统事件的回调函数，用于处理系统级别的事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_1(void)
@@ -307,18 +283,16 @@ uint8_t SystemCallbackRegister_1(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_d660, 0x10);
         if (iVar3 < 0) {
@@ -331,35 +305,32 @@ uint8_t SystemCallbackRegister_1(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_d660, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_SYSTEM_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_SYSTEM;     // 事件标识符
     puVar7[8] = &global_state_9632_ptr;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数2
- * 
+ *
  * 该函数负责注册输入事件的回调函数，用于处理用户输入事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_2(void)
@@ -372,18 +343,16 @@ uint8_t SystemCallbackRegister_2(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_d590, 0x10);
         if (iVar3 < 0) {
@@ -396,35 +365,32 @@ uint8_t SystemCallbackRegister_2(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_d590, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_INPUT_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_INPUT;      // 事件标识符
     puVar7[8] = &global_state_9664_ptr;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数3
- * 
+ *
  * 该函数负责注册系统事件的回调函数，与SystemCallbackRegister_1功能相同。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_3(void)
@@ -437,18 +403,16 @@ uint8_t SystemCallbackRegister_3(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_d660, 0x10);
         if (iVar3 < 0) {
@@ -461,35 +425,32 @@ uint8_t SystemCallbackRegister_3(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_d660, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_SYSTEM_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_SYSTEM;     // 事件标识符
     puVar7[8] = &global_state_9632_ptr;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数4
- * 
+ *
  * 该函数负责注册输入事件的回调函数，与SystemCallbackRegister_2功能相同。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_4(void)
@@ -502,18 +463,16 @@ uint8_t SystemCallbackRegister_4(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_d590, 0x10);
         if (iVar3 < 0) {
@@ -526,35 +485,32 @@ uint8_t SystemCallbackRegister_4(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_d590, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_INPUT_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_INPUT;      // 事件标识符
     puVar7[8] = &global_state_9664_ptr;              // 回调数据引用
     puVar7[9] = 2;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数5
- * 
+ *
  * 该函数负责注册渲染事件的回调函数，用于处理图形渲染事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_5(void)
@@ -567,18 +523,16 @@ uint8_t SystemCallbackRegister_5(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
+    uint64_t *pstack_special_x_10;
     code *pcStackX_18;
-    
-    // 获取系统管理器指针
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    pcStackX_18 = FUN_1802281a0;
+    pcStackX_18 = function_2281a0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_f9e8, 0x10);
         if (iVar3 < 0) {
@@ -591,15 +545,13 @@ uint8_t SystemCallbackRegister_5(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_f9e8, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_RENDER_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_RENDER;     // 事件标识符
     puVar7[8] = &global_state_5032_ptr;              // 回调数据引用
@@ -607,19 +559,18 @@ uint8_t SystemCallbackRegister_5(void)
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数6
- * 
+ *
  * 该函数负责注册网络事件的回调函数，用于处理网络通信事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_6(void)
@@ -632,18 +583,16 @@ uint8_t SystemCallbackRegister_6(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
+    uint64_t *pstack_special_x_10;
     code *pcStackX_18;
-    
-    // 获取系统管理器指针
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    pcStackX_18 = FUN_1802285e0;
+    pcStackX_18 = function_2285e0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_f9c0, 0x10);
         if (iVar3 < 0) {
@@ -656,15 +605,13 @@ uint8_t SystemCallbackRegister_6(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_f9c0, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_NETWORK_EVENT; // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_NETWORK;    // 事件标识符
     puVar7[8] = &global_state_5056_ptr;              // 回调数据引用
@@ -672,19 +619,18 @@ uint8_t SystemCallbackRegister_6(void)
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数7
- * 
+ *
  * 该函数负责注册音频事件的回调函数，用于处理音频处理事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_7(void)
@@ -697,18 +643,16 @@ uint8_t SystemCallbackRegister_7(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
+    uint64_t *pstack_special_x_10;
     code *pcStackX_18;
-    
-    // 获取系统管理器指针
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = > HighFreq_FileSystem1;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_10a0, 0x10);
         if (iVar3 < 0) {
@@ -721,15 +665,13 @@ uint8_t SystemCallbackRegister_7(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_10a0, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_AUDIO_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_AUDIO;      // 事件标识符
     puVar7[8] = &global_state_7584_ptr;              // 回调数据引用
@@ -737,19 +679,18 @@ uint8_t SystemCallbackRegister_7(void)
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数8
- * 
+ *
  * 该函数负责注册渲染事件的回调函数，用于处理图形渲染事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_8(void)
@@ -762,18 +703,16 @@ uint8_t SystemCallbackRegister_8(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
+    uint64_t *pstack_special_x_10;
     code *pcStackX_18;
-    
-    // 获取系统管理器指针
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = > HighFreq_ConfigManager1;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_1078, 0x10);
         if (iVar3 < 0) {
@@ -786,15 +725,13 @@ uint8_t SystemCallbackRegister_8(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1078, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_RENDER_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_RENDER;     // 事件标识符
     puVar7[8] = &global_state_7608_ptr;              // 回调数据引用
@@ -802,19 +739,18 @@ uint8_t SystemCallbackRegister_8(void)
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数9
- * 
+ *
  * 该函数负责注册网络事件的回调函数，用于处理网络通信事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_9(void)
@@ -827,18 +763,16 @@ uint8_t SystemCallbackRegister_9(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_1050, 0x10);
         if (iVar3 < 0) {
@@ -851,35 +785,32 @@ uint8_t SystemCallbackRegister_9(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1050, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_NETWORK_EVENT; // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_NETWORK;    // 事件标识符
     puVar7[8] = &global_state_7632_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数10
- * 
+ *
  * 该函数负责注册音频事件的回调函数，用于处理音频处理事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_10(void)
@@ -892,18 +823,16 @@ uint8_t SystemCallbackRegister_10(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
+    uint64_t *pstack_special_x_10;
     code *pcStackX_18;
-    
-    // 获取系统管理器指针
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = > UltraHighFreq_NetworkHandler1;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_1028, 0x10);
         if (iVar3 < 0) {
@@ -916,15 +845,13 @@ uint8_t SystemCallbackRegister_10(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1028, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_AUDIO_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_AUDIO;      // 事件标识符
     puVar7[8] = &global_state_7656_ptr;              // 回调数据引用
@@ -932,19 +859,18 @@ uint8_t SystemCallbackRegister_10(void)
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数11
- * 
+ *
  * 该函数负责注册内存事件的回调函数，用于处理内存管理事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_11(void)
@@ -957,18 +883,16 @@ uint8_t SystemCallbackRegister_11(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_1000, 0x10);
         if (iVar3 < 0) {
@@ -981,35 +905,32 @@ uint8_t SystemCallbackRegister_11(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_1000, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_MEMORY_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_MEMORY;     // 事件标识符
     puVar7[8] = &global_state_7680_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数12
- * 
+ *
  * 该函数负责注册线程事件的回调函数，用于处理线程管理事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_12(void)
@@ -1022,18 +943,16 @@ uint8_t SystemCallbackRegister_12(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    void *puStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    void *pstack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    puStackX_18 = &global_state_2048_ptr;
+    pstack_special_x_18 = &global_state_2048_ptr;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_0fd8, 0x10);
         if (iVar3 < 0) {
@@ -1046,35 +965,32 @@ uint8_t SystemCallbackRegister_12(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fd8, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_THREAD_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_THREAD;     // 事件标识符
     puVar7[8] = &global_state_7704_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
-    puVar7[10] = puStackX_18;                // 回调函数指针
+    puVar7[10] = pstack_special_x_18;                // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数13
- * 
+ *
  * 该函数负责注册安全事件的回调函数，用于处理系统安全事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_13(void)
@@ -1087,18 +1003,16 @@ uint8_t SystemCallbackRegister_13(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_0fb0, 0x10);
         if (iVar3 < 0) {
@@ -1111,35 +1025,32 @@ uint8_t SystemCallbackRegister_13(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_0fb0, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_SECURITY_EVENT; // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_SECURITY;    // 事件标识符
     puVar7[8] = &global_state_7728_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数14
- * 
+ *
  * 该函数负责注册配置事件的回调函数，用于处理系统配置事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_14(void)
@@ -1152,18 +1063,16 @@ uint8_t SystemCallbackRegister_14(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
+    uint64_t *pstack_special_x_10;
     code *pcStackX_18;
-    
-    // 获取系统管理器指针
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
     pcStackX_18 = SystemCore_Compression;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_c740, 0x10);
         if (iVar3 < 0) {
@@ -1176,15 +1085,13 @@ uint8_t SystemCallbackRegister_14(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c740, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_CONFIG_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_CONFIG;     // 事件标识符
     puVar7[8] = &global_state_3504_ptr;              // 回调数据引用
@@ -1192,19 +1099,18 @@ uint8_t SystemCallbackRegister_14(void)
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数15
- * 
+ *
  * 该函数负责注册输入输出事件的回调函数，用于处理I/O事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_15(void)
@@ -1217,18 +1123,16 @@ uint8_t SystemCallbackRegister_15(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_c768, 0x10);
         if (iVar3 < 0) {
@@ -1241,35 +1145,32 @@ uint8_t SystemCallbackRegister_15(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c768, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_IO_EVENT;      // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_IO;         // 事件标识符
     puVar7[8] = &global_state_3520_ptr;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数16
- * 
+ *
  * 该函数负责注册定时器事件的回调函数，用于处理定时器事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_16(void)
@@ -1282,18 +1183,16 @@ uint8_t SystemCallbackRegister_16(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_c9b8, 0x10);
         if (iVar3 < 0) {
@@ -1306,35 +1205,32 @@ uint8_t SystemCallbackRegister_16(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c9b8, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_TIMER_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_TIMER;     // 事件标识符
     puVar7[8] = &global_state_3544_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数17
- * 
+ *
  * 该函数负责注册错误事件的回调函数，用于处理系统错误事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_17(void)
@@ -1347,18 +1243,16 @@ uint8_t SystemCallbackRegister_17(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_c940, 0x10);
         if (iVar3 < 0) {
@@ -1371,35 +1265,32 @@ uint8_t SystemCallbackRegister_17(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c940, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_ERROR_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_ERROR;     // 事件标识符
     puVar7[8] = &global_state_3560_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数18
- * 
+ *
  * 该函数负责注册状态事件的回调函数，用于处理系统状态变化事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_18(void)
@@ -1412,18 +1303,16 @@ uint8_t SystemCallbackRegister_18(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_c918, 0x10);
         if (iVar3 < 0) {
@@ -1436,35 +1325,32 @@ uint8_t SystemCallbackRegister_18(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c918, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_STATE_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_STATE;     // 事件标识符
     puVar7[8] = &global_state_3576_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数19
- * 
+ *
  * 该函数负责注册自定义事件的回调函数，用于处理用户自定义事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_19(void)
@@ -1477,18 +1363,16 @@ uint8_t SystemCallbackRegister_19(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_c968, 0x10);
         if (iVar3 < 0) {
@@ -1501,35 +1385,32 @@ uint8_t SystemCallbackRegister_19(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c968, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_CUSTOM_EVENT; // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_CUSTOM;    // 事件标识符
     puVar7[8] = &global_state_3600_ptr;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数20
- * 
+ *
  * 该函数负责注册插件事件的回调函数，用于处理插件相关事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_20(void)
@@ -1542,18 +1423,16 @@ uint8_t SystemCallbackRegister_20(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_c990, 0x10);
         if (iVar3 < 0) {
@@ -1566,35 +1445,32 @@ uint8_t SystemCallbackRegister_20(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c990, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_PLUGIN_EVENT; // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_PLUGIN;    // 事件标识符
     puVar7[8] = &global_state_3632_ptr;              // 回调数据引用
     puVar7[9] = 3;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数21
- * 
+ *
  * 该函数负责注册数据事件的回调函数，用于处理数据相关事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_21(void)
@@ -1607,18 +1483,16 @@ uint8_t SystemCallbackRegister_21(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_c9e0, 0x10);
         if (iVar3 < 0) {
@@ -1631,35 +1505,32 @@ uint8_t SystemCallbackRegister_21(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c9e0, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_DATA_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_DATA;      // 事件标识符
     puVar7[8] = &global_state_3728_ptr;              // 回调数据引用
     puVar7[9] = 0;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数22
- * 
+ *
  * 该函数负责注册异步事件的回调函数，用于处理异步操作事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_22(void)
@@ -1672,18 +1543,16 @@ uint8_t SystemCallbackRegister_22(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
+    uint64_t *pstack_special_x_10;
     code *pcStackX_18;
-    
-    // 获取系统管理器指针
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    pcStackX_18 = FUN_180073930;
+    pcStackX_18 = CoreEngine_073930;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_c8f0, 0x10);
         if (iVar3 < 0) {
@@ -1696,15 +1565,13 @@ uint8_t SystemCallbackRegister_22(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c8f0, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_ASYNC_EVENT;  // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_ASYNC;     // 事件标识符
     puVar7[8] = &global_state_3744_ptr;              // 回调数据引用
@@ -1712,19 +1579,18 @@ uint8_t SystemCallbackRegister_22(void)
     puVar7[10] = pcStackX_18;                // 回调函数指针
     return 0;
 }
-
 /**
  * @brief 系统回调注册函数23
- * 
+ *
  * 该函数负责注册同步事件的回调函数，用于处理同步操作事件。
- * 
+ *
  * 功能描述：
  * - 获取系统管理器指针
  * - 在回调链表中查找合适位置
  * - 创建新的回调节点
  * - 设置回调参数和标识符
  * - 将回调节点插入到链表中
- * 
+ *
  * @return uint8_t 注册结果状态
  */
 uint8_t SystemCallbackRegister_23(void)
@@ -1737,18 +1603,16 @@ uint8_t SystemCallbackRegister_23(void)
     uint64_t *puVar6;
     uint64_t *puVar7;
     uint64_t *puVar8;
-    uint64_t *puStackX_10;
-    uint64_t uStackX_18;
-    
-    // 获取系统管理器指针
+    uint64_t *pstack_special_x_10;
+    uint64_t stack_special_x_18;
+// 获取系统管理器指针
     plVar4 = (int64_t *)SystemCoreFunction_1();
     puVar2 = (uint64_t *)*plVar4;
     cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-    uStackX_18 = 0;
+    stack_special_x_18 = 0;
     puVar7 = puVar2;
     puVar6 = (uint64_t *)puVar2[1];
-    
-    // 在回调链表中查找合适位置
+// 在回调链表中查找合适位置
     while (cVar1 == '\0') {
         iVar3 = memcmp(puVar6 + 4, &system_memory_c8c8, 0x10);
         if (iVar3 < 0) {
@@ -1761,197 +1625,178 @@ uint8_t SystemCallbackRegister_23(void)
         puVar6 = puVar8;
         cVar1 = *(char *)((int64_t)puVar8 + 0x19);
     }
-    
-    // 如果需要创建新的回调节点
+// 如果需要创建新的回调节点
     if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_c8c8, puVar7 + 4, 0x10), iVar3 < 0)) {
         lVar5 = SystemCoreFunction_2(plVar4);
-        SystemCoreFunction_3(plVar4, &puStackX_10, puVar7, lVar5 + 0x20, lVar5);
-        puVar7 = puStackX_10;
+        SystemCoreFunction_3(plVar4, &pstack_special_x_10, puVar7, lVar5 + 0x20, lVar5);
+        puVar7 = pstack_special_x_10;
     }
-    
-    // 设置回调参数
+// 设置回调参数
     puVar7[6] = CALLBACK_TYPE_SYNC_EVENT;   // 回调类型标识符
     puVar7[7] = EVENT_IDENTIFIER_SYNC;      // 事件标识符
     puVar7[8] = &global_state_3768_ptr;              // 回调数据引用
     puVar7[9] = 1;                           // 回调优先级
-    puVar7[10] = uStackX_18;                 // 回调函数指针
+    puVar7[10] = stack_special_x_18;                 // 回调函数指针
     return 0;
 }
-
 /*=============================================================================
  * 系统事件处理函数实现
  *=============================================================================*/
-
 /**
  * @brief 系统事件处理函数1
- * 
+ *
  * 该函数负责处理系统事件，将事件信息传递给相应的处理函数。
- * 
+ *
  * 功能描述：
  * - 设置事件处理参数
  * - 调用系统核心处理函数
  * - 返回处理结果
- * 
+ *
  * @return uint8_t 处理结果状态
  */
 uint8_t SystemEventProcessor_1(void)
 {
     uint64_t in_R9;
-    void *puStack_a0;
-    int8_t *puStack_98;
-    int32_t uStack_90;
-    int8_t auStack_88 [136];
-    
-    // 设置事件处理参数
-    puStack_a0 = &global_state_3432_ptr;
-    puStack_98 = auStack_88;
-    auStack_88[0] = 0;
-    uStack_90 = 0xd;
-    
-    // 调用系统核心处理函数
-    strcpy_s(auStack_88, 0x80, &global_state_9616_ptr, in_R9, 0xfffffffffffffffe);
-    system_memory_5ecc = SystemCoreFunction_4(&puStack_a0);
+    void *plocal_var_a0;
+    int8_t *plocal_var_98;
+    int32_t local_var_90;
+    int8_t stack_array_88 [136];
+// 设置事件处理参数
+    plocal_var_a0 = &global_state_3432_ptr;
+    plocal_var_98 = stack_array_88;
+    stack_array_88[0] = 0;
+    local_var_90 = 0xd;
+// 调用系统核心处理函数
+    strcpy_s(stack_array_88, 0x80, &global_state_9616_ptr, in_R9, 0xfffffffffffffffe);
+    system_memory_5ecc = SystemCoreFunction_4(&plocal_var_a0);
     return 0;
 }
-
 /**
  * @brief 系统事件处理函数2
- * 
+ *
  * 该函数负责处理系统事件，将事件信息传递给相应的处理函数。
- * 
+ *
  * 功能描述：
  * - 设置事件处理参数
  * - 调用系统核心处理函数
  * - 返回处理结果
- * 
+ *
  * @return uint8_t 处理结果状态
  */
 uint8_t SystemEventProcessor_2(void)
 {
     uint64_t in_R9;
-    void *puStack_a0;
-    int8_t *puStack_98;
-    int32_t uStack_90;
-    int8_t auStack_88 [136];
-    
-    // 设置事件处理参数
-    puStack_a0 = &global_state_3432_ptr;
-    puStack_98 = auStack_88;
-    auStack_88[0] = 0;
-    uStack_90 = 0x1b;
-    
-    // 调用系统核心处理函数
-    strcpy_s(auStack_88, 0x80, &global_state_2504_ptr, in_R9, 0xfffffffffffffffe);
-    system_memory_606c = SystemCoreFunction_4(&puStack_a0);
+    void *plocal_var_a0;
+    int8_t *plocal_var_98;
+    int32_t local_var_90;
+    int8_t stack_array_88 [136];
+// 设置事件处理参数
+    plocal_var_a0 = &global_state_3432_ptr;
+    plocal_var_98 = stack_array_88;
+    stack_array_88[0] = 0;
+    local_var_90 = 0x1b;
+// 调用系统核心处理函数
+    strcpy_s(stack_array_88, 0x80, &global_state_2504_ptr, in_R9, 0xfffffffffffffffe);
+    system_memory_606c = SystemCoreFunction_4(&plocal_var_a0);
     return 0;
 }
-
 /*=============================================================================
  * 系统初始化函数实现
  *=============================================================================*/
-
 /**
  * @brief 系统初始化函数1
- * 
+ *
  * 该函数负责初始化系统进程信息，获取当前进程句柄。
- * 
+ *
  * 功能描述：
  * - 获取当前进程句柄
  * - 存储进程句柄到全局变量
  * - 返回初始化结果
- * 
+ *
  * @return uint8_t 初始化结果状态
  */
 uint8_t SystemInitializer_1(void)
 {
-    // 获取当前进程句柄并存储
+// 获取当前进程句柄并存储
     system_memory_6218 = GetCurrentProcess();
     return 0;
 }
-
 /**
  * @brief 系统初始化函数2
- * 
+ *
  * 该函数负责初始化系统核心功能，准备系统运行环境。
- * 
+ *
  * 功能描述：
  * - 调用系统初始化函数
  * - 注册系统核心功能
  * - 返回初始化结果
- * 
+ *
  * @return int 初始化结果状态
  */
 int SystemInitializer_2(void)
 {
     int64_t lVar1;
-    
-    // 调用系统初始化函数
+// 调用系统初始化函数
     SystemCoreFunction_5();
     lVar1 = SystemCoreFunction_6(&global_state_2864_ptr);
     return (lVar1 != 0) ? 1 : 0;
 }
-
 /**
  * @brief 系统初始化函数3
- * 
+ *
  * 该函数负责初始化系统互斥锁，确保线程安全。
- * 
+ *
  * 功能描述：
  * - 初始化互斥锁
  * - 设置互斥锁参数
  * - 注册系统功能
  * - 返回初始化结果
- * 
+ *
  * @return int 初始化结果状态
  */
 int SystemInitializer_3(void)
 {
     int64_t lVar1;
-    
-    // 初始化互斥锁
+// 初始化互斥锁
     _Mtx_init_in_situ(0x180c966f0, 2, param_3, param_4, 0xfffffffffffffffe);
-    lVar1 = SystemCoreFunction_6(FUN_180943140);
+    lVar1 = SystemCoreFunction_6(function_943140);
     return (lVar1 != 0) ? 1 : 0;
 }
-
 /**
  * @brief 系统初始化函数4
- * 
+ *
  * 该函数负责初始化系统互斥锁，确保线程安全。
- * 
+ *
  * 功能描述：
  * - 初始化互斥锁
  * - 设置互斥锁参数
  * - 注册系统功能
  * - 返回初始化结果
- * 
+ *
  * @return int 初始化结果状态
  */
 int SystemInitializer_4(void)
 {
     int64_t lVar1;
-    
-    // 初始化互斥锁
+// 初始化互斥锁
     _Mtx_init_in_situ(0x180c96740, 2, param_3, param_4, 0xfffffffffffffffe);
-    lVar1 = SystemCoreFunction_6(FUN_180943160);
+    lVar1 = SystemCoreFunction_6(function_943160);
     return (lVar1 != 0) ? 1 : 0;
 }
-
 /*=============================================================================
  * 系统互斥锁初始化函数实现
  *=============================================================================*/
-
 /**
  * @brief 互斥锁初始化函数1
- * 
+ *
  * 该函数负责初始化系统互斥锁，确保线程安全。
- * 
+ *
  * 功能描述：
  * - 初始化互斥锁
  * - 设置互斥锁参数
  * - 注册系统功能
  * - 返回初始化结果
- * 
+ *
  * @param param_1 互斥锁参数1
  * @param param_2 互斥锁参数2
  * @param param_3 互斥锁参数3
@@ -1961,24 +1806,22 @@ int SystemInitializer_4(void)
 int MutexInitializer_1(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int64_t lVar1;
-    
-    // 初始化互斥锁
+// 初始化互斥锁
     _Mtx_init_in_situ(0x180c96690, 2, param_3, param_4, 0xfffffffffffffffe);
-    lVar1 = SystemCoreFunction_6(FUN_180943070);
+    lVar1 = SystemCoreFunction_6(function_943070);
     return (lVar1 != 0) ? 1 : 0;
 }
-
 /**
  * @brief 互斥锁初始化函数2
- * 
+ *
  * 该函数负责初始化系统互斥锁，确保线程安全。
- * 
+ *
  * 功能描述：
  * - 初始化互斥锁
  * - 设置互斥锁参数
  * - 注册系统功能
  * - 返回初始化结果
- * 
+ *
  * @param param_1 互斥锁参数1
  * @param param_2 互斥锁参数2
  * @param param_3 互斥锁参数3
@@ -1988,24 +1831,22 @@ int MutexInitializer_1(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
 int MutexInitializer_2(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int64_t lVar1;
-    
-    // 初始化互斥锁
+// 初始化互斥锁
     _Mtx_init_in_situ(0x180c966f0, 2, param_3, param_4, 0xfffffffffffffffe);
-    lVar1 = SystemCoreFunction_6(FUN_180943140);
+    lVar1 = SystemCoreFunction_6(function_943140);
     return (lVar1 != 0) ? 1 : 0;
 }
-
 /**
  * @brief 互斥锁初始化函数3
- * 
+ *
  * 该函数负责初始化系统互斥锁，确保线程安全。
- * 
+ *
  * 功能描述：
  * - 初始化互斥锁
  * - 设置互斥锁参数
  * - 注册系统功能
  * - 返回初始化结果
- * 
+ *
  * @param param_1 互斥锁参数1
  * @param param_2 互斥锁参数2
  * @param param_3 互斥锁参数3
@@ -2015,55 +1856,48 @@ int MutexInitializer_2(uint64_t param_1, uint64_t param_2, uint64_t param_3, uin
 int MutexInitializer_3(uint64_t param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     int64_t lVar1;
-    
-    // 初始化互斥锁
+// 初始化互斥锁
     _Mtx_init_in_situ(0x180c96740, 2, param_3, param_4, 0xfffffffffffffffe);
-    lVar1 = SystemCoreFunction_6(FUN_180943160);
+    lVar1 = SystemCoreFunction_6(function_943160);
     return (lVar1 != 0) ? 1 : 0;
 }
-
 /*=============================================================================
  * 系统高级初始化函数实现
  *=============================================================================*/
-
 /**
  * @brief 系统高级初始化函数
- * 
+ *
  * 该函数负责高级系统初始化，设置系统状态和互斥锁数据。
- * 
+ *
  * 功能描述：
  * - 设置系统状态标志
  * - 初始化互斥锁数据
  * - 配置系统参数
  * - 注册系统功能
  * - 返回初始化结果
- * 
+ *
  * @return int 初始化结果状态
  */
 int SystemAdvancedInitializer(void)
 {
     int64_t lVar1;
-    
-    // 设置系统状态标志
+// 设置系统状态标志
     system_memory_67b8 = 3;
     system_memory_6790 = &system_memory_6790;
     system_memory_6798 = &system_memory_6790;
     system_memory_67a0 = 0;
     system_memory_67a8 = 0;
     system_memory_67b0 = 0;
-    
-    // 注册系统功能
-    lVar1 = SystemCoreFunction_6(FUN_180943180);
+// 注册系统功能
+    lVar1 = SystemCoreFunction_6(function_943180);
     return (lVar1 != 0) ? 1 : 0;
 }
-
 /*=============================================================================
  * 技术说明和架构设计
  *=============================================================================*/
-
 /**
  * 技术实现说明：
- * 
+ *
  * 1. 模块功能架构：
  *    - 系统回调注册和管理
  *    - 事件处理和分发机制
@@ -2071,14 +1905,14 @@ int SystemAdvancedInitializer(void)
  *    - 系统初始化和配置
  *    - 进程和线程管理
  *    - 内存管理和优化
- * 
+ *
  * 2. 设计模式和架构：
  *    - 观察者模式用于事件处理
  *    - 工厂模式用于回调创建
  *    - 单例模式用于系统管理
  *    - 策略模式用于事件处理
  *    - 适配器模式用于接口兼容
- * 
+ *
  * 3. 性能优化策略：
  *    - 高效的链表操作
  *    - 内存池和对象池技术
@@ -2086,72 +1920,72 @@ int SystemAdvancedInitializer(void)
  *    - 减少锁竞争
  *    - 批量处理支持
  *    - 异步处理机制
- * 
+ *
  * 4. 线程安全设计：
  *    - 互斥锁保护共享资源
  *    - 原子操作支持
  *    - 无锁数据结构
  *    - 线程局部存储
  *    - 死锁预防机制
- * 
+ *
  * 5. 错误处理机制：
  *    - 多层次错误检测
  *    - 异常恢复机制
  *    - 错误日志记录
  *    - 优雅降级处理
  *    - 错误传播控制
- * 
+ *
  * 6. 可维护性设计：
  *    - 清晰的函数别名
  *    - 详细的文档注释
  *    - 模块化设计
  *    - 标准化的错误处理
  *    - 完善的日志记录
- * 
+ *
  * 7. 扩展性支持：
  *    - 插件化架构
  *    - 动态回调注册
  *    - 配置驱动行为
  *    - 接口版本兼容
  *    - 模块热替换
- * 
+ *
  * 8. 内存管理：
  *    - 智能内存分配
  *    - 内存泄漏检测
  *    - 内存池管理
  *    - 内存对齐优化
  *    - 垃圾回收支持
- * 
+ *
  * 系统回调管理流程：
- * 
+ *
  * 1. 回调注册阶段：
  *    - 获取系统管理器指针
  *    - 在链表中查找合适位置
  *    - 创建新的回调节点
  *    - 设置回调参数和标识符
  *    - 将回调节点插入到链表中
- * 
+ *
  * 2. 事件处理阶段：
  *    - 接收系统事件
  *    - 查找对应的回调函数
  *    - 执行回调处理逻辑
  *    - 返回处理结果
  *    - 清理临时资源
- * 
+ *
  * 3. 系统初始化阶段：
  *    - 初始化系统进程信息
  *    - 设置互斥锁和同步机制
  *    - 注册系统核心功能
  *    - 配置系统参数
  *    - 验证系统状态
- * 
+ *
  * 4. 线程同步阶段：
  *    - 初始化互斥锁
  *    - 设置锁参数
  *    - 实现线程安全
  *    - 处理锁竞争
  *    - 确保数据一致性
- * 
+ *
  * 该模块作为初始化系统的核心组件，提供了完整的系统回调管理、事件处理、
  * 线程同步和系统初始化功能，为整个系统提供了稳定可靠的初始化支持。
  */

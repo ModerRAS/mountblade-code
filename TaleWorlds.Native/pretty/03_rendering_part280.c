@@ -1,11 +1,19 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
-// 03_rendering_part280.c - 3 个函数
-
-// 函数: void FUN_18041eb4a(uint param_1)
-void FUN_18041eb4a(uint param_1)
-
+// 03_rendering_part280.c - 渲染系统纹理和数据处理函数
+// 语义化别名定义 - 将 function_* 函数映射为具有明确语义的名称
+#define function_41eb4a RenderingSystem_MemoryCopy
+#define function_41ec11 RenderingSystem_SecurityCheck
+#define function_41ec30 RenderingSystem_TextureDataProcess
+#define function_41ec8c RenderingSystem_TextureDataProcessVariant
+#define function_41edf3 RenderingSystem_TextureCleanup
+#define function_41e290 RenderingSystem_DataAcquisition
+#define function_41eb10 RenderingSystem_TextureHandler
+// 原始函数声明保持不变，但通过宏定义提供语义化访问
+// 函数: void RenderingSystem_MemoryCopy(uint param_1)
+// 原始名称: function_41eb4a
+// 功能: 渲染系统内存复制操作
+void function_41eb4a(uint param_1)
 {
   uint64_t unaff_RBX;
   uint64_t unaff_RBP;
@@ -17,9 +25,8 @@ void FUN_18041eb4a(uint param_1)
   uint64_t uVar1;
   uint64_t unaff_R14;
   uint64_t unaff_R15;
-  int8_t auStackX_20 [8];
-  uint64_t in_stack_00000820;
-  
+  int8_t astack_special_x_20 [8];
+  uint64_t local_var_820;
   *(uint64_t *)(in_R11 + -0x18) = unaff_RBX;
   *(uint64_t *)(in_R11 + -0x20) = unaff_RBP;
   *(uint64_t *)(in_R11 + -0x28) = unaff_RSI;
@@ -33,35 +40,28 @@ void FUN_18041eb4a(uint param_1)
       if (unaff_R15 < 0x800) {
         uVar1 = unaff_R15;
       }
-                    // WARNING: Subroutine does not return
-      memcpy(auStackX_20,unaff_R12,uVar1);
+// WARNING: Subroutine does not return
+      memcpy(astack_special_x_20,unaff_R12,uVar1);
     }
     uVar1 = uVar1 - 1;
   } while (uVar1 != 0);
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000820 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_820 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_18041ec11(void)
-void FUN_18041ec11(void)
-
+// 函数: void RenderingSystem_SecurityCheck(void)
+// 原始名称: function_41ec11
+// 功能: 渲染系统安全检查
+void function_41ec11(void)
 {
-  uint64_t in_stack_00000820;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000820 ^ (uint64_t)&stack0x00000000);
+  uint64_t local_var_820;
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_820 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_18041ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
-
+// 函数: uint64_t RenderingSystem_TextureDataProcess(uint64_t param_1,int *param_2,int *param_3,int *param_4)
+// 原始名称: function_41ec30
+// 功能: 渲染系统纹理数据处理
+uint64_t function_41ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
 {
   uint64_t *puVar1;
   ushort uVar2;
@@ -97,8 +97,7 @@ uint64_t FUN_18041ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
   ushort uVar32;
   ushort uVar33;
   int iStack_38;
-  
-  uVar11 = FUN_18041e290();
+  uVar11 = function_41e290();
   if (uVar11 == 0) {
     return 0;
   }
@@ -163,7 +162,7 @@ uint64_t FUN_18041ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
                                                                                     >> 8) -
                                                                               (0xff < uVar20),
                                                                               CONCAT11((uVar19 != 0)
-                                                                                       * (uVar19 < 
+                                                                                       * (uVar19 <
                                                   0x100) * (char)(puVar17[-0xf] >> 8) -
                                                   (0xff < uVar19),
                                                   (uVar18 != 0) * (uVar18 < 0x100) *
@@ -186,7 +185,7 @@ uint64_t FUN_18041ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
                                                                            (0xff < uVar28),
                                                                            CONCAT11((uVar27 != 0) *
                                                                                     (uVar27 < 0x100)
-                                                                                    * (char)(uVar3 
+                                                                                    * (char)(uVar3
                                                   >> 8) - (0xff < uVar27),
                                                   (uVar26 != 0) * (uVar26 < 0x100) *
                                                   (char)(uVar2 >> 8) - (0xff < uVar26))))))));
@@ -229,7 +228,7 @@ uint64_t FUN_18041ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
                                                                      CONCAT12((uVar20 != 0) *
                                                                               (uVar20 < 0x100) *
                                                                               (char)(puVar17[2] >> 8
-                                                                                    ) - (0xff < 
+                                                                                    ) - (0xff <
                                                   uVar20),CONCAT11((uVar19 != 0) * (uVar19 < 0x100)
                                                                    * (char)(puVar17[1] >> 8) -
                                                                    (0xff < uVar19),
@@ -252,7 +251,7 @@ uint64_t FUN_18041ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
                                                                              (char)(uVar4 >> 8) -
                                                                              (0xff < uVar28),
                                                                              CONCAT11((uVar27 != 0)
-                                                                                      * (uVar27 < 
+                                                                                      * (uVar27 <
                                                   0x100) * (char)(uVar3 >> 8) - (0xff < uVar27),
                                                   (uVar26 != 0) * (uVar26 < 0x100) *
                                                   (char)(uVar2 >> 8) - (0xff < uVar26))))))));
@@ -263,22 +262,20 @@ uint64_t FUN_18041ec30(uint64_t param_1,int *param_2,int *param_3,int *param_4)
       for (lVar13 = (int64_t)(int)uVar15; lVar13 < (int)uVar16; lVar13 = lVar13 + 1) {
         *(int8_t *)(lVar13 + uVar12) = *(int8_t *)(uVar11 + 1 + lVar13 * 2);
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager(uVar11);
     }
   }
   if (render_system_data_string != 0) {
-    FUN_18041eb10(uVar15,*param_2,*param_3,*param_4);
+    function_41eb10(uVar15,*param_2,*param_3,*param_4);
   }
   return uVar15;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_18041ec8c(void)
-
+// 函数: uint64_t RenderingSystem_TextureDataProcessVariant(void)
+// 原始名称: function_41ec8c
+// 功能: 渲染系统纹理数据处理变体
+uint64_t function_41ec8c(void)
 {
   uint64_t *puVar1;
   ushort uVar2;
@@ -318,13 +315,12 @@ uint64_t FUN_18041ec8c(void)
   ushort uVar31;
   ushort uVar32;
   uint64_t uVar33;
-  
   uVar15 = *unaff_R12 * *unaff_R15 * *unaff_R14;
   uVar11 = CoreMemoryPoolAllocator();
   iVar14 = 0;
   if (uVar11 == 0) {
     if (render_system_data_string != 0) {
-      FUN_18041eb10(0,*unaff_R12,*unaff_R15,*unaff_R14);
+      function_41eb10(0,*unaff_R12,*unaff_R15,*unaff_R14);
     }
     return 0;
   }
@@ -406,7 +402,7 @@ uint64_t FUN_18041ec8c(void)
                                                                        (0xff < uVar27),
                                                                        CONCAT11((uVar26 != 0) *
                                                                                 (uVar26 < 0x100) *
-                                                                                (char)(uVar3 >> 
+                                                                                (char)(uVar3 >>
                                                   uVar33) - (0xff < uVar26),
                                                   (uVar25 != 0) * (uVar25 < 0x100) *
                                                   (char)(uVar2 >> uVar33) - (0xff < uVar25))))))));
@@ -479,7 +475,7 @@ uint64_t FUN_18041ec8c(void)
                                                                          (0xff < uVar27),
                                                                          CONCAT11((uVar26 != 0) *
                                                                                   (uVar26 < 0x100) *
-                                                                                  (char)(uVar3 >> 
+                                                                                  (char)(uVar3 >>
                                                   uVar33) - (0xff < uVar26),
                                                   (uVar25 != 0) * (uVar25 < 0x100) *
                                                   (char)(uVar2 >> uVar33) - (0xff < uVar25))))))));
@@ -490,27 +486,17 @@ uint64_t FUN_18041ec8c(void)
   for (lVar12 = (int64_t)iVar14; lVar12 < (int)uVar15; lVar12 = lVar12 + 1) {
     *(int8_t *)(lVar12 + uVar11) = *(int8_t *)(unaff_RBX + 1 + lVar12 * 2);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreEngine_MemoryPoolManager();
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18041edf3(void)
-void FUN_18041edf3(void)
-
+// 函数: void RenderingSystem_TextureCleanup(void)
+// 原始名称: function_41edf3
+// 功能: 渲染系统纹理清理
+void function_41edf3(void)
 {
   if (render_system_data_string != 0) {
-    FUN_18041eb10();
+    function_41eb10();
   }
   return;
 }
-
-
-
-
-

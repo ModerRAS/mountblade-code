@@ -1,33 +1,18 @@
 /* 函数别名定义: RenderingGeometryProcessor */
 #define RenderingGeometryProcessor RenderingGeometryProcessor
-
-
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part299.c - 2 个函数
-
-// 函数: void FUN_180428a70(void)
-void FUN_180428a70(void)
-
+// 函数: void function_428a70(void)
+void function_428a70(void)
 {
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180428a75(void)
-void FUN_180428a75(void)
-
+// 函数: void function_428a75(void)
+void function_428a75(void)
 {
   return;
 }
-
-
-
-uint64_t FUN_180428a90(int64_t param_1)
-
+uint64_t function_428a90(int64_t param_1)
 {
   byte *pbVar1;
   byte *pbVar2;
@@ -37,7 +22,6 @@ uint64_t FUN_180428a90(int64_t param_1)
   byte bVar7;
   int iVar8;
   uint64_t uVar5;
-  
   uVar5 = 0;
   uVar4 = 0;
   pbVar2 = *(byte **)(param_1 + 0xb8);
@@ -67,7 +51,7 @@ uint64_t FUN_180428a90(int64_t param_1)
     *(byte **)(param_1 + 0xb8) = pbVar2;
   }
   uVar6 = uVar5;
-  if (1 < bVar7) goto FUN_180428d1c;
+  if (1 < bVar7) goto label_428d1c;
   if (pbVar2 < *(byte **)(param_1 + 0xc0)) {
     bVar3 = *pbVar2;
     pbVar2 = pbVar2 + 1;
@@ -81,7 +65,7 @@ uint64_t FUN_180428a90(int64_t param_1)
     pbVar2 = *(byte **)(param_1 + 0xb8) + 1;
   }
   if (bVar7 == 1) {
-    if ((bVar3 - 1 & 0xf7) != 0) goto FUN_180428d1c;
+    if ((bVar3 - 1 & 0xf7) != 0) goto label_428d1c;
     if ((*(int64_t *)(param_1 + 0x10) == 0) || (3 < *(int *)(param_1 + 0xc0) - (int)pbVar2)) {
       pbVar2 = pbVar2 + 4;
       *(byte **)(param_1 + 0xb8) = pbVar2;
@@ -108,7 +92,7 @@ uint64_t FUN_180428a90(int64_t param_1)
       pbVar1 = (byte *)((uint64_t)pbVar2 & 0xffffffff);
     }
     if (((0x18 < bVar3) || ((0x1018100U >> (bVar3 & 0x1f) & 1) == 0)) && (bVar3 != 0x20))
-    goto FUN_180428d1c;
+    goto label_428d1c;
     if ((*(int64_t *)(param_1 + 0x10) == 0) ||
        (iVar8 = *(int *)(param_1 + 0xc0) - (int)pbVar1, 3 < iVar8)) {
       pbVar2 = pbVar2 + 4;
@@ -119,7 +103,7 @@ uint64_t FUN_180428a90(int64_t param_1)
   }
   else {
     if ((((bVar3 - 2 & 0xf6) != 0) || (bVar3 == 0xb)) && (uVar6 = uVar4, bVar3 != 0xb))
-    goto FUN_180428d1c;
+    goto label_428d1c;
     if ((*(int64_t *)(param_1 + 0x10) == 0) ||
        (iVar8 = *(int *)(param_1 + 0xc0) - (int)pbVar2, 8 < iVar8)) {
       pbVar2 = pbVar2 + 9;
@@ -133,7 +117,7 @@ LAB_180428c99:
   }
   iVar8 = SystemCore_MemoryManager(param_1);
   uVar6 = uVar5;
-  if ((iVar8 < 1) || (iVar8 = SystemCore_MemoryManager(), uVar6 = uVar4, iVar8 < 1)) goto FUN_180428d1c;
+  if ((iVar8 < 1) || (iVar8 = SystemCore_MemoryManager(), uVar6 = uVar4, iVar8 < 1)) goto label_428d1c;
   if (*(byte **)(param_1 + 0xb8) < *(byte **)(param_1 + 0xc0)) {
     bVar3 = **(byte **)(param_1 + 0xb8);
   }
@@ -146,26 +130,22 @@ LAB_180428c99:
   }
   if (bVar7 == 1) {
     if (bVar3 != 8) {
-      if (bVar3 != 0x10) goto FUN_180428d1c;
+      if (bVar3 != 0x10) goto label_428d1c;
       goto LAB_180428cfa;
     }
   }
   else {
 LAB_180428cfa:
     if (((0x18 < bVar3) || ((0x1018100U >> (bVar3 & 0x1f) & 1) == 0)) && (bVar3 != 0x20))
-    goto FUN_180428d1c;
+    goto label_428d1c;
   }
   uVar6 = 1;
-FUN_180428d1c:
+label_428d1c:
   *(uint64_t *)(param_1 + 0xb8) = *(uint64_t *)(param_1 + 200);
   *(uint64_t *)(param_1 + 0xc0) = *(uint64_t *)(param_1 + 0xd0);
   return uVar6;
 }
-
-
-
-uint64_t FUN_180428b2a(char *param_1)
-
+uint64_t function_428b2a(char *param_1)
 {
   byte *pbVar1;
   char cVar2;
@@ -176,7 +156,6 @@ uint64_t FUN_180428b2a(char *param_1)
   char unaff_DIL;
   int iVar5;
   byte *pbVar6;
-  
   iVar4 = (int)unaff_RBP;
   if (param_1 < *(char **)(unaff_RBX + 0xc0)) {
     cVar2 = *param_1;
@@ -277,21 +256,11 @@ LAB_180428d12:
   *(uint64_t *)(unaff_RBX + 0xc0) = *(uint64_t *)(unaff_RBX + 0xd0);
   return unaff_RBP & 0xffffffff;
 }
-
-
-
-int32_t FUN_180428d1c(void)
-
+int32_t function_428d1c(void)
 {
   int64_t unaff_RBX;
   int32_t unaff_EBP;
-  
   *(uint64_t *)(unaff_RBX + 0xb8) = *(uint64_t *)(unaff_RBX + 200);
   *(uint64_t *)(unaff_RBX + 0xc0) = *(uint64_t *)(unaff_RBX + 0xd0);
   return unaff_EBP;
 }
-
-
-
-
-

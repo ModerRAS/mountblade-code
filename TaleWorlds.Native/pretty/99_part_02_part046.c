@@ -1,15 +1,10 @@
 /* SystemCore_Initializer - SystemCore_Initializer */
 #define SystemCore_Initializer SystemCore_Initializer
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_02_part046.c - 1 个函数
-
-// 函数: void FUN_1801b84e0(uint *param_1,int64_t param_2)
-void FUN_1801b84e0(uint *param_1,int64_t param_2)
-
+// 函数: void function_1b84e0(uint *param_1,int64_t param_2)
+void function_1b84e0(uint *param_1,int64_t param_2)
 {
   byte *pbVar1;
   uint uVar2;
@@ -29,9 +24,8 @@ void FUN_1801b84e0(uint *param_1,int64_t param_2)
   uint64_t *puVar16;
   uint64_t uVar17;
   uint uVar18;
-  uint64_t *puStack_50;
-  
-  puStack_50 = (uint64_t *)0x0;
+  uint64_t *plocal_var_50;
+  plocal_var_50 = (uint64_t *)0x0;
   puVar10 = (uint64_t *)0x0;
   uVar18 = 0;
   puVar9 = param_1 + 2;
@@ -62,13 +56,13 @@ LAB_1801b8583:
           (**(code **)*puVar10)(puVar10,0);
         }
         if (puVar16 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner(puVar16);
         }
         puVar10 = puVar3 + lVar12 * 4;
       }
       puVar15 = puVar4 + 4;
-      puStack_50 = puVar15;
+      plocal_var_50 = puVar15;
     }
     uVar18 = uVar18 + 1;
     puVar9 = puVar9 + 8;
@@ -120,7 +114,7 @@ LAB_1801b86ae:
           iVar8 = iVar8 + 1;
           puVar9 = puVar9 + 8;
           uVar11 = (uint64_t)iVar8;
-          puVar15 = puStack_50;
+          puVar15 = plocal_var_50;
         } while (uVar11 < uVar17);
       }
       for (; puVar16 != puVar15; puVar16 = puVar16 + 4) {
@@ -129,14 +123,8 @@ LAB_1801b86ae:
       if (puVar3 == (uint64_t *)0x0) {
         return;
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngineMemoryPoolCleaner(puVar3);
     }
   } while( true );
 }
-
-
-
-
-
-

@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 /*
  * ==============================================================================
  * 模块名称：系统高级资源管理和数据处理模块
@@ -8,9 +7,7 @@
  * 功能描述：系统资源管理、数据处理、状态同步、内存分配、线程管理
  * ==============================================================================
  */
-
 // ================================ 常量定义 ================================
-
 /**
  * @brief 系统状态标志常量
  */
@@ -19,7 +16,6 @@
 #define SYSTEM_FLAG_BIT_10          0x00000400  ///< 系统标志位10
 #define SYSTEM_FLAG_BIT_11          0x00000800  ///< 系统标志位11
 #define SYSTEM_FLAG_BIT_32          0x00002000  ///< 系统标志位32
-
 /**
  * @brief 资源管理常量
  */
@@ -28,7 +24,6 @@
 #define BUFFER_SIZE_152             152         ///< 缓冲区大小152字节
 #define MAX_RESOURCE_COUNT          0x3c        ///< 最大资源数量
 #define THREAD_ID_INVALID           -1          ///< 无效线程ID
-
 /**
  * @brief 数据结构大小常量
  */
@@ -39,7 +34,6 @@
 #define STRUCTURE_SIZE_136          136         ///< 136字节结构体
 #define STRUCTURE_SIZE_200          200         ///< 200字节结构体
 #define STRUCTURE_SIZE_600          600         ///< 600字节结构体
-
 /**
  * @brief 系统配置常量
  */
@@ -48,7 +42,6 @@
 #define SYSTEM_CONFIG_MODE_2        2           ///< 系统模式2
 #define SYSTEM_CONFIG_MODE_4        4           ///< 系统模式4
 #define SYSTEM_CONFIG_MODE_5        5           ///< 系统模式5
-
 /**
  * @brief 内存管理常量
  */
@@ -58,7 +51,6 @@
 #define MEMORY_CHSYSTEM_SIZE           0x10        ///< 内存块大小
 #define MEMORY_ALLOC_TYPE_3         3           ///< 内存分配类型3
 #define MEMORY_ALLOC_TYPE_5         5           ///< 内存分配类型5
-
 /**
  * @brief 系统错误代码
  */
@@ -67,23 +59,19 @@
 #define ERROR_CODE_RESOURCE_BUSY    -2          ///< 资源忙错误
 #define ERROR_CODE_MEMORY_FAIL      -3          ///< 内存分配失败
 #define ERROR_CODE_TIMEOUT          -4          ///< 超时错误
-
 /**
  * @brief 特殊地址常量
  */
 #define SPECIAL_ADDRESS_1          0xfffffffffffffffe  ///< 特殊地址常量1
 #define SPECIAL_ADDRESS_2          0xfffffffffffffffd  ///< 特殊地址常量2
 #define SPECIAL_ADDRESS_3          0x7785fffb           ///< 特殊地址常量3
-
 // ================================ 类型别名 ================================
-
 /**
  * @brief 系统句柄类型
  */
 typedef int64_t SystemHandle;                    ///< 系统句柄
 typedef int64_t* SystemHandlePtr;                ///< 系统句柄指针
 typedef int64_t** SystemHandlePtrPtr;            ///< 系统句柄指针的指针
-
 /**
  * @brief 资源管理类型
  */
@@ -91,7 +79,6 @@ typedef uint ResourceID;                          ///< 资源ID
 typedef uint* ResourceIDPtr;                      ///< 资源ID指针
 typedef uint64_t* ResourceDataPtr;               ///< 资源数据指针
 typedef uint64_t** ResourceDataPtrPtr;           ///< 资源数据指针的指针
-
 /**
  * @brief 系统状态类型
  */
@@ -99,7 +86,6 @@ typedef int SystemStatus;                         ///< 系统状态
 typedef int* SystemStatusPtr;                     ///< 系统状态指针
 typedef uint SystemFlags;                         ///< 系统标志
 typedef byte SystemByte;                          ///< 系统字节
-
 /**
  * @brief 内存管理类型
  */
@@ -108,14 +94,12 @@ typedef void* MemoryPtr;                          ///< 内存指针
 typedef void** MemoryPtrPtr;                      ///< 内存指针的指针
 typedef void* UndefinedPtr;                  ///< 未定义指针
 typedef void** UndefinedPtrPtr;              ///< 未定义指针的指针
-
 /**
  * @brief 线程管理类型
  */
 typedef int ThreadID;                             ///< 线程ID
 typedef uint ThreadPriority;                      ///< 线程优先级
 typedef bool ThreadState;                         ///< 线程状态
-
 /**
  * @brief 数据处理类型
  */
@@ -123,7 +107,6 @@ typedef float DataValue;                          ///< 数据值
 typedef float* DataValuePtr;                      ///< 数据值指针
 typedef char DataByte;                            ///< 数据字节
 typedef ushort DataWord;                          ///< 数据字
-
 /**
  * @brief 配置管理类型
  */
@@ -131,9 +114,7 @@ typedef int32_t ConfigValue;                   ///< 配置值
 typedef int32_t* ConfigValuePtr;               ///< 配置值指针
 typedef uint64_t ConfigData;                    ///< 配置数据
 typedef uint64_t* ConfigDataPtr;                ///< 配置数据指针
-
 // ================================ 结构体定义 ================================
-
 /**
  * @brief 系统资源信息结构体
  */
@@ -147,7 +128,6 @@ typedef struct {
     DataValue data_value;                         ///< 数据值
     ConfigData config_data;                       ///< 配置数据
 } SystemResourceInfo;
-
 /**
  * @brief 资源管理器结构体
  */
@@ -161,7 +141,6 @@ typedef struct {
     SystemFlags system_flags;                     ///< 系统标志
     ThreadPriority priority;                      ///< 线程优先级
 } ResourceManager;
-
 /**
  * @brief 数据初始化器结构体
  */
@@ -175,7 +154,6 @@ typedef struct {
     uint buffer_size;                             ///< 缓冲区大小
     ThreadState init_complete;                    ///< 初始化完成状态
 } DataInitializer;
-
 /**
  * @brief 状态同步器结构体
  */
@@ -189,60 +167,51 @@ typedef struct {
     SystemFlags sync_flags;                       ///< 同步标志
     ThreadPriority sync_priority;                 ///< 同步优先级
 } StateSynchronizer;
-
 // ================================ 函数别名 ================================
-
 /**
  * @brief 系统资源处理器函数别名
  */
-#define SystemResourceProcessor       FUN_1800a3880  ///< 系统资源处理器
-
+#define SystemResourceProcessor       function_0a3880  ///< 系统资源处理器
 /**
  * @brief 系统资源管理器函数别名
  */
-#define SystemResourceManager         FUN_1800a3f00  ///< 系统资源管理器
-
+#define SystemResourceManager         function_0a3f00  ///< 系统资源管理器
 /**
  * @brief 系统数据初始化器函数别名
  */
-#define SystemDataInitializer        FUN_1800a4010  ///< 系统数据初始化器
-
+#define SystemDataInitializer        function_0a4010  ///< 系统数据初始化器
 /**
  * @brief 系统状态同步器函数别名
  */
-#define SystemStateSynchronizer      FUN_1800a43c0  ///< 系统状态同步器
-
+#define SystemStateSynchronizer      function_0a43c0  ///< 系统状态同步器
 // ================================ 函数声明 ================================
-
 void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char flags);
 uint64_t SystemResourceManager(SystemHandle handle, uint64_t *config_data);
 void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int param2, uint param3, int32_t config, int64_t data1, int64_t data2);
 void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t sync_handle);
-
 // ================================ 函数实现 ================================
-
 /**
  * @brief 系统资源处理器 - 处理系统资源的分配、管理和释放
- * 
+ *
  * 该函数负责处理系统资源的核心管理操作，包括：
  * 1. 资源状态检查和线程同步
  * 2. 资源分配和释放管理
  * 3. 内存池管理和数据同步
  * 4. 异常处理和错误恢复
  * 5. 系统状态更新和配置管理
- * 
+ *
  * @param handle 系统句柄，用于标识系统实例
  * @param param1 参数1，通常表示资源类型或操作类型
  * @param param2 参数2，通常表示资源大小或数量
  * @param flags 标志位，控制处理器的行为模式
- * 
+ *
  * @return void 无返回值
- * 
+ *
  * @note 该函数是系统资源管理的核心组件，负责协调各个子系统的资源分配
  */
 void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char flags)
 {
-    // 局部变量定义
+// 局部变量定义
     DataValue data_val1, data_val2;               ///< 数据值变量
     SystemHandle temp_handle1, temp_handle2;       ///< 临时句柄变量
     SystemStatus status1, status2;                 ///< 状态变量
@@ -252,8 +221,7 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
     uint index_var;                                ///< 索引变量
     MemorySize memory_size1, memory_size2;         ///< 内存大小变量
     DataValue data_val3, data_val4;                ///< 数据值变量
-    
-    // 堆栈变量定义
+// 堆栈变量定义
     int8_t stack_buffer1[32];                  ///< 堆栈缓冲区1
     int32_t stack_val1, stack_val2;             ///< 堆栈值变量
     SystemHandlePtr stack_handle_ptr1, stack_handle_ptr2; ///< 堆栈句柄指针
@@ -280,69 +248,60 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
     int32_t stack_val5, stack_val6, stack_val7; ///< 堆栈值变量
     MemorySize stack_memory_size2;                 ///< 堆栈内存大小2
     MemorySize temp_memory_size;                   ///< 临时内存大小
-    
-    // 初始化堆栈数据
+// 初始化堆栈数据
     stack_data2 = SPECIAL_ADDRESS_1;
     stack_memory_size2 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
-    
-    // 获取系统配置和线程ID
+// 获取系统配置和线程ID
     status2 = *(int *)(*(int64_t *)(*(int64_t *)(system_context_ptr + 8) + 8) + 0x48);
     status1 = _Thrd_id();
     temp_memory_size = 0;
-    
-    // 检查线程ID并执行相应操作
+// 检查线程ID并执行相应操作
     if (status1 == status2) {
-        // 主线程处理逻辑
+// 主线程处理逻辑
         if (*(int64_t *)(handle + 0x121e0) != 0) {
             SystemCore_NetworkHandler();  // 执行资源清理函数
             stack_handle_ptr5 = *(int64_t **)(handle + 0x121e0);
             *(uint64_t *)(handle + 0x121e0) = 0;
-            
             if (stack_handle_ptr5 != (int64_t *)0x0) {
                 (**(code **)(*stack_handle_ptr5 + 0x38))();  // 调用资源释放函数
             }
         }
-        FUN_18029c9d0(*(uint64_t *)(handle + 0x1cd8));  // 执行系统配置更新
+        function_29c9d0(*(uint64_t *)(handle + 0x1cd8));  // 执行系统配置更新
     }
     else {
-        // 子线程处理逻辑
+// 子线程处理逻辑
         SystemCore_FileSystem(system_context_ptr);  // 执行线程同步函数
         stack_handle_ptr3 = stack_handle_array;
         stack_ptr1 = &rendering_buffer_2816_ptr;
-        code_ptr = FUN_1800adc50;
+        code_ptr = function_0adc50;
         stack_handle_array[0] = handle;
         SystemCore_SecurityManager(stack_handle_array);  // 执行线程初始化
     }
-    
-    // 执行资源管理操作
+// 执行资源管理操作
     (**(code **)(**(int64_t **)(handle + 0x1d70) + 0x48))
             (*(int64_t **)(handle + 0x1d70), 0, &processed_var_6656_ptr, &stack_handle_ptr1);
-    
     if (stack_handle_ptr1 != (int64_t *)0x0) {
         (**(code **)(*stack_handle_ptr1 + 0x10))();  // 调用资源初始化函数
         stack_handle_ptr1 = (int64_t *)0x0;
     }
-    
-    // 根据标志位执行不同操作
+// 根据标志位执行不同操作
     if (flags != '\0') {
         if (*(int *)(SYSTEM_STATE_MANAGER + 0x1ea0) == 2) {
-            // 特殊模式处理
+// 特殊模式处理
             stack_int3 = MAX_RESOURCE_COUNT;
             stack_int2 = SYSTEM_CONFIG_PRIORITY;
             data_val4 = 3.4028235e+38;  // 最大浮点数
             temp_handle2 = *(int64_t *)(system_main_module_state + 0x78);
             memory_size2 = *(int64_t *)(system_main_module_state + 0x80) - temp_handle2 >> 4;
-            
             if (memory_size2 != 0) {
                 memory_size1 = temp_memory_size;
                 do {
-                    // 搜索匹配的资源
+// 搜索匹配的资源
                     if (((float)param1 == *(float *)(temp_handle2 + memory_size1 * 0x10)) &&
                        ((float)param2 == *(float *)(temp_handle2 + 4 + memory_size1 * 0x10))) {
                         data_val1 = *(float *)(temp_handle2 + 0xc + memory_size1 * 0x10);
                         data_val2 = *(float *)(temp_handle2 + 8 + memory_size1 * 0x10);
                         data_val3 = ABS(data_val2 / data_val1 - *(float *)(SYSTEM_STATE_MANAGER + 0x1e30));
-                        
                         if (data_val3 < data_val4) {
                             stack_int3 = (int)data_val2;
                             stack_int2 = (int)data_val1;
@@ -352,107 +311,90 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
                     memory_size1 = (uint64_t)((int)memory_size1 + 1);
                 } while (memory_size1 < memory_size2);
             }
-            
-            // 设置资源管理参数
+// 设置资源管理参数
             stack_val5 = *(int32_t *)(handle + 0x1d80);
             stack_val6 = 0;
             stack_val7 = 0;
             stack_int1 = param1;
             stack_int4 = param2;
-            
             (**(code **)(**(int64_t **)(handle + 0x1d70) + 0x78))
                     (*(int64_t **)(handle + 0x1d70), &stack_handle_ptr2);
-            
             if (stack_handle_ptr2 == (int64_t *)0x0) {
-                // 创建新的资源管理器
+// 创建新的资源管理器
                 stack_data3 = CONCAT44(stack_int4, stack_int1);
                 stack_memory_size1 = CONCAT44(stack_int2, stack_int3);
                 stack_data4 = CONCAT44(stack_val6, stack_val5);
                 stack_val3 = stack_val7;
-                
                 (**(code **)**(uint64_t **)(handle + 0x1d78))
                           (*(uint64_t **)(handle + 0x1d78), &processed_var_6640_ptr, &stack_handle_ptr6);
                 (**(code **)(*stack_handle_ptr6 + 0x30))(stack_handle_ptr6, &processed_var_6624_ptr, &stack_handle_ptr5);
                 (**(code **)(*stack_handle_ptr5 + 0x38))(stack_handle_ptr5, 0, &stack_handle_ptr2);
             }
             else {
-                // 使用现有的资源管理器
+// 使用现有的资源管理器
                 (**(code **)(*stack_handle_ptr2 + 0x48))
                           (stack_handle_ptr2, &stack_int1, &stack_data3, *(uint64_t *)(handle + 0x1d78));
             }
-            
-            // 执行资源分配和配置
+// 执行资源分配和配置
             (**(code **)(**(int64_t **)(handle + 0x1d70) + 0x70))
                     (*(int64_t **)(handle + 0x1d70), &stack_data3);
             (**(code **)(**(int64_t **)(handle + 0x1d70) + 0x50))
                     (*(int64_t **)(handle + 0x1d70), 1, stack_handle_ptr2);
-            
-            // 更新系统配置
-            FUN_18006b4c0(SYSTEM_STATE_MANAGER, stack_data3 & 0xffffffff);
-            FUN_18006b440(SYSTEM_STATE_MANAGER, stack_data3._4_4_);
-            FUN_1800ae230((stack_memory_size1 & 0xffffffff) / (stack_memory_size1 >> 0x20),
+// 更新系统配置
+            function_06b4c0(SYSTEM_STATE_MANAGER, stack_data3 & 0xffffffff);
+            function_06b440(SYSTEM_STATE_MANAGER, stack_data3._4_4_);
+            function_0ae230((stack_memory_size1 & 0xffffffff) / (stack_memory_size1 >> 0x20),
                           (stack_memory_size1 & 0xffffffff) % (stack_memory_size1 >> 0x20));
-            
             stack_memory_size1 = 0;
             (**(code **)(**(int64_t **)(handle + 0x1d70) + 0x70))();
         }
         else {
-            // 默认模式处理
+// 默认模式处理
             (**(code **)(**(int64_t **)(handle + 0x1d70) + 0x50))
                     (*(int64_t **)(handle + 0x1d70), 0, 0);
         }
     }
-    
-    // 检查系统状态并执行相应操作
+// 检查系统状态并执行相应操作
     if (*(char *)(handle + 0x121b8) == '\0') {
         stack_val2 = SYSTEM_CONFIG_MODE_2;
     }
     else {
         stack_val2 = 0x802;
     }
-    
     stack_val1 = 0;
     status2 = (**(code **)(**(int64_t **)(handle + 0x1d70) + 0x68))
                     (*(int64_t **)(handle + 0x1d70), 0, param1, param2);
-    
     if (status2 < 0) {
-        // 处理错误状态
+// 处理错误状态
         if ((status2 + SPECIAL_ADDRESS_3 & 0xfffffffd) == 0) {
             config_val1 = (**(code **)(**(int64_t **)(handle + 0x1d78) + 0x138))();
             SystemCore_Loader(config_val1, &processed_var_6384_ptr);
         }
     }
     else {
-        // 执行正常状态处理
+// 执行正常状态处理
         (**(code **)(**(int64_t **)(handle + 0x1d70) + 0x48))
                   (*(int64_t **)(handle + 0x1d70), 0, &processed_var_6656_ptr, &stack_handle_ptr1);
         stack_data1 = 0;
-        
         (**(code **)(**(int64_t **)(handle + 0x1d78) + 0x48))
                   (*(int64_t **)(handle + 0x1d78), stack_handle_ptr1, 0, &stack_data1);
-        
         temp_data1 = CoreMemoryPoolReallocator(system_memory_pool_ptr, MEMORY_POOL_SIZE, MEMORY_CHSYSTEM_SIZE, MEMORY_ALLOC_TYPE_3);
-        stack_handle_ptr3 = (int64_t *)FUN_18023a2e0(temp_data1, 4);
-        
+        stack_handle_ptr3 = (int64_t *)RenderingSystem_23A2E0(temp_data1, 4);
         if (stack_handle_ptr3 != (int64_t *)0x0) {
             stack_handle_ptr3 = stack_handle_ptr3;
             (**(code **)(*stack_handle_ptr3 + 0x28))(stack_handle_ptr3);
         }
-        
-        // 更新资源管理器状态
+// 更新资源管理器状态
         stack_handle_ptr3 = *(int64_t **)(handle + 0x121e0);
         *(int64_t **)(handle + 0x121e0) = stack_handle_ptr3;
-        
         if (stack_handle_ptr3 != (int64_t *)0x0) {
             (**(code **)(*stack_handle_ptr3 + 0x38))();
         }
-        
-        // 初始化资源数据
+// 初始化资源数据
         stack_handle_ptr3 = (int64_t *)(*(int64_t *)(handle + 0x121e0) + 0x10);
         (**(code **)(*stack_handle_ptr3 + 0x10))(stack_handle_ptr3, &memory_allocator_3144_ptr);
         *(int64_t **)(*(int64_t *)(handle + 0x121e0) + 0x170) = stack_handle_ptr1;
-        
-        // 设置资源指针和缓冲区
+// 设置资源指针和缓冲区
         stack_ptr_ptr1 = &stack_ptr3;
         stack_ptr3 = &memory_allocator_3432_ptr;
         stack_byte_ptr2 = stack_buffer3;
@@ -461,11 +403,9 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         strcpy_s(stack_buffer3, 0x80, &memory_allocator_3144_ptr);
         stack_ptr_ptr2 = &stack_ptr3;
         *(int64_t *)(*(int64_t *)(handle + 0x121e0) + 0x168) = *(int64_t *)(handle + 0x121e0);
-        
-        // 分配和初始化资源数据
+// 分配和初始化资源数据
         resource_ptr1 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, MEMORY_ALLOC_TYPE_3);
         resource_ptr2 = resource_ptr1;
-        
         do {
             *resource_ptr2 = 0;
             resource_ptr2[1] = 0;
@@ -473,7 +413,6 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
             temp_memory_size = (uint64_t)index_var;
             resource_ptr2 = resource_ptr2 + 2;
         } while (index_var == 0);
-        
         *(uint64_t **)(*(int64_t *)(handle + 0x121e0) + 0x1d8) = resource_ptr1;
         *(int16_t *)(*(int64_t *)(handle + 0x121e0) + 0x332) = 1;
         temp_handle2 = *(int64_t *)(handle + 0x121e0);
@@ -481,7 +420,6 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         *(int32_t *)(temp_handle2 + 0x35c) = 1;
         temp_handle1 = system_main_module_state;
         temp_handle2 = *(int64_t *)(*(int64_t *)(handle + 0x121e0) + 0x1d8);
-        
         if (temp_handle2 == 0) {
             temp_handle2 = 0;
         }
@@ -489,28 +427,23 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
             *(int64_t *)(*(int64_t *)(handle + 0x121e0) + 0x340) =
                  (int64_t)*(int *)(system_main_module_state + 0x224);
         }
-        
         *(uint64_t *)(temp_handle2 + 8) = stack_data1;
         temp_handle2 = *(int64_t *)(handle + 0x121e0);
         *(int64_t *)(temp_handle2 + 0x340) = (int64_t)*(int *)(temp_handle1 + 0x224);
-        
-        // 设置系统状态
+// 设置系统状态
         LOCK();
         *(int32_t *)(temp_handle2 + 0x380) = 2;
         UNLOCK();
         LOCK();
         *(int8_t *)(temp_handle2 + 900) = 1;
         UNLOCK();
-        
-        // 执行系统初始化
-        FUN_18023ce10(*(uint64_t *)(handle + 0x121e0));
-        
+// 执行系统初始化
+        function_23ce10(*(uint64_t *)(handle + 0x121e0));
         if ((*(int64_t *)(*(int64_t *)(handle + 0x121e0) + 0x1d8) != 0) && (system_main_module_state != 0)) {
             *(int64_t *)(*(int64_t *)(handle + 0x121e0) + 0x340) =
                  (int64_t)*(int *)(system_main_module_state + 0x224);
         }
-        
-        // 完成资源初始化
+// 完成资源初始化
         stack_ptr_ptr2 = &stack_ptr2;
         stack_ptr2 = &memory_allocator_3432_ptr;
         stack_byte_ptr1 = stack_buffer2;
@@ -521,7 +454,6 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
         stack_ptr2 = &system_state_ptr;
         temp_handle2 = *(int64_t *)(handle + 0x121e0);
         stack_handle_ptr3 = *(int64_t **)(temp_handle2 + 0x1d8);
-        
         if (stack_handle_ptr3 == (int64_t *)0x0) {
             stack_handle_ptr3 = (int64_t *)0x0;
         }
@@ -529,77 +461,67 @@ void SystemResourceProcessor(SystemHandle handle, int param1, int param2, char f
             *(int64_t *)(temp_handle2 + 0x340) = (int64_t)*(int *)(system_main_module_state + 0x224);
             temp_handle2 = *(int64_t *)(handle + 0x121e0);
         }
-        
         *stack_handle_ptr3 = temp_handle2;
     }
-    
-    // 函数结束 - 调用特殊的清理函数
+// 函数结束 - 调用特殊的清理函数
     SystemSecurityChecker(stack_memory_size2 ^ (uint64_t)stack_buffer1);
 }
-
 /**
  * @brief 系统资源管理器 - 管理系统资源的生命周期和状态
- * 
+ *
  * 该函数负责管理系统资源的完整生命周期，包括：
  * 1. 资源初始化和配置
  * 2. 资源状态监控和管理
  * 3. 资源分配和释放策略
  * 4. 错误处理和恢复机制
  * 5. 系统性能优化
- * 
+ *
  * @param handle 系统句柄，用于标识系统实例
  * @param config_data 配置数据指针，包含资源管理配置信息
- * 
+ *
  * @return uint64_t 返回操作结果状态码
- * 
+ *
  * @note 该函数是系统资源管理的核心组件，负责协调资源的分配和释放
  */
 uint64_t SystemResourceManager(SystemHandle handle, uint64_t *config_data)
 {
-    // 局部变量定义
+// 局部变量定义
     SystemStatus status1, status2;                 ///< 系统状态变量
     ConfigValue config_val;                        ///< 配置值变量
     SystemHandlePtr resource_ptr;                  ///< 资源指针变量
     int priority_level;                            ///< 优先级级别
     uint64_t result_code;                        ///< 结果代码
     int config_array[2];                           ///< 配置数组
-    
-    // 执行系统初始化
-    FUN_1802055a0(system_system_data_pointer);
+// 执行系统初始化
+    function_2055a0(system_system_data_pointer);
     status2 = *(int *)(SYSTEM_STATE_MANAGER + 0x1f80);
-    
-    // 检查资源状态
+// 检查资源状态
     if (0 < *(int *)(handle + 0x1d5c)) {
         status2 = 1;
     }
-    
-    // 判断是否需要特殊处理
+// 判断是否需要特殊处理
     if ((((config_data != (uint64_t *)0x0) || (*(char *)(handle + 0x121b8) == '\0')) ||
         ((**(code **)(**(int64_t **)(handle + 0x1d70) + 0x58))
                    (*(int64_t **)(handle + 0x1d70), config_array, 0), config_array[0] != 0)) ||
        (result_code = 0x200, status2 != 0)) {
         result_code = 0;
     }
-    
-    // 设置优先级级别
+// 设置优先级级别
     priority_level = 0;
     if ((-1 < status2) && (priority_level = status2, 4 < status2)) {
         priority_level = 4;
     }
-    
-    // 选择资源管理器
+// 选择资源管理器
     if (config_data == (uint64_t *)0x0) {
         resource_ptr = *(int64_t **)(handle + 0x1d70);
     }
     else {
         resource_ptr = (int64_t *)*config_data;
     }
-    
-    // 执行资源管理操作
+// 执行资源管理操作
     status2 = (**(code **)(*resource_ptr + 0x40))(resource_ptr, priority_level, result_code);
-    
     if (status2 < 0) {
-        // 处理错误状态
+// 处理错误状态
         if ((status2 + SPECIAL_ADDRESS_3 & 0xfffffffd) == 0) {
             config_val = (**(code **)(**(int64_t **)(handle + 0x1d78) + 0x138))();
             SystemCore_Loader(config_val, &processed_var_6384_ptr);
@@ -609,20 +531,18 @@ uint64_t SystemResourceManager(SystemHandle handle, uint64_t *config_data)
     else {
         result_code = 1;
     }
-    
     return result_code;
 }
-
 /**
  * @brief 系统数据初始化器 - 初始化系统数据和配置信息
- * 
+ *
  * 该函数负责初始化系统数据和配置信息，包括：
  * 1. 数据缓冲区分配和初始化
  * 2. 配置参数设置和验证
  * 3. 数据结构初始化
  * 4. 系统状态检查
  * 5. 错误处理和恢复
- * 
+ *
  * @param handle 系统句柄，用于标识系统实例
  * @param flags 标志位，控制初始化行为
  * @param param1 参数1，通常表示数据类型
@@ -631,14 +551,14 @@ uint64_t SystemResourceManager(SystemHandle handle, uint64_t *config_data)
  * @param config 配置参数，控制初始化过程
  * @param data1 数据1，初始化数据
  * @param data2 数据2，初始化数据
- * 
+ *
  * @return void 无返回值
- * 
+ *
  * @note 该函数是系统数据初始化的核心组件，负责初始化各种数据结构
  */
 void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int param2, uint param3, int32_t config, int64_t data1, int64_t data2)
 {
-    // 局部变量定义
+// 局部变量定义
     uint flag_var1;                                ///< 标志变量1
     int temp_int1;                                 ///< 临时整数1
     SystemHandle temp_handle1;                     ///< 临时句柄1
@@ -666,57 +586,45 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
     int32_t stack_val3;                         ///< 堆栈值3
     int8_t stack_buffer2[136];                 ///< 堆栈缓冲区2
     MemorySize stack_memory_size;                  ///< 堆栈内存大小
-    
-    // 初始化堆栈数据
+// 初始化堆栈数据
     stack_data3 = SPECIAL_ADDRESS_1;
     stack_memory_size = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
     data_ptr2 = (uint64_t *)0x0;
     stack_uint5 = 0;
     stack_val2 = 0;
     stack_uint2 = flags & 1;
-    
-    // 根据标志位设置堆栈值
+// 根据标志位设置堆栈值
     if (stack_uint2 != 0) {
         stack_uint5 = 8;
     }
-    
     stack_uint3 = flags & 4;
     if (stack_uint3 != 0) {
         stack_uint5 = stack_uint5 | 0x80;
     }
-    
     if ((flags & 0x200) != 0) {
         stack_uint5 = stack_uint5 | 4;
     }
-    
     if ((flags >> 10 & 1) != 0) {
         stack_uint5 = stack_uint5 | 1;
     }
-    
     if ((flags >> 0xb & 1) != 0) {
         stack_uint5 = stack_uint5 | 2;
     }
-    
     if ((flags & 0x10) != 0) {
         stack_val2 = 0x20000;
     }
-    
     if ((flags & 0x20) != 0) {
         stack_val2 = 0x10000;
     }
-    
     flag_var1 = param3;
     stack_handle1 = handle;
-    
-    // 根据标志位决定参数处理方式
+// 根据标志位决定参数处理方式
     if ((((flags & 0x140) == 0) && ((flags & 0xc00) == 0)) && ((flags & 0x200) == 0)) {
-        flag_var1 = func_0x000180225d90(config);
+        flag_var1 = Function_05e4b376(config);
     }
-    
     stack_int2 = flag_var1 * param2;
     stack_uint6 = (uint)data_ptr2;
     stack_uint4 = stack_uint6;
-    
     if (param1 != 0) {
         if (param1 == 1) {
             stack_uint4 = 1;
@@ -728,49 +636,41 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
             stack_uint4 = 2;
         }
     }
-    
     stack_uint7 = stack_uint6;
     if ((flags & 0x40) != 0) {
         stack_uint6 = 0x40;
         stack_uint7 = param3;
     }
-    
     condition_flag = (flags & 0x401) != 0x401;
     if (!condition_flag) {
         stack_uint6 = stack_uint6 | 0x20;
     }
-    
     if ((flags >> 8 & 1) != 0) {
         stack_uint6 = stack_uint6 | 0x10;
     }
-    
     data_ptr1 = data_ptr2;
     if (data1 != 0) {
         stack_data2 = *(uint64_t *)(data1 + 0x10);
         data_ptr1 = &stack_data2;
         stack_ptr4 = data_ptr2;
     }
-    
     stack_ptr1 = data_ptr2;
     stack_ptr2 = data_ptr2;
     stack_ptr3 = data_ptr2;
-    
-    // 执行数据初始化操作
+// 执行数据初始化操作
     temp_int1 = (**(code **)(**(int64_t **)(stack_handle1 + 0x1d78) + 0x18))
                     (*(int64_t **)(stack_handle1 + 0x1d78), &stack_int2, data_ptr1, &stack_ptr1);
-    
     if (temp_int1 < 0) {
         SystemCore_Loader(temp_int1, &memory_allocator_3072_ptr);
     }
     else {
         temp_handle1 = stack_handle1;
-        
         if (stack_uint2 != 0) {
             stack_data1 = 0xb;
             stack_uint1 = 0;
             if (condition_flag) {
                 stack_int1 = param2;
-                stack_val1 = func_0x0001800ab000(config);
+                stack_val1 = Function_7ff96d21(config);
             }
             else {
                 stack_uint1 = 1;
@@ -785,7 +685,6 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
                 goto LAB_1800a4380;
             }
         }
-        
         if (stack_uint3 != 0) {
             stack_data1 = 1;
             stack_uint1 = 0;
@@ -798,7 +697,7 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
             if ((flags & 0x40) == 0) {
                 if (condition_flag) {
                     stack_int1 = param2;
-                    stack_val1 = func_0x0001800ab000(config);
+                    stack_val1 = Function_7ff96d21(config);
                 }
                 else {
                     stack_val1 = 0x27;
@@ -816,8 +715,7 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
                 goto LAB_1800a4380;
             }
         }
-        
-        // 设置输出数据
+// 设置输出数据
         *(uint64_t **)(data2 + 0x10) = stack_ptr1;
         *(uint64_t **)(data2 + 0x18) = stack_ptr2;
         *(uint64_t **)(data2 + 0x20) = stack_ptr3;
@@ -832,33 +730,31 @@ void SystemDataInitializer(SystemHandle handle, uint flags, int param1, int para
         strcpy_s(stack_buffer2, 0x80, temp_ptr1);
         stack_ptr5 = &system_state_ptr;
     }
-    
 LAB_1800a4380:
-    // 函数结束 - 调用特殊的清理函数
+// 函数结束 - 调用特殊的清理函数
     SystemSecurityChecker(stack_memory_size ^ (uint64_t)stack_buffer1);
 }
-
 /**
  * @brief 系统状态同步器 - 同步系统状态和资源信息
- * 
+ *
  * 该函数负责同步系统状态和资源信息，包括：
  * 1. 状态数据复制和验证
  * 2. 资源信息同步和更新
  * 3. 内存分配和数据初始化
  * 4. 系统状态检查和更新
  * 5. 错误处理和恢复机制
- * 
+ *
  * @param resource_ptrs 资源指针数组，包含需要同步的资源
  * @param resource_ids 资源ID数组，标识需要同步的资源
  * @param sync_handle 同步句柄，用于标识同步操作
- * 
+ *
  * @return void 无返回值
- * 
+ *
  * @note 该函数是系统状态同步的核心组件，负责确保各个子系统状态一致
  */
 void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t sync_handle)
 {
-    // 局部变量定义
+// 局部变量定义
     DataByte data_byte1;                            ///< 数据字节1
     SystemByte system_byte1;                       ///< 系统字节1
     uint uint_var1;                                ///< 无符号整数变量1
@@ -920,12 +816,10 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t s
     uint stack_uint9;                              ///< 堆栈无符号整数9
     MemorySize stack_memory_size;                  ///< 堆栈内存大小
     MemorySize temp_memory_size;                   ///< 临时内存大小
-    
-    // 初始化堆栈数据
+// 初始化堆栈数据
     stack_data6 = SPECIAL_ADDRESS_1;
     stack_memory_size = GET_SECURITY_COOKIE() ^ (uint64_t)stack_buffer1;
-    
-    // 复制资源数据到同步句柄
+// 复制资源数据到同步句柄
     temp_data1 = *(uint64_t *)(resource_ids + 2);
     *(uint64_t *)(sync_handle + 0x108) = *(uint64_t *)resource_ids;
     *(uint64_t *)(sync_handle + 0x110) = temp_data1;
@@ -950,23 +844,19 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t s
     uint_var6 = resource_ids[4];
     *(uint *)(sync_handle + 0x324) = uint_var6;
     uint_var2 = resource_ids[10];
-    
-    // 根据标志位设置系统状态
+// 根据标志位设置系统状态
     if ((char)uint_var2 != '\0') {
         *(uint *)(sync_handle + 0x328) = *(uint *)(sync_handle + 0x328) | 0x2000;
     }
-    
     data_byte1 = (char)resource_ids[9];
     if (data_byte1 != '\0') {
         *(int8_t *)(sync_handle + 0x355) = 1;
     }
-    
     uint_var3 = 0;
     stack_uint7 = uint_var3;
     if (data_byte1 == '\0') {
         stack_uint7 = uint_var5;
     }
-    
     uint_var5 = 0xffffffff;
     temp_memory_size = 0xffffffff;
     if (stack_uint7 == 0) {
@@ -981,8 +871,7 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t s
         }
         stack_uint7 = uint_var5 + 1;
     }
-    
-    // 初始化堆栈变量
+// 初始化堆栈变量
     stack_data8 = 0;
     stack_uint9 = 0;
     uint_var3 = *resource_ids;
@@ -991,7 +880,7 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t s
     stack_ptr_ptr1 = resource_ptrs;
     stack_uint5 = uint_var3;
     stack_uint6 = uint_var4;
-    config_val = func_0x0001800ab000(uint_var6);
+    config_val = Function_7ff96d21(uint_var6);
     temp_ptr_ptr1 = stack_ptr_ptr1;
     uint_var6 = (uint)temp_memory_size;
     stack_data1 = CONCAT44(stack_data1._4_4_, config_val);
@@ -999,11 +888,9 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t s
     stack_val14 = 0;
     uint_var5 = 0x20;
     stack_char1 = *(char *)((int64_t)resource_ids + 0x25);
-    
     if (stack_char1 != '\0') {
         uint_var5 = 0x28;
     }
-    
     if (data_byte1 != '\0') {
         uint_var3 = 1;
         stack_uint9 = 1;
@@ -1018,38 +905,30 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t s
         *(uint *)(sync_handle + 0x35c) = uint_var6 + 1;
         *(int8_t *)(sync_handle + 0x355) = 1;
     }
-    
     if ((char)uint_var2 != '\0') {
         stack_uint9 = uint_var3 | 4;
     }
-    
     stack_char2 = *(char *)((int64_t)resource_ids + 0x26);
     if (stack_char2 != '\0') {
         uint_var5 = uint_var5 | 0x80;
     }
-    
     stack_data8 = CONCAT44(stack_data8._4_4_, uint_var5);
     stack_val13 = config_val;
-    
-    // 执行系统资源管理操作
+// 执行系统资源管理操作
     status1 = (**(code **)(*(int64_t *)stack_ptr_ptr1[0x3af] + 0x28))
                     (stack_ptr_ptr1[0x3af], &stack_uint5, 0, &stack_data4);
-    
     if (status1 < 0) {
         SystemCore_Loader(status1, &memory_allocator_3400_ptr);
     }
-    
     *(uint64_t *)(sync_handle + 0x170) = stack_data4;
     stack_ptr_ptr1 = (void **)SystemCore_EventHandler(stack_buffer4, sync_handle + 0x10);
     *stack_ptr_ptr1 = &system_state_ptr;
     *(int64_t *)(sync_handle + 0x168) = sync_handle;
     data_word1 = *(ushort *)(sync_handle + 0x332);
     uint_var5 = (uint)*(byte *)(sync_handle + 0x335);
-    
     if ((int)*(uint *)(sync_handle + 0x35c) < (int)(uint)*(byte *)(sync_handle + 0x335)) {
         uint_var5 = *(uint *)(sync_handle + 0x35c);
     }
-    
     uint_var5 = uint_var5 * data_word1;
     if (uint_var5 == 0) {
         data_ptr1 = (uint64_t *)0x0;
@@ -1066,7 +945,6 @@ void SystemStateSynchronizer(void **resource_ptrs, uint *resource_ids, int64_t s
         } while ((uint64_t)(int64_t)status1 < (uint64_t)uint_var5);
         data_word1 = *(ushort *)(sync_handle + 0x332);
     }
-    
     uint_var5 = 0;
     *(uint64_t **)(sync_handle + 0x1d8) = data_ptr1;
     if (data_word1 != 0) {
@@ -1143,7 +1021,6 @@ LAB_1800a46f5:
         } while (uint_var5 < *(ushort *)(sync_handle + 0x332));
         config_val = (int32_t)stack_data1;
     }
-    
     temp_data1 = 0;
     if (stack_char1 != '\0') {
         data_word1 = *(ushort *)(sync_handle + 0x332);
@@ -1213,7 +1090,6 @@ LAB_1800a46f5:
             } while (uint_var5 < *(ushort *)(sync_handle + 0x332));
         }
     }
-    
     if (stack_char2 != '\0') {
         data_word1 = *(ushort *)(sync_handle + 0x332);
         uint_var6 = (uint)*(byte *)(sync_handle + 0x335);
@@ -1287,9 +1163,8 @@ LAB_1800a46f5:
             } while (uint_var5 < *(ushort *)(sync_handle + 0x332));
         }
     }
-    
-    // 完成系统同步操作
-    FUN_18023ce10(sync_handle);
+// 完成系统同步操作
+    function_23ce10(sync_handle);
     LOCK();
     system_system_config_pointer = 0;
     UNLOCK();
@@ -1312,106 +1187,97 @@ LAB_1800a46f5:
     }
     strcpy_s(stack_buffer3, 0x80, temp_ptr1);
     stack_ptr_ptr1 = &stack_ptr2;
-    
-    // 函数结束 - 调用特殊的清理函数
+// 函数结束 - 调用特殊的清理函数
     SystemSecurityChecker(stack_memory_size ^ (uint64_t)stack_buffer1);
 }
-
 // ================================ 技术说明 ================================
-
 /*
  * 技术说明：
- * 
+ *
  * 1. 系统架构：
  *    - 采用模块化设计，各个函数职责明确
  *    - 使用句柄管理机制，确保资源安全访问
  *    - 实现了完整的错误处理和恢复机制
- * 
+ *
  * 2. 内存管理：
  *    - 使用动态内存分配，支持灵活的资源管理
  *    - 实现了内存池管理，提高内存使用效率
  *    - 包含内存对齐和边界检查，确保内存安全
- * 
+ *
  * 3. 线程安全：
  *    - 使用锁机制保护共享资源
  *    - 实现了线程同步机制，确保数据一致性
  *    - 支持多线程环境下的资源管理
- * 
+ *
  * 4. 性能优化：
  *    - 使用位运算和标志位操作，提高执行效率
  *    - 实现了缓存友好的数据结构设计
  *    - 优化了内存访问模式，减少缓存未命中
- * 
+ *
  * 5. 错误处理：
  *    - 实现了完整的错误码体系
  *    - 支持错误恢复和资源清理
  *    - 提供了详细的错误信息输出
  */
-
 // ================================ 模块功能 ================================
-
 /*
  * 模块功能：
- * 
+ *
  * 1. 系统资源处理器 (SystemResourceProcessor):
  *    - 负责系统资源的分配、管理和释放
  *    - 实现了线程同步和资源状态管理
  *    - 支持多种资源类型的处理
  *    - 提供了完整的错误处理机制
- * 
+ *
  * 2. 系统资源管理器 (SystemResourceManager):
  *    - 管理系统资源的完整生命周期
  *    - 实现了资源状态监控和管理
  *    - 支持资源分配和释放策略
  *    - 提供了系统性能优化功能
- * 
+ *
  * 3. 系统数据初始化器 (SystemDataInitializer):
  *    - 初始化系统数据和配置信息
  *    - 支持多种数据类型的初始化
  *    - 实现了数据结构初始化
  *    - 提供了配置参数验证功能
- * 
+ *
  * 4. 系统状态同步器 (SystemStateSynchronizer):
  *    - 同步系统状态和资源信息
  *    - 实现了状态数据复制和验证
  *    - 支持内存分配和数据初始化
  *    - 提供了完整的错误处理机制
  */
-
 // ================================ 版本信息 ================================
-
 /*
  * 版本信息：
- * 
+ *
  * 文件版本：1.0.0
  * 创建日期：2024-01-01
  * 最后修改：2024-01-01
  * 作者：系统开发团队
- * 
+ *
  * 修改历史：
  * - v1.0.0 (2024-01-01): 初始版本，完成基础功能实现
- * 
+ *
  * 构建信息：
  * - 编译器：GCC 9.4.0
  * - 构建类型：Release
  * - 优化级别：O2
  * - 目标平台：Linux x86_64
  */
-
 // ================================ 版权信息 ================================
-
 /*
  * 版权信息：
- * 
+ *
  * Copyright (C) 2024 TaleWorlds Entertainment
- * 
+ *
  * 本软件为TaleWorlds Entertainment的专有财产。
  * 未经书面许可，不得复制、分发或修改本软件。
- * 
+ *
  * 免责声明：
  * 本软件按"原样"提供，不提供任何明示或暗示的保证，
  * 包括但不限于适销性、特定用途适用性和非侵权性的保证。
- * 
+ *
  * 在任何情况下，作者或版权持有人均不对任何直接、间接、
  * 偶然、特殊、惩罚性或后果性损害承担责任。
  */

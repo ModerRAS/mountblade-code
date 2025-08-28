@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_06_part060.c - 4 个函数
-
-// 函数: void FUN_1803e2a40(int64_t param_1,int64_t param_2)
-void FUN_1803e2a40(int64_t param_1,int64_t param_2)
-
+// 函数: void function_3e2a40(int64_t param_1,int64_t param_2)
+void function_3e2a40(int64_t param_1,int64_t param_2)
 {
   void *puVar1;
   bool bVar2;
@@ -19,7 +16,6 @@ void FUN_1803e2a40(int64_t param_1,int64_t param_2)
   uint64_t uVar11;
   uint uVar12;
   uint64_t uVar13;
-  
   iVar10 = *(int *)(param_2 + 0x10);
   CoreEngineDataBufferProcessor(param_2,iVar10 + 0x50);
   puVar7 = (uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8));
@@ -263,15 +259,8 @@ void FUN_1803e2a40(int64_t param_1,int64_t param_2)
   *(int *)(param_2 + 0x10) = iVar10;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1803e2dca(uint64_t param_1,int64_t param_2)
-void FUN_1803e2dca(uint64_t param_1,int64_t param_2)
-
+// 函数: void function_3e2dca(uint64_t param_1,int64_t param_2)
+void function_3e2dca(uint64_t param_1,int64_t param_2)
 {
   void *puVar1;
   int64_t lVar2;
@@ -290,7 +279,6 @@ void FUN_1803e2dca(uint64_t param_1,int64_t param_2)
   int32_t extraout_XMM0_Da;
   int32_t uVar10;
   int32_t extraout_XMM0_Da_00;
-  
   uVar9 = unaff_RBP & 0xffffffff;
   do {
     puVar1 = *(void **)(uVar9 + 8 + param_2);
@@ -391,15 +379,8 @@ void FUN_1803e2dca(uint64_t param_1,int64_t param_2)
   *(int *)(unaff_RBX + 0x10) = iVar8;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1803e2e3d(int32_t param_1)
-void FUN_1803e2e3d(int32_t param_1)
-
+// 函数: void function_3e2e3d(int32_t param_1)
+void function_3e2e3d(int32_t param_1)
 {
   void *puVar1;
   int64_t lVar2;
@@ -415,7 +396,6 @@ void FUN_1803e2e3d(int32_t param_1)
   uint64_t uVar9;
   int32_t uVar10;
   int32_t extraout_XMM0_Da;
-  
   iVar8 = *(int *)(unaff_RBX + 0x10);
   iVar7 = iVar8 + 0x24;
   CoreEngineDataBufferProcessor(param_1,iVar7);
@@ -496,21 +476,13 @@ void FUN_1803e2e3d(int32_t param_1)
   *(int *)(unaff_RBX + 0x10) = iVar8;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1803e2fb9(int32_t param_1)
-void FUN_1803e2fb9(int32_t param_1)
-
+// 函数: void function_3e2fb9(int32_t param_1)
+void function_3e2fb9(int32_t param_1)
 {
   int32_t *puVar1;
   int64_t unaff_RBX;
   int iVar2;
   int iVar3;
-  
   iVar3 = *(int *)(unaff_RBX + 0x10);
   iVar2 = iVar3 + 0x10;
   CoreEngineDataBufferProcessor(param_1,iVar2);
@@ -527,11 +499,4 @@ void FUN_1803e2fb9(int32_t param_1)
   *(int *)(unaff_RBX + 0x10) = iVar3;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

@@ -1,29 +1,20 @@
 #include "ultra_high_freq_fun_definitions.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* 函数别名定义: RenderingShaderProcessor */
 #define RenderingShaderProcessor RenderingShaderProcessor
-
-
-
 // 03_rendering_part028.c - 渲染系统数据处理和变换模块
 // 包含6个核心函数，主要处理渲染数据结构、矩阵变换和资源管理
-
 //============================================================================
 // 渲染系统常量定义
 //============================================================================
-
 #define MAX_RENDER_OBJECTS 0x1000        // 最大渲染对象数量
 #define MATRIX_SIZE 0x50                 // 矩阵数据结构大小
 #define RENDER_QUEUE_SIZE 0x20           // 渲染队列大小
 #define HASH_TABLE_SIZE 0x10             // 哈希表大小
-
 //============================================================================
 // 渲染系统数据结构
 //============================================================================
-
 // 渲染对象数据结构
 typedef struct {
     uint object_id;                     // 对象ID
@@ -35,7 +26,6 @@ typedef struct {
     void* material_ptr;                 // 材质指针
     void* texture_ptr;                  // 纹理指针
 } RenderObject;
-
 // 渲染队列节点
 typedef struct {
     RenderObject* object;              // 渲染对象
@@ -43,7 +33,6 @@ typedef struct {
     float distance;                      // 距离
     struct RenderQueueNode* next;       // 下一个节点
 } RenderQueueNode;
-
 // 渲染上下文
 typedef struct {
     RenderQueueNode* queue_head;        // 队列头
@@ -52,21 +41,19 @@ typedef struct {
     void* render_device;                // 渲染设备
     void* shader_program;               // 着色器程序
 } RenderContext;
-
 //============================================================================
 // 核心渲染函数
 //============================================================================
-
 /**
  * 处理渲染对象数据变换和队列管理
- * 
+ *
  * 该函数是渲染系统的核心处理函数，负责：
  * 1. 遍历渲染对象集合
  * 2. 对每个对象进行矩阵变换计算
  * 3. 根据渲染标志进行对象筛选
  * 4. 管理渲染队列的插入和排序
  * 5. 处理对象间的依赖关系
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param object_list 对象列表指针
  * @param transform_data 变换数据
@@ -76,8 +63,8 @@ typedef struct {
  * @param shader_data 着色器数据
  * @param render_params 渲染参数
  */
-void process_render_object_transformations(uint64_t render_context, 
-                                         code* object_list, 
+void process_render_object_transformations(uint64_t render_context,
+                                         code* object_list,
                                          uint64_t transform_data,
                                          int64_t* queue_data,
                                          uint64_t material_data,
@@ -128,12 +115,10 @@ void process_render_object_transformations(uint64_t render_context,
     int64_t batch_offset;
     uint batch_counter;
     uint64_t frame_time;
-    
 process_transformations:
-    // 获取对象队列数据
+// 获取对象队列数据
     queue_data = (int64_t*)(*object_list)(queue_data);
     queue_data = object_params;
-    
     do {
         queue_index = 0;
         visibility_check = *(int*)*unaff_render_target;
@@ -141,7 +126,7 @@ process_transformations:
             batch_counter = 1;
             batch_offset = 0;
             do {
-                // 检查对象可见性标志
+// 检查对象可见性标志
                 if ((unaff_render_state & batch_counter) != 0) {
                     camera_distance = unaff_render_target[1];
                     object_index = *(int64_t*)(*(int64_t*)(unaff_frame_buffer + 0x1b8) + 0xa8);
@@ -149,10 +134,9 @@ process_transformations:
                     material_hash = *(uint64_t*)(object_index + 0xc);
                     texture_hash = *(uint64_t*)(object_index + 0x14);
                     hash_value = material_hash ^ texture_hash;
-                    
-                    // 在哈希表中查找对象
+// 在哈希表中查找对象
                     for (hash_entry = *(uint64_t**)(transform_index + (hash_value % (uint64_t)*(uint*)(camera_distance + 0x10)) * 8);
-                         hash_entry != (uint64_t*)0x0; 
+                         hash_entry != (uint64_t*)0x0;
                          hash_entry = (uint64_t*)hash_entry[3]) {
                         if ((material_hash == *hash_entry) && (texture_hash == hash_entry[1])) {
                             if (hash_entry != (uint64_t*)0x0) {
@@ -171,7 +155,6 @@ found_object_entry:
                         priority_mask = (int64_t)((int)queue_ptr[2] + 0xf) & 0xfffffffffffffff0;
                         *(int*)(queue_ptr + 2) = visibility_check * 0x20 + (int)priority_mask;
                         priority_mask = *queue_ptr + priority_mask;
-                        
                         if (0 < *(int*)*unaff_render_target) {
                             material_ptr = (uint64_t*)(priority_mask + 8);
                             do {
@@ -184,13 +167,11 @@ found_object_entry:
                                 material_ptr = material_ptr + 4;
                             } while (queue_size < *(int*)*unaff_render_target);
                         }
-                        
                         camera_distance = unaff_render_target[1];
                         distance_calc = hash_value % (uint64_t)*(uint*)(camera_distance + 0x10);
-                        
-                        // 在材质哈希表中查找条目
+// 在材质哈希表中查找条目
                         for (hash_entry = *(uint64_t**)(*(int64_t*)(camera_distance + 8) + distance_calc * 8);
-                             hash_entry != (uint64_t*)0x0; 
+                             hash_entry != (uint64_t*)0x0;
                              hash_entry = (uint64_t*)hash_entry[3]) {
                             if ((material_hash == *hash_entry) && (texture_hash == hash_entry[1])) {
                                 object_index = *(int64_t*)(camera_distance + 8) + distance_calc * 8;
@@ -198,7 +179,6 @@ found_object_entry:
                                 break;
                             }
                         }
-                        
                         queue_ptr = *(int64_t**)(camera_distance + 0x30);
                         texture_hash = (int64_t)(int)queue_ptr[2] + 0xfU & 0xfffffffffffffff0;
                         hash_entry = (uint64_t*)(*queue_ptr + texture_hash);
@@ -209,17 +189,14 @@ found_object_entry:
                         hash_entry[3] = 0;
                         render_flags = (uint64_t*)material_hash;
                         flag_mask = texture_hash;
-                        
-                        // 调用材质处理函数
-                        RenderingShaderProcessor0(camera_distance + 0x20, &shader_data, 
+// 调用材质处理函数
+                        RenderingShaderProcessor0(camera_distance + 0x20, &shader_data,
                                       *(int32_t*)(camera_distance + 0x10),
                                       *(int32_t*)(camera_distance + 0x18), 1);
-                        
                         if ((char)shader_data != '\0') {
                             distance_calc = hash_value % (uint64_t)shader_data._4_4_;
-                            FUN_180285760(camera_distance, shader_data._4_4_);
+                            function_285760(camera_distance, shader_data._4_4_);
                         }
-                        
                         hash_entry[3] = *(uint64_t*)(*(int64_t*)(camera_distance + 8) + distance_calc * 8);
                         *(uint64_t**)(*(int64_t*)(camera_distance + 8) + distance_calc * 8) = hash_entry;
                         *(int64_t*)(camera_distance + 0x18) = *(int64_t*)(camera_distance + 0x18) + 1;
@@ -233,8 +210,7 @@ found_material_entry:
                         hash_entry = lighting_params;
                         unaff_frame_buffer = object_count;
                     }
-                    
-                    // 处理渲染队列插入
+// 处理渲染队列插入
                     hash_entry = (uint64_t*)(hash_entry[2] + batch_offset);
                     camera_distance = *queue_data;
                     object_index = queue_data[1];
@@ -245,7 +221,6 @@ found_material_entry:
                     priority_value = queue_data[5];
                     render_distance = queue_data[6];
                     visibility_flags = queue_data[7];
-                    
                     if (queue_start < (uint*)hash_entry[2]) {
                         hash_entry[1] = (uint64_t)(queue_start + 0x14);
                         *queue_start = unaff_render_state;
@@ -260,7 +235,7 @@ found_material_entry:
                         *(int64_t*)(queue_start + 0x12) = unaff_frame_buffer;
                     }
                     else {
-                        // 队列扩容处理
+// 队列扩容处理
                         queue_end = (uint*)*hash_entry;
                         transform_offset = ((int64_t)queue_start - (int64_t)queue_end) / 0x50;
                         if (transform_offset == 0) {
@@ -278,7 +253,6 @@ expand_queue:
                             if (transform_offset != 0) goto expand_queue;
                             queue_current = (uint*)0x0;
                         }
-                        
                         queue_ptr = queue_current;
                         if (queue_end != queue_start) {
                             object_ptr = queue_current + 1;
@@ -307,7 +281,6 @@ expand_queue:
                                 object_ptr = object_flags;
                             } while (render_state != queue_start);
                         }
-                        
                         *queue_ptr = unaff_render_state;
                         *(int64_t*)(queue_ptr + 1) = camera_distance;
                         *(int64_t*)(queue_ptr + 3) = object_index;
@@ -330,15 +303,13 @@ expand_queue:
                 queue_data = object_params;
             } while (queue_index < visibility_check);
         }
-        
         texture_data._0_4_ = (int)texture_data + 1;
         batch_offset = queue_data[7];
         transform_count = transform_count + 0x10;
         if ((uint64_t)(queue_data[8] - batch_offset >> 4) <= (uint64_t)(int64_t)(int)texture_data) {
-            // 错误处理：堆栈溢出保护
-            SystemSecurityChecker(camera_param ^ (uint64_t)&stack0x00000000);
+// 错误处理：堆栈溢出保护
+            SystemSecurityChecker(camera_param ^ (uint64_t)&local_buffer_00000000);
         }
-        
         unaff_render_state = *(uint*)(batch_offset + 8 + transform_count);
         unaff_frame_buffer = *(int64_t*)(batch_offset + transform_count);
         object_list = *(code**)(*queue_data + 0x158);
@@ -348,16 +319,15 @@ expand_queue:
         queue_data = queue_data + 0x66;
     } while (true);
 }
-
 /**
  * 应用渲染矩阵变换
- * 
+ *
  * 该函数负责：
  * 1. 从源对象获取变换矩阵
  * 2. 应用目标对象的变换参数
  * 3. 计算最终的复合变换矩阵
  * 4. 更新渲染对象的变换状态
- * 
+ *
  * @param target_context 目标渲染上下文
  * @param source_context 源渲染上下文
  */
@@ -385,16 +355,14 @@ void apply_render_matrix_transformations(int64_t* target_context, int64_t* sourc
     int64_t batch_offset;
     float stack_matrix[16];
     float temp_matrix[16];
-    
-    // 检查渲染上下文类型
+// 检查渲染上下文类型
     if (*(code**)(*source_context + 0x158) == (code*)&rendering_buffer_2528_ptr) {
         transform_data = (float*)(source_context + 0x66);
     }
     else {
         transform_data = (float*)(**(code**)(*source_context + 0x158))(source_context);
     }
-    
-    // 加载源变换矩阵
+// 加载源变换矩阵
     source_matrix[0] = *transform_data;
     source_matrix[1] = transform_data[1];
     source_matrix[2] = transform_data[2];
@@ -407,7 +375,6 @@ void apply_render_matrix_transformations(int64_t* target_context, int64_t* sourc
     source_matrix[9] = transform_data[12];
     source_matrix[10] = transform_data[13];
     source_matrix[11] = transform_data[14];
-    
     batch_index = 0;
     transform_offset = source_context[7];
     if (source_context[8] - transform_offset >> 4 != 0) {
@@ -415,10 +382,9 @@ void apply_render_matrix_transformations(int64_t* target_context, int64_t* sourc
         do {
             object_list = *(int64_t**)(batch_offset + transform_offset);
             if (object_list != (int64_t*)0x0) {
-                // 调用对象初始化函数
+// 调用对象初始化函数
                 (**(code**)(*object_list + 0x28))(object_list);
             }
-            
             transform_flags = *(int32_t*)(batch_offset + 8 + transform_offset);
             position_offset[0] = *(float*)(object_list + 0x24);
             position_offset[1] = *(float*)((int64_t)object_list + 0x124);
@@ -429,30 +395,25 @@ void apply_render_matrix_transformations(int64_t* target_context, int64_t* sourc
             scale_offset[0] = *(float*)(object_list + 0x28);
             scale_offset[1] = *(float*)((int64_t)object_list + 0x144);
             scale_offset[2] = *(float*)(object_list + 0x29);
-            
-            // 计算位置变换
+// 计算位置变换
             result_matrix[0] = position_offset[0] * source_matrix[0] + position_offset[1] * source_matrix[3] + position_offset[2] * source_matrix[6];
             result_matrix[1] = position_offset[0] * source_matrix[1] + position_offset[1] * source_matrix[4] + position_offset[2] * source_matrix[7];
             result_matrix[2] = position_offset[0] * source_matrix[2] + position_offset[1] * source_matrix[5] + position_offset[2] * source_matrix[8];
-            
-            // 计算旋转变换
+// 计算旋转变换
             rotation_offset[0] = rotation_offset[0] * source_matrix[0] + rotation_offset[1] * source_matrix[3] + rotation_offset[2] * source_matrix[6];
             rotation_offset[1] = rotation_offset[0] * source_matrix[1] + rotation_offset[1] * source_matrix[4] + rotation_offset[2] * source_matrix[7];
             rotation_offset[2] = rotation_offset[0] * source_matrix[2] + rotation_offset[1] * source_matrix[5] + rotation_offset[2] * source_matrix[8];
-            
-            // 计算缩放变换
+// 计算缩放变换
             scale_offset[0] = scale_offset[0] * source_matrix[0] + scale_offset[1] * source_matrix[3] + scale_offset[2] * source_matrix[6];
             scale_offset[1] = scale_offset[0] * source_matrix[1] + scale_offset[1] * source_matrix[4] + scale_offset[2] * source_matrix[7];
             scale_offset[2] = scale_offset[0] * source_matrix[2] + scale_offset[1] * source_matrix[5] + scale_offset[2] * source_matrix[8];
-            
-            // 获取目标变换矩阵
+// 获取目标变换矩阵
             if (*(code**)(*target_context + 0x158) == (code*)&rendering_buffer_2528_ptr) {
                 transform_data = (float*)(target_context + 0x66);
             }
             else {
                 transform_data = (float*)(**(code**)(*target_context + 0x158))(target_context);
             }
-            
             target_matrix[0] = *transform_data;
             target_matrix[1] = transform_data[1];
             target_matrix[2] = transform_data[2];
@@ -465,37 +426,30 @@ void apply_render_matrix_transformations(int64_t* target_context, int64_t* sourc
             target_matrix[9] = transform_data[11];
             target_matrix[10] = transform_data[12];
             target_matrix[11] = transform_data[13];
-            
-            // 计算最终变换矩阵
+// 计算最终变换矩阵
             stack_matrix[0] = result_matrix[0] * target_matrix[0] + result_matrix[1] * target_matrix[1] + result_matrix[2] * target_matrix[2];
             stack_matrix[1] = result_matrix[0] * target_matrix[3] + result_matrix[1] * target_matrix[4] + result_matrix[2] * target_matrix[5];
             stack_matrix[2] = result_matrix[0] * target_matrix[6] + result_matrix[1] * target_matrix[7] + result_matrix[2] * target_matrix[8];
             stack_matrix[3] = result_matrix[0] * target_matrix[9] + result_matrix[1] * target_matrix[10] + result_matrix[2] * target_matrix[11];
-            
             temp_matrix[0] = rotation_offset[0] * target_matrix[0] + rotation_offset[1] * target_matrix[1] + rotation_offset[2] * target_matrix[2];
             temp_matrix[1] = rotation_offset[0] * target_matrix[3] + rotation_offset[1] * target_matrix[4] + rotation_offset[2] * target_matrix[5];
             temp_matrix[2] = rotation_offset[0] * target_matrix[6] + rotation_offset[1] * target_matrix[7] + rotation_offset[2] * target_matrix[8];
             temp_matrix[3] = rotation_offset[0] * target_matrix[9] + rotation_offset[1] * target_matrix[10] + rotation_offset[2] * target_matrix[11];
-            
             scale_offset[0] = scale_offset[0] * target_matrix[0] + scale_offset[1] * target_matrix[1] + scale_offset[2] * target_matrix[2];
             scale_offset[1] = scale_offset[0] * target_matrix[3] + scale_offset[1] * target_matrix[4] + scale_offset[2] * target_matrix[5];
             scale_offset[2] = scale_offset[0] * target_matrix[6] + scale_offset[1] * target_matrix[7] + scale_offset[2] * target_matrix[8];
-            
-            // 计算最终位置偏移
+// 计算最终位置偏移
             position_offset[0] = (scale_offset[0] * target_matrix[1] + scale_offset[1] * target_matrix[4] + scale_offset[2] * target_matrix[7] + rotation_offset[1]) - transform_data[13];
             position_offset[1] = (scale_offset[0] * target_matrix[2] + scale_offset[1] * target_matrix[5] + scale_offset[2] * target_matrix[8] + rotation_offset[2]) - transform_data[14];
             position_offset[2] = (scale_offset[0] * target_matrix[0] + scale_offset[1] * target_matrix[3] + scale_offset[2] * target_matrix[6] + rotation_offset[0]) - transform_data[12];
-            
             stack_matrix[12] = position_offset[0] * target_matrix[0] + position_offset[1] * target_matrix[1] + position_offset[2] * target_matrix[2];
             stack_matrix[13] = position_offset[0] * target_matrix[3] + position_offset[1] * target_matrix[4] + position_offset[2] * target_matrix[5];
             stack_matrix[14] = position_offset[0] * target_matrix[6] + position_offset[1] * target_matrix[7] + position_offset[2] * target_matrix[8];
             stack_matrix[15] = position_offset[0] * target_matrix[9] + position_offset[1] * target_matrix[10] + position_offset[2] * target_matrix[11];
-            
-            // 应用变换矩阵到对象
-            FUN_180075630(object_list, &stack_matrix);
+// 应用变换矩阵到对象
+            function_075630(object_list, &stack_matrix);
             object_list[0x39] = (int64_t)target_context;
-            
-            // 将对象添加到渲染队列
+// 将对象添加到渲染队列
             camera_matrix = (int64_t*)target_context[8];
             if (camera_matrix < (int64_t*)target_context[9]) {
                 target_context[8] = (int64_t)(camera_matrix + 2);
@@ -504,7 +458,7 @@ void apply_render_matrix_transformations(int64_t* target_context, int64_t* sourc
                 *(int32_t*)(camera_matrix + 1) = transform_flags;
             }
             else {
-                // 队列扩容处理
+// 队列扩容处理
                 matrix_ptr = (int64_t*)target_context[7];
                 transform_offset = (int64_t)camera_matrix - (int64_t)matrix_ptr >> 4;
                 if (transform_offset == 0) {
@@ -521,22 +475,19 @@ expand_render_queue:
                     world_matrix = (int64_t*)0x0;
                     object_data = world_matrix;
                 }
-                
-                // 复制队列数据
+// 复制队列数据
                 for (; matrix_ptr != camera_matrix; matrix_ptr = matrix_ptr + 2) {
                     *world_matrix = *matrix_ptr;
                     *matrix_ptr = 0;
                     *(int*)((int64_t)matrix_ptr + (int64_t)object_data + (8 - (int64_t)matrix_ptr)) = (int)matrix_ptr[1];
                     world_matrix = world_matrix + 2;
                 }
-                
                 *world_matrix = (int64_t)object_list;
                 (**(code**)(*object_list + 0x28))(object_list);
                 *(int32_t*)(world_matrix + 1) = transform_flags;
                 camera_matrix = (int64_t*)target_context[8];
                 matrix_ptr = (int64_t*)target_context[7];
-                
-                // 清理旧队列数据
+// 清理旧队列数据
                 if (matrix_ptr != camera_matrix) {
                     do {
                         if ((int64_t*)*matrix_ptr != (int64_t*)0x0) {
@@ -546,50 +497,42 @@ expand_render_queue:
                     } while (matrix_ptr != camera_matrix);
                     matrix_ptr = (int64_t*)target_context[7];
                 }
-                
                 if (matrix_ptr != (int64_t*)0x0) {
-                    // 释放旧队列内存
+// 释放旧队列内存
                     CoreMemoryPoolInitializer(matrix_ptr);
                 }
-                
                 target_context[7] = (int64_t)object_data;
                 target_context[8] = (int64_t)(world_matrix + 2);
                 target_context[9] = (int64_t)(object_data + transform_offset * 2);
             }
-            
             (**(code**)(*object_list + 0x38))(object_list);
             batch_index = batch_index + 1;
             batch_offset = batch_offset + 0x10;
             transform_offset = source_context[7];
         } while ((uint64_t)(int64_t)batch_index < (uint64_t)(source_context[8] - transform_offset >> 4));
     }
-    
-    // 更新渲染上下文状态
+// 更新渲染上下文状态
     if ((int)target_context[0xb] < (int)source_context[0xb]) {
         *(int*)(target_context + 0xb) = (int)source_context[0xb];
     }
-    
-    // 执行渲染上下文更新
+// 执行渲染上下文更新
     if (*(code**)(*target_context + 0x160) == (code*)&processed_var_6368_ptr) {
         SystemCore_UpdateState(target_context, (int64_t)target_context + 0x214, 0);
     }
     else {
         (**(code**)(*target_context + 0x160))(target_context);
     }
-    
     transform_offset = target_context[5];
     if ((transform_offset != 0) &&
         (*(short*)(transform_offset + 0x2b0) = *(short*)(transform_offset + 0x2b0) + 1,
          *(int64_t*)(transform_offset + 0x168) != 0)) {
-        func_0x0001802eeba0();
+        Function_bcb0dca9();
     }
-    
     return;
 }
-
 /**
  * 初始化渲染队列头节点
- * 
+ *
  * @param queue_header 队列头指针
  * @param queue_source 队列源指针
  * @return 初始化后的队列头指针
@@ -597,7 +540,6 @@ expand_render_queue:
 int64_t* initialize_render_queue_header(int64_t* queue_header, int64_t* queue_source)
 {
     int64_t* source_ptr;
-    
     source_ptr = (int64_t*)*queue_source;
     *queue_header = (int64_t)source_ptr;
     if (source_ptr != (int64_t*)0x0) {
@@ -606,12 +548,11 @@ int64_t* initialize_render_queue_header(int64_t* queue_header, int64_t* queue_so
     *(int*)(queue_header + 1) = (int)queue_source[1];
     return queue_header;
 }
-
 /**
  * 清理渲染对象资源
- * 
+ *
  * 该函数负责清理指定渲染上下文中的所有对象资源
- * 
+ *
  * @param render_context 渲染上下文指针
  */
 void cleanup_render_object_resources(int64_t render_context)
@@ -619,23 +560,21 @@ void cleanup_render_object_resources(int64_t render_context)
     int object_count;
     int64_t resource_offset;
     int64_t resource_limit;
-    
     object_count = (int)(*(int64_t*)(render_context + 0x40) - *(int64_t*)(render_context + 0x38) >> 4);
     resource_limit = (int64_t)object_count;
     if (0 < object_count) {
         resource_offset = 0;
         do {
-            FUN_180075ff0(*(uint64_t*)(resource_offset + *(int64_t*)(render_context + 0x38)));
+            function_075ff0(*(uint64_t*)(resource_offset + *(int64_t*)(render_context + 0x38)));
             resource_offset = resource_offset + 0x10;
             resource_limit = resource_limit + -1;
         } while (resource_limit != 0);
     }
     return;
 }
-
 /**
  * 批量清理渲染资源
- * 
+ *
  * 该函数负责批量清理渲染系统中的资源
  */
 void batch_cleanup_render_resources(void)
@@ -643,35 +582,32 @@ void batch_cleanup_render_resources(void)
     int64_t resource_index;
     int64_t resource_count;
     int64_t resource_total;
-    
     resource_index = 0;
     do {
-        FUN_180075ff0(*(uint64_t*)(resource_index + *(int64_t*)(resource_count + 0x38)));
+        function_075ff0(*(uint64_t*)(resource_index + *(int64_t*)(resource_count + 0x38)));
         resource_index = resource_index + 0x10;
         resource_total = resource_total + -1;
     } while (resource_total != 0);
     return;
 }
-
 /**
  * 空渲染函数（占位符）
- * 
+ *
  * 该函数为空函数，用于系统初始化时的占位符
  */
 void empty_render_function(void)
 {
     return;
 }
-
 /**
  * 高级渲染处理函数
- * 
+ *
  * 该函数负责高级渲染处理，包括：
  * 1. 材质系统处理
  * 2. 光照计算
  * 3. 阴影渲染
  * 4. 后处理效果
- * 
+ *
  * @param render_target 渲染目标
  * @param material_data 材质数据
  * @param render_params 渲染参数
@@ -704,18 +640,16 @@ void advanced_render_processing(int64_t render_target, uint64_t material_data, i
     int32_t batch_size;
     int8_t render_buffer[72];
     uint64_t checksum;
-    
     render_mode = 0xfffffffffffffffe;
     checksum = GET_SECURITY_COOKIE() ^ (uint64_t)material_buffer;
     material_hash = 0;
-    
-    // 材质系统处理
+// 材质系统处理
     if (0 < *(int*)(render_params + 0xc0)) {
         texture_handle = RenderingSystem_VertexProcessor(system_resource_state, render_params + 0xb0, 0);
         material_system = render_system_data_material;
         if (texture_handle != 0) {
             if (*(float*)(render_params + 0x1b8) <= -1.0) {
-                FUN_180275a60(texture_handle, render_target, 1);
+                RenderingSystem_275A60(texture_handle, render_target, 1);
             }
             else {
                 batch_count = (int)*(float*)(render_params + 0x1b8);
@@ -724,7 +658,6 @@ void advanced_render_processing(int64_t render_target, uint64_t material_data, i
                 if (material_flags != 0) {
                     __Throw_C_error_std__YAXH_Z(material_flags);
                 }
-                
                 render_cache = material_system[10];
                 texture_hash = ((int64_t)material_system[0xb] - (int64_t)render_cache) / 0x18;
                 if (texture_hash != 0) {
@@ -732,7 +665,7 @@ void advanced_render_processing(int64_t render_target, uint64_t material_data, i
                     frame_hash = material_hash;
                     do {
                         if ((material_cache[-1] == texture_handle) && ((int)*material_cache == batch_count)) {
-                            FUN_180275a60(render_cache[(int64_t)(int)frame_hash * 3], render_target,
+                            RenderingSystem_275A60(render_cache[(int64_t)(int)frame_hash * 3], render_target,
                                           CONCAT71((int7)(frame_hash >> 8), 1));
                             material_flags = _Mtx_unlock(material_system);
                             if (material_flags != 0) {
@@ -745,14 +678,12 @@ void advanced_render_processing(int64_t render_target, uint64_t material_data, i
                         material_cache = material_cache + 3;
                     } while ((uint64_t)(int64_t)(int)material_index < texture_hash);
                 }
-                
                 material_flags = _Mtx_unlock(material_system);
                 if (material_flags != 0) {
                     __Throw_C_error_std__YAXH_Z(material_flags);
                 }
-                
-                texture_ptr = (uint64_t*)FUN_1801940f0(material_system, &light_cache, texture_handle, batch_count);
-                FUN_180275a60(*texture_ptr, render_target, 1);
+                texture_ptr = (uint64_t*)function_1940f0(material_system, &light_cache, texture_handle, batch_count);
+                RenderingSystem_275A60(*texture_ptr, render_target, 1);
                 if (light_cache != (int64_t*)0x0) {
                     (**(code**)(*light_cache + 0x38))();
                 }
@@ -760,28 +691,26 @@ void advanced_render_processing(int64_t render_target, uint64_t material_data, i
             goto material_processing_complete;
         }
     }
-    
-    // 光照和阴影处理
+// 光照和阴影处理
     camera_distance = *(int64_t*)(render_params + 0x98) - *(int64_t*)(render_params + 0x90);
     batch_count = (int)(camera_distance >> 0x3f);
     material_flags = (int)(camera_distance / 0x1a0) + batch_count;
     texture_hash = material_hash;
     frame_hash = material_hash;
-    
     if (material_flags != batch_count) {
         do {
             texture_handle = *(int64_t*)(render_params + 0x90);
             render_flags = (int)frame_hash;
             if (*(int*)(texture_hash + 0x70 + texture_handle) == 0) {
                 frame_counter = 0;
-                FUN_1800b32c0(system_resource_state, &shadow_cache, (int64_t)render_flags * 0x1a0 + texture_handle, 1);
+                function_0b32c0(system_resource_state, &shadow_cache, (int64_t)render_flags * 0x1a0 + texture_handle, 1);
                 SystemCore_BufferManager(shadow_cache, &texture_cache);
                 material_system = &shader_cache;
                 shader_cache = texture_cache;
                 if (texture_cache != (int64_t*)0x0) {
                     (**(code**)(*texture_cache + 0x28))();
                 }
-                FUN_180275e10(render_target, *(int32_t*)(texture_hash + 0x58 + *(int64_t*)(render_params + 0x90)),
+                function_275e10(render_target, *(int32_t*)(texture_hash + 0x58 + *(int64_t*)(render_params + 0x90)),
                               &shader_cache, 1);
                 render_cache = shadow_cache;
                 if (texture_cache != (int64_t*)0x0) {
@@ -790,27 +719,24 @@ void advanced_render_processing(int64_t render_target, uint64_t material_data, i
                 }
             }
             else {
-                material_key = FUN_180334930(material_data, (int64_t)render_flags * 0x1a0 + texture_handle);
+                material_key = function_334930(material_data, (int64_t)render_flags * 0x1a0 + texture_handle);
                 SystemCore_BufferManager(material_key, &texture_cache);
                 material_system = &light_cache;
                 light_cache = texture_cache;
                 if (texture_cache != (int64_t*)0x0) {
                     (**(code**)(*texture_cache + 0x28))();
                 }
-                FUN_180275e10(render_target, *(int32_t*)(texture_hash + 0x58 + *(int64_t*)(render_params + 0x90)),
+                function_275e10(render_target, *(int32_t*)(texture_hash + 0x58 + *(int64_t*)(render_params + 0x90)),
                               &light_cache, 1);
                 render_cache = texture_cache;
             }
-            
             if (render_cache != (int64_t*)0x0) {
                 (**(code**)(*render_cache + 0x38))();
             }
-            
             texture_hash = texture_hash + 0x1a0;
             frame_hash = (uint64_t)(render_flags + 1U);
         } while (render_flags + 1U < (uint)(material_flags - batch_count));
     }
-    
 material_processing_complete:
     texture_handle = *(int64_t*)(render_target + 0x38);
     if (*(int64_t*)(render_target + 0x40) - texture_handle >> 4 != 0) {
@@ -818,7 +744,7 @@ material_processing_complete:
             camera_distance = material_hash * 0x1a0 + *(int64_t*)(render_params + 0x90);
             texture_handle = *(int64_t*)(texture_handle + material_hash * 0x10);
             if ((*(uint*)(camera_distance + 0x5c) >> 8 & 1) != 0) {
-                FUN_18022cb40(*(uint64_t*)(texture_handle + 0x1b8), &shader_cache);
+                function_22cb40(*(uint64_t*)(texture_handle + 0x1b8), &shader_cache);
                 render_cache = shader_cache;
                 render_state = &memory_allocator_3480_ptr;
                 material_state = render_buffer;
@@ -827,7 +753,7 @@ material_processing_complete:
                 strcpy_s(render_buffer, 0x40, &system_buffer_d580);
                 texture_hash = SystemCore_LoggingSystem0(render_cache[0x3c], &render_state, 0);
                 render_cache[0x28] = render_cache[0x28] | texture_hash;
-                FUN_18022dd60(render_cache);
+                function_22dd60(render_cache);
                 *(int16_t*)(render_cache + 0x78) = 0xffff;
                 render_state = &system_state_ptr;
                 UltraHighFreq_SecurityValidator1(texture_handle, &shader_cache);
@@ -835,52 +761,42 @@ material_processing_complete:
                     (**(code**)(*shader_cache + 0x38))();
                 }
             }
-            
             *(byte*)(texture_handle + 0xfd) = *(byte*)(texture_handle + 0xfd) | 1;
             *(int64_t*)(camera_distance + 400) = texture_handle;
             material_hash = (uint64_t)((int)material_hash + 1);
             texture_handle = *(int64_t*)(render_target + 0x38);
         } while (material_hash < (uint64_t)(*(int64_t*)(render_target + 0x40) - texture_handle >> 4));
     }
-    
     *(int32_t*)(render_target + 0x318) = *(int32_t*)(render_params + 0x1bc);
     LOCK();
     *(int32_t*)(render_target + 0x310) = *(int32_t*)(render_params + 0x1c0);
     UNLOCK();
-    
-    // 错误处理和清理
+// 错误处理和清理
     SystemSecurityChecker(checksum ^ (uint64_t)material_buffer);
 }
-
 //============================================================================
 // 全局变量声明
 //============================================================================
-
 // 渲染系统全局数据
 static uint64_t GET_SECURITY_COOKIE() = 0;        // 渲染系统数据指针
 static uint64_t system_resource_state = 0;        // 材质系统数据指针
 static uint64_t render_system_data_material = 0;        // 材质缓存系统指针
 static uint64_t system_memory_pool_ptr = 0;        // 渲染队列系统指针
-
 // 渲染系统字符串常量
 static char system_buffer_d580[64] = "RenderSystem_v1.0";  // 渲染系统版本字符串
-
 // 渲染系统函数指针
 static code rendering_buffer_2528_ptr = {0};              // 默认渲染函数
 static code processed_var_6368_ptr = {0};              // 渲染上下文更新函数
 static uint64_t memory_allocator_3480_ptr = 0;           // 渲染状态指针
 static uint64_t system_state_ptr = 0;           // 纹理状态指针
-
 //============================================================================
 // 函数别名定义（为了保持与原始代码的兼容性）
 //============================================================================
-
-#define process_render_object_transformations FUN_180280ab8
-#define apply_render_matrix_transformations FUN_180280ad0
-#define initialize_render_queue_header FUN_180280fd0
-#define cleanup_render_object_resources FUN_180281020
-#define batch_cleanup_render_resources FUN_180281040
-#define empty_render_function FUN_18028106c
-#define advanced_render_processing FUN_180281080
-
+#define process_render_object_transformations function_280ab8
+#define apply_render_matrix_transformations function_280ad0
+#define initialize_render_queue_header function_280fd0
+#define cleanup_render_object_resources function_281020
+#define batch_cleanup_render_resources function_281040
+#define empty_render_function function_28106c
+#define advanced_render_processing function_281080
 //============================================================================

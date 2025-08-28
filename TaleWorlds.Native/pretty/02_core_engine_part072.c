@@ -1,40 +1,31 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 02_core_engine_part072.c - 1 个函数
-
-// 函数: void FUN_180104cb0(int64_t param_1,int64_t param_2)
-void FUN_180104cb0(int64_t param_1,int64_t param_2)
-
+// 函数: void function_104cb0(int64_t param_1,int64_t param_2)
+void function_104cb0(int64_t param_1,int64_t param_2)
 {
-  void *puStack_30;
+  void *plocal_var_30;
   int64_t lStack_28;
   int iStack_20;
-  uint64_t uStack_18;
-  
-  puStack_30 = (void *)0x180104cd3;
-  FUN_1800aec40(param_1,param_2,&processed_var_7832_ptr,param_1 + 0x4d0);
-  puStack_30 = &system_data_buffer_ptr;
-  uStack_18 = 0;
+  uint64_t local_var_18;
+  plocal_var_30 = (void *)0x180104cd3;
+  function_0aec40(param_1,param_2,&processed_var_7832_ptr,param_1 + 0x4d0);
+  plocal_var_30 = &system_data_buffer_ptr;
+  local_var_18 = 0;
   lStack_28 = 0;
   iStack_20 = 0;
-  System_DataHandler(&puStack_30,&processed_var_7208_ptr,&processed_var_7856_ptr,*(int32_t *)(param_1 + 0x5b0),
+  System_DataHandler(&plocal_var_30,&processed_var_7208_ptr,&processed_var_7856_ptr,*(int32_t *)(param_1 + 0x5b0),
                 0xfffffffffffffffe);
   fwrite(lStack_28,1,(int64_t)iStack_20,*(uint64_t *)(param_2 + 8));
-  puStack_30 = &system_data_buffer_ptr;
+  plocal_var_30 = &system_data_buffer_ptr;
   if (lStack_28 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int FUN_180104d00(void)
-
+int function_104d00(void)
 {
   bool bVar1;
   int iVar2;
@@ -43,7 +34,6 @@ int FUN_180104d00(void)
   int iVar5;
   int iVar6;
   int iVar7;
-  
   iVar3 = 1;
   iVar5 = *(int *)(SYSTEM_STATE_MANAGER + 0xe0);
   iVar7 = 2;
@@ -535,8 +525,3 @@ LAB_1801055b6:
   }
   return iVar4;
 }
-
-
-
-
-

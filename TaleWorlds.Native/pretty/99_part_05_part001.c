@@ -1,15 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_05_part001.c - 5 个函数
-
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_05.c - 500 个函数
-
-
-// 函数: void FUN_1802d4760(int64_t param_1,int64_t param_2,int param_3,float *param_4)
-void FUN_1802d4760(int64_t param_1,int64_t param_2,int param_3,float *param_4)
-
+// 函数: void function_2d4760(int64_t param_1,int64_t param_2,int param_3,float *param_4)
+void function_2d4760(int64_t param_1,int64_t param_2,int param_3,float *param_4)
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -57,7 +51,6 @@ void FUN_1802d4760(int64_t param_1,int64_t param_2,int param_3,float *param_4)
   float fVar44;
   float fVar45;
   float fStack_ec;
-  
   lVar6 = *(int64_t *)(param_2 + 0x48);
   lVar26 = *(int64_t *)(*(int64_t *)(param_1 + 0x310) + 0x10);
   uVar4 = *(uint *)(lVar6 + 0x68);
@@ -69,7 +62,7 @@ void FUN_1802d4760(int64_t param_1,int64_t param_2,int param_3,float *param_4)
   }
   lVar37 = (int64_t)(int)((*(int64_t *)(param_2 + 0x60) - *(int64_t *)(param_2 + 0x58)) / 0x70);
   plVar1 = (int64_t *)(param_2 + 0xf8);
-  FUN_1802ab620(plVar1,lVar37);
+  function_2ab620(plVar1,lVar37);
   lVar21 = *(int64_t *)(param_2 + 0x138) - *(int64_t *)(param_2 + 0x130);
   lVar22 = lVar21 >> 0x3f;
   if (lVar21 / 0xc + lVar22 == lVar22) {
@@ -139,13 +132,13 @@ void FUN_1802d4760(int64_t param_1,int64_t param_2,int param_3,float *param_4)
       for (lVar22 = lVar21; lVar22 != 0; lVar22 = lVar22 >> 1) {
         iVar23 = iVar23 + 1;
       }
-      FUN_1802da5e0(puVar34,puVar10,(int64_t)(iVar23 + -1) * 2,0);
+      function_2da5e0(puVar34,puVar10,(int64_t)(iVar23 + -1) * 2,0);
       if (lVar21 < 0x1d) {
-        func_0x0001802d9f80(puVar34,puVar10);
+        Function_f6b1146f(puVar34,puVar10);
       }
       else {
         puVar28 = puVar34 + 0x1c;
-        func_0x0001802d9f80(puVar34,puVar28);
+        Function_f6b1146f(puVar34,puVar28);
         if (puVar28 != puVar10) {
           puVar34 = puVar34 + 0x1b;
           do {
@@ -187,13 +180,13 @@ void FUN_1802d4760(int64_t param_1,int64_t param_2,int param_3,float *param_4)
       for (lVar22 = lVar21; lVar22 != 0; lVar22 = lVar22 >> 1) {
         iVar23 = iVar23 + 1;
       }
-      FUN_1802da450(puVar33,puVar7,(int64_t)(iVar23 + -1) * 2,param_2);
+      function_2da450(puVar33,puVar7,(int64_t)(iVar23 + -1) * 2,param_2);
       if (lVar21 < 0x1d) {
-        FUN_1802d9ee0(puVar33,puVar7,param_2);
+        function_2d9ee0(puVar33,puVar7,param_2);
       }
       else {
         puVar27 = puVar33 + 0x1c;
-        FUN_1802d9ee0(puVar33,puVar27,param_2);
+        function_2d9ee0(puVar33,puVar27,param_2);
         for (; puVar27 != puVar7; puVar27 = puVar27 + 1) {
           puVar33 = puVar27 + -1;
           uVar18 = *puVar27;
@@ -398,15 +391,8 @@ void FUN_1802d4760(int64_t param_1,int64_t param_2,int param_3,float *param_4)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802d4c41(int64_t param_1)
-void FUN_1802d4c41(int64_t param_1)
-
+// 函数: void function_2d4c41(int64_t param_1)
+void function_2d4c41(int64_t param_1)
 {
   short sVar1;
   float fVar2;
@@ -444,9 +430,8 @@ void FUN_1802d4c41(int64_t param_1)
   float fVar27;
   char cStackX_20;
   char cStackX_24;
-  char in_stack_00000128;
-  char in_stack_00000130;
-  
+  char local_var_128;
+  char local_var_130;
   iVar15 = (int)unaff_R14 + 0x31;
   pfVar14 = (float *)(param_1 + unaff_RBX * 8);
   do {
@@ -574,8 +559,8 @@ void FUN_1802d4c41(int64_t param_1)
       uVar12 = uVar16;
     }
     pfVar14[6] = (float)(((uVar18 << 8 | uVar7) << 8 | uVar11) << 8 | uVar12);
-    if ((in_stack_00000128 == '\0') || (in_stack_00000130 == '\0')) {
-      if ((cStackX_24 == '\0') || (in_stack_00000130 == '\0')) {
+    if ((local_var_128 == '\0') || (local_var_130 == '\0')) {
+      if ((cStackX_24 == '\0') || (local_var_130 == '\0')) {
         pfVar14[2] = 0.0;
         fVar21 = 0.0;
       }
@@ -628,27 +613,13 @@ void FUN_1802d4c41(int64_t param_1)
   } while (unaff_R14 < unaff_R13);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802d51cb(void)
-void FUN_1802d51cb(void)
-
+// 函数: void function_2d51cb(void)
+void function_2d51cb(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802d51f0(int64_t param_1,int64_t param_2,uint param_3)
-void FUN_1802d51f0(int64_t param_1,int64_t param_2,uint param_3)
-
+// 函数: void function_2d51f0(int64_t param_1,int64_t param_2,uint param_3)
+void function_2d51f0(int64_t param_1,int64_t param_2,uint param_3)
 {
   uint uVar1;
   int iVar2;
@@ -686,9 +657,8 @@ void FUN_1802d51f0(int64_t param_1,int64_t param_2,uint param_3)
   float fVar34;
   float fVar35;
   float fVar36;
-  uint uStackX_18;
+  uint stack_special_x_18;
   int64_t lStack_100;
-  
   lVar4 = *(int64_t *)(param_2 + 0x48);
   uVar25 = (uint64_t)(int)param_3;
   iVar11 = (int)((*(int64_t *)(param_2 + 0x60) - *(int64_t *)(param_2 + 0x58)) / 0x70);
@@ -709,7 +679,7 @@ void FUN_1802d51f0(int64_t param_1,int64_t param_2,uint param_3)
   lStack_100 = (int64_t)iVar11;
   if (0 < iVar11) {
     lVar27 = 0;
-    uStackX_18 = param_3;
+    stack_special_x_18 = param_3;
     do {
       fVar29 = 49.0;
       lVar5 = *(int64_t *)(param_2 + 0x58);
@@ -753,7 +723,7 @@ void FUN_1802d51f0(int64_t param_1,int64_t param_2,uint param_3)
       pfVar26[10] = fVar30 * 60.0;
       fVar32 = *(float *)(lVar27 + 0x20 + lVar5);
       fVar30 = *(float *)(lVar27 + 0x24 + lVar5);
-      FUN_1802cf260(param_1 + 0x58,uVar25 & 0xffffffff,pfVar26,
+      function_2cf260(param_1 + 0x58,uVar25 & 0xffffffff,pfVar26,
                     fVar36 * *(float *)(lVar27 + 0x2c + lVar5),
                     ((uint64_t)uVar3 << 0x10 | (int64_t)iVar2) << 0x20,puVar21,puVar20,pbVar19);
       fVar29 = fVar30 * fVar29;
@@ -890,16 +860,10 @@ void FUN_1802d51f0(int64_t param_1,int64_t param_2,uint param_3)
       lVar27 = lVar27 + 0x70;
       pfVar26[5] = fVar29;
       pfVar26 = pfVar26 + 0x12;
-      uStackX_18 = uStackX_18 + 1;
-      uVar25 = (uint64_t)uStackX_18;
+      stack_special_x_18 = stack_special_x_18 + 1;
+      uVar25 = (uint64_t)stack_special_x_18;
       lStack_100 = lStack_100 + -1;
     } while (lStack_100 != 0);
   }
   return;
 }
-
-
-
-
-
-

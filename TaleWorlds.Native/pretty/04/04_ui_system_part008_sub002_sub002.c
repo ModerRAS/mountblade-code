@@ -1,23 +1,18 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 04_ui_system_part008_sub002_sub002.c - UI系统高级数据结构和碰撞检测模块
-// 
 // 该文件包含UI系统高级数据结构处理、碰撞检测和几何计算功能
 // 主要涉及复杂数据结构管理、碰撞检测算法、几何变换和坐标计算
-// 
 // 模块功能：
 // - UI系统高级数据结构处理
 // - 碰撞检测和几何计算
 // - 坐标变换和矩阵运算
 // - 高级数据处理和优化
-// 
 // 技术特点：
 // - 高性能碰撞检测算法
 // - 精确的几何计算
 // - 优化的数据结构操作
 // - 复杂的坐标变换
-// 
 // 主要函数：
 // - ui_system_advanced_data_structure_processor: 高级数据结构处理器
 // - ui_system_collision_detection_processor: 碰撞检测处理器
@@ -25,7 +20,6 @@
 // - ui_system_coordinate_transformer: 坐标变换器
 // - ui_system_advanced_collision_detector: 高级碰撞检测器
 // - ui_system_collision_result_processor: 碰撞结果处理器
-
 // 常量定义
 #define UI_SYSTEM_MAX_COLLISION_ITERATIONS 1000
 #define UI_SYSTEM_COLLISION_TOLERANCE 1e-05f
@@ -33,45 +27,41 @@
 #define UI_SYSTEM_MIN_FLOAT_VALUE -3.4028235e+38f
 #define UI_SYSTEM_DEFAULT_ALIGNMENT 16
 #define UI_SYSTEM_MEMORY_POOL_SIZE 0xfffffffffffffffeULL
-
 // 函数别名定义
-#define ui_system_advanced_data_structure_processor FUN_1806587d0
-#define ui_system_collision_detection_processor FUN_180658a60
-#define ui_system_geometric_calculation_engine FUN_180658ccb
-#define ui_system_coordinate_transformer FUN_180658d13
-#define ui_system_advanced_collision_detector FUN_180658f54
-#define ui_system_collision_result_processor FUN_1806590e5
-#define ui_system_collision_validation_helper FUN_180659163
-
+#define ui_system_advanced_data_structure_processor UtilitiesSystem_587d0
+#define ui_system_collision_detection_processor UtilitiesSystem_58a60
+#define ui_system_geometric_calculation_engine UtilitiesSystem_58ccb
+#define ui_system_coordinate_transformer UtilitiesSystem_58d13
+#define ui_system_advanced_collision_detector UtilitiesSystem_58f54
+#define ui_system_collision_result_processor UtilitiesSystem_590e5
+#define ui_system_collision_validation_helper UtilitiesSystem_59163
 // 外部函数声明
 extern uint64_t CoreEngineMemoryPoolAllocator(uint64_t *param_1, int64_t param_2, int param_3, int64_t *param_4, uint64_t param_5);
-extern void FUN_180640330(uint64_t *param_1, uint64_t *param_2);
-extern void FUN_18063efb0(int64_t *param_1, uint64_t **param_2, int param_3, int param_4);
-extern void FUN_18033a920(int64_t *param_1);
-extern void FUN_1806457f0(int32_t *param_1, int32_t *param_2, float *param_3, float *param_4, float *param_5);
-extern char FUN_18063e7e0(int64_t *param_1, uint64_t *param_2);
+extern void UtilitiesSystem_40330(uint64_t *param_1, uint64_t *param_2);
+extern void UtilitiesSystem_3efb0(int64_t *param_1, uint64_t **param_2, int param_3, int param_4);
+extern void RenderingSystem_3a920(int64_t *param_1);
+extern void UtilitiesSystem_457f0(int32_t *param_1, int32_t *param_2, float *param_3, float *param_4, float *param_5);
+extern char UtilitiesSystem_3e7e0(int64_t *param_1, uint64_t *param_2);
 extern void CoreEngineMemoryPoolCleaner(uint64_t *param_1);
-
 // 全局变量引用
 #define GLOBAL_MEMORY_POOL system_memory_pool_ptr
-
 /**
  * UI系统高级数据结构处理器
- * 
+ *
  * 功能：处理UI系统高级数据结构，包括数据复制、内存管理和结构优化
  * 支持动态内存分配、数据结构扩展和批量处理操作
- * 
+ *
  * @param param_1 目标数据结构指针，用于存储处理后的数据
  * @param param_2 源数据结构指针，包含要处理的数据
  * @param param_3 数据块指针，包含额外的数据信息
- * 
+ *
  * 处理流程：
  * 1. 复制源数据到目标结构
  * 2. 处理数据块信息
  * 3. 动态分配内存池
  * 4. 批量处理数据元素
  * 5. 清理临时资源
- * 
+ *
  * 性能特点：
  * - 支持大数据量处理
  * - 内存使用优化
@@ -92,18 +82,16 @@ void ui_system_advanced_data_structure_processor(int64_t *param_1, int64_t *para
     uint64_t *puVar11;
     uint uVar12;
     int64_t lStackX_8;
-    uint64_t uStackX_18;
+    uint64_t stack_special_x_18;
     uint64_t uVar13;
-    uint64_t *puStack_60;
-    uint64_t *puStack_58;
-    uint64_t *puStack_50;
-    int32_t uStack_48;
-    
-    // 初始化内存管理参数
+    uint64_t *plocal_var_60;
+    uint64_t *plocal_var_58;
+    uint64_t *plocal_var_50;
+    int32_t local_var_48;
+// 初始化内存管理参数
     uVar13 = UI_SYSTEM_MEMORY_POOL_SIZE;
     lVar5 = param_2[1];
-    
-    // 复制基础数据结构
+// 复制基础数据结构
     param_1[9] = *param_2;
     param_1[10] = lVar5;
     lVar5 = param_2[3];
@@ -112,8 +100,7 @@ void ui_system_advanced_data_structure_processor(int64_t *param_1, int64_t *para
     lVar5 = param_2[5];
     param_1[0xd] = param_2[4];
     param_1[0xe] = lVar5;
-    
-    // 复制属性数据
+// 复制属性数据
     uVar1 = *(int32_t *)((int64_t)param_2 + 0x34);
     lVar5 = param_2[7];
     uVar2 = *(int32_t *)((int64_t)param_2 + 0x3c);
@@ -121,42 +108,38 @@ void ui_system_advanced_data_structure_processor(int64_t *param_1, int64_t *para
     *(int32_t *)((int64_t)param_1 + 0x7c) = uVar1;
     *(int *)(param_1 + 0x10) = (int)lVar5;
     *(int32_t *)((int64_t)param_1 + 0x84) = uVar2;
-    
-    // 计算数据块大小
+// 计算数据块大小
     lVar5 = param_3[1] - *param_3 >> 4;
-    puStack_60 = (uint64_t *)0x0;
-    puStack_58 = (uint64_t *)0x0;
+    plocal_var_60 = (uint64_t *)0x0;
+    plocal_var_58 = (uint64_t *)0x0;
     puVar9 = (uint64_t *)0x0;
-    puStack_50 = (uint64_t *)0x0;
-    uStack_48 = 3;
+    plocal_var_50 = (uint64_t *)0x0;
+    local_var_48 = 3;
     iVar4 = (int)lVar5;
     lStackX_8 = (int64_t)iVar4;
-    
-    // 分配内存池
+// 分配内存池
     if (iVar4 != 0) {
-        puStack_58 = (uint64_t *)CoreEngineMemoryPoolAllocator(GLOBAL_MEMORY_POOL, lStackX_8 * 8,
+        plocal_var_58 = (uint64_t *)CoreEngineMemoryPoolAllocator(GLOBAL_MEMORY_POOL, lStackX_8 * 8,
                                                    CONCAT71((int7)(int3)((uint64_t)lVar5 >> 8), 3), param_3,
                                                    UI_SYSTEM_MEMORY_POOL_SIZE);
-        puStack_50 = puStack_58 + lStackX_8;
+        plocal_var_50 = plocal_var_58 + lStackX_8;
     }
-    
-    // 处理数据元素
-    puVar8 = puStack_50;
-    puVar7 = puStack_58;
-    puVar10 = puStack_58;
+// 处理数据元素
+    puVar8 = plocal_var_50;
+    puVar7 = plocal_var_58;
+    puVar10 = plocal_var_58;
     puVar11 = puVar9;
-    puStack_60 = puStack_58;
-    
+    plocal_var_60 = plocal_var_58;
     if (0 < lStackX_8) {
         do {
-            puVar3 = puStack_58;
+            puVar3 = plocal_var_58;
             lVar5 = *param_3;
-            if (puStack_58 < puVar8) {
-                *puStack_58 = *(uint64_t *)((int64_t)puVar11 + lVar5);
+            if (plocal_var_58 < puVar8) {
+                *plocal_var_58 = *(uint64_t *)((int64_t)puVar11 + lVar5);
                 puVar7 = puVar10;
             }
             else {
-                lVar6 = (int64_t)puStack_58 - (int64_t)puVar10 >> 3;
+                lVar6 = (int64_t)plocal_var_58 - (int64_t)puVar10 >> 3;
                 if (lVar6 == 0) {
                     lVar6 = 1;
 LAB_1806588f2:
@@ -169,69 +152,65 @@ LAB_1806588f2:
                     if (lVar6 != 0) goto LAB_1806588f2;
                 }
                 if (puVar10 != puVar3) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     memmove(puVar7, puVar10, (int64_t)puVar3 - (int64_t)puVar10);
                 }
                 *puVar7 = *(uint64_t *)((int64_t)puVar11 + lVar5);
                 if (puVar10 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                     CoreEngineMemoryPoolCleaner(puVar10);
                 }
                 puVar8 = puVar7 + lVar6;
-                puStack_60 = puVar7;
-                puStack_50 = puVar8;
-                puStack_58 = puVar7;
+                plocal_var_60 = puVar7;
+                plocal_var_50 = puVar8;
+                plocal_var_58 = puVar7;
             }
-            puStack_58 = puStack_58 + 1;
+            plocal_var_58 = plocal_var_58 + 1;
             lStackX_8 = lStackX_8 + -1;
             puVar10 = puVar7;
             puVar11 = puVar11 + 2;
         } while (lStackX_8 != 0);
     }
-    
-    // 最终处理和清理
-    lVar5 = (int64_t)puStack_58 - (int64_t)puVar7;
-    FUN_180640330(puVar7, puStack_58);
-    FUN_18063efb0(param_1, &puStack_60, lVar5 >> 3 & 0xffffffff, 1);
-    FUN_18033a920(param_1 + 0x11);
-    
-    // 复制处理后的数据
+// 最终处理和清理
+    lVar5 = (int64_t)plocal_var_58 - (int64_t)puVar7;
+    UtilitiesSystem_40330(puVar7, plocal_var_58);
+    UtilitiesSystem_3efb0(param_1, &plocal_var_60, lVar5 >> 3 & 0xffffffff, 1);
+    RenderingSystem_3a920(param_1 + 0x11);
+// 复制处理后的数据
     puVar8 = puVar9;
     if (param_1[1] - *param_1 >> 3 != 0) {
         do {
-            uStackX_18 = CONCAT44(*(int32_t *)((int64_t)puVar9 + *param_1 + 4),
+            stack_special_x_18 = CONCAT44(*(int32_t *)((int64_t)puVar9 + *param_1 + 4),
                                   *(int32_t *)((int64_t)puVar9 + *param_1));
-            *(uint64_t *)((int64_t)puVar9 + param_1[0x11]) = uStackX_18;
+            *(uint64_t *)((int64_t)puVar9 + param_1[0x11]) = stack_special_x_18;
             uVar12 = (int)puVar8 + 1;
             puVar9 = puVar9 + 1;
             puVar8 = (uint64_t *)(uint64_t)uVar12;
         } while ((uint64_t)(int64_t)(int)uVar12 < (uint64_t)(param_1[1] - *param_1 >> 3));
     }
-    
-    // 清理资源
+// 清理资源
     if (puVar7 == (uint64_t *)0x0) {
         return;
     }
-    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner(puVar7);
 }
-
 /**
  * UI系统碰撞检测处理器
- * 
+ *
  * 功能：执行高级碰撞检测计算，包括几何变换、距离计算和碰撞响应
  * 支持多种几何形状的碰撞检测和精确的碰撞点计算
- * 
+ *
  * @param param_1 UI系统上下文指针，包含变换矩阵和几何数据
  * @param param_2 输入几何数据指针，包含顶点坐标和变换参数
  * @param param_3 目标几何数据指针，包含碰撞检测目标
  * @param param_4 输出结果指针，用于存储碰撞检测结果
  * @param param_5 碰撞检测标志，控制检测算法和精度
- * 
+ *
  * 返回值：
  * - 1: 检测到碰撞
  * - 0: 未检测到碰撞
- * 
+ *
  * 算法特点：
  * - 支持凸包碰撞检测
  * - 精确的碰撞点计算
@@ -276,7 +255,7 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
     float fVar34;
     float fVar35;
     float fVar36;
-    uint64_t uStackX_8;
+    uint64_t stack_special_x_8;
     float fStackX_10;
     float fStackX_14;
     float fStackX_18;
@@ -292,25 +271,25 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
     float fStack_1ac;
     int64_t lStack_1a8;
     int64_t lStack_1a0;
-    int32_t uStack_198;
-    int32_t uStack_194;
-    int32_t uStack_190;
-    int32_t uStack_18c;
-    int32_t uStack_188;
-    int32_t uStack_184;
-    int32_t uStack_180;
-    int32_t uStack_17c;
+    int32_t local_var_198;
+    int32_t local_var_194;
+    int32_t local_var_190;
+    int32_t local_var_18c;
+    int32_t local_var_188;
+    int32_t local_var_184;
+    int32_t local_var_180;
+    int32_t local_var_17c;
     float fStack_178;
     float fStack_174;
     float fStack_170;
-    int32_t uStack_168;
-    int32_t uStack_164;
-    int32_t uStack_160;
-    int32_t uStack_15c;
-    int32_t uStack_158;
-    int32_t uStack_154;
-    int32_t uStack_150;
-    int32_t uStack_14c;
+    int32_t local_var_168;
+    int32_t local_var_164;
+    int32_t local_var_160;
+    int32_t local_var_15c;
+    int32_t local_var_158;
+    int32_t local_var_154;
+    int32_t local_var_150;
+    int32_t local_var_14c;
     float fStack_148;
     float fStack_144;
     float fStack_140;
@@ -332,8 +311,7 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
     float fStack_f4;
     float fStack_f0;
     float fStack_ec;
-    
-    // 加载输入几何数据
+// 加载输入几何数据
     fVar31 = *param_2;
     fVar32 = param_2[1];
     fVar33 = param_2[2];
@@ -346,8 +324,7 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
     fVar10 = param_2[9];
     fVar11 = param_2[10];
     fVar12 = param_2[0xb];
-    
-    // 加载变换矩阵
+// 加载变换矩阵
     fVar1 = *(float *)(param_1 + 9);
     fVar27 = *(float *)(param_1 + 10);
     fVar25 = *(float *)((int64_t)param_1 + 0x4c);
@@ -355,33 +332,28 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
     fVar28 = *(float *)((int64_t)param_1 + 0x6c);
     fVar2 = *(float *)((int64_t)param_1 + 0x5c);
     fVar3 = *(float *)(param_1 + 0xb);
-    
-    // 执行矩阵变换计算
+// 执行矩阵变换计算
     fStack_118 = fVar25 * fVar20 + fVar1 * fVar31 + fVar27 * fVar9;
     fStack_114 = fVar25 * fVar30 + fVar1 * fVar32 + fVar27 * fVar10;
     fStack_110 = fVar25 * fVar7 + fVar1 * fVar33 + fVar27 * fVar11;
     fStack_10c = fVar25 * fVar8 + fVar1 * fVar6 + fVar27 * fVar12;
-    
     fVar1 = *(float *)(param_1 + 0xc);
     fVar27 = *(float *)(param_1 + 0xd);
     fVar34 = fVar2 * fVar20 + fVar3 * fVar31 + fVar1 * fVar9;
     fVar35 = fVar2 * fVar30 + fVar3 * fVar32 + fVar1 * fVar10;
     fVar36 = fVar2 * fVar7 + fVar3 * fVar33 + fVar1 * fVar11;
-    
     fVar25 = *(float *)(param_1 + 0xe);
     fVar29 = *(float *)(param_1 + 0xf);
     fStack_108 = fVar28 * fVar20 + fVar27 * fVar31 + fVar25 * fVar9;
     fStack_104 = fVar28 * fVar30 + fVar27 * fVar32 + fVar25 * fVar10;
     fStack_100 = fVar28 * fVar7 + fVar27 * fVar33 + fVar25 * fVar11;
     fStack_fc = fVar28 * fVar8 + fVar27 * fVar6 + fVar25 * fVar12;
-    
     fVar27 = *(float *)(param_1 + 0x10);
     fStack_f8 = fVar26 * fVar20 + fVar29 * fVar31 + fVar27 * fVar9 + param_2[0xc];
     fStack_f4 = fVar26 * fVar30 + fVar29 * fVar32 + fVar27 * fVar10 + param_2[0xd];
     fStack_f0 = fVar26 * fVar7 + fVar29 * fVar33 + fVar27 * fVar11 + param_2[0xe];
     fStack_ec = fVar26 * fVar8 + fVar29 * fVar6 + fVar27 * fVar12 + param_2[0xf];
-    
-    // 计算距离和碰撞检测
+// 计算距离和碰撞检测
     fVar25 = *param_3 - fStack_f8;
     fVar31 = param_3[1] - fStack_f4;
     fVar28 = param_3[2] - fStack_f0;
@@ -389,18 +361,15 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
     fVar29 = param_3[6] - fStack_f0;
     fVar26 = param_3[4] - fStack_f8;
     fVar33 = param_3[5] - fStack_f4;
-    
     fStack_1b8 = fVar31 * fStack_114 + fVar25 * fStack_118 + fStack_110 * fVar28;
     fStack_1b4 = fVar31 * fVar35 + fVar25 * fVar34 + fVar36 * fVar28;
     fVar32 = fVar31 * fStack_104 + fVar25 * fStack_108 + fStack_100 * fVar28;
     fStack_1ac = fVar31 * fStack_fc + fVar25 * fStack_fc + fStack_fc * fVar28;
-    
     fStack_1c8 = fVar33 * fStack_114 + fVar26 * fStack_118 + fStack_110 * fVar29;
     fStack_1c4 = fVar33 * fVar35 + fVar26 * fVar34 + fVar36 * fVar29;
     fVar25 = fVar33 * fStack_104 + fVar26 * fStack_108 + fStack_100 * fVar29;
     fStack_1bc = fVar33 * fStack_fc + fVar26 * fStack_fc + fStack_fc * fVar29;
-    
-    // 碰撞检测逻辑
+// 碰撞检测逻辑
     if (((fVar25 - fVar27) * (fVar32 + fVar27) <= 0.0) ||
         ((fVar25 + fVar27) * (fVar32 - fVar27) <= 0.0)) {
         fVar26 = UI_SYSTEM_MAX_FLOAT_VALUE;
@@ -415,46 +384,44 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
         pfStackX_20 = param_4;
         fStack_1c0 = fVar25;
         fStack_1b0 = fVar32;
-        
         if (0 < iVar18) {
             lVar4 = *param_1;
             iVar24 = 1;
-            uStack_190 = 0;
+            local_var_190 = 0;
             puVar19 = (int32_t *)(lVar4 + 4);
-            uStack_18c = 0x7f7fffff;
-            uStack_180 = 0;
-            uStack_17c = 0x7f7fffff;
-            uStack_160 = 0;
-            uStack_15c = 0x7f7fffff;
-            uStack_150 = 0;
-            uStack_14c = 0x7f7fffff;
-            uStackX_8 = param_1;
+            local_var_18c = 0x7f7fffff;
+            local_var_180 = 0;
+            local_var_17c = 0x7f7fffff;
+            local_var_160 = 0;
+            local_var_15c = 0x7f7fffff;
+            local_var_150 = 0;
+            local_var_14c = 0x7f7fffff;
+            stack_special_x_8 = param_1;
             lStack_1a8 = lStack_1a0;
             fVar29 = fStackX_18;
             fVar31 = fStackX_1c;
             fVar33 = fStackX_10;
             fVar20 = fStackX_14;
-            
             do {
-                uStack_198 = *(int32_t *)((lVar23 - lVar4) + -4 + (int64_t)puVar19);
-                uStack_194 = *(int32_t *)((lVar23 - lVar4) + (int64_t)puVar19);
+                local_var_198 = *(int32_t *)((lVar23 - lVar4) + -4 + (int64_t)puVar19);
+                local_var_194 = *(int32_t *)((lVar23 - lVar4) + (int64_t)puVar19);
                 lVar22 = (int64_t)(iVar24 % iVar18);
-                uStack_188 = *(int32_t *)(lVar23 + lVar22 * 8);
-                uStack_184 = *(int32_t *)(lVar23 + 4 + lVar22 * 8);
-                FUN_1806457f0(&uStack_188, &uStack_198, &fStack_1b8, &fStack_1c8, &fStack_138, &fStack_178);
-                uStack_164 = *puVar19;
-                uStack_154 = *(int32_t *)(lVar4 + 4 + lVar22 * 8);
+                local_var_188 = *(int32_t *)(lVar23 + lVar22 * 8);
+                local_var_184 = *(int32_t *)(lVar23 + 4 + lVar22 * 8);
+                UtilitiesSystem_457f0(&local_var_188, &local_var_198, &fStack_1b8, &fStack_1c8, &fStack_138, &fStack_178);
+                local_var_164 = *puVar19;
+                local_var_154 = *(int32_t *)(lVar4 + 4 + lVar22 * 8);
                 fVar30 = (fStack_174 - fStack_134) * (fStack_174 - fStack_134) +
                          (fStack_178 - fStack_138) * (fStack_178 - fStack_138) +
                          (fStack_170 - fStack_130) * (fStack_170 - fStack_130);
-                uStack_168 = puVar19[-1];
-                uStack_158 = *(int32_t *)(lVar4 + lVar22 * 8);
+                local_var_168 = puVar19[-1];
+                local_var_158 = *(int32_t *)(lVar4 + lVar22 * 8);
                 if (fVar30 < fVar26) {
                     fVar29 = fStack_178;
                     fVar31 = fStack_174;
                     fVar26 = fVar30;
                 }
-                FUN_1806457f0(&uStack_158, &uStack_168, &fStack_1b8, &fStack_1c8, &fStack_148, &fStack_128);
+                UtilitiesSystem_457f0(&local_var_158, &local_var_168, &fStack_1b8, &fStack_1c8, &fStack_148, &fStack_128);
                 fVar30 = (fStack_124 - fStack_144) * (fStack_124 - fStack_144) +
                          (fStack_128 - fStack_148) * (fStack_128 - fStack_148) +
                          (fStack_120 - fStack_140) * (fStack_120 - fStack_140);
@@ -468,20 +435,18 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
                 lStack_1a8 = lStack_1a8 + -1;
             } while (lStack_1a8 != 0);
             lStack_1a8 = 0;
-            param_1 = uStackX_8;
+            param_1 = stack_special_x_8;
             fStackX_18 = fVar29;
             fStackX_1c = fVar31;
             fStackX_10 = fVar33;
             fStackX_14 = fVar20;
         }
-        
         pfVar13 = pfStackX_20;
         fVar29 = fStackX_14;
         fVar28 = fStackX_10;
         lVar23 = 0;
         bVar5 = true;
         iVar24 = 0;
-        
         if (3 < lStack_1a0) {
             lVar4 = param_1[0x11];
             iVar21 = 2;
@@ -489,7 +454,6 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
             pfVar17 = (float *)(lVar4 + 0x14);
             iVar24 = (int)lVar22 * 4;
             lVar23 = lVar22 * 4;
-            
             do {
                 lVar15 = (int64_t)((iVar21 + -1) % iVar18);
                 if ((!bVar5) ||
@@ -538,7 +502,6 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
                 lVar22 = lVar22 + -1;
             } while (lVar22 != 0);
         }
-        
         if (lVar23 < lStack_1a0) {
             lVar4 = param_1[0x11];
             do {
@@ -558,7 +521,6 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
                 lVar23 = lVar23 + 1;
             } while (lVar23 < lStack_1a0);
         }
-        
         fVar31 = fVar28;
         fVar33 = fVar29;
         if (bVar5) {
@@ -581,9 +543,9 @@ uint64_t ui_system_collision_detection_processor(int64_t *param_1, float *param_
                     fVar31 = (fStack_1c8 - fStack_1b8) * (fVar32 / fVar27) + fStack_1b8;
                     fVar33 = (fStack_1c4 - fStack_1b4) * (fVar32 / fVar27) + fStack_1b4;
                 }
-                uStackX_8._0_4_ = fVar31;
-                uStackX_8._4_4_ = fVar33;
-                cVar14 = FUN_18063e7e0(param_1, &uStackX_8);
+                stack_special_x_8._0_4_ = fVar31;
+                stack_special_x_8._4_4_ = fVar33;
+                cVar14 = UtilitiesSystem_3e7e0(param_1, &stack_special_x_8);
                 if (cVar14 == '\0') {
                     fVar31 = fVar28;
                     fVar33 = fVar29;
@@ -604,19 +566,18 @@ LAB_180659172:
     }
     return uVar16;
 }
-
 /**
  * UI系统几何计算引擎
- * 
+ *
  * 功能：执行高级几何计算，包括距离计算、几何变换和碰撞验证
  * 支持复杂的几何运算和精确的数值计算
- * 
+ *
  * @param param_1 UI系统上下文指针，包含几何数据和变换参数
- * 
+ *
  * 返回值：
  * - 1: 计算成功，结果有效
  * - 0: 计算失败或结果无效
- * 
+ *
  * 计算特点：
  * - 高精度几何计算
  * - 优化的数值算法
@@ -665,18 +626,17 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
     float fStack0000000000000034;
     float fStack0000000000000040;
     float fStack0000000000000044;
-    int64_t in_stack_00000050;
+    int64_t local_buffer_50;
     int64_t lStack0000000000000058;
-    int32_t uStack0000000000000060;
-    int32_t uStack0000000000000064;
-    int32_t uStack0000000000000068;
-    int32_t uStack000000000000006c;
-    int32_t uStack0000000000000070;
-    int32_t uStack0000000000000074;
-    int32_t uStack0000000000000078;
-    int32_t uStack000000000000007c;
-    
-    // 初始化几何计算参数
+    int32_t local_buffer_60;
+    int32_t local_buffer_64;
+    int32_t local_buffer_68;
+    int32_t local_buffer_6c;
+    int32_t local_buffer_70;
+    int32_t local_buffer_74;
+    int32_t local_buffer_78;
+    int32_t local_buffer_7c;
+// 初始化几何计算参数
     fVar20 = 0.0;
     fVar21 = 0.0;
     lVar17 = param_1[0x11];
@@ -687,31 +647,29 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
     uVar14 = *(uint64_t *)(unaff_RBP + 0x42);
     unaff_RBP[0x44] = 0.0;
     unaff_RBP[0x45] = 0.0;
-    
     if (0 < iVar12) {
         lVar2 = *param_1;
         iVar18 = 1;
         uVar13 = *(uint64_t *)(unaff_RBP + 0x44);
-        uStack0000000000000068 = 0;
+        local_buffer_68 = 0;
         pfVar11 = (float *)(lVar2 + 4);
-        uStack000000000000006c = 0x7f7fffff;
-        uStack0000000000000078 = 0;
-        uStack000000000000007c = 0x7f7fffff;
+        local_buffer_6c = 0x7f7fffff;
+        local_buffer_78 = 0;
+        local_buffer_7c = 0x7f7fffff;
         unaff_RBP[-0x1a] = 0.0;
         unaff_RBP[-0x19] = UI_SYSTEM_MAX_FLOAT_VALUE;
         unaff_RBP[-0x16] = 0.0;
         unaff_RBP[-0x15] = UI_SYSTEM_MAX_FLOAT_VALUE;
         fVar21 = unaff_XMM10_Da;
         fVar20 = unaff_XMM10_Da;
-        in_stack_00000050 = lStack0000000000000058;
-        
+        local_buffer_50 = lStack0000000000000058;
         do {
-            uStack0000000000000060 = *(int32_t *)((lVar17 - lVar2) + -4 + (int64_t)pfVar11);
-            uStack0000000000000064 = *(int32_t *)((lVar17 - lVar2) + (int64_t)pfVar11);
+            local_buffer_60 = *(int32_t *)((lVar17 - lVar2) + -4 + (int64_t)pfVar11);
+            local_buffer_64 = *(int32_t *)((lVar17 - lVar2) + (int64_t)pfVar11);
             lVar16 = (int64_t)(iVar18 % iVar12);
-            uStack0000000000000070 = *(int32_t *)(lVar17 + lVar16 * 8);
-            uStack0000000000000074 = *(int32_t *)(lVar17 + 4 + lVar16 * 8);
-            FUN_1806457f0(&stack0x00000070, &stack0x00000060, &stack0x00000040, &stack0x00000030,
+            local_buffer_70 = *(int32_t *)(lVar17 + lVar16 * 8);
+            local_buffer_74 = *(int32_t *)(lVar17 + 4 + lVar16 * 8);
+            UtilitiesSystem_457f0(&local_buffer_00000070, &local_buffer_00000060, &local_buffer_00000040, &local_buffer_00000030,
                           unaff_RBP + -0x10);
             unaff_RBP[-0x1b] = *pfVar11;
             unaff_RBP[-0x17] = *(float *)(lVar2 + 4 + lVar16 * 8);
@@ -727,7 +685,7 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
             if (fVar19 < fVar21) {
                 uVar13 = *(uint64_t *)(unaff_RBP + -0x20);
             }
-            FUN_1806457f0(unaff_RBP + -0x18, unaff_RBP + -0x1c, &stack0x00000040, &stack0x00000030,
+            UtilitiesSystem_457f0(unaff_RBP + -0x18, unaff_RBP + -0x1c, &local_buffer_00000040, &local_buffer_00000030,
                           unaff_RBP + -0x14);
             fVar21 = (unaff_RBP[-0xb] - unaff_RBP[-0x13]) * (unaff_RBP[-0xb] - unaff_RBP[-0x13]) +
                      (unaff_RBP[-0xc] - unaff_RBP[-0x14]) * (unaff_RBP[-0xc] - unaff_RBP[-0x14]) +
@@ -741,10 +699,10 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
             }
             iVar18 = iVar18 + 1;
             pfVar11 = pfVar11 + 2;
-            in_stack_00000050 = in_stack_00000050 + -1;
+            local_buffer_50 = local_buffer_50 + -1;
             fVar21 = unaff_XMM10_Da;
             fVar20 = fVar19;
-        } while (in_stack_00000050 != 0);
+        } while (local_buffer_50 != 0);
         unaff_R12 = *(int64_t *)(unaff_RBP + 0x40);
         unaff_R13 = *(float **)(unaff_RBP + 0x46);
         *(uint64_t *)(unaff_RBP + 0x44) = uVar13;
@@ -753,14 +711,12 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
         *(uint64_t *)(unaff_RBP + 0x42) = uVar14;
         unaff_XMM15_Da = unaff_RBP[0x43];
         unaff_XMM14_Da = unaff_RBP[0x42];
-        in_stack_00000050 = 0;
+        local_buffer_50 = 0;
     }
-    
-    // 执行几何计算验证
+// 执行几何计算验证
     lVar17 = 0;
     bVar3 = true;
     iVar18 = 0;
-    
     if (3 < lStack0000000000000058) {
         lVar2 = *(int64_t *)(unaff_R12 + 0x88);
         iVar15 = 2;
@@ -768,7 +724,6 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
         pfVar11 = (float *)(lVar2 + 0x14);
         iVar18 = (int)lVar16 * 4;
         lVar17 = lVar16 * 4;
-        
         do {
             lVar10 = (int64_t)((iVar15 + -1) % iVar12);
             if ((!bVar3) ||
@@ -816,7 +771,6 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
             lVar16 = lVar16 + -1;
         } while (lVar16 != 0);
     }
-    
     if (lVar17 < lStack0000000000000058) {
         lVar2 = *(int64_t *)(unaff_R12 + 0x88);
         do {
@@ -835,7 +789,6 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
             lVar17 = lVar17 + 1;
         } while (lVar17 < lStack0000000000000058);
     }
-    
     if (bVar3) {
         if (*(char *)(unaff_RBP + 0x48) == '\0') {
             if ((unaff_XMM6_Da < unaff_XMM9_Da * unaff_XMM8_Da) ||
@@ -863,7 +816,7 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
                 uVar13 = *(uint64_t *)(unaff_RBP + 0x40);
             }
             *(uint64_t *)(unaff_RBP + 0x40) = uVar13;
-            cVar9 = FUN_18063e7e0(unaff_R12, unaff_RBP + 0x40);
+            cVar9 = UtilitiesSystem_3e7e0(unaff_R12, unaff_RBP + 0x40);
             if (cVar9 == '\0') {
                 uVar13 = uVar14;
             }
@@ -875,8 +828,7 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
     else if (unaff_XMM13_Da * unaff_XMM13_Da <= unaff_XMM10_Da) {
         return 0;
     }
-    
-    // 计算最终几何结果
+// 计算最终几何结果
     fVar21 = unaff_RBP[-7];
     fVar20 = unaff_RBP[-6];
     fVar19 = unaff_RBP[-5];
@@ -893,72 +845,67 @@ uint64_t ui_system_geometric_calculation_engine(int64_t *param_1)
     unaff_R13[3] = unaff_XMM12_Dd * unaff_XMM15_Da + fVar19 * unaff_XMM14_Da + fVar5 * 0.0 + fVar8;
     return 1;
 }
-
 // 其他函数实现遵循类似的模式，包含完整的中文注释和技术说明
 // 由于篇幅限制，这里省略了其他函数的详细实现
-
 /**
  * UI系统坐标变换器
- * 
+ *
  * 功能：执行高级坐标变换和几何计算
- * 
+ *
  * @param param_1 UI系统上下文指针
- * 
+ *
  * 返回值：
  * - 1: 变换成功
  * - 0: 变换失败
  */
 uint64_t ui_system_coordinate_transformer(int64_t *param_1)
 {
-    // 实现坐标变换功能
-    // 包含矩阵运算、几何变换和坐标转换
+// 实现坐标变换功能
+// 包含矩阵运算、几何变换和坐标转换
     return 1;
 }
-
 /**
  * UI系统高级碰撞检测器
- * 
+ *
  * 功能：执行高级碰撞检测算法
- * 
+ *
  * 返回值：
  * - 1: 检测到碰撞
  * - 0: 未检测到碰撞
  */
 uint64_t ui_system_advanced_collision_detector(void)
 {
-    // 实现高级碰撞检测功能
-    // 包含精确的碰撞检测和几何计算
+// 实现高级碰撞检测功能
+// 包含精确的碰撞检测和几何计算
     return 1;
 }
-
 /**
  * UI系统碰撞结果处理器
- * 
+ *
  * 功能：处理碰撞检测结果
- * 
+ *
  * 返回值：
  * - 1: 处理成功
  * - 0: 处理失败
  */
 uint64_t ui_system_collision_result_processor(void)
 {
-    // 实现碰撞结果处理功能
-    // 包含结果验证和后处理
+// 实现碰撞结果处理功能
+// 包含结果验证和后处理
     return 1;
 }
-
 /**
  * UI系统碰撞验证助手
- * 
+ *
  * 功能：验证碰撞检测结果的有效性
- * 
+ *
  * 返回值：
  * - true: 结果有效
  * - false: 结果无效
  */
 bool ui_system_collision_validation_helper(void)
 {
-    // 实现碰撞验证功能
-    // 包含结果验证和错误检查
+// 实现碰撞验证功能
+// 包含结果验证和错误检查
     return true;
 }

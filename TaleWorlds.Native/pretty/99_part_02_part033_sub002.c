@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_02_part033_sub002.c - 1 个函数
-
-// 函数: void FUN_1801a5ca0(int64_t param_1,int64_t param_2)
-void FUN_1801a5ca0(int64_t param_1,int64_t param_2)
-
+// 函数: void function_1a5ca0(int64_t param_1,int64_t param_2)
+void function_1a5ca0(int64_t param_1,int64_t param_2)
 {
   uint64_t *puVar1;
   char *pcVar2;
@@ -13,7 +10,6 @@ void FUN_1801a5ca0(int64_t param_1,int64_t param_2)
   float *pfVar5;
   char *pcVar6;
   char *pcVar7;
-  
   pcVar6 = "camera_data";
   do {
     pcVar7 = pcVar6;
@@ -35,7 +31,7 @@ void FUN_1801a5ca0(int64_t param_1,int64_t param_2)
     if (pcVar2 == pcVar7 + -0x180a0b63f) {
       pcVar2 = pcVar2 + (int64_t)pcVar6;
       if (pcVar2 <= pcVar6) {
-FUN_1801a5d17:
+label_1a5d17:
         pcVar6 = "near_plane";
         do {
           pcVar7 = pcVar6;
@@ -123,7 +119,7 @@ LAB_1801a5e31:
       lVar3 = (int64_t)&memory_allocator_3360_ptr - (int64_t)pcVar6;
       while (*pcVar6 == pcVar6[lVar3]) {
         pcVar6 = pcVar6 + 1;
-        if (pcVar2 <= pcVar6) goto FUN_1801a5d17;
+        if (pcVar2 <= pcVar6) goto label_1a5d17;
       }
     }
     puVar4 = (uint64_t *)puVar4[0xb];
@@ -132,10 +128,3 @@ LAB_1801a5e31:
     }
   } while( true );
 }
-
-
-
-
-
-
-

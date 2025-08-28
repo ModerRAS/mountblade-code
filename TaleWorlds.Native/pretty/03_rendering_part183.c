@@ -1,16 +1,11 @@
 #include "SystemDataAdvancedOptimizer_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 03_rendering_part183.c - 1 个函数
-
-// 函数: void FUN_180376b03(void)
-void FUN_180376b03(void)
-
+// 函数: void function_376b03(void)
+void function_376b03(void)
 {
   ushort uVar1;
   uint64_t uVar2;
@@ -87,7 +82,6 @@ void FUN_180376b03(void)
   float fStack0000000000000030;
   float fStack0000000000000034;
   float fStack000000000000003c;
-  
   *(uint64_t *)(in_R11 + 8) = unaff_R13;
   *(int32_t *)(in_R11 + -0x48) = unaff_XMM6_Da;
   *(int32_t *)(in_R11 + -0x44) = unaff_XMM6_Db;
@@ -105,7 +99,7 @@ void FUN_180376b03(void)
   *(int32_t *)(in_R11 + -0x84) = unaff_XMM10_Db;
   *(int32_t *)(in_R11 + -0x80) = unaff_XMM10_Dc;
   *(int32_t *)(in_R11 + -0x7c) = unaff_XMM10_Dd;
-  uVar12 = FUN_1801b4a60();
+  uVar12 = function_1b4a60();
   lVar15 = render_system_data_ui;
   *(uint64_t *)(unaff_RBP + 0x46) = uVar12;
   if ((int)unaff_RBX < 0) {
@@ -154,14 +148,14 @@ void FUN_180376b03(void)
   *(uint64_t *)(unaff_RDI + 0xd8) = *puVar21;
   *(uint64_t **)(unaff_RBP + 0x18) = puVar29;
   *(uint64_t **)(unaff_RBP + 0x44) = puVar21;
-  FUN_18037ee20();
+  function_37ee20();
   if ((*(uint *)(lVar15 + 0x60) & 0x400000) != 0) {
-    FUN_18037ee20(puVar29);
-    FUN_18014e8b0(puVar21);
+    function_37ee20(puVar29);
+    function_14e8b0(puVar21);
   }
   if (fVar40 < 0.001) {
-                    // WARNING: Subroutine does not return
-    CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x80) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+    CoreSystemConfigManager(*(uint64_t *)(unaff_RBP + 0x80) ^ (uint64_t)&local_buffer_00000000);
   }
   if (0.0 < (float)unaff_RSI[3]) {
     fVar44 = 75.0;
@@ -398,7 +392,7 @@ LAB_180377195:
           fVar47 = (float)(int)((int)fVar42 + 1U) * (1.0 / fVar30) * fVar47 - fVar46;
           fVar42 = fVar39 * fVar47;
           if (((uVar10 == 0) &&
-              (cVar9 = func_0x0001803723f0(*(uint64_t *)(unaff_RBP + 8)), cVar9 == '\0')) &&
+              (cVar9 = Function_6366c4ba(*(uint64_t *)(unaff_RBP + 8)), cVar9 == '\0')) &&
              (unaff_RBP[10] != 1.4013e-43)) {
             fVar42 = fVar42 * (float)(int)unaff_RBP[10] * 0.01;
           }
@@ -561,7 +555,7 @@ LAB_180377666:
                         unaff_RBP[0x23] = fVar41;
                         unaff_RBP[0x24] = 0.0;
                         unaff_RBP[0x25] = 3.4028235e+38;
-                        FUN_18046da60();
+                        function_46da60();
                         fVar42 = unaff_RBP[0x48] * 0.33 * 6.6666665;
                         fVar31 = unaff_RBP[0x49] * 0.33 * 6.6666665;
                         fVar40 = unaff_RBP[0x4a] * 0.33 * 6.6666665;
@@ -671,7 +665,7 @@ LAB_180377829:
                       uVar10 = uVar10 ^ uVar10 << 0xd;
                       uVar10 = uVar10 ^ uVar10 >> 0x11;
                       uVar10 = (uVar10 ^ uVar10 << 5) - 1;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                       RenderingSystem_Renderer0(uVar10,(float)uVar10 * 1.4629181e-09);
                     }
 LAB_18037777e:
@@ -755,13 +749,7 @@ LAB_18037777e:
     lVar15 = (*(int64_t **)(unaff_RBP + 0x18))[1] - **(int64_t **)(unaff_RBP + 0x18);
     puVar18 = &memory_allocator_3824_ptr;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemParameterHandler(system_message_context,puVar18,lVar15 / 0x28,puVar27);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

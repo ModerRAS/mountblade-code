@@ -1,9 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 03_rendering_part145.c - 渲染系统高级参数处理和状态管理模块
 // 包含2个核心函数，涵盖渲染系统参数处理、状态查询、字符串处理、缓冲区管理、资源分配等高级渲染功能
-
 // 常量定义
 #define MAX_STRING_LENGTH 0x40
 #define PARAMETER_OFFSET_1 0x10
@@ -24,20 +22,18 @@
 #define BUFFER_OFFSET_9 0xb0
 #define BUFFER_OFFSET_10 0x20
 #define BUFFER_OFFSET_11 0x18
-
 // 函数别名定义
-#define RenderingSystem_ParameterProcessor FUN_180358b90
-#define RenderingSystem_StateManager FUN_18035a770
-#define RenderingSystem_InternalProcessor FUN_180389090
-#define RenderingSystem_CleanupHandler FUN_180358b30
+#define RenderingSystem_ParameterProcessor function_358b90
+#define RenderingSystem_StateManager function_35a770
+#define RenderingSystem_InternalProcessor function_389090
+#define RenderingSystem_CleanupHandler function_358b30
 #define RenderingSystem_MemoryAllocator CoreMemoryPoolReallocator
-#define RenderingSystem_ObjectInitializer FUN_1802e6b00
-#define RenderingSystem_ObjectCleanup FUN_180170ac0
-#define RenderingSystem_ConfigLoader FUN_1802ea790
-#define RenderingSystem_DataProcessor FUN_180198b90
-#define RenderingSystem_FlagUpdater FUN_1802ee810
+#define RenderingSystem_ObjectInitializer function_2e6b00
+#define RenderingSystem_ObjectCleanup function_170ac0
+#define RenderingSystem_ConfigLoader function_2ea790
+#define RenderingSystem_DataProcessor function_198b90
+#define RenderingSystem_FlagUpdater function_2ee810
 #define RenderingSystem_ComponentProcessor SystemSecurityChecker
-
 // 全局变量引用
 extern uint64_t GET_SECURITY_COOKIE();
 extern uint8_t global_state_672_ptr;
@@ -65,17 +61,16 @@ extern uint8_t global_state_4472_ptr;
 extern char system_memory_0300;
 extern uint8_t global_state_2984_ptr;
 extern uint64_t system_memory_pool_ptr;
-
 /**
  * 渲染系统参数处理器
- * 
+ *
  * 功能说明：
  * - 处理渲染系统参数配置和验证
  * - 管理渲染上下文状态和缓冲区
  * - 执行字符串比较和参数匹配
  * - 分配和管理渲染资源
  * - 处理渲染系统初始化和清理
- * 
+ *
  * @param param_1 渲染上下文指针
  * @param param_2 参数配置结构体指针
  */
@@ -172,30 +167,27 @@ void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t paramete
     int32_t buffer_size_20;
     int8_t string_buffer_20[72];
     uint64_t security_hash;
-    
-    // 初始化安全栈值
+// 初始化安全栈值
     stack_value = 0xfffffffffffffffe;
     security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
-    
-    // 初始化字符串缓冲区
+// 初始化字符串缓冲区
     buffer_ptr_32 = &global_state_672_ptr;
     buffer_ptr_31 = string_buffer_17;
     string_buffer_17[0] = 0;
     int_val = 8;
     strcpy_s(string_buffer_17, 0x20, &system_memory_eb78);
-    
-    // 获取参数长度并验证
+// 获取参数长度并验证
     int_val = *(int *)(parameter_config + PARAMETER_OFFSET_1);
     if (int_val == 8) {
         if (int_val == 0) {
-            // 空字符串处理
+// 空字符串处理
             if (int_val != 0) {
                 bool_result = false;
             } else {
                 bool_result = true;
             }
         } else {
-            // 字符串比较处理
+// 字符串比较处理
             string_ptr = *(char **)(parameter_config + PARAMETER_OFFSET_2);
             long_val = (int64_t)buffer_ptr_31 - (int64_t)string_ptr;
             do {
@@ -213,126 +205,110 @@ void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t paramete
             bool_result = false;
         }
     }
-    
     buffer_ptr_32 = &global_state_720_ptr;
     if (bool_result) {
-        // 处理渲染上下文状态
+// 处理渲染上下文状态
         if (*(char *)(render_context + RENDER_CONTEXT_OFFSET_1) == '\0') {
             if (*(char *)(render_context + RENDER_CONTEXT_OFFSET_2) == '\0') {
-                // 初始化渲染缓冲区
+// 初始化渲染缓冲区
                 buffer_ptr_23 = &global_state_3480_ptr;
                 buffer_ptr_22 = string_buffer_13;
                 string_buffer_13[0] = 0;
                 buffer_size_12 = 0x13;
                 strcpy_s(string_buffer_13, 0x40, &global_state_3024_ptr);
                 buffer_ptr_23 = &global_state_720_ptr;
-                
                 buffer_ptr_15 = &global_state_3480_ptr;
                 buffer_ptr_14 = string_buffer_8;
                 string_buffer_8[0] = 0;
                 buffer_size_7 = 0x17;
                 strcpy_s(string_buffer_8, 0x40, &global_state_3000_ptr);
                 buffer_ptr_15 = &global_state_720_ptr;
-                
                 buffer_ptr_17 = &global_state_3480_ptr;
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x23;
                 strcpy_s(string_buffer_9, 0x40, &system_memory_eba8);
                 buffer_ptr_17 = &global_state_720_ptr;
-                
                 buffer_ptr_19 = &global_state_3480_ptr;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x13;
                 strcpy_s(string_buffer_10, 0x40, &system_memory_eb48);
                 buffer_ptr_19 = &global_state_720_ptr;
-                
                 buffer_ptr_21 = &global_state_3480_ptr;
                 buffer_ptr_20 = string_buffer_11;
                 string_buffer_11[0] = 0;
                 buffer_size_10 = 0x11;
                 strcpy_s(string_buffer_11, 0x40, &global_state_3048_ptr);
                 buffer_ptr_21 = &global_state_720_ptr;
-                
                 buffer_ptr_25 = &global_state_3480_ptr;
                 buffer_ptr_24 = string_buffer_12;
                 string_buffer_12[0] = 0;
                 buffer_size_11 = 0x22;
                 strcpy_s(string_buffer_12, 0x40, &system_memory_ec30);
                 buffer_ptr_25 = &global_state_720_ptr;
-                
                 buffer_ptr_29 = &global_state_3480_ptr;
                 buffer_ptr_28 = string_buffer_14;
                 string_buffer_14[0] = 0;
                 buffer_size_13 = 0x15;
                 strcpy_s(string_buffer_14, 0x40, &system_memory_ec18);
                 buffer_ptr_29 = &global_state_720_ptr;
-                
                 buffer_ptr_33 = &global_state_3480_ptr;
                 buffer_ptr_30 = string_buffer_15;
                 string_buffer_15[0] = 0;
                 buffer_size_14 = 0x15;
                 strcpy_s(string_buffer_15, 0x40, &system_memory_ec58);
             } else {
-                // 替代渲染缓冲区初始化
+// 替代渲染缓冲区初始化
                 buffer_ptr_23 = &global_state_3480_ptr;
                 buffer_ptr_22 = string_buffer_13;
                 string_buffer_13[0] = 0;
                 buffer_size_12 = 0x13;
                 strcpy_s(string_buffer_13, 0x40, &global_state_3024_ptr);
                 buffer_ptr_23 = &global_state_720_ptr;
-                
                 buffer_ptr_15 = &global_state_3480_ptr;
                 buffer_ptr_14 = string_buffer_8;
                 string_buffer_8[0] = 0;
                 buffer_size_7 = 0x17;
                 strcpy_s(string_buffer_8, 0x40, &global_state_3000_ptr);
                 buffer_ptr_15 = &global_state_720_ptr;
-                
                 buffer_ptr_17 = &global_state_3480_ptr;
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x23;
                 strcpy_s(string_buffer_9, 0x40, &system_memory_eba8);
                 buffer_ptr_17 = &global_state_720_ptr;
-                
                 buffer_ptr_19 = &global_state_3480_ptr;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x13;
                 strcpy_s(string_buffer_10, 0x40, &system_memory_eb48);
                 buffer_ptr_19 = &global_state_720_ptr;
-                
                 buffer_ptr_21 = &global_state_3480_ptr;
                 buffer_ptr_20 = string_buffer_11;
                 string_buffer_11[0] = 0;
                 buffer_size_10 = 0x11;
                 strcpy_s(string_buffer_11, 0x40, &global_state_3048_ptr);
                 buffer_ptr_21 = &global_state_720_ptr;
-                
                 buffer_ptr_25 = &global_state_3480_ptr;
                 buffer_ptr_24 = string_buffer_12;
                 string_buffer_12[0] = 0;
                 buffer_size_11 = 0x22;
                 strcpy_s(string_buffer_12, 0x40, &system_memory_ec30);
                 buffer_ptr_25 = &global_state_720_ptr;
-                
                 buffer_ptr_29 = &global_state_3480_ptr;
                 buffer_ptr_28 = string_buffer_14;
                 string_buffer_14[0] = 0;
                 buffer_size_13 = 0x15;
                 strcpy_s(string_buffer_14, 0x40, &system_memory_ec18);
                 buffer_ptr_29 = &global_state_720_ptr;
-                
                 buffer_ptr_33 = &global_state_3480_ptr;
                 buffer_ptr_30 = string_buffer_15;
                 string_buffer_15[0] = 0;
                 buffer_size_14 = 0x15;
                 strcpy_s(string_buffer_15, 0x40, &system_memory_ec58);
             }
-            
-            // 初始化额外渲染缓冲区
+// 初始化额外渲染缓冲区
             buffer_ptr_33 = &global_state_720_ptr;
             buffer_ptr_23 = &global_state_3480_ptr;
             buffer_ptr_22 = string_buffer_13;
@@ -340,56 +316,48 @@ void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t paramete
             buffer_size_12 = 9;
             strcpy_s(string_buffer_13, 0x40, &system_memory_eb88);
             buffer_ptr_23 = &global_state_720_ptr;
-            
             buffer_ptr_15 = &global_state_3480_ptr;
             buffer_ptr_14 = string_buffer_8;
             string_buffer_8[0] = 0;
             buffer_size_7 = 0x12;
             strcpy_s(string_buffer_8, 0x40, &system_memory_eb60);
             buffer_ptr_15 = &global_state_720_ptr;
-            
             buffer_ptr_17 = &global_state_3480_ptr;
             buffer_ptr_16 = string_buffer_9;
             string_buffer_9[0] = 0;
             buffer_size_8 = 0x15;
             strcpy_s(string_buffer_9, 0x40, &system_memory_ecb8);
             buffer_ptr_17 = &global_state_720_ptr;
-            
             buffer_ptr_19 = &global_state_3480_ptr;
             buffer_ptr_18 = string_buffer_10;
             string_buffer_10[0] = 0;
             buffer_size_9 = 0x15;
             strcpy_s(string_buffer_10, 0x40, &system_memory_eca0);
             buffer_ptr_19 = &global_state_720_ptr;
-            
             buffer_ptr_21 = &global_state_3480_ptr;
             buffer_ptr_20 = string_buffer_11;
             string_buffer_11[0] = 0;
             buffer_size_10 = 0x15;
             strcpy_s(string_buffer_11, 0x40, &system_memory_ec88);
             buffer_ptr_21 = &global_state_720_ptr;
-            
             buffer_ptr_25 = &global_state_3480_ptr;
             buffer_ptr_24 = string_buffer_12;
             string_buffer_12[0] = 0;
             buffer_size_11 = 0x15;
             strcpy_s(string_buffer_12, 0x40, &system_memory_ec70);
             buffer_ptr_25 = &global_state_720_ptr;
-            
             buffer_ptr_29 = &global_state_3480_ptr;
             buffer_ptr_28 = string_buffer_14;
             string_buffer_14[0] = 0;
             buffer_size_13 = 0x15;
             strcpy_s(string_buffer_14, 0x40, &system_memory_ed30);
             buffer_ptr_29 = &global_state_720_ptr;
-            
             buffer_ptr_33 = &global_state_3480_ptr;
             buffer_ptr_30 = string_buffer_15;
             string_buffer_15[0] = 0;
             buffer_size_14 = 0x15;
             strcpy_s(string_buffer_15, 0x40, &system_memory_ed18);
             buffer_ptr_33 = &global_state_720_ptr;
-            
             buffer_ptr_13 = &global_state_3480_ptr;
             buffer_ptr_12 = string_buffer_7;
             string_buffer_7[0] = 0;
@@ -397,119 +365,103 @@ void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t paramete
             strcpy_s(string_buffer_7, 0x40, &system_memory_ecf8);
             buffer_ptr_13 = &global_state_720_ptr;
         } else {
-            // 替代参数处理路径
+// 替代参数处理路径
             buffer_ptr_32 = &global_state_3480_ptr;
             buffer_ptr_31 = string_buffer_17;
             string_buffer_17[0] = 0;
             int_val = 0x12;
             strcpy_s(string_buffer_17, 0x40, &system_memory_eb60);
             buffer_ptr_32 = &global_state_720_ptr;
-            
             buffer_ptr_27 = &global_state_3480_ptr;
             buffer_ptr_26 = string_buffer_16;
             string_buffer_16[0] = 0;
             buffer_size_15 = 0x13;
             strcpy_s(string_buffer_16, 0x40, &system_memory_eb48);
             buffer_ptr_27 = &global_state_720_ptr;
-            
             buffer_ptr_25 = &global_state_3480_ptr;
             buffer_ptr_24 = string_buffer_12;
             string_buffer_12[0] = 0;
             buffer_size_11 = 0x11;
             strcpy_s(string_buffer_12, 0x40, &global_state_3048_ptr);
             buffer_ptr_25 = &global_state_720_ptr;
-            
             buffer_ptr_21 = &global_state_3480_ptr;
             buffer_ptr_20 = string_buffer_11;
             string_buffer_11[0] = 0;
             buffer_size_10 = 9;
             strcpy_s(string_buffer_11, 0x40, &system_memory_eb88);
             buffer_ptr_21 = &global_state_720_ptr;
-            
             buffer_ptr_19 = &global_state_3480_ptr;
             buffer_ptr_18 = string_buffer_10;
             string_buffer_10[0] = 0;
             buffer_size_9 = 0x13;
             strcpy_s(string_buffer_10, 0x40, &global_state_3024_ptr);
             buffer_ptr_19 = &global_state_720_ptr;
-            
             buffer_ptr_17 = &global_state_3480_ptr;
             buffer_ptr_16 = string_buffer_9;
             string_buffer_9[0] = 0;
             buffer_size_8 = 0x17;
             strcpy_s(string_buffer_9, 0x40, &global_state_3000_ptr);
             buffer_ptr_17 = &global_state_720_ptr;
-            
             buffer_ptr_9 = &global_state_3480_ptr;
             buffer_ptr_8 = string_buffer_5;
             string_buffer_5[0] = 0;
             buffer_size_4 = 0x23;
             strcpy_s(string_buffer_5, 0x40, &system_memory_eba8);
             buffer_ptr_9 = &global_state_720_ptr;
-            
             buffer_ptr_7 = &global_state_3480_ptr;
             buffer_ptr_6 = string_buffer_4;
             string_buffer_4[0] = 0;
             buffer_size_3 = 0x22;
             strcpy_s(string_buffer_4, 0x40, &system_memory_ec30);
             buffer_ptr_7 = &global_state_720_ptr;
-            
             buffer_ptr_13 = &global_state_3480_ptr;
             buffer_ptr_12 = string_buffer_7;
             string_buffer_7[0] = 0;
             buffer_size_6 = 0x15;
             strcpy_s(string_buffer_7, 0x40, &system_memory_ec18);
             buffer_ptr_13 = &global_state_720_ptr;
-            
             buffer_ptr_33 = &global_state_3480_ptr;
             buffer_ptr_30 = string_buffer_15;
             string_buffer_15[0] = 0;
             buffer_size_14 = 0x15;
             strcpy_s(string_buffer_15, 0x40, &system_memory_ec58);
             buffer_ptr_33 = &global_state_720_ptr;
-            
             buffer_ptr_29 = &global_state_3480_ptr;
             buffer_ptr_28 = string_buffer_14;
             string_buffer_14[0] = 0;
             buffer_size_13 = 0x15;
             strcpy_s(string_buffer_14, 0x40, &system_memory_ecb8);
             buffer_ptr_29 = &global_state_720_ptr;
-            
             buffer_ptr_25 = &global_state_3480_ptr;
             buffer_ptr_24 = string_buffer_12;
             string_buffer_12[0] = 0;
             buffer_size_11 = 0x15;
             strcpy_s(string_buffer_12, 0x40, &system_memory_eca0);
             buffer_ptr_25 = &global_state_720_ptr;
-            
             buffer_ptr_21 = &global_state_3480_ptr;
             buffer_ptr_20 = string_buffer_11;
             string_buffer_11[0] = 0;
             buffer_size_10 = 0x15;
             strcpy_s(string_buffer_11, 0x40, &system_memory_ec88);
             buffer_ptr_21 = &global_state_720_ptr;
-            
             buffer_ptr_19 = &global_state_3480_ptr;
             buffer_ptr_18 = string_buffer_10;
             string_buffer_10[0] = 0;
             buffer_size_9 = 0x15;
             strcpy_s(string_buffer_10, 0x40, &system_memory_ec70);
             buffer_ptr_19 = &global_state_720_ptr;
-            
             buffer_ptr_17 = &global_state_3480_ptr;
             buffer_ptr_16 = string_buffer_9;
             string_buffer_9[0] = 0;
             buffer_size_8 = 0x15;
             strcpy_s(string_buffer_9, 0x40, &system_memory_ed30);
             buffer_ptr_17 = &global_state_720_ptr;
-            
             buffer_ptr_15 = &global_state_3480_ptr;
             buffer_ptr_14 = string_buffer_8;
             string_buffer_8[0] = 0;
             buffer_size_7 = 0x15;
             strcpy_s(string_buffer_8, 0x40, &system_memory_ed18);
             buffer_ptr_15 = &global_state_720_ptr;
-            
             buffer_ptr_23 = &global_state_3480_ptr;
             buffer_ptr_22 = string_buffer_13;
             string_buffer_13[0] = 0;
@@ -518,14 +470,13 @@ void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t paramete
             buffer_ptr_23 = &global_state_720_ptr;
         }
     } else {
-        // 参数不匹配时的处理
+// 参数不匹配时的处理
         buffer_ptr_32 = &global_state_672_ptr;
         buffer_ptr_31 = string_buffer_17;
         string_buffer_17[0] = 0;
         int_val = 9;
         strcpy_s(string_buffer_17, 0x20, &system_memory_eb88);
-        
-        // 重新验证参数
+// 重新验证参数
         int_val = *(int *)(parameter_config + PARAMETER_OFFSET_1);
         if (int_val == 9) {
             if (int_val == 0) {
@@ -544,116 +495,100 @@ void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t paramete
         } else {
             bool_result = false;
         }
-        
         buffer_ptr_32 = &global_state_720_ptr;
         if (bool_result) {
             if (*(char *)(render_context + RENDER_CONTEXT_OFFSET_2) == '\0') {
-                // 初始化渲染参数缓冲区
+// 初始化渲染参数缓冲区
                 buffer_ptr_23 = &global_state_3480_ptr;
                 buffer_ptr_22 = string_buffer_13;
                 string_buffer_13[0] = 0;
                 buffer_size_12 = 0x13;
                 strcpy_s(string_buffer_13, 0x40, &global_state_3024_ptr);
                 buffer_ptr_23 = &global_state_720_ptr;
-                
                 buffer_ptr_15 = &global_state_3480_ptr;
                 buffer_ptr_14 = string_buffer_8;
                 string_buffer_8[0] = 0;
                 buffer_size_7 = 0x17;
                 strcpy_s(string_buffer_8, 0x40, &global_state_3000_ptr);
                 buffer_ptr_15 = &global_state_720_ptr;
-                
                 buffer_ptr_17 = &global_state_3480_ptr;
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x23;
                 strcpy_s(string_buffer_9, 0x40, &system_memory_eba8);
                 buffer_ptr_17 = &global_state_720_ptr;
-                
                 buffer_ptr_19 = &global_state_3480_ptr;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x12;
                 strcpy_s(string_buffer_10, 0x40, &system_memory_eb60);
                 buffer_ptr_19 = &global_state_720_ptr;
-                
                 buffer_ptr_21 = &global_state_3480_ptr;
                 buffer_ptr_20 = string_buffer_11;
                 string_buffer_11[0] = 0;
                 buffer_size_10 = 0x13;
                 strcpy_s(string_buffer_11, 0x40, &system_memory_eb48);
                 buffer_ptr_21 = &global_state_720_ptr;
-                
                 buffer_ptr_25 = &global_state_3480_ptr;
                 buffer_ptr_24 = string_buffer_12;
                 string_buffer_12[0] = 0;
                 buffer_size_11 = 0x11;
                 strcpy_s(string_buffer_12, 0x40, &global_state_3048_ptr);
                 buffer_ptr_25 = &global_state_720_ptr;
-                
                 buffer_ptr_29 = &global_state_3480_ptr;
                 buffer_ptr_28 = string_buffer_14;
                 string_buffer_14[0] = 0;
                 buffer_size_13 = 0x22;
                 strcpy_s(string_buffer_14, 0x40, &system_memory_ec30);
                 buffer_ptr_29 = &global_state_720_ptr;
-                
                 buffer_ptr_33 = &global_state_3480_ptr;
                 buffer_ptr_30 = string_buffer_15;
                 string_buffer_15[0] = 0;
                 buffer_size_14 = 0x15;
                 strcpy_s(string_buffer_15, 0x40, &system_memory_ec18);
                 buffer_ptr_33 = &global_state_720_ptr;
-                
                 buffer_ptr_13 = &global_state_3480_ptr;
                 buffer_ptr_12 = string_buffer_7;
                 string_buffer_7[0] = 0;
                 buffer_size_6 = 0x15;
                 strcpy_s(string_buffer_7, 0x40, &system_memory_ec58);
                 buffer_ptr_13 = &global_state_720_ptr;
-                
                 buffer_ptr_7 = &global_state_3480_ptr;
                 buffer_ptr_6 = string_buffer_4;
                 string_buffer_4[0] = 0;
                 buffer_size_3 = 0x15;
                 strcpy_s(string_buffer_4, 0x40, &system_memory_ecb8);
                 buffer_ptr_7 = &global_state_720_ptr;
-                
                 buffer_ptr_9 = &global_state_3480_ptr;
                 buffer_ptr_8 = string_buffer_5;
                 string_buffer_5[0] = 0;
                 buffer_size_4 = 0x15;
                 strcpy_s(string_buffer_5, 0x40, &system_memory_eca0);
                 buffer_ptr_9 = &global_state_720_ptr;
-                
                 buffer_ptr_17 = &global_state_3480_ptr;
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x15;
                 strcpy_s(string_buffer_9, 0x40, &system_memory_ec88);
                 buffer_ptr_17 = &global_state_720_ptr;
-                
                 buffer_ptr_19 = &global_state_3480_ptr;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x15;
                 strcpy_s(string_buffer_10, 0x40, &system_memory_ec70);
                 buffer_ptr_19 = &global_state_720_ptr;
-                
                 buffer_ptr_21 = &global_state_3480_ptr;
                 buffer_ptr_20 = string_buffer_11;
                 string_buffer_11[0] = 0;
                 buffer_size_10 = 0x15;
                 strcpy_s(string_buffer_11, 0x40, &system_memory_ed30);
                 buffer_ptr_21 = &global_state_720_ptr;
-                
                 buffer_ptr_25 = &global_state_3480_ptr;
                 buffer_ptr_24 = string_buffer_12;
                 string_buffer_12[0] = 0;
                 buffer_size_11 = 0x15;
                 strcpy_s(string_buffer_12, 0x40, &system_memory_ed18);
                 buffer_ptr_25 = &global_state_720_ptr;
-                
                 buffer_ptr_27 = &global_state_3480_ptr;
                 buffer_ptr_26 = string_buffer_16;
                 string_buffer_16[0] = 0;
@@ -661,112 +596,97 @@ void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t paramete
                 strcpy_s(string_buffer_16, 0x40, &system_memory_ecf8);
                 buffer_ptr_27 = &global_state_720_ptr;
             } else {
-                // 替代渲染参数初始化
+// 替代渲染参数初始化
                 buffer_ptr_23 = &global_state_3480_ptr;
                 buffer_ptr_22 = string_buffer_13;
                 string_buffer_13[0] = 0;
                 buffer_size_12 = 0x13;
                 strcpy_s(string_buffer_13, 0x40, &global_state_3024_ptr);
                 buffer_ptr_23 = &global_state_720_ptr;
-                
                 buffer_ptr_15 = &global_state_3480_ptr;
                 buffer_ptr_14 = string_buffer_8;
                 string_buffer_8[0] = 0;
                 buffer_size_7 = 0x17;
                 strcpy_s(string_buffer_8, 0x40, &global_state_3000_ptr);
                 buffer_ptr_15 = &global_state_720_ptr;
-                
                 buffer_ptr_17 = &global_state_3480_ptr;
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x23;
                 strcpy_s(string_buffer_9, 0x40, &system_memory_eba8);
                 buffer_ptr_17 = &global_state_720_ptr;
-                
                 buffer_ptr_19 = &global_state_3480_ptr;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x12;
                 strcpy_s(string_buffer_10, 0x40, &system_memory_eb60);
                 buffer_ptr_19 = &global_state_720_ptr;
-                
                 buffer_ptr_21 = &global_state_3480_ptr;
                 buffer_ptr_20 = string_buffer_11;
                 string_buffer_11[0] = 0;
                 buffer_size_10 = 0x13;
                 strcpy_s(string_buffer_11, 0x40, &system_memory_eb48);
                 buffer_ptr_21 = &global_state_720_ptr;
-                
                 buffer_ptr_25 = &global_state_3480_ptr;
                 buffer_ptr_24 = string_buffer_12;
                 string_buffer_12[0] = 0;
                 buffer_size_11 = 0x11;
                 strcpy_s(string_buffer_12, 0x40, &global_state_3048_ptr);
                 buffer_ptr_25 = &global_state_720_ptr;
-                
                 buffer_ptr_29 = &global_state_3480_ptr;
                 buffer_ptr_28 = string_buffer_14;
                 string_buffer_14[0] = 0;
                 buffer_size_13 = 0x22;
                 strcpy_s(string_buffer_14, 0x40, &system_memory_ec30);
                 buffer_ptr_29 = &global_state_720_ptr;
-                
                 buffer_ptr_33 = &global_state_3480_ptr;
                 buffer_ptr_30 = string_buffer_15;
                 string_buffer_15[0] = 0;
                 buffer_size_14 = 0x15;
                 strcpy_s(string_buffer_15, 0x40, &system_memory_ec18);
                 buffer_ptr_33 = &global_state_720_ptr;
-                
                 buffer_ptr_13 = &global_state_3480_ptr;
                 buffer_ptr_12 = string_buffer_7;
                 string_buffer_7[0] = 0;
                 buffer_size_6 = 0x15;
                 strcpy_s(string_buffer_7, 0x40, &system_memory_ec58);
                 buffer_ptr_13 = &global_state_720_ptr;
-                
                 buffer_ptr_7 = &global_state_3480_ptr;
                 buffer_ptr_6 = string_buffer_4;
                 string_buffer_4[0] = 0;
                 buffer_size_3 = 0x15;
                 strcpy_s(string_buffer_4, 0x40, &system_memory_ecb8);
                 buffer_ptr_7 = &global_state_720_ptr;
-                
                 buffer_ptr_9 = &global_state_3480_ptr;
                 buffer_ptr_8 = string_buffer_5;
                 string_buffer_5[0] = 0;
                 buffer_size_4 = 0x15;
                 strcpy_s(string_buffer_5, 0x40, &system_memory_eca0);
                 buffer_ptr_9 = &global_state_720_ptr;
-                
                 buffer_ptr_17 = &global_state_3480_ptr;
                 buffer_ptr_16 = string_buffer_9;
                 string_buffer_9[0] = 0;
                 buffer_size_8 = 0x15;
                 strcpy_s(string_buffer_9, 0x40, &system_memory_ec88);
                 buffer_ptr_17 = &global_state_720_ptr;
-                
                 buffer_ptr_19 = &global_state_3480_ptr;
                 buffer_ptr_18 = string_buffer_10;
                 string_buffer_10[0] = 0;
                 buffer_size_9 = 0x15;
                 strcpy_s(string_buffer_10, 0x40, &system_memory_ec70);
                 buffer_ptr_19 = &global_state_720_ptr;
-                
                 buffer_ptr_21 = &global_state_3480_ptr;
                 buffer_ptr_20 = string_buffer_11;
                 string_buffer_11[0] = 0;
                 buffer_size_10 = 0x15;
                 strcpy_s(string_buffer_11, 0x40, &system_memory_ed30);
                 buffer_ptr_21 = &global_state_720_ptr;
-                
                 buffer_ptr_25 = &global_state_3480_ptr;
                 buffer_ptr_24 = string_buffer_12;
                 string_buffer_12[0] = 0;
                 buffer_size_11 = 0x15;
                 strcpy_s(string_buffer_12, 0x40, &system_memory_ed18);
                 buffer_ptr_25 = &global_state_720_ptr;
-                
                 buffer_ptr_27 = &global_state_3480_ptr;
                 buffer_ptr_26 = string_buffer_16;
                 string_buffer_16[0] = 0;
@@ -775,7 +695,7 @@ void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t paramete
                 buffer_ptr_27 = &global_state_720_ptr;
             }
         } else {
-            // 参数错误处理
+// 参数错误处理
             buffer_ptr_23 = &global_state_3480_ptr;
             buffer_ptr_22 = string_buffer_13;
             string_buffer_13[0] = 0;
@@ -784,8 +704,7 @@ void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t paramete
         }
         buffer_ptr_23 = &global_state_720_ptr;
     }
-    
-    // 处理渲染系统资源
+// 处理渲染系统资源
     data_ptr = (uint64_t *)
                RenderingSystem_InternalProcessor(*(int64_t *)(*(int64_t *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1) + BUFFER_OFFSET_2, &resource_ptr,
                              render_context + RENDER_CONTEXT_OFFSET_4);
@@ -796,21 +715,19 @@ void RenderingSystem_ParameterProcessor(int64_t render_context, int64_t paramete
     if (*(int64_t *)(render_context + RENDER_CONTEXT_OFFSET_5) != 0) {
         RenderingSystem_CleanupHandler(render_context);
     }
-    
-    // 执行组件处理器
+// 执行组件处理器
     RenderingSystem_ComponentProcessor(security_hash ^ (uint64_t)security_buffer);
 }
-
 /**
  * 渲染系统状态管理器
- * 
+ *
  * 功能说明：
  * - 管理渲染系统状态和标志位
  * - 处理渲染组件的初始化和配置
  * - 执行渲染数据的加载和处理
  * - 管理渲染对象的创建和销毁
  * - 处理渲染系统的启用和禁用状态
- * 
+ *
  * @param param_1 渲染系统上下文指针
  */
 void RenderingSystem_StateManager(int64_t render_context)
@@ -827,50 +744,41 @@ void RenderingSystem_StateManager(int64_t render_context)
     int64_t loop_counter;
     int64_t *component_array;
     int64_t **component_ptr;
-    
-    // 获取渲染对象指针
+// 获取渲染对象指针
     object_ptr = *(uint64_t *)(*(int64_t *)(render_context + RENDER_CONTEXT_OFFSET_3) + BUFFER_OFFSET_1);
-    
-    // 分配渲染资源
+// 分配渲染资源
     resource_handle = RenderingSystem_MemoryAllocator(system_memory_pool_ptr, 0x2f0, 0x10, 0xd);
     object_instance = (int64_t *)RenderingSystem_ObjectInitializer(resource_handle, 4);
     component_array = object_instance;
-    
-    // 初始化渲染对象
+// 初始化渲染对象
     if (object_instance != (int64_t *)0x0) {
         (**(code **)(*object_instance + 0x28))(object_instance);
     }
-    
-    // 检查对象状态并配置
+// 检查对象状态并配置
     if (object_instance[0x4d] == 0) {
         RenderingSystem_ObjectCleanup(object_instance, &global_state_4472_ptr);
     }
-    
-    // 加载渲染配置
+// 加载渲染配置
     RenderingSystem_ConfigLoader(object_instance, &system_memory_0300);
     component_ptr = &context_ptr;
     context_ptr = object_instance;
     (**(code **)(*object_instance + 0x28))(object_instance);
-    
-    // 处理渲染数据
+// 处理渲染数据
     RenderingSystem_DataProcessor(object_ptr, &context_ptr, 1, 1, 0, 1, 0);
     component_array = (int64_t *)0x0;
     context_ptr = *(int64_t **)(render_context + BUFFER_OFFSET_3);
     *(int64_t **)(render_context + BUFFER_OFFSET_3) = object_instance;
-    
-    // 清理旧资源
+// 清理旧资源
     if (context_ptr != (int64_t *)0x0) {
         (**(code **)(*context_ptr + 0x38))();
     }
-    
-    // 初始化新对象
+// 初始化新对象
     RenderingSystem_ObjectCleanup(*(uint64_t *)(render_context + BUFFER_OFFSET_3), &global_state_2984_ptr);
     component_data = *(int64_t *)(render_context + BUFFER_OFFSET_3);
     flag_value = *(uint *)(component_data + BUFFER_OFFSET_4);
     *(uint *)(component_data + BUFFER_OFFSET_4) = flag_value | 0x2020000;
     RenderingSystem_FlagUpdater(component_data, flag_value);
-    
-    // 处理组件数据
+// 处理组件数据
     context_ptr = *(int64_t *)(component_data + BUFFER_OFFSET_5);
     if ((context_ptr != 0) && (((*(uint *)(component_data + BUFFER_OFFSET_4) ^ flag_value) >> 0x16 & 1) != 0)) {
         flag_bit = ~(byte)(*(uint *)(component_data + BUFFER_OFFSET_4) >> 0x16) & 1;
@@ -883,8 +791,7 @@ void RenderingSystem_StateManager(int64_t render_context)
                 component_data = component_data + 1;
             } while (component_data < status_code);
         }
-        
-        // 处理子组件
+// 处理子组件
         char_index = '\0';
         if ('\0' < *(char *)(context_ptr + BUFFER_OFFSET_10)) {
             do {
@@ -904,7 +811,6 @@ void RenderingSystem_StateManager(int64_t render_context)
     }
     return;
 }
-
 // 技术说明：
 // 1. 本模块实现了渲染系统的高级参数处理和状态管理功能
 // 2. 使用了多层缓冲区管理机制，确保渲染数据的安全处理

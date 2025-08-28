@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_07_part035.c - 6 个函数
-
-// 函数: void FUN_1804bb5b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *param_4,
-void FUN_1804bb5b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *param_4,
+// 函数: void UISystem_bb5b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *param_4,
+void UISystem_bb5b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *param_4,
                   uint64_t *param_5,uint64_t param_6,int32_t param_7,int32_t param_8,
                   int64_t param_9,int8_t param_10)
-
 {
   int64_t lVar1;
   uint64_t uVar2;
@@ -29,17 +26,16 @@ void FUN_1804bb5b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *pa
   int64_t *plStack_58;
   int64_t *plStack_50;
   int64_t *plStack_48;
-  uint64_t uStack_40;
-  
+  uint64_t local_var_40;
   lVar3 = param_9;
-  uStack_40 = 0xfffffffffffffffe;
+  local_var_40 = 0xfffffffffffffffe;
   plVar10 = (int64_t *)0x0;
   plStackX_8 = (int64_t *)0x0;
   param_6 = (int64_t *)0x0;
   plStack_60 = (int64_t *)0x0;
   plStack_58 = (int64_t *)0x0;
   puVar6 = (uint64_t *)(param_1 + 0xb8);
-  uVar4 = func_0x0001804bb950(param_9);
+  uVar4 = Function_061553b3(param_9);
   puVar9 = (uint64_t *)puVar6[2];
   puVar7 = puVar6;
   if (puVar9 != (uint64_t *)0x0) {
@@ -57,7 +53,7 @@ void FUN_1804bb5b0(int64_t param_1,int64_t *param_2,int64_t *param_3,int64_t *pa
   puVar7 = puVar6;
 LAB_1804bb64b:
   if (puVar7 == puVar6) {
-    plVar5 = (int64_t *)FUN_1804bca40(puVar7,&plStack_48,lVar3);
+    plVar5 = (int64_t *)UISystem_bca40(puVar7,&plStack_48,lVar3);
     lVar1 = *plVar5;
     *plVar5 = 0;
     plStack_50 = (int64_t *)*param_2;
@@ -69,7 +65,7 @@ LAB_1804bb64b:
     if (plStack_48 != (int64_t *)0x0) {
       uVar13 = (**(code **)(*plStack_48 + 0x38))();
     }
-    plVar5 = (int64_t *)FUN_1804bd030(uVar13,&plStack_50,lVar3,param_7);
+    plVar5 = (int64_t *)UISystem_bd030(uVar13,&plStack_50,lVar3,param_7);
     lVar1 = *plVar5;
     *plVar5 = 0;
     plStack_48 = (int64_t *)*param_4;
@@ -81,7 +77,7 @@ LAB_1804bb64b:
     if (plStack_50 != (int64_t *)0x0) {
       uVar13 = (**(code **)(*plStack_50 + 0x38))();
     }
-    plVar5 = (int64_t *)FUN_1804bd2b0(uVar13,&plStack_50,lVar3,param_8);
+    plVar5 = (int64_t *)UISystem_bd2b0(uVar13,&plStack_50,lVar3,param_8);
     lVar1 = *plVar5;
     *plVar5 = 0;
     plStack_48 = (int64_t *)*param_3;
@@ -93,7 +89,7 @@ LAB_1804bb64b:
     if (plStack_50 != (int64_t *)0x0) {
       uVar13 = (**(code **)(*plStack_50 + 0x38))();
     }
-    puVar6 = (uint64_t *)FUN_1804bce70(uVar13,&plStack_50,lVar3);
+    puVar6 = (uint64_t *)UISystem_bce70(uVar13,&plStack_50,lVar3);
     uVar2 = *puVar6;
     *puVar6 = 0;
     plStack_48 = (int64_t *)*param_5;
@@ -108,7 +104,7 @@ LAB_1804bb64b:
     }
   }
   else {
-    FUN_1804af7b0(puVar7[5],&plStackX_8,&param_6,&plStack_60,&plStack_58,lVar3 + 0x3c,
+    UISystem_af7b0(puVar7[5],&plStackX_8,&param_6,&plStack_60,&plStack_58,lVar3 + 0x3c,
                   *(int32_t *)(lVar3 + 8),param_7,*(int32_t *)(lVar3 + 4),param_8,
                   *(int32_t *)(lVar3 + 0xc),*(int32_t *)(lVar3 + 0x20),
                   *(int32_t *)(lVar3 + 0x18),*(int32_t *)(lVar3 + 0x1c),
@@ -171,11 +167,7 @@ LAB_1804bb64b:
   }
   return;
 }
-
-
-
-float FUN_1804bba40(int64_t param_1,int param_2,uint param_3,float param_4,float param_5)
-
+float UISystem_bba40(int64_t param_1,int param_2,uint param_3,float param_4,float param_5)
 {
   uint64_t *puVar1;
   float *pfVar2;
@@ -185,10 +177,9 @@ float FUN_1804bba40(int64_t param_1,int param_2,uint param_3,float param_4,float
   uint uVar6;
   float fVar7;
   float fVar8;
-  int8_t auStackX_8 [8];
-  uint auStackX_10 [2];
-  int8_t auStack_58 [64];
-  
+  int8_t astack_special_x_8 [8];
+  uint astack_special_x_10 [2];
+  int8_t stack_array_58 [64];
   fVar8 = 21.0;
   if (5.0 <= param_4) {
     if (10.0 <= param_4) {
@@ -208,11 +199,11 @@ float FUN_1804bba40(int64_t param_1,int param_2,uint param_3,float param_4,float
   }
   puVar1 = (uint64_t *)(param_1 + 0xb8);
   uVar6 = (param_2 << 8 | param_3) << 8;
-  auStackX_10[0] = uVar6 | uVar5;
+  astack_special_x_10[0] = uVar6 | uVar5;
   puVar4 = puVar1;
   puVar3 = *(uint64_t **)(param_1 + 200);
   while (puVar3 != (uint64_t *)0x0) {
-    if (*(uint *)(puVar3 + 4) < auStackX_10[0]) {
+    if (*(uint *)(puVar3 + 4) < astack_special_x_10[0]) {
       puVar3 = (uint64_t *)*puVar3;
     }
     else {
@@ -220,8 +211,8 @@ float FUN_1804bba40(int64_t param_1,int param_2,uint param_3,float param_4,float
       puVar3 = (uint64_t *)puVar3[1];
     }
   }
-  if ((puVar4 == puVar1) || (auStackX_10[0] < *(uint *)(puVar4 + 4))) {
-    puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar1,auStackX_8,auStackX_10[0],puVar4,auStackX_10);
+  if ((puVar4 == puVar1) || (astack_special_x_10[0] < *(uint *)(puVar4 + 4))) {
+    puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar1,astack_special_x_8,astack_special_x_10[0],puVar4,astack_special_x_10);
     puVar4 = (uint64_t *)*puVar4;
   }
   pfVar2 = (float *)puVar4[5];
@@ -229,7 +220,7 @@ float FUN_1804bba40(int64_t param_1,int param_2,uint param_3,float param_4,float
     fVar8 = *pfVar2;
   }
   else {
-    fVar7 = (float)func_0x000180570560(uVar5);
+    fVar7 = (float)SystemFunction_000180570560(uVar5);
     if (uVar5 == 0) {
       fVar8 = 5.0;
     }
@@ -242,11 +233,11 @@ float FUN_1804bba40(int64_t param_1,int param_2,uint param_3,float param_4,float
     else if (uVar5 != 3) {
       fVar8 = 128.0;
     }
-    auStackX_10[0] = uVar5 + 1 | uVar6;
+    astack_special_x_10[0] = uVar5 + 1 | uVar6;
     puVar4 = puVar1;
     puVar3 = *(uint64_t **)(param_1 + 200);
     while (puVar3 != (uint64_t *)0x0) {
-      if (*(uint *)(puVar3 + 4) < auStackX_10[0]) {
+      if (*(uint *)(puVar3 + 4) < astack_special_x_10[0]) {
         puVar3 = (uint64_t *)*puVar3;
       }
       else {
@@ -254,8 +245,8 @@ float FUN_1804bba40(int64_t param_1,int param_2,uint param_3,float param_4,float
         puVar3 = (uint64_t *)puVar3[1];
       }
     }
-    if ((puVar4 == puVar1) || (auStackX_10[0] < *(uint *)(puVar4 + 4))) {
-      puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar1,auStack_58);
+    if ((puVar4 == puVar1) || (astack_special_x_10[0] < *(uint *)(puVar4 + 4))) {
+      puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar1,stack_array_58);
       puVar4 = (uint64_t *)*puVar4;
     }
     fVar8 = ((param_4 - fVar7) / ((fVar8 - fVar7) + 1.0)) * (*(float *)puVar4[5] - *pfVar2) +
@@ -263,11 +254,7 @@ float FUN_1804bba40(int64_t param_1,int param_2,uint param_3,float param_4,float
   }
   return (param_5 * 0.2 + 0.9) * fVar8;
 }
-
-
-
-float FUN_1804bbb2e(uint64_t param_1,uint64_t param_2,uint64_t param_3)
-
+float UISystem_bbb2e(uint64_t param_1,uint64_t param_2,uint64_t param_3)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
@@ -279,10 +266,9 @@ float FUN_1804bbb2e(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   float fVar4;
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
-  uint in_stack_00000098;
-  float in_stack_000000b0;
-  
-  fVar4 = (float)func_0x000180570560();
+  uint local_var_98;
+  float local_buffer_b0;
+  fVar4 = (float)SystemFunction_000180570560();
   if (unaff_EBX == 0) {
     unaff_XMM7_Da = 5.0;
   }
@@ -295,11 +281,11 @@ float FUN_1804bbb2e(uint64_t param_1,uint64_t param_2,uint64_t param_3)
   else if (unaff_EBX != 3) {
     unaff_XMM7_Da = 128.0;
   }
-  in_stack_00000098 = unaff_EBX + 1U | unaff_EBP;
+  local_var_98 = unaff_EBX + 1U | unaff_EBP;
   puVar2 = (uint64_t *)unaff_RDI[2];
   puVar3 = unaff_RDI;
   while (puVar1 = puVar2, puVar1 != (uint64_t *)0x0) {
-    if (*(uint *)(puVar1 + 4) < in_stack_00000098) {
+    if (*(uint *)(puVar1 + 4) < local_var_98) {
       puVar2 = (uint64_t *)*puVar1;
     }
     else {
@@ -307,30 +293,21 @@ float FUN_1804bbb2e(uint64_t param_1,uint64_t param_2,uint64_t param_3)
       puVar3 = puVar1;
     }
   }
-  if ((puVar3 == unaff_RDI) || (in_stack_00000098 < *(uint *)(puVar3 + 4))) {
-    puVar3 = (uint64_t *)PhysicsSystem_IntegrationProcessor(fVar4,&stack0x00000030,param_3,puVar3,&stack0x00000098);
+  if ((puVar3 == unaff_RDI) || (local_var_98 < *(uint *)(puVar3 + 4))) {
+    puVar3 = (uint64_t *)PhysicsSystem_IntegrationProcessor(fVar4,&local_buffer_00000030,param_3,puVar3,&local_buffer_00000098);
     puVar3 = (uint64_t *)*puVar3;
   }
-  return (in_stack_000000b0 * 0.2 + 0.9) *
+  return (local_buffer_b0 * 0.2 + 0.9) *
          (((unaff_XMM6_Da - fVar4) / ((unaff_XMM7_Da - fVar4) + 1.0)) *
           (*(float *)puVar3[5] - *unaff_RSI) + *unaff_RSI);
 }
-
-
-
-float FUN_1804bbc0c(void)
-
+float UISystem_bbc0c(void)
 {
   float *unaff_RSI;
-  float in_stack_000000b0;
-  
-  return (in_stack_000000b0 * 0.2 + 0.9) * *unaff_RSI;
+  float local_buffer_b0;
+  return (local_buffer_b0 * 0.2 + 0.9) * *unaff_RSI;
 }
-
-
-
-uint FUN_1804bbc50(int64_t param_1,int64_t param_2)
-
+uint UISystem_bbc50(int64_t param_1,int64_t param_2)
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -348,9 +325,8 @@ uint FUN_1804bbc50(int64_t param_1,int64_t param_2)
   int8_t auVar14 [16];
   float fVar15;
   float fVar16;
-  
   puVar12 = (uint64_t *)(param_1 + 0xb8);
-  uVar4 = func_0x0001804bb950(param_2);
+  uVar4 = Function_061553b3(param_2);
   puVar10 = (uint64_t *)puVar12[2];
   puVar7 = puVar12;
   if (puVar10 != (uint64_t *)0x0) {
@@ -410,15 +386,8 @@ LAB_1804bbc9e:
   }
   return ((uVar4 | 0xffffff00) << 8 | uVar5) << 8 | uVar11;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804bbcc0(int64_t param_1,float *param_2,int param_3,uint param_4)
-void FUN_1804bbcc0(int64_t param_1,float *param_2,int param_3,uint param_4)
-
+// 函数: void UISystem_bbcc0(int64_t param_1,float *param_2,int param_3,uint param_4)
+void UISystem_bbcc0(int64_t param_1,float *param_2,int param_3,uint param_4)
 {
   uint64_t *puVar1;
   int iVar2;
@@ -436,9 +405,8 @@ void FUN_1804bbcc0(int64_t param_1,float *param_2,int param_3,uint param_4)
   float fVar14;
   int8_t auVar15 [16];
   float fVar16;
-  int8_t auStackX_8 [8];
-  uint auStackX_18 [2];
-  
+  int8_t astack_special_x_8 [8];
+  uint astack_special_x_18 [2];
   uVar11 = 0;
   puVar1 = (uint64_t *)(param_1 + 0xb8);
   param_2[4] = 0.0;
@@ -458,25 +426,25 @@ void FUN_1804bbcc0(int64_t param_1,float *param_2,int param_3,uint param_4)
   param_2[0x12] = 0.0;
   param_2[0x13] = 0.0;
   fVar16 = *param_2;
-  auStackX_18[0] = 0;
+  astack_special_x_18[0] = 0;
   if (5.0 <= fVar16) {
     if (10.0 <= fVar16) {
       if (16.0 <= fVar16) {
-        auStackX_18[0] = (21.0 <= fVar16) + 3;
+        astack_special_x_18[0] = (21.0 <= fVar16) + 3;
       }
       else {
-        auStackX_18[0] = 2;
+        astack_special_x_18[0] = 2;
       }
     }
     else {
-      auStackX_18[0] = 1;
+      astack_special_x_18[0] = 1;
     }
   }
-  auStackX_18[0] = (param_3 << 8 | param_4) << 8 | auStackX_18[0];
+  astack_special_x_18[0] = (param_3 << 8 | param_4) << 8 | astack_special_x_18[0];
   puVar6 = puVar1;
   puVar3 = *(uint64_t **)(param_1 + 200);
   while (puVar3 != (uint64_t *)0x0) {
-    if (*(uint *)(puVar3 + 4) < auStackX_18[0]) {
+    if (*(uint *)(puVar3 + 4) < astack_special_x_18[0]) {
       puVar3 = (uint64_t *)*puVar3;
     }
     else {
@@ -484,8 +452,8 @@ void FUN_1804bbcc0(int64_t param_1,float *param_2,int param_3,uint param_4)
       puVar3 = (uint64_t *)puVar3[1];
     }
   }
-  if ((puVar6 == puVar1) || (auStackX_18[0] < *(uint *)(puVar6 + 4))) {
-    puVar6 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar1,auStackX_8,auStackX_18[0],puVar6,auStackX_18);
+  if ((puVar6 == puVar1) || (astack_special_x_18[0] < *(uint *)(puVar6 + 4))) {
+    puVar6 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar1,astack_special_x_8,astack_special_x_18[0],puVar6,astack_special_x_18);
     puVar6 = (uint64_t *)*puVar6;
   }
   lVar4 = puVar6[5];
@@ -527,15 +495,8 @@ void FUN_1804bbcc0(int64_t param_1,float *param_2,int param_3,uint param_4)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804bbdcd(void)
-void FUN_1804bbdcd(void)
-
+// 函数: void UISystem_bbdcd(void)
+void UISystem_bbdcd(void)
 {
   int iVar1;
   int iVar2;
@@ -554,7 +515,6 @@ void FUN_1804bbdcd(void)
   uint64_t in_XMM3_Qa;
   float in_XMM4_Da;
   int8_t auVar8 [16];
-  
   do {
     lVar6 = *(int64_t *)(in_R11 + 0x290);
     uVar5 = unaff_EBX >> 0x1f & 0xf;
@@ -594,27 +554,13 @@ void FUN_1804bbdcd(void)
   } while (unaff_EBX < *(int *)(in_R11 + 0x298));
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804bbea8(void)
-void FUN_1804bbea8(void)
-
+// 函数: void UISystem_bbea8(void)
+void UISystem_bbea8(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804bbec0(int64_t param_1,int64_t param_2,int32_t *param_3)
-void FUN_1804bbec0(int64_t param_1,int64_t param_2,int32_t *param_3)
-
+// 函数: void UISystem_bbec0(int64_t param_1,int64_t param_2,int32_t *param_3)
+void UISystem_bbec0(int64_t param_1,int64_t param_2,int32_t *param_3)
 {
   int64_t lVar1;
   uint64_t *puVar2;
@@ -631,8 +577,7 @@ void FUN_1804bbec0(int64_t param_1,int64_t param_2,int32_t *param_3)
   int64_t lVar13;
   float *pfVar14;
   float fVar15;
-  int8_t auStackX_10 [8];
-  
+  int8_t astack_special_x_10 [8];
   uVar12 = 0;
   *(uint64_t *)(param_2 + 0x540) = 0;
   *(uint *)(param_2 + 8) = param_3[4] & 0x3f;
@@ -647,7 +592,7 @@ void FUN_1804bbec0(int64_t param_1,int64_t param_2,int32_t *param_3)
        (float)((uint)((uint64_t)*(uint64_t *)(param_3 + 4) >> 0x2a) & 0x3f) * 0.015873017;
   puVar11 = (uint64_t *)(param_1 + 0xb8);
   *(float *)(param_2 + 0x548) = (float)(*(ushort *)((int64_t)param_3 + 0x16) & 0x3f) * 0.015873017;
-  uVar4 = func_0x0001804bb950(param_2);
+  uVar4 = Function_061553b3(param_2);
   puVar3 = (uint64_t *)puVar11[2];
   puVar5 = puVar11;
   while (puVar2 = puVar3, puVar2 != (uint64_t *)0x0) {
@@ -660,7 +605,7 @@ void FUN_1804bbec0(int64_t param_1,int64_t param_2,int32_t *param_3)
     }
   }
   if ((puVar5 == puVar11) || (uVar4 < *(uint *)(puVar5 + 4))) {
-    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar11,auStackX_10);
+    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar11,astack_special_x_10);
     puVar5 = (uint64_t *)*puVar5;
   }
   lVar1 = puVar5[5];
@@ -751,15 +696,8 @@ LAB_1804bc06e:
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804bc1f0(int64_t param_1,int64_t param_2,char param_3)
-void FUN_1804bc1f0(int64_t param_1,int64_t param_2,char param_3)
-
+// 函数: void UISystem_bc1f0(int64_t param_1,int64_t param_2,char param_3)
+void UISystem_bc1f0(int64_t param_1,int64_t param_2,char param_3)
 {
   int64_t lVar1;
   uint64_t *puVar2;
@@ -771,10 +709,9 @@ void FUN_1804bc1f0(int64_t param_1,int64_t param_2,char param_3)
   int32_t *puVar8;
   uint64_t *puVar9;
   int32_t uVar10;
-  int8_t auStackX_8 [8];
-  
+  int8_t astack_special_x_8 [8];
   puVar9 = (uint64_t *)(param_1 + 0xb8);
-  uVar4 = func_0x0001804bb950(param_2);
+  uVar4 = Function_061553b3(param_2);
   puVar3 = (uint64_t *)puVar9[2];
   puVar5 = puVar9;
   while (puVar2 = puVar3, puVar2 != (uint64_t *)0x0) {
@@ -787,7 +724,7 @@ void FUN_1804bc1f0(int64_t param_1,int64_t param_2,char param_3)
     }
   }
   if ((puVar5 == puVar9) || (uVar4 < *(uint *)(puVar5 + 4))) {
-    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar9,auStackX_8);
+    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar9,astack_special_x_8);
     puVar5 = (uint64_t *)*puVar5;
   }
   lVar1 = puVar5[5];
@@ -812,22 +749,17 @@ void FUN_1804bc1f0(int64_t param_1,int64_t param_2,char param_3)
   }
   return;
 }
-
-
-
 uint64_t
-FUN_1804bc2d0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4,int param_5)
-
+UISystem_bc2d0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4,int param_5)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
   uint uVar3;
   uint64_t *puVar4;
   uint64_t *puVar5;
-  int8_t auStack_18 [24];
-  
+  int8_t stack_array_18 [24];
   puVar5 = (uint64_t *)(param_1 + 0xb8);
-  uVar3 = func_0x0001804bb9d0(param_2,param_3,param_4);
+  uVar3 = SystemFunction_0001804bb9d0(param_2,param_3,param_4);
   puVar2 = (uint64_t *)puVar5[2];
   puVar4 = puVar5;
   while (puVar1 = puVar2, puVar1 != (uint64_t *)0x0) {
@@ -840,7 +772,7 @@ FUN_1804bc2d0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4,in
     }
   }
   if ((puVar4 == puVar5) || (uVar3 < *(uint *)(puVar4 + 4))) {
-    puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar5,auStack_18);
+    puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar5,stack_array_18);
     puVar4 = (uint64_t *)*puVar4;
   }
   if (puVar4[5] != 0) {
@@ -849,21 +781,16 @@ FUN_1804bc2d0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4,in
   SystemCore_ResourceManager0(&processed_var_7688_ptr);
   return 0;
 }
-
-
-
-uint64_t FUN_1804bc380(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4)
-
+uint64_t UISystem_bc380(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
   uint uVar3;
   uint64_t *puVar4;
   uint64_t *puVar5;
-  int8_t auStack_18 [24];
-  
+  int8_t stack_array_18 [24];
   puVar5 = (uint64_t *)(param_1 + 0xb8);
-  uVar3 = func_0x0001804bb9d0(param_2,param_3,param_4);
+  uVar3 = SystemFunction_0001804bb9d0(param_2,param_3,param_4);
   puVar2 = (uint64_t *)puVar5[2];
   puVar4 = puVar5;
   while (puVar1 = puVar2, puVar1 != (uint64_t *)0x0) {
@@ -876,7 +803,7 @@ uint64_t FUN_1804bc380(int64_t param_1,int32_t param_2,int32_t param_3,int32_t p
     }
   }
   if ((puVar4 == puVar5) || (uVar3 < *(uint *)(puVar4 + 4))) {
-    puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar5,auStack_18);
+    puVar4 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar5,stack_array_18);
     puVar4 = (uint64_t *)*puVar4;
   }
   if (puVar4[5] != 0) {
@@ -885,12 +812,8 @@ uint64_t FUN_1804bc380(int64_t param_1,int32_t param_2,int32_t param_3,int32_t p
   SystemCore_ResourceManager0(&processed_var_7656_ptr);
   return 0;
 }
-
-
-
 uint64_t
-FUN_1804bc420(int64_t param_1,int32_t param_2,int32_t param_3,int param_4,int32_t param_5)
-
+UISystem_bc420(int64_t param_1,int32_t param_2,int32_t param_3,int param_4,int32_t param_5)
 {
   int64_t lVar1;
   uint64_t *puVar2;
@@ -898,10 +821,9 @@ FUN_1804bc420(int64_t param_1,int32_t param_2,int32_t param_3,int param_4,int32_
   uint uVar4;
   uint64_t *puVar5;
   uint64_t *puVar6;
-  int8_t auStack_18 [16];
-  
+  int8_t stack_array_18 [16];
   puVar6 = (uint64_t *)(param_1 + 0xb8);
-  uVar4 = func_0x0001804bb9d0(param_2,param_3,param_5);
+  uVar4 = SystemFunction_0001804bb9d0(param_2,param_3,param_5);
   puVar3 = (uint64_t *)puVar6[2];
   puVar5 = puVar6;
   while (puVar2 = puVar3, puVar2 != (uint64_t *)0x0) {
@@ -914,7 +836,7 @@ FUN_1804bc420(int64_t param_1,int32_t param_2,int32_t param_3,int param_4,int32_
     }
   }
   if ((puVar5 == puVar6) || (uVar4 < *(uint *)(puVar5 + 4))) {
-    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar6,auStack_18);
+    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar6,stack_array_18);
     puVar5 = (uint64_t *)*puVar5;
   }
   lVar1 = puVar5[5];
@@ -931,11 +853,7 @@ FUN_1804bc420(int64_t param_1,int32_t param_2,int32_t param_3,int param_4,int32_
   }
   return *(uint64_t *)(lVar1 + 0x2c0);
 }
-
-
-
-int64_t FUN_1804bc4f0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4)
-
+int64_t UISystem_bc4f0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t param_4)
 {
   int64_t lVar1;
   uint64_t *puVar2;
@@ -943,10 +861,9 @@ int64_t FUN_1804bc4f0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t pa
   uint uVar4;
   uint64_t *puVar5;
   uint64_t *puVar6;
-  int8_t auStack_18 [24];
-  
+  int8_t stack_array_18 [24];
   puVar6 = (uint64_t *)(param_1 + 0xb8);
-  uVar4 = func_0x0001804bb9d0(param_2,param_3,param_4);
+  uVar4 = SystemFunction_0001804bb9d0(param_2,param_3,param_4);
   puVar3 = (uint64_t *)puVar6[2];
   puVar5 = puVar6;
   while (puVar2 = puVar3, puVar2 != (uint64_t *)0x0) {
@@ -959,7 +876,7 @@ int64_t FUN_1804bc4f0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t pa
     }
   }
   if ((puVar5 == puVar6) || (uVar4 < *(uint *)(puVar5 + 4))) {
-    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar6,auStack_18);
+    puVar5 = (uint64_t *)PhysicsSystem_IntegrationProcessor(puVar6,stack_array_18);
     puVar5 = (uint64_t *)*puVar5;
   }
   lVar1 = puVar5[5];
@@ -968,9 +885,3 @@ int64_t FUN_1804bc4f0(int64_t param_1,int32_t param_2,int32_t param_3,int32_t pa
   }
   return lVar1;
 }
-
-
-
-
-
-

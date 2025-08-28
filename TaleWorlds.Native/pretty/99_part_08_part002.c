@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_08_part002.c - 10 个函数
-
-// 函数: void FUN_1804dd680(int64_t *param_1,int param_2,int param_3)
-void FUN_1804dd680(int64_t *param_1,int param_2,int param_3)
-
+// 函数: void UISystem_dd680(int64_t *param_1,int param_2,int param_3)
+void UISystem_dd680(int64_t *param_1,int param_2,int param_3)
 {
   int32_t uVar1;
   uint uVar2;
@@ -25,7 +22,6 @@ void FUN_1804dd680(int64_t *param_1,int param_2,int param_3)
   int *piVar16;
   int iVar17;
   uint64_t uVar18;
-  
   uVar18 = (uint64_t)param_2;
   uVar10 = uVar18;
   if (param_2 < param_3) {
@@ -48,9 +44,9 @@ void FUN_1804dd680(int64_t *param_1,int param_2,int param_3)
             lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x3f8) + (int64_t)((int)uVar2 >> 10) * 8);
             if (uVar4 == 0xffffffff) {
               if (*(char *)(lVar6 + 8 + (int64_t)(int)(uVar3 & uVar2) * 0xc) != '\0') {
-                cVar8 = FUN_1804de880(lVar13,lVar5,piVar15[5],*(int32_t *)param_1[1]);
+                cVar8 = UISystem_de880(lVar13,lVar5,piVar15[5],*(int32_t *)param_1[1]);
                 if (cVar8 == '\0') {
-                  FUN_1804dfdb0(piVar16,lVar5);
+                  UISystem_dfdb0(piVar16,lVar5);
                 }
                 else {
                   NetworkSystem_SecurityValidator();
@@ -65,9 +61,9 @@ void FUN_1804dd680(int64_t *param_1,int param_2,int param_3)
               lVar6 = *(int64_t *)
                        (*(int64_t *)(lVar5 + 0x2c68) + (int64_t)((int)uVar4 >> 10) * 8);
               lVar14 = (int64_t)(int)(uVar4 & *(uint *)(lVar5 + 0x2c88)) * 0x68;
-              cVar8 = FUN_1804de880(lVar13,lVar5,piVar15[5],*(int32_t *)param_1[1]);
+              cVar8 = UISystem_de880(lVar13,lVar5,piVar15[5],*(int32_t *)param_1[1]);
               if (cVar8 == '\0') {
-                FUN_1804dfdb0(piVar16,lVar5);
+                UISystem_dfdb0(piVar16,lVar5);
               }
               else {
                 NetworkSystem_SecurityValidator();
@@ -87,7 +83,7 @@ void FUN_1804dd680(int64_t *param_1,int param_2,int param_3)
                     uVar2 = *(uint *)(lVar7 + 0x1c + lVar12);
                     if (uVar2 != 0xffffffff) {
                       uVar3 = *(uint *)(lVar7 + 0x18 + lVar12);
-                      FUN_1801bcce0(*(uint64_t *)
+                      GenericFunction_1801bcce0(*(uint64_t *)
                                      (*(int64_t *)
                                        (*(int64_t *)(lVar5 + 0x698) +
                                        (int64_t)((int)uVar2 >> 10) * 8) + 8 +
@@ -112,15 +108,8 @@ void FUN_1804dd680(int64_t *param_1,int param_2,int param_3)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dd69f(uint64_t param_1,uint64_t param_2,int param_3)
-void FUN_1804dd69f(uint64_t param_1,uint64_t param_2,int param_3)
-
+// 函数: void UISystem_dd69f(uint64_t param_1,uint64_t param_2,int param_3)
+void UISystem_dd69f(uint64_t param_1,uint64_t param_2,int param_3)
 {
   int32_t uVar1;
   uint uVar2;
@@ -151,8 +140,7 @@ void FUN_1804dd69f(uint64_t param_1,uint64_t param_2,int param_3)
   int32_t unaff_XMM6_Db;
   int32_t unaff_XMM6_Dc;
   int32_t unaff_XMM6_Dd;
-  int in_stack_00000070;
-  
+  int local_var_70;
   *(uint64_t *)(in_RAX + 8) = unaff_RBP;
   *(uint64_t *)(in_RAX + 0x10) = unaff_RSI;
   *(uint64_t *)(in_RAX + 0x20) = unaff_RDI;
@@ -169,7 +157,7 @@ void FUN_1804dd69f(uint64_t param_1,uint64_t param_2,int param_3)
     if (iVar17 < *(int *)(lVar5 + 0x614)) {
       uVar10 = (int64_t)*(int *)(lVar5 + 0x660) & unaff_R15;
       lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x640) + (int64_t)(iVar17 >> 10) * 8);
-      param_3 = in_stack_00000070;
+      param_3 = local_var_70;
       if (((*(int *)(lVar6 + uVar10 * 0xc) != -1) &&
           (puVar11 = (uint *)(lVar6 + uVar10 * 0xc + 8), puVar11 != (uint *)0x0)) &&
          (uVar2 = *puVar11, (int)uVar2 < *(int *)(lVar5 + 0x2c3c))) {
@@ -183,9 +171,9 @@ void FUN_1804dd69f(uint64_t param_1,uint64_t param_2,int param_3)
           lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x3f8) + (int64_t)((int)uVar2 >> 10) * 8);
           if (uVar4 == 0xffffffff) {
             if (*(char *)(lVar6 + 8 + (int64_t)(int)(uVar3 & uVar2) * 0xc) != '\0') {
-              cVar8 = FUN_1804de880(lVar13,lVar5,piVar15[5],*(int32_t *)unaff_R12[1]);
+              cVar8 = UISystem_de880(lVar13,lVar5,piVar15[5],*(int32_t *)unaff_R12[1]);
               if (cVar8 == '\0') {
-                FUN_1804dfdb0(piVar16,lVar5);
+                UISystem_dfdb0(piVar16,lVar5);
               }
               else {
                 NetworkSystem_SecurityValidator();
@@ -199,9 +187,9 @@ void FUN_1804dd69f(uint64_t param_1,uint64_t param_2,int param_3)
                            (int64_t)(int)(uVar3 & uVar4) * 0xc) != '\0')) {
             lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x2c68) + (int64_t)((int)uVar4 >> 10) * 8);
             lVar14 = (int64_t)(int)(uVar4 & *(uint *)(lVar5 + 0x2c88)) * 0x68;
-            cVar8 = FUN_1804de880(lVar13,lVar5,piVar15[5],*(int32_t *)unaff_R12[1]);
+            cVar8 = UISystem_de880(lVar13,lVar5,piVar15[5],*(int32_t *)unaff_R12[1]);
             if (cVar8 == '\0') {
-              FUN_1804dfdb0(piVar16,lVar5);
+              UISystem_dfdb0(piVar16,lVar5);
             }
             else {
               NetworkSystem_SecurityValidator();
@@ -221,7 +209,7 @@ void FUN_1804dd69f(uint64_t param_1,uint64_t param_2,int param_3)
                   uVar2 = *(uint *)(lVar7 + 0x1c + lVar12);
                   if (uVar2 != 0xffffffff) {
                     uVar3 = *(uint *)(lVar7 + 0x18 + lVar12);
-                    FUN_1801bcce0(*(uint64_t *)
+                    GenericFunction_1801bcce0(*(uint64_t *)
                                    (*(int64_t *)
                                      (*(int64_t *)(lVar5 + 0x698) +
                                      (int64_t)((int)uVar2 >> 10) * 8) + 8 +
@@ -244,27 +232,13 @@ void FUN_1804dd69f(uint64_t param_1,uint64_t param_2,int param_3)
   } while ((int)(iVar17 + 1U) < param_3);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dd91c(void)
-void FUN_1804dd91c(void)
-
+// 函数: void UISystem_dd91c(void)
+void UISystem_dd91c(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dd930(int64_t *param_1,int param_2,int param_3)
-void FUN_1804dd930(int64_t *param_1,int param_2,int param_3)
-
+// 函数: void UISystem_dd930(int64_t *param_1,int param_2,int param_3)
+void UISystem_dd930(int64_t *param_1,int param_2,int param_3)
 {
   int32_t uVar1;
   uint uVar2;
@@ -284,7 +258,6 @@ void FUN_1804dd930(int64_t *param_1,int param_2,int param_3)
   int *piVar16;
   int iVar17;
   uint64_t uVar18;
-  
   uVar18 = (uint64_t)param_2;
   uVar10 = uVar18;
   if (param_2 < param_3) {
@@ -307,9 +280,9 @@ void FUN_1804dd930(int64_t *param_1,int param_2,int param_3)
             lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x3f8) + (int64_t)((int)uVar2 >> 10) * 8);
             if (uVar4 == 0xffffffff) {
               if (*(char *)(lVar6 + 8 + (int64_t)(int)(uVar3 & uVar2) * 0xc) != '\0') {
-                cVar8 = FUN_1804de930(lVar13,lVar5,piVar15[5],*(int32_t *)param_1[1]);
+                cVar8 = UISystem_de930(lVar13,lVar5,piVar15[5],*(int32_t *)param_1[1]);
                 if (cVar8 == '\0') {
-                  FUN_1804dfdb0(piVar16,lVar5);
+                  UISystem_dfdb0(piVar16,lVar5);
                 }
                 else {
                   NetworkSystem_SecurityValidator();
@@ -324,9 +297,9 @@ void FUN_1804dd930(int64_t *param_1,int param_2,int param_3)
               lVar6 = *(int64_t *)
                        (*(int64_t *)(lVar5 + 0x2c68) + (int64_t)((int)uVar4 >> 10) * 8);
               lVar14 = (int64_t)(int)(uVar4 & *(uint *)(lVar5 + 0x2c88)) * 0x68;
-              cVar8 = FUN_1804de930(lVar13,lVar5,piVar15[5],*(int32_t *)param_1[1]);
+              cVar8 = UISystem_de930(lVar13,lVar5,piVar15[5],*(int32_t *)param_1[1]);
               if (cVar8 == '\0') {
-                FUN_1804dfdb0(piVar16,lVar5);
+                UISystem_dfdb0(piVar16,lVar5);
               }
               else {
                 NetworkSystem_SecurityValidator();
@@ -346,7 +319,7 @@ void FUN_1804dd930(int64_t *param_1,int param_2,int param_3)
                     uVar2 = *(uint *)(lVar7 + 0x1c + lVar12);
                     if (uVar2 != 0xffffffff) {
                       uVar3 = *(uint *)(lVar7 + 0x18 + lVar12);
-                      FUN_1801bcdd0(*(uint64_t *)
+                      GenericFunction_1801bcdd0(*(uint64_t *)
                                      (*(int64_t *)
                                        (*(int64_t *)(lVar5 + 0x698) +
                                        (int64_t)((int)uVar2 >> 10) * 8) + 8 +
@@ -371,15 +344,8 @@ void FUN_1804dd930(int64_t *param_1,int param_2,int param_3)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804dd94f(uint64_t param_1,uint64_t param_2,int param_3)
-void FUN_1804dd94f(uint64_t param_1,uint64_t param_2,int param_3)
-
+// 函数: void UISystem_dd94f(uint64_t param_1,uint64_t param_2,int param_3)
+void UISystem_dd94f(uint64_t param_1,uint64_t param_2,int param_3)
 {
   int32_t uVar1;
   uint uVar2;
@@ -410,8 +376,7 @@ void FUN_1804dd94f(uint64_t param_1,uint64_t param_2,int param_3)
   int32_t unaff_XMM6_Db;
   int32_t unaff_XMM6_Dc;
   int32_t unaff_XMM6_Dd;
-  int in_stack_00000070;
-  
+  int local_var_70;
   *(uint64_t *)(in_RAX + 8) = unaff_RBP;
   *(uint64_t *)(in_RAX + 0x10) = unaff_RSI;
   *(uint64_t *)(in_RAX + 0x20) = unaff_RDI;
@@ -428,7 +393,7 @@ void FUN_1804dd94f(uint64_t param_1,uint64_t param_2,int param_3)
     if (iVar17 < *(int *)(lVar5 + 0x614)) {
       uVar10 = (int64_t)*(int *)(lVar5 + 0x660) & unaff_R15;
       lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x640) + (int64_t)(iVar17 >> 10) * 8);
-      param_3 = in_stack_00000070;
+      param_3 = local_var_70;
       if (((*(int *)(lVar6 + uVar10 * 0xc) != -1) &&
           (puVar11 = (uint *)(lVar6 + uVar10 * 0xc + 8), puVar11 != (uint *)0x0)) &&
          (uVar2 = *puVar11, (int)uVar2 < *(int *)(lVar5 + 0x2c3c))) {
@@ -442,9 +407,9 @@ void FUN_1804dd94f(uint64_t param_1,uint64_t param_2,int param_3)
           lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x3f8) + (int64_t)((int)uVar2 >> 10) * 8);
           if (uVar4 == 0xffffffff) {
             if (*(char *)(lVar6 + 8 + (int64_t)(int)(uVar3 & uVar2) * 0xc) != '\0') {
-              cVar8 = FUN_1804de930(lVar13,lVar5,piVar15[5],*(int32_t *)unaff_R12[1]);
+              cVar8 = UISystem_de930(lVar13,lVar5,piVar15[5],*(int32_t *)unaff_R12[1]);
               if (cVar8 == '\0') {
-                FUN_1804dfdb0(piVar16,lVar5);
+                UISystem_dfdb0(piVar16,lVar5);
               }
               else {
                 NetworkSystem_SecurityValidator();
@@ -458,9 +423,9 @@ void FUN_1804dd94f(uint64_t param_1,uint64_t param_2,int param_3)
                            (int64_t)(int)(uVar3 & uVar4) * 0xc) != '\0')) {
             lVar6 = *(int64_t *)(*(int64_t *)(lVar5 + 0x2c68) + (int64_t)((int)uVar4 >> 10) * 8);
             lVar14 = (int64_t)(int)(uVar4 & *(uint *)(lVar5 + 0x2c88)) * 0x68;
-            cVar8 = FUN_1804de930(lVar13,lVar5,piVar15[5],*(int32_t *)unaff_R12[1]);
+            cVar8 = UISystem_de930(lVar13,lVar5,piVar15[5],*(int32_t *)unaff_R12[1]);
             if (cVar8 == '\0') {
-              FUN_1804dfdb0(piVar16,lVar5);
+              UISystem_dfdb0(piVar16,lVar5);
             }
             else {
               NetworkSystem_SecurityValidator();
@@ -480,7 +445,7 @@ void FUN_1804dd94f(uint64_t param_1,uint64_t param_2,int param_3)
                   uVar2 = *(uint *)(lVar7 + 0x1c + lVar12);
                   if (uVar2 != 0xffffffff) {
                     uVar3 = *(uint *)(lVar7 + 0x18 + lVar12);
-                    FUN_1801bcdd0(*(uint64_t *)
+                    GenericFunction_1801bcdd0(*(uint64_t *)
                                    (*(int64_t *)
                                      (*(int64_t *)(lVar5 + 0x698) +
                                      (int64_t)((int)uVar2 >> 10) * 8) + 8 +
@@ -503,27 +468,13 @@ void FUN_1804dd94f(uint64_t param_1,uint64_t param_2,int param_3)
   } while ((int)(iVar17 + 1U) < param_3);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804ddbcc(void)
-void FUN_1804ddbcc(void)
-
+// 函数: void UISystem_ddbcc(void)
+void UISystem_ddbcc(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804ddbe0(int64_t *param_1,int param_2,int param_3)
-void FUN_1804ddbe0(int64_t *param_1,int param_2,int param_3)
-
+// 函数: void UISystem_ddbe0(int64_t *param_1,int param_2,int param_3)
+void UISystem_ddbe0(int64_t *param_1,int param_2,int param_3)
 {
   uint uVar1;
   uint uVar2;
@@ -538,7 +489,6 @@ void FUN_1804ddbe0(int64_t *param_1,int param_2,int param_3)
   int *piVar11;
   int *piVar12;
   int64_t lVar13;
-  
   uVar10 = (uint64_t)param_2;
   uVar6 = uVar10;
   if (param_2 < param_3) {
@@ -561,9 +511,9 @@ void FUN_1804ddbe0(int64_t *param_1,int param_2,int param_3)
             lVar13 = *(int64_t *)(*(int64_t *)(lVar4 + 0x3f8) + (int64_t)((int)uVar1 >> 10) * 8);
             if (uVar3 == 0xffffffff) {
               if (*(char *)(lVar13 + 8 + (int64_t)(int)(uVar2 & uVar1) * 0xc) != '\0') {
-                cVar5 = FUN_1804de9e0(lVar8,lVar4,piVar11[5]);
+                cVar5 = UISystem_de9e0(lVar8,lVar4,piVar11[5]);
                 if (cVar5 == '\0') {
-                  FUN_1804dfdb0(piVar12,lVar4);
+                  UISystem_dfdb0(piVar12,lVar4);
                 }
                 else {
                   NetworkSystem_SecurityValidator();
@@ -578,9 +528,9 @@ void FUN_1804ddbe0(int64_t *param_1,int param_2,int param_3)
               lVar13 = (int64_t)(int)(*(uint *)(lVar4 + 0x2c88) & uVar3) * 0x68 +
                        *(int64_t *)
                         (*(int64_t *)(lVar4 + 0x2c68) + (int64_t)((int)uVar3 >> 10) * 8);
-              cVar5 = FUN_1804de9e0(lVar8,lVar4,piVar11[5]);
+              cVar5 = UISystem_de9e0(lVar8,lVar4,piVar11[5]);
               if (cVar5 == '\0') {
-                FUN_1804dfdb0(piVar12,lVar4);
+                UISystem_dfdb0(piVar12,lVar4);
                 NetworkSystem_SecurityValidator(lVar13 + 8,*param_1);
               }
               else {
@@ -597,15 +547,8 @@ void FUN_1804ddbe0(int64_t *param_1,int param_2,int param_3)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804ddbfc(void)
-void FUN_1804ddbfc(void)
-
+// 函数: void UISystem_ddbfc(void)
+void UISystem_ddbfc(void)
 {
   uint uVar1;
   uint uVar2;
@@ -622,7 +565,6 @@ void FUN_1804ddbfc(void)
   int unaff_R13D;
   int64_t lVar12;
   int64_t *unaff_R15;
-  
   uVar6 = unaff_RSI;
   do {
     lVar4 = *unaff_R15;
@@ -643,9 +585,9 @@ void FUN_1804ddbfc(void)
           lVar12 = *(int64_t *)(*(int64_t *)(lVar4 + 0x3f8) + (int64_t)((int)uVar1 >> 10) * 8);
           if (uVar3 == 0xffffffff) {
             if (*(char *)(lVar12 + 8 + (int64_t)(int)(uVar2 & uVar1) * 0xc) != '\0') {
-              cVar5 = FUN_1804de9e0(lVar8,lVar4,piVar10[5]);
+              cVar5 = UISystem_de9e0(lVar8,lVar4,piVar10[5]);
               if (cVar5 == '\0') {
-                FUN_1804dfdb0(piVar11,lVar4);
+                UISystem_dfdb0(piVar11,lVar4);
               }
               else {
                 NetworkSystem_SecurityValidator();
@@ -660,9 +602,9 @@ void FUN_1804ddbfc(void)
             lVar12 = (int64_t)(int)(*(uint *)(lVar4 + 0x2c88) & uVar3) * 0x68 +
                      *(int64_t *)(*(int64_t *)(lVar4 + 0x2c68) + (int64_t)((int)uVar3 >> 10) * 8)
             ;
-            cVar5 = FUN_1804de9e0(lVar8,lVar4,piVar10[5]);
+            cVar5 = UISystem_de9e0(lVar8,lVar4,piVar10[5]);
             if (cVar5 == '\0') {
-              FUN_1804dfdb0(piVar11,lVar4);
+              UISystem_dfdb0(piVar11,lVar4);
               NetworkSystem_SecurityValidator(lVar12 + 8,*unaff_R15);
             }
             else {
@@ -678,30 +620,18 @@ void FUN_1804ddbfc(void)
   } while ((int)(iVar9 + 1U) < unaff_R13D);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804ddd91(void)
-void FUN_1804ddd91(void)
-
+// 函数: void UISystem_ddd91(void)
+void UISystem_ddd91(void)
 {
   return;
 }
-
-
-
-uint64_t * FUN_1804ddda0(uint64_t *param_1,uint64_t *param_2)
-
+uint64_t * UISystem_ddda0(uint64_t *param_1,uint64_t *param_2)
 {
   int64_t *plVar1;
   int32_t uVar2;
   int32_t uVar3;
   int32_t uVar4;
   uint64_t uVar5;
-  
   uVar5 = param_2[1];
   *param_1 = *param_2;
   param_1[1] = uVar5;
@@ -740,15 +670,10 @@ uint64_t * FUN_1804ddda0(uint64_t *param_1,uint64_t *param_2)
   *(int8_t *)((int64_t)param_1 + 100) = *(int8_t *)((int64_t)param_2 + 100);
   return param_1;
 }
-
-
-
-int32_t * FUN_1804dde40(int32_t *param_1,int32_t *param_2)
-
+int32_t * UISystem_dde40(int32_t *param_1,int32_t *param_2)
 {
   int64_t *plVar1;
   uint64_t uVar2;
-  
   *param_1 = *param_2;
   *(int8_t *)(param_1 + 1) = *(int8_t *)(param_2 + 1);
   *(int8_t *)((int64_t)param_1 + 5) = *(int8_t *)((int64_t)param_2 + 5);
@@ -780,14 +705,9 @@ int32_t * FUN_1804dde40(int32_t *param_1,int32_t *param_2)
   param_1[0x19] = param_2[0x19];
   return param_1;
 }
-
-
-
-int32_t * FUN_1804ddee0(int32_t *param_1,int32_t *param_2)
-
+int32_t * UISystem_ddee0(int32_t *param_1,int32_t *param_2)
 {
   int64_t *plVar1;
-  
   *param_1 = *param_2;
   plVar1 = *(int64_t **)(param_2 + 2);
   *(int64_t **)(param_1 + 2) = plVar1;
@@ -809,29 +729,13 @@ int32_t * FUN_1804ddee0(int32_t *param_1,int32_t *param_2)
   param_1[10] = param_2[10];
   return param_1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1804ddf60(int64_t param_1,int64_t param_2)
-void FUN_1804ddf60(int64_t param_1,int64_t param_2)
-
+// 函数: void UISystem_ddf60(int64_t param_1,int64_t param_2)
+void UISystem_ddf60(int64_t param_1,int64_t param_2)
 {
   uint64_t uVar1;
-  
   uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,param_2 * 8 + 8,8,*(int8_t *)(param_1 + 0x2c));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(uVar1,0,param_2 * 8);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

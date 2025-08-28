@@ -1,70 +1,51 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part113.c - 渲染系统数据序列化和批处理模块
 // 包含9个核心函数，涵盖渲染系统数据序列化、批处理、缓冲区管理、
 // 数据读写、内存分配、资源处理、状态管理、参数验证和系统初始化等高级渲染功能。
-
 //==============================================================================
 // 常量定义和宏定义
 //==============================================================================
-
 /** @brief 渲染系统序列化缓冲区大小 */
 #define RENDERING_SERIALIZATION_BUFFER_SIZE 4096
-
 /** @brief 渲染系统批处理最大数量 */
 #define RENDERING_BATCH_MAX_COUNT 1024
-
 /** @brief 渲染系统数据对齐大小 */
 #define RENDERING_DATA_ALIGNMENT_SIZE 16
-
 /** @brief 渲染系统内存分配标志 */
 #define RENDERING_MEMORY_ALLOC_FLAG 0x01
-
 /** @brief 渲染系统序列化版本 */
 #define RENDERING_SERIALIZATION_VERSION 0x02
-
 //==============================================================================
 // 函数别名定义
 //==============================================================================
-
 /** @brief 渲染系统数据序列化器 */
-#define RenderingSystem_SerializeData FUN_180336980
-
+#define RenderingSystem_SerializeData function_336980
 /** @brief 渲染系统批处理器 */
-#define RenderingSystem_ProcessBatch FUN_180336994
-
+#define RenderingSystem_ProcessBatch function_336994
 /** @brief 渲染系统缓冲区管理器 */
-#define RenderingSystem_ManageBuffer FUN_1803369a3
-
+#define RenderingSystem_ManageBuffer function_3369a3
 /** @brief 渲染系统数据读取器 */
-#define RenderingSystem_ReadData FUN_180336be5
-
+#define RenderingSystem_ReadData function_336be5
 /** @brief 渲染系统数据写入器 */
-#define RenderingSystem_WriteData FUN_180336c25
-
+#define RenderingSystem_WriteData function_336c25
 /** @brief 渲染系统资源处理器 */
-#define RenderingSystem_ProcessResource FUN_180336c92
-
+#define RenderingSystem_ProcessResource function_336c92
 /** @brief 渲染系统状态管理器 */
-#define RenderingSystem_ManageState FUN_180336cbc
-
+#define RenderingSystem_ManageState function_336cbc
 /** @brief 渲染系统数据反序列化器 */
-#define RenderingSystem_DeserializeData FUN_180336d40
-
+#define RenderingSystem_DeserializeData function_336d40
 /** @brief 渲染系统批处理优化器 */
-#define RenderingSystem_OptimizeBatch FUN_180336e3d
-
+#define RenderingSystem_OptimizeBatch function_336e3d
 //==============================================================================
 // 核心函数实现
 //==============================================================================
-
 /**
  * @brief 渲染系统数据序列化器
- * 
+ *
  * 该函数负责序列化渲染系统数据，包括数据读取、缓冲区管理、
  * 数据写入、内存分配、资源处理和状态同步等高级渲染功能。
- * 
+ *
  * @param data_context 数据上下文指针
  * @param buffer_context 缓冲区上下文指针
  * @return void
@@ -81,8 +62,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   int64_t lVar8;
   uint uVar9;
   uint64_t uVar10;
-  
-  // 序列化基础数据
+// 序列化基础数据
   uVar2 = *data_context;
   puVar5 = (int32_t *)buffer_context[1];
   if ((uint64_t)((*buffer_context - (int64_t)puVar5) + buffer_context[2]) < 5) {
@@ -91,9 +71,8 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   buffer_context[1] = buffer_context[1] + 4;
-  
-  // 序列化扩展数据
-  FUN_18063a110(buffer_context, data_context + 1);
+// 序列化扩展数据
+  function_63a110(buffer_context, data_context + 1);
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x11];
   if ((uint64_t)((*buffer_context - (int64_t)puVar5) + buffer_context[2]) < 5) {
@@ -102,8 +81,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   buffer_context[1] = buffer_context[1] + 4;
-  
-  // 序列化状态数据
+// 序列化状态数据
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x12];
   if ((uint64_t)((*buffer_context - (int64_t)puVar5) + buffer_context[2]) < 5) {
@@ -112,8 +90,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   buffer_context[1] = buffer_context[1] + 4;
-  
-  // 序列化标志数据
+// 序列化标志数据
   puVar4 = (int8_t *)buffer_context[1];
   uVar1 = *(int8_t *)(data_context + 0x13);
   if ((uint64_t)((*buffer_context - (int64_t)puVar4) + buffer_context[2]) < 2) {
@@ -122,8 +99,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   }
   *puVar4 = uVar1;
   buffer_context[1] = buffer_context[1] + 1;
-  
-  // 序列化配置数据
+// 序列化配置数据
   System_QueueProcessor(buffer_context, data_context + 0x14);
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x2a];
@@ -133,8 +109,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   buffer_context[1] = buffer_context[1] + 4;
-  
-  // 序列化参数数据
+// 序列化参数数据
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x2b];
   if ((uint64_t)((*buffer_context - (int64_t)puVar5) + buffer_context[2]) < 5) {
@@ -143,8 +118,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   buffer_context[1] = buffer_context[1] + 4;
-  
-  // 序列化属性数据
+// 序列化属性数据
   puVar4 = (int8_t *)buffer_context[1];
   uVar1 = *(int8_t *)(data_context + 0x2c);
   if ((uint64_t)((*buffer_context - (int64_t)puVar4) + buffer_context[2]) < 2) {
@@ -153,8 +127,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   }
   *puVar4 = uVar1;
   buffer_context[1] = buffer_context[1] + 1;
-  
-  // 序列化优先级数据
+// 序列化优先级数据
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x2e];
   if ((uint64_t)((*buffer_context - (int64_t)puVar5) + buffer_context[2]) < 5) {
@@ -163,8 +136,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   buffer_context[1] = buffer_context[1] + 4;
-  
-  // 序列化权重数据
+// 序列化权重数据
   puVar5 = (int32_t *)buffer_context[1];
   uVar2 = data_context[0x2d];
   if ((uint64_t)((*buffer_context - (int64_t)puVar5) + buffer_context[2]) < 5) {
@@ -173,11 +145,9 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   buffer_context[1] = buffer_context[1] + 4;
-  
-  // 序列化资源数据
-  FUN_1803370b0(data_context + 0x30, buffer_context);
-  
-  // 序列化数组数据
+// 序列化资源数据
+  function_3370b0(data_context + 0x30, buffer_context);
+// 序列化数组数据
   lVar8 = *(int64_t *)(data_context + 0x5e);
   lVar3 = *(int64_t *)(data_context + 0x5c);
   puVar5 = (int32_t *)buffer_context[1];
@@ -209,8 +179,7 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
     } while ((uint64_t)(int64_t)(int)uVar9 <
              (uint64_t)(*(int64_t *)(data_context + 0x5e) - lVar8 >> 2));
   }
-  
-  // 序列化对象数据
+// 序列化对象数据
   lVar8 = *(int64_t *)(data_context + 0x66);
   lVar3 = *(int64_t *)(data_context + 100);
   if ((uint64_t)((*buffer_context - (int64_t)puVar5) + buffer_context[2]) < 5) {
@@ -232,13 +201,12 @@ void RenderingSystem_SerializeData(int32_t *data_context, int64_t *buffer_contex
   }
   return;
 }
-
 /**
  * @brief 渲染系统批处理器
- * 
+ *
  * 该函数负责处理渲染系统批处理操作，包括批处理数据读取、
  * 缓冲区管理、数据写入、状态同步和资源处理等高级渲染功能。
- * 
+ *
  * @param batch_context 批处理上下文
  * @param buffer_context 缓冲区上下文指针
  * @return void
@@ -258,8 +226,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   int64_t lVar8;
   uint uVar9;
   uint64_t uVar10;
-  
-  // 处理批处理基础数据
+// 处理批处理基础数据
   puVar5 = (int32_t *)buffer_context[1];
   if ((uint64_t)((*buffer_context - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
     System_BufferManager();
@@ -267,9 +234,8 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   }
   *puVar5 = unaff_ESI;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 处理批处理扩展数据
-  FUN_18063a110();
+// 处理批处理扩展数据
+  function_63a110();
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0x44);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -278,8 +244,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 处理批处理状态数据
+// 处理批处理状态数据
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0x48);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -288,8 +253,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 处理批处理标志数据
+// 处理批处理标志数据
   puVar4 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0x4c);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 2) {
@@ -298,8 +262,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   }
   *puVar4 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  
-  // 处理批处理配置数据
+// 处理批处理配置数据
   System_QueueProcessor();
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xa8);
@@ -309,8 +272,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 处理批处理参数数据
+// 处理批处理参数数据
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xac);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -319,8 +281,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 处理批处理属性数据
+// 处理批处理属性数据
   puVar4 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0xb0);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 2) {
@@ -329,8 +290,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   }
   *puVar4 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  
-  // 处理批处理优先级数据
+// 处理批处理优先级数据
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xb8);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -339,8 +299,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 处理批处理权重数据
+// 处理批处理权重数据
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xb4);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -349,11 +308,9 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 处理批处理资源数据
-  FUN_1803370b0(unaff_RDI + 0xc0);
-  
-  // 处理批处理数组数据
+// 处理批处理资源数据
+  function_3370b0(unaff_RDI + 0xc0);
+// 处理批处理数组数据
   lVar8 = *(int64_t *)(unaff_RDI + 0x178);
   lVar3 = *(int64_t *)(unaff_RDI + 0x170);
   puVar5 = (int32_t *)unaff_RBX[1];
@@ -385,8 +342,7 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
     } while ((uint64_t)(int64_t)(int)uVar9 <
              (uint64_t)(*(int64_t *)(unaff_RDI + 0x178) - lVar8 >> 2));
   }
-  
-  // 处理批处理对象数据
+// 处理批处理对象数据
   lVar8 = *(int64_t *)(unaff_RDI + 0x198);
   lVar3 = *(int64_t *)(unaff_RDI + 400);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -407,13 +363,12 @@ void RenderingSystem_ProcessBatch(uint64_t batch_context, int64_t *buffer_contex
   }
   return;
 }
-
 /**
  * @brief 渲染系统缓冲区管理器
- * 
+ *
  * 该函数负责管理渲染系统缓冲区，包括缓冲区分配、数据写入、
  * 状态同步、资源处理和内存管理等高级渲染功能。
- * 
+ *
  * @param buffer_context 缓冲区上下文指针
  * @return void
  */
@@ -433,17 +388,15 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   int64_t lVar8;
   uint uVar9;
   uint64_t uVar10;
-  
-  // 管理缓冲区基础数据
+// 管理缓冲区基础数据
   if ((uint64_t)((in_RAX - (int64_t)buffer_context) + unaff_RBX[2]) < 5) {
     System_BufferManager();
     buffer_context = (int32_t *)unaff_RBX[1];
   }
   *buffer_context = unaff_ESI;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 管理缓冲区扩展数据
-  FUN_18063a110();
+// 管理缓冲区扩展数据
+  function_63a110();
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0x44);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -452,8 +405,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 管理缓冲区状态数据
+// 管理缓冲区状态数据
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0x48);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -462,8 +414,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 管理缓冲区标志数据
+// 管理缓冲区标志数据
   puVar4 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0x4c);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 2) {
@@ -472,8 +423,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   }
   *puVar4 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  
-  // 管理缓冲区配置数据
+// 管理缓冲区配置数据
   System_QueueProcessor();
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xa8);
@@ -483,8 +433,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 管理缓冲区参数数据
+// 管理缓冲区参数数据
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xac);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -493,8 +442,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 管理缓冲区属性数据
+// 管理缓冲区属性数据
   puVar4 = (int8_t *)unaff_RBX[1];
   uVar1 = *(int8_t *)(unaff_RDI + 0xb0);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar4) + unaff_RBX[2]) < 2) {
@@ -503,8 +451,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   }
   *puVar4 = uVar1;
   unaff_RBX[1] = unaff_RBX[1] + 1;
-  
-  // 管理缓冲区优先级数据
+// 管理缓冲区优先级数据
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xb8);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -513,8 +460,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 管理缓冲区权重数据
+// 管理缓冲区权重数据
   puVar5 = (int32_t *)unaff_RBX[1];
   uVar2 = *(int32_t *)(unaff_RDI + 0xb4);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -523,11 +469,9 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   }
   *puVar5 = uVar2;
   unaff_RBX[1] = unaff_RBX[1] + 4;
-  
-  // 管理缓冲区资源数据
-  FUN_1803370b0(unaff_RDI + 0xc0);
-  
-  // 管理缓冲区数组数据
+// 管理缓冲区资源数据
+  function_3370b0(unaff_RDI + 0xc0);
+// 管理缓冲区数组数据
   lVar8 = *(int64_t *)(unaff_RDI + 0x178);
   lVar3 = *(int64_t *)(unaff_RDI + 0x170);
   puVar5 = (int32_t *)unaff_RBX[1];
@@ -559,8 +503,7 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
     } while ((uint64_t)(int64_t)(int)uVar9 <
              (uint64_t)(*(int64_t *)(unaff_RDI + 0x178) - lVar8 >> 2));
   }
-  
-  // 管理缓冲区对象数据
+// 管理缓冲区对象数据
   lVar8 = *(int64_t *)(unaff_RDI + 0x198);
   lVar3 = *(int64_t *)(unaff_RDI + 400);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar5) + unaff_RBX[2]) < 5) {
@@ -581,13 +524,12 @@ void RenderingSystem_ManageBuffer(int32_t *buffer_context)
   }
   return;
 }
-
 /**
  * @brief 渲染系统数据读取器
- * 
+ *
  * 该函数负责读取渲染系统数据，包括数据初始化、缓冲区管理、
  * 数组处理、对象处理和状态同步等高级渲染功能。
- * 
+ *
  * @return void
  */
 void RenderingSystem_ReadData(void)
@@ -603,15 +545,13 @@ void RenderingSystem_ReadData(void)
   int64_t lVar6;
   uint uVar7;
   uint64_t uVar8;
-  
-  // 初始化数据读取
+// 初始化数据读取
   System_BufferManager();
   *(int32_t *)unaff_RBX[1] = unaff_ESI;
   uVar4 = 0;
   puVar3 = (int32_t *)(unaff_RBX[1] + 4);
   unaff_RBX[1] = (int64_t)puVar3;
-  
-  // 处理数组数据
+// 处理数组数据
   lVar6 = *(int64_t *)(unaff_RDI + 0x170);
   uVar5 = uVar4;
   uVar8 = uVar4;
@@ -632,8 +572,7 @@ void RenderingSystem_ReadData(void)
     } while ((uint64_t)(int64_t)(int)uVar7 <
              (uint64_t)(*(int64_t *)(unaff_RDI + 0x178) - lVar6 >> 2));
   }
-  
-  // 处理对象数据
+// 处理对象数据
   lVar6 = *(int64_t *)(unaff_RDI + 0x198);
   lVar2 = *(int64_t *)(unaff_RDI + 400);
   if ((uint64_t)((*unaff_RBX - (int64_t)puVar3) + unaff_RBX[2]) < 5) {
@@ -654,13 +593,12 @@ void RenderingSystem_ReadData(void)
   }
   return;
 }
-
 /**
  * @brief 渲染系统数据写入器
- * 
+ *
  * 该函数负责写入渲染系统数据，包括数据序列化、缓冲区管理、
  * 数组处理、对象处理和状态同步等高级渲染功能。
- * 
+ *
  * @param write_context 写入上下文
  * @param data_context 数据上下文指针
  * @param offset_context 偏移上下文
@@ -677,8 +615,7 @@ void RenderingSystem_WriteData(uint64_t write_context, int32_t *data_context, in
   uint64_t uVar5;
   int64_t unaff_RDI;
   int unaff_R15D;
-  
-  // 写入基础数据
+// 写入基础数据
   uVar5 = unaff_RBP & 0xffffffff;
   do {
     uVar1 = *(int32_t *)(offset_context + uVar5);
@@ -694,8 +631,7 @@ void RenderingSystem_WriteData(uint64_t write_context, int32_t *data_context, in
     offset_context = *(int64_t *)(unaff_RDI + 0x170);
   } while ((uint64_t)(int64_t)unaff_R15D <
            (uint64_t)(*(int64_t *)(unaff_RDI + 0x178) - offset_context >> 2));
-  
-  // 写入对象数据
+// 写入对象数据
   lVar2 = *(int64_t *)(unaff_RDI + 0x198);
   lVar3 = *(int64_t *)(unaff_RDI + 400);
   if ((uint64_t)((*unaff_RBX - (int64_t)data_context) + unaff_RBX[2]) < 5) {
@@ -716,13 +652,12 @@ void RenderingSystem_WriteData(uint64_t write_context, int32_t *data_context, in
   }
   return;
 }
-
 /**
  * @brief 渲染系统资源处理器
- * 
+ *
  * 该函数负责处理渲染系统资源，包括资源序列化、缓冲区管理、
  * 对象处理和状态同步等高级渲染功能。
- * 
+ *
  * @param resource_context 资源上下文
  * @param buffer_context 缓冲区上下文指针
  * @return void
@@ -736,8 +671,7 @@ void RenderingSystem_ProcessResource(uint64_t resource_context, int32_t *buffer_
   uint64_t unaff_RBP;
   uint64_t uVar4;
   int64_t unaff_RDI;
-  
-  // 处理资源对象数据
+// 处理资源对象数据
   lVar1 = *(int64_t *)(unaff_RDI + 0x198);
   lVar2 = *(int64_t *)(unaff_RDI + 400);
   if ((uint64_t)((*unaff_RBX - (int64_t)buffer_context) + unaff_RBX[2]) < 5) {
@@ -758,13 +692,12 @@ void RenderingSystem_ProcessResource(uint64_t resource_context, int32_t *buffer_
   }
   return;
 }
-
 /**
  * @brief 渲染系统状态管理器
- * 
+ *
  * 该函数负责管理渲染系统状态，包括状态初始化、数据同步、
  * 资源处理和状态更新等高级渲染功能。
- * 
+ *
  * @return void
  */
 void RenderingSystem_ManageState(void)
@@ -775,13 +708,11 @@ void RenderingSystem_ManageState(void)
   int32_t unaff_ESI;
   uint64_t uVar2;
   int64_t unaff_RDI;
-  
-  // 初始化状态管理
+// 初始化状态管理
   System_BufferManager();
   **(int32_t **)(unaff_RBX + 8) = unaff_ESI;
   *(int64_t *)(unaff_RBX + 8) = *(int64_t *)(unaff_RBX + 8) + 4;
-  
-  // 处理状态对象数据
+// 处理状态对象数据
   uVar2 = unaff_RBP;
   if (*(int64_t *)(unaff_RDI + 0x198) - *(int64_t *)(unaff_RDI + 400) >> 3 != 0) {
     do {
@@ -794,13 +725,12 @@ void RenderingSystem_ManageState(void)
   }
   return;
 }
-
 /**
  * @brief 渲染系统数据反序列化器
- * 
+ *
  * 该函数负责反序列化渲染系统数据，包括数据读取、内存分配、
  * 资源处理、数组管理、对象处理和状态同步等高级渲染功能。
- * 
+ *
  * @param data_context 数据上下文指针
  * @param stream_context 流上下文
  * @return void
@@ -820,8 +750,7 @@ void RenderingSystem_DeserializeData(int32_t *data_context, int64_t stream_conte
   int32_t *puVar11;
   uint64_t *puVar12;
   uint64_t uVar13;
-  
-  // 反序列化基础数据
+// 反序列化基础数据
   *data_context = **(int32_t **)(stream_context + 8);
   lVar7 = *(int64_t *)(stream_context + 8);
   data_context[1] = *(int32_t *)(lVar7 + 4);
@@ -848,8 +777,7 @@ void RenderingSystem_DeserializeData(int32_t *data_context, int64_t stream_conte
   uVar1 = **(int8_t **)(stream_context + 8);
   *(int8_t **)(stream_context + 8) = *(int8_t **)(stream_context + 8) + 1;
   *(int8_t *)(data_context + 0x13) = uVar1;
-  
-  // 反序列化扩展数据
+// 反序列化扩展数据
   uVar2 = **(uint **)(stream_context + 8);
   puVar5 = *(uint **)(stream_context + 8) + 1;
   *(uint **)(stream_context + 8) = puVar5;
@@ -868,9 +796,8 @@ void RenderingSystem_DeserializeData(int32_t *data_context, int64_t stream_conte
   *(int64_t *)(stream_context + 8) = *(int64_t *)(stream_context + 8) + 4;
   data_context[0x2d] = **(int32_t **)(stream_context + 8);
   *(int64_t *)(stream_context + 8) = *(int64_t *)(stream_context + 8) + 4;
-  FUN_180337400(data_context + 0x30, stream_context);
-  
-  // 反序列化数组数据
+  function_337400(data_context + 0x30, stream_context);
+// 反序列化数组数据
   uVar2 = **(uint **)(stream_context + 8);
   puVar5 = *(uint **)(stream_context + 8) + 1;
   *(uint **)(stream_context + 8) = puVar5;
@@ -915,14 +842,13 @@ LAB_180336f0c:
     } while (uVar13 != 0);
     puVar5 = *(uint **)(stream_context + 8);
   }
-  
-  // 反序列化对象数据
+// 反序列化对象数据
   uVar2 = *puVar5;
   *(uint **)(stream_context + 8) = puVar5 + 1;
   if (0 < (int)uVar2) {
     uVar13 = (uint64_t)uVar2;
     do {
-      uVar6 = FUN_180337b40(stream_context);
+      uVar6 = function_337b40(stream_context);
       puVar12 = *(uint64_t **)(data_context + 0x66);
       if (puVar12 < *(uint64_t **)(data_context + 0x68)) {
         *(uint64_t **)(data_context + 0x66) = puVar12 + 1;
@@ -960,13 +886,12 @@ LAB_180337007:
   }
   return;
 }
-
 /**
  * @brief 渲染系统批处理优化器
- * 
+ *
  * 该函数负责优化渲染系统批处理，包括批处理初始化、数据读取、
  * 内存分配、资源处理、数组管理、对象处理和状态同步等高级渲染功能。
- * 
+ *
  * @return void
  */
 void RenderingSystem_OptimizeBatch(void)
@@ -986,8 +911,7 @@ void RenderingSystem_OptimizeBatch(void)
   int32_t *puVar10;
   uint64_t *puVar11;
   uint64_t uVar12;
-  
-  // 初始化批处理优化
+// 初始化批处理优化
   *(int32_t *)(unaff_RBX + 0xac) = *in_RAX;
   *(int64_t *)(unaff_RSI + 8) = *(int64_t *)(unaff_RSI + 8) + 4;
   *(int8_t *)(unaff_RBX + 0xb0) = **(int8_t **)(unaff_RSI + 8);
@@ -996,9 +920,8 @@ void RenderingSystem_OptimizeBatch(void)
   *(int64_t *)(unaff_RSI + 8) = *(int64_t *)(unaff_RSI + 8) + 4;
   *(int32_t *)(unaff_RBX + 0xb4) = **(int32_t **)(unaff_RSI + 8);
   *(int64_t *)(unaff_RSI + 8) = *(int64_t *)(const int64_t *)(unaff_RSI + 8) + 4;
-  FUN_180337400(unaff_RBX + 0xc0);
-  
-  // 优化数组数据
+  function_337400(unaff_RBX + 0xc0);
+// 优化数组数据
   uVar1 = **(uint **)(unaff_RSI + 8);
   puVar4 = *(uint **)(unaff_RSI + 8) + 1;
   *(uint **)(unaff_RSI + 8) = puVar4;
@@ -1043,14 +966,13 @@ LAB_180336f0c:
     } while (uVar12 != 0);
     puVar4 = *(uint **)(unaff_RSI + 8);
   }
-  
-  // 优化对象数据
+// 优化对象数据
   uVar1 = *puVar4;
   *(uint **)(unaff_RSI + 8) = puVar4 + 1;
   if (0 < (int)uVar1) {
     uVar12 = (uint64_t)uVar1;
     do {
-      uVar5 = FUN_180337b40();
+      uVar5 = function_337b40();
       puVar11 = *(uint64_t **)(unaff_RBX + 0x198);
       if (puVar11 < *(uint64_t **)(unaff_RBX + 0x1a0)) {
         *(uint64_t **)(unaff_RBX + 0x198) = puVar11 + 1;
@@ -1088,41 +1010,39 @@ LAB_180337007:
   }
   return;
 }
-
 //==============================================================================
 // 技术说明
 //==============================================================================
-
 /**
  * @技术说明
- * 
+ *
  * 本文件实现了渲染系统的数据序列化和批处理功能，主要特点：
- * 
+ *
  * 1. 数据序列化功能：
  *    - 支持多种数据类型的序列化和反序列化
  *    - 实现了高效的数据压缩和优化
  *    - 提供了完整的数据验证机制
- * 
+ *
  * 2. 批处理功能：
  *    - 支持大规模数据的批量处理
  *    - 实现了内存高效的批处理算法
  *    - 提供了灵活的批处理配置选项
- * 
+ *
  * 3. 缓冲区管理：
  *    - 动态内存分配和释放
  *    - 智能缓冲区大小调整
  *    - 内存使用优化和碎片整理
- * 
+ *
  * 4. 资源处理：
  *    - 高效的资源加载和卸载
  *    - 智能资源缓存管理
  *    - 资源生命周期管理
- * 
+ *
  * 5. 性能优化：
  *    - 减少内存分配次数
  *    - 优化数据访问模式
  *    - 提高缓存命中率
- * 
+ *
  * 这些功能为渲染系统提供了高效的数据处理能力，
  * 确保了系统的稳定性和性能表现。
  */

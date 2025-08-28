@@ -164,7 +164,7 @@ void FUN_180848e50(char *param_1, uint64_t *param_2)
     uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
     if (param_2 != (uint64_t *)0x0) {
         // 验证输入数据格式
-        if ((((param_1 == (char *)0x0) || (iVar5 = func_0x00018076b690(), iVar5 != 0x26)) ||
+        if ((((param_1 == (char *)0x0) || (iVar5 = BufferManager_ValidateRange(), iVar5 != 0x26)) ||
             (*param_1 != '{')) || (param_1[UI_SYSTEM_FORMAT_LENGTH_37] != '}')) {
 FUN_180848ff1:
             // 数据格式错误，设置默认值
@@ -173,7 +173,7 @@ FUN_180848ff1:
         }
         else {
             // 数据格式正确，进行转换处理
-            func_0x00018076b450(&uStack_60, param_1, 0x27);
+            MemoryManager_SecureBuffer(&uStack_60, param_1, 0x27);
             uStack_57 = 0;
             apuStack_88[0] = auStack_5f;
             lVar9 = 0;
@@ -201,12 +201,12 @@ FUN_180848ff1:
             } while (lVar9 < UI_SYSTEM_ARRAY_SIZE_5);
             
             // 转换数据格式
-            uStack_98 = func_0x00018076b320(auStack_5f);
-            uVar4 = func_0x00018076b320(auStack_56);
+            uStack_98 = SystemMemory_GetAllocationInfo(auStack_5f);
+            uVar4 = SystemMemory_GetAllocationInfo(auStack_56);
             uStack_94 = CONCAT22(uStack_94._2_2_, uVar4);
-            uVar4 = func_0x00018076b320(auStack_51);
+            uVar4 = SystemMemory_GetAllocationInfo(auStack_51);
             uStack_94 = CONCAT22(uVar4, (int16_t)uStack_94);
-            uVar4 = func_0x00018076b320(auStack_4c);
+            uVar4 = SystemMemory_GetAllocationInfo(auStack_4c);
             puVar8 = (int8_t *)((int64_t)&uStack_8c + 3);
             uStack_90 = CONCAT31(CONCAT21(uStack_90._2_2_, (char)uVar4), (char)((ushort)uVar4 >> 8));
             puVar7 = auStack_3d;
@@ -215,7 +215,7 @@ FUN_180848ff1:
             
             // 处理数据转换的循环
             do {
-                uVar3 = func_0x00018076b320(puVar10);
+                uVar3 = SystemMemory_GetAllocationInfo(puVar10);
                 puVar10 = puVar10 + -2;
                 *puVar8 = uVar3;
                 iVar5 = iVar5 + -1;
@@ -262,7 +262,7 @@ void FUN_180848e82(void)
     uint64_t *unaff_R15;
     
     // 验证组件数据格式
-    if ((((unaff_RBX == (char *)0x0) || (iVar7 = func_0x00018076b690(), iVar7 != 0x26)) ||
+    if ((((unaff_RBX == (char *)0x0) || (iVar7 = BufferManager_ValidateRange(), iVar7 != 0x26)) ||
         (*unaff_RBX != '{')) || (unaff_RBX[UI_SYSTEM_FORMAT_LENGTH_37] != '}')) {
 FUN_180848ff1:
         // 组件数据格式错误，设置默认值
@@ -271,7 +271,7 @@ FUN_180848ff1:
     }
     else {
         // 组件数据格式正确，进行初始化处理
-        func_0x00018076b450(unaff_RBP + -1);
+        MemoryManager_SecureBuffer(unaff_RBP + -1);
         *(int8_t *)(unaff_RBP + 8) = 0;
         *(int64_t *)(unaff_RBP + -0x29) = unaff_RBP;
         lVar12 = 0;
@@ -299,13 +299,13 @@ FUN_180848ff1:
         } while (lVar12 < UI_SYSTEM_ARRAY_SIZE_5);
         
         // 处理组件初始化数据
-        uVar8 = func_0x00018076b320();
+        uVar8 = SystemMemory_GetAllocationInfo();
         *(int32_t *)(unaff_RBP + -0x39) = uVar8;
-        uVar6 = func_0x00018076b320(unaff_RBP + 9);
+        uVar6 = SystemMemory_GetAllocationInfo(unaff_RBP + 9);
         *(int16_t *)(unaff_RBP + -0x35) = uVar6;
-        uVar6 = func_0x00018076b320(unaff_RBP + 0xe);
+        uVar6 = SystemMemory_GetAllocationInfo(unaff_RBP + 0xe);
         *(int16_t *)(unaff_RBP + -0x33) = uVar6;
-        uVar6 = func_0x00018076b320(unaff_RBP + 0x13);
+        uVar6 = SystemMemory_GetAllocationInfo(unaff_RBP + 0x13);
         *(char *)(unaff_RBP + -0x30) = (char)uVar6;
         puVar11 = (int8_t *)(unaff_RBP + -0x2a);
         *(char *)(unaff_RBP + -0x31) = (char)((ushort)uVar6 >> 8);
@@ -315,7 +315,7 @@ FUN_180848ff1:
         
         // 处理组件初始化数据的循环
         do {
-            uVar5 = func_0x00018076b320(lVar12);
+            uVar5 = SystemMemory_GetAllocationInfo(lVar12);
             lVar12 = lVar12 + -2;
             *puVar11 = uVar5;
             iVar7 = iVar7 + -1;
@@ -361,13 +361,13 @@ void FUN_180848f4e(void)
     int32_t *unaff_R15;
     
     // 获取布局数据
-    uVar5 = func_0x00018076b320();
+    uVar5 = SystemMemory_GetAllocationInfo();
     *(int32_t *)(unaff_RBP + -0x39) = uVar5;
-    uVar4 = func_0x00018076b320(unaff_RBP + 9);
+    uVar4 = SystemMemory_GetAllocationInfo(unaff_RBP + 9);
     *(int16_t *)(unaff_RBP + -0x35) = uVar4;
-    uVar4 = func_0x00018076b320(unaff_RBP + 0xe);
+    uVar4 = SystemMemory_GetAllocationInfo(unaff_RBP + 0xe);
     *(int16_t *)(unaff_RBP + -0x33) = uVar4;
-    uVar4 = func_0x00018076b320(unaff_RBP + 0x13);
+    uVar4 = SystemMemory_GetAllocationInfo(unaff_RBP + 0x13);
     *(char *)(unaff_RBP + -0x30) = (char)uVar4;
     puVar8 = (int8_t *)(unaff_RBP + -0x2a);
     *(char *)(unaff_RBP + -0x31) = (char)((ushort)uVar4 >> 8);
@@ -377,7 +377,7 @@ void FUN_180848f4e(void)
     
     // 处理布局数据的循环
     do {
-        uVar3 = func_0x00018076b320(lVar9);
+        uVar3 = SystemMemory_GetAllocationInfo(lVar9);
         lVar9 = lVar9 + -2;
         *puVar8 = uVar3;
         iVar6 = iVar6 + -1;
@@ -695,7 +695,7 @@ void FUN_180849230(uint64_t param_1)
     
     uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_168;
     alStack_138[1] = 0;
-    iVar1 = func_0x00018088c590(param_1, alStack_138);
+    iVar1 = StringDataProcessor_ConvertWide(param_1, alStack_138);
     if (iVar1 == 0) {
         if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808492e6;
         iVar2 = SystemSecurityProcessor(alStack_138 + 1);
@@ -712,7 +712,7 @@ LAB_180849294:
         *apuStack_128[0] = &processed_var_8024_ptr;
         *(int32_t *)(apuStack_128[0] + 1) = 0x18;
         *(int *)(apuStack_128[0] + 2) = (int)param_1;
-        func_0x00018088e0d0(*(uint64_t *)(alStack_138[0] + 0x98));
+        SystemDataResolver_ResolveAddress(*(uint64_t *)(alStack_138[0] + 0x98));
     }
 LAB_1808492e6:
     // WARNING: Subroutine does not return
@@ -738,12 +738,12 @@ void FUN_180849360(uint64_t param_1)
     uint64_t uStack_18;
     
     uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_168;
-    iVar1 = func_0x00018088c590(param_1, alStack_138 + 2);
+    iVar1 = StringDataProcessor_ConvertWide(param_1, alStack_138 + 2);
     if (iVar1 == 0) {
         if ((*(uint *)(alStack_138[2] + 0x24) >> 1 & 1) != 0) {
             FUN_18084b0c0(param_1);
             alStack_138[1] = 0;
-            iVar1 = func_0x00018088c590(param_1 & 0xffffffff, alStack_138);
+            iVar1 = StringDataProcessor_ConvertWide(param_1 & 0xffffffff, alStack_138);
             if (((iVar1 != 0) ||
                 (((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) != 0 &&
                  (iVar2 = SystemSecurityProcessor(alStack_138 + 1), iVar2 == 0)))) && (iVar1 == 0)) {
@@ -796,13 +796,13 @@ void FUN_180849490(uint64_t param_1, uint64_t *param_2)
             // WARNING: Subroutine does not return
             SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_178);
         }
-        func_0x00018074bda0(auStack_128, UI_SYSTEM_MEMORY_SIZE_256, 0);
+        BufferManager_ResizeBuffer(auStack_128, UI_SYSTEM_MEMORY_SIZE_256, 0);
         puStack_158 = auStack_128;
         // WARNING: Subroutine does not return
         DataTransformer(0x1f, 0xd, param_1, &processed_var_6920_ptr);
     }
     uStack_148 = 0;
-    iVar5 = func_0x00018088c590(param_1, &lStack_140);
+    iVar5 = StringDataProcessor_ConvertWide(param_1, &lStack_140);
     if (iVar5 == 0) {
         if ((*(uint *)(lStack_140 + 0x24) >> 1 & 1) == 0) goto LAB_1808494eb;
         iVar6 = SystemSecurityProcessor(&uStack_148);
@@ -835,7 +835,7 @@ LAB_180849553:
         *(int32_t *)((int64_t)apuStack_138[0] + 0x3c) = uVar1;
         *(int32_t *)(apuStack_138[0] + 8) = uVar2;
         *(int32_t *)((int64_t)apuStack_138[0] + 0x44) = uVar3;
-        func_0x00018088e0d0(*(uint64_t *)(lStack_140 + 0x98));
+        SystemDataResolver_ResolveAddress(*(uint64_t *)(lStack_140 + 0x98));
         // WARNING: Subroutine does not return
         AdvancedSystemProcessor(&uStack_148);
     }
@@ -862,10 +862,10 @@ void FUN_180849600(uint64_t param_1, uint64_t param_2)
     uint64_t uStack_18;
     
     uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_158;
-    iVar1 = func_0x00018088c590(param_1, auStack_128);
+    iVar1 = StringDataProcessor_ConvertWide(param_1, auStack_128);
     if ((((iVar1 != 0) || (iVar1 = FUN_180889f10(auStack_128[0], param_2), iVar1 != 0)) && (iVar1 != 0)
         ) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
-        func_0x00018074bda0(auStack_118, UI_SYSTEM_MEMORY_SIZE_256, param_2);
+        BufferManager_ResizeBuffer(auStack_118, UI_SYSTEM_MEMORY_SIZE_256, param_2);
         puStack_138 = auStack_118;
         // WARNING: Subroutine does not return
         DataTransformer(iVar1, 0xb, param_1, &processed_var_5000_ptr);
@@ -898,9 +898,9 @@ void FUN_1808496c0(int32_t param_1, int64_t param_2, int32_t param_3)
     lStack_148 = 0;
     uStack_158 = 0;
     uStack_150 = 0;
-    iVar2 = func_0x00018088c590(0, &uStack_150);
+    iVar2 = StringDataProcessor_ConvertWide(0, &uStack_150);
     if (((iVar2 == 0) && (iVar2 = SystemSecurityProcessor(&uStack_158, uStack_150), iVar2 == 0)) &&
-       (iVar2 = func_0x00018088c530(param_1, alStack_140), iVar2 == 0)) {
+       (iVar2 = StringDataProcessor_Convert(param_1, alStack_140), iVar2 == 0)) {
         lStack_148 = *(int64_t *)(alStack_140[0] + 8);
     }
     else if (iVar2 != 0) goto LAB_180849763;
@@ -931,9 +931,9 @@ void FUN_180849782(void)
     int32_t unaff_ESI;
     int32_t unaff_R14D;
     
-    iVar1 = func_0x00018074bda0(&stack0x00000050, UI_SYSTEM_MEMORY_SIZE_256);
+    iVar1 = BufferManager_ResizeBuffer(&stack0x00000050, UI_SYSTEM_MEMORY_SIZE_256);
     iVar2 = SystemDataProcessor(&stack0x00000050 + iVar1, UI_SYSTEM_MEMORY_SIZE_256 - iVar1, &system_temp_buffer);
-    func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2), UI_SYSTEM_MEMORY_SIZE_256 - (iVar1 + iVar2), unaff_R14D);
+    BufferManager_ProcessData(&stack0x00000050 + (iVar1 + iVar2), UI_SYSTEM_MEMORY_SIZE_256 - (iVar1 + iVar2), unaff_R14D);
     // WARNING: Subroutine does not return
     DataTransformer(unaff_ESI, 0xc);
 }
@@ -976,9 +976,9 @@ void FUN_180849820(int32_t param_1, int64_t param_2, int32_t param_3)
     lStack_148 = 0;
     uStack_158 = 0;
     uStack_150 = 0;
-    iVar1 = func_0x00018088c590(0, &uStack_150);
+    iVar1 = StringDataProcessor_ConvertWide(0, &uStack_150);
     if (((iVar1 == 0) && (iVar1 = SystemSecurityProcessor(&uStack_158, uStack_150), iVar1 == 0)) &&
-       (iVar1 = func_0x00018088c530(param_1, alStack_140), iVar1 == 0)) {
+       (iVar1 = StringDataProcessor_Convert(param_1, alStack_140), iVar1 == 0)) {
         if (alStack_140[0] == 0) {
             lStack_148 = alStack_140[0];
         }
@@ -1013,9 +1013,9 @@ void FUN_1808498e7(void)
     int32_t unaff_ESI;
     int32_t unaff_R14D;
     
-    iVar1 = func_0x00018074bda0(&stack0x00000050, UI_SYSTEM_MEMORY_SIZE_256);
+    iVar1 = BufferManager_ResizeBuffer(&stack0x00000050, UI_SYSTEM_MEMORY_SIZE_256);
     iVar2 = SystemDataProcessor(&stack0x00000050 + iVar1, UI_SYSTEM_MEMORY_SIZE_256 - iVar1, &system_temp_buffer);
-    func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2), UI_SYSTEM_MEMORY_SIZE_256 - (iVar1 + iVar2), unaff_R14D);
+    BufferManager_ProcessData(&stack0x00000050 + (iVar1 + iVar2), UI_SYSTEM_MEMORY_SIZE_256 - (iVar1 + iVar2), unaff_R14D);
     // WARNING: Subroutine does not return
     DataTransformer(unaff_ESI, 0xd);
 }
@@ -1065,10 +1065,10 @@ void FUN_180849990(uint64_t param_1, int32_t param_2, uint64_t *param_3, uint64_
             // WARNING: Subroutine does not return
             SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_198);
         }
-        iVar5 = func_0x00018074b7d0(auStack_148, UI_SYSTEM_MEMORY_SIZE_256, param_2);
+        iVar5 = BufferManager_Initialize(auStack_148, UI_SYSTEM_MEMORY_SIZE_256, param_2);
         iVar6 = SystemDataProcessor(auStack_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, &system_temp_buffer);
         iVar5 = iVar5 + iVar6;
-        iVar6 = func_0x00018074bda0(auStack_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, 0);
+        iVar6 = BufferManager_ResizeBuffer(auStack_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, 0);
         iVar5 = iVar5 + iVar6;
         iVar6 = SystemDataProcessor(auStack_148 + iVar5, UI_SYSTEM_MEMORY_SIZE_256 - iVar5, &system_temp_buffer);
         RenderingEngine_FrameBufferHandler(auStack_148 + (iVar5 + iVar6), UI_SYSTEM_MEMORY_SIZE_256 - (iVar5 + iVar6), param_4);
@@ -1077,7 +1077,7 @@ void FUN_180849990(uint64_t param_1, int32_t param_2, uint64_t *param_3, uint64_
         DataTransformer(0x1f, 0xb, param_1, &ui_system_data_1728_ptr);
     }
     uStack_168 = 0;
-    iVar5 = func_0x00018088c590(param_1, &lStack_160);
+    iVar5 = StringDataProcessor_ConvertWide(param_1, &lStack_160);
     if (iVar5 == 0) {
         if ((*(uint *)(lStack_160 + 0x24) >> 1 & 1) == 0) goto LAB_1808499fb;
         iVar6 = SystemSecurityProcessor(&uStack_168);
@@ -1119,7 +1119,7 @@ LAB_180849ad3:
             *(int32_t *)((int64_t)apuStack_158[0] + 0x4c) = *(int32_t *)(param_4 + 1);
         }
         *(bool *)(apuStack_158[0] + 10) = param_4 != (uint64_t *)0x0;
-        func_0x00018088e0d0(*(uint64_t *)(lStack_160 + 0x98));
+        SystemDataResolver_ResolveAddress(*(uint64_t *)(lStack_160 + 0x98));
         // WARNING: Subroutine does not return
         AdvancedSystemProcessor(&uStack_168);
     }
@@ -1148,7 +1148,7 @@ void FUN_180849bb0(uint64_t param_1, uint64_t param_2, int32_t param_3, int8_t p
     
     uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_198;
     auStack_158[0] = 0;
-    iVar1 = func_0x00018088c590(param_1, &lStack_168);
+    iVar1 = StringDataProcessor_ConvertWide(param_1, &lStack_168);
     if (iVar1 == 0) {
         if ((*(uint *)(lStack_168 + 0x24) >> 1 & 1) == 0) goto LAB_180849c81;
         iVar2 = SystemSecurityProcessor(auStack_158);
@@ -1167,7 +1167,7 @@ LAB_180849c22:
         *(int *)(puStack_160 + 2) = (int)param_1;
         puStack_160[3] = param_2;
         *(int8_t *)((int64_t)puStack_160 + 0x24) = param_4;
-        func_0x00018088e0d0(*(uint64_t *)(lStack_168 + 0x98));
+        SystemDataResolver_ResolveAddress(*(uint64_t *)(lStack_168 + 0x98));
     }
 LAB_180849c81:
     // WARNING: Subroutine does not return

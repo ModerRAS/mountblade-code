@@ -1,16 +1,17 @@
 /* 函数别名定义: MathInterpolationCalculator */
+#define CoreEngine_ThreadManager CoreEngine_ThreadManager
+#define CoreEngine_PerformanceOptimizer CoreEngine_PerformanceOptimizer
+#define CoreEngine_NetworkManager CoreEngine_NetworkManager
+#define CoreEngine_ResourceLoader CoreEngine_ResourceLoader
+#define CoreEngine_MemoryAllocator CoreEngine_MemoryAllocator
+#define CoreEngine_DataValidator CoreEngine_DataValidator
 #define CoreEngine_AIController CoreEngine_AIController
 #define MathInterpolationCalculator MathInterpolationCalculator
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 02_core_engine_part112.c - 4 个函数
-
-// 函数: void FUN_180126edf(void)
-void FUN_180126edf(void)
-
+// 函数: void CoreEngine_PerformanceOptimizer(void)
+void CoreEngine_PerformanceOptimizer(void)
 {
   float *pfVar1;
   int32_t *puVar2;
@@ -45,7 +46,6 @@ void FUN_180126edf(void)
   float fVar26;
   float fVar27;
   float unaff_XMM8_Da;
-  
   lVar17 = 0;
   do {
     lVar12 = *(int64_t *)(lVar17 + *(int64_t *)(unaff_RDI + 0x1c70));
@@ -54,7 +54,7 @@ void FUN_180126edf(void)
          (lVar12 != *(int64_t *)(*(int64_t *)(unaff_RDI + 0x1ce8) + 0x28))))) &&
        ((*(int64_t *)(unaff_RDI + 0x1ce0) == 0 ||
         (lVar12 != *(int64_t *)(*(int64_t *)(unaff_RDI + 0x1ce0) + 0x28))))) {
-      uVar11 = FUN_1801247c0(lVar12);
+      uVar11 = CoreEngine_DataValidator(lVar12);
       fVar22 = *(float *)(unaff_RDI + 0x1dc8);
       lVar14 = 0x3a0;
       if (unaff_RBX != 0) {
@@ -76,7 +76,7 @@ void FUN_180126edf(void)
       fVar18 = *(float *)(lVar12 + 0x14);
       *(float *)(unaff_RBP + 0x67) = fVar25 + fVar27;
       *(float *)(unaff_RBP + 0x6b) = fVar22 + fVar18;
-      uVar9 = func_0x000180121e20(unaff_RBP + -0x69);
+      uVar9 = Function_56da4ab5(unaff_RBP + -0x69);
       MathInterpolationCalculator0(uVar11,lVar12 + 8,unaff_RBP + 0x67,uVar9);
     }
     unaff_R14D = unaff_R14D + 1;
@@ -91,7 +91,7 @@ void FUN_180126edf(void)
       lVar14 = (int64_t)iVar13;
       do {
         if ((*(char *)(*plVar15 + 0xaf) != '\0') && (*(char *)(*plVar15 + 0xb6) == '\0')) {
-          lVar12 = func_0x000180126de0(*(uint64_t *)
+          lVar12 = Function_1c5a575a(*(uint64_t *)
                                         (*(int64_t *)(lVar12 + 400) + (int64_t)iVar13 * 8));
           break;
         }
@@ -144,8 +144,8 @@ void FUN_180126edf(void)
       *(float *)(unaff_RBP + -0x45) = fVar27;
       *(float *)(unaff_RBP + -0x41) = fVar18;
       *(float *)(unaff_RBP + -0x3d) = fVar20;
-      uVar9 = func_0x000180121e20(unaff_RBP + -0x59);
-      FUN_180298890(lVar12,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar9,
+      uVar9 = Function_56da4ab5(unaff_RBP + -0x59);
+      CoreEngine_NetworkManager(lVar12,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar9,
                     *(int32_t *)(unaff_RDI + 0x1634));
     }
     fVar22 = *(float *)(unaff_RDI + 0x19f8);
@@ -221,16 +221,9 @@ void FUN_180126edf(void)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180126ffa(void)
-void FUN_180126ffa(void)
-
+// 函数: void CoreEngine_MemoryAllocator(void)
+void CoreEngine_MemoryAllocator(void)
 {
   float *pfVar1;
   byte bVar2;
@@ -261,7 +254,6 @@ void FUN_180126ffa(void)
   float fVar24;
   float fVar25;
   float unaff_XMM8_Da;
-  
   if (unaff_R12 != 0) {
     lVar3 = *(int64_t *)(unaff_RDI + 0x1ce0);
     lVar12 = *(int64_t *)(lVar3 + 0x3a0);
@@ -271,7 +263,7 @@ void FUN_180126ffa(void)
       lVar11 = (int64_t)iVar13;
       do {
         if ((*(char *)(*plVar14 + 0xaf) != '\0') && (*(char *)(*plVar14 + 0xb6) == '\0')) {
-          lVar12 = func_0x000180126de0(*(uint64_t *)
+          lVar12 = Function_1c5a575a(*(uint64_t *)
                                         (*(int64_t *)(lVar12 + 400) + (int64_t)iVar13 * 8));
           break;
         }
@@ -324,8 +316,8 @@ void FUN_180126ffa(void)
       *(float *)(unaff_RBP + -0x45) = fVar25;
       *(float *)(unaff_RBP + -0x41) = fVar16;
       *(float *)(unaff_RBP + -0x3d) = fVar18;
-      uVar9 = func_0x000180121e20(unaff_RBP + -0x59);
-      FUN_180298890(lVar12,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar9,
+      uVar9 = Function_56da4ab5(unaff_RBP + -0x59);
+      CoreEngine_NetworkManager(lVar12,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar9,
                     *(int32_t *)(unaff_RDI + 0x1634));
     }
     fVar20 = *(float *)(unaff_RDI + 0x19f8);
@@ -401,16 +393,9 @@ void FUN_180126ffa(void)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18012700b(void)
-void FUN_18012700b(void)
-
+// 函数: void CoreEngine_ThreadManager(void)
+void CoreEngine_ThreadManager(void)
 {
   float *pfVar1;
   byte bVar2;
@@ -440,7 +425,6 @@ void FUN_18012700b(void)
   float fVar24;
   float fVar25;
   float unaff_XMM8_Da;
-  
   lVar3 = *(int64_t *)(unaff_RDI + 0x1ce0);
   lVar12 = *(int64_t *)(lVar3 + 0x3a0);
   iVar13 = *(int *)(lVar12 + 0x188) + -1;
@@ -449,7 +433,7 @@ void FUN_18012700b(void)
     lVar11 = (int64_t)iVar13;
     do {
       if ((*(char *)(*plVar14 + 0xaf) != '\0') && (*(char *)(*plVar14 + 0xb6) == '\0')) {
-        lVar12 = func_0x000180126de0(*(uint64_t *)
+        lVar12 = Function_1c5a575a(*(uint64_t *)
                                       (*(int64_t *)(lVar12 + 400) + (int64_t)iVar13 * 8));
         break;
       }
@@ -502,8 +486,8 @@ void FUN_18012700b(void)
     *(float *)(unaff_RBP + -0x45) = fVar25;
     *(float *)(unaff_RBP + -0x41) = fVar16;
     *(float *)(unaff_RBP + -0x3d) = fVar18;
-    uVar9 = func_0x000180121e20(unaff_RBP + -0x59);
-    FUN_180298890(lVar12,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar9,
+    uVar9 = Function_56da4ab5(unaff_RBP + -0x59);
+    CoreEngine_NetworkManager(lVar12,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar9,
                   *(int32_t *)(unaff_RDI + 0x1634));
   }
   fVar20 = *(float *)(unaff_RDI + 0x19f8);
@@ -578,16 +562,9 @@ void FUN_18012700b(void)
   SystemCore_ErrorHandler(lVar12);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180127012(void)
-void FUN_180127012(void)
-
+// 函数: void CoreEngine_ResourceLoader(void)
+void CoreEngine_ResourceLoader(void)
 {
   float *pfVar1;
   byte bVar2;
@@ -617,7 +594,6 @@ void FUN_180127012(void)
   float fVar23;
   float fVar24;
   float unaff_XMM8_Da;
-  
   lVar11 = *(int64_t *)(unaff_RSI + 0x3a0);
   iVar12 = *(int *)(lVar11 + 0x188) + -1;
   if (-1 < iVar12) {
@@ -625,7 +601,7 @@ void FUN_180127012(void)
     lVar10 = (int64_t)iVar12;
     do {
       if ((*(char *)(*plVar13 + 0xaf) != '\0') && (*(char *)(*plVar13 + 0xb6) == '\0')) {
-        lVar11 = func_0x000180126de0(*(uint64_t *)
+        lVar11 = Function_1c5a575a(*(uint64_t *)
                                       (*(int64_t *)(lVar11 + 400) + (int64_t)iVar12 * 8));
         break;
       }
@@ -678,8 +654,8 @@ void FUN_180127012(void)
     *(float *)(unaff_RBP + -0x45) = fVar24;
     *(float *)(unaff_RBP + -0x41) = fVar15;
     *(float *)(unaff_RBP + -0x3d) = fVar17;
-    uVar8 = func_0x000180121e20(unaff_RBP + -0x59);
-    FUN_180298890(lVar11,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar8,
+    uVar8 = Function_56da4ab5(unaff_RBP + -0x59);
+    CoreEngine_NetworkManager(lVar11,unaff_RBP + -0x69,unaff_RBP + -0x49,uVar8,
                   *(int32_t *)(unaff_RDI + 0x1634));
   }
   fVar19 = *(float *)(unaff_RDI + 0x19f8);
@@ -754,10 +730,4 @@ void FUN_180127012(void)
   SystemCore_ErrorHandler(lVar11);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

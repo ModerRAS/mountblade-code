@@ -1,25 +1,22 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 /**
  * @file 03_rendering_part429.c
  * @brief 渲染系统资源管理和错误处理模块
- * 
+ *
  * 该文件包含7个核心函数，涵盖渲染系统资源管理、内存清理、
  * 错误处理、状态报告等功能。主要用于渲染系统的维护、
  * 错误诊断和系统状态监控。
- * 
+ *
  * 主要功能包括：
  * - 渲染资源清理和释放
  * - 内存管理和优化
  * - 错误消息生成和处理
  * - 系统状态监控
  * - 渲染参数验证
- * 
+ *
  * 主要函数包括：
  * - RenderingResourceCleanup：渲染资源清理器
  * - RenderingMemoryManager：渲染内存管理器
@@ -29,31 +26,28 @@
  * - RenderingDataProcessor：渲染数据处理器
  * - RenderingSystemMonitor：渲染系统监控器
  */
-
 /*============================================================================*/
 /* 渲染系统资源管理模块                                                  */
 /*============================================================================*/
-
 /**
  * @brief 渲染资源清理器
- * 
+ *
  * 该函数负责渲染系统资源的清理和释放。主要功能包括：
  * - 清理渲染系统占用的资源
  * - 释放内存和缓冲区
  * - 重置系统状态
  * - 执行完整性检查
- * 
+ *
  * 技术特点：
  * - 支持批量资源清理
  * - 实现内存安全检查
  * - 提供状态重置功能
  * - 包含错误处理机制
- * 
+ *
  * @param void 无参数
  * @return void 无返回值
  */
 void RenderingResourceCleanup(void)
-
 {
   uint64_t *puVar1;
   int64_t lVar2;
@@ -61,8 +55,7 @@ void RenderingResourceCleanup(void)
   uint64_t uVar4;
   uint uVar5;
   uint64_t uVar6;
-  
-  FUN_1804e5f80(&system_memory_5ed0);
+  function_4e5f80(&system_memory_5ed0);
   uVar4 = 0;
   uVar6 = uVar4;
   if ((render_system_config - render_system_config) / 0x68 != 0) {
@@ -73,7 +66,7 @@ void RenderingResourceCleanup(void)
         lVar3 = __RTCastToVoid(puVar1);
         (**(code **)*puVar1)(puVar1,0);
         if (lVar3 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner(lVar3);
         }
       }
@@ -92,10 +85,10 @@ void RenderingResourceCleanup(void)
       lVar3 = *(int64_t *)(lVar2 + uVar4 * 8);
       if (lVar3 != 0) {
         if (*(int64_t *)(lVar3 + 0x18) == 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner(lVar3);
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner();
       }
       *(uint64_t *)(lVar2 + uVar4 * 8) = 0;
@@ -105,33 +98,26 @@ void RenderingResourceCleanup(void)
   uRam0000000180c91d38 = 0;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * @brief 渲染内存管理器
- * 
+ *
  * 该函数负责渲染系统的内存管理。主要功能包括：
  * - 管理渲染内存分配
  * - 清理内存碎片
  * - 优化内存使用
  * - 处理内存泄漏
- * 
+ *
  * 技术特点：
  * - 支持动态内存管理
  * - 实现内存池优化
  * - 提供内存统计功能
  * - 包含内存安全检查
- * 
+ *
  * @param void 无参数
  * @return void 无返回值
  */
 void RenderingMemoryManager(void)
-
 {
   uint64_t *puVar1;
   uint64_t uVar2;
@@ -142,7 +128,6 @@ void RenderingMemoryManager(void)
   int64_t unaff_R12;
   int unaff_R14D;
   uint64_t unaff_R15;
-  
   uVar5 = unaff_R15 & 0xffffffff;
   do {
     puVar1 = *(uint64_t **)(unaff_RSI + 0x18 + uVar5);
@@ -150,7 +135,7 @@ void RenderingMemoryManager(void)
       lVar3 = __RTCastToVoid(puVar1);
       (**(code **)*puVar1)(puVar1,0);
       if (lVar3 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(lVar3);
       }
     }
@@ -168,10 +153,10 @@ void RenderingMemoryManager(void)
       lVar4 = *(int64_t *)(lVar3 + uVar5 * 8);
       if (lVar4 != 0) {
         if (*(int64_t *)(lVar4 + 0x18) == 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner(lVar4);
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner();
       }
       *(uint64_t *)(lVar3 + uVar5 * 8) = 0;
@@ -181,40 +166,32 @@ void RenderingMemoryManager(void)
   uRam0000000180c91d38 = 0;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * @brief 渲染状态初始化器
- * 
+ *
  * 该函数负责渲染系统状态的初始化。主要功能包括：
  * - 初始化渲染状态
  * - 重置系统参数
  * - 清理历史数据
  * - 准备系统运行
- * 
+ *
  * 技术特点：
  * - 支持完整状态重置
  * - 实现参数初始化
  * - 提供状态验证
  * - 包含错误恢复机制
- * 
+ *
  * @param void 无参数
  * @return void 无返回值
  */
 void RenderingStateInitializer(void)
-
 {
   int64_t lVar1;
   int64_t lVar2;
   uint64_t uVar3;
   uint64_t uVar4;
   int64_t *plStack0000000000000040;
-  
   uVar3 = render_system_config;
   lVar2 = render_system_config;
   uVar4 = 0;
@@ -224,10 +201,10 @@ void RenderingStateInitializer(void)
       if (lVar1 != 0) {
         plStack0000000000000040 = (int64_t *)(lVar1 + 0x18);
         if (*plStack0000000000000040 == 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngineMemoryPoolCleaner(lVar1);
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner();
       }
       *(uint64_t *)(lVar2 + uVar4 * 8) = 0;
@@ -237,82 +214,70 @@ void RenderingStateInitializer(void)
   uRam0000000180c91d38 = 0;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * @brief 渲染错误处理器
- * 
+ *
  * 该函数负责渲染系统的错误处理。主要功能包括：
  * - 检测渲染错误
  * - 生成错误报告
  * - 处理异常情况
  * - 记录错误信息
- * 
+ *
  * 技术特点：
  * - 支持多种错误类型检测
  * - 实现详细的错误报告
  * - 提供错误恢复机制
  * - 包含错误日志记录
- * 
+ *
  * @param void 无参数
  * @return void 无返回值
  */
 void RenderingErrorHandler(void)
-
 {
   int32_t uVar1;
   uint64_t uVar2;
   uint64_t *puVar3;
-  void *puStack_288;
-  uint64_t *puStack_280;
-  int32_t uStack_278;
-  uint64_t uStack_270;
-  uint64_t uStack_48;
-  
-  uStack_48 = 0xfffffffffffffffe;
+  void *plocal_var_288;
+  uint64_t *plocal_var_280;
+  int32_t local_var_278;
+  uint64_t local_var_270;
+  uint64_t local_var_48;
+  local_var_48 = 0xfffffffffffffffe;
   uVar2 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x88,8,3);
-  puStack_288 = &system_data_buffer_ptr;
-  uStack_270 = 0;
-  puStack_280 = (uint64_t *)0x0;
-  uStack_278 = 0;
+  plocal_var_288 = &system_data_buffer_ptr;
+  local_var_270 = 0;
+  plocal_var_280 = (uint64_t *)0x0;
+  local_var_278 = 0;
   puVar3 = (uint64_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x10,0x13);
   *(int8_t *)puVar3 = 0;
-  puStack_280 = puVar3;
+  plocal_var_280 = puVar3;
   uVar1 = CoreEngineSystemCleanup(puVar3);
-  uStack_270 = CONCAT44(uStack_270._4_4_,uVar1);
+  local_var_270 = CONCAT44(local_var_270._4_4_,uVar1);
   *puVar3 = 0x5f6e6f697373696d;
   *(int32_t *)(puVar3 + 1) = 0x707063;
-  uStack_278 = 0xb;
-  FUN_1801614d0(uVar2,&puStack_288);
-  puStack_288 = &system_data_buffer_ptr;
-                    // WARNING: Subroutine does not return
+  local_var_278 = 0xb;
+  function_1614d0(uVar2,&plocal_var_288);
+  plocal_var_288 = &system_data_buffer_ptr;
+// WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar3);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * @brief 渲染参数验证器
- * 
+ *
  * 该函数负责渲染系统参数的验证。主要功能包括：
  * - 验证渲染参数有效性
  * - 检查参数范围
  * - 生成验证报告
  * - 处理参数错误
- * 
+ *
  * 技术特点：
  * - 支持多种参数类型验证
  * - 实现详细的错误报告
  * - 提供参数范围检查
  * - 包含自动纠正机制
- * 
+ *
  * @param param_1 验证上下文
  * @param param_2 输出缓冲区指针
  * @param param_3 验证标志
@@ -321,11 +286,9 @@ void RenderingErrorHandler(void)
  */
 uint64_t *
 RenderingParameterValidator(uint64_t param_1, uint64_t *param_2, int32_t param_3, int64_t *param_4)
-
 {
   uint64_t *puVar1;
   double dVar2;
-  
   if (system_status_flag - 1U < 5) {
     *param_2 = &system_state_ptr;
     param_2[1] = 0;
@@ -380,7 +343,7 @@ RenderingParameterValidator(uint64_t param_1, uint64_t *param_2, int32_t param_3
   }
   else {
     dVar2 = (double)atof(*(uint64_t *)(*param_4 + 8));
-    FUN_1804f8bd0(render_system_config,(float)dVar2,0x3d088889);
+    function_4f8bd0(render_system_config,(float)dVar2,0x3d088889);
     *param_2 = &system_state_ptr;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
@@ -398,26 +361,22 @@ RenderingParameterValidator(uint64_t param_1, uint64_t *param_2, int32_t param_3
   }
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * @brief 渲染数据处理器
- * 
+ *
  * 该函数负责渲染系统数据的处理。主要功能包括：
  * - 处理渲染数据
  * - 转换数据格式
  * - 验证数据完整性
  * - 优化数据结构
- * 
+ *
  * 技术特点：
  * - 支持多种数据格式处理
  * - 实现数据转换和优化
  * - 提供数据完整性检查
  * - 包含错误处理机制
- * 
+ *
  * @param param_1 处理上下文
  * @param param_2 输出缓冲区指针
  * @param param_3 处理标志
@@ -426,15 +385,13 @@ RenderingParameterValidator(uint64_t param_1, uint64_t *param_2, int32_t param_3
  */
 uint64_t *
 RenderingDataProcessor(uint64_t param_1, uint64_t *param_2, uint64_t param_3, int64_t *param_4)
-
 {
   uint64_t *puVar1;
   int64_t lVar2;
   int iVar3;
   int8_t uVar4;
   int64_t lVar5;
-  int8_t auStack_d8 [208];
-  
+  int8_t stack_array_d8 [208];
   lVar2 = render_system_config;
   uVar4 = SUB81(param_4,0);
   if (system_status_flag - 1U < 5) {
@@ -507,8 +464,8 @@ RenderingDataProcessor(uint64_t param_1, uint64_t *param_2, uint64_t param_3, in
     }
     else {
       lVar5 = (int64_t)iVar3 * 0xa60;
-      FUN_1804a7000(auStack_d8,*(int64_t *)(lVar5 + 0x30c0 + lVar2) + 0xc);
-      FUN_18051d2d0(lVar2 + 0x30a0 + lVar5,auStack_d8,0,0xff);
+      function_4a7000(stack_array_d8,*(int64_t *)(lVar5 + 0x30c0 + lVar2) + 0xc);
+      function_51d2d0(lVar2 + 0x30a0 + lVar5,stack_array_d8,0,0xff);
       *param_2 = &system_state_ptr;
       param_2[1] = 0;
       *(int32_t *)(param_2 + 2) = 0;
@@ -526,26 +483,22 @@ RenderingDataProcessor(uint64_t param_1, uint64_t *param_2, uint64_t param_3, in
   }
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * @brief 渲染系统监控器
- * 
+ *
  * 该函数负责渲染系统的监控。主要功能包括：
  * - 监控系统状态
  * - 收集性能数据
  * - 生成监控报告
  * - 处理异常情况
- * 
+ *
  * 技术特点：
  * - 支持实时系统监控
  * - 实现性能数据收集
  * - 提供详细的监控报告
  * - 包含异常处理机制
- * 
+ *
  * @param param_1 监控上下文
  * @param param_2 输出缓冲区指针
  * @param param_3 监控标志
@@ -554,7 +507,6 @@ RenderingDataProcessor(uint64_t param_1, uint64_t *param_2, uint64_t param_3, in
  */
 uint64_t *
 RenderingSystemMonitor(uint64_t param_1, uint64_t *param_2, uint64_t param_3, int64_t *param_4)
-
 {
   uint64_t *puVar1;
   int64_t lVar2;
@@ -564,9 +516,8 @@ RenderingSystemMonitor(uint64_t param_1, uint64_t *param_2, uint64_t param_3, in
   int8_t uVar7;
   int64_t lVar8;
   uint64_t uVar9;
-  int8_t auStack_f8 [208];
+  int8_t stack_array_f8 [208];
   uint64_t uVar6;
-  
   lVar2 = render_system_config;
   uVar7 = SUB81(param_4,0);
   uVar4 = 0;
@@ -629,8 +580,8 @@ RenderingSystemMonitor(uint64_t param_1, uint64_t *param_2, uint64_t param_3, in
       do {
         if ((uVar4 != (int64_t)iVar3) && ((int)uVar6 != *(int *)(lVar2 + 0x98d930))) {
           lVar8 = uVar9 + lVar2;
-          FUN_1804a7000(auStack_f8,*(int64_t *)(lVar8 + 0x30c0) + 0xc);
-          FUN_18051d2d0(lVar8 + 0x30a0,auStack_f8,0,0xff);
+          function_4a7000(stack_array_f8,*(int64_t *)(lVar8 + 0x30c0) + 0xc);
+          function_51d2d0(lVar8 + 0x30a0,stack_array_f8,0,0xff);
         }
         uVar5 = (int)uVar6 + 1;
         uVar6 = (uint64_t)uVar5;
@@ -655,19 +606,13 @@ RenderingSystemMonitor(uint64_t param_1, uint64_t *param_2, uint64_t param_3, in
   }
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t *
-FUN_1804a16f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
-
+function_4a16f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
   int32_t uVar2;
   uint64_t uVar3;
-  
   uVar3 = 0xfffffffffffffffe;
   uVar2 = 0;
   if ((system_memory_6098 == '\0') || (render_system_config == 0)) {
@@ -687,7 +632,7 @@ FUN_1804a16f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
     *(int32_t *)(param_2 + 2) = 0x1b;
   }
   else {
-    FUN_1804f0ad0(render_system_config,0);
+    function_4f0ad0(render_system_config,0);
     *param_2 = &system_state_ptr;
     param_2[1] = 0;
     *(int32_t *)(param_2 + 2) = 0;
@@ -704,16 +649,9 @@ FUN_1804a16f0(uint64_t param_1,uint64_t *param_2,uint64_t param_3,uint64_t param
   }
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180500270(uint64_t *param_1)
-void FUN_180500270(uint64_t *param_1)
-
+// 函数: void function_500270(uint64_t *param_1)
+void function_500270(uint64_t *param_1)
 {
   int *piVar1;
   int iVar2;
@@ -727,7 +665,6 @@ void FUN_180500270(uint64_t *param_1)
   uint64_t uVar10;
   bool bVar11;
   uint64_t uVar12;
-  
   uVar12 = 0xfffffffffffffffe;
   *param_1 = &processed_var_5208_ptr;
   uVar3 = param_1[4];
@@ -811,19 +748,14 @@ LAB_180500318:
     }
   }
   if (param_1[0xc] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   *param_1 = &processed_var_5616_ptr;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t * FUN_180500420(int64_t *param_1)
-
+uint64_t * function_500420(int64_t *param_1)
 {
   int64_t *plVar1;
   uint *puVar2;
@@ -842,7 +774,6 @@ uint64_t * FUN_180500420(int64_t *param_1)
   uint64_t *puVar15;
   bool bVar16;
   bool bVar17;
-  
   uVar5 = GetCurrentThreadId();
   uVar14 = (uVar5 >> 0x10 ^ uVar5) * -0x7a143595;
   uVar14 = (uVar14 >> 0xd ^ uVar14) * -0x3d4d51cb;
@@ -964,7 +895,7 @@ uint64_t * FUN_180500420(int64_t *param_1)
     *puVar8 = &processed_var_5208_ptr;
     puVar8[0xb] = 0x20;
     puVar8[0xc] = 0;
-    FUN_18005f430(puVar8);
+    function_05f430(puVar8);
     LOCK();
     *(int *)(param_1 + 1) = (int)param_1[1] + 1;
     UNLOCK();
@@ -1017,28 +948,17 @@ LAB_18050072b:
     uVar13 = uVar13 + 1;
   } while( true );
 }
-
-
-
-uint64_t FUN_1805007d0(uint64_t param_1,uint64_t param_2)
-
+uint64_t function_5007d0(uint64_t param_1,uint64_t param_2)
 {
-  FUN_180500270();
+  function_500270();
   if ((param_2 & 1) != 0) {
     free(param_1,0x68);
   }
   return param_1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180500860(int64_t *param_1,uint64_t *param_2)
-void FUN_180500860(int64_t *param_1,uint64_t *param_2)
-
+// 函数: void function_500860(int64_t *param_1,uint64_t *param_2)
+void function_500860(int64_t *param_1,uint64_t *param_2)
 {
   uint64_t *puVar1;
   int64_t *plVar2;
@@ -1049,7 +969,6 @@ void FUN_180500860(int64_t *param_1,uint64_t *param_2)
   int64_t lVar7;
   uint64_t *puVar8;
   int64_t lVar9;
-  
   puVar8 = (uint64_t *)param_1[1];
   puVar5 = (uint64_t *)*param_1;
   lVar9 = ((int64_t)puVar8 - (int64_t)puVar5) / 0x18;
@@ -1108,19 +1027,12 @@ LAB_1805008eb:
     param_1[2] = (int64_t)(puVar3 + lVar9 * 3);
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(plVar6);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1805009e0(int64_t *param_1,uint64_t param_2)
-void FUN_1805009e0(int64_t *param_1,uint64_t param_2)
-
+// 函数: void function_5009e0(int64_t *param_1,uint64_t param_2)
+void function_5009e0(int64_t *param_1,uint64_t param_2)
 {
   uint64_t *puVar1;
   int64_t *plVar2;
@@ -1131,7 +1043,6 @@ void FUN_1805009e0(int64_t *param_1,uint64_t param_2)
   int64_t *plVar7;
   uint64_t *puVar8;
   int64_t lVar9;
-  
   puVar8 = (uint64_t *)param_1[1];
   puVar4 = (uint64_t *)*param_1;
   lVar9 = ((int64_t)puVar8 - (int64_t)puVar4) / 0x18;
@@ -1164,7 +1075,7 @@ LAB_180500a6b:
       puVar4 = puVar4 + 3;
     } while (puVar1 != puVar8);
   }
-  FUN_1804ffc70(puVar6,param_2);
+  function_4ffc70(puVar6,param_2);
   plVar2 = (int64_t *)param_1[1];
   plVar7 = (int64_t *)*param_1;
   if (plVar7 != plVar2) {
@@ -1185,20 +1096,15 @@ LAB_180500a6b:
     param_1[2] = (int64_t)(puVar3 + lVar9 * 3);
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(plVar7);
 }
-
-
-
-bool FUN_180500b50(int64_t param_1,int64_t *param_2)
-
+bool function_500b50(int64_t param_1,int64_t *param_2)
 {
   int64_t lVar1;
   int iVar2;
   uint64_t uVar3;
   bool bVar4;
-  
   lVar1 = *(int64_t *)(*param_2 + 0x18);
   bVar4 = lVar1 != 0;
   *param_2 = lVar1;
@@ -1226,39 +1132,35 @@ bool FUN_180500b50(int64_t param_1,int64_t *param_2)
   }
   return bVar4;
 }
-
-
-
 /* ============================================================================
  * 技术说明
  * ============================================================================ */
 /**
  * 本文件实现了渲染系统资源管理和错误处理功能：
- * 
+ *
  * 1. 资源管理
  *    - 清理和释放渲染资源
  *    - 管理内存分配和释放
  *    - 优化资源使用效率
  *    - 处理资源生命周期
- * 
+ *
  * 2. 错误处理
  *    - 检测和报告渲染错误
  *    - 生成详细的错误信息
  *    - 提供错误恢复机制
  *    - 记录错误日志
- * 
+ *
  * 3. 系统监控
  *    - 监控渲染系统状态
  *    - 收集性能统计数据
  *    - 生成系统报告
  *    - 处理异常情况
- * 
+ *
  * 4. 参数验证
  *    - 验证渲染参数有效性
  *    - 检查参数范围和类型
  *    - 生成验证报告
  *    - 处理参数错误
- * 
+ *
  * 该模块是渲染系统的重要组成部分，为系统稳定运行提供核心支持。
  */
-

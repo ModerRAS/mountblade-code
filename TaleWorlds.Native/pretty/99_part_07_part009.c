@@ -1,22 +1,18 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_07_part009.c - 6 个函数
-
-// 函数: void FUN_1804a2f6b(void)
-void FUN_1804a2f6b(void)
-
+// 函数: void function_4a2f6b(void)
+void function_4a2f6b(void)
 {
   int64_t unaff_RBX;
   uint *puVar1;
   int64_t lVar2;
-  
   lVar2 = (int64_t)*(int *)(unaff_RBX + 0x52ed94);
   if (0 < lVar2) {
     puVar1 = (uint *)(unaff_RBX + 0x360c);
     do {
       if ((puVar1[-1] == 1) && ((*puVar1 & 0x4000) != 0)) {
-        FUN_180543e30(*(uint64_t *)(puVar1 + 0x5b));
+        function_543e30(*(uint64_t *)(puVar1 + 0x5b));
       }
       puVar1 = puVar1 + 0x298;
       lVar2 = lVar2 + -1;
@@ -24,41 +20,19 @@ void FUN_1804a2f6b(void)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804a2faf(void)
-void FUN_1804a2faf(void)
-
+// 函数: void function_4a2faf(void)
+void function_4a2faf(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1804a2fb4(void)
-void FUN_1804a2fb4(void)
-
+// 函数: void function_4a2fb4(void)
+void function_4a2fb4(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1804a2fc0(void)
-void FUN_1804a2fc0(void)
-
+// 函数: void function_4a2fc0(void)
+void function_4a2fc0(void)
 {
   byte bVar1;
   uint uVar2;
@@ -70,14 +44,13 @@ void FUN_1804a2fc0(void)
   int64_t lVar8;
   uint64_t uVar9;
   char acStackX_10 [8];
-  
   lVar6 = system_system_data_ui + 0x150;
   lVar3 = CoreMemoryPoolAllocator(system_memory_pool_ptr,0x40,*(int8_t *)(system_system_data_ui + 0x178));
   CoreMemoryPoolValidator(lVar3 + 0x20,&system_data_92b8);
   lVar4 = SystemCore_SecurityValidator(lVar6,acStackX_10,lVar3 + 0x20);
   uVar7 = 1;
   if (acStackX_10[0] == '\0') {
-    FUN_18005d1f0();
+    function_05d1f0();
     if (system_data_2847 == '\0') {
       return;
     }
@@ -86,7 +59,7 @@ void FUN_1804a2fc0(void)
     CoreMemoryPoolValidator(lVar3 + 0x20,&system_data_90b0);
     lVar4 = SystemCore_SecurityValidator(lVar6,acStackX_10,lVar3 + 0x20);
     if (acStackX_10[0] == '\0') {
-      FUN_18005d1f0();
+      function_05d1f0();
       return;
     }
     if (lVar4 != lVar6) {
@@ -105,7 +78,7 @@ void FUN_1804a2fc0(void)
     }
     uVar7 = 0;
 LAB_1804a3129:
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemStateController(lVar3,lVar4,lVar6,uVar7);
   }
   if (lVar4 != lVar6) {
@@ -128,16 +101,11 @@ LAB_1804a3067:
   }
   uVar9 = 0;
 LAB_1804a306f:
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemStateController(lVar3,lVar4,lVar6,uVar9);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1804a3160(void)
-
+uint64_t function_4a3160(void)
 {
   uint uVar1;
   int64_t lVar2;
@@ -147,7 +115,6 @@ uint64_t FUN_1804a3160(void)
   int64_t lVar5;
   int *piVar6;
   int64_t lVar7;
-  
   lVar2 = system_system_ui;
   if (system_system_ui != 0) {
     in_RAX = (uint64_t)*(uint *)(SYSTEM_STATE_MANAGER + 0xc40);
@@ -171,7 +138,7 @@ LAB_1804a31c9:
         lVar5 = (int64_t)(int)in_RAX * 0xa60;
         lVar7 = *(int64_t *)(lVar5 + 0x3778 + lVar2);
         if ((lVar7 != 0) && (*(char *)(lVar7 + 0x8be) != '\0')) {
-          FUN_1805401f0(lVar7,*(int *)(lVar5 + 0x3604 + lVar2) != -1,
+          function_5401f0(lVar7,*(int *)(lVar5 + 0x3604 + lVar2) != -1,
                         *(byte *)(lVar5 + 0x360c + lVar2) & 1);
         }
         uVar3 = (uint)*(short *)(lVar2 + 0x52dda0 + (int64_t)(int)in_RAX * 2);
@@ -213,13 +180,8 @@ LAB_1804a31c9:
   }
   return in_RAX;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1804a3164(void)
-
+uint64_t function_4a3164(void)
 {
   uint uVar1;
   int64_t lVar2;
@@ -229,7 +191,6 @@ uint64_t FUN_1804a3164(void)
   int64_t lVar5;
   int *piVar6;
   int64_t lVar7;
-  
   lVar2 = system_system_ui;
   if (system_system_ui != 0) {
     in_RAX = (uint64_t)*(uint *)(SYSTEM_STATE_MANAGER + 0xc40);
@@ -253,7 +214,7 @@ LAB_1804a31c9:
         lVar5 = (int64_t)(int)in_RAX * 0xa60;
         lVar7 = *(int64_t *)(lVar5 + 0x3778 + lVar2);
         if ((lVar7 != 0) && (*(char *)(lVar7 + 0x8be) != '\0')) {
-          FUN_1805401f0(lVar7,*(int *)(lVar5 + 0x3604 + lVar2) != -1,
+          function_5401f0(lVar7,*(int *)(lVar5 + 0x3604 + lVar2) != -1,
                         *(byte *)(lVar5 + 0x360c + lVar2) & 1);
         }
         uVar3 = (uint)*(short *)(lVar2 + 0x52dda0 + (int64_t)(int)in_RAX * 2);
@@ -295,13 +256,8 @@ LAB_1804a31c9:
   }
   return in_RAX;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1804a3192(void)
-
+uint64_t function_4a3192(void)
 {
   uint uVar1;
   int64_t lVar2;
@@ -312,7 +268,6 @@ uint64_t FUN_1804a3192(void)
   int *piVar7;
   uint64_t uVar8;
   int64_t unaff_RBX;
-  
   uVar6 = 0;
   uVar1 = *(uint *)(unaff_RBX + 0x52ed94);
   if (0 < (int)uVar1) {
@@ -332,7 +287,7 @@ LAB_1804a31c9:
     lVar5 = (int64_t)(int)uVar6 * 0xa60;
     lVar2 = *(int64_t *)(lVar5 + 0x3778 + unaff_RBX);
     if ((lVar2 != 0) && (*(char *)(lVar2 + 0x8be) != '\0')) {
-      FUN_1805401f0(lVar2,*(int *)(lVar5 + 0x3604 + unaff_RBX) != -1,
+      function_5401f0(lVar2,*(int *)(lVar5 + 0x3604 + unaff_RBX) != -1,
                     *(byte *)(lVar5 + 0x360c + unaff_RBX) & 1);
     }
     uVar3 = (uint)*(short *)(unaff_RBX + 0x52dda0 + (int64_t)(int)uVar6 * 2);
@@ -372,13 +327,8 @@ LAB_1804a31c9:
   }
   return uVar6;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1804a31cd(void)
-
+uint64_t function_4a31cd(void)
 {
   int64_t lVar1;
   uint uVar2;
@@ -387,12 +337,11 @@ uint64_t FUN_1804a31cd(void)
   int64_t lVar4;
   int64_t unaff_RBX;
   int unaff_ESI;
-  
   do {
     lVar4 = (int64_t)(int)in_RAX * 0xa60;
     lVar1 = *(int64_t *)(lVar4 + 0x3778 + unaff_RBX);
     if ((lVar1 != 0) && (*(char *)(lVar1 + 0x8be) != '\0')) {
-      FUN_1805401f0(lVar1,*(int *)(lVar4 + 0x3604 + unaff_RBX) != -1,
+      function_5401f0(lVar1,*(int *)(lVar4 + 0x3604 + unaff_RBX) != -1,
                     *(byte *)(lVar4 + 0x360c + unaff_RBX) & 1);
     }
     uVar2 = (uint)*(short *)(unaff_RBX + 0x52dda0 + (int64_t)(int)in_RAX * 2);
@@ -432,19 +381,13 @@ uint64_t FUN_1804a31cd(void)
   }
   return in_RAX;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1804a3220(void)
-
+uint64_t function_4a3220(void)
 {
   uint uVar1;
   int64_t lVar2;
   int iVar3;
   uint64_t in_RAX;
-  
   if ((system_status_flag == 1) && (system_system_ui != 0)) {
     in_RAX = (**(code **)(system_system_data_ui + 0x150))();
   }
@@ -479,19 +422,13 @@ uint64_t FUN_1804a3220(void)
   }
   return in_RAX;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_1804a3225(void)
-
+uint64_t function_4a3225(void)
 {
   uint uVar1;
   int64_t lVar2;
   int iVar3;
   uint64_t in_RAX;
-  
   if ((system_status_flag == 1) && (system_system_ui != 0)) {
     in_RAX = (**(code **)(system_system_data_ui + 0x150))();
   }
@@ -526,17 +463,11 @@ uint64_t FUN_1804a3225(void)
   }
   return in_RAX;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int32_t FUN_1804a3256(int64_t param_1)
-
+int32_t function_4a3256(int64_t param_1)
 {
   int32_t uVar1;
   int iVar2;
-  
   iVar2 = *(int *)(SYSTEM_STATE_MANAGER + 0x12d0);
   if (iVar2 == 0) {
     iVar2 = 0x40;
@@ -564,17 +495,9 @@ int32_t FUN_1804a3256(int64_t param_1)
   *(uint64_t *)(param_1 + 0x38) = 0;
   return uVar1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1804a3270(void)
-void FUN_1804a3270(void)
-
+// 函数: void function_4a3270(void)
+void function_4a3270(void)
 {
   uint64_t *puVar1;
   uint64_t uVar2;
@@ -582,7 +505,6 @@ void FUN_1804a3270(void)
   int iVar4;
   uint64_t in_R9;
   uint64_t uVar5;
-  
   uVar5 = 0xfffffffffffffffe;
   puVar1 = (uint64_t *)*system_system_data_ui;
   iVar4 = _Mtx_lock(0x180c91970);
@@ -593,9 +515,9 @@ void FUN_1804a3270(void)
   SYSTEM_DATA_MANAGER_A = *puVar1;
   cVar3 = CoreSystem_Validator(&ui_system_data_1664_ptr,0,0,in_R9,uVar5);
   if (cVar3 != '\0') {
-    FUN_180111070(&ui_system_data_1688_ptr,&system_data_8f1a);
-    FUN_180111070(&ui_system_data_1840_ptr,0x180d48f19);
-    FUN_180111070(&ui_system_data_1864_ptr,0x180d48f18);
+    function_111070(&ui_system_data_1688_ptr,&system_data_8f1a);
+    function_111070(&ui_system_data_1840_ptr,0x180d48f19);
+    function_111070(&ui_system_data_1864_ptr,0x180d48f18);
     RenderingSystem_MeshProcessor();
   }
   if (system_data_8f1a != '\0') {
@@ -608,20 +530,14 @@ void FUN_1804a3270(void)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t
-FUN_1804a3360(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+function_4a3360(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t lVar1;
   void *puVar2;
   int32_t uVar3;
   uint64_t uVar4;
-  
   uVar4 = 0xfffffffffffffffe;
   uVar3 = 0;
   lVar1 = (**(code **)(system_system_data_ui + 0x2b8))();
@@ -632,37 +548,22 @@ FUN_1804a3360(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   CoreMemoryPoolValidator(param_2,puVar2,param_3,param_4,uVar3,uVar4);
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1804a33c0(void)
-void FUN_1804a33c0(void)
-
+// 函数: void function_4a33c0(void)
+void function_4a33c0(void)
 {
   if (system_system_ui != (code *)0x0) {
     (*system_system_ui)(&system_data_17c0,0,0);
   }
   system_system_ui = (code *)&processed_var_4976_ptr;
-  system_system_ui = FUN_1804a5e90;
-  system_system_ui = FUN_180546d20;
+  system_system_ui = function_4a5e90;
+  system_system_ui = function_546d20;
   if (system_system_ui != (code *)0x0) {
     (*system_system_ui)(&system_data_18c0,0,0);
   }
   system_system_ui = (code *)&processed_var_4752_ptr;
   system_system_ui = &processed_var_6016_ptr;
-  system_system_ui = FUN_180546f70;
+  system_system_ui = function_546f70;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

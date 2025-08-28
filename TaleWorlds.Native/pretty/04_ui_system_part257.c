@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part257.c - 2 个函数
-
-// 函数: void FUN_180811f40(float *param_1,int32_t *param_2,float *param_3,float *param_4,
-void FUN_180811f40(float *param_1,int32_t *param_2,float *param_3,float *param_4,
+// 函数: void function_811f40(float *param_1,int32_t *param_2,float *param_3,float *param_4,
+void function_811f40(float *param_1,int32_t *param_2,float *param_3,float *param_4,
                   int32_t *param_5)
-
 {
   float fVar1;
   float fVar2;
@@ -17,7 +14,6 @@ void FUN_180811f40(float *param_1,int32_t *param_2,float *param_3,float *param_4
   float fVar7;
   float fVar8;
   float fVar9;
-  
   *param_5 = *param_2;
   param_5[0x20] = param_2[1];
   param_5[0x40] = param_2[2];
@@ -131,16 +127,9 @@ void FUN_180811f40(float *param_1,int32_t *param_2,float *param_3,float *param_4
   param_3[3] = fVar9 * param_4[3] + param_3[3];
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1808124d0(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5)
-void FUN_1808124d0(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5)
-
+// 函数: void function_8124d0(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5)
+void function_8124d0(float *param_1,float *param_2,float *param_3,float *param_4,float *param_5)
 {
   float fVar1;
   float fVar2;
@@ -166,7 +155,6 @@ void FUN_1808124d0(float *param_1,float *param_2,float *param_3,float *param_4,f
   float fVar22;
   float fVar23;
   float fVar24;
-  
   fVar4 = param_1[0x10];
   fVar1 = param_1[0xf] + fVar4;
   fVar5 = *param_1;
@@ -322,8 +310,3 @@ void FUN_1808124d0(float *param_1,float *param_2,float *param_3,float *param_4,f
   param_5[0x220] = fVar19 * param_4[0x11] + param_2[0x11];
   return;
 }
-
-
-
-
-

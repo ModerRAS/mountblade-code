@@ -1,23 +1,16 @@
 #include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 03_rendering_part168.c - 1 个函数
-
-// 函数: void FUN_180372f8c(uint64_t param_1,int param_2,uint64_t param_3,int param_4,uint64_t param_5,
-void FUN_180372f8c(uint64_t param_1,int param_2,uint64_t param_3,int param_4,uint64_t param_5,
+// 函数: void function_372f8c(uint64_t param_1,int param_2,uint64_t param_3,int param_4,uint64_t param_5,
+void function_372f8c(uint64_t param_1,int param_2,uint64_t param_3,int param_4,uint64_t param_5,
                   int64_t param_6,uint64_t param_7,int param_8,uint64_t param_9,int param_10,
                   uint64_t param_11,uint64_t param_12,int64_t param_13,int *param_14,
                   int64_t param_15)
-
 {
   float fVar1;
   uint uVar2;
@@ -59,7 +52,6 @@ void FUN_180372f8c(uint64_t param_1,int param_2,uint64_t param_3,int param_4,uin
   float fVar35;
   float fVar36;
   float fVar37;
-  
   if (0 < param_2) {
     lVar29 = 0;
     do {
@@ -106,7 +98,7 @@ LAB_18037309e:
         puVar18 = (uint64_t *)SystemCore_MessageQueueManager(unaff_RBX + 0x108,unaff_RBP + -0x30,&param_14);
         piVar20 = (int *)*puVar18;
       }
-      FUN_18037d8b0(*(uint64_t *)(piVar20 + 2),pfVar27,unaff_R12);
+      function_37d8b0(*(uint64_t *)(piVar20 + 2),pfVar27,unaff_R12);
       plVar3 = *(int64_t **)
                 (*(int64_t *)
                   (*(int64_t *)(unaff_R12 + 8) +
@@ -430,13 +422,7 @@ LAB_180373878:
       param_4 = *(int *)(unaff_RBX + 0x54);
     } while (iVar16 < param_4 * iVar31);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x150) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x150) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

@@ -1,28 +1,26 @@
 /**
  * @file 02_core_engine_part267.c
  * @brief 核心引擎高级数据结构和容器管理模块
- * 
+ *
  * 本模块实现了TaleWorlds引擎中关键的数据结构管理功能，包括：
  * - 动态数组容器操作
  * - 内存分配和释放
  * - 数据结构的扩展和收缩
  * - 高效的元素操作
  * - 资源管理和清理
- * 
+ *
  * 技术特点：
  * - 使用动态内存分配算法
  * - 实现自动扩容机制
  * - 支持高效的元素访问
  * - 完善的错误处理机制
  * - 内存泄漏防护
- * 
+ *
  * @author Claude Code
  * @version 1.0
  * @date 2025-08-28
  */
-
 #include "TaleWorlds.Native.Split.h"
-
 /* 系统常量定义 */
 #define MEMORY_POOL_SIZE 0x1000        // 内存池大小
 #define ELEMENT_SIZE 0x58               // 元素大小 (88字节)
@@ -31,26 +29,22 @@
 #define SHRINK_THRESHOLD 0.25           // 收缩阈值
 #define ALIGNMENT 16                    // 内存对齐要求
 #define CACHE_LINE_SIZE 64              // 缓存行大小
-
 /* 内存管理常量 */
 #define DEFAULT_ALLOCATOR 0x01         // 默认分配器类型
 #define THREAD_SAFE_ALLOCATOR 0x02     // 线程安全分配器
 #define DEBUG_ALLOCATOR 0x04           // 调试分配器
 #define POOL_ALLOCATOR 0x08             // 池分配器
-
 /* 操作模式常量 */
 #define MODE_NORMAL 0x00                // 普通模式
 #define MODE_BATCH 0x01                 // 批量模式
 #define MODE_ATOMIC 0x02                // 原子操作模式
 #define MODE_LOCK_FREE 0x04             // 无锁模式
-
 /* 状态码定义 */
 #define STATUS_SUCCESS 0x00000000       // 操作成功
 #define STATUS_ERROR_MEMORY 0x80000001  // 内存错误
 #define STATUS_ERROR_BOUNDS 0x80000002  // 边界错误
 #define STATUS_ERROR_INVALID 0x80000003 // 无效参数
 #define STATUS_ERROR_LOCKED 0x80000004  // 资源锁定
-
 /* 枚举类型定义 */
 typedef enum {
     CONTAINER_EMPTY,                   // 容器为空
@@ -60,14 +54,12 @@ typedef enum {
     CONTAINER_SHRINKING,               // 容器正在收缩
     CONTAINER_CORRUPTED                // 容器已损坏
 } ContainerStatus;
-
 typedef enum {
     ALLOCATOR_SYSTEM,                  // 系统分配器
     ALLOCATOR_POOL,                    // 池分配器
     ALLOCATOR_CUSTOM,                  // 自定义分配器
     ALLOCATOR_HYBRID                   // 混合分配器
 } AllocatorType;
-
 typedef enum {
     OPERATION_READ,                    // 读取操作
     OPERATION_WRITE,                   // 写入操作
@@ -76,7 +68,6 @@ typedef enum {
     OPERATION_SEARCH,                  // 搜索操作
     OPERATION_ITERATE                  // 迭代操作
 } OperationType;
-
 /* 错误码定义 */
 typedef enum {
     ERROR_NONE = 0,                    // 无错误
@@ -90,7 +81,6 @@ typedef enum {
     ERROR_RESOURCE_BUSY,               // 资源繁忙
     ERROR_TIMEOUT                     // 操作超时
 } ErrorCode;
-
 /* 结构体定义 */
 typedef struct {
     uint64_t size;                     // 当前大小
@@ -101,7 +91,6 @@ typedef struct {
     uint32_t flags;                     // 标志位
     uint32_t padding;                  // 填充
 } ContainerInfo;
-
 typedef struct {
     void* memory_pool;                 // 内存池
     uint64_t pool_size;                // 池大小
@@ -110,7 +99,6 @@ typedef struct {
     uint32_t free_blocks;              // 空闲块
     uint8_t* block_map;                // 块映射
 } MemoryPool;
-
 typedef struct {
     uint64_t total_allocated;          // 总分配量
     uint64_t total_freed;              // 总释放量
@@ -120,7 +108,6 @@ typedef struct {
     uint32_t peak_usage;               // 峰值使用量
     uint32_t fragmentation_count;      // 碎片数量
 } MemoryStatistics;
-
 typedef struct {
     void* start_ptr;                   // 起始指针
     void* end_ptr;                     // 结束指针
@@ -130,48 +117,44 @@ typedef struct {
     uint16_t element_stride;           // 元素跨度
     uint16_t flags;                    // 标志位
 } OperationRange;
-
 /* 函数指针类型定义 */
 typedef void* (*MemoryAllocator)(uint64_t size);
 typedef void (*MemoryDeallocator)(void* ptr);
 typedef int (*ElementComparator)(const void* a, const void* b);
 typedef void (*ElementDestructor)(void* element);
 typedef void (*ElementConstructor)(void* element, const void* data);
-
 /* 全局变量声明 */
 static MemoryPool* g_memory_pool = NULL;       // 全局内存池
 static MemoryStatistics g_mem_stats = {0};     // 内存统计信息
 static uint32_t g_allocation_flags = 0;        // 分配标志
 static ContainerInfo* g_active_containers = NULL; // 活动容器列表
-
 /* 函数别名定义 */
 #define AllocateMemory(size) CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, size, (char)g_allocation_flags)
 #define FreeMemory(ptr) CoreEngineMemoryPoolCleaner(ptr)
-#define CopyElements(dest, src, count) FUN_18022ef00(dest, src, count)
-#define MoveElements(dest, src, count) FUN_18022efb0(dest, src, count)
-#define InitializeContainer(container) FUN_18022eca5(container)
-#define ResizeContainer(container, new_size) FUN_18022ed22(container, new_size)
-#define InsertElement(container, element, position) FUN_18022edb0(container, element, position)
-#define RemoveElement(container, position) FUN_18022f080(container, position)
-#define FindElement(container, key) FUN_18022f240(container, key)
+#define CopyElements(dest, src, count) function_22ef00(dest, src, count)
+#define MoveElements(dest, src, count) function_22efb0(dest, src, count)
+#define InitializeContainer(container) function_22eca5(container)
+#define ResizeContainer(container, new_size) function_22ed22(container, new_size)
+#define InsertElement(container, element, position) function_22edb0(container, element, position)
+#define RemoveElement(container, position) function_22f080(container, position)
+#define FindElement(container, key) function_22f240(container, key)
 #define ReplaceElement(container, old_element, new_element) RenderingSystem_MaterialProcessor(container, old_element, new_element)
-#define ClearContainer(container) FUN_18022f390(container)
-#define DestroyContainer(container) FUN_18022f410(container)
-#define OptimizeContainer(container) FUN_18022f490(container, 0)
-#define MergeContainers(dest, src, factor) FUN_18022f9b0(dest, src, 0, 0, factor)
-
+#define ClearContainer(container) function_22f390(container)
+#define DestroyContainer(container) function_22f410(container)
+#define OptimizeContainer(container) function_22f490(container, 0)
+#define MergeContainers(dest, src, factor) function_22f9b0(dest, src, 0, 0, factor)
 /**
  * @brief 调整容器大小函数
- * 
+ *
  * 根据需要扩展或收缩容器大小，处理内存重新分配和数据迁移。
  * 使用智能扩容算法，避免频繁的内存分配。
- * 
+ *
  * @param container 容器指针
  * @param start_pos 起始位置
  * @param end_pos 结束位置
  * @return void
  */
-void FUN_18022ec40(int64_t *container, int64_t start_pos, int64_t end_pos)
+void function_22ec40(int64_t *container, int64_t start_pos, int64_t end_pos)
 {
     uint64_t *current_end;
     uint64_t *current_start;
@@ -179,46 +162,40 @@ void FUN_18022ec40(int64_t *container, int64_t start_pos, int64_t end_pos)
     int64_t new_memory;
     uint64_t *iterator;
     uint64_t *temp_ptr;
-    
-    // 计算需要的元素数量
+// 计算需要的元素数量
     required_size = (end_pos - start_pos) / ELEMENT_SIZE;
-    
-    // 检查是否需要扩容
+// 检查是否需要扩容
     if ((uint64_t)((container[2] - *container) / ELEMENT_SIZE) < required_size) {
-        // 分配新内存
+// 分配新内存
         if (required_size == 0) {
             new_memory = 0;
         } else {
             new_memory = AllocateMemory(required_size * ELEMENT_SIZE);
         }
-        
-        // 移动现有数据
+// 移动现有数据
         MoveElements(start_pos, end_pos, new_memory);
-        
-        // 清理旧元素
+// 清理旧元素
         current_end = (uint64_t *)container[1];
         current_start = (uint64_t *)*container;
         if (current_start != current_end) {
             do {
-                // 调用元素析构函数
+// 调用元素析构函数
                 ((void (*)(void*, int))(*current_start))(current_start, 0);
                 current_start = current_start + (ELEMENT_SIZE / sizeof(uint64_t));
             } while (current_start != current_end);
             current_start = (uint64_t *)*container;
         }
-        
-        // 释放旧内存
+// 释放旧内存
         if (current_start != (uint64_t *)0x0) {
             FreeMemory(current_start);
         }
-        
-        // 更新容器信息
+// 更新容器信息
         *container = new_memory;
         new_memory = required_size * ELEMENT_SIZE + new_memory;
         container[2] = new_memory;
         container[1] = new_memory;
     } else {
-        // 处理收缩情况
+// 处理收缩情况
         uint64_t current_elements = (container[1] - *container) / ELEMENT_SIZE;
         if (current_elements < required_size) {
             new_memory = current_elements * ELEMENT_SIZE + start_pos;
@@ -226,7 +203,7 @@ void FUN_18022ec40(int64_t *container, int64_t start_pos, int64_t end_pos)
             new_memory = MoveElements(new_memory, end_pos, container[1]);
             container[1] = new_memory;
         } else {
-            // 直接移动元素
+// 直接移动元素
             temp_ptr = (uint64_t *)CopyElements(start_pos, end_pos, 0);
             current_end = (uint64_t *)container[1];
             for (iterator = temp_ptr; iterator != current_end; iterator = iterator + (ELEMENT_SIZE / sizeof(uint64_t))) {
@@ -236,37 +213,32 @@ void FUN_18022ec40(int64_t *container, int64_t start_pos, int64_t end_pos)
         }
     }
 }
-
 /**
  * @brief 初始化容器函数
- * 
+ *
  * 创建并初始化一个新的容器，分配初始内存空间。
- * 
+ *
  * @param container 容器指针
  * @return void
  */
-void FUN_18022eca5(void)
+void function_22eca5(void)
 {
     uint64_t *current_end;
     int64_t new_memory;
     uint64_t *current_start;
     uint64_t *container_ptr;
-    
-    // 获取容器参数
+// 获取容器参数
     container_ptr = (uint64_t *)*((int64_t *)&container_ptr + 1);
     uint64_t element_count = *((uint64_t *)&container_ptr + 2);
-    
-    // 分配初始内存
+// 分配初始内存
     if (element_count == 0) {
         new_memory = 0;
     } else {
         new_memory = AllocateMemory(element_count * ELEMENT_SIZE);
     }
-    
-    // 初始化容器
+// 初始化容器
     MoveElements(0, 0, new_memory);
-    
-    // 清理现有元素
+// 清理现有元素
     current_end = (uint64_t *)container_ptr[1];
     current_start = (uint64_t *)*container_ptr;
     if (current_start != current_end) {
@@ -276,72 +248,64 @@ void FUN_18022eca5(void)
         } while (current_start != current_end);
         current_start = (uint64_t *)*container_ptr;
     }
-    
-    // 释放旧内存
+// 释放旧内存
     if (current_start != (uint64_t *)0x0) {
         FreeMemory(current_start);
     }
-    
-    // 更新容器信息
+// 更新容器信息
     *container_ptr = new_memory;
     new_memory = element_count * ELEMENT_SIZE + new_memory;
     container_ptr[2] = new_memory;
     container_ptr[1] = new_memory;
 }
-
 /**
  * @brief 调整容器大小函数
- * 
+ *
  * 动态调整容器大小以适应新的元素数量。
- * 
+ *
  * @param container 容器指针
  * @param old_size 旧大小
  * @param new_size 新大小
  * @return void
  */
-void FUN_18022ed22(uint64_t container, uint64_t old_size, int64_t new_size)
+void function_22ed22(uint64_t container, uint64_t old_size, int64_t new_size)
 {
     uint64_t *new_ptr;
     uint64_t *old_ptr;
     uint64_t size_diff;
     int64_t result;
-    
-    // 计算大小差异
+// 计算大小差异
     size_diff = (new_size - old_size) / ELEMENT_SIZE;
-    
-    // 检查是否需要调整
+// 检查是否需要调整
     if (size_diff < *((uint64_t *)&container + 8)) {
         CopyElements(0, 0, 0);
-        result = MoveElements(size_diff * ELEMENT_SIZE + *((uint64_t *)&container + 4), 
+        result = MoveElements(size_diff * ELEMENT_SIZE + *((uint64_t *)&container + 4),
                               *((uint64_t *)&container + 4) + size_diff * ELEMENT_SIZE);
         *(uint64_t *)(container + 8) = result;
     } else {
-        // 重新分配内存
+// 重新分配内存
         new_ptr = (uint64_t *)CopyElements(0, 0, 0);
         old_ptr = *(uint64_t **)(container + 8);
-        
-        // 移动元素
-        for (uint64_t *iterator = new_ptr; iterator != old_ptr; 
+// 移动元素
+        for (uint64_t *iterator = new_ptr; iterator != old_ptr;
              iterator = iterator + (ELEMENT_SIZE / sizeof(uint64_t))) {
             ((void (*)(void*, int))(*iterator))(iterator, 0);
         }
-        
         *(uint64_t **)(container + 8) = new_ptr;
     }
 }
-
 /**
  * @brief 插入元素函数
- * 
+ *
  * 在容器中指定位置插入新元素，保持容器的有序性。
- * 
+ *
  * @param container 容器指针
  * @param element 要插入的元素
  * @param position 插入位置
  * @param flags 操作标志
  * @return void
  */
-void FUN_18022edb0(uint64_t *container, uint64_t element, uint64_t position, int32_t *flags)
+void function_22edb0(uint64_t *container, uint64_t element, uint64_t position, int32_t *flags)
 {
     int32_t *new_element;
     int32_t element_value1;
@@ -354,12 +318,10 @@ void FUN_18022edb0(uint64_t *container, uint64_t element, uint64_t position, int
     uint64_t *parent_ptr;
     uint64_t found_value;
     bool is_less_than;
-    
-    // 分配新元素内存
+// 分配新元素内存
     new_memory = AllocateMemory(0x38, *(int8_t *)(container + 5), flags, 0xfffffffffffffffe);
     new_element = (int32_t *)(new_memory + 0x20);
-    
-    // 复制元素数据
+// 复制元素数据
     element_value1 = flags[1];
     element_value2 = flags[2];
     element_value3 = flags[3];
@@ -369,15 +331,13 @@ void FUN_18022edb0(uint64_t *container, uint64_t element, uint64_t position, int
     *(int32_t *)(new_memory + 0x28) = element_value2;
     *(int32_t *)(new_memory + 0x2c) = element_value3;
     *(uint64_t *)(new_memory + 0x30) = *(uint64_t *)(flags + 4);
-    
-    // 初始化搜索变量
+// 初始化搜索变量
     found_value = 0;
     *(uint64_t *)(flags + 4) = 0;
     is_less_than = true;
     current_ptr = (uint64_t *)container[2];
     parent_ptr = container;
-    
-    // 搜索插入位置
+// 搜索插入位置
     while (current_ptr != (uint64_t *)0x0) {
         comparison_result = memcmp(new_element, current_ptr + 4, 0x10);
         is_less_than = comparison_result < 0;
@@ -388,7 +348,6 @@ void FUN_18022edb0(uint64_t *container, uint64_t element, uint64_t position, int
             current_ptr = (uint64_t *)*current_ptr;
         }
     }
-    
     current_ptr = parent_ptr;
     if (is_less_than) {
         if (current_ptr == (uint64_t *)container[1]) {
@@ -396,7 +355,6 @@ void FUN_18022edb0(uint64_t *container, uint64_t element, uint64_t position, int
         }
         current_ptr = (uint64_t *)*((int64_t *)current_ptr + 1);
     }
-    
     comparison_result = memcmp(current_ptr + 4, new_element, 0x10);
     if (comparison_result >= 0) {
         if (*(int64_t **)(new_memory + 0x30) != (int64_t *)0x0) {
@@ -404,41 +362,36 @@ void FUN_18022edb0(uint64_t *container, uint64_t element, uint64_t position, int
         }
         FreeMemory(new_memory);
     }
-    
 insert_position:
-    if ((current_ptr != container) && 
+    if ((current_ptr != container) &&
         (comparison_result = memcmp(new_element, current_ptr + 4, 0x10), comparison_result >= 0)) {
         found_value = 1;
     }
-    
-    // 执行插入操作
+// 执行插入操作
     ((void (*)(void*, void*, void*, uint64_t))0x18066bdc0)(new_memory, current_ptr, container, found_value);
 }
-
 /**
  * @brief 复制元素函数
- * 
+ *
  * 将源位置的元素复制到目标位置。
- * 
+ *
  * @param source 源位置
  * @param destination 目标位置
  * @param count 复制数量
  * @return int64_t 新的位置指针
  */
-int64_t FUN_18022ef00(int64_t source, int64_t destination, int64_t count)
+int64_t function_22ef00(int64_t source, int64_t destination, int64_t count)
 {
     uint64_t *source_ptr;
     int64_t element_count;
     int64_t new_position;
     void *string_ptr;
-    
-    // 计算元素数量
+// 计算元素数量
     element_count = (destination - source) / ELEMENT_SIZE;
     if (element_count > 0) {
         source_ptr = (uint64_t *)(source + 8);
         new_position = element_count * ELEMENT_SIZE;
-        
-        // 复制元素
+// 复制元素
         do {
             *(int32_t *)((count - source) + 8 + (int64_t)source_ptr) = *(int32_t *)(source_ptr + 1);
             string_ptr = (void *)0x18098bc73;
@@ -449,34 +402,30 @@ int64_t FUN_18022ef00(int64_t source, int64_t destination, int64_t count)
             element_count--;
             source_ptr = source_ptr + (ELEMENT_SIZE / sizeof(uint64_t));
         } while (element_count > 0);
-        
         return new_position + count;
     }
     return count;
 }
-
 /**
  * @brief 移动元素函数
- * 
+ *
  * 将源位置的元素移动到目标位置。
- * 
+ *
  * @param source 源位置
  * @param destination 目标位置
  * @param count 移动数量
  * @return int64_t 新的位置指针
  */
-int64_t FUN_18022ef2c(int64_t source, uint64_t destination, int64_t count)
+int64_t function_22ef2c(int64_t source, uint64_t destination, int64_t count)
 {
     uint64_t *source_ptr;
     int64_t total_size;
     int64_t element_count;
     void *string_ptr;
-    
     source_ptr = (uint64_t *)(source + 8);
     total_size = destination * ELEMENT_SIZE;
     element_count = destination;
-    
-    // 移动元素
+// 移动元素
     do {
         *(int32_t *)((count - source) + 8 + (int64_t)source_ptr) = *(int32_t *)(source_ptr + 1);
         string_ptr = (void *)0x18098bc73;
@@ -487,42 +436,38 @@ int64_t FUN_18022ef2c(int64_t source, uint64_t destination, int64_t count)
         element_count--;
         source_ptr = source_ptr + (ELEMENT_SIZE / sizeof(uint64_t));
     } while (element_count > 0);
-    
     return total_size + count;
 }
-
 /**
  * @brief 简单返回函数
- * 
+ *
  * 直接返回输入参数的简单函数。
- * 
+ *
  * @param param1 参数1
  * @param param2 参数2
  * @param param3 参数3
  * @return uint64_t 返回参数3
  */
-uint64_t FUN_18022ef9b(uint64_t param1, uint64_t param2, uint64_t param3)
+uint64_t function_22ef9b(uint64_t param1, uint64_t param2, uint64_t param3)
 {
     return param3;
 }
-
 /**
  * @brief 批量移动元素函数
- * 
+ *
  * 批量移动元素，处理复杂的内存操作。
- * 
+ *
  * @param source 源位置
  * @param destination 目标位置
  * @param target 目标指针
  * @param flags 操作标志
  * @return uint64_t* 新的目标指针
  */
-uint64_t * FUN_18022efb0(int64_t source, int64_t destination, uint64_t *target, uint64_t flags)
+uint64_t * function_22efb0(int64_t source, int64_t destination, uint64_t *target, uint64_t flags)
 {
     void *string_ptr;
     void *default_string;
     uint64_t operation_flags;
-    
     operation_flags = 0xfffffffffffffffe;
     if (source != destination) {
         source = source - (int64_t)target;
@@ -546,17 +491,16 @@ uint64_t * FUN_18022efb0(int64_t source, int64_t destination, uint64_t *target, 
     }
     return target;
 }
-
 /**
  * @brief 移除元素函数
- * 
+ *
  * 从容器中移除指定位置的元素。
- * 
+ *
  * @param container 容器指针
  * @param position 位置参数
  * @return void
  */
-void FUN_18022f080(int64_t container)
+void function_22f080(int64_t container)
 {
     bool has_temp_string;
     bool has_allocated_string;
@@ -572,7 +516,6 @@ void FUN_18022f080(int64_t container)
     int32_t temp_int2;
     uint64_t temp_array[4];
     uint64_t temp_uint64_t;
-    
     temp_uint64 = 0xfffffffffffffffe;
     temp_uint64_t = 0x180bf00a8 ^ (uint64_t)temp_buffer;
     has_temp_string = false;
@@ -580,7 +523,6 @@ void FUN_18022f080(int64_t container)
     *(int8_t *)(container + 0x1d8) = 1;
     string_handle = *(int64_t *)(container + 0x1e0);
     temp_pointer = temp_ptr;
-    
     if (string_handle != 0) {
         temp_string = (void *)0x180a3c3e0;
         temp_array[0] = 0;
@@ -607,7 +549,6 @@ void FUN_18022f080(int64_t container)
         }
     }
     has_allocated_string = false;
-    
 cleanup_section:
     if (has_temp_string) {
         temp_int = 0;
@@ -632,22 +573,20 @@ cleanup_section:
     }
     ((void (*)(uint64_t))0x1808fc050)(temp_uint64_t ^ (uint64_t)temp_buffer);
 }
-
 /**
  * @brief 查找元素函数
- * 
+ *
  * 在容器中查找指定的元素。
- * 
+ *
  * @param container 容器指针
  * @param key 查找键值
  * @return int64_t* 找到的元素指针
  */
-int64_t * FUN_18022f240(uint64_t *container, uint64_t key)
+int64_t * function_22f240(uint64_t *container, uint64_t key)
 {
     int64_t *result;
     uint64_t *current_ptr;
     uint64_t *parent_ptr;
-    
     current_ptr = (uint64_t *)container[2];
     parent_ptr = container;
     if (current_ptr != (uint64_t *)0x0) {
@@ -670,12 +609,11 @@ int64_t * FUN_18022f240(uint64_t *container, uint64_t key)
     }
     return result;
 }
-
 /**
  * @brief 替换元素函数
- * 
+ *
  * 替换容器中的旧元素为新元素。
- * 
+ *
  * @param container 容器指针
  * @param old_element 旧元素
  * @param new_element 新元素
@@ -686,7 +624,6 @@ void RenderingSystem_MaterialProcessor(int64_t *container, int64_t *old_element,
 {
     int64_t *temp_ptr;
     int64_t *temp_ptr2;
-    
     if (old_element != (int64_t *)0x0) {
         ((void (*)(int64_t *))(*old_element + 0x28))(old_element);
     }
@@ -710,19 +647,17 @@ void RenderingSystem_MaterialProcessor(int64_t *container, int64_t *old_element,
     *(int16_t *)(container + 6) = 0;
     *(int8_t *)((int64_t)container + 0x32) = 0;
 }
-
 /**
  * @brief 清空容器函数
- * 
+ *
  * 清空容器中的所有元素。
- * 
+ *
  * @param container 容器指针
  * @return void
  */
-void FUN_18022f390(uint64_t *container)
+void function_22f390(uint64_t *container)
 {
     int64_t *element_ptr;
-    
     if (container[1] != 0) {
         if (*(char *)((int64_t)container + 0x32) != '\0') {
             ((void (*)(int64_t))0x180075b70)(*container);
@@ -742,19 +677,18 @@ void FUN_18022f390(uint64_t *container)
         }
     }
 }
-
 /**
  * @brief 销毁容器函数
- * 
+ *
  * 销毁容器并释放所有相关资源。
- * 
+ *
  * @param container 容器指针
  * @return void
  */
-void FUN_18022f410(int64_t *container)
+void function_22f410(int64_t *container)
 {
     if (*container != 0) {
-        FUN_18022f390();
+        function_22f390();
     }
     ((void (*)(int64_t *))0x18007f6a0)(container + 2);
     if ((int64_t *)container[5] != (int64_t *)0x0) {
@@ -767,17 +701,16 @@ void FUN_18022f410(int64_t *container)
         ((void (*)(void))(*(int64_t *)*container + 0x38))();
     }
 }
-
 /**
  * @brief 优化容器函数
- * 
+ *
  * 对容器进行优化操作，包括内存整理和性能优化。
- * 
+ *
  * @param container 容器指针
  * @param params 参数指针
  * @return void
  */
-void FUN_18022f490(uint64_t container, int64_t params)
+void function_22f490(uint64_t container, int64_t params)
 {
     float *vector_ptr;
     char is_negative;
@@ -794,8 +727,7 @@ void FUN_18022f490(uint64_t container, int64_t params)
     float temp_float8;
     float temp_float9;
     float temp_float10;
-    
-    // 获取向量分量
+// 获取向量分量
     vector_z = *(float *)(params + 0x34);
     vector_ptr = (float *)(params + 0x14);
     temp_float2 = *(float *)(params + 0x38);
@@ -882,12 +814,11 @@ void FUN_18022f490(uint64_t container, int64_t params)
         *(int32_t *)(params + 0x30) = 0x7f7fffff;
     }
 }
-
 /**
  * @brief 合并容器函数
- * 
+ *
  * 合并两个容器，根据混合因子进行元素混合。
- * 
+ *
  * @param container1 容器1
  * @param container2 容器2
  * @param param1 参数1
@@ -895,7 +826,7 @@ void FUN_18022f490(uint64_t container, int64_t params)
  * @param blend_factor 混合因子
  * @return void
  */
-void FUN_18022f9b0(int64_t *container1, int64_t *container2, int param1, int param2, float blend_factor)
+void function_22f9b0(int64_t *container1, int64_t *container2, int param1, int param2, float blend_factor)
 {
     uint64_t *temp_ptr1;
     uint64_t *temp_ptr2;
@@ -935,7 +866,6 @@ void FUN_18022f9b0(int64_t *container1, int64_t *container2, int param1, int par
     void *temp_func_ptr1;
     void *temp_func_ptr2;
     uint64_t temp_uint64_5;
-    
     temp_uint64_5 = 0xfffffffffffffffe;
     temp_int_array1[0] = param1;
     temp_int_array2[0] = param2;
@@ -994,7 +924,7 @@ void FUN_18022f9b0(int64_t *container1, int64_t *container2, int param1, int par
                         *(float *)(data_ptr1 + 0x34 + temp_long1) = temp_float2 * temp_float4;
                         *(float *)(data_ptr1 + 0x38 + temp_long1) = temp_float1 * temp_float4;
                         *(float *)(data_ptr1 + 0x3c + temp_long1) = temp_float3 * temp_float4;
-                        FUN_18022f490(data_ptr1, temp_long1 + *(int64_t *)(container1[1] + 0x68));
+                        function_22f490(data_ptr1, temp_long1 + *(int64_t *)(container1[1] + 0x68));
                         temp_uint1 = temp_uint1 + 1;
                     } while (temp_uint1 < element_count2);
                 }
@@ -1032,7 +962,7 @@ void FUN_18022f9b0(int64_t *container1, int64_t *container2, int param1, int par
                         *(float *)(data_ptr1 + 0x34 + temp_long2) = temp_float4 * temp_float2;
                         *(float *)(data_ptr1 + 0x38 + temp_long2) = temp_float4 * temp_float1;
                         *(float *)(data_ptr1 + 0x3c + temp_long2) = temp_float4 * temp_float3;
-                        FUN_18022f490(data_ptr1, temp_long2 + *(int64_t *)(container1[1] + 0x68));
+                        function_22f490(data_ptr1, temp_long2 + *(int64_t *)(container1[1] + 0x68));
                         temp_uint1 = temp_uint1 + 1;
                     } while (temp_uint1 < element_count2);
                 }
@@ -1071,7 +1001,7 @@ void FUN_18022f9b0(int64_t *container1, int64_t *container2, int param1, int par
                     *(float *)(data_ptr1 + 0x34 + temp_long2) = temp_float4 * temp_float2;
                     *(float *)(data_ptr1 + 0x38 + temp_long2) = temp_float4 * temp_float1;
                     *(float *)(data_ptr1 + 0x3c + temp_long2) = temp_float4 * temp_float3;
-                    FUN_18022f490(data_ptr1, temp_long2 + *(int64_t *)(container1[1] + 0x68));
+                    function_22f490(data_ptr1, temp_long2 + *(int64_t *)(container1[1] + 0x68));
                     temp_uint1 = temp_uint1 + 1;
                 } while (temp_uint1 < element_count2);
             }
@@ -1117,12 +1047,10 @@ void FUN_18022f9b0(int64_t *container1, int64_t *container2, int param1, int par
     }
     *(int8_t *)(container1 + 6) = 1;
 }
-
 /* 全局数据定义 */
-uint8_t FUN_1802092f0;                    // 函数指针
+uint8_t function_2092f0;                    // 函数指针
 uint8_t processed_var_6888;                    // 未知数据
-
-uint8_t FUN_180209450;                    // 函数指针
+uint8_t function_209450;                    // 函数指针
 uint8_t processed_var_6936;                    // 未知数据
 uint8_t processed_var_6840;                    // 未知数据
 uint8_t processed_var_6920;                    // 未知数据
@@ -1219,24 +1147,22 @@ uint8_t ui_system_data_1752;                    // 未知数据
 uint8_t ui_system_data_1176;                    // 未知数据
 uint8_t ui_system_data_1192;                    // 未知数据
 uint8_t ui_system_data_1576;                    // 未知数据
-
 /**
  * @brief 内存统计信息获取函数
- * 
+ *
  * 获取当前内存使用统计信息。
- * 
+ *
  * @return MemoryStatistics* 内存统计信息指针
  */
 MemoryStatistics* GetMemoryStatistics(void)
 {
     return &g_mem_stats;
 }
-
 /**
  * @brief 内存池初始化函数
- * 
+ *
  * 初始化全局内存池。
- * 
+ *
  * @param pool_size 内存池大小
  * @return ErrorCode 错误码
  */
@@ -1245,41 +1171,35 @@ ErrorCode InitializeMemoryPool(uint64_t pool_size)
     if (g_memory_pool != NULL) {
         return ERROR_RESOURCE_BUSY;
     }
-    
     g_memory_pool = (MemoryPool*)AllocateMemory(sizeof(MemoryPool));
     if (g_memory_pool == NULL) {
         return ERROR_MEMORY_ALLOCATION;
     }
-    
     g_memory_pool->memory_pool = AllocateMemory(pool_size);
     if (g_memory_pool->memory_pool == NULL) {
         FreeMemory(g_memory_pool);
         g_memory_pool = NULL;
         return ERROR_MEMORY_ALLOCATION;
     }
-    
     g_memory_pool->pool_size = pool_size;
     g_memory_pool->used_size = 0;
     g_memory_pool->block_count = pool_size / ELEMENT_SIZE;
     g_memory_pool->free_blocks = g_memory_pool->block_count;
     g_memory_pool->block_map = (uint8_t*)AllocateMemory(g_memory_pool->block_count);
-    
     if (g_memory_pool->block_map == NULL) {
         FreeMemory(g_memory_pool->memory_pool);
         FreeMemory(g_memory_pool);
         g_memory_pool = NULL;
         return ERROR_MEMORY_ALLOCATION;
     }
-    
     memset(g_memory_pool->block_map, 0, g_memory_pool->block_count);
     return ERROR_NONE;
 }
-
 /**
  * @brief 内存池清理函数
- * 
+ *
  * 清理全局内存池并释放所有资源。
- * 
+ *
  * @return ErrorCode 错误码
  */
 ErrorCode CleanupMemoryPool(void)
@@ -1287,25 +1207,21 @@ ErrorCode CleanupMemoryPool(void)
     if (g_memory_pool == NULL) {
         return ERROR_NONE;
     }
-    
     if (g_memory_pool->block_map != NULL) {
         FreeMemory(g_memory_pool->block_map);
     }
-    
     if (g_memory_pool->memory_pool != NULL) {
         FreeMemory(g_memory_pool->memory_pool);
     }
-    
     FreeMemory(g_memory_pool);
     g_memory_pool = NULL;
     return ERROR_NONE;
 }
-
 /**
  * @brief 性能优化函数
- * 
+ *
  * 对容器进行性能优化操作。
- * 
+ *
  * @param container 容器指针
  * @param optimization_level 优化级别
  * @return ErrorCode 错误码
@@ -1315,23 +1231,21 @@ ErrorCode OptimizeContainerPerformance(void* container, int optimization_level)
     if (container == NULL) {
         return ERROR_INVALID_PARAMETER;
     }
-    
     switch (optimization_level) {
         case 1:
-            // 基础优化：内存整理
-            FUN_18022f490((uint64_t)container, 0);
+// 基础优化：内存整理
+            function_22f490((uint64_t)container, 0);
             break;
         case 2:
-            // 中级优化：重新组织数据结构
-            FUN_18022f390((uint64_t*)container);
+// 中级优化：重新组织数据结构
+            function_22f390((uint64_t*)container);
             break;
         case 3:
-            // 高级优化：完全重建
-            FUN_18022f410((int64_t*)container);
+// 高级优化：完全重建
+            function_22f410((int64_t*)container);
             break;
         default:
             return ERROR_INVALID_PARAMETER;
     }
-    
     return ERROR_NONE;
 }

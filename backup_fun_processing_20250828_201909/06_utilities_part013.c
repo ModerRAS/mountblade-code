@@ -16,7 +16,7 @@ void FUN_1808986b0(int64_t param_1,uint64_t param_2)
   uint uVar5;
   int iVar6;
   
-  iVar2 = func_0x00018076b690(param_2);
+  iVar2 = BufferManager_ValidateRange(param_2);
   iVar1 = *(int *)(param_1 + 0x30);
   uVar5 = (int)*(uint *)(param_1 + 0x34) >> 0x1f;
   iVar3 = (*(uint *)(param_1 + 0x34) ^ uVar5) - uVar5;
@@ -139,7 +139,7 @@ uint64_t FUN_1808988b0(int64_t *param_1,char *param_2,uint64_t *param_3)
       if (bVar3 == 0) {
         return 0x4a;
       }
-      cVar5 = func_0x00018076b8a0(cVar5);
+      cVar5 = MemoryManager_GetBufferData(cVar5);
       puVar11 = (uint *)(*param_1 + (uint64_t)(puVar11[1] & 0xffffff) * 8);
       iVar7 = 0;
       if (bVar3 == 0) {
@@ -157,8 +157,8 @@ uint64_t FUN_1808988b0(int64_t *param_1,char *param_2,uint64_t *param_3)
       cVar5 = *param_2;
       while (cVar5 != '\0') {
         if (*pcVar9 == '\0') goto LAB_1808989b1;
-        cVar5 = func_0x00018076b8a0(cVar5);
-        cVar6 = func_0x00018076b8a0(*pcVar9);
+        cVar5 = MemoryManager_GetBufferData(cVar5);
+        cVar6 = MemoryManager_GetBufferData(*pcVar9);
         if (cVar5 != cVar6) break;
         pcVar1 = param_2 + 1;
         param_2 = param_2 + 1;
@@ -298,7 +298,7 @@ FUN_180898b40(int64_t *param_1,int param_2,int32_t *param_3,int8_t *param_4,int 
       uVar3 = *(uint *)(*param_1 + (uint64_t)uVar7 * 8);
       if ((uVar3 & 0xffffff) != 0xffffff) {
         lVar13 = (uint64_t)(uVar3 & 0xffffff) + param_1[4];
-        iVar8 = func_0x00018076b690(lVar13);
+        iVar8 = BufferManager_ValidateRange(lVar13);
         if (param_5 != 0) {
           puVar14 = (int8_t *)((iVar8 + -1) + lVar13);
           iVar15 = iVar8;
@@ -424,7 +424,7 @@ int32_t FUN_180898b65(uint64_t param_1,int param_2,int32_t *param_3)
     uVar3 = *(uint *)(*unaff_R14 + (uint64_t)uVar7 * 8);
     if ((uVar3 & 0xffffff) != 0xffffff) {
       lVar14 = (uint64_t)(uVar3 & 0xffffff) + unaff_R14[4];
-      iVar8 = func_0x00018076b690(lVar14);
+      iVar8 = BufferManager_ValidateRange(lVar14);
       if (iVar13 != 0) {
         puVar15 = (int8_t *)((iVar8 + -1) + lVar14);
         iVar16 = iVar8;
@@ -530,7 +530,7 @@ int32_t FUN_180898bc0(uint64_t param_1,uint64_t param_2)
     iVar7 = (int)unaff_RBP;
     if ((uVar4 & 0xffffff) != 0xffffff) {
       lVar8 = (uint64_t)(uVar4 & 0xffffff) + unaff_R14[4];
-      iVar2 = func_0x00018076b690(lVar8);
+      iVar2 = BufferManager_ValidateRange(lVar8);
       if (iVar7 != 0) {
         puVar9 = (int8_t *)((iVar2 + -1) + lVar8);
         iVar10 = iVar2;
@@ -1026,7 +1026,7 @@ uint64_t CoreSystem_StateManager(int64_t *param_1,uint *param_2)
   else {
     if (param_1[2] != 0) {
       auStackX_8[0] = 0;
-      uVar1 = func_0x00018076a7d0(*param_1,auStackX_8);
+      uVar1 = MemoryManager_CopyData(*param_1,auStackX_8);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -1065,7 +1065,7 @@ uint64_t FUN_18089923e(int64_t *param_1)
   else {
     if (param_1[2] != 0) {
       in_stack_00000040 = 0;
-      uVar1 = func_0x00018076a7d0(*param_1,&stack0x00000040);
+      uVar1 = MemoryManager_CopyData(*param_1,&stack0x00000040);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -1168,7 +1168,7 @@ uint64_t FUN_1808993e0(uint64_t *param_1,int64_t *param_2)
   else {
     if (param_2[2] != 0) {
       auStackX_10[0] = 0;
-      uVar1 = func_0x00018076a7d0(*param_2,auStackX_10);
+      uVar1 = MemoryManager_CopyData(*param_2,auStackX_10);
       if ((int)uVar1 != 0) {
         return uVar1;
       }

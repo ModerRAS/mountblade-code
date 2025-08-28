@@ -162,8 +162,8 @@ uint64_t FUN_18085ef10(int64_t param_1)
     if ((int)uVar4 != 0) {
       return uVar4;
     }
-    func_0x0001808cf130(param_1 + 0x378,*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x30));
-    func_0x0001808cf130(param_1 + 0x3f8,*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x30));
+    RenderingSystem_UpdateBuffer(param_1 + 0x378,*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x30));
+    RenderingSystem_UpdateBuffer(param_1 + 0x3f8,*(uint64_t *)(*(int64_t *)(param_1 + 0x2b0) + 0x30));
     plVar6 = (int64_t *)0x0;
     plVar1 = (int64_t *)(param_1 + 0x380);
     plVar5 = (int64_t *)(*plVar1 + -0x20);
@@ -237,7 +237,7 @@ uint64_t FUN_18085f080(int64_t param_1)
   
   if ((0.0 < *(float *)(param_1 + 0x2f0) || *(float *)(param_1 + 0x2f0) == 0.0) &&
      (*(char *)(param_1 + 0x5c) == '\0')) {
-    cVar1 = func_0x0001808bc370(*(uint64_t *)(param_1 + 0x2c8));
+    cVar1 = SystemCore_GetStatus(*(uint64_t *)(param_1 + 0x2c8));
     if (cVar1 == '\0') {
       return (uint64_t)*(uint *)(param_1 + 0x2f0);
     }
@@ -274,7 +274,7 @@ uint64_t FUN_18085f0e0(int64_t param_1,char param_2)
           (*(uint64_t **)(param_1 + 0x4d0) <= puVar5 &&
           (puVar5 < *(uint64_t **)(param_1 + 0x4d0) + *(int *)(param_1 + 0x4d8)));
           puVar5 = puVar5 + 1) {
-        func_0x0001808cded0(*puVar5);
+        RenderingSystem_ReleaseResource(*puVar5);
       }
       uVar4 = FUN_180853980(*(uint64_t *)(param_1 + 0x2b0));
       if ((((int)uVar4 == 0) &&
@@ -289,7 +289,7 @@ uint64_t FUN_18085f0e0(int64_t param_1,char param_2)
         uVar4 = FUN_1808624a0(param_1);
         if (((int)uVar4 == 0) &&
            ((*(int64_t *)(param_1 + 0x2d0) == 0 ||
-            (uVar4 = func_0x0001808c16c0(*(int64_t *)(param_1 + 0x2d0),param_1,
+            (uVar4 = MathFunction_ComputeValue(*(int64_t *)(param_1 + 0x2d0),param_1,
                                          *(uint64_t *)(param_1 + 0x2c8)), (int)uVar4 == 0)))) {
           lVar2 = *(int64_t *)(param_1 + 0x80);
           if (lVar2 != 0) {
@@ -336,7 +336,7 @@ uint64_t FUN_18085f11f(uint64_t *param_1)
         (*(uint64_t **)(unaff_RBX + 0x4d0) <= puVar4 &&
         (puVar4 < *(uint64_t **)(unaff_RBX + 0x4d0) + *(int *)(unaff_RBX + 0x4d8)));
         puVar4 = puVar4 + 1) {
-      func_0x0001808cded0(*puVar4);
+      RenderingSystem_ReleaseResource(*puVar4);
     }
     uVar3 = FUN_180853980(*(uint64_t *)(unaff_RBX + 0x2b0));
     if ((((int)uVar3 == 0) &&
@@ -350,7 +350,7 @@ uint64_t FUN_18085f11f(uint64_t *param_1)
       *(uint *)(unaff_RBX + 0x2d8) = *(uint *)(unaff_RBX + 0x2d8) & 0xffff7eff;
       uVar3 = FUN_1808624a0();
       if (((int)uVar3 == 0) &&
-         ((*(int64_t *)(unaff_RBX + 0x2d0) == 0 || (uVar3 = func_0x0001808c16c0(), (int)uVar3 == 0)
+         ((*(int64_t *)(unaff_RBX + 0x2d0) == 0 || (uVar3 = MathFunction_ComputeValue(), (int)uVar3 == 0)
           ))) {
         lVar1 = *(int64_t *)(unaff_RBX + 0x80);
         if (lVar1 != 0) {
@@ -386,7 +386,7 @@ uint64_t FUN_18085f163(uint64_t *param_1)
   for (; (*(uint64_t **)(unaff_RBX + 0x4d0) <= param_1 &&
          (param_1 < *(uint64_t **)(unaff_RBX + 0x4d0) + *(int *)(unaff_RBX + 0x4d8)));
       param_1 = param_1 + 1) {
-    func_0x0001808cded0(*param_1);
+    RenderingSystem_ReleaseResource(*param_1);
   }
   uVar3 = FUN_180853980(*(uint64_t *)(unaff_RBX + 0x2b0));
   if ((int)uVar3 == 0) {
@@ -404,7 +404,7 @@ uint64_t FUN_18085f163(uint64_t *param_1)
     uVar3 = FUN_1808624a0();
     if ((int)uVar3 == 0) {
       if ((*(int64_t *)(unaff_RBX + 0x2d0) != 0) &&
-         (uVar3 = func_0x0001808c16c0(), (int)uVar3 != 0)) {
+         (uVar3 = MathFunction_ComputeValue(), (int)uVar3 != 0)) {
         return uVar3;
       }
       lVar1 = *(int64_t *)(unaff_RBX + 0x80);
@@ -605,13 +605,13 @@ LAB_18085f53c:
     *(int32_t *)(param_1 + 0x2f0) = uVar4;
   }
   else {
-    cVar1 = func_0x0001808bc370(*(uint64_t *)(param_1 + 0x2c8));
+    cVar1 = SystemCore_GetStatus(*(uint64_t *)(param_1 + 0x2c8));
     if (cVar1 != '\0') goto LAB_18085f53c;
   }
   fVar5 = *(float *)(param_1 + 0x2f0);
   if ((0.0 < *(float *)(param_2 + 0x2f0) || *(float *)(param_2 + 0x2f0) == 0.0) &&
      (*(char *)(param_2 + 0x5c) == '\0')) {
-    cVar1 = func_0x0001808bc370(*(uint64_t *)(param_2 + 0x2c8));
+    cVar1 = SystemCore_GetStatus(*(uint64_t *)(param_2 + 0x2c8));
     if (cVar1 == '\0') goto LAB_18085f593;
   }
   uVar4 = FUN_1808d2430(param_2 + 0x28,*(uint64_t *)(param_2 + 0x2c8));

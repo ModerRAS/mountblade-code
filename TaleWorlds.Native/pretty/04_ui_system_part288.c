@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part288.c - 1 个函数
-
-// 函数: void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
-void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
-
+// 函数: void function_82c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
+void function_82c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
 {
   int iVar1;
   int iVar2;
@@ -76,15 +73,14 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
   float fVar57;
   int8_t in_ZMM9 [64];
   int8_t auVar51 [64];
-  float *in_stack_00000080;
-  int64_t in_stack_00000160;
-  float *in_stack_00000168;
-  int in_stack_00000180;
-  uint in_stack_00000188;
-  uint in_stack_00000190;
-  uint in_stack_00000198;
-  uint in_stack_000001a0;
-  
+  float *local_buffer_80;
+  int64_t local_var_160;
+  float *local_var_168;
+  int local_var_180;
+  uint local_var_188;
+  uint local_var_190;
+  uint local_var_198;
+  uint local_var_1a0;
   iVar35 = param_2 * 8;
   iVar24 = in_EAX >> 3;
   if (iVar24 != 0) {
@@ -131,20 +127,20 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar25 + (int64_t)iVar36) = auVar10._0_16_;
           iVar29 = iVar29 + -1;
           iVar36 = iVar36 + 4;
-          param_2 = in_stack_00000180;
+          param_2 = local_var_180;
         } while (iVar29 != 0);
       }
       in_R11 = in_R11 + iVar35;
       iVar24 = iVar24 + -1;
     } while (iVar24 != 0);
     iVar35 = param_2 * 8;
-    unaff_RBX = in_stack_00000168;
-    unaff_RDI = in_stack_00000160;
-    in_R10 = in_stack_00000080;
-    unaff_ESI = in_stack_00000188;
+    unaff_RBX = local_var_168;
+    unaff_RDI = local_var_160;
+    in_R10 = local_buffer_80;
+    unaff_ESI = local_var_188;
   }
   for (uVar30 = unaff_ESI & 7; uVar30 != 0; uVar30 = uVar30 - 1) {
-                    // WARNING: Read-only address (ram,0x000180980640) is written
+// WARNING: Read-only address (ram,0x000180980640) is written
     param_4 = param_4 + -1;
     pfVar27 = param_4;
     for (iVar24 = param_2; iVar24 != 0; iVar24 = iVar24 + -1) {
@@ -156,8 +152,8 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
   }
   iVar31 = param_2 >> 2;
   auVar6 = ui_system_memory_config;
-                    // WARNING: Read-only address (ram,0x000180980640) is written
-  for (iVar24 = (int)in_stack_00000190 >> 3; iVar24 != 0; iVar24 = iVar24 + -1) {
+// WARNING: Read-only address (ram,0x000180980640) is written
+  for (iVar24 = (int)local_var_190 >> 3; iVar24 != 0; iVar24 = iVar24 + -1) {
     auVar7 = *(int8_t (*) [32])(unaff_RDI + -0x20);
     in_ZMM9 = ZEXT3264(auVar7);
     fVar5 = *unaff_RBX;
@@ -290,18 +286,18 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
         *(int8_t (*) [16])(in_R11 + (int64_t)(param_2 * 7) + (int64_t)iVar33) = auVar9._16_16_
         ;
         iVar37 = iVar37 + -1;
-        unaff_RBX = in_stack_00000168;
+        unaff_RBX = local_var_168;
         iVar33 = iVar33 + 4;
       } while (iVar37 != 0);
     }
     unaff_RBX = unaff_RBX + 8;
     in_R11 = in_R11 + iVar35;
     in_R10 = in_R10 + 8;
-    in_stack_00000168 = unaff_RBX;
+    local_var_168 = unaff_RBX;
     auVar6 = ui_system_memory_config;
   }
-  for (in_stack_00000190 = in_stack_00000190 & 7; ui_system_memory_config = auVar6, in_stack_00000190 != 0;
-      in_stack_00000190 = in_stack_00000190 - 1) {
+  for (local_var_190 = local_var_190 & 7; ui_system_memory_config = auVar6, local_var_190 != 0;
+      local_var_190 = local_var_190 - 1) {
     uVar30 = *(uint *)(unaff_RDI + -4);
     fVar5 = *unaff_RBX;
     in_ZMM4 = ZEXT464((uint)fVar5);
@@ -320,9 +316,9 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
     in_R10 = in_R10 + 1;
     unaff_RBX = unaff_RBX + 1;
     auVar6 = ui_system_memory_config;
-    in_stack_00000168 = unaff_RBX;
+    local_var_168 = unaff_RBX;
   }
-  for (iVar24 = (int)in_stack_00000198 >> 3; iVar24 != 0; iVar24 = iVar24 + -1) {
+  for (iVar24 = (int)local_var_198 >> 3; iVar24 != 0; iVar24 = iVar24 + -1) {
     auVar7 = vpermps_avx2(auVar6,*(int8_t (*) [32])(unaff_RDI + -0x20));
     fVar5 = *unaff_RBX;
     fVar18 = unaff_RBX[1];
@@ -456,18 +452,18 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
         *(int8_t (*) [16])(in_R11 + (int64_t)iVar1 + (int64_t)iVar36) = auVar11._16_16_;
         *(int8_t (*) [16])(in_R11 + (int64_t)iVar25 + (int64_t)iVar36) = auVar9._16_16_;
         iVar29 = iVar29 + -1;
-        unaff_RBX = in_stack_00000168;
-        param_2 = in_stack_00000180;
+        unaff_RBX = local_var_168;
+        param_2 = local_var_180;
         iVar36 = iVar36 + 4;
       } while (iVar29 != 0);
     }
     unaff_RBX = unaff_RBX + 8;
     in_R11 = in_R11 + iVar35;
     param_4 = param_4 + 8;
-    in_stack_00000168 = unaff_RBX;
+    local_var_168 = unaff_RBX;
   }
-  in_stack_00000198 = in_stack_00000198 & 7;
-  if (in_stack_00000198 != 0) {
+  local_var_198 = local_var_198 & 7;
+  if (local_var_198 != 0) {
     lVar40 = unaff_RDI - (int64_t)in_R10;
     lVar26 = (int64_t)param_4 - (int64_t)unaff_RBX;
     pfVar27 = in_R10;
@@ -490,11 +486,11 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
         } while (iVar24 != 0);
       }
       unaff_RBX = unaff_RBX + 1;
-      in_stack_00000198 = in_stack_00000198 - 1;
+      local_var_198 = local_var_198 - 1;
       pfVar27 = in_R10;
-    } while (in_stack_00000198 != 0);
+    } while (local_var_198 != 0);
   }
-  iVar24 = (int)in_stack_000001a0 >> 3;
+  iVar24 = (int)local_var_1a0 >> 3;
   if (iVar24 != 0) {
     iVar31 = param_2 >> 2;
     do {
@@ -567,7 +563,7 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar1 + (int64_t)iVar36) = auVar6._0_16_;
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar25 + (int64_t)iVar36) = auVar9._0_16_;
           iVar29 = iVar29 + -1;
-          param_2 = in_stack_00000180;
+          param_2 = local_var_180;
           iVar36 = iVar36 + 4;
         } while (iVar29 != 0);
       }
@@ -575,8 +571,8 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
       iVar24 = iVar24 + -1;
     } while (iVar24 != 0);
   }
-  in_stack_000001a0 = in_stack_000001a0 & 7;
-  if (in_stack_000001a0 != 0) {
+  local_var_1a0 = local_var_1a0 & 7;
+  if (local_var_1a0 != 0) {
     do {
       in_R10 = in_R10 + -1;
       pfVar27 = in_R10;
@@ -585,15 +581,12 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
         in_R11 = in_R11 + 1;
         pfVar27 = pfVar27 + 0x400;
       }
-      in_stack_000001a0 = in_stack_000001a0 - 1;
-    } while (in_stack_000001a0 != 0);
+      local_var_1a0 = local_var_1a0 - 1;
+    } while (local_var_1a0 != 0);
     return;
   }
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x00018082cd15)
 // WARNING: Removing unreachable block (ram,0x00018082cd09)
 // WARNING: Removing unreachable block (ram,0x00018082c9e7)
@@ -607,6 +600,3 @@ void FUN_18082c579(uint64_t param_1,int param_2,uint64_t param_3,float *param_4)
 // WARNING: Removing unreachable block (ram,0x00018082cffe)
 // WARNING: Removing unreachable block (ram,0x00018082d00e)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

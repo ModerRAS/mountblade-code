@@ -1,29 +1,23 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part052.c - 高级渲染字符处理和文本布局模块
-// 
 // 本模块实现了游戏中的高级字符处理、文本布局和字体渲染功能
 // 包含字符映射处理、文本格式化、字体缓存管理等核心功能
-// 
 // 主要功能：
 // - 字符映射和纹理坐标计算
 // - 文本布局和行高管理
 // - 字体缓存和资源管理
 // - 渲染参数优化和调整
 // - 文本格式化和样式处理
-//
 // 技术架构：
 // - 采用多层缓存机制提高性能
 // - 支持多种字符编码格式
 // - 实现高效的内存访问模式
 // - 包含完整的错误处理机制
-//
 // 性能优化策略：
 // - 使用SIMD指令优化字符处理
 // - 实现智能缓存管理
 // - 优化内存访问模式
 // - 支持批量处理操作
-
 // 系统常量定义
 #define MAX_TEXTURE_WIDTH 2048
 #define MAX_TEXTURE_HEIGHT 2048
@@ -33,14 +27,12 @@
 #define DEFAULT_LINE_HEIGHT 1.2f
 #define DEFAULT_CHAR_SPACING 0.1f
 #define MAX_TEXT_LENGTH 1024
-
 // 类型定义
 typedef uint64_t texture_handle_t;
 typedef uint64_t glyph_handle_t;
 typedef uint64_t font_handle_t;
 typedef uint64_t text_layout_t;
 typedef uint64_t render_context_t;
-
 // 字符纹理映射结构
 typedef struct {
     float u1, v1;        // 纹理坐标起点
@@ -53,7 +45,6 @@ typedef struct {
     uint8_t channel;      // 通道信息
     uint8_t reserved[3];  // 保留字段
 } glyph_mapping_t;
-
 // 文本布局参数
 typedef struct {
     float line_height;    // 行高倍数
@@ -64,7 +55,6 @@ typedef struct {
     uint32_t alignment;   // 对齐方式
     uint32_t flags;       // 布局标志
 } text_layout_params_t;
-
 // 渲染上下文状态
 typedef struct {
     texture_handle_t texture;     // 当前纹理
@@ -75,25 +65,23 @@ typedef struct {
     uint32_t color;               // 颜色值
     uint32_t state_flags;         // 状态标志
 } render_context_state_t;
-
 // 函数别名定义
-#define render_char_texture_processor FUN_1802966a2
-#define render_char_border_renderer FUN_1802969ee
-#define render_context_initializer FUN_180296a70
-#define render_context_cleanup FUN_180296ad0
-#define render_state_reset FUN_180296b70
-#define render_text_processor FUN_180296c40
-#define render_buffer_resize FUN_180296f10
-#define render_buffer_expand FUN_180296f2e
-#define render_buffer_fill FUN_180296f3d
-#define render_index_buffer_clear FUN_180296fae
-#define render_vertex_buffer_clear FUN_180296fd7
-#define render_dummy_processor FUN_180297007
-#define render_glyph_processor FUN_180297010
-#define render_text_formatter FUN_1802971b0
-#define render_text_layout_engine FUN_1802971f4
-#define render_finalizer FUN_180297308
-
+#define render_char_texture_processor function_2966a2
+#define render_char_border_renderer function_2969ee
+#define render_context_initializer function_296a70
+#define render_context_cleanup function_296ad0
+#define render_state_reset function_296b70
+#define render_text_processor function_296c40
+#define render_buffer_resize function_296f10
+#define render_buffer_expand function_296f2e
+#define render_buffer_fill function_296f3d
+#define render_index_buffer_clear function_296fae
+#define render_vertex_buffer_clear function_296fd7
+#define render_dummy_processor function_297007
+#define render_glyph_processor function_297010
+#define render_text_formatter function_2971b0
+#define render_text_layout_engine function_2971f4
+#define render_finalizer function_297308
 // 全局常量定义
 static const char* FONT_TEXTURE_DATA[] = {
     "........................",  // 字符纹理映射数据
@@ -105,31 +93,29 @@ static const char* FONT_TEXTURE_DATA[] = {
     "........................",
     "........................"
 };
-
 static const float GLYPH_ADVANCE_TABLE[] = {
     0.6f, 0.6f, 0.6f, 0.6f,  // 字符前进距离表
     0.6f, 0.6f, 0.6f, 0.6f,
     0.3f, 0.3f, 0.3f, 0.3f,
     0.3f, 0.3f, 0.3f, 0.3f
 };
-
 /**
  * 渲染字符纹理处理器
- * 
+ *
  * 功能：处理字符纹理映射和坐标计算
- * 
+ *
  * 参数：
  * - R10: 渲染上下文指针
  * - R11: 字符数据指针
  * - ESI: 纹理宽度
- * 
+ *
  * 处理流程：
  * 1. 遍历字符网格（27x43）
  * 2. 计算每个字符的纹理坐标
  * 3. 处理字符映射数据
  * 4. 设置纹理坐标和偏移
  * 5. 更新渲染参数
- * 
+ *
  * 优化策略：
  * - 使用双重循环优化网格遍历
  * - 实现批量字符处理
@@ -148,7 +134,6 @@ void render_char_texture_processor(void)
     uint64_t in_R10, in_R11;
     uint64_t char_index;
     uint8_t fill_flag;
-    
     char_row = 0;
     char_index = 0;
     do {
@@ -320,22 +305,21 @@ void render_char_texture_processor(void)
     *(float *)(in_R10 + 0x3c) = ((float)texture_width + 0.5) * *(float *)(in_R10 + 0x34);
     return;
 }
-
 /**
  * 渲染字符边框渲染器
- * 
+ *
  * 功能：渲染字符边框和轮廓效果
- * 
+ *
  * 参数：
  * - R10: 渲染上下文指针
  * - R11: 字符数据指针
  * - ESI: 纹理宽度
- * 
+ *
  * 处理流程：
  * 1. 计算字符位置
  * 2. 设置边框像素
  * 3. 更新渲染参数
- * 
+ *
  * 优化策略：
  * - 直接内存访问优化
  * - 批量边框处理
@@ -346,7 +330,6 @@ void render_char_border_renderer(void)
     int char_offset;
     int unaff_ESI;
     uint64_t in_R10, in_R11;
-    
     char_offset = (uint)*(uint16_t *)(in_R11 + 10) * unaff_ESI + (uint)*(uint16_t *)(in_R11 + 8);
     *(uint8_t *)(*(uint64_t *)(in_R10 + 0x18) + 1 + (uint64_t)(char_offset + unaff_ESI)) = 0xff;
     *(uint8_t *)((uint64_t)(char_offset + unaff_ESI) + *(uint64_t *)(in_R10 + 0x18)) = 0xff;
@@ -357,23 +340,22 @@ void render_char_border_renderer(void)
     *(float *)(in_R10 + 0x3c) = ((float)char_height + 0.5) * *(float *)(in_R10 + 0x34);
     return;
 }
-
 /**
  * 渲染上下文初始化器
- * 
+ *
  * 功能：初始化渲染上下文和状态
- * 
+ *
  * 参数：
  * - param_1: 上下文指针
- * 
+ *
  * 返回值：
  * - 初始化后的上下文指针
- * 
+ *
  * 处理流程：
  * 1. 清零所有状态字段
  * 2. 设置默认参数
  * 3. 初始化渲染状态
- * 
+ *
  * 优化策略：
  * - 内存批量清零
  * - 默认参数优化
@@ -393,23 +375,22 @@ uint64_t render_context_initializer(uint64_t param_1)
     render_state_reset(param_1);
     return param_1;
 }
-
 /**
  * 渲染上下文清理器
- * 
+ *
  * 功能：清理渲染上下文和释放资源
- * 
+ *
  * 参数：
  * - param_1: 上下文指针
  * - param_2: 清理参数
  * - param_3: 清理标志
  * - param_4: 清理模式
- * 
+ *
  * 处理流程：
  * 1. 清理各级资源
  * 2. 释放内存
  * 3. 更新引用计数
- * 
+ *
  * 安全机制：
  * - 引用计数检查
  * - 内存安全释放
@@ -418,7 +399,6 @@ void render_context_cleanup(uint64_t param_1, uint64_t param_2, uint64_t param_3
 {
     uint64_t resource_ptr;
     uint64_t cleanup_param;
-    
     cleanup_param = 0xfffffffffffffffe;
     render_state_reset();
     resource_ptr = *(uint64_t *)(param_1 + 0x38);
@@ -426,7 +406,7 @@ void render_context_cleanup(uint64_t param_1, uint64_t param_2, uint64_t param_3
         if (global_context_manager != 0) {
             *(int *)(global_context_manager + 0x3a8) = *(int *)(global_context_manager + 0x3a8) + -1;
         }
-        // 资源清理调用
+// 资源清理调用
         resource_cleanup_handler(resource_ptr, global_context_data, param_3, param_4, cleanup_param);
     }
     resource_ptr = *(uint64_t *)(param_1 + 0x28);
@@ -434,7 +414,7 @@ void render_context_cleanup(uint64_t param_1, uint64_t param_2, uint64_t param_3
         if (global_context_manager != 0) {
             *(int *)(global_context_manager + 0x3a8) = *(int *)(global_context_manager + 0x3a8) + -1;
         }
-        // 资源清理调用
+// 资源清理调用
         resource_cleanup_handler(resource_ptr, global_context_data, param_3, param_4, cleanup_param);
     }
     resource_ptr = *(uint64_t *)(param_1 + 0x18);
@@ -442,25 +422,24 @@ void render_context_cleanup(uint64_t param_1, uint64_t param_2, uint64_t param_3
         if (global_context_manager != 0) {
             *(int *)(global_context_manager + 0x3a8) = *(int *)(global_context_manager + 0x3a8) + -1;
         }
-        // 资源清理调用
+// 资源清理调用
         resource_cleanup_handler(resource_ptr, global_context_data, param_3, param_4, cleanup_param);
     }
     return;
 }
-
 /**
  * 渲染状态重置器
- * 
+ *
  * 功能：重置渲染状态到初始值
- * 
+ *
  * 参数：
  * - param_1: 状态指针
- * 
+ *
  * 处理流程：
  * 1. 重置所有状态字段
  * 2. 清理资源引用
  * 3. 更新引用计数
- * 
+ *
  * 优化策略：
  * - 批量状态重置
  * - 资源引用优化
@@ -469,7 +448,6 @@ void render_state_reset(uint32_t *param_1)
 {
     uint64_t context_ptr;
     uint64_t resource_ptr;
-    
     *param_1 = 0;
     context_ptr = global_context_manager;
     resource_ptr = *(uint64_t *)(param_1 + 6);
@@ -478,7 +456,7 @@ void render_state_reset(uint32_t *param_1)
         if (context_ptr != 0) {
             *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + -1;
         }
-        // 资源释放调用
+// 资源释放调用
         resource_release_handler(resource_ptr, global_context_data);
     }
     resource_ptr = *(uint64_t *)(param_1 + 10);
@@ -487,7 +465,7 @@ void render_state_reset(uint32_t *param_1)
         if (context_ptr != 0) {
             *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + -1;
         }
-        // 资源释放调用
+// 资源释放调用
         resource_release_handler(resource_ptr, global_context_data);
     }
     resource_ptr = *(uint64_t *)(param_1 + 0xe);
@@ -496,7 +474,7 @@ void render_state_reset(uint32_t *param_1)
         if (context_ptr != 0) {
             *(int *)(context_ptr + 0x3a8) = *(int *)(context_ptr + 0x3a8) + -1;
         }
-        // 资源释放调用
+// 资源释放调用
         resource_release_handler(resource_ptr, global_context_data);
     }
     *(uint64_t *)(param_1 + 0x10) = 0;
@@ -509,21 +487,20 @@ void render_state_reset(uint32_t *param_1)
     param_1[0x1b] = 0;
     return;
 }
-
 /**
  * 渲染文本处理器
- * 
+ *
  * 功能：处理文本渲染和布局
- * 
+ *
  * 参数：
  * - param_1: 文本数据指针
- * 
+ *
  * 处理流程：
  * 1. 分析文本字符
  * 2. 计算布局参数
  * 3. 处理字符映射
  * 4. 生成渲染数据
- * 
+ *
  * 优化策略：
  * - 批量字符处理
  * - 缓存优化
@@ -546,7 +523,6 @@ void render_text_processor(uint64_t param_1)
     int loop_counter;
     float advance_value;
     uint32_t texture_format;
-    
     layout_ptr = global_context_manager;
     current_char_code = 0;
     max_char_code = 0;
@@ -687,32 +663,31 @@ void render_text_processor(uint64_t param_1)
         if (layout_ptr != 0) {
             *(int *)(layout_ptr + 0x3a8) = *(int *)(layout_ptr + 0x3a8) + -1;
         }
-        // 资源释放调用
+// 资源释放调用
         resource_release_handler(layout_ptr, global_context_data);
     }
     *(uint64_t *)(param_1 + 0x20) = 0;
     if (layout_ptr != 0) {
         *(int *)(layout_ptr + 0x3a8) = *(int *)(layout_ptr + 0x3a8) + -1;
     }
-    // 资源释放调用
+// 资源释放调用
     resource_release_handler(layout_ptr, global_context_data);
 }
-
 /**
  * 渲染缓冲区大小调整器
- * 
+ *
  * 功能：调整渲染缓冲区大小
- * 
+ *
  * 参数：
  * - param_1: 缓冲区指针
  * - param_2: 新大小
- * 
+ *
  * 处理流程：
  * 1. 检查当前大小
  * 2. 计算新大小
  * 3. 调整缓冲区
  * 4. 初始化新数据
- * 
+ *
  * 优化策略：
  * - 智能大小计算
  * - 批量数据初始化
@@ -726,7 +701,6 @@ void render_buffer_resize(uint64_t param_1, int param_2)
     int new_capacity;
     int loop_counter;
     uint64_t index;
-    
     buffer_size = (int *)(param_1 + 0x30);
     if (*buffer_size < param_2) {
         new_capacity = 8;
@@ -773,15 +747,14 @@ void render_buffer_resize(uint64_t param_1, int param_2)
     }
     return;
 }
-
 /**
  * 渲染缓冲区扩展器
- * 
+ *
  * 功能：扩展渲染缓冲区容量
- * 
+ *
  * 参数：
  * - param_1: 缓冲区指针
- * 
+ *
  * 处理流程：
  * 1. 计算需要的大小
  * 2. 扩展缓冲区
@@ -798,7 +771,6 @@ void render_buffer_expand(uint64_t param_1)
     uint32_t unaff_EBP;
     int *unaff_RDI;
     uint32_t fill_value;
-    
     new_capacity = 8;
     buffer_capacity = (int *)(param_1 + 0x20);
     current_capacity = *(int *)(param_1 + 0x24);
@@ -844,15 +816,14 @@ void render_buffer_expand(uint64_t param_1)
     *unaff_RDI = required_size;
     return;
 }
-
 /**
  * 渲染缓冲区填充器
- * 
+ *
  * 功能：用指定值填充渲染缓冲区
- * 
+ *
  * 参数：
  * - param_1: 填充值
- * 
+ *
  * 处理流程：
  * 1. 扩展缓冲区
  * 2. 填充数据
@@ -870,7 +841,6 @@ void render_buffer_fill(uint32_t param_1)
     uint32_t unaff_EBP;
     int *unaff_RDI;
     uint32_t fill_value;
-    
     buffer_capacity = (int *)(in_RCX + 0x20);
     current_capacity = *(int *)(in_RCX + 0x24);
     required_size = (int)unaff_RBX;
@@ -913,12 +883,11 @@ void render_buffer_fill(uint32_t param_1)
     *unaff_RDI = required_size;
     return;
 }
-
 /**
  * 渲染索引缓冲区清理器
- * 
+ *
  * 功能：清理索引缓冲区
- * 
+ *
  * 处理流程：
  * 1. 释放索引缓冲区
  * 2. 重置索引计数
@@ -928,7 +897,6 @@ void render_index_buffer_clear(void)
     uint64_t buffer_ptr;
     uint64_t unaff_RBX;
     int *unaff_RDI;
-    
     index_buffer_resize_handler();
     buffer_ptr = (uint64_t)*unaff_RDI;
     if (*unaff_RDI < (int)unaff_RBX) {
@@ -939,12 +907,11 @@ void render_index_buffer_clear(void)
     *unaff_RDI = (int)unaff_RBX;
     return;
 }
-
 /**
  * 渲染顶点缓冲区清理器
- * 
+ *
  * 功能：清理顶点缓冲区
- * 
+ *
  * 处理流程：
  * 1. 清理顶点数据
  * 2. 重置顶点计数
@@ -954,7 +921,6 @@ void render_vertex_buffer_clear(void)
     uint64_t in_RAX;
     uint64_t unaff_RBX;
     uint32_t *unaff_RDI;
-    
     if (in_RAX < unaff_RBX) {
         do {
             *(uint16_t *)(*(uint64_t *)(unaff_RDI + 2) + in_RAX * 2) = 0xffff;
@@ -964,12 +930,11 @@ void render_vertex_buffer_clear(void)
     *unaff_RDI = (int)unaff_RBX;
     return;
 }
-
 /**
  * 渲染虚拟处理器
- * 
+ *
  * 功能：虚拟处理函数，用于系统兼容
- * 
+ *
  * 处理流程：
  * 1. 空操作实现
  */
@@ -977,24 +942,23 @@ void render_dummy_processor(void)
 {
     return;
 }
-
 /**
  * 渲染字形处理器
- * 
+ *
  * 功能：处理字形渲染和纹理映射
- * 
+ *
  * 参数：
  * - param_1: 渲染上下文
  * - param_2: 字符代码
  * - param_3-param_10: 纹理坐标
  * - param_11: 缩放参数
- * 
+ *
  * 处理流程：
  * 1. 扩展纹理数组
  * 2. 设置字形数据
  * 3. 计算纹理坐标
  * 4. 更新渲染状态
- * 
+ *
  * 优化策略：
  * - 批量数据处理
  * - 纹理坐标优化
@@ -1005,7 +969,6 @@ void render_glyph_processor(uint64_t param_1, uint16_t param_2, uint32_t param_3
 {
     uint64_t texture_ptr;
     uint64_t glyph_index;
-    
     texture_array_resize(param_1 + 0x10, *(int *)(param_1 + 0x10) + 1);
     glyph_index = (uint64_t)*(int *)(param_1 + 0x10);
     texture_ptr = *(uint64_t *)(param_1 + 0x18);
@@ -1033,28 +996,27 @@ void render_glyph_processor(uint64_t param_1, uint16_t param_2, uint32_t param_3
                (float)*(int *)(*(uint64_t *)(param_1 + 0x58) + 0x2c) + 1.99);
     return;
 }
-
 /**
  * 渲染文本格式化器
- * 
+ *
  * 功能：格式化文本和计算字符宽度
- * 
+ *
  * 参数：
  * - param_1: 格式化上下文
  * - param_2: 比例因子
  * - param_3: 文本开始
  * - param_4: 文本结束
  * - param_5: 目标宽度
- * 
+ *
  * 返回值：
  * - 格式化后的文本位置
- * 
+ *
  * 处理流程：
  * 1. 解析文本字符
  * 2. 计算字符宽度
  * 3. 处理特殊字符
  * 4. 格式化文本布局
- * 
+ *
  * 优化策略：
  * - 字符宽度缓存
  * - 批量处理优化
@@ -1072,7 +1034,6 @@ char *render_text_formatter(uint64_t param_1, float param_2, char *param_3, char
     float current_width;
     float word_width;
     float glyph_width;
-    
     best_pos = (char *)0x0;
     glyph_width = 0.0;
     word_width = 0.0;
@@ -1158,19 +1119,18 @@ word_formatting:
     }
     return param_3;
 }
-
 /**
  * 渲染文本布局引擎
- * 
+ *
  * 功能：处理文本布局和换行
- * 
+ *
  * 参数：
  * - param_1, param_2: 布局参数
  * - param_3, param_4: 宽度参数
- * 
+ *
  * 返回值：
  * - 布局处理后的文本位置
- * 
+ *
  * 处理流程：
  * 1. 解析文本字符
  * 2. 计算布局参数
@@ -1193,7 +1153,6 @@ char *render_text_layout_engine(uint64_t param_1, uint64_t param_2, float param_
     float layout_width;
     float word_width;
     uint32_t char_code;
-    
     do {
         char_code = (uint32_t)*unaff_RDI;
         if (char_code < 0x80) {
@@ -1271,12 +1230,11 @@ word_formatting:
         }
     } while( true );
 }
-
 /**
  * 渲染最终化器
- * 
+ *
  * 功能：完成渲染操作的最终处理
- * 
+ *
  * 处理流程：
  * 1. 清理临时数据
  * 2. 提交渲染结果

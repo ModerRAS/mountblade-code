@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_12_part055_sub002.c - 1 个函数
-
-// 函数: void FUN_1807ef55b(int32_t param_1,int param_2)
-void FUN_1807ef55b(int32_t param_1,int param_2)
-
+// 函数: void function_7ef55b(int32_t param_1,int param_2)
+void function_7ef55b(int32_t param_1,int param_2)
 {
   int64_t lVar1;
   int64_t lVar2;
@@ -29,18 +26,17 @@ void FUN_1807ef55b(int32_t param_1,int param_2)
   float fVar17;
   float fVar18;
   int iStack00000000000000c0;
-  
   iStack00000000000000c0 = in_EAX - param_2 >> 1;
   iVar7 = iStack00000000000000c0 * 2;
   iVar8 = (int)(unaff_EBX + (unaff_EBX >> 0x1f & 3U)) >> 2;
   lVar10 = (int64_t)iVar8;
   lVar1 = unaff_RSI + (int64_t)iVar7 * 4;
   lVar2 = unaff_RSI + (int64_t)(iVar8 * 6) * 4;
-  FUN_1807ef510(param_1,unaff_R14 + (int64_t)(iVar8 * 2) * 4);
+  function_7ef510(param_1,unaff_R14 + (int64_t)(iVar8 * 2) * 4);
   lVar11 = unaff_R14 +
            (int64_t)((((int)(unaff_EBX + (unaff_EBX >> 0x1f & 7U)) >> 3) + iVar8) * 2) * 4;
-  FUN_1807ef510(lVar1,lVar11,iVar8);
-  FUN_1807ef510(lVar2,lVar11,iVar8);
+  function_7ef510(lVar1,lVar11,iVar8);
+  function_7ef510(lVar2,lVar11,iVar8);
   if (0 < lVar10) {
     pfVar9 = (float *)(unaff_RSI + 4 + lVar10 * 8);
     lVar12 = (unaff_R14 + lVar10 * -8) - unaff_RSI;
@@ -76,10 +72,3 @@ void FUN_1807ef55b(int32_t param_1,int param_2)
   }
   return;
 }
-
-
-
-
-
-
-

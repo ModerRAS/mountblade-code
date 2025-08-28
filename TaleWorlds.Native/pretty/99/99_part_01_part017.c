@@ -1,16 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // ============================================================================
 // TaleWorlds.Native - 99_part_01_part017.c
 // ============================================================================
 // 模块: 99 - 未匹配函数处理模块
 // 文件: 99_part_01_part017.c
 // 函数数量: 1个核心函数
-// 
 // 主要功能:
 // - 高级数据处理和资源管理
 // - 线程安全操作和同步控制
@@ -18,7 +14,6 @@
 // - 参数验证和状态管理
 // - 数据结构操作和队列处理
 // ============================================================================
-
 // 全局常量定义
 #define GLOBAL_DATA_PTR_180c86930    ((void*)0x180c86930)  // 全局数据指针
 #define GLOBAL_DATA_PTR_180c8ed18    ((void*)0x180c8ed18)  // 内存分配器指针
@@ -27,23 +22,19 @@
 #define GLOBAL_DATA_PTR_180c86938    ((void*)0x180c86938)  // 系统接口指针
 #define GLOBAL_DATA_PTR_180c86870    ((void*)0x180c86870)  // 配置数据指针
 #define GLOBAL_DATA_PTR_180bf00a8    ((void*)0x180bf00a8)  // 安全检查指针
-
 // 函数类型定义
 typedef void* (*MemoryAllocatorFunc)(void* allocator, size_t size, size_t align, int flags);
 typedef void* (*ObjectFactoryFunc)(void* factory, void** output, size_t size);
 typedef void* (*SystemInterfaceFunc)(void* interface, uint param1, int param2, int param3);
 typedef void* (*DataProcessorFunc)(void* processor, void* data1, void* data2);
-
 // ============================================================================
 // 核心函数：高级数据处理器和资源管理器
 // ============================================================================
 // 函数名: advanced_data_processor_and_resource_manager
-// 
 // 功能描述:
 // 这是一个高级数据处理器和资源管理器，负责处理复杂的数据操作、
 // 内存管理、线程同步和资源分配。该函数包含完整的错误处理机制
 // 和状态管理功能。
-// 
 // 参数说明:
 // - param_1: 系统上下文指针
 // - param_2: 输出数据指针
@@ -57,9 +48,7 @@ typedef void* (*DataProcessorFunc)(void* processor, void* data1, void* data2);
 // - param_10: 资源管理器指针
 // - param_11: 同步标志
 // - param_12: 缓冲区大小
-// 
 // 返回值: void (通过参数返回处理结果)
-// 
 // 技术特点:
 // - 支持多线程安全操作
 // - 实现动态内存分配
@@ -81,7 +70,7 @@ void advanced_data_processor_and_resource_manager(
     char sync_flag,                 // 同步标志
     uint buffer_size)              // 缓冲区大小
 {
-    // 局部变量声明
+// 局部变量声明
     void** indirect_ptr1;          // 间接指针1
     uint temp_uint1;                // 临时无符号整数1
     int temp_int1;                 // 临时整数1
@@ -142,8 +131,7 @@ void advanced_data_processor_and_resource_manager(
     void* stack_ptr11;             // 栈指针11
     void* stack_ptr12;             // 栈指针12
     unsigned long long security_hash; // 安全哈希值
-    
-    // 初始化关键变量
+// 初始化关键变量
     long_ptr4 = resource_manager;
     stack_long2 = 0xfffffffffffffffe;
     security_hash = GLOBAL_DATA_PTR_180bf00a8 ^ (unsigned long long)stack_buffer1;
@@ -153,33 +141,30 @@ void advanced_data_processor_and_resource_manager(
     stack_ptr2 = GLOBAL_DATA_PTR_180c86930;
     ptr2 = output_ptr;
     temp_int3 = block_count;
-    
-    // 参数验证和调整
+// 参数验证和调整
     if (1 < (int)buffer_size) {
         ptr2 = (void*)((long long)(block_count + -1) % (long long)(int)buffer_size & 0xffffffff);
         temp_int3 = ((block_count + -1) / (int)buffer_size + 1) * buffer_size;
     }
-    
-    // 初始化栈变量
+// 初始化栈变量
     stack_long_ptr4 = (void*)0x0;
     stack_int2 = processing_mode;
     stack_long1 = (long long)data_source;
     stack_ptr4 = output_ptr;
     stack_ptr5 = output_ptr;
-    
-    // 处理简单情况（buffer_size < 2）
+// 处理简单情况（buffer_size < 2）
     if (buffer_size < 2) {
         stack_long_ptr8 = resource_manager;
         if (resource_manager != (void*)0x0) {
-            // 调用资源管理器的初始化函数
+// 调用资源管理器的初始化函数
             ((void(*)(void*, void*))(*(void**)(*resource_manager + 0x28)))(resource_manager, ptr2);
         }
         stack_long_ptr8 = (void*)0x0;
         stack_long_ptr4 = long_ptr4;
     }
-    // 处理复杂情况（buffer_size >= 2）
+// 处理复杂情况（buffer_size >= 2）
     else if (resource_manager != (void*)0x0) {
-        long_ptr1 = (void*)((ObjectFactoryFunc)FUN_180081480)(GLOBAL_DATA_PTR_180c8a998, &stack_long_ptr9, temp_int3 * block_size);
+        long_ptr1 = (void*)((ObjectFactoryFunc)function_081480)(GLOBAL_DATA_PTR_180c8a998, &stack_long_ptr9, temp_int3 * block_size);
         long_ptr1 = (void*)*long_ptr1;
         if (long_ptr1 != (void*)0x0) {
             stack_long_ptr7 = long_ptr1;
@@ -190,34 +175,29 @@ void advanced_data_processor_and_resource_manager(
         if (stack_long_ptr9 != (void*)0x0) {
             ((void(*)(void))(*(void**)(*stack_long_ptr9 + 0x38)))();
         }
-        // 执行内存复制操作
+// 执行内存复制操作
         memcpy(((void**)long_ptr1)[2], ((void**)long_ptr4)[2], (long long)*(int*)((long long)long_ptr4 + 0x1c));
     }
-    
-    // 初始化操作变量
+// 初始化操作变量
     ptr2 = stack_ptr2;
     temp_int1 = operation_type;
-    
-    // 处理特殊情况（operation_type == 1 且 stack_long_ptr4 == 0）
+// 处理特殊情况（operation_type == 1 且 stack_long_ptr4 == 0）
     if ((operation_type == 1) && (stack_long_ptr4 == (void*)0x0)) {
         *output_ptr = 0;
         stack_int3 = operation_type;
         goto cleanup_and_exit;
     }
-    
-    // 准备资源管理操作
+// 准备资源管理操作
     stack_long_ptr3 = (void*)0x0;
     long_ptr4 = long_ptr1;
     temp_uint2 = priority_level;
-    
-    // 处理主要逻辑分支
+// 处理主要逻辑分支
     if ((operation_type == 1) || (sync_flag == '\0')) {
 process_data:
-        // 创建和管理资源对象
+// 创建和管理资源对象
         long_ptr4 = stack_long_ptr4;
         long_ptr2 = (void*)((MemoryAllocatorFunc)CoreMemoryPoolReallocator)(GLOBAL_DATA_PTR_180c8ed18, 0x170, 8, 3);
-        
-        // 初始化资源对象结构
+// 初始化资源对象结构
         *(void**)long_ptr2 = (void*)&system_handler1_ptr;
         *(void**)long_ptr2 = (void*)&system_handler2_ptr;
         *(unsigned int*)(long_ptr2 + 1) = 0;
@@ -238,15 +218,13 @@ process_data:
         *(unsigned int*)(long_ptr2 + 0xc) = 0;
         *(unsigned char*)(long_ptr2 + 0xd) = 0;
         *(unsigned int*)(long_ptr2 + 0x2d) = 0xffffffff;
-        
-        // 设置栈变量和执行初始化
+// 设置栈变量和执行初始化
         stack_long_ptr5 = long_ptr2;
         stack_indirect_ptr1 = indirect_ptr1;
         stack_long_ptr11 = long_ptr2;
         ((void(*)(void*))(*(void**)(*long_ptr2 + 0x28)))(long_ptr2);
         stack_long_ptr5 = (void*)0x0;
-        
-        // 配置资源对象参数
+// 配置资源对象参数
         *(unsigned int*)(long_ptr2 + 7) = temp_uint2;
         *(int*)((long long)long_ptr2 + 0x3c) = temp_int3;
         *(int*)(long_ptr2 + 8) = stack_int1;
@@ -260,21 +238,19 @@ process_data:
         temp_int1 = operation_type;
         *(int*)(long_ptr2 + 9) = operation_type;
         *(int*)(long_ptr2 + 0x2d) = stack_int2;
-        
-        // 线程相关处理
+// 线程相关处理
         temp_int3 = *(int*)(*(long long*)(*(long long*)(GLOBAL_DATA_PTR_180c82868 + 8) + 8) + 0x48);
         temp_int2 = _Thrd_id();
         long_ptr1 = long_ptr2;
-        
-        // 处理同线程情况
+// 处理同线程情况
         if (temp_int2 == temp_int3) {
             stack_uint1 = *(unsigned int*)((long long)long_ptr2 + 0x44);
             stack_ptr1 = (unsigned int*)CONCAT44(stack_ptr1._4_4_, (int)long_ptr2[8]);
             stack_long_ptr1 = long_ptr4;
             stack_long_ptr2 = long_ptr2;
-            ((SystemInterfaceFunc)FUN_1800a4010)(GLOBAL_DATA_PTR_180c86938, temp_uint2, temp_int1, *(unsigned int*)((long long)long_ptr2 + 0x3c));
+            ((SystemInterfaceFunc)function_0a4010)(GLOBAL_DATA_PTR_180c86938, temp_uint2, temp_int1, *(unsigned int*)((long long)long_ptr2 + 0x3c));
         }
-        // 处理跨线程情况
+// 处理跨线程情况
         else {
             stack_indirect_ptr1 = (void***)&stack_ptr8;
             stack_uint5 = 0;
@@ -287,8 +263,7 @@ process_data:
             stack_long_ptr12 = long_ptr2;
             stack_uint4 = temp_uint2;
             stack_long_ptr13 = long_ptr4;
-            
-            // 处理引用计数
+// 处理引用计数
             if (long_ptr4 != (void*)0x0) {
                 stack_uint5 = *(unsigned int*)((long long)long_ptr4 + 0x1c);
                 if (*(void**)(*long_ptr4 + 0x28) == (void*)&memory_allocator_3248_ptr) {
@@ -302,8 +277,7 @@ process_data:
                     ((void(*)(void*))(*(void**)(*long_ptr4 + 0x28)))(long_ptr4);
                 }
             }
-            
-            // 处理资源对象引用计数
+// 处理资源对象引用计数
             if (*(void**)long_ptr2 == &rendering_buffer_2696_ptr) {
                 LOCK();
                 *(int*)(long_ptr2 + 1) = (int)long_ptr2[1] + 1;
@@ -314,16 +288,14 @@ process_data:
             else {
                 ((void(*)(void*))(*(void**)(*long_ptr2 + 0x28)))(long_ptr2);
             }
-            
-            // 执行异步操作
+// 执行异步操作
             temp_long1 = ((MemoryAllocatorFunc)CoreMemoryPoolReallocator)(GLOBAL_DATA_PTR_180c8ed18, 0x100, 8, 3);
             long_ptr3 = (void*)((DataProcessorFunc)SystemCore_StreamController)(temp_long1, &stack_ptr8);
             stack_indirect_ptr2 = (void**)long_ptr3;
             if (long_ptr3 != (void*)0x0) {
                 ((void(*)(void*))(*(void**)(*long_ptr3 + 0x28)))(long_ptr3);
             }
-            
-            // 清理异步操作资源
+// 清理异步操作资源
             temp_long1 = GLOBAL_DATA_PTR_180c82868;
             stack_indirect_ptr1 = &stack_long_ptr6;
             stack_long_ptr6 = long_ptr3;
@@ -337,8 +309,7 @@ process_data:
             stack_indirect_ptr2 = &stack_ptr8;
             stack_ptr8 = &system_state_ptr;
         }
-        
-        // 处理异步模式下的资源管理
+// 处理异步模式下的资源管理
         if ((temp_int1 != 1) && (sync_flag != '\0')) {
             ptr2 = stack_ptr2 + 0x102;
             stack_ptr7 = ptr2;
@@ -346,8 +317,7 @@ process_data:
             if (temp_int3 != 0) {
                 __Throw_C_error_std__YAXH_Z(temp_int3);
             }
-            
-            // 处理资源队列
+// 处理资源队列
             data_ptr2 = (void*)long_ptr4[1];
             if (data_ptr2 < (void*)long_ptr4[2]) {
                 long_ptr4[1] = (long long)(data_ptr2 + 1);
@@ -355,7 +325,7 @@ process_data:
                 ((void(*)(void*))(*(void**)(*long_ptr2 + 0x28)))(long_ptr2);
             }
             else {
-                // 处理队列扩展
+// 处理队列扩展
                 ptr1 = (void*)*long_ptr4;
                 temp_long1 = (long long)data_ptr2 - (long long)ptr1 >> 3;
                 if (temp_long1 == 0) {
@@ -372,8 +342,7 @@ expand_queue:
                     stack_ptr2 = (void*)0x0;
                     ptr3 = stack_ptr2;
                 }
-                
-                // 执行数据迁移
+// 执行数据迁移
                 for (; ptr1 != data_ptr2; ptr1 = ptr1 + 1) {
                     *ptr3 = *ptr1;
                     *ptr1 = 0;
@@ -400,15 +369,14 @@ expand_queue:
                 long_ptr4[1] = (long long)stack_long_ptr5;
                 long_ptr4[2] = (long long)(stack_ptr2 + temp_long1);
             }
-            
-            // 释放互斥锁
+// 释放互斥锁
             temp_int3 = _Mtx_unlock(ptr2);
             if (temp_int3 != 0) {
                 __Throw_C_error_std__YAXH_Z(temp_int3);
             }
         }
     }
-    // 处理同步模式下的资源管理
+// 处理同步模式下的资源管理
     else {
         stack_ptr3 = stack_ptr2 + 0x102;
         temp_int2 = _Mtx_lock();
@@ -419,8 +387,7 @@ expand_queue:
         data_ptr2 = ptr2 + 0xe8;
         ptr1 = data_ptr2;
         ptr2 = (void*)ptr2[0xea];
-        
-        // 搜索合适的资源位置
+// 搜索合适的资源位置
         while (ptr2 != (void*)0x0) {
             if (*(unsigned int*)(ptr2 + 4) < priority_level) {
                 ptr2 = (void*)*ptr2;
@@ -430,16 +397,14 @@ expand_queue:
                 ptr2 = (void*)ptr2[1];
             }
         }
-        
-        // 创建或获取资源
+// 创建或获取资源
         if ((ptr1 == data_ptr2) || (priority_level < *(unsigned int*)(ptr1 + 4))) {
             stack_ptr1 = &priority_level;
             stack_buffer2 = ptr1;
-            ptr1 = (void*)((void*)FUN_1800b90a0(data_ptr2, stack_buffer2, data_ptr2, ptr1));
+            ptr1 = (void*)((void*)function_0b90a0(data_ptr2, stack_buffer2, data_ptr2, ptr1));
             ptr1 = (void*)*ptr1;
         }
-        
-        // 处理资源查找和匹配
+// 处理资源查找和匹配
         temp_int2 = stack_int1;
         long_ptr4 = (void*)ptr1[5];
         do {
@@ -451,8 +416,7 @@ expand_queue:
                  (*(int*)((long long)long_ptr4 + 0x3c) == temp_int3)) &&
                 (((int)long_ptr4[8] == temp_int2 && ((int)long_ptr4[9] == temp_int1)))) &&
                (((int)long_ptr4[0x2d] == stack_int2 && (*(int*)(*long_ptr4 + 8) == 1)))) {
-                
-                // 处理找到的资源
+// 处理找到的资源
                 if (long_ptr4 != (void*)0x0) {
                     stack_long_ptr10 = long_ptr4;
                     ((void(*)(void*))(*(void**)(*long_ptr4 + 0x28)))(long_ptr4);
@@ -476,30 +440,27 @@ expand_queue:
             long_ptr4 = long_ptr4 + 1;
             temp_uint2 = temp_uint1;
         } while (long_ptr1 == (void*)0x0);
-        
-        // 释放互斥锁
+// 释放互斥锁
         temp_int2 = _Mtx_unlock(stack_ptr3);
         if (temp_int2 != 0) {
             __Throw_C_error_std__YAXH_Z(temp_int2);
         }
-        
-        // 处理资源合并操作
+// 处理资源合并操作
         long_ptr4 = stack_long_ptr4;
         long_ptr4 = ptr1 + 5;
         if (long_ptr1 == (void*)0x0) goto process_data;
         if (stack_long_ptr4 != (void*)0x0) {
             if (temp_int1 == 3) {
-                ((void(*)(void*, void*, void*))FUN_18029b390)(*(void*)(GLOBAL_DATA_PTR_180c86938 + 0x1cd8), long_ptr1, stack_long_ptr4);
+                ((void(*)(void*, void*, void*))function_29b390)(*(void*)(GLOBAL_DATA_PTR_180c86938 + 0x1cd8), long_ptr1, stack_long_ptr4);
             }
             else {
                 stack_uint1 = stack_uint1 & 0xffffff00;
                 stack_ptr1 = (unsigned int*)CONCAT44(stack_ptr1._4_4_, *(unsigned int*)((long long)stack_long_ptr4 + 0x1c));
-                ((void(*)(void*, void*, int, void*))FUN_18029b1d0)(*(void*)(GLOBAL_DATA_PTR_180c86938 + 0x1cd8), long_ptr1, 0, stack_long_ptr4);
+                ((void(*)(void*, void*, int, void*))function_29b1d0)(*(void*)(GLOBAL_DATA_PTR_180c86938 + 0x1cd8), long_ptr1, 0, stack_long_ptr4);
             }
         }
     }
-    
-    // 最终清理和结果处理
+// 最终清理和结果处理
     stack_ptr11 = &memory_allocator_3432_ptr;
     stack_ptr12 = stack_buffer3;
     stack_buffer3[0] = 0;
@@ -517,69 +478,61 @@ expand_queue:
     if (long_ptr4 != (void*)0x0) {
         ((void(*)(void*))(*(void**)(*long_ptr4 + 0x38)))(long_ptr4);
     }
-    
 cleanup_and_exit:
-    // 执行最终的清理操作
+// 执行最终的清理操作
     ((void(*)(unsigned long long))SystemSecurityChecker)(security_hash ^ (unsigned long long)stack_buffer1);
 }
-
 // ============================================================================
 // 函数别名定义
 // ============================================================================
-
 /**
  * 系统调用处理器和资源管理器（别名）
- * 
+ *
  * 提供与advanced_data_processor_and_resource_manager相同功能的别名接口，
  * 便于代码理解和维护。
- * 
+ *
  * @see advanced_data_processor_and_resource_manager
  */
 void system_call_processor_and_resource_manager(
     void* system_context, void** output_ptr, int processing_mode, void* data_source, uint priority_level,
     int operation_type, int resource_type, int block_size, int block_count, void* resource_manager, char sync_flag,
     uint buffer_size) __attribute__((alias("advanced_data_processor_and_resource_manager")));
-
 /**
  * 高级系统调用处理器（别名）
- * 
+ *
  * 提供简化的系统调用处理接口，专注于高级功能的实现。
- * 
+ *
  * @see advanced_data_processor_and_resource_manager
  */
 void advanced_system_call_processor(
     void* system_context, void** output_ptr, int processing_mode, void* data_source, uint priority_level,
     int operation_type, int resource_type, int block_size, int block_count, void* resource_manager, char sync_flag,
     uint buffer_size) __attribute__((alias("advanced_data_processor_and_resource_manager")));
-
 /**
  * 资源管理器（别名）
- * 
+ *
  * 提供资源管理功能的简化接口，专注于资源分配和生命周期管理。
- * 
+ *
  * @see advanced_data_processor_and_resource_manager
  */
 void resource_manager(
     void* system_context, void** output_ptr, int processing_mode, void* data_source, uint priority_level,
     int operation_type, int resource_type, int block_size, int block_count, void* resource_manager, char sync_flag,
     uint buffer_size) __attribute__((alias("advanced_data_processor_and_resource_manager")));
-
 /**
  * 线程安全资源管理器（别名）
- * 
+ *
  * 提供线程安全的资源管理接口，专注于多线程环境下的资源操作。
- * 
+ *
  * @see advanced_data_processor_and_resource_manager
  */
 void thread_safe_resource_manager(
     void* system_context, void** output_ptr, int processing_mode, void* data_source, uint priority_level,
     int operation_type, int resource_type, int block_size, int block_count, void* resource_manager, char sync_flag,
     uint buffer_size) __attribute__((alias("advanced_data_processor_and_resource_manager")));
-
 // ============================================================================
 // 模块说明和版本信息
 // ============================================================================
-
 /**
  * 模块信息：
  * - 文件名：99_part_01_part017.c
@@ -587,42 +540,37 @@ void thread_safe_resource_manager(
  * - 主要作者：Claude AI Assistant
  * - 完成日期：2025-08-28
  * - 版本信息：v1.0
- * 
+ *
  * 技术特点：
  * - 实现了复杂的数据处理机制
  * - 支持多种资源管理策略
  * - 提供完整的线程安全保障
  * - 具备高效的内存管理能力
  * - 支持同步和异步操作模式
- * 
+ *
  * 使用场景：
  * - 高级数据处理操作
  * - 复杂资源的分配和管理
  * - 多线程环境下的资源协调
  * - 高性能系统的核心组件
- * 
+ *
  * 注意事项：
  * - 本函数包含复杂的内存管理逻辑
  * - 需要充分测试各种边界情况
  * - 在多线程环境下使用时需要特别小心
  * - 建议在使用前仔细阅读相关文档
  */
-
 // ============================================================================
 // 警告和兼容性说明
 // ============================================================================
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// 
 // 本文件中存在全局变量重叠的情况，这是由于编译器优化和内存对齐导致的。
 // 在实际使用中，这些重叠的全局变量会被正确处理，不会影响程序的正确性。
-// 
 // 兼容性说明：
 // - 本模块适用于 TaleWorlds.Native 引擎
 // - 支持 64 位操作系统
 // - 需要 C99 或更高版本的编译器
 // - 依赖标准库和特定平台 API
-// 
 // 性能说明：
 // - 本模块经过优化，适用于高性能应用
 // - 在多线程环境下表现良好

@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part291.c - 2 个函数
-
-// 函数: void FUN_180423b90(int8_t (*param_1) [16],int64_t param_2,int64_t param_3,int64_t param_4,
-void FUN_180423b90(int8_t (*param_1) [16],int64_t param_2,int64_t param_3,int64_t param_4,
+// 函数: void function_423b90(int8_t (*param_1) [16],int64_t param_2,int64_t param_3,int64_t param_4,
+void function_423b90(int8_t (*param_1) [16],int64_t param_2,int64_t param_3,int64_t param_4,
                   int param_5,int param_6)
-
 {
   int iVar1;
   char cVar2;
@@ -106,7 +103,6 @@ void FUN_180423b90(int8_t (*param_1) [16],int64_t param_2,int64_t param_3,int64_
   int8_t auVar94 [16];
   int8_t auVar95 [16];
   int8_t auVar96 [16];
-  
   auVar43 = render_system_config;
   auVar42 = render_system_config;
   auVar41 = render_system_config;
@@ -372,16 +368,9 @@ void FUN_180423b90(int8_t (*param_1) [16],int64_t param_2,int64_t param_3,int64_
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180423bcb(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t param_4)
-void FUN_180423bcb(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t param_4)
-
+// 函数: void function_423bcb(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t param_4)
+void function_423bcb(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t param_4)
 {
   int iVar1;
   char cVar2;
@@ -484,7 +473,6 @@ void FUN_180423bcb(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t pa
   int8_t auVar92 [16];
   int8_t auVar93 [16];
   int8_t auVar94 [16];
-  
   auVar42 = render_system_config;
   auVar41 = render_system_config;
   auVar40 = render_system_config;
@@ -752,8 +740,3 @@ void FUN_180423bcb(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t pa
   }
   return;
 }
-
-
-
-
-

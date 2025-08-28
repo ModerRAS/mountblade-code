@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part270.c - 1 个函数
-
-// 函数: void FUN_18081e5c0(float *param_1,uint64_t param_2,int64_t param_3,int param_4,uint64_t *param_5,
-void FUN_18081e5c0(float *param_1,uint64_t param_2,int64_t param_3,int param_4,uint64_t *param_5,
+// 函数: void function_81e5c0(float *param_1,uint64_t param_2,int64_t param_3,int param_4,uint64_t *param_5,
+void function_81e5c0(float *param_1,uint64_t param_2,int64_t param_3,int param_4,uint64_t *param_5,
                   int64_t *param_6,uint param_7)
-
 {
   int *piVar1;
   int *piVar2;
@@ -72,7 +69,6 @@ void FUN_18081e5c0(float *param_1,uint64_t param_2,int64_t param_3,int param_4,u
   int8_t auVar58 [16];
   int8_t uVar59;
   int16_t uVar60;
-  
   uVar32 = param_2 & 0xffffffff;
   uVar36 = (uint)param_2;
   if (param_4 == 1) {
@@ -294,7 +290,7 @@ void FUN_18081e5c0(float *param_1,uint64_t param_2,int64_t param_3,int param_4,u
       (*(code *)ui_system_config[6])(param_1,param_2,param_3,param_5,param_6);
     }
     else {
-      FUN_1808326f0(param_1,param_2,param_3,param_5,param_6,param_7);
+      function_8326f0(param_1,param_2,param_3,param_5,param_6,param_7);
     }
   }
   else if (param_4 == 3) {
@@ -581,13 +577,8 @@ void FUN_18081e5c0(float *param_1,uint64_t param_2,int64_t param_3,int param_4,u
       (*(code *)ui_system_config[0xb])(param_1,param_2,param_3,param_5,param_6);
     }
     else {
-      FUN_180832190(param_1,param_2,param_3,param_5,param_6,param_7);
+      function_832190(param_1,param_2,param_3,param_5,param_6,param_7);
     }
   }
   return;
 }
-
-
-
-
-

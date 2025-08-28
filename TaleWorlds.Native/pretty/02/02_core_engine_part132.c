@@ -1,15 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 02_core_engine_part132.c - 核心引擎模块第132部分
 // 包含5个函数：游戏对象状态更新、渲染上下文管理、游戏对象创建等
-
 // 函数1: 更新游戏对象状态
-// 原始实现：FUN_180130155
+// 原始实现：function_130155
 // 简化实现：update_game_object_states
 // 功能：更新游戏对象的状态、位置、动画等属性
 void update_game_object_states(void)
-
 {
   uint64_t uVar1;
   int64_t lVar2;
@@ -36,7 +33,6 @@ void update_game_object_states(void)
   float fStack0000000000000038;
   float fStack000000000000003c;
   int iVar11;
-  
   uVar14 = unaff_RSI;
   do {
     lVar2 = *(int64_t *)(uVar14 + *(int64_t *)(unaff_RBX + 0x1c70));
@@ -63,7 +59,7 @@ void update_game_object_states(void)
       }
       lVar8 = (int64_t)unaff_EBP * 8 >> 3;
       lVar2 = *(int64_t *)(unaff_RBX + 0x1c70) + lVar8 * 8;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memmove(lVar2,lVar2 + 8,(*(int *)(unaff_RBX + 0x1c68) - lVar8) * 8 + -8);
     }
     if ((unaff_EBP == 0) || (*(char *)(lVar2 + 0x76) != cVar10)) {
@@ -75,13 +71,13 @@ void update_game_object_states(void)
     if ((*(uint *)(unaff_RBX + 0x19e8) & 0x400) != 0) {
       if ((*(char *)(lVar2 + 0x77) == cVar10) && (bVar4)) {
         if (*(char *)(lVar2 + 0x49) != cVar10) {
-          puVar6 = (uint64_t *)(**(code **)(unaff_RBX + 0x1560))(&stack0x000000b0,lVar2);
+          puVar6 = (uint64_t *)(**(code **)(unaff_RBX + 0x1560))(&local_buffer_000000b0,lVar2);
           uVar1 = *puVar6;
           *(uint64_t *)(lVar2 + 0xd8) = uVar1;
           *(uint64_t *)(lVar2 + 8) = uVar1;
         }
         if (*(char *)(lVar2 + 0x4a) != cVar10) {
-          puVar6 = (uint64_t *)(**(code **)(unaff_RBX + 0x1570))(&stack0x000000b8,lVar2);
+          puVar6 = (uint64_t *)(**(code **)(unaff_RBX + 0x1570))(&local_buffer_000000b8,lVar2);
           uVar1 = *puVar6;
           *(uint64_t *)(lVar2 + 0xe0) = uVar1;
           *(uint64_t *)(lVar2 + 0x10) = uVar1;
@@ -91,7 +87,7 @@ void update_game_object_states(void)
       fStack0000000000000034 = *(float *)(lVar2 + 0xc);
       fStack0000000000000038 = fStack0000000000000030 + *(float *)(lVar2 + 0x10);
       fStack000000000000003c = fStack0000000000000034 + *(float *)(lVar2 + 0x14);
-      uVar5 = FUN_180130ec0(&stack0x00000030);
+      uVar5 = function_130ec0(&local_buffer_00000030);
       *(int16_t *)(lVar2 + 0x74) = uVar5;
     }
     *(int32_t *)(lVar2 + 0x6c) = 0x3f800000;
@@ -166,7 +162,7 @@ void update_game_object_states(void)
             iVar13 = (int)uVar9;
             lVar3 = *(int64_t *)(uVar7 + *(int64_t *)(lVar8 + 0x1aa8));
             if (*(int64_t *)(lVar3 + 0x28) == lVar2) {
-              func_0x000180124d50(lVar3,fVar15 / fVar16);
+              Function_fc3a89e9(lVar3,fVar15 / fVar16);
             }
             uVar9 = (uint64_t)(iVar13 + 1U);
             uVar7 = uVar7 + 8;
@@ -174,7 +170,7 @@ void update_game_object_states(void)
         }
       }
       else {
-        func_0x000180124d50(*(int64_t *)(lVar2 + 0x78),fVar15 / fVar16);
+        Function_fc3a89e9(*(int64_t *)(lVar2 + 0x78),fVar15 / fVar16);
       }
     }
     *(float *)(lVar2 + 0x18) = fVar15;
@@ -187,7 +183,7 @@ void update_game_object_states(void)
   }
   if ((*(uint *)(unaff_RBX + 0xc) & 0x800) == 0) {
 LAB_180130765:
-    uVar14 = FUN_18012fe00(*(uint64_t *)(unaff_RBX + 0x118));
+    uVar14 = function_12fe00(*(uint64_t *)(unaff_RBX + 0x118));
 LAB_180130774:
     uVar7 = uVar14;
     if (uVar14 == 0) goto LAB_18013078e;
@@ -250,19 +246,12 @@ LAB_180130808:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数2: 渲染上下文管理
-// 原始实现：FUN_1801306c9
+// 原始实现：function_1306c9
 // 简化实现：manage_render_context
 // 功能：管理渲染上下文，处理渲染状态和资源
 void manage_render_context(void)
-
 {
   uint64_t uVar1;
   uint64_t *puVar2;
@@ -271,14 +260,13 @@ void manage_render_context(void)
   int64_t unaff_RBX;
   uint64_t unaff_RSI;
   uint64_t unaff_R12;
-  
   if ((*(uint *)(unaff_RBX + 0x19e8) & 0x400) == 0) {
     *(uint64_t *)(unaff_RBX + 0x1c80) = unaff_R12;
     return;
   }
   if ((*(uint *)(unaff_RBX + 0xc) & 0x800) == 0) {
 LAB_180130765:
-    uVar1 = FUN_18012fe00(*(uint64_t *)(unaff_RBX + 0x118));
+    uVar1 = function_12fe00(*(uint64_t *)(unaff_RBX + 0x118));
 LAB_180130774:
     uVar3 = uVar1;
     if (uVar1 == 0) goto LAB_18013078e;
@@ -341,36 +329,24 @@ LAB_180130808:
   }
   return;
 }
-
-
-
-
-
 // 函数3: 简单渲染上下文设置
-// 原始实现：FUN_1801306f3
+// 原始实现：function_1306f3
 // 简化实现：set_simple_render_context
 // 功能：简单的渲染上下文设置函数
 void set_simple_render_context(void)
-
 {
   int64_t unaff_RBX;
   uint64_t unaff_R12;
-  
   *(uint64_t *)(unaff_RBX + 0x1c80) = unaff_R12;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // 函数4: 创建游戏对象
-// 原始实现：FUN_180130830
+// 原始实现：function_130830
 // 简化实现：create_game_object
 // 功能：创建新的游戏对象，初始化属性和状态
 int * create_game_object(int64_t param_1,int param_2,uint64_t *param_3,uint64_t *param_4,
                    uint param_5)
-
 {
   int iVar1;
   uint uVar2;
@@ -384,7 +360,6 @@ int * create_game_object(int64_t param_1,int param_2,uint64_t *param_3,uint64_t 
   int *piStack_38;
   float fStack_30;
   float fStack_2c;
-  
   lVar3 = SYSTEM_DATA_MANAGER_A;
   if (param_1 != 0) {
     if ((*(int64_t *)(SYSTEM_DATA_MANAGER_A + 0x1b78) != 0) &&
@@ -419,13 +394,13 @@ LAB_1801308eb:
     if (SYSTEM_DATA_MANAGER_A != 0) {
       *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) = *(int *)(SYSTEM_DATA_MANAGER_A + 0x3a8) + 1;
     }
-    piStackX_8 = (int *)func_0x000180120ce0(0xf0,SYSTEM_DATA_MANAGER_B,iVar1,param_4,0xfffffffffffffffe);
+    piStackX_8 = (int *)SystemFunction_000180120ce0(0xf0,SYSTEM_DATA_MANAGER_B,iVar1,param_4,0xfffffffffffffffe);
     if (piStackX_8 == (int *)0x0) {
       piVar5 = (int *)0x0;
     }
     else {
       piStack_38 = piStackX_8;
-      piVar5 = (int *)FUN_18011fd90(piStackX_8);
+      piVar5 = (int *)function_11fd90(piStackX_8);
     }
     *piVar5 = param_2;
     piVar5[0x14] = *(int *)(lVar3 + 0x1c68);
@@ -436,9 +411,9 @@ LAB_1801308eb:
     fStack_30 = (float)piVar5[2] + (float)piVar5[4];
     fStack_2c = (float)piVar5[3] + (float)piVar5[5];
     piStackX_8 = piVar5;
-    uVar4 = FUN_180130ec0(&piStack_38);
+    uVar4 = function_130ec0(&piStack_38);
     *(int16_t *)(piVar5 + 0x1d) = uVar4;
-    FUN_18013d860(lVar3 + 0x1c68,&piStackX_8);
+    function_13d860(lVar3 + 0x1c68,&piStackX_8);
     fVar8 = (float)piVar5[4] + (float)piVar5[2];
     if ((float)piVar5[4] + (float)piVar5[2] <= *(float *)(lVar3 + 0x1a20)) {
       fVar8 = *(float *)(lVar3 + 0x1a20);
@@ -470,19 +445,12 @@ LAB_1801308eb:
   }
   return piVar5;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数5: 初始化游戏对象
-// 原始实现：FUN_180130a80
+// 原始实现：function_130a80
 // 简化实现：initialize_game_object
 // 功能：初始化游戏对象，设置渲染属性和状态
 void initialize_game_object(int64_t param_1)
-
 {
   uint uVar1;
   int32_t *puVar2;
@@ -500,8 +468,7 @@ void initialize_game_object(int64_t param_1)
   int iVar14;
   uint64_t uVar15;
   uint64_t extraout_XMM0_Qa;
-  uint64_t uStackX_8;
-  
+  uint64_t stack_special_x_8;
   lVar5 = SYSTEM_DATA_MANAGER_A;
   uVar1 = *(uint *)(param_1 + 0xc);
   *(int32_t *)(param_1 + 0x3c) = 0xffffffff;
@@ -522,7 +489,7 @@ void initialize_game_object(int64_t param_1)
       ((*(int64_t *)(param_1 + 0x398) == 0 ||
        (lVar7 = *(int64_t *)(*(int64_t *)(param_1 + 0x398) + 0x28),
        *(int64_t *)(param_1 + 0x28) = lVar7, lVar7 == 0)))) && (*(int *)(param_1 + 0x30) != 0)) {
-    lVar7 = func_0x00018012fb00();
+    lVar7 = Function_14525da8();
     *(int64_t *)(param_1 + 0x28) = lVar7;
     if (lVar7 == 0) {
       if ((*(float *)(param_1 + 0x34) != 3.4028235e+38) &&
@@ -534,7 +501,7 @@ void initialize_game_object(int64_t param_1)
     }
   }
   if (*(int *)(lVar5 + 0x1bec) != 0) {
-    puVar9 = (int32_t *)func_0x00018012fb00(*(int32_t *)(lVar5 + 0x1c3c));
+    puVar9 = (int32_t *)Function_14525da8(*(int32_t *)(lVar5 + 0x1c3c));
     *(int32_t **)(param_1 + 0x28) = puVar9;
     *(int32_t *)(param_1 + 0x30) = *(int32_t *)(lVar5 + 0x1c3c);
     goto LAB_180130c8e;
@@ -544,7 +511,7 @@ void initialize_game_object(int64_t param_1)
       puVar9 = *(int32_t **)(lVar5 + 0x1c80);
       goto LAB_180130c8a;
     }
-    cVar6 = func_0x00018012fb90();
+    cVar6 = Function_ff23068c();
     if (cVar6 != '\0') {
       puVar9 = (int32_t *)
                create_game_object(extraout_XMM0_Qa,*(int32_t *)(param_1 + 8),param_1 + 0x40,
@@ -570,7 +537,7 @@ void initialize_game_object(int64_t param_1)
     puVar9 = *(int32_t **)(param_1 + 0x28);
     if (puVar9 != (int32_t *)0x0) {
       if ((param_1 == *(int64_t *)(puVar9 + 0x1e)) && (*(int *)(lVar5 + 0x1b2c) == 0)) {
-        FUN_18012fbd0(extraout_XMM0_Qa,**(uint64_t **)(lVar5 + 0x1c70));
+        function_12fbd0(extraout_XMM0_Qa,**(uint64_t **)(lVar5 + 0x1c70));
         puVar9 = *(int32_t **)(param_1 + 0x28);
       }
       goto LAB_180130c8e;
@@ -602,7 +569,7 @@ LAB_180130c8e:
       }
       if ((((*(uint *)(param_1 + 0xc) & 0x20000000) == 0) ||
           (*(int *)(lVar5 + 0x1a90) <= (int)puVar9[0x15])) || (!bVar3)) {
-        cVar6 = FUN_18012fbd0(param_1,**(uint64_t **)(lVar5 + 0x1c70));
+        cVar6 = function_12fbd0(param_1,**(uint64_t **)(lVar5 + 0x1c70));
         if (cVar6 == '\0') {
           uVar8 = create_game_object(param_1,*(int32_t *)(param_1 + 8),param_1 + 0x40,param_1 + 0x48,4
                                );
@@ -633,9 +600,9 @@ LAB_180130c8e:
   else {
     bVar3 = true;
   }
-  uStackX_8._0_4_ = (float)uVar8;
-  if (((float)uStackX_8 < -256000.0) ||
-     (uStackX_8._4_4_ = (float)((uint64_t)uVar8 >> 0x20), uStackX_8._4_4_ < -256000.0)) {
+  stack_special_x_8._0_4_ = (float)uVar8;
+  if (((float)stack_special_x_8 < -256000.0) ||
+     (stack_special_x_8._4_4_ = (float)((uint64_t)uVar8 >> 0x20), stack_special_x_8._4_4_ < -256000.0)) {
     bVar4 = false;
   }
   else {
@@ -648,12 +615,12 @@ LAB_180130d35:
   else {
     if (bVar3) {
       if (!bVar4) goto LAB_180130d35;
-      pfVar10 = (float *)&uStackX_8;
-      uStackX_8 = *puVar11;
+      pfVar10 = (float *)&stack_special_x_8;
+      stack_special_x_8 = *puVar11;
     }
     else {
-      uStackX_8 = uVar8;
-      pfVar10 = (float *)func_0x000180131890(&uStackX_8);
+      stack_special_x_8 = uVar8;
+      pfVar10 = (float *)Function_b791fe18(&stack_special_x_8);
     }
     if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1600)) {
       pfVar12 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x1608);
@@ -677,19 +644,12 @@ LAB_180130e8e:
   *(int32_t *)(param_1 + 0x30) = **(int32_t **)(param_1 + 0x28);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数6: 游戏对象属性设置
-// 原始实现：FUN_180130ae3
+// 原始实现：function_130ae3
 // 简化实现：set_game_object_properties
 // 功能：设置游戏对象的属性，包括位置、状态标志等
 void set_game_object_properties(uint64_t param_1)
-
 {
   bool bVar1;
   bool bVar2;
@@ -717,7 +677,6 @@ void set_game_object_properties(uint64_t param_1)
   uint64_t extraout_XMM0_Qa_05;
   float fStack0000000000000060;
   float fStack0000000000000064;
-  
   *(int8_t *)(in_RCX + 0xae) = 0;
   cVar4 = (char)unaff_RSI;
   iVar10 = (int)unaff_RSI;
@@ -729,7 +688,7 @@ void set_game_object_properties(uint64_t param_1)
       ((*(int64_t *)(in_RCX + 0x398) == 0 ||
        (lVar5 = *(int64_t *)(*(int64_t *)(in_RCX + 0x398) + 0x28),
        *(int64_t *)(in_RCX + 0x28) = lVar5, lVar5 == 0)))) && (*(int *)(in_RCX + 0x30) != 0)) {
-    lVar5 = func_0x00018012fb00();
+    lVar5 = Function_14525da8();
     *(int64_t *)(unaff_RBX + 0x28) = lVar5;
     param_1 = extraout_XMM0_Qa;
     if (lVar5 == 0) {
@@ -744,7 +703,7 @@ void set_game_object_properties(uint64_t param_1)
     }
   }
   if (*(int *)(unaff_RDI + 0x1bec) != iVar10) {
-    lVar5 = func_0x00018012fb00(*(int32_t *)(unaff_RDI + 0x1c3c));
+    lVar5 = Function_14525da8(*(int32_t *)(unaff_RDI + 0x1c3c));
     *(int64_t *)(unaff_RBX + 0x28) = lVar5;
     *(int32_t *)(unaff_RBX + 0x30) = *(int32_t *)(unaff_RDI + 0x1c3c);
     param_1 = extraout_XMM0_Qa_01;
@@ -755,7 +714,7 @@ void set_game_object_properties(uint64_t param_1)
       lVar5 = *(int64_t *)(unaff_RDI + 0x1c80);
       goto LAB_180130c8a;
     }
-    cVar3 = func_0x00018012fb90();
+    cVar3 = Function_ff23068c();
     if (cVar3 != '\0') {
       lVar5 = create_game_object(extraout_XMM0_Qa_02,*(int32_t *)(unaff_RBX + 8),unaff_RBX + 0x40,
                             unaff_RBX + 0x48);
@@ -783,7 +742,7 @@ void set_game_object_properties(uint64_t param_1)
     lVar5 = *(int64_t *)(unaff_RBX + 0x28);
     if (lVar5 != 0) {
       if ((unaff_RBX == *(int64_t *)(lVar5 + 0x78)) && (*(int *)(unaff_RDI + 0x1b2c) == iVar10)) {
-        param_1 = FUN_18012fbd0(extraout_XMM0_Qa_02,**(uint64_t **)(unaff_RDI + 0x1c70));
+        param_1 = function_12fbd0(extraout_XMM0_Qa_02,**(uint64_t **)(unaff_RDI + 0x1c70));
         lVar5 = *(int64_t *)(unaff_RBX + 0x28);
       }
       goto LAB_180130c8e;
@@ -815,7 +774,7 @@ LAB_180130c8e:
       }
       if ((((*(uint *)(unaff_RBX + 0xc) & 0x20000000) == 0) ||
           (*(int *)(unaff_RDI + 0x1a90) <= *(int *)(lVar5 + 0x54))) || (!bVar1)) {
-        cVar4 = FUN_18012fbd0(param_1,**(uint64_t **)(unaff_RDI + 0x1c70));
+        cVar4 = function_12fbd0(param_1,**(uint64_t **)(unaff_RDI + 0x1c70));
         if (cVar4 == '\0') {
           uVar6 = create_game_object(extraout_XMM0_Qa_05,*(int32_t *)(unaff_RBX + 8),unaff_RBX + 0x40,
                                 unaff_RBX + 0x48,4);
@@ -862,12 +821,12 @@ LAB_180130d35:
   else {
     if (bVar1) {
       if (!bVar2) goto LAB_180130d35;
-      pfVar7 = &stack0x00000060;
+      pfVar7 = &local_buffer_00000060;
       _fStack0000000000000060 = *puVar8;
     }
     else {
       _fStack0000000000000060 = uVar6;
-      pfVar7 = (float *)func_0x000180131890(&stack0x00000060);
+      pfVar7 = (float *)Function_b791fe18(&local_buffer_00000060);
     }
     if (0 < *(int *)(SYSTEM_DATA_MANAGER_A + 0x1600)) {
       pfVar9 = *(float **)(SYSTEM_DATA_MANAGER_A + 0x1608);
@@ -891,8 +850,4 @@ LAB_180130e8e:
   *(int32_t *)(unaff_RBX + 0x30) = **(int32_t **)(unaff_RBX + 0x28);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-

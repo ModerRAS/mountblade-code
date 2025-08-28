@@ -1,15 +1,10 @@
 /* 函数别名定义: RenderingShaderProcessor */
 #define RenderingShaderProcessor RenderingShaderProcessor
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part027.c - 3 个函数
-
-// 函数: void FUN_180280600(uint64_t *param_1,int64_t *param_2)
-void FUN_180280600(uint64_t *param_1,int64_t *param_2)
-
+// 函数: void DataStructure_80600(uint64_t *param_1,int64_t *param_2)
+void DataStructure_80600(uint64_t *param_1,int64_t *param_2)
 {
   uint *puVar1;
   int64_t lVar2;
@@ -44,24 +39,23 @@ void FUN_180280600(uint64_t *param_1,int64_t *param_2)
   int64_t lVar31;
   uint uVar32;
   uint64_t uVar33;
-  int8_t auStack_d8 [32];
-  int32_t uStack_b8;
+  int8_t stack_array_d8 [32];
+  int32_t local_var_b8;
   int iStack_a8;
-  uint uStack_a4;
+  uint local_var_a4;
   char acStack_a0 [4];
-  uint uStack_9c;
+  uint local_var_9c;
   int64_t *plStack_98;
   int64_t *plStack_90;
   int64_t lStack_88;
   int64_t lStack_80;
-  uint64_t *puStack_78;
+  uint64_t *plocal_var_78;
   int64_t lStack_70;
-  uint64_t *puStack_60;
-  uint64_t uStack_58;
-  uint64_t uStack_50;
-  uint64_t uStack_48;
-  
-  uStack_48 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_d8;
+  uint64_t *plocal_var_60;
+  uint64_t local_var_58;
+  uint64_t local_var_50;
+  uint64_t local_var_48;
+  local_var_48 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_d8;
   lVar23 = param_2[7];
   iStack_a8 = 0;
   plStack_90 = param_2;
@@ -70,7 +64,7 @@ void FUN_180280600(uint64_t *param_1,int64_t *param_2)
     do {
       uVar24 = *(uint *)(lVar23 + 8 + lStack_88);
       lVar23 = *(int64_t *)(lVar23 + lStack_88);
-      uStack_a4 = uVar24;
+      local_var_a4 = uVar24;
       lStack_80 = lVar23;
       if (*(code **)(*param_2 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
         plStack_98 = param_2 + 0x66;
@@ -109,11 +103,11 @@ LAB_180280743:
             if (puVar25 == *(uint64_t **)(lVar3 + lVar19 * 8)) {
               plVar4 = (int64_t *)param_1[2];
               iVar18 = 0;
-              uStack_50 = (int64_t)((int)plVar4[2] + 0xf) & 0xfffffffffffffff0;
-              *(int *)(plVar4 + 2) = iVar26 * 0x20 + (int)uStack_50;
-              uStack_50 = *plVar4 + uStack_50;
+              local_var_50 = (int64_t)((int)plVar4[2] + 0xf) & 0xfffffffffffffff0;
+              *(int *)(plVar4 + 2) = iVar26 * 0x20 + (int)local_var_50;
+              local_var_50 = *plVar4 + local_var_50;
               if (0 < *(int *)*param_1) {
-                puVar13 = (uint64_t *)(uStack_50 + 8);
+                puVar13 = (uint64_t *)(local_var_50 + 8);
                 do {
                   puVar5 = (uint64_t *)param_1[3];
                   iVar18 = iVar18 + 1;
@@ -135,33 +129,33 @@ LAB_180280743:
                 }
               }
               plVar4 = *(int64_t **)(lVar23 + 0x30);
-              uStack_b8 = 1;
+              local_var_b8 = 1;
               uVar15 = (int64_t)(int)plVar4[2] + 0xfU & 0xfffffffffffffff0;
               puVar25 = (uint64_t *)(*plVar4 + uVar15);
               *(int *)(plVar4 + 2) = (int)uVar15 + 0x20;
               *puVar25 = uVar16;
               puVar25[1] = uVar6;
-              puVar25[2] = uStack_50;
+              puVar25[2] = local_var_50;
               puVar25[3] = 0;
-              puStack_60 = (uint64_t *)uVar16;
-              uStack_58 = uVar6;
+              plocal_var_60 = (uint64_t *)uVar16;
+              local_var_58 = uVar6;
               RenderingShaderProcessor0(lVar23 + 0x20,acStack_a0,*(int32_t *)(lVar23 + 0x10),
                             *(int32_t *)(lVar23 + 0x18));
               if (acStack_a0[0] != '\0') {
-                uVar22 = uVar33 % (uint64_t)uStack_9c;
-                FUN_180285760(lVar23,uStack_9c);
+                uVar22 = uVar33 % (uint64_t)local_var_9c;
+                DataStructure_85760(lVar23,local_var_9c);
               }
               puVar25[3] = *(uint64_t *)(*(int64_t *)(lVar23 + 8) + uVar22 * 8);
               *(uint64_t **)(*(int64_t *)(lVar23 + 8) + uVar22 * 8) = puVar25;
               *(int64_t *)(lVar23 + 0x18) = *(int64_t *)(lVar23 + 0x18) + 1;
-              uVar24 = uStack_a4;
+              uVar24 = local_var_a4;
               lVar19 = *(int64_t *)(lVar23 + 8) + uVar22 * 8;
 LAB_180280894:
               lStack_70 = lVar19;
-              puStack_78 = puVar25;
-              puStack_60 = puStack_78;
-              uStack_58 = lStack_70;
-              puVar25 = puStack_78;
+              plocal_var_78 = puVar25;
+              plocal_var_60 = plocal_var_78;
+              local_var_58 = lStack_70;
+              puVar25 = plocal_var_78;
               lVar23 = lStack_80;
             }
             puVar25 = (uint64_t *)(puVar25[2] + lVar31);
@@ -268,21 +262,15 @@ LAB_180280958:
       lStack_88 = lStack_88 + 0x10;
     } while ((uint64_t)(int64_t)iStack_a8 < (uint64_t)(param_2[8] - lVar23 >> 4));
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_d8);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_48 ^ (uint64_t)stack_array_d8);
 }
-
-
-
-
-
-// 函数: void FUN_180280648(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *param_4,
-void FUN_180280648(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *param_4,
+// 函数: void DataStructure_80648(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *param_4,
+void DataStructure_80648(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *param_4,
                   uint64_t param_5,int param_6,uint64_t param_7,int64_t *param_8,
                   int64_t *param_9,uint64_t param_10,uint64_t param_11,uint64_t *param_12,
                   int64_t param_13,uint64_t param_14,uint64_t *param_15,uint64_t param_16,
                   uint64_t param_17,uint64_t param_18)
-
 {
   uint *puVar1;
   int64_t lVar2;
@@ -327,8 +315,7 @@ void FUN_180280648(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   uint64_t unaff_R14;
   uint64_t unaff_R15;
   uint64_t uVar33;
-  uint uStack0000000000000034;
-  
+  uint local_buffer_34;
   *(uint64_t *)(in_R11 + 0x18) = unaff_RBX;
   *(uint64_t *)(in_R11 + -0x10) = unaff_RBP;
   *(uint64_t *)(in_R11 + -0x18) = unaff_RDI;
@@ -340,7 +327,7 @@ void FUN_180280648(uint64_t param_1,uint64_t param_2,int64_t param_3,int64_t *pa
   do {
     uVar24 = *(uint *)(param_3 + 8 + param_10);
     lVar23 = *(int64_t *)(param_3 + param_10);
-    uStack0000000000000034 = uVar24;
+    local_buffer_34 = uVar24;
     param_11 = lVar23;
     if (*(code **)(*param_4 + 0x158) == (code *)&rendering_buffer_2528_ptr) {
       param_8 = param_4 + 0x66;
@@ -418,12 +405,12 @@ LAB_180280743:
                           *(int32_t *)(lVar23 + 0x18),1);
             if ((char)param_7 != '\0') {
               uVar22 = uVar33 % (uint64_t)param_7._4_4_;
-              FUN_180285760(lVar23,param_7._4_4_);
+              DataStructure_85760(lVar23,param_7._4_4_);
             }
             puVar25[3] = *(uint64_t *)(*(int64_t *)(lVar23 + 8) + uVar22 * 8);
             *(uint64_t **)(*(int64_t *)(lVar23 + 8) + uVar22 * 8) = puVar25;
             *(int64_t *)(lVar23 + 0x18) = *(int64_t *)(lVar23 + 0x18) + 1;
-            uVar24 = uStack0000000000000034;
+            uVar24 = local_buffer_34;
             lVar19 = *(int64_t *)(lVar23 + 8) + uVar22 * 8;
 LAB_180280894:
             param_13 = lVar19;
@@ -538,27 +525,15 @@ LAB_180280958:
     param_10 = param_10 + 0x10;
     param_6 = in_R10D;
     if ((uint64_t)(param_4[8] - param_3 >> 4) <= (uint64_t)(int64_t)in_R10D) {
-                    // WARNING: Subroutine does not return
-      SystemSecurityChecker(param_18 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+      SystemSecurityChecker(param_18 ^ (uint64_t)&local_buffer_00000000);
     }
   } while( true );
 }
-
-
-
-
-
-// 函数: void FUN_180280a9f(void)
-void FUN_180280a9f(void)
-
+// 函数: void DataStructure_80a9f(void)
+void DataStructure_80a9f(void)
 {
-  uint64_t in_stack_00000090;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000090 ^ (uint64_t)&stack0x00000000);
+  uint64_t local_var_90;
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_90 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-

@@ -1,19 +1,14 @@
 /* 函数别名定义: RenderingSystemProcessor */
 #define RenderingSystemProcessor RenderingSystemProcessor
-
-
 #include "RenderingSystemProcessor0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 /*==============================================================================
  TaleWorlds.Native 渲染系统 - 核心缓冲区管理模块 (03_rendering_part538.c)
- 
  文件概述:
    本模块实现了游戏渲染系统中的核心缓冲区管理功能，包括动态缓冲区
    的创建、扩展、数据复制和销毁等操作。该模块为渲染管线提供了高效的
    内存管理机制。
- 
  核心功能:
    - 动态缓冲区分配和扩展
    - 环形缓冲区管理
@@ -21,7 +16,6 @@
    - 渲染状态管理
    - 资源生命周期控制
  ==============================================================================*/
-
 /* 系统常量定义 */
 #define BUFFER_MIN_CAPACITY 1
 #define BUFFER_GROWTH_FACTOR 2
@@ -30,7 +24,6 @@
 #define RENDER_OBJECT_SIZE 0x1b8
 #define HASH_SEED 0xcbf29ce484222325
 #define HASH_MULTIPLIER 0x100000001b3
-
 /* 渲染状态枚举 */
 typedef enum {
     RENDER_STATE_INACTIVE = 0,
@@ -38,7 +31,6 @@ typedef enum {
     RENDER_STATE_PENDING = 2,
     RENDER_STATE_COMPLETED = 3
 } RenderState;
-
 /* 缓冲区管理结构 */
 typedef struct {
     void* data;          // 缓冲区数据指针
@@ -48,7 +40,6 @@ typedef struct {
     uint32_t flags;      // 缓冲区标志
     void* allocator;     // 内存分配器
 } RenderBuffer;
-
 /* 环形缓冲区结构 */
 typedef struct {
     void* buffer;        // 缓冲区指针
@@ -58,7 +49,6 @@ typedef struct {
     size_t mask;         // 掩码（用于环形索引）
     uint32_t count;      // 元素计数
 } RingBuffer;
-
 /* 渲染对象结构 */
 typedef struct {
     void* vtable;        // 虚函数表
@@ -70,7 +60,6 @@ typedef struct {
     char* name;          // 对象名称
     void* user_data;     // 用户数据
 } RenderObject;
-
 /* 全局渲染上下文 */
 static struct {
     void* global_allocator;  // 全局内存分配器
@@ -79,10 +68,9 @@ static struct {
     uint32_t frame_number;   // 当前帧号
     void* render_device;     // 渲染设备
 } g_render_context;
-
 /*==============================================================================
  函数别名: InitializeRingBuffer - 初始化环形缓冲区
- 原始函数: FUN_180560330
+ 原始函数: function_560330
  参数:
    capacity - 缓冲区容量
  返回:
@@ -95,37 +83,31 @@ RingBuffer* InitializeRingBuffer(size_t capacity)
   if (capacity == 0) {
     capacity = BUFFER_MIN_CAPACITY;
   }
-  
-  // 计算实际容量（2的幂次方）
+// 计算实际容量（2的幂次方）
   size_t actual_capacity = 1;
   while (actual_capacity < capacity) {
     actual_capacity <<= 1;
   }
-  
-  // 分配缓冲区内存
-  void* buffer = CoreEngineMemoryPoolAllocator(g_render_context.global_allocator, 
+// 分配缓冲区内存
+  void* buffer = CoreEngineMemoryPoolAllocator(g_render_context.global_allocator,
                                actual_capacity * MEMORY_ALIGNMENT, 3);
   if (!buffer) {
     return NULL;
   }
-  
-  // 对齐内存地址
+// 对齐内存地址
   RingBuffer* ring_buffer = (RingBuffer*)((uintptr_t)buffer & ~(MEMORY_ALIGNMENT - 1));
-  
-  // 初始化缓冲区结构
+// 初始化缓冲区结构
   ring_buffer->buffer = buffer;
   ring_buffer->capacity = actual_capacity;
   ring_buffer->head = 0;
   ring_buffer->tail = 0;
   ring_buffer->mask = actual_capacity - 1;
   ring_buffer->count = 0;
-  
   return ring_buffer;
 }
-
 /*==============================================================================
  函数别名: RingBufferPush - 向环形缓冲区推送数据
- 原始函数: FUN_1805603c0
+ 原始函数: function_5603c0
  参数:
    ring_buffer - 环形缓冲区指针
    data - 要推送的数据指针
@@ -139,55 +121,41 @@ int RingBufferPush(RingBuffer* ring_buffer, void* data)
   if (!ring_buffer || !data) {
     return 0;
   }
-  
-  // 检查是否需要扩展缓冲区
+// 检查是否需要扩展缓冲区
   if (ring_buffer->count >= ring_buffer->capacity) {
     size_t new_capacity = ring_buffer->capacity * BUFFER_GROWTH_FACTOR;
     if (new_capacity < BUFFER_MAX_SIZE) {
       new_capacity = BUFFER_MAX_SIZE;
     }
-    
-    // 重新分配更大的缓冲区
+// 重新分配更大的缓冲区
     void* new_buffer = CoreEngineMemoryPoolAllocator(g_render_context.global_allocator,
                                     new_capacity * MEMORY_ALIGNMENT, 3);
     if (!new_buffer) {
       return 0;
     }
-    
-    // 复制现有数据
+// 复制现有数据
     memcpy(new_buffer, ring_buffer->buffer, ring_buffer->capacity * MEMORY_ALIGNMENT);
-    
-    // 释放旧缓冲区
+// 释放旧缓冲区
     if (ring_buffer->buffer) {
       CoreEngineMemoryPoolCleaner();
     }
-    
-    // 更新缓冲区信息
+// 更新缓冲区信息
     ring_buffer->buffer = new_buffer;
     ring_buffer->capacity = new_capacity;
     ring_buffer->mask = new_capacity - 1;
   }
-  
-  // 写入数据
+// 写入数据
   size_t write_pos = ring_buffer->tail;
   *(void**)((char*)ring_buffer->buffer + write_pos * MEMORY_ALIGNMENT) = data;
-  
-  // 更新尾部位置
+// 更新尾部位置
   ring_buffer->tail = (write_pos + 1) & ring_buffer->mask;
   ring_buffer->count++;
-  
   return 1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /*==============================================================================
  函数别名: CopyRenderData - 复制渲染数据
- 原始函数: FUN_1805604e0
+ 原始函数: function_5604e0
  参数:
    dest - 目标缓冲区
    src - 源缓冲区
@@ -202,12 +170,10 @@ void CopyRenderData(RenderBuffer* dest, RenderBuffer* src, size_t count)
   if (!dest || !src || count == 0) {
     return;
   }
-  
   size_t required_size = count * MEMORY_ALIGNMENT;
-  
-  // 检查目标缓冲区容量
+// 检查目标缓冲区容量
   if (dest->capacity < required_size) {
-    // 计算新的容量
+// 计算新的容量
     size_t new_capacity = dest->capacity * BUFFER_GROWTH_FACTOR;
     if (new_capacity == 0) {
       new_capacity = BUFFER_MIN_CAPACITY;
@@ -215,52 +181,40 @@ void CopyRenderData(RenderBuffer* dest, RenderBuffer* src, size_t count)
     if (new_capacity < required_size) {
       new_capacity = required_size;
     }
-    
-    // 分配新缓冲区
+// 分配新缓冲区
     void* new_data = NULL;
     if (new_capacity > 0) {
       new_data = CoreEngineMemoryPoolAllocator(g_render_context.global_allocator,
                              new_capacity * MEMORY_ALIGNMENT, (char)dest->flags);
     }
-    
-    // 复制现有数据
+// 复制现有数据
     if (dest->data && dest->size > 0) {
       memcpy(new_data, dest->data, dest->size);
     }
-    
-    // 清零新分配的空间
+// 清零新分配的空间
     size_t extra_size = new_capacity - dest->size;
     if (extra_size > 0) {
       memset((char*)new_data + dest->size, 0, extra_size);
     }
-    
-    // 释放旧缓冲区
+// 释放旧缓冲区
     if (dest->data) {
       CoreEngineMemoryPoolCleaner();
     }
-    
-    // 更新目标缓冲区
+// 更新目标缓冲区
     dest->data = new_data;
     dest->capacity = new_capacity;
   }
-  
-  // 执行数据复制
+// 执行数据复制
   if (src->data && src->size > 0) {
     size_t copy_size = (src->size < required_size) ? src->size : required_size;
     memcpy(dest->data, src->data, copy_size);
     dest->size = copy_size;
   }
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /*==============================================================================
 函数别名: ProcessRenderBuffer - 处理渲染缓冲区数据
-原始函数: FUN_1805604f0
+原始函数: function_5604f0
 参数:
   buffer_info - 缓冲区信息结构
   data_source - 数据源指针
@@ -282,7 +236,6 @@ void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
   uint64_t elements_needed;
   uint64_t expansion_size;
   uint64_t current_size;
-  
   elements_needed = 0;
   source_size = ((int64_t*)data_source)[1] - *(int64_t*)data_source >> 3;
   current_end = buffer_ptr[1];
@@ -306,22 +259,22 @@ void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
         source_size = buffer_ptr[1];
       }
       if (buffer_start != source_size) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memmove(current_end, buffer_start, source_size - buffer_start);
       }
       if (expansion_size != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memset(current_end, 0, expansion_size * 8);
       }
       if (*buffer_ptr != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner();
       }
       *buffer_ptr = current_end;
       buffer_ptr[2] = current_end + new_capacity * 8;
     }
     else if (expansion_size != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(current_end, 0, expansion_size * 8);
     }
   }
@@ -342,16 +295,10 @@ void ProcessRenderBuffer(RenderBuffer* buffer_info, void* data_source)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /*==============================================================================
 函数别名: ReallocateRenderBuffer - 重新分配渲染缓冲区
-原始函数: FUN_180560539
+原始函数: function_560539
 参数:
   min_size - 最小所需大小
   current_size - 当前大小
@@ -372,7 +319,6 @@ void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_s
   int64_t extra_size;
   int64_t *data_source;
   uint64_t source_end;
-  
   new_capacity = extra_space * 2;
   if (extra_space == 0) {
     new_capacity = 1;
@@ -387,11 +333,11 @@ void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_s
     source_end = buffer_info[1];
   }
   if (current_size != source_end) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memmove(source_offset, current_size, source_end - current_size);
   }
   if (extra_size != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(source_offset, 0, extra_size * 8);
   }
   if (*buffer_info == 0) {
@@ -411,17 +357,12 @@ void ReallocateRenderBuffer(size_t min_size, size_t current_size, size_t extra_s
     }
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner();
 }
-
-
-
-
-
 /*==============================================================================
 函数别名: InitializeRenderElements - 初始化渲染元素
-原始函数: FUN_1805605e4
+原始函数: function_5605e4
 参数:
   buffer - 渲染缓冲区
   element_count - 元素数量
@@ -441,7 +382,6 @@ void InitializeRenderElements(RenderBuffer* buffer, size_t element_count, void* 
   uint64_t current_offset;
   int64_t *data_ptr;
   int64_t element_end;
-  
   if (extra_size == 0) {
     buffer_info[1] = element_end;
     current_offset = source_offset;
@@ -456,17 +396,11 @@ void InitializeRenderElements(RenderBuffer* buffer, size_t element_count, void* 
     }
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset();
 }
-
-
-
-
-
-// 函数: void FUN_18056061e(void)
-void FUN_18056061e(void)
-
+// 函数: void function_56061e(void)
+void function_56061e(void)
 {
   uint64_t uVar1;
   int64_t *unaff_RBX;
@@ -474,7 +408,6 @@ void FUN_18056061e(void)
   uint64_t unaff_RSI;
   uint64_t uVar3;
   int64_t *unaff_R12;
-  
   uVar3 = unaff_RSI;
   do {
     uVar1 = (**(code **)**(uint64_t **)(uVar3 + *unaff_R12))();
@@ -485,11 +418,7 @@ void FUN_18056061e(void)
   } while ((uint64_t)(int64_t)(int)uVar2 < (uint64_t)(unaff_RBX[1] - *unaff_RBX >> 3));
   return;
 }
-
-
-
-uint64_t * FUN_180560660(uint64_t *param_1)
-
+uint64_t * function_560660(uint64_t *param_1)
 {
   *param_1 = &processed_var_5192_ptr;
   *param_1 = &processed_var_8536_ptr;
@@ -578,30 +507,20 @@ uint64_t * FUN_180560660(uint64_t *param_1)
   *(int8_t *)((int64_t)param_1 + 0x1b2) = 0;
   return param_1;
 }
-
-
-
-uint64_t FUN_180560870(uint64_t param_1,uint64_t param_2)
-
+uint64_t function_560870(uint64_t param_1,uint64_t param_2)
 {
-  FUN_1805608b0();
+  function_5608b0();
   if ((param_2 & 1) != 0) {
     free(param_1,0x1b8);
   }
   return param_1;
 }
-
-
-
-
-
-// 函数: void FUN_1805608b0(uint64_t *param_1)
-void FUN_1805608b0(uint64_t *param_1)
-
+// 函数: void function_5608b0(uint64_t *param_1)
+void function_5608b0(uint64_t *param_1)
 {
   param_1[0x32] = &system_data_buffer_ptr;
   if (param_1[0x33] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0x33] = 0;
@@ -609,19 +528,19 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x32] = &system_state_ptr;
   param_1[0x2e] = &system_data_buffer_ptr;
   if (param_1[0x2f] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0x2f] = 0;
   *(int32_t *)(param_1 + 0x31) = 0;
   param_1[0x2e] = &system_state_ptr;
   if (param_1[0x2a] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0x23] = &system_data_buffer_ptr;
   if (param_1[0x24] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0x24] = 0;
@@ -629,7 +548,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x23] = &system_state_ptr;
   param_1[0x1f] = &system_data_buffer_ptr;
   if (param_1[0x20] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0x20] = 0;
@@ -637,7 +556,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x1f] = &system_state_ptr;
   param_1[0x1b] = &system_data_buffer_ptr;
   if (param_1[0x1c] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0x1c] = 0;
@@ -645,7 +564,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x1b] = &system_state_ptr;
   param_1[0x17] = &system_data_buffer_ptr;
   if (param_1[0x18] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0x18] = 0;
@@ -653,7 +572,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x17] = &system_state_ptr;
   param_1[0x13] = &system_data_buffer_ptr;
   if (param_1[0x14] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0x14] = 0;
@@ -661,7 +580,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0x13] = &system_state_ptr;
   param_1[0xf] = &system_data_buffer_ptr;
   if (param_1[0x10] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0x10] = 0;
@@ -669,7 +588,7 @@ void FUN_1805608b0(uint64_t *param_1)
   param_1[0xf] = &system_state_ptr;
   param_1[0xb] = &system_data_buffer_ptr;
   if (param_1[0xc] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngineMemoryPoolCleaner();
   }
   param_1[0xc] = 0;
@@ -678,19 +597,13 @@ void FUN_1805608b0(uint64_t *param_1)
   *param_1 = &processed_var_5192_ptr;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t FUN_180560a90(int64_t param_1)
-
+int64_t function_560a90(int64_t param_1)
 {
   int64_t lVar1;
   void *puVar2;
-  
   lVar1 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x208,8,4,0xfffffffffffffffe);
-  FUN_18034dd90();
+  function_34dd90();
   *(uint64_t *)(lVar1 + 0x1b0) = &system_state_ptr;
   *(uint64_t *)(lVar1 + 0x1b8) = 0;
   *(int32_t *)(lVar1 + 0x1c0) = 0;
@@ -714,16 +627,9 @@ int64_t FUN_180560a90(int64_t param_1)
   (**(code **)(*(int64_t *)(lVar1 + 0x10) + 0x10))((int64_t *)(lVar1 + 0x10),puVar2);
   return lVar1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180560b80(int64_t param_1)
-void FUN_180560b80(int64_t param_1)
-
+// 函数: void function_560b80(int64_t param_1)
+void function_560b80(int64_t param_1)
 {
   byte *pbVar1;
   int iVar2;
@@ -731,9 +637,8 @@ void FUN_180560b80(int64_t param_1)
   byte *pbVar4;
   int iVar5;
   int64_t lVar6;
-  
   if (*(char *)(render_system_data_buffer + 0x130) != '\0') {
-    FUN_18053cee0(*(uint64_t *)(param_1 + 0xb0));
+    function_53cee0(*(uint64_t *)(param_1 + 0xb0));
   }
   lVar3 = *(int64_t *)(param_1 + 0x20);
   iVar2 = *(int *)(param_1 + 0x78);
@@ -752,59 +657,39 @@ void FUN_180560b80(int64_t param_1)
   }
   else if (iVar2 != 0) goto LAB_180560c1e;
   if (iVar5 == 0) {
-    FUN_1804aa470(&system_memory_61e0,*(uint64_t *)(param_1 + 0xb0),param_1 + 0x68,param_1 + 0x68,0xff)
+    function_4aa470(&system_memory_61e0,*(uint64_t *)(param_1 + 0xb0),param_1 + 0x68,param_1 + 0x68,0xff)
     ;
     return;
   }
 LAB_180560c1e:
   if (0 < *(int *)(lVar3 + 0x180)) {
-    FUN_180086e40(render_system_data_buffer,&system_memory_d688,lVar3 + 0x170);
-    FUN_180086e40(render_system_data_buffer,&system_memory_d688,lVar3 + 400);
-    FUN_1804aa470(&system_memory_61e0,*(uint64_t *)(param_1 + 0xb0),lVar3 + 0x170,lVar3 + 400,
+    function_086e40(render_system_data_buffer,&system_memory_d688,lVar3 + 0x170);
+    function_086e40(render_system_data_buffer,&system_memory_d688,lVar3 + 400);
+    function_4aa470(&system_memory_61e0,*(uint64_t *)(param_1 + 0xb0),lVar3 + 0x170,lVar3 + 400,
                   *(int8_t *)(lVar3 + 0x1b0));
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180560c27(void)
-void FUN_180560c27(void)
-
+// 函数: void function_560c27(void)
+void function_560c27(void)
 {
   int64_t unaff_RBP;
   int64_t unaff_RSI;
   uint64_t in_R9;
-  
-  FUN_180086e40(in_R9,&system_memory_d688,unaff_RBP + 0x170);
-  FUN_180086e40(render_system_data_buffer,&system_memory_d688,unaff_RBP + 400);
-  FUN_1804aa470(&system_memory_61e0,*(uint64_t *)(unaff_RSI + 0xb0),unaff_RBP + 0x170,unaff_RBP + 400,
+  function_086e40(in_R9,&system_memory_d688,unaff_RBP + 0x170);
+  function_086e40(render_system_data_buffer,&system_memory_d688,unaff_RBP + 400);
+  function_4aa470(&system_memory_61e0,*(uint64_t *)(unaff_RSI + 0xb0),unaff_RBP + 0x170,unaff_RBP + 400,
                 *(int8_t *)(unaff_RBP + 0x1b0));
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180560c97(void)
-void FUN_180560c97(void)
-
+// 函数: void function_560c97(void)
+void function_560c97(void)
 {
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180560ce0(int64_t param_1,int64_t param_2)
-void FUN_180560ce0(int64_t param_1,int64_t param_2)
-
+// 函数: void function_560ce0(int64_t param_1,int64_t param_2)
+void function_560ce0(int64_t param_1,int64_t param_2)
 {
   if (*(int64_t *)(param_2 + 0xb0) == 0) {
     *(uint64_t *)(param_2 + 0xb0) = *(uint64_t *)(param_1 + 0xb0);
@@ -812,18 +697,13 @@ void FUN_180560ce0(int64_t param_1,int64_t param_2)
     *(uint64_t *)(param_1 + 0xb0) = 0;
     return;
   }
-  FUN_18053a220(&system_memory_5f30,*(uint64_t *)(param_1 + 0xb0));
-  FUN_18053e3f0(*(uint64_t *)(param_1 + 0xb0));
+  function_53a220(&system_memory_5f30,*(uint64_t *)(param_1 + 0xb0));
+  function_53e3f0(*(uint64_t *)(param_1 + 0xb0));
   *(uint64_t *)(param_1 + 0xb0) = 0;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int8_t FUN_180560d50(int64_t param_1)
-
+int8_t function_560d50(int64_t param_1)
 {
   byte bVar1;
   int64_t lVar2;
@@ -835,25 +715,24 @@ int8_t FUN_180560d50(int64_t param_1)
   byte *pbVar8;
   void *puVar9;
   uint uVar10;
-  int32_t auStackX_8 [2];
+  int32_t astack_special_x_8 [2];
   int64_t lStackX_10;
   int64_t alStack_38 [4];
-  
   if (*(int64_t *)(param_1 + 0xb0) == 0) {
     alStack_38[1] = 0x180560daa;
-    cVar4 = func_0x00018008a5c0(param_1,*(uint64_t *)(*(int64_t *)(param_1 + 0x88) + 8));
+    cVar4 = SystemFunction_00018008a5c0(param_1,*(uint64_t *)(*(int64_t *)(param_1 + 0x88) + 8));
     if (cVar4 == '\0') {
       return 0;
     }
     alStack_38[1] = 0x180560db6;
-    uVar5 = FUN_180560a90(param_1);
+    uVar5 = function_560a90(param_1);
     *(uint64_t *)(param_1 + 0xb0) = uVar5;
     alStack_38[1] = 0x180560dc5;
-    FUN_18053cee0(uVar5);
+    function_53cee0(uVar5);
   }
   else {
     alStack_38[1] = 0x180560d71;
-    FUN_18053a220(&system_memory_5f30);
+    function_53a220(&system_memory_5f30);
     plVar7 = (int64_t *)(*(int64_t *)(param_1 + 0xb0) + 0x10);
     puVar9 = &system_buffer_ptr;
     if (*(void **)(param_1 + 0x70) != (void *)0x0) {
@@ -864,7 +743,7 @@ int8_t FUN_180560d50(int64_t param_1)
   }
   lVar2 = *(int64_t *)(param_1 + 0xb0);
   lStackX_10 = lVar2;
-  FUN_18053de40(0x180c95f38,alStack_38,lVar2 + 0x10);
+  function_53de40(0x180c95f38,alStack_38,lVar2 + 0x10);
   iVar3 = render_system_buffer;
   if (alStack_38[0] == *(int64_t *)(render_system_buffer + render_system_buffer * 8)) {
     uVar6 = 0xcbf29ce484222325;
@@ -881,10 +760,10 @@ int8_t FUN_180560d50(int64_t param_1)
         uVar6 = (uVar6 ^ bVar1) * 0x100000001b3;
       } while (uVar10 < *(uint *)(lVar2 + 0x20));
     }
-    FUN_18053df50(0x180c95f38,alStack_38,uVar10,lVar2 + 0x10,uVar6);
+    function_53df50(0x180c95f38,alStack_38,uVar10,lVar2 + 0x10,uVar6);
     *(int *)(alStack_38[0] + 0x58) = iVar3;
-    auStackX_8[0] = (int32_t)(render_system_buffer - render_system_buffer >> 3);
-    SystemDatabaseProcessor(&system_memory_5f68,auStackX_8);
+    astack_special_x_8[0] = (int32_t)(render_system_buffer - render_system_buffer >> 3);
+    SystemDatabaseProcessor(&system_memory_5f68,astack_special_x_8);
     *(int *)(lVar2 + 0x68) = render_system_buffer;
     render_system_buffer = render_system_buffer + 1;
     SystemInitializer(&system_memory_5f88,&lStackX_10);
@@ -904,22 +783,16 @@ int8_t FUN_180560d50(int64_t param_1)
   }
   return 1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t FUN_180560df0(uint64_t param_1,int64_t param_2)
-
+int64_t function_560df0(uint64_t param_1,int64_t param_2)
 {
   int32_t uVar1;
   int32_t uVar2;
   int32_t uVar3;
   uint64_t uVar4;
   int64_t lVar5;
-  
   uVar4 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x1b8,8,0x1a);
-  lVar5 = FUN_180560660(uVar4);
+  lVar5 = function_560660(uVar4);
   if (param_2 != 0) {
     *(int32_t *)(lVar5 + 8) = *(int32_t *)(param_2 + 8);
     *(int32_t *)(lVar5 + 0xc) = *(int32_t *)(param_2 + 0xc);
@@ -952,7 +825,7 @@ int64_t FUN_180560df0(uint64_t param_1,int64_t param_2)
     *(int32_t *)(lVar5 + 0x140) = *(int32_t *)(param_2 + 0x140);
     *(int32_t *)(lVar5 + 0x144) = *(int32_t *)(param_2 + 0x144);
     *(int8_t *)(lVar5 + 0x148) = *(int8_t *)(param_2 + 0x148);
-    FUN_1805604e0(lVar5 + 0x150,param_2 + 0x150);
+    function_5604e0(lVar5 + 0x150,param_2 + 0x150);
     SystemEventProcessor(lVar5 + 0x170,param_2 + 0x170);
     SystemEventProcessor(lVar5 + 400,param_2 + 400);
     *(int8_t *)(lVar5 + 0x1b0) = *(int8_t *)(param_2 + 0x1b0);
@@ -961,13 +834,8 @@ int64_t FUN_180560df0(uint64_t param_1,int64_t param_2)
   }
   return lVar5;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_180560fa0(int64_t param_1)
-
+uint64_t function_560fa0(int64_t param_1)
 {
   byte bVar1;
   int iVar2;
@@ -977,18 +845,17 @@ uint64_t FUN_180560fa0(int64_t param_1)
   byte *pbVar5;
   void *puVar6;
   uint uVar7;
-  int32_t auStackX_8 [2];
+  int32_t astack_special_x_8 [2];
   int64_t lStackX_10;
   int64_t alStack_38 [4];
-  
   if (*(int64_t *)(param_1 + 0xb0) != 0) {
     return in_RAX;
   }
   alStack_38[1] = 0x180560fb8;
-  lVar3 = FUN_180560a90();
+  lVar3 = function_560a90();
   *(int64_t *)(param_1 + 0xb0) = lVar3;
   lStackX_10 = lVar3;
-  FUN_18053de40(0x180c95f38,alStack_38,lVar3 + 0x10);
+  function_53de40(0x180c95f38,alStack_38,lVar3 + 0x10);
   iVar2 = render_system_buffer;
   if (alStack_38[0] == *(int64_t *)(render_system_buffer + render_system_buffer * 8)) {
     uVar4 = 0xcbf29ce484222325;
@@ -1005,10 +872,10 @@ uint64_t FUN_180560fa0(int64_t param_1)
         uVar4 = (uVar4 ^ bVar1) * 0x100000001b3;
       } while (uVar7 < *(uint *)(lVar3 + 0x20));
     }
-    FUN_18053df50(0x180c95f38,alStack_38,uVar7,lVar3 + 0x10,uVar4);
+    function_53df50(0x180c95f38,alStack_38,uVar7,lVar3 + 0x10,uVar4);
     *(int *)(alStack_38[0] + 0x58) = iVar2;
-    auStackX_8[0] = (int32_t)(render_system_buffer - render_system_buffer >> 3);
-    SystemDatabaseProcessor(&system_memory_5f68,auStackX_8);
+    astack_special_x_8[0] = (int32_t)(render_system_buffer - render_system_buffer >> 3);
+    SystemDatabaseProcessor(&system_memory_5f68,astack_special_x_8);
     *(int *)(lVar3 + 0x68) = render_system_buffer;
     render_system_buffer = render_system_buffer + 1;
     SystemInitializer(&system_memory_5f88,&lStackX_10);
@@ -1028,26 +895,18 @@ uint64_t FUN_180560fa0(int64_t param_1)
   }
   return 1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180560fe0(int64_t param_1)
-void FUN_180560fe0(int64_t param_1)
-
+// 函数: void function_560fe0(int64_t param_1)
+void function_560fe0(int64_t param_1)
 {
   int64_t *plVar1;
   int64_t lVar2;
   int64_t lVar3;
   int64_t *plVar4;
   int64_t alStack_58 [10];
-  
   if (*(int64_t *)(param_1 + 0xb0) != 0) {
-    FUN_18053a220(&system_memory_5f30);
-    FUN_18053e3f0(*(uint64_t *)(param_1 + 0xb0));
+    function_53a220(&system_memory_5f30);
+    function_53e3f0(*(uint64_t *)(param_1 + 0xb0));
     *(uint64_t *)(param_1 + 0xb0) = 0;
     lVar3 = *render_system_buffer;
     plVar4 = render_system_buffer;
@@ -1087,61 +946,44 @@ void FUN_180560fe0(int64_t param_1)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /*==============================================================================
  性能优化策略:
- 
  1. 内存管理优化:
    - 使用环形缓冲区减少内存分配开销
    - 实现内存池技术重用已分配的内存块
    - 采用预分配策略避免运行时分配延迟
- 
  2. 缓存优化:
    - 实现数据局部性优化，提高缓存命中率
    - 使用SIMD指令批量处理数据
    - 避免频繁的内存拷贝操作
- 
  3. 并发优化:
    - 使用无锁数据结构提高多线程性能
    - 实现双缓冲技术避免渲染冲突
    - 采用读写锁优化并发访问
- 
  4. 资源管理优化:
    - 实现引用计数自动管理资源生命周期
    - 使用延迟释放技术减少资源创建开销
    - 采用资源池技术重用昂贵资源
- 
  5. 算法优化:
    - 使用快速哈希算法提高查找效率
    - 实现空间换时间的数据结构
    - 采用预测性分配减少内存碎片
  ==============================================================================*/
-
 /*==============================================================================
  安全考虑:
- 
  1. 内存安全:
    - 实现边界检查防止缓冲区溢出
    - 使用安全的内存拷贝函数
    - 实现内存访问权限控制
- 
  2. 资源安全:
    - 实现资源泄漏检测机制
    - 使用引用计数防止悬垂指针
    - 实现资源访问同步机制
- 
  3. 数据安全:
    - 实现数据完整性校验
    - 使用加密哈希保护敏感数据
    - 实现访问日志和审计功能
- 
  4. 异常安全:
    - 实现异常处理机制
    - 使用RAII模式管理资源

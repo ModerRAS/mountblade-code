@@ -1,17 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part127.c - 1 个函数
-
-// 函数: void FUN_180342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_180342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void function_342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
+void function_342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   int iVar1;
   int32_t *puVar2;
   int16_t *puVar3;
   uint64_t *puVar4;
   int iVar5;
-  
   if (*(char *)(param_3 + 0x10f9) != '\0') {
     iVar1 = *(int *)(param_2 + 0x10);
     CoreMemoryPoolProcessor(param_2,iVar1 + 0x14);
@@ -38,7 +34,7 @@ void FUN_180342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
     *(int *)(param_2 + 0x10) = iVar5;
     if (0 < *(int *)(param_3 + 0x1110)) {
       CoreMemoryPoolProcessor(param_2,iVar5 + *(int *)(param_3 + 0x1110));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
              *(uint64_t *)(param_3 + 0x1108),(int64_t)(*(int *)(param_3 + 0x1110) + 1));
     }
@@ -62,7 +58,7 @@ void FUN_180342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
     *(int *)(param_2 + 0x10) = iVar5;
     if (0 < *(int *)(param_3 + 0x1240)) {
       CoreMemoryPoolProcessor(param_2,iVar5 + *(int *)(param_3 + 0x1240));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
              *(uint64_t *)(param_3 + 0x1238),(int64_t)(*(int *)(param_3 + 0x1240) + 1));
     }
@@ -86,7 +82,7 @@ void FUN_180342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
     *(int *)(param_2 + 0x10) = iVar5;
     if (0 < *(int *)(param_3 + 0x1370)) {
       CoreMemoryPoolProcessor(param_2,iVar5 + *(int *)(param_3 + 0x1370));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
              *(uint64_t *)(param_3 + 0x1368),(int64_t)(*(int *)(param_3 + 0x1370) + 1));
     }
@@ -109,7 +105,7 @@ void FUN_180342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
     *(int *)(param_2 + 0x10) = iVar5;
     if (0 < *(int *)(param_3 + 0x12d8)) {
       CoreMemoryPoolProcessor(param_2,iVar5 + *(int *)(param_3 + 0x12d8));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
              *(uint64_t *)(param_3 + 0x12d0),(int64_t)(*(int *)(param_3 + 0x12d8) + 1));
     }
@@ -132,7 +128,7 @@ void FUN_180342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
     *(int *)(param_2 + 0x10) = iVar5;
     if (0 < *(int *)(param_3 + 0x1408)) {
       CoreMemoryPoolProcessor(param_2,iVar5 + *(int *)(param_3 + 0x1408));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
              *(uint64_t *)(param_3 + 0x1400),(int64_t)(*(int *)(param_3 + 0x1408) + 1));
     }
@@ -204,7 +200,7 @@ void FUN_180342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
     *(int *)(param_2 + 0x10) = iVar5;
     if (0 < *(int *)(param_3 + 0x11a8)) {
       CoreMemoryPoolProcessor(param_2,iVar5 + *(int *)(param_3 + 0x11a8));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
              *(uint64_t *)(param_3 + 0x11a0),(int64_t)(*(int *)(param_3 + 0x11a8) + 1));
     }
@@ -236,7 +232,7 @@ void FUN_180342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
     *(int *)(param_2 + 0x10) = iVar5;
     if (0 < *(int *)(param_3 + 0x50)) {
       CoreMemoryPoolProcessor(param_2,iVar5 + *(int *)(param_3 + 0x50));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
              *(uint64_t *)(param_3 + 0x48),(int64_t)(*(int *)(param_3 + 0x50) + 1));
     }
@@ -369,8 +365,3 @@ void FUN_180342f20(uint64_t param_1,int64_t param_2,int64_t param_3)
   }
   return;
 }
-
-
-
-
-

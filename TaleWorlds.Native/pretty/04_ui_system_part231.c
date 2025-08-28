@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part231.c - 3 个函数
-
-// 函数: void FUN_18079e450(uint64_t param_1,int64_t param_2,int param_3)
-void FUN_18079e450(uint64_t param_1,int64_t param_2,int param_3)
-
+// 函数: void function_79e450(uint64_t param_1,int64_t param_2,int param_3)
+void function_79e450(uint64_t param_1,int64_t param_2,int param_3)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -25,7 +22,6 @@ void FUN_18079e450(uint64_t param_1,int64_t param_2,int param_3)
   int iVar16;
   int iStackX_18;
   int64_t lStackX_20;
-  
   ui_system_config = 0;
   iStackX_18 = 1;
   iVar16 = 1;
@@ -261,16 +257,9 @@ void FUN_18079e450(uint64_t param_1,int64_t param_2,int param_3)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18079ea10(uint64_t param_1,int64_t param_2,int param_3)
-void FUN_18079ea10(uint64_t param_1,int64_t param_2,int param_3)
-
+// 函数: void function_79ea10(uint64_t param_1,int64_t param_2,int param_3)
+void function_79ea10(uint64_t param_1,int64_t param_2,int param_3)
 {
   uint uVar1;
   int32_t uVar2;
@@ -292,7 +281,6 @@ void FUN_18079ea10(uint64_t param_1,int64_t param_2,int param_3)
   int iVar18;
   int iStackX_18;
   int64_t lStackX_20;
-  
   ui_system_config = 0;
   iStackX_18 = 1;
   iVar18 = 1;
@@ -543,16 +531,9 @@ void FUN_18079ea10(uint64_t param_1,int64_t param_2,int param_3)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18079f0b0(int64_t param_1,float *param_2)
-void FUN_18079f0b0(int64_t param_1,float *param_2)
-
+// 函数: void function_79f0b0(int64_t param_1,float *param_2)
+void function_79f0b0(int64_t param_1,float *param_2)
 {
   float *pfVar1;
   float *pfVar2;
@@ -572,7 +553,6 @@ void FUN_18079f0b0(int64_t param_1,float *param_2)
   float fVar16;
   float fVar17;
   float fVar18;
-  
   fVar7 = param_2[4] - param_2[6];
   fVar5 = param_2[4] + param_2[6];
   fVar4 = param_2[5] + param_2[7];
@@ -678,8 +658,3 @@ void FUN_18079f0b0(int64_t param_1,float *param_2)
   }
   return;
 }
-
-
-
-
-

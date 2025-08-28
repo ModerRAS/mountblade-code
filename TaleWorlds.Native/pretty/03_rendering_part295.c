@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part295.c - 3 个函数
-
-// 函数: void FUN_180424f34(uint64_t param_1,uint64_t param_2,int param_3)
-void FUN_180424f34(uint64_t param_1,uint64_t param_2,int param_3)
-
+// 函数: void UISystem_24f34(uint64_t param_1,uint64_t param_2,int param_3)
+void UISystem_24f34(uint64_t param_1,uint64_t param_2,int param_3)
 {
   ushort uVar1;
   byte *pbVar2;
@@ -23,9 +20,8 @@ void FUN_180424f34(uint64_t param_1,uint64_t param_2,int param_3)
   uint unaff_R12D;
   int unaff_R14D;
   int iVar13;
-  ushort auStackX_20 [4];
-  uint64_t in_stack_00000a00;
-  
+  ushort astack_special_x_20 [4];
+  uint64_t local_var_a00;
   uVar9 = in_EAX >> 4;
   iVar13 = unaff_R14D + unaff_R12D;
   param_3 = param_3 + -4;
@@ -61,10 +57,10 @@ void FUN_180424f34(uint64_t param_1,uint64_t param_2,int param_3)
       uVar9 = uVar3 >> 3;
       lVar11 = lVar11 + 1;
       *(uint *)((int64_t)unaff_RBX + 0x14) = uVar9;
-      (&stack0x00000810)[bVar8] = (byte)uVar3 & 7;
+      (&local_buffer_00000810)[bVar8] = (byte)uVar3 & 7;
     } while (lVar11 < (int64_t)(uint64_t)uVar4);
   }
-  iVar5 = FUN_180424710(auStackX_20,&stack0x00000810,0x13);
+  iVar5 = UISystem_24710(astack_special_x_20,&local_buffer_00000810,0x13);
   if (iVar5 != 0) {
     do {
       iVar5 = *(int *)(unaff_RBX + 2);
@@ -86,9 +82,9 @@ void FUN_180424f34(uint64_t param_1,uint64_t param_2,int param_3)
           *(uint *)((int64_t)unaff_RBX + 0x14) = uVar4;
         } while (iVar5 < 0x19);
       }
-      uVar1 = auStackX_20[uVar4 & 0x1ff];
+      uVar1 = astack_special_x_20[uVar4 & 0x1ff];
       if (uVar1 == 0) {
-        uVar4 = FUN_180424980();
+        uVar4 = UISystem_24980();
       }
       else {
         *(uint *)((int64_t)unaff_RBX + 0x14) = uVar4 >> ((byte)(uVar1 >> 9) & 0x1f);
@@ -125,7 +121,7 @@ void FUN_180424f34(uint64_t param_1,uint64_t param_2,int param_3)
           *(uint *)((int64_t)unaff_RBX + 0x14) = uVar4 >> 2;
           *(int *)(unaff_RBX + 2) = iVar5 + -2;
           if (iVar6 == 0) goto LAB_180425272;
-          uVar12 = (&stack0x0000082f)[iVar6];
+          uVar12 = (&local_buffer_0000082f)[iVar6];
         }
         else {
           if (uVar4 == 0x11) {
@@ -183,32 +179,26 @@ void FUN_180424f34(uint64_t param_1,uint64_t param_2,int param_3)
           *(int *)(unaff_RBX + 2) = iVar5;
         }
         if (iVar10 <= iVar13 - iVar6) {
-                    // WARNING: Subroutine does not return
-          memset(&stack0x00000830 + iVar6,uVar12,iVar10);
+// WARNING: Subroutine does not return
+          memset(&local_buffer_00000830 + iVar6,uVar12,iVar10);
         }
         goto LAB_180425272;
       }
-      (&stack0x00000830)[iVar6] = (char)uVar4;
+      (&local_buffer_00000830)[iVar6] = (char)uVar4;
       iVar6 = iVar6 + 1;
     } while (iVar6 < iVar13);
     if ((iVar6 == iVar13) &&
-       (iVar6 = FUN_180424710((int64_t)unaff_RBX + 0x34,&stack0x00000830,unaff_R12D), iVar6 != 0))
+       (iVar6 = UISystem_24710((int64_t)unaff_RBX + 0x34,&local_buffer_00000830,unaff_R12D), iVar6 != 0))
     {
-      FUN_180424710(unaff_RBX + 0x103,&stack0x00000830 + unaff_R12D,unaff_R14D);
+      UISystem_24710(unaff_RBX + 0x103,&local_buffer_00000830 + unaff_R12D,unaff_R14D);
     }
   }
 LAB_180425272:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000a00 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_a00 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_180424f7f(uint param_1,uint64_t param_2,int param_3)
-void FUN_180424f7f(uint param_1,uint64_t param_2,int param_3)
-
+// 函数: void UISystem_24f7f(uint param_1,uint64_t param_2,int param_3)
+void UISystem_24f7f(uint param_1,uint64_t param_2,int param_3)
 {
   ushort uVar1;
   byte *pbVar2;
@@ -226,9 +216,8 @@ void FUN_180424f7f(uint param_1,uint64_t param_2,int param_3)
   uint unaff_R12D;
   int32_t unaff_R14D;
   uint unaff_R15D;
-  ushort auStackX_20 [4];
-  uint64_t in_stack_00000a00;
-  
+  ushort astack_special_x_20 [4];
+  uint64_t local_var_a00;
   uVar8 = (uint64_t)unaff_EBP;
   do {
     if (param_3 < 3) {
@@ -253,10 +242,10 @@ void FUN_180424f7f(uint param_1,uint64_t param_2,int param_3)
     *(int *)(unaff_RBX + 2) = param_3;
     uVar8 = uVar8 + 1;
     *(uint *)((int64_t)unaff_RBX + 0x14) = param_1 >> 3;
-    (&stack0x00000810)[bVar5] = (byte)param_1 & 7;
+    (&local_buffer_00000810)[bVar5] = (byte)param_1 & 7;
     param_1 = param_1 >> 3;
   } while ((int64_t)uVar8 < unaff_RSI);
-  iVar3 = FUN_180424710(auStackX_20,&stack0x00000810,0x13);
+  iVar3 = UISystem_24710(astack_special_x_20,&local_buffer_00000810,0x13);
   if (iVar3 != 0) {
     do {
       iVar3 = *(int *)(unaff_RBX + 2);
@@ -278,9 +267,9 @@ void FUN_180424f7f(uint param_1,uint64_t param_2,int param_3)
           *(uint *)((int64_t)unaff_RBX + 0x14) = uVar9;
         } while (iVar3 < 0x19);
       }
-      uVar1 = auStackX_20[uVar9 & 0x1ff];
+      uVar1 = astack_special_x_20[uVar9 & 0x1ff];
       if (uVar1 == 0) {
-        uVar9 = FUN_180424980();
+        uVar9 = UISystem_24980();
       }
       else {
         *(uint *)((int64_t)unaff_RBX + 0x14) = uVar9 >> ((byte)(uVar1 >> 9) & 0x1f);
@@ -317,7 +306,7 @@ void FUN_180424f7f(uint param_1,uint64_t param_2,int param_3)
           *(uint *)((int64_t)unaff_RBX + 0x14) = uVar9 >> 2;
           *(int *)(unaff_RBX + 2) = iVar3 + -2;
           if (unaff_EBP == 0) goto LAB_180425272;
-          uVar10 = (&stack0x0000082f)[(int)unaff_EBP];
+          uVar10 = (&local_buffer_0000082f)[(int)unaff_EBP];
         }
         else {
           if (uVar9 == 0x11) {
@@ -375,32 +364,26 @@ void FUN_180424f7f(uint param_1,uint64_t param_2,int param_3)
           *(int *)(unaff_RBX + 2) = iVar3;
         }
         if (iVar7 <= (int)(unaff_R15D - unaff_EBP)) {
-                    // WARNING: Subroutine does not return
-          memset(&stack0x00000830 + (int)unaff_EBP,uVar10,iVar7);
+// WARNING: Subroutine does not return
+          memset(&local_buffer_00000830 + (int)unaff_EBP,uVar10,iVar7);
         }
         goto LAB_180425272;
       }
-      (&stack0x00000830)[(int)unaff_EBP] = (char)uVar9;
+      (&local_buffer_00000830)[(int)unaff_EBP] = (char)uVar9;
       unaff_EBP = unaff_EBP + 1;
     } while ((int)unaff_EBP < (int)unaff_R15D);
     if ((unaff_EBP == unaff_R15D) &&
-       (iVar3 = FUN_180424710((int64_t)unaff_RBX + 0x34,&stack0x00000830,unaff_R12D), iVar3 != 0))
+       (iVar3 = UISystem_24710((int64_t)unaff_RBX + 0x34,&local_buffer_00000830,unaff_R12D), iVar3 != 0))
     {
-      FUN_180424710(unaff_RBX + 0x103,&stack0x00000830 + unaff_R12D,unaff_R14D);
+      UISystem_24710(unaff_RBX + 0x103,&local_buffer_00000830 + unaff_R12D,unaff_R14D);
     }
   }
 LAB_180425272:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000a00 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_a00 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-// 函数: void FUN_18042500e(void)
-void FUN_18042500e(void)
-
+// 函数: void UISystem_2500e(void)
+void UISystem_2500e(void)
 {
   ushort uVar1;
   byte *pbVar2;
@@ -416,10 +399,9 @@ void FUN_18042500e(void)
   uint unaff_R12D;
   int32_t unaff_R14D;
   int unaff_R15D;
-  ushort auStackX_20 [4];
-  uint64_t in_stack_00000a00;
-  
-  iVar3 = FUN_180424710(auStackX_20,&stack0x00000810,0x13);
+  ushort astack_special_x_20 [4];
+  uint64_t local_var_a00;
+  iVar3 = UISystem_24710(astack_special_x_20,&local_buffer_00000810,0x13);
   if (iVar3 != 0) {
     do {
       iVar3 = *(int *)(unaff_RBX + 2);
@@ -441,9 +423,9 @@ void FUN_18042500e(void)
           *(uint *)((int64_t)unaff_RBX + 0x14) = uVar8;
         } while (iVar3 < 0x19);
       }
-      uVar1 = auStackX_20[uVar8 & 0x1ff];
+      uVar1 = astack_special_x_20[uVar8 & 0x1ff];
       if (uVar1 == 0) {
-        uVar8 = FUN_180424980();
+        uVar8 = UISystem_24980();
       }
       else {
         *(uint *)((int64_t)unaff_RBX + 0x14) = uVar8 >> ((byte)(uVar1 >> 9) & 0x1f);
@@ -480,7 +462,7 @@ void FUN_18042500e(void)
           *(uint *)((int64_t)unaff_RBX + 0x14) = uVar8 >> 2;
           *(int *)(unaff_RBX + 2) = iVar3 + -2;
           if (unaff_EBP == 0) goto LAB_180425272;
-          uVar9 = (&stack0x0000082f)[unaff_EBP];
+          uVar9 = (&local_buffer_0000082f)[unaff_EBP];
         }
         else {
           if (uVar8 == 0x11) {
@@ -538,26 +520,21 @@ void FUN_18042500e(void)
           *(int *)(unaff_RBX + 2) = iVar3;
         }
         if (iVar7 <= unaff_R15D - unaff_EBP) {
-                    // WARNING: Subroutine does not return
-          memset(&stack0x00000830 + unaff_EBP,uVar9,iVar7);
+// WARNING: Subroutine does not return
+          memset(&local_buffer_00000830 + unaff_EBP,uVar9,iVar7);
         }
         goto LAB_180425272;
       }
-      (&stack0x00000830)[unaff_EBP] = (char)uVar8;
+      (&local_buffer_00000830)[unaff_EBP] = (char)uVar8;
       unaff_EBP = unaff_EBP + 1;
     } while (unaff_EBP < unaff_R15D);
     if ((unaff_EBP == unaff_R15D) &&
-       (iVar3 = FUN_180424710((int64_t)unaff_RBX + 0x34,&stack0x00000830,unaff_R12D), iVar3 != 0))
+       (iVar3 = UISystem_24710((int64_t)unaff_RBX + 0x34,&local_buffer_00000830,unaff_R12D), iVar3 != 0))
     {
-      FUN_180424710(unaff_RBX + 0x103,&stack0x00000830 + unaff_R12D,unaff_R14D);
+      UISystem_24710(unaff_RBX + 0x103,&local_buffer_00000830 + unaff_R12D,unaff_R14D);
     }
   }
 LAB_180425272:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000a00 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_a00 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-

@@ -1,20 +1,17 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 /**
  * @file 03_rendering_part667.c
  * @brief 渲染系统高级内存管理和资源清理模块
  * @author Claude Code
  * @date 2025-08-28
- * 
+ *
  * 本模块包含渲染系统高级内存管理、资源清理、状态同步等高级功能
  * 主要负责内存块管理、资源分配、状态检查和清理操作
  */
-
 /*==========================================
 =            常量定义和宏定义            =
 =========================================*/
-
 /**
  * 内存管理相关常量
  */
@@ -24,7 +21,6 @@
 #define MEMORY_REF_COUNT_OFFSET 0x18
 #define MEMORY_CLEANUP_FLAG 0xfb
 #define MEMORY_CLEANUP_MASK 0x04
-
 /**
  * 状态管理常量
  */
@@ -32,7 +28,6 @@
 #define STATE_PENDING_CLEANUP 0x02
 #define STATE_INITIALIZED 0x04
 #define STATE_CLEANUP_COMPLETE 0x08
-
 /**
  * 错误处理常量
  */
@@ -40,11 +35,9 @@
 #define ERROR_RESOURCE_CLEANUP_FAILED 0x02
 #define ERROR_STATE_INVALID 0x04
 #define ERROR_LOCK_TIMEOUT 0x08
-
 /*==========================================
 =            全局变量声明            =
 =========================================*/
-
 /**
  * 内存管理系统全局变量
  */
@@ -53,7 +46,6 @@ static uint64_t memory_block_pointer;
 static int64_t memory_reference_count;
 static uint64_t memory_state_flags;
 static uint64_t memory_cleanup_handler;
-
 /**
  * 资源管理系统全局变量
  */
@@ -61,7 +53,6 @@ static uint64_t resource_allocator;
 static uint64_t resource_cleaner;
 static int64_t resource_counter;
 static uint64_t resource_state_manager;
-
 /**
  * 线程同步系统全局变量
  */
@@ -70,11 +61,9 @@ static uint64_t thread_sync_mutex;
 static int64_t thread_sync_event;
 static char thread_pool_status;
 static char thread_queue_status;
-
 /*==========================================
 =            函数声明            =
 =========================================*/
-
 /**
  * 内存管理函数
  */
@@ -82,7 +71,6 @@ static void memory_block_initializer(uint64_t context);
 static void memory_cleanup_processor(uint64_t context);
 static void memory_state_synchronizer(uint64_t context, int64_t param_1);
 static void memory_resource_manager(uint64_t context, int64_t param_1, int64_t param_2);
-
 /**
  * 资源管理函数
  */
@@ -90,33 +78,28 @@ static void resource_allocator_controller(uint64_t context, int64_t param_1);
 static void resource_cleanup_handler(uint64_t context, int64_t param_1);
 static void resource_state_validator(uint64_t context, int64_t param_1);
 static void resource_counter_manager(uint64_t context, int64_t param_1);
-
 /**
  * 线程同步函数
  */
 static void thread_sync_initializer(uint64_t context);
 static void thread_sync_processor(uint64_t context, int64_t param_1);
 static void thread_state_manager(uint64_t context, int64_t param_1);
-
 /*==========================================
 =            函数定义            =
 =========================================*/
-
 /**
  * 内存块初始化器
  * 初始化内存块并设置相关标志位
- * 
+ *
  * @param context 内存上下文
  */
-void FUN_18064c335(void)
+void function_64c335(void)
 {
   int64_t memory_context;
   int64_t resource_context;
-  
-  // 清理内存状态标志
+// 清理内存状态标志
   *(byte *)(memory_context + 8) = *(byte *)(memory_context + 8) & MEMORY_CLEANUP_FLAG;
-  
-  // 初始化内存块
+// 初始化内存块
   *(uint64_t *)(memory_context + 10) = 0;
   *(uint64_t *)(memory_context + 0x12) = 0;
   *(int16_t *)(memory_context + 0x1a) = 0;
@@ -127,24 +110,21 @@ void FUN_18064c335(void)
   *(uint64_t *)(memory_context + 0x40) = 0;
   *(uint64_t *)(memory_context + 0x48) = 0;
   *(int32_t *)(memory_context + 0x1c) = 1;
-  
-  // 执行内存清理
-  FUN_18064b830();
-  
-  // 更新资源计数器
+// 执行内存清理
+  function_64b830();
+// 更新资源计数器
   *(int64_t *)(resource_context + 0x48) = *(int64_t *)(resource_context + 0x48) - 1;
   return;
 }
-
 /**
  * 渲染系统内存管理处理器
  * 处理内存分配、释放和状态管理
- * 
+ *
  * @param param_1 内存基地址
  * @param param_2 参数2
  * @param param_3 上下文参数
  */
-void FUN_18064c390(uint64_t param_1, uint64_t param_2, int64_t param_3)
+void function_64c390(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
   int64_t *memory_block_ptr;
   uint64_t *memory_link_ptr;
@@ -161,33 +141,27 @@ void FUN_18064c390(uint64_t param_1, uint64_t param_2, int64_t param_3)
   uint64_t temp_size;
   uint64_t calculated_size;
   bool lock_acquired;
-  
-  // 获取内存基地址
+// 获取内存基地址
   memory_base = param_1 & 0xffffffffffc00000;
-  
-  // 初始化内存管理器
-  FUN_18064c220(param_1, param_3);
-  
-  // 检查内存状态
+// 初始化内存管理器
+  function_64c220(param_1, param_3);
+// 检查内存状态
   if (*(int64_t *)(memory_base + 0x48) != 0) {
     if (*(int64_t *)(memory_base + 0x48) == *(int64_t *)(memory_base + 0x38)) {
-      // 执行内存清理
-      FUN_18064c570(memory_base, param_3);
+// 执行内存清理
+      function_64c570(memory_base, param_3);
     }
     return;
   }
-  
-  // 处理内存池
+// 处理内存池
   block_count = *(int64_t *)(memory_base + 0x78);
-  for (memory_pool_ptr = (uint *)(memory_base + 0x80); 
+  for (memory_pool_ptr = (uint *)(memory_base + 0x80);
        memory_pool_ptr < (uint *)(memory_base + 0x80 + block_count * 0x50);
        memory_pool_ptr = memory_pool_ptr + (uint64_t)*memory_pool_ptr * 0x14) {
-    
-    // 检查内存块状态
+// 检查内存块状态
     if ((memory_pool_ptr[7] == 0) && (*(int *)(memory_base + 0x68) != 1)) {
       calculated_size = (uint64_t)*memory_pool_ptr;
-      
-      // 计算块大小
+// 计算块大小
       if (1 < calculated_size) {
         temp_size = calculated_size - 1;
         if (temp_size == 0) {
@@ -204,9 +178,8 @@ void FUN_18064c390(uint64_t param_1, uint64_t param_2, int64_t param_3)
         }
         calculated_size = ((uint64_t)((uint)(temp_size >> ((char)block_size - 2U & 0x3f)) & 3) | block_size * 4) - 4;
       }
-      
 LAB_memory_cleanup:
-      // 执行内存清理
+// 执行内存清理
       memory_link_ptr = (uint64_t *)(param_3 + calculated_size * 0x18);
       if (*(int64_t *)(memory_pool_ptr + 0x10) != 0) {
         *(uint64_t *)(*(int64_t *)(memory_pool_ptr + 0x10) + 0x38) = *(uint64_t *)(memory_pool_ptr + 0xe);
@@ -220,8 +193,7 @@ LAB_memory_cleanup:
       if (memory_pool_ptr == (uint *)memory_link_ptr[1]) {
         memory_link_ptr[1] = *(uint64_t *)(memory_pool_ptr + 0x10);
       }
-      
-      // 重置内存块
+// 重置内存块
       memory_pool_ptr[0x10] = 0;
       memory_pool_ptr[0x11] = 0;
       memory_pool_ptr[0xe] = 0;
@@ -229,22 +201,19 @@ LAB_memory_cleanup:
       memory_pool_ptr[7] = 1;
     }
   }
-  
-  // 处理内存分配
+// 处理内存分配
   memory_size = *(int64_t *)(memory_base + 0x60);
   block_count = *(int64_t *)(param_3 + 0x398);
   allocation_size = memory_size * -0x10000;
   memory_counter_ptr = (int64_t *)(block_count + 0xa0);
-  
   if (allocation_size != 0) {
-    // 检查内存范围
+// 检查内存范围
     if (((int64_t *)0x180c8ed7f < memory_counter_ptr) && (memory_counter_ptr < &system_memory_efc0)) {
       LOCK();
       memory_block_ptr = (int64_t *)(block_count + 0xb8);
       current_bit = *memory_block_ptr;
       *memory_block_ptr = *memory_block_ptr + allocation_size;
       UNLOCK();
-      
       max_bit = *(int64_t *)(block_count + 0xb0);
       do {
         if (current_bit + allocation_size <= max_bit) break;
@@ -258,42 +227,36 @@ LAB_memory_cleanup:
         UNLOCK();
         max_bit = bit_position;
       } while (!lock_acquired);
-      
       if (allocation_size < 1) {
         memory_counter_ptr = (int64_t *)(block_count + 0xa8);
         allocation_size = memory_size * 0x10000;
       }
-      
       LOCK();
       *memory_counter_ptr = *memory_counter_ptr + allocation_size;
       UNLOCK();
       return;
     }
-    
-    // 更新内存计数器
+// 更新内存计数器
     *(int64_t *)(block_count + 0xb8) = *(int64_t *)(block_count + 0xb8) + allocation_size;
     if (*(int64_t *)(block_count + 0xb0) < *(int64_t *)(block_count + 0xb8)) {
       *(int64_t *)(block_count + 0xb0) = *(int64_t *)(block_count + 0xb8);
     }
-    
     if (0 < allocation_size) {
       *memory_counter_ptr = *memory_counter_ptr + allocation_size;
       return;
     }
-    
     *(int64_t *)(block_count + 0xa8) = *(int64_t *)(block_count + 0xa8) + memory_size * 0x10000;
   }
   return;
 }
-
 /**
  * 渲染系统资源清理器
  * 清理系统资源并更新状态
- * 
+ *
  * @param param_1 资源基地址
  * @param param_2 上下文参数
  */
-void FUN_18064c570(uint64_t param_1, int64_t param_2)
+void function_64c570(uint64_t param_1, int64_t param_2)
 {
   uint64_t *resource_link_ptr;
   int64_t resource_count;
@@ -304,29 +267,25 @@ void FUN_18064c570(uint64_t param_1, int64_t param_2)
   uint64_t temp_size;
   uint64_t calculated_size;
   bool cleanup_complete;
-  
-  // 获取资源信息
+// 获取资源信息
   resource_count = *(int64_t *)(param_1 + 0x78);
   resource_pool_ptr = (uint *)(param_1 + 0x80);
-  
   do {
     if ((uint *)(param_1 + 0x80 + resource_count * 0x50) <= resource_pool_ptr) {
-      // 执行最终清理
+// 执行最终清理
       if (render_system_control_memory == 0) {
-        FUN_180650490(&system_memory_be88);
+        AudioSystem_SoundManager(&system_memory_be88);
       }
-      FUN_18064b460(param_1, render_system_control_memory != 0);
-      func_0x000180646ff0(*(int64_t *)(param_2 + 0x398) + 0xc0, 1);
-      FUN_18064ae40(*(int *)(param_1 + 0x58) * -0x10000, param_2);
-      
-      // 清理状态
+      function_64b460(param_1, render_system_control_memory != 0);
+      Function_7603aebb(*(int64_t *)(param_2 + 0x398) + 0xc0, 1);
+      function_64ae40(*(int *)(param_1 + 0x58) * -0x10000, param_2);
+// 清理状态
       LOCK();
       *(uint64_t *)(param_1 + 0x70) = 0;
       UNLOCK();
       *(uint64_t *)(param_1 + 0x28) = 0;
       *(uint64_t *)(param_1 + 0x40) = 1;
-      
-      // 更新全局状态
+// 更新全局状态
       resource_base = render_system_memory;
       do {
         *(uint64_t *)(param_1 + 0x28) = resource_base & 0xffffffffffc00000;
@@ -340,15 +299,13 @@ void FUN_18064c570(uint64_t param_1, int64_t param_2)
         render_system_memory = resource_base;
         UNLOCK();
       } while (cleanup_complete);
-      
-      // 更新计数器
+// 更新计数器
       LOCK();
       render_system_config_memory = render_system_config_memory + 1;
       UNLOCK();
       return;
     }
-    
-    // 清理资源池
+// 清理资源池
     if (resource_pool_ptr[7] == 0) {
       calculated_size = (uint64_t)*resource_pool_ptr;
       if (1 < calculated_size) {
@@ -367,7 +324,6 @@ void FUN_18064c570(uint64_t param_1, int64_t param_2)
         }
         calculated_size = ((uint64_t)((uint)(temp_size >> ((char)block_size - 2U & 0x3f)) & 3) | block_size * 4) - 4;
       }
-      
 LAB_resource_cleanup:
       resource_link_ptr = (uint64_t *)(param_2 + calculated_size * 0x18);
       if (*(int64_t *)(resource_pool_ptr + 0x10) != 0) {
@@ -382,8 +338,7 @@ LAB_resource_cleanup:
       if (resource_pool_ptr == (uint *)resource_link_ptr[1]) {
         resource_link_ptr[1] = *(uint64_t *)(resource_pool_ptr + 0x10);
       }
-      
-      // 重置资源池
+// 重置资源池
       resource_pool_ptr[0x10] = 0;
       resource_pool_ptr[0x11] = 0;
       resource_pool_ptr[0xe] = 0;
@@ -393,18 +348,17 @@ LAB_resource_cleanup:
     resource_pool_ptr = resource_pool_ptr + (uint64_t)*resource_pool_ptr * 0x14;
   } while( true );
 }
-
 /**
  * 渲染系统资源分配器
  * 分配资源并管理资源状态
- * 
+ *
  * @param param_1 资源管理器
  * @param param_2 资源大小
  * @param param_3 资源类型
  * @param param_4 上下文参数
  * @return 分配结果
  */
-uint64_t FUN_18064c730(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
+uint64_t function_64c730(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
   int64_t *resource_ptr;
   int64_t resource_count;
@@ -421,18 +375,15 @@ uint64_t FUN_18064c730(int64_t param_1, uint64_t param_2, uint64_t param_3, int6
   uint64_t *temp_ptr;
   uint64_t temp_value;
   bool resource_allocated;
-  
-  // 获取资源信息
+// 获取资源信息
   resource_count = *(int64_t *)(param_1 + 0x78);
   temp_value = 0;
   resource_pool_ptr = (uint *)(param_1 + 0x80) + (uint64_t)*(uint *)(param_1 + 0x80) * 0x14;
-  
   do {
     if ((uint *)(param_1 + 0x80 + resource_count * 0x50) <= resource_pool_ptr) {
       return temp_value;
     }
-    
-    // 检查资源池状态
+// 检查资源池状态
     if (resource_pool_ptr[7] == 0) {
       resource_size = (uint64_t)*resource_pool_ptr;
       if (param_2 <= resource_size) {
@@ -440,7 +391,7 @@ uint64_t FUN_18064c730(int64_t param_1, uint64_t param_2, uint64_t param_3, int6
       }
     }
     else {
-      // 处理资源链表
+// 处理资源链表
       if ((*(uint64_t *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0) {
         resource_size = *(uint64_t *)(resource_pool_ptr + 10);
         do {
@@ -455,7 +406,6 @@ uint64_t FUN_18064c730(int64_t param_1, uint64_t param_2, uint64_t param_3, int6
           UNLOCK();
           resource_size = resource_size;
         } while (!resource_allocated);
-        
         if (temp_ptr != (uint64_t *)0x0) {
           resource_counter = 1;
           link_ptr1 = temp_ptr;
@@ -465,7 +415,6 @@ uint64_t FUN_18064c730(int64_t param_1, uint64_t param_2, uint64_t param_3, int6
             resource_counter = resource_counter + 1;
             link_ptr1 = link_ptr2;
           }
-          
           if (*(ushort *)((int64_t)resource_pool_ptr + 10) < resource_counter) {
 LAB_resource_error:
             UtilitiesSystem_MemoryAllocator(0xe, &processed_var_8816_ptr);
@@ -477,16 +426,14 @@ LAB_resource_error:
           }
         }
       }
-      
-      // 处理资源引用
+// 处理资源引用
       if ((*(int64_t *)(resource_pool_ptr + 8) != 0) && (*(int64_t *)(resource_pool_ptr + 4) == 0)) {
         *(byte *)((int64_t)resource_pool_ptr + 0xf) = *(byte *)((int64_t)resource_pool_ptr + 0xf) & 0xfe;
         *(int64_t *)(resource_pool_ptr + 4) = *(int64_t *)(resource_pool_ptr + 8);
         resource_pool_ptr[8] = 0;
         resource_pool_ptr[9] = 0;
       }
-      
-      // 清理空资源
+// 清理空资源
       if (resource_pool_ptr[6] == 0) {
         allocation_size = *(int64_t *)(param_4 + 0x398);
         if (((void *)(allocation_size + 0xe0) < &system_memory_ed80) ||
@@ -520,9 +467,8 @@ LAB_resource_error:
           *(int64_t *)(allocation_size + 0xe8) = *(int64_t *)(allocation_size + 0xe8) + 1;
           UNLOCK();
         }
-        
         *(int64_t *)(param_1 + 0x38) = *(int64_t *)(param_1 + 0x38) + -1;
-        resource_pool_ptr = (uint *)FUN_18064c220(resource_pool_ptr, param_4);
+        resource_pool_ptr = (uint *)function_64c220(resource_pool_ptr, param_4);
         if (param_2 <= *resource_pool_ptr) {
           resource_size = (uint64_t)*resource_pool_ptr;
           temp_value = 1;
@@ -536,19 +482,17 @@ LAB_resource_error:
       }
       resource_size = (uint64_t)*resource_pool_ptr;
     }
-    
 LAB_allocation_complete:
     resource_pool_ptr = resource_pool_ptr + resource_size * 0x14;
   } while( true );
 }
-
 /**
  * 渲染系统资源状态检查器
  * 检查资源状态并返回状态信息
- * 
+ *
  * @return 资源状态
  */
-int8_t FUN_18064c789(void)
+int8_t function_64c789(void)
 {
   int64_t *resource_ptr;
   int64_t temp_resource;
@@ -568,7 +512,6 @@ int8_t FUN_18064c789(void)
   uint64_t resource_type;
   uint *resource_limit;
   bool resource_allocated;
-  
   do {
     if (resource_pool_ptr[7] == 0) {
       block_size = (uint64_t)*resource_pool_ptr;
@@ -577,7 +520,7 @@ int8_t FUN_18064c789(void)
       }
     }
     else {
-      // 处理资源链表
+// 处理资源链表
       if ((*(uint64_t *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0) {
         block_size = *(uint64_t *)(resource_pool_ptr + 10);
         do {
@@ -592,7 +535,6 @@ int8_t FUN_18064c789(void)
           UNLOCK();
           block_size = block_size;
         } while (!resource_allocated);
-        
         if (temp_ptr != (uint64_t *)0x0) {
           resource_counter = 1;
           link_ptr1 = temp_ptr;
@@ -602,7 +544,6 @@ int8_t FUN_18064c789(void)
             resource_counter = resource_counter + 1;
             link_ptr1 = link_ptr2;
           }
-          
           if (*(ushort *)((int64_t)resource_pool_ptr + 10) < resource_counter) {
 LAB_resource_error:
             UtilitiesSystem_MemoryAllocator(0xe, &processed_var_8816_ptr);
@@ -614,16 +555,14 @@ LAB_resource_error:
           }
         }
       }
-      
-      // 处理资源引用
+// 处理资源引用
       if ((*(int64_t *)(resource_pool_ptr + 8) != 0) && (*(int64_t *)(resource_pool_ptr + 4) == 0)) {
         *(byte *)((int64_t)resource_pool_ptr + 0xf) = *(byte *)((int64_t)resource_pool_ptr + 0xf) & 0xfe;
         *(int64_t *)(resource_pool_ptr + 4) = *(int64_t *)(resource_pool_ptr + 8);
         resource_pool_ptr[8] = 0;
         resource_pool_ptr[9] = 0;
       }
-      
-      // 清理空资源
+// 清理空资源
       if (resource_pool_ptr[6] == 0) {
         allocation_size = *(int64_t *)(resource_context + 0x398);
         if (((void *)(allocation_size + 0xe0) < &system_memory_ed80) ||
@@ -657,9 +596,8 @@ LAB_resource_error:
           *(int64_t *)(allocation_size + 0xe8) = *(int64_t *)(allocation_size + 0xe8) + 1;
           UNLOCK();
         }
-        
         *(int64_t *)(resource_manager + 0x38) = *(int64_t *)(resource_manager + 0x38) + -1;
-        resource_pool_ptr = (uint *)FUN_18064c220(resource_pool_ptr);
+        resource_pool_ptr = (uint *)function_64c220(resource_pool_ptr);
         if (resource_type <= *resource_pool_ptr) {
           block_size = (uint64_t)*resource_pool_ptr;
           resource_status = 1;
@@ -673,7 +611,6 @@ LAB_resource_error:
       }
       block_size = (uint64_t)*resource_pool_ptr;
     }
-    
 LAB_status_check:
     resource_pool_ptr = resource_pool_ptr + block_size * 0x14;
     if (resource_limit <= resource_pool_ptr) {
@@ -681,24 +618,21 @@ LAB_status_check:
     }
   } while( true );
 }
-
 /**
  * 渲染系统资源状态获取器
  * 获取当前资源状态
- * 
+ *
  * @return 资源状态
  */
-int8_t FUN_18064c922(void)
+int8_t function_64c922(void)
 {
   int8_t resource_status;
-  
   return resource_status;
 }
-
 /**
  * 渲染系统资源管理器
  * 管理资源分配、释放和状态维护
- * 
+ *
  * @param param_1 资源管理器
  * @param param_2 资源参数
  * @param param_3 资源类型
@@ -706,7 +640,7 @@ int8_t FUN_18064c922(void)
  * @param param_5 上下文参数
  * @return 管理结果
  */
-int64_t FUN_18064c940(int64_t param_1, int64_t param_2, uint64_t param_3, int8_t *param_4,
+int64_t function_64c940(int64_t param_1, int64_t param_2, uint64_t param_3, int8_t *param_4,
                       int64_t param_5)
 {
   int64_t *resource_ptr;
@@ -723,39 +657,34 @@ int64_t FUN_18064c940(int64_t param_1, int64_t param_2, uint64_t param_3, int8_t
   uint resource_counter;
   uint64_t *temp_ptr;
   bool resource_allocated;
-  
-  // 初始化状态标志
+// 初始化状态标志
   if (param_4 != (int8_t *)0x0) {
     *param_4 = 0;
   }
-  
-  // 初始化资源管理器
+// 初始化资源管理器
   LOCK();
   *(void ***)(param_1 + 0x70) = &ExceptionList;
   UNLOCK();
   *(uint64_t *)(param_1 + 0x40) = 0;
-  FUN_18064ae40(*(int *)(param_1 + 0x58) << 0x10, param_5);
-  func_0x000180646ff0(*(int64_t *)(param_5 + 0x398) + 0xc0, 0xffffffffffffffff);
-  
-  // 处理资源池
+  function_64ae40(*(int *)(param_1 + 0x58) << 0x10, param_5);
+  Function_7603aebb(*(int64_t *)(param_5 + 0x398) + 0xc0, 0xffffffffffffffff);
+// 处理资源池
   temp_resource = *(int64_t *)(param_1 + 0x78);
   resource_pool_ptr = (uint *)(param_1 + 0x80) + (uint64_t)*(uint *)(param_1 + 0x80) * 0x14;
-  
   do {
     if ((uint *)(param_1 + 0x80 + temp_resource * 0x50) <= resource_pool_ptr) {
       if (*(int64_t *)(param_1 + 0x48) == 0) {
-        FUN_18064bf60(param_1, 0, param_5);
+        function_64bf60(param_1, 0, param_5);
         param_1 = 0;
       }
       return param_1;
     }
-    
-    // 处理资源分配
+// 处理资源分配
     if (resource_pool_ptr[7] == 0) {
-      resource_pool_ptr = (uint *)FUN_18064b830(resource_pool_ptr, param_5);
+      resource_pool_ptr = (uint *)function_64b830(resource_pool_ptr, param_5);
     }
     else {
-      // 处理资源计数
+// 处理资源计数
       allocation_size = *(int64_t *)(param_5 + 0x398);
       if (((void *)(allocation_size + 0xe0) < &system_memory_ed80) ||
          ((void *)0x180c8efbf < (void *)(allocation_size + 0xe0))) {
@@ -788,11 +717,9 @@ int64_t FUN_18064c940(int64_t param_1, int64_t param_2, uint64_t param_3, int8_t
         *(int64_t *)(allocation_size + 0xe8) = *(int64_t *)(allocation_size + 0xe8) + 1;
         UNLOCK();
       }
-      
       *(int64_t *)(param_1 + 0x38) = *(int64_t *)(param_1 + 0x38) + -1;
       *(int64_t *)(resource_pool_ptr + 0xc) = param_2;
-      
-      // 处理资源锁定
+// 处理资源锁定
       do {
         while( true ) {
           resource_size = *(uint64_t *)(resource_pool_ptr + 10);
@@ -807,8 +734,7 @@ int64_t FUN_18064c940(int64_t param_1, int64_t param_2, uint64_t param_3, int8_t
         }
         UNLOCK();
       } while (!resource_allocated);
-      
-      // 处理资源链表
+// 处理资源链表
       if ((*(uint64_t *)(resource_pool_ptr + 10) & 0xfffffffffffffffc) != 0) {
         resource_size = *(uint64_t *)(resource_pool_ptr + 10);
         do {
@@ -823,7 +749,6 @@ int64_t FUN_18064c940(int64_t param_1, int64_t param_2, uint64_t param_3, int8_t
           UNLOCK();
           resource_size = block_size;
         } while (!resource_allocated);
-        
         if (temp_ptr != (uint64_t *)0x0) {
           resource_counter = 1;
           link_ptr1 = temp_ptr;
@@ -833,7 +758,6 @@ int64_t FUN_18064c940(int64_t param_1, int64_t param_2, uint64_t param_3, int8_t
             resource_counter = resource_counter + 1;
             link_ptr1 = link_ptr2;
           }
-          
           if (*(ushort *)((int64_t)resource_pool_ptr + 10) < resource_counter) {
 LAB_allocation_error:
             UtilitiesSystem_MemoryAllocator(0xe, &processed_var_8816_ptr);
@@ -845,21 +769,19 @@ LAB_allocation_error:
           }
         }
       }
-      
-      // 处理资源引用
+// 处理资源引用
       if ((*(int64_t *)(resource_pool_ptr + 8) != 0) && (*(int64_t *)(resource_pool_ptr + 4) == 0)) {
         *(byte *)((int64_t)resource_pool_ptr + 0xf) = *(byte *)((int64_t)resource_pool_ptr + 0xf) & 0xfe;
         *(int64_t *)(resource_pool_ptr + 4) = *(int64_t *)(resource_pool_ptr + 8);
         resource_pool_ptr[8] = 0;
         resource_pool_ptr[9] = 0;
       }
-      
-      // 处理资源分配
+// 处理资源分配
       if (resource_pool_ptr[6] == 0) {
-        resource_pool_ptr = (uint *)FUN_18064c220(resource_pool_ptr, param_5);
+        resource_pool_ptr = (uint *)function_64c220(resource_pool_ptr, param_5);
       }
       else {
-        allocation_flag = func_0x00018064ceb0();
+        allocation_flag = Function_81f9a683();
         resource_ptr = (int64_t *)(param_2 + 0x410 + (uint64_t)allocation_flag * 0x18);
         *(byte *)((int64_t)resource_pool_ptr + 0xe) =
              *(int64_t *)(param_2 + 0x420 + (uint64_t)allocation_flag * 0x18) == 0x4010 |
@@ -874,7 +796,7 @@ LAB_allocation_error:
           *(uint **)(*resource_ptr + 0x40) = resource_pool_ptr;
         }
         *resource_ptr = (int64_t)resource_pool_ptr;
-        FUN_18064cf20(param_2);
+        function_64cf20(param_2);
         *(int64_t *)(param_2 + 0xbc8) = *(int64_t *)(param_2 + 0xbc8) + 1;
         if ((param_3 == resource_pool_ptr[7]) &&
            (((resource_pool_ptr[6] < (uint)(ushort)resource_pool_ptr[3] ||
@@ -887,11 +809,10 @@ LAB_allocation_error:
     resource_pool_ptr = resource_pool_ptr + (uint64_t)*resource_pool_ptr * 0x14;
   } while( true );
 }
-
 /**
  * 渲染系统资源分配控制器
  * 控制资源分配和内存管理
- * 
+ *
  * @param param_1 分配器参数
  * @param param_2 分配大小
  * @param param_3 上下文参数
@@ -899,7 +820,7 @@ LAB_allocation_error:
  * @param param_5 管理器参数
  * @return 分配结果
  */
-uint64_t FUN_18064cc40(uint64_t param_1, uint param_2, int64_t param_3, uint64_t param_4,
+uint64_t function_64cc40(uint64_t param_1, uint param_2, int64_t param_3, uint64_t param_4,
                        int64_t param_5)
 {
   uint *resource_pool_ptr;
@@ -917,20 +838,17 @@ uint64_t FUN_18064cc40(uint64_t param_1, uint param_2, int64_t param_3, uint64_t
   bool resource_allocated;
   uint allocation_params[4];
   uint64_t stack_param;
-  
   calculated_size = param_3 + 0xffffU >> 0x10;
   allocation_params[0] = param_2;
   stack_param = param_4;
-  
 LAB_allocation_loop:
   do {
     temp_value = 0;
-    link_ptr1 = (uint64_t *)func_0x00018064ade0(calculated_size, param_5);
+    link_ptr1 = (uint64_t *)Function_67d52d59(calculated_size, param_5);
     resource_size = calculated_size;
     if (calculated_size == 0) {
       resource_size = 1;
     }
-    
     for (; link_ptr1 <= (uint64_t *)(param_5 + 0x348U); link_ptr1 = link_ptr1 + 3) {
       for (resource_pool_ptr = (uint *)*link_ptr1; resource_pool_ptr != (uint *)0x0; resource_pool_ptr = *(uint **)(resource_pool_ptr + 0xe)) {
         if (resource_size <= *resource_pool_ptr) {
@@ -946,49 +864,44 @@ LAB_allocation_loop:
           if (resource_pool_ptr == (uint *)link_ptr1[1]) {
             link_ptr1[1] = *(uint64_t *)(resource_pool_ptr + 0x10);
           }
-          
           temp_size = (uint64_t)*resource_pool_ptr;
           resource_pool_ptr[7] = 1;
           block_size = (uint64_t)resource_pool_ptr & 0xffffffffffc00000;
           *(uint64_t *)(resource_pool_ptr + 0x10) = temp_value;
           *(uint64_t *)(resource_pool_ptr + 0xe) = temp_value;
-          
           if (resource_size < temp_size) {
-            FUN_18064b590(block_size, (int64_t)((int64_t)resource_pool_ptr + (-0x80 - block_size)) / 0x50 + resource_size,
+            function_64b590(block_size, (int64_t)((int64_t)resource_pool_ptr + (-0x80 - block_size)) / 0x50 + resource_size,
                           temp_size - resource_size, param_5);
             temp_size = resource_size & 0xffffffff;
             *resource_pool_ptr = (uint)resource_size;
           }
-          
-          resource_size = FUN_18064b940(block_size, (int64_t)((int64_t)resource_pool_ptr + (-0x80 - block_size)) / 0x50, temp_size);
+          resource_size = function_64b940(block_size, (int64_t)((int64_t)resource_pool_ptr + (-0x80 - block_size)) / 0x50, temp_size);
           if (resource_size != 0) {
-            FUN_18064b460(resource_size & 0xffffffffffc00000, 0);
+            function_64b460(resource_size & 0xffffffffffc00000, 0);
             return resource_size;
           }
-          
-          FUN_18064b830(resource_pool_ptr, param_5);
+          function_64b830(resource_pool_ptr, param_5);
           param_4 = stack_param;
           goto LAB_allocation_complete;
         }
       }
     }
-    
 LAB_allocation_complete:
     allocation_params[0] = allocation_params[0] & 0xffffff00;
     bit_position = 8;
     do {
       bit_position = bit_position + -1;
-      allocation_size = func_0x00018064c400();
+      allocation_size = Function_0fb5d08e();
       if (allocation_size == 0) break;
       *(int64_t *)(allocation_size + 0x40) = *(int64_t *)(allocation_size + 0x40) + 1;
-      allocation_flag = FUN_18064c730(allocation_size, calculated_size, param_4, param_5);
+      allocation_flag = function_64c730(allocation_size, calculated_size, param_4, param_5);
       if (*(int64_t *)(allocation_size + 0x48) == 0) {
 LAB_cleanup_complete:
-        FUN_18064c940(allocation_size, param_1, 0, 0, param_5);
+        function_64c940(allocation_size, param_1, 0, 0, param_5);
       }
       else {
         if (allocation_flag != '\0') {
-          allocation_size = FUN_18064c940(allocation_size, param_1, param_4, allocation_params, param_5);
+          allocation_size = function_64c940(allocation_size, param_1, param_4, allocation_params, param_5);
           if ((char)allocation_params[0] != '\0') {
             return 0;
           }
@@ -996,7 +909,7 @@ LAB_cleanup_complete:
           break;
         }
         if (3 < *(uint64_t *)(allocation_size + 0x40)) goto LAB_cleanup_complete;
-        FUN_18064b460(allocation_size, 0);
+        function_64b460(allocation_size, 0);
         current_size = render_system_memory;
         do {
           *(int64_t *)(allocation_size + 0x28) = current_size;
@@ -1015,21 +928,20 @@ LAB_cleanup_complete:
         UNLOCK();
       }
     } while (0 < bit_position);
-    allocation_size = FUN_18064bae0(0, 0, param_5);
+    allocation_size = function_64bae0(0, 0, param_5);
     if (allocation_size == 0) {
       return 0;
     }
   } while( true );
 }
-
 /**
  * 渲染系统资源状态更新器
  * 更新资源状态并管理资源链表
- * 
+ *
  * @param param_1 资源管理器
  * @param param_2 资源参数
  */
-void FUN_18064cf20(int64_t param_1, uint64_t *param_2)
+void function_64cf20(int64_t param_1, uint64_t *param_2)
 {
   int64_t temp_resource;
   byte size_flag;
@@ -1040,14 +952,12 @@ void FUN_18064cf20(int64_t param_1, uint64_t *param_2)
   char size_char;
   byte size_byte;
   uint64_t calculated_size;
-  
-  // 检查资源大小
+// 检查资源大小
   if ((uint64_t)param_2[2] < 0x401) {
     resource_ptr = &processed_var_6944_ptr;
     if ((void *)*param_2 != (void *)0x0) {
       resource_ptr = (void *)*param_2;
     }
-    
     calculated_size = param_2[2] + 7 >> 3;
     if (*(void **)(param_1 + 8 + calculated_size * 8) != resource_ptr) {
       if (calculated_size < 2) {
@@ -1075,7 +985,6 @@ void FUN_18064cf20(int64_t param_1, uint64_t *param_2)
         else {
           size_byte = 0x49;
         }
-        
         param_2 = param_2 + -3;
         while( true ) {
           block_size = param_2[2] + 7 >> 3;
@@ -1106,13 +1015,11 @@ void FUN_18064cf20(int64_t param_1, uint64_t *param_2)
           if ((size_byte != size_flag) || (param_2 <= (uint64_t *)(param_1 + 0x410))) break;
           param_2 = param_2 + -3;
         }
-        
         resource_size = block_size + 1;
         if (calculated_size < block_size + 1) {
           resource_size = calculated_size;
         }
       }
-      
       link_ptr = (uint64_t *)(param_1 + 8 + resource_size * 8);
       for (calculated_size = (calculated_size - resource_size) * 8 + 8 >> 3; calculated_size != 0; calculated_size = calculated_size - 1) {
         *link_ptr = resource_ptr;
@@ -1122,198 +1029,175 @@ void FUN_18064cf20(int64_t param_1, uint64_t *param_2)
   }
   return;
 }
-
 /*==========================================
 =            函数别名定义            =
 =========================================*/
-
 /**
  * 内存管理系统函数别名
  */
-#define MemoryBlockInitializer FUN_18064c335
-#define MemoryManagementProcessor FUN_18064c390
-#define ResourceCleanupHandler FUN_18064c570
-#define ResourceAllocator FUN_18064c730
-#define ResourceStatusChecker FUN_18064c789
-#define ResourceStatusGetter FUN_18064c922
-#define ResourceManager FUN_18064c940
-#define ResourceAllocationController FUN_18064cc40
-#define ResourceStateUpdater FUN_18064cf20
-
+#define MemoryBlockInitializer function_64c335
+#define MemoryManagementProcessor function_64c390
+#define ResourceCleanupHandler function_64c570
+#define ResourceAllocator function_64c730
+#define ResourceStatusChecker function_64c789
+#define ResourceStatusGetter function_64c922
+#define ResourceManager function_64c940
+#define ResourceAllocationController function_64cc40
+#define ResourceStateUpdater function_64cf20
 /*==========================================
 =            模块初始化和清理            =
 =========================================*/
-
 /**
  * 模块初始化函数
  */
 void module_initializer(void)
 {
-  // 初始化内存管理系统
+// 初始化内存管理系统
   memory_pool_header = 0;
   memory_block_pointer = 0;
   memory_reference_count = 0;
   memory_state_flags = STATE_INITIALIZED;
-  
-  // 初始化资源管理系统
+// 初始化资源管理系统
   resource_allocator = 0;
   resource_cleaner = 0;
   resource_counter = 0;
   resource_state_manager = 0;
-  
-  // 初始化线程同步系统
+// 初始化线程同步系统
   thread_sync_counter = 0;
   thread_sync_mutex = 0;
   thread_sync_event = 0;
   thread_pool_status = STATE_INITIALIZED;
   thread_queue_status = STATE_INITIALIZED;
-  
   return;
 }
-
 /**
  * 模块清理函数
  */
 void module_cleanup(void)
 {
-  // 清理内存管理系统
+// 清理内存管理系统
   memory_pool_header = 0;
   memory_block_pointer = 0;
   memory_reference_count = 0;
   memory_state_flags = 0;
-  
-  // 清理资源管理系统
+// 清理资源管理系统
   resource_allocator = 0;
   resource_cleaner = 0;
   resource_counter = 0;
   resource_state_manager = 0;
-  
-  // 清理线程同步系统
+// 清理线程同步系统
   thread_sync_counter = 0;
   thread_sync_mutex = 0;
   thread_sync_event = 0;
   thread_pool_status = 0;
   thread_queue_status = 0;
-  
   return;
 }
-
 /*==========================================
 =            导出函数定义            =
 =========================================*/
-
 /**
  * 导出函数：内存块初始化器
- * 对应原始函数：FUN_18064c335
+ * 对应原始函数：function_64c335
  */
 void Unwind_18064c335(void)
 {
   MemoryBlockInitializer();
 }
-
 /**
  * 导出函数：内存管理处理器
- * 对应原始函数：FUN_18064c390
+ * 对应原始函数：function_64c390
  */
 void Unwind_18064c390(uint64_t param_1, uint64_t param_2, int64_t param_3)
 {
   MemoryManagementProcessor(param_1, param_2, param_3);
 }
-
 /**
  * 导出函数：资源清理器
- * 对应原始函数：FUN_18064c570
+ * 对应原始函数：function_64c570
  */
 void Unwind_18064c570(uint64_t param_1, int64_t param_2)
 {
   ResourceCleanupHandler(param_1, param_2);
 }
-
 /**
  * 导出函数：资源分配器
- * 对应原始函数：FUN_18064c730
+ * 对应原始函数：function_64c730
  */
 uint64_t Unwind_18064c730(int64_t param_1, uint64_t param_2, uint64_t param_3, int64_t param_4)
 {
   return ResourceAllocator(param_1, param_2, param_3, param_4);
 }
-
 /**
  * 导出函数：资源状态检查器
- * 对应原始函数：FUN_18064c789
+ * 对应原始函数：function_64c789
  */
 int8_t Unwind_18064c789(void)
 {
   return ResourceStatusChecker();
 }
-
 /**
  * 导出函数：资源状态获取器
- * 对应原始函数：FUN_18064c922
+ * 对应原始函数：function_64c922
  */
 int8_t Unwind_18064c922(void)
 {
   return ResourceStatusGetter();
 }
-
 /**
  * 导出函数：资源管理器
- * 对应原始函数：FUN_18064c940
+ * 对应原始函数：function_64c940
  */
 int64_t Unwind_18064c940(int64_t param_1, int64_t param_2, uint64_t param_3, int8_t *param_4, int64_t param_5)
 {
   return ResourceManager(param_1, param_2, param_3, param_4, param_5);
 }
-
 /**
  * 导出函数：资源分配控制器
- * 对应原始函数：FUN_18064cc40
+ * 对应原始函数：function_64cc40
  */
 uint64_t Unwind_18064cc40(uint64_t param_1, uint param_2, int64_t param_3, uint64_t param_4, int64_t param_5)
 {
   return ResourceAllocationController(param_1, param_2, param_3, param_4, param_5);
 }
-
 /**
  * 导出函数：资源状态更新器
- * 对应原始函数：FUN_18064cf20
+ * 对应原始函数：function_64cf20
  */
 void Unwind_18064cf20(int64_t param_1, uint64_t *param_2)
 {
   ResourceStateUpdater(param_1, param_2);
 }
-
 /*==========================================
 =            技术说明            =
 =========================================*/
-
 /**
  * 本模块实现了一个完整的渲染系统内存管理和资源清理系统，包含以下特性：
- * 
+ *
  * 1. 内存管理功能：
  *    - 内存块初始化和清理
  *    - 内存分配和释放
  *    - 内存状态管理
  *    - 内存池管理
- * 
+ *
  * 2. 资源管理功能：
  *    - 资源分配和释放
  *    - 资源状态检查
  *    - 资源链表管理
  *    - 资源计数器管理
- * 
+ *
  * 3. 线程同步功能：
  *    - 线程安全资源访问
  *    - 锁机制管理
  *    - 状态同步
  *    - 并发控制
- * 
+ *
  * 4. 错误处理机制：
  *    - 内存分配失败处理
  *    - 资源清理错误处理
  *    - 状态异常处理
  *    - 系统稳定性保证
- * 
+ *
  * 模块采用了高级的内存管理技术，包括内存池、链表管理、引用计数等，
  * 确保渲染系统的高效运行和资源的合理利用。所有函数都进行了详细的中文注释，
  * 便于理解和维护。

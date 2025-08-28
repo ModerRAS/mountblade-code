@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_02_part016.c - 2 个函数
-
-// 函数: void FUN_1800f5bd0(int64_t *param_1,int64_t param_2)
-void FUN_1800f5bd0(int64_t *param_1,int64_t param_2)
-
+// 函数: void function_0f5bd0(int64_t *param_1,int64_t param_2)
+void function_0f5bd0(int64_t *param_1,int64_t param_2)
 {
   uint64_t *puVar1;
   char *pcVar2;
@@ -12,7 +9,6 @@ void FUN_1800f5bd0(int64_t *param_1,int64_t param_2)
   uint64_t *puVar4;
   char *pcVar5;
   char *pcVar6;
-  
   pcVar6 = "name";
   do {
     pcVar5 = pcVar6;
@@ -67,7 +63,7 @@ LAB_1800f5c47:
     if (pcVar2 == pcVar5 + -0x180a04c4f) {
       pcVar2 = pcVar6 + (int64_t)pcVar2;
       if (pcVar2 <= pcVar6) {
-FUN_1800f5cd6:
+label_0f5cd6:
         pcVar6 = "stretching_stiffness";
         do {
           pcVar5 = pcVar6;
@@ -487,7 +483,7 @@ LAB_1800f63a0:
       lVar3 = (int64_t)&processed_var_6240_ptr - (int64_t)pcVar6;
       while (*pcVar6 == pcVar6[lVar3]) {
         pcVar6 = pcVar6 + 1;
-        if (pcVar2 <= pcVar6) goto FUN_1800f5cd6;
+        if (pcVar2 <= pcVar6) goto label_0f5cd6;
       }
     }
     puVar4 = (uint64_t *)puVar4[0xb];
@@ -496,15 +492,8 @@ LAB_1800f63a0:
     }
   } while( true );
 }
-
-
-
-
-
-
-// 函数: void FUN_1800f5cd6(void)
-void FUN_1800f5cd6(void)
-
+// 函数: void function_0f5cd6(void)
+void function_0f5cd6(void)
 {
   uint64_t *puVar1;
   char *pcVar2;
@@ -514,7 +503,6 @@ void FUN_1800f5cd6(void)
   char *unaff_RDI;
   char *pcVar4;
   char *pcVar5;
-  
   pcVar4 = "stretching_stiffness";
   do {
     pcVar5 = pcVar4;
@@ -926,9 +914,3 @@ LAB_1800f63a0:
     puVar1 = (uint64_t *)puVar1[6];
   } while( true );
 }
-
-
-
-
-
-

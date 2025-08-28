@@ -1,14 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 99_part_04_part018.c - 1 个函数
-
-// 函数: void FUN_1802682ae(void)
-void FUN_1802682ae(void)
-
+// 函数: void function_2682ae(void)
+void function_2682ae(void)
 {
   byte *pbVar1;
   int iVar2;
@@ -22,11 +17,10 @@ void FUN_1802682ae(void)
   int64_t unaff_RSI;
   int64_t lVar9;
   int64_t unaff_R14;
-  
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x15c) == *(float *)(unaff_RBP + 0x15c) &&
        (*(float *)(unaff_RSI + 0x158) == *(float *)(unaff_RBP + 0x158))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x160,unaff_RSI + 0x160), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x160,unaff_RSI + 0x160), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x158) = *(uint64_t *)(unaff_R14 + 0x158);
     SystemCore_NetworkProtocol(unaff_RBP + 0x160,unaff_R14 + 0x160);
     *(int32_t *)(unaff_RBP + 0x188) = *(int32_t *)(unaff_R14 + 0x188);
@@ -35,7 +29,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x194) == *(float *)(unaff_RBP + 0x194) &&
        (*(float *)(unaff_RSI + 400) == *(float *)(unaff_RBP + 400))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x198,unaff_RSI + 0x198), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x198,unaff_RSI + 0x198), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 400) = *(uint64_t *)(unaff_R14 + 400);
     SystemCore_NetworkProtocol(unaff_RBP + 0x198,unaff_R14 + 0x198);
     *(int32_t *)(unaff_RBP + 0x1c0) = *(int32_t *)(unaff_R14 + 0x1c0);
@@ -44,7 +38,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x1cc) == *(float *)(unaff_RBP + 0x1cc) &&
        (*(float *)(unaff_RSI + 0x1c8) == *(float *)(unaff_RBP + 0x1c8))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x1d0,unaff_RSI + 0x1d0), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x1d0,unaff_RSI + 0x1d0), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x1c8) = *(uint64_t *)(unaff_R14 + 0x1c8);
     SystemCore_NetworkProtocol(unaff_RBP + 0x1d0,unaff_R14 + 0x1d0);
     *(int32_t *)(unaff_RBP + 0x1f8) = *(int32_t *)(unaff_R14 + 0x1f8);
@@ -53,7 +47,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x204) == *(float *)(unaff_RBP + 0x204) &&
        (*(float *)(unaff_RSI + 0x200) == *(float *)(unaff_RBP + 0x200))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x208,unaff_RSI + 0x208), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x208,unaff_RSI + 0x208), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x200) = *(uint64_t *)(unaff_R14 + 0x200);
     SystemCore_NetworkProtocol(unaff_RBP + 0x208,unaff_R14 + 0x208);
     *(int32_t *)(unaff_RBP + 0x230) = *(int32_t *)(unaff_R14 + 0x230);
@@ -62,7 +56,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x23c) == *(float *)(unaff_RBP + 0x23c) &&
        (*(float *)(unaff_RSI + 0x238) == *(float *)(unaff_RBP + 0x238))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x240,unaff_RSI + 0x240), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x240,unaff_RSI + 0x240), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x238) = *(uint64_t *)(unaff_R14 + 0x238);
     SystemCore_NetworkProtocol(unaff_RBP + 0x240,unaff_R14 + 0x240);
     *(int32_t *)(unaff_RBP + 0x268) = *(int32_t *)(unaff_R14 + 0x268);
@@ -71,8 +65,8 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x274) == *(float *)(unaff_RBP + 0x274) &&
        (*(float *)(unaff_RSI + 0x270) == *(float *)(unaff_RBP + 0x270))) &&
-      ((cVar5 = func_0x000180417730(unaff_RBP + 0x278,unaff_RSI + 0x278), cVar5 != '\0' &&
-       (cVar5 = func_0x000180417730(unaff_RBP + 0x2a8,unaff_RSI + 0x2a8), cVar5 != '\0')))))) {
+      ((cVar5 = SystemFunction_000180417730(unaff_RBP + 0x278,unaff_RSI + 0x278), cVar5 != '\0' &&
+       (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x2a8,unaff_RSI + 0x2a8), cVar5 != '\0')))))) {
     *(uint64_t *)(unaff_RBP + 0x270) = *(uint64_t *)(unaff_R14 + 0x270);
     SystemCore_NetworkProtocol(unaff_RBP + 0x278,unaff_R14 + 0x278);
     *(int32_t *)(unaff_RBP + 0x2a0) = *(int32_t *)(unaff_R14 + 0x2a0);
@@ -84,7 +78,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x2dc) == *(float *)(unaff_RBP + 0x2dc) &&
        (*(float *)(unaff_RSI + 0x2d8) == *(float *)(unaff_RBP + 0x2d8))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x2e0,unaff_RSI + 0x2e0), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x2e0,unaff_RSI + 0x2e0), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x2d8) = *(uint64_t *)(unaff_R14 + 0x2d8);
     SystemCore_NetworkProtocol(unaff_RBP + 0x2e0,unaff_R14 + 0x2e0);
     *(int32_t *)(unaff_RBP + 0x308) = *(int32_t *)(unaff_R14 + 0x308);
@@ -99,7 +93,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x314) == *(float *)(unaff_RBP + 0x314) &&
        (*(float *)(unaff_RSI + 0x310) == *(float *)(unaff_RBP + 0x310))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x318,unaff_RSI + 0x318), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x318,unaff_RSI + 0x318), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x310) = *(uint64_t *)(unaff_R14 + 0x310);
     SystemCore_NetworkProtocol(unaff_RBP + 0x318,unaff_R14 + 0x318);
     *(int32_t *)(unaff_RBP + 0x340) = *(int32_t *)(unaff_R14 + 0x340);
@@ -108,7 +102,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x34c) == *(float *)(unaff_RBP + 0x34c) &&
        (*(float *)(unaff_RSI + 0x348) == *(float *)(unaff_RBP + 0x348))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x350,unaff_RSI + 0x350), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x350,unaff_RSI + 0x350), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x348) = *(uint64_t *)(unaff_R14 + 0x348);
     SystemCore_NetworkProtocol(unaff_RBP + 0x350,unaff_R14 + 0x350);
     *(int32_t *)(unaff_RBP + 0x378) = *(int32_t *)(unaff_R14 + 0x378);
@@ -117,7 +111,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 900) == *(float *)(unaff_RBP + 900) &&
        (*(float *)(unaff_RSI + 0x380) == *(float *)(unaff_RBP + 0x380))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x388,unaff_RSI + 0x388), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x388,unaff_RSI + 0x388), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x380) = *(uint64_t *)(unaff_R14 + 0x380);
     SystemCore_NetworkProtocol(unaff_RBP + 0x388,unaff_R14 + 0x388);
     *(int32_t *)(unaff_RBP + 0x3b0) = *(int32_t *)(unaff_R14 + 0x3b0);
@@ -126,7 +120,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x3bc) == *(float *)(unaff_RBP + 0x3bc) &&
        (*(float *)(unaff_RSI + 0x3b8) == *(float *)(unaff_RBP + 0x3b8))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x3c0,unaff_RSI + 0x3c0), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x3c0,unaff_RSI + 0x3c0), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x3b8) = *(uint64_t *)(unaff_R14 + 0x3b8);
     SystemCore_NetworkProtocol(unaff_RBP + 0x3c0,unaff_R14 + 0x3c0);
     *(int32_t *)(unaff_RBP + 1000) = *(int32_t *)(unaff_R14 + 1000);
@@ -140,7 +134,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x3f4) == *(float *)(unaff_RBP + 0x3f4) &&
        (*(float *)(unaff_RSI + 0x3f0) == *(float *)(unaff_RBP + 0x3f0))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x3f8,unaff_RSI + 0x3f8), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x3f8,unaff_RSI + 0x3f8), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x3f0) = *(uint64_t *)(unaff_R14 + 0x3f0);
     SystemCore_NetworkProtocol(unaff_RBP + 0x3f8,unaff_R14 + 0x3f8);
     *(int32_t *)(unaff_RBP + 0x420) = *(int32_t *)(unaff_R14 + 0x420);
@@ -149,7 +143,7 @@ void FUN_1802682ae(void)
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x42c) == *(float *)(unaff_RBP + 0x42c) &&
        (*(float *)(unaff_RSI + 0x428) == *(float *)(unaff_RBP + 0x428))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x430,unaff_RSI + 0x430), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x430,unaff_RSI + 0x430), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x428) = *(uint64_t *)(unaff_R14 + 0x428);
     SystemCore_NetworkProtocol(unaff_RBP + 0x430,unaff_R14 + 0x430);
     *(int32_t *)(unaff_RBP + 0x458) = *(int32_t *)(unaff_R14 + 0x458);
@@ -177,8 +171,8 @@ void FUN_1802682ae(void)
     *(int32_t *)(unaff_RBP + 0x47c) = *(int32_t *)(unaff_R14 + 0x47c);
   }
   if ((unaff_RSI == 0) ||
-     (cVar5 = FUN_1802709c0(unaff_RSI + 0x480,unaff_RBP + 0x480), cVar5 != '\0')) {
-    FUN_1802692c0(unaff_RBP + 0x480,unaff_R14 + 0x480);
+     (cVar5 = function_2709c0(unaff_RSI + 0x480,unaff_RBP + 0x480), cVar5 != '\0')) {
+    function_2692c0(unaff_RBP + 0x480,unaff_R14 + 0x480);
   }
   if ((unaff_RSI == 0) || (*(float *)(unaff_RBP + 0xd8) == *(float *)(unaff_RSI + 0xd8))) {
     *(int32_t *)(unaff_RBP + 0xd8) = *(int32_t *)(unaff_R14 + 0xd8);
@@ -211,7 +205,7 @@ void FUN_1802682ae(void)
   }
   if (unaff_RSI == 0) {
 LAB_180268c62:
-    FUN_180150240(unaff_RBP + 0x868,unaff_R14 + 0x868);
+    function_150240(unaff_RBP + 0x868,unaff_R14 + 0x868);
   }
   else {
     plVar3 = *(int64_t **)(unaff_RSI + 0x870);
@@ -272,7 +266,7 @@ LAB_180268c75:
   if ((unaff_RSI == 0) ||
      (((*(float *)(unaff_RSI + 0x104) == *(float *)(unaff_RBP + 0x104) &&
        (*(float *)(unaff_RSI + 0x100) == *(float *)(unaff_RBP + 0x100))) &&
-      (cVar5 = func_0x000180417730(unaff_RBP + 0x108,unaff_RSI + 0x108), cVar5 != '\0')))) {
+      (cVar5 = SystemFunction_000180417730(unaff_RBP + 0x108,unaff_RSI + 0x108), cVar5 != '\0')))) {
     *(uint64_t *)(unaff_RBP + 0x100) = *(uint64_t *)(unaff_R14 + 0x100);
     SystemCore_NetworkProtocol(unaff_RBP + 0x108,unaff_R14 + 0x108);
     *(int32_t *)(unaff_RBP + 0x130) = *(int32_t *)(unaff_R14 + 0x130);
@@ -399,9 +393,3 @@ LAB_180268f42:
   }
   return;
 }
-
-
-
-
-
-

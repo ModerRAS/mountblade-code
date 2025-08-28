@@ -1,15 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part269_sub001.c - 2 个函数
-
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part269.c - 2 个函数
-
-
-// 函数: void FUN_180416cc0(int64_t *param_1,int64_t param_2,int64_t param_3)
-void FUN_180416cc0(int64_t *param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void function_416cc0(int64_t *param_1,int64_t param_2,int64_t param_3)
+void function_416cc0(int64_t *param_1,int64_t param_2,int64_t param_3)
 {
   char cVar1;
   char cVar2;
@@ -21,21 +15,20 @@ void FUN_180416cc0(int64_t *param_1,int64_t param_2,int64_t param_3)
   char *pcVar8;
   uint64_t *puVar9;
   char *pcVar10;
-  uint64_t uStackX_8;
+  uint64_t stack_special_x_8;
   int aiStackX_20 [2];
   float afStack_88 [2];
   float afStack_80 [2];
-  uint64_t uStack_78;
+  uint64_t local_var_78;
   int iStack_70;
   float fStack_6c;
   float fStack_68;
-  int32_t uStack_64;
+  int32_t local_var_64;
   int iStack_60;
   float fStack_5c;
   float fStack_58;
-  int32_t uStack_54;
-  
-  uStack_78 = 0xfffffffffffffffe;
+  int32_t local_var_54;
+  local_var_78 = 0xfffffffffffffffe;
   param_1[2] = param_1[1];
   pcVar8 = "curve";
   do {
@@ -293,7 +286,7 @@ LAB_1804174f0:
                     pcVar3 = pcVar3 + (int64_t)pcVar8;
                     if (pcVar3 <= pcVar8) {
 LAB_180417570:
-                      uStackX_8 = 0;
+                      stack_special_x_8 = 0;
                       pcVar8 = "time";
                       do {
                         pcVar10 = pcVar8;
@@ -360,9 +353,9 @@ LAB_180417650:
                           }
                         }
                       }
-                      SystemManager_Controller(puVar7,&processed_var_5264_ptr,&uStackX_8);
+                      SystemManager_Controller(puVar7,&processed_var_5264_ptr,&stack_special_x_8);
                       (**(code **)(*param_1 + 8))
-                                (param_1,(int)afStack_80[0],afStack_88[0],uStackX_8,0);
+                                (param_1,(int)afStack_80[0],afStack_88[0],stack_special_x_8,0);
                       pcVar8 = "key";
                       do {
                         pcVar10 = pcVar8;
@@ -463,7 +456,7 @@ LAB_1804170b5:
               puVar7 = (uint64_t *)0x0;
 LAB_180417140:
               do {
-                uStackX_8 = 0;
+                stack_special_x_8 = 0;
                 pcVar8 = "time";
                 do {
                   pcVar10 = pcVar8;
@@ -530,11 +523,11 @@ LAB_180417224:
                     }
                   }
                 }
-                SystemManager_Controller(puVar7,&processed_var_5264_ptr,&uStackX_8);
+                SystemManager_Controller(puVar7,&processed_var_5264_ptr,&stack_special_x_8);
                 iStack_70 = (int)(afStack_88[0] * 29.0);
                 fStack_6c = afStack_80[0];
-                fStack_68 = (float)uStackX_8;
-                _fStack_68 = CONCAT44((int)((uint64_t)uStackX_8 >> 0x20),fStack_68 * 29.0);
+                fStack_68 = (float)stack_special_x_8;
+                _fStack_68 = CONCAT44((int)((uint64_t)stack_special_x_8 >> 0x20),fStack_68 * 29.0);
                 pcVar8 = "key";
                 do {
                   pcVar10 = pcVar8;
@@ -628,12 +621,12 @@ LAB_1804173c4:
                     }
                   }
                 }
-                SystemManager_Controller(puVar7,&processed_var_5264_ptr,&uStackX_8);
+                SystemManager_Controller(puVar7,&processed_var_5264_ptr,&stack_special_x_8);
                 iStack_60 = (int)(afStack_88[0] * 29.0);
                 fStack_5c = afStack_80[0];
-                fStack_58 = (float)uStackX_8;
-                _fStack_58 = CONCAT44((int)((uint64_t)uStackX_8 >> 0x20),fStack_58 * 29.0);
-                FUN_1802b6e50(param_1 + 1,&iStack_70);
+                fStack_58 = (float)stack_special_x_8;
+                _fStack_58 = CONCAT44((int)((uint64_t)stack_special_x_8 >> 0x20),fStack_58 * 29.0);
+                function_2b6e50(param_1 + 1,&iStack_70);
                 pcVar8 = "key";
                 do {
                   pcVar10 = pcVar8;
@@ -682,11 +675,4 @@ LAB_1804173c4:
     puVar9 = (uint64_t *)puVar9[6];
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

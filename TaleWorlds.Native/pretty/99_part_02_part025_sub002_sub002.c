@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_02_part025_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_1800fe640(uint64_t param_1,int64_t *param_2,int64_t param_3)
-void FUN_1800fe640(uint64_t param_1,int64_t *param_2,int64_t param_3)
-
+// 函数: void function_0fe640(uint64_t param_1,int64_t *param_2,int64_t param_3)
+void function_0fe640(uint64_t param_1,int64_t *param_2,int64_t param_3)
 {
   uint64_t uVar1;
   uint64_t uVar2;
@@ -256,7 +253,6 @@ void FUN_1800fe640(uint64_t param_1,int64_t *param_2,int64_t param_3)
   int8_t auVar227 [12];
   int8_t auVar228 [14];
   int8_t auVar230 [16];
-  
   iVar3 = *(int *)(param_3 + 0x18);
   lVar8 = *(int64_t *)(param_3 + 0x38);
   lVar9 = *(int64_t *)(param_3 + 0x40);
@@ -1025,11 +1021,3 @@ void FUN_1800fe640(uint64_t param_1,int64_t *param_2,int64_t param_3)
   }
   return;
 }
-
-
-
-
-
-
-
-

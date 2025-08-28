@@ -1,23 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part192_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_18077b2c0(void)
-void FUN_18077b2c0(void)
-
+// 函数: void function_77b2c0(void)
+void function_77b2c0(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(0x180c0db14,0,0x5c);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t
-FUN_18077b410(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,int param_5)
-
+function_77b410(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,int param_5)
 {
   float fVar1;
   float fVar2;
@@ -54,7 +46,6 @@ FUN_18077b410(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,int p
   float fVar33;
   float fVar34;
   float fStack_e0;
-  
   uVar4 = 0;
   if (param_5 == 1) {
     if (3 < param_4) {
@@ -567,13 +558,8 @@ FUN_18077b410(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,int p
   }
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_18077b7d0(int64_t param_1,uint64_t param_2,uint64_t param_3,int param_4)
-
+uint64_t function_77b7d0(int64_t param_1,uint64_t param_2,uint64_t param_3,int param_4)
 {
   float fVar1;
   float fVar2;
@@ -612,7 +598,6 @@ uint64_t FUN_18077b7d0(int64_t param_1,uint64_t param_2,uint64_t param_3,int par
   float fVar29;
   float fVar30;
   float fStackX_8;
-  
   if (in_R11D == 2) {
     if (3 < unaff_R15D) {
       do {
@@ -1023,13 +1008,8 @@ uint64_t FUN_18077b7d0(int64_t param_1,uint64_t param_2,uint64_t param_3,int par
   }
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_18077c38b(int64_t param_1)
-
+uint64_t function_77c38b(int64_t param_1)
 {
   float fVar1;
   float fVar2;
@@ -1067,7 +1047,6 @@ uint64_t FUN_18077c38b(int64_t param_1)
   float fVar28;
   float fVar29;
   float fVar30;
-  
   if (in_R11D == 8) {
     if (unaff_R15D != 0) {
       do {
@@ -1253,28 +1232,16 @@ uint64_t FUN_18077c38b(int64_t param_1)
   }
   return 0;
 }
-
-
-
-uint64_t FUN_18077cd48(void)
-
+uint64_t function_77cd48(void)
 {
   return 0;
 }
-
-
-
-uint64_t FUN_18077cd81(void)
-
+uint64_t function_77cd81(void)
 {
   return 0;
 }
-
-
-
 uint64_t
-FUN_18077cdb0(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,int param_5)
-
+function_77cdb0(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,int param_5)
 {
   float fVar1;
   uint64_t uVar2;
@@ -1282,7 +1249,6 @@ FUN_18077cdb0(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,int p
   float fVar4;
   float fVar5;
   float fVar6;
-  
   if (param_2 != 0) {
     lVar3 = (int64_t)param_5;
     do {
@@ -1291,14 +1257,14 @@ FUN_18077cdb0(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,int p
       if (((fVar4 == fVar1) && (*(float *)(param_1 + 0x43c) == *(float *)(param_1 + 0x218))) ||
          (param_4 == 0)) {
         if (*(float *)(param_1 + 0x218) < 2.0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           memcpy(param_3,param_2,(uint64_t)param_4 * lVar3 * 4);
         }
         if (*(float *)(param_1 + 0x218) < *(float *)(param_1 + 0x21c)) {
-          uVar2 = FUN_18077b410(param_1,param_2,param_3,param_4,param_5);
+          uVar2 = function_77b410(param_1,param_2,param_3,param_4,param_5);
           return uVar2;
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memset(param_3,0,(uint64_t)param_4 * lVar3 * 4);
       }
       fVar5 = *(float *)(param_1 + 0x218);
@@ -1336,8 +1302,8 @@ LAB_18077cebf:
           fVar5 = fVar1;
         }
       }
-      FUN_18077d1a0(param_1,fVar4,fVar5);
-      FUN_18077b410(param_1,param_2,param_3,1,param_5);
+      function_77d1a0(param_1,fVar4,fVar5);
+      function_77b410(param_1,param_2,param_3,1,param_5);
       param_2 = param_2 + lVar3 * 4;
       param_3 = param_3 + lVar3 * 4;
       param_4 = param_4 - 1;
@@ -1345,10 +1311,3 @@ LAB_18077cebf:
   }
   return 0;
 }
-
-
-
-
-
-
-

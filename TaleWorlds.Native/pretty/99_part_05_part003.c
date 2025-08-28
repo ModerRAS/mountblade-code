@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_05_part003.c - 3 个函数
-
-// 函数: void FUN_1802d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
-void FUN_1802d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
-
+// 函数: void DataStructure_d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
+void DataStructure_d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
 {
   float *pfVar1;
   int64_t *plVar2;
@@ -58,8 +55,7 @@ void FUN_1802d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
   float fVar50;
   float fVar51;
   int iStackX_18;
-  uint64_t uStack_110;
-  
+  uint64_t local_var_110;
   lVar7 = *(int64_t *)(param_2 + 0x48);
   lVar30 = *(int64_t *)(*(int64_t *)(param_1 + 0x310) + 0x10);
   uVar5 = *(uint *)(lVar7 + 0x68);
@@ -72,7 +68,7 @@ void FUN_1802d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
   }
   lVar42 = (int64_t)(int)((*(int64_t *)(param_2 + 0x60) - *(int64_t *)(param_2 + 0x58)) / 0x70);
   plVar2 = (int64_t *)(param_2 + 0xf8);
-  FUN_1802ab620(plVar2,lVar42);
+  DataStructure_ab620(plVar2,lVar42);
   lVar24 = *(int64_t *)(param_2 + 0x138) - *(int64_t *)(param_2 + 0x130);
   lVar19 = lVar24 >> 0x3f;
   if (lVar24 / 0xc + lVar19 == lVar19) {
@@ -144,27 +140,27 @@ void FUN_1802d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
         uVar26 = (int)uVar20 + 1;
         uVar20 = (uint64_t)uVar26;
       }
-      FUN_1802da5e0(puVar39,puVar10,(int64_t)(int)(uVar26 - 1) * 2,0);
+      DataStructure_da5e0(puVar39,puVar10,(int64_t)(int)(uVar26 - 1) * 2,0);
       if (lVar24 < 0x1d) {
-        func_0x0001802d9f80(puVar39,puVar10);
+        SystemFunction_0001802d9f80(puVar39,puVar10);
       }
       else {
         puVar32 = puVar39 + 0x1c;
-        func_0x0001802d9f80(puVar39,puVar32);
+        SystemFunction_0001802d9f80(puVar39,puVar32);
         if (puVar32 != puVar10) {
           puVar39 = puVar39 + 0x1b;
           do {
             uVar11 = *puVar32;
             pfVar34 = (float *)((int64_t)puVar39 + 4);
-            uStack_110._4_4_ = (float)((uint64_t)uVar11 >> 0x20);
+            local_var_110._4_4_ = (float)((uint64_t)uVar11 >> 0x20);
             puVar29 = puVar32;
-            if (*pfVar34 <= uStack_110._4_4_ && uStack_110._4_4_ != *pfVar34) {
+            if (*pfVar34 <= local_var_110._4_4_ && local_var_110._4_4_ != *pfVar34) {
               do {
                 pfVar34 = pfVar34 + -2;
                 *puVar29 = *(uint64_t *)
                             ((int64_t)puVar29 + ((int64_t)puVar39 - (int64_t)puVar32));
                 puVar29 = puVar29 + -1;
-              } while (*pfVar34 <= uStack_110._4_4_ && uStack_110._4_4_ != *pfVar34);
+              } while (*pfVar34 <= local_var_110._4_4_ && local_var_110._4_4_ != *pfVar34);
             }
             puVar32 = puVar32 + 1;
             *puVar29 = uVar11;
@@ -194,13 +190,13 @@ void FUN_1802d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
         uVar26 = (int)uVar20 + 1;
         uVar20 = (uint64_t)uVar26;
       }
-      FUN_1802da450(puVar38,puVar8,(int64_t)(int)(uVar26 - 1) * 2,param_2);
+      DataStructure_da450(puVar38,puVar8,(int64_t)(int)(uVar26 - 1) * 2,param_2);
       if (lVar24 < 0x1d) {
-        FUN_1802d9ee0(puVar38,puVar8,param_2);
+        DataStructure_d9ee0(puVar38,puVar8,param_2);
       }
       else {
         puVar31 = puVar38 + 0x1c;
-        FUN_1802d9ee0(puVar38,puVar31,param_2);
+        DataStructure_d9ee0(puVar38,puVar31,param_2);
         for (; puVar31 != puVar8; puVar31 = puVar31 + 1) {
           puVar38 = puVar31 + -1;
           uVar20 = *puVar31;
@@ -229,12 +225,12 @@ void FUN_1802d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
   }
   if (0 < lVar42) {
     pfVar34 = (float *)(lVar30 + ((int64_t)param_3 * 9 + 1) * 8);
-    uStack_110 = 0;
+    local_var_110 = 0;
     iStackX_18 = param_3;
     do {
       fVar49 = 49.0;
       pfVar1 = pfVar34 + -2;
-      pfVar41 = (float *)((int64_t)*(int *)(*(int64_t *)(param_2 + 0xf8) + uStack_110 * 8) * 0x70
+      pfVar41 = (float *)((int64_t)*(int *)(*(int64_t *)(param_2 + 0xf8) + local_var_110 * 8) * 0x70
                          + *(int64_t *)(param_2 + 0x58));
       if (*(char *)(param_2 + 0xa1) == '\0') {
         *pfVar1 = *pfVar41;
@@ -290,7 +286,7 @@ void FUN_1802d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
       pfVar34[9] = fVar44 * 60.0;
       fVar51 = pfVar41[9];
       fVar44 = pfVar41[8];
-      FUN_1802cf260(param_1 + 0x58,iStackX_18,pfVar1,fVar43 * pfVar41[0xb],
+      DataStructure_cf260(param_1 + 0x58,iStackX_18,pfVar1,fVar43 * pfVar41[0xb],
                     ((uint64_t)uVar26 << 0x10 | (int64_t)iVar37) << 0x20,pfVar41 + 0x14,
                     (ushort *)((int64_t)pfVar41 + 0x52),pfVar41 + 0x15);
       fVar49 = fVar51 * fVar49;
@@ -420,20 +416,13 @@ void FUN_1802d6020(int64_t param_1,int64_t param_2,int param_3,float *param_4)
       pfVar34[3] = fVar49;
       pfVar34 = pfVar34 + 0x12;
       iStackX_18 = iStackX_18 + 1;
-      uStack_110 = uStack_110 + 1;
-    } while (uStack_110 < lVar42);
+      local_var_110 = local_var_110 + 1;
+    } while (local_var_110 < lVar42);
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802d655a(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1802d655a(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void DataStructure_d655a(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+void DataStructure_d655a(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   float *pfVar1;
   short sVar2;
@@ -470,23 +459,22 @@ void FUN_1802d655a(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   float in_XMM5_Da;
   float unaff_XMM15_Da;
   float *pfStack0000000000000028;
-  ushort *puStack0000000000000030;
+  ushort *plocal_var_30;
   float *pfStack0000000000000038;
   char cStack0000000000000040;
   char cStack0000000000000044;
   int64_t lStack0000000000000048;
   char cStack0000000000000050;
   char cStack0000000000000054;
-  char in_stack_00000058;
-  int64_t in_stack_00000070;
-  uint64_t in_stack_00000078;
-  uint64_t uStack0000000000000160;
-  char in_stack_00000168;
-  int in_stack_00000170;
-  
+  char local_buffer_58;
+  int64_t local_buffer_70;
+  uint64_t local_buffer_78;
+  uint64_t local_var_160;
+  char local_var_168;
+  int local_var_170;
   pfVar18 = (float *)(param_2 + unaff_R15 * 8);
   lStack0000000000000048 = param_1;
-  uStack0000000000000160 = in_R10;
+  local_var_160 = in_R10;
   do {
     pfVar1 = pfVar18 + -2;
     pfVar17 = (float *)((int64_t)*(int *)(*unaff_R14 + lStack0000000000000048 * 8) * 0x70 +
@@ -548,9 +536,9 @@ void FUN_1802d655a(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
     fVar26 = pfVar17[9];
     fVar19 = pfVar17[8];
     pfStack0000000000000028 = pfVar17 + 0x14;
-    puStack0000000000000030 = (ushort *)((int64_t)pfVar17 + 0x52);
+    plocal_var_30 = (ushort *)((int64_t)pfVar17 + 0x52);
     pfStack0000000000000038 = pfVar17 + 0x15;
-    FUN_1802cf260(uStack0000000000000160,in_stack_00000170,pfVar1,unaff_XMM15_Da * pfVar17[0xb],
+    DataStructure_cf260(local_var_160,local_var_170,pfVar1,unaff_XMM15_Da * pfVar17[0xb],
                   param_4);
     in_XMM5_Da = fVar26 * in_XMM5_Da;
     pfVar18[10] = (float)((*(ushort *)(pfVar17 + 0x14) & 0xfff |
@@ -630,8 +618,8 @@ void FUN_1802d655a(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
       uVar12 = uVar14;
     }
     pfVar18[6] = (float)(((uVar16 << 8 | uVar7) << 8 | uVar11) << 8 | uVar12);
-    if ((cStack0000000000000050 == '\0') || (in_stack_00000168 == '\0')) {
-      if ((in_stack_00000058 == '\0') || (in_stack_00000168 == '\0')) {
+    if ((cStack0000000000000050 == '\0') || (local_var_168 == '\0')) {
+      if ((local_buffer_58 == '\0') || (local_var_168 == '\0')) {
         pfVar18[2] = unaff_R12D;
         fVar26 = 0.0;
       }
@@ -680,28 +668,15 @@ void FUN_1802d655a(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
     unaff_R14 = (int64_t *)(unaff_RBP + 0xf8);
     pfVar18[3] = fVar26;
     pfVar18 = pfVar18 + 0x12;
-    in_stack_00000170 = in_stack_00000170 + 1;
+    local_var_170 = local_var_170 + 1;
     lStack0000000000000048 = lStack0000000000000048 + 1;
     in_XMM5_Da = 49.0;
-    param_4 = in_stack_00000078;
-  } while (lStack0000000000000048 < in_stack_00000070);
+    param_4 = local_buffer_78;
+  } while (lStack0000000000000048 < local_buffer_70);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1802d6c32(void)
-void FUN_1802d6c32(void)
-
+// 函数: void DataStructure_d6c32(void)
+void DataStructure_d6c32(void)
 {
   return;
 }
-
-
-
-
-
-

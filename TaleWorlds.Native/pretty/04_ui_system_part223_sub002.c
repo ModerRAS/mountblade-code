@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part223_sub002.c - 1 个函数
-
-// 函数: void FUN_1807975fc(int64_t param_1,uint64_t param_2,float *param_3,float *param_4)
-void FUN_1807975fc(int64_t param_1,uint64_t param_2,float *param_3,float *param_4)
-
+// 函数: void SystemCore_975fc(int64_t param_1,uint64_t param_2,float *param_3,float *param_4)
+void SystemCore_975fc(int64_t param_1,uint64_t param_2,float *param_3,float *param_4)
 {
   float *pfVar1;
   float *pfVar2;
@@ -26,8 +23,7 @@ void FUN_1807975fc(int64_t param_1,uint64_t param_2,float *param_3,float *param_
   float unaff_XMM8_Da;
   float afStackX_8 [6];
   float afStackX_20 [2];
-  uint64_t in_stack_00000040;
-  
+  uint64_t local_var_40;
   if (3 < in_R10 - param_1) {
     fVar8 = unaff_XMM6_Da - in_XMM4_Da;
     do {
@@ -44,14 +40,14 @@ void FUN_1807975fc(int64_t param_1,uint64_t param_2,float *param_3,float *param_
       }
       afStackX_20[param_1 + -7] = fVar5;
       fVar6 = unaff_XMM8_Da;
-      if (*(float *)(&stack0x00000028 + param_1 * 4) < unaff_XMM6_Da) {
-        fVar6 = unaff_XMM7_Da - (*(float *)(&stack0x00000028 + param_1 * 4) - in_XMM4_Da) / fVar8;
+      if (*(float *)(&local_buffer_00000028 + param_1 * 4) < unaff_XMM6_Da) {
+        fVar6 = unaff_XMM7_Da - (*(float *)(&local_buffer_00000028 + param_1 * 4) - in_XMM4_Da) / fVar8;
         fVar6 = fVar6 * fVar6;
       }
       afStackX_8[param_1] = fVar6;
       fVar7 = unaff_XMM8_Da;
-      if (*(float *)(&stack0x0000002c + param_1 * 4) < unaff_XMM6_Da) {
-        fVar7 = unaff_XMM7_Da - (*(float *)(&stack0x0000002c + param_1 * 4) - in_XMM4_Da) / fVar8;
+      if (*(float *)(&local_buffer_0000002c + param_1 * 4) < unaff_XMM6_Da) {
+        fVar7 = unaff_XMM7_Da - (*(float *)(&local_buffer_0000002c + param_1 * 4) - in_XMM4_Da) / fVar8;
         fVar7 = fVar7 * fVar7;
       }
       afStackX_8[param_1 + 1] = fVar7;
@@ -147,12 +143,6 @@ void FUN_1807975fc(int64_t param_1,uint64_t param_2,float *param_3,float *param_
   }
   *unaff_RSI = in_XMM4_Da;
   *unaff_RBP = SQRT(param_3[2] * param_3[2] + *param_3 * *param_3);
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_40 ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-

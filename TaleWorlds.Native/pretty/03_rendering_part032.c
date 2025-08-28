@@ -1,58 +1,46 @@
 #include "TaleWorlds.Native.Split.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // ============================================================================
 // 03_rendering_part032.c - 渲染系统高级矩阵变换和投影计算模块
 // ============================================================================
-
 /**
  * @file 03_rendering_part032.c
  * @brief 渲染系统高级矩阵变换和投影计算模块
- * 
+ *
  * 本模块包含渲染系统的高级矩阵变换、投影计算、坐标变换和几何处理功能。
  * 主要负责3D渲染中的数学计算、矩阵运算、投影变换和坐标系统管理。
- * 
+ *
  * 主要功能：
  * - 矩阵变换和投影计算
  * - 坐标系统变换和投影参数设置
  * - 渲染队列管理和资源分配
  * - 几何边界计算和视锥体裁剪
  * - 内存管理和资源清理
- * 
+ *
  * @author Claude Code
  * @version 1.0
  * @date 2025-08-28
  */
-
 // ============================================================================
 // 常量定义
 // ============================================================================
-
 /** 渲染系统默认矩阵精度 */
 #define RENDERING_MATRIX_PRECISION 0.0001f
-
 /** 渲染系统最大投影距离 */
 #define RENDERING_MAX_PROJECTION_DISTANCE 10000.0f
-
 /** 渲染系统最小投影距离 */
 #define RENDERING_MIN_PROJECTION_DISTANCE 0.1f
-
 /** 渲染系统视锥体裁剪精度 */
 #define RENDERING_FRUSTUM_CULLING_PRECISION 0.001f
-
 /** 渲染系统矩阵栈大小 */
 #define RENDERING_MATRIX_STACK_SIZE 32
-
 /** 渲染系统投影矩阵类型 */
 typedef enum {
     RENDERING_PROJECTION_PERSPECTIVE = 0,  /**< 透视投影 */
     RENDERING_PROJECTION_ORTHOGRAPHIC = 1, /**< 正交投影 */
     RENDERING_PROJECTION_CUSTOM = 2         /**< 自定义投影 */
 } RenderingProjectionType;
-
 /** 渲染系统变换矩阵类型 */
 typedef enum {
     RENDERING_TRANSFORM_MODEL = 0,      /**< 模型变换矩阵 */
@@ -60,23 +48,17 @@ typedef enum {
     RENDERING_TRANSFORM_PROJECTION = 2, /**< 投影变换矩阵 */
     RENDERING_TRANSFORM_TEXTURE = 3     /**< 纹理变换矩阵 */
 } RenderingTransformType;
-
 // ============================================================================
 // 函数别名定义
 // ============================================================================
-
 // 高级内存分配器 - 用于渲染系统内存分配
 #define AdvancedMemoryAllocator CoreEngineMemoryPoolAllocator
-
 // 资源释放器 - 用于释放渲染系统资源
 #define ResourceReleaser CoreEngineMemoryPoolCleaner
-
 // 状态查询处理器 - 用于查询渲染系统状态
 #define StateQueryProcessor RenderingSystemStateQueryHandler
-
 // 数学计算器 - 用于渲染系统数学计算
 #define MathCalculator RenderingSystemMathCalculator
-
 // 全局数据引用
 #define RenderingSystemGlobalData rendering_system_global_data
 #define RenderingSystemDefaultData &rendering_system_default_data
@@ -85,11 +67,9 @@ typedef enum {
 #define RenderingSystemVTableData3 &rendering_vtable_data_3456
 #define RenderingSystemVTableData4 &rendering_vtable_data_3696
 #define RenderingSystemVTableData5 &rendering_vtable_data_3552
-
 // ============================================================================
 // 函数声明
 // ============================================================================
-
 /**
  * @brief 渲染系统矩阵数据添加函数
  * @param param_1 渲染数据指针数组
@@ -97,7 +77,6 @@ typedef enum {
  * @note 向渲染数据数组中添加新的矩阵数据
  */
 void RenderingSystemAddMatrixData(uint64_t *param_1, uint64_t *param_2);
-
 /**
  * @brief 渲染系统数据数组调整函数
  * @param param_1 渲染数据指针数组
@@ -105,7 +84,6 @@ void RenderingSystemAddMatrixData(uint64_t *param_1, uint64_t *param_2);
  * @note 调整渲染数据数组的大小以适应新的数据需求
  */
 void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2);
-
 /**
  * @brief 渲染系统资源清理函数
  * @param param_1 起始资源指针
@@ -113,7 +91,6 @@ void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2);
  * @note 清理渲染系统中的资源，释放内存
  */
 void RenderingSystemCleanupResources(int64_t *param_1, int64_t *param_2);
-
 /**
  * @brief 渲染系统数据复制函数
  * @param param_1 源数据指针
@@ -123,28 +100,24 @@ void RenderingSystemCleanupResources(int64_t *param_1, int64_t *param_2);
  * @note 在渲染系统中的不同缓冲区之间复制数据
  */
 uint64_t *RenderingSystemCopyData(uint64_t *param_1, uint64_t *param_2, uint64_t *param_3);
-
 /**
  * @brief 渲染系统投影参数清理函数
  * @param param_1 投影参数指针
  * @note 清理渲染系统的投影参数，释放相关资源
  */
 void RenderingSystemCleanupProjectionParameters(int64_t param_1);
-
 /**
  * @brief 渲染系统视图参数清理函数
  * @param param_1 视图参数指针
  * @note 清理渲染系统的视图参数，释放相关资源
  */
 void RenderingSystemCleanupViewParameters(int64_t param_1);
-
 /**
  * @brief 渲染系统纹理参数清理函数
  * @param param_1 纹理参数指针
  * @note 清理渲染系统的纹理参数，释放相关资源
  */
 void RenderingSystemCleanupTextureParameters(int64_t param_1);
-
 /**
  * @brief 渲染系统批量初始化函数
  * @param param_1 初始化目标指针
@@ -152,21 +125,18 @@ void RenderingSystemCleanupTextureParameters(int64_t param_1);
  * @note 批量初始化渲染系统的各种参数和状态
  */
 void RenderingSystemBatchInitialize(int64_t param_1, int64_t param_2);
-
 /**
  * @brief 渲染系统深度缓冲区清理函数
  * @param param_1 深度缓冲区指针
  * @note 清理渲染系统的深度缓冲区，释放相关资源
  */
 void RenderingSystemCleanupDepthBuffer(int64_t param_1);
-
 /**
  * @brief 渲染系统模板缓冲区清理函数
  * @param param_1 模板缓冲区指针
  * @note 清理渲染系统的模板缓冲区，释放相关资源
  */
 void RenderingSystemCleanupStencilBuffer(int64_t param_1);
-
 /**
  * @brief 渲染系统渲染队列创建函数
  * @param param_1 渲染队列指针
@@ -177,7 +147,6 @@ void RenderingSystemCleanupStencilBuffer(int64_t param_1);
  * @note 创建渲染系统的渲染队列，准备渲染操作
  */
 int64_t *RenderingSystemCreateRenderQueue(int64_t *param_1, int32_t *param_2, int32_t *param_3, uint64_t *param_4);
-
 /**
  * @brief 渲染系统内存池分配函数
  * @param param_1 内存池指针
@@ -185,7 +154,6 @@ int64_t *RenderingSystemCreateRenderQueue(int64_t *param_1, int32_t *param_2, in
  * @note 在渲染系统的内存池中分配内存
  */
 void RenderingSystemAllocateMemoryPool(int64_t param_1, int64_t param_2);
-
 /**
  * @brief 渲染系统状态查询函数
  * @param param_1 状态查询参数
@@ -194,7 +162,6 @@ void RenderingSystemAllocateMemoryPool(int64_t param_1, int64_t param_2);
  * @note 查询渲染系统的各种状态信息
  */
 int8_t RenderingSystemQueryState(int64_t param_1, int8_t param_2);
-
 /**
  * @brief 渲染系统状态查询扩展函数
  * @param param_1 查询参数1
@@ -204,14 +171,12 @@ int8_t RenderingSystemQueryState(int64_t param_1, int8_t param_2);
  * @note 扩展的渲染系统状态查询功能
  */
 int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, int64_t param_3);
-
 /**
  * @brief 渲染系统空操作函数
  * @return 空操作结果
  * @note 渲染系统的空操作函数，用于占位或同步
  */
 int8_t RenderingSystemEmptyOperation(void);
-
 /**
  * @brief 渲染系统资源释放函数
  * @param param_1 资源指针
@@ -222,7 +187,6 @@ int8_t RenderingSystemEmptyOperation(void);
  * @note 释放渲染系统中的各种资源
  */
 uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4);
-
 /**
  * @brief 渲染系统向量归一化函数
  * @param param_1 输入向量指针
@@ -232,7 +196,6 @@ uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, uint64_t param_2, ui
  * @note 对渲染系统中的向量进行归一化处理
  */
 float *RenderingSystemNormalizeVector(float *param_1, float *param_2, float *param_3);
-
 /**
  * @brief 渲染系统投影距离计算函数
  * @param param_1 投影参数指针
@@ -242,17 +205,15 @@ float *RenderingSystemNormalizeVector(float *param_1, float *param_2, float *par
  * @note 计算渲染系统中的投影距离
  */
 uint64_t RenderingSystemCalculateProjectionDistance(int64_t param_1, uint64_t param_2, float *param_3);
-
 // ============================================================================
 // 函数实现
 // ============================================================================
-
 /**
  * @brief 实现渲染系统矩阵数据添加功能
- * 
+ *
  * 此函数负责向渲染数据数组中添加新的矩阵数据。它首先检查数组是否有足够的空间，
  * 如果空间不足，会自动扩展数组大小。然后复制新的数据到数组中。
- * 
+ *
  * @param param_1 渲染数据指针数组
  * @param param_2 要添加的数据指针
  */
@@ -267,18 +228,16 @@ void RenderingSystemAddMatrixData(uint64_t *param_1, uint64_t *param_2)
     uint64_t *puVar7;
     int64_t lVar8;
     uint64_t *puVar9;
-    
     puVar9 = (uint64_t *)param_1[1];
     if (puVar9 < (uint64_t *)param_1[2]) {
-        // 数组有足够空间，直接添加数据
+// 数组有足够空间，直接添加数据
         param_1[1] = (uint64_t)(puVar9 + 2);
         uVar4 = param_2[1];
         *puVar9 = *param_2;
         puVar9[1] = uVar4;
         return;
     }
-    
-    // 数组空间不足，需要扩展
+// 数组空间不足，需要扩展
     puVar6 = (uint64_t *)*param_1;
     lVar8 = (int64_t)puVar9 - (int64_t)puVar6 >> 4;
     if (lVar8 == 0) {
@@ -291,23 +250,20 @@ void RenderingSystemAddMatrixData(uint64_t *param_1, uint64_t *param_2)
             goto joined_r0x000180284d76;
         }
     }
-    
-    // 分配新的内存空间
+// 分配新的内存空间
     puVar5 = (uint64_t *)AdvancedMemoryAllocator(RenderingSystemGlobalData, lVar8 << 4, (char)param_1[3]);
     puVar9 = (uint64_t *)param_1[1];
     puVar6 = (uint64_t *)*param_1;
     puVar7 = puVar5;
-    
 joined_r0x000180284d76:
-    // 复制现有数据到新空间
+// 复制现有数据到新空间
     for (; puVar6 != puVar9; puVar6 = puVar6 + 2) {
         uVar4 = puVar6[1];
         *puVar5 = *puVar6;
         puVar5[1] = uVar4;
         puVar5 = puVar5 + 2;
     }
-    
-    // 添加新数据
+// 添加新数据
     uVar1 = *(int32_t *)((int64_t)param_2 + 4);
     uVar2 = *(int32_t *)(param_2 + 1);
     uVar3 = *(int32_t *)((int64_t)param_2 + 0xc);
@@ -315,25 +271,22 @@ joined_r0x000180284d76:
     *(int32_t *)((int64_t)puVar5 + 4) = uVar1;
     *(int32_t *)(puVar5 + 1) = uVar2;
     *(int32_t *)((int64_t)puVar5 + 0xc) = uVar3;
-    
-    // 更新数组指针
+// 更新数组指针
     if (*param_1 == 0) {
         *param_1 = (uint64_t)puVar7;
         param_1[2] = (uint64_t)(puVar7 + lVar8 * 2);
         param_1[1] = (uint64_t)(puVar5 + 2);
         return;
     }
-    
-    // 处理错误情况
+// 处理错误情况
     ResourceReleaser();
 }
-
 /**
  * @brief 实现渲染系统数据数组调整功能
- * 
+ *
  * 此函数负责调整渲染数据数组的大小。它会根据需要扩展或收缩数组，
  * 同时保持数据的完整性和连续性。
- * 
+ *
  * @param param_1 渲染数据指针数组
  * @param param_2 调整大小
  */
@@ -350,10 +303,9 @@ void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2)
     int64_t *plVar9;
     uint64_t uVar10;
     int64_t lVar11;
-    
     puVar5 = (uint64_t *)param_1[1];
     if ((uint64_t)(param_1[2] - (int64_t)puVar5 >> 4) < param_2) {
-        // 需要扩展数组
+// 需要扩展数组
         puVar4 = (uint64_t *)*param_1;
         lVar6 = (int64_t)puVar5 - (int64_t)puVar4 >> 4;
         uVar10 = lVar6 * 2;
@@ -363,7 +315,6 @@ void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2)
         if (uVar10 < lVar6 + param_2) {
             uVar10 = lVar6 + param_2;
         }
-        
         puVar3 = (uint64_t *)0x0;
         if (uVar10 != 0) {
             puVar3 = (uint64_t *)
@@ -371,10 +322,9 @@ void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2)
             puVar5 = (uint64_t *)param_1[1];
             puVar4 = (uint64_t *)*param_1;
         }
-        
         puVar7 = puVar3;
         if (puVar4 != puVar5) {
-            // 复制数据到新位置
+// 复制数据到新位置
             lVar11 = (int64_t)puVar4 - (int64_t)puVar3;
             lVar6 = 8 - (int64_t)puVar4;
             do {
@@ -386,11 +336,10 @@ void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2)
                 puVar7 = puVar7 + 2;
             } while (puVar4 != puVar5);
         }
-        
         puVar5 = puVar7;
         uVar8 = param_2;
         if (param_2 != 0) {
-            // 初始化新增空间
+// 初始化新增空间
             do {
                 puVar5[1] = 0;
                 *puVar5 = 0;
@@ -398,8 +347,7 @@ void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2)
                 puVar5 = puVar5 + 2;
             } while (uVar8 != 0);
         }
-        
-        // 清理旧资源
+// 清理旧资源
         plVar2 = (int64_t *)param_1[1];
         plVar9 = (int64_t *)*param_1;
         if (plVar9 != plVar2) {
@@ -411,17 +359,15 @@ void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2)
             } while (plVar9 != plVar2);
             plVar9 = (int64_t *)*param_1;
         }
-        
         if (plVar9 != (int64_t *)0x0) {
             ResourceReleaser(plVar9);
         }
-        
-        // 更新指针
+// 更新指针
         *param_1 = (int64_t)puVar3;
         param_1[1] = (int64_t)(puVar7 + param_2 * 2);
         param_1[2] = (int64_t)(puVar3 + uVar10 * 2);
     } else {
-        // 调整现有空间
+// 调整现有空间
         uVar10 = param_2;
         if (param_2 != 0) {
             do {
@@ -436,13 +382,12 @@ void RenderingSystemResizeDataArray(int64_t *param_1, uint64_t param_2)
     }
     return;
 }
-
 /**
  * @brief 实现渲染系统资源清理功能
- * 
+ *
  * 此函数负责清理渲染系统中的资源。它会遍历资源数组，
  * 释放每个资源占用的内存，并清理相关的数据结构。
- * 
+ *
  * @param param_1 起始资源指针
  * @param param_2 结束资源指针
  */
@@ -458,13 +403,12 @@ void RenderingSystemCleanupResources(int64_t *param_1, int64_t *param_2)
     }
     return;
 }
-
 /**
  * @brief 实现渲染系统数据复制功能
- * 
+ *
  * 此函数负责在渲染系统中的不同缓冲区之间复制数据。
  * 它会处理数据的移动和清理，确保数据的完整性。
- * 
+ *
  * @param param_1 源数据指针
  * @param param_2 目标数据指针
  * @param param_3 目标缓冲区指针
@@ -475,7 +419,6 @@ uint64_t *RenderingSystemCopyData(uint64_t *param_1, uint64_t *param_2, uint64_t
     int32_t *puVar1;
     int64_t lVar2;
     int64_t lVar3;
-    
     if (param_1 != param_2) {
         lVar2 = (int64_t)param_1 - (int64_t)param_3;
         lVar3 = (int64_t)param_3 + (8 - (int64_t)param_1);
@@ -490,13 +433,12 @@ uint64_t *RenderingSystemCopyData(uint64_t *param_1, uint64_t *param_2, uint64_t
     }
     return param_3;
 }
-
 /**
  * @brief 实现渲染系统投影参数清理功能
- * 
+ *
  * 此函数负责清理渲染系统的投影参数。它会释放投影相关的资源，
  * 并重置投影参数到初始状态。
- * 
+ *
  * @param param_1 投影参数指针
  */
 void RenderingSystemCleanupProjectionParameters(int64_t param_1)
@@ -505,7 +447,6 @@ void RenderingSystemCleanupProjectionParameters(int64_t param_1)
     uint64_t *puVar2;
     uint64_t uVar3;
     uint64_t uVar4;
-    
     uVar3 = *(uint64_t *)(param_1 + 0x10);
     lVar1 = *(int64_t *)(param_1 + 8);
     uVar4 = 0;
@@ -536,13 +477,12 @@ void RenderingSystemCleanupProjectionParameters(int64_t param_1)
     }
     return;
 }
-
 /**
  * @brief 实现渲染系统视图参数清理功能
- * 
+ *
  * 此函数负责清理渲染系统的视图参数。它会释放视图相关的资源，
  * 并重置视图参数到初始状态。
- * 
+ *
  * @param param_1 视图参数指针
  */
 void RenderingSystemCleanupViewParameters(int64_t param_1)
@@ -551,7 +491,6 @@ void RenderingSystemCleanupViewParameters(int64_t param_1)
     uint64_t *puVar2;
     uint64_t uVar3;
     uint64_t uVar4;
-    
     uVar3 = *(uint64_t *)(param_1 + 0x10);
     lVar1 = *(int64_t *)(param_1 + 8);
     uVar4 = 0;
@@ -582,13 +521,12 @@ void RenderingSystemCleanupViewParameters(int64_t param_1)
     }
     return;
 }
-
 /**
  * @brief 实现渲染系统纹理参数清理功能
- * 
+ *
  * 此函数负责清理渲染系统的纹理参数。它会释放纹理相关的资源，
  * 并重置纹理参数到初始状态。
- * 
+ *
  * @param param_1 纹理参数指针
  */
 void RenderingSystemCleanupTextureParameters(int64_t param_1)
@@ -597,7 +535,6 @@ void RenderingSystemCleanupTextureParameters(int64_t param_1)
     uint64_t *puVar2;
     uint64_t uVar3;
     uint64_t uVar4;
-    
     uVar3 = *(uint64_t *)(param_1 + 0x10);
     lVar1 = *(int64_t *)(param_1 + 8);
     uVar4 = 0;
@@ -628,24 +565,22 @@ void RenderingSystemCleanupTextureParameters(int64_t param_1)
     }
     return;
 }
-
 /**
  * @brief 实现渲染系统批量初始化功能
- * 
+ *
  * 此函数负责批量初始化渲染系统的各种参数和状态。
  * 它会设置渲染对象的基本属性和初始状态。
- * 
+ *
  * @param param_1 初始化目标指针
  * @param param_2 初始化数量
  */
 void RenderingSystemBatchInitialize(int64_t param_1, int64_t param_2)
 {
     int32_t *puVar1;
-    
     if (param_2 != 0) {
         puVar1 = (int32_t *)(param_1 + 0x168);
         do {
-            // 初始化渲染对象的基本属性
+// 初始化渲染对象的基本属性
             *(void **)(puVar1 + -0x5a) = RenderingSystemVTableData1;
             *(uint64_t *)(puVar1 + -0x58) = 0;
             puVar1[-0x56] = 0;
@@ -672,8 +607,7 @@ void RenderingSystemBatchInitialize(int64_t param_1, int64_t param_2)
             *(uint64_t *)(puVar1 + 4) = 0;
             *(uint64_t *)(puVar1 + 6) = 0;
             puVar1[8] = 3;
-            
-            // 设置渲染参数的默认值
+// 设置渲染参数的默认值
             *(uint64_t *)(puVar1 + -0x43) = 0;
             puVar1[-0x41] = 0;
             puVar1[-0x3a] = 0;
@@ -710,13 +644,12 @@ void RenderingSystemBatchInitialize(int64_t param_1, int64_t param_2)
     }
     return;
 }
-
 /**
  * @brief 实现渲染系统深度缓冲区清理功能
- * 
+ *
  * 此函数负责清理渲染系统的深度缓冲区。它会释放深度相关的资源，
  * 并重置深度缓冲区到初始状态。
- * 
+ *
  * @param param_1 深度缓冲区指针
  */
 void RenderingSystemCleanupDepthBuffer(int64_t param_1)
@@ -725,7 +658,6 @@ void RenderingSystemCleanupDepthBuffer(int64_t param_1)
     uint64_t *puVar2;
     uint64_t uVar3;
     uint64_t uVar4;
-    
     uVar3 = *(uint64_t *)(param_1 + 0x18);
     lVar1 = *(int64_t *)(param_1 + 0x10);
     uVar4 = 0;
@@ -756,13 +688,12 @@ void RenderingSystemCleanupDepthBuffer(int64_t param_1)
     }
     return;
 }
-
 /**
  * @brief 实现渲染系统渲染队列创建功能
- * 
+ *
  * 此函数负责创建渲染系统的渲染队列。它会初始化渲染队列的
  * 各种参数，准备渲染操作。
- * 
+ *
  * @param param_1 渲染队列指针
  * @param param_2 顶点数据指针
  * @param param_3 索引数据指针
@@ -779,12 +710,11 @@ int64_t *RenderingSystemCreateRenderQueue(int64_t *param_1, int32_t *param_2, in
     int32_t uVar6;
     int32_t *puVar7;
     void *puVar8;
-    
     *param_1 = (int64_t)param_4;
     if (param_2 != param_3) {
         puVar7 = param_2 + 0x5a;
         do {
-            // 初始化渲染队列的基本结构
+// 初始化渲染队列的基本结构
             *param_4 = RenderingSystemVTableData1;
             param_4[1] = 0;
             *(int32_t *)(param_4 + 2) = 0;
@@ -918,13 +848,12 @@ int64_t *RenderingSystemCreateRenderQueue(int64_t *param_1, int32_t *param_2, in
     }
     return param_1;
 }
-
 /**
  * @brief 实现渲染系统内存池分配功能
- * 
+ *
  * 此函数负责在渲染系统的内存池中分配内存。它会计算需要的内存大小，
  * 并在内存池中分配相应的空间。
- * 
+ *
  * @param param_1 内存池指针
  * @param param_2 分配大小
  */
@@ -932,19 +861,17 @@ void RenderingSystemAllocateMemoryPool(int64_t param_1, int64_t param_2)
 {
     int64_t *plVar1;
     uint64_t uVar2;
-    
     plVar1 = *(int64_t **)(param_1 + 0x30);
     uVar2 = (int64_t)(int)plVar1[2] + 7U & 0xfffffffffffffff8;
     *(int *)(plVar1 + 2) = (int)uVar2 + ((int)param_2 + 1) * 8;
     memset(*plVar1 + uVar2, 0, param_2 * 8);
 }
-
 /**
  * @brief 实现渲染系统状态查询功能
- * 
+ *
  * 此函数负责查询渲染系统的各种状态信息。它会遍历渲染对象，
  * 检查每个对象的状态，并返回查询结果。
- * 
+ *
  * @param param_1 状态查询参数
  * @param param_2 查询标志
  * @return 查询结果状态
@@ -960,7 +887,6 @@ int8_t RenderingSystemQueryState(int64_t param_1, int8_t param_2)
     int64_t lVar7;
     int64_t lVar8;
     int iVar9;
-    
     lVar8 = *(int64_t *)(param_1 + 0x38);
     iVar9 = 0;
     uVar4 = 1;
@@ -1011,13 +937,12 @@ int8_t RenderingSystemQueryState(int64_t param_1, int8_t param_2)
     }
     return uVar4;
 }
-
 /**
  * @brief 实现渲染系统状态查询扩展功能
- * 
+ *
  * 此函数负责扩展的渲染系统状态查询功能。它提供了更详细的状态信息查询，
  * 支持多种查询模式和参数。
- * 
+ *
  * @param param_1 查询参数1
  * @param param_2 查询参数2
  * @param param_3 查询目标指针
@@ -1036,7 +961,6 @@ int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, int64_t p
     int64_t lVar7;
     int unaff_R14D;
     int8_t unaff_R15B;
-    
     lVar7 = 0;
     do {
         lVar2 = *(int64_t *)(lVar7 + param_3);
@@ -1082,27 +1006,24 @@ int8_t RenderingSystemQueryStateEx(uint64_t param_1, uint64_t param_2, int64_t p
            (uint64_t)(*(int64_t *)(unaff_RBP + 0x40) - param_3 >> 4));
     return uVar5;
 }
-
 /**
  * @brief 实现渲染系统空操作功能
- * 
+ *
  * 此函数是渲染系统的空操作函数，用于占位或同步操作。
- * 
+ *
  * @return 空操作结果
  */
 int8_t RenderingSystemEmptyOperation(void)
 {
     int8_t unaff_SIL;
-    
     return unaff_SIL;
 }
-
 /**
  * @brief 实现渲染系统资源释放功能
- * 
+ *
  * 此函数负责释放渲染系统中的各种资源。它会根据释放标志，
  * 释放相应的资源并清理内存。
- * 
+ *
  * @param param_1 资源指针
  * @param param_2 释放标志
  * @param param_3 释放参数1
@@ -1112,7 +1033,6 @@ int8_t RenderingSystemEmptyOperation(void)
 uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
     uint64_t uVar1;
-    
     uVar1 = 0xfffffffffffffffe;
     if ((int64_t *)param_1[4] != (int64_t *)0x0) {
         (**(code **)(*(int64_t *)param_1[4] + 0x38))();
@@ -1127,13 +1047,12 @@ uint64_t *RenderingSystemReleaseResource(uint64_t *param_1, uint64_t param_2, ui
     }
     return param_1;
 }
-
 /**
  * @brief 实现渲染系统向量归一化功能
- * 
+ *
  * 此函数负责对渲染系统中的向量进行归一化处理。
  * 它会计算向量的长度，并将向量归一化为单位向量。
- * 
+ *
  * @param param_1 输入向量指针
  * @param param_2 输出向量指针
  * @param param_3 向量长度指针
@@ -1150,7 +1069,6 @@ float *RenderingSystemNormalizeVector(float *param_1, float *param_2, float *par
     float fVar7;
     float fVar8;
     float fVar9;
-    
     fVar1 = *param_3;
     fVar2 = *param_1;
     fVar4 = -param_1[3];
@@ -1172,13 +1090,12 @@ float *RenderingSystemNormalizeVector(float *param_1, float *param_2, float *par
     param_2[1] = (fVar7 * fVar4 - fVar5 * fVar9) + fVar6 * fVar2 + fVar1;
     return param_2;
 }
-
 /**
  * @brief 实现渲染系统投影距离计算功能
- * 
+ *
  * 此函数负责计算渲染系统中的投影距离。它会根据投影参数和坐标，
  * 计算出相应的投影距离。
- * 
+ *
  * @param param_1 投影参数指针
  * @param param_2 距离参数
  * @param param_3 坐标指针
@@ -1189,42 +1106,35 @@ uint64_t RenderingSystemCalculateProjectionDistance(int64_t param_1, uint64_t pa
     float fStack_18;
     float fStack_14;
     float fStack_10;
-    int32_t uStack_c;
-    
+    int32_t local_var_c;
     fStack_18 = *param_3 - *(float *)(param_1 + 0x10);
     fStack_14 = param_3[1] - *(float *)(param_1 + 0x14);
     fStack_10 = param_3[2] - *(float *)(param_1 + 0x18);
-    uStack_c = 0x7f7fffff;
+    local_var_c = 0x7f7fffff;
     MathCalculator(0x7f7fffff, fStack_14, &fStack_18);
     return param_2;
 }
-
 // ============================================================================
 // 模块信息
 // ============================================================================
-
 /**
  * @brief 模块版本信息
  */
 #define RENDERING_MATRIX_MODULE_VERSION_MAJOR 1
 #define RENDERING_MATRIX_MODULE_VERSION_MINOR 0
 #define RENDERING_MATRIX_MODULE_VERSION_PATCH 0
-
 /**
  * @brief 模块构建信息
  */
 #define RENDERING_MATRIX_MODULE_BUILD_DATE "2025-08-28"
 #define RENDERING_MATRIX_MODULE_BUILD_AUTHOR "Claude Code"
 #define RENDERING_MATRIX_MODULE_DESCRIPTION "渲染系统高级矩阵变换和投影计算模块"
-
 // ============================================================================
-// FUN_函数语义化别名定义
+// 原始函数语义化别名定义
 // ============================================================================
-
-// 原始FUN_函数语义化别名定义
-#define RenderingSystemStateQueryHandler FUN_18007b240
+// 原始原始函数语义化别名定义
+#define RenderingSystemStateQueryHandler function_07b240
 #define RenderingSystemMathCalculator SystemCore_EventHandler
-
 // ============================================================================
 // 文件结束
 // ============================================================================

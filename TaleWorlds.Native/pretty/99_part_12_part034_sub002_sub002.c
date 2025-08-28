@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_12_part034_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_1807e17b0(float *param_1,float *param_2,uint param_3,float *param_4,uint param_5,
-void FUN_1807e17b0(float *param_1,float *param_2,uint param_3,float *param_4,uint param_5,
+// 函数: void function_7e17b0(float *param_1,float *param_2,uint param_3,float *param_4,uint param_5,
+void function_7e17b0(float *param_1,float *param_2,uint param_3,float *param_4,uint param_5,
                   uint param_6,int param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -176,7 +173,6 @@ void FUN_1807e17b0(float *param_1,float *param_2,uint param_3,float *param_4,uin
   float fVar167;
   float fVar168;
   float fVar169;
-  
   uVar143 = (param_7 != 0) - 1;
   uVar139 = param_5 & 3;
   uVar144 = 0xffffffff;
@@ -1541,11 +1537,3 @@ LAB_1807e1825:
   }
   return;
 }
-
-
-
-
-
-
-
-

@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part274.c - 2 个函数
-
-// 函数: void FUN_180821bb0(float *param_1,int param_2,int64_t param_3,int param_4,uint64_t *param_5,
-void FUN_180821bb0(float *param_1,int param_2,int64_t param_3,int param_4,uint64_t *param_5,
+// 函数: void NetworkProtocol_21bb0(float *param_1,int param_2,int64_t param_3,int param_4,uint64_t *param_5,
+void NetworkProtocol_21bb0(float *param_1,int param_2,int64_t param_3,int param_4,uint64_t *param_5,
                   int64_t *param_6,int param_7)
-
 {
   uint uVar1;
   uint uVar2;
@@ -25,7 +22,6 @@ void FUN_180821bb0(float *param_1,int param_2,int64_t param_3,int param_4,uint64
   float fVar16;
   float fVar17;
   int iStackX_10;
-  
   lVar7 = (int64_t)param_7;
   if (param_4 == 1) {
     if (param_2 != 0) {
@@ -464,14 +460,8 @@ void FUN_180821bb0(float *param_1,int param_2,int64_t param_3,int param_4,uint64
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180822f91(uint64_t *param_1)
-void FUN_180822f91(uint64_t *param_1)
-
+// 函数: void NetworkProtocol_22f91(uint64_t *param_1)
+void NetworkProtocol_22f91(uint64_t *param_1)
 {
   uint uVar1;
   uint uVar2;
@@ -497,10 +487,9 @@ void FUN_180822f91(uint64_t *param_1)
   float unaff_XMM13_Da;
   float unaff_XMM14_Da;
   float unaff_XMM15_Da;
-  int in_stack_000000e8;
-  uint64_t *in_stack_00000100;
-  int64_t *in_stack_00000108;
-  
+  int local_var_e8;
+  uint64_t *local_var_100;
+  int64_t *local_var_108;
   uVar6 = (uint64_t)(uint)*param_1;
   do {
     iVar7 = 0;
@@ -508,7 +497,7 @@ void FUN_180822f91(uint64_t *param_1)
     fVar15 = (float)(uVar6 & 0xffffffff) * 2.3283064e-10;
     if (0 < unaff_ESI) {
       do {
-        uVar1 = *(uint *)((int64_t)in_stack_00000100 + 4);
+        uVar1 = *(uint *)((int64_t)local_var_100 + 4);
         uVar2 = uVar1 * unaff_ESI + iVar7;
         uVar3 = (uVar1 + 1) * unaff_ESI + iVar7;
         uVar4 = (uVar1 + 2) * unaff_ESI + iVar7;
@@ -540,19 +529,14 @@ void FUN_180822f91(uint64_t *param_1)
                                (fVar14 - fVar10) + (fVar14 - fVar10)) * fVar15 * 0.041666668 +
                      fVar12;
         unaff_RBP = unaff_RBP + 1;
-        param_1 = in_stack_00000100;
-        unaff_R15D = in_stack_000000e8;
+        param_1 = local_var_100;
+        unaff_R15D = local_var_e8;
       } while (lVar8 < unaff_R14);
     }
-    *param_1 = *param_1 + *in_stack_00000108;
+    *param_1 = *param_1 + *local_var_108;
     uVar6 = *param_1;
     unaff_R15D = unaff_R15D + -1;
-    in_stack_000000e8 = unaff_R15D;
+    local_var_e8 = unaff_R15D;
   } while (unaff_R15D != 0);
   return;
 }
-
-
-
-
-

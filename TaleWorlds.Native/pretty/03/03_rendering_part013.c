@@ -2,27 +2,22 @@
 #include "SystemAdvancedValidator_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 03_rendering_part013.c - 渲染系统组件 (7个函数)
 // 渲染数据初始化、材质管理、碰撞检测、渲染优化等功能的实现
-
 /**
  * 渲染数据初始化函数
  * 从源数据结构复制并初始化渲染目标数据，包括材质属性、纹理坐标、变换矩阵等
- * 
- * 原始函数名: FUN_180275a60
- * 
+ *
+ * 原始函数名: RenderingSystem_275A60
+ *
  * @param src_data_ptr 源数据结构指针
  * @param dest_data_ptr 目标数据结构指针
  * @param render_flag 渲染标志位
  * @param texture_param 纹理参数
  */
 void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uint64_t render_flag, uint64_t texture_param)
-
 {
   int64_t *material_ptr;
   int64_t *texture_ptr;
@@ -37,20 +32,16 @@ void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uin
   int64_t buffer_offset;
   int64_t vertex_index;
   int64_t *buffer_ptr;
-  
-  // 初始化渲染参数
+// 初始化渲染参数
   SystemCore_ConfigurationHandler0(dest_data_ptr + 0x3e, src_data_ptr + 0x1f0, render_flag, texture_param, 0xfffffffffffffffe);
-  
-  // 复制基础渲染数据
+// 复制基础渲染数据
   dest_data_ptr[6] = *(int64_t *)(src_data_ptr + 0x30);
   *(int32_t *)(dest_data_ptr + 0xb) = *(int32_t *)(src_data_ptr + 0x58);
-  
-  // 复制纹理坐标数据
+// 复制纹理坐标数据
   texture_data = *(uint64_t *)(src_data_ptr + 0x21c);
   *(uint64_t *)((int64_t)dest_data_ptr + 0x214) = *(uint64_t *)(src_data_ptr + 0x214);
   *(uint64_t *)((int64_t)dest_data_ptr + 0x21c) = texture_data;
-  
-  // 复制材质属性
+// 复制材质属性
   material_prop1 = *(int32_t *)(src_data_ptr + 0x228);
   material_prop2 = *(int32_t *)(src_data_ptr + 0x22c);
   material_prop3 = *(int32_t *)(src_data_ptr + 0x230);
@@ -58,8 +49,7 @@ void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uin
   *(int32_t *)(dest_data_ptr + 0x45) = material_prop1;
   *(int32_t *)((int64_t)dest_data_ptr + 0x22c) = material_prop2;
   *(int32_t *)(dest_data_ptr + 0x46) = material_prop3;
-  
-  // 复制附加材质属性
+// 复制附加材质属性
   material_prop1 = *(int32_t *)(src_data_ptr + 0x238);
   material_prop2 = *(int32_t *)(src_data_ptr + 0x23c);
   material_prop3 = *(int32_t *)(src_data_ptr + 0x240);
@@ -67,14 +57,12 @@ void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uin
   *(int32_t *)(dest_data_ptr + 0x47) = material_prop1;
   *(int32_t *)((int64_t)dest_data_ptr + 0x23c) = material_prop2;
   *(int32_t *)(dest_data_ptr + 0x48) = material_prop3;
-  
-  // 复制渲染缓冲区数据
+// 复制渲染缓冲区数据
   *(int32_t *)((int64_t)dest_data_ptr + 0x244) = *(int32_t *)(src_data_ptr + 0x244);
   *(int8_t *)(dest_data_ptr + 0x78) = *(int8_t *)(src_data_ptr + 0x3c0);
   *(int32_t *)((int64_t)dest_data_ptr + 0x3c4) = *(int32_t *)(src_data_ptr + 0x3c4);
   *(int32_t *)(dest_data_ptr + 0x42) = *(int32_t *)(src_data_ptr + 0x210);
-  
-  // 处理材质引用
+// 处理材质引用
   material_ptr = *(int64_t **)(src_data_ptr + 0x3b8);
   if (material_ptr != (int64_t *)0x0) {
     (**(code **)(*material_ptr + 0x28))(material_ptr);
@@ -84,8 +72,7 @@ void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uin
   if (texture_ptr != (int64_t *)0x0) {
     (**(code **)(*texture_ptr + 0x38))();
   }
-  
-  // 复制光照和颜色数据
+// 复制光照和颜色数据
   *(int32_t *)(dest_data_ptr + 0xd) = *(int32_t *)(src_data_ptr + 0x68);
   material_prop1 = *(int32_t *)(src_data_ptr + 0x70);
   material_prop2 = *(int32_t *)(src_data_ptr + 0x74);
@@ -96,27 +83,23 @@ void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uin
   *(int32_t *)(dest_data_ptr + 0xf) = material_prop3;
   *(int32_t *)((int64_t)dest_data_ptr + 0x7c) = *(int32_t *)(src_data_ptr + 0x7c);
   *(int32_t *)(dest_data_ptr + 0x12) = *(int32_t *)(src_data_ptr + 0x90);
-  
-  // 复制着色器名称
+// 复制着色器名称
   vertex_data = &system_buffer_ptr;
   if (*(void **)(src_data_ptr + 0x88) != (void *)0x0) {
     vertex_data = *(void **)(src_data_ptr + 0x88);
   }
   strcpy_s(dest_data_ptr[0x11], 0x80, vertex_data);
-  
-  // 复制纹理名称
+// 复制纹理名称
   *(int32_t *)(dest_data_ptr + 0x25) = *(int32_t *)(src_data_ptr + 0x128);
   vertex_data = &system_buffer_ptr;
   if (*(void **)(src_data_ptr + 0x120) != (void *)0x0) {
     vertex_data = *(void **)(src_data_ptr + 0x120);
   }
   strcpy_s(dest_data_ptr[0x24], 0x80, vertex_data);
-  
-  // 初始化变换矩阵
+// 初始化变换矩阵
   SystemCore_ConfigurationHandler0(dest_data_ptr + 0x36, src_data_ptr + 0x1b0);
   SystemCore_ConfigurationHandler0(dest_data_ptr + 0x3a, src_data_ptr + 0x1d0);
-  
-  // 处理着色器引用
+// 处理着色器引用
   material_ptr = *(int64_t **)(src_data_ptr + 0x3c8);
   if (material_ptr != (int64_t *)0x0) {
     (**(code **)(*material_ptr + 0x28))(material_ptr);
@@ -126,14 +109,12 @@ void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uin
   if (texture_ptr != (int64_t *)0x0) {
     (**(code **)(*texture_ptr + 0x38))();
   }
-  
-  // 复制渲染状态
+// 复制渲染状态
   *(int32_t *)((int64_t)dest_data_ptr + 0x5c) = *(int32_t *)(src_data_ptr + 0x5c);
-  
-  // 处理顶点数据
+// 处理顶点数据
   if ((char)render_flag != '\0') {
     vertex_index = *(int64_t *)(src_data_ptr + 0x40) - *(int64_t *)(src_data_ptr + 0x38) >> 4;
-    FUN_180284240(dest_data_ptr + 7, vertex_index);
+    DataStructure_84240(dest_data_ptr + 7, vertex_index);
     vertex_count = (int)vertex_index;
     vertex_index = (int64_t)vertex_count;
     if (0 < vertex_count) {
@@ -161,32 +142,27 @@ void initialize_rendering_data(int64_t src_data_ptr, int64_t *dest_data_ptr, uin
       } while (vertex_index != 0);
     }
   }
-  
-  // 执行渲染后处理
+// 执行渲染后处理
   (**(code **)(*dest_data_ptr + 0x148))(dest_data_ptr, src_data_ptr + 0x330);
   return;
 }
-
-
 /**
  * 渲染对象添加函数 (索引类型)
  * 向渲染系统添加新的渲染对象，使用索引标识符
- * 
- * 原始函数名: FUN_180275cf0
- * 
+ *
+ * 原始函数名: DataStructure_75cf0
+ *
  * @param render_context_ptr 渲染上下文指针
  * @param object_index 对象索引
  * @param object_data_ptr 对象数据指针
  * @param update_flag 更新标志
  */
 void add_rendering_object_by_index(int64_t *render_context_ptr, int object_index, int64_t *object_data_ptr, char update_flag)
-
 {
   int64_t *object_ref;
   int64_t context_data;
   int64_t *temp_object;
   int index_mask;
-  
   temp_object = (int64_t *)0x0;
   object_ref = (int64_t *)*object_data_ptr;
   if (object_ref != (int64_t *)0x0) {
@@ -194,15 +170,13 @@ void add_rendering_object_by_index(int64_t *render_context_ptr, int object_index
   }
   index_mask = 1 << ((byte)object_index & 0x1f);
   temp_object = object_ref;
-  FUN_1802842e0(render_context_ptr + 7, &temp_object);
+  DataStructure_842e0(render_context_ptr + 7, &temp_object);
   *(int64_t **)(*object_data_ptr + 0x1c8) = render_context_ptr;
-  
-  // 更新最大索引
+// 更新最大索引
   if ((int)render_context_ptr[0xb] < object_index + 1) {
     *(int *)(render_context_ptr + 0xb) = object_index + 1;
   }
-  
-  // 执行更新操作
+// 执行更新操作
   if (update_flag != '\0') {
     if (*(code **)(*render_context_ptr + 0x160) == (code *)&processed_var_6368_ptr) {
       SystemCore_UpdateState(render_context_ptr, (int64_t)render_context_ptr + 0x214, 0);
@@ -214,12 +188,11 @@ void add_rendering_object_by_index(int64_t *render_context_ptr, int object_index
     if (context_data != 0) {
       *(short *)(context_data + 0x2b0) = *(short *)(context_data + 0x2b0) + 1;
       if (*(int64_t *)(context_data + 0x168) != 0) {
-        func_0x0001802eeba0();
+        Function_bcb0dca9();
       }
     }
   }
-  
-  // 清理临时对象
+// 清理临时对象
   if (temp_object != (int64_t *)0x0) {
     (**(code **)(*temp_object + 0x38))();
   }
@@ -228,28 +201,24 @@ void add_rendering_object_by_index(int64_t *render_context_ptr, int object_index
   }
   return;
 }
-
-
 /**
  * 渲染对象添加函数 (位掩码类型)
  * 向渲染系统添加新的渲染对象，使用位掩码标识符
- * 
- * 原始函数名: FUN_180275e10
- * 
+ *
+ * 原始函数名: DataStructure_75e10
+ *
  * @param render_context_ptr 渲染上下文指针
  * @param bitmask_flag 位掩码标志
  * @param object_data_ptr 对象数据指针
  * @param update_flag 更新标志
  */
 void add_rendering_object_by_bitmask(int64_t *render_context_ptr, uint bitmask_flag, int64_t *object_data_ptr, char update_flag)
-
 {
   int64_t *object_ref;
   int64_t context_data;
   int bit_position;
   int64_t *temp_object;
   uint temp_bitmask;
-  
   temp_object = (int64_t *)0x0;
   object_ref = (int64_t *)*object_data_ptr;
   temp_bitmask = bitmask_flag;
@@ -257,10 +226,9 @@ void add_rendering_object_by_bitmask(int64_t *render_context_ptr, uint bitmask_f
     (**(code **)(*object_ref + 0x28))(object_ref);
   }
   temp_object = object_ref;
-  FUN_1802842e0(render_context_ptr + 7, &temp_object);
+  DataStructure_842e0(render_context_ptr + 7, &temp_object);
   *(int64_t **)(*object_data_ptr + 0x1c8) = render_context_ptr;
-  
-  // 计算位掩码的位置
+// 计算位掩码的位置
   bit_position = -1;
   if (bitmask_flag != 0) {
     do {
@@ -268,13 +236,11 @@ void add_rendering_object_by_bitmask(int64_t *render_context_ptr, uint bitmask_f
       bitmask_flag = bitmask_flag >> 1;
     } while (bitmask_flag != 0);
   }
-  
-  // 更新最大位位置
+// 更新最大位位置
   if ((int)render_context_ptr[0xb] < bit_position + 1) {
     *(int *)(render_context_ptr + 0xb) = bit_position + 1;
   }
-  
-  // 执行更新操作
+// 执行更新操作
   if (update_flag != '\0') {
     if (*(code **)(*render_context_ptr + 0x160) == (code *)&processed_var_6368_ptr) {
       SystemCore_UpdateState(render_context_ptr, (int64_t)render_context_ptr + 0x214, 0);
@@ -286,11 +252,10 @@ void add_rendering_object_by_bitmask(int64_t *render_context_ptr, uint bitmask_f
     if ((context_data != 0) &&
        (*(short *)(context_data + 0x2b0) = *(short *)(context_data + 0x2b0) + 1, *(int64_t *)(context_data + 0x168) != 0
        )) {
-      func_0x0001802eeba0();
+      Function_bcb0dca9();
     }
   }
-  
-  // 清理临时对象
+// 清理临时对象
   if (temp_object != (int64_t *)0x0) {
     (**(code **)(*temp_object + 0x38))();
   }
@@ -299,27 +264,23 @@ void add_rendering_object_by_bitmask(int64_t *render_context_ptr, uint bitmask_f
   }
   return;
 }
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 渲染对象碰撞检测函数
  * 检测渲染对象与指定参数的碰撞，返回碰撞结果
- * 
- * 原始函数名: FUN_180275f30
- * 
+ *
+ * 原始函数名: DataStructure_75f30
+ *
  * @param object_ptr 对象指针
  * @param render_flags 渲染标志
  * @param collision_param 碰撞参数
  * @param position_data 位置数据
  * @param transform_data 变换数据
- * 
+ *
  * @return 碰撞结果标志位
  */
 uint64_t check_rendering_object_collision(uint64_t *object_ptr, uint *render_flags, uint64_t collision_param, float *position_data,
                        uint64_t *transform_data)
-
 {
   float transform_matrix[16];
   float vertex_position[4];
@@ -366,14 +327,13 @@ uint64_t check_rendering_object_collision(uint64_t *object_ptr, uint *render_fla
   uint64_t transform_params[3];
   int32_t matrix_values[8];
   float stack_vertices[16];
-  
   result_flag = (uint64_t)*(uint *)(object_ptr + 0x42);
   if (((*render_flags & *(uint *)(object_ptr + 0x42)) == 0) || (*(int *)(object_ptr + 0xb) == 0)) {
 LAB_180276376:
     result_flag = result_flag & 0xffffffffffffff00;
   }
   else {
-    // 复制变换矩阵数据
+// 复制变换矩阵数据
     stack_transform[0] = *transform_data;
     transform_param = transform_data[1];
     transform_matrix2 = transform_data[3];
@@ -392,20 +352,18 @@ LAB_180276376:
     matrix_values[5] = *(int32_t *)(transform_data + 0xc);
     matrix_values[6] = *(int32_t *)((int64_t)transform_data + 100);
     matrix_values[7] = *(int32_t *)(transform_data + 0xd);
-    
-    // 设置变换参数
+// 设置变换参数
     stack_params._0_4_ = (int)transform_param;
     vertex_index = (int)stack_params + *(int *)((int64_t)object_ptr + 0x5c);
     stack_indices = (int16_t)((uint64_t)transform_param >> 0x30);
     _stack_params = CONCAT15(*(int8_t *)(object_ptr + 0x76), (int5)transform_param);
-    _stack_params = CONCAT44(stack0xffffffffffffff24, vertex_index);
+    _stack_params = CONCAT44(local_buffer_ffffffffffffff24, vertex_index);
     if (vertex_index == 0) {
       vertex_index = *(int *)(object_ptr + 0x62);
       transform_param3 = *(int32_t *)(object_ptr + 99);
     }
     object_index = 0;
-    
-    // 检查对象类型
+// 检查对象类型
     if (*(char *)(object_ptr + 0xc) == '\0') {
       if (vertex_index < 0) {
         vertex_index = 0;
@@ -417,10 +375,9 @@ LAB_180276376:
     object_type = 1;
     bitmask_flag = 1 << ((byte)vertex_index & 0x1f);
     transform_ptr = object_ptr;
-    
-    // 处理简单碰撞检测
+// 处理简单碰撞检测
     if ((*(char *)(object_ptr + 100) == '\0') && (*(char *)(object_ptr + 0x76) == -1)) {
-      // 计算顶点变换
+// 计算顶点变换
       temp_float3 = *position_data;
       temp_float4 = position_data[1];
       temp_float5 = position_data[2];
@@ -439,8 +396,7 @@ LAB_180276376:
       temp_float13 = position_data[6];
       temp_float14 = position_data[7];
       temp_float1 = *(float *)(object_ptr + 0x68);
-      
-      // 变换矩阵计算
+// 变换矩阵计算
       stack_vertices[0] = temp_float18 * temp_float11 + temp_float15 * temp_float3 + temp_float16 * temp_float7;
       stack_vertices[1] = temp_float18 * temp_float12 + temp_float15 * temp_float4 + temp_float16 * temp_float8;
       stack_vertices[2] = temp_float18 * temp_float13 + temp_float15 * temp_float5 + temp_float16 * temp_float9;
@@ -464,8 +420,7 @@ LAB_180276376:
       stack_vertices[13] = temp_float17 * temp_float12 + temp_float1 * temp_float4 + temp_float18 * temp_float8 + position_data[0xd];
       stack_vertices[14] = temp_float17 * temp_float13 + temp_float1 * temp_float5 + temp_float18 * temp_float9 + position_data[0xe];
       stack_vertices[15] = temp_float17 * temp_float14 + temp_float1 * temp_float6 + temp_float18 * temp_float10 + position_data[0xf];
-      
-      // 距离检测
+// 距离检测
       if ((result_flag != 0) && (temp_float18 = *(float *)(object_ptr + 0xd), temp_float18 != 3.4028235e+38)) {
         if ((void *)*object_ptr == &processed_var_9304_ptr) {
           collision_data = (int64_t)object_ptr + 0x214;
@@ -482,8 +437,7 @@ LAB_180276376:
             (temp_float17 * temp_float17 + temp_float16 * temp_float16 + temp_float15 * temp_float15) -
             *(float *)(collision_data + 0x30) * *(float *)(collision_data + 0x30)) goto LAB_180276376;
       }
-      
-      // 遍历对象进行碰撞检测
+// 遍历对象进行碰撞检测
       vertex_index = (int)((int64_t)(object_ptr[8] - object_ptr[7]) >> 4);
       collision_data = (int64_t)vertex_index;
       if (0 < vertex_index) {
@@ -503,7 +457,7 @@ LAB_180276376:
       }
     }
     else {
-      // 复杂碰撞检测路径
+// 复杂碰撞检测路径
       result_flag = *(uint64_t *)(render_flags + 10);
       if ((result_flag != 0) && (temp_float18 = *(float *)(object_ptr + 0xd), temp_float18 != 3.4028235e+38)) {
         if ((void *)*object_ptr == &processed_var_9304_ptr) {
@@ -535,7 +489,7 @@ LAB_180276376:
               object_type = object_type & collision_result;
             }
             else {
-              FUN_180075630(temp_float2, position_data);
+              GenericFunction_180075630(temp_float2, position_data);
             }
           }
           object_index = object_index + 0x10;
@@ -547,25 +501,21 @@ LAB_180276376:
   }
   return result_flag;
 }
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 渲染变换处理函数
  * 处理渲染对象的变换矩阵和位置计算
- * 
- * 原始函数名: FUN_18027606a
- * 
+ *
+ * 原始函数名: DataStructure_7606a
+ *
  * @param transform_param1 变换参数1
  * @param transform_param2 变换参数2
  * @param transform_param3 变换参数3
  * @param transform_param4 变换参数4
- * 
+ *
  * @return 处理结果标志
  */
 uint64_t process_rendering_transform(uint64_t transform_param1, uint64_t transform_param2, uint64_t transform_param3, uint64_t transform_param4)
-
 {
   float matrix_row1[4];
   float matrix_row2[4];
@@ -589,8 +539,7 @@ uint64_t process_rendering_transform(uint64_t transform_param1, uint64_t transfo
   float transform_matrix[4];
   float vertex_data[4];
   float position_data[4];
-  
-  // 获取变换矩阵数据
+// 获取变换矩阵数据
   matrix_row1[0] = *(float *)(render_flag + 0x20);
   matrix_row1[1] = *(float *)(render_flag + 0x24);
   matrix_row1[2] = *(float *)(render_flag + 0x28);
@@ -602,16 +551,14 @@ uint64_t process_rendering_transform(uint64_t transform_param1, uint64_t transfo
   transform_result[0] = *(float *)(transform_ptr + 0x68);
   transform_scale[0] = *(float *)(transform_ptr + 0x69);
   transform_scale[1] = *(float *)(transform_ptr + 0x6a);
-  
-  // 计算第一行变换结果
+// 计算第一行变换结果
   *(float *)(context_ptr + -0x21) = (float)transform_param3 * matrix_row2[0] + (float)transform_param1 + (float)transform_param2 * matrix_row1[0];
   *(float *)(context_ptr + -0x1d) =
        (float)((uint64_t)transform_param3 >> 0x20) * matrix_row2[1] + (float)((uint64_t)transform_param1 >> 0x20) +
        (float)((uint64_t)transform_param2 >> 0x20) * matrix_row1[1];
   *(float *)(context_ptr + -0x19) = vertex_data[2] * matrix_row2[2] + vertex_data[0] + position_data[0] * matrix_row1[2];
   *(float *)(context_ptr + -0x15) = vertex_data[3] * matrix_row2[3] + vertex_data[1] + position_data[1] * matrix_row1[3];
-  
-  // 计算第二行变换结果
+// 计算第二行变换结果
   transform_matrix[0] = *(float *)((int64_t)transform_ptr + 0x354);
   transform_scale[2] = *(float *)(transform_ptr + 0x6b);
   *(float *)(context_ptr + -0x11) = (float)transform_param4 * matrix_row2[0] + transform_result[0] * position_data[0] + transform_scale[0] * matrix_row1[0];
@@ -619,8 +566,7 @@ uint64_t process_rendering_transform(uint64_t transform_param1, uint64_t transfo
        (float)((uint64_t)transform_param4 >> 0x20) * matrix_row2[1] + transform_result[0] * position_data[1] + transform_scale[0] * matrix_row1[1];
   *(float *)(context_ptr + -9) = transform_result[2] * matrix_row2[2] + transform_result[0] * position_data[2] + transform_scale[0] * matrix_row1[2];
   *(float *)(context_ptr + -5) = transform_result[3] * matrix_row2[3] + transform_result[0] * position_data[3] + transform_scale[0] * matrix_row1[3];
-  
-  // 计算第三行变换结果
+// 计算第三行变换结果
   transform_result[0] = *(float *)((int64_t)transform_ptr + 0x364);
   transform_scale[1] = *(float *)(transform_ptr + 0x6c);
   transform_scale[2] = *(float *)(transform_ptr + 0x6d);
@@ -628,8 +574,7 @@ uint64_t process_rendering_transform(uint64_t transform_param1, uint64_t transfo
   *(float *)(context_ptr + 3) = transform_matrix[0] * matrix_row2[1] + transform_scale[1] * position_data[1] + transform_scale[2] * matrix_row1[1];
   *(float *)(context_ptr + 7) = transform_matrix[0] * matrix_row2[2] + transform_scale[1] * position_data[2] + transform_scale[2] * matrix_row1[2];
   *(float *)(context_ptr + 0xb) = transform_matrix[0] * matrix_row2[3] + transform_scale[1] * position_data[3] + transform_scale[2] * matrix_row1[3];
-  
-  // 获取附加变换参数
+// 获取附加变换参数
   transform_scale[1] = *(float *)(render_flag + 0x34);
   transform_matrix[0] = *(float *)(render_flag + 0x38);
   transform_scale[2] = *(float *)(render_flag + 0x3c);
@@ -638,8 +583,7 @@ uint64_t process_rendering_transform(uint64_t transform_param1, uint64_t transfo
   *(float *)(context_ptr + 0x13) = transform_result[0] * matrix_row2[1] + transform_scale[1] * position_data[1] + transform_scale[2] * matrix_row1[1] + transform_scale[1];
   *(float *)(context_ptr + 0x17) = transform_result[0] * matrix_row2[2] + transform_scale[1] * position_data[2] + transform_scale[2] * matrix_row1[2] + transform_matrix[0];
   *(float *)(context_ptr + 0x1b) = transform_result[0] * matrix_row2[3] + transform_scale[1] * position_data[3] + transform_scale[2] * matrix_row1[3] + transform_scale[2];
-  
-  // 执行碰撞检测
+// 执行碰撞检测
   if ((render_flags != 0) && (transform_result[0] = *(float *)(transform_ptr + 0xd), transform_result[0] != 3.4028235e+38)) {
     if ((void *)*transform_ptr == &processed_var_9304_ptr) {
       collision_data = (int64_t)transform_ptr + 0x214;
@@ -658,8 +602,7 @@ uint64_t process_rendering_transform(uint64_t transform_param1, uint64_t transfo
       return render_flags & 0xffffffffffffff00;
     }
   }
-  
-  // 遍历对象进行处理
+// 遍历对象进行处理
   object_count = (int)((int64_t)(transform_ptr[8] - transform_ptr[7]) >> 4);
   collision_data = (int64_t)object_count;
   if (object_count < 1) {
@@ -683,20 +626,16 @@ uint64_t process_rendering_transform(uint64_t transform_param1, uint64_t transfo
   }
   return result_flags;
 }
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 渲染优化处理函数
  * 对渲染对象进行优化处理，提高渲染性能
- * 
- * 原始函数名: FUN_18027613a
- * 
+ *
+ * 原始函数名: DataStructure_7613a
+ *
  * @return 优化处理结果标志
  */
 uint64_t optimize_rendering_objects(void)
-
 {
   int64_t object_ptr;
   byte optimization_result;
@@ -711,8 +650,7 @@ uint64_t optimize_rendering_objects(void)
   byte visibility_flag;
   int64_t collision_data;
   float position_data[4];
-  
-  // 获取渲染参数
+// 获取渲染参数
   position_data[3] = *(float *)(render_context + 0xd);
   if (position_data[3] != 3.4028235e+38) {
     if ((void *)*render_context == &processed_var_9304_ptr) {
@@ -732,8 +670,7 @@ uint64_t optimize_rendering_objects(void)
       return render_flags & 0xffffffffffffff00;
     }
   }
-  
-  // 遍历对象进行优化
+// 遍历对象进行优化
   object_count = (int)((int64_t)(render_context[8] - render_context[7]) >> 4);
   collision_data = (int64_t)object_count;
   if (object_count < 1) {
@@ -757,20 +694,16 @@ uint64_t optimize_rendering_objects(void)
   }
   return result_flags;
 }
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 渲染状态更新函数
  * 更新渲染对象的状态信息
- * 
- * 原始函数名: FUN_1802762d8
- * 
+ *
+ * 原始函数名: DataStructure_762d8
+ *
  * @return 更新结果标志
  */
 byte update_rendering_state(void)
-
 {
   int64_t object_ptr;
   byte update_result;
@@ -781,7 +714,6 @@ byte update_rendering_state(void)
   int64_t collision_data;
   uint render_flag;
   byte visibility_flag;
-  
   object_count = (int)object_index;
   if (0 < object_count) {
     do {
@@ -797,7 +729,7 @@ byte update_rendering_state(void)
           visibility_flag = visibility_flag & update_result;
         }
         else {
-          FUN_180075630();
+          GenericFunction_180075630();
         }
       }
       render_index = render_index + 0x10;
@@ -806,40 +738,33 @@ byte update_rendering_state(void)
   }
   return visibility_flag;
 }
-
-
 /**
  * 渲染标志获取函数
  * 获取当前的渲染标志状态
- * 
- * 原始函数名: FUN_180276370
- * 
+ *
+ * 原始函数名: DataStructure_76370
+ *
  * @return 渲染标志状态
  */
 int8_t get_rendering_flags(void)
-
 {
   int8_t render_flags;
-  
   return render_flags;
 }
-
-
 /**
  * 渲染距离计算函数
  * 计算渲染对象的距离并进行相应的处理
- * 
- * 原始函数名: FUN_1802763d0
- * 
+ *
+ * 原始函数名: DataStructure_763d0
+ *
  * @param object_ptr 对象指针
  * @param distance_ptr 距离数据指针
  * @param distance_index 距离索引
  * @param transform_data 变换数据
- * 
+ *
  * @return 计算结果标志
  */
 uint64_t calculate_rendering_distance(int64_t object_ptr, int64_t distance_ptr, int distance_index, uint64_t *transform_data)
-
 {
   float max_distance;
   float current_distance;
@@ -850,11 +775,10 @@ uint64_t calculate_rendering_distance(int64_t object_ptr, int64_t distance_ptr, 
   int64_t object_index;
   int64_t buffer_start;
   uint64_t transform_matrix[8];
-  
   if (*(int *)(object_ptr + 0x58) != 0) {
-    // 处理变换数据
+// 处理变换数据
     if (*(char *)(object_ptr + 800) == '\0') {
-      FUN_180285cf0(&transform_matrix[0], transform_data, object_ptr + 0x330);
+      DataStructure_85cf0(&transform_matrix[0], transform_data, object_ptr + 0x330);
     }
     else {
       transform_matrix[0] = *transform_data;
@@ -866,8 +790,7 @@ uint64_t calculate_rendering_distance(int64_t object_ptr, int64_t distance_ptr, 
       transform_matrix[6] = transform_data[6];
       transform_matrix[7] = transform_data[7];
     }
-    
-    // 计算最大距离
+// 计算最大距离
     current_distance = *(float *)(object_ptr + 0x68);
     distance_offset = (int64_t)distance_index * 0xbc + *(int64_t *)(distance_ptr + 0x98);
     max_distance = 3.4028235e+38;
@@ -878,8 +801,7 @@ uint64_t calculate_rendering_distance(int64_t object_ptr, int64_t distance_ptr, 
       }
     }
     *(float *)(distance_offset + 0xb8) = max_distance;
-    
-    // 遍历对象进行距离计算
+// 遍历对象进行距离计算
     object_count = 0;
     buffer_start = *(int64_t *)(object_ptr + 0x38);
     result_flags = *(int64_t *)(object_ptr + 0x40) - buffer_start >> 4;
@@ -887,7 +809,7 @@ uint64_t calculate_rendering_distance(int64_t object_ptr, int64_t distance_ptr, 
       object_index = 0;
       do {
         if (*(int64_t *)(object_index + buffer_start) != 0) {
-          FUN_180077f20(*(int64_t *)(object_index + buffer_start), distance_ptr, distance_index, &transform_matrix[0],
+          GenericFunction_180077f20(*(int64_t *)(object_index + buffer_start), distance_ptr, distance_index, &transform_matrix[0],
                         *(int32_t *)(object_index + 8 + buffer_start), *(int32_t *)(object_ptr + 0x58));
         }
         buffer_start = *(int64_t *)(object_ptr + 0x38);
@@ -900,32 +822,28 @@ uint64_t calculate_rendering_distance(int64_t object_ptr, int64_t distance_ptr, 
   }
   return render_flags & 0xffffffffffffff00;
 }
-
-
 /**
  * 渲染参数处理函数
  * 处理渲染对象的参数设置
- * 
- * 原始函数名: FUN_18027649f
- * 
+ *
+ * 原始函数名: DataStructure_7649f
+ *
  * @param param1 参数1
  * @param param2 参数2
- * 
+ *
  * @return 处理结果标志
  */
 uint64_t process_rendering_parameters(uint64_t param1, int64_t param2)
-
 {
   int64_t render_context;
   uint render_index;
   uint64_t result_flags;
   int32_t render_param;
-  
   result_flags = (uint64_t)render_index;
   do {
     if (*(int64_t *)(result_flags + param2) != 0) {
       render_param = *(int32_t *)(render_context + 0x58);
-      FUN_180077f20();
+      GenericFunction_180077f20();
     }
     param2 = *(int64_t *)(render_context + 0x38);
     render_index = render_index + 1;
@@ -934,39 +852,31 @@ uint64_t process_rendering_parameters(uint64_t param1, int64_t param2)
            (uint64_t)(*(int64_t *)(render_context + 0x40) - param2 >> 4));
   return CONCAT71((int7)(int3)(render_index >> 8), 1);
 }
-
-
 /**
  * 渲染状态检查函数
  * 检查渲染对象的状态
- * 
- * 原始函数名: FUN_1802764fd
- * 
+ *
+ * 原始函数名: DataStructure_764fd
+ *
  * @return 状态检查结果
  */
 int8_t check_rendering_status(void)
-
 {
   return 1;
 }
-
-
 // WARNING: Removing unreachable block (ram,0x000180276696)
 // WARNING: Removing unreachable block (ram,0x0001802766d5)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 /**
  * 渲染材质更新函数
  * 更新渲染对象的材质属性
- * 
- * 原始函数名: FUN_180276610
- * 
+ *
+ * 原始函数名: DataStructure_76610
+ *
  * @param material_context 材质上下文
  * @param material_update 材质更新参数
  */
 void update_rendering_materials(int64_t material_context, int32_t material_update)
-
 {
   int64_t *material_ptr;
   int64_t *texture_ptr;
@@ -981,7 +891,6 @@ void update_rendering_materials(int64_t material_context, int32_t material_updat
   int64_t *texture_buffer;
   int16_t texture_index2;
   char update_flag;
-  
   material_data = *(int64_t **)(material_context + 0x38);
   if (material_data < *(int64_t **)(material_context + 0x40)) {
     do {
@@ -997,7 +906,7 @@ void update_rendering_materials(int64_t material_context, int32_t material_updat
       }
       material_value = 0;
       shader_data = material_ptr;
-      FUN_18007f4c0(material_params);
+      CoreEngine_07F4C0(material_params);
       texture_ptr = texture_buffer;
       if (texture_buffer != (int64_t *)0x0) {
         (**(code **)(*texture_buffer + 0x28))(texture_buffer);

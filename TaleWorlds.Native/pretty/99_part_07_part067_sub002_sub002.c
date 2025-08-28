@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_07_part067_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
-void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
-
+// 函数: void UISystem_d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
+void UISystem_d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
 {
   float *pfVar1;
   uint64_t *puVar2;
@@ -82,17 +79,16 @@ void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
   int64_t lStack0000000000000038;
   int64_t lStack0000000000000040;
   int64_t lStack0000000000000048;
-  uint64_t in_stack_00000050;
-  int32_t uStack0000000000000058;
-  int16_t uStack000000000000005c;
-  uint64_t in_stack_00000060;
-  uint64_t in_stack_00000068;
-  int32_t uStack0000000000000070;
-  int8_t uStack0000000000000074;
-  int32_t uStack0000000000000078;
-  int32_t uStack000000000000007c;
-  int32_t uStack0000000000000080;
-  
+  uint64_t local_buffer_50;
+  int32_t local_buffer_58;
+  int16_t local_buffer_5c;
+  uint64_t local_var_60;
+  uint64_t local_var_68;
+  int32_t local_buffer_70;
+  int8_t local_buffer_74;
+  int32_t local_buffer_78;
+  int32_t local_buffer_7c;
+  int32_t local_buffer_80;
   *(uint64_t *)(in_RAX + 8) = unaff_RBX;
   *(uint64_t *)(in_RAX + -0x20) = unaff_R12;
   iVar34 = *(int *)(unaff_RSI + 0xa8);
@@ -266,18 +262,18 @@ void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
   }
   lVar39 = 0;
   if (iVar34 == 1) {
-    in_stack_00000050 = 0;
+    local_buffer_50 = 0;
     iVar34 = (int)((*(int64_t *)(lStack0000000000000040 + 0x10 + lStack0000000000000048) -
                    *(int64_t *)(lStack0000000000000040 + 8 + lStack0000000000000048)) / 0x68);
-    uStack0000000000000058 = 0xffffffff;
-    uStack000000000000005c = 0xff00;
+    local_buffer_58 = 0xffffffff;
+    local_buffer_5c = 0xff00;
     lStack0000000000000030 = (int64_t)iVar34;
-    in_stack_00000060 = 0;
-    in_stack_00000068 = 0xffffffffffffffff;
-    uStack0000000000000070 = 0xffffffff;
-    uStack0000000000000074 = 0xff;
-    uStack0000000000000078 = 0xffffffff;
-    _uStack000000000000007c = 0;
+    local_var_60 = 0;
+    local_var_68 = 0xffffffffffffffff;
+    local_buffer_70 = 0xffffffff;
+    local_buffer_74 = 0xff;
+    local_buffer_78 = 0xffffffff;
+    _local_buffer_7c = 0;
     *(int16_t *)(unaff_RBP + -0x1f) = 0x400;
     *(uint64_t *)(unaff_RBP + -0x1e) = 0;
     unaff_RBP[-0x1c] = 0;
@@ -300,27 +296,27 @@ void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
           uVar7 = *(uint *)(lVar38 + 0x18 + lVar41);
           uVar36 = 0;
           lVar33 = (int64_t)(int)(*(uint *)(unaff_RSI + 0x4a8) & uVar7);
-          in_stack_00000050 = in_stack_00000050 & 0xffffffff00000000;
+          local_buffer_50 = local_buffer_50 & 0xffffffff00000000;
           lVar38 = *(int64_t *)
                     (*(int64_t *)(unaff_RSI + 0x698) + (int64_t)((int)uVar40 >> 10) * 8);
           lVar41 = *(int64_t *)
                     (*(int64_t *)(unaff_RSI + 0x488) + (int64_t)((int)uVar7 >> 10) * 8);
-          in_stack_00000068 =
+          local_var_68 =
                CONCAT44(*(int32_t *)(lVar38 + 0x18 + lVar35 * 0x30),
                         *(int32_t *)(lVar38 + 0x1c + lVar35 * 0x30));
-          uStack0000000000000070 = *(int32_t *)(lVar38 + 0x14 + lVar35 * 0x30);
-          uStack0000000000000074 = *(int8_t *)(lVar38 + 0x10 + lVar35 * 0x30);
-          uStack000000000000007c = *(int32_t *)(lVar38 + 0x20 + lVar35 * 0x30);
-          uStack0000000000000078 = *(int32_t *)(lVar38 + 0x24 + lVar35 * 0x30);
-          uStack0000000000000058 = unaff_RBP[0xa8];
+          local_buffer_70 = *(int32_t *)(lVar38 + 0x14 + lVar35 * 0x30);
+          local_buffer_74 = *(int8_t *)(lVar38 + 0x10 + lVar35 * 0x30);
+          local_buffer_7c = *(int32_t *)(lVar38 + 0x20 + lVar35 * 0x30);
+          local_buffer_78 = *(int32_t *)(lVar38 + 0x24 + lVar35 * 0x30);
+          local_buffer_58 = unaff_RBP[0xa8];
           cVar6 = *(char *)(lVar39 + 0x50 + lVar31);
           unaff_RBP[-0x18] = *(int32_t *)(lVar38 + 0x28 + lVar35 * 0x30);
-          uStack000000000000005c = CONCAT11(cVar6,1);
+          local_buffer_5c = CONCAT11(cVar6,1);
           if (cVar6 == -1) {
-            in_stack_00000060 = 0;
+            local_var_60 = 0;
           }
           else {
-            in_stack_00000060 = *(uint64_t *)(lVar39 + 0x40 + lVar31);
+            local_var_60 = *(uint64_t *)(lVar39 + 0x40 + lVar31);
           }
           if (*(char *)(lVar39 + 100 + lVar31) == '\0') {
             pfVar1 = (float *)(lVar41 + 8 + lVar33 * 0x48);
@@ -433,7 +429,7 @@ void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
                   ((fVar45 = *(float *)(lVar38 + 0x174) * 0.2, fVar45 <= 0.0 ||
                    (fVar45 <= fVar43 * *(float *)(lVar39 + 0x5c + lVar31))))))) {
                 SystemHealthMonitor(*(uint64_t *)(lVar39 + 0x48 + lVar31),lVar38,unaff_RBP + 0x44,0,
-                              &stack0x00000050);
+                              &local_buffer_00000050);
               }
               lVar35 = *(int64_t *)(unaff_RSI + 8);
               uVar40 = (int)uVar36 + 1;
@@ -777,11 +773,3 @@ void FUN_1804d77b2(uint64_t param_1,int param_2,int param_3,uint64_t param_4)
   }
   return;
 }
-
-
-
-
-
-
-
-

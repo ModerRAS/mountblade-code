@@ -1,17 +1,11 @@
 #include "SystemDataAdvancedOptimizer_definition.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
-
 // 03_rendering_part186.c - 3 个函数
-
-// 函数: void FUN_180378385(uint param_1)
-void FUN_180378385(uint param_1)
-
+// 函数: void function_378385(uint param_1)
+void function_378385(uint param_1)
 {
   ushort uVar1;
   int iVar2;
@@ -60,8 +54,7 @@ void FUN_180378385(uint param_1)
   float fStack000000000000003c;
   float fStack0000000000000048;
   float fStack000000000000004c;
-  float in_stack_00000050;
-  
+  float local_buffer_50;
 code_r0x000180378385:
   fVar25 = fStack0000000000000038;
   fVar32 = fStack0000000000000048;
@@ -113,7 +106,7 @@ LAB_1803782ba:
             lVar12 = (*(int64_t **)(unaff_RBP + 0x60))[1] - **(int64_t **)(unaff_RBP + 0x60);
             puVar16 = &memory_allocator_3824_ptr;
           }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemParameterHandler(system_message_context,puVar16,lVar12 / 0x28,puVar20);
         }
         uVar17 = 0;
@@ -168,7 +161,7 @@ LAB_1803782ba:
         fVar23 = unaff_XMM10_Da;
       }
       fVar25 = fStack0000000000000038;
-      if (in_stack_00000050 < fVar23) {
+      if (local_buffer_50 < fVar23) {
         cVar21 = '\x01';
       }
     }
@@ -204,7 +197,7 @@ LAB_180377195:
     fVar23 = (float)(int)(uVar17 + 1) * fVar32 * fVar31 - fVar34;
     fVar31 = fVar25 * fVar23;
     if (((uVar14 == 0) &&
-        (cVar9 = func_0x0001803723f0(*(uint64_t *)(unaff_RBP + 0x20)), cVar9 == '\0')) &&
+        (cVar9 = SystemFunction_0001803723f0(*(uint64_t *)(unaff_RBP + 0x20)), cVar9 == '\0')) &&
        (*(int *)(unaff_RBP + 0x28) != 100)) {
       fVar31 = fVar31 * (float)*(int *)(unaff_RBP + 0x28) * 0.01;
     }
@@ -352,7 +345,7 @@ LAB_180377195:
               if (fVar27 <= unaff_XMM10_Da) {
                 fVar27 = unaff_XMM10_Da;
               }
-              if (fVar27 < in_stack_00000050) goto LAB_180377666;
+              if (fVar27 < local_buffer_50) goto LAB_180377666;
               bVar8 = false;
             }
             else {
@@ -446,14 +439,14 @@ LAB_1803777ad:
                 uVar14 = uVar14 ^ uVar14 << 0xd;
                 uVar14 = uVar14 ^ uVar14 >> 0x11;
                 uVar17 = (uVar14 ^ uVar14 << 5) - 1;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                 AdvancedSystemController(uVar17,(float)uVar17 * 1.4629181e-09);
               }
               *(float *)(unaff_RBP + 0x88) = fVar30;
               *(float *)(unaff_RBP + 0x8c) = fVar24;
               *(int32_t *)(unaff_RBP + 0x90) = 0;
               *(int32_t *)(unaff_RBP + 0x94) = 0x7f7fffff;
-              FUN_18046da60();
+              function_46da60();
               fVar31 = *(float *)(unaff_RBP + 0x120) * 0.33 * 6.6666665;
               fVar26 = *(float *)(unaff_RBP + 0x124) * 0.33 * 6.6666665;
               fVar25 = *(float *)(unaff_RBP + 0x128) * 0.33 * 6.6666665;
@@ -501,41 +494,20 @@ LAB_1803777ad:
     unaff_EBX = uVar17 ^ uVar17 << 5;
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180378494(void)
-void FUN_180378494(void)
-
+// 函数: void function_378494(void)
+void function_378494(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemParameterHandler(system_message_context,&memory_allocator_3792_ptr,
                 ((*(int64_t **)(unaff_RBP + 0x68))[1] - **(int64_t **)(unaff_RBP + 0x68)) / 0x28);
 }
-
-
-
-
-
-// 函数: void FUN_1803784fe(void)
-void FUN_1803784fe(void)
-
+// 函数: void function_3784fe(void)
+void function_3784fe(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x200) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x200) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

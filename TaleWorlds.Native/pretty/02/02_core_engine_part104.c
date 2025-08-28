@@ -1,7 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 02_core_engine_part104.c - 字符串处理和文件操作函数集
-
 /**
  * @brief 打开文件并写入字符串数据
  * @param file_path 文件路径
@@ -17,57 +15,48 @@ void open_and_write_string_data(uint64_t file_path, uint64_t mode, uint64_t cont
     int content2_length;
     int64_t buffer_size;
     int total_length;
-    
-    // 计算第一个字符串的长度
+// 计算第一个字符串的长度
     content1_length = calculate_string_length(content1, 0);
     content1_length = content1_length + 1;
-    
-    // 计算第二个字符串的长度
+// 计算第二个字符串的长度
     content2_length = calculate_string_length(content2, 0);
     total_length = content2_length + 1 + content1_length;
-    
     buffer_size = 0;
     if (0 < total_length) {
-        // 确保最小缓冲区大小为8字节
+// 确保最小缓冲区大小为8字节
         if (total_length < 8) {
             total_length = 8;
         }
         buffer_size = 0;
         if (0 < total_length) {
-            // 更新内存分配计数器
+// 更新内存分配计数器
             if (memory_manager_instance != 0) {
-                *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) = 
+                *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) =
                     *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) + 1;
             }
-            // 分配缓冲区内存
+// 分配缓冲区内存
             buffer_size = allocate_memory((int64_t)total_length * 2, memory_allocator_context);
         }
     }
-    
-    // 将第一个字符串复制到缓冲区
+// 将第一个字符串复制到缓冲区
     copy_string_to_buffer(buffer_size, content1_length, content1, flags, 0);
-    
-    // 计算第二个字符串的写入位置
+// 计算第二个字符串的写入位置
     allocated_buffer = buffer_size + (int64_t)content1_length * 2;
-    
-    // 将第二个字符串复制到缓冲区
+// 将第二个字符串复制到缓冲区
     copy_string_to_buffer(allocated_buffer, content2_length + 1, content2, flags, 0);
-    
-    // 打开文件并写入数据
+// 打开文件并写入数据
     _wfopen(buffer_size, allocated_buffer);
-    
-    // 清理分配的内存
+// 清理分配的内存
     if (buffer_size != 0) {
         if (memory_manager_instance != 0) {
-            *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) = 
+            *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) =
                 *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) + -1;
         }
-        // 释放内存
+// 释放内存
         free_memory(buffer_size, memory_allocator_context);
     }
     return;
 }
-
 /**
  * @brief 读取文件内容到内存缓冲区
  * @param file_path 文件路径
@@ -82,53 +71,44 @@ int64_t read_file_to_buffer(uint64_t file_path, uint64_t mode, int64_t *file_siz
     int64_t buffer_size;
     int64_t bytes_read;
     int64_t allocated_buffer;
-    
     if (file_size_ptr != (int64_t *)0x0) {
         *file_size_ptr = 0;
     }
-    
-    // 打开文件
+// 打开文件
     file_handle = open_and_write_string_data(file_path, &default_file_mode);
     if (file_handle == 0) {
         return 0;
     }
-    
-    // 移动到文件末尾获取文件大小
+// 移动到文件末尾获取文件大小
     file_operation_result = fseek(file_handle, 0, 2);
     if (file_operation_result == 0) {
         file_operation_result = ftell(file_handle);
         buffer_size = (int64_t)file_operation_result;
-        
-        // 移回文件开头
-        if ((file_operation_result != -1) && 
+// 移回文件开头
+        if ((file_operation_result != -1) &&
             (file_operation_result = fseek(file_handle, 0, 0), file_operation_result == 0)) {
-            
-            // 更新内存分配计数器
+// 更新内存分配计数器
             if (memory_manager_instance != 0) {
-                *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) = 
+                *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) =
                     *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) + 1;
             }
-            
-            // 分配缓冲区
+// 分配缓冲区
             allocated_buffer = allocate_memory(buffer_size, memory_allocator_context);
             if (allocated_buffer != 0) {
-                // 读取文件内容
+// 读取文件内容
                 bytes_read = fread(allocated_buffer, 1, buffer_size, file_handle);
-                
-                // 检查是否完全读取
+// 检查是否完全读取
                 if (bytes_read != buffer_size) {
                     fclose();
                     if (memory_manager_instance != 0) {
-                        *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) = 
+                        *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) =
                             *(int *)(memory_manager_instance + MEMORY_COUNTER_OFFSET) + -1;
                     }
-                    // 释放内存
+// 释放内存
                     free_memory(allocated_buffer, memory_allocator_context);
                 }
-                
                 fclose(file_handle);
-                
-                // 返回结果
+// 返回结果
                 if (file_size_ptr == (int64_t *)0x0) {
                     return allocated_buffer;
                 }
@@ -137,11 +117,9 @@ int64_t read_file_to_buffer(uint64_t file_path, uint64_t mode, int64_t *file_siz
             }
         }
     }
-    
     fclose(file_handle);
     return 0;
 }
-
 /**
  * @brief 解析UTF-8字符到Unicode码点
  * @param output_char_ptr 输出字符指针
@@ -153,16 +131,13 @@ uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, int64_
 {
     byte first_byte;
     uint unicode_char;
-    
     first_byte = *input_string;
-    
-    // 处理ASCII字符 (0-127)
+// 处理ASCII字符 (0-127)
     if (-1 < (char)first_byte) {
         *output_char_ptr = (uint)first_byte;
         return 1;
     }
-    
-    // 处理2字节UTF-8序列 (110xxxxx 10xxxxxx)
+// 处理2字节UTF-8序列 (110xxxxx 10xxxxxx)
     if ((first_byte & 0xe0) == 0xc0) {
         *output_char_ptr = 0xfffd; // 默认无效字符
         if ((max_length != 0) && (max_length - (int64_t)input_string < 2)) {
@@ -173,15 +148,13 @@ uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, int64_
         }
         return 2;
     }
-    
-    // 处理3字节UTF-8序列 (1110xxxx 10xxxxxx 10xxxxxx)
+// 处理3字节UTF-8序列 (1110xxxx 10xxxxxx 10xxxxxx)
     if ((first_byte & 0xf0) == 0xe0) {
         *output_char_ptr = 0xfffd; // 默认无效字符
         if ((max_length != 0) && (max_length - (int64_t)input_string < 3)) {
             return 1;
         }
-        
-        // 检查过长的编码
+// 检查过长的编码
         if (first_byte == 0xe0) {
             if (0x1f < (byte)(input_string[1] + 0x60)) {
                 return 3;
@@ -190,29 +163,25 @@ uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, int64_
         else if ((first_byte == 0xed) && (0x9f < input_string[1])) {
             return 3;
         }
-        
-        // 验证后续字节格式
+// 验证后续字节格式
         if (((input_string[1] & 0xc0) == 0x80) && ((input_string[2] & 0xc0) == 0x80)) {
-            *output_char_ptr = (first_byte & 0xf) * 0x1000 + 
-                              (input_string[1] & 0x3f) * 0x40 + 
+            *output_char_ptr = (first_byte & 0xf) * 0x1000 +
+                              (input_string[1] & 0x3f) * 0x40 +
                               (input_string[2] & 0x3f);
         }
         return 3;
     }
-    
-    // 处理4字节UTF-8序列 (11110xxx 10xxxxxx 10xxxxxx 10xxxxxx)
+// 处理4字节UTF-8序列 (11110xxx 10xxxxxx 10xxxxxx 10xxxxxx)
     if ((first_byte & 0xf8) != 0xf0) {
         *output_char_ptr = 0x3f; // 问号字符
         return 1;
     }
-    
     *output_char_ptr = 0xfffd; // 默认无效字符
     if ((max_length != 0) && (max_length - (int64_t)input_string < 4)) {
         return 1;
     }
-    
     if (first_byte < 0xf5) {
-        // 检查过长的编码
+// 检查过长的编码
         if (first_byte == 0xf0) {
             if (0x2f < (byte)(input_string[1] + 0x70)) {
                 return 4;
@@ -221,21 +190,19 @@ uint64_t parse_utf8_to_unicode(uint *output_char_ptr, byte *input_string, int64_
         else if ((first_byte == 0xf4) && (0x8f < input_string[1])) {
             return 4;
         }
-        
-        // 验证后续字节格式并计算Unicode值
+// 验证后续字节格式并计算Unicode值
         if (((((input_string[1] & 0xc0) == 0x80) && ((input_string[2] & 0xc0) == 0x80)) &&
             ((input_string[3] & 0xc0) == 0x80)) &&
-           (unicode_char = (first_byte & 7) * 0x40000 + 
-                          (input_string[2] & 0x3f) * 0x40 + 
-                          (input_string[1] & 0x3f) * 0x1000 + 
-                          (input_string[3] & 0x3f), 
+           (unicode_char = (first_byte & 7) * 0x40000 +
+                          (input_string[2] & 0x3f) * 0x40 +
+                          (input_string[1] & 0x3f) * 0x1000 +
+                          (input_string[3] & 0x3f),
            (unicode_char & 0xfffff800) != 0xd800)) { // 排除代理对区域
             *output_char_ptr = unicode_char;
         }
     }
     return 4;
 }
-
 /**
  * @brief 处理4字节UTF-8序列的辅助函数
  * @param context 上下文指针
@@ -248,9 +215,8 @@ uint64_t process_utf8_4byte_sequence(uint64_t context, int64_t string_ptr, uint6
 {
     uint unicode_char;
     uint *output_ptr;
-    
     if (first_byte < 0xf5) {
-        // 检查编码范围限制
+// 检查编码范围限制
         if (first_byte == 0xf0) {
             if (0x2f < (byte)(*(char *)(string_ptr + 1) + 0x70U)) {
                 return 4;
@@ -259,22 +225,20 @@ uint64_t process_utf8_4byte_sequence(uint64_t context, int64_t string_ptr, uint6
         else if ((first_byte == 0xf4) && (0x8f < *(byte *)(string_ptr + 1))) {
             return 4;
         }
-        
-        // 验证后续字节格式
-        if (((((*(byte *)(string_ptr + 1) & 0xc0) == 0x80) && 
+// 验证后续字节格式
+        if (((((*(byte *)(string_ptr + 1) & 0xc0) == 0x80) &&
             ((*(byte *)(string_ptr + 2) & 0xc0) == 0x80)) &&
             ((*(byte *)(string_ptr + 3) & 0xc0) == 0x80)) &&
-           (unicode_char = (first_byte & 7) * 0x40000 + 
-                          (*(byte *)(string_ptr + 2) & 0x3f) * 0x40 + 
-                          (*(byte *)(string_ptr + 1) & 0x3f) * 0x1000 + 
-                          (*(byte *)(string_ptr + 3) & 0x3f), 
+           (unicode_char = (first_byte & 7) * 0x40000 +
+                          (*(byte *)(string_ptr + 2) & 0x3f) * 0x40 +
+                          (*(byte *)(string_ptr + 1) & 0x3f) * 0x1000 +
+                          (*(byte *)(string_ptr + 3) & 0x3f),
            (unicode_char & 0xfffff800) != 0xd800)) {
             *output_ptr = unicode_char;
         }
     }
     return 4;
 }
-
 /**
  * @brief 处理特定UTF-8序列的辅助函数
  * @param context 上下文指针
@@ -287,21 +251,19 @@ uint64_t process_utf8_special_sequence(uint64_t context, int64_t string_ptr, uin
 {
     uint unicode_char;
     uint *output_ptr;
-    
     if ((((first_byte != 0xf4) || (*(byte *)(string_ptr + 1) < 0x90)) &&
         ((*(byte *)(string_ptr + 1) & 0xc0) == 0x80)) &&
-        ((((*(byte *)(string_ptr + 2) & 0xc0) == 0x80 && 
+        ((((*(byte *)(string_ptr + 2) & 0xc0) == 0x80 &&
            ((*(byte *)(string_ptr + 3) & 0xc0) == 0x80)) &&
-          (unicode_char = (first_byte & 7) * 0x40000 + 
-                         (*(byte *)(string_ptr + 2) & 0x3f) * 0x40 + 
-                         (*(byte *)(string_ptr + 1) & 0x3f) * 0x1000 + 
-                         (*(byte *)(string_ptr + 3) & 0x3f), 
+          (unicode_char = (first_byte & 7) * 0x40000 +
+                         (*(byte *)(string_ptr + 2) & 0x3f) * 0x40 +
+                         (*(byte *)(string_ptr + 1) & 0x3f) * 0x1000 +
+                         (*(byte *)(string_ptr + 3) & 0x3f),
           (unicode_char & 0xfffff800) != 0xd800)))) {
         *output_ptr = unicode_char;
     }
     return 4;
 }
-
 /**
  * @brief 设置默认字符
  * @param output_ptr 输出指针
@@ -312,7 +274,6 @@ uint64_t set_default_character(int32_t *output_ptr)
     *output_ptr = 0x3f; // 问号字符
     return 1;
 }
-
 /**
  * @brief 将UTF-8字符串转换为宽字符字符串
  * @param output_buffer 输出缓冲区
@@ -323,7 +284,7 @@ uint64_t set_default_character(int32_t *output_ptr)
  * @param end_ptr_ptr 结束指针指针
  * @return 返回转换的字符数
  */
-uint64_t convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *input_string, 
+uint64_t convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *input_string,
                                  uint64_t param4, uint64_t param5, uint64_t *end_ptr_ptr)
 {
     byte current_byte;
@@ -331,17 +292,15 @@ uint64_t convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *
     uint unicode_char;
     uint temp_unicode;
     int16_t *output_pos;
-    
     output_pos = output_buffer;
     if (output_buffer < output_buffer + (int64_t)buffer_size + -1) {
         do {
             current_byte = *input_string;
             if (current_byte == 0) break;
-            
-            // 处理多字节UTF-8字符
+// 处理多字节UTF-8字符
             if ((char)current_byte < '\0') {
                 if ((current_byte & 0xe0) == 0xc0) {
-                    // 2字节序列
+// 2字节序列
                     unicode_char = 0xfffd;
                     if (current_byte < 0xc2) {
                         bytes_consumed = 2;
@@ -355,16 +314,16 @@ uint64_t convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *
                     }
                 }
                 else if ((current_byte & 0xf0) == 0xe0) {
-                    // 3字节序列
+// 3字节序列
                     unicode_char = 0xfffd;
                     if (current_byte == 0xe0) {
                         if ((byte)(input_string[1] + 0x60) < 0x20) {
-                            // 验证并计算3字节序列
+// 验证并计算3字节序列
                             if ((input_string[1] & 0xc0) == 0x80) {
                                 if ((input_string[2] & 0xc0) == 0x80) {
                                     bytes_consumed = 3;
-                                    unicode_char = (input_string[1] & 0x3f) * 0x40 + 
-                                                  (current_byte & 0xf) * 0x1000 + 
+                                    unicode_char = (input_string[1] & 0x3f) * 0x40 +
+                                                  (current_byte & 0xf) * 0x1000 +
                                                   (input_string[2] & 0x3f);
                                 }
                                 else {
@@ -381,12 +340,12 @@ uint64_t convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *
                     }
                     else {
                         if ((current_byte != 0xed) || (input_string[1] < 0xa0)) {
-                            // 处理常规3字节序列
+// 处理常规3字节序列
                             if ((input_string[1] & 0xc0) == 0x80) {
                                 if ((input_string[2] & 0xc0) == 0x80) {
                                     bytes_consumed = 3;
-                                    unicode_char = (input_string[1] & 0x3f) * 0x40 + 
-                                                  (current_byte & 0xf) * 0x1000 + 
+                                    unicode_char = (input_string[1] & 0x3f) * 0x40 +
+                                                  (current_byte & 0xf) * 0x1000 +
                                                   (input_string[2] & 0x3f);
                                 }
                                 else {
@@ -403,7 +362,7 @@ uint64_t convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *
                     }
                 }
                 else {
-                    // 4字节序列
+// 4字节序列
                     if ((current_byte & 0xf8) != 0xf0) {
                         unicode_char = 0x3f;
                         goto handle_ascii;
@@ -412,13 +371,13 @@ uint64_t convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *
                     if (current_byte < 0xf5) {
                         if (current_byte == 0xf0) {
                             if ((byte)(input_string[1] + 0x70) < 0x30) {
-                                // 验证并计算4字节序列
+// 验证并计算4字节序列
                                 if ((input_string[1] & 0xc0) == 0x80) {
                                     if ((input_string[2] & 0xc0) == 0x80) {
                                         if ((input_string[3] & 0xc0) == 0x80) {
-                                            temp_unicode = (input_string[2] & 0x3f) * 0x40 + 
-                                                          (current_byte & 7) * 0x40000 + 
-                                                          (input_string[1] & 0x3f) * 0x1000 + 
+                                            temp_unicode = (input_string[2] & 0x3f) * 0x40 +
+                                                          (current_byte & 7) * 0x40000 +
+                                                          (input_string[1] & 0x3f) * 0x1000 +
                                                           (input_string[3] & 0x3f);
                                             bytes_consumed = 4;
                                             if ((temp_unicode & 0xfffff800) != 0xd800) {
@@ -443,13 +402,13 @@ uint64_t convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *
                         }
                         else {
                             if ((current_byte != 0xf4) || (input_string[1] < 0x90)) {
-                                // 处理常规4字节序列
+// 处理常规4字节序列
                                 if ((input_string[1] & 0xc0) == 0x80) {
                                     if ((input_string[2] & 0xc0) == 0x80) {
                                         if ((input_string[3] & 0xc0) == 0x80) {
-                                            temp_unicode = (input_string[2] & 0x3f) * 0x40 + 
-                                                          (current_byte & 7) * 0x40000 + 
-                                                          (input_string[1] & 0x3f) * 0x1000 + 
+                                            temp_unicode = (input_string[2] & 0x3f) * 0x40 +
+                                                          (current_byte & 7) * 0x40000 +
+                                                          (input_string[1] & 0x3f) * 0x1000 +
                                                           (input_string[3] & 0x3f);
                                             bytes_consumed = 4;
                                             if ((temp_unicode & 0xfffff800) != 0xd800) {
@@ -479,32 +438,27 @@ uint64_t convert_utf8_to_wstring(int16_t *output_buffer, int buffer_size, byte *
                 }
             }
             else {
-                // ASCII字符
+// ASCII字符
                 unicode_char = (uint)current_byte;
 handle_ascii:
                 bytes_consumed = 1;
             }
-            
             input_string = input_string + bytes_consumed;
             if (unicode_char == 0) break;
-            
-            // 只处理BMP字符（小于0x10000）
+// 只处理BMP字符（小于0x10000）
             if (unicode_char < 0x10000) {
                 *output_pos = (short)unicode_char;
                 output_pos = output_pos + 1;
             }
         } while (output_pos < output_buffer + (int64_t)buffer_size + -1);
     }
-    
-    // 字符串终止符
+// 字符串终止符
     *output_pos = 0;
     if (end_ptr_ptr != (uint64_t *)0x0) {
         *end_ptr_ptr = input_string;
     }
-    
     return (int64_t)output_pos - (int64_t)output_buffer >> 1 & 0xffffffff;
 }
-
 /**
  * @brief 将UTF-8字符串转换为宽字符字符串的变体
  * @param output_buffer 输出缓冲区
@@ -515,7 +469,7 @@ handle_ascii:
  * @param end_ptr_ptr 结束指针指针
  * @return 返回转换的字符数
  */
-uint64_t convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size, byte *input_string, 
+uint64_t convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size, byte *input_string,
                                         uint64_t param4, uint64_t param5, uint64_t *end_ptr_ptr)
 {
     byte current_byte;
@@ -523,17 +477,15 @@ uint64_t convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size
     uint unicode_char;
     uint temp_unicode;
     int16_t *output_pos;
-    
     output_pos = output_buffer;
     if (output_buffer < output_buffer + (int64_t)buffer_size + -1) {
         do {
             current_byte = *input_string;
             if (current_byte == 0) break;
-            
-            // 处理多字节UTF-8字符
+// 处理多字节UTF-8字符
             if ((char)current_byte < '\0') {
                 if ((current_byte & 0xe0) == 0xc0) {
-                    // 2字节序列
+// 2字节序列
                     unicode_char = 0xfffd;
                     if (current_byte < 0xc2) {
                         bytes_consumed = 2;
@@ -547,16 +499,16 @@ uint64_t convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size
                     }
                 }
                 else if ((current_byte & 0xf0) == 0xe0) {
-                    // 3字节序列
+// 3字节序列
                     unicode_char = 0xfffd;
                     if (current_byte == 0xe0) {
                         if ((byte)(input_string[1] + 0x60) < 0x20) {
-                            // 验证并计算3字节序列
+// 验证并计算3字节序列
                             if ((input_string[1] & 0xc0) == 0x80) {
                                 if ((input_string[2] & 0xc0) == 0x80) {
                                     bytes_consumed = 3;
-                                    unicode_char = (input_string[1] & 0x3f) * 0x40 + 
-                                                  (current_byte & 0xf) * 0x1000 + 
+                                    unicode_char = (input_string[1] & 0x3f) * 0x40 +
+                                                  (current_byte & 0xf) * 0x1000 +
                                                   (input_string[2] & 0x3f);
                                 }
                                 else {
@@ -573,12 +525,12 @@ uint64_t convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size
                     }
                     else {
                         if ((current_byte != 0xed) || (input_string[1] < 0xa0)) {
-                            // 处理常规3字节序列
+// 处理常规3字节序列
                             if ((input_string[1] & 0xc0) == 0x80) {
                                 if ((input_string[2] & 0xc0) == 0x80) {
                                     bytes_consumed = 3;
-                                    unicode_char = (input_string[1] & 0x3f) * 0x40 + 
-                                                  (current_byte & 0xf) * 0x1000 + 
+                                    unicode_char = (input_string[1] & 0x3f) * 0x40 +
+                                                  (current_byte & 0xf) * 0x1000 +
                                                   (input_string[2] & 0x3f);
                                 }
                                 else {
@@ -595,7 +547,7 @@ uint64_t convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size
                     }
                 }
                 else {
-                    // 4字节序列
+// 4字节序列
                     if ((current_byte & 0xf8) != 0xf0) {
                         unicode_char = 0x3f;
                         goto handle_ascii_variant;
@@ -604,13 +556,13 @@ uint64_t convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size
                     if (current_byte < 0xf5) {
                         if (current_byte == 0xf0) {
                             if ((byte)(input_string[1] + 0x70) < 0x30) {
-                                // 验证并计算4字节序列
+// 验证并计算4字节序列
                                 if ((input_string[1] & 0xc0) == 0x80) {
                                     if ((input_string[2] & 0xc0) == 0x80) {
                                         if ((input_string[3] & 0xc0) == 0x80) {
-                                            temp_unicode = (input_string[2] & 0x3f) * 0x40 + 
-                                                          (current_byte & 7) * 0x40000 + 
-                                                          (input_string[1] & 0x3f) * 0x1000 + 
+                                            temp_unicode = (input_string[2] & 0x3f) * 0x40 +
+                                                          (current_byte & 7) * 0x40000 +
+                                                          (input_string[1] & 0x3f) * 0x1000 +
                                                           (input_string[3] & 0x3f);
                                             bytes_consumed = 4;
                                             if ((temp_unicode & 0xfffff800) != 0xd800) {
@@ -635,13 +587,13 @@ uint64_t convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size
                         }
                         else {
                             if ((current_byte != 0xf4) || (input_string[1] < 0x90)) {
-                                // 处理常规4字节序列
+// 处理常规4字节序列
                                 if ((input_string[1] & 0xc0) == 0x80) {
                                     if ((input_string[2] & 0xc0) == 0x80) {
                                         if ((input_string[3] & 0xc0) == 0x80) {
-                                            temp_unicode = (input_string[2] & 0x3f) * 0x40 + 
-                                                          (current_byte & 7) * 0x40000 + 
-                                                          (input_string[1] & 0x3f) * 0x1000 + 
+                                            temp_unicode = (input_string[2] & 0x3f) * 0x40 +
+                                                          (current_byte & 7) * 0x40000 +
+                                                          (input_string[1] & 0x3f) * 0x1000 +
                                                           (input_string[3] & 0x3f);
                                             bytes_consumed = 4;
                                             if ((temp_unicode & 0xfffff800) != 0xd800) {
@@ -671,32 +623,27 @@ uint64_t convert_utf8_to_wstring_variant(int16_t *output_buffer, int buffer_size
                 }
             }
             else {
-                // ASCII字符
+// ASCII字符
                 unicode_char = (uint)current_byte;
 handle_ascii_variant:
                 bytes_consumed = 1;
             }
-            
             input_string = input_string + bytes_consumed;
             if (unicode_char == 0) break;
-            
-            // 只处理BMP字符（小于0x10000）
+// 只处理BMP字符（小于0x10000）
             if (unicode_char < 0x10000) {
                 *output_pos = (short)unicode_char;
                 output_pos = output_pos + 1;
             }
         } while (output_pos < output_buffer + (int64_t)buffer_size + -1);
     }
-    
-    // 字符串终止符
+// 字符串终止符
     *output_pos = 0;
     if (end_ptr_ptr != (uint64_t *)0x0) {
         *end_ptr_ptr = input_string;
     }
-    
     return (int64_t)output_pos - (int64_t)output_buffer >> 1 & 0xffffffff;
 }
-
 /**
  * @brief UTF-8到宽字符转换的另一个变体
  * @param param1 第一个参数
@@ -707,7 +654,7 @@ handle_ascii_variant:
  * @param end_ptr_ptr 结束指针指针
  * @return 返回转换的字符数
  */
-uint64_t convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte *input_string, 
+uint64_t convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte *input_string,
                                           uint64_t param4, uint64_t param5, uint64_t *end_ptr_ptr)
 {
     byte current_byte;
@@ -717,15 +664,13 @@ uint64_t convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte
     int16_t *output_ptr;
     uint temp_unicode;
     int16_t *in_register;
-    
     do {
         current_byte = *input_string;
         if (current_byte == 0) break;
-        
-        // 处理多字节UTF-8字符
+// 处理多字节UTF-8字符
         if ((char)current_byte < '\0') {
             if ((current_byte & 0xe0) == 0xc0) {
-                // 2字节序列
+// 2字节序列
                 unicode_char = 0xfffd;
                 if (current_byte < 0xc2) {
                     bytes_consumed = 2;
@@ -739,16 +684,16 @@ uint64_t convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte
                 }
             }
             else if ((current_byte & 0xf0) == 0xe0) {
-                // 3字节序列
+// 3字节序列
                 unicode_char = 0xfffd;
                 if (current_byte == 0xe0) {
                     if ((byte)(input_string[1] + 0x60) < 0x20) {
-                        // 验证并计算3字节序列
+// 验证并计算3字节序列
                         if ((input_string[1] & 0xc0) == 0x80) {
                             if ((input_string[2] & 0xc0) == 0x80) {
                                 bytes_consumed = 3;
-                                unicode_char = (input_string[1] & 0x3f) * 0x40 + 
-                                              (current_byte & 0xf) * 0x1000 + 
+                                unicode_char = (input_string[1] & 0x3f) * 0x40 +
+                                              (current_byte & 0xf) * 0x1000 +
                                               (input_string[2] & 0x3f);
                             }
                             else {
@@ -765,12 +710,12 @@ uint64_t convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte
                 }
                 else {
                     if ((current_byte != 0xed) || (input_string[1] < 0xa0)) {
-                        // 处理常规3字节序列
+// 处理常规3字节序列
                         if ((input_string[1] & 0xc0) == 0x80) {
                             if ((input_string[2] & 0xc0) == 0x80) {
                                 bytes_consumed = 3;
-                                unicode_char = (input_string[1] & 0x3f) * 0x40 + 
-                                              (current_byte & 0xf) * 0x1000 + 
+                                unicode_char = (input_string[1] & 0x3f) * 0x40 +
+                                              (current_byte & 0xf) * 0x1000 +
                                               (input_string[2] & 0x3f);
                             }
                             else {
@@ -787,7 +732,7 @@ uint64_t convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte
                 }
             }
             else {
-                // 4字节序列
+// 4字节序列
                 if ((current_byte & 0xf8) != 0xf0) {
                     unicode_char = 0x3f;
                     goto handle_ascii_variant2;
@@ -796,13 +741,13 @@ uint64_t convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte
                 if (current_byte < 0xf5) {
                     if (current_byte == 0xf0) {
                         if ((byte)(input_string[1] + 0x70) < 0x30) {
-                            // 验证并计算4字节序列
+// 验证并计算4字节序列
                             if ((input_string[1] & 0xc0) == 0x80) {
                                 if ((input_string[2] & 0xc0) == 0x80) {
                                     if ((input_string[3] & 0xc0) == 0x80) {
-                                        temp_unicode = (input_string[2] & 0x3f) * 0x40 + 
-                                                      (current_byte & 7) * 0x40000 + 
-                                                      (input_string[1] & 0x3f) * 0x1000 + 
+                                        temp_unicode = (input_string[2] & 0x3f) * 0x40 +
+                                                      (current_byte & 7) * 0x40000 +
+                                                      (input_string[1] & 0x3f) * 0x1000 +
                                                       (input_string[3] & 0x3f);
                                         bytes_consumed = 4;
                                         if ((temp_unicode & 0xfffff800) != 0xd800) {
@@ -827,13 +772,13 @@ uint64_t convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte
                     }
                     else {
                         if ((current_byte != 0xf4) || (input_string[1] < 0x90)) {
-                            // 处理常规4字节序列
+// 处理常规4字节序列
                             if ((input_string[1] & 0xc0) == 0x80) {
                                 if ((input_string[2] & 0xc0) == 0x80) {
                                     if ((input_string[3] & 0xc0) == 0x80) {
-                                        temp_unicode = (input_string[2] & 0x3f) * 0x40 + 
-                                                      (current_byte & 7) * 0x40000 + 
-                                                      (input_string[1] & 0x3f) * 0x1000 + 
+                                        temp_unicode = (input_string[2] & 0x3f) * 0x40 +
+                                                      (current_byte & 7) * 0x40000 +
+                                                      (input_string[1] & 0x3f) * 0x1000 +
                                                       (input_string[3] & 0x3f);
                                         bytes_consumed = 4;
                                         if ((temp_unicode & 0xfffff800) != 0xd800) {
@@ -863,30 +808,25 @@ uint64_t convert_utf8_to_wstring_variant2(uint64_t param1, uint64_t param2, byte
             }
         }
         else {
-            // ASCII字符
+// ASCII字符
             unicode_char = (uint)current_byte;
 handle_ascii_variant2:
             bytes_consumed = 1;
         }
-        
         input_string = input_string + bytes_consumed;
         if (unicode_char == 0) break;
-        
-        // 只处理BMP字符（小于0x10000）
+// 只处理BMP字符（小于0x10000）
         if (unicode_char < 0x10000) {
             *in_register = (short)unicode_char;
             in_register = in_register + 1;
         }
     } while (in_register < output_ptr);
-    
     *in_register = 0;
     if (end_ptr_ptr != (uint64_t *)0x0) {
         *end_ptr_ptr = input_string;
     }
-    
     return (int64_t)in_register - stack_base >> 1 & 0xffffffff;
 }
-
 /**
  * @brief 空转换函数
  * @param param1 第一个参数
@@ -902,14 +842,12 @@ uint64_t empty_conversion_function(uint64_t param1, uint64_t param2, uint64_t pa
 {
     int64_t stack_base;
     int16_t *output_ptr;
-    
     *output_ptr = 0;
     if (end_ptr_ptr != (uint64_t *)0x0) {
         *end_ptr_ptr = param3;
     }
     return (int64_t)output_ptr - stack_base >> 1 & 0xffffffff;
 }
-
 /**
  * @brief 简单的字符串复制函数
  * @param param1 第一个参数
@@ -922,11 +860,9 @@ uint64_t simple_string_copy(uint64_t param1, uint64_t param2, uint64_t param3)
     uint64_t *output_ptr;
     int64_t stack_base;
     int64_t register_value;
-    
     *output_ptr = param3;
     return register_value - stack_base >> 1 & 0xffffffff;
 }
-
 /**
  * @brief 计算UTF-8字符串中的字符数
  * @param input_string 输入字符串
@@ -941,25 +877,21 @@ int calculate_string_length(byte *input_string, byte *end_ptr)
     int bytes_consumed;
     int prev_char_count;
     uint temp_unicode;
-    
     char_count = 0;
     do {
         prev_char_count = char_count;
-        
-        // 检查边界条件
+// 检查边界条件
         if ((end_ptr != (byte *)0x0) && (end_ptr <= input_string)) {
             return prev_char_count;
         }
-        
         current_byte = *input_string;
         if (current_byte == 0) {
             return prev_char_count;
         }
-        
-        // 处理多字节UTF-8字符
+// 处理多字节UTF-8字符
         if ((char)current_byte < '\0') {
             if ((current_byte & 0xe0) == 0xc0) {
-                // 2字节序列
+// 2字节序列
                 unicode_char = 0xfffd;
                 if ((end_ptr == (byte *)0x0) || (1 < (int64_t)end_ptr - (int64_t)input_string)) {
                     if (current_byte < 0xc2) {
@@ -976,22 +908,21 @@ int calculate_string_length(byte *input_string, byte *end_ptr)
                 }
                 goto handle_invalid;
             }
-            
             if ((current_byte & 0xf0) != 0xe0) {
                 if ((current_byte & 0xf8) == 0xf0) {
-                    // 4字节序列
+// 4字节序列
                     unicode_char = 0xfffd;
                     if ((end_ptr == (byte *)0x0) || (3 < (int64_t)end_ptr - (int64_t)input_string)) {
                         if (current_byte < 0xf5) {
                             if (current_byte == 0xf0) {
                                 if ((byte)(input_string[1] + 0x70) < 0x30) {
-                                    // 验证并计算4字节序列
+// 验证并计算4字节序列
                                     if ((input_string[1] & 0xc0) == 0x80) {
                                         if ((input_string[2] & 0xc0) == 0x80) {
                                             if ((input_string[3] & 0xc0) == 0x80) {
-                                                temp_unicode = (input_string[2] & 0x3f) * 0x40 + 
-                                                              (current_byte & 7) * 0x40000 + 
-                                                              (input_string[1] & 0x3f) * 0x1000 + 
+                                                temp_unicode = (input_string[2] & 0x3f) * 0x40 +
+                                                              (current_byte & 7) * 0x40000 +
+                                                              (input_string[1] & 0x3f) * 0x1000 +
                                                               (input_string[3] & 0x3f);
                                                 bytes_consumed = 4;
                                                 if ((temp_unicode & 0xfffff800) != 0xd800) {
@@ -1016,13 +947,13 @@ int calculate_string_length(byte *input_string, byte *end_ptr)
                             }
                             else {
                                 if ((current_byte != 0xf4) || (input_string[1] < 0x90)) {
-                                    // 处理常规4字节序列
+// 处理常规4字节序列
                                     if ((input_string[1] & 0xc0) == 0x80) {
                                         if ((input_string[2] & 0xc0) == 0x80) {
                                             if ((input_string[3] & 0xc0) == 0x80) {
-                                                temp_unicode = (input_string[2] & 0x3f) * 0x40 + 
-                                                              (current_byte & 7) * 0x40000 + 
-                                                              (input_string[1] & 0x3f) * 0x1000 + 
+                                                temp_unicode = (input_string[2] & 0x3f) * 0x40 +
+                                                              (current_byte & 7) * 0x40000 +
+                                                              (input_string[1] & 0x3f) * 0x1000 +
                                                               (input_string[3] & 0x3f);
                                                 bytes_consumed = 4;
                                                 if ((temp_unicode & 0xfffff800) != 0xd800) {
@@ -1057,21 +988,19 @@ int calculate_string_length(byte *input_string, byte *end_ptr)
                 }
                 goto handle_invalid;
             }
-            
-            // 3字节序列
+// 3字节序列
             unicode_char = 0xfffd;
             if ((end_ptr != (byte *)0x0) && ((int64_t)end_ptr - (int64_t)input_string < 3)) {
                 goto handle_invalid;
             }
-            
             if (current_byte == 0xe0) {
                 if ((byte)(input_string[1] + 0x60) < 0x20) {
-                    // 验证并计算3字节序列
+// 验证并计算3字节序列
                     if ((input_string[1] & 0xc0) == 0x80) {
                         if ((input_string[2] & 0xc0) == 0x80) {
                             bytes_consumed = 3;
-                            unicode_char = (input_string[1] & 0x3f) * 0x40 + 
-                                          (current_byte & 0xf) * 0x1000 + 
+                            unicode_char = (input_string[1] & 0x3f) * 0x40 +
+                                          (current_byte & 0xf) * 0x1000 +
                                           (input_string[2] & 0x3f);
                         }
                         else {
@@ -1088,12 +1017,12 @@ int calculate_string_length(byte *input_string, byte *end_ptr)
             }
             else {
                 if ((current_byte != 0xed) || (input_string[1] < 0xa0)) {
-                    // 处理常规3字节序列
+// 处理常规3字节序列
                     if ((input_string[1] & 0xc0) == 0x80) {
                         if ((input_string[2] & 0xc0) == 0x80) {
                             bytes_consumed = 3;
-                            unicode_char = (input_string[1] & 0x3f) * 0x40 + 
-                                          (current_byte & 0xf) * 0x1000 + 
+                            unicode_char = (input_string[1] & 0x3f) * 0x40 +
+                                          (current_byte & 0xf) * 0x1000 +
                                           (input_string[2] & 0x3f);
                         }
                         else {
@@ -1110,27 +1039,23 @@ int calculate_string_length(byte *input_string, byte *end_ptr)
             }
         }
         else {
-            // ASCII字符
+// ASCII字符
             unicode_char = (uint)current_byte;
 handle_invalid:
             bytes_consumed = 1;
         }
-        
 process_character:
         input_string = input_string + bytes_consumed;
         if (unicode_char == 0) {
             return prev_char_count;
         }
-        
         char_count = prev_char_count + 1;
-        
-        // 只计算BMP字符（小于0x10000）
+// 只计算BMP字符（小于0x10000）
         if (0xffff < unicode_char) {
             char_count = prev_char_count;
         }
     } while( true );
 }
-
 /**
  * @brief 将宽字符字符串转换为UTF-8字符串
  * @param output_buffer 输出缓冲区
@@ -1148,30 +1073,25 @@ int convert_wstring_to_utf8(byte *output_buffer, int buffer_size, ushort *input_
     int available_space;
     byte *output_pos;
     byte *buffer_end;
-    
     buffer_end = output_buffer + buffer_size;
     output_pos = output_buffer;
-    
     if (output_buffer < buffer_end + -1) {
         do {
-            // 检查输出边界和输入终止条件
-            if (((end_ptr != (ushort *)0x0) && (end_ptr <= input_string)) || 
+// 检查输出边界和输入终止条件
+            if (((end_ptr != (ushort *)0x0) && (end_ptr <= input_string)) ||
                 (current_char = *input_string, current_char == 0)) {
                 break;
             }
-            
             input_string = input_string + 1;
             first_byte = (byte)current_char;
-            
-            // 处理ASCII字符 (0-127)
+// 处理ASCII字符 (0-127)
             if (current_char < 0x80) {
                 *output_pos = first_byte;
                 bytes_needed = 1;
             }
             else {
                 available_space = ((int)buffer_end - (int)output_pos) + -1;
-                
-                // 处理2字节UTF-8序列 (128-2047)
+// 处理2字节UTF-8序列 (128-2047)
                 if (current_char < 0x800) {
                     if (available_space < 2) {
                         bytes_needed = 0;
@@ -1182,14 +1102,13 @@ int convert_wstring_to_utf8(byte *output_buffer, int buffer_size, ushort *input_
                         bytes_needed = 2;
                     }
                 }
-                // 处理代理对字符 (无效)
+// 处理代理对字符 (无效)
                 else if (current_char - 0xdc00 < 0x400) {
                     bytes_needed = 0;
                 }
                 else {
                     second_byte = (byte)(current_char >> 8);
-                    
-                    // 处理4字节UTF-8序列 (大于0xFFFF，需要代理对)
+// 处理4字节UTF-8序列 (大于0xFFFF，需要代理对)
                     if (current_char - 0xd800 < 0x400) {
                         if (available_space < 4) {
                             bytes_needed = 0;
@@ -1202,7 +1121,7 @@ int convert_wstring_to_utf8(byte *output_buffer, int buffer_size, ushort *input_
                             bytes_needed = 4;
                         }
                     }
-                    // 处理3字节UTF-8序列 (2048-65535，排除代理对)
+// 处理3字节UTF-8序列 (2048-65535，排除代理对)
                     else if (available_space < 3) {
                         bytes_needed = 0;
                     }
@@ -1214,16 +1133,13 @@ int convert_wstring_to_utf8(byte *output_buffer, int buffer_size, ushort *input_
                     }
                 }
             }
-            
             output_pos = output_pos + bytes_needed;
         } while (output_pos < buffer_end + -1);
     }
-    
-    // 字符串终止符
+// 字符串终止符
     *output_pos = 0;
     return (int)output_pos - (int)output_buffer;
 }
-
 /**
  * @brief 计算宽字符字符串转换为UTF-8后需要的字节数
  * @param input_string 输入字符串
@@ -1234,13 +1150,11 @@ int calculate_utf8_size_needed(ushort *input_string, ushort *end_ptr)
 {
     ushort current_char;
     int byte_count;
-    
     byte_count = 0;
-    while (((end_ptr == (ushort *)0x0 || (input_string < end_ptr)) && 
+    while (((end_ptr == (ushort *)0x0 || (input_string < end_ptr)) &&
            (current_char = *input_string, current_char != 0))) {
         input_string = input_string + 1;
-        
-        // 计算每个字符需要的UTF-8字节数
+// 计算每个字符需要的UTF-8字节数
         if (current_char < 0x80) {
             byte_count = byte_count + 1; // ASCII字符
         }
@@ -1248,26 +1162,22 @@ int calculate_utf8_size_needed(ushort *input_string, ushort *end_ptr)
             byte_count = byte_count + 2; // 2字节UTF-8
         }
         else if (0x3ff < (ushort)(current_char + 0x2400)) {
-            // 处理需要4字节UTF-8的字符（代理对）
+// 处理需要4字节UTF-8的字符（代理对）
             byte_count = byte_count + ((ushort)(current_char + 0x2800) < 0x400) + 3;
         }
     }
     return byte_count;
 }
-
 // 全局变量和内存管理相关常量
 #define MEMORY_COUNTER_OFFSET 0x3a8
 #define MEMORY_ALLOCATOR_CONTEXT_OFFSET 0x3a8
-
 // 函数指针和全局变量声明（简化实现）
 extern int64_t memory_manager_instance;
 extern int64_t memory_allocator_context;
 extern uint64_t default_file_mode;
-
 // 内存管理函数声明
 extern int64_t allocate_memory(int64_t size, int64_t context);
 extern void free_memory(int64_t ptr, int64_t context);
-
 // 字符串处理函数声明
 extern int calculate_string_length(uint64_t str, uint64_t end);
 extern void copy_string_to_buffer(uint64_t buffer, int length, uint64_t str, uint64_t flags, uint64_t param);
@@ -1276,12 +1186,10 @@ extern int fseek(uint64_t file, long offset, int origin);
 extern long ftell(uint64_t file);
 extern long fread(uint64_t buffer, long size, long count, uint64_t file);
 extern void fclose(uint64_t file);
-
 // 渲染和图形相关函数声明
-extern void func_0x000180121e20(int32_t *param);
+extern void Function_56da4ab5(int32_t *param);
 extern float *global_render_context;
 extern int64_t *global_texture_manager;
-
 /**
  * @brief 应用缩放变换到渲染对象
  * @param object_id 对象ID
@@ -1292,24 +1200,19 @@ void apply_scale_transform(int object_id, float scale_factor)
     int32_t *transform_matrix;
     int32_t stack_matrix[3];
     float scaled_value;
-    
-    // 获取对象的变换矩阵
-    transform_matrix = (int32_t *)(global_render_context + TRANSFORM_MATRIX_OFFSET + 
+// 获取对象的变换矩阵
+    transform_matrix = (int32_t *)(global_render_context + TRANSFORM_MATRIX_OFFSET +
                                      ((int64_t)object_id + 10) * 0x10);
-    
-    // 复制当前矩阵到栈
+// 复制当前矩阵到栈
     stack_matrix[0] = *transform_matrix;
     stack_matrix[1] = transform_matrix[1];
     stack_matrix[2] = transform_matrix[2];
-    
-    // 应用缩放
+// 应用缩放
     scaled_value = (float)transform_matrix[3] * scale_factor * *global_scale_factor;
-    
-    // 更新变换矩阵
-    func_0x000180121e20(&stack_matrix[0]);
+// 更新变换矩阵
+    Function_56da4ab5(&stack_matrix[0]);
     return;
 }
-
 /**
  * @brief 在哈希表中查找uint值
  * @param hash_table_ptr 哈希表指针
@@ -1324,13 +1227,11 @@ uint find_value_in_hash_table(int *hash_table_ptr, uint key, uint default_value)
     uint64_t search_range;
     uint64_t mid_point;
     uint *current_entry;
-    
     table_size = *hash_table_ptr;
     table_data = *(uint **)(hash_table_ptr + 2);
     search_range = (int64_t)table_size;
     current_entry = table_data;
-    
-    // 二分查找
+// 二分查找
     if (table_size != 0) {
         do {
             mid_point = search_range >> 1;
@@ -1341,14 +1242,12 @@ uint find_value_in_hash_table(int *hash_table_ptr, uint key, uint default_value)
             search_range = mid_point;
         } while (search_range != 0);
     }
-    
-    // 检查是否找到匹配项
+// 检查是否找到匹配项
     if ((current_entry != table_data + (int64_t)table_size * 4) && (*current_entry == key)) {
         return current_entry[2]; // 返回找到的值
     }
     return default_value; // 返回默认值
 }
-
 /**
  * @brief 在哈希表中查找指针值
  * @param hash_table_ptr 哈希表指针
@@ -1362,13 +1261,11 @@ uint64_t find_pointer_in_hash_table(int *hash_table_ptr, uint key)
     uint64_t search_range;
     uint64_t mid_point;
     uint *current_entry;
-    
     table_size = *hash_table_ptr;
     table_data = *(uint **)(hash_table_ptr + 2);
     search_range = (int64_t)table_size;
     current_entry = table_data;
-    
-    // 二分查找
+// 二分查找
     if (table_size != 0) {
         do {
             mid_point = search_range >> 1;
@@ -1379,14 +1276,12 @@ uint64_t find_pointer_in_hash_table(int *hash_table_ptr, uint key)
             search_range = mid_point;
         } while (search_range != 0);
     }
-    
-    // 检查是否找到匹配项
+// 检查是否找到匹配项
     if ((current_entry != table_data + (int64_t)table_size * 4) && (*current_entry == key)) {
         return *(uint64_t *)(current_entry + 2); // 返回找到的指针
     }
     return 0; // 未找到返回0
 }
-
 /**
  * @brief 在哈希表中设置uint值
  * @param hash_table_ptr 哈希表指针
@@ -1402,13 +1297,11 @@ void set_value_in_hash_table(int *hash_table_ptr, uint key, uint value)
     uint64_t mid_point;
     uint new_entry[3];
     uint entry_value;
-    
     table_size = *hash_table_ptr;
     table_data = *(uint **)(hash_table_ptr + 2);
     insert_position = table_data;
     search_range = (int64_t)table_size;
-    
-    // 二分查找插入位置
+// 二分查找插入位置
     if (table_size != 0) {
         do {
             mid_point = search_range >> 1;
@@ -1419,20 +1312,17 @@ void set_value_in_hash_table(int *hash_table_ptr, uint key, uint value)
             search_range = mid_point;
         } while (search_range != 0);
     }
-    
-    // 如果键已存在，更新值
+// 如果键已存在，更新值
     if ((insert_position != table_data + (int64_t)table_size * 4) && (*insert_position == key)) {
         insert_position[2] = value;
         return;
     }
-    
-    // 插入新条目
+// 插入新条目
     new_entry[0] = key;
     entry_value = value;
     insert_into_hash_table(hash_table_ptr, insert_position, new_entry);
     return;
 }
-
 /**
  * @brief 在哈希表中设置指针值
  * @param hash_table_ptr 哈希表指针
@@ -1448,13 +1338,11 @@ void set_pointer_in_hash_table(int *hash_table_ptr, uint key, uint64_t value)
     uint64_t mid_point;
     uint new_entry[3];
     uint64_t pointer_value;
-    
     table_size = *hash_table_ptr;
     table_data = *(uint **)(hash_table_ptr + 2);
     insert_position = table_data;
     search_range = (int64_t)table_size;
-    
-    // 二分查找插入位置
+// 二分查找插入位置
     if (table_size != 0) {
         do {
             mid_point = search_range >> 1;
@@ -1465,20 +1353,17 @@ void set_pointer_in_hash_table(int *hash_table_ptr, uint key, uint64_t value)
             search_range = mid_point;
         } while (search_range != 0);
     }
-    
-    // 如果键已存在，更新值
+// 如果键已存在，更新值
     if ((insert_position != table_data + (int64_t)table_size * 4) && (*insert_position == key)) {
         *(uint64_t *)(insert_position + 2) = value;
         return;
     }
-    
-    // 插入新条目
+// 插入新条目
     new_entry[0] = key;
     pointer_value = value;
     insert_into_hash_table(hash_table_ptr, insert_position, new_entry);
     return;
 }
-
 /**
  * @brief 字符串拼接的包装函数
  * @param dest 目标字符串
@@ -1489,13 +1374,11 @@ void set_pointer_in_hash_table(int *hash_table_ptr, uint key, uint64_t value)
 void concatenate_strings_wrapper(uint64_t dest, uint64_t src, uint64_t separator, uint64_t flags)
 {
     uint64_t stack_params[2];
-    
     stack_params[0] = separator;
     stack_params[1] = flags;
     concatenate_strings_internal(dest, src, &stack_params[0]);
     return;
 }
-
 /**
  * @brief 字符串拼接的内部实现
  * @param dest_ptr 目标字符串指针
@@ -1509,20 +1392,16 @@ void concatenate_strings_internal(int *dest_ptr, uint64_t src, uint64_t params)
     int new_size;
     int required_size;
     int64_t dest_data;
-    
-    // 计算源字符串长度
+// 计算源字符串长度
     src_length = calculate_string_copy_length(0, 0, src, params);
-    
     if (0 < src_length) {
-        // 确定目标字符串的当前容量
+// 确定目标字符串的当前容量
         dest_capacity = 1;
         if (*dest_ptr != 0) {
             dest_capacity = *dest_ptr;
         }
-        
         required_size = dest_capacity + src_length;
-        
-        // 检查是否需要扩容
+// 检查是否需要扩容
         if (dest_ptr[1] <= required_size) {
             new_size = dest_ptr[1] * 2;
             if (new_size < required_size) {
@@ -1530,8 +1409,7 @@ void concatenate_strings_internal(int *dest_ptr, uint64_t src, uint64_t params)
             }
             resize_string_buffer(dest_ptr, new_size);
             new_size = dest_ptr[1];
-            
-            // 再次检查容量
+// 再次检查容量
             if (new_size < required_size) {
                 if (new_size == 0) {
                     new_size = 8;
@@ -1546,12 +1424,10 @@ void concatenate_strings_internal(int *dest_ptr, uint64_t src, uint64_t params)
                 resize_string_buffer(dest_ptr, src_length);
             }
         }
-        
         *dest_ptr = required_size;
         dest_data = (int64_t)(dest_capacity + -1) + *(int64_t *)(dest_ptr + 2);
         src_length = calculate_string_copy_length(dest_data, (int64_t)src_length + 1, src, params);
-        
-        // 添加字符串终止符
+// 添加字符串终止符
         if (dest_data != 0) {
             required_size = (int)((int64_t)src_length + 1);
             if ((src_length == -1) || (required_size <= src_length)) {
@@ -1562,7 +1438,6 @@ void concatenate_strings_internal(int *dest_ptr, uint64_t src, uint64_t params)
     }
     return;
 }
-
 /**
  * @brief 字符串拼接的变体实现
  * @param dest_ptr 目标字符串指针
@@ -1578,24 +1453,19 @@ void concatenate_strings_variant(int dest_ptr, uint64_t src, uint64_t params, in
     int64_t param_value;
     int *dest_pointer;
     bool has_capacity;
-    
     dest_capacity = 1;
     if (!has_capacity) {
         dest_capacity = initial_size;
     }
-    
     src_length = dest_capacity + (int)stack_base;
-    
-    // 检查是否需要扩容
+// 检查是否需要扩容
     if ((dest_ptr <= src_length) && (resize_string_buffer(), dest_pointer[1] < src_length)) {
         resize_string_buffer();
     }
-    
     *dest_pointer = src_length;
     param_value = (int64_t)(dest_capacity + -1) + *(int64_t *)(dest_pointer + 2);
     dest_capacity = calculate_string_copy_length(param_value, stack_base + 1);
-    
-    // 添加字符串终止符
+// 添加字符串终止符
     if (param_value != 0) {
         src_length = (int)(stack_base + 1);
         if ((dest_capacity == -1) || (src_length <= dest_capacity)) {
@@ -1605,7 +1475,6 @@ void concatenate_strings_variant(int dest_ptr, uint64_t src, uint64_t params, in
     }
     return;
 }
-
 /**
  * @brief 空操作函数
  */
@@ -1613,7 +1482,6 @@ void empty_function(void)
 {
     return;
 }
-
 /**
  * @brief 处理字符串注释的函数
  * @param context 上下文指针
@@ -1635,10 +1503,8 @@ void process_string_comments(uint64_t context, char *start_ptr, char *end_ptr, c
     uint64_t stack_params[5];
     int32_t stack_colors[3];
     float scaled_font_size;
-    
     renderer_context = global_render_context;
-    
-    // 如果没有注释字符，处理到字符串末尾
+// 如果没有注释字符，处理到字符串末尾
     if (comment_char == '\0') {
         if (end_ptr == (char *)0x0) {
             int64_t string_length = -1;
@@ -1649,46 +1515,39 @@ void process_string_comments(uint64_t context, char *start_ptr, char *end_ptr, c
         }
     }
     else {
-        // 查找注释开始位置
+// 查找注释开始位置
         current_pos = (char *)0xffffffffffffffff;
         if (end_ptr != (char *)0x0) {
             current_pos = end_ptr;
         }
         end_ptr = start_ptr;
-        
-        // 查找注释标记
+// 查找注释标记
         if (start_ptr < current_pos) {
             while (*end_ptr != '\0') {
-                if (((*end_ptr == '#') && (end_ptr[1] == '#')) || 
+                if (((*end_ptr == '#') && (end_ptr[1] == '#')) ||
                     (end_ptr = end_ptr + 1, current_pos <= end_ptr)) {
                     break;
                 }
             }
         }
     }
-    
-    // 如果有有效字符串内容，进行渲染处理
+// 如果有有效字符串内容，进行渲染处理
     if (start_ptr != end_ptr) {
-        // 获取当前渲染颜色
+// 获取当前渲染颜色
         stack_colors[0] = *(int32_t *)(global_render_context + RENDER_COLOR_OFFSET);
         stack_colors[1] = *(int32_t *)(global_render_context + RENDER_COLOR_OFFSET + 4);
         stack_colors[2] = *(int32_t *)(global_render_context + RENDER_COLOR_OFFSET + 8);
-        
-        // 获取字体管理器
+// 获取字体管理器
         font_manager = *(int64_t *)(*(int64_t *)(global_render_context + FONT_MANAGER_OFFSET) + 0x2e8);
-        
-        // 计算字体大小
-        scaled_font_size = *(float *)(global_render_context + FONT_SIZE_OFFSET) * 
+// 计算字体大小
+        scaled_font_size = *(float *)(global_render_context + FONT_SIZE_OFFSET) *
                           *(float *)(global_render_context + SCALE_FACTOR_OFFSET);
-        
-        // 设置渲染参数
+// 设置渲染参数
         stack_params[0] = context;
-        render_flags = func_0x000180121e20(&stack_colors[0]);
-        
-        // 获取字体和纹理数据
+        render_flags = Function_56da4ab5(&stack_colors[0]);
+// 获取字体和纹理数据
         font_scale = *(float *)(renderer_context + DEFAULT_FONT_SCALE_OFFSET);
         font_data = *(int64_t *)(renderer_context + FONT_DATA_OFFSET);
-        
         if ((render_flags & 0xff000000) != 0) {
             current_pos = end_ptr;
             if (end_ptr == (char *)0x0) {
@@ -1698,42 +1557,35 @@ void process_string_comments(uint64_t context, char *start_ptr, char *end_ptr, c
                 } while (start_ptr[string_length] != '\0');
                 current_pos = start_ptr + string_length;
             }
-            
             if (start_ptr != current_pos) {
-                // 获取字体数据
+// 获取字体数据
                 if (font_data == 0) {
                     font_data = *(int64_t *)(*(int64_t *)(font_manager + 0x38) + 8);
                 }
-                
-                // 获取字体大小
+// 获取字体大小
                 if (font_scale == 0.0) {
                     font_scale = *(float *)(*(int64_t *)(font_manager + 0x38) + 0x10);
                 }
-                
-                // 获取纹理数据
+// 获取纹理数据
                 render_color = (int32_t *)
-                              (*(int64_t *)(font_manager + 0x68) + -0x10 + 
+                              (*(int64_t *)(font_manager + 0x68) + -0x10 +
                                (int64_t)*(int *)(font_manager + 0x60) * 0x10);
-                
                 stack_colors[0] = *render_color;
                 stack_colors[1] = render_color[1];
                 stack_colors[2] = render_color[2];
                 scaled_font_size = (float)render_color[3];
-                
-                // 渲染文本
-                render_text_with_font(font_data, font_manager, font_scale, context, render_flags, 
+// 渲染文本
+                render_text_with_font(font_data, font_manager, font_scale, context, render_flags,
                                      &stack_colors[0], start_ptr, current_pos, 0, 0);
             }
         }
-        
-        // 如果启用了注释处理，处理注释部分
+// 如果启用了注释处理，处理注释部分
         if (*(char *)(renderer_context + COMMENT_PROCESSING_OFFSET) != '\0') {
             process_comment_text(&stack_params[0], start_ptr, end_ptr);
         }
     }
     return;
 }
-
 // 渲染相关常量定义
 #define TRANSFORM_MATRIX_OFFSET 0x1628
 #define RENDER_COLOR_OFFSET 0x16c8
@@ -1743,15 +1595,13 @@ void process_string_comments(uint64_t context, char *start_ptr, char *end_ptr, c
 #define DEFAULT_FONT_SCALE_OFFSET 0x19f8
 #define FONT_DATA_OFFSET 0x19f0
 #define COMMENT_PROCESSING_OFFSET 0x2e38
-
 // 全局变量声明
 extern float *global_scale_factor;
-
 // 辅助函数声明
 extern int calculate_string_copy_length(uint64_t dest, uint64_t size, uint64_t src, uint64_t params);
 extern void resize_string_buffer(int *buffer_ptr, int new_size);
 extern void insert_into_hash_table(int *table_ptr, uint *position, uint *entry);
-extern void render_text_with_font(int64_t font_data, int64_t font_manager, float font_scale, 
-                                 uint64_t context, uint flags, int32_t *colors, 
+extern void render_text_with_font(int64_t font_data, int64_t font_manager, float font_scale,
+                                 uint64_t context, uint flags, int32_t *colors,
                                  char *text_start, char *text_end, int param1, int param2);
 extern void process_comment_text(uint64_t *params, char *start, char *end);

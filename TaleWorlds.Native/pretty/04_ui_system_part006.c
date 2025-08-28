@@ -1,31 +1,28 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 /**
  * @file 04_ui_system_part006.c
  * @brief UI系统模块第6部分 - UI系统数据结构操作和资源管理
- * 
+ *
  * 本模块是UI系统的重要组成部分，主要负责：
  * - UI系统数据结构的操作和管理
  * - 字符串处理和格式化
  * - 内存分配和资源清理
  * - 数据验证和转换
  * - 系统状态监控和维护
- * 
+ *
  * 该模块作为UI系统的核心组件，承担着重要的系统功能，
  * 为整个游戏UI系统提供稳定和高效的数据处理服务。
  */
-
 /* ========================================
    常量定义和类型别名
    ======================================== */
-
 /**
  * @brief UI系统数据结构操作器类型
- * 
+ *
  * 该类型定义了UI系统数据结构操作器的接口，
  * 负责操作和管理各种数据结构。
- * 
+ *
  * 主要功能包括：
  * - 数据结构创建和销毁
  * - 数据插入和删除
@@ -33,13 +30,12 @@
  * - 数据结构维护
  */
 typedef uint8_t UISystem_DataStructureOperator_type;
-
 /**
  * @brief UI系统字符串处理器类型
- * 
+ *
  * 该类型定义了UI系统字符串处理器的接口，
  * 负责处理字符串相关的操作。
- * 
+ *
  * 主要功能包括：
  * - 字符串格式化和转换
  * - 字符串比较和验证
@@ -47,13 +43,12 @@ typedef uint8_t UISystem_DataStructureOperator_type;
  * - 字符串编码处理
  */
 typedef uint8_t UISystem_StringProcessor_type;
-
 /**
  * @brief UI系统资源管理器类型
- * 
+ *
  * 该类型定义了UI系统资源管理器的接口，
  * 负责管理系统资源的分配和释放。
- * 
+ *
  * 主要功能包括：
  * - 资源分配和释放
  * - 资源使用统计
@@ -61,13 +56,12 @@ typedef uint8_t UISystem_StringProcessor_type;
  * - 资源状态监控
  */
 typedef uint8_t UISystem_ResourceManager_type;
-
 /**
  * @brief UI系统数据验证器类型
- * 
+ *
  * 该类型定义了UI系统数据验证器的接口，
  * 负责验证和处理系统数据。
- * 
+ *
  * 主要功能包括：
  * - 数据完整性检查
  * - 数据格式验证
@@ -75,13 +69,12 @@ typedef uint8_t UISystem_ResourceManager_type;
  * - 数据错误处理
  */
 typedef uint8_t UISystem_DataValidator_type;
-
 /**
  * @brief UI系统状态监控器类型
- * 
+ *
  * 该类型定义了UI系统状态监控器的接口，
  * 负责监控和管理系统状态。
- * 
+ *
  * 主要功能包括：
  * - 状态监控和跟踪
  * - 状态变更通知
@@ -89,379 +82,340 @@ typedef uint8_t UISystem_DataValidator_type;
  * - 状态恢复和修复
  */
 typedef uint8_t UISystem_StateMonitor_type;
-
 /* ========================================
    核心功能常量定义
    ======================================== */
-
 /**
  * @brief 内存分配块大小
  * 定义内存分配的标准块大小
  */
 #define MEMORY_ALLOCATION_SIZE 0x20
-
 /**
  * @brief 字符串缓冲区大小
  * 定义字符串处理缓冲区的大小
  */
 #define STRING_BUFFER_SIZE 0x80
-
 /**
  * @brief 数据结构元素大小
  * 定义数据结构元素的标准大小
  */
 #define DATA_ELEMENT_SIZE 0x20
-
 /**
  * @brief 最大字符串长度
  * 定义字符串处理的最大长度
  */
 #define MAX_STRING_LENGTH 0x100
-
 /**
  * @brief 状态更新间隔
  * 定义状态更新的时间间隔（毫秒）
  */
 #define STATE_UPDATE_INTERVAL 100
-
 /* ========================================
    错误代码定义
    ======================================== */
-
 /**
  * @brief 成功状态码
  * 表示操作成功完成
  */
 #define UI_SUCCESS_CODE 0x00000000
-
 /**
  * @brief 一般错误码
  * 表示一般性错误
  */
 #define UI_ERROR_GENERAL 0x00000001
-
 /**
  * @brief 内存错误码
  * 表示内存相关错误
  */
 #define UI_ERROR_MEMORY 0x00000002
-
 /**
  * @brief 字符串错误码
  * 表示字符串相关错误
  */
 #define UI_ERROR_STRING 0x00000003
-
 /**
  * @brief 数据结构错误码
  * 表示数据结构相关错误
  */
 #define UI_ERROR_DATA_STRUCTURE 0x00000004
-
 /**
  * @brief 资源错误码
  * 表示资源相关错误
  */
 #define UI_ERROR_RESOURCE 0x00000005
-
 /* ========================================
    功能标志位定义
    ======================================== */
-
 /**
  * @brief 数据结构操作功能标志
  * 启用数据结构操作功能
  */
 #define FEATURE_DATA_STRUCTURE_OPERATION 0x00000001
-
 /**
  * @brief 字符串处理功能标志
  * 启用字符串处理功能
  */
 #define FEATURE_STRING_PROCESSING 0x00000002
-
 /**
  * @brief 资源管理功能标志
  * 启用资源管理功能
  */
 #define FEATURE_RESOURCE_MANAGEMENT 0x00000004
-
 /**
  * @brief 数据验证功能标志
  * 启用数据验证功能
  */
 #define FEATURE_DATA_VALIDATION 0x00000008
-
 /**
  * @brief 状态监控功能标志
  * 启用状态监控功能
  */
 #define FEATURE_STATE_MONITORING 0x00000010
-
 /**
  * @brief 错误处理功能标志
  * 启用错误处理功能
  */
 #define FEATURE_ERROR_HANDLING 0x00000020
-
 /* ========================================
    模块版本信息
    ======================================== */
-
 /**
  * @brief 主版本号
  * 模块的主版本号
  */
 #define MODULE_VERSION_MAJOR 4
-
 /**
  * @brief 次版本号
  * 模块的次版本号
  */
 #define MODULE_VERSION_MINOR 6
-
 /**
  * @brief 修订版本号
  * 模块的修订版本号
  */
 #define MODULE_VERSION_REVISION 1
-
 /* ========================================
    核心函数声明
    ======================================== */
-
 /**
  * @brief UI系统数据结构初始化器
- * 
+ *
  * 该函数负责初始化UI系统数据结构：
  * - 初始化数据结构内存
  * - 设置数据结构参数
  * - 准备数据结构操作环境
  * - 验证初始化条件
- * 
+ *
  * @param structure_context 数据结构上下文指针
  * @param operation_flag 操作标志
  * @param data_source 数据源指针
  * @param validation_flag 验证标志
  * @return void 操作状态
- * 
+ *
  * @note 此函数在数据结构创建时被调用
  * @warning 错误的初始化可能导致数据结构损坏
  */
 void UISystem_DataStructureInitializer(int64_t structure_context, uint64_t operation_flag, uint64_t data_source, uint64_t validation_flag);
-
 /**
  * @brief UI系统字符串格式化器
- * 
+ *
  * 该函数负责格式化和处理字符串：
  * - 格式化字符串数据
  * - 处理字符串编码
  * - 管理字符串内存
  * - 验证字符串完整性
- * 
+ *
  * @param string_source 字符串源指针
  * @param format_flag 格式化标志
  * @return uint64_t* 格式化后的字符串指针
- * 
+ *
  * @note 此函数在字符串处理时被调用
  * @warning 错误的格式化可能导致字符串损坏
  */
 uint64_t * UISystem_StringFormatter(int64_t string_source, uint64_t format_flag);
-
 /**
  * @brief UI系统字符串复制器
- * 
+ *
  * 该函数负责复制和处理字符串：
  * - 复制字符串数据
  * - 处理字符串内存
  * - 验证复制结果
  * - 返回复制状态
- * 
+ *
  * @param source_string 源字符串指针
  * @param target_ptr 目标指针
  * @param operation_flag 操作标志
  * @param validation_flag 验证标志
  * @return uint64_t* 目标字符串指针
- * 
+ *
  * @note 此函数在字符串复制时被调用
  * @warning 需要确保目标内存足够
  */
 uint64_t * UISystem_StringCopier(uint64_t source_string, uint64_t *target_ptr, uint64_t operation_flag, uint64_t validation_flag);
-
 /**
  * @brief UI系统字符串处理器
- * 
+ *
  * 该函数负责处理字符串操作：
  * - 处理字符串数据
  * - 执行字符串转换
  * - 管理字符串内存
  * - 验证字符串结果
- * 
+ *
  * @param source_string 源字符串指针
  * @param target_ptr 目标指针
  * @param operation_flag 操作标志
  * @param validation_flag 验证标志
  * @return uint64_t* 处理后的字符串指针
- * 
+ *
  * @note 此函数在字符串处理时被调用
  * @warning 错误的处理可能导致数据丢失
  */
 uint64_t * UISystem_StringProcessor(uint64_t source_string, uint64_t *target_ptr, uint64_t operation_flag, uint64_t validation_flag);
-
 /**
  * @brief UI系统资源分配器
- * 
+ *
  * 该函数负责分配系统资源：
  * - 分配内存资源
  * - 设置资源参数
  * - 验证分配结果
  * - 返回资源指针
- * 
+ *
  * @param allocation_context 分配上下文指针
  * @param resource_type 资源类型
  * @param operation_flag 操作标志
  * @param validation_flag 验证标志
  * @return void 操作状态
- * 
+ *
  * @note 此函数在资源分配时被调用
  * @warning 错误的分配可能导致内存泄漏
  */
 void UISystem_ResourceAllocator(uint64_t allocation_context, uint64_t resource_type, uint64_t operation_flag, uint64_t validation_flag);
-
 /**
  * @brief UI系统数据结构处理器
- * 
+ *
  * 该函数负责处理数据结构操作：
  * - 处理数据结构数据
  * - 执行数据结构操作
  * - 管理数据结构内存
  * - 验证数据结构完整性
- * 
+ *
  * @param data_context 数据上下文指针
  * @return void 操作状态
- * 
+ *
  * @note 此函数在数据结构处理时被调用
  * @warning 错误的处理可能导致数据结构损坏
  */
 void UISystem_DataStructureProcessor(int64_t *data_context);
-
 /**
  * @brief UI系统资源管理器
- * 
+ *
  * 该函数负责管理系统资源：
  * - 管理资源生命周期
  * - 处理资源分配和释放
  * - 监控资源使用情况
  * - 优化资源使用效率
- * 
+ *
  * @param resource_context 资源上下文指针
  * @return void 操作状态
- * 
+ *
  * @note 此函数在资源管理时被调用
  * @warning 错误的管理可能导致资源泄漏
  */
 void UISystem_ResourceManager(uint64_t *resource_context);
-
 /**
  * @brief UI系统数据验证器
- * 
+ *
  * 该函数负责验证系统数据：
  * - 验证数据完整性
  * - 检查数据格式
  * - 处理数据转换
  * - 返回验证结果
- * 
+ *
  * @param validation_context 验证上下文指针
  * @param data_source 数据源指针
  * @param operation_flag 操作标志
  * @param validation_flag 验证标志
  * @return uint64_t 验证结果
- * 
+ *
  * @note 此函数在数据验证时被调用
  * @warning 错误的验证可能导致数据错误
  */
 uint64_t UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64_t operation_flag, uint64_t validation_flag);
-
 /**
  * @brief UI系统资源清理器
- * 
+ *
  * 该函数负责清理系统资源：
  * - 清理资源内存
  * - 释放资源占用
  * - 验证清理结果
  * - 返回清理状态
- * 
+ *
  * @param cleanup_context 清理上下文指针
  * @param resource_type 资源类型
  * @param operation_flag 操作标志
  * @param validation_flag 验证标志
  * @return void 操作状态
- * 
+ *
  * @note 此函数在资源清理时被调用
  * @warning 需要确保资源使用已完成
  */
 void UISystem_ResourceCleaner(uint64_t cleanup_context, uint64_t resource_type, uint64_t operation_flag, uint64_t validation_flag);
-
 /**
  * @brief UI系统字符串查找器
- * 
+ *
  * 该函数负责查找字符串：
  * - 查找字符串数据
  * - 比较字符串内容
  * - 验证查找结果
  * - 返回查找状态
- * 
+ *
  * @param search_context 查找上下文指针
  * @param target_string 目标字符串指针
  * @return uint64_t* 查找结果指针
- * 
+ *
  * @note 此函数在字符串查找时被调用
  * @warning 错误的查找可能导致错误结果
  */
 uint64_t * UISystem_StringFinder(uint64_t search_context, int64_t *target_string);
-
 /**
  * @brief UI系统数据结构管理器
- * 
+ *
  * 该函数负责管理数据结构：
  * - 管理数据结构生命周期
  * - 处理数据结构操作
  * - 监控数据结构状态
  * - 维护数据结构完整性
- * 
+ *
  * @param management_context 管理上下文指针
  * @param resource_type 资源类型
  * @param operation_flag 操作标志
  * @param validation_flag 验证标志
  * @return void 操作状态
- * 
+ *
  * @note 此函数在数据结构管理时被调用
  * @warning 错误的管理可能导致数据结构损坏
  */
 void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resource_type, uint64_t operation_flag, uint64_t validation_flag);
-
 /**
  * @brief UI系统字符串代码分析器
- * 
+ *
  * 该函数负责转换字符串：
  * - 转换字符串格式
  * - 处理字符串编码
  * - 验证转换结果
  * - 返回转换状态
- * 
+ *
  * @param conversion_context 转换上下文指针
  * @param target_data 目标数据指针
  * @return uint64_t* 转换后的字符串指针
- * 
+ *
  * @note 此函数在字符串转换时被调用
  * @warning 错误的转换可能导致数据丢失
  */
 uint64_t * UISystem_StringConverter(uint64_t conversion_context, uint64_t *target_data, uint64_t param_3, int64_t param_4, int64_t param_5);
-
 /* ========================================
    函数别名定义（便于代码阅读和维护）
    ======================================== */
-
 #define UISystem_InitializeDataStructure UISystem_DataStructureInitializer
 #define UISystem_FormatString UISystem_StringFormatter
 #define UISystem_CopyString UISystem_StringCopier
@@ -474,20 +428,18 @@ uint64_t * UISystem_StringConverter(uint64_t conversion_context, uint64_t *targe
 #define UISystem_FindString UISystem_StringFinder
 #define UISystem_ManageDataStructure UISystem_DataStructureManager
 #define UISystem_ConvertString UISystem_StringConverter
-
 /* ========================================
    核心函数实现
    ======================================== */
-
 /**
  * @brief UI系统数据结构初始化器
- * 
+ *
  * 该函数负责初始化UI系统数据结构：
  * - 初始化数据结构内存
  * - 设置数据结构参数
  * - 准备数据结构操作环境
  * - 验证初始化条件
- * 
+ *
  * @param structure_context 数据结构上下文指针
  * @param operation_flag 操作标志
  * @param data_source 数据源指针
@@ -495,7 +447,6 @@ uint64_t * UISystem_StringConverter(uint64_t conversion_context, uint64_t *targe
  * @return void 操作状态
  */
 void UISystem_DataStructureInitializer(int64_t structure_context, uint64_t operation_flag, uint64_t data_source, uint64_t validation_flag)
-
 {
   uint64_t data_length;
   uint64_t memory_management_flag;
@@ -503,7 +454,6 @@ void UISystem_DataStructureInitializer(int64_t structure_context, uint64_t opera
   int64_t string_buffer_ptr;
   uint string_length;
   int32_t validation_result;
-  
   memory_management_flag = 0xfffffffffffffffe;
   CoreMemoryPoolValidator(&stack_data_buffer);
   data_length = (uint64_t)string_length;
@@ -524,27 +474,24 @@ void UISystem_DataStructureInitializer(int64_t structure_context, uint64_t opera
   }
   return;
 }
-
 /**
  * @brief UI系统字符串格式化器
- * 
+ *
  * 该函数负责格式化和处理字符串：
  * - 格式化字符串数据
  * - 处理字符串编码
  * - 管理字符串内存
  * - 验证字符串完整性
- * 
+ *
  * @param string_source 字符串源指针
  * @param format_flag 格式化标志
  * @return uint64_t* 格式化后的字符串指针
  */
 uint64_t * UISystem_StringFormatter(int64_t string_source)
-
 {
   uint64_t *formatted_string_ptr;
   uint64_t string_length;
   uint64_t char_index;
-  
   formatted_string_ptr = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,MEMORY_ALLOCATION_SIZE,8,3);
   *formatted_string_ptr = &system_state_ptr;
   formatted_string_ptr[1] = 0;
@@ -570,16 +517,15 @@ uint64_t * UISystem_StringFormatter(int64_t string_source)
   }
   return formatted_string_ptr;
 }
-
 /**
  * @brief UI系统字符串复制器
- * 
+ *
  * 该函数负责复制和处理字符串：
  * - 复制字符串数据
  * - 处理字符串内存
  * - 验证复制结果
  * - 返回复制状态
- * 
+ *
  * @param source_string 源字符串指针
  * @param target_ptr 目标指针
  * @param operation_flag 操作标志
@@ -588,7 +534,6 @@ uint64_t * UISystem_StringFormatter(int64_t string_source)
  */
 uint64_t *
 UISystem_StringCopier(uint64_t source_string, uint64_t *target_ptr, uint64_t operation_flag, uint64_t validation_flag)
-
 {
   *target_ptr = &system_state_ptr;
   target_ptr[1] = 0;
@@ -600,16 +545,15 @@ UISystem_StringCopier(uint64_t source_string, uint64_t *target_ptr, uint64_t ope
   strcpy_s(target_ptr[1],STRING_BUFFER_SIZE,&ui_system_data_1640_ptr,validation_flag,0,0xfffffffffffffffe);
   return target_ptr;
 }
-
 /**
  * @brief UI系统字符串处理器
- * 
+ *
  * 该函数负责处理字符串操作：
  * - 处理字符串数据
  * - 执行字符串转换
  * - 管理字符串内存
  * - 验证字符串结果
- * 
+ *
  * @param source_string 源字符串指针
  * @param target_ptr 目标指针
  * @param operation_flag 操作标志
@@ -618,7 +562,6 @@ UISystem_StringCopier(uint64_t source_string, uint64_t *target_ptr, uint64_t ope
  */
 uint64_t *
 UISystem_StringProcessor(uint64_t source_string, uint64_t *target_ptr, uint64_t operation_flag, uint64_t validation_flag)
-
 {
   *target_ptr = &system_state_ptr;
   target_ptr[1] = 0;
@@ -630,16 +573,15 @@ UISystem_StringProcessor(uint64_t source_string, uint64_t *target_ptr, uint64_t 
   strcpy_s(target_ptr[1],STRING_BUFFER_SIZE,&ui_system_data_1664_ptr,validation_flag,0,0xfffffffffffffffe);
   return target_ptr;
 }
-
 /**
  * @brief UI系统资源分配器
- * 
+ *
  * 该函数负责分配系统资源：
  * - 分配内存资源
  * - 设置资源参数
  * - 验证分配结果
  * - 返回资源指针
- * 
+ *
  * @param allocation_context 分配上下文指针
  * @param resource_type 资源类型
  * @param operation_flag 操作标志
@@ -647,26 +589,23 @@ UISystem_StringProcessor(uint64_t source_string, uint64_t *target_ptr, uint64_t 
  * @return void 操作状态
  */
 void UISystem_ResourceAllocator(uint64_t allocation_context, uint64_t resource_type, uint64_t operation_flag, uint64_t validation_flag)
-
 {
-  FUN_180657620(allocation_context,ui_system_string,operation_flag,validation_flag,0xfffffffffffffffe);
+  function_657620(allocation_context,ui_system_string,operation_flag,validation_flag,0xfffffffffffffffe);
   return;
 }
-
 /**
  * @brief UI系统数据结构处理器
- * 
+ *
  * 该函数负责处理数据结构操作：
  * - 处理数据结构数据
  * - 执行数据结构操作
  * - 管理数据结构内存
  * - 验证数据结构完整性
- * 
+ *
  * @param data_context 数据上下文指针
  * @return void 操作状态
  */
 void UISystem_DataStructureProcessor(int64_t *data_context)
-
 {
   byte char_comparison_result;
   bool comparison_result;
@@ -709,7 +648,6 @@ void UISystem_DataStructureProcessor(int64_t *data_context)
   uint64_t memory_management_flag;
   int32_t memory_flag;
   uint64_t system_flag;
-  
   system_flag = 0xfffffffffffffffe;
   ui_system_string = data_context;
   if (data_context != (int64_t *)0x0) {
@@ -720,7 +658,7 @@ void UISystem_DataStructureProcessor(int64_t *data_context)
   processed_count = 0;
   data_ptr_array3 = (int64_t *)0x0;
   allocation_flag = 3;
-  FUN_180657040(&data_ptr_array);
+  function_657040(&data_ptr_array);
   data_array_ptr = data_ptr_array2;
   if (ui_system_string != (int64_t *)0x0) {
     memory_ptr1 = (uint64_t *)0x0;
@@ -780,7 +718,7 @@ void UISystem_DataStructureProcessor(int64_t *data_context)
         string_char = RenderingSystem_RenderQueue(&data_buffer);
         data_array_ptr = data_item_ptr;
         if (string_char != '\0') {
-          string_length = FUN_180657fa0(&data_buffer);
+          string_length = function_657fa0(&data_buffer);
           if (data_item_ptr < temp_data_ptr) {
             data_array_ptr = data_item_ptr + 1;
             *data_item_ptr = string_length;
@@ -925,7 +863,7 @@ LAB_180656dbb:
         }
         if (string_ptr2 == &system_memory_67e0) {
 LAB_180656df9:
-          structure_array_ptr = (uint64_t *)FUN_1806576d0(&stack_buffer,&stack_data_ptr,comparison_string1,string_ptr2,&stack_buffer);
+          structure_array_ptr = (uint64_t *)function_6576d0(&stack_buffer,&stack_data_ptr,comparison_string1,string_ptr2,&stack_buffer);
           string_ptr2 = (byte *)*structure_array_ptr;
         }
         else if (*(int *)(string_ptr2 + 0x30) != 0) {
@@ -1013,21 +951,19 @@ LAB_180656e1e:
   }
   return;
 }
-
 /**
  * @brief UI系统资源管理器
- * 
+ *
  * 该函数负责管理系统资源：
  * - 管理资源生命周期
  * - 处理资源分配和释放
  * - 监控资源使用情况
  * - 优化资源使用效率
- * 
+ *
  * @param resource_context 资源上下文指针
  * @return void 操作状态
  */
 void UISystem_ResourceManager(uint64_t *resource_context)
-
 {
   uint64_t *resource_ptr1;
   uint64_t *resource_ptr2;
@@ -1060,7 +996,6 @@ void UISystem_ResourceManager(uint64_t *resource_context)
   int context_size;
   uint64_t context_buffer [2];
   uint64_t security_cookie;
-  
   memory_management_flag = 0xfffffffffffffffe;
   security_cookie = GET_SECURITY_COOKIE() ^ (uint64_t)format_buffer;
   resource_id = 0;
@@ -1083,7 +1018,7 @@ void UISystem_ResourceManager(uint64_t *resource_context)
   memory_management_flag = 0;
   memory_flag = 3;
   data_size = resource_count;
-  FUN_18062c5f0(&data_buffer,&memory_ptr1);
+  function_62c5f0(&data_buffer,&memory_ptr1);
   resource_index = (int64_t)memory_ptr2 - (int64_t)memory_ptr1 >> 5;
   data_buffer_size = resource_index;
   resource_ptr3 = memory_ptr1;
@@ -1132,7 +1067,7 @@ void UISystem_ResourceManager(uint64_t *resource_context)
       buffer_length = resource_count;
       format_char = RenderingSystem_RenderQueue(&stack_buffer);
       if (format_char != '\0') {
-        formatted_result = FUN_180657fa0(&stack_buffer);
+        formatted_result = function_657fa0(&stack_buffer);
         resource_ptr3 = (uint64_t *)resource_context[1];
         if (resource_ptr3 < (uint64_t *)resource_context[2]) {
           resource_context[1] = (uint64_t)(resource_ptr3 + 1);
@@ -1214,16 +1149,15 @@ LAB_1806572f9:
   memory_ptr2 = resource_ptr5;
   SystemSecurityChecker(security_cookie ^ (uint64_t)format_buffer);
 }
-
 /**
  * @brief UI系统数据验证器
- * 
+ *
  * 该函数负责验证系统数据：
  * - 验证数据完整性
  * - 检查数据格式
  * - 处理数据转换
  * - 返回验证结果
- * 
+ *
  * @param validation_context 验证上下文指针
  * @param data_source 数据源指针
  * @param operation_flag 操作标志
@@ -1232,7 +1166,6 @@ LAB_1806572f9:
  */
 uint64_t
 UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64_t operation_flag, uint64_t validation_flag)
-
 {
   uint char_count;
   uint64_t memory_management_flag;
@@ -1241,7 +1174,6 @@ UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64
   void *stack_buffer;
   int64_t string_buffer_ptr;
   uint string_length_count;
-  
   SystemCore_NetworkHandler0(&stack_buffer,validation_context,data_source,validation_flag,0xfffffffffffffffe);
   char_count = 0;
   if (string_length_count != 0) {
@@ -1254,7 +1186,7 @@ UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64
       string_length = string_length + 1;
     } while (char_count < string_length_count);
   }
-  FUN_180657530(char_count,data_array,&stack_buffer);
+  function_657530(char_count,data_array,&stack_buffer);
   if (data_array[0] == &system_memory_67e0) {
     memory_management_flag = 0;
   }
@@ -1267,16 +1199,15 @@ UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64
   }
   return memory_management_flag;
 }
-
 /**
  * @brief UI系统资源清理器
- * 
+ *
  * 该函数负责清理系统资源：
  * - 清理资源内存
  * - 释放资源占用
  * - 验证清理结果
  * - 返回清理状态
- * 
+ *
  * @param cleanup_context 清理上下文指针
  * @param resource_type 资源类型
  * @param operation_flag 操作标志
@@ -1284,27 +1215,24 @@ UISystem_DataValidator(uint64_t validation_context, uint64_t data_source, uint64
  * @return void 操作状态
  */
 void UISystem_ResourceCleaner(uint64_t cleanup_context, uint64_t resource_type, uint64_t operation_flag, uint64_t validation_flag)
-
 {
-  FUN_180657620(cleanup_context,ui_system_string,operation_flag,validation_flag,0xfffffffffffffffe);
+  function_657620(cleanup_context,ui_system_string,operation_flag,validation_flag,0xfffffffffffffffe);
   return;
 }
-
 /**
  * @brief UI系统字符串查找器
- * 
+ *
  * 该函数负责查找字符串：
  * - 查找字符串数据
  * - 比较字符串内容
  * - 验证查找结果
  * - 返回查找状态
- * 
+ *
  * @param search_context 查找上下文指针
  * @param target_string 目标字符串指针
  * @return uint64_t* 查找结果指针
  */
 uint64_t * UISystem_StringFinder(uint64_t search_context, int64_t *target_string)
-
 {
   byte char_comparison_result;
   bool comparison_result;
@@ -1316,7 +1244,6 @@ uint64_t * UISystem_StringFinder(uint64_t search_context, int64_t *target_string
   uint64_t *next_string_ptr;
   uint64_t *current_string_ptr;
   uint64_t *result_string_ptr;
-  
   if (ui_system_string != (uint64_t *)0x0) {
     found_string_ptr = ui_system_string;
     result_string_ptr = (uint64_t *)&system_memory_67e0;
@@ -1376,16 +1303,15 @@ LAB_1806575f7:
   *target_string = &system_memory_67e0;
   return target_string;
 }
-
 /**
  * @brief UI系统数据结构管理器
- * 
+ *
  * 该函数负责管理数据结构：
  * - 管理数据结构生命周期
  * - 处理数据结构操作
  * - 监控数据结构状态
  * - 维护数据结构完整性
- * 
+ *
  * @param management_context 管理上下文指针
  * @param resource_type 资源类型
  * @param operation_flag 操作标志
@@ -1393,12 +1319,11 @@ LAB_1806575f7:
  * @return void 操作状态
  */
 void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resource_type, uint64_t operation_flag, uint64_t validation_flag)
-
 {
   if (resource_type == (uint64_t *)0x0) {
     return;
   }
-  FUN_180657620(&system_memory_67e0,*resource_type,operation_flag,validation_flag,0xfffffffffffffffe);
+  function_657620(&system_memory_67e0,*resource_type,operation_flag,validation_flag,0xfffffffffffffffe);
   resource_type[4] = &system_data_buffer_ptr;
   if (resource_type[5] != 0) {
     CoreEngine_MemoryPoolManager();
@@ -1408,16 +1333,15 @@ void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resour
   resource_type[4] = &system_state_ptr;
   CoreEngine_MemoryPoolManager(resource_type);
 }
-
 /**
  * @brief UI系统字符串代码分析器
- * 
+ *
  * 该函数负责转换字符串：
  * - 转换字符串格式
  * - 处理字符串编码
  * - 验证转换结果
  * - 返回转换状态
- * 
+ *
  * @param conversion_context 转换上下文指针
  * @param target_data 目标数据指针
  * @return uint64_t* 转换后的字符串指针
@@ -1425,7 +1349,6 @@ void UISystem_DataStructureManager(uint64_t management_context, uint64_t *resour
 uint64_t *
 UISystem_StringConverter(uint64_t conversion_context, uint64_t *target_data, uint64_t param_3, int64_t *param_4,
              int64_t param_5)
-
 {
   byte char_comparison_result;
   bool comparison_result;
@@ -1439,7 +1362,6 @@ UISystem_StringConverter(uint64_t conversion_context, uint64_t *target_data, uin
   int64_t *data_ptr3;
   uint64_t data_index;
   uint64_t conversion_flag;
-  
   if ((param_4 == ui_system_string) || (param_4 == (int64_t *)&system_memory_67e0)) {
     if ((ui_system_string != 0) && (*(int *)(param_5 + 0x10) != 0)) {
       data_ptr2 = ui_system_string;
@@ -1460,13 +1382,13 @@ LAB_1806577d7:
       data_index = (uint64_t)data_ptr3 & 0xffffffffffffff00;
 LAB_1806577da:
       if (data_ptr2 != (int64_t *)0x0) {
-        FUN_180657970(conversion_context,target_data,data_ptr2,data_index,param_5);
+        function_657970(conversion_context,target_data,data_ptr2,data_index,param_5);
         return target_data;
       }
     }
   }
   else {
-    data_ptr = (int64_t *)func_0x00018066bd70(param_4);
+    data_ptr = (int64_t *)Function_7bfb2422(param_4);
     if (*(int *)(param_5 + 0x10) != 0) {
       if ((int)param_4[6] != 0) {
         string_ptr1 = *(byte **)(param_5 + 8);
@@ -1532,7 +1454,7 @@ LAB_180657812:
   string_ptr2 = conversion_result;
   if (comparison_result) {
     if (conversion_result != ui_system_string) {
-      string_ptr2 = (uint64_t *)func_0x00018066b9a0(conversion_result);
+      string_ptr2 = (uint64_t *)Function_e2d50782(conversion_result);
       goto LAB_180657835;
     }
   }
@@ -1580,122 +1502,120 @@ LAB_1806578f0:
   *(uint64_t *)(string_length + 0x40) = 0;
   SystemStateController(string_length,conversion_result,&system_memory_67e0,conversion_flag);
 }
-
 /* ========================================
    技术说明
    ======================================== */
-
 /**
  * @section 模块概述
- * 
+ *
  * 本模块是UI系统的重要组成部分，主要负责：
- * 
+ *
  * 1. **数据结构操作**
  *    - 初始化和管理数据结构
  *    - 处理数据结构内存
  *    - 验证数据结构完整性
  *    - 执行数据结构操作
- * 
+ *
  * 2. **字符串处理**
  *    - 格式化和转换字符串
  *    - 复制和处理字符串
  *    - 查找和比较字符串
  *    - 管理字符串内存
- * 
+ *
  * 3. **资源管理**
  *    - 分配和释放资源
  *    - 管理资源生命周期
  *    - 监控资源使用情况
  *    - 优化资源使用效率
- * 
+ *
  * 4. **数据验证**
  *    - 验证数据完整性
  *    - 检查数据格式
  *    - 处理数据转换
  *    - 返回验证结果
- * 
+ *
  * 5. **状态监控**
  *    - 监控系统状态变化
  *    - 处理状态异常和错误
  *    - 维护状态一致性
  *    - 提供状态报告和诊断
- * 
+ *
  * @section 设计原则
- * 
+ *
  * 本模块遵循以下设计原则：
- * 
+ *
  * 1. **模块化设计**
  *    - 功能模块化，便于维护和扩展
  *    - 清晰的接口定义
  *    - 松耦合的架构设计
- * 
+ *
  * 2. **高性能**
  *    - 优化的算法和数据结构
  *    - 最小化的资源开销
  *    - 高效的内存管理
- * 
+ *
  * 3. **可靠性**
  *    - 完善的错误处理机制
  *    - 状态一致性的保证
  *    - 系统稳定性保护
- * 
+ *
  * 4. **可扩展性**
  *    - 支持动态功能扩展
  *    - 灵活的配置管理
  *    - 适配不同的应用场景
- * 
+ *
  * @section 依赖关系
- * 
+ *
  * 本模块依赖于：
  * - TaleWorlds.Native.Split.h 核心头文件
  * - 系统基础数据结构
  * - 内存管理模块
  * - 字符串处理模块
  * - 错误处理模块
- * 
+ *
  * @section 性能优化
- * 
+ *
  * 为提高性能，本模块实现了以下优化策略：
- * 
+ *
  * 1. **缓存机制**
  *    - 字符串处理结果缓存
  *    - 数据结构操作缓存
  *    - 资源分配缓存
- * 
+ *
  * 2. **批量处理**
  *    - 批量字符串处理
  *    - 批量数据结构操作
  *    - 批量资源分配
- * 
+ *
  * 3. **异步处理**
  *    - 异步字符串处理
  *    - 异步数据结构操作
  *    - 异步资源管理
- * 
+ *
  * 4. **内存管理**
  *    - 内存池技术
  *    - 智能指针管理
  *    - 内存使用优化
- * 
+ *
  * @section 错误处理
- * 
+ *
  * 本模块实现了完善的错误处理机制：
- * 
+ *
  * 1. **错误检测**
  *    - 参数验证
  *    - 状态检查
  *    - 资源可用性检查
- * 
+ *
  * 2. **错误报告**
  *    - 详细的错误信息
  *    - 错误上下文信息
  *    - 错误级别分类
- * 
+ *
  * 3. **错误恢复**
  *    - 自动重试机制
  *    - 状态回滚
  *    - 资源清理
- * 
+ *
  * 4. **错误日志**
  *    - 错误记录
  *    - 错误统计

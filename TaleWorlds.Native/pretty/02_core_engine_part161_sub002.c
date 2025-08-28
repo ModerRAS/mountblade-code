@@ -1,14 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 02_core_engine_part161_sub002.c - 1 个函数
-
-// 函数: void FUN_18014b164(int64_t param_1,uint64_t param_2,uint64_t param_3)
-void FUN_18014b164(int64_t param_1,uint64_t param_2,uint64_t param_3)
-
+// 函数: void function_14b164(int64_t param_1,uint64_t param_2,uint64_t param_3)
+void function_14b164(int64_t param_1,uint64_t param_2,uint64_t param_3)
 {
   float fVar1;
   uint64_t uVar2;
@@ -38,7 +33,6 @@ void FUN_18014b164(int64_t param_1,uint64_t param_2,uint64_t param_3)
   int32_t in_XMM2_Dd;
   float fVar20;
   float fVar21;
-  
   uVar19 = (int32_t)((uint64_t)param_3 >> 0x20);
   uVar16 = (int32_t)param_3;
   lVar8 = SUB168(SEXT816(in_RAX) * SEXT816(param_1),8);
@@ -216,9 +210,3 @@ void FUN_18014b164(int64_t param_1,uint64_t param_2,uint64_t param_3)
   *(int32_t *)(unaff_RSI + 0x128) = uVar16;
   return;
 }
-
-
-
-
-
-

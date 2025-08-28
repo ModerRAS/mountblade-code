@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_12_part027_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_1807dace0(int64_t param_1,int64_t *param_2,int param_3,int param_4,uint param_5)
-void FUN_1807dace0(int64_t param_1,int64_t *param_2,int param_3,int param_4,uint param_5)
-
+// 函数: void function_7dace0(int64_t param_1,int64_t *param_2,int param_3,int param_4,uint param_5)
+void function_7dace0(int64_t param_1,int64_t *param_2,int param_3,int param_4,uint param_5)
 {
   float *pfVar1;
   float *pfVar2;
@@ -86,10 +83,9 @@ void FUN_1807dace0(int64_t param_1,int64_t *param_2,int param_3,int param_4,uint
   uint uVar78;
   uint64_t uVar79;
   uint uVar80;
-  
   if (param_3 == 1) {
     if (param_4 == 1) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy(*param_2,param_1,(uint64_t)param_5 << 2);
     }
     if (param_4 == 2) {
@@ -188,7 +184,7 @@ void FUN_1807dace0(int64_t param_1,int64_t *param_2,int param_3,int param_4,uint
       }
     }
     else {
-      if (param_4 != 8) goto FUN_1807d90a0;
+      if (param_4 != 8) goto label_7d90a0;
       uVar80 = 0;
       if (param_5 >> 2 != 0) {
         do {
@@ -363,7 +359,7 @@ void FUN_1807dace0(int64_t param_1,int64_t *param_2,int param_3,int param_4,uint
       }
     }
     else {
-      if (param_4 != 8) goto FUN_1807d90a0;
+      if (param_4 != 8) goto label_7d90a0;
       uVar80 = 0;
       if (param_5 >> 2 != 0) {
         do {
@@ -1087,8 +1083,8 @@ void FUN_1807dace0(int64_t param_1,int64_t *param_2,int param_3,int param_4,uint
           return;
         }
       }
-FUN_1807d90a0:
-                    // WARNING: Subroutine does not return
+label_7d90a0:
+// WARNING: Subroutine does not return
       SystemCore_MemoryManager0(param_1);
     }
     if (param_4 == 1) {
@@ -1302,7 +1298,7 @@ FUN_1807d90a0:
           }
           return;
         }
-        goto FUN_1807d90a0;
+        goto label_7d90a0;
       }
       uVar80 = 0;
       if (param_5 >> 2 != 0) {
@@ -1356,11 +1352,3 @@ FUN_1807d90a0:
   }
   return;
 }
-
-
-
-
-
-
-
-

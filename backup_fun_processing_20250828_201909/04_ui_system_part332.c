@@ -177,7 +177,7 @@ uint64_t FUN_18084de40(int64_t param_1,int64_t param_2,float *param_3)
       else {
         puVar2 = (void *)*puVar3;
       }
-      iVar1 = func_0x00018076b420(puVar2,param_2);
+      iVar1 = MemoryManager_ValidateBuffer(puVar2,param_2);
       if (iVar1 == 0) {
         *param_3 = fVar4;
         return 0;
@@ -485,7 +485,7 @@ int64_t FUN_18084e3b0(int64_t param_1,uint64_t param_2)
   
   SystemAnalyzer(param_1 + 0xf8);
   UIComponent_StateProcessor(param_1 + 0xb0);
-  func_0x00018084e310(param_1 + 0xa0);
+  RenderingSystem_UpdateTexture(param_1 + 0xa0);
   SystemAnalyzer(param_1 + 0x90);
   SystemAnalyzer(param_1 + 0x80);
   UIComponent_StateProcessor(param_1 + 0x50);
@@ -534,7 +534,7 @@ uint64_t FUN_18084e4b0(int64_t param_1)
   uint64_t uVar8;
   int64_t lStackX_8;
   
-  sVar4 = func_0x00018084c3d0(*(uint64_t *)(param_1 + 0x40));
+  sVar4 = NetworkingSystem_GetConnectionStatus(*(uint64_t *)(param_1 + 0x40));
   lVar2 = *(int64_t *)(param_1 + 0x40);
   if (sVar4 == 4) {
     if ((*(byte *)(lVar2 + 0xc4) & 1) == 0) {
@@ -635,7 +635,7 @@ uint64_t FUN_18084e710(uint64_t *param_1,uint64_t param_2,char param_3)
           lVar6 = 0;
           lVar2 = 0;
           do {
-            iVar4 = func_0x00018085f4a0(*(uint64_t *)(lVar6 + param_1[0x1f]),
+            iVar4 = MathFunction_ComputeVector(*(uint64_t *)(lVar6 + param_1[0x1f]),
                                         *(uint64_t *)(lVar2 + param_1[0x1f]));
             if (iVar4 < 0) {
               lVar2 = lVar6;
@@ -940,7 +940,7 @@ uint64_t FUN_18084ec10(int64_t param_1)
     uStack_10 = *(int32_t *)(lVar1 + 0x18);
     uStack_c = *(int32_t *)(lVar1 + 0x1c);
     uVar6 = 0;
-    cVar2 = func_0x0001808c0d90(*(uint64_t *)(param_1 + 0x38),&uStack_18);
+    cVar2 = SystemCore_ValidateRequest(*(uint64_t *)(param_1 + 0x38),&uStack_18);
     if (cVar2 == '\0') {
       uVar4 = 0;
       goto LAB_180853ee2;
@@ -1054,7 +1054,7 @@ uint64_t FUN_18084ed10(int64_t param_1)
   puVar1 = (uint64_t *)(param_1 + 0xb0);
   fVar7 = fVar6 * fVar2 * fVar3 * fVar7;
   for (puVar4 = (uint64_t *)*puVar1; puVar4 != puVar1; puVar4 = (uint64_t *)*puVar4) {
-    fVar6 = (float)func_0x0001808c3960(puVar4[2]);
+    fVar6 = (float)MathFunction_ConvertValue(puVar4[2]);
     fVar7 = fVar7 * fVar6;
     if (puVar4 == puVar1) break;
   }
@@ -1062,7 +1062,7 @@ uint64_t FUN_18084ed10(int64_t param_1)
   uVar5 = FUN_18073dba0(*(uint64_t *)(param_1 + 0x78),fVar7);
   if ((int)uVar5 == 0) {
     if (*(int64_t *)(param_1 + 0x70) != 0) {
-      func_0x000180862c20();
+      RenderingSystem_FlushPipeline();
     }
     uVar5 = 0;
   }
@@ -1104,7 +1104,7 @@ void FUN_18084edf0(int64_t param_1)
   uint64_t uStack_28;
   
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_c8;
-  sVar2 = func_0x00018084c3d0(*(uint64_t *)(param_1 + 0x40));
+  sVar2 = NetworkingSystem_GetConnectionStatus(*(uint64_t *)(param_1 + 0x40));
   if ((sVar2 == 4) &&
      (iVar3 = FUN_18073cb70(*(uint64_t *)(param_1 + 0x78),&uStack_58), iVar3 == 0)) {
     if ((*(uint *)(param_1 + 0xc0) >> 3 & 1) != 0) {

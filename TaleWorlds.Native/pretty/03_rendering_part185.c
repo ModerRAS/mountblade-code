@@ -1,17 +1,11 @@
 #include "CoreSystem_DatabaseHandler0_definition.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
-
 // 03_rendering_part185.c - 3 个函数
-
-// 函数: void FUN_180376f8a(int param_1,uint64_t param_2,int param_3)
-void FUN_180376f8a(int param_1,uint64_t param_2,int param_3)
-
+// 函数: void function_376f8a(int param_1,uint64_t param_2,int param_3)
+void function_376f8a(int param_1,uint64_t param_2,int param_3)
 {
   ushort uVar1;
   int iVar2;
@@ -62,9 +56,8 @@ void FUN_180376f8a(int param_1,uint64_t param_2,int param_3)
   float unaff_XMM10_Da;
   float unaff_XMM12_Da;
   float fVar37;
-  uint64_t in_stack_00000038;
-  float in_stack_00000050;
-  
+  uint64_t local_var_38;
+  float local_buffer_50;
   *(uint64_t *)(unaff_RBP + 0x18) = unaff_R12;
   uVar3 = *(uint64_t *)(unaff_RBP + 0x30);
   do {
@@ -153,7 +146,7 @@ LAB_180377195:
         fVar34 = (float)(int)(uVar24 + 1) * (unaff_XMM12_Da / fVar25) * fVar35 - fVar37;
         fVar35 = fVar32 * fVar34;
         if (((uVar22 == 0) &&
-            (cVar10 = func_0x0001803723f0(*(uint64_t *)(unaff_RBP + 0x20)), cVar10 == '\0')) &&
+            (cVar10 = SystemFunction_0001803723f0(*(uint64_t *)(unaff_RBP + 0x20)), cVar10 == '\0')) &&
            (*(int *)(unaff_RBP + 0x28) != 100)) {
           fVar35 = fVar35 * (float)*(int *)(unaff_RBP + 0x28) * 0.01;
         }
@@ -301,7 +294,7 @@ LAB_180377195:
                     if (fVar29 <= unaff_XMM10_Da) {
                       fVar29 = unaff_XMM10_Da;
                     }
-                    if (fVar29 < in_stack_00000050) goto LAB_180377666;
+                    if (fVar29 < local_buffer_50) goto LAB_180377666;
                     bVar9 = false;
                   }
                   else {
@@ -396,14 +389,14 @@ LAB_1803777ad:
                       uVar22 = uVar22 ^ uVar22 << 0xd;
                       uVar22 = uVar22 ^ uVar22 >> 0x11;
                       uVar24 = (uVar22 ^ uVar22 << 5) - 1;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                       AdvancedSystemController(uVar24,(float)uVar24 * 1.4629181e-09);
                     }
                     *(float *)(unaff_RBP + 0x88) = fVar27;
                     *(float *)(unaff_RBP + 0x8c) = fVar26;
                     *(int32_t *)(unaff_RBP + 0x90) = 0;
                     *(int32_t *)(unaff_RBP + 0x94) = 0x7f7fffff;
-                    FUN_18046da60();
+                    function_46da60();
                     fVar35 = *(float *)(unaff_RBP + 0x120) * 0.33 * 6.6666665;
                     fVar36 = *(float *)(unaff_RBP + 0x124) * 0.33 * 6.6666665;
                     fVar32 = *(float *)(unaff_RBP + 0x128) * 0.33 * 6.6666665;
@@ -473,11 +466,11 @@ LAB_1803777ad:
         in_XMM4_Da = 0.5;
         fVar26 = *(float *)(unaff_RBP + 0x10);
         unaff_R13 = *(int64_t *)(unaff_RBP + -0x40);
-        unaff_XMM6_Da = in_stack_00000050;
+        unaff_XMM6_Da = local_buffer_50;
       } while ((int)uVar24 < param_1);
       iVar14 = *(int *)(unaff_RBP + -0x24);
       param_3 = *(int *)(unaff_RBP + 0x14);
-      unaff_XMM8_Da = in_stack_00000038._4_4_;
+      unaff_XMM8_Da = local_var_38._4_4_;
     }
     uVar24 = iVar14 + 1;
     param_2 = (uint64_t)uVar24;
@@ -499,28 +492,20 @@ LAB_1803777ad:
         lVar13 = (*(int64_t **)(unaff_RBP + 0x60))[1] - **(int64_t **)(unaff_RBP + 0x60);
         puVar17 = &memory_allocator_3824_ptr;
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       SystemParameterHandler(system_message_context,puVar17,lVar13 / 0x28,puVar20);
     }
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18037832a(void)
-void FUN_18037832a(void)
-
+// 函数: void function_37832a(void)
+void function_37832a(void)
 {
   int64_t lVar1;
   void *puVar2;
   int64_t unaff_RBP;
   void *puVar3;
   int64_t unaff_R13;
-  
   puVar2 = *(void **)(unaff_R13 + 0x10);
   puVar3 = &system_buffer_ptr;
   if ((*(uint *)(unaff_R13 + 0x60) & 0x400000) == 0) {
@@ -537,30 +522,16 @@ void FUN_18037832a(void)
     lVar1 = (*(int64_t **)(unaff_RBP + 0x60))[1] - **(int64_t **)(unaff_RBP + 0x60);
     puVar2 = &memory_allocator_3824_ptr;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemParameterHandler(system_message_context,puVar2,lVar1 / 0x28,puVar3);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18037834c(void)
-void FUN_18037834c(void)
-
+// 函数: void function_37834c(void)
+void function_37834c(void)
 {
   int64_t unaff_RBP;
-  
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemParameterHandler(system_message_context,&memory_allocator_3824_ptr,
                 ((*(int64_t **)(unaff_RBP + 0x60))[1] - **(int64_t **)(unaff_RBP + 0x60)) / 0x28);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

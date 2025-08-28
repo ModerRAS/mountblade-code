@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_01_part059.c - 2 个函数
-
-// 函数: void FUN_1800dec37(uint64_t param_1,int64_t param_2)
-void FUN_1800dec37(uint64_t param_1,int64_t param_2)
-
+// 函数: void GenericFunction_1800dec37(uint64_t param_1,int64_t param_2)
+void GenericFunction_1800dec37(uint64_t param_1,int64_t param_2)
 {
   float fVar1;
   int64_t lVar2;
@@ -62,13 +59,12 @@ void FUN_1800dec37(uint64_t param_1,int64_t param_2)
   float fStack0000000000000064;
   float fStack0000000000000068;
   float fStack000000000000006c;
-  float in_stack_00000070;
-  int32_t in_stack_00000078;
+  float local_buffer_70;
+  int32_t local_buffer_78;
   float fStack000000000000007c;
-  float in_stack_00000080;
+  float local_buffer_80;
   float fStack0000000000000084;
   uint64_t extraout_XMM0_Qb;
-  
   *(int32_t *)(in_RAX + -200) = unaff_XMM15_Da;
   *(int32_t *)(in_RAX + -0xc4) = unaff_XMM15_Db;
   *(int32_t *)(in_RAX + -0xc0) = unaff_XMM15_Dc;
@@ -140,7 +136,7 @@ LAB_1800dece7:
   auVar13._0_4_ = (float)auVar12._0_8_ / *(float *)(unaff_RSI + 0x150);
   fVar14 = (float)atanf(auVar13._0_8_);
   *(float *)(*(int64_t *)(unaff_RBX + 0x1cd8) + 0x1c68) = fVar14 + fVar14;
-  FUN_180094120((float *)(unaff_RSI + 0x12bc0),&stack0x00000030);
+  GenericFunction_180094120((float *)(unaff_RSI + 0x12bc0),&local_buffer_00000030);
   *(int8_t (*) [16])(unaff_RBP + -0x70) = ZEXT416((uint)fStack0000000000000030);
   *(int8_t (*) [16])(unaff_RBP + -0x60) =
        ZEXT416((uint)(fStack0000000000000030 * -1.0 + fStack0000000000000040 * -1.0 +
@@ -148,11 +144,11 @@ LAB_1800dece7:
   fStack000000000000007c =
        fStack0000000000000034 * -1.0 + fStack0000000000000044 * -1.0 + fStack0000000000000054 +
        fStack0000000000000064;
-  in_stack_00000080 =
+  local_buffer_80 =
        fStack0000000000000038 * -1.0 + fStack0000000000000048 * -1.0 + fStack0000000000000058 +
        fStack0000000000000068;
-  in_stack_00000078 = *(int32_t *)(unaff_RBP + -0x60);
-  in_stack_00000070 =
+  local_buffer_78 = *(int32_t *)(unaff_RBP + -0x60);
+  local_buffer_70 =
        fStack000000000000003c * -1.0 + fStack000000000000004c * -1.0 + fStack000000000000005c +
        fStack000000000000006c;
   *(int8_t (*) [16])(unaff_RBP + -0x40) =
@@ -184,7 +180,7 @@ LAB_1800dece7:
   fVar22 = *(float *)(unaff_RBP + -0x70) + fStack0000000000000040 + fStack0000000000000050 +
            fStack0000000000000060;
   fVar14 = *(float *)(unaff_RBP + -0x50);
-  fVar15 = 1.0 / in_stack_00000070;
+  fVar15 = 1.0 / local_buffer_70;
   fStack000000000000002c =
        fStack000000000000003c + fStack000000000000004c + fStack000000000000005c +
        fStack000000000000006c;
@@ -201,12 +197,12 @@ LAB_1800dece7:
            fStack0000000000000068) * fVar10;
   fVar25 = (fStack000000000000007c * fVar15 + fVar21) * 0.5;
   fVar16 = (*(float *)(unaff_RBP + -0x1c) * fVar18 + fVar21) * 0.5;
-  fVar23 = (in_stack_00000080 * fVar15 + fVar10) * 0.5;
+  fVar23 = (local_buffer_80 * fVar15 + fVar10) * 0.5;
   fVar15 = (fVar18 * *(float *)(unaff_RBP + -0x40) + fVar20) * 0.5;
   uVar11 = (uint64_t)(uint)fVar15;
   plVar3 = *(int64_t **)(unaff_RSI + 0x3580);
   fVar18 = (*(float *)(unaff_RBP + -0x18) * fVar18 + fVar10) * 0.5;
-  fStack0000000000000084 = in_stack_00000070;
+  fStack0000000000000084 = local_buffer_70;
   if (plVar3 != (int64_t *)0x0) {
     if (*(code **)(*plVar3 + 0xb8) == (code *)&ui_system_data_128_ptr) {
       lVar8 = plVar3[0xda];
@@ -366,17 +362,9 @@ LAB_1800df320:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1800df203(int64_t *param_1)
-void FUN_1800df203(int64_t *param_1)
-
+// 函数: void GenericFunction_1800df203(int64_t *param_1)
+void GenericFunction_1800df203(int64_t *param_1)
 {
   float fVar1;
   float fVar2;
@@ -412,8 +400,7 @@ void FUN_1800df203(int64_t *param_1)
   float unaff_XMM12_Da;
   int32_t unaff_XMM13_Da;
   int32_t unaff_XMM14_Da;
-  int32_t uStack000000000000002c;
-  
+  int32_t local_buffer_2c;
   if (*(code **)(*param_1 + 0xb8) == (code *)&ui_system_data_128_ptr) {
     lVar14 = param_1[0xda];
   }
@@ -466,7 +453,7 @@ void FUN_1800df203(int64_t *param_1)
   *(int32_t *)(lVar14 + 0x1c38) = unaff_XMM8_Da;
   *(int32_t *)(lVar14 + 0x1c3c) = 0x7f7fffff;
   lVar14 = *(int64_t *)(unaff_RBX + 0x1cd8);
-  uStack000000000000002c = 0x7f7fffff;
+  local_buffer_2c = 0x7f7fffff;
   *(int32_t *)(lVar14 + 0x1c40) = unaff_XMM9_Da;
   *(int32_t *)(lVar14 + 0x1c44) = unaff_XMM13_Da;
   *(int32_t *)(lVar14 + 0x1c48) = unaff_XMM7_Da;
@@ -600,11 +587,4 @@ void FUN_1800df203(int64_t *param_1)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

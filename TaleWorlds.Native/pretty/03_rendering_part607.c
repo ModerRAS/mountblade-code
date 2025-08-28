@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part607.c - 2 个函数
-
-// 函数: void FUN_18059c48f(int32_t param_1)
-void FUN_18059c48f(int32_t param_1)
-
+// 函数: void function_59c48f(int32_t param_1)
+void function_59c48f(int32_t param_1)
 {
   uint *puVar1;
   int iVar2;
@@ -26,7 +23,6 @@ void FUN_18059c48f(int32_t param_1)
   float unaff_XMM6_Da;
   float unaff_XMM7_Da;
   int32_t uVar9;
-  
   cVar8 = (char)unaff_RDI;
   uVar9 = (int32_t)unaff_RDI;
   if (unaff_R14 != (int *)0x0) {
@@ -162,16 +158,9 @@ LAB_18059c6f5:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18059c722(void)
-void FUN_18059c722(void)
-
+// 函数: void function_59c722(void)
+void function_59c722(void)
 {
   uint *puVar1;
   uint uVar2;
@@ -182,7 +171,6 @@ void FUN_18059c722(void)
   int32_t unaff_ESI;
   int64_t unaff_RDI;
   float fVar6;
-  
   uVar2 = *(uint *)(*(int64_t *)(unaff_RBX + 0x108) + 0x4c8);
   if (((uVar2 & 0x3c0) == 0) || ((uVar2 & 0x7c00) != 0)) {
     if (*(char *)(unaff_RBX + 0x1e4) != (char)unaff_RDI) {
@@ -221,10 +209,4 @@ void FUN_18059c722(void)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

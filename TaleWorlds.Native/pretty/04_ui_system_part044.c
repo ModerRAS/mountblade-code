@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part044.c - 10 个函数
-
-// 函数: void FUN_180679210(int8_t *param_1,int64_t param_2,byte *param_3)
-void FUN_180679210(int8_t *param_1,int64_t param_2,byte *param_3)
-
+// 函数: void function_679210(int8_t *param_1,int64_t param_2,byte *param_3)
+void function_679210(int8_t *param_1,int64_t param_2,byte *param_3)
 {
   int8_t *puVar1;
   byte bVar2;
@@ -15,7 +12,6 @@ void FUN_180679210(int8_t *param_1,int64_t param_2,byte *param_3)
   byte bVar7;
   int8_t uVar8;
   uint uVar9;
-  
   bVar2 = param_3[4];
   bVar3 = param_3[5];
   uVar9 = (uint)param_3[3];
@@ -47,19 +43,12 @@ void FUN_180679210(int8_t *param_1,int64_t param_2,byte *param_3)
   puVar1[3] = (char)((int)((uint)bVar4 + (uint)bVar5 * 2 + bVar5 + 2) >> 2);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180679310(int64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_180679310(int64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void function_679310(int64_t param_1,int64_t param_2,int64_t param_3)
+void function_679310(int64_t param_1,int64_t param_2,int64_t param_3)
 {
   byte *pbVar1;
   byte *pbVar2;
   int64_t lVar3;
-  
   lVar3 = 0x10;
   pbVar2 = (byte *)(param_3 + 1);
   do {
@@ -70,22 +59,15 @@ void FUN_180679310(int64_t param_1,int64_t param_2,int64_t param_3)
     lVar3 = lVar3 + -1;
     pbVar2 = pbVar1;
   } while (lVar3 != 0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memcpy(param_2 * 2 + param_1,param_1 + 1,0xe,pbVar1,0xe,7,-param_1,param_2 - param_1);
 }
-
-
-
-
-
-// 函数: void FUN_180679480(int64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_180679480(int64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void function_679480(int64_t param_1,int64_t param_2,int64_t param_3)
+void function_679480(int64_t param_1,int64_t param_2,int64_t param_3)
 {
   byte *pbVar1;
   byte *pbVar2;
   int64_t lVar3;
-  
   lVar3 = 0x20;
   pbVar2 = (byte *)(param_3 + 1);
   do {
@@ -96,17 +78,11 @@ void FUN_180679480(int64_t param_1,int64_t param_2,int64_t param_3)
     lVar3 = lVar3 + -1;
     pbVar2 = pbVar1;
   } while (lVar3 != 0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memcpy(param_2 * 2 + param_1,param_1 + 1,0x1e,pbVar1,0x1e,0xf,-param_1,param_2 - param_1);
 }
-
-
-
-
-
-// 函数: void FUN_1806795f0(int8_t *param_1,int64_t param_2,byte *param_3)
-void FUN_1806795f0(int8_t *param_1,int64_t param_2,byte *param_3)
-
+// 函数: void function_6795f0(int8_t *param_1,int64_t param_2,byte *param_3)
+void function_6795f0(int8_t *param_1,int64_t param_2,byte *param_3)
 {
   int8_t *puVar1;
   byte bVar2;
@@ -117,7 +93,6 @@ void FUN_1806795f0(int8_t *param_1,int64_t param_2,byte *param_3)
   byte bVar7;
   byte bVar8;
   int8_t uVar9;
-  
   bVar2 = param_3[2];
   bVar3 = param_3[3];
   bVar4 = param_3[4];
@@ -150,17 +125,10 @@ void FUN_1806795f0(int8_t *param_1,int64_t param_2,byte *param_3)
   puVar1[3] = (char)((int)((uint)bVar8 + (uint)bVar6 * 2 + bVar4 + 2) >> 2);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1806796f0(int8_t *param_1,int64_t param_2,byte *param_3)
-void FUN_1806796f0(int8_t *param_1,int64_t param_2,byte *param_3)
-
+// 函数: void function_6796f0(int8_t *param_1,int64_t param_2,byte *param_3)
+void function_6796f0(int8_t *param_1,int64_t param_2,byte *param_3)
 {
   byte bVar1;
-  
   bVar1 = *param_3;
   *param_1 = (char)((int)(param_3[1] + 1 + (uint)bVar1) >> 1);
   param_1[param_2] = (char)((int)(param_3[2] + 2 + (uint)param_3[1] * 2 + (uint)*param_3) >> 2);
@@ -185,18 +153,12 @@ void FUN_1806796f0(int8_t *param_1,int64_t param_2,byte *param_3)
   param_1[7] = (char)((int)(param_3[7] + 1 + (uint)param_3[8]) >> 1);
   param_1[param_2 + 7] =
        (char)((int)(param_3[9] + 2 + (uint)param_3[8] * 2 + (uint)param_3[7]) >> 2);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memcpy(param_1 + param_2 * 2,param_1 + 1,6,bVar1,3,-(int64_t)param_1,param_2 - (int64_t)param_1,
          param_2 * 2);
 }
-
-
-
-
-
-// 函数: void FUN_1806799b0(int8_t *param_1,int64_t param_2,byte *param_3)
-void FUN_1806799b0(int8_t *param_1,int64_t param_2,byte *param_3)
-
+// 函数: void function_6799b0(int8_t *param_1,int64_t param_2,byte *param_3)
+void function_6799b0(int8_t *param_1,int64_t param_2,byte *param_3)
 {
   int8_t *puVar1;
   byte bVar2;
@@ -208,7 +170,6 @@ void FUN_1806799b0(int8_t *param_1,int64_t param_2,byte *param_3)
   byte bVar8;
   byte bVar9;
   int8_t uVar10;
-  
   bVar2 = param_3[2];
   bVar3 = param_3[3];
   bVar4 = param_3[4];
@@ -242,45 +203,26 @@ void FUN_1806799b0(int8_t *param_1,int64_t param_2,byte *param_3)
   puVar1[3] = (char)((int)((uint)bVar9 + (uint)bVar8 * 2 + bVar6 + 2) >> 2);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180679ac0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int8_t *param_4)
-void FUN_180679ac0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int8_t *param_4)
-
+// 函数: void function_679ac0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int8_t *param_4)
+void function_679ac0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int8_t *param_4)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(param_1,*param_4,0x10);
 }
-
-
-
-
-
-// 函数: void FUN_180679b20(uint64_t param_1,uint64_t param_2,uint64_t param_3,int8_t *param_4)
-void FUN_180679b20(uint64_t param_1,uint64_t param_2,uint64_t param_3,int8_t *param_4)
-
+// 函数: void function_679b20(uint64_t param_1,uint64_t param_2,uint64_t param_3,int8_t *param_4)
+void function_679b20(uint64_t param_1,uint64_t param_2,uint64_t param_3,int8_t *param_4)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(param_1,*param_4,0x20);
 }
-
-
-
-
-
-// 函数: void FUN_180679bf0(int8_t *param_1,int64_t param_2,int64_t param_3,byte *param_4)
-void FUN_180679bf0(int8_t *param_1,int64_t param_2,int64_t param_3,byte *param_4)
-
+// 函数: void function_679bf0(int8_t *param_1,int64_t param_2,int64_t param_3,byte *param_4)
+void function_679bf0(int8_t *param_1,int64_t param_2,int64_t param_3,byte *param_4)
 {
   byte bVar1;
   byte bVar2;
   byte bVar3;
   int8_t uVar4;
   uint uVar5;
-  
   uVar5 = (uint)param_4[2];
   bVar1 = param_4[1];
   bVar2 = *param_4;
@@ -308,21 +250,14 @@ void FUN_180679bf0(int8_t *param_1,int64_t param_2,int64_t param_3,byte *param_4
   param_1[3] = uVar4;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180679ca0(int32_t *param_1,int64_t param_2,byte *param_3)
-void FUN_180679ca0(int32_t *param_1,int64_t param_2,byte *param_3)
-
+// 函数: void function_679ca0(int32_t *param_1,int64_t param_2,byte *param_3)
+void function_679ca0(int32_t *param_1,int64_t param_2,byte *param_3)
 {
   byte bVar1;
   byte bVar2;
   byte bVar3;
   byte bVar4;
   uint uVar5;
-  
   uVar5 = (uint)param_3[2];
   bVar1 = param_3[3];
   bVar2 = *param_3;
@@ -338,10 +273,4 @@ void FUN_180679ca0(int32_t *param_1,int64_t param_2,byte *param_3)
   *(int32_t *)((int64_t)param_1 + param_2 * 3) = *param_1;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

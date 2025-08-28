@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part729.c - 8 个函数
-
-// 函数: void FUN_180696370(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
-void FUN_180696370(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
-
+// 函数: void function_696370(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
+void function_696370(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
 {
   int iVar1;
   uint *puVar2;
@@ -34,7 +31,6 @@ void FUN_180696370(int64_t param_1,int param_2,int64_t param_3,int param_4,int *
   int8_t auVar24 [16];
   int64_t lStackX_18;
   int64_t lStack_48;
-  
   iVar1 = render_system_control_ui;
   lStack_48 = 8;
   lStackX_18 = param_3;
@@ -121,16 +117,9 @@ void FUN_180696370(int64_t param_1,int param_2,int64_t param_3,int param_4,int *
   } while (lStack_48 != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180696540(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
-void FUN_180696540(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
-
+// 函数: void function_696540(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
+void function_696540(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
 {
   int iVar1;
   uint *puVar2;
@@ -159,7 +148,6 @@ void FUN_180696540(int64_t param_1,int param_2,int64_t param_3,int param_4,int *
   int8_t auVar24 [16];
   int64_t lStackX_18;
   int64_t lStack_48;
-  
   iVar1 = render_system_control_ui;
   lStack_48 = 3;
   lStackX_18 = param_3;
@@ -246,16 +234,9 @@ void FUN_180696540(int64_t param_1,int param_2,int64_t param_3,int param_4,int *
   } while (lStack_48 != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180696710(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
-void FUN_180696710(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
-
+// 函数: void function_696710(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
+void function_696710(int64_t param_1,int param_2,int64_t param_3,int param_4,int *param_5)
 {
   int iVar1;
   uint *puVar2;
@@ -284,7 +265,6 @@ void FUN_180696710(int64_t param_1,int param_2,int64_t param_3,int param_4,int *
   int8_t auVar24 [16];
   int64_t lStackX_18;
   int64_t lStack_48;
-  
   iVar1 = render_system_control_ui;
   lStack_48 = 8;
   lStackX_18 = param_3;
@@ -371,16 +351,9 @@ void FUN_180696710(int64_t param_1,int param_2,int64_t param_3,int param_4,int *
   } while (lStack_48 != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1806968e0(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-void FUN_1806968e0(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-
+// 函数: void function_6968e0(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
+void function_6968e0(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
 {
   int iVar1;
   uint64_t uVar2;
@@ -401,12 +374,11 @@ void FUN_1806968e0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   int iVar17;
   int8_t in_XMM2 [16];
   int8_t auVar18 [16];
-  uint *puStackX_18;
+  uint *pstack_special_x_18;
   int64_t lStack_48;
-  
   iVar1 = render_system_control_ui;
   lStack_48 = 3;
-  puStackX_18 = param_3;
+  pstack_special_x_18 = param_3;
   do {
     iVar6 = 0;
     iVar14 = 0;
@@ -415,7 +387,7 @@ void FUN_1806968e0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
     iVar17 = 0;
     lVar12 = 4;
     puVar5 = param_1;
-    puVar11 = puStackX_18;
+    puVar11 = pstack_special_x_18;
     do {
       uVar2 = 0;
       if (1 < iVar1) {
@@ -466,21 +438,14 @@ void FUN_1806968e0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
     } while (lVar12 != 0);
     *param_5 = iVar14 + iVar16 + iVar15 + iVar17 + iVar6;
     param_5 = param_5 + 1;
-    puStackX_18 = (uint *)((int64_t)puStackX_18 + 1);
+    pstack_special_x_18 = (uint *)((int64_t)pstack_special_x_18 + 1);
     lStack_48 = lStack_48 + -1;
   } while (lStack_48 != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180696a60(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-void FUN_180696a60(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-
+// 函数: void function_696a60(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
+void function_696a60(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
 {
   int iVar1;
   uint64_t uVar2;
@@ -501,12 +466,11 @@ void FUN_180696a60(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   int iVar17;
   int8_t in_XMM2 [16];
   int8_t auVar18 [16];
-  uint *puStackX_18;
+  uint *pstack_special_x_18;
   int64_t lStack_48;
-  
   iVar1 = render_system_control_ui;
   lStack_48 = 8;
-  puStackX_18 = param_3;
+  pstack_special_x_18 = param_3;
   do {
     iVar6 = 0;
     iVar14 = 0;
@@ -515,7 +479,7 @@ void FUN_180696a60(uint *param_1,int param_2,uint *param_3,int param_4,int *para
     iVar17 = 0;
     lVar12 = 4;
     puVar5 = param_1;
-    puVar11 = puStackX_18;
+    puVar11 = pstack_special_x_18;
     do {
       uVar2 = 0;
       if (1 < iVar1) {
@@ -566,21 +530,14 @@ void FUN_180696a60(uint *param_1,int param_2,uint *param_3,int param_4,int *para
     } while (lVar12 != 0);
     *param_5 = iVar14 + iVar16 + iVar15 + iVar17 + iVar6;
     param_5 = param_5 + 1;
-    puStackX_18 = (uint *)((int64_t)puStackX_18 + 1);
+    pstack_special_x_18 = (uint *)((int64_t)pstack_special_x_18 + 1);
     lStack_48 = lStack_48 + -1;
   } while (lStack_48 != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180696be0(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-void FUN_180696be0(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-
+// 函数: void function_696be0(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
+void function_696be0(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
 {
   int iVar1;
   byte *pbVar2;
@@ -606,12 +563,11 @@ void FUN_180696be0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   int8_t in_XMM2 [16];
   int8_t auVar22 [16];
   int8_t auVar23 [16];
-  uint *puStackX_18;
+  uint *pstack_special_x_18;
   int64_t lStack_48;
-  
   iVar1 = render_system_control_ui;
   lStack_48 = 3;
-  puStackX_18 = param_3;
+  pstack_special_x_18 = param_3;
   do {
     iVar6 = 0;
     iVar14 = 0;
@@ -620,7 +576,7 @@ void FUN_180696be0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
     iVar20 = 0;
     lVar12 = 0x10;
     puVar7 = param_1;
-    puVar8 = puStackX_18;
+    puVar8 = pstack_special_x_18;
     iVar15 = iVar14;
     iVar17 = iVar16;
     iVar19 = iVar18;
@@ -686,21 +642,14 @@ void FUN_180696be0(uint *param_1,int param_2,uint *param_3,int param_4,int *para
     } while (lVar12 != 0);
     *param_5 = iVar15 + iVar14 + iVar19 + iVar18 + iVar17 + iVar16 + iVar21 + iVar20 + iVar6;
     param_5 = param_5 + 1;
-    puStackX_18 = (uint *)((int64_t)puStackX_18 + 1);
+    pstack_special_x_18 = (uint *)((int64_t)pstack_special_x_18 + 1);
     lStack_48 = lStack_48 + -1;
   } while (lStack_48 != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180696d90(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-void FUN_180696d90(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-
+// 函数: void function_696d90(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
+void function_696d90(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
 {
   int iVar1;
   byte *pbVar2;
@@ -726,12 +675,11 @@ void FUN_180696d90(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   int8_t in_XMM2 [16];
   int8_t auVar22 [16];
   int8_t auVar23 [16];
-  uint *puStackX_18;
+  uint *pstack_special_x_18;
   int64_t lStack_48;
-  
   iVar1 = render_system_control_ui;
   lStack_48 = 8;
-  puStackX_18 = param_3;
+  pstack_special_x_18 = param_3;
   do {
     iVar6 = 0;
     iVar14 = 0;
@@ -740,7 +688,7 @@ void FUN_180696d90(uint *param_1,int param_2,uint *param_3,int param_4,int *para
     iVar20 = 0;
     lVar12 = 0x10;
     puVar7 = param_1;
-    puVar8 = puStackX_18;
+    puVar8 = pstack_special_x_18;
     iVar15 = iVar14;
     iVar17 = iVar16;
     iVar19 = iVar18;
@@ -806,21 +754,14 @@ void FUN_180696d90(uint *param_1,int param_2,uint *param_3,int param_4,int *para
     } while (lVar12 != 0);
     *param_5 = iVar15 + iVar14 + iVar19 + iVar18 + iVar17 + iVar16 + iVar21 + iVar20 + iVar6;
     param_5 = param_5 + 1;
-    puStackX_18 = (uint *)((int64_t)puStackX_18 + 1);
+    pstack_special_x_18 = (uint *)((int64_t)pstack_special_x_18 + 1);
     lStack_48 = lStack_48 + -1;
   } while (lStack_48 != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180696f40(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-void FUN_180696f40(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
-
+// 函数: void function_696f40(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
+void function_696f40(uint *param_1,int param_2,uint *param_3,int param_4,int *param_5)
 {
   int iVar1;
   byte *pbVar2;
@@ -846,12 +787,11 @@ void FUN_180696f40(uint *param_1,int param_2,uint *param_3,int param_4,int *para
   int8_t in_XMM2 [16];
   int8_t auVar22 [16];
   int8_t auVar23 [16];
-  uint *puStackX_18;
+  uint *pstack_special_x_18;
   int64_t lStack_48;
-  
   iVar1 = render_system_control_ui;
   lStack_48 = 3;
-  puStackX_18 = param_3;
+  pstack_special_x_18 = param_3;
   do {
     iVar6 = 0;
     iVar14 = 0;
@@ -860,7 +800,7 @@ void FUN_180696f40(uint *param_1,int param_2,uint *param_3,int param_4,int *para
     iVar20 = 0;
     lVar12 = 8;
     puVar7 = param_1;
-    puVar8 = puStackX_18;
+    puVar8 = pstack_special_x_18;
     iVar15 = iVar14;
     iVar17 = iVar16;
     iVar19 = iVar18;
@@ -926,15 +866,9 @@ void FUN_180696f40(uint *param_1,int param_2,uint *param_3,int param_4,int *para
     } while (lVar12 != 0);
     *param_5 = iVar15 + iVar14 + iVar19 + iVar18 + iVar17 + iVar16 + iVar21 + iVar20 + iVar6;
     param_5 = param_5 + 1;
-    puStackX_18 = (uint *)((int64_t)puStackX_18 + 1);
+    pstack_special_x_18 = (uint *)((int64_t)pstack_special_x_18 + 1);
     lStack_48 = lStack_48 + -1;
   } while (lStack_48 != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

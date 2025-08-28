@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part580_sub002.c - 1 个函数
-
-// 函数: void FUN_180587b91(uint64_t *param_1,uint64_t param_2,float param_3)
-void FUN_180587b91(uint64_t *param_1,uint64_t param_2,float param_3)
-
+// 函数: void function_587b91(uint64_t *param_1,uint64_t param_2,float param_3)
+void function_587b91(uint64_t *param_1,uint64_t param_2,float param_3)
 {
   float fVar1;
   int32_t uVar2;
@@ -34,7 +31,6 @@ void FUN_180587b91(uint64_t *param_1,uint64_t param_2,float param_3)
   int32_t unaff_XMM9_Db;
   int32_t unaff_XMM9_Dc;
   int32_t unaff_XMM9_Dd;
-  
   while( true ) {
     fVar1 = *(float *)(unaff_R14 + -0x54 + unaff_RSI);
     puVar7 = (uint64_t *)(unaff_RSI + -0x40 + unaff_RDI);
@@ -101,16 +97,10 @@ void FUN_180587b91(uint64_t *param_1,uint64_t param_2,float param_3)
     unaff_RBX = param_1;
     unaff_XMM6_Dd = param_3;
     if (param_3 < *(float *)(unaff_RDI + 0x2c)) {
-      func_0x00018018a000(&stack0x000000e0);
-                    // WARNING: Subroutine does not return
+      Function_c0557ad8(&local_buffer_000000e0);
+// WARNING: Subroutine does not return
       memmove();
     }
   }
   return;
 }
-
-
-
-
-
-

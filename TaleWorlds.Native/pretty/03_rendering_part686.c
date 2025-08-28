@@ -1,15 +1,11 @@
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part686.c - 1 个函数
-
-// 函数: void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4,
-void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4,
+// 函数: void function_65aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4,
+void function_65aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4,
                   int8_t *param_5,char *param_6)
-
 {
   float *pfVar1;
   float *pfVar2;
@@ -61,15 +57,15 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
   float fVar46;
   float fVar47;
   float fVar48;
-  int8_t auStack_1c8 [32];
-  int32_t uStack_1a8;
-  int8_t uStack_1a0;
+  int8_t stack_array_1c8 [32];
+  int32_t local_var_1a8;
+  int8_t local_var_1a0;
   float fStack_198;
   float fStack_194;
   int64_t lStack_190;
   int64_t lStack_188;
   char *pcStack_180;
-  uint64_t uStack_178;
+  uint64_t local_var_178;
   float fStack_170;
   float fStack_16c;
   float fStack_168;
@@ -78,15 +74,14 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
   int64_t lStack_150;
   char *pcStack_148;
   int64_t lStack_140;
-  int8_t *puStack_138;
+  int8_t *plocal_var_138;
   float afStack_130 [15];
-  int8_t uStack_f4;
-  uint64_t uStack_e8;
-  
-  uStack_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_1c8;
+  int8_t local_var_f4;
+  uint64_t local_var_e8;
+  local_var_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_1c8;
   fVar39 = *(float *)(param_1 + 0x6150);
   lStack_188 = *(int64_t *)(param_2 + 0x208);
-  puStack_138 = param_5;
+  plocal_var_138 = param_5;
   pcStack_180 = param_6;
   lStack_158 = 2;
   fStack_198 = ((fVar39 * 6.0 - 15.0) * fVar39 + 10.0) * fVar39 * fVar39 * fVar39;
@@ -164,7 +159,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
     lVar16 = 0x1328;
     lStack_140 = 2;
     pcStack_148 = param_6;
-    uStack_178 = lVar12;
+    local_var_178 = lVar12;
     do {
       fVar39 = *pfVar21;
       if (0.0001 < fVar39) {
@@ -577,7 +572,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
              *(uint64_t *)(*(int64_t *)(lStack_188 + 0x140) + 0xe8 + lVar12);
         *(uint64_t *)(lVar14 + 0x808) = *(uint64_t *)(lVar14 + 0x808) | 1L << (uVar19 & 0x3f);
         param_1 = lStack_160;
-        lVar12 = uStack_178;
+        lVar12 = local_var_178;
       }
       pcStack_148 = pcStack_148 + 1;
       lVar16 = lVar16 + 0x18;
@@ -593,8 +588,8 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
   lVar16 = 2;
   pfVar21 = (float *)(param_1 + 0x13a0);
   fVar23 = 1.0 - fStack_198;
-  pcStack_180 = (char *)((int64_t)param_6 - (int64_t)puStack_138);
-  puVar22 = puStack_138;
+  pcStack_180 = (char *)((int64_t)param_6 - (int64_t)plocal_var_138);
+  puVar22 = plocal_var_138;
   fVar39 = fStack_198;
   fStack_194 = fVar23;
   do {
@@ -654,7 +649,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
       afStack_130[7] = 0.0;
       afStack_130[8] = 1.0;
       afStack_130[9] = 3.4028235e+38;
-      uStack_f4 = 0;
+      local_var_f4 = 0;
       afStack_130[0xe] = 0.0;
       uVar6 = *(uint64_t *)(lVar16 + 0x20);
       afStack_130[10] = 0.0;
@@ -662,8 +657,8 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
       afStack_130[0xc] = 0.0;
       afStack_130[0xd] = 0.0;
       CoreSystem_AuthenticationHandler0(lVar12,cVar5,lStack_188);
-      uStack_1a0 = 1;
-      uStack_1a8 = 0x51b189;
+      local_var_1a0 = 1;
+      local_var_1a8 = 0x51b189;
       pfVar13 = (float *)(lVar12 + ((int64_t)cVar5 + 0x40) * 0x10);
       fVar39 = *pfVar13;
       fVar24 = pfVar13[1];
@@ -672,11 +667,11 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
                    *(float *)(lVar16 + 0x98) * fVar28 + *(float *)(lVar16 + 0xa8);
       fStack_16c = *(float *)(lVar16 + 0x8c) * fVar24 + *(float *)(lVar16 + 0x7c) * fVar39 +
                    *(float *)(lVar16 + 0x9c) * fVar28 + *(float *)(lVar16 + 0xac);
-      uStack_178 = CONCAT44(*(float *)(lVar16 + 0x84) * fVar24 + *(float *)(lVar16 + 0x74) * fVar39
+      local_var_178 = CONCAT44(*(float *)(lVar16 + 0x84) * fVar24 + *(float *)(lVar16 + 0x74) * fVar39
                             + *(float *)(lVar16 + 0x94) * fVar28 + *(float *)(lVar16 + 0xa4),
                             *(float *)(lVar16 + 0x80) * fVar24 + *(float *)(lVar16 + 0x70) * fVar39
                             + *(float *)(lVar16 + 0x90) * fVar28 + *(float *)(lVar16 + 0xa0));
-      PhysicsSystem_JointManager(uVar6,&uStack_178);
+      PhysicsSystem_JointManager(uVar6,&local_var_178);
       fVar28 = -afStack_130[7];
       fVar24 = afStack_130[6] * afStack_130[6] + fVar28 * fVar28;
       lVar16 = lStack_158;
@@ -721,7 +716,7 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
           fVar24 = -0.47123894;
         }
         CoreSystem_AuthenticationHandler0(lVar12,*puVar22,lStack_188,fVar23);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         AdvancedSystemController(fVar24 * fVar27 * fStack_168 * 0.5);
       }
     }
@@ -731,11 +726,6 @@ void FUN_18065aad0(int64_t param_1,int64_t param_2,int64_t param_3,float param_4
     lVar16 = lVar16 + -1;
     lStack_158 = lVar16;
   } while (lVar16 != 0);
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_1c8);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_e8 ^ (uint64_t)stack_array_1c8);
 }
-
-
-
-
-

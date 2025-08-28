@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part291.c - 4 个函数
-
-// 函数: void FUN_18082cb48(uint64_t param_1,int param_2,int param_3,int64_t param_4)
-void FUN_18082cb48(uint64_t param_1,int param_2,int param_3,int64_t param_4)
-
+// 函数: void NetworkProtocol_2cb48(uint64_t param_1,int param_2,int param_3,int64_t param_4)
+void NetworkProtocol_2cb48(uint64_t param_1,int param_2,int param_3,int64_t param_4)
 {
   int iVar1;
   float *pfVar2;
@@ -66,13 +63,12 @@ void FUN_18082cb48(uint64_t param_1,int param_2,int param_3,int64_t param_4)
   float fVar45;
   float fVar46;
   float fVar47;
-  int64_t in_stack_00000150;
-  float *in_stack_00000168;
-  int in_stack_00000170;
-  int in_stack_00000180;
-  uint in_stack_00000198;
-  uint in_stack_000001a0;
-  
+  int64_t local_var_150;
+  float *local_var_168;
+  int local_var_170;
+  int local_var_180;
+  uint local_var_198;
+  uint local_var_1a0;
   do {
     auVar40 = in_ZMM10._0_32_;
     auVar10 = vpermps_avx2(auVar40,*(int8_t (*) [32])(unaff_RDI + -0x20));
@@ -208,21 +204,21 @@ void FUN_18082cb48(uint64_t param_1,int param_2,int param_3,int64_t param_4)
         *(int8_t (*) [16])(in_R11 + (int64_t)iVar16 + (int64_t)iVar30) = auVar8._16_16_;
         *(int8_t (*) [16])(in_R11 + (int64_t)iVar23 + (int64_t)iVar30) = auVar7._16_16_;
         iVar32 = iVar32 + -1;
-        unaff_RBX = in_stack_00000168;
-        param_2 = in_stack_00000180;
+        unaff_RBX = local_var_168;
+        param_2 = local_var_180;
         iVar30 = iVar30 + 4;
-        param_3 = in_stack_00000170;
+        param_3 = local_var_170;
       } while (iVar32 != 0);
     }
     unaff_RBX = unaff_RBX + 8;
     in_R11 = in_R11 + unaff_R14;
     param_4 = param_4 + 0x20;
     param_3 = param_3 + -1;
-    in_stack_00000168 = unaff_RBX;
-    in_stack_00000170 = param_3;
+    local_var_168 = unaff_RBX;
+    local_var_170 = param_3;
   } while (param_3 != 0);
-  in_stack_00000198 = in_stack_00000198 & 7;
-  if (in_stack_00000198 != 0) {
+  local_var_198 = local_var_198 & 7;
+  if (local_var_198 != 0) {
     lVar25 = unaff_RDI - (int64_t)in_R10;
     param_4 = param_4 - (int64_t)unaff_RBX;
     pfVar26 = in_R10;
@@ -245,11 +241,11 @@ void FUN_18082cb48(uint64_t param_1,int param_2,int param_3,int64_t param_4)
         } while (iVar28 != 0);
       }
       unaff_RBX = unaff_RBX + 1;
-      in_stack_00000198 = in_stack_00000198 - 1;
+      local_var_198 = local_var_198 - 1;
       pfVar26 = in_R10;
-    } while (in_stack_00000198 != 0);
+    } while (local_var_198 != 0);
   }
-  iVar28 = (int)in_stack_000001a0 >> 3;
+  iVar28 = (int)local_var_1a0 >> 3;
   if (iVar28 != 0) {
     iVar24 = param_2 >> 2;
     do {
@@ -322,16 +318,16 @@ void FUN_18082cb48(uint64_t param_1,int param_2,int param_3,int64_t param_4)
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar30 + (int64_t)iVar31) = auVar10._0_16_;
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar33 + (int64_t)iVar31) = auVar7._0_16_;
           iVar23 = iVar23 + -1;
-          param_2 = in_stack_00000180;
+          param_2 = local_var_180;
           iVar31 = iVar31 + 4;
         } while (iVar23 != 0);
       }
-      in_R11 = in_R11 + in_stack_00000150;
+      in_R11 = in_R11 + local_var_150;
       iVar28 = iVar28 + -1;
     } while (iVar28 != 0);
   }
-  in_stack_000001a0 = in_stack_000001a0 & 7;
-  if (in_stack_000001a0 != 0) {
+  local_var_1a0 = local_var_1a0 & 7;
+  if (local_var_1a0 != 0) {
     do {
       in_R10 = in_R10 + -1;
       pfVar26 = in_R10;
@@ -340,25 +336,18 @@ void FUN_18082cb48(uint64_t param_1,int param_2,int param_3,int64_t param_4)
         in_R11 = in_R11 + 1;
         pfVar26 = pfVar26 + 0x400;
       }
-      in_stack_000001a0 = in_stack_000001a0 - 1;
-    } while (in_stack_000001a0 != 0);
+      local_var_1a0 = local_var_1a0 - 1;
+    } while (local_var_1a0 != 0);
     return;
   }
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x00018082cfee)
 // WARNING: Removing unreachable block (ram,0x00018082d01e)
 // WARNING: Removing unreachable block (ram,0x00018082cffe)
 // WARNING: Removing unreachable block (ram,0x00018082d00e)
-
-
-
-// 函数: void FUN_18082cdff(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4)
-void FUN_18082cdff(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4)
-
+// 函数: void NetworkProtocol_2cdff(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4)
+void NetworkProtocol_2cdff(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4)
 {
   int iVar1;
   float *pfVar2;
@@ -392,10 +381,9 @@ void FUN_18082cdff(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
   float *in_R11;
   int8_t in_ZMM4 [64];
   int8_t auVar26 [64];
-  int64_t in_stack_00000150;
-  int in_stack_00000180;
-  uint in_stack_000001a0;
-  
+  int64_t local_var_150;
+  int local_var_180;
+  uint local_var_1a0;
   uVar21 = unaff_ESI & 7;
   if (uVar21 != 0) {
     lVar22 = unaff_RDI - (int64_t)in_R10;
@@ -424,7 +412,7 @@ void FUN_18082cdff(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
       pfVar18 = in_R10;
     } while (uVar21 != 0);
   }
-  iVar23 = (int)in_stack_000001a0 >> 3;
+  iVar23 = (int)local_var_1a0 >> 3;
   if (iVar23 != 0) {
     iVar16 = param_2 >> 2;
     do {
@@ -497,16 +485,16 @@ void FUN_18082cdff(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar15 + (int64_t)iVar20) = auVar6._0_16_;
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar17 + (int64_t)iVar20) = auVar9._0_16_;
           iVar25 = iVar25 + -1;
-          param_2 = in_stack_00000180;
+          param_2 = local_var_180;
           iVar20 = iVar20 + 4;
         } while (iVar25 != 0);
       }
-      in_R11 = in_R11 + in_stack_00000150;
+      in_R11 = in_R11 + local_var_150;
       iVar23 = iVar23 + -1;
     } while (iVar23 != 0);
   }
-  in_stack_000001a0 = in_stack_000001a0 & 7;
-  if (in_stack_000001a0 != 0) {
+  local_var_1a0 = local_var_1a0 & 7;
+  if (local_var_1a0 != 0) {
     do {
       in_R10 = in_R10 + -1;
       pfVar18 = in_R10;
@@ -515,25 +503,18 @@ void FUN_18082cdff(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
         in_R11 = in_R11 + 1;
         pfVar18 = pfVar18 + 0x400;
       }
-      in_stack_000001a0 = in_stack_000001a0 - 1;
-    } while (in_stack_000001a0 != 0);
+      local_var_1a0 = local_var_1a0 - 1;
+    } while (local_var_1a0 != 0);
     return;
   }
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x00018082cfee)
 // WARNING: Removing unreachable block (ram,0x00018082d01e)
 // WARNING: Removing unreachable block (ram,0x00018082cffe)
 // WARNING: Removing unreachable block (ram,0x00018082d00e)
-
-
-
-// 函数: void FUN_18082ce28(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4)
-void FUN_18082ce28(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4)
-
+// 函数: void NetworkProtocol_2ce28(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4)
+void NetworkProtocol_2ce28(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4)
 {
   int iVar1;
   float *pfVar2;
@@ -567,10 +548,9 @@ void FUN_18082ce28(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
   int64_t lVar25;
   int8_t in_ZMM4 [64];
   int8_t auVar26 [64];
-  int64_t in_stack_00000150;
-  int in_stack_00000180;
-  uint in_stack_000001a0;
-  
+  int64_t local_var_150;
+  int local_var_180;
+  uint local_var_1a0;
   param_4 = param_4 - (int64_t)unaff_RBX;
   pfVar18 = in_R10;
   do {
@@ -595,7 +575,7 @@ void FUN_18082ce28(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
     unaff_ESI = unaff_ESI + -1;
     pfVar18 = pfVar24;
   } while (unaff_ESI != 0);
-  iVar21 = (int)in_stack_000001a0 >> 3;
+  iVar21 = (int)local_var_1a0 >> 3;
   if (iVar21 != 0) {
     iVar16 = param_2 >> 2;
     do {
@@ -668,16 +648,16 @@ void FUN_18082ce28(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar15 + (int64_t)iVar20) = auVar6._0_16_;
           *(int8_t (*) [16])(in_R11 + (int64_t)iVar17 + (int64_t)iVar20) = auVar9._0_16_;
           iVar23 = iVar23 + -1;
-          param_2 = in_stack_00000180;
+          param_2 = local_var_180;
           iVar20 = iVar20 + 4;
         } while (iVar23 != 0);
       }
-      in_R11 = in_R11 + in_stack_00000150;
+      in_R11 = in_R11 + local_var_150;
       iVar21 = iVar21 + -1;
     } while (iVar21 != 0);
   }
-  in_stack_000001a0 = in_stack_000001a0 & 7;
-  if (in_stack_000001a0 != 0) {
+  local_var_1a0 = local_var_1a0 & 7;
+  if (local_var_1a0 != 0) {
     do {
       pfVar24 = pfVar24 + -1;
       pfVar18 = pfVar24;
@@ -686,27 +666,20 @@ void FUN_18082ce28(uint64_t param_1,int param_2,uint64_t param_3,int64_t param_4
         in_R11 = in_R11 + 1;
         pfVar18 = pfVar18 + 0x400;
       }
-      in_stack_000001a0 = in_stack_000001a0 - 1;
-    } while (in_stack_000001a0 != 0);
+      local_var_1a0 = local_var_1a0 - 1;
+    } while (local_var_1a0 != 0);
     return;
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18082d0a6(uint64_t param_1,int param_2)
-void FUN_18082d0a6(uint64_t param_1,int param_2)
-
+// 函数: void NetworkProtocol_2d0a6(uint64_t param_1,int param_2)
+void NetworkProtocol_2d0a6(uint64_t param_1,int param_2)
 {
   uint *puVar1;
   int iVar2;
   int unaff_EDI;
   uint *in_R10;
   uint *in_R11;
-  
   do {
     in_R10 = in_R10 + -1;
     puVar1 = in_R10;
@@ -723,10 +696,4 @@ void FUN_18082d0a6(uint64_t param_1,int param_2)
   } while (unaff_EDI != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

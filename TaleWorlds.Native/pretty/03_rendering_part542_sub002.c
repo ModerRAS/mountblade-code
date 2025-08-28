@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part542_sub002.c - 1 个函数
-
-// 函数: void FUN_1805655b0(uint64_t *param_1,int param_2,int param_3)
-void FUN_1805655b0(uint64_t *param_1,int param_2,int param_3)
-
+// 函数: void function_5655b0(uint64_t *param_1,int param_2,int param_3)
+void function_5655b0(uint64_t *param_1,int param_2,int param_3)
 {
   char cVar1;
   uint uVar2;
@@ -20,27 +17,26 @@ void FUN_1805655b0(uint64_t *param_1,int param_2,int param_3)
   int64_t lVar12;
   float fVar13;
   float fVar14;
-  int32_t uStack_78;
-  int32_t uStack_74;
-  int32_t uStack_70;
-  int32_t uStack_6c;
-  
+  int32_t local_var_78;
+  int32_t local_var_74;
+  int32_t local_var_70;
+  int32_t local_var_6c;
   lVar12 = (int64_t)param_2;
   if (lVar12 < param_3) {
-    uStack_70 = 0;
-    uStack_6c = 0x7f7fffff;
+    local_var_70 = 0;
+    local_var_6c = 0x7f7fffff;
     lVar11 = lVar12 * 0xc;
     do {
       lVar8 = 0;
       fVar14 = 3.4028235e+38;
       cVar1 = *(char *)param_1[3];
-      uStack_78 = *(int32_t *)(*(int64_t *)param_1[1] + lVar12 * 8);
+      local_var_78 = *(int32_t *)(*(int64_t *)param_1[1] + lVar12 * 8);
       uVar2 = *(uint *)param_1[2];
-      uStack_74 = *(int32_t *)(*(int64_t *)param_1[1] + 4 + lVar12 * 8);
+      local_var_74 = *(int32_t *)(*(int64_t *)param_1[1] + 4 + lVar12 * 8);
       lVar3 = *(int64_t *)*param_1;
       lVar9 = lVar8;
       if (*(int64_t *)(lVar3 + 0x2ee8) - *(int64_t *)(lVar3 + 12000) >> 3 != 0) {
-        puVar6 = (uint64_t *)func_0x000180388c90(lVar3 + 0x28c8,&uStack_78);
+        puVar6 = (uint64_t *)SystemFunction_000180388c90(lVar3 + 0x28c8,&local_var_78);
         plVar4 = (int64_t *)puVar6[1];
         for (plVar10 = (int64_t *)*puVar6; lVar9 = lVar8, plVar10 != plVar4; plVar10 = plVar10 + 1)
         {
@@ -48,9 +44,9 @@ void FUN_1805655b0(uint64_t *param_1,int param_2,int param_3)
           if (((((*(uint *)(lVar9 + 0x134) & uVar2 & 0xfffffffe) == (uVar2 & 0xfffffffe)) ||
                ((*(uint *)(lVar9 + 0x134) & 1) != 0)) && ((*(byte *)(lVar9 + 0x139) & 1) != 0)) &&
              (((*(byte *)(lVar9 + 0x139) & 2) == 0 &&
-              (cVar5 = SystemCore_PerformanceMonitor(lVar9,&uStack_78), cVar5 != '\0')))) {
+              (cVar5 = SystemCore_PerformanceMonitor(lVar9,&local_var_78), cVar5 != '\0')))) {
             if (cVar1 != '\0') break;
-            fVar13 = (float)func_0x00018038d2f0(lVar9,&uStack_78);
+            fVar13 = (float)SystemFunction_00018038d2f0(lVar9,&local_var_78);
             fVar13 = ABS(fVar13);
             if ((fVar13 < 100.0) && (fVar13 < fVar14)) {
               lVar8 = lVar9;
@@ -86,9 +82,3 @@ void FUN_1805655b0(uint64_t *param_1,int param_2,int param_3)
   }
   return;
 }
-
-
-
-
-
-

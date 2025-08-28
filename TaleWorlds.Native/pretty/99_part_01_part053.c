@@ -1,17 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // ============================================================================
 // 99_part_01_part053.c - 高级数据处理和资源管理模块
 // ============================================================================
-
 /**
  * @file 99_part_01_part053.c
  * @brief 高级数据处理和资源管理模块
- * 
+ *
  * 本模块实现了游戏引擎中的高级数据处理、资源管理、内存分配和系统状态管理功能。
  * 包含数据结构操作、递归处理、内存池管理、资源清理和系统参数配置等核心功能。
- * 
+ *
  * 主要功能：
  * - 高级数据结构处理和排序
  * - 递归数据处理算法
@@ -19,12 +17,11 @@
  * - 系统资源清理和释放
  * - 参数验证和状态管理
  * - 高级内存管理策略
- * 
+ *
  * @version 1.0
  * @author Claude Code
  * @date 2025-08-28
  */
-
 // 系统常量定义
 #define SYSTEM_MAX_ITERATIONS 0x1000000
 #define SYSTEM_MEMORY_POOL_SIZE 0x12c300
@@ -45,7 +42,6 @@
 #define SYSTEM_PARAM_OFFSET_0x6a80 0x6a80
 #define SYSTEM_PARAM_OFFSET_0x74e8 0x74e8
 #define SYSTEM_PARAM_OFFSET_0x30 0x30
-
 // 内存管理常量
 #define MEMORY_BLOCK_SIZE_0x66000 0x66000
 #define MEMORY_BLOCK_SIZE_0x5e000 0x5e000
@@ -54,53 +50,47 @@
 #define MEMORY_BLOCK_SIZE_0x330 0x330
 #define MEMORY_BLOCK_SIZE_0x2f0 0x2f0
 #define MEMORY_BLOCK_SIZE_0xfc 0xfc
-
 // 系统状态常量
 #define SYSTEM_STATE_ACTIVE 1
 #define SYSTEM_STATE_INACTIVE 0
 #define SYSTEM_STATE_ERROR -1
 #define SYSTEM_STATE_INITIALIZING 2
 #define SYSTEM_STATE_CLEANUP 0xc
-
 // 函数别名定义
-#define DataStructureProcessor FUN_1800da760
-#define DataStructureProcessorVariant FUN_1800da770
-#define SystemCleanupExecutor FUN_1800da98f
-#define SystemParameterHandler FUN_1800da9b0
-#define MemoryPoolManager FUN_1800daa50
-#define ResourceCleanupManager FUN_1800dabf0
-#define MemoryManager_AllocateMediumPool FUN_1800dae20
-#define MemoryManager_AllocateSmallPool FUN_1800daf60
-#define MemoryManager_AllocateLargePool FUN_1800db0a0
-#define ResourceManager_Handler FUN_1800db220
-#define ParameterValidator FUN_1800db370
-#define AdvancedResourceManager FUN_1800db460
-
+#define DataStructureProcessor GenericFunction_1800da760
+#define DataStructureProcessorVariant GenericFunction_1800da770
+#define SystemCleanupExecutor GenericFunction_1800da98f
+#define SystemParameterHandler GenericFunction_1800da9b0
+#define MemoryPoolManager GenericFunction_1800daa50
+#define ResourceCleanupManager GenericFunction_1800dabf0
+#define MemoryManager_AllocateMediumPool GenericFunction_1800dae20
+#define MemoryManager_AllocateSmallPool GenericFunction_1800daf60
+#define MemoryManager_AllocateLargePool GenericFunction_1800db0a0
+#define ResourceManager_Handler GenericFunction_1800db220
+#define ParameterValidator GenericFunction_1800db370
+#define AdvancedResourceManager GenericFunction_1800db460
 // 辅助函数别名
-#define DataStructureComparator func_0x0001800da750
+#define DataStructureComparator SystemFunction_0001800da750
 #define MemoryAllocator CoreMemoryPoolAllocator
-#define DataStructureValidator func_0x0001800ba3b0
-#define SystemInitializer FUN_1800e9790
-#define MemoryManager FUN_1800e9540
-#define MemoryPoolInitializer FUN_1800e9360
-#define ResourceStateHandler FUN_180246810
+#define DataStructureValidator Function_316b1628
+#define SystemInitializer GenericFunction_1800e9790
+#define MemoryManager GenericFunction_1800e9540
+#define MemoryPoolInitializer GenericFunction_1800e9360
+#define ResourceStateHandler DataStructure_46810
 #define SystemErrorHandler CoreEngine_MemoryPoolManager
 #define SecurityChecker SystemSecurityChecker
 #define SystemContextInitializer SystemCore_FileSystem
 #define SystemParameterProcessor SystemCore_SecurityManager
 #define SystemStateManager SystemSecurity_Manager
 #define ResourceAllocator SystemInitializer
-#define ParameterHandler FUN_1800b1d80
-
+#define ParameterHandler GenericFunction_1800b1d80
 // 数据结构别名
-#define DataBufferComparator FUN_1800eb380
-#define DataSorter FUN_1800ea4a0
-#define SystemBufferInitializer FUN_1800ea780
-
+#define DataBufferComparator GenericFunction_1800eb380
+#define DataSorter GenericFunction_1800ea4a0
+#define SystemBufferInitializer GenericFunction_1800ea780
 // 系统函数别名
 #define ThreadIdentifier _Thrd_id
 #define SecurityCookieInitializer GET_SECURITY_COOKIE
-
 // 全局变量别名
 #define SystemParameterBuffer system_parameter_buffer
 #define SystemContextPtr system_context_ptr
@@ -112,21 +102,19 @@
 #define SystemContextVar720 system_state_ptr
 #define SystemBufferPtr system_buffer_ptr
 #define SystemResourceState system_resource_state
-
 // ============================================================================
 // 核心函数实现
 // ============================================================================
-
 /**
  * @brief 高级数据结构处理器
- * 
+ *
  * 本函数实现了复杂的数据结构处理算法，包括数据排序、递归处理和内存管理。
  * 使用高级算法对数据结构进行优化处理，支持大数据量的高效处理。
- * 
+ *
  * @param param_1 系统标识符
  * @param param_2 数据结构基础地址
  * @param param_3 输出参数缓冲区
- * 
+ *
  * 算法特点：
  * - 使用高效的排序算法
  * - 支持递归数据处理
@@ -134,7 +122,6 @@
  * - 包含错误处理机制
  */
 void DataStructureProcessor(uint64_t param_1, int64_t param_2, uint64_t *param_3)
-
 {
   bool bVar1;
   char cVar2;
@@ -147,7 +134,6 @@ void DataStructureProcessor(uint64_t param_1, int64_t param_2, uint64_t *param_3
   int64_t *plVar9;
   int64_t *plVar10;
   int64_t lStackX_10;
-  
   plVar8 = (int64_t *)(param_2 + ((int64_t)*(int *)(param_2 + 0x11a48) + 0x1349) * 8);
   plVar10 = (int64_t *)(param_2 + 0x9a48);
   lStackX_10 = param_2;
@@ -213,12 +199,12 @@ LAB_1800da8e0:
           plVar4 = (int64_t *)0x0;
         }
         if (plVar6 != plVar8) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           memmove(plVar4, plVar6, (int64_t)plVar8 - (int64_t)plVar6);
         }
         *plVar4 = lStackX_10;
         if (*param_3 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemErrorHandler();
         }
         *param_3 = (uint64_t)plVar4;
@@ -231,26 +217,18 @@ LAB_1800da8e0:
     plVar10 = plVar10 + 1;
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /**
  * @brief 数据结构处理器变体
- * 
+ *
  * 本函数是DataStructureProcessor的变体实现，针对特定的数据处理场景进行优化。
  * 包含额外的寄存器处理和栈管理，适用于复杂的数据处理环境。
- * 
+ *
  * @param param_1 系统标识符
  * @param param_2 数据结构基础地址
  * @param param_3 输出参数缓冲区
  */
 void DataStructureProcessorVariant(uint64_t param_1, int64_t param_2, uint64_t *param_3)
-
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -274,10 +252,9 @@ void DataStructureProcessorVariant(uint64_t param_1, int64_t param_2, uint64_t *
   int64_t *plVar13;
   uint64_t unaff_R15;
   int64_t *plVar14;
-  uint64_t in_stack_00000060;
-  uint64_t in_stack_00000068;
-  int64_t in_stack_00000078;
-  
+  uint64_t local_var_60;
+  uint64_t local_var_68;
+  int64_t local_var_78;
   *(uint64_t *)(in_RAX + 0x18) = unaff_RBX;
   *(uint64_t *)(in_RAX + -0x10) = unaff_RBP;
   *(uint64_t *)(in_RAX + -0x18) = unaff_RDI;
@@ -298,13 +275,13 @@ void DataStructureProcessorVariant(uint64_t param_1, int64_t param_2, uint64_t *
     DataBufferComparator(plVar14, plVar1, (int64_t)(iVar8 + -1) * 2);
     if (lVar10 < SYSTEM_RESOURCE_THRESHOLD) {
       DataSorter(plVar14, plVar1);
-      param_2 = in_stack_00000078;
+      param_2 = local_var_78;
     }
     else {
       plVar13 = (int64_t *)(lVar2 + SYSTEM_PARAM_OFFSET_0x9b28);
       DataSorter(plVar14, plVar13);
-      param_2 = in_stack_00000078;
-      for (; in_stack_00000078 = param_2, plVar13 != plVar1; plVar13 = plVar13 + 1) {
+      param_2 = local_var_78;
+      for (; local_var_78 = param_2, plVar13 != plVar1; plVar13 = plVar13 + 1) {
         lVar2 = *plVar13;
         plVar4 = plVar13 + -1;
         cVar5 = DataStructureComparator(lVar2, *plVar4);
@@ -317,7 +294,7 @@ void DataStructureProcessorVariant(uint64_t param_1, int64_t param_2, uint64_t *
           cVar5 = DataStructureComparator(lVar2, *plVar4);
         }
         *plVar12 = lVar2;
-        param_2 = in_stack_00000078;
+        param_2 = local_var_78;
       }
     }
   }
@@ -326,7 +303,7 @@ void DataStructureProcessorVariant(uint64_t param_1, int64_t param_2, uint64_t *
   do {
     if (*(int *)(param_2 + SYSTEM_PARAM_OFFSET_0x11a48) <= iVar8) {
       if (!bVar3) {
-        SystemStateManager(param_3, &stack0x00000068);
+        SystemStateManager(param_3, &local_buffer_00000068);
       }
       return;
     }
@@ -336,7 +313,7 @@ void DataStructureProcessorVariant(uint64_t param_1, int64_t param_2, uint64_t *
       bVar3 = true;
       if (puVar11 < (uint64_t *)param_3[2]) {
         param_3[1] = (uint64_t)(puVar11 + 1);
-        *puVar11 = in_stack_00000068;
+        *puVar11 = local_var_68;
       }
       else {
         puVar9 = (uint64_t *)*param_3;
@@ -354,12 +331,12 @@ LAB_1800da8e0:
           puVar7 = (uint64_t *)0x0;
         }
         if (puVar9 != puVar11) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           memmove(puVar7, puVar9, (int64_t)puVar11 - (int64_t)puVar9);
         }
-        *puVar7 = in_stack_00000068;
+        *puVar7 = local_var_68;
         if (*param_3 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemErrorHandler();
         }
         *param_3 = (uint64_t)puVar7;
@@ -367,24 +344,18 @@ LAB_1800da8e0:
         param_3[1] = (uint64_t)(puVar7 + 1);
       }
     }
-    DataStructureProcessor(in_stack_00000060, lVar2, param_3);
+    DataStructureProcessor(local_var_60, lVar2, param_3);
     iVar8 = iVar8 + 1;
     plVar14 = plVar14 + 1;
-    param_2 = in_stack_00000078;
+    param_2 = local_var_78;
   } while( true );
 }
-
-
-
-
-
-
 /**
  * @brief 系统清理执行器
- * 
+ *
  * 本函数负责执行系统级别的清理操作，包括状态管理、资源释放和系统重置。
  * 作为系统维护的重要组成部分，确保系统在特定条件下能够正确清理和重置。
- * 
+ *
  * 功能特点：
  * * - 调用系统状态管理器进行状态清理
  * * - 执行系统级别的资源释放
@@ -392,25 +363,17 @@ LAB_1800da8e0:
  * * - 为系统重启或重置做准备
  */
 void SystemCleanupExecutor(void)
-
 {
   SystemStateManager();
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /**
  * @brief 系统参数处理器
- * 
+ *
  * 本函数负责处理系统级别的参数配置和状态管理，包括参数初始化、状态转换和系统调用。
  * 根据系统当前状态执行相应的参数处理逻辑，确保系统配置的正确性和一致性。
- * 
+ *
  * 功能特点：
  * * - 根据系统状态执行不同的参数处理逻辑
  * * - 处理系统上下文初始化
@@ -419,17 +382,15 @@ void SystemCleanupExecutor(void)
  * * - 调用系统功能处理程序
  */
 void SystemParameterHandler(void)
-
 {
   int64_t lVar1;
   int64_t alStack_30 [2];
-  void *puStack_20;
+  void *plocal_var_20;
   code *pcStack_18;
-  
   lVar1 = SystemParameterBuffer;
   if (*(int *)(SystemParameterBuffer + 8) == SYSTEM_STATE_INACTIVE) {
     SystemContextInitializer(SystemContextPtr);
-    puStack_20 = &SystemContextVar1632;
+    plocal_var_20 = &SystemContextVar1632;
     pcStack_18 = SystemBufferInitializer;
     alStack_30[0] = lVar1;
     SystemParameterProcessor(alStack_30);
@@ -440,33 +401,28 @@ void SystemParameterHandler(void)
   if (SystemSystemMemory != (int64_t *)0x0) {
     (**(code **)(*SystemSystemMemory + 0x18))();
   }
-                    // WARNING: Could not recover jumptable at 0x0001800daa3e. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001800daa3e. Too many branches
+// WARNING: Treating indirect jump as call
   (**(code **)(SystemSystemMemory + SYSTEM_PARAM_OFFSET_0x30))(0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * @brief 内存池管理器
- * 
+ *
  * 本函数负责管理系统内存池的分配、初始化和状态管理。实现高效的内存池管理机制，
  * 包括内存块的分配、状态标记和资源清理，确保系统内存资源的高效利用。
- * 
+ *
  * 功能特点：
  * * - 管理内存池的分配和释放
  * * - 实现线程安全的内存操作
  * * - 处理内存池的初始化和状态管理
  * * - 支持内存块的动态分配和回收
  * * - 管理系统状态和资源配置
- * 
+ *
  * @return 返回分配的内存池地址
  */
 int64_t MemoryPoolManager(void)
-
 {
   uint uVar1;
   int64_t lVar2;
@@ -479,7 +435,6 @@ int64_t MemoryPoolManager(void)
   uint64_t uVar9;
   uint *puVar10;
   bool bVar11;
-  
   lVar2 = SystemParameterBuffer;
   lVar5 = SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x3d38;
   puVar7 = (uint *)((int64_t)*(int *)(SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x4648) * 0x488 + lVar5);
@@ -509,7 +464,7 @@ int64_t MemoryPoolManager(void)
       }
       else {
         if (lVar4 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemErrorHandler();
         }
         do {
@@ -535,20 +490,13 @@ int64_t MemoryPoolManager(void)
   *(int32_t *)(lVar5 + 0x9a3c) = *(int32_t *)(lVar2 + 0xa80);
   return lVar5;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /**
  * @brief 资源清理管理器
- * 
+ *
  * 本函数负责执行系统资源的清理和释放操作，包括内存资源、句柄和系统对象的清理。
  * 实现深度的资源清理机制，确保系统资源能够被正确释放和回收。
- * 
+ *
  * 功能特点：
  * * - 执行系统资源的深度清理
  * * - 处理内存句柄和系统对象的释放
@@ -557,7 +505,6 @@ int64_t MemoryPoolManager(void)
  * * - 处理资源清理过程中的错误情况
  */
 void ResourceCleanupManager(void)
-
 {
   int64_t lVar1;
   int64_t *plVar2;
@@ -568,7 +515,6 @@ void ResourceCleanupManager(void)
   uint uVar7;
   uint64_t uVar9;
   uint64_t uVar8;
-  
   lVar3 = SystemParameterBuffer;
   SystemContextInitializer(SystemContextPtr);
   uVar9 = 0;
@@ -585,7 +531,7 @@ void ResourceCleanupManager(void)
       puVar4[1] = 0;
       *(int32_t *)(puVar4 + 2) = SYSTEM_STATE_CLEANUP;
       if (lVar1 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemErrorHandler();
       }
       plVar2 = (int64_t *)puVar4[-5];
@@ -619,7 +565,7 @@ void ResourceCleanupManager(void)
       puVar4[1] = 0;
       *(int32_t *)(puVar4 + 2) = SYSTEM_STATE_CLEANUP;
       if (lVar3 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         SystemErrorHandler();
       }
       plVar2 = (int64_t *)puVar4[-5];
@@ -636,28 +582,23 @@ void ResourceCleanupManager(void)
   } while ((int64_t)uVar5 < SYSTEM_ARRAY_SIZE_512);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * @brief 内存管理器-中池
- * 
+ *
  * 本函数负责管理中等大小的内存池分配和初始化。实现高效的内存管理机制，
  * 专门处理中等规模内存块的分配、状态管理和资源回收。
- * 
+ *
  * 功能特点：
  * * - 管理中等大小内存池的分配
  * * - 实现线程安全的内存操作
  * * - 处理内存池的初始化和状态管理
  * * - 支持动态内存分配和回收
  * * - 管理内存池的状态和配置
- * 
+ *
  * @return 返回分配的内存池地址
  */
 int64_t MemoryManager_AllocateMediumPool(void)
-
 {
   uint uVar1;
   int64_t lVar2;
@@ -670,7 +611,6 @@ int64_t MemoryManager_AllocateMediumPool(void)
   uint64_t uVar9;
   uint *puVar10;
   bool bVar11;
-  
   lVar2 = SystemParameterBuffer;
   lVar5 = SystemParameterBuffer + 18000;
   puVar7 = (uint *)((int64_t)*(int *)(SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x5860) * 0x908 + lVar5);
@@ -700,7 +640,7 @@ int64_t MemoryManager_AllocateMediumPool(void)
       }
       else {
         if (lVar4 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemErrorHandler();
         }
         do {
@@ -719,28 +659,23 @@ int64_t MemoryManager_AllocateMediumPool(void)
           ((int64_t)*(int *)(lVar2 + SYSTEM_PARAM_OFFSET_0x5860) * 0x908 + lVar5 + 8 + (uint64_t)uVar3 * 8) +
          (uint64_t)(uVar1 - (uVar1 & SYSTEM_SHIFT_MASK_9)) * MEMORY_BLOCK_SIZE_0x330;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * @brief 内存管理器-小池
- * 
+ *
  * 本函数负责管理小规模的内存池分配和初始化。实现高效的内存管理机制，
  * 专门处理小规模内存块的分配、状态管理和资源回收，优化小内存分配性能。
- * 
+ *
  * 功能特点：
  * * - 管理小规模内存池的分配
  * * - 实现线程安全的内存操作
  * * - 处理内存池的初始化和状态管理
  * * - 支持动态内存分配和回收
  * * - 优化小内存块的分配效率
- * 
+ *
  * @return 返回分配的内存池地址
  */
 int64_t MemoryManager_AllocateSmallPool(void)
-
 {
   uint uVar1;
   int64_t lVar2;
@@ -753,7 +688,6 @@ int64_t MemoryManager_AllocateSmallPool(void)
   uint64_t uVar9;
   uint *puVar10;
   bool bVar11;
-  
   lVar2 = SystemParameterBuffer;
   lVar5 = SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x6a80;
   puVar7 = (uint *)((int64_t)*(int *)(SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x6b20) * 0x50 + lVar5);
@@ -783,7 +717,7 @@ int64_t MemoryManager_AllocateSmallPool(void)
       }
       else {
         if (lVar4 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemErrorHandler();
         }
         do {
@@ -801,28 +735,23 @@ int64_t MemoryManager_AllocateSmallPool(void)
   return *(int64_t *)((int64_t)*(int *)(lVar2 + SYSTEM_PARAM_OFFSET_0x6b20) * 0x50 + lVar5 + 8 + (uint64_t)uVar3 * 8)
          + (uint64_t)(uVar1 - (uVar1 & SYSTEM_SHIFT_MASK_9)) * MEMORY_BLOCK_SIZE_0x2f0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * @brief 内存管理器-大池
- * 
+ *
  * 本函数负责管理大规模的内存池分配和初始化。实现高效的内存管理机制，
  * 专门处理大规模内存块的分配、状态管理和资源回收，支持大容量内存分配。
- * 
+ *
  * 功能特点：
  * * - 管理大规模内存池的分配
  * * - 实现线程安全的内存操作
  * * - 处理内存池的初始化和状态管理
  * * - 支持大容量内存块的分配和回收
  * * - 实现内存块的批量初始化
- * 
+ *
  * @return 返回分配的内存池地址
  */
 int64_t MemoryManager_AllocateLargePool(void)
-
 {
   int iVar1;
   uint uVar2;
@@ -838,7 +767,6 @@ int64_t MemoryManager_AllocateLargePool(void)
   int64_t lVar12;
   uint *puVar13;
   bool bVar14;
-  
   lVar3 = SystemParameterBuffer;
   lVar12 = SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x74e8;
   puVar11 = (uint *)((int64_t)*(int *)(SystemParameterBuffer + SYSTEM_PARAM_OFFSET_0x7618) * 0x98 + lVar12);
@@ -875,7 +803,7 @@ int64_t MemoryManager_AllocateLargePool(void)
       }
       else {
         if (lVar6 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           SystemErrorHandler();
         }
         do {
@@ -894,24 +822,17 @@ int64_t MemoryManager_AllocateLargePool(void)
           ((int64_t)*(int *)(lVar3 + SYSTEM_PARAM_OFFSET_0x7618) * 0x98 + lVar12 + 8 + (uint64_t)uVar4 * 8) +
          (uint64_t)(uVar2 - (uVar2 & SYSTEM_SHIFT_MASK_9)) * MEMORY_BLOCK_SIZE_0xfc;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /**
  * @brief 资源管理器处理器
- * 
+ *
  * 本函数负责处理系统资源的管理和分配操作，包括资源状态管理、安全验证和资源分配。
  * 实现高级的资源管理机制，确保系统资源的安全分配和释放。
- * 
+ *
  * @param param_1 系统参数结构体
  * @param param_2 资源指针引用
  * @param param_3 资源管理标志
- * 
+ *
  * 功能特点：
  * * - 实现安全的资源管理操作
  * * - 处理资源状态的转换
@@ -920,42 +841,40 @@ int64_t MemoryManager_AllocateLargePool(void)
  * * - 管理资源的生命周期
  */
 void ResourceManager_Handler(int64_t param_1, int64_t *param_2, uint64_t param_3)
-
 {
   char cVar1;
   int64_t *plVar2;
   void *puVar3;
   int64_t lVar4;
-  int8_t auStack_108 [32];
-  int32_t uStack_e8;
+  int8_t stack_array_108 [32];
+  int32_t local_var_e8;
   int64_t *plStack_e0;
   int64_t *plStack_d8;
-  uint64_t uStack_d0;
-  void *puStack_c8;
-  int8_t *puStack_c0;
-  int32_t uStack_b8;
-  int8_t auStack_b0 [136];
-  uint64_t uStack_28;
-  
-  uStack_d0 = 0xfffffffffffffffe;
-  uStack_28 = SecurityCookieInitializer() ^ (uint64_t)auStack_108;
-  uStack_e8 = 0;
-  puStack_c8 = &SystemContextVar3432;
-  puStack_c0 = auStack_b0;
-  auStack_b0[0] = 0;
-  uStack_b8 = *(int32_t *)(param_1 + 0x10);
+  uint64_t local_var_d0;
+  void *plocal_var_c8;
+  int8_t *plocal_var_c0;
+  int32_t local_var_b8;
+  int8_t stack_array_b0 [136];
+  uint64_t local_var_28;
+  local_var_d0 = 0xfffffffffffffffe;
+  local_var_28 = SecurityCookieInitializer() ^ (uint64_t)stack_array_108;
+  local_var_e8 = 0;
+  plocal_var_c8 = &SystemContextVar3432;
+  plocal_var_c0 = stack_array_b0;
+  stack_array_b0[0] = 0;
+  local_var_b8 = *(int32_t *)(param_1 + 0x10);
   puVar3 = &SystemBufferPtr;
   if (*(void **)(param_1 + 8) != (void *)0x0) {
     puVar3 = *(void **)(param_1 + 8);
   }
-  strcpy_s(auStack_b0,0x80,puVar3);
+  strcpy_s(stack_array_b0,0x80,puVar3);
   lVar4 = *param_2;
   if (lVar4 != 0) {
     cVar1 = DataStructureValidator(lVar4 + 0x108, param_3);
     if ((cVar1 != '\0') && (*(int *)(lVar4 + 0x380) != 0)) goto LAB_1800db339;
   }
-  plVar2 = (int64_t *)ResourceAllocator(SystemResourceState, &plStack_d8, &puStack_c8, param_3);
-  uStack_e8 = 1;
+  plVar2 = (int64_t *)ResourceAllocator(SystemResourceState, &plStack_d8, &plocal_var_c8, param_3);
+  local_var_e8 = 1;
   lVar4 = *plVar2;
   *plVar2 = 0;
   plStack_e0 = (int64_t *)*param_2;
@@ -963,31 +882,25 @@ void ResourceManager_Handler(int64_t param_1, int64_t *param_2, uint64_t param_3
   if (plStack_e0 != (int64_t *)0x0) {
     (**(code **)(*plStack_e0 + 0x38))();
   }
-  uStack_e8 = 0;
+  local_var_e8 = 0;
   if (plStack_d8 != (int64_t *)0x0) {
     (**(code **)(*plStack_d8 + 0x38))();
   }
 LAB_1800db339:
-  puStack_c8 = &SystemContextVar720;
-                    // WARNING: Subroutine does not return
-  SecurityChecker(uStack_28 ^ (uint64_t)auStack_108);
+  plocal_var_c8 = &SystemContextVar720;
+// WARNING: Subroutine does not return
+  SecurityChecker(local_var_28 ^ (uint64_t)stack_array_108);
 }
-
-
-
-
-
-
 /**
  * @brief 参数验证器
- * 
+ *
  * 本函数负责验证系统参数的有效性和一致性，包括参数类型检查、数值范围验证和状态确认。
  * 实现严格的参数验证机制，确保系统参数的正确性和安全性。
- * 
+ *
  * @param param_1 浮点参数值
  * @param param_2 参数结构体指针引用
  * @param param_3 参数数组指针
- * 
+ *
  * 功能特点：
  * * - 验证参数的类型和数值范围
  * * - 检查参数的一致性和有效性
@@ -996,13 +909,11 @@ LAB_1800db339:
  * * - 确保系统参数的安全性
  */
 void ParameterValidator(float param_1, int64_t *param_2, int *param_3)
-
 {
   int64_t lVar1;
   int64_t *plVar2;
   uint64_t in_RCX;
   int64_t *plStackX_20;
-  
   lVar1 = *param_2;
   if ((((((lVar1 == 0) || (*(int *)(lVar1 + 0x140) != *param_3)) ||
         (*(int *)(lVar1 + 0x144) != param_3[1])) ||
@@ -1024,25 +935,18 @@ void ParameterValidator(float param_1, int64_t *param_2, int *param_3)
       (**(code **)(*plStackX_20 + 0x38))();
     }
   }
-                    // WARNING: Could not recover jumptable at 0x0001800db44e. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001800db44e. Too many branches
+// WARNING: Treating indirect jump as call
   ThreadIdentifier();
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /**
  * @brief 高级资源管理器
- * 
+ *
  * 本函数是高级资源管理系统的核心实现，负责复杂的资源分配、状态管理和安全验证。
  * 支持多参数配置和高级资源管理功能，提供完整的资源生命周期管理。
- * 
+ *
  * @param param_1 系统参数结构体
  * @param param_2 资源指针引用
  * @param param_3 资源管理标志1
@@ -1050,7 +954,7 @@ void ParameterValidator(float param_1, int64_t *param_2, int *param_3)
  * @param param_5 资源类型标识符
  * @param param_6 资源安全标志
  * @param param_7 资源配置参数
- * 
+ *
  * 功能特点：
  * * - 实现高级资源分配和管理
  * * - 支持多参数配置和状态管理
@@ -1060,37 +964,35 @@ void ParameterValidator(float param_1, int64_t *param_2, int *param_3)
  */
 void AdvancedResourceManager(int64_t param_1, int64_t *param_2, uint64_t param_3, uint64_t param_4,
                            int8_t param_5, uint64_t param_6, int32_t param_7)
-
 {
   int64_t lVar1;
   int64_t *plVar2;
   void *puVar3;
-  int8_t auStack_158 [32];
-  int32_t uStack_138;
-  int32_t uStack_134;
-  int32_t uStack_130;
-  int32_t uStack_12c;
-  int32_t uStack_128;
-  int32_t uStack_124;
-  int32_t uStack_120;
-  int32_t uStack_11c;
-  int32_t uStack_118;
-  int8_t uStack_114;
-  uint64_t uStack_113;
-  int32_t uStack_108;
-  int8_t uStack_104;
+  int8_t stack_array_158 [32];
+  int32_t local_var_138;
+  int32_t local_var_134;
+  int32_t local_var_130;
+  int32_t local_var_12c;
+  int32_t local_var_128;
+  int32_t local_var_124;
+  int32_t local_var_120;
+  int32_t local_var_11c;
+  int32_t local_var_118;
+  int8_t local_var_114;
+  uint64_t local_var_113;
+  int32_t local_var_108;
+  int8_t local_var_104;
   int64_t *plStack_100;
   int64_t *plStack_f8;
   int64_t *plStack_f0;
-  uint64_t uStack_e8;
-  void *puStack_d8;
-  int8_t *puStack_d0;
-  int32_t uStack_c8;
-  int8_t auStack_c0 [136];
-  uint64_t uStack_38;
-  
-  uStack_e8 = 0xfffffffffffffffe;
-  uStack_38 = SecurityCookieInitializer() ^ (uint64_t)auStack_158;
+  uint64_t local_var_e8;
+  void *plocal_var_d8;
+  int8_t *plocal_var_d0;
+  int32_t local_var_c8;
+  int8_t stack_array_c0 [136];
+  uint64_t local_var_38;
+  local_var_e8 = 0xfffffffffffffffe;
+  local_var_38 = SecurityCookieInitializer() ^ (uint64_t)stack_array_158;
   lVar1 = *param_2;
   if ((((lVar1 == 0) || (*(short *)(lVar1 + 0x32c) != SYSTEM_STACK_BUFFER_SIZE)) || (*(short *)(lVar1 + 0x32e) != SYSTEM_STACK_BUFFER_SIZE))
      || ((*(int *)(lVar1 + 0x324) != 0x1e || (*(int *)(lVar1 + 0x380) == SYSTEM_STATE_INACTIVE)))) {
@@ -1099,29 +1001,29 @@ void AdvancedResourceManager(int64_t param_1, int64_t *param_2, uint64_t param_3
     if (plStack_100 != (int64_t *)0x0) {
       (**(code **)(*plStack_100 + 0x38))();
     }
-    uStack_12c = 1;
-    uStack_113 = 0x1000001;
-    uStack_104 = 0;
-    uStack_138 = SYSTEM_STACK_BUFFER_SIZE;
-    uStack_134 = SYSTEM_STACK_BUFFER_SIZE;
-    uStack_130 = 6;
-    uStack_128 = 0x1e;
-    uStack_114 = param_5;
-    uStack_124 = 0;
-    uStack_120 = 0;
-    uStack_11c = 0;
-    uStack_118 = 0;
-    uStack_108 = param_7;
-    puStack_d8 = &SystemContextVar3432;
-    puStack_d0 = auStack_c0;
-    auStack_c0[0] = 0;
-    uStack_c8 = *(int32_t *)(param_1 + 0x10);
+    local_var_12c = 1;
+    local_var_113 = 0x1000001;
+    local_var_104 = 0;
+    local_var_138 = SYSTEM_STACK_BUFFER_SIZE;
+    local_var_134 = SYSTEM_STACK_BUFFER_SIZE;
+    local_var_130 = 6;
+    local_var_128 = 0x1e;
+    local_var_114 = param_5;
+    local_var_124 = 0;
+    local_var_120 = 0;
+    local_var_11c = 0;
+    local_var_118 = 0;
+    local_var_108 = param_7;
+    plocal_var_d8 = &SystemContextVar3432;
+    plocal_var_d0 = stack_array_c0;
+    stack_array_c0[0] = 0;
+    local_var_c8 = *(int32_t *)(param_1 + 0x10);
     puVar3 = &SystemBufferPtr;
     if (*(void **)(param_1 + 8) != (void *)0x0) {
       puVar3 = *(void **)(param_1 + 8);
     }
-    strcpy_s(auStack_c0,SYSTEM_STACK_BUFFER_SIZE,puVar3);
-    plVar2 = (int64_t *)ResourceAllocator(SystemResourceState, &plStack_f0, &puStack_d8, &uStack_138);
+    strcpy_s(stack_array_c0,SYSTEM_STACK_BUFFER_SIZE,puVar3);
+    plVar2 = (int64_t *)ResourceAllocator(SystemResourceState, &plStack_f0, &plocal_var_d8, &local_var_138);
     lVar1 = *plVar2;
     *plVar2 = 0;
     plStack_f8 = (int64_t *)*param_2;
@@ -1132,29 +1034,25 @@ void AdvancedResourceManager(int64_t param_1, int64_t *param_2, uint64_t param_3
     if (plStack_f0 != (int64_t *)0x0) {
       (**(code **)(*plStack_f0 + 0x38))();
     }
-    puStack_d8 = &SystemContextVar720;
+    plocal_var_d8 = &SystemContextVar720;
   }
-                    // WARNING: Subroutine does not return
-  SecurityChecker(uStack_38 ^ (uint64_t)auStack_158);
+// WARNING: Subroutine does not return
+  SecurityChecker(local_var_38 ^ (uint64_t)stack_array_158);
 }
-
-
-
 // ============================================================================
 // 技术架构文档
 // ============================================================================
-
 /**
  * @section 技术架构说明
- * 
+ *
  * 本模块采用分层架构设计，实现了高级数据处理和资源管理功能。
- * 
+ *
  * @subsection 架构层次
  * 1. **数据层**：负责基础数据结构的操作和管理
  * 2. **处理层**：实现数据处理算法和业务逻辑
  * 3. **管理层**：负责资源分配、状态管理和系统控制
  * 4. **接口层**：提供外部调用接口和参数验证
- * 
+ *
  * @subsection 核心组件
  * - DataStructureProcessor：数据结构处理器，实现高级排序和递归算法
  * - DataStructureProcessorVariant：数据结构处理器变体，提供优化的处理逻辑
@@ -1162,50 +1060,46 @@ void AdvancedResourceManager(int64_t param_1, int64_t *param_2, uint64_t param_3
  * - SystemParameterHandler：系统参数处理器，管理参数配置和状态转换
  * - MemoryPoolManager：内存池管理器，实现高效的内存分配机制
  * - ResourceCleanupManager：资源清理管理器，处理系统资源的深度清理
- * 
+ *
  * @subsection 内存管理策略
  * - 采用分层内存池管理机制
  * - 支持小、中、大三种内存池的动态分配
  * - 实现线程安全的内存操作
  * - 提供内存块的批量初始化和回收
- * 
+ *
  * @subsection 性能优化策略
  * 1. **算法优化**：使用高效的排序算法和递归处理
  * 2. **内存优化**：实现内存池管理，减少内存碎片
  * 3. **并发优化**：使用锁机制确保线程安全
  * 4. **缓存优化**：优化数据访问模式，提高缓存命中率
- * 
+ *
  * @subsection 安全考虑
  * - 实现严格的参数验证机制
  * - 包含完整的错误处理和恢复机制
  * - 提供安全检查和边界验证
  * - 支持系统状态的监控和管理
- * 
+ *
  * @subsection 扩展性设计
  * - 模块化设计，支持功能扩展
  * - 提供灵活的配置机制
  * - 支持多种数据类型的处理
  * - 实现可插拔的资源管理策略
  */
-
 // ============================================================================
 // 版本信息和维护记录
 // ============================================================================
-
 /**
  * @version 1.0
  * @date 2025-08-28
  * @author Claude Code
- * 
+ *
  * @section 版本历史
  * - v1.0 (2025-08-28): 初始版本，实现核心功能
- * 
+ *
  * @section 维护说明
  * - 本模块采用标准化设计，便于维护和扩展
  * - 所有函数都有详细的文档说明
  * - 实现了完整的错误处理机制
  * - 支持多种配置和运行模式
  */
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-

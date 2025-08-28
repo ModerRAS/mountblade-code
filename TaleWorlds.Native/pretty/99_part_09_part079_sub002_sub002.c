@@ -1,16 +1,11 @@
 #include "ultra_high_freq_fun_definitions.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 99_part_09_part079_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_1805f0b13(void)
-void FUN_1805f0b13(void)
-
+// 函数: void function_5f0b13(void)
+void function_5f0b13(void)
 {
   float *pfVar1;
   int iVar2;
@@ -84,9 +79,8 @@ void FUN_1805f0b13(void)
   float unaff_XMM12_Dc;
   float unaff_XMM12_Dd;
   char cStackX_20;
-  uint64_t in_stack_00000070;
-  uint64_t in_stack_00000078;
-  
+  uint64_t local_buffer_70;
+  uint64_t local_buffer_78;
   puVar15 = in_R9;
   if (!in_ZF) {
     puVar4 = *(uint64_t **)(unaff_RSI + 0xd8);
@@ -172,7 +166,7 @@ void FUN_1805f0b13(void)
       unaff_RBP[0xde] = fVar39;
       unaff_RBP[0xdf] = fVar46;
       uVar14 = UltraHighFreq_FileSystem1(unaff_RBP + 0xd8,unaff_RBP + 0x19c,unaff_RSI + 0x90);
-      puVar15 = (uint64_t *)FUN_180300b10(&stack0x00000070,unaff_RBP + 0x1a4,uVar14);
+      puVar15 = (uint64_t *)function_300b10(&local_buffer_00000070,unaff_RBP + 0x1a4,uVar14);
       uVar14 = puVar15[1];
       *(uint64_t *)(unaff_RSI + 0x90) = *puVar15;
       *(uint64_t *)(unaff_RSI + 0x98) = uVar14;
@@ -221,7 +215,7 @@ void FUN_1805f0b13(void)
       unaff_RBP[0xe6] = fVar39;
       unaff_RBP[0xe7] = fVar46;
       uVar14 = UltraHighFreq_FileSystem1(unaff_RBP + 0xe0,unaff_RBP + 0x1ac,unaff_RSI + 0xb0);
-      in_RAX = (uint64_t *)FUN_180300b10(&stack0x00000070,unaff_RBP + 0x1b4,uVar14);
+      in_RAX = (uint64_t *)function_300b10(&local_buffer_00000070,unaff_RBP + 0x1b4,uVar14);
       unaff_XMM12_Da = unaff_RBP[0x10];
       unaff_XMM12_Db = unaff_RBP[0x11];
       unaff_XMM12_Dc = unaff_RBP[0x12];
@@ -381,9 +375,9 @@ void FUN_1805f0b13(void)
     *(float *)(unaff_RSI + 0xb4) = fVar30;
     *(float *)(unaff_RSI + 0xb8) = fVar50;
     *(float *)(unaff_RSI + 0xbc) = fVar31;
-    puVar15 = (uint64_t *)UltraHighFreq_FileSystem1(&stack0x00000070,unaff_RBP + 0x1bc,pfVar17);
-    in_stack_00000070 = *puVar15;
-    in_stack_00000078 = puVar15[1];
+    puVar15 = (uint64_t *)UltraHighFreq_FileSystem1(&local_buffer_00000070,unaff_RBP + 0x1bc,pfVar17);
+    local_buffer_70 = *puVar15;
+    local_buffer_78 = puVar15[1];
     fVar41 = *(float *)((int64_t)puVar15 + 0x14);
     fVar33 = *(float *)(puVar15 + 3);
     fVar38 = *(float *)((int64_t)puVar15 + 0x1c);
@@ -403,8 +397,8 @@ void FUN_1805f0b13(void)
          (ABS(*(float *)(unaff_RSI + 0xa8)) < 0.001)) &&
         ((ABS(*(float *)(unaff_RSI + 0xc0)) < 0.001 && (ABS(*(float *)(unaff_RSI + 0xc4)) < 0.001)))
         ) && ((ABS(*(float *)(unaff_RSI + 200)) < 0.001 &&
-              ((cVar11 = FUN_1805f26d0(pfVar17,&system_data_3a10), cVar11 != '\0' &&
-               (cVar11 = FUN_1805f26d0(pfVar16,&system_data_3a10), cVar11 != '\0')))))) {
+              ((cVar11 = function_5f26d0(pfVar17,&system_data_3a10), cVar11 != '\0' &&
+               (cVar11 = function_5f26d0(pfVar16,&system_data_3a10), cVar11 != '\0')))))) {
       *(int8_t *)(unaff_RSI + 0xd1) = 0;
       pfVar17[0] = 1.0;
       pfVar17[1] = 0.0;
@@ -1100,8 +1094,8 @@ void FUN_1805f0b13(void)
     fVar38 = unaff_RBP[-0x1e];
     plVar25 = *(int64_t **)(unaff_RSI + 0xd8);
     uVar3 = *(int32_t *)(unaff_RSI + 0x68);
-    in_stack_00000070 = 0x3f800000;
-    in_stack_00000078 = 0;
+    local_buffer_70 = 0x3f800000;
+    local_buffer_78 = 0;
     fVar47 = unaff_RBP[-0x13];
     unaff_RBP[-0x18] = 1.0;
     unaff_RBP[-0x17] = 0.0;
@@ -1144,7 +1138,7 @@ void FUN_1805f0b13(void)
     unaff_RBP[0x147] = fVar41;
     pcVar24 = *(code **)(lVar22 + 0x20);
     puVar18 = (int32_t *)(**(code **)(lVar22 + 0x10))(plVar25,unaff_RBP + 0x3b,uVar3);
-    (*pcVar24)(plVar25,*puVar18,&stack0x00000070);
+    (*pcVar24)(plVar25,*puVar18,&local_buffer_00000070);
     plVar25 = *(int64_t **)(unaff_RSI + 0xd8);
     pcVar24 = *(code **)(*plVar25 + 0x20);
     puVar18 = (int32_t *)
@@ -1266,14 +1260,6 @@ void FUN_1805f0b13(void)
       } while (cVar11 < *(char *)(unaff_R14 + 0x20));
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x230) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x230) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-
-
-

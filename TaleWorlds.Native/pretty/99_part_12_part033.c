@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_12_part033.c - 5 个函数
-
-// 函数: void FUN_1807e0930(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
-void FUN_1807e0930(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+// 函数: void function_7e0930(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void function_7e0930(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
                   uint64_t param_6,int param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -25,7 +22,6 @@ void FUN_1807e0930(float *param_1,float *param_2,uint param_3,float *param_4,uin
   float fVar16;
   uint uVar17;
   float *pfVar18;
-  
   fVar1 = param_4[0x60];
   fVar2 = param_4[0x40];
   fVar3 = param_4[0x20];
@@ -161,16 +157,9 @@ void FUN_1807e0930(float *param_1,float *param_2,uint param_3,float *param_4,uin
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807e0cf0(float *param_1,int64_t param_2,uint param_3,float *param_4,uint64_t param_5,
-void FUN_1807e0cf0(float *param_1,int64_t param_2,uint param_3,float *param_4,uint64_t param_5,
+// 函数: void function_7e0cf0(float *param_1,int64_t param_2,uint param_3,float *param_4,uint64_t param_5,
+void function_7e0cf0(float *param_1,int64_t param_2,uint param_3,float *param_4,uint64_t param_5,
                   uint64_t param_6,int param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -207,7 +196,6 @@ void FUN_1807e0cf0(float *param_1,int64_t param_2,uint param_3,float *param_4,ui
   uint uVar33;
   float *pfVar34;
   float *pfVar35;
-  
   fVar1 = *param_4;
   fVar2 = param_4[1];
   fVar3 = param_4[2];
@@ -233,7 +221,7 @@ void FUN_1807e0cf0(float *param_1,int64_t param_2,uint param_3,float *param_4,ui
   fVar23 = param_4[0xa2];
   fVar24 = param_4[0xa3];
   if (param_7 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(param_2,0,(uint64_t)(param_3 * 6) << 2);
   }
   uVar33 = param_3 >> 1;
@@ -322,15 +310,8 @@ void FUN_1807e0cf0(float *param_1,int64_t param_2,uint param_3,float *param_4,ui
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807e0d55(float *param_1,uint64_t param_2,uint64_t param_3)
-void FUN_1807e0d55(float *param_1,uint64_t param_2,uint64_t param_3)
-
+// 函数: void function_7e0d55(float *param_1,uint64_t param_2,uint64_t param_3)
+void function_7e0d55(float *param_1,uint64_t param_2,uint64_t param_3)
 {
   float fVar1;
   float fVar2;
@@ -390,11 +371,10 @@ void FUN_1807e0d55(float *param_1,uint64_t param_2,uint64_t param_3)
   float unaff_XMM11_Db;
   float unaff_XMM11_Dc;
   float unaff_XMM11_Dd;
-  
   fVar27 = (float)((uint64_t)param_3 >> 0x20);
   *(uint64_t *)(in_RAX + 8) = unaff_R14;
   if (!in_ZF) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(in_XMM0_Da,0,(uint64_t)(uint)(in_R8D * 6) << 2);
   }
   uVar24 = unaff_EDI >> 1;
@@ -484,15 +464,8 @@ void FUN_1807e0d55(float *param_1,uint64_t param_2,uint64_t param_3)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807e0f64(void)
-void FUN_1807e0f64(void)
-
+// 函数: void function_7e0f64(void)
+void function_7e0f64(void)
 {
   float fVar1;
   float fVar2;
@@ -524,7 +497,6 @@ void FUN_1807e0f64(void)
   int64_t unaff_RBP;
   int64_t unaff_RSI;
   int unaff_EDI;
-  
   fVar1 = unaff_RBX[1];
   pfVar25 = (float *)(unaff_RSI + 8);
   fVar2 = *unaff_RBX;
@@ -568,16 +540,9 @@ void FUN_1807e0f64(void)
   } while (unaff_EDI != 0);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807e11a0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
-void FUN_1807e11a0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+// 函数: void function_7e11a0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
+void function_7e11a0(float *param_1,float *param_2,uint param_3,float *param_4,uint64_t param_5,
                   uint64_t param_6,int param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -605,7 +570,6 @@ void FUN_1807e11a0(float *param_1,float *param_2,uint param_3,float *param_4,uin
   float fVar24;
   float *pfVar25;
   uint uVar26;
-  
   fVar1 = param_4[0xa0];
   fVar2 = param_4[0xa1];
   fVar3 = *param_4;
@@ -619,7 +583,7 @@ void FUN_1807e11a0(float *param_1,float *param_2,uint param_3,float *param_4,uin
   fVar11 = param_4[0x81];
   fVar12 = param_4[0x80];
   if (param_7 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(param_2,0,(uint64_t)(param_3 * 6) << 2,fVar2,fVar2);
   }
   if ((((((2e-05 <= ABS(fVar5)) || (2e-05 <= ABS(fVar6))) || (2e-05 <= ABS(fVar7))) ||
@@ -737,9 +701,3 @@ void FUN_1807e11a0(float *param_1,float *param_2,uint param_3,float *param_4,uin
   }
   return;
 }
-
-
-
-
-
-

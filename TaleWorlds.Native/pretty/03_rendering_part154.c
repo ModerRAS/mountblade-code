@@ -1,23 +1,14 @@
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* SystemCore_Initializer - SystemCore_Initializer */
 #define SystemCore_Initializer SystemCore_Initializer
-
-
 /* 函数别名定义: MathOptimizationEngine */
 #define MathOptimizationEngine MathOptimizationEngine
-
-
 /* 函数别名定义: DataDeserializer */
 #define DataDeserializer DataDeserializer
-
-
-
 /**
  * 03_rendering_part154.c - 渲染系统高级资源管理和数据处理模块
- * 
+ *
  * 模块功能:
  * - 渲染系统资源分配和释放管理
  * - 高级数据处理和内存管理
@@ -25,7 +16,7 @@
  * - 字符串处理和配置管理
  * - 系统状态监控和调试输出
  * - 错误处理和异常管理
- * 
+ *
  * 核心技术:
  * - 内存池管理和优化分配
  * - 链表和树形数据结构操作
@@ -34,11 +25,9 @@
  * - 资源生命周期跟踪
  * - 系统调用和接口封装
  */
-
 // ============================================================================
 // 常量定义
 // ============================================================================
-
 /** 渲染系统常量定义 */
 #define RENDERING_SYSTEM_MAX_STRING_LENGTH 0x40     // 最大字符串长度
 #define RENDERING_SYSTEM_MAX_ARRAY_SIZE 0x10        // 最大数组大小
@@ -46,14 +35,12 @@
 #define RENDERING_SYSTEM_STACK_GUARD_SIZE 32       // 栈保护大小
 #define RENDERING_SYSTEM_BUFFER_SIZE 0x80          // 缓冲区大小
 #define RENDERING_SYSTEM_ALIGNMENT 8               // 内存对齐大小
-
 /** 渲染系统状态常量 */
 #define RENDERING_STATE_INITIALIZED 0x01           // 已初始化状态
 #define RENDERING_STATE_ACTIVE 0x02                 // 活动状态
 #define RENDERING_STATE_PAUSED 0x04                 // 暂停状态
 #define RENDERING_STATE_ERROR 0x08                  // 错误状态
 #define RENDERING_STATE_DESTROYED 0x10              // 已销毁状态
-
 /** 渲染系统错误码 */
 #define RENDERING_ERROR_SUCCESS 0x00000000         // 成功
 #define RENDERING_ERROR_INVALID_PARAM 0x00000001   // 无效参数
@@ -61,17 +48,14 @@
 #define RENDERING_ERROR_RESOURCE_BUSY 0x00000003   // 资源忙
 #define RENDERING_ERROR_TIMEOUT 0x00000004         // 超时
 #define RENDERING_ERROR_NOT_FOUND 0x00000005       // 未找到
-
 /** 渲染系统配置常量 */
 #define RENDERING_CONFIG_DEFAULT_PRIORITY 0x0B     // 默认优先级
 #define RENDERING_CONFIG_MAX_PRIORITY 0x10         // 最大优先级
 #define RENDERING_CONFIG_MIN_PRIORITY 0x01         // 最小优先级
 #define RENDERING_CONFIG_STRING_TERMINATOR '\0'     // 字符串终止符
-
 // ============================================================================
 // 类型别名定义
 // ============================================================================
-
 /** 基础类型别名 */
 typedef uint8_t render_uint8;     // 8位无符号整数
 typedef uint16_t render_uint16;   // 16位无符号整数
@@ -83,7 +67,6 @@ typedef int32_t render_int32;     // 32位有符号整数
 typedef int64_t render_int64;     // 64位有符号整数
 typedef float render_float32;     // 32位浮点数
 typedef double render_float64;    // 64位浮点数
-
 /** 渲染系统类型别名 */
 typedef void* render_handle;      // 渲染句柄
 typedef void* render_resource;    // 渲染资源
@@ -91,24 +74,20 @@ typedef void* render_buffer;      // 渲染缓冲区
 typedef void* render_texture;     // 渲染纹理
 typedef void* render_shader;      // 渲染着色器
 typedef void* render_pipeline;    // 渲染管线
-
 /** 渲染系统结构体指针 */
 typedef struct render_object* render_object_ptr;         // 渲染对象指针
 typedef struct render_context* render_context_ptr;       // 渲染上下文指针
 typedef struct render_state* render_state_ptr;           // 渲染状态指针
 typedef struct render_config* render_config_ptr;         // 渲染配置指针
 typedef struct render_memory* render_memory_ptr;         // 渲染内存指针
-
 /** 渲染系统函数指针 */
 typedef render_int32 (*render_compare_func)(const void*, const void*);  // 比较函数
 typedef void (*render_callback_func)(void*);                          // 回调函数
 typedef void (*render_cleanup_func)(void*);                          // 清理函数
 typedef void (*render_update_func)(void*);                           // 更新函数
-
 // ============================================================================
 // 枚举定义
 // ============================================================================
-
 /** 渲染系统优先级枚举 */
 typedef enum {
     RENDER_PRIORITY_LOW = 0x01,       // 低优先级
@@ -116,7 +95,6 @@ typedef enum {
     RENDER_PRIORITY_HIGH = 0x0A,      // 高优先级
     RENDER_PRIORITY_CRITICAL = 0x0F   // 关键优先级
 } render_priority;
-
 /** 渲染系统操作状态枚举 */
 typedef enum {
     RENDER_OP_IDLE = 0x00,            // 空闲状态
@@ -125,7 +103,6 @@ typedef enum {
     RENDER_OP_COMPLETE = 0x03,         // 完成状态
     RENDER_OP_ERROR = 0x04             // 错误状态
 } render_operation_state;
-
 /** 渲染系统内存类型枚举 */
 typedef enum {
     RENDER_MEMORY_TYPE_STACK = 0x01,  // 栈内存
@@ -133,11 +110,9 @@ typedef enum {
     RENDER_MEMORY_TYPE_POOL = 0x03,   // 池内存
     RENDER_MEMORY_TYPE_SHARED = 0x04   // 共享内存
 } render_memory_type;
-
 // ============================================================================
 // 结构体定义
 // ============================================================================
-
 /** 渲染系统对象结构体 */
 typedef struct render_object {
     render_handle handle;              // 对象句柄
@@ -153,7 +128,6 @@ typedef struct render_object {
     struct render_object* next;       // 下一个对象
     struct render_object* prev;       // 上一个对象
 } render_object;
-
 /** 渲染系统上下文结构体 */
 typedef struct render_context {
     render_uint32 version;             // 版本号
@@ -169,7 +143,6 @@ typedef struct render_context {
     render_operation_state status;      // 状态
     void* platform_data;               // 平台数据
 } render_context;
-
 /** 渲染系统状态结构体 */
 typedef struct render_state {
     render_uint32 render_mode;         // 渲染模式
@@ -183,7 +156,6 @@ typedef struct render_state {
     render_uint32 clear_stencil;        // 清除模板值
     render_bool state_changed;         // 状态是否改变
 } render_state;
-
 /** 渲染系统配置结构体 */
 typedef struct render_config {
     render_uint32 max_textures;        // 最大纹理数
@@ -197,7 +169,6 @@ typedef struct render_config {
     render_uint32 sample_count;         // 采样数量
     render_quality_level quality;      // 质量等级
 } render_config;
-
 /** 渲染系统内存管理结构体 */
 typedef struct render_memory {
     render_uint64 total_size;          // 总大小
@@ -209,91 +180,75 @@ typedef struct render_memory {
     void* memory_pool;                // 内存池
     render_bool initialized;           // 是否已初始化
 } render_memory;
-
 // ============================================================================
 // 全局变量声明
 // ============================================================================
-
 /** 渲染系统全局变量 */
 static render_context_ptr g_render_context = NULL;      // 全局渲染上下文
 static render_memory_ptr g_render_memory = NULL;         // 全局内存管理器
 static render_object_ptr g_render_objects = NULL;        // 全局对象链表
 static render_uint32 g_render_frame_count = 0;           // 全局帧计数
 static render_bool g_render_initialized = false;         // 初始化标志
-
 // ============================================================================
 // 函数声明
 // ============================================================================
-
 // 核心渲染功能函数
 render_int32 rendering_system_initialize(render_context_ptr context);
 render_int32 rendering_system_shutdown(void);
 render_int32 rendering_system_render_frame(render_context_ptr context);
 render_int32 rendering_system_update_state(render_state_ptr state);
-
 // 资源管理函数
 render_resource rendering_system_create_resource(render_uint32 type, render_uint64 size);
 render_int32 rendering_system_destroy_resource(render_resource resource);
 render_int32 rendering_system_allocate_memory(render_memory_ptr memory, render_uint64 size);
 render_int32 rendering_system_free_memory(render_memory_ptr memory, void* ptr);
-
 // 数据处理函数
 render_int32 rendering_system_process_data(void* data, render_uint32 size);
 render_int32 rendering_system_validate_data(void* data, render_uint32 size);
 render_int32 rendering_system_copy_data(void* dest, const void* src, render_uint32 size);
-
 // 字符串处理函数
 render_int32 rendering_system_process_string(const char* str, char* buffer, render_uint32 buffer_size);
 render_int32 rendering_system_validate_string(const char* str);
 render_int32 rendering_system_copy_string(char* dest, const char* src, render_uint32 max_size);
-
 // 辅助函数
 render_int32 rendering_system_check_status(void);
 render_int32 rendering_system_get_error(void);
 render_int32 rendering_system_clear_error(void);
-
 // ============================================================================
 // 函数别名定义
 // ============================================================================
-
 /** 核心函数别名 */
 #define RenderingSystem_Initialize rendering_system_initialize
 #define RenderingSystem_Shutdown rendering_system_shutdown
 #define RenderingSystem_RenderFrame rendering_system_render_frame
 #define RenderingSystem_UpdateState rendering_system_update_state
-
 /** 资源管理函数别名 */
 #define RenderingSystem_CreateResource rendering_system_create_resource
 #define RenderingSystem_DestroyResource rendering_system_destroy_resource
 #define RenderingSystem_AllocateMemory rendering_system_allocate_memory
 #define RenderingSystem_FreeMemory rendering_system_free_memory
-
 /** 数据处理函数别名 */
 #define RenderingSystem_ProcessData rendering_system_process_data
 #define RenderingSystem_ValidateData rendering_system_validate_data
 #define RenderingSystem_CopyData rendering_system_copy_data
-
 /** 字符串处理函数别名 */
 #define RenderingSystem_ProcessString rendering_system_process_string
 #define RenderingSystem_ValidateString rendering_system_validate_string
 #define RenderingSystem_CopyString rendering_system_copy_string
-
 /** 辅助函数别名 */
 #define RenderingSystem_CheckStatus rendering_system_check_status
 #define RenderingSystem_GetError rendering_system_get_error
 #define RenderingSystem_ClearError rendering_system_clear_error
-
 // ============================================================================
 // 核心功能实现
 // ============================================================================
-
 /**
  * 渲染系统初始化函数
- * 
+ *
  * 功能: 初始化渲染系统，创建全局上下文和内存管理器
  * 参数: context - 渲染上下文指针
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 创建全局渲染上下文
  * - 初始化内存管理器
@@ -302,23 +257,20 @@ render_int32 rendering_system_clear_error(void);
  * - 设置初始化标志
  */
 render_int32 rendering_system_initialize(render_context_ptr context) {
-    // 参数验证
+// 参数验证
     if (context == NULL) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查是否已经初始化
+// 检查是否已经初始化
     if (g_render_initialized) {
         return RENDERING_ERROR_RESOURCE_BUSY;
     }
-    
-    // 分配内存管理器
+// 分配内存管理器
     g_render_memory = (render_memory_ptr)malloc(sizeof(render_memory));
     if (g_render_memory == NULL) {
         return RENDERING_ERROR_MEMORY_ALLOC;
     }
-    
-    // 初始化内存管理器
+// 初始化内存管理器
     g_render_memory->total_size = RENDERING_SYSTEM_MAX_MEMORY_SIZE;
     g_render_memory->used_size = 0;
     g_render_memory->free_size = RENDERING_SYSTEM_MAX_MEMORY_SIZE;
@@ -326,30 +278,25 @@ render_int32 rendering_system_initialize(render_context_ptr context) {
     g_render_memory->deallocation_count = 0;
     g_render_memory->memory_type = RENDER_MEMORY_TYPE_POOL;
     g_render_memory->initialized = true;
-    
-    // 设置全局上下文
+// 设置全局上下文
     g_render_context = context;
     g_render_context->memory = g_render_memory;
     g_render_context->frame_count = 0;
     g_render_context->status = RENDER_OP_IDLE;
-    
-    // 初始化对象链表
+// 初始化对象链表
     g_render_objects = NULL;
     g_render_frame_count = 0;
-    
-    // 设置初始化标志
+// 设置初始化标志
     g_render_initialized = true;
-    
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统关闭函数
- * 
+ *
  * 功能: 关闭渲染系统，释放所有资源
  * 参数: 无
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 释放所有渲染对象
  * - 释放内存管理器
@@ -357,12 +304,11 @@ render_int32 rendering_system_initialize(render_context_ptr context) {
  * - 重置初始化标志
  */
 render_int32 rendering_system_shutdown(void) {
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 释放所有渲染对象
+// 释放所有渲染对象
     render_object_ptr current = g_render_objects;
     while (current != NULL) {
         render_object_ptr next = current->next;
@@ -372,31 +318,26 @@ render_int32 rendering_system_shutdown(void) {
         free(current);
         current = next;
     }
-    
-    // 释放内存管理器
+// 释放内存管理器
     if (g_render_memory != NULL) {
         free(g_render_memory);
         g_render_memory = NULL;
     }
-    
-    // 清理全局上下文
+// 清理全局上下文
     g_render_context = NULL;
     g_render_objects = NULL;
     g_render_frame_count = 0;
-    
-    // 重置初始化标志
+// 重置初始化标志
     g_render_initialized = false;
-    
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统帧渲染函数
- * 
+ *
  * 功能: 执行一帧的渲染操作
  * 参数: context - 渲染上下文指针
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 更新渲染状态
  * - 处理渲染对象
@@ -404,21 +345,18 @@ render_int32 rendering_system_shutdown(void) {
  * - 更新帧计数
  */
 render_int32 rendering_system_render_frame(render_context_ptr context) {
-    // 参数验证
+// 参数验证
     if (context == NULL) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 更新渲染状态
+// 更新渲染状态
     context->status = RENDER_OP_BUSY;
     context->frame_count++;
-    
-    // 处理所有渲染对象
+// 处理所有渲染对象
     render_object_ptr current = g_render_objects;
     while (current != NULL) {
         if (current->callback != NULL) {
@@ -426,23 +364,19 @@ render_int32 rendering_system_render_frame(render_context_ptr context) {
         }
         current = current->next;
     }
-    
-    // 更新全局帧计数
+// 更新全局帧计数
     g_render_frame_count++;
-    
-    // 设置完成状态
+// 设置完成状态
     context->status = RENDER_OP_COMPLETE;
-    
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统状态更新函数
- * 
+ *
  * 功能: 更新渲染系统状态
  * 参数: state - 渲染状态指针
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 验证状态参数
  * - 更新渲染模式
@@ -450,17 +384,15 @@ render_int32 rendering_system_render_frame(render_context_ptr context) {
  * - 更新深度和模板设置
  */
 render_int32 rendering_system_update_state(render_state_ptr state) {
-    // 参数验证
+// 参数验证
     if (state == NULL) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 验证状态参数
+// 验证状态参数
     if (state->render_mode > RENDER_MODE_MAX ||
         state->blend_mode > BLEND_MODE_MAX ||
         state->depth_mode > DEPTH_MODE_MAX ||
@@ -468,27 +400,23 @@ render_int32 rendering_system_update_state(render_state_ptr state) {
         state->cull_mode > CULL_MODE_MAX) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 更新上下文状态
+// 更新上下文状态
     if (g_render_context != NULL) {
         g_render_context->state = state;
         state->state_changed = true;
     }
-    
     return RENDERING_ERROR_SUCCESS;
 }
-
 // ============================================================================
 // 资源管理功能实现
 // ============================================================================
-
 /**
  * 渲染系统资源创建函数
- * 
+ *
  * 功能: 创建新的渲染资源
  * 参数: type - 资源类型，size - 资源大小
  * 返回值: 成功返回资源句柄，失败返回NULL
- * 
+ *
  * 技术说明:
  * - 验证参数有效性
  * - 分配资源内存
@@ -496,30 +424,26 @@ render_int32 rendering_system_update_state(render_state_ptr state) {
  * - 添加到对象链表
  */
 render_resource rendering_system_create_resource(render_uint32 type, render_uint64 size) {
-    // 参数验证
+// 参数验证
     if (type == 0 || size == 0) {
         return NULL;
     }
-    
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return NULL;
     }
-    
-    // 分配资源对象
+// 分配资源对象
     render_object_ptr object = (render_object_ptr)malloc(sizeof(render_object));
     if (object == NULL) {
         return NULL;
     }
-    
-    // 分配资源内存
+// 分配资源内存
     void* memory = malloc(size);
     if (memory == NULL) {
         free(object);
         return NULL;
     }
-    
-    // 初始化资源对象
+// 初始化资源对象
     object->handle = (render_handle)object;
     object->type = type;
     object->flags = 0;
@@ -532,8 +456,7 @@ render_resource rendering_system_create_resource(render_uint32 type, render_uint
     object->user_data = NULL;
     object->next = NULL;
     object->prev = NULL;
-    
-    // 添加到对象链表
+// 添加到对象链表
     if (g_render_objects == NULL) {
         g_render_objects = object;
     } else {
@@ -541,24 +464,21 @@ render_resource rendering_system_create_resource(render_uint32 type, render_uint
         g_render_objects->prev = object;
         g_render_objects = object;
     }
-    
-    // 更新内存统计
+// 更新内存统计
     if (g_render_memory != NULL) {
         g_render_memory->used_size += size;
         g_render_memory->free_size -= size;
         g_render_memory->allocation_count++;
     }
-    
     return (render_resource)object;
 }
-
 /**
  * 渲染系统资源销毁函数
- * 
+ *
  * 功能: 销毁渲染资源
  * 参数: resource - 资源句柄
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 验证资源有效性
  * - 调用清理函数
@@ -566,59 +486,49 @@ render_resource rendering_system_create_resource(render_uint32 type, render_uint
  * - 从链表中移除
  */
 render_int32 rendering_system_destroy_resource(render_resource resource) {
-    // 参数验证
+// 参数验证
     if (resource == NULL) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
     render_object_ptr object = (render_object_ptr)resource;
-    
-    // 调用清理函数
+// 调用清理函数
     if (object->cleanup != NULL) {
         object->cleanup(object);
     }
-    
-    // 释放资源内存
+// 释放资源内存
     if (object->memory != NULL) {
         free(object->memory);
     }
-    
-    // 从链表中移除
+// 从链表中移除
     if (object->prev != NULL) {
         object->prev->next = object->next;
     } else {
         g_render_objects = object->next;
     }
-    
     if (object->next != NULL) {
         object->next->prev = object->prev;
     }
-    
-    // 更新内存统计
+// 更新内存统计
     if (g_render_memory != NULL) {
         g_render_memory->used_size -= object->size;
         g_render_memory->free_size += object->size;
         g_render_memory->deallocation_count++;
     }
-    
-    // 释放对象结构
+// 释放对象结构
     free(object);
-    
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统内存分配函数
- * 
+ *
  * 功能: 从内存池分配内存
  * 参数: memory - 内存管理器指针，size - 分配大小
  * 返回值: 成功返回内存指针，失败返回NULL
- * 
+ *
  * 技术说明:
  * - 验证参数有效性
  * - 检查内存池状态
@@ -626,42 +536,36 @@ render_int32 rendering_system_destroy_resource(render_resource resource) {
  * - 更新内存统计
  */
 render_int32 rendering_system_allocate_memory(render_memory_ptr memory, render_uint64 size) {
-    // 参数验证
+// 参数验证
     if (memory == NULL || size == 0) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查内存池是否已初始化
+// 检查内存池是否已初始化
     if (!memory->initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 检查是否有足够的空间
+// 检查是否有足够的空间
     if (memory->free_size < size) {
         return RENDERING_ERROR_MEMORY_ALLOC;
     }
-    
-    // 执行内存分配
+// 执行内存分配
     void* ptr = malloc(size);
     if (ptr == NULL) {
         return RENDERING_ERROR_MEMORY_ALLOC;
     }
-    
-    // 更新内存统计
+// 更新内存统计
     memory->used_size += size;
     memory->free_size -= size;
     memory->allocation_count++;
-    
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统内存释放函数
- * 
+ *
  * 功能: 释放内存到内存池
  * 参数: memory - 内存管理器指针，ptr - 内存指针
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 验证参数有效性
  * - 检查内存池状态
@@ -669,36 +573,30 @@ render_int32 rendering_system_allocate_memory(render_memory_ptr memory, render_u
  * - 更新内存统计
  */
 render_int32 rendering_system_free_memory(render_memory_ptr memory, void* ptr) {
-    // 参数验证
+// 参数验证
     if (memory == NULL || ptr == NULL) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查内存池是否已初始化
+// 检查内存池是否已初始化
     if (!memory->initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 执行内存释放
+// 执行内存释放
     free(ptr);
-    
-    // 更新内存统计
+// 更新内存统计
     memory->deallocation_count++;
-    
     return RENDERING_ERROR_SUCCESS;
 }
-
 // ============================================================================
 // 数据处理功能实现
 // ============================================================================
-
 /**
  * 渲染系统数据处理函数
- * 
+ *
  * 功能: 处理渲染数据
  * 参数: data - 数据指针，size - 数据大小
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 验证数据有效性
  * - 检查数据格式
@@ -706,29 +604,25 @@ render_int32 rendering_system_free_memory(render_memory_ptr memory, void* ptr) {
  * - 返回处理结果
  */
 render_int32 rendering_system_process_data(void* data, render_uint32 size) {
-    // 参数验证
+// 参数验证
     if (data == NULL || size == 0) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 数据处理逻辑
-    // 这里可以添加具体的数据处理代码
-    
+// 数据处理逻辑
+// 这里可以添加具体的数据处理代码
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统数据验证函数
- * 
+ *
  * 功能: 验证渲染数据
  * 参数: data - 数据指针，size - 数据大小
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 验证数据指针
  * - 检查数据大小
@@ -736,29 +630,25 @@ render_int32 rendering_system_process_data(void* data, render_uint32 size) {
  * - 验证数据完整性
  */
 render_int32 rendering_system_validate_data(void* data, render_uint32 size) {
-    // 参数验证
+// 参数验证
     if (data == NULL || size == 0) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 数据验证逻辑
-    // 这里可以添加具体的数据验证代码
-    
+// 数据验证逻辑
+// 这里可以添加具体的数据验证代码
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统数据复制函数
- * 
+ *
  * 功能: 复制渲染数据
  * 参数: dest - 目标指针，src - 源指针，size - 复制大小
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 验证指针有效性
  * - 检查复制大小
@@ -766,33 +656,28 @@ render_int32 rendering_system_validate_data(void* data, render_uint32 size) {
  * - 验证复制结果
  */
 render_int32 rendering_system_copy_data(void* dest, const void* src, render_uint32 size) {
-    // 参数验证
+// 参数验证
     if (dest == NULL || src == NULL || size == 0) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 执行内存复制
+// 执行内存复制
     memcpy(dest, src, size);
-    
     return RENDERING_ERROR_SUCCESS;
 }
-
 // ============================================================================
 // 字符串处理功能实现
 // ============================================================================
-
 /**
  * 渲染系统字符串处理函数
- * 
+ *
  * 功能: 处理渲染字符串
  * 参数: str - 源字符串，buffer - 目标缓冲区，buffer_size - 缓冲区大小
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 验证字符串有效性
  * - 检查缓冲区大小
@@ -800,29 +685,25 @@ render_int32 rendering_system_copy_data(void* dest, const void* src, render_uint
  * - 返回处理结果
  */
 render_int32 rendering_system_process_string(const char* str, char* buffer, render_uint32 buffer_size) {
-    // 参数验证
+// 参数验证
     if (str == NULL || buffer == NULL || buffer_size == 0) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 字符串处理逻辑
-    // 这里可以添加具体的字符串处理代码
-    
+// 字符串处理逻辑
+// 这里可以添加具体的字符串处理代码
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统字符串验证函数
- * 
+ *
  * 功能: 验证渲染字符串
  * 参数: str - 字符串指针
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 验证字符串指针
  * - 检查字符串长度
@@ -830,29 +711,25 @@ render_int32 rendering_system_process_string(const char* str, char* buffer, rend
  * - 验证字符串格式
  */
 render_int32 rendering_system_validate_string(const char* str) {
-    // 参数验证
+// 参数验证
     if (str == NULL) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 字符串验证逻辑
-    // 这里可以添加具体的字符串验证代码
-    
+// 字符串验证逻辑
+// 这里可以添加具体的字符串验证代码
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统字符串复制函数
- * 
+ *
  * 功能: 复制渲染字符串
  * 参数: dest - 目标字符串，src - 源字符串，max_size - 最大大小
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 验证字符串有效性
  * - 检查最大大小
@@ -860,34 +737,29 @@ render_int32 rendering_system_validate_string(const char* str) {
  * - 确保字符串终止
  */
 render_int32 rendering_system_copy_string(char* dest, const char* src, render_uint32 max_size) {
-    // 参数验证
+// 参数验证
     if (dest == NULL || src == NULL || max_size == 0) {
         return RENDERING_ERROR_INVALID_PARAM;
     }
-    
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 执行字符串复制
+// 执行字符串复制
     strncpy(dest, src, max_size - 1);
     dest[max_size - 1] = '\0';
-    
     return RENDERING_ERROR_SUCCESS;
 }
-
 // ============================================================================
 // 辅助功能实现
 // ============================================================================
-
 /**
  * 渲染系统状态检查函数
- * 
+ *
  * 功能: 检查渲染系统状态
  * 参数: 无
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 检查初始化状态
  * - 检查内存状态
@@ -895,69 +767,62 @@ render_int32 rendering_system_copy_string(char* dest, const char* src, render_ui
  * - 返回系统状态
  */
 render_int32 rendering_system_check_status(void) {
-    // 检查是否已初始化
+// 检查是否已初始化
     if (!g_render_initialized) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
-    // 检查内存状态
+// 检查内存状态
     if (g_render_memory == NULL || !g_render_memory->initialized) {
         return RENDERING_ERROR_MEMORY_ALLOC;
     }
-    
-    // 检查上下文状态
+// 检查上下文状态
     if (g_render_context == NULL) {
         return RENDERING_ERROR_NOT_FOUND;
     }
-    
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统错误获取函数
- * 
+ *
  * 功能: 获取渲染系统错误
  * 参数: 无
  * 返回值: 返回当前错误码
- * 
+ *
  * 技术说明:
  * - 检查系统状态
  * - 获取错误信息
  * - 返回错误码
  */
 render_int32 rendering_system_get_error(void) {
-    // 这里可以添加具体的错误获取逻辑
+// 这里可以添加具体的错误获取逻辑
     return RENDERING_ERROR_SUCCESS;
 }
-
 /**
  * 渲染系统错误清除函数
- * 
+ *
  * 功能: 清除渲染系统错误
  * 参数: 无
  * 返回值: 成功返回RENDERING_ERROR_SUCCESS，失败返回错误码
- * 
+ *
  * 技术说明:
  * - 清除错误状态
  * - 重置错误计数
  * - 返回操作结果
  */
 render_int32 rendering_system_clear_error(void) {
-    // 这里可以添加具体的错误清除逻辑
+// 这里可以添加具体的错误清除逻辑
     return RENDERING_ERROR_SUCCESS;
 }
-
 // ============================================================================
 // 原始函数的美化版本 (保持原始功能的同时提供更好的可读性)
 // ============================================================================
-
 /**
  * 渲染系统高级资源管理器
- * 
+ *
  * 功能: 高级资源管理和数据处理，包含多个渲染对象的初始化和配置
  * 参数: param_1 - 渲染上下文参数
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 初始化多个渲染对象
  * - 配置渲染参数
@@ -966,7 +831,7 @@ render_int32 rendering_system_clear_error(void) {
  * - 调用渲染管线
  */
 void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
-    // 栈变量定义
+// 栈变量定义
     int8_t stack_guard_array[RENDERING_SYSTEM_STACK_GUARD_SIZE];
     int32_t operation_counter;
     void **object_pointer_array[2];
@@ -990,13 +855,11 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     int32_t pipeline_length;
     int8_t pipeline_data[RENDERING_SYSTEM_MAX_STRING_LENGTH];
     uint64_t stack_protection;
-    
-    // 初始化栈保护
+// 初始化栈保护
     magic_number = RENDERING_SYSTEM_MAGIC_NUMBER;
     stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard_array;
     operation_counter = 0;
-    
-    // 初始化第一个渲染对象
+// 初始化第一个渲染对象
     string_pointer = &memory_allocator_3480_ptr;
     string_buffer = string_data;
     string_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
@@ -1049,18 +912,16 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
     pipeline_pointer = &system_state_ptr;
-    
-    // 调用渲染管线处理
+// 调用渲染管线处理
     SystemSecurityChecker(stack_protection ^ (uint64_t)stack_guard_array);
 }
-
 /**
  * 渲染系统配置管理器
- * 
+ *
  * 功能: 管理渲染系统配置和对象初始化
  * 参数: param_1 - 配置参数指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 初始化渲染配置
  * - 设置对象参数
@@ -1069,7 +930,7 @@ void RenderingSystem_AdvancedResourceManager(uint64_t param_1) {
  * - 执行配置验证
  */
 void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
-    // 局部变量定义
+// 局部变量定义
     int64_t index_counter;
     uint64_t *data_pointer;
     int32_t validation_result;
@@ -1088,8 +949,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     uint64_t stack_guard;
     int8_t stack_guard_array[8];
     int64_t array_index;
-    
-    // 初始化栈保护
+// 初始化栈保护
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
     data_pointer = param_1;
     SystemCore_SyncController();
@@ -1135,8 +995,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     param_1[0x21] = &processed_var_7832_ptr;
     param_1[0x22] = &processed_var_7660_ptr;
     param_1[0x23] = &processed_var_7648_ptr;
-    
-    // 处理配置数组
+// 处理配置数组
     do {
         index_counter = *object_pointer;
         config_pointer = &system_data_buffer_ptr;
@@ -1169,7 +1028,7 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
             texture_pointer = shader_pointer;
         }
         if ((texture_pointer == data_pointer) || (*(int *)(texture_pointer + 6) != 0)) {
-            texture_pointer = (uint64_t *)FUN_1800c2ab0(data_pointer, stack_guard_array);
+            texture_pointer = (uint64_t *)function_0c2ab0(data_pointer, stack_guard_array);
             texture_pointer = (uint64_t *)*texture_pointer;
         }
         *(int *)(texture_pointer + 8) = operation_flag;
@@ -1179,7 +1038,6 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
         operation_flag = operation_flag + 1;
         object_pointer = object_pointer + 1;
     } while (operation_flag < 4);
-    
     object_pointer = (int64_t *)param_1[0x24];
     param_1[0x24] = 0;
     if (object_pointer != (int64_t *)0x0) {
@@ -1204,34 +1062,32 @@ void RenderingSystem_ConfigurationManager(uint64_t *param_1) {
     config_pointer = &system_data_buffer_ptr;
     CoreEngineMemoryPoolCleaner(data_pointer);
 }
-
 /**
  * 渲染系统内存清理器
- * 
+ *
  * 功能: 清理渲染系统内存和资源
  * 参数: param_1 - 内存参数，param_2 - 清理标志
  * 返回值: 返回清理后的内存指针
- * 
+ *
  * 技术说明:
  * - 执行内存清理函数
  * - 根据标志释放内存
  * - 返回清理结果
  */
 uint64_t RenderingSystem_MemoryCleaner(uint64_t param_1, uint64_t param_2) {
-    FUN_180362cf0();
+    function_362cf0();
     if ((param_2 & 1) != 0) {
         free(param_1, 0x150);
     }
     return param_1;
 }
-
 /**
  * 渲染系统资源释放器
- * 
+ *
  * 功能: 释放渲染系统资源
  * 参数: param_1 - 资源指针，param_2 - 保留参数，param_3 - 保留参数，param_4 - 保留参数
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 释放渲染资源
  * - 清理对象链表
@@ -1239,11 +1095,10 @@ uint64_t RenderingSystem_MemoryCleaner(uint64_t param_1, uint64_t param_2) {
  * - 释放内存池
  */
 void RenderingSystem_ResourceReleaser(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4) {
-    // 局部变量定义
+// 局部变量定义
     int64_t *object_pointer;
     char status_flag;
     uint64_t resource_handle;
-    
     resource_handle = RENDERING_SYSTEM_MAGIC_NUMBER;
     *param_1 = &processed_var_7800_ptr;
     if ((int64_t *)param_1[0x24] != (int64_t *)0x0) {
@@ -1280,20 +1135,19 @@ void RenderingSystem_ResourceReleaser(uint64_t *param_1, uint64_t param_2, uint6
     param_1[0x12] = &system_state_ptr;
     resource_handle = RENDERING_SYSTEM_MAGIC_NUMBER;
     *param_1 = &processed_var_4544_ptr;
-    FUN_180080df0();
+    function_080df0();
     *param_1 = &processed_var_4912_ptr;
-    FUN_1802f5b10(param_1 + 4, param_1[6], param_3, param_4, resource_handle);
+    function_2f5b10(param_1 + 4, param_1[6], param_3, param_4, resource_handle);
     *param_1 = &system_handler2_ptr;
     *param_1 = &system_handler1_ptr;
 }
-
 /**
  * 渲染系统状态检查器
- * 
+ *
  * 功能: 检查渲染系统状态
  * 参数: param_1 - 状态指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 检查系统状态标志
  * - 验证渲染对象
@@ -1301,10 +1155,9 @@ void RenderingSystem_ResourceReleaser(uint64_t *param_1, uint64_t param_2, uint6
  * - 执行状态更新
  */
 void RenderingSystem_StateChecker(int64_t *param_1) {
-    // 局部变量定义
+// 局部变量定义
     char system_flag;
     char object_flag;
-    
     if ((*(char *)(render_system_data_pointer + 0x210) == '\0') && (0 < (int)param_1[0x14])) {
         if (((int64_t *)param_1[0x24] == (int64_t *)0x0) ||
            (system_flag = (**(code **)(*(int64_t *)param_1[0x24] + 0xd8))(), system_flag == '\0')) {
@@ -1319,14 +1172,13 @@ void RenderingSystem_StateChecker(int64_t *param_1) {
         }
     }
 }
-
 /**
  * 渲染系统状态管理器
- * 
+ *
  * 功能: 管理渲染系统状态
  * 参数: param_1 - 状态指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 管理状态转换
  * - 处理状态事件
@@ -1334,11 +1186,10 @@ void RenderingSystem_StateChecker(int64_t *param_1) {
  * - 执行状态回调
  */
 void RenderingSystem_StateManager(int64_t *param_1) {
-    // 局部变量定义
+// 局部变量定义
     char system_flag;
     char object_flag;
     int64_t *resource_pointer;
-    
     if (param_1 != (int64_t *)0x0) {
         system_flag = (**(code **)(*param_1 + 0xd8))();
         if (system_flag != '\0') goto STATE_HANDLER_CONTINUE;
@@ -1355,14 +1206,13 @@ STATE_HANDLER_CONTINUE:
         }
     }
 }
-
 /**
  * 渲染系统空操作函数
- * 
+ *
  * 功能: 空操作，用于占位或默认处理
  * 参数: 无
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 提供空操作实现
  * - 用于函数占位
@@ -1371,14 +1221,13 @@ STATE_HANDLER_CONTINUE:
 void RenderingSystem_EmptyOperation(void) {
     return;
 }
-
 /**
  * 渲染系统纹理管理器
- * 
+ *
  * 功能: 管理渲染系统纹理
  * 参数: param_1 - 纹理指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 检查纹理状态
  * - 更新纹理参数
@@ -1386,9 +1235,8 @@ void RenderingSystem_EmptyOperation(void) {
  * - 管理纹理生命周期
  */
 void RenderingSystem_TextureManager(int64_t *param_1) {
-    // 局部变量定义
+// 局部变量定义
     char texture_flag;
-    
     if ((*(char *)(render_system_data_pointer + 0x210) == '\0') && ((int64_t *)param_1[0x24] != (int64_t *)0x0)) {
         texture_flag = (**(code **)(*(int64_t *)param_1[0x24] + 0xd8))();
         if (texture_flag != '\0') {
@@ -1409,14 +1257,13 @@ void RenderingSystem_TextureManager(int64_t *param_1) {
         }
     }
 }
-
 /**
  * 渲染系统参数处理器
- * 
+ *
  * 功能: 处理渲染系统参数
  * 参数: param_1 - 参数指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 初始化参数对象
  * - 设置参数值
@@ -1424,7 +1271,7 @@ void RenderingSystem_TextureManager(int64_t *param_1) {
  * - 应用参数设置
  */
 void RenderingSystem_ParameterProcessor(uint64_t param_1) {
-    // 栈变量定义
+// 栈变量定义
     int8_t stack_guard_array[RENDERING_SYSTEM_STACK_GUARD_SIZE];
     int32_t operation_counter;
     void **object_pointer_array[2];
@@ -1452,13 +1299,11 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     int32_t config_length;
     int8_t config_data[RENDERING_SYSTEM_MAX_STRING_LENGTH];
     uint64_t stack_protection;
-    
-    // 初始化栈保护
+// 初始化栈保护
     magic_number = RENDERING_SYSTEM_MAGIC_NUMBER;
     stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard_array;
     operation_counter = 0;
-    
-    // 初始化参数对象
+// 初始化参数对象
     string_pointer = &memory_allocator_3480_ptr;
     string_buffer = string_data;
     string_data[0] = RENDERING_CONFIG_STRING_TERMINATOR;
@@ -1524,18 +1369,16 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
     object_pointer_array[0] = resource_array;
     resource_array[0] = &system_state_ptr;
     config_pointer = &system_state_ptr;
-    
-    // 调用参数处理管线
+// 调用参数处理管线
     SystemSecurityChecker(stack_protection ^ (uint64_t)stack_guard_array);
 }
-
 /**
  * 渲染系统对象生命周期管理器
- * 
+ *
  * 功能: 管理渲染对象的生命周期
  * 参数: param_1 - 对象指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 检查对象函数指针
  * - 执行对象清理
@@ -1543,10 +1386,9 @@ void RenderingSystem_ParameterProcessor(uint64_t param_1) {
  * - 管理对象状态
  */
 void RenderingSystem_ObjectLifecycleManager(int64_t *param_1) {
-    // 局部变量定义
+// 局部变量定义
     int64_t *object_pointer;
     char object_flag;
-    
     if (*(code **)(*param_1 + 0x178) != (code *)&processed_var_4048_ptr) {
         (**(code **)(*param_1 + 0x178))();
         return;
@@ -1564,14 +1406,13 @@ void RenderingSystem_ObjectLifecycleManager(int64_t *param_1) {
         return;
     }
 }
-
 /**
  * 渲染系统高级参数管理器
- * 
+ *
  * 功能: 高级参数管理和配置
  * 参数: param_1 - 参数指针，param_2 - 配置指针，param_3 - 数据指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 处理高级参数
  * - 管理配置数据
@@ -1579,7 +1420,7 @@ void RenderingSystem_ObjectLifecycleManager(int64_t *param_1) {
  * - 应用配置设置
  */
 void RenderingSystem_AdvancedParameterManager(int64_t param_1, int64_t param_2, int64_t *param_3) {
-    // 局部变量定义
+// 局部变量定义
     int64_t *data_pointer;
     int64_t *config_pointer;
     int8_t *string_pointer;
@@ -1605,13 +1446,11 @@ void RenderingSystem_AdvancedParameterManager(int64_t param_1, int64_t param_2, 
     int64_t *object_array[4];
     uint64_t stack_data[136];
     uint64_t stack_protection;
-    
-    // 初始化栈保护
+// 初始化栈保护
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
     stack_protection = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard_array;
     buffer_size = *(int *)(param_2 + 0x10);
-    
-    // 处理不同类型的参数
+// 处理不同类型的参数
     if ((buffer_size == 10) && (buffer_size = strcmp(*(uint64_t *)(param_2 + 8), &system_memory_ff70), buffer_size == 0)) {
         (**(code **)(*render_system_data_pointer + 0x1e8))(render_system_data_pointer, &object_array[0]);
         config_pointer = object_array[2];
@@ -1748,14 +1587,13 @@ ADVANCED_PARAM_PROCESSOR:
     }
     SystemSecurityChecker(stack_protection ^ (uint64_t)stack_guard_array);
 }
-
 /**
  * 渲染系统性能优化器
- * 
+ *
  * 功能: 优化渲染系统性能
  * 参数: param_1 - 性能参数指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 检查性能参数
  * - 优化渲染管线
@@ -1763,7 +1601,7 @@ ADVANCED_PARAM_PROCESSOR:
  * - 执行性能监控
  */
 void RenderingSystem_PerformanceOptimizer(int64_t param_1) {
-    // 局部变量定义
+// 局部变量定义
     int64_t *performance_pointer;
     uint64_t *resource_pointer;
     uint64_t resource_handle;
@@ -1775,11 +1613,10 @@ void RenderingSystem_PerformanceOptimizer(int64_t param_1) {
     int32_t performance_flags;
     int32_t optimization_flags;
     int8_t performance_data[16];
-    
     if (0 < *(int *)(param_1 + 0xa0)) {
-        resource_handle = FUN_1803638c0();
+        resource_handle = function_3638c0();
         resource_pointer = (uint64_t *)
-                 FUN_180157390(resource_handle, object_array, param_1 + 0x90,
+                 function_157390(resource_handle, object_array, param_1 + 0x90,
                                *(uint64_t *)(*(int64_t *)(param_1 + 0x18) + 0x20), 1);
         resource_handle = *resource_pointer;
         *resource_pointer = 0;
@@ -1793,7 +1630,7 @@ void RenderingSystem_PerformanceOptimizer(int64_t param_1) {
         }
         (**(code **)(**(int64_t **)(param_1 + 0x120) + 0x120))
                   (*(int64_t **)(param_1 + 0x120), performance_data);
-        FUN_180363930(param_1);
+        function_363930(param_1);
         performance_pointer = *(int64_t **)(param_1 + 0x120);
         if (performance_pointer != (int64_t *)0x0) {
             if (*(char *)(param_1 + 0x70) == '\0') {
@@ -1814,14 +1651,13 @@ void RenderingSystem_PerformanceOptimizer(int64_t param_1) {
         }
     }
 }
-
 /**
  * 渲染系统状态同步器
- * 
+ *
  * 功能: 同步渲染系统状态
  * 参数: param_1 - 状态指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 检查状态同步标志
  * - 执行状态同步
@@ -1829,9 +1665,8 @@ void RenderingSystem_PerformanceOptimizer(int64_t param_1) {
  * - 更新状态信息
  */
 void RenderingSystem_StateSynchronizer(int64_t *param_1) {
-    // 局部变量定义
+// 局部变量定义
     int64_t *state_pointer;
-    
     state_pointer = (int64_t *)param_1[0x24];
     if (state_pointer == (int64_t *)0x0) {
         (**(code **)(*param_1 + 0x168))(param_1);
@@ -1842,14 +1677,13 @@ void RenderingSystem_StateSynchronizer(int64_t *param_1) {
     }
     (**(code **)(*state_pointer + 0x60))();
 }
-
 /**
  * 渲染系统内存管理器
- * 
+ *
  * 功能: 管理渲染系统内存
  * 参数: param_1 - 内存参数指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 检查内存状态
  * - 执行内存操作
@@ -1857,10 +1691,9 @@ void RenderingSystem_StateSynchronizer(int64_t *param_1) {
  * - 优化内存使用
  */
 void RenderingSystem_MemoryManager(int64_t param_1) {
-    // 局部变量定义
+// 局部变量定义
     int64_t *memory_pointer;
     char memory_flag;
-    
     if (*(int64_t **)(param_1 + 0x120) != (int64_t *)0x0) {
         memory_flag = (**(code **)(**(int64_t **)(param_1 + 0x120) + 0xd8))();
         if (memory_flag != '\0') {
@@ -1874,14 +1707,13 @@ void RenderingSystem_MemoryManager(int64_t param_1) {
         return;
     }
 }
-
 /**
  * 渲染系统数据采集器
- * 
+ *
  * 功能: 采集渲染系统数据
  * 参数: param_1 - 数据参数指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 采集性能数据
  * - 更新统计信息
@@ -1889,12 +1721,11 @@ void RenderingSystem_MemoryManager(int64_t param_1) {
  * - 存储采集结果
  */
 void RenderingSystem_DataCollector(int64_t param_1) {
-    // 局部变量定义
+// 局部变量定义
     char data_flag;
     float performance_value;
     float optimization_value;
     float data_buffer[2];
-    
     if (*(int64_t **)(param_1 + 0x120) != (int64_t *)0x0) {
         data_flag = (**(code **)(**(int64_t **)(param_1 + 0x120) + 0xd8))();
         if (data_flag != '\0') {
@@ -1909,14 +1740,13 @@ void RenderingSystem_DataCollector(int64_t param_1) {
         }
     }
 }
-
 /**
  * 渲染系统初始化器
- * 
+ *
  * 功能: 初始化渲染系统组件
  * 参数: param_1 - 初始化参数指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 初始化系统组件
  * - 设置默认参数
@@ -1924,7 +1754,7 @@ void RenderingSystem_DataCollector(int64_t param_1) {
  * - 配置系统环境
  */
 void RenderingSystem_Initializer(uint64_t *param_1) {
-    // 局部变量定义
+// 局部变量定义
     int64_t *component_pointer;
     int32_t initialization_result;
     int32_t *component_pointer_ptr;
@@ -1936,9 +1766,8 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     uint64_t component_buffer_size;
     uint64_t stack_guard;
     uint64_t stack_data[48];
-    
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
-    FUN_1803624e0();
+    function_3624e0();
     *param_1 = &processed_var_8440_ptr;
     param_1[0x2b] = &system_state_ptr;
     param_1[0x2c] = 0;
@@ -1978,14 +1807,13 @@ void RenderingSystem_Initializer(uint64_t *param_1) {
     component_data = &system_data_buffer_ptr;
     CoreEngineMemoryPoolCleaner(component_pointer_ptr);
 }
-
 /**
  * 渲染系统销毁器
- * 
+ *
  * 功能: 销毁渲染系统
  * 参数: param_1 - 销毁参数，param_2 - 销毁标志
  * 返回值: 返回销毁后的系统指针
- * 
+ *
  * 技术说明:
  * - 清理系统资源
  * - 释放内存分配
@@ -2007,20 +1835,19 @@ int64_t RenderingSystem_Destroyer(int64_t param_1, uint64_t param_2) {
     *(uint64_t *)(param_1 + 0x160) = 0;
     *(int32_t *)(param_1 + 0x170) = 0;
     *(uint64_t *)(param_1 + 0x158) = &system_state_ptr;
-    FUN_180362cf0(param_1);
+    function_362cf0(param_1);
     if ((param_2 & 1) != 0) {
         free(param_1, 0x1a8);
     }
     return param_1;
 }
-
 /**
  * 渲染系统创建器
- * 
+ *
  * 功能: 创建渲染系统实例
  * 参数: param_1 - 创建参数，param_2 - 创建标志，param_3 - 数据指针
  * 返回值: 无返回值
- * 
+ *
  * 技术说明:
  * - 分配系统内存
  * - 初始化系统组件
@@ -2028,7 +1855,7 @@ int64_t RenderingSystem_Destroyer(int64_t param_1, uint64_t param_2) {
  * - 配置系统环境
  */
 void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_3) {
-    // 局部变量定义
+// 局部变量定义
     int64_t *system_pointer;
     int32_t creation_result;
     int32_t *system_pointer_ptr;
@@ -2040,10 +1867,9 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     uint64_t system_buffer_size;
     uint64_t stack_guard;
     uint64_t stack_data[48];
-    
     resource_pointer = (uint64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x1a8, 8, 3);
     stack_guard = RENDERING_SYSTEM_MAGIC_NUMBER;
-    FUN_1803624e0(resource_pointer, param_2, param_1);
+    function_3624e0(resource_pointer, param_2, param_1);
     *resource_pointer = &processed_var_8440_ptr;
     resource_pointer[0x2b] = &system_state_ptr;
     resource_pointer[0x2c] = 0;
@@ -2083,52 +1909,50 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
     system_data = &system_data_buffer_ptr;
     CoreEngineMemoryPoolCleaner(system_pointer_ptr);
 }
-
 // ============================================================================
 // 模块功能说明
 // ============================================================================
-
 /**
  * 渲染系统高级资源管理和数据处理模块功能说明
- * 
+ *
  * 本模块提供了完整的渲染系统资源管理和数据处理功能，包括：
- * 
+ *
  * 1. 资源管理功能：
  *    - 渲染对象的创建和销毁
  *    - 内存分配和释放管理
  *    - 资源生命周期跟踪
  *    - 对象状态管理
- * 
+ *
  * 2. 数据处理功能：
  *    - 渲染数据的处理和验证
  *    - 数据格式转换和优化
  *    - 数据完整性检查
  *    - 数据流管理
- * 
+ *
  * 3. 字符串处理功能：
  *    - 渲染字符串的处理和格式化
  *    - 字符串验证和清理
  *    - 字符串复制和比较
  *    - 字符串编码处理
- * 
+ *
  * 4. 状态管理功能：
  *    - 渲染状态的检查和更新
  *    - 状态同步和冲突处理
  *    - 状态变化监控
  *    - 错误状态处理
- * 
+ *
  * 5. 性能优化功能：
  *    - 渲染性能的监控和优化
  *    - 资源使用的优化
  *    - 内存使用效率提升
  *    - 渲染管线优化
- * 
+ *
  * 6. 系统管理功能：
  *    - 渲染系统的初始化和关闭
  *    - 系统组件的管理
  *    - 系统配置的处理
  *    - 系统环境的设置
- * 
+ *
  * 技术特点：
  * - 模块化设计，便于维护和扩展
  * - 完整的错误处理机制
@@ -2136,14 +1960,14 @@ void RenderingSystem_Creator(uint64_t param_1, uint64_t param_2, uint64_t param_
  * - 灵活的配置系统
  * - 全面的状态监控
  * - 优化的性能表现
- * 
+ *
  * 使用场景：
  * - 游戏引擎渲染系统
  * - 图形处理应用
  * - 多媒体渲染软件
  * - 实时渲染系统
  * - 高性能图形应用
- * 
+ *
  * 注意事项：
  * - 确保正确的初始化顺序
  * - 注意内存使用的限制

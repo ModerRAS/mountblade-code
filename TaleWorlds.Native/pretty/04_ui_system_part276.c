@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part276.c - 1 个函数
-
-// 函数: void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
-void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
-
+// 函数: void NetworkProtocol_240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
+void NetworkProtocol_240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
 {
   uint uVar1;
   int8_t auVar2 [16];
@@ -49,10 +46,9 @@ void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
   float in_register_00001454;
   float in_register_00001458;
   int unaff_retaddr;
-  int in_stack_000000f0;
-  int in_stack_000000f8;
-  int in_stack_00000100;
-  
+  int local_var_f0;
+  int local_var_f8;
+  int local_var_100;
   uVar6 = (param_1 - 1U >> 3) + 1;
   uVar7 = (uint64_t)uVar6;
   do {
@@ -160,13 +156,13 @@ void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
     in_R10 = in_R10 + param_4 * 8;
     uVar7 = uVar7 - 1;
   } while (uVar7 != 0);
-  in_stack_000000f0 = in_stack_000000f0 + uVar6 * -8;
-  if (in_stack_000000f0 != 0) {
-    in_stack_000000f0 = in_stack_000000f0 + -1;
+  local_var_f0 = local_var_f0 + uVar6 * -8;
+  if (local_var_f0 != 0) {
+    local_var_f0 = local_var_f0 + -1;
     auVar5 = ZEXT812(0);
     auVar18 = ZEXT1228(auVar5) << 0x20;
     auVar8 = ZEXT1232(auVar5) << 0x20;
-    switch(in_stack_000000f0) {
+    switch(local_var_f0) {
     case 6:
       uVar6 = in_R11[unaff_retaddr];
       auVar9._4_4_ = uVar6;
@@ -179,7 +175,7 @@ void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
       auVar9._28_4_ = uVar6;
       auVar8 = vblendps_avx(ZEXT1232(auVar5) << 0x20,auVar9,0x40);
     case 5:
-      uVar6 = in_R11[in_stack_00000100 * 5];
+      uVar6 = in_R11[local_var_100 * 5];
       auVar10._4_4_ = uVar6;
       auVar10._0_4_ = uVar6;
       auVar10._8_4_ = uVar6;
@@ -190,7 +186,7 @@ void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
       auVar10._28_4_ = uVar6;
       auVar8 = vblendps_avx(auVar8,auVar10,0x20);
     case 4:
-      uVar6 = in_R11[in_stack_00000100 * 4];
+      uVar6 = in_R11[local_var_100 * 4];
       auVar11._4_4_ = uVar6;
       auVar11._0_4_ = uVar6;
       auVar11._8_4_ = uVar6;
@@ -201,7 +197,7 @@ void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
       auVar11._28_4_ = uVar6;
       auVar8 = vblendps_avx(auVar8,auVar11,0x10);
     case 3:
-      uVar6 = in_R11[in_stack_00000100 * 3];
+      uVar6 = in_R11[local_var_100 * 3];
       auVar12._4_4_ = uVar6;
       auVar12._0_4_ = uVar6;
       auVar12._8_4_ = uVar6;
@@ -212,7 +208,7 @@ void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
       auVar12._28_4_ = uVar6;
       auVar8 = vblendps_avx(auVar8,auVar12,8);
     case 2:
-      uVar6 = in_R11[in_stack_00000100 * 2];
+      uVar6 = in_R11[local_var_100 * 2];
       auVar13._4_4_ = uVar6;
       auVar13._0_4_ = uVar6;
       auVar13._8_4_ = uVar6;
@@ -223,7 +219,7 @@ void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
       auVar13._28_4_ = uVar6;
       auVar8 = vblendps_avx(auVar8,auVar13,4);
     case 1:
-      uVar6 = in_R11[in_stack_00000100];
+      uVar6 = in_R11[local_var_100];
       auVar14._4_4_ = uVar6;
       auVar14._0_4_ = uVar6;
       auVar14._8_4_ = uVar6;
@@ -258,29 +254,23 @@ void FUN_1808240c2(int param_1,uint64_t param_2,uint64_t param_3,int param_4)
     auVar8 = vcvtps2dq_avx(auVar16._0_32_);
     auVar2 = vpackssdw_avx(auVar8._0_16_,auVar8._0_16_);
     auVar3 = vpackssdw_avx(auVar8._16_16_,auVar8._16_16_);
-    switch(in_stack_000000f0) {
+    switch(local_var_f0) {
     case 6:
-      in_R10[in_stack_000000f8 * 6] = auVar3._4_2_;
+      in_R10[local_var_f8 * 6] = auVar3._4_2_;
     case 5:
-      in_R10[in_stack_000000f8 * 5] = auVar3._2_2_;
+      in_R10[local_var_f8 * 5] = auVar3._2_2_;
     case 4:
-      in_R10[in_stack_000000f8 * 4] = auVar3._0_2_;
+      in_R10[local_var_f8 * 4] = auVar3._0_2_;
     case 3:
-      in_R10[in_stack_000000f8 * 3] = auVar2._6_2_;
+      in_R10[local_var_f8 * 3] = auVar2._6_2_;
     case 2:
-      in_R10[in_stack_000000f8 * 2] = auVar2._4_2_;
+      in_R10[local_var_f8 * 2] = auVar2._4_2_;
     case 1:
-      in_R10[in_stack_000000f8] = auVar2._2_2_;
+      in_R10[local_var_f8] = auVar2._2_2_;
     case 0:
       *in_R10 = auVar2._0_2_;
     }
   }
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x00018082436c)
-
-
-

@@ -1,16 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 /**
  * 99_part_10_part011.c - 数据结构和数组处理模块
- * 
+ *
  * 本模块包含17个核心函数，主要功能：
  * - 数据结构指针管理和数组处理
  * - 内存分配和数据复制
  * - 结构体初始化和配置
  * - 数组遍历和元素操作
  * - 动态数组管理和扩容
- * 
+ *
  * 主要函数：
  * - ArrayPointerInitializerAndDataManager：数组指针初始化器和数据管理器
  * - StructureDataProcessorAndArrayHandler：结构体数据处理器和数组处理器
@@ -18,7 +17,6 @@
  * - DynamicArrayManagerAndExpander：动态数组管理器和扩容器
  * - StructureInitializerAndConfigurator：结构体初始化器和配置器
  */
-
 // 常量定义
 #define ARRAY_ELEMENT_SIZE_120 0x78
 #define ARRAY_ELEMENT_SIZE_16 0x10
@@ -29,7 +27,6 @@
 #define MEMORY_BLOCK_SIZE_64 0x40
 #define MEMORY_BLOCK_SIZE_184 0xb8
 #define MEMORY_BLOCK_SIZE_428 0x1ac
-
 // 类型别名
 typedef void* ArrayPointer;
 typedef int64_t StructurePointer;
@@ -39,7 +36,6 @@ typedef uint64_t* DataBuffer;
 typedef int64_t* ArrayIterator;
 typedef uint ElementCount;
 typedef uint64_t ArrayCapacity;
-
 // 枚举定义
 typedef enum {
     ARRAY_OPERATION_SUCCESS = 0,
@@ -47,20 +43,17 @@ typedef enum {
     MEMORY_ALLOCATION_SUCCESS = 0,
     MEMORY_ALLOCATION_FAILURE = 1
 } OperationStatus;
-
 typedef enum {
     ELEMENT_SIZE_SMALL = 4,
     ELEMENT_SIZE_MEDIUM = 8,
     ELEMENT_SIZE_LARGE = 0x78,
     ELEMENT_SIZE_EXTRA_LARGE = 0x10
 } ElementSizeType;
-
 typedef enum {
     ARRAY_TYPE_FIXED = 0,
     ARRAY_TYPE_DYNAMIC = 1,
     ARRAY_TYPE_HYBRID = 2
 } ArrayType;
-
 // 结构体定义
 typedef struct {
     ArrayPointer base_pointer;
@@ -70,7 +63,6 @@ typedef struct {
     ElementSizeType element_size;
     ArrayType array_type;
 } ArrayManager;
-
 typedef struct {
     StructurePointer structure_base;
     DataBuffer data_buffer;
@@ -78,7 +70,6 @@ typedef struct {
     OperationStatus operation_status;
     ElementCount active_elements;
 } StructureDataProcessor;
-
 typedef struct {
     ArrayIterator iterator_start;
     ArrayIterator iterator_end;
@@ -86,22 +77,21 @@ typedef struct {
     ElementCount total_elements;
     MemorySize iteration_step;
 } ArrayIteratorContext;
-
 /**
  * 数组指针初始化器和数据管理器
- * 
+ *
  * 功能：
  * - 初始化数组指针和管理器结构
  * - 计算数组容量和边界
  * - 管理数据指针的内存布局
  * - 处理大小数组的配置
- * 
+ *
  * 参数：
  * - 无直接参数，通过寄存器访问上下文
- * 
+ *
  * 返回值：
  * - void：无返回值，直接操作内存结构
- * 
+ *
  * 技术实现：
  * - 使用指针算术计算数组边界
  * - 支持动态大小数组的容量计算
@@ -109,47 +99,36 @@ typedef struct {
  */
 void ArrayPointerInitializerAndDataManager(void) {
     StructurePointer context_pointer;
-    
-    // 初始化主数据指针
+// 初始化主数据指针
     *(int64_t *)(context_pointer + 0x38) = *(int64_t *)(context_pointer + 0x70);
-    
-    // 计算大数组的容量边界（120字节元素）
-    *(uint64_t *)(context_pointer + 0x40) = 
-        (uint64_t)*(uint *)(context_pointer + 0x78) * ARRAY_ELEMENT_SIZE_120 + 
+// 计算大数组的容量边界（120字节元素）
+    *(uint64_t *)(context_pointer + 0x40) =
+        (uint64_t)*(uint *)(context_pointer + 0x78) * ARRAY_ELEMENT_SIZE_120 +
         *(int64_t *)(context_pointer + 0x70);
-    
-    // 初始化次数据指针
+// 初始化次数据指针
     *(int64_t *)(context_pointer + 0x50) = *(int64_t *)(context_pointer + 0x80);
-    
-    // 计算小数组的容量边界（4字节元素）
-    *(uint64_t *)(context_pointer + 0x58) = 
-        *(int64_t *)(context_pointer + 0x80) + 
+// 计算小数组的容量边界（4字节元素）
+    *(uint64_t *)(context_pointer + 0x58) =
+        *(int64_t *)(context_pointer + 0x80) +
         (uint64_t)*(uint *)(context_pointer + 0x88) * ELEMENT_SIZE_SMALL;
-    
     return;
 }
-
-
-
-
-
-
 /**
  * 结构体数据处理器和数组处理器
- * 
+ *
  * 功能：
  * - 处理结构体数据的序列化和反序列化
  * - 管理复杂数据结构的读写操作
  * - 批量处理数组元素和子结构
  * - 动态处理可变长度的数据集合
- * 
+ *
  * 参数：
  * - param_1：结构体数据源指针
  * - param_2：数据处理器和回调接口
- * 
+ *
  * 返回值：
  * - void：无返回值，通过回调函数处理数据
- * 
+ *
  * 技术实现：
  * - 使用函数指针数组进行数据处理
  * - 支持嵌套数据结构的递归处理
@@ -160,40 +139,33 @@ void StructureDataProcessorAndArrayHandler(int64_t data_source, int64_t processo
     ArrayIndex element_index;
     MemorySize iteration_counter;
     int32_t temp_buffer[2];
-    
-    // 初始化数据处理接口
-    FUN_1806b1560(processor_interface, data_source + 8);
-    
-    // 处理基础数据字段（4个整数）
+// 初始化数据处理接口
+    function_6b1560(processor_interface, data_source + 8);
+// 处理基础数据字段（4个整数）
     ProcessDataField(processor_interface, data_source + 0x18, 4);
     ProcessDataField(processor_interface, data_source + 0x1c, 4);
     ProcessDataField(processor_interface, data_source + 0x20, 4);
     ProcessDataField(processor_interface, data_source + 0x24, 4);
-    
-    // 处理字节类型数据（2个字节）
+// 处理字节类型数据（2个字节）
     temp_buffer[0]._0_1_ = *(int8_t *)(data_source + 0x68);
     ProcessDataField(processor_interface, temp_buffer, 1);
-    
     temp_buffer[0] = CONCAT31(temp_buffer[0]._1_3_, *(int8_t *)(data_source + 0x69));
     ProcessDataField(processor_interface, temp_buffer, 1);
-    
-    // 处理更多整数字段
+// 处理更多整数字段
     ProcessDataField(processor_interface, data_source + 0x28, 4);
     ProcessDataField(processor_interface, data_source + 0x2c, 4);
     ProcessDataField(processor_interface, data_source + 0x30, 4);
     ProcessDataField(processor_interface, data_source + 0x48, 4);
     ProcessDataField(processor_interface, data_source + 0x4c, 4);
     ProcessDataField(processor_interface, data_source + 0x50, 4);
-    
-    // 获取数组元素数量
+// 获取数组元素数量
     temp_buffer[0] = *(int32_t *)(data_source + 0x78);
     ProcessDataField(processor_interface, temp_buffer, 4);
-    
-    // 处理指针数组元素
+// 处理指针数组元素
     iteration_counter = 0;
     if (*(int *)(data_source + 0x78) != 0) {
         do {
-            // 处理每个指针元素的偏移字段
+// 处理每个指针元素的偏移字段
             ProcessDataField(processor_interface,
                            *(int64_t *)(*(int64_t *)(data_source + 0x70) + iteration_counter * POINTER_SIZE_8) + 0x4c,
                            4);
@@ -201,49 +173,38 @@ void StructureDataProcessorAndArrayHandler(int64_t data_source, int64_t processo
             iteration_counter = (uint64_t)element_index;
         } while (element_index < *(uint *)(data_source + 0x78));
     }
-    
-    // 处理两个子数组
-    FUN_1806a9930(processor_interface, data_source + 0x80);
-    FUN_1806a9930(processor_interface, data_source + 0x90);
-    
-    // 重新计算数组指针和容量
+// 处理两个子数组
+    function_6a9930(processor_interface, data_source + 0x80);
+    function_6a9930(processor_interface, data_source + 0x90);
+// 重新计算数组指针和容量
     *(int64_t *)(data_source + 0x38) = *(int64_t *)(data_source + 0x80);
-    *(uint64_t *)(data_source + 0x40) = 
+    *(uint64_t *)(data_source + 0x40) =
         *(int64_t *)(data_source + 0x80) + (uint64_t)*(uint *)(data_source + 0x88) * ARRAY_ELEMENT_SIZE_8;
-    
     *(int64_t *)(data_source + 0x58) = *(int64_t *)(data_source + 0x90);
-    *(uint64_t *)(data_source + 0x60) = 
+    *(uint64_t *)(data_source + 0x60) =
         *(int64_t *)(data_source + 0x90) + (uint64_t)*(uint *)(data_source + 0x98) * ARRAY_ELEMENT_SIZE_8;
-    
     return;
 }
-
 // 辅助函数：处理数据字段
 void ProcessDataField(int64_t processor_interface, int64_t data_field, int field_size) {
     (**(code **)(**(int64_t **)(processor_interface + 8) + 8))(*(int64_t **)(processor_interface + 8), data_field, field_size);
 }
-
-
-
-
-
-
 /**
  * 内存分配器和数据复制器
- * 
+ *
  * 功能：
  * - 管理动态内存的分配和释放
  * - 处理批量数据的复制和移动
  * - 支持复杂数据结构的内存布局
  * - 实现高效的数据块操作
- * 
+ *
  * 参数：
  * - param_1：目标数据结构指针
  * - param_2：内存管理器和复制接口
- * 
+ *
  * 返回值：
  * - void：无返回值，直接操作内存数据
- * 
+ *
  * 技术实现：
  * - 使用双重指针管理内存层次结构
  * - 实现可变大小数组的动态处理
@@ -255,147 +216,126 @@ void MemoryAllocatorAndDataCopier(int64_t target_structure, int64_t *memory_mana
     ArrayIndex element_index;
     uint64_t *array_element;
     int32_t temp_buffer[2];
-    
-    // 初始化内存管理器
-    FUN_1806b1560(memory_manager, target_structure + 8);
-    
-    // 处理基础数据字段
+// 初始化内存管理器
+    function_6b1560(memory_manager, target_structure + 8);
+// 处理基础数据字段
     ProcessMemoryField(memory_manager, target_structure + 0x18, 4);
-    
-    // 处理转换后的数据字段
+// 处理转换后的数据字段
     processed_data = ConvertAndProcessData(memory_manager, temp_buffer, *(uint64_t *)(target_structure + 0x28));
     ProcessMemoryField(memory_manager, processed_data, 4);
     ProcessMemoryField(memory_manager, target_structure + 0x30, 4);
-    
-    // 初始化子结构内存
-    FUN_1806b1560(memory_manager, target_structure + 0x38);
-    
-    // 处理结构体字段
+// 初始化子结构内存
+    function_6b1560(memory_manager, target_structure + 0x38);
+// 处理结构体字段
     temp_buffer[0] = *(int32_t *)(target_structure + 0x48);
     ProcessMemoryField(memory_manager, temp_buffer, 4);
     ProcessMemoryField(memory_manager, target_structure + 0x4c, 4);
     ProcessMemoryField(memory_manager, target_structure + 0x50, 4);
     ProcessMemoryField(memory_manager, target_structure + 0x54, 4);
-    
-    // 获取数组元素数量
+// 获取数组元素数量
     temp_buffer[0] = *(int32_t *)(target_structure + 0x60);
     ProcessMemoryField(memory_manager, temp_buffer, 4);
-    
-    // 处理数组元素（16字节元素）
+// 处理数组元素（16字节元素）
     element_index = 0;
     if (*(int *)(target_structure + 0x60) != 0) {
         do {
-            // 获取数组元素指针
+// 获取数组元素指针
             array_element = (uint64_t *)((uint64_t)element_index * ARRAY_ELEMENT_SIZE_16 + *(int64_t *)(target_structure + 0x58));
-            
-            // 处理数组元素的第二个字段
+// 处理数组元素的第二个字段
             ProcessMemoryField(memory_manager, array_element + 1, 4);
-            
-            // 转换和处理数组元素的第一个字段
+// 转换和处理数组元素的第一个字段
             processed_data = ConvertAndProcessData(memory_manager, temp_buffer, *array_element);
             ProcessMemoryField(memory_manager, processed_data, 4);
-            
             element_index = element_index + 1;
         } while (element_index < *(uint *)(target_structure + 0x60));
     }
-    
-    // 处理最后一个数据字段
+// 处理最后一个数据字段
     processed_data = ConvertAndProcessData(memory_manager, temp_buffer, *(uint64_t *)(target_structure + 0x20));
     ProcessMemoryField(memory_manager, processed_data, 4);
-    
     return;
 }
-
 // 辅助函数：处理内存字段
 void ProcessMemoryField(int64_t *memory_manager, int64_t field_address, int field_size) {
     (**(code **)(*(int64_t *)memory_manager[1] + 8))((int64_t *)memory_manager[1], field_address, field_size);
 }
-
 // 辅助函数：转换和处理数据
 uint64_t ConvertAndProcessData(int64_t *memory_manager, int32_t *buffer, uint64_t input_data) {
     return (**(code **)(**(int64_t **)(*memory_manager + 0x98) + 0x20))
                  (*(int64_t **)(*memory_manager + 0x98), buffer, input_data);
 }
-
 // 辅助函数：处理数组元素
 void ProcessArrayElement(int64_t *processor_interface, int64_t element_address, int element_size) {
     (**(code **)(*(int64_t *)processor_interface[1] + 8))((int64_t *)processor_interface[1], element_address, element_size);
 }
-
 // 辅助函数：转换数组元素
 uint64_t ConvertArrayElement(int64_t *processor_interface, uint64_t *array_element) {
     return (**(code **)(**(int64_t **)(*processor_interface + 0x98) + 0x20))
-                 (*(int64_t **)(*processor_interface + 0x98), &stack0x00000030, *array_element);
+                 (*(int64_t **)(*processor_interface + 0x98), &local_buffer_00000030, *array_element);
 }
-
 // 辅助函数：复制结构体字段
 void CopyStructureField(int64_t target_field, int64_t source_field) {
     *(int32_t *)target_field = *(int32_t *)source_field;
 }
-
 // 函数别名定义
 typedef void (*ArrayInitializerFunc)(void);
 typedef void (*DataProcessorFunc)(int64_t, int64_t);
 typedef void (*MemoryAllocatorFunc)(int64_t, int64_t*);
 typedef void (*ArrayManagerFunc)(void);
 typedef uint64_t* (*StructureInitializerFunc)(uint64_t*, int64_t);
-
 // 核心函数实例化
 ArrayInitializerFunc ArrayPointerInitializerAndDataManager_impl = ArrayPointerInitializerAndDataManager;
 DataProcessorFunc StructureDataProcessorAndArrayHandler_impl = StructureDataProcessorAndArrayHandler;
 MemoryAllocatorFunc MemoryAllocatorAndDataCopier_impl = MemoryAllocatorAndDataCopier;
 ArrayManagerFunc DynamicArrayManagerAndExpander_impl = DynamicArrayManagerAndExpander;
 StructureInitializerFunc StructureInitializerAndConfigurator_impl = StructureInitializerAndConfigurator;
-
 /**
  * 技术实现说明
- * 
+ *
  * 内存管理策略：
  * - 使用指针算术进行精确的内存定位
  * - 支持动态数组的自动扩容机制
  * - 实现内存对齐和边界检查
  * - 采用分层的内存管理结构
- * 
+ *
  * 数据结构设计：
  * - 使用虚拟函数表支持多态
  * - 采用数组管理器处理动态数组
  * - 实现字段级别的精确复制
  * - 支持嵌套数据结构的处理
- * 
+ *
  * 性能优化：
  * - 使用寄存器优化关键路径
  * - 实现批量数据处理减少函数调用
  * - 采用循环展开优化数组操作
  * - 支持内存预分配和重用
- * 
+ *
  * 错误处理：
  * - 实现容量检查防止溢出
  * - 支持自动扩容机制
  * - 处理内存分配失败情况
  * - 提供状态反馈和错误恢复
- * 
+ *
  * 扩展性设计：
  * - 支持多种元素大小和类型
  * - 实现通用的数组操作接口
  * - 支持自定义数据处理函数
  * - 提供灵活的配置选项
  */
-
 /**
  * 模块依赖关系
- * 
+ *
  * 外部依赖：
- * - FUN_1806b1560：基础初始化函数
- * - FUN_1806a9930：数组处理函数
- * - FUN_1806ae480：内存扩容函数
- * - FUN_1806b14d0：数据验证函数
- * - FUN_1806b10f0：数据序列化函数
- * - FUN_1806b11f0：数据反序列化函数
- * - FUN_1806b0720：内存块初始化函数
- * - FUN_1806b0950：内存块配置函数
- * - FUN_1806b0b40：内存块管理函数
- * - FUN_1806a6390：数据结构处理函数
- * 
+ * - function_6b1560：基础初始化函数
+ * - function_6a9930：数组处理函数
+ * - function_6ae480：内存扩容函数
+ * - function_6b14d0：数据验证函数
+ * - function_6b10f0：数据序列化函数
+ * - function_6b11f0：数据反序列化函数
+ * - function_6b0720：内存块初始化函数
+ * - function_6b0950：内存块配置函数
+ * - function_6b0b40：内存块管理函数
+ * - function_6a6390：数据结构处理函数
+ *
  * 全局数据：
  * - rendering_buffer_2232_ptr：虚拟函数表
  * - memory_allocator_3704_ptr：默认数据指针
@@ -405,34 +345,28 @@ StructureInitializerFunc StructureInitializerAndConfigurator_impl = StructureIni
  * - processed_var_5360_ptr：默认配置数据
  * - system_buffer_ptr：默认数据值
  * - system_system_buffer_config：全局管理器
- * 
+ *
  * 调用关系：
  * - 本模块被上层游戏引擎调用来管理数据结构
  * - 调用内存管理模块进行动态内存分配
  * - 调用序列化模块进行数据持久化
  * - 调用验证模块进行数据完整性检查
  */
-
-
-
-
-
-
 /**
  * 动态数组管理器和扩容器
- * 
+ *
  * 功能：
  * - 管理动态数组的元素添加和扩容
  * - 处理数组元素的批量操作
  * - 实现高效的内存重分配
  * - 支持数组容量的动态调整
- * 
+ *
  * 参数：
  * - 无直接参数，通过寄存器访问数组上下文
- * 
+ *
  * 返回值：
  * - void：无返回值，直接操作数组数据
- * 
+ *
  * 技术实现：
  * - 使用寄存器优化数组访问性能
  * - 实现循环内的元素处理
@@ -445,57 +379,36 @@ void DynamicArrayManagerAndExpander(void) {
     StructurePointer array_base;
     int64_t *processor_interface;
     uint64_t *array_element;
-    
-    // 遍历数组元素
+// 遍历数组元素
     do {
-        // 获取当前数组元素指针（16字节元素）
+// 获取当前数组元素指针（16字节元素）
         array_element = (uint64_t *)((uint64_t)current_index * ARRAY_ELEMENT_SIZE_16 + *(int64_t *)(array_base + 0x58));
-        
-        // 处理数组元素的第二个字段
+// 处理数组元素的第二个字段
         ProcessArrayElement(processor_interface, array_element + 1, 4);
-        
-        // 转换和处理数组元素的第一个字段
+// 转换和处理数组元素的第一个字段
         processed_element = ConvertArrayElement(processor_interface, array_element);
         ProcessArrayElement(processor_interface, processed_element, 4);
-        
         current_index = current_index + 1;
     } while (current_index < *(uint *)(array_base + 0x60));
-    
-    // 处理额外的数据字段
+// 处理额外的数据字段
     processed_element = ConvertArrayElement(processor_interface, *(uint64_t *)(array_base + 0x20));
     ProcessArrayElement(processor_interface, processed_element, 4);
-    
     return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a9396(void)
-void FUN_1806a9396(void)
-
+// 函数: void function_6a9396(void)
+void function_6a9396(void)
 {
   uint64_t uVar1;
   int64_t unaff_RBP;
   int64_t *unaff_RSI;
-  
   uVar1 = (**(code **)(**(int64_t **)(*unaff_RSI + 0x98) + 0x20))
-                    (*(int64_t **)(*unaff_RSI + 0x98),&stack0x00000030,
+                    (*(int64_t **)(*unaff_RSI + 0x98),&local_buffer_00000030,
                      *(uint64_t *)(unaff_RBP + 0x20));
   (**(code **)(*(int64_t *)unaff_RSI[1] + 8))((int64_t *)unaff_RSI[1],uVar1,4);
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a93e0(int64_t param_1,int64_t param_2)
-void FUN_1806a93e0(int64_t param_1,int64_t param_2)
-
+// 函数: void function_6a93e0(int64_t param_1,int64_t param_2)
+void function_6a93e0(int64_t param_1,int64_t param_2)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -508,21 +421,20 @@ void FUN_1806a93e0(int64_t param_1,int64_t param_2)
   int64_t lVar9;
   uint uVar10;
   uint64_t uVar11;
-  int32_t auStackX_8 [2];
-  
-  FUN_1806b1560(param_2,param_1 + 8);
+  int32_t astack_special_x_8 [2];
+  function_6b1560(param_2,param_1 + 8);
   (**(code **)(**(int64_t **)(param_2 + 8) + 8))(*(int64_t **)(param_2 + 8),param_1 + 0x18,4);
-  FUN_1806b1560(param_2,param_1 + 0x20);
+  function_6b1560(param_2,param_1 + 0x20);
   (**(code **)(**(int64_t **)(param_2 + 8) + 8))(*(int64_t **)(param_2 + 8),param_1 + 0x30,4);
   (**(code **)(**(int64_t **)(param_2 + 8) + 8))(*(int64_t **)(param_2 + 8),param_1 + 0x48,4);
-  auStackX_8[0] = *(int32_t *)(param_1 + 0x68);
-  (**(code **)(**(int64_t **)(param_2 + 8) + 8))(*(int64_t **)(param_2 + 8),auStackX_8,4);
+  astack_special_x_8[0] = *(int32_t *)(param_1 + 0x68);
+  (**(code **)(**(int64_t **)(param_2 + 8) + 8))(*(int64_t **)(param_2 + 8),astack_special_x_8,4);
   uVar7 = 0;
   uVar8 = uVar7;
   if (*(int *)(param_1 + 0x68) != 0) {
     do {
       lVar9 = uVar8 * 0x78 + *(int64_t *)(param_1 + 0x60);
-      FUN_1806b1560(param_2,lVar9 + 0x58);
+      function_6b1560(param_2,lVar9 + 0x58);
       (**(code **)(**(int64_t **)(param_2 + 8) + 8))(*(int64_t **)(param_2 + 8),lVar9 + 0x68,4);
       (**(code **)(**(int64_t **)(param_2 + 8) + 8))(*(int64_t **)(param_2 + 8),lVar9 + 0x6c,4);
       (**(code **)(**(int64_t **)(param_2 + 8) + 8))(*(int64_t **)(param_2 + 8),lVar9 + 0x70,4);
@@ -532,8 +444,8 @@ void FUN_1806a93e0(int64_t param_1,int64_t param_2)
       uVar8 = (uint64_t)uVar10;
     } while (uVar10 < *(uint *)(param_1 + 0x68));
   }
-  auStackX_8[0] = *(int32_t *)(param_1 + 0x88);
-  (**(code **)(**(int64_t **)(param_2 + 8) + 8))(*(int64_t **)(param_2 + 8),auStackX_8,4);
+  astack_special_x_8[0] = *(int32_t *)(param_1 + 0x88);
+  (**(code **)(**(int64_t **)(param_2 + 8) + 8))(*(int64_t **)(param_2 + 8),astack_special_x_8,4);
   uVar8 = uVar7;
   if (*(int *)(param_1 + 0x88) != 0) {
     do {
@@ -586,7 +498,7 @@ void FUN_1806a93e0(int64_t param_1,int64_t param_2)
           *(int *)(param_1 + 0x78) = *(int *)(param_1 + 0x78) + 1;
         }
         else {
-          FUN_1806ae100(param_1 + 0x70);
+          function_6ae100(param_1 + 0x70);
         }
         uVar8 = uVar8 + 0x78;
         uVar7 = (uint64_t)*(uint *)(param_1 + 0x78);
@@ -602,15 +514,8 @@ void FUN_1806a93e0(int64_t param_1,int64_t param_2)
        *(int64_t *)(param_1 + 0x80) + (uint64_t)*(uint *)(param_1 + 0x88) * 4;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a9570(uint64_t *param_1,int64_t param_2)
-void FUN_1806a9570(uint64_t *param_1,int64_t param_2)
-
+// 函数: void function_6a9570(uint64_t *param_1,int64_t param_2)
+void function_6a9570(uint64_t *param_1,int64_t param_2)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -622,7 +527,6 @@ void FUN_1806a9570(uint64_t *param_1,int64_t param_2)
   uint64_t unaff_RBP;
   uint64_t uVar7;
   uint64_t uVar8;
-  
   puVar5 = (uint64_t *)(param_2 + (int64_t)param_1);
   if (param_1 < puVar5) {
     do {
@@ -667,7 +571,7 @@ void FUN_1806a9570(uint64_t *param_1,int64_t param_2)
         *(int *)(unaff_RBX + 0x78) = *(int *)(unaff_RBX + 0x78) + 1;
       }
       else {
-        FUN_1806ae100(unaff_RBX + 0x70);
+        function_6ae100(unaff_RBX + 0x70);
       }
       uVar7 = uVar7 + 0x78;
       unaff_RBP = (uint64_t)*(uint *)(unaff_RBX + 0x78);
@@ -682,18 +586,10 @@ void FUN_1806a9570(uint64_t *param_1,int64_t param_2)
        *(int64_t *)(unaff_RBX + 0x80) + (uint64_t)*(uint *)(unaff_RBX + 0x88) * 4;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a9659(void)
-void FUN_1806a9659(void)
-
+// 函数: void function_6a9659(void)
+void function_6a9659(void)
 {
   int64_t unaff_RBX;
-  
   *(int64_t *)(unaff_RBX + 0x38) = *(int64_t *)(unaff_RBX + 0x70);
   *(uint64_t *)(unaff_RBX + 0x40) =
        (uint64_t)*(uint *)(unaff_RBX + 0x78) * 0x78 + *(int64_t *)(unaff_RBX + 0x70);
@@ -702,15 +598,8 @@ void FUN_1806a9659(void)
        *(int64_t *)(unaff_RBX + 0x80) + (uint64_t)*(uint *)(unaff_RBX + 0x88) * 4;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a96a0(uint64_t *param_1,int64_t *param_2)
-void FUN_1806a96a0(uint64_t *param_1,int64_t *param_2)
-
+// 函数: void function_6a96a0(uint64_t *param_1,int64_t *param_2)
+void function_6a96a0(uint64_t *param_1,int64_t *param_2)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -720,63 +609,62 @@ void FUN_1806a96a0(uint64_t *param_1,int64_t *param_2)
   uint uVar6;
   uint64_t uVar7;
   int64_t lVar8;
-  int32_t auStackX_8 [2];
-  int32_t auStackX_10 [2];
-  void *puStack_a8;
-  void *puStack_a0;
-  void *puStack_98;
-  int32_t uStack_90;
-  void *puStack_88;
-  void *puStack_80;
-  int32_t uStack_78;
-  void *puStack_70;
-  void *puStack_68;
-  int32_t uStack_60;
-  int32_t uStack_5c;
-  uint64_t uStack_58;
-  void *puStack_50;
-  void *puStack_48;
-  int32_t uStack_40;
-  uint64_t uStack_3c;
-  int32_t uStack_34;
-  
-  auStackX_8[0] = 4;
-  (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],auStackX_10,auStackX_8);
+  int32_t astack_special_x_8 [2];
+  int32_t astack_special_x_10 [2];
+  void *plocal_var_a8;
+  void *plocal_var_a0;
+  void *plocal_var_98;
+  int32_t local_var_90;
+  void *plocal_var_88;
+  void *plocal_var_80;
+  int32_t local_var_78;
+  void *plocal_var_70;
+  void *plocal_var_68;
+  int32_t local_var_60;
+  int32_t local_var_5c;
+  uint64_t local_var_58;
+  void *plocal_var_50;
+  void *plocal_var_48;
+  int32_t local_var_40;
+  uint64_t local_var_3c;
+  int32_t local_var_34;
+  astack_special_x_8[0] = 4;
+  (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],astack_special_x_10,astack_special_x_8);
   uVar7 = 0;
-  puStack_a8 = &memory_allocator_3704_ptr;
-  uStack_90 = 0xffffffff;
-  puStack_a0 = &system_buffer_ptr;
-  puStack_98 = &system_buffer_ptr;
-  puStack_88 = &system_buffer_ptr;
-  puStack_80 = &system_buffer_ptr;
-  puStack_70 = &system_buffer_ptr;
-  puStack_68 = &system_buffer_ptr;
-  puStack_50 = &system_buffer_ptr;
-  puStack_48 = &system_buffer_ptr;
-  uStack_78 = 0xffffffff;
-  uStack_60 = 0;
-  uStack_5c = 0xffffffff;
-  uStack_58 = 0;
-  uStack_40 = 0xffffffff;
-  uStack_3c = 0;
-  uStack_34 = 0;
-  FUN_1806b10f0(param_2,auStackX_10[0],&puStack_a8);
+  plocal_var_a8 = &memory_allocator_3704_ptr;
+  local_var_90 = 0xffffffff;
+  plocal_var_a0 = &system_buffer_ptr;
+  plocal_var_98 = &system_buffer_ptr;
+  plocal_var_88 = &system_buffer_ptr;
+  plocal_var_80 = &system_buffer_ptr;
+  plocal_var_70 = &system_buffer_ptr;
+  plocal_var_68 = &system_buffer_ptr;
+  plocal_var_50 = &system_buffer_ptr;
+  plocal_var_48 = &system_buffer_ptr;
+  local_var_78 = 0xffffffff;
+  local_var_60 = 0;
+  local_var_5c = 0xffffffff;
+  local_var_58 = 0;
+  local_var_40 = 0xffffffff;
+  local_var_3c = 0;
+  local_var_34 = 0;
+  function_6b10f0(param_2,astack_special_x_10[0],&plocal_var_a8);
   if ((int)param_2[1] != 0) {
     do {
       lVar8 = uVar7 * 0x78 + *param_2;
-      FUN_1806b14d0(param_1,lVar8 + 0x58);
-      auStackX_8[0] = 4;
-      (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],lVar8 + 0x68,auStackX_8);
-      auStackX_8[0] = 4;
-      (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],lVar8 + 0x6c,auStackX_8);
-      auStackX_8[0] = 4;
-      (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],lVar8 + 0x70,auStackX_8);
-      auStackX_8[0] = 4;
-      (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],lVar8 + 0x74,auStackX_8);
-      auStackX_8[0] = 4;
-      (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],lVar8 + 0x4c,auStackX_8);
+      function_6b14d0(param_1,lVar8 + 0x58);
+      astack_special_x_8[0] = 4;
+      (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],lVar8 + 0x68,astack_special_x_8);
+      astack_special_x_8[0] = 4;
+      (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],lVar8 + 0x6c,astack_special_x_8);
+      astack_special_x_8[0] = 4;
+      (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],lVar8 + 0x70,astack_special_x_8);
+      astack_special_x_8[0] = 4;
+      (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],lVar8 + 0x74,astack_special_x_8);
+      astack_special_x_8[0] = 4;
+      (**(code **)(*(int64_t *)param_1[1] + 8))((int64_t *)param_1[1],lVar8 + 0x4c,astack_special_x_8);
       lVar5 = (**(code **)(*(int64_t *)*param_1 + 0x68))
-                        ((int64_t *)*param_1,&puStack_a8,*(int32_t *)(lVar8 + 0x4c));
+                        ((int64_t *)*param_1,&plocal_var_a8,*(int32_t *)(lVar8 + 0x4c));
       uVar6 = (int)uVar7 + 1;
       uVar7 = (uint64_t)uVar6;
       uVar4 = *(uint64_t *)(lVar5 + 0x10);
@@ -801,15 +689,8 @@ void FUN_1806a96a0(uint64_t *param_1,int64_t *param_2)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a9749(int32_t param_1)
-void FUN_1806a9749(int32_t param_1)
-
+// 函数: void function_6a9749(int32_t param_1)
+void function_6a9749(int32_t param_1)
 {
   int64_t *plVar1;
   int32_t uVar2;
@@ -822,10 +703,9 @@ void FUN_1806a9749(int32_t param_1)
   int64_t lVar7;
   uint64_t *unaff_R14;
   int64_t *unaff_R15;
-  
   do {
     lVar7 = (uint64_t)unaff_EBX * 0x78 + *unaff_R15;
-    FUN_1806b14d0(param_1,lVar7 + 0x58);
+    function_6b14d0(param_1,lVar7 + 0x58);
     plVar1 = (int64_t *)unaff_R14[1];
     *(int32_t *)(unaff_RBP + 0x67) = 4;
     (**(code **)(*plVar1 + 8))(plVar1,lVar7 + 0x68,unaff_RBP + 0x67);
@@ -866,124 +746,86 @@ void FUN_1806a9749(int32_t param_1)
   } while (unaff_EBX < *(uint *)(unaff_R15 + 1));
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a9866(void)
-void FUN_1806a9866(void)
-
+// 函数: void function_6a9866(void)
+void function_6a9866(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a9880(int64_t param_1,int64_t *param_2)
-void FUN_1806a9880(int64_t param_1,int64_t *param_2)
-
+// 函数: void function_6a9880(int64_t param_1,int64_t *param_2)
+void function_6a9880(int64_t param_1,int64_t *param_2)
 {
   int32_t *puVar1;
   uint uVar2;
   uint64_t uVar3;
-  uint64_t uStackX_8;
-  int32_t auStackX_10 [2];
-  int32_t auStackX_18 [2];
-  
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,4);
+  uint64_t stack_special_x_8;
+  int32_t astack_special_x_10 [2];
+  int32_t astack_special_x_18 [2];
+  stack_special_x_8 = CONCAT44(stack_special_x_8._4_4_,4);
   (**(code **)(**(int64_t **)(param_1 + 8) + 8))
-            (*(int64_t **)(param_1 + 8),auStackX_10,&uStackX_8);
+            (*(int64_t **)(param_1 + 8),astack_special_x_10,&stack_special_x_8);
   uVar3 = 0;
-  uStackX_8 = 0;
-  FUN_1806b11f0(param_2,auStackX_10[0],&uStackX_8);
+  stack_special_x_8 = 0;
+  function_6b11f0(param_2,astack_special_x_10[0],&stack_special_x_8);
   if ((int)param_2[1] != 0) {
     do {
-      uStackX_8._0_4_ = 4;
+      stack_special_x_8._0_4_ = 4;
       puVar1 = (int32_t *)(*param_2 + uVar3 * 8);
       (**(code **)(**(int64_t **)(param_1 + 8) + 8))
-                (*(int64_t **)(param_1 + 8),auStackX_18,&uStackX_8);
-      uStackX_8 = CONCAT44(uStackX_8._4_4_,4);
+                (*(int64_t **)(param_1 + 8),astack_special_x_18,&stack_special_x_8);
+      stack_special_x_8 = CONCAT44(stack_special_x_8._4_4_,4);
       (**(code **)(**(int64_t **)(param_1 + 8) + 8))
-                (*(int64_t **)(param_1 + 8),puVar1 + 1,&uStackX_8);
+                (*(int64_t **)(param_1 + 8),puVar1 + 1,&stack_special_x_8);
       uVar2 = (int)uVar3 + 1;
       uVar3 = (uint64_t)uVar2;
-      *puVar1 = auStackX_18[0];
+      *puVar1 = astack_special_x_18[0];
     } while (uVar2 < *(uint *)(param_2 + 1));
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a98c7(void)
-void FUN_1806a98c7(void)
-
+// 函数: void function_6a98c7(void)
+void function_6a98c7(void)
 {
   int32_t *puVar1;
   int64_t unaff_RBP;
   int64_t *unaff_RSI;
   uint uVar2;
   uint64_t unaff_RDI;
-  int32_t uStack0000000000000040;
-  int32_t in_stack_00000050;
-  
+  int32_t local_var_40;
+  int32_t local_buffer_50;
   do {
-    uStack0000000000000040 = 4;
+    local_var_40 = 4;
     puVar1 = (int32_t *)(*unaff_RSI + unaff_RDI * 8);
     (**(code **)(**(int64_t **)(unaff_RBP + 8) + 8))
-              (*(int64_t **)(unaff_RBP + 8),&stack0x00000050,&stack0x00000040);
-    uStack0000000000000040 = 4;
+              (*(int64_t **)(unaff_RBP + 8),&local_buffer_00000050,&local_buffer_00000040);
+    local_var_40 = 4;
     (**(code **)(**(int64_t **)(unaff_RBP + 8) + 8))
-              (*(int64_t **)(unaff_RBP + 8),puVar1 + 1,&stack0x00000040);
+              (*(int64_t **)(unaff_RBP + 8),puVar1 + 1,&local_buffer_00000040);
     uVar2 = (int)unaff_RDI + 1;
     unaff_RDI = (uint64_t)uVar2;
-    *puVar1 = in_stack_00000050;
+    *puVar1 = local_buffer_50;
   } while (uVar2 < *(uint *)(unaff_RSI + 1));
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a9920(void)
-void FUN_1806a9920(void)
-
+// 函数: void function_6a9920(void)
+void function_6a9920(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a9930(int64_t param_1,int64_t *param_2)
-void FUN_1806a9930(int64_t param_1,int64_t *param_2)
-
+// 函数: void function_6a9930(int64_t param_1,int64_t *param_2)
+void function_6a9930(int64_t param_1,int64_t *param_2)
 {
   int64_t lVar1;
   uint uVar2;
   uint64_t uVar3;
-  int32_t auStackX_8 [2];
-  
-  auStackX_8[0] = (int32_t)param_2[1];
-  (**(code **)(**(int64_t **)(param_1 + 8) + 8))(*(int64_t **)(param_1 + 8),auStackX_8,4);
+  int32_t astack_special_x_8 [2];
+  astack_special_x_8[0] = (int32_t)param_2[1];
+  (**(code **)(**(int64_t **)(param_1 + 8) + 8))(*(int64_t **)(param_1 + 8),astack_special_x_8,4);
   uVar3 = 0;
   if ((int)param_2[1] != 0) {
     do {
       lVar1 = *param_2;
-      auStackX_8[0] = *(int32_t *)(lVar1 + uVar3 * 8);
-      (**(code **)(**(int64_t **)(param_1 + 8) + 8))(*(int64_t **)(param_1 + 8),auStackX_8,4);
+      astack_special_x_8[0] = *(int32_t *)(lVar1 + uVar3 * 8);
+      (**(code **)(**(int64_t **)(param_1 + 8) + 8))(*(int64_t **)(param_1 + 8),astack_special_x_8,4);
       (**(code **)(**(int64_t **)(param_1 + 8) + 8))
                 (*(int64_t **)(param_1 + 8),lVar1 + uVar3 * 8 + 4,4);
       uVar2 = (int)uVar3 + 1;
@@ -992,28 +834,20 @@ void FUN_1806a9930(int64_t param_1,int64_t *param_2)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a9968(void)
-void FUN_1806a9968(void)
-
+// 函数: void function_6a9968(void)
+void function_6a9968(void)
 {
   int64_t lVar1;
   int64_t unaff_RBP;
   int64_t *unaff_RSI;
   uint uVar2;
   uint64_t unaff_RDI;
-  int32_t uStack0000000000000030;
-  
+  int32_t local_var_30;
   do {
     lVar1 = *unaff_RSI;
-    uStack0000000000000030 = *(int32_t *)(lVar1 + unaff_RDI * 8);
+    local_var_30 = *(int32_t *)(lVar1 + unaff_RDI * 8);
     (**(code **)(**(int64_t **)(unaff_RBP + 8) + 8))
-              (*(int64_t **)(unaff_RBP + 8),&stack0x00000030,4);
+              (*(int64_t **)(unaff_RBP + 8),&local_buffer_00000030,4);
     (**(code **)(**(int64_t **)(unaff_RBP + 8) + 8))
               (*(int64_t **)(unaff_RBP + 8),lVar1 + unaff_RDI * 8 + 4,4);
     uVar2 = (int)unaff_RDI + 1;
@@ -1021,37 +855,27 @@ void FUN_1806a9968(void)
   } while (uVar2 < *(uint *)(unaff_RSI + 1));
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1806a99b3(void)
-void FUN_1806a99b3(void)
-
+// 函数: void function_6a99b3(void)
+void function_6a99b3(void)
 {
   return;
 }
-
-
-
 /**
  * 结构体初始化器和配置器
- * 
+ *
  * 功能：
  * - 初始化复杂结构体的所有字段
  * - 配置结构体的默认值和属性
  * - 处理嵌套数据结构的初始化
  * - 管理动态数组的初始配置
- * 
+ *
  * 参数：
  * - param_1：目标结构体指针
  * - param_2：源数据配置指针
- * 
+ *
  * 返回值：
  * - uint64_t*：返回初始化完成的结构体指针
- * 
+ *
  * 技术实现：
  * - 使用双重指针管理结构体层次
  * - 实现字段到字段的精确复制
@@ -1067,22 +891,17 @@ uint64_t* StructureInitializerAndConfigurator(uint64_t* target_structure, int64_
     MemorySize element_index;
     ArrayIndex element_counter;
     ArrayCapacity array_capacity;
-    
     element_index = 0;
-    
-    // 设置结构体虚拟函数表
+// 设置结构体虚拟函数表
     *target_structure = &rendering_buffer_2232_ptr;
-    
-    // 获取数组管理器指针
+// 获取数组管理器指针
     primary_array_manager = target_structure + 0x10;
-    
-    // 复制基础字段
+// 复制基础字段
     field_4 = *(int32_t *)(source_config + 0xc);
     field_5 = *(int32_t *)(source_config + 0x10);
     field_6 = *(int32_t *)(source_config + 0x14);
     secondary_array_manager = target_structure + 0x12;
-    
-    // 复制所有基础数据字段
+// 复制所有基础数据字段
     CopyStructureField(target_structure + 1, source_config + 8);
     CopyStructureField((int64_t)target_structure + 0xc, field_4);
     CopyStructureField(target_structure + 2, field_5);
@@ -1094,8 +913,7 @@ uint64_t* StructureInitializerAndConfigurator(uint64_t* target_structure, int64_
     CopyStructureField(target_structure + 5, source_config + 0x28);
     CopyStructureField((int64_t)target_structure + 0x2c, source_config + 0x2c);
     CopyStructureField(target_structure + 6, source_config + 0x30);
-    
-    // 复制指针字段
+// 复制指针字段
     target_structure[7] = *(uint64_t *)(source_config + 0x38);
     target_structure[8] = *(uint64_t *)(source_config + 0x40);
     CopyStructureField(target_structure + 9, source_config + 0x48);
@@ -1103,76 +921,64 @@ uint64_t* StructureInitializerAndConfigurator(uint64_t* target_structure, int64_
     CopyStructureField(target_structure + 10, source_config + 0x50);
     target_structure[0xb] = *(uint64_t *)(source_config + 0x58);
     target_structure[0xc] = *(uint64_t *)(source_config + 0x60);
-    
-    // 复制字节字段
+// 复制字节字段
     *(int8_t *)(target_structure + 0xd) = *(int8_t *)(source_config + 0x68);
     *(int8_t *)((int64_t)target_structure + 0x69) = *(int8_t *)(source_config + 0x69);
-    
-    // 更新虚拟函数表
+// 更新虚拟函数表
     *target_structure = &processed_var_5056_ptr;
-    
-    // 初始化数组计数器
+// 初始化数组计数器
     target_structure[0xe] = 0;
     target_structure[0xf] = 0;
     *primary_array_manager = 0;
     target_structure[0x11] = 0;
     *secondary_array_manager = 0;
     target_structure[0x13] = 0;
-    
-    // 处理第一个数组（8字节元素）
+// 处理第一个数组（8字节元素）
     array_base = target_structure[7];
     array_capacity = element_index;
     if ((int)(target_structure[8] - array_base >> 3) != 0) {
         do {
             array_element = (uint64_t *)(array_base + array_capacity * ARRAY_ELEMENT_SIZE_8);
             if (*(uint *)(target_structure + 0x11) < (*(uint *)((int64_t)target_structure + 0x8c) & 0x7fffffff)) {
-                // 有空间，直接添加元素
+// 有空间，直接添加元素
                 *(uint64_t *)(*primary_array_manager + (uint64_t)*(uint *)(target_structure + 0x11) * ARRAY_ELEMENT_SIZE_8) = *array_element;
                 *(int *)(target_structure + 0x11) = *(int *)(target_structure + 0x11) + 1;
             }
             else {
-                // 空间不足，调用扩容函数
-                FUN_1806ae480(primary_array_manager, array_element);
+// 空间不足，调用扩容函数
+                function_6ae480(primary_array_manager, array_element);
             }
             array_base = target_structure[7];
             element_counter = (int)array_capacity + 1;
             array_capacity = (uint64_t)element_counter;
         } while (element_counter < (uint)(target_structure[8] - array_base >> 3));
     }
-    
-    // 处理第二个数组（8字节元素）
+// 处理第二个数组（8字节元素）
     array_base = target_structure[0xb];
     if ((int)(target_structure[0xc] - array_base >> 3) != 0) {
         do {
             array_element = (uint64_t *)(array_base + element_index * ARRAY_ELEMENT_SIZE_8);
             if (*(uint *)(target_structure + 0x13) < (*(uint *)((int64_t)target_structure + 0x9c) & 0x7fffffff)) {
-                // 有空间，直接添加元素
+// 有空间，直接添加元素
                 *(uint64_t *)(*secondary_array_manager + (uint64_t)*(uint *)(target_structure + 0x13) * ARRAY_ELEMENT_SIZE_8) = *array_element;
                 *(int *)(target_structure + 0x13) = *(int *)(target_structure + 0x13) + 1;
             }
             else {
-                // 空间不足，调用扩容函数
-                FUN_1806ae480(secondary_array_manager, array_element);
+// 空间不足，调用扩容函数
+                function_6ae480(secondary_array_manager, array_element);
             }
             array_base = target_structure[0xb];
             element_counter = (int)element_index + 1;
             element_index = (uint64_t)element_counter;
         } while (element_counter < (uint)(target_structure[0xc] - array_base >> 3));
     }
-    
     return target_structure;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t * FUN_1806a9b80(uint64_t *param_1)
-
+uint64_t * function_6a9b80(uint64_t *param_1)
 {
   int64_t lVar1;
   uint64_t uVar2;
-  
   uVar2 = 0;
   *param_1 = &processed_var_5128_ptr;
   param_1[1] = 0;
@@ -1183,7 +989,7 @@ uint64_t * FUN_1806a9b80(uint64_t *param_1)
   *(int32_t *)(param_1 + 6) = 0x3f400000;
   *(int32_t *)((int64_t)param_1 + 0x34) = 0xffffffff;
   param_1[7] = 0;
-  FUN_1806b0950(param_1 + 1,0x40);
+  function_6b0950(param_1 + 1,0x40);
   param_1[8] = 0;
   param_1[9] = 0;
   param_1[10] = 0;
@@ -1192,7 +998,7 @@ uint64_t * FUN_1806a9b80(uint64_t *param_1)
   *(int32_t *)(param_1 + 0xd) = 0x3f400000;
   *(int32_t *)((int64_t)param_1 + 0x6c) = 0xffffffff;
   param_1[0xe] = 0;
-  FUN_1806b0720(param_1 + 8,0x40);
+  function_6b0720(param_1 + 8,0x40);
   param_1[0xf] = 0;
   param_1[0x10] = 0;
   param_1[0x11] = 0;
@@ -1200,7 +1006,7 @@ uint64_t * FUN_1806a9b80(uint64_t *param_1)
   lVar1 = (**(code **)(*system_system_buffer_config + 8))
                     (system_system_buffer_config,0xb8,&processed_var_5432_ptr,&processed_var_5360_ptr,0x1ac);
   if (lVar1 != 0) {
-    uVar2 = FUN_1806a9cc0(lVar1);
+    uVar2 = function_6a9cc0(lVar1);
   }
   param_1[0x13] = uVar2;
   param_1[0x14] = 0;
@@ -1211,17 +1017,13 @@ uint64_t * FUN_1806a9b80(uint64_t *param_1)
   *(int32_t *)(param_1 + 0x19) = 0x3f400000;
   *(int32_t *)((int64_t)param_1 + 0xcc) = 0xffffffff;
   param_1[0x1a] = 0;
-  FUN_1806b0950(param_1 + 0x14,0x40);
+  function_6b0950(param_1 + 0x14,0x40);
   param_1[0x1b] = 0;
   param_1[0x1c] = 0;
   param_1[0x1d] = 1;
   return param_1;
 }
-
-
-
-uint64_t * FUN_1806a9cc0(uint64_t *param_1)
-
+uint64_t * function_6a9cc0(uint64_t *param_1)
 {
   *param_1 = &processed_var_5064_ptr;
   param_1[1] = 0;
@@ -1232,7 +1034,7 @@ uint64_t * FUN_1806a9cc0(uint64_t *param_1)
   *(int32_t *)(param_1 + 6) = 0x3f400000;
   *(int32_t *)((int64_t)param_1 + 0x34) = 0xffffffff;
   param_1[7] = 0;
-  FUN_1806b0b40(param_1 + 1,0x40);
+  function_6b0b40(param_1 + 1,0x40);
   *(int32_t *)(param_1 + 8) = 1;
   param_1[9] = 0;
   param_1[10] = 0;
@@ -1242,7 +1044,7 @@ uint64_t * FUN_1806a9cc0(uint64_t *param_1)
   *(int32_t *)(param_1 + 0xe) = 0x3f400000;
   *(int32_t *)((int64_t)param_1 + 0x74) = 0xffffffff;
   param_1[0xf] = 0;
-  FUN_1806b0560(param_1 + 9,0x40);
+  function_6b0560(param_1 + 9,0x40);
   param_1[0x10] = 0;
   param_1[0x11] = 0;
   param_1[0x12] = 0;
@@ -1251,12 +1053,6 @@ uint64_t * FUN_1806a9cc0(uint64_t *param_1)
   *(int32_t *)(param_1 + 0x15) = 0x3f400000;
   *(int32_t *)((int64_t)param_1 + 0xac) = 0xffffffff;
   param_1[0x16] = 0;
-  FUN_1806a6390(param_1 + 0x10,0x40);
+  function_6a6390(param_1 + 0x10,0x40);
   return param_1;
 }
-
-
-
-
-
-

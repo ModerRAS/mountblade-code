@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_11_part033.c - 2 个函数
-
-// 函数: void FUN_1807a0430(int64_t param_1,int param_2)
-void FUN_1807a0430(int64_t param_1,int param_2)
-
+// 函数: void function_7a0430(int64_t param_1,int param_2)
+void function_7a0430(int64_t param_1,int param_2)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -29,7 +26,6 @@ void FUN_1807a0430(int64_t param_1,int param_2)
   float fVar20;
   int iStackX_18;
   int64_t lStackX_20;
-  
   system_system_resource = 0;
   lVar9 = (int64_t)(param_2 >> 2);
   iVar18 = 2;
@@ -346,17 +342,9 @@ void FUN_1807a0430(int64_t param_1,int param_2)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1807a04db(uint64_t param_1,uint64_t param_2,int64_t param_3,uint param_4)
-void FUN_1807a04db(uint64_t param_1,uint64_t param_2,int64_t param_3,uint param_4)
-
+// 函数: void function_7a04db(uint64_t param_1,uint64_t param_2,int64_t param_3,uint param_4)
+void function_7a04db(uint64_t param_1,uint64_t param_2,int64_t param_3,uint param_4)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -387,7 +375,6 @@ void FUN_1807a04db(uint64_t param_1,uint64_t param_2,int64_t param_3,uint param_
   float in_XMM5_Da;
   int iStack0000000000000050;
   int64_t lStack0000000000000058;
-  
   puVar17 = (uint *)(unaff_RSI + in_R10 * 4);
   do {
     uVar6 = (uint)((float)in_R11D * in_XMM5_Da * in_XMM4_Da);
@@ -678,11 +665,4 @@ void FUN_1807a04db(uint64_t param_1,uint64_t param_2,int64_t param_3,uint param_
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

@@ -1,26 +1,21 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 //==============================================================================
 // 文件信息：03_rendering_part502.c
 // 模块功能：渲染系统高级资源管理模块 - 第502部分
 // 函数数量：2个函数
 // 主要功能：
-//   - 渲染系统高级资源管理和内存分配
-//   - 渲染对象的生命周期控制和状态管理
-//   - 渲染资源的动态分配和释放
-//   - 渲染系统的内存池管理和优化
-//   - 渲染资源的并发访问和同步控制
+// - 渲染系统高级资源管理和内存分配
+// - 渲染对象的生命周期控制和状态管理
+// - 渲染资源的动态分配和释放
+// - 渲染系统的内存池管理和优化
+// - 渲染资源的并发访问和同步控制
 //==============================================================================
-
 //------------------------------------------------------------------------------
 // 类型别名和常量定义
 //------------------------------------------------------------------------------
-
 // 渲染资源数据类型别名
 typedef int64_t* RenderResourcePtr;
 typedef uint64_t RenderResourceHandle;
@@ -28,7 +23,6 @@ typedef int32_t RenderResourceID;
 typedef int8_t* RenderMemoryBlock;
 typedef int* RenderResourceFlag;
 typedef short* RenderResourceIndex;
-
 // 渲染资源状态常量
 #define RENDER_RESOURCE_STATE_INACTIVE    0x00000000
 #define RENDER_RESOURCE_STATE_ACTIVE      0x00000001
@@ -37,14 +31,12 @@ typedef short* RenderResourceIndex;
 #define RENDER_RESOURCE_STATE_PENDING     0x00000008
 #define RENDER_RESOURCE_STATE_RELEASED    0x00000010
 #define RENDER_RESOURCE_STATE_ERROR       0x00000020
-
 // 渲染资源类型常量
 #define RENDER_RESOURCE_TYPE_TEXTURE     0x00000001
 #define RENDER_RESOURCE_TYPE_BUFFER      0x00000002
 #define RENDER_RESOURCE_TYPE_SHADER      0x00000004
 #define RENDER_RESOURCE_TYPE_PIPELINE    0x00000008
 #define RENDER_RESOURCE_TYPE_FRAMEBUFFER  0x00000010
-
 // 渲染内存管理常量
 #define RENDER_MEMORY_POOL_SIZE         0x0000be0
 #define RENDER_MEMORY_BLOCK_SIZE        0x00000e0
@@ -52,24 +44,20 @@ typedef short* RenderResourceIndex;
 #define RENDER_MEMORY_POOL_COUNT       0x00000010
 #define RENDER_MEMORY_INDEX_MASK       0x0000000f
 #define RENDER_MEMORY_INDEX_SHIFT      0x00000004
-
 // 渲染资源管理常量
 #define RENDER_RESOURCE_MAX_COUNT      0x0000ffff
 #define RENDER_RESOURCE_INVALID_ID     0xffffffff
 #define RENDER_RESOURCE_NULL_HANDLE    0x00000000
 #define RENDER_RESOURCE_FLAG_MASK      0x8000000f
-
 // 渲染系统配置常量
 #define RENDER_CONFIG_MODE_NORMAL      0x00000001
 #define RENDER_CONFIG_MODE_QUALITY     0x00000002
 #define RENDER_CONFIG_MODE_PERFORMANCE 0x00000004
 #define RENDER_CONFIG_MODE_BATCH       0x00000008
-
 // 渲染性能常量
 #define RENDER_PERFORMANCE_THRESHOLD  0.00001f
 #define RENDER_CACHE_LINE_SIZE        0x00000040
 #define RENDER_MAX_CONCURRENT_ACCESS  0x00000010
-
 // 渲染错误码
 #define RENDER_ERROR_SUCCESS          0x00000000
 #define RENDER_ERROR_INVALID_RESOURCE  0x00000001
@@ -77,48 +65,40 @@ typedef short* RenderResourceIndex;
 #define RENDER_ERROR_RESOURCE_BUSY    0x00000003
 #define RENDER_ERROR_INVALID_STATE    0x00000004
 #define RENDER_ERROR_TIMEOUT          0x00000005
-
 //------------------------------------------------------------------------------
 // 函数别名定义
 //------------------------------------------------------------------------------
-
 // 渲染系统高级资源管理函数
-#define RenderingSystem_AdvancedResourceManager1   FUN_180535c60
-#define RenderingSystem_AdvancedResourceManager2   FUN_180535c78
-
+#define RenderingSystem_AdvancedResourceManager1   function_535c60
+#define RenderingSystem_AdvancedResourceManager2   function_535c78
 //------------------------------------------------------------------------------
 // 渲染系统高级资源管理函数1
 // 功能：执行渲染系统的高级资源管理和内存分配操作
-//       根据渲染状态和资源需求执行相应的资源管理操作
-//
+// 根据渲染状态和资源需求执行相应的资源管理操作
 // 参数：
-//   param_1 - 渲染上下文指针（包含资源状态和配置信息）
-//   param_2 - 资源管理参数（控制资源分配和释放行为）
-//   param_3 - 资源标识符（用于资源验证和状态控制）
-//
+// param_1 - 渲染上下文指针（包含资源状态和配置信息）
+// param_2 - 资源管理参数（控制资源分配和释放行为）
+// param_3 - 资源标识符（用于资源验证和状态控制）
 // 返回值：
-//   无
-//
+// 无
 // 处理流程：
-//   1. 验证渲染上下文有效性
-//   2. 执行资源状态初始化和验证
-//   3. 根据资源状态执行不同的管理路径
-//   4. 处理资源的动态分配和释放
-//   5. 执行资源池管理和优化
-//   6. 处理资源的并发访问和同步
-//   7. 更新资源状态和清理资源
-//
+// 1. 验证渲染上下文有效性
+// 2. 执行资源状态初始化和验证
+// 3. 根据资源状态执行不同的管理路径
+// 4. 处理资源的动态分配和释放
+// 5. 执行资源池管理和优化
+// 6. 处理资源的并发访问和同步
+// 7. 更新资源状态和清理资源
 // 技术要点：
-//   - 实现了复杂的资源池管理机制
-//   - 支持多种资源类型的动态分配
-//   - 包含资源生命周期的完整管理
-//   - 使用位运算进行高效的资源状态操作
-//   - 支持并发访问和同步控制
+// - 实现了复杂的资源池管理机制
+// - 支持多种资源类型的动态分配
+// - 包含资源生命周期的完整管理
+// - 使用位运算进行高效的资源状态操作
+// - 支持并发访问和同步控制
 //------------------------------------------------------------------------------
-void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
-
+void function_535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
 {
-  // 语义化变量定义
+// 语义化变量定义
   int32_t *resource_data_ptr;                    // 资源数据指针
   short resource_index;                             // 资源索引
   int64_t render_context;                          // 渲染上下文
@@ -141,41 +121,34 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
   uint64_t stack_resource_id;                       // 堆栈资源ID
   int32_t resource_param;                         // 资源参数
   uint64_t resource_control;                      // 资源控制
-  
-  // 步骤1：验证渲染上下文有效性
+// 步骤1：验证渲染上下文有效性
   render_context = *param_1;
   if (render_context == 0) {
     return;  // 渲染上下文无效，直接返回
   }
-  
-  // 步骤2：执行资源状态初始化和验证
+// 步骤2：执行资源状态初始化和验证
   resource_status_flag = SystemSynchronizationProcessor(param_3, &stack_resource_id, &memory_allocator_3424_ptr);
-  FUN_1804fe350(&processed_var_4280_ptr, resource_status_flag, &memory_allocator_3816_ptr, &stack_resource_id);
-  
-  // 步骤3：检查资源状态，无效则返回
+  function_4fe350(&processed_var_4280_ptr, resource_status_flag, &memory_allocator_3816_ptr, &stack_resource_id);
+// 步骤3：检查资源状态，无效则返回
   if (resource_status_flag == '\0') {
     return;  // 资源状态无效，退出处理
   }
-  
-  // 步骤4：初始化资源管理参数
+// 步骤4：初始化资源管理参数
   resource_id = (int)stack_resource_id;
   resource_handle = stack_resource_id & 0xffffffff;
   resource_control = 0xfffffffffffffffe;
   resource_block_ptr = (int64_t)(int)stack_resource_id;
   resource_active_count = 0;
   resource_param = 0;
-  
-  // 步骤5：检查资源有效性，执行资源管理
+// 步骤5：检查资源有效性，执行资源管理
   if ((((-1 < (int)stack_resource_id) && ((int)stack_resource_id < *(int *)(render_context + 0x52ed94))) &&
       (-1 < *(short *)(render_context + 0x52dda0 + resource_block_ptr * 2))) ||
      ((system_status_flag != 1 && (system_status_flag != 4)))) {
-    
-    // 步骤5.1：计算资源地址和初始化资源池
+// 步骤5.1：计算资源地址和初始化资源池
     resource_address = render_context + 0x30a0 + resource_block_ptr * 0xa60;
     resource_pool_size = 0;
     resource_pool_size = *(int *)(render_context + 0x87b318);
-    
-    // 步骤5.2：查找可用资源块
+// 步骤5.2：查找可用资源块
     if (0 < resource_pool_size) {
       do {
         if (*(int *)(*(int64_t *)(*(int64_t *)(render_context + 0x87b340) + (resource_pool_size >> 4) * 8) + 8 +
@@ -184,8 +157,7 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
         resource_pool_size = (uint64_t)resource_type;
       } while ((int)resource_type < resource_pool_size);
     }
-    
-    // 步骤5.3：处理资源块分配和释放
+// 步骤5.3：处理资源块分配和释放
     if ((int)resource_pool_size < resource_pool_size) {
       do {
         resource_config_ptr = (uint64_t)((uint)resource_pool_size & 0xf) * 0xbe0 +
@@ -205,22 +177,19 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
         } while ((int)resource_type < resource_pool_size);
       } while ((int)resource_pool_size < resource_pool_size);
     }
-    
-    // 步骤5.4：更新资源池状态
+// 步骤5.4：更新资源池状态
     stack_resource_id = resource_address;
     if (-1 < *(int *)(resource_address + 0x6a0)) {
-      FUN_1804fc920((int64_t)
+      function_4fc920((int64_t)
                     ((int)*(uint64_t *)(resource_address + 0x6a0) +
                     (int)((uint64_t)*(uint64_t *)(resource_address + 0x6a0) >> 0x20) *
                     *(int *)(render_context + 0x98d238)) * 9 + *(int64_t *)(render_context + 0x98d248));
     }
-    
-    // 步骤5.5：执行资源回调和管理
+// 步骤5.5：执行资源回调和管理
     (**(code **)(**(int64_t **)(render_context + 0x98d250) + 0x18))
               (*(int64_t **)(render_context + 0x98d250), resource_address);
     resource_config_ptr = render_system_resource;
-    
-    // 步骤5.6：处理渲染系统特定的资源管理
+// 步骤5.6：处理渲染系统特定的资源管理
     if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       resource_id = _Mtx_lock(0x180c95528);
       if (resource_id != 0) {
@@ -249,37 +218,36 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
         SystemCore_DatabaseHandler(render_system_resource, 0x180c95578);
       }
       render_system_resource = 0;
-      // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(render_system_resource, 0, (int64_t)(render_system_resource >> 3));
     }
-    
-    // 步骤5.7：执行资源批处理操作
+// 步骤5.7：执行资源批处理操作
     if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       resource_pool_size = 0;
       do {
-        FUN_1805b32b0(&system_memory_25a0, resource_pool_size + resource_id * 0x10);
+        function_5b32b0(&system_memory_25a0, resource_pool_size + resource_id * 0x10);
         resource_pool_size = resource_pool_size + 1;
       } while (resource_pool_size < 0x10);
       if (render_system_resource - render_system_resource >> 3 != 0) {
         resource_config_ptr = 0;
         do {
-          FUN_180506ae0(*(int64_t *)(resource_config_ptr + render_system_resource) + 0x5940, resource_handle);
+          function_506ae0(*(int64_t *)(resource_config_ptr + render_system_resource) + 0x5940, resource_handle);
           resource_active_count = resource_active_count + 1;
           resource_config_ptr = resource_config_ptr + 8;
         } while ((uint64_t)(int64_t)resource_active_count < (uint64_t)(render_system_resource - render_system_resource >> 3));
       }
       if (render_system_resource != 0) {
-        FUN_180506ae0(render_system_resource + 0x5f8, resource_handle);
+        function_506ae0(render_system_resource + 0x5f8, resource_handle);
       }
     }
     else if ((system_status_flag == 1) || (system_status_flag == 4)) {
-      // 步骤5.8：处理特定渲染模式的资源分配
+// 步骤5.8：处理特定渲染模式的资源分配
       performance_factor = (float)render_system_data_resource * 1e-05;
       if (system_status_flag == 1) {
         resource_active_count = 0;
         resource_config_ptr = render_system_resource + 0x4c488;
         do {
-          func_0x0001805697b0(resource_config_ptr, resource_active_count + resource_id * 0x10);
+          Function_efc4e05c(resource_config_ptr, resource_active_count + resource_id * 0x10);
           resource_active_count = resource_active_count + 1;
         } while (resource_active_count < 0x10);
       }
@@ -301,7 +269,7 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
             switch(resource_handle) {
             case 0:
             case 9:
-              func_0x0001805b2c90(resource_pool_ptr + 0x10 + resource_memory_ptr, resource_address, resource_memory_ptr, resource_pool_ptr, resource_param, resource_control);
+              Function_816a00f2(resource_pool_ptr + 0x10 + resource_memory_ptr, resource_address, resource_memory_ptr, resource_pool_ptr, resource_param, resource_control);
               break;
             case 1:
               *(uint64_t *)(resource_pool_ptr + 0xa0 + resource_memory_ptr) = 0xffffffffffffffff;
@@ -345,8 +313,7 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
         } while (render_context != 0);
       }
     }
-    
-    // 步骤5.9：执行资源清理和状态更新
+// 步骤5.9：执行资源清理和状态更新
     resource_config_ptr = render_system_data_resource;
     resource_memory_ptr = render_context + 0x30a0;
     resource_active_count = *(int *)(resource_address + 0x18);
@@ -358,8 +325,8 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
     if ((resource_active_count != 0) && (system_cache_buffer != 0)) {
       (**(code **)(system_cache_buffer + 0x18))(resource_active_count);
     }
-    FUN_18051aff0(resource_address, 1, render_context + 0x87a948);
-    FUN_180507360(resource_address, 0);
+    function_51aff0(resource_address, 1, render_context + 0x87a948);
+    function_507360(resource_address, 0);
     *(int8_t *)(resource_address + 0x1c) = 1;
     resource_manager_ptr = (int64_t *)(resource_block_ptr * 0xa60 + resource_memory_ptr);
     (**(code **)(*resource_manager_ptr + 0x68))(resource_manager_ptr);
@@ -437,46 +404,39 @@ void FUN_180535c60(int64_t *param_1,uint64_t param_2,uint64_t param_3)
         resource_address = resource_address - 1;
       } while (-1 < (int64_t)resource_address);
     }
-    FUN_1804fc230(render_context + 0x62ed98, resource_handle, resource_pool_size, resource_address, resource_param);
-    FUN_1804fc230(render_context + 0x74eb90, resource_handle);
+    function_4fc230(render_context + 0x62ed98, resource_handle, resource_pool_size, resource_address, resource_param);
+    function_4fc230(render_context + 0x74eb90, resource_handle);
     *(int8_t *)(render_context + 0x87a940) = 1;
     *(int8_t *)(render_context + 0x87b728) = 1;
   }
-  
-  // 步骤6：完成资源管理并返回
+// 步骤6：完成资源管理并返回
   return;
 }
-
 //------------------------------------------------------------------------------
 // 渲染系统高级资源管理函数2
 // 功能：执行渲染系统的资源状态管理和控制操作
-//       专门处理资源状态的验证、更新和同步控制
-//
+// 专门处理资源状态的验证、更新和同步控制
 // 参数：
-//   param_1 - 资源标识符（用于资源验证和控制）
-//
+// param_1 - 资源标识符（用于资源验证和控制）
 // 返回值：
-//   无
-//
+// 无
 // 处理流程：
-//   1. 执行资源状态初始化和验证
-//   2. 根据资源标识符进行状态检查
-//   3. 执行资源状态更新和同步
-//   4. 处理资源的动态分配和释放
-//   5. 执行资源池管理和优化
-//   6. 更新资源状态和完成处理
-//
+// 1. 执行资源状态初始化和验证
+// 2. 根据资源标识符进行状态检查
+// 3. 执行资源状态更新和同步
+// 4. 处理资源的动态分配和释放
+// 5. 执行资源池管理和优化
+// 6. 更新资源状态和完成处理
 // 技术要点：
-//   - 专门处理资源状态的管理逻辑
-//   - 支持多种资源状态的验证和更新
-//   - 包含资源同步和并发控制
-//   - 使用高效的内存访问模式
-//   - 实现了资源生命周期的完整管理
+// - 专门处理资源状态的管理逻辑
+// - 支持多种资源状态的验证和更新
+// - 包含资源同步和并发控制
+// - 使用高效的内存访问模式
+// - 实现了资源生命周期的完整管理
 //------------------------------------------------------------------------------
-void FUN_180535c78(int32_t param_1)
-
+void function_535c78(int32_t param_1)
 {
-  // 语义化变量定义
+// 语义化变量定义
   int32_t *resource_data_ptr;                    // 资源数据指针
   short resource_index;                             // 资源索引
   char resource_status_flag;                         // 资源状态标志
@@ -499,33 +459,27 @@ void FUN_180535c78(int32_t param_1)
   float performance_factor;                          // 性能因子
   int stack_resource_id;                             // 堆栈资源ID
   int32_t resource_param;                         // 资源参数
-  
-  // 步骤1：执行资源状态初始化和验证
+// 步骤1：执行资源状态初始化和验证
   resource_status_flag = SystemSynchronizationProcessor(param_1, &stack_resource_id);
-  FUN_1804fe350(&processed_var_4280_ptr, resource_status_flag, &memory_allocator_3816_ptr, &stack_resource_id);
-  
-  // 步骤2：检查资源状态，无效则返回
+  function_4fe350(&processed_var_4280_ptr, resource_status_flag, &memory_allocator_3816_ptr, &stack_resource_id);
+// 步骤2：检查资源状态，无效则返回
   if (resource_status_flag == '\0') {
     return;  // 资源状态无效，退出处理
   }
-  
-  // 步骤3：初始化资源管理参数
+// 步骤3：初始化资源管理参数
   resource_id = stack_resource_id;
   resource_handle = stack_resource_id & 0xffffffff;
   resource_block_ptr = (int64_t)stack_resource_id;
   resource_active_count = 0;
-  
-  // 步骤4：检查资源有效性，执行资源管理
+// 步骤4：检查资源有效性，执行资源管理
   if ((((-1 < stack_resource_id) && (stack_resource_id < *(int *)(render_context_base + 0x52ed94))) &&
       (-1 < *(short *)(render_context_base + 0x52dda0 + resource_block_ptr * 2))) ||
      ((system_status_flag != 1 && (system_status_flag != 4)))) {
-    
-    // 步骤4.1：计算资源地址和初始化资源池
+// 步骤4.1：计算资源地址和初始化资源池
     resource_system_ptr = render_context_base + 0x30a0 + resource_block_ptr * 0xa60;
     resource_pool_size = 0;
     resource_pool_capacity = *(int *)(render_context_base + 0x87b318);
-    
-    // 步骤4.2：查找可用资源块
+// 步骤4.2：查找可用资源块
     if (0 < resource_pool_capacity) {
       do {
         if (*(int *)(*(int64_t *)(*(int64_t *)(render_context_base + 0x87b340) + (resource_pool_size >> 4) * 8) + 8 +
@@ -534,8 +488,7 @@ void FUN_180535c78(int32_t param_1)
         resource_pool_size = (uint64_t)resource_type;
       } while ((int)resource_type < resource_pool_capacity);
     }
-    
-    // 步骤4.3：处理资源块分配和释放
+// 步骤4.3：处理资源块分配和释放
     if ((int)resource_pool_size < resource_pool_capacity) {
       do {
         resource_config_ptr = (uint64_t)((uint)resource_pool_size & 0xf) * 0xbe0 +
@@ -555,29 +508,26 @@ void FUN_180535c78(int32_t param_1)
         } while ((int)resource_type < resource_pool_capacity);
       } while ((int)resource_pool_size < resource_pool_capacity);
     }
-    
-    // 步骤4.4：更新资源池状态
+// 步骤4.4：更新资源池状态
     stack_resource_id = resource_system_ptr;
     if (-1 < *(int *)(resource_system_ptr + 0x6a0)) {
-      FUN_1804fc920((int64_t)
+      function_4fc920((int64_t)
                     ((int)*(uint64_t *)(resource_system_ptr + 0x6a0) +
                     (int)((uint64_t)*(uint64_t *)(resource_system_ptr + 0x6a0) >> 0x20) *
                     *(int *)(render_context_base + 0x98d238)) * 9 + *(int64_t *)(render_context_base + 0x98d248));
     }
-    
-    // 步骤4.5：执行资源回调和管理
+// 步骤4.5：执行资源回调和管理
     (**(code **)(**(int64_t **)(render_context_base + 0x98d250) + 0x18))
               (*(int64_t **)(render_context_base + 0x98d250), resource_system_ptr);
     resource_config_ptr = render_system_resource;
-    
-    // 步骤4.6：处理渲染系统特定的资源管理
+// 步骤4.6：处理渲染系统特定的资源管理
     if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       resource_id = _Mtx_lock(0x180c95528);
       if (resource_id != 0) {
         __Throw_C_error_std__YAXH_Z(resource_id);
       }
       resource_status_flag = SystemBufferProcessor(0x180c95578, 0, &system_param1_ptr);
-      if ((resource_status_flag != '\0') && 
+      if ((resource_status_flag != '\0') &&
           (resource_status_flag = SystemBufferProcessor(0x180c95578, 0xd, &memory_allocator_3472_ptr), resource_status_flag != '\0')) {
         SystemBufferProcessor(0x180c95578, resource_handle, &memory_allocator_3424_ptr);
       }
@@ -599,37 +549,36 @@ void FUN_180535c78(int32_t param_1)
         SystemCore_DatabaseHandler(render_system_resource, 0x180c95578);
       }
       render_system_resource = 0;
-      // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(render_system_resource, 0, (int64_t)(render_system_resource >> 3));
     }
-    
-    // 步骤4.7：执行资源批处理操作
+// 步骤4.7：执行资源批处理操作
     if (((system_status_flag - 2U & 0xfffffffc) == 0) && (system_status_flag != 4)) {
       resource_pool_capacity = 0;
       do {
-        FUN_1805b32b0(&system_memory_25a0, resource_pool_capacity + resource_id * 0x10);
+        function_5b32b0(&system_memory_25a0, resource_pool_capacity + resource_id * 0x10);
         resource_pool_capacity = resource_pool_capacity + 1;
       } while (resource_pool_capacity < 0x10);
       if (render_system_resource - render_system_resource >> 3 != 0) {
         resource_config_ptr = 0;
         do {
-          FUN_180506ae0(*(int64_t *)(resource_config_ptr + render_system_resource) + 0x5940, resource_handle);
+          function_506ae0(*(int64_t *)(resource_config_ptr + render_system_resource) + 0x5940, resource_handle);
           resource_active_count = resource_active_count + 1;
           resource_config_ptr = resource_config_ptr + 8;
         } while ((uint64_t)(int64_t)resource_active_count < (uint64_t)(render_system_resource - render_system_resource >> 3));
       }
       if (render_system_resource != 0) {
-        FUN_180506ae0(render_system_resource + 0x5f8, resource_handle);
+        function_506ae0(render_system_resource + 0x5f8, resource_handle);
       }
     }
     else if ((system_status_flag == 1) || (system_status_flag == 4)) {
-      // 步骤4.8：处理特定渲染模式的资源分配
+// 步骤4.8：处理特定渲染模式的资源分配
       performance_factor = (float)render_system_data_resource * 1e-05;
       if (system_status_flag == 1) {
         resource_active_count = 0;
         resource_config_ptr = render_system_resource + 0x4c488;
         do {
-          func_0x0001805697b0(resource_config_ptr, resource_active_count + resource_id * 0x10);
+          Function_efc4e05c(resource_config_ptr, resource_active_count + resource_id * 0x10);
           resource_active_count = resource_active_count + 1;
         } while (resource_active_count < 0x10);
       }
@@ -651,7 +600,7 @@ void FUN_180535c78(int32_t param_1)
             switch(resource_handle) {
             case 0:
             case 9:
-              func_0x0001805b2c90(resource_system_ptr + 0x10 + resource_memory_ptr);
+              Function_816a00f2(resource_system_ptr + 0x10 + resource_memory_ptr);
               break;
             case 1:
               *(uint64_t *)(resource_system_ptr + 0xa0 + resource_memory_ptr) = 0xffffffffffffffff;
@@ -695,8 +644,7 @@ void FUN_180535c78(int32_t param_1)
         } while (resource_pool_capacity != 0);
       }
     }
-    
-    // 步骤4.9：执行资源清理和状态更新
+// 步骤4.9：执行资源清理和状态更新
     resource_config_ptr = render_system_data_resource;
     resource_memory_ptr = render_context_base + 0x30a0;
     resource_active_count = *(int *)(resource_system_ptr + 0x18);
@@ -708,8 +656,8 @@ void FUN_180535c78(int32_t param_1)
     if ((resource_active_count != 0) && (system_cache_buffer != 0)) {
       (**(code **)(system_cache_buffer + 0x18))(resource_active_count);
     }
-    FUN_18051aff0(resource_system_ptr, 1, render_context_base + 0x87a948);
-    FUN_180507360(resource_system_ptr, 0);
+    function_51aff0(resource_system_ptr, 1, render_context_base + 0x87a948);
+    function_507360(resource_system_ptr, 0);
     *(int8_t *)(resource_system_ptr + 0x1c) = 1;
     resource_pool_ptr = (int64_t *)(resource_block_ptr * 0xa60 + resource_memory_ptr);
     (**(code **)(*resource_pool_ptr + 0x68))(resource_pool_ptr);
@@ -787,77 +735,74 @@ void FUN_180535c78(int32_t param_1)
         resource_pool_size = resource_pool_size - 1;
       } while (-1 < (int64_t)resource_pool_size);
     }
-    FUN_1804fc230(render_context_base + 0x62ed98, resource_handle, resource_pool_capacity, resource_pool_size, resource_param);
-    FUN_1804fc230(render_context_base + 0x74eb90, resource_handle);
+    function_4fc230(render_context_base + 0x62ed98, resource_handle, resource_pool_capacity, resource_pool_size, resource_param);
+    function_4fc230(render_context_base + 0x74eb90, resource_handle);
     *(int8_t *)(render_context_base + 0x87a940) = 1;
     *(int8_t *)(render_context_base + 0x87b728) = 1;
   }
-  
-  // 步骤5：完成资源管理并返回
+// 步骤5：完成资源管理并返回
   return;
 }
-
 //------------------------------------------------------------------------------
 // 模块功能文档和技术说明
 //------------------------------------------------------------------------------
-
 /**
  * @brief 渲染系统高级资源管理模块技术架构说明
- * 
+ *
  * 本模块实现了TaleWorlds引擎中渲染系统的高级资源管理功能，主要负责：
- * 
+ *
  * 1. **资源池管理和内存分配**
  *    - 管理渲染资源的动态分配和释放
  *    - 实现高效的资源池和内存管理
  *    - 处理资源生命周期的完整控制
  *    - 支持多种资源类型的统一管理
- * 
+ *
  * 2. **资源状态管理和同步**
  *    - 处理资源状态的验证和更新
  *    - 实现资源状态的同步控制
  *    - 支持并发访问和线程安全
  *    - 包含资源状态的一致性维护
- * 
+ *
  * 3. **资源优化和性能管理**
  *    - 实现资源使用的高效优化
  *    - 支持资源缓存和重用机制
  *    - 处理资源的批量操作
  *    - 包含性能监控和调优
- * 
+ *
  * 4. **系统集成和扩展性**
  *    - 提供与渲染系统的无缝集成
  *    - 支持资源管理的扩展和定制
  *    - 实现配置驱动的资源管理
  *    - 包含完整的错误处理和恢复机制
- * 
+ *
  * 技术特点：
  * - 使用位运算进行高效的状态操作
  * - 支持多种渲染模式的资源管理
  * - 实现了复杂的资源分配算法
  * - 包含完整的并发控制和同步机制
  * - 采用优化的内存访问模式
- * 
+ *
  * 性能优化：
  * - 使用资源池技术减少分配开销
  * - 实现了缓存友好的数据结构布局
  * - 支持批处理操作提高效率
  * - 使用位掩码技术快速查找资源
  * - 实现了内存对齐优化访问
- * 
+ *
  * 内存管理：
  * - 采用分层内存管理策略
  * - 实现了内存池和缓存管理
  * - 支持动态内存调整和优化
  * - 包含完整的内存泄漏检测
  * - 实现了内存碎片整理机制
- * 
+ *
  * 并发控制：
  * - 实现了线程安全的资源访问
  * - 使用原子操作保证数据一致性
  * - 防止竞态条件和死锁
  * - 支持资源访问的优先级管理
  * - 实现了高效的锁机制
- * 
+ *
  * 扩展性设计：
  * - 采用模块化架构支持功能扩展
  * - 提供了丰富的接口和回调机制
@@ -865,16 +810,15 @@ void FUN_180535c78(int32_t param_1)
  * - 实现了配置驱动的参数管理
  * - 包含完整的版本控制和兼容性
  */
-
 /**
  * @brief 渲染系统资源管理常量和数据结构说明
- * 
+ *
  * 渲染系统使用了以下关键常量：
  * - RENDER_RESOURCE_STATE_*: 资源状态常量
  * - RENDER_RESOURCE_TYPE_*: 资源类型常量
  * - RENDER_MEMORY_*: 内存管理常量
  * - RENDER_CONFIG_*: 配置模式常量
- * 
+ *
  * 主要数据结构：
  * - RenderResourcePtr: 资源指针类型
  * - RenderResourceHandle: 资源句柄类型
@@ -882,94 +826,90 @@ void FUN_180535c78(int32_t param_1)
  * - RenderMemoryBlock: 内存块类型
  * - RenderResourceFlag: 资源标志类型
  */
-
 /**
  * @brief 渲染系统资源管理函数调用关系说明
- * 
+ *
  * 主要函数的调用关系：
- * 1. FUN_180535c60 - 高级资源管理器
+ * 1. function_535c60 - 高级资源管理器
  *    ├── SystemSynchronizationProcessor - 资源状态初始化
- *    ├── FUN_1804fe350 - 资源参数验证
- *    ├── FUN_1804fc920 - 资源池操作
+ *    ├── function_4fe350 - 资源参数验证
+ *    ├── function_4fc920 - 资源池操作
  *    ├── SystemBufferProcessor - 资源同步控制
  *    ├── NetworkSystem_SecurityManager - 资源清理操作
- *    ├── FUN_1805b32b0 - 资源批处理
- *    ├── FUN_180506ae0 - 资源数据操作
- *    ├── FUN_18051aff0 - 资源状态更新
- *    └── FUN_1804fc230 - 资源管理完成
- * 
- * 2. FUN_180535c78 - 资源状态管理器
+ *    ├── function_5b32b0 - 资源批处理
+ *    ├── function_506ae0 - 资源数据操作
+ *    ├── function_51aff0 - 资源状态更新
+ *    └── function_4fc230 - 资源管理完成
+ *
+ * 2. function_535c78 - 资源状态管理器
  *    ├── SystemSynchronizationProcessor - 状态检查和初始化
- *    ├── FUN_1804fe350 - 状态验证处理
- *    ├── FUN_1804fc920 - 状态管理操作
+ *    ├── function_4fe350 - 状态验证处理
+ *    ├── function_4fc920 - 状态管理操作
  *    ├── SystemBufferProcessor - 状态同步控制
  *    ├── NetworkSystem_SecurityManager - 状态清理操作
- *    ├── FUN_1805b32b0 - 状态批处理
- *    ├── FUN_180506ae0 - 状态数据操作
- *    ├── FUN_18051aff0 - 状态更新操作
- *    └── FUN_1804fc230 - 状态管理完成
+ *    ├── function_5b32b0 - 状态批处理
+ *    ├── function_506ae0 - 状态数据操作
+ *    ├── function_51aff0 - 状态更新操作
+ *    └── function_4fc230 - 状态管理完成
  */
-
 /**
  * @brief 渲染系统资源管理安全性说明
- * 
+ *
  * 本模块实现了以下安全机制：
- * 
+ *
  * 1. **资源访问安全**
  *    - 检查资源有效性防止非法访问
  *    - 验证资源状态防止状态错误
  *    - 实现资源访问的权限控制
  *    - 防止资源泄漏和内存泄漏
- * 
+ *
  * 2. **并发访问安全**
  *    - 实现线程安全的资源操作
  *    - 使用原子操作保证数据一致性
  *    - 防止竞态条件和死锁
  *    - 实现资源访问的同步机制
- * 
+ *
  * 3. **内存管理安全**
  *    - 实现内存边界检查和验证
  *    - 防止内存越界和缓冲区溢出
  *    - 支持内存分配的失败处理
  *    - 实现内存使用的监控和限制
- * 
+ *
  * 4. **系统稳定性保障**
  *    - 实现完整的错误处理和恢复
  *    - 支持系统状态的回滚机制
  *    - 包含详细的错误日志和诊断
  *    - 实现系统的自动恢复功能
  */
-
 /**
  * @brief 渲染系统资源管理维护性说明
- * 
+ *
  * 本模块注重代码的可维护性：
- * 
+ *
  * 1. **代码结构**
  *    - 采用模块化设计便于理解和维护
  *    - 使用语义化变量名提高可读性
  *    - 实现函数封装和接口分离
  *    - 提供详细的文档和注释
- * 
+ *
  * 2. **调试支持**
  *    - 实现调试日志和状态跟踪
  *    - 支持断点调试和性能分析
  *    - 提供错误诊断和问题定位
  *    - 支持资源使用的监控和统计
- * 
+ *
  * 3. **测试支持**
  *    - 实现单元测试和集成测试
  *    - 支持自动化测试和回归测试
  *    - 提供测试覆盖率和质量报告
  *    - 支持性能测试和压力测试
- * 
+ *
  * 4. **文档支持**
  *    - 提供完整的技术文档和API文档
  *    - 包含使用示例和最佳实践
  *    - 实现代码自动生成文档
  *    - 支持多语言文档和国际化
  */
-
 //==============================================================================
 // 文件结束 - 03_rendering_part502.c
 // 总计：2个核心函数，包含完整的渲染系统高级资源管理功能

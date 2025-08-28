@@ -1,12 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 /**
  * 渲染系统状态管理模块
- * 
+ *
  * 本文件包含6个核心函数，主要用于渲染系统的状态管理、资源分配和释放。
  * 该模块负责处理渲染对象的生命周期管理、状态转换和资源清理。
- * 
+ *
  * 主要功能：
  * - 渲染对象状态管理和转换
  * - 资源分配和释放
@@ -14,7 +13,6 @@
  * - 内存管理
  * - 状态标志控制
  */
-
 // 状态常量定义
 #define RENDER_STATE_INITIALIZED 0x00
 #define RENDER_STATE_PROCESSING 0x01
@@ -23,7 +21,6 @@
 #define RENDER_STATE_RESET 0x06
 #define RENDER_STATE_FINALIZING 0x13
 #define RENDER_STATE_COMPLETE 0x18
-
 // 内存偏移量常量
 #define OFFSET_RENDER_CONTEXT 0x00
 #define OFFSET_RENDER_PARAMS 0x02
@@ -32,28 +29,25 @@
 #define OFFSET_TEXTURE_DATA 0x58
 #define OFFSET_SHADER_DATA 0x60
 #define OFFSET_RENDER_MODE 0x64
-
 // 函数指针偏移量
 #define FUNCTION_POINTER_OFFSET 0x28
 #define DESTRUCTOR_OFFSET 0x38
-
 // 错误计数限制
 #define MAX_ERROR_COUNT 100
-
 /**
  * 渲染系统状态管理主函数
- * 
+ *
  * @param render_context 渲染上下文指针
  * @param render_params 渲染参数指针
  * @param process_flag 处理标志
- * 
+ *
  * 功能说明：
  * 1. 检查并初始化渲染上下文
  * 2. 根据当前状态执行相应的处理逻辑
  * 3. 管理渲染对象的生命周期
  * 4. 处理状态转换和资源分配
  * 5. 错误处理和重试机制
- * 
+ *
  * 状态转换流程：
  * - 初始状态 → 处理状态 → 配置状态 → 完成状态
  * - 包含错误恢复和重试机制
@@ -179,34 +173,29 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
   int32_t temp_param37;
   int8_t temp_buffer11[72];
   uint64_t security_hash;
-  
-  // 初始化安全堆栈
+// 初始化安全堆栈
   temp_var9 = 0xfffffffffffffffe;
   security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
-  
-  // 检查渲染上下文状态
+// 检查渲染上下文状态
   if (render_context[8] != 0) {
     rendering_system_copy_render_params(render_params + 0x180, render_context + 2);
     *(int32_t *)((int64_t)render_context + 0x4c) = 0x18;
   }
-  
-  // 获取渲染引擎对象
+// 获取渲染引擎对象
   temp_var1 = render_context[0x1f];
   if ((*(char *)(*(int64_t *)(temp_var1 + 0x38) + 0x331d) != '\0') &&
      (*(int *)((int64_t)render_context + 0x4c) != 0x18)) {
     rendering_system_reset_context(render_context);
     temp_var1 = render_context[0x1f];
   }
-  
-  // 获取渲染引擎引用
+// 获取渲染引擎引用
   render_engine = system_parameter_buffer;
   resource_object = *(int64_t *)(temp_var1 + 0x38);
-  
-  // 检查引擎状态
+// 检查引擎状态
   if (*(char *)(resource_object + 0x2830) == '\0') {
     current_state = *(int *)((int64_t)render_context + 0x4c);
     if (current_state == 0x18) {
-      // 处理已初始化状态
+// 处理已初始化状态
       if ((((render_context[8] == 0) && (*(int *)(render_context + 0x26) != *(int *)(resource_object + 0x3358))) &&
           (*(char *)(temp_var1 + 0x50) != '\0')) && (*(char *)(resource_object + 0x331d) == '\0')) {
         *(int32_t *)((int64_t)render_context + 0x4c) = 0;
@@ -232,7 +221,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
       }
     }
     else if (current_state == 0) {
-      // 初始化渲染系统
+// 初始化渲染系统
       temp_array2[0] = 0;
       temp_array2[1] = 0;
       temp_array2[2] = 0;
@@ -257,7 +246,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
         *(int32_t *)((int64_t)render_context + 0xf4) = 0;
       }
       else {
-        // 错误处理和重试机制
+// 错误处理和重试机制
         *(int *)((int64_t)render_context + 0x14c) = *(int *)((int64_t)render_context + 0x14c) + 1;
         if (*(int *)((int64_t)render_context + 0x14c) == MAX_ERROR_COUNT) {
           temp_var6 = 0;
@@ -279,7 +268,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
           *(int32_t *)((int64_t)render_context + 0x14c) = 0;
           resource_array1 = (int64_t **)temp_array1;
           if (temp_array1[0] != 0) {
-            // 内存清理和退出
+// 内存清理和退出
             CoreMemoryPoolInitializer();
           }
         }
@@ -293,7 +282,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
       }
     }
     else if (current_state == 1) {
-      // 配置渲染系统
+// 配置渲染系统
       config_param = *(int32_t *)(render_params + 0x1bd4);
       current_state = 0;
       temp_ptr6 = &memory_allocator_3480_ptr;
@@ -344,8 +333,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
         rendering_system_create_render_objects(render_context[0x1f], temp_var1, (int64_t)render_context + 0x94);
         current_state = current_state + 1;
       } while (current_state < 6);
-      
-      // 注册渲染上下文
+// 注册渲染上下文
       LOCK();
       error_counter = (int *)(render_params + 0x11a48);
       current_state = *error_counter;
@@ -362,7 +350,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
       *(int32_t *)((int64_t)render_context + 0x4c) = 3;
     }
     else if (current_state != 3) {
-      // 处理其他状态转换
+// 处理其他状态转换
       if (current_state == 2) {
         *(int32_t *)((int64_t)render_context + 0x4c) = 1;
       }
@@ -436,7 +424,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
         temp_resource3 = (int64_t *)&system_state_ptr;
       }
       else if (current_state != 0x13) {
-        // 继续处理更多状态转换...
+// 继续处理更多状态转换...
         if (current_state == 7) {
           temp_var1 = rendering_system_get_render_context();
           *(uint *)(temp_var1 + 4) = *(uint *)(temp_var1 + 4) | 0x8000000;
@@ -457,8 +445,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
             rendering_system_setup_advanced_render(render_context[0x1f], temp_var1, (int64_t)render_context + 0x94, render_context[0x25]);
             current_state = current_state + 1;
           } while (current_state < 6);
-          
-          // 注册高级渲染上下文
+// 注册高级渲染上下文
           LOCK();
           error_counter = (int *)(render_params + 0x11a48);
           current_state = *error_counter;
@@ -475,7 +462,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
           *(int32_t *)((int64_t)render_context + 0x4c) = 9;
         }
         else if (current_state != 9) {
-          // 处理剩余状态转换...
+// 处理剩余状态转换...
           if (current_state == 8) {
             *(int32_t *)((int64_t)render_context + 0x4c) = 7;
           }
@@ -579,8 +566,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
               rendering_system_setup_advanced_render(render_context[0x1f], temp_var1, (int64_t)render_context + 0x94, render_context[0x23]);
               current_state = current_state + 1;
             } while (current_state < 6);
-            
-            // 注册最终渲染上下文
+// 注册最终渲染上下文
             LOCK();
             error_counter = (int *)(render_params + 0x11a48);
             current_state = *error_counter;
@@ -597,7 +583,7 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
             *(int32_t *)((int64_t)render_context + 0x4c) = 0xf;
           }
           else if (current_state != 0xf) {
-            // 处理最终状态转换...
+// 处理最终状态转换...
             if (current_state == 0xe) {
               *(int32_t *)((int64_t)render_context + 0x4c) = 0xd;
             }
@@ -689,33 +675,29 @@ void rendering_system_state_manager(uint64_t *render_context, int64_t render_par
   else {
     *(int8_t *)(resource_object + 0x2830) = 0;
   }
-  
-  // 安全退出
+// 安全退出
   SystemSecurityChecker(security_hash ^ (uint64_t)security_buffer);
 }
-
 /**
  * 渲染参数复制函数
- * 
+ *
  * @param dest_params 目标参数指针
  * @param src_params 源参数指针
- * 
+ *
  * 功能说明：
  * 1. 复制渲染参数结构
  * 2. 管理资源引用计数
  * 3. 处理资源生命周期
- * 
+ *
  * 返回值：目标参数指针
  */
 int32_t * rendering_system_copy_render_params(int32_t *dest_params, int32_t *src_params)
 {
   int64_t *resource_ptr1;
   int64_t *resource_ptr2;
-  
-  // 复制基本参数
+// 复制基本参数
   *dest_params = *src_params;
-  
-  // 处理资源引用1
+// 处理资源引用1
   resource_ptr1 = *(int64_t **)(src_params + 2);
   if (resource_ptr1 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr1 + FUNCTION_POINTER_OFFSET))(resource_ptr1);
@@ -725,8 +707,7 @@ int32_t * rendering_system_copy_render_params(int32_t *dest_params, int32_t *src
   if (resource_ptr2 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr2 + DESTRUCTOR_OFFSET))();
   }
-  
-  // 处理资源引用2
+// 处理资源引用2
   resource_ptr1 = *(int64_t **)(src_params + 4);
   if (resource_ptr1 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr1 + FUNCTION_POINTER_OFFSET))(resource_ptr1);
@@ -736,8 +717,7 @@ int32_t * rendering_system_copy_render_params(int32_t *dest_params, int32_t *src
   if (resource_ptr2 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr2 + DESTRUCTOR_OFFSET))();
   }
-  
-  // 处理资源引用3
+// 处理资源引用3
   resource_ptr1 = *(int64_t **)(src_params + 6);
   if (resource_ptr1 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr1 + FUNCTION_POINTER_OFFSET))(resource_ptr1);
@@ -747,8 +727,7 @@ int32_t * rendering_system_copy_render_params(int32_t *dest_params, int32_t *src
   if (resource_ptr2 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr2 + DESTRUCTOR_OFFSET))();
   }
-  
-  // 处理资源引用4
+// 处理资源引用4
   resource_ptr1 = *(int64_t **)(src_params + 8);
   if (resource_ptr1 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr1 + FUNCTION_POINTER_OFFSET))(resource_ptr1);
@@ -758,8 +737,7 @@ int32_t * rendering_system_copy_render_params(int32_t *dest_params, int32_t *src
   if (resource_ptr2 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr2 + DESTRUCTOR_OFFSET))();
   }
-  
-  // 处理资源引用5
+// 处理资源引用5
   resource_ptr1 = *(int64_t **)(src_params + 10);
   if (resource_ptr1 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr1 + FUNCTION_POINTER_OFFSET))(resource_ptr1);
@@ -769,8 +747,7 @@ int32_t * rendering_system_copy_render_params(int32_t *dest_params, int32_t *src
   if (resource_ptr2 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr2 + DESTRUCTOR_OFFSET))();
   }
-  
-  // 处理资源引用6
+// 处理资源引用6
   resource_ptr1 = *(int64_t **)(src_params + 0xc);
   if (resource_ptr1 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr1 + FUNCTION_POINTER_OFFSET))(resource_ptr1);
@@ -780,19 +757,17 @@ int32_t * rendering_system_copy_render_params(int32_t *dest_params, int32_t *src
   if (resource_ptr2 != (int64_t *)0x0) {
     (**(code **)(*resource_ptr2 + DESTRUCTOR_OFFSET))();
   }
-  
   return dest_params;
 }
-
 /**
  * 渲染系统资源管理函数
- * 
+ *
  * @param render_context 渲染上下文
  * @param resource1 资源指针1
  * @param resource2 资源指针2
  * @param param1 参数1
  * @param param2 参数2
- * 
+ *
  * 功能说明：
  * 1. 管理渲染系统资源
  * 2. 处理资源引用和释放
@@ -810,12 +785,10 @@ void rendering_system_manage_resources(int64_t render_context, int64_t *resource
   int32_t temp_param3;
   int8_t temp_buffer[72];
   uint64_t security_hash;
-  
-  // 初始化安全堆栈
+// 初始化安全堆栈
   temp_var1 = 0xfffffffffffffffe;
   security_hash = GET_SECURITY_COOKIE() ^ (uint64_t)security_buffer;
-  
-  // 处理资源1
+// 处理资源1
   if (resource1 != (int64_t *)0x0) {
     temp_resource = resource1;
     (**(code **)(*resource1 + FUNCTION_POINTER_OFFSET))(resource1);
@@ -825,8 +798,7 @@ void rendering_system_manage_resources(int64_t render_context, int64_t *resource
   if (temp_resource != (int64_t *)0x0) {
     (**(code **)(*temp_resource + DESTRUCTOR_OFFSET))();
   }
-  
-  // 处理资源2
+// 处理资源2
   if (resource2 != (int64_t *)0x0) {
     temp_resource = resource2;
     (**(code **)(*resource2 + FUNCTION_POINTER_OFFSET))(resource2);
@@ -836,8 +808,7 @@ void rendering_system_manage_resources(int64_t render_context, int64_t *resource
   if (temp_resource != (int64_t *)0x0) {
     (**(code **)(*temp_resource + DESTRUCTOR_OFFSET))();
   }
-  
-  // 设置渲染参数
+// 设置渲染参数
   *(int32_t *)(render_context + 0x10) = param1;
   if (*(int64_t *)(render_context + 0x40) == 0) {
     temp_ptr1 = &memory_allocator_3480_ptr;
@@ -850,16 +821,14 @@ void rendering_system_manage_resources(int64_t render_context, int64_t *resource
     rendering_system_configure_render_context(&temp_ptr1, render_context + 0x40);
     temp_ptr1 = &system_state_ptr;
   }
-  
-  // 安全退出
+// 安全退出
   SystemSecurityChecker(security_hash ^ (uint64_t)security_buffer);
 }
-
 /**
  * 渲染系统重置函数
- * 
+ *
  * @param render_context 渲染上下文
- * 
+ *
  * 功能说明：
  * 1. 重置渲染系统状态
  * 2. 释放渲染资源
@@ -867,7 +836,7 @@ void rendering_system_manage_resources(int64_t render_context, int64_t *resource
  */
 void rendering_system_reset_context(int64_t render_context)
 {
-  // 释放渲染资源
+// 释放渲染资源
   if (*(int64_t *)(render_context + 0x110) != 0) {
     rendering_system_release_resource(*(int64_t *)(render_context + 0x110), 0);
   }
@@ -877,23 +846,20 @@ void rendering_system_reset_context(int64_t render_context)
   if (*(int64_t *)(render_context + 0x118) != 0) {
     rendering_system_release_resource(*(int64_t *)(render_context + 0x118), 0);
   }
-  
-  // 重置状态标志
+// 重置状态标志
   *(int32_t *)(render_context + 0x4c) = 0x18;
   *(int32_t *)(render_context + 0x5c) = 0xffffffff;
   *(int32_t *)(render_context + 0x130) =
        *(int32_t *)(*(int64_t *)(*(int64_t *)(render_context + 0xf8) + 0x38) + 0x3358);
-  
   return;
 }
-
 /**
  * 渲染对象配置函数
- * 
+ *
  * @param render_object 渲染对象
  * @param transform_data 变换数据
  * @param config_flag 配置标志
- * 
+ *
  * 功能说明：
  * 1. 配置渲染对象的变换参数
  * 2. 计算渲染对象的大小和缩放
@@ -903,8 +869,7 @@ void rendering_system_configure_render_object(int64_t render_object, float *tran
 {
   uint64_t temp_var1;
   int32_t temp_var2;
-  
-  // 复制变换数据
+// 复制变换数据
   temp_var1 = *(uint64_t *)(transform_data + 2);
   *(uint64_t *)(render_object + 100) = *(uint64_t *)transform_data;
   *(uint64_t *)(render_object + 0x6c) = temp_var1;
@@ -917,73 +882,62 @@ void rendering_system_configure_render_object(int64_t render_object, float *tran
   temp_var1 = *(uint64_t *)(transform_data + 0xe);
   *(uint64_t *)(render_object + 0x94) = *(uint64_t *)(transform_data + 0xc);
   *(uint64_t *)(render_object + 0x9c) = temp_var1;
-  
-  // 初始化缩放参数
+// 初始化缩放参数
   temp_var2 = 0;
   *(int32_t *)(render_object + 0x70) = 0;
   *(int32_t *)(render_object + 0x80) = 0;
   *(int32_t *)(render_object + 0x90) = 0;
   *(int32_t *)(render_object + 0xa0) = 0x3f800000;
-  
-  // 计算渲染对象大小
+// 计算渲染对象大小
   *(float *)(render_object + 0x48) =
        SQRT(transform_data[4] * transform_data[4] + transform_data[5] * transform_data[5] + transform_data[6] * transform_data[6] +
             transform_data[0] * transform_data[0] + transform_data[1] * transform_data[1] + transform_data[2] * transform_data[2] +
             transform_data[8] * transform_data[8] + transform_data[9] * transform_data[9] + transform_data[10] * transform_data[10]);
-  
-  // 初始化渲染系统
+// 初始化渲染系统
   rendering_system_initialize_render_pipeline();
-  
-  // 根据配置标志设置状态
+// 根据配置标志设置状态
   if (config_flag != '\0') {
     *(int32_t *)(render_object + 0x4c) = temp_var2;
   }
-  
   return;
 }
-
 /**
  * 渲染对象创建函数
- * 
+ *
  * @param render_object 渲染对象指针
  * @param param1 参数1
  * @param param2 参数2
  * @param param3 参数3
  * @param param4 参数4
- * 
+ *
  * 功能说明：
  * 1. 创建并初始化渲染对象
  * 2. 设置渲染对象的默认参数
  * 3. 配置渲染对象的变换和状态
- * 
+ *
  * 返回值：渲染对象指针
  */
 uint64_t * rendering_system_create_render_object(uint64_t *render_object, uint64_t param1, uint64_t param2, uint64_t param3)
 {
   int8_t init_flag;
   uint64_t temp_var1;
-  
-  // 初始化安全参数
+// 初始化安全参数
   temp_var1 = 0xfffffffffffffffe;
-  
-  // 设置渲染对象的虚函数表
+// 设置渲染对象的虚函数表
   *render_object = &system_handler1_ptr;
   *render_object = &system_handler2_ptr;
   *(int32_t *)(render_object + 1) = 0;
   *render_object = &processed_var_6584_ptr;
-  
-  // 初始化渲染对象参数
+// 初始化渲染对象参数
   render_object[3] = 0;
   render_object[4] = 0;
   render_object[5] = 0;
   render_object[6] = 0;
   render_object[7] = 0;
   render_object[8] = 0;
-  
-  // 初始化渲染系统
+// 初始化渲染系统
   rendering_system_initialize_render_system();
-  
-  // 设置渲染对象的基本参数
+// 设置渲染对象的基本参数
   render_object[0x20] = 0;
   render_object[0x21] = 0;
   render_object[0x22] = 0;
@@ -991,8 +945,7 @@ uint64_t * rendering_system_create_render_object(uint64_t *render_object, uint64
   render_object[0x24] = 0;
   render_object[0x25] = 0;
   render_object[0x1f] = param1;
-  
-  // 初始化状态标志
+// 初始化状态标志
   *(int32_t *)((int64_t)render_object + 0x4c) = 0;
   *(int32_t *)((int64_t)render_object + 0xf4) = 0xffffffff;
   *(uint64_t *)((int64_t)render_object + 0xe4) = 0;
@@ -1004,34 +957,30 @@ uint64_t * rendering_system_create_render_object(uint64_t *render_object, uint64
   *(int8_t *)(render_object + 0x29) = 0;
   *(int32_t *)((int64_t)render_object + 0x14c) = 0;
   *(int32_t *)((int64_t)render_object + 0x5c) = 0xffffffff;
-  
-  // 配置渲染对象
+// 配置渲染对象
   init_flag = 1;
   rendering_system_configure_render_object(render_object, &system_buffer_0300, 1, param3, temp_var1);
-  
-  // 设置最终参数
+// 设置最终参数
   *(int32_t *)((int64_t)render_object + 0x54) = 0;
   *(int8_t *)(render_object + 10) = init_flag;
-  
   return render_object;
 }
-
 /**
  * 渲染对象销毁函数
- * 
+ *
  * @param render_object 渲染对象指针
  * @param destroy_flag 销毁标志
- * 
+ *
  * 功能说明：
  * 1. 释放渲染对象占用的资源
  * 2. 清理渲染对象的状态
  * 3. 根据标志决定是否释放内存
- * 
+ *
  * 返回值：渲染对象指针
  */
 uint64_t * rendering_system_destroy_render_object(uint64_t *render_object, uint64_t destroy_flag)
 {
-  // 释放渲染对象的资源
+// 释放渲染对象的资源
   if ((int64_t *)render_object[0x25] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)render_object[0x25] + DESTRUCTOR_OFFSET))();
   }
@@ -1050,22 +999,17 @@ uint64_t * rendering_system_destroy_render_object(uint64_t *render_object, uint6
   if ((int64_t *)render_object[0x20] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)render_object[0x20] + DESTRUCTOR_OFFSET))();
   }
-  
-  // 清理渲染系统
+// 清理渲染系统
   rendering_system_cleanup_render_system(render_object + 2);
-  
-  // 重置虚函数表
+// 重置虚函数表
   *render_object = &system_handler2_ptr;
   *render_object = &system_handler1_ptr;
-  
-  // 根据销毁标志决定是否释放内存
+// 根据销毁标志决定是否释放内存
   if ((destroy_flag & 1) != 0) {
     free(render_object, 0x150);
   }
-  
   return render_object;
 }
-
 // 函数别名定义
 #define render_system_main_state_manager rendering_system_state_manager
 #define render_system_resource_manager rendering_system_manage_resources

@@ -336,7 +336,7 @@ int64_t render_system_cleanup_resources(int64_t resource_ptr)
     current_ptr = resource_ptr;
     
     do {
-        func_0x000180074f10(current_ptr); // 清理函数
+        SystemCore_CleanupResource(current_ptr); // 清理函数
         current_ptr = current_ptr + 0x10;  // 移动到下一个块
         counter1 = counter1 - 1;
     } while (counter1 != 0);
@@ -344,7 +344,7 @@ int64_t render_system_cleanup_resources(int64_t resource_ptr)
     // 清理第二块资源（64个16字节块，从偏移0x820开始）
     current_ptr = resource_ptr + 0x820;
     do {
-        func_0x000180074f10(current_ptr); // 清理函数
+        SystemCore_CleanupResource(current_ptr); // 清理函数
         current_ptr = current_ptr + 0x10;  // 移动到下一个块
         counter2 = counter2 - 1;
     } while (counter2 != 0);

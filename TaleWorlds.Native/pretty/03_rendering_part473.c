@@ -1,15 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
-
 // =============================================================================
 // 03_rendering_part473.c - 渲染系统高级处理模块
 // =============================================================================
-
 // =============================================================================
 // 模块概述
 // =============================================================================
 /*
  * 本模块实现渲染系统的高级处理功能，包含13个核心函数：
- * 
+ *
  * 1. 渲染坐标变换和投影处理
  * 2. 渲染状态管理和更新
  * 3. 渲染参数计算和优化
@@ -23,7 +21,7 @@
  * 11. 渲染内存管理
  * 12. 渲染事件处理
  * 13. 渲染系统初始化和清理
- * 
+ *
  * 主要功能包括：
  * - 3D坐标变换和投影计算
  * - 渲染管线状态管理
@@ -36,11 +34,9 @@
  * - 渲染目标切换
  * - 多线程渲染协调
  */
-
 // =============================================================================
 // 常量定义
 // =============================================================================
-
 // 渲染系统常量
 #define RENDER_SYSTEM_MAX_BUFFER_SIZE         0xA60      // 渲染系统最大缓冲区大小
 #define RENDER_SYSTEM_OFFSET_988              0x988      // 渲染系统偏移量988
@@ -58,27 +54,23 @@
 #define RENDER_SYSTEM_OFFSET_738              0x738      // 渲染系统偏移量738
 #define RENDER_SYSTEM_OFFSET_8D8              0x8D8      // 渲染系统偏移量8D8
 #define RENDER_SYSTEM_OFFSET_A50              0xA50      // 渲染系统偏移量A50
-
 // 渲染计算常量
 #define RENDER_COORDINATE_SCALE_FACTOR       10.0f      // 坐标缩放因子
 #define RENDER_DEPTH_THRESHOLD               0.2f       // 深度阈值
 #define RENDER_DEPTH_PRECISION               0.01999672f // 深度精度
 #define RENDER_MAX_FLOAT_VALUE               3.4028235e+38f // 最大浮点数值
 #define RENDER_MIN_FLOAT_VALUE               -3.4028235e+38f // 最小浮点数值
-
 // 渲染状态常量
 #define RENDER_STATE_ACTIVE                  1           // 渲染状态：激活
 #define RENDER_STATE_INACTIVE                0           // 渲染状态：非激活
 #define RENDER_STATE_DISABLED                -1          // 渲染状态：禁用
 #define RENDER_STATE_PENDING                 2           // 渲染状态：等待中
-
 // 渲染模式常量
 #define RENDER_MODE_NORMAL                   1           // 渲染模式：正常
 #define RENDER_MODE_SHADOW                   2           // 渲染模式：阴影
 #define RENDER_MODE_REFLECTION               3           // 渲染模式：反射
 #define RENDER_MODE_REFRACTION               4           // 渲染模式：折射
 #define RENDER_MODE_POST_PROCESS             5           // 渲染模式：后处理
-
 // 渲染标志位常量
 #define RENDER_FLAG_DEPTH_TEST               0x01        // 深度测试标志
 #define RENDER_FLAG_STENCIL_TEST             0x02        // 模板测试标志
@@ -87,28 +79,23 @@
 #define RENDER_FLAG_SCISSOR                  0x10        // 剪裁标志
 #define RENDER_FLAG_MULTISAMPLE              0x20        // 多重采样标志
 #define RENDER_FLAG_DEPTH_BIAS               0x40        // 深度偏移标志
-
 // 渲染内存管理常量
 #define RENDER_MEMORY_POOL_SIZE             0x87A938    // 渲染内存池大小
 #define RENDER_MEMORY_BLOCK_SIZE             8           // 渲染内存块大小
 #define RENDER_MEMORY_ALIGNMENT              8           // 渲染内存对齐
-
 // 渲染缓冲区常量
 #define RENDER_BUFFER_VERTEX                 0x30C0      // 顶点缓冲区
 #define RENDER_BUFFER_INDEX                  0x3A28      // 索引缓冲区
 #define RENDER_BUFFER_UNIFORM                0x3A30      // 统一缓冲区
 #define RENDER_BUFFER_STORAGE                0x3A38      // 存储缓冲区
 #define RENDER_BUFFER_FRAME                  0x3A20      // 帧缓冲区
-
 // 渲染计算常量
 #define RENDER_MATRIX_MULTIPLIER            0xA60       // 矩阵乘数
 #define RENDER_COORDINATE_MULTIPLIER        0xA60       // 坐标乘数
 #define RENDER_TRANSFORM_MULTIPLIER         0xA60       // 变换乘数
-
 // =============================================================================
 // 类型别名定义
 // =============================================================================
-
 // 基础类型别名
 typedef int64_t           RenderHandle;           // 渲染句柄
 typedef float*             RenderCoordinatePtr;    // 渲染坐标指针
@@ -120,7 +107,6 @@ typedef uint64_t          RenderMemoryAddress;    // 渲染内存地址
 typedef float              RenderDepth;            // 渲染深度
 typedef char               RenderMode;             // 渲染模式
 typedef bool               RenderCondition;        // 渲染条件
-
 // 指针类型别名
 typedef int64_t*          RenderHandlePtr;        // 渲染句柄指针
 typedef float**            RenderCoordinatePtrPtr; // 渲染坐标指针指针
@@ -132,7 +118,6 @@ typedef uint64_t*         RenderMemoryAddressPtr; // 渲染内存地址指针
 typedef float*             RenderDepthPtr;         // 渲染深度指针
 typedef char*              RenderModePtr;          // 渲染模式指针
 typedef bool*              RenderConditionPtr;     // 渲染条件指针
-
 // 数组类型别名
 typedef float              RenderCoordinateArray[4];     // 渲染坐标数组
 typedef int64_t           RenderHandleArray[2];         // 渲染句柄数组
@@ -140,21 +125,18 @@ typedef uint64_t         RenderDataBlockArray[2];      // 渲染数据块数组
 typedef uint               RenderIndexArray[2];          // 渲染索引数组
 typedef float              RenderDepthArray[2];          // 渲染深度数组
 typedef int32_t         RenderFlagArray[6];          // 渲染标志数组
-
 // 函数指针类型别名
 typedef void (*RenderTransformFunc)(RenderHandle, RenderCoordinatePtr);          // 渲染变换函数指针
 typedef void (*RenderStateFunc)(RenderHandle, RenderState);                     // 渲染状态函数指针
 typedef void (*RenderModeFunc)(RenderHandle, RenderMode);                      // 渲染模式函数指针
 typedef void (*RenderBufferFunc)(RenderHandle, RenderDataBlock);                // 渲染缓冲区函数指针
 typedef void (*RenderCleanupFunc)(RenderHandle);                                // 渲染清理函数指针
-
 // =============================================================================
 // 结构体定义
 // =============================================================================
-
 /**
  * @brief 渲染系统上下文结构体
- * 
+ *
  * 存储渲染系统的完整状态信息，包括坐标、深度、状态等
  */
 typedef struct {
@@ -172,10 +154,9 @@ typedef struct {
     float                  projectionMatrix[16];   // 投影矩阵
     float                  viewMatrix[16];         // 视图矩阵
 } RenderContext;
-
 /**
  * @brief 渲染参数结构体
- * 
+ *
  * 存储渲染计算所需的参数信息
  */
 typedef struct {
@@ -190,10 +171,9 @@ typedef struct {
     RenderState            initialState;           // 初始状态
     RenderMode             initialMode;            // 初始模式
 } RenderParameters;
-
 /**
  * @brief 渲染缓冲区结构体
- * 
+ *
  * 管理渲染系统的各种缓冲区
  */
 typedef struct {
@@ -208,10 +188,9 @@ typedef struct {
     size_t                 totalSize;              // 总大小
     size_t                 usedSize;               // 已使用大小
 } RenderBuffer;
-
 /**
  * @brief 渲染统计信息结构体
- * 
+ *
  * 收集和存储渲染性能统计信息
  */
 typedef struct {
@@ -225,14 +204,12 @@ typedef struct {
     float                  gpuTime;                // GPU时间
     float                  memoryUsage;            // 内存使用量
 } RenderStatistics;
-
 // =============================================================================
 // 枚举定义
 // =============================================================================
-
 /**
  * @brief 渲染状态枚举
- * 
+ *
  * 定义渲染系统的各种状态
  */
 typedef enum {
@@ -245,10 +222,9 @@ typedef enum {
     RENDER_STATE_ERROR,          // 错误状态
     RENDER_STATE_DESTROYED       // 已销毁
 } RenderStateEnum;
-
 /**
  * @brief 渲染模式枚举
- * 
+ *
  * 定义渲染系统的各种模式
  */
 typedef enum {
@@ -261,10 +237,9 @@ typedef enum {
     RENDER_MODE_POST_PROCESSED,   // 后处理模式
     RENDER_MODE_DEBUG            // 调试模式
 } RenderModeEnum;
-
 /**
  * @brief 渲染错误类型枚举
- * 
+ *
  * 定义渲染系统可能出现的错误类型
  */
 typedef enum {
@@ -277,53 +252,48 @@ typedef enum {
     RENDER_ERROR_DRIVER,         // 驱动错误
     RENDER_ERROR_TIMEOUT         // 超时错误
 } RenderErrorEnum;
-
 // =============================================================================
 // 函数别名定义
 // =============================================================================
-
 // 主要渲染函数别名
-#define RenderTransformCoordinates       FUN_18051f1ed  // 渲染坐标变换
-#define RenderProcessState               FUN_18051f289  // 渲染状态处理
-#define RenderCalculateProjection        FUN_18051f339  // 渲染投影计算
-#define RenderUpdateBuffer              FUN_18051f485  // 渲染缓冲区更新
-#define RenderApplyTransform            FUN_18051f4c1  // 渲染变换应用
-#define RenderSetCoordinates            FUN_18051f528  // 渲染坐标设置
-#define RenderAdjustDepth               FUN_18051f570  // 渲染深度调整
-#define RenderUpdateState               FUN_18051f700  // 渲染状态更新
-#define RenderProcessStateChange        FUN_18051f7cd  // 渲染状态改变处理
-#define RenderProcessBatch              FUN_18051f839  // 渲染批处理
-#define RenderDebugFunction1            FUN_18051f98f  // 调试函数1
-#define RenderDebugFunction2            FUN_18051f994  // 调试函数2
-#define RenderSwitchMode                FUN_18051fa40  // 渲染模式切换
-
+#define RenderTransformCoordinates       function_51f1ed  // 渲染坐标变换
+#define RenderProcessState               function_51f289  // 渲染状态处理
+#define RenderCalculateProjection        function_51f339  // 渲染投影计算
+#define RenderUpdateBuffer              function_51f485  // 渲染缓冲区更新
+#define RenderApplyTransform            function_51f4c1  // 渲染变换应用
+#define RenderSetCoordinates            function_51f528  // 渲染坐标设置
+#define RenderAdjustDepth               function_51f570  // 渲染深度调整
+#define RenderUpdateState               function_51f700  // 渲染状态更新
+#define RenderProcessStateChange        function_51f7cd  // 渲染状态改变处理
+#define RenderProcessBatch              function_51f839  // 渲染批处理
+#define RenderDebugFunction1            function_51f98f  // 调试函数1
+#define RenderDebugFunction2            function_51f994  // 调试函数2
+#define RenderSwitchMode                function_51fa40  // 渲染模式切换
 // 辅助函数别名
-#define RenderCheckCondition            func_0x000180522f60  // 渲染条件检查
-#define RenderProcessBuffer             FUN_180593b40         // 渲染缓冲区处理
-#define RenderCallUpdateFunction        FUN_180511990         // 渲染更新函数调用
-#define RenderCallClearFunction         FUN_1805d1c80         // 渲染清除函数调用
+#define RenderCheckCondition            SystemFunction_000180522f60  // 渲染条件检查
+#define RenderProcessBuffer             function_593b40         // 渲染缓冲区处理
+#define RenderCallUpdateFunction        function_511990         // 渲染更新函数调用
+#define RenderCallClearFunction         function_5d1c80         // 渲染清除函数调用
 #define RenderCallInitFunction          SystemCore_Validator0         // 渲染初始化函数调用
-#define RenderCallSetupFunction         FUN_18052e450         // 渲染设置函数调用
-#define RenderCallDebugFunction         func_0x0001805da580   // 渲染调试函数调用
-
+#define RenderCallSetupFunction         function_52e450         // 渲染设置函数调用
+#define RenderCallDebugFunction         SystemFunction_0001805da580   // 渲染调试函数调用
 // =============================================================================
 // 核心函数实现
 // =============================================================================
-
 /**
  * @brief 渲染坐标变换函数
- * 
+ *
  * 执行3D坐标的变换和投影计算，包括：
  * - 世界坐标到屏幕坐标的变换
  * - 透视投影计算
  * - 深度缓冲处理
  * - 视锥体裁剪
- * 
+ *
  * @param systemHandle 系统句柄
  * @param coordinatePtr 坐标指针
  */
 void RenderTransformCoordinates(RenderHandle systemHandle, RenderCoordinatePtr coordinatePtr) {
-    // 局部变量定义
+// 局部变量定义
     RenderDepth            depthValue;
     RenderHandle           transformHandle;
     RenderDataBlock        dataBlock1, dataBlock2;
@@ -342,32 +312,28 @@ void RenderTransformCoordinates(RenderHandle systemHandle, RenderCoordinatePtr c
     byte                   stackBuffer[64];
     float                  stackFloats[8];
     int64_t               stackLongs[2];
-    
-    // 获取变换句柄和深度信息
+// 获取变换句柄和深度信息
     transformHandle = *(RenderHandlePtr)(systemHandle + RENDER_SYSTEM_OFFSET_980);
     depthValue = *(RenderDepthPtr)(systemHandle + RENDER_SYSTEM_OFFSET_590);
-    
-    // 检查深度值有效性
+// 检查深度值有效性
     if (depthValue != 0) {
-        // 检查第一个深度标志
+// 检查第一个深度标志
         if (*(RenderHandlePtr)(depthValue + 0x2460) == 0) {
             memoryAddress = 0;
         } else {
             memoryAddress = *(RenderMemoryAddressPtr)(*(RenderHandlePtr)(depthValue + 0x2460) + 0x1d0);
         }
-        
-        // 检查深度状态位
+// 检查深度状态位
         if (((*(RenderMemoryAddressPtr)(depthValue + 0x2470) | memoryAddress) >> 9 & 1) == 0) {
-            // 检查第二个深度标志
+// 检查第二个深度标志
             if (*(RenderHandlePtr)(depthValue + 0x24a8) == 0) {
                 memoryAddress = 0;
             } else {
                 memoryAddress = *(RenderMemoryAddressPtr)(*(RenderHandlePtr)(depthValue + 0x24a8) + 0x1d0);
             }
-            
-            // 检查第二个深度状态位
+// 检查第二个深度状态位
             if (((*(RenderMemoryAddressPtr)(depthValue + 0x24b8) | memoryAddress) >> 9 & 1) == 0) {
-                // 初始化栈变量
+// 初始化栈变量
                 stackBuffer[0] = (byte)((uint)*(RenderFlagPtr)(systemHandle + RENDER_SYSTEM_OFFSET_56C) >> 8) & 1;
                 stackFloats[2] = 0;
                 stackFloats[4] = RENDER_MAX_FLOAT_VALUE;
@@ -375,33 +341,28 @@ void RenderTransformCoordinates(RenderHandle systemHandle, RenderCoordinatePtr c
                 stackFloats[6] = 0.0;
                 stackLongs[0] = 0;
                 stackLongs[1] = 0;
-                
-                // 调用缓冲区处理函数
-                RenderProcessBuffer(transformHandle, *(RenderDataBlockPtr)(*(RenderHandlePtr)(systemHandle + RENDER_SYSTEM_OFFSET_8D8) + 0x18), 
+// 调用缓冲区处理函数
+                RenderProcessBuffer(transformHandle, *(RenderDataBlockPtr)(*(RenderHandlePtr)(systemHandle + RENDER_SYSTEM_OFFSET_8D8) + 0x18),
                                    &stackFloats[0], coordinatePtr, *(int*)(systemHandle + RENDER_SYSTEM_OFFSET_568) != 1);
-                
-                // 检查处理结果
+// 检查处理结果
                 if (localState == 0x02) {
                     indexValue = *(RenderIndexPtr)(stackLongs[0] + 0x18);
                 } else {
                     indexValue = 0;
                 }
-                
-                // 检查深度阈值条件
+// 检查深度阈值条件
                 if ((((indexValue & RENDER_FLAG_DEPTH_BIAS) != 0) && (RENDER_DEPTH_THRESHOLD < stackFloats[4])) &&
-                    (depthValue = stackLongs[0], depthThreshold = stackFloats[4], 
+                    (depthValue = stackLongs[0], depthThreshold = stackFloats[4],
                      condition = RenderCheckCondition(systemHandle), condition != 0)) {
-                    
-                    // 获取缩放因子
+// 获取缩放因子
                     if (depthValue == 0) {
                         depthValue = 0;
                     } else {
                         depthValue = *(RenderHandlePtr)(depthValue + 0x10);
                     }
-                    
-                    // 检查深度值条件
+// 检查深度值条件
                     if (*(RenderDepthPtr)(depthValue + 0x88) <= 0.0 && *(RenderDepthPtr)(depthValue + 0x88) != 0.0) {
-                        // 计算缩放后的坐标
+// 计算缩放后的坐标
                         scaleFactorX = *(RenderDepthPtr)(*(RenderHandlePtr)(systemHandle + RENDER_SYSTEM_OFFSET_5F0) + 0x80) * RENDER_COORDINATE_SCALE_FACTOR;
                         scaleFactorY = *(RenderDepthPtr)(*(RenderHandlePtr)(systemHandle + RENDER_SYSTEM_OFFSET_5F0) + 0x84) * RENDER_COORDINATE_SCALE_FACTOR;
                         coordinateZ = coordinatePtr[2];
@@ -414,8 +375,7 @@ void RenderTransformCoordinates(RenderHandle systemHandle, RenderCoordinatePtr c
                                          (stackFloats[4] - coordinateZ) * depthThreshold) /
                                         (stackFloats[3] * scaleFactorY + stackFloats[2] * projectedX +
                                          (coordinateZ - coordinateZ) * depthThreshold);
-                        
-                        // 更新坐标
+// 更新坐标
                         *coordinatePtr = depthThreshold * projectedX + projectedY;
                         coordinatePtr[1] = depthThreshold * scaleFactorY + tempFloat3;
                         coordinatePtr[2] = (coordinateZ - coordinateZ) * depthThreshold + coordinateZ;
@@ -423,8 +383,7 @@ void RenderTransformCoordinates(RenderHandle systemHandle, RenderCoordinatePtr c
                         goto ApplyFinalTransform;
                     }
                 }
-                
-                // 深度比较和更新
+// 深度比较和更新
                 depthThreshold = coordinatePtr[2];
                 if ((depthThreshold <= stackFloats[6]) ||
                     (((*(byte*)(transformHandle + 0x40) & RENDER_FLAG_DEPTH_TEST) != 0 &&
@@ -435,60 +394,52 @@ void RenderTransformCoordinates(RenderHandle systemHandle, RenderCoordinatePtr c
             }
         }
     }
-    
 ApplyFinalTransform:
-    // 应用最终变换
+// 应用最终变换
     depthThreshold = *(RenderDepthPtr)(transformHandle + 0x10);
     tempFloat1 = *(RenderDepthPtr)(transformHandle + 0x14);
     coordinateY = coordinatePtr[1];
     coordinateZ = coordinatePtr[2];
-    
-    // 更新系统坐标偏移
-    *(RenderDepthPtr)(systemHandle + RENDER_SYSTEM_OFFSET_988) = 
+// 更新系统坐标偏移
+    *(RenderDepthPtr)(systemHandle + RENDER_SYSTEM_OFFSET_988) =
         (*(RenderDepthPtr)(transformHandle + 0x0c) - *coordinatePtr) + *(RenderDepthPtr)(systemHandle + RENDER_SYSTEM_OFFSET_988);
     dataBlock1 = *(RenderDataBlockPtr)coordinatePtr;
     dataBlock2 = *(RenderDataBlockPtr)(coordinatePtr + 2);
-    
-    *(RenderDepthPtr)(systemHandle + RENDER_SYSTEM_OFFSET_98C) = 
+    *(RenderDepthPtr)(systemHandle + RENDER_SYSTEM_OFFSET_98C) =
         (depthThreshold - coordinateY) + *(RenderDepthPtr)(systemHandle + RENDER_SYSTEM_OFFSET_98C);
-    *(RenderDepthPtr)(systemHandle + RENDER_SYSTEM_OFFSET_990) = 
+    *(RenderDepthPtr)(systemHandle + RENDER_SYSTEM_OFFSET_990) =
         (tempFloat1 - coordinateZ) + *(RenderDepthPtr)(systemHandle + RENDER_SYSTEM_OFFSET_990);
-    
     *(RenderDataBlockPtr)(transformHandle + 0x0c) = &dataBlock1;
     *(RenderDataBlockPtr)(transformHandle + 0x14) = &dataBlock2;
-    
-    // 更新缓冲区数据
+// 更新缓冲区数据
     if (-1 < *(int*)(systemHandle + RENDER_SYSTEM_OFFSET_560)) {
         transformHandle = *(RenderHandlePtr)(systemHandle + RENDER_SYSTEM_OFFSET_8D8);
         depthValue = (int64_t)*(int*)(systemHandle + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         depthThreshold = *(RenderDepthPtr)(depthValue + RENDER_BUFFER_VERTEX + transformHandle);
-        
         *(RenderDataBlockPtr)(depthThreshold + 0x0c) = &dataBlock1;
         *(RenderDataBlockPtr)(depthThreshold + 0x14) = &dataBlock2;
         *(RenderDataBlockPtr)(depthValue + RENDER_BUFFER_INDEX + transformHandle) = 0;
         *(RenderDataBlockPtr)(depthValue + RENDER_BUFFER_UNIFORM + transformHandle) = 0;
         *(RenderFlagPtr)(depthValue + RENDER_BUFFER_STORAGE + transformHandle) = 0;
     }
-    
     return;
 }
-
 /**
  * @brief 渲染状态处理函数
- * 
+ *
  * 处理渲染系统的状态变化和更新，包括：
  * - 状态标志检查
  * - 条件验证
  * - 深度缓冲更新
  * - 坐标变换应用
- * 
+ *
  * @param param1 参数1（数据块）
  * @param param2 参数2（句柄）
  * @param param3 参数3（标志）
  * @param param4 参数4（坐标指针）
  */
 void RenderProcessState(RenderDataBlock param1, RenderHandle param2, RenderFlag param3, RenderDataBlock param4) {
-    // 局部变量定义
+// 局部变量定义
     RenderHandle           handle1, handle2;
     RenderDataBlock        dataBlock1, dataBlock2;
     RenderState            localState;
@@ -507,8 +458,7 @@ void RenderProcessState(RenderDataBlock param1, RenderHandle param2, RenderFlag 
     int64_t               unaff_RBX, unaff_RSI;
     RenderCoordinatePtr    coordinatePtr;
     float                  in_XMM0_Dc;
-    
-    // 初始化栈变量
+// 初始化栈变量
     stackFloats[3] = (float)((uint64_t)param1 >> 0x20);
     stackFloats[2] = (float)param1;
     localState = 0;
@@ -517,33 +467,28 @@ void RenderProcessState(RenderDataBlock param1, RenderHandle param2, RenderFlag 
     stackLongs[1] = 0;
     stackBuffer[0] = *(byte*)&param3;
     stackFloats[4] = in_XMM0_Dc;
-    
-    // 调用缓冲区处理函数
-    RenderProcessBuffer(0, *(RenderDataBlockPtr)(param2 + 0x18), param3, param4, 
+// 调用缓冲区处理函数
+    RenderProcessBuffer(0, *(RenderDataBlockPtr)(param2 + 0x18), param3, param4,
                        *(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_568) != 1);
-    
-    // 检查处理结果
+// 检查处理结果
     if (localState == 0x02) {
         indexValue = *(RenderIndexPtr)(stackLongs[0] + 0x18);
     } else {
         indexValue = 0;
     }
-    
-    // 检查深度阈值条件
+// 检查深度阈值条件
     if (((indexValue & RENDER_FLAG_DEPTH_BIAS) != 0) && (RENDER_DEPTH_THRESHOLD < stackFloats[4])) {
         handle1 = stackLongs[0];
         condition = RenderCheckCondition();
-        
         if (condition != 0) {
             if (handle1 == 0) {
                 handle1 = 0;
             } else {
                 handle1 = *(RenderHandlePtr)(handle1 + 0x10);
             }
-            
-            // 检查深度值条件
+// 检查深度值条件
             if (*(RenderDepthPtr)(handle1 + 0x88) <= 0.0 && *(RenderDepthPtr)(handle1 + 0x88) != 0.0) {
-                // 计算缩放因子
+// 计算缩放因子
                 scaleFactorX = *(RenderDepthPtr)(*(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_5F0) + 0x80) * RENDER_COORDINATE_SCALE_FACTOR;
                 scaleFactorY = *(RenderDepthPtr)(*(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_5F0) + 0x84) * RENDER_COORDINATE_SCALE_FACTOR;
                 coordinateZ = coordinatePtr[2];
@@ -556,8 +501,7 @@ void RenderProcessState(RenderDataBlock param1, RenderHandle param2, RenderFlag 
                                  (stackFloats[4] - coordinateZ) * stackFloats[4]) /
                                 (stackFloats[3] * scaleFactorY + stackFloats[2] * projectedX +
                                  (coordinateZ - coordinateZ) * stackFloats[4]);
-                
-                // 更新坐标
+// 更新坐标
                 *coordinatePtr = depthThreshold * projectedX + projectedY;
                 coordinatePtr[1] = depthThreshold * scaleFactorY + tempFloat3;
                 coordinatePtr[2] = (coordinateZ - coordinateZ) * depthThreshold + coordinateZ;
@@ -566,8 +510,7 @@ void RenderProcessState(RenderDataBlock param1, RenderHandle param2, RenderFlag 
             }
         }
     }
-    
-    // 深度比较和更新
+// 深度比较和更新
     coordinateZ = coordinatePtr[2];
     if (stackFloats[6] < coordinateZ) {
         if ((*(byte*)(unaff_RSI + 0x40) & RENDER_FLAG_DEPTH_TEST) == 0) goto ApplyTransform;
@@ -575,202 +518,172 @@ void RenderProcessState(RenderDataBlock param1, RenderHandle param2, RenderFlag 
         if ((condition == 0) && (RENDER_DEPTH_PRECISION <= coordinateZ - stackFloats[6])) goto ApplyTransform;
     }
     coordinatePtr[2] = stackFloats[6];
-    
 ApplyTransform:
-    // 应用变换
+// 应用变换
     coordinateZ = *(RenderDepthPtr)(unaff_RSI + 0x10);
     depthThreshold = *(RenderDepthPtr)(unaff_RSI + 0x14);
     coordinateY = coordinatePtr[1];
     coordinateW = coordinatePtr[2];
-    
-    // 更新系统坐标偏移
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988) = 
+// 更新系统坐标偏移
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988) =
         (*(RenderDepthPtr)(unaff_RSI + 0x0c) - *coordinatePtr) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988);
     dataBlock1 = *(RenderDataBlockPtr)coordinatePtr;
     dataBlock2 = *(RenderDataBlockPtr)(coordinatePtr + 2);
-    
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C) = 
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C) =
         (coordinateZ - coordinateY) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C);
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990) = 
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990) =
         (depthThreshold - coordinateW) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990);
-    
     *(RenderDataBlockPtr)(unaff_RSI + 0x0c) = &dataBlock1;
     *(RenderDataBlockPtr)(unaff_RSI + 0x14) = &dataBlock2;
-    
-    // 更新缓冲区数据
+// 更新缓冲区数据
     if (-1 < *(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560)) {
         handle1 = *(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_8D8);
         handle2 = (int64_t)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         handle1 = *(RenderHandlePtr)(handle2 + RENDER_BUFFER_VERTEX + handle1);
-        
         *(RenderDataBlockPtr)(handle1 + 0x0c) = &dataBlock1;
         *(RenderDataBlockPtr)(handle1 + 0x14) = &dataBlock2;
         *(RenderDataBlockPtr)(handle2 + RENDER_BUFFER_INDEX + handle1) = 0;
         *(RenderDataBlockPtr)(handle2 + RENDER_BUFFER_UNIFORM + handle1) = 0;
         *(RenderFlagPtr)(handle2 + RENDER_BUFFER_STORAGE + handle1) = 0;
     }
-    
     return;
 }
-
 /**
  * @brief 渲染投影计算函数
- * 
+ *
  * 执行3D投影计算，包括：
  * - 透视投影变换
  * - 深度缓冲计算
  * - 坐标归一化
  * - 视口变换
- * 
+ *
  * @param param1 参数1（缩放因子X）
  * @param param2 参数2（句柄）
  * @param param3 参数3（数据块）
  * @param param4 参数4（深度值）
  */
 void RenderCalculateProjection(float param1, RenderDataBlock param2, RenderDataBlock param3, float param4) {
-    // 局部变量定义
+// 局部变量定义
     float                  scaleFactorX, scaleFactorY;
     float                  coordinateX, coordinateY, coordinateZ, coordinateW;
     float                  transformedX, transformedY, transformedZ;
     float                  projectedX, projectedY, projectedZ;
     float                  depthThreshold;
     float                  tempFloat1, tempFloat2, tempFloat3;
-    float                  in_XMM4_Da, in_stack_00000048;
+    float                  in_XMM4_Da, local_var_48;
     float                  stackFloats[4];
     int64_t               handle1, handle2, handle3;
     int64_t               unaff_RBX, unaff_RSI;
     RenderCoordinatePtr    coordinatePtr;
-    
-    // 获取缩放因子
+// 获取缩放因子
     scaleFactorX = *(RenderDepthPtr)(handle3 + 0x80) * RENDER_COORDINATE_SCALE_FACTOR;
     scaleFactorY = *(RenderDepthPtr)(handle3 + 0x84) * RENDER_COORDINATE_SCALE_FACTOR;
-    
-    // 获取坐标值
+// 获取坐标值
     coordinateZ = coordinatePtr[2];
     projectedY = *coordinatePtr - scaleFactorX;
     tempFloat3 = coordinatePtr[1] - scaleFactorY;
     projectedX = (*coordinatePtr + scaleFactorX) - projectedY;
     scaleFactorY = (coordinatePtr[1] + scaleFactorY) - tempFloat3;
-    
-    // 计算投影变换
+// 计算投影变换
     depthThreshold = ((in_XMM4_Da - tempFloat3) * stackFloats[3] +
-                     (param1 - projectedY) * stackFloats[2] + 
-                     (in_stack_00000048 - coordinateZ) * param4) /
+                     (param1 - projectedY) * stackFloats[2] +
+                     (local_var_48 - coordinateZ) * param4) /
                     (stackFloats[3] * scaleFactorY + stackFloats[2] * projectedX +
                      (coordinateZ - coordinateZ) * param4);
-    
-    // 更新坐标
+// 更新坐标
     *coordinatePtr = depthThreshold * projectedX + projectedY;
     coordinatePtr[1] = depthThreshold * scaleFactorY + tempFloat3;
     coordinatePtr[2] = (coordinateZ - coordinateZ) * depthThreshold + coordinateZ;
     coordinatePtr[3] = RENDER_MAX_FLOAT_VALUE;
-    
-    // 应用变换
+// 应用变换
     coordinateZ = *(RenderDepthPtr)(unaff_RSI + 0x10);
     depthThreshold = *(RenderDepthPtr)(unaff_RSI + 0x14);
     coordinateY = coordinatePtr[1];
     coordinateW = coordinatePtr[2];
-    
-    // 更新系统坐标偏移
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988) = 
+// 更新系统坐标偏移
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988) =
         (*(RenderDepthPtr)(unaff_RSI + 0x0c) - *coordinatePtr) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988);
     param2 = *(RenderDataBlockPtr)coordinatePtr;
     param3 = *(RenderDataBlockPtr)(coordinatePtr + 2);
-    
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C) = 
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C) =
         (coordinateZ - coordinateY) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C);
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990) = 
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990) =
         (depthThreshold - coordinateW) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990);
-    
     *(RenderDataBlockPtr)(unaff_RSI + 0x0c) = &param2;
     *(RenderDataBlockPtr)(unaff_RSI + 0x14) = &param3;
-    
-    // 更新缓冲区数据
+// 更新缓冲区数据
     if (-1 < *(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560)) {
         handle1 = *(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_8D8);
         handle2 = (int64_t)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         handle1 = *(RenderHandlePtr)(handle2 + RENDER_BUFFER_VERTEX + handle1);
-        
         *(RenderDataBlockPtr)(handle1 + 0x0c) = &param2;
         *(RenderDataBlockPtr)(handle1 + 0x14) = &param3;
         *(RenderDataBlockPtr)(handle2 + RENDER_BUFFER_INDEX + handle1) = 0;
         *(RenderDataBlockPtr)(handle2 + RENDER_BUFFER_UNIFORM + handle1) = 0;
         *(RenderFlagPtr)(handle2 + RENDER_BUFFER_STORAGE + handle1) = 0;
     }
-    
     return;
 }
-
 /**
  * @brief 渲染缓冲区更新函数
- * 
+ *
  * 更新渲染缓冲区数据，包括：
  * - 深度缓冲区更新
  * - 坐标缓冲区更新
  * - 状态缓冲区更新
  * - 索引缓冲区更新
- * 
+ *
  * @param param1 参数1（深度值）
  */
 void RenderUpdateBuffer(float param1) {
-    // 局部变量定义
+// 局部变量定义
     float                  coordinateX, coordinateY, coordinateZ, coordinateW;
     float                  depthValue;
     int64_t               handle1, handle2;
     RenderDataBlock        dataBlock1, dataBlock2;
     int64_t               unaff_RBX, unaff_RSI;
     RenderCoordinatePtr    coordinatePtr;
-    
-    // 获取坐标值
+// 获取坐标值
     coordinateW = coordinatePtr[2];
-    
-    // 深度比较和更新
+// 深度比较和更新
     if (param1 < coordinateW) {
         if ((*(byte*)(unaff_RSI + 0x40) & RENDER_FLAG_DEPTH_TEST) == 0) goto ApplyBufferUpdate;
         if (RenderCheckCondition() == 0 && RENDER_DEPTH_PRECISION <= coordinateW - param1) goto ApplyBufferUpdate;
     }
     coordinatePtr[2] = param1;
-    
 ApplyBufferUpdate:
-    // 应用缓冲区更新
+// 应用缓冲区更新
     coordinateW = *(RenderDepthPtr)(unaff_RSI + 0x10);
     depthValue = *(RenderDepthPtr)(unaff_RSI + 0x14);
     coordinateY = coordinatePtr[1];
     coordinateZ = coordinatePtr[2];
-    
-    // 更新系统坐标偏移
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988) = 
+// 更新系统坐标偏移
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988) =
         (*(RenderDepthPtr)(unaff_RSI + 0x0c) - *coordinatePtr) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988);
     dataBlock1 = *(RenderDataBlockPtr)coordinatePtr;
     dataBlock2 = *(RenderDataBlockPtr)(coordinatePtr + 2);
-    
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C) = 
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C) =
         (coordinateW - coordinateY) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C);
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990) = 
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990) =
         (depthValue - coordinateZ) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990);
-    
     *(RenderDataBlockPtr)(unaff_RSI + 0x0c) = &dataBlock1;
     *(RenderDataBlockPtr)(unaff_RSI + 0x14) = &dataBlock2;
-    
-    // 更新缓冲区数据
+// 更新缓冲区数据
     if (-1 < *(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560)) {
         handle1 = *(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_8D8);
         handle2 = (int64_t)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         handle1 = *(RenderHandlePtr)(handle2 + RENDER_BUFFER_VERTEX + handle1);
-        
         *(RenderDataBlockPtr)(handle1 + 0x0c) = &dataBlock1;
         *(RenderDataBlockPtr)(handle1 + 0x14) = &dataBlock2;
         *(RenderDataBlockPtr)(handle2 + RENDER_BUFFER_INDEX + handle1) = 0;
         *(RenderDataBlockPtr)(handle2 + RENDER_BUFFER_UNIFORM + handle1) = 0;
         *(RenderFlagPtr)(handle2 + RENDER_BUFFER_STORAGE + handle1) = 0;
     }
-    
     return;
 }
-
 /**
  * @brief 渲染变换应用函数
- * 
+ *
  * 应用渲染变换到坐标系统，包括：
  * - 世界变换应用
  * - 视图变换应用
@@ -778,114 +691,99 @@ ApplyBufferUpdate:
  * - 缓冲区更新
  */
 void RenderApplyTransform(void) {
-    // 局部变量定义
+// 局部变量定义
     float                  coordinateX, coordinateY, coordinateZ, coordinateW;
     float                  depthValue;
     int64_t               handle1, handle2;
     RenderDataBlock        dataBlock1, dataBlock2;
     int64_t               unaff_RBX, unaff_RSI;
     RenderCoordinatePtr    coordinatePtr;
-    
-    // 获取坐标值
+// 获取坐标值
     coordinateW = *(RenderDepthPtr)(unaff_RSI + 0x10);
     depthValue = *(RenderDepthPtr)(unaff_RSI + 0x14);
     coordinateY = coordinatePtr[1];
     coordinateZ = coordinatePtr[2];
-    
-    // 更新系统坐标偏移
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988) = 
+// 更新系统坐标偏移
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988) =
         (*(RenderDepthPtr)(unaff_RSI + 0x0c) - *coordinatePtr) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_988);
     dataBlock1 = *(RenderDataBlockPtr)coordinatePtr;
     dataBlock2 = *(RenderDataBlockPtr)(coordinatePtr + 2);
-    
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C) = 
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C) =
         (coordinateW - coordinateY) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_98C);
-    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990) = 
+    *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990) =
         (depthValue - coordinateZ) + *(RenderDepthPtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_990);
-    
     *(RenderDataBlockPtr)(unaff_RSI + 0x0c) = &dataBlock1;
     *(RenderDataBlockPtr)(unaff_RSI + 0x14) = &dataBlock2;
-    
-    // 更新缓冲区数据
+// 更新缓冲区数据
     if (-1 < *(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560)) {
         handle1 = *(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_8D8);
         handle2 = (int64_t)*(int*)(unaff_RBX + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
         handle1 = *(RenderHandlePtr)(handle2 + RENDER_BUFFER_VERTEX + handle1);
-        
         *(RenderDataBlockPtr)(handle1 + 0x0c) = &dataBlock1;
         *(RenderDataBlockPtr)(handle1 + 0x14) = &dataBlock2;
         *(RenderDataBlockPtr)(handle2 + RENDER_BUFFER_INDEX + handle1) = 0;
         *(RenderDataBlockPtr)(handle2 + RENDER_BUFFER_UNIFORM + handle1) = 0;
         *(RenderFlagPtr)(handle2 + RENDER_BUFFER_STORAGE + handle1) = 0;
     }
-    
     return;
 }
-
 /**
  * @brief 渲染坐标设置函数
- * 
+ *
  * 设置渲染坐标系统的值，包括：
  * - 坐标值设置
  * - 深度值设置
  * - 缓冲区更新
  * - 状态同步
- * 
+ *
  * @param param1 参数1（数据块）
  * @param param2 参数2（索引）
  */
 void RenderSetCoordinates(RenderDataBlock param1, int64_t param2) {
-    // 局部变量定义
+// 局部变量定义
     int64_t               handle1, handle2;
     int64_t               handle3;
     RenderDataBlock        in_XMM0_Qb;
-    
-    // 获取句柄和索引
+// 获取句柄和索引
     handle1 = *(RenderHandlePtr)(unaff_RBX + RENDER_SYSTEM_OFFSET_8D8);
     handle3 = param2 * RENDER_COORDINATE_MULTIPLIER;
     handle2 = *(RenderHandlePtr)(handle3 + RENDER_BUFFER_VERTEX + handle1);
-    
-    // 设置坐标值
+// 设置坐标值
     *(RenderDataBlockPtr)(handle2 + 0x0c) = param1;
     *(RenderDataBlockPtr)(handle2 + 0x14) = in_XMM0_Qb;
     *(RenderDataBlockPtr)(handle3 + RENDER_BUFFER_INDEX + handle1) = 0;
     *(RenderDataBlockPtr)(handle3 + RENDER_BUFFER_UNIFORM + handle1) = 0;
     *(RenderFlagPtr)(handle3 + RENDER_BUFFER_STORAGE + handle1) = 0;
-    
     return;
 }
-
 /**
  * @brief 渲染深度调整函数
- * 
+ *
  * 调整渲染深度值，包括：
  * - 深度值比较
  * - 深度缓冲更新
  * - 坐标修正
  * - 优化处理
- * 
+ *
  * @param param1 参数1（系统句柄）
  * @param param2 参数2（坐标指针）
  */
 void RenderAdjustDepth(RenderHandle param1, RenderCoordinatePtr param2) {
-    // 局部变量定义
+// 局部变量定义
     float                  depthX, depthY;
     float                  coordinateX, coordinateY;
     float                  depthZ;
     float                  dotProduct;
-    
-    // 获取深度值
+// 获取深度值
     depthX = *(RenderDepthPtr)(param1 + RENDER_SYSTEM_OFFSET_988);
     coordinateX = *param2;
-    
-    // 计算点积
+// 计算点积
     depthZ = *(RenderDepthPtr)(param1 + RENDER_SYSTEM_OFFSET_990) * param2[2] +
-             *(RenderDepthPtr)(param1 + RENDER_SYSTEM_OFFSET_98C) * param2[1] + 
+             *(RenderDepthPtr)(param1 + RENDER_SYSTEM_OFFSET_98C) * param2[1] +
              depthX * coordinateX;
-    
-    // 检查点积条件
+// 检查点积条件
     if (0.0 < dotProduct) {
-        // 检查X分量
+// 检查X分量
         if (0.0 < depthX * coordinateX) {
             if (ABS(coordinateX) <= ABS(depthX)) {
                 *(RenderDepthPtr)(param1 + RENDER_SYSTEM_OFFSET_988) = depthX - coordinateX;
@@ -893,8 +791,7 @@ void RenderAdjustDepth(RenderHandle param1, RenderCoordinatePtr param2) {
                 *(RenderFlagPtr)(param1 + RENDER_SYSTEM_OFFSET_988) = 0;
             }
         }
-        
-        // 检查Y分量
+// 检查Y分量
         depthX = *(RenderDepthPtr)(param1 + RENDER_SYSTEM_OFFSET_98C);
         coordinateY = param2[1];
         if (0.0 < depthX * coordinateY) {
@@ -905,24 +802,22 @@ void RenderAdjustDepth(RenderHandle param1, RenderCoordinatePtr param2) {
             *(RenderDepthPtr)(param1 + RENDER_SYSTEM_OFFSET_98C) = depthX - coordinateY;
         }
     }
-    
     return;
 }
-
 /**
  * @brief 渲染状态更新函数
- * 
+ *
  * 更新渲染系统状态，包括：
  * - 状态标志设置
  * - 缓冲区更新
  * - 资源管理
  * - 事件处理
- * 
+ *
  * @param param1 参数1（系统句柄）
  * @param param2 参数2（状态标志）
  */
 void RenderUpdateState(RenderHandle param1, RenderFlag param2) {
-    // 局部变量定义
+// 局部变量定义
     ushort*                ushortPtr;
     int                    currentState, newState;
     int64_t               handle1, handle2, handle3, handle4;
@@ -932,12 +827,10 @@ void RenderUpdateState(RenderHandle param1, RenderFlag param2) {
     int                    bitIndex;
     uint64_t              loopCounter;
     int64_t               tempHandle;
-    
-    // 获取当前状态
+// 获取当前状态
     currentState = *(int*)(param1 + RENDER_SYSTEM_OFFSET_980);
     *(RenderFlagPtr)(param1 + RENDER_SYSTEM_OFFSET_980) = param2;
-    
-    // 检查状态更新条件
+// 检查状态更新条件
     if (*(char*)(param1 + RENDER_SYSTEM_OFFSET_984) == 0) goto StateUpdateComplete;
     if (*(char*)(*(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_738) + 0x99) != 0) {
         handle4 = (int64_t)*(int*)(param1 + RENDER_SYSTEM_OFFSET_560) * RENDER_COORDINATE_MULTIPLIER;
@@ -945,12 +838,10 @@ void RenderUpdateState(RenderHandle param1, RenderFlag param2) {
             param2 = *(RenderFlagPtr)(handle4 + RENDER_BUFFER_FRAME + *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8));
         }
     }
-    
-    // 更新状态数据块
+// 更新状态数据块
     *(RenderFlagPtr)(*(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_738) + 0x1dc) = param2;
     if (*(int*)(param1 + RENDER_SYSTEM_OFFSET_564) < 0) goto StateUpdateComplete;
-    
-    // 处理状态链
+// 处理状态链
     handle4 = (int64_t)*(int*)(param1 + RENDER_SYSTEM_OFFSET_564) * RENDER_COORDINATE_MULTIPLIER + *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
     if (*(char*)(*(RenderHandlePtr)(handle4 + 0x37d8) + 0x99) == 0) {
 ProcessDataBlock:
@@ -961,17 +852,15 @@ ProcessDataBlock:
         dataBlock = *(RenderFlagPtr)(memoryAddress + RENDER_BUFFER_FRAME + *(RenderHandlePtr)(handle4 + 0x3978));
     }
     *(RenderFlagPtr)(*(RenderHandlePtr)(handle4 + 0x37d8) + 0x1dc) = dataBlock;
-    
 StateUpdateComplete:
-    // 处理状态更新后的操作
+// 处理状态更新后的操作
     if (((*(byte*)(param1 + RENDER_SYSTEM_OFFSET_56C) & 1) == 0) && (newState = *(int*)(param1 + RENDER_SYSTEM_OFFSET_980), -1 < currentState)) {
-        // 检查渲染模式
+// 检查渲染模式
         if ((*(int*)(param1 + RENDER_SYSTEM_OFFSET_568) == 1) && (*(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_6E0) != 0)) {
             ushortPtr = (ushort*)(*(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_6E0) + 0x130);
             *ushortPtr = *ushortPtr | RENDER_FLAG_SCISSOR;
         }
-        
-        // 处理状态索引
+// 处理状态索引
         if (-1 < newState) {
             handle4 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
             if (*(char*)(handle4 + 0x87a93c) == 0) {
@@ -979,8 +868,7 @@ StateUpdateComplete:
             } else {
                 indexValue = *(uint*)(handle4 + 0x87a938);
             }
-            
-            // 处理状态链表
+// 处理状态链表
             if (0 < (int)indexValue) {
                 handle4 = 0;
                 loopCounter = (uint64_t)indexValue;
@@ -992,21 +880,18 @@ StateUpdateComplete:
                     }
                     memoryAddress = *(RenderHandlePtr)(memoryAddress + handle4);
                     handle2 = *(RenderHandlePtr)(memoryAddress + 0x6e0);
-                    
-                    // 检查渲染条件
+// 检查渲染条件
                     if (((*(int*)(memoryAddress + RENDER_SYSTEM_OFFSET_568) == 1) && (handle2 != 0)) &&
                         (indexValue = *(uint*)(memoryAddress + RENDER_SYSTEM_OFFSET_980), -1 < (int)indexValue)) {
                         bitIndex = *(int*)(handle1 + 0x87b770) >> 3;
-                        
-                        // 检查位标志
+// 检查位标志
                         if (((*(byte*)((int64_t)(bitIndex * currentState + ((int)indexValue >> 3)) +
-                                       *(RenderHandlePtr)(handle1 + 0x87b768)) & 
+                                       *(RenderHandlePtr)(handle1 + 0x87b768)) &
                                        (&processed_var_6480_ptr)[indexValue & 7]) != 0) &&
                             ((*(byte*)((int64_t)(bitIndex * newState + ((int)indexValue >> 3)) +
-                                       *(RenderHandlePtr)(handle1 + 0x87b768)) & 
+                                       *(RenderHandlePtr)(handle1 + 0x87b768)) &
                                        (&processed_var_6480_ptr)[indexValue & 7]) == 0)) {
-                            
-                            // 重置渲染资源
+// 重置渲染资源
                             *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
                             *(byte*)(handle2 + 0x17a8) = 0;
                             *(RenderDataBlockPtr)(handle2 + 0x1798) =
@@ -1028,13 +913,11 @@ StateUpdateComplete:
             }
         }
     }
-    
     return;
 }
-
 /**
  * @brief 渲染状态改变处理函数
- * 
+ *
  * 处理渲染状态的改变事件，包括：
  * - 状态转换处理
  * - 资源重新配置
@@ -1042,7 +925,7 @@ StateUpdateComplete:
  * - 事件通知
  */
 void RenderProcessStateChange(void) {
-    // 局部变量定义
+// 局部变量定义
     ushort*                ushortPtr;
     int                    currentState, newState;
     int64_t               handle1, handle2, handle3;
@@ -1052,19 +935,16 @@ void RenderProcessStateChange(void) {
     uint64_t              loopCounter;
     int                    unaff_EBP;
     int64_t               in_R9;
-    
-    // 获取当前状态
+// 获取当前状态
     currentState = *(int*)(in_R9 + RENDER_SYSTEM_OFFSET_980);
-    
-    // 检查状态有效性
+// 检查状态有效性
     if (-1 < unaff_EBP) {
-        // 检查渲染模式
+// 检查渲染模式
         if ((*(int*)(in_R9 + RENDER_SYSTEM_OFFSET_568) == 1) && (*(RenderHandlePtr)(in_R9 + RENDER_SYSTEM_OFFSET_6E0) != 0)) {
             ushortPtr = (ushort*)(*(RenderHandlePtr)(in_R9 + RENDER_SYSTEM_OFFSET_6E0) + 0x130);
             *ushortPtr = *ushortPtr | RENDER_FLAG_SCISSOR;
         }
-        
-        // 处理状态索引
+// 处理状态索引
         if (-1 < currentState) {
             handle3 = *(RenderHandlePtr)(in_R9 + RENDER_SYSTEM_OFFSET_8D8);
             if (*(char*)(handle3 + 0x87a93c) == 0) {
@@ -1072,8 +952,7 @@ void RenderProcessStateChange(void) {
             } else {
                 indexValue = *(uint*)(handle3 + 0x87a938);
             }
-            
-            // 处理状态链表
+// 处理状态链表
             if (0 < (int)indexValue) {
                 handle3 = 0;
                 loopCounter = (uint64_t)indexValue;
@@ -1085,21 +964,18 @@ void RenderProcessStateChange(void) {
                     }
                     memoryAddress = *(RenderHandlePtr)(memoryAddress + handle3);
                     handle2 = *(RenderHandlePtr)(memoryAddress + 0x6e0);
-                    
-                    // 检查渲染条件
+// 检查渲染条件
                     if (((*(int*)(memoryAddress + RENDER_SYSTEM_OFFSET_568) == 1) && (handle2 != 0)) &&
                         (indexValue = *(uint*)(memoryAddress + RENDER_SYSTEM_OFFSET_980), -1 < (int)indexValue)) {
                         bitIndex = *(int*)(handle1 + 0x87b770) >> 3;
-                        
-                        // 检查位标志
+// 检查位标志
                         if (((*(byte*)((int64_t)(bitIndex * unaff_EBP + ((int)indexValue >> 3)) +
-                                       *(RenderHandlePtr)(handle1 + 0x87b768)) & 
+                                       *(RenderHandlePtr)(handle1 + 0x87b768)) &
                                        (&processed_var_6480_ptr)[indexValue & 7]) != 0) &&
                             ((*(byte*)((int64_t)(bitIndex * currentState + ((int)indexValue >> 3)) +
-                                       *(RenderHandlePtr)(handle1 + 0x87b768)) & 
+                                       *(RenderHandlePtr)(handle1 + 0x87b768)) &
                                        (&processed_var_6480_ptr)[indexValue & 7]) == 0)) {
-                            
-                            // 重置渲染资源
+// 重置渲染资源
                             *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
                             *(byte*)(handle2 + 0x17a8) = 0;
                             *(RenderDataBlockPtr)(handle2 + 0x1798) =
@@ -1121,23 +997,21 @@ void RenderProcessStateChange(void) {
             }
         }
     }
-    
     return;
 }
-
 /**
  * @brief 渲染批处理函数
- * 
+ *
  * 批量处理渲染操作，包括：
  * - 批量坐标变换
  * - 批量状态更新
  * - 批量资源管理
  * - 性能优化
- * 
+ *
  * @param param1 参数1（元素数量）
  */
 void RenderProcessBatch(uint param1) {
-    // 局部变量定义
+// 局部变量定义
     uint                   indexValue;
     int64_t               handle1, handle2, handle3;
     int64_t               memoryAddress;
@@ -1145,12 +1019,10 @@ void RenderProcessBatch(uint param1) {
     uint64_t              loopCounter;
     int                    unaff_EBP, unaff_ESI;
     int64_t               in_R9;
-    
-    // 初始化循环
+// 初始化循环
     handle3 = 0;
     loopCounter = (uint64_t)param1;
-    
-    // 批量处理循环
+// 批量处理循环
     do {
         handle1 = *(RenderHandlePtr)(in_R9 + RENDER_SYSTEM_OFFSET_8D8);
         memoryAddress = handle1 + 0x876958;
@@ -1159,21 +1031,18 @@ void RenderProcessBatch(uint param1) {
         }
         memoryAddress = *(RenderHandlePtr)(memoryAddress + handle3);
         handle2 = *(RenderHandlePtr)(memoryAddress + 0x6e0);
-        
-        // 检查渲染条件
+// 检查渲染条件
         if (((*(int*)(memoryAddress + RENDER_SYSTEM_OFFSET_568) == 1) && (handle2 != 0)) &&
             (indexValue = *(uint*)(memoryAddress + RENDER_SYSTEM_OFFSET_980), -1 < (int)indexValue)) {
             bitIndex = *(int*)(handle1 + 0x87b770) >> 3;
-            
-            // 检查位标志
+// 检查位标志
             if (((*(byte*)((int64_t)(bitIndex * unaff_EBP + ((int)indexValue >> 3)) +
-                           *(RenderHandlePtr)(handle1 + 0x87b768)) & 
+                           *(RenderHandlePtr)(handle1 + 0x87b768)) &
                            (&processed_var_6480_ptr)[indexValue & 7]) != 0) &&
                 ((*(byte*)((int64_t)(bitIndex * unaff_ESI + ((int)indexValue >> 3)) +
-                           *(RenderHandlePtr)(handle1 + 0x87b768)) & 
+                           *(RenderHandlePtr)(handle1 + 0x87b768)) &
                            (&processed_var_6480_ptr)[indexValue & 7]) == 0)) {
-                
-                // 重置渲染资源
+// 重置渲染资源
                 *(RenderFlagPtr)(handle2 + 0x1b6c) = 0;
                 *(byte*)(handle2 + 0x17a8) = 0;
                 *(RenderDataBlockPtr)(handle2 + 0x1798) =
@@ -1192,13 +1061,11 @@ void RenderProcessBatch(uint param1) {
         handle3 += RENDER_MEMORY_BLOCK_SIZE;
         loopCounter--;
     } while (loopCounter != 0);
-    
     return;
 }
-
 /**
  * @brief 渲染调试函数1
- * 
+ *
  * 调试功能函数1，用于：
  * - 状态检查
  * - 资源验证
@@ -1206,14 +1073,13 @@ void RenderProcessBatch(uint param1) {
  * - 错误检测
  */
 void RenderDebugFunction1(void) {
-    // 调试功能实现
-    // 当前为空实现，保留用于扩展调试功能
+// 调试功能实现
+// 当前为空实现，保留用于扩展调试功能
     return;
 }
-
 /**
  * @brief 渲染调试函数2
- * 
+ *
  * 调试功能函数2，用于：
  * - 状态检查
  * - 资源验证
@@ -1221,25 +1087,24 @@ void RenderDebugFunction1(void) {
  * - 错误检测
  */
 void RenderDebugFunction2(void) {
-    // 调试功能实现
-    // 当前为空实现，保留用于扩展调试功能
+// 调试功能实现
+// 当前为空实现，保留用于扩展调试功能
     return;
 }
-
 /**
  * @brief 渲染模式切换函数
- * 
+ *
  * 切换渲染系统的工作模式，包括：
  * - 模式验证
  * - 资源重新配置
  * - 状态更新
  * - 缓冲区重置
- * 
+ *
  * @param param1 参数1（系统句柄）
  * @param param2 参数2（新模式）
  */
 void RenderSwitchMode(RenderHandle param1, int param2) {
-    // 局部变量定义
+// 局部变量定义
     int64_t               handle1, handle2, handle3, handle4;
     char                   modeFlag;
     int8_t             stateFlag;
@@ -1249,14 +1114,11 @@ void RenderSwitchMode(RenderHandle param1, int param2) {
     uint64_t              loopCounter;
     bool                   condition1, condition2;
     RenderDataBlock        stackData;
-    
-    // 检查模式切换条件
+// 检查模式切换条件
     if ((param2 == RENDER_MODE_NORMAL) || (*(int*)(param1 + RENDER_SYSTEM_OFFSET_570) != RENDER_MODE_NORMAL)) goto ModeSwitchComplete;
-    
     handle4 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_6E0);
     currentIndex = *(int*)(handle4 + 0x14a8);
-    
-    // 检查当前模式
+// 检查当前模式
     if (currentIndex == 0) {
         condition1 = *(char*)(handle4 + 0x2024) == (char)currentIndex;
         if (*(char*)(handle4 + 0x2024) == (char)currentIndex) goto SetModeFlag;
@@ -1268,21 +1130,18 @@ ProcessNormalMode:
 SetModeFlag:
         modeFlag = RENDER_STATE_INACTIVE;
     }
-    
-    // 应用模式设置
+// 应用模式设置
     if ((condition1 != false) || (modeFlag != RENDER_STATE_INACTIVE)) {
         RenderCallUpdateFunction(param1, *(RenderFlagPtr)(handle4 + 0x14b4), 0xffffffff, condition1, modeFlag, 0);
     }
-    
-    // 重置模式索引
+// 重置模式索引
     handle4 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_6E0);
     if (-1 < *(int*)(handle4 + 0x14b4)) {
         *(RenderDataBlockPtr)(handle4 + 0x14b4) = 0xffffffffffffffff;
         *(RenderFlagPtr)(handle4 + 0x1728) = 0xffffffff;
     }
-    
 ModeSwitchComplete:
-    // 处理特殊模式切换
+// 处理特殊模式切换
     if (param2 == RENDER_MODE_POST_PROCESS) {
         handle4 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
         if (*(char*)(handle4 + 0x87a93c) == 0) {
@@ -1290,8 +1149,7 @@ ModeSwitchComplete:
         } else {
             indexValue = *(uint*)(handle4 + 0x87a938);
         }
-        
-        // 处理后处理模式
+// 处理后处理模式
         if (0 < (int)indexValue) {
             handle4 = 0;
             loopCounter = (uint64_t)indexValue;
@@ -1302,8 +1160,7 @@ ModeSwitchComplete:
                     memoryAddress = *(RenderHandlePtr)(handle1 + 0x87a918);
                 }
                 handle1 = *(RenderHandlePtr)(handle4 + memoryAddress);
-                
-                // 检查索引有效性
+// 检查索引有效性
                 if (-1 < *(int*)(handle1 + 0x10)) {
                     memoryAddress = *(RenderHandlePtr)(handle1 + 0x6e0);
                     if (*(char*)(memoryAddress + 0x21c0) == 0) {
@@ -1311,8 +1168,7 @@ ModeSwitchComplete:
                     } else {
                         currentIndex = *(int*)(memoryAddress + 0x21c4);
                     }
-                    
-                    // 检查目标索引
+// 检查目标索引
                     if (currentIndex == *(int*)(param1 + 0x10)) {
                         currentIndex = *(int*)(memoryAddress + 0x14a8);
                         if (currentIndex == 0) {
@@ -1326,8 +1182,7 @@ ProcessInactiveMode:
 SetStateFlag:
                             stateFlag = 0;
                         }
-                        
-                        // 调用更新函数
+// 调用更新函数
                         RenderCallUpdateFunction(handle1, *(int*)(param1 + 0x10), 0xffffffff, condition1, stateFlag, 0);
                         *(RenderDataBlockPtr)(memoryAddress + 0x14b4) = 0xffffffffffffffff;
                         *(RenderFlagPtr)(memoryAddress + 0x1728) = 0xffffffff;
@@ -1337,8 +1192,7 @@ SetStateFlag:
                 loopCounter--;
             } while (loopCounter != 0);
         }
-        
-        // 处理状态标志
+// 处理状态标志
         if ((*(byte*)(param1 + RENDER_SYSTEM_OFFSET_56C) & 1) == 0) {
             currentIndex = *(int*)(param1 + RENDER_SYSTEM_OFFSET_564);
             if (currentIndex != -1) {
@@ -1361,8 +1215,7 @@ SetStateFlag:
         } else {
             indexValue = *(uint*)(handle4 + 0x87a938);
         }
-        
-        // 处理阴影模式
+// 处理阴影模式
         if (0 < (int)indexValue) {
             handle4 = 0;
             loopCounter = (uint64_t)indexValue;
@@ -1372,8 +1225,7 @@ SetStateFlag:
                 if (*(char*)(handle1 + 0x87a93c) == 0) {
                     memoryAddress = *(RenderHandlePtr)(handle1 + 0x87a918);
                 }
-                
-                // 检查索引有效性
+// 检查索引有效性
                 if (-1 < *(int*)(*(RenderHandlePtr)(handle4 + memoryAddress) + 0x10)) {
                     handle1 = *(RenderHandlePtr)(*(RenderHandlePtr)(handle4 + memoryAddress) + 0x6e0);
                     if (*(char*)(handle1 + 0x21c0) == 0) {
@@ -1381,8 +1233,7 @@ SetStateFlag:
                     } else {
                         currentIndex = *(int*)(handle1 + 0x21c4);
                     }
-                    
-                    // 检查目标索引
+// 检查目标索引
                     if (currentIndex == *(int*)(param1 + 0x10)) {
                         stackData = 0xffffffffffffffff;
                         RenderCallClearFunction(handle1, &stackData, 0);
@@ -1395,33 +1246,28 @@ SetStateFlag:
             } while (loopCounter != 0);
         }
     }
-    
-    // 更新渲染模式
+// 更新渲染模式
     *(int*)(param1 + RENDER_SYSTEM_OFFSET_568) = param2;
     if (*(char*)(param1 + RENDER_SYSTEM_OFFSET_984) != 0) {
         handle4 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_738);
         *(int*)(handle4 + 0x194) = param2;
-        
-        // 检查模式状态
+// 检查模式状态
         if ((*(int*)(param1 + RENDER_SYSTEM_OFFSET_568) == RENDER_MODE_NORMAL) || (*(char*)(param1 + RENDER_SYSTEM_OFFSET_A50) == 0)) {
             stateFlag = 1;
         } else {
             stateFlag = 0;
         }
         *(byte*)(handle4 + 0x199) = stateFlag;
-        
-        // 处理缓冲区更新
+// 处理缓冲区更新
         if ((param2 != RENDER_MODE_POST_PROCESS) && (*(char*)(handle4 + 0x98) != 0)) {
             handle4 = *(RenderHandlePtr)(param1 + RENDER_SYSTEM_OFFSET_8D8);
             memoryAddress = (int64_t)*(int*)(param1 + RENDER_SYSTEM_OFFSET_564) * RENDER_COORDINATE_MULTIPLIER;
             handle1 = *(RenderHandlePtr)(memoryAddress + 0x37d8 + handle4);
-            
-            // 检查缓冲区状态
+// 检查缓冲区状态
             if (*(char*)(handle1 + 0x99) != 0) {
                 handle3 = (int64_t)*(int*)(memoryAddress + 0x3600 + handle4) * RENDER_COORDINATE_MULTIPLIER;
                 handle2 = *(RenderHandlePtr)(memoryAddress + 0x3978 + handle4);
-                
-                // 检查帧缓冲区状态
+// 检查帧缓冲区状态
                 if (*(int*)(handle3 + 0x3608 + handle2) == 1) {
                     *(RenderFlagPtr)(handle1 + 0x1dc) = *(RenderFlagPtr)(handle3 + RENDER_BUFFER_FRAME + handle2);
                     return;
@@ -1430,66 +1276,62 @@ SetStateFlag:
             *(RenderFlagPtr)(handle1 + 0x1dc) = *(RenderFlagPtr)(memoryAddress + RENDER_BUFFER_FRAME + handle4);
         }
     }
-    
     return;
 }
-
 // =============================================================================
 // 技术说明
 // =============================================================================
-
 /*
  * 技术实现要点：
- * 
+ *
  * 1. 渲染管线优化：
  *    - 使用高效的坐标变换算法
  *    - 实现深度缓冲优化
  *    - 支持多种渲染模式
  *    - 批量处理提升性能
- * 
+ *
  * 2. 内存管理：
  *    - 使用内存池技术
  *    - 实现缓冲区复用
  *    - 支持动态内存分配
  *    - 内存对齐优化
- * 
+ *
  * 3. 状态管理：
  *    - 状态机设计模式
  *    - 条件状态转换
  *    - 状态同步机制
  *    - 错误恢复机制
- * 
+ *
  * 4. 性能优化：
  *    - 循环展开技术
  *    - 位操作优化
  *    - 缓存友好设计
  *    - 分支预测优化
- * 
+ *
  * 5. 多线程支持：
  *    - 线程安全设计
  *    - 原子操作支持
  *    - 锁机制实现
  *    - 任务调度优化
- * 
+ *
  * 6. 错误处理：
  *    - 错误码定义
  *    - 错误恢复机制
  *    - 日志记录功能
  *    - 调试支持
- * 
+ *
  * 7. 扩展性设计：
  *    - 模块化架构
  *    - 插件系统支持
  *    - 配置文件支持
  *    - 版本兼容性
- * 
+ *
  * 8. 安全性考虑：
  *    - 输入参数验证
  *    - 内存访问保护
  *    - 缓冲区溢出防护
  *    - 权限控制机制
  */
-
 // =============================================================================
 // 渲染系统高级处理模块完成
 // =============================================================================

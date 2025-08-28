@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_12_part031.c - 4 个函数
-
-// 函数: void FUN_1807df670(int64_t param_1,float *param_2,uint param_3,int64_t param_4,uint param_5,
-void FUN_1807df670(int64_t param_1,float *param_2,uint param_3,int64_t param_4,uint param_5,
+// 函数: void SystemCore_df670(int64_t param_1,float *param_2,uint param_3,int64_t param_4,uint param_5,
+void SystemCore_df670(int64_t param_1,float *param_2,uint param_3,int64_t param_4,uint param_5,
                   int param_6,int param_7)
-
 {
   float *pfVar1;
   float *pfVar2;
@@ -36,7 +33,6 @@ void FUN_1807df670(int64_t param_1,float *param_2,uint param_3,int64_t param_4,u
   float fVar26;
   float fVar27;
   float fVar28;
-  
   if (0 < (int)param_3) {
     lVar15 = (int64_t)(int)param_5;
     lVar13 = -0x18 - param_1;
@@ -263,15 +259,8 @@ void FUN_1807df670(int64_t param_1,float *param_2,uint param_3,int64_t param_4,u
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
-void FUN_1807df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
-
+// 函数: void SystemCore_df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
+void SystemCore_df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t param_4)
 {
   float *pfVar1;
   float *pfVar2;
@@ -302,16 +291,15 @@ void FUN_1807df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
   float fVar24;
   float fVar25;
   float fVar26;
-  int64_t in_stack_00000068;
-  int in_stack_00000078;
-  int in_stack_00000080;
-  
+  int64_t local_var_68;
+  int local_var_78;
+  int local_var_80;
   lVar12 = param_2 - param_4;
   param_2 = param_2 - param_1;
   pfVar16 = (float *)(param_1 + 0x1c);
   param_3 = param_3 & 0xffffffff;
   uVar15 = (uint)unaff_RSI;
-  if (in_stack_00000080 == 0) {
+  if (local_var_80 == 0) {
     do {
       if (0 < unaff_R15) {
         pfVar18 = (float *)(param_4 + 0x18);
@@ -375,7 +363,7 @@ void FUN_1807df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
             }
             if (lVar13 < unaff_RSI) {
               if (3 < unaff_RSI - lVar13) {
-                pfVar11 = (float *)((lVar17 + lVar13) * 4 + in_stack_00000068);
+                pfVar11 = (float *)((lVar17 + lVar13) * 4 + local_var_68);
                 lVar9 = ((unaff_RSI - lVar13) - 4U >> 2) + 1;
                 lVar13 = lVar13 + lVar9 * 4;
                 do {
@@ -413,8 +401,8 @@ void FUN_1807df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
           unaff_R12 = unaff_R12 + 1;
           unaff_R15 = unaff_R15 + -1;
         } while (unaff_R15 != 0);
-        unaff_R15 = (int64_t)in_stack_00000078;
-        param_4 = in_stack_00000068;
+        unaff_R15 = (int64_t)local_var_78;
+        param_4 = local_var_68;
       }
       pfVar16 = pfVar16 + unaff_RSI;
       param_2 = param_2 + unaff_RSI * -4;
@@ -426,7 +414,7 @@ void FUN_1807df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
       if (0 < unaff_R15) {
         lVar14 = 0;
         lVar17 = lVar12 + (int64_t)pfVar16;
-        pfVar18 = (float *)(in_stack_00000068 + 0x18);
+        pfVar18 = (float *)(local_var_68 + 0x18);
         do {
           fVar19 = 0.0;
           switch(uVar15) {
@@ -485,7 +473,7 @@ void FUN_1807df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
             }
             if (lVar13 < unaff_RSI) {
               if (3 < unaff_RSI - lVar13) {
-                pfVar11 = (float *)(in_stack_00000068 + (lVar13 + lVar14) * 4);
+                pfVar11 = (float *)(local_var_68 + (lVar13 + lVar14) * 4);
                 lVar9 = ((unaff_RSI - lVar13) - 4U >> 2) + 1;
                 lVar13 = lVar13 + lVar9 * 4;
                 do {
@@ -523,7 +511,7 @@ void FUN_1807df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
           lVar17 = lVar17 + -0x80;
           unaff_R15 = unaff_R15 + -1;
         } while (unaff_R15 != 0);
-        unaff_R15 = (int64_t)in_stack_00000078;
+        unaff_R15 = (int64_t)local_var_78;
       }
       pfVar16 = pfVar16 + unaff_RSI;
       param_2 = param_2 + unaff_RSI * -4;
@@ -532,30 +520,15 @@ void FUN_1807df69b(int64_t param_1,int64_t param_2,uint64_t param_3,int64_t para
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807dfb97(void)
-void FUN_1807dfb97(void)
-
+// 函数: void SystemCore_dfb97(void)
+void SystemCore_dfb97(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1807dfbe0(float *param_1,float *param_2,uint param_3,int64_t param_4,uint64_t param_5,
-void FUN_1807dfbe0(float *param_1,float *param_2,uint param_3,int64_t param_4,uint64_t param_5,
+// 函数: void SystemCore_dfbe0(float *param_1,float *param_2,uint param_3,int64_t param_4,uint64_t param_5,
+void SystemCore_dfbe0(float *param_1,float *param_2,uint param_3,int64_t param_4,uint64_t param_5,
                   int param_6,int param_7)
-
 {
   float fVar1;
   bool bVar2;
@@ -573,9 +546,8 @@ void FUN_1807dfbe0(float *param_1,float *param_2,uint param_3,int64_t param_4,ui
   uint64_t uVar14;
   int iVar15;
   float afStack_c0 [34];
-  uint64_t auStack_38 [4];
-  
-  auStack_38[0] = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_38;
+  uint64_t stack_array_38 [4];
+  stack_array_38[0] = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_38;
   iVar15 = 0;
   bVar2 = true;
   if (3 < param_6) {
@@ -626,7 +598,7 @@ void FUN_1807dfbe0(float *param_1,float *param_2,uint param_3,int64_t param_4,ui
     } while (uVar14 != 0);
   }
   if (param_7 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(param_2,0,(uint64_t)(param_3 * param_6) << 2);
   }
   uVar10 = param_3 >> 2;
@@ -778,14 +750,7 @@ void FUN_1807dfbe0(float *param_1,float *param_2,uint param_3,int64_t param_4,ui
       param_2 = param_2 + 6;
     }
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(auStack_38[0] ^ (uint64_t)auStack_38);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(stack_array_38[0] ^ (uint64_t)stack_array_38);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

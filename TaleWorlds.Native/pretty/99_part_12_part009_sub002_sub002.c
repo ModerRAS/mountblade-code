@@ -1,16 +1,16 @@
 /**
  * @file 99_part_12_part009_sub002_sub002.c
  * @brief 高级数据处理和系统初始化模块
- * 
+ *
  * 本模块是系统通用功能的一部分，主要负责：
  * - 系统初始化和配置管理
  * - 数据处理和验证
  * - 状态管理和控制
  * - 资源分配和清理
  * - 错误处理和恢复
- * 
+ *
  * 该文件作为通用功能模块的子模块，提供了高级系统功能的核心支持。
- * 
+ *
  * 技术架构说明：
  * 1. 核心函数架构
  *    - SystemInitializer: 系统初始化器，负责系统启动和配置
@@ -20,111 +20,91 @@
  *    - FastStateChecker: 快速状态检查器，检查系统状态
  *    - ErrorCodeReturner: 错误码返回器，返回系统错误码
  *    - ParameterizedDataProcessor: 参数化数据处理器，处理参数化操作
- * 
+ *
  * 2. 内存管理策略
  *    - 使用分块内存分配策略
  *    - 实现内存对齐和优化
  *    - 提供内存池管理和回收机制
  *    - 支持动态内存扩展和收缩
- * 
+ *
  * 3. 状态管理机制
  *    - 多级状态管理架构
  *    - 状态同步和一致性保证
  *    - 异常状态检测和恢复
  *    - 状态持久化和加载机制
- * 
+ *
  * 4. 错误处理策略
  *    - 分层错误处理架构
  *    - 错误码标准化和分类
  *    - 错误恢复和容错机制
  *    - 错误日志和调试支持
- * 
+ *
  * 5. 性能优化措施
  *    - 缓存友好的数据结构设计
  *    - 算法复杂度优化
  *    - 内存访问模式优化
  *    - 并发处理和同步优化
- * 
+ *
  * 6. 安全性考虑
  *    - 输入验证和边界检查
  *    - 内存安全防护
  *    - 权限控制和访问管理
  *    - 数据完整性验证
- * 
+ *
  * @version 1.0
  * @date 2025-08-28
  * @author Claude Code
  */
-
 #include "TaleWorlds.Native.Split.h"
-
 /* ============================================================================
  * 高级数据处理和系统初始化常量定义
  * ============================================================================ */
-
 /**
  * @brief 高级数据处理和系统初始化接口
  * @details 定义高级数据处理和系统初始化的参数和接口函数
- * 
+ *
  * 功能：
  * - 处理系统初始化和配置
  * - 管理数据处理和验证
  * - 控制状态变化和同步
  * - 处理资源分配和清理
  * - 执行错误处理和恢复
- * 
+ *
  * @note 该文件作为通用功能模块的子模块，提供高级系统功能支持
  */
-
 /* ============================================================================
  * 函数别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
-
 // 系统初始化器
-#define SystemInitializer FUN_1807cd0a0
-
+#define SystemInitializer function_7cd0a0
 // 高级数据处理器
-#define AdvancedDataProcessor FUN_1807cd3e0
-
+#define AdvancedDataProcessor function_7cd3e0
 // 简化数据处理器
-#define SimpleDataProcessor FUN_1807cd429
-
+#define SimpleDataProcessor function_7cd429
 // 循环数据处理器
-#define LoopDataProcessor FUN_1807cd453
-
+#define LoopDataProcessor function_7cd453
 // 快速状态检查器
-#define FastStateChecker FUN_1807cd5e5
-
+#define FastStateChecker function_7cd5e5
 // 错误码返回器
-#define ErrorCodeReturner FUN_1807cd620
-
+#define ErrorCodeReturner function_7cd620
 // 参数化数据处理器
-#define ParameterizedDataProcessor FUN_1807cd630
-
+#define ParameterizedDataProcessor function_7cd630
 // 系统资源管理器
-#define SystemResourceManager FUN_1807cd7f0
-
+#define SystemResourceManager function_7cd7f0
 // 高级数据处理协调器
-#define AdvancedDataProcessingCoordinator FUN_1807cd854
-
+#define AdvancedDataProcessingCoordinator function_7cd854
 // 系统状态同步器
-#define SystemStateSynchronizer FUN_1807ce34b
-
+#define SystemStateSynchronizer function_7ce34b
 // 系统配置处理器
-#define SystemConfigurationProcessor FUN_1807ce440
-
+#define SystemConfigurationProcessor function_7ce440
 // 系统错误处理器
-#define SystemErrorHandler FUN_1807ce620
-
+#define SystemErrorHandler function_7ce620
 // 系统清理器
-#define SystemCleaner FUN_1807ce6c8
-
+#define SystemCleaner function_7ce6c8
 // 系统完成处理器
-#define SystemCompletionProcessor FUN_1807cf15c
-
+#define SystemCompletionProcessor function_7cf15c
 // 系统最终处理器
-#define SystemFinalProcessor FUN_1807cf390
-
+#define SystemFinalProcessor function_7cf390
 /* ============================================================================
  * 常量定义
  * ============================================================================ */
@@ -150,11 +130,9 @@
 #define SYSTEM_INVALID_INDEX -1
 #define SYSTEM_MAX_BUFFER_SIZE 0x1000
 #define SYSTEM_ALIGNMENT_SIZE 0x10
-
 /* ============================================================================
  * 类型定义
  * ============================================================================ */
-
 /**
  * @brief 系统上下文结构体
  */
@@ -165,7 +143,6 @@ typedef struct {
     uint32_t error_code;         // 错误代码
     uint8_t data_buffer[0x1000];  // 数据缓冲区
 } SystemContext;
-
 /**
  * @brief 数据处理参数结构体
  */
@@ -178,40 +155,34 @@ typedef struct {
     uint8_t validation_flag;     // 验证标志
     uint8_t reserved[2];         // 保留字段
 } DataProcessParams;
-
 /* ============================================================================
  * 函数实现
  * ============================================================================ */
-
 /**
  * 系统初始化器 - 初始化系统核心组件和配置
- * 
+ *
  * 功能：
  * - 初始化系统核心组件
  * - 配置系统参数和属性
  * - 设置资源管理器
  * - 执行系统完整性检查
- * 
+ *
  * @note 此函数不返回，调用后将进入系统主循环
  */
 void SystemInitializer(void)
-
 {
-  // 调用系统初始化函数（不返回）
+// 调用系统初始化函数（不返回）
   SystemCore_MemoryManager0();
 }
-
-
-
 /**
  * 高级数据处理器 - 处理系统高级数据操作
- * 
+ *
  * 功能：
  * - 处理系统高级数据转换
  * - 管理数据验证和配置
  * - 执行状态同步和更新
  * - 处理资源分配和清理
- * 
+ *
  * @param system_context 系统上下文指针
  * @param operation_data 操作数据
  * @param config_param 配置参数
@@ -219,7 +190,6 @@ void SystemInitializer(void)
  * @return 处理状态码（0表示成功，非0表示错误）
  */
 uint64_t AdvancedDataProcessor(int64_t system_context, uint64_t operation_data, uint config_param, int mode_flag)
-
 {
   char state_flag;
   int8_t validation_flag;
@@ -228,46 +198,39 @@ uint64_t AdvancedDataProcessor(int64_t system_context, uint64_t operation_data, 
   uint64_t data_offset;
   int iteration_count;
   bool is_less_than;
-  
-  // 检查配置模式
+// 检查配置模式
   if (mode_flag == SYSTEM_CONFIG_FLAG_100) {
-    // 执行系统重置和配置
-    FUN_18080d060(system_context, 0);
+// 执行系统重置和配置
+    function_80d060(system_context, 0);
     *(uint *)(system_context + SYSTEM_OFFSET_BFC) = config_param;
     *(uint *)(system_context + SYSTEM_OFFSET_C0C) = config_param;
     return SYSTEM_SUCCESS;
   }
-  
-  // 检查操作模式
+// 检查操作模式
   if (mode_flag != SYSTEM_CONFIG_FLAG_2) {
     return SYSTEM_ERROR_INVALID_CONFIG;
   }
-  
-  // 获取当前缓冲区大小
+// 获取当前缓冲区大小
   current_size = *(uint *)(system_context + SYSTEM_BUFFER_SIZE);
   is_less_than = config_param < current_size;
-  
   if (config_param != current_size) {
     if (is_less_than) {
-      // 重置系统状态
-      FUN_18080d060(system_context, 0);
+// 重置系统状态
+      function_80d060(system_context, 0);
       current_size = *(uint *)(system_context + SYSTEM_BUFFER_SIZE);
     }
-    
-    // 处理数据缓冲区
+// 处理数据缓冲区
     while (current_size < config_param) {
       if (*(int *)(system_context + SYSTEM_OFFSET_BEC) == 0) {
-        // 检查系统状态标志
-        if ((*(char *)(system_context + SYSTEM_OFFSET_BE9) == '\0') || 
+// 检查系统状态标志
+        if ((*(char *)(system_context + SYSTEM_OFFSET_BE9) == '\0') ||
             (*(char *)(system_context + SYSTEM_OFFSET_BEA) != '\0')) {
           current_size = *(uint *)(system_context + SYSTEM_OFFSET_C0C);
           data_offset = (uint64_t)(int)current_size;
-          
           if (-1 < (int)current_size) {
             *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_size;
             state_flag = *(char *)(data_offset + SYSTEM_OFFSET_290 + system_context);
-            
-            // 处理数据状态
+// 处理数据状态
             while (state_flag == SYSTEM_DATA_FLAG_NEG2) {
               uVar4 = (int)uVar5 + 1;
               *(uint *)(system_context + SYSTEM_OFFSET_BFC) = uVar4;
@@ -290,7 +253,7 @@ uint64_t AdvancedDataProcessor(int64_t system_context, uint64_t operation_data, 
             *(int *)(system_context + SYSTEM_OFFSET_BF8) = *(int *)(system_context + SYSTEM_OFFSET_C08);
             *(int32_t *)(system_context + SYSTEM_OFFSET_C08) = 0xffffffff;
           }
-          FUN_1807ce620(system_context, 1);
+          function_7ce620(system_context, 1);
           if (*(int *)(system_context + SYSTEM_OFFSET_C08) == -1) {
             iteration_count = *(int *)(system_context + SYSTEM_OFFSET_BF8) + 1;
             *(int *)(system_context + SYSTEM_OFFSET_C08) = iteration_count;
@@ -311,7 +274,7 @@ uint64_t AdvancedDataProcessor(int64_t system_context, uint64_t operation_data, 
         }
       }
       else {
-        FUN_1807cd7f0(system_context);
+        function_7cd7f0(system_context);
       }
       if (*(int *)(system_context + SYSTEM_OFFSET_BF0) == 0) {
         *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = 1;
@@ -336,23 +299,19 @@ uint64_t AdvancedDataProcessor(int64_t system_context, uint64_t operation_data, 
   }
   return SYSTEM_SUCCESS;
 }
-
-
-
 /**
  * 简化数据处理器 - 处理简化的数据操作和状态管理
- * 
+ *
  * 功能：
  * - 处理简化的数据转换操作
  * - 管理状态检查和验证
  * - 执行基本的内存操作
  * - 处理缓冲区管理
- * 
+ *
  * @param system_context 系统上下文指针
  * @return 处理状态码（0表示成功，非0表示错误）
  */
 uint64_t SimpleDataProcessor(uint64_t system_context)
-
 {
   char state_flag;
   int8_t validation_flag;
@@ -364,11 +323,10 @@ uint64_t SimpleDataProcessor(uint64_t system_context)
   int64_t context_ptr;
   uint target_size;
   bool is_less_than;
-  
   bVar7 = unaff_EDI < in_EAX;
   if (unaff_EDI != in_EAX) {
     if (bVar7) {
-      FUN_18080d060(param_1,0);
+      function_80d060(param_1,0);
       in_EAX = *(uint *)(unaff_RBX + 0x858);
     }
     while (in_EAX < unaff_EDI) {
@@ -401,7 +359,7 @@ uint64_t SimpleDataProcessor(uint64_t system_context)
             *(int *)(unaff_RBX + 0xbf8) = *(int *)(unaff_RBX + 0xc08);
             *(int32_t *)(unaff_RBX + 0xc08) = 0xffffffff;
           }
-          FUN_1807ce620();
+          function_7ce620();
           if (*(int *)(unaff_RBX + 0xc08) == -1) {
             iVar6 = *(int *)(unaff_RBX + 0xbf8) + 1;
             *(int *)(unaff_RBX + 0xc08) = iVar6;
@@ -423,7 +381,7 @@ uint64_t SimpleDataProcessor(uint64_t system_context)
         }
       }
       else {
-        FUN_1807cd7f0();
+        function_7cd7f0();
       }
       if (*(int *)(unaff_RBX + 0xbf0) == 0) {
         *(int8_t *)(unaff_RBX + 0xbe9) = 1;
@@ -449,22 +407,18 @@ uint64_t SimpleDataProcessor(uint64_t system_context)
   }
   return 0;
 }
-
-
-
 /**
  * 循环数据处理器 - 处理循环数据操作和状态管理
- * 
+ *
  * 功能：
  * - 处理循环数据转换操作
  * - 管理状态检查和验证
  * - 执行循环内存操作
  * - 处理缓冲区管理
- * 
+ *
  * @return 处理状态码（0表示成功，非0表示错误）
  */
 uint64_t LoopDataProcessor(void)
-
 {
   char state_flag;
   int8_t validation_flag;
@@ -475,11 +429,10 @@ uint64_t LoopDataProcessor(void)
   int64_t system_context;
   char context_flag;
   uint target_index;
-  
   do {
-    // 检查系统处理状态
+// 检查系统处理状态
     if (*(int *)(system_context + SYSTEM_OFFSET_BEC) == 0) {
-      // 检查系统标志位状态
+// 检查系统标志位状态
       if ((*(char *)(system_context + SYSTEM_OFFSET_BE9) == '\0') || (*(char *)(system_context + SYSTEM_OFFSET_BEA) != '\0')) {
         current_index = *(uint *)(system_context + SYSTEM_OFFSET_C0C);
         data_offset = (uint64_t)(int)current_index;
@@ -530,9 +483,9 @@ uint64_t LoopDataProcessor(void)
       }
     }
     else {
-      FUN_1807cd7f0();
+      function_7cd7f0();
     }
-    // 处理系统状态更新
+// 处理系统状态更新
     if (*(int *)(system_context + SYSTEM_OFFSET_BF0) == 0) {
       *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = 1;
     }
@@ -544,11 +497,10 @@ uint64_t LoopDataProcessor(void)
         *(int32_t *)(system_context + SYSTEM_OFFSET_BEC) = 0;
       }
     }
-    // 更新系统缓冲区大小
+// 更新系统缓冲区大小
     *(int *)(system_context + SYSTEM_BUFFER_SIZE) = *(int *)(system_context + SYSTEM_BUFFER_SIZE) + *(int *)(system_context + SYSTEM_OFFSET_854);
   } while (*(uint *)(system_context + SYSTEM_BUFFER_SIZE) < target_index);
-  
-  // 处理上下文状态恢复
+// 处理上下文状态恢复
   if (context_flag != '\0') {
     validation_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE8);
     processing_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE9);
@@ -558,29 +510,24 @@ uint64_t LoopDataProcessor(void)
   }
   return SYSTEM_SUCCESS;
 }
-
-
-
 /**
  * 快速状态检查器 - 执行快速的状态检查和处理
- * 
+ *
  * 功能：
  * - 检查系统状态标志
  * - 处理状态恢复操作
  * - 执行快速验证
  * - 管理系统上下文
- * 
+ *
  * @return 处理状态码（0表示成功，非0表示错误）
  */
 uint64_t FastStateChecker(void)
-
 {
   int8_t validation_flag;
   int8_t processing_flag;
   int64_t system_context;
   char context_flag;
-  
-  // 检查上下文标志并处理状态恢复
+// 检查上下文标志并处理状态恢复
   if (context_flag != '\0') {
     validation_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE8);
     processing_flag = *(int8_t *)(system_context + SYSTEM_OFFSET_BE9);
@@ -590,51 +537,42 @@ uint64_t FastStateChecker(void)
   }
   return SYSTEM_SUCCESS;
 }
-
-
-
 /**
  * 错误码返回器 - 返回系统错误代码
- * 
+ *
  * 功能：
  * - 返回系统配置错误代码
  * - 提供错误状态指示
  * - 支持错误处理流程
- * 
+ *
  * @return 错误代码（0x13表示配置错误）
  */
 uint64_t ErrorCodeReturner(void)
-
 {
   return SYSTEM_ERROR_INVALID_CONFIG;
 }
-
-
-
 /**
  * 参数化数据处理器 - 处理带参数的数据操作
- * 
+ *
  * 功能：
  * - 处理参数化的数据转换操作
  * - 管理状态检查和验证
  * - 执行参数驱动的内存操作
  * - 处理缓冲区管理
- * 
+ *
  * @param system_context 系统上下文指针
  * @param operation_flag 操作标志
  * @return 处理状态码（0表示成功，非0表示错误）
  */
 uint64_t ParameterizedDataProcessor(int64_t system_context, char operation_flag)
-
 {
   char state_flag;
   uint current_index;
   uint64_t data_offset;
   int iteration_count;
-  
-  // 检查系统处理状态
+// 检查系统处理状态
   if (*(int *)(system_context + SYSTEM_OFFSET_BEC) == 0) {
-    // 检查系统标志位状态
+// 检查系统标志位状态
     if ((*(char *)(system_context + SYSTEM_OFFSET_BE9) == '\0') || (*(char *)(system_context + SYSTEM_OFFSET_BEA) != '\0')) {
       current_index = *(uint *)(system_context + SYSTEM_OFFSET_C0C);
       data_offset = (uint64_t)(int)current_index;
@@ -663,7 +601,7 @@ uint64_t ParameterizedDataProcessor(int64_t system_context, char operation_flag)
         *(int *)(system_context + SYSTEM_OFFSET_BF8) = *(int *)(system_context + SYSTEM_OFFSET_C08);
         *(int32_t *)(system_context + SYSTEM_OFFSET_C08) = 0xffffffff;
       }
-      FUN_1807ce620(system_context, operation_flag);
+      function_7ce620(system_context, operation_flag);
       if (*(int *)(system_context + SYSTEM_OFFSET_C08) == -1) {
         iteration_count = *(int *)(system_context + SYSTEM_OFFSET_BF8) + 1;
         *(int *)(system_context + SYSTEM_OFFSET_C08) = iteration_count;
@@ -684,10 +622,9 @@ uint64_t ParameterizedDataProcessor(int64_t system_context, char operation_flag)
     }
   }
   else if (operation_flag != '\0') {
-    FUN_1807cd7f0();
+    function_7cd7f0();
   }
-  
-  // 处理系统状态更新
+// 处理系统状态更新
   if (*(int *)(system_context + SYSTEM_OFFSET_BF0) == 0) {
     *(int8_t *)(system_context + SYSTEM_OFFSET_BE9) = 1;
   }
@@ -698,29 +635,23 @@ uint64_t ParameterizedDataProcessor(int64_t system_context, char operation_flag)
       *(int32_t *)(system_context + SYSTEM_OFFSET_BEC) = 0;
     }
   }
-  
-  // 更新系统缓冲区大小
+// 更新系统缓冲区大小
   *(int *)(system_context + SYSTEM_BUFFER_SIZE) = *(int *)(system_context + SYSTEM_BUFFER_SIZE) + *(int *)(system_context + SYSTEM_OFFSET_854);
   return SYSTEM_SUCCESS;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 系统资源管理器 - 管理系统资源分配和释放
- * 
+ *
  * 功能：
  * - 管理系统资源分配
  * - 处理资源释放
  * - 执行资源状态检查
- * 
+ *
  * @param system_context 系统上下文指针
  * @return 处理状态码（0表示成功，非0表示错误）
  */
 uint64_t SystemResourceManager(int64_t system_context)
-
 {
   int64_t *plVar1;
   int *piVar2;
@@ -743,10 +674,9 @@ uint64_t SystemResourceManager(int64_t system_context)
   int64_t lVar20;
   int iStackX_18;
   int64_t lStackX_20;
-  void *puStack_68;
+  void *plocal_var_68;
   int64_t lStack_58;
   uint64_t uVar13;
-  
   lVar16 = (int64_t)(*(int *)(param_1 + 0xbf8) * *(int *)(param_1 + 0x3c8)) * 5 +
            *(int64_t *)
             ((uint64_t)*(byte *)((int64_t)*(int *)(param_1 + 0xbfc) + 0x290 + param_1) * 0x10 + 8
@@ -765,18 +695,18 @@ uint64_t SystemResourceManager(int64_t system_context)
         bVar7 = *(byte *)((uint64_t)*(byte *)(lVar5 + 0xd1) + 0x3a0 + lVar20);
         if (bVar7 < 0x10) {
           puVar10 = (void *)((uint64_t)bVar7 * 0x38 + 0x20 + lVar20);
-          puStack_68 = &system_memory_7a80;
+          plocal_var_68 = &system_memory_7a80;
           if (puVar10 != (void *)0x0) {
-            puStack_68 = puVar10;
+            plocal_var_68 = puVar10;
           }
         }
         else {
-          puStack_68 = &system_memory_7a80;
+          plocal_var_68 = &system_memory_7a80;
         }
       }
       else {
         lVar20 = 0x180be7b90;
-        puStack_68 = &system_memory_7a80;
+        plocal_var_68 = &system_memory_7a80;
         system_system_buffer_string = 0;
       }
       uVar3 = *(int8_t *)(lVar16 + 3);
@@ -786,13 +716,13 @@ uint64_t SystemResourceManager(int64_t system_context)
       *(int32_t *)(lStackX_20 + 0x50) = 0;
       *(int8_t *)(lStackX_20 + 0x3c) = 0;
       if (((*(byte *)(lVar20 + 0x400) & 1) != 0) && (*(char *)(lStackX_20 + 0x78) == '\0')) {
-        FUN_1807ccbe0(param_1,lStackX_20 + 100,lStackX_20,*(int8_t *)(lVar20 + 0x401),
+        function_7ccbe0(param_1,lStackX_20 + 100,lStackX_20,*(int8_t *)(lVar20 + 0x401),
                       lVar20 + 0x402,*(byte *)(lVar20 + 0x400),*(int8_t *)(lVar20 + 0x453),
                       *(int8_t *)(lVar20 + 0x454),*(int8_t *)(lVar20 + 0x452),2);
       }
       uVar12 = (uint)(bVar7 >> 4);
       if (((*(byte *)(lVar20 + 0x457) & 1) != 0) && (*(char *)(lStackX_20 + 0x90) == '\0')) {
-        FUN_1807ccbe0(param_1,lStackX_20 + 0x7c,lStackX_20,*(int8_t *)(lVar20 + 0x458),
+        function_7ccbe0(param_1,lStackX_20 + 0x7c,lStackX_20,*(int8_t *)(lVar20 + 0x458),
                       lVar20 + 0x45a,*(byte *)(lVar20 + 0x457),*(int8_t *)(lVar20 + 0x4ab),
                       *(int8_t *)(lVar20 + 0x4ac),*(int8_t *)(lVar20 + 0x4aa),4);
       }
@@ -824,7 +754,7 @@ uint64_t SystemResourceManager(int64_t system_context)
           break;
         case 0xb:
           *(byte *)(lVar5 + 0x108) = bVar7 & 0xf;
-          func_0x0001807cf230(lVar5);
+          Function_8b81fedc(lVar5);
           *(char *)(lVar5 + 0x106) = *(char *)(lVar5 + 0x106) + *(char *)(lVar5 + 0x107);
           if ('\x1f' < *(char *)(lVar5 + 0x106)) {
             *(char *)(lVar5 + 0x106) = *(char *)(lVar5 + 0x106) + -0x40;
@@ -871,7 +801,7 @@ uint64_t SystemResourceManager(int64_t system_context)
               uVar18 = (uint64_t)*(byte *)(lVar5 + 0xd3);
               uVar12 = uVar12 + *(byte *)(lVar5 + 0xd3);
               uVar13 = (uint64_t)uVar12;
-              iVar11 = *(int *)(puStack_68 + 0x1c);
+              iVar11 = *(int *)(plocal_var_68 + 0x1c);
               iVar17 = *(int *)(uVar13 * 4 + 0x180be7620);
               if ((iVar11 < 0) && (uVar12 != 0)) {
                 iVar8 = iVar17 - *(int *)(uVar13 * 4 + 0x180be761c);
@@ -901,7 +831,7 @@ code_r0x0001807cdc32:
               uVar18 = (uint64_t)*(byte *)(lVar5 + 0xd3);
               uVar12 = (uint)bVar19 + (uint)*(byte *)(lVar5 + 0xd3);
               uVar13 = (uint64_t)uVar12;
-              iVar11 = *(int *)(puStack_68 + 0x1c);
+              iVar11 = *(int *)(plocal_var_68 + 0x1c);
               iVar17 = *(int *)(uVar13 * 4 + 0x180be7620);
               if ((-1 < iVar11) || (uVar12 == 0)) goto code_r0x0001807cdc27;
               iVar8 = iVar17 - *(int *)(uVar13 * 4 + 0x180be761c);
@@ -933,10 +863,10 @@ code_r0x0001807cdce3:
         break;
       case 3:
         *(int32_t *)(lStackX_20 + 0x50) = 0;
-        func_0x0001807ccb80(lVar5);
+        SystemFunction_0001807ccb80(lVar5);
         break;
       case 4:
-        func_0x0001807cf230(lVar5);
+        Function_8b81fedc(lVar5);
         *(char *)(lVar5 + 0x106) = *(char *)(lVar5 + 0x106) + *(char *)(lVar5 + 0x107);
         if ('\x1f' < *(char *)(lVar5 + 0x106)) {
           *(char *)(lVar5 + 0x106) = *(char *)(lVar5 + 0x106) + -0x40;
@@ -944,7 +874,7 @@ code_r0x0001807cdce3:
         goto code_r0x0001807ce2c1;
       case 5:
         *(int32_t *)(lStackX_20 + 0x50) = 0;
-        func_0x0001807ccb80(lVar5);
+        SystemFunction_0001807ccb80(lVar5);
         bVar7 = *(byte *)(lVar5 + 0xf9);
         if (bVar7 >> 4 == 0) {
           if (((bVar7 & 0xf) != 0) &&
@@ -962,7 +892,7 @@ code_r0x0001807cddae:
         }
         goto code_r0x0001807ce2b1;
       case 6:
-        func_0x0001807cf230(lVar5);
+        Function_8b81fedc(lVar5);
         *(char *)(lVar5 + 0x106) = *(char *)(lVar5 + 0x106) + *(char *)(lVar5 + 0x107);
         if ('\x1f' < *(char *)(lVar5 + 0x106)) {
           *(char *)(lVar5 + 0x106) = *(char *)(lVar5 + 0x106) + -0x40;
@@ -1050,12 +980,12 @@ code_r0x0001807cdea1:
             if (uVar12 == 0xd) {
               if (*(uint *)(param_1 + 0xbec) == (uint)bVar19) {
                 if (lStackX_20 == 0x180be7ac0) {
-                  FUN_18080d590(param_1,lVar5,puStack_68,&lStackX_20);
+                  function_80d590(param_1,lVar5,plocal_var_68,&lStackX_20);
                 }
                 *(int32_t *)(lStackX_20 + 0x40) = *(int32_t *)(lVar5 + 0xd4);
                 *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 1;
                 *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 8;
-                FUN_1807ccd60(param_1,lVar16,lVar5,lStackX_20,lVar20,puStack_68);
+                function_7ccd60(param_1,lVar16,lVar5,lStackX_20,lVar20,plocal_var_68);
                 goto code_r0x0001807ce2c1;
               }
               *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) & 0xfd;
@@ -1185,9 +1115,9 @@ code_r0x0001807ce2b1:
         *(byte *)(lStackX_20 + 0x3c) = *(byte *)(lStackX_20 + 0x3c) | 2;
       }
 code_r0x0001807ce2c1:
-      func_0x0001807cb410(lVar5,lVar20);
+      Function_0fcddbf0(lVar5,lVar20);
       if (((int64_t *)*plVar1 != plVar1) || (*(int64_t **)(lVar5 + 0x10) != plVar1)) {
-        FUN_1807ce440(param_1,lVar5,(int64_t *)*plVar1,puStack_68);
+        function_7ce440(param_1,lVar5,(int64_t *)*plVar1,plocal_var_68);
       }
       iStackX_18 = iStackX_18 + 1;
       lStack_58 = lStack_58 + 1;
@@ -1196,20 +1126,16 @@ code_r0x0001807ce2c1:
   }
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 高级数据处理协调器 - 负责协调和管理复杂的数据处理操作
  * 这是一个核心函数，用于处理多种数据类型和操作模式
- * 
+ *
  * @param param_1 系统上下文指针
  * @param param_2 数据块指针
  * @param param_3 处理参数和选项
  * @return 处理状态码，0表示成功
- * 
+ *
  * 功能说明：
  * - 根据不同的操作类型执行相应的数据处理
  * - 管理系统状态和资源分配
@@ -1217,7 +1143,6 @@ code_r0x0001807ce2c1:
  * - 维护系统同步和错误处理
  */
 uint64_t AdvancedDataProcessingCoordinator(uint64_t system_context, uint64_t data_block, uint64_t processing_params)
-
 {
   /* 系统状态和资源管理变量 */
   int64_t *data_processor_ptr;
@@ -1251,7 +1176,6 @@ uint64_t AdvancedDataProcessingCoordinator(uint64_t system_context, uint64_t dat
   int64_t unaff_R14;
   uint64_t unaff_R15;
   int64_t calculation_result;
-  
   /* 保存寄存器状态并初始化处理参数 */
   *(uint64_t *)(in_R11 + -0x20) = saved_registers[0];
   *(uint64_t *)(in_R11 + -0x28) = saved_registers[1];
@@ -1267,7 +1191,6 @@ uint64_t AdvancedDataProcessingCoordinator(uint64_t system_context, uint64_t dat
     data_processor_ptr = (int64_t *)(system_state + 8);
     *(uint64_t *)(unaff_RBP + 0x7f) = processing_params;
     context_ptr = (int64_t *)*data_processor_ptr;
-    
     /* 检查是否使用默认处理器 */
     if ((context_ptr == data_processor_ptr) && (*(int64_t **)(system_state + 0x10) == data_processor_ptr)) {
       context_ptr = (int64_t *)0x180be7ac0; /* 默认系统处理器 */
@@ -1278,7 +1201,6 @@ uint64_t AdvancedDataProcessingCoordinator(uint64_t system_context, uint64_t dat
       /* 计算资源偏移地址 */
       calculation_result = (uint64_t)*(byte *)(system_state + 0xd0) * 0x618 + *(int64_t *)(unaff_R14 + 0x900);
       control_byte = *(byte *)((uint64_t)*(byte *)(system_state + 0xd1) + 0x3a0 + calculation_result);
-      
       /* 根据控制字节选择配置数据 */
       if (control_byte < 0x10) {
         configuration_data = (void *)((uint64_t)control_byte * 0x38 + 0x20 + calculation_result);
@@ -1306,23 +1228,20 @@ uint64_t AdvancedDataProcessingCoordinator(uint64_t system_context, uint64_t dat
     control_byte = control_byte >> 4; /* 高4位控制标志 */
     iteration_count = (uint)control_byte;
     *(byte *)(unaff_RBP + 0x67) = control_byte;
-    
     /* 设置处理参数和状态 */
     *(int *)(*(int64_t *)(unaff_RBP + 0x7f) + 0x50) = (int)processing_params;
     *(int8_t *)(*(int64_t *)(unaff_RBP + 0x7f) + 0x3c) = 0; /* 清除状态标志 */
     timing_info = *(int64_t *)(unaff_RBP + 0x7f);
     /* 系统状态检查和处理 */
     if (((*(byte *)(calculation_result + 0x400) & 1) != 0) && (*(char *)(timing_info + 0x78) == '\0')) {
-      FUN_1807ccbe0(); /* 初始化系统状态 */
+      function_7ccbe0(); /* 初始化系统状态 */
       timing_info = *(int64_t *)(unaff_RBP + 0x7f);
       iteration_count = (uint)*(byte *)(unaff_RBP + 0x67);
     }
-    
     if (((*(byte *)(calculation_result + 0x457) & 1) != 0) && (*(char *)(timing_info + 0x90) == '\0')) {
-      FUN_1807ccbe0(); /* 初始化第二个系统状态 */
+      function_7ccbe0(); /* 初始化第二个系统状态 */
       timing_info = *(int64_t *)(unaff_RBP + 0x7f);
     }
-    
     /* 处理缓冲区计数器 */
     if (*(char *)(timing_info + 0xbc) != '\0') {
       *(int *)(timing_info + 0xb0) = *(int *)(timing_info + 0xb0) - (uint)*(ushort *)(calculation_result + 0x50c);
@@ -1349,7 +1268,6 @@ uint64_t AdvancedDataProcessingCoordinator(uint64_t system_context, uint64_t dat
         }
         *(byte *)(timing_info + 0x3c) = *(byte *)(timing_info + 0x3c) | 2; /* 设置状态标志 */
         break;
-        
       case 7: /* 增加处理模式 */
         *(int *)(timing_info + 0x44) = *(int *)(timing_info + 0x44) + (data_word & 0xf);
         timing_info = *(int64_t *)(unaff_RBP + 0x7f);
@@ -1359,32 +1277,27 @@ uint64_t AdvancedDataProcessingCoordinator(uint64_t system_context, uint64_t dat
         }
         *(byte *)(timing_info + 0x3c) = *(byte *)(timing_info + 0x3c) | 2; /* 设置状态标志 */
         break;
-        
       default:
         goto LAB_1807cdb80; /* 跳转到默认处理 */
-        
       case 0xb: /* 特殊处理模式B */
         *(byte *)(system_state + 0x108) = control_byte & 0xf;
-        func_0x0001807cf230(system_state); /* 执行特殊处理函数 */
+        Function_8b81fedc(system_state); /* 执行特殊处理函数 */
         *(char *)(system_state + 0x106) = *(char *)(system_state + 0x106) + *(char *)(system_state + 0x107);
         stack_data = *(int64_t *)(unaff_RBP + -1);
         if ('\x1f' < *(char *)(system_state + 0x106)) {
           *(char *)(system_state + 0x106) = *(char *)(system_state + 0x106) + -0x40; /* 循环处理 */
         }
         break;
-        
       case 0xd: /* 减少音量模式 */
         *(int *)(timing_info + 0x48) = *(int *)(timing_info + 0x48) - (data_word & 0xf);
         status_flags = (byte *)(*(int64_t *)(unaff_RBP + 0x7f) + 0x3c);
         *status_flags = *status_flags | 4; /* 设置音量状态标志 */
         break;
-        
       case 0xe: /* 增加音量模式 */
         *(int *)(timing_info + 0x48) = *(int *)(timing_info + 0x48) + (control_byte & 0xf);
         status_flags = (byte *)(*(int64_t *)(unaff_RBP + 0x7f) + 0x3c);
         *status_flags = *status_flags | 4; /* 设置音量状态标志 */
         break;
-        
       case 0xf: /* 频率处理模式 */
         timing_info = *data_processor_ptr;
         processing_mode = *(int *)(timing_info + 0x40);
@@ -1488,10 +1401,10 @@ code_r0x0001807cdce3:
       break;
     case 3:
       *(int32_t *)(lVar11 + 0x50) = 0;
-      func_0x0001807ccb80(lVar6);
+      SystemFunction_0001807ccb80(lVar6);
       break;
     case 4:
-      func_0x0001807cf230(lVar6);
+      Function_8b81fedc(lVar6);
       *(char *)(lVar6 + 0x106) = *(char *)(lVar6 + 0x106) + *(char *)(lVar6 + 0x107);
       lVar11 = *(int64_t *)(unaff_RBP + -1);
       if ('\x1f' < *(char *)(lVar6 + 0x106)) {
@@ -1500,7 +1413,7 @@ code_r0x0001807cdce3:
       goto code_r0x0001807ce2c1;
     case 5:
       *(int32_t *)(lVar11 + 0x50) = 0;
-      func_0x0001807ccb80(lVar6);
+      SystemFunction_0001807ccb80(lVar6);
       bVar18 = *(byte *)(lVar6 + 0xf9);
       if (bVar18 >> 4 == 0) {
         if ((bVar18 & 0xf) != 0) {
@@ -1521,7 +1434,7 @@ code_r0x0001807cddae:
       }
       goto code_r0x0001807ce2b1;
     case 6:
-      func_0x0001807cf230(lVar6);
+      Function_8b81fedc(lVar6);
       *(char *)(lVar6 + 0x106) = *(char *)(lVar6 + 0x106) + *(char *)(lVar6 + 0x107);
       if ('\x1f' < *(char *)(lVar6 + 0x106)) {
         *(char *)(lVar6 + 0x106) = *(char *)(lVar6 + 0x106) + -0x40;
@@ -1618,7 +1531,7 @@ code_r0x0001807cdea1:
           if (uVar12 == 0xd) {
             if (*(uint *)(unaff_R14 + 0xbec) == (uint)bVar22) {
               if (lVar11 == 0x180be7ac0) {
-                FUN_18080d590();
+                function_80d590();
                 lVar11 = *(int64_t *)(unaff_RBP + 0x7f);
               }
               *(int32_t *)(lVar11 + 0x40) = *(int32_t *)(lVar6 + 0xd4);
@@ -1627,7 +1540,7 @@ code_r0x0001807cdea1:
               *pbVar2 = *pbVar2 | 1;
               pbVar2 = (byte *)(*(int64_t *)(unaff_RBP + 0x7f) + 0x3c);
               *pbVar2 = *pbVar2 | 8;
-              FUN_1807ccd60();
+              function_7ccd60();
               goto code_r0x0001807ce2c1;
             }
             *(byte *)(lVar11 + 0x3c) = *(byte *)(lVar11 + 0x3c) & 0xfd;
@@ -1777,9 +1690,9 @@ code_r0x0001807ce2b1:
 code_r0x0001807ce2bd:
     lVar11 = *(int64_t *)(unaff_RBP + -1);
 code_r0x0001807ce2c1:
-    func_0x0001807cb410(lVar6,lVar23);
+    Function_0fcddbf0(lVar6,lVar23);
     if (((int64_t *)*plVar1 != plVar1) || (*(int64_t **)(lVar6 + 0x10) != plVar1)) {
-      FUN_1807ce440();
+      function_7ce440();
     }
     iVar9 = *(int *)(unaff_RBP + 0x77) + 1;
     uVar14 = *(int64_t *)(unaff_RBP + 7) + 1;
@@ -1793,15 +1706,12 @@ code_r0x0001807ce2c1:
     }
   } while( true );
 }
-
-
-
 /**
  * 系统状态同步器 - 负责同步系统各个组件的状态
  * 这是一个简化版本的同步器，当前只返回成功状态
- * 
+ *
  * @return 返回0表示同步成功
- * 
+ *
  * 功能说明：
  * - 在未来的实现中，这个函数将负责：
  * - 检查各个系统组件的状态一致性
@@ -1810,29 +1720,24 @@ code_r0x0001807ce2c1:
  * - 确保系统整体的稳定性
  */
 uint64_t SystemStateSynchronizer(void)
-
 {
   /* 系统状态同步器完整实现 */
   SystemContext *system_ctx = (SystemContext *)0x7fffffffffff;  // 系统上下文指针
   uint32_t sync_status = 0;
   uint32_t component_count = 0;
   uint32_t synced_components = 0;
-  
   /* 检查系统上下文有效性 */
   if (system_ctx == NULL) {
     return SYSTEM_INVALID_INDEX;
   }
-  
   /* 获取系统组件数量 */
   component_count = system_ctx->buffer_size / sizeof(uint32_t);
   if (component_count == 0) {
     return 0;  // 无组件需要同步
   }
-  
   /* 遍历所有组件进行状态同步 */
   for (uint32_t i = 0; i < component_count; i++) {
     uint32_t component_state = *(uint32_t *)(system_ctx->data_buffer + i * sizeof(uint32_t));
-    
     /* 检查组件状态是否需要同步 */
     if (component_state & SYSTEM_STATE_ACTIVE) {
       /* 执行状态同步操作 */
@@ -1844,7 +1749,6 @@ uint64_t SystemStateSynchronizer(void)
         synced_components++;
       }
     }
-    
     /* 处理错误状态 */
     if (component_state & SYSTEM_STATE_ERROR) {
       /* 尝试恢复错误组件 */
@@ -1854,13 +1758,11 @@ uint64_t SystemStateSynchronizer(void)
       synced_components++;
     }
   }
-  
   /* 更新系统状态 */
   if (synced_components > 0) {
     system_ctx->state_flag |= SYSTEM_STATE_ACTIVE;
     system_ctx->state_flag &= ~SYSTEM_STATE_ERROR;
   }
-  
   /* 验证同步结果 */
   uint32_t final_check = 0;
   for (uint32_t i = 0; i < component_count; i++) {
@@ -1869,30 +1771,25 @@ uint64_t SystemStateSynchronizer(void)
       final_check++;
     }
   }
-  
   /* 如果仍有错误组件，返回错误代码 */
   if (final_check > 0) {
     system_ctx->error_code = SYSTEM_ERROR_INVALID_CONFIG;
     return SYSTEM_ERROR_INVALID_CONFIG;
   }
-  
   /* 同步成功 */
   system_ctx->error_code = SYSTEM_SUCCESS;
   return SYSTEM_SUCCESS;
 }
-
-
-
 /**
  * 系统配置处理器 - 负责处理和更新系统配置信息
  * 这个函数根据当前系统状态来更新各种配置参数
- * 
+ *
  * @param param_1 系统上下文指针
  * @param param_2 配置数据指针
  * @param param_3 状态对象指针
  * @param param_4 处理器句柄
  * @return 处理状态码，0表示成功
- * 
+ *
  * 功能说明：
  * - 检查和更新系统配置状态
  * - 处理音量、频率、音调等音频参数
@@ -1900,7 +1797,6 @@ uint64_t SystemStateSynchronizer(void)
  * - 调用相应的系统回调函数
  */
 uint64_t SystemConfigurationProcessor(int64_t system_context, int64_t config_data, int64_t state_object, uint64_t processor_handle)
-
 {
   int64_t *processor_ptr;
   int32_t calculation_result;
@@ -1914,28 +1810,23 @@ uint64_t SystemConfigurationProcessor(int64_t system_context, int64_t config_dat
   int8_t temp_buffer3 [16];
   int8_t temp_buffer4 [16];
   int32_t temp_result;
-  
   /* 初始化操作状态 */
   operation_status[0] = '\0';
   status_flags = *(byte *)(state_object + 0x3c);
-  
   /* 检查处理状态，如果为空则清除相关标志 */
   if (*(int )(state_object + 0x40) + *(int )(state_object + 0x50) == 0) {
     status_flags = status_flags & 0xfe; /* 清除处理标志 */
     *(byte *)(state_object + 0x3c) = status_flags;
   }
-  
   /* 处理系统状态更新请求 */
   if ((status_flags & 8) != 0) {
-    FUN_18080d310(system_context, processor_handle, state_object, 0, 0);
+    function_80d310(system_context, processor_handle, state_object, 0, 0);
   }
-  
   /* 获取处理器指针并执行回调 */
   processor_ptr = *(int64_t **)(state_object + 0x20);
   if (processor_ptr != (int64_t *)0x0) {
     (**(code **)(*processor_ptr + 0xa8))(processor_ptr, operation_status);
   }
-  
   /* 根据操作状态进行相应处理 */
   if (operation_status[0] != '\0') {
     status_flags = *(byte *)(state_object + 0x3c);
@@ -1948,7 +1839,6 @@ uint64_t SystemConfigurationProcessor(int64_t system_context, int64_t config_dat
                  (float)*(int )(system_context + 0xbe0) * 2.910383e-11 * *(float *)(config_data + 0xf0), 0);
       status_flags = *(byte *)(state_object + 0x3c);
     }
-    
     /* 处理音量参数更新（标志位4） */
     if ((status_flags & 4) != 0) {
       (**(code **)(**(int64_t **)(state_object + 0x20) + 0xb0))
@@ -1957,14 +1847,12 @@ uint64_t SystemConfigurationProcessor(int64_t system_context, int64_t config_dat
                  0.007874016); /* 音量标准化系数 */
       status_flags = *(byte *)(state_object + 0x3c);
     }
-    
     /* 处理频率参数更新（标志位1） */
     if ((status_flags & 1) != 0) {
       parameter_value = *(int )(state_object + 0x40) + *(int )(state_object + 0x50);
       if (parameter_value < 1) {
         parameter_value = 1; /* 确保最小值 */
       }
-      
       /* 如果启用了高级音频处理 */
       if ((*(byte )(system_context + 0xbe6) & 1) != 0) {
         calculation_result = powf(parameter_value, (4608.0 - (float)parameter_value) * 0.0013020834);
@@ -1983,34 +1871,27 @@ uint64_t SystemConfigurationProcessor(int64_t system_context, int64_t config_dat
           movmskps(calculation_result, temp_buffer1);
         }
       }
-      
       /* 应用音频处理 */
-      FUN_180757470(*(uint64_t *)(state_object + 0x20));
+      function_757470(*(uint64_t *)(state_object + 0x20));
       status_flags = *(byte )(state_object + 0x3c);
     }
-    
     /* 处理高级音频特性（标志位32） */
     if ((status_flags & 0x20) != 0) {
       UIComponent_Renderer(*(uint64_t )(state_object + 0x20), 0x80); /* 启用高级音频模式 */
       *(int32_t )(state_object + 0x58) = 0; /* 重置高级参数 */
     }
   }
-  
   return 0; /* 返回成功状态 */
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 系统错误处理器 - 负责处理系统运行中的各种错误和异常情况
  * 这个函数处理多种错误类型并提供相应的恢复机制
- * 
+ *
  * @param param_1 系统上下文指针
  * @param param_2 错误处理标志，决定处理方式
  * @return 处理状态码，0表示成功
- * 
+ *
  * 功能说明：
  * - 初始化错误处理系统
  * - 检查和处理各种错误条件
@@ -2019,7 +1900,6 @@ uint64_t SystemConfigurationProcessor(int64_t system_context, int64_t config_dat
  * - 处理音频相关的错误
  */
 uint64_t SystemErrorHandler(int64_t system_context, char error_flag)
-
 {
   /* 错误处理相关的变量 */
   int64_t *error_processor;
@@ -2049,7 +1929,6 @@ uint64_t SystemErrorHandler(int64_t system_context, char error_flag)
   void *resource_handle;
   int64_t loop_counter;
   uint64_t temp_ulong;
-  
   /* 初始化错误处理状态 */
   recovery_needed = false;
   total_errors = *(int )(system_context + 0x3c8);
@@ -2057,7 +1936,6 @@ uint64_t SystemErrorHandler(int64_t system_context, char error_flag)
                     *(int64_t *)
                      ((uint64_t)*(byte *)((int64_t)*(int )(system_context + 0xbfc) + 0x290 + system_context) *
                       0x10 + 8 + *(int64_t )(system_context + 0x278)));
-  
   /* 检查系统数据是否有效 */
   if (system_data != (char *)0x0) {
     /* 检查错误标志是否已设置 */
@@ -2083,13 +1961,11 @@ uint64_t SystemErrorHandler(int64_t system_context, char error_flag)
         context_data = *error_processor;
         sub_error_code = error_type & 0xf;
         severity_level = error_type >> 4;
-        
         /* 检查是否需要特殊处理 */
         if (((int64_t *)context_data == error_processor) && (*(int64_t **)(error_context + 0x10) == error_processor)) {
           system_system_buffer_string = &system_memory_7a80;
           context_data = 0x180be7ac0; /* 默认错误处理器 */
         }
-        
         /* 确定错误类型 */
         if ((system_data[3] - 3U & 0xfd) == 0) {
           error_detected = true;
@@ -2100,7 +1976,6 @@ uint64_t SystemErrorHandler(int64_t system_context, char error_flag)
         else {
           error_detected = false;
         }
-        
         /* 处理错误代码 */
         if ((system_data[1] != '\0') && (!error_detected)) {
           *(char )(error_context + 0xd0) = system_data[1] + -1;
@@ -2138,15 +2013,15 @@ uint64_t SystemErrorHandler(int64_t system_context, char error_flag)
         *(int8_t *)(lStack_68 + 0x3c) = 0;
         if ((byte)(*pcVar22 - 1U) < 0xfe) {
           if (lStack_68 == 0x180be7ac0) {
-            FUN_18080d590(param_1,lVar4,puStack_60,&lStack_68);
+            function_80d590(param_1,lVar4,plocal_var_60,&lStack_68);
           }
           if (lStack_68 == 0) {
             lStack_68 = 0x180be7ac0;
             system_system_buffer_string = &system_memory_7a80;
           }
-          bVar9 = puStack_60[0x18] + -1 + *pcVar22;
+          bVar9 = plocal_var_60[0x18] + -1 + *pcVar22;
           *(byte *)(lVar4 + 0xd3) = bVar9;
-          iVar20 = *(int *)(puStack_60 + 0x1c);
+          iVar20 = *(int *)(plocal_var_60 + 0x1c);
           if ((*(byte *)(param_1 + 0xbe6) & 1) == 0) {
             uVar19 = (uint64_t)bVar9;
             iVar13 = *(int *)(uVar19 * 4 + 0x180be7620);
@@ -2171,7 +2046,7 @@ uint64_t SystemErrorHandler(int64_t system_context, char error_flag)
         *(int32_t *)(lStack_68 + 0x50) = 0;
         *(byte *)(lStack_68 + 0x3c) = *(byte *)(lStack_68 + 0x3c) | 1;
         *(byte *)(lStack_68 + 0x3c) = *(byte *)(lStack_68 + 0x3c) | 2;
-        FUN_1807ccd60(param_1,pcVar22,lVar4,lStack_68,lStack_70,puStack_60);
+        function_7ccd60(param_1,pcVar22,lVar4,lStack_68,lStack_70,plocal_var_60);
         switch(pcVar22[3]) {
         case '\x01':
           if (pcVar22[4] != '\0') {
@@ -2196,7 +2071,7 @@ uint64_t SystemErrorHandler(int64_t system_context, char error_flag)
           if (bVar17 != 0) {
             *(byte *)(lVar4 + 0x108) = bVar17;
           }
-          func_0x0001807cf230(lVar4);
+          Function_8b81fedc(lVar4);
           goto LAB_1807cf0c5;
         case '\x05':
           *(int32_t *)(lVar4 + 0x100) = *(int32_t *)(lVar4 + 0xd4);
@@ -2213,7 +2088,7 @@ code_r0x0001807ce9f4:
           if (pcVar22[4] != '\0') {
             *(char *)(lVar4 + 0xf9) = pcVar22[4];
           }
-          func_0x0001807cf230(lVar4);
+          Function_8b81fedc(lVar4);
           goto LAB_1807cf0c5;
         case '\a':
           if (bVar10 >> 4 != 0) {
@@ -2236,7 +2111,7 @@ code_r0x0001807ce9f4:
             uVar15 = (uint)bVar10;
             *(uint *)(lVar4 + 0xe8) = (uint)bVar10;
           }
-          if (uVar15 << 8 < (uint)(*(int *)(puStack_60 + 0x14) + *(int *)(puStack_60 + 0x10))) {
+          if (uVar15 << 8 < (uint)(*(int *)(plocal_var_60 + 0x14) + *(int *)(plocal_var_60 + 0x10))) {
             *(uint *)(lStack_68 + 0x58) = uVar15 << 8;
           }
           else {
@@ -2308,7 +2183,7 @@ code_r0x0001807cf0be:
             *(byte *)(lVar4 + 0x126) = *(byte *)(lVar4 + 0x126) | bVar17;
             break;
           case 5:
-            *(uint *)(puStack_60 + 0x1c) = (uint)bVar17;
+            *(uint *)(plocal_var_60 + 0x1c) = (uint)bVar17;
             goto code_r0x0001807cf0cd;
           case 6:
             if (bVar17 == 0) {
@@ -2384,7 +2259,7 @@ code_r0x0001807cf0be:
         case '\x0f':
           bVar10 = pcVar22[4];
           if (0x1f < bVar10) {
-            func_0x00018080d4a0(param_1,bVar10);
+            Function_3f2a4ceb(param_1,bVar10);
             goto LAB_1807cf0c5;
           }
           if (bVar10 != 0) {
@@ -2512,12 +2387,12 @@ code_r0x0001807cf0be:
 LAB_1807cf0c5:
         }
 code_r0x0001807cf0cd:
-        puVar8 = puStack_60;
-        func_0x0001807cb410(lVar4,lStack_70);
+        puVar8 = plocal_var_60;
+        Function_0fcddbf0(lVar4,lStack_70);
         if (param_2 != '\0') {
           if ((*(int64_t *)(lVar4 + 8) != lVar4 + 8) || (*(int64_t *)(lVar4 + 0x10) != lVar4 + 8))
           {
-            FUN_1807ce440(param_1,lVar4,*(int64_t *)(lVar4 + 8),puVar8);
+            function_7ce440(param_1,lVar4,*(int64_t *)(lVar4 + 8),puVar8);
           }
         }
         iStackX_18 = iStackX_18 + 1;
@@ -2528,17 +2403,13 @@ code_r0x0001807cf0cd:
   }
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 系统清理器 - 负责清理系统资源和管理内存释放
  * 这个函数确保系统资源的正确释放和内存的合理使用
- * 
+ *
  * @return 清理状态码，0表示成功
- * 
+ *
  * 功能说明：
  * - 清理不再使用的系统资源
  * - 释放内存和句柄
@@ -2547,7 +2418,6 @@ code_r0x0001807cf0cd:
  * - 确保系统稳定性
  */
 uint64_t SystemCleaner(void)
-
 {
   /* 清理相关的变量 */
   int64_t *resource_ptr;
@@ -2577,7 +2447,6 @@ uint64_t SystemCleaner(void)
   char *system_data;
   char operation_mode;
   uint64_t temp_ulong;
-  
   uVar12 = in_R11 & 0xffffffff;
   *(uint64_t *)(unaff_RBP + 7) = uVar12;
   do {
@@ -2646,7 +2515,7 @@ uint64_t SystemCleaner(void)
     if ((byte)(*unaff_R14 - 1U) < 0xfe) {
       lVar19 = *(int64_t *)(unaff_RBP + -9);
       if (lVar19 == 0x180be7ac0) {
-        FUN_18080d590();
+        function_80d590();
         lVar19 = *(int64_t *)(unaff_RBP + -9);
         in_R11 = 0;
       }
@@ -2684,7 +2553,7 @@ uint64_t SystemCleaner(void)
     *pbVar2 = *pbVar2 | 1;
     pbVar2 = (byte *)(*(int64_t *)(unaff_RBP + -9) + 0x3c);
     *pbVar2 = *pbVar2 | 2;
-    FUN_1807ccd60();
+    function_7ccd60();
     switch(unaff_R14[3]) {
     case '\x01':
       lVar19 = *(int64_t *)(unaff_RBP + -0x11);
@@ -2711,7 +2580,7 @@ uint64_t SystemCleaner(void)
       if (bVar18 != 0) {
         *(byte *)(lVar6 + 0x108) = bVar18;
       }
-      func_0x0001807cf230(lVar6);
+      Function_8b81fedc(lVar6);
       goto LAB_1807cf0c5;
     case '\x05':
       *(int32_t *)(lVar6 + 0x100) = *(int32_t *)(lVar6 + 0xd4);
@@ -2730,7 +2599,7 @@ code_r0x0001807ce9f4:
       if (unaff_R14[4] != '\0') {
         *(char *)(lVar6 + 0xf9) = unaff_R14[4];
       }
-      func_0x0001807cf230(lVar6);
+      Function_8b81fedc(lVar6);
       goto LAB_1807cf0c5;
     case '\a':
       if (bVar9 >> 4 != 0) {
@@ -2926,7 +2795,7 @@ code_r0x0001807cf0be:
     case '\x0f':
       bVar9 = unaff_R14[4];
       if (0x1f < bVar9) {
-        func_0x00018080d4a0();
+        Function_3f2a4ceb();
         goto LAB_1807cf0c5;
       }
       lVar19 = *(int64_t *)(unaff_RBP + -0x11);
@@ -3073,10 +2942,10 @@ LAB_1807cf0c5:
       lVar19 = *(int64_t *)(unaff_RBP + -0x11);
     }
 code_r0x0001807cf0cd:
-    func_0x0001807cb410(lVar6,lVar19);
+    Function_0fcddbf0(lVar6,lVar19);
     if ((*(char *)(unaff_RBP + 0x6f) != '\0') &&
        ((*(int64_t *)(lVar6 + 8) != lVar6 + 8 || (*(int64_t *)(lVar6 + 0x10) != lVar6 + 8)))) {
-      FUN_1807ce440();
+      function_7ce440();
     }
     iVar14 = *(int *)(unaff_RBP + 0x77) + 1;
     uVar12 = *(int64_t *)(unaff_RBP + 7) + 1;
@@ -3089,15 +2958,12 @@ code_r0x0001807cf0cd:
     }
   } while( true );
 }
-
-
-
 /**
  * 系统完成处理器 - 负责处理系统操作的完成状态
  * 这是一个简化版本的完成处理器，当前只返回成功状态
- * 
+ *
  * @return 返回0表示操作成功完成
- * 
+ *
  * 功能说明：
  * - 在未来的实现中，这个函数将负责：
  * - 验证系统操作的完整性
@@ -3106,19 +2972,16 @@ code_r0x0001807cf0cd:
  * - 通知相关组件操作已完成
  */
 uint64_t SystemCompletionProcessor(void)
-
 {
   /* 系统完成处理器完整实现 */
   SystemContext *system_ctx = (SystemContext *)0x7fffffffffff;  // 系统上下文指针
   uint32_t completion_status = 0;
   uint32_t cleanup_count = 0;
   uint32_t report_size = 0;
-  
   /* 检查系统上下文有效性 */
   if (system_ctx == NULL) {
     return SYSTEM_INVALID_INDEX;
   }
-  
   /* 验证系统操作完整性 */
   if (system_ctx->state_flag & SYSTEM_STATE_ERROR) {
     /* 系统处于错误状态，尝试恢复 */
@@ -3127,7 +2990,6 @@ uint64_t SystemCompletionProcessor(void)
       return completion_status;
     }
   }
-  
   /* 处理完成后的清理工作 */
   for (uint32_t i = 0; i < system_ctx->buffer_size; i += sizeof(uint32_t)) {
     uint32_t *data_ptr = (uint32_t *)(system_ctx->data_buffer + i);
@@ -3137,19 +2999,16 @@ uint64_t SystemCompletionProcessor(void)
       cleanup_count++;
     }
   }
-  
   /* 生成完成报告 */
   report_size = sizeof(uint32_t) * 4;  // 基本报告大小
   if (cleanup_count > 0) {
     /* 包含清理统计信息 */
     report_size += sizeof(uint32_t) * 2;
   }
-  
   /* 更新系统状态为完成状态 */
   system_ctx->state_flag &= ~SYSTEM_STATE_ACTIVE;
   system_ctx->state_flag &= ~SYSTEM_STATE_INITIALIZING;
   system_ctx->state_flag |= SYSTEM_STATE_READY;
-  
   /* 通知相关组件操作已完成 */
   if (system_ctx->config_flag & SYSTEM_CONFIG_FLAG_100) {
     /* 执行完成通知回调 */
@@ -3159,33 +3018,27 @@ uint64_t SystemCompletionProcessor(void)
       return completion_status;
     }
   }
-  
   /* 验证完成状态 */
   if (system_ctx->state_flag != SYSTEM_STATE_READY) {
     system_ctx->error_code = SYSTEM_ERROR_INVALID_CONFIG;
     return SYSTEM_ERROR_INVALID_CONFIG;
   }
-  
   /* 记录完成统计信息 */
   system_ctx->buffer_size = cleanup_count;  // 重用buffer_size字段存储清理计数
   system_ctx->config_flag = report_size;   // 重用config_flag字段存储报告大小
-  
   /* 完成处理成功 */
   system_ctx->error_code = SYSTEM_SUCCESS;
   return SYSTEM_SUCCESS;
 }
-
-
-
 /**
  * 系统最终处理器 - 负责系统的最终处理和初始化
  * 这个函数处理系统的最终配置和初始化工作
- * 
+ *
  * @param param_1 系统上下文指针
  * @param param_2 系统配置数据
  * @param param_3 处理参数
  * @return 处理状态码，0表示成功，非0表示错误
- * 
+ *
  * 功能说明：
  * - 初始化系统数据结构
  * - 设置系统配置参数
@@ -3194,13 +3047,11 @@ uint64_t SystemCompletionProcessor(void)
  * - 返回初始化状态
  */
 uint64_t SystemFinalProcessor(int64_t system_context, uint64_t config_data, int64_t process_params)
-
 {
   int process_type;
   int8_t temp_buffer [16];
   uint64_t init_result;
   uint64_t buffer_size;
-  
   /* 初始化系统数据结构 */
   *(int32_t )(system_context + 0x28) = 0xe; /* 设置系统类型 */
   *(uint64_t )(system_context + 0x120) = 0; /* 清空数据缓冲区1 */
@@ -3242,7 +3093,6 @@ uint64_t SystemFinalProcessor(int64_t system_context, uint64_t config_data, int6
           }
           buffer_size = 0x20; /* 类型4/5：32字节 */
         }
-        
         /* 计算并设置缓冲区大小 */
         temp_buffer._8_8_ = 0;
         temp_buffer._0_8_ = buffer_size;
@@ -3250,7 +3100,6 @@ uint64_t SystemFinalProcessor(int64_t system_context, uint64_t config_data, int6
              (int)((SUB168((ZEXT416(*(uint )(process_params + 4)) << 3) / temp_buffer, 0) & 0xffffffff) /
                   (uint64_t)*(uint )(process_params + 0xc));
       }
-      
       *(int32_t )(system_context + 0x18) = 0;
       return 0; /* 初始化成功 */
     }
@@ -3258,16 +3107,6 @@ uint64_t SystemFinalProcessor(int64_t system_context, uint64_t config_data, int6
   else {
     init_result = 0x13; /* 错误代码：不支持的类型 */
   }
-  
   return init_result; /* 返回初始化结果 */
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-
-

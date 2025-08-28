@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 01_initialization_part012.c - 26 个函数
-
 // 函数: 注册游戏模块类型A
 // 用于在引擎中注册特定类型的游戏模块
 void register_game_module_type_a(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -17,7 +14,6 @@ void register_game_module_type_a(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -49,13 +45,9 @@ void register_game_module_type_a(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
 // 函数: 注册游戏模块类型B
 // 用于在引擎中注册另一种类型的游戏模块
 void register_game_module_type_b(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -67,7 +59,6 @@ void register_game_module_type_b(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -99,24 +90,16 @@ void register_game_module_type_b(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: 初始化渲染系统组件
 // 设置渲染系统的初始状态和配置
 void initialize_rendering_system_component(void)
-
 {
   uint64_t render_config;
   void *render_interface;
   int8_t *render_context;
   int32_t render_flags;
   int8_t render_buffer [136];
-  
   render_interface = &RENDER_INTERFACE_TABLE;
   render_context = render_buffer;
   render_buffer[0] = 0;
@@ -125,29 +108,18 @@ void initialize_rendering_system_component(void)
   global_render_context = initialize_render_pipeline(&render_interface);
   return;
 }
-
-
-
 // 函数: 初始化线程同步机制
 // 设置游戏引擎的线程同步和互斥机制
 int initialize_thread_synchronization(uint64_t sync_param1,uint64_t sync_param2,uint64_t sync_param3,uint64_t sync_param4)
-
 {
   int64_t init_result;
-  
   _Mtx_init_in_situ(THREAD_MUTEX_ADDR,2,sync_param3,sync_param4,0xfffffffffffffffe);
   init_result = register_thread_callback(THREAD_CALLBACK_HANDLER);
   return (init_result != 0) - 1;
 }
-
-
-
-
-
 // 函数: 注册游戏模块类型C
 // 用于在引擎中注册第三种类型的游戏模块
 void register_game_module_type_c(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -159,7 +131,6 @@ void register_game_module_type_c(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -191,15 +162,9 @@ void register_game_module_type_c(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册游戏模块类型D
 // 用于在引擎中注册第四种类型的游戏模块
 void register_game_module_type_d(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -211,7 +176,6 @@ void register_game_module_type_d(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -243,15 +207,9 @@ void register_game_module_type_d(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册物理系统模块
 // 注册游戏物理引擎的相关模块
 void register_physics_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -263,7 +221,6 @@ void register_physics_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   code *physics_handler;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -295,15 +252,9 @@ void register_physics_system_module(void)
   previous_node[10] = physics_handler;
   return;
 }
-
-
-
-
-
 // 函数: 注册音频系统模块
 // 注册游戏音频引擎的相关模块
 void register_audio_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -315,7 +266,6 @@ void register_audio_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   code *audio_handler;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -347,15 +297,9 @@ void register_audio_system_module(void)
   previous_node[10] = audio_handler;
   return;
 }
-
-
-
-
-
 // 函数: 注册输入系统模块
 // 注册游戏输入处理的相关模块
 void register_input_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -367,7 +311,6 @@ void register_input_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   code *input_handler;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -399,15 +342,9 @@ void register_input_system_module(void)
   previous_node[10] = input_handler;
   return;
 }
-
-
-
-
-
 // 函数: 注册网络系统模块
 // 注册游戏网络通信的相关模块
 void register_network_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -419,7 +356,6 @@ void register_network_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   code *network_handler;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -451,15 +387,9 @@ void register_network_system_module(void)
   previous_node[10] = network_handler;
   return;
 }
-
-
-
-
-
 // 函数: 注册资源管理模块
 // 注册游戏资源管理系统的相关模块
 void register_resource_management_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -471,7 +401,6 @@ void register_resource_management_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -503,15 +432,9 @@ void register_resource_management_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册UI系统模块
 // 注册游戏用户界面的相关模块
 void register_ui_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -523,7 +446,6 @@ void register_ui_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   code *ui_handler;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -555,15 +477,9 @@ void register_ui_system_module(void)
   previous_node[10] = ui_handler;
   return;
 }
-
-
-
-
-
 // 函数: 注册场景管理模块
 // 注册游戏场景管理系统的相关模块
 void register_scene_management_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -575,7 +491,6 @@ void register_scene_management_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -607,15 +522,9 @@ void register_scene_management_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册脚本系统模块
 // 注册游戏脚本引擎的相关模块
 void register_script_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -627,7 +536,6 @@ void register_script_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   void *script_engine;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -659,15 +567,9 @@ void register_script_system_module(void)
   previous_node[10] = script_engine;
   return;
 }
-
-
-
-
-
 // 函数: 注册动画系统模块
 // 注册游戏动画系统的相关模块
 void register_animation_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -679,7 +581,6 @@ void register_animation_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -711,15 +612,9 @@ void register_animation_system_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册AI系统模块
 // 注册游戏人工智能系统的相关模块
 void register_ai_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -731,7 +626,6 @@ void register_ai_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   code *ai_handler;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -763,15 +657,9 @@ void register_ai_system_module(void)
   previous_node[10] = ai_handler;
   return;
 }
-
-
-
-
-
 // 函数: 注册粒子系统模块
 // 注册游戏粒子效果系统的相关模块
 void register_particle_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -783,7 +671,6 @@ void register_particle_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -815,15 +702,9 @@ void register_particle_system_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册光照系统模块
 // 注册游戏光照系统的相关模块
 void register_lighting_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -835,7 +716,6 @@ void register_lighting_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -867,15 +747,9 @@ void register_lighting_system_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册阴影系统模块
 // 注册游戏阴影系统的相关模块
 void register_shadow_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -887,7 +761,6 @@ void register_shadow_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -919,15 +792,9 @@ void register_shadow_system_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册后处理系统模块
 // 注册游戏后处理效果的相关模块
 void register_post_processing_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -939,7 +806,6 @@ void register_post_processing_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -971,15 +837,9 @@ void register_post_processing_system_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册材质系统模块
 // 注册游戏材质系统的相关模块
 void register_material_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -991,7 +851,6 @@ void register_material_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -1023,15 +882,9 @@ void register_material_system_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册纹理系统模块
 // 注册游戏纹理系统的相关模块
 void register_texture_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -1043,7 +896,6 @@ void register_texture_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -1075,15 +927,9 @@ void register_texture_system_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册几何系统模块
 // 注册游戏几何体系统的相关模块
 void register_geometry_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -1095,7 +941,6 @@ void register_geometry_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -1127,15 +972,9 @@ void register_geometry_system_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
-
-
 // 函数: 注册着色器系统模块
 // 注册游戏着色器系统的相关模块
 void register_shader_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -1147,7 +986,6 @@ void register_shader_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   code *shader_handler;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -1179,15 +1017,9 @@ void register_shader_system_module(void)
   previous_node[10] = shader_handler;
   return;
 }
-
-
-
-
-
 // 函数: 注册缓冲区系统模块
 // 注册游戏缓冲区系统的相关模块
 void register_buffer_system_module(void)
-
 {
   char module_flag;
   uint64_t *module_root;
@@ -1199,7 +1031,6 @@ void register_buffer_system_module(void)
   uint64_t *next_node;
   uint64_t *new_module_entry;
   uint64_t module_priority;
-  
   engine_context = (int64_t *)get_engine_context();
   module_root = (uint64_t *)*engine_context;
   module_flag = *(char *)((int64_t)module_root[1] + 0x19);
@@ -1231,24 +1062,16 @@ void register_buffer_system_module(void)
   previous_node[10] = module_priority;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: 初始化游戏配置系统
 // 设置游戏配置和参数系统
 void initialize_game_configuration_system(void)
-
 {
   uint64_t config_param;
   void *config_interface;
   int8_t *config_context;
   int32_t config_flags;
   int8_t config_buffer [136];
-  
   config_interface = &CONFIG_INTERFACE_TABLE;
   config_context = config_buffer;
   config_buffer[0] = 0;
@@ -1257,75 +1080,47 @@ void initialize_game_configuration_system(void)
   global_config_context = initialize_config_system(&config_interface);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: 初始化进程句柄
 // 获取并存储当前进程的句柄
 void initialize_process_handle(void)
-
 {
   game_process_handle = GetCurrentProcess();
   return;
 }
-
-
-
 // 函数: 初始化游戏计时器
 // 设置游戏主循环计时器
 int initialize_game_timer(void)
-
 {
   int64_t timer_result;
-  
   setup_game_timer();
   timer_result = register_timer_callback(&TIMER_CALLBACK_ADDRESS);
   return (timer_result != 0) - 1;
 }
-
-
-
 // 函数: 初始化渲染线程
 // 设置渲染线程的同步机制
 int initialize_rendering_thread(uint64_t thread_param1,uint64_t thread_param2,uint64_t thread_param3,uint64_t thread_param4)
-
 {
   int64_t thread_result;
-  
   _Mtx_init_in_situ(RENDER_THREAD_MUTEX,2,thread_param3,thread_param4,0xfffffffffffffffe);
   thread_result = register_render_thread_callback(RENDER_THREAD_HANDLER);
   return (thread_result != 0) - 1;
 }
-
-
-
 // 函数: 初始化音频线程
 // 设置音频线程的同步机制
 int initialize_audio_thread(uint64_t thread_param1,uint64_t thread_param2,uint64_t thread_param3,uint64_t thread_param4)
-
 {
   int64_t thread_result;
-  
   _Mtx_init_in_situ(AUDIO_THREAD_MUTEX,2,thread_param3,thread_param4,0xfffffffffffffffe);
   thread_result = register_audio_thread_callback(AUDIO_THREAD_HANDLER);
   return (thread_result != 0) - 1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // 函数: 初始化游戏状态机
 // 设置游戏状态机和状态转换系统
 int initialize_game_state_machine(void)
-
 {
   int64_t state_result;
-  
   game_state_count = 3;
   game_state_table = &GAME_STATE_TABLE_ADDR;
   previous_state_ptr = &GAME_STATE_TABLE_ADDR;
@@ -1335,7 +1130,4 @@ int initialize_game_state_machine(void)
   state_result = register_state_machine_callback(STATE_MACHINE_HANDLER);
   return (state_result != 0) - 1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address

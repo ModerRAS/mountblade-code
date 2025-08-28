@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part292.c - 5 个函数
-
-// 函数: void FUN_180423c1c(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t param_4)
-void FUN_180423c1c(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t param_4)
-
+// 函数: void function_423c1c(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t param_4)
+void function_423c1c(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t param_4)
 {
   char cVar1;
   short sVar2;
@@ -136,7 +133,6 @@ void FUN_180423c1c(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t pa
   int8_t auVar101 [16];
   int8_t auVar102 [16];
   int8_t auVar103 [16];
-  
   do {
     pauVar50 = param_1;
     lVar49 = (int64_t)param_3;
@@ -428,14 +424,8 @@ void FUN_180423c1c(int8_t (*param_1) [16],int64_t param_2,int param_3,int64_t pa
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180423ce5(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
-void FUN_180423ce5(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
-
+// 函数: void function_423ce5(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
+void function_423ce5(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
 {
   uint uVar1;
   int64_t lVar2;
@@ -449,7 +439,6 @@ void FUN_180423ce5(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
   int64_t in_R10;
   int8_t *puVar8;
   uint unaff_R15D;
-  
   lVar2 = (int64_t)param_3;
   if (lVar2 < param_2) {
     puVar8 = (int8_t *)(param_1 + 2);
@@ -485,14 +474,8 @@ void FUN_180423ce5(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180423d01(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
-void FUN_180423d01(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
-
+// 函数: void function_423d01(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
+void function_423d01(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
 {
   uint uVar1;
   int64_t lVar2;
@@ -506,7 +489,6 @@ void FUN_180423d01(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
   int64_t in_R10;
   int8_t *puVar8;
   uint unaff_R15D;
-  
   lVar2 = (int64_t)param_3;
   if (lVar2 < param_2) {
     puVar8 = (int8_t *)(param_1 + 2);
@@ -542,14 +524,8 @@ void FUN_180423d01(int64_t param_1,int64_t param_2,int param_3,int64_t param_4)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180423d10(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
-void FUN_180423d10(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
-
+// 函数: void function_423d10(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
+void function_423d10(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t param_4)
 {
   uint uVar1;
   int64_t in_RAX;
@@ -565,7 +541,6 @@ void FUN_180423d10(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
   int64_t in_R10;
   int8_t *puVar8;
   uint unaff_R15D;
-  
   puVar8 = (int8_t *)(param_1 + 2);
   pbVar3 = (byte *)(in_RAX + param_4);
   lVar4 = unaff_RDI - in_RAX;
@@ -598,45 +573,27 @@ void FUN_180423d10(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t par
   } while (lVar4 != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180423e14(void)
-void FUN_180423e14(void)
-
+// 函数: void function_423e14(void)
+void function_423e14(void)
 {
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x000180423e6a)
-
-code * FUN_180423e30(int64_t param_1)
-
+code * function_423e30(int64_t param_1)
 {
   uint *puVar1;
   code *pcVar2;
-  
-  *(code **)(param_1 + 0x4870) = FUN_180420680;
-  *(code **)(param_1 + 0x4878) = FUN_180423a60;
-  *(code **)(param_1 + 0x4880) = FUN_180423760;
+  *(code **)(param_1 + 0x4870) = function_420680;
+  *(code **)(param_1 + 0x4878) = function_423a60;
+  *(code **)(param_1 + 0x4880) = function_423760;
   puVar1 = (uint *)cpuid_Version_info(1);
   pcVar2 = (code *)(uint64_t)*puVar1;
   if ((puVar1[2] >> 0x1a & 1) != 0) {
-    *(code **)(param_1 + 0x4870) = FUN_180420ca0;
-    *(code **)(param_1 + 0x4878) = FUN_180423b90;
-    pcVar2 = FUN_180423820;
-    *(code **)(param_1 + 0x4880) = FUN_180423820;
+    *(code **)(param_1 + 0x4870) = function_420ca0;
+    *(code **)(param_1 + 0x4878) = function_423b90;
+    pcVar2 = function_423820;
+    *(code **)(param_1 + 0x4880) = function_423820;
   }
   return pcVar2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

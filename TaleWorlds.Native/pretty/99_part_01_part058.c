@@ -1,14 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_01_part058.c - 1 个函数
-
-// 函数: void FUN_1800dec06(uint64_t param_1,int64_t param_2,char param_3,uint64_t param_4,
-void FUN_1800dec06(uint64_t param_1,int64_t param_2,char param_3,uint64_t param_4,
+// 函数: void function_0dec06(uint64_t param_1,int64_t param_2,char param_3,uint64_t param_4,
+void function_0dec06(uint64_t param_1,int64_t param_2,char param_3,uint64_t param_4,
                   uint64_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
                   uint64_t param_9,uint64_t param_10,uint64_t param_11,uint64_t param_12,
                   uint64_t param_13,float param_14,int32_t param_15,float param_16)
-
 {
   float fVar1;
   int64_t lVar2;
@@ -72,7 +69,6 @@ void FUN_1800dec06(uint64_t param_1,int64_t param_2,char param_3,uint64_t param_
   float fStack000000000000007c;
   float fStack0000000000000084;
   uint64_t extraout_XMM0_Qb;
-  
   *(uint64_t *)(in_RAX + 8) = unaff_R12;
   *(uint64_t *)(in_RAX + 0x20) = unaff_R15;
   *(int32_t *)(in_RAX + -0x78) = unaff_XMM10_Da;
@@ -166,7 +162,7 @@ LAB_1800dece7:
   auVar13._0_4_ = (float)auVar12._0_8_ / *(float *)(unaff_RSI + 0x150);
   fVar14 = (float)atanf(auVar13._0_8_);
   *(float *)(*(int64_t *)(unaff_RBX + 0x1cd8) + 0x1c68) = fVar14 + fVar14;
-  FUN_180094120((float *)(unaff_RSI + 0x12bc0),&param_6);
+  function_094120((float *)(unaff_RSI + 0x12bc0),&param_6);
   *(int8_t (*) [16])(unaff_RBP + -0x70) = ZEXT416((uint)(float)param_6);
   *(int8_t (*) [16])(unaff_RBP + -0x60) =
        ZEXT416((uint)((float)param_6 * -1.0 + (float)param_8 * -1.0 + (float)param_10 +
@@ -375,11 +371,4 @@ LAB_1800df320:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

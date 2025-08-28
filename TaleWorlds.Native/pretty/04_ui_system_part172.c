@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part172.c - 3 个函数
-
-// 函数: void FUN_18076c270(int64_t param_1,int64_t param_2,uint *param_3)
-void FUN_18076c270(int64_t param_1,int64_t param_2,uint *param_3)
-
+// 函数: void function_76c270(int64_t param_1,int64_t param_2,uint *param_3)
+void function_76c270(int64_t param_1,int64_t param_2,uint *param_3)
 {
   int64_t *plVar1;
   uint64_t *puVar2;
@@ -29,7 +26,6 @@ void FUN_18076c270(int64_t param_1,int64_t param_2,uint *param_3)
   uint64_t *puVar20;
   uint64_t uVar21;
   int iVar22;
-  
   plVar1 = (int64_t *)(param_1 + 0x388);
   bVar12 = 0;
   puVar18 = (uint64_t *)(param_2 + -0x10);
@@ -362,14 +358,8 @@ LAB_18076c6e6:
   puVar18[2] = (uint64_t)puVar18;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18076c370(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
-void FUN_18076c370(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
-
+// 函数: void function_76c370(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
+void function_76c370(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
   int64_t *plVar2;
@@ -388,7 +378,6 @@ void FUN_18076c370(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t para
   int64_t *unaff_RDI;
   int iVar14;
   uint64_t in_R11;
-  
   uVar10 = *(uint64_t *)(param_2 + 0x30);
   if (param_1 == param_2) {
     uVar4 = *(uint64_t *)(param_2 + 0x28);
@@ -661,14 +650,8 @@ LAB_18076c6e6:
   *(uint64_t *)(param_2 + 0x10) = param_2;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18076c414(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
-void FUN_18076c414(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
-
+// 函数: void function_76c414(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
+void function_76c414(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
   uint *puVar2;
@@ -686,7 +669,6 @@ void FUN_18076c414(uint64_t param_1,uint64_t param_2,uint *param_3,uint64_t para
   int64_t unaff_RBP;
   int iVar14;
   uint64_t in_R11;
-  
   if (in_R11 <= param_2) {
     return;
   }
@@ -892,8 +874,3 @@ LAB_18076c6e6:
   *(uint64_t *)(param_2 + 0x10) = param_2;
   return;
 }
-
-
-
-
-

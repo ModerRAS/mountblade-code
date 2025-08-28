@@ -1,13 +1,10 @@
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // ============================================================================
 // 99_part_04_part041.c - 高级数据处理和对象管理模块
 // ============================================================================
-
 // 主要功能：
 // - 高级数据处理和对象管理
 // - 内存分配和资源清理
@@ -16,7 +13,6 @@
 // - 条件检查和错误处理
 // - 系统初始化和配置
 // - 数据流控制和优化
-
 // 核心函数实现
 // - 高级数据处理器
 // - 对象管理器
@@ -31,11 +27,9 @@
 // - 错误处理器
 // - 状态同步器
 // - 系统清理器
-
 // ============================================================================
 // 常量定义
 // ============================================================================
-
 // 系统常量
 #define SYSTEM_NULL_PTR 0x0
 #define SYSTEM_TRUE 1
@@ -47,7 +41,6 @@
 #define SYSTEM_PAGE_SIZE 4096
 #define SYSTEM_CACHE_LINE_SIZE 64
 #define SYSTEM_ALIGNMENT 16
-
 // 内存管理常量
 #define MEMORY_ALLOC_SIZE 0x28
 #define MEMORY_BLOCK_SIZE 0x90
@@ -77,7 +70,6 @@
 #define MEMORY_OFFSET_0x159 0x159
 #define MEMORY_OFFSET_0x160 0x160
 #define MEMORY_OFFSET_0x164 0x164
-
 // 数据结构常量
 #define DATA_STRUCTURE_SIZE 0x28
 #define DATA_ARRAY_SIZE 0x90
@@ -89,7 +81,6 @@
 #define DATA_MAP_SIZE 0x90
 #define DATA_SET_SIZE 0x90
 #define DATA_VECTOR_SIZE 0x90
-
 // 系统状态常量
 #define SYSTEM_STATUS_READY 0
 #define SYSTEM_STATUS_BUSY 1
@@ -101,7 +92,6 @@
 #define SYSTEM_STATUS_TERMINATED 7
 #define SYSTEM_STATUS_RESTARTING 8
 #define SYSTEM_STATUS_UPDATING 9
-
 // 错误代码常量
 #define ERROR_SUCCESS 0
 #define ERROR_FAILURE 1
@@ -119,7 +109,6 @@
 #define ERROR_ALREADY_EXISTS 13
 #define ERROR_NOT_SUPPORTED 14
 #define ERROR_BAD_FORMAT 15
-
 // 配置常量
 #define CONFIG_VERSION 1
 #define CONFIG_DEBUG_MODE 0
@@ -131,7 +120,6 @@
 #define CONFIG_CACHE_SIZE 1024
 #define CONFIG_POOL_SIZE 100
 #define CONFIG_QUEUE_SIZE 1000
-
 // 性能优化常量
 #define OPTIMIZATION_LEVEL 2
 #define OPTIMIZATION_CACHE_SIZE 1024
@@ -142,11 +130,9 @@
 #define OPTIMIZATION_TIMEOUT 30
 #define OPTIMIZATION_RETRY_COUNT 3
 #define OPTIMIZATION_MEMORY_LIMIT 1024 * 1024 * 1024
-
 // ============================================================================
 // 类型别名定义
 // ============================================================================
-
 // 基础类型别名
 typedef int SystemStatus;
 typedef int ErrorCode;
@@ -161,7 +147,6 @@ typedef bool SystemBoolean;
 typedef void SystemVoid;
 typedef int32_t SystemUndefined4;
 typedef uint64_t SystemUndefined8;
-
 // 内存管理类型别名
 typedef int64_t* MemoryPointer;
 typedef void* MemoryHandle;
@@ -172,7 +157,6 @@ typedef uint64_t MemoryAddress;
 typedef void* MemoryContext;
 typedef void* MemoryAllocator;
 typedef void* MemoryDeallocator;
-
 // 数据结构类型别名
 typedef void* DataStructure;
 typedef void* DataArray;
@@ -184,7 +168,6 @@ typedef void* DataHash;
 typedef void* DataMap;
 typedef void* DataSet;
 typedef void* DataVector;
-
 // 系统管理类型别名
 typedef void* SystemContext;
 typedef void* SystemManager;
@@ -195,7 +178,6 @@ typedef void* SystemValidator;
 typedef void* SystemInitializer;
 typedef void* SystemCleanup;
 typedef void* SystemConfig;
-
 // 对象管理类型别名
 typedef void* ObjectHandle;
 typedef void* ObjectManager;
@@ -206,7 +188,6 @@ typedef void* ObjectIterator;
 typedef void* ObjectComparator;
 typedef void* ObjectSerializer;
 typedef void* ObjectDeserializer;
-
 // 函数指针类型别名
 typedef void (*FunctionPointer)(void);
 typedef void (*CallbackFunction)(void*);
@@ -215,14 +196,12 @@ typedef void (*EventHandler)(void*, void*);
 typedef bool (*ValidatorFunction)(void*);
 typedef void* (*AllocatorFunction)(size_t);
 typedef void (*DeallocatorFunction)(void*);
-
 // ============================================================================
 // 枚举定义
 // ============================================================================
-
 /**
  * @brief 系统操作类型枚举
- * 
+ *
  * 定义系统支持的各种操作类型
  */
 typedef enum {
@@ -243,10 +222,9 @@ typedef enum {
     SYSTEM_OPERATION_SYNC = 14,       // 同步操作
     SYSTEM_OPERATION_ASYNC = 15       // 异步操作
 } SystemOperationType;
-
 /**
  * @brief 内存管理类型枚举
- * 
+ *
  * 定义内存管理的各种类型
  */
 typedef enum {
@@ -262,10 +240,9 @@ typedef enum {
     MEMORY_TYPE_STACK = 9,          // 栈内存
     MEMORY_TYPE_HEAP = 10           // 堆内存
 } MemoryType;
-
 /**
  * @brief 数据处理状态枚举
- * 
+ *
  * 定义数据处理的各种状态
  */
 typedef enum {
@@ -281,10 +258,9 @@ typedef enum {
     DATA_STATE_INITIALIZING = 9,  // 初始化中状态
     DATA_STATE_CLEANUP = 10       // 清理中状态
 } DataState;
-
 /**
  * @brief 系统配置选项枚举
- * 
+ *
  * 定义系统的各种配置选项
  */
 typedef enum {
@@ -300,10 +276,9 @@ typedef enum {
     CONFIG_OPTION_THREADING = 9,     // 线程选项
     CONFIG_OPTION_NETWORK = 10        // 网络选项
 } ConfigOption;
-
 /**
  * @brief 对象管理类型枚举
- * 
+ *
  * 定义对象管理的各种类型
  */
 typedef enum {
@@ -319,14 +294,12 @@ typedef enum {
     OBJECT_TYPE_STRATEGY = 9,        // 策略对象
     OBJECT_TYPE_COMMAND = 10         // 命令对象
 } ObjectType;
-
 // ============================================================================
 // 结构体定义
 // ============================================================================
-
 /**
  * @brief 系统上下文结构体
- * 
+ *
  * 存储系统的上下文信息和状态
  */
 typedef struct {
@@ -343,10 +316,9 @@ typedef struct {
     char name[64];                          // 系统名称
     char description[256];                  // 系统描述
 } SystemContext;
-
 /**
  * @brief 内存管理器结构体
- * 
+ *
  * 管理内存分配和释放操作
  */
 typedef struct {
@@ -362,10 +334,9 @@ typedef struct {
     void* user_context;                     // 用户上下文
     char name[32];                          // 内存管理器名称
 } MemoryManager;
-
 /**
  * @brief 数据处理器结构体
- * 
+ *
  * 处理数据的输入、输出和转换
  */
 typedef struct {
@@ -382,10 +353,9 @@ typedef struct {
     char name[64];                          // 数据处理器名称
     char description[128];                  // 数据处理器描述
 } DataProcessor;
-
 /**
  * @brief 对象管理器结构体
- * 
+ *
  * 管理对象的创建、销毁和生命周期
  */
 typedef struct {
@@ -402,10 +372,9 @@ typedef struct {
     char name[32];                          // 管理器名称
     char description[128];                  // 管理器描述
 } ObjectManager;
-
 /**
  * @brief 系统配置结构体
- * 
+ *
  * 存储系统的配置参数
  */
 typedef struct {
@@ -428,11 +397,9 @@ typedef struct {
     char log_file[256];                     // 日志文件路径
     char temp_dir[256];                     // 临时目录
 } SystemConfig;
-
 // ============================================================================
 // 函数别名定义
 // ============================================================================
-
 // 核心函数别名
 typedef void (*AdvancedDataProcessor)(int64_t param_1, uint64_t param_2, int64_t param_3, int64_t param_4, int param_5);
 typedef uint64_t* (*ObjectManagerProcessor)(int64_t param_1, uint64_t* param_2);
@@ -447,7 +414,6 @@ typedef void (*DataFlowController)(int64_t param_1, int64_t* param_2);
 typedef void (*ErrorHandler)(int64_t param_1);
 typedef void (*StateSynchronizer)(int64_t param_1, int64_t param_2);
 typedef void (*SystemCleanupHandler)(int64_t param_1);
-
 // 辅助函数别名
 typedef void (*SystemResetHandler)(int64_t param_1, int64_t param_2);
 typedef void (*DataStructureProcessor)(int64_t param_1);
@@ -460,16 +426,14 @@ typedef void (*NetworkManager)(int64_t param_1);
 typedef void (*ThreadManager)(int64_t param_1);
 typedef void (*FileManager)(int64_t param_1);
 typedef void (*Logger)(int64_t param_1);
-
 // ============================================================================
 // 核心函数实现
 // ============================================================================
-
 /**
  * @brief 高级数据处理器
- * 
+ *
  * 处理高级数据操作，包括数据转换、验证和管理
- * 
+ *
  * @param param_1 系统上下文指针
  * @param param_2 数据参数
  * @param param_3 目标数据指针
@@ -489,11 +453,9 @@ void AdvancedDataProcessor(int64_t param_1, uint64_t param_2, int64_t param_3, i
     uint buffer_flags;
     uint64_t system_handle;
     int64_t *memory_manager;
-    
     system_handle = SYSTEM_VALID_HANDLE;
     data_buffer = (int64_t *)SYSTEM_NULL_PTR;
-    
-    // 初始化数据缓冲区
+// 初始化数据缓冲区
     if (param_4 == SYSTEM_NULL_PTR) {
         temp_buffer_1 = (int64_t *)SYSTEM_NULL_PTR;
         context_manager = &temp_buffer_1;
@@ -505,11 +467,9 @@ void AdvancedDataProcessor(int64_t param_1, uint64_t param_2, int64_t param_3, i
         buffer_flags = SYSTEM_FLAG_PROCESS;
         data_buffer = *context_manager;
     }
-    
     *context_manager = (int64_t *)SYSTEM_NULL_PTR;
     memory_manager = data_buffer;
-    
-    // 处理初始化标志
+// 处理初始化标志
     if ((processing_flags & SYSTEM_FLAG_INIT) != SYSTEM_NULL_PTR) {
         processing_flags = processing_flags & SYSTEM_FLAG_CLEAR_INIT;
         buffer_flags = processing_flags;
@@ -517,23 +477,19 @@ void AdvancedDataProcessor(int64_t param_1, uint64_t param_2, int64_t param_3, i
             SystemCleanupHandler(temp_buffer_1);
         }
     }
-    
-    // 处理进程标志
+// 处理进程标志
     if ((processing_flags & SYSTEM_FLAG_PROCESS) != SYSTEM_NULL_PTR) {
         buffer_flags = processing_flags & SYSTEM_FLAG_CLEAR_PROCESS;
         if (temp_buffer_2 != (int64_t *)SYSTEM_NULL_PTR) {
             SystemCleanupHandler(temp_buffer_2);
         }
     }
-    
-    // 验证数据指针
+// 验证数据指针
     if (data_buffer == *(int64_t **)(param_1 + MEMORY_OFFSET_0x48)) {
         goto cleanup_section;
     }
-    
     data_size = SystemDataProcessor(param_2, SYSTEM_FLAG_PROCESS, &system_memory_9dc0);
-    
-    // 验证数据缓冲区
+// 验证数据缓冲区
     if (data_buffer == (int64_t *)SYSTEM_NULL_PTR) {
     validation_failed:
         validation_result = SYSTEM_TRUE;
@@ -546,17 +502,14 @@ void AdvancedDataProcessor(int64_t param_1, uint64_t param_2, int64_t param_3, i
         }
         validation_result = param_4 == SYSTEM_NULL_PTR;
     }
-    
-    // 处理数据操作
+// 处理数据操作
     SystemDataOperation(source_data, param_2, data_size, validation_result, buffer_flags, system_handle, memory_manager);
-    
-    // 检查数据状态
+// 检查数据状态
     if ((*(int64_t *)(data_size + MEMORY_OFFSET_0x30) != SYSTEM_NULL_PTR) || (*(int64_t *)(data_size + MEMORY_OFFSET_0x40) != SYSTEM_NULL_PTR)) {
         if (param_5 != SYSTEM_NULL_PTR) {
             SystemDataValidator(param_2, data_size, &processed_var_9168_ptr);
         }
-        
-        // 管理数据队列
+// 管理数据队列
         if (*(int64_t *)(param_3 + MEMORY_OFFSET_0x30) == SYSTEM_NULL_PTR) {
             *(uint64_t *)(data_size + MEMORY_OFFSET_0x50) = SYSTEM_NULL_PTR;
             *(int64_t *)(param_3 + MEMORY_OFFSET_0x30) = data_size;
@@ -564,24 +517,21 @@ void AdvancedDataProcessor(int64_t param_1, uint64_t param_2, int64_t param_3, i
             *(uint64_t *)(data_size + MEMORY_OFFSET_0x50) = *(uint64_t *)(param_3 + MEMORY_OFFSET_0x38);
             *(int64_t *)(*(int64_t *)(param_3 + MEMORY_OFFSET_0x38) + MEMORY_OFFSET_0x58) = data_size;
         }
-        
         *(int64_t *)(param_3 + MEMORY_OFFSET_0x38) = data_size;
         *(int64_t *)(data_size + MEMORY_OFFSET_0x20) = param_3;
         *(uint64_t *)(data_size + MEMORY_OFFSET_0x58) = SYSTEM_NULL_PTR;
     }
-    
 cleanup_section:
     if (data_buffer != (int64_t *)SYSTEM_NULL_PTR) {
         SystemCleanupHandler(data_buffer);
     }
     return;
 }
-
 /**
  * @brief 对象管理器处理器
- * 
+ *
  * 管理对象的创建、初始化和生命周期
- * 
+ *
  * @param param_1 对象上下文指针
  * @param param_2 对象参数指针
  * @return 处理后的对象指针
@@ -612,18 +562,15 @@ uint64_t* ObjectManagerProcessor(int64_t param_1, uint64_t* param_2)
     uint64_t *parameter_buffer;
     int64_t *temp_buffer_2;
     int64_t **temp_context_manager;
-    
     parameter_buffer = param_2;
     object_handle = SystemObjectFactory(system_memory_pool_ptr, MEMORY_POOL_SIZE, MEMORY_ALIGNMENT, SYSTEM_FLAG_PROCESS, SYSTEM_NULL_PTR, SYSTEM_VALID_HANDLE);
     object_instance = (int64_t *)SystemObjectInitializer(object_handle);
     temp_buffer_2 = object_instance;
-    
-    // 初始化对象实例
+// 初始化对象实例
     if (object_instance != (int64_t *)SYSTEM_NULL_PTR) {
         SystemObjectInitializer(object_instance);
     }
-    
-    // 提取参数字段
+// 提取参数字段
     param_field_1 = *(int32_t *)(param_1 + MEMORY_OFFSET_0x54);
     param_field_2 = *(int32_t *)(param_1 + MEMORY_OFFSET_0x58);
     param_field_3 = *(int32_t *)(param_1 + MEMORY_OFFSET_0x5c);
@@ -639,8 +586,7 @@ uint64_t* ObjectManagerProcessor(int64_t param_1, uint64_t* param_2)
     param_field_13 = *(int32_t *)(param_1 + MEMORY_OFFSET_0x84);
     param_field_14 = *(int32_t *)(param_1 + MEMORY_OFFSET_0x88);
     param_field_15 = *(int32_t *)(param_1 + MEMORY_OFFSET_0x8c);
-    
-    // 设置对象属性
+// 设置对象属性
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x0A) = *(int32_t *)(param_1 + MEMORY_OFFSET_0x50);
     *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x54) = param_field_1;
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x0B) = param_field_2;
@@ -657,18 +603,15 @@ uint64_t* ObjectManagerProcessor(int64_t param_1, uint64_t* param_2)
     *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x84) = param_field_13;
     *(int32_t *)(object_instance + MEMORY_OFFSET_0x11) = param_field_14;
     *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x8C) = param_field_15;
-    
-    // 复制字符串数据
+// 复制字符串数据
     if (object_instance + MEMORY_OFFSET_0x22 != (int64_t *)(param_1 + MEMORY_OFFSET_0x110)) {
         SystemStringCopy(object_instance + MEMORY_OFFSET_0x22, *(int64_t *)(param_1 + MEMORY_OFFSET_0x110), *(uint64_t *)(param_1 + MEMORY_OFFSET_0x118));
     }
-    
-    // 设置布尔标志
+// 设置布尔标志
     *(int8_t *)((int64_t)object_instance + MEMORY_OFFSET_0x159) = *(int8_t *)(param_1 + MEMORY_OFFSET_0x159);
     *(int32_t *)((int64_t)object_instance + MEMORY_OFFSET_0x34) = *(int32_t *)(param_1 + MEMORY_OFFSET_0x34);
     *(int8_t *)((int64_t)object_instance + MEMORY_OFFSET_0x164) = *(int8_t *)(param_1 + MEMORY_OFFSET_0x164);
-    
-    // 处理对象引用
+// 处理对象引用
     object_factory = *(int64_t **)(param_1 + MEMORY_OFFSET_0x48);
     if (object_factory != (int64_t *)SYSTEM_NULL_PTR) {
         temp_context_manager = &temp_buffer_1;
@@ -681,17 +624,14 @@ uint64_t* ObjectManagerProcessor(int64_t param_1, uint64_t* param_2)
         }
         SystemObjectManager(object_instance, context_manager);
     }
-    
     *param_2 = object_instance;
     SystemObjectInitializer(object_instance);
     SystemCleanupHandler(object_instance);
     return param_2;
 }
-
 // ============================================================================
 // 技术说明
 // ============================================================================
-
 /*
 技术架构说明：
 1. 内存管理策略：
@@ -699,54 +639,45 @@ uint64_t* ObjectManagerProcessor(int64_t param_1, uint64_t* param_2)
    - 实现内存池管理，减少频繁的内存分配和释放
    - 支持内存对齐和缓存优化，提高访问速度
    - 实现内存引用计数，自动管理内存生命周期
-
 2. 数据处理流程：
    - 支持批量数据处理，提高处理效率
    - 实现数据验证和错误检查机制
    - 支持数据转换和格式化操作
    - 提供数据缓冲区管理，优化内存使用
-
 3. 对象管理机制：
    - 实现对象工厂模式，支持对象的创建和初始化
    - 提供对象池管理，重用对象减少创建开销
    - 支持对象生命周期管理，包括创建、使用和销毁
    - 实现对象缓存机制，提高对象访问速度
-
 4. 系统状态管理：
    - 实现系统状态的初始化、运行和清理
    - 支持系统状态的持久化和恢复
    - 提供系统状态监控和诊断功能
    - 实现系统状态的同步和异步更新
-
 5. 性能优化策略：
    - 使用SIMD指令优化数据处理性能
    - 实现多线程处理，提高并发性能
    - 支持异步操作，提高系统响应速度
    - 实现缓存机制，减少重复计算
-
 6. 错误处理机制：
    - 实现完整的错误代码体系
    - 支持错误恢复和重试机制
    - 提供详细的错误日志和诊断信息
    - 实现异常处理和系统保护
-
 7. 配置管理：
    - 支持动态配置更新
    - 提供配置验证和检查机制
    - 实现配置持久化和恢复
    - 支持配置文件的导入和导出
-
 8. 安全考虑：
    - 实现内存访问保护和边界检查
    - 支持数据完整性验证
    - 提供权限管理和访问控制
    - 实现安全的数据传输和存储
 */
-
 // ============================================================================
 // 模块依赖关系
 // ============================================================================
-
 /*
 依赖模块：
 1. TaleWorlds.Native.Split.h - 基础系统头文件
@@ -756,7 +687,6 @@ uint64_t* ObjectManagerProcessor(int64_t param_1, uint64_t* param_2)
 5. 错误处理模块 - 提供错误处理和恢复
 6. 日志模块 - 提供日志记录功能
 7. 性能监控模块 - 提供性能监控和分析
-
 被依赖模块：
 1. 渲染系统模块 - 使用数据处理功能
 2. 物理系统模块 - 使用对象管理功能
@@ -765,11 +695,9 @@ uint64_t* ObjectManagerProcessor(int64_t param_1, uint64_t* param_2)
 5. UI系统模块 - 使用事件处理功能
 6. 游戏逻辑模块 - 使用状态管理功能
 */
-
 // ============================================================================
 // 维护和优化建议
 // ============================================================================
-
 /*
 维护建议：
 1. 定期检查内存泄漏和内存使用情况
@@ -778,7 +706,6 @@ uint64_t* ObjectManagerProcessor(int64_t param_1, uint64_t* param_2)
 4. 完善错误处理机制，提高系统稳定性
 5. 增加单元测试和集成测试覆盖率
 6. 优化文档，提高代码可读性
-
 优化建议：
 1. 实现更智能的内存分配策略
 2. 优化数据处理算法，提高处理效率
@@ -788,7 +715,6 @@ uint64_t* ObjectManagerProcessor(int64_t param_1, uint64_t* param_2)
 6. 实现更完善的性能监控和诊断
 7. 增加自动化测试和性能测试
 8. 优化代码结构，提高可维护性
-
 扩展建议：
 1. 增加更多数据处理功能
 2. 实现更复杂的对象管理机制

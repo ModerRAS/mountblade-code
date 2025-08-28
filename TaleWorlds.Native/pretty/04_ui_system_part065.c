@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part065.c - 3 个函数
-
-// 函数: void FUN_18069ca80(int64_t param_1,int param_2,int8_t (*param_3) [16])
-void FUN_18069ca80(int64_t param_1,int param_2,int8_t (*param_3) [16])
-
+// 函数: void function_69ca80(int64_t param_1,int param_2,int8_t (*param_3) [16])
+void function_69ca80(int64_t param_1,int param_2,int8_t (*param_3) [16])
 {
   int32_t *puVar1;
   int32_t *puVar2;
@@ -155,7 +152,6 @@ void FUN_18069ca80(int64_t param_1,int param_2,int8_t (*param_3) [16])
   int8_t auVar129 [16];
   int8_t auVar140 [12];
   int8_t auVar141 [16];
-  
   lVar32 = (int64_t)param_2;
   puVar1 = (int32_t *)(param_1 + 2);
   puVar2 = puVar1 + lVar32;
@@ -630,43 +626,27 @@ void FUN_18069ca80(int64_t param_1,int param_2,int8_t (*param_3) [16])
   *(int16_t *)((int64_t)puVar2 + lVar32 * 3 + 0xe) = auVar83._14_2_;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18069cad0(uint64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4,
-void FUN_18069cad0(uint64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4,
+// 函数: void function_69cad0(uint64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4,
+void function_69cad0(uint64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4,
                   int32_t param_5,uint64_t *param_6)
-
 {
-  func_0x00018001ab27(param_1,param_4,*param_6,param_6[2],param_6[3]);
+  SystemFunction_00018001ab27(param_1,param_4,*param_6,param_6[2],param_6[3]);
   if (param_2 != 0) {
-    func_0x00018001ae53(param_2,param_5,*param_6,param_6[2],param_6[3],param_3);
+    SystemFunction_00018001ae53(param_2,param_5,*param_6,param_6[2],param_6[3],param_3);
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18069cb40(uint64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4,
-void FUN_18069cb40(uint64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4,
+// 函数: void function_69cb40(uint64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4,
+void function_69cb40(uint64_t param_1,int64_t param_2,uint64_t param_3,int32_t param_4,
                   int32_t param_5,uint64_t *param_6)
-
 {
-  func_0x00018001b646(param_1,param_4,*param_6,param_6[2],param_6[3]);
+  SystemFunction_00018001b646(param_1,param_4,*param_6,param_6[2],param_6[3]);
   if (param_2 != 0) {
-    func_0x00018001bba5(param_2,param_5,*param_6,param_6[2],param_6[3],param_3);
+    SystemFunction_00018001bba5(param_2,param_5,*param_6,param_6[2],param_6[3],param_3);
   }
   return;
 }
-
-
-
-uint64_t FUN_18069ccd0(int64_t param_1,int64_t param_2,int param_3,int param_4,int64_t param_5)
-
+uint64_t function_69ccd0(int64_t param_1,int64_t param_2,int param_3,int param_4,int64_t param_5)
 {
   byte bVar1;
   char cVar2;
@@ -684,7 +664,6 @@ uint64_t FUN_18069ccd0(int64_t param_1,int64_t param_2,int param_3,int param_4,i
   uint64_t uVar14;
   uint64_t uVar15;
   bool bVar16;
-  
   uVar14 = (uint64_t)param_4;
   puVar9 = (int8_t *)((uVar14 * 3 + (int64_t)param_3) * 0xb + param_2);
   uVar7 = SystemCore_Monitor(param_1,*puVar9);
@@ -793,11 +772,7 @@ uint64_t FUN_18069ccd0(int64_t param_1,int64_t param_2,int param_3,int param_4,i
     }
   } while( true );
 }
-
-
-
-int FUN_18069cf80(int64_t param_1,int64_t param_2)
-
+int function_69cf80(int64_t param_1,int64_t param_2)
 {
   uint64_t uVar1;
   int64_t lVar2;
@@ -815,7 +790,6 @@ int FUN_18069cf80(int64_t param_1,int64_t param_2)
   uint uVar14;
   bool bVar15;
   int64_t lStackX_20;
-  
   uVar1 = *(uint64_t *)(param_2 + 0xfb8);
   lVar10 = param_2 + 0x180;
   lVar2 = *(int64_t *)(param_2 + 0xf50);
@@ -826,7 +800,7 @@ int FUN_18069cf80(int64_t param_1,int64_t param_2)
     lVar7 = param_1 + 0x33ad;
   }
   else {
-    iVar4 = FUN_18069ccd0(uVar1,param_1 + 0x319d,
+    iVar4 = function_69ccd0(uVar1,param_1 + 0x319d,
                           (int)*(char *)(lVar3 + 8) + (int)*(char *)(lVar2 + 8),0,param_2 + 0x480);
     lVar7 = param_1 + 0x3095;
     *(bool *)(lVar3 + 8) = 0 < iVar4;
@@ -841,7 +815,7 @@ int FUN_18069cf80(int64_t param_1,int64_t param_2)
   do {
     uVar11 = (uint64_t)((uint)lVar12 & 3);
     uVar8 = (uint64_t)((uint)(lVar12 >> 2) & 3);
-    iVar4 = FUN_18069ccd0(uVar1,lVar7,(int)*(char *)(uVar8 + lVar3) + (int)*(char *)(uVar11 + lVar2)
+    iVar4 = function_69ccd0(uVar1,lVar7,(int)*(char *)(uVar8 + lVar3) + (int)*(char *)(uVar11 + lVar2)
                           ,uVar5,lVar10);
     iVar6 = iVar4 + uVar5;
     iVar9 = iVar9 + iVar6;
@@ -860,7 +834,7 @@ int FUN_18069cf80(int64_t param_1,int64_t param_2)
     lVar7 = (int64_t)(int)((uint)(0x13 < (int)uVar14) * 2);
     lVar12 = (uint64_t)(uVar5 & 1) + lVar7;
     lVar7 = (uint64_t)(((byte)uVar14 & 3) != 1 && (uVar14 & 3) != 0) + lVar7;
-    iVar4 = FUN_18069ccd0(uVar1,param_1 + 0x32a5,
+    iVar4 = function_69ccd0(uVar1,param_1 + 0x32a5,
                           (int)*(char *)(lVar7 + 4 + lVar3) + (int)*(char *)(lVar12 + 4 + lVar2),0,
                           lVar10);
     uVar5 = uVar5 + 1;
@@ -874,10 +848,4 @@ int FUN_18069cf80(int64_t param_1,int64_t param_2)
   } while ((int)uVar14 < 0x18);
   return iVar9;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

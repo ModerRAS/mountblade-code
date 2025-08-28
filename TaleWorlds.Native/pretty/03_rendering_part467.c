@@ -1,16 +1,11 @@
 #include "CoreSystem_AuthenticationHandler0_definition.h"
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 03_rendering_part467.c - 1 个函数
-
-// 函数: void FUN_1805194e2(int32_t param_1)
-void FUN_1805194e2(int32_t param_1)
-
+// 函数: void function_5194e2(int32_t param_1)
+void function_5194e2(int32_t param_1)
 {
   float *pfVar1;
   char cVar2;
@@ -68,7 +63,6 @@ void FUN_1805194e2(int32_t param_1)
   float fStack0000000000000074;
   float fStack0000000000000078;
   float fStack000000000000007c;
-  
   lVar4 = *(int64_t *)(in_RAX + 0x208);
   lVar14 = *(int64_t *)(unaff_R15 + 0x590);
   cVar2 = *(char *)(lVar14 + 0x25fc);
@@ -303,7 +297,7 @@ LAB_180519855:
     fStack0000000000000070 = fVar25 - *pfVar9;
     fStack0000000000000074 = fVar23 - pfVar9[1];
     fStack0000000000000078 = fVar21 - pfVar9[2];
-    FUN_180575540(uVar5,2,cVar2,cVar3,&stack0x00000070);
+    function_575540(uVar5,2,cVar2,cVar3,&local_buffer_00000070);
     pfVar9 = (float *)SystemFileHandler(unaff_RBP + -0x18,unaff_RBP + -0xc,
                                     *(int64_t *)(lVar4 + 0x140) +
                                     (int64_t)cStack0000000000000061 * 0x1b0 + 0x80);
@@ -595,7 +589,7 @@ LAB_180519e0e:
         fVar35 = *pfVar9;
         fVar27 = pfVar9[1];
         fVar30 = pfVar9[2];
-        SystemSecurityManager(unaff_RBP + -8,&stack0x00000070);
+        SystemSecurityManager(unaff_RBP + -8,&local_buffer_00000070);
         fVar33 = unaff_RBP[-8];
         fVar26 = unaff_RBP[-7];
         fVar39 = unaff_RBP[-6];
@@ -706,15 +700,9 @@ LAB_180519e0e:
     unaff_RBP[-0x1c] = unaff_RBP[-0x20] - fVar23;
     unaff_RBP[-0x1b] = unaff_RBP[-0x10] - fVar25;
     unaff_RBP[-0x1a] = unaff_RBP[0x10] - fVar35;
-    FUN_180575540(uVar5,1,cVar2,cVar3,unaff_RBP + -0x1c);
+    function_575540(uVar5,1,cVar2,cVar3,unaff_RBP + -0x1c);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x20) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x20) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

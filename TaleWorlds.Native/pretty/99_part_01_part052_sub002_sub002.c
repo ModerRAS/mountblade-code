@@ -1,27 +1,18 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_01_part052_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_1800d8bd0(uint64_t param_1)
-void FUN_1800d8bd0(uint64_t param_1)
-
+// 函数: void function_0d8bd0(uint64_t param_1)
+void function_0d8bd0(uint64_t param_1)
 {
-  SystemDataValidator(param_1,0x98,2,FUN_1800e7be0,0xfffffffffffffffe);
+  SystemDataValidator(param_1,0x98,2,function_0e7be0,0xfffffffffffffffe);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t * FUN_1800d9060(uint64_t *param_1)
-
+uint64_t * function_0d9060(uint64_t *param_1)
 {
   int64_t *plVar1;
   int64_t lVar2;
   uint64_t uVar3;
-  
   uVar3 = 0;
   *param_1 = 0;
   param_1[2] = 0;
@@ -35,11 +26,11 @@ uint64_t * FUN_1800d9060(uint64_t *param_1)
   *(int32_t *)(param_1 + 0xb) = 3;
   param_1[0xc] = 0;
   _Mtx_init_in_situ(param_1 + 0xd,2);
-  DataStructureManager(param_1 + 0x17,0x488,2,&ui_system_data_1184_ptr,FUN_1800e7ca0);
+  DataStructureManager(param_1 + 0x17,0x488,2,&ui_system_data_1184_ptr,function_0e7ca0);
   *(int32_t *)(param_1 + 0x139) = 0;
-  DataStructureManager(param_1 + 0x13a,0x128,2,&ui_system_data_192_ptr,FUN_1801b9690);
+  DataStructureManager(param_1 + 0x13a,0x128,2,&ui_system_data_192_ptr,function_1b9690);
   *(int32_t *)(param_1 + 0x184) = 0;
-  DataStructureManager(param_1 + 0x185,0x128,2,&ui_system_data_192_ptr,FUN_1801b9690);
+  DataStructureManager(param_1 + 0x185,0x128,2,&ui_system_data_192_ptr,function_1b9690);
   *(int32_t *)(param_1 + 0x1cf) = 0;
   DataStructureManager(param_1 + 0x1d0,8,2,&SUB_18005d5f0,DataCacheManager);
   DataStructureManager(param_1 + 0x1d2,8,2,&SUB_18005d5f0,DataCacheManager);
@@ -51,10 +42,10 @@ uint64_t * FUN_1800d9060(uint64_t *param_1)
   LOCK();
   *(int32_t *)(param_1 + 0x1db) = 0;
   UNLOCK();
-  DataStructureManager(param_1 + 0x1dd,0x18,2,FUN_1802e5430,FUN_1800e7f20);
+  DataStructureManager(param_1 + 0x1dd,0x18,2,function_2e5430,function_0e7f20);
   *(int32_t *)(param_1 + 0x1dc) = 0;
-  DataStructureManager(param_1 + 0x1e4,0x20,0x1d,FUN_180627850,SystemValidator);
-  func_0x0001800e7950(param_1 + 0x25a);
+  DataStructureManager(param_1 + 0x1e4,0x20,0x1d,function_627850,SystemValidator);
+  Function_0ae430e1(param_1 + 0x25a);
   _Mtx_init_in_situ(param_1 + 0x26c,2);
   param_1[0x277] = 0;
   *(int32_t *)(param_1 + 0x278) = 0;
@@ -112,7 +103,7 @@ uint64_t * FUN_1800d9060(uint64_t *param_1)
     (**(code **)(*plVar1 + 0x38))();
   }
   *(int32_t *)(param_1 + 0x288) = 0xffffffff;
-  FUN_1802db1f0(param_1 + 0x28b);
+  function_2db1f0(param_1 + 0x28b);
   param_1[0x29b] = 0;
   param_1[0x29c] = 0;
   param_1[0x29d] = 0;
@@ -125,30 +116,30 @@ uint64_t * FUN_1800d9060(uint64_t *param_1)
   DataStructureManager(param_1 + 0x2ad,8,2,&SUB_18005d5f0,DataCacheManager);
   DataStructureManager(param_1 + 0x2af,8,2,&SUB_18005d5f0,DataCacheManager);
   param_1[0x2b1] = 0;
-  DataStructureManager(param_1 + 0x2b3,0x238,2,FUN_180051cc0,FUN_180051d00);
-  DataStructureManager(param_1 + 0x343,0x488,2,&ui_system_data_1184_ptr,FUN_1800e7ca0);
+  DataStructureManager(param_1 + 0x2b3,0x238,2,function_051cc0,function_051d00);
+  DataStructureManager(param_1 + 0x343,0x488,2,&ui_system_data_1184_ptr,function_0e7ca0);
   *(int32_t *)(param_1 + 0x465) = 0;
   *(int32_t *)(param_1 + 0x466) = 0x100000;
-  DataStructureManager(param_1 + 0x46f,0x248,2,&ui_system_data_1040_ptr,FUN_1800e7b80);
+  DataStructureManager(param_1 + 0x46f,0x248,2,&ui_system_data_1040_ptr,function_0e7b80);
   *(int32_t *)(param_1 + 0x501) = 0;
-  DataStructureManager(param_1 + 0x502,0x248,2,&ui_system_data_1040_ptr,FUN_1800e7b80);
+  DataStructureManager(param_1 + 0x502,0x248,2,&ui_system_data_1040_ptr,function_0e7b80);
   *(int32_t *)(param_1 + 0x594) = 0;
   param_1[0x796] = 0;
-  DataStructureManager(param_1 + 0x7a7,0x488,2,&ui_system_data_1184_ptr,FUN_1800e7ca0);
+  DataStructureManager(param_1 + 0x7a7,0x488,2,&ui_system_data_1184_ptr,function_0e7ca0);
   *(int32_t *)(param_1 + 0x8c9) = 0;
-  DataStructureManager(param_1 + 0x8ca,0x908,2,&ui_system_data_1248_ptr,FUN_1800e7d00);
+  DataStructureManager(param_1 + 0x8ca,0x908,2,&ui_system_data_1248_ptr,function_0e7d00);
   *(int32_t *)(param_1 + 0xb0c) = 0;
-  DataStructureManager(param_1 + 0xb0d,0x908,2,&ui_system_data_1248_ptr,FUN_1800e7d00);
+  DataStructureManager(param_1 + 0xb0d,0x908,2,&ui_system_data_1248_ptr,function_0e7d00);
   *(int32_t *)(param_1 + 0xd4f) = 0;
-  DataStructureManager(param_1 + 0xd50,0x50,2,&ui_system_data_1136_ptr,FUN_1800e7c40);
+  DataStructureManager(param_1 + 0xd50,0x50,2,&ui_system_data_1136_ptr,function_0e7c40);
   *(int32_t *)(param_1 + 0xd64) = 0;
-  DataStructureManager(param_1 + 0xd65,0x488,2,&ui_system_data_1184_ptr,FUN_1800e7ca0);
+  DataStructureManager(param_1 + 0xd65,0x488,2,&ui_system_data_1184_ptr,function_0e7ca0);
   *(int32_t *)(param_1 + 0xe87) = 0;
-  DataStructureManager(param_1 + 0xe88,0x50,2,&ui_system_data_1136_ptr,FUN_1800e7c40);
+  DataStructureManager(param_1 + 0xe88,0x50,2,&ui_system_data_1136_ptr,function_0e7c40);
   *(int32_t *)(param_1 + 0xe9c) = 0;
-  DataStructureManager(param_1 + 0xe9d,0x98,2,&ui_system_data_1088_ptr,FUN_1800e7be0);
+  DataStructureManager(param_1 + 0xe9d,0x98,2,&ui_system_data_1088_ptr,function_0e7be0);
   *(int32_t *)(param_1 + 0xec3) = 0;
-  DataStructureManager(param_1 + 0xec4,0x248,2,&ui_system_data_1040_ptr,FUN_1800e7b80);
+  DataStructureManager(param_1 + 0xec4,0x248,2,&ui_system_data_1040_ptr,function_0e7b80);
   *(int32_t *)(param_1 + 0xf56) = 0;
   param_1[0xf57] = 0;
   *(int32_t *)(param_1 + 1) = 0;
@@ -730,13 +721,4 @@ uint64_t * FUN_1800d9060(uint64_t *param_1)
   }
   return param_1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-
-

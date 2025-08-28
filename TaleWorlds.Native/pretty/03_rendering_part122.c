@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part122.c - 1 个函数
-
-// 函数: void FUN_18033ddb0(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_18033ddb0(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void function_33ddb0(uint64_t param_1,int64_t param_2,int64_t param_3)
+void function_33ddb0(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -25,7 +22,6 @@ void FUN_18033ddb0(uint64_t param_1,int64_t param_2,int64_t param_3)
   uint64_t uVar16;
   int iVar17;
   int32_t uVar18;
-  
   uVar10 = 0;
   puVar3 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x18,0x13);
   *(int8_t *)puVar3 = 0;
@@ -192,7 +188,7 @@ void FUN_18033ddb0(uint64_t param_1,int64_t param_2,int64_t param_3)
       iVar17 = *(int *)(lVar13 + 0x10 + uVar16);
       if (0 < iVar17) {
         CoreEngineDataBufferProcessor(param_2,iVar12 + iVar17);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
                *(uint64_t *)(lVar13 + 8 + uVar16),(int64_t)(*(int *)(lVar13 + 0x10 + uVar16) + 1)
               );
@@ -221,7 +217,7 @@ void FUN_18033ddb0(uint64_t param_1,int64_t param_2,int64_t param_3)
         iVar11 = *(int *)(param_3 + (uVar10 * 0x26 + 0x290) * 4);
         if (0 < iVar11) {
           CoreEngineDataBufferProcessor(param_2,iVar12 + iVar11);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
                  *(uint64_t *)(param_3 + (uVar10 * 0x26 + 0x28e) * 4),
                  (int64_t)(*(int *)(param_3 + (uVar10 * 0x26 + 0x290) * 4) + 1));
@@ -258,7 +254,7 @@ void FUN_18033ddb0(uint64_t param_1,int64_t param_2,int64_t param_3)
         *(int *)(param_2 + 0x10) = iVar17 + 0x2b;
       }
       if (uVar10 == 1) {
-        uVar18 = FUN_180344f00(uVar18,param_2,param_3);
+        uVar18 = function_344f00(uVar18,param_2,param_3);
       }
     }
     uVar10 = uVar10 + 1;
@@ -383,7 +379,7 @@ LAB_18033e648:
         }
         *(uint *)(param_2 + 0x18) = uVar9;
 LAB_18033e6d2:
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memcpy((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8),
                *(uint64_t *)(lVar8 + 8),(int64_t)(*(int *)(lVar8 + 0x10) + 1));
       }
@@ -540,13 +536,7 @@ LAB_18033e834:
   *(uint64_t *)((uint64_t)*(uint *)(param_2 + 0x10) + *(int64_t *)(param_2 + 8)) =
        0xa6669646e6523;
   *(int *)(param_2 + 0x10) = iVar17 + 0x113;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreEngineMemoryPoolCleaner(puVar3);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

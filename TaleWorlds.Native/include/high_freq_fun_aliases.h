@@ -24,10 +24,10 @@ extern "C" {
  */
 
 // 系统初始化器 - 负责系统启动和初始化
-#define CoreEngine_SystemInitializer FUN_18020f150
+#define CoreEngine_SystemInitializer function_20f150
 
 // 数据处理器 - 负责数据转换和处理
-#define CoreEngine_DataProcessor FUN_1800846d0
+#define CoreEngine_DataProcessor function_0846d0
 
 /**
  * 渲染引擎模块函数别名
@@ -35,16 +35,16 @@ extern "C" {
  */
 
 // 图形渲染器 - 负责3D图形渲染
-#define RenderingEngine_GraphicsRenderer FUN_18084d3f0
+#define RenderingEngine_GraphicsRenderer function_84d3f0
 
 // 纹理管理器 - 负责纹理加载和管理
-#define RenderingEngine_TextureManager FUN_1807703c0
+#define RenderingEngine_TextureManager function_7703c0
 
 // 着色器处理器 - 负责着色器编译和管理
-#define RenderingEngine_ShaderProcessor FUN_1807681a0
+#define RenderingEngine_ShaderProcessor function_7681a0
 
 // 帧缓冲区处理器 - 负责帧缓冲区管理
-#define RenderingEngine_FrameBufferHandler FUN_18074bd40
+#define RenderingEngine_FrameBufferHandler function_74bd40
 
 /**
  * UI系统模块函数别名
@@ -52,13 +52,13 @@ extern "C" {
  */
 
 // 布局管理器 - 负责UI布局计算
-#define UI_LayoutManager FUN_180645fa0
+#define UI_LayoutManager function_645fa0
 
 // 组件处理器 - 负责UI组件管理
-#define UI_WidgetHandler FUN_18063a240
+#define UI_WidgetHandler function_63a240
 
 // 事件处理器 - 负责UI事件处理
-#define UI_EventProcessor FUN_1805b7740
+#define UI_EventProcessor function_5b7740
 
 /**
  * 网络系统模块函数别名
@@ -66,13 +66,13 @@ extern "C" {
  */
 
 // 协议处理器 - 负责网络协议解析
-#define Network_ProtocolHandler FUN_1802e8c60
+#define Network_ProtocolHandler function_2e8c60
 
 // 连接管理器 - 负责网络连接管理
-#define Network_ConnectionManager FUN_1802921e0
+#define Network_ConnectionManager function_2921e0
 
 // 数据序列化器 - 负责网络数据序列化
-#define Network_DataSerializer FUN_1801f20c0
+#define Network_DataSerializer function_1f20c0
 
 /**
  * 内存管理模块函数别名
@@ -80,13 +80,13 @@ extern "C" {
  */
 
 // 内存分配器 - 负责动态内存分配
-#define Memory_Allocator FUN_180194a50
+#define Memory_Allocator function_194a50
 
 // 垃圾回收器 - 负责内存垃圾回收
-#define Memory_GarbageCollector FUN_180124190
+#define Memory_GarbageCollector function_124190
 
 // 缓存管理器 - 负责内存缓存管理
-#define Memory_CacheManager FUN_18011dd10
+#define Memory_CacheManager function_11dd10
 
 /**
  * 工具系统模块函数别名
@@ -94,7 +94,7 @@ extern "C" {
  */
 
 // 数据验证器 - 负责数据有效性验证
-#define Utilities_DataValidator FUN_180084ae0
+#define Utilities_DataValidator function_084ae0
 
 /**
  * 物理系统模块函数别名
@@ -102,13 +102,13 @@ extern "C" {
  */
 
 // 碰撞检测器 - 负责物理碰撞检测
-#define Physics_CollisionDetector FUN_1808ca6f0
+#define Physics_CollisionDetector function_8ca6f0
 
 // 刚体处理器 - 负责物理刚体处理
-#define Physics_RigidBodyHandler FUN_1808aef40
+#define Physics_RigidBodyHandler function_8aef40
 
 // 动画处理器 - 负责物理动画处理
-#define Physics_AnimationProcessor FUN_1808532e0
+#define Physics_AnimationProcessor function_8532e0
 
 /**
  * 音频系统模块函数别名
@@ -116,7 +116,7 @@ extern "C" {
  */
 
 // 声音管理器 - 负责音频播放和管理
-#define Audio_SoundManager FUN_180639fd0
+#define Audio_SoundManager function_639fd0
 
 #ifdef __cplusplus
 }

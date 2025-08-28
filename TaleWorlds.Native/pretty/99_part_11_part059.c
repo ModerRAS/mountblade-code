@@ -1,24 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_11_part059.c - 1 个函数
-
-// 函数: void FUN_1807bd127(void)
-void FUN_1807bd127(void)
-
+// 函数: void function_7bd127(void)
+void function_7bd127(void)
 {
   int64_t unaff_RBX;
-  
   *(int32_t *)(unaff_RBX + 0x27c) = 0x42480000;
   return;
 }
-
-
-
-uint64_t FUN_1807be340(int64_t *param_1)
-
+uint64_t function_7be340(int64_t *param_1)
 {
   int64_t lVar1;
-  
   UIComponent_Renderer(param_1 + 4,0);
   param_1[0x4a] = 0;
   *(int8_t *)((int64_t)param_1 + 0x304) = 0;
@@ -34,22 +25,17 @@ uint64_t FUN_1807be340(int64_t *param_1)
   *(int64_t **)param_1[1] = param_1;
   return 0;
 }
-
-
-
-uint64_t FUN_1807be3c0(int64_t param_1,uint64_t param_2,int8_t param_3)
-
+uint64_t function_7be3c0(int64_t param_1,uint64_t param_2,int8_t param_3)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
   int iVar3;
   uint64_t *puVar4;
   int64_t lVar5;
-  
   iVar3 = 0;
   if (0 < *(int *)(param_1 + 0x3bc8)) {
     do {
-      FUN_1807bb100(*(int64_t *)(param_1 + 0x3be0) + (int64_t)iVar3 * 0x28,0,param_3);
+      function_7bb100(*(int64_t *)(param_1 + 0x3be0) + (int64_t)iVar3 * 0x28,0,param_3);
       iVar3 = iVar3 + 1;
     } while (iVar3 < *(int *)(param_1 + 0x3bc8));
   }
@@ -60,10 +46,10 @@ uint64_t FUN_1807be3c0(int64_t param_1,uint64_t param_2,int8_t param_3)
     while (puVar2 = puVar1, puVar2 != puVar4) {
       puVar1 = (uint64_t *)*puVar2;
       if (puVar2[0x4a] != 0) {
-        FUN_1807bebb0(puVar2);
+        function_7bebb0(puVar2);
         *(float *)((int64_t)puVar2 + 0x28c) =
              *(float *)(*(int64_t *)puVar4[-1] + 0x3bf0) + *(float *)((int64_t)puVar2 + 0x28c);
-        FUN_1807be5a0(puVar2);
+        function_7be5a0(puVar2);
         *(float *)((int64_t)puVar2 + 0x2c4) =
              *(float *)(*(int64_t *)puVar4[-1] + 0x3bf0) + *(float *)((int64_t)puVar2 + 0x2c4);
         (**(code **)(puVar2[4] + 0xb0))
@@ -79,22 +65,14 @@ uint64_t FUN_1807be3c0(int64_t param_1,uint64_t param_2,int8_t param_3)
   *(float *)(param_1 + 0x3bec) = *(float *)(param_1 + 0x3bbc) + *(float *)(param_1 + 0x3bec);
   return 0;
 }
-
-
-
-uint64_t FUN_1807be560(int64_t param_1)
-
+uint64_t function_7be560(int64_t param_1)
 {
   (**(code **)(*(int64_t *)(param_1 + 0x20) + 0xb0))
             (param_1 + 0x20,(float)*(int *)(*(int64_t *)(param_1 + 0x318) + 0x370) * 0.015625 - 1.0
             );
   return 0;
 }
-
-
-
-uint64_t FUN_1807be5a0(int64_t param_1)
-
+uint64_t function_7be5a0(int64_t param_1)
 {
   int64_t lVar1;
   bool bVar2;
@@ -108,8 +86,7 @@ uint64_t FUN_1807be5a0(int64_t param_1)
   uint uVar10;
   float fVar11;
   float fVar12;
-  int8_t auStackX_8 [32];
-  
+  int8_t astack_special_x_8 [32];
   iVar9 = 0;
   if (*(char *)(param_1 + 0x2d0) != '\0') {
     if ((*(char *)(param_1 + 0x304) != '\0') &&
@@ -241,16 +218,12 @@ LAB_1807be904:
          *(float *)(param_1 + 0x260));
   }
   (**(code **)(**(int64_t **)(param_1 + 0x2d8) + 0x40))
-            (*(int64_t **)(param_1 + 0x2d8),auStackX_8,0);
+            (*(int64_t **)(param_1 + 0x2d8),astack_special_x_8,0);
   powf();
-  FUN_180757470(param_1 + 0x20);
+  function_757470(param_1 + 0x20);
   return 0;
 }
-
-
-
-uint64_t FUN_1807bebb0(uint64_t param_1)
-
+uint64_t function_7bebb0(uint64_t param_1)
 {
   uint uVar1;
   int64_t lVar2;
@@ -272,7 +245,6 @@ uint64_t FUN_1807bebb0(uint64_t param_1)
   float fVar18;
   float fVar19;
   char acStackX_8 [8];
-  
   iVar14 = 0;
   fVar18 = 1.0;
   fVar19 = 1.0;
@@ -465,14 +437,10 @@ LAB_1807bef58:
     }
   }
 LAB_1807bedc7:
-  uVar7 = FUN_1807be340(param_1);
+  uVar7 = function_7be340(param_1);
   return uVar7;
 }
-
-
-
-uint64_t FUN_1807bee4c(uint64_t param_1,uint64_t param_2,char param_3)
-
+uint64_t function_7bee4c(uint64_t param_1,uint64_t param_2,char param_3)
 {
   byte bVar1;
   int iVar2;
@@ -489,8 +457,7 @@ uint64_t FUN_1807bee4c(uint64_t param_1,uint64_t param_2,char param_3)
   float unaff_XMM7_Da;
   float unaff_XMM10_Da;
   float unaff_XMM11_Da;
-  char in_stack_00000090;
-  
+  char local_var_90;
   if (0 < (int)in_EAX) {
     puVar5 = *(ushort **)(unaff_RDI + 0x2f0);
     uVar6 = (uint64_t)in_EAX;
@@ -502,8 +469,8 @@ uint64_t FUN_1807bee4c(uint64_t param_1,uint64_t param_2,char param_3)
                         *(uint *)(unaff_RBP + 0x7bf0dc +
                                  (uint64_t)*(byte *)((uint64_t)*puVar5 + 0x7bf0e8 + unaff_RBP) * 4
                                  ) + unaff_RBP);
-                    // WARNING: Could not recover jumptable at 0x0001807bee9c. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001807bee9c. Too many branches
+// WARNING: Treating indirect jump as call
           uVar4 = (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
           return uVar4;
         }
@@ -513,8 +480,8 @@ uint64_t FUN_1807bee4c(uint64_t param_1,uint64_t param_2,char param_3)
                         *(uint *)(unaff_RBP + 0x7bf174 +
                                  (uint64_t)*(byte *)((uint64_t)puVar5[1] + 0x7bf194 + unaff_RBP) *
                                  4) + unaff_RBP);
-                    // WARNING: Could not recover jumptable at 0x0001807beed2. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001807beed2. Too many branches
+// WARNING: Treating indirect jump as call
           uVar4 = (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
           return uVar4;
         }
@@ -551,20 +518,16 @@ uint64_t FUN_1807bee4c(uint64_t param_1,uint64_t param_2,char param_3)
       (float)((uint)bVar1 * (uint)bVar1) * 2.3832943e-13 * unaff_XMM10_Da * (float)(iVar2 * iVar2) *
       (float)(iVar3 * iVar3) * *(float *)(unaff_RDI + 0x310) * fVar7)) {
     (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0x20))(unaff_RDI + 0x20);
-    in_stack_00000090 = '\x01';
-    (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0xa8))(unaff_RDI + 0x20,&stack0x00000090);
-    if (in_stack_00000090 != '\0') {
+    local_var_90 = '\x01';
+    (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0xa8))(unaff_RDI + 0x20,&local_buffer_00000090);
+    if (local_var_90 != '\0') {
       return 0;
     }
   }
-  uVar4 = FUN_1807be340();
+  uVar4 = function_7be340();
   return uVar4;
 }
-
-
-
-uint64_t FUN_1807bee9e(uint64_t param_1,float param_2)
-
+uint64_t function_7bee9e(uint64_t param_1,float param_2)
 {
   byte bVar1;
   int iVar2;
@@ -583,8 +546,7 @@ uint64_t FUN_1807bee9e(uint64_t param_1,float param_2)
   float unaff_XMM7_Da;
   float fVar10;
   float unaff_XMM11_Da;
-  char in_stack_00000090;
-  
+  char local_var_90;
   if ((int)param_1 == 0) {
     fVar10 = unaff_XMM7_Da - param_2 * unaff_XMM6_Da;
   }
@@ -605,8 +567,8 @@ uint64_t FUN_1807bee9e(uint64_t param_1,float param_2)
                         *(uint *)(unaff_RBP + 0x7bf0dc +
                                  (uint64_t)*(byte *)((uint64_t)*puVar7 + 0x7bf0e8 + unaff_RBP) * 4
                                  ) + unaff_RBP);
-                    // WARNING: Could not recover jumptable at 0x0001807bee9c. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001807bee9c. Too many branches
+// WARNING: Treating indirect jump as call
           uVar5 = (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
           return uVar5;
         }
@@ -616,8 +578,8 @@ uint64_t FUN_1807bee9e(uint64_t param_1,float param_2)
                         *(uint *)(unaff_RBP + 0x7bf174 +
                                  (uint64_t)*(byte *)((uint64_t)puVar7[1] + 0x7bf194 + unaff_RBP) *
                                  4) + unaff_RBP);
-                    // WARNING: Could not recover jumptable at 0x0001807beed2. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001807beed2. Too many branches
+// WARNING: Treating indirect jump as call
           uVar5 = (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
           return uVar5;
         }
@@ -654,20 +616,16 @@ uint64_t FUN_1807bee9e(uint64_t param_1,float param_2)
       (float)((uint)bVar1 * (uint)bVar1) * 2.3832943e-13 * fVar10 * (float)(iVar2 * iVar2) *
       (float)(iVar3 * iVar3) * *(float *)(unaff_RDI + 0x310) * fVar9)) {
     (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0x20))(unaff_RDI + 0x20);
-    in_stack_00000090 = '\x01';
-    (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0xa8))(unaff_RDI + 0x20,&stack0x00000090);
-    if (in_stack_00000090 != '\0') {
+    local_var_90 = '\x01';
+    (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0xa8))(unaff_RDI + 0x20,&local_buffer_00000090);
+    if (local_var_90 != '\0') {
       return 0;
     }
   }
-  uVar5 = FUN_1807be340();
+  uVar5 = function_7be340();
   return uVar5;
 }
-
-
-
-uint64_t FUN_1807beeb1(uint64_t param_1,float param_2,uint64_t param_3,int64_t param_4)
-
+uint64_t function_7beeb1(uint64_t param_1,float param_2,uint64_t param_3,int64_t param_4)
 {
   ushort *puVar1;
   byte bVar2;
@@ -684,8 +642,7 @@ uint64_t FUN_1807beeb1(uint64_t param_1,float param_2,uint64_t param_3,int64_t p
   float unaff_XMM7_Da;
   float unaff_XMM10_Da;
   float unaff_XMM11_Da;
-  char in_stack_00000090;
-  
+  char local_var_90;
   do {
     if (in_RDX[1] < 0x8c) {
       UNRECOVERED_JUMPTABLE_00 =
@@ -693,8 +650,8 @@ uint64_t FUN_1807beeb1(uint64_t param_1,float param_2,uint64_t param_3,int64_t p
                     *(uint *)(unaff_RBP + 0x7bf174 +
                              (uint64_t)*(byte *)((uint64_t)in_RDX[1] + 0x7bf194 + unaff_RBP) * 4)
                    + unaff_RBP);
-                    // WARNING: Could not recover jumptable at 0x0001807beed2. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001807beed2. Too many branches
+// WARNING: Treating indirect jump as call
       uVar5 = (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
       return uVar5;
     }
@@ -729,13 +686,13 @@ uint64_t FUN_1807beeb1(uint64_t param_1,float param_2,uint64_t param_3,int64_t p
             (float)(iVar3 * iVar3) * (float)(iVar4 * iVar4) * *(float *)(unaff_RDI + 0x310) * fVar7)
            ) {
           (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0x20))(unaff_RDI + 0x20);
-          in_stack_00000090 = '\x01';
-          (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0xa8))(unaff_RDI + 0x20,&stack0x00000090);
-          if (in_stack_00000090 != '\0') {
+          local_var_90 = '\x01';
+          (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0xa8))(unaff_RDI + 0x20,&local_buffer_00000090);
+          if (local_var_90 != '\0') {
             return 0;
           }
         }
-        uVar5 = FUN_1807be340();
+        uVar5 = function_7be340();
         return uVar5;
       }
       puVar1 = puVar6 + 8;
@@ -748,40 +705,28 @@ uint64_t FUN_1807beeb1(uint64_t param_1,float param_2,uint64_t param_3,int64_t p
                 *(uint *)(unaff_RBP + 0x7bf0dc +
                          (uint64_t)*(byte *)((uint64_t)*in_RDX + 0x7bf0e8 + unaff_RBP) * 4) +
                unaff_RBP);
-                    // WARNING: Could not recover jumptable at 0x0001807bee9c. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x0001807bee9c. Too many branches
+// WARNING: Treating indirect jump as call
   uVar5 = (*UNRECOVERED_JUMPTABLE_00)(UNRECOVERED_JUMPTABLE_00);
   return uVar5;
 }
-
-
-
-uint64_t FUN_1807bf058(void)
-
+uint64_t function_7bf058(void)
 {
   uint64_t uVar1;
   int64_t unaff_RSI;
   int64_t unaff_RDI;
   float unaff_XMM6_Da;
-  char in_stack_00000090;
-  
+  char local_var_90;
   if (0.0009765625 <= unaff_XMM6_Da) {
     (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0x20))
               (unaff_RDI + 0x20,unaff_XMM6_Da * *(float *)(unaff_RSI + 0x358),0);
-    in_stack_00000090 = '\x01';
-    (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0xa8))(unaff_RDI + 0x20,&stack0x00000090);
-    if (in_stack_00000090 != '\0') {
+    local_var_90 = '\x01';
+    (**(code **)(*(int64_t *)(unaff_RDI + 0x20) + 0xa8))(unaff_RDI + 0x20,&local_buffer_00000090);
+    if (local_var_90 != '\0') {
       return 0;
     }
   }
-  uVar1 = FUN_1807be340();
+  uVar1 = function_7be340();
   return uVar1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

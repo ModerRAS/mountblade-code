@@ -1,8 +1,6 @@
 #define StringProcessor System_StringProcessor  // 字符串处理器
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // =============================================================================
 // 03_rendering_part483.c - 渲染系统高级参数处理和状态管理模块
 // =============================================================================
@@ -15,7 +13,6 @@
 // - RenderingSystem_EmptyOperationProcessor1 (渲染系统空操作处理器1)
 // - RenderingSystem_EmptyOperationProcessor2 (渲染系统空操作处理器2)
 // =============================================================================
-
 // 渲染系统常量定义
 #define RENDERING_PARAMETER_SCALE_FACTOR 1e-05f
 #define RENDERING_TIME_OFFSET 0x9184e70000
@@ -35,7 +32,6 @@
 #define RENDERING_DEFAULT_DEPTH_FACTOR 0xffff
 #define RENDERING_SYSTEM_INVALID_INDEX -1
 #define RENDERING_SYSTEM_ZERO_TIME -0xe8d4a50000
-
 // 渲染系统数据结构定义
 typedef struct {
     float parameter_value;
@@ -53,7 +49,6 @@ typedef struct {
     int32_t status_flags;
     void* resource_pointer;
 } RenderingSystemParameterContext;
-
 typedef struct {
     float current_time;
     float target_time;
@@ -64,17 +59,15 @@ typedef struct {
     int32_t time_status;
     int32_t control_flags;
 } RenderingSystemTimeContext;
-
 // 函数别名定义
-#define RenderingSystem_ParameterProcessor FUN_180526aff
-#define RenderingSystem_StateManager FUN_180526b0e
-#define RenderingSystem_TimeController FUN_180526ffa
-#define RenderingSystem_EmptyOperationProcessor1 FUN_1805270fc
-#define RenderingSystem_EmptyOperationProcessor2 FUN_180527112
-
+#define RenderingSystem_ParameterProcessor function_526aff
+#define RenderingSystem_StateManager function_526b0e
+#define RenderingSystem_TimeController function_526ffa
+#define RenderingSystem_EmptyOperationProcessor1 function_5270fc
+#define RenderingSystem_EmptyOperationProcessor2 function_527112
 /**
  * 渲染系统参数处理器 - 处理渲染系统的高级参数和状态管理
- * 
+ *
  * 本函数负责处理渲染系统的核心参数，包括：
  * - 参数验证和调整
  * - 状态检查和更新
@@ -82,13 +75,13 @@ typedef struct {
  * - 资源管理和分配
  * - 渲染状态配置
  * - 内存管理和优化
- * 
+ *
  * @param param_1 输入参数，用于控制渲染系统的处理流程
  * @return void 无返回值
  */
-void FUN_180526aff(float param_1)
+void function_526aff(float param_1)
 {
-    // 渲染系统参数处理器的局部变量定义
+// 渲染系统参数处理器的局部变量定义
     int iVar1;
     int64_t *plVar2;
     char cVar3;
@@ -106,18 +99,16 @@ void FUN_180526aff(float param_1)
     float fVar12;
     float unaff_XMM6_Da;
     float unaff_XMM11_Da;
-    
-    // 初始化参数状态
+// 初始化参数状态
     iVar10 = 0;
-    
-    // 检查渲染系统状态标志并处理参数
+// 检查渲染系统状态标志并处理参数
     if (((*(uint *)(unaff_RBX + 0x56c) & RENDERING_STATUS_MASK_800) != 0) &&
        (param_1 = (float)(*(int64_t *)
                            (&system_error_code +
                            (int64_t)*(int *)(*(int64_t *)(unaff_RBX + 0x728) + 0x590) * 8) -
                          *(int64_t *)(*(int64_t *)(unaff_RBX + 0x728) + 0x588)) * RENDERING_PARAMETER_SCALE_FACTOR,
        unaff_XMM6_Da < param_1)) {
-        // 更新渲染参数状态
+// 更新渲染参数状态
         lVar8 = *(int64_t *)(unaff_RBX + 0x590);
         *(int32_t *)(lVar8 + 0xa414) = 0;
         *(int32_t *)(lVar8 + 0xa418) = 0x40400000;
@@ -125,8 +116,7 @@ void FUN_180526aff(float param_1)
              *(int64_t *)
               (&system_error_code + (int64_t)*(int *)(*(int64_t *)(unaff_RBX + 0x728) + 0x590) * 8) +
              RENDERING_TIME_OFFSET;
-        
-        // 检查资源状态并清理
+// 检查资源状态并清理
         if (((*(ushort *)(*(int64_t *)(unaff_RBX + 0x728) + 0x5ac) |
              *(ushort *)(*(int64_t *)(unaff_RBX + 0x728) + 0x5aa)) & 0x33ff) == 0) {
             lVar8 = *(int64_t *)(unaff_RBX + 0x590);
@@ -134,13 +124,12 @@ void FUN_180526aff(float param_1)
             *(uint64_t *)(lVar8 + 0x3448) = 0;
         }
     }
-    
-    // 处理渲染系统控制逻辑
+// 处理渲染系统控制逻辑
     if (unaff_R15B == '\0') {
         if ((*(uint *)(unaff_RBX + 0x56c) & RENDERING_STATUS_MASK_800) != 0) goto LAB_180526d2c;
     }
     else {
-        // 处理渲染系统资源分配和管理
+// 处理渲染系统资源分配和管理
         iVar5 = *(int *)(unaff_RBX + 0x564);
         lVar8 = *(int64_t *)(unaff_RBX + 0x8d8);
         plVar2 = *(int64_t **)((int64_t)iVar5 * 0xa60 + 0x3630 + lVar8);
@@ -149,13 +138,12 @@ void FUN_180526aff(float param_1)
             iVar5 = *(int *)(unaff_RBX + 0x564);
             lVar8 = *(int64_t *)(unaff_RBX + 0x8d8);
         }
-        
-        // 处理渲染系统参数设置和验证
+// 处理渲染系统参数设置和验证
         if (*(int64_t *)((int64_t)iVar5 * 0xa60 + 0x3630 + lVar8) != 0) {
             *(int32_t *)(unaff_RBP + 0x67) = RENDERING_DEFAULT_ALPHA_VALUE;
-            iVar5 = FUN_18050d480(param_1,unaff_RBP + 0x67);
+            iVar5 = function_50d480(param_1,unaff_RBP + 0x67);
             if (*(int *)(*(int64_t *)(unaff_RBX + 0x590) + 0x2450) != iVar5) {
-                // 设置渲染系统默认参数
+// 设置渲染系统默认参数
                 *(int32_t *)(unaff_RBP + -0x29) = 0;
                 *(int32_t *)(unaff_RBP + -0x25) = 0;
                 *(int32_t *)(unaff_RBP + -0x21) = RENDERING_DEFAULT_ALPHA_VALUE;
@@ -168,7 +156,6 @@ void FUN_180526aff(float param_1)
                 *(int32_t *)(unaff_RBP + -0x35) = 0xffffffff;
                 *(uint64_t *)(unaff_RBP + -0x31) = RENDERING_DEFAULT_TEXTURE_ID;
                 CoreSystemThreadManager(0,unaff_RBP + -0x39);
-                
                 if (iVar5 != RENDERING_SYSTEM_INVALID_INDEX) {
                     *(int32_t *)(unaff_RBP + -0x21) = *(int32_t *)(unaff_RBP + 0x67);
                     *(uint64_t *)(unaff_RBP + -0x31) = 0;
@@ -184,16 +171,14 @@ void FUN_180526aff(float param_1)
                 }
             }
         }
-        
-        // 处理渲染系统状态检查和清理
+// 处理渲染系统状态检查和清理
         if (((*(uint *)(unaff_RBX + 0x56c) & RENDERING_STATUS_MASK_800) != 0) &&
            (*(int *)(*(int64_t *)(unaff_RBX + 0x590) + 0x8228) < 0)) {
 LAB_180526d2c:
-            func_0x0001805a7480(unaff_RBX + 0x28);
+            Function_9125d7ce(unaff_RBX + 0x28);
         }
     }
-    
-    // 处理渲染系统高级渲染逻辑
+// 处理渲染系统高级渲染逻辑
     if ((((system_status_flag != 1) && (system_status_flag != 4)) &&
         ((*(uint *)(unaff_RBX + 0x56c) & RENDERING_STATUS_MASK_4000) != 0)) &&
        ((lVar8 = *(int64_t *)(*(int64_t *)(unaff_RBX + 0x8f8) + 0x9e8), lVar8 != 0 &&
@@ -205,7 +190,7 @@ LAB_180526d2c:
         if (cVar3 == '\0') {
 LAB_180526f68:
             lVar7 = *(int64_t *)(unaff_RBX + 0x8f8);
-            uVar6 = FUN_180590480(lVar8,0,*(int32_t *)(unaff_RBX + 0x56c),unaff_R15B,
+            uVar6 = function_590480(lVar8,0,*(int32_t *)(unaff_RBX + 0x56c),unaff_R15B,
                                   (byte)((uint)*(int32_t *)(lVar7 + 0x9e4) >> 0x1f) ^ 1);
             if (*(char *)(unaff_RBP + 0x67) != '\0') {
                 *(int32_t *)(lVar7 + 0xa14) = *(int32_t *)(lVar8 + 0xf0);
@@ -214,12 +199,12 @@ LAB_180526faa:
             *(int32_t *)(unaff_RBX + 0x2c0) = uVar6;
         }
         else {
-            // 处理渲染系统资源分配和参数设置
+// 处理渲染系统资源分配和参数设置
             lVar7 = *(int64_t *)(*(int64_t *)(unaff_RBX + 0x8f8) + 0x9f0);
             lVar9 = (int64_t)
                     *(int *)((int64_t)*(int *)(lVar8 + 0xf0) * 0xa0 + 100 + *(int64_t *)(lVar8 + 0xd0))
                     * 0x170 + render_system_render;
-            uVar4 = func_0x000180525320();
+            uVar4 = Function_ae66d806();
             if (lVar7 == 0) {
                 uVar6 = 0xffffffff;
             }
@@ -235,8 +220,7 @@ LAB_180526faa:
                 if (iVar1 != RENDERING_SYSTEM_INVALID_INDEX) {
                     iVar10 = *(int *)((int64_t)iVar1 * 0x68 + 0x58 + render_system_render);
                 }
-                
-                // 设置渲染系统参数上下文
+// 设置渲染系统参数上下文
                 *(uint64_t *)(unaff_RBP + -0x31) = 0;
                 *(int32_t *)(unaff_RBP + -0x29) = 0;
                 *(int32_t *)(unaff_RBP + -0x11) = RENDERING_DEFAULT_ALPHA;
@@ -245,8 +229,7 @@ LAB_180526faa:
                 *(int *)(unaff_RBP + -0x35) = iVar5;
                 *(uint64_t *)(unaff_RBP + -0x21) = 0xbe4ccccd3f800000;
                 *(uint64_t *)(unaff_RBP + -0x19) = 0x3ecccccdbe4ccccd;
-                
-                // 处理alpha阈值参数
+// 处理alpha阈值参数
                 if (unaff_R15B == '\0') {
                     fVar11 = 0.0;
                 }
@@ -264,7 +247,7 @@ LAB_180526faa:
                 *(float *)(unaff_RBP + -0x25) = fVar11;
                 cVar3 = CoreSystemThreadManager(fVar11,unaff_RBP + -0x39);
                 if (cVar3 != '\0') {
-                    // 设置渲染系统状态和颜色参数
+// 设置渲染系统状态和颜色参数
                     if (iVar10 != RENDERING_RESOURCE_FLAG_20) {
                         *(int32_t *)(unaff_RBX + 0x7c) = RENDERING_DEFAULT_DEPTH_FACTOR;
                         *(uint64_t *)(unaff_RBX + 0x74) = RENDERING_DEFAULT_BLEND_FACTOR;
@@ -278,7 +261,7 @@ LAB_180526faa:
                     }
                     goto LAB_180526fb7;
                 }
-                uVar6 = FUN_180590480(lVar8,0,*(int32_t *)(unaff_RBX + 0x56c),unaff_R15B,
+                uVar6 = function_590480(lVar8,0,*(int32_t *)(unaff_RBX + 0x56c),unaff_R15B,
                                       (byte)((uint)*(int32_t *)(*(int64_t *)(unaff_RBX + 0x8f8) + 0x9e4)
                                             >> 0x1f) ^ 1);
                 goto LAB_180526faa;
@@ -289,8 +272,7 @@ LAB_180526fb7:
             *(int32_t *)(*(int64_t *)(unaff_RBX + 0x8f8) + 0xa14) = 0xffffffff;
         }
     }
-    
-    // 处理渲染系统时间计算和控制
+// 处理渲染系统时间计算和控制
     lVar8 = *(int64_t *)(unaff_RBX + 0x590);
     if (((*(int *)(lVar8 + 0x2498) == RENDERING_SYSTEM_INVALID_INDEX) ||
         (*(int *)((int64_t)*(int *)(lVar8 + 0x2498) * 0x68 + 0x58 + render_system_render) != RENDERING_RESOURCE_FLAG_20)) ||
@@ -308,7 +290,7 @@ LAB_180526fb7:
                     *(int32_t *)(lVar8 + 0x24d4) = 0x3f733333;
                 }
                 else {
-                    // 插值计算alpha值
+// 插值计算alpha值
                     fVar12 = ((fVar11 - fVar12) / (*(float *)(unaff_RBX + 0x3d0) - fVar12)) *
                              (unaff_XMM11_Da - *(float *)(unaff_RBX + 0x3bc)) + *(float *)(unaff_RBX + 0x3bc);
                     fVar11 = RENDERING_MIN_ALPHA_THRESHOLD;
@@ -324,11 +306,10 @@ LAB_180526fb7:
     }
     *(int64_t *)(unaff_RBX + 0x5c8) = lVar7 - lVar8;
 LAB_1805270ca:
-    // 调用渲染系统更新函数
-    FUN_18058ada0(*(uint64_t *)(unaff_RBX + 0x590));
+// 调用渲染系统更新函数
+    function_58ada0(*(uint64_t *)(unaff_RBX + 0x590));
     return;
 }
-
 // =============================================================================
 // 渲染系统状态管理器 - 管理渲染系统的状态和控制逻辑
 // =============================================================================
@@ -339,13 +320,12 @@ LAB_1805270ca:
 // - 时间同步和管理
 // - 渲染状态配置
 // - 内存管理和优化
-// 
 // @param param_1 输入参数，用于控制渲染系统的状态管理流程
 // @return void 无返回值
 // =============================================================================
-void FUN_180526b0e(float param_1)
+void function_526b0e(float param_1)
 {
-    // 渲染系统状态管理器的局部变量定义
+// 渲染系统状态管理器的局部变量定义
     int iVar1;
     int64_t *plVar2;
     char cVar3;
@@ -364,26 +344,23 @@ void FUN_180526b0e(float param_1)
     float fVar12;
     float unaff_XMM6_Da;
     float unaff_XMM11_Da;
-    
-    // 初始化状态管理器
+// 初始化状态管理器
     iVar10 = 0;
-    
-    // 检查渲染系统状态标志并处理参数
+// 检查渲染系统状态标志并处理参数
     if (((*(uint *)(unaff_RBX + 0x56c) & RENDERING_STATUS_MASK_800) != 0) &&
        (param_1 = (float)(*(int64_t *)
                            (unaff_RSI +
                            (int64_t)*(int *)(*(int64_t *)(unaff_RBX + 0x728) + 0x590) * 8) -
                          *(int64_t *)(*(int64_t *)(unaff_RBX + 0x728) + 0x588)) * RENDERING_PARAMETER_SCALE_FACTOR,
        unaff_XMM6_Da < param_1)) {
-        // 更新渲染状态参数
+// 更新渲染状态参数
         lVar8 = *(int64_t *)(unaff_RBX + 0x590);
         *(int32_t *)(lVar8 + 0xa414) = 0;
         *(int32_t *)(lVar8 + 0xa418) = 0x40400000;
         *(int64_t *)(*(int64_t *)(unaff_RBX + 0x728) + 0x588) =
              *(int64_t *)(unaff_RSI + (int64_t)*(int *)(*(int64_t *)(unaff_RBX + 0x728) + 0x590) * 8)
              + RENDERING_TIME_OFFSET;
-        
-        // 检查资源状态并清理
+// 检查资源状态并清理
         if (((*(ushort *)(*(int64_t *)(unaff_RBX + 0x728) + 0x5ac) |
              *(ushort *)(*(int64_t *)(unaff_RBX + 0x728) + 0x5aa)) & 0x33ff) == 0) {
             lVar8 = *(int64_t *)(unaff_RBX + 0x590);
@@ -391,13 +368,12 @@ void FUN_180526b0e(float param_1)
             *(uint64_t *)(lVar8 + 0x3448) = 0;
         }
     }
-    
-    // 处理渲染系统控制逻辑
+// 处理渲染系统控制逻辑
     if (unaff_R15B == '\0') {
         if ((*(uint *)(unaff_RBX + 0x56c) & RENDERING_STATUS_MASK_800) != 0) goto LAB_180526d2c;
     }
     else {
-        // 处理渲染系统资源分配和管理
+// 处理渲染系统资源分配和管理
         iVar5 = *(int *)(unaff_RBX + 0x564);
         lVar8 = *(int64_t *)(unaff_RBX + 0x8d8);
         plVar2 = *(int64_t **)((int64_t)iVar5 * 0xa60 + 0x3630 + lVar8);
@@ -406,13 +382,12 @@ void FUN_180526b0e(float param_1)
             iVar5 = *(int *)(unaff_RBX + 0x564);
             lVar8 = *(int64_t *)(unaff_RBX + 0x8d8);
         }
-        
-        // 处理渲染系统参数设置和验证
+// 处理渲染系统参数设置和验证
         if (*(int64_t *)((int64_t)iVar5 * 0xa60 + 0x3630 + lVar8) != 0) {
             *(int32_t *)(unaff_RBP + 0x67) = RENDERING_DEFAULT_ALPHA_VALUE;
-            iVar5 = FUN_18050d480(param_1,unaff_RBP + 0x67);
+            iVar5 = function_50d480(param_1,unaff_RBP + 0x67);
             if (*(int *)(*(int64_t *)(unaff_RBX + 0x590) + 0x2450) != iVar5) {
-                // 设置渲染系统默认参数
+// 设置渲染系统默认参数
                 *(int32_t *)(unaff_RBP + -0x29) = 0;
                 *(int32_t *)(unaff_RBP + -0x25) = 0;
                 *(int32_t *)(unaff_RBP + -0x21) = RENDERING_DEFAULT_ALPHA_VALUE;
@@ -425,7 +400,6 @@ void FUN_180526b0e(float param_1)
                 *(int32_t *)(unaff_RBP + -0x35) = 0xffffffff;
                 *(uint64_t *)(unaff_RBP + -0x31) = RENDERING_DEFAULT_TEXTURE_ID;
                 CoreSystemThreadManager(0,unaff_RBP + -0x39);
-                
                 if (iVar5 != RENDERING_SYSTEM_INVALID_INDEX) {
                     *(int32_t *)(unaff_RBP + -0x21) = *(int32_t *)(unaff_RBP + 0x67);
                     *(uint64_t *)(unaff_RBP + -0x31) = 0;
@@ -441,16 +415,14 @@ void FUN_180526b0e(float param_1)
                 }
             }
         }
-        
-        // 处理渲染系统状态检查和清理
+// 处理渲染系统状态检查和清理
         if (((*(uint *)(unaff_RBX + 0x56c) & RENDERING_STATUS_MASK_800) != 0) &&
            (*(int *)(*(int64_t *)(unaff_RBX + 0x590) + 0x8228) < 0)) {
 LAB_180526d2c:
-            func_0x0001805a7480(unaff_RBX + 0x28);
+            Function_9125d7ce(unaff_RBX + 0x28);
         }
     }
-    
-    // 处理渲染系统高级渲染逻辑
+// 处理渲染系统高级渲染逻辑
     if ((((system_status_flag != 1) && (system_status_flag != 4)) &&
         ((*(uint *)(unaff_RBX + 0x56c) & RENDERING_STATUS_MASK_4000) != 0)) &&
        ((lVar8 = *(int64_t *)(*(int64_t *)(unaff_RBX + 0x8f8) + 0x9e8), lVar8 != 0 &&
@@ -462,7 +434,7 @@ LAB_180526d2c:
         if (cVar3 == '\0') {
 LAB_180526f68:
             lVar7 = *(int64_t *)(unaff_RBX + 0x8f8);
-            uVar6 = FUN_180590480(lVar8,0,*(int32_t *)(unaff_RBX + 0x56c),unaff_R15B,
+            uVar6 = function_590480(lVar8,0,*(int32_t *)(unaff_RBX + 0x56c),unaff_R15B,
                                   (byte)((uint)*(int32_t *)(lVar7 + 0x9e4) >> 0x1f) ^ 1);
             if (*(char *)(unaff_RBP + 0x67) != '\0') {
                 *(int32_t *)(lVar7 + 0xa14) = *(int32_t *)(lVar8 + 0xf0);
@@ -472,12 +444,12 @@ LAB_180526faa:
             *(int32_t *)(unaff_RBX + 0x2c0) = uVar6;
         }
         else {
-            // 处理渲染系统资源分配和参数设置
+// 处理渲染系统资源分配和参数设置
             lVar7 = *(int64_t *)(*(int64_t *)(unaff_RBX + 0x8f8) + 0x9f0);
             lVar9 = (int64_t)
                     *(int *)((int64_t)*(int *)(lVar8 + 0xf0) * 0xa0 + 100 + *(int64_t *)(lVar8 + 0xd0))
                     * 0x170 + render_system_render;
-            uVar4 = func_0x000180525320();
+            uVar4 = Function_ae66d806();
             if (lVar7 == 0) {
                 uVar6 = 0xffffffff;
             }
@@ -493,8 +465,7 @@ LAB_180526faa:
                 if (iVar1 != RENDERING_SYSTEM_INVALID_INDEX) {
                     iVar10 = *(int *)((int64_t)iVar1 * 0x68 + 0x58 + render_system_render);
                 }
-                
-                // 设置渲染系统参数上下文
+// 设置渲染系统参数上下文
                 *(uint64_t *)(unaff_RBP + -0x31) = 0;
                 *(int32_t *)(unaff_RBP + -0x29) = 0;
                 *(int32_t *)(unaff_RBP + -0x11) = RENDERING_DEFAULT_ALPHA;
@@ -503,8 +474,7 @@ LAB_180526faa:
                 *(int *)(unaff_RBP + -0x35) = iVar5;
                 *(uint64_t *)(unaff_RBP + -0x21) = 0xbe4ccccd3f800000;
                 *(uint64_t *)(unaff_RBP + -0x19) = 0x3ecccccdbe4ccccd;
-                
-                // 处理alpha阈值参数
+// 处理alpha阈值参数
                 if (unaff_R15B == '\0') {
                     fVar11 = 0.0;
                 }
@@ -523,7 +493,7 @@ LAB_180526faa:
                 cVar3 = CoreSystemThreadManager(fVar11,unaff_RBP + -0x39);
                 if (cVar3 != '\0') {
                     unaff_RSI = &system_error_code;
-                    // 设置渲染系统状态和颜色参数
+// 设置渲染系统状态和颜色参数
                     if (iVar10 != RENDERING_RESOURCE_FLAG_20) {
                         *(int32_t *)(unaff_RBX + 0x7c) = RENDERING_DEFAULT_DEPTH_FACTOR;
                         *(uint64_t *)(unaff_RBX + 0x74) = RENDERING_DEFAULT_BLEND_FACTOR;
@@ -537,7 +507,7 @@ LAB_180526faa:
                     }
                     goto LAB_180526fb7;
                 }
-                uVar6 = FUN_180590480(lVar8,0,*(int32_t *)(unaff_RBX + 0x56c),unaff_R15B,
+                uVar6 = function_590480(lVar8,0,*(int32_t *)(unaff_RBX + 0x56c),unaff_R15B,
                                       (byte)((uint)*(int32_t *)(*(int64_t *)(unaff_RBX + 0x8f8) + 0x9e4)
                                             >> 0x1f) ^ 1);
                 goto LAB_180526faa;
@@ -548,8 +518,7 @@ LAB_180526fb7:
             *(int32_t *)(*(int64_t *)(unaff_RBX + 0x8f8) + 0xa14) = 0xffffffff;
         }
     }
-    
-    // 处理渲染系统时间计算和控制
+// 处理渲染系统时间计算和控制
     lVar8 = *(int64_t *)(unaff_RBX + 0x590);
     if (((*(int *)(lVar8 + 0x2498) == RENDERING_SYSTEM_INVALID_INDEX) ||
         (*(int *)((int64_t)*(int *)(lVar8 + 0x2498) * 0x68 + 0x58 + render_system_render) != RENDERING_RESOURCE_FLAG_20)) ||
@@ -567,7 +536,7 @@ LAB_180526fb7:
                     *(int32_t *)(lVar8 + 0x24d4) = 0x3f733333;
                 }
                 else {
-                    // 插值计算alpha值
+// 插值计算alpha值
                     fVar12 = ((fVar11 - fVar12) / (*(float *)(unaff_RBX + 0x3d0) - fVar12)) *
                              (unaff_XMM11_Da - *(float *)(unaff_RBX + 0x3bc)) + *(float *)(unaff_RBX + 0x3bc);
                     fVar11 = RENDERING_MIN_ALPHA_THRESHOLD;
@@ -583,11 +552,10 @@ LAB_180526fb7:
     }
     *(int64_t *)(unaff_RBX + 0x5c8) = lVar7 - lVar8;
 LAB_1805270ca:
-    // 调用渲染系统更新函数
-    FUN_18058ada0(*(uint64_t *)(unaff_RBX + 0x590));
+// 调用渲染系统更新函数
+    function_58ada0(*(uint64_t *)(unaff_RBX + 0x590));
     return;
 }
-
 // =============================================================================
 // 渲染系统时间控制器 - 控制渲染系统的时间参数和插值计算
 // =============================================================================
@@ -598,14 +566,13 @@ LAB_1805270ca:
 // - 参数调整和优化
 // - 状态检查和更新
 // - 内存管理和优化
-// 
 // @param param_1 输入参数，用于控制渲染系统的时间参数
 // @param param_2 输入参数，用于时间计算和控制
 // @return void 无返回值
 // =============================================================================
-void FUN_180526ffa(uint64_t param_1, int64_t param_2)
+void function_526ffa(uint64_t param_1, int64_t param_2)
 {
-    // 渲染系统时间控制器的局部变量定义
+// 渲染系统时间控制器的局部变量定义
     float fVar1;
     int64_t in_RAX;
     int64_t lVar2;
@@ -617,10 +584,9 @@ void FUN_180526ffa(uint64_t param_1, int64_t param_2)
     float unaff_XMM6_Da;
     float unaff_XMM7_Da;
     float unaff_XMM11_Da;
-    
-    // 检查渲染系统资源状态和时间参数
+// 检查渲染系统资源状态和时间参数
     if ((*(int *)(in_RAX * 0x68 + 0x58 + render_system_render) == RENDERING_RESOURCE_FLAG_20) && (unaff_R15B != '\0')) {
-        // 计算时间参数
+// 计算时间参数
         lVar3 = *(int64_t *)(unaff_RSI + (int64_t)*(int *)(unaff_RBX + 0x5d0) * 8);
         in_XMM1_Da = (float)(lVar3 - *(int64_t *)(unaff_RBX + 0x5c8)) * RENDERING_PARAMETER_SCALE_FACTOR;
         if (unaff_XMM6_Da < in_XMM1_Da) {
@@ -630,7 +596,7 @@ void FUN_180526ffa(uint64_t param_1, int64_t param_2)
                     *(int32_t *)(param_2 + 0x24d4) = 0x3f733333;
                 }
                 else {
-                    // 插值计算时间参数
+// 插值计算时间参数
                     in_XMM1_Da = ((in_XMM1_Da - fVar1) / (*(float *)(unaff_RBX + 0x3d0) - fVar1)) *
                                  (unaff_XMM11_Da - *(float *)(unaff_RBX + 0x3bc)) +
                                  *(float *)(unaff_RBX + 0x3bc);
@@ -650,12 +616,11 @@ void FUN_180526ffa(uint64_t param_1, int64_t param_2)
     }
     *(int64_t *)(unaff_RBX + 0x5c8) = lVar3 - lVar2;
 LAB_1805270ca:
-    // 调用渲染系统时间更新函数
-    FUN_18058ada0(*(uint64_t *)(unaff_RBX + 0x590), in_XMM1_Da,
+// 调用渲染系统时间更新函数
+    function_58ada0(*(uint64_t *)(unaff_RBX + 0x590), in_XMM1_Da,
                   *(uint64_t *)(*(int64_t *)(unaff_RBX + 0x658) + 0x208));
     return;
 }
-
 // =============================================================================
 // 渲染系统空操作处理器1 - 简化实现的空操作处理器
 // =============================================================================
@@ -664,16 +629,14 @@ LAB_1805270ca:
 // - 提供基本的空操作功能
 // - 为后续扩展预留接口
 // - 简化实现版本，便于后续优化
-// 
 // @return void 无返回值
 // =============================================================================
-void FUN_1805270fc(void)
+void function_5270fc(void)
 {
-    // 简化实现的空操作处理器
-    // 本函数保持接口一致性，为后续扩展预留
+// 简化实现的空操作处理器
+// 本函数保持接口一致性，为后续扩展预留
     return;
 }
-
 // =============================================================================
 // 渲染系统空操作处理器2 - 简化实现的空操作处理器
 // =============================================================================
@@ -682,48 +645,40 @@ void FUN_1805270fc(void)
 // - 提供基本的空操作功能
 // - 为后续扩展预留接口
 // - 简化实现版本，便于后续优化
-// 
 // @return void 无返回值
 // =============================================================================
-void FUN_180527112(void)
+void function_527112(void)
 {
-    // 简化实现的空操作处理器
-    // 本函数保持接口一致性，为后续扩展预留
+// 简化实现的空操作处理器
+// 本函数保持接口一致性，为后续扩展预留
     return;
 }
-
 // =============================================================================
 // 技术说明和注意事项
 // =============================================================================
-// 
 // 1. 本模块实现了渲染系统的高级参数处理和状态管理功能
 // 2. 主要包括参数处理器、状态管理器、时间控制器等核心组件
 // 3. 实现了完整的参数验证、状态检查、时间计算等功能
 // 4. 支持资源管理、内存优化、渲染状态配置等高级特性
 // 5. 包含两个简化的空操作处理器，用于保持接口一致性
-// 
 // 注意事项：
 // - 本模块为简化实现版本，便于后续优化
 // - 空操作处理器标记为简化实现，可在后续版本中扩展
 // - 时间计算和插值逻辑需要根据具体应用场景调整
 // - 资源管理逻辑需要根据系统配置进行优化
-// 
 // =============================================================================
-// 
 // 全局变量说明：
 // - system_error_code: 渲染系统数据表基地址
 // - system_status_flag: 渲染系统状态标志
 // - system_state_5ff0: 渲染系统资源表基地址
 // - system_state_6150: 渲染系统参数表基地址
-// 
 // 函数调用说明：
-// - FUN_18050d480: 参数处理函数
+// - function_50d480: 参数处理函数
 // - CoreSystemThreadManager: 资源配置函数
 // - Timer_GetElapsed: 资源分配函数
-// - FUN_18058ada0: 系统更新函数
-// - FUN_180590480: 状态处理函数
+// - function_58ada0: 系统更新函数
+// - function_590480: 状态处理函数
 // - System_StringProcessor: 状态检查函数
-// - func_0x000180525320: 配置获取函数
-// - func_0x0001805a7480: 系统清理函数
-// 
+// - Function_ae66d806: 配置获取函数
+// - Function_9125d7ce: 系统清理函数
 // =============================================================================

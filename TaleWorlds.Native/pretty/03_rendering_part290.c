@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part290.c - 6 个函数
-
-// 函数: void FUN_180423639(uint64_t param_1,uint64_t param_2,int64_t param_3,int param_4)
-void FUN_180423639(uint64_t param_1,uint64_t param_2,int64_t param_3,int param_4)
-
+// 函数: void UISystem_23639(uint64_t param_1,uint64_t param_2,int64_t param_3,int param_4)
+void UISystem_23639(uint64_t param_1,uint64_t param_2,int64_t param_3,int param_4)
 {
   byte *pbVar1;
   int64_t lVar2;
@@ -12,7 +9,6 @@ void FUN_180423639(uint64_t param_1,uint64_t param_2,int64_t param_3,int param_4
   int64_t lVar3;
   int64_t in_R10;
   int64_t in_R11;
-  
   lVar2 = (int64_t)unaff_EBX;
   if (lVar2 < param_4) {
     lVar3 = param_4 - lVar2;
@@ -27,11 +23,7 @@ void FUN_180423639(uint64_t param_1,uint64_t param_2,int64_t param_3,int param_4
   }
   return;
 }
-
-
-
-byte * FUN_180423690(byte *param_1,byte *param_2,uint64_t param_3,int param_4)
-
+byte * UISystem_23690(byte *param_1,byte *param_2,uint64_t param_3,int param_4)
 {
   int64_t lVar1;
   int iVar2;
@@ -41,7 +33,6 @@ byte * FUN_180423690(byte *param_1,byte *param_2,uint64_t param_3,int param_4)
   byte *pbVar6;
   byte *pbVar7;
   int64_t lVar8;
-  
   bVar3 = *param_2;
   *param_1 = bVar3;
   if (param_4 == 1) {
@@ -71,11 +62,7 @@ byte * FUN_180423690(byte *param_1,byte *param_2,uint64_t param_3,int param_4)
   param_1[(int64_t)(iVar5 * 2) + 1] = param_2[lVar1];
   return param_1;
 }
-
-
-
-int8_t * FUN_180423760(int8_t *param_1,byte *param_2,byte *param_3,int param_4)
-
+int8_t * UISystem_23760(int8_t *param_1,byte *param_2,byte *param_3,int param_4)
 {
   byte *pbVar1;
   byte bVar2;
@@ -85,7 +72,6 @@ int8_t * FUN_180423760(int8_t *param_1,byte *param_2,byte *param_3,int param_4)
   int64_t lVar6;
   byte *pbVar7;
   int8_t *puVar8;
-  
   iVar4 = (uint)*param_2 + (uint)*param_2 * 2 + (uint)*param_3;
   if (param_4 == 1) {
     uVar3 = (int8_t)(iVar4 + 2U >> 2);
@@ -114,13 +100,8 @@ int8_t * FUN_180423760(int8_t *param_1,byte *param_2,byte *param_3,int param_4)
   param_1[(int64_t)(param_4 * 2) + -1] = (char)(iVar4 + 2U >> 2);
   return param_1;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x0001804238f3)
-
-char * FUN_180423820(char *param_1,byte *param_2,uint64_t *param_3,int param_4)
-
+char * UISystem_23820(char *param_1,byte *param_2,uint64_t *param_3,int param_4)
 {
   byte *pbVar1;
   uint64_t uVar2;
@@ -189,7 +170,6 @@ char * FUN_180423820(char *param_1,byte *param_2,uint64_t *param_3,int param_4)
   ushort uVar65;
   ushort uVar66;
   int8_t auVar67 [16];
-  
   iVar35 = 0;
   iVar32 = (uint)*param_2 + (uint)*param_2 * 2 + (uint)(byte)*param_3;
   if (param_4 == 1) {
@@ -360,16 +340,9 @@ char * FUN_180423820(char *param_1,byte *param_2,uint64_t *param_3,int param_4)
   param_1[(int64_t)(param_4 * 2) + -1] = (char)(iVar31 + 2U >> 2);
   return param_1;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x0001804238f3)
-
-
-
-// 函数: void FUN_180423883(uint64_t param_1,int param_2)
-void FUN_180423883(uint64_t param_1,int param_2)
-
+// 函数: void UISystem_23883(uint64_t param_1,int param_2)
+void UISystem_23883(uint64_t param_1,int param_2)
 {
   byte *pbVar1;
   uint64_t uVar2;
@@ -449,7 +422,6 @@ void FUN_180423883(uint64_t param_1,int param_2)
   short in_XMM5_Wf;
   short in_XMM5_Wg;
   short in_XMM5_Wh;
-  
   lVar33 = unaff_RBX - (int64_t)unaff_RSI;
   uVar29 = (in_EAX - 1U >> 3) + 1;
   uVar36 = (uint64_t)uVar29;
@@ -607,14 +579,8 @@ void FUN_180423883(uint64_t param_1,int param_2)
   unaff_RDI[(int64_t)((int)unaff_R14 * 2) + -1] = (char)(iVar30 + 2U >> 2);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180423968(uint64_t param_1,int param_2,uint64_t param_3,int param_4)
-void FUN_180423968(uint64_t param_1,int param_2,uint64_t param_3,int param_4)
-
+// 函数: void UISystem_23968(uint64_t param_1,int param_2,uint64_t param_3,int param_4)
+void UISystem_23968(uint64_t param_1,int param_2,uint64_t param_3,int param_4)
 {
   byte *pbVar1;
   byte bVar2;
@@ -628,7 +594,6 @@ void FUN_180423968(uint64_t param_1,int param_2,uint64_t param_3,int param_4)
   int8_t *puVar7;
   int64_t lVar8;
   int64_t unaff_R14;
-  
   bVar2 = *(byte *)(param_4 + unaff_RBX);
   iVar3 = (uint)bVar2 + (uint)bVar2 * 2 + (uint)*(byte *)(param_4 + unaff_RSI);
   *(char *)(param_4 * 2 + unaff_RDI) = (char)((uint)(param_2 + 8 + iVar3 * 3) >> 4);
@@ -653,15 +618,9 @@ void FUN_180423968(uint64_t param_1,int param_2,uint64_t param_3,int param_4)
   *(char *)((int64_t)((int)unaff_R14 * 2) + -1 + unaff_RDI) = (char)(iVar3 + 2U >> 2);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180423a60(int64_t param_1,int64_t param_2,int64_t param_3,byte *param_4,int param_5,
-void FUN_180423a60(int64_t param_1,int64_t param_2,int64_t param_3,byte *param_4,int param_5,
+// 函数: void UISystem_23a60(int64_t param_1,int64_t param_2,int64_t param_3,byte *param_4,int param_5,
+void UISystem_23a60(int64_t param_1,int64_t param_2,int64_t param_3,byte *param_4,int param_5,
                   int param_6)
-
 {
   int8_t *puVar1;
   uint uVar2;
@@ -671,7 +630,6 @@ void FUN_180423a60(int64_t param_1,int64_t param_2,int64_t param_3,byte *param_4
   uint uVar6;
   uint uVar7;
   uint uVar8;
-  
   lVar3 = (int64_t)param_5;
   if (0 < lVar3) {
     puVar1 = (int8_t *)(param_1 + 2);
@@ -707,14 +665,8 @@ void FUN_180423a60(int64_t param_1,int64_t param_2,int64_t param_3,byte *param_4
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180423a84(int64_t param_1)
-void FUN_180423a84(int64_t param_1)
-
+// 函数: void UISystem_23a84(int64_t param_1)
+void UISystem_23a84(int64_t param_1)
 {
   int8_t *puVar1;
   uint uVar2;
@@ -729,8 +681,7 @@ void FUN_180423a84(int64_t param_1)
   int64_t unaff_R14;
   int64_t lVar8;
   uint uVar9;
-  int in_stack_00000040;
-  
+  int local_var_40;
   puVar1 = (int8_t *)(param_1 + 2);
   lVar8 = unaff_R14 - (int64_t)unaff_RBX;
   lVar3 = unaff_RBP - (int64_t)unaff_RBX;
@@ -758,26 +709,14 @@ void FUN_180423a84(int64_t param_1)
     puVar1[-1] = (char)uVar6;
     *puVar1 = (char)uVar4;
     puVar1[1] = 0xff;
-    puVar1 = puVar1 + in_stack_00000040;
+    puVar1 = puVar1 + local_var_40;
     unaff_RDI = unaff_RDI + -1;
   } while (unaff_RDI != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180423b76(void)
-void FUN_180423b76(void)
-
+// 函数: void UISystem_23b76(void)
+void UISystem_23b76(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

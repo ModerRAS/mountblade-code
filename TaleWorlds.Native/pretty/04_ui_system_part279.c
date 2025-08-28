@@ -1,15 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part279.c - 9 个函数
-
-// 函数: void FUN_180825dca(int *param_1,int param_2)
-void FUN_180825dca(int *param_1,int param_2)
-
+// 函数: void function_825dca(int *param_1,int param_2)
+void function_825dca(int *param_1,int param_2)
 {
   int64_t in_R10;
   int64_t in_R11;
   int64_t lVar1;
-  
   if (0 < param_2) {
     lVar1 = in_R11 - (int64_t)param_1;
     do {
@@ -21,14 +17,8 @@ void FUN_180825dca(int *param_1,int param_2)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180825e10(int64_t *param_1)
-void FUN_180825e10(int64_t *param_1)
-
+// 函数: void function_825e10(int64_t *param_1)
+void function_825e10(int64_t *param_1)
 {
   if (*param_1 != 0) {
     free();
@@ -41,15 +31,10 @@ void FUN_180825e10(int64_t *param_1)
   *(int32_t *)(param_1 + 2) = 0;
   return;
 }
-
-
-
-uint64_t FUN_180825e50(int64_t *param_1,uint param_2)
-
+uint64_t function_825e50(int64_t *param_1,uint param_2)
 {
   int64_t lVar1;
   int64_t lVar2;
-  
   if (param_2 <= *(uint *)(param_1 + 2)) {
     return 1;
   }
@@ -60,28 +45,21 @@ uint64_t FUN_180825e50(int64_t *param_1,uint param_2)
     lVar1 = realloc(param_1[1],lVar2);
     param_1[1] = lVar1;
     if (lVar1 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(lVar1,0,lVar2);
     }
   }
   return 0;
 }
-
-
-
-
-
-// 函数: void FUN_180825ef0(int *param_1,uint param_2,int *param_3,uint param_4,byte param_5,int64_t param_6
-void FUN_180825ef0(int *param_1,uint param_2,int *param_3,uint param_4,byte param_5,int64_t param_6
+// 函数: void function_825ef0(int *param_1,uint param_2,int *param_3,uint param_4,byte param_5,int64_t param_6
+void function_825ef0(int *param_1,uint param_2,int *param_3,uint param_4,byte param_5,int64_t param_6
                   )
-
 {
   int *piVar1;
   int iVar2;
   int iVar3;
   uint64_t uVar4;
   int *piVar5;
-  
   if (0 < (int)param_2) {
     if (param_4 < 0xd) {
       if (8 < param_4) {
@@ -331,22 +309,15 @@ void FUN_180825ef0(int *param_1,uint param_2,int *param_3,uint param_4,byte para
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180825eff(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
-void FUN_180825eff(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
+// 函数: void function_825eff(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
+void function_825eff(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
                   ,byte param_6,int64_t param_7)
-
 {
   int *piVar1;
   int iVar2;
   int iVar3;
   int *piVar4;
   int *in_R10;
-  
   if (0xc < param_4) {
     piVar4 = (int *)(param_7 + -0x7c);
     param_2 = param_2 & 0xffffffff;
@@ -591,15 +562,9 @@ void FUN_180825eff(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,u
   } while (param_2 != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180826000(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param_4,
-void FUN_180826000(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param_4,
+// 函数: void function_826000(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param_4,
+void function_826000(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param_4,
                   uint64_t param_5,byte param_6)
-
 {
   int *piVar1;
   int iVar2;
@@ -608,7 +573,6 @@ void FUN_180826000(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param
   int64_t unaff_RBX;
   int64_t in_R10;
   int *piVar4;
-  
   iVar3 = *(int *)(in_RAX + -0x28);
   piVar4 = (int *)(in_RAX + -0x28);
   do {
@@ -625,15 +589,9 @@ void FUN_180826000(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param
   } while (unaff_RBX != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1808260b7(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param_4,
-void FUN_1808260b7(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param_4,
+// 函数: void function_8260b7(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param_4,
+void function_8260b7(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param_4,
                   uint64_t param_5,byte param_6)
-
 {
   int *piVar1;
   int iVar2;
@@ -643,7 +601,6 @@ void FUN_1808260b7(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param
   int64_t in_R10;
   int *piVar4;
   bool in_ZF;
-  
   if (in_ZF) {
     iVar3 = *(int *)(in_RAX + -0x24);
     piVar4 = (int *)(in_RAX + -0x24);
@@ -675,14 +632,8 @@ void FUN_1808260b7(uint64_t param_1,uint64_t param_2,int *param_3,uint64_t param
   } while (unaff_RBX != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18082616c(uint64_t param_1,uint64_t param_2,int *param_3)
-void FUN_18082616c(uint64_t param_1,uint64_t param_2,int *param_3)
-
+// 函数: void function_82616c(uint64_t param_1,uint64_t param_2,int *param_3)
+void function_82616c(uint64_t param_1,uint64_t param_2,int *param_3)
 {
   int *piVar1;
   int iVar2;
@@ -692,7 +643,6 @@ void FUN_18082616c(uint64_t param_1,uint64_t param_2,int *param_3)
   byte unaff_SIL;
   int64_t in_R10;
   int *piVar4;
-  
   iVar3 = *(int *)(in_RAX + -0x20);
   piVar4 = (int *)(in_RAX + -0x20);
   do {
@@ -708,22 +658,15 @@ void FUN_18082616c(uint64_t param_1,uint64_t param_2,int *param_3)
   } while (unaff_RBX != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18082620d(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
-void FUN_18082620d(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
+// 函数: void function_82620d(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
+void function_82620d(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,uint64_t param_5
                   ,byte param_6,int64_t param_7)
-
 {
   int *piVar1;
   int iVar2;
   int iVar3;
   int *piVar4;
   int *in_R10;
-  
   if (param_4 < 5) {
     if (param_4 < 3) {
       if (param_4 == 2) {
@@ -842,14 +785,8 @@ void FUN_18082620d(uint64_t param_1,uint64_t param_2,int *param_3,uint param_4,u
   } while (param_2 != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1808262c2(uint64_t param_1,uint64_t param_2,int *param_3)
-void FUN_1808262c2(uint64_t param_1,uint64_t param_2,int *param_3)
-
+// 函数: void function_8262c2(uint64_t param_1,uint64_t param_2,int *param_3)
+void function_8262c2(uint64_t param_1,uint64_t param_2,int *param_3)
 {
   int *piVar1;
   int iVar2;
@@ -859,7 +796,6 @@ void FUN_1808262c2(uint64_t param_1,uint64_t param_2,int *param_3)
   byte unaff_SIL;
   int64_t in_R10;
   int *piVar4;
-  
   iVar3 = *(int *)(in_RAX + -0x18);
   piVar4 = (int *)(in_RAX + -0x18);
   do {
@@ -874,8 +810,3 @@ void FUN_1808262c2(uint64_t param_1,uint64_t param_2,int *param_3)
   } while (unaff_RBX != 0);
   return;
 }
-
-
-
-
-

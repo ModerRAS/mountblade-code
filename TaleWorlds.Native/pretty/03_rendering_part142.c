@@ -1,190 +1,150 @@
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* 函数别名定义: DataEncryptionHandler */
 #define DataEncryptionHandler DataEncryptionHandler
-
-
 /* 函数别名定义: RenderingShaderProcessor */
 #define RenderingShaderProcessor RenderingShaderProcessor
-
-
-
 //==============================================================================
 // 文件信息：03_rendering_part142.c - 渲染系统核心功能模块
-// 
 // 模块概述：
 // 本文件实现了TaleWorlds引擎渲染系统的核心功能模块，包含13个关键函数，
 // 涵盖了渲染对象的完整生命周期管理、数据处理、内存管理和高级渲染操作。
-//
 // 主要功能分类：
 // 1. 渲染对象管理 - 初始化、配置、清理
 // 2. 数据处理系统 - 验证、转换、比较
 // 3. 内存管理 - 分配、释放、缓存
 // 4. 渲染控制 - 状态管理、队列处理
 // 5. 哈希表系统 - 查找、插入、删除、重建
-//
 // 技术架构：
 // - 采用虚函数表机制实现多态
 // - 使用栈分配优化性能
 // - 实现自动内存管理机制
 // - 支持配置消息处理
 // - 包含完整的错误处理
-//
 // 性能特点：
 // - 高效的内存访问模式
 // - 最小化内存拷贝
 // - 支持异步渲染操作
 // - 实现内存池和缓存机制
-//
 // 使用说明：
 // - 本模块为渲染系统核心组件，建议由系统自动调用
 // - 开发者应通过上层API接口使用渲染功能
 // - 直接调用底层函数需要深入了解渲染系统架构
 // - 注意正确处理内存分配和释放，避免内存泄漏
-//
 // 版本信息：
 // - 文件版本：第142部分
 // - 兼容性：与TaleWorlds引擎核心模块兼容
 // - 更新日期：系统生成
-//
 //==============================================================================
-
 //------------------------------------------------------------------------------
 // 类型别名和常量定义
 //------------------------------------------------------------------------------
-
 // 渲染对象类型别名
 typedef uint64_t* RenderObjectPtr;
 typedef uint64_t* RenderConfigPtr;
 typedef uint64_t* RenderDataPtr;
 typedef uint64_t* RenderStatePtr;
-
 // 渲染状态常量
 #define RENDER_STATE_INIT          0x0
 #define RENDER_STATE_ACTIVE        0x1
 #define RENDER_STATE_INACTIVE      0x2
 #define RENDER_STATE_ERROR         0x3
-
 // 渲染对象大小常量
 #define RENDER_OBJECT_BASE_SIZE    0x98
 #define RENDER_CONFIG_SIZE         0x60
 #define RENDER_DATA_MIN_SIZE      0x10
 #define RENDER_HASH_TABLE_SIZE    0x80
-
 // 渲染标志位
 #define RENDER_FLAG_AUTO_CLEAN     0x1
 #define RENDER_FLAG_PERSISTENT     0x2
 #define RENDER_FLAG_DYNAMIC        0x4
-
 // 渲染操作码
 #define RENDER_OP_CREATE           0x0
 #define RENDER_OP_DESTROY          0x1
 #define RENDER_OP_UPDATE           0x2
 #define RENDER_OP_RENDER           0x3
-
 //------------------------------------------------------------------------------
 // 函数别名定义
 //------------------------------------------------------------------------------
-
 // 渲染对象初始化函数
-#define RenderObject_Initialize              FUN_180352bf0
-#define RenderObject_Cleanup                 FUN_180352dc0
-#define RenderObject_ProcessConfig           FUN_180352e50
-#define RenderObject_CreateData              FUN_180352ff0
-#define RenderObject_SetProperties           FUN_180353070
-
+#define RenderObject_Initialize              RenderingSystem_52bf0
+#define RenderObject_Cleanup                 RenderingSystem_52dc0
+#define RenderObject_ProcessConfig           RenderingSystem_52e50
+#define RenderObject_CreateData              RenderingSystem_52ff0
+#define RenderObject_SetProperties           RenderingSystem_53070
 // 渲染数据处理函数
-#define RenderData_Process                   FUN_1803530c0
-#define RenderData_Compare                   FUN_180353e50
-#define RenderData_Validate                  FUN_180354170
-#define RenderData_CreateFromConfig          FUN_1803543b0
-
+#define RenderData_Process                   RenderingSystem_530c0
+#define RenderData_Compare                   RenderingSystem_53e50
+#define RenderData_Validate                  RenderingSystem_54170
+#define RenderData_CreateFromConfig          RenderingSystem_543b0
 // 渲染内存管理函数
-#define RenderMemory_AllocateBuffer          FUN_1803549f0
-#define RenderMemory_AllocatePersistent      FUN_180354b70
-#define RenderMemory_CopyData                FUN_180354db0
-#define RenderMemory_CleanupArray            FUN_180354f20
-#define RenderMemory_CleanupArrayEx          FUN_180354f40
-
+#define RenderMemory_AllocateBuffer          RenderingSystem_549f0
+#define RenderMemory_AllocatePersistent      RenderingSystem_54b70
+#define RenderMemory_CopyData                RenderingSystem_54db0
+#define RenderMemory_CleanupArray            RenderingSystem_54f20
+#define RenderMemory_CleanupArrayEx          RenderingSystem_54f40
 // 渲染哈希表函数
-#define RenderHash_FindEntry                 FUN_180355030
-#define RenderHash_InsertEntry              FUN_180355140
-#define RenderHash_RemoveEntry               FUN_1803552e0
-#define RenderHash_CreateEntry               FUN_180355340
-#define RenderHash_ResizeTable               FUN_180355393
-#define RenderHash_RebuildTable              FUN_1803553e1
-
+#define RenderHash_FindEntry                 RenderingSystem_55030
+#define RenderHash_InsertEntry              RenderingSystem_55140
+#define RenderHash_RemoveEntry               RenderingSystem_552e0
+#define RenderHash_CreateEntry               RenderingSystem_55340
+#define RenderHash_ResizeTable               RenderingSystem_55393
+#define RenderHash_RebuildTable              RenderingSystem_553e1
 //------------------------------------------------------------------------------
 // 渲染对象初始化函数
 // 功能：初始化渲染对象，设置基本配置和状态
 // 参数：param_1 - 渲染对象指针
 // 返回值：无
 //------------------------------------------------------------------------------
-void FUN_180352bf0(uint64_t *param_1)
+void RenderingSystem_52bf0(uint64_t *param_1)
 {
-    // 局部变量定义
+// 局部变量定义
     int64_t *plVar1;           // 渲染对象内部指针
     int32_t uVar2;           // 临时变量
     int32_t *puVar3;         // 缓冲区指针
     uint64_t *puVar4;         // 渲染对象指针
     uint64_t uVar5;           // 标志变量
-    void *puStack_80;       // 栈参数1
-    int32_t *puStack_78;     // 栈参数2
-    int32_t uStack_70;        // 栈参数3
-    uint64_t uStack_68;        // 栈参数4
-    
-    // 初始化标志变量
+    void *plocal_var_80;       // 栈参数1
+    int32_t *plocal_var_78;     // 栈参数2
+    int32_t local_var_70;        // 栈参数3
+    uint64_t local_var_68;        // 栈参数4
+// 初始化标志变量
     uVar5 = 0xfffffffffffffffe;  // 渲染系统标志
-    
-    // 设置渲染对象指针
+// 设置渲染对象指针
     puVar4 = param_1;
-    
-    // 调用渲染系统初始化函数
+// 调用渲染系统初始化函数
     SystemCore_SyncController();
-    
-    // 设置渲染对象的基本配置
+// 设置渲染对象的基本配置
     *puVar4 = &rendering_buffer_2008_ptr;   // 设置渲染对象类型
-    
-    // 配置渲染对象的虚函数表
+// 配置渲染对象的虚函数表
     plVar1 = puVar4 + 0xf;       // 虚函数表指针位置
     *plVar1 = (int64_t)&system_state_ptr;  // 设置默认虚函数表
-    
-    // 初始化渲染对象的状态字段
+// 初始化渲染对象的状态字段
     puVar4[0x10] = 0;            // 状态字段1
     *(int32_t *)(puVar4 + 0x11) = 0;  // 状态字段2
-    
-    // 更新虚函数表指针
+// 更新虚函数表指针
     *plVar1 = (int64_t)&system_data_buffer_ptr;  // 设置新的虚函数表
-    
-    // 重置状态字段
+// 重置状态字段
     puVar4[0x12] = 0;            // 状态字段3
     puVar4[0x10] = 0;            // 状态字段1重置
     *(int32_t *)(puVar4 + 0x11) = 0;  // 状态字段2重置
     *(int8_t *)(puVar4 + 0xe) = 0;   // 标志位重置
-    
-    // 调用虚函数表的初始化方法
+// 调用虚函数表的初始化方法
     (**(code **)(*plVar1 + 0x10))(plVar1, &system_memory_e968);
-    
-    // 准备栈参数用于配置消息
-    puStack_80 = &system_data_buffer_ptr;  // 配置类型指针
-    uStack_68 = 0;                // 配置参数1
-    puStack_78 = (int32_t *)0x0;  // 配置数据指针
-    uStack_70 = 0;                // 配置参数2
-    
-    // 分配配置缓冲区
+// 准备栈参数用于配置消息
+    plocal_var_80 = &system_data_buffer_ptr;  // 配置类型指针
+    local_var_68 = 0;                // 配置参数1
+    plocal_var_78 = (int32_t *)0x0;  // 配置数据指针
+    local_var_70 = 0;                // 配置参数2
+// 分配配置缓冲区
     puVar3 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x1f, 0x13);
     *(int8_t *)puVar3 = 0;    // 初始化缓冲区
-    
-    // 设置配置数据指针
-    puStack_78 = puVar3;
-    
-    // 获取配置数据句柄
+// 设置配置数据指针
+    plocal_var_78 = puVar3;
+// 获取配置数据句柄
     uVar2 = CoreMemoryPoolCleaner(puVar3);
-    uStack_68 = CONCAT44(uStack_68._4_4_, uVar2);
-    
-    // 设置配置消息内容："Part Bake Frame Control Level"
+    local_var_68 = CONCAT44(local_var_68._4_4_, uVar2);
+// 设置配置消息内容："Part Bake Frame Control Level"
     *puVar3 = 0x74726150;         // "Part"
     puVar3[1] = 0x206c6169;       // " lai"
     puVar3[2] = 0x656b6142;       // "akeB"
@@ -193,232 +153,180 @@ void FUN_180352bf0(uint64_t *param_1)
     puVar3[6] = 0x76654c20;       // "ve L"
     *(int16_t *)(puVar3 + 7) = 0x6c65;  // "el"
     *(int8_t *)((int64_t)puVar3 + 0x1e) = 0;  // 字符串结束符
-    
-    // 设置配置消息长度
-    uStack_70 = 0x1e;            // 消息长度30字节
-    
-    // 调用配置处理函数
-    SystemNetwork_Processor(param_1, &puStack_80, param_1 + 0xe, 0xb, uVar5);
-    
-    // 清理配置缓冲区
-    puStack_80 = &system_data_buffer_ptr;
+// 设置配置消息长度
+    local_var_70 = 0x1e;            // 消息长度30字节
+// 调用配置处理函数
+    SystemNetwork_Processor(param_1, &plocal_var_80, param_1 + 0xe, 0xb, uVar5);
+// 清理配置缓冲区
+    plocal_var_80 = &system_data_buffer_ptr;
     CoreEngine_MemoryPoolManager(puVar3);        // 释放缓冲区内存
 }
-
-
-
 //------------------------------------------------------------------------------
 // 渲染对象清理函数
 // 功能：清理渲染对象，释放资源并可选择释放内存
 // 参数：param_1 - 渲染对象指针
-//       param_2 - 清理标志位
+// param_2 - 清理标志位
 // 返回值：int64_t - 渲染对象指针
 //------------------------------------------------------------------------------
-int64_t FUN_180352dc0(int64_t param_1, uint64_t param_2)
+int64_t RenderingSystem_52dc0(int64_t param_1, uint64_t param_2)
 {
-    // 设置渲染对象为清理状态
+// 设置渲染对象为清理状态
     *(uint64_t *)(param_1 + 0x78) = &system_data_buffer_ptr;  // 清理状态标志
-    
-    // 检查是否有未释放的资源
+// 检查是否有未释放的资源
     if (*(int64_t *)(param_1 + 0x80) != 0) {
-        // 如果有未释放的资源，调用错误处理函数
+// 如果有未释放的资源，调用错误处理函数
         CoreEngine_MemoryPoolManager();  // 不返回
     }
-    
-    // 重置渲染对象的资源指针
+// 重置渲染对象的资源指针
     *(uint64_t *)(param_1 + 0x80) = 0;  // 资源指针清零
     *(int32_t *)(param_1 + 0x90) = 0;  // 引用计数清零
-    
-    // 设置渲染对象为已清理状态
+// 设置渲染对象为已清理状态
     *(uint64_t *)(param_1 + 0x78) = &system_state_ptr;  // 清理完成标志
-    
-    // 调用渲染对象清理回调函数
+// 调用渲染对象清理回调函数
     UIComponent_Manager(param_1);
-    
-    // 根据标志位决定是否释放内存
+// 根据标志位决定是否释放内存
     if ((param_2 & 1) != 0) {
-        // 如果设置了自动清理标志，释放对象内存
+// 如果设置了自动清理标志，释放对象内存
         free(param_1, 0x98);  // 释放RENDER_OBJECT_BASE_SIZE大小的内存
     }
-    
-    // 返回渲染对象指针
+// 返回渲染对象指针
     return param_1;
 }
-
-
-
 //------------------------------------------------------------------------------
 // 渲染对象配置处理函数
 // 功能：处理渲染对象的配置信息，根据特定条件执行配置操作
 // 参数：param_1 - 渲染对象句柄
-//       param_2 - 配置数据指针
-//       param_3 - 配置参数1
-//       param_4 - 配置参数2
+// param_2 - 配置数据指针
+// param_3 - 配置参数1
+// param_4 - 配置参数2
 // 返回值：无
 //------------------------------------------------------------------------------
-void FUN_180352e50(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
+void RenderingSystem_52e50(uint64_t param_1, int64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    // 局部变量定义
+// 局部变量定义
     int iVar1;                   // 比较结果
     int32_t uVar2;           // 临时变量
     int32_t *puVar3;         // 缓冲区指针
-    void *puStack_60;       // 栈参数1
-    int32_t *puStack_58;     // 栈参数2
-    int32_t uStack_50;        // 栈参数3
-    uint64_t uStack_48;        // 栈参数4
-    void *puStack_40;       // 栈参数5
-    int32_t *puStack_38;     // 栈参数6
-    int32_t uStack_30;        // 栈参数7
-    uint64_t uStack_28;        // 栈参数8
-    
-    // 检查配置数据是否匹配特定条件
-    // 条件：配置数据长度为0xf，且配置名称匹配特定字符串
+    void *plocal_var_60;       // 栈参数1
+    int32_t *plocal_var_58;     // 栈参数2
+    int32_t local_var_50;        // 栈参数3
+    uint64_t local_var_48;        // 栈参数4
+    void *plocal_var_40;       // 栈参数5
+    int32_t *plocal_var_38;     // 栈参数6
+    int32_t local_var_30;        // 栈参数7
+    uint64_t local_var_28;        // 栈参数8
+// 检查配置数据是否匹配特定条件
+// 条件：配置数据长度为0xf，且配置名称匹配特定字符串
     if ((*(int *)(param_2 + 0x10) == 0xf) &&
         (iVar1 = strcmp(*(uint64_t *)(param_2 + 8), &system_memory_e938, (char)param_3, param_4,
                         0xfffffffffffffffe), iVar1 == 0)) {
-        
-        // 第一阶段：处理 "Normal" 配置消息
-        puStack_60 = &system_data_buffer_ptr;  // 配置类型指针
-        uStack_48 = 0;                // 配置参数1
-        puStack_58 = (int32_t *)0x0;  // 配置数据指针
-        uStack_50 = 0;                // 配置参数2
-        
-        // 分配配置缓冲区
+// 第一阶段：处理 "Normal" 配置消息
+        plocal_var_60 = &system_data_buffer_ptr;  // 配置类型指针
+        local_var_48 = 0;                // 配置参数1
+        plocal_var_58 = (int32_t *)0x0;  // 配置数据指针
+        local_var_50 = 0;                // 配置参数2
+// 分配配置缓冲区
         puVar3 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar3 = 0;    // 初始化缓冲区
-        
-        // 设置配置数据指针
-        puStack_58 = puVar3;
-        
-        // 获取配置数据句柄
+// 设置配置数据指针
+        plocal_var_58 = puVar3;
+// 获取配置数据句柄
         uVar2 = CoreMemoryPoolCleaner(puVar3);
-        
-        // 设置配置消息内容："Normal"
+// 设置配置消息内容："Normal"
         *puVar3 = 0x6d726f4e;         // "Norm"
         *(int16_t *)(puVar3 + 1) = 0x6c61;  // "al"
         *(int8_t *)((int64_t)puVar3 + 6) = 0;  // 字符串结束符
-        
-        // 设置配置消息长度
-        uStack_50 = 6;                // 消息长度6字节
-        uStack_48._0_4_ = uVar2;      // 设置句柄
-        
-        // 调用配置处理函数
-        DataEncryptionHandler0(param_3, &puStack_60);
-        
-        // 清理第一阶段配置缓冲区
-        puStack_60 = &system_data_buffer_ptr;
-        if (puStack_58 != (int32_t *)0x0) {
+// 设置配置消息长度
+        local_var_50 = 6;                // 消息长度6字节
+        local_var_48._0_4_ = uVar2;      // 设置句柄
+// 调用配置处理函数
+        DataEncryptionHandler0(param_3, &plocal_var_60);
+// 清理第一阶段配置缓冲区
+        plocal_var_60 = &system_data_buffer_ptr;
+        if (plocal_var_58 != (int32_t *)0x0) {
             CoreEngine_MemoryPoolManager();  // 释放缓冲区内存
         }
-        
-        // 重置栈参数
-        puStack_58 = (int32_t *)0x0;
-        uStack_48 = (uint64_t)uStack_48._4_4_ << 0x20;
-        puStack_60 = &system_state_ptr;
-        
-        // 第二阶段：处理 "High" 配置消息
-        puStack_40 = &system_data_buffer_ptr;  // 配置类型指针
-        uStack_28 = 0;                // 配置参数1
-        puStack_38 = (int32_t *)0x0;  // 配置数据指针
-        uStack_30 = 0;                // 配置参数2
-        
-        // 分配配置缓冲区
+// 重置栈参数
+        plocal_var_58 = (int32_t *)0x0;
+        local_var_48 = (uint64_t)local_var_48._4_4_ << 0x20;
+        plocal_var_60 = &system_state_ptr;
+// 第二阶段：处理 "High" 配置消息
+        plocal_var_40 = &system_data_buffer_ptr;  // 配置类型指针
+        local_var_28 = 0;                // 配置参数1
+        plocal_var_38 = (int32_t *)0x0;  // 配置数据指针
+        local_var_30 = 0;                // 配置参数2
+// 分配配置缓冲区
         puVar3 = (int32_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr, 0x10, 0x13);
         *(int8_t *)puVar3 = 0;    // 初始化缓冲区
-        
-        // 设置配置数据指针
-        puStack_38 = puVar3;
-        
-        // 获取配置数据句柄
+// 设置配置数据指针
+        plocal_var_38 = puVar3;
+// 获取配置数据句柄
         uVar2 = CoreMemoryPoolCleaner(puVar3);
-        uStack_28 = CONCAT44(uStack_28._4_4_, uVar2);
-        
-        // 设置配置消息内容："High"
+        local_var_28 = CONCAT44(local_var_28._4_4_, uVar2);
+// 设置配置消息内容："High"
         *puVar3 = 0x68676948;         // "High"
         *(int8_t *)(puVar3 + 1) = 0;  // 字符串结束符
-        
-        // 设置配置消息长度
-        uStack_30 = 4;                // 消息长度4字节
-        
-        // 调用配置处理函数
-        DataEncryptionHandler0(param_3, &puStack_40);
-        
-        // 清理第二阶段配置缓冲区
-        puStack_40 = &system_data_buffer_ptr;
-        if (puStack_38 != (int32_t *)0x0) {
+// 设置配置消息长度
+        local_var_30 = 4;                // 消息长度4字节
+// 调用配置处理函数
+        DataEncryptionHandler0(param_3, &plocal_var_40);
+// 清理第二阶段配置缓冲区
+        plocal_var_40 = &system_data_buffer_ptr;
+        if (plocal_var_38 != (int32_t *)0x0) {
             CoreEngine_MemoryPoolManager();  // 释放缓冲区内存
         }
     }
-    
-    // 函数返回
+// 函数返回
     return;
 }
-
-
-
 //------------------------------------------------------------------------------
 // 渲染数据创建函数
 // 功能：创建渲染数据对象，初始化数据结构和配置
 // 参数：param_1 - 渲染对象句柄
-//       param_2 - 数据对象指针
-//       param_3 - 创建参数1
-//       param_4 - 创建参数2
+// param_2 - 数据对象指针
+// param_3 - 创建参数1
+// param_4 - 创建参数2
 // 返回值：uint64_t* - 创建的数据对象指针
 //------------------------------------------------------------------------------
-uint64_t * FUN_180352ff0(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
+uint64_t * RenderingSystem_52ff0(uint64_t param_1, uint64_t *param_2, uint64_t param_3, uint64_t param_4)
 {
-    // 初始化数据对象的基本状态
+// 初始化数据对象的基本状态
     *param_2 = &system_state_ptr;  // 设置初始状态
     param_2[1] = 0;             // 清空数据指针
     *(int32_t *)(param_2 + 2) = 0;  // 清空数据长度
-    
-    // 设置数据对象的类型和配置
+// 设置数据对象的类型和配置
     *param_2 = &memory_allocator_3432_ptr;  // 设置数据对象类型
     param_2[1] = param_2 + 3;   // 设置数据缓冲区指针
     *(int8_t *)(param_2 + 3) = 0;  // 初始化缓冲区
     *(int32_t *)(param_2 + 2) = 0x13;  // 设置缓冲区大小
-    
-    // 复制配置数据到缓冲区
+// 复制配置数据到缓冲区
     strcpy_s(param_2[1], 0x80, &rendering_buffer_2448_ptr, param_4, 0, 0xfffffffffffffffe);
-    
-    // 返回创建的数据对象指针
+// 返回创建的数据对象指针
     return param_2;
 }
-
-
-
-
-
 //------------------------------------------------------------------------------
 // 渲染对象属性设置函数
 // 功能：设置渲染对象的属性和配置参数
 // 参数：param_1 - 渲染对象指针
-//       param_2 - 属性类型
-//       param_3 - 属性值1
-//       param_4 - 属性值2
+// param_2 - 属性类型
+// param_3 - 属性值1
+// param_4 - 属性值2
 // 返回值：无
 //------------------------------------------------------------------------------
-void FUN_180353070(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
+void RenderingSystem_53070(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64_t param_4)
 {
-    // 设置渲染对象的属性类型
+// 设置渲染对象的属性类型
     *param_1 = &processed_var_4912_ptr;  // 属性类型标识
-    
-    // 调用属性设置处理函数
-    FUN_1802f5b10(param_1 + 4, param_1[6], param_3, param_4, 0xfffffffffffffffe);
-    
-    // 更新渲染对象的配置状态
+// 调用属性设置处理函数
+    DataStructure_f5b10(param_1 + 4, param_1[6], param_3, param_4, 0xfffffffffffffffe);
+// 更新渲染对象的配置状态
     *param_1 = &system_handler2_ptr;  // 配置状态1
     *param_1 = &system_handler1_ptr;  // 配置状态2
-    
-    // 函数返回
+// 函数返回
     return;
 }
-
-
-
 //==============================================================================
 // 渲染系统核心功能模块 - 第142部分
-//
 // 模块概述：
 // 本模块包含渲染系统的核心功能实现，涵盖13个关键函数，主要功能包括：
 // 1. 渲染对象的生命周期管理（初始化、配置、清理）
@@ -426,7 +334,6 @@ void FUN_180353070(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
 // 3. 内存管理和资源分配机制
 // 4. 渲染状态的控制和同步
 // 5. 高级渲染操作和哈希表管理
-//
 // 技术特点：
 // - 采用虚函数表机制实现多态
 // - 使用栈传递参数优化性能
@@ -434,94 +341,83 @@ void FUN_180353070(uint64_t *param_1, uint64_t param_2, uint64_t param_3, uint64
 // - 支持配置消息处理
 // - 包含完整的错误处理
 //==============================================================================
-
 //------------------------------------------------------------------------------
 // 渲染数据处理函数
 // 功能：处理渲染数据，执行数据转换和验证操作
 // 参数：param_1 - 渲染对象指针
-//       param_2 - 数据处理参数
-//       param_3 - 处理选项
+// param_2 - 数据处理参数
+// param_3 - 处理选项
 // 返回值：无
 //------------------------------------------------------------------------------
-void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
+void RenderingSystem_530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
 {
-    // 局部变量定义
+// 局部变量定义
     uint64_t *puVar1;         // 数据指针1
     uint64_t *puVar2;         // 数据指针2
     char *pcVar3;               // 字符指针
     int8_t *puVar5;         // 缓冲区指针
-    int8_t auStack_7e8 [48]; // 栈缓冲区1
-    void *puStack_7b8;      // 栈参数1
-    int8_t *puStack_7b0;     // 栈参数2
-    int32_t uStack_7a8;       // 栈参数3
-    uint64_t uStack_7a0;        // 栈参数4
-    uint64_t *puStack_798;     // 栈参数5
-    uint64_t *puStack_6d0;     // 栈参数6
-    uint64_t *puStack_6c8;     // 栈参数7
-    uint64_t uStack_6c0;       // 栈参数8
-    int32_t uStack_6b8;       // 栈参数9
-    uint64_t uStack_6b0;       // 栈参数10
-    uint64_t *puStack_6a8;     // 栈参数11
+    int8_t stack_array_7e8 [48]; // 栈缓冲区1
+    void *plocal_var_7b8;      // 栈参数1
+    int8_t *plocal_var_7b0;     // 栈参数2
+    int32_t local_var_7a8;       // 栈参数3
+    uint64_t local_var_7a0;        // 栈参数4
+    uint64_t *plocal_var_798;     // 栈参数5
+    uint64_t *plocal_var_6d0;     // 栈参数6
+    uint64_t *plocal_var_6c8;     // 栈参数7
+    uint64_t local_var_6c0;       // 栈参数8
+    int32_t local_var_6b8;       // 栈参数9
+    uint64_t local_var_6b0;       // 栈参数10
+    uint64_t *plocal_var_6a8;     // 栈参数11
     int64_t *plStack_6a0;       // 栈参数12
-    void *puStack_698;       // 栈参数13
+    void *plocal_var_698;       // 栈参数13
     int64_t lStack_690;         // 栈参数14
-    int32_t uStack_680;       // 栈参数15
-    uint64_t uStack_678;       // 栈参数16
-    int8_t auStack_5a8 [1216]; // 栈缓冲区2
-    uint64_t uStack_e8;         // 栈参数17
+    int32_t local_var_680;       // 栈参数15
+    uint64_t local_var_678;       // 栈参数16
+    int8_t stack_array_5a8 [1216]; // 栈缓冲区2
+    uint64_t local_var_e8;         // 栈参数17
     char *pcVar4;               // 字符指针
-    
-    // 初始化栈参数
-    uStack_678 = 0xfffffffffffffffe;  // 处理标志
-    uStack_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_7e8;  // 安全检查
-    uStack_6b0 = param_3;              // 处理选项
+// 初始化栈参数
+    local_var_678 = 0xfffffffffffffffe;  // 处理标志
+    local_var_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_7e8;  // 安全检查
+    local_var_6b0 = param_3;              // 处理选项
     plStack_6a0 = param_1;             // 渲染对象指针
-    
-    // 调用数据准备函数
-    SystemCore_NetworkHandler0(&puStack_698, param_1[2] + 8);
-    
-    // 初始化数据处理参数
-    puStack_6d0 = (uint64_t *)0x0;  // 数据缓冲区1
-    puStack_6c8 = (uint64_t *)0x0;  // 数据缓冲区2
-    uStack_6c0 = 0;                   // 数据长度1
-    uStack_6b8 = 3;                   // 数据类型
-    
-    // 调用数据获取函数
-    (**(code **)(*param_1 + 0xf8))(param_1, &puStack_6d0);
-    
-    // 获取数据处理结果
-    puVar1 = puStack_6c8;
-    puVar2 = puStack_6d0;
-    puStack_798 = puStack_6d0;
-    puStack_6a8 = puStack_6c8;
-    
-    // 检查是否有数据需要处理
-    if (puStack_6d0 != puStack_6c8) {
-        // 准备数据处理参数
-        puStack_7b8 = &system_data_buffer_ptr;  // 数据类型指针
-        uStack_7a0 = 0;                // 数据参数1
-        puStack_7b0 = (int8_t *)0x0;  // 数据指针
-        uStack_7a8 = 0;                // 数据参数2
-        
-        // 调用数据长度获取函数
-        CoreMemoryPoolProcessor(&puStack_7b8, *(int32_t *)(puStack_6d0 + 2));
-        
-        // 检查数据长度
+// 调用数据准备函数
+    SystemCore_NetworkHandler0(&plocal_var_698, param_1[2] + 8);
+// 初始化数据处理参数
+    plocal_var_6d0 = (uint64_t *)0x0;  // 数据缓冲区1
+    plocal_var_6c8 = (uint64_t *)0x0;  // 数据缓冲区2
+    local_var_6c0 = 0;                   // 数据长度1
+    local_var_6b8 = 3;                   // 数据类型
+// 调用数据获取函数
+    (**(code **)(*param_1 + 0xf8))(param_1, &plocal_var_6d0);
+// 获取数据处理结果
+    puVar1 = plocal_var_6c8;
+    puVar2 = plocal_var_6d0;
+    plocal_var_798 = plocal_var_6d0;
+    plocal_var_6a8 = plocal_var_6c8;
+// 检查是否有数据需要处理
+    if (plocal_var_6d0 != plocal_var_6c8) {
+// 准备数据处理参数
+        plocal_var_7b8 = &system_data_buffer_ptr;  // 数据类型指针
+        local_var_7a0 = 0;                // 数据参数1
+        plocal_var_7b0 = (int8_t *)0x0;  // 数据指针
+        local_var_7a8 = 0;                // 数据参数2
+// 调用数据长度获取函数
+        CoreMemoryPoolProcessor(&plocal_var_7b8, *(int32_t *)(plocal_var_6d0 + 2));
+// 检查数据长度
         if (*(int *)(puVar2 + 2) != 0) {
-            // 复制数据到缓冲区
-            memcpy(puStack_7b0, puVar2[1], *(int *)(puVar2 + 2) + 1);
+// 复制数据到缓冲区
+            memcpy(plocal_var_7b0, puVar2[1], *(int *)(puVar2 + 2) + 1);
         }
-        
-        // 检查数据有效性
+// 检查数据有效性
         if (puVar2[1] != 0) {
-            uStack_7a8 = 0;  // 重置数据参数
-            if (puStack_7b0 != (int8_t *)0x0) {
-                *puStack_7b0 = 0;  // 初始化缓冲区
+            local_var_7a8 = 0;  // 重置数据参数
+            if (plocal_var_7b0 != (int8_t *)0x0) {
+                *plocal_var_7b0 = 0;  // 初始化缓冲区
             }
-            uStack_7a0 = uStack_7a0 & 0xffffffff;  // 截断参数
+            local_var_7a0 = local_var_7a0 & 0xffffffff;  // 截断参数
         }
-        
-        // 创建变量数据结构
+// 创建变量数据结构
         puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60, 0x60);
         *puVar2 = 0;                    // 初始化字段1
         puVar2[1] = 0;                  // 初始化字段2
@@ -529,134 +425,109 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
         *(int32_t *)(puVar2 + 5) = 1;  // 设置标志位
         puVar2[6] = 0;                  // 初始化字段4
         puVar2[8] = 0;                  // 初始化字段5
-        
-        // 设置变量名称
+// 设置变量名称
         pcVar3 = "variable";
         do {
             pcVar4 = pcVar3;
             pcVar3 = pcVar4 + 1;
         } while (*pcVar3 != '\0');
-        
-        // 设置变量属性
+// 设置变量属性
         *puVar2 = &rendering_thread_ptr;        // 变量类型
         puVar2[2] = pcVar4 + -0x180a194ff;  // 变量名称偏移
         puVar5 = &system_buffer_ptr;        // 默认值
-        if (puStack_7b0 != (int8_t *)0x0) {
-            puVar5 = puStack_7b0;       // 使用提供的值
+        if (plocal_var_7b0 != (int8_t *)0x0) {
+            puVar5 = plocal_var_7b0;       // 使用提供的值
         }
-        
-        // 调用变量设置函数
+// 调用变量设置函数
         SystemAllocationProcessor(param_2, puVar2, &system_memory_3a84, puVar5);
-        
-        // 调用数据处理回调函数
-        (**(code **)(*param_1 + 0x140))(param_1, &puStack_7b8);
-        
-        // 清理数据处理缓冲区
-        memset(auStack_5a8, 0, 0x200);
+// 调用数据处理回调函数
+        (**(code **)(*param_1 + 0x140))(param_1, &plocal_var_7b8);
+// 清理数据处理缓冲区
+        memset(stack_array_5a8, 0, 0x200);
     }
-    
-    // 清理数据对象
+// 清理数据对象
     for (; puVar2 != puVar1; puVar2 = puVar2 + 4) {
         (**(code **)*puVar2)(puVar2, 0);  // 调用清理函数
     }
-    
-    // 释放数据缓冲区
-    if (puStack_6d0 != (uint64_t *)0x0) {
+// 释放数据缓冲区
+    if (plocal_var_6d0 != (uint64_t *)0x0) {
         CoreEngine_MemoryPoolManager();  // 释放内存
     }
-    
-    // 重置栈参数
-    puStack_698 = &system_data_buffer_ptr;
+// 重置栈参数
+    plocal_var_698 = &system_data_buffer_ptr;
     if (lStack_690 != 0) {
         CoreEngine_MemoryPoolManager();  // 清理栈内存
     }
     lStack_690 = 0;
-    uStack_680 = 0;
-    puStack_698 = &system_state_ptr;
-    
-    // 执行安全检查
-    SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_7e8);
+    local_var_680 = 0;
+    plocal_var_698 = &system_state_ptr;
+// 执行安全检查
+    SystemSecurityChecker(local_var_e8 ^ (uint64_t)stack_array_7e8);
 }
-
 //==============================================================================
 // 渲染系统函数组 - 简化实现说明
 //==============================================================================
-
 // 由于原始文件包含大量复杂的渲染系统函数，为了提高代码的可读性和
 // 维护性，以下函数采用简化实现的方式，保留核心功能的同时添加详细注释。
-
 // 简化实现说明：
 // 原始实现：包含大量复杂的内存管理、数据处理和渲染状态控制逻辑
 // 简化实现：保持原有函数签名和基本功能，添加详细的参数说明和技术注释
 // 优化点：提高代码可读性，添加错误处理说明，明确函数职责
-
 // 注意：这些函数是渲染系统的核心组件，涉及复杂的内存管理和状态控制，
 // 在实际使用时需要仔细处理内存分配和释放，避免内存泄漏。
-
 // 以下函数保持原始实现不变，仅添加注释说明：
-// - FUN_180353e50: 渲染数据比较函数
-// - FUN_180354170: 渲染数据验证函数  
-// - FUN_1803543b0: 从配置创建渲染数据函数
-// - FUN_1803549f0: 渲染内存分配函数
-// - FUN_180354b70: 渲染持久内存分配函数
-// - FUN_180354db0: 渲染数据复制函数
-// - FUN_180354f20: 渲染数组清理函数
-// - FUN_180354f40: 渲染数组扩展清理函数
-// - FUN_180355030: 渲染哈希表查找函数
-// - FUN_180355140: 渲染哈希表插入函数
-// - FUN_1803552e0: 渲染哈希表删除函数
-// - FUN_180355340: 渲染哈希表创建函数
-// - FUN_180355393: 渲染哈希表调整大小函数
-// - FUN_1803553e1: 渲染哈希表重建函数
-
+// - RenderingSystem_53e50: 渲染数据比较函数
+// - RenderingSystem_54170: 渲染数据验证函数
+// - RenderingSystem_543b0: 从配置创建渲染数据函数
+// - RenderingSystem_549f0: 渲染内存分配函数
+// - RenderingSystem_54b70: 渲染持久内存分配函数
+// - RenderingSystem_54db0: 渲染数据复制函数
+// - RenderingSystem_54f20: 渲染数组清理函数
+// - RenderingSystem_54f40: 渲染数组扩展清理函数
+// - RenderingSystem_55030: 渲染哈希表查找函数
+// - RenderingSystem_55140: 渲染哈希表插入函数
+// - RenderingSystem_552e0: 渲染哈希表删除函数
+// - RenderingSystem_55340: 渲染哈希表创建函数
+// - RenderingSystem_55393: 渲染哈希表调整大小函数
+// - RenderingSystem_553e1: 渲染哈希表重建函数
 //==============================================================================
 // 技术实现要点
 //==============================================================================
-
 /*
 1. 内存管理策略：
    - 使用栈分配优化性能
    - 实现自动内存管理机制
    - 支持内存池和缓存机制
-
 2. 数据处理流程：
    - 多阶段数据处理管道
    - 支持数据验证和转换
    - 实现错误处理和恢复
-
 3. 渲染状态控制：
    - 使用状态机管理渲染流程
    - 支持异步渲染操作
    - 实现渲染队列管理
-
 4. 配置系统：
    - 支持动态配置更新
    - 实现配置消息传递
    - 支持配置验证
-
 5. 哈希表实现：
    - 使用FNV-1a哈希算法
    - 支持动态扩容
    - 实现冲突处理机制
-
 6. 性能优化：
    - 使用虚函数表实现多态
    - 优化内存访问模式
    - 减少不必要的内存拷贝
-
 7. 错误处理：
    - 实现完整的错误检测
    - 支持错误恢复机制
    - 提供详细的错误信息
 */
-
-
-
 //------------------------------------------------------------------------------
 // 渲染数据比较函数 (RenderData_Compare)
 // 功能：比较两组渲染数据，验证数据一致性并执行相应操作
 // 参数：param_1 - 渲染对象指针
-//       param_2 - 比较数据指针
+// param_2 - 比较数据指针
 // 返回值：无
 // 技术特点：
 // - 使用复杂的数据比较算法
@@ -664,10 +535,9 @@ void FUN_1803530c0(int64_t *param_1, int64_t param_2, uint64_t param_3)
 // - 支持多阶段数据处理
 // - 包含完整的错误处理机制
 //------------------------------------------------------------------------------
-void FUN_180353e50(int64_t *param_1,int64_t param_2)
-
+void RenderingSystem_53e50(int64_t *param_1,int64_t param_2)
 {
-    // 局部变量定义
+// 局部变量定义
     byte *pbVar1;                   // 字节指针1
     int iVar2;                     // 整数变量1
     uint64_t *puVar3;            // 无定义指针3
@@ -679,65 +549,59 @@ void FUN_180353e50(int64_t *param_1,int64_t param_2)
     int64_t lVar10;               // 长整型10
     int64_t lVar11;               // 长整型11
     uint64_t uVar12;              // 无符号长整型12
-    int8_t auStack_3b8 [48];   // 栈缓冲区1
-    uint64_t *puStack_388;       // 栈参数1
-    uint64_t *puStack_380;       // 栈参数2
-    uint64_t uStack_378;         // 栈参数3
-    int32_t uStack_370;         // 栈参数4
-    uint64_t *puStack_368;       // 栈参数5
-    uint64_t *puStack_360;       // 栈参数6
-    uint64_t uStack_358;         // 栈参数7
-    int32_t uStack_350;         // 栈参数8
-    void *puStack_348;        // 栈参数9
+    int8_t stack_array_3b8 [48];   // 栈缓冲区1
+    uint64_t *plocal_var_388;       // 栈参数1
+    uint64_t *plocal_var_380;       // 栈参数2
+    uint64_t local_var_378;         // 栈参数3
+    int32_t local_var_370;         // 栈参数4
+    uint64_t *plocal_var_368;       // 栈参数5
+    uint64_t *plocal_var_360;       // 栈参数6
+    uint64_t local_var_358;         // 栈参数7
+    int32_t local_var_350;         // 栈参数8
+    void *plocal_var_348;        // 栈参数9
     int64_t lStack_340;           // 栈参数10
-    int32_t uStack_330;         // 栈参数11
-    void *puStack_328;        // 栈参数12
+    int32_t local_var_330;         // 栈参数11
+    void *plocal_var_328;        // 栈参数12
     int64_t lStack_320;           // 栈参数13
-    int32_t uStack_310;         // 栈参数14
-    uint64_t uStack_308;         // 栈参数15
-    int8_t auStack_278 [544];  // 栈缓冲区2
-    uint64_t uStack_58;           // 栈参数16
+    int32_t local_var_310;         // 栈参数14
+    uint64_t local_var_308;         // 栈参数15
+    int8_t stack_array_278 [544];  // 栈缓冲区2
+    uint64_t local_var_58;           // 栈参数16
     uint64_t uVar9;               // 无符号长整型9
-    
-    // 初始化安全检查标志
-    uStack_308 = 0xfffffffffffffffe;  // 安全检查标志
-    uStack_58 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_3b8;  // 安全检查异或值
-    
-    // 调用数据准备函数
-    SystemCore_NetworkHandler0(&puStack_328, *(int64_t *)(param_2 + 0x10) + 8);
-    SystemCore_NetworkHandler0(&puStack_348, param_1[2] + 8);
-    
-    // 初始化数据缓冲区
-    puStack_388 = (uint64_t *)0x0;  // 数据缓冲区1
-    puStack_380 = (uint64_t *)0x0;  // 数据缓冲区2
+// 初始化安全检查标志
+    local_var_308 = 0xfffffffffffffffe;  // 安全检查标志
+    local_var_58 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_3b8;  // 安全检查异或值
+// 调用数据准备函数
+    SystemCore_NetworkHandler0(&plocal_var_328, *(int64_t *)(param_2 + 0x10) + 8);
+    SystemCore_NetworkHandler0(&plocal_var_348, param_1[2] + 8);
+// 初始化数据缓冲区
+    plocal_var_388 = (uint64_t *)0x0;  // 数据缓冲区1
+    plocal_var_380 = (uint64_t *)0x0;  // 数据缓冲区2
     uVar9 = 0;                       // 计数器
-    uStack_378 = 0;                  // 数据长度1
-    uStack_370 = 3;                  // 数据类型
-    
-    // 调用数据获取函数
-    (**(code **)(*param_1 + 0xf8))(param_1, &puStack_388);
-    
-    // 初始化第二组数据缓冲区
-    puStack_368 = (uint64_t *)0x0;  // 数据缓冲区3
-    puStack_360 = (uint64_t *)0x0;  // 数据缓冲区4
-    uStack_358 = 0;                  // 数据长度2
-    uStack_350 = 3;                  // 数据类型
-    
-    // 调用第二组数据获取函数
-    (**(code **)(*param_1 + 0xf8))(param_1, &puStack_368);
-  puVar4 = puStack_360;
-  puVar3 = puStack_380;
-  puVar7 = puStack_368;
-  if ((int64_t)puStack_380 - (int64_t)puStack_388 >> 5 != 0) {
+    local_var_378 = 0;                  // 数据长度1
+    local_var_370 = 3;                  // 数据类型
+// 调用数据获取函数
+    (**(code **)(*param_1 + 0xf8))(param_1, &plocal_var_388);
+// 初始化第二组数据缓冲区
+    plocal_var_368 = (uint64_t *)0x0;  // 数据缓冲区3
+    plocal_var_360 = (uint64_t *)0x0;  // 数据缓冲区4
+    local_var_358 = 0;                  // 数据长度2
+    local_var_350 = 3;                  // 数据类型
+// 调用第二组数据获取函数
+    (**(code **)(*param_1 + 0xf8))(param_1, &plocal_var_368);
+  puVar4 = plocal_var_360;
+  puVar3 = plocal_var_380;
+  puVar7 = plocal_var_368;
+  if ((int64_t)plocal_var_380 - (int64_t)plocal_var_388 >> 5 != 0) {
     lVar10 = 0;
     uVar12 = uVar9;
     do {
-      iVar2 = *(int *)(lVar10 + 0x10 + (int64_t)puStack_388);
-      iVar6 = *(int *)(lVar10 + 0x10 + (int64_t)puStack_368);
+      iVar2 = *(int *)(lVar10 + 0x10 + (int64_t)plocal_var_388);
+      iVar6 = *(int *)(lVar10 + 0x10 + (int64_t)plocal_var_368);
       if (iVar2 == iVar6) {
         if (iVar2 != 0) {
-          pbVar5 = *(byte **)(lVar10 + 8 + (int64_t)puStack_388);
-          lVar11 = *(int64_t *)(lVar10 + 8 + (int64_t)puStack_368) - (int64_t)pbVar5;
+          pbVar5 = *(byte **)(lVar10 + 8 + (int64_t)plocal_var_388);
+          lVar11 = *(int64_t *)(lVar10 + 8 + (int64_t)plocal_var_368) - (int64_t)pbVar5;
           do {
             pbVar1 = pbVar5 + lVar11;
             iVar6 = (uint)*pbVar5 - (uint)*pbVar1;
@@ -747,9 +611,9 @@ void FUN_180353e50(int64_t *param_1,int64_t param_2)
         }
 LAB_180353f85:
         if (iVar6 == 0) {
-          (**(code **)(*param_1 + 0x140))(param_1,puStack_388 + uVar12 * 4);
-                    // WARNING: Subroutine does not return
-          memset(auStack_278,0,0x200);
+          (**(code **)(*param_1 + 0x140))(param_1,plocal_var_388 + uVar12 * 4);
+// WARNING: Subroutine does not return
+          memset(stack_array_278,0,0x200);
         }
       }
       else if (iVar2 == 0) goto LAB_180353f85;
@@ -757,46 +621,43 @@ LAB_180353f85:
       uVar9 = (uint64_t)uVar8;
       lVar10 = lVar10 + 0x20;
       uVar12 = (uint64_t)(int)uVar8;
-    } while (uVar12 < (uint64_t)((int64_t)puStack_380 - (int64_t)puStack_388 >> 5));
+    } while (uVar12 < (uint64_t)((int64_t)plocal_var_380 - (int64_t)plocal_var_388 >> 5));
   }
-  for (; puStack_380 = puVar3, puVar7 != puVar4; puVar7 = puVar7 + 4) {
+  for (; plocal_var_380 = puVar3, puVar7 != puVar4; puVar7 = puVar7 + 4) {
     (**(code **)*puVar7)(puVar7,0);
-    puVar3 = puStack_380;
+    puVar3 = plocal_var_380;
   }
-  if (puStack_368 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+  if (plocal_var_368 != (uint64_t *)0x0) {
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
-  puStack_368 = (uint64_t *)0x0;
-  for (puVar7 = puStack_388; puVar7 != puVar3; puVar7 = puVar7 + 4) {
+  plocal_var_368 = (uint64_t *)0x0;
+  for (puVar7 = plocal_var_388; puVar7 != puVar3; puVar7 = puVar7 + 4) {
     (**(code **)*puVar7)(puVar7,0);
   }
-  if (puStack_388 != (uint64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+  if (plocal_var_388 != (uint64_t *)0x0) {
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
-  puStack_348 = &system_data_buffer_ptr;
+  plocal_var_348 = &system_data_buffer_ptr;
   if (lStack_340 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
   lStack_340 = 0;
-  uStack_330 = 0;
-  puStack_348 = &system_state_ptr;
-  puStack_328 = &system_data_buffer_ptr;
+  local_var_330 = 0;
+  plocal_var_348 = &system_state_ptr;
+  plocal_var_328 = &system_data_buffer_ptr;
   if (lStack_320 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
   lStack_320 = 0;
-  uStack_310 = 0;
-  puStack_328 = &system_state_ptr;
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_3b8);
+  local_var_310 = 0;
+  plocal_var_328 = &system_state_ptr;
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_58 ^ (uint64_t)stack_array_3b8);
 }
-
-
-
 //------------------------------------------------------------------------------
 // 渲染数据验证函数 (RenderData_Validate)
 // 功能：验证渲染数据的完整性和有效性，执行必要的检查和清理
@@ -808,46 +669,42 @@ LAB_180353f85:
 // - 包含内存管理和安全检查
 // - 提供详细的验证反馈
 //------------------------------------------------------------------------------
-void FUN_180354170(int64_t *param_1)
-
+void RenderingSystem_54170(int64_t *param_1)
 {
-    // 局部变量定义
+// 局部变量定义
     uint64_t uVar1;              // 无定义变量1
     int64_t *plVar2;              // 长整型指针2
     char cVar3;                   // 字符变量3
     void *puVar4;             // 无定义指针4
-    int8_t auStack_3e8 [48];   // 栈缓冲区1
-    int8_t auStack_3b8 [8];    // 栈缓冲区2
-    uint64_t uStack_3b0;        // 栈参数1
-    int8_t auStack_328 [544];  // 栈缓冲区3
-    void *puStack_108;       // 栈参数2
-    int8_t *puStack_100;      // 栈参数3
-    int32_t uStack_f8;          // 栈参数4
-    int8_t auStack_f0 [136];  // 栈缓冲区4
-    uint64_t uStack_68;          // 栈参数5
-    
-    // 初始化安全检查标志
-    uStack_3b0 = 0xfffffffffffffffe;  // 安全检查标志
-    uStack_68 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_3e8;  // 安全检查异或值
-    
-    // 获取渲染对象数据
+    int8_t stack_array_3e8 [48];   // 栈缓冲区1
+    int8_t stack_array_3b8 [8];    // 栈缓冲区2
+    uint64_t local_var_3b0;        // 栈参数1
+    int8_t stack_array_328 [544];  // 栈缓冲区3
+    void *plocal_var_108;       // 栈参数2
+    int8_t *plocal_var_100;      // 栈参数3
+    int32_t local_var_f8;          // 栈参数4
+    int8_t stack_array_f0 [136];  // 栈缓冲区4
+    uint64_t local_var_68;          // 栈参数5
+// 初始化安全检查标志
+    local_var_3b0 = 0xfffffffffffffffe;  // 安全检查标志
+    local_var_68 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_3e8;  // 安全检查异或值
+// 获取渲染对象数据
     uVar1 = *(uint64_t *)(param_1[3] + 0x20);  // 渲染数据指针
     plVar2 = (int64_t *)param_1[5];              // 渲染对象指针
-    
-    // 检查渲染对象状态
+// 检查渲染对象状态
     if (plVar2 != param_1 + 4) {
-    puStack_108 = &memory_allocator_3432_ptr;
-    puStack_100 = auStack_f0;
-    auStack_f0[0] = 0;
-    uStack_f8 = (int32_t)plVar2[10];
+    plocal_var_108 = &memory_allocator_3432_ptr;
+    plocal_var_100 = stack_array_f0;
+    stack_array_f0[0] = 0;
+    local_var_f8 = (int32_t)plVar2[10];
     puVar4 = &system_buffer_ptr;
     if ((void *)plVar2[9] != (void *)0x0) {
       puVar4 = (void *)plVar2[9];
     }
-    strcpy_s(auStack_f0,0x80,puVar4);
-    FUN_1801b46a0(uVar1,auStack_3b8,&puStack_108);
-                    // WARNING: Subroutine does not return
-    memset(auStack_328,0,0x200);
+    strcpy_s(stack_array_f0,0x80,puVar4);
+    GenericFunction_1801b46a0(uVar1,stack_array_3b8,&plocal_var_108);
+// WARNING: Subroutine does not return
+    memset(stack_array_328,0,0x200);
   }
   if (*(char *)(*(int64_t *)(param_1[3] + 0x20) + 0x561) != '\0') {
     cVar3 = (**(code **)(*param_1 + 0x110))(param_1);
@@ -855,16 +712,11 @@ void FUN_180354170(int64_t *param_1)
   }
   (**(code **)(*param_1 + 0x70))(param_1);
 LAB_18035436c:
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_68 ^ (uint64_t)auStack_3e8);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_68 ^ (uint64_t)stack_array_3e8);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char param_4)
-
+int64_t * RenderingSystem_543b0(int64_t param_1,uint64_t *param_2,char param_3,char param_4)
 {
   int iVar1;
   int64_t lVar2;
@@ -876,37 +728,36 @@ int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char para
   int64_t *aplStack_a0 [2];
   int64_t *aplStack_90 [2];
   int64_t **applStack_80 [2];
-  void *puStack_70;
+  void *plocal_var_70;
   int64_t lStack_68;
-  int32_t uStack_58;
-  uint64_t uStack_50;
+  int32_t local_var_58;
+  uint64_t local_var_50;
   int64_t alStack_48 [4];
-  
   lVar7 = render_system_data_memory;
-  uStack_50 = 0xfffffffffffffffe;
+  local_var_50 = 0xfffffffffffffffe;
   plVar6 = (int64_t *)0x0;
   lVar2 = *(int64_t *)
            (*(int64_t *)(render_system_data_memory + 8) + *(int64_t *)(render_system_data_memory + 0x10) * 8);
-  plVar4 = (int64_t *)FUN_180355030(render_system_data_memory,aplStack_90,param_2,param_4,0);
+  plVar4 = (int64_t *)RenderingSystem_55030(render_system_data_memory,aplStack_90,param_2,param_4,0);
   if (*plVar4 == lVar2) {
     aplStack_a0[0] = alStack_48;
     uVar5 = SystemCore_NetworkHandler0(alStack_48,param_2);
-    uVar5 = FUN_180354db0(&puStack_70,uVar5);
+    uVar5 = RenderingSystem_54db0(&plocal_var_70,uVar5);
     SystemScheduler(param_2,uVar5);
-    puStack_70 = &system_data_buffer_ptr;
+    plocal_var_70 = &system_data_buffer_ptr;
     if (lStack_68 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager();
     }
     lStack_68 = 0;
-    uStack_58 = 0;
-    puStack_70 = &system_state_ptr;
+    local_var_58 = 0;
+    plocal_var_70 = &system_state_ptr;
     lVar7 = render_system_data_memory;
   }
   lVar2 = *(int64_t *)(*(int64_t *)(lVar7 + 8) + *(int64_t *)(lVar7 + 0x10) * 8);
-  plVar4 = (int64_t *)FUN_180355030(lVar7,applStack_80,param_2);
+  plVar4 = (int64_t *)RenderingSystem_55030(lVar7,applStack_80,param_2);
   if (*plVar4 != lVar2) {
-    FUN_180355030(lVar7,aplStack_a0,param_2);
+    RenderingSystem_55030(lVar7,aplStack_a0,param_2);
     pcVar3 = (char *)aplStack_a0[0][4];
     aplStack_90[0] = (int64_t *)0x0;
     if (*pcVar3 == '\0') {
@@ -918,7 +769,7 @@ int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char para
     }
     else {
       uVar5 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x58,8,0xd);
-      plVar6 = (int64_t *)FUN_180469f40(uVar5,param_1,pcVar3);
+      plVar6 = (int64_t *)UISystem_69f40(uVar5,param_1,pcVar3);
       if (plVar6 != (int64_t *)0x0) {
         aplStack_a0[0] = plVar6;
         (**(code **)(*plVar6 + 0x28))(plVar6);
@@ -930,10 +781,10 @@ int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char para
     if (plVar6 != (int64_t *)0x0) {
       (**(code **)(*plVar6 + 0x28))(plVar6);
     }
-    FUN_1802efdd0(param_1,aplStack_a0);
+    DataStructure_efdd0(param_1,aplStack_a0);
     lVar2 = *(int64_t *)(param_1 + 0x20);
     if (lVar2 != 0) {
-      FUN_1801982b0(lVar2,plVar6);
+      GenericFunction_1801982b0(lVar2,plVar6);
     }
     if (((param_3 != '\0') && (plVar6 != (int64_t *)0x0)) && (lVar2 != 0)) {
       (**(code **)(*plVar6 + 0x68))(plVar6);
@@ -967,82 +818,60 @@ int64_t * FUN_1803543b0(int64_t param_1,uint64_t *param_2,char param_3,char para
     *param_2 = &system_state_ptr;
     return plVar6;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   CoreEngine_MemoryPoolManager();
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1803549f0(void)
-void FUN_1803549f0(void)
-
+// 函数: void RenderingSystem_549f0(void)
+void RenderingSystem_549f0(void)
 {
   uint64_t uVar1;
-  
   uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x80,8,3,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(uVar1,0,0x80);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180354b70(void)
-void FUN_180354b70(void)
-
+// 函数: void RenderingSystem_54b70(void)
+void RenderingSystem_54b70(void)
 {
   uint64_t uVar1;
-  
   uVar1 = CoreMemoryPoolReallocator(system_memory_pool_ptr,0x80,8,3,0,0xfffffffffffffffe);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(uVar1,0,0x80);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t *
-FUN_180354db0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
-
+RenderingSystem_54db0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t lVar1;
   int64_t *plVar2;
-  int8_t auStack_48 [16];
-  void *puStack_38;
-  uint64_t uStack_30;
-  int32_t uStack_28;
-  uint64_t uStack_20;
-  
+  int8_t stack_array_48 [16];
+  void *plocal_var_38;
+  uint64_t local_var_30;
+  int32_t local_var_28;
+  uint64_t local_var_20;
   lVar1 = *(int64_t *)
            (*(int64_t *)(render_system_data_memory + 8) + *(int64_t *)(render_system_data_memory + 0x10) * 8);
-  plVar2 = (int64_t *)FUN_180355030(render_system_data_memory,auStack_48,param_2,param_4,0,0xfffffffffffffffe)
+  plVar2 = (int64_t *)RenderingSystem_55030(render_system_data_memory,stack_array_48,param_2,param_4,0,0xfffffffffffffffe)
   ;
   if (*plVar2 == lVar1) {
     (**(code **)(**(int64_t **)(system_main_module_state + 0x2b0) + 0xa0))
-              (*(int64_t **)(system_main_module_state + 0x2b0),&puStack_38,param_2);
+              (*(int64_t **)(system_main_module_state + 0x2b0),&plocal_var_38,param_2);
     *param_1 = &system_state_ptr;
     param_1[1] = 0;
     *(int32_t *)(param_1 + 2) = 0;
     *param_1 = &system_data_buffer_ptr;
-    *(int32_t *)(param_1 + 2) = uStack_28;
-    param_1[1] = uStack_30;
-    *(int32_t *)((int64_t)param_1 + 0x1c) = uStack_20._4_4_;
-    *(int32_t *)(param_1 + 3) = (int32_t)uStack_20;
-    uStack_28 = 0;
-    uStack_30 = 0;
-    uStack_20 = 0;
-    puStack_38 = &system_state_ptr;
+    *(int32_t *)(param_1 + 2) = local_var_28;
+    param_1[1] = local_var_30;
+    *(int32_t *)((int64_t)param_1 + 0x1c) = local_var_20._4_4_;
+    *(int32_t *)(param_1 + 3) = (int32_t)local_var_20;
+    local_var_28 = 0;
+    local_var_30 = 0;
+    local_var_20 = 0;
+    plocal_var_38 = &system_state_ptr;
     *param_2 = &system_data_buffer_ptr;
     if (param_2[1] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager();
     }
     param_2[1] = 0;
@@ -1065,7 +894,7 @@ FUN_180354db0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
     param_2[3] = 0;
     *param_2 = &system_data_buffer_ptr;
     if (param_2[1] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       CoreEngine_MemoryPoolManager();
     }
     param_2[1] = 0;
@@ -1074,20 +903,13 @@ FUN_180354db0(uint64_t *param_1,uint64_t *param_2,uint64_t param_3,uint64_t para
   *param_2 = &system_state_ptr;
   return param_1;
 }
-
-
-
-
-
-// 函数: void FUN_180354f20(int64_t param_1)
-void FUN_180354f20(int64_t param_1)
-
+// 函数: void RenderingSystem_54f20(int64_t param_1)
+void RenderingSystem_54f20(int64_t param_1)
 {
   int64_t lVar1;
   uint64_t *puVar2;
   uint64_t uVar3;
   uint64_t uVar4;
-  
   uVar3 = *(uint64_t *)(param_1 + 0x10);
   lVar1 = *(int64_t *)(param_1 + 8);
   uVar4 = 0;
@@ -1100,10 +922,10 @@ void FUN_180354f20(int64_t param_1)
           puVar2[1] = 0;
           *(int32_t *)(puVar2 + 3) = 0;
           *puVar2 = &system_state_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngine_MemoryPoolManager(puVar2);
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngine_MemoryPoolManager();
       }
       *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
@@ -1113,25 +935,18 @@ void FUN_180354f20(int64_t param_1)
   }
   *(uint64_t *)(param_1 + 0x18) = 0;
   if ((1 < uVar3) && (*(int64_t *)(param_1 + 8) != 0)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180354f40(int64_t param_1)
-void FUN_180354f40(int64_t param_1)
-
+// 函数: void RenderingSystem_54f40(int64_t param_1)
+void RenderingSystem_54f40(int64_t param_1)
 {
   int64_t lVar1;
   uint64_t *puVar2;
   uint64_t uVar3;
   uint64_t uVar4;
-  
   uVar3 = *(uint64_t *)(param_1 + 0x10);
   lVar1 = *(int64_t *)(param_1 + 8);
   uVar4 = 0;
@@ -1144,10 +959,10 @@ void FUN_180354f40(int64_t param_1)
           puVar2[1] = 0;
           *(int32_t *)(puVar2 + 3) = 0;
           *puVar2 = &system_state_ptr;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
           CoreEngine_MemoryPoolManager(puVar2);
         }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngine_MemoryPoolManager();
       }
       *(uint64_t *)(lVar1 + uVar4 * 8) = 0;
@@ -1157,16 +972,12 @@ void FUN_180354f40(int64_t param_1)
   }
   *(uint64_t *)(param_1 + 0x18) = 0;
   if ((1 < uVar3) && (*(int64_t *)(param_1 + 8) != 0)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
   return;
 }
-
-
-
-int64_t * FUN_180355030(int64_t param_1,int64_t *param_2,int64_t param_3)
-
+int64_t * RenderingSystem_55030(int64_t param_1,int64_t *param_2,int64_t param_3)
 {
   byte *pbVar1;
   byte bVar2;
@@ -1177,7 +988,6 @@ int64_t * FUN_180355030(int64_t param_1,int64_t *param_2,int64_t param_3)
   uint64_t uVar7;
   int64_t lVar8;
   uint uVar9;
-  
   pbVar4 = *(byte **)(param_3 + 8);
   uVar3 = *(uint *)(param_3 + 0x10);
   pbVar6 = &system_buffer_ptr;
@@ -1223,13 +1033,8 @@ LAB_18035510c:
   param_2[1] = lVar5 + uVar7 * 8;
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-int64_t * FUN_180355140(int64_t param_1,int64_t *param_2,uint64_t param_3,int64_t param_4)
-
+int64_t * RenderingSystem_55140(int64_t param_1,int64_t *param_2,uint64_t param_3,int64_t param_4)
 {
   int64_t lVar1;
   byte bVar2;
@@ -1245,7 +1050,6 @@ int64_t * FUN_180355140(int64_t param_1,int64_t *param_2,uint64_t param_3,int64_
   uint64_t uVar12;
   uint64_t uVar13;
   uint64_t uVar14;
-  
   uVar14 = 0xfffffffffffffffe;
   puVar7 = (uint64_t *)CoreMemoryPoolAllocator(system_memory_pool_ptr);
   *puVar7 = &system_state_ptr;
@@ -1286,7 +1090,7 @@ int64_t * FUN_180355140(int64_t param_1,int64_t *param_2,uint64_t param_3,int64_
   lVar10 = *(int64_t *)(lVar1 + *(int64_t *)(param_1 + 8));
   do {
     if (lVar10 == 0) {
-      FUN_180355340(param_1,param_2,uVar12,uVar13,uVar6,puVar7,uVar14);
+      RenderingSystem_55340(param_1,param_2,uVar12,uVar13,uVar6,puVar7,uVar14);
       return param_2;
     }
     uVar11 = *(uint *)(lVar10 + 0x10);
@@ -1304,7 +1108,7 @@ int64_t * FUN_180355140(int64_t param_1,int64_t *param_2,uint64_t param_3,int64_
       }
 LAB_180355291:
       if (uVar11 == 0) {
-        FUN_1803552e0(uVar9,puVar7);
+        RenderingSystem_552e0(uVar9,puVar7);
         lVar5 = *(int64_t *)(param_1 + 8);
         *param_2 = lVar10;
         param_2[1] = lVar5 + lVar1;
@@ -1316,22 +1120,15 @@ LAB_180355291:
     lVar10 = *(int64_t *)(lVar10 + 0x28);
   } while( true );
 }
-
-
-
-
-
-// 函数: void FUN_1803552e0(uint64_t param_1,uint64_t *param_2)
-void FUN_1803552e0(uint64_t param_1,uint64_t *param_2)
-
+// 函数: void RenderingSystem_552e0(uint64_t param_1,uint64_t *param_2)
+void RenderingSystem_552e0(uint64_t param_1,uint64_t *param_2)
 {
   int *piVar1;
   int64_t lVar2;
   uint64_t uVar3;
-  
   *param_2 = &system_data_buffer_ptr;
   if (param_2[1] != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
   param_2[1] = 0;
@@ -1352,33 +1149,27 @@ void FUN_1803552e0(uint64_t param_1,uint64_t *param_2)
       }
     }
     else {
-      func_0x00018064e870(uVar3,CONCAT71(0xff000000,*(void ***)(uVar3 + 0x70) == &ExceptionList),
+      Function_2152bae1(uVar3,CONCAT71(0xff000000,*(void ***)(uVar3 + 0x70) == &ExceptionList),
                           param_2,uVar3,0xfffffffffffffffe);
     }
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int64_t *
-FUN_180355340(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4,
+RenderingSystem_55340(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4,
              int64_t param_5,int64_t param_6)
-
 {
   int64_t lVar1;
   uint64_t uVar2;
-  uint64_t auStackX_18 [2];
-  
-  auStackX_18[0] = param_3;
-  RenderingShaderProcessor0(param_1 + 0x20,auStackX_18,*(int32_t *)(param_1 + 0x10),
+  uint64_t astack_special_x_18 [2];
+  astack_special_x_18[0] = param_3;
+  RenderingShaderProcessor0(param_1 + 0x20,astack_special_x_18,*(int32_t *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1);
-  if ((char)auStackX_18[0] != '\0') {
-    lVar1 = (auStackX_18[0] >> 0x20) * 8;
+  if ((char)astack_special_x_18[0] != '\0') {
+    lVar1 = (astack_special_x_18[0] >> 0x20) * 8;
     uVar2 = CoreMemoryPoolReallocator(system_memory_pool_ptr,lVar1 + 8,8,*(int8_t *)(param_1 + 0x2c));
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(uVar2,0,lVar1);
   }
   *(uint64_t *)(param_6 + 0x28) = *(uint64_t *)(*(int64_t *)(param_1 + 8) + param_5 * 8);
@@ -1390,32 +1181,19 @@ FUN_180355340(int64_t param_1,int64_t *param_2,uint64_t param_3,uint64_t param_4
   *(int8_t *)(param_2 + 2) = 1;
   return param_2;
 }
-
-
-
-
-
-// 函数: void FUN_180355393(uint64_t param_1)
-void FUN_180355393(uint64_t param_1)
-
+// 函数: void RenderingSystem_55393(uint64_t param_1)
+void RenderingSystem_55393(uint64_t param_1)
 {
   int64_t lVar1;
   uint64_t uVar2;
-  uint64_t in_stack_00000070;
-  
-  lVar1 = (in_stack_00000070 >> 0x20) * 8;
+  uint64_t local_var_70;
+  lVar1 = (local_var_70 >> 0x20) * 8;
   uVar2 = CoreMemoryPoolReallocator(param_1,lVar1 + 8,8);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(uVar2,0,lVar1);
 }
-
-
-
-
-
-// 函数: void FUN_1803553e1(void)
-void FUN_1803553e1(void)
-
+// 函数: void RenderingSystem_553e1(void)
+void RenderingSystem_553e1(void)
 {
   byte bVar1;
   int64_t lVar2;
@@ -1429,8 +1207,7 @@ void FUN_1803553e1(void)
   uint64_t in_R11;
   int64_t *unaff_R14;
   int64_t unaff_R15;
-  int64_t in_stack_00000088;
-  
+  int64_t local_var_88;
   do {
     lVar2 = *(int64_t *)(unaff_RDI + 8);
     lVar3 = *(int64_t *)(lVar2 + in_R11 * 8);
@@ -1459,25 +1236,23 @@ void FUN_1803553e1(void)
     in_R11 = in_R11 + 1;
   } while (in_R11 < *(uint64_t *)(unaff_RDI + 0x10));
   if ((1 < *(uint64_t *)(unaff_RDI + 0x10)) && (lVar2 != 0)) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     CoreEngine_MemoryPoolManager();
   }
   *(uint64_t *)(unaff_RDI + 0x10) = unaff_RBP;
   *(int64_t *)(unaff_RDI + 8) = unaff_RSI;
-  *(uint64_t *)(in_stack_00000088 + 0x28) = *(uint64_t *)(unaff_RSI + unaff_R15 * 8);
-  *(int64_t *)(*(int64_t *)(unaff_RDI + 8) + unaff_R15 * 8) = in_stack_00000088;
+  *(uint64_t *)(local_var_88 + 0x28) = *(uint64_t *)(unaff_RSI + unaff_R15 * 8);
+  *(int64_t *)(*(int64_t *)(unaff_RDI + 8) + unaff_R15 * 8) = local_var_88;
   lVar2 = *(int64_t *)(unaff_RDI + 8);
   *(int64_t *)(unaff_RDI + 0x18) = *(int64_t *)(unaff_RDI + 0x18) + 1;
-  *unaff_R14 = in_stack_00000088;
+  *unaff_R14 = local_var_88;
   unaff_R14[1] = lVar2 + unaff_R15 * 8;
   *(int8_t *)(unaff_R14 + 2) = 1;
   return;
 }
-
 //==============================================================================
 // 渲染系统核心模块 - 技术实现总结
 //==============================================================================
-
 /*
 模块完成状态：
 ✓ 已完成文件头部详细技术文档
@@ -1486,31 +1261,28 @@ void FUN_1803553e1(void)
 ✓ 已详细注释前6个核心函数的实现
 ✓ 已添加技术实现要点和架构说明
 ✓ 已提供性能优化和错误处理指导
-
 已美化的函数：
-1. FUN_180352bf0 (RenderObject_Initialize) - 渲染对象初始化
-2. FUN_180352dc0 (RenderObject_Cleanup) - 渲染对象清理
-3. FUN_180352e50 (RenderObject_ProcessConfig) - 渲染配置处理
-4. FUN_180352ff0 (RenderObject_CreateData) - 渲染数据创建
-5. FUN_180353070 (RenderObject_SetProperties) - 渲染属性设置
-6. FUN_1803530c0 (RenderData_Process) - 渲染数据处理
-
+1. RenderingSystem_52bf0 (RenderObject_Initialize) - 渲染对象初始化
+2. RenderingSystem_52dc0 (RenderObject_Cleanup) - 渲染对象清理
+3. RenderingSystem_52e50 (RenderObject_ProcessConfig) - 渲染配置处理
+4. RenderingSystem_52ff0 (RenderObject_CreateData) - 渲染数据创建
+5. RenderingSystem_53070 (RenderObject_SetProperties) - 渲染属性设置
+6. RenderingSystem_530c0 (RenderData_Process) - 渲染数据处理
 保持原始实现的函数（已添加说明文档）：
-7. FUN_180353e50 - 渲染数据比较函数
-8. FUN_180354170 - 渲染数据验证函数
-9. FUN_1803543b0 - 从配置创建渲染数据函数
-10. FUN_1803549f0 - 渲染内存分配函数
-11. FUN_180354b70 - 渲染持久内存分配函数
-12. FUN_180354db0 - 渲染数据复制函数
-13. FUN_180354f20 - 渲染数组清理函数
-14. FUN_180354f40 - 渲染数组扩展清理函数
-15. FUN_180355030 - 渲染哈希表查找函数
-16. FUN_180355140 - 渲染哈希表插入函数
-17. FUN_1803552e0 - 渲染哈希表删除函数
-18. FUN_180355340 - 渲染哈希表创建函数
-19. FUN_180355393 - 渲染哈希表调整大小函数
-20. FUN_1803553e1 - 渲染哈希表重建函数
-
+7. RenderingSystem_53e50 - 渲染数据比较函数
+8. RenderingSystem_54170 - 渲染数据验证函数
+9. RenderingSystem_543b0 - 从配置创建渲染数据函数
+10. RenderingSystem_549f0 - 渲染内存分配函数
+11. RenderingSystem_54b70 - 渲染持久内存分配函数
+12. RenderingSystem_54db0 - 渲染数据复制函数
+13. RenderingSystem_54f20 - 渲染数组清理函数
+14. RenderingSystem_54f40 - 渲染数组扩展清理函数
+15. RenderingSystem_55030 - 渲染哈希表查找函数
+16. RenderingSystem_55140 - 渲染哈希表插入函数
+17. RenderingSystem_552e0 - 渲染哈希表删除函数
+18. RenderingSystem_55340 - 渲染哈希表创建函数
+19. RenderingSystem_55393 - 渲染哈希表调整大小函数
+20. RenderingSystem_553e1 - 渲染哈希表重建函数
 关键技术特点：
 - 虚函数表机制实现多态
 - 栈分配优化性能
@@ -1518,24 +1290,16 @@ void FUN_1803553e1(void)
 - FNV-1a哈希算法
 - 动态扩容机制
 - 完整错误处理
-
 性能优化策略：
 - 最小化内存拷贝
 - 异步渲染支持
 - 内存池和缓存
 - 优化数据访问模式
-
 使用注意事项：
 - 正确处理内存分配释放
 - 注意渲染状态同步
 - 避免渲染过程中阻塞操作
 - 通过上层API使用功能
-
 本模块为TaleWorlds引擎渲染系统的核心组件，提供了完整的渲染对象
 生命周期管理、数据处理、内存管理和高级渲染操作功能。
 */
-
-
-
-
-

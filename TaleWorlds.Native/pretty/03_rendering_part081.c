@@ -1,18 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part081.c - 1 个函数
-
 // 函数: void NetworkProtocol_ConnectionHandler(int64_t *param_1,uint64_t *param_2)
 void NetworkProtocol_ConnectionHandler(int64_t *param_1,uint64_t *param_2)
-
 {
   uint64_t *puVar1;
   int64_t lVar2;
   uint64_t uVar3;
   uint64_t uVar4;
   uint64_t uVar5;
-  
   puVar1 = (uint64_t *)param_1[6];
   if (puVar1 + 2 != (uint64_t *)param_1[8]) {
     param_1[6] = (int64_t)(puVar1 + 2);
@@ -24,7 +20,7 @@ void NetworkProtocol_ConnectionHandler(int64_t *param_1,uint64_t *param_2)
   uVar3 = *param_2;
   uVar4 = param_2[1];
   if (param_1[1] <= (param_1[9] - *param_1 >> 3) + 1) {
-    FUN_1801ee9c0(param_1,1,1);
+    function_1ee9c0(param_1,1,1);
   }
   uVar5 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x100,(char)param_1[10]);
   *(uint64_t *)(param_1[9] + 8) = uVar5;
@@ -39,18 +35,13 @@ void NetworkProtocol_ConnectionHandler(int64_t *param_1,uint64_t *param_2)
   param_1[6] = lVar2;
   return;
 }
-
-
-
-uint64_t FUN_180310ad0(float *param_1)
-
+uint64_t function_310ad0(float *param_1)
 {
   float fVar1;
   float fVar2;
   int8_t auVar3 [16];
   float fVar4;
   float fVar5;
-  
   fVar1 = *param_1;
   fVar2 = param_1[1];
   fVar5 = fVar1 * fVar1 + fVar2 * fVar2;
@@ -61,9 +52,6 @@ uint64_t FUN_180310ad0(float *param_1)
   *param_1 = fVar1 * fVar4;
   return CONCAT44(0x3f000000,fVar4 * fVar5);
 }
-
-
-
 // WARNING: Possible PIC construction at 0x00018031429b: Changing call to branch
 // WARNING: Possible PIC construction at 0x0001803142c3: Changing call to branch
 // WARNING: Possible PIC construction at 0x0001803142eb: Changing call to branch
@@ -438,6 +426,3 @@ uint64_t FUN_180310ad0(float *param_1)
 // WARNING: Removing unreachable block (ram,0x0001803142c8)
 // WARNING: Removing unreachable block (ram,0x0001803142a0)
 // WARNING: Removing unreachable block (ram,0x000180315fb0)
-
-
-

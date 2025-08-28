@@ -1,29 +1,21 @@
 #include "ultra_high_freq_fun_definitions.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* 函数别名定义: MemoryDeallocationHandler */
 #define MemoryDeallocationHandler MemoryDeallocationHandler
-
-
-
 // 03_rendering_part541.c - 13 个函数
-
-// 函数: void FUN_180562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
-void FUN_180562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
-
+// 函数: void function_562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
+void function_562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
 {
   char cVar1;
   uint64_t *puVar2;
   char *pcVar3;
   char *pcVar4;
-  int8_t auStack_68 [32];
+  int8_t stack_array_68 [32];
   char cStack_48;
   char acStack_47 [31];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_68;
   if (param_4 == '\0') {
     puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
     *puVar2 = 0;
@@ -148,24 +140,17 @@ void FUN_180562f60(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar2;
   puVar2[4] = param_3;
   puVar2[6] = 0;
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_68);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_68);
 }
-
-
-
-
-
-// 函数: void FUN_180563250(int64_t param_1,int64_t param_2)
-void FUN_180563250(int64_t param_1,int64_t param_2)
-
+// 函数: void function_563250(int64_t param_1,int64_t param_2)
+void function_563250(int64_t param_1,int64_t param_2)
 {
   uint64_t *puVar1;
   char *pcVar2;
   int64_t lVar3;
   char *pcVar4;
   char *pcVar5;
-  
   pcVar4 = "switch_progress";
   do {
     pcVar5 = pcVar4;
@@ -282,46 +267,30 @@ LAB_180563410:
     puVar1 = (uint64_t *)puVar1[6];
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180563470(int64_t param_1)
-void FUN_180563470(int64_t param_1)
-
+// 函数: void function_563470(int64_t param_1)
+void function_563470(int64_t param_1)
 {
   uint64_t *puVar1;
-  
   puVar1 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x10,8,3);
   *puVar1 = &processed_var_7904_ptr;
   *(int32_t *)(puVar1 + 1) = *(int32_t *)(param_1 + 8);
   *(int32_t *)((int64_t)puVar1 + 0xc) = *(int32_t *)(param_1 + 0xc);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1805634b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
-void FUN_1805634b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
-
+// 函数: void function_5634b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
+void function_5634b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
 {
   char cVar1;
   uint64_t *puVar2;
   char *pcVar3;
   char *pcVar4;
-  int8_t auStack_68 [32];
+  int8_t stack_array_68 [32];
   char cStack_48;
   char acStack_47 [31];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_68;
   if (param_4 == '\0') {
     puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
     *puVar2 = 0;
@@ -414,24 +383,17 @@ void FUN_1805634b0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar2;
   puVar2[4] = param_3;
   puVar2[6] = 0;
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_68);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_68);
 }
-
-
-
-
-
-// 函数: void FUN_1805636e0(int64_t param_1,int64_t param_2)
-void FUN_1805636e0(int64_t param_1,int64_t param_2)
-
+// 函数: void function_5636e0(int64_t param_1,int64_t param_2)
+void function_5636e0(int64_t param_1,int64_t param_2)
 {
   uint64_t *puVar1;
   char *pcVar2;
   int64_t lVar3;
   char *pcVar4;
   char *pcVar5;
-  
   pcVar4 = "scale_blend_start_progress";
   do {
     pcVar5 = pcVar4;
@@ -511,46 +473,30 @@ LAB_180563801:
     puVar1 = (uint64_t *)puVar1[6];
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180563860(int64_t param_1)
-void FUN_180563860(int64_t param_1)
-
+// 函数: void function_563860(int64_t param_1)
+void function_563860(int64_t param_1)
 {
   uint64_t *puVar1;
-  
   puVar1 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x10,8,3);
   *puVar1 = &processed_var_8008_ptr;
   *(int32_t *)(puVar1 + 1) = *(int32_t *)(param_1 + 8);
   *(int32_t *)((int64_t)puVar1 + 0xc) = *(int32_t *)(param_1 + 0xc);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1805638a0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
-void FUN_1805638a0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
-
+// 函数: void function_5638a0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
+void function_5638a0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
 {
   char cVar1;
   uint64_t *puVar2;
   char *pcVar3;
   char *pcVar4;
-  int8_t auStack_68 [32];
+  int8_t stack_array_68 [32];
   char cStack_48;
   char acStack_47 [31];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_68;
   if (param_4 == '\0') {
     puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
     *puVar2 = 0;
@@ -643,24 +589,17 @@ void FUN_1805638a0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar2;
   puVar2[4] = param_3;
   puVar2[6] = 0;
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_68);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_68);
 }
-
-
-
-
-
-// 函数: void FUN_180563ad0(int64_t param_1,int64_t param_2)
-void FUN_180563ad0(int64_t param_1,int64_t param_2)
-
+// 函数: void function_563ad0(int64_t param_1,int64_t param_2)
+void function_563ad0(int64_t param_1,int64_t param_2)
 {
   uint64_t *puVar1;
   char *pcVar2;
   int64_t lVar3;
   char *pcVar4;
   char *pcVar5;
-  
   pcVar4 = "blend_start_progress";
   do {
     pcVar5 = pcVar4;
@@ -740,19 +679,11 @@ LAB_180563bf1:
     puVar1 = (uint64_t *)puVar1[6];
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180563c50(int64_t param_1)
-void FUN_180563c50(int64_t param_1)
-
+// 函数: void function_563c50(int64_t param_1)
+void function_563c50(int64_t param_1)
 {
   uint64_t *puVar1;
-  
   puVar1 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x18,8,3);
   *puVar1 = &processed_var_8128_ptr;
   *(int32_t *)(puVar1 + 1) = *(int32_t *)(param_1 + 8);
@@ -760,27 +691,19 @@ void FUN_180563c50(int64_t param_1)
   *(int32_t *)(puVar1 + 2) = *(int32_t *)(param_1 + 0x10);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
-void FUN_180563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
-
+// 函数: void function_563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
+void function_563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
 {
   char cVar1;
   uint64_t *puVar2;
   char *pcVar3;
   char *pcVar4;
-  int8_t auStack_68 [32];
+  int8_t stack_array_68 [32];
   char cStack_48;
   char acStack_47 [31];
-  uint64_t uStack_28;
-  
-  uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_68;
+  uint64_t local_var_28;
+  local_var_28 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_68;
   if (param_4 == '\0') {
     puVar2 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
     *puVar2 = 0;
@@ -905,24 +828,17 @@ void FUN_180563ca0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   *(uint64_t **)(param_3 + 0x48) = puVar2;
   puVar2[4] = param_3;
   puVar2[6] = 0;
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_68);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_28 ^ (uint64_t)stack_array_68);
 }
-
-
-
-
-
-// 函数: void FUN_180563f90(int64_t param_1,int64_t param_2)
-void FUN_180563f90(int64_t param_1,int64_t param_2)
-
+// 函数: void function_563f90(int64_t param_1,int64_t param_2)
+void function_563f90(int64_t param_1,int64_t param_2)
 {
   uint64_t *puVar1;
   char *pcVar2;
   int64_t lVar3;
   char *pcVar4;
   char *pcVar5;
-  
   pcVar4 = "loop_displacement";
   do {
     pcVar5 = pcVar4;
@@ -1039,20 +955,12 @@ LAB_180564150:
     puVar1 = (uint64_t *)puVar1[6];
   } while( true );
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1805641b0(int64_t param_1)
-void FUN_1805641b0(int64_t param_1)
-
+// 函数: void function_5641b0(int64_t param_1)
+void function_5641b0(int64_t param_1)
 {
   uint64_t uVar1;
   uint64_t *puVar2;
-  
   puVar2 = (uint64_t *)CoreMemoryPoolReallocator(system_memory_pool_ptr,0x20,8,3);
   *puVar2 = &processed_var_8256_ptr;
   uVar1 = *(uint64_t *)(param_1 + 0x10);
@@ -1061,19 +969,12 @@ void FUN_1805641b0(int64_t param_1)
   *(int32_t *)(puVar2 + 3) = *(int32_t *)(param_1 + 0x18);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1805641f0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
-void FUN_1805641f0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
-
+// 函数: void function_5641f0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
+void function_5641f0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
 {
   uint64_t *puVar1;
   char *pcVar2;
   char *pcVar3;
-  
   if (param_4 == '\0') {
     puVar1 = (uint64_t *)DataPipelineManager(param_2 + 0x60,0x38);
     *puVar1 = 0;
@@ -1133,8 +1034,3 @@ void FUN_1805641f0(int64_t param_1,int64_t param_2,int64_t param_3,char param_4)
   MemoryDeallocationHandler0(param_2,param_3,&processed_var_8160_ptr,*(int32_t *)(param_1 + 0x18));
   return;
 }
-
-
-
-
-

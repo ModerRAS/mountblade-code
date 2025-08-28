@@ -1,15 +1,10 @@
 /* 函数别名定义: RenderingGeometryProcessor */
 #define RenderingGeometryProcessor RenderingGeometryProcessor
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part283_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_180420ca0(char *param_1,int param_2,short *param_3)
-void FUN_180420ca0(char *param_1,int param_2,short *param_3)
-
+// 函数: void function_420ca0(char *param_1,int param_2,short *param_3)
+void function_420ca0(char *param_1,int param_2,short *param_3)
 {
   short sVar1;
   short sVar2;
@@ -206,10 +201,10 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   int iVar213;
   int8_t auVar209 [16];
   int8_t auVar210 [16];
-  int32_t uStack_128;
-  int32_t uStack_124;
-  int32_t uStack_120;
-  int32_t uStack_11c;
+  int32_t local_var_128;
+  int32_t local_var_124;
+  int32_t local_var_120;
+  int32_t local_var_11c;
   int iStack_108;
   int iStack_104;
   int iStack_100;
@@ -244,7 +239,6 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   int8_t auVar192 [16];
   int8_t auVar201 [16];
   int8_t auVar208 [16];
-  
   auVar79._0_12_ = ZEXT812(0);
   auVar105 = *(int8_t (*) [16])(param_3 + 0x28);
   auVar67 = *(int8_t (*) [16])(param_3 + 0x10);
@@ -532,14 +526,14 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   auVar178._8_4_ = iVar73 + iVar182 >> 10;
   auVar178._12_4_ = iVar74 + iVar184 >> 10;
   auVar107 = packssdw(auVar106,auVar178);
-  uStack_128._0_2_ = auVar105._0_2_;
-  uStack_128._2_2_ = auVar105._2_2_;
-  uStack_124._0_2_ = auVar105._4_2_;
-  uStack_124._2_2_ = auVar105._6_2_;
-  uStack_120._0_2_ = auVar105._8_2_;
-  uStack_120._2_2_ = auVar105._10_2_;
-  uStack_11c._0_2_ = auVar105._12_2_;
-  uStack_11c._2_2_ = auVar105._14_2_;
+  local_var_128._0_2_ = auVar105._0_2_;
+  local_var_128._2_2_ = auVar105._2_2_;
+  local_var_124._0_2_ = auVar105._4_2_;
+  local_var_124._2_2_ = auVar105._6_2_;
+  local_var_120._0_2_ = auVar105._8_2_;
+  local_var_120._2_2_ = auVar105._10_2_;
+  local_var_11c._0_2_ = auVar105._12_2_;
+  local_var_11c._2_2_ = auVar105._14_2_;
   auVar84._0_4_ = iVar65 - iVar177 >> 10;
   auVar84._4_4_ = iVar72 - iVar181 >> 10;
   auVar84._8_4_ = iVar73 - iVar182 >> 10;
@@ -578,8 +572,8 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   auVar189._8_8_ = auVar190._8_8_;
   auVar189._6_2_ = auVar200._12_2_;
   auVar189._4_2_ = auVar200._4_2_;
-  auVar189._2_2_ = (int16_t)uStack_11c;
-  auVar189._0_2_ = (int16_t)uStack_124;
+  auVar189._2_2_ = (int16_t)local_var_11c;
+  auVar189._0_2_ = (int16_t)local_var_124;
   auVar210._2_2_ = auVar81._12_2_;
   auVar210._0_2_ = auVar81._4_2_;
   auVar210._4_2_ = auVar138._4_2_;
@@ -606,7 +600,7 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   auVar102._12_2_ = 0;
   auVar102._0_12_ = auVar98;
   auVar102._14_2_ = auVar147._0_2_ - auVar147._8_2_;
-  iVar75 = (int)((uint)(ushort)((short)uStack_120 + (short)uStack_128) << 0x10) >> 4;
+  iVar75 = (int)((uint)(ushort)((short)local_var_120 + (short)local_var_128) << 0x10) >> 4;
   iVar76 = SUB164(auVar105 << 0x30,4) >> 4;
   iVar90 = (int)lVar64 >> 4;
   uVar63 = CONCAT24(auVar138._8_2_ + auVar138._0_2_,(uint)(ushort)(auVar81._8_2_ + auVar81._0_2_));
@@ -629,7 +623,7 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   auVar67._2_8_ = lVar64;
   auVar67._0_2_ = auVar200._0_2_ - auVar200._8_2_;
   auVar67._10_6_ = 0;
-  iVar65 = (int)((uint)(ushort)((short)uStack_128 - (short)uStack_120) << 0x10) >> 4;
+  iVar65 = (int)((uint)(ushort)((short)local_var_128 - (short)local_var_120) << 0x10) >> 4;
   iVar72 = SUB164(auVar67 << 0x30,4) >> 4;
   iVar73 = (int)lVar64 >> 4;
   sVar151 = sVar113 + auVar107._2_2_;
@@ -640,8 +634,8 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
                  CONCAT22(auVar145._14_2_ + auVar145._2_2_,sVar151)) >> 0x10);
   auVar68._6_2_ = auVar200._10_2_ + auVar200._6_2_;
   auVar68._4_2_ = auVar200._14_2_ + auVar200._2_2_;
-  auVar68._2_2_ = uStack_120._2_2_ + uStack_124._2_2_;
-  auVar68._0_2_ = uStack_11c._2_2_ + uStack_128._2_2_;
+  auVar68._2_2_ = local_var_120._2_2_ + local_var_124._2_2_;
+  auVar68._0_2_ = local_var_11c._2_2_ + local_var_128._2_2_;
   auVar171 = pmaddwd(auVar210,render_system_config);
   auVar67 = pmaddwd(auVar68,render_system_config);
   auVar198 = pmaddwd(auVar210,render_system_config);
@@ -665,8 +659,8 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
                  CONCAT22(auVar145._14_2_,sVar113)) >> 0x10);
   auVar108._6_2_ = auVar200._6_2_;
   auVar108._4_2_ = auVar200._14_2_;
-  auVar108._2_2_ = uStack_124._2_2_;
-  auVar108._0_2_ = uStack_11c._2_2_;
+  auVar108._2_2_ = local_var_124._2_2_;
+  auVar108._0_2_ = local_var_11c._2_2_;
   auVar115._2_2_ = auVar81._6_2_;
   auVar115._0_2_ = auVar81._14_2_;
   auVar115._4_2_ = auVar138._14_2_;
@@ -681,8 +675,8 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
                  CONCAT22(auVar145._10_2_,sVar150)) >> 0x10);
   auVar172._6_2_ = auVar200._2_2_;
   auVar172._4_2_ = auVar200._10_2_;
-  auVar172._2_2_ = uStack_128._2_2_;
-  auVar172._0_2_ = uStack_120._2_2_;
+  auVar172._2_2_ = local_var_128._2_2_;
+  auVar172._0_2_ = local_var_120._2_2_;
   auVar179._2_2_ = auVar81._2_2_;
   auVar179._0_2_ = auVar81._10_2_;
   auVar179._4_2_ = auVar138._10_2_;
@@ -702,14 +696,14 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   iVar211 = auVar138._4_4_ + auVar99._4_4_;
   iVar213 = auVar138._8_4_ + auVar99._8_4_;
   iVar185 = auVar138._12_4_ + auVar99._12_4_;
-  uStack_128 = auVar155._0_4_;
-  uStack_124 = auVar155._4_4_;
-  uStack_120 = auVar155._8_4_;
-  uStack_11c = auVar155._12_4_;
-  iVar140 = auVar66._0_4_ + uStack_128;
-  iVar141 = auVar66._4_4_ + uStack_124;
-  iVar142 = auVar66._8_4_ + uStack_120;
-  iVar133 = auVar66._12_4_ + uStack_11c;
+  local_var_128 = auVar155._0_4_;
+  local_var_124 = auVar155._4_4_;
+  local_var_120 = auVar155._8_4_;
+  local_var_11c = auVar155._12_4_;
+  iVar140 = auVar66._0_4_ + local_var_128;
+  iVar141 = auVar66._4_4_ + local_var_124;
+  iVar142 = auVar66._8_4_ + local_var_120;
+  iVar133 = auVar66._12_4_ + local_var_11c;
   iVar110 = auVar81._0_4_ + auVar105._0_4_;
   iVar111 = auVar81._4_4_ + auVar105._4_4_;
   iVar112 = auVar81._8_4_ + auVar105._8_4_;
@@ -722,10 +716,10 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   iVar154 = auVar107._4_4_ + auVar67._4_4_;
   iVar157 = auVar107._8_4_ + auVar67._8_4_;
   iVar158 = auVar107._12_4_ + auVar67._12_4_;
-  uStack_128 = auVar145._0_4_ + uStack_128;
-  uStack_124 = auVar145._4_4_ + uStack_124;
-  uStack_120 = auVar145._8_4_ + uStack_120;
-  uStack_11c = auVar145._12_4_ + uStack_11c;
+  local_var_128 = auVar145._0_4_ + local_var_128;
+  local_var_124 = auVar145._4_4_ + local_var_124;
+  local_var_120 = auVar145._8_4_ + local_var_120;
+  local_var_11c = auVar145._12_4_ + local_var_11c;
   auVar99 = pmaddwd(auVar172,render_system_config);
   auVar81 = pmaddwd(auVar172,render_system_config);
   iVar176 = auVar99._0_4_ + auVar67._0_4_;
@@ -806,10 +800,10 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   sVar50 = auVar67._10_2_;
   sVar54 = auVar67._12_2_;
   sVar58 = auVar67._14_2_;
-  auVar69._0_4_ = iVar168 + uStack_128 >> 0x11;
-  auVar69._4_4_ = iVar169 + uStack_124 >> 0x11;
-  auVar69._8_4_ = iVar174 + uStack_120 >> 0x11;
-  auVar69._12_4_ = iVar175 + uStack_11c >> 0x11;
+  auVar69._0_4_ = iVar168 + local_var_128 >> 0x11;
+  auVar69._4_4_ = iVar169 + local_var_124 >> 0x11;
+  auVar69._8_4_ = iVar174 + local_var_120 >> 0x11;
+  auVar69._12_4_ = iVar175 + local_var_11c >> 0x11;
   auVar66 = packssdw(auVar103,auVar69);
   auVar88._0_4_ = iVar65 + iVar153 >> 0x11;
   auVar88._4_4_ = iVar72 + iVar154 >> 0x11;
@@ -884,10 +878,10 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   sVar52 = auVar107._10_2_;
   sVar56 = auVar107._12_2_;
   sVar60 = auVar107._14_2_;
-  auVar118._0_4_ = iVar168 - uStack_128 >> 0x11;
-  auVar118._4_4_ = iVar169 - uStack_124 >> 0x11;
-  auVar118._8_4_ = iVar174 - uStack_120 >> 0x11;
-  auVar118._12_4_ = iVar175 - uStack_11c >> 0x11;
+  auVar118._0_4_ = iVar168 - local_var_128 >> 0x11;
+  auVar118._4_4_ = iVar169 - local_var_124 >> 0x11;
+  auVar118._8_4_ = iVar174 - local_var_120 >> 0x11;
+  auVar118._12_4_ = iVar175 - local_var_11c >> 0x11;
   auVar105 = packssdw(auVar71,auVar118);
   sVar1 = auVar99._0_2_;
   sVar5 = auVar99._2_2_;
@@ -974,18 +968,13 @@ void FUN_180420ca0(char *param_1,int param_2,short *param_3)
   param_1[lVar64 + 0xf] = (0 < sVar60) * (sVar60 < 0x100) * auVar107[0xe] - (0xff < sVar60);
   return;
 }
-
-
-
-uint64_t FUN_1804214d0(int64_t *param_1)
-
+uint64_t function_4214d0(int64_t *param_1)
 {
   byte bVar1;
   char cVar2;
   int64_t lVar3;
   char *pcVar4;
   byte *pbVar5;
-  
   bVar1 = *(byte *)(param_1 + 0x905);
   if (bVar1 != 0xff) {
     *(int8_t *)(param_1 + 0x905) = 0xff;
@@ -994,7 +983,7 @@ uint64_t FUN_1804214d0(int64_t *param_1)
   lVar3 = *param_1;
   pcVar4 = *(char **)(lVar3 + 0xb8);
   if (*(char **)(lVar3 + 0xc0) <= pcVar4) {
-    if (*(int *)(lVar3 + 0x30) == 0) goto FUN_180421588;
+    if (*(int *)(lVar3 + 0x30) == 0) goto label_421588;
     RenderingGeometryProcessor0(lVar3);
     pcVar4 = *(char **)(lVar3 + 0xb8);
   }
@@ -1017,14 +1006,10 @@ uint64_t FUN_1804214d0(int64_t *param_1)
     } while (bVar1 == 0xff);
     return (uint64_t)bVar1;
   }
-FUN_180421588:
+label_421588:
   return CONCAT71((int7)((uint64_t)pcVar4 >> 8),0xff);
 }
-
-
-
-uint64_t FUN_1804214f1(int64_t *param_1)
-
+uint64_t function_4214f1(int64_t *param_1)
 {
   char cVar1;
   byte bVar2;
@@ -1032,11 +1017,10 @@ uint64_t FUN_1804214f1(int64_t *param_1)
   char *pcVar4;
   byte *pbVar5;
   int64_t *unaff_RDI;
-  
   lVar3 = *param_1;
   pcVar4 = *(char **)(lVar3 + 0xb8);
   if (*(char **)(lVar3 + 0xc0) <= pcVar4) {
-    if (*(int *)(lVar3 + 0x30) == 0) goto FUN_180421588;
+    if (*(int *)(lVar3 + 0x30) == 0) goto label_421588;
     RenderingGeometryProcessor0(lVar3);
     pcVar4 = *(char **)(lVar3 + 0xb8);
   }
@@ -1059,31 +1043,15 @@ uint64_t FUN_1804214f1(int64_t *param_1)
     } while (bVar2 == 0xff);
     return (uint64_t)bVar2;
   }
-FUN_180421588:
+label_421588:
   return CONCAT71((int7)((uint64_t)pcVar4 >> 8),0xff);
 }
-
-
-
-uint64_t FUN_180421578(void)
-
+uint64_t function_421578(void)
 {
   return 0;
 }
-
-
-
-int8_t FUN_180421588(void)
-
+int8_t function_421588(void)
 {
   return 0xff;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-

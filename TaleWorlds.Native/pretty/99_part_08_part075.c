@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_08_part075.c - 1 个函数
-
-// 函数: void FUN_1805baa98(void)
-void FUN_1805baa98(void)
-
+// 函数: void function_5baa98(void)
+void function_5baa98(void)
 {
   int64_t lVar1;
   int in_EAX;
@@ -26,7 +23,6 @@ void FUN_1805baa98(void)
   float fVar12;
   uint in_XMM3_Da;
   float in_XMM4_Da;
-  
   do {
     lVar7 = (int64_t)in_EAX * 0xa60;
     if (((*(int *)(lVar7 + 0x3608 + in_R11) == 1) && (in_EAX != *(int *)(*in_R9 + 0x10))) &&
@@ -92,9 +88,3 @@ LAB_1805babfd:
     }
   } while( true );
 }
-
-
-
-
-
-

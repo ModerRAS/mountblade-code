@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_13_part085.c - 1 个函数
-
-// 函数: void FUN_1808e4690(int64_t param_1)
-void FUN_1808e4690(int64_t param_1)
-
+// 函数: void function_8e4690(int64_t param_1)
+void function_8e4690(int64_t param_1)
 {
   int iVar1;
   int iVar2;
@@ -12,7 +9,6 @@ void FUN_1808e4690(int64_t param_1)
   int iVar4;
   uint uVar5;
   int iVar6;
-  
   iVar1 = *(int *)(param_1 + 0x30);
   iVar3 = 0;
   iVar4 = iVar1 + 1;
@@ -27,19 +23,15 @@ void FUN_1808e4690(int64_t param_1)
     if ((-1 < iVar2) && (iVar3 = iVar6, iVar6 < iVar4)) {
       iVar3 = iVar4;
     }
-    iVar3 = FUN_180882c70(param_1 + 0x28,iVar3);
+    iVar3 = function_882c70(param_1 + 0x28,iVar3);
     if (iVar3 != 0) {
       return;
     }
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(*(int64_t *)(param_1 + 0x28) + (int64_t)iVar1 * 0x6c,0,0x6c);
 }
-
-
-
-uint64_t FUN_1808e4742(void)
-
+uint64_t function_8e4742(void)
 {
   int64_t *plVar1;
   int64_t *plVar2;
@@ -67,10 +59,9 @@ uint64_t FUN_1808e4742(void)
   uint64_t extraout_XMM0_Qa;
   uint64_t extraout_XMM0_Qa_00;
   float unaff_XMM6_Da;
-  int64_t in_stack_00000070;
-  char in_stack_00000080;
-  
-  uVar8 = func_0x00018085fa80();
+  int64_t local_buffer_70;
+  char local_buffer_80;
+  uVar8 = SystemFunction_00018085fa80();
   iVar5 = memcmp(unaff_R14 + 0x28,uVar8,0x30);
   iVar6 = SystemCore_StateController();
   uVar18 = (uint)unaff_RDI;
@@ -90,7 +81,7 @@ uint64_t FUN_1808e4742(void)
   if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) == 0) {
     uVar14 = uVar15;
   }
-  if (in_stack_00000080 == (char)unaff_RDI) {
+  if (local_buffer_80 == (char)unaff_RDI) {
     uVar14 = uVar14 | 0x10;
   }
   uVar15 = uVar14 | 0x20;
@@ -120,11 +111,11 @@ uint64_t FUN_1808e4742(void)
   }
   if (*(char *)(unaff_RSI + 0x90) != (char)unaff_RDI) {
     iVar5 = *(int *)(unaff_RSI + 0x60);
-    uVar8 = FUN_1808e4d80(extraout_XMM0_Qa,unaff_R14 + 0x378);
+    uVar8 = function_8e4d80(extraout_XMM0_Qa,unaff_R14 + 0x378);
     if ((int)uVar8 != 0) {
       return uVar8;
     }
-    uVar8 = FUN_1808e4d80(extraout_XMM0_Qa_00,unaff_R14 + 0x3f8);
+    uVar8 = function_8e4d80(extraout_XMM0_Qa_00,unaff_R14 + 0x3f8);
     if ((int)uVar8 != 0) {
       return uVar8;
     }
@@ -135,7 +126,7 @@ uint64_t FUN_1808e4742(void)
       uVar14 = uVar14 | 0x800;
     }
   }
-  uVar7 = func_0x000180855b70(unaff_R14 + 200);
+  uVar7 = SystemFunction_000180855b70(unaff_R14 + 200);
   plVar1 = (int64_t *)(unaff_R14 + 0x240);
   uVar16 = (uint64_t)unaff_RDI & 0xffffffff;
   uVar15 = uVar18;
@@ -167,7 +158,7 @@ uint64_t FUN_1808e4742(void)
   unaff_R15[0xe] = uVar7 / 0x30;
   unaff_R15[0xf] = uVar18;
   unaff_R15[0x10] = uVar18;
-  uVar8 = FUN_1808e5120(*(uint64_t *)(*(int64_t *)(unaff_R14 + 0x2b0) + 0x78));
+  uVar8 = function_8e5120(*(uint64_t *)(*(int64_t *)(unaff_R14 + 0x2b0) + 0x78));
   if ((int)uVar8 == 0) {
     if (*(int64_t *)(unaff_R14 + 0x350) != 0) {
       lVar9 = *(int64_t *)(*(int64_t *)(unaff_R14 + 0x350) + 0xf0);
@@ -187,7 +178,7 @@ uint64_t FUN_1808e4742(void)
     if (0 < (int)uVar15) {
       plVar2 = (int64_t *)(unaff_RSI + 0x48);
       unaff_R15[0x11] = *(int32_t *)(unaff_RSI + 0x50);
-      uVar8 = FUN_1808e5210(plVar2,*(int *)(unaff_RSI + 0x50) + uVar15);
+      uVar8 = function_8e5210(plVar2,*(int *)(unaff_RSI + 0x50) + uVar15);
       if ((int)uVar8 != 0) {
         return uVar8;
       }
@@ -200,7 +191,7 @@ uint64_t FUN_1808e4742(void)
         plVar17 = plVar10 + 3;
       }
       uVar16 = (uint64_t)unaff_RDI & 0xffffffff;
-      lVar9 = in_stack_00000070;
+      lVar9 = local_buffer_70;
       if (0 < (int)uVar15) {
         iVar5 = *(int *)(unaff_RSI + 0x50);
         do {
@@ -248,7 +239,7 @@ uint64_t FUN_1808e4742(void)
         } while ((int)uVar14 < (int)uVar15);
       }
     }
-    uVar8 = FUN_1808e4fe0(lVar9,unaff_R14 + 8,unaff_R15 + 0x19);
+    uVar8 = function_8e4fe0(lVar9,unaff_R14 + 8,unaff_R15 + 0x19);
     if ((int)uVar8 == 0) {
       if (*(int64_t **)(unaff_R14 + 0x478) != unaff_RDI) {
         if (0 < (int)unaff_R15[0x1a]) {
@@ -275,7 +266,7 @@ uint64_t FUN_1808e4742(void)
           else if (iVar12 < iVar6) {
             iVar12 = iVar6;
           }
-          uVar8 = FUN_180882f00(lVar9 + 0x78,iVar12);
+          uVar8 = function_882f00(lVar9 + 0x78,iVar12);
           if ((int)uVar8 != 0) {
             return uVar8;
           }
@@ -294,9 +285,3 @@ LAB_1808e4b4a:
   }
   return uVar8;
 }
-
-
-
-
-
-

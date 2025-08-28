@@ -1,19 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part678.c - 6 个函数
-
-// 函数: void FUN_180657970(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t param_4,
-void FUN_180657970(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t param_4,
+// 函数: void function_657970(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t param_4,
+void function_657970(uint64_t param_1,uint64_t param_2,void *param_3,uint64_t param_4,
                   int64_t param_5)
-
 {
   byte bVar1;
   byte *pbVar2;
   uint uVar3;
   int32_t uVar4;
   int64_t lVar5;
-  
   if (((char)param_4 == '\0') && (param_3 != &system_data_67e0)) {
     if (*(int *)(param_3 + 0x30) == 0) {
 LAB_1806579e7:
@@ -37,14 +33,10 @@ LAB_1806579f0:
   lVar5 = CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x48,system_data_6808,param_4,0xfffffffffffffffe);
   CoreEngineDataTransformer(lVar5 + 0x20,param_5);
   *(uint64_t *)(lVar5 + 0x40) = 0;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemStateController(lVar5,param_3,&system_data_67e0,uVar4);
 }
-
-
-
-uint64_t * FUN_180657a70(uint64_t *param_1,uint64_t param_2)
-
+uint64_t * function_657a70(uint64_t *param_1,uint64_t param_2)
 {
   *param_1 = &ui_system_data_1792_ptr;
   if ((param_2 & 1) != 0) {
@@ -52,49 +44,30 @@ uint64_t * FUN_180657a70(uint64_t *param_1,uint64_t param_2)
   }
   return param_1;
 }
-
-
-
-
-
-// 函数: void FUN_180657aa0(uint64_t *param_1)
-void FUN_180657aa0(uint64_t *param_1)
-
+// 函数: void function_657aa0(uint64_t *param_1)
+void function_657aa0(uint64_t *param_1)
 {
   uint64_t uVar1;
   int32_t uVar2;
-  
   uVar2 = SteamAPI_GetHSteamUser();
   uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&ui_system_data_1688_ptr);
   *param_1 = uVar1;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180657ad0(uint64_t *param_1)
-void FUN_180657ad0(uint64_t *param_1)
-
+// 函数: void function_657ad0(uint64_t *param_1)
+void function_657ad0(uint64_t *param_1)
 {
   uint64_t uVar1;
   int32_t uVar2;
-  
   uVar2 = SteamAPI_GetHSteamUser();
   uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&ui_system_data_1704_ptr);
   *param_1 = uVar1;
   return;
 }
-
-
-
 uint64_t *
-FUN_180657b00(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-
+function_657b00(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t uVar1;
-  
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &ui_system_data_1744_ptr;
   DataSerializationEngine();
@@ -104,26 +77,14 @@ FUN_180657b00(uint64_t *param_1,uint64_t param_2,uint64_t param_3,uint64_t param
   }
   return param_1;
 }
-
-
-
-
-
-// 函数: void FUN_180657b70(void)
-void FUN_180657b70(void)
-
+// 函数: void function_657b70(void)
+void function_657b70(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-
-// 函数: void FUN_180657dd0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180657dd0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_657dd0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
+void function_657dd0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   int iVar1;
   uint64_t *puVar2;
@@ -132,33 +93,32 @@ void FUN_180657dd0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   uint uVar5;
   uint64_t uVar6;
   uint64_t uVar7;
-  void *puStack_50;
-  int8_t *puStack_48;
+  void *plocal_var_50;
+  int8_t *plocal_var_48;
   int iStack_40;
-  uint64_t uStack_38;
-  
+  uint64_t local_var_38;
   uVar7 = 0xfffffffffffffffe;
   uVar4 = 0;
   lVar3 = *(int64_t *)(param_1 + 8);
   uVar6 = uVar4;
   if (*(int64_t *)(param_1 + 0x10) - lVar3 >> 5 != 0) {
     do {
-      puStack_50 = &system_data_buffer_ptr;
-      uStack_38 = 0;
-      puStack_48 = (int8_t *)0x0;
+      plocal_var_50 = &system_data_buffer_ptr;
+      local_var_38 = 0;
+      plocal_var_48 = (int8_t *)0x0;
       iStack_40 = 0;
-      CoreEngineDataBufferProcessor(&puStack_50,*(int32_t *)(uVar4 + 0x10 + lVar3));
+      CoreEngineDataBufferProcessor(&plocal_var_50,*(int32_t *)(uVar4 + 0x10 + lVar3));
       iVar1 = *(int *)(uVar4 + 0x10 + lVar3);
       if (iVar1 != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(puStack_48,*(uint64_t *)(uVar4 + 8 + lVar3),iVar1 + 1,param_4,uVar7);
+// WARNING: Subroutine does not return
+        memcpy(plocal_var_48,*(uint64_t *)(uVar4 + 8 + lVar3),iVar1 + 1,param_4,uVar7);
       }
       if (*(int64_t *)(uVar4 + 8 + lVar3) != 0) {
         iStack_40 = 0;
-        if (puStack_48 != (int8_t *)0x0) {
-          *puStack_48 = 0;
+        if (plocal_var_48 != (int8_t *)0x0) {
+          *plocal_var_48 = 0;
         }
-        uStack_38 = uStack_38 & 0xffffffff;
+        local_var_38 = local_var_38 & 0xffffffff;
       }
       puVar2 = *(uint64_t **)(param_2 + 8);
       if (puVar2 < *(uint64_t **)(param_2 + 0x10)) {
@@ -172,10 +132,10 @@ void FUN_180657dd0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         *(int32_t *)(puVar2 + 2) = 0;
         CoreEngineDataBufferProcessor(puVar2,iStack_40);
         if (iStack_40 != 0) {
-                    // WARNING: Subroutine does not return
-          memcpy(puVar2[1],puStack_48,iStack_40 + 1,param_4,uVar7);
+// WARNING: Subroutine does not return
+          memcpy(puVar2[1],plocal_var_48,iStack_40 + 1,param_4,uVar7);
         }
-        if (puStack_48 != (int8_t *)0x0) {
+        if (plocal_var_48 != (int8_t *)0x0) {
           *(int32_t *)(puVar2 + 2) = 0;
           if ((int8_t *)puVar2[1] != (int8_t *)0x0) {
             *(int8_t *)puVar2[1] = 0;
@@ -184,11 +144,11 @@ void FUN_180657dd0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
         }
       }
       else {
-        SystemCore_BackupSystem(param_2,&puStack_50);
+        SystemCore_BackupSystem(param_2,&plocal_var_50);
       }
-      puStack_50 = &system_data_buffer_ptr;
-      if (puStack_48 != (int8_t *)0x0) {
-                    // WARNING: Subroutine does not return
+      plocal_var_50 = &system_data_buffer_ptr;
+      if (plocal_var_48 != (int8_t *)0x0) {
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner();
       }
       uVar5 = (int)uVar6 + 1;
@@ -200,22 +160,10 @@ void FUN_180657dd0(int64_t param_1,int64_t param_2,uint64_t param_3,uint64_t par
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180657fa0(void)
-void FUN_180657fa0(void)
-
+// 函数: void function_657fa0(void)
+void function_657fa0(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

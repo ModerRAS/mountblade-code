@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part322_sub002_sub002.c - 1 个函数
-
-// 函数: void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
-
+// 函数: void function_438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
+void function_438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
 {
   int64_t lVar1;
   char cVar2;
@@ -26,8 +23,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
   int32_t unaff_XMM6_Dc;
   int32_t unaff_XMM6_Dd;
   float afStackX_8 [2];
-  uint64_t in_stack_00000018;
-  
+  uint64_t local_var_18;
   lVar1 = SYSTEM_STATE_MANAGER;
   if (param_1 < 0x49) {
     switch(param_1) {
@@ -147,13 +143,13 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         }
       }
       *(float *)(lVar1 + 0x1570) = fVar3;
-                    // WARNING: Could not recover jumptable at 0x000180438ff3. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x000180438ff3. Too many branches
+// WARNING: Treating indirect jump as call
       (**(code **)(*render_system_data_state + 0xa8))(render_system_data_state,fVar11);
       return;
     case 6:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1330) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1338))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1338))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x12e0) != (void *)0x0) {
@@ -296,7 +292,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0xe:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1800) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1808))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1808))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x17b0) != (void *)0x0) {
@@ -402,7 +398,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x14:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1f00) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1f08))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1f08))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1eb0) != (void *)0x0) {
@@ -435,7 +431,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x16:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1870) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1878))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1878))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1820) != (void *)0x0) {
@@ -449,22 +445,22 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x1810) = (int)param_2;
       return;
     case 0x17:
-      iVar6 = FUN_180438350();
+      iVar6 = function_438350();
       if (param_2 <= (float)iVar6) {
-        iVar6 = FUN_180438350();
+        iVar6 = function_438350();
         if (param_2 == (float)iVar6) {
-          FUN_180171f10(*(uint64_t *)(system_main_module_state + 8),&stack0x00000018);
-          FUN_18006b4c0(SYSTEM_STATE_MANAGER,in_stack_00000018 & 0xffffffff);
-          iVar6 = (int)(in_stack_00000018 >> 0x20);
+          function_171f10(*(uint64_t *)(system_main_module_state + 8),&local_buffer_00000018);
+          function_06b4c0(SYSTEM_STATE_MANAGER,local_var_18 & 0xffffffff);
+          iVar6 = (int)(local_var_18 >> 0x20);
         }
         else {
-          uVar4 = FUN_1804386b0((int)param_2);
-          FUN_18006b4c0(SYSTEM_STATE_MANAGER,(int)(float)uVar4);
+          uVar4 = function_4386b0((int)param_2);
+          function_06b4c0(SYSTEM_STATE_MANAGER,(int)(float)uVar4);
           iVar6 = (int)(float)((uint64_t)uVar4 >> 0x20);
         }
         lVar1 = SYSTEM_STATE_MANAGER;
         if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1e20) != 0) &&
-           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1e28))(&stack0x00000010), cVar2 == '\0')) {
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1e28))(&local_buffer_00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0x1dd0) != (void *)0x0) {
@@ -480,10 +476,10 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       }
       break;
     case 0x18:
-      iVar6 = FUN_180438940((int)param_2);
+      iVar6 = function_438940((int)param_2);
       lVar1 = SYSTEM_STATE_MANAGER;
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1e90) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1e98))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1e98))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1e40) != (void *)0x0) {
@@ -498,7 +494,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x19:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x2130) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x2138))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x2138))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x20e0) != (void *)0x0) {
@@ -513,7 +509,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x1a:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1bf0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1bf8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1bf8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1ba0) != (void *)0x0) {
@@ -528,7 +524,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x1b:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1fe0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1fe8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1fe8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1f90) != (void *)0x0) {
@@ -543,7 +539,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x1c:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1170) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1178))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1178))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1120) != (void *)0x0) {
@@ -584,7 +580,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             }
           }
         }
-        FUN_18010e230(SYSTEM_STATE_MANAGER,uVar5);
+        function_10e230(SYSTEM_STATE_MANAGER,uVar5);
         if (iVar6 == 0) {
           uVar5 = 0;
         }
@@ -605,7 +601,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             }
           }
         }
-        FUN_18010e170(lVar1,uVar5);
+        function_10e170(lVar1,uVar5);
         if (((iVar6 == 0) || (iVar6 == 1)) || (iVar6 == 2)) {
           uVar5 = 0;
         }
@@ -615,7 +611,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar5 = *(int32_t *)(lVar1 + 0x1c0);
         }
-        FUN_18010e0b0(lVar1,uVar5);
+        function_10e0b0(lVar1,uVar5);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar5 = 0;
         }
@@ -628,7 +624,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar5 = 2;
         }
-        FUN_18010e030(lVar1,uVar5);
+        function_10e030(lVar1,uVar5);
         if (iVar6 == 0) {
           uVar5 = 0;
         }
@@ -647,7 +643,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             uVar5 = *(int32_t *)(lVar1 + 0x2a0);
           }
         }
-        FUN_18010dfb0(lVar1,uVar5);
+        function_10dfb0(lVar1,uVar5);
         if (iVar6 == 0) {
           uVar5 = 1;
         }
@@ -668,7 +664,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             }
           }
         }
-        FUN_18010def0(lVar1,uVar5);
+        function_10def0(lVar1,uVar5);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar5 = 0;
         }
@@ -684,7 +680,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar5 = 3;
         }
-        FUN_18010e330(lVar1,uVar5);
+        function_10e330(lVar1,uVar5);
         if (iVar6 == 0) {
           uVar5 = 0;
         }
@@ -697,7 +693,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar5 = *(int32_t *)(lVar1 + 0x3f0);
         }
-        FUN_18010e2b0(lVar1,uVar5);
+        function_10e2b0(lVar1,uVar5);
         if (iVar6 == 0) {
           uVar5 = 0;
         }
@@ -710,7 +706,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar5 = *(int32_t *)(lVar1 + 0x460);
         }
-        FUN_18010de30(lVar1,uVar5);
+        function_10de30(lVar1,uVar5);
         if (iVar6 == 0) {
           uVar9 = 0;
         }
@@ -723,14 +719,14 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else if ((iVar6 != 3) && (uVar9 = 5, iVar6 == 5)) {
           uVar9 = *(int32_t *)(lVar1 + 0x4d0);
         }
-        FUN_18010e430(lVar1,uVar9);
+        function_10e430(lVar1,uVar9);
         if ((((iVar6 == 0) || (iVar6 == 1)) || (iVar6 == 2)) || ((iVar6 == 3 || (iVar6 != 5)))) {
           uVar9 = 0;
         }
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x540);
         }
-        FUN_18010e3b0(lVar1,uVar9);
+        function_10e3b0(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -740,7 +736,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x5b0);
         }
-        FUN_18010dd70(lVar1,uVar9);
+        function_10dd70(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -750,7 +746,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x620);
         }
-        FUN_18010dcf0(lVar1,uVar9);
+        function_10dcf0(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -760,7 +756,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x690);
         }
-        FUN_18010dc70(lVar1,uVar9);
+        function_10dc70(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -773,7 +769,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x700);
         }
-        FUN_18010dbf0(lVar1,uVar9);
+        function_10dbf0(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -783,7 +779,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x770);
         }
-        FUN_18010db70(lVar1,uVar9);
+        function_10db70(lVar1,uVar9);
         if (((iVar6 == 0) || (iVar6 == 1)) || (iVar6 == 2)) {
           uVar9 = 0;
         }
@@ -793,7 +789,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x7e0);
         }
-        FUN_18010daf0(lVar1,uVar9);
+        function_10daf0(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -803,7 +799,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x850);
         }
-        FUN_18010da70(lVar1,uVar9);
+        function_10da70(lVar1,uVar9);
         if (iVar6 == 0) {
           uVar9 = 0;
         }
@@ -813,7 +809,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x8c0);
         }
-        FUN_18010d9f0(lVar1,uVar9);
+        function_10d9f0(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -823,7 +819,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x930);
         }
-        FUN_18010d970(lVar1,uVar9);
+        function_10d970(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -833,7 +829,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0x9a0);
         }
-        FUN_18010d8f0(lVar1,uVar9);
+        function_10d8f0(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -843,7 +839,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0xa10);
         }
-        FUN_18010d870(lVar1,uVar9);
+        function_10d870(lVar1,uVar9);
         if (((iVar6 == 0) || (iVar6 == 1)) || (iVar6 == 2)) {
           uVar9 = 0;
         }
@@ -853,7 +849,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0xa80);
         }
-        FUN_18010d7f0(lVar1,uVar9);
+        function_10d7f0(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -866,7 +862,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             uVar9 = *(int32_t *)(lVar1 + 0xaf0);
           }
         }
-        FUN_18010d770(lVar1,uVar9);
+        function_10d770(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -879,7 +875,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             uVar9 = *(int32_t *)(lVar1 + 0xb60);
           }
         }
-        FUN_18010d6f0(lVar1,uVar9);
+        function_10d6f0(lVar1,uVar9);
         if (iVar6 == 0) {
           uVar9 = 0;
         }
@@ -892,7 +888,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             uVar9 = *(int32_t *)(lVar1 + 0xbd0);
           }
         }
-        FUN_18010d670(lVar1,uVar9);
+        function_10d670(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 1;
         }
@@ -902,7 +898,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             uVar9 = *(int32_t *)(lVar1 + 0xc40);
           }
         }
-        FUN_18010d5f0(lVar1,uVar9);
+        function_10d5f0(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar9 = 0;
         }
@@ -920,7 +916,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             }
           }
         }
-        FUN_18010d570(lVar1,uVar9);
+        function_10d570(lVar1,uVar9);
         if (iVar6 == 0) {
           uVar9 = 0;
         }
@@ -930,7 +926,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else {
           uVar9 = *(int32_t *)(lVar1 + 0xd20);
         }
-        FUN_18010d4f0(lVar1,uVar9);
+        function_10d4f0(lVar1,uVar9);
         if (iVar6 == 0) {
           uVar9 = 0;
         }
@@ -951,7 +947,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             }
           }
         }
-        FUN_18010d470(lVar1,uVar9);
+        function_10d470(lVar1,uVar9);
         if (iVar6 == 0) {
           uVar9 = 0;
         }
@@ -972,7 +968,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
             }
           }
         }
-        FUN_18010d3b0(lVar1,uVar9);
+        function_10d3b0(lVar1,uVar9);
         if ((iVar6 == 0) || (iVar6 == 1)) {
           uVar13 = 0;
         }
@@ -982,7 +978,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
         else if ((iVar6 != 3) && (iVar6 == 5)) {
           uVar13 = *(int32_t *)(lVar1 + 0xe70);
         }
-        FUN_18010d2f0(lVar1,uVar13);
+        function_10d2f0(lVar1,uVar13);
         if (*(int *)(render_system_data_state + 0xcb0) != 0) {
           if ((iVar6 == 0) || (iVar6 == 1)) {
             uVar9 = 0;
@@ -993,7 +989,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
           else {
             uVar9 = *(int32_t *)(lVar1 + 0xee0);
           }
-          FUN_18010d270(lVar1,uVar9);
+          function_10d270(lVar1,uVar9);
         }
         if (*(int *)(render_system_data_state + 0xd20) != 0) {
           if ((iVar6 == 0) || (iVar6 == 1)) {
@@ -1005,7 +1001,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
           else {
             uVar9 = *(int32_t *)(lVar1 + 0xf50);
           }
-          FUN_18010d1f0(lVar1,uVar9);
+          function_10d1f0(lVar1,uVar9);
         }
         if (*(int *)(render_system_data_state + 0xd90) != 0) {
           if ((iVar6 == 0) || (iVar6 == 1)) {
@@ -1017,7 +1013,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
           else {
             uVar9 = *(int32_t *)(lVar1 + 0xfc0);
           }
-          FUN_18010d170(lVar1,uVar9);
+          function_10d170(lVar1,uVar9);
         }
         if (*(int *)(render_system_data_state + 0xe00) != 0) {
           uVar9 = 1;
@@ -1025,7 +1021,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
              ((uVar9 = uVar8, iVar6 != 2 && ((iVar6 != 3 && (iVar6 == 5)))))) {
             uVar9 = *(int32_t *)(lVar1 + 0x1030);
           }
-          FUN_18010d0f0(lVar1,uVar9);
+          function_10d0f0(lVar1,uVar9);
         }
         if (*(int *)(render_system_data_state + 0xe70) != 0) {
           uVar9 = 0;
@@ -1033,13 +1029,13 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
              ((iVar6 != 3 && (iVar6 == 5)))) {
             uVar9 = *(int32_t *)(lVar1 + 0x10a0);
           }
-          FUN_18010d070(lVar1,uVar9);
+          function_10d070(lVar1,uVar9);
         }
       }
       return;
     case 0x1e:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x760) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x768))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x768))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x710) != (void *)0x0) {
@@ -1054,7 +1050,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x1f:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x3e0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 1000))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 1000))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x390) != (void *)0x0) {
@@ -1069,7 +1065,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x20:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x450) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x458))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x458))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x400) != (void *)0x0) {
@@ -1084,7 +1080,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x21:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xd10) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xd18))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xd18))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xcc0) != (void *)0x0) {
@@ -1099,7 +1095,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x22:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xca0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xca8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xca8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xc50) != (void *)0x0) {
@@ -1114,7 +1110,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x23:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xd80) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xd88))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xd88))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xd30) != (void *)0x0) {
@@ -1129,7 +1125,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x24:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xb50) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xb58))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xb58))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xb00) != (void *)0x0) {
@@ -1144,7 +1140,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x25:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xbc0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xbc8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xbc8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xb70) != (void *)0x0) {
@@ -1159,7 +1155,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x26:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x140) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x148))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x148))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xf0) != (void *)0x0) {
@@ -1174,7 +1170,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x27:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xe60) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xe68))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xe68))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xe10) != (void *)0x0) {
@@ -1189,7 +1185,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x28:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xdf0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xdf8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xdf8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xda0) != (void *)0x0) {
@@ -1204,7 +1200,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x29:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xed0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xed8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xed8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xe80) != (void *)0x0) {
@@ -1219,7 +1215,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x2a:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1b0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1b8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1b8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x160) != (void *)0x0) {
@@ -1234,7 +1230,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x2b:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x220) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x228))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x228))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x1d0) != (void *)0x0) {
@@ -1249,7 +1245,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x2c:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x610) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x618))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x618))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x5c0) != (void *)0x0) {
@@ -1264,7 +1260,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x2d:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x370) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x378))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x378))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 800) != (void *)0x0) {
@@ -1279,7 +1275,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x2e:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x4c0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x4c8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x4c8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x470) != (void *)0x0) {
@@ -1294,7 +1290,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x2f:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x530) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x538))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x538))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x4e0) != (void *)0x0) {
@@ -1309,7 +1305,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x30:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x5a0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x5a8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x5a8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x550) != (void *)0x0) {
@@ -1324,7 +1320,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x31:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xc30) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xc38))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xc38))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xbe0) != (void *)0x0) {
@@ -1339,7 +1335,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x32:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x300) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x308))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x308))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x2b0) != (void *)0x0) {
@@ -1354,7 +1350,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x33:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x8b0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x8b8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x8b8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x860) != (void *)0x0) {
@@ -1369,7 +1365,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x34:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x840) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x848))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x848))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x7f0) != (void *)0x0) {
@@ -1384,7 +1380,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x35:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x680) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x688))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x688))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x630) != (void *)0x0) {
@@ -1399,7 +1395,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x36:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x6f0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x6f8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x6f8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x6a0) != (void *)0x0) {
@@ -1414,7 +1410,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x37:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x990) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x998))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x998))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x940) != (void *)0x0) {
@@ -1429,7 +1425,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x38:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 2000) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x7d8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x7d8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x780) != (void *)0x0) {
@@ -1444,7 +1440,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x39:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xae0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xae8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xae8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xa90) != (void *)0x0) {
@@ -1459,7 +1455,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x3a:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x920) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x928))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x928))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x8d0) != (void *)0x0) {
@@ -1474,7 +1470,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x3b:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xa00) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa08))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa08))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x9b0) != (void *)0x0) {
@@ -1489,7 +1485,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x3c:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xa70) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa78))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xa78))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0xa20) != (void *)0x0) {
@@ -1504,7 +1500,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x3d:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x20c0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x20c8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x20c8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x2070) != (void *)0x0) {
@@ -1520,7 +1516,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
     case 0x3e:
       if (*(int *)(render_system_data_state + 0xcb0) != 0) {
         if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xf40) != 0) &&
-           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xf48))(&stack0x00000010), cVar2 == '\0')) {
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xf48))(&local_buffer_00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0xef0) != (void *)0x0) {
@@ -1538,7 +1534,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
     case 0x3f:
       if (*(int *)(render_system_data_state + 0xd20) != 0) {
         if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0xfb0) != 0) &&
-           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xfb8))(&stack0x00000010), cVar2 == '\0')) {
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0xfb8))(&local_buffer_00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0xf60) != (void *)0x0) {
@@ -1556,7 +1552,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
     case 0x40:
       if (*(int *)(render_system_data_state + 0xd90) != 0) {
         if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1020) != 0) &&
-           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1028))(&stack0x00000010), cVar2 == '\0')) {
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1028))(&local_buffer_00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0xfd0) != (void *)0x0) {
@@ -1574,7 +1570,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
     case 0x41:
       if (*(int *)(render_system_data_state + 0xe70) != 0) {
         if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1100) != 0) &&
-           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1108))(&stack0x00000010), cVar2 == '\0')) {
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1108))(&local_buffer_00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0x10b0) != (void *)0x0) {
@@ -1592,7 +1588,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
     case 0x42:
       if (*(int *)(render_system_data_state + 0xe00) != 0) {
         if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x1090) != 0) &&
-           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1098))(&stack0x00000010), cVar2 == '\0')) {
+           (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x1098))(&local_buffer_00000010), cVar2 == '\0')) {
           if (system_debug_flag == '\0') {
             puVar7 = &system_buffer_ptr;
             if (*(void **)(lVar1 + 0x1040) != (void *)0x0) {
@@ -1684,7 +1680,7 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       return;
     case 0x47:
       if ((*(int64_t *)(SYSTEM_STATE_MANAGER + 0x21a0) != 0) &&
-         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x21a8))(&stack0x00000010), cVar2 == '\0')) {
+         (cVar2 = (**(code **)(SYSTEM_STATE_MANAGER + 0x21a8))(&local_buffer_00000010), cVar2 == '\0')) {
         if (system_debug_flag == '\0') {
           puVar7 = &system_buffer_ptr;
           if (*(void **)(lVar1 + 0x2150) != (void *)0x0) {
@@ -1698,16 +1694,9 @@ void FUN_180438c70(uint param_1,float param_2,uint64_t param_3,uint64_t param_4)
       *(int *)(lVar1 + 0x2140) = (int)param_2;
       return;
     case 0x48:
-      FUN_18010cdf0(SYSTEM_STATE_MANAGER,(int)param_2,param_3,param_4,
+      function_10cdf0(SYSTEM_STATE_MANAGER,(int)param_2,param_3,param_4,
                     CONCAT44(unaff_XMM6_Db,unaff_XMM6_Da),CONCAT44(unaff_XMM6_Dd,unaff_XMM6_Dc));
     }
   }
   return;
 }
-
-
-
-
-
-
-

@@ -1,22 +1,14 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part258.c - 2 个函数
-
-// 函数: void FUN_180812dc0(void)
-void FUN_180812dc0(void)
-
+// 函数: void function_812dc0(void)
+void function_812dc0(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_180813210(int param_1)
-
+uint64_t function_813210(int param_1)
 {
   uint *puVar1;
   float fVar2;
@@ -80,11 +72,10 @@ uint64_t FUN_180813210(int param_1)
   int64_t lStackX_10;
   int8_t auVar37 [16];
   int8_t auVar39 [16];
-  
   iVar14 = -0x100;
   puVar18 = (uint64_t *)0x180c41da0;
   do {
-    uVar35 = thunk_FUN_1808fea60();
+    uVar35 = thunk_function_8fea60();
     iVar14 = iVar14 + 4;
     *puVar18 = uVar35;
     puVar18[1] = extraout_XMM0_Qb;
@@ -104,7 +95,7 @@ uint64_t FUN_180813210(int param_1)
   uVar6 = uVar21;
   do {
     auVar45 = auVar47;
-    uVar35 = thunk_FUN_1808fea60();
+    uVar35 = thunk_function_8fea60();
     uVar15 = (int)uVar6 + 4;
     uVar6 = (uint64_t)uVar15;
     *puVar18 = uVar35;
@@ -717,16 +708,9 @@ uint64_t FUN_180813210(int param_1)
   } while ((int)uVar15 < 5);
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180814240(float *param_1,float *param_2,float *param_3)
-void FUN_180814240(float *param_1,float *param_2,float *param_3)
-
+// 函数: void function_814240(float *param_1,float *param_2,float *param_3)
+void function_814240(float *param_1,float *param_2,float *param_3)
 {
   float fVar1;
   float fVar2;
@@ -775,7 +759,6 @@ void FUN_180814240(float *param_1,float *param_2,float *param_3)
   float fVar45;
   float fVar46;
   float fVar47;
-  
   fVar26 = *param_3 + param_3[0x1f];
   fVar1 = (*param_3 - param_3[0x1f]) * *ui_system_buffer_config;
   fVar2 = param_3[1] + param_3[0x1e];
@@ -985,8 +968,3 @@ void FUN_180814240(float *param_1,float *param_2,float *param_3)
   param_2[0xf0] = fVar2;
   return;
 }
-
-
-
-
-

@@ -1,16 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part453.c - 3D渲染系统变换处理器
-// 
 // 本文件包含3D渲染系统的核心变换处理功能，主要负责：
 // - 3D空间中的几何变换计算
 // - 矩阵变换和向量投影
 // - 渲染状态管理和优化
 // - 纹理坐标和投影矩阵处理
-// 
 // 该模块是渲染管线的重要组成部分，处理复杂的3D数学运算。
-
 // 系统常量定义
 #define RENDERING_SYSTEM_MAX_FLOAT 3.4028235e+38
 #define RENDERING_SYSTEM_MIN_FLOAT 1.1754944e-38
@@ -150,32 +146,25 @@
 #define RENDERING_SYSTEM_SAMPLES 0
 #define RENDERING_SYSTEM_DOUBLEBUFFER 1
 #define RENDERING_SYSTEM_STEREO 0
-
 // 渲染系统数据结构定义
 typedef struct {
     float x, y, z, w;
 } Vector4f;
-
 typedef struct {
     float x, y, z;
 } Vector3f;
-
 typedef struct {
     float x, y;
 } Vector2f;
-
 typedef struct {
     float m[4][4];
 } Matrix4x4f;
-
 typedef struct {
     float m[3][3];
 } Matrix3x3f;
-
 typedef struct {
     float r, g, b, a;
 } Color4f;
-
 typedef struct {
     Vector3f position;
     Vector3f normal;
@@ -183,7 +172,6 @@ typedef struct {
     Vector3f tangent;
     Vector3f bitangent;
 } VertexData;
-
 typedef struct {
     Matrix4x4f modelMatrix;
     Matrix4x4f viewMatrix;
@@ -191,7 +179,6 @@ typedef struct {
     Matrix4x4f mvpMatrix;
     Matrix3x3f normalMatrix;
 } TransformData;
-
 typedef struct {
     Vector3f position;
     Vector3f direction;
@@ -201,7 +188,6 @@ typedef struct {
     float linearAttenuation;
     float quadraticAttenuation;
 } LightData;
-
 typedef struct {
     Vector3f position;
     Vector3f target;
@@ -211,7 +197,6 @@ typedef struct {
     float nearPlane;
     float farPlane;
 } CameraData;
-
 typedef struct {
     uint32_t textureId;
     Vector2f size;
@@ -225,7 +210,6 @@ typedef struct {
     float lodBias;
     float maxAnisotropy;
 } TextureData;
-
 typedef struct {
     uint32_t programId;
     uint32_t vertexShader;
@@ -235,7 +219,6 @@ typedef struct {
     uint32_t tessEvaluationShader;
     uint32_t computeShader;
 } ShaderProgram;
-
 typedef struct {
     uint32_t framebufferId;
     uint32_t colorAttachments[8];
@@ -245,7 +228,6 @@ typedef struct {
     uint32_t height;
     uint32_t samples;
 } FramebufferData;
-
 typedef struct {
     uint32_t vertexArrayId;
     uint32_t vertexBufferId;
@@ -255,7 +237,6 @@ typedef struct {
     uint32_t primitiveType;
     uint32_t usage;
 } MeshData;
-
 // 渲染系统函数声明
 extern void RenderingSystemMatrixCalculator(int64_t context, int64_t matrixData);
 extern void RenderingSystemProjectionHandler(int64_t projectionSystem, float* viewMatrix, float* projectionMatrix);
@@ -265,26 +246,21 @@ extern uint64_t RenderingSystemVectorCalculator(int64_t vectorSystem, uint8_t* v
 extern void RenderingSystemDataValidator(float* validationData, uint64_t validationResult);
 extern uint64_t RenderingSystemGeometryProcessor(int64_t geometrySystem, uint8_t* geometryData, int32_t geometryFlags, int32_t materialId);
 extern void RenderingSystemTransformOptimizer(uint64_t transformSystem, int8_t* transformFlags, float* optimizedMatrix, uint64_t* optimizedResult);
-
 // 渲染系统3D变换处理器
-// 
 // 该函数是3D渲染系统的核心变换处理器，负责：
 // - 处理3D空间中的几何变换
 // - 计算矩阵变换和向量投影
 // - 管理渲染状态和优化
 // - 处理纹理坐标和投影矩阵
 // - 执行复杂的3D数学运算
-// 
 // 参数：
 // - param_1: 渲染系统上下文指针
 // - param_2: 输入向量指针
 // - param_3: 输出向量指针
 // - param_4: 变换标志
 // - param_5: 缩放因子
-// 
 // 返回值：无
 void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_3, char param_4, float param_5)
-
 {
   uint64_t *puVar1;
   int32_t *puVar2;
@@ -312,9 +288,9 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
   float fVar24;
   float fVar25;
   float fVar26;
-  int8_t auStack_448 [32];
+  int8_t stack_array_448 [32];
   float *pfStack_428;
-  int32_t uStack_420;
+  int32_t local_var_420;
   char cStack_418;
   float fStack_414;
   float fStack_410;
@@ -326,8 +302,8 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
   float fStack_3f8;
   float fStack_3f4;
   float fStack_3f0;
-  uint64_t uStack_3e8;
-  uint64_t uStack_3e0;
+  uint64_t local_var_3e8;
+  uint64_t local_var_3e0;
   float fStack_3d8;
   float fStack_3d4;
   int iStack_3d0;
@@ -346,8 +322,8 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
   float fStack_394;
   float fStack_390;
   float fStack_38c;
-  int32_t uStack_388;
-  int32_t uStack_384;
+  int32_t local_var_388;
+  int32_t local_var_384;
   int64_t lStack_380;
   float fStack_378;
   float fStack_374;
@@ -355,35 +331,35 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
   float fStack_368;
   float fStack_364;
   float fStack_360;
-  int32_t uStack_35c;
+  int32_t local_var_35c;
   float fStack_358;
   float fStack_354;
   float fStack_350;
-  int32_t uStack_34c;
+  int32_t local_var_34c;
   float fStack_348;
   float fStack_344;
   float fStack_340;
-  int32_t uStack_33c;
+  int32_t local_var_33c;
   float fStack_338;
   float fStack_334;
   float fStack_330;
-  int32_t uStack_32c;
+  int32_t local_var_32c;
   float fStack_328;
   float fStack_324;
   float fStack_320;
-  int32_t uStack_31c;
+  int32_t local_var_31c;
   float fStack_318;
   float fStack_314;
   float fStack_310;
-  int32_t uStack_30c;
+  int32_t local_var_30c;
   float fStack_308;
   float fStack_304;
   float fStack_300;
-  int32_t uStack_2fc;
+  int32_t local_var_2fc;
   float fStack_2f8;
   float fStack_2f4;
   float fStack_2f0;
-  int32_t uStack_2ec;
+  int32_t local_var_2ec;
   float fStack_2e8;
   float fStack_2e4;
   float fStack_2e0;
@@ -391,23 +367,23 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
   float fStack_2d8;
   float fStack_2d4;
   float fStack_2d0;
-  int32_t uStack_2cc;
+  int32_t local_var_2cc;
   float fStack_2c8;
   float fStack_2c4;
   float fStack_2c0;
-  int32_t uStack_2bc;
+  int32_t local_var_2bc;
   float fStack_2b8;
   float fStack_2b4;
   float fStack_2b0;
-  int32_t uStack_2ac;
+  int32_t local_var_2ac;
   float fStack_2a8;
   float fStack_2a4;
   float fStack_2a0;
   float fStack_29c;
-  int32_t uStack_298;
-  int32_t uStack_294;
-  int32_t uStack_290;
-  int32_t uStack_28c;
+  int32_t local_var_298;
+  int32_t local_var_294;
+  int32_t local_var_290;
+  int32_t local_var_28c;
   float fStack_288;
   float fStack_284;
   float fStack_280;
@@ -415,27 +391,27 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
   float fStack_278;
   float fStack_274;
   float fStack_270;
-  int32_t uStack_26c;
+  int32_t local_var_26c;
   float fStack_268;
   float fStack_264;
   float fStack_260;
-  int32_t uStack_25c;
+  int32_t local_var_25c;
   float fStack_258;
   float fStack_254;
   float fStack_250;
-  int32_t uStack_24c;
+  int32_t local_var_24c;
   float fStack_248;
   float fStack_244;
   float fStack_240;
   float fStack_23c;
-  int8_t auStack_238 [16];
-  int8_t auStack_228 [16];
-  int8_t auStack_218 [16];
-  int8_t auStack_208 [16];
-  int32_t uStack_1f8;
-  int32_t uStack_1f4;
-  int32_t uStack_1f0;
-  int32_t uStack_1ec;
+  int8_t stack_array_238 [16];
+  int8_t stack_array_228 [16];
+  int8_t stack_array_218 [16];
+  int8_t stack_array_208 [16];
+  int32_t local_var_1f8;
+  int32_t local_var_1f4;
+  int32_t local_var_1f0;
+  int32_t local_var_1ec;
   float fStack_1e8;
   float fStack_1e4;
   float fStack_1e0;
@@ -443,40 +419,40 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
   float fStack_1d8;
   float fStack_1d4;
   float fStack_1d0;
-  int32_t uStack_1cc;
+  int32_t local_var_1cc;
   float fStack_1c8;
   float fStack_1c4;
   float fStack_1c0;
-  int32_t uStack_1bc;
+  int32_t local_var_1bc;
   float fStack_1b8;
   float fStack_1b4;
   float fStack_1b0;
-  int32_t uStack_1ac;
+  int32_t local_var_1ac;
   float fStack_1a8;
   float fStack_1a4;
   float fStack_1a0;
-  int32_t uStack_19c;
+  int32_t local_var_19c;
   float fStack_198;
   float fStack_194;
   float fStack_190;
-  int32_t uStack_18c;
+  int32_t local_var_18c;
   float fStack_188;
   float fStack_184;
   float fStack_180;
-  int32_t uStack_17c;
+  int32_t local_var_17c;
   float fStack_178;
   float fStack_174;
   float fStack_170;
-  int32_t uStack_16c;
+  int32_t local_var_16c;
   float fStack_168;
   float fStack_164;
   float fStack_160;
   float fStack_15c;
-  int8_t auStack_158 [48];
-  int32_t uStack_128;
-  int32_t uStack_124;
-  int32_t uStack_120;
-  int32_t uStack_11c;
+  int8_t stack_array_158 [48];
+  int32_t local_var_128;
+  int32_t local_var_124;
+  int32_t local_var_120;
+  int32_t local_var_11c;
   float fStack_118;
   float fStack_114;
   float fStack_110;
@@ -485,11 +461,10 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
   float fStack_104;
   float fStack_100;
   float fStack_fc;
-  uint64_t uStack_f8;
-  uint64_t uStack_f0;
-  uint64_t uStack_e8;
-  
-  uStack_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_448;
+  uint64_t local_var_f8;
+  uint64_t local_var_f0;
+  uint64_t local_var_e8;
+  local_var_e8 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_448;
   lVar11 = *(int64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) + 0x260);
   pfStack_3c8 = param_3;
   if ((*(byte *)(lVar11 + 0xa8) & 1) == 0) {
@@ -510,7 +485,7 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
           fVar24 = pfStack_3c8[1];
           fStack_2f4 = fVar24 + param_2[1];
           fStack_2f0 = fVar22 + param_2[2];
-          uStack_2ec = 0x7f7fffff;
+          local_var_2ec = 0x7f7fffff;
           pfVar16 = pfStack_3c8;
           RenderingSystemProjectionHandler(*(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8) + 0x70,&fStack_378,
                         &fStack_2f8);
@@ -536,10 +511,10 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
             UNLOCK();
           } while ((uVar3 & 1) != 0);
           puVar2 = (int32_t *)(lVar17 + 4 + lVar14);
-          uStack_298 = *puVar2;
-          uStack_294 = puVar2[1];
-          uStack_290 = puVar2[2];
-          uStack_28c = puVar2[3];
+          local_var_298 = *puVar2;
+          local_var_294 = puVar2[1];
+          local_var_290 = puVar2[2];
+          local_var_28c = puVar2[3];
           pfVar16 = (float *)(lVar17 + 0x14 + lVar14);
           fVar19 = *pfVar16;
           fVar20 = pfVar16[1];
@@ -552,23 +527,23 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
           fStack_284 = fVar20;
           fStack_280 = fVar23;
           fStack_27c = fVar6;
-          uStack_1f8 = uStack_298;
-          uStack_1f4 = uStack_294;
-          uStack_1f0 = uStack_290;
-          uStack_1ec = uStack_28c;
+          local_var_1f8 = local_var_298;
+          local_var_1f4 = local_var_294;
+          local_var_1f0 = local_var_290;
+          local_var_1ec = local_var_28c;
           fStack_1e8 = fVar19;
           fStack_1e4 = fVar20;
           fStack_1e0 = fVar23;
           fStack_1dc = fVar6;
-          uStack_128 = uStack_298;
-          uStack_124 = uStack_294;
-          uStack_120 = uStack_290;
-          uStack_11c = uStack_28c;
+          local_var_128 = local_var_298;
+          local_var_124 = local_var_294;
+          local_var_120 = local_var_290;
+          local_var_11c = local_var_28c;
           fStack_118 = fVar19;
           fStack_114 = fVar20;
           fStack_110 = fVar23;
           fStack_10c = fVar6;
-          RenderingSystemNormalizer(&fStack_278,&uStack_298);
+          RenderingSystemNormalizer(&fStack_278,&local_var_298);
           pfVar16 = pfStack_3c8;
           fVar22 = *(float *)(lVar13 + 0x80);
           fVar25 = *(float *)(lVar13 + 0x70);
@@ -578,20 +553,20 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
           fStack_178 = fStack_258;
           fStack_174 = fStack_254;
           fStack_170 = fStack_250;
-          uStack_16c = uStack_24c;
+          local_var_16c = local_var_24c;
           fStack_2b8 = fVar19 * fVar25 + fVar20 * fVar22 + *(float *)(lVar13 + 0xa0);
           fStack_2b0 = fVar23 * fStack_350 + *(float *)(lVar13 + 0xa8);
           fStack_2b4 = fVar19 * fVar26 + fVar20 * fVar24 + *(float *)(lVar13 + 0xa4);
           fStack_188 = fStack_268;
           fStack_184 = fStack_264;
           fStack_180 = fStack_260;
-          uStack_17c = uStack_25c;
+          local_var_17c = local_var_25c;
           fStack_198 = fStack_278;
           fStack_194 = fStack_274;
           fStack_190 = fStack_270;
-          uStack_18c = uStack_26c;
-          uStack_2ac = 0x7f7fffff;
-          uStack_19c = 0x7f7fffff;
+          local_var_18c = local_var_26c;
+          local_var_2ac = 0x7f7fffff;
+          local_var_19c = 0x7f7fffff;
           fStack_330 = fStack_350 * fStack_250;
           fStack_338 = fStack_258 * fVar25 + fStack_254 * fVar22;
           fStack_334 = fVar26 * fStack_258 + fVar24 * fStack_254;
@@ -601,15 +576,15 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
           fStack_358 = fStack_278 * fVar25 + fStack_274 * fVar22;
           fStack_354 = fStack_278 * fVar26 + fStack_274 * fVar24;
           fStack_350 = fStack_270 * fStack_350;
-          uStack_1cc = 0x7f7fffff;
-          uStack_3e8 = CONCAT44(fStack_270,fStack_350);
+          local_var_1cc = 0x7f7fffff;
+          local_var_3e8 = CONCAT44(fStack_270,fStack_350);
           fStack_410 = 1.0 / *(float *)(lVar14 + 0x8c0);
-          uStack_1bc = 0x7f7fffff;
-          uStack_2cc = 0x7f7fffff;
-          uStack_34c = 0x7f7fffff;
+          local_var_1bc = 0x7f7fffff;
+          local_var_2cc = 0x7f7fffff;
+          local_var_34c = 0x7f7fffff;
           fStack_300 = fStack_410 * fStack_330;
           fStack_318 = fStack_410 * fStack_348;
-          uStack_1ac = 0x7f7fffff;
+          local_var_1ac = 0x7f7fffff;
           fStack_310 = fStack_410 * fStack_340;
           fStack_40c = fStack_410 * fStack_338;
           fStack_3d8 = fStack_410 * fStack_358;
@@ -617,15 +592,15 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
           fStack_314 = fStack_410 * fStack_344;
           fStack_3d4 = fStack_410 * fStack_354;
           fStack_410 = fStack_410 * fStack_350;
-          uStack_2bc = 0x7f7fffff;
-          uStack_32c = 0x7f7fffff;
-          uStack_33c = 0x7f7fffff;
+          local_var_2bc = 0x7f7fffff;
+          local_var_32c = 0x7f7fffff;
+          local_var_33c = 0x7f7fffff;
           iStack_3d0 = *(int *)(*(int64_t *)(lVar11 + 0x140) + 0x110 + lVar18);
-          uStack_2fc = 0x7f7fffff;
+          local_var_2fc = 0x7f7fffff;
           fStack_394 = 3.4028235e+38;
-          uStack_31c = 0x7f7fffff;
+          local_var_31c = 0x7f7fffff;
           fStack_3b4 = 3.4028235e+38;
-          uStack_30c = 0x7f7fffff;
+          local_var_30c = 0x7f7fffff;
           fStack_3a4 = 3.4028235e+38;
           fStack_3c0 = fStack_3d8;
           fStack_3bc = fStack_3d4;
@@ -743,8 +718,8 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
             fStack_3f0 = fStack_414;
             if (9.999999e-09 < fVar22 * fVar22 + fStack_378 * fStack_378) {
               fVar24 = fVar22 * fVar22 + fStack_378 * fStack_378;
-              uStack_388 = 0;
-              uStack_384 = 0x7f7fffff;
+              local_var_388 = 0;
+              local_var_384 = 0x7f7fffff;
               auVar21 = rsqrtss(ZEXT416((uint)fVar24),ZEXT416((uint)fVar24));
               fVar25 = auVar21._0_4_;
               fVar25 = fVar25 * 0.5 * (3.0 - fVar24 * fVar25 * fVar25);
@@ -753,17 +728,17 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
                            fVar25 * fVar22 * *(float *)(param_1 + 0x520);
               fStack_38c = fVar25 * fStack_378 * *(float *)(param_1 + 0x534) +
                            fVar25 * fVar22 * *(float *)(param_1 + 0x524);
-              pfVar7 = (float *)RenderingSystemInterpolator(&fStack_3c0,auStack_238,&fStack_390,fVar24);
+              pfVar7 = (float *)RenderingSystemInterpolator(&fStack_3c0,stack_array_238,&fStack_390,fVar24);
               fStack_3c0 = *pfVar7;
               fStack_3bc = pfVar7[1];
               fStack_3b8 = pfVar7[2];
               fStack_3b4 = pfVar7[3];
-              pfVar7 = (float *)RenderingSystemInterpolator(&fStack_3b0,auStack_228,&fStack_390,fVar24);
+              pfVar7 = (float *)RenderingSystemInterpolator(&fStack_3b0,stack_array_228,&fStack_390,fVar24);
               fStack_3b0 = *pfVar7;
               fStack_3ac = pfVar7[1];
               fStack_3a8 = pfVar7[2];
               fStack_3a4 = pfVar7[3];
-              pfVar7 = (float *)RenderingSystemInterpolator(&fStack_3a0,auStack_218,&fStack_390,fVar24);
+              pfVar7 = (float *)RenderingSystemInterpolator(&fStack_3a0,stack_array_218,&fStack_390,fVar24);
               fStack_3a0 = *pfVar7;
               fStack_39c = pfVar7[1];
               fStack_394 = pfVar7[3];
@@ -771,10 +746,10 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
             }
           }
           *(char *)(*(int64_t *)(param_1 + 0x728) + 0x20) = param_4;
-          uVar8 = RenderingSystemVectorCalculator(param_1 + 0x520,auStack_158,&fStack_3c0);
+          uVar8 = RenderingSystemVectorCalculator(param_1 + 0x520,stack_array_158,&fStack_3c0);
           RenderingSystemDataValidator(&fStack_2e8,uVar8);
-          uStack_3e8 = CONCAT44(fStack_2e4,fStack_2e8);
-          uStack_3e0 = CONCAT44(fStack_2dc,fStack_2e0);
+          local_var_3e8 = CONCAT44(fStack_2e4,fStack_2e8);
+          local_var_3e0 = CONCAT44(fStack_2dc,fStack_2e0);
           if (cStack_418 == '\0') {
             puVar1 = (uint64_t *)(*(int64_t *)(param_1 + 0x728) + (lVar12 + 0xf) * 0x10);
             *puVar1 = 0x3f800000;
@@ -794,11 +769,11 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
             fVar25 = (float)puVar10[2];
             fVar24 = (float)puVar10[3];
             fVar26 = (float)puVar10[4];
-            uStack_f8 = *(uint64_t *)(puVar10 + 5);
-            uStack_f0 = *(uint64_t *)(puVar10 + 7);
+            local_var_f8 = *(uint64_t *)(puVar10 + 5);
+            local_var_f0 = *(uint64_t *)(puVar10 + 7);
             pfStack_428 = &fStack_2a8;
             *puVar10 = 0;
-            uStack_420 = 0x3f99999a;
+            local_var_420 = 0x3f99999a;
             fStack_2a4 = fStack_2e8 * fVar25 * -1.0 + fStack_2dc * fVar24 * -1.0 +
                          fStack_2e0 * fVar26 + fStack_2e4 * fVar22;
             fStack_2a0 = fStack_2e8 * fVar24 * -1.0 + fStack_2e4 * fVar26 * -1.0 +
@@ -811,7 +786,7 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
             fStack_104 = fVar25;
             fStack_100 = fVar24;
             fStack_fc = fVar26;
-            puVar9 = (uint64_t *)RenderingSystemGeometryProcessor(lVar11,auStack_208,param_4,iStack_3d0);
+            puVar9 = (uint64_t *)RenderingSystemGeometryProcessor(lVar11,stack_array_208,param_4,iStack_3d0);
             uVar8 = puVar9[1];
             puVar1 = (uint64_t *)(*(int64_t *)(param_1 + 0x728) + (lVar12 + 0xf) * 0x10);
             *puVar1 = *puVar9;
@@ -822,16 +797,16 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
             fVar20 = pfVar7[1];
             fVar23 = pfVar7[2];
             fVar6 = pfVar7[3];
-            uStack_3e8 = CONCAT44(fVar20 * fVar22 * 1.0 + fVar6 * fVar24 * 1.0 +
+            local_var_3e8 = CONCAT44(fVar20 * fVar22 * 1.0 + fVar6 * fVar24 * 1.0 +
                                   (fVar19 * fVar25 - fVar23 * fVar26),
                                   fVar23 * fVar24 * -1.0 + fVar6 * fVar26 * -1.0 +
                                   (fVar19 * fVar22 - fVar20 * fVar25));
-            uStack_3e0 = CONCAT44(fVar6 * fVar22 * 1.0 + fVar23 * fVar25 * 1.0 +
+            local_var_3e0 = CONCAT44(fVar6 * fVar22 * 1.0 + fVar23 * fVar25 * 1.0 +
                                   (fVar19 * fVar26 - fVar20 * fVar24),
                                   fVar23 * fVar22 * 1.0 + fVar20 * fVar26 * 1.0 +
                                   (fVar19 * fVar24 - fVar6 * fVar25));
           }
-          uStack_35c = 0x7f7fffff;
+          local_var_35c = 0x7f7fffff;
           lVar12 = *(int64_t *)(*(int64_t *)(param_1 + 0x6d8) + 0x8a8);
           fVar22 = *(float *)(lVar12 + 0x98);
           fVar25 = *(float *)(lVar12 + 0x70) * *(float *)(lVar12 + 0x84) -
@@ -848,15 +823,15 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
           pfStack_428 = (float *)CONCAT44(pfStack_428._4_4_,0.9 / param_5);
           RenderingSystemTransformOptimizer(*(uint64_t *)(param_1 + 0x590),
                         *(int8_t *)(*(int64_t *)(param_1 + 0x728) + 0x20),&fStack_368,
-                        &uStack_3e8);
+                        &local_var_3e8);
           lVar11 = *(int64_t *)(param_1 + 0x590);
-          *(code **)(lVar11 + 0x3448) = FUN_180516cb0;
+          *(code **)(lVar11 + 0x3448) = function_516cb0;
           *(int64_t *)(lVar11 + 0x3440) = param_1;
           lVar11 = *(int64_t *)(param_1 + 0x728);
           *(float *)(lVar11 + 0x24) = fStack_368;
           *(float *)(lVar11 + 0x28) = fStack_364;
           *(float *)(lVar11 + 0x2c) = fStack_360;
-          *(int32_t *)(lVar11 + 0x30) = uStack_35c;
+          *(int32_t *)(lVar11 + 0x30) = local_var_35c;
         }
         break;
       }
@@ -871,11 +846,6 @@ void RenderingSystem3DTransformer(int64_t param_1, float* param_2, float* param_
       }
     } while (-1 < param_4);
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(uStack_e8 ^ (uint64_t)auStack_448);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(local_var_e8 ^ (uint64_t)stack_array_448);
 }
-
-
-
-
-

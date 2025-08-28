@@ -1,8 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part013.c - UI系统高级动画和控制模块
 // 包含2个核心函数，涵盖UI系统高级动画处理、参数计算、状态管理和渲染控制等功能
-
 // 常量定义
 #define UI_ANIMATION_THRESHOLD 0.001f
 #define UI_ANIMATION_SPEED_FACTOR 0.63661975f
@@ -11,26 +9,23 @@
 #define UI_SCALE_FACTOR 8.0f
 #define UI_NORMALIZATION_FACTOR 3.0f
 #define UI_SMOOTHING_FACTOR 0.5f
-
 // 函数别名定义
-#define ui_system_advanced_animation_processor FUN_180659fa4
-#define ui_system_animation_controller FUN_18065a3f8
-
+#define ui_system_advanced_animation_processor function_659fa4
+#define ui_system_animation_controller function_65a3f8
 /**
  * UI系统高级动画处理器
- * 
+ *
  * 此函数负责处理复杂的UI动画计算，包括：
  * - 角度计算和归一化处理
  * - 动画参数的动态调整
  * - UI元素的平滑过渡
  * - 渲染状态的实时更新
  * - 多轴动画的同步控制
- * 
+ *
  * @param 无参数，使用寄存器传递的UI上下文参数
  * @return 无返回值，直接修改UI系统的内部状态
  */
 void ui_system_advanced_animation_processor(void)
-
 {
   int64_t lVar1;
   uint32_t uVar2;
@@ -69,21 +64,19 @@ void ui_system_advanced_animation_processor(void)
   float unaff_XMM15_Da;
   char cStack0000000000000030;
   float fStack0000000000000034;
-  float in_stack_00000040;
+  float local_var_40;
   float fStack0000000000000054;
   float fStack000000000000005c;
   float fStack000000000000006c;
   float fStack0000000000000074;
   float fStack000000000000007c;
   float afStack_60e8 [6200];
-  uint64_t uStack_8;
-  
-  // 设置UI动画的基础参数
+  uint64_t local_var_8;
+// 设置UI动画的基础参数
   *(float *)(unaff_R14 + 0x4c) = unaff_XMM6_Da;
   fVar7 = (float)unaff_RBX;
   fVar15 = (float)((uint64_t)unaff_RBX >> 0x20);
-  
-  // 执行动画角度的计算和优化
+// 执行动画角度的计算和优化
   if ((unaff_XMM12_Da != unaff_XMM6_Da) || (unaff_XMM14_Da != unaff_XMM6_Da)) {
     if (unaff_XMM6_Da <= fVar7 * unaff_XMM12_Da) {
       if (ABS(fVar7) < ABS(unaff_XMM12_Da)) {
@@ -102,24 +95,21 @@ void ui_system_advanced_animation_processor(void)
       fVar15 = fVar15 + unaff_XMM14_Da;
     }
   }
-  
-  // 计算动画角度并应用归一化处理
-  uStack_8 = 0x18065a04d;
+// 计算动画角度并应用归一化处理
+  local_var_8 = 0x18065a04d;
   fVar7 = (float)atan2f(-fVar7,fVar15);
   fVar7 = ABS(fVar7);
   if (1.5707964 < fVar7) {
     fVar7 = unaff_XMM11_Da - fVar7;
   }
   fVar7 = fVar7 * UI_ANIMATION_SPEED_FACTOR;
-  
-  // 计算动画的动态调整参数
+// 计算动画的动态调整参数
   fVar11 = (unaff_XMM8_Da - *(float *)(unaff_RBP + 0xc0)) * 0.3;
   fVar15 = unaff_XMM6_Da;
   if ((fVar11 + 0.05 <= fVar7) && (fVar15 = fVar7, 0.95 - fVar11 < fVar7)) {
     fVar15 = unaff_XMM8_Da;
   }
-  
-  // 执行UI元素的平滑过渡处理
+// 执行UI元素的平滑过渡处理
   fVar11 = fVar15 - *(float *)(unaff_R14 + 0x54);
   fVar17 = ABS(fVar11);
   fVar7 = fVar15;
@@ -138,8 +128,7 @@ void ui_system_advanced_animation_processor(void)
     }
   }
   *(float *)(unaff_R14 + 0x54) = fVar7;
-  
-  // 处理UI动画的状态验证和边界检查
+// 处理UI动画的状态验证和边界检查
   if ((((unaff_XMM7_Da <= -0.1) || (unaff_R13B == '\0')) || (unaff_R15B != '\0')) ||
      (unaff_XMM14_Da <= -0.1)) {
 LAB_18065a17c:
@@ -158,8 +147,7 @@ LAB_18065a17c:
     }
     if (-fVar7 <= unaff_XMM15_Da * unaff_XMM12_Da) goto LAB_18065a17c;
   }
-  
-  // 更新UI渲染参数和状态
+// 更新UI渲染参数和状态
   fVar7 = *(float *)(unaff_R14 + 0x44);
   if (fVar7 == unaff_XMM6_Da) {
     *(bool *)(unaff_R14 + 0x5d) = unaff_XMM12_Da < unaff_XMM6_Da;
@@ -172,8 +160,7 @@ LAB_18065a17c:
     fVar7 = unaff_XMM8_Da;
   }
   *(float *)(unaff_R14 + 0x44) = fVar7;
-  
-  // 处理UI动画的高级控制逻辑
+// 处理UI动画的高级控制逻辑
   if (*(float *)(unaff_R14 + 0x48) <= unaff_XMM6_Da && unaff_XMM6_Da != *(float *)(unaff_R14 + 0x48)
      ) {
     fVar11 = unaff_XMM8_Da;
@@ -183,7 +170,7 @@ LAB_18065a17c:
     if (unaff_XMM6_Da <= fVar11 * unaff_XMM12_Da) {
       fVar11 = fVar7;
       if (*(char *)(unaff_R14 + 0x5d) == '\0') {
-        uStack_8 = 0x18065a252;
+        local_var_8 = 0x18065a252;
         fVar11 = (float)fmodf(fVar7 + 0.5);
       }
       fVar11 = fVar11 - *(float *)(unaff_R14 + 0x38);
@@ -215,8 +202,7 @@ LAB_18065a17c:
     }
   }
 LAB_18065a2e9:
-  
-  // 计算UI动画的变换矩阵参数
+// 计算UI动画的变换矩阵参数
   fVar7 = *(float *)(unaff_R14 + 0x50);
   fStack0000000000000054 = (unaff_XMM8_Da - fVar7) * (unaff_XMM8_Da - unaff_XMM13_Da);
   fVar19 = (unaff_XMM8_Da - unaff_XMM6_Da) * fStack0000000000000054;
@@ -224,15 +210,15 @@ LAB_18065a2e9:
   fVar17 = unaff_XMM6_Da * fStack0000000000000054 * fVar15;
   fVar20 = fVar19 * fVar15;
   fStack0000000000000054 = fStack0000000000000054 * fVar15;
-  fStack0000000000000074 = fVar17 * in_stack_00000040;
+  fStack0000000000000074 = fVar17 * local_var_40;
   *(float *)(unaff_RBP + -0x7c) = fStack0000000000000054;
   *(float *)(unaff_RBP + -0x78) = fStack0000000000000054;
   *(float *)(unaff_RBP + -0x74) = (unaff_XMM8_Da - unaff_XMM13_Da) * fVar7;
-  fVar11 = (unaff_XMM8_Da - in_stack_00000040) * fVar20;
-  fStack000000000000005c = (unaff_XMM8_Da - in_stack_00000040) * fVar17;
+  fVar11 = (unaff_XMM8_Da - local_var_40) * fVar20;
+  fStack000000000000005c = (unaff_XMM8_Da - local_var_40) * fVar17;
   *(float *)(unaff_RBP + -0x80) = fVar11;
   cVar6 = (char)unaff_EDI;
-  if ((cStack0000000000000030 == cVar6) || (unaff_XMM6_Da < in_stack_00000040)) {
+  if ((cStack0000000000000030 == cVar6) || (unaff_XMM6_Da < local_var_40)) {
     if (fVar7 <= unaff_XMM6_Da) {
       fVar7 = 3.0;
     }
@@ -243,8 +229,7 @@ LAB_18065a2e9:
   else {
     fVar7 = 2.0;
   }
-  
-  // 更新UI动画的时间参数
+// 更新UI动画的时间参数
   fVar8 = *(float *)(unaff_R14 + 0x6128);
   if (unaff_XMM13_Da <= fVar8) {
     fVar8 = fVar8 - fVar7 * fStack0000000000000034;
@@ -277,8 +262,7 @@ LAB_18065a2e9:
     }
     fVar8 = fVar8 * fVar7;
   }
-  
-  // 执行UI动画的批量处理和优化
+// 执行UI动画的批量处理和优化
   pfVar3 = (float *)(unaff_R14 + 0x6154);
   iVar5 = 1;
   fVar7 = unaff_XMM6_Da;
@@ -441,7 +425,7 @@ LAB_18065a765:
         }
       }
       fVar19 = fStack000000000000006c - (unaff_XMM8_Da - fVar15) * fVar19;
-      fVar11 = ((((fVar20 + fVar17) * in_stack_00000040 + fStack0000000000000054) -
+      fVar11 = ((((fVar20 + fVar17) * local_var_40 + fStack0000000000000054) -
                 fStack000000000000005c) - fVar11) - fStack0000000000000054;
       fVar7 = fVar19 * fVar19 + fVar11 * fVar11;
       uVar2 = (uint32_t)((uint)unaff_EDI >> 8);
@@ -480,24 +464,23 @@ LAB_18065a765:
       else {
         *(uint64_t *)(unaff_R14 + 0x6178) = CONCAT44(fVar19,fVar7);
       }
-                    // WARNING: Subroutine does not return
-      uStack_8 = 0x18065aa9f;
+// WARNING: Subroutine does not return
+      local_var_8 = 0x18065aa9f;
       fStack000000000000007c = fStack000000000000005c;
-      SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);
+      SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&local_buffer_00000000);
     }
   } while( true );
 }
-
 /**
  * UI系统动画控制器
- * 
+ *
  * 此函数负责控制UI动画的执行流程，包括：
  * - 动画参数的初始化和验证
  * - 动画状态的实时监控
  * - 多线程动画的同步处理
  * - 动画缓冲区的管理
  * - 动画效果的优化和调整
- * 
+ *
  * @param param_1 动画上下文指针
  * @param param_2 动画配置参数
  * @param param_3 动画速度因子
@@ -515,7 +498,6 @@ LAB_18065a765:
 void ui_system_animation_controller(uint64_t param_1,uint64_t param_2,float param_3,float param_4,
                   uint64_t param_5,uint64_t param_6,float param_7,float param_8,float param_9,
                   uint64_t param_10,uint64_t param_11,float param_12)
-
 {
   uint32_t uVar1;
   float *pfVar2;
@@ -543,9 +525,8 @@ void ui_system_animation_controller(uint64_t param_1,uint64_t param_2,float para
   float unaff_XMM14_Da;
   float fStack000000000000003c;
   float afStack_60e8 [6200];
-  uint64_t uStack_8;
-  
-  // 初始化动画控制参数
+  uint64_t local_var_8;
+// 初始化动画控制参数
   if (unaff_XMM6_Da < unaff_XMM7_Da) {
     fVar7 = param_4;
     if (param_3 <= unaff_XMM6_Da) {
@@ -555,8 +536,7 @@ void ui_system_animation_controller(uint64_t param_1,uint64_t param_2,float para
   else {
     fVar7 = 2.0;
   }
-  
-  // 更新动画时间参数
+// 更新动画时间参数
   fVar6 = *(float *)(unaff_R14 + 0x6128);
   if (unaff_XMM13_Da <= fVar6) {
     fVar6 = fVar6 - fVar7 * param_6._4_4_;
@@ -589,8 +569,7 @@ void ui_system_animation_controller(uint64_t param_1,uint64_t param_2,float para
     }
     fVar6 = fVar6 * fVar7;
   }
-  
-  // 执行动画的批量处理
+// 执行动画的批量处理
   pfVar2 = (float *)(unaff_R14 + 0x6154);
   iVar4 = 1;
   do {
@@ -799,9 +778,9 @@ LAB_18065a765:
       else {
         *(uint64_t *)(unaff_R14 + 0x6178) = CONCAT44(fStack000000000000003c,fVar7);
       }
-                    // WARNING: Subroutine does not return
-      uStack_8 = 0x18065aa9f;
-      SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+      local_var_8 = 0x18065aa9f;
+      SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x70) ^ (uint64_t)&local_buffer_00000000);
     }
   } while( true );
 }

@@ -34,7 +34,7 @@ extern "C" {
  * @brief 网络系统连接处理器
  * 管理网络连接的建立和维护
  */
-#define NetworkSystem_ConnectionHandler FUN_18073d8a0
+#define NetworkSystem_ConnectionHandler function_73d8a0
 
 /**
  * @brief 网络系统数据序列化器
@@ -46,7 +46,7 @@ extern "C" {
  * @brief 网络系统状态管理器
  * 管理网络连接的各种状态
  */
-#define NetworkSystem_StateManager FUN_18088ee20
+#define NetworkSystem_StateManager function_88ee20
 
 // =============================================================================
 // 图形系统函数别名
@@ -56,13 +56,13 @@ extern "C" {
  * @brief 图形系统纹理处理器
  * 处理纹理的加载、缓存和优化
  */
-#define GraphicsSystem_TextureProcessor FUN_18055f6f0
+#define GraphicsSystem_TextureProcessor function_55f6f0
 
 /**
  * @brief 图形系统渲染管线
  * 管理图形渲染的整个管线流程
  */
-#define GraphicsSystem_RenderPipeline FUN_18085ab70
+#define GraphicsSystem_RenderPipeline function_85ab70
 
 // =============================================================================
 // 内存系统函数别名
@@ -72,13 +72,13 @@ extern "C" {
  * @brief 内存系统分配器
  * 管理内存的分配和释放
  */
-#define MemorySystem_Allocator FUN_18041f0a0
+#define MemorySystem_Allocator function_41f0a0
 
 /**
  * @brief 内存系统缓存管理器
  * 管理内存缓存的使用和优化
  */
-#define MemorySystem_CacheManager FUN_18084c5a0
+#define MemorySystem_CacheManager function_84c5a0
 
 // =============================================================================
 // 输入系统函数别名
@@ -120,7 +120,7 @@ extern "C" {
  * @brief 物理系统碰撞检测器
  * 检测物体之间的碰撞
  */
-#define PhysicsSystem_CollisionDetector FUN_180049470
+#define PhysicsSystem_CollisionDetector function_049470
 
 /**
  * @brief 物理系统模拟器
@@ -166,7 +166,7 @@ extern "C" {
  * @brief 文件系统IO加载器
  * 处理文件的加载和保存
  */
-#define FileSystem_IOLoader FUN_18012cfe0
+#define FileSystem_IOLoader function_12cfe0
 
 // =============================================================================
 // 安全系统函数别名

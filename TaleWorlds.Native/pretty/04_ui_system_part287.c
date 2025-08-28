@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part287.c - 1 个函数
-
-// 函数: void FUN_18082c450(int64_t param_1,float *param_2,int64_t param_3,float *param_4,int param_5,
-void FUN_18082c450(int64_t param_1,float *param_2,int64_t param_3,float *param_4,int param_5,
+// 函数: void function_82c450(int64_t param_1,float *param_2,int64_t param_3,float *param_4,int param_5,
+void function_82c450(int64_t param_1,float *param_2,int64_t param_3,float *param_4,int param_5,
                   int param_6,uint param_7,uint param_8,uint param_9,uint param_10,uint param_11)
-
 {
   int iVar1;
   float *pfVar2;
@@ -67,15 +64,14 @@ void FUN_18082c450(int64_t param_1,float *param_2,int64_t param_3,float *param_4
   float fVar53;
   int8_t in_ZMM9 [64];
   int8_t auVar47 [64];
-  
   pfVar25 = (float *)(*(int64_t *)(param_1 + 0x10) + (int64_t)param_5 * 4);
   pfVar33 = (float *)(*(int64_t *)(param_1 + 8) + (int64_t)param_6 * 4);
   if (param_7 == 1) {
-    func_0x00018082d150(param_2,param_3,param_4,pfVar25,pfVar33,param_8,param_9,param_10,param_11);
+    Function_8d8a5454(param_2,param_3,param_4,pfVar25,pfVar33,param_8,param_9,param_10,param_11);
     return;
   }
   if (param_7 == 2) {
-    FUN_18082d350(param_2,param_3,param_4,pfVar25,pfVar25 + 0x200,pfVar33,pfVar33 + 0x400,param_8,
+    function_82d350(param_2,param_3,param_4,pfVar25,pfVar25 + 0x200,pfVar33,pfVar33 + 0x400,param_8,
                   param_9,param_10,param_11);
     return;
   }
@@ -133,7 +129,7 @@ void FUN_18082c450(int64_t param_1,float *param_2,int64_t param_3,float *param_4
     }
     iVar22 = param_7 * 8;
     for (param_8 = param_8 & 7; param_8 != 0; param_8 = param_8 - 1) {
-                    // WARNING: Read-only address (ram,0x000180980640) is written
+// WARNING: Read-only address (ram,0x000180980640) is written
       pfVar25 = pfVar25 + -1;
       pfVar24 = pfVar25;
       uVar31 = param_7;
@@ -147,7 +143,7 @@ void FUN_18082c450(int64_t param_1,float *param_2,int64_t param_3,float *param_4
       }
     }
     auVar4 = ui_system_memory_config;
-                    // WARNING: Read-only address (ram,0x000180980640) is written
+// WARNING: Read-only address (ram,0x000180980640) is written
     for (iVar28 = (int)param_9 >> 3; iVar28 != 0; iVar28 = iVar28 + -1) {
       auVar5 = *(int8_t (*) [32])(param_3 + -0x20);
       in_ZMM9 = ZEXT3264(auVar5);
@@ -579,14 +575,11 @@ void FUN_18082c450(int64_t param_1,float *param_2,int64_t param_3,float *param_4
     }
   }
   else {
-    FUN_18082b380(param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8,param_9,param_10,
+    function_82b380(param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8,param_9,param_10,
                   param_11);
   }
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x00018082cd15)
 // WARNING: Removing unreachable block (ram,0x00018082cd09)
 // WARNING: Removing unreachable block (ram,0x00018082c9e7)
@@ -604,6 +597,3 @@ void FUN_18082c450(int64_t param_1,float *param_2,int64_t param_3,float *param_4
 // WARNING: Removing unreachable block (ram,0x00018082cffe)
 // WARNING: Removing unreachable block (ram,0x00018082d00e)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

@@ -1,24 +1,17 @@
 n//  的语义化别名
-#define SystemCore_PointerManager 
-
-
+#define SystemCore_PointerManager
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* 函数别名定义: DataStructureManager */
 #define DataStructureManager DataStructureManager
-
-
-/* UIManager - FUN_18086b47c 的语义化别名 */
-#define UIManager FUN_18086b47c
-
-
+/* UIManager - function_86b47c 的语义化别名 */
+#define UIManager function_86b47c
 /**
  * 99_part_06_part080.c - 系统资源管理和状态同步模块
- * 
+ *
  * 本模块包含游戏核心系统的资源管理、状态同步、内存分配等功能
  * 主要负责游戏运行时的资源生命周期管理和状态一致性维护
- * 
+ *
  * 主要功能：
  * - 资源对象的生命周期管理
  * - 系统状态的同步和切换
@@ -26,61 +19,49 @@ n//  的语义化别名
  * - 事件处理和回调机制
  * - 性能监控和优化
  */
-
 /* 函数别名定义 - 系统资源管理和状态同步模块 */
-
 /* 内存管理函数 */
-#define MemoryManager_CreateResourceBuffer() FUN_1800bdc80()
+#define MemoryManager_CreateResourceBuffer() function_0bdc80()
 #define MemoryManager_AllocateResource() SystemInitializer()
 #define MemoryManager_ReleaseResource() SystemCore_ChecksumValidator()
 #define MemoryManager_FreeMemoryBlock() DataCacheManager()
-
 /* 系统初始化函数 */
-#define SystemInitializer_Initialize() FUN_1801f9920()
-#define SystemInitializer_InitializeWithContext() FUN_1801f9270()
+#define SystemInitializer_Initialize() function_1f9920()
+#define SystemInitializer_InitializeWithContext() function_1f9270()
 #define SystemInitializer_InitializeAdvanced() SystemCore_ConfigValidator()
-
 /* 系统安全检查函数 */
 #define SystemSecurityChecker_VerifyAccess() SystemSecurityChecker()
 #define SystemSecurityChecker_CheckPermissions() DataStructureManager()
 #define SystemSecurityChecker_ValidateContext() SystemDataValidator()
-
 /* 数据处理函数 */
 #define DataProcessor_TransformData() SystemOptimizer()
 #define DataProcessor_ApplyTransform() SystemCore_PointerManager()
-#define DataProcessor_ProcessData() FUN_1801f9aa0()
-#define DataProcessor_CompressData() FUN_18029ef00()
+#define DataProcessor_ProcessData() function_1f9aa0()
+#define DataProcessor_CompressData() function_29ef00()
 #define DataProcessor_DecompressData() SystemCore_ProcessorEx()
-
 /* 字符串处理函数 */
 #define StringProcessor_EncodeString() SystemData_Processor()
 #define StringProcessor_DecodeString() SystemCore_Analyzer()
 #define StringProcessor_FormatString() SystemCore_Synchronizer()
-
 /* 资源管理函数 */
-#define ResourceManager_CreateInstance() FUN_1800bdc80()
+#define ResourceManager_CreateInstance() function_0bdc80()
 #define ResourceManager_FindResource() CoreMemoryPoolReallocator()
-#define ResourceManager_LoadResource() FUN_1801f8ea0()
-
+#define ResourceManager_LoadResource() function_1f8ea0()
 /* 状态管理函数 */
 #define StateManager_UpdateState() SystemCore_ResourceManager0()
 #define StateManager_TransitionState() DataStructureManager0()
-
 /* 系统常量定义 */
 #define SYSTEM_STATE_ACTIVE          0x00
 #define SYSTEM_STATE_INACTIVE        0x01
 #define SYSTEM_STATE_TRANSITION      0x02
 #define SYSTEM_STATE_ERROR           0x03
-
 #define RESOURCE_TYPE_TEXTURE        0x01
 #define RESOURCE_TYPE_SHADER         0x02
 #define RESOURCE_TYPE_AUDIO          0x03
 #define RESOURCE_TYPE_MODEL          0x04
-
 #define MEMORY_ALIGNMENT             0x10
 #define MAX_RESOURCE_COUNT          0x100
 #define SYNC_TIMEOUT_MS             0x3E8
-
 /* 系统状态枚举 */
 typedef enum {
     SystemState_Initializing = 0,
@@ -89,7 +70,6 @@ typedef enum {
     SystemState_ShuttingDown = 3,
     SystemState_Error = 4
 } SystemState;
-
 /* 资源管理结构体 */
 typedef struct {
     uint64_t resourceId;
@@ -99,7 +79,6 @@ typedef struct {
     uint64_t lastAccessTime;
     uint8_t flags;
 } ResourceManager;
-
 /* 同步控制结构体 */
 typedef struct {
     volatile uint32_t syncFlag;
@@ -107,7 +86,6 @@ typedef struct {
     void* callbackFunction;
     uint8_t syncStatus;
 } SyncController;
-
 /* 性能监控结构体 */
 typedef struct {
     uint64_t totalMemoryUsage;
@@ -116,23 +94,22 @@ typedef struct {
     float averageFrameTime;
     uint8_t performanceFlags;
 } PerformanceMonitor;
-
 /**
  * @brief 系统资源状态同步管理器
- * 
+ *
  * 负责管理系统资源的生命周期，确保资源在状态切换时的正确释放和重新分配
  * 实现资源的双缓冲机制，避免状态切换过程中的资源竞争
- * 
+ *
  * @param systemContext 系统上下文指针
  * @param syncFlags 同步标志位
  * @param resourceManager 资源管理器指针
  * @param stateFlags 状态标志
  * @param priorityFlags 优先级标志
- * 
+ *
  * @return void
  */
-void SystemResourceStateManager_SyncResourceLifecycle(int64_t systemContext, uint64_t syncFlags, 
-                                                      int64_t resourceManager, int32_t stateFlags, 
+void SystemResourceStateManager_SyncResourceLifecycle(int64_t systemContext, uint64_t syncFlags,
+                                                      int64_t resourceManager, int32_t stateFlags,
                                                       int32_t priorityFlags)
 {
   /* 变量声明和初始化 */
@@ -147,16 +124,13 @@ void SystemResourceStateManager_SyncResourceLifecycle(int64_t systemContext, uin
   int64_t *tempResourceBuffer;
   uint64_t storedSyncFlags;
   int64_t *existingResourceBuffer;
-  
   /* 获取当前资源管理器引用 */
   currentResourceManager = *(int64_t **)(systemContext + 0x460);
   storedSyncFlags = syncFlags;
-  
   /* 释放当前资源管理器（如果存在） */
   if (currentResourceManager != (int64_t *)0x0) {
     (**(code **)(*currentResourceManager + 0x28))(currentResourceManager);
   }
-  
   /* 获取或创建新的资源管理器 */
   newResourceManager = *(int64_t **)(systemContext + 0x1a0);
   if (newResourceManager == (int64_t *)0x0) {
@@ -178,17 +152,14 @@ void SystemResourceStateManager_SyncResourceLifecycle(int64_t systemContext, uin
     isExistingResourceUsed = true;
     isNewResourceCreated = false;
   }
-  
   /* 清理资源管理器引用 */
   *resourceManagerRef = (int64_t *)0x0;
   previousResourceManager = *(int64_t **)(systemContext + 0x460);
   *(int64_t **)(systemContext + 0x460) = newResourceManager;
-  
   /* 释放前一个资源管理器 */
   if (previousResourceManager != (int64_t *)0x0) {
     (**(code **)(*previousResourceManager + 0x38))();
   }
-  
   /* 清理临时资源缓冲区 */
   if (isNewResourceCreated && (tempResourceBuffer != (int64_t *)0x0)) {
     (**(code **)(*tempResourceBuffer + 0x38))();
@@ -196,11 +167,9 @@ void SystemResourceStateManager_SyncResourceLifecycle(int64_t systemContext, uin
   if (isExistingResourceUsed && (existingResourceBuffer != (int64_t *)0x0)) {
     (**(code **)(*existingResourceBuffer + 0x38))();
   }
-  
   /* 重置状态标志 */
   isExistingResourceUsed = false;
   isNewResourceCreated = false;
-  
   /* 处理备用资源管理器 */
   if (currentResourceManager == (int64_t *)0x0) {
     newResourceManager = (int64_t *)MemoryManager_CreateSecondaryBuffer();
@@ -218,17 +187,14 @@ void SystemResourceStateManager_SyncResourceLifecycle(int64_t systemContext, uin
     isExistingResourceUsed = true;
     newResourceManager = currentResourceManager;
   }
-  
   /* 清理备用资源管理器引用 */
   *resourceManagerRef = (int64_t *)0x0;
   previousResourceManager = *(int64_t **)(systemContext + 0x1a8);
   *(int64_t **)(systemContext + 0x1a8) = newResourceManager;
-  
   /* 释放前一个备用资源管理器 */
   if (previousResourceManager != (int64_t *)0x0) {
     (**(code **)(*previousResourceManager + 0x38))();
   }
-  
   /* 清理临时缓冲区 */
   if (isNewResourceCreated && (tempResourceBuffer != (int64_t *)0x0)) {
     (**(code **)(*tempResourceBuffer + 0x38))();
@@ -236,14 +202,12 @@ void SystemResourceStateManager_SyncResourceLifecycle(int64_t systemContext, uin
   if (isExistingResourceUsed && (existingResourceBuffer != (int64_t *)0x0)) {
     (**(code **)(*existingResourceBuffer + 0x38))();
   }
-  
   /* 更新系统状态 */
   currentState = *(int *)(systemContext + 0x474);
   if (currentState == 1) {
     *(int32_t *)(systemContext + 0x474) = 2;
     currentState = 2;
   }
-  
   /* 检查系统状态转换条件 */
   systemDataPointer = system_system_data_resource;
   if ((*(char *)(system_system_data_resource + 0x480) == '\0') &&
@@ -252,7 +216,6 @@ void SystemResourceStateManager_SyncResourceLifecycle(int64_t systemContext, uin
     *(int32_t *)(systemContext + 0x474) = 1;
     currentState = 1;
   }
-  
   /* 检查系统停止条件 */
   if ((*(char *)(systemDataPointer + 0x498) == '\0') &&
      ((0.7 < *(float *)(systemDataPointer + 0x484) || *(float *)(systemDataPointer + 0x484) == 0.7 ||
@@ -260,81 +223,63 @@ void SystemResourceStateManager_SyncResourceLifecycle(int64_t systemContext, uin
     *(int32_t *)(systemContext + 0x474) = 0;
     currentState = 0;
   }
-  
   /* 更新渲染系统参数 */
   systemDataPointer = system_message_buffer;
   *(float *)(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x1c90) = (float)currentState + 0.2;
   *(int32_t *)(*(int64_t *)(systemDataPointer + 0x1cd8) + 0x1c80) = *(int32_t *)(resourceManager + 0x12c00);
   *(int32_t *)(*(int64_t *)(systemDataPointer + 0x1cd8) + 0x1c84) = *(int32_t *)(resourceManager + 0x12c04);
-  
   /* 调用后续处理函数 */
   SystemRenderer_UpdateRenderParameters(systemContext, storedSyncFlags, resourceManager, stateFlags, priorityFlags);
-  
   /* 清理当前资源管理器 */
   if (currentResourceManager != (int64_t *)0x0) {
     (**(code **)(*currentResourceManager + 0x38))(currentResourceManager);
   }
-  
   return;
 }
-
-
-
 /**
  * @brief 内存管理器析构函数
- * 
+ *
  * 负责释放和管理内存资源，确保系统在关闭时正确清理所有分配的内存
  * 实现安全的内存释放机制，防止内存泄漏和野指针访问
- * 
+ *
  * @param memoryManager 内存管理器指针
  * @param freeFlags 释放标志位
  * @param context 上下文参数
  * @param userData 用户数据指针
- * 
+ *
  * @return 内存管理器指针
  */
 uint64_t * MemoryManager_Destroy(uint64_t *memoryManager, uint64_t freeFlags, uint64_t context, uint64_t userData)
 {
   uint64_t memoryFlags;
-  
   /* 设置内存管理器标志 */
   memoryFlags = 0xfffffffffffffffe;
   *memoryManager = &MemoryManager_VTable_Destroy;
-  
   /* 执行清理操作 */
   SystemMemoryManager_PerformCleanup();
-  
   /* 根据标志位决定是否释放内存 */
   if ((freeFlags & 1) != 0) {
     MemoryManager_FreeMemoryBlock(memoryManager, 0x460, context, userData, memoryFlags);
   }
-  
   return memoryManager;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /**
  * @brief 渲染系统参数更新处理器
- * 
+ *
  * 负责根据系统状态和渲染参数动态调整渲染设置
  * 实现渲染质量的自动调整和性能优化
- * 
+ *
  * @param rendererContext 渲染器上下文指针
  * @param renderFlags 渲染标志位
  * @param renderData 渲染数据指针
  * @param qualityFlags 质量标志
  * @param performanceFlags 性能标志
- * 
+ *
  * @return void
  */
-void SystemRenderer_UpdateRenderParameters(int64_t *rendererContext, uint64_t renderFlags, 
-                                          int64_t renderData, int32_t qualityFlags, 
+void SystemRenderer_UpdateRenderParameters(int64_t *rendererContext, uint64_t renderFlags,
+                                          int64_t renderData, int32_t qualityFlags,
                                           int32_t performanceFlags)
 {
   /* 渲染参数变量 */
@@ -354,19 +299,16 @@ void SystemRenderer_UpdateRenderParameters(int64_t *rendererContext, uint64_t re
   int32_t qualitySetting1;
   int32_t qualitySetting2;
   uint64_t securityChecksum;
-  
   /* 安全检查和初始化 */
   securityChecksum = GET_SECURITY_COOKIE() ^ (uint64_t)securityBuffer;
   qualityLevel = (int)rendererContext[0x8b];
   renderSystem = *(int64_t *)(system_message_buffer + 0x1cd8);
-  
   /* 质量设置矩阵初始化 */
   qualityMatrix1 = 0x3f5555553e2aaaab;
   qualityMatrix2 = 0x3f2aaaab3f000000;
   qualitySetting1 = 0x3eaaaaab;
   qualitySetting2 = 0;
   renderState = 0;
-  
   /* 根据质量级别设置渲染参数 */
   *(int32_t *)(renderSystem + 0x1c88) =
        *(int32_t *)
@@ -375,7 +317,6 @@ void SystemRenderer_UpdateRenderParameters(int64_t *rendererContext, uint64_t re
         (qualityLevel + (qualityLevel / 6 + (qualityLevel >> 0x1f) +
                  (int)(((int64_t)qualityLevel / 6 + ((int64_t)qualityLevel >> 0x3f) & 0xffffffffU) >> 0x1f)) *
                  -6) * 4);
-  
   /* 从渲染数据中提取参数 */
   inverseDepth = 1.0 / *(float *)(renderData + 0x12a54);
   renderScale = *(float *)(renderData + 0x12a40);
@@ -383,76 +324,58 @@ void SystemRenderer_UpdateRenderParameters(int64_t *rendererContext, uint64_t re
   fieldOfView = *(float *)(renderData + 0x12a60);
   renderHeight = performanceFlags;
   nearPlane = *(float *)(renderData + 0x12a64);
-  
   /* 计算渲染矩阵参数 */
   *(float *)(renderSystem + 0x1cd0) = 2.0 / ((float)(int)*(float *)(renderData + 0x11c20) * renderScale);
   *(float *)(renderSystem + 0x1cd4) = (inverseDepth * -2.0) / (float)(int)aspectRatio;
   *(float *)(renderSystem + 0x1cd8) = (0.1 / renderScale) * fieldOfView - 1.0 / renderScale;
   *(float *)(renderSystem + 0x1cdc) = inverseDepth - inverseDepth * 0.1 * nearPlane;
-  
   /* 更新质量级别计数器 */
   *(int *)(rendererContext + 0x8b) = (int)rendererContext[0x8b] + 1;
   renderWidth = qualityFlags;
-  
   /* 调用渲染更新函数 */
   (**(code **)(*rendererContext + 0x50))
             (rendererContext, renderData, (int)rendererContext[0x8a], *(int32_t *)((int64_t)rendererContext + 0x454));
-  
   /* 安全检查和清理 */
   SecurityManager_VerifyChecksum(securityChecksum ^ (uint64_t)securityBuffer);
 }
-
-
-
 /**
  * @brief 渲染系统内存管理器析构函数
- * 
+ *
  * 专门负责渲染系统内存资源的释放和管理
  * 确保渲染相关的内存资源在系统关闭时被正确清理
- * 
+ *
  * @param renderMemoryManager 渲染内存管理器指针
  * @param destroyFlags 销毁标志位
  * @param renderContext 渲染上下文
  * @param additionalData 附加数据指针
- * 
+ *
  * @return 渲染内存管理器指针
  */
-uint64_t * RenderMemoryManager_Destroy(uint64_t *renderMemoryManager, uint64_t destroyFlags, 
+uint64_t * RenderMemoryManager_Destroy(uint64_t *renderMemoryManager, uint64_t destroyFlags,
                                       uint64_t renderContext, uint64_t additionalData)
 {
   uint64_t memoryFlags;
-  
   /* 设置内存管理器标志 */
   memoryFlags = 0xfffffffffffffffe;
   *renderMemoryManager = &RenderMemoryManager_VTable_Destroy;
-  
   /* 执行渲染系统清理 */
   SystemRenderManager_PerformCleanup();
-  
   /* 根据标志位决定是否释放渲染内存 */
   if ((destroyFlags & 1) != 0) {
     MemoryManager_FreeRenderMemory(renderMemoryManager, 0x458, renderContext, additionalData, memoryFlags);
   }
-  
   return renderMemoryManager;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /**
  * @brief 用户界面事件处理器
- * 
+ *
  * 负责处理用户界面相关的事件，包括按钮点击、菜单选择、文本输入等
  * 实现事件分发和相应的回调函数调用
- * 
+ *
  * @param uiContext 用户界面上下文指针
  * @param eventData 事件数据指针
- * 
+ *
  * @return void
  */
 void UIEventHandler_ProcessEvent(int64_t *uiContext, int64_t eventData)
@@ -493,54 +416,45 @@ void UIEventHandler_ProcessEvent(int64_t *uiContext, int64_t eventData)
   uint bufferSize;
   int8_t eventDataBuffer [136];
   uint64_t securityChecksum;
-  
   /* 初始化安全检查和内存管理 */
   memoryFlags = 0xfffffffffffffffe;
   securityChecksum = GET_SECURITY_COOKIE() ^ (uint64_t)securityBuffer;
   UIEventSystem_Initialize();
-  
   /* 初始化事件缓冲区 */
   uiResource = &UIResource_DefaultHandler;
   eventBuffer = eventDataBuffer;
   eventDataBuffer[0] = 0;
   bufferSize = *(uint *)(uiContext + 4);
   eventName = &EventName_Default;
-  
   /* 获取UI元素名称 */
   if ((void *)uiContext[3] != (void *)0x0) {
     eventName = (void *)uiContext[3];
   }
-  
   /* 复制UI元素名称到事件缓冲区 */
   strcpy_s(eventDataBuffer, 0x80, eventName);
   eventNameLength = (uint64_t)bufferSize;
   eventNameHash = bufferSize + 1;
-  
   /* 添加下划线分隔符（如果缓冲区空间足够） */
   if (eventNameHash < 0x7f) {
     *(int16_t *)(eventBuffer + eventNameLength) = 0x5f;
     eventNameLength = (uint64_t)eventNameHash;
     bufferSize = eventNameHash;
   }
-  
   /* 获取事件名称 */
   eventName = &EventName_Default;
   if (*(void **)(eventData + 0x3528) != (void *)0x0) {
     eventName = *(void **)(eventData + 0x3528);
   }
-  
   /* 计算事件名称长度 */
   eventLength = -1;
   do {
     eventLength = eventLength + 1;
   } while (eventName[eventLength] != '\0');
   eventType = (int)eventLength;
-  
   /* 复制事件名称到缓冲区（如果空间足够） */
   if ((0 < eventType) && ((uint)((int)eventNameLength + eventType) < 0x7f)) {
     memcpy(eventBuffer + eventNameLength, eventName, (int64_t)(eventType + 1));
   }
-  
   /* 处理特殊事件类型 */
   eventType = (int)uiContext[0x37];
   if (eventType == -1) {
@@ -558,7 +472,6 @@ void UIEventHandler_ProcessEvent(int64_t *uiContext, int64_t eventData)
     eventTimestamp = 0;
     eventSequence = 0;
     eventDeviceId = *(uint *)(eventData + 0x1bd4);
-    
     /* 处理非字符事件 */
         iStack_120 = (int)(int64_t)(double)param_1[0xb];
         iStack_11c = (int)(int64_t)(double)param_1[0xc];
@@ -574,7 +487,6 @@ void UIEventHandler_ProcessEvent(int64_t *uiContext, int64_t eventData)
         /* 简化实现：处理鼠标坐标转换和边界检查 */
         eventX = (int)(int64_t)(double)uiContext[0xb];
         eventY = (int)(int64_t)(double)uiContext[0xc];
-        
         /* 确保坐标在有效范围内 */
         if (eventX < 1) {
           eventX = 1;
@@ -582,7 +494,6 @@ void UIEventHandler_ProcessEvent(int64_t *uiContext, int64_t eventData)
         if (eventY < 1) {
           eventY = 1;
         }
-        
         /* 调用事件处理函数 */
         (**(code **)(*uiContext + 8))(uiContext, &eventX, eventData);
         eventResult = UIEventSystem_RegisterEvent(system_resource_state, &resourceManager, &uiResource, &eventX);
@@ -593,7 +504,7 @@ void UIEventHandler_ProcessEvent(int64_t *uiContext, int64_t eventData)
       /* 处理其他特殊事件类型 */
       if (eventType == -3) {
         /* 处理特殊命令事件 */
-        if (((int)uiContext[0x3b] == 9) && 
+        if (((int)uiContext[0x3b] == 9) &&
             (eventType = strcmp(uiContext[0x3a], &SpecialEvent_Command), eventType == 0)) {
           eventResult = UISpecialCommand_ProcessCommand(eventData);
           UIEventSystem_SetEventCallback(uiContext + 0x85, eventResult);
@@ -607,9 +518,7 @@ void UIEventHandler_ProcessEvent(int64_t *uiContext, int64_t eventData)
         }
         goto EVENT_HANDLER_EXIT;
       }
-      
       if (eventType != -2) goto EVENT_HANDLER_EXIT;
-      
       /* 处理资源事件 */
       renderTargetId = *(int32_t *)(eventData + 0x1bd4);
       eventResult = UIEventSystem_CreateResourceEvent(eventNameLength, &resourceManager, uiContext, uiContext + 0x39);
@@ -626,71 +535,53 @@ void UIEventHandler_ProcessEvent(int64_t *uiContext, int64_t eventData)
     resourceManager = (int64_t *)uiContext[0x85];
     uiContext[0x85] = (int64_t)eventHandler;
   }
-  
   /* 清理资源管理器 */
   if (resourceManager != (int64_t *)0x0) {
     (**(code **)(*resourceManager + 0x38))();
   }
-  
 EVENT_HANDLER_EXIT:
   uiResource = &UIResource_CleanupHandler;
-  
   /* 安全检查和清理 */
   SecurityManager_VerifyChecksum(securityChecksum ^ (uint64_t)securityBuffer);
 }
-
-
-
-
-
-
 /**
  * @brief 系统初始化状态设置器
- * 
+ *
  * 负责设置系统的初始化状态和标志位
  * 确保系统在启动时处于正确的初始化状态
- * 
+ *
  * @param systemId 系统标识符
  * @param systemState 系统状态指针
  * @param initFlags 初始化标志位
- * 
+ *
  * @return void
  */
 void SystemInitializer_SetInitializationState(uint64_t systemId, int64_t systemState, uint64_t initFlags)
 {
   /* 执行系统初始化 */
   SystemInitializer_PerformInitialization(systemId, initFlags);
-  
   /* 设置系统状态标志 */
   *(int8_t *)(systemState + 0x24) = 1;  /* 初始化完成标志 */
   *(int8_t *)(systemState + 0x2a) = 0;  /* 错误状态标志 */
-  
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /**
  * @brief 系统资源清理和卸载器
- * 
+ *
  * 负责在系统关闭时清理和卸载所有资源
  * 确保资源的正确释放和内存的清理
- * 
+ *
  * @param resourceContext 资源上下文指针
  * @param cleanupFlags 清理标志位
  * @param contextData 上下文数据
  * @param priorityLevel 优先级级别
  * @param timeoutMs 超时时间（毫秒）
- * 
+ *
  * @return void
  */
-void SystemResourceCleaner_CleanupAndUnload(int64_t *resourceContext, uint64_t cleanupFlags, 
-                                            uint64_t contextData, int32_t priorityLevel, 
+void SystemResourceCleaner_CleanupAndUnload(int64_t *resourceContext, uint64_t cleanupFlags,
+                                            uint64_t contextData, int32_t priorityLevel,
                                             int32_t timeoutMs)
 {
   /* 清理参数 */
@@ -713,7 +604,6 @@ void SystemResourceCleaner_CleanupAndUnload(int64_t *resourceContext, uint64_t c
   uint resourceHash;
   uint8_t resourceData [136];
   uint64_t securityChecksum;
-  
   /* 初始化安全检查和内存管理 */
   memoryFlags = 0xfffffffffffffffe;
   securityChecksum = GET_SECURITY_COOKIE() ^ (uint64_t)securityBuffer;
@@ -721,62 +611,51 @@ void SystemResourceCleaner_CleanupAndUnload(int64_t *resourceContext, uint64_t c
   resourceCache = resourceData;
   resourceData[0] = 0;
   resourceHash = 0xc;
-  
   /* 设置清理标识符 */
   strcpy_s(resourceData, 0x80, &CleanupIdentifier_Default);
   resourceName = &ResourceName_Default;
-  
   /* 获取资源名称 */
   if ((void *)resourceContext[3] != (void *)0x0) {
     resourceName = (void *)resourceContext[3];
   }
-  
   /* 计算资源名称长度 */
   resourceSize = -1;
   do {
     resourceSize = resourceSize + 1;
   } while (resourceName[resourceSize] != '\0');
   resourceCount = (int)resourceSize;
-  
   /* 复制资源名称到缓存（如果空间足够） */
   if ((0 < resourceCount) && (resourceHash + resourceCount < 0x7f)) {
     memcpy(resourceCache + resourceHash, resourceName, (int64_t)(resourceCount + 1));
   }
-  
   /* 设置资源路径 */
   resourceName = &ResourceName_Default;
   if (resourceCache != (void *)0x0) {
     resourceName = resourceCache;
   }
-  
   /* 生成清理ID */
   ResourceCleaner_GenerateCleanupId(cleanupId, resourceName);
-  
   /* 获取资源引用 */
   resourceName = &ResourceName_Default;
   if ((void *)resourceContext[3] != (void *)0x0) {
     resourceName = (void *)resourceContext[3];
   }
-  
   /* 初始化资源列表 */
   resourceList = &currentResource;
   currentResource = &ResourceList_Default;
   resourcePath = resourceInfo;
   resourceIndex = 0;
   resourceInfo[0] = 0;
-  
   /* 如果资源存在，添加到清理列表 */
   if (resourceName != (void *)0x0) {
     ResourceCleaner_AddToCleanupList(&currentResource, resourceName);
     ResourceCleaner_RegisterForCleanup(*(int64_t *)(system_message_buffer + 0x1cd8) + 0x7f20, &currentResource);
   }
-  
   /* 检查是否需要立即清理 */
   if ((int)resourceContext[9] < 1) {
     cleanupTime = 0;
     cleanupTotal = timeoutMs;
     cleanupCounter = priorityLevel;
-    
     /* 执行清理操作 */
     (**(code **)(*resourceContext + 0x50))
               (resourceContext, contextData, (int)resourceContext[0x8a], *(int32_t *)((int64_t)resourceContext + 0x454));
@@ -786,31 +665,22 @@ void SystemResourceCleaner_CleanupAndUnload(int64_t *resourceContext, uint64_t c
     /* 递减清理计数器 */
     *(int *)(resourceContext + 9) = (int)resourceContext[9] + -1;
   }
-  
   /* 清理资源列表 */
   ResourceCleaner_DestroyCleanupList(&currentResource);
-  
   /* 更新系统状态 */
   SystemResourceManager_DecrementReferenceCount();
   SystemStateManager_UpdateState();
-  
   /* 安全检查和清理 */
   SecurityManager_VerifyChecksum(securityChecksum ^ (uint64_t)securityBuffer);
 }
-
-
-
-
-
-
 /**
  * @brief 双缓冲资源交换器
- * 
+ *
  * 负责在双缓冲系统中交换资源缓冲区
  * 确保在渲染或处理过程中平滑切换资源，避免闪烁和数据竞争
- * 
+ *
  * @param bufferManager 缓冲区管理器指针
- * 
+ *
  * @return void
  */
 void DoubleBufferManager_SwapBuffers(int64_t bufferManager)
@@ -818,158 +688,125 @@ void DoubleBufferManager_SwapBuffers(int64_t bufferManager)
   int64_t bufferOffset;
   int64_t *currentBuffer;
   int64_t *previousBuffer;
-  
   /* 设置缓冲区状态为交换中 */
   *(int32_t *)(bufferManager + 0x74 + (int64_t)*(int *)(bufferManager + 0x474) * 4) = 0xffffffe8;
-  
   /* 计算当前缓冲区偏移 */
   bufferOffset = bufferManager + (int64_t)*(int *)(bufferManager + 0x474) * 8;
-  
   /* 获取当前缓冲区 */
   currentBuffer = *(int64_t **)(bufferManager + (int64_t)*(int *)(bufferManager + 0x470) * 8 + 0x458);
   if (currentBuffer != (int64_t *)0x0) {
     (**(code **)(*currentBuffer + 0x28))(currentBuffer);
   }
-  
   /* 交换缓冲区指针 */
   previousBuffer = *(int64_t **)(bufferOffset + 0x138);
   *(int64_t **)(bufferOffset + 0x138) = currentBuffer;
   if (previousBuffer != (int64_t *)0x0) {
     (**(code **)(*previousBuffer + 0x38))();
   }
-  
   /* 获取备用缓冲区 */
   currentBuffer = *(int64_t **)(bufferManager + 0x458 + (int64_t)(1 - *(int *)(bufferManager + 0x470)) * 8);
   if (currentBuffer != (int64_t *)0x0) {
     (**(code **)(*currentBuffer + 0x28))(currentBuffer);
   }
-  
   /* 更新备用缓冲区指针 */
   previousBuffer = *(int64_t **)(bufferManager + 0x428);
   *(int64_t **)(bufferManager + 0x428) = currentBuffer;
   if (previousBuffer != (int64_t *)0x0) {
     (**(code **)(*previousBuffer + 0x38))();
   }
-  
   /* 切换缓冲区索引 */
   *(int *)(bufferManager + 0x470) = 1 - *(int *)(bufferManager + 0x470);
-  
   return;
 }
-
-
-
 /**
  * @brief 资源管理器构造函数
- * 
+ *
  * 负责初始化和创建资源管理器实例
  * 设置资源管理器的初始状态和回调函数
- * 
+ *
  * @param resourceManager 资源管理器指针
  * @param initialCapacity 初始容量
  * @param maxCapacity 最大容量
- * 
+ *
  * @return 资源管理器指针
  */
 uint64_t * ResourceManager_Constructor(uint64_t *resourceManager, int32_t initialCapacity, int32_t maxCapacity)
 {
   int64_t *resourceList;
   int64_t *resourceCache;
-  
   /* 初始化资源管理器 */
   SystemResourceManager_Initialize();
   *resourceManager = &ResourceManager_VTable_Initialize;
-  
   /* 设置容量参数 */
   *(int32_t *)(resourceManager + 0x8a) = initialCapacity;
   *(int32_t *)((int64_t)resourceManager + 0x454) = maxCapacity;
-  
   /* 设置资源管理器虚函数表 */
   *resourceManager = &ResourceManager_VTable_Main;
-  
   /* 初始化资源缓存系统 */
   ResourceCache_Initialize(resourceManager + 0x8b, 8, 2, &ResourceCache_SubTable, ResourceCache_Callback);
-  
   /* 初始化资源管理器状态 */
   resourceManager[0x8d] = 0;
   *(int32_t *)(resourceManager + 0x8e) = 0;
   *(int32_t *)((int64_t)resourceManager + 0x474) = 4;
-  
   /* 清理资源列表 */
   resourceList = (int64_t *)resourceManager[0x8c];
   resourceManager[0x8c] = 0;
   if (resourceList != (int64_t *)0x0) {
     (**(code **)(*resourceList + 0x38))();
   }
-  
   /* 再次清理资源列表（确保完全清理） */
   resourceList = (int64_t *)resourceManager[0x8c];
   if (resourceList != (int64_t *)0x0) {
     (**(code **)(*resourceList + 0x28))(resourceList);
   }
-  
   /* 清理资源缓存 */
   resourceCache = (int64_t *)resourceManager[0x8b];
   resourceManager[0x8b] = resourceList;
   if (resourceCache != (int64_t *)0x0) {
     (**(code **)(*resourceCache + 0x38))();
   }
-  
   return resourceManager;
 }
-
-
-
 /**
  * @brief 资源管理器析构函数
- * 
+ *
  * 负责销毁资源管理器实例并释放所有相关资源
  * 确保在销毁过程中正确清理所有资源引用
- * 
+ *
  * @param resourceManager 资源管理器指针
  * @param destroyFlags 销毁标志位
- * 
+ *
  * @return 资源管理器指针
  */
 uint64_t * ResourceManager_Destructor(uint64_t *resourceManager, uint64_t destroyFlags)
 {
   uint64_t memoryFlags;
-  
   /* 设置内存管理标志 */
   memoryFlags = 0xfffffffffffffffe;
   *resourceManager = &ResourceManager_VTable_Main;
-  
   /* 销毁资源管理器实例 */
   if ((int64_t *)resourceManager[0x8d] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)resourceManager[0x8d] + 0x38))();
   }
-  
   /* 清理资源缓存系统 */
   ResourceCache_Destroy(resourceManager + 0x8b, 8, 2, ResourceCache_Callback, memoryFlags);
-  
   /* 执行系统清理 */
   SystemResourceManager_PerformCleanup(resourceManager);
-  
   /* 根据标志位决定是否释放内存 */
   if ((destroyFlags & 1) != 0) {
     MemoryManager_FreeResourceMemory(resourceManager, 0x478);
   }
-  
   return resourceManager;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * @brief 资源管理器克隆器
- * 
+ *
  * 负责创建现有资源管理器的副本
  * 确保新创建的资源管理器具有与原始管理器相同的配置和状态
- * 
+ *
  * @param sourceManager 源资源管理器指针
- * 
+ *
  * @return 新创建的资源管理器指针
  */
 int64_t ResourceManager_Clone(int64_t sourceManager)
@@ -980,83 +817,64 @@ int64_t ResourceManager_Clone(int64_t sourceManager)
   int64_t newResourceManager;
   int64_t resourceCount;
   int64_t *resourcePointer;
-  
   /* 分配新的资源管理器内存 */
   newManager = MemoryManager_AllocateResourceMemory(system_memory_pool_ptr, 0x478, 8, 3, 0xfffffffffffffffe);
-  
   /* 初始化新的资源管理器 */
   newResourceManager = ResourceManager_Constructor(newManager, *(int32_t *)(sourceManager + 0x450), *(int32_t *)(sourceManager + 0x454));
-  
   /* 设置资源管理器关联 */
   SystemResourceManager_SetAssociation(newResourceManager, sourceManager);
-  
   /* 复制容量参数 */
   *(int32_t *)(newResourceManager + 0x450) = *(int32_t *)(sourceManager + 0x450);
   *(int32_t *)(newResourceManager + 0x454) = *(int32_t *)(sourceManager + 0x454);
-  
   /* 复制资源列表 */
   resourcePointer = (int64_t *)(newResourceManager + 0x458);
   resourceCount = 2;
-  
   /* 遍历并复制资源 */
   do {
     sourceResource = *(int64_t **)((sourceManager - newResourceManager) + (int64_t)resourcePointer);
     if (sourceResource != (int64_t *)0x0) {
       (**(code **)(*sourceResource + 0x28))(sourceResource);
     }
-    
     targetResource = (int64_t *)*resourcePointer;
     *resourcePointer = (int64_t)sourceResource;
     if (targetResource != (int64_t *)0x0) {
       (**(code **)(*targetResource + 0x38))();
     }
-    
     resourcePointer = resourcePointer + 1;
     resourceCount = resourceCount + -1;
   } while (resourceCount != 0);
-  
   /* 复制资源管理器引用 */
   resourcePointer = *(int64_t **)(sourceManager + 0x468);
   if (resourcePointer != (int64_t *)0x0) {
     (**(code **)(*resourcePointer + 0x28))(resourcePointer);
   }
-  
   sourceResource = *(int64_t **)(newResourceManager + 0x468);
   *(int64_t **)(newResourceManager + 0x468) = resourcePointer;
   if (sourceResource != (int64_t *)0x0) {
     (**(code **)(*sourceResource + 0x38))();
   }
-  
   /* 复制状态参数 */
   *(int32_t *)(newResourceManager + 0x470) = *(int32_t *)(sourceManager + 0x470);
   *(int32_t *)(newResourceManager + 0x474) = *(int32_t *)(sourceManager + 0x474);
-  
   return newResourceManager;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /**
  * @brief 系统状态重置管理器
- * 
+ *
  * 负责重置系统状态并清理相关资源
  * 确保系统在状态重置过程中保持一致性
- * 
+ *
  * @param systemContext 系统上下文指针
  * @param resetFlags 重置标志位
  * @param contextData 上下文数据
  * @param priorityLevel 优先级级别
  * @param timeoutMs 超时时间（毫秒）
- * 
+ *
  * @return void
  */
-void SystemStateManager_ResetState(int64_t *systemContext, uint64_t resetFlags, 
-                                  uint64_t contextData, int32_t priorityLevel, 
+void SystemStateManager_ResetState(int64_t *systemContext, uint64_t resetFlags,
+                                  uint64_t contextData, int32_t priorityLevel,
                                   int32_t timeoutMs)
 {
   int64_t *stateManager;
@@ -1069,8 +887,7 @@ void SystemStateManager_ResetState(int64_t *systemContext, uint64_t resetFlags,
   int64_t *previousStateManager;
   uint64_t memoryFlags;
   int64_t *currentStateManager;
-  
-  uStack_40 = 0xfffffffffffffffe;
+  local_var_40 = 0xfffffffffffffffe;
   plVar1 = (int64_t *)param_1[0x8d];
   plStack_38 = plVar1;
   if (plVar1 != (int64_t *)0x0) {
@@ -1138,23 +955,16 @@ void SystemStateManager_ResetState(int64_t *systemContext, uint64_t resetFlags,
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 /**
  * @brief 用户界面资源管理器
- * 
+ *
  * 负责管理用户界面相关资源的生命周期
  * 包括纹理、字体、布局等UI资源的加载和释放
- * 
+ *
  * @param uiManager UI管理器指针
  * @param eventData 事件数据指针
- * 
+ *
  * @return void
  */
 void UIResourceManager_ManageUIResources(int64_t *uiManager, int64_t eventData)
@@ -1195,12 +1005,10 @@ void UIResourceManager_ManageUIResources(int64_t *uiManager, int64_t eventData)
   int32_t fontSize;
   int8_t fontData [136];
   uint64_t securityChecksum;
-  
   /* 初始化安全检查和内存管理 */
   memoryFlags = 0xfffffffffffffffe;
   securityChecksum = GET_SECURITY_COOKIE() ^ (uint64_t)securityBuffer;
   UIResourceManager_Initialize();
-  
   /* 初始化UI资源参数 */
   textureFlags = 1;
   fontFlags = 1;
@@ -1213,12 +1021,10 @@ void UIResourceManager_ManageUIResources(int64_t *uiManager, int64_t eventData)
   layoutFlags = (int32_t)uiManager[0xe];
   textureFormat = 1;
   resourceDeviceId = *(uint *)(eventData + 0x1bd4);
-  
   /* 处理字符事件 */
   if (*(char *)((int64_t)uiManager + 0x4c) == '\0') {
     resourceWidth = (int)(int64_t)(double)uiManager[0xb];
     resourceHeight = (int)(int64_t)(double)uiManager[0xc];
-    
     /* 处理纹理资源 */
     if (uiManager[0x8b] == 0) {
       textureManager = &UITextureManager_Default;
@@ -1239,7 +1045,6 @@ void UIResourceManager_ManageUIResources(int64_t *uiManager, int64_t eventData)
       }
       textureManager = &UITextureManager_Cleanup;
     }
-    
     /* 处理字体资源 */
     if (uiManager[0x8c] == 0) {
       fontManager = &UIFontManager_Default;
@@ -1273,7 +1078,6 @@ void UIResourceManager_ManageUIResources(int64_t *uiManager, int64_t eventData)
     if (4 < (int)resourceHeight) {
       resourceHeight = (int)resourceHeight;
     }
-    
     /* 注册纹理资源 */
     fontManager = &UIFontManager_Default;
     fontPath = fontData;
@@ -1292,7 +1096,6 @@ void UIResourceManager_ManageUIResources(int64_t *uiManager, int64_t eventData)
       (**(code **)(*textureResource + 0x38))();
     }
     fontManager = &UIFontManager_Cleanup;
-    
     /* 注册字体资源 */
     textureManager = &UITextureManager_Default;
     texturePath = textureInfo;
@@ -1312,7 +1115,6 @@ void UIResourceManager_ManageUIResources(int64_t *uiManager, int64_t eventData)
     }
     textureManager = &UITextureManager_Cleanup;
   }
-  
   /* 调用UI资源清理函数 */
   (**(code **)(*uiManager + 0x40))(uiManager, 0);
   textureResource = (int64_t *)uiManager[0x89];
@@ -1320,104 +1122,87 @@ void UIResourceManager_ManageUIResources(int64_t *uiManager, int64_t eventData)
   if (textureResource != (int64_t *)0x0) {
     (**(code **)(*textureResource + 0x38))();
   }
-  
   /* 安全检查和清理 */
   SecurityManager_VerifyChecksum(securityChecksum ^ (uint64_t)securityBuffer);
 }
-
-
-
 /**
  * @brief UI系统内存管理器析构函数
- * 
+ *
  * 专门负责UI系统内存资源的释放和管理
  * 确保UI相关的内存资源在系统关闭时被正确清理
- * 
+ *
  * @param uiMemoryManager UI内存管理器指针
  * @param destroyFlags 销毁标志位
  * @param uiContext UI上下文
  * @param additionalData 附加数据指针
- * 
+ *
  * @return UI内存管理器指针
  */
-uint64_t * UIMemoryManager_Destroy(uint64_t *uiMemoryManager, uint64_t destroyFlags, 
+uint64_t * UIMemoryManager_Destroy(uint64_t *uiMemoryManager, uint64_t destroyFlags,
                                   uint64_t uiContext, uint64_t additionalData)
 {
   uint64_t memoryFlags;
-  
   /* 设置内存管理器标志 */
   memoryFlags = 0xfffffffffffffffe;
   *uiMemoryManager = &UIMemoryManager_VTable_Destroy;
-  
   /* 执行UI系统清理 */
   SystemUIManager_PerformCleanup();
-  
   /* 根据标志位决定是否释放UI内存 */
   if ((destroyFlags & 1) != 0) {
     MemoryManager_FreeUIMemory(uiMemoryManager, 0x450, uiContext, additionalData, memoryFlags);
   }
-  
   return uiMemoryManager;
 }
-
 /* ===================================== */
 /* 技术架构总结 */
 /* ===================================== */
-
 /**
  * @file 99_part_06_part080.c
  * @brief 系统资源管理和状态同步模块
- * 
+ *
  * 本模块实现了游戏核心系统的资源管理、状态同步和内存分配功能
  * 负责维护游戏运行时的资源生命周期和系统状态一致性
- * 
+ *
  * 主要技术特点：
- * 
+ *
  * 1. 资源生命周期管理
  *    - 实现了完整的资源分配、使用和释放机制
  *    - 支持多种资源类型（纹理、字体、音频等）
  *    - 提供资源引用计数和自动清理功能
- * 
+ *
  * 2. 状态同步机制
  *    - 实现了系统状态的平滑切换和同步
  *    - 支持多状态管理和状态转换逻辑
  *    - 提供状态一致性检查和错误恢复
- * 
+ *
  * 3. 内存管理优化
  *    - 实现了高效的内存分配和释放策略
  *    - 支持内存池管理和碎片整理
  *    - 提供内存泄漏检测和性能监控
- * 
+ *
  * 4. 双缓冲技术
  *    - 实现了渲染资源的双缓冲交换
  *    - 避免资源竞争和闪烁问题
  *    - 提供平滑的资源切换体验
- * 
+ *
  * 5. 事件处理系统
  *    - 实现了完整的事件分发和处理机制
  *    - 支持多种事件类型（键盘、鼠标、UI等）
  *    - 提供事件优先级和队列管理
- * 
+ *
  * 性能优化策略：
  * - 使用对象池减少内存分配开销
  * - 实现懒加载机制优化资源使用
  * - 采用缓存机制提高访问速度
  * - 实现异步处理避免阻塞
- * 
+ *
  * 安全考虑：
  * - 实现了完整的错误检查和异常处理
  * - 提供内存保护和访问控制
  * - 支持资源验证和完整性检查
  * - 实现了安全的资源释放机制
- * 
+ *
  * 本模块是游戏系统的核心组件，为其他系统提供了稳定可靠的
  * 资源管理基础，确保游戏的高效运行和稳定性。
  */
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

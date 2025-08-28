@@ -1,17 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 99_part_04_part057.c - 3 个函数
-
-// 函数: void FUN_1802b880c(int32_t param_1,int32_t param_2,int32_t param_3,int32_t param_4,
-void FUN_1802b880c(int32_t param_1,int32_t param_2,int32_t param_3,int32_t param_4,
+// 函数: void function_2b880c(int32_t param_1,int32_t param_2,int32_t param_3,int32_t param_4,
+void function_2b880c(int32_t param_1,int32_t param_2,int32_t param_3,int32_t param_4,
                   uint64_t param_5,uint64_t param_6,uint64_t param_7,uint64_t param_8,
                   uint64_t param_9)
-
 {
   float fVar1;
   float fVar2;
@@ -42,7 +37,6 @@ void FUN_1802b880c(int32_t param_1,int32_t param_2,int32_t param_3,int32_t param
   int32_t uVar21;
   int32_t in_XMM4_Da;
   int32_t unaff_XMM11_Da;
-  
   unaff_RBP[-0xc] = param_1;
   pfVar17 = (float *)(unaff_RBP + -6);
   unaff_RBP[-4] = param_1;
@@ -187,41 +181,25 @@ void FUN_1802b880c(int32_t param_1,int32_t param_2,int32_t param_3,int32_t param
   uVar20 = (uint64_t)in_R10D;
   uVar19 = (lVar18 >> 5) - (lVar18 >> 0x3f);
   if (uVar19 < uVar20) {
-    FUN_1802beaf0(uVar21,uVar20 - uVar19);
+    function_2beaf0(uVar21,uVar20 - uVar19);
   }
   else {
     unaff_R15[1] = uVar20 * 0x70 + *unaff_R15;
   }
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x14) ^ (uint64_t)&stack0x00000000);
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x14) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
-
-// 函数: void FUN_1802b8b16(void)
-void FUN_1802b8b16(void)
-
+// 函数: void function_2b8b16(void)
+void function_2b8b16(void)
 {
   int64_t unaff_RBP;
-  
-  FUN_1802beaf0();
-                    // WARNING: Subroutine does not return
-  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&stack0x00000000);
+  function_2beaf0();
+// WARNING: Subroutine does not return
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x50) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1802b8b50(uint64_t *param_1)
-void FUN_1802b8b50(uint64_t *param_1)
-
+// 函数: void function_2b8b50(uint64_t *param_1)
+void function_2b8b50(uint64_t *param_1)
 {
   int32_t uVar1;
   int32_t uVar2;
@@ -231,10 +209,9 @@ void FUN_1802b8b50(uint64_t *param_1)
   uint64_t *puVar6;
   int64_t lVar7;
   uint64_t *puVar8;
-  
   puVar8 = (uint64_t *)param_1[1];
   if (puVar8 < (uint64_t *)param_1[2]) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(puVar8,0,0x70);
   }
   puVar6 = (uint64_t *)*param_1;
@@ -281,14 +258,7 @@ joined_r0x0001802b8c01:
     *(int32_t *)((int64_t)puVar5 + 0x6c) = uVar3;
     puVar5 = puVar5 + 0xe;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(puVar5,0,0x70);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

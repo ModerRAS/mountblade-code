@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_08_part074.c - 5 个函数
-
-// 函数: void FUN_1805ba49e(void)
-void FUN_1805ba49e(void)
-
+// 函数: void function_5ba49e(void)
+void function_5ba49e(void)
 {
   int32_t *puVar1;
   float fVar2;
@@ -42,7 +39,6 @@ void FUN_1805ba49e(void)
   float fVar30;
   float unaff_XMM6_Da;
   uint64_t uVar28;
-  
   if (unaff_R15D <= *(int *)(unaff_RBX + 0x2010)) {
     *(int8_t *)(unaff_RBX + 0x1c48) = 0;
     if ((*(uint *)(unaff_R14 + 1) & 0x8000000) == 0) {
@@ -291,19 +287,12 @@ LAB_1805ba95e:
     *(int32_t *)(unaff_RBX + 0x1c2c) = 0;
   }
   if (unaff_R13B != '\0') {
-    FUN_1805beae0();
+    function_5beae0();
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805ba4c4(void)
-void FUN_1805ba4c4(void)
-
+// 函数: void function_5ba4c4(void)
+void function_5ba4c4(void)
 {
   int32_t *puVar1;
   float fVar2;
@@ -340,7 +329,6 @@ void FUN_1805ba4c4(void)
   float fVar30;
   float unaff_XMM6_Da;
   uint64_t uVar28;
-  
   *(int8_t *)(unaff_RBX + 0x1c48) = 0;
   if ((*(uint *)(unaff_R14 + 1) & 0x8000000) == 0) {
     bVar13 = (byte)((uint)*(int32_t *)(*(int64_t *)*unaff_R14 + 0x564) >> 0x1f) ^ 1;
@@ -587,32 +575,18 @@ LAB_1805ba95e:
   *(int32_t *)(unaff_RBX + 0x1c24) = 0xffffffff;
   *(int32_t *)(unaff_RBX + 0x1c2c) = 0;
   if (unaff_R13B != '\0') {
-    FUN_1805beae0();
+    function_5beae0();
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805ba9f1(void)
-void FUN_1805ba9f1(void)
-
+// 函数: void function_5ba9f1(void)
+void function_5ba9f1(void)
 {
-  FUN_1805beae0();
+  function_5beae0();
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805baa03(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_4)
-void FUN_1805baa03(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_4)
-
+// 函数: void function_5baa03(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_4)
+void function_5baa03(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
   int64_t lVar2;
@@ -627,7 +601,6 @@ void FUN_1805baa03(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_
   uint64_t in_XMM5_Qb;
   int32_t unaff_XMM6_Da;
   int32_t unaff_XMM6_Db;
-  
   if (param_3 != -2) {
     lVar2 = (int64_t)(param_3 + 3) * 0x3c;
     puVar1 = (uint64_t *)(lVar2 + 0x1c10 + unaff_RBX);
@@ -648,19 +621,12 @@ void FUN_1805baa03(uint64_t param_1,uint64_t param_2,int param_3,uint64_t param_
   *(int32_t *)(unaff_RBX + 0x1c24) = 0xffffffff;
   *(int32_t *)(unaff_RBX + 0x1c2c) = unaff_ESI;
   if (unaff_R13B != '\0') {
-    FUN_1805beae0();
+    function_5beae0();
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805baa20(int64_t *param_1)
-void FUN_1805baa20(int64_t *param_1)
-
+// 函数: void function_5baa20(int64_t *param_1)
+void function_5baa20(int64_t *param_1)
 {
   float fVar1;
   uint uVar2;
@@ -680,7 +646,6 @@ void FUN_1805baa20(int64_t *param_1)
   float fVar16;
   float fVar17;
   float fVar18;
-  
   uVar15 = 0;
   lVar6 = param_1[0x291];
   *(int32_t *)((int64_t)param_1 + 0x1b6c) = 0;
@@ -767,9 +732,3 @@ LAB_1805babfd:
     uVar13 = (uint64_t)uVar7;
   } while( true );
 }
-
-
-
-
-
-

@@ -1,10 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 02_core_engine_part002.c - 核心引擎模块第二部分
 // 包含26个核心引擎功能函数
-
 // 全局变量声明
-uint8_t engine_registry_function;  // FUN_1800670d0 - 引擎注册函数指针
+uint8_t engine_registry_function;  // function_0670d0 - 引擎注册函数指针
 uint8_t engine_config_table;         // processed_var_688 - 引擎配置表
 uint8_t engine_global_state;         // system_memory_c170 - 引擎全局状态
 uint8_t engine_module_table;         // processed_var_528 - 引擎模块表
@@ -84,8 +82,6 @@ uint8_t engine_condition_vars;      // rendering_buffer_2088 - 引擎条件变�
 uint8_t engine_allocator;           // processed_var_560 - 引擎分配器
 uint8_t engine_heap_manager;         // ui_system_data_1024 - 引擎堆管理器
 uint8_t engine_stack_allocator;      // processed_var_924 - 引擎栈分配器
-
-
 /**
  * 注册音频渲染组件到引擎系统
  * 将音频渲染相关的组件注册到引擎的核心系统中
@@ -102,16 +98,14 @@ void register_audio_renderer_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_audio_renderer;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &AUDIO_RENDERER_ID, 0x10);
     if (compare_result < 0) {
@@ -125,16 +119,14 @@ void register_audio_renderer_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&AUDIO_RENDERER_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置音频渲染组件参数
+// 设置音频渲染组件参数
   target_component[6] = 0x45425dc186a5d575;  // 音频渲染器标识符
   target_component[7] = 0xfab48faa65382fa5;  // 音频渲染器版本
   target_component[8] = &audio_renderer_vtable;  // 虚函数表
@@ -142,8 +134,6 @@ void register_audio_renderer_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册视频渲染组件到引擎系统
  * 将视频渲染相关的组件注册到引擎的核心系统中
@@ -160,16 +150,14 @@ void register_video_renderer_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_video_renderer;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &VIDEO_RENDERER_ID, 0x10);
     if (compare_result < 0) {
@@ -183,16 +171,14 @@ void register_video_renderer_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&VIDEO_RENDERER_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置视频渲染组件参数
+// 设置视频渲染组件参数
   target_component[6] = 0x43330a43fcdb3653;  // 视频渲染器标识符
   target_component[7] = 0xdcfdc333a769ec93;  // 视频渲染器版本
   target_component[8] = &video_renderer_vtable;  // 虚函数表
@@ -200,8 +186,6 @@ void register_video_renderer_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册3D渲染组件到引擎系统
  * 将3D渲染相关的组件注册到引擎的核心系统中
@@ -218,16 +202,14 @@ void register_3d_renderer_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_3d_renderer;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &RENDERER_3D_ID, 0x10);
     if (compare_result < 0) {
@@ -241,16 +223,14 @@ void register_3d_renderer_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&RENDERER_3D_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置3D渲染组件参数
+// 设置3D渲染组件参数
   target_component[6] = 0x431d7c8d7c475be2;  // 3D渲染器标识符
   target_component[7] = 0xb97f048d2153e1b0;  // 3D渲染器版本
   target_component[8] = &renderer_3d_vtable;  // 虚函数表
@@ -258,8 +238,6 @@ void register_3d_renderer_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册2D渲染组件到引擎系统
  * 将2D渲染相关的组件注册到引擎的核心系统中
@@ -276,16 +254,14 @@ void register_2d_renderer_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 2D渲染器没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &RENDERER_2D_ID, 0x10);
     if (compare_result < 0) {
@@ -299,16 +275,14 @@ void register_2d_renderer_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&RENDERER_2D_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置2D渲染组件参数
+// 设置2D渲染组件参数
   target_component[6] = 0x4b2d79e470ee4e2c;  // 2D渲染器标识符
   target_component[7] = 0x9c552acd3ed5548d;  // 2D渲染器版本
   target_component[8] = &renderer_2d_vtable;  // 虚函数表
@@ -316,8 +290,6 @@ void register_2d_renderer_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册UI渲染组件到引擎系统
  * 将UI渲染相关的组件注册到引擎的核心系统中
@@ -334,16 +306,14 @@ void register_ui_renderer_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_ui_renderer;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &UI_RENDERER_ID, 0x10);
     if (compare_result < 0) {
@@ -357,16 +327,14 @@ void register_ui_renderer_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&UI_RENDERER_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置UI渲染组件参数
+// 设置UI渲染组件参数
   target_component[6] = 0x49086ba08ab981a7;  // UI渲染器标识符
   target_component[7] = 0xa9191d34ad910696;  // UI渲染器版本
   target_component[8] = &ui_renderer_vtable;  // 虚函数表
@@ -374,8 +342,6 @@ void register_ui_renderer_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册纹理渲染组件到引擎系统
  * 将纹理渲染相关的组件注册到引擎的核心系统中
@@ -392,16 +358,14 @@ void register_texture_renderer_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 纹理渲染器没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &TEXTURE_RENDERER_ID, 0x10);
     if (compare_result < 0) {
@@ -415,16 +379,14 @@ void register_texture_renderer_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&TEXTURE_RENDERER_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置纹理渲染组件参数
+// 设置纹理渲染组件参数
   target_component[6] = 0x402feffe4481676e;  // 纹理渲染器标识符
   target_component[7] = 0xd4c2151109de93a0;  // 纹理渲染器版本
   target_component[8] = &texture_renderer_vtable;  // 虚函数表
@@ -432,8 +394,6 @@ void register_texture_renderer_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册阴影渲染组件到引擎系统
  * 将阴影渲染相关的组件注册到引擎的核心系统中
@@ -450,16 +410,14 @@ void register_shadow_renderer_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = &shadow_renderer_handler;  // 阴影渲染器处理函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &SHADOW_RENDERER_ID, 0x10);
     if (compare_result < 0) {
@@ -473,16 +431,14 @@ void register_shadow_renderer_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&SHADOW_RENDERER_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置阴影渲染组件参数
+// 设置阴影渲染组件参数
   target_component[6] = 0x4384dcc4b6d3f417;  // 阴影渲染器标识符
   target_component[7] = 0x92a15d52fe2679bd;  // 阴影渲染器版本
   target_component[8] = &shadow_renderer_vtable;  // 虚函数表
@@ -490,8 +446,6 @@ void register_shadow_renderer_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册后处理渲染组件到引擎系统
  * 将后处理渲染相关的组件注册到引擎的核心系统中
@@ -508,16 +462,14 @@ void register_postprocess_renderer_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 后处理渲染器没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &POSTPROCESS_RENDERER_ID, 0x10);
     if (compare_result < 0) {
@@ -531,16 +483,14 @@ void register_postprocess_renderer_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&POSTPROCESS_RENDERER_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置后处理渲染组件参数
+// 设置后处理渲染组件参数
   target_component[6] = 0x4140994454d56503;  // 后处理渲染器标识符
   target_component[7] = 0x399eced9bb5517ad;  // 后处理渲染器版本
   target_component[8] = &postprocess_renderer_vtable;  // 虚函数表
@@ -548,10 +498,7 @@ void register_postprocess_renderer_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 // 警告：以下全局变量与其他符号在相同地址重叠
-
 /**
  * 初始化网络系统组件
  * 设置网络系统的基础配置和初始化参数
@@ -563,7 +510,6 @@ void initialize_network_system_component(void)
   network_params *net_params;
   uint32_t buffer_size;
   char config_buffer[136];
-  
   network_cfg = &default_network_config;
   net_params = config_buffer;
   config_buffer[0] = 0;
@@ -572,10 +518,7 @@ void initialize_network_system_component(void)
   network_global_handle = create_network_system(&network_cfg);
   return;
 }
-
-
 // 警告：以下全局变量与其他符号在相同地址重叠
-
 /**
  * 验证网络系统配置
  * 检查网络系统的配置参数是否有效
@@ -584,11 +527,8 @@ int validate_network_system_configuration(void)
 {
   int64_t validation_result;
   uint64_t system_parameter;
-  
   network_config_base = &network_config_template;
   network_config_params = &network_config_defaults;
-
-
 /**
  * 注册物理系统组件到引擎系统
  * 将物理系统相关的组件注册到引擎的核心系统中
@@ -605,16 +545,14 @@ void register_physics_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_physics_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &PHYSICS_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -628,16 +566,14 @@ void register_physics_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&PHYSICS_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置物理系统组件参数
+// 设置物理系统组件参数
   target_component[6] = 0x406be72011d07d37;  // 物理系统标识符
   target_component[7] = 0x71876af946c867ab;  // 物理系统版本
   target_component[8] = &physics_system_vtable;  // 虚函数表
@@ -645,8 +581,6 @@ void register_physics_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册动画系统组件到引擎系统
  * 将动画系统相关的组件注册到引擎的核心系统中
@@ -663,16 +597,14 @@ void register_animation_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_animation_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &ANIMATION_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -686,16 +618,14 @@ void register_animation_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&ANIMATION_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置动画系统组件参数
+// 设置动画系统组件参数
   target_component[6] = 0x40afa5469b6ac06d;  // 动画系统标识符
   target_component[7] = 0x2f4bab01d34055a5;  // 动画系统版本
   target_component[8] = &animation_system_vtable;  // 虚函数表
@@ -703,8 +633,6 @@ void register_animation_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册碰撞系统组件到引擎系统
  * 将碰撞系统相关的组件注册到引擎的核心系统中
@@ -721,16 +649,14 @@ void register_collision_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_collision_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &COLLISION_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -744,16 +670,14 @@ void register_collision_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&COLLISION_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置碰撞系统组件参数
+// 设置碰撞系统组件参数
   target_component[6] = 0x406be72011d07d37;  // 碰撞系统标识符
   target_component[7] = 0x71876af946c867ab;  // 碰撞系统版本
   target_component[8] = &collision_system_vtable;  // 虚函数表
@@ -761,8 +685,6 @@ void register_collision_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册刚体系统组件到引擎系统
  * 将刚体系统相关的组件注册到引擎的核心系统中
@@ -779,16 +701,14 @@ void register_rigidbody_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_rigidbody_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &RIGIDBODY_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -802,16 +722,14 @@ void register_rigidbody_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&RIGIDBODY_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置刚体系统组件参数
+// 设置刚体系统组件参数
   target_component[6] = 0x40afa5469b6ac06d;  // 刚体系统标识符
   target_component[7] = 0x2f4bab01d34055a5;  // 刚体系统版本
   target_component[8] = &rigidbody_system_vtable;  // 虚函数表
@@ -819,8 +737,6 @@ void register_rigidbody_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册约束系统组件到引擎系统
  * 将约束系统相关的组件注册到引擎的核心系统中
@@ -837,16 +753,14 @@ void register_constraint_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 约束系统没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &CONSTRAINT_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -860,16 +774,14 @@ void register_constraint_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&CONSTRAINT_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置约束系统组件参数
+// 设置约束系统组件参数
   target_component[6] = 0x4b2d79e470ee4e2c;  // 约束系统标识符
   target_component[7] = 0x9c552acd3ed5548d;  // 约束系统版本
   target_component[8] = &constraint_system_vtable;  // 虚函数表
@@ -877,8 +789,6 @@ void register_constraint_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册触发器系统组件到引擎系统
  * 将触发器系统相关的组件注册到引擎的核心系统中
@@ -895,16 +805,14 @@ void register_trigger_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_trigger_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &TRIGGER_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -918,16 +826,14 @@ void register_trigger_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&TRIGGER_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置触发器系统组件参数
+// 设置触发器系统组件参数
   target_component[6] = 0x49086ba08ab981a7;  // 触发器系统标识符
   target_component[7] = 0xa9191d34ad910696;  // 触发器系统版本
   target_component[8] = &trigger_system_vtable;  // 虚函数表
@@ -935,8 +841,6 @@ void register_trigger_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册力场系统组件到引擎系统
  * 将力场系统相关的组件注册到引擎的核心系统中
@@ -953,16 +857,14 @@ void register_forcefield_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 力场系统没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &FORCEFIELD_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -976,16 +878,14 @@ void register_forcefield_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&FORCEFIELD_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置力场系统组件参数
+// 设置力场系统组件参数
   target_component[6] = 0x402feffe4481676e;  // 力场系统标识符
   target_component[7] = 0xd4c2151109de93a0;  // 力场系统版本
   target_component[8] = &forcefield_system_vtable;  // 虚函数表
@@ -993,8 +893,6 @@ void register_forcefield_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册布料系统组件到引擎系统
  * 将布料系统相关的组件注册到引擎的核心系统中
@@ -1011,16 +909,14 @@ void register_cloth_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = &cloth_system_handler;  // 布料系统处理函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &CLOTH_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -1034,16 +930,14 @@ void register_cloth_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&CLOTH_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置布料系统组件参数
+// 设置布料系统组件参数
   target_component[6] = 0x4384dcc4b6d3f417;  // 布料系统标识符
   target_component[7] = 0x92a15d52fe2679bd;  // 布料系统版本
   target_component[8] = &cloth_system_vtable;  // 虚函数表
@@ -1051,8 +945,6 @@ void register_cloth_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册流体系统组件到引擎系统
  * 将流体系统相关的组件注册到引擎的核心系统中
@@ -1069,16 +961,14 @@ void register_fluid_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 流体系统没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &FLUID_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -1092,16 +982,14 @@ void register_fluid_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&FLUID_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置流体系统组件参数
+// 设置流体系统组件参数
   target_component[6] = 0x4140994454d56503;  // 流体系统标识符
   target_component[7] = 0x399eced9bb5517ad;  // 流体系统版本
   target_component[8] = &fluid_system_vtable;  // 虚函数表
@@ -1109,10 +997,7 @@ void register_fluid_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 // 警告：以下全局变量与其他符号在相同地址重叠
-
 /**
  * 初始化物理材质系统
  * 设置物理材质系统的基础配置和初始化参数
@@ -1124,7 +1009,6 @@ void initialize_physics_material_system(void)
   physics_material_params *material_params;
   uint32_t buffer_size;
   char config_buffer[136];
-  
   material_cfg = &default_physics_material_config;
   material_params = config_buffer;
   config_buffer[0] = 0;
@@ -1133,8 +1017,6 @@ void initialize_physics_material_system(void)
   physics_material_global_handle = create_physics_material_system(&material_cfg);
   return;
 }
-
-
 /**
  * 注册音频系统组件到引擎系统
  * 将音频系统相关的组件注册到引擎的核心系统中
@@ -1151,16 +1033,14 @@ void register_audio_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_audio_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &AUDIO_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -1174,16 +1054,14 @@ void register_audio_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&AUDIO_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置音频系统组件参数
+// 设置音频系统组件参数
   target_component[6] = 0x43330a43fcdb3653;  // 音频系统标识符
   target_component[7] = 0xdcfdc333a769ec93;  // 音频系统版本
   target_component[8] = &audio_system_vtable;  // 虚函数表
@@ -1191,8 +1069,6 @@ void register_audio_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册3D音频系统组件到引擎系统
  * 将3D音频系统相关的组件注册到引擎的核心系统中
@@ -1209,16 +1085,14 @@ void register_3d_audio_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_3d_audio_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &AUDIO_3D_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -1232,16 +1106,14 @@ void register_3d_audio_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&AUDIO_3D_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置3D音频系统组件参数
+// 设置3D音频系统组件参数
   target_component[6] = 0x431d7c8d7c475be2;  // 3D音频系统标识符
   target_component[7] = 0xb97f048d2153e1b0;  // 3D音频系统版本
   target_component[8] = &audio_3d_system_vtable;  // 虚函数表
@@ -1249,8 +1121,6 @@ void register_3d_audio_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册音频流系统组件到引擎系统
  * 将音频流系统相关的组件注册到引擎的核心系统中
@@ -1267,16 +1137,14 @@ void register_audio_stream_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = NULL;  // 音频流系统没有初始化函数
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &AUDIO_STREAM_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -1290,16 +1158,14 @@ void register_audio_stream_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&AUDIO_STREAM_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置音频流系统组件参数
+// 设置音频流系统组件参数
   target_component[6] = 0x4b2d79e470ee4e2c;  // 音频流系统标识符
   target_component[7] = 0x9c552acd3ed5548d;  // 音频流系统版本
   target_component[8] = &audio_stream_system_vtable;  // 虚函数表
@@ -1307,8 +1173,6 @@ void register_audio_stream_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-
 /**
  * 注册音频混音系统组件到引擎系统
  * 将音频混音系统相关的组件注册到引擎的核心系统中
@@ -1325,16 +1189,14 @@ void register_audio_mixer_system_component(void)
   engine_component *next_component;
   engine_component *new_component;
   component_initializer *init_function;
-  
-  // 获取引擎注册表
+// 获取引擎注册表
   registry = (engine_registry *)get_engine_registry();
   component_table = (engine_component_table *)*registry;
   component_flag = *(char *)((int64_t)component_table[1] + 0x19);
   init_function = initialize_audio_mixer_system;
   target_component = component_table;
   current_component = (engine_component *)component_table[1];
-  
-  // 遍历组件树查找插入位置
+// 遍历组件树查找插入位置
   while (component_flag == '\0') {
     compare_result = memcmp(current_component + 4, &AUDIO_MIXER_SYSTEM_ID, 0x10);
     if (compare_result < 0) {
@@ -1348,16 +1210,14 @@ void register_audio_mixer_system_component(void)
     current_component = next_component;
     component_flag = *(char *)((int64_t)next_component + 0x19);
   }
-  
-  // 如果需要，创建新组件节点
-  if ((target_component == component_table) || 
+// 如果需要，创建新组件节点
+  if ((target_component == component_table) ||
       (compare_result = memcmp(&AUDIO_MIXER_SYSTEM_ID, target_component + 4, 0x10), compare_result < 0)) {
     allocation_size = allocate_component_memory(registry);
     insert_component_node(registry, &new_component, target_component, allocation_size + 0x20, allocation_size);
     target_component = new_component;
   }
-  
-  // 设置音频混音系统组件参数
+// 设置音频混音系统组件参数
   target_component[6] = 0x49086ba08ab981a7;  // 音频混音系统标识符
   target_component[7] = 0xa9191d34ad910696;  // 音频混音系统版本
   target_component[8] = &audio_mixer_system_vtable;  // 虚函数表
@@ -1365,5 +1225,3 @@ void register_audio_mixer_system_component(void)
   target_component[10] = init_function;  // 初始化函数
   return;
 }
-
-

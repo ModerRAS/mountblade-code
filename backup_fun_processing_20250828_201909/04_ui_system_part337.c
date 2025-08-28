@@ -98,8 +98,8 @@ uint64_t FUN_180851490(int64_t param_1,int64_t param_2)
       if ((((int)uVar3 == 0) &&
           (((lVar2 == 0 ||
             (uVar3 = FUN_1808c19d0(*(uint64_t *)(param_2 + 0x38),lVar2), (int)uVar3 == 0)) &&
-           (uVar3 = func_0x0001808c1de0(*(uint64_t *)(param_1 + 0x10),param_2), (int)uVar3 == 0)))
-          ) && ((uVar3 = func_0x000180853810(*(uint64_t *)(param_1 + 0x10),param_2),
+           (uVar3 = MathFunction_ValidateResult(*(uint64_t *)(param_1 + 0x10),param_2), (int)uVar3 == 0)))
+          ) && ((uVar3 = MathFunction_CalculateDistance(*(uint64_t *)(param_1 + 0x10),param_2),
                 (int)uVar3 == 0 &&
                 (uVar3 = FUN_180853560(*(uint64_t *)(param_1 + 8),param_2), (int)uVar3 == 0)))) {
         plVar1 = (int64_t *)(param_2 + 0xb0);
@@ -125,7 +125,7 @@ uint64_t FUN_180851490(int64_t param_1,int64_t param_2)
           if (((*(short *)(*(int64_t *)(param_2 + 0x40) + 0xc) != 2) ||
               (uVar3 = FUN_180740d90(*(uint64_t *)(param_2 + 0x68)), (int)uVar3 == 0)) &&
              (uVar3 = FUN_18073f710(*(uint64_t *)(param_2 + 0x78)), (int)uVar3 == 0)) {
-            func_0x0001808bef10(*(uint64_t *)(param_1 + 0x10),param_2);
+            RenderingSystem_GetRenderState(*(uint64_t *)(param_1 + 0x10),param_2);
             uVar3 = 0;
           }
         }
@@ -156,9 +156,9 @@ uint64_t FUN_180851740(int64_t param_1)
   else {
     SystemMemoryAllocator(lVar5);
   }
-  puVar2 = (uint64_t *)func_0x000180851be0();
+  puVar2 = (uint64_t *)MemoryManager_AllocateBuffer();
   if (puVar2 == (uint64_t *)0x0) {
-    puVar2 = (uint64_t *)func_0x000180851be0();
+    puVar2 = (uint64_t *)MemoryManager_AllocateBuffer();
   }
   if (!bVar7) {
                     // WARNING: Subroutine does not return
@@ -621,9 +621,9 @@ uint64_t FUN_180851c50(int64_t param_1,uint64_t param_2,uint param_3)
   if (lVar1 != 0) {
     SystemMemoryAllocator(lVar1);
   }
-  plVar3 = (int64_t *)func_0x000180851be0(param_1 + 0x30,param_2);
+  plVar3 = (int64_t *)MemoryManager_AllocateBuffer(param_1 + 0x30,param_2);
   if (plVar3 == (int64_t *)0x0) {
-    plVar3 = (int64_t *)func_0x000180851be0(param_1,param_2);
+    plVar3 = (int64_t *)MemoryManager_AllocateBuffer(param_1,param_2);
   }
   if (((plVar3 != (int64_t *)0x0) && (*(int *)((int64_t)plVar3 + 0x24) != 0)) &&
      ((int)plVar3[1] != 0)) {

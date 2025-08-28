@@ -1,15 +1,10 @@
 /* 函数别名定义: DataDeserializer */
 #define DataDeserializer DataDeserializer
-
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part269_sub002.c - 1 个函数
-
-// 函数: void FUN_180417830(int64_t *param_1,float param_2,int64_t param_3)
-void FUN_180417830(int64_t *param_1,float param_2,int64_t param_3)
-
+// 函数: void function_417830(int64_t *param_1,float param_2,int64_t param_3)
+void function_417830(int64_t *param_1,float param_2,int64_t param_3)
 {
   code *UNRECOVERED_JUMPTABLE;
   bool bVar1;
@@ -20,7 +15,6 @@ void FUN_180417830(int64_t *param_1,float param_2,int64_t param_3)
   void *puVar6;
   int32_t uVar7;
   uint64_t uVar8;
-  
   uVar8 = 0xfffffffffffffffe;
   plVar3 = (int64_t *)param_1[2];
   plVar5 = param_1;
@@ -45,7 +39,7 @@ LAB_1804178f7:
     }
   }
   else {
-    plVar3 = (int64_t *)func_0x00018066bd70(plVar5);
+    plVar3 = (int64_t *)Function_7bfb2422(plVar5);
     if ((*(float *)(plVar5 + 4) <= param_2 && param_2 != *(float *)(plVar5 + 4)) &&
        (param_2 < *(float *)(plVar3 + 4))) {
       if (*plVar5 == 0) goto LAB_1804178f7;
@@ -84,7 +78,7 @@ LAB_1804178f9:
   plVar5 = plVar3;
   if (bVar1) {
     if (plVar3 != (int64_t *)param_1[1]) {
-      plVar5 = (int64_t *)func_0x00018066b9a0(plVar3);
+      plVar5 = (int64_t *)Function_e2d50782(plVar3);
       goto LAB_1804179c4;
     }
   }
@@ -97,8 +91,8 @@ LAB_180417a52:
       if (*(void **)(param_3 + 8) != (void *)0x0) {
         puVar6 = *(void **)(param_3 + 8);
       }
-                    // WARNING: Could not recover jumptable at 0x000180417a84. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x000180417a84. Too many branches
+// WARNING: Treating indirect jump as call
       (*UNRECOVERED_JUMPTABLE)(plVar5 + 5,puVar6,UNRECOVERED_JUMPTABLE);
       return;
     }
@@ -116,19 +110,14 @@ LAB_180417a52:
   *(int32_t *)(lVar4 + 0x38) = 0;
   *(int8_t *)(lVar4 + 0x40) = 0;
 LAB_180417a3d:
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemStateController(lVar4,plVar3,param_1,uVar7,uVar8);
 }
-
-
-
-uint64_t * FUN_180417a90(uint64_t *param_1,uint64_t *param_2,float param_3)
-
+uint64_t * function_417a90(uint64_t *param_1,uint64_t *param_2,float param_3)
 {
   uint64_t *puVar1;
   int64_t lVar2;
   uint64_t *puVar3;
-  
   puVar1 = (uint64_t *)param_1[2];
   puVar3 = param_1;
   if (puVar1 != (uint64_t *)0x0) {
@@ -146,7 +135,7 @@ uint64_t * FUN_180417a90(uint64_t *param_1,uint64_t *param_2,float param_3)
         DataDeserializer0(param_2,(uint64_t *)param_1[1] + 5);
         return param_2;
       }
-      lVar2 = func_0x00018066b9a0();
+      lVar2 = Function_e2d50782();
       DataDeserializer0(param_2,lVar2 + 0x28);
       return param_2;
     }
@@ -161,16 +150,11 @@ uint64_t * FUN_180417a90(uint64_t *param_1,uint64_t *param_2,float param_3)
   strcpy_s(param_2[1],0x40,&system_buffer_ptr,0,0,0xfffffffffffffffe);
   return param_2;
 }
-
-
-
-uint64_t * FUN_180417b70(uint64_t *param_1,uint64_t *param_2,float param_3,uint64_t param_4)
-
+uint64_t * function_417b70(uint64_t *param_1,uint64_t *param_2,float param_3,uint64_t param_4)
 {
   uint64_t *puVar1;
   uint64_t *puVar2;
   int64_t lVar3;
-  
   if (param_1[4] == 0) {
     *param_2 = &system_state_ptr;
     param_2[1] = 0;
@@ -182,7 +166,7 @@ uint64_t * FUN_180417b70(uint64_t *param_1,uint64_t *param_2,float param_3,uint6
     strcpy_s(param_2[1],0x40,&system_buffer_ptr,param_4,0,0xfffffffffffffffe);
   }
   else {
-    lVar3 = func_0x00018066b9a0(param_1);
+    lVar3 = Function_e2d50782(param_1);
     if (param_3 < *(float *)(lVar3 + 0x20) || param_3 == *(float *)(lVar3 + 0x20)) {
       puVar2 = (uint64_t *)param_1[2];
       while (puVar1 = puVar2, puVar1 != (uint64_t *)0x0) {
@@ -202,11 +186,4 @@ uint64_t * FUN_180417b70(uint64_t *param_1,uint64_t *param_2,float param_3,uint6
   }
   return param_2;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

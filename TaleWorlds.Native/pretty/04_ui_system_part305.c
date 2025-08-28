@@ -1,299 +1,245 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 //==============================================================================
 // 文件信息：04_ui_system_part305.c
 // 模块功能：UI系统向量处理模块 - 第305部分
 // 函数数量：6个核心函数
 // 主要功能：
-//   - UI向量数据处理和变换
-//   - 浮点数组的向量化运算
-//   - UI元素的批量坐标转换
-//   - 高性能数值计算和插值
-//   - 内存对齐的SIMD优化处理
+// - UI向量数据处理和变换
+// - 浮点数组的向量化运算
+// - UI元素的批量坐标转换
+// - 高性能数值计算和插值
+// - 内存对齐的SIMD优化处理
 //==============================================================================
-
 //------------------------------------------------------------------------------
 // 类型别名和常量定义
 //------------------------------------------------------------------------------
-
 // UI系统向量处理句柄类型
 typedef uint64_t UIVectorProcessorHandle;          // UI向量处理器句柄
 typedef uint64_t UIInterpolatorHandle;              // UI插值器句柄
 typedef uint64_t UIFloatArrayHandle;                // UI浮点数组句柄
 typedef uint64_t UIMatrixTransformHandle;          // UI矩阵变换句柄
-
 // UI向量处理状态常量
 #define UI_VECTOR_PROCESSOR_STATE_READY    0x00000001  // UI向量处理就绪
 #define UI_VECTOR_PROCESSOR_STATE_BUSY     0x00000002  // UI向量处理繁忙
 #define UI_VECTOR_PROCESSOR_STATE_ERROR    0x00000004  // UI向量处理错误
 #define UI_VECTOR_PROCESSOR_STATE_ACTIVE   0x00000010  // UI向量处理激活
-
 // UI向量处理标志常量
 #define UI_VECTOR_PROCESSOR_FLAG_ENABLED   0x00000001  // UI向量处理已启用
 #define UI_VECTOR_PROCESSOR_FLAG_AVX2     0x00000002  // UI向量处理支持AVX2
 #define UI_VECTOR_PROCESSOR_FLAG_FMA      0x00000004  // UI向量处理支持FMA
 #define UI_VECTOR_PROCESSOR_FLAG_ALIGNED  0x00000008  // UI向量处理内存对齐
-
 // UI向量处理错误码
 #define UI_VECTOR_PROCESSOR_SUCCESS       0            // 操作成功
 #define UI_VECTOR_PROCESSOR_ERROR_INVALID -1           // 无效参数
 #define UI_VECTOR_PROCESSOR_ERROR_MEMORY  -2           // 内存错误
 #define UI_VECTOR_PROCESSOR_ERROR_ALIGN   -3           // 对齐错误
 #define UI_VECTOR_PROCESSOR_ERROR_OVERFLOW -4          // 溢出错误
-
 // UI向量处理常量值
 #define UI_VECTOR_CONST_SCALE_FACTOR      4.656613e-10  // 缩放因子
 #define UI_VECTOR_CONST_ALIGNMENT        32           // 内存对齐大小
 #define UI_VECTOR_CONST_BATCH_SIZE       8             // 批处理大小
 #define UI_VECTOR_CONST_FLOAT_SCALE      0x30000000    // 浮点缩放常量
-
 //------------------------------------------------------------------------------
 // 函数别名定义
 //------------------------------------------------------------------------------
-
 // UI向量数据处理器 - 主要向量运算函数
-#define UIVectorDataProcessor            FUN_1808366a0
-
+#define UIVectorDataProcessor            function_8366a0
 // UI插值计算器 - 浮点数插值和变换
-#define UIInterpolatorCalculator          FUN_1808369c0
-
+#define UIInterpolatorCalculator          function_8369c0
 // UI批量变换器 - 批量坐标转换
-#define UIBatchTransformer                FUN_1808369de
-
+#define UIBatchTransformer                function_8369de
 // UI矩阵处理器 - 矩阵变换运算
-#define UIMatrixDataProcessor             FUN_180836a6a
-
+#define UIMatrixDataProcessor             function_836a6a
 // UI剩余处理器 - 剩余元素处理
-#define UIRemainderProcessor              FUN_180836c1f
-
+#define UIRemainderProcessor              function_836c1f
 // UI循环处理器 - 循环处理优化
-#define UILoopProcessor                   FUN_180836c30
-
+#define UILoopProcessor                   function_836c30
 //------------------------------------------------------------------------------
 // 模块功能说明
 //------------------------------------------------------------------------------
-
 /*
 模块功能概述：
   本模块是UI系统的向量处理组件，作为第305部分，提供UI元素的高性能
   向量运算和数据处理功能。
-
 主要功能：
   1. UI向量数据处理
      - 支持AVX2指令集的向量化运算
      - 高效的浮点数批量处理
      - 内存对齐优化和缓存友好
      - 支持SIMD并行计算
-
   2. UI插值计算
      - 线性插值和曲线插值
      - 浮点数的高精度计算
      - 支持多种插值模式
      - 实时动画插值处理
-
   3. UI坐标变换
      - 2D/3D坐标变换
      - 矩阵运算和投影变换
      - 视口坐标转换
      - UI元素定位和缩放
-
   4. 批量数据处理
      - 大规模数据集的批量处理
      - 循环展开和流水线优化
      - 内存预取和缓存优化
      - 多线程并行处理支持
-
 技术特点：
   - 使用AVX2/FMA指令集优化
   - 内存对齐访问提升性能
   - 向量化处理提高吞吐量
   - 支持批量处理减少开销
-
 使用场景：
   - UI动画系统的数值计算
   - UI元素的变换和投影
   - 大规模UI数据的处理
   - 实时渲染的数值运算
-
 注意事项：
   - 需要32字节内存对齐
   - 支持SIMD指令集的CPU
   - 优化批量处理性能
   - 注意浮点精度控制
 */
-
 //==============================================================================
 // UI系统向量处理模块 - 技术实现要点
 //==============================================================================
-
 /*
 1. 向量化处理架构：
    - 基于AVX2指令集的向量化设计
    - 256位SIMD寄存器并行处理
    - 支持单指令多数据流操作
    - 实现高效的内存访问模式
-
 2. 内存管理策略：
    - 32字节内存对齐保证最佳性能
    - 非连续内存访问优化
    - 缓存友好的数据布局
    - 减少缓存未命中和内存带宽
-
 3. 算法优化：
    - 循环展开减少分支开销
    - 指令级并行优化
    - 流水线执行提升吞吐量
    - 分支预测和消除
-
 4. 数值精度控制：
    - 高精度浮点运算
    - 防止数值溢出和下溢
    - 精度损失的最小化
    - 数值稳定性保证
-
 5. 性能优化：
    - 向量化指令的充分利用
    - 内存访问的连续性优化
    - CPU缓存的充分利用
    - 指令流水线的优化
-
 6. 错误处理：
    - 参数有效性验证
    - 内存访问边界检查
    - 数值范围验证
    - 异常情况的恢复
-
 7. 可维护性：
    - 清晰的函数接口定义
    - 详细的文档和注释
    - 统一的错误处理机制
    - 模块化的代码结构
-
 8. 扩展性：
    - 支持新的SIMD指令集
    - 可配置的处理参数
    - 插件化的功能扩展
    - 向后兼容性保证
 */
-
 //==============================================================================
 // UI系统向量处理模块 - 性能优化策略
 //==============================================================================
-
 /*
 1. SIMD指令优化：
    - 使用AVX2指令集进行256位向量化处理
    - FMA指令融合乘加运算减少指令数量
    - 向量gather/scatter操作优化非连续访问
    - 条件移动指令避免分支预测失败
-
 2. 内存访问优化：
    - 32字节对齐访问保证最佳性能
    - 预取指令减少内存延迟
    - 非临时存储避免缓存污染
    - 内存访问模式的向量化
-
 3. 循环优化：
    - 循环展开减少循环开销
    - 软件流水线隐藏延迟
    - 循环分块提高缓存利用率
    - 剩余元素的特殊处理
-
 4. 数值计算优化：
    - 查表法替代复杂计算
    - 快速近似算法
    - 数值范围限制和饱和运算
    - 特殊值的快速处理
-
 5. 并行处理：
    - 数据级并行SIMD
    - 指令级并行优化
    - 内存级并行访问
    - 线程级并行支持
-
 6. 缓存优化：
    - 数据重用减少内存访问
    - 缓存友好的数据布局
    - 预取策略优化
    - 缓存行对齐和填充
-
 7. 编译器优化：
    - 内联函数减少调用开销
    - 常量传播和折叠
    - 死代码消除
    - 循环不变量提升
-
 8. 平台适配：
    - CPU特性检测和优化
    - 运行时路径选择
    - 特定平台的优化代码
    - 性能监控和调优
 */
-
-
 //==============================================================================
 // UI系统向量处理模块 - 安全性考虑
 //==============================================================================
-
 /*
 1. 内存安全：
    - 严格的边界检查防止缓冲区溢出
    - 空指针检查避免段错误
    - 内存对齐验证防止总线错误
    - 栈溢出保护
-
 2. 数值安全：
    - 浮点数溢出和下溢检测
    - NaN和Inf值的处理
    - 数值精度损失控制
    - 数值范围验证
-
 3. 并发安全：
    - 线程安全的数据访问
    - 原子操作和内存屏障
    - 数据竞争的避免
    - 锁-free算法设计
-
 4. 输入验证：
    - 参数有效性检查
    - 数据类型验证
    - 范围和边界验证
    - 格式和结构验证
-
 5. 错误处理：
    - 优雅的错误恢复
    - 错误码和异常处理
    - 日志记录和调试信息
    - 错误传播和处理
-
 6. 资源管理：
    - 内存泄漏防护
    - 资源使用限制
    - 资源回收和清理
    - 资源池管理
-
 7. 安全配置：
    - 安全参数验证
    - 配置文件安全检查
    - 运行时安全监控
    - 安全审计日志
-
 8. 防御性编程：
    - 假设验证和断言
    - 防御性拷贝
    - 最小权限原则
    - 安全的默认值
 */
-
 //------------------------------------------------------------------------------
 // 函数实现部分
 //------------------------------------------------------------------------------
-
 // 函数: UI向量数据处理器 - 主要向量运算函数
 void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,int64_t param_3,int64_t *param_4,
                            int64_t *param_5)
-
 {
   float *pfVar1;
   int32_t uVar2;
@@ -332,16 +278,15 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,int64_t param_3,i
   int8_t auVar34 [32];
   int8_t auVar35 [32];
   int8_t auVar36 [32];
-  int8_t auStack_f8 [24];
-  int8_t auStack_e0 [32];
-  uint64_t auStack_b8 [22];
-  
-  puVar18 = auStack_b8;
-  auStack_b8[0] = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_b8;
+  int8_t stack_array_f8 [24];
+  int8_t stack_array_e0 [32];
+  uint64_t stack_array_b8 [22];
+  puVar18 = stack_array_b8;
+  stack_array_b8[0] = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_b8;
   uVar17 = (uint64_t)param_1 & 0x1f;
-                    // WARNING: Read-only address (ram,0x000180980c00) is written
-                    // WARNING: Read-only address (ram,0x000180980ca0) is written
-                    // WARNING: Read-only address (ram,0x000180a40840) is written
+// WARNING: Read-only address (ram,0x000180980c00) is written
+// WARNING: Read-only address (ram,0x000180980ca0) is written
+// WARNING: Read-only address (ram,0x000180a40840) is written
   while ((uVar17 != 0 && (param_2 != 0))) {
     param_2 = param_2 - 1;
     uVar2 = (int32_t)*param_4;
@@ -409,20 +354,20 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,int64_t param_3,i
     auVar36._0_8_ = lVar3;
     auVar36._16_8_ = lVar3;
     auVar36._24_8_ = lVar3;
-    puVar18 = (uint64_t *)auStack_f8;
+    puVar18 = (uint64_t *)stack_array_f8;
     auVar23 = ui_system_memory_ui;
     auVar26 = ui_system_ui;
     auVar24 = ui_system_memory_ui;
     do {
-      auStack_e0 = auVar21;
+      stack_array_e0 = auVar21;
       auVar15 = ui_system_memory_ui;
-      auVar23 = vpermd_avx2(auVar23,auStack_e0);
-      auVar21 = vpermd_avx2(SUB6432(ZEXT1664((int8_t  [16])0x0),0),auStack_e0);
+      auVar23 = vpermd_avx2(auVar23,stack_array_e0);
+      auVar21 = vpermd_avx2(SUB6432(ZEXT1664((int8_t  [16])0x0),0),stack_array_e0);
       auVar22 = vpsrld_avx2(auVar21,1);
-      auVar21 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_e0._4_4_ << 3) * 4);
+      auVar21 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(stack_array_e0._4_4_ << 3) * 4);
       auVar22 = vcvtdq2ps_avx(auVar22);
-      auVar6 = vpermd_avx2(auVar26,auStack_e0);
-      auVar33 = vpermd_avx2(auVar24,auStack_e0);
+      auVar6 = vpermd_avx2(auVar26,stack_array_e0);
+      auVar33 = vpermd_avx2(auVar24,stack_array_e0);
       auVar23 = vpsrld_avx2(auVar23,1);
       auVar26 = vcvtdq2ps_avx(auVar23);
       auVar23 = vpsrld_avx2(auVar6,1);
@@ -430,11 +375,11 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,int64_t param_3,i
       auVar23 = vpsrld_avx2(auVar33,1);
       auVar6 = vcvtdq2ps_avx(auVar23);
       auVar33 = vsubps_avx(*(int8_t (*) [32])
-                            (param_3 + 0x20 + (uint64_t)(uint)(auStack_e0._4_4_ << 3) * 4),auVar21)
+                            (param_3 + 0x20 + (uint64_t)(uint)(stack_array_e0._4_4_ << 3) * 4),auVar21)
       ;
       fVar7 = auVar6._28_4_;
-      auVar23 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(auStack_e0._12_4_ << 3) * 4);
-      uVar16 = auStack_e0._20_4_ << 3;
+      auVar23 = *(int8_t (*) [32])(param_3 + (uint64_t)(uint)(stack_array_e0._12_4_ << 3) * 4);
+      uVar16 = stack_array_e0._20_4_ << 3;
       auVar35._0_4_ = auVar33._0_4_ * auVar22._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._0_4_;
       auVar35._4_4_ = auVar33._4_4_ * auVar22._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._4_4_;
       auVar35._8_4_ = auVar33._8_4_ * auVar22._8_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._8_4_;
@@ -444,7 +389,7 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,int64_t param_3,i
       auVar35._24_4_ = auVar33._24_4_ * auVar22._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar21._24_4_;
       auVar35._28_4_ = fVar7 + auVar21._28_4_;
       auVar21 = vsubps_avx(*(int8_t (*) [32])
-                            (param_3 + 0x20 + (uint64_t)(uint)(auStack_e0._12_4_ << 3) * 4),auVar23
+                            (param_3 + 0x20 + (uint64_t)(uint)(stack_array_e0._12_4_ << 3) * 4),auVar23
                           );
       auVar22 = vsubps_avx(*(int8_t (*) [32])(param_3 + 0x20 + (uint64_t)uVar16 * 4),
                            *(int8_t (*) [32])(param_3 + (uint64_t)uVar16 * 4));
@@ -456,7 +401,7 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,int64_t param_3,i
       auVar34._20_4_ = auVar21._20_4_ * auVar26._20_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._20_4_;
       auVar34._24_4_ = auVar21._24_4_ * auVar26._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR + auVar23._24_4_;
       auVar34._28_4_ = fVar7 + auVar23._28_4_;
-      uVar17 = (uint64_t)(uint)(auStack_e0._28_4_ << 3);
+      uVar17 = (uint64_t)(uint)(stack_array_e0._28_4_ << 3);
       pfVar1 = (float *)(param_3 + (uint64_t)uVar16 * 4);
       auVar33._0_4_ = auVar22._0_4_ * auVar24._0_4_ * UI_VECTOR_CONST_SCALE_FACTOR + *pfVar1;
       auVar33._4_4_ = auVar22._4_4_ * auVar24._4_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[1];
@@ -466,7 +411,7 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,int64_t param_3,i
       auVar33._20_4_ = auVar22._20_4_ * auVar24._20_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[5];
       auVar33._24_4_ = auVar22._24_4_ * auVar24._24_4_ * UI_VECTOR_CONST_SCALE_FACTOR + pfVar1[6];
       auVar33._28_4_ = fVar7 + pfVar1[7];
-      auVar21 = vpaddq_avx2(auVar36,auStack_e0);
+      auVar21 = vpaddq_avx2(auVar36,stack_array_e0);
       auVar23 = vsubps_avx(*(int8_t (*) [32])(param_3 + 0x20 + uVar17 * 4),
                            *(int8_t (*) [32])(param_3 + uVar17 * 4));
       pfVar1 = (float *)(param_3 + uVar17 * 4);
@@ -540,20 +485,15 @@ void UIVectorDataProcessor(int8_t (*param_1) [32],uint param_2,int64_t param_3,i
     *param_4 = *param_4 + *param_5;
     param_1 = param_1 + 1;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   *(uint64_t *)((int64_t)puVar18 + -8) = 0x180836966;
-  SystemSecurityChecker(auStack_b8[0] ^ (uint64_t)auStack_b8);
+  SystemSecurityChecker(stack_array_b8[0] ^ (uint64_t)stack_array_b8);
 }
-
-
 // WARNING: Removing unreachable block (ram,0x000180836c0f)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 // 函数: UI插值计算器 - 浮点数插值和变换
 void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,int64_t param_3,uint *param_4,
                                int64_t *param_5)
-
 {
   int64_t lVar1;
   float fVar2;
@@ -578,7 +518,6 @@ void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,int64_t param_
   int8_t auVar21 [32];
   int8_t auVar22 [32];
   int8_t auVar23 [32];
-  
   uVar6 = (uint64_t)param_1 & 0x1f;
   auVar7 = ui_system_memory_ui;
   while ((ui_system_memory_ui = auVar7, uVar6 != 0 && (param_2 != 0))) {
@@ -681,7 +620,7 @@ void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,int64_t param_
     *(int64_t *)param_4 = auVar15._0_8_;
   }
   for (param_2 = param_2 & 7; param_2 != 0; param_2 = param_2 - 1) {
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
     fVar2 = *(float *)(param_3 + (uint64_t)param_4[1] * 4);
     auVar13 = vfmadd213ss_fma(SUB6416(ZEXT464(UI_VECTOR_CONST_FLOAT_SCALE),0),
                               ZEXT416((uint)((*(float *)(param_3 + (uint64_t)(param_4[1] + 1) * 4)
@@ -691,18 +630,13 @@ void UIInterpolatorCalculator(int8_t (*param_1) [32],uint param_2,int64_t param_
     *(int64_t *)param_4 = *(int64_t *)param_4 + *param_5;
     param_1 = (int8_t (*) [32])(*param_1 + 4);
   }
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
   return;
 }
-
-
 // WARNING: Removing unreachable block (ram,0x000180836c0f)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
 // 函数: UI批量变换器 - 批量坐标转换
 void UIBatchTransformer(int8_t (*param_1) [32],uint param_2,int64_t param_3,uint *param_4)
-
 {
   int64_t lVar1;
   float fVar2;
@@ -729,7 +663,6 @@ void UIBatchTransformer(int8_t (*param_1) [32],uint param_2,int64_t param_3,uint
   int8_t auVar21 [32];
   int8_t auVar22 [32];
   int8_t auVar23 [32];
-  
   uVar6 = (uint64_t)param_1 & 0x1f;
   auVar7 = ui_system_memory_ui;
   while ((ui_system_memory_ui = auVar7, uVar6 != 0 && (param_2 != 0))) {
@@ -832,7 +765,7 @@ void UIBatchTransformer(int8_t (*param_1) [32],uint param_2,int64_t param_3,uint
     *(int64_t *)unaff_RDI = auVar15._0_8_;
   }
   for (param_2 = param_2 & 7; param_2 != 0; param_2 = param_2 - 1) {
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
     fVar2 = *(float *)(param_3 + (uint64_t)unaff_RDI[1] * 4);
     auVar13 = vfmadd213ss_fma(SUB6416(ZEXT464(UI_VECTOR_CONST_FLOAT_SCALE),0),
                               ZEXT416((uint)((*(float *)(param_3 + (uint64_t)(unaff_RDI[1] + 1) * 4
@@ -842,6 +775,6 @@ void UIBatchTransformer(int8_t (*param_1) [32],uint param_2,int64_t param_3,uint
     *(int64_t *)unaff_RDI = *(int64_t *)unaff_RDI + *unaff_R15;
     param_1 = (int8_t (*) [32])(*param_1 + 4);
   }
-                    // WARNING: Read-only address (ram,0x000180980c40) is written
+// WARNING: Read-only address (ram,0x000180980c40) is written
   return;
 }

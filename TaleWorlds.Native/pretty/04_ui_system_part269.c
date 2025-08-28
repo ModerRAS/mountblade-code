@@ -1,21 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 04_ui_system_part269.c - 6 个函数
-
-// 函数: void FUN_18081d22f(void)
-void FUN_18081d22f(void)
-
+// 函数: void function_81d22f(void)
+void function_81d22f(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_18081d250(short param_1)
-
+uint64_t function_81d250(short param_1)
 {
   if (ui_system_config == 0) {
     ui_system_config_config = 0;
@@ -104,13 +96,8 @@ uint64_t FUN_18081d250(short param_1)
   }
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint64_t FUN_18081d44a(short param_1)
-
+uint64_t function_81d44a(short param_1)
 {
   if (param_1 == 0) {
     ui_system_config_config = &ui_system_data_1800_ptr;
@@ -153,13 +140,9 @@ uint64_t FUN_18081d44a(short param_1)
   }
   return 0;
 }
-
-
-
 uint64_t
 UISystem_InputProcessor0(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
              float *param_6,short param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -169,7 +152,6 @@ UISystem_InputProcessor0(float *param_1,short param_2,float *param_3,short param
   float fVar6;
   float fVar7;
   float fVar8;
-  
   fVar7 = *param_6;
   fVar8 = param_6[1];
   fVar1 = *param_5;
@@ -197,13 +179,9 @@ UISystem_InputProcessor0(float *param_1,short param_2,float *param_3,short param
   param_6[1] = fVar8;
   return 0;
 }
-
-
-
 uint64_t
 UISystem_EventHandler(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
              float *param_6,short param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -212,7 +190,6 @@ UISystem_EventHandler(float *param_1,short param_2,float *param_3,short param_4,
   float fVar5;
   float fVar6;
   float fVar7;
-  
   fVar6 = *param_6;
   fVar7 = param_6[1];
   fVar1 = *param_5;
@@ -240,13 +217,9 @@ UISystem_EventHandler(float *param_1,short param_2,float *param_3,short param_4,
   param_6[1] = fVar7;
   return 0;
 }
-
-
-
 uint64_t
 UIComponent_EventHandler(float *param_1,short param_2,float *param_3,short param_4,float *param_5,
              float *param_6,short param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -260,7 +233,6 @@ UIComponent_EventHandler(float *param_1,short param_2,float *param_3,short param
   float fVar10;
   float fVar11;
   float fVar12;
-  
   fVar7 = param_6[1];
   fVar8 = *param_6;
   fVar10 = param_6[2];
@@ -297,17 +269,10 @@ UIComponent_EventHandler(float *param_1,short param_2,float *param_3,short param
   param_6[2] = fVar10;
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18081da90(float *param_1,uint64_t param_2,int64_t param_3,int param_4,uint64_t *param_5,
-void FUN_18081da90(float *param_1,uint64_t param_2,int64_t param_3,int param_4,uint64_t *param_5,
+// 函数: void function_81da90(float *param_1,uint64_t param_2,int64_t param_3,int param_4,uint64_t *param_5,
+void function_81da90(float *param_1,uint64_t param_2,int64_t param_3,int param_4,uint64_t *param_5,
                   int64_t *param_6,int param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -329,7 +294,6 @@ void FUN_18081da90(float *param_1,uint64_t param_2,int64_t param_3,int param_4,u
   uint64_t uVar18;
   uint uVar19;
   int iVar20;
-  
   uVar19 = (uint)param_2;
   uVar17 = param_2 & 0xffffffff;
   iVar20 = (int)uVar19 >> 2;
@@ -399,14 +363,14 @@ void FUN_18081da90(float *param_1,uint64_t param_2,int64_t param_3,int param_4,u
   }
   else if (param_4 == 2) {
     if (param_7 == 1) {
-                    // WARNING: Could not recover jumptable at 0x00018081e22a. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x00018081e22a. Too many branches
+// WARNING: Treating indirect jump as call
       (*(code *)*ui_system_config)(param_1,param_2,param_3,param_5);
       return;
     }
     if (param_7 == 2) {
-                    // WARNING: Could not recover jumptable at 0x00018081e25b. Too many branches
-                    // WARNING: Treating indirect jump as call
+// WARNING: Could not recover jumptable at 0x00018081e25b. Too many branches
+// WARNING: Treating indirect jump as call
       (*(code *)ui_system_config[1])(param_1,param_2,param_3,param_5);
       return;
     }
@@ -656,14 +620,8 @@ void FUN_18081da90(float *param_1,uint64_t param_2,int64_t param_3,int param_4,u
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18081de96(void)
-void FUN_18081de96(void)
-
+// 函数: void function_81de96(void)
+void function_81de96(void)
 {
   uint3 uVar1;
   uint3 uVar2;
@@ -679,7 +637,6 @@ void FUN_18081de96(void)
   float *in_R10;
   int64_t in_R11;
   float in_XMM4_Da;
-  
   for (iVar6 = (int)unaff_EBX >> 2; iVar6 != 0; iVar6 = iVar6 + -1) {
     uVar7 = *unaff_RDI + *unaff_RSI;
     uVar1 = *(uint3 *)(in_R11 + (uint64_t)*(uint *)((int64_t)unaff_RDI + 4) * 3);
@@ -712,14 +669,8 @@ void FUN_18081de96(void)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18081dfd2(void)
-void FUN_18081dfd2(void)
-
+// 函数: void function_81dfd2(void)
+void function_81dfd2(void)
 {
   int unaff_EBX;
   int64_t *unaff_RSI;
@@ -727,7 +678,6 @@ void FUN_18081dfd2(void)
   float *in_R10;
   int64_t in_R11;
   float in_XMM4_Da;
-  
   do {
     *in_R10 = (float)((int)((uint)*(uint3 *)(in_R11 + (uint64_t)*(uint *)((int64_t)unaff_RDI + 4)
                                                       * 3) << 8) >> 8) * in_XMM4_Da;
@@ -737,14 +687,8 @@ void FUN_18081dfd2(void)
   } while (unaff_EBX != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18081e03c(uint64_t param_1,float param_2,uint64_t param_3,int param_4)
-void FUN_18081e03c(uint64_t param_1,float param_2,uint64_t param_3,int param_4)
-
+// 函数: void function_81e03c(uint64_t param_1,float param_2,uint64_t param_3,int param_4)
+void function_81e03c(uint64_t param_1,float param_2,uint64_t param_3,int param_4)
 {
   uint uVar1;
   int unaff_EBX;
@@ -752,8 +696,7 @@ void FUN_18081e03c(uint64_t param_1,float param_2,uint64_t param_3,int param_4)
   int iVar2;
   float *in_R10;
   int64_t in_R11;
-  int64_t *in_stack_00000068;
-  
+  int64_t *local_buffer_68;
   do {
     iVar2 = 0;
     if (3 < param_4) {
@@ -780,84 +723,70 @@ void FUN_18081e03c(uint64_t param_1,float param_2,uint64_t param_3,int param_4)
                              8) >> 8) * param_2;
       in_R10 = in_R10 + 1;
     }
-    *unaff_RDI = *unaff_RDI + *in_stack_00000068;
+    *unaff_RDI = *unaff_RDI + *local_buffer_68;
     unaff_EBX = unaff_EBX + -1;
   } while (unaff_EBX != 0);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_18081e1f7(void)
-void FUN_18081e1f7(void)
-
+// 函数: void function_81e1f7(void)
+void function_81e1f7(void)
 {
   uint uVar1;
   int iVar2;
   int unaff_EBX;
   float *in_R10;
   int64_t in_R11;
-  int64_t *in_stack_00000060;
-  int64_t *in_stack_00000068;
-  int in_stack_00000070;
-  
-  if (in_stack_00000070 == 1) {
-                    // WARNING: Could not recover jumptable at 0x00018081e22a. Too many branches
-                    // WARNING: Treating indirect jump as call
+  int64_t *local_buffer_60;
+  int64_t *local_buffer_68;
+  int local_buffer_70;
+  if (local_buffer_70 == 1) {
+// WARNING: Could not recover jumptable at 0x00018081e22a. Too many branches
+// WARNING: Treating indirect jump as call
     (*(code *)*ui_system_config)();
     return;
   }
-  if (in_stack_00000070 == 2) {
-                    // WARNING: Could not recover jumptable at 0x00018081e25b. Too many branches
-                    // WARNING: Treating indirect jump as call
+  if (local_buffer_70 == 2) {
+// WARNING: Could not recover jumptable at 0x00018081e25b. Too many branches
+// WARNING: Treating indirect jump as call
     (*(code *)ui_system_config[1])();
     return;
   }
   if (unaff_EBX != 0) {
     do {
       iVar2 = 0;
-      if (3 < in_stack_00000070) {
+      if (3 < local_buffer_70) {
         do {
           *in_R10 = (float)(int)*(short *)(in_R11 + (uint64_t)
-                                                    (uint)(*(int *)((int64_t)in_stack_00000060 + 4)
-                                                           * in_stack_00000070 + iVar2) * 2) *
+                                                    (uint)(*(int *)((int64_t)local_buffer_60 + 4)
+                                                           * local_buffer_70 + iVar2) * 2) *
                     3.0517578e-05;
           in_R10[1] = (float)(int)*(short *)(in_R11 + (uint64_t)
-                                                      (uint)(*(int *)((int64_t)in_stack_00000060 +
-                                                                     4) * in_stack_00000070 + 1 +
+                                                      (uint)(*(int *)((int64_t)local_buffer_60 +
+                                                                     4) * local_buffer_70 + 1 +
                                                             iVar2) * 2) * 3.0517578e-05;
           in_R10[2] = (float)(int)*(short *)(in_R11 + (uint64_t)
-                                                      (uint)(*(int *)((int64_t)in_stack_00000060 +
-                                                                     4) * in_stack_00000070 + 2 +
+                                                      (uint)(*(int *)((int64_t)local_buffer_60 +
+                                                                     4) * local_buffer_70 + 2 +
                                                             iVar2) * 2) * 3.0517578e-05;
-          uVar1 = *(int *)((int64_t)in_stack_00000060 + 4) * in_stack_00000070 + 3 + iVar2;
+          uVar1 = *(int *)((int64_t)local_buffer_60 + 4) * local_buffer_70 + 3 + iVar2;
           iVar2 = iVar2 + 4;
           in_R10[3] = (float)(int)*(short *)(in_R11 + (uint64_t)uVar1 * 2) * 3.0517578e-05;
           in_R10 = in_R10 + 4;
-        } while (iVar2 < in_stack_00000070 + -3);
+        } while (iVar2 < local_buffer_70 + -3);
       }
-      for (; iVar2 < in_stack_00000070; iVar2 = iVar2 + 1) {
+      for (; iVar2 < local_buffer_70; iVar2 = iVar2 + 1) {
         *in_R10 = (float)(int)*(short *)(in_R11 + (uint64_t)
-                                                  (uint)(*(int *)((int64_t)in_stack_00000060 + 4) *
-                                                         in_stack_00000070 + iVar2) * 2) *
+                                                  (uint)(*(int *)((int64_t)local_buffer_60 + 4) *
+                                                         local_buffer_70 + iVar2) * 2) *
                   3.0517578e-05;
         in_R10 = in_R10 + 1;
       }
-      *in_stack_00000060 = *in_stack_00000060 + *in_stack_00000068;
+      *local_buffer_60 = *local_buffer_60 + *local_buffer_68;
       unaff_EBX = unaff_EBX + -1;
     } while (unaff_EBX != 0);
     return;
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

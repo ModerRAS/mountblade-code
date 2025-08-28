@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_12_part037.c - 3 个函数
-
-// 函数: void FUN_1807e2e10(int8_t (*param_1) [32],int8_t (*param_2) [32],uint param_3,
-void FUN_1807e2e10(int8_t (*param_1) [32],int8_t (*param_2) [32],uint param_3,
+// 函数: void function_7e2e10(int8_t (*param_1) [32],int8_t (*param_2) [32],uint param_3,
+void function_7e2e10(int8_t (*param_1) [32],int8_t (*param_2) [32],uint param_3,
                   int32_t *param_4,uint64_t param_5,uint64_t param_6,int param_7)
-
 {
   int32_t uVar1;
   float fVar2;
@@ -62,7 +59,6 @@ void FUN_1807e2e10(int8_t (*param_1) [32],int8_t (*param_2) [32],uint param_3,
   int8_t auVar52 [32];
   int8_t auVar53 [32];
   int8_t auVar54 [32];
-  
   uVar1 = param_4[0xc0];
   auVar53._4_4_ = uVar1;
   auVar53._0_4_ = uVar1;
@@ -353,19 +349,11 @@ void FUN_1807e2e10(int8_t (*param_1) [32],int8_t (*param_2) [32],uint param_3,
   }
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x0001807e30de)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1807e3020(int64_t param_1,float *param_2,int param_3,float *param_4,uint64_t param_5,
-void FUN_1807e3020(int64_t param_1,float *param_2,int param_3,float *param_4,uint64_t param_5,
+// 函数: void function_7e3020(int64_t param_1,float *param_2,int param_3,float *param_4,uint64_t param_5,
+void function_7e3020(int64_t param_1,float *param_2,int param_3,float *param_4,uint64_t param_5,
                   uint64_t param_6,int param_7)
-
 {
   float *pfVar1;
   float fVar2;
@@ -388,7 +376,6 @@ void FUN_1807e3020(int64_t param_1,float *param_2,int param_3,float *param_4,uin
   int8_t auVar18 [32];
   float in_register_0000125c;
   int8_t auVar19 [32];
-  
   fVar2 = *param_4;
   iVar13 = 0;
   if (param_7 == 0) {
@@ -480,16 +467,9 @@ void FUN_1807e3020(int64_t param_1,float *param_2,int param_3,float *param_4,uin
   *(int8_t (*) [32])(param_2 + lVar15) = auVar5;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807e3130(int64_t param_1,int64_t param_2,uint param_3,int32_t *param_4,
-void FUN_1807e3130(int64_t param_1,int64_t param_2,uint param_3,int32_t *param_4,
+// 函数: void function_7e3130(int64_t param_1,int64_t param_2,uint param_3,int32_t *param_4,
+void function_7e3130(int64_t param_1,int64_t param_2,uint param_3,int32_t *param_4,
                   uint64_t param_5,uint64_t param_6,int param_7)
-
 {
   float *pfVar1;
   uint uVar2;
@@ -523,7 +503,6 @@ void FUN_1807e3130(int64_t param_1,int64_t param_2,uint param_3,int32_t *param_4
   int8_t auVar30 [32];
   int8_t auVar31 [32];
   int8_t auVar32 [32];
-  
   uVar3 = *param_4;
   auVar7._4_4_ = uVar3;
   auVar7._0_4_ = uVar3;
@@ -751,12 +730,5 @@ void FUN_1807e3130(int64_t param_1,int64_t param_2,uint param_3,int32_t *param_4
   }
   return;
 }
-
-
-
 // WARNING: Removing unreachable block (ram,0x0001807e33ce)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

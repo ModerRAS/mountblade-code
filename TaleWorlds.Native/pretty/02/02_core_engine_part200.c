@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 02_core_engine_part200.c - 核心引擎状态处理器
-
 // 函数: void process_engine_state(void)
 // 功能: 根据引擎当前状态执行相应的处理逻辑
 // 这是简化实现，保留了原始代码的基本结构但改进了可读性
 void process_engine_state(void)
-
 {
   int64_t engine_context;
   code ****state_handler_ptr;
@@ -57,28 +54,24 @@ void process_engine_state(void)
   int32_t alloc_size;
   int8_t buffer5[32];
   uint64_t checksum;
-  
-  // 初始化引擎上下文和变量
+// 初始化引擎上下文和变量
   engine_context = global_engine_context;
   context_data = 0xfffffffffffffffe;
   checksum = global_checksum ^ (uint64_t)buffer1;
   counter = 0;
   timestamp = 0;
-  
-  // 线程管理初始化
+// 线程管理初始化
   if ((*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                0x48) < max_thread_count) && (initialize_thread_manager(&max_thread_count), max_thread_count == -1)) {
     thread_manager_initialized = 0;
     setup_thread_pool(&thread_pool_config);
     cleanup_thread_manager(&max_thread_count);
   }
-  
   mode_flag = 0;
   current_state = *(int *)(engine_context + 0x318);
-  
-  // 状态机主逻辑
+// 状态机主逻辑
   if (current_state == 0) {
-    // 状态0: 初始化状态
+// 状态0: 初始化状态
     memory_block = allocate_memory_block(memory_allocator,0xe0,8,3);
     task_queue = (code *****)&handler_array;
     address = &engine_state_idle;
@@ -96,8 +89,7 @@ void process_engine_state(void)
     release_memory_block(memory_block,&task_list);
     process_task_queue(engine_context + 800,&task_list);
     current_state = *(int *)(engine_context + 0x340);
-    
-    // 子状态2处理
+// 子状态2处理
     if (current_state == 2) {
       global_state_table = (uint64_t *)allocate_memory_block(memory_allocator,0x18,8,3);
       *global_state_table = 0;
@@ -107,8 +99,7 @@ void process_engine_state(void)
       initialize_event_system();
       current_state = *(int *)(engine_context + 0x340);
     }
-    
-    // 子状态3处理
+// 子状态3处理
     if (current_state == 3) {
       global_event_queue = allocate_memory_block(memory_allocator,0x18,8,3);
       setup_event_handlers();
@@ -132,8 +123,7 @@ void process_engine_state(void)
       handler_array = (code ***)&event_handler_array;
       free_string_buffer(string_buffer);
     }
-    
-    // 非零状态处理
+// 非零状态处理
     if (*(int *)(engine_context + 0x340) != 0) {
       task_queue = (code *****)allocate_memory_block(memory_allocator,400,8,3);
       *task_queue = (code ****)&state_handler_entry;
@@ -150,8 +140,7 @@ void process_engine_state(void)
       *(code ******)(engine_context + 0x40) = task_queue;
       execute_task_sequence(global_task_sequence,&global_state_config);
     }
-    
-    // 任务队列初始化
+// 任务队列初始化
     task_queue = (code *****)allocate_memory_block(memory_allocator,400,8,3);
     *task_queue = (code ****)&state_handler_entry;
     ((code ******)task_queue)[1] = (code *****)&state_handler_exit;
@@ -178,7 +167,7 @@ void process_engine_state(void)
     }
   }
   else {
-    // 状态1: 清理状态
+// 状态1: 清理状态
     if (current_state == 1) {
       cleanup_memory_block(global_memory_block,engine_context + 800,0);
       release_task_queue(engine_context + 800);
@@ -211,20 +200,17 @@ STATE_INCREMENT:
       *(int *)(engine_context + 0x318) = *(int *)(engine_context + 0x318) + 1;
       goto STATE_UPDATE_COMPLETE;
     }
-    
-    // 状态2: 状态检查
+// 状态2: 状态检查
     if (current_state == 2) {
       if ((*(int *)(engine_context + 0x3c) == -1) || (3 < *(int *)(engine_context + 0x3c))) {
         *(int32_t *)(engine_context + 0x318) = 3;
       }
       goto STATE_UPDATE_COMPLETE;
     }
-    
-    // 状态3: 系统处理器初始化
+// 状态3: 系统处理器初始化
     if (current_state == 3) {
-      // 初始化多个系统处理器（主系统、辅助系统、IO系统、网络系统等）
+// 初始化多个系统处理器（主系统、辅助系统、IO系统、网络系统等）
       initialize_system_handlers(engine_context);
-      
       global_handler = (code ******)pending_tasks;
       if ((*(int *)(engine_context + 0x3c) == -1) ||
          (*(int *)(engine_context + 0x318) + 1 < *(int *)(engine_context + 0x3c))) {
@@ -232,12 +218,11 @@ STATE_INCREMENT:
       }
     }
     else {
-      // 状态4: 状态机处理
+// 状态4: 状态机处理
       if (current_state == 4) {
         process_state_machine_handlers(engine_context);
       }
-      
-      // 状态5: 渲染系统清理
+// 状态5: 渲染系统清理
       if (current_state != 5) {
         if (current_state == 6) {
           cleanup_memory_block(global_memory_block,engine_context + 800,0);
@@ -253,56 +238,48 @@ STATE_INCREMENT:
           }
         }
         else {
-          // 状态7: 错误处理
+// 状态7: 错误处理
           if (current_state != 7) {
             handle_system_error(engine_context);
           }
-          
-          // 全局系统更新
+// 全局系统更新
           (**(code **)(**(int64_t **)(global_engine_context + 0x2b0) + 0x120))
                     (*(int64_t **)(global_engine_context + 0x2b0),1);
           update_global_system_state();
-          
           if ((*(int *)(engine_context + 0x3c) != -1) &&
              (*(int *)(engine_context + 0x3c) <= *(int *)(engine_context + 0x318) + 1)) goto STATE_UPDATE_COMPLETE;
         }
         goto STATE_INCREMENT;
       }
-      
-      // 状态5完成后的处理
+// 状态5完成后的处理
       process_state_completion_handlers(engine_context);
     }
   }
-  
-  // 清理全局处理器
+// 清理全局处理器
   if (global_handler != (code ******)0x0) {
     (*(code *)(*global_handler)[7])();
   }
-  
 STATE_UPDATE_COMPLETE:
   cleanup_memory_management(checksum ^ (uint64_t)buffer1);
 }
-
 // 辅助函数声明（这些函数在原始代码中被调用）
 void initialize_system_handlers(int64_t engine_context);
 void process_state_machine_handlers(int64_t engine_context);
 void handle_system_error(int64_t engine_context);
 void update_global_system_state(void);
 void process_state_completion_handlers(int64_t engine_context);
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /*
  * 简化实现说明：
- * 
+ *
  * 原始实现：这是一个复杂的引擎状态处理函数，包含大量的底层内存操作和函数指针调用
  * 简化实现：保留了核心逻辑结构，但：
- * 1. 将原始的FUN_*函数名改为语义化名称
+ * 1. 将原始的函数名改为语义化名称
  * 2. 将DAT_*变量改为描述性名称
  * 3. 将复杂的嵌套调用封装为辅助函数
  * 4. 添加了中文注释说明各部分功能
  * 5. 保持了原始的状态机逻辑
- * 
+ *
  * 文件位置：pretty/02/02_core_engine_part200.c
  * 相关函数：process_engine_state() 及其辅助函数
  */

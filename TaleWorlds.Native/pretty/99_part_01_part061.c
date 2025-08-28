@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 99_part_01_part061.c - 4 个函数
-
-// 函数: void FUN_1800df3bb(void)
-void FUN_1800df3bb(void)
-
+// 函数: void GenericFunction_1800df3bb(void)
+void GenericFunction_1800df3bb(void)
 {
   float fVar1;
   float fVar2;
@@ -32,7 +29,6 @@ void FUN_1800df3bb(void)
   float fVar18;
   float unaff_XMM11_Da;
   float unaff_XMM12_Da;
-  
   lVar10 = *(int64_t *)(unaff_RBX + 0x1cd8);
   fVar1 = *(float *)(lVar10 + 0x1120);
   fVar2 = *(float *)(lVar10 + 0x1124);
@@ -159,15 +155,8 @@ void FUN_1800df3bb(void)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1800df54f(void)
-void FUN_1800df54f(void)
-
+// 函数: void GenericFunction_1800df54f(void)
+void GenericFunction_1800df54f(void)
 {
   float fVar1;
   float fVar2;
@@ -180,7 +169,6 @@ void FUN_1800df54f(void)
   int64_t unaff_R14;
   int32_t uVar6;
   float fVar7;
-  
   *(int32_t *)(*(int64_t *)(unaff_RBX + 0x1cd8) + 0x1c6c) = *(int32_t *)(unaff_RDI + 0x180);
   *(int32_t *)(*(int64_t *)(unaff_RBX + 0x1cd8) + 0x1bfc) = *(int32_t *)(unaff_RDI + 0x1d8);
   lVar3 = *(int64_t *)(unaff_RBX + 0x1cd8);
@@ -249,17 +237,9 @@ void FUN_1800df54f(void)
   ;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1800df927(uint64_t param_1,code *param_2)
-void FUN_1800df927(uint64_t param_1,code *param_2)
-
+// 函数: void GenericFunction_1800df927(uint64_t param_1,code *param_2)
+void GenericFunction_1800df927(uint64_t param_1,code *param_2)
 {
   float fVar1;
   float fVar2;
@@ -296,8 +276,7 @@ void FUN_1800df927(uint64_t param_1,code *param_2)
   float unaff_XMM12_Da;
   int32_t unaff_XMM13_Da;
   int32_t unaff_XMM14_Da;
-  int32_t uStack000000000000002c;
-  
+  int32_t local_buffer_2c;
   lVar14 = (*param_2)();
   lVar15 = system_message_buffer;
   lVar16 = SYSTEM_STATE_MANAGER;
@@ -345,7 +324,7 @@ void FUN_1800df927(uint64_t param_1,code *param_2)
   *(int32_t *)(lVar14 + 0x1c38) = unaff_XMM8_Da;
   *(int32_t *)(lVar14 + 0x1c3c) = 0x7f7fffff;
   lVar14 = *(int64_t *)(lVar15 + 0x1cd8);
-  uStack000000000000002c = 0x7f7fffff;
+  local_buffer_2c = 0x7f7fffff;
   *(int32_t *)(lVar14 + 0x1c40) = unaff_XMM9_Da;
   *(int32_t *)(lVar14 + 0x1c44) = unaff_XMM13_Da;
   *(int32_t *)(lVar14 + 0x1c48) = unaff_XMM7_Da;
@@ -447,15 +426,8 @@ void FUN_1800df927(uint64_t param_1,code *param_2)
   }
   return;
 }
-
-
-
-
-
-
 // 函数: void SystemCore_Controller0(uint64_t param_1,int64_t param_2,int64_t param_3)
 void SystemCore_Controller0(uint64_t param_1,int64_t param_2,int64_t param_3)
-
 {
   uint uVar1;
   int64_t lVar2;
@@ -486,7 +458,6 @@ void SystemCore_Controller0(uint64_t param_1,int64_t param_2,int64_t param_3)
   float fStack_18;
   float fStack_14;
   float fStack_10;
-  
   lVar2 = *(int64_t *)(param_2 + 0x280);
   if ((*(uint *)(param_2 + 0x2e0) >> 0x10 & 1) == 0) {
     if ((*(uint64_t *)(lVar2 + 0x140) & *(uint64_t *)(*(int64_t *)(lVar2 + 0x1e0) + 0x1580)) == 0
@@ -570,11 +541,4 @@ void SystemCore_Controller0(uint64_t param_1,int64_t param_2,int64_t param_3)
   *(int8_t *)(param_2 + 800) = *(int8_t *)(lVar2 + 0x2c8);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

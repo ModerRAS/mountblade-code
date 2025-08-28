@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 02_core_engine_part176.c - 6 个函数
-
-// 函数: void FUN_180160180(int64_t param_1)
-void FUN_180160180(int64_t param_1)
-
+// 函数: void GenericFunction_180160180(int64_t param_1)
+void GenericFunction_180160180(int64_t param_1)
 {
   int *piVar1;
   int64_t lVar2;
@@ -13,7 +10,6 @@ void FUN_180160180(int64_t param_1)
   int64_t lVar4;
   uint64_t uVar5;
   uint64_t uVar6;
-  
   uVar6 = *(uint64_t *)(param_1 + 0x10);
   lVar4 = *(int64_t *)(param_1 + 8);
   uVar5 = 0;
@@ -21,7 +17,7 @@ void FUN_180160180(int64_t param_1)
     do {
       lVar2 = *(int64_t *)(lVar4 + uVar5 * 8);
       if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(lVar2);
       }
       *(uint64_t *)(lVar4 + uVar5 * 8) = 0;
@@ -46,7 +42,7 @@ void FUN_180160180(int64_t param_1)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
+        Function_2152bae1(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
                             puVar3,uVar6,0xfffffffffffffffe);
       }
     }
@@ -54,14 +50,8 @@ void FUN_180160180(int64_t param_1)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1801601a0(int64_t param_1)
-void FUN_1801601a0(int64_t param_1)
-
+// 函数: void GenericFunction_1801601a0(int64_t param_1)
+void GenericFunction_1801601a0(int64_t param_1)
 {
   int *piVar1;
   int64_t lVar2;
@@ -69,7 +59,6 @@ void FUN_1801601a0(int64_t param_1)
   int64_t lVar4;
   uint64_t uVar5;
   uint64_t uVar6;
-  
   uVar6 = *(uint64_t *)(param_1 + 0x10);
   lVar4 = *(int64_t *)(param_1 + 8);
   uVar5 = 0;
@@ -77,7 +66,7 @@ void FUN_1801601a0(int64_t param_1)
     do {
       lVar2 = *(int64_t *)(lVar4 + uVar5 * 8);
       if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         CoreEngineMemoryPoolCleaner(lVar2);
       }
       *(uint64_t *)(lVar4 + uVar5 * 8) = 0;
@@ -102,7 +91,7 @@ void FUN_1801601a0(int64_t param_1)
         }
       }
       else {
-        func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
+        Function_2152bae1(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
                             puVar3,uVar6,0xfffffffffffffffe);
       }
     }
@@ -110,14 +99,8 @@ void FUN_1801601a0(int64_t param_1)
   }
   return;
 }
-
-
-
-
-
 // 函数: void CoreSystem_DataTransformer0(int64_t param_1,int param_2,int *param_3)
 void CoreSystem_DataTransformer0(int64_t param_1,int param_2,int *param_3)
-
 {
   uint64_t uVar1;
   int64_t *plVar2;
@@ -144,10 +127,9 @@ void CoreSystem_DataTransformer0(int64_t param_1,int param_2,int *param_3)
   int *piVar23;
   uint64_t uVar24;
   int iStackX_18;
-  int32_t uStackX_1c;
+  int32_t stack_special_x_1c;
   int64_t lStackX_20;
   int64_t alStack_60 [4];
-  
   uVar22 = param_3[0xc];
   piVar23 = (int *)(int64_t)(int)uVar22;
   uVar11 = uVar22;
@@ -246,7 +228,7 @@ LAB_180160304:
       uVar7 = *(uint64_t *)(param_3 + 8);
       uVar8 = *(uint64_t *)(param_3 + 10);
       uVar1 = *(uint64_t *)(param_3 + 0xc);
-      FUN_180160af0(param_1 + 0x50,alStack_60,piVar23,&iStackX_18,(int64_t)param_2);
+      GenericFunction_180160af0(param_1 + 0x50,alStack_60,piVar23,&iStackX_18,(int64_t)param_2);
       *(uint64_t *)(alStack_60[0] + 4) = uVar3;
       *(uint64_t *)(alStack_60[0] + 0xc) = uVar4;
       *(uint64_t *)(alStack_60[0] + 0x14) = uVar5;
@@ -306,14 +288,8 @@ LAB_1801604e5:
     }
   } while( true );
 }
-
-
-
-
-
-// 函数: void FUN_180160341(int64_t param_1,uint64_t param_2,int *param_3)
-void FUN_180160341(int64_t param_1,uint64_t param_2,int *param_3)
-
+// 函数: void GenericFunction_180160341(int64_t param_1,uint64_t param_2,int *param_3)
+void GenericFunction_180160341(int64_t param_1,uint64_t param_2,int *param_3)
 {
   int64_t *plVar1;
   uint64_t uVar2;
@@ -333,18 +309,17 @@ void FUN_180160341(int64_t param_1,uint64_t param_2,int *param_3)
   uint unaff_R13D;
   uint64_t *unaff_R14;
   uint64_t uVar10;
-  uint64_t uStack0000000000000038;
-  uint64_t uStack0000000000000040;
-  uint64_t uStack0000000000000048;
-  uint64_t uStack0000000000000050;
-  uint64_t uStack0000000000000058;
-  uint64_t uStack0000000000000060;
-  int64_t in_stack_00000068;
-  int64_t in_stack_000000d0;
-  int in_stack_000000d8;
+  uint64_t local_buffer_38;
+  uint64_t local_buffer_40;
+  uint64_t local_buffer_48;
+  uint64_t local_buffer_50;
+  uint64_t local_buffer_58;
+  uint64_t local_buffer_60;
+  int64_t local_buffer_68;
+  int64_t local_buffer_d0;
+  int local_buffer_d8;
   int iStack00000000000000e0;
   int64_t lStack00000000000000e8;
-  
   lStack00000000000000e8 = *(int64_t *)(param_1 + *(int64_t *)(in_R11 + 0x60) * 8);
   if (unaff_RBX != lStack00000000000000e8) {
     piVar4 = (int *)(unaff_R14 + 3);
@@ -366,7 +341,7 @@ void FUN_180160341(int64_t param_1,uint64_t param_2,int *param_3)
                   while (iVar3 != *piVar5) {
                     iVar6 = iVar6 + 1;
                     piVar5 = piVar5 + 1;
-                    if (in_stack_000000d0 <= (int64_t)piVar5) goto LAB_1801603d8;
+                    if (local_buffer_d0 <= (int64_t)piVar5) goto LAB_1801603d8;
                   }
                   if (-1 < iVar6) goto LAB_1801604d9;
                 }
@@ -398,34 +373,29 @@ LAB_1801604e5:
         unaff_RBX = *plVar1;
       }
       piVar4 = (int *)(unaff_R14 + 3);
-      unaff_ESI = in_stack_000000d8;
+      unaff_ESI = local_buffer_d8;
     } while (unaff_RBX != lStack00000000000000e8);
   }
-  uStack0000000000000038 = *unaff_R14;
-  uStack0000000000000040 = unaff_R14[1];
-  uStack0000000000000048 = unaff_R14[2];
-  uStack0000000000000050 = unaff_R14[3];
-  uStack0000000000000058 = unaff_R14[4];
-  uStack0000000000000060 = unaff_R14[5];
+  local_buffer_38 = *unaff_R14;
+  local_buffer_40 = unaff_R14[1];
+  local_buffer_48 = unaff_R14[2];
+  local_buffer_50 = unaff_R14[3];
+  local_buffer_58 = unaff_R14[4];
+  local_buffer_60 = unaff_R14[5];
   uVar2 = unaff_R14[6];
   iStack00000000000000e0 = unaff_ESI;
-  FUN_180160af0(in_RAX,&stack0x00000068,param_3,&stack0x000000e0,(int64_t)unaff_ESI);
-  *(uint64_t *)(in_stack_00000068 + 4) = uStack0000000000000038;
-  *(uint64_t *)(in_stack_00000068 + 0xc) = uStack0000000000000040;
-  *(uint64_t *)(in_stack_00000068 + 0x14) = uStack0000000000000048;
-  *(uint64_t *)(in_stack_00000068 + 0x1c) = uStack0000000000000050;
-  *(uint64_t *)(in_stack_00000068 + 0x24) = uStack0000000000000058;
-  *(uint64_t *)(in_stack_00000068 + 0x2c) = uStack0000000000000060;
-  *(uint64_t *)(in_stack_00000068 + 0x34) = uVar2;
+  GenericFunction_180160af0(in_RAX,&local_buffer_00000068,param_3,&local_buffer_000000e0,(int64_t)unaff_ESI);
+  *(uint64_t *)(local_buffer_68 + 4) = local_buffer_38;
+  *(uint64_t *)(local_buffer_68 + 0xc) = local_buffer_40;
+  *(uint64_t *)(local_buffer_68 + 0x14) = local_buffer_48;
+  *(uint64_t *)(local_buffer_68 + 0x1c) = local_buffer_50;
+  *(uint64_t *)(local_buffer_68 + 0x24) = local_buffer_58;
+  *(uint64_t *)(local_buffer_68 + 0x2c) = local_buffer_60;
+  *(uint64_t *)(local_buffer_68 + 0x34) = uVar2;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-char FUN_180160500(int32_t param_1,int param_2)
-
+char GenericFunction_180160500(int32_t param_1,int param_2)
 {
   float *pfVar1;
   uint uVar2;
@@ -438,7 +408,6 @@ char FUN_180160500(int32_t param_1,int param_2)
   int64_t lVar9;
   bool bVar10;
   int32_t extraout_XMM0_Da;
-  
   lVar9 = core_system_data_config[0xb];
   for (piVar4 = *(int **)(lVar9 + ((uint64_t)(int64_t)param_2 %
                                   (uint64_t)*(uint *)(core_system_data_config + 0xc)) * 8);
@@ -460,7 +429,7 @@ LAB_180160546:
     iVar8 = 0;
     if (uVar7 != 0) {
       do {
-        cVar3 = FUN_1801605f0(param_1,*puVar6,piVar4 + 1);
+        cVar3 = GenericFunction_1801605f0(param_1,*puVar6,piVar4 + 1);
         if (cVar3 != '\0') {
           return '\x01';
         }
@@ -555,13 +524,8 @@ LAB_1801606a8:
   }
   return cVar3;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-char FUN_18016055e(int32_t param_1)
-
+char GenericFunction_18016055e(int32_t param_1)
 {
   float *pfVar1;
   uint uVar2;
@@ -576,14 +540,13 @@ char FUN_18016055e(int32_t param_1)
   bool in_ZF;
   bool bVar9;
   int32_t extraout_XMM0_Da;
-  
   if (!in_ZF) {
     puVar5 = (uint64_t *)*unaff_RSI;
     uVar6 = unaff_RSI[1] - (int64_t)puVar5 >> 3;
     iVar7 = 0;
     if (uVar6 != 0) {
       do {
-        cVar3 = FUN_1801605f0(param_1,*puVar5,in_RAX + 4);
+        cVar3 = GenericFunction_1801605f0(param_1,*puVar5,in_RAX + 4);
         if (cVar3 != '\0') {
           return '\x01';
         }
@@ -678,24 +641,13 @@ LAB_1801606a8:
   }
   return cVar3;
 }
-
-
-
-int8_t FUN_1801605c4(void)
-
+int8_t GenericFunction_1801605c4(void)
 {
   return 1;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1801605c8(void)
-void FUN_1801605c8(void)
-
+// 函数: void GenericFunction_1801605c8(void)
+void GenericFunction_1801605c8(void)
 {
   float *pfVar1;
   uint uVar2;
@@ -705,7 +657,6 @@ void FUN_1801605c8(void)
   int64_t unaff_RBP;
   int64_t lVar6;
   bool bVar7;
-  
   bVar7 = true;
   if (0 < (int64_t)*(int *)(unaff_RBP + 0x30)) {
     lVar6 = 0;
@@ -790,14 +741,8 @@ LAB_1801606a8:
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1801605f0(uint64_t param_1,int64_t param_2,int64_t param_3)
-void FUN_1801605f0(uint64_t param_1,int64_t param_2,int64_t param_3)
-
+// 函数: void GenericFunction_1801605f0(uint64_t param_1,int64_t param_2,int64_t param_3)
+void GenericFunction_1801605f0(uint64_t param_1,int64_t param_2,int64_t param_3)
 {
   float *pfVar1;
   uint uVar2;
@@ -806,7 +751,6 @@ void FUN_1801605f0(uint64_t param_1,int64_t param_2,int64_t param_3)
   int64_t lVar5;
   int64_t lVar6;
   bool bVar7;
-  
   bVar7 = true;
   if (0 < (int64_t)*(int *)(param_3 + 0x30)) {
     lVar6 = 0;
@@ -889,8 +833,3 @@ LAB_1801606a8:
   }
   return;
 }
-
-
-
-
-

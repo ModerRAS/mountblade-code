@@ -1,11 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part009.c - 渲染系统数据处理函数 (5个函数)
-
 // 函数: 序列化渲染对象数据到缓冲区
-// 原始函数名: FUN_1802722e0
+// 原始函数名: function_2722e0
 void serialize_render_object_data(int64_t render_context, int64_t *buffer_context)
-
 {
   int8_t byte_value;
   int32_t dword_value;
@@ -18,7 +15,6 @@ void serialize_render_object_data(int64_t render_context, int64_t *buffer_contex
   uint64_t loop_index;
   uint64_t start_addr;
   uint64_t current_index;
-  
   dword_ptr = (int32_t *)buffer_context[1];
   if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
@@ -191,12 +187,9 @@ void serialize_render_object_data(int64_t render_context, int64_t *buffer_contex
   } while ((int)counter < 0x10);
   return;
 }
-
-
 // 函数: 初始化渲染资源管理器
-// 原始函数名: FUN_180272880
+// 原始函数名: function_272880
 int32_t * initialize_render_resource_manager(int32_t *resource_manager)
-
 {
   *(void **)(resource_manager + 2) = &RENDER_RESOURCE_TABLE_BASE;
   *(uint64_t *)(resource_manager + 4) = 0;
@@ -328,12 +321,9 @@ int32_t * initialize_render_resource_manager(int32_t *resource_manager)
   *(int8_t *)(resource_manager + 499) = 0;
   return resource_manager;
 }
-
-
 // 函数: 序列化高级渲染数据
-// 原始函数名: FUN_180272b60
+// 原始函数名: function_272b60
 void serialize_advanced_render_data(int64_t render_context, int64_t *buffer_context, uint64_t param_3, uint64_t param_4)
-
 {
   int8_t byte_value;
   int32_t dword_value;
@@ -351,7 +341,6 @@ void serialize_advanced_render_data(int64_t render_context, int64_t *buffer_cont
   uint64_t start_addr;
   uint64_t unaff_R14;
   uint64_t unaff_R15;
-  
   dword_ptr = (int32_t *)buffer_context[1];
   if ((uint64_t)((buffer_context[2] - (int64_t)dword_ptr) + *buffer_context) < 5) {
     ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
@@ -613,15 +602,10 @@ void serialize_advanced_render_data(int64_t render_context, int64_t *buffer_cont
   } while ((int)uint_counter < 0x10);
   return;
 }
-
-
 // 警告: 以'_'开头的全局变量与同一地址的较小符号重叠
-
-
 // 函数: 处理渲染字符串哈希表
-// 原始函数名: FUN_180272bd0
+// 原始函数名: function_272bd0
 void process_render_string_hash_table(int64_t *hash_table, int64_t data_offset, uint *result_flags)
-
 {
   uint *hash_ptr;
   byte *string_buffer;
@@ -641,7 +625,6 @@ void process_render_string_hash_table(int64_t *hash_table, int64_t data_offset, 
   int work_index;
   byte temp_buffer [1032];
   uint64_t canary_value;
-  
   stack_guard = 0xfffffffffffffffe;
   canary_value = DATA_STACK_CANARY ^ (uint64_t)stack_buffer;
   *(int64_t *)(data_offset + 8) = *(int64_t *)(data_offset + 8) + 4;
@@ -694,22 +677,18 @@ HASH_MATCH_FOUND:
       loop_counter = loop_counter - 1;
     } while (loop_counter != 0);
   }
-                    // 警告: 子函数不返回
+// 警告: 子函数不返回
   cleanup_stack_buffer(canary_value ^ (uint64_t)stack_buffer);
 }
-
-
 // 函数: 序列化渲染特性标志
 // 原始函数名: System_DataSerializer
 void serialize_render_feature_flags(uint64_t *feature_table, uint feature_mask, int64_t *buffer_context)
-
 {
   int32_t *dword_ptr;
   int64_t buffer_size;
   int64_t buffer_pos;
   int feature_count;
   int64_t buffer_offset;
-  
   dword_ptr = (int32_t *)buffer_context[1];
   if ((uint64_t)((*buffer_context - (int64_t)dword_ptr) + buffer_context[2]) < 5) {
     ensure_buffer_capacity(buffer_context, (int64_t)dword_ptr + (4 - *buffer_context));
@@ -741,15 +720,10 @@ void serialize_render_feature_flags(uint64_t *feature_table, uint feature_mask, 
   *(int *)(buffer_offset + *buffer_context) = feature_count;
   return;
 }
-
-
 // 警告: 以'_'开头的全局变量与同一地址的较小符号重叠
-
-
 // 函数: 调整渲染对象数组大小
-// 原始函数名: FUN_180272e40
+// 原始函数名: function_272e40
 void resize_render_object_array(int64_t *array_manager, uint64_t new_size)
-
 {
   void *vtable_ptr;
   uint64_t *current_ptr;
@@ -760,7 +734,6 @@ void resize_render_object_array(int64_t *array_manager, uint64_t new_size)
   uint64_t *alloc_ptr;
   void *destructor_vtable;
   int64_t offset;
-  
   current_ptr = (uint64_t *)array_manager[1];
   offset = *array_manager;
   current_size = ((int64_t)current_ptr - offset) / 0x98;
@@ -842,7 +815,7 @@ void resize_render_object_array(int64_t *array_manager, uint64_t new_size)
       end_ptr = (uint64_t *)*array_manager;
     }
     if (end_ptr != (uint64_t *)0x0) {
-                    // 警告: 子函数不返回
+// 警告: 子函数不返回
       free_render_memory(end_ptr);
     }
     *array_manager = (int64_t)alloc_ptr;
@@ -869,6 +842,4 @@ void resize_render_object_array(int64_t *array_manager, uint64_t new_size)
   }
   return;
 }
-
-
 // 警告: 以'_'开头的全局变量与同一地址的较小符号重叠

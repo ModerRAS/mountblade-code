@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_09_part087.c - 1 个函数
-
-// 函数: void FUN_1805f8240(uint64_t *param_1,int param_2,int param_3)
-void FUN_1805f8240(uint64_t *param_1,int param_2,int param_3)
-
+// 函数: void function_5f8240(uint64_t *param_1,int param_2,int param_3)
+void function_5f8240(uint64_t *param_1,int param_2,int param_3)
 {
   float *pfVar1;
   char cVar2;
@@ -19,7 +16,6 @@ void FUN_1805f8240(uint64_t *param_1,int param_2,int param_3)
   int64_t *plVar11;
   uint64_t uVar12;
   int8_t auVar13 [16];
-  
   if (param_2 < param_3) {
     uVar9 = (uint64_t)param_2;
     lVar10 = uVar9 * 0xd080;
@@ -97,11 +93,4 @@ LAB_1805f82de:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

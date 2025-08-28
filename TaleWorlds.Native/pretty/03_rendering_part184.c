@@ -1,17 +1,11 @@
 #include "SystemDataAdvancedOptimizer_definition.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
-
 // 03_rendering_part184.c - 1 个函数
-
-// 函数: void FUN_180376cad(void)
-void FUN_180376cad(void)
-
+// 函数: void function_376cad(void)
+void function_376cad(void)
 {
   ushort uVar1;
   uint64_t uVar2;
@@ -69,7 +63,6 @@ void FUN_180376cad(void)
   float fStack0000000000000034;
   float fStack000000000000003c;
   float fStack0000000000000050;
-  
   if (in_CF) {
     unaff_XMM8_Da = 75.0;
   }
@@ -301,7 +294,7 @@ LAB_180377195:
           fVar42 = (float)(int)((int)fVar38 + 1U) * (1.0 / fVar28) * fVar42 - fVar41;
           fVar38 = fVar34 * fVar42;
           if (((uVar25 == 0) &&
-              (cVar8 = func_0x0001803723f0(*(uint64_t *)(unaff_RBP + 8)), cVar8 == '\0')) &&
+              (cVar8 = Function_6366c4ba(*(uint64_t *)(unaff_RBP + 8)), cVar8 == '\0')) &&
              (unaff_RBP[10] != 1.4013e-43)) {
             fVar38 = fVar38 * (float)(int)unaff_RBP[10] * 0.01;
           }
@@ -461,7 +454,7 @@ LAB_180377666:
                         unaff_RBP[0x23] = fVar37;
                         unaff_RBP[0x24] = 0.0;
                         unaff_RBP[0x25] = 3.4028235e+38;
-                        FUN_18046da60();
+                        function_46da60();
                         fVar11 = unaff_RBP[0x48] * 0.33 * 6.6666665;
                         fVar29 = unaff_RBP[0x49] * 0.33 * 6.6666665;
                         fVar40 = unaff_RBP[0x4a] * 0.33 * 6.6666665;
@@ -564,7 +557,7 @@ LAB_180377829:
                       uVar25 = uVar25 ^ uVar25 << 0xd;
                       uVar25 = uVar25 ^ uVar25 >> 0x11;
                       uVar25 = (uVar25 ^ uVar25 << 5) - 1;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
                       AdvancedSystemController(uVar25,(float)uVar25 * 1.4629181e-09);
                     }
 LAB_18037777e:
@@ -649,13 +642,7 @@ LAB_18037777e:
     lVar13 = (*(int64_t **)(unaff_RBP + 0x18))[1] - **(int64_t **)(unaff_RBP + 0x18);
     puVar16 = &memory_allocator_3824_ptr;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemParameterHandler(system_message_context,puVar16,lVar13 / 0x28,puVar22);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

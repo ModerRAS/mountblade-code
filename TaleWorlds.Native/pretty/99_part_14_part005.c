@@ -1,14 +1,9 @@
 /* 函数别名定义: DataSerializer */
 #define DataSerializer DataSerializer
-
-
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_14_part005.c - 21 个函数
-
-// 函数: void FUN_1808ead20(void)
-void FUN_1808ead20(void)
-
+// 函数: void function_8ead20(void)
+void function_8ead20(void)
 {
   int64_t lVar1;
   int iVar2;
@@ -16,7 +11,6 @@ void FUN_1808ead20(void)
   uint uVar4;
   int iVar5;
   int64_t *in_R9;
-  
   lVar1 = in_R9[1];
   uVar4 = (int)*(uint *)((int64_t)in_R9 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)in_R9 + 0xc) ^ uVar4) - uVar4;
@@ -43,21 +37,14 @@ void FUN_1808ead20(void)
   iVar2 = (int)in_R9[1];
   if (iVar5 <= iVar2) {
     *(int *)(in_R9 + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(*in_R9 + (int64_t)(int)lVar1 + 0xc,0,0xdc);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *in_R9,0,(int64_t)(iVar5 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eae00(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-void FUN_1808eae00(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-
+// 函数: void function_8eae00(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
+void function_8eae00(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
 {
   int64_t lVar1;
   int iVar2;
@@ -65,7 +52,6 @@ void FUN_1808eae00(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
   uint64_t *puVar4;
   uint uVar5;
   int iVar6;
-  
   lVar1 = param_4[1];
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5;
@@ -105,21 +91,14 @@ void FUN_1808eae00(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     *(int32_t *)((int64_t)puVar4 + 0x54) = 0;
     *puVar4 = &ui_system_data_1624_ptr;
     *(int32_t *)(puVar4 + 1) = 0x58;
-    FUN_180848dc0(puVar4,param_3,param_2);
+    function_848dc0(puVar4,param_3,param_2);
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *param_4,0,(int64_t)(iVar6 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eaef0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-void FUN_1808eaef0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-
+// 函数: void function_8eaef0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
+void function_8eaef0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
 {
   int64_t lVar1;
   int iVar2;
@@ -127,7 +106,6 @@ void FUN_1808eaef0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
   uint64_t *puVar4;
   uint uVar5;
   int iVar6;
-  
   lVar1 = param_4[1];
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5;
@@ -162,18 +140,11 @@ void FUN_1808eaef0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     (*(code *)&processed_var_7856_ptr)(puVar4,param_3,param_2);
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *param_4,0,(int64_t)(iVar6 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eafc0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-void FUN_1808eafc0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-
+// 函数: void function_8eafc0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
+void function_8eafc0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
 {
   int64_t lVar1;
   int iVar2;
@@ -181,7 +152,6 @@ void FUN_1808eafc0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
   uint64_t *puVar4;
   uint uVar5;
   int iVar6;
-  
   lVar1 = param_4[1];
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5;
@@ -216,18 +186,11 @@ void FUN_1808eafc0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     (*(code *)&processed_var_7856_ptr)(puVar4,param_3,param_2);
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *param_4,0,(int64_t)(iVar6 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb090(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-void FUN_1808eb090(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-
+// 函数: void function_8eb090(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
+void function_8eb090(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
 {
   int64_t lVar1;
   int iVar2;
@@ -235,7 +198,6 @@ void FUN_1808eb090(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
   uint64_t *puVar4;
   uint uVar5;
   int iVar6;
-  
   lVar1 = param_4[1];
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5;
@@ -271,18 +233,11 @@ void FUN_1808eb090(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     (*(code *)&processed_var_7856_ptr)(puVar4,param_3,param_2);
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *param_4,0,(int64_t)(iVar6 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb170(void)
-void FUN_1808eb170(void)
-
+// 函数: void function_8eb170(void)
+void function_8eb170(void)
 {
   int64_t lVar1;
   int iVar2;
@@ -290,7 +245,6 @@ void FUN_1808eb170(void)
   uint uVar4;
   int iVar5;
   int64_t *in_R9;
-  
   lVar1 = in_R9[1];
   uVar4 = (int)*(uint *)((int64_t)in_R9 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)in_R9 + 0xc) ^ uVar4) - uVar4;
@@ -317,21 +271,14 @@ void FUN_1808eb170(void)
   iVar2 = (int)in_R9[1];
   if (iVar5 <= iVar2) {
     *(int *)(in_R9 + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(*in_R9 + (int64_t)(int)lVar1 + 0xc,0,0x94);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *in_R9,0,(int64_t)(iVar5 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb250(void)
-void FUN_1808eb250(void)
-
+// 函数: void function_8eb250(void)
+void function_8eb250(void)
 {
   int64_t lVar1;
   int iVar2;
@@ -339,7 +286,6 @@ void FUN_1808eb250(void)
   uint uVar4;
   int iVar5;
   int64_t *in_R9;
-  
   lVar1 = in_R9[1];
   uVar4 = (int)*(uint *)((int64_t)in_R9 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)in_R9 + 0xc) ^ uVar4) - uVar4;
@@ -366,21 +312,14 @@ void FUN_1808eb250(void)
   iVar2 = (int)in_R9[1];
   if (iVar5 <= iVar2) {
     *(int *)(in_R9 + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(*in_R9 + (int64_t)(int)lVar1 + 0xc,0,0x94);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *in_R9,0,(int64_t)(iVar5 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb330(void)
-void FUN_1808eb330(void)
-
+// 函数: void function_8eb330(void)
+void function_8eb330(void)
 {
   int64_t lVar1;
   int iVar2;
@@ -388,7 +327,6 @@ void FUN_1808eb330(void)
   uint uVar4;
   int iVar5;
   int64_t *in_R9;
-  
   lVar1 = in_R9[1];
   uVar4 = (int)*(uint *)((int64_t)in_R9 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)in_R9 + 0xc) ^ uVar4) - uVar4;
@@ -415,21 +353,14 @@ void FUN_1808eb330(void)
   iVar2 = (int)in_R9[1];
   if (iVar5 <= iVar2) {
     *(int *)(in_R9 + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(*in_R9 + (int64_t)(int)lVar1 + 0xc,0,0x114);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *in_R9,0,(int64_t)(iVar5 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb410(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-void FUN_1808eb410(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-
+// 函数: void function_8eb410(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
+void function_8eb410(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
 {
   int64_t lVar1;
   int iVar2;
@@ -437,7 +368,6 @@ void FUN_1808eb410(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
   uint64_t *puVar4;
   uint uVar5;
   int iVar6;
-  
   lVar1 = param_4[1];
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5;
@@ -472,18 +402,11 @@ void FUN_1808eb410(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     (*(code *)&processed_var_7856_ptr)(puVar4,param_3,param_2);
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *param_4,0,(int64_t)(iVar6 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb4e0(void)
-void FUN_1808eb4e0(void)
-
+// 函数: void function_8eb4e0(void)
+void function_8eb4e0(void)
 {
   int64_t lVar1;
   int iVar2;
@@ -491,7 +414,6 @@ void FUN_1808eb4e0(void)
   uint uVar4;
   int iVar5;
   int64_t *in_R9;
-  
   lVar1 = in_R9[1];
   uVar4 = (int)*(uint *)((int64_t)in_R9 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)in_R9 + 0xc) ^ uVar4) - uVar4;
@@ -518,21 +440,14 @@ void FUN_1808eb4e0(void)
   iVar2 = (int)in_R9[1];
   if (iVar5 <= iVar2) {
     *(int *)(in_R9 + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset(*in_R9 + (int64_t)(int)lVar1 + 0xc,0,0x84);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *in_R9,0,(int64_t)(iVar5 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb5c0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-void FUN_1808eb5c0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
-
+// 函数: void function_8eb5c0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
+void function_8eb5c0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *param_4)
 {
   int64_t lVar1;
   int iVar2;
@@ -540,7 +455,6 @@ void FUN_1808eb5c0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
   uint64_t *puVar4;
   uint uVar5;
   int iVar6;
-  
   lVar1 = param_4[1];
   uVar5 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)param_4 + 0xc) ^ uVar5) - uVar5;
@@ -576,18 +490,11 @@ void FUN_1808eb5c0(uint64_t param_1,uint64_t param_2,int32_t param_3,int64_t *pa
     (*(code *)&processed_var_7856_ptr)(puVar4,param_3,param_2);
     return;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *param_4,0,(int64_t)(iVar6 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb6a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
-void FUN_1808eb6a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
-
+// 函数: void function_8eb6a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
+void function_8eb6a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
 {
   int64_t lVar1;
   int iVar2;
@@ -595,7 +502,6 @@ void FUN_1808eb6a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *p
   uint uVar4;
   int iVar5;
   int aiStack_28 [4];
-  
   iVar2 = UISystem_LayoutEngine(param_2,aiStack_28);
   if (iVar2 == 0) {
     uVar4 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
@@ -621,25 +527,18 @@ void FUN_1808eb6a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *p
        (iVar2 = DataSerializer0(param_4,iVar5), iVar2 == 0)) {
       iVar2 = (int)param_4[1];
       if (iVar2 < iVar5) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memset((int64_t)iVar2 + *param_4,0,(int64_t)(iVar5 - iVar2));
       }
       *(int *)(param_4 + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset((int64_t)(int)lVar1 + *param_4,0,(int64_t)(aiStack_28[0] + 0x20));
     }
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb6ca(void)
-void FUN_1808eb6ca(void)
-
+// 函数: void function_8eb6ca(void)
+void function_8eb6ca(void)
 {
   int64_t lVar1;
   uint in_EAX;
@@ -650,7 +549,6 @@ void FUN_1808eb6ca(void)
   int64_t *unaff_RDI;
   float fVar6;
   int iStackX_20;
-  
   iVar2 = (in_EAX ^ (int)in_EAX >> 0x1f) - ((int)in_EAX >> 0x1f);
   lVar1 = unaff_RDI[1];
   iVar5 = (int)lVar1 + iStackX_20 + 0x20;
@@ -677,33 +575,19 @@ void FUN_1808eb6ca(void)
   iVar2 = (int)unaff_RDI[1];
   if (iVar5 <= iVar2) {
     *(int *)(unaff_RDI + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset((int64_t)(int)lVar1 + *unaff_RDI,0,(int64_t)(iStackX_20 + 0x20));
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *unaff_RDI,0,(int64_t)(iVar5 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb799(void)
-void FUN_1808eb799(void)
-
+// 函数: void function_8eb799(void)
+void function_8eb799(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb7b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
-void FUN_1808eb7b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
-
+// 函数: void function_8eb7b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
+void function_8eb7b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
 {
   int64_t lVar1;
   int iVar2;
@@ -711,7 +595,6 @@ void FUN_1808eb7b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *p
   uint uVar4;
   int iVar5;
   int aiStack_28 [4];
-  
   iVar2 = UISystem_LayoutEngine(param_2,aiStack_28);
   if (iVar2 == 0) {
     uVar4 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
@@ -737,25 +620,18 @@ void FUN_1808eb7b0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *p
        (iVar2 = DataSerializer0(param_4,iVar5), iVar2 == 0)) {
       iVar2 = (int)param_4[1];
       if (iVar2 < iVar5) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memset((int64_t)iVar2 + *param_4,0,(int64_t)(iVar5 - iVar2));
       }
       *(int *)(param_4 + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset((int64_t)(int)lVar1 + *param_4,0,(int64_t)(aiStack_28[0] + 0x20));
     }
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb7da(void)
-void FUN_1808eb7da(void)
-
+// 函数: void function_8eb7da(void)
+void function_8eb7da(void)
 {
   int64_t lVar1;
   uint in_EAX;
@@ -766,7 +642,6 @@ void FUN_1808eb7da(void)
   int64_t *unaff_RDI;
   float fVar6;
   int iStackX_20;
-  
   iVar2 = (in_EAX ^ (int)in_EAX >> 0x1f) - ((int)in_EAX >> 0x1f);
   lVar1 = unaff_RDI[1];
   iVar5 = (int)lVar1 + iStackX_20 + 0x20;
@@ -793,33 +668,19 @@ void FUN_1808eb7da(void)
   iVar2 = (int)unaff_RDI[1];
   if (iVar5 <= iVar2) {
     *(int *)(unaff_RDI + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset((int64_t)(int)lVar1 + *unaff_RDI,0,(int64_t)(iStackX_20 + 0x20));
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *unaff_RDI,0,(int64_t)(iVar5 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb8a9(void)
-void FUN_1808eb8a9(void)
-
+// 函数: void function_8eb8a9(void)
+void function_8eb8a9(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb8c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
-void FUN_1808eb8c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
-
+// 函数: void function_8eb8c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
+void function_8eb8c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4)
 {
   int64_t lVar1;
   int iVar2;
@@ -827,7 +688,6 @@ void FUN_1808eb8c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *p
   uint uVar4;
   int iVar5;
   int aiStack_28 [4];
-  
   iVar2 = UISystem_LayoutEngine(param_2,aiStack_28);
   if (iVar2 == 0) {
     uVar4 = (int)*(uint *)((int64_t)param_4 + 0xc) >> 0x1f;
@@ -853,25 +713,18 @@ void FUN_1808eb8c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *p
        (iVar2 = DataSerializer0(param_4,iVar5), iVar2 == 0)) {
       iVar2 = (int)param_4[1];
       if (iVar2 < iVar5) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
         memset((int64_t)iVar2 + *param_4,0,(int64_t)(iVar5 - iVar2));
       }
       *(int *)(param_4 + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset((int64_t)(int)lVar1 + *param_4,0,(int64_t)(aiStack_28[0] + 0x18));
     }
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb8ea(void)
-void FUN_1808eb8ea(void)
-
+// 函数: void function_8eb8ea(void)
+void function_8eb8ea(void)
 {
   int64_t lVar1;
   uint in_EAX;
@@ -882,7 +735,6 @@ void FUN_1808eb8ea(void)
   int64_t *unaff_RDI;
   float fVar6;
   int iStackX_20;
-  
   iVar2 = (in_EAX ^ (int)in_EAX >> 0x1f) - ((int)in_EAX >> 0x1f);
   lVar1 = unaff_RDI[1];
   iVar5 = (int)lVar1 + iStackX_20 + 0x18;
@@ -909,33 +761,19 @@ void FUN_1808eb8ea(void)
   iVar2 = (int)unaff_RDI[1];
   if (iVar5 <= iVar2) {
     *(int *)(unaff_RDI + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset((int64_t)(int)lVar1 + *unaff_RDI,0,(int64_t)(iStackX_20 + 0x18));
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *unaff_RDI,0,(int64_t)(iVar5 - iVar2));
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb9b2(void)
-void FUN_1808eb9b2(void)
-
+// 函数: void function_8eb9b2(void)
+void function_8eb9b2(void)
 {
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1808eb9c0(int64_t *param_1,uint64_t param_2,int param_3)
-void FUN_1808eb9c0(int64_t *param_1,uint64_t param_2,int param_3)
-
+// 函数: void function_8eb9c0(int64_t *param_1,uint64_t param_2,int param_3)
+void function_8eb9c0(int64_t *param_1,uint64_t param_2,int param_3)
 {
   int64_t lVar1;
   int iVar2;
@@ -943,7 +781,6 @@ void FUN_1808eb9c0(int64_t *param_1,uint64_t param_2,int param_3)
   uint uVar4;
   int iVar5;
   float fVar6;
-  
   lVar1 = param_1[1];
   uVar4 = (int)*(uint *)((int64_t)param_1 + 0xc) >> 0x1f;
   iVar2 = (*(uint *)((int64_t)param_1 + 0xc) ^ uVar4) - uVar4;
@@ -971,17 +808,13 @@ void FUN_1808eb9c0(int64_t *param_1,uint64_t param_2,int param_3)
   iVar2 = (int)param_1[1];
   if (iVar5 <= iVar2) {
     *(int *)(param_1 + 1) = iVar5;
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     memset((int64_t)(int)lVar1 + *param_1,0,(int64_t)param_3);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset((int64_t)iVar2 + *param_1,0,(int64_t)(iVar5 - iVar2));
 }
-
-
-
-uint64_t FUN_1808ebab0(int64_t *param_1)
-
+uint64_t function_8ebab0(int64_t *param_1)
 {
   int *piVar1;
   int iVar2;
@@ -994,7 +827,6 @@ uint64_t FUN_1808ebab0(int64_t *param_1)
   int iVar9;
   uint64_t uVar10;
   uint64_t uVar11;
-  
   iVar9 = *(int *)((int64_t)param_1 + 0x24);
   if (iVar9 == -1) {
     return 0x1c;
@@ -1010,7 +842,7 @@ uint64_t FUN_1808ebab0(int64_t *param_1)
     }
     uVar8 = (int)*(uint *)((int64_t)param_1 + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)param_1 + 0x1c) ^ uVar8) - uVar8) < iVar9) &&
-       (uVar5 = FUN_180895f20(param_1 + 2,iVar9), (int)uVar5 != 0)) {
+       (uVar5 = function_895f20(param_1 + 2,iVar9), (int)uVar5 != 0)) {
       return uVar5;
     }
     uVar5 = SystemCore_StateController0(param_1,iVar9);
@@ -1052,11 +884,7 @@ uint64_t FUN_1808ebab0(int64_t *param_1)
   }
   return 0;
 }
-
-
-
-uint64_t FUN_1808ebad6(void)
-
+uint64_t function_8ebad6(void)
 {
   int *piVar1;
   int64_t lVar2;
@@ -1071,7 +899,6 @@ uint64_t FUN_1808ebad6(void)
   int iVar8;
   uint64_t uVar9;
   uint64_t uVar10;
-  
   if (unaff_EDI == in_EAX) {
     iVar8 = unaff_EDI * 2;
     if (iVar8 < 4) {
@@ -1082,7 +909,7 @@ uint64_t FUN_1808ebad6(void)
     }
     uVar7 = (int)*(uint *)((int64_t)unaff_RBX + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((int64_t)unaff_RBX + 0x1c) ^ uVar7) - uVar7) < iVar8) &&
-       (uVar4 = FUN_180895f20(unaff_RBX + 2,iVar8), (int)uVar4 != 0)) {
+       (uVar4 = function_895f20(unaff_RBX + 2,iVar8), (int)uVar4 != 0)) {
       return uVar4;
     }
     uVar4 = SystemCore_StateController0();
@@ -1124,17 +951,7 @@ uint64_t FUN_1808ebad6(void)
   }
   return 0;
 }
-
-
-
-uint64_t FUN_1808ebbeb(void)
-
+uint64_t function_8ebbeb(void)
 {
   return 0x1c;
 }
-
-
-
-
-
-

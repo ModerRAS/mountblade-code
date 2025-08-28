@@ -1,20 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_11_part043.c - 2 个函数
-
-// 函数: void FUN_1807aa050(void)
-void FUN_1807aa050(void)
-
+// 函数: void function_7aa050(void)
+void function_7aa050(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(0x180c2c564,0,0x5c);
 }
-
-
-
 uint64_t
-FUN_1807aa2a0(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,uint param_5)
-
+function_7aa2a0(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,uint param_5)
 {
   float *pfVar1;
   float *pfVar2;
@@ -50,7 +43,6 @@ FUN_1807aa2a0(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,uint 
   float fVar32;
   float fVar33;
   float fVar34;
-  
   lVar14 = (int64_t)(int)param_5;
   if (param_2 != 0) {
     lVar15 = param_2;
@@ -201,11 +193,7 @@ FUN_1807aa2a0(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,uint 
   }
   return 0;
 }
-
-
-
-uint64_t FUN_1807aa2e3(int64_t param_1,int64_t param_2)
-
+uint64_t function_7aa2e3(int64_t param_1,int64_t param_2)
 {
   float *pfVar1;
   float *pfVar2;
@@ -261,7 +249,6 @@ uint64_t FUN_1807aa2e3(int64_t param_1,int64_t param_2)
   int unaff_XMM9_Db;
   int unaff_XMM9_Dc;
   int unaff_XMM9_Dd;
-  
   *(uint64_t *)(in_RAX + 8) = unaff_RBP;
   *(uint64_t *)(in_RAX + 0x18) = unaff_R12;
   *(int32_t *)(in_RAX + -0x38) = unaff_XMM6_Da;
@@ -419,11 +406,7 @@ uint64_t FUN_1807aa2e3(int64_t param_1,int64_t param_2)
   }
   return 0;
 }
-
-
-
-uint64_t FUN_1807aa2ee(int64_t param_1)
-
+uint64_t function_7aa2ee(int64_t param_1)
 {
   float *pfVar1;
   float *pfVar2;
@@ -478,7 +461,6 @@ uint64_t FUN_1807aa2ee(int64_t param_1)
   int unaff_XMM9_Db;
   int unaff_XMM9_Dc;
   int unaff_XMM9_Dd;
-  
   *(int32_t *)(in_RAX + -0x38) = unaff_XMM6_Da;
   *(int32_t *)(in_RAX + -0x34) = unaff_XMM6_Db;
   *(int32_t *)(in_RAX + -0x30) = unaff_XMM6_Dc;
@@ -634,11 +616,7 @@ uint64_t FUN_1807aa2ee(int64_t param_1)
   }
   return 0;
 }
-
-
-
-uint64_t FUN_1807aa3e0(void)
-
+uint64_t function_7aa3e0(void)
 {
   float *pfVar1;
   float *pfVar2;
@@ -684,7 +662,6 @@ uint64_t FUN_1807aa3e0(void)
   int unaff_XMM9_Db;
   int unaff_XMM9_Dc;
   int unaff_XMM9_Dd;
-  
   do {
     lVar7 = 0;
     uVar13 = (uint)unaff_RDI;
@@ -812,21 +789,8 @@ uint64_t FUN_1807aa3e0(void)
   } while (unaff_EBP < unaff_R15D);
   return 0;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807aa5fb(void)
-void FUN_1807aa5fb(void)
-
+// 函数: void function_7aa5fb(void)
+void function_7aa5fb(void)
 {
   return;
 }
-
-
-
-
-
-

@@ -1,14 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 99_part_08_part034.c - 1 个函数
-
-// 函数: void FUN_1805a0cf5(uint64_t param_1,int64_t param_2)
-void FUN_1805a0cf5(uint64_t param_1,int64_t param_2)
-
+// 函数: void NetworkSystem_a0cf5(uint64_t param_1,int64_t param_2)
+void NetworkSystem_a0cf5(uint64_t param_1,int64_t param_2)
 {
   int32_t *puVar1;
   uint uVar2;
@@ -47,13 +42,12 @@ void FUN_1805a0cf5(uint64_t param_1,int64_t param_2)
   int64_t lVar32;
   int8_t uVar33;
   uint64_t *puVar34;
-  int64_t *in_stack_00000078;
-  
+  int64_t *local_var_78;
   iVar26 = (int)(param_2 >> 10) - (int)(param_2 >> 0x3f);
   if (iVar26 < 1) {
-FUN_1805a15a6:
-                    // WARNING: Subroutine does not return
-    SystemSecurityChecker(unaff_RBP[0x32] ^ (uint64_t)&stack0x00000000);
+NetworkSystem_a15a6:
+// WARNING: Subroutine does not return
+    SystemSecurityChecker(unaff_RBP[0x32] ^ (uint64_t)&local_buffer_00000000);
   }
   lVar29 = 0;
   unaff_RBP[-0xc] = 0;
@@ -74,7 +68,7 @@ LAB_1805a0d8e:
       uVar33 = 0;
     }
     *(int32_t *)(unaff_RBP + -0x10) = 0xffffffff;
-    if ((lVar32 == 0) || (cVar21 = func_0x00018052da70(), cVar21 == '\0')) {
+    if ((lVar32 == 0) || (cVar21 = Function_e137e664(), cVar21 == '\0')) {
       cVar21 = *(char *)(lVar29 + 0xc18 + lVar24);
       bVar20 = false;
       if (cVar21 == '\0') goto LAB_1805a0e22;
@@ -142,7 +136,7 @@ LAB_1805a0e8e:
     *(int32_t *)((int64_t)unaff_RBP + -4) = 0;
     unaff_RBP[10] = 0;
     unaff_RBP[0xb] = 0;
-    lVar30 = in_stack_00000078[6];
+    lVar30 = local_var_78[6];
     unaff_RBP[0xc] = 0;
     unaff_RBP[0xd] = 0xbf80000000000000;
     unaff_RBP[4] = 0;
@@ -178,7 +172,7 @@ LAB_1805a0e8e:
     *(int32_t *)((int64_t)unaff_RBP + -0x2c) = uVar22;
     *(int8_t *)(unaff_RBP + -5) = *(int8_t *)(lVar29 + 0xc24 + lVar24);
     *(int32_t *)((int64_t)unaff_RBP + -0x44) = *(int32_t *)(lVar29 + 0xc20 + lVar24);
-    *(int *)(unaff_RBP + -8) = (int)in_stack_00000078[5];
+    *(int *)(unaff_RBP + -8) = (int)local_var_78[5];
     *(int32_t *)((int64_t)unaff_RBP + -0x3c) = 1;
     *(int32_t *)(unaff_RBP + -7) = 2;
     *(int8_t *)((int64_t)unaff_RBP + -0x34) = *(int8_t *)(lVar29 + 0xca0 + lVar24);
@@ -227,7 +221,7 @@ LAB_1805a0e8e:
       else {
         lVar30 = (int64_t)*(int *)(lVar32 + 0x10) * 0xa60 + unaff_RBP[-0xd] + 0x30a0;
       }
-      FUN_1804f91b0(unaff_RBP[-0xd],unaff_RBP + -10,0x7fc00000,lVar30,lVar31);
+      UISystem_f91b0(unaff_RBP[-0xd],unaff_RBP + -10,0x7fc00000,lVar30,lVar31);
       if ((((*(int *)(unaff_RBP + -0xf) != -1) || (*(int *)((int64_t)unaff_RBP + -0x74) != -1)) ||
           (*(int *)(unaff_RBP + -0xe) != -1)) && (lVar32 != 0)) {
         lVar31 = (int64_t)*(int *)(lVar32 + 0x10) * 0xa60 + unaff_RBP[-0xd] + 0x30a0;
@@ -274,12 +268,12 @@ LAB_1805a0e8e:
         *(float *)((int64_t)unaff_RBP + 0x94) = fVar3 - fVar13;
         *(float *)(unaff_RBP + 0x13) = fVar4 - fVar14;
         SystemCore_EventHandler(unaff_RBP + 0x28,unaff_RBP + 0x26,unaff_RBP + 0x12);
-        FUN_1805ab940();
+        NetworkSystem_ab940();
       }
     }
-    unaff_R12 = in_stack_00000078;
+    unaff_R12 = local_var_78;
     if (!bVar20) {
-      FUN_1805a0af0();
+      NetworkSystem_a0af0();
       if (*(int *)(lVar29 + 0xc20 + lVar24) == 1) {
         *(int32_t *)(unaff_R13 + 0x2a8) = *(int32_t *)(*(int64_t *)(unaff_R13 + 0x2b8) + 8);
       }
@@ -295,7 +289,7 @@ LAB_1805a0e8e:
           unaff_RBP[0x16] = 0;
           unaff_RBP[0x17] = 0;
           *(int32_t *)(unaff_RBP + 0x15) = 0;
-          uVar6 = *(int32_t *)((int64_t)in_stack_00000078 + 0x3c);
+          uVar6 = *(int32_t *)((int64_t)local_var_78 + 0x3c);
           unaff_RBP[0x18] = 0;
           *(uint64_t *)((int64_t)unaff_RBP + 0x124) = 0;
           *(int *)((int64_t)unaff_RBP + 0x114) = iVar27;
@@ -326,22 +320,22 @@ LAB_1805a0e8e:
       }
       if ((*(int *)(lVar29 + 0xc20 + lVar24) == 2) &&
          (lVar31 = *(int64_t *)(lVar29 + 0xc88 + lVar24), lVar31 != 0)) {
-        if ((int)in_stack_00000078[5] < 0) {
+        if ((int)local_var_78[5] < 0) {
           lVar30 = 0;
         }
         else {
           lVar30 = *(int64_t *)(unaff_R13 + 0x8f8) + 8 +
-                   (int64_t)(int)in_stack_00000078[5] * 0x1f8;
+                   (int64_t)(int)local_var_78[5] * 0x1f8;
         }
-        FUN_1804f8630(*(uint64_t *)(unaff_R13 + 0x8d8),*(int32_t *)(unaff_R13 + 0x10),lVar30,
+        UISystem_f8630(*(uint64_t *)(unaff_R13 + 0x8d8),*(int32_t *)(unaff_R13 + 0x10),lVar30,
                       *(int32_t *)(lVar31 + 100),puVar34);
       }
       cVar21 = *(char *)(lVar29 + 0xca9 + lVar24);
       if (((cVar21 != '\0') || (*(int *)(lVar29 + 0xc20 + lVar24) - 3U < 3)) ||
          (-1 < *(char *)(lVar29 + 0xca2 + lVar24))) {
-        FUN_1805253f0((int64_t)*(int *)(lVar32 + 0x10) * 0xa60 + unaff_RBP[-0xd] + 0x30a0,
+        NetworkSystem_253f0((int64_t)*(int *)(lVar32 + 0x10) * 0xa60 + unaff_RBP[-0xd] + 0x30a0,
                       unaff_RBP + -10,cVar21,*(int8_t *)(lVar29 + 0xca2 + lVar24),
-                      (int)in_stack_00000078[5]);
+                      (int)local_var_78[5]);
       }
       if (*(int *)(unaff_RBP + -0x10) == 1) {
         if (lVar32 != 0) {
@@ -362,7 +356,7 @@ LAB_1805a0e8e:
       }
       *(int32_t *)(unaff_R13 + 0x2b4) = 0;
       *(uint64_t *)(unaff_R13 + 0x2b8) = 0;
-      goto FUN_1805a15a6;
+      goto NetworkSystem_a15a6;
     }
   }
   else {
@@ -373,7 +367,7 @@ LAB_1805a1543:
   lVar24 = unaff_RBP[-0xc];
   lVar29 = lVar29 + 0xcb0;
   unaff_RBP[-0xc] = lVar24 + 1;
-  if ((int64_t)iVar26 <= lVar24 + 1) goto FUN_1805a15a6;
+  if ((int64_t)iVar26 <= lVar24 + 1) goto NetworkSystem_a15a6;
   goto LAB_1805a0d60;
   while( true ) {
     iVar27 = iVar27 + 1;
@@ -389,9 +383,3 @@ LAB_1805a1510:
   }
   goto LAB_1805a1543;
 }
-
-
-
-
-
-

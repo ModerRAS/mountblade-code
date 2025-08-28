@@ -1,23 +1,15 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 04_ui_system_part194_sub002.c - 1 个函数
-
-// 函数: void FUN_18077ed00(int64_t *param_1)
-void FUN_18077ed00(int64_t *param_1)
-
+// 函数: void function_77ed00(int64_t *param_1)
+void function_77ed00(int64_t *param_1)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   memset(*param_1 + 0x22c,0,0x100);
 }
-
-
-
-uint64_t FUN_18077ed40(int64_t *param_1,int param_2)
-
+uint64_t function_77ed40(int64_t *param_1,int param_2)
 {
   int64_t lVar1;
   uint64_t uVar2;
-  
   if (param_2 == 0) {
     return 0;
   }
@@ -29,15 +21,10 @@ uint64_t FUN_18077ed40(int64_t *param_1,int param_2)
   }
   return 6;
 }
-
-
-
-uint64_t FUN_18077edf0(int64_t *param_1,int param_2,int32_t *param_3,int64_t param_4)
-
+uint64_t function_77edf0(int64_t *param_1,int param_2,int32_t *param_3,int64_t param_4)
 {
   int64_t lVar1;
   float fVar2;
-  
   lVar1 = *param_1;
   if (param_2 == 0) {
     *param_3 = *(int32_t *)(lVar1 + 0x360);
@@ -77,18 +64,13 @@ uint64_t FUN_18077edf0(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
     }
     fVar2 = *(float *)(lVar1 + 0x36c);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemValidationProcessor(param_4,0x20,&rendering_buffer_2048_ptr,(double)fVar2);
 }
-
-
-
-uint64_t FUN_18077eef0(int64_t *param_1,int param_2,int32_t *param_3,int64_t param_4)
-
+uint64_t function_77eef0(int64_t *param_1,int param_2,int32_t *param_3,int64_t param_4)
 {
   int64_t lVar1;
   void *puVar2;
-  
   if (param_2 != 6) {
     return 0x1f;
   }
@@ -99,22 +81,17 @@ uint64_t FUN_18077eef0(int64_t *param_1,int param_2,int32_t *param_3,int64_t par
     if (*(int *)(lVar1 + 0x370) != 0) {
       puVar2 = &processed_var_8200_ptr;
     }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     SystemValidationProcessor(param_4,0x20,&processed_var_552_ptr,puVar2);
   }
   return 0;
 }
-
-
-
 uint64_t
-FUN_18077ef70(int64_t *param_1,int param_2,uint64_t *param_3,int32_t *param_4,int64_t param_5
+function_77ef70(int64_t *param_1,int param_2,uint64_t *param_3,int32_t *param_4,int64_t param_5
              )
-
 {
   int64_t lVar1;
   void *puVar2;
-  
   if (param_2 == 5) {
     lVar1 = *param_1;
     *param_3 = (int *)(lVar1 + 0x358);
@@ -124,15 +101,9 @@ FUN_18077ef70(int64_t *param_1,int param_2,uint64_t *param_3,int32_t *param_4,in
       if (*(int *)(lVar1 + 0x358) != 0) {
         puVar2 = &rendering_buffer_2328_ptr;
       }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       SystemValidationProcessor(param_5,0x20,&processed_var_552_ptr,puVar2);
     }
   }
   return 0;
 }
-
-
-
-
-
-

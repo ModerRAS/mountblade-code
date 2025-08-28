@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part656.c - 5 个函数
-
-// 函数: void FUN_18063f285(int param_1)
-void FUN_18063f285(int param_1)
-
+// 函数: void function_63f285(int param_1)
+void function_63f285(int param_1)
 {
   int64_t lVar1;
   int iVar2;
@@ -38,9 +35,8 @@ void FUN_18063f285(int param_1)
   float fVar27;
   int iStackX_24;
   int64_t lStack0000000000000030;
-  int in_stack_00000040;
+  int local_var_40;
   int64_t lStack0000000000000060;
-  
   iVar7 = param_1 + -2;
   lVar17 = (int64_t)param_1;
   lStack0000000000000060 = 3;
@@ -189,7 +185,7 @@ void FUN_18063f285(int param_1)
         lVar9 = lVar9 + 1;
         uVar20 = uVar20 + 1;
         uVar16 = uVar13;
-        param_1 = in_stack_00000040;
+        param_1 = local_var_40;
       } while ((int)uVar20 < iVar7);
     }
     lVar15 = lVar15 + -1;
@@ -199,29 +195,16 @@ void FUN_18063f285(int param_1)
   } while ((int)uVar11 < iStackX_24);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18063f927(void)
-void FUN_18063f927(void)
-
+// 函数: void function_63f927(void)
+void function_63f927(void)
 {
   int64_t unaff_RBX;
-  
   *(uint64_t *)(unaff_RBX + 0x20) = 0xffffffffffffffff;
   *(uint64_t *)(unaff_RBX + 0x28) = 0xffffffffffffffff;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18063f960(int64_t *param_1,int64_t *param_2,int param_3)
-void FUN_18063f960(int64_t *param_1,int64_t *param_2,int param_3)
-
+// 函数: void function_63f960(int64_t *param_1,int64_t *param_2,int param_3)
+void function_63f960(int64_t *param_1,int64_t *param_2,int param_3)
 {
   int iVar1;
   int iVar2;
@@ -256,9 +239,8 @@ void FUN_18063f960(int64_t *param_1,int64_t *param_2,int param_3)
   float fVar31;
   int64_t lStack_128;
   int64_t lStack_f8;
-  
   param_1[1] = *param_1;
-  FUN_18033a920(param_1,(int64_t)(param_3 * 2));
+  function_33a920(param_1,(int64_t)(param_3 * 2));
   uVar15 = 0;
   fVar30 = 0.0;
   uVar8 = uVar15;
@@ -322,8 +304,8 @@ void FUN_18063f960(int64_t *param_1,int64_t *param_2,int param_3)
       lVar3 = lVar3 + -1;
     } while (-1 < lVar3);
   }
-  FUN_18033a920(param_1,(int64_t)(int)(uVar17 - 1));
-  FUN_180398ab0(param_1);
+  function_33a920(param_1,(int64_t)(int)(uVar17 - 1));
+  function_398ab0(param_1);
   param_1[6] = 0x7f7fffff7f7fffff;
   param_1[7] = -0x80000000800001;
   lVar3 = param_1[1];
@@ -529,14 +511,8 @@ void FUN_18063f960(int64_t *param_1,int64_t *param_2,int param_3)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_18063fc35(int param_1)
-void FUN_18063fc35(int param_1)
-
+// 函数: void function_63fc35(int param_1)
+void function_63fc35(int param_1)
 {
   int64_t lVar1;
   int iVar2;
@@ -570,9 +546,8 @@ void FUN_18063fc35(int param_1)
   float fVar27;
   int iStackX_24;
   int64_t lStack0000000000000030;
-  int in_stack_00000040;
+  int local_var_40;
   int64_t lStack0000000000000060;
-  
   iVar7 = param_1 + -2;
   lVar17 = (int64_t)param_1;
   lStack0000000000000060 = 3;
@@ -721,7 +696,7 @@ void FUN_18063fc35(int param_1)
         lVar9 = lVar9 + 1;
         uVar20 = uVar20 + 1;
         uVar16 = uVar13;
-        param_1 = in_stack_00000040;
+        param_1 = local_var_40;
       } while ((int)uVar20 < iVar7);
     }
     lVar15 = lVar15 + -1;
@@ -731,23 +706,11 @@ void FUN_18063fc35(int param_1)
   } while ((int)uVar11 < iStackX_24);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_1806402f4(void)
-void FUN_1806402f4(void)
-
+// 函数: void function_6402f4(void)
+void function_6402f4(void)
 {
   int64_t unaff_RBX;
-  
   *(uint64_t *)(unaff_RBX + 0x20) = 0xffffffffffffffff;
   *(uint64_t *)(unaff_RBX + 0x28) = 0xffffffffffffffff;
   return;
 }
-
-
-
-
-

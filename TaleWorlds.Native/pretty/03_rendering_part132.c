@@ -1,12 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // 03_rendering_part132.c - 6 个函数
-
-// 函数: void FUN_1803472a9(uint64_t param_1,uint64_t param_2,float param_3,float *param_4,float param_5,
-void FUN_1803472a9(uint64_t param_1,uint64_t param_2,float param_3,float *param_4,float param_5,
+// 函数: void function_3472a9(uint64_t param_1,uint64_t param_2,float param_3,float *param_4,float param_5,
+void function_3472a9(uint64_t param_1,uint64_t param_2,float param_3,float *param_4,float param_5,
                   uint64_t param_6,float param_7)
-
 {
   float fVar1;
   float fVar2;
@@ -44,7 +41,6 @@ void FUN_1803472a9(uint64_t param_1,uint64_t param_2,float param_3,float *param_
   float fStackX_18;
   float fStackX_20;
   float fStackX_24;
-  
   fVar4 = param_4[0x20];
   fVar20 = (param_4[0x24] - fVar4) * param_4[0x2d] + fVar4;
   if (fVar20 <= (float)param_6) {
@@ -147,25 +143,13 @@ void FUN_1803472a9(uint64_t param_1,uint64_t param_2,float param_3,float *param_
   in_R10[0xf] = fVar22 * fVar7 + fVar24 * fVar11 + fVar23 * fVar2 + fVar14;
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180347722(void)
-void FUN_180347722(void)
-
+// 函数: void function_347722(void)
+void function_347722(void)
 {
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180347740(int64_t param_1,float *param_2,float *param_3,float *param_4)
-void FUN_180347740(int64_t param_1,float *param_2,float *param_3,float *param_4)
-
+// 函数: void function_347740(int64_t param_1,float *param_2,float *param_3,float *param_4)
+void function_347740(int64_t param_1,float *param_2,float *param_3,float *param_4)
 {
   float *pfVar1;
   float fVar2;
@@ -185,7 +169,6 @@ void FUN_180347740(int64_t param_1,float *param_2,float *param_3,float *param_4)
   float fVar16;
   float fVar17;
   float fVar18;
-  
   lVar3 = *(int64_t *)(*(int64_t *)(param_1 + 0xb8) + 0x40);
   iVar5 = (int)(*(int64_t *)(lVar3 + 0x30) - *(int64_t *)(lVar3 + 0x28) >> 4);
   lVar7 = (int64_t)iVar5;
@@ -278,14 +261,8 @@ void FUN_180347740(int64_t param_1,float *param_2,float *param_3,float *param_4)
   }
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180347766(int64_t param_1,float *param_2,float *param_3,float *param_4)
-void FUN_180347766(int64_t param_1,float *param_2,float *param_3,float *param_4)
-
+// 函数: void function_347766(int64_t param_1,float *param_2,float *param_3,float *param_4)
+void function_347766(int64_t param_1,float *param_2,float *param_3,float *param_4)
 {
   float *pfVar1;
   float fVar2;
@@ -303,7 +280,6 @@ void FUN_180347766(int64_t param_1,float *param_2,float *param_3,float *param_4)
   float fVar13;
   float fVar14;
   float fVar15;
-  
   lVar4 = 0;
   do {
     lVar3 = *(int64_t *)(param_1 + 0x28);
@@ -388,27 +364,14 @@ void FUN_180347766(int64_t param_1,float *param_2,float *param_3,float *param_4)
   } while (in_R10 != 0);
   return;
 }
-
-
-
-
-
-// 函数: void FUN_180347aa1(void)
-void FUN_180347aa1(void)
-
+// 函数: void function_347aa1(void)
+void function_347aa1(void)
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180347ab0(int64_t param_1,int64_t *param_2)
-void FUN_180347ab0(int64_t param_1,int64_t *param_2)
-
+// 函数: void function_347ab0(int64_t param_1,int64_t *param_2)
+void function_347ab0(int64_t param_1,int64_t *param_2)
 {
   int64_t *plVar1;
   int64_t *plVar2;
@@ -418,7 +381,6 @@ void FUN_180347ab0(int64_t param_1,int64_t *param_2)
   int64_t lVar6;
   int64_t *plVar7;
   int iStackX_18;
-  
   lVar6 = 0;
   iStackX_18 = 0;
   lVar3 = *(int64_t *)(param_1 + 0x1c0);
@@ -471,7 +433,7 @@ LAB_180347b86:
             plVar5 = (int64_t *)*param_2;
           }
           if (plVar5 != (int64_t *)0x0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
             CoreEngineMemoryPoolCleaner(plVar5);
           }
           *param_2 = (int64_t)plVar7;
@@ -479,7 +441,7 @@ LAB_180347b86:
           param_2[2] = (int64_t)(plVar7 + lVar3);
         }
       }
-      FUN_180347ab0(plVar1,param_2);
+      function_347ab0(plVar1,param_2);
       (**(code **)(*plVar1 + 0x38))(plVar1);
       iStackX_18 = iStackX_18 + 1;
       lVar6 = lVar6 + 8;
@@ -489,10 +451,4 @@ LAB_180347b86:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

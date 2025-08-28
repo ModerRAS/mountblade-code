@@ -1,25 +1,16 @@
 #include "high_freq_fun_definitions.h"
 /*
- * 高频FUN_函数语义化定义
- * 本文件中的FUN_函数已替换为语义化别名，提升代码可读性
+ * 高频原始函数语义化定义
+ * 本文件中的原始函数已替换为语义化别名，提升代码可读性
  */
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part287_sub001_sub001.c - 272 个函数
-
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part287_sub001.c - 278 个函数
-
 #include "TaleWorlds.Native.Split.h"
-
 // 03_rendering_part287.c - 283 个函数
-
-
-
 // 函数: uint8_t RenderingCoreProcessor;
 uint8_t RenderingCoreProcessor;
 uint8_t processed_var_5896;
@@ -281,23 +272,11 @@ uint8_t processed_var_7288;
 uint8_t processed_var_8560;
 uint8_t processed_var_7856;
 uint8_t processed_var_8096;
-
-
-
-
 // 函数: uint8_t RenderingSystemInitializer;
 uint8_t RenderingSystemInitializer;
-
-
-
-
 // 函数: uint8_t RenderingSystemManager;
 uint8_t RenderingSystemManager;
 uint8_t processed_var_7792;
-
-
-
-
 // 函数: uint8_t RenderingSystemController;
 uint8_t RenderingSystemController;
 uint8_t processed_var_8592;
@@ -308,439 +287,195 @@ uint8_t processed_var_8672;
 uint8_t processed_var_8776;
 uint8_t memory_allocator_3400;
 uint8_t processed_var_8736;
-
-
-
-
 // 函数: uint8_t RenderingSystemValidator;
 uint8_t RenderingSystemValidator;
 uint8_t processed_var_9920;
 uint8_t processed_var_6416;
 uint8_t SUB_18051f9a0;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedInitializer;
 uint8_t RenderingSystemAdvancedInitializer;
 uint8_t SUB_180525320;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedConfigurator;
 uint8_t RenderingSystemAdvancedConfigurator;
 uint8_t processed_var_400;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedProcessor;
 uint8_t RenderingSystemAdvancedProcessor;
 uint8_t rendering_buffer_2640;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedManager;
 uint8_t RenderingSystemAdvancedManager;
 uint8_t memory_allocator_3856;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedValidator;
 uint8_t RenderingSystemAdvancedValidator;
 uint8_t memory_allocator_3888;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedOptimizer;
 uint8_t RenderingSystemAdvancedOptimizer;
 uint8_t processed_var_7232;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedController;
 uint8_t RenderingSystemAdvancedController;
 uint8_t processed_var_7424;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedHandler;
 uint8_t RenderingSystemAdvancedHandler;
 uint8_t processed_var_7472;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedCleaner;
 uint8_t RenderingSystemAdvancedCleaner;
 uint8_t processed_var_7520;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedResetter;
 uint8_t RenderingSystemAdvancedResetter;
 uint8_t processed_var_7536;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedFinalizer;
 uint8_t RenderingSystemAdvancedFinalizer;
 uint8_t processed_var_7680;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedSynchronizer;
 uint8_t RenderingSystemAdvancedSynchronizer;
 uint8_t processed_var_8080;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedCoordinator;
 uint8_t RenderingSystemAdvancedCoordinator;
 uint8_t processed_var_8688;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedIntegrator;
 uint8_t RenderingSystemAdvancedIntegrator;
 uint8_t processed_var_8704;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedUnifier;
 uint8_t RenderingSystemAdvancedUnifier;
 uint8_t processed_var_8720;
 uint8_t processed_var_8736;
 uint8_t processed_var_8752;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_118060faa0;
 uint8_t RenderingSystemSpecialProcessor_118060faa0;
 uint8_t processed_var_8912;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_118060fd90;
 uint8_t RenderingSystemSpecialProcessor_118060fd90;
 uint8_t processed_var_8928;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_118060fe60;
 uint8_t RenderingSystemSpecialProcessor_118060fe60;
 uint8_t processed_var_8944;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_118060fe80;
 uint8_t RenderingSystemSpecialProcessor_118060fe80;
 uint8_t processed_var_8960;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_132;
 uint8_t RenderingSystemSpecialProcessor_132;
 uint8_t processed_var_8992;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610190;
 uint8_t RenderingSystemSpecialProcessor_1180610190;
 uint8_t processed_var_9392;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610210;
 uint8_t RenderingSystemSpecialProcessor_1180610210;
 uint8_t processed_var_9424;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610560;
 uint8_t RenderingSystemSpecialProcessor_1180610560;
 uint8_t processed_var_9472;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806106f0;
 uint8_t RenderingSystemSpecialProcessor_11806106f0;
 uint8_t processed_var_9504;
-
-
-
-
 // 函数: uint8_t RenderingSystemHyperProcessor_137;
 uint8_t RenderingSystemHyperProcessor_137;
 uint8_t processed_var_9536;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610900;
 uint8_t RenderingSystemSpecialProcessor_1180610900;
 uint8_t processed_var_9552;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610a30;
 uint8_t RenderingSystemSpecialProcessor_1180610a30;
 uint8_t processed_var_9568;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610ac0;
 uint8_t RenderingSystemSpecialProcessor_1180610ac0;
 uint8_t processed_var_9584;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610bd0;
 uint8_t RenderingSystemSpecialProcessor_1180610bd0;
 uint8_t processed_var_9600;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180610e80;
 uint8_t RenderingSystemSpecialProcessor_1180610e80;
 uint8_t processed_var_9616;
 uint8_t processed_var_9728;
 uint8_t memory_allocator_368;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedSerializer2;
 uint8_t RenderingSystemAdvancedSerializer2;
 uint8_t processed_var_480;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedNormalizer2;
 uint8_t RenderingSystemAdvancedNormalizer2;
 uint8_t processed_var_576;
 uint8_t processed_var_592;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedSanitizer2;
 uint8_t RenderingSystemAdvancedSanitizer2;
 uint8_t processed_var_624;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedValidator3;
 uint8_t RenderingSystemAdvancedValidator3;
 uint8_t processed_var_704;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedAuditor2;
 uint8_t RenderingSystemAdvancedAuditor2;
 uint8_t processed_var_720;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedAuthorizer2;
 uint8_t RenderingSystemAdvancedAuthorizer2;
 uint8_t processed_var_736;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedAuthenticator2;
 uint8_t RenderingSystemAdvancedAuthenticator2;
 uint8_t processed_var_800;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedDecryptor2;
 uint8_t RenderingSystemAdvancedDecryptor2;
 uint8_t processed_var_816;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedEncryptor2;
 uint8_t RenderingSystemAdvancedEncryptor2;
 uint8_t rendering_buffer_2400;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedDecompressor2;
 uint8_t RenderingSystemAdvancedDecompressor2;
 uint8_t rendering_buffer_2672;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedCompressor2;
 uint8_t RenderingSystemAdvancedCompressor2;
 uint8_t rendering_buffer_2688;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedArchiver2;
 uint8_t RenderingSystemAdvancedArchiver2;
 uint8_t rendering_buffer_2848;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedLogger2;
 uint8_t RenderingSystemAdvancedLogger2;
 uint8_t rendering_buffer_2976;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedReporter2;
 uint8_t RenderingSystemAdvancedReporter2;
 uint8_t processed_var_4496;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedMonitor2;
 uint8_t RenderingSystemAdvancedMonitor2;
 uint8_t processed_var_4528;
 uint8_t processed_var_4560;
 uint8_t processed_var_4576;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedAnalyzer2;
 uint8_t RenderingSystemAdvancedAnalyzer2;
 uint8_t processed_var_4944;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedTransformer2;
 uint8_t RenderingSystemAdvancedTransformer2;
 uint8_t processed_var_4960;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedUnifier2;
 uint8_t RenderingSystemAdvancedUnifier2;
 uint8_t processed_var_4976;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedIntegrator2;
 uint8_t RenderingSystemAdvancedIntegrator2;
 uint8_t processed_var_4992;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedCoordinator2;
 uint8_t RenderingSystemAdvancedCoordinator2;
 uint8_t processed_var_5024;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedSynchronizer2;
 uint8_t RenderingSystemAdvancedSynchronizer2;
 uint8_t processed_var_5104;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedFinalizer2;
 uint8_t RenderingSystemAdvancedFinalizer2;
 uint8_t processed_var_5120;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedResetter2;
 uint8_t RenderingSystemAdvancedResetter2;
 uint8_t processed_var_5152;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedCleaner2;
 uint8_t RenderingSystemAdvancedCleaner2;
 uint8_t processed_var_5200;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedHandler2;
 uint8_t RenderingSystemAdvancedHandler2;
 uint8_t processed_var_5936;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedOptimizer2;
 uint8_t RenderingSystemAdvancedOptimizer2;
 uint8_t processed_var_5952;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedValidator2;
 uint8_t RenderingSystemAdvancedValidator2;
 uint8_t processed_var_5968;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedController2;
 uint8_t RenderingSystemAdvancedController2;
 uint8_t processed_var_6000;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedManager2;
 uint8_t RenderingSystemAdvancedManager2;
 uint8_t processed_var_6016;
-
-
-
-
 // 函数: uint8_t RenderingSystemAdvancedProcessor2;
 uint8_t RenderingSystemAdvancedProcessor2;
 uint8_t processed_var_6096;
@@ -748,254 +483,114 @@ uint8_t processed_var_6128;
 uint8_t processed_var_6176;
 uint8_t processed_var_6240;
 uint8_t processed_var_6512;
-
-
-
-
 // 函数: uint8_t RenderingSystemMemorySynchronizer;
 uint8_t RenderingSystemMemorySynchronizer;
 uint8_t processed_var_6576;
-
-
-
-
 // 函数: uint8_t RenderingSystemMemoryFinalizer;
 uint8_t RenderingSystemMemoryFinalizer;
 uint8_t processed_var_6608;
 uint8_t processed_var_6816;
 uint8_t processed_var_6896;
-
-
-
-
 // 函数: uint8_t RenderingSystemMemoryResetter;
 uint8_t RenderingSystemMemoryResetter;
 uint8_t processed_var_6928;
-
-
-
-
 // 函数: uint8_t RenderingSystemMemoryCleaner;
 uint8_t RenderingSystemMemoryCleaner;
 uint8_t processed_var_7104;
-
-
-
-
 // 函数: uint8_t RenderingSystemMemoryHandler;
 uint8_t RenderingSystemMemoryHandler;
 uint8_t processed_var_7584;
-
-
-
-
 // 函数: uint8_t RenderingSystemMemoryOptimizer;
 uint8_t RenderingSystemMemoryOptimizer;
 uint8_t processed_var_7600;
 uint8_t processed_var_7680;
 uint8_t processed_var_7696;
-
-
-
-
 // 函数: uint8_t RenderingSystemMemoryValidator;
 uint8_t RenderingSystemMemoryValidator;
 uint8_t processed_var_7712;
-
-
-
-
 // 函数: uint8_t RenderingSystemMemoryController;
 uint8_t RenderingSystemMemoryController;
 uint8_t processed_var_7728;
-
-
-
-
 // 函数: uint8_t RenderingSystemMemoryManager;
 uint8_t RenderingSystemMemoryManager;
 uint8_t processed_var_7744;
-
-
-
-
 // 函数: uint8_t RenderingSystemMemoryProcessor;
 uint8_t RenderingSystemMemoryProcessor;
 uint8_t processed_var_7920;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreSerializer;
 uint8_t RenderingSystemCoreSerializer;
 uint8_t processed_var_8192;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreNormalizer;
 uint8_t RenderingSystemCoreNormalizer;
 uint8_t processed_var_8320;
 uint8_t processed_var_8336;
 uint8_t processed_var_8352;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreSanitizer;
 uint8_t RenderingSystemCoreSanitizer;
 uint8_t processed_var_8368;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreValidator2;
 uint8_t RenderingSystemCoreValidator2;
 uint8_t processed_var_9264;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreAuditor;
 uint8_t RenderingSystemCoreAuditor;
 uint8_t processed_var_9568;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreAuthorizer;
 uint8_t RenderingSystemCoreAuthorizer;
 uint8_t processed_var_9728;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreAuthenticator;
 uint8_t RenderingSystemCoreAuthenticator;
 uint8_t processed_var_9952;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreDecryptor;
 uint8_t RenderingSystemCoreDecryptor;
 uint8_t ui_system_data_1184;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreEncryptor;
 uint8_t RenderingSystemCoreEncryptor;
 uint8_t ui_system_data_1200;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreDecompressor;
 uint8_t RenderingSystemCoreDecompressor;
 uint8_t ui_system_data_1248;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreCompressor;
 uint8_t RenderingSystemCoreCompressor;
 uint8_t ui_system_data_1264;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreArchiver;
 uint8_t RenderingSystemCoreArchiver;
 uint8_t ui_system_data_1280;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreLogger;
 uint8_t RenderingSystemCoreLogger;
 uint8_t ui_system_data_1376;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreReporter;
 uint8_t RenderingSystemCoreReporter;
 uint8_t ui_system_data_1456;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreMonitor;
 uint8_t RenderingSystemCoreMonitor;
 uint8_t ui_system_data_1520;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreAnalyzer;
 uint8_t RenderingSystemCoreAnalyzer;
 uint8_t ui_system_data_1536;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreTransformer;
 uint8_t RenderingSystemCoreTransformer;
 uint8_t ui_system_data_1696;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreUnifier;
 uint8_t RenderingSystemCoreUnifier;
 uint8_t ui_system_data_1728;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreIntegrator;
 uint8_t RenderingSystemCoreIntegrator;
 uint8_t rendering_buffer_2880;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreCoordinator;
 uint8_t RenderingSystemCoreCoordinator;
 uint8_t rendering_buffer_2896;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreSynchronizer;
 uint8_t RenderingSystemCoreSynchronizer;
 uint8_t rendering_buffer_2912;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreFinalizer;
 uint8_t RenderingSystemCoreFinalizer;
 uint8_t rendering_buffer_2944;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreResetter;
 uint8_t RenderingSystemCoreResetter;
 uint8_t memory_allocator_3296;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreCleaner;
 uint8_t RenderingSystemCoreCleaner;
 uint8_t memory_allocator_3440;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreHandler;
 uint8_t RenderingSystemCoreHandler;
 uint8_t memory_allocator_3488;
@@ -1003,45 +598,21 @@ uint8_t memory_allocator_3536;
 uint8_t memory_allocator_3552;
 uint8_t memory_allocator_3568;
 uint8_t memory_allocator_3584;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreOptimizer;
 uint8_t RenderingSystemCoreOptimizer;
 uint8_t memory_allocator_3600;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreValidator;
 uint8_t RenderingSystemCoreValidator;
 uint8_t memory_allocator_3616;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreController;
 uint8_t RenderingSystemCoreController;
 uint8_t memory_allocator_3904;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreManager;
 uint8_t RenderingSystemCoreManager;
 uint8_t memory_allocator_3936;
-
-
-
-
 // 函数: uint8_t RenderingSystemCoreProcessor;
 uint8_t RenderingSystemCoreProcessor;
 uint8_t memory_allocator_3952;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowProcessor;
 uint8_t RenderingSystemDataFlowProcessor;
 uint8_t processed_var_4928;
@@ -1049,59 +620,27 @@ uint8_t processed_var_4976;
 uint8_t processed_var_4992;
 uint8_t processed_var_5136;
 uint8_t processed_var_5168;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowManager;
 uint8_t RenderingSystemDataFlowManager;
 uint8_t processed_var_5184;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowController;
 uint8_t RenderingSystemDataFlowController;
 uint8_t processed_var_5200;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowOptimizer;
 uint8_t RenderingSystemDataFlowOptimizer;
 uint8_t processed_var_6896;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowValidator;
 uint8_t RenderingSystemDataFlowValidator;
 uint8_t processed_var_7104;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowHandler;
 uint8_t RenderingSystemDataFlowHandler;
 uint8_t processed_var_7120;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowCleaner;
 uint8_t RenderingSystemDataFlowCleaner;
 uint8_t processed_var_7136;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowResetter;
 uint8_t RenderingSystemDataFlowResetter;
 uint8_t processed_var_7264;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowFinalizer;
 uint8_t RenderingSystemDataFlowFinalizer;
 uint8_t processed_var_7280;
@@ -1109,227 +648,103 @@ uint8_t processed_var_7328;
 uint8_t processed_var_7344;
 uint8_t processed_var_7360;
 uint8_t processed_var_7536;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowSynchronizer;
 uint8_t RenderingSystemDataFlowSynchronizer;
 uint8_t processed_var_7632;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowCoordinator;
 uint8_t RenderingSystemDataFlowCoordinator;
 uint8_t processed_var_7744;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowIntegrator;
 uint8_t RenderingSystemDataFlowIntegrator;
 uint8_t processed_var_7760;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowUnifier;
 uint8_t RenderingSystemDataFlowUnifier;
 uint8_t processed_var_7792;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowTransformer;
 uint8_t RenderingSystemDataFlowTransformer;
 uint8_t processed_var_7808;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowAnalyzer;
 uint8_t RenderingSystemDataFlowAnalyzer;
 uint8_t processed_var_8000;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowMonitor;
 uint8_t RenderingSystemDataFlowMonitor;
 uint8_t processed_var_8016;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowReporter;
 uint8_t RenderingSystemDataFlowReporter;
 uint8_t processed_var_9728;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowLogger;
 uint8_t RenderingSystemDataFlowLogger;
 uint8_t processed_var_4256;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowArchiver;
 uint8_t RenderingSystemDataFlowArchiver;
 uint8_t processed_var_4512;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowCompressor;
 uint8_t RenderingSystemDataFlowCompressor;
 uint8_t processed_var_4880;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowDecompressor;
 uint8_t RenderingSystemDataFlowDecompressor;
 uint8_t processed_var_5856;
 uint8_t processed_var_6048;
 uint8_t processed_var_6752;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowEncryptor;
 uint8_t RenderingSystemDataFlowEncryptor;
 uint8_t processed_var_6816;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowDecryptor;
 uint8_t RenderingSystemDataFlowDecryptor;
 uint8_t processed_var_6832;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowAuthenticator;
 uint8_t RenderingSystemDataFlowAuthenticator;
 uint8_t processed_var_6848;
 uint8_t processed_var_6928;
 uint8_t processed_var_8224;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowAuthorizer;
 uint8_t RenderingSystemDataFlowAuthorizer;
 uint8_t processed_var_8960;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowAuditor;
 uint8_t RenderingSystemDataFlowAuditor;
 uint8_t processed_var_8976;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowValidator2;
 uint8_t RenderingSystemDataFlowValidator2;
 uint8_t processed_var_8992;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowSanitizer;
 uint8_t RenderingSystemDataFlowSanitizer;
 uint8_t processed_var_9104;
 uint8_t processed_var_9536;
 uint8_t processed_var_9616;
 uint8_t processed_var_9648;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowNormalizer;
 uint8_t RenderingSystemDataFlowNormalizer;
 uint8_t processed_var_9680;
-
-
-
-
 // 函数: uint8_t RenderingSystemDataFlowSerializer;
 uint8_t RenderingSystemDataFlowSerializer;
 uint8_t processed_var_9728;
-
-
-
-
 // 函数: uint8_t RenderingSystem_DataStructureAnalyzer;
 uint8_t RenderingSystem_DataStructureAnalyzer;
 uint8_t ui_system_data_192;
-
-
-
-
 // 函数: uint8_t RenderingSystem_DataStructureTransformer;
 uint8_t RenderingSystem_DataStructureTransformer;
 uint8_t processed_var_912;
-
-
-
-
 // 函数: uint8_t RenderingSystem_DataStructureDeallocator;
 uint8_t RenderingSystem_DataStructureDeallocator;
 uint8_t ui_system_data_1440;
-
-
-
-
 // 函数: uint8_t RenderingSystem_DataStructureAllocator;
 uint8_t RenderingSystem_DataStructureAllocator;
 uint8_t rendering_buffer_2464;
-
-
-
-
 // 函数: uint8_t RenderingSystem_DataStructureOptimizer;
 uint8_t RenderingSystem_DataStructureOptimizer;
 uint8_t rendering_buffer_2480;
-
-
-
-
 // 函数: uint8_t RenderingSystem_DataStructureValidator;
 uint8_t RenderingSystem_DataStructureValidator;
 uint8_t rendering_buffer_2992;
-
-
-
-
 // 函数: uint8_t RenderingSystem_DataStructureCleaner;
 uint8_t RenderingSystem_DataStructureCleaner;
 uint8_t processed_var_4736;
-
-
-
-
 // 函数: uint8_t RenderingSystem_DataStructureInitializer;
 uint8_t RenderingSystem_DataStructureInitializer;
 uint8_t processed_var_4864;
-
-
-
-
 // 函数: uint8_t RenderingSystem_DataStructureManager;
 uint8_t RenderingSystem_DataStructureManager;
 uint8_t processed_var_7280;
-
-
-
-
 // 函数: uint8_t RenderingSystem_DataStructureProcessor;
 uint8_t RenderingSystem_DataStructureProcessor;
 uint8_t processed_var_7328;
@@ -1401,770 +816,260 @@ uint8_t memory_allocator_3520;
 uint8_t memory_allocator_3536;
 uint8_t memory_allocator_3968;
 uint8_t memory_allocator_3984;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180564f80;
 uint8_t RenderingSystemSpecialProcessor_1180564f80;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180565300;
 uint8_t RenderingSystemSpecialProcessor_1180565300;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180565480;
 uint8_t RenderingSystemSpecialProcessor_1180565480;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11805659e0;
 uint8_t RenderingSystemSpecialProcessor_11805659e0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180565b70;
 uint8_t RenderingSystemSpecialProcessor_1180565b70;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180565c60;
 uint8_t RenderingSystemSpecialProcessor_1180565c60;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180565cc0;
 uint8_t RenderingSystemSpecialProcessor_1180565cc0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180565d50;
 uint8_t RenderingSystemSpecialProcessor_1180565d50;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180566010;
 uint8_t RenderingSystemSpecialProcessor_1180566010;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11805661a0;
 uint8_t RenderingSystemSpecialProcessor_11805661a0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180566420;
 uint8_t RenderingSystemSpecialProcessor_1180566420;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180566900;
 uint8_t RenderingSystemSpecialProcessor_1180566900;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600020;
 uint8_t RenderingSystemSpecialProcessor_1180600020;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806000c0;
 uint8_t RenderingSystemSpecialProcessor_11806000c0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806000e0;
 uint8_t RenderingSystemSpecialProcessor_11806000e0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600130;
 uint8_t RenderingSystemSpecialProcessor_1180600130;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806001e0;
 uint8_t RenderingSystemSpecialProcessor_11806001e0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600250;
 uint8_t RenderingSystemSpecialProcessor_1180600250;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806003f0;
 uint8_t RenderingSystemSpecialProcessor_11806003f0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600560;
 uint8_t RenderingSystemSpecialProcessor_1180600560;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806005f0;
 uint8_t RenderingSystemSpecialProcessor_11806005f0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600770;
 uint8_t RenderingSystemSpecialProcessor_1180600770;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_24;
 uint8_t RenderingSystemSpecialProcessor_24;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600890;
 uint8_t RenderingSystemSpecialProcessor_1180600890;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600930;
 uint8_t RenderingSystemSpecialProcessor_1180600930;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806009b0;
 uint8_t RenderingSystemSpecialProcessor_11806009b0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600b80;
 uint8_t RenderingSystemSpecialProcessor_1180600b80;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600bc0;
 uint8_t RenderingSystemSpecialProcessor_1180600bc0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600cc0;
 uint8_t RenderingSystemSpecialProcessor_1180600cc0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600d30;
 uint8_t RenderingSystemSpecialProcessor_1180600d30;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180600f40;
 uint8_t RenderingSystemSpecialProcessor_1180600f40;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601090;
 uint8_t RenderingSystemSpecialProcessor_1180601090;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601160;
 uint8_t RenderingSystemSpecialProcessor_1180601160;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806011d0;
 uint8_t RenderingSystemSpecialProcessor_11806011d0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601280;
 uint8_t RenderingSystemSpecialProcessor_1180601280;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601310;
 uint8_t RenderingSystemSpecialProcessor_1180601310;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_38;
 uint8_t RenderingSystemSpecialProcessor_38;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601460;
 uint8_t RenderingSystemSpecialProcessor_1180601460;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601520;
 uint8_t RenderingSystemSpecialProcessor_1180601520;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806015a0;
 uint8_t RenderingSystemSpecialProcessor_11806015a0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806015d0;
 uint8_t RenderingSystemSpecialProcessor_11806015d0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806016b0;
 uint8_t RenderingSystemSpecialProcessor_11806016b0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_44;
 uint8_t RenderingSystemSpecialProcessor_44;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806018c0;
 uint8_t RenderingSystemSpecialProcessor_11806018c0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601a10;
 uint8_t RenderingSystemSpecialProcessor_1180601a10;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601af0;
 uint8_t RenderingSystemSpecialProcessor_1180601af0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601c20;
 uint8_t RenderingSystemSpecialProcessor_1180601c20;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601c60;
 uint8_t RenderingSystemSpecialProcessor_1180601c60;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601cb0;
 uint8_t RenderingSystemSpecialProcessor_1180601cb0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601ce0;
 uint8_t RenderingSystemSpecialProcessor_1180601ce0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601db0;
 uint8_t RenderingSystemSpecialProcessor_1180601db0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180601e80;
 uint8_t RenderingSystemSpecialProcessor_1180601e80;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_54;
 uint8_t RenderingSystemSpecialProcessor_54;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_55;
 uint8_t RenderingSystemSpecialProcessor_55;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_56;
 uint8_t RenderingSystemSpecialProcessor_56;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180602490;
 uint8_t RenderingSystemSpecialProcessor_1180602490;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180602590;
 uint8_t RenderingSystemSpecialProcessor_1180602590;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180602680;
 uint8_t RenderingSystemSpecialProcessor_1180602680;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806027a0;
 uint8_t RenderingSystemSpecialProcessor_11806027a0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180602950;
 uint8_t RenderingSystemSpecialProcessor_1180602950;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180602ab0;
 uint8_t RenderingSystemSpecialProcessor_1180602ab0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180602d90;
 uint8_t RenderingSystemSpecialProcessor_1180602d90;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180602fd0;
 uint8_t RenderingSystemSpecialProcessor_1180602fd0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180603070;
 uint8_t RenderingSystemSpecialProcessor_1180603070;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180603100;
 uint8_t RenderingSystemSpecialProcessor_1180603100;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180603140;
 uint8_t RenderingSystemSpecialProcessor_1180603140;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180603210;
 uint8_t RenderingSystemSpecialProcessor_1180603210;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180603540;
 uint8_t RenderingSystemSpecialProcessor_1180603540;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_70;
 uint8_t RenderingSystemSpecialProcessor_70;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_71;
 uint8_t RenderingSystemSpecialProcessor_71;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806039e0;
 uint8_t RenderingSystemSpecialProcessor_11806039e0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180603b90;
 uint8_t RenderingSystemSpecialProcessor_1180603b90;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180603d10;
 uint8_t RenderingSystemSpecialProcessor_1180603d10;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806043c0;
 uint8_t RenderingSystemSpecialProcessor_11806043c0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180605570;
 uint8_t RenderingSystemSpecialProcessor_1180605570;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180605670;
 uint8_t RenderingSystemSpecialProcessor_1180605670;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806057e0;
 uint8_t RenderingSystemSpecialProcessor_11806057e0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180605930;
 uint8_t RenderingSystemSpecialProcessor_1180605930;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180605bc0;
 uint8_t RenderingSystemSpecialProcessor_1180605bc0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180605c80;
 uint8_t RenderingSystemSpecialProcessor_1180605c80;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180605ce0;
 uint8_t RenderingSystemSpecialProcessor_1180605ce0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180605df0;
 uint8_t RenderingSystemSpecialProcessor_1180605df0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180605fa0;
 uint8_t RenderingSystemSpecialProcessor_1180605fa0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180605ff0;
 uint8_t RenderingSystemSpecialProcessor_1180605ff0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806061a0;
 uint8_t RenderingSystemSpecialProcessor_11806061a0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806062d0;
 uint8_t RenderingSystemSpecialProcessor_11806062d0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180606380;
 uint8_t RenderingSystemSpecialProcessor_1180606380;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_89;
 uint8_t RenderingSystemSpecialProcessor_89;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180606600;
 uint8_t RenderingSystemSpecialProcessor_1180606600;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_91;
 uint8_t RenderingSystemSpecialProcessor_91;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806066d0;
 uint8_t RenderingSystemSpecialProcessor_11806066d0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806067f0;
 uint8_t RenderingSystemSpecialProcessor_11806067f0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806068f0;
 uint8_t RenderingSystemSpecialProcessor_11806068f0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180606970;
 uint8_t RenderingSystemSpecialProcessor_1180606970;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180606b60;
 uint8_t RenderingSystemSpecialProcessor_1180606b60;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180606c00;
 uint8_t RenderingSystemSpecialProcessor_1180606c00;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180606cb0;
 uint8_t RenderingSystemSpecialProcessor_1180606cb0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180606d00;
 uint8_t RenderingSystemSpecialProcessor_1180606d00;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180606e30;
 uint8_t RenderingSystemSpecialProcessor_1180606e30;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180606f90;
 uint8_t RenderingSystemSpecialProcessor_1180606f90;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180607060;
 uint8_t RenderingSystemSpecialProcessor_1180607060;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806071a0;
 uint8_t RenderingSystemSpecialProcessor_11806071a0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_104;
 uint8_t RenderingSystemSpecialProcessor_104;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806072e0;
 uint8_t RenderingSystemSpecialProcessor_11806072e0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180607310;
 uint8_t RenderingSystemSpecialProcessor_1180607310;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806073f0;
 uint8_t RenderingSystemSpecialProcessor_11806073f0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180607430;
 uint8_t RenderingSystemSpecialProcessor_1180607430;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806074e0;
 uint8_t RenderingSystemSpecialProcessor_11806074e0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180607590;
 uint8_t RenderingSystemSpecialProcessor_1180607590;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_111;
 uint8_t RenderingSystemSpecialProcessor_111;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180607730;
 uint8_t RenderingSystemSpecialProcessor_1180607730;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806077c0;
 uint8_t RenderingSystemSpecialProcessor_11806077c0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180607c80;
 uint8_t RenderingSystemSpecialProcessor_1180607c80;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180607d30;
 uint8_t RenderingSystemSpecialProcessor_1180607d30;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180607e00;
 uint8_t RenderingSystemSpecialProcessor_1180607e00;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180607e80;
 uint8_t RenderingSystemSpecialProcessor_1180607e80;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_118;
 uint8_t RenderingSystemSpecialProcessor_118;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180607f40;
 uint8_t RenderingSystemSpecialProcessor_1180607f40;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180608000;
 uint8_t RenderingSystemSpecialProcessor_1180608000;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806080e0;
 uint8_t RenderingSystemSpecialProcessor_11806080e0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806081c0;
 uint8_t RenderingSystemSpecialProcessor_11806081c0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806082a0;
 uint8_t RenderingSystemSpecialProcessor_11806082a0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180608380;
 uint8_t RenderingSystemSpecialProcessor_1180608380;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_11806083d0;
 uint8_t RenderingSystemSpecialProcessor_11806083d0;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180608420;
 uint8_t RenderingSystemSpecialProcessor_1180608420;
-
-
-
-
 // 函数: uint8_t RenderingSystemSpecialProcessor_1180608500;
 uint8_t RenderingSystemSpecialProcessor_1180608500;
-
-
-
-
-
 // 渲染系统RenderingSystemSpecialProcessor_1函数语义化别名定义
 // 本文件包含渲染系统高级数据结构和内存管理模块的函数别名
-
 // 渲染系统数据结构处理函数别名
 #define RenderingSystem_DataStructureProcessor RenderingSystemSpecialProcessor_1180618b20
 #define RenderingSystem_DataStructureManager RenderingSystemSpecialProcessor_11806188d0
@@ -2176,7 +1081,6 @@ uint8_t RenderingSystemSpecialProcessor_1180608500;
 #define RenderingSystem_DataStructureDeallocator RenderingSystemSpecialProcessor_1180617ed0
 #define RenderingSystem_DataStructureTransformer RenderingSystemSpecialProcessor_1180617cd0
 #define RenderingSystem_DataStructureAnalyzer RenderingSystemSpecialProcessor_159
-
 // 渲染系统内存管理函数别名
 #define RenderingSystem_MemoryManager RenderingSystemSpecialProcessor_11806179e0
 #define RenderingSystem_MemoryAllocator RenderingSystemSpecialProcessor_157
@@ -2184,21 +1088,18 @@ uint8_t RenderingSystemSpecialProcessor_1180608500;
 #define RenderingSystem_MemoryValidator RenderingSystemSpecialProcessor_11806173b0
 #define RenderingSystem_MemoryOptimizer RenderingSystemSpecialProcessor_154
 #define RenderingSystem_MemoryMonitor RenderingSystemSpecialProcessor_1180616f70
-
 // 渲染系统状态管理函数别名
 #define RenderingSystem_StateManager RenderingSystemSpecialProcessor_1180616d50
 #define RenderingSystem_StateValidator RenderingSystemSpecialProcessor_1180616b30
 #define RenderingSystem_StateController RenderingSystemSpecialProcessor_1180616910
 #define RenderingSystem_StateProcessor RenderingSystemSpecialProcessor_11806166f0
 #define RenderingSystem_StateUpdater RenderingSystemSpecialProcessor_11806164d0
-
 // 渲染系统高级功能函数别名
 #define RenderingSystem_AdvancedProcessor RenderingSystemSpecialProcessor_11806162b0
 #define RenderingSystem_AdvancedCalculator RenderingSystemSpecialProcessor_1180616090
 #define RenderingSystem_AdvancedTransformer RenderingSystemSpecialProcessor_1180615e70
 #define RenderingSystem_AdvancedAnalyzer RenderingSystemSpecialProcessor_1180615c50
 #define RenderingSystem_AdvancedOptimizer RenderingSystemSpecialProcessor_1180615a30
-
 // 渲染系统核心功能说明
 // 本模块实现了渲染系统的高级数据结构和内存管理功能，包括：
 // 1. 数据结构处理：支持各种渲染数据结构的创建、管理和优化
@@ -2206,4 +1107,3 @@ uint8_t RenderingSystemSpecialProcessor_1180608500;
 // 3. 状态管理：维护渲染系统的各种状态信息
 // 4. 高级功能：提供渲染系统的高级计算和分析功能
 // 所有函数均已优化为语义化别名，提高了代码的可读性和可维护性。
-

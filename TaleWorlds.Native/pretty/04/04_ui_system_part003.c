@@ -1,8 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // 04_ui_system_part003.c - 32 个函数
-// 
 // 本文件包含UI系统的核心功能实现，主要涵盖以下模块：
 // 1. 日志系统 - 格式化日志输出、条件性日志、带优先级的日志
 // 2. 环境变量解析 - 支持K/M/G/B单位的数值解析
@@ -10,14 +8,12 @@
 // 4. 资源管理 - PE文件解析、库资源树管理
 // 5. 托管代码交互 - 托管与非托管代码的桥接
 // 6. 内存管理 - 栈保护、内存分配与清理
-// 
 // 核心特性：
 // - 线程安全的日志系统，支持线程本地存储
 // - 栈保护机制，防止缓冲区溢出攻击
 // - 二叉搜索树结构的资源管理
 // - PE文件资源节区解析
 // - 托管代码回调方法管理
-
 // 类型定义
 typedef struct {
     void *vtable_ptr;           // 虚函数表指针
@@ -27,31 +23,28 @@ typedef struct {
     void *child_widgets;        // 子窗口部件列表
     void *event_handler;        // 事件处理器
     void *render_context;       // 渲染上下文
-    // ... 其他UI系统属性
+// ... 其他UI系统属性
 } ui_widget_t;
-
 typedef struct {
     void *format_string;         // 格式化字符串
     void *log_buffer;            // 日志缓冲区
     uint32_t log_level;          // 日志级别
     uint32_t log_flags;          // 日志标志
     char log_prefix[64];         // 日志前缀
-    // ... 其他日志系统属性
+// ... 其他日志系统属性
 } log_context_t;
-
-// 函数: void ui_log_formatted_message(ui_widget_t *widget, log_context_t *log_ctx, 
-//                                   void *param_3, const char *format, void *param_5)
+// 函数: void ui_log_formatted_message(ui_widget_t *widget, log_context_t *log_ctx,
+// void *param_3, const char *format, void *param_5)
 // 功能: 格式化并记录UI系统日志消息
 // 参数:
-//   widget - UI窗口部件指针
-//   log_ctx - 日志上下文指针
-//   param_3 - 日志参数3
-//   format - 格式化字符串
-//   param_5 - 日志参数5
+// widget - UI窗口部件指针
+// log_ctx - 日志上下文指针
+// param_3 - 日志参数3
+// format - 格式化字符串
+// param_5 - 日志参数5
 // 返回值: 无
-void ui_log_formatted_message(ui_widget_t *widget, log_context_t *log_ctx, 
+void ui_log_formatted_message(ui_widget_t *widget, log_context_t *log_ctx,
                              void *param_3, const char *format, void *param_5)
-
 {
   uint64_t *format_flags;
   char *thread_local_flag;
@@ -60,135 +53,93 @@ void ui_log_formatted_message(ui_widget_t *widget, log_context_t *log_ctx,
   void *log_param4;
   char log_buffer[512];
   uint64_t guard_value;
-  
   if (format != NULL) {
     guard_value = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard;
-    
-    // 获取线程本地存储标志
+// 获取线程本地存储标志
     thread_local_flag = (char *)(*(int64_t *)
                         ((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) + 8);
-    
     if (*thread_local_flag == '\0') {
       *thread_local_flag = '\x01';  // 设置线程标志
-      
-      // 获取格式化标志
+// 获取格式化标志
       format_flags = (uint64_t *)get_stdio_format_flags();
       log_param5 = param_5;
       log_param4 = NULL;
-      
-      // 格式化日志消息
+// 格式化日志消息
       __stdio_common_vsprintf(*format_flags | 2, log_buffer, 0x1ff, format);
-      
       *thread_local_flag = '\0';  // 重置线程标志
-      
-      // 调用日志记录函数
+// 调用日志记录函数
       ui_log_message(widget, log_ctx, param_3, log_buffer);
     }
-    
-    // 清理栈保护
+// 清理栈保护
     cleanup_stack_guard(guard_value ^ (uint64_t)stack_guard);
   }
   return;
 }
-
-
-
-
-
 // 函数: void ui_log_simple_message(log_context_t *log_ctx)
 // 功能: 记录简单的UI系统日志消息
 // 参数:
-//   log_ctx - 日志上下文指针
+// log_ctx - 日志上下文指针
 // 返回值: 无
 void ui_log_simple_message(log_context_t *log_ctx)
-
 {
   uint64_t *format_flags;
   char *thread_local_flag;
   char *log_message_ptr;
   uint64_t stack_guard_value;
-  
-  // 获取线程本地存储中的日志消息指针
+// 获取线程本地存储中的日志消息指针
   log_message_ptr = (char *)(*(int64_t *)(*(int64_t *)log_ctx + log_ctx->log_level * 8) + 8);
-  
   if (*log_message_ptr == '\0') {
     *log_message_ptr = '\x01';  // 设置线程标志
-    
-    // 获取格式化标志
+// 获取格式化标志
     format_flags = (uint64_t *)get_stdio_format_flags();
-    
-    // 格式化日志消息到栈缓冲区
-    __stdio_common_vsprintf(*format_flags | 2, &stack0x00000030, 0x1ff);
-    
+// 格式化日志消息到栈缓冲区
+    __stdio_common_vsprintf(*format_flags | 2, &local_buffer_00000030, 0x1ff);
     *log_message_ptr = '\0';  // 重置线程标志
-    
-    // 调用日志记录函数
+// 调用日志记录函数
     ui_log_message_simple();
   }
-  
-  // 清理栈保护
-  cleanup_stack_guard(stack_guard_value ^ (uint64_t)&stack0x00000000);
+// 清理栈保护
+  cleanup_stack_guard(stack_guard_value ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
 // 函数: void ui_no_operation(void)
 // 功能: 空操作函数，用于占位或同步
 // 参数: 无
 // 返回值: 无
 void ui_no_operation(void)
-
 {
   return;
 }
-
-
-
-
-
-// 函数: void ui_log_formatted_wrapper(ui_widget_t *widget, log_context_t *log_ctx, 
-//                                  void *format_handler, void *format_data)
+// 函数: void ui_log_formatted_wrapper(ui_widget_t *widget, log_context_t *log_ctx,
+// void *format_handler, void *format_data)
 // 功能: 格式化日志输出的包装函数
 // 参数:
-//   widget - UI窗口部件指针
-//   log_ctx - 日志上下文指针
-//   format_handler - 格式化处理器
-//   format_data - 格式化数据
+// widget - UI窗口部件指针
+// log_ctx - 日志上下文指针
+// format_handler - 格式化处理器
+// format_data - 格式化数据
 // 返回值: 无
-void ui_log_formatted_wrapper(ui_widget_t *widget, log_context_t *log_ctx, 
+void ui_log_formatted_wrapper(ui_widget_t *widget, log_context_t *log_ctx,
                              void *format_handler, void *format_data)
-
 {
   void *log_param4;
-  
   log_param4 = format_data;
   ui_log_formatted_message(widget, log_ctx, NULL, format_handler, &log_param4);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void ui_log_conditional_output(void *output_data, void *param_2, 
-//                                    void *param_3, void *param_4)
+// 函数: void ui_log_conditional_output(void *output_data, void *param_2,
+// void *param_3, void *param_4)
 // 功能: 条件性UI日志输出函数
 // 参数:
-//   output_data - 输出数据
-//   param_2 - 参数2
-//   param_3 - 参数3
-//   param_4 - 参数4
+// output_data - 输出数据
+// param_2 - 参数2
+// param_3 - 参数3
+// param_4 - 参数4
 // 返回值: 无
-void ui_log_conditional_output(void *output_data, void *param_2, 
+void ui_log_conditional_output(void *output_data, void *param_2,
                                void *param_3, void *param_4)
-
 {
   void *log_params[3];
-  
   log_params[0] = param_2;
   log_params[1] = param_3;
   log_params[2] = param_4;
@@ -200,30 +151,22 @@ void ui_log_conditional_output(void *output_data, void *param_2,
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void ui_log_limited_output(void *output_data, void *param_2, 
-//                               void *param_3, void *param_4)
+// 函数: void ui_log_limited_output(void *output_data, void *param_2,
+// void *param_3, void *param_4)
 // 功能: 带计数限制的UI日志输出函数
 // 参数:
-//   output_data - 输出数据
-//   param_2 - 参数2
-//   param_3 - 参数3
-//   param_4 - 参数4
+// output_data - 输出数据
+// param_2 - 参数2
+// param_3 - 参数3
+// param_4 - 参数4
 // 返回值: 无
-void ui_log_limited_output(void *output_data, void *param_2, 
+void ui_log_limited_output(void *output_data, void *param_2,
                           void *param_3, void *param_4)
-
 {
   bool within_limit;
   int64_t counter_value;
   void *log_params[3];
-  
   log_params[0] = param_2;
   log_params[1] = param_3;
   log_params[2] = param_4;
@@ -248,30 +191,22 @@ void ui_log_limited_output(void *output_data, void *param_2,
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void ui_log_priority_output(uint32_t priority, void *output_data, 
-//                                void *param_3, void *param_4)
+// 函数: void ui_log_priority_output(uint32_t priority, void *output_data,
+// void *param_3, void *param_4)
 // 功能: 带优先级的UI日志输出函数
 // 参数:
-//   priority - 优先级
-//   output_data - 输出数据
-//   param_3 - 参数3
-//   param_4 - 参数4
+// priority - 优先级
+// output_data - 输出数据
+// param_3 - 参数3
+// param_4 - 参数4
 // 返回值: 无
-void ui_log_priority_output(uint32_t priority, void *output_data, 
+void ui_log_priority_output(uint32_t priority, void *output_data,
                            void *param_3, void *param_4)
-
 {
   bool within_priority_limit;
   uint64_t priority_counter;
   void *log_params[2];
-  
   log_params[0] = param_3;
   log_params[1] = param_4;
   if (ui_priority_limiter_initialized == 0) {
@@ -297,20 +232,13 @@ priority_callback_handler:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void ui_parse_environment_variable(int *config_data)
 // 功能: 解析环境变量并处理带单位的数值
 // 参数:
-//   config_data - 配置数据指针，包含环境变量名和类型信息
+// config_data - 配置数据指针，包含环境变量名和类型信息
 // 返回值: 无
 void ui_parse_environment_variable(int *config_data)
-
 {
   code *error_handler;
   char unit_char;
@@ -324,7 +252,6 @@ void ui_parse_environment_variable(int *config_data)
   char env_var_name[80];
   char env_var_value[80];
   uint64_t guard_value;
-  
   guard_value = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard;
   env_var_name[0] = '\0';
   strncpy(env_var_name, &ui_env_prefix_string, 0x40);
@@ -357,7 +284,7 @@ void ui_parse_environment_variable(int *config_data)
       return;
     }
     env_var_name[str_length] = '\0';
-    if ((env_var_name[0] == '\0') || 
+    if ((env_var_name[0] == '\0') ||
         (str_ptr = strstr(&ui_enabled_strings, env_var_name), str_ptr != 0)) {
       *config_data = 1;  // 启用状态
     }
@@ -387,7 +314,7 @@ void ui_parse_environment_variable(int *config_data)
           }
         }
         if (*end_ptr[0] != '\0') {
-          // 无效的数值格式，记录错误
+// 无效的数值格式，记录错误
           ui_log_limited_output(&ui_error_format_string, *(void **)(config_data + 4), env_var_name);
           config_data[1] = 1;  // 错误状态
           goto cleanup_and_exit;
@@ -406,18 +333,12 @@ void ui_parse_environment_variable(int *config_data)
 cleanup_and_exit:
   cleanup_stack_guard(guard_value ^ (uint64_t)stack_guard);
 }
-
-
-
-
-
 // 函数: void ui_string_processor_internal(void)
 // 功能: 内部字符串处理函数，处理UI相关的字符串操作
 // 参数: 无（使用寄存器传递参数）
 // 返回值: 无
 // 说明: 内部函数，用于处理字符串的转换和解析
 void ui_string_processor_internal(void)
-
 {
   char current_char;
   code *error_handler;
@@ -430,18 +351,15 @@ void ui_string_processor_internal(void)
   int *config_ptr;
   uint64_t register_rdi;
   uint64_t char_index;
-  
-  // 计算字符串长度
+// 计算字符串长度
   string_length = 0xffffffffffffffff;
   do {
     string_length = string_length + 1;
   } while (*(char *)(register_rbp + -9 + string_length) != '\0');
-  
   if (0x40 < string_length) {
     string_length = register_rdi;
   }
-  
-  // 转换为大写
+// 转换为大写
   char_index = 0;
   if (string_length != 0) {
     do {
@@ -450,36 +368,31 @@ void ui_string_processor_internal(void)
       char_index = char_index + 1;
     } while (char_index < string_length);
   }
-  
   if (0x40 < string_length) {
-    // 缓冲区溢出，触发异常
+// 缓冲区溢出，触发异常
     ui_handle_buffer_overflow();
     error_handler = (code *)swi(3);
     (*error_handler)();
     return;
   }
-  
   *(int8_t *)(register_rbp + -0x59 + string_length) = 0;
-  
-  // 检查是否为空字符串
+// 检查是否为空字符串
   if (*(char *)(register_rbp + -0x59) == '\0') {
 set_enabled:
     *config_ptr = 1;  // 启用状态
   }
   else {
-    // 检查是否为启用值
+// 检查是否为启用值
     found_pos = strstr(&ui_enabled_strings, register_rbp + -0x59);
     if (found_pos != 0) goto set_enabled;
-    
-    // 检查是否为禁用值
+// 检查是否为禁用值
     found_pos = strstr(&ui_disabled_strings, register_rbp + -0x59);
     if (found_pos == 0) {
-      // 解析数值
+// 解析数值
       *(int64_t *)(register_rbp + -0x69) = register_rbp + -0x59;
       parsed_value = strtol(register_rbp + -0x59, register_rbp + -0x69, 10);
       string_ptr = *(char **)(register_rbp + -0x69);
-      
-      // 处理单位后缀
+// 处理单位后缀
       if (config_ptr[2] == 8) {
         current_char = *string_ptr;
         if (current_char == 'K') {
@@ -504,10 +417,9 @@ set_enabled:
           *(char **)(register_rbp + -0x69) = string_ptr;
         }
       }
-      
-      // 检查是否完全解析
+// 检查是否完全解析
       if (*string_ptr != '\0') {
-        // 解析失败，记录警告
+// 解析失败，记录警告
         ui_log_limited_output(&ui_error_format_string, *(void **)(config_ptr + 4), register_rbp + -0x59);
         config_ptr[1] = 1;
         goto cleanup_stack;
@@ -519,54 +431,38 @@ set_enabled:
     }
   }
   config_ptr[1] = 2;  // 标记为已解析
-  
 cleanup_stack:
-  // 执行栈保护检查
-  cleanup_stack_guard(*(uint64_t *)(register_rbp + 0x47) ^ (uint64_t)&stack0x00000000);
+// 执行栈保护检查
+  cleanup_stack_guard(*(uint64_t *)(register_rbp + 0x47) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
 // 函数: void ui_stack_cleanup_internal(void)
 // 功能: 内部栈清理函数，用于栈保护和清理
 // 参数: 无（使用寄存器传递参数）
 // 返回值: 无
 // 说明: 内部函数，用于执行栈保护检查
 void ui_stack_cleanup_internal(void)
-
 {
   int64_t register_rbp;
-  
-  // 执行栈保护检查
-  cleanup_stack_guard(*(uint64_t *)(register_rbp + 0x47) ^ (uint64_t)&stack0x00000000);
+// 执行栈保护检查
+  cleanup_stack_guard(*(uint64_t *)(register_rbp + 0x47) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
 // 函数: void ui_numeric_parser_internal(void)
 // 功能: 内部数值解析函数，解析UI相关的数值参数
 // 参数: 无（使用寄存器传递参数）
 // 返回值: 无
 // 说明: 内部函数，用于解析带有单位的数值
 void ui_numeric_parser_internal(void)
-
 {
   char current_char;
   int parsed_value;
   char *string_ptr;
   int64_t register_rbp;
   int *config_ptr;
-  
-  // 设置字符串指针
+// 设置字符串指针
   *(int64_t *)(register_rbp + -0x69) = register_rbp + -0x59;
   parsed_value = strtol(register_rbp + -0x59, register_rbp + -0x69, 10);
   string_ptr = *(char **)(register_rbp + -0x69);
-  
-  // 处理单位后缀
+// 处理单位后缀
   if (config_ptr[2] == 8) {
     current_char = *string_ptr;
     if (current_char == 'K') {
@@ -591,80 +487,59 @@ void ui_numeric_parser_internal(void)
       *(char **)(register_rbp + -0x69) = string_ptr;
     }
   }
-  
-  // 检查是否完全解析
+// 检查是否完全解析
   if (*string_ptr == '\0') {
     *config_ptr = parsed_value;
     config_ptr[1] = 2;  // 标记为已解析
   }
   else {
-    // 解析失败，记录警告
+// 解析失败，记录警告
     ui_log_limited_output(&ui_error_format_string, *(void **)(config_ptr + 4), register_rbp + -0x59);
     config_ptr[1] = 1;  // 标记为错误
   }
-  
-  // 执行栈保护检查
-  cleanup_stack_guard(*(uint64_t *)(register_rbp + 0x47) ^ (uint64_t)&stack0x00000000);
+// 执行栈保护检查
+  cleanup_stack_guard(*(uint64_t *)(register_rbp + 0x47) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
 // 函数: void ui_flag_checker_internal(void)
 // 功能: 内部标志检查函数，检查UI相关的标志位
 // 参数: 无（使用寄存器传递参数）
 // 返回值: 无
 // 说明: 内部函数，用于检查和处理标志位
 void ui_flag_checker_internal(void)
-
 {
   int64_t register_rbp;
   int64_t register_rsi;
-  
-  // 检查全局标志
+// 检查全局标志
   if (ui_env_default_flag == '\0') {
     *(int32_t *)(register_rsi + 4) = 1;  // 设置错误标志
   }
-  
-  // 执行栈保护检查
-  cleanup_stack_guard(*(uint64_t *)(register_rbp + 0x47) ^ (uint64_t)&stack0x00000000);
+// 执行栈保护检查
+  cleanup_stack_guard(*(uint64_t *)(register_rbp + 0x47) ^ (uint64_t)&local_buffer_00000000);
 }
-
-
-
-
-
 // 函数: void ui_error_handler_internal(void)
 // 功能: 内部错误处理函数，处理UI系统错误
 // 参数: 无
 // 返回值: 无
 // 说明: 内部错误处理函数，触发异常处理
 void ui_error_handler_internal(void)
-
 {
   code *error_handler;
-  
-  // 触发异常处理
+// 触发异常处理
   ui_handle_buffer_overflow();
   error_handler = (code *)swi(3);
   (*error_handler)();
   return;
 }
-
-
-
 // 函数: bool ui_calculate_vector_intersection(float *result, float *vector_a, float *vector_b, float *vector_c)
 // 功能: 计算三个向量的交点，用于UI布局计算
 // 参数:
-//   result - 计算结果向量指针 [x, y, z, w]
-//   vector_a - 向量A指针 [x, y, z, wx, wy, wz, w]
-//   vector_b - 向量B指针 [x, y, z, wx, wy, wz, w]
-//   vector_c - 向量C指针 [x, y, z, wx, wy, wz, w]
+// result - 计算结果向量指针 [x, y, z, w]
+// vector_a - 向量A指针 [x, y, z, wx, wy, wz, w]
+// vector_b - 向量B指针 [x, y, z, wx, wy, wz, w]
+// vector_c - 向量C指针 [x, y, z, wx, wy, wz, w]
 // 返回值: 成功返回true，失败返回false
 // 说明: 使用向量叉积计算三个向量的交点，用于UI布局计算
 bool ui_calculate_vector_intersection(float *result, float *vector_a, float *vector_b, float *vector_c)
-
 {
   float b_w, b_z, c_w, c_z;
   float b_y, c_y, a_w;
@@ -673,72 +548,59 @@ bool ui_calculate_vector_intersection(float *result, float *vector_a, float *vec
   float a_dot, b_dot, c_dot;
   float a_y, a_z, a_x;
   float b_x, result_x, result_y, result_z;
-  
-  // 提取向量分量
+// 提取向量分量
   a_w = vector_b[4];
   b_w = vector_a[6];
   c_w = vector_c[6];
   b_z = vector_b[5];
   c_z = vector_c[5];
   a_z = vector_b[6];
-  
-  // 计算叉积
+// 计算叉积
   cross_x = b_z * c_w - a_z * c_z;
   c_x = vector_c[4];
   cross_y = c_x * a_z - a_w * c_w;
   cross_z = a_w * c_z - c_x * b_z;
-  
-  // 计算行列式
+// 计算行列式
   determinant = cross_y * vector_a[5] + cross_x * vector_a[4] + cross_z * b_w;
-  
   if (determinant != 0.0) {
-    // 计算点积
+// 计算点积
     a_dot = vector_a[5] * vector_a[1] + vector_a[4] * *vector_a + b_w * vector_a[2];
     b_dot = 1.0 / determinant;
     a_x = vector_a[4];
-    
-    // 计算向量B和C的点积
+// 计算向量B和C的点积
     b_dot = b_z * vector_b[1] + a_w * *vector_b + a_z * vector_b[2];
     c_dot = c_z * vector_c[1] + c_x * *vector_c + c_w * vector_c[2];
-    
     a_y = vector_a[5];
     a_z = vector_a[6];
     a_x = vector_a[4];
     a_w = vector_b[4];
-    
-    // 计算结果向量
+// 计算结果向量
     result_x = ((b_w * c_z - vector_a[5] * c_w) * b_dot + a_dot * cross_x +
                (vector_a[5] * a_z - vector_a[6] * b_z) * c_dot) * b_dot;
     result_y = ((a_x * c_w - a_z * c_x) * b_dot + a_dot * cross_y +
                (a_z * a_w - a_x * a_z) * c_dot) * b_dot;
     result_z = ((a_y * c_x - a_x * c_z) * b_dot + a_dot * cross_z +
                (a_x * b_z - a_y * a_w) * c_dot) * b_dot;
-    
-    // 存储结果
+// 存储结果
     *result = result_x;
     result[1] = result_y;
     result[2] = result_z;
     result[3] = 3.4028235e+38;  // FLT_MAX
   }
-  
   return determinant != 0.0;
 }
-
-
-
-// 函数: bool ui_calculate_scaled_vector_intersection(float *result, float *base_vector, 
-//                                                  float scale_factor, float offset_factor)
+// 函数: bool ui_calculate_scaled_vector_intersection(float *result, float *base_vector,
+// float scale_factor, float offset_factor)
 // 功能: 计算带缩放因子的向量交点，用于UI缩放布局计算
 // 参数:
-//   result - 计算结果向量指针 [x, y, z, w]
-//   base_vector - 基础向量指针 [x, y, z, wx, wy, wz, w]
-//   scale_factor - 缩放因子
-//   offset_factor - 偏移因子
+// result - 计算结果向量指针 [x, y, z, w]
+// base_vector - 基础向量指针 [x, y, z, wx, wy, wz, w]
+// scale_factor - 缩放因子
+// offset_factor - 偏移因子
 // 返回值: 成功返回true，失败返回false
 // 说明: 使用SIMD寄存器优化的向量计算，用于UI缩放和变换
-bool ui_calculate_scaled_vector_intersection(float *result, float *base_vector, 
+bool ui_calculate_scaled_vector_intersection(float *result, float *base_vector,
                                            float scale_factor, float offset_factor)
-
 {
   float base_w, base_z;
   float base_y, scale_reciprocal;
@@ -747,67 +609,48 @@ bool ui_calculate_scaled_vector_intersection(float *result, float *base_vector,
   float base_x, vec1_x, vec2_x, vec3_x;
   float xmm6, xmm8, xmm9, xmm10;
   float xmm11, xmm12, xmm13, xmm14, xmm15;
-  
-  // 从SIMD寄存器加载向量数据
+// 从SIMD寄存器加载向量数据
   vec1_dot = xmm5_value * base_vector[1] + xmm4_value * *base_vector + xmm1_value * base_vector[2];
   scale_reciprocal = 1.0 / scale_factor;
   base_w = base_vector[4];
-  
-  // 计算向量1和向量2的点积
+// 计算向量1和向量2的点积
   vec1_dot = xmm12_value * vector1[1] + offset_factor * *vector1 + xmm14_value * vector1[2];
   vec2_dot = xmm13_value * vector2[1] + xmm15_value * *vector2 + xmm11_value * vector2[2];
-  
   base_z = base_vector[5];
   base_y = base_vector[6];
   vec1_w = vector1[4];
   base_x = base_vector[4];
   vec2_w = vector1[4];
-  
-  // 计算X分量
+// 计算X分量
   *result = ((xmm6_value * xmm13_value - base_vector[5] * xmm11_value) * vec1_dot +
               vec1_dot * xmm8_value +
              (base_vector[5] * xmm14_value - base_vector[6] * xmm12_value) * vec2_dot) * scale_reciprocal;
-  
-  // 计算Y分量
+// 计算Y分量
   result[1] = ((base_w * xmm11_value - base_y * xmm15_value) * vec1_dot + vec1_dot * xmm9_value +
                (base_y * vec1_w - base_x * xmm14_value) * vec2_dot) * scale_reciprocal;
-  
-  // 计算Z分量
+// 计算Z分量
   result[2] = ((base_z * xmm15_value - base_x * xmm13_value) * vec1_dot + vec1_dot * xmm10_value +
                (base_x * xmm12_value - base_z * vec2_w) * vec2_dot) * scale_reciprocal;
-  
   result[3] = 3.4028235e+38;  // FLT_MAX
   return true;
 }
-
-
-
-
-
 // 函数: void ui_no_operation_placeholder(void)
 // 功能: 空操作占位函数，用于UI系统中的占位或同步点
 // 参数: 无
 // 返回值: 无
 // 说明: 此函数不执行任何操作，仅作为占位符使用
 void ui_no_operation_placeholder(void)
-
 {
   return;
 }
-
-
-
-
-
 // 函数: void ui_extract_filename_from_path(path_info_t *path_info, char *output_buffer)
 // 功能: 从路径信息中提取文件名并复制到输出缓冲区
 // 参数:
-//   path_info - 路径信息结构体指针，包含源路径字符串
-//   output_buffer - 输出缓冲区，用于存储提取的文件名
+// path_info - 路径信息结构体指针，包含源路径字符串
+// output_buffer - 输出缓冲区，用于存储提取的文件名
 // 返回值: 无
 // 说明: 此函数处理两个路径，比较它们最后一个反斜杠的位置，选择较长的文件名进行复制
 void ui_extract_filename_from_path(path_info_t *path_info, char *output_buffer)
-
 {
   char current_char;
   uint64_t last_backslash_1;
@@ -815,29 +658,24 @@ void ui_extract_filename_from_path(path_info_t *path_info, char *output_buffer)
   char *path_string_1;
   char *path_string_2;
   char *source_ptr;
-  
-  // 获取第一个路径字符串
+// 获取第一个路径字符串
   path_string_1 = &ui_empty_path_string;
   if (*(char **)(path_info + 8) != (char *)0x0) {
     path_string_1 = *(char **)(path_info + 8);
   }
-  
-  // 查找第一个路径中最后一个反斜杠
+// 查找第一个路径中最后一个反斜杠
   last_backslash_1 = strrchr(path_string_1, '\\');
-  
-  // 获取第二个路径字符串
+// 获取第二个路径字符串
   path_string_2 = &ui_empty_path_string;
   if (*(char **)(path_info + 8) != (char *)0x0) {
     path_string_2 = *(char **)(path_info + 8);
   }
-  
-  // 查找第二个路径中最后一个反斜杠
+// 查找第二个路径中最后一个反斜杠
   last_backslash_2 = strrchr(path_string_2, '\\');
-  
-  // 根据反斜杠位置选择源字符串
+// 根据反斜杠位置选择源字符串
   if (last_backslash_1 == 0) {
     if (last_backslash_2 == 0) {
-      // 两个路径都没有反斜杠，使用完整路径
+// 两个路径都没有反斜杠，使用完整路径
       source_ptr = "";
       if (*(char **)(path_info + 8) != (char *)0x0) {
         source_ptr = *(char **)(path_info + 8);
@@ -850,7 +688,7 @@ void ui_extract_filename_from_path(path_info_t *path_info, char *output_buffer)
       } while (current_char != '\0');
     }
     else {
-      // 只有第二个路径有反斜杠，使用第二个路径的文件名部分
+// 只有第二个路径有反斜杠，使用第二个路径的文件名部分
       source_ptr = (char *)(last_backslash_2 + 1);
       output_buffer = output_buffer - (int64_t)source_ptr;
       do {
@@ -861,7 +699,7 @@ void ui_extract_filename_from_path(path_info_t *path_info, char *output_buffer)
     }
   }
   else if (last_backslash_2 == 0) {
-    // 只有第一个路径有反斜杠，使用第一个路径的文件名部分
+// 只有第一个路径有反斜杠，使用第一个路径的文件名部分
     source_ptr = (char *)(last_backslash_1 + 1);
     output_buffer = output_buffer - (int64_t)source_ptr;
     do {
@@ -871,7 +709,7 @@ void ui_extract_filename_from_path(path_info_t *path_info, char *output_buffer)
     } while (current_char != '\0');
   }
   else if (last_backslash_2 < last_backslash_1) {
-    // 第一个路径的反斜杠位置更靠后，使用第一个路径的文件名部分
+// 第一个路径的反斜杠位置更靠后，使用第一个路径的文件名部分
     source_ptr = (char *)(last_backslash_1 + 1);
     output_buffer = output_buffer - (int64_t)source_ptr;
     do {
@@ -881,7 +719,7 @@ void ui_extract_filename_from_path(path_info_t *path_info, char *output_buffer)
     } while (current_char != '\0');
   }
   else {
-    // 第二个路径的反斜杠位置更靠后，使用第二个路径的文件名部分
+// 第二个路径的反斜杠位置更靠后，使用第二个路径的文件名部分
     source_ptr = (char *)(last_backslash_2 + 1);
     output_buffer = output_buffer - (int64_t)source_ptr;
     do {
@@ -892,83 +730,61 @@ void ui_extract_filename_from_path(path_info_t *path_info, char *output_buffer)
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void ui_library_operation_wrapper(void *operation_data, void *root_node, void *param_3, void *param_4)
 // 功能: 库操作包装函数，用于调用树节点操作函数
 // 参数:
-//   operation_data - 操作数据指针
-//   root_node - 根节点指针
-//   param_3 - 参数3
-//   param_4 - 参数4
+// operation_data - 操作数据指针
+// root_node - 根节点指针
+// param_3 - 参数3
+// param_4 - 参数4
 // 返回值: 无
 // 说明: 这是一个包装函数，调用树节点操作函数并传递特定标志位
 void ui_library_operation_wrapper(void *operation_data, void *root_node, void *param_3, void *param_4)
-
 {
   ui_tree_node_operation(operation_data, root_node, param_3, param_4, 0xfffffffffffffffe);
   return;
 }
-
-
-
 // 函数: int64_t ui_copy_library_data(library_data_t *dest_data, library_data_t *src_data)
 // 功能: 复制库数据结构，包括基本信息和扩展数据
 // 参数:
-//   dest_data - 目标数据结构指针
-//   src_data - 源数据结构指针
+// dest_data - 目标数据结构指针
+// src_data - 源数据结构指针
 // 返回值: 返回目标数据结构指针
 // 说明: 该函数复制库数据结构的各个字段，包括偏移量20、32、40、64、88、120、152、160、168、172等位置的数据
 int64_t ui_copy_library_data(library_data_t *dest_data, library_data_t *src_data)
-
 {
   uint64_t temp_data;
-  
-  // 初始化复制操作
+// 初始化复制操作
   ui_memory_copy_init();
-  
-  // 复制偏移量32处的数据
+// 复制偏移量32处的数据
   ui_memory_copy_init(dest_data + 0x20, src_data + 0x20);
-  
-  // 复制各个字段
+// 复制各个字段
   *(int8_t *)(dest_data + 0x40) = *(int8_t *)(src_data + 0x40);  // 标志字段
   *(int32_t *)(dest_data + 0x44) = *(int32_t *)(src_data + 0x44);  // 整数字段1
   *(uint64_t *)(dest_data + 0x48) = *(uint64_t *)(src_data + 0x48);  // 长整数字段1
   *(int32_t *)(dest_data + 0x50) = *(int32_t *)(src_data + 0x50);  // 整数字段2
-  
-  // 复制偏移量88处的数据
+// 复制偏移量88处的数据
   ui_memory_copy_init(dest_data + 0x58, src_data + 0x58);
-  
-  // 复制偏移量120处的数据
+// 复制偏移量120处的数据
   ui_memory_copy_init(dest_data + 0x78, src_data + 0x78);
-  
-  // 复制偏移量160处的数据
+// 复制偏移量160处的数据
   temp_data = *(uint64_t *)(src_data + 0xa0);
   *(uint64_t *)(dest_data + 0x98) = *(uint64_t *)(src_data + 0x98);  // 长整数字段2
   *(uint64_t *)(dest_data + 0xa0) = temp_data;                      // 长整数字段3
   *(int32_t *)(dest_data + 0xa8) = *(int32_t *)(src_data + 0xa8);  // 整数字段3
   *(int32_t *)(dest_data + 0xac) = *(int32_t *)(src_data + 0xac);  // 整数字段4
-  
   return (int64_t)dest_data;
 }
-
-
-
 // 函数: uint64_t ui_parse_pe_resource_section(int64_t pe_header, int64_t section_offset, int64_t resource_data)
 // 功能: 解析PE文件的资源节区，提取资源信息
 // 参数:
-//   pe_header - PE文件头指针
-//   section_offset - 节区偏移量
-//   resource_data - 资源数据指针
+// pe_header - PE文件头指针
+// section_offset - 节区偏移量
+// resource_data - 资源数据指针
 // 返回值: 成功返回资源数据地址，失败返回0
 // 说明: 此函数解析PE文件头中的资源节区，查找RSDS签名并提取调试信息
 uint64_t ui_parse_pe_resource_section(int64_t pe_header, int64_t section_offset, int64_t resource_data)
-
 {
   uint pe_signature;
   uint section_count;
@@ -980,18 +796,15 @@ uint64_t ui_parse_pe_resource_section(int64_t pe_header, int64_t section_offset,
   uint64_t resource_dir_offset;
   uint resource_size;
   uint *resource_data_ptr;
-  
-  // 读取PE签名和可选头偏移
+// 读取PE签名和可选头偏移
   optional_header_offset = *(int *)(resource_data + 0x3c) + section_offset;
   *(uint *)(pe_header + 0x50) = *(uint *)(optional_header_offset + 0x50);  // 资源表RVA
   *(uint *)(pe_header + 0x44) = *(uint *)(optional_header_offset + 8);   // 节区对齐
-  
-  // 检查是否为可执行文件
+// 检查是否为可执行文件
   if ((*(ushort *)(optional_header_offset + 0x16) & 0x200) != 0) {
     *(uchar *)(pe_header + 0x40) = 1;  // 标记为可执行文件
   }
-  
-  // 计算资源目录偏移
+// 计算资源目录偏移
   resource_rva = *(uint *)(optional_header_offset + 0xbc);
   section_table_offset = resource_rva * 0x2492492492492493;  // 除法优化
   resource_size = (uint)((resource_rva - resource_rva / 7 >> 1) + resource_rva / 7 >> 4);
@@ -1028,21 +841,14 @@ resource_section_exit:
   }
   return section_table_offset;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void ui_load_library_with_resource_check(int64_t library_info)
 // 功能: 加载库文件并检查资源信息
 // 参数:
-//   library_info - 库信息结构体指针
+// library_info - 库信息结构体指针
 // 返回值: 无
 // 说明: 此函数加载指定的库文件，解析其PE头中的资源信息，并将其添加到资源树中
 void ui_load_library_with_resource_check(int64_t library_info)
-
 {
   short *library_handle;
   uint64_t *library_node_ptr;
@@ -1063,9 +869,8 @@ void ui_load_library_with_resource_check(int64_t library_info)
   short *module_base_ptr;
   int8_t resource_buffer [272];
   uint64_t stack_guard_value;
-  
   operation_flag = 0xfffffffffffffffe;
-  // 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
+// 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
   stack_guard_value = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard_buffer;  // GET_SECURITY_COOKIE(): 栈保护随机种子
   library_path_ptr = &system_buffer_ptr;
   if (*(void **)(library_info + 8) != (void *)0x0) {
@@ -1100,7 +905,7 @@ void ui_load_library_with_resource_check(int64_t library_info)
       ui_copy_library_path(temp_buffer_1b8,path_length);
     }
     if (library_flags != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memcpy(pe_base_address,*(uint64_t *)(library_info + 8),path_length);
     }
     if (pe_base_address != 0) {
@@ -1130,23 +935,16 @@ void ui_load_library_with_resource_check(int64_t library_info)
     ui_cleanup_resource_data(resource_data);
   }
 library_loaded:
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   cleanup_stack_guard(stack_guard_value ^ (uint64_t)stack_guard_buffer);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void ui_create_process_snapshot(void)
 // 功能: 创建进程快照用于模块枚举
 // 参数: 无
 // 返回值: 无
 // 说明: 此函数使用Toolhelp32 API创建当前进程的快照，用于枚举加载的模块
 void ui_create_process_snapshot(void)
-
 {
   int lock_result;
   int32_t process_id;
@@ -1157,9 +955,8 @@ void ui_create_process_snapshot(void)
   uint64_t mutex_handle;
   int8_t module_entry_buffer [748];
   uint64_t stack_guard_value;
-  
   operation_flag = 0xfffffffffffffffe;
-  // 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
+// 栈保护值初始化 - 使用随机种子与栈地址异或生成保护值
   stack_guard_value = GET_SECURITY_COOKIE() ^ (uint64_t)stack_guard_buffer;  // GET_SECURITY_COOKIE(): 栈保护随机种子
   mutex_handle = 0x180c96740;
   lock_result = _Mtx_lock(0x180c96740);
@@ -1171,7 +968,7 @@ void ui_create_process_snapshot(void)
   snapshot_handle = CreateToolhelp32Snapshot(0x18,process_id);
   while( true ) {
     if (snapshot_handle != -1) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(module_entry_buffer,0,0x234);
     }
     lock_result = GetLastError();
@@ -1182,77 +979,59 @@ void ui_create_process_snapshot(void)
   if (lock_result != 0) {
     __Throw_C_error_std__YAXH_Z(lock_result);
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   cleanup_stack_guard(stack_guard_value ^ (uint64_t)stack_guard_buffer);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void ui_tree_operation_wrapper(uint64_t operation_data, uint64_t root_node, 
-//                              uint64_t param_3, uint64_t param_4)
+// 函数: void ui_tree_operation_wrapper(uint64_t operation_data, uint64_t root_node,
+// uint64_t param_3, uint64_t param_4)
 // 功能: 树操作包装函数，用于执行树节点的特定操作
 // 参数:
-//   operation_data - 操作数据
-//   root_node - 根节点
-//   param_3 - 参数3
-//   param_4 - 参数4
+// operation_data - 操作数据
+// root_node - 根节点
+// param_3 - 参数3
+// param_4 - 参数4
 // 返回值: 无
 // 说明: 这是一个包装函数，调用树节点操作函数并传递特定标志位
-void ui_tree_operation_wrapper(uint64_t operation_data, uint64_t root_node, 
+void ui_tree_operation_wrapper(uint64_t operation_data, uint64_t root_node,
                              uint64_t param_3, uint64_t param_4)
-
 {
   ui_perform_tree_node_operation(operation_data,ui_system_pointer,param_3,param_4,0xfffffffffffffffe);  // ui_system_pointer: 库资源树根节点指针
   return;
 }
-
-
-
-
-
-// 函数: void ui_tree_cleanup_operation(uint64_t param_1, uint64_t *node_ptr, 
-//                                  uint64_t param_3, uint64_t param_4)
+// 函数: void ui_tree_cleanup_operation(uint64_t param_1, uint64_t *node_ptr,
+// uint64_t param_3, uint64_t param_4)
 // 功能: 树清理操作函数，用于清理树节点并释放资源
 // 参数:
-//   param_1 - 参数1
-//   node_ptr - 节点指针
-//   param_3 - 参数3
-//   param_4 - 参数4
+// param_1 - 参数1
+// node_ptr - 节点指针
+// param_3 - 参数3
+// param_4 - 参数4
 // 返回值: 无
 // 说明: 此函数递归清理树节点，释放相关资源
-void ui_tree_cleanup_operation(uint64_t param_1, uint64_t *node_ptr, 
+void ui_tree_cleanup_operation(uint64_t param_1, uint64_t *node_ptr,
                              uint64_t param_3, uint64_t param_4)
-
 {
   if (param_2 != (uint64_t *)0x0) {
     ui_perform_tree_node_operation(&system_memory_6790,*node_ptr,param_3,param_4,0xfffffffffffffffe);
     ui_cleanup_tree_node_resources(node_ptr + 5);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     ui_free_tree_node_memory(node_ptr);
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-// 函数: uint64_t * ui_find_library_node_in_resource_tree(uint64_t param_1, uint64_t *param_2, uint64_t param_3, 
-//                                     int64_t *param_4, uint64_t *param_5)
+// 函数: uint64_t * ui_find_library_node_in_resource_tree(uint64_t param_1, uint64_t *param_2, uint64_t param_3,
+// int64_t *param_4, uint64_t *param_5)
 // 功能: 在库资源树中查找库节点，如果未找到则创建新节点
 // 参数:
-//   param_1 - 搜索参数1
-//   param_2 - 节点指针数组
-//   param_3 - 搜索参数3
-//   param_4 - 当前节点指针
-//   param_5 - 搜索键值指针
+// param_1 - 搜索参数1
+// param_2 - 节点指针数组
+// param_3 - 搜索参数3
+// param_4 - 当前节点指针
+// param_5 - 搜索键值指针
 // 返回值: 返回找到或创建的节点指针
 // 说明: 此函数在二叉搜索树中查找库节点，支持自动创建新节点
-
 {
   int64_t *node_bounds_ptr;
   uint64_t *current_node_ptr;
@@ -1261,10 +1040,9 @@ void ui_tree_cleanup_operation(uint64_t param_1, uint64_t *node_ptr,
   uint64_t *insert_position_ptr;
   int32_t insertion_flag;
   bool should_insert_left;
-  
   if ((param_4 == ui_system_pointer) || (param_4 == (int64_t *)&system_memory_6790)) {
-    // ui_system_pointer: 库资源树头节点指针
-    // ui_system_pointer: 库资源树节点计数器
+// ui_system_pointer: 库资源树头节点指针
+// ui_system_pointer: 库资源树节点计数器
     if ((ui_system_pointer != 0) && (param_4 = ui_system_pointer, (uint64_t)ui_system_pointer[4] < *param_5)
        ) goto node_found;
   }
@@ -1316,36 +1094,28 @@ create_new_node:
   else {
     insertion_flag = 1;
   }
-  // 使用内存分配器和树节点类型信息分配新节点
+// 使用内存分配器和树节点类型信息分配新节点
   new_node_ptr = ui_allocate_library_node(system_memory_pool_ptr, 0xd8, system_memory_67b8);
   *(uint64_t *)(new_node_ptr + 0x20) = *param_5;
   ui_initialize_node_data(new_node_ptr + 0x28);
-  // 将新节点插入到树中
+// 将新节点插入到树中
   ui_insert_node_into_tree(new_node_ptr, insert_position_ptr, &system_memory_6790, insertion_flag);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void ui_tree_node_insert(uint64_t param_1, uint64_t param_2, void *param_3, 
-//                           uint64_t param_4, uint64_t *param_5)
+// 函数: void ui_tree_node_insert(uint64_t param_1, uint64_t param_2, void *param_3,
+// uint64_t param_4, uint64_t *param_5)
 // 功能: 在树中插入新节点，维护树的平衡和顺序
 // 参数:
-//   param_1 - 参数1
-//   param_2 - 参数2
-//   param_3 - 参数3
-//   param_4 - 参数4
-//   param_5 - 参数5指针
+// param_1 - 参数1
+// param_2 - 参数2
+// param_3 - 参数3
+// param_4 - 参数4
+// param_5 - 参数5指针
 // 返回值: 无
 // 说明: 此函数在二叉树中插入新节点，保持树的排序和平衡
-
 {
   int64_t lVar1;
   int32_t uVar2;
-  
   if ((((char)param_4 == '\0') && (param_3 != &system_memory_6790)) &&
      (*(uint64_t *)(param_3 + 0x20) <= *param_5)) {
     uVar2 = 1;
@@ -1353,61 +1123,52 @@ create_new_node:
   else {
     uVar2 = 0;
   }
-  // 使用内存分配器和树节点类型信息分配新节点
+// 使用内存分配器和树节点类型信息分配新节点
   lVar1 = ui_allocate_library_node(system_memory_pool_ptr, 0xd8, system_memory_67b8, param_4, 0xfffffffffffffffe);
   *(uint64_t *)(lVar1 + 0x20) = *param_5;
   ui_initialize_node_data(lVar1 + 0x28);
-  // 将新节点插入到树中
+// 将新节点插入到树中
   ui_insert_node_into_tree(lVar1, param_3, &system_memory_6790, uVar2);
 }
-
-
-
-
-
 // 函数: void ui_cleanup_resource_pointers(int64_t resource_ptr)
 // 功能: 清理资源指针和相关数据结构
 // 参数:
-//   resource_ptr - 资源指针
+// resource_ptr - 资源指针
 // 返回值: 无
 // 说明: 此函数清理资源指针，释放相关内存，重置数据结构
 void ui_cleanup_resource_pointers(int64_t resource_ptr)
-
 {
-  // 重置资源指针为默认值
+// 重置资源指针为默认值
   *(uint64_t *)(resource_ptr + 0x80) = &system_data_buffer_ptr;
   if (*(int64_t *)(resource_ptr + 0x88) != 0) {
-    // 释放资源内存
+// 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x88) = 0;
   *(int32_t *)(resource_ptr + 0x98) = 0;
   *(uint64_t *)(resource_ptr + 0x80) = &system_state_ptr;
-  
-  // 清理第二组资源指针
+// 清理第二组资源指针
   *(uint64_t *)(resource_ptr + 0x60) = &system_data_buffer_ptr;
   if (*(int64_t *)(resource_ptr + 0x68) != 0) {
-    // 释放资源内存
+// 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x68) = 0;
   *(int32_t *)(resource_ptr + 0x78) = 0;
   *(uint64_t *)(resource_ptr + 0x60) = &system_state_ptr;
-  
-  // 清理第三组资源指针
+// 清理第三组资源指针
   *(uint64_t *)(resource_ptr + 0x28) = &system_data_buffer_ptr;
   if (*(int64_t *)(resource_ptr + 0x30) != 0) {
-    // 释放资源内存
+// 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x30) = 0;
   *(int32_t *)(resource_ptr + 0x40) = 0;
   *(uint64_t *)(resource_ptr + 0x28) = &system_state_ptr;
-  
-  // 清理第四组资源指针
+// 清理第四组资源指针
   *(uint64_t *)(resource_ptr + 8) = &system_data_buffer_ptr;
   if (*(int64_t *)(resource_ptr + 0x10) != 0) {
-    // 释放资源内存
+// 释放资源内存
     ui_release_resource_memory();
   }
   *(uint64_t *)(resource_ptr + 0x10) = 0;
@@ -1415,133 +1176,98 @@ void ui_cleanup_resource_pointers(int64_t resource_ptr)
   *(uint64_t *)(resource_ptr + 8) = &system_state_ptr;
   return;
 }
-
-
-
 // 函数: uint64_t * ui_free_managed_memory_block(uint64_t *memory_ptr, uint64_t flags)
 // 功能: 释放托管内存块，根据标志决定是否真正释放
 // 参数:
-//   memory_ptr - 内存块指针
-//   flags - 释放标志位
+// memory_ptr - 内存块指针
+// flags - 释放标志位
 // 返回值: 返回内存块指针
 // 说明: 此函数释放托管内存块，根据标志位决定是否执行实际的内存释放操作
 uint64_t * ui_free_managed_memory_block(uint64_t *memory_ptr, uint64_t flags)
-
 {
   *memory_ptr = &processed_var_9792_ptr;
   if ((flags & 1) != 0) {
-    // 根据标志位执行实际的内存释放
+// 根据标志位执行实际的内存释放
     free(memory_ptr, 0x160);
   }
   return memory_ptr;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // 函数: void pass_managed_library_callback_method_pointers(uint64_t callback_data)
 // 功能: 传递托管库回调方法指针，用于托管与非托管代码的交互
 // 参数:
-//   callback_data - 回调数据指针，包含托管方法的回调信息
+// callback_data - 回调数据指针，包含托管方法的回调信息
 // 返回值: 无
 // 说明: 此函数通过全局函数指针表调用托管代码的回调方法，实现托管与非托管代码的交互
 void pass_managed_library_callback_method_pointers(uint64_t callback_data)
-
 {
-  // 通过托管库函数指针表调用回调方法
-  // system_cache_buffer: 托管库函数指针表
+// 通过托管库函数指针表调用回调方法
+// system_cache_buffer: 托管库函数指针表
   (**(code **)(*system_cache_buffer + 0x40))(system_cache_buffer, callback_data);
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // 函数: void pass_controller_methods(uint64_t controller_methods)
 // 功能: 传递控制器方法指针，用于UI控制器方法的注册
 // 参数:
-//   controller_methods - 控制器方法指针，包含UI控制相关的方法信息
+// controller_methods - 控制器方法指针，包含UI控制相关的方法信息
 // 返回值: 无
 // 说明: 此函数注册UI控制器方法到全局变量中，供UI系统调用
 void pass_controller_methods(uint64_t controller_methods)
-
 {
-  // 注册控制器方法到全局变量
-  // ui_system_data_pointer: 控制器方法指针
+// 注册控制器方法到全局变量
+// ui_system_data_pointer: 控制器方法指针
   ui_system_data_pointer = controller_methods;
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 // 函数: void pass_managed_initialize_method_pointer(uint64_t init_method_ptr)
 // 功能: 传递托管初始化方法指针，用于UI系统的初始化
 // 参数:
-//   init_method_ptr - 初始化方法指针，包含托管代码的初始化逻辑
+// init_method_ptr - 初始化方法指针，包含托管代码的初始化逻辑
 // 返回值: 无
 // 说明: 此函数注册托管初始化方法到全局变量中，供UI系统初始化时调用
 void pass_managed_initialize_method_pointer(uint64_t init_method_ptr)
-
 {
-  // 注册初始化方法到全局变量
-  // ui_system_data_pointer: 初始化方法指针
+// 注册初始化方法到全局变量
+// ui_system_data_pointer: 初始化方法指针
   ui_system_data_pointer = init_method_ptr;
   return;
 }
-
-
-
 // 函数: uint64_t ui_cleanup_managed_resource(uint64_t resource_ptr, uint64_t flags)
 // 功能: 清理托管资源，根据标志决定是否释放资源
 // 参数:
-//   resource_ptr - 资源指针
-//   flags - 清理标志位
+// resource_ptr - 资源指针
+// flags - 清理标志位
 // 返回值: 返回资源指针
 // 说明: 此函数清理托管资源，根据标志位决定是否执行实际的资源释放操作
 uint64_t ui_cleanup_managed_resource(uint64_t resource_ptr, uint64_t flags)
-
 {
-  // 释放资源引用
+// 释放资源引用
   ui_release_resource_reference();
   if ((flags & 1) != 0) {
-    // 根据标志位执行实际的资源释放
+// 根据标志位执行实际的资源释放
     free(resource_ptr, 400);
   }
   return resource_ptr;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 // 函数: void ui_cleanup_global_data_structure(uint64_t *global_ptr)
 // 功能: 清理全局数据结构，重置为初始状态
 // 参数:
-//   global_ptr - 全局数据结构指针
+// global_ptr - 全局数据结构指针
 // 返回值: 无
 // 说明: 此函数清理全局数据结构，释放内存并重置指针
 void ui_cleanup_global_data_structure(uint64_t *global_ptr)
-
 {
-  // 重置全局数据结构为默认值
+// 重置全局数据结构为默认值
   *global_ptr = &processed_var_9808_ptr;
-  // 重置托管库函数指针表
+// 重置托管库函数指针表
   system_cache_buffer = 0;                  // system_cache_buffer: 托管库函数指针表（重置）
   if (global_ptr[0x2d] != 0) {
-    // 释放资源内存
+// 释放资源内存
     ui_cleanup_resource_memory();
   }
   global_ptr[1] = &processed_var_9792_ptr;
   return;
 }
-
-
-
-
-

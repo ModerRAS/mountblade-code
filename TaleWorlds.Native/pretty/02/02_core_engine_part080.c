@@ -1,17 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // $fun 的语义化别名
 #define $alias_name $fun
-
-
 // 02_core_engine_part080.c - 文本渲染引擎模块
 // 包含3个函数：文本布局计算、文本渲染处理、文本区域管理
-
 /**
  * 函数：calculate_text_layout - 计算文本布局
  * 功能：根据给定的文本内容和渲染参数，计算文本的布局信息
@@ -52,7 +46,6 @@ void calculate_text_layout(uint64_t render_context, uint64_t text_content)
   float temp_height;
   uint64_t margin_data;
   uint64_t padding_data;
-  
   context_base = SYSTEM_DATA_MANAGER_A;  // 获取全局渲染上下文
   *(int8_t *)(*(int64_t *)(context_base + 0x1af8) + 0xb1) = 1;  // 设置布局标志
   render_data = *(int64_t *)(context_base + 0x1af8);  // 获取渲染数据指针
@@ -299,13 +292,7 @@ LAYOUT_FINALIZE:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * 函数：render_text_with_params - 使用指定参数渲染文本
  * 功能：根据渲染参数和文本内容，进行文本渲染处理
@@ -314,7 +301,6 @@ LAYOUT_FINALIZE:
  *   param_2 - 文本内容指针
  */
 void render_text_with_params(int64_t render_params, int64_t text_content)
-
 {
   uint64_t *texture_data;
   float font_scale;
@@ -375,8 +361,7 @@ void render_text_with_params(int64_t render_params, int64_t text_content)
   int32_t stack_data_b8;
   int32_t stack_data_c0;
   int32_t stack_data_c8;
-  
-  // 保存寄存器数据到栈
+// 保存寄存器数据到栈
   *(uint64_t *)(stack_base + -0x38) = xmm6_data_a;
   *(uint64_t *)(stack_base + -0x30) = xmm6_data_b;
   *(int32_t *)(stack_base + -0x58) = xmm8_data_a;
@@ -387,7 +372,6 @@ void render_text_with_params(int64_t render_params, int64_t text_content)
   *(int32_t *)(stack_base + -0xa4) = xmm13_data_b;
   *(int32_t *)(stack_base + -0xa0) = xmm13_data_c;
   *(int32_t *)(stack_base + -0x9c) = xmm13_data_d;
-  
   if (text_content == 0) {  // 如果文本内容为空，计算长度
     text_length = -1;
     do {
@@ -406,7 +390,7 @@ void render_text_with_params(int64_t render_params, int64_t text_content)
       fVar20 = *(float *)(param_1 + 0x22c);
       _fStack0000000000000050 = *(uint64_t *)(param_1 + 0x228);
       fVar18 = *(float *)(param_1 + 0x234);
-      in_stack_00000058 = *(uint64_t *)(param_1 + 0x230);
+      local_var_58 = *(uint64_t *)(param_1 + 0x230);
       fVar17 = 0.0;
       fVar19 = *(float *)(unaff_RSI + 0x19f8);
       fVar21 = 0.0;
@@ -443,12 +427,12 @@ void render_text_with_params(int64_t render_params, int64_t text_content)
         if (unaff_RDI < unaff_RBX) {
           fVar20 = fVar17;
           fVar18 = fVar17;
-          in_stack_00000060 = unaff_XMM15_Da;
-          in_stack_00000068 = unaff_XMM15_Dc;
-          in_stack_00000090 = unaff_XMM12_Da;
-          in_stack_00000098 = unaff_XMM12_Dc;
-          in_stack_000000c0 = unaff_XMM9_Da;
-          in_stack_000000c8 = unaff_XMM9_Dc;
+          local_var_60 = unaff_XMM15_Da;
+          local_var_68 = unaff_XMM15_Dc;
+          local_var_90 = unaff_XMM12_Da;
+          local_var_98 = unaff_XMM12_Dc;
+          local_buffer_c0 = unaff_XMM9_Da;
+          local_buffer_c8 = unaff_XMM9_Dc;
           do {
             fVar20 = fVar20 + fVar19;
             lVar10 = *(int64_t *)(unaff_RSI + 0x1af8);
@@ -468,13 +452,13 @@ void render_text_with_params(int64_t render_params, int64_t text_content)
               fVar16 = 0.0;
             }
             else {
-              SystemCore_StateController(pfVar3,&stack0x00000050,fVar16,0x7f7fffff,0xbf800000);
+              SystemCore_StateController(pfVar3,&local_buffer_00000050,fVar16,0x7f7fffff,0xbf800000);
               fVar15 = fStack0000000000000050;
               if (0.0 < fStack0000000000000050) {
                 fVar15 = fStack0000000000000050 - fVar16 / *pfVar3;
               }
               fVar16 = (float)(int)(fVar15 + 0.95);
-              _fStack0000000000000050 = CONCAT44(uStack0000000000000054,fVar16);
+              _fStack0000000000000050 = CONCAT44(local_buffer_54,fVar16);
             }
             if (fVar21 < fVar16) {
               *(float *)(unaff_RBP + 0x48) = fVar16;
@@ -502,7 +486,7 @@ void render_text_with_params(int64_t render_params, int64_t text_content)
       }
       fVar17 = fVar22 + fVar17;
       fVar21 = fVar2 + fVar21;
-      func_0x000180124080(unaff_RBP + 0x48,0);
+      SystemFunction_000180124080(unaff_RBP + 0x48,0);
       lVar10 = *(int64_t *)(unaff_RSI + 0x1af8);
       *(uint64_t *)(lVar10 + 0x144) = 0;
       *(float *)(lVar10 + 0x14c) = fVar2;
@@ -511,14 +495,14 @@ void render_text_with_params(int64_t render_params, int64_t text_content)
       *(float *)(lVar10 + 0x158) = fVar17;
       lVar11 = *(int64_t *)(unaff_RSI + 0x1af8);
       _fStack0000000000000050 = CONCAT44(fVar22,fVar2);
-      in_stack_00000058 = CONCAT44(fVar17,fVar21);
+      local_var_58 = CONCAT44(fVar17,fVar21);
       if ((((fVar17 < *(float *)(lVar11 + 0x22c) || fVar17 == *(float *)(lVar11 + 0x22c)) ||
            (*(float *)(lVar11 + 0x234) <= fVar22)) ||
           ((fVar21 < *(float *)(lVar11 + 0x228) || fVar21 == *(float *)(lVar11 + 0x228) ||
            (*(float *)(lVar11 + 0x230) <= fVar2)))) && (*(char *)(unaff_RSI + 0x2e38) == '\0')) {
         return;
       }
-      cVar6 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1);
+      cVar6 = SystemCore_HashCalculator(&local_buffer_00000050,&local_buffer_00000058,1);
       if (cVar6 == '\0') {
         return;
       }
@@ -577,7 +561,7 @@ LAB_18010ed80:
   *(float *)(unaff_RBP + 0x40) = fVar19;
   fVar20 = fVar20 + fVar22;
   fVar19 = fVar19 + fVar2;
-  func_0x000180124080(unaff_RBP + 0x40,0);
+  SystemFunction_000180124080(unaff_RBP + 0x40,0);
   lVar10 = *(int64_t *)(unaff_RSI + 0x1af8);
   *(uint64_t *)(lVar10 + 0x144) = 0;
   *(float *)(lVar10 + 0x14c) = fVar2;
@@ -586,12 +570,12 @@ LAB_18010ed80:
   *(float *)(lVar10 + 0x158) = fVar20;
   lVar11 = *(int64_t *)(unaff_RSI + 0x1af8);
   _fStack0000000000000050 = CONCAT44(fVar22,fVar2);
-  in_stack_00000058 = CONCAT44(fVar20,fVar19);
+  local_var_58 = CONCAT44(fVar20,fVar19);
   if ((((*(float *)(lVar11 + 0x22c) <= fVar20 && fVar20 != *(float *)(lVar11 + 0x22c)) &&
        (fVar22 < *(float *)(lVar11 + 0x234))) &&
       ((*(float *)(lVar11 + 0x228) <= fVar19 && fVar19 != *(float *)(lVar11 + 0x228) &&
        (fVar2 < *(float *)(lVar11 + 0x230))))) || (*(char *)(unaff_RSI + 0x2e38) != '\0')) {
-    cVar6 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1);
+    cVar6 = SystemCore_HashCalculator(&local_buffer_00000050,&local_buffer_00000058,1);
     uVar4 = _fStack0000000000000050;
     if (cVar6 != '\0') {
       *(uint *)(lVar10 + 0x148) = *(uint *)(lVar10 + 0x148) | 1;
@@ -608,10 +592,10 @@ LAB_18010ed80:
     if (unaff_RDI != unaff_RBX) {
       _fStack0000000000000050 = *(uint64_t *)(unaff_RSI + 0x16c8);
       lVar10 = *(int64_t *)(lVar10 + 0x2e8);
-      in_stack_00000058 =
+      local_var_58 =
            CONCAT44(*(float *)(unaff_RSI + 0x16d4) * *(float *)(unaff_RSI + 0x1628),
                     *(int32_t *)(unaff_RSI + 0x16d0));
-      uVar7 = func_0x000180121e20(&stack0x00000050);
+      uVar7 = Function_56da4ab5(&local_buffer_00000050);
       fVar19 = *(float *)(unaff_RSI + 0x19f8);
       lVar11 = *(int64_t *)(unaff_RSI + 0x19f0);
       if ((uVar7 & 0xff000000) != 0) {
@@ -633,8 +617,8 @@ LAB_18010ed80:
                    (*(int64_t *)(lVar10 + 0x68) + -0x10 + (int64_t)*(int *)(lVar10 + 0x60) * 0x10)
           ;
           _fStack0000000000000050 = *puVar1;
-          in_stack_00000058 = puVar1[1];
-          FUN_180297590(lVar11,lVar10,fVar19,uVar4,uVar7);
+          local_var_58 = puVar1[1];
+          DataStructure_97590(lVar11,lVar10,fVar19,uVar4,uVar7);
         }
       }
       if (*(char *)(unaff_RSI + 0x2e38) != '\0') {
@@ -644,13 +628,7 @@ LAB_18010ed80:
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
 /**
  * 函数：update_text_area - 更新文本区域
  * 功能：根据给定的参数更新文本区域的布局和渲染信息
@@ -658,7 +636,6 @@ LAB_18010ed80:
  *   param_1 - 文本区域参数（包含位置、尺寸等信息）
  */
 void update_text_area(uint64_t area_params)
-
 {
   float scale_factor;
   float font_size;
@@ -693,8 +670,7 @@ void update_text_area(uint64_t area_params)
   int32_t clipping_flags;
   int32_t color_flags;
   int32_t effect_flags;
-  
-  // 初始化文本区域参数
+// 初始化文本区域参数
   texture_width = (float)area_params;
   baseline = 0.0;
   font_size = *(float *)(context_base + 0x19f8);
@@ -702,8 +678,7 @@ void update_text_area(uint64_t area_params)
   *(int32_t *)(stack_base + 0x48) = 0;  // 清除渲染标志
   *(int32_t *)(stack_base + 0x4c) = 0;  // 清除布局标志
   update_flag = (char)text_length;
-  
-  // 检查是否需要更新文本区域
+// 检查是否需要更新文本区域
   if (area_y <= area_depth) {
     *(float *)(stack_base + 0x40) = area_x;
     *(float *)(stack_base + 0x44) = area_y;
@@ -732,27 +707,24 @@ void update_text_area(uint64_t area_params)
         *(float *)(stack_base + 0x44) = baseline;
       }
     }
-    
-    // 处理文本内容
+// 处理文本内容
     if (text_start < text_end) {
       text_width = baseline;
       text_height = baseline;
-      // 设置渲染参数
+// 设置渲染参数
       render_flags = texture_format;
       alignment_flags = effect_flags;
       clipping_flags = color_flags;
-      
       do {
         text_width = text_width + font_size;
         render_data = *(int64_t *)(context_base + 0x1af8);
-        // 检查边界条件
+// 检查边界条件
         if (((((text_width < *(float *)(render_data + 0x22c) || text_width == *(float *)(render_data + 0x22c)) ||
               (text_height <= baseline)) ||
              (area_x + 3.4028235e+38 < *(float *)(render_data + 0x228) ||
               area_x + 3.4028235e+38 == *(float *)(render_data + 0x228))) ||
             (*(float *)(render_data + 0x230) <= area_x)) &&
            (*(char *)(context_base + 0x2e38) == update_flag)) break;
-        
         text_end = memchr(text_start, 10, text_end - text_start);
         font_metrics = *(float **)(context_base + 0x19f0);
         fVar2 = *(float *)(unaff_RSI + 0x19f8);
@@ -761,7 +733,7 @@ void update_text_area(uint64_t area_params)
         }
         fVar12 = unaff_XMM8_Da;
         if (unaff_RDI != uVar7) {
-          SystemCore_StateController(pfVar3,&stack0x00000050,fVar2,0x7f7fffff,0xbf800000);
+          SystemCore_StateController(pfVar3,&local_buffer_00000050,fVar2,0x7f7fffff,0xbf800000);
           if (unaff_XMM8_Da < fStack0000000000000050) {
             fStack0000000000000050 = fStack0000000000000050 - fVar2 / *pfVar3;
           }
@@ -796,7 +768,7 @@ void update_text_area(uint64_t area_params)
   }
   fVar13 = unaff_XMM13_Da + fVar13;
   fVar16 = unaff_XMM14_Da + fVar16;
-  func_0x000180124080(unaff_RBP + 0x48);
+  SystemFunction_000180124080(unaff_RBP + 0x48);
   lVar8 = *(int64_t *)(unaff_RSI + 0x1af8);
   *(uint64_t *)(lVar8 + 0x144) = unaff_R12;
   *(float *)(lVar8 + 0x14c) = unaff_XMM14_Da;
@@ -809,15 +781,9 @@ void update_text_area(uint64_t area_params)
        ((*(float *)(lVar4 + 0x228) <= fVar16 && fVar16 != *(float *)(lVar4 + 0x228) &&
         (unaff_XMM14_Da < *(float *)(lVar4 + 0x230))))) || (*(char *)(unaff_RSI + 0x2e38) != cVar5))
      && (fStack0000000000000058 = fVar16, fStack000000000000005c = fVar13,
-        cVar5 = SystemCore_HashCalculator(&stack0x00000050,&stack0x00000058,1), cVar5 != '\0')) {
+        cVar5 = SystemCore_HashCalculator(&local_buffer_00000050,&local_buffer_00000058,1), cVar5 != '\0')) {
     *(uint *)(lVar8 + 0x148) = *(uint *)(lVar8 + 0x148) | 1;
   }
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-

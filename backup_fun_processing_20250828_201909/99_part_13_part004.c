@@ -458,7 +458,7 @@ uint64_t FUN_1808a8620(int64_t param_1,int64_t *param_2)
     else {
       if (plVar1[2] != 0) {
         auStackX_20[0] = 0;
-        uVar3 = func_0x00018076a7d0(*plVar1,auStackX_20);
+        uVar3 = MemoryManager_CopyData(*plVar1,auStackX_20);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -534,7 +534,7 @@ uint64_t FUN_1808a864f(void)
     else {
       if (plVar1[2] != 0) {
         in_stack_00000088 = 0;
-        uVar3 = func_0x00018076a7d0(*plVar1,&stack0x00000088);
+        uVar3 = MemoryManager_CopyData(*plVar1,&stack0x00000088);
         if ((int)uVar3 != 0) {
           return uVar3;
         }

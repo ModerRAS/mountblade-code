@@ -1,107 +1,95 @@
 /* 函数别名定义: RenderingTextureManager */
 #define RenderingTextureManager RenderingTextureManager
-
-
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
 // 系统初始化和清理函数
 #define SystemInitializer System_Initializer2  // 系统初始化器
 #define SystemStateCleaner RenderingSystem_MemoryManager0  // 系统状态清理器
-
 // 资源管理函数
-#define ResourceManager FUN_1808db3f0    // 资源管理器
+#define ResourceManager function_8db3f0    // 资源管理器
 #define ResourceCleanupHandler SystemMemoryManager  // 资源清理处理器
 #define ResourceAllocator SystemMemoryAllocator   // 资源分配器
 #define ResourcePoolManager SystemDataValidator  // 资源池管理器
 #define ResourceSystemController SystemResourceManager  // 资源系统控制器
 #define ResourceReferenceManager SystemCore_NetworkProtocol  // 资源引用管理器
-#define ResourceReleaseHandler FUN_1808b02a0  // 资源释放处理器
-
+#define ResourceReleaseHandler function_8b02a0  // 资源释放处理器
 // 系统控制函数
 #define SystemController SystemSecurityChecker   // 系统控制器
 #define SystemCleanupInvoker SystemCore_MemoryManager0  // 系统清理调用器
-#define SystemDataManager FUN_1808dcd20  // 系统数据管理器
-#define SystemResourceHandler FUN_1808dbcd0  // 系统资源处理器
-#define SystemValidator FUN_1808db010   // 系统验证器
-
+#define SystemDataManager function_8dcd20  // 系统数据管理器
+#define SystemResourceHandler function_8dbcd0  // 系统资源处理器
+#define SystemValidator function_8db010   // 系统验证器
 // 事件和状态管理函数
 #define EventManager AdvancedSystemProcessor       // 事件管理器
 #define EventHandler RenderingSystemOptimizer      // 事件处理器
-#define EventDispatcher FUN_18088c620   // 事件分发器
-#define EventInitializer FUN_18088a0c0  // 事件初始化器
-#define StateManager FUN_180867d60      // 状态管理器
-
+#define EventDispatcher function_88c620   // 事件分发器
+#define EventInitializer function_88a0c0  // 事件初始化器
+#define StateManager function_867d60      // 状态管理器
 // 资源操作函数
 #define ResourceOperationHandler SystemController  // 资源操作处理器
 #define ResourceAccessController RenderingTextureManager0  // 资源访问控制器
 #define ResourceDataProcessor RenderingSystem_MaterialHandler  // 资源数据处理器
-#define ResourceQueryHandler FUN_180741d10  // 资源查询处理器
-#define ResourceValidator FUN_180739cc0  // 资源验证器
-#define ResourceChecker FUN_180739b90   // 资源检查器
-
+#define ResourceQueryHandler function_741d10  // 资源查询处理器
+#define ResourceValidator function_739cc0  // 资源验证器
+#define ResourceChecker function_739b90   // 资源检查器
 // 系统内部函数 (简化实现)
-#define SystemInternalFunc1 FUN_1808daf3b  // 系统内部函数1
-#define SystemInternalFunc2 FUN_1808daf2a  // 系统内部函数2
-#define SystemInternalFunc3 FUN_1808dae64  // 系统内部函数3
-#define SystemInternalFunc4 FUN_1808dae5f  // 系统内部函数4
-#define SystemInternalFunc5 FUN_1808dae4c  // 系统内部函数5
-#define SystemInternalFunc6 FUN_1808dae30  // 系统内部函数6
-#define SystemInternalFunc7 FUN_1808dad80  // 系统内部函数7
-#define SystemInternalFunc8 FUN_1808dad20  // 系统内部函数8
-#define SystemInternalFunc9 FUN_1808dac90  // 系统内部函数9
-#define SystemInternalFunc10 FUN_1808dab90  // 系统内部函数10
-#define SystemInternalFunc11 FUN_1808dab64  // 系统内部函数11
-#define SystemInternalFunc12 FUN_1808dab52  // 系统内部函数12
-#define SystemInternalFunc13 FUN_1808daaa9  // 系统内部函数13
-#define SystemInternalFunc14 FUN_1808daa70  // 系统内部函数14
-#define SystemInternalFunc15 FUN_1808daa00  // 系统内部函数15
-#define SystemInternalFunc16 FUN_1808da910  // 系统内部函数16
-#define SystemInternalFunc17 FUN_1808da8ec  // 系统内部函数17
-#define SystemInternalFunc18 FUN_1808da82b  // 系统内部函数18
-#define SystemInternalFunc19 FUN_1808da7b0  // 系统内部函数19
-#define SystemInternalFunc20 FUN_1808da5c0  // 系统内部函数20
-#define SystemInternalFunc21 FUN_1808da330  // 系统内部函数21
-#define SystemInternalFunc22 FUN_1808d9fe0  // 系统内部函数22
-#define SystemInternalFunc23 FUN_1808d9e90  // 系统内部函数23
-#define SystemInternalFunc24 FUN_1808d9de0  // 系统内部函数24
-#define SystemInternalFunc25 FUN_1808d9d50  // 系统内部函数25
-#define SystemInternalFunc26 FUN_1808d9ce0  // 系统内部函数26
-#define SystemInternalFunc27 FUN_1808d9c82  // 系统内部函数27
-
+#define SystemInternalFunc1 function_8daf3b  // 系统内部函数1
+#define SystemInternalFunc2 function_8daf2a  // 系统内部函数2
+#define SystemInternalFunc3 function_8dae64  // 系统内部函数3
+#define SystemInternalFunc4 function_8dae5f  // 系统内部函数4
+#define SystemInternalFunc5 function_8dae4c  // 系统内部函数5
+#define SystemInternalFunc6 function_8dae30  // 系统内部函数6
+#define SystemInternalFunc7 function_8dad80  // 系统内部函数7
+#define SystemInternalFunc8 function_8dad20  // 系统内部函数8
+#define SystemInternalFunc9 function_8dac90  // 系统内部函数9
+#define SystemInternalFunc10 function_8dab90  // 系统内部函数10
+#define SystemInternalFunc11 function_8dab64  // 系统内部函数11
+#define SystemInternalFunc12 function_8dab52  // 系统内部函数12
+#define SystemInternalFunc13 function_8daaa9  // 系统内部函数13
+#define SystemInternalFunc14 function_8daa70  // 系统内部函数14
+#define SystemInternalFunc15 function_8daa00  // 系统内部函数15
+#define SystemInternalFunc16 function_8da910  // 系统内部函数16
+#define SystemInternalFunc17 function_8da8ec  // 系统内部函数17
+#define SystemInternalFunc18 function_8da82b  // 系统内部函数18
+#define SystemInternalFunc19 function_8da7b0  // 系统内部函数19
+#define SystemInternalFunc20 function_8da5c0  // 系统内部函数20
+#define SystemInternalFunc21 function_8da330  // 系统内部函数21
+#define SystemInternalFunc22 function_8d9fe0  // 系统内部函数22
+#define SystemInternalFunc23 function_8d9e90  // 系统内部函数23
+#define SystemInternalFunc24 function_8d9de0  // 系统内部函数24
+#define SystemInternalFunc25 function_8d9d50  // 系统内部函数25
+#define SystemInternalFunc26 function_8d9ce0  // 系统内部函数26
+#define SystemInternalFunc27 function_8d9c82  // 系统内部函数27
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 /**
  * @file 99_part_13_part073.c
  * @brief 资源管理和系统清理模块
- * 
+ *
  * 本模块实现了游戏引擎中的资源管理、内存清理和系统维护功能。
  * 主要负责资源对象的创建、销毁、引用计数管理和系统状态维护。
- * 
+ *
  * 主要功能：
  * - 资源对象生命周期管理
  * - 内存分配和释放控制
  * - 引用计数跟踪和清理
  * - 系统状态监控和维护
  * - 异常处理和错误恢复
- * 
+ *
  * 技术架构：
  * - 采用对象池管理模式
  * - 实现自动引用计数机制
  * - 支持延迟清理和立即清理
  * - 提供线程安全的资源管理
- * 
+ *
  * @author TaleWorlds Engine Team
  * @version 1.0
  * @date 2024
  */
-
 // ========================= 类型定义和结构声明 =========================
-
 /**
  * @brief 资源管理器结构体
- * 
+ *
  * 管理游戏中的各种资源对象，包括内存、文件、纹理等。
  * 实现资源的分配、释放和生命周期管理。
  */
@@ -113,10 +101,9 @@ typedef struct ResourceManager {
     uint max_resources;               // 最大资源数量
     void* cleanup_handler;            // 清理处理函数
 } ResourceManager;
-
 /**
  * @brief 引用计数管理器结构体
- * 
+ *
  * 跟踪对象的引用计数，实现自动内存管理。
  * 当引用计数降为0时自动释放资源。
  */
@@ -126,10 +113,9 @@ typedef struct ReferenceManager {
     uint active_entries;              // 活动条目数
     void* release_callback;          // 释放回调函数
 } ReferenceManager;
-
 /**
  * @brief 系统状态管理器结构体
- * 
+ *
  * 维护系统运行状态，监控资源使用情况。
  * 提供系统健康检查和异常处理功能。
  */
@@ -139,53 +125,45 @@ typedef struct SystemStateManager {
     int64_t* error_log;              // 错误日志指针
     void* recovery_handler;           // 恢复处理函数
 } SystemStateManager;
-
 // ========================= 函数别名定义 =========================
-
 /**
  * @brief 系统资源清理函数
  * @details 清理系统资源，释放内存，重置状态
  */
-#define SystemResourceCleanup FUN_1808d9c82
-
+#define SystemResourceCleanup function_8d9c82
 /**
  * @brief 资源对象释放函数
  * @param resource_ptr 资源对象指针
  * @param flags 释放标志位
  * @return 释放状态码
  */
-#define ResourceObjectRelease FUN_1808d9ce0
-
+#define ResourceObjectRelease function_8d9ce0
 /**
  * @brief 扩展资源清理函数
  * @param resource_ptr 资源对象指针
  * @param cleanup_flags 清理标志
  * @return 清理状态码
  */
-#define ExtendedResourceCleanup FUN_1808d9d50
-
+#define ExtendedResourceCleanup function_8d9d50
 /**
  * @brief 引用计数初始化函数
  * @param ref_type 引用类型
  * @param ref_ptr 引用指针输出
  * @return 初始化状态码
  */
-#define ReferenceCountInitialize FUN_1808d9de0
-
+#define ReferenceCountInitialize function_8d9de0
 /**
  * @brief 引用计数释放函数
  * @param ref_ptr 引用指针
  * @return 释放状态码
  */
-#define ReferenceCountRelease FUN_1808d9e90
-
+#define ReferenceCountRelease function_8d9e90
 /**
  * @brief 资源状态验证函数
  * @param resource_handle 资源句柄
  * @param validation_flags 验证标志
  */
-#define ResourceStatusValidation FUN_1808d9fe0
-
+#define ResourceStatusValidation function_8d9fe0
 /**
  * @brief 资源数组管理函数
  * @param array_ptr 数组指针
@@ -193,15 +171,13 @@ typedef struct SystemStateManager {
  * @param array_size 数组大小
  * @return 管理状态码
  */
-#define ResourceArrayManagement FUN_1808da330
-
+#define ResourceArrayManagement function_8da330
 /**
  * @brief 资源配置应用函数
  * @param config_ptr 配置指针
  * @param resource_ptr 资源指针
  */
-#define ResourceConfigurationApply FUN_1808da5c0
-
+#define ResourceConfigurationApply function_8da5c0
 /**
  * @brief 资源对象创建函数
  * @param resource_handle 资源句柄
@@ -209,460 +185,382 @@ typedef struct SystemStateManager {
  * @param output_ptr 输出指针
  * @return 创建状态码
  */
-#define ResourceObjectCreate FUN_1808da7b0
-
+#define ResourceObjectCreate function_8da7b0
 /**
  * @brief 资源初始化函数
  * @param init_params 初始化参数
  * @param resource_ptr 资源指针
  */
-#define ResourceInitialize FUN_1808da82b
-
+#define ResourceInitialize function_8da82b
 /**
  * @brief 空资源函数
  * @note 空实现函数，用于占位
  */
-#define ResourceEmptyFunction FUN_1808da8ec
-
+#define ResourceEmptyFunction function_8da8ec
 /**
  * @brief 资源配置设置函数
  * @param config_ptr 配置指针
  * @param resource_ptr 资源指针
  */
-#define ResourceConfigurationSet FUN_1808da910
-
+#define ResourceConfigurationSet function_8da910
 /**
  * @brief 资源状态获取函数
  * @param resource_handle 资源句柄
  * @param resource_ptr 资源指针
  * @return 状态码
  */
-#define ResourceStatusGet FUN_1808daa00
-
+#define ResourceStatusGet function_8daa00
 /**
  * @brief 资源查找函数
  * @param search_key 搜索键值
  * @param resource_ptr 资源指针
  * @return 查找状态码
  */
-#define ResourceSearch FUN_1808daa70
-
+#define ResourceSearch function_8daa70
 /**
  * @brief 资源快速查找函数
  * @param resource_handle 资源句柄
  * @return 查找状态码
  */
-#define ResourceQuickSearch FUN_1808daaa9
-
+#define ResourceQuickSearch function_8daaa9
 /**
  * @brief 资源清理启动函数
  * @note 启动资源清理流程
  */
-#define ResourceCleanupStart FUN_1808dab52
-
+#define ResourceCleanupStart function_8dab52
 /**
  * @brief 资源状态检查函数
  * @return 状态码
  */
-#define ResourceStatusCheck FUN_1808dab64
-
+#define ResourceStatusCheck function_8dab64
 /**
  * @brief 资源验证函数
  * @param resource_ptr 资源指针
  * @param validation_data 验证数据
  * @return 验证状态码
  */
-#define ResourceValidate FUN_1808dab90
-
+#define ResourceValidate function_8dab90
 /**
  * @brief 资源同步函数
  * @param resource_ptr 资源指针
  * @param sync_data 同步数据
  * @return 同步状态码
  */
-#define ResourceSynchronize FUN_1808dac90
-
+#define ResourceSynchronize function_8dac90
 /**
  * @brief 资源权限检查函数
  * @param resource_handle 资源句柄
  * @param resource_ptr 资源指针
  * @return 权限状态码
  */
-#define ResourcePermissionCheck FUN_1808dad20
-
+#define ResourcePermissionCheck function_8dad20
 /**
  * @brief 资源锁定函数
  * @param resource_ptr 资源指针
  * @param lock_data 锁定数据
  * @return 锁定状态码
  */
-#define ResourceLock FUN_1808dad80
-
+#define ResourceLock function_8dad80
 /**
  * @brief 资源释放函数
  * @param resource_handle 资源句柄
  * @param release_data 释放数据
  * @return 释放状态码
  */
-#define ResourceRelease FUN_1808dae30
-
+#define ResourceRelease function_8dae30
 /**
  * @brief 资源批量释放函数
  * @param batch_params 批量参数
  * @param resource_ptr 资源指针
  * @return 批量释放状态码
  */
-#define ResourceBatchRelease FUN_1808dae4c
-
+#define ResourceBatchRelease function_8dae4c
 /**
  * @brief 资源删除函数
  * @param resource_ptr 资源指针
  * @return 删除状态码
  */
-#define ResourceDelete FUN_1808dae5f
-
+#define ResourceDelete function_8dae5f
 /**
  * @brief 资源快速删除函数
  * @param resource_ptr 资源指针
  * @return 删除状态码
  */
-#define ResourceQuickDelete FUN_1808dae64
-
+#define ResourceQuickDelete function_8dae64
 /**
  * @brief 资源销毁函数
  * @note 销毁资源对象
  */
-#define ResourceDestroy FUN_1808daf2a
-
+#define ResourceDestroy function_8daf2a
 /**
  * @brief 资源计数获取函数
  * @return 资源计数
  */
-#define ResourceCountGet FUN_1808daf3b
-
+#define ResourceCountGet function_8daf3b
 // ========================= 核心实现函数 =========================
-
 /**
  * @brief 系统资源清理函数
- * 
+ *
  * 执行系统级的资源清理操作，包括：
  * - 清理资源池中的所有对象
  * - 释放分配的内存块
  * - 重置系统状态
  * - 处理异常情况
- * 
+ *
  * 算法流程：
  * 1. 检查系统状态标志
  * 2. 遍历资源池链表
  * 3. 释放每个资源对象
  * 4. 清理内存块
  * 5. 重置系统状态
- * 
+ *
  * @note 此函数会执行不返回的清理操作
  */
 void SystemResourceCleanup(void)
-
 {
   int64_t *plVar1;
   int64_t *plVar2;
   int64_t *plVar3;
   uint64_t *unaff_R14;
-  
-  // 调用资源清理前处理函数
+// 调用资源清理前处理函数
   ResourceOperationHandler(unaff_R14 + 9);
   plVar1 = unaff_R14 + 6;
-  
-  // 处理资源链表节点：从活动链表移除并加入空闲链表
+// 处理资源链表节点：从活动链表移除并加入空闲链表
   *(int64_t *)unaff_R14[7] = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = unaff_R14[7];
   unaff_R14[7] = plVar1;
   *plVar1 = (int64_t)plVar1;
-  
-  // 重复链表操作以确保完整性
+// 重复链表操作以确保完整性
   *(int64_t **)unaff_R14[7] = plVar1;
   *(uint64_t *)(*plVar1 + 8) = unaff_R14[7];
   unaff_R14[7] = plVar1;
   *plVar1 = (int64_t)plVar1;
-  
-  // 设置系统状态标志
+// 设置系统状态标志
   *unaff_R14 = &processed_var_936_ptr;
   plVar1 = unaff_R14 + 4;
   plVar2 = (int64_t *)*plVar1;
-  
-  // 检查是否需要立即清理
+// 检查是否需要立即清理
   if ((plVar2 == plVar1) && ((int64_t *)unaff_R14[5] == plVar1)) {
-    func_0x00018085dda0(plVar1);
+    SystemFunction_00018085dda0(plVar1);
     *unaff_R14 = &ui_system_data_1544_ptr;
     *(int32_t *)(unaff_R14 + 1) = 0xdeadf00d;
     return;
   }
-  
-  // 准备延迟清理操作
+// 准备延迟清理操作
   plVar3 = (int64_t *)0x0;
   if (plVar2 != plVar1) {
     plVar3 = plVar2;
   }
-  
-  // 设置清理标志并执行清理操作
+// 设置清理标志并执行清理操作
   *(int32_t *)((int64_t)plVar3 + 0x44) = 0xffffffff;
   ResourceReferenceManager(plVar3 + 4);
   ResourceReferenceManager(plVar3 + 2);
-  
-  // 处理资源对象的双向链表操作
+// 处理资源对象的双向链表操作
   *(int64_t *)plVar3[1] = *plVar3;
   *(int64_t *)(*plVar3 + 8) = plVar3[1];
   plVar3[1] = (int64_t)plVar3;
   *plVar3 = (int64_t)plVar3;
-  
-  // 确保链表操作的完整性
+// 确保链表操作的完整性
   *(int64_t **)plVar3[1] = plVar3;
   *(int64_t *)(*plVar3 + 8) = plVar3[1];
   plVar3[1] = (int64_t)plVar3;
   *plVar3 = (int64_t)plVar3;
-  
-  // 执行最终的资源释放操作（不返回）
+// 执行最终的资源释放操作（不返回）
   ResourcePoolManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),plVar3,&processed_var_976_ptr,0x30);
 }
-
 /**
  * @brief 资源对象释放函数
- * 
+ *
  * 释放指定的资源对象，并根据标志位决定是否释放内存。
  * 实现安全的资源释放和内存管理。
- * 
+ *
  * 功能特点：
  * - 自动处理资源链表操作
  * - 支持条件内存释放
  * - 确保释放操作的原子性
  * - 提供状态返回码
- * 
+ *
  * @param resource_ptr 资源对象指针
  * @param flags 释放标志位（bit 0: 是否释放内存）
  * @return 资源对象指针（用于链式操作）
  */
 int64_t ResourceObjectRelease(int64_t resource_ptr, uint flags)
-
 {
   int64_t *plVar1;
-  
-  // 获取资源链表头指针
+// 获取资源链表头指针
   plVar1 = (int64_t *)(resource_ptr + 0x30);
-  
-  // 从活动链表中移除资源节点
+// 从活动链表中移除资源节点
   **(int64_t **)(resource_ptr + 0x38) = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(resource_ptr + 0x38);
   *(int64_t **)(resource_ptr + 0x38) = plVar1;
   *plVar1 = (int64_t)plVar1;
-  
-  // 确保链表操作的完整性（重复操作）
+// 确保链表操作的完整性（重复操作）
   **(int64_t **)(resource_ptr + 0x38) = (int64_t)plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(resource_ptr + 0x38);
   *(int64_t **)(resource_ptr + 0x38) = plVar1;
   *plVar1 = (int64_t)plVar1;
-  
-  // 调用资源释放后处理函数
+// 调用资源释放后处理函数
   ResourceReleaseHandler();
-  
-  // 根据标志位决定是否释放内存
+// 根据标志位决定是否释放内存
   if ((flags & 1) != 0) {
     free(resource_ptr, 0x60);
   }
-  
   return resource_ptr;
 }
-
 /**
  * @brief 扩展资源清理函数
- * 
+ *
  * 执行更完整的资源清理操作，包括额外的内存区域清理。
  * 适用于需要深度清理的资源对象。
- * 
+ *
  * 功能特点：
  * - 清理多个内存区域
  * - 支持更大的内存块释放
  * - 提供更全面的清理操作
  * - 确保资源完全释放
- * 
+ *
  * @param resource_ptr 资源对象指针
  * @param cleanup_flags 清理标志（bit 0: 是否释放内存）
  * @return 资源对象指针（用于链式操作）
  */
 int64_t ExtendedResourceCleanup(int64_t resource_ptr, uint64_t cleanup_flags)
-
 {
   int64_t *plVar1;
-  
-  // 清理额外的内存区域（0x58 偏移）
+// 清理额外的内存区域（0x58 偏移）
   ResourceReferenceManager(resource_ptr + 0x58);
-  
-  // 清理额外的内存区域（0x48 偏移）
+// 清理额外的内存区域（0x48 偏移）
   ResourceReferenceManager(resource_ptr + 0x48);
-  
-  // 获取资源链表头指针
+// 获取资源链表头指针
   plVar1 = (int64_t *)(resource_ptr + 0x30);
-  
-  // 从活动链表中移除资源节点
+// 从活动链表中移除资源节点
   **(int64_t **)(resource_ptr + 0x38) = *plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(resource_ptr + 0x38);
   *(int64_t **)(resource_ptr + 0x38) = plVar1;
   *plVar1 = (int64_t)plVar1;
-  
-  // 确保链表操作的完整性（重复操作）
+// 确保链表操作的完整性（重复操作）
   **(int64_t **)(resource_ptr + 0x38) = (int64_t)plVar1;
   *(uint64_t *)(*plVar1 + 8) = *(uint64_t *)(resource_ptr + 0x38);
   *(int64_t **)(resource_ptr + 0x38) = plVar1;
   *plVar1 = (int64_t)plVar1;
-  
-  // 调用资源释放后处理函数（带参数）
+// 调用资源释放后处理函数（带参数）
   ResourceReleaseHandler(resource_ptr);
-  
-  // 根据标志位决定是否释放内存
+// 根据标志位决定是否释放内存
   if ((cleanup_flags & 1) != 0) {
     free(resource_ptr, 0x70);
   }
-  
   return resource_ptr;
 }
-
-
-
 /**
  * @brief 引用计数初始化函数
- * 
+ *
  * 为指定类型的引用计数对象分配内存并初始化。
  * 实现自动内存管理的基础设施。
- * 
+ *
  * 功能特点：
  * - 自动分配引用对象内存
  * - 初始化引用计数为1
  * - 设置对象类型标识
  * - 返回引用对象指针
- * 
+ *
  * @param ref_type 引用类型标识符
  * @param ref_ptr 引用指针输出参数
  * @return 状态码（0: 成功，0x26: 内存分配失败）
  */
 uint64_t ReferenceCountInitialize(int ref_type, int64_t *ref_ptr)
-
 {
   int *piVar1;
-  
-  // 分配引用计数对象内存（16字节）
+// 分配引用计数对象内存（16字节）
   piVar1 = (int *)ResourceQueryHandler(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), ref_type + 0x10, 0x10,
                                 &processed_var_7616_ptr, 0x3e, 0, 0);
-  
-  // 检查内存分配是否成功
+// 检查内存分配是否成功
   if (piVar1 == (int *)0x0) {
     return 0x26;  // 内存分配失败
   }
-  
-  // 初始化引用对象
+// 初始化引用对象
   *piVar1 = ref_type;      // 设置引用类型
   piVar1[1] = 0;          // 初始化引用计数为0
   *ref_ptr = (int64_t)piVar1;  // 返回引用对象指针
-  
   return 0;  // 成功
 }
-
-
-
 /**
  * @brief 引用计数释放函数
- * 
+ *
  * 减少对象的引用计数，当计数降为0时自动释放资源。
  * 实现智能内存管理机制。
- * 
+ *
  * 功能特点：
  * - 原子性的引用计数操作
  * - 自动检测零引用状态
  * - 安全的资源释放
  * - 防止重复释放
- * 
+ *
  * @param ref_ptr 引用对象指针的指针
  * @return 状态码（0: 成功，0x1c: 引用计数无效）
  */
 uint64_t ReferenceCountRelease(int64_t *ref_ptr)
-
 {
   int64_t lVar1;
-  
-  // 获取引用对象指针
+// 获取引用对象指针
   lVar1 = *ref_ptr;
-  
-  // 检查引用对象是否有效
+// 检查引用对象是否有效
   if (lVar1 != 0) {
-    // 检查引用计数是否有效（必须大于0）
+// 检查引用计数是否有效（必须大于0）
     if (*(int *)(lVar1 + 4) < 1) {
       return 0x1c;  // 引用计数无效
     }
-    
-    // 减少引用计数
+// 减少引用计数
     *(int *)(lVar1 + 4) = *(int *)(lVar1 + 4) + -1;
-    
-    // 检查是否需要释放资源
+// 检查是否需要释放资源
     if (*(int *)(*ref_ptr + 4) == 0) {
-      // 引用计数降为0，释放资源
+// 引用计数降为0，释放资源
       ResourceDataProcessor(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *ref_ptr, &processed_var_7616_ptr, 0x89);
       *ref_ptr = 0;  // 清空引用指针
     }
   }
-  
   return 0;  // 成功
 }
-
-
-
 /**
  * @brief 资源状态验证函数
- * 
+ *
  * 验证资源对象的状态和完整性，确保资源可以安全使用。
  * 执行必要的状态检查和准备工作。
- * 
+ *
  * 功能特点：
  * - 资源状态完整性检查
  * - 自动状态修复机制
  * - 异常情况处理
  * - 支持不同的验证模式
- * 
+ *
  * @param resource_handle 资源句柄
  * @param validation_flags 验证标志位
  * @note 此函数可能执行不返回的操作
  */
 void ResourceStatusValidation(int64_t resource_handle, uint64_t validation_flags)
-
 {
   int iVar1;
-  int8_t auStack_48 [8];
-  uint64_t uStack_40;
-  uint64_t uStack_38;
-  
-  // 初始化堆栈保护变量
-  uStack_38 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_48;
-  
-  // 检查资源状态标志
+  int8_t stack_array_48 [8];
+  uint64_t local_var_40;
+  uint64_t local_var_38;
+// 初始化堆栈保护变量
+  local_var_38 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_48;
+// 检查资源状态标志
   if (*(int *)(resource_handle + 0x60) == 1) {
-    // 状态为1，执行数组管理操作
+// 状态为1，执行数组管理操作
     ResourceArrayManagement(resource_handle, 0, 0);
   }
   else {
-    // 状态不为1，执行配置验证
-    iVar1 = ResourceValidator(validation_flags, *(int *)(resource_handle + 0x60), &uStack_40);
+// 状态不为1，执行配置验证
+    iVar1 = ResourceValidator(validation_flags, *(int *)(resource_handle + 0x60), &local_var_40);
     if (iVar1 == 0) {
-      // 验证失败，执行错误处理（不返回）
+// 验证失败，执行错误处理（不返回）
       SystemCleanupInvoker();
     }
   }
-  
-  // 执行最终的状态检查（不返回）
-  SystemController(uStack_38 ^ (uint64_t)auStack_48);
+// 执行最终的状态检查（不返回）
+  SystemController(local_var_38 ^ (uint64_t)stack_array_48);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t ResourceArrayManagement(int64_t array_ptr, int64_t data_ptr, int array_size)
-
 {
   int iVar1;
   int *piVar2;
@@ -672,7 +570,6 @@ uint64_t ResourceArrayManagement(int64_t array_ptr, int64_t data_ptr, int array_
   uint uVar6;
   uint64_t uVar7;
   int64_t lVar8;
-  
   lVar8 = (int64_t)*(int *)(param_1 + 0x50);
   uVar5 = 0;
   if (*(int *)(param_1 + 0x50) < param_3) {
@@ -683,7 +580,7 @@ uint64_t ResourceArrayManagement(int64_t array_ptr, int64_t data_ptr, int array_
     }
     iVar1 = *(int *)(param_1 + 0x50);
     if (iVar1 < param_3) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       memset(*(int64_t *)(param_1 + 0x48) + (int64_t)iVar1 * 8,0,(int64_t)(param_3 - iVar1) << 3)
       ;
     }
@@ -766,24 +663,15 @@ LAB_1808da52e:
   *(int *)(param_1 + 0x58) = param_3;
   return 0;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 // 函数: void ResourceConfigurationApply(int64_t config_ptr, uint64_t resource_ptr)
 void ResourceConfigurationApply(int64_t config_ptr, uint64_t resource_ptr)
-
 {
   int iVar1;
   void *puVar2;
-  uint64_t uStack_18;
-  uint64_t uStack_10;
-  
-  uStack_10 = GET_SECURITY_COOKIE() ^ (uint64_t)&uStack_18;
+  uint64_t local_var_18;
+  uint64_t local_var_10;
+  local_var_10 = GET_SECURITY_COOKIE() ^ (uint64_t)&local_var_18;
   if (*(int *)(param_1 + 0x68) < 1) {
     puVar2 = &system_buffer_ptr;
   }
@@ -792,34 +680,28 @@ void ResourceConfigurationApply(int64_t config_ptr, uint64_t resource_ptr)
   }
   iVar1 = SystemValidator(param_2,puVar2,param_1 + 0x80);
   if (((iVar1 != 0x36) && (iVar1 == 0)) &&
-     (iVar1 = ResourceChecker(param_2,*(int32_t *)(param_1 + 0x80),&uStack_18), iVar1 == 0)) {
-                    // WARNING: Subroutine does not return
+     (iVar1 = ResourceChecker(param_2,*(int32_t *)(param_1 + 0x80),&local_var_18), iVar1 == 0)) {
+// WARNING: Subroutine does not return
     SystemCleanupInvoker();
   }
-                    // WARNING: Subroutine does not return
-  SystemController(uStack_10 ^ (uint64_t)&uStack_18);
+// WARNING: Subroutine does not return
+  SystemController(local_var_10 ^ (uint64_t)&local_var_18);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t ResourceObjectCreate(int64_t resource_handle, uint64_t *create_params, uint create_flags, int64_t *output_ptr)
-
 {
   int64_t lVar1;
   uint64_t uVar2;
   int64_t lVar3;
-  uint64_t uStack_58;
-  uint64_t uStack_50;
-  uint64_t uStack_48;
-  uint64_t uStack_40;
-  uint64_t uStack_38;
-  uint64_t uStack_30;
-  uint64_t uStack_28;
-  uint64_t uStack_20;
-  uint64_t uStack_18;
-  
+  uint64_t local_var_58;
+  uint64_t local_var_50;
+  uint64_t local_var_48;
+  uint64_t local_var_40;
+  uint64_t local_var_38;
+  uint64_t local_var_30;
+  uint64_t local_var_28;
+  uint64_t local_var_20;
+  uint64_t local_var_18;
   if (param_4 == (int64_t *)0x0) {
     uVar2 = 0x1f;
   }
@@ -830,34 +712,34 @@ uint64_t ResourceObjectCreate(int64_t resource_handle, uint64_t *create_params, 
     }
     else {
       lVar1 = SystemResourceHandler(lVar1);
-      uStack_58 = 0;
-      uStack_50 = 0;
-      uStack_48 = 0;
-      uStack_40 = 0;
-      uStack_38 = 0;
-      uStack_30 = 0;
-      uStack_28 = 0;
-      uStack_20 = 0;
-      uStack_18 = 0;
+      local_var_58 = 0;
+      local_var_50 = 0;
+      local_var_48 = 0;
+      local_var_40 = 0;
+      local_var_38 = 0;
+      local_var_30 = 0;
+      local_var_28 = 0;
+      local_var_20 = 0;
+      local_var_18 = 0;
       if (param_2 != (uint64_t *)0x0) {
-        uStack_58 = *param_2;
-        uStack_50 = param_2[1];
-        uStack_48 = param_2[2];
-        uStack_40 = param_2[3];
-        uStack_38 = param_2[4];
-        uStack_30 = param_2[5];
-        uStack_28 = param_2[6];
-        uStack_20 = param_2[7];
-        uStack_18 = param_2[8];
+        local_var_58 = *param_2;
+        local_var_50 = param_2[1];
+        local_var_48 = param_2[2];
+        local_var_40 = param_2[3];
+        local_var_38 = param_2[4];
+        local_var_30 = param_2[5];
+        local_var_28 = param_2[6];
+        local_var_20 = param_2[7];
+        local_var_18 = param_2[8];
       }
       if ((param_3 & 0x1004) == 0) {
-        lVar3 = func_0x000180879a40(*(uint64_t *)(param_1 + 0x10));
-        uStack_18 = *(uint64_t *)(lVar3 + 0x18);
+        lVar3 = SystemFunction_000180879a40(*(uint64_t *)(param_1 + 0x10));
+        local_var_18 = *(uint64_t *)(lVar3 + 0x18);
       }
       else {
-        uStack_18 = 0;
+        local_var_18 = 0;
       }
-      uVar2 = SystemDataManager(lVar1,&uStack_58);
+      uVar2 = SystemDataManager(lVar1,&local_var_58);
       if ((int)uVar2 == 0) {
         *(uint *)(lVar1 + 0x2f0) = param_3;
         *param_4 = lVar1;
@@ -866,15 +748,8 @@ uint64_t ResourceObjectCreate(int64_t resource_handle, uint64_t *create_params, 
   }
   return uVar2;
 }
-
-
-
-
-
-
 // 函数: void ResourceSystemInitialize(void)
 void ResourceSystemInitialize(void)
-
 {
   int iVar1;
   int64_t lVar2;
@@ -883,107 +758,90 @@ void ResourceSystemInitialize(void)
   uint unaff_ESI;
   uint64_t *unaff_RDI;
   int64_t *unaff_R14;
-  uint64_t in_stack_00000040;
-  uint64_t in_stack_00000048;
-  uint64_t in_stack_00000050;
-  uint64_t in_stack_00000058;
-  uint64_t in_stack_00000060;
-  uint64_t in_stack_00000068;
-  uint64_t in_stack_00000070;
-  uint64_t in_stack_00000078;
-  uint64_t in_stack_00000080;
-  
+  uint64_t local_var_40;
+  uint64_t local_var_48;
+  uint64_t local_buffer_50;
+  uint64_t local_buffer_58;
+  uint64_t local_buffer_60;
+  uint64_t local_buffer_68;
+  uint64_t local_buffer_70;
+  uint64_t local_buffer_78;
+  uint64_t local_buffer_80;
   lVar2 = SystemResourceHandler();
-  in_stack_00000040 = 0;
-  in_stack_00000048 = 0;
-  in_stack_00000050 = 0;
-  in_stack_00000058 = 0;
-  in_stack_00000060 = 0;
-  in_stack_00000068 = 0;
-  in_stack_00000070 = 0;
-  in_stack_00000078 = 0;
-  in_stack_00000080 = 0;
+  local_var_40 = 0;
+  local_var_48 = 0;
+  local_buffer_50 = 0;
+  local_buffer_58 = 0;
+  local_buffer_60 = 0;
+  local_buffer_68 = 0;
+  local_buffer_70 = 0;
+  local_buffer_78 = 0;
+  local_buffer_80 = 0;
   if (unaff_RDI != (uint64_t *)0x0) {
-    in_stack_00000040 = *unaff_RDI;
-    in_stack_00000048 = unaff_RDI[1];
-    in_stack_00000050 = unaff_RDI[2];
-    in_stack_00000058 = unaff_RDI[3];
-    in_stack_00000060 = unaff_RDI[4];
-    in_stack_00000068 = unaff_RDI[5];
-    in_stack_00000070 = unaff_RDI[6];
-    in_stack_00000078 = unaff_RDI[7];
-    in_stack_00000080 = unaff_RDI[8];
+    local_var_40 = *unaff_RDI;
+    local_var_48 = unaff_RDI[1];
+    local_buffer_50 = unaff_RDI[2];
+    local_buffer_58 = unaff_RDI[3];
+    local_buffer_60 = unaff_RDI[4];
+    local_buffer_68 = unaff_RDI[5];
+    local_buffer_70 = unaff_RDI[6];
+    local_buffer_78 = unaff_RDI[7];
+    local_buffer_80 = unaff_RDI[8];
   }
   if ((unaff_ESI & 0x1004) == 0) {
-    lVar3 = func_0x000180879a40(*(uint64_t *)(unaff_RBP + 0x10));
-    in_stack_00000080 = *(uint64_t *)(lVar3 + 0x18);
+    lVar3 = SystemFunction_000180879a40(*(uint64_t *)(unaff_RBP + 0x10));
+    local_buffer_80 = *(uint64_t *)(lVar3 + 0x18);
   }
   else {
-    in_stack_00000080 = 0;
+    local_buffer_80 = 0;
   }
-  iVar1 = SystemDataManager(lVar2,&stack0x00000040);
+  iVar1 = SystemDataManager(lVar2,&local_buffer_00000040);
   if (iVar1 == 0) {
     *(uint *)(lVar2 + 0x2f0) = unaff_ESI;
     *unaff_R14 = lVar2;
   }
   return;
 }
-
-
-
-
-
-
 // 函数: void ResourceEmptyFunction(void)
 void ResourceEmptyFunction(void)
-
 {
   return;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
 // 函数: void ResourceConfigurationSet(uint64_t *config_ptr, int64_t *resource_ptr)
 void ResourceConfigurationSet(uint64_t *config_ptr, int64_t *resource_ptr)
-
 {
   int64_t lVar1;
   int32_t uVar2;
   int32_t uVar3;
   int32_t uVar4;
   int iVar5;
-  int8_t auStack_48 [32];
-  int32_t uStack_28;
-  int16_t uStack_24;
-  int16_t uStack_22;
-  int32_t uStack_20;
-  int16_t uStack_1c;
-  int16_t uStack_1a;
-  uint64_t uStack_18;
-  
-  uStack_18 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_48;
+  int8_t stack_array_48 [32];
+  int32_t local_var_28;
+  int16_t local_var_24;
+  int16_t local_var_22;
+  int32_t local_var_20;
+  int16_t local_var_1c;
+  int16_t local_var_1a;
+  uint64_t local_var_18;
+  local_var_18 = GET_SECURITY_COOKIE() ^ (uint64_t)stack_array_48;
   iVar5 = (**(code **)*param_1)(param_1,0,0,param_2);
   if (iVar5 == 0) {
-    uStack_1a = 0;
-    uStack_22 = 0xffff;
-    uStack_20 = 0;
-    uStack_1c = 0;
-    uStack_24 = 0xffff;
-    uStack_28 = 0xffffffff;
-    func_0x00018076b450(&uStack_20,&processed_var_7984_ptr,8);
+    local_var_1a = 0;
+    local_var_22 = 0xffff;
+    local_var_20 = 0;
+    local_var_1c = 0;
+    local_var_24 = 0xffff;
+    local_var_28 = 0xffffffff;
+    SystemFunction_00018076b450(&local_var_20,&processed_var_7984_ptr,8);
     if (*(int *)(*(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8) +
                 0x48) < system_system_config) {
       SystemInitializer(&system_state_f508);
       if (system_system_config == -1) {
-        uRam0000000180c4f4fc = CONCAT22(uStack_22,uStack_24);
-        uRam0000000180c4f504 = CONCAT22(uStack_1a,uStack_1c);
-        system_system_config = uStack_28;
-        uRam0000000180c4f500 = uStack_20;
+        uRam0000000180c4f4fc = CONCAT22(local_var_22,local_var_24);
+        uRam0000000180c4f504 = CONCAT22(local_var_1a,local_var_1c);
+        system_system_config = local_var_28;
+        uRam0000000180c4f500 = local_var_20;
         SystemStateCleaner(&system_state_f508);
       }
     }
@@ -997,17 +855,12 @@ void ResourceConfigurationSet(uint64_t *config_ptr, int64_t *resource_ptr)
     *(int32_t *)(lVar1 + 0x1c) = uVar4;
     *(int32_t *)(*param_2 + 0x218) = 0x8e;
   }
-                    // WARNING: Subroutine does not return
-  SystemController(uStack_18 ^ (uint64_t)auStack_48);
+// WARNING: Subroutine does not return
+  SystemController(local_var_18 ^ (uint64_t)stack_array_48);
 }
-
-
-
 uint64_t ResourceStatusGet(uint64_t resource_handle, int64_t resource_ptr)
-
 {
   uint64_t uVar1;
-  
   if (param_2 == 0) {
     return 0x1f;
   }
@@ -1019,11 +872,7 @@ uint64_t ResourceStatusGet(uint64_t resource_handle, int64_t resource_ptr)
   uVar1 = ResourceManager(param_1,param_2);
   return uVar1;
 }
-
-
-
 uint64_t ResourceSearch(int64_t search_key, uint *result_ptr)
-
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -1038,7 +887,6 @@ uint64_t ResourceSearch(int64_t search_key, uint *result_ptr)
   int iVar11;
   int64_t lVar12;
   int64_t lVar13;
-  
   if ((((*param_2 == 0) && (param_2[1] == 0)) && (param_2[2] == 0)) && (param_2[3] == 0)) {
     return 0x1c;
   }
@@ -1076,14 +924,10 @@ uint64_t ResourceSearch(int64_t search_key, uint *result_ptr)
     }
     return uVar10;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   ResourceCleanupHandler(lVar12);
 }
-
-
-
 uint64_t ResourceQuickSearch(int64_t resource_handle)
-
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -1094,9 +938,8 @@ uint64_t ResourceQuickSearch(int64_t resource_handle)
   int64_t lVar6;
   int64_t lVar7;
   int64_t in_XMM0_Qb;
-  uint uStackX_24;
+  uint stack_special_x_24;
   int64_t lStack0000000000000028;
-  
   lVar7 = 0;
   plVar1 = *(int64_t **)(in_RCX + 8);
   lVar2 = plVar1[5];
@@ -1107,10 +950,10 @@ uint64_t ResourceQuickSearch(int64_t resource_handle)
     lVar6 = lVar2;
   }
   if ((*(int *)((int64_t)plVar1 + 0x24) != 0) && ((int)plVar1[1] != 0)) {
-    uStackX_24 = (uint)((uint64_t)param_1 >> 0x20);
+    stack_special_x_24 = (uint)((uint64_t)param_1 >> 0x20);
     iVar5 = *(int *)(*plVar1 +
                     (int64_t)
-                    (int)((uStackX_24 ^ (uint)lStack0000000000000028 ^ (uint)param_1 ^
+                    (int)((stack_special_x_24 ^ (uint)lStack0000000000000028 ^ (uint)param_1 ^
                           lStack0000000000000028._4_4_) & (int)plVar1[1] - 1U) * 4);
     if (iVar5 != -1) {
       do {
@@ -1130,55 +973,38 @@ uint64_t ResourceQuickSearch(int64_t resource_handle)
     }
     return uVar4;
   }
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   ResourceCleanupHandler(lVar6);
 }
-
-
-
-
-
-
 // 函数: void ResourceCleanupStart(void)
 void ResourceCleanupStart(void)
-
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   ResourceCleanupHandler();
 }
-
-
-
 uint64_t ResourceStatusCheck(void)
-
 {
   uint64_t uVar1;
-  
   uVar1 = ResourceManager();
   if ((int)uVar1 == 0) {
     uVar1 = 0;
   }
   return uVar1;
 }
-
-
-
 int32_t ResourceHandleAcquire(int64_t resource_ptr, int64_t access_params)
-
 {
   int64_t lVar1;
   int iVar2;
   int iVar3;
   int64_t lVar4;
-  uint64_t uStackX_10;
-  
+  uint64_t stack_special_x_10;
   if (param_2 == 0) {
     return 0x1f;
   }
-  uStackX_10 = 0;
+  stack_special_x_10 = 0;
   if ((((*(ushort *)(param_2 + 0xe) & 0x3fff) < 2) && (*(int64_t *)(param_2 + 0xd0) != 0)) &&
      ((*(uint *)(param_2 + 0xf8) >> 7 & 1) == 0)) {
-    iVar2 = EventHandler(&uStackX_10,*(uint64_t *)(param_1 + 0x38));
+    iVar2 = EventHandler(&stack_special_x_10,*(uint64_t *)(param_1 + 0x38));
     if ((iVar2 != 0) || (iVar2 = EventDispatcher(*(uint64_t *)(param_2 + 0xd0)), iVar2 != 0))
     goto LAB_1808dac65;
     lVar1 = *(int64_t *)(param_2 + 0xd0);
@@ -1199,39 +1025,29 @@ int32_t ResourceHandleAcquire(int64_t resource_ptr, int64_t access_params)
   }
   ResourceManager(param_1,param_2);
 LAB_1808dac65:
-                    // WARNING: Subroutine does not return
-  EventManager(&uStackX_10);
+// WARNING: Subroutine does not return
+  EventManager(&stack_special_x_10);
 }
-
-
-
 int32_t ResourceHandleRelease(int64_t resource_ptr, int64_t release_params)
-
 {
   int iVar1;
-  uint64_t uStackX_10;
-  
+  uint64_t stack_special_x_10;
   if (param_2 == 0) {
     return 0x1f;
   }
-  uStackX_10 = 0;
+  stack_special_x_10 = 0;
   if (((*(ushort *)(param_2 + 0xe) & 0x3fff) == 1) && ((*(byte *)(param_2 + 0xc4) & 1) != 0)) {
-    iVar1 = EventHandler(&uStackX_10,*(uint64_t *)(param_1 + 0x20));
+    iVar1 = EventHandler(&stack_special_x_10,*(uint64_t *)(param_1 + 0x20));
     if (iVar1 != 0) goto LAB_1808dacfc;
   }
   ResourceManager(param_1,param_2);
 LAB_1808dacfc:
-                    // WARNING: Subroutine does not return
-  EventManager(&uStackX_10);
+// WARNING: Subroutine does not return
+  EventManager(&stack_special_x_10);
 }
-
-
-
 uint64_t ResourceValidation(uint64_t resource_handle, int64_t validation_ptr)
-
 {
   uint64_t uVar1;
-  
   if (param_2 == 0) {
     return 0x1f;
   }
@@ -1243,38 +1059,28 @@ uint64_t ResourceValidation(uint64_t resource_handle, int64_t validation_ptr)
   uVar1 = ResourceManager(param_1,param_2);
   return uVar1;
 }
-
-
-
 int32_t ResourceReferenceUpdate(int64_t resource_ptr, int64_t ref_params)
-
 {
   int iVar1;
-  uint64_t uStackX_10;
-  
+  uint64_t stack_special_x_10;
   if (param_2 == 0) {
     return 0x1f;
   }
-  uStackX_10 = 0;
+  stack_special_x_10 = 0;
   if (((((*(ushort *)(param_2 + 0xe) & 0x3fff) < 2) && ((*(byte *)(param_2 + 0xc4) & 1) != 0)) &&
       (*(int64_t *)(param_1 + 0x20) != 0)) &&
      (*(int64_t *)(*(int64_t *)(param_1 + 0x20) + 0xad0) == param_2)) {
-    iVar1 = EventHandler(&uStackX_10);
+    iVar1 = EventHandler(&stack_special_x_10);
     if (iVar1 != 0) goto LAB_1808dae06;
     EventInitializer(*(uint64_t *)(param_1 + 0x20),0);
   }
   ResourceManager(param_1,param_2);
 LAB_1808dae06:
-                    // WARNING: Subroutine does not return
-  EventManager(&uStackX_10);
+// WARNING: Subroutine does not return
+  EventManager(&stack_special_x_10);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int ResourceHandleInitialize(int64_t resource_ptr, uint64_t *init_params)
-
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -1289,7 +1095,6 @@ int ResourceHandleInitialize(int64_t resource_ptr, uint64_t *init_params)
   int64_t lVar11;
   int iVar12;
   int *piVar13;
-  
   if (param_2 == (uint64_t *)0x0) {
     return 0x1f;
   }
@@ -1338,7 +1143,7 @@ int ResourceHandleInitialize(int64_t resource_ptr, uint64_t *init_params)
       }
     }
     if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       ResourceCleanupHandler(lVar2);
     }
     if (iVar12 != 0) {
@@ -1346,16 +1151,11 @@ int ResourceHandleInitialize(int64_t resource_ptr, uint64_t *init_params)
     }
   }
   (**(code **)*param_2)(param_2,0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   ResourcePoolManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2,&processed_var_7744_ptr,0x252,1);
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int ResourceHandleCleanup(uint cleanup_flags, int64_t resource_ptr)
-
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -1373,7 +1173,6 @@ int ResourceHandleCleanup(uint cleanup_flags, int64_t resource_ptr)
   int iVar12;
   uint64_t *unaff_RSI;
   int *piVar13;
-  
   if ((*(ushort *)(param_2 + 0xe) & in_AX) != 0) {
     uVar3 = *(uint *)(param_2 + 0x10);
     uVar4 = *(uint *)(param_2 + 0x14);
@@ -1420,7 +1219,7 @@ int ResourceHandleCleanup(uint cleanup_flags, int64_t resource_ptr)
       }
     }
     if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
       ResourceCleanupHandler(lVar2);
     }
     if (iVar12 != 0) {
@@ -1428,16 +1227,11 @@ int ResourceHandleCleanup(uint cleanup_flags, int64_t resource_ptr)
     }
   }
   (**(code **)*unaff_RSI)(param_1,0);
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   ResourcePoolManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int ResourceHandleFinalize(int64_t resource_ptr)
-
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -1451,7 +1245,6 @@ int ResourceHandleFinalize(int64_t resource_ptr)
   int64_t in_XMM0_Qb;
   int64_t lStack0000000000000030;
   int64_t lStack0000000000000038;
-  
   plVar1 = *(int64_t **)(in_RCX + 8);
   lVar2 = plVar1[5];
   lStack0000000000000030 = param_1;
@@ -1495,23 +1288,18 @@ int ResourceHandleFinalize(int64_t resource_ptr)
     }
   }
   if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     ResourceCleanupHandler(lVar2);
   }
   if (iVar6 == 0) {
     (**(code **)*unaff_RSI)();
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     ResourcePoolManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
   }
   return iVar6;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int ResourceHandleValidate(int64_t resource_ptr)
-
 {
   int64_t *plVar1;
   int64_t lVar2;
@@ -1525,7 +1313,6 @@ int ResourceHandleValidate(int64_t resource_ptr)
   int64_t in_XMM0_Qb;
   int64_t lStack0000000000000030;
   int64_t lStack0000000000000038;
-  
   plVar1 = *(int64_t **)(param_1 + 8);
   lVar2 = plVar1[5];
   lStack0000000000000030 = in_XMM0_Qa;
@@ -1569,44 +1356,25 @@ int ResourceHandleValidate(int64_t resource_ptr)
     }
   }
   if (lVar2 != 0) {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     ResourceCleanupHandler(lVar2);
   }
   if (iVar6 == 0) {
     (**(code **)*unaff_RSI)();
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
     ResourcePoolManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0));
   }
   return iVar6;
 }
-
-
-
-
-
-
 // 函数: void ResourceSystemShutdown(void)
 void ResourceSystemShutdown(void)
-
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   ResourceCleanupHandler();
 }
-
-
-
 int32_t ResourceGetSystemStatus(void)
-
 {
   int32_t unaff_EBX;
-  
   return unaff_EBX;
 }
-
-
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-

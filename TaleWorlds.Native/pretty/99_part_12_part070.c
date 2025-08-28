@@ -1,10 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_12_part070.c - 3 个函数
-
-// 函数: void FUN_1807fa79d(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
-void FUN_1807fa79d(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
-
+// 函数: void function_7fa79d(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
+void function_7fa79d(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
 {
   float fVar1;
   float fVar2;
@@ -43,8 +40,7 @@ void FUN_1807fa79d(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
-  int in_stack_000000b0;
-  
+  int local_buffer_b0;
   *(uint64_t *)(in_RAX + 0x10) = unaff_R12;
   *(uint64_t *)(in_RAX + 0x18) = unaff_R13;
   iVar17 = (int)unaff_RSI * 2;
@@ -228,7 +224,7 @@ void FUN_1807fa79d(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
   } while (unaff_EBP != 0);
   param_3 = param_3 & 3;
   if (param_3 != 0) {
-    lVar18 = (int64_t)in_stack_000000b0;
+    lVar18 = (int64_t)local_buffer_b0;
     lVar19 = (int64_t)unaff_RDI - (int64_t)param_2;
     do {
       lVar15 = *(int64_t *)(param_4 + 8 + lVar18 * 0x10);
@@ -278,15 +274,8 @@ void FUN_1807fa79d(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807fadc7(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
-void FUN_1807fadc7(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
-
+// 函数: void function_7fadc7(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
+void function_7fadc7(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
 {
   float fVar1;
   float fVar2;
@@ -318,7 +307,6 @@ void FUN_1807fadc7(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
-  
   param_3 = param_3 & 3;
   if (param_3 != 0) {
     lVar16 = (int64_t)unaff_R15D;
@@ -371,15 +359,8 @@ void FUN_1807fadc7(uint64_t param_1,float *param_2,uint param_3,int64_t param_4)
   }
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1807fadde(uint64_t param_1,float *param_2,int param_3,int64_t param_4)
-void FUN_1807fadde(uint64_t param_1,float *param_2,int param_3,int64_t param_4)
-
+// 函数: void function_7fadde(uint64_t param_1,float *param_2,int param_3,int64_t param_4)
+void function_7fadde(uint64_t param_1,float *param_2,int param_3,int64_t param_4)
 {
   float fVar1;
   float fVar2;
@@ -411,7 +392,6 @@ void FUN_1807fadde(uint64_t param_1,float *param_2,int param_3,int64_t param_4)
   float unaff_XMM8_Da;
   float unaff_XMM9_Da;
   float unaff_XMM10_Da;
-  
   lVar16 = (int64_t)unaff_R15D;
   lVar17 = unaff_RDI - (int64_t)param_2;
   do {
@@ -461,9 +441,3 @@ void FUN_1807fadde(uint64_t param_1,float *param_2,int param_3,int64_t param_4)
   } while (param_3 != 0);
   return;
 }
-
-
-
-
-
-

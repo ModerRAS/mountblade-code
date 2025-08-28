@@ -1,183 +1,153 @@
 /**
  * @file 04_ui_system_part296.c
  * @brief UI系统高级资源管理和状态控制模块
- * 
+ *
  * 本模块是UI系统的重要组成部分，主要负责：
  * - UI系统资源的生命周期管理和状态控制
  * - UI系统数据结构的初始化和清理
  * - UI系统内存管理和资源分配
  * - UI系统状态检查和验证
  * - UI系统错误处理和异常恢复
- * 
+ *
  * 该文件包含9个核心函数，提供了完整的UI系统资源管理功能。
  * 这些函数负责处理UI系统中的资源分配、状态管理、内存清理等关键任务。
- * 
+ *
  * 主要功能模块：
  * 1. 资源初始化器 - 负责UI系统资源的初始化
  * 2. 状态管理器 - 负责UI系统状态的检查和控制
  * 3. 资源清理器 - 负责UI系统资源的清理和释放
  * 4. 内存管理器 - 负责UI系统内存的分配和管理
  * 5. 错误处理器 - 负责UI系统错误处理和恢复
- * 
+ *
  * @version 1.0
  * @date 2025-08-28
  * @author Claude Code
  */
-
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
-
 // ============================================================================
-
 // ============================================================================
-// UI系统FUN_函数语义化别名定义
+// UI系统原始函数语义化别名定义
 // ============================================================================
-
 /**
  * @brief UI系统资源管理器主处理器
  * @details 负责UI系统资源的主要处理逻辑
  */
 #define UIResourceManager_MainHandler RenderingSystem_CoreProcessor0
-
 /**
  * @brief UI系统资源管理器高级处理器
  * @details 负责UI系统资源的高级处理任务
  */
-#define UIResourceManager_AdvancedProcessor FUN_1807c4260
-
+#define UIResourceManager_AdvancedProcessor function_7c4260
 /**
  * @brief UI系统资源管理器状态初始化器
  * @details 负责UI系统资源状态的初始化
  */
-#define UIResourceManager_StateInitializer FUN_180830338
-
+#define UIResourceManager_StateInitializer function_830338
 /**
  * @brief UI系统资源管理器资源控制器
  * @details 负责UI系统资源的控制和管理
  */
-#define UIResourceManager_ResourceController FUN_180830370
-
+#define UIResourceManager_ResourceController function_830370
 /**
  * @brief UI系统资源管理器内存管理器
  * @details 负责UI系统资源的内存管理
  */
-#define UIResourceManager_MemoryManager FUN_18083037c
-
+#define UIResourceManager_MemoryManager function_83037c
 /**
  * @brief UI系统资源管理器数据验证器
  * @details 负责UI系统资源数据的验证
  */
-#define UIResourceManager_DataValidator FUN_1808303bf
-
+#define UIResourceManager_DataValidator function_8303bf
 /**
  * @brief UI系统资源管理器状态检查器
  * @details 负责UI系统资源状态的检查
  */
-#define UIResourceManager_StatusChecker FUN_180830400
-
+#define UIResourceManager_StatusChecker function_830400
 /**
  * @brief UI系统资源管理器错误处理器
  * @details 负责UI系统资源的错误处理
  */
-#define UIResourceManager_ErrorHandler FUN_180830440
-
+#define UIResourceManager_ErrorHandler function_830440
 /**
  * @brief UI系统资源管理器清理处理器
  * @details 负责UI系统资源的清理工作
  */
-#define UIResourceManager_CleanupHandler FUN_180830455
-
+#define UIResourceManager_CleanupHandler function_830455
 /**
  * @brief UI系统资源管理器配置管理器
  * @details 负责UI系统资源的配置管理
  */
-#define UIResourceManager_ConfigManager FUN_18083045d
-
+#define UIResourceManager_ConfigManager function_83045d
 /**
  * @brief UI系统资源管理器性能监控器
  * @details 负责UI系统资源的性能监控
  */
-#define UIResourceManager_PerformanceMonitor FUN_1808304f8
-
+#define UIResourceManager_PerformanceMonitor function_8304f8
 /**
  * @brief UI系统资源管理器线程控制器
  * @details 负责UI系统资源的线程控制
  */
-#define UIResourceManager_ThreadController FUN_1808305d8
-
+#define UIResourceManager_ThreadController function_8305d8
 /**
  * @brief UI系统资源管理器安全管理器
  * @details 负责UI系统资源的安全管理
  */
-#define UIResourceManager_SecurityManager FUN_1808305e6
-
+#define UIResourceManager_SecurityManager function_8305e6
 /**
  * @brief UI系统资源管理器网络处理器
  * @details 负责UI系统资源的网络处理
  */
-#define UIResourceManager_NetworkHandler FUN_18083064b
-
+#define UIResourceManager_NetworkHandler function_83064b
 /**
  * @brief UI系统资源管理器终结器
  * @details 负责UI系统资源的最终处理
  */
-#define UIResourceManager_Finalizer FUN_18083dff0
-
+#define UIResourceManager_Finalizer function_83dff0
 // UI系统高级资源管理和状态控制常量定义
 // ============================================================================
-
 /**
  * @brief UI系统高级资源管理和状态控制接口
  * @details 定义UI系统高级资源管理和状态控制的参数和接口函数
- * 
+ *
  * 核心功能：
  * - UI系统资源的初始化和清理
  * - UI系统状态的检查和控制
  * - UI系统内存的分配和管理
  * - UI系统数据结构的处理
  * - UI系统错误处理和恢复
- * 
+ *
  * @note 该文件作为UI系统的子模块，提供资源管理支持
  */
-
 // ============================================================================
 // 系统常量定义
 // ============================================================================
-
 /** UI系统操作成功状态码 */
 #define UI_SYSTEM_SUCCESS 0
-
 /** UI系统操作失败状态码 */
 #define UI_SYSTEM_ERROR 0x1c
-
 /** UI系统资源管理偏移量 */
 #define UI_SYSTEM_RESOURCE_OFFSET_0x58 0x58    /* 资源管理偏移量0x58 */
 #define UI_SYSTEM_RESOURCE_OFFSET_0x60 0x60    /* 资源管理偏移量0x60 */
 #define UI_SYSTEM_RESOURCE_OFFSET_0x68 0x68    /* 资源管理偏移量0x68 */
 #define UI_SYSTEM_RESOURCE_OFFSET_0x70 0x70    /* 资源管理偏移量0x70 */
 #define UI_SYSTEM_RESOURCE_OFFSET_100 100       /* 资源管理偏移量100 */
-
 /** UI系统内存管理常量 */
 #define UI_SYSTEM_MEMORY_CLEAR_SIZE_0x78 0x78  /* 内存清理大小0x78 */
 #define UI_SYSTEM_MEMORY_CLEAR_SIZE_0x88 0x88  /* 内存清理大小0x88 */
-
 /** UI系统函数表偏移量 */
 #define UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x520 0x520  /* 函数表偏移量0x520 */
 #define UI_SYSTEM_FUNCTION_TABLE_OFFSET_0x820 0x820  /* 函数表偏移量0x820 */
-
 /** UI系统数据结构偏移量 */
 #define UI_SYSTEM_DATA_OFFSET_0x8 0x8           /* 数据偏移量0x8 */
 #define UI_SYSTEM_DATA_OFFSET_0x10 0x10         /* 数据偏移量0x10 */
 #define UI_SYSTEM_DATA_OFFSET_0x20 0x20         /* 数据偏移量0x20 */
 #define UI_SYSTEM_DATA_OFFSET_0x28 0x28         /* 数据偏移量0x28 */
-
 /** UI系统状态码 */
 #define UI_SYSTEM_STATUS_INVALID -0x8b            /* 无效状态码 */
-
 // ============================================================================
 // 系统枚举定义
 // ============================================================================
-
 /**
  * @brief UI系统资源状态枚举
  * @details 定义UI系统资源的各种状态
@@ -192,7 +162,6 @@ typedef enum {
     UI_RESOURCE_STATE_DESTROYED = 6,         /* 资源已销毁状态 */
     UI_RESOURCE_STATE_ERROR = 7              /* 资源错误状态 */
 } UIResourceState;
-
 /**
  * @brief UI系统内存管理类型枚举
  * @details 定义UI系统内存管理的各种类型
@@ -204,11 +173,9 @@ typedef enum {
     UI_MEMORY_TYPE_SHARED = 3,               /* 共享内存类型 */
     UI_MEMORY_TYPE_VIRTUAL = 4                /* 虚拟内存类型 */
 } UIMemoryType;
-
 // ============================================================================
 // 系统结构体定义
 // ============================================================================
-
 /**
  * @brief UI系统资源管理器结构体
  * @details 定义UI系统资源管理器的数据结构
@@ -223,7 +190,6 @@ typedef struct {
     uint64_t last_access_time;                /* 最后访问时间 */
     struct UIResourceManager* next;          /* 下一个资源管理器 */
 } UIResourceManager;
-
 /**
  * @brief UI系统状态管理器结构体
  * @details 定义UI系统状态管理器的数据结构
@@ -237,19 +203,15 @@ typedef struct {
     void* user_data;                          /* 用户数据 */
     void (*state_change_callback)(uint32_t, uint32_t); /* 状态改变回调函数 */
 } UIStateManager;
-
 // ============================================================================
 // 函数别名定义 - 用于代码可读性和维护性
 // ============================================================================
-
 // UI系统资源初始化器
 #define UISystem_ResourceInitializer UIResourceManager_StateInitializer            /* UI系统资源初始化器 */
-
 // UI系统状态检查器
 #define UISystem_StateChecker UIResourceManager_ResourceController                   /* UI系统状态检查器 */
 #define UISystem_StateValidator UIResourceManager_MemoryManager                 /* UI系统状态验证器 */
 #define UISystem_StateRetriever UIResourceManager_DataValidator                /* UI系统状态获取器 */
-
 // UI系统内存管理器
 #define UISystem_MemoryInitializer UIResourceManager_StatusChecker              /* UI系统内存初始化器 */
 #define UISystem_ResourceProcessor UIResourceManager_ErrorHandler              /* UI系统资源处理器 */
@@ -259,41 +221,36 @@ typedef struct {
 #define UISystem_MemoryCleaner UIResourceManager_ThreadController                 /* UI系统内存清理器 */
 #define UISystem_StateCleaner UIResourceManager_SecurityManager                   /* UI系统状态清理器 */
 #define UISystem_ErrorHandler UIResourceManager_NetworkHandler                   /* UI系统错误处理器 */
-
 // ============================================================================
 // 全局变量定义
 // ============================================================================
-
 /** 系统全局变量指针 */
 static uint64_t* system_global_data_ptr = (uint64_t*)SYSTEM_GLOBAL_DATA_ADDR;    /* 系统全局数据指针 */
 static uint64_t* system_context_ptr = (uint64_t*)SYSTEM_CONTEXT_ADDR;          /* 系统上下文指针 */
 static uint64_t* system_memory_pool_ptr = (uint64_t*)SYSTEM_MEMORY_POOL_ADDR;    /* 系统内存池指针 */
 static uint64_t* system_main_module_state = (uint64_t*)SYSTEM_MAIN_MODULE_STATE_ADDR; /* 系统主模块状态指针 */
-
 /** 未知变量指针（需要进一步分析） */
 static uint64_t* processed_var_4216_ptr = (uint64_t*)0x4216;  /* 未知变量4216指针 */
 static uint64_t* processed_var_4232_ptr = (uint64_t*)0x4232;  /* 未知变量4232指针 */
-
 // ============================================================================
 // 核心函数实现
 // ============================================================================
-
 /**
  * UI系统资源初始化器
- * 
+ *
  * 功能描述：
  * 初始化UI系统资源，负责：
  * - 资源的初始化和配置
  * - 系统状态的设置
  * - 内存分配和管理
  * - 错误处理和恢复
- * 
+ *
  * 参数：
  * 无参数
- * 
+ *
  * 返回值：
  * 无返回值
- * 
+ *
  * 技术说明：
  * - 执行系统初始化操作
  * - 包含错误处理机制
@@ -302,26 +259,25 @@ static uint64_t* processed_var_4232_ptr = (uint64_t*)0x4232;  /* 未知变量423
  */
 void UISystem_ResourceInitializer(void)
 {
-    // 调用系统初始化函数
+// 调用系统初始化函数
     UIResourceManager_MainHandler();
 }
-
 /**
  * UI系统状态检查器
- * 
+ *
  * 功能描述：
  * 检查UI系统状态，负责：
  * - 状态验证和检查
  * - 资源状态监控
  * - 错误检测和处理
  * - 状态更新和管理
- * 
+ *
  * 参数：
  * 隐式参数通过寄存器传递
- * 
+ *
  * 返回值：
  * @return int - 状态检查结果
- * 
+ *
  * 技术说明：
  * - 支持多种状态检查模式
  * - 实现资源状态监控
@@ -335,13 +291,12 @@ int UISystem_StateChecker(void)
     int unaff_R14D;
     int iVar2;
     uint64_t unaff_R15;
-    
     iVar2 = (int)unaff_R15;
     if (*(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x68) != 0) {
         lVar1 = UIResourceManager_AdvancedProcessor();
         *(int64_t *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) = lVar1;
-        *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) = 
-            *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) + 
+        *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) =
+            *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) +
             *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x68);
         *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x68) = iVar2;
         unaff_R14D = UI_SYSTEM_STATUS_INVALID;
@@ -359,23 +314,22 @@ int UISystem_StateChecker(void)
     }
     memset();
 }
-
 /**
  * UI系统状态验证器
- * 
+ *
  * 功能描述：
  * 验证UI系统状态，负责：
  * - 状态有效性验证
  * - 资源完整性检查
  * - 数据一致性验证
  * - 错误检测和处理
- * 
+ *
  * 参数：
  * 隐式参数通过寄存器传递
- * 
+ *
  * 返回值：
  * @return int - 状态验证结果
- * 
+ *
  * 技术说明：
  * - 实现完整的状态验证机制
  * - 支持资源完整性检查
@@ -389,11 +343,10 @@ int UISystem_StateValidator(void)
     int iVar2;
     int iVar3;
     uint64_t unaff_R15;
-    
     lVar1 = UIResourceManager_AdvancedProcessor();
     *(int64_t *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x58) = lVar1;
-    *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) = 
-        *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) + 
+    *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) =
+        *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_100) +
         *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x68);
     iVar3 = (int)unaff_R15;
     *(int *)(unaff_RSI + UI_SYSTEM_RESOURCE_OFFSET_0x68) = iVar3;
@@ -411,23 +364,22 @@ int UISystem_StateValidator(void)
     }
     memset();
 }
-
 /**
  * UI系统状态获取器
- * 
+ *
  * 功能描述：
  * 获取UI系统状态，负责：
  * - 状态信息获取
  * - 状态数据返回
  * - 状态查询和检索
  * - 状态信息处理
- * 
+ *
  * 参数：
  * 隐式参数通过寄存器传递
- * 
+ *
  * 返回值：
  * @return int32_t - 状态信息
- * 
+ *
  * 技术说明：
  * - 提供状态信息获取功能
  * - 支持状态数据查询
@@ -437,28 +389,26 @@ int UISystem_StateValidator(void)
 int32_t UISystem_StateRetriever(void)
 {
     int32_t unaff_R14D;
-    
     return unaff_R14D;
 }
-
 /**
  * UI系统内存初始化器
- * 
+ *
  * 功能描述：
  * 初始化UI系统内存，负责：
  * - 内存分配和初始化
  * - 内存区域清理
  * - 内存结构设置
  * - 内存安全检查
- * 
+ *
  * 参数：
  * @param param_1 - 参数1（用途未明确）
  * @param param_2 - 参数2（用途未明确）
  * @param param_3 - 内存区域指针
- * 
+ *
  * 返回值：
  * 无返回值
- * 
+ *
  * 技术说明：
  * - 实现内存分配和初始化
  * - 支持内存区域清理
@@ -469,24 +419,23 @@ void UISystem_MemoryInitializer(uint64_t param_1, uint64_t param_2, uint64_t par
 {
     memset(param_3, 0, UI_SYSTEM_MEMORY_CLEAR_SIZE_0x88);
 }
-
 /**
  * UI系统资源处理器
- * 
+ *
  * 功能描述：
  * 处理UI系统资源，负责：
  * - 资源的分配和管理
  * - 资源状态的检查
  * - 资源的生命周期管理
  * - 资源的清理和释放
- * 
+ *
  * 参数：
  * @param param_1 - 系统上下文参数
  * @param param_2 - 资源管理器指针
- * 
+ *
  * 返回值：
  * 无返回值
- * 
+ *
  * 技术说明：
  * - 实现完整的资源处理流程
  * - 支持资源状态检查
@@ -503,7 +452,6 @@ void UISystem_ResourceProcessor(uint64_t param_1, int64_t *param_2)
     int *piVar6;
     uint uVar7;
     uint64_t uVar8;
-    
     if (param_2 == (int64_t *)0x0) {
         return;
     }
@@ -577,24 +525,23 @@ void UISystem_ResourceProcessor(uint64_t param_1, int64_t *param_2)
     }
     UIResourceManager_MainHandler(param_1, lVar3);
 }
-
 /**
  * UI系统资源处理器（变体）
- * 
+ *
  * 功能描述：
  * 处理UI系统资源的变体版本，负责：
  * - 资源的分配和管理
  * - 资源状态的检查
  * - 资源的生命周期管理
  * - 资源的清理和释放
- * 
+ *
  * 参数：
  * @param param_1 - 系统上下文参数
  * @param param_2 - 资源管理器指针
- * 
+ *
  * 返回值：
  * 无返回值
- * 
+ *
  * 技术说明：
  * - 实现完整的资源处理流程
  * - 支持资源状态检查
@@ -611,7 +558,6 @@ void UISystem_ResourceHandler(uint64_t param_1, int64_t *param_2)
     uint uVar6;
     uint64_t uVar7;
     int64_t lStack0000000000000078;
-    
     uVar3 = 0;
     lStack0000000000000078 = *param_2;
     uVar4 = uVar3;
@@ -682,24 +628,23 @@ void UISystem_ResourceHandler(uint64_t param_1, int64_t *param_2)
     }
     UIResourceManager_MainHandler(param_1, lVar2);
 }
-
 /**
  * UI系统状态控制器
- * 
+ *
  * 功能描述：
  * 控制UI系统状态，负责：
  * - 状态的设置和管理
  * - 状态转换的处理
  * - 状态同步和更新
  * - 错误处理和恢复
- * 
+ *
  * 参数：
  * @param param_1 - 系统上下文参数
  * @param param_2 - 状态管理器指针
- * 
+ *
  * 返回值：
  * 无返回值
- * 
+ *
  * 技术说明：
  * - 实现完整的状态控制流程
  * - 支持状态转换处理
@@ -717,7 +662,6 @@ void UISystem_StateController(uint64_t param_1, int64_t *param_2)
     uint64_t uVar7;
     int64_t unaff_R15;
     int64_t lStack0000000000000078;
-    
     uVar3 = 0;
     lStack0000000000000078 = *param_2;
     uVar4 = uVar3;
@@ -788,24 +732,23 @@ void UISystem_StateController(uint64_t param_1, int64_t *param_2)
     }
     UIResourceManager_MainHandler(param_1, lVar2);
 }
-
 /**
  * UI系统资源清理器
- * 
+ *
  * 功能描述：
  * 清理UI系统资源，负责：
  * - 资源的释放和清理
  * - 内存回收和管理
  * - 状态重置和清理
  * - 错误处理和恢复
- * 
+ *
  * 参数：
  * @param param_1 - 系统上下文参数
  * @param param_2 - 资源管理器指针
- * 
+ *
  * 返回值：
  * 无返回值
- * 
+ *
  * 技术说明：
  * - 实现完整的资源清理流程
  * - 支持内存回收和管理
@@ -823,7 +766,6 @@ void UISystem_ResourceCleaner(uint64_t param_1, int64_t param_2)
     int64_t unaff_R13;
     uint64_t uVar4;
     int64_t unaff_R15;
-    
     iVar1 = (int)unaff_RBX;
     if (param_2 != 0) {
         if ((unaff_RBP != 0) && (iVar1 < *(int *)(unaff_RBP + UI_SYSTEM_DATA_OFFSET_0x10))) {
@@ -869,23 +811,22 @@ void UISystem_ResourceCleaner(uint64_t param_1, int64_t param_2)
     }
     UIResourceManager_MainHandler();
 }
-
 /**
  * UI系统内存清理器
- * 
+ *
  * 功能描述：
  * 清理UI系统内存，负责：
  * - 内存区域的清理和释放
  * - 内存状态的检查和验证
  * - 内存碎片整理
  * - 内存泄漏检测
- * 
+ *
  * 参数：
  * 隐式参数通过寄存器传递
- * 
+ *
  * 返回值：
  * 无返回值
- * 
+ *
  * 技术说明：
  * - 实现完整的内存清理流程
  * - 支持内存状态检查
@@ -900,7 +841,6 @@ void UISystem_MemoryCleaner(void)
     int64_t unaff_R13;
     uint64_t uVar2;
     int64_t unaff_R15;
-    
     if (*(int64_t *)(unaff_R15 + UI_SYSTEM_DATA_OFFSET_0x8) == 0) {
         if (unaff_RSI == 0) {
             memset();
@@ -919,23 +859,22 @@ void UISystem_MemoryCleaner(void)
     }
     UIResourceManager_MainHandler();
 }
-
 /**
  * UI系统状态清理器
- * 
+ *
  * 功能描述：
  * 清理UI系统状态，负责：
  * - 状态信息的清理和重置
  * - 状态数据的释放
  * - 状态同步器的清理
  * - 状态错误的恢复
- * 
+ *
  * 参数：
  * 隐式参数通过寄存器传递
- * 
+ *
  * 返回值：
  * 无返回值
- * 
+ *
  * 技术说明：
  * - 实现完整的状态清理流程
  * - 支持状态数据释放
@@ -949,7 +888,6 @@ void UISystem_StateCleaner(void)
     uint64_t unaff_RBX;
     int64_t unaff_R13;
     uint64_t uVar2;
-    
     if ((unaff_R13 != 0) && (uVar2 = unaff_RBX, (int)unaff_RBX < *(int *)(unaff_R13 + 4))) {
         do {
             if (*(int64_t *)(uVar2 + in_RAX) != 0) {
@@ -962,23 +900,22 @@ void UISystem_StateCleaner(void)
     }
     UIResourceManager_MainHandler();
 }
-
 /**
  * UI系统错误处理器
- * 
+ *
  * 功能描述：
  * 处理UI系统错误，负责：
  * - 错误的检测和处理
  * - 错误信息的记录
  * - 错误恢复机制
  * - 系统状态的恢复
- * 
+ *
  * 参数：
  * 无参数
- * 
+ *
  * 返回值：
  * 无返回值
- * 
+ *
  * 技术说明：
  * - 实现完整的错误处理流程
  * - 支持错误信息记录
@@ -989,36 +926,34 @@ void UISystem_ErrorHandler(void)
 {
     UIResourceManager_MainHandler();
 }
-
 // ============================================================================
 // 模块技术说明
 // ============================================================================
-
 /*
  * 性能优化建议：
  * 1. 内存管理优化：使用内存池和缓存机制减少内存分配开销
  * 2. 资源管理优化：实现资源复用和延迟释放策略
  * 3. 状态管理优化：减少状态检查频率，使用事件驱动模式
  * 4. 错误处理优化：实现异步错误处理和恢复机制
- * 
+ *
  * 内存管理策略：
  * - 使用动态内存分配技术管理UI资源
  * - 实现内存池机制减少内存碎片
  * - 支持内存回收和资源清理
  * - 防止内存泄漏和悬挂指针
- * 
+ *
  * 错误处理机制：
  * - 实现了完整的错误检查和状态验证
  * - 支持错误恢复和资源清理
  * - 包含详细的错误报告和日志记录
  * - 实现了异常处理和状态回滚
- * 
+ *
  * 线程安全考虑：
  * - 使用适当的锁机制保护共享资源
  * - 实现了线程安全的数据访问
  * - 支持并发操作和资源管理
  * - 防止死锁和竞争条件
- * 
+ *
  * 扩展性设计：
  * - 模块化设计便于功能扩展
  * - 支持多种资源类型和状态模式

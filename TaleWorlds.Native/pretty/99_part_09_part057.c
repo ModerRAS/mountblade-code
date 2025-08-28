@@ -1,13 +1,9 @@
 /* SystemController - SystemCore_StateProcessor0 的语义化别名 */
 #define SystemController SystemCore_StateProcessor0
-
 #include "TaleWorlds.Native.Split.h"
-
 // 99_part_09_part057.c - 6 个函数
-
-// 函数: void FUN_1805d9b2b(uint64_t param_1,char param_2)
-void FUN_1805d9b2b(uint64_t param_1,char param_2)
-
+// 函数: void function_5d9b2b(uint64_t param_1,char param_2)
+void function_5d9b2b(uint64_t param_1,char param_2)
 {
   bool bVar1;
   char cVar2;
@@ -16,7 +12,6 @@ void FUN_1805d9b2b(uint64_t param_1,char param_2)
   uint64_t *unaff_RBX;
   int32_t unaff_ESI;
   int32_t *unaff_R14;
-  
   bVar1 = 1 < (int)unaff_R14[0x44e];
   cVar2 = *(char *)(unaff_R14 + 0x451);
   if ((bool)*(char *)(unaff_R14 + 0x451) != bVar1) {
@@ -36,8 +31,8 @@ void FUN_1805d9b2b(uint64_t param_1,char param_2)
     if (iVar3 < 2) {
       *(int8_t *)((int64_t)unaff_R14 + 0x1145) = 1;
     }
-    FUN_1805da2b0();
-    FUN_1805d9c90();
+    function_5da2b0();
+    function_5d9c90();
     cVar2 = *(char *)(unaff_R14 + 0x451);
   }
   if (cVar2 != '\0') {
@@ -82,22 +77,14 @@ LAB_1805d9c6a:
   unaff_R14[10] = unaff_R14[10] & 0xfffffd0f;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805d9b80(void)
-void FUN_1805d9b80(void)
-
+// 函数: void function_5d9b80(void)
+void function_5d9b80(void)
 {
   int iVar1;
   uint64_t uVar2;
   char cVar3;
   uint64_t *unaff_RBX;
   int64_t unaff_R14;
-  
   if (*(char *)(unaff_R14 + 0x113c) == '\0') {
     iVar1 = (int)(*(int64_t *)(unaff_R14 + 0x1120) - *(int64_t *)(unaff_R14 + 0x1118) >> 5);
   }
@@ -107,8 +94,8 @@ void FUN_1805d9b80(void)
   if (iVar1 < 2) {
     *(int8_t *)(unaff_R14 + 0x1145) = 1;
   }
-  FUN_1805da2b0();
-  FUN_1805d9c90();
+  function_5da2b0();
+  function_5d9c90();
   if (*(char *)(unaff_R14 + 0x1144) != '\0') {
     if (*(char *)(unaff_R14 + 0x113c) == '\0') {
       unaff_RBX = *(uint64_t **)(unaff_R14 + 0x1118);
@@ -151,63 +138,37 @@ LAB_1805d9c6a:
   *(uint *)(unaff_R14 + 0x28) = *(uint *)(unaff_R14 + 0x28) & 0xfffffd0f;
   return;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805d9c90(void)
-void FUN_1805d9c90(void)
-
+// 函数: void function_5d9c90(void)
+void function_5d9c90(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-
-
-// 函数: void FUN_1805da2b0(void)
-void FUN_1805da2b0(void)
-
+// 函数: void function_5da2b0(void)
+void function_5da2b0(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-
-
-
-// 函数: void FUN_1805da5f0(void)
-void FUN_1805da5f0(void)
-
+// 函数: void function_5da5f0(void)
+void function_5da5f0(void)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   SystemCore_MemoryManager0();
 }
-
-
-
-int8_t FUN_1805dbe60(int64_t param_1)
-
+int8_t function_5dbe60(int64_t param_1)
 {
   uint *puVar1;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
-  
   puVar1 = (uint *)(param_1 + 0x28);
   if ((*(uint *)(param_1 + 0x28) & 0x200) != 0) {
     return *(int8_t *)(param_1 + 0xd1);
   }
-  func_0x000180507ac0(puVar1);
+  Function_4b4c6390(puVar1);
   if (extraout_XMM0_Da < *(float *)(param_1 + 0x94) ||
       extraout_XMM0_Da == *(float *)(param_1 + 0x94)) {
-    FUN_180507b40();
+    function_507b40();
     if (extraout_XMM0_Da_00 < 1.5) goto LAB_1805dbea9;
   }
   if (*(int *)(param_1 + 0x98) == 0) {
@@ -220,22 +181,9 @@ LAB_1805dbea9:
   *puVar1 = *puVar1 | 0x200;
   return 1;
 }
-
-
-
-
-
-
-// 函数: void FUN_1805dbed0(int64_t param_1)
-void FUN_1805dbed0(int64_t param_1)
-
+// 函数: void function_5dbed0(int64_t param_1)
+void function_5dbed0(int64_t param_1)
 {
-                    // WARNING: Subroutine does not return
+// WARNING: Subroutine does not return
   AdvancedSystemController(*(int32_t *)(*(int64_t *)(**(int64_t **)(param_1 + 0x20) + 0x20) + 0x34));
 }
-
-
-
-
-
-
