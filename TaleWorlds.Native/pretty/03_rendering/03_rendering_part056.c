@@ -300,8 +300,14 @@ void render_advanced_arc_calculation(undefined8 render_context, float param_2, f
 
 
 
-// 函数: void FUN_180298850(void)
-void FUN_180298850(void)
+/**
+ * 渲染系统空操作函数1
+ * 
+ * 这是一个空操作函数，不执行任何实际操作。
+ * 可能用于初始化、占位符或特定渲染状态的标记。
+ */
+void render_empty_operation_1(void)
+// 原始函数名: FUN_180298850 - 保持向后兼容性
 
 {
   return;
@@ -311,98 +317,99 @@ void FUN_180298850(void)
 
 
 
-// 函数: void FUN_180298890(undefined8 param_1,float *param_2,float *param_3,ulonglong param_4,
-void FUN_180298890(undefined8 param_1,float *param_2,float *param_3,ulonglong param_4,
-                  undefined4 param_5)
+/**
+ * 渲染系统边界处理函数
+ * 
+ * 该函数处理渲染边界相关的几何计算和边界检查。
+ * 主要用于处理渲染对象的边界框计算、碰撞检测和
+ * 渲染区域的边界条件处理。
+ * 
+ * @param render_context 渲染上下文指针
+ * @param boundary_array1 边界数组1，包含边界坐标信息
+ * @param boundary_array2 边界数组2，包含边界坐标信息
+ * @param boundary_flags 边界标志位，用于控制边界处理行为
+ * @param render_params 渲染参数，用于控制渲染效果
+ */
+void render_boundary_processing(undefined8 render_context, float *boundary_array1, float *boundary_array2, ulonglong boundary_flags,
+                  undefined4 render_params)
+// 原始函数名: FUN_180298890 - 保持向后兼容性
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  bool bVar9;
-  bool bVar10;
-  bool bVar11;
-  bool bVar12;
-  ulonglong uVar13;
-  float fStackX_10;
-  float fStackX_14;
-  float fStackX_18;
-  float fStackX_1c;
+  // 提取边界坐标信息
+  float boundary_min_x = boundary_array2[3];
+  float boundary_max_x = boundary_array2[2];
+  float boundary_min_y = boundary_array2[1];
+  float boundary_max_y = *boundary_array2;
+  float test_min_x = boundary_array1[3];
+  float test_min_y = boundary_array1[1];
+  float test_max_x = boundary_array1[2];
+  float test_max_y = *boundary_array1;
   
-  uVar13 = param_4 & 0xffffffff;
-  fVar1 = param_3[3];
-  fVar2 = param_3[2];
-  fVar3 = param_3[1];
-  fVar4 = *param_3;
-  fVar5 = param_2[3];
-  fVar6 = param_2[1];
-  fVar7 = param_2[2];
-  fVar8 = *param_2;
-  bVar9 = fVar8 < fVar4;
-  bVar10 = fVar7 <= fVar2;
-  bVar11 = fVar6 < fVar3;
-  bVar12 = fVar5 <= fVar1;
-  if (bVar9) {
-    fStackX_10 = fVar4;
-    fStackX_14 = fVar1;
-    fStackX_18 = fVar8;
-    fStackX_1c = fVar3;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,param_4,param_5,!bVar11 | bVar12 << 2);
+  // 边界比较和条件检查
+  bool is_min_x_inside = test_min_y < boundary_max_y;
+  bool is_max_x_inside = test_max_x <= boundary_max_x;
+  bool is_min_y_inside = test_min_y < boundary_min_y;
+  bool is_max_y_inside = test_max_y <= boundary_min_x;
+  
+  // 处理各种边界条件组合
+  if (is_min_x_inside) {
+    float temp_x = boundary_max_y;
+    float temp_y = boundary_min_x;
+    float temp_z = test_max_y;
+    float temp_w = boundary_min_y;
+    FUN_180293f50(render_context,&temp_z,&temp_x,boundary_flags,render_params,!is_min_y_inside | is_max_y_inside << 2);
   }
-  if (!bVar10) {
-    fStackX_10 = fVar7;
-    fStackX_14 = fVar1;
-    fStackX_18 = fVar2;
-    fStackX_1c = fVar3;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,!bVar11 * '\x02' | bVar12 << 3);
+  if (!is_max_x_inside) {
+    float temp_x = test_max_x;
+    float temp_y = boundary_min_x;
+    float temp_z = boundary_max_x;
+    float temp_w = boundary_min_y;
+    FUN_180293f50(render_context,&temp_z,&temp_x,boundary_flags & 0xffffffff,render_params,!is_min_y_inside * '\x02' | is_max_y_inside << 3);
   }
-  if (bVar11) {
-    fStackX_10 = fVar2;
-    fStackX_14 = fVar3;
-    fStackX_18 = fVar4;
-    fStackX_1c = fVar6;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,!bVar9 | bVar10 * '\x02');
+  if (is_min_y_inside) {
+    float temp_x = boundary_max_x;
+    float temp_y = boundary_min_y;
+    float temp_z = boundary_max_y;
+    float temp_w = test_min_y;
+    FUN_180293f50(render_context,&temp_z,&temp_x,boundary_flags & 0xffffffff,render_params,!is_min_x_inside | is_max_x_inside * '\x02');
   }
-  if (!bVar12) {
-    fStackX_10 = fVar2;
-    fStackX_14 = fVar5;
-    fStackX_18 = fVar4;
-    fStackX_1c = fVar1;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,
-                  (bVar9 ^ 1) << 2 | (uint)bVar10 << 3);
+  if (!is_max_y_inside) {
+    float temp_x = boundary_max_x;
+    float temp_y = test_max_y;
+    float temp_z = boundary_max_y;
+    float temp_w = boundary_min_x;
+    FUN_180293f50(render_context,&temp_z,&temp_x,boundary_flags & 0xffffffff,render_params,
+                  (is_min_x_inside ^ 1) << 2 | (uint)is_max_x_inside << 3);
   }
-  if ((bVar9) && (bVar11)) {
-    fStackX_10 = fVar4;
-    fStackX_14 = fVar3;
-    fStackX_18 = fVar8;
-    fStackX_1c = fVar6;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,1);
+  
+  // 处理复合边界条件
+  if ((is_min_x_inside) && (is_min_y_inside)) {
+    float temp_x = boundary_max_y;
+    float temp_y = boundary_min_y;
+    float temp_z = test_max_y;
+    float temp_w = test_min_y;
+    FUN_180293f50(render_context,&temp_z,&temp_x,boundary_flags & 0xffffffff,render_params,1);
   }
-  if ((!bVar10) && (bVar11)) {
-    fStackX_10 = fVar7;
-    fStackX_14 = fVar3;
-    fStackX_18 = fVar2;
-    fStackX_1c = fVar6;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,2);
+  if ((!is_max_x_inside) && (is_min_y_inside)) {
+    float temp_x = test_max_x;
+    float temp_y = boundary_min_y;
+    float temp_z = boundary_max_x;
+    float temp_w = test_min_y;
+    FUN_180293f50(render_context,&temp_z,&temp_x,boundary_flags & 0xffffffff,render_params,2);
   }
-  if ((bVar9) && (!bVar12)) {
-    fStackX_10 = fVar4;
-    fStackX_14 = fVar5;
-    fStackX_18 = fVar8;
-    fStackX_1c = fVar1;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,4);
+  if ((is_min_x_inside) && (!is_max_y_inside)) {
+    float temp_x = boundary_max_y;
+    float temp_y = test_max_y;
+    float temp_z = test_max_y;
+    float temp_w = boundary_min_x;
+    FUN_180293f50(render_context,&temp_z,&temp_x,boundary_flags & 0xffffffff,render_params,4);
   }
-  if ((!bVar10) && (!bVar12)) {
-    fStackX_10 = fVar7;
-    fStackX_14 = fVar5;
-    fStackX_18 = fVar2;
-    fStackX_1c = fVar1;
-    FUN_180293f50(param_1,&fStackX_18,&fStackX_10,uVar13,param_5,8);
+  if ((!is_max_x_inside) && (!is_max_y_inside)) {
+    float temp_x = test_max_x;
+    float temp_y = test_max_y;
+    float temp_z = boundary_max_x;
+    float temp_w = boundary_min_x;
+    FUN_180293f50(render_context,&temp_z,&temp_x,boundary_flags & 0xffffffff,render_params,8);
   }
   return;
 }

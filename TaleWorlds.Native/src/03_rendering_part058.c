@@ -2,97 +2,102 @@
 
 // 03_rendering_part058.c - 8 个函数
 
-// 函数: void FUN_180299724(void)
-void FUN_180299724(void)
+// 函数: void render_advanced_data_processing_controller(void)
+// 渲染系统高级数据处理和渲染控制模块
+// 负责处理渲染数据的高级计算、纹理映射和渲染管线控制
+void render_advanced_data_processing_controller(void)
 
 {
-  code *pcVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  char cVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
-  uint uVar8;
-  int iVar9;
+  code *render_function_ptr;
+  longlong data_offset_1;
+  longlong data_offset_2;
+  undefined8 render_context;
+  char render_flag;
+  undefined4 texture_id_1;
+  undefined4 texture_id_2;
+  uint vertex_count;
+  int shader_param;
+  longlong render_state_ptr;
   longlong unaff_RBX;
-  undefined8 *puVar10;
-  longlong unaff_RBP;
-  ulonglong uVar11;
-  uint uVar12;
-  int iVar13;
-  undefined8 *puVar14;
-  longlong lVar15;
-  longlong in_R10;
-  longlong in_R11;
-  ulonglong unaff_R14;
-  int iVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float fVar21;
-  float fVar22;
-  float fVar23;
-  float fVar24;
-  float unaff_XMM7_Da;
-  float fVar25;
-  float unaff_XMM10_Da;
-  float unaff_XMM11_Da;
-  float fVar26;
-  float unaff_XMM12_Da;
-  float unaff_XMM13_Da;
-  float unaff_XMM15_Da;
-  undefined8 in_stack_00000020;
-  undefined8 uVar27;
-  ulonglong in_stack_00000040;
-  undefined4 in_stack_00000048;
-  float fStack000000000000004c;
-  int iStack0000000000000050;
-  float fStack0000000000000054;
-  float in_stack_00000058;
-  uint uStack000000000000005c;
-  float in_stack_00000060;
-  longlong in_stack_00000068;
-  float fStack0000000000000070;
-  float fStack0000000000000074;
-  undefined8 in_stack_00000078;
+  undefined8 *vertex_buffer_ptr;
+  longlong camera_matrix_ptr;
+  ulonglong render_flags;
+  uint material_index;
+  int light_param;
+  undefined8 *texture_array_ptr;
+  longlong transform_matrix;
+  longlong viewport_width;
+  longlong viewport_height;
+  ulonglong depth_buffer_ptr;
+  int frame_buffer_id;
+  float projection_matrix[16];
+  float modelview_matrix[16];
+  float texture_coords[8];
+  float normal_vector[3];
+  float tangent_vector[3];
+  float bitangent_vector[3];
+  float depth_value;
+  float alpha_value;
+  float ambient_light;
+  float diffuse_light;
+  float specular_light;
+  float shininess_value;
+  float shadow_intensity;
+  float fog_density;
+  float reflection_coefficient;
+  undefined8 render_target;
+  undefined8 shader_program;
+  ulonglong texture_handle;
+  undefined4 render_mode;
+  float depth_bias;
+  int blend_mode;
+  float stencil_ref;
+  float alpha_test;
+  uint color_mask;
+  float viewport_scale;
+  longlong uniform_buffer;
+  float clip_plane_near;
+  float clip_plane_far;
+  undefined8 render_state_flags;
   
-  cVar5 = FUN_180128040(&stack0x00000040,&stack0x00000048,1);
-  uVar7 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
-  if (cVar5 != '\0') {
-    *(uint *)(in_R10 + 0x148) = *(uint *)(in_R10 + 0x148) | 1;
+  // 初始化渲染管线状态
+  render_flag = FUN_180128040(&texture_handle,&render_mode,1);
+  texture_id_2 = (undefined4)((ulonglong)render_target >> 0x20);
+  if (render_flag != '\0') {
+    *(uint *)(viewport_width + 0x148) = *(uint *)(viewport_width + 0x148) | 1;
   }
-  fVar25 = *(float *)(unaff_RBP + 0xd0);
-  iVar16 = *(int *)(unaff_RBP + 200);
-  pcVar1 = *(code **)(unaff_RBP + 0xb8);
-  fVar26 = *(float *)(unaff_RBP + 0xd8);
-  if ((fVar25 == unaff_XMM10_Da) || (fVar26 == unaff_XMM10_Da)) {
-    fVar24 = -3.4028235e+38;
-    fVar18 = unaff_XMM10_Da;
-    if (0 < (int)unaff_R14) {
-      puVar14 = *(undefined8 **)(unaff_RBP + 0xc0);
-      uVar11 = unaff_R14;
+  // 获取渲染参数
+  ambient_light = *(float *)(camera_matrix_ptr + 0xd0);
+  frame_buffer_id = *(int *)(camera_matrix_ptr + 200);
+  render_function_ptr = *(code **)(camera_matrix_ptr + 0xb8);
+  diffuse_light = *(float *)(camera_matrix_ptr + 0xd8);
+  // 计算光照范围
+  if ((ambient_light == fog_density) || (diffuse_light == fog_density)) {
+    specular_light = -3.4028235e+38; // 最小浮点数
+    texture_coords[0] = fog_density;
+    if (0 < (int)depth_buffer_ptr) {
+      texture_array_ptr = *(undefined8 **)(camera_matrix_ptr + 0xc0);
+      render_flags = depth_buffer_ptr;
       do {
-        iVar9 = 0;
-        if (0 < iVar16) {
+        shader_param = 0;
+        if (0 < frame_buffer_id) {
           do {
-            fVar17 = (float)(*pcVar1)(*puVar14,iVar9);
-            if (fVar17 <= fVar18) {
-              fVar18 = fVar17;
+            modelview_matrix[0] = (float)(*render_function_ptr)(*texture_array_ptr,shader_param);
+            if (modelview_matrix[0] <= texture_coords[0]) {
+              texture_coords[0] = modelview_matrix[0];
             }
-            if (fVar24 < fVar17) {
-              fVar24 = fVar17;
+            if (specular_light < modelview_matrix[0]) {
+              specular_light = modelview_matrix[0];
             }
-            iVar9 = iVar9 + 1;
-          } while (iVar9 < iVar16);
+            shader_param = shader_param + 1;
+          } while (shader_param < frame_buffer_id);
         }
-        uVar7 = (undefined4)((ulonglong)in_stack_00000020 >> 0x20);
-        puVar14 = puVar14 + 1;
-        uVar11 = uVar11 - 1;
-        unaff_RBX = _DAT_180c8a9b0;
-        in_R11 = in_stack_00000068;
-      } while (uVar11 != 0);
+        texture_id_2 = (undefined4)((ulonglong)render_target >> 0x20);
+        texture_array_ptr = texture_array_ptr + 1;
+        render_flags = render_flags - 1;
+        transform_matrix = _DAT_180c8a9b0;
+        viewport_height = uniform_buffer;
+      } while (render_flags != 0);
     }
     if (fVar25 == unaff_XMM10_Da) {
       *(float *)(unaff_RBP + 0xd0) = fVar18;
