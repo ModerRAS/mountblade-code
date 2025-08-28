@@ -331,7 +331,7 @@ void RenderingSystem_DataTransformer(int64_t render_context, int64_t output_hand
   }
   
   // 安全检查：验证cookie
-  FUN_1808fc050(security_cookie ^ (uint64_t)stack_buffer);
+  SystemSecurityChecker(security_cookie ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -580,7 +580,7 @@ void RenderingSystem_MatrixProcessor(uint64_t matrix_context, uint64_t transform
   } while (unaff_ESI < unaff_R12D);
   
   // 安全检查：验证栈保护
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x50) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -593,7 +593,7 @@ void RenderingSystem_EmptyFunction1(void)
   int64_t unaff_RBP;
   
   // 安全检查：验证栈保护
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -0x50) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -0x50) ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -982,7 +982,7 @@ void RenderingSystem_DataSerializer(int64_t serialize_context, int64_t file_cont
   
   // 清理缓冲区
   if (((char)stack_flag == '\0') && (buffer_size != 0)) {
-    FUN_18064e900(buffer_size);
+    CoreEngineMemoryPoolCleaner(buffer_size);
   }
   
   return;
@@ -1062,7 +1062,7 @@ void RenderingSystem_DataDeserializer(int64_t deserialize_context, int64_t file_
     // 检查数据结束
     if (data_offset == 0) {
       if (((char)stack_flag == '\0') && (buffer_size != 0)) {
-        FUN_18064e900(buffer_size);
+        CoreEngineMemoryPoolCleaner(buffer_size);
       }
       return;
     }
@@ -1083,7 +1083,7 @@ void RenderingSystem_DataDeserializer(int64_t deserialize_context, int64_t file_
       
       do {
         // 分配资源块
-        block_ptr = (int32_t *)FUN_18062b1e0(system_memory_pool_ptr, 0x68, 8, 3);
+        block_ptr = (int32_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr, 0x68, 8, 3);
         data_ptr = (int64_t *)(block_ptr + 0x12);
         *data_ptr = (int64_t)&system_state_ptr;
         *(uint64_t *)(block_ptr + 0x14) = 0;
@@ -1174,7 +1174,7 @@ void RenderingSystem_DataDeserializer(int64_t deserialize_context, int64_t file_
             buffer_size = 1;
           LAB_1803358a2:
             resource_list = (uint64_t *)
-                     FUN_18062b420(system_memory_pool_ptr, buffer_size * 8, *(int8_t *)(current_resource + 8));
+                     CoreEngineMemoryPoolAllocator(system_memory_pool_ptr, buffer_size * 8, *(int8_t *)(current_resource + 8));
             next_resource = (uint64_t *)current_resource[6];
             temp_ptr = (uint64_t *)current_resource[5];
           }
@@ -1191,7 +1191,7 @@ void RenderingSystem_DataDeserializer(int64_t deserialize_context, int64_t file_
           
           *resource_list = block_ptr;
           if (current_resource[5] != 0) {
-            FUN_18064e900();
+            CoreEngineMemoryPoolCleaner();
           }
           current_resource[5] = resource_list;
           current_resource[6] = resource_list + 1;

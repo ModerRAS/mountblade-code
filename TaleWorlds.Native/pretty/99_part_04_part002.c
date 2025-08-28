@@ -219,7 +219,7 @@ LAB_180258d5e:
   *(int8_t *)(param_1 + 0xa9) = *puVar14;
   *(int64_t *)(param_2 + 8) = *(int64_t *)(param_2 + 8) + 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_498);
+  SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_498);
 }
 
 

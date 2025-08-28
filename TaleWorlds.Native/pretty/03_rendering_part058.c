@@ -477,8 +477,8 @@ LAB_180299f92:
         }
         plStack_1d8 = alStack_1c0;
         FUN_18009e8e0(alStack_1c0,auStack_108);
-        FUN_180627ae0(auStack_160,auStack_a8);
-        uVar15 = FUN_180627ae0(auStack_140,auStack_88);
+        CoreEngineDataTransformer(auStack_160,auStack_a8);
+        uVar15 = CoreEngineDataTransformer(auStack_140,auStack_88);
         uStack_120 = uStack_68;
         uStack_11c = uStack_64;
         uStack_118 = uStack_60;
@@ -489,7 +489,7 @@ LAB_180299f92:
         }
       }
       else {
-        uVar15 = FUN_18062b1e0(system_memory_pool_ptr,0x178,8,3);
+        uVar15 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x178,8,3);
         plVar11 = (int64_t *)FUN_18041bf60(uVar15,lVar10,auStack_108);
         plStack_1d8 = plVar11;
         if (plVar11 != (int64_t *)0x0) {
@@ -536,7 +536,7 @@ LAB_180299f92:
   FUN_18009e960(param_3);
 LAB_18029a2da:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_228);
+  SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_228);
 }
 
 
@@ -692,27 +692,27 @@ void render_memory_cleanup(int64_t *memory_pool)
   }
   // 安全检查并清空内存池指针
   if (*param_1 != 0) {
-    FUN_18064e900(); // 执行内存安全检查
+    CoreEngineMemoryPoolCleaner(); // 执行内存安全检查
   }
   *param_1 = 0; // 清空纹理内存池指针
   if (param_1[1] != 0) {
-    FUN_18064e900(); // 执行内存安全检查
+    CoreEngineMemoryPoolCleaner(); // 执行内存安全检查
   }
   param_1[1] = 0; // 清空着色器内存池指针
   if (param_1[2] != 0) {
-    FUN_18064e900(); // 执行内存安全检查
+    CoreEngineMemoryPoolCleaner(); // 执行内存安全检查
   }
   param_1[2] = 0; // 清空材质内存池指针
   if (param_1[5] != 0) {
-    FUN_18064e900(); // 执行内存安全检查
+    CoreEngineMemoryPoolCleaner(); // 执行内存安全检查
   }
   param_1[5] = 0; // 清空顶点缓冲区内存池指针
   if (param_1[4] != 0) {
-    FUN_18064e900(); // 执行内存安全检查
+    CoreEngineMemoryPoolCleaner(); // 执行内存安全检查
   }
   param_1[4] = 0; // 清空索引缓冲区内存池指针
   if (param_1[3] != 0) {
-    FUN_18064e900(); // 执行内存安全检查
+    CoreEngineMemoryPoolCleaner(); // 执行内存安全检查
   }
   *(int8_t *)((int64_t)param_1 + 0x81) = 0; // 清空状态标志
   param_1[3] = 0; // 清空帧缓冲区内存池指针
@@ -776,7 +776,7 @@ uint64_t render_cache_clear(int64_t cache_manager)
     do {
       lVar3 = *(int64_t *)(lVar5 + uVar6 * 8);
       if (lVar3 != 0) {
-        FUN_18064e900(lVar3); // 释放缓存桶内存
+        CoreEngineMemoryPoolCleaner(lVar3); // 释放缓存桶内存
       }
       *(uint64_t *)(lVar5 + uVar6 * 8) = 0; // 清空桶指针
       uVar6 = uVar6 + 1;
@@ -784,7 +784,7 @@ uint64_t render_cache_clear(int64_t cache_manager)
   }
   // 释放缓存管理器主内存并返回成功状态
   if ((1 < uVar2) && (lVar5 != 0)) {
-    FUN_18064e900(lVar5); // 释放主缓存内存
+    CoreEngineMemoryPoolCleaner(lVar5); // 释放主缓存内存
   }
   ReleaseSRWLockExclusive(0x180c91dc8); // 释放独占锁
   return 1; // 返回成功状态
@@ -824,7 +824,7 @@ int64_t render_hash_table_lookup(int64_t hash_table,int64_t *key_data,int8_t *fo
 LAB_18029a7f6:
       if (plVar2 == *(int64_t **)(lVar4 + lVar5 * 8)) {
         *param_3 = 1; // 设置未找到标志
-        uVar3 = FUN_18062b1e0(uVar3,0x120,8,CONCAT71((uint7)(uint3)(uVar1 >> 8),0x11));
+        uVar3 = CoreEngineMemoryPoolReallocator(uVar3,0x120,8,CONCAT71((uint7)(uint3)(uVar1 >> 8),0x11));
         lVar4 = FUN_18029a3c0(uVar3); // 创建新条目
         FUN_18029a870(param_1,alStack_28); // 插入新条目
         *(int64_t *)(alStack_28[0] + 0x10) = lVar4; // 设置条目数据
@@ -885,7 +885,7 @@ uint64_t *render_hash_table_insert(int64_t hash_table,uint64_t *result_buffer,ui
   // 更新哈希表统计信息并分配新条目内存
   FUN_18066c220(param_1 + 0x20,&param_5,(uint64_t)*(uint *)(param_1 + 0x10),
                 *(int32_t *)(param_1 + 0x18),1); // 更新统计
-  puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x20,*(int8_t *)(param_1 + 0x2c)); // 分配条目内存
+  puVar5 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(param_1 + 0x2c)); // 分配条目内存
   // 复制键值数据到新条目
   uVar3 = *(int32_t *)((int64_t)param_4 + 4); // 获取键的次部分
   lVar1 = param_4[1]; // 获取键的第三部分
@@ -899,7 +899,7 @@ uint64_t *render_hash_table_insert(int64_t hash_table,uint64_t *result_buffer,ui
   *(uint64_t *)(puVar5 + 6) = 0; // 清空链表指针
   if ((char)param_5 != '\0') {
     // 为条目分配额外的数据内存
-    uVar6 = FUN_18062b1e0(system_memory_pool_ptr,(uint64_t)param_5._4_4_ * 8 + 8,8,
+    uVar6 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,(uint64_t)param_5._4_4_ * 8 + 8,8,
                           *(int8_t *)(param_1 + 0x2c));
     memset(uVar6,0,(uint64_t)param_5._4_4_ * 8); // 清空数据内存
   }
@@ -943,7 +943,7 @@ void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t p
   
   // 更新哈希表统计信息并分配新条目内存
   FUN_18066c220(param_1,&stack0x00000080,in_R10D,param_4,1); // 更新统计信息
-  puVar5 = (int32_t *)FUN_18062b420(system_memory_pool_ptr,0x20,*(int8_t *)(unaff_RDI + 0x2c)); // 分配条目内存
+  puVar5 = (int32_t *)CoreEngineMemoryPoolAllocator(system_memory_pool_ptr,0x20,*(int8_t *)(unaff_RDI + 0x2c)); // 分配条目内存
   // 复制键值数据到新条目
   uVar2 = unaff_RBX[1]; // 获取键的次部分
   uVar3 = unaff_RBX[2]; // 获取键的第三部分
@@ -957,7 +957,7 @@ void render_hash_table_add(uint64_t hash_table,uint64_t result_buffer,uint64_t p
   *(uint64_t *)(puVar5 + 6) = 0; // 清空链表指针
   if (cStack0000000000000080 != '\0') {
     // 为条目分配额外的数据内存
-    uVar6 = FUN_18062b1e0(system_memory_pool_ptr,(uint64_t)uStack0000000000000084 * 8 + 8,8,
+    uVar6 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,(uint64_t)uStack0000000000000084 * 8 + 8,8,
                           *(int8_t *)(unaff_RDI + 0x2c));
     memset(uVar6,0,(uint64_t)uStack0000000000000084 * 8); // 清空数据内存
   }
@@ -1013,7 +1013,7 @@ void render_hash_table_resize(uint64_t new_size)
   
   // 执行哈希表扩容操作和数据迁移
   if ((1 < param_1) && (*(int64_t *)(unaff_RDI + 8) != 0)) {
-    FUN_18064e900(*(int64_t *)(unaff_RDI + 8)); // 释放旧的哈希表内存
+    CoreEngineMemoryPoolCleaner(*(int64_t *)(unaff_RDI + 8)); // 释放旧的哈希表内存
   }
   // 更新哈希表参数和插入新条目
   *(uint64_t *)(unaff_RDI + 0x10) = unaff_RBP; // 设置新的表大小

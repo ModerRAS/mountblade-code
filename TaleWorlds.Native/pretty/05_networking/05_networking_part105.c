@@ -349,7 +349,7 @@ uint64_t NetworkConnectionManager(int64_t param_1, int64_t *param_2)
                     goto cleanup_label;
                 }
             }
-            result = FUN_180769ed0(*connection_ptr, stack_buffer_18, 1, 4, 0);
+            result = SystemDataAnalyzer(*connection_ptr, stack_buffer_18, 1, 4, 0);
         }
 cleanup_label:
         if ((int)result != 0) {
@@ -439,7 +439,7 @@ uint64_t NetworkConnectionValidator(void)
                     goto validation_complete;
                 }
             }
-            operation_result = FUN_180769ed0(*connection_ptr, &stack_param_80, 1, 4, 0);
+            operation_result = SystemDataAnalyzer(*connection_ptr, &stack_param_80, 1, 4, 0);
         }
 validation_complete:
         if ((int)operation_result != 0) {
@@ -580,7 +580,7 @@ uint64_t NetworkProtocolValidator(int64_t param_1, int64_t *param_2)
                 goto protocol_validation_complete;
             }
         }
-        validation_result = FUN_180769ed0(*protocol_ptr, stack_buffer_20, 1, 4, 0);
+        validation_result = SystemDataAnalyzer(*protocol_ptr, stack_buffer_20, 1, 4, 0);
     }
     
 protocol_validation_complete:
@@ -620,7 +620,7 @@ protocol_validation_complete:
                 goto config_validation_complete;
             }
         }
-        validation_result = FUN_180769ed0(*protocol_ptr, stack_buffer_20, 1, 4, 0);
+        validation_result = SystemDataAnalyzer(*protocol_ptr, stack_buffer_20, 1, 4, 0);
     }
     
 config_validation_complete:
@@ -652,7 +652,7 @@ config_validation_complete:
     if (*protocol_ptr != 0) {
         if (protocol_ptr[2] == 0) {
 data_processing:
-            protocol_size = FUN_180769ed0(*protocol_ptr, stack_buffer_18, 1, 1, 0);
+            protocol_size = SystemDataAnalyzer(*protocol_ptr, stack_buffer_18, 1, 1, 0);
         }
         else {
             stack_buffer_20[0] = 0;
@@ -997,7 +997,7 @@ packet_cleanup:
                 goto buffer_validation_complete;
             }
         }
-        processing_result = FUN_180769ed0(*packet_ptr, packet_header, 1, 4, 0);
+        processing_result = SystemDataAnalyzer(*packet_ptr, packet_header, 1, 4, 0);
     }
     
 buffer_validation_complete:
@@ -1011,12 +1011,12 @@ buffer_validation_complete:
         
         /* 处理数据包数据 */
         if (*(int *)(param_2[1] + 0x18) == 0) {
-            processing_result = FUN_1808aed00(*param_2, packet_data + 0x48, 2);
+            processing_result = SystemErrorHandler(*param_2, packet_data + 0x48, 2);
             if ((int)processing_result != 0) {
                 return processing_result;
             }
             if (*(int *)(param_2[1] + 0x18) == 0) {
-                processing_result = FUN_1808aed00(*param_2, packet_size + 0x4a, 2);
+                processing_result = SystemErrorHandler(*param_2, packet_size + 0x4a, 2);
                 if ((int)processing_result != 0) {
                     return processing_result;
                 }
@@ -1113,7 +1113,7 @@ packet_validation_cleanup:
                 goto validation_complete;
             }
         }
-        validation_result = FUN_180769ed0(*packet_ptr, &packet_header, 1, 4, 0);
+        validation_result = SystemDataAnalyzer(*packet_ptr, &packet_header, 1, 4, 0);
     }
     
 validation_complete:
@@ -1127,12 +1127,12 @@ validation_complete:
         
         /* 处理数据包验证 */
         if (*(int *)(context_ptr[1] + 0x18) == 0) {
-            validation_result = FUN_1808aed00(*context_ptr, packet_data + 0x48, 2);
+            validation_result = SystemErrorHandler(*context_ptr, packet_data + 0x48, 2);
             if ((int)validation_result != 0) {
                 return validation_result;
             }
             if (*(int *)(context_ptr[1] + 0x18) == 0) {
-                validation_result = FUN_1808aed00(*context_ptr, packet_size + 0x4a, 2);
+                validation_result = SystemErrorHandler(*context_ptr, packet_size + 0x4a, 2);
                 if ((int)validation_result != 0) {
                     return validation_result;
                 }
@@ -1220,7 +1220,7 @@ uint64_t NetworkConfigurationManager(int64_t param_1, uint64_t *param_2)
             if (*(int *)(param_2[1] + 0x18) != 0) {
                 return NETWORK_ERROR_PROTOCOL_ERROR;
             }
-            config_result = FUN_1808aed00(*param_2, param_1 + 0xc, 4);
+            config_result = SystemErrorHandler(*param_2, param_1 + 0xc, 4);
             if ((int)config_result == 0) {
                 config_result = FUN_1808de0e0(param_2, 0);
             }
@@ -1256,7 +1256,7 @@ void NetworkDataSynchronizer(int64_t param_1, uint64_t *param_2)
             sync_result = 0;
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
-            sync_result = FUN_1808aed00(*param_2, param_1 + 0x210, 8);
+            sync_result = SystemErrorHandler(*param_2, param_1 + 0x210, 8);
         }
         else {
             sync_result = 0x1c;
@@ -1268,7 +1268,7 @@ void NetworkDataSynchronizer(int64_t param_1, uint64_t *param_2)
                 sync_result = 0;
             }
             else if (*(int *)(param_2[1] + 0x18) == 0) {
-                sync_result = FUN_1808aed00(*param_2, param_1 + 0x2f4, 4);
+                sync_result = SystemErrorHandler(*param_2, param_1 + 0x2f4, 4);
             }
             else {
                 sync_result = 0x1c;
@@ -1279,7 +1279,7 @@ void NetworkDataSynchronizer(int64_t param_1, uint64_t *param_2)
                     sync_result = 0;
                 }
                 else if (*(int *)(param_2[1] + 0x18) == 0) {
-                    sync_result = FUN_1808aed00(*param_2, param_1 + 0x21c, 4);
+                    sync_result = SystemErrorHandler(*param_2, param_1 + 0x21c, 4);
                 }
                 else {
                     sync_result = 0x1c;
@@ -1325,7 +1325,7 @@ void NetworkProtocolManager(int32_t param_1)
                 protocol_result = 0;
             }
             else if (*(int *)(context_ptr[1] + 0x18) == 0) {
-                protocol_result = FUN_1808aed00(*context_ptr, data_ptr + 0x210, 8);
+                protocol_result = SystemErrorHandler(*context_ptr, data_ptr + 0x210, 8);
             }
             else {
                 protocol_result = 0x1c;
@@ -1337,7 +1337,7 @@ void NetworkProtocolManager(int32_t param_1)
                     protocol_result = 0;
                 }
                 else if (*(int *)(context_ptr[1] + 0x18) == 0) {
-                    protocol_result = FUN_1808aed00(*context_ptr, data_ptr + 0x2f4, 4);
+                    protocol_result = SystemErrorHandler(*context_ptr, data_ptr + 0x2f4, 4);
                 }
                 else {
                     protocol_result = 0x1c;
@@ -1348,7 +1348,7 @@ void NetworkProtocolManager(int32_t param_1)
                         protocol_result = 0;
                     }
                     else if (*(int *)(context_ptr[1] + 0x18) == 0) {
-                        protocol_result = FUN_1808aed00(*context_ptr, data_ptr + 0x21c, 4);
+                        protocol_result = SystemErrorHandler(*context_ptr, data_ptr + 0x21c, 4);
                     }
                     else {
                         protocol_result = 0x1c;

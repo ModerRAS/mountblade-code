@@ -304,7 +304,7 @@ void FUN_180407fa0(uint64_t param_1,int64_t param_2)
   }
 LAB_180408814:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_248);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_248);
 LAB_180408070:
   do {
     puVar14 = puStack_228;
@@ -351,7 +351,7 @@ LAB_180408104:
       if (puStack_150 != (void *)0x0) {
         puVar13 = puStack_150;
       }
-      FUN_180626f80(&unknown_var_6880_ptr,puVar13);
+      SystemDataInitializer(&unknown_var_6880_ptr,puVar13);
       pcVar17 = "material";
       do {
         pcVar7 = pcVar17;
@@ -461,7 +461,7 @@ LAB_180408330:
               strcpy_s(puStack_210,0x40);
             }
             else {
-              FUN_180626f80(&unknown_var_616_ptr,0x40,lVar10);
+              SystemDataInitializer(&unknown_var_616_ptr,0x40,lVar10);
               iStack_208 = 0;
               *puStack_210 = 0;
             }
@@ -472,7 +472,7 @@ LAB_180408330:
             if (puStack_210 != (int8_t *)0x0) {
               puVar11 = puStack_210;
             }
-            FUN_180626f80(&unknown_var_6880_ptr,puVar11);
+            SystemDataInitializer(&unknown_var_6880_ptr,puVar11);
             pcVar17 = "collision_info";
             do {
               pcVar7 = pcVar17;
@@ -600,7 +600,7 @@ LAB_1804085b4:
                     if (puStack_1b0 != (void *)0x0) {
                       puVar12 = puStack_1b0;
                     }
-                    FUN_180626f80(&unknown_var_7176_ptr,puVar12,puVar13,puVar11);
+                    SystemDataInitializer(&unknown_var_7176_ptr,puVar12,puVar13,puVar11);
                     puStack_98 = &unknown_var_3480_ptr;
                     puStack_90 = auStack_80;
                     auStack_80[0] = 0;

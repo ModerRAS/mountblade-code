@@ -75,28 +75,28 @@ int NetworkMessage_SerializeComplex(NetworkMessageHandler* handler, void* buffer
     field7 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
     // 逐步写入各个字段
-    written_size = FUN_18074b880(buffer, size, &unknown_var_5376_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_5376_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field7);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field6);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18074b650((uint8_t*)buffer + total_size, size - total_size, &field1);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field5);
@@ -122,10 +122,10 @@ int NetworkMessage_SerializeSimpleType1(NetworkMessageHandler* handler, void* bu
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_3976_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_3976_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -151,10 +151,10 @@ int NetworkMessage_SerializeSimpleType2(NetworkMessageHandler* handler, void* bu
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_4232_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_4232_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -180,10 +180,10 @@ int NetworkMessage_SerializeSimpleType3(NetworkMessageHandler* handler, void* bu
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_4104_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_4104_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -211,16 +211,16 @@ int NetworkMessage_SerializeDualField(NetworkMessageHandler* handler, void* buff
     field2 = *(uint64_t*)((uint8_t*)handler + 0x18);
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_9512_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_9512_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074bda0((uint8_t*)buffer + total_size, size - total_size, field2);
@@ -246,10 +246,10 @@ int NetworkMessage_SerializeSimpleType4(NetworkMessageHandler* handler, void* bu
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_9256_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_9256_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -306,16 +306,16 @@ int NetworkMessage_SerializeDualFieldType2(NetworkMessageHandler* handler, void*
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     field1 = *(uint32_t*)((uint8_t*)handler + 0x18);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_9640_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_9640_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b830((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -342,16 +342,16 @@ int NetworkMessage_SerializeDualFieldType3(NetworkMessageHandler* handler, void*
     field1 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_0_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_0_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -377,10 +377,10 @@ int NetworkMessage_SerializeSimpleType5(NetworkMessageHandler* handler, void* bu
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_9384_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_9384_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -407,16 +407,16 @@ int NetworkMessage_SerializeTripleFieldType1(NetworkMessageHandler* handler, voi
     field1 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_5504_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_5504_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -443,16 +443,16 @@ int NetworkMessage_SerializeTripleFieldType2(NetworkMessageHandler* handler, voi
     field1 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_5648_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_5648_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -480,22 +480,22 @@ int NetworkMessage_SerializeQuadFieldType1(NetworkMessageHandler* handler, void*
     field2 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field3 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_5792_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_5792_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field3);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -523,22 +523,22 @@ int NetworkMessage_SerializeQuadFieldType2(NetworkMessageHandler* handler, void*
     field2 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field3 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_5936_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_5936_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field3);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -565,16 +565,16 @@ int NetworkMessage_SerializeDualFieldType4(NetworkMessageHandler* handler, void*
     field1 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_6368_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_6368_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -600,10 +600,10 @@ int NetworkMessage_SerializeSimpleType6(NetworkMessageHandler* handler, void* bu
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_6080_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_6080_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -629,10 +629,10 @@ int NetworkMessage_SerializeSimpleType7(NetworkMessageHandler* handler, void* bu
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_6512_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_6512_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -658,10 +658,10 @@ int NetworkMessage_SerializeSimpleType8(NetworkMessageHandler* handler, void* bu
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_6224_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_6224_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -689,16 +689,16 @@ int NetworkMessage_SerializeDualFieldType5(NetworkMessageHandler* handler, void*
     field2 = *(uint64_t*)((uint8_t*)handler + 0x18);
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_8392_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_8392_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074bda0((uint8_t*)buffer + total_size, size - total_size, field2);
@@ -725,16 +725,16 @@ int NetworkMessage_SerializeTripleFieldType3(NetworkMessageHandler* handler, voi
     field1 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_8256_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_8256_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -760,10 +760,10 @@ int NetworkMessage_SerializeSimpleType9(NetworkMessageHandler* handler, void* bu
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_8000_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_8000_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -789,10 +789,10 @@ int NetworkMessage_SerializeSimpleType10(NetworkMessageHandler* handler, void* b
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_8128_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_8128_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -828,16 +828,16 @@ int NetworkMessage_SerializeComplexData(NetworkMessageHandler* handler, void* bu
     field8 = *(uint32_t*)((uint8_t*)handler + 0x38);
     field9 = *(uint32_t*)((uint8_t*)handler + 0x3c);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_6920_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_6920_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18088ebb0((uint8_t*)buffer + total_size, size - total_size, &field2);
@@ -864,16 +864,16 @@ int NetworkMessage_SerializeTripleFieldType4(NetworkMessageHandler* handler, voi
     field1 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_7056_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_7056_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -904,28 +904,28 @@ int NetworkMessage_SerializeExtended(NetworkMessageHandler* handler, void* buffe
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     field1 = *(uint32_t*)((uint8_t*)handler + 0x20);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_8528_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_8528_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18088ece0((uint8_t*)buffer + total_size, size - total_size, &field4);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b830((uint8_t*)buffer + total_size, size - total_size, field1);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18074be90((uint8_t*)buffer + total_size, size - total_size, field3);
@@ -955,28 +955,28 @@ int NetworkMessage_SerializeExtendedType2(NetworkMessageHandler* handler, void* 
     field1 = *(uint8_t*)((uint8_t*)handler + 0x24);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_8664_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_8664_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18088ece0((uint8_t*)buffer + total_size, size - total_size, &field3);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, (uint8_t*)handler + 0x25);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, (uint8_t*)handler + 0x25);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18074be90((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -1006,28 +1006,28 @@ int NetworkMessage_SerializeExtendedType3(NetworkMessageHandler* handler, void* 
     field3 = *(uint32_t*)((uint8_t*)handler + 0x10);
     field1 = *(uint32_t*)((uint8_t*)handler + 0x18);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_8960_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_8960_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field3);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, (uint8_t*)handler + 0x28);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, (uint8_t*)handler + 0x28);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b830((uint8_t*)buffer + total_size, size - total_size, field1);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18074be90((uint8_t*)buffer + total_size, size - total_size, field2);
@@ -1055,28 +1055,28 @@ int NetworkMessage_SerializeExtendedType4(NetworkMessageHandler* handler, void* 
     field1 = *(uint8_t*)((uint8_t*)handler + 0x1c);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_9104_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_9104_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, (uint8_t*)handler + 0x28);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, (uint8_t*)handler + 0x28);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, (uint8_t*)handler + 0xa8);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, (uint8_t*)handler + 0xa8);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18074be90((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -1104,16 +1104,16 @@ int NetworkMessage_SerializeSimpleType11(NetworkMessageHandler* handler, void* b
     field1 = *(uint8_t*)((uint8_t*)handler + 0x18);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_7464_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_7464_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18074be90((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -1156,22 +1156,22 @@ int NetworkMessage_SerializePentaField(NetworkMessageHandler* handler, void* buf
     field3 = *(uint32_t*)((uint8_t*)handler + 0x10);
     field1 = *(uint32_t*)((uint8_t*)handler + 0x1c);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_7192_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_7192_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field3);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b830((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -1199,22 +1199,22 @@ int NetworkMessage_SerializePentaFieldType2(NetworkMessageHandler* handler, void
     field3 = *(uint32_t*)((uint8_t*)handler + 0x10);
     field1 = *(uint32_t*)((uint8_t*)handler + 0x1c);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_7328_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_7328_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field3);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b830((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -1241,16 +1241,16 @@ int NetworkMessage_SerializeTripleFieldType5(NetworkMessageHandler* handler, voi
     field1 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_7856_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_7856_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -1291,10 +1291,10 @@ int NetworkMessage_SerializeSimpleType12(NetworkMessageHandler* handler, void* b
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_7600_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_7600_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -1321,16 +1321,16 @@ int NetworkMessage_SerializeTripleFieldType6(NetworkMessageHandler* handler, voi
     field1 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field2 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_7728_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_7728_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field2);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field1);
@@ -1359,16 +1359,16 @@ int NetworkMessage_SerializeMultiField(NetworkMessageHandler* handler, void* buf
     field3 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field4 = *(uint32_t*)((uint8_t*)handler + 0x1c);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_784_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_784_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18074b650((uint8_t*)buffer + total_size, size - total_size, &field1);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field4);
@@ -1397,16 +1397,16 @@ int NetworkMessage_SerializeMultiFieldType2(NetworkMessageHandler* handler, void
     field3 = *(uint32_t*)((uint8_t*)handler + 0x18);
     field4 = *(uint32_t*)((uint8_t*)handler + 0x1c);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_288_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_288_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = FUN_18074b650((uint8_t*)buffer + total_size, size - total_size, &field1);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b800((uint8_t*)buffer + total_size, size - total_size, field4);
@@ -1432,10 +1432,10 @@ int NetworkMessage_SerializeSimpleType13(NetworkMessageHandler* handler, void* b
     
     field1 = *(uint32_t*)((uint8_t*)handler + 0x10);
     
-    written_size = FUN_18074b880(buffer, size, &unknown_var_2776_ptr);
+    written_size = SystemDataProcessor(buffer, size, &unknown_var_2776_ptr);
     total_size += written_size;
     
-    written_size = FUN_18074b880((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
+    written_size = SystemDataProcessor((uint8_t*)buffer + total_size, size - total_size, NETWORK_SEPARATOR);
     total_size += written_size;
     
     written_size = func_0x00018074b7d0((uint8_t*)buffer + total_size, size - total_size, field1);

@@ -11,7 +11,7 @@ void FUN_180797acb(int32_t param_1)
   
   *unaff_RBP = param_1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000040 ^ (uint64_t)&stack0x00000000);
 }
 
 

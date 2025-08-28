@@ -37,7 +37,7 @@ void FUN_180540851(int64_t param_1,char param_2,uint64_t param_3,uint64_t param_
         if (lVar3 != 0) {
           FUN_180506660(lVar3);
                     // WARNING: Subroutine does not return
-          FUN_18064e900(lVar3);
+          CoreEngineMemoryPoolCleaner(lVar3);
         }
         *(uint64_t *)(uVar4 + *(int64_t *)(unaff_RBX + 0x810)) = 0;
         uVar5 = (int)uVar6 + 1;
@@ -105,7 +105,7 @@ void FUN_18054085f(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
       if (lVar3 != 0) {
         FUN_180506660(lVar3);
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar3);
+        CoreEngineMemoryPoolCleaner(lVar3);
       }
       *(uint64_t *)(uVar4 + *(int64_t *)(unaff_RBX + 0x810)) = 0;
       uVar5 = (int)uVar6 + 1;
@@ -422,7 +422,7 @@ FUN_180540db0(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4
   int64_t **pplStack_30;
   
   uStack_38 = 0xfffffffffffffffe;
-  uVar8 = FUN_18062b1e0(system_memory_pool_ptr,0x180,0x10,3,0);
+  uVar8 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x180,0x10,3,0);
   plVar9 = (int64_t *)FUN_180544dc0(uVar8);
   pplStack_30 = &plStackX_8;
   plStackX_8 = (int64_t *)*param_4;
@@ -454,7 +454,7 @@ FUN_180540db0(int64_t param_1,uint64_t param_2,uint64_t param_3,int64_t *param_4
   *(int32_t *)(plVar9 + 0x22) = uVar5;
   *(int32_t *)((int64_t)plVar9 + 0x114) = uVar6;
   *(int32_t *)(plVar9 + 0x23) = uVar7;
-  FUN_18005ea90(param_1 + 0x810,&plStack_40);
+  SystemInitializer(param_1 + 0x810,&plStack_40);
   plVar3 = (int64_t *)*plVar9;
   if (plVar3 != (int64_t *)0x0) {
     (**(code **)(*plVar3 + 0x28))(plVar3);
@@ -550,7 +550,7 @@ void FUN_180541010(int64_t param_1,int32_t param_2)
     __Throw_C_error_std__YAXH_Z(iVar3);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (uint64_t)auStack_78);
+  SystemSecurityChecker(uStack_28 ^ (uint64_t)auStack_78);
 }
 
 
@@ -799,7 +799,7 @@ void FUN_180541730(int64_t param_1,int64_t *param_2)
   
   lVar9 = *(int64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x8a8) + 0x260) + 0x210);
   plStackX_10 = param_2;
-  uVar6 = FUN_18062b1e0(system_memory_pool_ptr,0x220,0x10,3);
+  uVar6 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x220,0x10,3);
   uVar10 = *(int8_t *)(lVar9 + 0x2589);
   bVar1 = *(byte *)(lVar9 + 0x2588);
   uVar15 = *(int8_t *)(lVar9 + 0x2587);
@@ -812,7 +812,7 @@ void FUN_180541730(int64_t param_1,int64_t *param_2)
   uVar12 = CONCAT71((int7)((uint64_t)in_stack_ffffffffffffff78 >> 8),uVar3);
   FUN_1805ef6e0(uVar6,*(uint64_t *)(*(int64_t *)(param_1 + 0x8a8) + 0x260),
                 *(uint64_t *)(lVar9 + 0x2548),uVar7,uVar12,uVar11,uVar15,uVar16,uVar10);
-  uVar6 = FUN_18062b1e0(system_memory_pool_ptr,0x2f0,0x10,3);
+  uVar6 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x2f0,0x10,3);
   plVar8 = (int64_t *)FUN_1802e6b00(uVar6,4);
   if (plVar8 != (int64_t *)0x0) {
     pplStackX_18 = (int64_t **)plVar8;

@@ -97,13 +97,13 @@
 #define DataFlowSynchronizer FUN_1801d9f30      /** 数据流同步器 */
 
 /** 系统调用和内存管理器 */
-#define SystemMemoryAllocator FUN_18062b420     /** 系统内存分配器 */
+#define SystemMemoryAllocator CoreEngineMemoryPoolAllocator     /** 系统内存分配器 */
 #define SystemMemoryDeallocator FUN_18005e110    /** 系统内存释放器 */
 #define SystemMemoryReallocator FUN_18062b8b0   /** 系统内存重分配器 */
-#define SystemDataCopier FUN_180627ae0          /** 系统数据复制器 */
-#define SystemConfigurator FUN_1806277c0         /** 系统配置器 */
-#define SystemErrorHandler FUN_18064e900         /** 系统错误处理器 */
-#define SystemCleanupHandler FUN_1808fc050      /** 系统清理处理器 */
+#define SystemDataCopier CoreEngineDataTransformer          /** 系统数据复制器 */
+#define SystemConfigurator CoreEngineDataBufferProcessor         /** 系统配置器 */
+#define SystemErrorHandler CoreEngineMemoryPoolCleaner         /** 系统错误处理器 */
+#define SystemCleanupHandler SystemSecurityChecker      /** 系统清理处理器 */
 #define SystemInitializer FUN_18005e630          /** 系统初始化器 */
 #define SystemValidator FUN_18062dee0            /** 系统验证器 */
 #define SystemBufferManager System_BufferManager       /** 系统缓冲区管理器 */
@@ -141,7 +141,7 @@
 #define CallbackExecutor FUN_180629a40            /** 回调执行器 */
 
 /** 锁和同步处理器 */
-#define LockAcquirer FUN_18062b1e0               /** 锁获取器 */
+#define LockAcquirer CoreEngineMemoryPoolReallocator               /** 锁获取器 */
 #define LockReleaser FUN_18063bc80               /** 锁释放器 */
 #define Synchronizer FUN_18066bd70                /** 同步器 */
 #define MutexManager FUN_1801e6800               /** 互斥量管理器 */

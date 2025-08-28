@@ -525,7 +525,7 @@ int FUN_1804660e0(uint64_t param_1,uint64_t *param_2,void *param_3,void *param_4
         *param_2 = &system_data_buffer_ptr;
         if (param_2[1] != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          CoreEngineMemoryPoolCleaner();
         }
         param_2[1] = 0;
         *(int32_t *)(param_2 + 3) = 0;
@@ -570,9 +570,9 @@ uint64_t FUN_1804661f0(int64_t param_1,uint64_t param_2,uint64_t param_3)
   
   lVar1 = *(int64_t *)(param_1 + 0xd8);
   lVar2 = *(int64_t *)(param_1 + 0xd0);
-  uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0xd8,8,3);
+  uVar3 = CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xd8,8,3);
   uStackX_8 = func_0x000180464d70(uVar3,param_2,param_3);
-  FUN_18005ea90(param_1 + 0xd0,&uStackX_8);
+  SystemInitializer(param_1 + 0xd0,&uStackX_8);
   *(int *)(param_1 + 0x70) = *(int *)(param_1 + 0x70) + 1;
   return lVar1 - lVar2 >> 3 & 0xffffffff;
 }

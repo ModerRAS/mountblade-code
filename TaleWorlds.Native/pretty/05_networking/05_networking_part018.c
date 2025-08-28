@@ -295,7 +295,7 @@ void NetworkingSystem_Initializer(void)
   
   // 警告：子函数不返回
   // 执行底层网络系统初始化，使用异或操作确保安全性
-  FUN_1808fc050(*(uint64_t *)(unaff_RBP + -8) ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(*(uint64_t *)(unaff_RBP + -8) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -486,7 +486,7 @@ network_result_t NetworkingSystem_DataManager(int64_t param_1)
     lVar5 = 0;
   }
   else {
-    FUN_180768360(lVar5);
+    SystemMemoryAllocator(lVar5);
   }
   
   // 创建数据处理器实例
@@ -497,7 +497,7 @@ network_result_t NetworkingSystem_DataManager(int64_t param_1)
   
   if (!bVar7) {
     // 警告：子函数不返回
-    FUN_180768400(lVar5);
+    SystemMemoryManager(lVar5);
   }
   
   // 处理数据队列
@@ -1174,7 +1174,7 @@ network_result_t NetworkingSystem_LookupService(int64_t param_1,uint64_t param_2
   // 获取资源锁
   lVar1 = *(int64_t *)(param_1 + 0x28);
   if (lVar1 != 0) {
-    FUN_180768360(lVar1);
+    SystemMemoryAllocator(lVar1);
   }
   
   // 执行查找操作
@@ -1204,7 +1204,7 @@ LAB_180851ce6:
   // 释放资源锁
   if (lVar1 != 0) {
     // 警告：子函数不返回
-    FUN_180768400(lVar1);
+    SystemMemoryManager(lVar1);
   }
   return uVar6;
 }

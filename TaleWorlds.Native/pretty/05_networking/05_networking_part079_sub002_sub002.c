@@ -269,13 +269,13 @@ typedef enum {
 #define NetworkingSystem_ErrorHandler FUN_180873460
 
 /** 网络数据发送函数别名 */
-#define NetworkingSystem_DataSender FUN_180742250
+#define NetworkingSystem_DataSender SystemDataValidator
 
 /** 网络资源锁定函数别名 */
-#define NetworkingSystem_ResourceLocker FUN_180768360
+#define NetworkingSystem_ResourceLocker SystemMemoryAllocator
 
 /** 网络资源解锁函数别名 */
-#define NetworkingSystem_ResourceUnlocker FUN_180768400
+#define NetworkingSystem_ResourceUnlocker SystemMemoryManager
 
 /** 网络哈希计算函数别名 */
 #define NetworkingSystem_HashCalculator FUN_180851a40
@@ -287,7 +287,7 @@ typedef enum {
 #define NetworkingSystem_MemoryManager FUN_18086f7c0
 
 /** 网络连接管理函数别名 */
-#define NetworkingSystem_ConnectionManager FUN_180742250
+#define NetworkingSystem_ConnectionManager SystemDataValidator
 
 /** 网络数据比较函数别名 */
 #define NetworkingSystem_DataComparator memcmp
@@ -344,7 +344,7 @@ void FUN_180883a30(uint64_t param_1)
         // 警告：子函数不会返回
         
         // 发送网络数据，初始化连接
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &unknown_var_5856_ptr, 0x43b, 1);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), param_1, &unknown_var_5856_ptr, 0x43b, 1);
     }
     
     return;
@@ -428,7 +428,7 @@ uint64_t FUN_180883a80(int64_t *param_1, int64_t *param_2, uint64_t *param_3, ui
     
     // 如果资源句柄有效，锁定资源
     if (resource_handle != 0) {
-        FUN_180768360(resource_handle);
+        SystemMemoryAllocator(resource_handle);
     }
     
     // 计算数据的哈希值
@@ -481,7 +481,7 @@ cleanup_and_return:
             // 清理资源并返回结果
             if (resource_handle != 0) {
                 // 警告：子函数不会返回
-                FUN_180768400(resource_handle);
+                SystemMemoryManager(resource_handle);
             }
             return operation_result;
         }
@@ -491,7 +491,7 @@ validation_complete:
     // 解锁资源
     if (resource_handle != 0) {
         // 警告：子函数不会返回
-        FUN_180768400(resource_handle);
+        SystemMemoryManager(resource_handle);
     }
     
     // 如果搜索结果为空，进行数据传输
@@ -543,7 +543,7 @@ validation_complete:
     
     // 锁定资源
     if (resource_handle != 0) {
-        FUN_180768360(resource_handle);
+        SystemMemoryAllocator(resource_handle);
     }
     
     // 处理数据上下文
@@ -594,7 +594,7 @@ validation_complete:
     // 解锁资源
     if (resource_handle != 0) {
         // 警告：子函数不会返回
-        FUN_180768400(resource_handle);
+        SystemMemoryManager(resource_handle);
     }
     
     // 检查传输结果
@@ -612,7 +612,7 @@ validation_complete:
     
     // 锁定资源
     if (resource_handle != 0) {
-        FUN_180768360(resource_handle);
+        SystemMemoryAllocator(resource_handle);
     }
     
     // 重新计算哈希值
@@ -664,7 +664,7 @@ final_cleanup:
             // 清理资源并返回
             if (resource_handle != 0) {
                 // 警告：子函数不会返回
-                FUN_180768400(resource_handle);
+                SystemMemoryManager(resource_handle);
             }
             return operation_result;
         }
@@ -681,7 +681,7 @@ final_cleanup:
     // 最终资源清理
     if (resource_handle != 0) {
         // 警告：子函数不会返回
-        FUN_180768400(resource_handle);
+        SystemMemoryManager(resource_handle);
     }
     
     return operation_result;

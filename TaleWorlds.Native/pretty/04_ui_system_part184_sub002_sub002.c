@@ -48,7 +48,7 @@ FUN_1807746b0(int64_t param_1,int64_t param_2,int64_t param_3,uint param_4,uint 
     *(uint *)(param_1 + 0x260) = param_5;
     if (*(int64_t *)(param_1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x240),
+      SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),*(int64_t *)(param_1 + 0x240),
                     &unknown_var_3712_ptr,0xd9,1);
     }
     func_0x000180746360(*(uint64_t *)(param_1 + 0xa8),&param_5,0);

@@ -780,7 +780,7 @@ void MatrixTransformer_Batched(uint64_t param_1, int32_t param_2)
     
     // 最终清理
     if (batch_pointer[0] != (int64_t *)0x0) {
-        FUN_18064e900(batch_pointer[0]);
+        CoreEngineMemoryPoolCleaner(batch_pointer[0]);
     }
     return;
 }

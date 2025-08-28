@@ -74,7 +74,7 @@ void validate_network_connection(uint64_t connection_handle, uint64_t *info_buff
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理
-      FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+      SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
     }
     // 准备错误消息包
     func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
@@ -150,9 +150,9 @@ void send_network_configuration_message(uint64_t connection_handle, uint64_t con
   network_status = FUN_18083fde0();
   if ((network_status != 0) && ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) != 0)) {
     // 编码配置数据
-    encode_result1 = FUN_18074b880(packet_buffer, NETWORK_BUFFER_SIZE, config_data);
+    encode_result1 = SystemDataProcessor(packet_buffer, NETWORK_BUFFER_SIZE, config_data);
     // 编码数据分隔符
-    encode_result2 = FUN_18074b880(packet_buffer + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+    encode_result2 = SystemDataProcessor(packet_buffer + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
     // 编码扩展参数
     func_0x00018074bda0(packet_buffer + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2), extended_params);
     message_buffer = packet_buffer;
@@ -161,7 +161,7 @@ void send_network_configuration_message(uint64_t connection_handle, uint64_t con
   }
   
   // 安全验证失败，执行异常处理（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
 }
 
 
@@ -180,9 +180,9 @@ void send_simple_network_message(void)
   int32_t message_flags;   // 消息标志位
   
   // 编码消息数据到缓冲区
-  encode_result1 = FUN_18074b880(&stack0x00000030, NETWORK_BUFFER_SIZE);
+  encode_result1 = SystemDataProcessor(&stack0x00000030, NETWORK_BUFFER_SIZE);
   // 编码数据分隔符
-  encode_result2 = FUN_18074b880(&stack0x00000030 + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+  encode_result2 = SystemDataProcessor(&stack0x00000030 + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
   // 编码剩余数据
   func_0x00018074bda0(&stack0x00000030 + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2));
   // 发送消息（函数不返回）
@@ -203,7 +203,7 @@ void cleanup_network_resources(void)
   uint64_t security_key;    // 安全密钥
   
   // 执行安全验证和资源清理（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(security_key ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -239,12 +239,12 @@ void query_network_extended_data(uint64_t connection_handle, int32_t *data_param
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
-      FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+      SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
     }
     // 编码数据参数
     connection_result = FUN_18074bc50(packet_buffer, NETWORK_BUFFER_SIZE, data_params);
     // 编码数据分隔符
-    validation_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+    validation_result = SystemDataProcessor(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
     // 编码结果缓冲区
     func_0x00018074bda0(packet_buffer + (connection_result + validation_result), NETWORK_BUFFER_SIZE - (connection_result + validation_result), result_buffer);
     message_buffer = packet_buffer;
@@ -328,7 +328,7 @@ void get_network_session_statistics(uint64_t session_handle, uint *stats_buffer)
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
-      FUN_1808fc050(security_check ^ (uint64_t)security_buffer);
+      SystemSecurityChecker(security_check ^ (uint64_t)security_buffer);
     }
     // 准备错误消息包
     FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
@@ -463,15 +463,15 @@ void configure_network_connection_params(uint64_t connection_handle, int64_t par
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) != 0) {
       // 编码配置参数
-      connection_result = FUN_18074b880(packet_buffer, NETWORK_BUFFER_SIZE, 0);
+      connection_result = SystemDataProcessor(packet_buffer, NETWORK_BUFFER_SIZE, 0);
       // 编码数据分隔符
-      encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+      encode_result = SystemDataProcessor(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
       connection_result = connection_result + encode_result;
       // 编码参数1
       encode_result = FUN_18074bac0(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, param1);
       connection_result = connection_result + encode_result;
       // 编码数据分隔符
-      encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+      encode_result = SystemDataProcessor(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
       // 编码参数2
       FUN_18074bac0(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), param2);
       message_buffer = packet_buffer;
@@ -479,7 +479,7 @@ void configure_network_connection_params(uint64_t connection_handle, int64_t par
       FUN_180749ef0(0x1f, 0xb, connection_handle, NETWORK_PARAM_MESSAGE);
     }
     // 安全验证失败，执行异常处理（函数不返回）
-    FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+    SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
   }
   
   // 初始化会话句柄
@@ -545,7 +545,7 @@ void send_extended_network_packet(uint64_t connection_handle, int32_t packet_dat
     // 编码数据包数据
     encode_result1 = func_0x00018074b7d0(packet_buffer, NETWORK_BUFFER_SIZE, packet_data);
     // 编码数据分隔符
-    encode_result2 = FUN_18074b880(packet_buffer + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+    encode_result2 = SystemDataProcessor(packet_buffer + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
     // 编码扩展参数
     func_0x00018074bda0(packet_buffer + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2), extended_params);
     message_buffer = packet_buffer;
@@ -553,7 +553,7 @@ void send_extended_network_packet(uint64_t connection_handle, int32_t packet_dat
     FUN_180749ef0(connection_result, 0xc, connection_handle, NETWORK_PACKET_MESSAGE);
   }
   // 安全验证失败，执行异常处理（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
 }
 
 
@@ -575,7 +575,7 @@ void send_simple_network_packet(void)
   // 编码数据包数据
   encode_result1 = func_0x00018074b7d0(&stack0x00000030, NETWORK_BUFFER_SIZE, packet_data);
   // 编码数据分隔符
-  encode_result2 = FUN_18074b880(&stack0x00000030 + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
+  encode_result2 = SystemDataProcessor(&stack0x00000030 + encode_result1, NETWORK_BUFFER_SIZE - encode_result1, NETWORK_DATA_SEPARATOR);
   // 编码剩余数据
   func_0x00018074bda0(&stack0x00000030 + (encode_result1 + encode_result2), NETWORK_BUFFER_SIZE - (encode_result1 + encode_result2));
   // 发送数据包消息（函数不返回）
@@ -596,7 +596,7 @@ void release_network_packet_resources(void)
   uint64_t security_key;    // 安全密钥
   
   // 执行安全验证和资源清理（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(security_key ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -629,7 +629,7 @@ void check_network_connection_status(uint64_t connection_handle, int32_t *status
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
-      FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+      SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
     }
     // 准备错误消息包
     FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
@@ -728,19 +728,19 @@ void setup_network_connection_buffers(uint64_t connection_handle, int8_t *buffer
   // 检查网络状态标志
   if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
     // 安全验证失败，执行异常处理（函数不返回）
-    FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+    SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
   }
   
   // 编码缓冲区数据
-  connection_result = FUN_18074b880(packet_buffer, NETWORK_BUFFER_SIZE, buffer_data);
+  connection_result = SystemDataProcessor(packet_buffer, NETWORK_BUFFER_SIZE, buffer_data);
   // 编码数据分隔符
-  encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  encode_result = SystemDataProcessor(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
   connection_result = connection_result + encode_result;
   // 编码缓冲区大小
   encode_result = func_0x00018074b7d0(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, buffer_size);
   connection_result = connection_result + encode_result;
   // 编码数据分隔符
-  encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  encode_result = SystemDataProcessor(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
   // 编码结果缓冲区
   FUN_18074b930(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), result_buffer);
   output_buffer = (int32_t *)packet_buffer;
@@ -765,15 +765,15 @@ void send_buffered_network_message(void)
   int32_t message_flags;   // 消息标志位
   
   // 编码缓冲区数据
-  connection_result = FUN_18074b880(&stack0x00000060, NETWORK_BUFFER_SIZE);
+  connection_result = SystemDataProcessor(&stack0x00000060, NETWORK_BUFFER_SIZE);
   // 编码数据分隔符
-  encode_result = FUN_18074b880(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  encode_result = SystemDataProcessor(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
   connection_result = connection_result + encode_result;
   // 编码缓冲区参数
   encode_result = func_0x00018074b7d0(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, buffer_param);
   connection_result = connection_result + encode_result;
   // 编码数据分隔符
-  encode_result = FUN_18074b880(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  encode_result = SystemDataProcessor(&stack0x00000060 + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
   // 编码最终数据
   FUN_18074b930(&stack0x00000060 + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result));
   // 发送缓冲消息（函数不返回）
@@ -794,7 +794,7 @@ void clear_network_message_buffer(void)
   uint64_t security_key;    // 安全密钥
   
   // 执行安全验证和资源清理（函数不返回）
-  FUN_1808fc050(security_key ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(security_key ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -827,7 +827,7 @@ void retrieve_network_connection_property(uint64_t connection_handle, int8_t *pr
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
-      FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+      SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
     }
     // 准备错误消息包
     FUN_18074be30(packet_buffer, NETWORK_BUFFER_SIZE, 0);
@@ -946,7 +946,7 @@ void determine_network_connection_type(uint64_t connection_handle, int32_t *type
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
-      FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+      SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
     }
     // 准备错误消息包
     func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
@@ -1041,13 +1041,13 @@ void fetch_network_connection_field(uint64_t connection_handle, uint field_index
   // 检查网络状态标志
   if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
     // 安全验证失败，执行异常处理（函数不返回）
-    FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+    SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
   }
   
   // 编码字段索引
   connection_result = func_0x00018074b7d0(packet_buffer, NETWORK_BUFFER_SIZE, field_index);
   // 编码数据分隔符
-  encode_result = FUN_18074b880(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
+  encode_result = SystemDataProcessor(packet_buffer + connection_result, NETWORK_BUFFER_SIZE - connection_result, NETWORK_DATA_SEPARATOR);
   // 编码字段缓冲区
   FUN_18074bac0(packet_buffer + (connection_result + encode_result), NETWORK_BUFFER_SIZE - (connection_result + encode_result), field_buffer);
   message_buffer = packet_buffer;
@@ -1085,7 +1085,7 @@ void monitor_network_connection_state(uint64_t connection_handle, int32_t *state
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
-      FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+      SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
     }
     // 准备错误消息包
     func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);
@@ -1162,7 +1162,7 @@ void count_active_network_sessions(uint64_t session_handle, uint *count_buffer)
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
-      FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+      SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
     }
     // 准备错误消息包
     FUN_18074b930(packet_buffer, NETWORK_BUFFER_SIZE, 0);
@@ -1234,7 +1234,7 @@ void extract_network_session_data(uint64_t session_handle, uint64_t *data_buffer
     // 检查网络状态标志
     if ((*(byte *)(NETWORK_STATUS_FLAG + 0x10) & 0x80) == 0) {
       // 安全验证失败，执行异常处理（函数不返回）
-      FUN_1808fc050(security_key ^ (uint64_t)security_buffer);
+      SystemSecurityChecker(security_key ^ (uint64_t)security_buffer);
     }
     // 准备错误消息包
     func_0x00018074bda0(packet_buffer, NETWORK_BUFFER_SIZE, 0);

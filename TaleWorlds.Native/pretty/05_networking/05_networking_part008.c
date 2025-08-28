@@ -150,7 +150,7 @@ void FUN_1808498e7(void)
   int32_t unaff_R14D;
   
   iVar1 = func_0x00018074bda0(&stack0x00000050,0x100);
-  iVar2 = FUN_18074b880(&stack0x00000050 + iVar1,0x100 - iVar1,&system_temp_buffer);
+  iVar2 = SystemDataProcessor(&stack0x00000050 + iVar1,0x100 - iVar1,&system_temp_buffer);
   func_0x00018074b800(&stack0x00000050 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),unaff_R14D);
                     // WARNING: Subroutine does not return
   FUN_180749ef0(unaff_ESI,0xd);
@@ -179,7 +179,7 @@ void FUN_18084995f(void)
   uint64_t in_stack_00000150;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(in_stack_00000150 ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -227,14 +227,14 @@ void FUN_180849990(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t *
   if (param_3 == (uint64_t *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_48 ^ (uint64_t)auStack_198);
+      SystemSecurityChecker(uStack_48 ^ (uint64_t)auStack_198);
     }
     iVar5 = func_0x00018074b7d0(auStack_148,0x100,param_2);
-    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&system_temp_buffer);
+    iVar6 = SystemDataProcessor(auStack_148 + iVar5,0x100 - iVar5,&system_temp_buffer);
     iVar5 = iVar5 + iVar6;
     iVar6 = func_0x00018074bda0(auStack_148 + iVar5,0x100 - iVar5,0);
     iVar5 = iVar5 + iVar6;
-    iVar6 = FUN_18074b880(auStack_148 + iVar5,0x100 - iVar5,&system_temp_buffer);
+    iVar6 = SystemDataProcessor(auStack_148 + iVar5,0x100 - iVar5,&system_temp_buffer);
     FUN_18074bd40(auStack_148 + (iVar5 + iVar6),0x100 - (iVar5 + iVar6),param_4);
     puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
@@ -394,10 +394,10 @@ void FUN_180849d40(uint64_t param_1,int64_t param_2,int32_t param_3)
   if ((param_2 == 0) || (iVar1 = func_0x00018076b690(param_2), 0x7f < iVar1)) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_1a8);
+      SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_1a8);
     }
-    iVar1 = FUN_18074b880(auStack_158,0x100,param_2);
-    iVar2 = FUN_18074b880(auStack_158 + iVar1,0x100 - iVar1,&system_temp_buffer);
+    iVar1 = SystemDataProcessor(auStack_158,0x100,param_2);
+    iVar2 = SystemDataProcessor(auStack_158 + iVar1,0x100 - iVar1,&system_temp_buffer);
     func_0x00018074b830(auStack_158 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return
@@ -468,10 +468,10 @@ void FUN_180849f40(uint64_t param_1,int64_t param_2,int32_t param_3)
   if ((param_2 == 0) || (iVar1 = func_0x00018076b690(param_2), 0x7f < iVar1)) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_58 ^ (uint64_t)auStack_1a8);
+      SystemSecurityChecker(uStack_58 ^ (uint64_t)auStack_1a8);
     }
-    iVar1 = FUN_18074b880(auStack_158,0x100,param_2);
-    iVar2 = FUN_18074b880(auStack_158 + iVar1,0x100 - iVar1,&system_temp_buffer);
+    iVar1 = SystemDataProcessor(auStack_158,0x100,param_2);
+    iVar2 = SystemDataProcessor(auStack_158 + iVar1,0x100 - iVar1,&system_temp_buffer);
     func_0x00018074b830(auStack_158 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_3);
     puStack_188 = auStack_158;
                     // WARNING: Subroutine does not return

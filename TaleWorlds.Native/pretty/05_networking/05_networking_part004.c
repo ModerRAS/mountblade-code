@@ -74,14 +74,14 @@ int serialize_basic_network_packet(int64_t packet_context, int64_t data_buffer, 
   session_id = *(int32_t *)(packet_context + 0x10);
   
   // 序列化数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   
   // 序列化连接信息
   total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   
@@ -107,12 +107,12 @@ int serialize_extended_network_packet(int64_t packet_context, int64_t data_buffe
   connection_id = *(int32_t *)(packet_context + 0x20);
   
   // 序列化扩展数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &packet_fields[0]);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -137,12 +137,12 @@ int serialize_secure_network_packet(int64_t packet_context, int64_t data_buffer,
   connection_id = *(int32_t *)(packet_context + 0x20);
   
   // 序列化安全数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &security_fields[0]);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -167,12 +167,12 @@ int serialize_compressed_network_packet(int64_t packet_context, int64_t data_buf
   connection_id = *(int32_t *)(packet_context + 0x20);
   
   // 序列化压缩数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &compression_fields[0]);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -197,12 +197,12 @@ int serialize_priority_network_packet(int64_t packet_context, int64_t data_buffe
   connection_id = *(int32_t *)(packet_context + 0x20);
   
   // 序列化优先级数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &priority_fields[0]);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -219,8 +219,8 @@ int serialize_simple_network_packet(int64_t packet_context, int64_t data_buffer,
   connection_id = *(int32_t *)(packet_context + 0x10);
   
   // 序列化简单数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -249,12 +249,12 @@ int serialize_multimedia_network_packet(int64_t packet_context, int64_t data_buf
   connection_id = *(int32_t *)(packet_context + 0x20);
   
   // 序列化多媒体数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &multimedia_fields[0]);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -279,12 +279,12 @@ int serialize_realtime_network_packet(int64_t packet_context, int64_t data_buffe
   connection_id = *(int32_t *)(packet_context + 0x20);
   
   // 序列化实时数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074b650(processed_bytes + data_buffer, buffer_size - processed_bytes, &realtime_fields[0]);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -320,16 +320,16 @@ int serialize_complex_network_packet(int64_t packet_context, int64_t data_buffer
   complex_fields[4] = *(uint64_t *)(packet_context + 0x40);
   
   // 序列化复杂数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018088ecd0(processed_bytes + data_buffer, buffer_size - processed_bytes, &complex_fields[0]);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -348,16 +348,16 @@ int serialize_dual_protocol_network_packet(int64_t packet_context, int64_t data_
   session_id = *(int32_t *)(packet_context + 0x14);
   
   // 序列化双协议数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x18);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x18);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -382,24 +382,24 @@ int serialize_multi_layer_network_packet(int64_t packet_context, int64_t data_bu
   packet_header = *(uint64_t *)(packet_context + 0x10);
   
   // 序列化多层网络数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074bda0(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_header);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, compression_flag);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, encryption_key);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -434,20 +434,20 @@ int serialize_enhanced_network_packet(int64_t packet_context, int64_t data_buffe
   field_data[7] = *(int32_t *)(packet_context + 0x20);
   
   // 序列化增强数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18088ebb0(processed_bytes + data_buffer, buffer_size - processed_bytes, &enhanced_fields[1]);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074b6f0(processed_bytes + data_buffer, buffer_size - processed_bytes, &enhanced_fields[0]);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074be90(processed_bytes + data_buffer, buffer_size - processed_bytes, checksum_flag);
   return total_bytes + processed_bytes;
@@ -466,12 +466,12 @@ int serialize_fast_network_packet(int64_t packet_context, int64_t data_buffer, i
   connection_id = *(int32_t *)(packet_context + 0x14);
   
   // 序列化快速数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b830(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -488,8 +488,8 @@ int serialize_minimal_network_packet(int64_t packet_context, int64_t data_buffer
   connection_id = *(int32_t *)(packet_context + 0x10);
   
   // 序列化最小化数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b7d0(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -514,16 +514,16 @@ int serialize_stream_network_packet(int64_t packet_context, int64_t data_buffer,
   connection_id = *(int32_t *)(packet_context + 0x18);
   
   // 序列化流式数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18088ece0(processed_bytes + data_buffer, buffer_size - processed_bytes, &stream_header);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b830(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074be90(processed_bytes + data_buffer, buffer_size - processed_bytes, stream_flag);
   return total_bytes + processed_bytes;
@@ -542,16 +542,16 @@ int serialize_block_network_packet(int64_t packet_context, int64_t data_buffer, 
   block_flag = *(int8_t *)(packet_context + 0x1c);
   
   // 序列化块状数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18088ece0(processed_bytes + data_buffer, buffer_size - processed_bytes, &block_header);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x1d);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x1d);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074be90(processed_bytes + data_buffer, buffer_size - processed_bytes, block_flag);
   return total_bytes + processed_bytes;
@@ -570,16 +570,16 @@ int serialize_buffered_network_packet(int64_t packet_context, int64_t data_buffe
   connection_id = *(int32_t *)(packet_context + 0x10);
   
   // 序列化缓冲数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x20);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x20);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b830(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074be90(processed_bytes + data_buffer, buffer_size - processed_bytes, buffer_flag);
   return total_bytes + processed_bytes;
@@ -596,16 +596,16 @@ int serialize_segmented_network_packet(int64_t packet_context, int64_t data_buff
   segment_flag = *(int8_t *)(packet_context + 0x14);
   
   // 序列化分段数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x20);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x20);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0xa0);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0xa0);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = FUN_18074be90(processed_bytes + data_buffer, buffer_size - processed_bytes, segment_flag);
   return total_bytes + processed_bytes;
@@ -622,10 +622,10 @@ int serialize_simple_message_network_packet(int64_t packet_context, int64_t data
   int total_bytes;
   
   // 序列化简单消息数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_CONNECTION_POOL);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x10);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, packet_context + 0x10);
   return total_bytes + processed_bytes;
 }
 
@@ -642,12 +642,12 @@ int serialize_standard_network_packet(int64_t packet_context, int64_t data_buffe
   connection_id = *(int32_t *)(packet_context + 0x18);
   
   // 序列化标准数据包头部
-  processed_bytes = FUN_18074b880(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
-  total_bytes = FUN_18074b880(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  processed_bytes = SystemDataProcessor(data_buffer, buffer_size, &NETWORK_PROTOCOL_HANDLER);
+  total_bytes = SystemDataProcessor(data_buffer + processed_bytes, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b800(processed_bytes + data_buffer, buffer_size - processed_bytes, session_id);
   processed_bytes = processed_bytes + total_bytes;
-  total_bytes = FUN_18074b880(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
+  total_bytes = SystemDataProcessor(processed_bytes + data_buffer, buffer_size - processed_bytes, &NETWORK_BUFFER_MANAGER);
   processed_bytes = processed_bytes + total_bytes;
   total_bytes = func_0x00018074b830(processed_bytes + data_buffer, buffer_size - processed_bytes, connection_id);
   return total_bytes + processed_bytes;
@@ -679,7 +679,7 @@ void get_network_connection_info(uint64_t connection_handle, uint64_t *connectio
   if (connection_info == (uint64_t *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
       // 安全验证失败
-      FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
+      SystemSecurityChecker(security_token ^ (uint64_t)temp_buffer);
     }
     func_0x00018074bda0(local_buffer, 0x100, 0);
     buffer_ptr = local_buffer;
@@ -751,7 +751,7 @@ void set_network_connection_settings(uint64_t connection_handle, int64_t setting
       FUN_180749ef0(0x1f, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
     }
     // 安全验证失败
-    FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
+    SystemSecurityChecker(security_token ^ (uint64_t)temp_buffer);
   }
   
   // 初始化连接设置
@@ -794,15 +794,15 @@ void broadcast_network_connection(uint64_t connection_handle, uint64_t message_d
   security_token = GET_SECURITY_COOKIE() ^ (uint64_t)temp_buffer;
   status_code = FUN_18083fc50();
   if ((status_code != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
-    error_code = FUN_18074b880(local_buffer, 0x100, message_data);
-    message_length = FUN_18074b880(local_buffer + error_code, 0x100 - error_code, &NETWORK_BUFFER_MANAGER);
+    error_code = SystemDataProcessor(local_buffer, 0x100, message_data);
+    message_length = SystemDataProcessor(local_buffer + error_code, 0x100 - error_code, &NETWORK_BUFFER_MANAGER);
     func_0x00018074bda0(local_buffer + (error_code + message_length), 0x100 - (error_code + message_length), message_size);
     buffer_ptr = local_buffer;
     // 发送广播消息
     FUN_180749ef0(status_code, 0xb, connection_handle, &NETWORK_CONNECTION_POOL);
   }
   // 安全验证失败
-  FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
+  SystemSecurityChecker(security_token ^ (uint64_t)temp_buffer);
 }
 
 // 网络连接错误处理函数
@@ -812,8 +812,8 @@ void handle_network_connection_error(uint64_t connection_handle)
   int error_code;
   int32_t unaff_ESI;
   
-  status_code = FUN_18074b880(&stack0x00000030, 0x100);
-  error_code = FUN_18074b880(&stack0x00000030 + status_code, 0x100 - status_code, &NETWORK_BUFFER_MANAGER);
+  status_code = SystemDataProcessor(&stack0x00000030, 0x100);
+  error_code = SystemDataProcessor(&stack0x00000030 + status_code, 0x100 - status_code, &NETWORK_BUFFER_MANAGER);
   func_0x00018074bda0(&stack0x00000030 + (status_code + error_code), 0x100 - (status_code + error_code));
   // 记录错误日志
   FUN_180749ef0(unaff_ESI, 0xb);
@@ -825,7 +825,7 @@ void cleanup_network_connection(uint64_t connection_handle)
   uint64_t cleanup_token;
   
   // 执行清理操作
-  FUN_1808fc050(cleanup_token ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(cleanup_token ^ (uint64_t)&stack0x00000000);
 }
 
 // 网络连接验证函数
@@ -853,7 +853,7 @@ void validate_network_connection(uint64_t connection_handle, int32_t *validation
   }
   if ((status_code != 0) && ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) != 0)) {
     error_code = func_0x00018074bda0(local_buffer, 0x100, validation_result);
-    validation_length = FUN_18074b880(local_buffer + error_code, 0x100 - error_code, &NETWORK_BUFFER_MANAGER);
+    validation_length = SystemDataProcessor(local_buffer + error_code, 0x100 - error_code, &NETWORK_BUFFER_MANAGER);
     func_0x00018074bda0(local_buffer + (error_code + validation_length), 0x100 - (error_code + validation_length), validation_data);
     buffer_ptr = local_buffer;
     // 记录验证日志
@@ -861,7 +861,7 @@ void validate_network_connection(uint64_t connection_handle, int32_t *validation
   }
 validation_success:
   // 安全验证失败
-  FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
+  SystemSecurityChecker(security_token ^ (uint64_t)temp_buffer);
 }
 
 // 网络连接重置函数
@@ -872,7 +872,7 @@ void reset_network_connection(uint64_t connection_handle)
   int32_t unaff_ESI;
   
   status_code = func_0x00018074bda0(&stack0x00000040, 0x100);
-  error_code = FUN_18074b880(&stack0x00000040 + status_code, 0x100 - status_code, &NETWORK_BUFFER_MANAGER);
+  error_code = SystemDataProcessor(&stack0x00000040 + status_code, 0x100 - status_code, &NETWORK_BUFFER_MANAGER);
   func_0x00018074bda0(&stack0x00000040 + (status_code + error_code), 0x100 - (status_code + error_code));
   // 记录重置日志
   FUN_180749ef0(unaff_ESI, 0xb);
@@ -884,7 +884,7 @@ void terminate_network_connection(uint64_t connection_handle)
   uint64_t termination_token;
   
   // 执行终止操作
-  FUN_1808fc050(termination_token ^ (uint64_t)&stack0x00000000);
+  SystemSecurityChecker(termination_token ^ (uint64_t)&stack0x00000000);
 }
 
 // 网络连接状态查询函数
@@ -904,7 +904,7 @@ void query_network_connection_status(uint64_t connection_handle, uint64_t *statu
   if (status_info == (uint64_t *)0x0) {
     if ((*(byte *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x10) & 0x80) == 0) {
       // 安全验证失败
-      FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
+      SystemSecurityChecker(security_token ^ (uint64_t)temp_buffer);
     }
     func_0x00018074bda0(local_buffer, 0x100, 0);
     buffer_ptr = local_buffer;
@@ -974,7 +974,7 @@ void get_network_connection_id(uint64_t connection_handle, uint64_t *connection_
   }
 success_handler:
   // 安全验证失败
-  FUN_1808fc050(security_token ^ (uint64_t)temp_buffer);
+  SystemSecurityChecker(security_token ^ (uint64_t)temp_buffer);
 }
 
 // =============================================================================

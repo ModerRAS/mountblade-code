@@ -233,7 +233,7 @@ void network_connection_initializer(uint64_t param_1)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -273,7 +273,7 @@ void network_connection_processor(uint64_t param_1)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -328,7 +328,7 @@ void network_connection_validator(uint64_t param_1)
 
 validation_complete:
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -400,7 +400,7 @@ void network_packet_processor(uint64_t param_1, uint64_t *param_2, int64_t *para
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -447,7 +447,7 @@ void network_state_manager(int64_t param_1, int64_t param_2)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -479,7 +479,7 @@ void network_data_transmitter(int64_t param_1, int64_t param_2)
     // 检查传输参数
     if (1.1920929e-07 < *(float *)(param_2 + 0x94)) {
         *(int8_t *)(param_1 + 8) = 1;
-        FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+        SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
     }
     
     // 获取传输句柄
@@ -500,7 +500,7 @@ void network_data_transmitter(int64_t param_1, int64_t param_2)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -577,7 +577,7 @@ void network_message_processor(int64_t param_1, int64_t param_2)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -615,7 +615,7 @@ void network_system_terminator2(void)
     uint64_t stack_protection;    // 栈保护变量
     
     // 执行系统清理
-    FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -768,7 +768,7 @@ void network_data_manager(int64_t *param_1, int64_t param_2, int64_t *param_3)
 
 processing_complete:
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -847,7 +847,7 @@ void network_connection_manager(int64_t param_1, int64_t param_2)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -895,7 +895,7 @@ void network_data_receiver(uint64_t param_1, int64_t param_2)
     }
     
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -939,7 +939,7 @@ void network_system_cleaner(void)
     uint64_t stack_protection;   // 栈保护变量
     
     // 执行系统清理
-    FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -959,7 +959,7 @@ void network_system_resetter(void)
     uint64_t stack_protection;   // 栈保护变量
     
     // 执行系统重置
-    FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1074,7 +1074,7 @@ void network_buffer_manager(int64_t *param_1, int64_t param_2, int64_t *param_3)
 
 buffer_management_complete:
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
 }
 
 /**
@@ -1112,7 +1112,7 @@ void network_system_terminator4(void)
     uint64_t stack_protection;   // 栈保护变量
     
     // 执行系统重置
-    FUN_1808fc050(stack_protection ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)&stack0x00000000);
 }
 
 /**
@@ -1250,7 +1250,7 @@ uint64_t * string_parser_processor(char *param_1, uint64_t *param_2)
 
 parsing_complete:
     // 执行清理操作
-    FUN_1808fc050(stack_protection ^ (uint64_t)protection_stack);
+    SystemSecurityChecker(stack_protection ^ (uint64_t)protection_stack);
     
     return param_2;
 }
@@ -1347,7 +1347,7 @@ uint network_resource_cleaner1(int64_t *param_1)
         
         if ((0 < (int)resource_count) && (*param_1 != 0)) {
             // 清理资源
-            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
         }
         
         *param_1 = 0;
@@ -1388,7 +1388,7 @@ uint network_resource_cleaner1(int64_t *param_1)
     
     if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         // 清理资源
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     *param_1 = 0;
@@ -1427,7 +1427,7 @@ uint network_resource_cleaner2(int64_t *param_1)
         
         if ((0 < (int)resource_count) && (*param_1 != 0)) {
             // 清理资源
-            FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+            SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
         }
         
         *param_1 = 0;
@@ -1454,7 +1454,7 @@ uint network_resource_cleaner2(int64_t *param_1)
     
     if ((0 < *(int *)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         // 清理资源
-        FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+        SystemDataValidator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     *param_1 = 0;
