@@ -736,7 +736,7 @@ unsigned char FUN_180448ea0(int64_t *param_1)
  * - 验证状态值的合法性
  * - 更新系统状态
  */
-void FUN_180448f00(int64_t *param_1, unsigned char param_2)
+void RenderingSystem_Controller(int64_t *param_1, unsigned char param_2)
 {
     if (param_1 == NULL) {
         return;
