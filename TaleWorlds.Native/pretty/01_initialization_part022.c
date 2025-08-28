@@ -21,6 +21,12 @@
 #define FUN_1800582b0 SystemContextInitializer
 #define FUN_180058370 SystemManager
 #define FUN_18004b790 SystemExecutor
+#define FUN_180056de0 SystemDataAllocator
+#define FUN_180056e10 SystemMemoryAllocator
+#define FUN_180056e60 SystemResourceAllocator
+#define FUN_180056e90 SystemStateAllocator
+#define FUN_180056f10 SystemContextAllocator
+#define FUN_180057090 SystemDataProcessor
 
 // 函数: void SystemInitializer(int64_t param_1)
 void SystemInitializer(int64_t param_1)
