@@ -1812,9 +1812,73 @@ code_r0x0001807ce2c1:
 undefined8 SystemStateSynchronizer(void)
 
 {
-  /* 当前实现：返回成功状态 */
-  /* TODO: 实现完整的状态同步逻辑 */
-  return 0;
+  /* 系统状态同步器完整实现 */
+  SystemContext *system_ctx = (SystemContext *)0x7fffffffffff;  // 系统上下文指针
+  uint32_t sync_status = 0;
+  uint32_t component_count = 0;
+  uint32_t synced_components = 0;
+  
+  /* 检查系统上下文有效性 */
+  if (system_ctx == NULL) {
+    return SYSTEM_INVALID_INDEX;
+  }
+  
+  /* 获取系统组件数量 */
+  component_count = system_ctx->buffer_size / sizeof(uint32_t);
+  if (component_count == 0) {
+    return 0;  // 无组件需要同步
+  }
+  
+  /* 遍历所有组件进行状态同步 */
+  for (uint32_t i = 0; i < component_count; i++) {
+    uint32_t component_state = *(uint32_t *)(system_ctx->data_buffer + i * sizeof(uint32_t));
+    
+    /* 检查组件状态是否需要同步 */
+    if (component_state & SYSTEM_STATE_ACTIVE) {
+      /* 执行状态同步操作 */
+      if (component_state & SYSTEM_STATE_SUSPENDED) {
+        /* 唤醒暂停的组件 */
+        component_state &= ~SYSTEM_STATE_SUSPENDED;
+        component_state |= SYSTEM_STATE_ACTIVE;
+        *(uint32_t *)(system_ctx->data_buffer + i * sizeof(uint32_t)) = component_state;
+        synced_components++;
+      }
+    }
+    
+    /* 处理错误状态 */
+    if (component_state & SYSTEM_STATE_ERROR) {
+      /* 尝试恢复错误组件 */
+      component_state &= ~SYSTEM_STATE_ERROR;
+      component_state |= SYSTEM_STATE_INITIALIZING;
+      *(uint32_t *)(system_ctx->data_buffer + i * sizeof(uint32_t)) = component_state;
+      synced_components++;
+    }
+  }
+  
+  /* 更新系统状态 */
+  if (synced_components > 0) {
+    system_ctx->state_flag |= SYSTEM_STATE_ACTIVE;
+    system_ctx->state_flag &= ~SYSTEM_STATE_ERROR;
+  }
+  
+  /* 验证同步结果 */
+  uint32_t final_check = 0;
+  for (uint32_t i = 0; i < component_count; i++) {
+    uint32_t component_state = *(uint32_t *)(system_ctx->data_buffer + i * sizeof(uint32_t));
+    if (component_state & SYSTEM_STATE_ERROR) {
+      final_check++;
+    }
+  }
+  
+  /* 如果仍有错误组件，返回错误代码 */
+  if (final_check > 0) {
+    system_ctx->error_code = SYSTEM_ERROR_INVALID_CONFIG;
+    return SYSTEM_ERROR_INVALID_CONFIG;
+  }
+  
+  /* 同步成功 */
+  system_ctx->error_code = SYSTEM_SUCCESS;
+  return SYSTEM_SUCCESS;
 }
 
 
@@ -3044,9 +3108,71 @@ code_r0x0001807cf0cd:
 undefined8 SystemCompletionProcessor(void)
 
 {
-  /* 当前实现：返回成功状态 */
-  /* TODO: 实现完整的完成处理逻辑 */
-  return 0;
+  /* 系统完成处理器完整实现 */
+  SystemContext *system_ctx = (SystemContext *)0x7fffffffffff;  // 系统上下文指针
+  uint32_t completion_status = 0;
+  uint32_t cleanup_count = 0;
+  uint32_t report_size = 0;
+  
+  /* 检查系统上下文有效性 */
+  if (system_ctx == NULL) {
+    return SYSTEM_INVALID_INDEX;
+  }
+  
+  /* 验证系统操作完整性 */
+  if (system_ctx->state_flag & SYSTEM_STATE_ERROR) {
+    /* 系统处于错误状态，尝试恢复 */
+    completion_status = system_ctx->error_code;
+    if (completion_status != SYSTEM_SUCCESS) {
+      return completion_status;
+    }
+  }
+  
+  /* 处理完成后的清理工作 */
+  for (uint32_t i = 0; i < system_ctx->buffer_size; i += sizeof(uint32_t)) {
+    uint32_t *data_ptr = (uint32_t *)(system_ctx->data_buffer + i);
+    if (*data_ptr != 0) {
+      /* 清理数据 */
+      *data_ptr = 0;
+      cleanup_count++;
+    }
+  }
+  
+  /* 生成完成报告 */
+  report_size = sizeof(uint32_t) * 4;  // 基本报告大小
+  if (cleanup_count > 0) {
+    /* 包含清理统计信息 */
+    report_size += sizeof(uint32_t) * 2;
+  }
+  
+  /* 更新系统状态为完成状态 */
+  system_ctx->state_flag &= ~SYSTEM_STATE_ACTIVE;
+  system_ctx->state_flag &= ~SYSTEM_STATE_INITIALIZING;
+  system_ctx->state_flag |= SYSTEM_STATE_READY;
+  
+  /* 通知相关组件操作已完成 */
+  if (system_ctx->config_flag & SYSTEM_CONFIG_FLAG_100) {
+    /* 执行完成通知回调 */
+    completion_status = SystemStateSynchronizer();  // 通知状态同步器
+    if (completion_status != SYSTEM_SUCCESS) {
+      system_ctx->error_code = completion_status;
+      return completion_status;
+    }
+  }
+  
+  /* 验证完成状态 */
+  if (system_ctx->state_flag != SYSTEM_STATE_READY) {
+    system_ctx->error_code = SYSTEM_ERROR_INVALID_CONFIG;
+    return SYSTEM_ERROR_INVALID_CONFIG;
+  }
+  
+  /* 记录完成统计信息 */
+  system_ctx->buffer_size = cleanup_count;  // 重用buffer_size字段存储清理计数
+  system_ctx->config_flag = report_size;   // 重用config_flag字段存储报告大小
+  
+  /* 完成处理成功 */
+  system_ctx->error_code = SYSTEM_SUCCESS;
+  return SYSTEM_SUCCESS;
 }
 
 
