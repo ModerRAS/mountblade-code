@@ -371,66 +371,97 @@ LAB_1800a7660:
   uStack_900 = 0;                                // 重置路径控制变量2
   puStack_910 = (undefined1 *)0x0;               // 初始化路径指针3为NULL
   uStack_908 = 0;                                // 重置路径长度2
+  // ==================== 路径字符串处理 ====================
+  
+  // 处理第一个路径字符串
   if (iStack_7a0 != 0) {
-    iVar2 = iStack_7a0 + 1;
-    if (iStack_7a0 + 1 < 0x10) {
-      iVar2 = 0x10;
+    // 计算需要的缓冲区大小
+    iVar2 = iStack_7a0 + 1;                        // 长度+1用于空字符
+    if (iVar2 < MIN_BUFFER_SIZE) {                 // 确保最小缓冲区大小
+      iVar2 = MIN_BUFFER_SIZE;
     }
-    puStack_910 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar2,0x13);
-    *puStack_910 = 0;
-    uVar3 = FUN_18064e990(puStack_910);
-    uStack_900 = CONCAT44(uStack_900._4_4_,uVar3);
+    
+    // 分配内存缓冲区
+    puStack_910 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18, (longlong)iVar2, MEMORY_TYPE_STRING);
+    *puStack_910 = 0;                               // 初始化为空字符串
+    
+    // 设置字符串属性
+    uVar3 = FUN_18064e990(puStack_910);           // 获取字符串属性
+    uStack_900 = CONCAT44(uStack_900._4_4_, uVar3);  // 更新路径控制变量
+    
+    // 复制字符串内容
     if (iStack_7a0 != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(puStack_910,puStack_7a8,iStack_7a0 + 1);
+      // WARNING: 此函数不会返回
+      memcpy(puStack_910, puStack_7a8, iStack_7a0 + 1);  // 复制字符串内容
     }
   }
+  
+  // 处理路径字符串的清理和验证
   if (puStack_7a8 != (undefined *)0x0) {
-    uStack_908 = 0;
+    uStack_908 = 0;                                // 重置路径长度2
     if (puStack_910 != (undefined1 *)0x0) {
-      *puStack_910 = 0;
+      *puStack_910 = 0;                            // 清空字符串
     }
-    uStack_900 = uStack_900 & 0xffffffff;
+    uStack_900 = uStack_900 & 0xffffffff;          // 清除高位数据
   }
-  uVar5 = FUN_180627600(apuStack_518,uStack_790);
-  FUN_1806279c0(auStack_750,uVar5);
-  apuStack_518[0] = &UNK_18098bcb0;
-  puStack_638 = &UNK_1809feda8;
-  puStack_630 = auStack_620;
-  auStack_620[0] = 0;
-  iStack_628 = iStack_740;
-  puVar15 = &DAT_18098bc73;
+  // ==================== 文件名处理 ====================
+  
+  // 处理第二个路径字符串
+  uVar5 = FUN_180627600(apuStack_518, uStack_790);  // 处理路径参数
+  FUN_1806279c0(auStack_750, uVar5);               // 初始化文件缓冲区
+  apuStack_518[0] = &UNK_18098bcb0;                // 设置路径数组初始值
+  
+  // 文件名处理初始化
+  puStack_638 = &UNK_1809feda8;                    // 初始化字符串指针1
+  puStack_630 = auStack_620;                       // 设置字符串指针2
+  auStack_620[0] = 0;                              // 初始化字符串缓冲区
+  iStack_628 = iStack_740;                         // 设置字符串长度1
+  
+  // 获取文件名来源
+  puVar15 = &DAT_18098bc73;                        // 默认文件名
   if (puStack_748 != (undefined *)0x0) {
-    puVar15 = puStack_748;
+    puVar15 = puStack_748;                          // 使用自定义文件名
   }
-  strcpy_s(auStack_620,0x100,puVar15);
-  uStack_838 = 1;
-  uVar11 = iStack_740 - 1;
-  lVar6 = (longlong)(int)uVar11;
+  
+  // 安全复制文件名
+  strcpy_s(auStack_620, MAX_PATH_LENGTH, puVar15);  // 安全复制文件名到缓冲区
+  
+  // ==================== 文件扩展名处理 ====================
+  
+  uStack_838 = 1;                                   // 设置路径控制标志
+  uVar11 = iStack_740 - 1;                         // 获取文件名长度-1
+  lVar6 = (longlong)(int)uVar11;                   // 转换为长整型索引
+  
+  // 从后向前查找文件扩展名分隔符
   if (-1 < (int)uVar11) {
     do {
-      if (puStack_748[lVar6] == '.') {
+      if (puStack_748[lVar6] == DOT_CHARACTER) {   // 查找点字符
         if (uVar11 != 0xffffffff) {
-          puStack_630[uVar11] = 0;
-          lVar6 = -1;
+          puStack_630[uVar11] = NULL_TERMINATOR;    // 截断扩展名
+          lVar6 = -1;                               // 重置索引
           do {
-            lVar6 = lVar6 + 1;
-          } while (puStack_630[lVar6] != '\0');
-          iStack_628 = (int)lVar6;
+            lVar6 = lVar6 + 1;                      // 向前移动索引
+          } while (puStack_630[lVar6] != '\0');     // 查找字符串结束
+          iStack_628 = (int)lVar6;                  // 更新字符串长度
         }
-        break;
+        break;                                      // 退出循环
       }
-      uVar11 = uVar11 - 1;
-      lVar6 = lVar6 + -1;
-    } while (-1 < lVar6);
+      uVar11 = uVar11 - 1;                          // 减少索引
+      lVar6 = lVar6 + -1;                           // 减少长整型索引
+    } while (-1 < lVar6);                           // 继续查找
   }
-  FUN_1806279c0(auStack_788,&puStack_638);
-  uStack_838 = 0;
-  puStack_638 = &UNK_18098bcb0;
-  puStack_960 = &UNK_180a3c3e0;
-  uStack_948 = 0;
-  puStack_958 = (undefined1 *)0x0;
-  uStack_950 = 0;
+  // ==================== 路径构建准备 ====================
+  
+  // 完成文件名处理
+  FUN_1806279c0(auStack_788, &puStack_638);         // 完成文件名处理
+  uStack_838 = 0;                                   // 重置路径控制标志
+  puStack_638 = &UNK_18098bcb0;                    // 重置字符串指针1
+  
+  // 初始化第三个路径处理实例
+  puStack_960 = &UNK_180a3c3e0;                    // 初始化无定义栈指针2
+  uStack_948 = 0;                                   // 重置无符号长长整型栈变量1
+  puStack_958 = (undefined1 *)0x0;                // 初始化1字节栈指针2为NULL
+  uStack_950 = 0;                                   // 重置无符号整型栈变量2
   if (iStack_778 != 0) {
     iVar2 = iStack_778 + 1;
     if (iVar2 < 0x10) {
