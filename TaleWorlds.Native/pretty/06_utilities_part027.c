@@ -1461,7 +1461,7 @@ void FUN_180941e00(void)
                     // WARNING: Subroutine does not return
     utilities_system_error_handler();
   }
-  FUN_180320b20(0x180d498a0);
+  utilities_system_memory_finalizer(0x180d498a0);
   *system_memory_data_ptr = SYSTEM_DEFAULT_VALUE;
   return;
 }
@@ -2257,7 +2257,7 @@ void FUN_180942660(void)
   longlong lVar1;
   longlong lVar2;
   
-  FUN_180067070(&DAT_180bfc140);
+  utilities_system_buffer_handler(&DAT_180bfc140);
   if (0xf < uRam0000000180bfc138) {
     lVar1 = CONCAT71(uRam0000000180bfc121,uRam0000000180bfc120);
     lVar2 = lVar1;
@@ -2491,8 +2491,8 @@ void FUN_180942720(void)
 #define utilities_system_cleanup_handler FUN_18005a050
 #define utilities_system_finalizer utilities_system_finalizer
 #define utilities_system_memory_initializer utilities_system_memory_initializer
-#define utilities_system_memory_finalizer FUN_180320b20
-#define utilities_system_buffer_handler FUN_180067070
+#define utilities_system_memory_finalizer utilities_system_memory_finalizer
+#define utilities_system_buffer_handler utilities_system_buffer_handler
 #define utilities_system_parameter_validator FUN_1808fd8d4
 
 // 系统数组指针重置函数别名
