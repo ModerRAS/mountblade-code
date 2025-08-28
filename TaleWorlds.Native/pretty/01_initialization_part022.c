@@ -3,6 +3,14 @@
 
 // 01_initialization_part022.c - 25 个函数
 
+// 外部函数别名定义
+#define FUN_180058a20 SystemDataMerger
+#define FUN_180049830 SystemMemoryInitializer
+#define FUN_18020e0e0 SystemResourceInitializer
+#define FUN_18020e840 SystemConfigInitializer
+#define FUN_180049470 SystemSecurityInitializer
+#define FUN_180060680 SystemDataValidator
+
 // 函数: void SystemInitializer(int64_t param_1)
 void SystemInitializer(int64_t param_1)
 
@@ -93,7 +101,7 @@ LAB_180056228:
           } while (plVar8 != *(int64_t **)(*(int64_t *)(lVar12 + lVar14 * 8) + 0x50));
         }
         lVar9 = *(int64_t *)(lVar12 + lVar14 * 8);
-        FUN_180058a20(*(int64_t *)(uVar18 + lVar12) + 0x48,
+        SystemDataMerger(*(int64_t *)(uVar18 + lVar12) + 0x48,
                       *(uint64_t *)(*(int64_t *)(uVar18 + lVar12) + 0x50),
                       *(uint64_t *)(lVar9 + 0x48),*(uint64_t *)(lVar9 + 0x50));
         lVar9 = *(int64_t *)(*(int64_t *)(param_1 + 0x48) + lVar14 * 8);
@@ -268,7 +276,7 @@ void SystemMemoryManager(int64_t *param_1)
   uStack_28 = GET_SECURITY_COOKIE() ^ (uint64_t)auStack_98;
   plVar4 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0xd0,8,3);
   pplStack_60 = (int64_t **)plVar4;
-  FUN_180049830(plVar4);
+  SystemMemoryInitializer(plVar4);
   *plVar4 = (int64_t)&unknown_var_7704_ptr;
   plVar4[0x18] = 0;
   *(int32_t *)(plVar4 + 0x19) = 0;
@@ -288,10 +296,10 @@ void SystemMemoryManager(int64_t *param_1)
   plVar4 = (int64_t *)CoreEngineMemoryPoolReallocator(system_memory_pool_ptr,0x208,8,3);
   lStack_78 = lVar3 + 0x70;
   pplStack_60 = (int64_t **)plVar4;
-  FUN_18020e0e0(plVar4,&puStack_50,3,lVar3 + 0x2e0);
+  SystemResourceInitializer(plVar4,&puStack_50,3,lVar3 + 0x2e0);
   *plVar4 = (int64_t)&unknown_var_9056_ptr;
   plStack_68 = plVar4;
-  FUN_18020e840(plVar4);
+  SystemConfigInitializer(plVar4);
   SystemInitializer(lVar3 + 0x48,&plStack_68);
   param_1[1] = (int64_t)plVar4;
   puStack_50 = &system_state_ptr;
@@ -315,7 +323,7 @@ uint64_t SystemResourceAllocator(uint64_t param_1,uint64_t param_2,uint64_t para
   uint64_t uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180049470();
+  SystemSecurityInitializer();
   if ((param_2 & 1) != 0) {
     free(param_1,0xd0,param_3,param_4,uVar1);
   }
@@ -411,7 +419,7 @@ void SystemConfigurator(int64_t param_1)
     *(int16_t *)(puVar5 + 8) = 0x2072;
     *(int8_t *)((int64_t)puVar5 + 0x22) = 0;
     uStack_88 = 0x3e;
-    FUN_180060680(acStack_60,&unknown_var_4576_ptr,900);
+    SystemDataValidator(acStack_60,&unknown_var_4576_ptr,900);
     uVar3 = uStack_88;
     lVar4 = -1;
     do {

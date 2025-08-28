@@ -462,9 +462,9 @@ void FUN_18033f560(uint64_t param_1,int64_t param_2,int64_t param_3,uint64_t par
   void *puStack_30;
   int64_t lStack_28;
   
-  puVar4 = &unknown_var_40_ptr;
+  puVar4 = &rendering_resource_ptr;
   if (*(char *)(param_3 + 0xd8) != '\0') {
-    puVar4 = &unknown_var_72_ptr;
+    puVar4 = &rendering_raycast_ptr;
   }
   FUN_180627910(&puStack_30,puVar4,param_3,param_4,0xfffffffffffffffe);
   iVar8 = *(int *)(param_2 + 0x10);
