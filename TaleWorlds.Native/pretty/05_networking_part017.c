@@ -185,6 +185,10 @@
 #define NetworkingSystem_Concat32Low CONCAT44     // 32位数据拼接（低32位）
 #define NetworkingSystem_Concat31Bits CONCAT31     // 31位数据拼接
 
+// 函数指针调用模式 - 用于动态函数调用
+#define NetworkingSystem_FunctionPointerCall(code) (**(code **))
+#define NetworkingSystem_MethodCall(obj, method) (**(code **)(obj + method))
+
 /* ============================================================================
  * 类型别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
