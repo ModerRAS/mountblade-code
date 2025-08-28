@@ -319,9 +319,9 @@ void FUN_1803e8510(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t p
     FUN_180062300(system_message_context,&unknown_var_9832_ptr,param_3,puVar5);
   }
   if (acStack_c8[0] != '\0') {
-    FUN_180067070(apppuStack_c0);
+    SystemResourceAllocator(apppuStack_c0);
   }
-  FUN_180067070(auStack_e8);
+  SystemResourceAllocator(auStack_e8);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_158);
 }
@@ -335,7 +335,7 @@ void FUN_1803e8510(uint64_t param_1,int32_t param_2,uint64_t *param_3,uint64_t p
 void FUN_1803e8790(int64_t param_1)
 
 {
-  FUN_180067070(param_1 + 8);
+  SystemResourceAllocator(param_1 + 8);
   return;
 }
 
@@ -588,7 +588,7 @@ void FUN_1803e8ce0(uint64_t *param_1)
     (**(code **)(*(int64_t *)param_1[0x97] + 0x38))();
   }
   _Mtx_destroy_in_situ();
-  FUN_180067070(param_1 + 0x88);
+  SystemResourceAllocator(param_1 + 0x88);
   param_1[99] = &system_state_ptr;
   param_1[0x40] = &system_state_ptr;
   param_1[0x3c] = &system_data_buffer_ptr;

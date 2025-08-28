@@ -257,7 +257,7 @@ void FUN_180480ab0(int64_t param_1,uint64_t param_2,uint64_t param_3)
     uStack_e4 = 3;
     uVar16 = extraout_XMM0_Da;
     if (&uStack_a8 != puVar5) {
-      FUN_180067070(&uStack_a8);
+      SystemResourceAllocator(&uStack_a8);
       uVar16 = *puVar5;
       uStack_a4 = puVar5[1];
       uStack_a0 = puVar5[2];
@@ -482,7 +482,7 @@ void FUN_180480ef0(uint64_t *param_1,uint64_t *param_2,int64_t param_3,int64_t p
                        ((int64_t *)*param_1,&uStack_68,lVar3,uStack_88);
     uStack_98 = 3;
     if (param_2 != puVar4) {
-      FUN_180067070(param_2);
+      SystemResourceAllocator(param_2);
       uVar1 = puVar4[1];
       *param_2 = *puVar4;
       param_2[1] = uVar1;
@@ -593,7 +593,7 @@ void FUN_1804810a0(int8_t *param_1,int32_t param_2)
   uStack_68 = param_2;
   puVar6 = (uint *)FUN_180496270(&uStack_90);
   if (&uStack_60 != puVar6) {
-    FUN_180067070(&uStack_60);
+    SystemResourceAllocator(&uStack_60);
     uStack_60 = *puVar6;
     uStack_5c = puVar6[1];
     uStack_58 = puVar6[2];
@@ -658,11 +658,11 @@ void FUN_1804810a0(int8_t *param_1,int32_t param_2)
   uStack_d0 = uVar4;
   uStack_cc = uVar5;
   uStack_90 = param_2;
-  FUN_180067070(&uStack_88);
+  SystemResourceAllocator(&uStack_88);
   uStack_e8 = 2;
-  FUN_180067070(&uStack_d8);
+  SystemResourceAllocator(&uStack_d8);
   uStack_e8 = 1;
-  FUN_180067070(&uStack_60);
+  SystemResourceAllocator(&uStack_60);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_108);
 }
@@ -893,7 +893,7 @@ void FUN_180481f30(int64_t *param_1)
     if ((*(int64_t *)(lVar1 + 0x40) != 0) && (*(int64_t *)(lVar1 + 0x40) != -1)) {
       CloseHandle();
     }
-    FUN_180067070(lVar1 + 0x18);
+    SystemResourceAllocator(lVar1 + 0x18);
     FUN_1803f32c0(lVar1);
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -1021,7 +1021,7 @@ void FUN_1804820a0(int8_t *param_1,int32_t param_2)
   uStack_68 = param_2;
   puVar6 = (uint *)FUN_180496270(&uStack_90);
   if (&uStack_60 != puVar6) {
-    FUN_180067070(&uStack_60);
+    SystemResourceAllocator(&uStack_60);
     uStack_60 = *puVar6;
     uStack_5c = puVar6[1];
     uStack_58 = puVar6[2];
@@ -1086,11 +1086,11 @@ void FUN_1804820a0(int8_t *param_1,int32_t param_2)
   uStack_d0 = uVar4;
   uStack_cc = uVar5;
   uStack_90 = param_2;
-  FUN_180067070(&uStack_88);
+  SystemResourceAllocator(&uStack_88);
   uStack_e8 = 2;
-  FUN_180067070(&uStack_d8);
+  SystemResourceAllocator(&uStack_d8);
   uStack_e8 = 1;
-  FUN_180067070(&uStack_60);
+  SystemResourceAllocator(&uStack_60);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_40 ^ (uint64_t)auStack_108);
 }

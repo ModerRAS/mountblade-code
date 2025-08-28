@@ -327,7 +327,7 @@ void process_permission_callback(uint64_t param_1,int param_2,int64_t *param_3,i
         return;
       }
       (**(code **)(*handler_ptr + 0x10))(handler_ptr,status_array,&string_ptr,result_array);
-      FUN_180067070(temp_buffer);
+      SystemResourceAllocator(temp_buffer);
     }
   }
   handler_ptr = (int64_t *)param_4[7];
@@ -349,7 +349,7 @@ void process_permission_callback(uint64_t param_1,int param_2,int64_t *param_3,i
 // 功能：清理字符串资源
 void cleanup_string_resources(void)
 {
-  FUN_180067070();
+  SystemResourceAllocator();
   return;
 }
 

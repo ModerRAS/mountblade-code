@@ -959,16 +959,16 @@ void FUN_1801b5340(int64_t param_1)
   if (*(int64_t **)(param_1 + 0xe18) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xe18) + 0x38))();
   }
-  SystemDataValidator(param_1 + 0xe08,8,2,FUN_180045af0,uVar1);
+  SystemDataValidator(param_1 + 0xe08,8,2,DataCacheManager,uVar1);
   if (*(int64_t **)(param_1 + 0xe00) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xe00) + 0x38))();
   }
   if (*(int64_t **)(param_1 + 0xdf8) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(param_1 + 0xdf8) + 0x38))();
   }
-  SystemDataValidator(param_1 + 0xde8,8,2,FUN_180045af0,uVar1);
-  SystemDataValidator(param_1 + 0xdd8,8,2,FUN_180045af0);
-  SystemDataValidator(param_1 + 0xdc8,8,2,FUN_180045af0);
+  SystemDataValidator(param_1 + 0xde8,8,2,DataCacheManager,uVar1);
+  SystemDataValidator(param_1 + 0xdd8,8,2,DataCacheManager);
+  SystemDataValidator(param_1 + 0xdc8,8,2,DataCacheManager);
   SystemDataValidator(param_1 + 0xb70,0x128,2,FUN_1801b9690);
   SystemDataValidator(param_1 + 0x918,0x128,2,FUN_1801b9690);
   SystemDataValidator(param_1,0x488,2,FUN_1800e7ca0);

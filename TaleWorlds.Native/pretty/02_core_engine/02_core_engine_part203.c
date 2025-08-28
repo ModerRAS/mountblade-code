@@ -984,7 +984,7 @@ void FUN_180186360(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   uint64_t uVar5;
   
   uVar5 = 0xfffffffffffffffe;
-  FUN_180067070(param_1 + 0x90);
+  SystemResourceAllocator(param_1 + 0x90);
   plVar2 = *(int64_t **)(param_1 + 0x78);
   if (plVar2 != (int64_t *)0x0) {
     (**(code **)(*plVar2 + 0x20))(plVar2,plVar2 != (int64_t *)(param_1 + 0x40));
@@ -1006,7 +1006,7 @@ void FUN_180186360(int64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
     *(uint64_t *)(param_1 + 0x28) = 0;
     *(uint64_t *)(param_1 + 0x30) = 0;
   }
-  FUN_180067070(param_1);
+  SystemResourceAllocator(param_1);
   return;
 }
 

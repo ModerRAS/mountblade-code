@@ -473,7 +473,7 @@ void FUN_180472240(uint64_t *param_1,uint64_t *param_2)
   uStack_50 = 0;
   uStack_48 = 0;
   uStack_58 = 0;
-  FUN_180067070(param_2);
+  SystemResourceAllocator(param_2);
                     // WARNING: Subroutine does not return
   SystemSecurityChecker(uStack_18 ^ (uint64_t)auStack_78);
 }
@@ -695,8 +695,8 @@ void FUN_1804726c0(int64_t param_1,uint64_t *param_2,uint64_t *param_3)
       }
     }
   }
-  FUN_180067070(&uStack_60);
-  FUN_180067070(param_2);
+  SystemResourceAllocator(&uStack_60);
+  SystemResourceAllocator(param_2);
   plVar6 = (int64_t *)param_3[1];
   if (plVar6 != (int64_t *)0x0) {
     LOCK();
@@ -753,7 +753,7 @@ void FUN_180472880(int64_t param_1)
       }
     }
   }
-  FUN_180067070(param_1);
+  SystemResourceAllocator(param_1);
   return;
 }
 

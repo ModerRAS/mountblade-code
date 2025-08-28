@@ -267,7 +267,7 @@ void ProcessStringAndMemoryManagement(int64_t *param_1, int64_t param_2, int64_t
   
   // 更新字符串状态
   uStack_e8 = 1;
-  FUN_180067070(&uStack_a8);
+  SystemResourceAllocator(&uStack_a8);
   uVar9 = uStack_58;
   uVar1 = uStack_68;
   uStack_a8 = uStack_68;

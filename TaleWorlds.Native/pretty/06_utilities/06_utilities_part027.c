@@ -1649,7 +1649,7 @@ void utilities_memory_cleaner_1(void)
     int64_t memory_ptr1;
     int64_t memory_ptr2;
     
-    FUN_180067070(&system_cache_config);
+    SystemResourceAllocator(&system_cache_config);
     if (0xf < uRam0000000180bfc138) {
         memory_ptr1 = CONCAT71(uRam0000000180bfc121, uRam0000000180bfc120);
         memory_ptr2 = memory_ptr1;

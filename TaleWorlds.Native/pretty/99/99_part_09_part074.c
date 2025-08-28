@@ -760,8 +760,8 @@ uint64_t *system_memory_controller(uint64_t *param_1, uint64_t param_2, int32_t 
   
   /* 系统内存池管理 - 管理内存池 */
   memory_iterator = param_1 + 0x224;
-  memory_callback = FUN_180045af0;
-  DataStructureManager(memory_iterator, 8, 3, &SUB_18005d5f0, FUN_180045af0);
+  memory_callback = DataCacheManager;
+  DataStructureManager(memory_iterator, 8, 3, &SUB_18005d5f0, DataCacheManager);
   
   /* 系统随机数生成器初始化 - 初始化随机数生成器 */
   *(int32_t *)(param_1 + 0x229) = SYSTEM_RANDOM_SEED1;
@@ -913,7 +913,7 @@ void system_deinitializer(uint64_t *param_1)
   }
   
   /* 系统内存池释放 - 释放内存池 */
-  SystemDataValidator(param_1 + 0x224, 8, 3, FUN_180045af0, 0xfffffffffffffffe);
+  SystemDataValidator(param_1 + 0x224, 8, 3, DataCacheManager, 0xfffffffffffffffe);
   
   /* 系统组件释放 - 释放系统组件 */
   if ((int64_t *)param_1[0x220] != (int64_t *)0x0) {

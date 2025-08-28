@@ -537,7 +537,7 @@ LAB_18039c8bd:
   *(int32_t *)(lVar24 + 0x40) = 0;
 LAB_18039c8fb:
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar24,ppppppplVar10,&ppppppplStack_168,uVar3);
+  SystemNetworkHandler(lVar24,ppppppplVar10,&ppppppplStack_168,uVar3);
 }
 
 

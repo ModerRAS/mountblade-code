@@ -198,7 +198,7 @@ LAB_1803ea221:
   puStack_5b0 = &unknown_var_528_ptr;
   ppuStack_5b8 = &puStack_4d0;
   FUN_1803f4950(auStack_2f8,&uStack_3a0,&uStack_4c8,&unknown_var_540_ptr);
-  FUN_180067070(&uStack_4f0);
+  SystemResourceAllocator(&uStack_4f0);
   plVar3 = (int64_t *)puVar6[1];
   if (plVar3 != (int64_t *)0x0) {
     LOCK();

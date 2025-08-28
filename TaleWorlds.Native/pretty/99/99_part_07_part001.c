@@ -1003,8 +1003,8 @@ uint64_t * FUN_1803fa510(uint64_t *param_1) {
     *param_1 = &global_state_3600_ptr;
     
     // 对象创建和初始化
-    DataStructureManager(param_1 + 0x8a,8,2,&SUB_18005d5f0,FUN_180045af0);
-    DataStructureManager(param_1 + 0x8c,8,3,&SUB_18005d5f0,FUN_180045af0);
+    DataStructureManager(param_1 + 0x8a,8,2,&SUB_18005d5f0,DataCacheManager);
+    DataStructureManager(param_1 + 0x8c,8,3,&SUB_18005d5f0,DataCacheManager);
     *(int32_t *)(param_1 + 0x8f) = 0;
     *(int32_t *)((int64_t)param_1 + 0x47c) = 4;
     
@@ -1052,8 +1052,8 @@ uint64_t * FUN_1803fa610(uint64_t *param_1, uint param_2) {
     *param_1 = &global_state_3600_ptr;
     
     // 资源清理和释放
-    SystemDataValidator(param_1 + 0x8c,8,3,FUN_180045af0,0xfffffffffffffffe);
-    SystemDataValidator(param_1 + 0x8a,8,2,FUN_180045af0);
+    SystemDataValidator(param_1 + 0x8c,8,3,DataCacheManager,0xfffffffffffffffe);
+    SystemDataValidator(param_1 + 0x8a,8,2,DataCacheManager);
     
     // 系统配置管理
     FUN_1801f9920(param_1);

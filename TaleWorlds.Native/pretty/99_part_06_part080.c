@@ -24,7 +24,7 @@
 #define MemoryManager_CreateResourceBuffer() FUN_1800bdc80()
 #define MemoryManager_AllocateResource() FUN_1800b1230()
 #define MemoryManager_ReleaseResource() FUN_180060b80()
-#define MemoryManager_FreeMemoryBlock() FUN_180045af0()
+#define MemoryManager_FreeMemoryBlock() DataCacheManager()
 
 /* 系统初始化函数 */
 #define SystemInitializer_Initialize() FUN_1801f9920()

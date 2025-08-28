@@ -479,8 +479,8 @@ void allocate_string_structure(uint64_t *param_1)
 void free_string_structure(uint64_t param_1, int64_t param_2)
 
 {
-  FUN_180067070(param_2 + 0x40);
-  FUN_180067070(param_2 + 0x20);
+  SystemResourceAllocator(param_2 + 0x40);
+  SystemResourceAllocator(param_2 + 0x20);
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
   free(param_2,0x60);
@@ -810,8 +810,8 @@ LAB_18018ad63:
     if (uVar1 <= uVar2) {
 LAB_18018aebc:
       plStackX_8 = (int64_t *)(param_5 + 0x20);
-      FUN_180067070(param_5 + 0x40);
-      FUN_180067070((int64_t *)(param_5 + 0x20));
+      SystemResourceAllocator(param_5 + 0x40);
+      SystemResourceAllocator((int64_t *)(param_5 + 0x20));
       uStack_38 = 0x60;
       free(param_5,0x60);
       *param_2 = puVar7;

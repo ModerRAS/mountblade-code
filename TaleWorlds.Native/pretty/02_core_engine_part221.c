@@ -425,7 +425,7 @@ void ObjectManagerDestructor(uint64_t *param_1)
     }
     
     /* 清理系统事件 */
-    SystemDataValidator(param_1 + 0x5e, 8, 4, FUN_180045af0);
+    SystemDataValidator(param_1 + 0x5e, 8, 4, DataCacheManager);
     if (param_1[0x5a] != 0) {
         CoreEngine_MemoryPoolManager();
     }

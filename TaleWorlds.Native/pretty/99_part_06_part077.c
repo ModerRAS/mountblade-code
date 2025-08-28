@@ -101,7 +101,7 @@ void FUN_1803f3dd0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
   auStack_b8[0] = 0;
   FUN_1800671b0(auStack_b8,&unknown_var_1024_ptr,0x11);
   FUN_1804726c0(param_1,auStack_b8,uVar10);
-  FUN_180067070(&uStack_e8);
+  SystemResourceAllocator(&uStack_e8);
   plVar4 = plStack_100;
   if (plStack_100 != (int64_t *)0x0) {
     LOCK();
@@ -121,7 +121,7 @@ void FUN_1803f3dd0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
       }
     }
   }
-  FUN_180067070(param_2);
+  SystemResourceAllocator(param_2);
   plVar4 = (int64_t *)param_3[1];
   if (plVar4 != (int64_t *)0x0) {
     LOCK();
@@ -253,7 +253,7 @@ void FUN_1803f3fe0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
   auStack_108[0] = 0;
   FUN_1800671b0(auStack_108,&unknown_var_924_ptr,5);
   FUN_1804726c0(param_1,auStack_108,uVar10);
-  FUN_180067070(&uStack_140);
+  SystemResourceAllocator(&uStack_140);
   plVar4 = plStack_150;
   if (plStack_150 != (int64_t *)0x0) {
     LOCK();
@@ -273,7 +273,7 @@ void FUN_1803f3fe0(uint64_t param_1,uint64_t *param_2,uint64_t *param_3,uint64_t
       }
     }
   }
-  FUN_180067070(param_2);
+  SystemResourceAllocator(param_2);
   plVar4 = (int64_t *)param_3[1];
   if (plVar4 != (int64_t *)0x0) {
     LOCK();
@@ -374,7 +374,7 @@ void FUN_1803f4370(int64_t *param_1,int64_t param_2,int64_t param_3)
       lVar2 = lVar2 + 0x20;
     }
     for (; lVar3 != lVar2; lVar3 = lVar3 + 0x20) {
-      FUN_180067070(lVar3);
+      SystemResourceAllocator(lVar3);
     }
     param_1[1] = lVar2;
   }
@@ -936,7 +936,7 @@ void FUN_1803f4950(uint64_t param_1,int32_t *param_2,uint64_t *param_3,int64_t p
   } while (*(char *)(param_6 + lVar7) != '\0');
   FUN_1800671b0(auStack_f8,param_6);
   FUN_1804726c0(param_1,auStack_f8,uVar6);
-  FUN_180067070(&uStack_148);
+  SystemResourceAllocator(&uStack_148);
   plVar4 = (int64_t *)puVar5[1];
   if (plVar4 != (int64_t *)0x0) {
     LOCK();
@@ -956,7 +956,7 @@ void FUN_1803f4950(uint64_t param_1,int32_t *param_2,uint64_t *param_3,int64_t p
       }
     }
   }
-  FUN_180067070(param_2);
+  SystemResourceAllocator(param_2);
   plVar4 = (int64_t *)param_3[1];
   if (plVar4 != (int64_t *)0x0) {
     LOCK();
@@ -1052,7 +1052,7 @@ void FUN_1803f4d10(int64_t *param_1)
   
   lVar1 = param_1[1];
   for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x20) {
-    FUN_180067070(lVar2);
+    SystemResourceAllocator(lVar2);
   }
   return;
 }

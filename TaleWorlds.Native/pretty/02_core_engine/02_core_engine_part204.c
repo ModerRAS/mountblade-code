@@ -61,7 +61,7 @@ void cleanup_linked_list_memory(int64_t context, uint64_t param2, uint64_t param
   *(int64_t *)(*list_head + 0x10) = current_node;
   *(uint64_t *)(context + 0x30) = 0;
   free(*list_head, 0x28);
-  FUN_180067070(context + 8);
+  SystemResourceAllocator(context + 8);
   return;
 }
 
@@ -219,7 +219,7 @@ void format_and_process_string_data(uint64_t context, uint64_t *data_ptr)
     format_data[2] = (int64_t)engine_data;
     format_flag = 0;
     free(format_data,0x60);
-    FUN_180067070(temp_buffer);
+    SystemResourceAllocator(temp_buffer);
     *data_ptr = &global_var_3456_ptr;
     if (data_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -260,7 +260,7 @@ void reset_data_structure_and_free_memory(int64_t data_context, uint64_t param2,
   *(int64_t *)(*data_pointer + 0x10) = current_data;
   *(uint64_t *)(data_context + 0x28) = 0;
   free(*data_pointer,0x60);
-  FUN_180067070(data_context);
+  SystemResourceAllocator(data_context);
   return;
 }
 
@@ -355,8 +355,8 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
     engine_context = engine_data;
     temp_pointer = &format_data;
     (**(code **)(*engine_data + 0x28))(engine_data,first_buffer,&format_data,0);
-    FUN_180067070(second_buffer);
-    FUN_180067070(first_buffer);
+    SystemResourceAllocator(second_buffer);
+    SystemResourceAllocator(first_buffer);
     *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -391,8 +391,8 @@ void process_dual_parameter_formatting(uint64_t context, uint64_t *first_data, u
 void release_object_memory_resources(int64_t object_ptr)
 
 {
-  FUN_180067070(object_ptr + 0x20);
-  FUN_180067070(object_ptr);
+  SystemResourceAllocator(object_ptr + 0x20);
+  SystemResourceAllocator(object_ptr);
   return;
 }
 
@@ -494,8 +494,8 @@ void process_quad_parameter_formatting(uint64_t context, uint64_t *first_data, u
     engine_context = engine_data;
     temp_pointer = &format_data;
     (**(code **)(*engine_data + 0x30))(engine_data,first_buffer,&format_data,0);
-    FUN_180067070(second_buffer);
-    FUN_180067070(first_buffer);
+    SystemResourceAllocator(second_buffer);
+    SystemResourceAllocator(first_buffer);
     *first_data = &global_var_3456_ptr;
     if (first_data[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -584,7 +584,7 @@ void process_array_data_formatting(uint64_t context, int64_t array_data, uint64_
           *(int32_t *)((int64_t)array_current + 0x24) = temp_data._4_4_;
           array_tail = array_tail + 5;
         }
-        FUN_180067070(&temp_string);
+        SystemResourceAllocator(&temp_string);
         array_index = array_index + 1;
       } while (array_index < array_size);
     }
@@ -598,7 +598,7 @@ void process_array_data_formatting(uint64_t context, int64_t array_data, uint64_
     array_current = array_head;
     if (array_head != (void **)0x0) {
       for (; array_temp = array_current, array_current != array_start; array_current = array_current + 5) {
-        FUN_180067070(array_current);
+        SystemResourceAllocator(array_current);
       }
       array_index = (((int64_t)array_end - (int64_t)array_head) / 0x28) * 0x28;
       array_current = array_head;
@@ -972,14 +972,14 @@ INSERT_NEW:
       search_node[2] = current_node;
       node_pointer = (void **)0x0;
       free(search_node,0x60);
-      FUN_180067070(&temp_data);
+      SystemResourceAllocator(&temp_data);
     }
     map_pointer = &temp_data;
     temp_data = &global_var_536_ptr;
     node_pointer = &temp_data;
     temp_pointer = map_ptr;
     (**(code **)(*(int64_t *)map_ptr[1] + 8))(map_ptr[1],&result_start,&temp_data,0);
-    FUN_180067070(key_buffer);
+    SystemResourceAllocator(key_buffer);
     node_offset = result_end;
     string_length = result_start;
     if (result_start != 0) {
@@ -1022,7 +1022,7 @@ void release_array_block_memory(int64_t *array_ptr)
   int64_t current_block;
   int64_t end_block;
   
-  FUN_180067070(array_ptr + 3);
+  SystemResourceAllocator(array_ptr + 3);
   current_block = *array_ptr;
   if (current_block != 0) {
     end_block = array_ptr[1];
@@ -1074,7 +1074,7 @@ void cleanup_data_block_resources(int64_t block_ptr, uint64_t param2, uint64_t p
   *(int64_t *)(*data_pointer + 0x10) = current_data;
   *(uint64_t *)(block_ptr + 0x38) = 0;
   free(*data_pointer,0x60);
-  FUN_180067070(block_ptr);
+  SystemResourceAllocator(block_ptr);
   return;
 }
 

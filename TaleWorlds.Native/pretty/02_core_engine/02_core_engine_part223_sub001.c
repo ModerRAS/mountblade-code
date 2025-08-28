@@ -53,7 +53,7 @@ void CoreEngineSubsystem_Initialize(uint64_t param_1, uint64_t param_2, uint64_t
     }
     
     // 清理临时资源
-    FUN_180067070(subsystem_state);
+    SystemResourceAllocator(subsystem_state);
     FUN_1801884d0(resource_manager, resource_manager[1]);
   }
   

@@ -312,7 +312,7 @@ void FUN_180184120(uint64_t param_1,int param_2,int64_t *param_3,int64_t *param_
         return;
       }
       (**(code **)(*plVar1 + 0x10))(plVar1,aiStack_58,&puStack_48,alStack_40);
-      FUN_180067070(auStack_30);
+      SystemResourceAllocator(auStack_30);
     }
   }
   plVar1 = (int64_t *)param_4[7];
@@ -334,7 +334,7 @@ void FUN_180184120(uint64_t param_1,int param_2,int64_t *param_3,int64_t *param_
 void FUN_180184270(void)
 
 {
-  FUN_180067070();
+  SystemResourceAllocator();
   return;
 }
 
