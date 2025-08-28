@@ -40,6 +40,7 @@ typedef undefined8 PersistenceHandle;             // 持久化句柄
 #define FILE_ERROR_ACCESS          -2              // 访问错误
 #define FILE_ERROR_NOT_FOUND       -3              // 文件未找到
 #define FILE_ERROR_PERMISSION      -4              // 权限错误
+#define FILE_ERROR_STATE           -5              // 状态错误
 
 // 文件系统常量值
 #define FILE_BUFFER_SIZE           0x2000          // 文件缓冲区大小
