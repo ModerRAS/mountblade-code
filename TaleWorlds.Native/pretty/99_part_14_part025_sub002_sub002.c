@@ -248,7 +248,7 @@ void LinkedListNodeInitializer(uint64_t param_1)
 void AcquireSRWLockExclusive(void)
 {
     // 系统调用包装器 - 获取排他锁
-    // WARNING: 由于反编译限制，无法恢复跳转表
+    // WARNING: 由于处理限制，无法恢复跳转表
     // WARNING: 将间接跳转作为调用处理
     AcquireSRWLockExclusive();
     return;
@@ -279,7 +279,7 @@ void AcquireSRWLockExclusive(void)
 void AcquireSRWLockShared(void)
 {
     // 系统调用包装器 - 获取共享锁
-    // WARNING: 由于反编译限制，无法恢复跳转表
+    // WARNING: 由于处理限制，无法恢复跳转表
     // WARNING: 将间接跳转作为调用处理
     AcquireSRWLockShared();
     return;
@@ -310,7 +310,7 @@ void AcquireSRWLockShared(void)
 void ReleaseSRWLockExclusive(void)
 {
     // 系统调用包装器 - 释放排他锁
-    // WARNING: 由于反编译限制，无法恢复跳转表
+    // WARNING: 由于处理限制，无法恢复跳转表
     // WARNING: 将间接跳转作为调用处理
     ReleaseSRWLockExclusive();
     return;
@@ -341,7 +341,7 @@ void ReleaseSRWLockExclusive(void)
 void ReleaseSRWLockShared(void)
 {
     // 系统调用包装器 - 释放共享锁
-    // WARNING: 由于反编译限制，无法恢复跳转表
+    // WARNING: 由于处理限制，无法恢复跳转表
     // WARNING: 将间接跳转作为调用处理
     ReleaseSRWLockShared();
     return;
@@ -378,7 +378,7 @@ void ReleaseSRWLockShared(void)
 void __CxxFrameHandler3(void)
 {
     // 系统调用包装器 - C++异常帧处理器
-    // WARNING: 由于反编译限制，无法恢复跳转表
+    // WARNING: 由于处理限制，无法恢复跳转表
     // WARNING: 子程序不返回
     // WARNING: 将间接跳转作为调用处理
     __CxxFrameHandler3();
@@ -416,7 +416,7 @@ void __CxxFrameHandler3(void)
 void strstr(void)
 {
     // 系统调用包装器 - 字符串搜索器
-    // WARNING: 由于反编译限制，无法恢复跳转表
+    // WARNING: 由于处理限制，无法恢复跳转表
     // WARNING: 将间接跳转作为调用处理
     strstr();
     return;
@@ -453,7 +453,7 @@ void strstr(void)
 void __std_exception_copy(void)
 {
     // 系统调用包装器 - 标准异常复制处理器
-    // WARNING: 由于反编译限制，无法恢复跳转表
+    // WARNING: 由于处理限制，无法恢复跳转表
     // WARNING: 将间接跳转作为调用处理
     __std_exception_copy();
     return;
@@ -490,7 +490,7 @@ void __std_exception_copy(void)
 void __std_exception_destroy(void)
 {
     // 系统调用包装器 - 标准异常析构器
-    // WARNING: 由于反编译限制，无法恢复跳转表
+    // WARNING: 由于处理限制，无法恢复跳转表
     // WARNING: 将间接跳转作为调用处理
     __std_exception_destroy();
     return;
