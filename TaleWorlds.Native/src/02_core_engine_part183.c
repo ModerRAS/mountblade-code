@@ -252,6 +252,88 @@
 #define StringProcessor FUN_180169350
 
 /* ============================================================================
+ * 核心引擎辅助函数别名
+ * ============================================================================ */
+
+/* 系统状态管理函数 */
+#define CoreEngineStateManager FUN_18062c100
+#define CoreEngineStateValidator FUN_18062c150
+#define CoreEngineStateTransition FUN_18062c1a0
+#define CoreEngineStateReporter FUN_18062c1f0
+
+/* 内存管理函数 */
+#define CoreEngineMemoryAllocator FUN_18062c240
+#define CoreEngineMemoryDeallocator FUN_18062c290
+#define CoreEngineMemoryValidator FUN_18062c2e0
+#define CoreEngineMemoryOptimizer FUN_18062c330
+#define CoreEngineMemoryCleaner FUN_18062c380
+#define CoreEngineMemoryDebugger FUN_18062c3d0
+
+/* 线程管理函数 */
+#define CoreEngineThreadManager FUN_18062c420
+#define CoreEngineThreadCreator FUN_18062c470
+#define CoreEngineThreadDestroyer FUN_18062c4c0
+#define CoreEngineThreadScheduler FUN_18062c510
+#define CoreEngineThreadSynchronizer FUN_18062c560
+#define CoreEngineThreadMonitor FUN_18062c5b0
+
+/* 事件管理函数 */
+#define CoreEngineEventManager FUN_18062c600
+#define CoreEngineEventDispatcher FUN_18062c650
+#define CoreEngineEventProcessor FUN_18062c6a0
+#define CoreEngineEventQueueManager FUN_18062c6f0
+#define CoreEngineEventLogger FUN_18062c740
+#define CoreEngineEventFilter FUN_18062c790
+
+/* 配置管理函数 */
+#define CoreEngineConfigManager FUN_18062c7e0
+#define CoreEngineConfigLoader FUN_18062c830
+#define CoreEngineConfigSaver FUN_18062c880
+#define CoreEngineConfigValidator FUN_18062c8d0
+#define CoreEngineConfigUpdater FUN_18062c920
+#define CoreEngineConfigResetter FUN_18062c970
+
+/* 资源管理函数 */
+#define CoreEngineResourceManager FUN_18062c9c0
+#define CoreEngineResourceAllocator FUN_18062ca10
+#define CoreEngineResourceDeallocator FUN_18062ca60
+#define CoreEngineResourceTracker FUN_18062cab0
+#define CoreEngineResourceCleaner FUN_18062cb00
+#define CoreEngineResourceAuditor FUN_18062cb50
+
+/* 性能监控函数 */
+#define CoreEnginePerformanceMonitor FUN_18062cba0
+#define CoreEngineProfiler FUN_18062cbf0
+#define CoreEngineMetricsCollector FUN_18062cc40
+#define CoreEngineStatisticsAnalyzer FUN_18062cc90
+#define CoreEngineBenchmarkRunner FUN_18062cce0
+#define CoreEngineOptimizationAdvisor FUN_18062cd30
+
+/* 错误处理函数 */
+#define CoreEngineErrorHandler FUN_18062cd80
+#define CoreEngineExceptionManager FUN_18062cdd0
+#define CoreEngineLogger FUN_18062ce20
+#define CoreEngineDebugger FUN_18062ce70
+#define CoreEngineRecoveryManager FUN_18062cec0
+#define CoreEngineDiagnosticTool FUN_18062cf10
+
+/* 安全管理函数 */
+#define CoreEngineSecurityManager FUN_18062cf60
+#define CoreEngineAccessController FUN_18062cfb0
+#define CoreEngineAuthenticator FUN_18062d000
+#define CoreEngineEncryptor FUN_18062d050
+#define CoreEngineDecryptor FUN_18062d0a0
+#define CoreEngineSignatureVerifier FUN_18062d0f0
+
+/* 网络管理函数 */
+#define CoreEngineNetworkManager FUN_18062d140
+#define CoreEngineConnectionManager FUN_18062d190
+#define CoreEngineProtocolHandler FUN_18062d1e0
+#define CoreEngineDataTransmitter FUN_18062d230
+#define CoreEngineDataReceiver FUN_18062d280
+#define CoreEngineNetworkMonitor FUN_18062d2d0
+
+/* ============================================================================
  * 类型别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
 
@@ -288,6 +370,113 @@ typedef struct {
     DataFlags flags;
     void* user_data;
 } CoreEngineInfo;
+
+// 核心引擎配置结构体
+typedef struct {
+    uint32_t max_threads;
+    uint32_t max_connections;
+    uint32_t max_memory;
+    uint32_t timeout_ms;
+    uint32_t retry_count;
+    uint32_t cache_size;
+    uint32_t buffer_size;
+    uint32_t queue_size;
+    uint32_t stack_size;
+    uint32_t heap_size;
+    uint32_t flags;
+    uint32_t reserved[5];
+} CoreEngineConfig;
+
+// 核心引擎状态结构体
+typedef struct {
+    CoreEngineState current_state;
+    CoreEngineState previous_state;
+    uint32_t error_code;
+    uint32_t warning_count;
+    uint32_t operation_count;
+    uint64_t uptime_ms;
+    uint64_t memory_usage;
+    uint32_t cpu_usage;
+    uint32_t thread_count;
+    uint32_t connection_count;
+    uint32_t reserved[8];
+} CoreEngineStatus;
+
+// 核心引擎内存块结构体
+typedef struct {
+    void* base_address;
+    size_t total_size;
+    size_t used_size;
+    size_t free_size;
+    uint32_t block_count;
+    uint32_t flags;
+    void* next_block;
+    void* prev_block;
+    uint32_t reserved[8];
+} CoreEngineMemoryBlock;
+
+// 核心引擎字符串缓冲区结构体
+typedef struct {
+    char* buffer;
+    size_t buffer_size;
+    size_t string_length;
+    uint32_t flags;
+    uint32_t encoding;
+    void* next_buffer;
+    uint32_t reserved[12];
+} CoreEngineStringBuffer;
+
+// 核心引擎数据块结构体
+typedef struct {
+    void* data_ptr;
+    size_t data_size;
+    uint32_t data_type;
+    uint32_t flags;
+    uint64_t timestamp;
+    uint32_t reference_count;
+    void* next_block;
+    uint32_t reserved[10];
+} CoreEngineDataBlock;
+
+// 核心引擎资源结构体
+typedef struct {
+    uint32_t resource_id;
+    uint32_t resource_type;
+    void* resource_ptr;
+    size_t resource_size;
+    uint32_t flags;
+    uint32_t reference_count;
+    uint64_t create_time;
+    uint64_t access_time;
+    void* next_resource;
+    uint32_t reserved[8];
+} CoreEngineResource;
+
+// 核心引擎事件结构体
+typedef struct {
+    uint32_t event_id;
+    uint32_t event_type;
+    uint64_t timestamp;
+    void* source_ptr;
+    void* target_ptr;
+    uint32_t flags;
+    uint32_t priority;
+    void* user_data;
+    uint32_t reserved[12];
+} CoreEngineEvent;
+
+// 核心引擎线程结构体
+typedef struct {
+    uint32_t thread_id;
+    void* thread_handle;
+    uint32_t thread_state;
+    uint32_t priority;
+    uint64_t start_time;
+    uint64_t cpu_time;
+    uint32_t stack_size;
+    void* stack_ptr;
+    uint32_t reserved[12];
+} CoreEngineThread;
 
 /* ============================================================================
  * 技术说明
