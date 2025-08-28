@@ -169,54 +169,69 @@ undefined UNK_180a3d120;                           // UI系统定时器队列 - 
 undefined UNK_180a3d168;                           // UI系统定时器回调 - 管理定时器回调
 undefined UNK_180a3d1a8;                           // UI系统定时器精度 - 控制定时器精度
 undefined UNK_180a3d220;                           // UI系统定时器同步 - 管理定时器同步
-undefined SUB_18063e940;
-uint UNK_00004000;
-undefined2 UNK_00004006;
-int UNK_00004018;
-undefined UNK_1809fb180;
-undefined UNK_1809fb1a0;
-undefined UNK_180a3d268;
-undefined UNK_180a3d290;
-undefined UNK_180a3d240;
-undefined UNK_180a3d2c0;
-undefined UNK_1809fb1e8;
-undefined UNK_1809fb1f8;
-undefined UNK_1809fb208;
-undefined UNK_1809fb228;
-undefined UNK_180a3d358;
-undefined UNK_180a3d2f8;
-undefined UNK_180a3d388;
-undefined UNK_1809fb280;
-undefined DAT_180c8ed78;
-undefined DAT_180bfbf1c;
-undefined DAT_180bfbf18;
-undefined UNK_180a3d710;
-char DAT_180c8f000;
-undefined DAT_180c8ed98;
-undefined DAT_180c8ed88;
-undefined DAT_180c8ed90;
-undefined DAT_180c8eda0;
-undefined DAT_180c8edb8;
-undefined DAT_180c8eda8;
-undefined DAT_180c8edb0;
-undefined DAT_180c8edc0;
-undefined DAT_180c8edd8;
-undefined DAT_180c8edc8;
-undefined DAT_180c8edd0;
-undefined DAT_180c8ede0;
-undefined DAT_180c8edf8;
-undefined DAT_180c8ede8;
-undefined DAT_180c8edf0;
-undefined DAT_180c8ee00;
-undefined DAT_180c8ee18;
-undefined DAT_180c8ee08;
-undefined DAT_180c8ee10;
-undefined DAT_180c8ee20;
-undefined DAT_180c8ee38;
-undefined DAT_180c8ee28;
-undefined DAT_180c8ee30;
-undefined DAT_180c8ee60;
-undefined DAT_180c8ee78;
+// UI系统辅助函数
+undefined SUB_18063e940;                           // UI系统辅助函数 - 提供辅助功能
+
+// UI系统常量定义
+uint UNK_00004000;                                 // UI系统最大组件数 - 定义最大组件数量
+undefined2 UNK_00004006;                           // UI系统事件类型 - 定义事件类型
+int UNK_00004018;                                  // UI系统渲染模式 - 定义渲染模式
+
+// UI系统布局变量
+undefined UNK_1809fb180;                           // UI系统布局管理器 - 管理界面布局
+undefined UNK_1809fb1a0;                           // UI系统布局计算器 - 计算布局参数
+undefined UNK_180a3d268;                           // UI系统布局优化器 - 优化布局性能
+undefined UNK_180a3d290;                           // UI系统布局缓存器 - 缓存布局数据
+undefined UNK_180a3d240;                           // UI系统布局验证器 - 验证布局有效性
+undefined UNK_180a3d2c0;                           // UI系统布局调整器 - 调整布局参数
+
+// UI系统样式变量
+undefined UNK_1809fb1e8;                           // UI系统样式管理器 - 管理界面样式
+undefined UNK_1809fb1f8;                           // UI系统样式表 - 存储样式数据
+undefined UNK_1809fb208;                           // UI系统样式解析器 - 解析样式文件
+undefined UNK_1809fb228;                           // UI系统样式应用器 - 应用样式到组件
+
+// UI系统动画变量
+undefined UNK_180a3d358;                           // UI系统动画管理器 - 管理界面动画
+undefined UNK_180a3d2f8;                           // UI系统动画插值器 - 插值动画参数
+undefined UNK_180a3d388;                           // UI系统动画控制器 - 控制动画播放
+undefined UNK_1809fb280;                           // UI系统动画队列 - 管理动画队列
+
+// UI系统状态数据
+undefined DAT_180c8ed78;                          // UI系统状态数据块 - 存储状态数据
+undefined DAT_180bfbf1c;                          // UI系统状态标志 - 标识状态变化
+undefined DAT_180bfbf18;                          // UI系统状态版本 - 管理状态版本
+
+// UI系统对话框变量
+undefined UNK_180a3d710;                           // UI系统对话框管理器 - 管理对话框
+char DAT_180c8f000;                               // UI系统对话框状态 - 存储对话框状态
+
+// UI系统数据表
+undefined DAT_180c8ed98;                          // UI系统组件数据表 - 存储组件数据
+undefined DAT_180c8ed88;                          // UI系统属性数据表 - 存储属性数据
+undefined DAT_180c8ed90;                          // UI系统样式数据表 - 存储样式数据
+undefined DAT_180c8eda0;                          // UI系统事件数据表 - 存储事件数据
+undefined DAT_180c8edb8;                          // UI系统布局数据表 - 存储布局数据
+undefined DAT_180c8eda8;                          // UI系统动画数据表 - 存储动画数据
+undefined DAT_180c8edb0;                          // UI系统资源数据表 - 存储资源数据
+undefined DAT_180c8edc0;                          // UI系统配置数据表 - 存储配置数据
+undefined DAT_180c8edd8;                          // UI系统状态数据表 - 存储状态数据
+undefined DAT_180c8edc8;                          // UI系统日志数据表 - 存储日志数据
+undefined DAT_180c8edd0;                          // UI系统性能数据表 - 存储性能数据
+undefined DAT_180c8ede0;                          // UI系统内存数据表 - 存储内存数据
+undefined DAT_180c8edf8;                          // UI系统错误数据表 - 存储错误数据
+undefined DAT_180c8ede8;                          // UI系统警告数据表 - 存储警告数据
+undefined DAT_180c8edf0;                          // UI系统调试数据表 - 存储调试数据
+undefined DAT_180c8ee00;                          // UI系统用户数据表 - 存储用户数据
+undefined DAT_180c8ee18;                          // UI系统会话数据表 - 存储会话数据
+undefined DAT_180c8ee08;                          // UI系统设置数据表 - 存储设置数据
+undefined DAT_180c8ee10;                          // UI系统偏好数据表 - 存储偏好数据
+undefined DAT_180c8ee20;                          // UI系统历史数据表 - 存储历史数据
+undefined DAT_180c8ee38;                          // UI系统缓存数据表 - 存储缓存数据
+undefined DAT_180c8ee28;                          // UI系统临时数据表 - 存储临时数据
+undefined DAT_180c8ee30;                          // UI系统备份数据表 - 存储备份数据
+undefined DAT_180c8ee60;                          // UI系统统计数据表 - 存储统计数据
+undefined DAT_180c8ee78;                          // UI系统报告数据表 - 存储报告数据
 undefined DAT_180c8ee68;
 undefined DAT_180c8ee70;
 undefined DAT_180c8ee40;
