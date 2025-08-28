@@ -1,5 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 
 /**
  * @file 02_core_engine_part003.c
@@ -1803,6 +1806,243 @@ void core_engine_data_processor_type4(void)
     // 这个函数在原始代码中为空实现
     // 可能是预留的函数接口
     return;
+}
+
+/**
+ * @brief 核心引擎注册表管理器获取
+ * 
+ * 获取系统注册表管理器，负责：
+ * - 管理系统注册表
+ * - 提供注册表访问接口
+ * - 维护注册表状态
+ * 
+ * @return 注册表管理器指针
+ * 
+ * @note 这是简化实现，原始实现包含复杂的注册表管理
+ */
+longlong *core_engine_registry_manager_get(void)
+{
+    // 返回系统注册表管理器
+    // 原始实现包含复杂的注册表管理逻辑
+    return (longlong *)0x18008d070;
+}
+
+/**
+ * @brief 核心引擎内存分配器计算
+ * 
+ * 计算内存分配大小，负责：
+ * - 计算所需内存大小
+ * - 考虑内存对齐要求
+ * - 优化内存分配策略
+ * 
+ * @param registry_manager 注册表管理器
+ * @return 计算得到的内存大小
+ * 
+ * @note 这是简化实现，原始实现包含复杂的内存计算
+ */
+longlong core_engine_memory_allocator_calculate(longlong *registry_manager)
+{
+    // 计算内存分配大小
+    // 原始实现包含复杂的内存计算和对齐处理
+    return MEMORY_BLOCK_SIZE;
+}
+
+/**
+ * @brief 核心引擎内存分配器分配
+ * 
+ * 分配内存块，负责：
+ * - 分配指定大小的内存
+ * - 管理内存块的生命周期
+ * - 处理内存分配错误
+ * 
+ * @param registry_manager 注册表管理器
+ * @param allocated_node 分配的节点指针
+ * @param parent_node 父节点指针
+ * @param total_size 总大小
+ * @param data_size 数据大小
+ * 
+ * @note 这是简化实现，原始实现包含复杂的内存分配逻辑
+ */
+void core_engine_memory_allocator_allocate(longlong *registry_manager, uint64_t **allocated_node, uint64_t *parent_node, longlong total_size, longlong data_size)
+{
+    // 分配内存块
+    // 原始实现包含复杂的内存分配和管理逻辑
+    *allocated_node = (uint64_t *)malloc(total_size);
+    if (*allocated_node) {
+        memset(*allocated_node, 0, total_size);
+    }
+}
+
+/**
+ * @brief 核心引擎回调处理器类型1
+ * 
+ * 处理系统回调，负责：
+ * - 处理系统事件
+ * - 执行回调逻辑
+ * - 管理回调状态
+ * 
+ * @return 回调函数指针
+ * 
+ * @note 这是简化实现，原始实现包含复杂的回调处理
+ */
+code *core_engine_callback_handler_type1(void)
+{
+    // 返回回调函数指针
+    // 原始实现包含复杂的回调处理逻辑
+    return (code *)0x1802633c0;
+}
+
+/**
+ * @brief 核心引擎回调处理器类型2
+ * 
+ * 处理系统回调，负责：
+ * - 处理系统事件
+ * - 执行回调逻辑
+ * - 管理回调状态
+ * 
+ * @return 回调函数指针
+ * 
+ * @note 这是简化实现，原始实现包含复杂的回调处理
+ */
+code *core_engine_callback_handler_type2(void)
+{
+    // 返回回调函数指针
+    // 原始实现包含复杂的回调处理逻辑
+    return (code *)0x180262b00;
+}
+
+/**
+ * @brief 核心引擎回调处理器类型3
+ * 
+ * 处理系统回调，负责：
+ * - 处理系统事件
+ * - 执行回调逻辑
+ * - 管理回调状态
+ * 
+ * @return 回调函数指针
+ * 
+ * @note 这是简化实现，原始实现包含复杂的回调处理
+ */
+code *core_engine_callback_handler_type3(void)
+{
+    // 返回回调函数指针
+    // 原始实现包含复杂的回调处理逻辑
+    return (code *)0x18025cc00;
+}
+
+/**
+ * @brief 核心引擎回调处理器类型4
+ * 
+ * 处理系统回调，负责：
+ * - 处理系统事件
+ * - 执行回调逻辑
+ * - 管理回调状态
+ * 
+ * @return 回调函数指针
+ * 
+ * @note 这是简化实现，原始实现包含复杂的回调处理
+ */
+code *core_engine_callback_handler_type4(void)
+{
+    // 返回回调函数指针
+    // 原始实现包含复杂的回调处理逻辑
+    return (code *)0x18025c000;
+}
+
+/**
+ * @brief 核心引擎回调处理器类型5
+ * 
+ * 处理系统回调，负责：
+ * - 处理系统事件
+ * - 执行回调逻辑
+ * - 管理回调状态
+ * 
+ * @return 回调函数指针
+ * 
+ * @note 这是简化实现，原始实现包含复杂的回调处理
+ */
+code *core_engine_callback_handler_type5(void)
+{
+    // 返回回调函数指针
+    // 原始实现包含复杂的回调处理逻辑
+    return (code *)0x18025d270;
+}
+
+/**
+ * @brief 核心引擎回调处理器类型6
+ * 
+ * 处理系统回调，负责：
+ * - 处理系统事件
+ * - 执行回调逻辑
+ * - 管理回调状态
+ * 
+ * @return 回调函数指针
+ * 
+ * @note 这是简化实现，原始实现包含复杂的回调处理
+ */
+code *core_engine_callback_handler_type6(void)
+{
+    // 返回回调函数指针
+    // 原始实现包含复杂的回调处理逻辑
+    return (code *)0x18025e330;
+}
+
+/**
+ * @brief 核心引擎回调处理器类型7
+ * 
+ * 处理系统回调，负责：
+ * - 处理系统事件
+ * - 执行回调逻辑
+ * - 管理回调状态
+ * 
+ * @return 回调函数指针
+ * 
+ * @note 这是简化实现，原始实现包含复杂的回调处理
+ */
+code *core_engine_callback_handler_type7(void)
+{
+    // 返回回调函数指针
+    // 原始实现包含复杂的回调处理逻辑
+    return (code *)0x18025d510;
+}
+
+/**
+ * @brief 核心引擎回调处理器类型8
+ * 
+ * 处理系统回调，负责：
+ * - 处理系统事件
+ * - 执行回调逻辑
+ * - 管理回调状态
+ * 
+ * @return 回调函数指针
+ * 
+ * @note 这是简化实现，原始实现包含复杂的回调处理
+ */
+code *core_engine_callback_handler_type8(void)
+{
+    // 返回回调函数指针
+    // 原始实现包含复杂的回调处理逻辑
+    return (code *)0x1802281a0;
+}
+
+/**
+ * @brief 核心引擎字符串处理器注册
+ * 
+ * 注册字符串处理器，负责：
+ * - 注册字符串处理函数
+ * - 管理字符串处理状态
+ * - 处理字符串数据
+ * 
+ * @param string_processor 字符串处理器指针
+ * @return 注册结果
+ * 
+ * @note 这是简化实现，原始实现包含复杂的字符串处理
+ */
+uint64_t core_engine_string_processor_register(void **string_processor)
+{
+    // 注册字符串处理器
+    // 原始实现包含复杂的字符串处理逻辑
+    return 0;
 }
 
 // =============================================================================
