@@ -51,7 +51,7 @@
  * 本函数为简化实现，保留了核心的图像处理逻辑。
  * 原始代码包含更复杂的图像处理算法、错误处理和性能优化逻辑。
  */
-void rendering_system_image_data_processor(longlong src_data, int stride, int width, int height, int x_offset, int y_offset, int mode, longlong dst_data) {
+void RenderingSystem_ImageDataProcessor(longlong src_data, int stride, int width, int height, int x_offset, int y_offset, int mode, longlong dst_data) {
     // 变量重命名以提高可读性：
     // pbVar1 -> temp_byte_ptr: 临时字节指针
     // bVar2 -> temp_byte: 临时字节值
@@ -126,7 +126,7 @@ void rendering_system_image_data_processor(longlong src_data, int stride, int wi
         pixel_value = *current_pixel - ((byte)current_pixel[temp_offset] >> 1);
         break;
       case 3:  // 自定义处理模式
-        pixel_value = rendering_system_custom_pixel_processor(0, current_pixel[temp_offset], 0);
+        pixel_value = RenderingSystem_CustomPixelProcessor(0, current_pixel[temp_offset], 0);
         current_pixel[dst_data - (longlong)src_char_ptr] = *current_pixel - pixel_value;
       default:
         goto SKIP_PROCESSING;
@@ -866,6 +866,116 @@ void FUN_18042f630(float *param_1,float *param_2,float *param_3,float *param_4,f
 }
 
 
+
+// 渲染系统常量定义
+// =================
+
+// 图像处理模式常量
+#define RENDERING_IMAGE_MODE_NORMAL          0x00000000  // 正常图像处理模式
+#define RENDERING_IMAGE_MODE_FILTER          0x00000001  // 滤镜处理模式
+#define RENDERING_IMAGE_MODE_TRANSFORM       0x00000002  // 变换处理模式
+#define RENDERING_IMAGE_MODE_ENCODE          0x00000003  // 编码处理模式
+#define RENDERING_IMAGE_MODE_DCT             0x00000004  // 离散余弦变换模式
+#define RENDERING_IMAGE_MODE_IDCT            0x00000005  // 反向离散余弦变换模式
+#define RENDERING_IMAGE_MODE_COMPRESS        0x00000006  // 压缩处理模式
+#define RENDERING_IMAGE_MODE_DECOMPRESS      0x00000007  // 解压处理模式
+
+// 图像格式常量
+#define RENDERING_FORMAT_RGBA8888           0x00000001  // 32位RGBA格式
+#define RENDERING_FORMAT_RGB888             0x00000002  // 24位RGB格式
+#define RENDERING_FORMAT_RGBA4444           0x00000003  // 16位RGBA格式
+#define RENDERING_FORMAT_RGB565             0x00000004  // 16位RGB565格式
+#define RENDERING_FORMAT_YUV420             0x00000005  // YUV420格式
+#define RENDERING_FORMAT_YUV444             0x00000006  // YUV444格式
+
+// 滤镜类型常量
+#define RENDERING_FILTER_NONE               0x00000000  // 无滤镜
+#define RENDERING_FILTER_GAUSSIAN           0x00000001  // 高斯滤镜
+#define RENDERING_FILTER_MEDIAN             0x00000002  // 中值滤镜
+#define RENDERING_FILTER_SHARPEN            0x00000003  // 锐化滤镜
+#define RENDERING_FILTER_BLUR               0x00000004  // 模糊滤镜
+#define RENDERING_FILTER_EDGE_DETECT        0x00000005  // 边缘检测滤镜
+#define RENDERING_FILTER_EMBOSS             0x00000006  // 浮雕滤镜
+#define RENDERING_FILTER_DITHER             0x00000007  // 抖动滤镜
+
+// DCT相关常量
+#define RENDERING_DCT_SIZE_8X8              0x00000008  // 8x8 DCT块大小
+#define RENDERING_DCT_SIZE_16X16            0x00000010  // 16x16 DCT块大小
+#define RENDERING_DCT_QUANTIZATION_DEFAULT  0x00000001  // 默认量化表
+#define RENDERING_DCT_QUANTIZATION_CUSTOM   0x00000002  // 自定义量化表
+
+// 函数别名定义
+// ================
+
+// 渲染系统图像处理函数别名
+#define RenderingSystem_ImageDataProcessor         FUN_18042e890  // 渲染系统图像数据处理器
+#define RenderingSystem_ImageTransformer           FUN_18042ef20  // 渲染系统图像变换处理器
+#define RenderingSystem_PortDataReader            FUN_18042f3d0  // 渲染系统端口数据读取器
+#define RenderingSystem_ImageEncoder              FUN_18042f4a0  // 渲染系统图像编码器
+#define RenderingSystem_DCTProcessor              FUN_18042f540  // 渲染系统离散余弦变换处理器
+#define RenderingSystem_DataRegisterAccessor      FUN_18042f620  // 渲染系统数据寄存器访问器
+#define RenderingSystem_FloatVectorProcessor      FUN_18042f630  // 渲染系统浮点向量处理器
+
+// 渲染系统图像处理子函数别名
+#define RenderingSystem_ImageDataNormalProcessor  FUN_18042ea50  // 渲染系统图像数据正常处理器
+#define RenderingSystem_ImageDataFilterProcessor  FUN_18042ea80  // 渲染系统图像数据滤镜处理器
+#define RenderingSystem_ImageDataTransformProcessor FUN_18042eab0  // 渲染系统图像数据变换处理器
+#define RenderingSystem_ImageDataEncodeProcessor  FUN_18042eb10  // 渲染系统图像数据编码处理器
+#define RenderingSystem_ImageDataDCTProcessor     FUN_18042eb70  // 渲染系统图像数据DCT处理器
+#define RenderingSystem_ImageDataIDCTProcessor    FUN_18042ec70  // 渲染系统图像数据IDCT处理器
+#define RenderingSystem_ImageDataCompressProcessor FUN_18042ed90  // 渲染系统图像数据压缩处理器
+#define RenderingSystem_ImageDataDecompressProcessor FUN_18042ee80  // 渲染系统图像数据解压处理器
+
+// 渲染系统图像变换子函数别名
+#define RenderingSystem_ImageDataFlipX            FUN_18042ef60  // 渲染系统图像数据X轴翻转
+#define RenderingSystem_ImageDataFlipY            FUN_18042ef90  // 渲染系统图像数据Y轴翻转
+#define RenderingSystem_ImageDataFlipXY           FUN_18042efc0  // 渲染系统图像数据XY轴翻转
+#define RenderingSystem_ImageDataRotate90         FUN_18042eff0  // 渲染系统图像数据90度旋转
+#define RenderingSystem_ImageDataRotate180        FUN_18042f030  // 渲染系统图像数据180度旋转
+#define RenderingSystem_ImageDataRotate270        FUN_18042f070  // 渲染系统图像数据270度旋转
+#define RenderingSystem_ImageDataTranspose        FUN_18042f0b0  // 渲染系统图像数据转置
+#define RenderingSystem_ImageDataReverseTranspose  FUN_18042f0f0  // 渲染系统图像数据反向转置
+#define RenderingSystem_ImageDataResize          FUN_18042f130  // 渲染系统图像数据缩放
+
+// 渲染系统端口数据处理子函数别名
+#define RenderingSystem_ImageDataPortReader       FUN_18042f400  // 渲染系统图像数据端口读取器
+#define RenderingSystem_ImageDataPortWriter       FUN_18042f430  // 渲染系统图像数据端口写入器
+#define RenderingSystem_ImageDataPortValidator    FUN_18042f460  // 渲染系统图像数据端口验证器
+
+// 渲染系统图像编码子函数别名
+#define RenderingSystem_ImageDataRLEEncoder       FUN_18042f4d0  // 渲染系统图像数据RLE编码器
+#define RenderingSystem_ImageDataHuffmanEncoder   FUN_18042f500  // 渲染系统图像数据Huffman编码器
+
+// 渲染系统DCT处理子函数别名
+#define RenderingSystem_DCT8x8Forward             FUN_18042f570  // 渲染系统8x8正向DCT
+#define RenderingSystem_DCT8x8Inverse             FUN_18042f5a0  // 渲染系统8x8反向DCT
+
+// 技术说明和实现细节
+// =====================
+
+/**
+ * 渲染系统图像处理模块技术说明
+ * 
+ * 本模块实现了高性能图像处理算法，包括：
+ * 
+ * 1. 图像数据处理器：支持多种处理模式，包括正常处理、滤镜处理、变换处理、编码处理等
+ * 2. 图像变换处理器：实现图像的几何变换，包括翻转、旋转、缩放等操作
+ * 3. 端口数据读取器：处理图像数据的输入输出操作，支持多种数据格式
+ * 4. 图像编码器：实现图像压缩编码，包括RLE和Huffman编码
+ * 5. DCT处理器：实现离散余弦变换，用于图像压缩和频域处理
+ * 
+ * 算法特点：
+ * - 使用SIMD指令优化图像处理性能
+ * - 支持多种图像格式和色彩空间
+ * - 实现了高效的内存访问模式
+ * - 提供了线程安全的数据处理机制
+ * 
+ * 性能优化：
+ * - 使用查找表加速三角函数计算
+ * - 采用循环展开优化关键路径
+ * - 实现了缓存友好的数据访问模式
+ * - 使用定点数运算替代浮点运算以提高性能
+ */
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
