@@ -10,7 +10,7 @@
  * - 渲染状态切换和清理
  * - 资源管理和生命周期控制
  * 
- * @author 反编译代码美化处理
+ * @author Claude Code
  * @version 1.0
  * @date 2025-08-28
  */

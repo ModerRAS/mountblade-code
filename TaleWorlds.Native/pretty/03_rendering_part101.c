@@ -26,7 +26,7 @@
  * 
  * @version 2.0
  * @date 2025-08-28
- * @author 反编译代码美化处理 - Claude Code
+ * @author Claude Code - Claude Code
  */
 
 #include "TaleWorlds.Native.Split.h"

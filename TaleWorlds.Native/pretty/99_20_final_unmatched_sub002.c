@@ -17,7 +17,7 @@
  * 
  * @version 1.0
  * @date 2025-08-28
- * @author 反编译代码美化处理
+ * @author Claude Code
  */
 
 /**
@@ -1040,7 +1040,7 @@ undefined UNK_180957e20;  // 引擎服务同步
  * @note 由于是反编译代码，部分功能可能存在理解偏差
  * @version 1.0
  * @date 2025-08-28
- * @author 反编译代码美化处理
+ * @author Claude Code
  */
 
 
