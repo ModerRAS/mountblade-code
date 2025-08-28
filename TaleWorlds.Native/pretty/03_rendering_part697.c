@@ -646,11 +646,11 @@ uint64_t FUN_18066e500(int64_t param_1,uint param_2,uint param_3)
     *(int *)(param_1 + 0xbb4) = iVar1;
     *(int *)(param_1 + 0xbbc) = iVar4 + 1;
     *(int *)(param_1 + 0xbb0) = iVar4 * iVar1;
-    lVar2 = FUN_18066e8f0((int64_t)((iVar1 + 1) * (iVar4 + 1)),0x4c);
+    lVar2 = CoreSystem_MemoryController0((int64_t)((iVar1 + 1) * (iVar4 + 1)),0x4c);
     *(int64_t *)(param_1 + 0xbe8) = lVar2;
     if (lVar2 != 0) {
       *(int64_t *)(param_1 + 0xbf0) = ((int64_t)*(int *)(param_1 + 0xbbc) + 1) * 0x4c + lVar2;
-      lVar2 = FUN_18066e8f0((int64_t)*(int *)(param_1 + 3000) * 9,1);
+      lVar2 = CoreSystem_MemoryController0((int64_t)*(int *)(param_1 + 3000) * 9,1);
       *(int64_t *)(param_1 + 0x1958) = lVar2;
       if (lVar2 != 0) {
         iVar4 = FUN_180697e60(param_1 + 0xa70,param_2,param_3,0x20);
@@ -754,8 +754,8 @@ void thunk_FUN_18066e7a0(int64_t param_1)
 
 
 
-// 函数: void FUN_18066e8f0(int64_t param_1,int64_t param_2)
-void FUN_18066e8f0(int64_t param_1,int64_t param_2)
+// 函数: void CoreSystem_MemoryController0(int64_t param_1,int64_t param_2)
+void CoreSystem_MemoryController0(int64_t param_1,int64_t param_2)
 
 {
   int64_t lVar1;

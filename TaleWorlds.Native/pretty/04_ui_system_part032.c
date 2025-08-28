@@ -34,12 +34,12 @@ void FUN_180670c6a(void)
     }
     *(int32_t *)(unaff_RDI + 0x43a4) = uVar1;
   }
-  lVar2 = FUN_18066e8f0(4,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(4,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43a8) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43b0) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -59,7 +59,7 @@ void FUN_180670c6a(void)
       uVar5 = uVar5 + 8;
     } while ((int)uVar6 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43b8) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -78,7 +78,7 @@ void FUN_180670c6a(void)
       uVar7 = uVar7 + 8;
     } while ((int)uVar6 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43c0) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -97,7 +97,7 @@ void FUN_180670c6a(void)
       uVar5 = uVar5 + 8;
     } while ((int)uVar6 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43c8) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -106,7 +106,7 @@ void FUN_180670c6a(void)
   uVar7 = uVar4;
   if (0 < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar3 = FUN_18066e8f0(0x10,1);
+      uVar3 = CoreSystem_MemoryController0(0x10,1);
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43c8)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43c8)) == 0) {
         SystemInitializationProcessor();
@@ -116,7 +116,7 @@ void FUN_180670c6a(void)
       uVar7 = (uint64_t)uVar6;
     } while ((int)uVar6 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43d0) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -125,7 +125,7 @@ void FUN_180670c6a(void)
   uVar7 = uVar4;
   if (0 < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar3 = FUN_18066e8f0(8);
+      uVar3 = CoreSystem_MemoryController0(8);
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43d0)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43d0)) == 0) {
         SystemInitializationProcessor();
@@ -135,7 +135,7 @@ void FUN_180670c6a(void)
       uVar7 = (uint64_t)uVar6;
     } while ((int)uVar6 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43d8) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -143,7 +143,7 @@ void FUN_180670c6a(void)
   uVar5 = uVar4;
   if (0 < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar3 = FUN_18066e8f0(8);
+      uVar3 = CoreSystem_MemoryController0(8);
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43d8)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43d8)) == 0) {
         SystemInitializationProcessor();
@@ -192,12 +192,12 @@ void FUN_180670c6f(void)
     }
     *(int32_t *)(unaff_RDI + 0x43a4) = uVar1;
   }
-  lVar2 = FUN_18066e8f0(4,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(4,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43a8) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43b0) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -217,7 +217,7 @@ void FUN_180670c6f(void)
       uVar5 = uVar5 + 8;
     } while ((int)uVar6 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43b8) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -236,7 +236,7 @@ void FUN_180670c6f(void)
       uVar7 = uVar7 + 8;
     } while ((int)uVar6 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43c0) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -255,7 +255,7 @@ void FUN_180670c6f(void)
       uVar5 = uVar5 + 8;
     } while ((int)uVar6 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43c8) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -264,7 +264,7 @@ void FUN_180670c6f(void)
   uVar7 = uVar4;
   if (0 < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar3 = FUN_18066e8f0(0x10,1);
+      uVar3 = CoreSystem_MemoryController0(0x10,1);
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43c8)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43c8)) == 0) {
         SystemInitializationProcessor();
@@ -274,7 +274,7 @@ void FUN_180670c6f(void)
       uVar7 = (uint64_t)uVar6;
     } while ((int)uVar6 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43d0) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -283,7 +283,7 @@ void FUN_180670c6f(void)
   uVar7 = uVar4;
   if (0 < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar3 = FUN_18066e8f0(8);
+      uVar3 = CoreSystem_MemoryController0(8);
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43d0)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43d0)) == 0) {
         SystemInitializationProcessor();
@@ -293,7 +293,7 @@ void FUN_180670c6f(void)
       uVar7 = (uint64_t)uVar6;
     } while ((int)uVar6 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43d8) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -301,7 +301,7 @@ void FUN_180670c6f(void)
   uVar5 = uVar4;
   if (0 < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar3 = FUN_18066e8f0(8);
+      uVar3 = CoreSystem_MemoryController0(8);
       *(uint64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43d8)) = uVar3;
       if (*(int64_t *)(uVar5 + *(int64_t *)(unaff_RDI + 0x43d8)) == 0) {
         SystemInitializationProcessor();
@@ -338,7 +338,7 @@ void FUN_180670ede(void)
   uVar4 = unaff_RBP;
   if (iVar3 < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar1 = FUN_18066e8f0();
+      uVar1 = CoreSystem_MemoryController0();
       *(uint64_t *)(uVar4 + *(int64_t *)(unaff_RDI + 0x43c8)) = uVar1;
       if (*(uint64_t *)(uVar4 + *(int64_t *)(unaff_RDI + 0x43c8)) == unaff_RBP) {
         SystemInitializationProcessor();
@@ -348,7 +348,7 @@ void FUN_180670ede(void)
       uVar4 = uVar4 + 8;
     } while ((int)uVar5 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43d0) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -357,7 +357,7 @@ void FUN_180670ede(void)
   uVar4 = unaff_RBP;
   if (iVar3 < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar1 = FUN_18066e8f0(8);
+      uVar1 = CoreSystem_MemoryController0(8);
       *(uint64_t *)(uVar4 + *(int64_t *)(unaff_RDI + 0x43d0)) = uVar1;
       if (*(uint64_t *)(uVar4 + *(int64_t *)(unaff_RDI + 0x43d0)) == unaff_RBP) {
         SystemInitializationProcessor();
@@ -367,7 +367,7 @@ void FUN_180670ede(void)
       uVar4 = uVar4 + 8;
     } while ((int)uVar5 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43d8) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -375,7 +375,7 @@ void FUN_180670ede(void)
   uVar4 = unaff_RBP;
   if (iVar3 < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar1 = FUN_18066e8f0(8);
+      uVar1 = CoreSystem_MemoryController0(8);
       *(uint64_t *)(uVar4 + *(int64_t *)(unaff_RDI + 0x43d8)) = uVar1;
       if (*(int64_t *)(uVar4 + *(int64_t *)(unaff_RDI + 0x43d8)) == 0) {
         SystemInitializationProcessor();
@@ -410,7 +410,7 @@ void FUN_180670f6b(void)
   uVar3 = unaff_RBP;
   if ((int)unaff_RBP < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar1 = FUN_18066e8f0(8);
+      uVar1 = CoreSystem_MemoryController0(8);
       *(uint64_t *)(uVar3 + *(int64_t *)(unaff_RDI + 0x43d0)) = uVar1;
       if (*(uint64_t *)(uVar3 + *(int64_t *)(unaff_RDI + 0x43d0)) == unaff_RBP) {
         SystemInitializationProcessor();
@@ -420,7 +420,7 @@ void FUN_180670f6b(void)
       uVar3 = uVar3 + 8;
     } while ((int)uVar4 < *(int *)(unaff_RBX + 0xbb4));
   }
-  lVar2 = FUN_18066e8f0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
+  lVar2 = CoreSystem_MemoryController0(8,(int64_t)*(int *)(unaff_RBX + 0xbb4));
   *(int64_t *)(unaff_RDI + 0x43d8) = lVar2;
   if (lVar2 == 0) {
     SystemInitializationProcessor();
@@ -428,7 +428,7 @@ void FUN_180670f6b(void)
   uVar3 = unaff_RBP;
   if ((int)unaff_RBP < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar1 = FUN_18066e8f0(8);
+      uVar1 = CoreSystem_MemoryController0(8);
       *(uint64_t *)(uVar3 + *(int64_t *)(unaff_RDI + 0x43d8)) = uVar1;
       if (*(int64_t *)(uVar3 + *(int64_t *)(unaff_RDI + 0x43d8)) == 0) {
         SystemInitializationProcessor();
@@ -460,7 +460,7 @@ void FUN_180670ffb(void)
   uVar3 = unaff_RBP;
   if ((int)unaff_RBP < *(int *)(unaff_RBX + 0xbb4)) {
     do {
-      uVar1 = FUN_18066e8f0(8);
+      uVar1 = CoreSystem_MemoryController0(8);
       *(uint64_t *)(uVar3 + *(int64_t *)(unaff_RDI + 0x43d8)) = uVar1;
       if (*(int64_t *)(uVar3 + *(int64_t *)(unaff_RDI + 0x43d8)) == 0) {
         SystemInitializationProcessor();
