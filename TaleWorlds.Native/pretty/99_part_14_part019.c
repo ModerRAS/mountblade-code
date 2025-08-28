@@ -120,6 +120,60 @@ uint64_t FileCreator_CreateFileWithAccess(
 /** 系统库加载器 - 原FUN_1808fb066函数 */
 uint64_t SystemLibraryLoader_LoadSystemLibrary(void);
 
+/** 证书时间转换器 - 辅助函数 */
+char CertificateTimeConverter_ConvertCertificateTime(
+    longlong chain_context,
+    int8_t* time_buffer
+);
+
+/** 证书验证结果处理器 - 辅助函数 */
+longlong CertificateTimeValidator_ProcessValidationResult(
+    uint64_t validation_result,
+    int32_t result_flags,
+    int32_t reserved
+);
+
+/** 证书验证器 - 辅助函数 */
+char CertificateVerifier_VerifyLibraryCertificate(
+    short* library_path,
+    char* verification_buffer
+);
+
+/** 证书验证器 - 系统库验证 */
+char CertificateVerifier_VerifySystemLibrary(void);
+
+/** 证书错误处理器 - 库错误处理 */
+char CertificateErrorHandler_HandleLibraryError(
+    short* library_path,
+    int32_t error_code
+);
+
+/** 证书错误处理器 - 系统错误处理 */
+char CertificateErrorHandler_HandleSystemError(void);
+
+/** 系统日志记录器 - 证书错误记录 */
+void SystemLogger_LogCertificateError(
+    int32_t* log_handle,
+    int32_t error_code,
+    int32_t* context,
+    int32_t* details
+);
+
+/** 系统日志记录器 - 库路径记录 */
+void SystemLogger_LogLibraryPath(
+    int32_t* context,
+    short* library_path
+);
+
+/** 系统日志记录器 - 系统错误记录 */
+void SystemLogger_LogSystemError(int32_t* context);
+
+/** 系统日志记录器 - 系统路径记录 */
+void SystemLogger_LogSystemPath(int32_t* context);
+
+/** 系统安全检查器 - 栈保护检查 */
+void SystemSecurity_PerformGuardCheck(uint64_t guard_value);
+
 /*==============================================================================
  * 函数实现
  *==============================================================================*/

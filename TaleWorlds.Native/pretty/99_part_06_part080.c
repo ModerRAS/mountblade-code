@@ -1075,7 +1075,7 @@ void SystemStateManager_ResetState(longlong *systemContext, uint64_t resetFlags,
   }
   *(int32_t *)((longlong)param_1 + 0x9c) = 0xffffffe8;
   if (plVar1 == (longlong *)0x0) {
-    plVar5 = (longlong *)FUN_1800bdc80();
+    plVar5 = (longlong *)MemoryManager_CreateResourceBuffer();
     plStackX_8 = plVar5;
     if (plVar5 != (longlong *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
@@ -1117,7 +1117,7 @@ void SystemStateManager_ResetState(longlong *systemContext, uint64_t resetFlags,
   *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83e0) = 0;
   *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83e8) = 0;
   *(uint64_t *)(*(longlong *)(lVar4 + 0x1cd8) + 0x83f0) = 0;
-  FUN_18029de40(*(uint64_t *)(lVar4 + 0x1cd8),7);
+  DataProcessor_DecompressData(*(uint64_t *)(lVar4 + 0x1cd8),7);
   (**(code **)(*param_1 + 0x50))
             (param_1,param_3,(int)param_1[0x8a],(int)param_1[0x8a],param_4,param_5,0);
   if (plVar1 != (longlong *)0x0) {

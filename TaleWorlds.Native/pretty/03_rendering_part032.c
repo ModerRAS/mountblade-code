@@ -68,10 +68,10 @@ typedef enum {
 #define ResourceReleaser FUN_18064e900
 
 // 状态查询处理器 - 用于查询渲染系统状态
-#define StateQueryProcessor StateQueryProcessor
+#define StateQueryProcessor FUN_18007b240
 
 // 数学计算器 - 用于渲染系统数学计算
-#define MathCalculator FUN_180285b40
+#define MathCalculator MathCalculator
 
 // 全局数据引用
 #define RenderingSystemGlobalData _DAT_180c8ed18
@@ -1191,7 +1191,7 @@ uint64_t RenderingSystemCalculateProjectionDistance(longlong param_1, uint64_t p
     fStack_14 = param_3[1] - *(float *)(param_1 + 0x14);
     fStack_10 = param_3[2] - *(float *)(param_1 + 0x18);
     uStack_c = 0x7f7fffff;
-    FUN_180285b40(0x7f7fffff, fStack_14, &fStack_18);
+    MathCalculator(0x7f7fffff, fStack_14, &fStack_18);
     return param_2;
 }
 
