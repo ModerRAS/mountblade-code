@@ -238,79 +238,104 @@ undefined8 SystemConditionVariableManager(longlong param_1, undefined8 param_2, 
     
     return 1;
 }
-
-
-
-longlong FUN_180046240(undefined4 *param_1,undefined4 *param_2)
-
+/**
+ * @brief 系统资源清理器 2
+ * 
+ * 负责清理和释放系统资源，包括内存和其他系统对象。
+ * 
+ * @param param_1 资源管理器指针
+ * @param param_2 资源数据指针
+ * @return 清理结果状态码
+ */
+longlong SystemResourceCleaner_2(undefined4 *param_1, undefined4 *param_2)
 {
-  undefined4 uVar1;
-  char cVar2;
-  undefined *puVar3;
-  
-  if (*(longlong *)(param_1 + 0x18) != 0) {
-    cVar2 = (**(code **)(param_1 + 0x1a))(param_2,param_1 + 0x14);
-    if (cVar2 == '\0') {
-      if (DAT_180c82860 == '\0') {
-        puVar3 = &DAT_18098bc73;
-        if (*(undefined **)(param_1 + 4) != (undefined *)0x0) {
-          puVar3 = *(undefined **)(param_1 + 4);
+    undefined4 uVar1;
+    char cVar2;
+    undefined *puVar3;
+    
+    /* 检查资源管理器状态 */
+    if (*(longlong *)(param_1 + 0x18) != 0) {
+        /* 执行资源清理回调 */
+        cVar2 = (**(code **)(param_1 + 0x1a))(param_2, param_1 + 0x14);
+        if (cVar2 == '\0') {
+            /* 处理清理成功的情况 */
+            if (DAT_180c82860 == '\0') {
+                puVar3 = &DAT_18098bc73;
+                if (*(undefined **)(param_1 + 4) != (undefined *)0x0) {
+                    puVar3 = *(undefined **)(param_1 + 4);
+                }
+                FUN_180626f80(&UNK_18098bc00, puVar3);
+            }
+            *param_1 = param_1[0x12];
+            return (ulonglong)(uint3)((uint)param_1[0x12] >> 8) << 8;
         }
-        FUN_180626f80(&UNK_18098bc00,puVar3);
-      }
-      *param_1 = param_1[0x12];
-      return (ulonglong)(uint3)((uint)param_1[0x12] >> 8) << 8;
     }
-  }
-  uVar1 = *param_2;
-  *param_1 = uVar1;
-  return CONCAT71((uint7)(uint3)((uint)uVar1 >> 8),1);
+    
+    /* 更新资源状态 */
+    uVar1 = *param_2;
+    *param_1 = uVar1;
+    return CONCAT71((uint7)(uint3)((uint)uVar1 >> 8), 1);
 }
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_1800462c0(undefined8 param_1,undefined4 param_2)
-void FUN_1800462c0(undefined8 param_1,undefined4 param_2)
-
+/**
+ * @brief 系统资源清理器 1
+ * 
+ * 负责清理系统资源并更新相关状态。
+ * 
+ * @param param_1 资源标识符
+ * @param param_2 清理参数
+ */
+void SystemResourceCleaner_1(undefined8 param_1, undefined4 param_2)
 {
-  longlong lVar1;
-  char cVar2;
-  undefined *puVar3;
-  undefined4 auStackX_10 [6];
-  
-  lVar1 = _DAT_180c86920;
-  if ((*(longlong *)(_DAT_180c86920 + 0x22f0) != 0) &&
-     (auStackX_10[0] = param_2, cVar2 = (**(code **)(_DAT_180c86920 + 0x22f8))(auStackX_10),
-     param_2 = auStackX_10[0], cVar2 == '\0')) {
-    if (DAT_180c82860 == '\0') {
-      puVar3 = &DAT_18098bc73;
-      if (*(undefined **)(lVar1 + 0x22a0) != (undefined *)0x0) {
-        puVar3 = *(undefined **)(lVar1 + 0x22a0);
-      }
-      FUN_180626f80(&UNK_18098bc00,puVar3);
+    longlong lVar1;
+    char cVar2;
+    undefined *puVar3;
+    undefined4 auStackX_10 [6];
+    
+    /* 获取资源管理器指针 */
+    lVar1 = _DAT_180c86920;
+    
+    /* 检查资源状态并执行清理 */
+    if ((*(longlong *)(_DAT_180c86920 + 0x22f0) != 0) &&
+        (auStackX_10[0] = param_2, cVar2 = (**(code **)(_DAT_180c86920 + 0x22f8))(auStackX_10),
+         param_2 = auStackX_10[0], cVar2 == '\0')) {
+        
+        /* 处理清理成功的情况 */
+        if (DAT_180c82860 == '\0') {
+            puVar3 = &DAT_18098bc73;
+            if (*(undefined **)(lVar1 + 0x22a0) != (undefined *)0x0) {
+                puVar3 = *(undefined **)(lVar1 + 0x22a0);
+            }
+            FUN_180626f80(&UNK_18098bc00, puVar3);
+        }
+        *(undefined4 *)(lVar1 + 0x2290) = *(undefined4 *)(lVar1 + 0x22d8);
+        return;
     }
-    *(undefined4 *)(lVar1 + 0x2290) = *(undefined4 *)(lVar1 + 0x22d8);
-    return;
-  }
-  *(undefined4 *)(lVar1 + 0x2290) = param_2;
-  return;
+    
+    /* 更新资源状态 */
+    *(undefined4 *)(lVar1 + 0x2290) = param_2;
 }
-
-
-
-undefined8 *
-FUN_180046340(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 系统内存管理器 1
+ * 
+ * 负责管理内存的分配和释放操作。
+ * 
+ * @param param_1 内存管理器指针
+ * @param param_2 内存操作标志
+ * @param param_3 内存参数1
+ * @param param_4 内存参数2
+ * @return 内存管理器指针
+ */
+undefined8 *SystemMemoryManager_1(undefined8 *param_1, ulonglong param_2, undefined8 param_3, undefined8 param_4)
 {
-  *param_1 = &UNK_18098bcb0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x38,param_3,param_4,0xfffffffffffffffe);
-  }
-  return param_1;
+    /* 重置内存管理器状态 */
+    *param_1 = &UNK_18098bcb0;
+    
+    /* 根据标志决定是否释放内存 */
+    if ((param_2 & 1) != 0) {
+        free(param_1, 0x38, param_3, param_4, 0xfffffffffffffffe);
+    }
+    
+    return param_1;
 }
 
 
