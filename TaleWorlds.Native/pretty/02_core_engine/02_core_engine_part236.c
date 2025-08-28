@@ -9,7 +9,7 @@ void release_resource_manager_memory(longlong resource_manager)
 {
     int temp_int;
     longlong *ptr_temp;
-    int32_t *ptr_undefined;
+    int32_t *data_ptr;
     int temp_int2;
     uint64_t *ptr_uint64_t;
     uint64_t *ptr_uint64_t_2;
@@ -642,7 +642,7 @@ uint64_t * initialize_data_structure(longlong resource_manager, uint64_t *data_p
     int32_t temp_value2;
     int32_t temp_value3;
     longlong *ptr_temp;
-    uint64_t *ptr_undefined;
+    uint64_t *data_ptr;
     int32_t temp_value4;
     uint temp_value5;
     int32_t temp_value6;
