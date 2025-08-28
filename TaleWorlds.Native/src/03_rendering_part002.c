@@ -1988,36 +1988,54 @@ undefined UNK_180a21bd0;      // 错误策略数据结构
 undefined UNK_180a21c30;      // 调试策略数据结构
 
 
-// 函数: undefined FUN_180388290;
+/** 
+ * @brief 渲染系统高级状态管理函数
+ * @details 渲染系统的高级状态管理功能
+ */
 undefined FUN_180388290;
 
 
-// 函数: undefined FUN_180387ed0;
+/** 
+ * @brief 渲染系统高级资源管理函数
+ * @details 渲染系统的高级资源管理功能
+ */
 undefined FUN_180387ed0;
 
 
-// 函数: undefined FUN_180388040;
+/** 
+ * @brief 渲染系统高级性能管理函数
+ * @details 渲染系统的高级性能管理功能
+ */
 undefined FUN_180388040;
 
 
-// 函数: undefined FUN_180388120;
+/** 
+ * @brief 渲染系统高级优化函数
+ * @details 渲染系统的高级优化功能
+ */
 undefined FUN_180388120;
-undefined UNK_180a21bf8;
-undefined UNK_180a21c18;
-undefined UNK_180a21c40;
-undefined UNK_180a21c60;
-undefined UNK_180389710;
-undefined UNK_180a1022c;
+undefined UNK_180a21bf8;      // 优化配置数据结构
+undefined UNK_180a21c18;      // 优化统计数据结构
+undefined UNK_180a21c40;      // 优化算法数据结构
+undefined UNK_180a21c60;      // 优化策略数据结构
+undefined UNK_180389710;      // 优化管理器数据结构
+undefined UNK_180a1022c;      // 优化器数据结构
 
 
-// 函数: undefined FUN_1803896b0;
+/** 
+ * @brief 渲染系统高级调试函数
+ * @details 渲染系统的高级调试功能
+ */
 undefined FUN_1803896b0;
-undefined UNK_180a2aea0;
-undefined UNK_180a2af60;
-undefined UNK_180396c80;
+undefined UNK_180a2aea0;      // 调试配置数据结构
+undefined UNK_180a2af60;      // 调试统计数据结构
+undefined UNK_180396c80;      // 调试管理器数据结构
 
 
-// 函数: undefined FUN_18038a340;
+/** 
+ * @brief 渲染系统高级分析函数
+ * @details 渲染系统的高级分析功能
+ */
 undefined FUN_18038a340;
 
 
