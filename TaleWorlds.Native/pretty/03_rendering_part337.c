@@ -7,7 +7,7 @@
 // 渲染数据管理函数
 #define RenderingSystem_DataProcessor FUN_1804485c0          // 渲染系统数据处理器
 #define RenderingSystem_DataManager FUN_1804489a0            // 渲染系统数据管理器
-#define RenderingSystem_DataInitializer RenderingSystem_DataInitializer        // 渲染系统数据初始化器
+#define RenderingSystem_DataInitializer FUN_180448d90        // 渲染系统数据初始化器
 #define RenderingSystem_DataCleaner FUN_180448df0            // 渲染系统数据清理器
 #define RenderingSystem_DataValidator FUN_180448e50         // 渲染系统数据验证器
 #define RenderingSystem_StatusChecker FUN_180448ea0         // 渲染系统状态检查器
@@ -647,7 +647,7 @@ void RenderingSystem_DataInitializer(int64_t *param_1)
  * - 实现参数验证和更新
  * - 管理参数的生命周期
  */
-void FUN_180448df0(int64_t *param_1)
+void RenderingSystem_DataCleaner(int64_t *param_1)
 {
     RenderParamElementPtr param_ptr;
     unsigned char *status_flag;

@@ -219,10 +219,12 @@ void RenderingSystem_AdvancedAngleCalculator(uint64_t param_1,uint param_2,uint 
     float afStack_60e8 [6200];        // 大型浮点数组（用于渲染计算）
     uint64_t uStack_8;                // 栈变量8（用于调试和错误处理）
   
+  // 错误处理和系统初始化检查
   if (!in_ZF) {
-                    // WARNING: Subroutine does not return
-    uStack_8 = 0x1806598e8;
-    FUN_1808fd400(param_2 ^ param_3);
+    // 零标志位未设置，触发错误处理
+    // WARNING: 此子程序不返回
+    uStack_8 = 0x1806598e8;  // 设置错误代码
+    RenderingSystem_ErrorHandler(param_2 ^ param_3);  // 调用错误处理函数
   }
   fVar25 = fStack000000000000003c;
   fVar15 = fStack0000000000000038;
