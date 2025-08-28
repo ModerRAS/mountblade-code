@@ -184,7 +184,7 @@ void UI_System_EventHandler_Register(void)
   
   lVar1 = *(longlong *)(*(longlong *)(unaff_RSI + 0x108) + 0x10);
   uVar2 = *(uint64_t *)(lVar1 + 0x168);
-  FUN_180768360(uVar2);
+  UI_Event_Process_Event(uVar2);
   *(longlong *)(*(longlong *)(unaff_RSI + 0x108) + 0x28) = unaff_RSI;
   lVar3 = *(longlong *)(unaff_RSI + 0x108);
   plVar4 = (longlong *)(lVar3 + 0x18);
@@ -193,7 +193,7 @@ void UI_System_EventHandler_Register(void)
   *(longlong **)(lVar1 + 0x158) = plVar4;
   **(uint64_t **)(lVar3 + 0x20) = plVar4;
                     // WARNING: Subroutine does not return
-  FUN_180768400(uVar2);
+  UI_Event_Dispatch_Event(uVar2);
 }
 
 
@@ -498,6 +498,7 @@ uint64_t UI_System_Data_Batch_Copy(void)
 #define FUN_180768400(param)              UI_Event_Dispatch_Event(param)
 #define FUN_180769ed0(param1,param2,param3,param4,param5) UI_Event_Queue_Add(param1,param2,param3,param4,param5)
 #define FUN_180753170(param)              UI_State_Validate_Handle(param)
+#define func_0x00018076a7d0(param)        UI_Callback_Execute_Resource(param)
 
 //==============================================================================
 
