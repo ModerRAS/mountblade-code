@@ -10,6 +10,17 @@
 #define FUN_18020e840 SystemConfigInitializer
 #define FUN_180049470 SystemSecurityInitializer
 #define FUN_180060680 SystemDataValidator
+#define FUN_1800b4ec0 SystemContextManager
+#define FUN_18005c650 SystemStateValidator
+#define FUN_18005e630 SystemContextHandler
+#define FUN_18006eb30 SystemFinalizer
+#define FUN_18005ce30 SystemResourceHandler
+#define FUN_18005e370 SystemDataHandler
+#define FUN_180058210 SystemProcessor
+#define FUN_180058c20 SystemCleaner
+#define FUN_1800582b0 SystemContextInitializer
+#define FUN_180058370 SystemManager
+#define FUN_18004b790 SystemExecutor
 
 // 函数: void SystemInitializer(int64_t param_1)
 void SystemInitializer(int64_t param_1)
