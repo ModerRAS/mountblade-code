@@ -455,8 +455,8 @@ void rendering_system_process_render_parameters(longlong param1, longlong param2
                 }
                 
                 stack_var7 = (**(code **)(**(longlong **)(param1 + 0x1b0) + 0x60))();
-                undefined_var1 = FUN_18062b1e0(_DAT, 0x100, 8, 3);
-                ptr_ptr_var1 = (void **)FUN_18005ce30(undefined_var1, &stack_ptr3);
+                memory_block_id = FUN_18062b1e0(_DAT, 0x100, 8, 3);
+                ptr_ptr_var1 = (void **)FUN_18005ce30(memory_block_id, &stack_ptr3);
                 stack_ptr2 = ptr_ptr_var1;
                 
                 if (ptr_ptr_var1 != (void **)0x0) {
@@ -530,8 +530,8 @@ void rendering_system_update_projection_parameters(longlong param1)
 {
     uint *uint_ptr1;
     longlong long_var1;
-    int32_t undefined_var1;
-    int32_t undefined_var2;
+    int32_t render_param1;  // 渲染参数1
+    int32_t render_param2;  // 渲染参数2
     int32_t undefined_var3;
     uint64_t undefined_var4;
     uint64_t *ptr_var1;
@@ -569,12 +569,12 @@ void rendering_system_update_projection_parameters(longlong param1)
         *(uint64_t *)(param1 + 0x150) = *(uint64_t *)(long_var2 + 0x90);
         *(uint64_t *)(param1 + 0x158) = undefined_var4;
         
-        undefined_var1 = *(int32_t *)(long_var2 + 0xa4);
+        render_param1 = *(int32_t *)(long_var2 + 0xa4);
         undefined_var2 = *(int32_t *)(long_var2 + 0xa8);
         undefined_var3 = *(int32_t *)(long_var2 + 0xac);
         
         *(int32_t *)(param1 + 0x160) = *(int32_t *)(long_var2 + 0xa0);
-        *(int32_t *)(param1 + 0x164) = undefined_var1;
+        *(int32_t *)(param1 + 0x164) = render_param1;
         *(int32_t *)(param1 + 0x168) = undefined_var2;
         *(int32_t *)(param1 + 0x16c) = undefined_var3;
         

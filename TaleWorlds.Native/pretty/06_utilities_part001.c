@@ -155,53 +155,53 @@ uint8_t DAT_180bf6638;  // 触摸屏管理器
 uint8_t UNK_180a00528;  // 输入事件队列
 
 
-// 函数: uint8_t FUN_1809418a0;
-uint8_t FUN_1809418a0;
-uint8_t DAT_180bf6650;
-uint8_t DAT_180bf6658;
-uint8_t DAT_180bf6660;
-uint8_t DAT_180bf6668;
-uint8_t UNK_180a00538;
+// 窗口管理器
+uint8_t FUN_1809418a0;  // 窗口管理主函数
+uint8_t DAT_180bf6650;  // 窗口创建器
+uint8_t DAT_180bf6658;  // 窗口销毁器
+uint8_t DAT_180bf6660;  // 窗口状态管理器
+uint8_t DAT_180bf6668;  // 窗口事件处理器
+uint8_t UNK_180a00538;  // 窗口样式管理器
 
 
-// 函数: uint8_t FUN_1809418c0;
-uint8_t FUN_1809418c0;
-uint8_t DAT_180bf6680;
-uint8_t DAT_180bf6688;
-uint8_t DAT_180bf6690;
-uint8_t DAT_180bf6698;
-uint8_t UNK_180a00540;
+// 事件系统
+uint8_t FUN_1809418c0;  // 事件系统主函数
+uint8_t DAT_180bf6680;  // 事件分发器
+uint8_t DAT_180bf6688;  // 事件监听器
+uint8_t DAT_180bf6690;  // 事件队列
+uint8_t DAT_180bf6698;  // 事件过滤器
+uint8_t UNK_180a00540;  // 事件优先级管理器
 
 
-// 函数: uint8_t FUN_1809418e0;
-uint8_t FUN_1809418e0;
-uint8_t DAT_180bf66b0;
-uint8_t DAT_180bf66b8;
-uint8_t DAT_180bf66c0;
-uint8_t DAT_180bf66c8;
-uint8_t UNK_180a00548;
+// 任务调度器
+uint8_t FUN_1809418e0;  // 任务调度主函数
+uint8_t DAT_180bf66b0;  // 任务创建器
+uint8_t DAT_180bf66b8;  // 任务执行器
+uint8_t DAT_180bf66c0;  // 任务队列管理器
+uint8_t DAT_180bf66c8;  // 任务优先级调度器
+uint8_t UNK_180a00548;  // 任务监控器
 
 
-// 函数: uint8_t FUN_180941900;
-uint8_t FUN_180941900;
-uint8_t DAT_180bf52e8;
-uint8_t DAT_180bf52f0;
-uint8_t DAT_180bf52f8;
-uint8_t DAT_180bf5300;
-uint8_t UNK_180a01300;
+// 内存池管理器
+uint8_t FUN_180941900;  // 内存池管理主函数
+uint8_t DAT_180bf52e8;  // 小对象池状态
+uint8_t DAT_180bf52f0;  // 中对象池状态
+uint8_t DAT_180bf52f8;  // 大对象池状态
+uint8_t DAT_180bf5300;  // 池分配策略
+uint8_t UNK_180a01300;  // 池回收器
 
 
-// 函数: uint8_t FUN_180941980;
-uint8_t FUN_180941980;
-uint8_t DAT_180bf5738;
-uint8_t DAT_180bf5740;
-uint8_t DAT_180bf5748;
-uint8_t DAT_180bf5750;
-uint8_t UNK_180a01330;
+// 垃圾回收器
+uint8_t FUN_180941980;  // 垃圾回收主函数
+uint8_t DAT_180bf5738;  // GC标记器
+uint8_t DAT_180bf5740;  // GC清扫器
+uint8_t DAT_180bf5748;  // GC压缩器
+uint8_t DAT_180bf5750;  // GC统计器
+uint8_t UNK_180a01330;  // GC调度器
 
 
-// 函数: uint8_t FUN_1809419a0;
-uint8_t FUN_1809419a0;
+// 线程管理器
+uint8_t FUN_1809419a0;  // 线程管理主函数
 
 
 // 函数: uint8_t FUN_1809419c0;

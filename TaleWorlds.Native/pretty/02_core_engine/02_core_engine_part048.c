@@ -101,7 +101,7 @@ void process_string_search_and_memory_management(void)
     int32_t stack_uint9;       // 栈无符号整型9
     ulonglong stack_ulong8;       // 栈无符号长整型8
     void *stack_pointer19;    // 栈指针19
-    uint64_t stack_undefined9;  // 栈未定义9字节
+    uint64_t stack_data9;  // 栈数据9
     int32_t stack_uint10;      // 栈无符号整型10
     ulonglong stack_ulong9;       // 栈无符号长整型9
     longlong stack_long5;         // 栈长整型5
@@ -347,7 +347,7 @@ process_string_match:
             if (compare_char != '\0') {
                 stack_pointer8 = &UNK_180a3c3e0;
                 stack_ulong9 = 0;
-                stack_undefined9 = 0;
+                stack_data9 = 0;
                 stack_uint10 = 0;
                 if (((0 < (int)stack_uint2) && (0 < temp_int1)) &&
                    (array_pointer = find_substring(stack_long3,string_buffer), array_pointer != 0)) {
@@ -367,7 +367,7 @@ process_string_match:
                     stack_uint2 = stack_uint2 - temp_int1;
                     *(int8_t *)((ulonglong)stack_uint2 + stack_long3) = 0;
                 }
-                stack_undefined9 = 0;
+                stack_data9 = 0;
                 stack_ulong9 = stack_ulong9 & 0xffffffff00000000;
                 stack_pointer8 = &UNK_18098bcb0;
             }
