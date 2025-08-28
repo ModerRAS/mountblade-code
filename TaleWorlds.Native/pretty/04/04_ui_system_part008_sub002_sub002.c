@@ -44,13 +44,13 @@
 #define ui_system_collision_validation_helper FUN_180659163
 
 // 外部函数声明
-extern uint64_t FUN_18062b420(uint64_t *param_1, int64_t param_2, int param_3, int64_t *param_4, uint64_t param_5);
+extern uint64_t CoreEngineMemoryPoolAllocator(uint64_t *param_1, int64_t param_2, int param_3, int64_t *param_4, uint64_t param_5);
 extern void FUN_180640330(uint64_t *param_1, uint64_t *param_2);
 extern void FUN_18063efb0(int64_t *param_1, uint64_t **param_2, int param_3, int param_4);
 extern void FUN_18033a920(int64_t *param_1);
 extern void FUN_1806457f0(int32_t *param_1, int32_t *param_2, float *param_3, float *param_4, float *param_5);
 extern char FUN_18063e7e0(int64_t *param_1, uint64_t *param_2);
-extern void FUN_18064e900(uint64_t *param_1);
+extern void CoreEngineMemoryPoolCleaner(uint64_t *param_1);
 
 // 全局变量引用
 #define GLOBAL_MEMORY_POOL system_memory_pool_ptr
@@ -134,7 +134,7 @@ void ui_system_advanced_data_structure_processor(int64_t *param_1, int64_t *para
     
     // 分配内存池
     if (iVar4 != 0) {
-        puStack_58 = (uint64_t *)FUN_18062b420(GLOBAL_MEMORY_POOL, lStackX_8 * 8,
+        puStack_58 = (uint64_t *)CoreEngineMemoryPoolAllocator(GLOBAL_MEMORY_POOL, lStackX_8 * 8,
                                                    CONCAT71((int7)(int3)((uint64_t)lVar5 >> 8), 3), param_3,
                                                    UI_SYSTEM_MEMORY_POOL_SIZE);
         puStack_50 = puStack_58 + lStackX_8;
@@ -160,7 +160,7 @@ void ui_system_advanced_data_structure_processor(int64_t *param_1, int64_t *para
                 if (lVar6 == 0) {
                     lVar6 = 1;
 LAB_1806588f2:
-                    puVar7 = (uint64_t *)FUN_18062b420(GLOBAL_MEMORY_POOL, lVar6 * 8,
+                    puVar7 = (uint64_t *)CoreEngineMemoryPoolAllocator(GLOBAL_MEMORY_POOL, lVar6 * 8,
                                                          CONCAT71((int7)((uint64_t)lStackX_8 >> 8), 3), param_3, uVar13);
                 }
                 else {
@@ -175,7 +175,7 @@ LAB_1806588f2:
                 *puVar7 = *(uint64_t *)((int64_t)puVar11 + lVar5);
                 if (puVar10 != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
-                    FUN_18064e900(puVar10);
+                    CoreEngineMemoryPoolCleaner(puVar10);
                 }
                 puVar8 = puVar7 + lVar6;
                 puStack_60 = puVar7;
@@ -213,7 +213,7 @@ LAB_1806588f2:
         return;
     }
     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar7);
+    CoreEngineMemoryPoolCleaner(puVar7);
 }
 
 /**

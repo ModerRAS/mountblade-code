@@ -32,7 +32,7 @@
 #define ui_system_calculate_angle_difference FUN_18065c070
 #define ui_system_interpolate_animation_value FUN_18065bf60
 #define ui_system_get_animation_data FUN_18065fd40
-#define ui_system_error_handler FUN_1808fc050
+#define ui_system_error_handler SystemSecurityChecker
 #define ui_system_assertion_handler FUN_1808fd400
 
 // 全局数组定义

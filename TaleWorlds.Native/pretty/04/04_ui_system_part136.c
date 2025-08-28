@@ -905,7 +905,7 @@ event_processing_complete:
     }
     
 event_cleanup_handler:
-    FUN_1808fc050(workspace_cookie ^ (uint64_t)stack_buffer);
+    SystemSecurityChecker(workspace_cookie ^ (uint64_t)stack_buffer);
 }
 
 /**
@@ -1010,7 +1010,7 @@ void ui_system_validate_event_state(int64_t event_context)
     *(int8_t *)(event_context + 0x6a8) = 1;
     
 validation_complete:
-    FUN_1808fc050(stack_cookie ^ (uint64_t)event_stack);
+    SystemSecurityChecker(stack_cookie ^ (uint64_t)event_stack);
 }
 
 /**

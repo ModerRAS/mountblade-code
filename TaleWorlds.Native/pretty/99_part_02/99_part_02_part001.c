@@ -153,7 +153,7 @@ typedef boolean_t (*SearchFunc_t)(const void*, const void*); // 搜索函数指�
  * 
  * 技术说明：
  * - 这是一个系统级的处理器函数
- * - 调用FUN_18064e900进行实际处理
+ * - 调用CoreEngineMemoryPoolCleaner进行实际处理
  * - 使用寄存器传递参数
  * 
  * 注意事项：
@@ -165,7 +165,7 @@ void AdvancedDataStructureProcessor(void)
     int64_t unaff_RSI;
     
     // WARNING: 此函数不返回
-    FUN_18064e900(unaff_RSI + -0x10);
+    CoreEngineMemoryPoolCleaner(unaff_RSI + -0x10);
 }
 
 /**

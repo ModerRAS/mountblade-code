@@ -311,7 +311,7 @@ void ui_system_simd_vector_processor(int64_t system_context, int64_t *vector_dat
   *(char *)vector_data[5] = direction_flag;
   
   // 栈保护检查
-  FUN_1808fc050(stack_guard ^ (uint64_t)&stack_protection_1);
+  SystemSecurityChecker(stack_guard ^ (uint64_t)&stack_protection_1);
 }
 
 /**

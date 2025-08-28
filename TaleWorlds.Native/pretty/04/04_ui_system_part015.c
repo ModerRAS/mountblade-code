@@ -39,7 +39,7 @@
 #define ui_system_get_particle_data FUN_18022a890
 #define ui_system_apply_transform FUN_1801aa0f0
 #define ui_system_execute_particle_effect FUN_1808fd400
-#define ui_system_cleanup_particle_resources FUN_1808fc050
+#define ui_system_cleanup_particle_resources SystemSecurityChecker
 
 /**
  * UI系统高级粒子系统更新函数

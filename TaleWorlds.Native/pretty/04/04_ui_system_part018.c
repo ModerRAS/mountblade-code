@@ -37,7 +37,7 @@ extern const void* GET_SECURITY_COOKIE();     // UI系统安全数据
 
 // 函数声明
 void FUN_180403910(void);
-void FUN_1808fc050(uint64_t param_1);
+void SystemSecurityChecker(uint64_t param_1);
 void func_0x000180669850(float* param_1, int32_t param_2, void* param_3, float param_4, int32_t param_5, float param_6);
 int64_t FUN_18065fd40(int64_t param_1);
 int64_t FUN_18065cec0(int64_t param_1, int param_2);
@@ -78,7 +78,7 @@ void ui_system_animation_loop_processor(void)
     } while (loop_counter < UI_ITERATION_COUNT);
     
     // 安全清理
-    FUN_1808fc050(0); // 简化的安全参数
+    SystemSecurityChecker(0); // 简化的安全参数
 }
 
 /**

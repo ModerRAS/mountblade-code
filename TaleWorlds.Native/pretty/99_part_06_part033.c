@@ -289,16 +289,16 @@ static void* system_data_fc60 = NULL;
 #define SystemDataConstructor FUN_1803c6190
 
 /** 系统安全检查器 - 执行系统安全检查 */
-#define SystemSecurityChecker FUN_1808fc050
+#define SystemSecurityChecker SystemSecurityChecker
 
 /** 系统清理函数 - 清理系统资源 */
-#define SystemCleanupFunction FUN_18064e900
+#define SystemCleanupFunction CoreEngineMemoryPoolCleaner
 
 /** 系统ID生成器 - 生成系统唯一ID */
 #define SystemIDGenerator FUN_180628ca0
 
 /** 系统ID设置器 - 设置系统ID */
-#define SystemIDSetter FUN_180627ae0
+#define SystemIDSetter CoreEngineDataTransformer
 
 /** 系统函数调用器 - 调用系统函数 */
 #define SystemFunctionCaller FUN_1800f6ad0
@@ -307,13 +307,13 @@ static void* system_data_fc60 = NULL;
 #define SystemDataCopier FUN_18005d190
 
 /** 系统配置处理器 - 处理系统配置 */
-#define SystemConfigProcessor FUN_18005ea90
+#define SystemConfigProcessor SystemInitializer
 
 /** 系统内存清理器 - 清理系统内存 */
 #define SystemMemoryCleaner FUN_1803cec30
 
 /** 系统内存终结器 - 终结系统内存 */
-#define SystemMemoryFinalizer FUN_18064d630
+#define SystemMemoryFinalizer SystemDataCleaner
 
 /** 系统基础清理器 - 执行基础清理 */
 #define SystemBaseCleaner FUN_18004b730

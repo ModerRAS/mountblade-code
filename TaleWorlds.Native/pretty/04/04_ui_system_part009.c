@@ -1016,7 +1016,7 @@ FINAL_WEIGHT_PROCESSING:
       blend_gamma = smooth_factor4;
       smooth_factor3 = smooth_factor4;
       smooth_factor4 = smooth_factor4;
-      FUN_1808fc050(hash_key ^ (uint64_t)stack_buffer);
+      SystemSecurityChecker(hash_key ^ (uint64_t)stack_buffer);
     }
   } while( true );
 }

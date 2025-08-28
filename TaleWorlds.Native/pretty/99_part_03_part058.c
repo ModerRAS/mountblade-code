@@ -484,10 +484,10 @@ void FUN_180234a10(int64_t param_1,char param_2,uint64_t param_3,uint64_t param_
       return;
     }
                     // WARNING: Subroutine does not return
-    FUN_18064e900(lVar4);
+    CoreEngineMemoryPoolCleaner(lVar4);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puStack_c0);
+  CoreEngineMemoryPoolCleaner(puStack_c0);
 }
 
 

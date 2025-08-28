@@ -105,7 +105,7 @@ extern void func_0x0001806689f0(int64_t param_1, int64_t param_2);
 extern void FUN_1808fd400(uint param_1);
 extern void FUN_1808fd200(void);
 extern void FUN_180669700(int64_t param_1, void* param_2, uint64_t param_3, int param_4, uint64_t param_5);
-extern void FUN_1808fc050(uint64_t param_1);
+extern void SystemSecurityChecker(uint64_t param_1);
 extern uint64_t FUN_180660070(int64_t param_1, uint param_2);
 extern uint64_t FUN_18065ffa0(int64_t param_1, uint param_2);
 extern uint64_t FUN_18065cec0(int64_t param_1, int param_2);
@@ -731,7 +731,7 @@ void ui_system_resource_manager(int64_t param_1)
     } while ((int64_t)resource_index < 10);
     
     // 安全清理
-    FUN_1808fc050(security_hash ^ (uint64_t)security_stack);
+    SystemSecurityChecker(security_hash ^ (uint64_t)security_stack);
 }
 
 /**

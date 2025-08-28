@@ -85,8 +85,8 @@ void ui_system_advanced_data_processor(uint64_t system_context, uint64_t data_fl
     process_status = 0;
 LAB_1806579f0:
     // 分配内存并初始化系统资源
-    data_difference = FUN_18062b420(UI_SYSTEM_CONTEXT_DATA, 0x48, UI_SYSTEM_GLOBAL_DATA_2, process_flag, 0xfffffffffffffffe);
-    FUN_180627ae0(data_difference + 0x20, data_offset);
+    data_difference = CoreEngineMemoryPoolAllocator(UI_SYSTEM_CONTEXT_DATA, 0x48, UI_SYSTEM_GLOBAL_DATA_2, process_flag, 0xfffffffffffffffe);
+    CoreEngineDataTransformer(data_difference + 0x20, data_offset);
     *(uint64_t *)(data_difference + 0x40) = 0;
     
     // 调用UI系统处理函数（该函数不返回）
@@ -261,7 +261,7 @@ void ui_system_data_structure_processor(int64_t data_source, int64_t data_target
             memory_block_size = 0;
             
             // 处理数据块
-            FUN_1806277c0(&stack_data_ptr, *(int32_t *)(iteration_count + 0x10 + source_offset));
+            CoreEngineDataBufferProcessor(&stack_data_ptr, *(int32_t *)(iteration_count + 0x10 + source_offset));
             data_length = *(int *)(iteration_count + 0x10 + source_offset);
             
             if (data_length != 0) {
@@ -289,7 +289,7 @@ void ui_system_data_structure_processor(int64_t data_source, int64_t data_target
                 structure_ptr[3] = 0;
                 structure_ptr[1] = 0;
                 *(int32_t *)(structure_ptr + 2) = 0;
-                FUN_1806277c0(structure_ptr, memory_block_size);
+                CoreEngineDataBufferProcessor(structure_ptr, memory_block_size);
                 
                 if (memory_block_size != 0) {
                     // 复制内存块数据（该操作不返回）
@@ -314,7 +314,7 @@ void ui_system_data_structure_processor(int64_t data_source, int64_t data_target
             stack_data_ptr = (void *)UI_SYSTEM_DATA_STRUCTURE_1;
             if (memory_block_ptr != (int8_t *)0x0) {
                 // 清理内存块（该操作不返回）
-                FUN_18064e900();
+                CoreEngineMemoryPoolCleaner();
             }
             
             processed_count = (int)block_count + 1;

@@ -615,7 +615,7 @@ void ui_system_advanced_rendering_batch_processor(int64_t ui_context, int64_t re
   }
   
   // 清理和保护栈
-  FUN_1808fc050(stack_guard ^ (uint64_t)security_buffer);
+  SystemSecurityChecker(stack_guard ^ (uint64_t)security_buffer);
 }
 
 //===================================================================
