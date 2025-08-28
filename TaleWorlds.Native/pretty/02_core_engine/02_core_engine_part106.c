@@ -509,7 +509,13 @@ void render_blink_effect(undefined8 blink_position, undefined4 blink_type, float
  * @param param_2 渲染标志
  * @param param_3 渲染上下文
  */
-void process_bounding_box_display(float *param_1, uint param_2, longlong param_3)
+/**
+ * 处理渲染边界框的显示和更新
+ * @param bbox_coords 边界框坐标
+ * @param render_flags 渲染标志
+ * @param render_context 渲染上下文
+ */
+void process_bounding_box_display(float *bbox_coords, uint render_flags, longlong render_context)
 {
     int *piVar1;
     float fVar2;
@@ -535,98 +541,120 @@ void process_bounding_box_display(float *param_1, uint param_2, longlong param_3
     float fStack_b0;
     float fStack_ac;
     
-    if (((*(char *)(param_3 + 0x1d06) == '\0') || ((param_2 & 4) != 0)) &&
-       (lVar5 = *(longlong *)(param_3 + 0x1af8), *(char *)(lVar5 + 0x17c) == '\0')) {
-        if ((param_2 & 8) == 0) {
-            uVar15 = *(undefined4 *)(param_3 + 0x1664);
+    // 检查是否需要显示边界框
+    if (((*(char *)(render_context + 0x1d06) == '\0') || ((render_flags & 4) != 0)) &&
+       (longlong render_data = *(longlong *)(render_context + 0x1af8), *(char *)(render_data + 0x17c) == '\0')) {
+        
+        // 获取颜色参数
+        undefined4 color_param;
+        if ((render_flags & 8) == 0) {
+            color_param = *(undefined4 *)(render_context + 0x1664);
         }
         else {
-            uVar15 = 0;
+            color_param = 0;
         }
-        fVar2 = *(float *)(lVar5 + 0x228);
-        fVar3 = *(float *)(lVar5 + 0x22c);
-        fStack_b8 = *param_1;
-        fStack_b4 = param_1[1];
-        fStack_b0 = param_1[2];
-        fStack_ac = param_1[3];
-        fVar14 = fVar2;
-        if (fVar2 <= fStack_b8) {
-            fVar14 = fStack_b8;
+        
+        // 获取边界框范围
+        float min_x = *(float *)(render_data + 0x228);
+        float min_y = *(float *)(render_data + 0x22c);
+        float bbox_x = *bbox_coords;
+        float bbox_y = bbox_coords[1];
+        float bbox_z = bbox_coords[2];
+        float bbox_w = bbox_coords[3];
+        
+        // 计算调整后的边界
+        float adjusted_x = min_x;
+        if (min_x <= bbox_x) {
+            adjusted_x = bbox_x;
         }
-        fVar12 = fVar3;
-        if (fVar3 <= fStack_b4) {
-            fVar12 = fStack_b4;
+        float adjusted_y = min_y;
+        if (min_y <= bbox_y) {
+            adjusted_y = bbox_y;
         }
-        fVar4 = *(float *)(lVar5 + 0x230);
-        fVar10 = fVar4;
-        if (fStack_b0 <= fVar4) {
-            fVar10 = fStack_b0;
+        
+        float max_z = *(float *)(render_data + 0x230);
+        float adjusted_z = max_z;
+        if (bbox_z <= max_z) {
+            adjusted_z = bbox_z;
         }
-        fVar8 = *(float *)(lVar5 + 0x234);
-        if (fStack_ac <= *(float *)(lVar5 + 0x234)) {
-            fVar8 = fStack_ac;
+        
+        float max_w = *(float *)(render_data + 0x234);
+        float adjusted_w = max_w;
+        if (bbox_w <= max_w) {
+            adjusted_w = bbox_w;
         }
-        fVar9 = fVar8;
-        fVar11 = fVar10;
-        fVar13 = fVar12;
-        if ((param_2 & 1) != 0) {
-            fVar14 = fVar14 - 4.0;
-            fVar11 = fVar10 + 4.0;
-            fVar9 = fVar8 + 4.0;
-            fVar13 = fVar12 - 4.0;
-            if (((fVar14 < fVar2) || (fVar13 < fVar3)) ||
-               ((fVar4 < fVar11 ||
-                (*(float *)(lVar5 + 0x234) <= fVar9 && fVar9 != *(float *)(lVar5 + 0x234))))) {
-                bVar6 = false;
+        
+        // 处理边界框扩展模式
+        if ((render_flags & 1) != 0) {
+            float expanded_x = adjusted_x - 4.0;
+            float expanded_z = adjusted_z + 4.0;
+            float expanded_w = adjusted_w + 4.0;
+            float expanded_y = adjusted_y - 4.0;
+            
+            // 检查边界框是否有效
+            bool is_valid = true;
+            if (((expanded_x < min_x) || (expanded_y < min_y)) ||
+                ((max_z < expanded_z ||
+                 (*(float *)(render_data + 0x234) <= expanded_w && expanded_w != *(float *)(render_data + 0x234))))) {
+                is_valid = false;
             }
-            else {
-                bVar6 = true;
+            
+            if (!is_valid) {
+                FUN_180291b40(*(undefined8 *)(render_data + 0x2e8),CONCAT44(expanded_y,expanded_x),CONCAT44(expanded_w,expanded_z),0);
             }
-            if (!bVar6) {
-                FUN_180291b40(*(undefined8 *)(lVar5 + 0x2e8),CONCAT44(fVar13,fVar14),CONCAT44(fVar9,fVar11),
-                              0);
+            
+            // 渲染边界框
+            color_data bbox_color;
+            bbox_color.r = *(float *)(global_render_manager + 0x19a8);
+            bbox_color.g = *(float *)(global_render_manager + 0x19ac);
+            bbox_color.b = *(float *)(global_render_manager + 0x19b0);
+            bbox_color.a = *(float *)(global_render_manager + 0x19b4) * *(float *)(global_render_manager + 0x1628);
+            
+            uint flags = func_0x000180121e20(&bbox_color);
+            float offset_z = adjusted_z + 3.0;
+            float offset_w = adjusted_w + 3.0;
+            float offset_y = adjusted_y - 3.0;
+            float offset_x = adjusted_x + 1.0;
+            
+            if ((flags & 0xff000000) != 0) {
+                FUN_180293e80(*(undefined8 *)(render_data + 0x2e8),&offset_x,&offset_z,flags,color_param,0xf,0x40000000);
             }
-            fStack_b8 = *(float *)(_DAT_180c8a9b0 + 0x19a8);
-            fStack_b4 = *(float *)(_DAT_180c8a9b0 + 0x19ac);
-            fStack_b0 = *(float *)(_DAT_180c8a9b0 + 0x19b0);
-            fStack_ac = *(float *)(_DAT_180c8a9b0 + 0x19b4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
-            uVar7 = func_0x000180121e20(&fStack_b8);
-            fStackX_18 = fVar10 + 3.0;
-            fStackX_1c = fVar8 + 3.0;
-            fStackX_24 = fVar12 - 3.0;
-            fStackX_20 = fVar14 + 1.0;
-            if ((uVar7 & 0xff000000) != 0) {
-                FUN_180293e80(*(undefined8 *)(lVar5 + 0x2e8),&fStackX_20,&fStackX_18,uVar7,uVar15,0xf,
-                              0x40000000);
-            }
-            if (!bVar6) {
-                piVar1 = (int *)(*(longlong *)(lVar5 + 0x2e8) + 0x60);
-                *piVar1 = *piVar1 + -1;
+            
+            if (!is_valid) {
+                int *counter = (int *)(*(longlong *)(render_data + 0x2e8) + 0x60);
+                *counter = *counter + -1;
                 FUN_180291950();
             }
         }
-        if ((param_2 & 2) != 0) {
-            lVar5 = *(longlong *)(lVar5 + 0x2e8);
-            fStack_b8 = *(float *)(_DAT_180c8a9b0 + 0x19a8);
-            fStack_b4 = *(float *)(_DAT_180c8a9b0 + 0x19ac);
-            fStack_b0 = *(float *)(_DAT_180c8a9b0 + 0x19b0);
-            fStack_ac = *(float *)(_DAT_180c8a9b0 + 0x19b4) * *(float *)(_DAT_180c8a9b0 + 0x1628);
-            uVar7 = func_0x000180121e20(&fStack_b8);
-            if ((uVar7 & 0xff000000) != 0) {
-                if ((*(byte *)(lVar5 + 0x30) & 1) == 0) {
-                    fStackX_18 = fVar11 - 0.49;
-                    fStackX_1c = fVar9 - 0.49;
+        
+        // 处理边界框高亮模式
+        if ((render_flags & 2) != 0) {
+            render_data = *(longlong *)(render_data + 0x2e8);
+            
+            color_data highlight_color;
+            highlight_color.r = *(float *)(global_render_manager + 0x19a8);
+            highlight_color.g = *(float *)(global_render_manager + 0x19ac);
+            highlight_color.b = *(float *)(global_render_manager + 0x19b0);
+            highlight_color.a = *(float *)(global_render_manager + 0x19b4) * *(float *)(global_render_manager + 0x1628);
+            
+            uint flags = func_0x000180121e20(&highlight_color);
+            if ((flags & 0xff000000) != 0) {
+                float highlight_z, highlight_w;
+                if ((*(byte *)(render_data + 0x30) & 1) == 0) {
+                    highlight_z = expanded_z - 0.49;
+                    highlight_w = expanded_w - 0.49;
                 }
                 else {
-                    fStackX_18 = fVar11 - 0.5;
-                    fStackX_1c = fVar9 - 0.5;
+                    highlight_z = expanded_z - 0.5;
+                    highlight_w = expanded_w - 0.5;
                 }
-                fStackX_20 = fVar14 + 0.5;
-                fStackX_24 = fVar13 + 0.5;
-                FUN_1802939e0(lVar5,&fStackX_20,&fStackX_18,uVar15,0xffffffff);
-                FUN_1802923e0(lVar5,*(undefined8 *)(lVar5 + 0x88),*(undefined4 *)(lVar5 + 0x80),uVar7,1,
-                              0x3f800000);
-                *(undefined4 *)(lVar5 + 0x80) = 0;
+                
+                float highlight_x = adjusted_x + 0.5;
+                float highlight_y = adjusted_y + 0.5;
+                
+                FUN_1802939e0(render_data,&highlight_x,&highlight_z,color_param,0xffffffff);
+                FUN_1802923e0(render_data,*(undefined8 *)(render_data + 0x88),*(undefined4 *)(render_data + 0x80),flags,1,0x3f800000);
+                *(undefined4 *)(render_data + 0x80) = 0;
             }
         }
     }
@@ -639,7 +667,13 @@ void process_bounding_box_display(float *param_1, uint param_2, longlong param_3
  * @param param_2 显示参数
  * @param param_3 渲染上下文
  */
-void process_advanced_bounding_box(float *param_1, undefined8 param_2, longlong param_3)
+/**
+ * 处理边界框的高级显示功能
+ * @param bbox_coords 边界框坐标
+ * @param display_params 显示参数
+ * @param render_context 渲染上下文
+ */
+void process_advanced_bounding_box(float *bbox_coords, undefined8 display_params, longlong render_context)
 {
     int *piVar1;
     float fVar2;
@@ -780,7 +814,13 @@ void process_advanced_bounding_box(float *param_1, undefined8 param_2, longlong 
  * @param param_2 显示参数
  * @param param_3 渲染上下文
  */
-void process_enhanced_bounding_box(float *param_1, undefined8 param_2, longlong param_3)
+/**
+ * 处理边界框的增强显示功能
+ * @param bbox_coords 边界框坐标
+ * @param display_params 显示参数
+ * @param render_context 渲染上下文
+ */
+void process_enhanced_bounding_box(float *bbox_coords, undefined8 display_params, longlong render_context)
 {
     int *piVar1;
     float fVar2;
@@ -920,7 +960,14 @@ void process_enhanced_bounding_box(float *param_1, undefined8 param_2, longlong 
  * @param param_3 Z坐标偏移
  * @param param_4 W坐标偏移
  */
-void process_float_coordinate_bounding_box(float param_1, float param_2, float param_3, float param_4)
+/**
+ * 处理浮点坐标的边界框显示
+ * @param offset_x X坐标偏移
+ * @param offset_y Y坐标偏移
+ * @param offset_z Z坐标偏移
+ * @param offset_w W坐标偏移
+ */
+void process_float_coordinate_bounding_box(float offset_x, float offset_y, float offset_z, float offset_w)
 {
     int *piVar1;
     longlong lVar2;
