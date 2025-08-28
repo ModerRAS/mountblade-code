@@ -339,7 +339,7 @@ void FUN_1800588c0(int64_t *param_1,int64_t param_2,int64_t param_3)
     if (param_2 != param_3) {
       lVar7 = lVar2 - param_2;
       do {
-        FUN_180627ae0(lVar7 + param_2,param_2);
+        CoreEngineDataTransformer(lVar7 + param_2,param_2);
         param_2 = param_2 + 0x20;
       } while (param_2 != param_3);
     }
@@ -409,7 +409,7 @@ void FUN_1800588fc(int64_t param_1)
   if (unaff_RBX != unaff_R15) {
     lVar4 = lVar2 - unaff_RBX;
     do {
-      FUN_180627ae0(lVar4 + unaff_RBX,unaff_RBX);
+      CoreEngineDataTransformer(lVar4 + unaff_RBX,unaff_RBX);
       unaff_RBX = unaff_RBX + 0x20;
     } while (unaff_RBX != unaff_R15);
   }
@@ -452,7 +452,7 @@ void FUN_18005892b(void)
   
   lVar3 = unaff_R12 - unaff_RBX;
   do {
-    FUN_180627ae0(lVar3 + unaff_RBX,unaff_RBX);
+    CoreEngineDataTransformer(lVar3 + unaff_RBX,unaff_RBX);
     unaff_RBX = unaff_RBX + 0x20;
   } while (unaff_RBX != unaff_R15);
   puVar1 = (uint64_t *)unaff_RDI[1];

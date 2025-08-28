@@ -693,7 +693,7 @@ void FUN_180635c40(int64_t param_1,float *param_2,float param_3)
     __Throw_C_error_std__YAXH_Z(iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_218);
+  SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_218);
 }
 
 
@@ -895,7 +895,7 @@ void FUN_180636790(int64_t param_1,uint64_t *param_2,float *param_3,int32_t *par
     __Throw_C_error_std__YAXH_Z(iVar1);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_d8 ^ (uint64_t)auStack_1d8);
+  SystemSecurityChecker(uStack_d8 ^ (uint64_t)auStack_1d8);
 }
 
 
