@@ -1,18 +1,23 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part005.c - 9 个函数
+// 04_ui_system_part005.c - UI系统组件和事件处理功能
+// 本文件包含UI组件初始化、事件处理、字符串操作和内存管理等功能
 
-// 函数: void FUN_180653e8b(longlong param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
-void FUN_180653e8b(longlong param_1,undefined8 param_2,undefined8 param_3,longlong param_4)
+// 函数: void update_ui_component_offset(longlong component_ptr, undefined8 param2, undefined8 param3, longlong offset)
+// 功能: 更新UI组件的偏移量，处理组件位置计算
+// 参数: component_ptr - 组件指针, param2 - 保留参数, param3 - 保留参数, offset - 偏移量
+void update_ui_component_offset(longlong component_ptr, undefined8 param2, undefined8 param3, longlong offset)
 
 {
   longlong unaff_RSI;
   int unaff_R12D;
   
-  *(longlong *)(unaff_RSI + 0x18) = param_1 + param_4;
+  // 更新组件偏移量：将基础位置加上偏移量
+  *(longlong *)(unaff_RSI + 0x18) = component_ptr + offset;
                     // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
+  // 复制组件数据到指定位置
   memcpy((longlong)unaff_R12D + *(longlong *)(unaff_RSI + 0x10));
   return;
 }
@@ -23,12 +28,16 @@ void FUN_180653e8b(longlong param_1,undefined8 param_2,undefined8 param_3,longlo
 
 
 
-// 函数: void FUN_180653ec0(int *param_1)
-void FUN_180653ec0(int *param_1)
+// 函数: void trigger_ui_callback(int *callback_flag)
+// 功能: 触发UI回调函数，检查回调标志并执行相应操作
+// 参数: callback_flag - 回调标志指针
+void trigger_ui_callback(int *callback_flag)
 
 {
-  if ((*param_1 != 0) && (_DAT_180c8f008 != 0)) {
-    (**(code **)(_DAT_180c8f008 + 0x18))();
+  // 检查回调标志是否有效且全局回调函数指针不为空
+  if ((*callback_flag != 0) && (global_ui_callback_ptr != 0)) {
+    // 调用全局回调函数
+    (**(code **)(global_ui_callback_ptr + 0x18))();
   }
   return;
 }
@@ -39,8 +48,10 @@ void FUN_180653ec0(int *param_1)
 
 
 
-// 函数: void FUN_180653ef0(void)
-void FUN_180653ef0(void)
+// 函数: void process_ui_event_handling(void)
+// 功能: 处理UI事件，包括字符串处理、路径构建和事件分发
+// 备注: 这是一个复杂的UI事件处理函数，涉及多个字符串操作和路径构建
+void process_ui_event_handling(void)
 
 {
   uint uVar1;
@@ -86,52 +97,60 @@ void FUN_180653ef0(void)
   int iStack_148;
   ulonglong uStack_38;
   
+  // 初始化栈变量和全局数据
   uStack_188 = 0xfffffffffffffffe;
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_338;
+  uStack_38 = global_ui_security_key ^ (ulonglong)auStack_338;
   puVar7 = (undefined1 *)0x0;
   uVar10 = 0;
   uStack_298 = 0;
-  uStack_1f0 = _DAT_180c91030;
-  puStack_180 = &UNK_1809fdc18;
+  uStack_1f0 = global_ui_string_table;
+  puStack_180 = &UI_DEFAULT_STYLE;
   puStack_178 = auStack_168;
   auStack_168[0] = 0;
   uStack_170 = 6;
-  strcpy_s(auStack_168,0x10,&UNK_180a3c07c);
+  // 复制默认UI样式字符串
+  strcpy_s(auStack_168,0x10,&UI_STYLE_DEFAULT_STRING);
   uStack_298 = 1;
-  FUN_1806279c0(auStack_1a8,&puStack_180);
+  // 处理UI样式初始化
+  initialize_ui_style(auStack_1a8,&puStack_180);
   uStack_298 = 0;
-  puStack_180 = &UNK_18098bcb0;
-  FUN_180624730(auStack_158,auStack_1a8);
-  puStack_270 = &UNK_180a3c3e0;
+  puStack_180 = &UI_COMPONENT_FACTORY;
+  // 处理UI组件创建
+  create_ui_component(auStack_158,auStack_1a8);
+  puStack_270 = &UI_PATH_SEPARATOR;
   uStack_258 = 0;
   puStack_268 = (undefined1 *)0x0;
   uStack_260 = 0;
-  FUN_1806277c0(&puStack_270,iStack_148);
+  // 处理路径字符串
+  process_ui_path(&puStack_270,iStack_148);
   if (0 < iStack_148) {
-    puVar9 = &DAT_18098bc73;
+    puVar9 = &DEFAULT_UI_PATH;
     if (puStack_150 != (undefined *)0x0) {
       puVar9 = puStack_150;
     }
                     // WARNING: Subroutine does not return
+    // 复制路径字符串
     memcpy(puStack_268,puVar9,(longlong)(iStack_148 + 1));
   }
   if ((puStack_150 != (undefined *)0x0) && (uStack_260 = 0, puStack_268 != (undefined1 *)0x0)) {
-    *puStack_268 = 0;
+    *puStack_268 = 0; // 字符串终止符
   }
-  puStack_2d8 = &UNK_180a3c3e0;
+  puStack_2d8 = &UI_PATH_SEPARATOR;
   uStack_2c0 = 0;
   puStack_2d0 = (undefined4 *)0x0;
   uStack_2c8 = 0;
-  puVar5 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  // 分配UI路径缓冲区
+  puVar5 = (undefined4 *)allocate_ui_buffer(global_ui_memory_pool,0x10,0x13);
   *(undefined1 *)puVar5 = 0;
   puStack_2d0 = puVar5;
-  uVar2 = FUN_18064e990(puVar5);
+  uVar2 = get_ui_buffer_length(puVar5);
   uStack_2c0 = CONCAT44(uStack_2c0._4_4_,uVar2);
-  *puVar5 = 0x2f6e6962;
+  *puVar5 = 0x2f6e6962; // "/bin" 字符串
   *(undefined1 *)(puVar5 + 1) = 0;
   uStack_2c8 = 4;
-  lVar6 = FUN_180627ce0(&puStack_270,&puStack_180,&puStack_2d8);
-  puStack_2b8 = &UNK_180a3c3e0;
+  // 构建完整UI路径
+  lVar6 = construct_ui_path(&puStack_270,&puStack_180,&puStack_2d8);
+  puStack_2b8 = &UI_PATH_SEPARATOR;
   uStack_2a0 = 0;
   puStack_2b0 = (undefined1 *)0x0;
   uStack_2a8 = 0;
@@ -144,6 +163,7 @@ LAB_18065415f:
     uVar10 = uVar4;
     if (uVar1 != 0) {
                     // WARNING: Subroutine does not return
+      // 复制路径数据
       memcpy(puVar7,*(undefined8 *)(lVar6 + 8),uVar11);
     }
   }
@@ -152,15 +172,16 @@ LAB_18065415f:
     if (iVar3 < 0x10) {
       iVar3 = 0x10;
     }
-    puVar7 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar3,0x13);
+    // 分配路径缓冲区
+    puVar7 = (undefined1 *)allocate_ui_buffer(global_ui_memory_pool,(longlong)iVar3,0x13);
     *puVar7 = 0;
     puStack_2b0 = puVar7;
-    uVar4 = FUN_18064e990(puVar7);
+    uVar4 = get_ui_buffer_length(puVar7);
     uStack_2a0 = CONCAT44(uStack_2a0._4_4_,uVar4);
     goto LAB_18065415f;
   }
   if (puVar7 != (undefined1 *)0x0) {
-    puVar7[uVar11] = 0;
+    puVar7[uVar11] = 0; // 字符串终止符
   }
   uStack_2a0 = CONCAT44(*(undefined4 *)(lVar6 + 0x1c),(undefined4)uStack_2a0);
   if (uVar1 + 0x15 != 0) {
@@ -170,73 +191,80 @@ LAB_18065415f:
       if ((int)uVar4 < 0x10) {
         uVar4 = 0x10;
       }
-      puVar7 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar4,0x13);
+      puVar7 = (undefined1 *)allocate_ui_buffer(global_ui_memory_pool,(longlong)(int)uVar4,0x13);
       *puVar7 = 0;
     }
     else {
       if (uVar4 <= uVar10) goto LAB_1806541f1;
       uStack_318 = 0x13;
-      puVar7 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puVar7,uVar4,0x10);
+      // 重新分配更大的缓冲区
+      puVar7 = (undefined1 *)reallocate_ui_buffer(global_ui_memory_pool,puVar7,uVar4,0x10);
     }
     puStack_2b0 = puVar7;
-    uVar2 = FUN_18064e990(puVar7);
+    uVar2 = get_ui_buffer_length(puVar7);
     uStack_2a0 = CONCAT44(uStack_2a0._4_4_,uVar2);
   }
 LAB_1806541f1:
+  // 构建UI资源路径
   puVar5 = (undefined4 *)(puVar7 + uVar11);
-  *puVar5 = 0x366e6957;
-  puVar5[1] = 0x68535f34;
-  puVar5[2] = 0x69707069;
-  puVar5[3] = 0x435f676e;
-  *(undefined4 *)(puVar7 + uVar11 + 0x10) = 0x6e65696c;
-  *(undefined2 *)(puVar7 + uVar11 + 0x14) = 0x74;
-  puStack_2f8 = &UNK_180a3c3e0;
+  *puVar5 = 0x366e6957; // "Win6" 字符串
+  puVar5[1] = 0x68535f34; // "4_Sh" 字符串
+  puVar5[2] = 0x69707069; // "ippi" 字符串
+  puVar5[3] = 0x435f676e; // "ng_C" 字符串
+  *(undefined4 *)(puVar7 + uVar11 + 0x10) = 0x6e65696c; // "lien" 字符串
+  *(undefined2 *)(puVar7 + uVar11 + 0x14) = 0x74; // "t" 字符串
+  puStack_2f8 = &UI_PATH_SEPARATOR;
   uStack_2e0 = 0;
   puStack_2f0 = (undefined2 *)0x0;
   uStack_2e8 = 0;
   uStack_2a8 = uVar1 + 0x15;
-  puVar8 = (undefined2 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  // 分配路径分隔符缓冲区
+  puVar8 = (undefined2 *)allocate_ui_buffer(global_ui_memory_pool,0x10,0x13);
   *(undefined1 *)puVar8 = 0;
   puStack_2f0 = puVar8;
-  uVar2 = FUN_18064e990(puVar8);
+  uVar2 = get_ui_buffer_length(puVar8);
   uStack_2e0 = CONCAT44(uStack_2e0._4_4_,uVar2);
-  *puVar8 = 0x2f;
+  *puVar8 = 0x2f; // "/" 字符
   uStack_2e8 = 1;
-  FUN_180627ce0(&puStack_2b8,auStack_210,&puStack_2f8);
-  puStack_2f8 = &UNK_180a3c3e0;
+  // 处理完整路径构建
+  construct_ui_path(&puStack_2b8,auStack_210,&puStack_2f8);
+  puStack_2f8 = &UI_PATH_SEPARATOR;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar8);
+  // 释放UI缓冲区
+  release_ui_buffer(puVar8);
 }
 
 
 
 undefined8 *
-FUN_180655260(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+initialize_ui_component_manager(undefined8 *manager_ptr, ulonglong init_flags, undefined8 param3, undefined8 param4)
 
 {
   undefined8 uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a3e030;
-  FUN_180651910();
-  if ((param_2 & 1) != 0) {
-    free(param_1,400,param_3,param_4,uVar1);
+  *manager_ptr = &UI_COMPONENT_TABLE;
+  initialize_ui_system();
+  if ((init_flags & 1) != 0) {
+    // 如果需要清理，释放管理器内存
+    free(manager_ptr,400,param3,param4,uVar1);
   }
-  return param_1;
+  return manager_ptr;
 }
 
 
 
-undefined4 * FUN_1806552b0(undefined8 param_1,undefined4 *param_2)
+undefined4 * reset_ui_component_state(undefined8 param1, undefined4 *state_ptr)
 
 {
-  *param_2 = 0;
-  return param_2;
+  // 重置UI组件状态为初始值
+  *state_ptr = 0;
+  return state_ptr;
 }
 
 
 
-int FUN_1806552e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int get_ui_component_type(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
   int iVar1;
@@ -247,94 +275,96 @@ int FUN_1806552e0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undef
   longlong lStack_28;
   int iStack_20;
   
-  FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  // 初始化UI参数查询
+  initialize_ui_query(&puStack_30,param1,param3,param4,0xfffffffffffffffe);
   lVar3 = lStack_28;
+  // 根据组件类型ID返回对应的类型值
   if (iStack_20 == 0x19) {
-    iVar1 = strcmp(lStack_28,&UNK_180a3e128);
+    iVar1 = strcmp(lStack_28,&UI_TYPE_WINDOW);
     if (iVar1 == 0) {
-      iVar1 = 0x84;
+      iVar1 = 0x84; // 窗口类型
       goto LAB_1806555a8;
     }
   }
   else if (iStack_20 == 0x18) {
-    iVar1 = strcmp(lStack_28,&UNK_180a3e0f0);
+    iVar1 = strcmp(lStack_28,&UI_TYPE_BUTTON);
     if (iVar1 == 0) {
-      iVar1 = 0x10;
+      iVar1 = 0x10; // 按钮类型
       goto LAB_1806555a8;
     }
 LAB_1806553fb:
-    puVar4 = &UNK_180a3e180;
+    puVar4 = &UI_TYPE_LABEL;
 LAB_180655402:
     iVar1 = strcmp(lVar3,puVar4);
     if (iVar1 == 0) {
-      iVar1 = 4;
+      iVar1 = 4; // 标签类型
       goto LAB_1806555a8;
     }
   }
   else if (iStack_20 == 0x12) {
-    iVar1 = strcmp(lStack_28,&UNK_180a3e110);
+    iVar1 = strcmp(lStack_28,&UI_TYPE_TEXTBOX);
     if (iVar1 == 0) {
-      iVar1 = 0xa0;
+      iVar1 = 0xa0; // 文本框类型
       goto LAB_1806555a8;
     }
 LAB_18065555e:
-    iVar1 = strcmp(lVar3,&UNK_180a3e230);
+    iVar1 = strcmp(lVar3,&UI_TYPE_SCROLLBAR);
     if (iVar1 == 0) {
-      iVar1 = 8;
+      iVar1 = 8; // 滚动条类型
       goto LAB_1806555a8;
     }
-    iVar1 = strcmp(lVar3,&UNK_180a3e1f8);
+    iVar1 = strcmp(lVar3,&UI_TYPE_CHECKBOX);
     if (iVar1 == 0) {
-      iVar1 = 0x10;
+      iVar1 = 0x10; // 复选框类型
       goto LAB_1806555a8;
     }
-    puVar4 = &UNK_180a3e210;
+    puVar4 = &UI_TYPE_RADIO;
 LAB_180655598:
     iVar1 = strcmp(lVar3,puVar4);
     if (iVar1 == 0) {
-      iVar1 = 0x10;
+      iVar1 = 0x10; // 单选按钮类型
       goto LAB_1806555a8;
     }
   }
   else if (iStack_20 == 0x1a) {
-    iVar1 = strcmp(lStack_28,&UNK_180a3e0b8);
+    iVar1 = strcmp(lStack_28,&UI_TYPE_PANEL);
     if (iVar1 == 0) {
-      iVar1 = 0x204;
+      iVar1 = 0x204; // 面板类型
       goto LAB_1806555a8;
     }
   }
   else {
     if (iStack_20 == 0x15) {
-      iVar1 = strcmp(lStack_28,&UNK_180a3e0d8);
+      iVar1 = strcmp(lStack_28,&UI_TYPE_MENU);
       if (iVar1 == 0) {
-        iVar1 = 0x404;
+        iVar1 = 0x404; // 菜单类型
         goto LAB_1806555a8;
       }
-      puVar4 = &UNK_180a3e1b0;
+      puVar4 = &UI_TYPE_LISTBOX;
       goto LAB_180655402;
     }
     if (iStack_20 == 0x11) {
-      iVar1 = strcmp(lStack_28,&UNK_180a3e1c8);
+      iVar1 = strcmp(lStack_28,&UI_TYPE_COMBOBOX);
       if (iVar1 == 0) {
-        iVar1 = 0x50;
+        iVar1 = 0x50; // 组合框类型
         goto LAB_1806555a8;
       }
     }
     else {
       if (iStack_20 == 0x18) goto LAB_1806553fb;
       if (iStack_20 == 0xb) {
-        iVar1 = strcmp(lStack_28,&UNK_180a3e1a0);
+        iVar1 = strcmp(lStack_28,&UI_TYPE_PROGRESSBAR);
         if (iVar1 == 0) {
-          iVar1 = 8;
+          iVar1 = 8; // 进度条类型
           goto LAB_1806555a8;
         }
       }
       else if (iStack_20 == 0x16) {
-        puVar4 = &UNK_180a3e160;
+        puVar4 = &UI_TYPE_SLIDER;
 LAB_1806554f3:
         iVar1 = strcmp(lStack_28,puVar4);
         if (iVar1 == 0) {
-          iVar1 = 0xc;
+          iVar1 = 0xc; // 滑块类型
           goto LAB_1806555a8;
         }
       }
@@ -343,39 +373,39 @@ LAB_1806554f3:
           lVar3 = 0;
           do {
             lVar2 = lVar3 + 1;
-            if (*(char *)(lStack_28 + lVar3) != (&UNK_180a3e178)[lVar3]) {
+            if (*(char *)(lStack_28 + lVar3) != (&UI_TYPE_IMAGE)[lVar3]) {
               lVar3 = 0;
               goto LAB_1806554a0;
             }
             lVar3 = lVar2;
           } while (lVar2 != 8);
-          iVar1 = 0x10;
+          iVar1 = 0x10; // 图像类型
           goto LAB_1806555a8;
         }
         if (iStack_20 == 0xf) {
-          iVar1 = strcmp(lStack_28,&UNK_180a3e150);
+          iVar1 = strcmp(lStack_28,&UI_TYPE_TABCONTROL);
           if (iVar1 == 0) {
-            iVar1 = 0x40;
+            iVar1 = 0x40; // 选项卡控件类型
             goto LAB_1806555a8;
           }
         }
         else {
           if (iStack_20 == 0x13) {
-            puVar4 = &UNK_180a3e248;
+            puVar4 = &UI_TYPE_TREEVIEW;
             goto LAB_1806554f3;
           }
           if (iStack_20 == 0xd) {
-            puVar4 = &UNK_180a3e260;
+            puVar4 = &UI_TYPE_DATAGRID;
             goto LAB_180655598;
           }
           if (iStack_20 == 6) {
             lVar3 = 0;
             do {
               lVar2 = lVar3;
-              if (*(char *)(lStack_28 + lVar2) != (&UNK_180a3e224)[lVar2]) goto LAB_1806555a6;
+              if (*(char *)(lStack_28 + lVar2) != (&UI_TYPE_STATUSBAR)[lVar2]) goto LAB_1806555a6;
               lVar3 = lVar2 + 1;
             } while (lVar2 + 1 != 7);
-            iVar1 = (int)lVar2 + 0x1e;
+            iVar1 = (int)lVar2 + 0x1e; // 状态栏类型
             goto LAB_1806555a8;
           }
           if (iStack_20 == 0x12) goto LAB_18065555e;
@@ -384,26 +414,27 @@ LAB_1806554f3:
     }
   }
 LAB_1806555a6:
-  iVar1 = 0;
+  iVar1 = 0; // 未知类型
 LAB_1806555a8:
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_30 = &UI_PATH_SEPARATOR;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    // 释放查询内存
+    release_ui_query_memory();
   }
   return iVar1;
   while (lVar3 = lVar2, lVar2 != 8) {
 LAB_1806554a0:
     lVar2 = lVar3 + 1;
-    if (*(char *)(lStack_28 + lVar3) != (&UNK_180a3e148)[lVar3]) goto LAB_1806555a6;
+    if (*(char *)(lStack_28 + lVar3) != (&UI_TYPE_TOOLTIP)[lVar3]) goto LAB_1806555a6;
   }
-  iVar1 = 0x30;
+  iVar1 = 0x30; // 工具提示类型
   goto LAB_1806555a8;
 }
 
 
 
-ulonglong FUN_1806555f0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ulonglong get_ui_component_property(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
   char cVar1;
@@ -422,41 +453,43 @@ ulonglong FUN_1806555f0(undefined8 param_1,undefined8 param_2,undefined8 param_3
   longlong lStack_28;
   int iStack_20;
   
-  FUN_180627910(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
-  FUN_180627910(&puStack_50,param_2);
+  // 初始化属性查询
+  initialize_ui_query(&puStack_30,param1,param3,param4,0xfffffffffffffffe);
+  initialize_ui_query(&puStack_50,param2);
   lVar5 = lStack_28;
+  // 根据组件类型和属性名称返回属性值
   if (iStack_20 == 0x19) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e128);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_WINDOW);
     if (iVar3 == 0) {
       if (iStack_40 == 7) {
         lVar5 = 0;
         do {
           lVar4 = lVar5 + 1;
-          if (pcStack_48[lVar5] != (&UNK_180a3e1e0)[lVar5]) break;
+          if (pcStack_48[lVar5] != (&UI_PROPERTY_VISIBLE)[lVar5]) break;
           lVar5 = lVar4;
         } while (lVar4 != 8);
       }
       else if (iStack_40 == 9) {
-        puVar6 = &UNK_180a3e1e8;
+        puVar6 = &UI_PROPERTY_ENABLED;
 LAB_180655bdf:
         iVar3 = strcmp(pcStack_48,puVar6);
         bVar8 = iVar3 == 0;
 LAB_180655bea:
         if (bVar8) {
-          uVar7 = 4;
+          uVar7 = 4; // 布尔属性值
           goto LAB_180655685;
         }
       }
     }
   }
   else if (iStack_20 == 0x18) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e0f0);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_BUTTON);
     if ((iVar3 == 0) && (iStack_40 == 7)) {
-      uVar7 = 8;
+      uVar7 = 8; // 按钮文本属性
       lVar5 = 0;
       do {
         lVar4 = lVar5 + 1;
-        if (pcStack_48[lVar5] != (&UNK_180a3e2b0)[lVar5]) {
+        if (pcStack_48[lVar5] != (&UI_PROPERTY_TEXT)[lVar5]) {
           lVar5 = 0;
           goto LAB_180655761;
         }
@@ -465,12 +498,12 @@ LAB_180655bea:
     }
   }
   else if (iStack_20 == 0x1a) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e0b8);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_PANEL);
     if ((iVar3 == 0) && (iStack_40 == 4)) {
       lVar5 = 0;
       do {
         lVar4 = lVar5 + 1;
-        if (pcStack_48[lVar5] != (&UNK_180a0ee30)[lVar5]) {
+        if (pcStack_48[lVar5] != (&UI_PROPERTY_COLOR)[lVar5]) {
           uVar2 = 0;
           goto LAB_1806557d3;
         }
@@ -479,34 +512,34 @@ LAB_180655bea:
     }
   }
   else if (iStack_20 == 0x15) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e0d8);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_MENU);
     if (iVar3 == 0) {
       if (iStack_40 == 0xb) {
-        strcmp(pcStack_48,&UNK_180a3e2b8);
+        strcmp(pcStack_48,&UI_PROPERTY_MENUITEMS);
       }
-      else if ((iStack_40 == 9) && (iVar3 = strcmp(pcStack_48,&UNK_180a3e2a0), iVar3 == 0)) {
-        uVar7 = 0x204;
+      else if ((iStack_40 == 9) && (iVar3 = strcmp(pcStack_48,&UI_PROPERTY_SELECTED), iVar3 == 0)) {
+        uVar7 = 0x204; // 菜单选中项属性
         goto LAB_180655685;
       }
     }
   }
   else if (iStack_20 == 0x11) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e1c8);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_COMBOBOX);
     if (iVar3 == 0) {
       if (iStack_40 == 6) {
         lVar5 = 0;
         do {
           lVar4 = lVar5 + 1;
-          if (pcStack_48[lVar5] != (&UNK_180a1a478)[lVar5]) break;
+          if (pcStack_48[lVar5] != (&UI_PROPERTY_ITEMS)[lVar5]) break;
           lVar5 = lVar4;
         } while (lVar4 != 7);
       }
       else if (iStack_40 == 8) {
-        puVar6 = &UNK_180a16818;
+        puVar6 = &UI_PROPERTY_DROPDOWN;
 LAB_180655d38:
         iVar3 = strcmp(pcStack_48,puVar6);
         if (iVar3 == 0) {
-          uVar7 = 0x10;
+          uVar7 = 0x10; // 下拉属性
           goto LAB_180655685;
         }
       }
@@ -514,16 +547,16 @@ LAB_180655d38:
         lVar5 = 0;
         do {
           lVar4 = lVar5;
-          if (pcStack_48[lVar4] != (&UNK_180a0f108)[lVar4]) goto LAB_180655683;
+          if (pcStack_48[lVar4] != (&UI_PROPERTY_INDEX)[lVar4]) goto LAB_180655683;
           lVar5 = lVar4 + 1;
         } while (lVar4 + 1 != 6);
-        uVar7 = (ulonglong)((int)lVar4 + 0x3b);
+        uVar7 = (ulonglong)((int)lVar4 + 0x3b); // 索引属性
         goto LAB_180655685;
       }
     }
   }
   else if (iStack_20 == 0xb) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e1a0);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_PROGRESSBAR);
     if (iVar3 == 0) {
 LAB_180655911:
       if ((iStack_40 == 1) &&
@@ -534,17 +567,17 @@ LAB_180655911:
     }
   }
   else if (iStack_20 == 0x16) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e160);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_SLIDER);
     if (((iVar3 == 0) && (iStack_40 == 1)) && ((*pcStack_48 != 'x' || (pcStack_48[1] != '\0')))) {
       if ((*pcStack_48 == 'y') && (pcStack_48[1] == '\0')) {
-        uVar7 = 4;
+        uVar7 = 4; // Y轴位置属性
         goto LAB_180655685;
       }
       if (*pcStack_48 == 'z') {
         bVar8 = pcStack_48[1] == '\0';
 LAB_1806559dc:
         if (bVar8) {
-          uVar7 = 8;
+          uVar7 = 8; // Z轴位置属性
           goto LAB_180655685;
         }
       }
@@ -555,7 +588,7 @@ LAB_1806559dc:
     lVar5 = 0;
     do {
       lVar4 = lVar5 + 1;
-      if (*(char *)(lStack_28 + lVar5) != (&UNK_180a3e178)[lVar5]) {
+      if (*(char *)(lStack_28 + lVar5) != (&UI_TYPE_IMAGE)[lVar5]) {
         lVar5 = 0;
         goto LAB_180655a80;
       }
@@ -565,35 +598,35 @@ LAB_1806559dc:
         (*pcStack_48 == 'f')) && (pcStack_48[1] == '\0')) goto LAB_180655685;
   }
   else if (iStack_20 == 0xf) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e150);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_TABCONTROL);
     if (iVar3 == 0) {
       if (iStack_40 == 3) {
         lVar5 = 0;
         do {
           lVar4 = lVar5 + 1;
-          if (pcStack_48[lVar5] != (&UNK_180a3e294)[lVar5]) break;
+          if (pcStack_48[lVar5] != (&UI_PROPERTY_TABS)[lVar5]) break;
           lVar5 = lVar4;
         } while (lVar4 != 4);
       }
       else if (((iStack_40 == 1) && (*pcStack_48 == 'o')) && (pcStack_48[1] == '\0')) {
-        uVar7 = 0x30;
+        uVar7 = 0x30; // 选项属性
         goto LAB_180655685;
       }
     }
   }
   else if (iStack_20 == 0x13) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e248);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_TREEVIEW);
     if (iVar3 == 0) {
       if (iStack_40 == 10) {
-        strcmp(pcStack_48,&UNK_180a3e270);
+        strcmp(pcStack_48,&UI_PROPERTY_NODES);
       }
       else {
         if (iStack_40 == 0x10) {
-          puVar6 = &UNK_180a3e280;
+          puVar6 = &UI_PROPERTY_EXPANDED;
           goto LAB_180655bdf;
         }
         if (iStack_40 == 0x11) {
-          iVar3 = strcmp(pcStack_48,&UNK_180a3e2e8);
+          iVar3 = strcmp(pcStack_48,&UI_PROPERTY_SELECTED);
           bVar8 = iVar3 == 0;
           goto LAB_1806559dc;
         }
@@ -601,21 +634,21 @@ LAB_1806559dc:
     }
   }
   else if (iStack_20 == 0xd) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e260);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_DATAGRID);
     if (((iVar3 == 0) && (iStack_40 == 1)) && ((*pcStack_48 != 'w' || (pcStack_48[1] != '\0')))) {
       if ((*pcStack_48 == 'x') && (pcStack_48[1] == '\0')) {
-        uVar7 = 4;
+        uVar7 = 4; // X轴位置属性
         goto LAB_180655685;
       }
       if ((*pcStack_48 == 'y') && (pcStack_48[1] == '\0')) {
-        uVar7 = 8;
+        uVar7 = 8; // Y轴位置属性
         goto LAB_180655685;
       }
       if (*pcStack_48 == 'z') {
         cVar1 = pcStack_48[1];
 LAB_180655e30:
         if (cVar1 == '\0') {
-          uVar7 = 0xc;
+          uVar7 = 0xc; // Z轴位置属性
           goto LAB_180655685;
         }
       }
@@ -625,40 +658,40 @@ LAB_180655e30:
     lVar5 = 0;
     do {
       lVar4 = lVar5 + 1;
-      if (*(char *)(lStack_28 + lVar5) != (&UNK_180a3e224)[lVar5]) goto LAB_180655683;
+      if (*(char *)(lStack_28 + lVar5) != (&UI_TYPE_STATUSBAR)[lVar5]) goto LAB_180655683;
       lVar5 = lVar4;
     } while (lVar4 != 7);
     if (iStack_40 == 7) {
       lVar5 = 0;
       do {
         lVar4 = lVar5 + 1;
-        if (pcStack_48[lVar5] != (&UNK_180a3e300)[lVar5]) break;
+        if (pcStack_48[lVar5] != (&UI_PROPERTY_PANELS)[lVar5]) break;
         lVar5 = lVar4;
       } while (lVar4 != 8);
     }
     else {
       if (iStack_40 == 10) {
-        puVar6 = &UNK_180a3e2c8;
+        puVar6 = &UI_PROPERTY_BORDER;
         goto LAB_180655d38;
       }
       if (iStack_40 == 0xd) {
-        iVar3 = strcmp(pcStack_48,&UNK_180a3e2d8);
+        iVar3 = strcmp(pcStack_48,&UI_PROPERTY_MARGIN);
         bVar8 = iVar3 == 0;
         goto LAB_180655afa;
       }
     }
   }
   else if (iStack_20 == 0x12) {
-    iVar3 = strcmp(lStack_28,&UNK_180a3e230);
+    iVar3 = strcmp(lStack_28,&UI_TYPE_SCROLLBAR);
     if (iVar3 == 0) goto LAB_180655911;
-    iVar3 = strcmp(lVar5,&UNK_180a3e1f8);
+    iVar3 = strcmp(lVar5,&UI_TYPE_CHECKBOX);
     if (((iVar3 == 0) && (iStack_40 == 1)) && ((*pcStack_48 != 'x' || (pcStack_48[1] != '\0')))) {
       if ((*pcStack_48 == 'y') && (pcStack_48[1] == '\0')) {
-        uVar7 = 4;
+        uVar7 = 4; // Y轴位置属性
         goto LAB_180655685;
       }
       if ((*pcStack_48 == 'z') && (pcStack_48[1] == '\0')) {
-        uVar7 = 8;
+        uVar7 = 8; // Z轴位置属性
         goto LAB_180655685;
       }
       if (*pcStack_48 == 'w') {
@@ -671,52 +704,54 @@ LAB_180655e30:
   while (uVar2 = uVar7 + 1, uVar7 + 1 != 5) {
 LAB_1806557d3:
     uVar7 = uVar2;
-    if (pcStack_48[uVar7] != (&UNK_180a1022c)[uVar7]) goto LAB_180655683;
+    if (pcStack_48[uVar7] != (&UI_PROPERTY_WIDTH)[uVar7]) goto LAB_180655683;
   }
   uVar7 = uVar7 & 0xffffffff;
   goto LAB_180655685;
   while (lVar5 = lVar4, lVar4 != 8) {
 LAB_180655761:
     lVar4 = lVar5 + 1;
-    if (pcStack_48[lVar5] != (&UNK_180a3e1e0)[lVar5]) goto LAB_180655683;
+    if (pcStack_48[lVar5] != (&UI_PROPERTY_VISIBLE)[lVar5]) goto LAB_180655683;
   }
   goto LAB_180655685;
   while (lVar5 = lVar4, lVar4 != 8) {
 LAB_180655a80:
     lVar4 = lVar5 + 1;
-    if (*(char *)(lStack_28 + lVar5) != (&UNK_180a3e148)[lVar5]) goto LAB_180655683;
+    if (*(char *)(lStack_28 + lVar5) != (&UI_TYPE_TOOLTIP)[lVar5]) goto LAB_180655683;
   }
   if ((iStack_40 == 1) && ((*pcStack_48 != 's' || (pcStack_48[1] != '\0')))) {
     if ((*pcStack_48 == 'f') && (pcStack_48[1] == '\0')) {
-      uVar7 = 0x10;
+      uVar7 = 0x10; // 前景属性
       goto LAB_180655685;
     }
     if (*pcStack_48 == 'u') {
       bVar8 = pcStack_48[1] == '\0';
 LAB_180655afa:
       if (bVar8) {
-        uVar7 = 0x20;
+        uVar7 = 0x20; // 下划线属性
         goto LAB_180655685;
       }
     }
   }
 LAB_180655683:
-  uVar7 = 0;
+  uVar7 = 0; // 默认属性值
 LAB_180655685:
-  puStack_50 = &UNK_180a3c3e0;
+  puStack_50 = &UI_PATH_SEPARATOR;
   if (pcStack_48 != (char *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    // 释放查询内存
+    release_ui_query_memory();
   }
   pcStack_48 = (char *)0x0;
   uStack_38 = 0;
-  puStack_50 = &UNK_18098bcb0;
-  puStack_30 = &UNK_180a3c3e0;
+  puStack_50 = &UI_COMPONENT_FACTORY;
+  puStack_30 = &UI_PATH_SEPARATOR;
   if (lStack_28 == 0) {
     return uVar7;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  // 释放查询内存
+  release_ui_query_memory();
 }
 
 
@@ -725,8 +760,10 @@ LAB_180655685:
 
 
 
-// 函数: void FUN_180655e60(int param_1,undefined8 *param_2)
-void FUN_180655e60(int param_1,undefined8 *param_2)
+// 函数: void get_ui_component_data(int component_index, undefined8 *data_buffer)
+// 功能: 获取指定索引的UI组件数据
+// 参数: component_index - 组件索引, data_buffer - 数据缓冲区
+void get_ui_component_data(int component_index, undefined8 *data_buffer)
 
 {
   undefined8 *puVar1;
@@ -750,9 +787,9 @@ void FUN_180655e60(int param_1,undefined8 *param_2)
   undefined8 uVar19;
   longlong lVar20;
   
-  lVar3 = *_DAT_180c8ecf0;
-  if ((ulonglong)(longlong)param_1 < (ulonglong)((_DAT_180c8ecf0[1] - lVar3) / 0x84)) {
-    lVar20 = (longlong)param_1 * 0x84;
+  lVar3 = *global_ui_component_table;
+  if ((ulonglong)(longlong)component_index < (ulonglong)((global_ui_component_table[1] - lVar3) / 0x84)) {
+    lVar20 = (longlong)component_index * 0x84;
     puVar1 = (undefined8 *)(lVar20 + 0x60 + lVar3);
     uVar5 = *puVar1;
     uVar6 = puVar1[1];
@@ -776,26 +813,27 @@ void FUN_180655e60(int param_1,undefined8 *param_2)
     puVar1 = (undefined8 *)(lVar20 + 0x50 + lVar3);
     uVar18 = *puVar1;
     uVar19 = puVar1[1];
-    *param_2 = *(undefined8 *)(lVar20 + lVar3);
-    param_2[1] = uVar9;
-    param_2[2] = uVar10;
-    param_2[3] = uVar11;
-    param_2[4] = uVar12;
-    param_2[5] = uVar13;
-    param_2[6] = uVar14;
-    param_2[7] = uVar15;
-    param_2[8] = uVar16;
-    param_2[9] = uVar17;
-    param_2[10] = uVar18;
-    param_2[0xb] = uVar19;
-    param_2[0xc] = uVar5;
-    param_2[0xd] = uVar6;
-    param_2[0xe] = uVar7;
-    param_2[0xf] = uVar8;
-    *(undefined4 *)(param_2 + 0x10) = uVar2;
+    *data_buffer = *(undefined8 *)(lVar20 + lVar3);
+    data_buffer[1] = uVar9;
+    data_buffer[2] = uVar10;
+    data_buffer[3] = uVar11;
+    data_buffer[4] = uVar12;
+    data_buffer[5] = uVar13;
+    data_buffer[6] = uVar14;
+    data_buffer[7] = uVar15;
+    data_buffer[8] = uVar16;
+    data_buffer[9] = uVar17;
+    data_buffer[10] = uVar18;
+    data_buffer[0xb] = uVar19;
+    data_buffer[0xc] = uVar5;
+    data_buffer[0xd] = uVar6;
+    data_buffer[0xe] = uVar7;
+    data_buffer[0xf] = uVar8;
+    *(undefined4 *)(data_buffer + 0x10) = uVar2;
     return;
   }
-  FUN_180623a30();
+  // 索引越界，触发错误处理
+  handle_ui_index_error();
   pcVar4 = (code *)swi(3);
   (*pcVar4)();
   return;
@@ -803,10 +841,10 @@ void FUN_180655e60(int param_1,undefined8 *param_2)
 
 
 
-
-
-// 函数: void FUN_180655ea6(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
-void FUN_180655ea6(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
+// 函数: void set_ui_component_data(undefined8 param1, undefined8 param2, undefined8 *data_buffer)
+// 功能: 设置UI组件数据
+// 参数: param1 - 组件标识, param2 - 数据类型, data_buffer - 数据缓冲区
+void set_ui_component_data(undefined8 param1, undefined8 param2, undefined8 *data_buffer)
 
 {
   undefined8 *puVar1;
@@ -829,6 +867,7 @@ void FUN_180655ea6(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
   longlong in_RAX;
   longlong in_R10;
   
+  // 从组件数据结构中提取各字段
   puVar1 = (undefined8 *)(in_RAX + 0x60 + in_R10);
   uVar3 = *puVar1;
   uVar4 = puVar1[1];
@@ -852,74 +891,77 @@ void FUN_180655ea6(undefined8 param_1,undefined8 param_2,undefined8 *param_3)
   puVar1 = (undefined8 *)(in_RAX + 0x50 + in_R10);
   uVar16 = *puVar1;
   uVar17 = puVar1[1];
-  *param_3 = *(undefined8 *)(in_RAX + in_R10);
-  param_3[1] = uVar7;
-  param_3[2] = uVar8;
-  param_3[3] = uVar9;
-  param_3[4] = uVar10;
-  param_3[5] = uVar11;
-  param_3[6] = uVar12;
-  param_3[7] = uVar13;
-  param_3[8] = uVar14;
-  param_3[9] = uVar15;
-  param_3[10] = uVar16;
-  param_3[0xb] = uVar17;
-  param_3[0xc] = uVar3;
-  param_3[0xd] = uVar4;
-  param_3[0xe] = uVar5;
-  param_3[0xf] = uVar6;
-  *(undefined4 *)(param_3 + 0x10) = uVar2;
+  *data_buffer = *(undefined8 *)(in_RAX + in_R10);
+  data_buffer[1] = uVar7;
+  data_buffer[2] = uVar8;
+  data_buffer[3] = uVar9;
+  data_buffer[4] = uVar10;
+  data_buffer[5] = uVar11;
+  data_buffer[6] = uVar12;
+  data_buffer[7] = uVar13;
+  data_buffer[8] = uVar14;
+  data_buffer[9] = uVar15;
+  data_buffer[10] = uVar16;
+  data_buffer[0xb] = uVar17;
+  data_buffer[0xc] = uVar3;
+  data_buffer[0xd] = uVar4;
+  data_buffer[0xe] = uVar5;
+  data_buffer[0xf] = uVar6;
+  *(undefined4 *)(data_buffer + 0x10) = uVar2;
   return;
 }
 
 
 
-
-
-// 函数: void FUN_180655f24(void)
-void FUN_180655f24(void)
+// 函数: void handle_ui_index_error(void)
+// 功能: 处理UI索引错误
+void handle_ui_index_error(void)
 
 {
   code *pcVar1;
   
-  FUN_180623a30();
+  // 调用错误处理函数
+  handle_system_error();
   pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  (*pcVar4)();
   return;
 }
 
 
 
 undefined8
-FUN_180655f50(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+register_ui_event_handler(undefined8 param1, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
   undefined8 uStackX_8;
   longlong alStack_30 [3];
   undefined4 uStack_18;
   
+  // 初始化事件处理器数据
   alStack_30[0] = 0;
   alStack_30[1] = 0;
   alStack_30[2] = 0;
   uStack_18 = 3;
   uStackX_8 = (longlong *)((ulonglong)alStack_30 & 0xffffffff00000000);
-  FUN_180194a50(alStack_30,&uStackX_8,param_3,param_4,0xfffffffffffffffe,&UNK_1809fe070,0);
-  FUN_180194a50(alStack_30,(longlong)&uStackX_8 + 1);
-  FUN_180194a50(alStack_30,(longlong)&uStackX_8 + 2);
-  FUN_180194a50(alStack_30,(longlong)&uStackX_8 + 3);
+  // 注册事件处理器
+  register_event_handler(alStack_30,&uStackX_8,param_3,param_4,0xfffffffffffffffe,&UI_EVENT_TABLE,0);
+  register_event_handler(alStack_30,(longlong)&uStackX_8 + 1);
+  register_event_handler(alStack_30,(longlong)&uStackX_8 + 2);
+  register_event_handler(alStack_30,(longlong)&uStackX_8 + 3);
   uStackX_8 = alStack_30;
   if (alStack_30[0] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    // 释放事件处理器内存
+    release_event_handler_memory();
   }
-  return 0x10;
+  return 0x10; // 返回事件处理器大小
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 * FUN_180656020(undefined4 *param_1)
+undefined4 * create_ui_component_instance(undefined4 *instance_ptr)
 
 {
   undefined4 uVar1;
@@ -928,68 +970,73 @@ undefined4 * FUN_180656020(undefined4 *param_1)
   undefined4 uStack_1c;
   undefined4 uStack_14;
   
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3,0xfffffffffffffffe);
+  // 创建UI组件实例
+  plVar2 = (longlong *)allocate_ui_memory(global_ui_memory_pool,0x30,8,3,0xfffffffffffffffe);
   plVar2[1] = 0;
   plVar2[2] = 0;
   plVar2[3] = 0;
   plVar2[4] = 0;
   plVar2[5] = 0;
-  *plVar2 = (longlong)&UNK_180a21690;
-  *plVar2 = (longlong)&UNK_180a21720;
+  *plVar2 = (longlong)&UI_COMPONENT_VTABLE;
+  *plVar2 = (longlong)&UI_COMPONENT_METHODS;
   *(undefined4 *)(plVar2 + 1) = 0;
-  *plVar2 = (longlong)&UNK_1809fe070;
+  *plVar2 = (longlong)&UI_EVENT_TABLE;
   plVar2[2] = 0;
   plVar2[3] = 0;
   plVar2[4] = 0;
   *(undefined4 *)(plVar2 + 5) = 3;
+  // 调用组件初始化方法
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uVar1 = (**(code **)(*plVar2 + 8))(plVar2);
   (**(code **)(*plVar2 + 0x28))(plVar2);
-  uStack_20 = SUB84(plVar2,0);
+  uStack_20 = extract_ui_component_handle(plVar2,0);
   uStack_1c = (undefined4)((ulonglong)plVar2 >> 0x20);
-  *param_1 = uStack_20;
-  param_1[1] = uStack_1c;
-  param_1[2] = uVar1;
-  param_1[3] = uStack_14;
+  *instance_ptr = uStack_20;
+  instance_ptr[1] = uStack_1c;
+  instance_ptr[2] = uVar1;
+  instance_ptr[3] = uStack_14;
+  // 调用组件清理方法
   (**(code **)(*plVar2 + 0x38))(plVar2);
-  return param_1;
+  return instance_ptr;
 }
 
 
 
-
-
-// 函数: void FUN_180656110(longlong param_1,undefined4 param_2)
-void FUN_180656110(longlong param_1,undefined4 param_2)
+// 函数: void set_ui_component_property(longlong component_ptr, undefined4 property_value)
+// 功能: 设置UI组件属性值
+// 参数: component_ptr - 组件指针, property_value - 属性值
+void set_ui_component_property(longlong component_ptr, undefined4 property_value)
 
 {
   undefined4 uStackX_10;
   
-  param_1 = param_1 + 0x10;
-  uStackX_10 = param_2;
-  FUN_180194a50(param_1,&uStackX_10);
-  FUN_180194a50(param_1,(longlong)&uStackX_10 + 1);
-  FUN_180194a50(param_1,(longlong)&uStackX_10 + 2);
-  FUN_180194a50(param_1,(longlong)&uStackX_10 + 3);
+  component_ptr = component_ptr + 0x10;
+  uStackX_10 = property_value;
+  // 设置组件属性
+  set_component_property(component_ptr,&uStackX_10);
+  set_component_property(component_ptr,(longlong)&uStackX_10 + 1);
+  set_component_property(component_ptr,(longlong)&uStackX_10 + 2);
+  set_component_property(component_ptr,(longlong)&uStackX_10 + 3);
   return;
 }
 
 
 
-
-
-// 函数: void FUN_180656160(longlong param_1,undefined4 param_2)
-void FUN_180656160(longlong param_1,undefined4 param_2)
+// 函数: void update_ui_component_property(longlong component_ptr, undefined4 property_value)
+// 功能: 更新UI组件属性值
+// 参数: component_ptr - 组件指针, property_value - 属性值
+void update_ui_component_property(longlong component_ptr, undefined4 property_value)
 
 {
   undefined4 uStackX_10;
   
-  param_1 = param_1 + 0x10;
-  uStackX_10 = param_2;
-  FUN_180194a50(param_1,&uStackX_10);
-  FUN_180194a50(param_1,(longlong)&uStackX_10 + 1);
-  FUN_180194a50(param_1,(longlong)&uStackX_10 + 2);
-  FUN_180194a50(param_1,(longlong)&uStackX_10 + 3);
+  component_ptr = component_ptr + 0x10;
+  uStackX_10 = property_value;
+  // 更新组件属性
+  update_component_property(component_ptr,&uStackX_10);
+  update_component_property(component_ptr,(longlong)&uStackX_10 + 1);
+  update_component_property(component_ptr,(longlong)&uStackX_10 + 2);
+  update_component_property(component_ptr,(longlong)&uStackX_10 + 3);
   return;
 }
 
@@ -997,7 +1044,7 @@ void FUN_180656160(longlong param_1,undefined4 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 * FUN_1806561d0(undefined4 *param_1)
+undefined4 * create_ui_control_instance(undefined4 *instance_ptr)
 
 {
   undefined4 uVar1;
@@ -1006,97 +1053,106 @@ undefined4 * FUN_1806561d0(undefined4 *param_1)
   undefined4 uStack_1c;
   undefined4 uStack_14;
   
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3,0xfffffffffffffffe);
+  // 创建UI控件实例
+  plVar2 = (longlong *)allocate_ui_memory(global_ui_memory_pool,0x30,8,3,0xfffffffffffffffe);
   plVar2[1] = 0;
   plVar2[2] = 0;
   plVar2[3] = 0;
   plVar2[4] = 0;
   plVar2[5] = 0;
-  *plVar2 = (longlong)&UNK_180a21690;
-  *plVar2 = (longlong)&UNK_180a21720;
+  *plVar2 = (longlong)&UI_COMPONENT_VTABLE;
+  *plVar2 = (longlong)&UI_COMPONENT_METHODS;
   *(undefined4 *)(plVar2 + 1) = 0;
-  *plVar2 = (longlong)&UNK_180a3e310;
+  *plVar2 = (longlong)&UI_CONTROL_FACTORY;
   plVar2[2] = 0;
   plVar2[3] = 0;
   plVar2[4] = 0;
   *(undefined4 *)(plVar2 + 5) = 3;
+  // 调用控件初始化方法
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uVar1 = (**(code **)(*plVar2 + 8))(plVar2);
   (**(code **)(*plVar2 + 0x28))(plVar2);
-  uStack_20 = SUB84(plVar2,0);
+  uStack_20 = extract_ui_component_handle(plVar2,0);
   uStack_1c = (undefined4)((ulonglong)plVar2 >> 0x20);
-  *param_1 = uStack_20;
-  param_1[1] = uStack_1c;
-  param_1[2] = uVar1;
-  param_1[3] = uStack_14;
+  *instance_ptr = uStack_20;
+  instance_ptr[1] = uStack_1c;
+  instance_ptr[2] = uVar1;
+  instance_ptr[3] = uStack_14;
+  // 调用控件清理方法
   (**(code **)(*plVar2 + 0x38))(plVar2);
-  return param_1;
+  return instance_ptr;
 }
 
 
 
 undefined8 *
-FUN_1806562b0(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+initialize_ui_control_manager(undefined8 *manager_ptr, ulonglong init_flags, undefined8 param3, undefined8 param4)
 
 {
   undefined8 uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  FUN_180057830();
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x30,param_3,param_4,uVar1);
+  // 初始化UI控件系统
+  initialize_ui_controls();
+  *manager_ptr = &UI_CONTROL_FACTORY;
+  *manager_ptr = &UI_COMPONENT_VTABLE;
+  if ((init_flags & 1) != 0) {
+    // 如果需要清理，释放管理器内存
+    free(manager_ptr,0x30,param3,param4,uVar1);
   }
-  return param_1;
+  return manager_ptr;
 }
 
 
 
-longlong * FUN_180656340(longlong *param_1,longlong param_2,int param_3)
+longlong * get_ui_control_data(longlong *data_ptr, longlong control_table, int control_index)
 
 {
   longlong *plVar1;
   undefined4 uVar2;
   undefined4 uStack_c;
   
-  plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x10) + (longlong)param_3 * 8);
+  // 从控件表中获取指定索引的控件数据
+  plVar1 = *(longlong **)(*(longlong *)(control_table + 0x10) + (longlong)control_index * 8);
   if (plVar1 == (longlong *)0x0) {
-    uVar2 = 0xffffffff;
+    uVar2 = 0xffffffff; // 无效控件
   }
   else {
+    // 获取控件引用计数
     uVar2 = (**(code **)(*plVar1 + 8))(plVar1);
+    // 释放控件引用
     (**(code **)(*plVar1 + 0x28))(plVar1);
   }
-  *param_1 = (longlong)plVar1;
-  param_1[1] = CONCAT44(uStack_c,uVar2);
-  return param_1;
+  *data_ptr = (longlong)plVar1;
+  data_ptr[1] = CONCAT44(uStack_c,uVar2);
+  return data_ptr;
 }
 
 
 
-
-
-// 函数: void FUN_1806563a0(longlong param_1)
-void FUN_1806563a0(longlong param_1)
+// 函数: void cleanup_ui_control_list(longlong control_list_ptr)
+// 功能: 清理UI控件列表，释放所有控件资源
+// 参数: control_list_ptr - 控件列表指针
+void cleanup_ui_control_list(longlong control_list_ptr)
 
 {
   longlong *plVar1;
   longlong *plVar2;
   
-  plVar1 = *(longlong **)(param_1 + 0x18);
-  plVar2 = *(longlong **)(param_1 + 0x10);
+  plVar1 = *(longlong **)(control_list_ptr + 0x18);
+  plVar2 = *(longlong **)(control_list_ptr + 0x10);
   if (plVar2 != plVar1) {
     do {
+      // 遍历控件列表，释放每个控件
       if ((longlong *)*plVar2 != (longlong *)0x0) {
         (**(code **)(*(longlong *)*plVar2 + 0x38))();
       }
       plVar2 = plVar2 + 1;
     } while (plVar2 != plVar1);
-    *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(param_1 + 0x10);
+    *(undefined8 *)(control_list_ptr + 0x18) = *(undefined8 *)(control_list_ptr + 0x10);
     return;
   }
-  *(longlong **)(param_1 + 0x18) = plVar2;
+  *(longlong **)(control_list_ptr + 0x18) = plVar2;
   return;
 }
 
@@ -1104,7 +1160,7 @@ void FUN_1806563a0(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 * FUN_180656410(undefined4 *param_1)
+undefined4 * create_ui_renderer_instance(undefined4 *instance_ptr)
 
 {
   undefined4 uVar1;
@@ -1113,80 +1169,85 @@ undefined4 * FUN_180656410(undefined4 *param_1)
   undefined4 uStack_1c;
   undefined4 uStack_14;
   
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3,0xfffffffffffffffe);
+  // 创建UI渲染器实例
+  plVar2 = (longlong *)allocate_ui_memory(global_ui_memory_pool,0x30,8,3,0xfffffffffffffffe);
   plVar2[1] = 0;
   plVar2[2] = 0;
   plVar2[3] = 0;
   plVar2[4] = 0;
   plVar2[5] = 0;
-  *plVar2 = (longlong)&UNK_180a21690;
-  *plVar2 = (longlong)&UNK_180a21720;
+  *plVar2 = (longlong)&UI_COMPONENT_VTABLE;
+  *plVar2 = (longlong)&UI_COMPONENT_METHODS;
   *(undefined4 *)(plVar2 + 1) = 0;
-  *plVar2 = (longlong)&UNK_180a3e378;
-  plVar2[2] = (longlong)&UNK_18098bcb0;
+  *plVar2 = (longlong)&UI_RENDERER_FACTORY;
+  plVar2[2] = (longlong)&UI_COMPONENT_FACTORY;
   plVar2[3] = 0;
   *(undefined4 *)(plVar2 + 4) = 0;
-  plVar2[2] = (longlong)&UNK_180a3c3e0;
+  plVar2[2] = (longlong)&UI_PATH_SEPARATOR;
   plVar2[5] = 0;
   plVar2[3] = 0;
   *(undefined4 *)(plVar2 + 4) = 0;
+  // 调用渲染器初始化方法
   (**(code **)(*plVar2 + 0x28))(plVar2);
   uVar1 = (**(code **)(*plVar2 + 8))(plVar2);
   (**(code **)(*plVar2 + 0x28))(plVar2);
-  uStack_20 = SUB84(plVar2,0);
+  uStack_20 = extract_ui_component_handle(plVar2,0);
   uStack_1c = (undefined4)((ulonglong)plVar2 >> 0x20);
-  *param_1 = uStack_20;
-  param_1[1] = uStack_1c;
-  param_1[2] = uVar1;
-  param_1[3] = uStack_14;
+  *instance_ptr = uStack_20;
+  instance_ptr[1] = uStack_1c;
+  instance_ptr[2] = uVar1;
+  instance_ptr[3] = uStack_14;
+  // 调用渲染器清理方法
   (**(code **)(*plVar2 + 0x38))(plVar2);
-  return param_1;
+  return instance_ptr;
 }
 
 
 
 undefined8 *
-FUN_180656500(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+initialize_ui_renderer(undefined8 *renderer_ptr, ulonglong init_flags, undefined8 param3, undefined8 param4)
 
 {
-  param_1[2] = &UNK_180a3c3e0;
-  if (param_1[3] != 0) {
+  renderer_ptr[2] = &UI_PATH_SEPARATOR;
+  if (renderer_ptr[3] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    // 释放渲染器内存
+    release_ui_renderer_memory();
   }
-  param_1[3] = 0;
-  *(undefined4 *)(param_1 + 5) = 0;
-  param_1[2] = &UNK_18098bcb0;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x30,param_3,param_4,0xfffffffffffffffe);
+  renderer_ptr[3] = 0;
+  *(undefined4 *)(renderer_ptr + 5) = 0;
+  renderer_ptr[2] = &UI_COMPONENT_FACTORY;
+  *renderer_ptr = &UI_CONTROL_FACTORY;
+  *renderer_ptr = &UI_COMPONENT_VTABLE;
+  if ((init_flags & 1) != 0) {
+    // 如果需要清理，释放渲染器内存
+    free(renderer_ptr,0x30,param3,param4,0xfffffffffffffffe);
   }
-  return param_1;
+  return renderer_ptr;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_1806565a0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+undefined4 get_ui_system_state(longlong system_handle, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
   undefined4 uVar1;
   undefined *puStack_30;
   longlong lStack_28;
   
-  FUN_180627ae0(&puStack_30,param_1 + 0x10,param_3,param_4,0xfffffffffffffffe);
-  uVar1 = (**(code **)(*_DAT_180c8f008 + 0x70))(_DAT_180c8f008,&puStack_30);
-  puStack_30 = &UNK_180a3c3e0;
+  // 初始化系统状态查询
+  initialize_system_query(&puStack_30,system_handle + 0x10,param3,param4,0xfffffffffffffffe);
+  // 获取UI系统状态
+  uVar1 = (**(code **)(*global_ui_system_ptr + 0x70))(global_ui_system_ptr,&puStack_30);
+  puStack_30 = &UI_PATH_SEPARATOR;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    // 释放查询内存
+    release_system_query_memory();
   }
   return uVar1;
 }
-
-
-
 
 
