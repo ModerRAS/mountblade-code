@@ -3,6 +3,17 @@
 
 #include "TaleWorlds.Native.Split.h"
 
+// 全局常量和变量定义
+#define DEFAULT_UI_STRING_PTR (&DAT_18098bc73)    // 默认UI字符串指针
+#define UI_CALLBACK_QUEUE_SIZE 0x168              // UI回调队列大小偏移
+#define UI_COMPONENT_FLAG 0x189                    // UI组件标志偏移
+#define UI_EVENT_TABLE_SIZE 0x78                  // UI事件表大小偏移
+#define UI_CALLBACK_COMPLETE_FLAG 0x188           // UI回调完成标志偏移
+#define UI_COMPONENT_LIST_SIZE 0x20               // UI组件列表项大小
+#define UI_DIMENSION_DATA_SIZE 0x18               // UI尺寸数据大小
+#define UI_STACK_BUFFER_SIZE 0x118                // UI堆栈缓冲区大小
+#define UI_ERROR_BUFFER_SIZE 0x80                 // UI错误缓冲区大小
+
 // 函数: ui_set_component_data - 设置UI组件数据
 // 参数: param_1 - UI组件对象指针, param_2 - 要设置的数据
 void ui_set_component_data(longlong param_1, undefined8 param_2)
@@ -38,11 +49,11 @@ void ui_process_component_stack(longlong param_1, longlong *param_2, undefined8 
   FUN_18005ea90(param_1 + 0x168, &plStackX_10, param_3, param_4, 0xfffffffffffffffe);
   (**(code **)(*param_2 + 8))(param_2, &puStack_30);
   (**(code **)(*param_2 + 0x10))(param_2, &puStack_50);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &DEFAULT_UI_STRING_PTR;
   if (puStack_48 != (undefined *)0x0) {
     puVar2 = puStack_48;
   }
-  puVar1 = &DAT_18098bc73;
+  puVar1 = &DEFAULT_UI_STRING_PTR;
   if (puStack_28 != (undefined *)0x0) {
     puVar1 = puStack_28;
   }
@@ -85,11 +96,11 @@ void ui_initialize_component_handlers(longlong param_1, longlong param_2, longlo
     FUN_180626ee0(&UNK_180a3dc30);
   }
   else {
-    puVar2 = &DAT_18098bc73;
+    puVar2 = &DEFAULT_UI_STRING_PTR;
     if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
       puVar2 = *(undefined **)(param_2 + 8);
     }
-    puVar3 = &DAT_18098bc73;
+    puVar3 = &DEFAULT_UI_STRING_PTR;
     if (*(undefined **)(param_3 + 8) != (undefined *)0x0) {
       puVar3 = *(undefined **)(param_3 + 8);
     }
@@ -223,7 +234,7 @@ undefined8 ui_add_event_listener(longlong param_1, undefined8 param_2, undefined
   undefined *puVar2;
   
   lVar1 = (**(code **)(param_1 + 0x148))(param_3);
-  puVar2 = &DAT_18098bc73;
+  puVar2 = &DEFAULT_UI_STRING_PTR;
   if (*(undefined **)(lVar1 + 8) != (undefined *)0x0) {
     puVar2 = *(undefined **)(lVar1 + 8);
   }
@@ -253,12 +264,12 @@ ulonglong ui_process_event_data(longlong param_1, longlong param_2, longlong par
   if (*(int *)(param_3 + 0x10) == 0) {
     return in_RAX & 0xffffffffffffff00;
   }
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &DEFAULT_UI_STRING_PTR;
   if (*(undefined **)(param_3 + 8) != (undefined *)0x0) {
     puVar3 = *(undefined **)(param_3 + 8);
   }
   lVar1 = (**(code **)(param_1 + 0xb0))(puVar3);
-  puVar3 = &DAT_18098bc73;
+  puVar3 = &DEFAULT_UI_STRING_PTR;
   if (*(undefined **)(lVar1 + 8) != (undefined *)0x0) {
     puVar3 = *(undefined **)(lVar1 + 8);
   }
@@ -305,7 +316,7 @@ undefined8 ui_enable_component(longlong param_1, longlong param_2)
 {
   undefined *puVar1;
   
-  puVar1 = &DAT_18098bc73;
+  puVar1 = &DEFAULT_UI_STRING_PTR;
   if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
     puVar1 = *(undefined **)(param_2 + 8);
   }
@@ -322,7 +333,7 @@ undefined8 ui_disable_component(longlong param_1, longlong param_2)
 {
   undefined *puVar1;
   
-  puVar1 = &DAT_18098bc73;
+  puVar1 = &DEFAULT_UI_STRING_PTR;
   if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
     puVar1 = *(undefined **)(param_2 + 8);
   }
@@ -362,7 +373,7 @@ int * ui_process_component_list(longlong param_1, int *param_2, longlong *param_
   if (param_3[1] - lVar3 >> 5 != 0) {
     do {
       puVar1 = *(undefined **)(lVar3 + 8 + uVar6);
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &DEFAULT_UI_STRING_PTR;
       if (puVar1 != (undefined *)0x0) {
         puVar7 = puVar1;
       }
@@ -648,7 +659,7 @@ ui_format_component_string(longlong *param_1, undefined8 *param_2, undefined8 pa
   longlong lVar4;
   
   lVar6 = 0;
-  FUN_180627910(&puStack_38, &DAT_18098bc73, param_3, param_4, 0, 0xfffffffffffffffe);
+  FUN_180627910(&puStack_38, &DEFAULT_UI_STRING_PTR, param_3, param_4, 0, 0xfffffffffffffffe);
   lVar4 = -1;
   do {
     lVar3 = lVar4 + 1;
@@ -669,7 +680,7 @@ ui_format_component_string(longlong *param_1, undefined8 *param_2, undefined8 pa
     uVar5 = uVar5 & 0xffffffff;
     do {
       puVar2 = *(undefined **)(lVar6 + 8 + *param_1);
-      puVar7 = &DAT_18098bc73;
+      puVar7 = &DEFAULT_UI_STRING_PTR;
       if (puVar2 != (undefined *)0x0) {
         puVar7 = puVar2;
       }
@@ -802,21 +813,21 @@ void ui_allocate_zeroed_memory(longlong param_1, longlong param_2)
 
 
 
-// 函数: void FUN_1806536d0(void)
-void FUN_1806536d0(void)
-
+// 函数: ui_initialize_mono_allocator - 初始化Mono分配器
+// 功能: 初始化Mono运行时的内存分配器，设置环境变量
+void ui_initialize_mono_allocator(void)
 {
   undefined8 *puVar1;
   undefined4 *puVar2;
   
-  puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,3,0xfffffffffffffffe);
+  puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, 3, 0xfffffffffffffffe);
   *puVar1 = 1;
   puVar1[1] = FUN_180653580;
   puVar1[2] = FUN_1806535c0;
   puVar1[3] = FUN_180653630;
   puVar1[4] = FUN_180653670;
   mono_set_allocator_vtable(puVar1);
-  puVar2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x13,0x13);
+  puVar2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x13, 0x13);
   *(undefined1 *)puVar2 = 0;
   FUN_18064e990(puVar2);
   *puVar2 = 0x7372756e;
@@ -825,15 +836,15 @@ void FUN_1806536d0(void)
   puVar2[3] = 0x3931383d;
   *(undefined2 *)(puVar2 + 4) = 0x6b32;
   *(undefined1 *)((longlong)puVar2 + 0x12) = 0;
-  puVar1 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  puVar1 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
   *(undefined1 *)puVar1 = 0;
   FUN_18064e990(puVar1);
   *puVar1 = 0x5f43475f4f4e4f4d;
   *(undefined4 *)(puVar1 + 1) = 0x41524150;
   *(undefined2 *)((longlong)puVar1 + 0xc) = 0x534d;
   *(undefined1 *)((longlong)puVar1 + 0xe) = 0;
-  SetEnvironmentVariableA(puVar1,puVar2);
-                    // WARNING: Subroutine does not return
+  SetEnvironmentVariableA(puVar1, puVar2);
+  // 警告：子函数不返回
   FUN_18064e900(puVar1);
 }
 
@@ -843,9 +854,9 @@ void FUN_1806536d0(void)
 
 
 
-// 函数: void FUN_180653940(void)
-void FUN_180653940(void)
-
+// 函数: ui_load_mono_assembly - 加载Mono程序集
+// 功能: 加载UI系统的Mono程序集，并获取相关类信息
+void ui_load_mono_assembly(void)
 {
   longlong *plVar1;
   undefined4 *puVar2;
@@ -875,7 +886,7 @@ void FUN_180653940(void)
   uStack_a0 = 0;
   puStack_b0 = (undefined4 *)0x0;
   uStack_a8 = 0;
-  FUN_1806277c0(&puStack_b8,0x15);
+  FUN_1806277c0(&puStack_b8, 0x15);
   puVar2 = puStack_b0;
   uVar7 = (ulonglong)uStack_a8;
   puVar6 = (undefined4 *)((longlong)puStack_b0 + uVar7);
@@ -886,14 +897,14 @@ void FUN_180653940(void)
   *(undefined4 *)((longlong)puStack_b0 + uVar7 + 0x10) = 0x6c642e74;
   *(undefined2 *)((longlong)puStack_b0 + uVar7 + 0x14) = 0x6c;
   uStack_a8 = 0x15;
-  puVar6 = (undefined4 *)&DAT_18098bc73;
+  puVar6 = (undefined4 *)&DEFAULT_UI_STRING_PTR;
   if (puStack_b0 != (undefined4 *)0x0) {
     puVar6 = puStack_b0;
   }
-  lVar4 = mono_domain_assembly_open(_DAT_180c91028,puVar6);
+  lVar4 = mono_domain_assembly_open(_DAT_180c91028, puVar6);
   puStack_b8 = &UNK_180a3c3e0;
   if (puVar2 != (undefined4 *)0x0) {
-                    // WARNING: Subroutine does not return
+    // 警告：子函数不返回
     FUN_18064e900(puVar2);
   }
   puStack_b0 = (undefined4 *)0x0;
@@ -901,7 +912,7 @@ void FUN_180653940(void)
   puStack_b8 = &UNK_18098bcb0;
   *plVar1 = lVar4;
   if (lVar4 == 0) {
-    FUN_180626ee0(&UNK_180a3ddc0,&DAT_180a3dda8);
+    FUN_180626ee0(&UNK_180a3ddc0, &DAT_180a3dda8);
     lVar4 = *plVar1;
   }
   lVar4 = mono_assembly_get_image(lVar4);
@@ -913,11 +924,11 @@ void FUN_180653940(void)
   uStack_78 = 0;
   puStack_88 = (undefined8 *)0x0;
   uStack_80 = 0;
-  puVar5 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  puVar5 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18, 0x10, 0x13);
   *(undefined1 *)puVar5 = 0;
   puStack_88 = puVar5;
   uVar3 = FUN_18064e990(puVar5);
-  uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
+  uStack_78 = CONCAT44(uStack_78._4_4_, uVar3);
   *puVar5 = 0x6c6c6f72746e6f43;
   *(undefined2 *)(puVar5 + 1) = 0x7265;
   *(undefined1 *)((longlong)puVar5 + 10) = 0;
@@ -926,28 +937,30 @@ void FUN_180653940(void)
   uStack_a0 = 0;
   puStack_b0 = (undefined4 *)0x0;
   uStack_a8 = 0;
-  puVar6 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x12,0x13);
+  puVar6 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18, 0x12, 0x13);
   *(undefined1 *)puVar6 = 0;
   puStack_b0 = puVar6;
   uVar3 = FUN_18064e990(puVar6);
-  uStack_a0 = CONCAT44(uStack_a0._4_4_,uVar3);
+  uStack_a0 = CONCAT44(uStack_a0._4_4_, uVar3);
   *puVar6 = 0x656c6154;
   puVar6[1] = 0x6c726f57;
   puVar6[2] = 0x442e7364;
   puVar6[3] = 0x654e746f;
   *(undefined2 *)(puVar6 + 4) = 0x74;
   uStack_a8 = 0x11;
-  mono_class_from_name(plVar1[1],puVar6,puVar5);
+  mono_class_from_name(plVar1[1], puVar6, puVar5);
   puStack_b8 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
+  // 警告：子函数不返回
   FUN_18064e900(puVar6);
 }
 
 
 
+// 函数: ui_create_error_message - 创建UI错误消息
+// 参数: param_1 - 错误代码, param_2 - 输出缓冲区, param_3/4 - 格式化参数
+// 功能: 创建UI系统的错误消息字符串
 undefined8 *
-FUN_180653ce0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
+ui_create_error_message(undefined8 param_1, undefined8 *param_2, undefined8 param_3, undefined8 param_4)
 {
   *param_2 = &UNK_18098bcb0;
   param_2[1] = 0;
@@ -956,7 +969,7 @@ FUN_180653ce0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
   param_2[1] = param_2 + 3;
   *(undefined1 *)(param_2 + 3) = 0;
   *(undefined4 *)(param_2 + 2) = 0x10;
-  strcpy_s(param_2[1],0x80,&UNK_180a3def0,param_4,0,0xfffffffffffffffe);
+  strcpy_s(param_2[1], 0x80, &UNK_180a3def0, param_4, 0, 0xfffffffffffffffe);
   return param_2;
 }
 
@@ -966,9 +979,10 @@ FUN_180653ce0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,undefine
 
 
 
-// 函数: void FUN_180653d60(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180653d60(longlong param_1,undefined8 param_2,int param_3)
-
+// 函数: ui_resize_buffer - 调整UI缓冲区大小
+// 参数: param_1 - 缓冲区结构, param_2 - 数据, param_3 - 大小
+// 功能: 调整UI系统缓冲区的大小，必要时重新分配内存
+void ui_resize_buffer(longlong param_1, undefined8 param_2, int param_3)
 {
   longlong lVar1;
   longlong lVar2;
@@ -998,38 +1012,38 @@ void FUN_180653d60(longlong param_1,undefined8 param_2,int param_3)
         lVar1 = 0;
       }
       else {
-        lVar1 = FUN_18062b420(_DAT_180c8ed18,uVar5,*(undefined1 *)(param_1 + 0x28));
+        lVar1 = FUN_18062b420(_DAT_180c8ed18, uVar5, *(undefined1 *)(param_1 + 0x28));
         lVar2 = *(longlong *)(param_1 + 0x10);
         lVar4 = *(longlong *)(param_1 + 0x18);
       }
       if (lVar2 != lVar4) {
-                    // WARNING: Subroutine does not return
-        memmove(lVar1,lVar2,lVar4 - lVar2);
+        // 警告：子函数不返回
+        memmove(lVar1, lVar2, lVar4 - lVar2);
       }
       if (uVar6 != 0) {
-                    // WARNING: Subroutine does not return
-        memset(lVar1,0,uVar6);
+        // 警告：子函数不返回
+        memset(lVar1, 0, uVar6);
       }
       if (*(longlong *)(param_1 + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
+        // 警告：子函数不返回
         FUN_18064e900();
       }
       *(longlong *)(param_1 + 0x10) = lVar1;
       *(ulonglong *)(param_1 + 0x20) = lVar1 + uVar5;
     }
     else if (uVar6 != 0) {
-                    // WARNING: Subroutine does not return
-      memset(lVar1,0,uVar6);
+      // 警告：子函数不返回
+      memset(lVar1, 0, uVar6);
     }
   }
   else {
     lVar1 = lVar2 + uVar6;
   }
   *(longlong *)(param_1 + 0x18) = lVar1;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
-  memcpy((longlong)iVar7 + *(longlong *)(param_1 + 0x10),param_2,(longlong)param_3);
+  // 警告：无法恢复跳转表，分支过多
+  // 警告：子函数不返回
+  // 警告：将间接跳转作为调用处理
+  memcpy((longlong)iVar7 + *(longlong *)(param_1 + 0x10), param_2, (longlong)param_3);
   return;
 }
 
@@ -1039,9 +1053,10 @@ void FUN_180653d60(longlong param_1,undefined8 param_2,int param_3)
 
 
 
-// 函数: void FUN_180653dac(longlong param_1,longlong param_2,undefined8 param_3,longlong param_4)
-void FUN_180653dac(longlong param_1,longlong param_2,undefined8 param_3,longlong param_4)
-
+// 函数: ui_resize_buffer_alt - 调整UI缓冲区大小替代版本
+// 参数: param_1 - 缓冲区结构, param_2 - 当前大小, param_3 - 数据, param_4 - 新大小
+// 功能: 使用不同寄存器变量调整UI系统缓冲区大小
+void ui_resize_buffer_alt(longlong param_1, longlong param_2, undefined8 param_3, longlong param_4)
 {
   longlong in_RAX;
   longlong unaff_RBX;
@@ -1068,20 +1083,20 @@ void FUN_180653dac(longlong param_1,longlong param_2,undefined8 param_3,longlong
       unaff_RBX = 0;
     }
     else {
-      unaff_RBX = FUN_18062b420(_DAT_180c8ed18,uVar2,*(undefined1 *)(unaff_RSI + 0x28));
+      unaff_RBX = FUN_18062b420(_DAT_180c8ed18, uVar2, *(undefined1 *)(unaff_RSI + 0x28));
       param_1 = *(longlong *)(unaff_RSI + 0x10);
       lVar1 = *unaff_R15;
     }
     if (param_1 != lVar1) {
-                    // WARNING: Subroutine does not return
-      memmove(unaff_RBX,param_1,lVar1 - param_1);
+      // 警告：子函数不返回
+      memmove(unaff_RBX, param_1, lVar1 - param_1);
     }
     if (uVar3 != 0) {
-                    // WARNING: Subroutine does not return
-      memset(unaff_RBX,0,uVar3);
+      // 警告：子函数不返回
+      memset(unaff_RBX, 0, uVar3);
     }
     if (*(longlong *)(unaff_RSI + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
+      // 警告：子函数不返回
       FUN_18064e900();
     }
     *(longlong *)(unaff_RSI + 0x10) = unaff_RBX;
@@ -1090,15 +1105,15 @@ void FUN_180653dac(longlong param_1,longlong param_2,undefined8 param_3,longlong
   else {
     in_stack_00000058 = unaff_RBP;
     if (uVar3 != 0) {
-                    // WARNING: Subroutine does not return
+      // 警告：子函数不返回
       memset();
     }
   }
   *unaff_R15 = unaff_RBX;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
-  memcpy((longlong)unaff_R12D + *(longlong *)(unaff_RSI + 0x10),in_stack_00000058);
+  // 警告：无法恢复跳转表，分支过多
+  // 警告：子函数不返回
+  // 警告：将间接跳转作为调用处理
+  memcpy((longlong)unaff_R12D + *(longlong *)(unaff_RSI + 0x10), in_stack_00000058);
   return;
 }
 
@@ -1106,9 +1121,9 @@ void FUN_180653dac(longlong param_1,longlong param_2,undefined8 param_3,longlong
 
 
 
-// 函数: void FUN_180653e6b(void)
-void FUN_180653e6b(void)
-
+// 函数: ui_resize_buffer_final - 调整UI缓冲区大小最终版本
+// 功能: UI缓冲区大小调整的最终实现，使用寄存器变量
+void ui_resize_buffer_final(void)
 {
   undefined8 unaff_RBX;
   longlong unaff_RSI;
@@ -1117,13 +1132,13 @@ void FUN_180653e6b(void)
   undefined8 *unaff_R15;
   
   if (unaff_RDI != 0) {
-                    // WARNING: Subroutine does not return
+    // 警告：子函数不返回
     memset();
   }
   *unaff_R15 = unaff_RBX;
-                    // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
-                    // WARNING: Subroutine does not return
-                    // WARNING: Treating indirect jump as call
+  // 警告：无法恢复跳转表，分支过多
+  // 警告：子函数不返回
+  // 警告：将间接跳转作为调用处理
   memcpy((longlong)unaff_R12D + *(longlong *)(unaff_RSI + 0x10));
   return;
 }
