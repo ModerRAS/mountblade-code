@@ -416,7 +416,7 @@ void utilities_system_module_initializer(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180941590(void)
+void utilities_system_state_cleaner(void)
 
 {
   // 系统状态管理变量定义
@@ -440,7 +440,7 @@ void FUN_180941590(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809415b0(void)
+void utilities_system_resource_resetter(void)
 
 {
   // 系统资源管理变量定义
@@ -464,7 +464,7 @@ void FUN_1809415b0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809415d0(void)
+void utilities_system_configuration_resetter(void)
 
 {
   // 重置系统配置并设置为默认值
@@ -485,7 +485,7 @@ void FUN_1809415d0(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_1809415f0(void)
+void utilities_system_data_resetter(void)
 
 {
   // 重置系统数据并设置为默认值

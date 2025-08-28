@@ -521,7 +521,7 @@ uint64_t UI_ProcessEvents(longlong system_ptr)
         if (*(longlong *)(data_ptr + 0x10f88) == 0) {
             // 常规事件处理
             if ((*(longlong *)(system_ptr + 0x380) != 0) &&
-                (result = FUN_180767c00(system_ptr + 0x1c0, &UNK_18095ad08, &UNK_1807872a0, system_ptr,
+                (result = UI_EventProcessor(system_ptr + 0x1c0, &UNK_18095ad08, &UNK_1807872a0, system_ptr,
                                       (ulonglong)param_x << 0x20, (ulonglong)param_y << 8,
                                       (ulonglong)param_z << 0x20, data_ptr, 1), (int)result != 0)) {
                 return result;
@@ -531,7 +531,7 @@ uint64_t UI_ProcessEvents(longlong system_ptr)
             extended_param = (ulonglong)param_z << 0x20;
             combined_param = CONCAT71(param_y, 1);
             
-            result = FUN_180767c00(system_ptr + 0x70, &UNK_18095ad08, FUN_1807863b0, system_ptr,
+            result = UI_EventProcessor(system_ptr + 0x70, &UNK_18095ad08, UI_DataTransformer, system_ptr,
                                   (ulonglong)param_x << 0x20, combined_param, extended_param, data_ptr, 1);
             if ((int)result != 0) {
                 return result;
@@ -539,7 +539,7 @@ uint64_t UI_ProcessEvents(longlong system_ptr)
             
             // 处理特殊事件
             if ((*(longlong *)(system_ptr + 0x380) != 0) &&
-                (result = FUN_180767c00(system_ptr + 0x1c0, &UNK_18095ad20, &UNK_1807872a0, system_ptr, 1,
+                (result = UI_EventProcessor(system_ptr + 0x1c0, &UNK_18095ad20, &UNK_1807872a0, system_ptr, 1,
                                       combined_param & 0xffffffffffffff00, extended_param & 0xffffffff00000000,
                                       *(uint64_t *)(system_ptr + UI_OFFSET_DATA), 1), (int)result != 0)) {
                 return result;
