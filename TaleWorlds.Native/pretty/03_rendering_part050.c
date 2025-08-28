@@ -214,6 +214,42 @@ typedef struct {
 #define RenderSystem_AdvancedConfigure FUN_18029463f
 
 /**
+ * @brief 系统内存分配器
+ * 负责系统内存的分配和释放
+ */
+#define SystemMemoryAllocator FUN_180059ba0
+
+/**
+ * @brief 系统资源处理器
+ * 处理系统资源的初始化和配置
+ */
+#define SystemResourceProcessor FUN_180294c20
+
+/**
+ * @brief 系统状态管理器
+ * 管理系统状态的更新和维护
+ */
+#define SystemStateManager FUN_180294f50
+
+/**
+ * @brief 系统数据转换器
+ * 转换系统数据格式和结构
+ */
+#define SystemDataTransformer FUN_180296ad0
+
+/**
+ * @brief 系统安全检查器
+ * 执行系统安全检查和验证
+ */
+#define SystemSecurityChecker FUN_1808fc050
+
+/**
+ * @brief 系统内存分配器
+ * 动态内存分配函数
+ */
+#define SystemMemoryAllocatorFunc func_0x000180120ce0
+
+/**
  * @brief 渲染数据管理器A
  * 渲染系统主数据管理器，管理核心数据结构
  */
