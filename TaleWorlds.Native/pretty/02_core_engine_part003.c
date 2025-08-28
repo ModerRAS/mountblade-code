@@ -320,7 +320,7 @@ void core_engine_system_initializer_type2(void)
     parent_node[7] = SYSTEM_REGISTRY_ID_4;
     parent_node[8] = (uint64_t)&global_var_7704_ptr;
     parent_node[9] = 0;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -672,7 +672,7 @@ void core_engine_system_initializer_type11(void)
     parent_node[7] = SYSTEM_REGISTRY_ID_8;
     parent_node[8] = (uint64_t)&global_var_7896_ptr;
     parent_node[9] = 4;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -738,7 +738,7 @@ void core_engine_system_initializer_type12(void)
     parent_node[7] = SYSTEM_REGISTRY_ID_10;
     parent_node[8] = (uint64_t)&global_var_7920_ptr;
     parent_node[9] = 3;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -804,7 +804,7 @@ void core_engine_system_initializer_type13(void)
     parent_node[7] = SYSTEM_REGISTRY_ID_12;
     parent_node[8] = (uint64_t)&global_var_7584_ptr;
     parent_node[9] = 1;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -870,7 +870,7 @@ void core_engine_system_initializer_type14(void)
     parent_node[7] = SYSTEM_REGISTRY_ID_14;
     parent_node[8] = (uint64_t)&global_var_7608_ptr;
     parent_node[9] = 4;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -1002,7 +1002,7 @@ void core_engine_system_initializer_type16(void)
     parent_node[7] = SYSTEM_REGISTRY_ID_18;
     parent_node[8] = (uint64_t)&global_var_7656_ptr;
     parent_node[9] = 0;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -1134,7 +1134,7 @@ void core_engine_system_initializer_type18(void)
     parent_node[7] = SYSTEM_REGISTRY_ID_4;
     parent_node[8] = (uint64_t)&global_var_7704_ptr;
     parent_node[9] = 0;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -1266,7 +1266,7 @@ void core_engine_system_initializer_type20(void)
     parent_node[7] = SYSTEM_REGISTRY_ID_12;
     parent_node[8] = (uint64_t)&global_var_7584_ptr;
     parent_node[9] = 1;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -1332,7 +1332,7 @@ void core_engine_system_initializer_type21(void)
     parent_node[7] = SYSTEM_REGISTRY_ID_14;
     parent_node[8] = (uint64_t)&global_var_7608_ptr;
     parent_node[9] = 4;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -1464,7 +1464,7 @@ void core_engine_system_initializer_type23(void)
     parent_node[7] = SYSTEM_REGISTRY_ID_18;
     parent_node[8] = (uint64_t)&global_var_7656_ptr;
     parent_node[9] = 0;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -1667,7 +1667,7 @@ void core_engine_data_processor_type1(void)
     parent_node[7] = 0xfab48faa65382fa5;
     parent_node[8] = (uint64_t)&global_var_7824_ptr;
     parent_node[9] = 0;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -1733,7 +1733,7 @@ void core_engine_data_processor_type2(void)
     parent_node[7] = 0xc160408bde99e59f;
     parent_node[8] = (uint64_t)&global_var_7776_ptr;
     parent_node[9] = 0;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
@@ -1799,7 +1799,7 @@ void core_engine_data_processor_type3(void)
     parent_node[7] = 0x71876af946c867ab;
     parent_node[8] = (uint64_t)&global_var_5032_ptr;
     parent_node[9] = 0;
-    parent_node[10] = callback_function;
+    parent_node[10] = (uint64_t)callback_function;
     
     return;
 }
