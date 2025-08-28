@@ -125,38 +125,33 @@ static void ui_update_system_state(UISystemState new_state);
 
 // 主要功能函数
 void UISystem_EmptyFunction(void)
-
 {
-  float *pfVar1;
-  float fVar2;
-  int *piVar3;
-  int *piVar4;
-  byte bVar5;
-  int iVar6;
-  int iVar7;
-  int64_t lVar8;
-  int64_t lVar9;
-  byte bVar10;
-  int iVar11;
-  int32_t *puVar12;
-  float *pfVar13;
-  int iVar14;
-  int64_t lVar15;
-  float *pfVar16;
-  int iVar17;
-  int64_t lVar18;
-  int iVar19;
-  int64_t lVar20;
-  int64_t lVar21;
-  int64_t lVar22;
-  int64_t lVar23;
-  int64_t lVar24;
-  int64_t lVar25;
-  int iVar26;
-  int64_t lVar27;
-  int64_t lVar28;
-  int iStackX_20;
-  int64_t lStack_88;
+    // UI系统空函数 - 用于初始化和占位
+    // 这是一个空的UI系统函数，通常用于系统初始化或作为占位符
+    return;
+}
+
+// UI系统数据混合器 - 核心数据处理函数
+uint64_t UISystem_DataMixer(int64_t *data_source, int64_t *data_target)
+{
+    // 局部变量声明
+    float *source_buffer, *target_buffer, *mix_buffer;
+    float mix_weight, scale_factor;
+    int *control_ptr, *state_ptr;
+    byte blend_factor;
+    int iteration_count, max_iterations;
+    int64_t data_offset, target_offset;
+    byte optimization_flag;
+    int vector_size;
+    int32_t *integer_buffer;
+    float *float_buffer;
+    int buffer_index;
+    int64_t buffer_start, buffer_end;
+    float *temp_ptr1, *temp_ptr2;
+    int chunk_size;
+    int64_t loop_counter1, loop_counter2;
+    int stack_offset;
+    int64_t stack_temp;
   
   lVar28 = *param_1;
   piVar3 = (int *)param_1[0xe];
