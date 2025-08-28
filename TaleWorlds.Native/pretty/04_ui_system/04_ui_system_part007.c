@@ -1,10 +1,47 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 04_ui_system_part007.c - 6 个函数
+// 04_ui_system_part007.c - UI系统Steam集成和数据管理模块
+// 本文件包含UI系统与Steam API的集成功能，以及复杂的数据处理和内存管理函数
+//
+// 主要功能模块：
+// 1. Steam API集成：FUN_180657970 - FUN_180657ad0 - Steam用户接口和功能管理
+// 2. 内存管理工具：FUN_180657a70 - FUN_180657b00 - 动态内存分配和释放
+// 3. 系统调用处理：FUN_180657b70 - FUN_180657fa0 - 系统级功能调用
+// 4. 数据处理函数：FUN_180657dd0 - 复杂数据结构的处理和转换
 
-// 函数: void FUN_180657970(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
-void FUN_180657970(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
-                  longlong param_5)
+// 全局常量定义
+// Steam API相关常量
+#define STEAM_INTERFACE_PTR_1   UNK_180a3e408
+#define STEAM_INTERFACE_PTR_2   UNK_180a3e418
+#define STEAM_INTERFACE_PTR_3   UNK_180a3e440
+#define STEAM_INTERFACE_PTR_4   UNK_180a3e470
+#define SYSTEM_DATA_PTR         UNK_180a3c3e0
+#define UI_HANDLER_PTR         UNK_18098bcb0
+
+// 系统数据区域
+#define SYSTEM_CONFIG_AREA      DAT_180c967e0
+#define SYSTEM_PARAM_DATA      DAT_180c8ed18
+#define SYSTEM_BUFFER_SIZE      DAT_180c96808
+#define SYSTEM_CONTROL_DATA     DAT_180c967d0
+
+// 函数别名定义
+// Steam API集成函数
+#define process_steam_ui_request     FUN_180657970
+#define allocate_steam_interface     FUN_180657a70
+#define initialize_steam_user        FUN_180657aa0
+#define initialize_steam_friends     FUN_180657ad0
+#define create_steam_context        FUN_180657b00
+
+// 系统调用函数
+#define execute_ui_system_call       FUN_180657b70
+#define process_ui_data_batch        FUN_180657dd0
+#define handle_ui_system_shutdown    FUN_180657fa0
+
+// 函数: void process_steam_ui_request(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
+// 处理Steam UI请求，验证数据并调用相应的Steam API功能
+// 参数: param_1 - 请求类型标识, param_2 - 上下文数据, param_3 - 数据缓冲区, param_4 - 标志位, param_5 - 数据长度
+void process_steam_ui_request(undefined8 param_1,undefined8 param_2,undefined *param_3,undefined8 param_4,
+                              longlong param_5)
 
 {
   byte bVar1;
@@ -13,15 +50,18 @@ void FUN_180657970(undefined8 param_1,undefined8 param_2,undefined *param_3,unde
   undefined4 uVar4;
   longlong lVar5;
   
-  if (((char)param_4 == '\0') && (param_3 != &DAT_180c967e0)) {
+  // 验证请求参数和数据状态
+  if (((char)param_4 == '\0') && (param_3 != &SYSTEM_CONFIG_AREA)) {
     if (*(int *)(param_3 + 0x30) == 0) {
 LAB_1806579e7:
       uVar4 = 1;
       goto LAB_1806579f0;
     }
+    // 检查数据长度并验证缓冲区内容
     if (*(int *)(param_5 + 0x10) != 0) {
       pbVar2 = *(byte **)(param_3 + 0x28);
       lVar5 = *(longlong *)(param_5 + 8) - (longlong)pbVar2;
+      // 逐字节比较数据内容
       do {
         bVar1 = *pbVar2;
         uVar3 = (uint)pbVar2[lVar5];
@@ -33,19 +73,24 @@ LAB_1806579e7:
   }
   uVar4 = 0;
 LAB_1806579f0:
-  lVar5 = FUN_18062b420(_DAT_180c8ed18,0x48,DAT_180c96808,param_4,0xfffffffffffffffe);
+  // 创建系统数据结构并处理请求
+  lVar5 = FUN_18062b420(SYSTEM_PARAM_DATA,0x48,SYSTEM_BUFFER_SIZE,param_4,0xfffffffffffffffe);
   FUN_180627ae0(lVar5 + 0x20,param_5);
   *(undefined8 *)(lVar5 + 0x40) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18066bdc0(lVar5,param_3,&DAT_180c967e0,uVar4);
+  FUN_18066bdc0(lVar5,param_3,&SYSTEM_CONFIG_AREA,uVar4);
 }
 
 
 
-undefined8 * FUN_180657a70(undefined8 *param_1,ulonglong param_2)
+// 函数: undefined8 * allocate_steam_interface(undefined8 *param_1,ulonglong param_2)
+// 分配Steam接口内存，根据标志决定是否释放内存
+// 参数: param_1 - 接口指针, param_2 - 内存管理标志
+undefined8 * allocate_steam_interface(undefined8 *param_1,ulonglong param_2)
 
 {
-  *param_1 = &UNK_180a3e470;
+  *param_1 = &STEAM_INTERFACE_PTR_4;
+  // 根据标志决定是否释放内存
   if ((param_2 & 1) != 0) {
     free(param_1,8);
   }
@@ -56,15 +101,18 @@ undefined8 * FUN_180657a70(undefined8 *param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_180657aa0(undefined8 *param_1)
-void FUN_180657aa0(undefined8 *param_1)
+// 函数: void initialize_steam_user(undefined8 *param_1)
+// 初始化Steam用户接口，获取当前Steam用户并创建用户接口
+void initialize_steam_user(undefined8 *param_1)
 
 {
   undefined8 uVar1;
   undefined4 uVar2;
   
+  // 获取Steam用户句柄
   uVar2 = SteamAPI_GetHSteamUser();
-  uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&UNK_180a3e408);
+  // 创建或查找用户接口
+  uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&STEAM_INTERFACE_PTR_1);
   *param_1 = uVar1;
   return;
 }
@@ -73,31 +121,38 @@ void FUN_180657aa0(undefined8 *param_1)
 
 
 
-// 函数: void FUN_180657ad0(undefined8 *param_1)
-void FUN_180657ad0(undefined8 *param_1)
+// 函数: void initialize_steam_friends(undefined8 *param_1)
+// 初始化Steam好友接口，获取Steam用户并创建好友功能接口
+void initialize_steam_friends(undefined8 *param_1)
 
 {
   undefined8 uVar1;
   undefined4 uVar2;
   
+  // 获取Steam用户句柄
   uVar2 = SteamAPI_GetHSteamUser();
-  uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&UNK_180a3e418);
+  // 创建或查找好友接口
+  uVar1 = SteamInternal_FindOrCreateUserInterface(uVar2,&STEAM_INTERFACE_PTR_2);
   *param_1 = uVar1;
   return;
 }
 
 
 
+// 函数: undefined8 * create_steam_context(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 创建Steam上下文，初始化Steam相关接口和内存管理
+// 参数: param_1 - 上下文指针, param_2 - 管理标志, param_3 - 附加参数1, param_4 - 附加参数2
 undefined8 *
-FUN_180657b00(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+create_steam_context(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 uVar1;
   
   uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a3e440;
+  *param_1 = &STEAM_INTERFACE_PTR_3;
   FUN_18005d580();
-  *param_1 = &UNK_180a3e470;
+  *param_1 = &STEAM_INTERFACE_PTR_4;
+  // 根据标志决定是否释放内存
   if ((param_2 & 1) != 0) {
     free(param_1,0x28,param_3,param_4,uVar1);
   }

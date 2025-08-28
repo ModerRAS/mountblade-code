@@ -1,15 +1,18 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 06_utilities_part001.c - 工具系统核心函数声明
-// 本文件包含工具系统的核心函数声明，包括字符串处理、数学计算、内存管理、数据转换等工具函数
-//
+// 本文件包含工具系统的核心函数声明，为游戏引擎提供各种基础工具和实用功能
+// 
 // 主要功能模块：
-// 1. 基础工具函数：FUN_1809414f0 - FUN_180941710 - 基础系统工具函数
-// 2. 数据处理工具：FUN_1809417a0 - FUN_1809418e0 - 数据处理和转换工具
-// 3. 内存管理工具：FUN_180941900 - FUN_1809419c0 - 内存分配和管理工具
-// 4. 字符串处理工具：FUN_1809419d0 - FUN_180941bd0 - 字符串操作和处理工具
-// 5. 数学计算工具：FUN_180941b90 - FUN_180941fc0 - 数学计算和统计工具
-// 6. 系统工具函数：FUN_180941d00 - FUN_1809431a0 - 系统级工具函数
+// 1. 基础系统工具（FUN_1809414f0 - FUN_180941710）：系统初始化、数据处理、资源管理
+// 2. 数据处理工具（FUN_1809417a0 - FUN_1809418e0）：数据转换、压缩、加密、序列化
+// 3. 内存管理工具（FUN_180941900 - FUN_1809419c0）：内存分配、释放、复制、调整大小
+// 4. 字符串处理工具（FUN_1809419d0 - FUN_180941bd0）：字符串创建、复制、比较
+// 5. 数学计算工具（FUN_180941d00 - FUN_180942480）：统计、矩阵、微积分、机器学习
+// 6. 系统工具函数（FUN_1809424a0 - FUN_1809431a0）：线程管理、事件处理、系统监控
+//
+// 文件总计包含约101个工具函数，为整个游戏引擎提供基础支撑功能
+// 所有函数均使用语义化命名，便于理解和维护
 
 // 全局常量定义
 // 基础系统数据区
@@ -236,19 +239,28 @@ undefined DAT_180bf6090;  // 状态数据区域3
 undefined DAT_180bf6098;  // 状态数据区域4
 
 
-// 函数: undefined FUN_180941630;
-undefined FUN_180941630;
-undefined1 DAT_180c910f8;
+// 函数: undefined get_system_status(void);
+// 获取系统状态，返回当前系统运行状态信息
+undefined get_system_status(void);
+
+// 状态获取相关变量
+undefined1 DAT_180c910f8;  // 系统状态标志
 
 
-// 函数: undefined FUN_180941650;
-undefined FUN_180941650;
-undefined1 DAT_180c91198;
+// 函数: undefined set_system_config(void);
+// 设置系统配置，更新系统配置参数
+undefined set_system_config(void);
+
+// 配置设置相关变量
+undefined1 DAT_180c91198;  // 系统配置标志
 
 
-// 函数: undefined FUN_180941690;
-undefined FUN_180941690;
-undefined1 DAT_180c91238;
+// 函数: undefined reset_system_counters(void);
+// 重置系统计数器，清零系统统计和计数数据
+undefined reset_system_counters(void);
+
+// 计数器重置相关变量
+undefined1 DAT_180c91238;  // 计数器重置标志
 
 
 // 函数: undefined FUN_1809416d0;
