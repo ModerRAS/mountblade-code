@@ -412,7 +412,7 @@ LAB_1808c3bc4:
             if ((uint64_t *)plVar10[2] == puVar1) goto LAB_1808c3c05;
         } while ((plVar10 != plVar11) && (plVar10 = (int64_t *)*plVar10, plVar10 != plVar11));
     }
-FUN_1808c3dad:
+SystemErrorHandlerExit:
     // WARNING: 栈清理，不返回
     SystemSecurityChecker(uStack_30 ^ (uint64_t)auStack_c8);
 }
@@ -552,7 +552,7 @@ void SystemResourceManager(int32_t param_1, uint64_t param_2, int64_t param_3)
                             *(int64_t *)(unaff_RBP + -0x19) = lVar8;
                             iVar7 = SystemDataValidator2(unaff_RSI + SYSTEM_OFFSET_0X48, unaff_RBP + -0x19);
                             if (((iVar7 != 0) || (iVar7 = SystemDataProcessor2(), iVar7 != 0)) ||
-                                (iVar7 = FUN_1808c4160(lVar8 + SYSTEM_OFFSET_0X38, unaff_RBP + -9), iVar7 != 0)) break;
+                                (iVar7 = SystemDataValidator2(lVar8 + SYSTEM_OFFSET_0X38, unaff_RBP + -9), iVar7 != 0)) break;
                         }
                     }
                 }
@@ -571,7 +571,7 @@ LAB_1808c3b65:
         plVar15[1] = (int64_t)plVar15;
         *plVar15 = (int64_t)plVar15;
         // WARNING: 资源清理，不返回
-        FUN_180742250(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar15, &global_state_1696_ptr, SYSTEM_CONST_0XE1, 1);
+        SystemResourceHandler(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar15, &global_state_1696_ptr, SYSTEM_CONST_0XE1, 1);
     }
     goto LAB_1808c3bc4;
     while ((plVar15 != plVar14 && (plVar15 = (int64_t *)*plVar15, plVar15 != plVar14))) {
@@ -600,7 +600,7 @@ LAB_1808c3bc4:
             plVar15[1] = (int64_t)plVar15;
             *plVar15 = (int64_t)plVar15;
             // WARNING: 资源清理，不返回
-            FUN_180742250(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar15, &global_state_1696_ptr, SYSTEM_CONST_0XE1, 1);
+            SystemResourceHandler(*(uint64_t *)(system_data_buffer + SYSTEM_CONST_0X1A0), plVar15, &global_state_1696_ptr, SYSTEM_CONST_0XE1, 1);
         }
     }
     else {
@@ -610,7 +610,7 @@ LAB_1808c3bc4:
     }
 LAB_1808c3d9d:
     // WARNING: 栈清理，不返回
-    FUN_1808fc050(*(uint64_t *)(unaff_RBP + 0x2f) ^ (uint64_t)&stack0x00000000);
+    SystemSecurityChecker(*(uint64_t *)(unaff_RBP + 0x2f) ^ (uint64_t)&stack0x00000000);
 }
 
 // ============================================================================

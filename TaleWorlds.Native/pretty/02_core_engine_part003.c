@@ -174,14 +174,14 @@ int64_t core_engine_memory_allocator_calculate(int64_t *registry_manager);
 void core_engine_memory_allocator_allocate(int64_t *registry_manager, uint64_t **allocated_node, uint64_t *parent_node, int64_t total_size, int64_t data_size);
 
 /** 系统回调函数 */
-code *core_engine_callback_handler_type1(void);
-code *core_engine_callback_handler_type2(void);
-code *core_engine_callback_handler_type3(void);
-code *core_engine_callback_handler_type4(void);
-code *core_engine_callback_handler_type5(void);
-code *core_engine_callback_handler_type6(void);
-code *core_engine_callback_handler_type7(void);
-code *core_engine_callback_handler_type8(void);
+func_ptr *core_engine_callback_handler_type1(void);
+func_ptr *core_engine_callback_handler_type2(void);
+func_ptr *core_engine_callback_handler_type3(void);
+func_ptr *core_engine_callback_handler_type4(void);
+func_ptr *core_engine_callback_handler_type5(void);
+func_ptr *core_engine_callback_handler_type6(void);
+func_ptr *core_engine_callback_handler_type7(void);
+func_ptr *core_engine_callback_handler_type8(void);
 
 /** 字符串处理函数 */
 uint64_t core_engine_string_processor_register(void **string_processor);
