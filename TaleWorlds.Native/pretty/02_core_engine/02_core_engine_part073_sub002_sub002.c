@@ -104,20 +104,29 @@ void initialize_engine_parameters(longlong engine_context)
   FUN_1800b0710(component_ptr, &uStackX_8);
   uStackX_8 = component_ptr;
   FUN_18005ea90(engine_context + 8, &uStackX_8);
-  func_0x00018010bfc0(auStack_148,0);
-  *(undefined4 *)(param_1 + 0x128) = 2;
-  FUN_18010bd10(param_1 + 0x130,auStack_148);
+  // 初始化动画系统参数
+  func_0x00018010bfc0(auStack_148, 0);
+  
+  // 设置动画系统参数 (值为2)
+  *(undefined4 *)(engine_context + 0x128) = 2;
+  FUN_18010bd10(engine_context + 0x130, auStack_148);
+  
+  // 执行回调函数（如果存在）
   if (pcStack_138 != (code *)0x0) {
-    (*pcStack_138)(auStack_148,0,0);
+    (*pcStack_138)(auStack_148, 0, 0);
   }
-  uVar1 = param_1 + 0xe0;
-  (**(code **)(*(longlong *)(param_1 + 0xe8) + 0x10))((longlong *)(param_1 + 0xe8),&UNK_180a055b8);
+  
+  // 获取动画组件指针并初始化动画参数
+  component_ptr = engine_context + 0xe0;
+  (**(code **)(*(longlong *)(engine_context + 0xe8) + 0x10))((longlong *)(engine_context + 0xe8), &UNK_180a055b8);
+  
+  // 设置动画系统参数 (值为2)
   uStackX_8._0_4_ = 2;
-  FUN_180046240(uVar1,&uStackX_8);
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,2);
-  FUN_1800b0710(uVar1,&uStackX_8);
-  uStackX_8 = uVar1;
-  FUN_18005ea90(param_1 + 8,&uStackX_8);
+  FUN_180046240(component_ptr, &uStackX_8);
+  uStackX_8 = CONCAT44(uStackX_8._4_4_, 2);
+  FUN_1800b0710(component_ptr, &uStackX_8);
+  uStackX_8 = component_ptr;
+  FUN_18005ea90(engine_context + 8, &uStackX_8);
   func_0x00018010bfe0(auStack_148,0);
   *(undefined4 *)(param_1 + 0x2e8) = 2;
   FUN_18010bd10(param_1 + 0x2f0,auStack_148);
