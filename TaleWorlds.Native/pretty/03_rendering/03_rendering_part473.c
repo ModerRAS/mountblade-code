@@ -1,6 +1,153 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part473.c - 13 个函数
+/**
+ * @file 03_rendering_part473.c
+ * @brief 渲染系统高级处理模块
+ * 
+ * 本模块包含13个核心函数，主要负责渲染系统的高级处理功能，包括：
+ * - 参数处理和状态管理
+ * - 坐标转换和投影计算
+ * - 渲染状态切换和清理
+ * - 资源管理和生命周期控制
+ * 
+ * @author 反编译代码美化处理
+ * @version 1.0
+ * @date 2025-08-28
+ */
+
+/*=============================================
+            常量定义和类型别名
+=============================================*/
+
+/** 渲染状态标志位 */
+#define RENDER_STATE_FLAG_NONE           0x00000000
+#define RENDER_STATE_FLAG_ACTIVE         0x00000001
+#define RENDER_STATE_FLAG_ENABLED        0x00000002
+#define RENDER_STATE_FLAG_DISABLED       0x00000004
+
+/** 渲染模式枚举 */
+#define RENDER_MODE_NORMAL               0x00000001
+#define RENDER_MODE_SHADOW               0x00000002
+#define RENDER_MODE_REFLECTION           0x00000005
+
+/** 内存对齐常量 */
+#define MEMORY_ALIGNMENT_SIZE           0xA60
+#define RENDER_STATE_OFFSET             0x30C0
+#define RENDER_DATA_OFFSET              0x3A28
+
+/** 浮点数精度常量 */
+#define FLOAT_EPSILON                   0.01999672f
+#define FLOAT_MAX_VALUE                 3.4028235e+38f
+#define FLOAT_ZERO_THRESHOLD           0.2f
+
+/** 位掩码常量 */
+#define BIT_MASK_9TH                    0x200    // 第9位掩码
+#define BIT_MASK_6TH                    0x40     // 第6位掩码
+#define BIT_MASK_1ST                    0x01     // 第1位掩码
+
+/** 内存偏移量 */
+#define OFFSET_RENDER_CONTEXT          0x20
+#define OFFSET_RENDER_STATE            0x590
+#define OFFSET_RENDER_FLAGS            0x56C
+#define OFFSET_RENDER_MODE             0x568
+#define OFFSET_RENDER_INDEX           0x560
+#define OFFSET_RENDER_DATA            0x8D8
+#define OFFSET_RENDER_POSITION        0x988
+#define OFFSET_RENDER_TRANSFORM       0x98C
+#define OFFSET_RENDER_SCALE           0x990
+
+/*=============================================
+            类型别名定义
+=============================================*/
+
+/** 渲染上下文指针类型 */
+typedef longlong* RenderContextPtr;
+
+/** 渲染状态结构体指针 */
+typedef void* RenderStatePtr;
+
+/** 坐标向量类型 */
+typedef float* Vector3f;
+
+/** 渲染参数类型 */
+typedef struct {
+    float x, y, z, w;
+} RenderVector4f;
+
+/** 渲染矩阵类型 */
+typedef struct {
+    float m00, m01, m02, m03;
+    float m10, m11, m12, m13;
+    float m20, m21, m22, m23;
+    float m30, m31, m32, m33;
+} RenderMatrix4x4f;
+
+/** 渲染配置类型 */
+typedef struct {
+    int mode;
+    int flags;
+    int index;
+    float scale;
+    RenderVector4f position;
+    RenderVector4f transform;
+} RenderConfig;
+
+/** 渲染数据类型 */
+typedef struct {
+    void* data;
+    int size;
+    int capacity;
+    int flags;
+} RenderData;
+
+/*=============================================
+            函数别名定义
+=============================================*/
+
+/** 渲染参数处理函数别名 */
+#define RenderParameterProcessor       FUN_18051f1ed
+#define RenderParameterProcessorAlt    FUN_18051f289
+
+/** 渲染坐标转换函数别名 */
+#define RenderCoordinateTransformer     FUN_18051f339
+#define RenderCoordinateAdjuster       FUN_18051f485
+
+/** 渲染状态管理函数别名 */
+#define RenderStateManager             FUN_18051f4c1
+#define RenderStateUpdater             FUN_18051f528
+
+/** 渲染碰撞检测函数别名 */
+#define RenderCollisionDetector        FUN_18051f570
+
+/** 渲染模式切换函数别名 */
+#define RenderModeSwitcher             FUN_18051f700
+#define RenderModeUpdater              FUN_18051f7cd
+#define RenderModeProcessor            FUN_18051f839
+
+/** 渲染资源管理函数别名 */
+#define RenderResourceManager          FUN_18051fa40
+
+/** 空函数别名 */
+#define RenderEmptyFunction1           FUN_18051f98f
+#define RenderEmptyFunction2           FUN_18051f994
+
+/*=============================================
+            外部函数声明
+=============================================*/
+extern void FUN_180593b40(longlong, undefined8, undefined4, undefined8, bool);
+extern char func_0x000180522f60(longlong);
+extern char func_0x000180522f60(void);
+extern void FUN_180511990(longlong, int, int, bool, char, int);
+extern void FUN_18052e450(longlong, int, int, int);
+extern void FUN_18052e130(longlong, int);
+extern void FUN_1805d1c80(longlong, undefined8*, int);
+extern void func_0x0001805da580(void);
+
+/*=============================================
+            全局变量声明
+=============================================*/
+extern undefined8 UNK_1809f89f0;
+extern undefined8 DAT_180c8ed30;
 
 // 函数: void FUN_18051f1ed(longlong param_1,float *param_2)
 void FUN_18051f1ed(longlong param_1,float *param_2)
