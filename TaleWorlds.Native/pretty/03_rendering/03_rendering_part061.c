@@ -668,75 +668,99 @@ void FUN_18029d500(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18029d760(longlong param_1,int param_2,char param_3,longlong param_4,int param_5)
+// 渲染系统目标设置函数
+// 设置渲染系统的渲染目标
+// param_1: 渲染系统上下文指针
+// param_2: 目标索引
+// param_3: 目标类型标志
+// param_4: 目标数据指针
+// param_5: 目标参数索引
 void FUN_18029d760(longlong param_1,int param_2,char param_3,longlong param_4,int param_5)
-
 {
-  longlong *plVar1;
-  int *piVar2;
-  undefined8 uVar3;
-  undefined1 auStack_98 [32];
-  undefined4 *puStack_78;
-  undefined4 uStack_70;
-  undefined8 *puStack_68;
-  undefined4 *puStack_60;
-  undefined4 auStack_58 [2];
-  undefined8 uStack_50;
-  undefined8 auStack_48 [4];
-  ulonglong uStack_28;
+  longlong *render_core;
+  int *frame_counter;
+  undefined8 target_data;
+  undefined1 security_buffer[RENDER_BUFFER_SIZE_MEDIUM];
+  undefined4 *target_params;
+  undefined4 param_count;
+  undefined8 *target_array;
+  undefined4 *target_format;
+  undefined4 target_formats[2];
+  undefined8 target_value;
+  undefined8 target_handles[RENDER_PARAM_MAX_SLOTS];
+  ulonglong security_key;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
-  uVar3 = 0;
-  auStack_58[0] = 0xffffffff;
+  security_key = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
+  target_data = 0;
+  target_formats[0] = 0xffffffff;  // 默认格式
+  
+  // 处理目标数据
   if (param_4 != 0) {
-    piVar2 = (int *)(_DAT_180c86870 + 0x224);
-    *(longlong *)(param_4 + 0x340) = (longlong)*piVar2;
+    frame_counter = (int *)(_DAT_180c86870 + 0x224);
+    *(longlong *)(param_4 + 0x340) = (longlong)*frame_counter;  // 设置帧计数器
+    
+    // 获取目标数据
     if (param_5 == -1) {
-      uVar3 = *(undefined8 *)(param_4 + 0x208);
+      target_data = *(undefined8 *)(param_4 + 0x208);  // 默认目标
     }
     else {
-      uVar3 = *(undefined8 *)(*(longlong *)(param_4 + 0x210) + (longlong)param_5 * 8);
+      target_data = *(undefined8 *)(*(longlong *)(param_4 + 0x210) + 
+                                    (longlong)param_5 * 8);  // 索引目标
     }
-    *(longlong *)(param_4 + 0x340) = (longlong)*piVar2;
-    auStack_58[0] = *(undefined4 *)(param_4 + 0x1f8);
+    
+    *(longlong *)(param_4 + 0x340) = (longlong)*frame_counter;
+    target_formats[0] = *(undefined4 *)(param_4 + 0x1f8);  // 获取目标格式
   }
-  plVar1 = *(longlong **)(param_1 + 0x8400);
-  uStack_50 = uVar3;
+  
+  render_core = *(longlong **)(param_1 + 0x8400);
+  target_value = target_data;
+  
+  // 处理不同类型的目标设置
   if (param_3 == '\0') {
-    puStack_68 = auStack_48;
-    uStack_70 = 4;
-    puStack_78._0_4_ = 1;
-    (**(code **)(*plVar1 + 0x2d0))(plVar1,0,0,0);
-    plVar1 = *(longlong **)(param_1 + 0x8400);
-    puStack_60 = auStack_58;
-    auStack_48[param_2 - 1] = uVar3;
-    puStack_68 = auStack_48;
-    uStack_70 = 4;
-    puStack_78 = (undefined4 *)CONCAT44(puStack_78._4_4_,1);
-    (**(code **)(*plVar1 + 0x110))(plVar1,0xffffffff,0,0);
+    // 重置渲染目标
+    target_array = target_handles;
+    param_count = 4;
+    target_params._0_4_ = 1;
+    
+    // 调用渲染核心重置函数
+    (**(code **)(*render_core + 0x2d0))(render_core, 0, 0, 0);
+    render_core = *(longlong **)(param_1 + 0x8400);
+    
+    target_format = target_formats;
+    target_handles[param_2 - 1] = target_data;
+    target_array = target_handles;
+    param_count = 4;
+    target_params = (undefined4 *)CONCAT44(target_params._4_4_, 1);
+    
+    // 调用渲染核心设置函数
+    (**(code **)(*render_core + 0x110))(render_core, 0xffffffff, 0, 0);
+    
+    // 如果目标索引小于7，重置所有渲染目标
     if (param_2 < 7) {
-      *(undefined8 *)(param_1 + 0x83b8) = 0;
-      *(undefined8 *)(param_1 + 0x8378) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83c0) = 0;
-      *(undefined8 *)(param_1 + 0x8380) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83c8) = 0;
-      *(undefined8 *)(param_1 + 0x8388) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83d0) = 0;
-      *(undefined8 *)(param_1 + 0x8390) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83d8) = 0;
-      *(undefined8 *)(param_1 + 0x8398) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83e0) = 0;
-      *(undefined8 *)(param_1 + 0x83a0) = 0xffffffffdeadfeee;
-      *(undefined8 *)(param_1 + 0x83e8) = 0;
-      *(undefined8 *)(param_1 + 0x83a8) = 0xffffffffdeadfeee;
+      *(undefined8 *)(param_1 + 0x83b8) = 0;        // 目标0
+      *(undefined8 *)(param_1 + 0x8378) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83c0) = 0;        // 目标1
+      *(undefined8 *)(param_1 + 0x8380) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83c8) = 0;        // 目标2
+      *(undefined8 *)(param_1 + 0x8388) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83d0) = 0;        // 目标3
+      *(undefined8 *)(param_1 + 0x8390) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83d8) = 0;        // 目标4
+      *(undefined8 *)(param_1 + 0x8398) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83e0) = 0;        // 目标5
+      *(undefined8 *)(param_1 + 0x83a0) = RENDER_PARAM_MAGIC_VALUE;
+      *(undefined8 *)(param_1 + 0x83e8) = 0;        // 目标6
+      *(undefined8 *)(param_1 + 0x83a8) = RENDER_PARAM_MAGIC_VALUE;
     }
   }
   else {
-    puStack_78 = auStack_58;
-    (**(code **)(*plVar1 + 0x220))(plVar1,param_2,1,&uStack_50);
+    // 设置指定的渲染目标
+    target_params = target_formats;
+    (**(code **)(*render_core + 0x220))(render_core, param_2, 1, &target_value);
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_98);
+  
+  // 清理安全缓冲区（函数不返回）
+  FUN_1808fc050(security_key ^ (ulonglong)security_buffer);
 }
 
 
