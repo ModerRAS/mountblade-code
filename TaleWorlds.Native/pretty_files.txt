@@ -1016,3 +1016,4 @@
 99_part_14_part026_sub002_sub002.c
 pretty/99/99_part_01_part006.c
 pretty/03_rendering_part024_sub002/03_rendering_part024_sub002_sub002.c
+pretty/99_part_05_part052.c
