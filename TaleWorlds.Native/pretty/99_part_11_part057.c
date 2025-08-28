@@ -53,6 +53,36 @@
 #define SafeMemoryCopyHandler                 FUN_1807bb8a0    // 安全内存复制处理器
 #define BufferOperationValidator             FUN_1807bb8a0    // 缓冲区操作验证器
 
+// 数据处理和流控制函数别名
+#define data_flow_controller                  FUN_1807ba570    // 数据流控制器
+#define DataFlowController                   FUN_1807ba570    // 数据流控制器（标准命名）
+#define StreamDataProcessor                  FUN_1807ba570    // 流数据处理器
+
+// 二进制数据处理函数别名
+#define binary_data_processor                 FUN_1807b8f20    // 二进制数据处理器
+#define BinaryDataProcessor                  FUN_1807b8f20    // 二进制数据处理器（标准命名）
+#define BinaryStreamHandler                  FUN_1807b8f20    // 二进制流处理器
+
+// 数据序列化函数别名
+#define data_serializer                       FUN_180772fe0    // 数据序列化器
+#define DataSerializer                        FUN_180772fe0    // 数据序列化器（标准命名）
+#define BinaryDataSerializer                 FUN_180772fe0    // 二进制数据序列化器
+
+// 内存初始化函数别名
+#define memory_initializer                    FUN_18076b390    // 内存初始化器
+#define MemoryInitializer                     FUN_18076b390    // 内存初始化器（标准命名）
+#define BufferInitializer                    FUN_18076b390    // 缓冲区初始化器
+
+// 状态更新函数别名
+#define state_updater                         func_0x0001807b9040    // 状态更新器
+#define StateUpdater                          func_0x0001807b9040    // 状态更新器（标准命名）
+#define GameStateUpdater                     func_0x0001807b9040    // 游戏状态更新器
+
+// 安全检查函数别名
+#define security_checker                      FUN_1808fc050    // 安全检查器
+#define SecurityChecker                       FUN_1808fc050    // 安全检查器（标准命名）
+#define StackSecurityValidator               FUN_1808fc050    // 栈安全验证器
+
 // ============================================================================
 // 全局变量引用
 // ============================================================================
@@ -198,7 +228,7 @@ void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
                         lVar3 = (ulonglong)(bVar5 & 0xf) * 0x378;
                         uStack_168 = CONCAT31(uStack_168._1_3_, param_2);
                         *(longlong **)(lVar4 + 0x440 + lVar3) = param_1;
-                        FUN_1807ba570(lVar3 + *param_1 + 0x428, bVar5, CONCAT31((int3)(uVar8 >> 8), bVar6 < 0x80));
+                        data_flow_controller(lVar3 + *param_1 + 0x428, bVar5, CONCAT31((int3)(uVar8 >> 8), bVar6 < 0x80));
                         bVar6 = bVar5;
                     }
                     else if (bVar6 == 0xf0) {
@@ -272,7 +302,7 @@ void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
                                             break;
                                         }
                                         if (uVar8 < 5) {
-                                            FUN_1807bb8a0(param_1, *param_1 + 0x3bac, uVar8);
+                                            memory_boundary_checker(param_1, *param_1 + 0x3bac, uVar8);
                                             break;
                                         }
                                         if (uVar11 <= uVar7) goto LAB_1807bb47c;
@@ -285,37 +315,37 @@ void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
                                     case 1:
                                         // 浮点数处理
                                         iStack_144 = (int)*(float *)(*param_1 + 0x3bf4);
-                                        FUN_1807b8f20(param_1, &DAT_180a064c8, uVar8);
+                                        binary_data_processor(param_1, &DAT_180a064c8, uVar8);
                                         if (param_2 != '\0') {
                                             uStack_158 = 0;
                                             uStack_160 = 1;
                                             uStack_168 = 4;
-                                            FUN_180772fe0(*param_1, 7, &UNK_18097c258);
+                                            data_serializer(*param_1, 7, &UNK_18097c258);
                                         }
                                         break;
                                     case 2:
-                                        FUN_1807b8f20(param_1, &UNK_18097c268, uVar8);
+                                        binary_data_processor(param_1, &UNK_18097c268, uVar8);
                                         break;
                                     case 3:
                                         // 特殊处理（不返回）
-                                        FUN_18076b390(auStack_138, 0x100, &UNK_18097c278, (int)param_1[3]);
+                                        memory_initializer(auStack_138, 0x100, &UNK_18097c278, (int)param_1[3]);
                                     case 4:
-                                        FUN_1807b8f20(param_1, &UNK_18097c288, uVar8);
+                                        binary_data_processor(param_1, &UNK_18097c288, uVar8);
                                         break;
                                     case 5:
-                                        FUN_1807b8f20(param_1, &UNK_18097c294, uVar8);
+                                        binary_data_processor(param_1, &UNK_18097c294, uVar8);
                                         break;
                                     case 6:
-                                        FUN_1807b8f20(param_1, &UNK_18097c29c, uVar8);
+                                        binary_data_processor(param_1, &UNK_18097c29c, uVar8);
                                         break;
                                     case 7:
-                                        FUN_1807b8f20(param_1, &UNK_18097c2a8, uVar8);
+                                        binary_data_processor(param_1, &UNK_18097c2a8, uVar8);
                                         break;
                                     case 8:
-                                        FUN_1807b8f20(param_1, &UNK_18097c2b8, uVar8);
+                                        binary_data_processor(param_1, &UNK_18097c2b8, uVar8);
                                         break;
                                     case 9:
-                                        FUN_1807b8f20(param_1, &UNK_18097c2c8, uVar8);
+                                        binary_data_processor(param_1, &UNK_18097c2c8, uVar8);
                                         break;
                                     case 0x20:
                                         if (uVar7 < uVar11) goto code_r0x0001807bb4a3;
@@ -336,11 +366,11 @@ void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
                                         goto LAB_1807bb47c;
                                     case 0x51:
                                         // 特殊数据处理
-                                        FUN_1807bb8a0(param_1, &bStack_148, uVar8);
+                                        memory_boundary_checker(param_1, &bStack_148, uVar8);
                                         *(uint *)(*param_1 + 0x3be8) = (uint)bStack_148 << 0x10;
                                         *(uint *)(*param_1 + 0x3be8) = *(uint *)(*param_1 + 0x3be8) | (uint)bStack_147 << 8;
                                         *(uint *)(*param_1 + 0x3be8) = *(uint *)(*param_1 + 0x3be8) | (uint)bStack_146;
-                                        func_0x0001807b9040(*param_1);
+                                        state_updater(*param_1);
                                         break;
                                     case 0x54:
                                         // 四字节数据处理
@@ -385,7 +415,7 @@ void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
                                         *(int *)(param_1 + 2) = (int)param_1[2] + 1;
                                         break;
                                     case 0x7f:
-                                        FUN_1807b8f20(param_1, &UNK_18097c2d8, uVar8);
+                                        binary_data_processor(param_1, &UNK_18097c2d8, uVar8);
                                     }
                                     goto LAB_1807bb778;
                                 }
@@ -402,7 +432,7 @@ void FUN_1807bb100(longlong *param_1, char param_2, int8_t param_3)
     }
 LAB_1807bb79f:
     // 安全退出处理
-    FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
+    security_checker(uStack_38 ^ (ulonglong)auStack_188);
 code_r0x0001807bb29c:
     if (uVar11 <= uVar7) goto code_r0x0001807bb2a1;
     goto LAB_1807bb271;
@@ -479,6 +509,50 @@ uint64_t FUN_1807bb8a0(longlong param_1, longlong param_2, int param_3)
     *(uint *)(param_1 + 0x10) = uVar1 + param_3;
     return 0;  // 返回成功状态
 }
+
+// ============================================================================
+// 新增函数别名说明
+// ============================================================================
+
+/*
+ * 新增函数别名功能说明：
+ * 
+ * data_flow_controller (FUN_1807ba570):
+ * - 功能：控制数据流的处理流程和状态转换
+ * - 用途：在数据流处理中根据控制字节执行相应的处理逻辑
+ * - 参数：目标地址、控制字节、处理标志
+ * - 作用：实现数据流的分支控制和状态管理
+ * 
+ * binary_data_processor (FUN_1807b8f20):
+ * - 功能：处理二进制数据的读取和解析
+ * - 用途：从内存中读取二进制数据并进行处理
+ * - 参数：数据上下文、源地址、数据长度
+ * - 作用：实现二进制数据的安全处理和转换
+ * 
+ * data_serializer (FUN_180772fe0):
+ * - 功能：数据的序列化和反序列化处理
+ * - 用途：将数据结构转换为字节流或反之
+ * - 参数：数据对象、序列化类型、目标缓冲区
+ * - 作用：实现数据的高效序列化和存储
+ * 
+ * memory_initializer (FUN_18076b390):
+ * - 功能：内存缓冲区的初始化和设置
+ * - 用途：初始化内存区域并设置初始状态
+ * - 参数：目标缓冲区、缓冲区大小、初始化数据、附加参数
+ * - 作用：确保内存区域的正确初始化和安全使用
+ * 
+ * state_updater (func_0x0001807b9040):
+ * - 功能：更新和管理系统状态
+ * - 用途：根据数据处理结果更新相关状态
+ * - 参数：状态上下文对象
+ * - 作用：实现状态的同步更新和一致性维护
+ * 
+ * security_checker (FUN_1808fc050):
+ * - 功能：执行安全检查和验证
+ * - 用途：验证栈完整性和安全性
+ * - 参数：安全检查值
+ * - 作用：防止栈溢出和其他安全漏洞
+ */
 
 // ============================================================================
 // 模块技术说明
