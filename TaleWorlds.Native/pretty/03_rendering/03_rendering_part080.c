@@ -7,11 +7,50 @@
 #define rendering_system_render_state_processor FUN_180310903
 #define rendering_system_parameter_handler FUN_1803109a0
 
-// 常量定义
-#define RENDERING_FLAG_MASK 0x3f800000  // 渲染标志掩码
-#define RENDERING_MAX_THRESHOLD 35.0     // 渲染最大阈值
-#define RENDERING_MIN_THRESHOLD 0.2     // 渲染最小阈值
-#define RENDERING_DISTANCE_THRESHOLD 0.5 // 渲染距离阈值
+// 渲染系统常量定义
+#define RENDERING_FLAG_MASK 0x3f800000  // 渲染标志掩码 (1.0f)
+#define RENDERING_MAX_THRESHOLD 35.0     // 渲染最大阈值 (35单位)
+#define RENDERING_MIN_THRESHOLD 0.2     // 渲染最小阈值 (0.2单位)
+#define RENDERING_DISTANCE_THRESHOLD 0.5 // 渲染距离阈值 (0.5单位)
+#define RENDERING_TIME_DELTA 0x3f000000 // 渲染时间增量 (0.5f)
+
+// 渲染管线参数类型常量
+#define RENDER_PARAM_COLOR_RED 0xf0      // 颜色红色通道
+#define RENDER_PARAM_COLOR_GREEN 0xf1    // 颜色绿色通道
+#define RENDER_PARAM_COLOR_BLUE 0xf2     // 颜色蓝色通道
+#define RENDER_PARAM_COLOR_ALPHA 0xf3    // 颜色透明度通道
+#define RENDER_PARAM_TEXTURE_U 0xf6      // 纹理U坐标
+#define RENDER_PARAM_TEXTURE_V 0xf4      // 纹理V坐标
+#define RENDER_PARAM_TEXTURE_W 0xf5      // 纹理W坐标
+#define RENDER_PARAM_NORMAL_X 0xf7       // 法线X分量
+#define RENDER_PARAM_SPECULAR 0xfa       // 镜面反射参数
+#define RENDER_PARAM_EMISSION 0xfb       // 自发光参数
+#define RENDER_PARAM_ROUGHNESS 0xf8      // 粗糙度参数
+#define RENDER_PARAM_METALLIC 0xf9       // 金属度参数
+#define RENDER_PARAM_AMBIENT 0xfc        // 环境光参数
+#define RENDER_PARAM_DIFFUSE 0xfd        // 漫反射参数
+
+// 渲染命令类型常量
+#define RENDER_CMD_DEPTH_TEST 0xfe      // 深度测试命令
+#define RENDER_CMD_DISTANCE_TEST 0xff    // 距离测试命令
+#define RENDER_CMD_BEGIN_BATCH 0xe7      // 开始批次渲染
+#define RENDER_CMD_END_BATCH 0xde        // 结束批次渲染
+#define RENDER_CMD_SET_TRANSFORM 0xdf     // 设置变换矩阵
+#define RENDER_CMD_SET_COLOR 0xe8         // 设置颜色
+#define RENDER_CMD_SET_COLOR_INVERTED 0xe9 // 设置反转颜色
+#define RENDER_CMD_SET_NORMAL 0xeb        // 设置法线
+#define RENDER_CMD_SET_NORMAL_INVERTED 0xea // 设置反转法线
+#define RENDER_CMD_SET_TEXCOORD_U 0xec    // 设置纹理U坐标
+#define RENDER_CMD_SET_TEXCOORD_U_INVERTED 0xed // 设置反转纹理U坐标
+#define RENDER_CMD_SET_TEXCOORD_V 0xef    // 设置纹理V坐标
+#define RENDER_CMD_SET_TEXCOORD_V_INVERTED 0xee // 设置反转纹理V坐标
+
+// 渲染系统地址常量
+#define RENDER_SYSTEM_BASE_ADDR 0x180c86920    // 渲染系统基地址
+#define RENDER_SYSTEM_CONTEXT_ADDR 0x180c868d0  // 渲染系统上下文地址
+#define RENDER_SYSTEM_STATUS_ADDR 0x180c86950   // 渲染系统状态地址
+#define RENDER_SYSTEM_DATA_ADDR 0x180c86870     // 渲染系统数据地址
+#define RENDER_SYSTEM_CONSTANT_ADDR 0x180a401f0 // 渲染系统常量地址
 
 // 函数: 渲染系统高级渲染控制器
 // 功能: 处理渲染系统的高级渲染控制、参数计算、状态管理和渲染管线控制
