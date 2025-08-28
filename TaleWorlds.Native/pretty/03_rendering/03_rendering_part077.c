@@ -673,8 +673,9 @@ void rendering_system_process_render_objects_single_helper(undefined8 param_1, u
 
 
 
-// 函数: void FUN_18030d67f(void)
-void FUN_18030d67f(void)
+// 函数: 空函数1
+// 功能：空函数，无任何操作
+void rendering_system_empty_function_1(void)
 
 {
   return;
@@ -682,17 +683,20 @@ void FUN_18030d67f(void)
 
 
 
-undefined8 FUN_18030d690(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: 释放渲染对象管理器
+// 参数: manager_ptr - 管理器指针, flags - 标志位, param_3 - 参数3, param_4 - 参数4
+// 返回值: 管理器指针
+undefined8 rendering_system_release_render_object_manager(undefined8 manager_ptr, ulonglong flags, undefined8 param_3, undefined8 param_4)
 
 {
-  undefined8 uVar1;
+  undefined8 memory_flag;
   
-  uVar1 = 0xfffffffffffffffe;
+  memory_flag = RENDER_OBJECT_FLAG_MASK;
   FUN_180049470();
-  if ((param_2 & 1) != 0) {
-    free(param_1,200,param_3,param_4,uVar1);
+  if ((flags & 1) != 0) {
+    free(manager_ptr, 200, param_3, param_4, memory_flag);
   }
-  return param_1;
+  return manager_ptr;
 }
 
 
@@ -701,133 +705,128 @@ undefined8 FUN_18030d690(undefined8 param_1,ulonglong param_2,undefined8 param_3
 
 
 
-// 函数: void FUN_18030d6e0(longlong param_1,longlong *param_2,int param_3)
-void FUN_18030d6e0(longlong param_1,longlong *param_2,int param_3)
+// 函数: 添加渲染对象到队列
+// 参数: render_context - 渲染上下文, render_object - 渲染对象, param_3 - 参数3
+void rendering_system_add_render_object_to_queue(longlong render_context, longlong *render_object, int param_3)
 
 {
-  ulonglong *puVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  longlong *plVar5;
-  longlong *plVar6;
-  longlong *plStackX_8;
-  longlong *plStackX_10;
-  undefined8 uStack_e8;
-  undefined4 uStack_e0;
-  undefined4 uStack_dc;
-  undefined2 uStack_d8;
-  char cStack_d6;
-  undefined4 uStack_d4;
-  undefined1 uStack_d0;
-  undefined8 uStack_c8;
-  longlong alStack_c0 [3];
-  undefined4 uStack_a8;
-  undefined8 uStack_a0;
-  undefined8 uStack_98;
-  undefined4 uStack_90;
-  undefined4 uStack_8c;
-  undefined2 uStack_88;
-  undefined1 uStack_86;
-  undefined4 uStack_84;
-  undefined1 uStack_80;
-  undefined8 uStack_78;
-  longlong alStack_70 [3];
-  undefined4 uStack_58;
-  undefined8 uStack_50;
-  undefined8 uStack_48;
+  ulonglong *array_ptr;
+  int compare_result;
+  longlong data_ptr;
+  longlong *new_entry;
+  longlong *existing_entry;
+  longlong *queue_ptr;
+  longlong *temp_ptr;
+  undefined8 stack_data_e8;
+  undefined4 stack_data_e0;
+  undefined4 stack_data_dc;
+  undefined2 stack_data_d8;
+  char stack_data_d6;
+  undefined4 stack_data_d4;
+  undefined1 stack_data_d0;
+  undefined8 stack_data_c8;
+  longlong stack_data_c0 [3];
+  undefined4 stack_data_a8;
+  undefined8 stack_data_a0;
+  undefined8 stack_data_98;
+  undefined4 stack_data_90;
+  undefined4 stack_data_8c;
+  undefined2 stack_data_88;
+  undefined1 stack_data_86;
+  undefined4 stack_data_84;
+  undefined1 stack_data_80;
+  undefined8 stack_data_78;
+  longlong stack_data_70 [3];
+  undefined4 stack_data_58;
+  undefined8 stack_data_50;
+  undefined8 stack_data_48;
   
-  uStack_48 = 0xfffffffffffffffe;
-  plVar6 = *(longlong **)(param_1 + 0x110);
-  plVar4 = (longlong *)0x0;
-  if (*plVar6 != plVar6[1]) goto LAB_18030d811;
-  plStackX_8 = (longlong *)
-               FUN_18062b1e0(_DAT_180c8ed18,0x28,8,CONCAT71((int7)((ulonglong)plVar6 >> 8),3));
-  plStackX_10 = plStackX_8 + 1;
-  *plStackX_10 = 0;
-  plStackX_8[2] = 0;
-  plStackX_8[3] = 0;
-  *(undefined4 *)(plStackX_8 + 4) = 3;
-  puVar1 = *(ulonglong **)(param_1 + 0x110);
-  plVar6 = (longlong *)puVar1[1];
-  if (plVar6 < (longlong *)puVar1[2]) {
-    puVar1[1] = (ulonglong)(plVar6 + 1);
-    *plVar6 = (longlong)plStackX_8;
+  stack_data_48 = RENDER_OBJECT_FLAG_MASK;
+  queue_ptr = *(longlong **)(render_context + 0x110);
+  new_entry = (longlong *)0x0;
+  if (*queue_ptr != queue_ptr[1]) goto LAB_18030d811;
+  temp_ptr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x28, 8, CONCAT71((int7)((ulonglong)queue_ptr >> 8), 3));
+  new_entry = temp_ptr + 1;
+  *new_entry = 0;
+  temp_ptr[2] = 0;
+  temp_ptr[3] = 0;
+  *(undefined4 *)(temp_ptr + 4) = 3;
+  array_ptr = *(ulonglong **)(render_context + 0x110);
+  queue_ptr = (longlong *)array_ptr[1];
+  if (queue_ptr < (longlong *)array_ptr[2]) {
+    array_ptr[1] = (ulonglong)(queue_ptr + 1);
+    *queue_ptr = (longlong)temp_ptr;
     goto LAB_18030d811;
   }
-  plVar5 = (longlong *)*puVar1;
-  lVar3 = (longlong)plVar6 - (longlong)plVar5 >> 3;
-  if (lVar3 == 0) {
-    lVar3 = 1;
+  existing_entry = (longlong *)*array_ptr;
+  data_ptr = (longlong)queue_ptr - (longlong)existing_entry >> 3;
+  if (data_ptr == 0) {
+    data_ptr = 1;
 LAB_18030d7a4:
-    plVar4 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar3 * 8,(char)puVar1[3]);
-    plVar6 = (longlong *)puVar1[1];
-    plVar5 = (longlong *)*puVar1;
+    new_entry = (longlong *)FUN_18062b420(_DAT_180c8ed18, data_ptr * 8, (char)array_ptr[3]);
+    queue_ptr = (longlong *)array_ptr[1];
+    existing_entry = (longlong *)*array_ptr;
   }
   else {
-    lVar3 = lVar3 * 2;
-    if (lVar3 != 0) goto LAB_18030d7a4;
+    data_ptr = data_ptr * 2;
+    if (data_ptr != 0) goto LAB_18030d7a4;
   }
-  if (plVar5 != plVar6) {
-                    // WARNING: Subroutine does not return
-    memmove(plVar4,plVar5,(longlong)plVar6 - (longlong)plVar5);
+  if (existing_entry != queue_ptr) {
+    memmove(new_entry, existing_entry, (longlong)queue_ptr - (longlong)existing_entry);
   }
-  *plVar4 = (longlong)plStackX_8;
-  if (*puVar1 != 0) {
-                    // WARNING: Subroutine does not return
+  *new_entry = (longlong)temp_ptr;
+  if (*array_ptr != 0) {
     FUN_18064e900();
   }
-  *puVar1 = (ulonglong)plVar4;
-  puVar1[1] = (ulonglong)(plVar4 + 1);
-  puVar1[2] = (ulonglong)(plVar4 + lVar3);
+  *array_ptr = (ulonglong)new_entry;
+  array_ptr[1] = (ulonglong)(new_entry + 1);
+  array_ptr[2] = (ulonglong)(new_entry + data_ptr);
 LAB_18030d811:
-  lVar3 = *(longlong *)**(undefined8 **)(param_1 + 0x110);
-  uStack_98 = 0;
-  uStack_90 = 0;
-  uStack_8c = 0xffffffff;
-  uStack_88 = 1;
-  uStack_86 = 0;
-  uStack_84 = 0xffffffff;
-  uStack_80 = 1;
-  uStack_78 = 0;
-  alStack_70[0] = 0;
-  alStack_70[1] = 0;
-  alStack_70[2] = 0;
-  uStack_58 = 3;
-  uStack_50 = 0;
-  uStack_e8 = 0;
-  uStack_e0 = 0;
-  uStack_dc = 0xffffffff;
-  uStack_d8 = 1;
-  cStack_d6 = '\0';
-  uStack_d4 = 0xffffffff;
-  uStack_d0 = 1;
-  uStack_c8 = 0;
-  plStackX_8 = alStack_c0;
-  alStack_c0[0] = 0;
-  alStack_c0[1] = 0;
-  alStack_c0[2] = 0;
-  uStack_a8 = 3;
-  uStack_a0 = 0;
-  FUN_18022d470(param_2[0x37],&uStack_98);
-  if ((cStack_d6 != '\0') || (iVar2 = FUN_18022d470(param_2[0x37],&uStack_e8), iVar2 == 0)) {
-    plStackX_8 = param_2;
-    FUN_18005ea90(lVar3 + 8,&plStackX_8);
-    if (*(int *)(param_1 + 0x11c) < param_3) {
-      *(int *)(param_1 + 0x11c) = param_3;
+  data_ptr = *(longlong *)**(undefined8 **)(render_context + 0x110);
+  stack_data_98 = 0;
+  stack_data_90 = 0;
+  stack_data_8c = 0xffffffff;
+  stack_data_88 = 1;
+  stack_data_86 = 0;
+  stack_data_84 = 0xffffffff;
+  stack_data_80 = 1;
+  stack_data_78 = 0;
+  stack_data_70[0] = 0;
+  stack_data_70[1] = 0;
+  stack_data_70[2] = 0;
+  stack_data_58 = 3;
+  stack_data_50 = 0;
+  stack_data_e8 = 0;
+  stack_data_e0 = 0;
+  stack_data_dc = 0xffffffff;
+  stack_data_d8 = 1;
+  stack_data_d6 = '\0';
+  stack_data_d4 = 0xffffffff;
+  stack_data_d0 = 1;
+  stack_data_c8 = 0;
+  temp_ptr = stack_data_c0;
+  stack_data_c0[0] = 0;
+  stack_data_c0[1] = 0;
+  stack_data_c0[2] = 0;
+  stack_data_a8 = 3;
+  stack_data_a0 = 0;
+  FUN_18022d470(render_object[0x37], &stack_data_98);
+  if ((stack_data_d6 != '\0') || (compare_result = FUN_18022d470(render_object[0x37], &stack_data_e8), compare_result == 0)) {
+    temp_ptr = render_object;
+    FUN_18005ea90(data_ptr + 8, &temp_ptr);
+    if (*(int *)(render_context + 0x11c) < param_3) {
+      *(int *)(render_context + 0x11c) = param_3;
     }
-    *(int *)((longlong)param_2 + 0x104) = *(int *)(param_1 + 0x118) + param_3;
+    *(int *)((longlong)render_object + 0x104) = *(int *)(render_context + 0x118) + param_3;
   }
-  plStackX_8 = alStack_c0;
-  if (alStack_c0[0] == 0) {
-    plStackX_8 = alStack_70;
-    if (alStack_70[0] == 0) {
+  temp_ptr = stack_data_c0;
+  if (stack_data_c0[0] == 0) {
+    temp_ptr = stack_data_70;
+    if (stack_data_70[0] == 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-                    // WARNING: Subroutine does not return
   FUN_18064e900();
 }
 
