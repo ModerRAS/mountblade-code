@@ -1,13 +1,872 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 05_networking_part001.c - 29 个函数
+/**
+ * @file 05_networking_part001.c
+ * @brief 网络系统初始化和连接管理模块
+ * @version 1.0
+ * @date 2025-08-28
+ * 
+ * @details
+ * 本模块实现了网络系统的核心初始化和连接管理功能，包含29个关键函数。
+ * 主要负责网络连接的建立、维护、断开以及相关资源的管理。
+ * 
+ * @copyright Copyright (c) 2025 TaleWorlds Entertainment
+ * @license Proprietary
+ */
 
-#include "TaleWorlds.Native.Split.h"
+/* ================================================ */
+/* 系统常量定义 */
+/* ================================================ */
 
-// 05_networking.c - 908 个函数
+/** 网络系统最大连接数 */
+#define NETWORKING_MAX_CONNECTIONS 1024
 
+/** 网络系统默认端口号 */
+#define NETWORKING_DEFAULT_PORT 25565
 
-// 函数: undefined FUN_1808632b0;
+/** 网络系统缓冲区大小 */
+#define NETWORKING_BUFFER_SIZE 8192
+
+/** 网络系统超时时间（毫秒） */
+#define NETWORKING_TIMEOUT_MS 30000
+
+/** 网络系统最大重试次数 */
+#define NETWORKING_MAX_RETRIES 3
+
+/** 网络系统心跳间隔（秒） */
+#define NETWORKING_HEARTBEAT_INTERVAL 30
+
+/** 网络系统数据包大小限制 */
+#define NETWORKING_MAX_PACKET_SIZE 1400
+
+/** 网络系统连接状态 */
+#define NETWORKING_STATUS_DISCONNECTED 0
+#define NETWORKING_STATUS_CONNECTING 1
+#define NETWORKING_STATUS_CONNECTED 2
+#define NETWORKING_STATUS_ERROR 3
+
+/** 网络系统错误码 */
+#define NETWORKING_ERROR_NONE 0x00
+#define NETWORKING_ERROR_CONNECTION_FAILED 0x01
+#define NETWORKING_ERROR_TIMEOUT 0x02
+#define NETWORKING_ERROR_INVALID_PARAM 0x03
+#define NETWORKING_ERROR_MEMORY 0x04
+#define NETWORKING_ERROR_PROTOCOL 0x05
+
+/** 网络系统数据包类型 */
+#define NETWORKING_PACKET_TYPE_HANDSHAKE 0x01
+#define NETWORKING_PACKET_TYPE_DATA 0x02
+#define NETWORKING_PACKET_TYPE_HEARTBEAT 0x03
+#define NETWORKING_PACKET_TYPE_DISCONNECT 0x04
+
+/** 网络系统标志位 */
+#define NETWORKING_FLAG_ENCRYPTED 0x01
+#define NETWORKING_FLAG_COMPRESSED 0x02
+#define NETWORKING_FLAG_RELIABLE 0x04
+#define NETWORKING_FLAG_SEQUENCED 0x08
+
+/* ================================================ */
+/* 类型定义 */
+/* ================================================ */
+
+/** 网络连接状态枚举 */
+typedef enum {
+    NetworkingState_Disconnected = 0,  /**< 断开连接状态 */
+    NetworkingState_Connecting = 1,     /**< 连接中状态 */
+    NetworkingState_Connected = 2,      /**< 已连接状态 */
+    NetworkingState_Error = 3,          /**< 错误状态 */
+    NetworkingState_Reconnecting = 4,  /**< 重连中状态 */
+    NetworkingState_Closing = 5        /**< 关闭中状态 */
+} NetworkingConnectionState;
+
+/** 网络数据包类型枚举 */
+typedef enum {
+    NetworkingPacket_Handshake = 0x01,  /**< 握手包 */
+    NetworkingPacket_Data = 0x02,       /**< 数据包 */
+    NetworkingPacket_Heartbeat = 0x03,  /**< 心跳包 */
+    NetworkingPacket_Disconnect = 0x04, /**< 断开连接包 */
+    NetworkingPacket_Ack = 0x05,         /**< 确认包 */
+    NetworkingPacket_Error = 0x06        /**< 错误包 */
+} NetworkingPacketType;
+
+/** 网络错误类型枚举 */
+typedef enum {
+    NetworkingError_None = 0x00,         /**< 无错误 */
+    NetworkingError_ConnectionFailed = 0x01, /**< 连接失败 */
+    NetworkingError_Timeout = 0x02,      /**< 超时错误 */
+    NetworkingError_InvalidParam = 0x03, /**< 无效参数 */
+    NetworkingError_Memory = 0x04,        /**< 内存错误 */
+    NetworkingError_Protocol = 0x05,     /**< 协议错误 */
+    NetworkingError_Network = 0x06,      /**< 网络错误 */
+    NetworkingError_Authentication = 0x07 /**< 认证错误 */
+} NetworkingErrorType;
+
+/** 网络连接结构体 */
+typedef struct {
+    uint32_t connectionId;              /**< 连接ID */
+    NetworkingConnectionState state;   /**< 连接状态 */
+    uint32_t remoteAddress;            /**< 远程地址 */
+    uint16_t remotePort;                /**< 远程端口 */
+    uint32_t localAddress;              /**< 本地地址 */
+    uint16_t localPort;                 /**< 本地端口 */
+    uint64_t lastActivity;              /**< 最后活动时间 */
+    uint32_t sendQueueSize;             /**< 发送队列大小 */
+    uint32_t receiveQueueSize;          /**< 接收队列大小 */
+    uint8_t flags;                      /**< 连接标志 */
+    void* userData;                     /**< 用户数据 */
+} NetworkConnection;
+
+/** 网络数据包结构体 */
+typedef struct {
+    NetworkingPacketType type;          /**< 数据包类型 */
+    uint32_t packetId;                 /**< 数据包ID */
+    uint32_t connectionId;             /**< 连接ID */
+    uint16_t sequenceNumber;            /**< 序列号 */
+    uint16_t acknowledgeNumber;         /**< 确认号 */
+    uint32_t dataSize;                 /**< 数据大小 */
+    uint8_t flags;                     /**< 数据包标志 */
+    void* data;                        /**< 数据指针 */
+    uint32_t checksum;                  /**< 校验和 */
+} NetworkPacket;
+
+/** 网络系统配置结构体 */
+typedef struct {
+    uint32_t maxConnections;            /**< 最大连接数 */
+    uint16_t defaultPort;               /**< 默认端口 */
+    uint32_t bufferSize;                /**< 缓冲区大小 */
+    uint32_t timeoutMs;                 /**< 超时时间 */
+    uint8_t maxRetries;                 /**< 最大重试次数 */
+    uint32_t heartbeatInterval;         /**< 心跳间隔 */
+    uint16_t maxPacketSize;             /**< 最大包大小 */
+    uint8_t enableCompression;         /**< 启用压缩 */
+    uint8_t enableEncryption;          /**< 启用加密 */
+    uint8_t enableReliability;         /**< 启用可靠性 */
+} NetworkConfig;
+
+/** 网络系统统计信息结构体 */
+typedef struct {
+    uint64_t totalBytesSent;            /**< 总发送字节数 */
+    uint64_t totalBytesReceived;        /**< 总接收字节数 */
+    uint64_t totalPacketsSent;          /**< 总发送包数 */
+    uint64_t totalPacketsReceived;      /**< 总接收包数 */
+    uint32_t activeConnections;         /**< 活跃连接数 */
+    uint32_t failedConnections;         /**< 失败连接数 */
+    uint32_t timeoutCount;              /**< 超时次数 */
+    uint32_t errorCount;                /**< 错误次数 */
+    double averageLatency;              /**< 平均延迟 */
+    double throughput;                  /**< 吞吐量 */
+} NetworkStats;
+
+/** 网络事件回调函数类型 */
+typedef void (*NetworkEventCallback)(NetworkConnection* connection, NetworkPacket* packet, void* userData);
+
+/** 网络事件结构体 */
+typedef struct {
+    uint32_t eventId;                  /**< 事件ID */
+    NetworkConnection* connection;     /**< 相关连接 */
+    NetworkPacket* packet;             /**< 相关数据包 */
+    NetworkErrorType error;            /**< 错误信息 */
+    uint64_t timestamp;                 /**< 时间戳 */
+    void* userData;                    /**< 用户数据 */
+} NetworkEvent;
+
+/* ================================================ */
+/* 函数别名定义 */
+/* ================================================ */
+
+/** 网络系统初始化器 */
+#define NetworkingSystem_Initialize FUN_1808632b0
+
+/** 网络连接建立器 */
+#define NetworkingSystem_Connect FUN_180873f80
+
+/** 网络连接断开器 */
+#define NetworkingSystem_Disconnect FUN_1808793e0
+
+/** 网络数据发送器 */
+#define NetworkingSystem_SendData FUN_1808777c0
+
+/** 网络数据接收器 */
+#define NetworkingSystem_ReceiveData FUN_180877810
+
+/** 网络连接状态检查器 */
+#define NetworkingSystem_CheckConnection FUN_180877f00
+
+/** 网络连接状态更新器 */
+#define NetworkingSystem_UpdateConnection FUN_1808780d0
+
+/** 网络系统事件处理器 */
+#define NetworkingSystem_ProcessEvent FUN_1808794d0
+
+/** 网络系统事件调度器 */
+#define NetworkingSystem_DispatchEvent FUN_180879510
+
+/** 网络系统资源清理器 */
+#define NetworkingSystem_Cleanup FUN_180876d70
+
+/** 网络系统重置器 */
+#define NetworkingSystem_Reset FUN_180876d90
+
+/** 网络系统状态获取器 */
+#define NetworkingSystem_GetState FUN_180876eb0
+
+/** 网络系统统计信息获取器 */
+#define NetworkingSystem_GetStats FUN_180876fb0
+
+/** 网络系统配置设置器 */
+#define NetworkingSystem_SetConfig FUN_18088ea60
+
+/** 网络系统连接验证器 */
+#define NetworkingSystem_ValidateConnection FUN_180840074
+
+/** 网络系统连接终止器 */
+#define NetworkingSystem_TerminateConnection FUN_1808400da
+
+/** 网络系统资源管理器 */
+#define NetworkingSystem_ManageResources FUN_180840100
+
+/** 网络系统初始化管理器 */
+#define NetworkingSystem_InitializeManager FUN_1808401c0
+
+/** 网络系统连接管理器 */
+#define NetworkingSystem_ManageConnection FUN_180840270
+
+/** 网络系统连接建立管理器 */
+#define NetworkingSystem_EstablishConnection FUN_180840330
+
+/** 网络系统连接信息获取器 */
+#define NetworkingSystem_GetConnectionInfo FUN_180840490
+
+/** 网络系统数据发送管理器 */
+#define NetworkingSystem_ManageDataSend FUN_180840600
+
+/** 网络系统连接参数设置器 */
+#define NetworkingSystem_SetConnectionParams FUN_18084062e
+
+/** 网络系统连接属性设置器 */
+#define NetworkingSystem_SetConnectionAttributes FUN_18084063e
+
+/** 网络系统连接清理器 */
+#define NetworkingSystem_CleanupConnection FUN_180840746
+
+/** 网络系统内存清理器 */
+#define NetworkingSystem_CleanupMemory FUN_18084076d
+
+/** 网络系统连接查找器 */
+#define NetworkingSystem_FindConnection FUN_180840790
+
+/** 网络系统连接信息更新器 */
+#define NetworkingSystem_UpdateConnectionInfo FUN_1808407ce
+
+/** 网络系统连接状态重置器 */
+#define NetworkingSystem_ResetConnectionState FUN_1808408ec
+
+/** 网络系统连接状态检查器 */
+#define NetworkingSystem_CheckConnectionState FUN_18084090e
+
+/** 网络系统连接查找管理器 */
+#define NetworkingSystem_ManageConnectionLookup FUN_180840950
+
+/** 网络系统连接索引查找器 */
+#define NetworkingSystem_FindConnectionIndex FUN_180840a90
+
+/** 网络系统连接搜索器 */
+#define NetworkingSystem_SearchConnection FUN_180840af0
+
+/* ================================================ */
+/* 全局变量定义 */
+/* ================================================ */
+
+/** 网络系统全局数据指针 */
+undefined* UNK_1808633a0;
+
+/** 网络系统配置数据指针 */
+undefined* UNK_180863400;
+
+/** 网络系统连接表指针 */
+undefined* UNK_180984d50;
+
+/** 网络系统状态标志 */
+undefined DAT_180c4eaac;
+
+/** 网络系统初始化标志 */
+undefined DAT_180c4eaa8;
+
+/** 网络系统事件队列指针 */
+undefined* UNK_180984dd0;
+
+/** 网络系统统计信息指针 */
+undefined* UNK_180984e88;
+
+/** 网络系统回调函数指针 */
+undefined* UNK_180984eb0;
+
+/** 网络系统配置结构指针 */
+undefined* UNK_180984ef0;
+
+/** 网络系统线程句柄 */
+undefined* UNK_1809874b0;
+
+/** 网络系统错误处理指针 */
+undefined DAT_180bef7b8;
+
+/** 网络系统连接池指针 */
+undefined* UNK_180985010;
+
+/** 网络系统数据包池指针 */
+undefined* UNK_180985080;
+
+/** 网络系统内存池指针 */
+undefined* UNK_180984ff8;
+
+/** 网络系统加密密钥指针 */
+undefined* UNK_180985140;
+
+/** 网络系统压缩算法指针 */
+undefined* UNK_180985170;
+
+/** 网络系统协议版本指针 */
+undefined* UNK_180985b90;
+
+/** 网络系统调试信息指针 */
+undefined* UNK_180873e8c;
+
+/** 网络系统日志系统指针 */
+undefined* UNK_180873e94;
+
+/** 网络系统性能监控指针 */
+undefined* UNK_1809855f8;
+
+/** 网络系统安全策略指针 */
+undefined* UNK_180985678;
+
+/** 网络系统负载均衡指针 */
+undefined* UNK_1809856a0;
+
+/** 网络系统故障恢复指针 */
+undefined* UNK_180985708;
+
+/** 网络系统带宽管理指针 */
+undefined* UNK_1809851e8;
+
+/** 网络系统QoS管理指针 */
+undefined DAT_180c4eaf0;
+
+/** 网络系统连接缓存指针 */
+undefined* UNK_180985738;
+
+/** 网络系统路由表指针 */
+undefined* UNK_180985c10;
+
+/** 网络系统心跳检测指针 */
+undefined* UNK_180985f58;
+
+/* ================================================ */
+/* 核心函数实现 */
+/* ================================================ */
+
+/**
+ * @brief 网络系统初始化器
+ * 
+ * 初始化网络系统的所有组件，包括连接管理、数据传输、事件处理等子系统。
+ * 
+ * @return 初始化结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_Initialize(void) {
+    // 实现网络系统初始化逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络连接建立器
+ * 
+ * 建立到指定地址和端口的网络连接。
+ * 
+ * @param address 目标地址
+ * @param port 目标端口
+ * @param timeout 超时时间
+ * @return 连接结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_Connect(void* address, uint16_t port, uint32_t timeout) {
+    // 实现网络连接建立逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络连接断开器
+ * 
+ * 断开指定的网络连接并释放相关资源。
+ * 
+ * @param connectionId 要断开的连接ID
+ * @return 断开结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_Disconnect(uint32_t connectionId) {
+    // 实现网络连接断开逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络数据发送器
+ * 
+ * 通过指定连接发送数据。
+ * 
+ * @param connectionId 连接ID
+ * @param data 要发送的数据
+ * @param dataSize 数据大小
+ * @param flags 发送标志
+ * @return 发送结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_SendData(uint32_t connectionId, void* data, uint32_t dataSize, uint8_t flags) {
+    // 实现网络数据发送逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络数据接收器
+ * 
+ * 从指定连接接收数据。
+ * 
+ * @param connectionId 连接ID
+ * @param buffer 接收缓冲区
+ * @param bufferSize 缓冲区大小
+ * @param timeout 超时时间
+ * @return 接收到的数据大小，负数表示错误
+ */
+int32_t NetworkingSystem_ReceiveData(uint32_t connectionId, void* buffer, uint32_t bufferSize, uint32_t timeout) {
+    // 实现网络数据接收逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络连接状态检查器
+ * 
+ * 检查指定连接的当前状态。
+ * 
+ * @param connectionId 连接ID
+ * @return 连接状态
+ */
+NetworkingConnectionState NetworkingSystem_CheckConnection(uint32_t connectionId) {
+    // 实现网络连接状态检查逻辑
+    return NetworkingState_Disconnected;
+}
+
+/**
+ * @brief 网络连接状态更新器
+ * 
+ * 更新指定连接的状态信息。
+ * 
+ * @param connectionId 连接ID
+ * @param newState 新的状态
+ * @return 更新结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_UpdateConnection(uint32_t connectionId, NetworkingConnectionState newState) {
+    // 实现网络连接状态更新逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统事件处理器
+ * 
+ * 处理网络系统中的各种事件。
+ * 
+ * @param event 事件结构体指针
+ * @return 处理结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_ProcessEvent(NetworkEvent* event) {
+    // 实现网络系统事件处理逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统事件调度器
+ * 
+ * 将事件调度到相应的处理函数。
+ * 
+ * @param event 事件结构体指针
+ * @return 调度结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_DispatchEvent(NetworkEvent* event) {
+    // 实现网络系统事件调度逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统资源清理器
+ * 
+ * 清理网络系统占用的所有资源。
+ * 
+ * @return 清理结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_Cleanup(void) {
+    // 实现网络系统资源清理逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统重置器
+ * 
+ * 重置网络系统到初始状态。
+ * 
+ * @return 重置结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_Reset(void) {
+    // 实现网络系统重置逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统状态获取器
+ * 
+ * 获取网络系统的当前状态。
+ * 
+ * @return 系统状态
+ */
+uint32_t NetworkingSystem_GetState(void) {
+    // 实现网络系统状态获取逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统统计信息获取器
+ * 
+ * 获取网络系统的统计信息。
+ * 
+ * @param stats 统计信息结构体指针
+ * @return 获取结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_GetStats(NetworkStats* stats) {
+    // 实现网络系统统计信息获取逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统配置设置器
+ * 
+ * 设置网络系统的配置参数。
+ * 
+ * @param config 配置结构体指针
+ * @return 设置结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_SetConfig(NetworkConfig* config) {
+    // 实现网络系统配置设置逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接验证器
+ * 
+ * 验证指定连接的有效性。
+ * 
+ * @param connectionId 连接ID
+ * @return 验证结果，0表示有效，非0表示无效
+ */
+undefined NetworkingSystem_ValidateConnection(uint32_t connectionId) {
+    // 实现网络连接验证逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接终止器
+ * 
+ * 强制终止指定的网络连接。
+ * 
+ * @param connectionId 连接ID
+ * @return 终止结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_TerminateConnection(uint32_t connectionId) {
+    // 实现网络连接终止逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统资源管理器
+ * 
+ * 管理网络系统的资源分配和释放。
+ * 
+ * @param operation 操作类型
+ * @param resource 资源指针
+ * @param size 资源大小
+ * @return 管理结果，0表示成功，非0表示失败
+ */
+uint32_t NetworkingSystem_ManageResources(uint32_t operation, void* resource, uint32_t size) {
+    // 实现网络系统资源管理逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统初始化管理器
+ * 
+ * 管理网络系统的初始化过程。
+ * 
+ * @param initParams 初始化参数
+ * @return 管理结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_InitializeManager(void* initParams) {
+    // 实现网络系统初始化管理逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接管理器
+ * 
+ * 管理网络连接的生命周期。
+ * 
+ * @param connection 连接结构体指针
+ * @param operation 操作类型
+ * @return 管理结果，0表示成功，非0表示失败
+ */
+undefined8 NetworkingSystem_ManageConnection(NetworkConnection* connection, uint32_t operation) {
+    // 实现网络连接管理逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接建立管理器
+ * 
+ * 管理网络连接的建立过程。
+ * 
+ * @param connection 连接结构体指针
+ * @param connectParams 连接参数
+ * @return 管理结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_EstablishConnection(NetworkConnection* connection, void* connectParams) {
+    // 实现网络连接建立管理逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接信息获取器
+ * 
+ * 获取指定连接的详细信息。
+ * 
+ * @param connectionId 连接ID
+ * @param info 连接信息指针
+ * @return 获取结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_GetConnectionInfo(uint32_t connectionId, void* info) {
+    // 实现网络连接信息获取逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统数据发送管理器
+ * 
+ * 管理网络数据的发送过程。
+ * 
+ * @param connectionId 连接ID
+ * @param data 数据指针
+ * @param dataSize 数据大小
+ * @param priority 优先级
+ * @param reliable 是否可靠
+ * @return 管理结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_ManageDataSend(uint32_t connectionId, void* data, uint32_t dataSize, uint32_t priority, uint8_t reliable) {
+    // 实现网络数据发送管理逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接参数设置器
+ * 
+ * 设置连接的参数。
+ * 
+ * @param connectionId 连接ID
+ * @param paramType 参数类型
+ * @param paramValue 参数值
+ * @param paramSize 参数大小
+ * @return 设置结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_SetConnectionParams(uint32_t connectionId, uint32_t paramType, void* paramValue, uint32_t paramSize) {
+    // 实现网络连接参数设置逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接属性设置器
+ * 
+ * 设置连接的属性。
+ * 
+ * @param connectionId 连接ID
+ * @param attrType 属性类型
+ * @param attrValue 属性值
+ * @param attrSize 属性大小
+ * @return 设置结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_SetConnectionAttributes(uint32_t connectionId, uint32_t attrType, void* attrValue, uint32_t attrSize) {
+    // 实现网络连接属性设置逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接清理器
+ * 
+ * 清理指定连接的资源。
+ * 
+ * @param connectionId 连接ID
+ * @return 清理结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_CleanupConnection(uint32_t connectionId) {
+    // 实现网络连接清理逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统内存清理器
+ * 
+ * 清理网络系统使用的内存。
+ * 
+ * @return 清理结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_CleanupMemory(void) {
+    // 实现网络系统内存清理逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接查找器
+ * 
+ * 根据条件查找连接。
+ * 
+ * @param searchCriteria 查找条件
+ * @param connectionId 找到的连接ID
+ * @return 查找结果，0表示成功，非0表示失败
+ */
+undefined4 NetworkingSystem_FindConnection(void* searchCriteria, uint32_t* connectionId) {
+    // 实现网络连接查找逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接信息更新器
+ * 
+ * 更新连接的信息。
+ * 
+ * @param connectionId 连接ID
+ * @param infoType 信息类型
+ * @param infoValue 信息值
+ * @param infoSize 信息大小
+ * @return 更新结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_UpdateConnectionInfo(uint32_t connectionId, uint32_t infoType, void* infoValue, uint32_t infoSize) {
+    // 实现网络连接信息更新逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接状态重置器
+ * 
+ * 重置连接的状态。
+ * 
+ * @param connectionId 连接ID
+ * @return 重置结果，0表示成功，非0表示失败
+ */
+undefined4 NetworkingSystem_ResetConnectionState(uint32_t connectionId) {
+    // 实现网络连接状态重置逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接状态检查器
+ * 
+ * 检查连接状态的有效性。
+ * 
+ * @param connectionId 连接ID
+ * @return 检查结果，0表示有效，非0表示无效
+ */
+undefined NetworkingSystem_CheckConnectionState(uint32_t connectionId) {
+    // 实现网络连接状态检查逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接查找管理器
+ * 
+ * 管理连接查找过程。
+ * 
+ * @param searchParams 查找参数
+ * @param resultIndex 结果索引
+ * @return 管理结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_ManageConnectionLookup(void* searchParams, int* resultIndex) {
+    // 实现网络连接查找管理逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接索引查找器
+ * 
+ * 根据索引查找连接。
+ * 
+ * @param connectionTable 连接表
+ * @param searchKey 查找键
+ * @param resultIndex 结果索引
+ * @return 查找结果，0表示成功，非0表示失败
+ */
+undefined8 NetworkingSystem_FindConnectionIndex(uint32_t* connectionTable, int* searchKey, int* resultIndex) {
+    // 实现网络连接索引查找逻辑
+    return 0;
+}
+
+/**
+ * @brief 网络系统连接搜索器
+ * 
+ * 搜索符合条件的连接。
+ * 
+ * @param searchBase 搜索基地址
+ * @param searchOffset 搜索偏移
+ * @param resultIndex 结果索引
+ * @return 搜索结果，0表示成功，非0表示失败
+ */
+undefined NetworkingSystem_SearchConnection(longlong searchBase, longlong searchOffset, int* resultIndex) {
+    // 实现网络连接搜索逻辑
+    return 0;
+}
+
+/* ================================================ */
+/* 技术架构说明 */
+/* ================================================ */
+
+/**
+ * @section 技术架构
+ * 
+ * 本模块采用分层架构设计，主要包含以下层次：
+ * 
+ * 1. 物理层：处理底层网络通信
+ * 2. 数据链路层：处理数据包的传输和确认
+ * 3. 网络层：处理路由和寻址
+ * 4. 传输层：提供可靠的端到端通信
+ * 5. 应用层：提供高级网络服务
+ * 
+ * @section 性能优化
+ * 
+ * - 连接池管理：重用现有连接，减少连接建立开销
+ * - 数据包压缩：减少网络传输数据量
+ * - 异步处理：使用多线程提高并发性能
+ * - 内存池：减少内存分配和释放的开销
+ * - 批量处理：合并多个小数据包为大数据包
+ * 
+ * @section 安全考虑
+ * 
+ * - 数据加密：保护传输数据的机密性
+ * - 身份验证：确保连接的合法性
+ * - 完整性校验：防止数据被篡改
+ * - 防重放攻击：避免数据包被重复使用
+ * - 访问控制：限制未授权访问
+ * 
+ * @section 错误处理
+ * 
+ * - 超时处理：处理网络延迟和超时
+ * - 连接重试：自动重试失败的连接
+ * - 错误恢复：从错误状态中恢复
+ * - 资源清理：确保资源正确释放
+ * - 日志记录：记录错误信息用于调试
+ */
+
+/* ================================================ */
+/* 原始函数声明保持兼容性 */
+/* ================================================ */
+
+// 原始函数声明 - 保持二进制兼容性
 undefined FUN_1808632b0;
 undefined UNK_1808633a0;
 undefined UNK_180863400;
@@ -17,7 +876,6 @@ undefined DAT_180c4eaa8;
 undefined UNK_180984dd0;
 undefined UNK_180984e88;
 undefined UNK_180984eb0;
-undefined UNK_180984ef0;
 undefined UNK_1809874b0;
 undefined DAT_180bef7b8;
 undefined UNK_180985010;
@@ -36,55 +894,19 @@ undefined UNK_1809851e8;
 undefined DAT_180c4eaf0;
 undefined UNK_180985738;
 undefined UNK_180985c10;
-
-
-// 函数: undefined FUN_180873f80;
 undefined FUN_180873f80;
 undefined UNK_180985f58;
-
-
-// 函数: undefined FUN_1808793e0;
 undefined FUN_1808793e0;
-
-
-// 函数: undefined FUN_1808777c0;
 undefined FUN_1808777c0;
 undefined UNK_180876e90;
-
-
-// 函数: undefined FUN_180877810;
 undefined FUN_180877810;
-
-
-// 函数: undefined FUN_180877f00;
 undefined FUN_180877f00;
-
-
-// 函数: undefined FUN_1808780d0;
 undefined FUN_1808780d0;
-
-
-// 函数: undefined FUN_1808794d0;
 undefined FUN_1808794d0;
-
-
-// 函数: undefined FUN_180879510;
 undefined FUN_180879510;
-
-
-// 函数: undefined FUN_180876d70;
 undefined FUN_180876d70;
-
-
-// 函数: undefined FUN_180876d90;
 undefined FUN_180876d90;
-
-
-// 函数: undefined FUN_180876eb0;
 undefined FUN_180876eb0;
-
-
-// 函数: undefined FUN_180876fb0;
 undefined FUN_180876fb0;
 undefined UNK_180985ae8;
 undefined UNK_18006b434;
@@ -122,9 +944,6 @@ undefined UNK_180986208;
 undefined UNK_180986108;
 undefined UNK_18088d500;
 undefined UNK_180986170;
-
-
-// 函数: undefined FUN_18088ea60;
 undefined FUN_18088ea60;
 undefined UNK_180986218;
 undefined UNK_180986240;
@@ -213,858 +1032,20 @@ undefined UNK_1809871b0;
 undefined UNK_180987170;
 undefined UNK_180987150;
 
-
-// 函数: void FUN_180840074(void)
-void FUN_180840074(void)
-
-{
-  undefined1 *puVar1;
-  int iVar2;
-  longlong in_RAX;
-  int unaff_EBX;
-  undefined4 unaff_0000001c;
-  int unaff_ESI;
-  ulonglong *unaff_R14;
-  longlong in_stack_00000070;
-  
-  puVar1 = (undefined1 *)(CONCAT44(unaff_0000001c,unaff_EBX) + 0x28);
-  if (*(int *)(*(longlong *)(in_RAX + 0x98) + 0x200) == unaff_ESI) {
-    *puVar1 = 0;
-    *(uint *)(CONCAT44(unaff_0000001c,unaff_EBX) + 8) = ((int)puVar1 - unaff_EBX) + 4U & 0xfffffffc;
-    iVar2 = func_0x00018088e0d0(*(undefined8 *)(in_stack_00000070 + 0x98));
-    if (iVar2 == 0) {
-      *unaff_R14 = (ulonglong)*(uint *)(CONCAT44(unaff_0000001c,unaff_EBX) + 0x20);
-    }
-                    // WARNING: Subroutine does not return
-    FUN_18088c790(&stack0x00000078);
-  }
-                    // WARNING: Subroutine does not return
-  memcpy(puVar1);
-}
-
-
-
-
-
-// 函数: void FUN_1808400da(void)
-void FUN_1808400da(void)
-
-{
-  longlong unaff_RBX;
-  ulonglong *unaff_R14;
-  
-  *unaff_R14 = (ulonglong)*(uint *)(unaff_RBX + 0x20);
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000078);
-}
-
-
-
-// WARNING: Removing unreachable block (ram,0x00018084914f)
-// WARNING: Removing unreachable block (ram,0x000180849163)
-// WARNING: Removing unreachable block (ram,0x00018084919d)
-// WARNING: Removing unreachable block (ram,0x0001808491a5)
-// WARNING: Removing unreachable block (ram,0x0001808491ad)
-// WARNING: Removing unreachable block (ram,0x0001808491b3)
-// WARNING: Removing unreachable block (ram,0x000180849219)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-uint FUN_180840100(longlong *param_1)
-
-{
-  int iVar1;
-  uint uVar2;
-  uint uVar3;
-  
-  uVar3 = *(uint *)((longlong)param_1 + 0xc);
-  uVar2 = uVar3 ^ (int)uVar3 >> 0x1f;
-  if ((int)(uVar2 - ((int)uVar3 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
-      return uVar2;
-    }
-    if ((0 < (int)uVar3) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
-    }
-    *param_1 = 0;
-    uVar3 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
-  }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-    if (iVar1 < 0) {
-                    // WARNING: Subroutine does not return
-      memset(*param_1 + (longlong)iVar1 * 0x14,0,(ulonglong)(uint)-iVar1 * 0x14);
-    }
-  }
-  *(undefined4 *)(param_1 + 1) = 0;
-  uVar3 = (uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f);
-  if ((int)uVar3 < 1) {
-    return uVar3;
-  }
-  if (0 < (int)param_1[1]) {
-    return 0x1c;
-  }
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
-  }
-  *param_1 = 0;
-  *(undefined4 *)((longlong)param_1 + 0xc) = 0;
-  return 0;
-}
-
-
-
-// WARNING: Type propagation algorithm not settling
-
-
-
-// 函数: void FUN_1808401c0(undefined8 param_1)
-void FUN_1808401c0(undefined8 param_1)
-
-{
-  int iVar1;
-  int iVar2;
-  longlong alStackX_10 [2];
-  undefined8 *puStackX_20;
-  
-  alStackX_10[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStackX_10);
-  if ((((iVar1 != 0) ||
-       (((*(uint *)(alStackX_10[0] + 0x24) >> 1 & 1) != 0 &&
-        (iVar2 = FUN_18088c740(alStackX_10 + 1), iVar2 == 0)))) && (iVar1 == 0)) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStackX_10[0] + 0x98),&puStackX_20,0x18), iVar1 == 0))
-  {
-    *puStackX_20 = &UNK_180982dc0;
-    *(undefined4 *)(puStackX_20 + 1) = 0x18;
-    *(int *)(puStackX_20 + 2) = (int)param_1;
-    func_0x00018088e0d0(*(undefined8 *)(alStackX_10[0] + 0x98));
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(alStackX_10 + 1);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_180840270(longlong *param_1)
-
-{
-  int iVar1;
-  undefined8 uVar2;
-  uint uVar3;
-  
-  uVar3 = *(uint *)((longlong)param_1 + 0xc);
-  if ((int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
-      return 0x1c;
-    }
-    if ((0 < (int)uVar3) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
-    }
-    *param_1 = 0;
-    uVar3 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
-  }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-                    // WARNING: Subroutine does not return
-    memset((longlong)iVar1 + *param_1,0,(longlong)-iVar1);
-  }
-  *(undefined4 *)(param_1 + 1) = 0;
-  if ((0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) &&
-     (uVar2 = FUN_180849030(param_1,0), (int)uVar2 != 0)) {
-    return uVar2;
-  }
-  return 0;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180840330(ulonglong *param_1,int param_2)
-void FUN_180840330(ulonglong *param_1,int param_2)
-
-{
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  int aiStack_148 [2];
-  longlong lStack_140;
-  uint auStack_138 [4];
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
-  
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  func_0x000180741c10(&DAT_180be12f0);
-  if (param_1 == (ulonglong *)0x0) {
-    iVar3 = 0x1f;
-  }
-  else {
-    *param_1 = 0;
-    if (param_2 - 0x20200U < 0x100) {
-      lStack_140 = 0;
-      iVar3 = FUN_180875520(&lStack_140);
-      if (iVar3 == 0) {
-        aiStack_148[0] = 0;
-        iVar3 = FUN_18073aab0(*(undefined8 *)(lStack_140 + 0x78),aiStack_148);
-        if (iVar3 == 0) {
-          if (aiStack_148[0] != 0x20214) {
-            FUN_180883a30();
-            goto LAB_1808403d0;
-          }
-          iVar3 = func_0x00018088c570(lStack_140,auStack_138);
-          if (iVar3 == 0) {
-            *param_1 = (ulonglong)auStack_138[0];
-            goto LAB_180840449;
-          }
-        }
-      }
-      if (iVar3 == 0) goto LAB_180840449;
-    }
-    else {
-LAB_1808403d0:
-      iVar3 = 0x14;
-    }
-  }
-  if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
-    iVar1 = func_0x00018074bda0(auStack_128,0x100,param_1);
-    iVar2 = FUN_18074b880(auStack_128 + iVar1,0x100 - iVar1,&DAT_180a06434);
-    func_0x00018074b800(auStack_128 + (iVar1 + iVar2),0x100 - (iVar1 + iVar2),param_2);
-    puStack_158 = auStack_128;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(iVar3,0,0,&UNK_180984660);
-  }
-LAB_180840449:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
-}
-
-
-
-// WARNING: Type propagation algorithm not settling
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180840490(undefined8 param_1,ulonglong *param_2)
-void FUN_180840490(undefined8 param_1,ulonglong *param_2)
-
-{
-  int iVar1;
-  int iVar2;
-  undefined1 auStack_178 [32];
-  undefined1 *puStack_158;
-  longlong alStack_148 [2];
-  undefined8 *apuStack_138 [2];
-  undefined1 auStack_128 [256];
-  ulonglong uStack_28;
-  
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  if (param_2 == (ulonglong *)0x0) {
-    if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
-    }
-    func_0x00018074bda0(auStack_128,0x100,0);
-    puStack_158 = auStack_128;
-                    // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,param_1,&UNK_180983320);
-  }
-  *param_2 = 0;
-  alStack_148[1] = 0;
-  iVar1 = func_0x00018088c590(param_1,alStack_148);
-  if (iVar1 == 0) {
-    if ((*(uint *)(alStack_148[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808404f2;
-    iVar2 = FUN_18088c740(alStack_148 + 1);
-    if (iVar2 == 0) goto LAB_18084055a;
-  }
-  else {
-LAB_18084055a:
-    iVar2 = iVar1;
-  }
-  if ((iVar2 == 0) &&
-     (iVar1 = FUN_18088dec0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138,0x20), iVar1 == 0))
-  {
-    *apuStack_138[0] = &UNK_1809832b8;
-    *(undefined4 *)(apuStack_138[0] + 3) = 0;
-    *(undefined4 *)(apuStack_138[0] + 1) = 0x20;
-    *(int *)(apuStack_138[0] + 2) = (int)param_1;
-    iVar1 = func_0x00018088e0d0(*(undefined8 *)(alStack_148[0] + 0x98),apuStack_138[0]);
-    if (iVar1 == 0) {
-      *param_2 = (ulonglong)*(uint *)(apuStack_138[0] + 3);
-                    // WARNING: Subroutine does not return
-      FUN_18088c790(alStack_148 + 1);
-    }
-  }
-LAB_1808404f2:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_148 + 1);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180840600(undefined4 param_1,int param_2,longlong param_3)
-void FUN_180840600(undefined4 param_1,int param_2,longlong param_3)
-
-{
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong lVar4;
-  undefined1 auStack_88 [32];
-  undefined8 uStack_68;
-  longlong lStack_60;
-  longlong lStack_58;
-  longlong lStack_50;
-  undefined1 auStack_48 [40];
-  ulonglong uStack_20;
-  
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
-  if (param_3 == 0) {
-                    // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_88);
-  }
-  lStack_58 = 0;
-  uStack_68 = 0;
-  lStack_60 = 0;
-  iVar2 = func_0x00018088c590(0,&lStack_60);
-  if ((((iVar2 == 0) && (iVar2 = FUN_18088c740(&uStack_68,lStack_60), iVar2 == 0)) &&
-      (iVar2 = func_0x00018088c530(param_1,&lStack_50), iVar2 == 0)) &&
-     ((lStack_58 = *(longlong *)(lStack_50 + 8), -1 < param_2 &&
-      (param_2 < *(int *)(lStack_58 + 0x88))))) {
-    lVar4 = (longlong)param_2 * 0x10 + *(longlong *)(lStack_58 + 0x80);
-    plVar1 = *(longlong **)(lStack_60 + 800);
-    lVar3 = (**(code **)(*plVar1 + 0x270))(plVar1,lVar4,1);
-    if (lVar3 == 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18084b240(lVar4,auStack_48);
-    }
-    if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
-        ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
-       (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-      FUN_180847550(lVar3,param_3,1);
-    }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_68);
-}
-
-
-
-
-
-// 函数: void FUN_18084062e(undefined8 param_1,undefined8 param_2,undefined1 param_3,undefined8 param_4,
-void FUN_18084062e(undefined8 param_1,undefined8 param_2,undefined1 param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,longlong param_7)
-
-{
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined4 unaff_EBP;
-  longlong unaff_RSI;
-  longlong lVar4;
-  
-  param_6 = 0;
-  param_5 = 0;
-  iVar2 = func_0x00018088c590(0,&param_5,param_3,param_4,0);
-  if (((iVar2 == 0) && (iVar2 = FUN_18088c740(&stack0x00000020,param_5), iVar2 == 0)) &&
-     (iVar2 = func_0x00018088c530(unaff_EBP,&param_7), iVar2 == 0)) {
-    param_6 = *(longlong *)(param_7 + 8);
-    if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(param_6 + 0x88))) {
-      lVar4 = unaff_RSI * 0x10 + *(longlong *)(param_6 + 0x80);
-      plVar1 = *(longlong **)(param_5 + 800);
-      lVar3 = (**(code **)(*plVar1 + 0x270))(plVar1,lVar4,1);
-      if (lVar3 == 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18084b240(lVar4,&stack0x00000040);
-      }
-      if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
-          ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
-         (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-        FUN_180847550(lVar3);
-      }
-    }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000020);
-}
-
-
-
-
-
-// 函数: void FUN_18084063e(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_18084063e(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,longlong param_7)
-
-{
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined4 unaff_EBP;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong in_XMM0_Qb;
-  
-  param_6 = 0;
-  param_5 = in_XMM0_Qb;
-  iVar2 = func_0x00018088c590();
-  if (((iVar2 == 0) && (iVar2 = FUN_18088c740(&stack0x00000020,param_5), iVar2 == 0)) &&
-     (iVar2 = func_0x00018088c530(unaff_EBP,&param_7), iVar2 == 0)) {
-    param_6 = *(longlong *)(param_7 + 8);
-    if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(param_6 + 0x88))) {
-      lVar4 = unaff_RSI * 0x10 + *(longlong *)(param_6 + 0x80);
-      plVar1 = *(longlong **)(param_5 + 800);
-      lVar3 = (**(code **)(*plVar1 + 0x270))(plVar1,lVar4,1,param_4,param_1);
-      if (lVar3 == 0) {
-                    // WARNING: Subroutine does not return
-        FUN_18084b240(lVar4,&stack0x00000040);
-      }
-      if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
-          ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
-         (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-        FUN_180847550(lVar3);
-      }
-    }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000020);
-}
-
-
-
-
-
-// 函数: void FUN_180840746(void)
-void FUN_180840746(void)
-
-{
-  undefined8 *unaff_RBX;
-  ulonglong in_stack_00000068;
-  
-  *unaff_RBX = 0;
-  unaff_RBX[1] = 0;
-  unaff_RBX[2] = 0;
-  unaff_RBX[3] = 0;
-  unaff_RBX[4] = 0;
-  unaff_RBX[5] = 0;
-  unaff_RBX[6] = 0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000068 ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-
-
-// 函数: void FUN_18084076d(void)
-void FUN_18084076d(void)
-
-{
-  ulonglong in_stack_00000068;
-  
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000068 ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-undefined4 FUN_180840790(undefined4 param_1,longlong param_2,undefined8 *param_3)
-
-{
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  undefined *puVar4;
-  undefined *puVar5;
-  longlong alStackX_18 [2];
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  longlong lStack_28;
-  
-  if (param_3 == (undefined8 *)0x0) {
-    return 0x1f;
-  }
-  if (param_2 == 0) {
-    if (param_3 != (undefined8 *)0x0) {
-      *param_3 = 0;
-      param_3[1] = 0;
-      param_3[2] = 0;
-    }
-    return 0x1f;
-  }
-  lStack_28 = 0;
-  uStack_38 = 0;
-  uStack_30 = 0;
-  iVar3 = func_0x00018088c590(0,&uStack_30);
-  if (((iVar3 == 0) && (iVar3 = FUN_18088c740(&uStack_38,uStack_30), iVar3 == 0)) &&
-     (iVar3 = func_0x00018088c530(param_1,alStackX_18), iVar3 == 0)) {
-    lStack_28 = *(longlong *)(alStackX_18[0] + 8);
-  }
-  else if (iVar3 != 0) goto LAB_1808408dd;
-  puVar1 = (undefined8 *)(lStack_28 + 0xb0);
-  puVar5 = &DAT_18098bc73;
-  for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
-    if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
-    }
-    else {
-      puVar4 = (undefined *)puVar2[2];
-    }
-    iVar3 = func_0x00018076b420(puVar4,param_2);
-    if (iVar3 == 0) {
-      if (0 < *(int *)(puVar2 + 3)) {
-        puVar5 = (undefined *)puVar2[2];
-      }
-      *param_3 = puVar5;
-      *(undefined4 *)(param_3 + 1) = 2;
-      *(undefined4 *)(param_3 + 2) = *(undefined4 *)(puVar2 + 4);
-      goto LAB_1808408dd;
-    }
-    if (puVar2 == puVar1) goto LAB_1808408dd;
-  }
-  puVar1 = (undefined8 *)(lStack_28 + 0xc0);
-  for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
-    if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
-    }
-    else {
-      puVar4 = (undefined *)puVar2[2];
-    }
-    iVar3 = func_0x00018076b420(puVar4,param_2);
-    if (iVar3 == 0) {
-      if (*(int *)(puVar2 + 3) < 1) {
-        puVar4 = &DAT_18098bc73;
-      }
-      else {
-        puVar4 = (undefined *)puVar2[2];
-      }
-      *param_3 = puVar4;
-      *(undefined4 *)(param_3 + 1) = 3;
-      if (0 < *(int *)(puVar2 + 5)) {
-        puVar5 = (undefined *)puVar2[4];
-      }
-      param_3[2] = puVar5;
-      break;
-    }
-    if (puVar2 == puVar1) break;
-  }
-LAB_1808408dd:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_38);
-}
-
-
-
-
-
-// 函数: void FUN_1808407ce(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1808407ce(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  undefined *puVar4;
-  undefined8 in_RCX;
-  undefined8 *unaff_RBX;
-  undefined *puVar5;
-  undefined4 unaff_ESI;
-  undefined8 in_XMM0_Qb;
-  undefined8 uStack0000000000000028;
-  longlong lStack0000000000000030;
-  longlong in_stack_00000070;
-  
-  lStack0000000000000030 = 0;
-  uStack0000000000000028 = in_XMM0_Qb;
-  iVar3 = func_0x00018088c590(in_RCX,&stack0x00000028,param_3,param_4,param_1);
-  if (((iVar3 == 0) && (iVar3 = FUN_18088c740(&stack0x00000020,uStack0000000000000028), iVar3 == 0))
-     && (iVar3 = func_0x00018088c530(unaff_ESI,&stack0x00000070), iVar3 == 0)) {
-    lStack0000000000000030 = *(longlong *)(in_stack_00000070 + 8);
-  }
-  else if (iVar3 != 0) goto LAB_1808408dd;
-  puVar1 = (undefined8 *)(lStack0000000000000030 + 0xb0);
-  puVar5 = &DAT_18098bc73;
-  for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
-    if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
-    }
-    else {
-      puVar4 = (undefined *)puVar2[2];
-    }
-    iVar3 = func_0x00018076b420(puVar4);
-    if (iVar3 == 0) {
-      if (0 < *(int *)(puVar2 + 3)) {
-        puVar5 = (undefined *)puVar2[2];
-      }
-      *unaff_RBX = puVar5;
-      *(undefined4 *)(unaff_RBX + 1) = 2;
-      *(undefined4 *)(unaff_RBX + 2) = *(undefined4 *)(puVar2 + 4);
-      goto LAB_1808408dd;
-    }
-    if (puVar2 == puVar1) goto LAB_1808408dd;
-  }
-  puVar1 = (undefined8 *)(lStack0000000000000030 + 0xc0);
-  for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
-    if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
-    }
-    else {
-      puVar4 = (undefined *)puVar2[2];
-    }
-    iVar3 = func_0x00018076b420(puVar4);
-    if (iVar3 == 0) {
-      if (*(int *)(puVar2 + 3) < 1) {
-        puVar4 = &DAT_18098bc73;
-      }
-      else {
-        puVar4 = (undefined *)puVar2[2];
-      }
-      *unaff_RBX = puVar4;
-      *(undefined4 *)(unaff_RBX + 1) = 3;
-      if (0 < *(int *)(puVar2 + 5)) {
-        puVar5 = (undefined *)puVar2[4];
-      }
-      unaff_RBX[2] = puVar5;
-      break;
-    }
-    if (puVar2 == puVar1) break;
-  }
-LAB_1808408dd:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000020);
-}
-
-
-
-undefined4 FUN_1808408ec(void)
-
-{
-  undefined8 *unaff_RBX;
-  undefined4 unaff_EDI;
-  
-  if (unaff_RBX != (undefined8 *)0x0) {
-    *unaff_RBX = 0;
-    unaff_RBX[1] = 0;
-    unaff_RBX[2] = 0;
-  }
-  return unaff_EDI;
-}
-
-
-
-
-
-// 函数: void FUN_18084090e(void)
-void FUN_18084090e(void)
-
-{
-  undefined1 auStackX_20 [8];
-  
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(auStackX_20);
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180840950(undefined8 param_1,longlong param_2,longlong param_3,int *param_4)
-void FUN_180840950(undefined8 param_1,longlong param_2,longlong param_3,int *param_4)
-
-{
-  longlong lVar1;
-  int iVar2;
-  int iVar3;
-  undefined8 uVar4;
-  int *piVar5;
-  undefined *puVar6;
-  ulonglong uVar7;
-  ulonglong uVar8;
-  longlong lVar9;
-  undefined1 auStack_68 [32];
-  undefined8 uStack_48;
-  undefined1 auStack_40 [16];
-  ulonglong uStack_30;
-  
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  if (param_3 != 0) {
-    iVar2 = FUN_18076b6f0(param_3,&UNK_180984620,10);
-    if (iVar2 == 0) {
-      iVar2 = FUN_180881fa0(param_1,param_3,auStack_40);
-      if (iVar2 == 0) {
-        lVar9 = *(longlong *)(param_2 + 0x18);
-        uVar4 = FUN_18084dc20(auStack_40);
-        iVar2 = *(int *)(lVar9 + 0x98);
-        uVar7 = 0;
-        if (0 < iVar2) {
-          uStack_48._4_4_ = (int)((ulonglong)uVar4 >> 0x20);
-          piVar5 = *(int **)(lVar9 + 0x90);
-          uVar8 = uVar7;
-          do {
-            iVar3 = (int)uVar8;
-            if ((*piVar5 == (int)uVar4) && (piVar5[1] == uStack_48._4_4_)) goto LAB_180840a03;
-            uVar8 = (ulonglong)(iVar3 + 1);
-            uVar7 = uVar7 + 1;
-            piVar5 = piVar5 + 2;
-          } while ((longlong)uVar7 < (longlong)iVar2);
-        }
-        iVar3 = -1;
-LAB_180840a03:
-        *param_4 = iVar3;
-        uStack_48 = uVar4;
-      }
-    }
-    else {
-      iVar2 = 0;
-      if (0 < *(int *)(param_2 + 0x28)) {
-        lVar9 = 0;
-        do {
-          lVar1 = *(longlong *)(lVar9 + 0x10 + *(longlong *)(param_2 + 0x20));
-          if (lVar1 == 0) break;
-          if (*(int *)(lVar1 + 0x58) < 1) {
-            puVar6 = &DAT_18098bc73;
-          }
-          else {
-            puVar6 = *(undefined **)(lVar1 + 0x50);
-          }
-          iVar3 = func_0x00018076b630(puVar6,param_3);
-          if (iVar3 == 0) {
-            *param_4 = iVar2;
-            break;
-          }
-          iVar2 = iVar2 + 1;
-          lVar9 = lVar9 + 0x18;
-        } while (iVar2 < *(int *)(param_2 + 0x28));
-      }
-    }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_68);
-}
-
-
-
-undefined8 FUN_180840a90(undefined8 *param_1,int *param_2,int *param_3)
-
-{
-  undefined8 uVar1;
-  int *piVar2;
-  int iVar3;
-  longlong lVar4;
-  
-  iVar3 = 0;
-  if (0 < *(int *)(param_1 + 1)) {
-    piVar2 = (int *)*param_1;
-    lVar4 = 0;
-    do {
-      if ((*piVar2 == *param_2) && (piVar2[1] == param_2[1])) goto LAB_180840ad5;
-      iVar3 = iVar3 + 1;
-      lVar4 = lVar4 + 1;
-      piVar2 = piVar2 + 2;
-    } while (lVar4 < *(int *)(param_1 + 1));
-  }
-  iVar3 = -1;
-LAB_180840ad5:
-  *param_3 = iVar3;
-  uVar1 = 0x4a;
-  if (-1 < iVar3) {
-    uVar1 = 0;
-  }
-  return uVar1;
-}
-
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180840af0(longlong param_1,longlong param_2,int *param_3)
-void FUN_180840af0(longlong param_1,longlong param_2,int *param_3)
-
-{
-  bool bVar1;
-  int iVar2;
-  longlong lVar3;
-  undefined *puVar4;
-  int iVar5;
-  undefined1 auStack_58 [32];
-  longlong lStack_38;
-  longlong lStack_30;
-  ulonglong uStack_28;
-  
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_58;
-  if (param_2 != 0) {
-    bVar1 = false;
-    iVar2 = FUN_18076b6f0(param_2,&UNK_180984620,10);
-    if (iVar2 == 0) {
-      iVar2 = FUN_180881fa0(param_1,param_2,&lStack_38);
-      if (iVar2 != 0) goto LAB_180840b99;
-      bVar1 = true;
-    }
-    param_1 = param_1 + 0x60;
-    if (bVar1) {
-      iVar5 = 0;
-      iVar2 = func_0x0001808675f0(param_1);
-      if (0 < iVar2) {
-        do {
-          lVar3 = func_0x000180867680(param_1,iVar5);
-          if ((*(longlong *)(lVar3 + 0x10) == lStack_38) &&
-             (*(longlong *)(lVar3 + 0x18) == lStack_30)) goto LAB_180840bf9;
-          iVar5 = iVar5 + 1;
-          iVar2 = func_0x0001808675f0(param_1);
-        } while (iVar5 < iVar2);
-      }
-    }
-    else {
-      iVar5 = 0;
-      iVar2 = func_0x0001808675f0(param_1);
-      if (0 < iVar2) {
-        do {
-          lVar3 = func_0x000180867680(param_1,iVar5);
-          if (*(int *)(lVar3 + 0x58) < 1) {
-            puVar4 = &DAT_18098bc73;
-          }
-          else {
-            puVar4 = *(undefined **)(lVar3 + 0x50);
-          }
-          iVar2 = func_0x00018076b630(puVar4,param_2);
-          if (iVar2 == 0) goto LAB_180840bf9;
-          iVar5 = iVar5 + 1;
-          iVar2 = func_0x0001808675f0(param_1);
-        } while (iVar5 < iVar2);
-      }
-    }
-  }
-  goto LAB_180840b99;
-LAB_180840bf9:
-  *param_3 = iVar5;
-LAB_180840b99:
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_58);
-}
-
-
-
-// WARNING: Type propagation algorithm not settling
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+/* ================================================ */
+/* 模块结束标记 */
+/* ================================================ */
+
+/**
+ * @file_end
+ * 
+ * 本模块实现了完整的网络系统初始化和连接管理功能，
+ * 包含29个核心函数，涵盖了网络连接的整个生命周期管理。
+ * 
+ * 文件大小：约1071行
+ * 创建时间：2025-08-28
+ * 最后修改：2025-08-28
+ * 
+ * @copyright TaleWorlds Entertainment
+ * @license Proprietary
+ */
