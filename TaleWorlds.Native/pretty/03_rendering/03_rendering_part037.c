@@ -180,7 +180,7 @@ void process_rendering_resources(longlong render_context, uint64_t resource_para
             if (ptr_val != (void *)0x0) {
                 data_ptr = ptr_val;
             }
-            strcpy_s(stack_buffer3, MAX_STRING_LENGTH, undefined_ptr);
+            strcpy_s(stack_buffer3, MAX_STRING_LENGTH, data_ptr);
             
             // 检查字符串长度是否符合要求
             if (stack_uint12 < _DAT) {
