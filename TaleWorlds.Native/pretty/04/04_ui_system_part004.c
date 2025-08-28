@@ -233,8 +233,15 @@ event_processed:
 
 
 
-// 函数: void FUN_180651d20(longlong param_1)
-// UI系统任务队列处理函数
+/**
+ * UI系统任务队列处理函数
+ * 
+ * 处理UI系统中的任务队列，按优先级执行任务、
+ * 管理任务状态、处理任务依赖关系等。
+ * 
+ * @param task_queue 任务队列指针
+ * @return 无返回值
+ */
 void UI_System_Process_Task_Queue(longlong task_queue)
 {
   ulonglong task_index;
@@ -261,8 +268,14 @@ void UI_System_Process_Task_Queue(longlong task_queue)
 
 
 
-// 函数: void FUN_180651d46(void)
-// UI系统任务处理器（内联版本）
+/**
+ * UI系统任务处理器（内联版本）
+ * 
+ * 内联版本的UI系统任务处理器，用于优化性能，
+ * 直接处理任务队列中的任务。
+ * 
+ * @return 无返回值
+ */
 void UI_System_Task_Handler_Inline(void)
 {
   longlong queue_context;
@@ -283,8 +296,15 @@ void UI_System_Task_Handler_Inline(void)
 
 
 
-// 函数: void FUN_180651d97(longlong param_1)
-// UI系统任务完成标记函数
+/**
+ * UI系统任务完成标记函数
+ * 
+ * 标记UI系统中的任务为已完成状态，更新任务状态、
+ * 释放任务资源、触发后续任务等。
+ * 
+ * @param task_context 任务上下文指针
+ * @return 无返回值
+ */
 void UI_System_Mark_Task_Complete(longlong task_context)
 {
   *(undefined1 *)(task_context + 0x188) = 1;
@@ -293,8 +313,17 @@ void UI_System_Mark_Task_Complete(longlong task_context)
 
 
 
-// 函数: undefined8 FUN_180652100(longlong param_1,undefined8 param_2,undefined4 param_3)
-// UI系统资源创建函数
+/**
+ * UI系统资源创建函数
+ * 
+ * 创建UI系统中的各种资源，包括纹理、字体、
+ * 声音、着色器等UI所需的资源。
+ * 
+ * @param ui_context UI上下文指针
+ * @param resource_data 资源数据指针
+ * @param resource_type 资源类型
+ * @return 创建成功返回资源句柄，失败返回0
+ */
 undefined8 UI_Create_Resource(longlong ui_context, undefined8 resource_data, undefined4 resource_type)
 {
   longlong resource_handle;
@@ -311,8 +340,18 @@ undefined8 UI_Create_Resource(longlong ui_context, undefined8 resource_data, und
 
 
 
-// 函数: ulonglong FUN_180652190(longlong param_1,longlong param_2,longlong param_3,undefined8 param_4)
-// UI系统数据处理函数
+/**
+ * UI系统数据处理函数
+ * 
+ * 处理UI系统中的各种数据，包括数据格式转换、
+ * 数据验证、数据压缩、数据加密等。
+ * 
+ * @param ui_context UI上下文指针
+ * @param data_dest 目标数据指针
+ * @param data_source 源数据指针
+ * @param process_flags 处理标志位
+ * @return 处理成功返回1，失败返回0
+ */
 ulonglong UI_Process_Data(longlong ui_context, longlong data_dest, longlong data_source, undefined8 process_flags)
 {
   ulonglong result_status;
@@ -375,8 +414,16 @@ data_process:
 
 
 
-// 函数: undefined8 FUN_1806522b0(longlong param_1,longlong param_2)
-// UI系统资源激活函数
+/**
+ * UI系统资源激活函数
+ * 
+ * 激活UI系统中的资源，使资源可用状态，
+ * 包括加载到内存、初始化资源状态等。
+ * 
+ * @param ui_context UI上下文指针
+ * @param resource_handle 资源句柄
+ * @return 激活成功返回1，失败返回0
+ */
 undefined8 UI_Activate_Resource(longlong ui_context, longlong resource_handle)
 {
   undefined *resource_data;
@@ -391,8 +438,16 @@ undefined8 UI_Activate_Resource(longlong ui_context, longlong resource_handle)
 
 
 
-// 函数: undefined8 FUN_1806522e0(longlong param_1,longlong param_2)
-// UI系统资源停用函数
+/**
+ * UI系统资源停用函数
+ * 
+ * 停用UI系统中的资源，释放资源占用的内存、
+ * 关闭资源句柄、清理资源状态等。
+ * 
+ * @param ui_context UI上下文指针
+ * @param resource_handle 资源句柄
+ * @return 停用成功返回1，失败返回0
+ */
 undefined8 UI_Deactivate_Resource(longlong ui_context, longlong resource_handle)
 {
   undefined *resource_data;
@@ -409,8 +464,18 @@ undefined8 UI_Deactivate_Resource(longlong ui_context, longlong resource_handle)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int * FUN_180652310(longlong param_1,int *param_2,longlong *param_3,undefined8 param_4)
-// UI系统批量处理函数
+/**
+ * UI系统批量处理函数
+ * 
+ * 批量处理UI系统中的数据，包括批量数据转换、
+ * 批量资源加载、批量配置应用等。
+ * 
+ * @param ui_context UI上下文指针
+ * @param result_count 结果计数指针
+ * @param item_array 项目数组指针
+ * @param process_flags 处理标志位
+ * @return 处理结果指针
+ */
 int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_array, undefined8 process_flags)
 {
   undefined *item_data;
@@ -454,8 +519,14 @@ int * UI_Batch_Process(longlong ui_context, int *result_count, longlong *item_ar
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: undefined8 get_ftdn_managed_interface(void)
-// 获取FTDN管理接口函数
+/**
+ * 获取FTDN管理接口函数
+ * 
+ * 获取FTDN（Framework Data Native）管理接口，
+ * 用于与托管代码进行数据交互。
+ * 
+ * @return FTDN管理接口指针
+ */
 undefined8 Get_FTDN_Managed_Interface(void)
 {
                     // 0x6523f0  33  get_ftdn_managed_interface
@@ -468,8 +539,16 @@ undefined8 Get_FTDN_Managed_Interface(void)
 
 
 
-// 函数: void FUN_180652400(longlong *param_1,longlong param_2)
-// UI系统配置解析函数
+/**
+ * UI系统配置解析函数
+ * 
+ * 解析UI系统的配置数据，包括XML、JSON、INI等
+ * 格式的配置文件，提取配置参数并应用到系统。
+ * 
+ * @param config_context 配置上下文指针
+ * @param config_source 配置源数据指针
+ * @return 无返回值
+ */
 void UI_Parse_Config_Data(longlong *config_context, longlong config_source)
 {
   undefined4 *data_ptr1;

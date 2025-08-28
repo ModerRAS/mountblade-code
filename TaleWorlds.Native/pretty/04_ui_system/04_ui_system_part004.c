@@ -745,175 +745,239 @@ void ui_threadsafe_data_processor(undefined8 process_flag, longlong *data_array)
 
 
 
+/**
+ * UI系统字符串构建器
+ * 构建UI系统所需的字符串数据结构
+ * 
+ * @param string_builder 字符串构建器指针
+ * @param output_buffer 输出缓冲区指针
+ * @param build_param 构建参数1
+ * @param build_flag 构建标志
+ * @return 返回输出缓冲区指针
+ */
 undefined8 *
-FUN_180653220(longlong *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+ui_string_builder(longlong *string_builder, undefined8 *output_buffer, undefined8 build_param, undefined8 build_flag)
 
 {
-  char *pcVar1;
-  undefined *puVar2;
-  longlong lVar3;
-  ulonglong uVar5;
-  longlong lVar6;
-  undefined *puVar7;
-  undefined *puStack_38;
-  longlong lStack_30;
-  undefined4 uStack_28;
-  undefined4 uStack_20;
-  undefined4 uStack_1c;
-  longlong lVar4;
+  char *string_ptr;
+  undefined *data_ptr;
+  longlong string_length;
+  ulonglong item_count;
+  longlong item_index;
+  undefined *item_data;
+  undefined *temp_buffer;
+  longlong buffer_handle;
+  undefined4 buffer_flag1;
+  undefined4 buffer_flag2;
+  undefined4 buffer_flag3;
+  longlong loop_counter;
   
-  lVar6 = 0;
-  FUN_180627910(&puStack_38,&DAT_18098bc73,param_3,param_4,0,0xfffffffffffffffe);
-  lVar4 = -1;
+  item_index = 0;
+  // 初始化字符串构建缓冲区
+  initialize_ui_string_buffer(&temp_buffer, &default_ui_data, build_param, build_flag, 0, 0xfffffffffffffffe);  // FUN_180627910
+  loop_counter = -1;
+  // 计算字符串长度
   do {
-    lVar3 = lVar4 + 1;
-    pcVar1 = (char *)(lVar4 + 0x180c8f021);
-    lVar4 = lVar3;
-  } while (*pcVar1 != '\0');
-  if (lVar3 == 0) {
-    uVar5 = param_1[1] - *param_1 >> 5;
-    if ((int)uVar5 == 0) {
-      FUN_180627910(param_2,&UNK_180a3dd38);
-      puStack_38 = &UNK_180a3c3e0;
-      if (lStack_30 == 0) {
-        return param_2;
+    string_length = loop_counter + 1;
+    string_ptr = (char *)(loop_counter + 0x180c8f021);
+    loop_counter = string_length;
+  } while (*string_ptr != '\0');
+  if (string_length == 0) {
+    item_count = string_builder[1] - *string_builder >> 5;
+    if ((int)item_count == 0) {
+      // 空构建器，直接返回
+      initialize_ui_string_buffer(output_buffer, &empty_string_data);  // FUN_180627910
+      temp_buffer = &ui_cleanup_marker;  // UNK_180a3c3e0
+      if (buffer_handle == 0) {
+        return output_buffer;
       }
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+      // 清理资源
+      cleanup_ui_resources();  // FUN_18064e900
     }
-    uVar5 = uVar5 & 0xffffffff;
+    item_count = item_count & 0xffffffff;
     do {
-      puVar2 = *(undefined **)(lVar6 + 8 + *param_1);
-      puVar7 = &DAT_18098bc73;
-      if (puVar2 != (undefined *)0x0) {
-        puVar7 = puVar2;
+      data_ptr = *(undefined **)(item_index + 8 + *string_builder);
+      item_data = &default_ui_data;  // DAT_18098bc73
+      if (data_ptr != (undefined *)0x0) {
+        item_data = data_ptr;
       }
-      FUN_180628040(&puStack_38,&UNK_1809fe62c,puVar7);
-      lVar6 = lVar6 + 0x20;
-      uVar5 = uVar5 - 1;
-    } while (uVar5 != 0);
+      // 添加字符串项到构建器
+      add_string_item_to_builder(&temp_buffer, &string_format_data, item_data);  // FUN_180628040
+      item_index = item_index + 0x20;
+      item_count = item_count - 1;
+    } while (item_count != 0);
   }
   else {
-    (**(code **)(puStack_38 + 0x10))(&puStack_38);
+    // 执行字符串构建完成操作
+    (**(code **)(temp_buffer + 0x10))(&temp_buffer);
   }
-  *param_2 = &UNK_18098bcb0;
-  param_2[1] = 0;
-  *(undefined4 *)(param_2 + 2) = 0;
-  *param_2 = &UNK_180a3c3e0;
-  *(undefined4 *)(param_2 + 2) = uStack_28;
-  param_2[1] = lStack_30;
-  *(undefined4 *)((longlong)param_2 + 0x1c) = uStack_1c;
-  *(undefined4 *)(param_2 + 3) = uStack_20;
-  return param_2;
+  // 设置输出缓冲区
+  *output_buffer = &ui_buffer_marker;  // UNK_18098bcb0
+  output_buffer[1] = 0;
+  *(undefined4 *)(output_buffer + 2) = 0;
+  *output_buffer = &ui_cleanup_marker;  // UNK_180a3c3e0
+  *(undefined4 *)(output_buffer + 2) = buffer_flag1;
+  output_buffer[1] = buffer_handle;
+  *(undefined4 *)((longlong)output_buffer + 0x1c) = buffer_flag3;
+  *(undefined4 *)(output_buffer + 3) = buffer_flag2;
+  return output_buffer;
 }
 
 
 
 
 
-// 函数: void FUN_1806533a0(longlong param_1)
-void FUN_1806533a0(longlong param_1)
+/**
+ * UI系统字符串长度检查器
+ * 检查UI字符串的长度并进行必要的截断处理
+ * 
+ * @param string_check 字符串检查器指针
+ */
+void ui_string_length_checker(longlong string_check)
 
 {
-  uint uVar1;
-  longlong lVar2;
+  uint string_length;
+  longlong char_index;
   
-  if (param_1 == 0) {
+  if (string_check == 0) {
+    return;
+  }
+}
 
-
-// 函数: void FUN_1806533b4(longlong param_1)
-void FUN_1806533b4(longlong param_1)
+/**
+ * UI系统字符串复制器
+ * 安全地复制UI字符串数据到目标缓冲区
+ * 
+ * @param source_string 源字符串指针
+ */
+void ui_string_copier(longlong source_string)
 
 {
-  uint uVar1;
-  longlong lVar2;
+  uint string_length;
+  longlong char_index;
   
-  lVar2 = -1;
+  char_index = -1;
+  // 计算字符串长度
   do {
-    lVar2 = lVar2 + 1;
-  } while (*(char *)(param_1 + lVar2) != '\0');
-  uVar1 = (uint)lVar2;
-  if (0x1fff < uVar1) {
-    uVar1 = 0x1fff;
+    char_index = char_index + 1;
+  } while (*(char *)(source_string + char_index) != '\0');
+  string_length = (uint)char_index;
+  // 检查长度限制，最大8191字符
+  if (0x1fff < string_length) {
+    string_length = 0x1fff;
   }
-                    // WARNING: Subroutine does not return
-  memcpy(&DAT_180c8f020,param_1,(longlong)(int)uVar1);
+  // 安全复制字符串到目标缓冲区
+  memcpy(&ui_target_buffer, source_string, (longlong)(int)string_length);  // WARNING: Subroutine does not return
 }
 
 
 
 
 
-// 函数: void FUN_18065340f(void)
-void FUN_18065340f(void)
+/**
+ * UI系统软件中断处理器
+ * 处理UI系统的软件中断请求
+ * 
+ * 注意：此函数使用底层系统调用接口
+ */
+void ui_software_interrupt_handler(void)
 
 {
-  code *pcVar1;
+  code *interrupt_handler;
   
-  FUN_1808fcdc8();
-  pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  initialize_ui_interrupt_system();  // FUN_1808fcdc8
+  interrupt_handler = (code *)swi(3);  // 获取软件中断处理器
+  (*interrupt_handler)();  // 执行中断处理
   return;
 }
 
 
 
+/**
+ * UI系统Mono字符串转换器
+ * 将Mono字符串转换为UI系统可用的格式
+ * 
+ * @param output_buffer 输出缓冲区指针
+ * @param mono_string Mono字符串对象
+ * @param convert_param 转换参数
+ * @param convert_flag 转换标志
+ * @return 返回输出缓冲区指针
+ */
 undefined8 *
-FUN_180653420(undefined8 *param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+ui_mono_string_converter(undefined8 *output_buffer, longlong mono_string, undefined8 convert_param, undefined8 convert_flag)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
-  undefined1 auStack_28 [8];
-  undefined8 uStack_20;
-  undefined4 uStack_18;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined8 utf8_string;
+  undefined4 buffer_flag1;
+  undefined8 security_param;
+  undefined1 temp_buffer [8];
+  undefined8 buffer_handle;
+  undefined4 buffer_flag2;
+  undefined4 buffer_flag3;
+  undefined4 buffer_flag4;
   
-  uVar3 = 0xfffffffffffffffe;
-  uVar2 = 0;
-  if ((param_2 != 0) && (*(int *)(param_2 + 0x10) != 0)) {
-    uVar1 = mono_string_to_utf8(param_2);
-    FUN_180627910(auStack_28,uVar1,param_3,param_4,uVar2,uVar3);
-    mono_free(uVar1);
-    *param_1 = &UNK_18098bcb0;
-    param_1[1] = 0;
-    *(undefined4 *)(param_1 + 2) = 0;
-    *param_1 = &UNK_180a3c3e0;
-    *(undefined4 *)(param_1 + 2) = uStack_18;
-    param_1[1] = uStack_20;
-    *(undefined4 *)((longlong)param_1 + 0x1c) = uStack_c;
-    *(undefined4 *)(param_1 + 3) = uStack_10;
-    return param_1;
+  security_param = 0xfffffffffffffffe;  // 安全参数
+  buffer_flag1 = 0;
+  // 检查Mono字符串是否有效
+  if ((mono_string != 0) && (*(int *)(mono_string + 0x10) != 0)) {
+    utf8_string = mono_string_to_utf8(mono_string);
+    // 初始化转换缓冲区
+    initialize_ui_string_buffer(temp_buffer, utf8_string, convert_param, convert_flag, buffer_flag1, security_param);  // FUN_180627910
+    mono_free(utf8_string);  // 释放Mono字符串
+    // 设置输出缓冲区
+    *output_buffer = &ui_buffer_marker;  // UNK_18098bcb0
+    output_buffer[1] = 0;
+    *(undefined4 *)(output_buffer + 2) = 0;
+    *output_buffer = &ui_cleanup_marker;  // UNK_180a3c3e0
+    *(undefined4 *)(output_buffer + 2) = buffer_flag2;
+    output_buffer[1] = buffer_handle;
+    *(undefined4 *)((longlong)output_buffer + 0x1c) = buffer_flag4;
+    *(undefined4 *)(output_buffer + 3) = buffer_flag3;
+    return output_buffer;
   }
-  uVar3 = FUN_180628ca0();
-  FUN_180627ae0(param_1,uVar3);
-  return param_1;
+  // 获取默认字符串进行转换
+  security_param = get_default_ui_string();  // FUN_180628ca0
+  initialize_ui_conversion_buffer(output_buffer, security_param);  // FUN_180627ae0
+  return output_buffer;
 }
 
 
 
 
 
-// 函数: void FUN_180653530(undefined8 param_1)
-void FUN_180653530(undefined8 param_1)
+/**
+ * UI系统调试输出处理器
+ * 处理UI系统的调试信息输出
+ * 
+ * @param debug_message 调试消息字符串
+ */
+void ui_debug_output_handler(undefined8 debug_message)
 
 {
-  FUN_1806533a0();
-  OutputDebugStringA(param_1);
-  FUN_180626ee0(&UNK_180a3dd80);
+  ui_string_length_checker(0);  // FUN_1806533a0
+  // 输出调试字符串
+  OutputDebugStringA(debug_message);
+  // 记录调试输出完成
+  log_debug_output_completion(&debug_completion_marker);  // FUN_180626ee0
+}
 
 
-// 函数: void FUN_180653670(longlong param_1,longlong param_2)
-void FUN_180653670(longlong param_1,longlong param_2)
+/**
+ * UI系统内存分配器
+ * 为UI系统分配指定大小的内存块
+ * 
+ * @param alloc_size 分配大小
+ * @param alloc_count 分配数量
+ */
+void ui_memory_allocator(longlong alloc_size, longlong alloc_count)
 
 {
-  undefined8 uVar1;
+  undefined8 memory_block;
   
-  uVar1 = FUN_18062b420(_DAT_180c8ed18,param_1 * param_2,0x19);
-                    // WARNING: Subroutine does not return
-  memset(uVar1,0,param_1 * param_2);
+  // 分配内存块
+  memory_block = allocate_ui_memory(memory_allocator, alloc_size * alloc_count, 0x19);  // FUN_18062b420
+  // 初始化内存块为零
+  memset(memory_block, 0, alloc_size * alloc_count);  // WARNING: Subroutine does not return
 }
 
 
@@ -922,39 +986,52 @@ void FUN_180653670(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1806536d0(void)
-void FUN_1806536d0(void)
+/**
+ * UI系统Mono环境初始化器
+ * 初始化UI系统的Mono运行时环境和内存分配器
+ * 
+ * 注意：此函数设置Mono的内存分配表和环境变量
+ */
+void ui_mono_environment_initializer(void)
 
 {
-  undefined8 *puVar1;
-  undefined4 *puVar2;
+  undefined8 *allocator_vtable;
+  undefined4 *version_string;
   
-  puVar1 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,3,0xfffffffffffffffe);
-  *puVar1 = 1;
-  puVar1[1] = FUN_180653580;
-  puVar1[2] = FUN_1806535c0;
-  puVar1[3] = FUN_180653630;
-  puVar1[4] = FUN_180653670;
-  mono_set_allocator_vtable(puVar1);
-  puVar2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x13,0x13);
-  *(undefined1 *)puVar2 = 0;
-  FUN_18064e990(puVar2);
-  *puVar2 = 0x7372756e;
-  puVar2[1] = 0x2d797265;
-  puVar2[2] = 0x657a6973;
-  puVar2[3] = 0x3931383d;
-  *(undefined2 *)(puVar2 + 4) = 0x6b32;
-  *(undefined1 *)((longlong)puVar2 + 0x12) = 0;
-  puVar1 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-  *(undefined1 *)puVar1 = 0;
-  FUN_18064e990(puVar1);
-  *puVar1 = 0x5f43475f4f4e4f4d;
-  *(undefined4 *)(puVar1 + 1) = 0x41524150;
-  *(undefined2 *)((longlong)puVar1 + 0xc) = 0x534d;
-  *(undefined1 *)((longlong)puVar1 + 0xe) = 0;
-  SetEnvironmentVariableA(puVar1,puVar2);
-                    // WARNING: Subroutine does not return
-  FUN_18064e900(puVar1);
+  // 创建Mono分配器虚表
+  allocator_vtable = (undefined8 *)allocate_ui_memory_with_flags(memory_allocator, 0x28, 8, 3, 0xfffffffffffffffe);  // FUN_18062b1e0
+  *allocator_vtable = 1;  // 分配器版本
+  allocator_vtable[1] = ui_mono_allocator_malloc;  // FUN_180653580
+  allocator_vtable[2] = ui_mono_allocator_free;   // FUN_1806535c0
+  allocator_vtable[3] = ui_mono_allocator_realloc; // FUN_180653630
+  allocator_vtable[4] = ui_memory_allocator;     // FUN_180653670
+  // 设置Mono分配器虚表
+  mono_set_allocator_vtable(allocator_vtable);
+  
+  // 创建运行时版本字符串 "run-yze-size-918-k2"
+  version_string = (undefined4 *)allocate_ui_memory(memory_allocator, 0x13, 0x13);
+  *(undefined1 *)version_string = 0;
+  secure_string_init(version_string);  // FUN_18064e990
+  *version_string = 0x7372756e;  // "nurs"
+  version_string[1] = 0x2d797265; // "-yre"
+  version_string[2] = 0x657a6973; // "ezis"
+  version_string[3] = 0x3931383d; // "918-"
+  *(undefined2 *)(version_string + 4) = 0x6b32; // "k2"
+  *(undefined1 *)((longlong)version_string + 0x12) = 0;  // 字符串终止符
+  
+  // 创建环境变量名 "_CG_ONOMS"
+  allocator_vtable = (undefined8 *)allocate_ui_memory(memory_allocator, 0x10, 0x13);
+  *(undefined1 *)allocator_vtable = 0;
+  secure_string_init(allocator_vtable);  // FUN_18064e990
+  *allocator_vtable = 0x5f43475f4f4e4f4d;  // "_CG_ONOM"
+  *(undefined4 *)(allocator_vtable + 1) = 0x41524150; // "APAR"
+  *(undefined2 *)((longlong)allocator_vtable + 0xc) = 0x534d; // "MS"
+  *(undefined1 *)((longlong)allocator_vtable + 0xe) = 0;  // 字符串终止符
+  
+  // 设置环境变量
+  SetEnvironmentVariableA(allocator_vtable, version_string);
+  // 清理分配的内存
+  cleanup_ui_resources(allocator_vtable);  // FUN_18064e900
 }
 
 
