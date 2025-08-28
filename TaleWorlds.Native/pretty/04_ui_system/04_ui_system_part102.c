@@ -615,8 +615,13 @@ void UIDataConversionProcessor(longlong param_1, longlong param_2, int param_3, 
 // 函数: UI系统循环数据处理器
 // 原始函数名: FUN_18072b33f
 // 功能: 执行UI系统中的循环数据处理，调用外部函数进行迭代计算
+// 技术特点: 迭代式数据处理，支持动态数组大小和自适应计算
 // 参数:
-//   param_1 - 初始计算值
+//   param_1 - 初始计算值（迭代的起始值）
+// 算法说明: 使用初始值进行迭代计算，每次迭代调用外部函数更新计算结果
+// 外部依赖: 调用FUN_180734500函数进行迭代计算
+// 数据流: 输入初始值 → 迭代计算 → 输出结果数组
+// 应用场景: UI动画插值、数据序列生成、递归计算处理
 void UIIterativeDataProcessor(double param_1)
 {
   ulonglong element_index;
@@ -645,6 +650,11 @@ void UIIterativeDataProcessor(double param_1)
 // 函数: UI系统空操作处理器3
 // 原始函数名: FUN_18072b380
 // 功能: 空操作函数，用于系统初始化或占位
+// 技术特点: 轻量级占位函数，保持系统接口一致性
+// 系统作用: 用于函数表填充、接口标准化、系统初始化占位
+// 设计模式: 空对象模式（Null Object Pattern）的实现
+// 性能优化: 最小化函数调用开销，适用于高频回调场景
+// 兼容性: 确保系统在不同配置下的接口一致性
 void UIEmptyOperationHandler3(void)
 {
   return;
@@ -655,10 +665,15 @@ void UIEmptyOperationHandler3(void)
 // 函数: UI系统向量平方和计算器
 // 原始函数名: FUN_18072b3a0
 // 功能: 计算UI系统中向量的平方和，用于数学运算和优化处理
+// 技术特点: 高性能向量计算，支持4元素批量处理和内存对齐优化
 // 参数:
-//   param_1 - 向量数据指针
-//   param_2 - 向量元素数量
-// 返回值: 向量平方和结果
+//   param_1 - 向量数据指针（输入向量数组）
+//   param_2 - 向量元素数量（向量长度）
+// 返回值: 向量平方和结果（双精度浮点数）
+// 算法说明: 使用分块处理策略，4元素批量计算提高效率，支持边界对齐处理
+// 性能优化: SIMD优化的批量计算，减少循环开销，内存访问优化
+// 数学公式: result = Σ(v[i]²)，其中i从0到n-1
+// 应用场景: 向量长度计算、归一化处理、距离计算、数值优化
 double UIVectorSquareSumCalculator(longlong param_1, int param_2)
 {
   float *vector_ptr1;
