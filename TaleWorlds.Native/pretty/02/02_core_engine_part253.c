@@ -341,8 +341,10 @@ longlong reverse_batch_copy_and_cleanup(longlong param_1, undefined8 param_2, lo
 
 
 
-// 函数: void FUN_180219e15(void)
-void FUN_180219e15(void)
+/**
+ * 空函数 - 可能是占位符或调试用
+ */
+void empty_function_placeholder(void)
 
 {
   return;
@@ -350,20 +352,28 @@ void FUN_180219e15(void)
 
 
 
-longlong FUN_180219e30(longlong param_1,longlong param_2,longlong param_3)
+/**
+ * 数据块移动函数
+ * @param param_1 源起始地址
+ * @param param_2 源结束地址
+ * @param param_3 目标地址
+ * @return 返回处理后的目标地址
+ */
+longlong move_data_block(longlong param_1, longlong param_2, longlong param_3)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  longlong lVar3;
+  longlong offset_diff;
+  longlong target_offset;
+  longlong source_offset;
   
   if (param_1 != param_2) {
-    lVar3 = param_1 - param_3;
-    lVar2 = param_3 - param_1;
+    source_offset = param_1 - param_3;
+    target_offset = param_3 - param_1;
+    
     do {
-      FUN_180627ae0(param_3,param_1);
-      lVar1 = param_1 + lVar2;
-      *(undefined4 *)(lVar1 + 0x20) = *(undefined4 *)(lVar1 + 0x20 + lVar3);
+      release_data_structure(param_3, param_1);
+      offset_diff = param_1 + target_offset;
+      *(undefined4 *)(offset_diff + 0x20) = *(undefined4 *)(offset_diff + 0x20 + source_offset);
       param_3 = param_3 + 0x28;
       param_1 = param_1 + 0x28;
     } while (param_1 != param_2);
@@ -375,8 +385,14 @@ longlong FUN_180219e30(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-// 函数: void FUN_180219eb0(longlong param_1,longlong param_2,ulonglong param_3,longlong *param_4)
-void FUN_180219eb0(longlong param_1,longlong param_2,ulonglong param_3,longlong *param_4)
+/**
+ * 堆数据结构调整函数
+ * @param param_1 堆数据结构指针
+ * @param param_2 当前大小
+ * @param param_3 最大容量
+ * @param param_4 新元素指针
+ */
+void adjust_heap_structure(longlong param_1, longlong param_2, ulonglong param_3, longlong *param_4)
 
 {
   byte bVar1;

@@ -593,92 +593,90 @@ void handle_length_error(void)
 
 
 
-undefined4 *
-FUN_1801899b0(undefined8 param_1,undefined8 *param_2,undefined8 *param_3,undefined4 *param_4)
-
+// 函数：复制数组段（4字节元素）
+undefined4 * copy_array_segment_4byte(undefined8 param_1, undefined8 *src_start, undefined8 *src_end, undefined4 *dest_ptr)
 {
-  undefined8 *puVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined8 uVar5;
-  undefined8 *puVar6;
+  undefined8 *temp_ptr;
+  undefined4 field_1;
+  undefined4 field_2;
+  undefined4 field_3;
+  undefined8 temp_value;
+  undefined8 *src_ptr;
   
-  if (param_2 != param_3) {
-    puVar6 = param_2 + 7;
+  if (src_start != src_end) {
+    src_ptr = src_start + 7;
     do {
-      *(undefined8 *)(param_4 + 4) = 0;
-      *(undefined8 *)(param_4 + 6) = 0;
-      uVar2 = *(undefined4 *)((longlong)puVar6 + -0x34);
-      uVar3 = *(undefined4 *)(puVar6 + -6);
-      uVar4 = *(undefined4 *)((longlong)puVar6 + -0x2c);
-      *param_4 = *(undefined4 *)(puVar6 + -7);
-      param_4[1] = uVar2;
-      param_4[2] = uVar3;
-      param_4[3] = uVar4;
-      uVar2 = *(undefined4 *)((longlong)puVar6 + -0x24);
-      uVar3 = *(undefined4 *)(puVar6 + -4);
-      uVar4 = *(undefined4 *)((longlong)puVar6 + -0x1c);
-      param_4[4] = *(undefined4 *)(puVar6 + -5);
-      param_4[5] = uVar2;
-      param_4[6] = uVar3;
-      param_4[7] = uVar4;
-      puVar6[-5] = 0;
-      puVar6[-4] = 0xf;
-      *(undefined1 *)(puVar6 + -7) = 0;
-      *(undefined1 *)(param_4 + 8) = *(undefined1 *)(puVar6 + -3);
-      param_4[9] = *(undefined4 *)((longlong)puVar6 + -0x14);
-      param_4[10] = *(undefined4 *)(puVar6 + -2);
-      puVar1 = (undefined8 *)(param_4 + 0xc);
-      *puVar1 = 0;
-      *(undefined8 *)(param_4 + 0xe) = 0;
-      uVar5 = FUN_180188490();
-      *puVar1 = uVar5;
-      uVar5 = *puVar1;
-      *puVar1 = puVar6[-1];
-      puVar6[-1] = uVar5;
-      uVar5 = *(undefined8 *)(param_4 + 0xe);
-      *(undefined8 *)(param_4 + 0xe) = *puVar6;
-      *puVar6 = uVar5;
-      param_4 = param_4 + 0x10;
-      puVar1 = puVar6 + 1;
-      puVar6 = puVar6 + 8;
-    } while (puVar1 != param_3);
+      *(undefined8 *)(dest_ptr + 4) = 0;
+      *(undefined8 *)(dest_ptr + 6) = 0;
+      field_1 = *(undefined4 *)((longlong)src_ptr + -0x34);
+      field_2 = *(undefined4 *)(src_ptr + -6);
+      field_3 = *(undefined4 *)((longlong)src_ptr + -0x2c);
+      *dest_ptr = *(undefined4 *)(src_ptr + -7);
+      dest_ptr[1] = field_1;
+      dest_ptr[2] = field_2;
+      dest_ptr[3] = field_3;
+      field_1 = *(undefined4 *)((longlong)src_ptr + -0x24);
+      field_2 = *(undefined4 *)(src_ptr + -4);
+      field_3 = *(undefined4 *)((longlong)src_ptr + -0x1c);
+      dest_ptr[4] = *(undefined4 *)(src_ptr + -5);
+      dest_ptr[5] = field_1;
+      dest_ptr[6] = field_2;
+      dest_ptr[7] = field_3;
+      src_ptr[-5] = 0;
+      src_ptr[-4] = 0xf;
+      *(undefined1 *)(src_ptr + -7) = 0;
+      *(undefined1 *)(dest_ptr + 8) = *(undefined1 *)(src_ptr + -3);
+      dest_ptr[9] = *(undefined4 *)((longlong)src_ptr + -0x14);
+      dest_ptr[10] = *(undefined4 *)(src_ptr + -2);
+      temp_ptr = (undefined8 *)(dest_ptr + 0xc);
+      *temp_ptr = 0;
+      *(undefined8 *)(dest_ptr + 0xe) = 0;
+      temp_value = get_next_available_id();
+      *temp_ptr = temp_value;
+      temp_value = *temp_ptr;
+      *temp_ptr = src_ptr[-1];
+      src_ptr[-1] = temp_value;
+      temp_value = *(undefined8 *)(dest_ptr + 0xe);
+      *(undefined8 *)(dest_ptr + 0xe) = *src_ptr;
+      *src_ptr = temp_value;
+      dest_ptr = dest_ptr + 0x10;
+      temp_ptr = src_ptr + 1;
+      src_ptr = src_ptr + 8;
+    } while (temp_ptr != src_end);
   }
-  return param_4;
+  return dest_ptr;
 }
 
 
 
-undefined8 *
-FUN_180189aa0(undefined8 *param_1,undefined8 *param_2,undefined8 *param_3,undefined8 param_4)
-
+// 函数：移动8字节数组段
+undefined8 * move_8byte_array_segment(undefined8 *src_start, undefined8 *src_end, undefined8 *dest_ptr, undefined8 param_4)
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
+  undefined8 *temp_ptr;
+  undefined8 *src_ptr;
+  undefined8 return_value;
   
-  uVar3 = param_4;
-  if (param_1 != param_2) {
-    uVar3 = 0;
-    puVar2 = param_1 + 2;
+  return_value = param_4;
+  if (src_start != src_end) {
+    return_value = 0;
+    src_ptr = src_start + 2;
     do {
-      *param_3 = 0;
-      param_3[1] = 0;
-      param_3[2] = 0;
-      *param_3 = puVar2[-2];
-      param_3[1] = puVar2[-1];
-      param_3[2] = *puVar2;
-      puVar2[-2] = 0;
-      puVar2[-1] = 0;
-      *puVar2 = 0;
-      param_3 = param_3 + 3;
-      puVar1 = puVar2 + 1;
-      puVar2 = puVar2 + 3;
-    } while (puVar1 != param_2);
+      *dest_ptr = 0;
+      dest_ptr[1] = 0;
+      dest_ptr[2] = 0;
+      *dest_ptr = src_ptr[-2];
+      dest_ptr[1] = src_ptr[-1];
+      dest_ptr[2] = *src_ptr;
+      src_ptr[-2] = 0;
+      src_ptr[-1] = 0;
+      *src_ptr = 0;
+      dest_ptr = dest_ptr + 3;
+      temp_ptr = src_ptr + 1;
+      src_ptr = src_ptr + 3;
+    } while (temp_ptr != src_end);
   }
-  FUN_180189900(param_3,param_3,param_2,uVar3,0xfffffffffffffffe,param_3,param_3,param_4);
-  return param_3;
+  free_array_memory_blocks(dest_ptr, dest_ptr, src_end, return_value, 0xfffffffffffffffe, dest_ptr, dest_ptr, param_4);
+  return dest_ptr;
 }
 
 
