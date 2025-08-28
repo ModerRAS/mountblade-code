@@ -1,599 +1,712 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part025.c - 2 个函数
+// 02_core_engine_part025.c - 核心引擎内存管理和任务调度模块
 
-// 函数: void FUN_1800697a0(undefined8 *param_1)
-void FUN_1800697a0(undefined8 *param_1)
+// 全局变量定义
+static void **g_global_context_table = (void **)0x1809feec8;
+static void **g_global_shutdown_table = (void **)0x1809feeb8;
+static void **g_global_allocator_table = (void **)0x1809feeb8;
+static void **g_global_thread_table = (void **)0x180a21690;
+static void **g_global_memory_table = (void **)0x180a21720;
+static void **g_global_sync_table = (void **)0x18098bdc8;
+static void **g_global_cleanup_table = (void **)0x1809feed8;
+static void **g_global_debug_table = (void **)0x1809ff040;
+static void **g_global_task_table = (void **)0x180a3c3e0;
+static void **g_global_task_base = (void **)0x18098bcb0;
+static void **g_global_log_table = (void **)0x1809ff538;
+static void **g_global_error_table = (void **)0x1809ff550;
+static void **g_global_exception_table = (void **)0x1809ff5b0;
+static void **g_global_exit_table = (void **)0x1809ff538;
+static void **g_global_crash_table = (void **)0x1809ff5b0;
 
+// 内存管理相关常量
+#define MEMORY_POOL_SIZE 0x130
+#define MEMORY_POOL_OFFSET 0x138
+#define MEMORY_QUEUE_SIZE 0x28
+#define THREAD_ID_MASK 0x1f
+#define MEMORY_ALLOC_SIZE 0x68
+#define MEMORY_ALIGN_MASK 0x1f
+#define MEMORY_BLOCK_SIZE 0x20
+#define MEMORY_GUARD_SIZE 0x260
+#define TASK_QUEUE_SIZE 0xe8
+
+// 线程同步相关常量
+#define MAX_THREAD_COUNT 0x80000000
+#define THREAD_HASH_SEED1 0x7a143595
+#define THREAD_HASH_SEED2 0x3d4d51cb
+#define THREAD_HASH_SHIFT1 0x10
+#define THREAD_HASH_SHIFT2 0x0d
+
+// 错误代码
+#define ERROR_INVALID_THREAD_ID -0x3fffff03
+#define ERROR_INVALID_PROCESS_ID -0x3ffffffb
+#define ERROR_TIMEOUT 0x102
+#define ERROR_DEBUGGER_PRESENT 0x1
+#define ERROR_MEMORY_CORRUPTION 0x5
+
+/**
+ * 处理内存块队列的清理和释放
+ * @param context 上下文指针，包含内存管理信息
+ */
+void process_memory_block_cleanup(void **context)
 {
-  int *piVar1;
-  int iVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
-  longlong *plVar5;
-  longlong lVar6;
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
-  ulonglong uVar10;
-  bool bVar11;
+  int *lock_status;
+  int lock_value;
+  unsigned long long start_index;
+  unsigned long long end_index;
+  long long *queue_ptr;
+  long long queue_size;
+  long long current_block;
+  long long next_block;
+  long long memory_offset;
+  unsigned long long block_index;
+  bool is_committed;
   
-  *param_1 = &UNK_1809feec8;
-  uVar3 = param_1[4];
-  lVar9 = 0;
-  uVar4 = param_1[5];
-  for (uVar10 = uVar4; uVar10 != uVar3; uVar10 = uVar10 + 1) {
-    if ((uVar10 & 0x1f) == 0) {
-      if (lVar9 != 0) {
-        lVar6 = param_1[10];
+  // 设置全局上下文表
+  *context = g_global_context_table;
+  start_index = context[4];
+  current_block = 0;
+  end_index = context[5];
+  
+  // 遍历内存块队列
+  for (block_index = end_index; block_index != start_index; block_index = block_index + 1) {
+    // 每32个块处理一次对齐
+    if ((block_index & THREAD_ID_MASK) == 0) {
+      if (current_block != 0) {
+        queue_size = context[10];
         LOCK();
-        piVar1 = (int *)(lVar9 + 0x130);
-        iVar2 = *piVar1;
-        *piVar1 = *piVar1 + -0x80000000;
+        lock_status = (int *)(current_block + MEMORY_POOL_SIZE);
+        lock_value = *lock_status;
+        *lock_status = *lock_status - MAX_THREAD_COUNT;
         UNLOCK();
-        if (iVar2 == 0) {
-          lVar8 = *(longlong *)(lVar6 + 0x28);
+        if (lock_value == 0) {
+          memory_offset = *(long long *)(queue_size + MEMORY_QUEUE_SIZE);
           do {
-            *(longlong *)(lVar9 + 0x138) = lVar8;
-            *(undefined4 *)(lVar9 + 0x130) = 1;
-            plVar5 = (longlong *)(lVar6 + 0x28);
+            *(long long *)(current_block + MEMORY_POOL_OFFSET) = memory_offset;
+            *(unsigned int *)(current_block + MEMORY_POOL_SIZE) = 1;
+            queue_ptr = (long long *)(queue_size + MEMORY_QUEUE_SIZE);
             LOCK();
-            lVar7 = *plVar5;
-            bVar11 = lVar8 == lVar7;
-            if (bVar11) {
-              *plVar5 = lVar9;
-              lVar7 = lVar8;
+            next_block = *queue_ptr;
+            is_committed = memory_offset == next_block;
+            if (is_committed) {
+              *queue_ptr = current_block;
+              next_block = memory_offset;
             }
             UNLOCK();
-            if (bVar11) break;
+            if (is_committed) break;
             LOCK();
-            piVar1 = (int *)(lVar9 + 0x130);
-            iVar2 = *piVar1;
-            *piVar1 = *piVar1 + 0x7fffffff;
+            lock_status = (int *)(current_block + MEMORY_POOL_SIZE);
+            lock_value = *lock_status;
+            *lock_status = *lock_status + (MAX_THREAD_COUNT - 1);
             UNLOCK();
-            lVar8 = lVar7;
-          } while (iVar2 == 1);
+            memory_offset = next_block;
+          } while (lock_value == 1);
         }
       }
-LAB_180069842:
-      plVar5 = (longlong *)param_1[0xc];
-      lVar9 = *(longlong *)
-               (*(longlong *)
-                 (plVar5[3] +
-                 (plVar5[1] +
-                  ((uVar10 & 0xffffffffffffffe0) - **(longlong **)(plVar5[3] + plVar5[1] * 8) >> 5)
-                 & *plVar5 - 1U) * 8) + 8);
+    // 处理内存块队列中的下一个块
+    queue_ptr = (long long *)context[0xc];
+    current_block = *(long long *)
+                     (*(long long *)
+                       (queue_ptr[3] +
+                       (queue_ptr[1] +
+                        ((block_index & 0xffffffffffffffe0) - **(long long **)(queue_ptr[3] + queue_ptr[1] * 8) >> 5)
+                       & *queue_ptr - 1U) * 8) + 8);
     }
-    else if (lVar9 == 0) goto LAB_180069842;
+    else if (current_block == 0) {
+      queue_ptr = (long long *)context[0xc];
+      current_block = *(long long *)
+                       (*(long long *)
+                         (queue_ptr[3] +
+                         (queue_ptr[1] +
+                          ((block_index & 0xffffffffffffffe0) - **(long long **)(queue_ptr[3] + queue_ptr[1] * 8) >> 5)
+                         & *queue_ptr - 1U) * 8) + 8);
+    }
   }
-  lVar9 = param_1[8];
-  if ((lVar9 != 0) && ((uVar4 != uVar3 || ((uVar3 & 0x1f) != 0)))) {
-    lVar6 = param_1[10];
+  
+  // 处理剩余的内存块
+  current_block = context[8];
+  if ((current_block != 0) && ((end_index != start_index || ((start_index & THREAD_ID_MASK) != 0)))) {
+    queue_size = context[10];
     LOCK();
-    piVar1 = (int *)(lVar9 + 0x130);
-    iVar2 = *piVar1;
-    *piVar1 = *piVar1 + -0x80000000;
+    lock_status = (int *)(current_block + MEMORY_POOL_SIZE);
+    lock_value = *lock_status;
+    *lock_status = *lock_status - MAX_THREAD_COUNT;
     UNLOCK();
-    if (iVar2 == 0) {
-      lVar8 = *(longlong *)(lVar6 + 0x28);
+    if (lock_value == 0) {
+      memory_offset = *(long long *)(queue_size + MEMORY_QUEUE_SIZE);
       do {
-        *(longlong *)(lVar9 + 0x138) = lVar8;
-        *(undefined4 *)(lVar9 + 0x130) = 1;
-        plVar5 = (longlong *)(lVar6 + 0x28);
+        *(long long *)(current_block + MEMORY_POOL_OFFSET) = memory_offset;
+        *(unsigned int *)(current_block + MEMORY_POOL_SIZE) = 1;
+        queue_ptr = (long long *)(queue_size + MEMORY_QUEUE_SIZE);
         LOCK();
-        lVar7 = *plVar5;
-        bVar11 = lVar8 == lVar7;
-        if (bVar11) {
-          *plVar5 = lVar9;
-          lVar7 = lVar8;
+        next_block = *queue_ptr;
+        is_committed = memory_offset == next_block;
+        if (is_committed) {
+          *queue_ptr = current_block;
+          next_block = memory_offset;
         }
         UNLOCK();
-        if (bVar11) break;
+        if (is_committed) break;
         LOCK();
-        piVar1 = (int *)(lVar9 + 0x130);
-        iVar2 = *piVar1;
-        *piVar1 = *piVar1 + 0x7fffffff;
+        lock_status = (int *)(current_block + MEMORY_POOL_SIZE);
+        lock_value = *lock_status;
+        *lock_status = *lock_status + (MAX_THREAD_COUNT - 1);
         UNLOCK();
-        lVar8 = lVar7;
-      } while (iVar2 == 1);
+        memory_offset = next_block;
+      } while (lock_value == 1);
     }
   }
-  if (param_1[0xc] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  
+  // 清理上下文
+  if (context[0xc] != 0) {
+    // 警告：子函数不返回
+    trigger_emergency_cleanup();
   }
-  *param_1 = &UNK_1809feeb8;
+  *context = g_global_shutdown_table;
   return;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 * FUN_180069920(longlong *param_1)
-
+/**
+ * 获取线程本地存储的内存分配器
+ * @param thread_context 线程上下文指针
+ * @return 分配的内存块指针，失败返回NULL
+ */
+void **get_thread_local_allocator(long long *thread_context)
 {
-  longlong *plVar1;
-  uint *puVar2;
-  ulonglong *puVar3;
-  ulonglong uVar4;
-  uint uVar5;
-  ulonglong uVar6;
-  ulonglong *puVar7;
-  undefined8 *puVar8;
-  longlong lVar9;
-  longlong lVar10;
-  undefined8 *puVar11;
-  ulonglong uVar12;
-  ulonglong uVar13;
-  uint uVar14;
-  undefined8 *puVar15;
-  bool bVar16;
-  bool bVar17;
+  long long *counter_ptr;
+  unsigned int *slot_ptr;
+  unsigned long long *hash_table;
+  unsigned long long hash_value;
+  unsigned int thread_id;
+  unsigned long long current_hash;
+  unsigned long long *table_ptr;
+  void **allocator_ptr;
+  long long allocation_count;
+  long long max_allocations;
+  void **new_allocator;
+  unsigned long long table_size;
+  unsigned long long new_size;
+  unsigned int slot_status;
+  void **temp_ptr;
+  bool slot_available;
+  bool is_primary_table;
   
-  uVar5 = GetCurrentThreadId();
-  uVar14 = (uVar5 >> 0x10 ^ uVar5) * -0x7a143595;
-  uVar14 = (uVar14 >> 0xd ^ uVar14) * -0x3d4d51cb;
-  uVar13 = (ulonglong)(uVar14 >> 0x10 ^ uVar14);
-  puVar7 = (ulonglong *)param_1[6];
-  for (puVar3 = puVar7; uVar6 = uVar13, puVar3 != (ulonglong *)0x0; puVar3 = (ulonglong *)puVar3[2])
+  // 获取当前线程ID并计算哈希值
+  thread_id = GetCurrentThreadId();
+  current_hash = (thread_id >> THREAD_HASH_SHIFT1 ^ thread_id) * -THREAD_HASH_SEED1;
+  current_hash = (current_hash >> THREAD_HASH_SHIFT2 ^ current_hash) * -THREAD_HASH_SEED2;
+  hash_value = (unsigned long long)(current_hash >> THREAD_HASH_SHIFT1 ^ current_hash);
+  
+  table_ptr = (unsigned long long *)thread_context[6];
+  
+  // 在哈希表中查找线程本地存储
+  for (hash_table = table_ptr; hash_value = current_hash, hash_table != (unsigned long long *)0x0; hash_table = (unsigned long long *)hash_table[2])
   {
     while( true ) {
-      uVar6 = uVar6 & *puVar3 - 1;
-      uVar14 = *(uint *)(uVar6 * 0x10 + puVar3[1]);
-      if (uVar14 == uVar5) {
-        puVar15 = *(undefined8 **)(puVar3[1] + 8 + uVar6 * 0x10);
-        if (puVar3 == puVar7) {
-          return puVar15;
+      current_hash = current_hash & *hash_table - 1;
+      slot_status = *(unsigned int *)(current_hash * MEMORY_BLOCK_SIZE + hash_table[1]);
+      if (slot_status == thread_id) {
+        new_allocator = *(void **)(hash_table[1] + 8 + current_hash * MEMORY_BLOCK_SIZE);
+        if (hash_table == table_ptr) {
+          return new_allocator;
         }
+        // 在主表中查找空闲槽位
         do {
-          uVar13 = uVar13 & *puVar7 - 1;
-          if (*(int *)(puVar7[1] + uVar13 * 0x10) == 0) {
-            puVar2 = (uint *)(puVar7[1] + uVar13 * 0x10);
+          hash_value = hash_value & *table_ptr - 1;
+          if (*(int *)(table_ptr[1] + hash_value * MEMORY_BLOCK_SIZE) == 0) {
+            slot_ptr = (unsigned int *)(table_ptr[1] + hash_value * MEMORY_BLOCK_SIZE);
             LOCK();
-            bVar17 = *puVar2 == 0;
-            if (bVar17) {
-              *puVar2 = uVar5;
+            slot_available = *slot_ptr == 0;
+            if (slot_available) {
+              *slot_ptr = thread_id;
             }
             UNLOCK();
-            if (bVar17) {
-              *(undefined8 **)(puVar7[1] + 8 + uVar13 * 0x10) = puVar15;
-              return puVar15;
+            if (slot_available) {
+              *(void **)(table_ptr[1] + 8 + hash_value * MEMORY_BLOCK_SIZE) = new_allocator;
+              return new_allocator;
             }
           }
-          uVar13 = uVar13 + 1;
+          hash_value = hash_value + 1;
         } while( true );
       }
-      if (uVar14 == 0) break;
-      uVar6 = uVar6 + 1;
+      if (slot_status == 0) break;
+      current_hash = current_hash + 1;
     }
   }
+  
+  // 如果没有找到，创建新的分配器
   LOCK();
-  plVar1 = param_1 + 7;
-  lVar9 = *plVar1;
-  *plVar1 = *plVar1 + 1;
+  counter_ptr = thread_context + 7;
+  allocation_count = *counter_ptr;
+  *counter_ptr = *counter_ptr + 1;
   UNLOCK();
-  uVar6 = lVar9 + 1;
-  puVar15 = (undefined8 *)0x0;
+  current_hash = allocation_count + 1;
+  new_allocator = (void **)0x0;
+  
   while( true ) {
-    if (*puVar7 >> 1 <= uVar6) {
+    // 检查是否需要扩展哈希表
+    if (*table_ptr >> 1 <= current_hash) {
       LOCK();
-      puVar2 = (uint *)(param_1 + 0x4b);
-      uVar14 = *puVar2;
-      *puVar2 = *puVar2 | 1;
+      slot_ptr = (unsigned int *)(thread_context + 0x4b);
+      slot_status = *slot_ptr;
+      *slot_ptr = *slot_ptr | 1;
       UNLOCK();
-      if ((uVar14 & 1) == 0) {
-        puVar3 = (ulonglong *)param_1[6];
-        puVar7 = puVar3;
-        uVar12 = *puVar3;
-        if (*puVar3 >> 1 <= uVar6) {
+      if ((slot_status & 1) == 0) {
+        hash_table = (unsigned long long *)thread_context[6];
+        table_ptr = hash_table;
+        table_size = *hash_table;
+        if (*hash_table >> 1 <= current_hash) {
           do {
-            uVar4 = uVar12;
-            uVar12 = uVar4 * 2;
-          } while ((uVar4 & 0x7fffffffffffffff) <= uVar6);
-          puVar7 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar4 * 0x20 + 0x1f,10);
-          if (puVar7 == (ulonglong *)0x0) {
+            new_size = table_size;
+            table_size = new_size * 2;
+          } while ((new_size & 0x7fffffffffffffff) <= current_hash);
+          table_ptr = (unsigned long long *)allocate_aligned_memory(get_global_heap(),new_size * MEMORY_BLOCK_SIZE + MEMORY_ALIGN_MASK,10);
+          if (table_ptr == (unsigned long long *)0x0) {
             LOCK();
-            param_1[7] = param_1[7] + -1;
+            thread_context[7] = thread_context[7] - 1;
             UNLOCK();
-            *(undefined4 *)(param_1 + 0x4b) = 0;
-            return (undefined8 *)0x0;
+            *(unsigned int *)(thread_context + 0x4b) = 0;
+            return (void **)0x0;
           }
-          *puVar7 = uVar12;
-          puVar7[1] = (ulonglong)(-(int)(puVar7 + 3) & 7) + (longlong)(puVar7 + 3);
-          puVar11 = puVar15;
-          for (; uVar12 != 0; uVar12 = uVar12 - 1) {
-            *(undefined8 *)((longlong)puVar11 + puVar7[1] + 8) = 0;
-            *(undefined4 *)((longlong)puVar11 + puVar7[1]) = 0;
-            puVar11 = puVar11 + 2;
+          *table_ptr = table_size;
+          table_ptr[1] = (unsigned long long)(-(int)(table_ptr + 3) & 7) + (long long)(table_ptr + 3);
+          temp_ptr = new_allocator;
+          for (; table_size != 0; table_size = table_size - 1) {
+            *(void **)((long long)temp_ptr + table_ptr[1] + 8) = 0;
+            *(unsigned int *)((long long)temp_ptr + table_ptr[1]) = 0;
+            temp_ptr = temp_ptr + 2;
           }
-          puVar7[2] = (ulonglong)puVar3;
-          param_1[6] = (longlong)puVar7;
+          table_ptr[2] = (unsigned long long)hash_table;
+          thread_context[6] = (long long)table_ptr;
         }
-        *(undefined4 *)(param_1 + 0x4b) = 0;
+        *(unsigned int *)(thread_context + 0x4b) = 0;
       }
     }
-    if (uVar6 < (*puVar7 >> 2) + (*puVar7 >> 1)) break;
-    puVar7 = (ulonglong *)param_1[6];
+    
+    // 检查是否需要重新哈希
+    if (current_hash < (*table_ptr >> 2) + (*table_ptr >> 1)) break;
+    table_ptr = (unsigned long long *)thread_context[6];
   }
-  puVar11 = (undefined8 *)*param_1;
-  while (puVar11 != (undefined8 *)0x0) {
-    if ((*(char *)(puVar11 + 2) != '\0') && (*(char *)(puVar11 + 9) == '\0')) {
-      bVar17 = true;
+  
+  // 查找可用的分配器槽位
+  temp_ptr = (void **)*thread_context;
+  while (temp_ptr != (void **)0x0) {
+    if ((*(char *)(temp_ptr + 2) != '\0') && (*(char *)(temp_ptr + 9) == '\0')) {
+      is_primary_table = true;
       LOCK();
-      bVar16 = *(char *)(puVar11 + 2) == '\x01';
-      if (bVar16) {
-        *(char *)(puVar11 + 2) = '\0';
+      slot_available = *(char *)(temp_ptr + 2) == '\x01';
+      if (slot_available) {
+        *(char *)(temp_ptr + 2) = '\0';
       }
       UNLOCK();
-      if (bVar16) goto LAB_180069c2b;
+      if (slot_available) goto found_allocator;
     }
-    plVar1 = puVar11 + 1;
-    puVar11 = (undefined8 *)(*plVar1 + -8);
-    if (*plVar1 == 0) {
-      puVar11 = puVar15;
+    counter_ptr = temp_ptr + 1;
+    temp_ptr = (void **)(*counter_ptr - 8);
+    if (*counter_ptr == 0) {
+      temp_ptr = new_allocator;
     }
   }
-  bVar17 = false;
-  puVar8 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x68,10);
-  puVar11 = puVar15;
-  if (puVar8 != (undefined8 *)0x0) {
-    puVar8[1] = 0;
-    *(undefined1 *)(puVar8 + 2) = 0;
-    puVar8[3] = 0;
-    *puVar8 = &UNK_1809feeb8;
-    puVar8[4] = 0;
-    puVar8[5] = 0;
-    puVar8[6] = 0;
-    puVar8[7] = 0;
-    puVar8[8] = 0;
-    *(undefined1 *)(puVar8 + 9) = 0;
-    puVar8[10] = param_1;
-    *puVar8 = &UNK_1809feec8;
-    puVar8[0xb] = 0x20;
-    puVar8[0xc] = 0;
-    FUN_18005f430(puVar8);
+  
+  is_primary_table = false;
+  allocator_ptr = (void **)allocate_aligned_memory(get_global_heap(),MEMORY_ALLOC_SIZE,10);
+  temp_ptr = new_allocator;
+  if (allocator_ptr != (void **)0x0) {
+    allocator_ptr[1] = 0;
+    *(unsigned char *)(allocator_ptr + 2) = 0;
+    allocator_ptr[3] = 0;
+    *allocator_ptr = g_global_allocator_table;
+    allocator_ptr[4] = 0;
+    allocator_ptr[5] = 0;
+    allocator_ptr[6] = 0;
+    allocator_ptr[7] = 0;
+    allocator_ptr[8] = 0;
+    *(unsigned char *)(allocator_ptr + 9) = 0;
+    allocator_ptr[10] = thread_context;
+    *allocator_ptr = g_global_context_table;
+    allocator_ptr[0xb] = MEMORY_BLOCK_SIZE;
+    allocator_ptr[0xc] = 0;
+    register_allocator(allocator_ptr);
     LOCK();
-    *(int *)(param_1 + 1) = (int)param_1[1] + 1;
+    *(int *)(thread_context + 1) = (int)thread_context[1] + 1;
     UNLOCK();
-    lVar9 = *param_1;
+    allocation_count = *thread_context;
     do {
-      puVar11 = (undefined8 *)(lVar9 + 8);
-      if (lVar9 == 0) {
-        puVar11 = puVar15;
+      temp_ptr = (void **)(allocation_count + 8);
+      if (allocation_count == 0) {
+        temp_ptr = new_allocator;
       }
-      puVar8[1] = puVar11;
+      allocator_ptr[1] = temp_ptr;
       LOCK();
-      lVar10 = *param_1;
-      bVar16 = lVar9 == lVar10;
-      if (bVar16) {
-        *param_1 = (longlong)puVar8;
-        lVar10 = lVar9;
+      max_allocations = *thread_context;
+      slot_available = allocation_count == max_allocations;
+      if (slot_available) {
+        *thread_context = (long long)allocator_ptr;
+        max_allocations = allocation_count;
       }
       UNLOCK();
-      lVar9 = lVar10;
-      puVar11 = puVar8;
-    } while (!bVar16);
+      allocation_count = max_allocations;
+      temp_ptr = allocator_ptr;
+    } while (!slot_available);
   }
-LAB_180069c2b:
-  if (puVar11 == (undefined8 *)0x0) {
+  
+found_allocator:
+  if (temp_ptr == (void **)0x0) {
     LOCK();
-    param_1[7] = param_1[7] + -1;
+    thread_context[7] = thread_context[7] - 1;
     UNLOCK();
-    return (undefined8 *)0x0;
+    return (void **)0x0;
   }
-  if (bVar17) {
+  if (is_primary_table) {
     LOCK();
-    param_1[7] = param_1[7] + -1;
+    thread_context[7] = thread_context[7] - 1;
     UNLOCK();
   }
+  
+  // 在哈希表中注册新的分配器
   do {
-    uVar13 = uVar13 & *puVar7 - 1;
-    if (*(int *)(puVar7[1] + uVar13 * 0x10) == 0) {
-      puVar2 = (uint *)(puVar7[1] + uVar13 * 0x10);
+    hash_value = hash_value & *table_ptr - 1;
+    if (*(int *)(table_ptr[1] + hash_value * MEMORY_BLOCK_SIZE) == 0) {
+      slot_ptr = (unsigned int *)(table_ptr[1] + hash_value * MEMORY_BLOCK_SIZE);
       LOCK();
-      bVar17 = *puVar2 == 0;
-      if (bVar17) {
-        *puVar2 = uVar5;
+      slot_available = *slot_ptr == 0;
+      if (slot_available) {
+        *slot_ptr = thread_id;
       }
       UNLOCK();
-      if (bVar17) {
-        *(undefined8 **)(puVar7[1] + 8 + uVar13 * 0x10) = puVar11;
-        return puVar11;
+      if (slot_available) {
+        *(void **)(table_ptr[1] + 8 + hash_value * MEMORY_BLOCK_SIZE) = temp_ptr;
+        return temp_ptr;
       }
     }
-    uVar13 = uVar13 + 1;
+    hash_value = hash_value + 1;
   } while( true );
 }
 
-
-
-ulonglong FUN_180069cc0(undefined8 param_1,undefined8 *param_2)
-
+/**
+ * 将数据写入内存分配器
+ * @param allocator 分配器句柄
+ * @param data_ptr 数据指针
+ * @param data 数据内容
+ * @return 成功返回1，失败返回0
+ */
+unsigned long long write_to_allocator(void *allocator, void **data_ptr)
 {
-  ulonglong uVar1;
-  longlong *plVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  ulonglong uVar5;
-  ulonglong *puVar6;
+  unsigned long long write_result;
+  long long *queue_ptr;
+  void *data_content;
+  long long allocator_base;
+  unsigned long long available_space;
+  unsigned long long *block_ptr;
   
-  lVar4 = FUN_180069920();
-  if (lVar4 == 0) {
+  allocator_base = get_thread_local_allocator();
+  if (allocator_base == 0) {
     return 0;
   }
-  uVar1 = *(ulonglong *)(lVar4 + 0x20);
-  if ((uVar1 & 0x1f) == 0) {
-    uVar5 = (*(longlong *)(lVar4 + 0x28) - uVar1) - 0x20;
-    if ((0x8000000000000000 < uVar5) &&
-       (plVar2 = *(longlong **)(lVar4 + 0x60), plVar2 != (longlong *)0x0)) {
-      uVar5 = *plVar2 - 1U & plVar2[1] + 1U;
-      puVar6 = *(ulonglong **)(plVar2[3] + uVar5 * 8);
-      if ((*puVar6 == 1) || (puVar6[1] == 0)) {
-        *puVar6 = uVar1;
-        plVar2[1] = uVar5;
+  
+  write_result = *(unsigned long long *)(allocator_base + MEMORY_BLOCK_SIZE);
+  
+  // 检查是否需要对齐内存块
+  if ((write_result & MEMORY_ALIGN_MASK) == 0) {
+    available_space = (*(long long *)(allocator_base + MEMORY_QUEUE_SIZE) - write_result) - MEMORY_BLOCK_SIZE;
+    if ((0x8000000000000000 < available_space) &&
+       (queue_ptr = *(long long **)(allocator_base + 0x60), queue_ptr != (long long *)0x0)) {
+      available_space = *queue_ptr - 1U & queue_ptr[1] + 1U;
+      block_ptr = *(unsigned long long **)(queue_ptr[3] + available_space * 8);
+      if ((*block_ptr == 1) || (block_ptr[1] == 0)) {
+        *block_ptr = write_result;
+        queue_ptr[1] = available_space;
       }
       else {
-        uVar5 = FUN_18005f430(lVar4);
-        if ((char)uVar5 == '\0') goto LAB_180069dc3;
-        plVar2 = *(longlong **)(lVar4 + 0x60);
-        uVar5 = *plVar2 - 1U & plVar2[1] + 1U;
-        puVar6 = *(ulonglong **)(plVar2[3] + uVar5 * 8);
-        *puVar6 = uVar1;
-        plVar2[1] = uVar5;
+        available_space = register_allocator(allocator_base);
+        if ((char)available_space == '\0') goto handle_unaligned_write;
+        queue_ptr = *(long long **)(allocator_base + 0x60);
+        available_space = *queue_ptr - 1U & queue_ptr[1] + 1U;
+        block_ptr = *(unsigned long long **)(queue_ptr[3] + available_space * 8);
+        *block_ptr = write_result;
+        queue_ptr[1] = available_space;
       }
-      uVar5 = FUN_18005ff50(*(undefined8 *)(lVar4 + 0x50));
-      if (uVar5 != 0) {
-        *(undefined8 *)(uVar5 + 0x108) = 0;
-        puVar6[1] = uVar5;
-        *(ulonglong *)(lVar4 + 0x40) = uVar5;
-        goto LAB_180069dda;
+      available_space = get_allocator_handle(*(void *)(allocator_base + MEMORY_BLOCK_SIZE));
+      if (available_space != 0) {
+        *(void *)(available_space + MEMORY_BLOCK_SIZE) = 0;
+        block_ptr[1] = available_space;
+        *(unsigned long long *)(allocator_base + 0x40) = available_space;
+        goto aligned_write_complete;
       }
-      plVar2 = *(longlong **)(lVar4 + 0x60);
-      uVar5 = plVar2[1] - 1;
-      plVar2[1] = *plVar2 - 1U & uVar5;
-      puVar6[1] = 0;
+      queue_ptr = *(long long **)(allocator_base + 0x60);
+      available_space = queue_ptr[1] - 1;
+      queue_ptr[1] = *queue_ptr - 1U & available_space;
+      block_ptr[1] = 0;
     }
-LAB_180069dc3:
-    uVar5 = uVar5 & 0xffffffffffffff00;
+  handle_unaligned_write:
+    available_space = available_space & 0xffffffffffffff00;
   }
   else {
-LAB_180069dda:
-    uVar3 = *param_2;
-    *(undefined8 *)(*(longlong *)(lVar4 + 0x40) + (ulonglong)((uint)uVar1 & 0x1f) * 8) = uVar3;
-    *(ulonglong *)(lVar4 + 0x20) = uVar1 + 1;
-    uVar5 = CONCAT71((int7)((ulonglong)uVar3 >> 8),1);
+  aligned_write_complete:
+    data_content = *data_ptr;
+    *(void *)(*(long long *)(allocator_base + 0x40) + (unsigned long long)((unsigned int)write_result & MEMORY_ALIGN_MASK) * 8) = data_content;
+    *(unsigned long long *)(allocator_base + MEMORY_BLOCK_SIZE) = write_result + 1;
+    available_space = ((int)((unsigned long long)data_content >> 8) << 8) | 1;
   }
-  return uVar5;
+  return available_space;
 }
 
-
-
-undefined8 *
-FUN_180069e10(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 初始化任务管理器
+ * @param task_manager 任务管理器指针
+ * @param config 配置参数
+ * @param priority 优先级
+ * @param flags 标志位
+ * @return 初始化的任务管理器指针
+ */
+void **initialize_task_manager(void **task_manager, void **config, void *priority, void *flags)
 {
-  code *pcVar1;
+  void *vtable_ptr;
   
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  *(undefined4 *)(param_1 + 1) = 0;
-  *param_1 = &UNK_18098bdc8;
+  *task_manager = g_global_thread_table;
+  *task_manager = g_global_memory_table;
+  *(unsigned int *)(task_manager + 1) = 0;
+  *task_manager = g_global_sync_table;
   LOCK();
-  *(undefined1 *)(param_1 + 2) = 0;
+  *(unsigned char *)(task_manager + 2) = 0;
   UNLOCK();
-  param_1[3] = 0xffffffffffffffff;
-  *param_1 = &UNK_1809feed8;
-  param_1[6] = 0;
-  param_1[7] = _guard_check_icall;
-  if (param_1 + 4 != param_2) {
-    pcVar1 = (code *)param_2[2];
-    if (pcVar1 != (code *)0x0) {
-      (*pcVar1)(param_1 + 4,param_2,1,param_4,0xfffffffffffffffe);
-      pcVar1 = (code *)param_2[2];
+  task_manager[3] = 0xffffffffffffffff;
+  *task_manager = g_global_cleanup_table;
+  task_manager[6] = 0;
+  task_manager[7] = _guard_check_icall;
+  
+  // 配置任务管理器
+  if (task_manager + 4 != config) {
+    vtable_ptr = (void *)config[2];
+    if (vtable_ptr != (void *)0x0) {
+      ((void (*)(void *, void *, long long, void *, long long))vtable_ptr)(task_manager + 4, config, 1, flags, 0xfffffffffffffffe);
+      vtable_ptr = (void *)config[2];
     }
-    param_1[6] = pcVar1;
-    param_1[7] = param_2[3];
+    task_manager[6] = vtable_ptr;
+    task_manager[7] = config[3];
   }
-  if ((code *)param_2[2] != (code *)0x0) {
-    (*(code *)param_2[2])(param_2,0,0);
-  }
-  return param_1;
-}
-
-
-
-undefined8
-FUN_180069f00(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  undefined8 uVar1;
-  undefined4 uVar2;
-  undefined8 uVar3;
   
-  uVar3 = 0xfffffffffffffffe;
-  uVar2 = 0;
-  uVar1 = FUN_180628ca0();
-  FUN_180627ae0(param_2,uVar1,param_3,param_4,uVar2,uVar3);
-  return param_2;
-}
-
-
-
-undefined8 * FUN_180069f60(undefined8 param_1,undefined8 *param_2)
-
-{
-  *param_2 = 0;
-  param_2[1] = 0;
-  param_2[2] = 0;
-  *(undefined4 *)(param_2 + 3) = 3;
-  return param_2;
-}
-
-
-
-undefined8 * FUN_180069fb0(undefined8 param_1,undefined8 *param_2)
-
-{
-  *param_2 = 0;
-  return param_2;
-}
-
-
-
-undefined8 FUN_180069fe0(undefined8 param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  undefined8 uVar1;
-  
-  uVar1 = 0xfffffffffffffffe;
-  FUN_1801570c0();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x260,param_3,param_4,uVar1);
+  // 启动任务管理器
+  if ((void *)config[2] != (void *)0x0) {
+    ((void (*)(void *, long long, long long))config[2])(config, 0, 0);
   }
-  return param_1;
+  return task_manager;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_18006a050(int param_1)
-
+/**
+ * 创建任务队列
+ * @param queue_handle 队列句柄
+ * @param config 配置参数
+ * @param priority 优先级
+ * @param flags 标志位
+ * @return 创建的队列句柄
+ */
+void *create_task_queue(void *queue_handle, void *config, void *priority, void *flags)
 {
-  if ((param_1 != -0x3fffff03) && (param_1 != -0x3ffffffb)) {
+  void *timeout_value;
+  unsigned int queue_size;
+  void *queue_config;
+  
+  timeout_value = (void *)0xfffffffffffffffe;
+  queue_size = 0;
+  queue_config = get_current_thread_context();
+  schedule_task(config, queue_config, priority, flags, queue_size, timeout_value);
+  return config;
+}
+
+/**
+ * 初始化队列结构
+ * @param queue_ptr 队列指针
+ * @param config 配置参数
+ * @return 初始化的队列指针
+ */
+void **initialize_queue_structure(void *queue_ptr, void **config)
+{
+  *config = 0;
+  config[1] = 0;
+  config[2] = 0;
+  *(unsigned int *)(config + 3) = 3;
+  return config;
+}
+
+/**
+ * 重置队列指针
+ * @param queue_ptr 队列指针
+ * @param config 配置参数
+ * @return 重置后的配置指针
+ */
+void **reset_queue_pointer(void *queue_ptr, void **config)
+{
+  *config = 0;
+  return config;
+}
+
+/**
+ * 释放内存资源
+ * @param memory_ptr 内存指针
+ * @param size 内存大小
+ * @param flags 标志位
+ * @param context 上下文
+ * @return 释放后的内存指针
+ */
+void *release_memory_resources(void *memory_ptr, unsigned long long size, void *flags, void *context)
+{
+  void *timeout_value;
+  
+  timeout_value = (void *)0xfffffffffffffffe;
+  trigger_global_cleanup();
+  if ((size & 1) != 0) {
+    free_memory(memory_ptr, MEMORY_GUARD_SIZE, flags, context, timeout_value);
+  }
+  return memory_ptr;
+}
+
+/**
+ * 处理系统信号和异常
+ * @param signal_code 信号代码
+ * @return 处理结果
+ */
+void *handle_system_signal(int signal_code)
+{
+  if ((signal_code != ERROR_INVALID_THREAD_ID) && (signal_code != ERROR_INVALID_PROCESS_ID)) {
     return 0;
   }
-  (**(code **)(*(longlong *)*_DAT_180c8ed08 + 0x68))();
-  return 1;
+  ((void (*)(void))(*(long long **)get_global_heap())[0x68])();
+  return (void *)1;
 }
 
-
-
-undefined8 * FUN_18006a090(undefined8 *param_1,ulonglong param_2)
-
+/**
+ * 清理任务资源
+ * @param task_ptr 任务指针
+ * @param flags 标志位
+ * @return 清理后的任务指针
+ */
+void **cleanup_task_resources(void **task_ptr, unsigned long long flags)
 {
-  *param_1 = &UNK_1809ff040;
-  param_1[0x18] = &UNK_180a3c3e0;
-  if (param_1[0x19] != 0) {
-                    // WARNING: Subroutine does not return
-    FUN_18064e900();
+  *task_ptr = g_global_debug_table;
+  task_ptr[0x18] = g_global_task_table;
+  if (task_ptr[0x19] != 0) {
+    // 警告：子函数不返回
+    trigger_emergency_cleanup();
   }
-  param_1[0x19] = 0;
-  *(undefined4 *)(param_1 + 0x1b) = 0;
-  param_1[0x18] = &UNK_18098bcb0;
-  FUN_180049470(param_1);
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xe8);
+  task_ptr[0x19] = 0;
+  *(unsigned int *)(task_ptr + 0x1b) = 0;
+  task_ptr[0x18] = g_global_task_base;
+  register_task_manager(task_ptr);
+  if ((flags & 1) != 0) {
+    free_memory(task_ptr, TASK_QUEUE_SIZE);
   }
-  return param_1;
+  return task_ptr;
 }
 
-
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-// 函数: void FUN_180070680(undefined8 param_1,undefined8 param_2)
-void FUN_180070680(undefined8 param_1,undefined8 param_2)
-
+/**
+ * 处理系统崩溃和错误报告
+ * @param error_code 错误代码
+ * @param context 上下文
+ */
+void handle_system_crash(void *error_code, void *context)
 {
-  bool bVar1;
-  char cVar2;
-  int iVar3;
-  int iVar4;
-  longlong lVar5;
-  undefined *puVar6;
-  undefined8 uVar7;
-  undefined *puVar8;
-  bool bVar9;
-  undefined *puStack_70;
-  undefined *puStack_68;
-  undefined4 uStack_60;
-  undefined8 uStack_58;
-  undefined *puStack_50;
-  longlong lStack_48;
-  undefined4 uStack_38;
+  bool is_debugger_attached;
+  char debug_status;
+  int wait_result;
+  int debug_flag;
+  long long crash_context;
+  void *error_info;
+  void *crash_data;
+  void *exception_data;
+  bool is_main_thread;
+  void *stack_ptr[4];
+  void *stack_ptr2[4];
+  unsigned int stack_size;
+  long long stack_offset;
+  unsigned int exception_code;
   
-  iVar3 = WaitForSingleObject(_DAT_180c91900,0);
-  if (iVar3 != 0) {
+  wait_result = WaitForSingleObject(get_global_event_handle(), 0);
+  if (wait_result != 0) {
     return;
   }
-  bVar9 = true;
-  cVar2 = (**(code **)**(undefined8 **)(_DAT_180c8ed08 + 0x18))();
-  if ((cVar2 == '\0') && (iVar3 = IsDebuggerPresent(), iVar3 != 0)) {
-    bVar1 = true;
+  
+  is_main_thread = true;
+  debug_status = ((void (*)(void))(*(void **)get_global_heap()))();
+  if ((debug_status == '\0') && (wait_result = IsDebuggerPresent(), wait_result != 0)) {
+    is_debugger_attached = true;
   }
   else {
-    bVar1 = false;
+    is_debugger_attached = false;
   }
-  if (_DAT_180c82868 != 0) {
-    iVar3 = *(int *)(**(longlong **)(_DAT_180c82868 + 8) + 0x48);
-    iVar4 = _Thrd_id();
-    bVar9 = iVar4 == iVar3;
+  
+  // 检查是否是主线程
+  if (get_debug_context() != 0) {
+    wait_result = *(int *)(*(long long **)(get_debug_context() + 8) + 0x48);
+    debug_flag = _Thrd_id();
+    is_main_thread = debug_flag == wait_result;
   }
-  puVar8 = (undefined *)0x0;
-  if (!bVar1) {
-    lVar5 = FUN_1800f9ce0(&puStack_50,0);
-    puVar8 = *(undefined **)(lVar5 + 8);
-    *(undefined4 *)(lVar5 + 0x10) = 0;
-    *(undefined8 *)(lVar5 + 8) = 0;
-    *(undefined8 *)(lVar5 + 0x18) = 0;
-    puStack_50 = &UNK_180a3c3e0;
-    if (lStack_48 != 0) {
-                    // WARNING: Subroutine does not return
-      FUN_18064e900();
+  
+  crash_data = (void *)0x0;
+  if (!is_debugger_attached) {
+    crash_context = get_crash_information(&stack_ptr[2], 0);
+    crash_data = *(void **)(crash_context + 8);
+    *(unsigned int *)(crash_context + 0x10) = 0;
+    *(void **)(crash_context + 8) = 0;
+    *(void **)(crash_context + 0x18) = 0;
+    stack_ptr[2] = g_global_task_table;
+    if (stack_offset != 0) {
+      // 警告：子函数不返回
+      trigger_emergency_cleanup();
     }
-    lStack_48 = 0;
-    uStack_38 = 0;
-    puStack_50 = &UNK_18098bcb0;
+    stack_offset = 0;
+    exception_code = 0;
+    stack_ptr[2] = g_global_task_base;
   }
-  puStack_70 = &UNK_180a3c3e0;
-  uStack_58 = 0;
-  puStack_68 = (undefined *)0x0;
-  uStack_60 = 0;
-  FUN_180628040(&puStack_70,&UNK_1809ff538,param_2);
-  FUN_180062380(_DAT_180c86928,5,0xffffffff00000000,&UNK_1809ff550);
-  puVar6 = &DAT_18098bc73;
-  if (puStack_68 != (undefined *)0x0) {
-    puVar6 = puStack_68;
+  
+  // 准备崩溃报告
+  stack_ptr[0] = g_global_task_table;
+  stack_ptr2[1] = 0;
+  stack_ptr[1] = (void *)0x0;
+  stack_size = 0;
+  log_error_message(&stack_ptr[0], g_global_log_table, context);
+  log_error_message(get_error_context(), 5, 0xffffffff00000000, g_global_error_table);
+  
+  error_info = get_default_error_data();
+  if (stack_ptr[1] != (void *)0x0) {
+    error_info = stack_ptr[1];
   }
-  FUN_180062380(_DAT_180c86928,5,0xffffffff00000000,&UNK_1809ff5b0,puVar6);
-  puVar6 = &DAT_18098bc73;
-  if (puVar8 != (undefined *)0x0) {
-    puVar6 = puVar8;
+  log_error_message(get_error_context(), 5, 0xffffffff00000000, g_global_exception_table, error_info);
+  
+  error_info = get_default_error_data();
+  if (crash_data != (void *)0x0) {
+    error_info = crash_data;
   }
-  FUN_1800623b0(_DAT_180c86928,5,0xffffffff00000000,3,puVar6);
-  FUN_1800623e0();
-  puVar8 = &DAT_18098bc73;
-  if (puStack_68 != (undefined *)0x0) {
-    puVar8 = puStack_68;
+  log_debug_message(get_error_context(), 5, 0xffffffff00000000, 3, error_info);
+  log_exception_details();
+  
+  error_info = get_default_error_data();
+  if (stack_ptr[1] != (void *)0x0) {
+    error_info = stack_ptr[1];
   }
-  OutputDebugStringA(puVar8);
-  lVar5 = _DAT_180c86950;
-  if (((bVar9) && (_DAT_180c86950 != 0)) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
-    FUN_1801723a0(*(undefined8 *)(_DAT_180c86870 + 8),*(char *)(_DAT_180c868d0 + 0x2028) != '\0',
-                  *(undefined4 *)(_DAT_180c86950 + 0x160c));
-    *(undefined1 *)(lVar5 + 0x1609) = 1;
+  OutputDebugStringA(error_info);
+  
+  crash_context = get_crash_context();
+  if (((is_main_thread) && (crash_context != 0)) && (*(char *)(crash_context + 0x1609) != '\x01')) {
+    generate_crash_report(*(void *)(get_system_context() + 8), *(char *)(get_process_context() + 0x2028) != '\0',
+                         *(unsigned int *)(crash_context + 0x160c));
+    *(unsigned char *)(crash_context + 0x1609) = 1;
   }
-  if (DAT_180c82842 == '\0') {
-    FUN_1800f93e0();
+  
+  // 处理异常退出
+  if (get_exception_flag() == '\0') {
+    cleanup_system_resources();
   }
   else {
-    uVar7 = func_0x0001800464d0(&puStack_70);
-    FUN_1806272a0(uVar7);
+    crash_data = get_exception_handler(&stack_ptr[0]);
+    execute_cleanup_tasks(crash_data);
   }
-  FUN_180046130(&DAT_180c91900,1);
+  
+  // 释放事件句柄并退出
+  release_event_handle(&get_global_event_handle(), 1);
   _Exit(5);
   return;
 }
 
-
-
-// WARNING: Removing unreachable block (ram,0x000180070cdc)
-// WARNING: Removing unreachable block (ram,0x000180070ce2)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
+// 警告：移除了不可达的代码块
+// 警告：全局变量在同一地址重叠
