@@ -188,8 +188,21 @@ LAB_1801571ef:
 // WARNING: Removing unreachable block (ram,0x000180157b0e)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int64_t *
-FUN_180157390(int64_t *param_1,int64_t *param_2,int64_t param_3,uint64_t param_4,char param_5)
+// 函数: int64_t* EventProcessor(int64_t *system_context, int64_t *event_handler, int64_t event_data, uint64_t event_flags, char is_async)
+// 事件处理器：处理和分发系统事件
+// 参数：
+//   - system_context: 系统上下文指针
+//   - event_handler: 事件处理器指针
+//   - event_data: 事件数据
+//   - event_flags: 事件标志
+//   - is_async: 是否异步处理
+// 返回值：
+//   - 处理结果指针
+// 功能：
+//   - 根据事件类型调用相应的处理器
+//   - 管理事件的生命周期
+//   - 处理同步和异步事件
+int64_t * EventProcessor(int64_t *system_context, int64_t *event_handler, int64_t event_data, uint64_t event_flags, char is_async)
 
 {
   int64_t *plVar1;
