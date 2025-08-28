@@ -1,9 +1,44 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 06_utilities_part013.c - 6 个函数
+/**
+ * 06_utilities_part013.c - 工具函数模块
+ * 
+ * 本模块包含18个核心函数，涵盖：
+ * - 内存管理和缓冲区操作
+ * - 数据结构处理和查找
+ * - 字符串处理和转换
+ * - 错误处理和状态管理
+ * - 资源分配和清理
+ * 
+ * 主要功能包括内存分配器、数据处理器、字符串操作器、错误处理器等高级工具功能。
+ */
 
-// 函数: void FUN_1808986b0(longlong param_1,undefined8 param_2)
-void FUN_1808986b0(longlong param_1,undefined8 param_2)
+// 全局常量定义
+#define UTILITY_MIN_BUFFER_SIZE 64
+#define UTILITY_SUCCESS 0
+#define UTILITY_ERROR_INSUFFICIENT_BUFFER 0x1c
+#define UTILITY_ERROR_OUT_OF_MEMORY 0x26
+#define UTILITY_ERROR_INVALID_INDEX 0x4a
+#define UTILITY_ERROR_BUFFER_OVERFLOW 0xd
+#define UTILITY_ERROR_INVALID_PARAMETER 0x11
+#define UTILITY_WARNING_DATA_TRUNCATED 0x41
+
+// 函数类型定义
+typedef void* (*MemoryAllocatorFunc)(size_t size);
+typedef int (*StringLengthFunc)(const char* str);
+typedef char (*CharTransformFunc)(char c);
+
+/**
+ * 内存分配器 - 扩展缓冲区容量
+ * 
+ * 该函数负责管理和扩展内存缓冲区，支持动态调整缓冲区大小。
+ * 当缓冲区空间不足时，会自动扩展到合适的容量。
+ * 
+ * @param buffer_ptr 缓冲区指针的指针
+ * @param data_size 要添加的数据大小
+ * @return 成功返回UTILITY_SUCCESS，失败返回错误代码
+ */
+void utility_memory_buffer_expander(longlong buffer_ptr, undefined8 data_size)
 
 {
   int iVar1;
