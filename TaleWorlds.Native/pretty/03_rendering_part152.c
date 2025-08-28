@@ -270,6 +270,12 @@ typedef struct {
 /** 渲染系统安全检查器 */
 #define RenderingSystem_SecurityChecker FUN_1808fc050
 
+/** 渲染系统内存管理器 */
+#define RenderingSystem_MemoryManager FUN_180627020
+
+/** 渲染系统回调管理器 */
+#define RenderingSystem_CallbackManager FUN_180360210
+
 // =============================================================================
 // 核心函数实现区域
 // =============================================================================
@@ -571,13 +577,13 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
   }
   plStack_3f8 = plVar11;
   if ((plStack_3b0 == (int64_t *)0x0) || (plStack_3f8 == (int64_t *)0x0)) {
-    FUN_180627020(&unknown_var_5456_ptr);
+    RenderingSystem_MemoryManager(&unknown_var_5456_ptr);
   }
   else {
     uStack_3e8 = (void **)alStack_1b8;
     uStack_3e0 = &plStack_3b0;
     pcStack_3c8 = (code *)&system_state_ptr;
-    pcStack_3c0 = FUN_180360210;
+    pcStack_3c0 = RenderingSystem_CallbackManager;
     pfStack_438 = (float *)auStack_3d8;
     auStack_3d8 = (int8_t  [8])uStack_3e8;
     puStack_3d0 = uStack_3e0;
@@ -589,7 +595,7 @@ void RenderingSystem_AdvancedDataProcessorAndOptimizer(int64_t param_1)
     uStack_3e8 = &puStack_148;
     uStack_3e0 = &plStack_3f8;
     pcStack_3c8 = (code *)&unknown_var_656_ptr;
-    pcStack_3c0 = FUN_180360210;
+    pcStack_3c0 = RenderingSystem_CallbackManager;
     puStack_3d0 = uStack_3e0;
     auStack_3d8 = (int8_t  [8])uStack_3e8;
     pfStack_438 = (float *)auStack_3d8;
