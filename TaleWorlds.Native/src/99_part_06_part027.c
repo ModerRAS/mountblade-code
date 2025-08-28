@@ -966,568 +966,767 @@ void SystemFeatureProcessor(SystemHandle param_1, SystemHandle param_2)
     return;
 }
 
+/*============================================================================
+  系统配置管理器 - 高级配置处理和资源管理
+  ============================================================================*/
 
-
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-
-
-// 函数: void FUN_1803be9f0(longlong param_1,longlong *param_2,longlong *param_3,longlong param_4,
-void FUN_1803be9f0(longlong param_1,longlong *param_2,longlong *param_3,longlong param_4,
-                  undefined8 param_5,char param_6)
+/**
+ * 系统配置管理器 - 处理系统配置和资源管理
+ * 
+ * 功能描述:
+ * 本函数负责处理系统配置和资源管理，包括配置验证、资源分配、
+ * 内存管理、状态同步和错误处理等核心功能。
+ * 
+ * 参数说明:
+ * - param_1: 系统句柄，用于标识系统实例
+ * - param_2: 配置数组指针，包含配置数据
+ * - param_3: 输出数组指针，用于存储处理结果
+ * - param_4: 数据句柄，包含处理数据
+ * - param_5: 数据块，包含处理参数
+ * - param_6: 标志位，控制处理模式
+ * 
+ * 返回值:
+ * 无返回值
+ * 
+ * 处理流程:
+ * 1. 初始化系统变量和状态
+ * 2. 验证输入参数有效性
+ * 3. 处理配置数据和资源分配
+ * 4. 执行内存管理和数据转换
+ * 5. 执行状态同步和错误处理
+ * 6. 执行资源清理和释放
+ * 
+ * 错误处理:
+ * - 无效参数处理
+ * - 内存分配失败处理
+ * - 配置验证失败处理
+ * - 资源管理异常处理
+ * - 状态同步错误处理
+ */
+void SystemConfigManager(SystemHandle param_1, SystemHandlePtr param_2, SystemHandlePtr param_3, 
+                         SystemHandle param_4, SystemDataBlock param_5, SystemFlag param_6)
 
 {
-  char cVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
-  undefined8 *puVar4;
-  undefined8 *puVar5;
-  undefined8 *puVar6;
-  char *pcVar7;
-  int iVar8;
-  char *pcVar9;
-  longlong lVar10;
-  longlong lVar11;
-  longlong *plVar12;
-  ulonglong uVar13;
-  char *pcVar14;
-  longlong lVar15;
-  undefined *puVar16;
-  longlong *plVar17;
-  longlong lVar18;
-  char *pcVar19;
-  ulonglong uVar20;
-  char *pcVar21;
-  char *pcVar22;
-  ulonglong uVar23;
-  undefined8 *puVar24;
-  ulonglong uVar25;
-  uint uVar26;
-  int iVar27;
-  undefined4 uVar28;
-  longlong lStack_128;
-  undefined *puStack_120;
-  undefined *puStack_118;
-  undefined4 uStack_110;
-  ulonglong uStack_108;
-  undefined *puStack_100;
-  undefined8 *puStack_f8;
-  undefined4 uStack_f0;
-  undefined8 uStack_e8;
-  longlong *plStack_e0;
-  longlong *plStack_d8;
-  longlong *plStack_d0;
-  longlong *plStack_c8;
-  longlong *plStack_c0;
-  longlong *plStack_b8;
-  undefined8 uStack_b0;
-  longlong *plStack_a8;
-  longlong *plStack_a0;
-  undefined8 uStack_98;
-  undefined8 uStack_90;
-  longlong *plStack_88;
-  longlong *plStack_80;
-  longlong *plStack_78;
-  longlong *plStack_70;
-  longlong *plStack_68;
-  longlong *plStack_60;
-  longlong *plStack_58;
-  
-  uStack_90 = 0xfffffffffffffffe;
-  uVar28 = 0;
-  iVar27 = 0;
-  uVar26 = 0;
-  lStack_128 = 0;
-  do {
-    pcVar21 = *(char **)(&UNK_180994200 + lStack_128 * 8);
-    if (pcVar21 == (char *)0x0) {
-      pcVar22 = *(char **)(param_4 + 0x30);
-joined_r0x0001803beb6b:
-      if (pcVar22 != (char *)0x0) {
-        plVar12 = (longlong *)0x0;
-        plVar17 = (longlong *)0x0;
-        if (uVar26 == 0) {
-          puStack_120 = &UNK_180a3c3e0;
-          uStack_108 = 0;
-          puStack_118 = (undefined *)0x0;
-          uStack_110 = 0;
-          pcVar21 = "name";
-          do {
-            pcVar19 = pcVar21;
-            pcVar21 = pcVar19 + 1;
-          } while (*pcVar21 != '\0');
-          for (puVar4 = *(undefined8 **)(pcVar22 + 0x40); puVar4 != (undefined8 *)0x0;
-              puVar4 = (undefined8 *)puVar4[6]) {
-            pcVar21 = (char *)*puVar4;
-            if (pcVar21 == (char *)0x0) {
-              pcVar21 = (char *)0x180d48d24;
-              plVar3 = plVar12;
-            }
-            else {
-              plVar3 = (longlong *)puVar4[2];
-            }
-            if (plVar3 == (longlong *)(pcVar19 + -0x180a03a83)) {
-              pcVar9 = pcVar21 + (longlong)plVar3;
-              if (pcVar9 <= pcVar21) {
-LAB_1803bee65:
-                lVar15 = 0x180d48d24;
-                if (puVar4[1] != 0) {
-                  lVar15 = puVar4[1];
-                }
-                FUN_180627c50(&puStack_120,lVar15);
-                break;
-              }
-              lVar15 = (longlong)&DAT_180a03a84 - (longlong)pcVar21;
-              while (*pcVar21 == pcVar21[lVar15]) {
-                pcVar21 = pcVar21 + 1;
-                if (pcVar9 <= pcVar21) goto LAB_1803bee65;
-              }
-            }
-          }
-          lVar15 = FUN_1800b6de0(_DAT_180c86930,&puStack_120,1);
-          uVar2 = _DAT_180c86930;
-          if (lVar15 == 0) {
-            lVar15 = *(longlong *)(_DAT_180c86898 + 0x2d8);
-            if (lVar15 == 0) {
-              puStack_100 = &UNK_180a3c3e0;
-              uStack_e8 = 0;
-              puStack_f8 = (undefined8 *)0x0;
-              uStack_f0 = 0;
-              puVar4 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
-              *(undefined1 *)puVar4 = 0;
-              puStack_f8 = puVar4;
-              uVar28 = FUN_18064e990(puVar4);
-              uStack_e8 = CONCAT44(uStack_e8._4_4_,uVar28);
-              *puVar4 = 0x5f64696c61766e69;
-              *(undefined4 *)(puVar4 + 1) = 0x6873656d;
-              *(undefined1 *)((longlong)puVar4 + 0xc) = 0;
-              uStack_f0 = 0xc;
-              FUN_1800b6de0(uVar2,&puStack_100,1);
-              puStack_100 = &UNK_180a3c3e0;
-                    // WARNING: Subroutine does not return
-              FUN_18064e900(puVar4);
-            }
-            puVar16 = &DAT_18098bc73;
-            if (puStack_118 != (undefined *)0x0) {
-              puVar16 = puStack_118;
-            }
-            FUN_180627020(&UNK_180a23ad0,puVar16);
-            if (param_3 == (longlong *)0x0) {
-              uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,0x16);
-              plVar17 = (longlong *)FUN_180275090(uVar2);
-              plStack_58 = plVar17;
-              if (plVar17 != (longlong *)0x0) {
-                (**(code **)(*plVar17 + 0x28))(plVar17);
-              }
-              FUN_180275a60(lVar15,plVar17);
-              if (plVar17 != (longlong *)0x0) {
-                plStack_a0 = plVar17;
-                (**(code **)(*plVar17 + 0x28))(plVar17);
-              }
-              plStack_a0 = (longlong *)0x0;
-              uVar28 = 0;
-              if (plVar17 != (longlong *)0x0) {
-                (**(code **)(*plVar17 + 0x38))(plVar17);
-              }
-            }
-            else {
-              uVar20 = (param_2[1] - *param_2 >> 3) + 1;
-              puVar4 = (undefined8 *)param_3[1];
-              puVar5 = (undefined8 *)*param_3;
-              uVar13 = (longlong)puVar4 - (longlong)puVar5 >> 3;
-              if (uVar13 < uVar20) {
-                uVar23 = uVar20 - uVar13;
-                if (uVar23 <= (ulonglong)(param_3[2] - (longlong)puVar4 >> 3)) {
-                  uVar13 = uVar23;
-                  if (uVar23 != 0) {
-                    for (; uVar13 != 0; uVar13 = uVar13 - 1) {
-                      *puVar4 = 0;
-                      puVar4 = puVar4 + 1;
+    // 局部变量声明
+    SystemFlag current_flag;
+    SystemDataBlock temp_data_block;
+    SystemHandlePtr temp_handle_ptr;
+    SystemDataBlock* data_block_ptr1;
+    SystemDataBlock* data_block_ptr2;
+    SystemDataBlock* data_block_ptr3;
+    SystemStringPtr string_ptr1;
+    SystemResult temp_result;
+    SystemStringPtr string_ptr2;
+    SystemHandle temp_handle1;
+    SystemHandle temp_handle2;
+    SystemHandlePtr handle_ptr1;
+    SystemSize temp_size;
+    SystemStringPtr string_ptr3;
+    SystemHandle temp_handle3;
+    SystemResourcePtr resource_ptr1;
+    SystemHandlePtr handle_ptr2;
+    SystemHandle temp_handle4;
+    SystemStringPtr string_ptr4;
+    SystemStringPtr string_ptr5;
+    SystemSize temp_size1;
+    SystemDataBlock* data_block_ptr4;
+    SystemSize temp_size2;
+    uint temp_uint;
+    int temp_int;
+    SystemParameter temp_param;
+    SystemHandle stack_handle1;
+    SystemResourcePtr stack_resource_ptr1;
+    SystemResourcePtr stack_resource_ptr2;
+    SystemParameter stack_param1;
+    SystemSize stack_size1;
+    SystemResourcePtr stack_resource_ptr3;
+    SystemDataBlock* stack_data_block_ptr1;
+    SystemParameter stack_param2;
+    SystemDataBlock stack_data_block1;
+    SystemHandlePtr stack_handle_ptr1;
+    SystemHandlePtr stack_handle_ptr2;
+    SystemHandlePtr stack_handle_ptr3;
+    SystemHandlePtr stack_handle_ptr4;
+    SystemHandlePtr stack_handle_ptr5;
+    SystemDataBlock stack_data_block2;
+    SystemDataBlock stack_data_block3;
+    SystemHandlePtr stack_handle_ptr6;
+    SystemHandlePtr stack_handle_ptr7;
+    SystemHandlePtr stack_handle_ptr8;
+    SystemHandlePtr stack_handle_ptr9;
+    SystemHandlePtr stack_handle_ptr10;
+    SystemDataBlock stack_data_block4;
+    SystemDataBlock stack_data_block5;
+    SystemHandlePtr stack_handle_ptr11;
+    SystemHandlePtr stack_handle_ptr12;
+    SystemHandlePtr stack_handle_ptr13;
+    SystemHandlePtr stack_handle_ptr14;
+    SystemHandlePtr stack_handle_ptr15;
+    SystemDataBlock stack_data_block6;
+    SystemDataBlock stack_data_block7;
+    SystemHandlePtr stack_handle_ptr16;
+    SystemHandlePtr stack_handle_ptr17;
+    
+    // 初始化系统变量
+    stack_data_block3 = SYSTEM_HANDLE_MASK;
+    temp_param = SYSTEM_NULL_POINTER;
+    temp_int = SYSTEM_NULL_POINTER;
+    temp_uint = SYSTEM_NULL_POINTER;
+    stack_handle1 = SYSTEM_NULL_POINTER;
+    
+    // 主处理循环
+    do {
+        string_ptr5 = *(SystemStringPtr*)(&UNK_180994200 + stack_handle1 * 8);
+        if (string_ptr5 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+            string_ptr4 = *(SystemStringPtr*)(param_4 + SYSTEM_FEATURE_OFFSET);
+            
+            // 处理配置数据
+            if (string_ptr4 != (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                handle_ptr1 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
+                handle_ptr2 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
+                
+                if (temp_uint == SYSTEM_MODE_NORMAL) {
+                    stack_resource_ptr1 = &UNK_180a3c3e0;
+                    stack_size1 = SYSTEM_NULL_POINTER;
+                    stack_resource_ptr2 = (SystemResourcePtr)SYSTEM_NULL_POINTER;
+                    stack_param1 = SYSTEM_NULL_POINTER;
+                    
+                    string_ptr5 = SYSTEM_NAME_IDENTIFIER;
+                    do {
+                        string_ptr2 = string_ptr5;
+                        string_ptr5 = string_ptr2 + 1;
+                    } while (*string_ptr5 != '\0');
+                    
+                    // 处理名称数据
+                    for (data_block_ptr1 = *(SystemDataBlock**)(string_ptr4 + SYSTEM_NAME_OFFSET); 
+                         data_block_ptr1 != (SystemDataBlock*)SYSTEM_NULL_POINTER;
+                         data_block_ptr1 = (SystemDataBlock*)data_block_ptr1[6]) {
+                        
+                        string_ptr5 = (SystemStringPtr)*data_block_ptr1;
+                        if (string_ptr5 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                            string_ptr5 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                            temp_handle_ptr = handle_ptr1;
+                        } else {
+                            temp_handle_ptr = (SystemHandlePtr)data_block_ptr1[2];
+                        }
+                        
+                        // 验证名称标识符
+                        if (temp_handle_ptr == (SystemHandlePtr)(string_ptr2 + (-0x180a03a83))) {
+                            string_ptr2 = string_ptr5 + (SystemHandle)temp_handle_ptr;
+                            if (string_ptr2 <= string_ptr5) {
+                                // 数据处理分支
+                                temp_handle3 = SYSTEM_INVALID_HANDLE;
+                                if (data_block_ptr1[1] != SYSTEM_NULL_POINTER) {
+                                    temp_handle3 = data_block_ptr1[1];
+                                }
+                                
+                                SystemDataProcessor(&stack_resource_ptr1, temp_handle3);
+                                break;
+                            }
+                            
+                            // 字符串比较
+                            temp_handle3 = (SystemHandle)&DAT_180a03a84 - (SystemHandle)string_ptr5;
+                            while (*string_ptr5 == string_ptr5[temp_handle3]) {
+                                string_ptr5 = string_ptr5 + 1;
+                                if (string_ptr2 <= string_ptr5) {
+                                    temp_handle3 = SYSTEM_INVALID_HANDLE;
+                                    if (data_block_ptr1[1] != SYSTEM_NULL_POINTER) {
+                                        temp_handle3 = data_block_ptr1[1];
+                                    }
+                                    
+                                    SystemDataProcessor(&stack_resource_ptr1, temp_handle3);
+                                    break;
+                                }
+                            }
+                        }
                     }
-                    puVar4 = (undefined8 *)param_3[1];
-                    puVar5 = (undefined8 *)*param_3;
-                  }
-                  puVar4 = puVar4 + uVar23;
-                  puVar6 = puVar5;
-                  goto LAB_1803bf352;
+                    
+                    // 数据管理处理
+                    temp_handle3 = SystemDataManager(_DAT_180c86930, &stack_resource_ptr1, 1);
+                    temp_data_block = _DAT_180c86930;
+                    
+                    if (temp_handle3 == SYSTEM_NULL_POINTER) {
+                        temp_handle3 = *(SystemHandle*)(_DAT_180c86898 + 0x2d8);
+                        if (temp_handle3 == SYSTEM_NULL_POINTER) {
+                            stack_resource_ptr3 = &UNK_180a3c3e0;
+                            stack_data_block1 = SYSTEM_NULL_POINTER;
+                            stack_data_block_ptr1 = (SystemDataBlock*)SYSTEM_NULL_POINTER;
+                            stack_param2 = SYSTEM_NULL_POINTER;
+                            
+                            data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, 0x10, 0x13);
+                            *(SystemFlag*)data_block_ptr1 = SYSTEM_NULL_POINTER;
+                            stack_data_block_ptr1 = data_block_ptr1;
+                            temp_param = SystemResourceCleaner(data_block_ptr1);
+                            stack_data_block1 = CONCAT44(stack_data_block1._4_4_, temp_param);
+                            
+                            *data_block_ptr1 = 0x5f64696c61766e69;
+                            *(SystemParameter*)(data_block_ptr1 + 1) = 0x6873656d;
+                            *(SystemFlag*)((SystemHandle)data_block_ptr1 + 0xc) = SYSTEM_NULL_POINTER;
+                            stack_param2 = 0xc;
+                            
+                            SystemDataManager(temp_data_block, &stack_resource_ptr3, 1);
+                            stack_resource_ptr3 = &UNK_180a3c3e0;
+                            
+                            // 警告: 子程序不返回
+                            SystemResourceCleaner(data_block_ptr1);
+                        }
+                        
+                        resource_ptr1 = &DAT_18098bc73;
+                        if (stack_resource_ptr2 != (SystemResourcePtr)SYSTEM_NULL_POINTER) {
+                            resource_ptr1 = stack_resource_ptr2;
+                        }
+                        
+                        SystemDataProcessor(&UNK_180a23ad0, resource_ptr1);
+                        
+                        if (param_3 == (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                            temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, SYSTEM_DATA_BLOCK_SIZE, 8, 0x16);
+                            handle_ptr2 = (SystemHandlePtr)SystemObjectCreator(temp_data_block);
+                            stack_handle_ptr15 = handle_ptr2;
+                            
+                            if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                            }
+                            
+                            SystemObjectManager(temp_handle3, handle_ptr2);
+                            
+                            if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                stack_handle_ptr10 = handle_ptr2;
+                                ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                            }
+                            
+                            stack_handle_ptr10 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
+                            temp_param = SYSTEM_NULL_POINTER;
+                            
+                            if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                ((code(**)(void))(*handle_ptr2 + 0x38))(handle_ptr2);
+                            }
+                        } else {
+                            temp_size1 = (param_2[1] - *param_2 >> 3) + 1;
+                            data_block_ptr2 = (SystemDataBlock*)param_3[1];
+                            data_block_ptr3 = (SystemDataBlock*)*param_3;
+                            temp_size = (SystemHandle)data_block_ptr2 - (SystemHandle)data_block_ptr3 >> 3;
+                            
+                            if (temp_size < temp_size1) {
+                                temp_size1 = temp_size1 - temp_size;
+                                
+                                if (temp_size1 <= (SystemSize)(param_3[2] - (SystemHandle)data_block_ptr2 >> 3)) {
+                                    temp_size = temp_size1;
+                                    
+                                    if (temp_size1 != SYSTEM_NULL_POINTER) {
+                                        for (; temp_size != SYSTEM_NULL_POINTER; temp_size = temp_size - 1) {
+                                            *data_block_ptr2 = SYSTEM_NULL_POINTER;
+                                            data_block_ptr2 = data_block_ptr2 + 1;
+                                        }
+                                        
+                                        data_block_ptr2 = (SystemDataBlock*)param_3[1];
+                                        data_block_ptr3 = (SystemDataBlock*)*param_3;
+                                    }
+                                    
+                                    data_block_ptr2 = data_block_ptr2 + temp_size1;
+                                    data_block_ptr1 = data_block_ptr3;
+                                    
+                                    // 设置数组边界
+                                    param_3[1] = (SystemHandle)data_block_ptr2;
+                                } else {
+                                    temp_size2 = temp_size * 2;
+                                    
+                                    if (temp_size == SYSTEM_NULL_POINTER) {
+                                        temp_size2 = 1;
+                                    }
+                                    
+                                    if (temp_size2 < temp_size1) {
+                                        temp_size2 = temp_size1;
+                                    }
+                                    
+                                    if (temp_size2 == SYSTEM_NULL_POINTER) {
+                                        data_block_ptr1 = (SystemDataBlock*)SYSTEM_NULL_POINTER;
+                                    } else {
+                                        data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, temp_size2 * 8);
+                                        data_block_ptr2 = (SystemDataBlock*)param_3[1];
+                                        data_block_ptr3 = (SystemDataBlock*)*param_3;
+                                    }
+                                    
+                                    if (data_block_ptr3 != data_block_ptr2) {
+                                        // 警告: 子程序不返回
+                                        memmove(data_block_ptr1, data_block_ptr3, (SystemHandle)data_block_ptr2 - (SystemHandle)data_block_ptr3);
+                                    }
+                                    
+                                    temp_size = temp_size1;
+                                    data_block_ptr2 = data_block_ptr1;
+                                    
+                                    if (temp_size1 != SYSTEM_NULL_POINTER) {
+                                        for (; temp_size != SYSTEM_NULL_POINTER; temp_size = temp_size - 1) {
+                                            *data_block_ptr2 = SYSTEM_NULL_POINTER;
+                                            data_block_ptr2 = data_block_ptr2 + 1;
+                                        }
+                                    }
+                                    
+                                    if (*param_3 != SYSTEM_NULL_POINTER) {
+                                        // 警告: 子程序不返回
+                                        SystemResourceCleaner();
+                                    }
+                                    
+                                    *param_3 = (SystemHandle)data_block_ptr1;
+                                    param_3[1] = (SystemHandle)(data_block_ptr1 + temp_size1);
+                                    param_3[2] = (SystemHandle)(data_block_ptr1 + temp_size2);
+                                }
+                            } else {
+                                data_block_ptr2 = data_block_ptr3 + temp_size1;
+                                data_block_ptr1 = data_block_ptr3;
+                                
+                                // 设置数组边界
+                                param_3[1] = (SystemHandle)data_block_ptr2;
+                            }
+                            
+                            data_block_ptr1[param_2[1] - *param_2 >> 3] = SYSTEM_NULL_POINTER;
+                        }
+                    } else {
+                        handle_ptr2 = *(SystemHandlePtr*)(temp_handle3 + 0x38);
+                        temp_handle4 = SYSTEM_NULL_POINTER;
+                        temp_result = (int)(*(SystemHandle*)(temp_handle3 + 0x40) - (SystemHandle)handle_ptr2 >> 4);
+                        
+                        if (SYSTEM_NULL_POINTER < temp_result) {
+                            do {
+                                if ((*(uint*)(*handle_ptr2 + 0x100) & SYSTEM_FLAG_MASK) != SYSTEM_NULL_POINTER) {
+                                    SystemSystemProcessor(temp_handle3, &stack_handle_ptr4);
+                                    temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, 200, 8, 3);
+                                    handle_ptr2 = (SystemHandlePtr)SystemAdvancedProcessor(temp_data_block, stack_handle_ptr4);
+                                    stack_handle_ptr14 = handle_ptr2;
+                                    
+                                    if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                        ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                                        stack_handle_ptr5 = handle_ptr2;
+                                        ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                                    }
+                                    
+                                    stack_handle_ptr5 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
+                                    
+                                    if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                        ((code(**)(void))(*handle_ptr2 + 0x38))(handle_ptr2);
+                                    }
+                                    
+                                    if (stack_handle_ptr4 == (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                        goto cleanup_section;
+                                    }
+                                    
+                                    temp_handle3 = *stack_handle_ptr4;
+                                    temp_handle_ptr = stack_handle_ptr4;
+                                    goto object_cleanup;
+                                }
+                                
+                                temp_handle4 = temp_handle4 + 1;
+                                handle_ptr2 = handle_ptr2 + 2;
+                            } while (temp_handle4 < temp_result);
+                        }
+                        
+                        if ((param_3 == (SystemHandlePtr)SYSTEM_NULL_POINTER) || (*(SystemHandle*)(string_ptr4 + SYSTEM_FEATURE_OFFSET) != SYSTEM_NULL_POINTER)) {
+                            // 配置处理分支
+                            if ((*(SystemHandle*)(param_1 + 0x18) == SYSTEM_NULL_POINTER) || (param_6 == '\0')) {
+                                temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, SYSTEM_DATA_BLOCK_SIZE, 8, 0x16);
+                                handle_ptr2 = (SystemHandlePtr)SystemObjectCreator(temp_data_block);
+                                stack_handle_ptr13 = handle_ptr2;
+                                
+                                if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                    ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                                }
+                                
+                                SystemObjectManager(handle_ptr2, param_5);
+                                
+                                if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                    stack_handle_ptr9 = handle_ptr2;
+                                    ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                                }
+                                
+                                stack_handle_ptr9 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
+                                
+                                if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                    temp_handle3 = *handle_ptr2;
+                                    temp_handle_ptr = handle_ptr2;
+                                    
+                                    object_cleanup:
+                                    ((code(**)(void))(temp_handle3 + 0x38))(temp_handle_ptr);
+                                }
+                            } else {
+                                temp_data_block = SystemSystemHandler(param_1, (int)(param_2[1] - *param_2 >> 3) + temp_int, temp_handle3,
+                                                                 *(SystemDataBlock*)(param_1 + 0x28));
+                                SystemDataTransfer(*(SystemDataBlock*)(param_1 + 0x20), temp_data_block);
+                                temp_int = temp_int + 1;
+                                handle_ptr2 = temp_handle_ptr;
+                            }
+                        } else {
+                            // 数据处理分支
+                            for (handle_ptr2 = *(SystemHandlePtr*)(string_ptr4 + SYSTEM_NAME_OFFSET); 
+                                 handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER;
+                                 handle_ptr2 = (SystemHandlePtr)handle_ptr2[6]) {
+                                
+                                temp_handle4 = SYSTEM_INVALID_HANDLE;
+                                if (*handle_ptr2 != SYSTEM_NULL_POINTER) {
+                                    temp_handle4 = *handle_ptr2;
+                                }
+                                
+                                temp_handle1 = SYSTEM_NULL_POINTER;
+                                do {
+                                    temp_handle2 = temp_handle1 + 1;
+                                    if (*(SystemFlag*)(temp_handle4 + temp_handle1) != (&DAT_180a03a84)[temp_handle1]) {
+                                        goto config_processing;
+                                    }
+                                    temp_handle1 = temp_handle2;
+                                } while (temp_handle2 != 5);
+                                
+                                if (handle_ptr2[4] == SYSTEM_NULL_POINTER) {
+                                    break;
+                                }
+                            }
+                            
+                            stack_data_block2 = SYSTEM_NULL_POINTER;
+                            SystemArrayOperator(param_3, (param_2[1] - *param_2 >> 3) + 1);
+                            
+                            *(SystemHandle*)(*param_3 + (param_2[1] - *param_2 >> 3) * 8) = temp_handle3;
+                            handle_ptr2 = temp_handle_ptr;
+                        }
+                    }
+                    
+                    cleanup_section:
+                    stack_resource_ptr1 = &UNK_180a3c3e0;
+                    
+                    if (stack_resource_ptr2 != (SystemResourcePtr)SYSTEM_NULL_POINTER) {
+                        // 警告: 子程序不返回
+                        SystemResourceCleaner();
+                    }
+                    
+                    stack_resource_ptr2 = (SystemResourcePtr)SYSTEM_NULL_POINTER;
+                    stack_size1 = stack_size1 & SYSTEM_ITERATION_MASK;
+                    stack_resource_ptr1 = &UNK_18098bcb0;
+                } else if (temp_uint == SYSTEM_MODE_FAST) {
+                    temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, SYSTEM_CONFIG_BLOCK_SIZE, 8, 3, 1, 0, temp_int, temp_param);
+                    handle_ptr2 = (SystemHandlePtr)SystemConfigProcessor(temp_data_block, string_ptr4);
+                    
+                    if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                        stack_handle_ptr8 = handle_ptr2;
+                        ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                    }
+                    
+                    stack_handle_ptr8 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
+                } else if (temp_uint == SYSTEM_MODE_DEBUG) {
+                    temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, 200, 8, 3, 3, 0, temp_int, temp_param);
+                    handle_ptr2 = (SystemHandlePtr)SystemAdvancedProcessor(temp_data_block, SYSTEM_NULL_POINTER);
+                    
+                    if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                        stack_handle_ptr7 = handle_ptr2;
+                        ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                    }
+                    
+                    stack_handle_ptr7 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
+                    ((code(**)(void))(*handle_ptr2 + 0x60))(handle_ptr2, string_ptr4);
+                } else if (temp_uint == SYSTEM_MODE_OPTIMIZED) {
+                    temp_data_block = SystemMemoryAllocator(_DAT_180c8ed18, 0x168, 8, 3, 4, 0, temp_int, temp_param);
+                    handle_ptr2 = (SystemHandlePtr)SystemManager(temp_data_block);
+                    stack_handle_ptr6 = handle_ptr2;
+                    
+                    if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                        ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                    }
+                    
+                    *(SystemFlag*)((SystemHandle)handle_ptr2 + SYSTEM_SIZE_OFFSET) = '\x01';
+                    SystemDataHandler(handle_ptr2, string_ptr4);
+                    
+                    stack_handle_ptr3 = handle_ptr2;
+                    ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                    
+                    stack_handle_ptr3 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
+                    ((code(**)(void))(*handle_ptr2 + 0x38))(handle_ptr2);
+                } else {
+                    handle_ptr2 = temp_handle_ptr;
+                    
+                    if (temp_uint == SYSTEM_MODE_LEGACY) {
+                        handle_ptr2 = (SystemHandlePtr)SystemMemoryAllocator(_DAT_180c8ed18, 0x298, 8, 0xd, 7, 0, temp_int, temp_param);
+                        
+                        *handle_ptr2 = (SystemHandle)&UNK_180a21690;
+                        *handle_ptr2 = (SystemHandle)&UNK_180a21720;
+                        *(SystemParameter*)(handle_ptr2 + 1) = SYSTEM_NULL_POINTER;
+                        *handle_ptr2 = (SystemHandle)&UNK_180a14860;
+                        *(SystemParameter*)(handle_ptr2 + 2) = 4;
+                        handle_ptr2[3] = SYSTEM_NULL_POINTER;
+                        handle_ptr2[4] = SYSTEM_NULL_POINTER;
+                        *(SystemParameter*)(handle_ptr2 + 1) = SYSTEM_NULL_POINTER;
+                        handle_ptr2[5] = SYSTEM_NULL_POINTER;
+                        *handle_ptr2 = (SystemHandle)&UNK_180a19770;
+                        handle_ptr2[0x11] = SYSTEM_NULL_POINTER;
+                        handle_ptr2[0x12] = SYSTEM_NULL_POINTER;
+                        handle_ptr2[0x13] = SYSTEM_NULL_POINTER;
+                        handle_ptr2[0x14] = SYSTEM_NULL_POINTER;
+                        
+                        stack_handle_ptr17 = handle_ptr2 + 0x27;
+                        *stack_handle_ptr17 = (SystemHandle)&UNK_18098bcb0;
+                        handle_ptr2[0x28] = SYSTEM_NULL_POINTER;
+                        *(SystemParameter*)(handle_ptr2 + 0x29) = SYSTEM_NULL_POINTER;
+                        *stack_handle_ptr17 = (SystemHandle)&UNK_180a3c3e0;
+                        handle_ptr2[0x2a] = SYSTEM_NULL_POINTER;
+                        handle_ptr2[0x28] = SYSTEM_NULL_POINTER;
+                        *(SystemParameter*)(handle_ptr2 + 0x29) = SYSTEM_NULL_POINTER;
+                        handle_ptr2[0x2b] = SYSTEM_NULL_POINTER;
+                        
+                        stack_handle_ptr16 = handle_ptr2;
+                        SystemInitializer(handle_ptr2);
+                        *(SystemParameter*)(handle_ptr2 + 1) = SYSTEM_NULL_POINTER;
+                        SystemHandler(handle_ptr2, string_ptr4);
+                        
+                        stack_handle_ptr12 = handle_ptr2;
+                        ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                        
+                        if ((SystemResourcePtr)*handle_ptr2 != &UNK_180a19770) {
+                            ((code(**)(void))((SystemResourcePtr)*handle_ptr2 + 0x160))(handle_ptr2);
+                        }
+                        
+                        *(SystemFlag*)(handle_ptr2 + 0x38) = '\x01';
+                        
+                        stack_handle_ptr11 = handle_ptr2;
+                        ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                        
+                        stack_handle_ptr11 = (SystemHandlePtr)SYSTEM_NULL_POINTER;
+                        ((code(**)(void))(*handle_ptr2 + 0x38))(handle_ptr2);
+                    }
                 }
-                uVar25 = uVar13 * 2;
-                if (uVar13 == 0) {
-                  uVar25 = 1;
+                
+                // 资源管理
+                data_block_ptr3 = (SystemDataBlock*)SYSTEM_NULL_POINTER;
+                data_block_ptr2 = (SystemDataBlock*)param_2[1];
+                
+                if (data_block_ptr2 < (SystemDataBlock*)param_2[2]) {
+                    param_2[1] = (SystemHandle)(data_block_ptr2 + 1);
+                    *data_block_ptr2 = (SystemHandle)handle_ptr2;
+                    
+                    if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                        ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                    }
+                } else {
+                    data_block_ptr1 = (SystemDataBlock*)*param_2;
+                    temp_handle3 = (SystemHandle)data_block_ptr2 - (SystemHandle)data_block_ptr1 >> 3;
+                    
+                    if (temp_handle3 == SYSTEM_NULL_POINTER) {
+                        temp_handle3 = 1;
+                        
+                        // 内存分配
+                        data_block_ptr4 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, temp_handle3 * 8);
+                        data_block_ptr2 = (SystemDataBlock*)param_2[1];
+                        data_block_ptr1 = (SystemDataBlock*)*param_2;
+                        data_block_ptr3 = data_block_ptr4;
+                    } else {
+                        temp_handle3 = temp_handle3 * 2;
+                        data_block_ptr3 = data_block_ptr4;
+                        
+                        if (temp_handle3 != SYSTEM_NULL_POINTER) {
+                            // 内存分配
+                            data_block_ptr4 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, temp_handle3 * 8);
+                            data_block_ptr2 = (SystemDataBlock*)param_2[1];
+                            data_block_ptr1 = (SystemDataBlock*)*param_2;
+                        }
+                    }
+                    
+                    // 数据迁移
+                    for (; data_block_ptr1 != data_block_ptr2; data_block_ptr1 = data_block_ptr1 + 1) {
+                        *data_block_ptr4 = *data_block_ptr1;
+                        *data_block_ptr1 = SYSTEM_NULL_POINTER;
+                        data_block_ptr4 = data_block_ptr4 + 1;
+                    }
+                    
+                    *data_block_ptr4 = (SystemHandle)handle_ptr2;
+                    
+                    if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                        ((code(**)(void))(*handle_ptr2 + 0x28))(handle_ptr2);
+                    }
+                    
+                    temp_handle_ptr = (SystemHandlePtr)param_2[1];
+                    temp_handle_ptr = (SystemHandlePtr)*param_2;
+                    
+                    if (temp_handle_ptr != temp_handle_ptr) {
+                        do {
+                            if ((SystemHandlePtr)*temp_handle_ptr != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                ((code(**)(void))(*(SystemHandlePtr)*temp_handle_ptr + 0x38))();
+                            }
+                            temp_handle_ptr = temp_handle_ptr + 1;
+                        } while (temp_handle_ptr != temp_handle_ptr);
+                        
+                        temp_handle_ptr = (SystemHandlePtr)*param_2;
+                    }
+                    
+                    if (temp_handle_ptr != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                        // 警告: 子程序不返回
+                        SystemResourceCleaner(temp_handle_ptr);
+                    }
+                    
+                    *param_2 = (SystemHandle)data_block_ptr3;
+                    param_2[1] = (SystemHandle)(data_block_ptr4 + 1);
+                    param_2[2] = (SystemHandle)(data_block_ptr3 + temp_handle3);
                 }
-                if (uVar25 < uVar20) {
-                  uVar25 = uVar20;
+                
+                // 输出数组处理
+                if ((param_3 != (SystemHandlePtr)SYSTEM_NULL_POINTER) && (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER)) {
+                    data_block_ptr2 = (SystemDataBlock*)param_3[1];
+                    
+                    if (data_block_ptr2 < (SystemDataBlock*)param_3[2]) {
+                        param_3[1] = (SystemHandle)(data_block_ptr2 + 1);
+                        *data_block_ptr2 = SYSTEM_NULL_POINTER;
+                    } else {
+                        data_block_ptr3 = (SystemDataBlock*)*param_3;
+                        temp_handle3 = (SystemHandle)data_block_ptr2 - (SystemHandle)data_block_ptr3 >> 3;
+                        
+                        if (temp_handle3 == SYSTEM_NULL_POINTER) {
+                            temp_handle3 = 1;
+                            
+                            // 内存分配
+                            data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, temp_handle3 * 8, (SystemFlag)param_3[3]);
+                            data_block_ptr2 = (SystemDataBlock*)param_3[1];
+                            data_block_ptr3 = (SystemDataBlock*)*param_3;
+                        } else {
+                            temp_handle3 = temp_handle3 * 2;
+                            
+                            if (temp_handle3 != SYSTEM_NULL_POINTER) {
+                                // 内存分配
+                                data_block_ptr1 = (SystemDataBlock*)SystemMemoryAllocator(_DAT_180c8ed18, temp_handle3 * 8, (SystemFlag)param_3[3]);
+                                data_block_ptr2 = (SystemDataBlock*)param_3[1];
+                                data_block_ptr3 = (SystemDataBlock*)*param_3;
+                            } else {
+                                data_block_ptr1 = (SystemDataBlock*)SYSTEM_NULL_POINTER;
+                            }
+                        }
+                        
+                        if (data_block_ptr3 != data_block_ptr2) {
+                            // 警告: 子程序不返回
+                            memmove(data_block_ptr1, data_block_ptr3, (SystemHandle)data_block_ptr2 - (SystemHandle)data_block_ptr3);
+                        }
+                        
+                        *data_block_ptr1 = SYSTEM_NULL_POINTER;
+                        
+                        if (*param_3 != SYSTEM_NULL_POINTER) {
+                            // 警告: 子程序不返回
+                            SystemResourceCleaner();
+                        }
+                        
+                        *param_3 = (SystemHandle)data_block_ptr1;
+                        param_3[1] = (SystemHandle)(data_block_ptr1 + 1);
+                        param_3[2] = (SystemHandle)(data_block_ptr1 + temp_handle3);
+                    }
                 }
-                if (uVar25 == 0) {
-                  puVar6 = (undefined8 *)0x0;
+                
+                // 字符串处理
+                string_ptr5 = *(SystemStringPtr*)(&UNK_180994200 + stack_handle1 * 8);
+                
+                if (string_ptr5 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                    string_ptr4 = *(SystemStringPtr*)(string_ptr4 + 0x58);
+                } else {
+                    current_flag = *string_ptr5;
+                    string_ptr2 = string_ptr5;
+                    
+                    while (current_flag != '\0') {
+                        string_ptr2 = string_ptr2 + 1;
+                        current_flag = *string_ptr2;
+                    }
+                    
+                    for (string_ptr2 = *(SystemStringPtr*)(string_ptr4 + 0x58); 
+                         string_ptr4 = (SystemStringPtr)SYSTEM_NULL_POINTER, string_ptr2 != (SystemStringPtr)SYSTEM_NULL_POINTER;
+                         string_ptr2 = *(SystemStringPtr*)(string_ptr2 + 0x58)) {
+                        
+                        string_ptr3 = *(SystemStringPtr*)string_ptr2;
+                        
+                        if (string_ptr3 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                            string_ptr3 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                            string_ptr1 = (SystemStringPtr)SYSTEM_NULL_POINTER;
+                        } else {
+                            string_ptr1 = *(SystemStringPtr*)(string_ptr2 + 0x10);
+                        }
+                        
+                        if (string_ptr1 == string_ptr2 + -(SystemHandle)string_ptr5) {
+                            string_ptr1 = string_ptr1 + (SystemHandle)string_ptr3;
+                            string_ptr4 = string_ptr2;
+                            
+                            if (string_ptr1 <= string_ptr3) {
+                                break;
+                            }
+                            
+                            temp_handle3 = (SystemHandle)string_ptr5 - (SystemHandle)string_ptr3;
+                            
+                            while (*string_ptr3 == string_ptr3[temp_handle3]) {
+                                string_ptr3 = string_ptr3 + 1;
+                                
+                                if (string_ptr1 <= string_ptr3) {
+                                    // 字符串匹配完成
+                                    if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                                        ((code(**)(void))(*handle_ptr2 + 0x38))(handle_ptr2);
+                                    }
+                                    
+                                    goto config_processing;
+                                }
+                            }
+                        }
+                    }
                 }
-                else {
-                  puVar6 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,uVar25 * 8);
-                  puVar4 = (undefined8 *)param_3[1];
-                  puVar5 = (undefined8 *)*param_3;
+                
+                // 对象清理
+                if (handle_ptr2 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                    ((code(**)(void))(*handle_ptr2 + 0x38))(handle_ptr2);
                 }
-                if (puVar5 != puVar4) {
-                    // WARNING: Subroutine does not return
-                  memmove(puVar6,puVar5,(longlong)puVar4 - (longlong)puVar5);
-                }
-                uVar13 = uVar23;
-                puVar4 = puVar6;
-                if (uVar23 != 0) {
-                  for (; uVar13 != 0; uVar13 = uVar13 - 1) {
-                    *puVar4 = 0;
-                    puVar4 = puVar4 + 1;
-                  }
-                }
-                if (*param_3 != 0) {
-                    // WARNING: Subroutine does not return
-                  FUN_18064e900();
-                }
-                *param_3 = (longlong)puVar6;
-                param_3[1] = (longlong)(puVar6 + uVar23);
-                param_3[2] = (longlong)(puVar6 + uVar25);
-              }
-              else {
-                puVar4 = puVar5 + uVar20;
-                puVar6 = puVar5;
-LAB_1803bf352:
-                param_3[1] = (longlong)puVar4;
-              }
-              puVar6[param_2[1] - *param_2 >> 3] = 0;
+                
+                config_processing:
+                goto config_data_processing;
             }
-          }
-          else {
-            plVar17 = *(longlong **)(lVar15 + 0x38);
-            lVar18 = 0;
-            iVar8 = (int)(*(longlong *)(lVar15 + 0x40) - (longlong)plVar17 >> 4);
-            if (0 < iVar8) {
-              do {
-                if ((*(uint *)(*plVar17 + 0x100) & 0x400000) != 0) {
-                  FUN_1802759e0(lVar15,&plStack_e0);
-                  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,200,8,3);
-                  plVar17 = (longlong *)FUN_18030b420(uVar2,plStack_e0);
-                  plStack_68 = plVar17;
-                  if (plVar17 != (longlong *)0x0) {
-                    (**(code **)(*plVar17 + 0x28))(plVar17);
-                    plStack_b8 = plVar17;
-                    (**(code **)(*plVar17 + 0x28))(plVar17);
-                  }
-                  plStack_b8 = (longlong *)0x0;
-                  if (plVar17 != (longlong *)0x0) {
-                    (**(code **)(*plVar17 + 0x38))(plVar17);
-                  }
-                  if (plStack_e0 == (longlong *)0x0) goto LAB_1803bf025;
-                  lVar15 = *plStack_e0;
-                  plVar12 = plStack_e0;
-                  goto LAB_1803bf01b;
+        } else {
+            current_flag = *string_ptr5;
+            string_ptr2 = string_ptr5;
+            
+            while (current_flag != '\0') {
+                string_ptr2 = string_ptr2 + 1;
+                current_flag = *string_ptr2;
+            }
+            
+            for (string_ptr4 = *(SystemStringPtr*)(param_4 + SYSTEM_FEATURE_OFFSET); 
+                 string_ptr4 != (SystemStringPtr)SYSTEM_NULL_POINTER;
+                 string_ptr4 = *(SystemStringPtr*)(string_ptr4 + 0x58)) {
+                
+                string_ptr2 = *(SystemStringPtr*)string_ptr4;
+                
+                if (string_ptr2 == (SystemStringPtr)SYSTEM_NULL_POINTER) {
+                    string_ptr2 = (SystemStringPtr)SYSTEM_INVALID_HANDLE;
+                    temp_handle3 = SYSTEM_NULL_POINTER;
+                } else {
+                    temp_handle3 = *(SystemHandle*)(string_ptr4 + 0x10);
                 }
-                lVar18 = lVar18 + 1;
-                plVar17 = plVar17 + 2;
-              } while (lVar18 < iVar8);
-            }
-            if ((param_3 == (longlong *)0x0) || (*(longlong *)(pcVar22 + 0x30) != 0)) {
-LAB_1803bf07e:
-              if ((*(longlong *)(param_1 + 0x18) == 0) || (param_6 == '\0')) {
-                uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x3d0,8,0x16);
-                plVar17 = (longlong *)FUN_180275370(uVar2,pcVar22);
-                plStack_60 = plVar17;
-                if (plVar17 != (longlong *)0x0) {
-                  (**(code **)(*plVar17 + 0x28))(plVar17);
+                
+                if (temp_handle3 == (SystemHandle)string_ptr2 - (SystemHandle)string_ptr5) {
+                    string_ptr3 = string_ptr2 + temp_handle3;
+                    
+                    if (string_ptr3 <= string_ptr2) {
+                        goto config_data_processing;
+                    }
+                    
+                    temp_handle3 = (SystemHandle)string_ptr5 - (SystemHandle)string_ptr2;
+                    
+                    while (*string_ptr2 == string_ptr2[temp_handle3]) {
+                        string_ptr2 = string_ptr2 + 1;
+                        
+                        if (string_ptr3 <= string_ptr2) {
+                            goto config_data_processing;
+                        }
+                    }
                 }
-                FUN_18027ba80(plVar17,param_5);
-                if (plVar17 != (longlong *)0x0) {
-                  plStack_a8 = plVar17;
-                  (**(code **)(*plVar17 + 0x28))(plVar17);
-                }
-                plStack_a8 = (longlong *)0x0;
-                if (plVar17 != (longlong *)0x0) {
-                  lVar15 = *plVar17;
-                  plVar12 = plVar17;
-LAB_1803bf01b:
-                  (**(code **)(lVar15 + 0x38))(plVar12);
-                }
-              }
-              else {
-                uVar2 = FUN_1802f3a80(param_1,(int)(param_2[1] - *param_2 >> 3) + iVar27,lVar15,
-                                      *(undefined8 *)(param_1 + 0x28));
-                FUN_180278870(*(undefined8 *)(param_1 + 0x20),uVar2);
-                iVar27 = iVar27 + 1;
-                plVar17 = plVar12;
-              }
             }
-            else {
-              for (plVar17 = *(longlong **)(pcVar22 + 0x40); plVar17 != (longlong *)0x0;
-                  plVar17 = (longlong *)plVar17[6]) {
-                lVar18 = 0x180d48d24;
-                if (*plVar17 != 0) {
-                  lVar18 = *plVar17;
-                }
-                lVar10 = 0;
-                do {
-                  lVar11 = lVar10 + 1;
-                  if (*(char *)(lVar18 + lVar10) != (&DAT_180a03a84)[lVar10]) goto LAB_1803bf07e;
-                  lVar10 = lVar11;
-                } while (lVar11 != 5);
-                if (plVar17[4] == 0) break;
-              }
-              uStack_b0 = 0;
-              FUN_1802f44a0(param_3,(param_2[1] - *param_2 >> 3) + 1);
-              *(longlong *)(*param_3 + (param_2[1] - *param_2 >> 3) * 8) = lVar15;
-              plVar17 = plVar12;
+        }
+        
+        temp_uint = temp_uint + 1;
+        stack_handle1 = stack_handle1 + 1;
+        
+        if (7 < temp_uint) {
+            if (param_3 != (SystemHandlePtr)SYSTEM_NULL_POINTER) {
+                stack_data_block4 = SYSTEM_NULL_POINTER;
+                SystemArrayOperator(param_3, param_2[1] - *param_2 >> 3, &stack_data_block4);
             }
-          }
-LAB_1803bf025:
-          puStack_120 = &UNK_180a3c3e0;
-          if (puStack_118 != (undefined *)0x0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900();
-          }
-          puStack_118 = (undefined *)0x0;
-          uStack_108 = uStack_108 & 0xffffffff00000000;
-          puStack_120 = &UNK_18098bcb0;
+            
+            return;
         }
-        else if (uVar26 == 1) {
-          uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x468,8,3,1,0,iVar27,uVar28);
-          plVar17 = (longlong *)FUN_1803dd330(uVar2,pcVar22);
-          if (plVar17 != (longlong *)0x0) {
-            plStack_c0 = plVar17;
-            (**(code **)(*plVar17 + 0x28))(plVar17);
-          }
-          plStack_c0 = (longlong *)0x0;
-        }
-        else if (uVar26 == 3) {
-          uVar2 = FUN_18062b1e0(_DAT_180c8ed18,200,8,3,3,0,iVar27,uVar28);
-          plVar17 = (longlong *)FUN_18030b420(uVar2,0);
-          if (plVar17 != (longlong *)0x0) {
-            plStack_c8 = plVar17;
-            (**(code **)(*plVar17 + 0x28))(plVar17);
-          }
-          plStack_c8 = (longlong *)0x0;
-          (**(code **)(*plVar17 + 0x60))(plVar17,pcVar22);
-        }
-        else if (uVar26 == 4) {
-          uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x168,8,3,4,0,iVar27,uVar28);
-          plVar17 = (longlong *)FUN_1802ac390(uVar2);
-          plStack_70 = plVar17;
-          if (plVar17 != (longlong *)0x0) {
-            (**(code **)(*plVar17 + 0x28))(plVar17);
-          }
-          *(char *)((longlong)plVar17 + 0x164) = '\x01';
-          FUN_1802ad110(plVar17,pcVar22);
-          plStack_d0 = plVar17;
-          (**(code **)(*plVar17 + 0x28))(plVar17);
-          plStack_d0 = (longlong *)0x0;
-          (**(code **)(*plVar17 + 0x38))(plVar17);
-        }
-        else {
-          plVar17 = plVar12;
-          if (uVar26 == 7) {
-            plVar17 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x298,8,0xd,7,0,iVar27,uVar28);
-            *plVar17 = (longlong)&UNK_180a21690;
-            *plVar17 = (longlong)&UNK_180a21720;
-            *(undefined4 *)(plVar17 + 1) = 0;
-            *plVar17 = (longlong)&UNK_180a14860;
-            *(undefined4 *)(plVar17 + 2) = 4;
-            plVar17[3] = 0;
-            plVar17[4] = 0;
-            *(undefined4 *)(plVar17 + 1) = 0;
-            plVar17[5] = 0;
-            *plVar17 = (longlong)&UNK_180a19770;
-            plVar17[0x11] = 0;
-            plVar17[0x12] = 0;
-            plVar17[0x13] = 0;
-            plVar17[0x14] = 0;
-            plStack_80 = plVar17 + 0x27;
-            *plStack_80 = (longlong)&UNK_18098bcb0;
-            plVar17[0x28] = 0;
-            *(undefined4 *)(plVar17 + 0x29) = 0;
-            *plStack_80 = (longlong)&UNK_180a3c3e0;
-            plVar17[0x2a] = 0;
-            plVar17[0x28] = 0;
-            *(undefined4 *)(plVar17 + 0x29) = 0;
-            plVar17[0x2b] = 0;
-            plStack_88 = plVar17;
-            FUN_1802f6100(plVar17);
-            *(undefined4 *)(plVar17 + 1) = 0;
-            FUN_1802f6cc0(plVar17,pcVar22);
-            plStack_78 = plVar17;
-            (**(code **)(*plVar17 + 0x28))(plVar17);
-            if ((undefined *)*plVar17 != &UNK_180a19770) {
-              (**(code **)((undefined *)*plVar17 + 0x160))(plVar17);
-            }
-            *(char *)(plVar17 + 0x38) = '\x01';
-            plStack_d8 = plVar17;
-            (**(code **)(*plVar17 + 0x28))(plVar17);
-            plStack_d8 = (longlong *)0x0;
-            (**(code **)(*plVar17 + 0x38))(plVar17);
-          }
-        }
-        puVar5 = (undefined8 *)0x0;
-        puVar4 = (undefined8 *)param_2[1];
-        if (puVar4 < (undefined8 *)param_2[2]) {
-          param_2[1] = (longlong)(puVar4 + 1);
-          *puVar4 = plVar17;
-          if (plVar17 != (longlong *)0x0) {
-            (**(code **)(*plVar17 + 0x28))(plVar17);
-          }
-        }
-        else {
-          puVar6 = (undefined8 *)*param_2;
-          lVar15 = (longlong)puVar4 - (longlong)puVar6 >> 3;
-          if (lVar15 == 0) {
-            lVar15 = 1;
-LAB_1803bf430:
-            puVar5 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar15 * 8);
-            puVar4 = (undefined8 *)param_2[1];
-            puVar6 = (undefined8 *)*param_2;
-            puVar24 = puVar5;
-          }
-          else {
-            lVar15 = lVar15 * 2;
-            puVar24 = puVar5;
-            if (lVar15 != 0) goto LAB_1803bf430;
-          }
-          for (; puVar6 != puVar4; puVar6 = puVar6 + 1) {
-            *puVar5 = *puVar6;
-            *puVar6 = 0;
-            puVar5 = puVar5 + 1;
-          }
-          *puVar5 = plVar17;
-          if (plVar17 != (longlong *)0x0) {
-            (**(code **)(*plVar17 + 0x28))(plVar17);
-          }
-          plVar12 = (longlong *)param_2[1];
-          plVar3 = (longlong *)*param_2;
-          if (plVar3 != plVar12) {
-            do {
-              if ((longlong *)*plVar3 != (longlong *)0x0) {
-                (**(code **)(*(longlong *)*plVar3 + 0x38))();
-              }
-              plVar3 = plVar3 + 1;
-            } while (plVar3 != plVar12);
-            plVar3 = (longlong *)*param_2;
-          }
-          if (plVar3 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-            FUN_18064e900(plVar3);
-          }
-          *param_2 = (longlong)puVar24;
-          param_2[1] = (longlong)(puVar5 + 1);
-          param_2[2] = (longlong)(puVar24 + lVar15);
-        }
-        if ((param_3 != (longlong *)0x0) && (plVar17 != (longlong *)0x0)) {
-          puVar4 = (undefined8 *)param_3[1];
-          if (puVar4 < (undefined8 *)param_3[2]) {
-            param_3[1] = (longlong)(puVar4 + 1);
-            *puVar4 = 0;
-          }
-          else {
-            puVar5 = (undefined8 *)*param_3;
-            lVar15 = (longlong)puVar4 - (longlong)puVar5 >> 3;
-            if (lVar15 == 0) {
-              lVar15 = 1;
-LAB_1803bf542:
-              puVar6 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar15 * 8,(char)param_3[3]);
-              puVar4 = (undefined8 *)param_3[1];
-              puVar5 = (undefined8 *)*param_3;
-            }
-            else {
-              lVar15 = lVar15 * 2;
-              if (lVar15 != 0) goto LAB_1803bf542;
-              puVar6 = (undefined8 *)0x0;
-            }
-            if (puVar5 != puVar4) {
-                    // WARNING: Subroutine does not return
-              memmove(puVar6,puVar5,(longlong)puVar4 - (longlong)puVar5);
-            }
-            *puVar6 = 0;
-            if (*param_3 != 0) {
-                    // WARNING: Subroutine does not return
-              FUN_18064e900();
-            }
-            *param_3 = (longlong)puVar6;
-            param_3[1] = (longlong)(puVar6 + 1);
-            param_3[2] = (longlong)(puVar6 + lVar15);
-          }
-        }
-        pcVar21 = *(char **)(&UNK_180994200 + lStack_128 * 8);
-        if (pcVar21 == (char *)0x0) {
-          pcVar22 = *(char **)(pcVar22 + 0x58);
-        }
-        else {
-          cVar1 = *pcVar21;
-          pcVar19 = pcVar21;
-          while (cVar1 != '\0') {
-            pcVar19 = pcVar19 + 1;
-            cVar1 = *pcVar19;
-          }
-          for (pcVar9 = *(char **)(pcVar22 + 0x58); pcVar22 = (char *)0x0, pcVar9 != (char *)0x0;
-              pcVar9 = *(char **)(pcVar9 + 0x58)) {
-            pcVar14 = *(char **)pcVar9;
-            if (pcVar14 == (char *)0x0) {
-              pcVar14 = (char *)0x180d48d24;
-              pcVar7 = (char *)0x0;
-            }
-            else {
-              pcVar7 = *(char **)(pcVar9 + 0x10);
-            }
-            if (pcVar7 == pcVar19 + -(longlong)pcVar21) {
-              pcVar7 = pcVar7 + (longlong)pcVar14;
-              pcVar22 = pcVar9;
-              if (pcVar7 <= pcVar14) break;
-              lVar15 = (longlong)pcVar21 - (longlong)pcVar14;
-              while (*pcVar14 == pcVar14[lVar15]) {
-                pcVar14 = pcVar14 + 1;
-                if (pcVar7 <= pcVar14) goto LAB_1803bf644;
-              }
-            }
-          }
-        }
-LAB_1803bf644:
-        if (plVar17 != (longlong *)0x0) {
-          (**(code **)(*plVar17 + 0x38))(plVar17);
-        }
-        goto joined_r0x0001803beb6b;
-      }
-    }
-    else {
-      cVar1 = *pcVar21;
-      pcVar19 = pcVar21;
-      while (cVar1 != '\0') {
-        pcVar19 = pcVar19 + 1;
-        cVar1 = *pcVar19;
-      }
-      for (pcVar22 = *(char **)(param_4 + 0x30); pcVar22 != (char *)0x0;
-          pcVar22 = *(char **)(pcVar22 + 0x58)) {
-        pcVar9 = *(char **)pcVar22;
-        if (pcVar9 == (char *)0x0) {
-          pcVar9 = (char *)0x180d48d24;
-          lVar15 = 0;
-        }
-        else {
-          lVar15 = *(longlong *)(pcVar22 + 0x10);
-        }
-        if (lVar15 == (longlong)pcVar19 - (longlong)pcVar21) {
-          pcVar14 = pcVar9 + lVar15;
-          if (pcVar14 <= pcVar9) goto joined_r0x0001803beb6b;
-          lVar15 = (longlong)pcVar21 - (longlong)pcVar9;
-          while (*pcVar9 == pcVar9[lVar15]) {
-            pcVar9 = pcVar9 + 1;
-            if (pcVar14 <= pcVar9) goto joined_r0x0001803beb6b;
-          }
-        }
-      }
-    }
-    uVar26 = uVar26 + 1;
-    lStack_128 = lStack_128 + 1;
-    if (7 < uVar26) {
-      if (param_3 != (longlong *)0x0) {
-        uStack_98 = 0;
-        FUN_1802f44a0(param_3,param_2[1] - *param_2 >> 3,&uStack_98);
-      }
-      return;
-    }
-  } while( true );
+    } while (true);
+    
+    config_data_processing:
+    // 配置数据处理完成
 }
 
 

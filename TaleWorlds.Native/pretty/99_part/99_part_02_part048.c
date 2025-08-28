@@ -1,3 +1,5 @@
+#include "TaleWorlds.Native.Split.h"
+
 /**
  * 99_part_02_part048.c - 系统级数据处理和内存管理模块
  * 
@@ -119,55 +121,6 @@ typedef struct {
 } DataProcessor;
 
 /*============================================================================
-  枚举定义
-============================================================================*/
-
-/**
- * 容器状态枚举
- * 定义容器的各种状态
- */
-typedef enum {
-    CONTAINER_STATE_EMPTY = 0,     /* 空容器状态 */
-    CONTAINER_STATE_ACTIVE = 1,    /* 活动状态 */
-    CONTAINER_STATE_FULL = 2,      /* 满状态 */
-    CONTAINER_STATE_EXPANDING = 3, /* 扩容中状态 */
-    CONTAINER_STATE_ERROR = 4      /* 错误状态 */
-} ContainerState;
-
-/**
- * 内存分配状态枚举
- * 定义内存分配的各种状态
- */
-typedef enum {
-    MEMORY_STATE_FREE = 0,         /* 空闲状态 */
-    MEMORY_STATE_ALLOCATED = 1,    /* 已分配状态 */
-    MEMORY_STATE_LOCKED = 2,       /* 锁定状态 */
-    MEMORY_STATE_CORRUPTED = 3     /* 损坏状态 */
-} MemoryState;
-
-/**
- * 哈希表操作类型枚举
- * 定义哈希表的操作类型
- */
-typedef enum {
-    HASH_OPERATION_INSERT = 0,     /* 插入操作 */
-    HASH_OPERATION_FIND = 1,       /* 查找操作 */
-    HASH_OPERATION_DELETE = 2,     /* 删除操作 */
-    HASH_OPERATION_UPDATE = 3      /* 更新操作 */
-} HashOperationType;
-
-/**
- * 数组操作类型枚举
- * 定义数组的操作类型
- */
-typedef enum {
-    ARRAY_OPERATION_APPEND = 0,    /* 追加操作 */
-    ARRAY_OPERATION_INSERT = 1,    /* 插入操作 */
-    ARRAY_OPERATION_REMOVE = 2,    /* 删除操作 */
-    ARRAY_OPERATION_CLEAR = 3      /* 清空操作 */
-} ArrayOperationType;
-
-/*============================================================================
   全局变量声明
 ============================================================================*/
 
@@ -218,34 +171,6 @@ static uint32_t g_system_flags = 0;
 #define pointer_offset_calculator     FUN_1801ba6f6
 #define system_empty_function_4       FUN_1801ba708
 
-/* 美化函数别名定义 */
-#define SystemContainer_ProcessData         container_data_processor
-#define SystemContainer_EmptyFunction1      system_empty_function_1
-#define SystemContainer_Clean              container_cleaner
-#define SystemMemory_CleanManager          memory_manager_cleaner
-#define SystemMemory_CleanBlock           memory_block_cleaner
-#define SystemArray_Initialize             array_initializer
-#define SystemHash_AllocateTable           hash_table_allocator
-#define SystemMemory_AllocateBlock         memory_block_allocator
-#define SystemContainer_EmptyFunction2      system_empty_function_2
-#define SystemHash_Lookup                  hash_table_lookup
-#define SystemContainer_Expand             container_expander
-#define SystemContainer_Reallocate         container_reallocator
-#define System_ErrorHandler                system_error_handler
-#define SystemArray_Reallocate12Byte       array_reallocator_12byte
-#define SystemArray_Reallocate52Byte       array_reallocator_52byte
-#define SystemArray_Reallocate1056Byte     array_reallocator_1056byte
-#define SystemArray_Reallocate188Byte      array_reallocator_188byte
-#define SystemArray_Clean                  array_cleaner
-#define SystemHash_FindEntry               hash_table_entry_finder
-#define SystemContainer_Iterate            container_iterator
-#define SystemArray_RemoveElement          array_element_remover
-#define SystemArray_MoveElement            array_element_mover
-#define SystemArray_Expand                 array_expander
-#define SystemContainer_EmptyFunction3      system_empty_function_3
-#define SystemPointer_CalculateOffset      pointer_offset_calculator
-#define SystemContainer_EmptyFunction4      system_empty_function_4
-
 /*============================================================================
   核心函数实现
 ============================================================================*/
@@ -268,14 +193,8 @@ static uint32_t g_system_flags = 0;
  * 技术说明：
  * 该函数是容器数据处理的核心函数，负责处理容器中的数据元素。
  * 使用双重循环结构处理二维数据，支持动态扩容和数据验证。
- * 
- * 实现细节：
- * - 使用双重循环处理容器数据
- * - 支持动态内存分配和数据迁移
- * - 实现数据验证和错误处理
- * - 优化数据访问模式
  */
-void SystemContainer_ProcessData(int param_1, int param_2, undefined8 param_3, longlong *param_4)
+void container_data_processor(int param_1, int param_2, undefined8 param_3, longlong *param_4)
 {
     longlong lVar1;
     longlong *plVar2;
@@ -358,7 +277,7 @@ LAB_1801b9874:
  * 技术说明：
  * 该函数为系统空函数，主要用于接口兼容性和占位用途。
  */
-void SystemContainer_EmptyFunction1(void)
+void system_empty_function_1(void)
 {
     return;
 }
@@ -378,14 +297,8 @@ void SystemContainer_EmptyFunction1(void)
  * 技术说明：
  * 该函数负责清理容器中的所有数据，包括释放内存和重置状态。
  * 使用双重循环结构处理二维容器数据。
- * 
- * 实现细节：
- * - 遍历容器中的所有元素
- * - 释放每个元素的内存资源
- * - 重置容器的状态和指针
- * - 确保内存安全释放
  */
-void SystemContainer_Clean(longlong *param_1)
+void container_cleaner(longlong *param_1)
 {
     longlong *plVar1;
     int iVar2;
@@ -438,14 +351,8 @@ void SystemContainer_Clean(longlong *param_1)
  * 
  * 技术说明：
  * 该函数负责清理内存管理器中的所有内存资源，包括内存池和相关数据结构。
- * 
- * 实现细节：
- * - 检查内存管理器指针的有效性
- * - 释放内存池和相关资源
- * - 重置内存管理器状态
- * - 确保线程安全的清理操作
  */
-void SystemMemory_CleanManager(void)
+void memory_manager_cleaner(void)
 {
     longlong *plVar1;
     longlong unaff_RBX;
@@ -481,13 +388,8 @@ void SystemMemory_CleanManager(void)
  * 
  * 技术说明：
  * 该函数负责清理指定的内存块，将内存区域重置为初始状态。
- * 
- * 实现细节：
- * - 重置内存块的各个指针字段
- * - 清理内存块的状态信息
- * - 确保内存块处于安全状态
  */
-void SystemMemory_CleanBlock(void)
+void memory_block_cleaner(void)
 {
     longlong unaff_RBX;
     undefined8 unaff_RSI;
@@ -514,14 +416,8 @@ void SystemMemory_CleanBlock(void)
  * 技术说明：
  * 该函数负责初始化数组数据结构，包括内存分配和状态设置。
  * 支持最大1024个元素的数组初始化。
- * 
- * 实现细节：
- * - 遍历数组中的所有元素
- * - 初始化每个元素的指针为NULL
- * - 确保数组处于安全的初始状态
- * - 支持大容量数组的初始化
  */
-void SystemArray_Initialize(longlong param_1)
+void array_initializer(longlong param_1)
 {
     longlong lVar1;
     uint uVar2;
@@ -558,14 +454,8 @@ void SystemArray_Initialize(longlong param_1)
  * 技术说明：
  * 该函数负责为哈希表分配内存空间，支持动态扩容和线程安全操作。
  * 使用页面对齐的内存分配策略。
- * 
- * 实现细节：
- * - 实现线程安全的内存分配
- * - 使用页面对齐的内存分配策略
- * - 支持动态扩容和内存管理
- * - 处理内存分配失败的情况
  */
-uint SystemHash_AllocateTable(uint *param_1, int param_2)
+uint hash_table_allocator(uint *param_1, int param_2)
 {
     uint uVar1;
     longlong lVar2;
@@ -642,14 +532,8 @@ uint SystemHash_AllocateTable(uint *param_1, int param_2)
  * 
  * 技术说明：
  * 该函数负责分配内存块，支持线程安全的内存分配和初始化操作。
- * 
- * 实现细节：
- * - 实现线程安全的内存分配机制
- * - 使用高效的内存分配策略
- * - 支持大块内存的分配
- * - 处理内存分配失败的情况
  */
-undefined4 SystemMemory_AllocateBlock(longlong param_1)
+undefined4 memory_block_allocator(longlong param_1)
 {
     longlong *plVar1;
     longlong in_RAX;
@@ -720,7 +604,7 @@ undefined4 SystemMemory_AllocateBlock(longlong param_1)
  * 技术说明：
  * 该函数为系统空函数，主要用于接口兼容性和占位用途。
  */
-undefined4 SystemContainer_EmptyFunction2(void)
+undefined4 system_empty_function_2(void)
 {
     undefined4 unaff_R12D;
     
@@ -742,14 +626,8 @@ undefined4 SystemContainer_EmptyFunction2(void)
  * 
  * 技术说明：
  * 该函数负责在哈希表中查找指定的键值，支持动态内存分配和线程安全操作。
- * 
- * 实现细节：
- * - 实现64位哈希算法
- * - 支持动态内存分配
- * - 使用线程安全的查找机制
- * - 处理哈希冲突和查找失败的情况
  */
-char SystemHash_Lookup(longlong param_1, int param_2)
+char hash_table_lookup(longlong param_1, int param_2)
 {
     longlong *plVar1;
     char *pcVar2;
@@ -809,14 +687,8 @@ char SystemHash_Lookup(longlong param_1, int param_2)
  * 技术说明：
  * 该函数负责扩展容器容量，支持动态扩容和数据迁移操作。
  * 使用指数扩容策略以提高性能。
- * 
- * 实现细节：
- * - 使用指数扩容策略
- * - 实现数据的安全迁移
- * - 支持多种数据类型的扩容
- * - 处理内存分配失败的情况
  */
-longlong * SystemContainer_Expand(longlong *param_1, longlong *param_2, undefined8 param_3, undefined8 param_4)
+longlong * container_expander(longlong *param_1, longlong *param_2, undefined8 param_3, undefined8 param_4)
 {
     uint uVar1;
     longlong lVar2;
@@ -955,14 +827,8 @@ LAB_1801b9d0f:
  * 
  * 技术说明：
  * 该函数负责重新分配容器内存，支持动态调整容器大小。
- * 
- * 实现细节：
- * - 计算新的容器大小
- * - 分配新的内存空间
- * - 迁移现有数据到新位置
- * - 释放旧的内存空间
  */
-void SystemContainer_Reallocate(undefined8 param_1, undefined8 param_2, longlong param_3)
+void container_reallocator(undefined8 param_1, undefined8 param_2, longlong param_3)
 {
     longlong lVar1;
     longlong lVar2;
@@ -1026,13 +892,8 @@ LAB_1801b9d0f:
  * 
  * 技术说明：
  * 该函数负责处理系统错误，执行错误恢复和资源清理操作。
- * 
- * 实现细节：
- * - 调用系统错误处理函数
- * - 执行资源清理操作
- * - 确保系统状态的完整性
  */
-void System_ErrorHandler(void)
+void system_error_handler(void)
 {
     // WARNING: Subroutine does not return
     FUN_18064e900();
@@ -1055,14 +916,8 @@ void System_ErrorHandler(void)
  * 
  * 技术说明：
  * 该函数负责重分配12字节元素的数组，支持动态调整数组大小。
- * 
- * 实现细节：
- * - 计算新的数组大小
- * - 分配新的内存空间
- * - 迁移现有数据
- * - 释放旧的内存空间
  */
-void SystemArray_Reallocate12Byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void array_reallocator_12byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
     uint uVar1;
     longlong lVar2;
@@ -1118,14 +973,8 @@ void SystemArray_Reallocate12Byte(longlong *param_1, undefined8 param_2, undefin
  * 
  * 技术说明：
  * 该函数负责重分配52字节元素的数组，支持动态调整数组大小。
- * 
- * 实现细节：
- * - 计算新的数组大小
- * - 分配新的内存空间
- * - 迁移现有数据
- * - 释放旧的内存空间
  */
-void SystemArray_Reallocate52Byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void array_reallocator_52byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
     uint uVar1;
     longlong lVar2;
@@ -1180,14 +1029,8 @@ void SystemArray_Reallocate52Byte(longlong *param_1, undefined8 param_2, undefin
  * 
  * 技术说明：
  * 该函数负责重分配1056字节元素的数组，支持动态调整数组大小和数据迁移。
- * 
- * 实现细节：
- * - 计算新的数组大小
- * - 分配新的内存空间
- * - 迁移现有数据（包括复杂数据结构）
- * - 释放旧的内存空间
  */
-void SystemArray_Reallocate1056Byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void array_reallocator_1056byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
     longlong *plVar1;
     int *piVar2;
@@ -1315,14 +1158,8 @@ void SystemArray_Reallocate1056Byte(longlong *param_1, undefined8 param_2, undef
  * 
  * 技术说明：
  * 该函数负责重分配188字节元素的数组，支持动态调整数组大小。
- * 
- * 实现细节：
- * - 计算新的数组大小
- * - 分配新的内存空间
- * - 迁移现有数据
- * - 释放旧的内存空间
  */
-void SystemArray_Reallocate188Byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void array_reallocator_188byte(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
     uint uVar1;
     longlong lVar2;
@@ -1374,14 +1211,8 @@ void SystemArray_Reallocate188Byte(longlong *param_1, undefined8 param_2, undefi
  * 
  * 技术说明：
  * 该函数负责清理数组数据，包括释放内存和重置状态。
- * 
- * 实现细节：
- * - 遍历数组中的所有元素
- * - 释放每个元素的内存资源
- * - 重置数组的状态和指针
- * - 确保内存安全释放
  */
-void SystemArray_Clean(longlong param_1)
+void array_cleaner(longlong param_1)
 {
     longlong lVar1;
     undefined8 *puVar2;
@@ -1428,14 +1259,8 @@ void SystemArray_Clean(longlong param_1)
  * 
  * 技术说明：
  * 该函数负责在哈希表中查找条目，使用64位哈希算法进行快速查找。
- * 
- * 实现细节：
- * - 实现64位FNV-1a哈希算法
- * - 支持动态哈希表大小
- * - 处理哈希冲突
- * - 返回查找结果的位置信息
  */
-longlong * SystemHash_FindEntry(longlong param_1, longlong *param_2, longlong param_3)
+longlong * hash_table_entry_finder(longlong param_1, longlong *param_2, longlong param_3)
 {
     byte bVar1;
     ulonglong uVar2;
@@ -1490,14 +1315,8 @@ longlong * SystemHash_FindEntry(longlong param_1, longlong *param_2, longlong pa
  * 
  * 技术说明：
  * 该函数负责迭代容器中的元素，执行清理和资源释放操作。
- * 
- * 实现细节：
- * - 遍历容器中的所有元素
- * - 对每个元素执行清理操作
- * - 支持回调函数机制
- * - 确保资源的安全释放
  */
-void SystemContainer_Iterate(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+void container_iterator(longlong *param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
     longlong *plVar1;
     longlong *plVar2;
@@ -1535,14 +1354,8 @@ void SystemContainer_Iterate(longlong *param_1, undefined8 param_2, undefined8 p
  * 
  * 技术说明：
  * 该函数负责从数组中移除指定元素，支持动态调整数组大小。
- * 
- * 实现细节：
- * - 查找要移除的元素
- * - 移动数组元素以填补空缺
- * - 动态调整数组大小
- * - 处理内存分配和释放
  */
-void SystemArray_RemoveElement(ulonglong *param_1, longlong param_2)
+void array_element_remover(ulonglong *param_1, longlong param_2)
 {
     ulonglong uVar1;
     ulonglong uVar2;
@@ -1635,14 +1448,8 @@ void SystemArray_RemoveElement(ulonglong *param_1, longlong param_2)
  * 
  * 技术说明：
  * 该函数负责移动数组元素，支持动态调整数组结构和大小。
- * 
- * 实现细节：
- * - 移动数组元素到指定位置
- * - 动态调整数组大小
- * - 处理内存分配和释放
- * - 确保数据完整性
  */
-void SystemArray_MoveElement(int param_1, undefined8 param_2, longlong param_3, int param_4)
+void array_element_mover(int param_1, undefined8 param_2, longlong param_3, int param_4)
 {
     longlong lVar1;
     ulonglong uVar2;
@@ -1719,14 +1526,8 @@ void SystemArray_MoveElement(int param_1, undefined8 param_2, longlong param_3, 
  * 
  * 技术说明：
  * 该函数负责扩展数组容量，支持动态扩容和内存重分配。
- * 
- * 实现细节：
- * - 计算新的数组容量
- * - 分配新的内存空间
- * - 迁移现有数据
- * - 释放旧的内存空间
  */
-void SystemArray_Expand(longlong param_1, ulonglong param_2)
+void array_expander(longlong param_1, ulonglong param_2)
 {
     longlong in_RAX;
     longlong *unaff_RBX;
@@ -1793,7 +1594,7 @@ void SystemArray_Expand(longlong param_1, ulonglong param_2)
  * 技术说明：
  * 该函数为系统空函数，主要用于接口兼容性和占位用途。
  */
-void SystemContainer_EmptyFunction3(void)
+void system_empty_function_3(void)
 {
     longlong unaff_RBX;
     undefined8 unaff_RSI;
@@ -1824,13 +1625,8 @@ void SystemContainer_EmptyFunction3(void)
  * 
  * 技术说明：
  * 该函数负责计算指针偏移量，支持指针运算和地址计算。
- * 
- * 实现细节：
- * - 计算指针偏移量
- * - 更新指针值
- * - 确保指针运算的安全性
  */
-void SystemPointer_CalculateOffset(longlong param_1, undefined8 param_2, undefined8 param_3, longlong param_4)
+void pointer_offset_calculator(longlong param_1, undefined8 param_2, undefined8 param_3, longlong param_4)
 {
     longlong unaff_RBX;
     
@@ -1853,7 +1649,7 @@ void SystemPointer_CalculateOffset(longlong param_1, undefined8 param_2, undefin
  * 技术说明：
  * 该函数为系统空函数，主要用于接口兼容性和占位用途。
  */
-void SystemContainer_EmptyFunction4(void)
+void system_empty_function_4(void)
 {
     return;
 }
@@ -1912,20 +1708,6 @@ void SystemContainer_EmptyFunction4(void)
  * - 使用缓存友好的数据结构布局
  * - 实现延迟释放提高内存利用率
  * - 使用位运算优化哈希计算
- * 
- * 代码结构：
- * - 模块包含20个核心函数
- * - 每个函数都有详细的功能说明和技术实现细节
- * - 使用统一的命名规范和代码风格
- * - 提供完整的错误处理机制
- * - 支持多种数据类型和操作模式
- * 
- * 维护性设计：
- * - 清晰的模块划分和函数组织
- * - 详细的代码注释和文档
- * - 统一的错误处理和日志记录
- * - 模块化的设计便于维护和扩展
- * - 支持单元测试和集成测试
  */
 
 /*============================================================================
