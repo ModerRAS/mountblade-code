@@ -805,7 +805,7 @@ LAB_1801b9d0f:
     lVar5 = *param_1;
     if (lVar5 != lVar2) {
         do {
-            FUN_18014c7d0(lVar5);
+            data_cleaner(lVar5);
             lVar5 = lVar5 + 0x88;
         } while (lVar5 != lVar2);
         lVar5 = *param_1;
@@ -873,7 +873,7 @@ LAB_1801b9d0f:
     lVar5 = *unaff_RDI;
     if (lVar5 != lVar1) {
         do {
-            FUN_18014c7d0(lVar5);
+            data_cleaner(lVar5);
             lVar5 = lVar5 + 0x88;
         } while (lVar5 != lVar1);
         lVar5 = *unaff_RDI;
