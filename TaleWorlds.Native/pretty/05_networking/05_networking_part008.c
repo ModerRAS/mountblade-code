@@ -1187,8 +1187,22 @@ LAB_18084af88:
 
 
 
-// WARNING: Type propagation algorithm not settling
-
+/**
+ * 网络状态检查器内部函数
+ * 
+ * 内部使用的网络状态检查函数
+ * 执行详细的状态验证和报告
+ * 
+ * @param param_1 检查目标
+ * @return 状态码或错误码
+ * 
+ * 功能特点：
+ * - 内部状态检查
+ * - 详细验证
+ * - 错误码返回
+ * - 状态报告
+ * - 性能监控
+ */
 ulonglong FUN_18084afc0(undefined8 param_1)
 
 {
@@ -1232,6 +1246,23 @@ ulonglong FUN_18084afc0(undefined8 param_1)
 
 
 
+/**
+ * 网络连接初始化器内部函数
+ * 
+ * 内部使用的连接初始化函数
+ * 执行底层连接建立和配置
+ * 
+ * @param param_1 连接参数
+ * @param param_2 连接上下文
+ * @return 初始化结果
+ * 
+ * 功能特点：
+ * - 底层初始化
+ * - 连接建立
+ * - 参数配置
+ * - 错误处理
+ * - 资源分配
+ */
 undefined8 FUN_18084b015(undefined8 param_1,longlong param_2)
 
 {
