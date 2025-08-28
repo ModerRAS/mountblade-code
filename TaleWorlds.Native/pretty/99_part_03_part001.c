@@ -94,16 +94,16 @@
 // 系统配置字符串
 #define system_config_string_1 system_config_dash_string      // 系统配置字符串1
 #define system_config_string_2 system_config_shares_string      // 系统配置字符串2
-#define system_config_string_3 UNK_180a0ce70      // 系统配置字符串3
-#define system_config_string_4 UNK_180a0cf50      // 系统配置字符串4
+#define system_config_string_3 system_config_shared_cache_string      // 系统配置字符串3
+#define system_config_string_4 system_config_render_data_string      // 系统配置字符串4
 
 // 系统安全常量
 #define system_stack_cookie _DAT_180bf00a8        // 系统栈cookie（用于安全检查）
-#define system_null_ptr UNK_180a3c3e0             // 系统空指针
+#define system_null_ptr system_null_data_ptr             // 系统空指针
 #define system_alt_null_ptr UNK_18098bcb0          // 系统备用空指针
 
 // 系统数据结构指针
-#define data_structure_vtable_cleanup UNK_180a3c3e0 // 数据结构虚表清理指针
+#define data_structure_vtable_cleanup system_null_data_ptr // 数据结构虚表清理指针
 #define data_structure_vtable_reset UNK_18098bcb0  // 数据结构虚表重置指针
 
 // 系统验证和配置常量

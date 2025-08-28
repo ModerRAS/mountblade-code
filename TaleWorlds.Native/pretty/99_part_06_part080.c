@@ -662,61 +662,88 @@ void SystemResourceCleaner_CleanupAndUnload(longlong *resourceContext, uint64_t 
   uint8_t resourceData [136];
   ulonglong securityChecksum;
   
-  uStack_160 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_1a8;
-  puStack_e8 = &UNK_1809fcc28;
-  puStack_e0 = auStack_d0;
-  auStack_d0[0] = 0;
-  uStack_d8 = 0xc;
-  strcpy_s(auStack_d0,0x80,&DAT_180a0eb68);
-  puVar3 = &DAT_18098bc73;
-  if ((void *)param_1[3] != (void *)0x0) {
-    puVar3 = (void *)param_1[3];
+  /* 初始化安全检查和内存管理 */
+  memoryFlags = 0xfffffffffffffffe;
+  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  resourceManager = &ResourceManager_DefaultHandler;
+  resourceCache = resourceData;
+  resourceData[0] = 0;
+  resourceHash = 0xc;
+  
+  /* 设置清理标识符 */
+  strcpy_s(resourceData, 0x80, &CleanupIdentifier_Default);
+  resourceName = &ResourceName_Default;
+  
+  /* 获取资源名称 */
+  if ((void *)resourceContext[3] != (void *)0x0) {
+    resourceName = (void *)resourceContext[3];
   }
-  lVar2 = -1;
+  
+  /* 计算资源名称长度 */
+  resourceSize = -1;
   do {
-    lVar2 = lVar2 + 1;
-  } while (puVar3[lVar2] != '\0');
-  iVar1 = (int)lVar2;
-  if ((0 < iVar1) && (uStack_d8 + iVar1 < 0x7f)) {
-                    // WARNING: Subroutine does not return
-    memcpy(puStack_e0 + uStack_d8,puVar3,(longlong)(iVar1 + 1));
+    resourceSize = resourceSize + 1;
+  } while (resourceName[resourceSize] != '\0');
+  resourceCount = (int)resourceSize;
+  
+  /* 复制资源名称到缓存（如果空间足够） */
+  if ((0 < resourceCount) && (resourceHash + resourceCount < 0x7f)) {
+    memcpy(resourceCache + resourceHash, resourceName, (longlong)(resourceCount + 1));
   }
-  puVar3 = &DAT_18098bc73;
-  if (puStack_e0 != (void *)0x0) {
-    puVar3 = puStack_e0;
+  
+  /* 设置资源路径 */
+  resourceName = &ResourceName_Default;
+  if (resourceCache != (void *)0x0) {
+    resourceName = resourceCache;
   }
-  FUN_1802c22a0(auStack_168,puVar3);
-  puVar3 = &DAT_18098bc73;
-  if ((void *)param_1[3] != (void *)0x0) {
-    puVar3 = (void *)param_1[3];
+  
+  /* 生成清理ID */
+  ResourceCleaner_GenerateCleanupId(cleanupId, resourceName);
+  
+  /* 获取资源引用 */
+  resourceName = &ResourceName_Default;
+  if ((void *)resourceContext[3] != (void *)0x0) {
+    resourceName = (void *)resourceContext[3];
   }
-  ppuStack_158 = &puStack_148;
-  puStack_148 = &UNK_1809fcc58;
-  puStack_140 = auStack_130;
-  uStack_138 = 0;
-  auStack_130[0] = 0;
-  if (puVar3 != (void *)0x0) {
-    FUN_180049bf0(&puStack_148,puVar3);
-    FUN_1802c2560(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x7f20,&puStack_148);
+  
+  /* 初始化资源列表 */
+  resourceList = &currentResource;
+  currentResource = &ResourceList_Default;
+  resourcePath = resourceInfo;
+  resourceIndex = 0;
+  resourceInfo[0] = 0;
+  
+  /* 如果资源存在，添加到清理列表 */
+  if (resourceName != (void *)0x0) {
+    ResourceCleaner_AddToCleanupList(&currentResource, resourceName);
+    ResourceCleaner_RegisterForCleanup(*(longlong *)(_DAT_180c86938 + 0x1cd8) + 0x7f20, &currentResource);
   }
-  if ((int)param_1[9] < 1) {
-    uStack_178 = 0;
-    uStack_180 = param_5;
-    uStack_188 = param_4;
-    (**(code **)(*param_1 + 0x50))
-              (param_1,param_3,(int)param_1[0x8a],*(int32_t *)((longlong)param_1 + 0x454));
-    FUN_18029ef00(*(uint64_t *)(_DAT_180c86938 + 0x1cd8),param_1[0x85]);
+  
+  /* 检查是否需要立即清理 */
+  if ((int)resourceContext[9] < 1) {
+    cleanupTime = 0;
+    cleanupTotal = timeoutMs;
+    cleanupCounter = priorityLevel;
+    
+    /* 执行清理操作 */
+    (**(code **)(*resourceContext + 0x50))
+              (resourceContext, contextData, (int)resourceContext[0x8a], *(int32_t *)((longlong)resourceContext + 0x454));
+    ResourceCleaner_ProcessCleanup(*(uint64_t *)(_DAT_180c86938 + 0x1cd8), resourceContext[0x85]);
   }
   else {
-    *(int *)(param_1 + 9) = (int)param_1[9] + -1;
+    /* 递减清理计数器 */
+    *(int *)(resourceContext + 9) = (int)resourceContext[9] + -1;
   }
-  FUN_1802c2ac0(&puStack_148);
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
-  puStack_e8 = &UNK_18098bcb0;
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1a8);
+  
+  /* 清理资源列表 */
+  ResourceCleaner_DestroyCleanupList(&currentResource);
+  
+  /* 更新系统状态 */
+  SystemResourceManager_DecrementReferenceCount();
+  SystemStateManager_UpdateState();
+  
+  /* 安全检查和清理 */
+  SecurityManager_VerifyChecksum(securityChecksum ^ (ulonglong)securityBuffer);
 }
 
 
