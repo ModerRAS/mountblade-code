@@ -37,7 +37,7 @@ void ui_system_parametric_animation_processor(uint64_t param_1,float param_2,uin
                   uint64_t param_5,uint64_t param_6,float param_7,float param_8,float param_9,
                   uint64_t param_10,uint64_t param_11,float param_12)
 {
-  undefined3 conversion_flag;
+  uint32_t conversion_flag;
   float *animation_data_ptr;
   int loop_counter_1;
   int loop_counter_2;
@@ -267,7 +267,7 @@ LAB_18065a765:
            (((((float)param_10 + (float)param_11) * param_8 + param_10._4_4_) - param_11._4_4_) -
            param_12) - param_10._4_4_;
       temp_value_1 = param_9 * param_9 + param_10._4_4_ * param_10._4_4_;
-      conversion_flag = (undefined3)((uint)render_flag >> 8);
+      conversion_flag = (uint32_t)((uint)render_flag >> 8);
       temp_value_1 = (float)CONCAT31(conversion_flag,temp_value_1 <= UI_MIN_NORMALIZED_FLOAT) * UI_MIN_NORMALIZED_FLOAT + temp_value_1;
       conversion_buffer = rsqrtss(ZEXT416((uint)temp_value_1),ZEXT416((uint)temp_value_1));
       temp_value_2 = conversion_buffer._0_4_;
@@ -321,7 +321,7 @@ LAB_18065a765:
 // 原始实现：FUN_18065a7dc - 包含参数化变换控制和归一化处理
 void ui_system_vector_normalization_processor(void)
 {
-  undefined3 conversion_flag;
+  uint32_t conversion_flag;
   longlong context_ptr;
   int32_t render_flag;
   longlong resource_ptr;
@@ -371,7 +371,7 @@ void ui_system_vector_normalization_processor(void)
   vector_component_2 = ((((base_parameter_4 + temp_storage_1) * input_parameter_1 + base_parameter_5) -
            temp_storage_2) - input_parameter_2) - base_parameter_5;
   vector_component_1 = input_parameter_2 * input_parameter_2 + vector_component_2 * vector_component_2;
-  conversion_flag = (undefined3)((uint)render_flag >> 8);
+  conversion_flag = (uint32_t)((uint)render_flag >> 8);
   vector_component_1 = (float)CONCAT31(conversion_flag,vector_component_1 <= UI_MIN_NORMALIZED_FLOAT) * UI_MIN_NORMALIZED_FLOAT + vector_component_1;
   conversion_buffer = rsqrtss(ZEXT416((uint)vector_component_1),ZEXT416((uint)vector_component_1));
   temp_value_1 = conversion_buffer._0_4_;

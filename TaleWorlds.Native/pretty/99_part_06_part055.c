@@ -41,7 +41,7 @@ void FUN_1803deab0(longlong param_1,uint64_t param_2)
   uint64_t uStack_170;
   int32_t uStack_168;
   int8_t uStack_164;
-  undefined3 uStack_163;
+  uint32_t uStack_163;
   int32_t uStack_160;
   uint64_t uStack_15c;
   int16_t uStack_154;

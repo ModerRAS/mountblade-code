@@ -7,7 +7,7 @@ void FUN_180659fa4(void)
 
 {
   longlong lVar1;
-  undefined3 uVar2;
+  uint32_t uVar2;
   float *pfVar3;
   int iVar4;
   int iVar5;
@@ -397,7 +397,7 @@ LAB_18065a765:
       fVar11 = ((((fVar20 + fVar17) * in_stack_00000040 + fStack0000000000000054) -
                 fStack000000000000005c) - fVar11) - fStack0000000000000054;
       fVar7 = fVar19 * fVar19 + fVar11 * fVar11;
-      uVar2 = (undefined3)((uint)unaff_EDI >> 8);
+      uVar2 = (uint32_t)((uint)unaff_EDI >> 8);
       fVar7 = (float)CONCAT31(uVar2,fVar7 <= 1.1754944e-38) * 1.1754944e-38 + fVar7;
       auVar16 = rsqrtss(ZEXT416((uint)fVar7),ZEXT416((uint)fVar7));
       fVar15 = auVar16._0_4_;
@@ -451,7 +451,7 @@ void FUN_18065a3f8(uint64_t param_1,uint64_t param_2,float param_3,float param_4
                   uint64_t param_10,uint64_t param_11,float param_12)
 
 {
-  undefined3 uVar1;
+  uint32_t uVar1;
   float *pfVar2;
   int iVar3;
   int iVar4;
@@ -689,7 +689,7 @@ LAB_18065a765:
            (((((float)param_10 + (float)param_11) * param_8 + param_10._4_4_) - param_11._4_4_) -
            param_12) - param_10._4_4_;
       fVar7 = param_9 * param_9 + param_10._4_4_ * param_10._4_4_;
-      uVar1 = (undefined3)((uint)unaff_EDI >> 8);
+      uVar1 = (uint32_t)((uint)unaff_EDI >> 8);
       fVar7 = (float)CONCAT31(uVar1,fVar7 <= 1.1754944e-38) * 1.1754944e-38 + fVar7;
       auVar12 = rsqrtss(ZEXT416((uint)fVar7),ZEXT416((uint)fVar7));
       fVar6 = auVar12._0_4_;

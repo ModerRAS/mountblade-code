@@ -44,7 +44,7 @@
 void ui_system_advanced_animation_controller(void)
 {
   longlong data_offset;
-  undefined3 conversion_flag;
+  uint32_t conversion_flag;
   float *animation_data_ptr;
   int loop_counter;
   int element_index;
@@ -470,7 +470,7 @@ LAB_18065a765:
       interpolation_value = ((((temp_value_8 + smooth_value_1) * input_parameter_1 + temp_storage_1) -
                 temp_storage_2) - interpolation_value) - temp_storage_1;
       angle_value = smooth_value_2 * smooth_value_2 + interpolation_value * interpolation_value;
-      conversion_flag = (undefined3)((uint)render_flag >> 8);
+      conversion_flag = (uint32_t)((uint)render_flag >> 8);
       angle_value = (float)CONCAT31(conversion_flag,angle_value <= UI_MIN_NORMALIZED_FLOAT) * UI_MIN_NORMALIZED_FLOAT + angle_value;
       conversion_buffer = rsqrtss(ZEXT416((uint)angle_value),ZEXT416((uint)angle_value));
       temp_value_9 = conversion_buffer._0_4_;
@@ -522,7 +522,7 @@ void ui_system_parameterized_animation_processor(uint64_t param_1,uint64_t param
                   uint64_t param_5,uint64_t param_6,float param_7,float param_8,float param_9,
                   uint64_t param_10,uint64_t param_11,float param_12)
 {
-  undefined3 conversion_flag;
+  uint32_t conversion_flag;
   float *animation_data_ptr;
   int loop_counter_1;
   int loop_counter_2;
@@ -777,7 +777,7 @@ LAB_18065a765:
            (((((float)param_10 + (float)param_11) * param_8 + param_10._4_4_) - param_11._4_4_) -
            param_12) - param_10._4_4_;
       interpolation_value = param_9 * param_9 + param_10._4_4_ * param_10._4_4_;
-      conversion_flag = (undefined3)((uint)render_flag >> 8);
+      conversion_flag = (uint32_t)((uint)render_flag >> 8);
       interpolation_value = (float)CONCAT31(conversion_flag,interpolation_value <= UI_MIN_NORMALIZED_FLOAT) * UI_MIN_NORMALIZED_FLOAT + interpolation_value;
       conversion_buffer = rsqrtss(ZEXT416((uint)interpolation_value),ZEXT416((uint)interpolation_value));
       weight_value = conversion_buffer._0_4_;

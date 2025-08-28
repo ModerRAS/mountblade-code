@@ -119,7 +119,7 @@ ulonglong FUN_18046bce0(longlong param_1,uint64_t param_2,uint64_t param_3,uint6
   if (*(char *)(param_1 + 0x84) != '\0') {
     uStack_70 = *(uint64_t *)(param_1 + 0x88);
     uStack_68 = *(uint64_t *)(param_1 + 0x90);
-    uStack_78._5_3_ = (undefined3)((ulonglong)uVar2 >> 0x28);
+    uStack_78._5_3_ = (uint32_t)((ulonglong)uVar2 >> 0x28);
     uStack_78._0_5_ = CONCAT14(1,(int)uVar2);
   }
   puVar1 = *(uint64_t **)(param_1 + 0x38);

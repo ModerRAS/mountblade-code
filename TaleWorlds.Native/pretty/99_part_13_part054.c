@@ -98,7 +98,7 @@ void FUN_1808cc145(void)
 void FUN_1808cc190(longlong *param_1,uint64_t *param_2)
 
 {
-  undefined6 *puVar1;
+  uint8_t *puVar1;
   int iVar2;
   longlong *plVar3;
   int32_t uVar4;
@@ -165,13 +165,13 @@ void FUN_1808cc190(longlong *param_1,uint64_t *param_2)
       if ((iVar2 < 0) || ((int)plVar3[0x1c] <= iVar2)) goto LAB_1808cc335;
       lVar9 = plVar11[0x1c];
       iVar12 = 0;
-      puVar1 = (undefined6 *)(plVar3[0x1b] + (longlong)iVar2 * 0x14);
+      puVar1 = (uint8_t *)(plVar3[0x1b] + (longlong)iVar2 * 0x14);
       uStack_68 = *(int32_t *)puVar1;
       uVar4 = *(int32_t *)((longlong)puVar1 + 4);
       uVar8 = *puVar1;
       uVar5 = *(int32_t *)(puVar1 + 1);
       uVar6 = *(int32_t *)((longlong)puVar1 + 0xc);
-      uVar7 = *(undefined5 *)(puVar1 + 1);
+      uVar7 = *(uint8_t *)(puVar1 + 1);
       *(int32_t *)((longlong)param_1 + 0x1c) = 0xffffffff;
       uStack_64 = (ushort)uVar4;
       uStack_62 = (ushort)((uint)uVar4 >> 0x10);

@@ -530,7 +530,7 @@ void FUN_1805271f8(longlong param_1,uint64_t param_2,uint64_t param_3,longlong *
   int16_t uStack_dc;
   int16_t uStack_da;
   int32_t uStack_d8;
-  undefined3 uStack_d4;
+  uint32_t uStack_d4;
   int8_t uStack_d1;
   int32_t uStack_d0;
   uint64_t uStack_c0;

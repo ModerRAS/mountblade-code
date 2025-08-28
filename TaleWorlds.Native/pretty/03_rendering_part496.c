@@ -17,7 +17,7 @@ void FUN_180531300(longlong param_1,int param_2,ulonglong param_3,uint64_t param
   longlong lVar8;
   char acStackX_10 [8];
   int32_t uVar9;
-  undefined3 uVar10;
+  uint32_t uVar10;
   
   if ((*(byte *)(param_1 + 0x56c) & 1) == 0) {
     iVar2 = *(int *)(param_1 + 0x10);
@@ -46,7 +46,7 @@ void FUN_180531300(longlong param_1,int param_2,ulonglong param_3,uint64_t param
         return;
       }
     }
-    uVar10 = (undefined3)((uint)uVar9 >> 8);
+    uVar10 = (uint32_t)((uint)uVar9 >> 8);
     uVar7 = 0xffffffff;
   }
   else {
@@ -64,7 +64,7 @@ void FUN_180531300(longlong param_1,int param_2,ulonglong param_3,uint64_t param
     if (acStackX_10[0] == '\0') {
       return;
     }
-    uVar10 = (undefined3)((uint)uVar9 >> 8);
+    uVar10 = (uint32_t)((uint)uVar9 >> 8);
     uVar7 = *(int32_t *)(*(longlong *)(param_1 + 0x8f8) + 0xa20);
     param_6 = 1;
   }

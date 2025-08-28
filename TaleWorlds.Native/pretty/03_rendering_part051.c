@@ -460,7 +460,7 @@ void FUN_180294c20(uint64_t param_1,char *param_2,int32_t param_3,uint64_t *para
   uint64_t uStack_188;
   int32_t uStack_180;
   int8_t uStack_17c;
-  undefined3 uStack_17b;
+  uint32_t uStack_17b;
   uint64_t uStack_178;
   uint64_t uStack_170;
   uint64_t uStack_168;
@@ -598,7 +598,7 @@ void FUN_180294c20(uint64_t param_1,char *param_2,int32_t param_3,uint64_t *para
   uStack_188 = uStack_f8;
   uStack_168 = CONCAT44(uStack_d4,uStack_d8);
   uStack_160 = CONCAT44(uStack_cc,uStack_d0);
-  uStack_17b = (undefined3)((ulonglong)uStack_f0 >> 0x28);
+  uStack_17b = (uint32_t)((ulonglong)uStack_f0 >> 0x28);
   _uStack_180 = CONCAT14(1,(int)uStack_f0);
   uStack_178 = uStack_e8;
   uStack_170 = uStack_e0;

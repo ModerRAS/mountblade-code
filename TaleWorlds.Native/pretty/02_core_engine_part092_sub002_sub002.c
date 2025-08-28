@@ -220,7 +220,7 @@ ulonglong FUN_1801166f0(uint64_t param_1,char *param_2,int param_3,uint64_t *par
   int iStack_168;
   int32_t uStack_164;
   char cStack_160;
-  undefined3 uStack_15f;
+  uint32_t uStack_15f;
   int iStack_15c;
   int iStack_158;
   int8_t uStack_154;

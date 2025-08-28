@@ -41,7 +41,7 @@ void FUN_1806ab3e4(uint param_1,longlong param_2,char *param_3,char *param_4,uin
   int32_t uStack000000000000006c;
   uint64_t in_stack_00000070;
   char cStack00000000000000d0;
-  undefined3 uStack00000000000000d1;
+  uint32_t uStack00000000000000d1;
   uint64_t in_stack_000000d8;
   uint64_t in_stack_000000e0;
   uint in_stack_000000e8;
@@ -310,7 +310,7 @@ void FUN_1806ab4af(uint param_1,longlong param_2,uint64_t param_3)
   int32_t uStack000000000000006c;
   uint64_t in_stack_00000070;
   char cStack00000000000000d0;
-  undefined3 uStack00000000000000d1;
+  uint32_t uStack00000000000000d1;
   uint64_t in_stack_000000d8;
   uint64_t in_stack_000000e0;
   int in_stack_000000f0;
