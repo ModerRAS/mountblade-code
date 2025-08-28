@@ -141,11 +141,11 @@ void FUN_18021dc44(void)
 
 
 
-// 函数: void FUN_18021dc50(void)
-void FUN_18021dc50(void)
+// 函数7: 错误处理函数 - 调用系统错误处理
+void ErrorHandler(void)
 
 {
-                    // WARNING: Subroutine does not return
+  // 调用系统错误处理函数（不返回）
   FUN_1808fd200();
 }
 
@@ -159,8 +159,8 @@ void FUN_18021dc50(void)
 
 
 
-// 函数: void FUN_18021e0a0(void)
-void FUN_18021e0a0(void)
+// 函数8: 主处理函数 - 复杂的对象处理和内存管理
+void MainProcessFunction(void)
 
 {
   char cVar1;

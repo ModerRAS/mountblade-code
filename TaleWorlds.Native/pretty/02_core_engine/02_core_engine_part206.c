@@ -1,67 +1,67 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part206.c - 20 个函数
+// 02_core_engine_part206.c - 核心引擎动态数组管理模块
 
-// 函数: void FUN_180188b30(longlong *param_1,longlong param_2,undefined8 *param_3)
-void FUN_180188b30(longlong *param_1,longlong param_2,undefined8 *param_3)
+// 函数：向动态数组中插入元素（8字节结构体）
+void dynamic_array_insert_8byte(longlong *array_info, longlong insert_pos, undefined8 *element_data)
 
 {
-  ulonglong uVar1;
-  undefined8 *puVar2;
-  code *pcVar3;
-  ulonglong uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
-  undefined8 uVar8;
-  longlong lVar9;
-  longlong lVar10;
-  undefined1 auStackX_8 [8];
-  ulonglong uStackX_10;
-  longlong lStackX_20;
-  
-  lVar10 = *param_1;
-  lVar9 = (param_1[1] - lVar10) / 0x28;
-  if (lVar9 == 0x666666666666666) {
-    FUN_180189990(param_1[1] - lVar10,0x666666666666666,lVar10,0x666666666666666,0xfffffffffffffffe)
-    ;
-    pcVar3 = (code *)swi(3);
-    (*pcVar3)();
-    return;
-  }
-  uVar1 = lVar9 + 1;
-  uVar4 = (param_1[2] - lVar10) / 0x28;
-  uStackX_10 = uVar1;
-  if ((uVar4 <= 0x666666666666666 - (uVar4 >> 1)) &&
-     (uStackX_10 = uVar4 + (uVar4 >> 1), uStackX_10 < uVar1)) {
-    uStackX_10 = uVar1;
-  }
-  lVar9 = uStackX_10 * 0x28;
-  if (0x666666666666666 < uStackX_10) {
-    lVar9 = -1;
-  }
-  lVar9 = FUN_180067110(lVar9);
-  puVar2 = (undefined8 *)(lVar9 + ((param_2 - lVar10) / 0x28) * 0x28);
-  uVar8 = param_3[1];
-  *puVar2 = *param_3;
-  puVar2[1] = uVar8;
-  uVar5 = *(undefined4 *)((longlong)param_3 + 0x14);
-  uVar6 = *(undefined4 *)(param_3 + 3);
-  uVar7 = *(undefined4 *)((longlong)param_3 + 0x1c);
-  *(undefined4 *)(puVar2 + 2) = *(undefined4 *)(param_3 + 2);
-  *(undefined4 *)((longlong)puVar2 + 0x14) = uVar5;
-  *(undefined4 *)(puVar2 + 3) = uVar6;
-  *(undefined4 *)((longlong)puVar2 + 0x1c) = uVar7;
-  puVar2[4] = param_3[4];
-  lVar10 = param_1[1];
-  lStackX_20 = lVar9;
-  func_0x00018018a000(auStackX_8,*param_1);
-  if (param_2 != lVar10) {
-                    // WARNING: Subroutine does not return
-    memmove(lVar9);
-  }
-                    // WARNING: Subroutine does not return
-  memmove(lVar9);
+    ulonglong new_capacity;
+    undefined8 *new_array;
+    code *error_handler;
+    ulonglong current_capacity;
+    undefined4 element_field_0x14;
+    undefined4 element_field_0x18;
+    undefined4 element_field_0x1c;
+    undefined8 element_field_4;
+    longlong array_start;
+    longlong array_end;
+    undefined1 temp_stack[8];
+    ulonglong calc_capacity;
+    longlong element_offset;
+    
+    array_end = *array_info;
+    element_offset = (array_info[1] - array_end) / 0x28;
+    if (element_offset == 0x666666666666666) {
+        // 错误处理：数组大小无效
+        handle_array_error(array_info[1] - array_end, 0x666666666666666, array_end, 0x666666666666666, 0xfffffffffffffffe);
+        error_handler = (code *)swi(3);
+        (*error_handler)();
+        return;
+    }
+    new_capacity = element_offset + 1;
+    current_capacity = (array_info[2] - array_end) / 0x28;
+    calc_capacity = new_capacity;
+    if ((current_capacity <= 0x666666666666666 - (current_capacity >> 1)) &&
+        (calc_capacity = current_capacity + (current_capacity >> 1), calc_capacity < new_capacity)) {
+        calc_capacity = new_capacity;
+    }
+    element_offset = calc_capacity * 0x28;
+    if (0x666666666666666 < calc_capacity) {
+        element_offset = -1;
+    }
+    element_offset = allocate_memory(element_offset);
+    new_array = (undefined8 *)(element_offset + ((insert_pos - array_end) / 0x28) * 0x28);
+    element_field_4 = element_data[1];
+    *new_array = *element_data;
+    new_array[1] = element_field_4;
+    element_field_0x14 = *(undefined4 *)((longlong)element_data + 0x14);
+    element_field_0x18 = *(undefined4 *)(element_data + 3);
+    element_field_0x1c = *(undefined4 *)((longlong)element_data + 0x1c);
+    *(undefined4 *)(new_array + 2) = *(undefined4 *)(element_data + 2);
+    *(undefined4 *)((longlong)new_array + 0x14) = element_field_0x14;
+    *(undefined4 *)(new_array + 3) = element_field_0x18;
+    *(undefined4 *)((longlong)new_array + 0x1c) = element_field_0x1c;
+    new_array[4] = element_data[4];
+    array_end = array_info[1];
+    element_offset = element_offset;
+    copy_array_data(temp_stack, *array_info);
+    if (insert_pos != array_end) {
+        // 移动现有元素为新元素腾出空间
+        memmove(element_offset);
+    }
+    // 执行内存移动操作
+    memmove(element_offset);
 }
 
 
