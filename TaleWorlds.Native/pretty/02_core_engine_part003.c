@@ -119,6 +119,16 @@ extern uint64_t system_memory_7ea8;
 extern uint64_t global_var_2048_ptr;
 
 // =============================================================================
+// 类型定义区域
+// =============================================================================
+
+/** 函数指针类型定义 */
+typedef void (*code)(void);
+
+/** 系统回调函数类型 */
+typedef code* (*callback_func)(void);
+
+// =============================================================================
 // 函数声明区域
 // =============================================================================
 
@@ -127,7 +137,7 @@ void core_engine_system_initializer_type1(void);
 void core_engine_system_initializer_type2(void);
 void core_engine_system_initializer_type3(void);
 void core_engine_system_initializer_type4(void);
-void core_engine_system_initializer_type5(void);
+int core_engine_system_initializer_type5(void);
 void core_engine_system_initializer_type6(void);
 void core_engine_system_initializer_type7(void);
 void core_engine_system_initializer_type8(void);
@@ -174,6 +184,10 @@ code *core_engine_callback_handler_type8(void);
 
 /** 字符串处理函数 */
 uint64_t core_engine_string_processor_register(void **string_processor);
+
+/** 辅助函数声明 */
+void strcpy_s(char *dest, size_t dest_size, const char *src, uint64_t param1, uint64_t param2);
+float SQRT(float value);
 
 // =============================================================================
 // 函数实现区域
