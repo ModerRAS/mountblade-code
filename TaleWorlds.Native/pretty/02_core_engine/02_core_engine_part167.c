@@ -417,7 +417,7 @@ void shutdown_engine_system(longlong param_1)
     data_ptr = data_ptr + 1;
     string_buffer = (char *)(ulonglong)(status_code + 1);
   }
-  lVar6 = *(longlong *)(_DAT_180c86938 + 0x1d78);
+  cleanup_target = *(longlong *)(_DAT_180c86938 + 0x1d78);
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                0x48) < _DAT_180d493f0) && (FUN_1808fcb90(&DAT_180d493f0), _DAT_180d493f0 == -1)) {
     _DAT_180d493f8 = 0;

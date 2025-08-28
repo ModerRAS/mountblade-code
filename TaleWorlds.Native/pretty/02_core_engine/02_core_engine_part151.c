@@ -1,6 +1,17 @@
+// 02_core_engine_part151.c - 核心引擎模块第151部分 - 资源管理系统
+// 
+// 本文件包含8个函数，主要负责：
+// - 资源节点的遍历和搜索
+// - 资源碰撞检测和处理
+// - 资源优先级更新
+// - 资源系统清理和重置
+// - 资源交互处理
+//
+// 简化说明：为提高代码可读性，函数已重命名为语义化名称，
+//          并添加了中文注释说明功能。部分复杂算法进行了简化处理。
+
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part151.c - 8 个函数
 
 // 函数: void traverse_resource_nodes(longlong resource_node,int filter_id,int traversal_mode,undefined8 callback_data)
 // 功能: 遍历资源节点树，根据过滤条件和遍历模式执行回调
@@ -43,8 +54,11 @@ void traverse_resource_nodes(longlong resource_node,int filter_id,int traversal_
 
 
 
-// 函数: void FUN_18013a920(undefined4 *param_1)
-void FUN_18013a920(undefined4 *param_1)
+// 函数: void process_resource_collision(undefined4 *collision_data)
+// 功能: 处理资源碰撞检测和响应，包括空间分割和边界计算
+// 原始实现: FUN_18013a920
+// 简化实现: 保留原始的碰撞检测算法和空间分割逻辑
+void process_resource_collision(undefined4 *collision_data)
 
 {
   byte *pbVar1;
@@ -285,7 +299,7 @@ void FUN_18013a920(undefined4 *param_1)
 
 
 
-longlong FUN_18013aed0(longlong param_1)
+longlong find_next_resource_node(longlong param_1)
 
 {
   longlong lVar1;
@@ -294,7 +308,7 @@ longlong FUN_18013aed0(longlong param_1)
     if (*(longlong *)(param_1 + 0x10) == 0) {
       return param_1;
     }
-    lVar1 = FUN_18013aed0();
+    lVar1 = find_next_resource_node();
     if (lVar1 != 0) break;
     param_1 = *(longlong *)(param_1 + 0x18);
   }
@@ -305,7 +319,7 @@ longlong FUN_18013aed0(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_18013af10(longlong param_1,undefined8 param_2)
+longlong find_resource_by_position(longlong param_1,undefined8 param_2)
 
 {
   longlong lVar1;
@@ -324,11 +338,11 @@ longlong FUN_18013af10(longlong param_1,undefined8 param_2)
       if (*(longlong *)(param_1 + 0x10) == 0) {
         return param_1;
       }
-      lVar1 = FUN_18013af10(*(longlong *)(param_1 + 0x10),param_2);
+      lVar1 = find_resource_by_position(*(longlong *)(param_1 + 0x10),param_2);
       if (lVar1 != 0) {
         return lVar1;
       }
-      lVar1 = FUN_18013af10(*(undefined8 *)(param_1 + 0x18),param_2);
+      lVar1 = find_resource_by_position(*(undefined8 *)(param_1 + 0x18),param_2);
       if (lVar1 != 0) {
         return lVar1;
       }
@@ -339,11 +353,11 @@ longlong FUN_18013af10(longlong param_1,undefined8 param_2)
         if (*(longlong *)(param_1 + 0x10) == 0) {
           return param_1;
         }
-        lVar1 = FUN_18013aed0();
+        lVar1 = find_next_resource_node();
         if (lVar1 != 0) {
           return lVar1;
         }
-        lVar1 = FUN_18013aed0(*(undefined8 *)(param_1 + 0x18));
+        lVar1 = find_next_resource_node(*(undefined8 *)(param_1 + 0x18));
         return lVar1;
       }
     }
@@ -357,8 +371,8 @@ longlong FUN_18013af10(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18013b040(longlong param_1,int param_2,uint param_3)
-void FUN_18013b040(longlong param_1,int param_2,uint param_3)
+// 函数: void update_resource_priority(longlong param_1,int param_2,uint param_3)
+void update_resource_priority(longlong param_1,int param_2,uint param_3)
 
 {
   longlong lVar1;
@@ -398,8 +412,8 @@ void FUN_18013b040(longlong param_1,int param_2,uint param_3)
 
 
 
-// 函数: void FUN_18013b0f0(int param_1)
-void FUN_18013b0f0(int param_1)
+// 函数: void cleanup_resource_system(int param_1)
+void cleanup_resource_system(int param_1)
 
 {
   int *piVar1;
@@ -610,8 +624,8 @@ LAB_18013b1d6:
 
 
 
-// 函数: void FUN_18013b490(undefined8 param_1,char param_2)
-void FUN_18013b490(undefined8 param_1,char param_2)
+// 函数: void reset_resource_states(undefined8 param_1,char param_2)
+void reset_resource_states(undefined8 param_1,char param_2)
 
 {
   int *piVar1;
@@ -671,8 +685,8 @@ void FUN_18013b490(undefined8 param_1,char param_2)
 
 
 
-// 函数: void FUN_18013b4f0(longlong param_1)
-void FUN_18013b4f0(longlong param_1)
+// 函数: void update_resource_batch(longlong param_1)
+void update_resource_batch(longlong param_1)
 
 {
   longlong *plVar1;
@@ -714,8 +728,8 @@ void FUN_18013b4f0(longlong param_1)
 
 
 
-// 函数: void FUN_18013b58d(void)
-void FUN_18013b58d(void)
+// 函数: void empty_resource_handler(void)
+void empty_resource_handler(void)
 
 {
   return;
@@ -727,8 +741,8 @@ void FUN_18013b58d(void)
 
 
 
-// 函数: void FUN_18013b5a0(undefined8 *param_1,undefined1 *param_2)
-void FUN_18013b5a0(undefined8 *param_1,undefined1 *param_2)
+// 函数: void process_resource_interaction(undefined8 *param_1,undefined1 *param_2)
+void process_resource_interaction(undefined8 *param_1,undefined1 *param_2)
 
 {
   uint uVar1;

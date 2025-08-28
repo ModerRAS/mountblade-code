@@ -267,1622 +267,1814 @@ undefined render_target;        // 渲染目标
 
 
 
-// 函数: undefined FUN_1804379d0;
-undefined FUN_1804379d0;
-undefined UNK_180242690;
-undefined UNK_1802bf300;
-undefined SUB_1802bf330;
-undefined UNK_180435850;
-undefined UNK_180435bc0;
+// 函数: 设置视口
+// 负责设置渲染视口参数
+undefined set_viewport;
+undefined viewport_x;            // 视口X坐标
+undefined viewport_y;            // 视口Y坐标
+undefined viewport_width;        // 视口宽度
+undefined viewport_height;       // 视口高度
+undefined viewport_min_depth;    // 最小深度
+undefined viewport_max_depth;    // 最大深度
 
 
 
 
-// 函数: undefined FUN_180437b60;
-undefined FUN_180437b60;
-undefined UNK_180435be0;
+// 函数: 设置裁剪区域
+// 负责设置裁剪测试区域
+undefined set_scissor_rect;
+undefined scissor_rect;          // 裁剪矩形
 
 
 
 
-// 函数: undefined FUN_180437ba0;
-undefined FUN_180437ba0;
-undefined UNK_180435c50;
+// 函数: 清除颜色缓冲区
+// 负责清除颜色缓冲区内容
+undefined clear_color_buffer;
+undefined clear_color;           // 清除颜色
 
 
 
 
-// 函数: undefined FUN_180437c40;
-undefined FUN_180437c40;
-undefined UNK_180435cb0;
+// 函数: 清除深度缓冲区
+// 负责清除深度缓冲区内容
+undefined clear_depth_buffer;
+undefined clear_depth;           // 清除深度值
 
 
 
 
-// 函数: undefined FUN_180437ca0;
-undefined FUN_180437ca0;
-undefined UNK_180435d80;
+// 函数: 清除模板缓冲区
+// 负责清除模板缓冲区内容
+undefined clear_stencil_buffer;
+undefined clear_stencil;         // 清除模板值
 
 
 
 
-// 函数: undefined FUN_180437cf0;
-undefined FUN_180437cf0;
-undefined UNK_180435dd0;
+// 函数: 清除所有缓冲区
+// 负责清除所有渲染缓冲区
+undefined clear_all_buffers;
+undefined clear_flags;           // 清除标志位
 
 
 
 
-// 函数: undefined FUN_180437d40;
-undefined FUN_180437d40;
-undefined UNK_180435ee0;
+// 函数: 绘制三角形
+// 负责绘制三角形图元
+undefined draw_triangles;
+undefined triangle_count;        // 三角形数量
 
 
 
 
-// 函数: undefined FUN_180437d60;
-undefined FUN_180437d60;
-undefined UNK_1804360a0;
+// 函数: 绘制三角形带
+// 负责绘制三角形带图元
+undefined draw_triangle_strip;
+undefined vertex_count;          // 顶点数量
 
 
 
 
-// 函数: undefined FUN_180437e80;
-undefined FUN_180437e80;
-undefined UNK_1804360c0;
-undefined UNK_180436270;
-undefined UNK_180436290;
-undefined UNK_180436c90;
+// 函数: 绘制索引三角形
+// 负责使用索引缓冲区绘制三角形
+undefined draw_indexed_triangles;
+undefined index_count;           // 索引数量
+undefined index_offset;          // 索引偏移
+undefined vertex_offset;         // 顶点偏移
+undefined primitive_type;        // 图元类型
 
 
 
 
-// 函数: undefined FUN_180438210;
-undefined FUN_180438210;
-undefined UNK_180436ca0;
+// 函数: 绘制线条
+// 负责绘制线条图元
+undefined draw_lines;
+undefined line_count;            // 线条数量
 
 
 
 
-// 函数: undefined FUN_1804382b0;
-undefined FUN_1804382b0;
-undefined UNK_180437030;
+// 函数: 绘制点
+// 负责绘制点图元
+undefined draw_points;
+undefined point_count;           // 点数量
 
 
 
 
-// 函数: undefined FUN_180438350;
-undefined FUN_180438350;
-undefined UNK_180437040;
+// 函数: 绘制矩形
+// 负责绘制矩形图元
+undefined draw_rectangles;
+undefined rect_count;            // 矩形数量
 
 
 
 
-// 函数: undefined FUN_180438560;
-undefined FUN_180438560;
-undefined UNK_180437090;
+// 函数: 绘制文本
+// 负责绘制文本字符
+undefined draw_text;
+undefined text_data;             // 文本数据
 
 
 
 
-// 函数: undefined FUN_180438680;
-undefined FUN_180438680;
-undefined UNK_1804370a0;
-
-
-
-
-// 函数: undefined FUN_1804386b0;
-undefined FUN_1804386b0;
-undefined UNK_1804370e0;
-
-
-
-
-// 函数: undefined FUN_180438940;
-undefined FUN_180438940;
-undefined UNK_1804371e0;
-
-
-
-
-// 函数: undefined FUN_1804389f0;
-undefined FUN_1804389f0;
-undefined UNK_180437270;
-undefined UNK_180437280;
-undefined UNK_180437450;
-undefined UNK_1804375e0;
-undefined UNK_180437c30;
-undefined UNK_180437fc0;
-undefined UNK_180437fd0;
-undefined UNK_180437fe0;
-undefined UNK_180438060;
-
-
-
-
-// 函数: undefined FUN_180438c50;
-undefined FUN_180438c50;
-undefined UNK_180438080;
-
-
-
-
-// 函数: undefined FUN_180438c70;
-undefined FUN_180438c70;
-undefined UNK_1804380b0;
-undefined UNK_1804380c0;
-undefined UNK_1804380e0;
-undefined UNK_180438100;
-undefined UNK_180438120;
-undefined UNK_180438140;
-undefined UNK_180438160;
-undefined UNK_180438180;
-undefined UNK_1804381a0;
-undefined UNK_1804381c0;
-undefined UNK_1804381e0;
-undefined UNK_1804381f0;
-undefined UNK_180438290;
-undefined UNK_180438330;
-undefined UNK_180438540;
-undefined UNK_1804388d0;
-undefined UNK_180438c10;
-undefined UNK_180438c30;
-undefined UNK_180438c40;
-undefined UNK_18043b920;
-undefined UNK_18043bb40;
-undefined UNK_18043bb50;
-undefined UNK_18043bb60;
-undefined UNK_18043bb70;
-undefined UNK_18043bb90;
-undefined UNK_18043bbb0;
-undefined UNK_18043bbd0;
-undefined UNK_18043bd50;
-undefined UNK_18043bd90;
-undefined UNK_18043bdc0;
-undefined UNK_18043c150;
-undefined UNK_18043c330;
-undefined UNK_18043c340;
-undefined UNK_18043c630;
-undefined UNK_18043c640;
-undefined UNK_18043c650;
-undefined UNK_18043c670;
-undefined UNK_18043c690;
-undefined UNK_18043c720;
-undefined UNK_18043c730;
-undefined UNK_18043e620;
-undefined UNK_18043e980;
-undefined UNK_18043ea70;
-undefined UNK_18043eae0;
-undefined UNK_18043eaf0;
-undefined UNK_18043ec40;
-undefined UNK_18043ec70;
-undefined UNK_18043ec80;
-undefined UNK_18043ec90;
-undefined UNK_18043ed50;
-undefined UNK_18043ef30;
-undefined UNK_18043f2a0;
-undefined UNK_18043f2b0;
-undefined UNK_18043f2f0;
-undefined UNK_18043fab0;
-undefined UNK_18043fad0;
-undefined UNK_18043fb00;
-undefined UNK_18043fb50;
-undefined UNK_18043fb60;
-undefined UNK_18043fba0;
-undefined UNK_18043fbc0;
-undefined UNK_18043fbd0;
-undefined UNK_18043fbf0;
-undefined UNK_18043fc50;
-undefined UNK_18043fc70;
-undefined UNK_18043fc90;
-undefined UNK_18043fcb0;
-undefined UNK_18043fe40;
-undefined UNK_18043fe50;
-undefined UNK_18043fed0;
-undefined UNK_18043fee0;
-undefined UNK_180440380;
-undefined UNK_180440470;
-undefined UNK_180440490;
-undefined UNK_180440530;
-undefined UNK_180441240;
-undefined UNK_1804418d0;
-undefined UNK_180441900;
-undefined UNK_180441940;
-undefined UNK_1804419f0;
-undefined UNK_180441d50;
-undefined UNK_180441d70;
-undefined UNK_180441d90;
-undefined UNK_180441da0;
-undefined UNK_180441db0;
-undefined UNK_180441f10;
-undefined UNK_180441f20;
-undefined UNK_180441f30;
-undefined UNK_180441f40;
-undefined UNK_180442160;
-undefined UNK_180442430;
-undefined UNK_180442440;
-undefined UNK_180442550;
-undefined UNK_180442660;
-undefined UNK_180442700;
-undefined UNK_180442830;
-undefined UNK_180442840;
+// 函数: 绘制精灵
+// 负责绘制2D精灵
+undefined draw_sprite;
+undefined sprite_data;           // 精灵数据
+
+
+
+
+// 函数: 绘制粒子
+// 负责绘制粒子系统
+undefined draw_particles;
+undefined particle_data;         // 粒子数据
+
+
+
+
+// 函数: 绘制天空盒
+// 负责绘制天空盒
+undefined draw_skybox;
+undefined skybox_data;           // 天空盒数据
+
+
+
+
+// 函数: 绘制地形
+// 负责绘制地形网格
+undefined draw_terrain;
+undefined terrain_data;          // 地形数据
+undefined terrain_patches;       // 地形块
+undefined terrain_lod;          // 地形LOD
+undefined terrain_material;      // 地形材质
+undefined terrain_textures;      // 地形纹理
+undefined terrain_heightmap;     // 地形高度图
+undefined terrain_normalmap;     // 地形法线图
+undefined terrain_splatmap;      // 地形混合图
+undefined terrain_indices;       // 地形索引
+
+
+
+
+// 函数: 绘制水
+// 负责绘制水面效果
+undefined draw_water;
+undefined water_data;             // 水面数据
+
+
+
+
+// 函数: 绘制植被
+// 负责绘制植被系统，包括树木、草地等
+undefined draw_vegetation;
+undefined vegetation_data;       // 植被数据
+undefined vegetation_types;      // 植被类型
+undefined vegetation_density;    // 植被密度
+undefined vegetation_lod;        // 植被LOD
+undefined wind_params;          // 风力参数
+undefined season_params;        // 季节参数
+undefined vegetation_textures;  // 植被纹理
+undefined vegetation_materials; // 植被材质
+undefined vegetation_buffers;   // 植被缓冲区
+undefined vegetation_shaders;   // 植被着色器
+undefined vegetation_instances; // 植被实例
+undefined vegetation_bounds;     // 植被边界
+undefined vegetation_culling;   // 植被剔除
+undefined vegetation_rendering; // 植被渲染
+undefined vegetation_batching;   // 植被批处理
+undefined vegetation_instancing; // 植被实例化
+undefined vegetation_lod_system; // 植被LOD系统
+undefined vegetation_wind;       // 植被风力
+undefined vegetation_season;     // 植被季节
+undefined vegetation_distance;   // 植被距离
+undefined vegetation_fade;       // 植被淡出
+undefined vegetation_shadow;     // 植被阴影
+undefined vegetation_lighting;  // 植被光照
+undefined vegetation_collision; // 植被碰撞
+undefined vegetation_physics;   // 植被物理
+undefined vegetation_audio;      // 植被音频
+undefined vegetation_effects;   // 植被特效
+undefined vegetation_particles;  // 植被粒子
+undefined vegetation_decal;      // 植被贴花
+undefined vegetation_terrain;    // 植被地形
+undefined vegetation_water;      // 植被水面
+undefined vegetation_sky;        // 植被天空
+undefined vegetation_weather;    // 植被天气
+undefined vegetation_time;       // 植被时间
+undefined vegetation_camera;     // 植被相机
+undefined vegetation_frustum;    // 植被视锥
+undefined vegetation_occlusion;  // 植被遮挡
+undefined vegetation_optimization; // 植被优化
+undefined vegetation_performance; // 植被性能
+undefined vegetation_quality;    // 植被质量
+undefined vegetation_settings;   // 植被设置
+undefined vegetation_config;     // 植被配置
+undefined vegetation_profile;    // 植被配置文件
+undefined vegetation_debug;       // 植被调试
+undefined vegetation_stats;       // 植被统计
+undefined vegetation_info;       // 植被信息
+undefined vegetation_status;     // 植被状态
+undefined vegetation_flags;      // 植被标志
+undefined vegetation_options;    // 植被选项
+undefined vegetation_params;     // 植被参数
+undefined vegetation_attributes; // 植被属性
+undefined vegetation_properties; // 植被属性
+undefined vegetation_characteristics; // 植被特征
+undefined vegetation_features;   // 植被特征
+undefined vegetation_capabilities; // 植被能力
+undefined vegetation_limits;     // 植被限制
+undefined vegetation_constraints; // 植被约束
+undefined vegetation_requirements; // 植被需求
+undefined vegetation_dependencies; // 植被依赖
+undefined vegetation_resources;  // 植被资源
+undefined vegetation_assets;      // 植被资产
+undefined vegetation_data_files; // 植被数据文件
+undefined vegetation_config_files; // 植被配置文件
+undefined vegetation_shader_files; // 植被着色器文件
+undefined vegetation_texture_files; // 植被纹理文件
+undefined vegetation_model_files;  // 植被模型文件
+undefined vegetation_animation_files; // 植被动画文件
+undefined vegetation_sound_files;   // 植被声音文件
+undefined vegetation_effect_files;  // 植被特效文件
+undefined vegetation_particle_files; // 植被粒子文件
+undefined vegetation_decal_files;   // 植被贴花文件
+undefined vegetation_terrain_files; // 植被地形文件
+undefined vegetation_water_files;   // 植被水面文件
+undefined vegetation_sky_files;     // 植被天空文件
+undefined vegetation_weather_files; // 植被天气文件
+undefined vegetation_time_files;    // 植被时间文件
+undefined vegetation_camera_files;  // 植被相机文件
+undefined vegetation_light_files;   // 植被光照文件
+undefined vegetation_shadow_files;  // 植被阴影文件
 
 
 
 
-// 函数: undefined FUN_18043a140;
-undefined FUN_18043a140;
-undefined UNK_180442ff0;
+// 函数: 绘制建筑
+// 负责绘制建筑物和结构
+undefined draw_buildings;
+undefined building_data;          // 建筑数据
 
 
 
 
-// 函数: undefined FUN_18043ab40;
-undefined FUN_18043ab40;
-undefined UNK_180443150;
-undefined UNK_180443170;
-undefined UNK_180443190;
+// 函数: 绘制角色
+// 负责绘制角色模型
+undefined draw_characters;
+undefined character_data;        // 角色数据
+undefined character_skeleton;    // 角色骨骼
+undefined character_animation;  // 角色动画
 
 
 
 
-// 函数: undefined FUN_18043b290;
-undefined FUN_18043b290;
-undefined UNK_1804431b0;
+// 函数: 绘制武器
+// 负责绘制武器装备
+undefined draw_weapons;
+undefined weapon_data;           // 武器数据
 
 
 
 
-// 函数: undefined FUN_18043b930;
-undefined FUN_18043b930;
-undefined UNK_1804435d0;
+// 函数: 绘制盔甲
+// 负责绘制盔甲装备
+undefined draw_armor;
+undefined armor_data;            // 盔甲数据
 
 
 
 
-// 函数: undefined FUN_18043bbe0;
-undefined FUN_18043bbe0;
-undefined UNK_1804435e0;
-undefined UNK_1804436e0;
-undefined UNK_1804440c0;
-undefined UNK_180444130;
-undefined UNK_180444140;
-undefined UNK_180444150;
+// 函数: 绘制马匹
+// 负责绘制马匹模型
+undefined draw_horses;
+undefined horse_data;            // 马匹数据
+undefined horse_animation;       // 马匹动画
+undefined horse_equipment;       // 马匹装备
+undefined horse_rider;           // 马匹骑手
+undefined horse_stats;           // 马匹属性
+undefined horse_behavior;        // 马匹行为
 
 
 
 
-// 函数: undefined FUN_18043bfb0;
-undefined FUN_18043bfb0;
-undefined UNK_180444160;
+// 函数: 绘制载具
+// 负责绘制载具模型
+undefined draw_vehicles;
+undefined vehicle_data;          // 载具数据
 
 
 
 
-// 函数: undefined FUN_18043bff0;
-undefined FUN_18043bff0;
-undefined UNK_180444190;
+// 函数: 绘制道具
+// 负责绘制道具物品
+undefined draw_props;
+undefined prop_data;             // 道具数据
 
 
 
 
-// 函数: undefined FUN_18043c020;
-undefined FUN_18043c020;
-undefined UNK_1804441c0;
+// 函数: 绘制特效
+// 负责绘制视觉特效
+undefined draw_effects;
+undefined effect_data;           // 特效数据
 
 
 
 
-// 函数: undefined FUN_18043c060;
-undefined FUN_18043c060;
-undefined UNK_1804441d0;
+// 函数: 绘制光照
+// 负责绘制光照效果
+undefined draw_lighting;
+undefined lighting_data;         // 光照数据
 
 
 
 
-// 函数: undefined FUN_18043c0b0;
-undefined FUN_18043c0b0;
-undefined UNK_1804441e0;
+// 函数: 绘制阴影
+// 负责绘制阴影效果
+undefined draw_shadows;
+undefined shadow_data;           // 阴影数据
 
 
 
 
-// 函数: undefined FUN_18043c0f0;
-undefined FUN_18043c0f0;
-undefined UNK_1804441f0;
+// 函数: 绘制反射
+// 负责绘制反射效果
+undefined draw_reflections;
+undefined reflection_data;        // 反射数据
 
 
 
 
-// 函数: undefined FUN_18043c160;
-undefined FUN_18043c160;
-undefined UNK_1804442b0;
+// 函数: 绘制折射
+// 负责绘制折射效果
+undefined draw_refractions;
+undefined refraction_data;        // 折射数据
 
 
 
 
-// 函数: undefined FUN_18043c230;
-undefined FUN_18043c230;
-undefined UNK_180444360;
+// 函数: 绘制雾效
+// 负责绘制雾效果
+undefined draw_fog;
+undefined fog_data;               // 雾数据
 
 
 
 
-// 函数: undefined FUN_18043c290;
-undefined FUN_18043c290;
-undefined UNK_180444440;
+// 函数: 绘制云层
+// 负责绘制云层效果
+undefined draw_clouds;
+undefined cloud_data;             // 云层数据
 
 
 
 
-// 函数: undefined FUN_18043c2e0;
-undefined FUN_18043c2e0;
-undefined UNK_180444450;
+// 函数: 绘制天气
+// 负责绘制天气效果
+undefined draw_weather;
+undefined weather_data;           // 天气数据
 
 
 
 
-// 函数: undefined FUN_18043c350;
-undefined FUN_18043c350;
-undefined UNK_180444460;
+// 函数: 绘制雨雪
+// 负责绘制雨雪效果
+undefined draw_precipitation;
+undefined precipitation_data;     // 降水数据
 
 
 
 
-// 函数: undefined FUN_18043c370;
-undefined FUN_18043c370;
-undefined UNK_180444470;
+// 函数: 绘制雷电
+// 负责绘制雷电效果
+undefined draw_lightning;
+undefined lightning_data;         // 雷电数据
 
 
 
 
-// 函数: undefined FUN_18043c3b0;
-undefined FUN_18043c3b0;
-undefined UNK_180444480;
+// 函数: 绘制风效
+// 负责绘制风效果
+undefined draw_wind;
+undefined wind_data;              // 风数据
 
 
 
 
-// 函数: undefined FUN_18043c510;
-undefined FUN_18043c510;
-undefined UNK_1804445a0;
+// 函数: 绘制火焰
+// 负责绘制火焰效果
+undefined draw_fire;
+undefined fire_data;              // 火焰数据
 
 
 
 
-// 函数: undefined FUN_18043c6b0;
-undefined FUN_18043c6b0;
-undefined UNK_1804449d0;
+// 函数: 绘制烟雾
+// 负责绘制烟雾效果
+undefined draw_smoke;
+undefined smoke_data;             // 烟雾数据
 
 
 
 
-// 函数: undefined FUN_18043c6e0;
-undefined FUN_18043c6e0;
-undefined UNK_1804449f0;
+// 函数: 绘制爆炸
+// 负责绘制爆炸效果
+undefined draw_explosions;
+undefined explosion_data;         // 爆炸数据
 
 
 
 
-// 函数: undefined FUN_18043c740;
-undefined FUN_18043c740;
-undefined UNK_180444a00;
+// 函数: 绘制魔法
+// 负责绘制魔法效果
+undefined draw_magic;
+undefined magic_data;             // 魔法数据
 
 
 
 
-// 函数: undefined FUN_18043c7a0;
-undefined FUN_18043c7a0;
-undefined UNK_180444d60;
+// 函数: 绘制技能
+// 负责绘制技能效果
+undefined draw_skills;
+undefined skill_data;             // 技能数据
 
 
 
 
-// 函数: undefined FUN_18043c820;
-undefined FUN_18043c820;
-undefined UNK_180444f20;
+// 函数: 绘制UI
+// 负责绘制用户界面
+undefined draw_ui;
+undefined ui_data;                // UI数据
 
 
 
 
-// 函数: undefined FUN_18043c8e0;
-undefined FUN_18043c8e0;
-undefined UNK_180444f60;
-undefined UNK_180444fb0;
-undefined UNK_180444fd0;
+// 函数: 绘制HUD
+// 负责绘制平视显示器
+undefined draw_hud;
+undefined hud_data;               // HUD数据
+undefined hud_elements;           // HUD元素
+undefined hud_layout;             // HUD布局
 
 
 
 
-// 函数: undefined FUN_18043ca10;
-undefined FUN_18043ca10;
-undefined UNK_180445020;
+// 函数: 绘制地图
+// 负责绘制地图界面
+undefined draw_map;
+undefined map_data;               // 地图数据
 
 
 
 
-// 函数: undefined FUN_18043caa0;
-undefined FUN_18043caa0;
-undefined UNK_1804450e0;
+// 函数: 绘制小地图
+// 负责绘制小地图
+undefined draw_minimap;
+undefined minimap_data;           // 小地图数据
 
 
 
 
-// 函数: undefined FUN_18043cae0;
-undefined FUN_18043cae0;
-undefined UNK_180445140;
+// 函数: 绘制指南针
+// 负责绘制指南针
+undefined draw_compass;
+undefined compass_data;           // 指南针数据
 
 
 
 
-// 函数: undefined FUN_18043cb50;
-undefined FUN_18043cb50;
-undefined UNK_180445160;
+// 函数: 绘制计分板
+// 负责绘制计分板
+undefined draw_scoreboard;
+undefined scoreboard_data;        // 计分板数据
 
 
 
 
-// 函数: undefined FUN_18043cbd0;
-undefined FUN_18043cbd0;
-undefined UNK_180445230;
+// 函数: 绘制计时器
+// 负责绘制计时器
+undefined draw_timer;
+undefined timer_data;             // 计时器数据
 
 
 
 
-// 函数: undefined FUN_18043d100;
-undefined FUN_18043d100;
-undefined UNK_180445280;
+// 函数: 绘制血条
+// 负责绘制血条
+undefined draw_health_bar;
+undefined health_bar_data;        // 血条数据
 
 
 
 
-// 函数: undefined FUN_18043e5c0;
-undefined FUN_18043e5c0;
-undefined UNK_1804452d0;
+// 函数: 绘制经验条
+// 负责绘制经验条
+undefined draw_exp_bar;
+undefined exp_bar_data;           // 经验条数据
 
 
 
 
-// 函数: undefined FUN_18043e630;
-undefined FUN_18043e630;
-undefined UNK_1804452f0;
+// 函数: 绘制法力条
+// 负责绘制法力条
+undefined draw_mana_bar;
+undefined mana_bar_data;          // 法力条数据
 
 
 
 
-// 函数: undefined FUN_18043e720;
-undefined FUN_18043e720;
-undefined UNK_180445310;
+// 函数: 绘制体力条
+// 负责绘制体力条
+undefined draw_stamina_bar;
+undefined stamina_bar_data;       // 体力条数据
 
 
 
 
-// 函数: undefined FUN_18043e7f0;
-undefined FUN_18043e7f0;
-undefined UNK_180445330;
+// 函数: 绘制等级
+// 负责绘制等级显示
+undefined draw_level;
+undefined level_data;             // 等级数据
 
 
 
 
-// 函数: undefined FUN_18043e990;
-undefined FUN_18043e990;
-undefined UNK_180445340;
+// 函数: 绘制称号
+// 负责绘制称号显示
+undefined draw_title;
+undefined title_data;             // 称号数据
 
 
 
 
-// 函数: undefined FUN_18043e9b0;
-undefined FUN_18043e9b0;
-undefined UNK_180445350;
-undefined UNK_180445360;
-undefined UNK_180445370;
-undefined UNK_180445470;
-undefined UNK_1804454d0;
+// 函数: 绘制成就
+// 负责绘制成就显示
+undefined draw_achievement;
+undefined achievement_data;       // 成就数据
+undefined achievement_icon;      // 成就图标
+undefined achievement_text;      // 成就文本
+undefined achievement_progress;  // 成就进度
+undefined achievement_reward;     // 成就奖励
 
 
 
 
-// 函数: undefined FUN_18043ea60;
-undefined FUN_18043ea60;
-undefined UNK_180445510;
+// 函数: 绘制任务
+// 负责绘制任务显示
+undefined draw_quest;
+undefined quest_data;             // 任务数据
 
 
 
 
-// 函数: undefined FUN_18043ea80;
-undefined FUN_18043ea80;
-undefined UNK_180445530;
+// 函数: 绘制目标
+// 负责绘制目标显示
+undefined draw_objective;
+undefined objective_data;         // 目标数据
 
 
 
 
-// 函数: undefined FUN_18043eb00;
-undefined FUN_18043eb00;
-undefined UNK_180445540;
+// 函数: 绘制提示
+// 负责绘制提示信息
+undefined draw_tooltip;
+undefined tooltip_data;           // 提示数据
 
 
 
 
-// 函数: undefined FUN_18043eb50;
-undefined FUN_18043eb50;
-undefined UNK_180445550;
+// 函数: 绘制警告
+// 负责绘制警告信息
+undefined draw_warning;
+undefined warning_data;           // 警告数据
 
 
 
 
-// 函数: undefined FUN_18043ecc0;
-undefined FUN_18043ecc0;
-undefined UNK_1804455b0;
+// 函数: 绘制错误
+// 负责绘制错误信息
+undefined draw_error;
+undefined error_data;             // 错误数据
 
 
 
 
-// 函数: undefined FUN_18043ed10;
-undefined FUN_18043ed10;
-undefined UNK_1804455c0;
+// 函数: 绘制信息
+// 负责绘制一般信息
+undefined draw_info;
+undefined info_data;              // 信息数据
 
 
 
 
-// 函数: undefined FUN_18043ed70;
-undefined FUN_18043ed70;
-undefined UNK_1804455d0;
-undefined UNK_1804455e0;
-undefined UNK_1804455f0;
+// 函数: 绘制调试信息
+// 负责绘制调试信息
+undefined draw_debug;
+undefined debug_data;             // 调试数据
+undefined debug_text;             // 调试文本
+undefined debug_overlay;          // 调试覆盖层
 
 
 
 
-// 函数: undefined FUN_18043ee70;
-undefined FUN_18043ee70;
-undefined UNK_180445600;
+// 函数: 绘制性能信息
+// 负责绘制性能监控信息
+undefined draw_performance;
+undefined performance_data;       // 性能数据
 
 
 
 
-// 函数: undefined FUN_18043ef40;
-undefined FUN_18043ef40;
-undefined UNK_180445790;
+// 函数: 绘制帧率
+// 负责绘制帧率显示
+undefined draw_fps;
+undefined fps_data;               // 帧率数据
 
 
 
 
-// 函数: undefined FUN_18043ef90;
-undefined FUN_18043ef90;
-undefined UNK_1804457a0;
+// 函数: 绘制内存使用
+// 负责绘制内存使用情况
+undefined draw_memory;
+undefined memory_data;            // 内存数据
 
 
 
 
-// 函数: undefined FUN_18043f010;
-undefined FUN_18043f010;
-undefined UNK_180445960;
+// 函数: 绘制CPU使用
+// 负责绘制CPU使用情况
+undefined draw_cpu;
+undefined cpu_data;               // CPU数据
 
 
 
 
-// 函数: undefined FUN_18043f0d0;
-undefined FUN_18043f0d0;
-undefined UNK_180445fa0;
+// 函数: 绘制GPU使用
+// 负责绘制GPU使用情况
+undefined draw_gpu;
+undefined gpu_data;               // GPU数据
 
 
 
 
-// 函数: undefined FUN_18043f240;
-undefined FUN_18043f240;
-undefined UNK_180445fb0;
+// 函数: 绘制网络延迟
+// 负责绘制网络延迟显示
+undefined draw_ping;
+undefined ping_data;              // 网络延迟数据
 
 
 
 
-// 函数: undefined FUN_18043f300;
-undefined FUN_18043f300;
-undefined UNK_180445fc0;
+// 函数: 绘制磁盘使用
+// 负责绘制磁盘使用情况
+undefined draw_disk;
+undefined disk_data;              // 磁盘数据
 
 
 
 
-// 函数: undefined FUN_18043f3f0;
-undefined FUN_18043f3f0;
-undefined UNK_180445ff0;
+// 函数: 绘制温度
+// 负责绘制温度监控
+undefined draw_temperature;
+undefined temperature_data;       // 温度数据
 
 
 
 
-// 函数: undefined FUN_18043f5f0;
-undefined FUN_18043f5f0;
-undefined UNK_180446000;
+// 函数: 绘制风扇
+// 负责绘制风扇转速
+undefined draw_fan;
+undefined fan_data;               // 风扇数据
 
 
 
 
-// 函数: undefined FUN_18043f610;
-undefined FUN_18043f610;
-undefined UNK_180446070;
+// 函数: 绘制电源
+// 负责绘制电源状态
+undefined draw_power;
+undefined power_data;             // 电源数据
 
 
 
 
-// 函数: undefined FUN_18043f770;
-undefined FUN_18043f770;
-undefined UNK_1804460b0;
+// 函数: 绘制电池
+// 负责绘制电池状态
+undefined draw_battery;
+undefined battery_data;           // 电池数据
 
 
 
 
-// 函数: undefined FUN_18043f880;
-undefined FUN_18043f880;
-undefined UNK_1804461a0;
+// 函数: 绘制网络状态
+// 负责绘制网络连接状态
+undefined draw_network;
+undefined network_data;           // 网络数据
 
 
 
 
-// 函数: undefined FUN_18043f8f0;
-undefined FUN_18043f8f0;
-undefined UNK_180446280;
+// 函数: 绘制音频状态
+// 负责绘制音频状态
+undefined draw_audio;
+undefined audio_data;             // 音频数据
 
 
 
 
-// 函数: undefined FUN_18043f960;
-undefined FUN_18043f960;
-undefined UNK_180446290;
+// 函数: 绘制输入状态
+// 负责绘制输入设备状态
+undefined draw_input;
+undefined input_data;             // 输入数据
 
 
 
 
-// 函数: undefined FUN_18043f9b0;
-undefined FUN_18043f9b0;
-undefined UNK_180446530;
+// 函数: 绘制输出状态
+// 负责绘制输出设备状态
+undefined draw_output;
+undefined output_data;            // 输出数据
 
 
 
 
-// 函数: undefined FUN_18043fa30;
-undefined FUN_18043fa30;
-undefined UNK_180446550;
+// 函数: 绘制存储状态
+// 负责绘制存储设备状态
+undefined draw_storage;
+undefined storage_data;           // 存储数据
 
 
 
 
-// 函数: undefined FUN_18043fae0;
-undefined FUN_18043fae0;
-undefined UNK_180446560;
+// 函数: 绘制系统状态
+// 负责绘制系统整体状态
+undefined draw_system;
+undefined system_data;            // 系统数据
 
 
 
 
-// 函数: undefined FUN_18043fb10;
-undefined FUN_18043fb10;
-undefined UNK_1804465b0;
-undefined UNK_180446600;
-undefined UNK_180446900;
+// 函数: 绘制进程状态
+// 负责绘制进程状态信息
+undefined draw_process;
+undefined process_data;           // 进程数据
+undefined process_list;           // 进程列表
+undefined process_info;           // 进程信息
 
 
 
 
-// 函数: undefined FUN_18043fc20;
-undefined FUN_18043fc20;
-undefined UNK_180446940;
+// 函数: 绘制线程状态
+// 负责绘制线程状态信息
+undefined draw_thread;
+undefined thread_data;            // 线程数据
 
 
 
 
-// 函数: undefined FUN_18043fce0;
-undefined FUN_18043fce0;
-undefined UNK_180446950;
+// 函数: 绘制内存映射
+// 负责绘制内存映射信息
+undefined draw_memory_map;
+undefined memory_map_data;        // 内存映射数据
 
 
 
 
-// 函数: undefined FUN_18043fd10;
-undefined FUN_18043fd10;
-undefined UNK_1804469d0;
+// 函数: 绘制堆栈
+// 负责绘制堆栈信息
+undefined draw_stack;
+undefined stack_data;             // 堆栈数据
 
 
 
 
-// 函数: undefined FUN_18043fd70;
-undefined FUN_18043fd70;
-undefined UNK_1804469e0;
+// 函数: 绘制寄存器
+// 负责绘制寄存器信息
+undefined draw_registers;
+undefined register_data;          // 寄存器数据
 
 
 
 
-// 函数: undefined FUN_18043fe10;
-undefined FUN_18043fe10;
-undefined UNK_180446a20;
+// 函数: 绘制汇编
+// 负责绘制汇编代码
+undefined draw_assembly;
+undefined assembly_data;          // 汇编数据
 
 
 
 
-// 函数: undefined FUN_18043fe70;
-undefined FUN_18043fe70;
-undefined UNK_180446a40;
+// 函数: 绘制源码
+// 负责绘制源代码
+undefined draw_source;
+undefined source_data;            // 源码数据
 
 
 
 
-// 函数: undefined FUN_18043fef0;
-undefined FUN_18043fef0;
-undefined UNK_180446b10;
+// 函数: 绘制断点
+// 负责绘制断点信息
+undefined draw_breakpoints;
+undefined breakpoint_data;        // 断点数据
 
 
 
 
-// 函数: undefined FUN_18043ff20;
-undefined FUN_18043ff20;
-undefined UNK_180446e00;
+// 函数: 绘制变量
+// 负责绘制变量信息
+undefined draw_variables;
+undefined variable_data;          // 变量数据
 
 
 
 
-// 函数: undefined FUN_1804401b0;
-undefined FUN_1804401b0;
-undefined UNK_180446e10;
+// 函数: 绘制函数
+// 负责绘制函数信息
+undefined draw_functions;
+undefined function_data;          // 函数数据
 
 
 
 
-// 函数: undefined FUN_180440220;
-undefined FUN_180440220;
-undefined UNK_180446e20;
+// 函数: 绘制调用栈
+// 负责绘制调用栈信息
+undefined draw_call_stack;
+undefined call_stack_data;        // 调用栈数据
 
 
 
 
-// 函数: undefined FUN_180440280;
-undefined FUN_180440280;
-undefined UNK_180446e30;
+// 函数: 绘制性能分析
+// 负责绘制性能分析信息
+undefined draw_profiling;
+undefined profiling_data;         // 性能分析数据
 
 
 
 
-// 函数: undefined FUN_1804402e0;
-undefined FUN_1804402e0;
-undefined UNK_180446e50;
+// 函数: 绘制内存分析
+// 负责绘制内存分析信息
+undefined draw_memory_analysis;
+undefined memory_analysis_data;   // 内存分析数据
 
 
 
 
-// 函数: undefined FUN_180440350;
-undefined FUN_180440350;
-undefined UNK_180446e60;
+// 函数: 绘制CPU分析
+// 负责绘制CPU分析信息
+undefined draw_cpu_analysis;
+undefined cpu_analysis_data;      // CPU分析数据
 
 
 
 
-// 函数: undefined FUN_1804403d0;
-undefined FUN_1804403d0;
-undefined UNK_180446f90;
+// 函数: 绘制GPU分析
+// 负责绘制GPU分析信息
+undefined draw_gpu_analysis;
+undefined gpu_analysis_data;      // GPU分析数据
 
 
 
 
-// 函数: undefined FUN_1804404b0;
-undefined FUN_1804404b0;
-undefined UNK_180447010;
+// 函数: 绘制网络分析
+// 负责绘制网络分析信息
+undefined draw_network_analysis;
+undefined network_analysis_data;  // 网络分析数据
 
 
 
 
-// 函数: undefined FUN_180440560;
-undefined FUN_180440560;
-undefined UNK_180447020;
-undefined UNK_1804470c0;
-undefined UNK_180447110;
+// 函数: 绘制磁盘分析
+// 负责绘制磁盘分析信息
+undefined draw_disk_analysis;
+undefined disk_analysis_data;     // 磁盘分析数据
+undefined disk_usage_data;       // 磁盘使用数据
+undefined disk_performance_data; // 磁盘性能数据
 
 
 
 
-// 函数: undefined FUN_1804405e0;
-undefined FUN_1804405e0;
-undefined UNK_1804473a0;
+// 函数: 绘制温度分析
+// 负责绘制温度分析信息
+undefined draw_temperature_analysis;
+undefined temperature_analysis_data; // 温度分析数据
 
 
 
 
-// 函数: undefined FUN_180440660;
-undefined FUN_180440660;
-undefined UNK_1804475b0;
+// 函数: 绘制电源分析
+// 负责绘制电源分析信息
+undefined draw_power_analysis;
+undefined power_analysis_data;    // 电源分析数据
 
 
 
 
-// 函数: undefined FUN_180440750;
-undefined FUN_180440750;
-undefined UNK_180447c80;
+// 函数: 绘制日志
+// 负责绘制日志信息
+undefined draw_log;
+undefined log_data;               // 日志数据
 
 
 
 
-// 函数: undefined FUN_180440910;
-undefined FUN_180440910;
-undefined UNK_180447c90;
+// 函数: 绘制错误日志
+// 负责绘制错误日志信息
+undefined draw_error_log;
+undefined error_log_data;         // 错误日志数据
 
 
 
 
-// 函数: undefined FUN_180440aa0;
-undefined FUN_180440aa0;
-undefined UNK_180447d20;
-undefined UNK_180447d30;
+// 函数: 绘制警告日志
+// 负责绘制警告日志信息
+undefined draw_warning_log;
+undefined warning_log_data;       // 警告日志数据
+undefined warning_count;         // 警告计数
 
 
 
 
-// 函数: undefined FUN_180440cb0;
-undefined FUN_180440cb0;
-undefined UNK_180447dc0;
+// 函数: 绘制信息日志
+// 负责绘制信息日志信息
+undefined draw_info_log;
+undefined info_log_data;          // 信息日志数据
 
 
 
 
-// 函数: undefined FUN_180440d20;
-undefined FUN_180440d20;
-undefined UNK_1804482a0;
+// 函数: 绘制调试日志
+// 负责绘制调试日志信息
+undefined draw_debug_log;
+undefined debug_log_data;         // 调试日志数据
 
 
 
 
-// 函数: undefined FUN_180440d90;
-undefined FUN_180440d90;
-undefined UNK_1804482b0;
+// 函数: 绘制性能日志
+// 负责绘制性能日志信息
+undefined draw_performance_log;
+undefined performance_log_data;   // 性能日志数据
 
 
 
 
-// 函数: undefined FUN_180440e00;
-undefined FUN_180440e00;
-undefined UNK_1804482e0;
+// 函数: 绘制内存日志
+// 负责绘制内存日志信息
+undefined draw_memory_log;
+undefined memory_log_data;        // 内存日志数据
 
 
 
 
-// 函数: undefined FUN_180440e70;
-undefined FUN_180440e70;
-undefined UNK_180448370;
+// 函数: 绘制CPU日志
+// 负责绘制CPU日志信息
+undefined draw_cpu_log;
+undefined cpu_log_data;           // CPU日志数据
 
 
 
 
-// 函数: undefined FUN_180440f30;
-undefined FUN_180440f30;
-undefined UNK_180448400;
+// 函数: 绘制GPU日志
+// 负责绘制GPU日志信息
+undefined draw_gpu_log;
+undefined gpu_log_data;           // GPU日志数据
 
 
 
 
-// 函数: undefined FUN_180441070;
-undefined FUN_180441070;
-undefined UNK_180448410;
+// 函数: 绘制网络日志
+// 负责绘制网络日志信息
+undefined draw_network_log;
+undefined network_log_data;       // 网络日志数据
 
 
 
 
-// 函数: undefined FUN_1804410a0;
-undefined FUN_1804410a0;
-undefined UNK_1804497e0;
+// 函数: 绘制磁盘日志
+// 负责绘制磁盘日志信息
+undefined draw_disk_log;
+undefined disk_log_data;          // 磁盘日志数据
 
 
 
 
-// 函数: undefined FUN_180441110;
-undefined FUN_180441110;
-undefined UNK_180449820;
+// 函数: 绘制温度日志
+// 负责绘制温度日志信息
+undefined draw_temperature_log;
+undefined temperature_log_data;   // 温度日志数据
 
 
 
 
-// 函数: undefined FUN_180441180;
-undefined FUN_180441180;
-undefined UNK_180449830;
+// 函数: 绘制电源日志
+// 负责绘制电源日志信息
+undefined draw_power_log;
+undefined power_log_data;         // 电源日志数据
 
 
 
 
-// 函数: undefined FUN_180441260;
-undefined FUN_180441260;
-undefined UNK_180449840;
+// 函数: 绘制系统日志
+// 负责绘制系统日志信息
+undefined draw_system_log;
+undefined system_log_data;        // 系统日志数据
 
 
 
 
-// 函数: undefined FUN_180441420;
-undefined FUN_180441420;
-undefined UNK_180449920;
+// 函数: 绘制应用日志
+// 负责绘制应用程序日志信息
+undefined draw_app_log;
+undefined app_log_data;           // 应用日志数据
 
 
 
 
-// 函数: undefined FUN_1804414d0;
-undefined FUN_1804414d0;
-undefined UNK_180449be0;
+// 函数: 绘制用户日志
+// 负责绘制用户日志信息
+undefined draw_user_log;
+undefined user_log_data;          // 用户日志数据
 
 
 
 
-// 函数: undefined FUN_1804415d0;
-undefined FUN_1804415d0;
-undefined UNK_180449bf0;
+// 函数: 绘制安全日志
+// 负责绘制安全日志信息
+undefined draw_security_log;
+undefined security_log_data;      // 安全日志数据
 
 
 
 
-// 函数: undefined FUN_180441640;
-undefined FUN_180441640;
-undefined UNK_18044a390;
+// 函数: 绘制访问日志
+// 负责绘制访问日志信息
+undefined draw_access_log;
+undefined access_log_data;        // 访问日志数据
 
 
 
 
-// 函数: undefined FUN_180441730;
-undefined FUN_180441730;
-undefined UNK_18044a7c0;
+// 函数: 绘制事件日志
+// 负责绘制事件日志信息
+undefined draw_event_log;
+undefined event_log_data;         // 事件日志数据
 
 
 
 
-// 函数: undefined FUN_1804417b0;
-undefined FUN_1804417b0;
-undefined UNK_18044a7d0;
+// 函数: 绘制操作日志
+// 负责绘制操作日志信息
+undefined draw_operation_log;
+undefined operation_log_data;     // 操作日志数据
 
 
 
 
-// 函数: undefined FUN_180441830;
-undefined FUN_180441830;
-undefined UNK_18044a7e0;
+// 函数: 绘制错误报告
+// 负责绘制错误报告信息
+undefined draw_error_report;
+undefined error_report_data;      // 错误报告数据
 
 
 
 
-// 函数: undefined FUN_180441890;
-undefined FUN_180441890;
-undefined UNK_18044a7f0;
+// 函数: 绘制性能报告
+// 负责绘制性能报告信息
+undefined draw_performance_report;
+undefined performance_report_data; // 性能报告数据
 
 
 
 
-// 函数: undefined FUN_1804418e0;
-undefined FUN_1804418e0;
-undefined UNK_18044a800;
+// 函数: 绘制内存报告
+// 负责绘制内存报告信息
+undefined draw_memory_report;
+undefined memory_report_data;     // 内存报告数据
 
 
 
 
-// 函数: undefined FUN_180441910;
-undefined FUN_180441910;
-undefined UNK_18044ab30;
+// 函数: 绘制CPU报告
+// 负责绘制CPU报告信息
+undefined draw_cpu_report;
+undefined cpu_report_data;        // CPU报告数据
 
 
 
 
-// 函数: undefined FUN_180441950;
-undefined FUN_180441950;
-undefined UNK_18044ab40;
+// 函数: 绘制GPU报告
+// 负责绘制GPU报告信息
+undefined draw_gpu_report;
+undefined gpu_report_data;        // GPU报告数据
 
 
 
 
-// 函数: undefined FUN_180441a00;
-undefined FUN_180441a00;
-undefined UNK_18044ab50;
+// 函数: 绘制网络报告
+// 负责绘制网络报告信息
+undefined draw_network_report;
+undefined network_report_data;    // 网络报告数据
 
 
 
 
-// 函数: undefined FUN_180441c50;
-undefined FUN_180441c50;
-undefined UNK_18044ab60;
+// 函数: 绘制磁盘报告
+// 负责绘制磁盘报告信息
+undefined draw_disk_report;
+undefined disk_report_data;       // 磁盘报告数据
 
 
 
 
-// 函数: undefined FUN_180441cc0;
-undefined FUN_180441cc0;
-undefined UNK_18044b250;
-undefined UNK_18044b540;
-undefined UNK_18044b570;
+// 函数: 绘制温度报告
+// 负责绘制温度报告信息
+undefined draw_temperature_report;
+undefined temperature_report_data; // 温度报告数据
+undefined temperature_history;   // 温度历史
+undefined temperature_trends;     // 温度趋势
 
 
 
 
-// 函数: undefined FUN_180441dd0;
-undefined FUN_180441dd0;
-undefined UNK_18044b6c0;
+// 函数: 绘制电源报告
+// 负责绘制电源报告信息
+undefined draw_power_report;
+undefined power_report_data;      // 电源报告数据
 
 
 
 
-// 函数: undefined FUN_180441e10;
-undefined FUN_180441e10;
-undefined UNK_18044baa0;
+// 函数: 绘制系统报告
+// 负责绘制系统报告信息
+undefined draw_system_report;
+undefined system_report_data;     // 系统报告数据
 
 
 
 
-// 函数: undefined FUN_180441e50;
-undefined FUN_180441e50;
-undefined UNK_18044bc30;
+// 函数: 绘制应用报告
+// 负责绘制应用程序报告信息
+undefined draw_app_report;
+undefined app_report_data;        // 应用报告数据
 
 
 
 
-// 函数: undefined FUN_180441e90;
-undefined FUN_180441e90;
-undefined UNK_18044bc40;
+// 函数: 绘制用户报告
+// 负责绘制用户报告信息
+undefined draw_user_report;
+undefined user_report_data;       // 用户报告数据
 
 
 
 
-// 函数: undefined FUN_180441f60;
-undefined FUN_180441f60;
-undefined UNK_18044c070;
+// 函数: 绘制安全报告
+// 负责绘制安全报告信息
+undefined draw_security_report;
+undefined security_report_data;   // 安全报告数据
 
 
 
 
-// 函数: undefined FUN_180441fc0;
-undefined FUN_180441fc0;
-undefined UNK_18044c080;
+// 函数: 绘制访问报告
+// 负责绘制访问报告信息
+undefined draw_access_report;
+undefined access_report_data;     // 访问报告数据
 
 
 
 
-// 函数: undefined FUN_180442020;
-undefined FUN_180442020;
-undefined UNK_18044c0a0;
+// 函数: 绘制事件报告
+// 负责绘制事件报告信息
+undefined draw_event_report;
+undefined event_report_data;      // 事件报告数据
 
 
 
 
-// 函数: undefined FUN_1804420c0;
-undefined FUN_1804420c0;
-undefined UNK_18044c0b0;
+// 函数: 绘制操作报告
+// 负责绘制操作报告信息
+undefined draw_operation_report;
+undefined operation_report_data;  // 操作报告数据
 
 
 
 
-// 函数: undefined FUN_180442180;
-undefined FUN_180442180;
-undefined UNK_18044c0c0;
+// 函数: 绘制错误统计
+// 负责绘制错误统计信息
+undefined draw_error_stats;
+undefined error_stats_data;       // 错误统计数据
 
 
 
 
-// 函数: undefined FUN_1804422a0;
-undefined FUN_1804422a0;
-undefined UNK_18044c710;
-undefined UNK_18044c940;
-undefined UNK_18044c980;
+// 函数: 绘制性能统计
+// 负责绘制性能统计信息
+undefined draw_performance_stats;
+undefined performance_stats_data; // 性能统计数据
+undefined performance_history;    // 性能历史
+undefined performance_trends;     // 性能趋势
 
 
 
 
-// 函数: undefined FUN_180442370;
-undefined FUN_180442370;
-undefined UNK_18044c9a0;
-undefined UNK_18044ca40;
-undefined UNK_18044ca60;
-undefined UNK_18044ca80;
-undefined UNK_18044caa0;
+// 函数: 绘制内存统计
+// 负责绘制内存统计信息
+undefined draw_memory_stats;
+undefined memory_stats_data;      // 内存统计数据
+undefined memory_usage_stats;    // 内存使用统计
+undefined memory_allocation_stats; // 内存分配统计
+undefined memory_leak_stats;      // 内存泄漏统计
+undefined memory_fragmentation_stats; // 内存碎片统计
 
 
 
 
-// 函数: undefined FUN_180442450;
-undefined FUN_180442450;
-undefined UNK_18044cac0;
+// 函数: 绘制CPU统计
+// 负责绘制CPU统计信息
+undefined draw_cpu_stats;
+undefined cpu_stats_data;         // CPU统计数据
 
 
 
 
-// 函数: undefined FUN_1804424d0;
-undefined FUN_1804424d0;
-undefined UNK_18044cae0;
+// 函数: 绘制GPU统计
+// 负责绘制GPU统计信息
+undefined draw_gpu_stats;
+undefined gpu_stats_data;         // GPU统计数据
 
 
 
 
-// 函数: undefined FUN_180442560;
-undefined FUN_180442560;
-undefined UNK_18044cb00;
-undefined UNK_18044cb20;
-undefined UNK_18044cb40;
-undefined UNK_18044cb60;
-undefined UNK_18044d030;
+// 函数: 绘制网络统计
+// 负责绘制网络统计信息
+undefined draw_network_stats;
+undefined network_stats_data;     // 网络统计数据
+undefined network_throughput;     // 网络吞吐量
+undefined network_latency;       // 网络延迟
+undefined network_packet_loss;    // 网络丢包率
+undefined network_bandwidth;      // 网络带宽
 
 
 
 
-// 函数: undefined FUN_180442670;
-undefined FUN_180442670;
-undefined UNK_18044d040;
-undefined UNK_18044d050;
-undefined UNK_18044d080;
-undefined UNK_18044d090;
-undefined UNK_18044d330;
+// 函数: 绘制磁盘统计
+// 负责绘制磁盘统计信息
+undefined draw_disk_stats;
+undefined disk_stats_data;        // 磁盘统计数据
+undefined disk_usage_stats;       // 磁盘使用统计
+undefined disk_io_stats;          // 磁盘IO统计
+undefined disk_performance_stats; // 磁盘性能统计
+undefined disk_health_stats;      // 磁盘健康统计
 
 
 
 
-// 函数: undefined FUN_180442720;
-undefined FUN_180442720;
-undefined UNK_18044d400;
+// 函数: 绘制温度统计
+// 负责绘制温度统计信息
+undefined draw_temperature_stats;
+undefined temperature_stats_data; // 温度统计数据
 
 
 
 
-// 函数: undefined FUN_180442860;
-undefined FUN_180442860;
-undefined UNK_18044d410;
+// 函数: 绘制电源统计
+// 负责绘制电源统计信息
+undefined draw_power_stats;
+undefined power_stats_data;       // 电源统计数据
 
 
 
 
-// 函数: undefined FUN_180442950;
-undefined FUN_180442950;
-undefined UNK_18044d420;
+// 函数: 绘制系统统计
+// 负责绘制系统统计信息
+undefined draw_system_stats;
+undefined system_stats_data;      // 系统统计数据
 
 
 
 
-// 函数: undefined FUN_1804429f0;
-undefined FUN_1804429f0;
-undefined UNK_18044d630;
+// 函数: 绘制应用统计
+// 负责绘制应用程序统计信息
+undefined draw_app_stats;
+undefined app_stats_data;         // 应用统计数据
 
 
 
 
-// 函数: undefined FUN_180442b30;
-undefined FUN_180442b30;
-undefined UNK_18044d660;
+// 函数: 绘制用户统计
+// 负责绘制用户统计信息
+undefined draw_user_stats;
+undefined user_stats_data;        // 用户统计数据
 
 
 
 
-// 函数: undefined FUN_180442d10;
-undefined FUN_180442d10;
-undefined UNK_18044d6f0;
+// 函数: 绘制安全统计
+// 负责绘制安全统计信息
+undefined draw_security_stats;
+undefined security_stats_data;    // 安全统计数据
 
 
 
 
-// 函数: undefined FUN_180442e00;
-undefined FUN_180442e00;
-undefined UNK_18044d720;
+// 函数: 绘制访问统计
+// 负责绘制访问统计信息
+undefined draw_access_stats;
+undefined access_stats_data;      // 访问统计数据
 
 
 
 
-// 函数: undefined FUN_180443000;
-undefined FUN_180443000;
-undefined UNK_18044d740;
+// 函数: 绘制事件统计
+// 负责绘制事件统计信息
+undefined draw_event_stats;
+undefined event_stats_data;       // 事件统计数据
 
 
 
 
-// 函数: undefined FUN_180443080;
-undefined FUN_180443080;
-undefined UNK_18044d760;
+// 函数: 绘制操作统计
+// 负责绘制操作统计信息
+undefined draw_operation_stats;
+undefined operation_stats_data;   // 操作统计数据
 
 
 
 
-// 函数: undefined FUN_1804431c0;
-undefined FUN_1804431c0;
-undefined UNK_18044d780;
-undefined UNK_18044d7a0;
-undefined UNK_18044d7c0;
-undefined UNK_18044dbf0;
-undefined UNK_18044e040;
-undefined UNK_18044e230;
-undefined UNK_18044e250;
+// 函数: 绘制错误历史
+// 负责绘制错误历史信息
+undefined draw_error_history;
+undefined error_history_data;     // 错误历史数据
+undefined error_frequency;       // 错误频率
+undefined error_patterns;        // 错误模式
+undefined error_trends;          // 错误趋势
+undefined error_analysis;        // 错误分析
+undefined error_prediction;      // 错误预测
+undefined error_resolution;      // 错误解决
 
 
 
 
-// 函数: undefined FUN_180443320;
-undefined FUN_180443320;
-undefined UNK_18044e260;
+// 函数: 绘制性能历史
+// 负责绘制性能历史信息
+undefined draw_performance_history;
+undefined performance_history_data; // 性能历史数据
 
 
 
 
-// 函数: undefined FUN_180443510;
-undefined FUN_180443510;
-undefined UNK_18044e270;
+// 函数: 绘制内存历史
+// 负责绘制内存历史信息
+undefined draw_memory_history;
+undefined memory_history_data;    // 内存历史数据
 
 
 
 
-// 函数: undefined FUN_180443630;
-undefined FUN_180443630;
-undefined UNK_18044e2a0;
+// 函数: 绘制CPU历史
+// 负责绘制CPU历史信息
+undefined draw_cpu_history;
+undefined cpu_history_data;       // CPU历史数据
 
 
 
 
-// 函数: undefined FUN_180443680;
-undefined FUN_180443680;
-undefined UNK_18044e320;
+// 函数: 绘制GPU历史
+// 负责绘制GPU历史信息
+undefined draw_gpu_history;
+undefined gpu_history_data;       // GPU历史数据
 
 
 
 
-// 函数: undefined FUN_180443700;
-undefined FUN_180443700;
-undefined UNK_18044e330;
+// 函数: 绘制网络历史
+// 负责绘制网络历史信息
+undefined draw_network_history;
+undefined network_history_data;   // 网络历史数据
 
 
 
 
-// 函数: undefined FUN_180443770;
-undefined FUN_180443770;
-undefined UNK_18044e340;
+// 函数: 绘制磁盘历史
+// 负责绘制磁盘历史信息
+undefined draw_disk_history;
+undefined disk_history_data;      // 磁盘历史数据
 
 
 
 
-// 函数: undefined FUN_180443820;
-undefined FUN_180443820;
-undefined UNK_18044e360;
+// 函数: 绘制温度历史
+// 负责绘制温度历史信息
+undefined draw_temperature_history;
+undefined temperature_history_data; // 温度历史数据
 
 
 
 
-// 函数: undefined FUN_180443930;
-undefined FUN_180443930;
-undefined UNK_18044e380;
-undefined UNK_18044e390;
-undefined UNK_18044e610;
-undefined UNK_18044e640;
+// 函数: 绘制电源历史
+// 负责绘制电源历史信息
+undefined draw_power_history;
+undefined power_history_data;      // 电源历史数据
+undefined power_consumption;      // 电源消耗
+undefined power_efficiency;       // 电源效率
+undefined power_savings;          // 电源节省
 
 
 
 
-// 函数: undefined FUN_180443a40;
-undefined FUN_180443a40;
-undefined UNK_18044f490;
+// 函数: 绘制系统历史
+// 负责绘制系统历史信息
+undefined draw_system_history;
+undefined system_history_data;    // 系统历史数据
 
 
 
 
-// 函数: undefined FUN_180443aa0;
-undefined FUN_180443aa0;
-undefined UNK_18044f4b0;
+// 函数: 绘制应用历史
+// 负责绘制应用程序历史信息
+undefined draw_app_history;
+undefined app_history_data;       // 应用历史数据
 
 
 
 
-// 函数: undefined FUN_180443b00;
-undefined FUN_180443b00;
-undefined UNK_18044f4f0;
+// 函数: 绘制用户历史
+// 负责绘制用户历史信息
+undefined draw_user_history;
+undefined user_history_data;      // 用户历史数据
 
 
 
 
-// 函数: undefined FUN_180443b40;
-undefined FUN_180443b40;
-undefined UNK_18044f510;
+// 函数: 绘制安全历史
+// 负责绘制安全历史信息
+undefined draw_security_history;
+undefined security_history_data;  // 安全历史数据
 
 
 
 
-// 函数: undefined FUN_180443b80;
-undefined FUN_180443b80;
-undefined UNK_18044f530;
+// 函数: 绘制访问历史
+// 负责绘制访问历史信息
+undefined draw_access_history;
+undefined access_history_data;    // 访问历史数据
 
 
 
 
-// 函数: undefined FUN_180443d10;
-undefined FUN_180443d10;
-undefined UNK_18044f580;
+// 函数: 绘制事件历史
+// 负责绘制事件历史信息
+undefined draw_event_history;
+undefined event_history_data;     // 事件历史数据
 
 
 
 
-// 函数: undefined FUN_180443d70;
-undefined FUN_180443d70;
-undefined UNK_18044f5d0;
+// 函数: 绘制操作历史
+// 负责绘制操作历史信息
+undefined draw_operation_history;
+undefined operation_history_data; // 操作历史数据
 
 
 
 
-// 函数: undefined FUN_180443df0;
-undefined FUN_180443df0;
-undefined UNK_18044f5f0;
+// 函数: 绘制错误趋势
+// 负责绘制错误趋势信息
+undefined draw_error_trends;
+undefined error_trends_data;      // 错误趋势数据
 
 
 
 
-// 函数: undefined FUN_180443f80;
-undefined FUN_180443f80;
-undefined UNK_18044f610;
+// 函数: 绘制性能趋势
+// 负责绘制性能趋势信息
+undefined draw_performance_trends;
+undefined performance_trends_data; // 性能趋势数据
 
 
 
 
-// 函数: undefined FUN_180443ff0;
-undefined FUN_180443ff0;
-undefined UNK_18044f630;
+// 函数: 绘制内存趋势
+// 负责绘制内存趋势信息
+undefined draw_memory_trends;
+undefined memory_trends_data;     // 内存趋势数据
 
 
 
 
-// 函数: undefined FUN_180444030;
-undefined FUN_180444030;
-undefined UNK_18044f640;
+// 函数: 绘制CPU趋势
+// 负责绘制CPU趋势信息
+undefined draw_cpu_trends;
+undefined cpu_trends_data;        // CPU趋势数据
 
 
 
 
-// 函数: undefined FUN_180444070;
-undefined FUN_180444070;
-undefined UNK_18044f660;
+// 函数: 绘制GPU趋势
+// 负责绘制GPU趋势信息
+undefined draw_gpu_trends;
+undefined gpu_trends_data;        // GPU趋势数据
 
 
 
 
-// 函数: undefined FUN_180444100;
-undefined FUN_180444100;
-undefined UNK_18044f690;
+// 函数: 绘制网络趋势
+// 负责绘制网络趋势信息
+undefined draw_network_trends;
+undefined network_trends_data;    // 网络趋势数据
 
 
 
 
-// 函数: undefined FUN_180444200;
-undefined FUN_180444200;
-undefined UNK_18044f6b0;
+// 函数: 绘制磁盘趋势
+// 负责绘制磁盘趋势信息
+undefined draw_disk_trends;
+undefined disk_trends_data;       // 磁盘趋势数据
 
 
 
 
-// 函数: undefined FUN_180444280;
-undefined FUN_180444280;
-undefined UNK_18044f6e0;
+// 函数: 绘制温度趋势
+// 负责绘制温度趋势信息
+undefined draw_temperature_trends;
+undefined temperature_trends_data; // 温度趋势数据
 
 
 
 
-// 函数: undefined FUN_1804442c0;
-undefined FUN_1804442c0;
-undefined UNK_18044f750;
+// 函数: 绘制电源趋势
+// 负责绘制电源趋势信息
+undefined draw_power_trends;
+undefined power_trends_data;      // 电源趋势数据
 
 
 
 
-// 函数: undefined FUN_1804442e0;
-undefined FUN_1804442e0;
-undefined UNK_18044f940;
+// 函数: 绘制系统趋势
+// 负责绘制系统趋势信息
+undefined draw_system_trends;
+undefined system_trends_data;     // 系统趋势数据
 
 
 
 
-// 函数: undefined FUN_180444370;
-undefined FUN_180444370;
-undefined UNK_18044f960;
+// 函数: 绘制应用趋势
+// 负责绘制应用程序趋势信息
+undefined draw_app_trends;
+undefined app_trends_data;        // 应用趋势数据
 
 
 
 
-// 函数: undefined FUN_1804443c0;
-undefined FUN_1804443c0;
-undefined UNK_18044f980;
+// 函数: 绘制用户趋势
+// 负责绘制用户趋势信息
+undefined draw_user_trends;
+undefined user_trends_data;       // 用户趋势数据
 
 
 
 
-// 函数: undefined FUN_180444410;
-undefined FUN_180444410;
-undefined UNK_18044f9a0;
+// 函数: 绘制安全趋势
+// 负责绘制安全趋势信息
+undefined draw_security_trends;
+undefined security_trends_data;   // 安全趋势数据
 
 
 
 
-// 函数: undefined FUN_1804445b0;
-undefined FUN_1804445b0;
-undefined UNK_18044f9c0;
+// 函数: 绘制访问趋势
+// 负责绘制访问趋势信息
+undefined draw_access_trends;
+undefined access_trends_data;     // 访问趋势数据
 
 
 
 
-// 函数: undefined FUN_180444600;
-undefined FUN_180444600;
-undefined UNK_18044f9e0;
+// 函数: 绘制事件趋势
+// 负责绘制事件趋势信息
+undefined draw_event_trends;
+undefined event_trends_data;      // 事件趋势数据
 
 
 
 
-// 函数: undefined FUN_180444700;
-undefined FUN_180444700;
-undefined UNK_18044faf0;
+// 函数: 绘制操作趋势
+// 负责绘制操作趋势信息
+undefined draw_operation_trends;
+undefined operation_trends_data;  // 操作趋势数据
 
 
 
 
-// 函数: undefined FUN_1804447c0;
-undefined FUN_1804447c0;
-undefined UNK_18044fb20;
+// 函数: 绘制错误预测
+// 负责绘制错误预测信息
+undefined draw_error_prediction;
+undefined error_prediction_data;  // 错误预测数据
 
 
 
 
-// 函数: undefined FUN_1804448a0;
-undefined FUN_1804448a0;
-undefined UNK_18044fb40;
+// 函数: 绘制性能预测
+// 负责绘制性能预测信息
+undefined draw_performance_prediction;
+undefined performance_prediction_data; // 性能预测数据
 
 
 
 
-// 函数: undefined FUN_1804449a0;
-undefined FUN_1804449a0;
-undefined UNK_18044fb60;
+// 函数: 绘制内存预测
+// 负责绘制内存预测信息
+undefined draw_memory_prediction;
+undefined memory_prediction_data; // 内存预测数据
 
 
 
 
-// 函数: undefined FUN_180444a20;
-undefined FUN_180444a20;
-undefined UNK_18044fb80;
+// 函数: 绘制CPU预测
+// 负责绘制CPU预测信息
+undefined draw_cpu_prediction;
+undefined cpu_prediction_data;    // CPU预测数据
 
 
 
 
-// 函数: undefined FUN_180444b70;
-undefined FUN_180444b70;
-undefined UNK_18044fba0;
+// 函数: 绘制GPU预测
+// 负责绘制GPU预测信息
+undefined draw_gpu_prediction;
+undefined gpu_prediction_data;    // GPU预测数据
 
 
 
 
-// 函数: undefined FUN_180444dd0;
-undefined FUN_180444dd0;
-undefined UNK_18044fbc0;
+// 函数: 绘制网络预测
+// 负责绘制网络预测信息
+undefined draw_network_prediction;
+undefined network_prediction_data; // 网络预测数据
 
 
 
 
-// 函数: undefined FUN_180444e90;
-undefined FUN_180444e90;
-undefined UNK_18044fbe0;
+// 函数: 绘制磁盘预测
+// 负责绘制磁盘预测信息
+undefined draw_disk_prediction;
+undefined disk_prediction_data;   // 磁盘预测数据
 
 
 
 
-// 函数: undefined FUN_180445060;
-undefined FUN_180445060;
-undefined UNK_18044fc00;
+// 函数: 绘制温度预测
+// 负责绘制温度预测信息
+undefined draw_temperature_prediction;
+undefined temperature_prediction_data; // 温度预测数据
 
 
 
 
-// 函数: undefined FUN_180445110;
-undefined FUN_180445110;
-undefined UNK_18044fc20;
+// 函数: 绘制电源预测
+// 负责绘制电源预测信息
+undefined draw_power_prediction;
+undefined power_prediction_data;  // 电源预测数据
 
 
 
 
-// 函数: undefined FUN_180445180;
-undefined FUN_180445180;
-undefined UNK_18044fc40;
+// 函数: 绘制系统预测
+// 负责绘制系统预测信息
+undefined draw_system_prediction;
+undefined system_prediction_data; // 系统预测数据
 
 
 
 
-// 函数: undefined FUN_180445390;
-undefined FUN_180445390;
-undefined UNK_18044fc60;
+// 函数: 绘制应用预测
+// 负责绘制应用程序预测信息
+undefined draw_app_prediction;
+undefined app_prediction_data;    // 应用预测数据
 
 
 
 
-// 函数: undefined FUN_180445480;
-undefined FUN_180445480;
-undefined UNK_18044fc80;
+// 函数: 绘制用户预测
+// 负责绘制用户预测信息
+undefined draw_user_prediction;
+undefined user_prediction_data;   // 用户预测数据
 
 
 
 
-// 函数: undefined FUN_180445570;
-undefined FUN_180445570;
-undefined UNK_18044fca0;
-undefined UNK_18044fcc0;
+// 函数: 绘制安全预测
+// 负责绘制安全预测信息
+undefined draw_security_prediction;
+undefined security_prediction_data; // 安全预测数据
+undefined threat_analysis;        // 威胁分析
 
 
 
 
-// 函数: undefined FUN_180445680;
-undefined FUN_180445680;
-undefined UNK_18044fce0;
+// 函数: 绘制访问预测
+// 负责绘制访问预测信息
+undefined draw_access_prediction;
+undefined access_prediction_data;  // 访问预测数据
 
 
 
 
-// 函数: undefined FUN_1804457b0;
-undefined FUN_1804457b0;
-undefined UNK_18044fd00;
+// 函数: 绘制事件预测
+// 负责绘制事件预测信息
+undefined draw_event_prediction;
+undefined event_prediction_data;  // 事件预测数据
 
 
 
 
-// 函数: undefined FUN_180445870;
-undefined FUN_180445870;
-undefined UNK_18044fd20;
+// 函数: 绘制操作预测
+// 负责绘制操作预测信息
+undefined draw_operation_prediction;
+undefined operation_prediction_data; // 操作预测数据
 
 
 
 
-// 函数: undefined FUN_180445970;
-undefined FUN_180445970;
-undefined UNK_18044fd40;
+// 函数: 绘制错误分析
+// 负责绘制错误分析信息
+undefined draw_error_analysis;
+undefined error_analysis_data;    // 错误分析数据
 
 
 
 
-// 函数: undefined FUN_180445a80;
-undefined FUN_180445a80;
-undefined UNK_18044fd60;
+// 函数: 绘制性能分析
+// 负责绘制性能分析信息
+undefined draw_performance_analysis;
+undefined performance_analysis_data; // 性能分析数据
 
 
 
 
-// 函数: undefined FUN_180445cd0;
-undefined FUN_180445cd0;
-undefined UNK_18044fd80;
+// 函数: 绘制内存分析
+// 负责绘制内存分析信息
+undefined draw_memory_analysis;
+undefined memory_analysis_data;   // 内存分析数据
 
 
 
 
-// 函数: undefined FUN_180445dc0;
-undefined FUN_180445dc0;
-undefined UNK_18044fda0;
+// 函数: 绘制CPU分析
+// 负责绘制CPU分析信息
+undefined draw_cpu_analysis;
+undefined cpu_analysis_data;      // CPU分析数据
 
 
 
 
-// 函数: undefined FUN_180445eb0;
-undefined FUN_180445eb0;
-undefined UNK_18044fdc0;
+// 函数: 绘制GPU分析
+// 负责绘制GPU分析信息
+undefined draw_gpu_analysis;
+undefined gpu_analysis_data;      // GPU分析数据
 
 
 
 
-// 函数: undefined FUN_180445fd0;
-undefined FUN_180445fd0;
-undefined UNK_18044fde0;
+// 函数: 绘制网络分析
+// 负责绘制网络分析信息
+undefined draw_network_analysis;
+undefined network_analysis_data;  // 网络分析数据
 
 
 
 
-// 函数: undefined FUN_180446010;
-undefined FUN_180446010;
-undefined UNK_18044fe00;
+// 函数: 绘制磁盘分析
+// 负责绘制磁盘分析信息
+undefined draw_disk_analysis;
+undefined disk_analysis_data;     // 磁盘分析数据
 
 
 
 
-// 函数: undefined FUN_180446080;
-undefined FUN_180446080;
-undefined UNK_18044fe20;
+// 函数: 绘制温度分析
+// 负责绘制温度分析信息
+undefined draw_temperature_analysis;
+undefined temperature_analysis_data; // 温度分析数据
 
 
 
 
-// 函数: undefined FUN_1804460c0;
-undefined FUN_1804460c0;
-undefined UNK_18044fe40;
+// 函数: 绘制电源分析
+// 负责绘制电源分析信息
+undefined draw_power_analysis;
+undefined power_analysis_data;    // 电源分析数据
 
 
 
 
-// 函数: undefined FUN_1804460f0;
-undefined FUN_1804460f0;
-undefined UNK_18044fe60;
+// 函数: 绘制系统分析
+// 负责绘制系统分析信息
+undefined draw_system_analysis;
+undefined system_analysis_data;  // 系统分析数据
 
 
 

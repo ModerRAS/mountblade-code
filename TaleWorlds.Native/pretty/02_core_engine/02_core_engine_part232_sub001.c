@@ -1228,3 +1228,437 @@ void alternative_hybrid_quicksort(float *array_start,float *array_end,longlong d
   }
   return;
 }
+
+
+// 函数: void FUN_180202180(longlong param_1)
+// 功能: 处理浮点数数组排序和统计计算
+// 原始实现: 处理浮点数数组的快速排序和移动平均统计计算
+// 简化实现: 保留原始的排序算法和统计计算逻辑
+void process_float_array_sorting_and_statistics(longlong param_1)
+
+{
+  float fVar1;
+  float fVar2;
+  int iVar3;
+  float *pfVar4;
+  undefined1 auVar5 [16];
+  undefined1 auVar6 [16];
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  undefined1 auVar9 [16];
+  undefined1 auVar10 [16];
+  double dVar11;
+  double dVar12;
+  double dVar13;
+  double dVar14;
+  double dVar15;
+  longlong lVar16;
+  ulonglong uVar17;
+  ulonglong uVar18;
+  uint uVar19;
+  uint uVar20;
+  float *pfVar21;
+  longlong lVar22;
+  longlong lVar23;
+  float *pfVar24;
+  ulonglong uVar25;
+  ulonglong uVar26;
+  double dVar27;
+  double dVar28;
+  double dVar29;
+  double dVar30;
+  double dVar31;
+  double dVar32;
+  double dVar33;
+  
+  // 处理第一个浮点数数组的排序
+  pfVar24 = *(float **)(param_1 + 0x70);
+  uVar18 = 0;
+  pfVar4 = *(float **)(param_1 + 0x68);
+  uVar20 = 0;
+  if (pfVar4 != pfVar24) {
+    lVar23 = (longlong)pfVar24 - (longlong)pfVar4 >> 2;
+    uVar26 = uVar18;
+    uVar19 = uVar20;
+    for (lVar16 = lVar23; lVar16 != 0; lVar16 = lVar16 >> 1) {
+      uVar19 = (int)uVar26 + 1;
+      uVar26 = (ulonglong)uVar19;
+    }
+    FUN_180202d20(pfVar4,pfVar24,(longlong)(int)(uVar19 - 1) * 2,0);
+    if (lVar23 < 0x1d) {
+      func_0x00018009d8a0(pfVar4,pfVar24);
+    }
+    else {
+      pfVar21 = pfVar4 + 0x1c;
+      func_0x00018009d8a0(pfVar4);
+      for (; pfVar21 != pfVar24; pfVar21 = pfVar21 + 1) {
+        fVar2 = *pfVar21;
+        fVar1 = pfVar21[-1];
+        pfVar4 = pfVar21;
+        while (fVar2 < fVar1) {
+          *pfVar4 = fVar1;
+          fVar1 = pfVar4[-2];
+          pfVar4 = pfVar4 + -1;
+        }
+        *pfVar4 = fVar2;
+      }
+    }
+  }
+  
+  // 处理第二个浮点数数组的排序
+  pfVar24 = *(float **)(param_1 + 0x90);
+  pfVar4 = *(float **)(param_1 + 0x88);
+  if (pfVar4 != pfVar24) {
+    lVar23 = (longlong)pfVar24 - (longlong)pfVar4 >> 2;
+    uVar26 = uVar18;
+    for (lVar16 = lVar23; lVar16 != 0; lVar16 = lVar16 >> 1) {
+      uVar20 = (int)uVar26 + 1;
+      uVar26 = (ulonglong)uVar20;
+    }
+    FUN_180202d20(pfVar4,pfVar24,(longlong)(int)(uVar20 - 1) * 2,0);
+    if (lVar23 < 0x1d) {
+      func_0x00018009d8a0(pfVar4,pfVar24);
+    }
+    else {
+      pfVar21 = pfVar4 + 0x1c;
+      func_0x00018009d8a0(pfVar4);
+      for (; pfVar21 != pfVar24; pfVar21 = pfVar21 + 1) {
+        fVar2 = *pfVar21;
+        fVar1 = pfVar21[-1];
+        pfVar4 = pfVar21;
+        while (fVar2 < fVar1) {
+          *pfVar4 = fVar1;
+          fVar1 = pfVar4[-2];
+          pfVar4 = pfVar4 + -1;
+        }
+        *pfVar4 = fVar2;
+      }
+    }
+  }
+  
+  // 计算第一个数组的统计信息
+  pfVar24 = *(float **)(param_1 + 0x68);
+  dVar28 = 0.0;
+  dVar32 = 0.0;
+  dVar27 = 0.0;
+  uVar26 = *(longlong *)(param_1 + 0x70) - (longlong)pfVar24 >> 2;
+  dVar29 = 0.0;
+  dVar12 = 0.0;
+  dVar31 = 0.0;
+  dVar14 = 0.0;
+  if (uVar26 != 0) {
+    auVar5._8_8_ = 0;
+    auVar5._0_8_ = uVar26;
+    lVar16 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar5,8);
+    auVar6._8_8_ = 0;
+    auVar6._0_8_ = uVar26 * 0xf;
+    lVar23 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar6,8);
+    auVar7._8_8_ = 0;
+    auVar7._0_8_ = uVar26 * 0x1e;
+    lVar22 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar7,8);
+    uVar17 = uVar18;
+    uVar25 = uVar18;
+    dVar32 = 0.0;
+    dVar12 = 0.0;
+    dVar14 = 0.0;
+    do {
+      if ((longlong)uVar17 < (longlong)(int)((uVar26 - lVar16 >> 1) + lVar16 >> 6)) {
+        dVar27 = dVar27 + 1.0;
+        dVar32 = dVar32 + (double)*pfVar24;
+      }
+      if ((longlong)uVar17 < (longlong)(int)((uVar26 * 0xf - lVar23 >> 1) + lVar23 >> 6)) {
+        dVar12 = dVar12 + 1.0;
+        dVar29 = dVar29 + (double)*pfVar24;
+      }
+      if ((longlong)uVar17 < (longlong)(int)((uVar26 * 0x1e - lVar22 >> 1) + lVar22 >> 6)) {
+        dVar14 = dVar14 + 1.0;
+        dVar31 = dVar31 + (double)*pfVar24;
+      }
+      uVar20 = (int)uVar25 + 1;
+      uVar25 = (ulonglong)uVar20;
+      uVar17 = uVar17 + 1;
+      pfVar24 = pfVar24 + 1;
+    } while ((ulonglong)(longlong)(int)uVar20 < uVar26);
+  }
+  
+  // 更新移动平均统计值
+  iVar3 = *(int *)(param_1 + 0xdc);
+  dVar13 = 0.0;
+  dVar15 = 1.0 / (double)iVar3;
+  dVar11 = 0.0;
+  dVar33 = (double)(iVar3 + -1);
+  dVar30 = 0.0;
+  *(double *)(param_1 + 0xf0) =
+       ((1.0 / dVar27) * dVar32 + dVar33 * *(double *)(param_1 + 0xf0)) * dVar15;
+  dVar32 = 0.0;
+  *(double *)(param_1 + 0xf8) = (dVar33 * *(double *)(param_1 + 0xf8) + dVar29 / dVar12) * dVar15;
+  *(double *)(param_1 + 0x100) = (dVar33 * *(double *)(param_1 + 0x100) + dVar31 / dVar14) * dVar15;
+  
+  // 计算第二个数组的统计信息
+  pfVar24 = *(float **)(param_1 + 0x88);
+  uVar26 = *(longlong *)(param_1 + 0x90) - (longlong)pfVar24 >> 2;
+  if (uVar26 != 0) {
+    auVar8._8_8_ = 0;
+    auVar8._0_8_ = uVar26;
+    lVar16 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar8,8);
+    auVar9._8_8_ = 0;
+    auVar9._0_8_ = uVar26 * 0xf;
+    lVar23 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar9,8);
+    auVar10._8_8_ = 0;
+    auVar10._0_8_ = uVar26 * 0x1e;
+    lVar22 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar10,8);
+    uVar17 = uVar18;
+    dVar11 = 0.0;
+    dVar13 = 0.0;
+    do {
+      if ((longlong)uVar18 < (longlong)(int)((uVar26 - lVar16 >> 1) + lVar16 >> 6)) {
+        dVar28 = dVar28 + (double)*pfVar24;
+      }
+      if ((longlong)uVar18 < (longlong)(int)((uVar26 * 0xf - lVar23 >> 1) + lVar23 >> 6)) {
+        dVar11 = dVar11 + 1.0;
+        dVar30 = dVar30 + (double)*pfVar24;
+      }
+      if ((longlong)uVar18 < (longlong)(int)((uVar26 * 0x1e - lVar22 >> 1) + lVar22 >> 6)) {
+        dVar13 = dVar13 + 1.0;
+        dVar32 = dVar32 + (double)*pfVar24;
+      }
+      uVar20 = (int)uVar17 + 1;
+      uVar17 = (ulonglong)uVar20;
+      uVar18 = uVar18 + 1;
+      pfVar24 = pfVar24 + 1;
+    } while ((ulonglong)(longlong)(int)uVar20 < uVar26);
+  }
+  
+  // 更新最终的统计结果
+  *(int *)(param_1 + 0xdc) = iVar3 + 1;
+  *(double *)(param_1 + 0x108) =
+       (dVar33 * *(double *)(param_1 + 0x108) + (1.0 / dVar27) * dVar28) * dVar15;
+  *(double *)(param_1 + 0x110) = (dVar33 * *(double *)(param_1 + 0x110) + dVar30 / dVar11) * dVar15;
+  *(double *)(param_1 + 0x118) = (dVar33 * *(double *)(param_1 + 0x118) + dVar32 / dVar13) * dVar15;
+  *(double *)(param_1 + 0xe0) =
+       (dVar33 * *(double *)(param_1 + 0xe0) + *(double *)(param_1 + 0xc0)) * dVar15;
+  *(double *)(param_1 + 0xe8) =
+       (dVar33 * *(double *)(param_1 + 0xe8) + *(double *)(param_1 + 0xb8)) * dVar15;
+  return;
+}
+
+
+// 函数: void FUN_1802021bc(void)
+// 功能: 处理浮点数数组排序和统计计算的变种版本
+// 原始实现: 类似于第一个函数，但使用不同的寄存器和参数传递方式
+// 简化实现: 保留原始的排序算法和统计计算逻辑
+void process_float_array_sorting_and_statistics_variant(void)
+
+{
+  float fVar1;
+  float fVar2;
+  int iVar3;
+  float *pfVar4;
+  undefined1 auVar5 [16];
+  undefined1 auVar6 [16];
+  undefined1 auVar7 [16];
+  undefined1 auVar8 [16];
+  undefined1 auVar9 [16];
+  undefined1 auVar10 [16];
+  double dVar11;
+  longlong in_RAX;
+  longlong lVar12;
+  ulonglong uVar13;
+  uint uVar14;
+  float *pfVar15;
+  float *pfVar16;
+  longlong lVar17;
+  float *unaff_RBX;
+  undefined8 unaff_RBP;
+  longlong lVar18;
+  ulonglong unaff_RSI;
+  float *unaff_RDI;
+  ulonglong uVar19;
+  ulonglong uVar20;
+  longlong unaff_R14;
+  double dVar21;
+  double dVar22;
+  double dVar23;
+  double dVar24;
+  double dVar25;
+  double dVar26;
+  double dVar27;
+  double dVar28;
+  double dVar29;
+  undefined4 unaff_XMM8_Da;
+  undefined4 unaff_XMM8_Db;
+  undefined4 unaff_XMM8_Dc;
+  undefined4 unaff_XMM8_Dd;
+  double dVar30;
+  double dVar31;
+  
+  // 保存寄存器状态
+  *(undefined8 *)(in_RAX + 8) = unaff_RBP;
+  *(undefined4 *)(in_RAX + -0x38) = unaff_XMM8_Da;
+  *(undefined4 *)(in_RAX + -0x34) = unaff_XMM8_Db;
+  *(undefined4 *)(in_RAX + -0x30) = unaff_XMM8_Dc;
+  *(undefined4 *)(in_RAX + -0x2c) = unaff_XMM8_Dd;
+  uVar14 = (uint)unaff_RSI;
+  
+  // 处理第一个浮点数数组的排序
+  if (unaff_RDI != unaff_RBX) {
+    lVar18 = (longlong)unaff_RBX - (longlong)unaff_RDI >> 2;
+    for (lVar12 = lVar18; lVar12 != 0; lVar12 = lVar12 >> 1) {
+    }
+    FUN_180202d20();
+    if (lVar18 < 0x1d) {
+      func_0x00018009d8a0();
+    }
+    else {
+      pfVar15 = unaff_RDI + 0x1c;
+      func_0x00018009d8a0();
+      for (; pfVar15 != unaff_RBX; pfVar15 = pfVar15 + 1) {
+        fVar2 = *pfVar15;
+        fVar1 = pfVar15[-1];
+        pfVar4 = pfVar15;
+        while (fVar2 < fVar1) {
+          *pfVar4 = fVar1;
+          fVar1 = pfVar4[-2];
+          pfVar4 = pfVar4 + -1;
+        }
+        *pfVar4 = fVar2;
+      }
+    }
+  }
+  
+  // 处理第二个浮点数数组的排序
+  pfVar15 = *(float **)(unaff_R14 + 0x90);
+  pfVar4 = *(float **)(unaff_R14 + 0x88);
+  if (pfVar4 != pfVar15) {
+    uVar19 = unaff_RSI & 0xffffffff;
+    lVar18 = (longlong)pfVar15 - (longlong)pfVar4 >> 2;
+    for (lVar12 = lVar18; lVar12 != 0; lVar12 = lVar12 >> 1) {
+      uVar14 = (int)uVar19 + 1;
+      uVar19 = (ulonglong)uVar14;
+    }
+    FUN_180202d20(pfVar4,pfVar15,(longlong)(int)(uVar14 - 1) * 2,0);
+    if (lVar18 < 0x1d) {
+      func_0x00018009d8a0(pfVar4,pfVar15);
+    }
+    else {
+      pfVar16 = pfVar4 + 0x1c;
+      func_0x00018009d8a0(pfVar4);
+      for (; pfVar16 != pfVar15; pfVar16 = pfVar16 + 1) {
+        fVar2 = *pfVar16;
+        fVar1 = pfVar16[-1];
+        pfVar4 = pfVar16;
+        while (fVar2 < fVar1) {
+          *pfVar4 = fVar1;
+          fVar1 = pfVar4[-2];
+          pfVar4 = pfVar4 + -1;
+        }
+        *pfVar4 = fVar2;
+      }
+    }
+  }
+  
+  // 计算第一个数组的统计信息
+  pfVar15 = *(float **)(unaff_R14 + 0x68);
+  dVar22 = 0.0;
+  dVar26 = 0.0;
+  dVar21 = 0.0;
+  uVar20 = *(longlong *)(unaff_R14 + 0x70) - (longlong)pfVar15 >> 2;
+  dVar23 = 0.0;
+  dVar28 = 0.0;
+  dVar25 = 0.0;
+  dVar11 = 0.0;
+  uVar19 = unaff_RSI & 0xffffffff;
+  if (uVar20 != 0) {
+    auVar5._8_8_ = 0;
+    auVar5._0_8_ = uVar20;
+    lVar12 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar5,8);
+    auVar6._8_8_ = 0;
+    auVar6._0_8_ = uVar20 * 0xf;
+    lVar18 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar6,8);
+    auVar7._8_8_ = 0;
+    auVar7._0_8_ = uVar20 * 0x1e;
+    lVar17 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar7,8);
+    uVar13 = unaff_RSI;
+    dVar11 = 0.0;
+    do {
+      if ((longlong)uVar13 < (longlong)(int)((uVar20 - lVar12 >> 1) + lVar12 >> 6)) {
+        dVar21 = dVar21 + 1.0;
+        dVar26 = dVar26 + (double)*pfVar15;
+      }
+      if ((longlong)uVar13 < (longlong)(int)((uVar20 * 0xf - lVar18 >> 1) + lVar18 >> 6)) {
+        dVar28 = dVar28 + 1.0;
+        dVar23 = dVar23 + (double)*pfVar15;
+      }
+      if ((longlong)uVar13 < (longlong)(int)((uVar20 * 0x1e - lVar17 >> 1) + lVar17 >> 6)) {
+        dVar11 = dVar11 + 1.0;
+        dVar25 = dVar25 + (double)*pfVar15;
+      }
+      uVar14 = (int)uVar19 + 1;
+      uVar19 = (ulonglong)uVar14;
+      uVar13 = uVar13 + 1;
+      pfVar15 = pfVar15 + 1;
+    } while ((ulonglong)(longlong)(int)uVar14 < uVar20);
+  }
+  
+  // 更新移动平均统计值
+  iVar3 = *(int *)(unaff_R14 + 0xdc);
+  dVar29 = 0.0;
+  dVar31 = 1.0 / (double)iVar3;
+  dVar27 = 0.0;
+  dVar30 = (double)(iVar3 + -1);
+  dVar24 = 0.0;
+  *(double *)(unaff_R14 + 0xf0) =
+       ((1.0 / dVar21) * dVar26 + dVar30 * *(double *)(unaff_R14 + 0xf0)) * dVar31;
+  dVar26 = 0.0;
+  *(double *)(unaff_R14 + 0xf8) =
+       (dVar30 * *(double *)(unaff_R14 + 0xf8) + dVar23 / dVar28) * dVar31;
+  *(double *)(unaff_R14 + 0x100) =
+       (dVar30 * *(double *)(unaff_R14 + 0x100) + dVar25 / dVar11) * dVar31;
+  
+  // 计算第二个数组的统计信息
+  pfVar15 = *(float **)(unaff_R14 + 0x88);
+  uVar19 = *(longlong *)(unaff_R14 + 0x90) - (longlong)pfVar15 >> 2;
+  if (uVar19 != 0) {
+    auVar8._8_8_ = 0;
+    auVar8._0_8_ = uVar19;
+    lVar12 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar8,8);
+    auVar9._8_8_ = 0;
+    auVar9._0_8_ = uVar19 * 0xf;
+    lVar18 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar9,8);
+    auVar10._8_8_ = 0;
+    auVar10._0_8_ = uVar19 * 0x1e;
+    lVar17 = SUB168(ZEXT816(0x47ae147ae147ae15) * auVar10,8);
+    uVar20 = unaff_RSI;
+    do {
+      if ((longlong)unaff_RSI < (longlong)(int)((uVar19 - lVar12 >> 1) + lVar12 >> 6)) {
+        dVar22 = dVar22 + (double)*pfVar15;
+      }
+      if ((longlong)unaff_RSI < (longlong)(int)((uVar19 * 0xf - lVar18 >> 1) + lVar18 >> 6)) {
+        dVar27 = dVar27 + 1.0;
+        dVar24 = dVar24 + (double)*pfVar15;
+      }
+      if ((longlong)unaff_RSI < (longlong)(int)((uVar19 * 0x1e - lVar17 >> 1) + lVar17 >> 6)) {
+        dVar29 = dVar29 + 1.0;
+        dVar26 = dVar26 + (double)*pfVar15;
+      }
+      uVar14 = (int)uVar20 + 1;
+      uVar20 = (ulonglong)uVar14;
+      unaff_RSI = unaff_RSI + 1;
+      pfVar15 = pfVar15 + 1;
+    } while ((ulonglong)(longlong)(int)uVar14 < uVar19);
+  }
+  
+  // 更新最终的统计结果
+  *(int *)(unaff_R14 + 0xdc) = iVar3 + 1;
+  *(double *)(unaff_R14 + 0x108) =
+       (dVar30 * *(double *)(unaff_R14 + 0x108) + (1.0 / dVar21) * dVar22) * dVar31;
+  *(double *)(unaff_R14 + 0x110) =
+       (dVar30 * *(double *)(unaff_R14 + 0x110) + dVar24 / dVar27) * dVar31;
+  *(double *)(unaff_R14 + 0x118) =
+       (dVar30 * *(double *)(unaff_R14 + 0x118) + dVar26 / dVar29) * dVar31;
+  *(double *)(unaff_R14 + 0xe0) =
+       (dVar30 * *(double *)(unaff_R14 + 0xe0) + *(double *)(unaff_R14 + 0xc0)) * dVar31;
+  *(double *)(unaff_R14 + 0xe8) =
+       (dVar30 * *(double *)(unaff_R14 + 0xe8) + *(double *)(unaff_R14 + 0xb8)) * dVar31;
+  return;
+}
