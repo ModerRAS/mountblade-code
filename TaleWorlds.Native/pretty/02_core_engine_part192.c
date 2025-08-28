@@ -168,8 +168,9 @@ uint64_t SystemResourceManager(uint64_t system_handle,int64_t *resource_info)
 
 
 
-// 函数: void FUN_180174d60(uint64_t param_1,uint64_t param_2)
-void FUN_180174d60(uint64_t param_1,uint64_t param_2)
+// 函数: void CoreEngineStringProcessor(uint64_t system_context,uint64_t string_data)
+// 功能: 核心引擎字符串处理器，负责字符串转换、内存分配和数据初始化
+void CoreEngineStringProcessor(uint64_t system_context,uint64_t string_data)
 
 {
   int64_t lVar1;
