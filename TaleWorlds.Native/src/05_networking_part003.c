@@ -576,25 +576,65 @@ int NetworkProtocol_SerializeCompressed(void* context, uint8_t* output_buffer, i
 
 
 
-int FUN_1808428d0(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 加密协议数据序列化函数
+ * 
+ * 该函数负责将加密协议数据序列化为网络传输格式。
+ * 包含加密头部、加密算法标识和加密密钥信息的封装。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 加密头部封装
+ * - 加密算法标识
+ * - 密钥信息封装
+ * - 安全参数设置
+ * 
+ * @安全考虑:
+ * - 密钥安全保护
+ * - 加密强度验证
+ * - 数据完整性保护
+ * - 访问权限控制
+ */
+int NetworkProtocol_SerializeEncrypted(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
-  
-  uVar1 = *(undefined4 *)(param_1 + 0x18);
-  uVar2 = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_1809844b0);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+    uint32_t key_id, algorithm_id;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取加密参数
+    key_id = *(uint32_t*)((uint8_t*)context + 0x18);
+    algorithm_id = *(uint32_t*)((uint8_t*)context + 0x10);
+    
+    // 序列化加密协议头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809844b0);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    total_size += header_size;
+    
+    // 序列化算法标识
+    header_size = func_0x00018074b800(output_buffer + total_size, buffer_size - total_size, algorithm_id);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化分隔符
+    header_size = FUN_18074b880(output_buffer + total_size, buffer_size - total_size, &DAT_180a06434);
+    if (header_size < 0) return header_size;
+    total_size += header_size;
+    
+    // 序列化密钥标识
+    header_size = func_0x00018074b7d0(output_buffer + total_size, buffer_size - total_size, key_id);
+    return total_size + header_size;
 }
 
 

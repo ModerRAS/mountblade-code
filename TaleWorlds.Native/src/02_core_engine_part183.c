@@ -407,7 +407,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     *(undefined8 **)(dest_ptr + CORE_OFFSET_0x180) = data_block;
     
     // 复制第三部分数据
-    FUN_1808fcf5c(dest_ptr + CORE_OFFSET_0x198, src_ptr + CORE_OFFSET_0x198, CORE_ENGINE_BLOCK_SIZE_0x98, 5, FUN_180049b30, FUN_180044a30);
+    DataStructureProcessor(dest_ptr + CORE_OFFSET_0x198, src_ptr + CORE_OFFSET_0x198, CORE_ENGINE_BLOCK_SIZE_0x98, 5, FUN_180049b30, FUN_180044a30);
     
     // 计算第三块数据的大小和数量
     buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x498) - *(longlong *)(src_ptr + CORE_OFFSET_0x490);
@@ -458,10 +458,10 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     *(undefined8 **)(dest_ptr + CORE_OFFSET_0x498) = data_block;
     
     // 复制剩余的数据部分
-    FUN_1808fcf5c(dest_ptr + CORE_OFFSET_0x4b0, src_ptr + CORE_OFFSET_0x4b0, CORE_ENGINE_BLOCK_SIZE_0x58, CORE_ENGINE_BLOCK_SIZE_0x10, FUN_1800b8300, FUN_180044a30);
-    FUN_1808fcf5c(dest_ptr + CORE_OFFSET_0xa30, src_ptr + CORE_OFFSET_0xa30, CORE_ENGINE_BLOCK_SIZE_0x98, 9, FUN_180049b30, FUN_180044a30);
-    FUN_180049b30(dest_ptr + CORE_OFFSET_0xf88, src_ptr + CORE_OFFSET_0xf88);
-    FUN_180049b30(dest_ptr + CORE_OFFSET_0x1020, src_ptr + CORE_OFFSET_0x1020);
+    DataStructureProcessor(dest_ptr + CORE_OFFSET_0x4b0, src_ptr + CORE_OFFSET_0x4b0, CORE_ENGINE_BLOCK_SIZE_0x58, CORE_ENGINE_BLOCK_SIZE_0x10, FUN_1800b8300, FUN_180044a30);
+    DataStructureProcessor(dest_ptr + CORE_OFFSET_0xa30, src_ptr + CORE_OFFSET_0xa30, CORE_ENGINE_BLOCK_SIZE_0x98, 9, FUN_180049b30, FUN_180044a30);
+    DataBlockCopier(dest_ptr + CORE_OFFSET_0xf88, src_ptr + CORE_OFFSET_0xf88);
+    DataBlockCopier(dest_ptr + CORE_OFFSET_0x1020, src_ptr + CORE_OFFSET_0x1020);
     
     // 计算第四块数据的大小和数量
     buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x10c0) - *(longlong *)(src_ptr + CORE_OFFSET_0x10b8);
@@ -472,7 +472,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     
     // 分配第四块数据内存
     if (buffer_size != 0) {
-        allocated_memory = FUN_18062b420(_DAT_180c8ed18, buffer_size * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
+        allocated_memory = MemoryAllocator(_DAT_180c8ed18, buffer_size * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
     }
     
     // 设置第四块数据的指针和大小
@@ -511,15 +511,15 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     *(undefined8 **)(dest_ptr + CORE_OFFSET_0x10c0) = data_block;
     
     // 执行最终的初始化操作
-    FUN_180627ae0(dest_ptr + CORE_OFFSET_0x10d8, src_ptr + CORE_OFFSET_0x10d8);
+    StringInitializer(dest_ptr + CORE_OFFSET_0x10d8, src_ptr + CORE_OFFSET_0x10d8);
     *(undefined1 *)(dest_ptr + CORE_OFFSET_0x10f8) = *(undefined1 *)(src_ptr + CORE_OFFSET_0x10f8);
     *(undefined1 *)(dest_ptr + CORE_OFFSET_0x10f9) = *(undefined1 *)(src_ptr + CORE_OFFSET_0x10f9);
-    FUN_180049b30(dest_ptr + CORE_OFFSET_0x1100, src_ptr + CORE_OFFSET_0x1100);
-    FUN_180049b30(dest_ptr + CORE_OFFSET_0x1198, src_ptr + CORE_OFFSET_0x1198);
-    FUN_180049b30(dest_ptr + CORE_OFFSET_0x1230, src_ptr + CORE_OFFSET_0x1230);
-    FUN_180049b30(dest_ptr + CORE_OFFSET_0x12c8, src_ptr + CORE_OFFSET_0x12c8);
-    FUN_180049b30(dest_ptr + CORE_OFFSET_0x1360, src_ptr + CORE_OFFSET_0x1360);
-    FUN_180049b30(dest_ptr + CORE_OFFSET_0x13f8, src_ptr + CORE_OFFSET_0x13f8);
+    DataBlockCopier(dest_ptr + CORE_OFFSET_0x1100, src_ptr + CORE_OFFSET_0x1100);
+    DataBlockCopier(dest_ptr + CORE_OFFSET_0x1198, src_ptr + CORE_OFFSET_0x1198);
+    DataBlockCopier(dest_ptr + CORE_OFFSET_0x1230, src_ptr + CORE_OFFSET_0x1230);
+    DataBlockCopier(dest_ptr + CORE_OFFSET_0x12c8, src_ptr + CORE_OFFSET_0x12c8);
+    DataBlockCopier(dest_ptr + CORE_OFFSET_0x1360, src_ptr + CORE_OFFSET_0x1360);
+    DataBlockCopier(dest_ptr + CORE_OFFSET_0x13f8, src_ptr + CORE_OFFSET_0x13f8);
     
     return dest_ptr;
 }
@@ -687,7 +687,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
     
     stack_data_8 = 0xfffffffffffffffe;
     char_count = 0;
-    FUN_180627ae0(&stack_ptr_1);
+    StringInitializer(&stack_ptr_1);
     
     // 处理字符串数据
     if (*(uint *)(string_data + CORE_OFFSET_0x10) != 0) {
@@ -732,7 +732,7 @@ longlong core_engine_string_processor(longlong *context_ptr, longlong string_dat
         stack_data_6 = 0;
         stack_ptr_5 = (undefined2 *)0x0;
         stack_data_5 = 0;
-        string_buffer = (undefined2 *)FUN_18062b420(_DAT_180c8ed18, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
+        string_buffer = (undefined2 *)MemoryAllocator(_DAT_180c8ed18, CORE_ENGINE_BLOCK_SIZE_0x10, CORE_ENGINE_ALLOC_SIZE_0x13);
         *(undefined1 *)string_buffer = 0;
         stack_ptr_5 = string_buffer;
         format_flag = FUN_18064e990(string_buffer);
@@ -834,7 +834,7 @@ longlong *core_engine_config_parser(longlong *config_ptr, longlong input_data)
                                 if ((int)char_count < CORE_ENGINE_BLOCK_SIZE_0x10) {
                                     char_count = CORE_ENGINE_BLOCK_SIZE_0x10;
                                 }
-                                temp_ptr_1 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18, (longlong)(int)char_count, CORE_ENGINE_ALLOC_SIZE_0x13);
+                                temp_ptr_1 = (undefined1 *)MemoryAllocator(_DAT_180c8ed18, (longlong)(int)char_count, CORE_ENGINE_ALLOC_SIZE_0x13);
                                 *temp_ptr_1 = 0;
                             }
                             else {
@@ -1211,7 +1211,7 @@ PROCESS_DATA:
                 temp_size = data_ptr[1];
                 if (temp_size < (ulonglong)data_ptr[2]) {
                     data_ptr[1] = temp_size + 0x20;
-                    FUN_180627ae0(temp_size, &stack_ptr_2);
+                    StringInitializer(temp_size, &stack_ptr_2);
                     stack_data_1 = (uint)temp_ptr_2;
                 }
                 else {
@@ -1219,7 +1219,7 @@ PROCESS_DATA:
                     if (data_handle == 0) {
                         data_handle = 1;
 ALLOCATE_MEMORY:
-                        data_offset = FUN_18062b420(_DAT_180c8ed18, data_handle << 5, (char)data_ptr[3]);
+                        data_offset = MemoryAllocator(_DAT_180c8ed18, data_handle << 5, (char)data_ptr[3]);
                         temp_size = data_ptr[1];
                     }
                     else {
@@ -1227,7 +1227,7 @@ ALLOCATE_MEMORY:
                         if (data_handle != 0) goto ALLOCATE_MEMORY;
                     }
                     data_size = FUN_180059780(*data_ptr, temp_size, data_offset);
-                    FUN_180627ae0(data_size, &stack_ptr_2);
+                    StringInitializer(data_size, &stack_ptr_2);
                     data_block_1 = (undefined8 *)data_ptr[1];
                     temp_size = stack_data_14;
                     for (temp_ptr_1 = (undefined8 *)*data_ptr; stack_data_14 = temp_size, temp_ptr_1 != data_block_1;
@@ -1308,7 +1308,7 @@ core_engine_interface_initializer(undefined8 *interface_ptr, undefined8 *config_
     init_param_3 = 1;
     init_param_1 = *interface_ptr;
     init_param_2 = FUN_180628ca0();
-    init_param_2 = FUN_180627ae0(init_buffer, init_param_2);
+    init_param_2 = StringInitializer(init_buffer, init_param_2);
     FUN_180162220(init_param_1, config_ptr, init_param_2, init_flags, init_param_3, init_param_4);
     return config_ptr;
 }
@@ -1340,7 +1340,7 @@ core_engine_parameter_handler(longlong *param_array, undefined8 *config_ptr, und
         if (param_array[1] == 0) {
             if (param_array[2] == 0) {
                 process_result = FUN_180628ca0();
-                FUN_180627ae0(config_ptr, process_result);
+                StringInitializer(config_ptr, process_result);
             }
             else {
                 process_result = FUN_180628ca0();
