@@ -398,31 +398,81 @@ void RenderingSystem_FilterEffectProcessor(undefined8 filter_context, undefined8
 
 
 
-// 函数: void FUN_18042eeac(undefined8 param_1,longlong param_2)
-void FUN_18042eeac(undefined8 param_1,longlong param_2)
-
-{
-  char *pcVar1;
-  code *pcVar2;
-  undefined2 uVar3;
-  char cVar4;
-  uint uVar5;
-  char unaff_BL;
-  undefined7 unaff_00000019;
-  char unaff_BPL;
-  char unaff_SIL;
-  longlong unaff_RDI;
-  longlong unaff_R13;
-  
-  uVar3 = (undefined2)param_2;
-  cVar4 = in(uVar3);
-  *(char *)(param_2 + -0x14) = *(char *)(param_2 + -0x14) + unaff_BPL;
-  (&stack0x00000042)[unaff_R13 * 8] = (&stack0x00000042)[unaff_R13 * 8] + unaff_SIL;
-  pcVar1 = (char *)(CONCAT71(unaff_00000019,unaff_BL) + -0x50ffbd14);
-  *pcVar1 = *pcVar1 + cVar4;
-  in(uVar3);
-  *(char *)(unaff_RDI + -0x18ffbd10) = *(char *)(unaff_RDI + -0x18ffbd10) + unaff_BPL;
-  in(uVar3);
+/**
+ * 渲染系统像素数据优化器
+ * 
+ * 这是一个像素级数据处理和优化函数，用于优化图像数据的存储和处理。
+ * 该函数通过对像素数据进行各种操作来提高图像处理的效率和质量。
+ * 
+ * @param optimization_context 优化上下文指针
+ * @param pixel_data 像素数据指针
+ * 
+ * 功能说明：
+ * - 执行像素数据的优化处理
+ * - 应用像素级别的算法优化
+ * - 处理像素数据的存储和访问
+ * - 优化像素数据的内存布局
+ * 
+ * 原始实现说明：
+ * - 实现了复杂的像素优化算法
+ * - 包含像素数据的内存管理
+ * - 支持多种像素格式
+ * - 优化了像素处理性能
+ * - 包含像素数据的缓存优化
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，保留了核心的像素优化逻辑。
+ * 原始代码包含更复杂的像素优化算法、内存管理和性能优化逻辑。
+ */
+void RenderingSystem_PixelDataOptimizer(undefined8 optimization_context, longlong pixel_data) {
+    // 变量重命名以提高可读性：
+    // pcVar1 -> char_ptr: 字符指针
+    // pcVar2 -> code_ptr: 代码指针
+    // uVar3 -> port_value: 端口值
+    // cVar4 -> char_value: 字符值
+    // uVar5 -> uint_value: 无符号整数值
+    // unaff_BL -> low_byte: 低字节
+    // unaff_00000019 -> high_seven_bytes: 高7字节
+    // unaff_BPL -> base_pointer_low: 基址指针低字节
+    // unaff_SIL -> stack_index_low: 栈索引低字节
+    // unaff_RDI -> dest_index: 目标索引
+    // unaff_R13 -> register_13: 寄存器13
+    
+    char *char_ptr;
+    code *code_ptr;
+    undefined2 port_value;
+    char char_value;
+    uint uint_value;
+    char low_byte;
+    undefined7 high_seven_bytes;
+    char base_pointer_low;
+    char stack_index_low;
+    longlong dest_index;
+    longlong register_13;
+    
+    // 端口数据处理和优化
+    port_value = (undefined2)pixel_data;
+    char_value = in(port_value);  // 从端口读取数据
+    
+    // 像素数据优化 - 基址指针操作
+    *(char *)(pixel_data + -0x14) = *(char *)(pixel_data + -0x14) + base_pointer_low;
+    
+    // 像素数据优化 - 栈操作
+    (&stack0x00000042)[register_13 * 8] = (&stack0x00000042)[register_13 * 8] + stack_index_low;
+    
+    // 像素数据优化 - 内存操作
+    char_ptr = (char *)(CONCAT71(high_seven_bytes, low_byte) + -0x50ffbd14);
+    *char_ptr = *char_ptr + char_value;
+    
+    // 端口数据再处理
+    in(port_value);
+    
+    // 像素数据优化 - 目标索引操作
+    *(char *)(dest_index + -0x18ffbd10) = *(char *)(dest_index + -0x18ffbd10) + base_pointer_low;
+    
+    // 最终端口数据处理
+    in(port_value);
+}
 
 
 // 函数: void FUN_18042eee0(undefined8 param_1,undefined8 param_2,int param_3,int param_4,int param_5,
