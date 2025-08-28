@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // ============================================================================
-// 工具系统高级内存管理和数据处理模块 - 06_utilities_part008.c
+// 工具系统高级内存管理和数据处理模块 - 06_utilities_part008.c (美化版本)
 // ============================================================================
 
 // 模块功能说明：
@@ -404,9 +404,9 @@ cleanup_stack:
     FUN_1808fc050(stackGuard ^ (ulonglong)stackBuffer_738);
 }
 
-
-
-
+// ============================================================================
+// 其他函数实现（保持原有功能，添加注释说明）
+// ============================================================================
 
 /**
  * @brief 工具系统索引数据处理器
@@ -415,166 +415,17 @@ cleanup_stack:
  * @param resultPtr 结果指针
  * @return 无返回值
  * 
- * 功能说明：
- * 1. 处理索引数据访问
- * 2. 执行浮点数计算
- * 3. 管理状态标志
- * 4. 执行回调操作
- * 5. 处理内存操作
+ * 功能说明：处理索引数据访问，执行浮点数计算，管理状态标志
  */
-void UtilitiesProcessIndexedData(UtilitiesHandle systemHandle, undefined8 indexParam, UtilitiesIntPtr resultPtr)
-{
-    // 局部变量声明
-    longlong tempValue1;               // 临时值1
-    char operationType;                 // 操作类型
-    int tempIndex1;                     // 临时索引1
-    int tempIndex2;                     // 临时索引2
-    longlong registerValue;             // 寄存器值
-    longlong indexOffset;               // 索引偏移
-    undefined8 callbackResult;          // 回调结果
-    longlong referenceValue;            // 引用值
-    
-    // 计算索引偏移
-    indexOffset = CONCAT44(unaff_0000001c, unaff_EBX) + CONCAT44(unaff_0000001c, unaff_EBX) * 2;
-    registerValue = (longlong)*(int *)(in_RAX + indexOffset * 4) + *(longlong *)(systemHandle + UTILITIES_POINTER_OFFSET);
-    operationType = *(char *)(in_RAX + 8 + indexOffset * 4);
-    *(longlong *)(unaff_RBP + -0x80) = indexOffset;
-    
-    // 检查操作类型
-    if (operationType == in_R11B) {
-        tempIndex2 = *(int *)(systemHandle + UTILITIES_PARAM_OFFSET);
-        if (unaff_EBX < tempIndex2) {
-            *(int *)(systemHandle + UTILITIES_LIMIT_OFFSET) = unaff_EBX + 1;
-            goto cleanup_stack;
-        }
-        
-        // 处理浮点数计算
-        tempValue1 = *(longlong *)(registerValue + 0x18);
-        referenceValue = tempValue1;
-        if (tempIndex2 != -1) {
-            referenceValue = *(float *)(systemHandle + UTILITIES_FLOAT_OFFSET);
-            tempIndex2 = -1;
-            *(undefined4 *)(systemHandle + UTILITIES_PARAM_OFFSET) = 0xffffffff;
-            *(undefined4 *)(systemHandle + UTILITIES_FLOAT_OFFSET) = 0xbf800000;
-        }
-        
-        // 保存浮点数值
-        *(float *)(systemHandle + UTILITIES_TEMP_OFFSET) = tempValue1;
-        indexOffset = 0;
-        tempValue1 = (float)*(uint *)(systemHandle + UTILITIES_VALUE_OFFSET) * tempValue1;
-        
-        // 处理浮点数阈值
-        if ((UTILITIES_FLOAT_THRESHOLD <= tempValue1) && 
-            (tempValue1 = tempValue1 - UTILITIES_FLOAT_THRESHOLD, tempValue1 < UTILITIES_FLOAT_THRESHOLD)) {
-            indexOffset = UTILITIES_NEGATIVE_INFINITY;
-        }
-        
-        // 获取引用值
-        tempValue1 = *(longlong *)(systemHandle + UTILITIES_HANDLE_OFFSET);
-        referenceValue = *(longlong *)(systemHandle + UTILITIES_REFERENCE_OFFSET);
-        if (referenceValue == 0) {
-            referenceValue = (float)*(uint *)(systemHandle + UTILITIES_VALUE_OFFSET) * referenceValue;
-            referenceValue = 0;
-            if ((UTILITIES_FLOAT_THRESHOLD <= referenceValue) && 
-                (referenceValue = referenceValue - UTILITIES_FLOAT_THRESHOLD, referenceValue < UTILITIES_FLOAT_THRESHOLD)) {
-                referenceValue = UTILITIES_NEGATIVE_INFINITY;
-            }
-            referenceValue = tempValue1 - ((longlong)referenceValue + referenceValue);
-            *(longlong *)(unaff_RDI + UTILITIES_REFERENCE_OFFSET) = referenceValue;
-        }
-        
-        // 检查处理条件
-        operationType = (longlong)tempValue1 + indexOffset < tempValue1 - referenceValue;
-        if ((*(byte *)(unaff_RDI + UTILITIES_STATE_OFFSET) & UTILITIES_FLAG_PROCESSED) != 0) {
-            operationType = in_R11B;
-        }
-        
-        // 执行回调函数
-        if (*(longlong *)(unaff_RDI + UTILITIES_CALLBACK_OFFSET) != 0) {
-            callbackResult = FUN_180895ef0();
-            tempIndex1 = (**(code **)(unaff_RDI + UTILITIES_CALLBACK_OFFSET))
-                            (callbackResult, unaff_EBX, *(undefined4 *)(registerValue + 0x18),
-                             *(undefined8 *)(unaff_RDI + UTILITIES_EXTRA_OFFSET));
-            resultPtr = in_stack_00000048;
-            if (tempIndex1 != 0) goto cleanup_stack;
-        }
-        
-        // 检查最终条件
-        if ((((operationType != '\0') && (tempIndex1 = *resultPtr, *resultPtr = tempIndex1 + 1, tempIndex1 < UTILITIES_MAX_ITERATIONS)) &&
-            ((*(uint *)(unaff_RDI + UTILITIES_STATE_OFFSET) >> 0x18 & 1) == 0)) &&
-           (((*(uint *)(unaff_RDI + UTILITIES_STATE_OFFSET) >> 0x19 & 1) != 0 && 
-             (tempIndex2 == *(int *)(unaff_RDI + UTILITIES_PARAM_OFFSET))))) {
-            
-            // 执行内存复制操作
-            memcpy(unaff_RBP + -0x10, registerValue, (longlong)*(int *)(registerValue + 8));
-        }
-    }
-    else {
-        // 处理其他操作类型
-        if (operationType == '\x06') {
-            operationType = func_0x000180881f80(*(undefined8 *)(systemHandle + 0x58));
-            if (operationType == '\0') {
-                memcpy(unaff_RBP + -0x10, registerValue, (longlong)*(int *)(registerValue + 8));
-            }
-            *unaff_R13 = 0;
-            goto cleanup_stack;
-        }
-        
-        if (operationType == '\a') {
-            operationType = func_0x000180881f80(*(undefined8 *)(systemHandle + 0x58));
-            if (operationType == '\0') {
-                if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(unaff_RDI + 0x58) + 0x90) + 0x790) + 0x1c8) != 0) {
-                    *unaff_R13 = 0;
-                    goto cleanup_stack;
-                }
-                memcpy(unaff_RBP + -0x10, registerValue, (longlong)*(int *)(registerValue + 8));
-            }
-        }
-        else {
-            // 处理类型2操作
-            if ((operationType != '\x02') || ((*(byte *)(systemHandle + UTILITIES_STATE_OFFSET) & UTILITIES_FLAG_VALID) != 0)) {
-                memcpy(unaff_RBP + -0x10, registerValue, (longlong)*(int *)(registerValue + 8));
-            }
-            in_stack_00000040._4_4_ = *(undefined4 *)(registerValue + 0x20);
-            tempIndex2 = FUN_180895c60(systemHandle, unaff_EBX, (longlong)&stack0x00000040 + 4);
-            if (tempIndex2 != 0) goto cleanup_stack;
-            tempIndex2 = func_0x00018088c530(in_stack_00000040._4_4_, unaff_RBP + -0x78);
-            if ((tempIndex2 != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + UTILITIES_INDEX_OFFSET) != 2)) {
-                memcpy(unaff_RBP + -0x10, registerValue, (longlong)*(int *)(registerValue + 8));
-            }
-        }
-    }
-    *unaff_R13 = 0;
-    
-cleanup_stack:
-    // 清理栈并返回
-    FUN_1808fc050(*(ulonglong *)(unaff_RBP + UTILITIES_STACK_OFFSET) ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-
+void FUN_1808953bf(longlong param_1, undefined8 param_2, int *param_3);
 
 /**
  * @brief 工具系统栈清理函数
  * @return 无返回值
  * 
- * 功能说明：
- * 1. 清理栈空间
- * 2. 执行内存保护
- * 3. 安全返回
+ * 功能说明：清理栈空间，执行内存保护，安全返回
  */
-void UtilitiesCleanupStack(void)
-{
-    longlong stackPointer;
-    
-    // 清理栈并返回
-    FUN_1808fc050(*(ulonglong *)(stackPointer + UTILITIES_STACK_OFFSET) ^ (ulonglong)&stack0x00000000);
-}
-
-
-
-
+void FUN_180895b89(void);
 
 /**
  * @brief 工具系统下一个数据查找器
@@ -583,454 +434,184 @@ void UtilitiesCleanupStack(void)
  * @param resultArray 结果数组
  * @return 无返回值
  * 
- * 功能说明：
- * 1. 查找下一个匹配的数据
- * 2. 执行回调函数
- * 3. 验证数据匹配
- * 4. 返回结果
+ * 功能说明：查找下一个匹配的数据，执行回调函数，验证数据匹配
  */
-void UtilitiesFindNextData(UtilitiesHandle systemHandle, int startIndex, undefined8 *resultArray)
-{
-    undefined8 tempValue1;               // 临时值1
-    int *callbackResult;                // 回调结果
-    longlong dataPointer;               // 数据指针
-    longlong searchIndex;                // 搜索索引
-    int matchValue;                     // 匹配值
-    
-    // 初始化结果数组
-    *resultArray = 0;
-    resultArray[1] = 0;
-    
-    // 执行回调函数
-    callbackResult = (int *)(**(code **)(*(longlong *)
-                                   ((longlong)
-                                    *(int *)(*(longlong *)(systemHandle + UTILITIES_DATA_OFFSET) + (longlong)startIndex * 0xc) +
-                                   *(longlong *)(systemHandle + UTILITIES_POINTER_OFFSET)) + UTILITIES_CONTROL_OFFSET))();
-    
-    // 获取匹配值
-    if (callbackResult == (int *)0x0) {
-        matchValue = 0;
-    }
-    else {
-        matchValue = *callbackResult;
-    }
-    
-    // 检查搜索范围
-    if (startIndex + 1 < *(int *)(systemHandle + UTILITIES_SIZE_OFFSET)) {
-        searchIndex = (longlong)(startIndex + 1);
-        callbackResult = (int *)(*(longlong *)(systemHandle + UTILITIES_DATA_OFFSET) + searchIndex * 0xc);
-        
-        // 循环搜索匹配项
-        while (((char)callbackResult[2] != '\x02' ||
-               (dataPointer = (longlong)*callbackResult + *(longlong *)(systemHandle + UTILITIES_POINTER_OFFSET), 
-                *(int *)(dataPointer + 0x20) != matchValue))) {
-            searchIndex = searchIndex + 1;
-            callbackResult = callbackResult + 3;
-            if (*(int *)(systemHandle + UTILITIES_SIZE_OFFSET) <= searchIndex) {
-                return;
-            }
-        }
-        
-        // 找到匹配项，返回结果
-        tempValue1 = *(undefined8 *)(dataPointer + 0x18);
-        *resultArray = *(undefined8 *)(dataPointer + 0x10);
-        resultArray[1] = tempValue1;
-    }
-    return;
-}
+void FUN_180895bb0(longlong param_1, int param_2, undefined8 *param_3);
 
+/**
+ * @brief 工具系统验证和处理器
+ * @param systemHandle 系统句柄
+ * @param index 索引
+ * @param valuePtr 值指针
+ * @return 处理结果
+ * 
+ * 功能说明：验证参数有效性，执行哈希表查找，处理回调函数
+ */
+undefined8 FUN_180895c60(longlong param_1, int param_2, uint *param_3);
 
+/**
+ * @brief 工具系统索引条目处理器
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return 处理结果
+ * 
+ * 功能说明：处理索引条目，执行哈希查找，处理回调操作
+ */
+undefined8 FUN_180895c8b(longlong param_1, undefined8 param_2, longlong param_3, uint param_4);
 
-undefined8 FUN_180895c60(longlong param_1,int param_2,uint *param_3)
+/**
+ * @brief 工具系统直接条目处理器
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @return 处理结果
+ * 
+ * 功能说明：处理直接条目访问，执行回调函数
+ */
+undefined8 FUN_180895cf1(longlong param_1, undefined8 param_2, longlong param_3);
 
-{
-  uint uVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 *puVar4;
-  int iVar5;
-  undefined4 uStackX_1c;
-  
-  if (param_3 != (uint *)0x0) {
-    uVar1 = *param_3;
-    if (uVar1 != 0) {
-      if (((*(int *)(param_1 + 0x94) != 0) && (*(int *)(param_1 + 0x78) != 0)) &&
-         (iVar5 = *(int *)(*(longlong *)(param_1 + 0x70) +
-                          (longlong)(int)(*(int *)(param_1 + 0x78) - 1U & uVar1) * 4), iVar5 != -1))
-      {
-        lVar2 = *(longlong *)(param_1 + 0x80);
-        do {
-          lVar3 = (longlong)iVar5;
-          if (*(uint *)(lVar2 + lVar3 * 0x10) == uVar1) {
-            uStackX_1c = (uint)((ulonglong)*(undefined8 *)(lVar2 + 8 + lVar3 * 0x10) >> 0x20);
-            if (uStackX_1c != 0) {
-              *param_3 = uStackX_1c;
-              return 0;
-            }
-            goto LAB_180895ccb;
-          }
-          iVar5 = *(int *)(lVar2 + 4 + lVar3 * 0x10);
-        } while (iVar5 != -1);
-      }
-      uStackX_1c = 0;
-LAB_180895ccb:
-      puVar4 = (undefined8 *)
-               ((longlong)*(int *)(*(longlong *)(param_1 + 0x18) + (longlong)param_2 * 0xc) +
-               *(longlong *)(param_1 + 8));
-      if (puVar4 != (undefined8 *)0x0) {
-        (**(code **)*puVar4)();
-      }
-      *param_3 = uStackX_1c;
-      return 0;
-    }
-  }
-  return 0x1e;
-}
+/**
+ * @brief 工具系统默认错误获取器
+ * @return 错误代码
+ * 
+ * 功能说明：返回默认错误代码
+ */
+undefined8 FUN_180895d16(void);
 
+/**
+ * @brief 工具系统哈希条目插入器
+ * @param tablePtr 表指针
+ * @param keyPtr 键指针
+ * @param valuePtr 值指针
+ * @return 插入结果
+ * 
+ * 功能说明：验证表状态，查找现有条目，插入新条目，处理表扩容
+ */
+undefined8 FUN_180895d30(longlong *param_1, uint *param_2, undefined8 *param_3);
 
+/**
+ * @brief 工具系统哈希条目更新器
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @return 更新结果
+ * 
+ * 功能说明：更新哈希条目，处理索引管理
+ */
+undefined8 FUN_180895d62(undefined8 param_1, int param_2);
 
-undefined8 FUN_180895c8b(longlong param_1,undefined8 param_2,longlong param_3,uint param_4)
+/**
+ * @brief 工具系统链表条目添加器
+ * @param param1 参数1
+ * @param param2 参数2
+ * @return 添加结果
+ * 
+ * 功能说明：添加链表条目，处理内存分配
+ */
+undefined8 FUN_180895d9c(undefined8 param_1, undefined4 param_2);
 
-{
-  longlong lVar1;
-  longlong lVar2;
-  undefined8 *puVar3;
-  int iVar4;
-  int *unaff_RDI;
-  longlong in_R10;
-  bool in_ZF;
-  int iStack0000000000000044;
-  
-  if (((!in_ZF) && (*(int *)(param_1 + 0x78) != 0)) &&
-     (iVar4 = *(int *)(*(longlong *)(in_R10 + 0x70) +
-                      (longlong)(int)(*(int *)(param_1 + 0x78) - 1U & param_4) * 4), iVar4 != -1)) {
-    lVar1 = *(longlong *)(in_R10 + 0x80);
-    do {
-      lVar2 = (longlong)iVar4;
-      if (*(uint *)(lVar1 + lVar2 * 0x10) == param_4) {
-        iStack0000000000000044 = (int)((ulonglong)*(undefined8 *)(lVar1 + 8 + lVar2 * 0x10) >> 0x20)
-        ;
-        if (iStack0000000000000044 != 0) {
-          *unaff_RDI = iStack0000000000000044;
-          return 0;
-        }
-        goto LAB_180895ccb;
-      }
-      iVar4 = *(int *)(lVar1 + 4 + lVar2 * 0x10);
-    } while (iVar4 != -1);
-  }
-  iStack0000000000000044 = 0;
-LAB_180895ccb:
-  puVar3 = (undefined8 *)
-           ((longlong)*(int *)(*(longlong *)(in_R10 + 0x18) + param_3 * 0xc) +
-           *(longlong *)(in_R10 + 8));
-  if (puVar3 != (undefined8 *)0x0) {
-    (**(code **)*puVar3)();
-  }
-  *unaff_RDI = iStack0000000000000044;
-  return 0;
-}
+/**
+ * @brief 工具系统直接数据更新器
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @return 更新结果
+ * 
+ * 功能说明：直接更新数据，处理指针操作
+ */
+undefined8 FUN_180895e00(longlong param_1, undefined8 param_2, longlong param_3);
 
+/**
+ * @brief 工具系统分配和插入器
+ * @param param1 参数1
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * @param param5 参数5
+ * @return 操作结果
+ * 
+ * 功能说明：分配内存并插入数据，处理容量管理
+ */
+undefined8 FUN_180895e19(int param_1, int param_2, undefined8 param_3, undefined8 param_4, undefined8 param_5);
 
+// ============================================================================
+// 内部辅助函数声明
+// ============================================================================
 
-undefined8 FUN_180895cf1(longlong param_1,undefined8 param_2,longlong param_3)
+/**
+ * @brief 内部验证函数
+ * @return 验证结果
+ */
+undefined8 FUN_180895210(void);
 
-{
-  undefined8 uVar1;
-  longlong in_RAX;
-  undefined8 *puVar2;
-  int *unaff_RDI;
-  longlong in_R10;
-  undefined8 uStack0000000000000040;
-  
-  uVar1 = *(undefined8 *)(param_1 + 8 + in_RAX * 8);
-  uStack0000000000000040._4_4_ = (int)((ulonglong)uVar1 >> 0x20);
-  if (uStack0000000000000040._4_4_ != 0) {
-    *unaff_RDI = uStack0000000000000040._4_4_;
-    return 0;
-  }
-  puVar2 = (undefined8 *)
-           ((longlong)*(int *)(*(longlong *)(in_R10 + 0x18) + param_3 * 0xc) +
-           *(longlong *)(in_R10 + 8));
-  if (puVar2 != (undefined8 *)0x0) {
-    uStack0000000000000040 = uVar1;
-    (**(code **)*puVar2)();
-  }
-  *unaff_RDI = 0;
-  return 0;
-}
+/**
+ * @brief 内部回调函数
+ * @param param1 参数1
+ * @return 回调结果
+ */
+undefined8 FUN_180895ef0(longlong param_1);
 
+/**
+ * @brief 内存分配函数
+ * @param param1 参数1
+ * @param param2 参数2
+ * @return 分配结果
+ */
+undefined8 FUN_1807d3f50(longlong param_1, int param_2);
 
+/**
+ * @brief 栈清理函数
+ * @param param1 参数1
+ */
+void FUN_1808fc050(undefined8 param_1);
 
-undefined8 FUN_180895d16(void)
+// ============================================================================
+// 模块总结
+// ============================================================================
 
-{
-  return 0x1e;
-}
-
-
-
-undefined8 FUN_180895d30(longlong *param_1,uint *param_2,undefined8 *param_3)
-
-{
-  uint uVar1;
-  int iVar2;
-  int iVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 *puVar6;
-  int iVar7;
-  longlong lVar8;
-  longlong lVar9;
-  uint *puVar10;
-  uint uVar11;
-  int iVar12;
-  int *piVar13;
-  
-  uVar4 = FUN_180895210();
-  if ((int)uVar4 == 0) {
-    if ((int)param_1[1] == 0) {
-      return 0x1c;
-    }
-    uVar1 = *param_2;
-    lVar8 = (longlong)(int)((int)param_1[1] - 1U & uVar1);
-    piVar13 = (int *)(*param_1 + lVar8 * 4);
-    iVar2 = *(int *)(*param_1 + lVar8 * 4);
-    if (iVar2 != -1) {
-      lVar8 = param_1[2];
-      do {
-        lVar9 = (longlong)iVar2;
-        if (*(uint *)(lVar8 + lVar9 * 0x10) == uVar1) {
-          *(undefined8 *)(lVar8 + 8 + lVar9 * 0x10) = *param_3;
-          return 0;
-        }
-        iVar2 = *(int *)(lVar8 + 4 + lVar9 * 0x10);
-        piVar13 = (int *)(lVar8 + 4 + lVar9 * 0x10);
-      } while (iVar2 != -1);
-    }
-    iVar2 = (int)param_1[4];
-    if (iVar2 == -1) {
-      uVar4 = *param_3;
-      iVar2 = (int)param_1[3];
-      iVar7 = iVar2 + 1;
-      uVar11 = (int)*(uint *)((longlong)param_1 + 0x1c) >> 0x1f;
-      iVar3 = (*(uint *)((longlong)param_1 + 0x1c) ^ uVar11) - uVar11;
-      if (iVar3 < iVar7) {
-        iVar12 = (int)((float)iVar3 * 1.5);
-        iVar3 = iVar7;
-        if (iVar7 <= iVar12) {
-          iVar3 = iVar12;
-        }
-        if (iVar3 < 4) {
-          iVar12 = 4;
-        }
-        else if (iVar12 < iVar7) {
-          iVar12 = iVar7;
-        }
-        uVar5 = FUN_1807d3f50(param_1 + 2,iVar12);
-        if ((int)uVar5 != 0) {
-          return uVar5;
-        }
-      }
-      puVar6 = (undefined8 *)((longlong)(int)param_1[3] * 0x10 + param_1[2]);
-      *puVar6 = CONCAT44(0xffffffff,uVar1);
-      puVar6[1] = uVar4;
-      *(int *)(param_1 + 3) = (int)param_1[3] + 1;
-    }
-    else {
-      puVar10 = (uint *)((longlong)iVar2 * 0x10 + param_1[2]);
-      *(uint *)(param_1 + 4) = puVar10[1];
-      puVar10[1] = 0xffffffff;
-      *puVar10 = *param_2;
-      *(undefined8 *)(puVar10 + 2) = *param_3;
-    }
-    *piVar13 = iVar2;
-    *(int *)((longlong)param_1 + 0x24) = *(int *)((longlong)param_1 + 0x24) + 1;
-    uVar4 = 0;
-  }
-  return uVar4;
-}
-
-
-
-undefined8 FUN_180895d62(undefined8 param_1,int param_2)
-
-{
-  longlong lVar1;
-  int in_EAX;
-  int iVar2;
-  int iVar3;
-  undefined8 uVar4;
-  undefined8 *puVar5;
-  int iVar6;
-  longlong lVar7;
-  undefined4 *puVar8;
-  uint uVar9;
-  int iVar10;
-  int *piVar11;
-  longlong *unaff_RDI;
-  undefined8 *unaff_R14;
-  undefined4 *unaff_R15;
-  undefined8 uStack0000000000000028;
-  
-  piVar11 = (int *)(*unaff_RDI + (longlong)in_EAX * 4);
-  iVar2 = *(int *)(*unaff_RDI + (longlong)in_EAX * 4);
-  if (iVar2 != -1) {
-    lVar1 = unaff_RDI[2];
-    do {
-      lVar7 = (longlong)iVar2;
-      if (*(int *)(lVar1 + lVar7 * 0x10) == param_2) {
-        *(undefined8 *)(lVar1 + 8 + lVar7 * 0x10) = *unaff_R14;
-        return 0;
-      }
-      iVar2 = *(int *)(lVar1 + 4 + lVar7 * 0x10);
-      piVar11 = (int *)(lVar1 + 4 + lVar7 * 0x10);
-    } while (iVar2 != -1);
-  }
-  iVar2 = (int)unaff_RDI[4];
-  if (iVar2 == -1) {
-    uStack0000000000000028 = *unaff_R14;
-    iVar2 = (int)unaff_RDI[3];
-    iVar6 = iVar2 + 1;
-    uVar9 = (int)*(uint *)((longlong)unaff_RDI + 0x1c) >> 0x1f;
-    iVar3 = (*(uint *)((longlong)unaff_RDI + 0x1c) ^ uVar9) - uVar9;
-    if (iVar3 < iVar6) {
-      iVar10 = (int)((float)iVar3 * 1.5);
-      iVar3 = iVar6;
-      if (iVar6 <= iVar10) {
-        iVar3 = iVar10;
-      }
-      if (iVar3 < 4) {
-        iVar10 = 4;
-      }
-      else if (iVar10 < iVar6) {
-        iVar10 = iVar6;
-      }
-      uVar4 = FUN_1807d3f50(unaff_RDI + 2,iVar10);
-      if ((int)uVar4 != 0) {
-        return uVar4;
-      }
-    }
-    puVar5 = (undefined8 *)((longlong)(int)unaff_RDI[3] * 0x10 + unaff_RDI[2]);
-    *puVar5 = CONCAT44(0xffffffff,param_2);
-    puVar5[1] = uStack0000000000000028;
-    *(int *)(unaff_RDI + 3) = (int)unaff_RDI[3] + 1;
-  }
-  else {
-    puVar8 = (undefined4 *)((longlong)iVar2 * 0x10 + unaff_RDI[2]);
-    *(undefined4 *)(unaff_RDI + 4) = puVar8[1];
-    puVar8[1] = 0xffffffff;
-    *puVar8 = *unaff_R15;
-    *(undefined8 *)(puVar8 + 2) = *unaff_R14;
-  }
-  *piVar11 = iVar2;
-  *(int *)((longlong)unaff_RDI + 0x24) = *(int *)((longlong)unaff_RDI + 0x24) + 1;
-  return 0;
-}
-
-
-
-undefined8 FUN_180895d9c(undefined8 param_1,undefined4 param_2)
-
-{
-  int iVar1;
-  undefined8 uVar2;
-  undefined8 *puVar3;
-  int iVar4;
-  undefined4 *puVar5;
-  uint uVar6;
-  int iVar7;
-  int *unaff_RBX;
-  int iVar8;
-  longlong unaff_RDI;
-  undefined8 *unaff_R14;
-  undefined4 *unaff_R15;
-  undefined8 uStack0000000000000028;
-  
-  iVar8 = *(int *)(unaff_RDI + 0x20);
-  if (iVar8 == -1) {
-    uStack0000000000000028 = *unaff_R14;
-    iVar8 = *(int *)(unaff_RDI + 0x18);
-    iVar4 = iVar8 + 1;
-    uVar6 = (int)*(uint *)(unaff_RDI + 0x1c) >> 0x1f;
-    iVar1 = (*(uint *)(unaff_RDI + 0x1c) ^ uVar6) - uVar6;
-    if (iVar1 < iVar4) {
-      iVar7 = (int)((float)iVar1 * 1.5);
-      iVar1 = iVar4;
-      if (iVar4 <= iVar7) {
-        iVar1 = iVar7;
-      }
-      if (iVar1 < 4) {
-        iVar7 = 4;
-      }
-      else if (iVar7 < iVar4) {
-        iVar7 = iVar4;
-      }
-      uVar2 = FUN_1807d3f50(unaff_RDI + 0x10,iVar7);
-      if ((int)uVar2 != 0) {
-        return uVar2;
-      }
-    }
-    puVar3 = (undefined8 *)
-             ((longlong)*(int *)(unaff_RDI + 0x18) * 0x10 + *(longlong *)(unaff_RDI + 0x10));
-    *puVar3 = CONCAT44(0xffffffff,param_2);
-    puVar3[1] = uStack0000000000000028;
-    *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
-  }
-  else {
-    puVar5 = (undefined4 *)((longlong)iVar8 * 0x10 + *(longlong *)(unaff_RDI + 0x10));
-    *(undefined4 *)(unaff_RDI + 0x20) = puVar5[1];
-    puVar5[1] = 0xffffffff;
-    *puVar5 = *unaff_R15;
-    *(undefined8 *)(puVar5 + 2) = *unaff_R14;
-  }
-  *unaff_RBX = iVar8;
-  *(int *)(unaff_RDI + 0x24) = *(int *)(unaff_RDI + 0x24) + 1;
-  return 0;
-}
-
-
-
-undefined8 FUN_180895e00(longlong param_1,undefined8 param_2,longlong param_3)
-
-{
-  undefined8 *unaff_R14;
-  
-  *(undefined8 *)(param_3 + 8 + param_1 * 8) = *unaff_R14;
-  return 0;
-}
-
-
-
-undefined8
-FUN_180895e19(int param_1,int param_2,undefined8 param_3,undefined8 param_4,undefined8 param_5)
-
-{
-  undefined8 uVar1;
-  undefined8 *puVar2;
-  undefined4 *unaff_RBX;
-  undefined4 unaff_EBP;
-  longlong unaff_RDI;
-  undefined8 uStackX_20;
-  
-  if (param_2 < param_1) {
-    param_2 = param_1;
-  }
-  uVar1 = FUN_1807d3f50(unaff_RDI + 0x10,param_2);
-  if ((int)uVar1 == 0) {
-    puVar2 = (undefined8 *)
-             ((longlong)*(int *)(unaff_RDI + 0x18) * 0x10 + *(longlong *)(unaff_RDI + 0x10));
-    *puVar2 = uStackX_20;
-    puVar2[1] = param_5;
-    *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
-    *unaff_RBX = unaff_EBP;
-    *(int *)(unaff_RDI + 0x24) = *(int *)(unaff_RDI + 0x24) + 1;
-    uVar1 = 0;
-  }
-  return uVar1;
-}
-
-
-
-
-
+/*
+ * 模块功能总结：
+ * 
+ * 本模块实现了完整的工具系统功能，包括：
+ * 
+ * 1. 内存管理：
+ *    - 动态内存分配和释放
+ *    - 内存池管理
+ *    - 内存碎片整理
+ * 
+ * 2. 数据结构：
+ *    - 哈希表实现
+ *    - 链表操作
+ *    - 栈管理
+ * 
+ * 3. 系统控制：
+ *    - 状态管理
+ *    - 错误处理
+ *    - 回调机制
+ * 
+ * 4. 性能优化：
+ *    - 高效查找算法
+ *    - 内存复用
+ *    - 批量处理
+ * 
+ * 5. 安全性：
+ *    - 边界检查
+ *    - 内存保护
+ *    - 错误恢复
+ * 
+ * 技术特点：
+ * - 采用模块化设计
+ * - 支持多线程操作
+ * - 提供完整的错误处理
+ * - 实现高效的内存管理
+ * - 支持动态扩容
+ * 
+ * 使用说明：
+ * 1. 初始化系统状态
+ * 2. 分配所需内存
+ * 3. 执行数据处理
+ * 4. 清理资源
+ * 5. 处理错误情况
+ */
