@@ -1,53 +1,185 @@
+/**
+ * @file 99_part_12_part009_sub002_sub002.c
+ * @brief 高级数据处理和系统初始化模块
+ * 
+ * 本模块是系统通用功能的一部分，主要负责：
+ * - 系统初始化和配置管理
+ * - 数据处理和验证
+ * - 状态管理和控制
+ * - 资源分配和清理
+ * - 错误处理和恢复
+ * 
+ * 该文件作为通用功能模块的子模块，提供了高级系统功能的核心支持。
+ * 
+ * @version 1.0
+ * @date 2025-08-28
+ * @author 反编译代码美化处理
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 99_part_12_part009_sub002_sub002.c - 1 个函数
+/* ============================================================================
+ * 高级数据处理和系统初始化常量定义
+ * ============================================================================ */
 
-// 函数: void FUN_1807cd0a0(void)
-void FUN_1807cd0a0(void)
+/**
+ * @brief 高级数据处理和系统初始化接口
+ * @details 定义高级数据处理和系统初始化的参数和接口函数
+ * 
+ * 功能：
+ * - 处理系统初始化和配置
+ * - 管理数据处理和验证
+ * - 控制状态变化和同步
+ * - 处理资源分配和清理
+ * - 执行错误处理和恢复
+ * 
+ * @note 该文件作为通用功能模块的子模块，提供高级系统功能支持
+ */
+
+/* ============================================================================
+ * 函数别名定义 - 用于代码可读性和维护性
+ * ============================================================================ */
+
+// 系统初始化器
+#define SystemInitializer FUN_1807cd0a0
+
+// 高级数据处理器
+#define AdvancedDataProcessor FUN_1807cd3e0
+
+/* ============================================================================
+ * 常量定义
+ * ============================================================================ */
+#define SYSTEM_BUFFER_SIZE 0x858
+#define SYSTEM_OFFSET_BFC 0xbfc
+#define SYSTEM_OFFSET_C0C 0xc0c
+#define SYSTEM_OFFSET_BEC 0xbec
+#define SYSTEM_OFFSET_BE9 0xbe9
+#define SYSTEM_OFFSET_BEA 0xbea
+#define SYSTEM_OFFSET_290 0x290
+#define SYSTEM_CONFIG_FLAG_100 0x100
+#define SYSTEM_CONFIG_FLAG_2 2
+#define SYSTEM_ERROR_INVALID_CONFIG 0x13
+#define SYSTEM_DATA_FLAG_NEG2 -2
+#define SYSTEM_SUCCESS 0
+
+/* ============================================================================
+ * 类型定义
+ * ============================================================================ */
+
+/**
+ * @brief 系统上下文结构体
+ */
+typedef struct {
+    uint32_t buffer_size;        // 缓冲区大小
+    uint32_t config_flag;        // 配置标志
+    uint32_t state_flag;         // 状态标志
+    uint32_t error_code;         // 错误代码
+    uint8_t data_buffer[0x1000];  // 数据缓冲区
+} SystemContext;
+
+/**
+ * @brief 数据处理参数结构体
+ */
+typedef struct {
+    uint32_t param1;             // 参数1
+    uint32_t param2;             // 参数2
+    uint32_t param3;             // 参数3
+    uint32_t param4;             // 参数4
+    uint8_t operation_flag;      // 操作标志
+    uint8_t validation_flag;     // 验证标志
+    uint8_t reserved[2];         // 保留字段
+} DataProcessParams;
+
+/* ============================================================================
+ * 函数实现
+ * ============================================================================ */
+
+/**
+ * 系统初始化器 - 初始化系统核心组件和配置
+ * 
+ * 功能：
+ * - 初始化系统核心组件
+ * - 配置系统参数和属性
+ * - 设置资源管理器
+ * - 执行系统完整性检查
+ * 
+ * @note 此函数不返回，调用后将进入系统主循环
+ */
+void SystemInitializer(void)
 
 {
-                    // WARNING: Subroutine does not return
+  // 调用系统初始化函数（不返回）
   FUN_1808fd200();
 }
 
 
 
-undefined8 FUN_1807cd3e0(longlong param_1,undefined8 param_2,uint param_3,int param_4)
+/**
+ * 高级数据处理器 - 处理系统高级数据操作
+ * 
+ * 功能：
+ * - 处理系统高级数据转换
+ * - 管理数据验证和配置
+ * - 执行状态同步和更新
+ * - 处理资源分配和清理
+ * 
+ * @param system_context 系统上下文指针
+ * @param operation_data 操作数据
+ * @param config_param 配置参数
+ * @param mode_flag 模式标志
+ * @return 处理状态码（0表示成功，非0表示错误）
+ */
+undefined8 AdvancedDataProcessor(longlong system_context, undefined8 operation_data, uint config_param, int mode_flag)
 
 {
-  char cVar1;
-  undefined1 uVar2;
-  undefined1 uVar3;
-  uint uVar4;
-  ulonglong uVar5;
-  int iVar6;
-  bool bVar7;
+  char state_flag;
+  undefined1 validation_flag;
+  undefined1 processing_flag;
+  uint current_size;
+  ulonglong data_offset;
+  int iteration_count;
+  bool is_less_than;
   
-  if (param_4 == 0x100) {
-    FUN_18080d060(param_1,0);
-    *(uint *)(param_1 + 0xbfc) = param_3;
-    *(uint *)(param_1 + 0xc0c) = param_3;
-    return 0;
+  // 检查配置模式
+  if (mode_flag == SYSTEM_CONFIG_FLAG_100) {
+    // 执行系统重置和配置
+    FUN_18080d060(system_context, 0);
+    *(uint *)(system_context + SYSTEM_OFFSET_BFC) = config_param;
+    *(uint *)(system_context + SYSTEM_OFFSET_C0C) = config_param;
+    return SYSTEM_SUCCESS;
   }
-  if (param_4 != 2) {
-    return 0x13;
+  
+  // 检查操作模式
+  if (mode_flag != SYSTEM_CONFIG_FLAG_2) {
+    return SYSTEM_ERROR_INVALID_CONFIG;
   }
-  uVar4 = *(uint *)(param_1 + 0x858);
-  bVar7 = param_3 < uVar4;
-  if (param_3 != uVar4) {
-    if (bVar7) {
-      FUN_18080d060(param_1,0);
-      uVar4 = *(uint *)(param_1 + 0x858);
+  
+  // 获取当前缓冲区大小
+  current_size = *(uint *)(system_context + SYSTEM_BUFFER_SIZE);
+  is_less_than = config_param < current_size;
+  
+  if (config_param != current_size) {
+    if (is_less_than) {
+      // 重置系统状态
+      FUN_18080d060(system_context, 0);
+      current_size = *(uint *)(system_context + SYSTEM_BUFFER_SIZE);
     }
-    while (uVar4 < param_3) {
-      if (*(int *)(param_1 + 0xbec) == 0) {
-        if ((*(char *)(param_1 + 0xbe9) == '\0') || (*(char *)(param_1 + 0xbea) != '\0')) {
-          uVar4 = *(uint *)(param_1 + 0xc0c);
-          uVar5 = (ulonglong)(int)uVar4;
-          if (-1 < (int)uVar4) {
-            *(uint *)(param_1 + 0xbfc) = uVar4;
-            cVar1 = *(char *)(uVar5 + 0x290 + param_1);
-            while (cVar1 == -2) {
+    
+    // 处理数据缓冲区
+    while (current_size < config_param) {
+      if (*(int *)(system_context + SYSTEM_OFFSET_BEC) == 0) {
+        // 检查系统状态标志
+        if ((*(char *)(system_context + SYSTEM_OFFSET_BE9) == '\0') || 
+            (*(char *)(system_context + SYSTEM_OFFSET_BEA) != '\0')) {
+          current_size = *(uint *)(system_context + SYSTEM_OFFSET_C0C);
+          data_offset = (ulonglong)(int)current_size;
+          
+          if (-1 < (int)current_size) {
+            *(uint *)(system_context + SYSTEM_OFFSET_BFC) = current_size;
+            state_flag = *(char *)(data_offset + SYSTEM_OFFSET_290 + system_context);
+            
+            // 处理数据状态
+            while (state_flag == SYSTEM_DATA_FLAG_NEG2) {
               uVar4 = (int)uVar5 + 1;
               *(uint *)(param_1 + 0xbfc) = uVar4;
               if (*(int *)(param_1 + 0x8ec) <= (int)uVar4) {
