@@ -2,51 +2,54 @@
 
 // 02_core_engine_part187.c - 4 个函数
 
-// 函数: void FUN_18016da50(undefined8 *param_1)
-void FUN_18016da50(undefined8 *param_1)
+/**
+ * 初始化引擎核心模块并设置默认配置
+ * @param module_config 模块配置指针
+ */
+void initialize_engine_core_module(undefined8 *module_config)
 
 {
-  undefined4 *puVar1;
-  undefined1 auStack_98 [32];
-  undefined4 uStack_78;
-  undefined8 uStack_70;
-  undefined8 *puStack_68;
-  undefined1 *puStack_60;
-  undefined1 auStack_58 [32];
-  undefined *puStack_38;
-  undefined1 *puStack_30;
-  undefined4 uStack_28;
-  undefined1 auStack_20 [16];
-  ulonglong uStack_10;
+  undefined4 *config_data;
+  undefined1 temp_buffer_1 [32];
+  undefined4 init_status;
+  undefined8 stack_guard_1;
+  undefined8 *module_ptr;
+  undefined1 *buffer_ptr;
+  undefined1 temp_buffer_2 [32];
+  undefined *resource_ptr;
+  undefined1 *string_ptr;
+  undefined4 buffer_size;
+  undefined1 name_buffer [16];
+  ulonglong stack_guard_2;
   
-  uStack_70 = 0xfffffffffffffffe;
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_98;
-  uStack_78 = 0;
-  puStack_60 = auStack_58;
-  puStack_38 = &UNK_1809fdc18;
-  puStack_30 = auStack_20;
-  auStack_20[0] = 0;
-  uStack_28 = 0;
-  puStack_68 = param_1;
-  strcpy_s(auStack_20,0x10,&DAT_18098bc73);
-  FUN_1806279c0(auStack_58,&puStack_38);
-  FUN_180046ca0();
-  puStack_38 = &UNK_18098bcb0;
-  *param_1 = &UNK_18098bcb0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  *param_1 = &UNK_180a3c3e0;
-  param_1[3] = 0;
-  param_1[1] = 0;
-  *(undefined4 *)(param_1 + 2) = 0;
-  FUN_1806277c0(param_1,4);
-  puVar1 = (undefined4 *)param_1[1];
-  *puVar1 = 0x656e6f44;
-  *(undefined1 *)(puVar1 + 1) = 0;
-  *(undefined4 *)(param_1 + 2) = 4;
-  uStack_78 = 1;
+  stack_guard_1 = 0xfffffffffffffffe;
+  stack_guard_2 = _DAT_180bf00a8 ^ (ulonglong)temp_buffer_1;
+  init_status = 0;
+  buffer_ptr = temp_buffer_2;
+  resource_ptr = &UNK_1809fdc18;
+  string_ptr = name_buffer;
+  name_buffer[0] = 0;
+  buffer_size = 0;
+  module_ptr = module_config;
+  strcpy_s(name_buffer,0x10,&DAT_18098bc73);
+  initialize_resource_buffer(temp_buffer_2,&resource_ptr);
+  initialize_engine_system();
+  resource_ptr = &UNK_18098bcb0;
+  *module_config = &UNK_18098bcb0;
+  module_config[1] = 0;
+  *(undefined4 *)(module_config + 2) = 0;
+  *module_config = &UNK_180a3c3e0;
+  module_config[3] = 0;
+  module_config[1] = 0;
+  *(undefined4 *)(module_config + 2) = 0;
+  create_engine_instance(module_config,4);
+  config_data = (undefined4 *)module_config[1];
+  *config_data = 0x656e6f44;
+  *(undefined1 *)(config_data + 1) = 0;
+  *(undefined4 *)(module_config + 2) = 4;
+  init_status = 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_98);
+  execute_engine_initialization(stack_guard_2 ^ (ulonglong)temp_buffer_1);
 }
 
 
