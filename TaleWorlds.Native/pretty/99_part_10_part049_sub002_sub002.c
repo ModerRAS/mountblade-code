@@ -4088,7 +4088,7 @@ int DataValidator(longlong param_1,longlong *param_2,int param_3)
 
 
 
-int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
+int SystemHelper3(longlong param_1,longlong *param_2,int param_3)
 
 {
   int iVar1;
@@ -4445,7 +4445,7 @@ int FUN_1806c6780(longlong param_1,longlong *param_2,int param_3)
 
 
 
-int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
+int SystemHelper4(longlong param_1,uint64_t param_2,int param_3)
 
 {
   int iVar1;
@@ -4866,7 +4866,7 @@ int FUN_1806c6799(longlong param_1,uint64_t param_2,int param_3)
 
 
 
-int FUN_1806c690d(uint64_t param_1,int32_t param_2)
+int SystemHelper5(uint64_t param_1,int32_t param_2)
 
 {
   int iVar1;

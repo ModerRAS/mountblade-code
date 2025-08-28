@@ -1508,7 +1508,7 @@ void FUN_180941e90(void)
 void FUN_180941f00(void)
 
 {
-  _DAT_180bf91b0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[0] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1522,7 +1522,7 @@ void FUN_180941f00(void)
 void FUN_180941f20(void)
 
 {
-  _DAT_180bf9210 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[1] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1536,7 +1536,7 @@ void FUN_180941f20(void)
 void FUN_180941f40(void)
 
 {
-  _DAT_180bf9270 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[2] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1550,7 +1550,7 @@ void FUN_180941f40(void)
 void FUN_180941f60(void)
 
 {
-  _DAT_180bf92d0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[3] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1564,7 +1564,7 @@ void FUN_180941f60(void)
 void FUN_180941f80(void)
 
 {
-  _DAT_180bf9330 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[4] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1578,7 +1578,7 @@ void FUN_180941f80(void)
 void FUN_180941fa0(void)
 
 {
-  _DAT_180bf9390 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[5] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1592,7 +1592,7 @@ void FUN_180941fa0(void)
 void FUN_180941fc0(void)
 
 {
-  _DAT_180bf93f0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[6] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1606,7 +1606,7 @@ void FUN_180941fc0(void)
 void FUN_180941fe0(void)
 
 {
-  _DAT_180bf9450 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[7] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1620,7 +1620,7 @@ void FUN_180941fe0(void)
 void FUN_180942000(void)
 
 {
-  _DAT_180bf94b0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[8] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1634,7 +1634,7 @@ void FUN_180942000(void)
 void FUN_180942020(void)
 
 {
-  _DAT_180bf9510 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[9] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1648,7 +1648,7 @@ void FUN_180942020(void)
 void FUN_180942040(void)
 
 {
-  _DAT_180bf9570 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[10] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1662,7 +1662,7 @@ void FUN_180942040(void)
 void FUN_180942060(void)
 
 {
-  _DAT_180bf95d0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[11] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1676,7 +1676,7 @@ void FUN_180942060(void)
 void FUN_180942080(void)
 
 {
-  _DAT_180bf9630 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[12] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1690,7 +1690,7 @@ void FUN_180942080(void)
 void FUN_1809420a0(void)
 
 {
-  _DAT_180bf9690 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[13] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1704,7 +1704,7 @@ void FUN_1809420a0(void)
 void FUN_1809420c0(void)
 
 {
-  _DAT_180bf96f0 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[14] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
@@ -1718,7 +1718,7 @@ void FUN_1809420c0(void)
 void FUN_1809420e0(void)
 
 {
-  _DAT_180bf9750 = &UNK_18098bcb0;
+  *utilities_system_ptr_array[15] = SYSTEM_DEFAULT_VALUE;
   return;
 }
 
