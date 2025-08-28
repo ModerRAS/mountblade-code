@@ -756,7 +756,7 @@ int FUN_1806cc880(longlong param_1,longlong *param_2,uint param_3)
   }
   plVar8 = (longlong *)&system_data_02c0;
   plVar9 = (longlong *)param_2[1];
-  if (_DAT_180be02c0 != 0) {
+  if (system_system_buffer_config != 0) {
     do {
       if ((int)plVar8[1] == iVar5) {
         (**(code **)(*plVar9 + 0x10))(plVar9,puVar10,*plVar8);
@@ -1133,7 +1133,7 @@ int FUN_1806cd1e0(longlong param_1,longlong *param_2,int param_3)
   }
   plVar6 = (longlong *)&system_data_02f0;
   plVar11 = (longlong *)param_2[1];
-  if (_DAT_180be02f0 != 0) {
+  if (system_system_buffer_config != 0) {
     do {
       if ((int)plVar6[1] == iVar4) {
         (**(code **)(*plVar11 + 0x10))(plVar11,puVar8,*plVar6);
@@ -1157,9 +1157,9 @@ int FUN_1806cd1e0(longlong param_1,longlong *param_2,int param_3)
   if ((uint *)param_2[5] != (uint *)0x0) {
     puVar10 = (uint *)param_2[5];
   }
-  if (_DAT_180be0350 != 0) {
+  if (system_system_buffer_config != 0) {
     plVar11 = (longlong *)&system_data_0350;
-    lVar5 = _DAT_180be0350;
+    lVar5 = system_system_buffer_config;
     do {
       FUN_1806d7170(param_2,lVar5);
       iVar4 = (**(code **)(param_1 + 0x78))(param_2[2],(int)plVar11[1]);
@@ -1173,7 +1173,7 @@ int FUN_1806cd1e0(longlong param_1,longlong *param_2,int param_3)
       }
       plVar7 = (longlong *)&system_data_03c0;
       plVar6 = (longlong *)param_2[1];
-      if (_DAT_180be03c0 != 0) {
+      if (system_system_buffer_config != 0) {
         do {
           if ((int)plVar7[1] == iVar4) {
             (**(code **)(*plVar6 + 0x10))(plVar6,puVar8,*plVar7);

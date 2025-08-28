@@ -160,7 +160,7 @@ uint64_t FUN_180491260(longlong param_1,longlong *param_2)
   longlong **pplStackX_20;
   
   plStackX_10 = param_2;
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0xd0,8,3,0xfffffffffffffffe);
+  uVar3 = FUN_18062b1e0(system_memory_pool_ptr,0xd0,8,3,0xfffffffffffffffe);
   uVar3 = FUN_180490790(uVar3);
   pplStackX_20 = &plStackX_8;
   plStackX_8 = (longlong *)*param_2;

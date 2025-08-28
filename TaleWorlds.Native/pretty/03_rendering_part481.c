@@ -30,7 +30,7 @@ void FUN_180525fa0(longlong param_1)
     return;
   }
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < _DAT_180d49f00) && (FUN_1808fcb90(&system_ptr_9f00), _DAT_180d49f00 == -1)) {
+               0x48) < render_system_config_ui) && (FUN_1808fcb90(&system_ptr_9f00), render_system_config_ui == -1)) {
     _Mtx_init_in_situ(0x180d49f10,0x102);
     FUN_1808fc820(FUN_180943040);
     FUN_1808fcb30(&system_ptr_9f00);
@@ -123,12 +123,12 @@ void FUN_1805261b0(longlong param_1,float param_2)
       uVar7 = *(uint *)(*(longlong *)(param_1 + 0x1f0) + 0x56c) >> 0xe & 1;
       if (((int)plVar2[(ulonglong)uVar7 * 9 + 0x48a] != -1) &&
          (*(int *)((longlong)(int)plVar2[(ulonglong)uVar7 * 9 + 0x48a] * 0x68 + 0x58 +
-                  _DAT_180c96150) == 0x14)) {
+                  render_system_ui) == 0x14)) {
         fVar11 = (float)(**(code **)(*plVar2 + 0x80))(plVar2,uVar7);
         fVar1 = *(float *)(param_1 + 0x1f8);
         if (fVar11 < fVar1) {
           plVar2 = *(longlong **)(*(longlong *)(param_1 + 0x1f0) + 0x590);
-          fVar11 = _DAT_180c963e8 * param_2 + fVar11;
+          fVar11 = render_system_ui * param_2 + fVar11;
           if (fVar1 <= fVar11) {
             fVar11 = fVar1;
           }
@@ -259,13 +259,13 @@ void FUN_1805261dd(longlong param_1)
     plVar5 = *(longlong **)(lVar4 + 0x590);
     uVar12 = *(uint *)(lVar4 + 0x56c) >> 0xe & 1;
     if (((int)plVar5[(ulonglong)uVar12 * 9 + 0x48a] != -1) &&
-       (*(int *)((longlong)(int)plVar5[(ulonglong)uVar12 * 9 + 0x48a] * 0x68 + 0x58 + _DAT_180c96150
+       (*(int *)((longlong)(int)plVar5[(ulonglong)uVar12 * 9 + 0x48a] * 0x68 + 0x58 + render_system_ui
                 ) == 0x14)) {
       fVar16 = (float)(**(code **)(*plVar5 + 0x80))(plVar5,uVar12);
       fVar1 = *(float *)(param_1 + 0x1f8);
       if (fVar16 < fVar1) {
         plVar5 = *(longlong **)(*(longlong *)(param_1 + 0x1f0) + 0x590);
-        fVar16 = _DAT_180c963e8 * unaff_XMM6_Da + fVar16;
+        fVar16 = render_system_ui * unaff_XMM6_Da + fVar16;
         if (fVar1 <= fVar16) {
           fVar16 = fVar1;
         }
@@ -389,13 +389,13 @@ void FUN_1805261f3(longlong param_1)
   plVar5 = *(longlong **)(lVar4 + 0x590);
   uVar12 = *(uint *)(lVar4 + 0x56c) >> 0xe & 1;
   if (((int)plVar5[(ulonglong)uVar12 * 9 + 0x48a] != -1) &&
-     (*(int *)((longlong)(int)plVar5[(ulonglong)uVar12 * 9 + 0x48a] * 0x68 + 0x58 + _DAT_180c96150)
+     (*(int *)((longlong)(int)plVar5[(ulonglong)uVar12 * 9 + 0x48a] * 0x68 + 0x58 + render_system_ui)
       == 0x14)) {
     fVar15 = (float)(**(code **)(*plVar5 + 0x80))(plVar5,uVar12);
     fVar1 = *(float *)(param_1 + 0x1f8);
     if (fVar15 < fVar1) {
       plVar5 = *(longlong **)(*(longlong *)(param_1 + 0x1f0) + 0x590);
-      fVar15 = _DAT_180c963e8 * unaff_XMM6_Da + fVar15;
+      fVar15 = render_system_ui * unaff_XMM6_Da + fVar15;
       if (fVar1 <= fVar15) {
         fVar15 = fVar1;
       }
@@ -516,12 +516,12 @@ void FUN_180526205(longlong param_1)
   plVar4 = *(longlong **)(param_1 + 0x590);
   uVar12 = *(uint *)(param_1 + 0x56c) >> 0xe & 1;
   if (((int)plVar4[(ulonglong)uVar12 * 9 + 0x48a] != -1) &&
-     (*(int *)((longlong)(int)plVar4[(ulonglong)uVar12 * 9 + 0x48a] * 0x68 + 0x58 + _DAT_180c96150)
+     (*(int *)((longlong)(int)plVar4[(ulonglong)uVar12 * 9 + 0x48a] * 0x68 + 0x58 + render_system_ui)
       == 0x14)) {
     fVar15 = (float)(**(code **)(*plVar4 + 0x80))(plVar4,uVar12);
     fVar1 = *(float *)(unaff_RSI + 0x18);
     if (fVar15 < fVar1) {
-      fVar15 = _DAT_180c963e8 * unaff_XMM6_Da + fVar15;
+      fVar15 = render_system_ui * unaff_XMM6_Da + fVar15;
       if (fVar1 <= fVar15) {
         fVar15 = fVar1;
       }
@@ -793,7 +793,7 @@ void FUN_180526520(longlong param_1,uint64_t param_2,uint64_t param_3)
   uint64_t uVar2;
   longlong lVar3;
   
-  if ((_DAT_180c92514 == 1) || (_DAT_180c92514 == 4)) {
+  if ((system_status_flag == 1) || (system_status_flag == 4)) {
     uVar2 = 1;
   }
   else {

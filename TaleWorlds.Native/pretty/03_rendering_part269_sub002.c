@@ -51,7 +51,7 @@ LAB_1804178f9:
         if (((bVar1) || (plVar3 == param_1)) || (uVar7 = 1, param_2 < *(float *)(plVar3 + 4))) {
           uVar7 = 0;
         }
-        lVar4 = FUN_18062b420(_DAT_180c8ed18,0x80,(char)param_1[5]);
+        lVar4 = FUN_18062b420(system_memory_pool_ptr,0x80,(char)param_1[5]);
         *(float *)(lVar4 + 0x20) = param_2;
         *(uint64_t *)(lVar4 + 0x28) = &unknown_var_720_ptr;
         *(uint64_t *)(lVar4 + 0x30) = 0;
@@ -102,7 +102,7 @@ LAB_180417a52:
   if ((plVar3 == param_1) || (uVar7 = 1, param_2 < *(float *)(plVar3 + 4))) {
     uVar7 = 0;
   }
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0x80,(char)param_1[5]);
+  lVar4 = FUN_18062b420(system_memory_pool_ptr,0x80,(char)param_1[5]);
   *(float *)(lVar4 + 0x20) = param_2;
   *(uint64_t *)(lVar4 + 0x28) = &unknown_var_720_ptr;
   *(uint64_t *)(lVar4 + 0x30) = 0;

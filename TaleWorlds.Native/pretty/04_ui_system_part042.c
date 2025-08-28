@@ -40,16 +40,16 @@ void FUN_180676df0(longlong param_1,longlong param_2,uint64_t *param_3,longlong 
   int8_t auVar30 [16];
   int8_t auVar31 [16];
   
-  auVar13 = _DAT_180946f20;
-  auVar12 = _DAT_180946f10;
-  auVar11 = _DAT_180946f00;
-  auVar10 = _DAT_180946ef0;
-  auVar9 = _DAT_180946ee0;
+  auVar13 = ui_system_config;
+  auVar12 = ui_system_config;
+  auVar11 = ui_system_config;
+  auVar10 = ui_system_config;
+  auVar9 = ui_system_config;
   auVar28 = packsswb(*param_6,*param_6);
-  auVar29 = pshufb(auVar28,_DAT_180946f30);
-  auVar30 = pshufb(auVar28,_DAT_180946f50);
-  auVar31 = pshufb(auVar28,_DAT_180946f60);
-  auVar28 = pshufb(auVar28,_DAT_180946f80);
+  auVar29 = pshufb(auVar28,ui_system_config);
+  auVar30 = pshufb(auVar28,ui_system_config);
+  auVar31 = pshufb(auVar28,ui_system_config);
+  auVar28 = pshufb(auVar28,ui_system_config);
   if (param_5 != 0) {
     pauVar14 = (int8_t (*) [16])(param_1 + -3);
     uVar15 = (ulonglong)param_5;
@@ -212,13 +212,13 @@ void FUN_180676f40(ulonglong *param_1,longlong param_2,uint64_t *param_3,longlon
   int8_t auVar59 [16];
   int8_t auVar60 [16];
   
-  auVar12 = _DAT_180946f20;
+  auVar12 = ui_system_config;
   uVar19 = (ulonglong)param_5;
   auVar62 = packsswb(*param_6,*param_6);
-  auVar63 = pshufb(auVar62,_DAT_180946f30);
-  auVar64 = pshufb(auVar62,_DAT_180946f50);
-  auVar65 = pshufb(auVar62,_DAT_180946f60);
-  auVar62 = pshufb(auVar62,_DAT_180946f80);
+  auVar63 = pshufb(auVar62,ui_system_config);
+  auVar64 = pshufb(auVar62,ui_system_config);
+  auVar65 = pshufb(auVar62,ui_system_config);
+  auVar62 = pshufb(auVar62,ui_system_config);
   if (param_5 != 0) {
     puVar18 = (ulonglong *)(param_2 * 7 + (longlong)param_1);
     uVar1 = *(ulonglong *)((longlong)param_1 + param_2 * 6);
@@ -684,17 +684,17 @@ void FUN_1806777a0(longlong param_1,longlong param_2,int8_t (*param_3) [16],long
   int8_t auStack_100 [16];
   int8_t auStack_e0 [16];
   
-  auVar14 = _DAT_180947040;
-  auVar13 = _DAT_180947000;
-  auVar12 = _DAT_180946fe0;
-  auVar11 = _DAT_180946fc0;
+  auVar14 = ui_system_config;
+  auVar13 = ui_system_config;
+  auVar12 = ui_system_config;
+  auVar11 = ui_system_config;
   auVar18 = vpacksswb_avx(*param_6,*param_6);
   auVar16._16_16_ = auVar18;
   auVar16._0_16_ = auVar18;
-  auVar6 = vpshufb_avx2(auVar16,_DAT_180947060);
-  auVar7 = vpshufb_avx2(auVar16,_DAT_180947080);
-  auVar8 = vpshufb_avx2(auVar16,_DAT_1809470a0);
-  auVar16 = vpshufb_avx2(auVar16,_DAT_1809470c0);
+  auVar6 = vpshufb_avx2(auVar16,ui_system_config);
+  auVar7 = vpshufb_avx2(auVar16,ui_system_config);
+  auVar8 = vpshufb_avx2(auVar16,ui_system_config);
+  auVar16 = vpshufb_avx2(auVar16,ui_system_config);
   if (1 < param_5) {
     uVar15 = (ulonglong)((param_5 - 2 >> 1) + 1);
     do {

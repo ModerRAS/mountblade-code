@@ -392,7 +392,7 @@ LAB_1802c0e54:
                   if (iVar3 < 0x10) {
                     iVar3 = 0x10;
                   }
-                  pbVar19 = (byte *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar3,0x13);
+                  pbVar19 = (byte *)FUN_18062b420(system_memory_pool_ptr,(longlong)iVar3,0x13);
                   *pbVar19 = 0;
                   uVar16 = (ulonglong)pbVar19 & 0xffffffffffc00000;
                   uVar8 = 0;
@@ -465,7 +465,7 @@ LAB_1802c0e54:
                   }
 LAB_1802c10bd:
                   if (uVar8 == 0) {
-                    FUN_1800b30d0(_DAT_180c86930,&plStackX_18,&puStack_78,0,puVar18,pbVar19,uVar20,
+                    FUN_1800b30d0(system_resource_state,&plStackX_18,&puStack_78,0,puVar18,pbVar19,uVar20,
                                   uVar16);
                     plVar2 = plStackX_18;
                     if (plStackX_18 != (longlong *)0x0) {

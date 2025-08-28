@@ -22,7 +22,7 @@ void FUN_1801d83e0(uint64_t param_1,longlong param_2)
   int32_t uStack_30;
   ulonglong uStack_28;
   
-  uVar1 = _DAT_180c8aa08;
+  uVar1 = system_global_data_ptr;
   uStack_e8 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   bVar5 = true;
@@ -212,7 +212,7 @@ void FUN_1801d8920(uint64_t param_1,longlong param_2)
   int32_t uStack_30;
   ulonglong uStack_28;
   
-  uVar1 = _DAT_180c8aa08;
+  uVar1 = system_global_data_ptr;
   uStack_e8 = 0xfffffffffffffffe;
   uStack_28 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_108;
   bVar5 = true;

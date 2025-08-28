@@ -558,7 +558,7 @@ FUN_1807edf30(float *param_1,float *param_2,int param_3,int param_4,uint param_5
       }
     }
     else if (param_3 == 2) {
-      (*(code *)*_DAT_180c31148)
+      (*(code *)*system_system_config)
                 (param_8 * 32768.0,param_2,param_5,param_6,param_7,param_8 * 32768.0);
     }
     else if (param_3 == 3) {

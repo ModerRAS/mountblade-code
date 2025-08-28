@@ -423,7 +423,7 @@ void sort_data_structure(longlong *data_ptr, uint64_t *key_ptr)
       uVar18 = iVar5 + 0x1c;
       uStack_70 = CONCAT44(uStack_ac,uVar18);
       lStack_78 = lVar13;
-      FUN_1800eac80(&uStack_68,&lStack_78);
+      move_memory_data(&uStack_68,&lStack_78);
       uVar7 = *(uint *)(key_ptr + 1);
       for (; uVar18 != uVar7; uVar18 = uVar18 + 1) {
         uVar15 = (ulonglong)(uVar18 + (uVar18 >> 0xb) * -MEMORY_PAGE_SIZE);
@@ -530,7 +530,7 @@ void merge_data_structures(int32_t *data_ptr, uint64_t *key_ptr)
   *(int32_t *)(unaff_RBP + -0x25) = uVar23;
   *(int32_t *)(unaff_RBP + -0x21) = uVar24;
   *(int32_t *)(unaff_RBP + -0x1d) = uVar25;
-  FUN_1800ea950(unaff_RBP + -0x29,unaff_RBP + -0x39,(longlong)(iVar19 + -1) * 2);
+  copy_memory_data(unaff_RBP + -0x29,unaff_RBP + -0x39,(longlong)(iVar19 + -1) * 2);
   uVar22 = *(int32_t *)unaff_RSI;
   uVar23 = *(int32_t *)((longlong)unaff_RSI + 4);
   uVar24 = *(int32_t *)(unaff_RSI + 1);

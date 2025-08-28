@@ -206,39 +206,39 @@ void FUN_18069bfb0(code *param_1)
   longlong lVar3;
   bool bVar4;
   
-  if (_DAT_180c0c21c == 0) {
+  if (ui_system_config == 0) {
     LOCK();
-    _DAT_180c0c218 = _DAT_180c0c218 + 1;
+    ui_system_config = ui_system_config + 1;
     UNLOCK();
     lVar3 = malloc(0x28);
     InitializeCriticalSection(lVar3);
     LOCK();
-    bVar4 = _DAT_180c0c210 != 0;
+    bVar4 = ui_system_config != 0;
     lVar2 = lVar3;
     if (bVar4) {
-      lVar2 = _DAT_180c0c210;
+      lVar2 = ui_system_config;
     }
-    _DAT_180c0c210 = lVar2;
+    ui_system_config = lVar2;
     UNLOCK();
     if (bVar4) {
       DeleteCriticalSection(lVar3);
       free(lVar3);
     }
-    EnterCriticalSection(_DAT_180c0c210);
-    if (_DAT_180c0c21c == 0) {
+    EnterCriticalSection(ui_system_config);
+    if (ui_system_config == 0) {
       (*param_1)();
-      _DAT_180c0c21c = 1;
+      ui_system_config = 1;
     }
-    LeaveCriticalSection(_DAT_180c0c210);
+    LeaveCriticalSection(ui_system_config);
     LOCK();
-    iVar1 = _DAT_180c0c218 + -1;
+    iVar1 = ui_system_config + -1;
     UNLOCK();
-    bVar4 = _DAT_180c0c218 == 1;
-    _DAT_180c0c218 = iVar1;
+    bVar4 = ui_system_config == 1;
+    ui_system_config = iVar1;
     if (bVar4) {
-      DeleteCriticalSection(_DAT_180c0c210);
-      free(_DAT_180c0c210);
-      _DAT_180c0c210 = 0;
+      DeleteCriticalSection(ui_system_config);
+      free(ui_system_config);
+      ui_system_config = 0;
     }
   }
   return;
@@ -261,37 +261,37 @@ void FUN_18069bfc6(void)
   bool bVar4;
   
   LOCK();
-  _DAT_180c0c218 = _DAT_180c0c218 + 1;
+  ui_system_config = ui_system_config + 1;
   UNLOCK();
   lVar3 = malloc(0x28);
   InitializeCriticalSection(lVar3);
   LOCK();
-  bVar4 = _DAT_180c0c210 != 0;
+  bVar4 = ui_system_config != 0;
   lVar2 = lVar3;
   if (bVar4) {
-    lVar2 = _DAT_180c0c210;
+    lVar2 = ui_system_config;
   }
-  _DAT_180c0c210 = lVar2;
+  ui_system_config = lVar2;
   UNLOCK();
   if (bVar4) {
     DeleteCriticalSection(lVar3);
     free(lVar3);
   }
-  EnterCriticalSection(_DAT_180c0c210);
-  if (_DAT_180c0c21c == 0) {
+  EnterCriticalSection(ui_system_config);
+  if (ui_system_config == 0) {
     (*unaff_RDI)();
-    _DAT_180c0c21c = 1;
+    ui_system_config = 1;
   }
-  LeaveCriticalSection(_DAT_180c0c210);
+  LeaveCriticalSection(ui_system_config);
   LOCK();
-  iVar1 = _DAT_180c0c218 + -1;
+  iVar1 = ui_system_config + -1;
   UNLOCK();
-  bVar4 = _DAT_180c0c218 == 1;
-  _DAT_180c0c218 = iVar1;
+  bVar4 = ui_system_config == 1;
+  ui_system_config = iVar1;
   if (bVar4) {
-    DeleteCriticalSection(_DAT_180c0c210);
-    free(_DAT_180c0c210);
-    _DAT_180c0c210 = 0;
+    DeleteCriticalSection(ui_system_config);
+    free(ui_system_config);
+    ui_system_config = 0;
   }
   return;
 }
@@ -311,17 +311,17 @@ void FUN_18069c023(void)
   bool bVar2;
   
   (*unaff_RDI)();
-  _DAT_180c0c21c = 1;
-  LeaveCriticalSection(_DAT_180c0c210);
+  ui_system_config = 1;
+  LeaveCriticalSection(ui_system_config);
   LOCK();
-  iVar1 = _DAT_180c0c218 + -1;
+  iVar1 = ui_system_config + -1;
   UNLOCK();
-  bVar2 = _DAT_180c0c218 == 1;
-  _DAT_180c0c218 = iVar1;
+  bVar2 = ui_system_config == 1;
+  ui_system_config = iVar1;
   if (bVar2) {
-    DeleteCriticalSection(_DAT_180c0c210);
-    free(_DAT_180c0c210);
-    _DAT_180c0c210 = 0;
+    DeleteCriticalSection(ui_system_config);
+    free(ui_system_config);
+    ui_system_config = 0;
   }
   return;
 }
@@ -688,14 +688,14 @@ void FUN_18069c990(longlong param_1,int param_2,int8_t (*param_3) [16])
   int8_t auVar10 [16];
   int8_t auVar11 [16];
   
-  auVar1 = _DAT_180d9e5d0;
+  auVar1 = ui_system_config;
   pauVar3 = (int8_t (*) [16])(param_2 * 4 + param_1);
   lVar2 = (longlong)param_2;
   auVar5 = *(int8_t (*) [16])(*pauVar3 + lVar2);
   auVar7 = *(int8_t (*) [16])((longlong)pauVar3 + lVar2 * -2);
   auVar4 = psubusb(auVar5,auVar7);
   auVar6 = psubusb(auVar7,auVar5);
-  auVar4 = (auVar6 | auVar4) & _DAT_180d9e5c0;
+  auVar4 = (auVar6 | auVar4) & ui_system_config;
   auVar10._0_2_ = auVar4._0_2_ >> 1;
   auVar10._2_2_ = auVar4._2_2_ >> 1;
   auVar10._4_2_ = auVar4._4_2_ >> 1;
@@ -727,13 +727,13 @@ void FUN_18069c990(longlong param_1,int param_2,int8_t (*param_3) [16])
   auVar8[0xd] = -(auVar10[0xd] == '\0');
   auVar8[0xe] = -(auVar10[0xe] == '\0');
   auVar8[0xf] = -(auVar10[0xf] == '\0');
-  auVar7 = psubsb(auVar7 ^ _DAT_180d9e5d0,auVar5 ^ _DAT_180d9e5d0);
-  auVar5 = psubsb(auVar6 ^ _DAT_180d9e5d0,auVar4 ^ _DAT_180d9e5d0);
+  auVar7 = psubsb(auVar7 ^ ui_system_config,auVar5 ^ ui_system_config);
+  auVar5 = psubsb(auVar6 ^ ui_system_config,auVar4 ^ ui_system_config);
   auVar7 = paddsb(auVar7,auVar5);
   auVar7 = paddsb(auVar7,auVar5);
   auVar5 = paddsb(auVar7,auVar5);
-  auVar10 = paddsb(auVar8 & auVar5,_DAT_180d9e5f0);
-  auVar5 = paddsb(auVar8 & auVar5,_DAT_180d9e600);
+  auVar10 = paddsb(auVar8 & auVar5,ui_system_config);
+  auVar5 = paddsb(auVar8 & auVar5,ui_system_config);
   auVar9[0] = -(auVar5[0] < '\0');
   auVar9[1] = -(auVar5[1] < '\0');
   auVar9[2] = -(auVar5[2] < '\0');
@@ -758,7 +758,7 @@ void FUN_18069c990(longlong param_1,int param_2,int8_t (*param_3) [16])
   auVar7._10_2_ = auVar5._10_2_ >> 3;
   auVar7._12_2_ = auVar5._12_2_ >> 3;
   auVar7._14_2_ = auVar5._14_2_ >> 3;
-  auVar5 = psubsb(auVar6 ^ _DAT_180d9e5d0,auVar7 & _DAT_180d9e650 | auVar9 & _DAT_180d9e640);
+  auVar5 = psubsb(auVar6 ^ ui_system_config,auVar7 & ui_system_config | auVar9 & ui_system_config);
   auVar11[0] = -(auVar10[0] < '\0');
   auVar11[1] = -(auVar10[1] < '\0');
   auVar11[2] = -(auVar10[2] < '\0');
@@ -783,8 +783,8 @@ void FUN_18069c990(longlong param_1,int param_2,int8_t (*param_3) [16])
   auVar6._10_2_ = auVar10._10_2_ >> 3;
   auVar6._12_2_ = auVar10._12_2_ >> 3;
   auVar6._14_2_ = auVar10._14_2_ >> 3;
-  auVar7 = paddsb(auVar4 ^ _DAT_180d9e5d0,auVar6 & _DAT_180d9e650 | auVar11 & _DAT_180d9e640);
-  *pauVar3 = auVar5 ^ _DAT_180d9e5d0;
+  auVar7 = paddsb(auVar4 ^ ui_system_config,auVar6 & ui_system_config | auVar11 & ui_system_config);
+  *pauVar3 = auVar5 ^ ui_system_config;
   *(int8_t (*) [16])((longlong)pauVar3 + -lVar2) = auVar7 ^ auVar1;
   return;
 }
