@@ -114,6 +114,9 @@
 #define UI_SYSTEM_VALUE_1F800000   0x3f800000  // 数值0x3f800000
 #define UI_SYSTEM_VALUE_1          0x1         // 数值0x1
 #define UI_SYSTEM_VALUE_2          0x2         // 数值0x2
+#define UI_SYSTEM_VALUE_3          0x3         // 数值0x3
+#define UI_SYSTEM_VALUE_4          0x4         // 数值0x4
+#define UI_SYSTEM_VALUE_5          0x5         // 数值0x5
 #define UI_SYSTEM_VALUE_6          0x6         // 数值0x6
 #define UI_SYSTEM_VALUE_8          0x8         // 数值0x8
 
