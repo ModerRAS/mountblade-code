@@ -88,7 +88,7 @@
 #define system_global_data_ptr _DAT_180c8aa08     // 系统全局数据指针
 #define system_context_ptr _DAT_180c82868         // 系统上下文指针
 #define system_memory_pool_ptr _DAT_180c8ed18     // 系统内存池指针
-#define system_state_ptr _DAT_180c86870          // 系统状态指针
+#define system_state_ptr system_main_module_state          // 系统状态指针
 #define system_allocation_flags DAT_180bf65bc     // 系统分配标志
 
 // 系统配置字符串
@@ -126,11 +126,11 @@
 // 系统全局变量
 #define system_file_counter _DAT_180c8ed60         // 系统文件计数器
 #define system_handle_counter _DAT_180c8ed64       // 系统句柄计数器
-#define system_debug_flag DAT_180c82860             // 系统调试标志
-#define system_debug_flag2 DAT_180c82842            // 系统调试标志2
-#define system_module_state _DAT_180c86908         // 系统模块状态
-#define system_message_context _DAT_180c86928      // 系统消息上下文
-#define system_main_module_state _DAT_180c86870    // 系统主模块状态
+#define system_debug_flag system_debug_flag             // 系统调试标志
+#define system_debug_flag2 system_debug_flag2            // 系统调试标志2
+#define system_module_state system_module_state         // 系统模块状态
+#define system_message_context system_message_context      // 系统消息上下文
+#define system_main_module_state system_main_module_state    // 系统主模块状态
 
 // ============================================================================
 // 核心函数实现
@@ -692,7 +692,7 @@ void FileOperationProcessor(uint64_t param_1, longlong param_2)
         fclose(lVar17);
         lStack_158 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        system_file_counter = system_file_counter + -1;
         UNLOCK();
     }
     puStack_1e0 = system_null_ptr;
@@ -795,26 +795,26 @@ bool FileValidator(longlong param_1)
         } while (((iVar4 != 0) && (auStackX_20[0] != 0)) && (uVar6 = uVar6 + auStackX_20[0], uVar6 < 4))
         ;
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        system_handle_counter = system_handle_counter + -1;
         UNLOCK();
         CloseHandle(alStack_70[0]);
         alStack_70[0] = -1;
         bVar8 = aiStackX_10[0] == 0x5ef;
     }
     lVar1 = alStack_70[0];
-    if (((DAT_180c82860 == '\0') && (bVar8 == false)) &&
-        ((*(int *)(_DAT_180c86908 + 0x620) == 0 && (param_1 == 0)))) {
-        if (DAT_180c82842 == '\0') {
+    if (((system_debug_flag == '\0') && (bVar8 == false)) &&
+        ((*(int *)(system_module_state + 0x620) == 0 && (param_1 == 0)))) {
+        if (system_debug_flag2 == '\0') {
             MessageBoxA(0,system_message_text,system_message_title,0x41040);
         }
-        else if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
-            SystemMessageHandler(_DAT_180c86928,3,0xffffffff00000000,0xd,system_message_format,system_message_title,
+        else if (*(char *)(system_message_context + 0x18) != '\0') {
+            SystemMessageHandler(system_message_context,3,0xffffffff00000000,0xd,system_message_format,system_message_title,
                           system_message_text);
         }
     }
     if (lVar1 != -1) {
         LOCK();
-        _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+        system_handle_counter = system_handle_counter + -1;
         UNLOCK();
         CloseHandle(alStack_70[0]);
         alStack_70[0] = -1;
@@ -924,14 +924,14 @@ void FileDataWriter(uint64_t param_1)
         fclose(lVar1);
         lStack_a0 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        system_file_counter = system_file_counter + -1;
         UNLOCK();
     }
     if (lStack_a0 != 0) {
         fclose(lStack_a0);
         lStack_a0 = 0;
         LOCK();
-        _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+        system_file_counter = system_file_counter + -1;
         UNLOCK();
     }
     puStack_c8 = system_null_ptr;
@@ -999,7 +999,7 @@ void FileManager(void)
     uStack_70 = 0xfffffffffffffffe;
     uStack_30 = system_stack_cookie ^ (ulonglong)auStack_f8;
     aiStack_b8[1] = 0;
-    if (*(char *)(_DAT_180c86870 + 0x168) == '\0') {
+    if (*(char *)(system_main_module_state + 0x168) == '\0') {
         puStack_b0 = system_null_ptr;
         uStack_98 = 0;
         lStack_a8 = 0;
@@ -1044,7 +1044,7 @@ void FileManager(void)
             lVar1 = lStack_80;
             if (lStack_80 == 0) {
                 // WARNING: Subroutine does not return
-                SystemInitializer2(_DAT_180c86928,system_init_params);
+                SystemInitializer2(system_message_context,system_init_params);
             }
             auStack_90[0] = 0x5ef;
             fwrite(auStack_90,4,1,lStack_80);
@@ -1064,7 +1064,7 @@ void FileManager(void)
             fclose(lVar1);
             lStack_80 = 0;
             LOCK();
-            _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+            system_file_counter = system_file_counter + -1;
             UNLOCK();
             aiStack_b8[1] = 0;
             puStack_68 = system_alt_null_ptr;

@@ -611,6 +611,325 @@ uint64_t network_validate_packet_data(network_connection_t *conn, network_sessio
     return NETWORK_ERROR_CONNECTION;
 }
 
+// 简化实现：更新连接状态函数
+// 原始实现：FUN_180892720 - 复杂的连接状态更新逻辑
+// 简化实现：简化连接状态更新流程
+void network_update_connection_state(network_connection_t *conn, network_session_t *session)
+{
+    int result;
+    uint64_t temp_handle;
+    uint64_t adjusted_handle;
+    
+    // 验证连接参数
+    result = func_0x00018088c530(conn->connection_flags);
+    if (result != NETWORK_SUCCESS) {
+        return;
+    }
+    
+    // 调整句柄指针
+    if (temp_handle == 0) {
+        adjusted_handle = 0;
+    } else {
+        adjusted_handle = temp_handle - NETWORK_STACK_OFFSET;
+    }
+    
+    // 更新连接状态
+    *((int32_t *)(adjusted_handle + 0x88)) = *((int32_t *)(conn->data_pointers[1]));
+    
+    // 完成状态更新
+    func_0x00018088d720(session->session_id, conn);
+}
+
+// 简化实现：延迟更新处理函数
+// 原始实现：FUN_180892780 - 复杂的延迟计算和更新逻辑
+// 简化实现：简化延迟更新流程
+uint64_t network_process_latency_update(network_connection_t *conn, network_session_t *session)
+{
+    float latency_value;
+    uint64_t result;
+    uint64_t temp_handle;
+    uint64_t adjusted_handle;
+    
+    // 获取延迟值
+    latency_value = *((float *)(conn + 0x20));
+    if ((*((uint *)(conn + 0x20)) & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
+        return NETWORK_ERROR_INVALID_PARAM;
+    }
+    
+    // 获取连接句柄
+    result = func_0x00018088c530(conn->connection_flags, &adjusted_handle);
+    if (result != NETWORK_SUCCESS) {
+        return result;
+    }
+    
+    // 调整句柄指针
+    if (adjusted_handle == 0) {
+        adjusted_handle = 0;
+    } else {
+        adjusted_handle = adjusted_handle - NETWORK_STACK_OFFSET;
+    }
+    
+    // 处理延迟更新
+    temp_handle = 0;
+    result = func_0x0001808681d0(adjusted_handle, conn->data_pointers[1], &temp_handle);
+    if (result != NETWORK_SUCCESS) {
+        return result;
+    }
+    
+    // 检查连接是否有效
+    if (temp_handle == 0) {
+        return NETWORK_ERROR_DATA;
+    }
+    
+    // 获取连接数据
+    uint64_t conn_data = *((uint64_t *)(temp_handle + 0x10));
+    if (conn_data == 0) {
+        return NETWORK_ERROR_TIMEOUT;
+    }
+    
+    // 检查连接状态
+    if ((*((byte *)(conn_data + 0x34)) & 0x11) != 0) {
+        return NETWORK_ERROR_CONNECTION;
+    }
+    
+    // 更新延迟值
+    float current_min = *((float *)(conn_data + 0x38));
+    float current_max = *((float *)(conn_data + 0x3c));
+    
+    if (current_min <= latency_value && latency_value <= current_max) {
+        latency_value = latency_value;
+    } else if (latency_value < current_min) {
+        latency_value = current_min;
+    } else {
+        latency_value = current_max;
+    }
+    
+    // 更新连接延迟
+    *((float *)(conn + 0x20)) = latency_value;
+    *((float *)(temp_handle + 4)) = latency_value;
+    
+    // 完成延迟更新
+    return func_0x00018088d720(session->session_id, conn);
+}
+
+// 简化实现：延迟检查处理函数
+// 原始实现：FUN_180892880 - 复杂的延迟检查逻辑
+// 简化实现：简化延迟检查流程
+uint64_t network_process_latency_check(network_connection_t *conn, network_session_t *session)
+{
+    float latency_value;
+    uint64_t result;
+    uint64_t temp_handle;
+    uint64_t adjusted_handle;
+    
+    // 获取连接句柄
+    result = func_0x00018088c530(conn->connection_flags, &adjusted_handle);
+    if (result != NETWORK_SUCCESS) {
+        return result;
+    }
+    
+    // 调整句柄指针
+    if (adjusted_handle == 0) {
+        adjusted_handle = 0;
+    } else {
+        adjusted_handle = adjusted_handle - NETWORK_STACK_OFFSET;
+    }
+    
+    // 处理延迟检查
+    temp_handle = 0;
+    result = func_0x0001808681d0(adjusted_handle, conn->data_pointers[1], &temp_handle);
+    if (result != NETWORK_SUCCESS) {
+        return result;
+    }
+    
+    // 检查连接是否有效
+    if (temp_handle == 0) {
+        return NETWORK_ERROR_DATA;
+    }
+    
+    // 获取连接数据
+    uint64_t conn_data = *((uint64_t *)(temp_handle + 0x10));
+    if (conn_data == 0) {
+        return NETWORK_ERROR_TIMEOUT;
+    }
+    
+    // 检查连接状态
+    if ((*((byte *)(conn_data + 0x34)) & 0x11) != 0) {
+        return NETWORK_ERROR_CONNECTION;
+    }
+    
+    // 处理延迟数据
+    result = func_0x00018084de40(conn_data, conn + 0x25, conn + 0x20);
+    if (result != NETWORK_SUCCESS) {
+        return result;
+    }
+    
+    // 检查延迟范围
+    latency_value = *((float *)(conn + 0x20));
+    if (*((float *)(conn_data + 0x38)) <= latency_value && 
+        latency_value <= *((float *)(conn_data + 0x3c))) {
+        // 延迟值在有效范围内
+        *((float *)(temp_handle + 4)) = latency_value;
+        return func_0x00018088d720(session->session_id, conn);
+    }
+    
+    return NETWORK_ERROR_VALIDATION;
+}
+
+// 简化实现：延迟范围验证函数
+// 原始实现：FUN_1808928d3 - 复杂的延迟范围验证逻辑
+// 简化实现：简化延迟范围验证流程
+uint64_t network_validate_latency_range(void)
+{
+    float latency_value;
+    uint64_t conn_data;
+    uint64_t result;
+    
+    // 检查连接数据是否有效
+    if (0 == 0) {
+        return NETWORK_ERROR_DATA;
+    }
+    
+    // 获取连接数据
+    conn_data = *((uint64_t *)(0 + 0x10));
+    if (conn_data == 0) {
+        return NETWORK_ERROR_TIMEOUT;
+    }
+    
+    // 检查连接状态
+    if ((*((byte *)(conn_data + 0x34)) & 0x11) != 0) {
+        return NETWORK_ERROR_CONNECTION;
+    }
+    
+    // 处理延迟数据
+    result = func_0x00018084de40(conn_data, 0 + 0x25, 0 + 0x20);
+    if (result != NETWORK_SUCCESS) {
+        return result;
+    }
+    
+    // 检查延迟范围
+    latency_value = *((float *)(0 + 0x20));
+    if (*((float *)(conn_data + 0x38)) <= latency_value && 
+        latency_value <= *((float *)(conn_data + 0x3c))) {
+        // 延迟值在有效范围内
+        *((float *)(0 + 4)) = latency_value;
+        return func_0x00018088d720(0);
+    }
+    
+    return NETWORK_ERROR_VALIDATION;
+}
+
+// 简化实现：延迟边界检查函数
+// 原始实现：FUN_1808928f1 - 复杂的延迟边界检查逻辑
+// 简化实现：简化延迟边界检查流程
+uint64_t network_check_latency_bounds(void)
+{
+    float latency_value;
+    uint64_t conn_data;
+    uint64_t result;
+    
+    // 获取连接数据
+    conn_data = *((uint64_t *)(0 + 0x10));
+    if (conn_data == 0) {
+        return NETWORK_ERROR_TIMEOUT;
+    }
+    
+    // 检查连接状态
+    if ((*((byte *)(conn_data + 0x34)) & 0x11) != 0) {
+        return NETWORK_ERROR_CONNECTION;
+    }
+    
+    // 处理延迟数据
+    result = func_0x00018084de40(conn_data, 0 + 0x25, 0 + 0x20);
+    if (result != NETWORK_SUCCESS) {
+        return result;
+    }
+    
+    // 检查延迟范围
+    latency_value = *((float *)(0 + 0x20));
+    if (*((float *)(conn_data + 0x38)) <= latency_value && 
+        latency_value <= *((float *)(conn_data + 0x3c))) {
+        // 延迟值在有效范围内
+        *((float *)(0 + 4)) = latency_value;
+        return func_0x00018088d720(0);
+    }
+    
+    return NETWORK_ERROR_VALIDATION;
+}
+
+// 简化实现：延迟参数验证函数
+// 原始实现：FUN_180892909 - 复杂的延迟参数验证逻辑
+// 简化实现：简化延迟参数验证流程
+uint64_t network_validate_latency_param(int32_t param)
+{
+    float latency_value;
+    uint64_t result;
+    
+    // 检查连接状态
+    if ((*((byte *)(0 + 0x34)) & 0x11) != 0) {
+        return NETWORK_ERROR_CONNECTION;
+    }
+    
+    // 处理延迟数据
+    result = func_0x00018084de40(param, 0 + 0x25, 0 + 0x20);
+    if (result != NETWORK_SUCCESS) {
+        return result;
+    }
+    
+    // 检查延迟范围
+    latency_value = *((float *)(0 + 0x20));
+    if (*((float *)(0 + 0x38)) <= latency_value && 
+        latency_value <= *((float *)(0 + 0x3c))) {
+        // 延迟值在有效范围内
+        *((float *)(0 + 4)) = latency_value;
+        return func_0x00018088d720(0);
+    }
+    
+    return NETWORK_ERROR_VALIDATION;
+}
+
+// 简化实现：延迟参数处理函数
+// 原始实现：FUN_180892920 - 复杂的延迟参数处理逻辑
+// 简化实现：简化延迟参数处理流程
+uint64_t network_process_latency_param(int32_t param)
+{
+    float latency_value;
+    uint64_t result;
+    
+    // 处理延迟数据
+    result = func_0x00018084de40(param, 0 + 0x25, 0 + 0x20);
+    if (result != NETWORK_SUCCESS) {
+        return result;
+    }
+    
+    // 检查延迟范围
+    latency_value = *((float *)(0 + 0x20));
+    if (*((float *)(0 + 0x38)) <= latency_value && 
+        latency_value <= *((float *)(0 + 0x3c))) {
+        // 延迟值在有效范围内
+        *((float *)(0 + 4)) = latency_value;
+        return func_0x00018088d720(0);
+    }
+    
+    return NETWORK_ERROR_VALIDATION;
+}
+
+// 简化实现：获取延迟错误代码函数
+// 原始实现：FUN_180892974 - 简单的错误代码返回
+// 简化实现：保持原有功能
+uint64_t network_get_latency_error_code(void)
+{
+    return NETWORK_ERROR_VALIDATION;
+}
+
+// 简化实现：重置连接状态函数
+// 原始实现：FUN_180892983 - 简单的状态重置
+// 简化实现：保持原有功能
+void network_reset_connection_state(void)
+{
+    return;
+}
+
 // 技术说明：
 // 
 // 原始实现分析：

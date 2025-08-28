@@ -611,36 +611,55 @@ uint64_t UI_ResetSystem(longlong data_ptr, longlong system_ptr)
 
 
 
-uint64_t FUN_18078922b(void)
-
+/**
+ * UI_ResetSystem2 - UI系统重置（备用版本）
+ * 
+ * 重置UI系统到初始状态的备用实现，提供相同的重置功能
+ * 
+ * @param data_ptr 数据指针
+ * @param system_ptr 系统指针
+ * @return 重置结果：0=成功
+ * 
+ * 原始实现：FUN_18078922b
+ */
+uint64_t UI_ResetSystem2(longlong data_ptr, longlong system_ptr)
 {
-  int iVar1;
-  longlong lVar2;
-  uint64_t *puVar3;
-  longlong in_RAX;
-  longlong unaff_RBX;
-  uint64_t *puVar4;
-  longlong lVar5;
-  
-  iVar1 = *(int *)(in_RAX + 0x127e8);
-  if (0 < (longlong)iVar1) {
-    lVar5 = 0;
-    do {
-      lVar2 = *(longlong *)(*(longlong *)(*(longlong *)(unaff_RBX + 0x48) + 0x127e0) + lVar5 * 8);
-      if (*(longlong *)(lVar2 + 0x18) != 0) {
-        (**(code **)(unaff_RBX + 0x398))(unaff_RBX + 8);
-        *(uint64_t *)(lVar2 + 0x18) = 0;
-      }
-      lVar5 = lVar5 + 1;
-    } while (lVar5 < iVar1);
-  }
-  if (*(longlong *)(unaff_RBX + 0x3b0) != 0) {
-    puVar4 = (uint64_t *)(*(longlong *)(unaff_RBX + 0x48) + 0x6c0);
-    for (puVar3 = (uint64_t *)*puVar4; puVar3 != puVar4; puVar3 = (uint64_t *)*puVar3) {
-      (**(code **)(unaff_RBX + 0x3b0))(unaff_RBX + 8,*(int32_t *)((longlong)puVar3 + 0x24));
+    int resource_count;
+    longlong resource_ptr;
+    uint64_t *current_node;
+    longlong index;
+    
+    // 获取资源数量
+    resource_count = *(int *)(data_ptr + 0x127e8);
+    
+    // 释放所有资源
+    if (0 < resource_count) {
+        index = 0;
+        do {
+            // 获取资源指针
+            resource_ptr = *(longlong *)(*(longlong *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x127e0) + index * 8);
+            
+            // 如果资源存在则释放
+            if (*(longlong *)(resource_ptr + 0x18) != 0) {
+                // 调用资源释放函数
+                (**(code **)(system_ptr + 0x398))(system_ptr + 8);
+                *(uint64_t *)(resource_ptr + 0x18) = 0;
+            }
+            
+            index = index + 1;
+        } while (index < resource_count);
     }
-  }
-  return 0;
+    
+    // 释放渲染资源
+    if (*(longlong *)(system_ptr + UI_OFFSET_RENDER) != 0) {
+        uint64_t *list_head = (uint64_t *)(*(longlong *)(system_ptr + UI_OFFSET_DATA) + 0x6c0);
+        for (current_node = (uint64_t *)*list_head; current_node != list_head; current_node = (uint64_t *)*current_node) {
+            // 调用渲染释放函数
+            (**(code **)(system_ptr + UI_OFFSET_RENDER))(system_ptr + 8, *(int32_t *)((longlong)current_node + 0x24));
+        }
+    }
+    
+    return UI_SYSTEM_SUCCESS;
 }
 
 
