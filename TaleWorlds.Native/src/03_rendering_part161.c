@@ -557,34 +557,53 @@ void RenderingSystem_ColorInterpolatorAdvanced(longlong color_index, longlong re
 
 
 
-// 函数: void FUN_180369e32(int param_1,undefined4 param_2)
-void FUN_180369e32(int param_1,undefined4 param_2)
-
-{
-  longlong unaff_RBX;
-  longlong unaff_RDI;
-  float in_XMM0_Da;
-  
-  if (param_1 == 1) {
-    *(undefined4 *)(unaff_RDI + 0xe4) = *(undefined4 *)(unaff_RBX + 0x84);
-    return;
-  }
-  if (param_1 != 2) {
-    if (param_1 == 3) {
-      in_XMM0_Da = in_XMM0_Da / *(float *)(unaff_RBX + 0x74);
-      *(float *)(unaff_RDI + 0xe4) =
-           (1.0 - in_XMM0_Da) * *(float *)(unaff_RBX + 0x80) +
-           in_XMM0_Da * *(float *)(unaff_RBX + 0x84);
-      return;
+/**
+ * 渲染系统快速颜色插值器
+ * 
+ * 基于模式选择的快速颜色插值处理器，支持多种插值模式。
+ * 使用寄存器优化的高性能实现。
+ * 
+ * @param interpolation_mode 插值模式（1: 中间颜色, 2: 中间到结束插值, 3: 起始到中间插值, 其他: 直接颜色）
+ * @param default_color 默认颜色值
+ * @param source_register 源寄存器（通过寄存器传递）
+ * @param dest_register 目标寄存器（通过寄存器传递）
+ * @param xmm_factor XMM寄存器中的插值因子
+ * 
+ * 处理流程：
+ * 1. 根据插值模式选择处理路径
+ * 2. 模式1: 直接使用中间颜色
+ * 3. 模式2: 中间到结束颜色的线性插值
+ * 4. 模式3: 起始到中间颜色的线性插值
+ * 5. 其他模式: 使用默认颜色
+ */
+void RenderingSystem_FastColorInterpolator(int interpolation_mode, undefined4 default_color, 
+                                         longlong source_register, longlong dest_register, 
+                                         float xmm_factor) {
+    if (interpolation_mode == 1) {
+        // 模式1: 直接使用中间颜色
+        *(undefined4 *)(dest_register + 0xe4) = *(undefined4 *)(source_register + 0x84);
+        return;
     }
-    *(undefined4 *)(unaff_RDI + 0xe4) = param_2;
-    return;
-  }
-  in_XMM0_Da = in_XMM0_Da / *(float *)(unaff_RBX + 0x70);
-  *(float *)(unaff_RDI + 0xe4) =
-       (1.0 - in_XMM0_Da) * *(float *)(unaff_RBX + 0x84) + in_XMM0_Da * *(float *)(unaff_RBX + 0x80)
-  ;
-  return;
+    
+    if (interpolation_mode != 2) {
+        if (interpolation_mode == 3) {
+            // 模式3: 起始到中间颜色的线性插值
+            xmm_factor = xmm_factor / *(float *)(source_register + 0x74);
+            *(float *)(dest_register + 0xe4) = 
+                (1.0 - xmm_factor) * *(float *)(source_register + 0x80) +
+                xmm_factor * *(float *)(source_register + 0x84);
+            return;
+        }
+        // 其他模式: 使用默认颜色
+        *(undefined4 *)(dest_register + 0xe4) = default_color;
+        return;
+    }
+    
+    // 模式2: 中间到结束颜色的线性插值
+    xmm_factor = xmm_factor / *(float *)(source_register + 0x70);
+    *(float *)(dest_register + 0xe4) = 
+        (1.0 - xmm_factor) * *(float *)(source_register + 0x84) + 
+        xmm_factor * *(float *)(source_register + 0x80);
 }
 
 
