@@ -116,53 +116,60 @@ void process_rendering_materials(longlong *render_context, longlong material_dat
         color_b4 = material_colors[14];
         color_a4 = material_colors[15];
       }
-      *(undefined4 *)(param_1 + 0x66) = uVar8;
-      *(undefined4 *)((longlong)param_1 + 0x334) = uVar9;
-      *(undefined4 *)(param_1 + 0x67) = uVar10;
-      *(undefined4 *)((longlong)param_1 + 0x33c) = uVar11;
-      *(undefined4 *)(param_1 + 0x68) = uVar12;
-      *(undefined4 *)((longlong)param_1 + 0x344) = uVar13;
-      *(undefined4 *)(param_1 + 0x69) = uVar14;
-      *(undefined4 *)((longlong)param_1 + 0x34c) = uVar15;
-      *(undefined4 *)(param_1 + 0x6a) = uVar16;
-      *(undefined4 *)((longlong)param_1 + 0x354) = uVar17;
-      *(undefined4 *)(param_1 + 0x6b) = uVar18;
-      *(undefined4 *)((longlong)param_1 + 0x35c) = uVar19;
-      *(undefined4 *)(param_1 + 0x6c) = uVar20;
-      *(undefined4 *)((longlong)param_1 + 0x364) = uVar21;
-      *(undefined4 *)(param_1 + 0x6d) = uVar22;
-      *(undefined4 *)((longlong)param_1 + 0x36c) = uVar23;
-      *(undefined1 *)(param_1 + 100) = 0;
-      *(undefined4 *)(param_1 + 0x42) = *(undefined4 *)(param_3 + 0x14);
-      uVar4 = 0;
-      uVar6 = (uint)(param_1[8] - param_1[7] >> 4);
-      if (uVar6 != 0) {
-        lVar7 = 0;
+      // 将处理后的颜色数据写入渲染上下文
+      *(undefined4 *)(render_context + 0x66) = color_r1;
+      *(undefined4 *)((longlong)render_context + 0x334) = color_g1;
+      *(undefined4 *)(render_context + 0x67) = color_b1;
+      *(undefined4 *)((longlong)render_context + 0x33c) = color_a1;
+      *(undefined4 *)(render_context + 0x68) = color_r2;
+      *(undefined4 *)((longlong)render_context + 0x344) = color_g2;
+      *(undefined4 *)(render_context + 0x69) = color_b2;
+      *(undefined4 *)((longlong)render_context + 0x34c) = color_a2;
+      *(undefined4 *)(render_context + 0x6a) = color_r3;
+      *(undefined4 *)((longlong)render_context + 0x354) = color_g3;
+      *(undefined4 *)(render_context + 0x6b) = color_b3;
+      *(undefined4 *)((longlong)render_context + 0x35c) = color_a3;
+      *(undefined4 *)(render_context + 0x6c) = color_r4;
+      *(undefined4 *)((longlong)render_context + 0x364) = color_g4;
+      *(undefined4 *)(render_context + 0x6d) = color_b4;
+      *(undefined4 *)((longlong)render_context + 0x36c) = color_a4;
+      
+      // 重置渲染状态标志
+      *(undefined1 *)(render_context + 100) = 0;
+      *(undefined4 *)(render_context + 0x42) = *(undefined4 *)(source_data + 0x14);
+      
+      // 处理材质批次
+      material_index = 0;
+      render_state = (uint)(render_context[8] - render_context[7] >> 4);
+      if (render_state != 0) {
+        buffer_ptr = 0;
         do {
-          uVar5 = (ulonglong)uVar4;
-          if ((ulonglong)((*(longlong *)(param_3 + 0x98) - *(longlong *)(param_3 + 0x90)) / 0x1a0)
-              <= uVar5) break;
-          if ((param_4 == 0) ||
-             ((ulonglong)((*(longlong *)(param_4 + 0x98) - *(longlong *)(param_4 + 0x90)) / 0x1a0)
-              <= uVar5)) {
-            lVar3 = 0;
+          texture_hash = (ulonglong)material_index;
+          if ((ulonglong)((*(longlong *)(source_data + 0x98) - *(longlong *)(source_data + 0x90)) / 0x1a0)
+              <= texture_hash) break;
+          if ((target_data == 0) ||
+             ((ulonglong)((*(longlong *)(target_data + 0x98) - *(longlong *)(target_data + 0x90)) / 0x1a0)
+              <= texture_hash)) {
+            data_offset = 0;
           }
           else {
-            lVar3 = uVar5 * 0x1a0 + *(longlong *)(param_4 + 0x90);
+            data_offset = texture_hash * 0x1a0 + *(longlong *)(target_data + 0x90);
           }
-          FUN_1803269f0(*(longlong *)(param_3 + 0x90) + uVar5 * 0x1a0,param_2,
-                        *(undefined8 *)(lVar7 + param_1[7]),param_5,lVar3);
-          uVar4 = uVar4 + 1;
-          lVar7 = lVar7 + 0x10;
-        } while (uVar4 < uVar6);
+          process_render_batch(*(longlong *)(source_data + 0x90) + texture_hash * 0x1a0, material_data,
+                        *(undefined8 *)(buffer_ptr + render_context[7]), render_flags, data_offset);
+          material_index = material_index + 1;
+          buffer_ptr = buffer_ptr + 0x10;
+        } while (material_index < render_state);
       }
-      (**(code **)(*param_1 + 0xf8))(param_1,param_3 + 0x1b8);
+      // 调用渲染回调函数
+      (**(code **)(*render_context + 0xf8))(render_context, source_data + 0x1b8);
     }
-    if (((param_5 >> 4 & 1) != 0) && (0 < *(int *)(param_3 + 0x170))) {
-      aplStackX_18[0] = (longlong *)0x0;
-      FUN_1803276a0(param_2,aplStackX_18,param_3 + 0x160);
-      if (aplStackX_18[0] != (longlong *)0x0) {
-        (**(code **)(*aplStackX_18[0] + 0x38))();
+    // 处理高级渲染特性
+    if (((render_flags >> 4 & 1) != 0) && (0 < *(int *)(source_data + 0x170))) {
+      texture_handles[0] = (longlong *)0x0;
+      process_advanced_rendering(material_data, texture_handles, source_data + 0x160);
+      if (texture_handles[0] != (longlong *)0x0) {
+        (**(code **)(*texture_handles[0] + 0x38))();
       }
     }
   }
@@ -175,62 +182,59 @@ void process_rendering_materials(longlong *render_context, longlong material_dat
 
 
 
-// 函数: void FUN_180281770(undefined8 *param_1,undefined8 param_2)
-void FUN_180281770(undefined8 *param_1,undefined8 param_2)
+// 渲染数据比较函数 - 比较两个渲染对象的数据差异
+void compare_rendering_data(undefined8 *render_obj1, undefined8 render_obj2)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  char cVar4;
-  int iVar5;
-  undefined8 uVar6;
-  longlong lVar7;
-  longlong lVar8;
-  longlong lVar9;
-  longlong lVar10;
-  undefined *puVar11;
-  longlong *plVar12;
-  ulonglong uVar13;
-  uint uVar14;
-  int iVar15;
-  longlong lVar16;
-  ulonglong uVar17;
-  undefined *puVar18;
-  bool bVar19;
-  undefined1 auStack_538 [32];
-  uint uStack_518;
-  undefined **ppuStack_510;
-  undefined8 uStack_508;
-  undefined *puStack_500;
-  undefined *puStack_4f8;
-  uint uStack_4f0;
-  undefined4 uStack_4e8;
-  longlong lStack_4e0;
-  undefined8 uStack_4d8;
-  undefined *puStack_4c8;
-  undefined *puStack_4c0;
-  undefined4 uStack_4b8;
-  undefined auStack_4b0 [136];
-  undefined *puStack_428;
-  undefined *puStack_420;
-  undefined4 uStack_418;
-  undefined1 auStack_410 [136];
-  undefined *apuStack_388 [34];
-  undefined *puStack_278;
-  longlong lStack_270;
-  undefined4 uStack_260;
-  longlong alStack_258 [4];
-  longlong alStack_238 [4];
-  longlong alStack_218 [6];
-  undefined *apuStack_1e8 [34];
-  undefined *puStack_d8;
-  longlong lStack_d0;
-  undefined4 uStack_c0;
-  longlong alStack_b8 [4];
-  longlong alStack_98 [4];
-  longlong alStack_78 [6];
-  ulonglong uStack_48;
+  undefined4 diff_flag1, diff_flag2, diff_flag3;
+  char comparison_result;
+  int str_length;
+  undefined8 hash_value;
+  longlong compare_context;
+  longlong data_ptr1, data_ptr2, data_ptr3;
+  longlong render_buffer;
+  undefined *string_buffer;
+  longlong *material_array;
+  ulonglong batch_count;
+  uint comparison_flags;
+  int substring_pos;
+  longlong temp_offset;
+  ulonglong loop_counter;
+  undefined *temp_string;
+  bool has_differences;
+  undefined1 security_key[32];
+  uint context_flags;
+  undefined **function_ptr;
+  undefined8 render_state;
+  undefined *buffer_start;
+  undefined *string_ptr;
+  uint string_length;
+  undefined4 padding_flag;
+  longlong context_handle;
+  undefined8 security_cookie;
+  undefined *comparison_buffer1;
+  undefined *comparison_buffer2;
+  undefined4 buffer_size;
+  undefined temp_buffer1[136];
+  undefined *texture_handle1;
+  undefined *texture_handle2;
+  undefined4 texture_flags;
+  undefined1 temp_buffer2[136];
+  undefined *render_objects1[34];
+  undefined *object_pointer;
+  longlong stack_offset;
+  undefined4 cleanup_flag;
+  longlong temp_array1[4];
+  longlong temp_array2[4];
+  longlong temp_array3[6];
+  undefined *render_objects2[34];
+  undefined *temp_obj_ptr;
+  longlong obj_offset;
+  undefined4 obj_flag;
+  longlong obj_array1[4];
+  longlong obj_array2[4];
+  longlong obj_array3[6];
+  ulonglong stack_cookie;
   
   uStack_4d8 = 0xfffffffffffffffe;
   uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_538;
