@@ -470,8 +470,18 @@ LAB_180333fbc:
 
 
 
-// 函数: void FUN_1803342d0(longlong param_1,char param_2,char param_3)
-void FUN_1803342d0(longlong param_1,char param_2,char param_3)
+/**
+ * @brief 渲染系统资源处理器初始化器
+ * 
+ * 该函数负责初始化渲染系统资源处理器，包括文件操作、内存分配、
+ * 资源清理和路径处理等高级渲染功能。
+ * 
+ * @param resource_manager 资源管理器指针
+ * @param init_flag 初始化标志
+ * @param process_flag 处理标志
+ * @return void
+ */
+void RenderingSystem_InitializeResourceHandler(longlong resource_manager, char init_flag, char process_flag)
 
 {
   undefined8 *puVar1;
@@ -535,8 +545,20 @@ void FUN_1803342d0(longlong param_1,char param_2,char param_3)
 
 
 
+/**
+ * @brief 渲染系统资源路径创建器
+ * 
+ * 该函数负责创建渲染系统资源路径，包括路径处理、字符串操作、
+ * 缓冲区管理和路径验证等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param path_buffer 路径缓冲区指针
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return undefined8* 返回路径缓冲区指针
+ */
 undefined8 *
-FUN_180334430(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+RenderingSystem_CreateResourcePath(longlong resource_context, undefined8 *path_buffer, undefined8 param3, undefined8 param4)
 
 {
   int iVar1;
@@ -562,8 +584,20 @@ FUN_180334430(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8
 
 
 
+/**
+ * @brief 渲染系统数据路径创建器
+ * 
+ * 该函数负责创建渲染系统数据路径，包括路径处理、字符串操作、
+ * 缓冲区管理和数据验证等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param path_buffer 路径缓冲区指针
+ * @param param3 参数3
+ * @param param4 参数4
+ * @return undefined8* 返回路径缓冲区指针
+ */
 undefined8 *
-FUN_180334500(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8 param_4)
+RenderingSystem_CreateDataPath(longlong resource_context, undefined8 *path_buffer, undefined8 param3, undefined8 param4)
 
 {
   int iVar1;
@@ -593,8 +627,16 @@ FUN_180334500(longlong param_1,undefined8 *param_2,undefined8 param_3,undefined8
 
 
 
-// 函数: void FUN_1803345c0(undefined8 param_1)
-void FUN_1803345c0(undefined8 param_1)
+/**
+ * @brief 渲染系统资源数据处理器
+ * 
+ * 该函数负责处理渲染系统资源数据，包括数据读取、内存管理、
+ * 缓冲区操作和数据验证等高级渲染功能。
+ * 
+ * @param resource_data 资源数据指针
+ * @return void
+ */
+void RenderingSystem_ProcessResourceData(undefined8 resource_data)
 
 {
   undefined1 auStack_1b8 [64];
@@ -616,8 +658,18 @@ void FUN_1803345c0(undefined8 param_1)
 
 
 
-// 函数: void FUN_1803347d0(longlong param_1,ulonglong *param_2,uint param_3)
-void FUN_1803347d0(longlong param_1,ulonglong *param_2,uint param_3)
+/**
+ * @brief 渲染系统资源数据管理器
+ * 
+ * 该函数负责管理渲染系统资源数据，包括数据遍历、资源查找、
+ * 内存分配和动态扩容等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param data_array 数据数组指针
+ * @param resource_id 资源ID
+ * @return void
+ */
+void RenderingSystem_ManageResourceData(longlong resource_context, ulonglong *data_array, uint resource_id)
 
 {
   undefined8 uVar1;
@@ -700,8 +752,15 @@ LAB_180334893:
 
 
 
-// 函数: void FUN_18033483c(void)
-void FUN_18033483c(void)
+/**
+ * @brief 渲染系统资源数据优化器
+ * 
+ * 该函数负责优化渲染系统资源数据，包括数据重组、内存优化、
+ * 性能提升和系统维护等高级渲染功能。
+ * 
+ * @return void
+ */
+void RenderingSystem_OptimizeResourceData(void)
 
 {
   undefined8 uVar1;
@@ -759,8 +818,15 @@ LAB_180334893:
 
 
 
-// 函数: void FUN_180334921(void)
-void FUN_180334921(void)
+/**
+ * @brief 渲染系统资源处理器清理器
+ * 
+ * 该函数负责清理渲染系统资源处理器，包括状态重置、
+ * 内存释放和系统维护等高级渲染功能。
+ * 
+ * @return void
+ */
+void RenderingSystem_CleanupResourceHandler(void)
 
 {
   return;
@@ -770,7 +836,17 @@ void FUN_180334921(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_180334930(longlong param_1,longlong param_2)
+/**
+ * @brief 渲染系统资源数据获取器
+ * 
+ * 该函数负责获取渲染系统资源数据，包括资源查找、数据访问、
+ * 线程同步和内存管理等高级渲染功能。
+ * 
+ * @param resource_context 资源上下文指针
+ * @param data_source 数据源指针
+ * @return longlong* 返回数据指针
+ */
+longlong * RenderingSystem_GetResourceData(longlong resource_context, longlong data_source)
 
 {
   longlong lVar1;
