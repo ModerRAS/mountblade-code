@@ -1001,7 +1001,7 @@ LAB_180747ea4:
     return 0;
   }
   if (param_2 * 4 - 1U < 0x3fffffff) {
-    lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_8432_ptr,0xf4,0)
+    lVar1 = UISystem_MemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 4,&unknown_var_8432_ptr,0xf4,0)
     ;
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -1085,7 +1085,7 @@ LAB_180747fa4:
     return 0;
   }
   if (param_2 * 8 - 1U < 0x3fffffff) {
-    lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 8,&unknown_var_8432_ptr,0xf4,0)
+    lVar1 = UISystem_MemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 8,&unknown_var_8432_ptr,0xf4,0)
     ;
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -1169,7 +1169,7 @@ LAB_1807480a0:
     return 0;
   }
   if (param_2 * 0x10 - 1U < 0x3fffffff) {
-    lVar1 = FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&unknown_var_8432_ptr,0xf4
+    lVar1 = UISystem_MemoryAllocator(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_2 * 0x10,&unknown_var_8432_ptr,0xf4
                           ,0);
     if (lVar1 != 0) {
       if ((int)unaff_RBX[1] != 0) {
@@ -1208,7 +1208,7 @@ uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int
   int32_t *puVar7;
   longlong lVar8;
   
-  uVar6 = FUN_1807499f0();
+  uVar6 = UISystem_SystemChecker();
   if ((int)uVar6 == 0) {
     if ((((param_2 < 0) || (*(int *)(param_1 + 0x694) <= param_2)) || (param_3 == 0)) ||
        (((*(byte *)(param_3 + 0x2c) & 0x80) != 0 || (*(int *)(param_3 + 0x44) == 0)))) {
@@ -1220,10 +1220,10 @@ uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int
         uVar6 = 0x50;
       }
       else {
-        uVar6 = FUN_180748290(param_1,param_2);
+        uVar6 = UISystem_ComponentRemover(param_1,param_2);
         if ((int)uVar6 == 0) {
           puVar7 = (int32_t *)
-                   FUN_180742050(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,
+                   UISystem_MemoryAllocatorEx(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x60,&unknown_var_8576_ptr,0x1432,
                                  0);
           if (puVar7 == (int32_t *)0x0) {
             uVar6 = 0x26;
@@ -1244,9 +1244,9 @@ uint64_t UISystem_AddComponent(longlong param_1,int param_2,longlong param_3,int
             puVar7[2] = uVar2;
             puVar7[3] = uVar3;
             puVar7[4] = uVar4;
-            iVar5 = FUN_1807889e0(*(uint64_t *)(param_1 + 0x670),puVar7);
+            iVar5 = UISystem_ComponentRegistrar(*(uint64_t *)(param_1 + 0x670),puVar7);
             if (iVar5 != 0) {
-              FUN_180788d20(*(uint64_t *)(param_1 + 0x670),puVar7);
+              UISystem_ComponentUnregistrar(*(uint64_t *)(param_1 + 0x670),puVar7);
                     // WARNING: Subroutine does not return
               FUN_180742250(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),puVar7,&unknown_var_8576_ptr,0x1446,1);
             }

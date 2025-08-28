@@ -274,6 +274,18 @@
 // UI系统缓冲区管理器
 #define UISystem_BufferManager FUN_18085b050
 
+// UI系统外部资源获取器 - 获取外部资源
+#define UISystem_ExternalResourceGetter func_0x00018084d0b0
+
+// UI系统参数计算器 - 计算参数
+#define UISystem_ParameterCalculator func_0x00018085c9a0
+
+// UI系统数据状态获取器 - 获取数据状态
+#define UISystem_DataStateGetter func_0x0001808601d0
+
+// UI系统组件处理器 - 处理组件
+#define UISystem_ComponentProcessor func_0x0001808c6bf0
+
 // UI系统配置管理器
 #define UISystem_ConfigManager FUN_18085acd0
 
@@ -2146,7 +2158,7 @@ LAB_180858c20:
       uVar26 = uVar26 + uVar19;
       *(int32_t *)(param_1 + 0xc) = 3;
       uStack_f0 = uVar26;
-      lVar12 = func_0x00018084d0b0(*(uint64_t *)(param_1 + 0x110),lVar14 + 0x20);
+      lVar12 = UISystem_ExternalResourceGetter(*(uint64_t *)(param_1 + 0x110),lVar14 + 0x20);
       if (lVar12 == 0) {
         return 0x1c;
       }
@@ -2232,7 +2244,7 @@ LAB_180858c20:
         uStack_128 = (ulonglong)uVar21;
         uStack_e8 = uVar21;
         if (lStack_98 != 0) {
-          lVar14 = func_0x00018084d0b0(*(uint64_t *)(param_1 + 0x110),lStack_98 + 0x20);
+          lVar14 = UISystem_ExternalResourceGetter(*(uint64_t *)(param_1 + 0x110),lStack_98 + 0x20);
           *(int32_t *)(param_1 + 0x154) = *(int32_t *)(lVar14 + 0x20);
           *(int8_t *)(param_1 + 0x13f) = 1;
           if ((ulonglong)*(uint *)(lStack_f8 + 0x20) + (ulonglong)auStack_140[0] < 0x100000000) {
@@ -2719,11 +2731,11 @@ UISystem_BufferManager(longlong system_context, uint64_t buffer_data, uint *size
     }
     *puVar1 = uVar7;
     if (param_6 != 0) {
-      lVar6 = func_0x00018084d0b0(*(uint64_t *)(param_1 + 0x110),param_6 + 0x20);
+      lVar6 = UISystem_ExternalResourceGetter(*(uint64_t *)(param_1 + 0x110),param_6 + 0x20);
       if (lVar6 == 0) {
         return 0x1c;
       }
-      func_0x00018085c9a0(param_1,&param_5,param_5._4_4_,param_2);
+      UISystem_ParameterCalculator(param_1,&param_5,param_5._4_4_,param_2);
       uVar5 = UISystem_DataSizeManager(param_1,CONCAT44(param_5._4_4_,(int)param_5),lVar6 + 0x20,uVar2);
       if ((int)uVar5 != 0) {
         return uVar5;
@@ -2771,7 +2783,7 @@ uint64_t UISystem_AdvancedDataValidator(longlong system_context, uint *time_para
   
   if ((*(int *)(*(longlong *)(param_1 + 0x110) + 0x80) != 0) ||
      (*(int *)(*(longlong *)(param_1 + 0x110) + 0x90) != 0)) {
-    uVar4 = func_0x0001808601d0(*(uint64_t *)(param_1 + 0x160));
+    uVar4 = UISystem_DataStateGetter(*(uint64_t *)(param_1 + 0x160));
     lStackX_8 = *(longlong *)(param_1 + 0x110);
     if (((uVar4 >> 0xb & 1) != 0) && (iVar10 = 0, 0 < *(int *)(lStackX_8 + 0x80))) {
       lVar11 = 0;
