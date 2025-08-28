@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -834,7 +836,7 @@ LAB_1805a7803:
   if ((((float)(uVar8 - 1) * 2.3283064e-10 < 0.15) && (system_status_flag != 1)) &&
      (system_status_flag != 4)) {
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-                 0x48) < system_system_config_config) && (FUN_1808fcb90(&system_ptr_a058), system_system_config_config == -1)) {
+                 0x48) < system_system_config_config) && (SystemInitializer(&system_ptr_a058), system_system_config_config == -1)) {
       uStack_80 = &system_data_buffer_ptr;
       uStack_68 = 0;
       puStack_78 = (int32_t *)0x0;

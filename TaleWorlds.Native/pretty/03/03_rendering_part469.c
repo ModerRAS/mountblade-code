@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 /**
  * TaleWorlds.Native 渲染系统美化代码
  * 
@@ -422,7 +424,7 @@ void rendering_system_process_render_pipeline(
                 *(float *)(pipeline_data + 0xc0) + *(float *)(pipeline_data + 0xc0))) {
                 if ((*(int *)(*(longlong *)
                                ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
-                     render_system_config_render) && (FUN_1808fcb90(&system_memory_9ec8), render_system_config_render == -1)) {
+                     render_system_config_render) && (SystemInitializer(&system_memory_9ec8), render_system_config_render == -1)) {
                     render_settings = &system_data_buffer_ptr;
                     gpu_time = 0.0;
                     cpu_time = 0.0;
@@ -607,7 +609,7 @@ void rendering_system_process_render_pipeline(
             if ((*(byte *)(pipeline_data + 0xac) & 0x40) == 0) {
                 if ((*(int *)(*(longlong *)
                                ((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) <
-                     render_system_config_render) && (FUN_1808fcb90(&system_memory_9ed0), render_system_config_render == -1)) {
+                     render_system_config_render) && (SystemInitializer(&system_memory_9ed0), render_system_config_render == -1)) {
                     render_settings = &system_data_buffer_ptr;
                     gpu_time = 0.0;
                     cpu_time = 0.0;

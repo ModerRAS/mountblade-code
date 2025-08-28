@@ -1,3 +1,5 @@
+#define StatusChecker FUN_1805b7ac0  // 状态检查器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -348,7 +350,7 @@ LAB_1805cdb67:
             *(uint *)(param_1 + 0x272) = uVar14;
             if (fVar18 <= (float)(uVar14 - 1) * 2.3283064e-10 * fVar17) goto LAB_1805cde99;
           }
-          cVar4 = FUN_1805b7ac0(param_1);
+          cVar4 = StatusChecker(param_1);
           if (cVar4 != '\0') {
             uVar14 = *(uint *)(param_1 + 2);
             if ((uVar14 & 0x40) == 0) {

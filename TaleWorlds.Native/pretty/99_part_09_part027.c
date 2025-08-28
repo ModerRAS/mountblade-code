@@ -1,3 +1,5 @@
+#define StringProcessor FUN_1805a3b20  // 字符串处理器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -373,7 +375,7 @@ LAB_1805ca818:
             fVar17 = 6.0;
           }
           if (3.4028235e+38 < fVar17 * *(float *)(lVar12 + 0x50)) {
-            FUN_1805a3b20(lVar2 + 0x28,auStackX_18);
+            StringProcessor(lVar2 + 0x28,auStackX_18);
           }
         }
       }
@@ -563,7 +565,7 @@ LAB_1805ca818:
             fVar14 = 6.0;
           }
           if (3.4028235e+38 < fVar14 * *(float *)(lVar9 + 0x50)) {
-            FUN_1805a3b20(lVar1 + 0x28,&stack0x00000120);
+            StringProcessor(lVar1 + 0x28,&stack0x00000120);
           }
         }
       }
@@ -739,7 +741,7 @@ LAB_1805ca818:
             fVar13 = 6.0;
           }
           if (3.4028235e+38 < fVar13 * *(float *)(lVar8 + 0x50)) {
-            FUN_1805a3b20(lVar2 + 0x28,&stack0x00000120);
+            StringProcessor(lVar2 + 0x28,&stack0x00000120);
           }
         }
       }
@@ -900,7 +902,7 @@ LAB_1805ca818:
             unaff_XMM13_Da = 6.0;
           }
           if (3.4028235e+38 < unaff_XMM13_Da * *(float *)(lVar7 + 0x50)) {
-            FUN_1805a3b20(lVar2 + 0x28,&stack0x00000120);
+            StringProcessor(lVar2 + 0x28,&stack0x00000120);
           }
         }
       }

@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -396,7 +398,7 @@ void * FUN_180847820(void)
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < network_system_config) {
-    FUN_1808fcb90(&system_ptr_ea90);
+    SystemInitializer(&system_ptr_ea90);
     if (network_system_config == -1) {
       network_system_config = 0;
       uRam0000000180c4ea84 = 0;

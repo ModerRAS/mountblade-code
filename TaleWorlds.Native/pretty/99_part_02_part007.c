@@ -462,8 +462,8 @@ void FUN_1800ebd8e(void)
         uStack0000000000000058 = (int32_t)unaff_RSI[1];
         uStack000000000000005c = *(int32_t *)((longlong)unaff_RSI + 0xc);
         *(uint64_t *)(lVar5 + 0x10 + (ulonglong)uVar8 * 0x18) = uVar3;
-        HeapAdjust_TripleDataStructure(&stack0x00000050, 0, ((longlong)(int)in_R9D - (longlong)(int)uVar11) + -1, 0,
-                                      &stack0x00000090);
+        HeapAdjust_TripleDataStructure(&uStack0000000000000050, 0, ((longlong)(int)in_R9D - (longlong)(int)uVar11) + -1, 0,
+                                      &uStack0000000000000090);
         in_R9D = uVar10;
     } while (1 < (int)uVar10 - unaff_RBP);
     return;
@@ -773,8 +773,8 @@ void FUN_1800ec0a8(void)
         puVar2[1] = uVar4;
         lStack0000000000000080 = *unaff_RSI;
         lStack0000000000000088 = unaff_RSI[1];
-        HeapAdjust_PairDataStructure(&stack0x00000080, 0, ((longlong)(int)in_R9D - (longlong)(int)uVar6) + -1, 0,
-                                    &stack0x00000070);
+        HeapAdjust_PairDataStructure(&lStack0000000000000080, 0, ((longlong)(int)in_R9D - (longlong)(int)uVar6) + -1, 0,
+                                    &uStack0000000000000070);
         in_R9D = uVar5;
     } while (1 < (int)uVar5 - unaff_RBP);
     return;

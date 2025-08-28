@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -44,7 +46,7 @@ void FUN_180879232(void)
   int in_stack_00000070;
   
   do {
-    uVar20 = FUN_1808fcb90(&system_ptr_ea98);
+    uVar20 = SystemInitializer(&system_ptr_ea98);
     if (ui_system_config == -1) {
       ui_system_config = unaff_R12D;
       uVar20 = FUN_1808fcb30(&system_ptr_ea98);

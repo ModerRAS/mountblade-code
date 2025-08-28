@@ -1,3 +1,5 @@
+#define StringProcessor FUN_1805a3b20  // 字符串处理器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -169,7 +171,7 @@ label_time_control_jump:
                             *(longlong *)(long_variable_8 + 0xd0)) * 0x170 + 0x140 + render_system_render) & 0x10) !=
          0)))) {
         
-        char_variable_3 = FUN_1805a3b20(register_rbx + 0x28, register_rbp + 0x67);
+        char_variable_3 = StringProcessor(register_rbx + 0x28, register_rbp + 0x67);
         if (char_variable_3 == '\0') {
 label_animation_flow_control:
             long_variable_7 = *(longlong *)(register_rbx + 0x8f8);
@@ -438,7 +440,7 @@ label_animation_control_jump:
                             *(longlong *)(long_variable_8 + 0xd0)) * 0x170 + 0x140 + render_system_render) & 0x10) !=
          0)))) {
         
-        char_variable_3 = FUN_1805a3b20(register_rbx + 0x28, register_rbp + 0x67);
+        char_variable_3 = StringProcessor(register_rbx + 0x28, register_rbp + 0x67);
         if (char_variable_3 == '\0') {
 label_animation_flow_control:
             long_variable_7 = *(longlong *)(register_rbx + 0x8f8);

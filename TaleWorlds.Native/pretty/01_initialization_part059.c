@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -695,7 +697,7 @@ code_r0x00018007db1b:
         fVar32 = fStack_124;
         fVar31 = fStack_128;
         if (*(int *)(lVar25 + lVar22) < iRam0000000180d49150) {
-          FUN_1808fcb90(0x180d49150);
+          SystemInitializer(0x180d49150);
           if (iRam0000000180d49150 == -1) {
             fRam0000000180d49154 = 1.0;
             FUN_1808fcb30(0x180d49150);

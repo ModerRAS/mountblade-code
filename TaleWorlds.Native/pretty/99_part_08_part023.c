@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -37,7 +39,7 @@ void FUN_1804f6570(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
   if ((param_6 == '\0') && (param_2 != 0)) {
     lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
     if ((*(int *)(lVar1 + 0x48) < system_system_config_memory) &&
-       (FUN_1808fcb90(&system_ptr_9e38), system_system_config_memory == -1)) {
+       (SystemInitializer(&system_ptr_9e38), system_system_config_memory == -1)) {
       puStack_168 = &unknown_var_672_ptr;
       puStack_160 = auStack_150;
       auStack_150[0] = 0;
@@ -48,7 +50,7 @@ void FUN_1804f6570(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
       FUN_1808fcb30(&system_ptr_9e38);
     }
     if ((*(int *)(lVar1 + 0x48) < system_system_config_memory) &&
-       (FUN_1808fcb90(&system_ptr_9e40), system_system_config_memory == -1)) {
+       (SystemInitializer(&system_ptr_9e40), system_system_config_memory == -1)) {
       puStack_168 = &unknown_var_672_ptr;
       puStack_160 = auStack_150;
       auStack_150[0] = 0;
@@ -68,7 +70,7 @@ void FUN_1804f6570(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
       puStack_168 = &system_state_ptr;
       iVar3 = system_system_config_memory;
       if ((*(int *)(lVar1 + 0x48) < system_system_config_memory) &&
-         (FUN_1808fcb90(&system_ptr_9e48), iVar3 = system_system_config_memory, system_system_config_memory == -1)) {
+         (SystemInitializer(&system_ptr_9e48), iVar3 = system_system_config_memory, system_system_config_memory == -1)) {
         puStack_168 = &unknown_var_3480_ptr;
         puStack_160 = auStack_150;
         auStack_150[0] = 0;
@@ -91,7 +93,7 @@ void FUN_1804f6570(uint64_t param_1,longlong param_2,uint64_t param_3,uint64_t p
       puStack_108 = &system_state_ptr;
       iVar3 = system_system_config_memory;
       if ((*(int *)(lVar1 + 0x48) < system_system_config_memory) &&
-         (FUN_1808fcb90(&system_ptr_9e50), iVar3 = system_system_config_memory, system_system_config_memory == -1)) {
+         (SystemInitializer(&system_ptr_9e50), iVar3 = system_system_config_memory, system_system_config_memory == -1)) {
         puStack_108 = &unknown_var_3480_ptr;
         puStack_100 = auStack_f0;
         auStack_f0[0] = 0;

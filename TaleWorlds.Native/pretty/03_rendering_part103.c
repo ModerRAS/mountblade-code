@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -673,7 +675,7 @@ longlong FUN_18032b880(longlong param_1,uint param_2,uint param_3)
   
   // 检查渲染系统状态
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < render_system_config_config) && (FUN_1808fcb90(&system_buffer_96d0), render_system_config_config == -1)) {
+               0x48) < render_system_config_config) && (SystemInitializer(&system_buffer_96d0), render_system_config_config == -1)) {
     // 初始化全局变量
     render_system_config_config = &unknown_var_3480_ptr;
     render_system_config_config = &system_buffer_9748;

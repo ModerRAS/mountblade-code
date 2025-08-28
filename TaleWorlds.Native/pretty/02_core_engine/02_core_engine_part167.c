@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -420,7 +422,7 @@ void shutdown_engine_system(longlong param_1)
   }
   cleanup_target = *(longlong *)(system_message_buffer + 0x1d78);
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < core_system_config_string) && (FUN_1808fcb90(&system_memory_93f0), core_system_config_string == -1)) {
+               0x48) < core_system_config_string) && (SystemInitializer(&system_memory_93f0), core_system_config_string == -1)) {
     core_system_config_string = 0;
     core_system_config_string = 0;
     core_system_config_string = 0;

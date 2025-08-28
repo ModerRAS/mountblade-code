@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -500,7 +502,7 @@ allocate_render_resources(uint64_t param_1, uint64_t param_2, uint64_t param_3, 
   cleanup_flag = 0xfffffffffffffffe;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < core_system_config_memory) {
-    FUN_1808fcb90(&system_memory_9210);
+    SystemInitializer(&system_memory_9210);
     if (core_system_config_memory == -1) {
       core_system_config_memory = &system_data_buffer_ptr;
       core_system_config_memory = 0;

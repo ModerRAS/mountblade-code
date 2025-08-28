@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -469,7 +471,7 @@ code_r0x000180151fd7:
     if (*(char *)(system_parameter_buffer + 0x12e7) == '\0') {
       if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8)
                    + 0x48) < iRam0000000180d49260) &&
-         (FUN_1808fcb90(0x180d49260), iRam0000000180d49260 == -1)) {
+         (SystemInitializer(0x180d49260), iRam0000000180d49260 == -1)) {
         dRam0000000180d49268 = *(double *)(lVar11 + 0x1528);
         FUN_1808fcb30(0x180d49260);
       }

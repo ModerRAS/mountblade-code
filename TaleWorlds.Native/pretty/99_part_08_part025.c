@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -29,7 +31,7 @@ void FUN_1804f8630(uint64_t param_1,int32_t param_2,longlong param_3,int32_t par
   uStack_48 = GET_SECURITY_COOKIE() ^ (ulonglong)auStack_d8;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < system_system_config_config) {
-    FUN_1808fcb90();
+    SystemInitializer();
     if (system_system_config_config == -1) {
       puStack_70 = &system_config_ptr;
       puStack_68 = auStack_58;

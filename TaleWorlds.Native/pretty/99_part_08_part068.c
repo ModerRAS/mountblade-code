@@ -1,3 +1,5 @@
+#define StatusChecker FUN_1805b7ac0  // 状态检查器
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_08_part068.c - 6 个函数
@@ -836,7 +838,7 @@ uint64_t * FUN_1805b7970(longlong *param_1,uint64_t *param_2)
 
 
 
-int8_t FUN_1805b7ac0(longlong *param_1)
+int8_t StatusChecker(longlong *param_1)
 
 {
   char cVar1;

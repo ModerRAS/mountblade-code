@@ -1,3 +1,5 @@
+#define StatusChecker FUN_1805b7ac0  // 状态检查器
+
 #include "TaleWorlds.Native.Split.h"
 
 // 99_part_09_part039.c - 2 个函数
@@ -126,7 +128,7 @@ LAB_1805cf57f:
           }
           if ((((*(uint *)((longlong)*(int *)(lVar10 + 0xf0) * 0xa0 + 0x50 +
                           *(longlong *)(lVar10 + 0xd0)) >> 0x1c & 1) != 0) &&
-              (cVar5 = FUN_1805b7ac0(), cVar5 != '\0')) &&
+              (cVar5 = StatusChecker(), cVar5 != '\0')) &&
              (fVar16 = *(float *)(*unaff_RBX + 0x2f8),
              uVar12 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272),
              uVar12 = uVar12 >> 0x11 ^ uVar12, uVar12 = uVar12 << 5 ^ uVar12,
@@ -539,7 +541,7 @@ LAB_1805cf57f:
         lVar8 = unaff_RBX[0x1f];
       }
       if ((((*(uint *)((longlong)*(int *)(lVar8 + 0xf0) * 0xa0 + 0x50 + *(longlong *)(lVar8 + 0xd0))
-             >> 0x1c & 1) == 0) || (cVar3 = FUN_1805b7ac0(), cVar3 == '\0')) ||
+             >> 0x1c & 1) == 0) || (cVar3 = StatusChecker(), cVar3 == '\0')) ||
          (fVar14 = *(float *)(*unaff_RBX + 0x2f8),
          uVar10 = *(uint *)(unaff_RBX + 0x272) << 0xd ^ *(uint *)(unaff_RBX + 0x272),
          uVar10 = uVar10 >> 0x11 ^ uVar10, uVar10 = uVar10 << 5 ^ uVar10,

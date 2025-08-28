@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -26,7 +28,7 @@ void FUN_18084d068(void)
   uint in_stack_00000050;
   
   do {
-    FUN_1808fcb90(&system_ptr_ea98);
+    SystemInitializer(&system_ptr_ea98);
     if (ui_system_ui == -1) {
       ui_system_ui = unaff_R12D;
       FUN_1808fcb30(&system_ptr_ea98);
@@ -1094,7 +1096,7 @@ void * FUN_18084da10(void)
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < ui_system_ui) {
-    FUN_1808fcb90(&system_ptr_ea98);
+    SystemInitializer(&system_ptr_ea98);
     if (ui_system_ui == -1) {
       ui_system_ui = 0;
       FUN_1808fcb30(&system_ptr_ea98);

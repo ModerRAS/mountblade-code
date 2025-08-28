@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -122,7 +124,7 @@ void CoreEngineSystemStateManager(void)
   
   // 线程本地存储验证和初始化
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               THREAD_LOCAL_STORAGE_SIZE) < core_system_config_memory) && (FUN_1808fcb90(&system_memory_9620), core_system_config_memory == -1)) {
+               THREAD_LOCAL_STORAGE_SIZE) < core_system_config_memory) && (SystemInitializer(&system_memory_9620), core_system_config_memory == -1)) {
     core_system_config_memory = 0;
     FUN_1808fc820(&unknown_var_7184_ptr);
     FUN_1808fcb30(&system_memory_9620);

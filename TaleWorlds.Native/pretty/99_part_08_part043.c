@@ -1,3 +1,5 @@
+#define StringProcessor FUN_1805a3b20  // 字符串处理器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -58,7 +60,7 @@ ulonglong FUN_1805a35f0(longlong param_1)
      (iVar3 < (int)((*(longlong *)(lVar6 + 0xd8) - lVar8) / 0xa0))) {
     if ((*(byte *)((longlong)*(int *)((longlong)iVar3 * 0xa0 + 100 + lVar8) * 0x170 + 0x140 +
                   system_system_config) & 0x10) != 0) {
-      cVar4 = FUN_1805a3b20(param_1,auStackX_8);
+      cVar4 = StringProcessor(param_1,auStackX_8);
       if (cVar4 == '\0') goto LAB_1805a38a4;
     }
     if (*(int *)(lVar6 + 0xf0) != *(int *)(param_1 + 0x298)) {
@@ -245,7 +247,7 @@ int8_t FUN_1805a3b0e(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1805a3b20(longlong param_1,int8_t *param_2)
+ulonglong StringProcessor(longlong param_1,int8_t *param_2)
 
 {
   int iVar1;

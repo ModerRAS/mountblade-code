@@ -1,3 +1,5 @@
+#define StringProcessor FUN_1805a3b20  // 字符串处理器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -826,7 +828,7 @@ void FUN_1805113f0(longlong param_1,float param_2)
   acStackX_8[0] = '\x01';
   if ((uVar15 & 1) == 0) {
     cVar9 = FUN_1805a3ab0(param_1 + 0x28);
-    if ((cVar9 == '\0') || (cVar9 = FUN_1805a3b20(param_1 + 0x28,acStackX_8), cVar9 != '\0'))
+    if ((cVar9 == '\0') || (cVar9 = StringProcessor(param_1 + 0x28,acStackX_8), cVar9 != '\0'))
     goto LAB_18051181d;
     bVar8 = true;
 LAB_1805117e1:
@@ -858,7 +860,7 @@ LAB_18051181d:
         ((*(byte *)((longlong)
                     *(int *)((longlong)*(int *)(lVar5 + 0xf0) * 0xa0 + 100 +
                             *(longlong *)(lVar5 + 0xd0)) * 0x170 + 0x140 + render_system_memory) & 0x10)
-         == 0)) && (cVar9 = FUN_1805a3b20(param_1 + 0x28,acStackX_8), cVar9 != '\0')) {
+         == 0)) && (cVar9 = StringProcessor(param_1 + 0x28,acStackX_8), cVar9 != '\0')) {
       uVar20 = *(int32_t *)(*(longlong *)(param_1 + 0x8f8) + 0xa14);
       iVar10 = func_0x000180590580(lVar5,uVar20,*(uint *)(param_1 + 0x564) >> 0x1f ^ 1,
                                    *(uint *)(*(longlong *)(param_1 + 0x8f8) + 0x9e4) >> 0x1f ^ 1,

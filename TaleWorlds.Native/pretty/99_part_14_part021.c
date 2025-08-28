@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -866,8 +868,8 @@ void FUN_1808fcb30(int *param_1)
 
 
 
-// 函数: void FUN_1808fcb90(int *param_1)
-void FUN_1808fcb90(int *param_1)
+// 函数: void SystemInitializer(int *param_1)
+void SystemInitializer(int *param_1)
 
 {
   EnterCriticalSection(0x180c82210);

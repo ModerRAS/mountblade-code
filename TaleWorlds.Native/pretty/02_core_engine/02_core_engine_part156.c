@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -305,7 +307,7 @@ longlong read_clipboard_unicode_text(void)
   
   // 检查是否需要初始化剪贴板功能
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < core_system_config_resource) && (FUN_1808fcb90(&system_memory_9270), core_system_config_resource == -1)) {
+               0x48) < core_system_config_resource) && (SystemInitializer(&system_memory_9270), core_system_config_resource == -1)) {
     core_system_config_resource = 0;
     core_system_config_resource = 0;
     FUN_1808fc820(&unknown_var_7056_ptr);

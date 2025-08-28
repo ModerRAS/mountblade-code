@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -145,7 +147,7 @@ uint64_t FUN_18079d1f0(void)
   
   lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1734);
+    SystemInitializer(&system_ptr_1734);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -161,7 +163,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(0xc,ui_system_buffer_config);
   ui_system_buffer_config = CONCAT44(UI_SYSTEM_CONFIG_BASE,1);
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1738);
+    SystemInitializer(&system_ptr_1738);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -177,7 +179,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_173c);
+    SystemInitializer(&system_ptr_173c);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -193,7 +195,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1740);
+    SystemInitializer(&system_ptr_1740);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -209,7 +211,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1744);
+    SystemInitializer(&system_ptr_1744);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -227,7 +229,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = 0xc;
   ui_system_buffer_config = 0;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1748);
+    SystemInitializer(&system_ptr_1748);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -243,7 +245,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_174c);
+    SystemInitializer(&system_ptr_174c);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -259,7 +261,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1750);
+    SystemInitializer(&system_ptr_1750);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -275,7 +277,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1754);
+    SystemInitializer(&system_ptr_1754);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -293,7 +295,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = 0xc;
   ui_system_buffer_config = 0;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1758);
+    SystemInitializer(&system_ptr_1758);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -309,7 +311,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_175c);
+    SystemInitializer(&system_ptr_175c);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -325,7 +327,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1760);
+    SystemInitializer(&system_ptr_1760);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -341,7 +343,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1764);
+    SystemInitializer(&system_ptr_1764);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -359,7 +361,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = 0xc;
   ui_system_buffer_config = 0;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1768);
+    SystemInitializer(&system_ptr_1768);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -375,7 +377,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_176c);
+    SystemInitializer(&system_ptr_176c);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -391,7 +393,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1770);
+    SystemInitializer(&system_ptr_1770);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -407,7 +409,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1774);
+    SystemInitializer(&system_ptr_1774);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -425,7 +427,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = 0xc;
   ui_system_buffer_config = 0;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1778);
+    SystemInitializer(&system_ptr_1778);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -441,7 +443,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_177c);
+    SystemInitializer(&system_ptr_177c);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;
@@ -457,7 +459,7 @@ uint64_t FUN_18079d1f0(void)
   ui_system_buffer_config = CONCAT44(ui_system_buffer_config,ui_system_buffer_config);
   ui_system_buffer_config = ui_system_buffer_config & 0xffffffff00000000;
   if (*(int *)(lVar1 + 0x48) < ui_system_config) {
-    FUN_1808fcb90(&system_ptr_1780);
+    SystemInitializer(&system_ptr_1780);
     if (ui_system_config == -1) {
       ui_system_buffer_config = ui_system_buffer_config;
       ui_system_buffer_config = 0;

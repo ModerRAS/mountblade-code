@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 /**
  * @file 04_ui_system_part350_sub002_sub002.c
  * @brief UI系统高级数据处理和状态管理模块
@@ -1326,7 +1328,7 @@ LAB_180857f18:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*piStack_100 < ui_system_memory) && (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1))
+      if ((*piStack_100 < ui_system_memory) && (SystemInitializer(&system_buffer_ea98), ui_system_memory == -1))
       {
         ui_system_memory = 0;
         FUN_1808fcb30(&system_buffer_ea98);
@@ -1484,7 +1486,7 @@ LAB_1808580a0:
         uStack_158 = uVar7;
       }
       if ((*(int *)(*plStack_c8 + 0x48) < ui_system_memory) &&
-         (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1)) {
+         (SystemInitializer(&system_buffer_ea98), ui_system_memory == -1)) {
         ui_system_memory = 0;
         FUN_1808fcb30(&system_buffer_ea98);
       }
@@ -1547,7 +1549,7 @@ LAB_180859163:
           return uVar19;
         }
         if ((*(int *)(*plStack_c8 + 0x48) < ui_system_memory) &&
-           (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1)) {
+           (SystemInitializer(&system_buffer_ea98), ui_system_memory == -1)) {
           ui_system_memory = uVar7;
           FUN_1808fcb30(&system_buffer_ea98);
         }
@@ -1688,7 +1690,7 @@ LAB_180858c20:
         }
       }
       if ((*(int *)(*plStack_c8 + 0x48) < ui_system_memory) &&
-         (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1)) {
+         (SystemInitializer(&system_buffer_ea98), ui_system_memory == -1)) {
         ui_system_memory = 0;
         FUN_1808fcb30(&system_buffer_ea98);
       }
@@ -1928,7 +1930,7 @@ LAB_180858e04:
     *(uint *)(param_1 + 8) = uVar7;
     *(int32_t *)(param_1 + 0xc) = 2;
     if ((*(int *)(lStack_c0 + 0x48) < ui_system_memory) &&
-       (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1)) {
+       (SystemInitializer(&system_buffer_ea98), ui_system_memory == -1)) {
       ui_system_memory = 0;
       FUN_1808fcb30(&system_buffer_ea98);
     }
@@ -2067,7 +2069,7 @@ FUN_18085acd0(longlong param_1,longlong *param_2,uint *param_3,ulonglong *param_
     }
     bVar3 = false;
     if ((*(int *)(*plVar1 + 0x48) < ui_system_memory) &&
-       (FUN_1808fcb90(&system_buffer_ea98), ui_system_memory == -1)) {
+       (SystemInitializer(&system_buffer_ea98), ui_system_memory == -1)) {
       ui_system_memory = 0;
       FUN_1808fcb30(&system_buffer_ea98);
     }

@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
 
@@ -890,7 +892,7 @@ void *get_render_context(longlong param_1, uint64_t param_2, uint64_t param_3, u
   
   // 检查线程本地存储中的渲染值
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) + 0x48) < render_tls_value) {
-    FUN_1808fcb90(&system_buffer_9158);
+    SystemInitializer(&system_buffer_9158);
     if (render_tls_value == -1) {
       init_system_config_render = &default_render_context;
       init_system_config_render = &system_buffer_9178;

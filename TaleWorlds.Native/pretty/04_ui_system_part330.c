@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -363,7 +365,7 @@ uint * FUN_18084cde0(longlong param_1,uint *param_2)
       }
       *param_2 = uVar5;
       if ((*(int *)(lVar3 + 0x48) < ui_system_ui) &&
-         (FUN_1808fcb90(&system_ptr_ea98), ui_system_ui == -1)) {
+         (SystemInitializer(&system_ptr_ea98), ui_system_ui == -1)) {
         ui_system_ui = 0;
         FUN_1808fcb30(&system_ptr_ea98);
       }
@@ -507,7 +509,7 @@ uint * FUN_18084cde8(longlong param_1,uint *param_2)
       }
       *param_2 = uVar5;
       if ((*(int *)(lVar3 + 0x48) < ui_system_ui) &&
-         (FUN_1808fcb90(&system_ptr_ea98), ui_system_ui == -1)) {
+         (SystemInitializer(&system_ptr_ea98), ui_system_ui == -1)) {
         ui_system_ui = 0;
         FUN_1808fcb30(&system_ptr_ea98);
       }
@@ -602,7 +604,7 @@ void FUN_18084cf13(longlong param_1,uint64_t *param_2,uint64_t *param_3)
     }
     *unaff_RDI = uVar4;
     if ((*(int *)(lVar2 + 0x48) < ui_system_ui) &&
-       (FUN_1808fcb90(&system_ptr_ea98), ui_system_ui == -1)) {
+       (SystemInitializer(&system_ptr_ea98), ui_system_ui == -1)) {
       ui_system_ui = unaff_R12D;
       FUN_1808fcb30(&system_ptr_ea98);
     }

@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -480,7 +482,7 @@ SHADOW_PROCESSING_BRANCH:
     
     // 处理渲染系统错误和状态检查
     if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-                 0x48) < render_system_config_memory) && (FUN_1808fcb90(&system_memory_9ed8), render_system_config_memory == -1)) {
+                 0x48) < render_system_config_memory) && (SystemInitializer(&system_memory_9ed8), render_system_config_memory == -1)) {
       // 错误处理：创建和初始化错误信息结构
       char* error_msg_ptr = &system_data_buffer_ptr;
       uint error_code = 0;
@@ -659,7 +661,7 @@ SHADOW_PROCESSING_BRANCH:
     if (iVar8 == 4) {
       uVar12 = render_system_config_memory;
       if ((iVar7 < render_system_config_memory) &&
-         (FUN_1808fcb90(&system_memory_9ee0), uVar12 = render_system_config_memory, render_system_config_memory == -1)) {
+         (SystemInitializer(&system_memory_9ee0), uVar12 = render_system_config_memory, render_system_config_memory == -1)) {
         puStack_258 = &system_data_buffer_ptr;
         uStack_240 = 0;
         uStack_23c = 0;
@@ -681,7 +683,7 @@ SHADOW_PROCESSING_BRANCH:
     else {
       uVar12 = render_system_config_memory;
       if ((iVar7 < render_system_config_memory) &&
-         (FUN_1808fcb90(&system_memory_9ee8), uVar12 = render_system_config_memory, render_system_config_memory == -1)) {
+         (SystemInitializer(&system_memory_9ee8), uVar12 = render_system_config_memory, render_system_config_memory == -1)) {
         puStack_258 = &system_data_buffer_ptr;
         uStack_240 = 0;
         uStack_23c = 0;

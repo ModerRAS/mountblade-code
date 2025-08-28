@@ -1,3 +1,5 @@
+#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -789,7 +791,7 @@ void FUN_18045e350(longlong param_1)
   
   uVar3 = 0xfffffffffffffffe;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-               0x48) < render_system_config_memory) && (FUN_1808fcb90(), render_system_config_memory == -1)) {
+               0x48) < render_system_config_memory) && (SystemInitializer(), render_system_config_memory == -1)) {
     render_system_config_memory = &unknown_var_2008_ptr;
     render_system_config_memory = &system_ptr_9c08;
     render_system_config_memory = 0;

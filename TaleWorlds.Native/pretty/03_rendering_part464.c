@@ -1,3 +1,5 @@
+#define ControlFlowHandler FUN_18051739b  // 控制流处理器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -211,12 +213,12 @@ float * FUN_180516fe0(longlong param_1,float *param_2,longlong param_3,int param
   fVar12 = 0.0;
   fVar13 = 0.0;
   if (param_3 != 0) {
-    if (*(int *)(param_3 + 0x30) < 1) goto FUN_18051739b;
+    if (*(int *)(param_3 + 0x30) < 1) goto ControlFlowHandler;
     uVar3 = *(ulonglong *)((longlong)param_4 * 0xa0 + 0x50 + *(longlong *)(param_3 + 0xd0));
     if (((((uVar3 >> 9 & 1) != 0) && (*(short *)(param_3 + 8) < 1)) || ((uVar3 >> 1 & 1) != 0)) ||
        ((*(byte *)((longlong)
                    *(int *)((longlong)param_4 * 0xa0 + 100 + *(longlong *)(param_3 + 0xd0)) * 0x170
-                   + 0x140 + render_system_memory) & 0x10) != 0)) goto FUN_18051739b;
+                   + 0x140 + render_system_memory) & 0x10) != 0)) goto ControlFlowHandler;
   }
   lVar7 = *(longlong *)(param_1 + 0x590);
   iVar2 = *(int *)(lVar7 + 0xac);
@@ -305,7 +307,7 @@ LAB_18051724a:
   fVar1 = *(float *)(*(longlong *)(param_1 + 0x6d8) + 0x8c0);
   fVar12 = fVar12 * fVar1;
   fVar13 = (fVar13 / (float)iVar9) * fVar1;
-FUN_18051739b:
+ControlFlowHandler:
   *param_2 = fVar12;
   param_2[1] = fVar13;
   return param_2;
@@ -436,8 +438,8 @@ LAB_18051724a:
 
 
 
-// 函数: void FUN_18051739b(void)
-void FUN_18051739b(void)
+// 函数: void ControlFlowHandler(void)
+void ControlFlowHandler(void)
 
 {
   int32_t *in_R11;

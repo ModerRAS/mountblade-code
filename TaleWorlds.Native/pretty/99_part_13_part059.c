@@ -1,3 +1,5 @@
+#define ConditionChecker FUN_1808cf96d  // 条件检查器
+
 #include "TaleWorlds.Native.Split.h"
 #include "include/global_constants.h"
 
@@ -363,8 +365,8 @@ void FUN_1808cf955(void)
 
 
 
-// 函数: void FUN_1808cf96d(void)
-void FUN_1808cf96d(void)
+// 函数: void ConditionChecker(void)
+void ConditionChecker(void)
 
 {
   ulonglong in_stack_000000b0;
@@ -740,11 +742,11 @@ FUN_1808cfed0(longlong *param_1,uint64_t param_2,longlong param_3,int32_t param_
       if (*plVar5 == 0) {
         iVar2 = (**(code **)(*(longlong *)param_1[0x20] + 0x20))
                           ((longlong *)param_1[0x20],param_1[0x21],param_1 + 0x2a);
-        if (iVar2 != 0) goto FUN_1808cf96d;
+        if (iVar2 != 0) goto ConditionChecker;
         if (param_1[0x2a] != 0) {
           lVar6 = (**(code **)(*param_1 + 0x30))(param_1);
           iVar2 = FUN_18085ffc0(*(uint64_t *)(lVar6 + 0x18),0x2000,param_1[0x2a]);
-          if (iVar2 != 0) goto FUN_1808cf96d;
+          if (iVar2 != 0) goto ConditionChecker;
           *(uint *)((longlong)param_1 + 0x134) = *(uint *)((longlong)param_1 + 0x134) | 8;
         }
         lVar7 = (**(code **)(*param_1 + 0x30))(param_1);
@@ -754,14 +756,14 @@ FUN_1808cfed0(longlong *param_1,uint64_t param_2,longlong param_3,int32_t param_
         plStack_b8 = plVar5;
         iVar2 = (**(code **)(lVar6 + 0x28))(param_1[0x20],param_1[0x21],param_1[0x14],param_1[0x1d])
         ;
-        if (iVar2 != 0) goto FUN_1808cf96d;
+        if (iVar2 != 0) goto ConditionChecker;
       }
       iVar2 = (**(code **)(*(longlong *)param_1[0x20] + 0x10))
                         ((longlong *)param_1[0x20],param_1[0x21],acStack_78);
       if ((iVar2 == 0) && (acStack_78[0] != '\0')) {
         if ((char)param_1[0x18] == '\0') {
           iVar2 = FUN_1808c9e60(param_1);
-          if (iVar2 != 0) goto FUN_1808cf96d;
+          if (iVar2 != 0) goto ConditionChecker;
         }
         else {
           uVar3 = FUN_18073d6e0(*plVar5,0x40000010);
@@ -769,20 +771,20 @@ FUN_1808cfed0(longlong *param_1,uint64_t param_2,longlong param_3,int32_t param_
                (uVar3 = FUN_18073d010(*plVar5,param_1 + 0x28,0), 0x1e < uVar3)) ||
               (((0x40000009U >> (uVar3 & 0x1f) & 1) == 0 ||
                (uVar3 = FUN_18073d150(*plVar5,0), 0x1e < uVar3)))) ||
-             ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto FUN_1808cf96d;
+             ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto ConditionChecker;
         }
         iVar2 = 0;
         iVar13 = 0;
         do {
           uVar3 = FUN_18073da60(*plVar5,iVar13,0);
-          if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto FUN_1808cf96d;
+          if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto ConditionChecker;
           iVar13 = iVar13 + 1;
         } while (iVar13 < 4);
         puVar8 = (uint *)FUN_18084da10();
         uVar3 = *(uint *)(param_1 + 0x25);
         if ((uVar3 == *puVar8) && (*(float *)((longlong)param_1 + 300) == 0.0)) {
           uVar3 = FUN_18073fd60(*plVar5,(int)param_1[0x26]);
-          if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto FUN_1808cf96d;
+          if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto ConditionChecker;
         }
         else {
           if (0.0 < *(float *)(param_1 + 0x2b)) {
@@ -853,10 +855,10 @@ FUN_1808cfed0(longlong *param_1,uint64_t param_2,longlong param_3,int32_t param_
             }
           }
           uVar3 = FUN_18073fd60(*plVar5,iVar2);
-          if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto FUN_1808cf96d;
+          if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto ConditionChecker;
           if (uVar12 != 0) {
             uVar3 = FUN_18073fe30(*plVar5,uVar12,2);
-            if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto FUN_1808cf96d;
+            if ((0x1e < uVar3) || ((0x40000009U >> (uVar3 & 0x1f) & 1) == 0)) goto ConditionChecker;
             *(uint *)((longlong)param_1 + 0x13c) = uVar12;
           }
         }
@@ -874,7 +876,7 @@ FUN_1808cfed0(longlong *param_1,uint64_t param_2,longlong param_3,int32_t param_
       }
     }
   }
-FUN_1808cf96d:
+ConditionChecker:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_e8);
 }
