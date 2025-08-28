@@ -23,10 +23,7 @@
  * @date 2024
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
+#include "TaleWorlds.Native.Split.h"
 
 // 渲染系统常量定义
 #define RENDERING_MAX_BOUNDING_BOX   0x7f7fffff  // 最大边界框值

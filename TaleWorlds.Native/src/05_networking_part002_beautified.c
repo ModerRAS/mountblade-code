@@ -10,10 +10,7 @@
  * @date 2025-08-28
  */
 
-#include "networking_packet_processor.h"
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
+#include "TaleWorlds.Native.Split.h"
 
 /* ============================================================================
  * 全局变量和内部结构定义

@@ -1,5 +1,4 @@
 #include "TaleWorlds.Native.Split.h"
-#include <time.h>
 
 /**
  * @file 03_rendering_part176_sub001.c
