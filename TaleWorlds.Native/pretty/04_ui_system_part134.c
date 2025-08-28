@@ -857,8 +857,8 @@ ulonglong UISystem_GeneralComponentSearch_GeneralSearch(void)
 
 
 
-// 函数: void FUN_180747d20(int32_t param_1,int32_t param_2,uint64_t param_3,int32_t param_4)
-void FUN_180747d20(int32_t param_1,int32_t param_2,uint64_t param_3,int32_t param_4)
+// 函数: void FUN_180747d20(int32_t param_1,int32_t param_2,uint64_t param_3,int32_t param_4) - UI组件布局管理函数
+void UISystem_SetComponentLayout_LayoutManager(int32_t param_1,int32_t param_2,uint64_t param_3,int32_t param_4)
 
 {
   FUN_180741d10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),param_1,param_2,param_3,param_4,0x10,0);

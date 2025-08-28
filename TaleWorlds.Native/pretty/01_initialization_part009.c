@@ -833,7 +833,7 @@ void InitializationSystem_RegistrySearchAndInsert9(void)
     // 设置节点数据
     parent_node[6] = 0x421c3cedd07d816d;
     parent_node[7] = 0xbec25de793b7afa6;
-    parent_node[8] = &unknown_var_3744_ptr;
+    parent_node[8] = &InitializationSystemNodeData9;
     parent_node[9] = 0;
     parent_node[10] = node_handler;
     
@@ -891,7 +891,7 @@ void InitializationSystem_RegistrySearchAndInsert10(void)
     // 设置节点数据
     parent_node[6] = 0x4c22bb0c326587ce;
     parent_node[7] = 0x5e3cf00ce2978287;
-    parent_node[8] = &unknown_var_3768_ptr;
+    parent_node[8] = &InitializationSystemNodeData10;
     parent_node[9] = 1;
     parent_node[10] = node_value;
     
@@ -1011,7 +1011,7 @@ void InitializationSystem_RegistrySearchAndInsert13(void)
     // 设置节点数据
     parent_node[6] = 0x43330a43fcdb3653;
     parent_node[7] = 0xdcfdc333a769ec93;
-    parent_node[8] = &unknown_var_7584_ptr;
+    parent_node[8] = &InitializationSystemNodeData11;
     parent_node[9] = 1;
     parent_node[10] = node_handler;
     
@@ -1069,7 +1069,7 @@ void InitializationSystem_RegistrySearchAndInsert14(void)
     // 设置节点数据
     parent_node[6] = 0x431d7c8d7c475be2;
     parent_node[7] = 0xb97f048d2153e1b0;
-    parent_node[8] = &unknown_var_7608_ptr;
+    parent_node[8] = &InitializationSystemNodeData12;
     parent_node[9] = 4;
     parent_node[10] = node_handler;
     
@@ -1494,7 +1494,7 @@ void InitializationSystem_RegistrySearchAndInsert21(void)
     // 设置节点数据
     parent_node[6] = 0x43330a43fcdb3653;
     parent_node[7] = 0xdcfdc333a769ec93;
-    parent_node[8] = &unknown_var_7584_ptr;
+    parent_node[8] = &InitializationSystemNodeData11;
     parent_node[9] = 1;
     parent_node[10] = node_handler;
     
@@ -1552,7 +1552,7 @@ void InitializationSystem_RegistrySearchAndInsert22(void)
     // 设置节点数据
     parent_node[6] = 0x431d7c8d7c475be2;
     parent_node[7] = 0xb97f048d2153e1b0;
-    parent_node[8] = &unknown_var_7608_ptr;
+    parent_node[8] = &InitializationSystemNodeData12;
     parent_node[9] = 4;
     parent_node[10] = node_handler;
     

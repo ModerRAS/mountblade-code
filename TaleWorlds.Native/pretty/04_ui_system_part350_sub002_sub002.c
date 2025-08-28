@@ -2000,7 +2000,7 @@ LAB_1808580a0:
         *(uint *)(param_1 + 0xc) = ~(*(uint *)(param_1 + 0x128) >> 2) & 1 | 2;
         uStack_f0 = uVar26;
         uStack_e8 = uVar8;
-        uVar7 = FUN_180854810(param_1,uVar26,uVar8,0);
+        uVar7 = UISystem_DataFormatter(param_1,uVar26,uVar8,0);
         uVar19 = (ulonglong)uVar7;
         if (uVar7 != 0) {
 LAB_180859163:
@@ -2021,7 +2021,7 @@ LAB_180859163:
           UISystem_BufferCleaner(&system_buffer_ea98);
         }
         *(uint *)(param_1 + 0x148) = ui_system_memory;
-        uVar7 = FUN_180855810(param_1,uVar26);
+        uVar7 = UISystem_DataSynchronizer(param_1,uVar26);
         uVar19 = (ulonglong)uVar7;
         if (uVar7 != 0) goto LAB_180859163;
       }
@@ -2192,7 +2192,7 @@ LAB_180858c20:
         puStack_130 = (ulonglong *)0x0;
         puVar13 = (int32_t *)UISystem_TimeGetter();
         in_stack_fffffffffffffe78 = &puStack_130;
-        uVar7 = FUN_18085c4b0(param_1,lVar14,*puVar13,uVar7,in_stack_fffffffffffffe78);
+        uVar7 = UISystem_ResourceManager(param_1,lVar14,*puVar13,uVar7,in_stack_fffffffffffffe78);
         puVar11 = puStack_130;
         uVar19 = (ulonglong)uVar7;
         if (uVar7 == 0) {
@@ -2203,7 +2203,7 @@ LAB_180858c20:
             *(int *)(puStack_130 + 2) = (int)puStack_130[2] + 1;
           }
           uStack_120 = uVar26;
-          uVar7 = FUN_180859210(param_1 + 0x70,&uStack_120);
+          uVar7 = UISystem_DataInserter(param_1 + 0x70,&uStack_120);
           uVar19 = (ulonglong)uVar7;
           if (puVar11 != (ulonglong *)0x0) {
             puVar2 = puVar11 + 2;
@@ -2272,7 +2272,7 @@ LAB_180858c20:
       *(int32_t *)(param_1 + 0x138) = 0xffffffff;
       uStack_e8 = uVar8;
       if ((iStack_164 < 0x65) && (iStack_108 < 0x1f)) {
-        uVar19 = FUN_180854810(param_1,uVar26,uVar8,0);
+        uVar19 = UISystem_DataFormatter(param_1,uVar26,uVar8,0);
         if ((int)uVar19 != 0) {
           return uVar19;
         }
@@ -2333,13 +2333,13 @@ joined_r0x0001808591a3:
         puStack_110 = (ulonglong *)0x0;
         uStack_120 = uVar26;
         uStack_118 = uVar8;
-        uVar27 = FUN_180859210(plVar17,&uStack_120);
+        uVar27 = UISystem_DataInserter(plVar17,&uStack_120);
         if (uVar27 == 0) {
           uStack_114 = 3;
           puStack_110 = (ulonglong *)0x0;
           uStack_120 = uVar19 + uVar26;
           uStack_118 = uVar8;
-          uVar27 = FUN_180859210(plVar17,&uStack_120);
+          uVar27 = UISystem_DataInserter(plVar17,&uStack_120);
           if (uVar27 != 0) goto LAB_180858e04;
           if (puVar11 != (ulonglong *)0x0) {
             puVar2 = puVar11 + 2;
@@ -2474,7 +2474,7 @@ LAB_180858e04:
       uStack_114 = 1;
       uStack_120 = uVar19;
       uStack_118 = uVar7;
-      uVar7 = FUN_180859210(param_1 + 0x70,&uStack_120);
+      uVar7 = UISystem_DataInserter(param_1 + 0x70,&uStack_120);
       if (puVar11 != (ulonglong *)0x0) {
         puVar2 = puVar11 + 2;
         *(int *)puVar2 = (int)*puVar2 + -1;
