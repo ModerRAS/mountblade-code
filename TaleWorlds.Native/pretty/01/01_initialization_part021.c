@@ -2,219 +2,191 @@
 
 // 01_initialization_part021.c - 11 个函数
 
-// 函数: void FUN_180054360(longlong *param_1,longlong param_2)
-void FUN_180054360(longlong *param_1,longlong param_2)
+// 函数: void initialize_resource_manager(longlong *engine_context,longlong resource_params)
+// 初始化资源管理器，处理游戏资源的加载和管理
+void initialize_resource_manager(longlong *engine_context,longlong resource_params)
 
 {
-  uint uVar1;
-  int iVar2;
-  undefined8 uVar3;
-  longlong *plVar4;
-  undefined *puVar5;
-  longlong lVar6;
-  ulonglong uVar7;
-  undefined1 auStack_238 [32];
-  undefined4 uStack_218;
-  undefined *puStack_208;
-  longlong lStack_200;
-  uint uStack_1f8;
-  undefined8 uStack_1f0;
-  undefined4 uStack_1e8;
-  undefined *puStack_1e0;
-  longlong lStack_1d8;
-  uint uStack_1d0;
-  undefined8 uStack_1c8;
-  undefined *puStack_1c0;
-  longlong lStack_1b8;
-  undefined4 uStack_1b0;
-  ulonglong uStack_1a8;
-  undefined4 uStack_1a0;
-  uint uStack_19c;
-  undefined1 uStack_198;
-  undefined4 uStack_194;
-  undefined *puStack_190;
-  longlong lStack_188;
-  int iStack_180;
-  undefined4 uStack_178;
-  undefined **ppuStack_170;
-  undefined *puStack_168;
-  longlong lStack_160;
-  undefined4 uStack_150;
-  undefined4 uStack_148;
-  undefined4 uStack_144;
-  undefined4 uStack_140;
-  undefined4 uStack_13c;
-  undefined4 uStack_138;
-  undefined4 uStack_134;
-  undefined4 uStack_130;
-  undefined4 uStack_12c;
-  undefined4 uStack_128;
-  undefined4 uStack_124;
-  undefined4 uStack_120;
-  undefined4 uStack_11c;
-  undefined4 uStack_118;
-  undefined4 uStack_114;
-  undefined4 uStack_110;
-  undefined4 uStack_10c;
-  undefined1 uStack_108;
-  undefined4 uStack_107;
-  undefined4 uStack_103;
-  undefined8 uStack_f8;
-  undefined **ppuStack_f0;
-  undefined *puStack_e8;
-  undefined1 *puStack_e0;
-  undefined4 uStack_d8;
-  undefined1 auStack_d0 [136];
-  ulonglong uStack_48;
+  uint resource_size;
+  int resource_index;
+  undefined8 resource_handle;
+  longlong *resource_ptr;
+  undefined *resource_data;
+  longlong resource_offset;
+  ulonglong resource_count;
+  undefined1 stack_buffer [32];
+  undefined4 stack_flags;
+  undefined *stack_ptr;
+  longlong stack_data;
+  uint stack_size;
+  undefined8 stack_param1;
+  undefined4 stack_param2;
+  undefined *stack_buffer_ptr;
+  longlong stack_offset;
+  uint stack_capacity;
+  undefined8 stack_control;
+  undefined *stack_string_ptr;
+  longlong stack_length;
+  undefined4 stack_id;
+  undefined **stack_ptr_ptr;
+  undefined *stack_resource_ptr;
+  longlong stack_resource_data;
+  undefined4 stack_resource_flags[4];
+  undefined4 stack_resource_value;
+  undefined4 stack_resource_type;
+  undefined1 stack_resource_bool;
+  undefined4 stack_resource_format[9];
+  undefined1 stack_resource_status;
+  undefined4 stack_resource_id[2];
+  undefined8 stack_resource_hash;
+  undefined **stack_resource_handle_ptr;
+  undefined *stack_resource_string_ptr;
+  undefined1 *stack_resource_data_ptr;
+  undefined4 stack_resource_config;
+  undefined1 resource_name_buffer [136];
+  ulonglong stack_checksum;
   
-  uStack_f8 = 0xfffffffffffffffe;
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_238;
-  uStack_1e8 = 0;
-  ppuStack_f0 = &puStack_1c0;
-  puStack_1c0 = &UNK_180a3c3e0;
-  uStack_1a8 = 0;
-  lStack_1b8 = 0;
-  uStack_1b0 = 0;
-  uStack_19c = 0x100;
-  uStack_198 = 0;
-  uStack_194 = 0;
-  puVar5 = &DAT_18098bc73;
-  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-    puVar5 = *(undefined **)(param_2 + 8);
+  stack_resource_hash = 0xfffffffffffffffe;
+  stack_checksum = _DAT_180bf00a8 ^ (ulonglong)stack_buffer;
+  stack_param2 = 0;
+  stack_ptr_ptr = &stack_string_ptr;
+  stack_string_ptr = &UNK_180a3c3e0;
+  stack_control = 0;
+  stack_length = 0;
+  stack_id = 0;
+  stack_capacity = 0x100;
+  stack_resource_bool = 0;
+  stack_resource_format[0] = 0;
+  resource_data = &DAT_18098bc73;
+  if (*(undefined **)(resource_params + 8) != (undefined *)0x0) {
+    resource_data = *(undefined **)(resource_params + 8);
   }
-  FUN_180627c50(&puStack_1c0,puVar5);
-  uStack_1a0 = 0;
-  uStack_19c = uStack_19c & 0xffffff00;
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x60d30,0x10,0x1f);
-  plVar4 = (longlong *)FUN_1801954d0(uVar3,&puStack_1c0);
-  ppuStack_170 = (undefined **)plVar4;
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x28))(plVar4);
+  FUN_180627c50(&stack_string_ptr,resource_data);
+  stack_resource_value = 0;
+  stack_capacity = stack_capacity & 0xffffff00;
+  resource_handle = FUN_18062b1e0(_DAT_180c8ed18,0x60d30,0x10,0x1f);
+  resource_ptr = (longlong *)FUN_1801954d0(resource_handle,&stack_string_ptr);
+  stack_ptr_ptr = (undefined **)resource_ptr;
+  if (resource_ptr != (longlong *)0x0) {
+    (**(code **)(*resource_ptr + 0x28))(resource_ptr);
   }
-  uStack_148 = 0x3f800000;
-  uStack_144 = 0;
-  uStack_140 = 0;
-  uStack_13c = 0;
-  uStack_138 = 0;
-  uStack_134 = 0x3f800000;
-  uStack_130 = 0;
-  uStack_12c = 0;
-  uStack_128 = 0;
-  uStack_124 = 0;
-  uStack_120 = 0x3f800000;
-  uStack_11c = 0;
-  uStack_118 = 0;
-  uStack_114 = 0;
-  uStack_110 = 0;
-  uStack_10c = 0x3f800000;
-  uStack_107 = 0x1010101;
-  uStack_103 = 1;
-  uStack_108 = 1;
-  puStack_e8 = &UNK_1809fcc28;
-  puStack_e0 = auStack_d0;
-  auStack_d0[0] = 0;
-  uStack_d8 = *(undefined4 *)(param_2 + 0x10);
-  puVar5 = &DAT_18098bc73;
-  if (*(undefined **)(param_2 + 8) != (undefined *)0x0) {
-    puVar5 = *(undefined **)(param_2 + 8);
+  stack_resource_flags[0] = 0x3f800000;
+  stack_resource_flags[1] = 0;
+  stack_resource_flags[2] = 0;
+  stack_resource_flags[3] = 0;
+  stack_resource_type = 0;
+  stack_resource_value = 0x3f800000;
+  stack_resource_id[0] = 0;
+  stack_resource_id[1] = 0;
+  stack_resource_format[4] = 0x3f800000;
+  stack_resource_format[5] = 0x1010101;
+  stack_resource_format[6] = 1;
+  stack_resource_status = 1;
+  stack_resource_string_ptr = &UNK_1809fcc28;
+  stack_resource_data_ptr = resource_name_buffer;
+  resource_name_buffer[0] = 0;
+  stack_resource_config = *(undefined4 *)(resource_params + 0x10);
+  resource_data = &DAT_18098bc73;
+  if (*(undefined **)(resource_params + 8) != (undefined *)0x0) {
+    resource_data = *(undefined **)(resource_params + 8);
   }
-  strcpy_s(auStack_d0,0x80,puVar5);
-  FUN_18019e140(&puStack_190,&puStack_e8);
-  puStack_e8 = &UNK_18098bcb0;
-  puStack_1e0 = &UNK_180a3c3e0;
-  uStack_1c8 = 0;
-  lStack_1d8 = 0;
-  uStack_1d0 = 0;
-  lVar6 = *param_1;
-  FUN_1806279c0(&puStack_168,param_2);
-  iVar2 = FUN_1801426a0(lVar6,&puStack_168);
-  puStack_168 = &UNK_180a3c3e0;
-  if (lStack_160 != 0) {
+  strcpy_s(resource_name_buffer,0x80,resource_data);
+  FUN_18019e140(&stack_ptr,&stack_resource_string_ptr);
+  stack_resource_string_ptr = &UNK_18098bcb0;
+  stack_buffer_ptr = &UNK_180a3c3e0;
+  stack_control = 0;
+  stack_offset = 0;
+  stack_size = 0;
+  resource_offset = *engine_context;
+  FUN_1806279c0(&stack_resource_ptr,resource_params);
+  resource_index = FUN_1801426a0(resource_offset,&stack_resource_ptr);
+  stack_resource_ptr = &UNK_180a3c3e0;
+  if (stack_resource_data != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  lStack_160 = 0;
-  uStack_150 = 0;
-  puStack_168 = &UNK_18098bcb0;
-  if ((iVar2 < 0) ||
-     (lVar6 = *(longlong *)(*param_1 + 0x888),
-     (ulonglong)(*(longlong *)(*param_1 + 0x890) - lVar6 >> 5) <= (ulonglong)(longlong)iVar2)) {
-    lVar6 = FUN_180628ca0();
+  stack_resource_data = 0;
+  stack_resource_flags[0] = 0;
+  stack_resource_ptr = &UNK_18098bcb0;
+  if ((resource_index < 0) ||
+     (resource_offset = *(longlong *)(*engine_context + 0x888),
+     (ulonglong)(*(longlong *)(*engine_context + 0x890) - resource_offset >> 5) <= (ulonglong)(longlong)resource_index)) {
+    resource_offset = FUN_180628ca0();
   }
   else {
-    lVar6 = (longlong)iVar2 * 0x20 + lVar6;
+    resource_offset = (longlong)resource_index * 0x20 + resource_offset;
   }
-  puStack_208 = &UNK_180a3c3e0;
-  uStack_1f0 = 0;
-  lStack_200 = 0;
-  uStack_1f8 = 0;
-  uStack_1e8 = 1;
-  uVar1 = *(uint *)(lVar6 + 0x10);
-  uVar7 = (ulonglong)uVar1;
-  if (*(longlong *)(lVar6 + 8) != 0) {
-    FUN_1806277c0(&puStack_208,uVar7);
+  stack_ptr = &UNK_180a3c3e0;
+  stack_param1 = 0;
+  stack_data = 0;
+  stack_size = 0;
+  stack_param2 = 1;
+  resource_size = *(uint *)(resource_offset + 0x10);
+  resource_count = (ulonglong)resource_size;
+  if (*(longlong *)(resource_offset + 8) != 0) {
+    FUN_1806277c0(&stack_ptr,resource_count);
   }
-  if (uVar1 != 0) {
+  if (resource_size != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(lStack_200,*(undefined8 *)(lVar6 + 8),uVar7);
+    memcpy(stack_data,*(undefined8 *)(resource_offset + 8),resource_count);
   }
-  if (lStack_200 != 0) {
-    *(undefined1 *)(uVar7 + lStack_200) = 0;
+  if (stack_data != 0) {
+    *(undefined1 *)(resource_count + stack_data) = 0;
   }
-  uStack_1f0 = CONCAT44(*(uint *)(lVar6 + 0x1c),(undefined4)uStack_1f0);
-  if (0 < iStack_180) {
-    uStack_1f8 = uVar1;
-    FUN_1806277c0(&puStack_208,iStack_180);
+  stack_param1 = CONCAT44(*(uint *)(resource_offset + 0x1c),(undefined4)stack_param1);
+  if (0 < stack_id) {
+    stack_size = resource_size;
+    FUN_1806277c0(&stack_ptr,stack_id);
                     // WARNING: Subroutine does not return
-    memcpy((ulonglong)uStack_1f8 + lStack_200,lStack_188,(longlong)(iStack_180 + 1));
+    memcpy((ulonglong)stack_size + stack_data,stack_length,(longlong)(stack_id + 1));
   }
-  lStack_1d8 = lStack_200;
-  uStack_1c8._0_4_ = (undefined4)uStack_1f0;
-  uStack_1f8 = 0;
-  uStack_1e8 = 0;
-  lStack_200 = 0;
-  uStack_1f0 = 0;
-  puStack_208 = &UNK_18098bcb0;
-  uStack_218 = 0xffffffff;
-  uStack_1d0 = uVar1;
-  uStack_1c8._4_4_ = *(uint *)(lVar6 + 0x1c);
-  FUN_1801a6440(plVar4,_DAT_180c868e8,&puStack_1e0,&uStack_148);
-  FUN_18019e260(plVar4);
-  (**(code **)(*(longlong *)param_1[0x56] + 0x138))((longlong *)param_1[0x56],plVar4);
-  FUN_180199500(plVar4,0x3d072b02,1);
-  FUN_1801a2ea0(plVar4);
-  (**(code **)(*(longlong *)param_1[0x56] + 0x140))((longlong *)param_1[0x56],plVar4);
+  stack_offset = stack_data;
+  stack_control._0_4_ = (undefined4)stack_param1;
+  stack_size = 0;
+  stack_param2 = 0;
+  stack_data = 0;
+  stack_param1 = 0;
+  stack_ptr = &UNK_18098bcb0;
+  stack_flags = 0xffffffff;
+  stack_size = resource_size;
+  stack_control._4_4_ = *(uint *)(resource_offset + 0x1c);
+  FUN_1801a6440(resource_ptr,_DAT_180c868e8,&stack_buffer_ptr,&stack_resource_flags);
+  FUN_18019e260(resource_ptr);
+  (**(code **)(*(longlong *)engine_context[0x56] + 0x138))((longlong *)engine_context[0x56],resource_ptr);
+  FUN_180199500(resource_ptr,0x3d072b02,1);
+  FUN_1801a2ea0(resource_ptr);
+  (**(code **)(*(longlong *)engine_context[0x56] + 0x140))((longlong *)engine_context[0x56],resource_ptr);
   Sleep(1000);
-  puStack_1e0 = &UNK_180a3c3e0;
-  if (lStack_1d8 != 0) {
+  stack_buffer_ptr = &UNK_180a3c3e0;
+  if (stack_offset != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  lStack_1d8 = 0;
-  uStack_1c8 = (ulonglong)uStack_1c8._4_4_ << 0x20;
-  puStack_1e0 = &UNK_18098bcb0;
-  puStack_190 = &UNK_180a3c3e0;
-  if (lStack_188 != 0) {
+  stack_offset = 0;
+  stack_control = (ulonglong)stack_control._4_4_ << 0x20;
+  stack_buffer_ptr = &UNK_18098bcb0;
+  stack_ptr = &UNK_180a3c3e0;
+  if (stack_length != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  lStack_188 = 0;
-  uStack_178 = 0;
-  puStack_190 = &UNK_18098bcb0;
-  if (plVar4 != (longlong *)0x0) {
-    (**(code **)(*plVar4 + 0x38))(plVar4);
+  stack_length = 0;
+  stack_id = 0;
+  stack_ptr = &UNK_18098bcb0;
+  if (resource_ptr != (longlong *)0x0) {
+    (**(code **)(*resource_ptr + 0x38))(resource_ptr);
   }
-  ppuStack_170 = &puStack_1c0;
-  puStack_1c0 = &UNK_180a3c3e0;
-  if (lStack_1b8 != 0) {
+  stack_ptr_ptr = &stack_string_ptr;
+  stack_string_ptr = &UNK_180a3c3e0;
+  if (stack_length != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  lStack_1b8 = 0;
-  uStack_1a8 = uStack_1a8 & 0xffffffff00000000;
-  puStack_1c0 = &UNK_18098bcb0;
+  stack_length = 0;
+  stack_control = stack_control & 0xffffffff00000000;
+  stack_string_ptr = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_238);
+  FUN_1808fc050(stack_checksum ^ (ulonglong)stack_buffer);
 }
 
 
@@ -223,397 +195,388 @@ void FUN_180054360(longlong *param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1800547b0(void)
-void FUN_1800547b0(void)
+// 函数: void process_shader_files(void)
+// 处理着色器文件，进行文件路径解析和着色器编译
+void process_shader_files(void)
 
 {
-  uint uVar1;
-  longlong *plVar2;
-  undefined8 *puVar3;
-  char cVar4;
-  undefined8 *puVar5;
-  undefined1 *puVar6;
-  undefined4 *puVar7;
-  int iVar8;
-  int iVar9;
-  longlong lVar10;
-  ulonglong uVar11;
-  undefined8 *puVar12;
-  int iVar13;
-  longlong lVar14;
-  uint *puVar15;
-  undefined *puVar16;
-  undefined4 uVar17;
-  undefined1 auStack_178 [32];
-  undefined *puStack_158;
-  undefined1 *puStack_150;
-  uint uStack_148;
-  undefined8 uStack_140;
-  undefined *puStack_138;
-  undefined1 *puStack_130;
-  uint uStack_128;
-  ulonglong uStack_120;
-  undefined *puStack_118;
-  undefined1 *puStack_110;
-  undefined4 uStack_108;
-  ulonglong uStack_100;
-  int iStack_f8;
-  undefined *puStack_f0;
-  undefined1 *puStack_e8;
-  undefined4 uStack_e0;
-  ulonglong uStack_d8;
-  undefined *puStack_d0;
-  longlong lStack_c8;
-  int iStack_c0;
-  undefined4 uStack_b8;
-  longlong *plStack_a8;
-  longlong lStack_a0;
-  undefined *puStack_98;
-  undefined *puStack_90;
-  undefined4 uStack_80;
-  undefined *puStack_78;
-  longlong lStack_70;
-  undefined4 uStack_60;
-  undefined8 *puStack_58;
-  undefined8 *puStack_50;
-  undefined8 uStack_48;
-  undefined4 uStack_40;
-  undefined8 uStack_38;
-  ulonglong uStack_30;
+  uint file_size;
+  longlong *engine_ptr;
+  undefined8 *shader_data;
+  char path_separator;
+  undefined8 *shader_ptr;
+  undefined1 *file_path;
+  undefined4 *file_size_ptr;
+  int file_count;
+  int shader_index;
+  longlong file_offset;
+  ulonglong path_length;
+  undefined8 *file_iterator;
+  int file_id;
+  longlong total_files;
+  uint *shader_entry;
+  undefined *file_handle;
+  undefined4 file_type;
+  undefined1 shader_buffer [32];
+  undefined *shader_output;
+  undefined1 *shader_input;
+  uint shader_length;
+  undefined8 shader_info;
+  undefined *shader_reader;
+  undefined1 *file_content;
+  uint content_size;
+  ulonglong file_info;
+  undefined *file_writer;
+  longlong file_data;
+  int max_path_length;
+  undefined4 buffer_size;
+  longlong *global_engine_ptr;
+  longlong file_count_limit;
+  undefined *temp_buffer;
+  undefined *file_buffer;
+  undefined4 file_mode;
+  undefined *resource_handle;
+  longlong resource_data;
+  undefined4 resource_flags;
+  undefined8 *shader_array[2];
+  undefined8 shader_metadata;
+  undefined4 shader_version;
+  undefined8 shader_config;
+  ulonglong stack_guard;
   
-  uStack_38 = 0xfffffffffffffffe;
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  plStack_a8 = _DAT_180c86870;
-  lVar14 = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
-  iStack_f8 = 0;
-  lStack_a0 = lVar14;
-  if (0 < (int)lVar14) {
+  shader_config = 0xfffffffffffffffe;
+  stack_guard = _DAT_180bf00a8 ^ (ulonglong)shader_buffer;
+  global_engine_ptr = _DAT_180c86870;
+  total_files = *(longlong *)(*_DAT_180c86870 + 0x890) - *(longlong *)(*_DAT_180c86870 + 0x888) >> 5;
+  file_count = 0;
+  file_count_limit = total_files;
+  if (0 < (int)total_files) {
     do {
-      iVar9 = iStack_f8;
-      iVar13 = 0;
-      if (iStack_f8 < 0) {
-LAB_18005485e:
-        lVar10 = FUN_180628ca0();
+      shader_index = file_count;
+      file_id = 0;
+      if (file_count < 0) {
+LAB_file_processing_error:
+        file_offset = FUN_180628ca0();
       }
       else {
-        lVar10 = *(longlong *)(*_DAT_180c86870 + 0x888);
-        if ((ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x890) - lVar10 >> 5) <=
-            (ulonglong)(longlong)iStack_f8) goto LAB_18005485e;
-        lVar10 = (longlong)iStack_f8 * 0x20 + lVar10;
+        file_offset = *(longlong *)(*_DAT_180c86870 + 0x888);
+        if ((ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x890) - file_offset >> 5) <=
+            (ulonglong)(longlong)file_count) goto LAB_file_processing_error;
+        file_offset = (longlong)file_count * 0x20 + file_offset;
       }
-      puStack_138 = &UNK_180a3c3e0;
-      uStack_120 = 0;
-      puStack_130 = (undefined1 *)0x0;
-      uStack_128 = 0;
-      FUN_1806277c0(&puStack_138,*(undefined4 *)(lVar10 + 0x10));
-      if (*(int *)(lVar10 + 0x10) != 0) {
+      shader_reader = &UNK_180a3c3e0;
+      file_info = 0;
+      file_content = (undefined1 *)0x0;
+      content_size = 0;
+      FUN_1806277c0(&shader_reader,*(undefined4 *)(file_offset + 0x10));
+      if (*(int *)(file_offset + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(puStack_130,*(undefined8 *)(lVar10 + 8),*(int *)(lVar10 + 0x10) + 1);
+        memcpy(file_content,*(undefined8 *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
       }
-      if (*(longlong *)(lVar10 + 8) != 0) {
-        uStack_128 = 0;
-        if (puStack_130 != (undefined1 *)0x0) {
-          *puStack_130 = 0;
+      if (*(longlong *)(file_offset + 8) != 0) {
+        content_size = 0;
+        if (file_content != (undefined1 *)0x0) {
+          *file_content = 0;
         }
-        uStack_120 = uStack_120 & 0xffffffff;
+        file_info = file_info & 0xffffffff;
       }
-      if (iVar9 < 0) {
-LAB_180054912:
-        lVar10 = FUN_180628ca0();
+      if (shader_index < 0) {
+LAB_path_processing_error:
+        file_offset = FUN_180628ca0();
       }
       else {
-        lVar10 = *(longlong *)(*_DAT_180c86870 + 0x8a8);
-        if ((ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x8b0) - lVar10 >> 5) <
-            (ulonglong)(longlong)iVar9) goto LAB_180054912;
-        lVar10 = (longlong)iVar9 * 0x20 + lVar10;
+        file_offset = *(longlong *)(*_DAT_180c86870 + 0x8a8);
+        if ((ulonglong)(*(longlong *)(*_DAT_180c86870 + 0x8b0) - file_offset >> 5) <
+            (ulonglong)(longlong)shader_index) goto LAB_path_processing_error;
+        file_offset = (longlong)shader_index * 0x20 + file_offset;
       }
-      puStack_118 = &UNK_180a3c3e0;
-      uStack_100 = 0;
-      puStack_110 = (undefined1 *)0x0;
-      uStack_108 = 0;
-      FUN_1806277c0(&puStack_118,*(undefined4 *)(lVar10 + 0x10));
-      if (*(int *)(lVar10 + 0x10) != 0) {
+      file_writer = &UNK_180a3c3e0;
+      file_data = 0;
+      file_handle = (undefined1 *)0x0;
+      file_type = 0;
+      FUN_1806277c0(&file_writer,*(undefined4 *)(file_offset + 0x10));
+      if (*(int *)(file_offset + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(puStack_110,*(undefined8 *)(lVar10 + 8),*(int *)(lVar10 + 0x10) + 1);
+        memcpy(file_handle,*(undefined8 *)(file_offset + 8),*(int *)(file_offset + 0x10) + 1);
       }
-      if (*(longlong *)(lVar10 + 8) != 0) {
-        uStack_108 = 0;
-        if (puStack_110 != (undefined1 *)0x0) {
-          *puStack_110 = 0;
+      if (*(longlong *)(file_offset + 8) != 0) {
+        file_type = 0;
+        if (file_handle != (undefined1 *)0x0) {
+          *file_handle = 0;
         }
-        uStack_100 = uStack_100 & 0xffffffff;
+        file_data = file_data & 0xffffffff;
       }
-      iVar8 = uStack_128 + 8;
-      FUN_1806277c0(&puStack_138,iVar8);
-      *(undefined8 *)(puStack_130 + uStack_128) = 0x6a624f656e656353;
-      *(undefined1 *)((longlong)(puStack_130 + uStack_128) + 8) = 0;
-      uStack_128 = iVar8;
-      cVar4 = FUN_180624a00(&puStack_138);
-      if (cVar4 == '\0') {
-        puStack_118 = &UNK_180a3c3e0;
-        if (puStack_110 != (undefined1 *)0x0) {
+      file_count = content_size + 8;
+      FUN_1806277c0(&shader_reader,file_count);
+      *(undefined8 *)(file_content + content_size) = 0x6a624f656e656353;
+      *(undefined1 *)((longlong)(file_content + content_size) + 8) = 0;
+      content_size = file_count;
+      path_separator = FUN_180624a00(&shader_reader);
+      if (path_separator == '\0') {
+        file_writer = &UNK_180a3c3e0;
+        if (file_handle != (undefined1 *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        puStack_110 = (undefined1 *)0x0;
-        uStack_100 = uStack_100 & 0xffffffff00000000;
-        puStack_118 = &UNK_18098bcb0;
-        puStack_138 = &UNK_180a3c3e0;
-        if (puStack_130 != (undefined1 *)0x0) {
+        file_handle = (undefined1 *)0x0;
+        file_data = file_data & 0xffffffff00000000;
+        file_writer = &UNK_18098bcb0;
+        shader_reader = &UNK_180a3c3e0;
+        if (file_content != (undefined1 *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
       }
       else {
-        puStack_58 = (undefined8 *)0x0;
-        puStack_50 = (undefined8 *)0x0;
-        uStack_48 = 0;
-        uStack_40 = 3;
-        FUN_18062c5f0(&puStack_138,&puStack_58);
-        puVar5 = puStack_50;
-        puVar3 = puStack_58;
-        lVar10 = (longlong)puStack_50 - (longlong)puStack_58;
-        FUN_18004b100(&puStack_d0);
-        puVar6 = &DAT_18098bc73;
-        if (puStack_110 != (undefined1 *)0x0) {
-          puVar6 = puStack_110;
+        shader_array[0] = (undefined8 *)0x0;
+        shader_array[1] = (undefined8 *)0x0;
+        shader_metadata = 0;
+        shader_version = 3;
+        FUN_18062c5f0(&shader_reader,&shader_array);
+        shader_ptr = shader_array[1];
+        shader_data = shader_array[0];
+        file_offset = (longlong)shader_array[1] - (longlong)shader_array[0];
+        FUN_18004b100(&file_buffer);
+        file_path = &DAT_18098bc73;
+        if (file_handle != (undefined1 *)0x0) {
+          file_path = file_handle;
         }
-        FUN_180628040(&puStack_d0,&UNK_1809fd7c4,puVar6);
-        cVar4 = FUN_180624a00(&puStack_d0);
-        if (cVar4 == '\0') {
-          FUN_180624910(&puStack_d0);
+        FUN_180628040(&file_buffer,&UNK_1809fd7c4,file_path);
+        path_separator = FUN_180624a00(&file_buffer);
+        if (path_separator == '\0') {
+          FUN_180624910(&file_buffer);
         }
-        plVar2 = plStack_a8;
-        iVar8 = (int)(lVar10 >> 5);
-        lVar10 = (longlong)iVar8;
-        if (0 < iVar8) {
-          puVar15 = (uint *)(puVar3 + 2);
+        engine_ptr = global_engine_ptr;
+        file_count = (int)(file_offset >> 5);
+        file_offset = (longlong)file_count;
+        if (0 < file_count) {
+          shader_entry = (uint *)(shader_data + 2);
           do {
             FUN_180061db0();
             FUN_180061be0();
-            puStack_158 = &UNK_180a3c3e0;
-            uStack_140._0_4_ = 0;
-            uStack_140._4_4_ = 0;
-            puStack_150 = (undefined1 *)0x0;
-            uStack_148 = 0;
-            FUN_1806277c0(&puStack_158,*puVar15);
-            if (*puVar15 != 0) {
+            shader_output = &UNK_180a3c3e0;
+            shader_info._0_4_ = 0;
+            shader_info._4_4_ = 0;
+            shader_input = (undefined1 *)0x0;
+            shader_length = 0;
+            FUN_1806277c0(&shader_output,*shader_entry);
+            if (*shader_entry != 0) {
                     // WARNING: Subroutine does not return
-              memcpy(puStack_150,*(undefined8 *)(puVar15 + -2),*puVar15 + 1);
+              memcpy(shader_input,*(undefined8 *)(shader_entry + -2),*shader_entry + 1);
             }
-            if (*(longlong *)(puVar15 + -2) != 0) {
-              uStack_148 = 0;
-              if (puStack_150 != (undefined1 *)0x0) {
-                *puStack_150 = 0;
+            if (*(longlong *)(shader_entry + -2) != 0) {
+              shader_length = 0;
+              if (shader_input != (undefined1 *)0x0) {
+                *shader_input = 0;
               }
-              uStack_140._4_4_ = 0;
+              shader_info._4_4_ = 0;
             }
-            iVar9 = uStack_148 + 0xd;
-            FUN_1806277c0(&puStack_158,iVar9);
-            puVar5 = (undefined8 *)(puStack_150 + uStack_148);
-            *puVar5 = 0x782e656e6563732f;
-            *(undefined4 *)(puVar5 + 1) = 0x6e656373;
-            *(undefined2 *)((longlong)puVar5 + 0xc) = 0x65;
-            puVar6 = &DAT_18098bc73;
-            if (puStack_150 != (undefined1 *)0x0) {
-              puVar6 = puStack_150;
+            shader_index = shader_length + 0xd;
+            FUN_1806277c0(&shader_output,shader_index);
+            shader_ptr = (undefined8 *)(shader_input + shader_length);
+            *shader_ptr = 0x782e656e6563732f;
+            *(undefined4 *)(shader_ptr + 1) = 0x6e656373;
+            *(undefined2 *)((longlong)shader_ptr + 0xc) = 0x65;
+            file_path = &DAT_18098bc73;
+            if (shader_input != (undefined1 *)0x0) {
+              file_path = shader_input;
             }
-            uStack_148 = iVar9;
-            lVar14 = strstr(puVar6,&UNK_1809fd7d8);
-            if (lVar14 == 0) {
-              puVar6 = &DAT_18098bc73;
-              if (puStack_150 != (undefined1 *)0x0) {
-                puVar6 = puStack_150;
+            shader_length = shader_index;
+            total_files = strstr(file_path,&UNK_1809fd7d8);
+            if (total_files == 0) {
+              file_path = &DAT_18098bc73;
+              if (shader_input != (undefined1 *)0x0) {
+                file_path = shader_input;
               }
-              lVar14 = strstr(puVar6,&UNK_1809fd7f8);
-              if (lVar14 != 0) goto LAB_180054ec9;
-              puVar6 = &DAT_18098bc73;
-              if (puStack_150 != (undefined1 *)0x0) {
-                puVar6 = puStack_150;
+              total_files = strstr(file_path,&UNK_1809fd7f8);
+              if (total_files != 0) goto LAB_shader_found;
+              file_path = &DAT_18098bc73;
+              if (shader_input != (undefined1 *)0x0) {
+                file_path = shader_input;
               }
-              lVar14 = strstr(puVar6,&UNK_1809fd810);
-              if (lVar14 != 0) goto LAB_180054ec9;
-              puVar6 = &DAT_18098bc73;
-              if (puStack_150 != (undefined1 *)0x0) {
-                puVar6 = puStack_150;
+              total_files = strstr(file_path,&UNK_1809fd810);
+              if (total_files != 0) goto LAB_shader_found;
+              file_path = &DAT_18098bc73;
+              if (shader_input != (undefined1 *)0x0) {
+                file_path = shader_input;
               }
-              lVar14 = strstr(puVar6,&UNK_1809fd828);
-              if (lVar14 != 0) goto LAB_180054ec9;
-              puVar6 = &DAT_18098bc73;
-              if (puStack_150 != (undefined1 *)0x0) {
-                puVar6 = puStack_150;
+              total_files = strstr(file_path,&UNK_1809fd828);
+              if (total_files != 0) goto LAB_shader_found;
+              file_path = &DAT_18098bc73;
+              if (shader_input != (undefined1 *)0x0) {
+                file_path = shader_input;
               }
-              lVar14 = strstr(puVar6,&UNK_1809fd848);
-              if (lVar14 != 0) goto LAB_180054ec9;
-              cVar4 = FUN_180624af0(&puStack_158);
-              if (cVar4 == '\0') {
-                uStack_148 = 0;
-                if (puStack_150 != (undefined1 *)0x0) {
-                  *puStack_150 = 0;
+              total_files = strstr(file_path,&UNK_1809fd848);
+              if (total_files != 0) goto LAB_shader_found;
+              path_separator = FUN_180624af0(&shader_output);
+              if (path_separator == '\0') {
+                shader_length = 0;
+                if (shader_input != (undefined1 *)0x0) {
+                  *shader_input = 0;
                 }
-                uVar1 = *puVar15;
-                uVar11 = (ulonglong)uVar1;
-                if (*(longlong *)(puVar15 + -2) != 0) {
-                  FUN_1806277c0(&puStack_158,uVar11);
+                file_size = *shader_entry;
+                path_length = (ulonglong)file_size;
+                if (*(longlong *)(shader_entry + -2) != 0) {
+                  FUN_1806277c0(&shader_output,path_length);
                 }
-                if (uVar1 != 0) {
+                if (file_size != 0) {
                     // WARNING: Subroutine does not return
-                  memcpy(puStack_150,*(undefined8 *)(puVar15 + -2),uVar11);
+                  memcpy(shader_input,*(undefined8 *)(shader_entry + -2),path_length);
                 }
-                if (puStack_150 != (undefined1 *)0x0) {
-                  puStack_150[uVar11] = 0;
+                if (shader_input != (undefined1 *)0x0) {
+                  shader_input[path_length] = 0;
                 }
-                uStack_140._4_4_ = puVar15[3];
-                uStack_148 = uVar1;
-                FUN_1806277c0(&puStack_158,0x12);
-                puVar7 = (undefined4 *)(puStack_150 + uStack_148);
-                *puVar7 = 0x6563732f;
-                puVar7[1] = 0x782e656e;
-                puVar7[2] = 0x2e6f6373;
-                puVar7[3] = 0x65637378;
-                *(undefined2 *)(puVar7 + 4) = 0x656e;
-                *(undefined1 *)((longlong)puVar7 + 0x12) = 0;
-                uStack_148 = 0x12;
-                cVar4 = FUN_180624af0(&puStack_158);
-                if (cVar4 != '\0') goto LAB_180054d28;
-                puStack_158 = &UNK_180a3c3e0;
-                if (puStack_150 != (undefined1 *)0x0) {
+                shader_info._4_4_ = shader_entry[3];
+                shader_length = file_size;
+                FUN_1806277c0(&shader_output,0x12);
+                file_size_ptr = (undefined4 *)(shader_input + shader_length);
+                *file_size_ptr = 0x6563732f;
+                file_size_ptr[1] = 0x782e656e;
+                file_size_ptr[2] = 0x2e6f6373;
+                file_size_ptr[3] = 0x65637378;
+                *(undefined2 *)(file_size_ptr + 4) = 0x656e;
+                *(undefined1 *)((longlong)file_size_ptr + 0x12) = 0;
+                shader_length = 0x12;
+                path_separator = FUN_180624af0(&shader_output);
+                if (path_separator != '\0') goto LAB_shader_processing;
+                shader_output = &UNK_180a3c3e0;
+                if (shader_input != (undefined1 *)0x0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
-                uStack_140 = (ulonglong)uStack_140._4_4_ << 0x20;
+                shader_info = (ulonglong)shader_info._4_4_ << 0x20;
               }
               else {
-LAB_180054d28:
-                iVar9 = *puVar15 - 1;
-                if (-1 < iVar9) {
-                  lVar14 = (longlong)iVar9;
+LAB_shader_processing:
+                shader_index = *shader_entry - 1;
+                if (-1 < shader_index) {
+                  total_files = (longlong)shader_index;
                   do {
-                    if (*(char *)(lVar14 + *(longlong *)(puVar15 + -2)) == '/') goto LAB_180054d57;
-                    iVar9 = iVar9 + -1;
-                    lVar14 = lVar14 + -1;
-                  } while (-1 < lVar14);
+                    if (*(char *)(total_files + *(longlong *)(shader_entry + -2)) == '/') goto LAB_shader_path_found;
+                    shader_index = shader_index + -1;
+                    total_files = total_files + -1;
+                  } while (-1 < total_files);
                 }
-                iVar9 = -1;
-LAB_180054d57:
-                FUN_180629a40(puVar3 + (longlong)iVar13 * 4,&puStack_98,iVar9 + 1,0xffffffff);
-                uVar17 = FUN_180054360(plVar2,&puStack_98);
+                shader_index = -1;
+LAB_shader_path_found:
+                FUN_180629a40(shader_data + (longlong)file_id * 4,&temp_buffer,shader_index + 1,0xffffffff);
+                file_type = FUN_180054360(engine_ptr,&temp_buffer);
                 if (_DAT_180c82854 != 0) {
-                  FUN_18005c1c0(uVar17,&puStack_78);
-                  puStack_f0 = &UNK_180a3c3e0;
-                  uStack_d8 = 0;
-                  puStack_e8 = (undefined1 *)0x0;
-                  uStack_e0 = 0;
-                  FUN_1806277c0(&puStack_f0,iStack_c0);
-                  if (iStack_c0 != 0) {
+                  FUN_18005c1c0(file_type,&resource_handle);
+                  shader_reader = &UNK_180a3c3e0;
+                  file_data = 0;
+                  file_content = (undefined1 *)0x0;
+                  file_type = 0;
+                  FUN_1806277c0(&shader_reader,max_path_length);
+                  if (max_path_length != 0) {
                     // WARNING: Subroutine does not return
-                    memcpy(puStack_e8,lStack_c8,iStack_c0 + 1);
+                    memcpy(file_content,file_data,max_path_length + 1);
                   }
-                  if (lStack_c8 != 0) {
-                    uStack_e0 = 0;
-                    if (puStack_e8 != (undefined1 *)0x0) {
-                      *puStack_e8 = 0;
+                  if (file_data != 0) {
+                    file_type = 0;
+                    if (file_content != (undefined1 *)0x0) {
+                      *file_content = 0;
                     }
-                    uStack_d8 = uStack_d8 & 0xffffffff;
+                    file_data = file_data & 0xffffffff;
                   }
-                  puVar16 = &DAT_18098bc73;
-                  if (puStack_90 != (undefined *)0x0) {
-                    puVar16 = puStack_90;
+                  file_handle = &DAT_18098bc73;
+                  if (file_buffer != (undefined *)0x0) {
+                    file_handle = file_buffer;
                   }
-                  FUN_180628040(&puStack_f0,&UNK_1809fd870,puVar16);
-                  FUN_18062db60(&puStack_f0,&puStack_78);
+                  FUN_180628040(&shader_reader,&UNK_1809fd870,file_handle);
+                  FUN_18062db60(&shader_reader,&resource_handle);
                   _DAT_180c82854 = 0;
-                  puStack_f0 = &UNK_180a3c3e0;
-                  if (puStack_e8 != (undefined1 *)0x0) {
+                  shader_reader = &UNK_180a3c3e0;
+                  if (file_content != (undefined1 *)0x0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900();
                   }
-                  puStack_e8 = (undefined1 *)0x0;
-                  uStack_d8 = uStack_d8 & 0xffffffff00000000;
-                  puStack_f0 = &UNK_18098bcb0;
-                  puStack_78 = &UNK_180a3c3e0;
-                  if (lStack_70 != 0) {
+                  file_content = (undefined1 *)0x0;
+                  file_data = file_data & 0xffffffff00000000;
+                  shader_reader = &UNK_18098bcb0;
+                  resource_handle = &UNK_180a3c3e0;
+                  if (resource_data != 0) {
                     // WARNING: Subroutine does not return
                     FUN_18064e900();
                   }
-                  lStack_70 = 0;
-                  uStack_60 = 0;
-                  puStack_78 = &UNK_18098bcb0;
+                  resource_data = 0;
+                  resource_flags = 0;
+                  resource_handle = &UNK_18098bcb0;
                 }
-                puStack_98 = &UNK_180a3c3e0;
-                if (puStack_90 != (undefined *)0x0) {
+                temp_buffer = &UNK_180a3c3e0;
+                if (file_buffer != (undefined *)0x0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
-                puStack_90 = (undefined *)0x0;
-                uStack_80 = 0;
-                puStack_98 = &UNK_18098bcb0;
-                puStack_158 = &UNK_180a3c3e0;
-                if (puStack_150 != (undefined1 *)0x0) {
+                file_buffer = (undefined *)0x0;
+                file_mode = 0;
+                temp_buffer = &UNK_18098bcb0;
+                shader_output = &UNK_180a3c3e0;
+                if (shader_input != (undefined1 *)0x0) {
                     // WARNING: Subroutine does not return
                   FUN_18064e900();
                 }
-                uStack_140 = (ulonglong)uStack_140._4_4_ << 0x20;
+                shader_info = (ulonglong)shader_info._4_4_ << 0x20;
               }
             }
             else {
-LAB_180054ec9:
-              puStack_158 = &UNK_180a3c3e0;
-              if (puStack_150 != (undefined1 *)0x0) {
+LAB_shader_found:
+              shader_output = &UNK_180a3c3e0;
+              if (shader_input != (undefined1 *)0x0) {
                     // WARNING: Subroutine does not return
                 FUN_18064e900();
               }
-              uStack_140 = (ulonglong)uStack_140._4_4_ << 0x20;
+              shader_info = (ulonglong)shader_info._4_4_ << 0x20;
             }
-            puStack_150 = (undefined1 *)0x0;
-            puStack_158 = &UNK_18098bcb0;
-            iVar13 = iVar13 + 1;
-            puVar15 = puVar15 + 8;
-            lVar10 = lVar10 + -1;
-            lVar14 = lStack_a0;
-            puVar5 = puStack_50;
-            iVar9 = iStack_f8;
-          } while (lVar10 != 0);
+            shader_input = (undefined1 *)0x0;
+            shader_output = &UNK_18098bcb0;
+            file_id = file_id + 1;
+            shader_entry = shader_entry + 8;
+            file_offset = file_offset + -1;
+            total_files = file_count_limit;
+            shader_ptr = shader_array[1];
+            shader_index = file_count;
+          } while (file_offset != 0);
         }
-        puStack_d0 = &UNK_180a3c3e0;
-        if (lStack_c8 != 0) {
+        file_buffer = &UNK_180a3c3e0;
+        if (file_data != 0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        lStack_c8 = 0;
-        uStack_b8 = 0;
-        puStack_d0 = &UNK_18098bcb0;
-        for (puVar12 = puVar3; puVar12 != puVar5; puVar12 = puVar12 + 4) {
-          (**(code **)*puVar12)(puVar12,0);
+        file_data = 0;
+        buffer_size = 0;
+        file_buffer = &UNK_18098bcb0;
+        for (file_iterator = shader_data; file_iterator != shader_ptr; file_iterator = file_iterator + 4) {
+          (**(code **)*file_iterator)(file_iterator,0);
         }
-        if (puVar3 != (undefined8 *)0x0) {
+        if (shader_data != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900(puVar3);
+          FUN_18064e900(shader_data);
         }
-        puStack_118 = &UNK_180a3c3e0;
-        if (puStack_110 != (undefined1 *)0x0) {
+        file_writer = &UNK_180a3c3e0;
+        if (file_handle != (undefined1 *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
-        puStack_110 = (undefined1 *)0x0;
-        uStack_100 = uStack_100 & 0xffffffff00000000;
-        puStack_118 = &UNK_18098bcb0;
-        puStack_138 = &UNK_180a3c3e0;
-        if (puStack_130 != (undefined1 *)0x0) {
+        file_handle = (undefined1 *)0x0;
+        file_data = file_data & 0xffffffff00000000;
+        file_writer = &UNK_18098bcb0;
+        shader_reader = &UNK_180a3c3e0;
+        if (file_content != (undefined1 *)0x0) {
                     // WARNING: Subroutine does not return
           FUN_18064e900();
         }
       }
-      puStack_110 = (undefined1 *)0x0;
-      puStack_118 = &UNK_18098bcb0;
-      uStack_120 = uStack_120 & 0xffffffff00000000;
-      puStack_130 = (undefined1 *)0x0;
-      puStack_138 = &UNK_18098bcb0;
-      iStack_f8 = iVar9 + 1;
-    } while (iStack_f8 < (int)lVar14);
+      file_handle = (undefined1 *)0x0;
+      file_writer = &UNK_18098bcb0;
+      file_info = file_info & 0xffffffff00000000;
+      file_content = (undefined1 *)0x0;
+      shader_reader = &UNK_18098bcb0;
+      file_count = shader_index + 1;
+    } while (file_count < (int)total_files);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_178);
+  FUN_1808fc050(stack_guard ^ (ulonglong)shader_buffer);
 }
 
 
@@ -622,39 +585,40 @@ LAB_180054ec9:
 
 
 
-// 函数: void FUN_180055050(void)
-void FUN_180055050(void)
+// 函数: void initialize_render_pipeline(void)
+// 初始化渲染管线，设置渲染相关的全局变量和数据结构
+void initialize_render_pipeline(void)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
-  longlong lVar4;
+  undefined8 *render_target;
+  undefined8 *render_state;
+  undefined8 render_config;
+  longlong mutex_data;
   
-  puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
-  puVar1 = puVar2 + 4;
-  FUN_180637560(puVar1);
-  *puVar1 = &UNK_180a3cf50;
-  *(undefined2 *)(puVar2 + 0x1a) = 1;
-  *(undefined4 *)(puVar2 + 9) = 0;
-  *(undefined1 *)((longlong)puVar2 + 0x54) = 0;
-  *puVar1 = &UNK_1809fe6d8;
-  puVar1 = puVar2 + 0x1b;
-  FUN_180637560(puVar1);
-  *puVar1 = &UNK_180a3cf50;
-  *(undefined2 *)(puVar2 + 0x31) = 1;
-  *(undefined4 *)(puVar2 + 0x20) = 0;
-  *(undefined1 *)((longlong)puVar2 + 0x10c) = 0;
-  *puVar1 = &UNK_1809fe6d8;
-  *puVar2 = 0;
-  *(undefined1 *)(puVar2 + 3) = 0;
-  puVar2[2] = 0xffffffff00000000;
-  *(undefined4 *)(puVar2 + 1) = 0xe;
-  _DAT_180c86928 = puVar2;
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x480,8,3);
-  _DAT_180c8a9f8 = FUN_18004bd10(uVar3);
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x10420,8,3);
-  _DAT_180c868c0 = FUN_18005c090(uVar3);
+  render_state = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
+  render_target = render_state + 4;
+  FUN_180637560(render_target);
+  *render_target = &UNK_180a3cf50;
+  *(undefined2 *)(render_state + 0x1a) = 1;
+  *(undefined4 *)(render_state + 9) = 0;
+  *(undefined1 *)((longlong)render_state + 0x54) = 0;
+  *render_target = &UNK_1809fe6d8;
+  render_target = render_state + 0x1b;
+  FUN_180637560(render_target);
+  *render_target = &UNK_180a3cf50;
+  *(undefined2 *)(render_state + 0x31) = 1;
+  *(undefined4 *)(render_state + 0x20) = 0;
+  *(undefined1 *)((longlong)render_state + 0x10c) = 0;
+  *render_target = &UNK_1809fe6d8;
+  *render_state = 0;
+  *(undefined1 *)(render_state + 3) = 0;
+  render_state[2] = 0xffffffff00000000;
+  *(undefined4 *)(render_state + 1) = 0xe;
+  _DAT_180c86928 = render_state;
+  render_config = FUN_18062b1e0(_DAT_180c8ed18,0x480,8,3);
+  _DAT_180c8a9f8 = FUN_18004bd10(render_config);
+  render_config = FUN_18062b1e0(_DAT_180c8ed18,0x10420,8,3);
+  _DAT_180c868c0 = FUN_18005c090(render_config);
   _DAT_180c868d8 = FUN_18062b1e0(_DAT_180c8ed18,0x30,8,3);
   *(undefined4 *)(_DAT_180c868d8 + 0x19) = 0;
   *(undefined2 *)(_DAT_180c868d8 + 0x1d) = 0;
@@ -667,42 +631,42 @@ void FUN_180055050(void)
   *(undefined8 *)(_DAT_180c868d8 + 0x20) = 0;
   _DAT_180c86910 = FUN_18062b1e0(_DAT_180c8ed18,8,4,3);
   *(undefined4 *)(_DAT_180c86910 + 4) = 0;
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x80,8,3);
-  _DAT_180c86900 = FUN_18015c450(uVar3);
-  lVar4 = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
-  _Mtx_init_in_situ(lVar4,2);
-  _Mtx_init_in_situ(lVar4 + 0x50,2);
-  *(undefined8 *)(lVar4 + 0xa0) = 0;
-  *(undefined8 *)(lVar4 + 0xa8) = 0;
-  *(undefined8 *)(lVar4 + 0xb0) = 0;
-  *(undefined4 *)(lVar4 + 0xb8) = 3;
-  *(undefined8 *)(lVar4 + 0xc0) = 0;
-  *(undefined8 *)(lVar4 + 200) = 0;
-  *(undefined8 *)(lVar4 + 0xd0) = 0;
-  *(undefined4 *)(lVar4 + 0xd8) = 0x20;
-  *(undefined4 *)(lVar4 + 0xe0) = 0;
-  _DAT_180c8a998 = lVar4;
-  uVar3 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+  render_config = FUN_18062b1e0(_DAT_180c8ed18,0x80,8,3);
+  _DAT_180c86900 = FUN_18015c450(render_config);
+  mutex_data = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
+  _Mtx_init_in_situ(mutex_data,2);
+  _Mtx_init_in_situ(mutex_data + 0x50,2);
+  *(undefined8 *)(mutex_data + 0xa0) = 0;
+  *(undefined8 *)(mutex_data + 0xa8) = 0;
+  *(undefined8 *)(mutex_data + 0xb0) = 0;
+  *(undefined4 *)(mutex_data + 0xb8) = 3;
+  *(undefined8 *)(mutex_data + 0xc0) = 0;
+  *(undefined8 *)(mutex_data + 200) = 0;
+  *(undefined8 *)(mutex_data + 0xd0) = 0;
+  *(undefined4 *)(mutex_data + 0xd8) = 0x20;
+  *(undefined4 *)(mutex_data + 0xe0) = 0;
+  _DAT_180c8a998 = mutex_data;
+  render_config = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
                     // WARNING: Subroutine does not return
-  memset(uVar3,0,0x70);
+  memset(render_config,0,0x70);
 }
 
 
 
 
-
-// 函数: void FUN_180055e10(longlong *param_1)
-void FUN_180055e10(longlong *param_1)
+// 函数: void cleanup_resource_array(longlong *resource_array)
+// 清理资源数组，释放分配的资源
+void cleanup_resource_array(longlong *resource_array)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong array_start;
+  longlong array_end;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x48) {
-    FUN_180058c20(lVar2);
+  array_start = resource_array[1];
+  for (array_end = *resource_array; array_end != array_start; array_end = array_end + 0x48) {
+    FUN_180058c20(array_end);
   }
-  if (*param_1 == 0) {
+  if (*resource_array == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -712,48 +676,48 @@ void FUN_180055e10(longlong *param_1)
 
 
 
-
-// 函数: void FUN_180055e30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180055e30(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void initialize_resource_handler(longlong resource_handle,undefined8 param2,undefined8 param3,undefined8 param4)
+// 初始化资源处理器，设置资源处理的相关参数
+void initialize_resource_handler(longlong resource_handle,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
-  FUN_180058210(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058210(resource_handle,*(undefined8 *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-
-// 函数: void FUN_180055e60(longlong param_1)
-void FUN_180055e60(longlong param_1)
+// 函数: void destroy_resource_handler(longlong resource_handle)
+// 销毁资源处理器，清理相关资源
+void destroy_resource_handler(longlong resource_handle)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  longlong resource_data;
+  longlong resource_ptr;
+  ulonglong resource_count;
+  ulonglong resource_index;
   
-  uVar3 = *(ulonglong *)(param_1 + 0x10);
-  lVar1 = *(longlong *)(param_1 + 8);
-  uVar4 = 0;
-  if (uVar3 != 0) {
+  resource_count = *(ulonglong *)(resource_handle + 0x10);
+  resource_data = *(longlong *)(resource_handle + 8);
+  resource_index = 0;
+  if (resource_count != 0) {
     do {
-      lVar2 = *(longlong *)(lVar1 + uVar4 * 8);
-      if (lVar2 != 0) {
-        if (*(longlong **)(lVar2 + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(lVar2 + 0x10) + 0x38))();
+      resource_ptr = *(longlong *)(resource_data + resource_index * 8);
+      if (resource_ptr != 0) {
+        if (*(longlong **)(resource_ptr + 0x10) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(resource_ptr + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        FUN_18064e900(resource_ptr);
       }
-      *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
-      uVar4 = uVar4 + 1;
-    } while (uVar4 < uVar3);
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(resource_data + resource_index * 8) = 0;
+      resource_index = resource_index + 1;
+    } while (resource_index < resource_count);
+    resource_count = *(ulonglong *)(resource_handle + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
+  *(undefined8 *)(resource_handle + 0x18) = 0;
+  if ((1 < resource_count) && (*(longlong *)(resource_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
@@ -762,83 +726,86 @@ void FUN_180055e60(longlong param_1)
 
 
 
-longlong FUN_180055e80(longlong param_1)
+
+// 函数: longlong create_resource_context(longlong context_ptr)
+// 创建资源上下文，初始化资源管理所需的数据结构
+longlong create_resource_context(longlong context_ptr)
 
 {
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  *(undefined8 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x18) = 0;
-  return param_1;
+  *(undefined8 *)(context_ptr + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(context_ptr + 0x10) = 0;
+  *(undefined4 *)(context_ptr + 0x18) = 0;
+  *(undefined8 *)(context_ptr + 8) = &UNK_180a3c3e0;
+  *(undefined8 *)(context_ptr + 0x20) = 0;
+  *(undefined8 *)(context_ptr + 0x10) = 0;
+  *(undefined4 *)(context_ptr + 0x18) = 0;
+  return context_ptr;
 }
 
 
 
 
-
-// 函数: void FUN_180055ed0(longlong param_1)
-void FUN_180055ed0(longlong param_1)
+// 函数: void destroy_resource_context(longlong context_ptr)
+// 销毁资源上下文，释放相关资源
+void destroy_resource_context(longlong context_ptr)
 
 {
-  *(undefined8 *)(param_1 + 8) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_1 + 0x10) != 0) {
+  *(undefined8 *)(context_ptr + 8) = &UNK_180a3c3e0;
+  if (*(longlong *)(context_ptr + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(undefined8 *)(param_1 + 0x10) = 0;
-  *(undefined4 *)(param_1 + 0x20) = 0;
-  *(undefined8 *)(param_1 + 8) = &UNK_18098bcb0;
+  *(undefined8 *)(context_ptr + 0x10) = 0;
+  *(undefined4 *)(context_ptr + 0x20) = 0;
+  *(undefined8 *)(context_ptr + 8) = &UNK_18098bcb0;
   return;
 }
 
 
 
 
-
-// 函数: void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180055f20(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void initialize_resource_manager_v2(longlong resource_handle,undefined8 param2,undefined8 param3,undefined8 param4)
+// 初始化资源管理器版本2，提供更高级的资源管理功能
+void initialize_resource_manager_v2(longlong resource_handle,undefined8 param2,undefined8 param3,undefined8 param4)
 
 {
-  FUN_180058210(param_1,*(undefined8 *)(param_1 + 0x10),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058210(resource_handle,*(undefined8 *)(resource_handle + 0x10),param3,param4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-
-// 函数: void FUN_180055f50(longlong param_1)
-void FUN_180055f50(longlong param_1)
+// 函数: void destroy_resource_manager_v2(longlong resource_handle)
+// 销毁资源管理器版本2，清理所有相关资源
+void destroy_resource_manager_v2(longlong resource_handle)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
+  longlong resource_data;
+  longlong resource_ptr;
+  ulonglong resource_count;
+  ulonglong resource_index;
   
-  uVar3 = *(ulonglong *)(param_1 + 0x10);
-  lVar1 = *(longlong *)(param_1 + 8);
-  uVar4 = 0;
-  if (uVar3 != 0) {
+  resource_count = *(ulonglong *)(resource_handle + 0x10);
+  resource_data = *(longlong *)(resource_handle + 8);
+  resource_index = 0;
+  if (resource_count != 0) {
     do {
-      lVar2 = *(longlong *)(lVar1 + uVar4 * 8);
-      if (lVar2 != 0) {
-        if (*(longlong **)(lVar2 + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(lVar2 + 0x10) + 0x38))();
+      resource_ptr = *(longlong *)(resource_data + resource_index * 8);
+      if (resource_ptr != 0) {
+        if (*(longlong **)(resource_ptr + 0x10) != (longlong *)0x0) {
+          (**(code **)(**(longlong **)(resource_ptr + 0x10) + 0x38))();
         }
                     // WARNING: Subroutine does not return
-        FUN_18064e900(lVar2);
+        FUN_18064e900(resource_ptr);
       }
-      *(undefined8 *)(lVar1 + uVar4 * 8) = 0;
-      uVar4 = uVar4 + 1;
-    } while (uVar4 < uVar3);
-    uVar3 = *(ulonglong *)(param_1 + 0x10);
+      *(undefined8 *)(resource_data + resource_index * 8) = 0;
+      resource_index = resource_index + 1;
+    } while (resource_index < resource_count);
+    resource_count = *(ulonglong *)(resource_handle + 0x10);
   }
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  if ((1 < uVar3) && (*(longlong *)(param_1 + 8) != 0)) {
+  *(undefined8 *)(resource_handle + 0x18) = 0;
+  if ((1 < resource_count) && (*(longlong *)(resource_handle + 8) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
@@ -851,19 +818,20 @@ void FUN_180055f50(longlong param_1)
 
 
 
-// 函数: void FUN_180055f70(undefined8 param_1,undefined4 param_2)
-void FUN_180055f70(undefined8 param_1,undefined4 param_2)
+// 函数: void emergency_exit(undefined8 exit_code,undefined4 exit_status)
+// 紧急退出函数，在发生严重错误时调用
+void emergency_exit(undefined8 exit_code,undefined4 exit_status)
 
 {
-  code *pcVar1;
+  code *exit_handler;
   
   if (_DAT_180c8f008 != 0) {
     func_0x00018005a410(_DAT_180c8f008 + 8);
   }
   Sleep(2000);
-  _Exit(param_2);
-  pcVar1 = (code *)swi(3);
-  (*pcVar1)();
+  _Exit(exit_status);
+  exit_handler = (code *)swi(3);
+  (*exit_handler)();
   return;
 }
 
@@ -873,51 +841,52 @@ void FUN_180055f70(undefined8 param_1,undefined4 param_2)
 
 
 
-// 函数: void FUN_180055fa0(void)
-void FUN_180055fa0(void)
+// 函数: void finalize_initialization(void)
+// 完成初始化过程，执行最后的清理和设置工作
+void finalize_initialization(void)
 
 {
-  undefined8 *puVar1;
-  undefined8 uVar2;
-  char *pcVar3;
-  int iVar4;
-  char *pcVar5;
-  undefined8 in_R9;
-  undefined8 uVar6;
+  undefined8 *global_ptr;
+  undefined8 temp_value;
+  char *config_data;
+  int lock_status;
+  char *config_ptr;
+  undefined8 unused_param;
+  undefined8 stack_guard;
   
-  pcVar3 = _DAT_180c8a9d8;
-  uVar6 = 0xfffffffffffffffe;
+  config_data = _DAT_180c8a9d8;
+  stack_guard = 0xfffffffffffffffe;
   if (*_DAT_180c8a9d8 != '\0') {
-    puVar1 = (undefined8 *)*_DAT_180c86960;
-    iVar4 = _Mtx_lock(0x180c91970);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    global_ptr = (undefined8 *)*_DAT_180c86960;
+    lock_status = _Mtx_lock(0x180c91970);
+    if (lock_status != 0) {
+      __Throw_C_error_std__YAXH_Z(lock_status);
     }
-    uVar2 = _DAT_180c8a9b0;
-    _DAT_180c8a9b0 = *puVar1;
-    FUN_1801299b0(&UNK_1809fd9a0,0,0,in_R9,uVar6);
-    FUN_18010f010(&UNK_1809fd9b0,*(undefined4 *)(pcVar3 + 4));
-    FUN_18010f010(&UNK_1809fd9d0,*(undefined4 *)(pcVar3 + 8));
-    FUN_18010f010(&UNK_1809fd9f0,*(undefined4 *)(pcVar3 + 0xc));
-    FUN_18010f010(&UNK_1809fda10,*(undefined4 *)(pcVar3 + 0x10));
-    FUN_18010f010(&UNK_1809fda30,*(undefined4 *)(pcVar3 + 0x14));
-    FUN_18010f010(&UNK_1809fda58,*(undefined4 *)(pcVar3 + 0x18));
-    for (pcVar5 = *(char **)(pcVar3 + 0x28); pcVar5 != pcVar3 + 0x20;
-        pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&UNK_1809fda80,*(undefined4 *)(pcVar5 + 0x20),*(undefined4 *)(pcVar5 + 0x24));
+    temp_value = _DAT_180c8a9b0;
+    _DAT_180c8a9b0 = *global_ptr;
+    FUN_1801299b0(&UNK_1809fd9a0,0,0,unused_param,stack_guard);
+    FUN_18010f010(&UNK_1809fd9b0,*(undefined4 *)(config_data + 4));
+    FUN_18010f010(&UNK_1809fd9d0,*(undefined4 *)(config_data + 8));
+    FUN_18010f010(&UNK_1809fd9f0,*(undefined4 *)(config_data + 0xc));
+    FUN_18010f010(&UNK_1809fda10,*(undefined4 *)(config_data + 0x10));
+    FUN_18010f010(&UNK_1809fda30,*(undefined4 *)(config_data + 0x14));
+    FUN_18010f010(&UNK_1809fda58,*(undefined4 *)(config_data + 0x18));
+    for (config_ptr = *(char **)(config_data + 0x28); config_ptr != config_data + 0x20;
+        config_ptr = (char *)func_0x00018066bd70(config_ptr)) {
+      FUN_18010f010(&UNK_1809fda80,*(undefined4 *)(config_ptr + 0x20),*(undefined4 *)(config_ptr + 0x24));
     }
-    for (pcVar5 = *(char **)(pcVar3 + 0x58); pcVar5 != pcVar3 + 0x50;
-        pcVar5 = (char *)func_0x00018066bd70(pcVar5)) {
-      FUN_18010f010(&UNK_1809fdaa8,*(undefined4 *)(pcVar5 + 0x20),*(undefined4 *)(pcVar5 + 0x24));
+    for (config_ptr = *(char **)(config_data + 0x58); config_ptr != config_data + 0x50;
+        config_ptr = (char *)func_0x00018066bd70(config_ptr)) {
+      FUN_18010f010(&UNK_1809fdaa8,*(undefined4 *)(config_ptr + 0x20),*(undefined4 *)(config_ptr + 0x24));
     }
-    FUN_18010f010(&UNK_1809fdad0,*(undefined4 *)(pcVar3 + 0x80));
-    FUN_18010f010(&UNK_1809fdaf8,*(undefined4 *)(pcVar3 + 0x84));
-    FUN_18010f010(&UNK_1809fdb20,*(undefined4 *)(pcVar3 + 0x88));
+    FUN_18010f010(&UNK_1809fdad0,*(undefined4 *)(config_data + 0x80));
+    FUN_18010f010(&UNK_1809fdaf8,*(undefined4 *)(config_data + 0x84));
+    FUN_18010f010(&UNK_1809fdb20,*(undefined4 *)(config_data + 0x88));
     FUN_18012cfe0();
-    _DAT_180c8a9b0 = uVar2;
-    iVar4 = _Mtx_unlock(0x180c91970);
-    if (iVar4 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar4);
+    _DAT_180c8a9b0 = temp_value;
+    lock_status = _Mtx_unlock(0x180c91970);
+    if (lock_status != 0) {
+      __Throw_C_error_std__YAXH_Z(lock_status);
     }
   }
   return;
