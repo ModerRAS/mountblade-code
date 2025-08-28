@@ -445,25 +445,30 @@ void rendering_system_process_render_data(void)
 
 
 
-// 函数: void FUN_180310903(void)
-void FUN_180310903(void)
+// 函数: void rendering_system_finalize_render_process(void)
+// 渲染系统最终处理函数
+// 完成渲染流程的最后步骤，设置渲染状态并清理资源
+void rendering_system_finalize_render_process(void)
 
 {
-  undefined4 unaff_EBX;
-  longlong unaff_RBP;
-  longlong unaff_RSI;
-  undefined4 unaff_EDI;
-  int in_stack_00000038;
+  undefined4 render_result;
+  longlong render_context;
+  longlong scene_object;
+  undefined4 render_flags;
+  int render_mode;
   
-  if (in_stack_00000038 != 0) {
-    if (in_stack_00000038 == 1) {
-      unaff_EBX = unaff_EDI;
+  // 根据渲染模式设置最终结果
+  if (render_mode != 0) {
+    if (render_mode == 1) {
+      render_result = render_flags;
     }
-    *(undefined4 *)(unaff_RSI + 100) = unaff_EBX;
+    *(undefined4 *)(scene_object + 100) = render_result;
   }
-  *(undefined1 *)(unaff_RSI + 0x7e) = 1;
+  
+  // 标记渲染完成并执行最终清理
+  *(undefined1 *)(scene_object + 0x7e) = 1;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0xc0) ^ (ulonglong)&stack0x00000000);
+  rendering_system_cleanup_render_context(*(ulonglong *)(render_context + 0xc0) ^ (ulonglong)&render_mode);
 }
 
 
