@@ -71,12 +71,12 @@ typedef enum {
 #define StateQueryProcessor FUN_18007b240
 
 // 数学计算器 - 用于渲染系统数学计算
-#define MathCalculator MathCalculator
+#define MathCalculator FUN_180285b40
 
 // 全局数据引用
 #define RenderingSystemGlobalData _DAT_180c8ed18
 #define RenderingSystemDefaultData &system_buffer_ptr
-#define RenderingSystemVTableData1 &UNK_18098bcb0
+#define RenderingSystemVTableData1 RenderingSystemVTableData1
 #define RenderingSystemVTableData2 &UNK_1809fcc58
 #define RenderingSystemVTableData3 &UNK_180a3c3e0
 #define RenderingSystemVTableData4 &UNK_180a21720
@@ -516,7 +516,7 @@ void RenderingSystemCleanupProjectionParameters(longlong param_1)
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
-                    *puVar2 = &UNK_18098bcb0;
+                    *puVar2 = RenderingSystemVTableData1;
                     ResourceReleaser(puVar2);
                 }
                 ResourceReleaser();
@@ -562,7 +562,7 @@ void RenderingSystemCleanupViewParameters(longlong param_1)
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
-                    *puVar2 = &UNK_18098bcb0;
+                    *puVar2 = RenderingSystemVTableData1;
                     ResourceReleaser(puVar2);
                 }
                 ResourceReleaser();
@@ -608,7 +608,7 @@ void RenderingSystemCleanupTextureParameters(longlong param_1)
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
-                    *puVar2 = &UNK_18098bcb0;
+                    *puVar2 = RenderingSystemVTableData1;
                     ResourceReleaser(puVar2);
                 }
                 ResourceReleaser();
@@ -642,14 +642,14 @@ void RenderingSystemBatchInitialize(longlong param_1, longlong param_2)
         puVar1 = (int32_t *)(param_1 + 0x168);
         do {
             // 初始化渲染对象的基本属性
-            *(void **)(puVar1 + -0x5a) = &UNK_18098bcb0;
+            *(void **)(puVar1 + -0x5a) = RenderingSystemVTableData1;
             *(uint64_t *)(puVar1 + -0x58) = 0;
             puVar1[-0x56] = 0;
             *(void **)(puVar1 + -0x5a) = &UNK_1809fcc58;
             *(int32_t **)(puVar1 + -0x58) = puVar1 + -0x54;
             puVar1[-0x56] = 0;
             *(int8_t *)(puVar1 + -0x54) = 0;
-            *(void **)(puVar1 + -0x16) = &UNK_18098bcb0;
+            *(void **)(puVar1 + -0x16) = RenderingSystemVTableData1;
             *(uint64_t *)(puVar1 + -0x14) = 0;
             puVar1[-0x12] = 0;
             *(void **)(puVar1 + -0x16) = &UNK_180a3c3e0;
@@ -736,7 +736,7 @@ void RenderingSystemCleanupDepthBuffer(longlong param_1)
                 if (puVar2[1] == 0) {
                     puVar2[1] = 0;
                     *(int32_t *)(puVar2 + 3) = 0;
-                    *puVar2 = &UNK_18098bcb0;
+                    *puVar2 = RenderingSystemVTableData1;
                     ResourceReleaser(puVar2);
                 }
                 ResourceReleaser();
@@ -781,7 +781,7 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
         puVar7 = param_2 + 0x5a;
         do {
             // 初始化渲染队列的基本结构
-            *param_4 = &UNK_18098bcb0;
+            *param_4 = RenderingSystemVTableData1;
             param_4[1] = 0;
             *(int32_t *)(param_4 + 2) = 0;
             *param_4 = &UNK_1809fcc58;
@@ -839,7 +839,7 @@ longlong *RenderingSystemCreateRenderQueue(longlong *param_1, int32_t *param_2, 
             *(int32_t *)((longlong)param_4 + 0x104) = uVar3;
             *(int32_t *)(param_4 + 0x21) = uVar5;
             *(int32_t *)((longlong)param_4 + 0x10c) = uVar6;
-            param_4[0x22] = &UNK_18098bcb0;
+            param_4[0x22] = RenderingSystemVTableData1;
             param_4[0x23] = 0;
             *(int32_t *)(param_4 + 0x24) = 0;
             param_4[0x22] = &UNK_180a3c3e0;

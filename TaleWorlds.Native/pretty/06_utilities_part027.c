@@ -2069,8 +2069,7 @@ void utilities_system_additional_resetter_9(void)
 
 
 
-// 函数: void FUN_180942480(void)
-void FUN_180942480(void)
+void utilities_system_additional_resetter_10(void)
 
 {
   *utilities_system_additional_ptr_5 = SYSTEM_DEFAULT_VALUE;
@@ -2083,8 +2082,7 @@ void FUN_180942480(void)
 
 
 
-// 函数: void FUN_1809424a0(void)
-void FUN_1809424a0(void)
+void utilities_system_additional_resetter_11(void)
 
 {
   *utilities_system_additional_ptr_1 = SYSTEM_DEFAULT_VALUE;
@@ -2097,8 +2095,7 @@ void FUN_1809424a0(void)
 
 
 
-// 函数: void FUN_1809424c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_1809424c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void utilities_system_callback_handler_1(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t *puVar1;
@@ -2127,8 +2124,7 @@ void FUN_1809424c0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-// 函数: void FUN_180942520(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180942520(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void utilities_system_callback_handler_2(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t *puVar1;
@@ -2157,8 +2153,7 @@ void FUN_180942520(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-// 函数: void FUN_180942580(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
-void FUN_180942580(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+void utilities_system_callback_handler_3(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 
 {
   uint64_t *puVar1;
@@ -2185,8 +2180,7 @@ void FUN_180942580(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t p
 
 
 
-// 函数: void FUN_1809425e0(void)
-void FUN_1809425e0(void)
+void utilities_system_sync_cleaner(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809425f8. Too many branches
@@ -2199,8 +2193,7 @@ void FUN_1809425e0(void)
 
 
 
-// 函数: void FUN_180942660(void)
-void FUN_180942660(void)
+void utilities_system_buffer_cleaner_1(void)
 
 {
   longlong lVar1;
@@ -2231,8 +2224,7 @@ void FUN_180942660(void)
 
 
 
-// 函数: void FUN_180942690(void)
-void FUN_180942690(void)
+void utilities_system_buffer_cleaner_2(void)
 
 {
   longlong lVar1;
@@ -2263,7 +2255,7 @@ void FUN_180942690(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180942700(void)
+void utilities_system_memory_cleaner(void)
 
 {
   longlong lVar1;
@@ -2309,7 +2301,7 @@ void FUN_180942700(void)
 // 参数：无
 // 返回值：无
 // =============================================================================
-void FUN_180942720(void)
+void utilities_system_data_memory_cleaner(void)
 
 {
   longlong lVar1;

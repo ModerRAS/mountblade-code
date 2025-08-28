@@ -1913,26 +1913,26 @@ void MathSystemCleanupHandler(int32_t *param_1, int32_t *param_2, int32_t *param
 
 // 系统数据区域
 extern int32_t system_config_data;
-extern uint64_t UNK_180d498a0;
-extern int32_t UNK_180d498a8;
-extern void *UNK_180d498b0;
-extern int8_t *UNK_180d498b8;
-extern int32_t UNK_180d498c0;
-extern longlong UNK_180d49908;
-extern longlong UNK_180d49910;
-extern longlong UNK_180d49928;
-extern longlong UNK_180d49930;
-extern int32_t UNK_180d49948;
-extern int32_t UNK_180d4994c;
+extern uint64_t math_lookup_table;
+extern int32_t matrix_operation_flag;
+extern void *coordinate_system_ptr;
+extern int8_t *vector_buffer_ptr;
+extern int32_t calculation_status;
+extern longlong transform_matrix_ptr;
+extern longlong surface_normal_table;
+extern longlong projection_matrix_ptr;
+extern longlong math_context_ptr;
+extern int32_t vector_operation_flag;
+extern int32_t matrix_operation_status;
 extern uint8_t system_resource_config;
 extern uint8_t system_module_config;
 extern uint8_t system_cache_config;
 extern uint8_t system_temp_config;
-extern uint8_t UNK_180d49d58;
-extern longlong UNK_180d49d68;
-extern uint64_t UNK_180d49d70;
-extern longlong UNK_180d49d78;
-extern longlong *UNK_180c96358;
+extern uint8_t system_precision_config;
+extern longlong geometry_data_ptr;
+extern uint64_t math_constants_table;
+extern longlong collision_data_ptr;
+extern longlong *trigonometry_table;
 
 /*==============================================================================
  * 技术说明
