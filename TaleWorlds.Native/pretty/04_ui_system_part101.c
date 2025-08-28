@@ -957,7 +957,7 @@ void UISystemAdvancedController(longlong param_1, uint64_t param_2, uint64_t par
     uStack_a8 = param_3;
     
     // 执行内存分配
-    FUN_1808fd200(uVar2 & 0xfffffffffffffff0);
+    UISystemMemoryAligner(uVar2 & 0xfffffffffffffff0);
 }
 
 //------------------------------------------------------------------------------

@@ -803,8 +803,8 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 
                 *(uint*)(optimization_result + RENDER_OFFSET_GEOMETRY_DATA) = temp_index;
                 
-                FUN_18038b160(target_handle);
-                FUN_18038af00(target_handle);
+                RenderingSystem_ConnectionHandleCleanup(target_handle);
+                RenderingSystem_ConnectionAllocator(target_handle);
                 middle_handle = target_handle;
                 
                 if (*(longlong*)(target_handle + 0xb0) != 0) {
@@ -831,8 +831,8 @@ void RenderingSystem_ConnectionProcessor(RenderContextHandle param_1,
                 
                 *(uint*)(target_handle + RENDER_OFFSET_GEOMETRY_DATA) = temp_index;
                 
-                FUN_18038b160(search_index);
-                optimization_result = FUN_18038af00(search_index);
+                RenderingSystem_ConnectionHandleCleanup(search_index);
+                optimization_result = RenderingSystem_ConnectionAllocator(search_index);
                 
                 if (*(longlong*)(search_index + 0xb0) != 0) {
                     target_handle = *(uint*)(*(longlong*)(search_index + 0xb0) + RENDER_OFFSET_GEOMETRY_DATA);

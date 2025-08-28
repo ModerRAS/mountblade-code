@@ -801,8 +801,8 @@ uint64_t ResourceObjectCreate(longlong resource_handle, uint64_t *create_params,
 
 
 
-// 函数: void FUN_1808da82b(void)
-void FUN_1808da82b(void)
+// 函数: void ResourceSystemInitialize(void)
+void ResourceSystemInitialize(void)
 
 {
   int iVar1;
@@ -1011,7 +1011,7 @@ uint64_t ResourceSearch(longlong search_key, uint *result_ptr)
 
 
 
-uint64_t FUN_1808daaa9(longlong param_1)
+uint64_t ResourceQuickSearch(longlong resource_handle)
 
 {
   longlong *plVar1;
@@ -1078,7 +1078,7 @@ void FUN_1808dab52(void)
 
 
 
-uint64_t FUN_1808dab64(void)
+uint64_t ResourceStatusCheck(void)
 
 {
   uint64_t uVar1;
@@ -1156,7 +1156,7 @@ LAB_1808dacfc:
 
 
 
-uint64_t FUN_1808dad20(uint64_t param_1,longlong param_2)
+uint64_t ResourceValidation(uint64_t resource_handle, longlong validation_ptr)
 
 {
   uint64_t uVar1;
