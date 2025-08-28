@@ -1,4 +1,4 @@
-#define SystemInitializer FUN_1808fcb90  // 系统初始化器
+#define SystemInitializer System_Initializer2  // 系统初始化器
 
 #include "TaleWorlds.Native.Split.h"
 #include "../include/global_constants.h"
@@ -894,7 +894,7 @@ void normalize_vector(float *vector)
 
 /**
  * 初始化渲染状态的简化实现
- * 原始实现：FUN_1808fcb90
+ * 原始实现：System_Initializer2
  */
 void initialize_render_state(int64_t state_ptr)
 {
