@@ -624,7 +624,7 @@ void rendering_system_update_projection_parameters(longlong param1)
             
             temp_var4 = ptr_var4[9];
             ptr_var3[8] = ptr_var4[8];
-            ptr_var3[9] = undefined_var4;
+            ptr_var3[9] = temp_var4;
             
             temp_var4 = ptr_var4[0xb];
             ptr_var3[10] = ptr_var4[10];
@@ -632,11 +632,11 @@ void rendering_system_update_projection_parameters(longlong param1)
             
             temp_var4 = ptr_var4[0xd];
             ptr_var3[0xc] = ptr_var4[0xc];
-            ptr_var3[0xd] = undefined_var4;
+            ptr_var3[0xd] = temp_var4;
             
             temp_var4 = ptr_var4[0xf];
             ptr_var3[0xe] = ptr_var4[0xe];
-            ptr_var3[0xf] = undefined_var4;
+            ptr_var3[0xf] = temp_var4;
             
             long_var2 = long_var2 + -1;
             ptr_var1 = ptr_var3 + 0x10;
@@ -644,19 +644,19 @@ void rendering_system_update_projection_parameters(longlong param1)
         
         temp_var4 = ptr_var4[0x11];
         ptr_var3[0x10] = *ptr_var2;
-        ptr_var3[0x11] = undefined_var4;
+        ptr_var3[0x11] = temp_var4;
         
         temp_var4 = ptr_var4[0x13];
         ptr_var3[0x12] = ptr_var4[0x12];
-        ptr_var3[0x13] = undefined_var4;
+        ptr_var3[0x13] = temp_var4;
         
         temp_var4 = ptr_var4[0x15];
         ptr_var3[0x14] = ptr_var4[0x14];
-        ptr_var3[0x15] = undefined_var4;
+        ptr_var3[0x15] = temp_var4;
         
         temp_var4 = ptr_var4[0x17];
         ptr_var3[0x16] = ptr_var4[0x16];
-        ptr_var3[0x17] = undefined_var4;
+        ptr_var3[0x17] = temp_var4;
         
         // 计算颜色值
         float_var1 = *(float *)(param1 + 0x1ec);
