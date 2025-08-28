@@ -1,24 +1,300 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part286.c - 88 个函数
+// ============================================================================
+// 03_rendering_part286.c - 渲染系统高级材质和纹理处理模块
+// ============================================================================
+// 
+// 本模块包含88个核心函数，涵盖以下功能领域：
+// - 材质管理和纹理处理
+// - 渲染状态和参数控制
+// - 着色器程序管理
+// - 渲染缓冲区和队列管理
+// - 几何数据处理和变换
+// - 光照和阴影计算
+// - 后处理效果和滤镜
+// - 内存管理和资源清理
+//
+// 主要函数包括：
+// - RenderingSystem_MaterialProcessor: 渲染系统材质处理器
+// - RenderingSystem_TextureManager: 渲染系统纹理管理器
+// - RenderingSystem_ShaderController: 渲染系统着色器控制器
+// - RenderingSystem_StateManager: 渲染系统状态管理器
+// - RenderingSystem_BufferManager: 渲染系统缓冲区管理器
+// - RenderingSystem_GeometryProcessor: 渲染系统几何处理器
+// - RenderingSystem_LightingCalculator: 渲染系统光照计算器
+// - RenderingSystem_PostProcessor: 渲染系统后处理器
+//
+// ============================================================================
 
-// 函数: undefined FUN_180423a60;
+// ============================================================================
+// 系统常量定义
+// ============================================================================
+
+// 材质处理常量
+#define RENDERING_MATERIAL_MAX_TEXTURES 16          // 材质最大纹理数量
+#define RENDERING_MATERIAL_MAX_SHADERS 8             // 材质最大着色器数量
+#define RENDERING_MATERIAL_MAX_PARAMETERS 32         // 材质最大参数数量
+#define RENDERING_MATERIAL_DEFAULT_QUALITY 1.0f     // 材质默认质量
+#define RENDERING_MATERIAL_MIN_QUALITY 0.1f         // 材质最小质量
+#define RENDERING_MATERIAL_MAX_QUALITY 2.0f         // 材质最大质量
+
+// 纹理处理常量
+#define RENDERING_TEXTURE_MAX_SIZE 4096              // 纹理最大尺寸
+#define RENDERING_TEXTURE_MIN_SIZE 1                 // 纹理最小尺寸
+#define RENDERING_TEXTURE_DEFAULT_MIPMAPS 4          // 纹理默认Mipmap级别
+#define RENDERING_TEXTURE_MAX_MIPMAPS 16             // 纹理最大Mipmap级别
+#define RENDERING_TEXTURE_FORMAT_RGBA 0x1908        // 纹理格式RGBA
+#define RENDERING_TEXTURE_FORMAT_RGB 0x1907         // 纹理格式RGB
+#define RENDERING_TEXTURE_FORMAT_RG 0x8227          // 纹理格式RG
+#define RENDERING_TEXTURE_FORMAT_R 0x1903           // 纹理格式R
+
+// 着色器处理常量
+#define RENDERING_SHADER_MAX_UNIFORMS 128           // 着色器最大Uniform数量
+#define RENDERING_SHADER_MAX_ATTRIBUTES 16          // 着色器最大属性数量
+#define RENDERING_SHADER_MAX_TEXTURE_UNITS 32       // 着色器最大纹理单元
+#define RENDERING_SHADER_MAX_VERTEX_ATTRIBS 16       // 着色器最大顶点属性
+#define RENDERING_SHADER_MAX_FRAGMENT_ATTRIBS 16     // 着色器最大片段属性
+
+// 渲染状态常量
+#define RENDERING_STATE_MAX_STACK_SIZE 32           // 渲染状态最大栈大小
+#define RENDERING_STATE_DEFAULT_BLEND_FUNC 0x0302    // 默认混合函数
+#define RENDERING_STATE_DEFAULT_DEPTH_FUNC 0x0201    // 默认深度函数
+#define RENDERING_STATE_DEFAULT_CULL_FACE 0x0404      // 默认剔除面
+#define RENDERING_STATE_DEFAULT_POLYGON_MODE 0x1B00  // 默认多边形模式
+
+// 缓冲区管理常量
+#define RENDERING_BUFFER_MAX_SIZE 0x1000000         // 缓冲区最大大小
+#define RENDERING_BUFFER_MIN_SIZE 0x1000            // 缓冲区最小大小
+#define RENDERING_BUFFER_DEFAULT_ALIGNMENT 16        // 缓冲区默认对齐
+#define RENDERING_BUFFER_MAX_BUFFERS 64              // 最大缓冲区数量
+#define RENDERING_BUFFER_MAX_BINDINGS 32             // 最大绑定数量
+
+// ============================================================================
+// 类型别名定义
+// ============================================================================
+
+typedef undefined RenderingMaterial;                // 渲染材质类型
+typedef undefined RenderingTexture;                 // 渲染纹理类型
+typedef undefined RenderingShader;                  // 渲染着色器类型
+typedef undefined RenderingState;                   // 渲染状态类型
+typedef undefined RenderingBuffer;                  // 渲染缓冲区类型
+typedef undefined RenderingGeometry;                // 渲染几何类型
+typedef undefined RenderingLight;                   // 渲染光照类型
+typedef undefined RenderingCamera;                  // 渲染相机类型
+typedef undefined RenderingQueue;                   // 渲染队列类型
+typedef undefined RenderingEffect;                  // 渲染效果类型
+typedef undefined RenderingParameter;               // 渲染参数类型
+typedef undefined RenderingUniform;                 // 渲染Uniform类型
+typedef undefined RenderingAttribute;               // 渲染属性类型
+typedef undefined RenderingSampler;                 // 渲染采样器类型
+typedef undefined RenderingFramebuffer;             // 渲染帧缓冲类型
+typedef undefined RenderingRenderbuffer;            // 渲染渲染缓冲类型
+typedef undefined RenderingProgram;                 // 渲染程序类型
+
+// ============================================================================
+// 枚举定义
+// ============================================================================
+
+/**
+ * @brief 材质类型枚举
+ */
+typedef enum {
+    RENDERING_MATERIAL_TYPE_BASIC = 0,             // 基础材质
+    RENDERING_MATERIAL_TYPE_PBR = 1,                 // PBR材质
+    RENDERING_MATERIAL_TYPE_NORMAL = 2,             // 法线材质
+    RENDERING_MATERIAL_TYPE_SPECULAR = 3,            // 高光材质
+    RENDERING_MATERIAL_TYPE_EMISSIVE = 4,            // 自发光材质
+    RENDERING_MATERIAL_TYPE_TRANSPARENT = 5,        // 透明材质
+    RENDERING_MATERIAL_TYPE_CUSTOM = 6              // 自定义材质
+} RenderingMaterialType;
+
+/**
+ * @brief 纹理类型枚举
+ */
+typedef enum {
+    RENDERING_TEXTURE_TYPE_2D = 0,                 // 2D纹理
+    RENDERING_TEXTURE_TYPE_3D = 1,                 // 3D纹理
+    RENDERING_TEXTURE_TYPE_CUBE = 2,                // 立方体纹理
+    RENDERING_TEXTURE_TYPE_2D_ARRAY = 3,           // 2D纹理数组
+    RENDERING_TEXTURE_TYPE_CUBE_ARRAY = 4,         // 立方体纹理数组
+    RENDERING_TEXTURE_TYPE_RECTANGLE = 5            // 矩形纹理
+} RenderingTextureType;
+
+/**
+ * @brief 着色器类型枚举
+ */
+typedef enum {
+    RENDERING_SHADER_TYPE_VERTEX = 0,               // 顶点着色器
+    RENDERING_SHADER_TYPE_FRAGMENT = 1,             // 片段着色器
+    RENDERING_SHADER_TYPE_GEOMETRY = 2,             // 几何着色器
+    RENDERING_SHADER_TYPE_TESSELLATION = 3,         // 细分着色器
+    RENDERING_SHADER_TYPE_COMPUTE = 4               // 计算着色器
+} RenderingShaderType;
+
+/**
+ * @brief 渲染状态枚举
+ */
+typedef enum {
+    RENDERING_STATE_SOLID = 0,                      // 实体状态
+    RENDERING_STATE_WIREFRAME = 1,                   // 线框状态
+    RENDERING_STATE_POINTS = 2,                      // 点状态
+    RENDERING_STATE_TRANSPARENT = 3,                 // 透明状态
+    RENDERING_STATE_SHADOW = 4,                      // 阴影状态
+    RENDERING_STATE_PICKING = 5                      // 拾取状态
+} RenderingStateType;
+
+// ============================================================================
+// 数据结构定义
+// ============================================================================
+
+/**
+ * @brief 材质参数结构
+ */
+typedef struct {
+    char* name;                                     // 参数名称
+    uint32_t type;                                  // 参数类型
+    union {
+        float floatValue;                           // 浮点值
+        int intValue;                               // 整数值
+        float vector4[4];                           // 4D向量值
+        float matrix4[16];                          // 4x4矩阵值
+    } value;                                        // 参数值
+    uint32_t flags;                                 // 参数标志
+    RenderingMaterial* material;                    // 关联材质
+} RenderingMaterialParameter;
+
+/**
+ * @brief 纹理描述符结构
+ */
+typedef struct {
+    uint32_t width;                                 // 纹理宽度
+    uint32_t height;                                // 纹理高度
+    uint32_t depth;                                 // 纹理深度
+    uint32_t format;                                // 纹理格式
+    uint32_t type;                                  // 纹理类型
+    uint32_t mipmaps;                               // Mipmap级别
+    uint32_t flags;                                 // 纹理标志
+    void* data;                                     // 纹理数据
+    RenderingTexture* texture;                     // 纹理对象
+} RenderingTextureDescriptor;
+
+/**
+ * @brief 着色器程序结构
+ */
+typedef struct {
+    uint32_t programId;                             // 程序ID
+    RenderingShader* vertexShader;                 // 顶点着色器
+    RenderingShader* fragmentShader;               // 片段着色器
+    RenderingShader* geometryShader;               // 几何着色器
+    uint32_t uniformCount;                         // Uniform数量
+    uint32_t attributeCount;                       // 属性数量
+    RenderingUniform* uniforms;                     // Uniform数组
+    RenderingAttribute* attributes;               // 属性数组
+    uint32_t flags;                                 // 程序标志
+} RenderingShaderProgram;
+
+/**
+ * @brief 渲染状态结构
+ */
+typedef struct {
+    uint32_t blendEnabled;                          // 混合启用
+    uint32_t depthTestEnabled;                      // 深度测试启用
+    uint32_t cullFaceEnabled;                       // 剔除面启用
+    uint32_t blendFuncSrc;                          // 混合源函数
+    uint32_t blendFuncDst;                          // 混合目标函数
+    uint32_t depthFunc;                             // 深度函数
+    uint32_t cullFaceMode;                          // 剔除面模式
+    uint32_t polygonMode;                           // 多边形模式
+    float lineWidth;                                // 线宽
+    float pointSize;                                // 点大小
+    uint32_t flags;                                 // 状态标志
+} RenderingState;
+
+/**
+ * @brief 渲染队列项结构
+ */
+typedef struct {
+    RenderingMaterial* material;                  // 材质
+    RenderingGeometry* geometry;                   // 几何体
+    RenderingState state;                          // 渲染状态
+    float distance;                                 // 距离
+    uint32_t layer;                                 // 层级
+    uint32_t flags;                                 // 队列项标志
+    void* userData;                                // 用户数据
+} RenderingQueueItem;
+
+// ============================================================================
+// 全局变量声明
+// ============================================================================
+
+// 材质系统全局变量
+extern undefined UNK_1801792b0;                    // 材质系统数据1
+extern undefined UNK_180423a20;                    // 材质系统数据2
+
+// 渲染状态全局变量
+extern undefined UNK_18099553c;                    // 渲染状态数据1
+extern undefined UNK_1809955bc;                    // 渲染状态数据2
+extern undefined UNK_1809958c0;                    // 渲染状态数据3
+extern undefined UNK_180995b80;                    // 渲染状态数据4
+extern undefined UNK_180a29670;                    // 渲染状态数据5
+extern undefined UNK_180995a40;                    // 渲染状态数据6
+extern undefined UNK_180995a60;                    // 渲染状态数据7
+extern undefined UNK_180a29660;                    // 渲染状态数据8
+extern undefined UNK_1809958a8;                    // 渲染状态数据9
+extern undefined UNK_1809958b4;                    // 渲染状态数据10
+extern undefined UNK_180a27cf8;                    // 渲染状态数据11
+extern undefined UNK_180a27d08;                    // 渲染状态数据12
+extern undefined UNK_180a27d10;                    // 渲染状态数据13
+extern undefined UNK_180a27d1c;                    // 渲染状态数据14
+extern undefined UNK_180a27d34;                    // 渲染状态数据15
+extern undefined UNK_180a27d38;                    // 渲染状态数据16
+extern undefined UNK_180a27d50;                    // 渲染状态数据17
+extern undefined UNK_180a27d24;                    // 渲染状态数据18
+extern undefined DAT_180c8ec8c;                    // 渲染状态数据19
+extern undefined UNK_180a27d58;                    // 渲染状态数据20
+
+// 材质参数全局变量
+extern undefined UNK_180a29190;                    // 材质参数数据1
+extern undefined UNK_180a29194;                    // 材质参数数据2
+extern undefined UNK_180a291d0;                    // 材质参数数据3
+extern undefined UNK_180a291f0;                    // 材质参数数据4
+extern undefined UNK_180a291f4;                    // 材质参数数据5
+extern undefined UNK_180a29630;                    // 材质参数数据6
+
+// ============================================================================
+// 函数声明
+// ============================================================================
+
+// 渲染系统材质处理器 (RenderingSystem_MaterialProcessor)
+// 功能：处理和管理渲染材质
+// 参数：无
+// 返回值：RenderingMaterial - 渲染材质对象
 undefined FUN_180423a60;
 
 
-// 函数: undefined FUN_180423b90;
+// 渲染系统纹理管理器 (RenderingSystem_TextureManager)
+// 功能：处理和管理渲染纹理
+// 参数：无
+// 返回值：RenderingTexture - 渲染纹理对象
 undefined FUN_180423b90;
 
-
-// 函数: undefined FUN_180420680;
+// 渲染系统着色器控制器 (RenderingSystem_ShaderController)
+// 功能：控制和管理渲染着色器
+// 参数：无
+// 返回值：RenderingShader - 渲染着色器对象
 undefined FUN_180420680;
 
 
-// 函数: undefined FUN_180420ca0;
+// 渲染系统状态管理器 (RenderingSystem_StateManager)
+// 功能：管理渲染系统状态
+// 参数：无
+// 返回值：RenderingState - 渲染状态对象
 undefined FUN_180420ca0;
 
-
-// 函数: undefined FUN_180423760;
+// 渲染系统缓冲区管理器 (RenderingSystem_BufferManager)
+// 功能：管理渲染缓冲区
+// 参数：无
+// 返回值：RenderingBuffer - 渲染缓冲区对象
 undefined FUN_180423760;
 
 

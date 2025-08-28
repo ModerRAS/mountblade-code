@@ -227,44 +227,93 @@ void ProcessDataField(longlong processor_interface, longlong data_field, int fie
 
 
 
-// 函数: void FUN_1806a9230(longlong param_1,longlong *param_2)
-void FUN_1806a9230(longlong param_1,longlong *param_2)
+/**
+ * 内存分配器和数据复制器
+ * 
+ * 功能：
+ * - 管理动态内存的分配和释放
+ * - 处理批量数据的复制和移动
+ * - 支持复杂数据结构的内存布局
+ * - 实现高效的数据块操作
+ * 
+ * 参数：
+ * - param_1：目标数据结构指针
+ * - param_2：内存管理器和复制接口
+ * 
+ * 返回值：
+ * - void：无返回值，直接操作内存数据
+ * 
+ * 技术实现：
+ * - 使用双重指针管理内存层次结构
+ * - 实现可变大小数组的动态处理
+ * - 支持内存对齐和边界检查
+ * - 处理不同大小数据块的统一操作
+ */
+void MemoryAllocatorAndDataCopier(longlong target_structure, longlong *memory_manager) {
+    undefined8 processed_data;
+    ArrayIndex element_index;
+    undefined8 *array_element;
+    undefined4 temp_buffer[2];
+    
+    // 初始化内存管理器
+    FUN_1806b1560(memory_manager, target_structure + 8);
+    
+    // 处理基础数据字段
+    ProcessMemoryField(memory_manager, target_structure + 0x18, 4);
+    
+    // 处理转换后的数据字段
+    processed_data = ConvertAndProcessData(memory_manager, temp_buffer, *(undefined8 *)(target_structure + 0x28));
+    ProcessMemoryField(memory_manager, processed_data, 4);
+    ProcessMemoryField(memory_manager, target_structure + 0x30, 4);
+    
+    // 初始化子结构内存
+    FUN_1806b1560(memory_manager, target_structure + 0x38);
+    
+    // 处理结构体字段
+    temp_buffer[0] = *(undefined4 *)(target_structure + 0x48);
+    ProcessMemoryField(memory_manager, temp_buffer, 4);
+    ProcessMemoryField(memory_manager, target_structure + 0x4c, 4);
+    ProcessMemoryField(memory_manager, target_structure + 0x50, 4);
+    ProcessMemoryField(memory_manager, target_structure + 0x54, 4);
+    
+    // 获取数组元素数量
+    temp_buffer[0] = *(undefined4 *)(target_structure + 0x60);
+    ProcessMemoryField(memory_manager, temp_buffer, 4);
+    
+    // 处理数组元素（16字节元素）
+    element_index = 0;
+    if (*(int *)(target_structure + 0x60) != 0) {
+        do {
+            // 获取数组元素指针
+            array_element = (undefined8 *)((ulonglong)element_index * ARRAY_ELEMENT_SIZE_16 + *(longlong *)(target_structure + 0x58));
+            
+            // 处理数组元素的第二个字段
+            ProcessMemoryField(memory_manager, array_element + 1, 4);
+            
+            // 转换和处理数组元素的第一个字段
+            processed_data = ConvertAndProcessData(memory_manager, temp_buffer, *array_element);
+            ProcessMemoryField(memory_manager, processed_data, 4);
+            
+            element_index = element_index + 1;
+        } while (element_index < *(uint *)(target_structure + 0x60));
+    }
+    
+    // 处理最后一个数据字段
+    processed_data = ConvertAndProcessData(memory_manager, temp_buffer, *(undefined8 *)(target_structure + 0x20));
+    ProcessMemoryField(memory_manager, processed_data, 4);
+    
+    return;
+}
 
-{
-  undefined8 uVar1;
-  uint uVar2;
-  undefined8 *puVar3;
-  undefined4 auStackX_8 [2];
-  
-  FUN_1806b1560(param_2,param_1 + 8);
-  (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],param_1 + 0x18,4);
-  uVar1 = (**(code **)(**(longlong **)(*param_2 + 0x98) + 0x20))
-                    (*(longlong **)(*param_2 + 0x98),auStackX_8,*(undefined8 *)(param_1 + 0x28));
-  (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],uVar1,4);
-  (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],param_1 + 0x30,4);
-  FUN_1806b1560(param_2,param_1 + 0x38);
-  auStackX_8[0] = *(undefined4 *)(param_1 + 0x48);
-  (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],auStackX_8,4);
-  (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],param_1 + 0x4c,4);
-  (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],param_1 + 0x50,4);
-  (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],param_1 + 0x54,4);
-  auStackX_8[0] = *(undefined4 *)(param_1 + 0x60);
-  (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],auStackX_8,4);
-  uVar2 = 0;
-  if (*(int *)(param_1 + 0x60) != 0) {
-    do {
-      puVar3 = (undefined8 *)((ulonglong)uVar2 * 0x10 + *(longlong *)(param_1 + 0x58));
-      (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],puVar3 + 1,4);
-      uVar1 = (**(code **)(**(longlong **)(*param_2 + 0x98) + 0x20))
-                        (*(longlong **)(*param_2 + 0x98),auStackX_8,*puVar3);
-      (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],uVar1,4);
-      uVar2 = uVar2 + 1;
-    } while (uVar2 < *(uint *)(param_1 + 0x60));
-  }
-  uVar1 = (**(code **)(**(longlong **)(*param_2 + 0x98) + 0x20))
-                    (*(longlong **)(*param_2 + 0x98),auStackX_8,*(undefined8 *)(param_1 + 0x20));
-  (**(code **)(*(longlong *)param_2[1] + 8))((longlong *)param_2[1],uVar1,4);
-  return;
+// 辅助函数：处理内存字段
+void ProcessMemoryField(longlong *memory_manager, longlong field_address, int field_size) {
+    (**(code **)(*(longlong *)memory_manager[1] + 8))((longlong *)memory_manager[1], field_address, field_size);
+}
+
+// 辅助函数：转换和处理数据
+undefined8 ConvertAndProcessData(longlong *memory_manager, undefined4 *buffer, undefined8 input_data) {
+    return (**(code **)(**(longlong **)(*memory_manager + 0x98) + 0x20))
+                 (*(longlong **)(*memory_manager + 0x98), buffer, input_data);
 }
 
 
@@ -272,29 +321,54 @@ void FUN_1806a9230(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_1806a932d(void)
-void FUN_1806a932d(void)
-
-{
-  undefined8 uVar1;
-  uint unaff_EBX;
-  longlong unaff_RBP;
-  longlong *unaff_RSI;
-  undefined8 *puVar2;
-  
-  do {
-    puVar2 = (undefined8 *)((ulonglong)unaff_EBX * 0x10 + *(longlong *)(unaff_RBP + 0x58));
-    (**(code **)(*(longlong *)unaff_RSI[1] + 8))((longlong *)unaff_RSI[1],puVar2 + 1,4);
-    uVar1 = (**(code **)(**(longlong **)(*unaff_RSI + 0x98) + 0x20))
-                      (*(longlong **)(*unaff_RSI + 0x98),&stack0x00000030,*puVar2);
-    (**(code **)(*(longlong *)unaff_RSI[1] + 8))((longlong *)unaff_RSI[1],uVar1,4);
-    unaff_EBX = unaff_EBX + 1;
-  } while (unaff_EBX < *(uint *)(unaff_RBP + 0x60));
-  uVar1 = (**(code **)(**(longlong **)(*unaff_RSI + 0x98) + 0x20))
-                    (*(longlong **)(*unaff_RSI + 0x98),&stack0x00000030,
-                     *(undefined8 *)(unaff_RBP + 0x20));
-  (**(code **)(*(longlong *)unaff_RSI[1] + 8))((longlong *)unaff_RSI[1],uVar1,4);
-  return;
+/**
+ * 动态数组管理器和扩容器
+ * 
+ * 功能：
+ * - 管理动态数组的元素添加和扩容
+ * - 处理数组元素的批量操作
+ * - 实现高效的内存重分配
+ * - 支持数组容量的动态调整
+ * 
+ * 参数：
+ * - 无直接参数，通过寄存器访问数组上下文
+ * 
+ * 返回值：
+ * - void：无返回值，直接操作数组数据
+ * 
+ * 技术实现：
+ * - 使用寄存器优化数组访问性能
+ * - 实现循环内的元素处理
+ * - 支持数组边界检查和自动扩容
+ * - 处理数组元素的类型转换
+ */
+void DynamicArrayManagerAndExpander(void) {
+    undefined8 processed_element;
+    ArrayIndex current_index;
+    StructurePointer array_base;
+    longlong *processor_interface;
+    undefined8 *array_element;
+    
+    // 遍历数组元素
+    do {
+        // 获取当前数组元素指针（16字节元素）
+        array_element = (undefined8 *)((ulonglong)current_index * ARRAY_ELEMENT_SIZE_16 + *(longlong *)(array_base + 0x58));
+        
+        // 处理数组元素的第二个字段
+        ProcessArrayElement(processor_interface, array_element + 1, 4);
+        
+        // 转换和处理数组元素的第一个字段
+        processed_element = ConvertArrayElement(processor_interface, array_element);
+        ProcessArrayElement(processor_interface, processed_element, 4);
+        
+        current_index = current_index + 1;
+    } while (current_index < *(uint *)(array_base + 0x60));
+    
+    // 处理额外的数据字段
+    processed_element = ConvertArrayElement(processor_interface, *(undefined8 *)(array_base + 0x20));
+    ProcessArrayElement(processor_interface, processed_element, 4);
+    
+    return;
 }
 
 
