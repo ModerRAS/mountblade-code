@@ -97,6 +97,7 @@ void rendering_system_fft_processor(float *param_1, float *param_2, float *param
 
 // 渲染系统图像处理内部函数
 char rendering_system_custom_pixel_processor(int param1, char pixel_value, int param3);
+void rendering_system_simd_optimizer(void);
 
 // =============================================================================
 // 函数别名定义
@@ -115,6 +116,7 @@ char rendering_system_custom_pixel_processor(int param1, char pixel_value, int p
 
 // 内部功能函数别名
 #define RenderingSystem_CustomPixelProcessor    rendering_system_custom_pixel_processor
+#define RenderingSystem_SIMDOptimizer           rendering_system_simd_optimizer
 
 // =============================================================================
 // 技术说明
