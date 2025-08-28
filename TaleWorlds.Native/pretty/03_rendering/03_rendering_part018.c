@@ -1,81 +1,240 @@
+/**
+ * @file 03_rendering_part018.c
+ * @brief 渲染系统高级状态管理和参数处理模块
+ * 
+ * 本模块包含3个核心函数，主要功能涵盖：
+ * - 渲染状态标志位管理和优化
+ * - 渲染参数初始化和配置
+ * - 材质参数处理和渲染管线配置
+ * 
+ * 主要函数：
+ * - RenderingSystemFlagManager: 渲染系统标志位管理器
+ * - RenderingSystemParameterInitializer: 渲染系统参数初始化器
+ * - RenderingSystemMaterialProcessor: 渲染系统材质参数处理器
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part018.c - 渲染系统高级标志位和材质处理模块
-// 包含3个核心函数：
-// 1. process_rendering_flags - 处理渲染标志位和状态更新
-// 2. initialize_material_parameters - 初始化材质参数
-// 3. parse_material_data - 解析材质数据
+// =============================================================================
+// 常量定义
+// =============================================================================
 
-// 函数: 处理渲染标志位和状态更新
-// 原函数名: FUN_180278270
-void process_rendering_flags(longlong render_context)
+/** 渲染系统常量定义 */
+#define RENDERING_SYSTEM_FLAG_MASK           0x1f        // 标志位掩码
+#define RENDERING_SYSTEM_FLAG_SHIFT          5           // 标志位移位
+#define RENDERING_SYSTEM_MAX_FLAGS          32          // 最大标志位数量
+#define RENDERING_SYSTEM_ELEMENT_SIZE       0x10        // 元素大小
+#define RENDERING_SYSTEM_BUFFER_SIZE        0x2000000   // 缓冲区大小
+#define RENDERING_SYSTEM_QUEUE_SIZE         0x28        // 队列大小
+#define RENDERING_SYSTEM_BLOCK_SIZE         0x128       // 块大小
+#define RENDERING_SYSTEM_DATA_SIZE          0x114       // 数据大小
+#define RENDERING_SYSTEM_STRING_SIZE        0x80        // 字符串大小
+
+/** 渲染系统偏移量定义 */
+#define RENDERING_OFFSET_FLAG_COUNT         0x58        // 标志计数偏移
+#define RENDERING_OFFSET_DATA_START         0x38        // 数据起始偏移
+#define RENDERING_OFFSET_DATA_END           0x40        // 数据结束偏移
+#define RENDERING_OFFSET_ELEMENT_FLAGS      0x8         // 元素标志偏移
+#define RENDERING_OFFSET_REFERENCE_PTR      0x28        // 引用指针偏移
+#define RENDERING_OFFSET_NEXT_PTR           0x168        // 下一个指针偏移
+#define RENDERING_OFFSET_COUNTER            0x2b0       // 计数器偏移
+#define RENDERING_OFFSET_ENABLE_FLAG        0x60        // 启用标志偏移
+#define RENDERING_OFFSET_PARAM_DATA         0x58        // 参数数据偏移
+#define RENDERING_OFFSET_MATERIAL_DATA      0x30        // 材质数据偏移
+#define RENDERING_OFFSET_TEXTURE_DATA      0x330        // 纹理数据偏移
+#define RENDERING_OFFSET_COLOR_DATA         0x390        // 颜色数据偏移
+#define RENDERING_OFFSET_ALPHA_DATA         0x3b0        // 透明度数据偏移
+#define RENDERING_OFFSET_STATUS_DATA        800          // 状态数据偏移
+#define RENDERING_OFFSET_CONFIG_DATA       0x210        // 配置数据偏移
+#define RENDERING_OFFSET_RESOURCE_DATA     0x3c8        // 资源数据偏移
+
+/** 渲染系统默认值定义 */
+#define RENDERING_DEFAULT_FLOAT_VALUE       0x3f800000  // 默认浮点值 (1.0f)
+#define RENDERING_DEFAULT_DOUBLE_VALUE      0x3f80000000000000  // 默认双精度值 (1.0)
+#define RENDERING_DEFAULT_ALPHA_VALUE       0xff        // 默认透明度值
+#define RENDERING_DEFAULT_CONFIG_VALUE      0x21        // 默认配置值
+#define RENDERING_DEFAULT_MASK_VALUE       0xffffffff  // 默认掩码值
+#define RENDERING_DEFAULT_LIMIT_VALUE       0x7f7fffff  // 默认限制值
+#define RENDERING_DEFAULT_QUEUE_INDEX      0xfffffffffffffffe  // 默认队列索引
+
+/** 渲染系统状态标志 */
+#define RENDERING_STATUS_ENABLED           0x01        // 启用状态
+#define RENDERING_STATUS_ACTIVE            0x02        // 活动状态
+#define RENDERING_STATUS_INITIALIZED       0x04        // 初始化状态
+#define RENDERING_STATUS_READY             0x08        // 准备状态
+#define RENDERING_STATUS_ERROR             0x10        // 错误状态
+
+// =============================================================================
+// 类型别名定义
+// =============================================================================
+
+/** 基础类型别名 */
+typedef uint8_t         render_byte_t;       // 渲染字节类型
+typedef uint16_t        render_short_t;      // 渲染短整型
+typedef uint32_t        render_flag_t;       // 渲染标志类型
+typedef uint64_t        render_ptr_t;        // 渲染指针类型
+typedef float           render_float_t;      // 渲染浮点类型
+typedef double          render_double_t;     // 渲染双精度类型
+
+/** 渲染系统结构体类型 */
+typedef void*           render_context_t;    // 渲染上下文类型
+typedef void*           render_resource_t;   // 渲染资源类型
+typedef void*           render_material_t;   // 渲染材质类型
+typedef void*           render_texture_t;    // 渲染纹理类型
+typedef void*           render_mesh_t;       // 渲染网格类型
+typedef void*           render_queue_t;      // 渲染队列类型
+
+/** 渲染系统回调函数类型 */
+typedef void*           (*render_allocator_t)(size_t size, size_t align, int flags, int tag);  // 渲染分配器类型
+typedef void            (*render_deallocator_t)(void* ptr);  // 渲染释放器类型
+typedef void            (*render_callback_t)(void* context, void* param1, void* param2);  // 渲染回调类型
+
+// =============================================================================
+// 函数声明
+// =============================================================================
+
+/** 渲染系统标志位管理器 */
+void RenderingSystemFlagManager(render_context_t context);
+
+/** 渲染系统参数初始化器 */
+void RenderingSystemParameterInitializer(render_context_t context, render_resource_t resource1, render_resource_t resource2, render_byte_t flags);
+
+/** 渲染系统材质参数处理器 */
+void RenderingSystemMaterialProcessor(render_context_t context, render_material_t material, render_mesh_t mesh);
+
+// =============================================================================
+// 核心函数实现
+// =============================================================================
+
+/**
+ * 渲染系统标志位管理器
+ * 
+ * 该函数负责管理和优化渲染系统的标志位，包括：
+ * - 标志位的设置和清除
+ * - 标志位的批量处理
+ * - 标志位状态的同步
+ * - 渲染对象的状态更新
+ * 
+ * @param context 渲染系统上下文指针
+ */
+void RenderingSystemFlagManager(render_context_t context)
 {
-    ulonglong current_flag;
-    ulonglong end_flag;
-    int flag_index;
-    uint flag_mask;
-    int item_count;
-    int flag_count;
+    render_ptr_t data_start;     // 数据起始指针
+    render_ptr_t data_end;       // 数据结束指针
+    render_ptr_t current_ptr;    // 当前指针
+    render_flag_t flag_mask;     // 标志位掩码
+    int flag_count;              // 标志位计数
+    int match_count;             // 匹配计数
+    int i;                       // 循环索引
     
-    flag_index = 1;
-    flag_count = *(int *)(render_context + 0x58); // 获取标志位数量
+    // 初始化标志位处理
+    flag_count = 1;
     
-    if (flag_count > 1) {
+    // 检查是否有需要处理的标志位
+    if (1 < *(int*)((uint8_t*)context + RENDERING_OFFSET_FLAG_COUNT)) {
         do {
-            current_flag = *(ulonglong *)(render_context + 0x38); // 获取当前标志位起始地址
-            end_flag = *(ulonglong *)(render_context + 0x40); // 获取结束地址
-            flag_mask = 1 << ((byte)flag_index & 0x1f); // 创建标志位掩码
-            item_count = 0;
+            // 获取数据范围
+            data_start = *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_DATA_START);
+            data_end = *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_DATA_END);
             
-            // 第一遍：统计符合条件的项
-            if (current_flag < end_flag) {
+            // 计算标志位掩码
+            flag_mask = 1 << ((render_byte_t)flag_count & RENDERING_SYSTEM_FLAG_MASK);
+            match_count = 0;
+            current_ptr = data_start;
+            
+            // 第一遍：统计匹配的标志位
+            if (data_start < data_end) {
                 do {
-                    if ((*(uint *)(current_flag + 8) & flag_mask) != 0) {
-                        item_count++;
+                    i = match_count + 1;
+                    if ((*(render_flag_t*)((uint8_t*)current_ptr + RENDERING_OFFSET_ELEMENT_FLAGS) & flag_mask) == 0) {
+                        i = match_count;
                     }
-                    current_flag = current_flag + 0x10; // 移动到下一项
-                } while (current_flag < end_flag);
+                    match_count = i;
+                    current_ptr = current_ptr + RENDERING_SYSTEM_ELEMENT_SIZE;
+                } while (current_ptr < data_end);
                 
-                // 如果没有找到符合条件的项，跳转到清理部分
-                if (item_count == 0) goto cleanup_flags;
+                // 如果没有匹配的标志位，跳过设置阶段
+                if (match_count == 0) goto FLAG_PROCESS_SKIP;
             }
             else {
-            cleanup_flags:
-                // 清理标志位
-                if (current_flag < end_flag) {
+FLAG_PROCESS_SKIP:
+                // 第二遍：设置标志位
+                if (data_start < data_end) {
                     do {
-                        if ((1 << ((byte)flag_index - 1 & 0x1f) & *(uint *)(current_flag + 8)) != 0) {
-                            *(uint *)(current_flag + 8) = *(uint *)(current_flag + 8) | flag_mask;
+                        if ((1 << ((render_byte_t)flag_count - 1 & RENDERING_SYSTEM_FLAG_MASK) & 
+                            *(render_flag_t*)((uint8_t*)data_start + RENDERING_OFFSET_ELEMENT_FLAGS)) != 0) {
+                            *(render_flag_t*)((uint8_t*)data_start + RENDERING_OFFSET_ELEMENT_FLAGS) = 
+                                *(render_flag_t*)((uint8_t*)data_start + RENDERING_OFFSET_ELEMENT_FLAGS) | flag_mask;
                         }
-                        current_flag = current_flag + 0x10;
-                    } while (current_flag < *(ulonglong *)(render_context + 0x40));
+                        data_start = data_start + RENDERING_SYSTEM_ELEMENT_SIZE;
+                    } while (data_start < *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_DATA_END));
                 }
             }
-            flag_index++;
-        } while (flag_index < flag_count);
+            
+            flag_count = flag_count + 1;
+        } while (flag_count < *(int*)((uint8_t*)context + RENDERING_OFFSET_FLAG_COUNT));
     }
     
-    // 更新渲染状态计数器
-    update_render_counters(render_context);
+    // 更新引用计数器
+    render_ptr_t reference_ptr = *(render_ptr_t*)((uint8_t*)context + RENDERING_OFFSET_REFERENCE_PTR);
+    if (reference_ptr != 0) {
+        *(render_short_t*)((uint8_t*)reference_ptr + RENDERING_OFFSET_COUNTER) = 
+            *(render_short_t*)((uint8_t*)reference_ptr + RENDERING_OFFSET_COUNTER) + 1;
+        
+        reference_ptr = *(render_ptr_t*)((uint8_t*)reference_ptr + RENDERING_OFFSET_NEXT_PTR);
+        if (reference_ptr != 0) {
+            *(render_short_t*)((uint8_t*)reference_ptr + RENDERING_OFFSET_COUNTER) = 
+                *(render_short_t*)((uint8_t*)reference_ptr + RENDERING_OFFSET_COUNTER) + 1;
+            
+            // 递归更新链表中的所有计数器
+            for (reference_ptr = *(render_ptr_t*)((uint8_t*)reference_ptr + RENDERING_OFFSET_NEXT_PTR); 
+                 reference_ptr != 0; 
+                 reference_ptr = *(render_ptr_t*)((uint8_t*)reference_ptr + RENDERING_OFFSET_NEXT_PTR)) {
+                *(render_short_t*)((uint8_t*)reference_ptr + RENDERING_OFFSET_COUNTER) = 
+                    *(render_short_t*)((uint8_t*)reference_ptr + RENDERING_OFFSET_COUNTER) + 1;
+            }
+            return;
+        }
+    }
     return;
 }
 
-// 函数: 更新渲染计数器
-// 原函数名: 更新渲染计数器的内联函数
+// 函数别名：保持与原代码的兼容性
+void process_rendering_flags(longlong render_context)
+{
+    RenderingSystemFlagManager((render_context_t)render_context);
+}
+
+/**
+ * 更新渲染计数器
+ * 
+ * 该函数负责更新渲染系统中的各种计数器，包括：
+ * - 渲染对象引用计数
+ * - 资源使用计数
+ * - 状态变化计数
+ * 
+ * @param render_context 渲染上下文指针
+ */
 void update_render_counters(longlong render_context)
 {
-    longlong counter_ptr;
+    render_ptr_t counter_ptr;
     
-    counter_ptr = *(longlong *)(render_context + 0x28);
+    counter_ptr = *(render_ptr_t*)((uint8_t*)render_context + RENDERING_OFFSET_REFERENCE_PTR);
     if (counter_ptr != 0) {
-        *(short *)(counter_ptr + 0x2b0) = *(short *)(counter_ptr + 0x2b0) + 1;
-        counter_ptr = *(longlong *)(counter_ptr + 0x168);
+        *(render_short_t*)((uint8_t*)counter_ptr + RENDERING_OFFSET_COUNTER) = 
+            *(render_short_t*)((uint8_t*)counter_ptr + RENDERING_OFFSET_COUNTER) + 1;
+        
+        counter_ptr = *(render_ptr_t*)((uint8_t*)counter_ptr + RENDERING_OFFSET_NEXT_PTR);
         if (counter_ptr != 0) {
-            *(short *)(counter_ptr + 0x2b0) = *(short *)(counter_ptr + 0x2b0) + 1;
+            *(render_short_t*)((uint8_t*)counter_ptr + RENDERING_OFFSET_COUNTER) = 
+                *(render_short_t*)((uint8_t*)counter_ptr + RENDERING_OFFSET_COUNTER) + 1;
+            
             // 递归更新所有关联的计数器
-            for (counter_ptr = *(longlong *)(counter_ptr + 0x168); counter_ptr != 0; 
-                 counter_ptr = *(longlong *)(counter_ptr + 0x168)) {
-                *(short *)(counter_ptr + 0x2b0) = *(short *)(counter_ptr + 0x2b0) + 1;
+            for (counter_ptr = *(render_ptr_t*)((uint8_t*)counter_ptr + RENDERING_OFFSET_NEXT_PTR); 
+                 counter_ptr != 0; 
+                 counter_ptr = *(render_ptr_t*)((uint8_t*)counter_ptr + RENDERING_OFFSET_NEXT_PTR)) {
+                *(render_short_t*)((uint8_t*)counter_ptr + RENDERING_OFFSET_COUNTER) = 
+                    *(render_short_t*)((uint8_t*)counter_ptr + RENDERING_OFFSET_COUNTER) + 1;
             }
             return;
         }

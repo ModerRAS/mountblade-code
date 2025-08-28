@@ -852,474 +852,172 @@ void RenderSystem_DestroyContext(undefined8 *param_1)
 
 
 
-/*==============================================================================
- * 函数: RenderSystem_ExecuteCommand - 渲染系统命令执行函数
- * 
- * 功能描述：
- *   执行渲染系统命令，将命令参数打包后发送到渲染队列处理
- *   这是一个通用的命令执行接口，支持各种渲染操作
- * 
- * 参数：
- *   param_1 - 渲染上下文指针
- *   param_2 - 命令参数（32位）
- *   param_3 - 附加参数（64位）
- * 
- * 返回值：
- *   undefined4 - 命令执行结果
- * 
- * 处理流程：
- *   1. 初始化返回值为0
- *   2. 设置命令处理回调函数
- *   3. 分配命令参数结构体内存
- *   4. 打包命令参数
- *   5. 发送到渲染队列处理
- *   6. 返回执行结果
- * 
- * 注意事项：
- *   - 使用0x18字节的命令参数结构体
- *   - 采用8字节内存对齐
- *   - 支持异步命令执行
- * 
- * 简化实现：
- *   原始实现：命令参数打包和队列发送
- *   简化实现：保持原有命令处理逻辑，添加了详细的参数说明
- =============================================================================*/
-undefined4 RenderSystem_ExecuteCommand(longlong param_1, undefined4 param_2, longlong param_3)
+// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+
+undefined4 FUN_180547540(longlong param_1,undefined4 param_2,longlong param_3)
+
 {
-    undefined4 auStackX_8 [2];     // 返回值存储区
-    undefined4 auStackX_10 [2];    // 命令参数存储区
-    longlong **pplStackX_18;       // 参数结构体指针
-    longlong *aplStack_28 [2];      // 参数数组
-    code *pcStack_18;              // 命令处理回调1
-    code *pcStack_10;              // 命令处理回调2
-    
-    // 初始化返回值
-    auStackX_8[0] = 0;
-    
-    // 设置命令处理回调函数
-    pplStackX_18 = aplStack_28;
-    pcStack_18 = FUN_18054b530;
-    pcStack_10 = FUN_18054b4b0;
-    
-    // 设置命令参数
-    auStackX_10[0] = param_2;
-    
-    // 分配命令参数结构体内存（0x18字节，8字节对齐）
-    aplStack_28[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, RENDER_OBJECT_SIZE_18, MEMORY_ALIGN_8, DAT_180bf65bc, 0xfffffffffffffffe);
-    
-    // 打包命令参数到结构体
-    *aplStack_28[0] = (longlong)auStackX_8;    // 返回值指针
-    aplStack_28[0][1] = (longlong)auStackX_10; // 命令参数
-    aplStack_28[0][2] = param_3;               // 附加参数
-    
-    // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, aplStack_28);
-    
-    // 返回执行结果
-    return auStackX_8[0];
+  undefined4 auStackX_8 [2];
+  undefined4 auStackX_10 [2];
+  longlong **pplStackX_18;
+  longlong *aplStack_28 [2];
+  code *pcStack_18;
+  code *pcStack_10;
+  
+  auStackX_8[0] = 0;
+  pplStackX_18 = aplStack_28;
+  pcStack_18 = FUN_18054b530;
+  pcStack_10 = FUN_18054b4b0;
+  auStackX_10[0] = param_2;
+  aplStack_28[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x18,8,DAT_180bf65bc,0xfffffffffffffffe)
+  ;
+  *aplStack_28[0] = (longlong)auStackX_8;
+  aplStack_28[0][1] = (longlong)auStackX_10;
+  aplStack_28[0][2] = param_3;
+  FUN_18054a4b0(param_1 + 0xe0,aplStack_28);
+  return auStackX_8[0];
 }
 
 
 
-/*==============================================================================
- * 函数: RenderSystem_SetState - 渲染系统状态设置函数
- * 
- * 功能描述：
- *   设置渲染系统的状态标志，用于控制渲染行为
- *   这是一个状态控制函数，通过渲染队列异步设置状态
- * 
- * 参数：
- *   param_1 - 渲染上下文指针
- *   param_2 - 状态参数（64位）
- *   param_3 - 附加参数1（64位）
- *   param_4 - 附加参数2（64位）
- * 
- * 返回值：
- *   undefined1 - 状态设置结果（1=成功，0=失败）
- * 
- * 处理流程：
- *   1. 初始化返回值为1（成功）
- *   2. 设置状态处理回调函数
- *   3. 准备状态参数数组
- *   4. 发送到渲染队列处理
- *   5. 返回设置结果
- * 
- * 注意事项：
- *   - 使用8字节的状态参数数组
- *   - 支持异步状态设置
- *   - 返回值在队列处理完成后更新
- * 
- * 简化实现：
- *   原始实现：简单的状态参数打包和队列发送
- *   简化实现：保持原有状态设置逻辑，添加了详细的功能说明
- =============================================================================*/
-undefined1 RenderSystem_SetState(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+undefined1 FUN_1805475f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 {
-    undefined1 auStackX_8 [8];     // 状态参数数组
-    undefined1 **ppuStackX_10;     // 参数指针
-    undefined1 *apuStack_30 [2];    // 参数数组
-    undefined *puStack_20;           // 回调函数指针
-    code *pcStack_18;               // 状态处理回调
-    
-    // 初始化状态参数（默认成功）
-    auStackX_8[0] = 1;
-    
-    // 设置状态处理参数
-    ppuStackX_10 = apuStack_30;
-    puStack_20 = &UNK_18054b470;
-    pcStack_18 = FUN_18054b3e0;
-    
-    // 准备状态参数数组
-    apuStack_30[0] = auStackX_8;
-    
-    // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
-    
-    // 返回状态设置结果
-    return auStackX_8[0];
+  undefined1 auStackX_8 [8];
+  undefined1 **ppuStackX_10;
+  undefined1 *apuStack_30 [2];
+  undefined *puStack_20;
+  code *pcStack_18;
+  
+  auStackX_8[0] = 1;
+  ppuStackX_10 = apuStack_30;
+  puStack_20 = &UNK_18054b470;
+  pcStack_18 = FUN_18054b3e0;
+  apuStack_30[0] = auStackX_8;
+  FUN_18054a4b0(param_1 + 0xe0,apuStack_30,param_3,param_4,0xfffffffffffffffe);
+  return auStackX_8[0];
 }
 
 
 
 
 
-/*==============================================================================
- * 函数: RenderSystem_SetParameter - 渲染系统参数设置函数
- * 
- * 功能描述：
- *   设置渲染系统的各种参数，用于控制渲染行为和属性
- *   这是一个参数设置函数，通过渲染队列异步设置参数
- * 
- * 参数：
- *   param_1 - 渲染上下文指针
- *   param_2 - 参数值（8位）
- *   param_3 - 附加参数1（64位）
- *   param_4 - 附加参数2（64位）
- * 
- * 返回值：
- *   无
- * 
- * 处理流程：
- *   1. 设置参数处理回调函数
- *   2. 准备参数数组（24字节）
- *   3. 设置参数值
- *   4. 发送到渲染队列处理
- * 
- * 注意事项：
- *   - 使用24字节的参数数组
- *   - 支持异步参数设置
- *   - 参数值为8位，适合设置开关类参数
- * 
- * 简化实现：
- *   原始实现：简单的参数打包和队列发送
- *   简化实现：保持原有参数设置逻辑，添加了详细的参数说明
- =============================================================================*/
-void RenderSystem_SetParameter(longlong param_1, undefined1 param_2, undefined8 param_3, undefined8 param_4)
+// 函数: void FUN_180547650(longlong param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_180547650(longlong param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
+
 {
-    undefined1 auStackX_10 [24];    // 参数数组
-    undefined1 *apuStack_30 [2];    // 参数指针数组
-    undefined *puStack_20;           // 回调函数指针
-    code *pcStack_18;               // 参数处理回调
-    
-    // 设置参数处理回调函数
-    puStack_20 = &UNK_18054b3a0;
-    pcStack_18 = FUN_18054b330;
-    
-    // 准备参数数组
-    apuStack_30[0] = auStackX_10;
-    
-    // 设置参数值
-    auStackX_10[0] = param_2;
-    
-    // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
-    
-    return;
+  undefined1 auStackX_10 [24];
+  undefined1 *apuStack_30 [2];
+  undefined *puStack_20;
+  code *pcStack_18;
+  
+  puStack_20 = &UNK_18054b3a0;
+  pcStack_18 = FUN_18054b330;
+  apuStack_30[0] = auStackX_10;
+  auStackX_10[0] = param_2;
+  FUN_18054a4b0(param_1 + 0xe0,apuStack_30,param_3,param_4,0xfffffffffffffffe);
+  return;
 }
 
 
 
 
 
-/*==============================================================================
- * 函数: RenderSystem_UpdateMatrix - 渲染系统矩阵更新函数
- * 
- * 功能描述：
- *   更新渲染系统的变换矩阵，用于3D渲染中的坐标变换
- *   这是一个矩阵更新函数，通过渲染队列异步更新矩阵
- * 
- * 参数：
- *   param_1 - 渲染上下文指针
- *   param_2 - 矩阵参数（64位）
- *   param_3 - 附加参数1（64位）
- *   param_4 - 附加参数2（64位）
- * 
- * 返回值：
- *   无
- * 
- * 处理流程：
- *   1. 设置第一个矩阵处理回调函数
- *   2. 发送第一个矩阵更新命令到队列
- *   3. 设置第二个矩阵处理回调函数
- *   4. 发送第二个矩阵更新命令到队列
- * 
- * 注意事项：
- *   - 使用16字节的矩阵参数数组
- *   - 支持异步矩阵更新
- *   - 需要两次队列操作来完成矩阵更新
- * 
- * 简化实现：
- *   原始实现：两次矩阵更新操作
- *   简化实现：保持原有矩阵更新逻辑，添加了详细的操作说明
- =============================================================================*/
-void RenderSystem_UpdateMatrix(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 函数: void FUN_1805476a0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_1805476a0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 {
-    undefined1 auStack_30 [16];     // 矩阵参数数组
-    undefined *puStack_20;           // 回调函数指针
-    code *pcStack_18;               // 矩阵处理回调
-    
-    // 设置第一个矩阵处理回调函数
-    puStack_20 = &UNK_18054b310;
-    pcStack_18 = FUN_18054b2b0;
-    
-    // 发送第一个矩阵更新命令到队列
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
-    
-    // 设置第二个矩阵处理回调函数
-    puStack_20 = &UNK_18054b290;
-    pcStack_18 = FUN_18054b230;
-    
-    // 发送第二个矩阵更新命令到队列
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30);
-    
-    return;
+  undefined1 auStack_30 [16];
+  undefined *puStack_20;
+  code *pcStack_18;
+  
+  puStack_20 = &UNK_18054b310;
+  pcStack_18 = FUN_18054b2b0;
+  FUN_18054a4b0(param_1 + 0xe0,auStack_30,param_3,param_4,0xfffffffffffffffe);
+  puStack_20 = &UNK_18054b290;
+  pcStack_18 = FUN_18054b230;
+  FUN_18054a4b0(param_1 + 0xe0,auStack_30);
+  return;
 }
 
 
 
 
 
-/*==============================================================================
- * 函数: RenderSystem_SetTransform - 渲染系统变换设置函数
- * 
- * 功能描述：
- *   设置渲染系统的变换参数，用于控制物体的位置、旋转和缩放
- *   这是一个变换设置函数，通过渲染队列异步设置变换参数
- * 
- * 参数：
- *   param_1 - 渲染上下文指针
- *   param_2 - 变换参数（64位）
- *   param_3 - 附加参数1（64位）
- *   param_4 - 附加参数2（64位）
- * 
- * 返回值：
- *   无
- * 
- * 处理流程：
- *   1. 设置变换处理回调函数
- *   2. 准备变换参数数组
- *   3. 设置变换参数
- *   4. 发送到渲染队列处理
- * 
- * 注意事项：
- *   - 使用16字节的变换参数数组
- *   - 支持异步变换设置
- *   - 变换参数为64位，适合存储复杂的变换数据
- * 
- * 简化实现：
- *   原始实现：简单的变换参数打包和队列发送
- *   简化实现：保持原有变换设置逻辑，添加了详细的参数说明
- =============================================================================*/
-void RenderSystem_SetTransform(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 函数: void FUN_180547720(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_180547720(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
 {
-    undefined8 auStack_30 [2];      // 变换参数数组
-    undefined *puStack_20;           // 回调函数指针
-    code *pcStack_18;               // 变换处理回调
-    
-    // 设置变换处理回调函数
-    puStack_20 = &UNK_18054b1f0;
-    pcStack_18 = FUN_18054b180;
-    
-    // 准备变换参数数组
-    auStack_30[0] = param_2;
-    
-    // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
-    
-    return;
+  undefined8 auStack_30 [2];
+  undefined *puStack_20;
+  code *pcStack_18;
+  
+  puStack_20 = &UNK_18054b1f0;
+  pcStack_18 = FUN_18054b180;
+  auStack_30[0] = param_2;
+  FUN_18054a4b0(param_1 + 0xe0,auStack_30,param_3,param_4,0xfffffffffffffffe);
+  return;
 }
 
 
 
 
 
-/*==============================================================================
- * 函数: RenderSystem_SetViewport - 渲染系统视口设置函数
- * 
- * 功能描述：
- *   设置渲染系统的视口参数，用于控制渲染输出的区域和大小
- *   这是一个视口设置函数，通过渲染队列异步设置视口参数
- * 
- * 参数：
- *   param_1 - 渲染上下文指针
- *   param_2 - 视口参数（8位）
- *   param_3 - 附加参数1（64位）
- *   param_4 - 附加参数2（64位）
- * 
- * 返回值：
- *   无
- * 
- * 处理流程：
- *   1. 设置视口处理回调函数
- *   2. 准备视口参数数组（24字节）
- *   3. 设置视口参数
- *   4. 发送到渲染队列处理
- * 
- * 注意事项：
- *   - 使用24字节的视口参数数组
- *   - 支持异步视口设置
- *   - 视口参数为8位，适合设置视口开关类参数
- * 
- * 简化实现：
- *   原始实现：简单的视口参数打包和队列发送
- *   简化实现：保持原有视口设置逻辑，添加了详细的参数说明
- =============================================================================*/
-void RenderSystem_SetViewport(longlong param_1, undefined1 param_2, undefined8 param_3, undefined8 param_4)
+// 函数: void FUN_180547770(longlong param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_180547770(longlong param_1,undefined1 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-    undefined1 auStackX_10 [24];    // 视口参数数组
-    undefined1 *apuStack_30 [2];    // 参数指针数组
-    undefined *puStack_20;           // 回调函数指针
-    code *pcStack_18;               // 视口处理回调
-    
-    // 设置视口处理回调函数
-    puStack_20 = &UNK_18054b140;
-    pcStack_18 = FUN_18054b0d0;
-    
-    // 准备视口参数数组
-    apuStack_30[0] = auStackX_10;
-    
-    // 设置视口参数
-    auStackX_10[0] = param_2;
-    
-    // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
-    
-    return;
+  undefined1 auStackX_10 [24];
+  undefined1 *apuStack_30 [2];
+  undefined *puStack_20;
+  code *pcStack_18;
+  
+  puStack_20 = &UNK_18054b140;
+  pcStack_18 = FUN_18054b0d0;
+  apuStack_30[0] = auStackX_10;
+  auStackX_10[0] = param_2;
+  FUN_18054a4b0(param_1 + 0xe0,apuStack_30,param_3,param_4,0xfffffffffffffffe);
+  return;
 }
 
 
 
 
 
-/*==============================================================================
- * 函数: RenderSystem_SetScissor - 渲染系统裁剪设置函数
- * 
- * 功能描述：
- *   设置渲染系统的裁剪区域，用于限制渲染输出的范围
- *   这是一个裁剪设置函数，通过渲染队列异步设置裁剪参数
- * 
- * 参数：
- *   param_1 - 渲染上下文指针
- *   param_2 - 裁剪参数（64位）
- *   param_3 - 附加参数1（64位）
- *   param_4 - 附加参数2（64位）
- * 
- * 返回值：
- *   无
- * 
- * 处理流程：
- *   1. 设置裁剪处理回调函数
- *   2. 准备裁剪参数数组
- *   3. 设置裁剪参数
- *   4. 发送到渲染队列处理
- * 
- * 注意事项：
- *   - 使用16字节的裁剪参数数组
- *   - 支持异步裁剪设置
- *   - 裁剪参数为64位，适合存储复杂的裁剪区域数据
- * 
- * 简化实现：
- *   原始实现：简单的裁剪参数打包和队列发送
- *   简化实现：保持原有裁剪设置逻辑，添加了详细的参数说明
- =============================================================================*/
-void RenderSystem_SetScissor(longlong param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 函数: void FUN_1805477c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_1805477c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-    undefined8 auStack_30 [2];      // 裁剪参数数组
-    undefined *puStack_20;           // 回调函数指针
-    code *pcStack_18;               // 裁剪处理回调
-    
-    // 设置裁剪处理回调函数
-    puStack_20 = &UNK_18054afa0;
-    pcStack_18 = FUN_18054af30;
-    
-    // 准备裁剪参数数组
-    auStack_30[0] = param_2;
-    
-    // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, auStack_30, param_3, param_4, 0xfffffffffffffffe);
-    
-    return;
+  undefined8 auStack_30 [2];
+  undefined *puStack_20;
+  code *pcStack_18;
+  
+  puStack_20 = &UNK_18054afa0;
+  pcStack_18 = FUN_18054af30;
+  auStack_30[0] = param_2;
+  FUN_18054a4b0(param_1 + 0xe0,auStack_30,param_3,param_4,0xfffffffffffffffe);
+  return;
 }
 
 
 
 
 
-/*==============================================================================
- * 函数: RenderSystem_SetBlendMode - 渲染系统混合模式设置函数
- * 
- * 功能描述：
- *   设置渲染系统的混合模式，用于控制像素 blending 操作
- *   这是一个混合模式设置函数，通过渲染队列异步设置混合参数
- * 
- * 参数：
- *   param_1 - 渲染上下文指针
- *   param_2 - 混合模式参数（32位）
- *   param_3 - 附加参数1（64位）
- *   param_4 - 附加参数2（64位）
- * 
- * 返回值：
- *   无
- * 
- * 处理流程：
- *   1. 设置混合模式处理回调函数
- *   2. 准备混合模式参数数组（24字节）
- *   3. 设置混合模式参数
- *   4. 发送到渲染队列处理
- * 
- * 注意事项：
- *   - 使用24字节的混合模式参数数组
- *   - 支持异步混合模式设置
- *   - 混合模式参数为32位，适合存储复杂的混合配置
- * 
- * 简化实现：
- *   原始实现：简单的混合模式参数打包和队列发送
- *   简化实现：保持原有混合模式设置逻辑，添加了详细的参数说明
- =============================================================================*/
-void RenderSystem_SetBlendMode(longlong param_1, undefined4 param_2, undefined8 param_3, undefined8 param_4)
+// 函数: void FUN_180547810(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
+void FUN_180547810(longlong param_1,undefined4 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-    undefined4 auStackX_10 [6];    // 混合模式参数数组
-    undefined4 *apuStack_30 [2];   // 参数指针数组
-    undefined *puStack_20;           // 回调函数指针
-    code *pcStack_18;               // 混合模式处理回调
-    
-    // 设置混合模式处理回调函数
-    puStack_20 = &UNK_18054aef0;
-    pcStack_18 = FUN_18054ae80;
-    
-    // 准备混合模式参数数组
-    apuStack_30[0] = auStackX_10;
-    
-    // 设置混合模式参数
-    auStackX_10[0] = param_2;
-    
-    // 发送到渲染队列处理
-    FUN_18054a4b0(param_1 + OFFSET_RENDER_QUEUE, apuStack_30, param_3, param_4, 0xfffffffffffffffe);
-    
-    return;
+  undefined4 auStackX_10 [6];
+  undefined4 *apuStack_30 [2];
+  undefined *puStack_20;
+  code *pcStack_18;
+  
+  puStack_20 = &UNK_18054aef0;
+  pcStack_18 = FUN_18054ae80;
+  apuStack_30[0] = auStackX_10;
+  auStackX_10[0] = param_2;
+  FUN_18054a4b0(param_1 + 0xe0,apuStack_30,param_3,param_4,0xfffffffffffffffe);
+  return;
 }
 
 
