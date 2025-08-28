@@ -761,7 +761,7 @@ void RenderingSystem_Controller(int64_t *param_1, unsigned char param_2)
  * - 验证参数的有效性
  * - 返回参数查询结果
  */
-unsigned int FUN_180448f50(int64_t *param_1)
+unsigned int RenderingSystem_Counter(int64_t *param_1)
 {
     unsigned int param_value;
     
@@ -787,7 +787,7 @@ unsigned int FUN_180448f50(int64_t *param_1)
  * - 验证参数值的合法性
  * - 更新系统参数
  */
-void FUN_180448fb0(int64_t *param_1, unsigned int param_2)
+void RenderingSystem_Updater(int64_t *param_1, unsigned int param_2)
 {
     if (param_1 == NULL) {
         return;
@@ -813,7 +813,7 @@ void FUN_180448fb0(int64_t *param_1, unsigned int param_2)
  * - 验证参数的有效性
  * - 返回高级参数查询结果
  */
-unsigned int FUN_180449000(int64_t *param_1)
+unsigned int RenderingSystem_InfoGetter(int64_t *param_1)
 {
     unsigned int param_value;
     unsigned char *flag_ptr;
@@ -851,7 +851,7 @@ unsigned int FUN_180449000(int64_t *param_1)
  * - 验证参数索引的合法性
  * - 处理参数更新的副作用
  */
-void FUN_180449070(int64_t *param_1, int param_2, unsigned int param_3)
+void RenderingSystem_OperationHandler(int64_t *param_1, int param_2, unsigned int param_3)
 {
     StructureHeaderPtr structure_ptr;
     MemoryManagerPtr memory_ptr;
@@ -898,7 +898,7 @@ void FUN_180449070(int64_t *param_1, int param_2, unsigned int param_3)
  * - 验证参数索引的合法性
  * - 返回参数获取结果
  */
-unsigned int FUN_1804491c0(int64_t *param_1, int param_2)
+unsigned int RenderingSystem_QueryHandler(int64_t *param_1, int param_2)
 {
     unsigned int param_value;
     
@@ -924,7 +924,7 @@ unsigned int FUN_1804491c0(int64_t *param_1, int param_2)
  * - 验证操作的有效性
  * - 处理操作的副作用
  */
-void FUN_180449230(int64_t *param_1)
+void RenderingSystem_Finalizer(int64_t *param_1)
 {
     void *operation_params[8];
     int operation_result;
