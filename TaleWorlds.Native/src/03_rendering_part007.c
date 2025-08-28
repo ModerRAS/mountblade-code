@@ -865,28 +865,37 @@ void FUN_180271b17(void)
   longlong unaff_RDI;                  // RDI寄存器值
   longlong unaff_R14;                  // R14寄存器值
   
-  uVar10 = (ulonglong)unaff_EBP;
+  /* 初始化资源处理循环 */
+  uVar10 = (ulonglong)unaff_EBP;         // 初始化资源偏移量
   do {
-    FUN_180639ec0();
+    FUN_180639ec0();                     // 执行资源同步操作
+    
+    /* 处理第一个资源块 */
     puVar5 = (undefined4 *)unaff_RBX[1];
-    uVar2 = *(undefined4 *)(uVar10 + 0x58 + *(longlong *)(unaff_RDI + 0x128));
+    uVar2 = *(undefined4 *)(uVar10 + RENDERING_OFFSET_58 + 
+           *(longlong *)(unaff_RDI + RENDERING_OFFSET_128));
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-      FUN_180639bf0();
-      puVar5 = (undefined4 *)unaff_RBX[1];
+      FUN_180639bf0();                   // 缓冲区扩展处理
+      puVar5 = (undefined4 *)unaff_RBX[1]; // 更新缓冲区指针
     }
-    *puVar5 = uVar2;
-    unaff_RBX[1] = unaff_RBX[1] + 4;
+    *puVar5 = uVar2;                      // 写入资源块1
+    unaff_RBX[1] = unaff_RBX[1] + 4;     // 移动缓冲区指针
+    
+    /* 处理第二个资源块 */
     puVar5 = (undefined4 *)unaff_RBX[1];
-    uVar2 = *(undefined4 *)(uVar10 + 0x5c + *(longlong *)(unaff_RDI + 0x128));
+    uVar2 = *(undefined4 *)(uVar10 + RENDERING_OFFSET_5C + 
+           *(longlong *)(unaff_RDI + RENDERING_OFFSET_128));
     if ((ulonglong)((*unaff_RBX - (longlong)puVar5) + unaff_RBX[2]) < 5) {
-      FUN_180639bf0();
-      puVar5 = (undefined4 *)unaff_RBX[1];
+      FUN_180639bf0();                   // 缓冲区扩展处理
+      puVar5 = (undefined4 *)unaff_RBX[1]; // 更新缓冲区指针
     }
-    *puVar5 = uVar2;
-    unaff_RBX[1] = unaff_RBX[1] + 4;
-    uVar10 = uVar10 + 0x60;
-    unaff_R14 = unaff_R14 + -1;
-  } while (unaff_R14 != 0);
+    *puVar5 = uVar2;                      // 写入资源块2
+    unaff_RBX[1] = unaff_RBX[1] + 4;     // 移动缓冲区指针
+    
+    /* 更新循环变量 */
+    uVar10 = uVar10 + RENDERING_DATA_BLOCK_SIZE; // 移动到下一个资源块
+    unaff_R14 = unaff_R14 + -1;          // 减少循环计数器
+  } while (unaff_R14 != 0);               // 循环直到处理完所有资源块
   FUN_180639ec0();
   FUN_180639ec0();
   FUN_180639ec0();
