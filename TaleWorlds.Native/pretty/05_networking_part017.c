@@ -365,7 +365,7 @@ void NetworkingSystem_ConnectionProcessor(NetworkHandle *network_interface, Conn
   *connection_result = 0;
   
   // 获取网络连接上下文
-  connection_context = (**(code **)(*(ConnectionContext *)*network_interface + 0x150))((ConnectionContext *)*network_interface, connection_params, 1);
+  connection_context = NetworkingSystem_MethodCall(*(ConnectionContext *)*network_interface, 0x150)((ConnectionContext *)*network_interface, connection_params, 1);
   network_context = connection_context;
   
   // 验证连接上下文有效性
@@ -498,7 +498,7 @@ PROTOCOL_HANDLER_ERROR:
       connection_context = network_interface[2] + 0x290;
     }
     else {
-      connection_context = (**(code **)(*(ConnectionContext *)(config_data + 8) + 0x30))(config_data + 8);
+      connection_context = NetworkingSystem_MethodCall(*(ConnectionContext *)(config_data + 8), 0x30)(config_data + 8);
     }
     operation_result = NetworkingSystem_ResourceAllocator(connection_context, auth_ptr);
     
@@ -511,7 +511,7 @@ PROTOCOL_HANDLER_ERROR:
     if (operation_result != 0) goto PROTOCOL_SETUP_COMPLETE;
     
     // 初始化连接会话
-    connection_context = (**(code **)*auth_ptr)(auth_ptr);
+    connection_context = NetworkingSystem_FunctionPointerCall(*auth_ptr)(auth_ptr);
     resource_limit = *(unsigned long long *)(connection_context + 0x38);
     
     // 处理连接会话初始化
@@ -536,7 +536,7 @@ PROTOCOL_HANDLER_ERROR:
     
 SESSION_INITIALIZATION_COMPLETE:
     // 完成会话初始化
-    connection_context = (**(code **)*auth_ptr)();
+    connection_context = NetworkingSystem_FunctionPointerCall(*auth_ptr)();
     connection_data = *(ConnectionHandle *)(connection_context + 0x10);
     protocol_version = *(ProtocolVersion *)(connection_context + 0x18);
     encryption_type = *(EncryptionType *)(connection_context + 0x1c);
@@ -584,7 +584,7 @@ SESSION_INITIALIZATION_COMPLETE:
             connection_context = *(ConnectionContext *)(connection_context + 0xa0);
             resource_manager = *(ConnectionContext *)(network_context + 0x80);
             session_manager = resource_allocator[2];
-            connection_type = (**(code **)(*auth_ptr + 0x20))(auth_ptr);
+            connection_type = NetworkingSystem_MethodCall(*auth_ptr, 0x20)(auth_ptr);
             authenticator = &config_context;
             config_context = NetworkingSystem_Concat32Low(config_context._4_4_, *(NetworkDword *)(connection_context + resource_limit * 4));
             cleanup_result = NetworkingSystem_MessageHandler(session_manager + 0x388, (ConnectionContext)(int)buffer_size * 0x10 + resource_manager,
@@ -624,7 +624,7 @@ SESSION_INITIALIZATION_COMPLETE:
               config_context = 0;
               resource_manager = *(ConnectionContext *)(network_context + 0x90);
               session_manager = resource_allocator[2];
-              connection_type = (**(code **)(*auth_ptr + 0x20))(auth_ptr);
+              connection_type = NetworkingSystem_MethodCall(*auth_ptr, 0x20)(auth_ptr);
               authenticator = &config_context;
               config_context = NetworkingSystem_Concat32Low(config_context._4_4_, *(NetworkDword *)(connection_context + resource_limit * 4));
               operation_result = NetworkingSystem_MessageHandler(session_manager + 0x388, (ConnectionContext)(int)buffer_size * 0x10 + resource_manager,
@@ -899,13 +899,13 @@ CLEANUP_PROTOCOL_ERROR:
       network_context = *(ConnectionContext *)(network_context + 0x10) + 0x290;
     }
     else {
-      network_context = (**(code **)(*(ConnectionContext *)(connection_context + 8) + 0x30))(connection_context + 8);
+      network_context = NetworkingSystem_MethodCall(*(ConnectionContext *)(connection_context + 8), 0x30)(connection_context + 8);
     }
     operation_result = NetworkingSystem_ResourceAllocator(network_context, connection_pool);
     if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
     
     // 清理会话资源
-    network_context = (**(code **)*connection_pool)(connection_pool);
+    network_context = NetworkingSystem_FunctionPointerCall(*connection_pool)(connection_pool);
     resource_limit = *(unsigned long long *)(network_context + 0x38);
     
     // 处理会话清理
@@ -925,7 +925,7 @@ CLEANUP_PROTOCOL_ERROR:
     
 SESSION_CLEANUP_COMPLETE:
     // 完成会话清理
-    network_context = (**(code **)*connection_pool)();
+    network_context = NetworkingSystem_FunctionPointerCall(*connection_pool)();
     temp_result_1 = *(ConnectionHandle *)(network_context + 0x10);
     connection_flags = *(ConnectionFlags *)(network_context + 0x14);
     protocol_flags = *(ProtocolFlags *)(network_context + 0x18);
@@ -957,7 +957,7 @@ SESSION_CLEANUP_COMPLETE:
             network_context = *(ConnectionContext *)(network_context + 0xa0);
             resource_manager = *(ConnectionContext *)(connection_context + 0x80);
             network_context = *(ConnectionContext *)(*(ConnectionContext *)(connection_context + 0x38) + 0x10);
-            connection_type = (**(code **)(*connection_pool + 0x20))(connection_pool);
+            connection_type = NetworkingSystem_MethodCall(*connection_pool, 0x20)(connection_pool);
             cleanup_result = NetworkingSystem_MessageHandler(network_context + 0x388, (ConnectionContext)(int)buffer_size * 0x10 + resource_manager,
                                   connection_context, connection_type, *(NetworkDword *)(network_context + resource_limit * 4));
             if (cleanup_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
@@ -982,7 +982,7 @@ SESSION_CLEANUP_COMPLETE:
               security_context = 0;
               resource_manager = *(ConnectionContext *)(connection_context + 0x90);
               network_context = *(ConnectionContext *)(*(ConnectionContext *)(connection_context + 0x38) + 0x10);
-              connection_type = (**(code **)(*connection_pool + 0x20))(connection_pool);
+              connection_type = NetworkingSystem_MethodCall(*connection_pool, 0x20)(connection_pool);
               operation_result = NetworkingSystem_MessageHandler(network_context + 0x388, (ConnectionContext)(int)buffer_size * 0x10 + resource_manager,
                                     connection_context, connection_type, *(NetworkDword *)(network_context + resource_limit * 4));
               if (operation_result != 0) goto CLEANUP_PROTOCOL_COMPLETE;
