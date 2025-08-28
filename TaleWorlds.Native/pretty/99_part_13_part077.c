@@ -102,7 +102,7 @@ uint64_t FUN_1808dde10(int64_t *param_1,uint param_2)
   }
   else if (plVar1[2] == 0) {
 LAB_1808dde80:
-    uVar2 = FUN_180769ed0(*plVar1,auStackX_8,1,2,0);
+    uVar2 = SystemDataAnalyzer(*plVar1,auStackX_8,1,2,0);
   }
   else {
     auStackX_18[0] = 0;
@@ -153,7 +153,7 @@ uint64_t FUN_1808dde33(int64_t *param_1,int param_2)
   }
   else if (param_1[2] == 0) {
 LAB_1808dde80:
-    uVar1 = FUN_180769ed0(*param_1,&stack0x00000050,1,2,0);
+    uVar1 = SystemDataAnalyzer(*param_1,&stack0x00000050,1,2,0);
   }
   else {
     in_stack_00000060 = 0;
@@ -213,7 +213,7 @@ uint64_t FUN_1808dde3e(int64_t *param_1,int param_2)
       goto LAB_1808dde9c;
     }
   }
-  uVar1 = FUN_180769ed0(*param_1,&stack0x00000050,1);
+  uVar1 = SystemDataAnalyzer(*param_1,&stack0x00000050,1);
 LAB_1808dde9c:
   if (uVar1 == 0) {
     unaff_EDI = in_stack_00000050 & 0xffff;
@@ -770,11 +770,11 @@ uint64_t FUN_1808de4c0(uint64_t *param_1,int *param_2)
   uint64_t uVar1;
   uint auStackX_8 [2];
   
-  uVar1 = FUN_1808aed00(*param_1,param_2,4);
+  uVar1 = SystemErrorHandler(*param_1,param_2,4);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
-  uVar1 = FUN_1808aed00(*param_1,param_2 + 1,4);
+  uVar1 = SystemErrorHandler(*param_1,param_2 + 1,4);
   auStackX_8[0] = (uint)uVar1;
   if (auStackX_8[0] != 0) {
     return uVar1;
@@ -794,7 +794,7 @@ uint64_t FUN_1808de4c0(uint64_t *param_1,int *param_2)
     }
     param_2[6] = 1;
   }
-  uVar1 = FUN_1808aed00(*param_1,param_2,4);
+  uVar1 = SystemErrorHandler(*param_1,param_2,4);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -868,7 +868,7 @@ uint64_t FUN_1808de650(uint64_t *param_1,int *param_2)
     if (*(int *)(param_1[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_1808aed00(*param_1,param_2,4);
+    uVar1 = SystemErrorHandler(*param_1,param_2,4);
     if ((int)uVar1 == 0) {
       if (*param_2 < 0) {
         return 0xd;
@@ -952,7 +952,7 @@ uint64_t FUN_1808de7f0(int64_t *param_1,uint *param_2)
         goto LAB_1808de860;
       }
     }
-    uVar1 = FUN_180769ed0(*param_1,auStackX_8,1,2,0);
+    uVar1 = SystemDataAnalyzer(*param_1,auStackX_8,1,2,0);
   }
 LAB_1808de860:
   if ((int)uVar1 != 0) {
@@ -972,7 +972,7 @@ LAB_1808de860:
       goto LAB_1808de8ce;
     }
   }
-  uVar2 = FUN_180769ed0(*param_1,auStackX_8,1,2,0);
+  uVar2 = SystemDataAnalyzer(*param_1,auStackX_8,1,2,0);
 LAB_1808de8ce:
   if (uVar2 == 0) {
     *param_2 = *param_2 & 0x7fff;
@@ -994,7 +994,7 @@ uint64_t FUN_1808de900(int64_t param_1,uint64_t param_2)
   uint64_t uVar3;
   
   puVar1 = (int32_t *)
-           FUN_180741e10(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_8144_ptr,0x30,0,0,1);
+           SystemResourceManager(*(uint64_t *)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0),0x40,&unknown_var_8144_ptr,0x30,0,0,1);
   if (puVar1 == (int32_t *)0x0) {
     uVar3 = 0x26;
   }

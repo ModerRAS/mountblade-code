@@ -631,7 +631,7 @@ LAB_1806f94f2:
                 pbStack_260,param_5,uStack_228,param_6,param_13);
 LAB_1806fad6b:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_f8 ^ (uint64_t)&uStack_298);
+  SystemSecurityChecker(uStack_f8 ^ (uint64_t)&uStack_298);
 }
 
 
@@ -947,7 +947,7 @@ code_r0x0001806fb088:
   }
 LAB_1806fb54e:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (uint64_t)auStack_c8);
+  SystemSecurityChecker(uStack_38 ^ (uint64_t)auStack_c8);
 }
 
 

@@ -484,7 +484,7 @@ int UtilitiesSystem_MemoryManager(int64_t* param_1, int param_2)
         if (param_2 * UTIL_MEMORY_BLOCK_SIZE - 1 < UTIL_MAX_MEMORY_SIZE) {
             // 分配新内存
             new_memory = (uint64_t*)
-                     FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+                     SystemResourceManager(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                   param_2 * UTIL_MEMORY_BLOCK_SIZE, 
                                   &unknown_var_8432_ptr,
                                   UTIL_MEMORY_ALIGNMENT, 0, 0, 1);
@@ -515,7 +515,7 @@ memory_cleanup:
     // 清理现有内存
     if ((0 < *(int*)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         // 释放现有内存
-        FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+        SystemDataValidator(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     // 更新内存管理器
@@ -563,7 +563,7 @@ int UtilitiesSystem_MemoryManagerVariant(uint64_t param_1, int param_2)
         // 清理现有内存
         if ((0 < *(int*)((int64_t)unaff_rbx + 0xc)) && (*unaff_rbx != 0)) {
             // 释放现有内存
-            FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *unaff_rbx, &unknown_var_8432_ptr, 0x100, 1);
+            SystemDataValidator(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *unaff_rbx, &unknown_var_8432_ptr, 0x100, 1);
         }
         *unaff_rbx = (int64_t)new_memory;
         *(int*)((int64_t)unaff_rbx + 0xc) = unaff_edi;
@@ -574,7 +574,7 @@ int UtilitiesSystem_MemoryManagerVariant(uint64_t param_1, int param_2)
     if (param_2 * UTIL_MEMORY_BLOCK_SIZE - 1 < UTIL_MAX_MEMORY_SIZE) {
         // 分配新内存
         new_memory = (uint64_t*)
-                 FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+                 SystemResourceManager(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                               param_2 * UTIL_MEMORY_BLOCK_SIZE, 
                               &unknown_var_8432_ptr,
                               UTIL_MEMORY_ALIGNMENT, 0);
@@ -669,7 +669,7 @@ int UtilitiesSystem_OptimizedMemoryManager(int64_t* param_1, int param_2)
         // 检查内存大小限制
         if (param_2 * UTIL_MEMORY_BLOCK_SIZE - 1 < UTIL_MAX_MEMORY_SIZE) {
             // 分配新内存
-            new_memory = FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+            new_memory = SystemResourceManager(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                        param_2 * UTIL_MEMORY_BLOCK_SIZE, 
                                        &unknown_var_8432_ptr,
                                        UTIL_MEMORY_ALIGNMENT, 0, 0, 1);
@@ -691,7 +691,7 @@ memory_cleanup:
     // 清理现有内存
     if ((0 < *(int*)((int64_t)param_1 + 0xc)) && (*param_1 != 0)) {
         // 释放现有内存
-        FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
+        SystemDataValidator(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *param_1, &unknown_var_8432_ptr, 0x100, 1);
     }
     
     // 更新内存管理器
@@ -735,7 +735,7 @@ int UtilitiesSystem_OptimizedMemoryManagerVariant(uint64_t param_1, int param_2)
         // 清理现有内存
         if ((0 < *(int*)((int64_t)unaff_rbx + 0xc)) && (*unaff_rbx != 0)) {
             // 释放现有内存
-            FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *unaff_rbx, &unknown_var_8432_ptr, 0x100, 1);
+            SystemDataValidator(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), *unaff_rbx, &unknown_var_8432_ptr, 0x100, 1);
         }
         *unaff_rbx = new_memory;
         *(int*)((int64_t)unaff_rbx + 0xc) = unaff_edi;
@@ -745,7 +745,7 @@ int UtilitiesSystem_OptimizedMemoryManagerVariant(uint64_t param_1, int param_2)
     // 检查内存大小限制
     if (param_2 * UTIL_MEMORY_BLOCK_SIZE - 1 < UTIL_MAX_MEMORY_SIZE) {
         // 分配新内存
-        new_memory = FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+        new_memory = SystemResourceManager(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                    param_2 * UTIL_MEMORY_BLOCK_SIZE, 
                                    &unknown_var_8432_ptr,
                                    UTIL_MEMORY_ALIGNMENT, 0);
@@ -1010,7 +1010,7 @@ uint64_t UtilitiesSystem_RenderStateManager(int64_t param_1)
                                     }
                                     if ((0 < (int)temp_buffer._4_4_) && (result_buffer != 0)) {
                                         // 释放内存
-                                        FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), result_buffer, &unknown_var_8432_ptr,
+                                        SystemDataValidator(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), result_buffer, &unknown_var_8432_ptr,
                                                       0x100, 1);
                                     }
                                     result_buffer = 0;
@@ -1099,7 +1099,7 @@ uint64_t UtilitiesSystem_RenderStateManager(int64_t param_1)
             if (0 < list_index) goto cleanup_render_data;
             if ((0 < iteration_count) && (result_value != 0)) {
                 // 释放内存
-                FUN_180742250(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), result_value, &unknown_var_8432_ptr, 0x100, 1);
+                SystemDataValidator(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), result_value, &unknown_var_8432_ptr, 0x100, 1);
             }
             result_buffer = 0;
             temp_buffer = 0;
@@ -1141,7 +1141,7 @@ cleanup_render_data:
         } while ((int)new_count < *(int*)(param_1 + 0x20));
     }
     
-    iteration_count = FUN_180744cc0(param_1 + 0x70);
+    iteration_count = SystemStatusChecker(param_1 + 0x70);
     if ((iteration_count == 0) && (iteration_count = FUN_180895130(param_1 + 0x80), iteration_count == 0)) {
         *(uint32_t*)(param_1 + 0x90) = 0xffffffff;
         *(uint32_t*)(param_1 + 0x94) = 0;
@@ -1355,7 +1355,7 @@ uint64_t UtilitiesSystem_AdvancedMemoryManager(int64_t param_1)
         }
         
         // 分配新缓冲区
-        new_buffer = (int*)FUN_180741e10(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
+        new_buffer = (int*)SystemResourceManager(*(uint64_t*)(SYSTEM_MAIN_CONTROL_BLOCK + 0x1a0), 
                                         allocation_size + 0x19,
                                         &unknown_var_9216_ptr, 0x278, 0, 0, 1);
         
@@ -1417,7 +1417,7 @@ int UtilitiesSystem_DataSearcherType1(int64_t param_1, int64_t param_2, int para
     search_result = func_0x00018074b7d0(param_2, param_3, *(uint32_t*)(param_1 + 0x10));
     
     // 执行模式匹配
-    pattern_result = FUN_18074b880(param_2 + search_result, param_3 - search_result, &system_temp_buffer);
+    pattern_result = SystemDataProcessor(param_2 + search_result, param_3 - search_result, &system_temp_buffer);
     search_result = search_result + pattern_result;
     
     // 执行最终搜索
@@ -1458,10 +1458,10 @@ int UtilitiesSystem_DataSearcherType2(int64_t param_1, int64_t param_2, int para
     search_param1 = *(uint64_t*)(param_1 + 0x10);
     
     // 执行初始搜索
-    search_result = FUN_18074b880(param_2, param_3, &unknown_var_8008_ptr);
+    search_result = SystemDataProcessor(param_2, param_3, &unknown_var_8008_ptr);
     
     // 执行模式匹配
-    pattern_result = FUN_18074b880(param_2 + search_result, param_3 - search_result, &system_temp_buffer);
+    pattern_result = SystemDataProcessor(param_2 + search_result, param_3 - search_result, &system_temp_buffer);
     search_result = search_result + pattern_result;
     
     // 执行最终搜索
@@ -1504,10 +1504,10 @@ int UtilitiesSystem_DataSearcherType3(int64_t param_1, int64_t param_2, int para
     search_param2 = *(uint32_t*)(param_1 + 0x10);
     
     // 执行初始搜索
-    search_result = FUN_18074b880(param_2, param_3, &unknown_var_8128_ptr);
+    search_result = SystemDataProcessor(param_2, param_3, &unknown_var_8128_ptr);
     
     // 执行第一阶段模式匹配
-    pattern_result = FUN_18074b880(search_result + param_2, param_3 - search_result, &system_temp_buffer);
+    pattern_result = SystemDataProcessor(search_result + param_2, param_3 - search_result, &system_temp_buffer);
     search_result = search_result + pattern_result;
     
     // 执行第二阶段搜索
@@ -1515,7 +1515,7 @@ int UtilitiesSystem_DataSearcherType3(int64_t param_1, int64_t param_2, int para
     search_result = search_result + pattern_result;
     
     // 执行第二阶段模式匹配
-    pattern_result = FUN_18074b880(search_result + param_2, param_3 - search_result, &system_temp_buffer);
+    pattern_result = SystemDataProcessor(search_result + param_2, param_3 - search_result, &system_temp_buffer);
     search_result = search_result + pattern_result;
     
     // 执行最终搜索
