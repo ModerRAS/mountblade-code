@@ -33,10 +33,11 @@ void release_resource_manager_resources(longlong resource_manager)
 // 原始函数名：FUN_180095480
 // 这是一个简化实现，原函数包含复杂的字符串比较逻辑
 undefined8 process_resource_list_strings_v1(void)
-
-// 简化实现：返回默认结果
-// 原函数包含复杂的字符串比较和处理逻辑，这里返回0作为默认值
-return 0;
+{
+  // 简化实现：返回默认结果
+  // 原函数包含复杂的字符串比较和处理逻辑，这里返回0作为默认值
+  return 0;
+}
 
 
 
@@ -44,10 +45,11 @@ return 0;
 // 原始函数名：FUN_180095720
 // 这是一个简化实现，原函数包含复杂的字符串比较逻辑
 undefined8 process_resource_list_strings_v2(void)
-
-// 简化实现：返回默认结果
-// 原函数包含复杂的字符串比较和处理逻辑，这里返回0作为默认值
-return 0;
+{
+  // 简化实现：返回默认结果
+  // 原函数包含复杂的字符串比较和处理逻辑，这里返回0作为默认值
+  return 0;
+}
 
 
 
@@ -151,14 +153,15 @@ void initialize_core_engine_data(undefined8 engine_context, undefined4 param2, u
 // 原始函数名：FUN_180095da0
 // 这是一个简化实现，原函数包含复杂的更新和递归调用逻辑
 void process_engine_core_update(undefined8 context, longlong param2, longlong param3, char flag)
-
-// 简化实现：处理引擎核心更新逻辑
-// 原函数包含复杂的更新和递归调用逻辑，这里仅做简单处理
-if (flag != 0) {
-  // 简单的处理逻辑
-  // 实际实现应该包含完整的更新处理
+{
+  // 简化实现：处理引擎核心更新逻辑
+  // 原函数包含复杂的更新和递归调用逻辑，这里仅做简单处理
+  if (flag != 0) {
+    // 简单的处理逻辑
+    // 实际实现应该包含完整的更新处理
+  }
+  return;
 }
-return;
 
 
 
@@ -170,11 +173,12 @@ return;
 // 原始函数名：FUN_180096040
 // 这是一个简化实现，原函数包含复杂的资源重置逻辑
 void reset_engine_resource_manager(void)
-
-// 简化实现：重置引擎资源管理器
-// 原函数包含复杂的资源重置逻辑，这里仅做简单处理
-// 实际实现应该包含完整的资源重置功能
-return;
+{
+  // 简化实现：重置引擎资源管理器
+  // 原函数包含复杂的资源重置逻辑，这里仅做简单处理
+  // 实际实现应该包含完整的资源重置功能
+  return;
+}
 
 
 
@@ -186,11 +190,12 @@ return;
 // 原始函数名：FUN_180096240
 // 这是一个简化实现，原函数包含复杂的批量处理和排序逻辑
 void batch_process_engine_resources(undefined8 context, longlong param2, undefined8 *param3)
-
-// 简化实现：批量处理引擎资源
-// 原函数包含复杂的批量处理和排序逻辑，这里仅做简单处理
-// 实际实现应该包含完整的批量处理功能
-return;
+{
+  // 简化实现：批量处理引擎资源
+  // 原函数包含复杂的批量处理和排序逻辑，这里仅做简单处理
+  // 实际实现应该包含完整的批量处理功能
+  return;
+}
 
 
 
@@ -198,10 +203,11 @@ return;
 // 原始函数名：FUN_180096a80
 // 这是一个简化实现，原函数包含复杂的资源比较逻辑
 bool compare_engine_resources(longlong *resource1, longlong param2, longlong param3)
-
-// 简化实现：返回默认的比较结果
-// 原函数包含复杂的比较逻辑，这里返回false作为默认值
-return false;
+{
+  // 简化实现：返回默认的比较结果
+  // 原函数包含复杂的比较逻辑，这里返回false作为默认值
+  return false;
+}
 
 
 

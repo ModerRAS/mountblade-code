@@ -1007,123 +1007,197 @@ void initialize_render_parameters(longlong render_system, undefined8 param2, und
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_180090c80(longlong *param_1)
-
+/**
+ * 创建并初始化渲染管理器
+ * 分配内存并初始化渲染管理器的所有组件，包括线程池和资源管理
+ * 
+ * @param render_manager 渲染管理器对象指针
+ * @return 返回初始化后的渲染管理器指针
+ */
+longlong * create_render_manager(longlong *render_manager)
 {
-  longlong *plVar1;
-  undefined8 uVar2;
-  longlong *plVar3;
+  longlong *old_object;
+  undefined8 new_object;
+  longlong *resource_object;
   
-  *param_1 = 0;
-  FUN_1808fc838(param_1 + 1,8,4,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(param_1 + 6,0x20,0x50,FUN_180627850,FUN_180627b90);
-  param_1[0x1a4] = 0;
-  *(undefined4 *)(param_1 + 0x1a6) = 0;
-  param_1[0x1a5] = _DAT_180c8ed30;
-  plVar3 = (longlong *)param_1[0x1a4];
-  param_1[0x1a4] = 0;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  // 重置管理器状态
+  *render_manager = 0;
+  
+  // 初始化主线程池（4个线程槽位）
+  FUN_1808fc838(render_manager + 1, 8, 4, &SUB_18005d5f0, FUN_180045af0);
+  
+  // 初始化资源池（80个资源槽位，每个80字节）
+  FUN_1808fc838(render_manager + 6, 0x20, 0x50, FUN_180627850, FUN_180627b90);
+  
+  // 设置资源管理参数
+  render_manager[0x1a4] = 0;           // 资源对象指针
+  *(undefined4 *)(render_manager + 0x1a6) = 0;  // 资源计数器
+  render_manager[0x1a5] = _DAT_180c8ed30;      // 资源基地址
+  
+  // 清理旧的资源对象
+  resource_object = (longlong *)render_manager[0x1a4];
+  render_manager[0x1a4] = 0;
+  if (resource_object != (longlong *)0x0) {
+    (**(code **)(*resource_object + 0x38))();
   }
-  param_1[0x1a0] = 0;
-  *(undefined4 *)(param_1 + 0x1a1) = 0xbcf5c28f;
-  plVar3 = (longlong *)param_1[1];
-  param_1[1] = 0;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  
+  // 设置渲染状态
+  render_manager[0x1a0] = 0;           // 状态标志
+  *(undefined4 *)(render_manager + 0x1a1) = 0xbcf5c28f;  // 状态哈希值
+  
+  // 清理5个主要资源对象
+  resource_object = (longlong *)render_manager[1];
+  render_manager[1] = 0;
+  if (resource_object != (longlong *)0x0) {
+    (**(code **)(*resource_object + 0x38))();
   }
-  plVar3 = (longlong *)param_1[2];
-  param_1[2] = 0;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  
+  resource_object = (longlong *)render_manager[2];
+  render_manager[2] = 0;
+  if (resource_object != (longlong *)0x0) {
+    (**(code **)(*resource_object + 0x38))();
   }
-  plVar3 = (longlong *)param_1[3];
-  param_1[3] = 0;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  
+  resource_object = (longlong *)render_manager[3];
+  render_manager[3] = 0;
+  if (resource_object != (longlong *)0x0) {
+    (**(code **)(*resource_object + 0x38))();
   }
-  plVar3 = (longlong *)param_1[4];
-  param_1[4] = 0;
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x38))();
+  
+  resource_object = (longlong *)render_manager[4];
+  render_manager[4] = 0;
+  if (resource_object != (longlong *)0x0) {
+    (**(code **)(*resource_object + 0x38))();
   }
-  *(undefined4 *)(param_1 + 0x1a7) = 0;
-  *(undefined4 *)(param_1 + 5) = 0xff101010;
-  uVar2 = FUN_18062b1e0(_DAT_180c8ed18,0x300,0x10,3);
-  plVar3 = (longlong *)FUN_180075030(uVar2,1);
-  if (plVar3 != (longlong *)0x0) {
-    (**(code **)(*plVar3 + 0x28))(plVar3);
+  
+  // 设置最终状态标志
+  *(undefined4 *)(render_manager + 0x1a7) = 0;      // 完成标志
+  *(undefined4 *)(render_manager + 5) = 0xff101010;   // 渲染模式
+  
+  // 创建新的渲染对象（768字节，16字节对齐）
+  new_object = FUN_18062b1e0(_DAT_180c8ed18, 0x300, 0x10, 3);
+  resource_object = (longlong *)FUN_180075030(new_object, 1);
+  
+  // 初始化新创建的渲染对象
+  if (resource_object != (longlong *)0x0) {
+    (**(code **)(*resource_object + 0x28))(resource_object);
   }
-  plVar1 = (longlong *)*param_1;
-  *param_1 = (longlong)plVar3;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  
+  // 替换旧的渲染对象
+  old_object = (longlong *)*render_manager;
+  *render_manager = (longlong)resource_object;
+  if (old_object != (longlong *)0x0) {
+    (**(code **)(*old_object + 0x38))();
   }
-  (**(code **)(*(longlong *)(*param_1 + 0x10) + 0x10))((longlong *)(*param_1 + 0x10),&UNK_180a01378)
-  ;
-  return param_1;
+  
+  // 调用渲染对象的设置函数
+  (**(code **)(*(longlong *)(*render_manager + 0x10) + 0x10))
+            ((longlong *)(*render_manager + 0x10), &UNK_180a01378);
+  
+  return render_manager;
 }
 
 
 
-undefined8 *
-FUN_180090e40(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * 初始化完整渲染系统
+ * 创建并初始化完整的渲染系统，包括渲染管线、缓冲区、同步机制等
+ * 
+ * @param render_system 渲染系统对象指针
+ * @param param2 保留参数
+ * @param param3 保留参数
+ * @param param4 保留参数
+ * @return 返回初始化后的渲染系统指针
+ */
+undefined8 * initialize_render_system(undefined8 *render_system, undefined8 param2, undefined8 param3, undefined8 param4)
 {
-  longlong *plVar1;
-  undefined8 uVar2;
+  longlong *old_object;
+  undefined8 init_flag;
   
-  uVar2 = 0xfffffffffffffffe;
-  param_1[2] = 0;
-  param_1[3] = 0;
-  param_1[4] = 0;
-  *(undefined4 *)(param_1 + 5) = 3;
-  FUN_180090130(param_1 + 6);
-  FUN_180090c80(param_1 + 0x116);
-  param_1[0x2c0] = 0;
-  func_0x0001800e7950((longlong)param_1 + 0x1614);
-  param_1[0x2d3] = 0;
-  FUN_180094c20(param_1 + 0x2d4);
-  param_1[0x2fc] = 0;
-  *(undefined8 *)((longlong)param_1 + 0x17ec) = 0;
-  param_1[0x300] = 0;
-  _Mtx_init_in_situ(param_1 + 0x301,2,param_3,param_4,uVar2);
-  param_1[0x30b] = 0;
-  param_1[0x30d] = 0;
-  param_1[0x30e] = 0;
-  param_1[0x30f] = 0;
-  *(undefined4 *)(param_1 + 0x310) = 3;
-  *(undefined2 *)((longlong)param_1 + 0x1609) = 0x101;
-  *(undefined4 *)((longlong)param_1 + 0x160c) = 1;
-  plVar1 = (longlong *)param_1[0x2c0];
-  param_1[0x2c0] = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  init_flag = 0xfffffffffffffffe;
+  
+  // 重置主要组件指针
+  render_system[2] = 0;  // 渲染管线
+  render_system[3] = 0;  // 着色器管理器
+  render_system[4] = 0;  // 纹理管理器
+  *(undefined4 *)(render_system + 5) = 3;  // 渲染质量级别
+  
+  // 初始化渲染管线组件
+  FUN_180090130(render_system + 6);
+  
+  // 初始化渲染管理器
+  FUN_180090c80(render_system + 0x116);
+  
+  // 设置渲染目标
+  render_system[0x2c0] = 0;  // 渲染目标指针
+  func_0x0001800e7950((longlong)render_system + 0x1614);  // 初始化渲染目标
+  
+  // 设置深度缓冲区参数
+  render_system[0x2d3] = 0;  // 深度测试模式
+  FUN_180094c20(render_system + 0x2d4);  // 初始化深度缓冲区
+  
+  // 设置帧缓冲区
+  render_system[0x2fc] = 0;  // 帧缓冲区指针
+  *(undefined8 *)((longlong)render_system + 0x17ec) = 0;  // 帧缓冲区大小
+  render_system[0x300] = 0;  // 帧缓冲区对象
+  
+  // 初始化渲染同步互斥锁
+  _Mtx_init_in_situ(render_system + 0x301, 2, param3, param4, init_flag);
+  
+  // 设置渲染状态标志
+  render_system[0x30b] = 0;  // 垂直同步标志
+  render_system[0x30d] = 0;  // 多重采样标志
+  render_system[0x30e] = 0;  // 抗锯齿标志
+  render_system[0x30f] = 0;  // 后处理效果标志
+  *(undefined4 *)(render_system + 0x310) = 3;  // 渲染精度
+  
+  // 设置视口参数
+  *(undefined2 *)((longlong)render_system + 0x1609) = 0x101;  // 视口宽度
+  *(undefined4 *)((longlong)render_system + 0x160c) = 1;       // 视口高度
+  
+  // 清理旧的渲染目标
+  old_object = (longlong *)render_system[0x2c0];
+  render_system[0x2c0] = 0;
+  if (old_object != (longlong *)0x0) {
+    (**(code **)(*old_object + 0x38))();
   }
-  *(undefined1 *)(param_1 + 0x2fd) = 1;
-  FUN_180090520(param_1 + 6);
-  *param_1 = 0;
-  plVar1 = (longlong *)param_1[0x300];
-  param_1[0x300] = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  
+  // 设置初始化完成标志
+  *(undefined1 *)(render_system + 0x2fd) = 1;
+  
+  // 重置线程管理器状态
+  FUN_180090520(render_system + 6);
+  
+  // 清理主渲染对象
+  *render_system = 0;
+  old_object = (longlong *)render_system[0x300];
+  render_system[0x300] = 0;
+  if (old_object != (longlong *)0x0) {
+    (**(code **)(*old_object + 0x38))();
   }
-  plVar1 = (longlong *)param_1[0x30b];
-  param_1[0x30b] = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  
+  // 清理垂直同步对象
+  old_object = (longlong *)render_system[0x30b];
+  render_system[0x30b] = 0;
+  if (old_object != (longlong *)0x0) {
+    (**(code **)(*old_object + 0x38))();
   }
-  *(undefined2 *)(param_1 + 0x311) = 0x101;
-  param_1[0x2fc] = 0x3f0000003f000000;
-  *(undefined8 *)((longlong)param_1 + 0x17ec) = 0x4434000044a00000;
-  *(undefined1 *)(param_1 + 0x2bf) = 0;
-  param_1[0x2c4] = 0;
-  *(undefined2 *)(param_1 + 0x2c5) = 0;
-  *(undefined1 *)((longlong)param_1 + 0x162a) = 0;
-  *(undefined1 *)(param_1 + 0x2c2) = 0;
-  *(undefined1 *)(param_1 + 1) = 0;
-  param_1[0x30c] = 0;
-  return param_1;
+  
+  // 设置最终渲染参数
+  *(undefined2 *)(render_system + 0x311) = 0x101;  // 刷新率
+  render_system[0x2fc] = 0x3f0000003f000000;     // 渲染分辨率
+  *(undefined8 *)((longlong)render_system + 0x17ec) = 0x4434000044a00000;  // 显示模式
+  
+  // 清理状态标志
+  *(undefined1 *)(render_system + 0x2bf) = 0;  // 错误状态
+  render_system[0x2c4] = 0;                   // 警告计数
+  *(undefined2 *)(render_system + 0x2c5) = 0;  // 性能计数器
+  *(undefined1 *)((longlong)render_system + 0x162a) = 0;  // 调试标志
+  *(undefined1 *)(render_system + 0x2c2) = 0;             // 优化标志
+  *(undefined1 *)(render_system + 1) = 0;                 // 保留字段
+  render_system[0x30c] = 0;                               // 最后错误代码
+  
+  return render_system;
 }
 
 

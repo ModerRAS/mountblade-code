@@ -1,9 +1,19 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 02_core_engine_part056.c - 7 个函数
+// 02_core_engine_part056.c - 8 个函数
+// 
+// 核心引擎渲染和对象管理模块
+// 包含引擎关闭、渲染比例设置、对象状态管理等功能
+// 
+// 全局变量说明:
+// _DAT_180c86950 - 引擎核心数据结构指针
+// _DAT_180c82868 - 引擎管理器实例
+// _DAT_180c86890 - 渲染系统配置
+// _DAT_180c86870 - 时间和性能计数器
+// _DAT_180c86938 - 引擎全局状态
 
-// 函数: void FUN_180091970(ulonglong param_1)
-void FUN_180091970(ulonglong param_1)
+// 函数: void cleanup_engine_shutdown(ulonglong param_1)
+void cleanup_engine_shutdown(ulonglong param_1)
 
 {
   int *piVar1;
@@ -680,8 +690,8 @@ void FUN_180091970(ulonglong param_1)
 
 
 
-// 函数: void FUN_180092820(undefined8 param_1,int param_2,int param_3)
-void FUN_180092820(undefined8 param_1,int param_2,int param_3)
+// 函数: void set_render_aspect_ratio(undefined8 param_1,int param_2,int param_3)
+void set_render_aspect_ratio(undefined8 param_1,int param_2,int param_3)
 
 {
   longlong *plVar1;
@@ -734,8 +744,8 @@ void FUN_180092820(undefined8 param_1,int param_2,int param_3)
 
 
 
-// 函数: void FUN_180092881(float param_1,longlong param_2,float param_3)
-void FUN_180092881(float param_1,longlong param_2,float param_3)
+// 函数: void update_render_ratio_for_objects(float param_1,longlong param_2,float param_3)
+void update_render_ratio_for_objects(float param_1,longlong param_2,float param_3)
 
 {
   longlong *plVar1;
@@ -773,8 +783,8 @@ void FUN_180092881(float param_1,longlong param_2,float param_3)
 
 
 
-// 函数: void FUN_180092891(undefined8 param_1,longlong param_2)
-void FUN_180092891(undefined8 param_1,longlong param_2)
+// 函数: void apply_aspect_ratio_to_objects(undefined8 param_1,longlong param_2)
+void apply_aspect_ratio_to_objects(undefined8 param_1,longlong param_2)
 
 {
   longlong *plVar1;
@@ -808,8 +818,8 @@ void FUN_180092891(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1800928fb(float param_1,undefined8 param_2,float param_3)
-void FUN_1800928fb(float param_1,undefined8 param_2,float param_3)
+// 函数: void calculate_aspect_ratio_values(float param_1,undefined8 param_2,float param_3)
+void calculate_aspect_ratio_values(float param_1,undefined8 param_2,float param_3)
 
 {
   longlong unaff_RBX;
@@ -826,8 +836,8 @@ void FUN_1800928fb(float param_1,undefined8 param_2,float param_3)
 
 
 
-// 函数: void FUN_180092900(float param_1,undefined8 param_2,float param_3)
-void FUN_180092900(float param_1,undefined8 param_2,float param_3)
+// 函数: void update_aspect_ratio_cache(float param_1,undefined8 param_2,float param_3)
+void update_aspect_ratio_cache(float param_1,undefined8 param_2,float param_3)
 
 {
   longlong unaff_RBX;
@@ -846,8 +856,8 @@ void FUN_180092900(float param_1,undefined8 param_2,float param_3)
 
 
 
-// 函数: void FUN_180092940(longlong param_1,char param_2)
-void FUN_180092940(longlong param_1,char param_2)
+// 函数: void set_object_render_state(longlong param_1,char param_2)
+void set_object_render_state(longlong param_1,char param_2)
 
 {
   undefined8 uVar1;
@@ -867,7 +877,7 @@ void FUN_180092940(longlong param_1,char param_2)
 
 
 
-float FUN_1800929a0(float *param_1,float *param_2,float *param_3,float *param_4,int param_5,
+float calculate_render_projection(float *param_1,float *param_2,float *param_3,float *param_4,int param_5,
                    int param_6,float *param_7)
 
 {
