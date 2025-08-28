@@ -289,7 +289,7 @@ int32_t InitializationSystem_ComponentInitializer(void);
  * @param param_1 组件参数指针
  * @return void 无返回值
  */
-void FUN_180058c20(long long param_1);
+void InitializationSystem_ComponentInitializer(long long param_1);
 
 /**
  * @brief 系统配置处理器
@@ -314,7 +314,7 @@ int32_t InitializationSystem_ConfigProcessor(void);
  * @param param_1 配置参数指针
  * @return void 无返回值
  */
-void FUN_18004bb30(long long param_1);
+void InitializationSystem_ConfigProcessor(long long param_1);
 
 /**
  * @brief 系统资源管理器
