@@ -1,191 +1,49 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part731.c - 渲染系统资源管理和优化模块
-// 该模块包含15个核心函数，主要功能包括：
-// - 渲染系统初始化和清理
-// - 内存管理和资源分配
-// - CPU特性检测和优化
-// - 渲染参数设置和处理
-// - 渲染缓冲区管理
-// - 渲染效果应用
+// 03_rendering_part731.c - 15 个函数
 
-// 常量定义
-#define RENDERING_RESOURCE_SIZE 0x90        // 渲染资源大小
-#define RENDERING_BUFFER_SIZE 0x10         // 渲染缓冲区大小
-#define RENDERING_ALIGNMENT 0x10           // 内存对齐大小
-#define MAX_TEXTURE_DIMENSION 0x3f         // 最大纹理维度
-#define CPU_FEATURE_CACHE_LINE_SIZE 0x20   // CPU特性缓存行大小
-#define RENDERING_QUEUE_SIZE 0x4c          // 渲染队列大小
-#define MAX_RENDER_ITEMS 3000               // 最大渲染项目数
-
-// 错误代码定义
-#define RENDERING_SUCCESS 0x00000000       // 渲染操作成功
-#define RENDERING_ERROR_INVALID_PARAM 0xfffffffe  // 无效参数
-#define RENDERING_ERROR_ALIGNMENT 0xfffffffd     // 对齐错误
-#define RENDERING_ERROR_RESOURCE 0xffffffff       // 资源错误
-
-// 渲染状态标志
-#define RENDERING_STATE_INITIALIZED 0x01   // 已初始化
-#define RENDERING_STATE_ACTIVE 0x02        // 活跃状态
-#define RENDERING_STATE_ERROR 0x04         // 错误状态
-
-// CPU特性标志
-#define CPU_FEATURE_SSE 0x01               // SSE支持
-#define CPU_FEATURE_SSE2 0x02              // SSE2支持
-#define CPU_FEATURE_SSE3 0x04              // SSE3支持
-#define CPU_FEATURE_SSSE3 0x08             // SSSE3支持
-#define CPU_FEATURE_SSE41 0x10             // SSE4.1支持
-#define CPU_FEATURE_SSE42 0x20             // SSE4.2支持
-#define CPU_FEATURE_AVX 0x40               // AVX支持
-#define CPU_FEATURE_AVX2 0x80              // AVX2支持
-
-// 渲染偏移量定义
-#define RENDERING_OFFSET_C10 0xc10          // 渲染偏移量C10
-#define RENDERING_OFFSET_1924 0x1924       // 渲染偏移量1924
-#define RENDERING_OFFSET_1928 0x1928       // 渲染偏移量1928
-#define RENDERING_OFFSET_1857 0x1857       // 渲染偏移量1857
-#define RENDERING_OFFSET_1850 0x1850       // 渲染偏移量1850
-#define RENDERING_OFFSET_1810 0x1810       // 渲染偏移量1810
-#define RENDERING_OFFSET_BA4 0xba4         // 渲染偏移量BA4
-#define RENDERING_OFFSET_BF8 0xbf8         // 渲染偏移量BF8
-#define RENDERING_OFFSET_B98 0xb98         // 渲染偏移量B98
-#define RENDERING_OFFSET_BB4 0xbb4         // 渲染偏移量BB4
-#define RENDERING_OFFSET_2228 0x2228       // 渲染偏移量2228
-#define RENDERING_OFFSET_2E70 0x2E70       // 渲染偏移量2E70
-
-// 渲染缓冲区位置
-#define RENDERING_BUFFER_F60 0xf60         // 渲染缓冲区F60
-#define RENDERING_BUFFER_F6B 0xf6b         // 渲染缓冲区F6B
-#define RENDERING_BUFFER_F63 0xf63         // 渲染缓冲区F63
-#define RENDERING_BUFFER_F6F 0xf6f         // 渲染缓冲区F6F
-#define RENDERING_BUFFER_F75 0xf75         // 渲染缓冲区F75
-#define RENDERING_BUFFER_F7D 0xf7d         // 渲染缓冲区F7D
-#define RENDERING_BUFFER_F7E 0xf7e         // 渲染缓冲区F7E
-#define RENDERING_BUFFER_F7F 0xf7f         // 渲染缓冲区F7F
-#define RENDERING_BUFFER_F80 0xf80         // 渲染缓冲区F80
-
-// 函数别名映射
-#define RenderingSystemInitializer FUN_180697dd0          // 渲染系统初始化器
-#define RenderingSystemResourceCleaner FUN_180697e60       // 渲染系统资源清理器
-#define RenderingSystemMemoryManager FUN_180697ed0         // 渲染系统内存管理器
-#define RenderingSystemBufferAllocator FUN_180697f10       // 渲染系统缓冲区分配器
-#define RenderingSystemTextureInitializer FUN_180697f32    // 渲染系统纹理初始化器
-#define RenderingSystemParameterSetter FUN_18069801e      // 渲染系统参数设置器
-#define RenderingSystemErrorChecker FUN_1806980bd         // 渲染系统错误检查器
-#define RenderingSystemCPUDetector FUN_180698140          // 渲染系统CPU检测器
-#define RenderingSystemParameterProcessor FUN_1806982a0   // 渲染系统参数处理器
-#define RenderingSystemBufferCleaner FUN_180698440        // 渲染系统缓冲区清理器
-#define RenderingSystemEffectApplier FUN_1806984b0         // 渲染系统效果应用器
-#define RenderingSystemAdvancedRenderer FUN_1806984f1     // 渲染系统高级渲染器
-#define RenderingSystemEmptyFunction1 FUN_1806986b7       // 渲染系统空函数1
-#define RenderingSystemTextureProcessor FUN_1806986d0     // 渲染系统纹理处理器
-#define RenderingSystemEmptyFunction2 FUN_1806987ee       // 渲染系统空函数2
-#define RenderingSystemBufferInitializer FUN_180698800    // 渲染系统缓冲区初始化器
-#define RenderingSystemRandomGenerator FUN_1806988d0      // 渲染系统随机数生成器
-#define RenderingSystemAdvancedRandomGenerator FUN_1806988f5 // 渲染系统高级随机数生成器
-#define RenderingSystemOptimizedRandomGenerator FUN_180698a50 // 渲染系统优化随机数生成器
-#define RenderingSystemQualityAdjuster FUN_180698b00     // 渲染系统质量调整器
-#define RenderingSystemAdvancedEffectProcessor FUN_180698bb0 // 渲染系统高级效果处理器
-
-/**
- * @brief 渲染系统初始化器
- * @details 初始化渲染系统，调用底层初始化函数
- * 功能：
- * - 调用底层渲染系统初始化函数
- * - 建立渲染系统基础环境
- * - 准备渲染资源
- * @note 该函数是渲染系统的入口点
- */
+// 函数: void FUN_180697dd0(void)
 void FUN_180697dd0(void)
+
 {
-  // 调用底层渲染系统初始化函数
   FUN_1806979e0();
   return;
 }
 
-// 函数别名：RenderingSystemInitializer
-// 技术说明：该函数作为渲染系统的初始化入口，负责建立渲染环境
 
 
-
-/**
- * @brief 渲染系统资源清理器
- * @details 清理渲染系统资源，释放内存
- * @param param_1 渲染系统资源指针
- * @return undefined8 清理状态码
- * 功能：
- * - 检查资源指针有效性
- * - 释放渲染资源内存
- * - 清理相关数据结构
- * @note 如果资源计数大于0，会先调用资源释放函数
- */
 undefined8 FUN_180697e60(longlong param_1)
+
 {
-  // 检查资源指针有效性
   if (param_1 != 0) {
-    // 检查资源计数
     if (0 < *(int *)(param_1 + 0x60)) {
-      // 调用资源释放函数
       func_0x00018066e940(*(undefined8 *)(param_1 + 0x58));
     }
-    // 清理资源内存（警告：该函数不会返回）
-    memset(param_1, 0, RENDERING_RESOURCE_SIZE);
+                    // WARNING: Subroutine does not return
+    memset(param_1,0,0x90);
   }
-  return RENDERING_ERROR_RESOURCE;
+  return 0xfffffffe;
 }
 
-// 函数别名：RenderingSystemResourceCleaner
-// 技术说明：该函数负责安全地清理渲染系统资源，防止内存泄漏
 
 
-
-/**
- * @brief 渲染系统内存管理器
- * @details 管理渲染系统内存分配和释放
- * @param param_1 渲染系统内存指针
- * @return undefined8 内存管理状态码
- * 功能：
- * - 检查内存指针有效性
- * - 释放内存资源
- * - 清理内存数据结构
- * @note 与资源清理器类似，但返回不同的错误码
- */
 undefined8 FUN_180697ed0(longlong param_1)
+
 {
-  // 检查内存指针有效性
   if (param_1 != 0) {
-    // 检查内存引用计数
     if (0 < *(int *)(param_1 + 0x60)) {
-      // 调用内存释放函数
       func_0x00018066e940(*(undefined8 *)(param_1 + 0x58));
     }
-    // 清理内存（警告：该函数不会返回）
-    memset(param_1, 0, RENDERING_RESOURCE_SIZE);
+                    // WARNING: Subroutine does not return
+    memset(param_1,0,0x90);
   }
   return 0xffffffff;
 }
 
-// 函数别名：RenderingSystemMemoryManager
-// 技术说明：该函数专门用于渲染系统内存管理，确保内存正确释放
 
 
+undefined8 FUN_180697f10(uint *param_1,uint param_2,uint param_3,uint param_4)
 
-/**
- * @brief 渲染系统缓冲区分配器
- * @details 分配和初始化渲染缓冲区
- * @param param_1 缓冲区配置指针
- * @param param_2 缓冲区宽度
- * @param param_3 缓冲区高度
- * @param param_4 缓冲区深度
- * @return undefined8 分配状态码
- * 功能：
- * - 计算缓冲区对齐大小
- * - 分配内存资源
- * - 设置缓冲区参数
- * - 验证分配结果
- * @note 缓冲区大小必须按16字节对齐
- */
-undefined8 FUN_180697f10(uint *param_1, uint param_2, uint param_3, uint param_4)
 {
   undefined8 uVar1;
   longlong lVar2;
@@ -197,85 +55,60 @@ undefined8 FUN_180697f10(uint *param_1, uint param_2, uint param_3, uint param_4
   uint uVar8;
   uint uVar9;
   
-  // 检查缓冲区配置指针
   if (param_1 != (uint *)0x0) {
-    // 计算对齐后的尺寸
-    uVar8 = param_2 + 0xf & 0xfffffff0;        // 宽度16字节对齐
-    uVar9 = param_3 + 0xf & 0xfffffff0;        // 高度16字节对齐
-    uVar4 = uVar8 + 0x1f + param_4 * 2 & 0xffffffe0;  // 深度32字节对齐
-    uVar6 = (int)uVar4 >> 1;                   // 半宽度
-    iVar7 = (param_4 * 2 + uVar9) * uVar4;     // 主缓冲区大小
-    iVar5 = (((int)uVar9 >> 1) + param_4) * uVar6;  // 副缓冲区大小
-    uVar3 = iVar5 * 2 + iVar7;                 // 总缓冲区大小
-    
-    // 检查是否需要分配内存
+    uVar8 = param_2 + 0xf & 0xfffffff0;
+    uVar9 = param_3 + 0xf & 0xfffffff0;
+    uVar4 = uVar8 + 0x1f + param_4 * 2 & 0xffffffe0;
+    uVar6 = (int)uVar4 >> 1;
+    iVar7 = (param_4 * 2 + uVar9) * uVar4;
+    iVar5 = (((int)uVar9 >> 1) + param_4) * uVar6;
+    uVar3 = iVar5 * 2 + iVar7;
     if (*(longlong *)(param_1 + 0x16) == 0) {
-      // 分配缓冲区内存
-      uVar1 = FUN_18066e960(0x20, (longlong)(int)uVar3);
+      uVar1 = FUN_18066e960(0x20,(longlong)(int)uVar3);
       *(undefined8 *)(param_1 + 0x16) = uVar1;
       param_1[0x18] = uVar3;
     }
-    
-    // 验证内存分配
     lVar2 = *(longlong *)(param_1 + 0x16);
     if ((lVar2 == 0) || ((int)param_1[0x18] < (int)uVar3)) {
-      return RENDERING_ERROR_RESOURCE;
+      uVar1 = 0xffffffff;
     }
-    
-    // 检查深度对齐
-    if (((longlong)(int)param_4 & 0x1fU) == 0) {
-      // 设置缓冲区参数
-      param_1[6] = (int)uVar9 >> 1;           // 半高度
-      param_1[2] = param_2;                   // 原始宽度
-      param_1[4] = uVar4;                     // 对齐宽度
-      param_1[7] = (int)(param_2 + 1) / 2;    // 宽度一半
-      param_1[5] = (int)uVar8 >> 1;          // 对齐半宽度
-      param_1[8] = (int)(param_3 + 1) / 2;    // 高度一半
-      param_1[3] = param_3;                   // 原始高度
-      *param_1 = uVar8;                       // 对齐宽度
+    else if (((longlong)(int)param_4 & 0x1fU) == 0) {
+      param_1[6] = (int)uVar9 >> 1;
+      param_1[2] = param_2;
+      param_1[4] = uVar4;
+      param_1[7] = (int)(param_2 + 1) / 2;
+      param_1[5] = (int)uVar8 >> 1;
+      param_1[8] = (int)(param_3 + 1) / 2;
+      param_1[3] = param_3;
+      *param_1 = uVar8;
       *(longlong *)(param_1 + 0xe) = (int)(uVar4 * param_4) + lVar2 + (longlong)(int)param_4;
-      param_1[1] = uVar9;                     // 对齐高度
-      param_1[9] = uVar6;                     // 半宽度
-      param_1[10] = 0;                        // 标志位
-      param_1[0xb] = 0;                       // 标志位
-      param_1[0xc] = 0;                       // 标志位
+      param_1[1] = uVar9;
+      param_1[9] = uVar6;
+      param_1[10] = 0;
+      param_1[0xb] = 0;
+      param_1[0xc] = 0;
       lVar2 = (int)(((int)param_4 / 2) * uVar6) + lVar2 + (longlong)((int)param_4 / 2);
-      param_1[0x19] = param_4;                // 深度
-      param_1[0x1a] = uVar3;                  // 总大小
-      param_1[0x14] = 0;                      // 偏移量
-      param_1[0x15] = 0;                      // 偏移量
-      param_1[0x22] = 0;                      // 偏移量
+      param_1[0x19] = param_4;
+      param_1[0x1a] = uVar3;
+      param_1[0x14] = 0;
+      param_1[0x15] = 0;
+      param_1[0x22] = 0;
       *(longlong *)(param_1 + 0x10) = iVar7 + lVar2;
       *(longlong *)(param_1 + 0x12) = (longlong)iVar5 + (longlong)iVar7 + lVar2;
-      return RENDERING_SUCCESS;
+      uVar1 = 0;
     }
     else {
-      return RENDERING_ERROR_ALIGNMENT;
+      uVar1 = 0xfffffffd;
     }
+    return uVar1;
   }
-  return RENDERING_ERROR_INVALID_PARAM;
+  return 0xfffffffe;
 }
 
-// 函数别名：RenderingSystemBufferAllocator
-// 技术说明：该函数实现复杂的缓冲区分配算法，确保内存对齐和性能优化
 
 
+undefined8 FUN_180697f32(undefined8 param_1,uint param_2,int param_3)
 
-/**
- * @brief 渲染系统纹理初始化器
- * @details 初始化纹理缓冲区和参数
- * @param param_1 纹理配置指针
- * @param param_2 纹理宽度
- * @param param_3 纹理高度
- * @return undefined8 初始化状态码
- * 功能：
- * - 计算纹理尺寸和对齐
- * - 分配纹理内存
- * - 设置纹理参数
- * - 初始化纹理状态
- * @note 使用寄存器传递参数，优化性能
- */
-undefined8 FUN_180697f32(undefined8 param_1, uint param_2, int param_3)
 {
   uint uVar1;
   longlong in_RAX;
@@ -301,75 +134,62 @@ undefined8 FUN_180697f32(undefined8 param_1, uint param_2, int param_3)
   uint in_stack_00000078;
   uint in_stack_00000080;
   
-  // 保存寄存器状态
   *(undefined8 *)(in_RAX + 0x20) = unaff_RBP;
   *(undefined8 *)(in_RAX + -0x18) = unaff_RSI;
   *(undefined8 *)(in_RAX + -0x20) = unaff_R12;
   *(undefined8 *)(in_RAX + -0x28) = unaff_R13;
   *(undefined8 *)(in_RAX + -0x30) = unaff_R14;
-  
-  // 计算对齐后的纹理尺寸
-  uVar9 = param_2 + 0xf & 0xfffffff0;        // 宽度16字节对齐
+  uVar9 = param_2 + 0xf & 0xfffffff0;
   *(undefined8 *)(in_RAX + -0x38) = unaff_R15;
-  uVar10 = param_3 + 0xfU & 0xfffffff0;       // 高度16字节对齐
-  uVar1 = (uint)unaff_RDI;                   // 纹理深度
-  uStack0000000000000070 = (int)uVar10 >> 1; // 半高度
-  uVar5 = uVar9 + 0x1f + uVar1 * 2 & 0xffffffe0;  // 纹理宽度32字节对齐
-  uVar7 = (int)uVar5 >> 1;                   // 半宽度
-  iVar8 = (uVar1 * 2 + uVar10) * uVar5;      // 主纹理大小
-  iVar6 = (uStack0000000000000070 + uVar1) * uVar7;  // 副纹理大小
-  uVar4 = iVar6 * 2 + iVar8;                 // 总纹理大小
-  
-  // 检查是否需要分配内存
+  uVar10 = param_3 + 0xfU & 0xfffffff0;
+  uVar1 = (uint)unaff_RDI;
+  uStack0000000000000070 = (int)uVar10 >> 1;
+  uVar5 = uVar9 + 0x1f + uVar1 * 2 & 0xffffffe0;
+  uVar7 = (int)uVar5 >> 1;
+  iVar8 = (uVar1 * 2 + uVar10) * uVar5;
+  iVar6 = (uStack0000000000000070 + uVar1) * uVar7;
+  uVar4 = iVar6 * 2 + iVar8;
   if (*(longlong *)(unaff_RBX + 0x16) == 0) {
-    // 分配纹理内存
-    uVar2 = FUN_18066e960(0x20, (longlong)(int)uVar4);
+    uVar2 = FUN_18066e960(0x20,(longlong)(int)uVar4);
     *(undefined8 *)(unaff_RBX + 0x16) = uVar2;
     unaff_RBX[0x18] = uVar4;
     param_2 = in_stack_00000078;
     in_R11D = in_stack_00000080;
   }
-  
-  // 验证内存分配
   lVar3 = *(longlong *)(unaff_RBX + 0x16);
   if ((lVar3 == 0) || ((int)unaff_RBX[0x18] < (int)uVar4)) {
-    return RENDERING_ERROR_RESOURCE;
+    uVar2 = 0xffffffff;
   }
-  
-  // 检查深度对齐
-  if ((unaff_RDI & 0x1f) == 0) {
-    // 设置纹理参数
-    unaff_RBX[6] = uStack0000000000000070;  // 半高度
-    unaff_RBX[2] = param_2;                 // 原始宽度
-    unaff_RBX[4] = uVar5;                   // 对齐宽度
-    unaff_RBX[7] = (int)(param_2 + 1) / 2;  // 宽度一半
-    unaff_RBX[5] = (int)uVar9 >> 1;         // 对齐半宽度
-    unaff_RBX[8] = (int)(in_R11D + 1) / 2;   // 高度一半
-    unaff_RBX[3] = in_R11D;                 // 原始高度
-    *unaff_RBX = uVar9;                     // 对齐宽度
+  else if ((unaff_RDI & 0x1f) == 0) {
+    unaff_RBX[6] = uStack0000000000000070;
+    unaff_RBX[2] = param_2;
+    unaff_RBX[4] = uVar5;
+    unaff_RBX[7] = (int)(param_2 + 1) / 2;
+    unaff_RBX[5] = (int)uVar9 >> 1;
+    unaff_RBX[8] = (int)(in_R11D + 1) / 2;
+    unaff_RBX[3] = in_R11D;
+    *unaff_RBX = uVar9;
     *(ulonglong *)(unaff_RBX + 0xe) = (int)(uVar5 * uVar1) + lVar3 + unaff_RDI;
-    unaff_RBX[1] = uVar10;                  // 对齐高度
-    unaff_RBX[9] = uVar7;                   // 半宽度
-    unaff_RBX[10] = 0;                      // 标志位
-    unaff_RBX[0xb] = 0;                     // 标志位
-    unaff_RBX[0xc] = 0;                     // 标志位
+    unaff_RBX[1] = uVar10;
+    unaff_RBX[9] = uVar7;
+    unaff_RBX[10] = 0;
+    unaff_RBX[0xb] = 0;
+    unaff_RBX[0xc] = 0;
     lVar3 = (int)(((int)uVar1 / 2) * uVar7) + lVar3 + (longlong)((int)uVar1 / 2);
-    unaff_RBX[0x19] = uVar1;                // 深度
-    unaff_RBX[0x1a] = uVar4;                // 总大小
-    unaff_RBX[0x14] = 0;                    // 偏移量
-    unaff_RBX[0x15] = 0;                    // 偏移量
-    unaff_RBX[0x22] = 0;                    // 偏移量
+    unaff_RBX[0x19] = uVar1;
+    unaff_RBX[0x1a] = uVar4;
+    unaff_RBX[0x14] = 0;
+    unaff_RBX[0x15] = 0;
+    unaff_RBX[0x22] = 0;
     *(longlong *)(unaff_RBX + 0x10) = iVar8 + lVar3;
     *(longlong *)(unaff_RBX + 0x12) = (longlong)iVar6 + (longlong)iVar8 + lVar3;
-    return RENDERING_SUCCESS;
+    uVar2 = 0;
   }
   else {
-    return RENDERING_ERROR_ALIGNMENT;
+    uVar2 = 0xfffffffd;
   }
+  return uVar2;
 }
-
-// 函数别名：RenderingSystemTextureInitializer
-// 技术说明：该函数使用寄存器优化，提高纹理初始化性能
 
 
 

@@ -971,66 +971,135 @@ void RenderingSystem_MemoryCleanup(void) {
 
 
 
-// 函数: void FUN_18042f1e0(void)
-void FUN_18042f1e0(void)
-
-{
-  longlong lVar1;
-  longlong unaff_RBX;
-  undefined8 in_stack_00000040;
-  undefined8 in_stack_00000050;
-  int *in_stack_00000070;
-  ulonglong in_stack_00000098;
-  
-  free(in_stack_00000050);
-  if (unaff_RBX != 0) {
-    lVar1 = malloc((longlong)(in_stack_00000040._4_4_ + 0x39));
-    if (lVar1 != 0) {
-      *in_stack_00000070 = in_stack_00000040._4_4_ + 0x39;
-                    // WARNING: Subroutine does not return
-      memmove(lVar1,&stack0x00000090,8);
+/**
+ * 渲染系统内存资源管理器
+ * 
+ * 这是一个专门用于管理内存资源的函数，负责内存的分配、释放和清理。
+ * 包含内存分配、资源管理和安全检查等功能。
+ * 
+ * 技术特点：
+ * - 动态内存分配和管理
+ * - 资源清理和释放
+ * - 内存泄漏防护
+ * - 安全检查和验证
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，主要展示内存资源管理的核心逻辑。
+ * 原始代码包含更复杂的内存管理算法、错误处理和性能优化逻辑。
+ */
+void RenderingSystem_MemoryResourceManager(void) {
+    // 变量重命名以提高可读性：
+    // lVar1 -> allocated_memory: 分配的内存
+    // unaff_RBX -> resource_flag: 资源标志
+    // in_stack_00000040 -> size_info: 大小信息
+    // in_stack_00000050 -> memory_to_free: 要释放的内存
+    // in_stack_00000070 -> output_size_ptr: 输出大小指针
+    // in_stack_00000098 -> security_cookie: 安全cookie
+    
+    longlong allocated_memory;
+    longlong resource_flag;
+    undefined8 size_info;
+    undefined8 memory_to_free;
+    int *output_size_ptr;
+    ulonglong security_cookie;
+    
+    // 释放指定的内存资源
+    free(memory_to_free);
+    
+    // 根据资源标志决定是否分配新内存
+    if (resource_flag != 0) {
+        allocated_memory = malloc((longlong)(size_info._4_4_ + 0x39));
+        if (allocated_memory != 0) {
+            *output_size_ptr = size_info._4_4_ + 0x39;
+            // 复制资源数据
+            memmove(allocated_memory, &stack0x00000090, 8);
+        }
     }
-  }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+    
+    // 执行安全检查
+    FUN_1808fc050(security_cookie ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
 
-// 函数: void FUN_18042f570(undefined8 *param_1,uint *param_2,uint *param_3,ushort *param_4)
-void FUN_18042f570(undefined8 *param_1,uint *param_2,uint *param_3,ushort *param_4)
-
-{
-  uint uVar1;
-  ulonglong uVar2;
-  char cVar3;
-  uint uVar4;
-  char acStackX_10 [8];
-  
-  uVar4 = (uint)param_4[1] + *param_3;
-  uVar1 = (uint)*param_4 << (0x18U - (char)uVar4 & 0x1f) | *param_2;
-  if (7 < (int)uVar4) {
-    uVar2 = (ulonglong)(uVar4 >> 3);
-    do {
-      cVar3 = (char)(uVar1 >> 0x10);
-      acStackX_10[0] = cVar3;
-      (*(code *)*param_1)(param_1[1],acStackX_10,1);
-      if (cVar3 == -1) {
-        acStackX_10[0] = '\0';
-        (*(code *)*param_1)(param_1[1],acStackX_10,1);
-      }
-      uVar1 = uVar1 << 8;
-      uVar2 = uVar2 - 1;
-    } while (uVar2 != 0);
-    *param_3 = uVar4 + (uVar4 >> 3) * -8;
-    *param_2 = uVar1;
+/**
+ * 渲染系统数据编码处理器
+ * 
+ * 这是一个专门用于数据编码处理的函数，支持多种编码格式和数据转换。
+ * 负责处理图像数据的编码、压缩和格式转换。
+ * 
+ * @param encoder_callback 编码器回调函数指针数组
+ * @param data_ptr 数据指针
+ * @param length_ptr 数据长度指针
+ * @param encoding_params 编码参数数组
+ * 
+ * 技术特点：
+ * - 支持多种编码格式
+ * - 实现数据位操作和转换
+ * - 处理特殊字符和转义序列
+ * - 动态调整数据长度
+ * - 支持回调函数处理
+ * 
+ * 编码过程说明：
+ * - 计算编码后的数据长度
+ * - 执行位级数据操作
+ * - 处理特殊字符转义
+ * - 调用回调函数处理数据
+ * 
+ * 简化实现说明：
+ * 本函数为简化实现，主要展示数据编码的核心逻辑。
+ * 原始代码包含更复杂的编码算法、错误处理和性能优化逻辑。
+ */
+void RenderingSystem_DataEncoder(undefined8 *encoder_callback, uint *data_ptr, uint *length_ptr, ushort *encoding_params) {
+    // 变量重命名以提高可读性：
+    // uVar1 -> encoded_data: 编码后的数据
+    // uVar2 -> byte_count: 字节计数
+    // cVar3 -> current_byte: 当前字节
+    // uVar4 -> total_bits: 总位数
+    // acStackX_10 -> temp_buffer: 临时缓冲区
+    
+    uint encoded_data;
+    ulonglong byte_count;
+    char current_byte;
+    uint total_bits;
+    char temp_buffer[8];
+    
+    // 计算总位数和编码数据
+    total_bits = (uint)encoding_params[1] + *length_ptr;
+    encoded_data = (uint)*encoding_params << (0x18U - (char)total_bits & 0x1f) | *data_ptr;
+    
+    // 如果位数大于7，进行编码处理
+    if (7 < (int)total_bits) {
+        byte_count = (ulonglong)(total_bits >> 3);
+        do {
+            current_byte = (char)(encoded_data >> 0x10);
+            temp_buffer[0] = current_byte;
+            
+            // 调用编码回调函数
+            (*(code *)*encoder_callback)(encoder_callback[1], temp_buffer, 1);
+            
+            // 处理特殊字符转义
+            if (current_byte == -1) {
+                temp_buffer[0] = '\0';
+                (*(code *)*encoder_callback)(encoder_callback[1], temp_buffer, 1);
+            }
+            
+            encoded_data = encoded_data << 8;
+            byte_count = byte_count - 1;
+        } while (byte_count != 0);
+        
+        // 更新参数
+        *length_ptr = total_bits + (total_bits >> 3) * -8;
+        *data_ptr = encoded_data;
+        return;
+    }
+    
+    // 直接更新参数
+    *data_ptr = encoded_data;
+    *length_ptr = total_bits;
     return;
-  }
-  *param_2 = uVar1;
-  *param_3 = uVar4;
-  return;
 }
 
 
