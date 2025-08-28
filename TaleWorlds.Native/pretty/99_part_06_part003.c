@@ -113,7 +113,7 @@ typedef struct {
 // 内存管理函数
 #define SystemMemoryPoolAllocator SystemMemoryPoolAllocator
 #define SystemMemoryPoolInitializer SystemMemoryPoolInitializer
-#define SystemMemoryPoolReallocator FUN_18066bdc0
+#define SystemMemoryPoolReallocator SystemMemoryPoolReallocator
 
 // 数据处理函数
 #define SystemDataProcessor SystemDataProcessor
@@ -1188,7 +1188,7 @@ LAB_1803a6d2f:
                     *(uint64_t *)(lVar3 + 0x20) = *(uint64_t *)param_2;
                     *(int *)(lVar3 + 0x28) = param_2[2];
                     *(int32_t *)(lVar3 + 0x2c) = 0;
-                    FUN_18066bdc0(lVar3, plVar6, param_1, uVar7);
+                    SystemMemoryPoolReallocator(lVar3, plVar6, param_1, uVar7);
                 }
             }
             else if (iVar5 <= (int)plVar2[4]) {
@@ -1271,9 +1271,9 @@ int64_t ResourceAllocator(uint64_t param_1)
         *(uint64_t *)(lVar3 + 0x20) = *(uint64_t *)unaff_RDI;
         *(int *)(lVar3 + 0x28) = unaff_RDI[2];
         *(int32_t *)(lVar3 + 0x2c) = 0;
-        FUN_18066bdc0(lVar3, unaff_RBX);
+        SystemMemoryPoolReallocator(lVar3, unaff_RBX);
     }
-FUN_1803a6d7c:
+SystemResourceHandler:
     plVar2 = (int64_t *)FUN_1803a6db0(param_1, auStackX_20);
     return *plVar2 + 0x2c;
 }
