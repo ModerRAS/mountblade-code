@@ -392,212 +392,210 @@ CLEANUP_AND_EXIT:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+// 警告：全局变量名在相同地址上重叠
 
-
-
-// 函数: void FUN_1801769e0(longlong param_1)
-void FUN_1801769e0(longlong param_1)
+// 函数：清理引擎资源和管理内存的核心函数
+void cleanup_engine_resources(longlong engine_context)
 
 {
-  longlong *plVar1;
-  int iVar2;
-  uint uVar3;
-  longlong lVar4;
-  longlong *plVar5;
-  undefined8 uVar6;
-  int iVar7;
-  longlong *plVar8;
-  longlong *plVar9;
-  longlong *plVar10;
-  uint uVar11;
-  ulonglong uVar12;
-  ulonglong uVar13;
-  undefined8 *puVar14;
-  longlong *plVar15;
-  longlong lVar16;
-  undefined4 uVar17;
-  float fVar18;
-  undefined1 auStack_c8 [32];
-  uint uStack_a8;
-  longlong *plStack_a0;
-  longlong *plStack_98;
-  longlong *plStack_90;
-  longlong *plStack_88;
-  undefined4 uStack_80;
-  longlong *plStack_78;
-  undefined8 uStack_70;
-  undefined8 uStack_68;
-  int iStack_60;
-  int iStack_5c;
-  ulonglong uStack_58;
+  longlong *resource_manager;
+  int resource_type;
+  uint resource_count;
+  longlong resource_handle;
+  longlong *resource_array;
+  undefined8 operation_result;
+  int mip_level;
+  longlong *cache_manager;
+  longlong *texture_manager;
+  longlong *memory_pool;
+  uint texture_index;
+  ulonglong pool_size;
+  ulonglong array_size;
+  undefined8 *texture_node;
+  longlong *temp_ptr;
+  longlong allocation_size;
+  undefined4 quality_setting;
+  float scale_factor;
+  undefined1 stack_buffer_200 [32];
+  uint texture_id;
+  longlong *data_buffer;
+  longlong *active_resources;
+  longlong *resource_list;
+  longlong *max_resources;
+  undefined4 pool_flags;
+  longlong *start_pointer;
+  undefined8 context_handle;
+  undefined8 engine_handle;
+  int render_width;
+  int render_height;
+  ulonglong security_cookie;
   
-  uStack_70 = 0xfffffffffffffffe;
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
-  uStack_68 = param_1;
-  FUN_180176060();
-  plStack_98 = (longlong *)0x0;
-  plStack_90 = (longlong *)0x0;
-  plVar10 = (longlong *)0x0;
-  plStack_88 = (longlong *)0x0;
-  uStack_80 = 3;
-  plStack_a0 = *(longlong **)(param_1 + 0xc0);
-  plStack_78 = *(longlong **)(param_1 + 200);
-  plVar9 = (longlong *)0x0;
-  plVar5 = (longlong *)0x0;
-  plVar8 = plVar9;
-  plVar15 = plVar5;
-  if (plStack_a0 != plStack_78) {
+  context_handle = 0xfffffffffffffffe;
+  security_cookie = SECURITY_COOKIE_VALUE ^ (ulonglong)stack_buffer_200;
+  engine_handle = engine_context;
+  initialize_engine_system();
+  active_resources = (longlong *)0x0;
+  resource_list = (longlong *)0x0;
+  memory_pool = (longlong *)0x0;
+  max_resources = (longlong *)0x0;
+  pool_flags = 3;
+  data_buffer = *(longlong **)(engine_context + 0xc0);
+  start_pointer = *(longlong **)(engine_context + 200);
+  texture_manager = (longlong *)0x0;
+  resource_array = (longlong *)0x0;
+  cache_manager = texture_manager;
+  temp_ptr = resource_array;
+  if (data_buffer != start_pointer) {
     do {
-      uVar11 = 0;
-      plVar1 = *(longlong **)(*plStack_a0 + 0x148);
-      uStack_a8 = 0;
-      iVar2 = (**(code **)(*plVar1 + 0x20))(plVar1);
-      plVar9 = plVar8;
-      plVar5 = plVar15;
-      if (iVar2 != 0) {
+      texture_index = 0;
+      resource_manager = *(longlong **)(*data_buffer + 0x148);
+      texture_id = 0;
+      resource_type = (**(code **)(*resource_manager + 0x20))(resource_manager);
+      texture_manager = cache_manager;
+      resource_array = temp_ptr;
+      if (resource_type != 0) {
         do {
-          lVar4 = (**(code **)(*plVar1 + 0x140))(plVar1,uVar11);
-          plVar9 = plVar8;
-          plVar5 = plVar15;
-          if (lVar4 != 0) {
-            if (plVar8 < plVar10) {
-              plVar9 = plVar8 + 1;
-              *plVar8 = lVar4;
-              plStack_90 = plVar9;
+          resource_handle = (**(code **)(*resource_manager + 0x140))(resource_manager, texture_index);
+          texture_manager = cache_manager;
+          resource_array = temp_ptr;
+          if (resource_handle != 0) {
+            if (cache_manager < memory_pool) {
+              texture_manager = cache_manager + 1;
+              *cache_manager = resource_handle;
+              resource_list = texture_manager;
             }
             else {
-              lVar16 = (longlong)plVar8 - (longlong)plVar15 >> 3;
-              if (lVar16 == 0) {
-                lVar16 = 1;
-LAB_180176af7:
-                plVar5 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar16 * 8,3);
+              allocation_size = (longlong)cache_manager - (longlong)temp_ptr >> 3;
+              if (allocation_size == 0) {
+                allocation_size = 1;
+EXPAND_RESOURCE_ARRAY:
+                resource_array = (longlong *)allocate_resource_memory(RESOURCE_MEMORY_ID, allocation_size * 8, 3);
               }
               else {
-                lVar16 = lVar16 * 2;
-                if (lVar16 != 0) goto LAB_180176af7;
-                plVar5 = (longlong *)0x0;
+                allocation_size = allocation_size * 2;
+                if (allocation_size != 0) goto EXPAND_RESOURCE_ARRAY;
+                resource_array = (longlong *)0x0;
               }
-              if (plVar15 != plVar8) {
-                    // WARNING: Subroutine does not return
-                memmove(plVar5,plVar15,(longlong)plVar8 - (longlong)plVar15);
+              if (temp_ptr != cache_manager) {
+                // 警告：此函数不返回
+                memmove(resource_array, temp_ptr, (longlong)cache_manager - (longlong)temp_ptr);
               }
-              *plVar5 = lVar4;
-              plVar9 = plVar5 + 1;
-              if (plVar15 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-                FUN_18064e900(plVar15);
+              *resource_array = resource_handle;
+              texture_manager = resource_array + 1;
+              if (temp_ptr != (longlong *)0x0) {
+                // 警告：此函数不返回
+                free_memory(temp_ptr);
               }
-              plVar10 = plVar5 + lVar16;
-              plStack_98 = plVar5;
-              plStack_90 = plVar9;
-              plStack_88 = plVar10;
-              uVar11 = uStack_a8;
+              memory_pool = resource_array + allocation_size;
+              active_resources = resource_array;
+              resource_list = texture_manager;
+              max_resources = memory_pool;
+              texture_index = texture_id;
             }
           }
-          (**(code **)(*plVar1 + 0x128))(plVar1,uVar11,0);
-          uVar11 = uVar11 + 1;
-          uStack_a8 = uVar11;
-          uVar3 = (**(code **)(*plVar1 + 0x20))(plVar1);
-          plVar8 = plVar9;
-          plVar15 = plVar5;
-        } while (uVar11 < uVar3);
+          (**(code **)(*resource_manager + 0x128))(resource_manager, texture_index, 0);
+          texture_index = texture_index + 1;
+          texture_id = texture_index;
+          resource_count = (**(code **)(*resource_manager + 0x20))(resource_manager);
+          cache_manager = texture_manager;
+          temp_ptr = resource_array;
+        } while (texture_index < resource_count);
       }
-      plStack_a0 = plStack_a0 + 1;
-      plVar8 = plVar9;
-      plVar15 = plVar5;
-      param_1 = uStack_68;
-    } while (plStack_a0 != plStack_78);
+      data_buffer = data_buffer + 1;
+      cache_manager = texture_manager;
+      temp_ptr = resource_array;
+      engine_context = engine_handle;
+    } while (data_buffer != start_pointer);
   }
-  uVar12 = 0;
-  uVar13 = (ulonglong)((longlong)plVar9 + (7 - (longlong)plVar5)) >> 3;
-  if (plVar9 < plVar5) {
-    uVar13 = uVar12;
+  pool_size = 0;
+  array_size = (ulonglong)((longlong)texture_manager + (7 - (longlong)resource_array)) >> 3;
+  if (texture_manager < resource_array) {
+    array_size = pool_size;
   }
-  plVar10 = plVar5;
-  if (uVar13 != 0) {
+  memory_pool = resource_array;
+  if (array_size != 0) {
     do {
-      (**(code **)(**(longlong **)(param_1 + 0xe8) + 0x128))
-                (*(longlong **)(param_1 + 0xe8),*plVar10);
-      uVar12 = uVar12 + 1;
-      plVar10 = plVar10 + 1;
-    } while (uVar12 != uVar13);
+      (**(code **)(**(longlong **)(engine_context + 0xe8) + 0x128))
+                (*(longlong **)(engine_context + 0xe8), *memory_pool);
+      pool_size = pool_size + 1;
+      memory_pool = memory_pool + 1;
+    } while (pool_size != array_size);
   }
-  lVar4 = param_1 + 0x1b0;
-  puVar14 = *(undefined8 **)(param_1 + 0x1c0);
-  if (puVar14 != (undefined8 *)0x0) {
-    FUN_18004b790(lVar4,*puVar14);
-                    // WARNING: Subroutine does not return
-    FUN_18064e900(puVar14);
+  resource_handle = engine_context + 0x1b0;
+  texture_node = *(undefined8 **)(engine_context + 0x1c0);
+  if (texture_node != (undefined8 *)0x0) {
+    release_texture_cache(resource_handle, *texture_node);
+    // 警告：此函数不返回
+    free_memory(texture_node);
   }
-  *(longlong *)lVar4 = lVar4;
-  *(longlong *)(param_1 + 0x1b8) = lVar4;
-  *(undefined8 *)(param_1 + 0x1c0) = 0;
-  *(undefined1 *)(param_1 + 0x1c8) = 0;
-  *(undefined8 *)(param_1 + 0x1d0) = 0;
-  plVar10 = *(longlong **)(param_1 + 200);
-  plVar9 = *(longlong **)(param_1 + 0xc0);
+  *(longlong *)resource_handle = resource_handle;
+  *(longlong *)(engine_context + 0x1b8) = resource_handle;
+  *(undefined8 *)(engine_context + 0x1c0) = 0;
+  *(undefined1 *)(engine_context + 0x1c8) = 0;
+  *(undefined8 *)(engine_context + 0x1d0) = 0;
+  memory_pool = *(longlong **)(engine_context + 200);
+  texture_manager = *(longlong **)(engine_context + 0xc0);
   do {
-    if (plVar9 == plVar10) {
-      if (plVar5 != (longlong *)0x0) {
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(plVar5);
+    if (texture_manager == memory_pool) {
+      if (resource_array != (longlong *)0x0) {
+        // 警告：此函数不返回
+        free_memory(resource_array);
       }
-                    // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_c8);
+      // 警告：此函数不返回
+      security_check(security_cookie ^ (ulonglong)stack_buffer_200);
     }
-    lVar4 = *plVar9;
-    iVar2 = *(int *)(_DAT_180c86920 + 0x380);
-    if (iVar2 == 3) {
-      iVar7 = 0x138;
+    resource_handle = *texture_manager;
+    resource_type = *(int *)(RENDER_QUALITY_SETTINGS + 0x380);
+    if (resource_type == 3) {
+      mip_level = 0x138;
     }
-    else if (iVar2 == 2) {
-      iVar7 = 0x9c;
+    else if (resource_type == 2) {
+      mip_level = 0x9c;
     }
     else {
-      iVar7 = 0x4e;
-      if ((iVar2 != 1) && (iVar7 = 0x4e, iVar2 == 0)) {
-        iVar7 = 0x4e;
+      mip_level = 0x4e;
+      if ((resource_type != 1) && (mip_level = 0x4e, resource_type == 0)) {
+        mip_level = 0x4e;
       }
     }
-    iVar2 = *(int *)(_DAT_180c86920 + 0x3f0);
-    if (iVar2 == 2) {
-      uVar17 = 0;
-LAB_180176cb5:
-      (**(code **)(**(longlong **)(lVar4 + 0x148) + 0xd0))(*(longlong **)(lVar4 + 0x148),uVar17);
+    resource_type = *(int *)(RENDER_QUALITY_SETTINGS + 0x3f0);
+    if (resource_type == 2) {
+      quality_setting = 0;
+APPLY_QUALITY_SETTINGS:
+      (**(code **)(**(longlong **)(resource_handle + 0x148) + 0xd0))(*(longlong **)(resource_handle + 0x148), quality_setting);
     }
     else {
-      if (iVar2 == 1) {
-        uVar17 = 0x3f800000;
-        goto LAB_180176cb5;
+      if (resource_type == 1) {
+        quality_setting = 0x3f800000;
+        goto APPLY_QUALITY_SETTINGS;
       }
-      if (iVar2 == 0) {
-        uVar17 = 0x40000000;
-        goto LAB_180176cb5;
+      if (resource_type == 0) {
+        quality_setting = 0x40000000;
+        goto APPLY_QUALITY_SETTINGS;
       }
     }
-    plVar5 = *(longlong **)(lVar4 + 0x148);
-    fVar18 = (float)(iVar7 << 0x14);
-    uStack_68 = CONCAT44((int)(fVar18 * *(float *)(lVar4 + 0x1b4)),
-                         (int)(fVar18 * *(float *)(lVar4 + 0x1b0)));
-    iStack_60 = (int)(fVar18 * *(float *)(lVar4 + 0x1b8));
-    iStack_5c = (int)(fVar18 * *(float *)(lVar4 + 0x1bc));
-    uVar11 = (**(code **)(*plVar5 + 0x20))(plVar5);
-    uVar3 = 0;
-    if (uVar11 != 0) {
-      puVar14 = &uStack_68;
+    resource_array = *(longlong **)(resource_handle + 0x148);
+    scale_factor = (float)(mip_level << 0x24);
+    engine_handle = CONCAT44((int)(scale_factor * *(float *)(resource_handle + 0x1b4)),
+                         (int)(scale_factor * *(float *)(resource_handle + 0x1b0)));
+    render_width = (int)(scale_factor * *(float *)(resource_handle + 0x1b8));
+    render_height = (int)(scale_factor * *(float *)(resource_handle + 0x1bc));
+    texture_index = (**(code **)(*resource_array + 0x20))(resource_array);
+    resource_count = 0;
+    if (texture_index != 0) {
+      texture_node = &engine_handle;
       do {
-        uVar6 = FUN_1801760d0(param_1,plVar5,uVar3,*(undefined4 *)puVar14);
-        iVar2 = (**(code **)(*plVar5 + 0x128))(plVar5,uVar3,uVar6);
-        if (iVar2 != 0) {
-          FUN_180626ee0(&UNK_180a09248);
+        operation_result = process_gpu_cache_creation(engine_context, resource_array, resource_count, *(undefined4 *)texture_node);
+        resource_type = (**(code **)(*resource_array + 0x128))(resource_array, resource_count, operation_result);
+        if (resource_type != 0) {
+          log_error(&ERROR_RESOURCE_CLEANUP);
         }
-        uVar3 = uVar3 + 1;
-        puVar14 = (undefined8 *)((longlong)puVar14 + 4);
-      } while (uVar3 < uVar11);
+        resource_count = resource_count + 1;
+        texture_node = (undefined8 *)((longlong)texture_node + 4);
+      } while (resource_count < texture_index);
     }
-    plVar9 = plVar9 + 1;
-    plVar5 = plStack_98;
+    texture_manager = texture_manager + 1;
+    resource_array = active_resources;
   } while( true );
 }
 
