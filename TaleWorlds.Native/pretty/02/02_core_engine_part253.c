@@ -1,11 +1,20 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 02_core_engine_part253.c - 核心引擎模块第253部分
-// 本文件包含字符串比较、快速排序、内存管理等功能
+// 本文件包含字符串处理、排序算法、内存管理、文件操作等功能
+// 主要功能模块：
+// 1. 字符串指针快速排序算法
+// 2. 字符串数据块复制和移动操作
+// 3. 堆排序算法实现
+// 4. 字符串容器管理
+// 5. 配置文件处理
+// 6. 系统初始化和清理函数
+// 转译状态：已完成所有函数命名和注释
 
 // 函数: void quick_sort_string_pointers(ulonglong *result_ptr,longlong *left_ptr,longlong *right_ptr)
-// 功能: 对字符串指针数组进行快速排序
+// 功能: 对字符串指针数组进行快速排序，使用三路分区优化
 // 参数: result_ptr - 排序结果指针数组, left_ptr - 左边界指针, right_ptr - 右边界指针
+// 算法特点：使用字符串比较进行排序，处理空字符串情况
 void quick_sort_string_pointers(ulonglong *result_ptr,longlong *left_ptr,longlong *right_ptr)
 
 {
