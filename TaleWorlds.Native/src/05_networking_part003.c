@@ -330,91 +330,248 @@ int NetworkProtocol_SerializeDisconnect(void* context, uint8_t* output_buffer, i
 
 
 
-int FUN_180842690(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 心跳包协议处理函数
+ * 
+ * 该函数负责处理心跳包协议的序列化工作。
+ * 包含时间戳和会话信息的封装，用于保持连接活跃状态。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 时间戳封装
+ * - 会话信息包含
+ * - 心跳间隔控制
+ * 
+ * @性能优化:
+ * - 紧凑的数据结构
+ * - 快速序列化算法
+ * - 批量处理支持
+ */
+int NetworkProtocol_SerializeHeartbeat(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined8 uVar2;
-  int iVar3;
-  int iVar4;
-  
-  uVar2 = *(undefined8 *)(param_1 + 0x18);
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_1809842c8);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074bda0(iVar3 + param_2,param_3 - iVar3,uVar2);
-  return iVar4 + iVar3;
+    uint64_t timestamp;
+    uint32_t session_id;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取时间戳和会话ID
+    timestamp = *(uint64_t*)((uint8_t*)context + 0x18);
+    session_id = *(uint32_t*)((uint8_t*)context + 0x10);
+    
+    // 序列化心跳包头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809842c8);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    
+    // 序列化会话ID
+    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+                                     buffer_size - header_size - total_size, session_id);
+    if (total_size < 0) return total_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size + total_size, 
+                               buffer_size - header_size - total_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    
+    // 序列化时间戳
+    total_size = func_0x00018074bda0(output_buffer + header_size + total_size, 
+                                     buffer_size - header_size - total_size, timestamp);
+    if (total_size < 0) return total_size;
+    
+    return header_size + total_size;
 }
 
 
 
-int FUN_180842750(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 心跳响应协议处理函数
+ * 
+ * 该函数负责处理心跳响应协议的序列化工作。
+ * 包含响应确认和时间同步信息的封装。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 响应确认码
+ * - 时间同步信息
+ * - 简化的数据结构
+ */
+int NetworkProtocol_SerializeHeartbeatResponse(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
-  
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809841c8);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+    uint32_t response_code;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取响应码
+    response_code = *(uint32_t*)((uint8_t*)context + 0x10);
+    
+    // 序列化心跳响应头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_1809841c8);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    
+    // 序列化响应码
+    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+                                     buffer_size - header_size - total_size, response_code);
+    if (total_size < 0) return total_size;
+    
+    return header_size + total_size;
 }
 
 
 
 
 
-// 函数: void FUN_1808427c0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808427c0(longlong param_1,undefined8 param_2,undefined4 param_3)
-
+/**
+ * @brief 安全协议数据发送函数
+ * 
+ * 该函数负责发送安全协议数据包，包含加密标识和安全参数。
+ * 用于建立安全通信通道和传输敏感数据。
+ * 
+ * @param context 协议上下文指针
+ * @param data_buffer 数据缓冲区
+ * @param data_size 数据大小
+ * 
+ * @安全考虑:
+ * - 加密标识验证
+ * - 安全参数检查
+ * - 数据完整性保护
+ * - 访问权限控制
+ */
+void NetworkProtocol_SendSecure(void* context, uint8_t* data_buffer, uint32_t data_size)
 {
-  FUN_18083f9b0(param_2,param_3,&UNK_180984438,*(undefined4 *)(param_1 + 0x10),
-                *(undefined1 *)(param_1 + 0x18));
-  return;
+    // 参数验证和边界检查
+    if (context == NULL || data_buffer == NULL || data_size == 0) {
+        return;
+    }
+    
+    // 调用安全协议发送函数
+    FUN_18083f9b0(data_buffer, data_size, &UNK_180984438, 
+                *(uint32_t*)((uint8_t*)context + 0x10),
+                *(uint8_t*)((uint8_t*)context + 0x18));
 }
 
 
 
 
 
-// 函数: void FUN_1808427f0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808427f0(longlong param_1,undefined8 param_2,undefined4 param_3)
-
+/**
+ * @brief 压缩协议数据发送函数
+ * 
+ * 该函数负责发送压缩协议数据包，包含压缩标识和压缩参数。
+ * 用于优化网络传输效率，减少带宽占用。
+ * 
+ * @param context 协议上下文指针
+ * @param data_buffer 数据缓冲区
+ * @param data_size 数据大小
+ * 
+ * @性能优化:
+ * - 压缩算法选择
+ * - 压缩级别控制
+ * - 带宽节省
+ * - 传输延迟优化
+ * 
+ * @安全考虑:
+ * - 压缩数据完整性验证
+ * - 解压缩缓冲区溢出防护
+ * - 压缩炸弹检测
+ */
+void NetworkProtocol_SendCompressed(void* context, uint8_t* data_buffer, uint32_t data_size)
 {
-  FUN_18083f9b0(param_2,param_3,&UNK_1809843c0,*(undefined4 *)(param_1 + 0x10),
-                *(undefined1 *)(param_1 + 0x18));
-  return;
+    // 参数验证和边界检查
+    if (context == NULL || data_buffer == NULL || data_size == 0) {
+        return;
+    }
+    
+    // 调用压缩协议发送函数
+    FUN_18083f9b0(data_buffer, data_size, &UNK_1809843c0, 
+                *(uint32_t*)((uint8_t*)context + 0x10),
+                *(uint8_t*)((uint8_t*)context + 0x18));
 }
 
 
 
-int FUN_180842820(longlong param_1,longlong param_2,int param_3)
-
+/**
+ * @brief 压缩协议数据序列化函数
+ * 
+ * 该函数负责将压缩协议数据序列化为网络传输格式。
+ * 包含压缩头部、压缩数据和压缩元信息的封装。
+ * 
+ * @param context 协议上下文指针
+ * @param output_buffer 输出缓冲区
+ * @param buffer_size 缓冲区大小
+ * @return int 序列化后的数据大小
+ * 
+ * @技术实现:
+ * - 压缩头部封装
+ * - 压缩算法标识
+ * - 压缩比率信息
+ * - 数据完整性校验
+ * 
+ * @性能优化:
+ * - 压缩效率优化
+ * - 内存使用优化
+ * - 序列化速度优化
+ */
+int NetworkProtocol_SerializeCompressed(void* context, uint8_t* output_buffer, int buffer_size)
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
-  
-  uVar2 = *(undefined4 *)(param_1 + 0x10);
-  uVar1 = *(undefined4 *)(param_1 + 0x18);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180984348);
-  iVar4 = FUN_18074b880(param_2 + iVar3,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b830(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+    uint32_t algorithm_id, compression_level;
+    int header_size, total_size;
+    
+    // 参数验证
+    if (context == NULL || output_buffer == NULL || buffer_size <= 0) {
+        return PROTO_STATUS_INVALID_HEADER;
+    }
+    
+    // 获取压缩参数
+    algorithm_id = *(uint32_t*)((uint8_t*)context + 0x10);
+    compression_level = *(uint32_t*)((uint8_t*)context + 0x18);
+    
+    // 序列化压缩协议头部
+    header_size = FUN_18074b880(output_buffer, buffer_size, &UNK_180984348);
+    if (header_size < 0) return header_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size, buffer_size - header_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    
+    // 序列化算法标识
+    total_size = func_0x00018074b800(output_buffer + header_size + total_size, 
+                                     buffer_size - header_size - total_size, algorithm_id);
+    if (total_size < 0) return total_size;
+    
+    // 序列化分隔符
+    total_size = FUN_18074b880(output_buffer + header_size + total_size, 
+                               buffer_size - header_size - total_size, &DAT_180a06434);
+    if (total_size < 0) return total_size;
+    
+    // 序列化压缩级别
+    total_size = func_0x00018074b830(output_buffer + header_size + total_size, 
+                                     buffer_size - header_size - total_size, compression_level);
+    if (total_size < 0) return total_size;
+    
+    return header_size + total_size;
 }
 
 

@@ -75,14 +75,116 @@
  * 函数别名定义 - 用于代码可读性和维护性
  * ============================================================================ */
 
-#define core_engine_data_initializer FUN_180168ab0
-#define core_engine_data_processor FUN_180168af0
-#define core_engine_resource_manager FUN_180169110
-#define core_engine_string_processor FUN_180169350
-#define core_engine_config_parser FUN_180169c30
-#define core_engine_data_manager FUN_180169f60
-#define core_engine_interface_initializer FUN_18016a6c0
-#define core_engine_parameter_handler FUN_18016a740
+/* FUN_180627ae0 - 字符串处理和初始化函数 */
+#define StringInitializer FUN_180627ae0
+
+/* FUN_18062b420 - 内存分配函数 */
+#define MemoryAllocator FUN_18062b420
+
+/* FUN_180049b30 - 数据块复制函数 */
+#define DataBlockCopier FUN_180049b30
+
+/* FUN_1808fcf5c - 数据结构处理函数 */
+#define DataStructureProcessor FUN_1808fcf5c
+
+/* FUN_1800b8300 - 数据优化处理函数 */
+#define DataOptimizationProcessor FUN_1800b8300
+
+/* FUN_180044a30 - 数据验证函数 */
+#define DataValidator FUN_180044a30
+
+/* FUN_1806279c0 - 上下文初始化函数 */
+#define ContextInitializer FUN_1806279c0
+
+/* FUN_180169350 - 资源计数函数 */
+#define ResourceCounter FUN_180169350
+
+/* FUN_18064e900 - 错误处理函数 */
+#define ErrorHandler FUN_18064e900
+
+/* FUN_1806272a0 - 资源注册函数 */
+#define ResourceRegistrar FUN_1806272a0
+
+/* FUN_1801616b0 - 资源ID生成函数 */
+#define ResourceIdGenerator FUN_1801616b0
+
+/* FUN_18005d190 - 资源绑定函数 */
+#define ResourceBinder FUN_18005d190
+
+/* FUN_18016d400 - 资源块处理函数 */
+#define ResourceBlockProcessor FUN_18016d400
+
+/* FUN_180629a40 - 字符串解析函数 */
+#define StringParser FUN_180629a40
+
+/* FUN_18064e990 - 格式化处理函数 */
+#define FormatProcessor FUN_18064e990
+
+/* FUN_18062b8b0 - 内存重分配函数 */
+#define MemoryReallocator FUN_18062b8b0
+
+/* FUN_1806277c0 - 配置块初始化函数 */
+#define ConfigBlockInitializer FUN_1806277c0
+
+/* FUN_180059820 - 配置处理函数 */
+#define ConfigProcessor FUN_180059820
+
+/* FUN_180626f80 - 系统清理函数 */
+#define SystemCleaner FUN_180626f80
+
+/* FUN_180057110 - 配置验证函数 */
+#define ConfigValidator FUN_180057110
+
+/* FUN_180095280 - 配置应用函数 */
+#define ConfigApplier FUN_180095280
+
+/* FUN_180161f80 - 数据句柄创建函数 */
+#define DataHandleCreator FUN_180161f80
+
+/* FUN_180627ce0 - 数据上下文创建函数 */
+#define DataContextCreator FUN_180627ce0
+
+/* FUN_180059780 - 数据大小计算函数 */
+#define DataSizeCalculator FUN_180059780
+
+/* FUN_18016d200 - 数据释放函数 */
+#define DataReleaser FUN_18016d200
+
+/* FUN_180628ca0 - 处理结果获取函数 */
+#define ProcessingResultGetter FUN_180628ca0
+
+/* FUN_180162220 - 初始化参数处理函数 */
+#define InitParameterProcessor FUN_180162220
+
+/* FUN_180628040 - 浮点数据处理函数 */
+#define FloatDataProcessor FUN_180628040
+
+/* FUN_180627d90 - 参数处理函数 */
+#define ParameterProcessor FUN_180627d90
+
+/* FUN_180169c30 - 配置解析器 */
+#define ConfigParser FUN_180169c30
+
+/* FUN_180169f60 - 数据管理器 */
+#define DataManager FUN_180169f60
+
+/* FUN_18016a6c0 - 接口初始化器 */
+#define InterfaceInitializer FUN_18016a6c0
+
+/* FUN_18016a740 - 参数处理器 */
+#define ParameterHandler FUN_18016a740
+
+/* FUN_180168ab0 - 数据初始化器 */
+#define DataInitializer FUN_180168ab0
+
+/* FUN_180168af0 - 数据处理器 */
+#define DataProcessor FUN_180168af0
+
+/* FUN_180169110 - 资源管理器 */
+#define ResourceManager FUN_180169110
+
+/* FUN_180169350 - 字符串处理器 */
+#define StringProcessor FUN_180169350
 
 /* ============================================================================
  * 类型别名定义 - 用于代码可读性和维护性
@@ -199,7 +301,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     undefined *char_ptr;
     
     // 执行系统初始化
-    FUN_180627ae0();
+    StringInitializer();
     
     // 计算第一块数据的大小和数量
     buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x28) - *(longlong *)(src_ptr + CORE_OFFSET_0x20);
@@ -212,7 +314,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     // 分配第一块数据内存
     allocated_memory = 0;
     if (block_count != 0) {
-        allocated_memory = FUN_18062b420(_DAT_180c8ed18, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
+        allocated_memory = MemoryAllocator(_DAT_180c8ed18, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
     }
     
     // 设置第一块数据的指针和大小
@@ -251,10 +353,10 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     *(undefined8 **)(dest_ptr + CORE_OFFSET_0x28) = data_block;
     
     // 复制第二部分数据
-    FUN_180049b30(dest_ptr + CORE_OFFSET_0x40, src_ptr + CORE_OFFSET_0x40);
+    DataBlockCopier(dest_ptr + CORE_OFFSET_0x40, src_ptr + CORE_OFFSET_0x40);
     *(undefined1 *)(dest_ptr + CORE_OFFSET_0xd8) = *(undefined1 *)(src_ptr + CORE_OFFSET_0xd8);
     *(undefined4 *)(dest_ptr + CORE_OFFSET_0xdc) = *(undefined4 *)(src_ptr + CORE_OFFSET_0xdc);
-    FUN_180049b30(dest_ptr + CORE_OFFSET_0xe0, src_ptr + CORE_OFFSET_0xe0);
+    DataBlockCopier(dest_ptr + CORE_OFFSET_0xe0, src_ptr + CORE_OFFSET_0xe0);
     
     // 计算第二块数据的大小和数量
     buffer_size = *(longlong *)(src_ptr + CORE_OFFSET_0x180) - *(longlong *)(src_ptr + CORE_OFFSET_0x178);
@@ -266,7 +368,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     // 分配第二块数据内存
     allocated_memory = 0;
     if (block_count != 0) {
-        allocated_memory = FUN_18062b420(_DAT_180c8ed18, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
+        allocated_memory = MemoryAllocator(_DAT_180c8ed18, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
     }
     
     // 设置第二块数据的指针和大小
@@ -317,7 +419,7 @@ longlong core_engine_data_processor(longlong dest_ptr, longlong src_ptr)
     // 分配第三块数据内存
     allocated_memory = 0;
     if (block_count != 0) {
-        allocated_memory = FUN_18062b420(_DAT_180c8ed18, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
+        allocated_memory = MemoryAllocator(_DAT_180c8ed18, block_count * CORE_ENGINE_BLOCK_SIZE_0x98, data_flag & 0xff);
     }
     
     // 设置第三块数据的指针和大小
