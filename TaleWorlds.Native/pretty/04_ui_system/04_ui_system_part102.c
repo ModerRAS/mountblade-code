@@ -1,7 +1,45 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 04_ui_system_part102.c - UI系统高级数学计算模块
-// 本模块包含16个函数，主要处理UI系统的数学计算、矩阵变换、数据处理等高级功能
+// 
+// 模块概述：
+// 本模块包含16个函数，主要处理UI系统中的高级数学计算、矩阵变换、数据处理等功能。
+// 涵盖向量变换、矩阵运算、数据转换、编码处理、三角函数生成等核心UI系统功能。
+//
+// 主要功能分类：
+// 1. 向量和矩阵变换处理（4个函数）
+// 2. 数据转换和处理（4个函数）
+// 3. 编码和映射处理（2个函数）
+// 4. 数学计算和优化（3个函数）
+// 5. 系统保护和初始化（3个函数）
+//
+// 技术特点：
+// - 高性能矩阵运算，支持4元素批量处理优化
+// - 双精度浮点数处理，适用于高精度UI计算
+// - 编码数据处理，支持多种编码模式
+// - 栈保护机制，确保系统安全性
+// - 三角函数生成器，用于UI动画和变换效果
+//
+// 函数列表：
+// 1. UIProcessVectorTransform - UI系统向量变换处理器
+// 2. UIEmptyOperationHandler - UI系统空操作处理器
+// 3. UIMatrixInverseTransform - UI系统矩阵逆变换处理器
+// 4. UIAdvancedMatrixProcessor - UI系统高级矩阵处理器
+// 5. UIStackProtectionHandler - UI系统栈保护处理器
+// 6. UIFloatMatrixTransformer - UI系统浮点矩阵变换器
+// 7. UIEncryptedMatrixTransformer - UI系统加密矩阵变换器
+// 8. UIEmptyOperationHandler2 - UI系统空操作处理器2
+// 9. UIDataConversionProcessor - UI系统数据转换处理器
+// 10. UIIterativeDataProcessor - UI系统循环数据处理器
+// 11. UIEmptyOperationHandler3 - UI系统空操作处理器3
+// 12. UIVectorSquareSumCalculator - UI系统向量平方和计算器
+// 13. UIDoubleArrayProcessor - UI系统双精度数组处理器
+// 14. UITrigonometricGenerator - UI系统三角函数生成器
+// 15. UIEncodedDataProcessor - UI系统编码数据处理器
+// 16. UIAdvancedEncodedDataProcessor - UI系统高级编码数据处理器
+// 17. UIStackProtectionTerminator - UI系统栈保护终止处理器
+//
+// 注意：本模块为UI系统核心计算模块，包含多个安全检查和优化处理。
 
 // 函数: UI系统向量变换处理器
 // 原始函数名: FUN_18072ad65
@@ -931,240 +969,287 @@ void UITrigonometricGenerator(longlong param_1, longlong param_2, int param_3, i
 
 
 
-// 函数: void FUN_18072b930(longlong param_1,longlong param_2,int param_3,ulonglong param_4,uint param_5,
-void FUN_18072b930(longlong param_1,longlong param_2,int param_3,ulonglong param_4,uint param_5,
-                  int param_6,undefined4 param_7)
-
+// 函数: UI系统编码数据处理器
+// 原始函数名: FUN_18072b930
+// 功能: 执行UI系统中的编码数据处理，包括数据转换和映射操作
+// 参数:
+//   param_1 - 输出缓冲区指针
+//   param_2 - 输入数据指针
+//   param_3 - 数据偏移量
+//   param_4 - 数据大小
+//   param_5 - 编码模式
+//   param_6 - 编码参数
+//   param_7 - 编码标志
+void UIEncodedDataProcessor(longlong param_1, longlong param_2, int param_3, ulonglong param_4, uint param_5,
+                            int param_6, undefined4 param_7)
 {
-  char cVar1;
-  undefined4 uVar2;
-  longlong lVar3;
-  longlong lVar4;
-  undefined4 *puVar5;
-  undefined4 *puVar6;
-  int iVar7;
-  longlong lVar8;
-  longlong lVar9;
-  char *pcVar10;
-  longlong lVar11;
-  int iVar12;
-  undefined *puVar13;
-  undefined4 *puVar14;
-  undefined4 auStack_514 [231];
-  undefined1 auStack_178 [32];
-  int iStack_158;
-  undefined4 uStack_150;
-  int iStack_148;
-  uint uStack_144;
-  ulonglong uStack_140;
-  longlong lStack_138;
-  longlong lStack_130;
-  longlong lStack_128;
-  undefined4 auStack_118 [22];
-  undefined4 auStack_c0 [26];
-  ulonglong uStack_58;
+  char encoding_char;
+  undefined4 data_word;
+  longlong range_start;
+  longlong range_end;
+  undefined4 *data_ptr;
+  undefined4 *output_ptr;
+  int element_count;
+  longlong batch_counter;
+  longlong range_size;
+  char *encoding_table;
+  longlong element_index;
+  int mapping_index;
+  undefined *mapping_table;
+  undefined4 *output_buffer;
+  undefined4 temp_buffer [231];
+  undefined1 stack_guard [32];
+  int buffer_size;
+  undefined4 process_flag;
+  int mapping_size;
+  uint data_size;
+  ulonglong iteration_count;
+  longlong element_stride;
+  longlong data_stride;
+  longlong offset_val;
+  undefined4 work_buffer [22];
+  undefined4 conversion_buffer [26];
+  ulonglong security_cookie;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
-  uStack_144 = (uint)param_4;
+  // 安全检查：栈保护cookie
+  security_cookie = _DAT_180bf00a8 ^ (ulonglong)stack_guard;
+  data_size = (uint)param_4;
+  
+  // 根据编码模式选择参数
   if (param_5 == 4) {
-    iStack_148 = 0x22;
-    iVar7 = (int)(char)(&UNK_180956e8c)[param_6];
-    pcVar10 = &UNK_180956f18 + (longlong)param_6 * 8;
-    puVar13 = &UNK_180956e90;
+    mapping_size = 0x22;  // 模式4的映射大小
+    element_count = (int)(char)(&UNK_180956e8c)[param_6];
+    encoding_table = &UNK_180956f18 + (longlong)param_6 * 8;
+    mapping_table = &UNK_180956e90;
   }
   else {
-    iVar7 = 0xc;
-    pcVar10 = &UNK_180956f50;
-    iStack_148 = 0xc;
-    puVar13 = &UNK_180956f38;
+    element_count = 0xc;  // 默认映射大小
+    encoding_table = &UNK_180956f50;
+    mapping_size = 0xc;
+    mapping_table = &UNK_180956f38;
   }
-  lStack_138 = (longlong)iVar7;
-  param_2 = param_2 + (longlong)(int)(uStack_144 * 4) * 4;
+  
+  element_stride = (longlong)element_count;
+  param_2 = param_2 + (longlong)(int)(data_size * 4) * 4;
+  
   if (0 < (int)param_5) {
-    lStack_130 = (longlong)(int)uStack_144 << 2;
-    lStack_128 = (longlong)param_3;
-    iVar7 = 0;
-    puVar14 = (undefined4 *)(param_1 + 8);
-    uStack_140 = (ulonglong)param_5;
+    data_stride = (longlong)(int)data_size << 2;
+    offset_val = (longlong)param_3;
+    element_count = 0;
+    output_buffer = (undefined4 *)(param_1 + 8);
+    iteration_count = (ulonglong)param_5;
     do {
-      lVar3 = (longlong)pcVar10[1];
-      lVar9 = (longlong)*pcVar10;
-      lVar11 = 0;
-      iStack_158 = ((int)pcVar10[1] - (int)*pcVar10) + 1;
-      uStack_150 = param_7;
-      FUN_180712f20(param_2,param_2 + (lVar3 + lStack_128) * -4,auStack_c0 + 2,param_4);
-      if (lVar9 <= lVar3) {
-        lVar4 = lVar3 - lVar9;
-        if (3 < lVar4 + 1) {
-          lVar8 = ((lVar3 - lVar9) - 3U >> 2) + 1;
-          lVar9 = lVar9 + lVar8 * 4;
-          puVar5 = auStack_c0 + lVar4;
+      range_start = (longlong)encoding_table[1];
+      range_size = (longlong)*encoding_table;
+      element_index = 0;
+      buffer_size = ((int)encoding_table[1] - (int)*encoding_table) + 1;
+      process_flag = param_7;
+      
+      // 调用外部函数进行数据预处理
+      FUN_180712f20(param_2, param_2 + (range_start + offset_val) * -4, conversion_buffer + 2, param_4);
+      
+      if (range_size <= range_start) {
+        range_end = range_start - range_size;
+        if (3 < range_end + 1) {
+          batch_counter = ((range_start - range_size) - 3U >> 2) + 1;
+          range_size = range_size + batch_counter * 4;
+          data_ptr = conversion_buffer + range_end;
           do {
-            auStack_118[lVar11] = puVar5[2];
-            auStack_118[lVar11 + 1] = puVar5[1];
-            auStack_118[lVar11 + 2] = *puVar5;
-            auStack_118[lVar11 + 3] = puVar5[-1];
-            lVar11 = lVar11 + 4;
-            lVar8 = lVar8 + -1;
-            puVar5 = puVar5 + -4;
-          } while (lVar8 != 0);
+            // 批量复制数据到工作缓冲区
+            work_buffer[element_index] = data_ptr[2];
+            work_buffer[element_index + 1] = data_ptr[1];
+            work_buffer[element_index + 2] = *data_ptr;
+            work_buffer[element_index + 3] = data_ptr[-1];
+            element_index = element_index + 4;
+            batch_counter = batch_counter + -1;
+            data_ptr = data_ptr + -4;
+          } while (batch_counter != 0);
         }
-        if (lVar9 <= lVar3) {
-          puVar6 = auStack_118 + lVar11;
-          lVar11 = (lVar3 - lVar9) + 1;
-          puVar5 = auStack_c0 + (lVar3 - lVar9) + 2;
+        
+        if (range_size <= range_start) {
+          output_ptr = work_buffer + element_index;
+          element_index = (range_start - range_size) + 1;
+          data_ptr = conversion_buffer + (range_start - range_size) + 2;
           do {
-            uVar2 = *puVar5;
-            puVar5 = puVar5 + -1;
-            *puVar6 = uVar2;
-            puVar6 = puVar6 + 1;
-            lVar11 = lVar11 + -1;
-          } while (lVar11 != 0);
+            data_word = *data_ptr;
+            data_ptr = data_ptr + -1;
+            *output_ptr = data_word;
+            output_ptr = output_ptr + 1;
+            element_index = element_index + -1;
+          } while (element_index != 0);
         }
       }
-      cVar1 = *pcVar10;
-      puVar5 = puVar14;
-      lVar9 = lStack_138;
-      iVar12 = iVar7;
-      if (0 < lStack_138) {
+      
+      encoding_char = *encoding_table;
+      data_ptr = output_buffer;
+      range_size = element_stride;
+      mapping_index = element_count;
+      
+      if (0 < element_stride) {
         do {
-          lVar3 = (longlong)((int)(char)puVar13[iVar12] - (int)cVar1);
-          puVar5[-2] = auStack_118[lVar3];
-          puVar5[-1] = auStack_118[lVar3 + 1];
-          *puVar5 = auStack_118[lVar3 + 2];
-          puVar5[1] = auStack_118[lVar3 + 3];
-          puVar5[2] = auStack_118[lVar3 + 4];
-          lVar9 = lVar9 + -1;
-          puVar5 = puVar5 + 5;
-          iVar12 = iVar12 + 1;
-        } while (lVar9 != 0);
+          // 根据映射表进行数据转换
+          range_start = (longlong)((int)(char)mapping_table[mapping_index] - (int)encoding_char);
+          data_ptr[-2] = work_buffer[range_start];
+          data_ptr[-1] = work_buffer[range_start + 1];
+          *data_ptr = work_buffer[range_start + 2];
+          data_ptr[1] = work_buffer[range_start + 3];
+          data_ptr[2] = work_buffer[range_start + 4];
+          range_size = range_size + -1;
+          data_ptr = data_ptr + 5;
+          mapping_index = mapping_index + 1;
+        } while (range_size != 0);
       }
-      param_2 = param_2 + lStack_130;
-      pcVar10 = pcVar10 + 2;
-      iVar7 = iVar7 + iStack_148;
-      puVar14 = puVar14 + 0xaa;
-      uStack_140 = uStack_140 - 1;
-      param_4 = (ulonglong)uStack_144;
-    } while (uStack_140 != 0);
-    uStack_140 = 0;
+      
+      param_2 = param_2 + data_stride;
+      encoding_table = encoding_table + 2;
+      element_count = element_count + mapping_size;
+      output_buffer = output_buffer + 0xaa;
+      iteration_count = iteration_count - 1;
+      param_4 = (ulonglong)data_size;
+    } while (iteration_count != 0);
+    iteration_count = 0;
   }
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_178);
+  
+  // 安全检查：函数不会返回
+  FUN_1808fc050(security_cookie ^ (ulonglong)stack_guard);
 }
 
 
 
 
 
-// 函数: void FUN_18072b9d4(undefined8 param_1,undefined8 param_2,int param_3,ulonglong param_4,
-void FUN_18072b9d4(undefined8 param_1,undefined8 param_2,int param_3,ulonglong param_4,
-                  undefined8 param_5,ulonglong param_6,undefined8 param_7,longlong param_8)
-
+// 函数: UI系统高级编码数据处理器
+// 原始函数名: FUN_18072b9d4
+// 功能: 执行UI系统中的高级编码数据处理，使用寄存器变量进行优化
+// 参数:
+//   param_1 - 保留参数1
+//   param_2 - 保留参数2
+//   param_3 - 数据偏移量
+//   param_4 - 数据大小
+//   param_5 - 处理标志
+//   param_6 - 迭代步长
+//   param_7 - 迭代次数
+//   param_8 - 映射大小
+void UIAdvancedEncodedDataProcessor(undefined8 param_1, undefined8 param_2, int param_3, ulonglong param_4,
+                                   undefined8 param_5, ulonglong param_6, undefined8 param_7, longlong param_8)
 {
-  char cVar1;
-  undefined4 uVar2;
-  longlong lVar3;
-  longlong lVar4;
-  undefined4 *puVar5;
-  undefined4 *puVar6;
-  longlong lVar7;
-  longlong unaff_RBX;
-  longlong lVar8;
-  char *unaff_RBP;
-  longlong lVar9;
-  int iVar10;
-  longlong in_R10;
-  longlong unaff_R12;
-  longlong unaff_R13;
-  int iVar11;
-  undefined4 *puVar12;
-  longlong lStack0000000000000048;
-  longlong lStack0000000000000050;
-  ulonglong in_stack_00000120;
-  undefined4 in_stack_000001b0;
-  undefined4 auStack_39c [231];
+  char encoding_char;
+  undefined4 data_word;
+  longlong range_start;
+  longlong range_end;
+  undefined4 *data_ptr;
+  undefined4 *output_ptr;
+  longlong batch_counter;
+  longlong base_pointer;
+  longlong range_size;
+  char *encoding_range;
+  longlong element_index;
+  int mapping_index;
+  longlong input_buffer;
+  longlong output_base;
+  longlong mapping_table;
+  int iteration_count;
+  undefined4 *output_buffer;
+  longlong data_stride;
+  longlong offset_val;
+  ulonglong stack_cookie;
+  undefined4 process_flag;
+  undefined4 work_buffer [231];
   
-  lStack0000000000000048 = (longlong)(int)param_4 << 2;
-  lStack0000000000000050 = (longlong)param_3;
-  iVar11 = 0;
-  puVar12 = (undefined4 *)(unaff_RBX + 8);
-  param_7 = in_R10;
+  // 计算数据步长和偏移量
+  data_stride = (longlong)(int)param_4 << 2;
+  offset_val = (longlong)param_3;
+  iteration_count = 0;
+  output_buffer = (undefined4 *)(base_pointer + 8);
+  param_7 = input_buffer;
+  
   do {
-    lVar3 = (longlong)unaff_RBP[1];
-    lVar8 = (longlong)*unaff_RBP;
-    lVar9 = 0;
-    param_5._0_4_ = in_stack_000001b0;
-    FUN_180712f20(unaff_R12,unaff_R12 + (lVar3 + lStack0000000000000050) * -4,&stack0x000000c0,
-                  param_4,((int)unaff_RBP[1] - (int)*unaff_RBP) + 1);
-    if (lVar8 <= lVar3) {
-      lVar4 = lVar3 - lVar8;
-      if (3 < lVar4 + 1) {
-        lVar7 = ((lVar3 - lVar8) - 3U >> 2) + 1;
-        lVar8 = lVar8 + lVar7 * 4;
-        puVar5 = (undefined4 *)(&stack0x000000b8 + lVar4 * 4);
+    range_start = (longlong)encoding_range[1];
+    range_size = (longlong)*encoding_range;
+    element_index = 0;
+    param_5._0_4_ = process_flag;
+    
+    // 调用外部函数进行数据预处理
+    FUN_180712f20(output_base, output_base + (range_start + offset_val) * -4, &stack0x000000c0,
+                  param_4, ((int)encoding_range[1] - (int)*encoding_range) + 1);
+    
+    if (range_size <= range_start) {
+      range_end = range_start - range_size;
+      if (3 < range_end + 1) {
+        batch_counter = ((range_start - range_size) - 3U >> 2) + 1;
+        range_size = range_size + batch_counter * 4;
+        data_ptr = (undefined4 *)(&stack0x000000b8 + range_end * 4);
         do {
-          *(undefined4 *)(&stack0x00000060 + lVar9 * 4) = puVar5[2];
-          *(undefined4 *)(&stack0x00000064 + lVar9 * 4) = puVar5[1];
-          *(undefined4 *)(&stack0x00000068 + lVar9 * 4) = *puVar5;
-          *(undefined4 *)(&stack0x0000006c + lVar9 * 4) = puVar5[-1];
-          lVar9 = lVar9 + 4;
-          lVar7 = lVar7 + -1;
-          puVar5 = puVar5 + -4;
-        } while (lVar7 != 0);
+          // 批量复制数据到工作缓冲区
+          *(undefined4 *)(&stack0x00000060 + element_index * 4) = data_ptr[2];
+          *(undefined4 *)(&stack0x00000064 + element_index * 4) = data_ptr[1];
+          *(undefined4 *)(&stack0x00000068 + element_index * 4) = *data_ptr;
+          *(undefined4 *)(&stack0x0000006c + element_index * 4) = data_ptr[-1];
+          element_index = element_index + 4;
+          batch_counter = batch_counter + -1;
+          data_ptr = data_ptr + -4;
+        } while (batch_counter != 0);
       }
-      if (lVar8 <= lVar3) {
-        puVar6 = (undefined4 *)(&stack0x00000060 + lVar9 * 4);
-        lVar9 = (lVar3 - lVar8) + 1;
-        puVar5 = (undefined4 *)(&stack0x000000c0 + (lVar3 - lVar8) * 4);
+      
+      if (range_size <= range_start) {
+        output_ptr = (undefined4 *)(&stack0x00000060 + element_index * 4);
+        element_index = (range_start - range_size) + 1;
+        data_ptr = (undefined4 *)(&stack0x000000c0 + (range_start - range_size) * 4);
         do {
-          uVar2 = *puVar5;
-          puVar5 = puVar5 + -1;
-          *puVar6 = uVar2;
-          puVar6 = puVar6 + 1;
-          lVar9 = lVar9 + -1;
-        } while (lVar9 != 0);
+          data_word = *data_ptr;
+          data_ptr = data_ptr + -1;
+          *output_ptr = data_word;
+          output_ptr = output_ptr + 1;
+          element_index = element_index + -1;
+        } while (element_index != 0);
       }
     }
-    cVar1 = *unaff_RBP;
-    puVar5 = puVar12;
-    lVar8 = param_8;
-    iVar10 = iVar11;
+    
+    encoding_char = *encoding_range;
+    data_ptr = output_buffer;
+    range_size = param_8;
+    mapping_index = iteration_count;
+    
     if (0 < param_8) {
       do {
-        lVar3 = (longlong)((int)*(char *)(iVar10 + unaff_R13) - (int)cVar1);
-        puVar5[-2] = *(undefined4 *)(&stack0x00000060 + lVar3 * 4);
-        puVar5[-1] = *(undefined4 *)(&stack0x00000064 + lVar3 * 4);
-        *puVar5 = *(undefined4 *)(&stack0x00000068 + lVar3 * 4);
-        puVar5[1] = *(undefined4 *)(&stack0x0000006c + lVar3 * 4);
-        puVar5[2] = *(undefined4 *)(&stack0x00000070 + lVar3 * 4);
-        lVar8 = lVar8 + -1;
-        puVar5 = puVar5 + 5;
-        iVar10 = iVar10 + 1;
-      } while (lVar8 != 0);
+        // 根据映射表进行高级数据转换
+        range_start = (longlong)((int)*(char *)(mapping_index + mapping_table) - (int)encoding_char);
+        data_ptr[-2] = *(undefined4 *)(&stack0x00000060 + range_start * 4);
+        data_ptr[-1] = *(undefined4 *)(&stack0x00000064 + range_start * 4);
+        *data_ptr = *(undefined4 *)(&stack0x00000068 + range_start * 4);
+        data_ptr[1] = *(undefined4 *)(&stack0x0000006c + range_start * 4);
+        data_ptr[2] = *(undefined4 *)(&stack0x00000070 + range_start * 4);
+        range_size = range_size + -1;
+        data_ptr = data_ptr + 5;
+        mapping_index = mapping_index + 1;
+      } while (range_size != 0);
     }
-    unaff_R12 = unaff_R12 + lStack0000000000000048;
-    unaff_RBP = unaff_RBP + 2;
-    iVar11 = iVar11 + (int)param_6;
-    puVar12 = puVar12 + 0xaa;
+    
+    output_base = output_base + data_stride;
+    encoding_range = encoding_range + 2;
+    iteration_count = iteration_count + (int)param_6;
+    output_buffer = output_buffer + 0xaa;
     param_7 = param_7 + -1;
     param_4 = param_6 >> 0x20;
   } while (param_7 != 0);
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000120 ^ (ulonglong)&stack0x00000000);
+  
+  // 安全检查：函数不会返回
+  FUN_1808fc050(stack_cookie ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
 
-// 函数: void FUN_18072bbae(void)
-void FUN_18072bbae(void)
-
+// 函数: UI系统栈保护终止处理器
+// 原始函数名: FUN_18072bbae
+// 功能: 处理UI系统栈保护和安全终止操作
+void UIStackProtectionTerminator(void)
 {
-  ulonglong in_stack_00000120;
+  ulonglong stack_cookie;
   
-                    // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000120 ^ (ulonglong)&stack0x00000000);
+  // 安全检查：函数不会返回
+  FUN_1808fc050(stack_cookie ^ (ulonglong)&stack0x00000000);
 }
 
 

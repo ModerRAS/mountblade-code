@@ -978,17 +978,24 @@ longlong * rendering_system_manage_render_queue(longlong *queue_ptr, longlong *i
 
 
 
-// 函数: void FUN_1805358d0(longlong *param_1,undefined8 param_2,undefined8 param_3)
-void FUN_1805358d0(longlong *param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * 渲染状态处理函数
+ * 处理渲染系统的状态变化和资源管理
+ * 
+ * @param state_ptr 状态指针
+ * @param param_1 参数1
+ * @param param_2 参数2
+ */
+void rendering_system_process_render_state(longlong *state_ptr, undefined8 param_1, undefined8 param_2)
 
 {
-  undefined4 uVar1;
-  longlong lVar2;
-  char cVar3;
-  int iVar4;
-  longlong lVar5;
-  longlong lVar6;
-  longlong *plStackX_8;
+  undefined4 state_flag;
+  longlong resource_handle;
+  char system_status;
+  int lock_result;
+  longlong state_data;
+  longlong iteration_count;
+  longlong *stack_pointer;
   
   lVar5 = *param_1;
   if (lVar5 != 0) {
