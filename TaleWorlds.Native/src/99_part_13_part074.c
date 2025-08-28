@@ -416,144 +416,205 @@ void System_Initialize(void)
 
 
 
-undefined4 FUN_1808daf90(longlong param_1,longlong param_2)
-
+/**
+ * @brief 资源验证和处理函数
+ * @details 验证资源参数并进行相应的处理操作
+ * 
+ * @param param_1 资源上下文指针
+ * @param param_2 资源标识符
+ * @return status_t 操作状态码
+ * 
+ * @note 当param_2为0时返回错误码0x1F
+ * @note 资源标志为1时进行特殊处理
+ * 
+ * @warning 包含不可返回的子程序调用
+ */
+status_t Resource_ValidateAndProcess(void* param_1, void* param_2)
 {
-  int iVar1;
-  undefined8 uStackX_10;
+  int status;
+  void* stack_context;
   
   if (param_2 == 0) {
-    return 0x1f;
+    return SYSTEM_ERROR_RESOURCE_BUSY;
   }
-  uStackX_10 = 0;
-  if ((*(ushort *)(param_2 + 0xe) & 0x3fff) == 1) {
-    iVar1 = FUN_18088c740(&uStackX_10,*(undefined8 *)(param_1 + 0x20));
-    if (iVar1 != 0) goto LAB_1808daff4;
+  stack_context = 0;
+  if ((*(uint16_t *)((uint64_t)param_2 + 0xe) & RESOURCE_MASK) == 1) {
+    status = FUN_18088c740(&stack_context, *(uint64_t *)((uint64_t)param_1 + 0x20));
+    if (status != 0) goto cleanup_handler;
   }
-  FUN_1808db3f0(param_1,param_2);
-LAB_1808daff4:
-                    // WARNING: Subroutine does not return
-  FUN_18088c790(&uStackX_10);
+  FUN_1808db3f0(param_1, param_2);
+cleanup_handler:
+                    /* WARNING: 子程序不返回 */
+  FUN_18088c790(&stack_context);
 }
 
 
 
-undefined8 FUN_1808db010(longlong param_1,longlong param_2,undefined4 *param_3)
-
+/**
+ * @brief 数据处理和查找函数
+ * @details 在指定上下文中查找并处理数据元素
+ * 
+ * @param param_1 数据上下文指针
+ * @param param_2 数据缓冲区指针
+ * @param param_3 输出参数指针
+ * @return status_t 操作状态码
+ * 
+ * @note 任何参数为空指针时返回错误码0x1C
+ * @note 使用哈希表进行数据查找
+ * 
+ * @算法分析:
+ * 1. 参数验证
+ * 2. 获取数据元素数量
+ * 3. 遍历数据元素
+ * 4. 哈希查找匹配
+ * 5. 数据处理和输出
+ */
+status_t Data_ProcessAndFind(void* param_1, void* param_2, uint32_t* param_3)
 {
-  int iVar1;
-  undefined8 uVar2;
-  int iVar3;
-  int aiStackX_8 [2];
-  undefined4 auStackX_20 [2];
-  longlong alStack_28 [2];
+  int status;
+  uint64_t result;
+  int index;
+  int indices[2];
+  uint32_t values[2];
+  uint64_t addresses[2];
   
-  if (((param_1 == 0) || (param_2 == 0)) || (param_3 == (undefined4 *)0x0)) {
-    return 0x1c;
+  if (((param_1 == 0) || (param_2 == 0)) || (param_3 == (uint32_t*)0x0)) {
+    return SYSTEM_ERROR_INVALID_PARAM;
   }
-  iVar3 = 0;
-  aiStackX_8[0] = 0;
-  uVar2 = FUN_18073a390(param_1,2,aiStackX_8);
-  if ((int)uVar2 == 0) {
-    if (0 < aiStackX_8[0]) {
+  index = 0;
+  indices[0] = 0;
+  result = FUN_18073a390(param_1, 2, indices);
+  if ((int)result == 0) {
+    if (0 < indices[0]) {
       do {
-        auStackX_20[0] = 0;
-        uVar2 = FUN_18073a590(param_1,2,iVar3,auStackX_20);
-        if ((int)uVar2 != 0) {
-          return uVar2;
+        values[0] = 0;
+        result = FUN_18073a590(param_1, 2, index, values);
+        if ((int)result != 0) {
+          return result;
         }
-        alStack_28[0] = 0;
-        uVar2 = FUN_180739b90(param_1,auStackX_20[0],alStack_28);
-        if ((int)uVar2 != 0) {
-          return uVar2;
+        addresses[0] = 0;
+        result = FUN_180739b90(param_1, values[0], addresses);
+        if ((int)result != 0) {
+          return result;
         }
-        iVar1 = func_0x00018076b6b0(alStack_28[0] + 4,param_2,0x20);
-        if (iVar1 == 0) {
-          *param_3 = auStackX_20[0];
-          return 0;
+        status = func_0x00018076b6b0(addresses[0] + 4, param_2, 0x20);
+        if (status == 0) {
+          *param_3 = values[0];
+          return SYSTEM_SUCCESS;
         }
-        iVar3 = iVar3 + 1;
-      } while (iVar3 < aiStackX_8[0]);
+        index = index + 1;
+      } while (index < indices[0]);
     }
-    uVar2 = 0x36;
+    result = SYSTEM_ERROR_OPERATION_FAILED;
   }
-  return uVar2;
+  return result;
 }
 
 
 
-undefined8 FUN_1808db03d(undefined8 param_1)
-
+/**
+ * @brief 数据迭代处理函数
+ * @details 对指定数据集合进行迭代处理操作
+ * 
+ * @param param_1 数据上下文指针
+ * @return status_t 操作状态码
+ * 
+ * @note 处理失败时返回错误码0x36
+ * @note 使用栈变量存储中间状态
+ * 
+ * @算法分析:
+ * 1. 获取数据元素数量
+ * 2. 迭代处理每个元素
+ * 3. 执行数据操作
+ * 4. 验证处理结果
+ * 5. 更新状态信息
+ */
+status_t Data_IterativeProcess(void* param_1)
 {
-  int iVar1;
-  undefined8 uVar2;
-  int iVar3;
-  undefined4 *unaff_R14;
-  int iStack0000000000000050;
+  int status;
+  uint64_t result;
+  int index;
+  uint32_t* output_ptr;
+  int stack_count;
   
-  iVar3 = 0;
-  iStack0000000000000050 = 0;
-  uVar2 = FUN_18073a390(param_1,2,&stack0x00000050);
-  if ((int)uVar2 == 0) {
-    if (0 < iStack0000000000000050) {
+  index = 0;
+  stack_count = 0;
+  result = FUN_18073a390(param_1, 2, &stack_count);
+  if ((int)result == 0) {
+    if (0 < stack_count) {
       do {
-        uVar2 = FUN_18073a590();
-        if ((int)uVar2 != 0) {
-          return uVar2;
+        result = FUN_18073a590();
+        if ((int)result != 0) {
+          return result;
         }
-        uVar2 = FUN_180739b90();
-        if ((int)uVar2 != 0) {
-          return uVar2;
+        result = FUN_180739b90();
+        if ((int)result != 0) {
+          return result;
         }
-        iVar1 = func_0x00018076b6b0(4);
-        if (iVar1 == 0) {
-          *unaff_R14 = 0;
-          return 0;
+        status = func_0x00018076b6b0(4);
+        if (status == 0) {
+          *output_ptr = 0;
+          return SYSTEM_SUCCESS;
         }
-        iVar3 = iVar3 + 1;
-      } while (iVar3 < iStack0000000000000050);
+        index = index + 1;
+      } while (index < stack_count);
     }
-    uVar2 = 0x36;
+    result = SYSTEM_ERROR_OPERATION_FAILED;
   }
-  return uVar2;
+  return result;
 }
 
 
 
-undefined8 FUN_1808db059(void)
-
+/**
+ * @brief 数据搜索和处理函数
+ * @details 在指定范围内搜索并处理匹配的数据
+ * 
+ * @return status_t 操作状态码
+ * 
+ * @note 搜索失败时返回错误码0x36
+ * @note 使用循环迭代进行搜索
+ * 
+ * @算法分析:
+ * 1. 初始化搜索参数
+ * 2. 循环搜索匹配项
+ * 3. 执行数据处理
+ * 4. 更新搜索位置
+ * 5. 返回搜索结果
+ */
+status_t Data_SearchAndProcess(void)
 {
-  int iVar1;
-  undefined8 uVar2;
-  uint uVar3;
-  ulonglong uVar4;
-  ulonglong unaff_RBP;
-  uint *unaff_R14;
-  int in_stack_00000050;
-  uint uStack0000000000000068;
+  int status;
+  uint64_t result;
+  uint32_t current_index;
+  uint64_t search_count;
+  uint64_t base_pointer;
+  uint32_t* output_ptr;
+  int search_limit;
+  uint32_t stack_value;
   
-  uVar4 = unaff_RBP & 0xffffffff;
-  uVar3 = (uint)unaff_RBP;
+  search_count = base_pointer & 0xffffffff;
+  current_index = (uint32_t)base_pointer;
   while( true ) {
-    if (in_stack_00000050 <= (int)uVar3) {
-      return 0x36;
+    if (search_limit <= (int)current_index) {
+      return SYSTEM_ERROR_OPERATION_FAILED;
     }
-    uStack0000000000000068 = (uint)unaff_RBP;
-    uVar2 = FUN_18073a590();
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    stack_value = (uint32_t)base_pointer;
+    result = FUN_18073a590();
+    if ((int)result != 0) {
+      return result;
     }
-    uVar2 = FUN_180739b90();
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    result = FUN_180739b90();
+    if ((int)result != 0) {
+      return result;
     }
-    iVar1 = func_0x00018076b6b0(unaff_RBP + 4);
-    if (iVar1 == 0) break;
-    uVar3 = (int)uVar4 + 1;
-    uVar4 = (ulonglong)uVar3;
+    status = func_0x00018076b6b0(base_pointer + 4);
+    if (status == 0) break;
+    current_index = (int)search_count + 1;
+    search_count = (uint64_t)current_index;
   }
-  *unaff_R14 = uStack0000000000000068;
-  return 0;
+  *output_ptr = stack_value;
+  return SYSTEM_SUCCESS;
 }
 
 
@@ -561,31 +622,50 @@ undefined8 FUN_1808db059(void)
 
 
 
-// 函数: void FUN_1808db0d2(void)
-void FUN_1808db0d2(void)
-
+/**
+ * @brief 空操作函数
+ * @details 执行空操作，用于占位或同步
+ * 
+ * @note 此函数不执行任何操作，直接返回
+ */
+void System_NoOperation(void)
 {
   return;
 }
 
 
 
-undefined8 FUN_1808db0e0(void)
-
+/**
+ * @brief 数据赋值函数
+ * @details 将栈中的数据赋值到指定位置
+ * 
+ * @return status_t 操作状态码
+ * 
+ * @note 成功时返回0
+ * @note 直接进行内存赋值操作
+ */
+status_t Data_AssignValue(void)
 {
-  undefined4 *unaff_R14;
-  undefined4 in_stack_00000068;
+  uint32_t* target_ptr;
+  uint32_t stack_value;
   
-  *unaff_R14 = in_stack_00000068;
-  return 0;
+  *target_ptr = stack_value;
+  return SYSTEM_SUCCESS;
 }
 
 
 
-undefined8 FUN_1808db0eb(void)
-
+/**
+ * @brief 错误返回函数
+ * @details 返回参数错误码
+ * 
+ * @return status_t 错误状态码
+ * 
+ * @note 始终返回0x1C（无效参数错误）
+ */
+status_t System_ReturnError(void)
 {
-  return 0x1c;
+  return SYSTEM_ERROR_INVALID_PARAM;
 }
 
 
