@@ -355,7 +355,7 @@ uint64_t GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, ui
  * @param resource_context 资源上下文指针
  * @param cleanup_flag 清理标志
  * @param cleanup_param 清理参数
- * @return undefined 清理状态
+ * @return uint64_t 清理状态
  * 
  * @note 此函数在游戏关闭时被调用
  * @warning 需要确保所有资源都已正确释放
@@ -515,7 +515,7 @@ uint64_t GameLogic_StateUpdater(uint64_t state_context, uint64_t update_flag, ui
  * @param resource_context 资源上下文指针
  * @param cleanup_flag 清理标志
  * @param cleanup_param 清理参数
- * @return undefined 清理状态
+ * @return uint64_t 清理状态
  */
 uint64_t GameLogic_ResourceCleaner(uint64_t resource_context, uint64_t cleanup_flag, uint64_t cleanup_param)
 
