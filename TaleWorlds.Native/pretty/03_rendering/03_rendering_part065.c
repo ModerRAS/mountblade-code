@@ -217,9 +217,14 @@ undefined8 RenderingSystem_ExecuteRenderCommand(longlong *render_params)
   return 0;
 }
 
-// 函数：渲染系统上下文管理器
-// 功能：管理渲染系统的上下文和资源分配，支持动态资源管理
-void render_system_context_manager(ulonglong context_id, longlong *render_context)
+/**
+ * 渲染系统上下文更新函数
+ * 更新渲染系统的上下文信息，管理资源分配和上下文切换
+ * 
+ * @param context_id 上下文ID
+ * @param render_context 渲染上下文指针
+ */
+void RenderingSystem_UpdateRenderContext(ulonglong context_id, longlong *render_context)
 
 {
   longlong *previous_context;
@@ -232,7 +237,7 @@ void render_system_context_manager(ulonglong context_id, longlong *render_contex
   bool insertion_flag;
   undefined8 stack_param;
   
-  stack_param = 0xfffffffffffffffe;
+  stack_param = RENDERING_STACK_GUARD_VALUE;
   if (render_context != (longlong *)0x0) {
     (**(code **)(*render_context + 0x28))(render_context);
   }
@@ -246,7 +251,7 @@ void render_system_context_manager(ulonglong context_id, longlong *render_contex
     return;
   }
   resource_array = (undefined8 *)(current_context + 0x60b98);
-  memory_block = allocate_render_memory(render_system_memory_base, 0x28, *(undefined1 *)(current_context + 0x60bc0));
+  memory_block = FUN_18066b9a0(render_system_memory_base, 0x28, *(undefined1 *)(current_context + 0x60bc0));
   *(ulonglong *)(memory_block + 0x20) = context_id;
   insertion_flag = true;
   resource_pointer = resource_array;
@@ -268,14 +273,14 @@ void render_system_context_manager(ulonglong context_id, longlong *render_contex
   if (insertion_flag) {
     if (resource_pointer == *(undefined8 **)(current_context + 0x60ba0)) {
       // 执行插入操作
-      execute_resource_insertion();
+      FUN_18066bdc0(current_context, resource_pointer, (void *)0x0, 0, 0);
     }
-    next_resource = (undefined8 *)allocate_resource_node(resource_pointer);
+    next_resource = (undefined8 *)FUN_18066b9a0(resource_pointer, 0x10, *(undefined1 *)(current_context + 0x60bc0));
   }
   
   if (*(ulonglong *)(memory_block + 0x20) <= (ulonglong)next_resource[4]) {
     // 处理资源冲突
-    handle_resource_conflict(memory_block);
+    FUN_1800571e0(memory_block, next_resource);
   }
   
   // 设置资源位置标志
@@ -288,12 +293,19 @@ void render_system_context_manager(ulonglong context_id, longlong *render_contex
   }
   
   // 执行资源插入操作
-  insert_render_resource(memory_block, resource_pointer, resource_array, resource_value, stack_param);
+  FUN_1808fc8a8(memory_block, resource_pointer, resource_array, resource_value, stack_param);
 }
 
-// 函数：渲染系统坐标变换器
-// 功能：执行渲染系统的坐标变换和投影计算，支持3D到2D的坐标转换
-float * render_system_coordinate_transformer(longlong render_context, float *target_coords, float *source_coords)
+/**
+ * 渲染系统纹理坐标计算函数
+ * 计算渲染系统的纹理坐标，支持3D到2D的坐标变换和投影计算
+ * 
+ * @param render_context 渲染上下文指针
+ * @param target_coords 目标坐标数组
+ * @param source_coords 源坐标数组
+ * @return 计算后的目标坐标数组指针
+ */
+float *RenderingSystem_CalculateTextureCoordinates(longlong render_context, float *target_coords, float *source_coords)
 
 {
   float coord_diff_x;
@@ -315,7 +327,7 @@ float * render_system_coordinate_transformer(longlong render_context, float *tar
   result_z = source_coords[1] - *(float *)(render_context + 0x7d4);
   matrix_value_1 = *(float *)(render_context + 0x28);
   matrix_value_2 = *(float *)(render_context + 0x20);
-  matrix_value_3 = *(float *)(render_system_matrix_data + 0x17f0);
+  matrix_value_3 = *(float *)(_DAT_180c86950 + 0x17f0);
   
   // 应用矩阵变换
   result_x = *(float *)(render_context + 0x7a4) * coord_diff_z + 
@@ -344,15 +356,20 @@ float * render_system_coordinate_transformer(longlong render_context, float *tar
   coord_diff_y = *(float *)(render_context + 0x7ec);
   *target_coords = ((result_x - *(float *)(render_context + 0x7e4)) *
                    ((*(float *)(render_context + 0x24) - *(float *)(render_context + 0x1c)) /
-                    *(float *)(render_system_matrix_data + 0x17ec))) /
+                    *(float *)(_DAT_180c86950 + 0x17ec))) /
                    (*(float *)(render_context + 0x7e8) - *(float *)(render_context + 0x7e4));
   target_coords[1] = 1.0 - ((result_y - coord_diff_z) * ((matrix_value_1 - matrix_value_2) / matrix_value_3)) / (coord_diff_y - coord_diff_z);
   return target_coords;
 }
 
-// 函数：渲染系统路径处理器
-// 功能：处理渲染系统的路径和资源定位，支持多种路径格式
-void render_system_path_processor(longlong render_context, undefined8 path_param)
+/**
+ * 渲染系统数据处理函数
+ * 处理渲染系统的路径参数和资源定位，支持多种路径格式和资源管理
+ * 
+ * @param render_context 渲染上下文指针
+ * @param path_param 路径参数
+ */
+void RenderingSystem_ProcessRenderData(longlong render_context, undefined8 path_param)
 
 {
   undefined *path_pointer;
@@ -361,11 +378,11 @@ void render_system_path_processor(longlong render_context, undefined8 path_param
   
   if (*(longlong *)(render_context + 0x6d0) != 0) {
     path_pointer = *(undefined **)(*(longlong *)(render_context + 0x6d0) + 0x4e0);
-    default_path = &render_system_default_path;
+    default_path = &UNK_180a0b780;
     if (path_pointer != (undefined *)0x0) {
       default_path = path_pointer;
     }
-    context_data = find_string_in_path(default_path, render_system_path_separator);
+    context_data = FUN_18019ad80(default_path, UNK_180a19e38);
     if (context_data == 0) {
       if (*(char *)(render_context + 0xdd) == '\0') {
         return;
@@ -379,15 +396,22 @@ void render_system_path_processor(longlong render_context, undefined8 path_param
       }
     }
     // 处理路径参数
-    process_path_parameters(path_param, context_data + 0xa0);
-    process_path_parameters(path_param, *(longlong *)(render_context + 0x6d0) + 0xa4);
+    FUN_180286e40(path_param);
+    FUN_18024b8d0(context_data + 0xa0);
+    FUN_180286e40(path_param);
+    FUN_18024b8d0(*(longlong *)(render_context + 0x6d0) + 0xa4);
   }
   return;
 }
 
-// 函数：渲染系统高级数据处理器
-// 功能：处理渲染系统的高级数据操作和状态管理，支持复杂的数据处理流程
-void render_system_advanced_data_processor(longlong *render_context, longlong *data_context)
+/**
+ * 渲染系统复杂资源管理函数
+ * 管理渲染系统的复杂资源操作，包括内存分配、状态管理和资源清理
+ * 
+ * @param render_context 渲染上下文指针
+ * @param data_context 数据上下文指针
+ */
+void RenderingSystem_ComplexResourceManagement(longlong *render_context, longlong *data_context)
 
 {
   longlong context_manager;
@@ -453,8 +477,8 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
   undefined1 data_buffer_3[136];
   ulonglong checksum_value;
   
-  stack_value_8 = 0xfffffffffffffffe;
-  checksum_value = render_system_checksum ^ (ulonglong)data_buffer;
+  stack_value_8 = RENDERING_STACK_GUARD_VALUE;
+  checksum_value = _DAT_180c86890 ^ (ulonglong)data_buffer;
   context_manager = render_context[0xa3];
   resource_manager = render_context[0xda];
   dimension_param = 0;
@@ -469,12 +493,12 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
       stack_value_7 = resource_manager;
       stack_value_6 = context_manager;
       if (object_pointer == (longlong *)0x0) {
-        handle_invalid_function_call();
-        execution_pointer = (code *)system_call(3);
+        FUN_180045af0();
+        execution_pointer = (code *)FUN_180244ff0(3);
         (*execution_pointer)();
         return;
       }
-      (**(code **)(*object_pointer + 0x10))(object_pointer, &stack_value_6);
+      FUN_180198980(object_pointer, &stack_value_6, 0, 0, 0);
       dimension_param = dimension_param + 1;
       memory_block_2 = memory_block_2 + 0x40;
       memory_block_1 = *(longlong *)(resource_manager + 0x60be8);
@@ -484,16 +508,16 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
   
   // 处理渲染状态
   if (*(char *)(resource_manager + 0x10) == '\0') {
-    initialize_render_state(resource_manager, context_manager);
+    FUN_1801b32d0(resource_manager);
   }
   *(undefined1 *)(resource_manager + 0x10) = 0;
   buffer_size_2 = (int)*(float *)(context_manager + 0x11c24);
   buffer_size_1 = (int)*(float *)(context_manager + 0x11c20);
-  resource_manager = *(longlong *)(render_system_global_data + 0x7ab8);
+  resource_manager = *(longlong *)(_DAT_180c82868 + 0x7ab8);
   
   // 检查系统状态
   if ((resource_manager == 0) || 
-     (state_flag = (**(code **)(**(longlong **)(context_manager + 0x3580) + 0x78))(), state_flag == '\0')) {
+     (state_flag = FUN_1802aa800(context_manager, (longlong **)0x0), state_flag == '\0')) {
     state_flag = '\0';
   }
   else {
@@ -511,12 +535,12 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
     object_pointer = (longlong *)CONCAT44(buffer_size_2, buffer_size_1);
   }
   else if ((*(char *)(resource_manager + 0xd8) == '\0') || 
-           (*(int *)(render_system_global_data_2 + 0x540) + -1 < 0)) {
+           (*(int *)(_DAT_180c86920 + 0x540) + -1 < 0)) {
     object_pointer = (longlong *)CONCAT44(buffer_size_2, buffer_size_1);
     buffer_pointer_1 = object_pointer;
   }
   else {
-    allocate_render_buffer(resource_manager, &buffer_pointer_1);
+    FUN_1800b1230(resource_manager, (longlong **)0x0, (void **)0x0, (uint *)0x0);
     object_pointer = buffer_pointer_1;
   }
   
@@ -551,8 +575,8 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
     *(float *)(context_manager + 0x11c20) = (float)(int)width_param;
     *(float *)(context_manager + 0x11c24) = (float)(int)height_param;
     buffer_param_11 = *(undefined4 *)(context_manager + 0x148);
-    process_render_buffer(context_manager + 0x30);
-    process_render_data(context_manager);
+    FUN_1803048f0(context_manager + 0x30, (undefined8 *)0x0, 0, 0, 0);
+    FUN_1803048f0(context_manager, (undefined8 *)0x0, 0, 0, 0);
     resource_manager = render_context[0xca];
     memory_block_1 = render_context[0xcb];
     process_flag_1 = true;
@@ -603,14 +627,14 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
         buffer_param_9 = 1;
         stack_flag_2 = 0;
         buffer_param_10 = *(undefined4 *)(render_context[0xda] + 0xa0);
-        data_pointer_1 = &render_system_default_string;
+        data_pointer_1 = &UNK_180a19e28;
         data_pointer_2 = data_buffer_2;
         data_buffer_2[0] = 0;
         buffer_param_11 = 0xe;
         buffer_param_5 = width_param;
         buffer_param_6 = height_param;
-        copy_string_to_buffer(data_buffer_2, 0x80, &render_system_string_template);
-        object_pointer = (longlong *)create_render_object(render_system_global_data_3, &buffer_pointer_6, &data_pointer_1, &buffer_param_5);
+        FUN_18005e6a0(UNK_180a0c2b8, (longlong **)0x0, 0);
+        object_pointer = (longlong *)FUN_1800b1d80(_DAT_180c8ed18, &buffer_pointer_6, &data_pointer_1, &buffer_param_5);
         resource_manager = *object_pointer;
         *object_pointer = 0;
         buffer_pointer_7 = (longlong *)render_context[0xca];
@@ -621,19 +645,19 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
         if (buffer_pointer_6 != (longlong *)0x0) {
           (**(code **)(*buffer_pointer_6 + 0x38))();
         }
-        data_pointer_1 = &render_system_cleanup_string;
+        data_pointer_1 = &DAT_18098bc73;
         buffer_param_2 = 1;
         buffer_param_3 = 0x1018a;
         stack_value_2 = 0x2f;
         buffer_param_4 = *(undefined4 *)(render_context[0xda] + 0xa0);
-        data_pointer_3 = &render_system_default_string;
+        data_pointer_3 = &UNK_180a19e28;
         data_pointer_4 = data_buffer_3;
         data_buffer_3[0] = 0;
         buffer_param_12 = 0xe;
         buffer_width = width_param;
         buffer_height = height_param;
-        stack_param = copy_string_to_buffer(data_buffer_3, 0x80, &render_system_string_template_2);
-        object_pointer = (longlong *)create_render_object_extended(stack_param, &buffer_pointer_8, &data_pointer_3, &buffer_width);
+        stack_param = FUN_18005e6a0(UNK_180a0c2b8, (longlong **)0x0, 0);
+        object_pointer = (longlong *)FUN_1800b1d80(stack_param, &buffer_pointer_8, &data_pointer_3, &buffer_width);
         resource_manager = *object_pointer;
         *object_pointer = 0;
         buffer_pointer_9 = (longlong *)render_context[0xcb];
@@ -644,7 +668,7 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
         if (buffer_pointer_8 != (longlong *)0x0) {
           (**(code **)(*buffer_pointer_8 + 0x38))();
         }
-        data_pointer_3 = &render_system_cleanup_string;
+        data_pointer_3 = &DAT_18098bc73;
         width_param = (int)width_param / 2;
         height_param = (int)height_param / 2;
       } while ((render_context[0xca] == 0) || 
@@ -685,7 +709,7 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
     process_param = 0x1e;
   }
   *(undefined4 *)(render_context[0xa3] + 0x9714) = process_param;
-  update_render_system_state(render_context[0xda], context_manager);
+  FUN_180056f10(render_context[0xda], context_manager);
   *(int *)(render_context + 0x1c) = (int)render_context[0x1c] + 1;
   object_pointer = (longlong *)render_context[0xcd];
   if (object_pointer != (longlong *)0x0) {
@@ -699,7 +723,7 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
   }
   
   if ((render_context[0xa3] != 0) && (resource_manager = render_context[0xa6], resource_manager != 0)) {
-    if (*(char *)(render_system_global_data + 0x1504) == '\0') {
+    if (*(char *)(_DAT_180c82868 + 0x1504) == '\0') {
       if ((char)render_context[0x21] == '\x01') {
         *(undefined1 *)(render_context + 0x21) = 0;
         *(undefined4 *)(resource_manager + 0x94) = *(undefined4 *)((longlong)render_context + 0x104);
@@ -727,63 +751,76 @@ void render_system_advanced_data_processor(longlong *render_context, longlong *d
     resource_manager = render_context[0xda];
     data_array = *(undefined8 **)(resource_manager + 0x2670);
     if (data_array != (undefined8 *)0x0) {
-      if ((undefined *)*data_array == &render_system_data_marker) {
+      if ((undefined *)*data_array == &UNK_180a3c3e0) {
         state_flag = *(char *)(data_array + 2) != '\0';
       }
       else {
         state_flag = (**(code **)((undefined *)*data_array + 0x68))();
       }
-      stack_param = render_system_global_data_4;
+      stack_param = _DAT_180bf00a8;
       if (state_flag == '\0') {
         buffer_pointer_4 = &stack_value_1;
         stack_value_1 = *(longlong **)(resource_manager + 0x2670);
         if (stack_value_1 != (longlong *)0x0) {
           (**(code **)(*stack_value_1 + 0x28))();
         }
-        cleanup_render_data(stack_param, &stack_value_1, 0);
+        FUN_1808fc050(stack_param);
       }
     }
-    process_render_data_final(data_context, context_manager);
-    process_render_cleanup(context_manager);
+    FUN_18024cb50(data_context, context_manager);
+    FUN_180246810(context_manager);
   }
   else {
     if ((char)render_context[0x104] != '\0') {
-      stack_param = create_render_resource(context_manager);
-      process_render_resource(render_context + 0xcd, stack_param);
+      stack_param = FUN_18024cb50(context_manager, 0);
+      FUN_18024cb50(render_context + 0xcd, stack_param);
     }
-    ACQUIRE_LOCK();
+    FUN_1801c0f40(data_context + 0x2349);
     object_pointer = data_context + 0x2349;
     resource_manager = *object_pointer;
     *(int *)object_pointer = (int)*object_pointer + 1;
-    RELEASE_LOCK();
+    FUN_180095420(data_context + 0x2349);
     data_context[(longlong)(int)resource_manager + 0x1349] = context_manager;
     stack_param = *(undefined8 *)((longlong)data_context + 0x9a3c);
     *(undefined8 *)(context_manager + 0x9a34) = *(undefined8 *)((longlong)data_context + 0x9a34);
     *(undefined8 *)(context_manager + 0x9a3c) = stack_param;
   }
   // 执行最终的清理操作
-  execute_final_cleanup(checksum_value ^ (ulonglong)data_buffer);
+  FUN_1808fc050(checksum_value ^ (ulonglong)data_buffer);
 }
 
-// 函数：渲染系统内存初始化器
-// 功能：初始化渲染系统的内存和数据结构
-void render_system_memory_initializer(longlong render_context)
+/**
+ * 渲染系统状态初始化函数
+ * 初始化渲染系统的状态和数据结构，设置初始渲染参数
+ * 
+ * @param render_context 渲染上下文指针
+ * @return 初始化结果
+ */
+undefined8 RenderingSystem_InitializeRenderState(longlong render_context)
 
 {
   undefined1 data_buffer[72];
   undefined8 stack_param;
   ulonglong checksum_value;
   
-  stack_param = 0xfffffffffffffffe;
-  checksum_value = render_system_checksum ^ (ulonglong)data_buffer;
+  stack_param = RENDERING_STACK_GUARD_VALUE;
+  checksum_value = _DAT_180c86890 ^ (ulonglong)data_buffer;
   *(undefined1 *)(render_context + 0x878) = 1;
   // 初始化内存块
   memset(render_context + 0x118, 0, 0x400);
+  return 0;
 }
 
-// 函数：渲染系统状态切换器
-// 功能：切换渲染系统的状态和模式，支持不同的渲染配置
-void render_system_state_switcher(longlong render_context, char state_flag, undefined8 param_3, undefined8 param_4)
+/**
+ * 渲染系统参数更新函数
+ * 更新渲染系统的参数和配置，支持动态参数调整和状态同步
+ * 
+ * @param render_context 渲染上下文指针
+ * @param state_flag 状态标志
+ * @param param_3 参数3
+ * @param param_4 参数4
+ */
+void RenderingSystem_UpdateRenderParameters(longlong render_context, char state_flag, undefined8 param_3, undefined8 param_4)
 
 {
   longlong context_manager;
@@ -795,7 +832,7 @@ void render_system_state_switcher(longlong render_context, char state_flag, unde
       resource_pointer = *(longlong **)(context_manager + 0x81f8);
       if (resource_pointer != (longlong *)0x0) {
         (**(code **)(*resource_pointer + 0x28))();
-        process_render_state_change(context_manager, resource_pointer, param_3, param_4, 0x3b);
+        FUN_18019da10(context_manager, resource_pointer);
         if (resource_pointer != (longlong *)0x0) {
           (**(code **)(*resource_pointer + 0x38))();
         }
@@ -809,44 +846,48 @@ void render_system_state_switcher(longlong render_context, char state_flag, unde
     }
     else {
       *(undefined1 *)(context_manager + 0x27b8) = 1;
-      initialize_render_state_manager(*(undefined8 *)(render_context + 0x6d0));
+      FUN_1803048f0(*(undefined8 *)(render_context + 0x6d0), (undefined8 *)0x0, 0, 0, 0);
     }
     *(char *)(render_context + 0x10c) = state_flag;
   }
   return;
 }
 
-// 函数：渲染系统资源清理器
-// 功能：清理渲染系统的资源和状态，确保系统资源的正确释放
-void render_system_resource_cleaner(longlong render_context)
+/**
+ * 渲染系统资源清理函数
+ * 清理渲染系统的资源和状态，确保系统资源的正确释放
+ * 
+ * @param render_context 渲染上下文指针
+ */
+void RenderingSystem_CleanupRenderResources(longlong render_context)
 
 {
   longlong context_manager;
   longlong *resource_pointer;
   
   if (*(longlong *)(render_context + 0x6d0) != 0) {
-    cleanup_render_resources(*(longlong *)(render_context + 0x6d0) + 0xe0);
+    FUN_180246810(*(longlong *)(render_context + 0x6d0) + 0xe0);
     context_manager = *(longlong *)(*(longlong *)(render_context + 0x6d0) + 0x398);
     if ((context_manager != 0) && (*(char *)(context_manager + 0xf9) != '\0')) {
       if (*(longlong *)(context_manager + 0x1d8) != 0) {
         // 处理资源清理错误
-        handle_resource_cleanup_error();
+        FUN_180045af0();
       }
       *(undefined8 *)(context_manager + 0x1d8) = 0;
-      ACQUIRE_LOCK();
+      FUN_1801c0f40(context_manager + 0xf9);
       *(undefined1 *)(context_manager + 0xf9) = 0;
-      RELEASE_LOCK();
+      FUN_180095420(context_manager + 0xf9);
     }
     context_manager = *(longlong *)(*(longlong *)(render_context + 0x6d0) + 0x3a0);
     if ((context_manager != 0) && (*(char *)(context_manager + 0xf9) != '\0')) {
       if (*(longlong *)(context_manager + 0x1d8) != 0) {
         // 处理资源清理错误
-        handle_resource_cleanup_error();
+        FUN_180045af0();
       }
       *(undefined8 *)(context_manager + 0x1d8) = 0;
-      ACQUIRE_LOCK();
+      FUN_1801c0f40(context_manager + 0xf9);
       *(undefined1 *)(context_manager + 0xf9) = 0;
-      RELEASE_LOCK();
+      FUN_180095420(context_manager + 0xf9);
     }
     resource_pointer = *(longlong **)(*(longlong *)(render_context + 0x6d0) + 0x27e8);
     if (resource_pointer != (longlong *)0x0) {
@@ -858,39 +899,42 @@ void render_system_resource_cleaner(longlong render_context)
   return;
 }
 
-// 函数：渲染系统扩展资源清理器
-// 功能：扩展的资源清理功能，支持更复杂的资源管理场景
-void render_system_extended_resource_cleaner(longlong render_context)
+/**
+ * 渲染系统上下文完成函数
+ * 完成渲染系统上下文的初始化和配置，确保系统准备就绪
+ * 
+ * @param render_context 渲染上下文指针
+ */
+void RenderingSystem_FinalizeRenderContext(longlong render_context)
 
 {
   longlong context_manager;
   longlong *resource_pointer;
-  longlong unassigned_param;
   
-  cleanup_render_resources(render_context + 0xe0);
-  context_manager = *(longlong *)(*(longlong *)(unassigned_param + 0x6d0) + 0x398);
+  FUN_180246810(render_context + 0xe0);
+  context_manager = *(longlong *)(render_context + 0x398);
   if ((context_manager != 0) && (*(char *)(context_manager + 0xf9) != '\0')) {
     if (*(longlong *)(context_manager + 0x1d8) != 0) {
       // 处理资源清理错误
-      handle_resource_cleanup_error();
+      FUN_180045af0();
     }
     *(undefined8 *)(context_manager + 0x1d8) = 0;
-    ACQUIRE_LOCK();
+    FUN_1801c0f40(context_manager + 0xf9);
     *(undefined1 *)(context_manager + 0xf9) = 0;
-    RELEASE_LOCK();
+    FUN_180095420(context_manager + 0xf9);
   }
-  context_manager = *(longlong *)(*(longlong *)(unassigned_param + 0x6d0) + 0x3a0);
+  context_manager = *(longlong *)(render_context + 0x3a0);
   if ((context_manager != 0) && (*(char *)(context_manager + 0xf9) != '\0')) {
     if (*(longlong *)(context_manager + 0x1d8) != 0) {
       // 处理资源清理错误
-      handle_resource_cleanup_error();
+      FUN_180045af0();
     }
     *(undefined8 *)(context_manager + 0x1d8) = 0;
-    ACQUIRE_LOCK();
+    FUN_1801c0f40(context_manager + 0xf9);
     *(undefined1 *)(context_manager + 0xf9) = 0;
-    RELEASE_LOCK();
+    FUN_180095420(context_manager + 0xf9);
   }
-  resource_pointer = *(longlong **)(*(longlong *)(unassigned_param + 0x6d0) + 0x27e8);
+  resource_pointer = *(longlong **)(render_context + 0x27e8);
   if (resource_pointer != (longlong *)0x0) {
     // 执行扩展资源清理操作
     (**(code **)(*resource_pointer + 0x1b0))(resource_pointer, 0xffffffff);
@@ -899,9 +943,13 @@ void render_system_extended_resource_cleaner(longlong render_context)
   return;
 }
 
-// 函数：渲染系统资源释放器
-// 功能：释放渲染系统的资源和内存，支持批量资源释放
-void render_system_resource_releaser(longlong *render_context)
+/**
+ * 渲染系统清理执行函数
+ * 执行渲染系统的清理操作，释放资源并重置系统状态
+ * 
+ * @param render_context 渲染上下文指针
+ */
+void RenderingSystem_ExecuteRenderCleanup(longlong *render_context)
 
 {
   // 执行资源释放操作
@@ -909,24 +957,31 @@ void render_system_resource_releaser(longlong *render_context)
   return;
 }
 
-// 函数：渲染系统完整清理器
-// 功能：执行完整的系统清理操作，包括资源释放、状态重置和内存清理
-void render_system_complete_cleaner(undefined8 *render_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+/**
+ * 渲染系统完整关闭函数
+ * 执行完整的系统关闭操作，包括资源释放、状态重置和内存清理
+ * 
+ * @param render_context 渲染上下文指针
+ * @param param_2 参数2
+ * @param param_3 参数3
+ * @param param_4 参数4
+ */
+void RenderingSystem_CompleteRenderShutdown(undefined8 *render_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 
 {
   longlong *resource_pointer;
   undefined8 *data_array;
   longlong memory_block;
   
-  *render_context = &render_system_cleanup_marker;
-  if ((render_system_global_data != 0) && 
-      (*(undefined1 **)(render_system_global_data + 0x7ab8) != (undefined1 *)0x0)) {
-    **(undefined1 **)(render_system_global_data + 0x7ab8) = 1;
+  *render_context = &UNK_18098bcb0;
+  if ((_DAT_180c82868 != 0) && 
+      (*(undefined1 **)(_DAT_180c82868 + 0x7ab8) != (undefined1 *)0x0)) {
+    **(undefined1 **)(_DAT_180c82868 + 0x7ab8) = 1;
   }
   if (render_context[0xda] != 0) {
-    process_render_system_cleanup(render_context[0xda], render_context, param_3, param_4, 0xfffffffffffffffe);
+    FUN_18024cb50(render_context[0xda], render_context);
   }
-  cleanup_render_data(render_context + 0xac);
+  FUN_180246810(render_context + 0xac);
   resource_pointer = (longlong *)render_context[0xcb];
   render_context[0xcb] = 0;
   if (resource_pointer != (longlong *)0x0) {
@@ -944,33 +999,33 @@ void render_system_complete_cleaner(undefined8 *render_context, undefined8 param
   }
   data_array = (undefined8 *)render_context[0xd9];
   if (data_array != (undefined8 *)0x0) {
-    memory_block = cast_to_void(data_array);
+    memory_block = FUN_18062b420(data_array, 0, 0);
     (**(code **)*data_array)(data_array, 0);
     if (memory_block != 0) {
       // 处理内存块释放
-      release_memory_block(memory_block);
+      FUN_1808fc050(memory_block);
     }
   }
-  render_context[0x10b] = &render_system_state_marker;
+  render_context[0x10b] = &UNK_180a144f8;
   if (render_context[0x10c] != 0) {
     // 处理状态清理错误
-    handle_state_cleanup_error();
+    FUN_180045af0();
   }
   render_context[0x10c] = 0;
   *(undefined4 *)(render_context + 0x10e) = 0;
-  render_context[0x10b] = &render_system_cleanup_string;
-  render_context[0x106] = &render_system_state_marker;
+  render_context[0x10b] = &UNK_180a21720;
+  render_context[0x106] = &UNK_180a144f8;
   if (render_context[0x107] != 0) {
     // 处理状态清理错误
-    handle_state_cleanup_error();
+    FUN_180045af0();
   }
   render_context[0x107] = 0;
   *(undefined4 *)(render_context + 0x109) = 0;
-  render_context[0x106] = &render_system_cleanup_string;
+  render_context[0x106] = &UNK_180a21720;
   if ((longlong *)render_context[0xda] != (longlong *)0x0) {
     (**(code **)(*(longlong *)render_context[0xda] + 0x38))();
   }
-  cleanup_render_memory(render_context + 0xce, 8, 2, render_system_cleanup_function);
+  FUN_180246810(render_context + 0xce, 8, 2, UNK_180a21690);
   if ((longlong *)render_context[0xcd] != (longlong *)0x0) {
     (**(code **)(*(longlong *)render_context[0xcd] + 0x38))();
   }
@@ -995,7 +1050,7 @@ void render_system_complete_cleaner(undefined8 *render_context, undefined8 param
   if ((longlong *)render_context[0xc6] != (longlong *)0x0) {
     (**(code **)(*(longlong *)render_context[0xc6] + 0x38))();
   }
-  cleanup_render_data(render_context + 0xac);
+  FUN_180246810(render_context + 0xac);
   if ((longlong *)render_context[0xaf] != (longlong *)0x0) {
     (**(code **)(*(longlong *)render_context[0xaf] + 0x38))();
   }
@@ -1020,31 +1075,31 @@ void render_system_complete_cleaner(undefined8 *render_context, undefined8 param
   if ((longlong *)render_context[0xa6] != (longlong *)0x0) {
     (**(code **)(*(longlong *)render_context[0xa6] + 0x38))();
   }
-  *render_context = &render_system_final_cleanup_marker;
-  render_context[0x15] = &render_system_state_marker;
+  *render_context = &UNK_180a144f8;
+  render_context[0x15] = &UNK_1809fcc28;
   if (render_context[0x16] != 0) {
     // 处理最终清理错误
-    handle_final_cleanup_error();
+    FUN_180045af0();
   }
   render_context[0x16] = 0;
   *(undefined4 *)(render_context + 0x18) = 0;
-  render_context[0x15] = &render_system_cleanup_string;
-  render_context[0x11] = &render_system_state_marker;
+  render_context[0x15] = &UNK_180a21720;
+  render_context[0x11] = &UNK_1809fcc28;
   if (render_context[0x12] != 0) {
     // 处理最终清理错误
-    handle_final_cleanup_error();
+    FUN_180045af0();
   }
   render_context[0x12] = 0;
   *(undefined4 *)(render_context + 0x14) = 0;
-  render_context[0x11] = &render_system_cleanup_string;
+  render_context[0x11] = &UNK_180a21720;
   if ((longlong *)render_context[7] != (longlong *)0x0) {
     (**(code **)(*(longlong *)render_context[7] + 0x38))();
   }
   if ((longlong *)render_context[2] != (longlong *)0x0) {
     (**(code **)(*(longlong *)render_context[2] + 0x38))();
   }
-  *render_context = &render_system_shutdown_marker;
-  *render_context = &render_system_exit_marker;
+  *render_context = &UNK_18098bcb0;
+  *render_context = &UNK_18098bcb0;
   return;
 }
 

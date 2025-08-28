@@ -1,169 +1,199 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part068.c - 6 个函数
+// 03_rendering_part068.c - 渲染系统高级状态管理和资源控制模块
+// 包含10个核心函数，涵盖渲染系统状态初始化、资源管理、参数处理等高级渲染功能
 
-// 函数: void FUN_180306190(longlong param_1,longlong param_2,longlong param_3)
-void FUN_180306190(longlong param_1,longlong param_2,longlong param_3)
+// 常量定义
+#define RENDERING_SYSTEM_MAX_PRIORITY_LEVELS 5
+#define RENDERING_SYSTEM_DEFAULT_TIMEOUT 9999.0f
+#define RENDERING_SYSTEM_SCALE_FACTOR 256.0f
+#define RENDERING_SYSTEM_PI 3.1415927f
+#define RENDERING_SYSTEM_QUALITY_THRESHOLD 0.08f
+#define RENDERING_SYSTEM_FLOAT_NORMALIZATION 1.0f
+#define RENDERING_SYSTEM_MATRIX_MULTIPLIER 0.25f
+#define RENDERING_SYSTEM_LOCK_TIMEOUT 3
+#define RENDERING_SYSTEM_FLAG_MASK 0xdfffffff
+#define RENDERING_SYSTEM_PRIORITY_MASK 0xfffU
+#define RENDERING_SYSTEM_INDEX_SHIFT 0x14
+#define RENDERING_SYSTEM_BYTE_SHIFT 0x20
 
+// 函数别名定义
+#define rendering_system_initialize_render_context FUN_180306190
+#define rendering_system_process_render_batch FUN_1803065c0
+#define rendering_system_execute_render_pipeline FUN_1803065d4
+#define rendering_system_empty_function_placeholder FUN_180306894
+#define rendering_system_check_render_visibility FUN_1803068a0
+#define rendering_system_validate_render_state FUN_1803068ec
+#define rendering_system_verify_render_capability FUN_180306b2c
+#define rendering_system_release_render_resources FUN_180306b40
+#define rendering_system_find_render_object FUN_180306ba0
+#define rendering_system_cleanup_render_queue FUN_180306c30
+#define rendering_system_compare_render_priority FUN_180306d20
+
+// 渲染系统初始化渲染上下文
+// 参数: render_context - 渲染上下文指针
+//       render_queue - 渲染队列指针  
+//       render_parameters - 渲染参数指针
+void rendering_system_initialize_render_context(longlong render_context, longlong render_queue, longlong render_parameters)
 {
-  longlong lVar1;
-  int iVar2;
-  ulonglong uVar3;
-  ulonglong uVar4;
-  longlong *plVar5;
-  float fVar6;
-  longlong alStackX_10 [3];
-  undefined1 auStack_178 [32];
-  undefined8 uStack_158;
-  longlong **pplStack_150;
-  undefined1 auStack_148 [8];
-  longlong lStack_140;
-  longlong lStack_138;
-  float fStack_130;
-  float fStack_12c;
-  longlong *plStack_128;
-  undefined1 *puStack_120;
-  float *pfStack_118;
-  float *pfStack_110;
-  longlong *plStack_108;
-  longlong lStack_100;
-  longlong *plStack_f8;
-  longlong *aplStack_f0 [2];
-  code *pcStack_e0;
-  undefined *puStack_d8;
-  undefined8 uStack_d0;
-  longlong **pplStack_c8;
-  int aiStack_c0 [6];
-  ulonglong uStack_a8;
+  longlong system_state;
+  int lock_result;
+  ulonglong security_hash;
+  ulonglong temp_hash;
+  longlong *resource_manager;
+  float quality_factor;
+  longlong queue_parameters[3];
+  undefined1 security_buffer[32];
+  undefined8 stack_guard;
+  longlong **callback_table;
+  undefined1 padding_buffer[8];
+  longlong resource_handle;
+  longlong queue_size;
+  float priority_scale;
+  float quality_scale;
+  longlong *render_target;
+  undefined1 *visibility_flag;
+  float *quality_parameter;
+  float *performance_metric;
+  longlong *batch_processor;
+  longlong queue_capacity;
+  longlong *resource_allocator;
+  longlong resource_table[2];
+  code *entry_point;
+  undefined *exit_handler;
+  undefined8 frame_counter;
+  longlong **system_manager;
+  int priority_levels[6];
+  ulonglong system_checksum;
   
-  uStack_d0 = 0xfffffffffffffffe;
-  uStack_a8 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  stack_guard = 0xfffffffffffffffe;
+  system_checksum = _DAT_180bf00a8 ^ (ulonglong)security_buffer;
   LOCK();
-  *(undefined4 *)(param_1 + 0x78) = 0;
+  *(undefined4 *)(render_context + 0x78) = 0;
   UNLOCK();
   LOCK();
-  *(undefined4 *)(param_1 + 0x980) = 0;
+  *(undefined4 *)(render_context + 0x980) = 0;
   UNLOCK();
   LOCK();
-  *(undefined4 *)(param_1 + 0x1288) = 0;
+  *(undefined4 *)(render_context + 0x1288) = 0;
   UNLOCK();
-  alStackX_10[0] = param_2;
-  lStack_140 = param_3;
-  if (((*(byte *)(param_3 + 0x1bd8) & 0x20) != 0) && (4 < *(int *)(param_2 + 0x27c0))) {
-    iVar2 = _Mtx_trylock(param_1 + 0x1bb0);
-    if (iVar2 == 0) {
-      if (*(longlong *)(alStackX_10[0] + 0x60b80) != 0) {
-        *(undefined8 *)(lStack_140 + 0x124c8) =
-             *(undefined8 *)(*(longlong *)(alStackX_10[0] + 0x60b80) + 0x20);
+  queue_parameters[0] = render_queue;
+  queue_size = render_parameters;
+  if (((*(byte *)(render_parameters + 0x1bd8) & 0x20) != 0) && (4 < *(int *)(render_queue + 0x27c0))) {
+    lock_result = _Mtx_trylock(render_context + 0x1bb0);
+    if (lock_result == 0) {
+      if (*(longlong *)(queue_parameters[0] + 0x60b80) != 0) {
+        *(undefined8 *)(queue_size + 0x124c8) =
+             *(undefined8 *)(*(longlong *)(queue_parameters[0] + 0x60b80) + 0x20);
       }
-      plVar5 = *(longlong **)(param_1 + 0x1b90);
-      if (plVar5 != *(longlong **)(param_1 + 0x1b98)) {
+      resource_manager = *(longlong **)(render_context + 0x1b90);
+      if (resource_manager != *(longlong **)(render_context + 0x1b98)) {
         do {
-          lStack_138 = *plVar5;
-          if (*(longlong *)(lStack_138 + 0x90) - *(longlong *)(lStack_138 + 0x88) >> 3 != 0) {
-            lVar1 = *(longlong *)(_DAT_180c86870 + 0x3d8);
-            if ((lVar1 == 0) ||
-               ((*(int *)(lVar1 + 0x110) != 2 && ((lVar1 == 0 || (*(int *)(lVar1 + 0x110) != 3))))))
+          system_state = *resource_manager;
+          if (*(longlong *)(system_state + 0x90) - *(longlong *)(system_state + 0x88) >> 3 != 0) {
+            system_state = *(longlong *)(_DAT_180c86870 + 0x3d8);
+            if ((system_state == 0) ||
+               ((*(int *)(system_state + 0x110) != 2 && ((system_state == 0 || (*(int *)(system_state + 0x110) != 3))))))
             {
-              auStack_148[0] = 0;
+              security_buffer[0] = 0;
             }
             else {
-              auStack_148[0] = 1;
+              security_buffer[0] = 1;
             }
             LOCK();
-            *(undefined4 *)(lStack_138 + 0xa8) = 0;
+            *(undefined4 *)(system_state + 0xa8) = 0;
             UNLOCK();
-            lVar1 = *(longlong *)(_DAT_180c86870 + 0x3d8);
-            if ((lVar1 == 0) || (*(int *)(lVar1 + 0x110) != 1)) {
-              aiStack_c0[0] = 1;
-              aiStack_c0[1] = 10;
-              aiStack_c0[2] = 0x28;
-              aiStack_c0[3] = 0x78;
-              aiStack_c0[4] = 0xf0;
-              iVar2 = *(int *)(_DAT_180c86920 + 0x2a0);
-              if (iVar2 < 0) {
-                iVar2 = 0;
+            system_state = *(longlong *)(_DAT_180c86870 + 0x3d8);
+            if ((system_state == 0) || (*(int *)(system_state + 0x110) != 1)) {
+              priority_levels[0] = 1;
+              priority_levels[1] = 10;
+              priority_levels[2] = 0x28;
+              priority_levels[3] = 0x78;
+              priority_levels[4] = 0xf0;
+              lock_result = *(int *)(_DAT_180c86920 + 0x2a0);
+              if (lock_result < 0) {
+                lock_result = 0;
               }
-              else if (4 < iVar2) {
-                iVar2 = 4;
+              else if (RENDERING_SYSTEM_MAX_PRIORITY_LEVELS < lock_result) {
+                lock_result = RENDERING_SYSTEM_MAX_PRIORITY_LEVELS;
               }
-              fStack_12c = (float)aiStack_c0[iVar2] * 0.004166667;
+              quality_scale = (float)priority_levels[lock_result] * 0.004166667;
             }
             else {
-              fStack_12c = 9999.0;
+              quality_scale = RENDERING_SYSTEM_DEFAULT_TIMEOUT;
             }
-            if ((*(char *)(lStack_138 + 0x7c) != '\0') &&
-               ((lVar1 == 0 || (*(int *)(lVar1 + 0x110) != 1)))) {
-              uVar4 = *(longlong *)(lStack_138 + 0x90) - *(longlong *)(lStack_138 + 0x88) >> 3;
-              uVar3 = 1;
-              if (1 < uVar4) {
-                uVar3 = uVar4;
+            if ((*(char *)(system_state + 0x7c) != '\0') &&
+               ((system_state == 0 || (*(int *)(system_state + 0x110) != 1)))) {
+              temp_hash = *(longlong *)(system_state + 0x90) - *(longlong *)(system_state + 0x88) >> 3;
+              security_hash = 1;
+              if (1 < temp_hash) {
+                security_hash = temp_hash;
               }
-              fVar6 = (float)(longlong)uVar3;
-              if ((longlong)uVar3 < 0) {
-                fVar6 = fVar6 + 1.8446744e+19;
+              quality_factor = (float)(longlong)security_hash;
+              if ((longlong)security_hash < 0) {
+                quality_factor = quality_factor + 1.8446744e+19;
               }
-              fVar6 = 256.0 / fVar6;
-              if (0.0 <= fVar6) {
-                if (1.0 <= fVar6) {
-                  fVar6 = 1.0;
+              quality_factor = RENDERING_SYSTEM_SCALE_FACTOR / quality_factor;
+              if (0.0 <= quality_factor) {
+                if (RENDERING_SYSTEM_FLOAT_NORMALIZATION <= quality_factor) {
+                  quality_factor = RENDERING_SYSTEM_FLOAT_NORMALIZATION;
                 }
               }
               else {
-                fVar6 = 0.0;
+                quality_factor = 0.0;
               }
-              fStack_12c = fVar6 * fStack_12c;
-              if (1.0 <= fStack_12c) {
-                fStack_12c = 1.0;
+              quality_scale = quality_factor * quality_scale;
+              if (RENDERING_SYSTEM_FLOAT_NORMALIZATION <= quality_scale) {
+                quality_scale = RENDERING_SYSTEM_FLOAT_NORMALIZATION;
               }
             }
-            fStack_130 = fStack_12c * *(float *)(lStack_138 + 0x70);
-            fStack_12c = fStack_12c * *(float *)(lStack_138 + 0x74);
-            pplStack_c8 = aplStack_f0;
-            plStack_128 = &lStack_138;
-            puStack_120 = auStack_148;
-            pfStack_118 = &fStack_130;
-            pfStack_110 = &fStack_12c;
-            plStack_108 = alStackX_10;
-            plStack_f8 = &lStack_140;
-            pcStack_e0 = FUN_1803089a0;
-            puStack_d8 = &UNK_180308990;
-            lStack_100 = param_1;
-            aplStack_f0[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x38,8,DAT_180bf65bc);
-            *aplStack_f0[0] = (longlong)plStack_128;
-            aplStack_f0[0][1] = (longlong)puStack_120;
-            aplStack_f0[0][2] = (longlong)pfStack_118;
-            aplStack_f0[0][3] = (longlong)pfStack_110;
-            aplStack_f0[0][4] = (longlong)plStack_108;
-            aplStack_f0[0][5] = lStack_100;
-            aplStack_f0[0][6] = (longlong)plStack_f8;
-            pplStack_150 = aplStack_f0;
-            uStack_158 = 0xfffffffffffffffe;
+            priority_scale = quality_scale * *(float *)(system_state + 0x70);
+            quality_scale = quality_scale * *(float *)(system_state + 0x74);
+            system_manager = resource_table;
+            render_target = &system_state;
+            visibility_flag = security_buffer;
+            quality_parameter = &priority_scale;
+            performance_metric = &quality_scale;
+            batch_processor = queue_parameters;
+            resource_allocator = &queue_size;
+            entry_point = FUN_1803089a0;
+            exit_handler = &UNK_180308990;
+            queue_capacity = render_context;
+            resource_table[0] = (longlong *)FUN_18062b1e0(_DAT_180c8ed18, 0x38, 8, DAT_180bf65bc);
+            *resource_table[0] = (longlong)render_target;
+            resource_table[0][1] = (longlong)visibility_flag;
+            resource_table[0][2] = (longlong)quality_parameter;
+            resource_table[0][3] = (longlong)performance_metric;
+            resource_table[0][4] = (longlong)batch_processor;
+            resource_table[0][5] = queue_capacity;
+            resource_table[0][6] = (longlong)resource_allocator;
+            callback_table = resource_table;
+            stack_guard = 0xfffffffffffffffe;
             FUN_18015b810();
-            FUN_1803a64f0(lStack_138);
+            FUN_1803a64f0(system_state);
           }
-          plVar5 = plVar5 + 1;
-        } while (plVar5 != *(longlong **)(param_1 + 0x1b98));
+          resource_manager = resource_manager + 1;
+        } while (resource_manager != *(longlong **)(render_context + 0x1b98));
       }
-      iVar2 = _Mtx_unlock(param_1 + 0x1bb0);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+      lock_result = _Mtx_unlock(render_context + 0x1bb0);
+      if (lock_result != 0) {
+        __Throw_C_error_std__YAXH_Z(lock_result);
       }
       if (*(char *)(_DAT_180c86870 + 0xf9) == '\0') {
-        *(undefined4 *)(lStack_140 + 0x124b8) = 0;
+        *(undefined4 *)(queue_size + 0x124b8) = 0;
       }
       else {
-        FUN_180307ca0(param_1,lStack_140);
-        FUN_180080810(lStack_140 + 0x9740,param_1 + 0x68);
-        FUN_180080810(lStack_140 + 0x9748,param_1 + 0x70);
+        FUN_180307ca0(render_context, queue_size);
+        FUN_180080810(queue_size + 0x9740, render_context + 0x68);
+        FUN_180080810(queue_size + 0x9748, render_context + 0x70);
       }
     }
-    else if (iVar2 != 3) {
-      __Throw_C_error_std__YAXH_Z(iVar2);
+    else if (lock_result != RENDERING_SYSTEM_LOCK_TIMEOUT) {
+      __Throw_C_error_std__YAXH_Z(lock_result);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_a8 ^ (ulonglong)auStack_178);
+  FUN_1808fc050(system_checksum ^ (ulonglong)security_buffer);
 }
 
 
@@ -172,25 +202,27 @@ void FUN_180306190(longlong param_1,longlong param_2,longlong param_3)
 
 
 
-// 函数: void FUN_1803065c0(undefined8 *param_1,int param_2,int param_3)
-void FUN_1803065c0(undefined8 *param_1,int param_2,int param_3)
-
+// 渲染系统处理渲染批次
+// 参数: render_batch_data - 渲染批次数据指针
+//       start_index - 起始索引
+//       end_index - 结束索引
+void rendering_system_process_render_batch(longlong *render_batch_data, int start_index, int end_index)
 {
-  uint *puVar1;
-  longlong *plVar2;
-  float fVar3;
-  float fVar4;
-  uint uVar5;
-  longlong lVar6;
-  longlong *plVar7;
-  char cVar8;
-  uint uVar9;
-  ulonglong uVar10;
-  longlong lVar11;
-  bool bVar12;
-  int iStackX_10;
+  uint *frame_counter;
+  longlong *render_buffer;
+  float quality_threshold;
+  float quality_factor;
+  uint render_flags;
+  longlong render_context;
+  longlong *render_object;
+  char visibility_flag;
+  uint priority_bits;
+  ulonglong resource_handle;
+  longlong allocated_memory;
+  bool allocation_success;
+  int current_index;
   
-  iStackX_10 = param_2;
+  current_index = start_index;
   if (param_2 < param_3) {
     do {
       lVar6 = *(longlong *)*param_1;
