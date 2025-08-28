@@ -1,83 +1,124 @@
 #include "TaleWorlds.Native.Split.h"
 
-// =============================================================================
-// 网络系统数据包处理和连接管理模块 (31个函数)
-// =============================================================================
+// 05_networking_part006.c - 31 个函数
 
-// =============================================================================
-// 网络连接和数据包处理函数组 (10个函数)
-// =============================================================================
+// 函数别名定义
+#define network_get_connection_info FUN_180847110
+#define network_log_connection_event FUN_180847230
+#define network_log_connection_event_simple FUN_180847274
+#define network_cleanup_connection_event FUN_1808472ec
+#define network_log_server_event FUN_180847310
+#define network_log_server_event_simple FUN_180847354
+#define network_cleanup_server_event FUN_1808473cc
+#define network_get_peer_address_info FUN_1808473f0
+#define network_extract_peer_data FUN_180847550
+#define network_log_multi_param_event FUN_180847690
+#define network_log_multi_param_event_simple FUN_180847710
+#define network_cleanup_multi_param_event FUN_1808477f4
+#define network_get_thread_local_buffer FUN_180847820
+#define network_get_connection_status FUN_180847890
+#define network_check_connection_readiness FUN_1808479d0
+#define network_check_connection_stability FUN_180847c60
+#define network_get_connection_stability_status FUN_180847df0
+#define network_is_valid_connection_id FUN_180847f30
+#define network_send_connection_notification FUN_180847f60
+#define network_send_data_packet FUN_180848090
+#define network_send_simple_notification FUN_1808482f0
+#define network_handle_connection_setup FUN_180848440
+#define network_handle_connection_teardown FUN_180848480
+#define network_handle_connection_state_change FUN_1808484d0
+#define network_get_connection_state FUN_180848530
+#define network_handle_data_transfer FUN_180848590
+#define network_handle_error_recovery FUN_1808485d0
+#define network_handle_protocol_handshake FUN_180848610
+#define network_handle_keepalive FUN_180848650
+#define network_handle_authentication FUN_180848690
+#define network_handle_encryption_setup FUN_1808486e0
+#define network_handle_compression_setup FUN_180848720
+#define network_handle_bandwidth_management FUN_180848780
+#define network_handle_qos_management FUN_1808487e0
 
-// 网络连接数据获取函数 - 根据连接ID获取网络数据指针
-void get_network_connection_data(ulonglong connection_id, undefined8 *data_ptr)
+// 函数: void network_get_connection_info(ulonglong param_1,undefined8 *param_2)
+// 功能: 获取网络连接信息，包括连接状态、地址和配置参数
+// 参数: 
+//   param_1 - 连接ID
+//   param_2 - 输出参数，存储连接信息
+// 返回: 无
+void network_get_connection_info(ulonglong param_1,undefined8 *param_2)
 
 {
-  int status;
-  undefined1 buffer[32];
-  undefined1 *temp_buffer;
-  undefined8 temp_var1;
-  undefined8 temp_var2;
-  longlong temp_var3;
-  longlong connection_handle;
-  undefined1 large_buffer[256];
-  ulonglong security_key;
+  int iVar1;
+  undefined1 auStack_178 [32];
+  undefined1 *puStack_158;
+  undefined8 uStack_148;
+  undefined8 uStack_140;
+  longlong lStack_138;
+  longlong lStack_130;
+  undefined1 auStack_128 [256];
+  ulonglong uStack_28;
   
-  security_key = _DAT_180bf00a8 ^ (ulonglong)buffer;
-  if (data_ptr == (undefined8 *)0x0) {
+  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_178;
+  if (param_2 == (undefined8 *)0x0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(security_key ^ (ulonglong)buffer);
+      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
     }
-    func_0x00018074bda0(large_buffer,0x100,0);
-    temp_buffer = large_buffer;
+    func_0x00018074bda0(auStack_128,0x100,0);
+    puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xd,connection_id,&UNK_1809849d0);
+    FUN_180749ef0(0x1f,0xd,param_1,&UNK_1809849d0);
   }
-  *data_ptr = 0;
-  temp_var1 = 0;
-  temp_var2 = 0;
-  connection_handle = 0;
-  status = func_0x00018088c590(0,&temp_var2);
-  if (((status == 0) && (status = FUN_18088c740(&temp_var1,temp_var2), status == 0)) &&
-     (status = func_0x00018088c530(connection_id & 0xffffffff,&connection_handle), status == 0)) {
-    connection_handle = 0;
-    if (connection_handle != 0) {
-      connection_handle = connection_handle + -8;
+  *param_2 = 0;
+  uStack_148 = 0;
+  uStack_140 = 0;
+  lStack_138 = 0;
+  iVar1 = func_0x00018088c590(0,&uStack_140);
+  if (((iVar1 == 0) && (iVar1 = FUN_18088c740(&uStack_148,uStack_140), iVar1 == 0)) &&
+     (iVar1 = func_0x00018088c530(param_1 & 0xffffffff,&lStack_130), iVar1 == 0)) {
+    lStack_138 = 0;
+    if (lStack_130 != 0) {
+      lStack_138 = lStack_130 + -8;
     }
   }
-  else if (status != 0) {
+  else if (iVar1 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088c790(&temp_var1);
+    FUN_18088c790(&uStack_148);
   }
-  *data_ptr = *(undefined8 *)(connection_handle + 0x30);
+  *param_2 = *(undefined8 *)(lStack_138 + 0x30);
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&temp_var1);
+  FUN_18088c790(&uStack_148);
 }
 
-// 网络数据包发送函数 - 发送网络数据包到指定连接
-void send_network_packet(undefined8 connection, undefined8 packet_type, undefined8 packet_data)
+// 函数: void network_log_connection_event(undefined8 param_1,undefined8 param_2,undefined8 param_3)
+// 功能: 记录网络连接事件日志
+// 参数:
+//   param_1 - 事件类型
+//   param_2 - 连接信息
+//   param_3 - 附加参数
+// 返回: 无
+void network_log_connection_event(undefined8 param_1,undefined8 param_2,undefined8 param_3)
 
 {
-  int status;
-  int data_length1;
-  int data_length2;
-  undefined1 buffer[32];
-  undefined1 *packet_buffer;
-  undefined1 send_buffer[256];
-  ulonglong security_key;
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  undefined1 auStack_168 [32];
+  undefined1 *puStack_148;
+  undefined1 auStack_138 [256];
+  ulonglong uStack_38;
   
-  security_key = _DAT_180bf00a8 ^ (ulonglong)buffer;
-  status = FUN_180840790();
-  if ((status != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
-    data_length1 = FUN_18074b880(send_buffer,0x100,packet_type);
-    data_length2 = FUN_18074b880(send_buffer + data_length1,0x100 - data_length1,&DAT_180a06434);
-    func_0x00018074bda0(send_buffer + (data_length1 + data_length2),0x100 - (data_length1 + data_length2),packet_data);
-    packet_buffer = send_buffer;
+  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_168;
+  iVar1 = FUN_180840790();
+  if ((iVar1 != 0) && ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0)) {
+    iVar2 = FUN_18074b880(auStack_138,0x100,param_2);
+    iVar3 = FUN_18074b880(auStack_138 + iVar2,0x100 - iVar2,&DAT_180a06434);
+    func_0x00018074bda0(auStack_138 + (iVar2 + iVar3),0x100 - (iVar2 + iVar3),param_3);
+    puStack_148 = auStack_138;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(status,0xc,connection,&UNK_180984768);
+    FUN_180749ef0(iVar1,0xc,param_1,&UNK_180984768);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(security_key ^ (ulonglong)buffer);
+  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
 }
 
 // 网络数据包发送函数 - 无参数版本

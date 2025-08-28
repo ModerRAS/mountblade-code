@@ -566,7 +566,10 @@ undefined1 apply_render_state_differences(undefined8 param1, undefined8 param2, 
     
     texture_count = 0;
     if (param3 != 0) {
+        context_ptr = param3;
+        source_ptr = param3;
         loop_index = 0;
+        range_limit = *(longlong *)(param3 + 0x98) - *(longlong *)(param3 + 0x90);
         do {
             apply_result = compare_transform_data(loop_index * 0x1a0 + param4, *(longlong *)(source_ptr + 0x90) + loop_index * 0x1a0);
             if (apply_result != '\0') {
