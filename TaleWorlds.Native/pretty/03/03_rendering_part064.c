@@ -790,14 +790,23 @@ longlong *render_system_initialize_render_object(longlong *render_obj)
 
 
 
-undefined8 FUN_1803014b0(undefined8 param_1,ulonglong param_2)
-
+/**
+ * 释放渲染对象
+ * @param render_obj 渲染对象指针
+ * @param flags 释放标志
+ * @return 渲染对象指针
+ */
+undefined8 render_system_deallocate_render_object(undefined8 render_obj, ulonglong flags)
 {
-  FUN_180303590();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x880);
-  }
-  return param_1;
+    // 调用清理函数
+    FUN_180303590();
+    
+    // 根据标志决定是否释放内存
+    if ((flags & RENDER_RESOURCE_FLAG_DEALLOCATE) != 0) {
+        free(render_obj, 0x880);
+    }
+    
+    return render_obj;
 }
 
 
@@ -806,115 +815,143 @@ undefined8 FUN_1803014b0(undefined8 param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_1803014f0(longlong param_1)
-void FUN_1803014f0(longlong param_1)
-
+/**
+ * 更新渲染参数
+ * @param render_obj 渲染对象指针
+ */
+void render_system_update_render_parameters(longlong render_obj)
 {
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong lVar4;
-  char cVar5;
-  longlong lVar6;
-  byte bVar7;
-  bool bVar8;
-  undefined8 extraout_XMM0_Qa;
-  undefined8 extraout_XMM0_Qa_00;
-  undefined8 extraout_XMM0_Qa_01;
-  undefined8 extraout_XMM0_Qa_02;
-  undefined8 extraout_XMM0_Qa_03;
-  undefined8 extraout_XMM0_Qa_04;
-  double dVar9;
-  double dVar10;
-  
-  if (*(char *)(param_1 + 0x10b) != '\0') {
-    plVar1 = (longlong *)(param_1 + 0x530);
-    if ((*plVar1 != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa,*plVar1 + 0x18,*(undefined4 *)(*plVar1 + 0x94));
-      *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-      *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(plVar1,lVar6);
-    }
-    if ((*(longlong *)(param_1 + 0x538) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_00,*(longlong *)(param_1 + 0x538) + 0x18,
-                            *(undefined4 *)(*(longlong *)(param_1 + 0x538) + 0x94));
-      *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-      *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(param_1 + 0x538,lVar6);
-    }
-    if ((*(longlong *)(param_1 + 0x540) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_01,*(longlong *)(param_1 + 0x540) + 0x18,
-                            *(undefined4 *)(*(longlong *)(param_1 + 0x540) + 0x94));
-      *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-      *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(param_1 + 0x540,lVar6);
-    }
-    if ((*(longlong *)(param_1 + 0x550) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_02,*(longlong *)(param_1 + 0x550) + 0x18,
-                            *(undefined4 *)(*(longlong *)(param_1 + 0x550) + 0x94));
-      *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-      *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(param_1 + 0x550,lVar6);
-    }
-    if ((*(longlong *)(param_1 + 0x558) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_03,*(longlong *)(param_1 + 0x558) + 0x18,
-                            *(undefined4 *)(*(longlong *)(param_1 + 0x558) + 0x94));
-      *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-      *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(param_1 + 0x558,lVar6);
-    }
-    if ((*(longlong *)(param_1 + 0x548) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-      lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_04,*(longlong *)(param_1 + 0x548) + 0x18,
-                            *(undefined4 *)(*(longlong *)(param_1 + 0x548) + 0x94));
-      *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-      *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-      FUN_180056f10(param_1 + 0x548,lVar6);
-    }
-    lVar6 = *plVar1;
-    if ((lVar6 != 0) && (lVar3 = *(longlong *)(lVar6 + 0x48), lVar3 != 0)) {
-      lVar4 = *(longlong *)(param_1 + 0x6d0);
-      if ((lVar4 == 0) ||
-         (((*(float *)(lVar4 + 0x3f58) == 0.0 && (*(float *)(lVar4 + 0x3f5c) == 0.0)) ||
-          (*(char *)(_DAT_180c86890 + 0x1504) != '\0')))) {
-        bVar7 = 0;
-      }
-      else {
-        bVar7 = 1;
-      }
-      bVar8 = false;
-      if (((byte)(*(uint *)(lVar6 + 0x10) >> 3) & 1) != bVar7) {
-        cVar5 = FUN_1802c98d0(lVar3,lVar6,8,bVar7,0);
-        bVar8 = cVar5 != '\0';
-      }
-      if (((byte)(*(uint *)(*plVar1 + 0x10) >> 0xb) & 1) != *(byte *)(param_1 + 0x10a)) {
-        if ((bVar8) ||
-           (cVar5 = FUN_1802c98d0(lVar3,*plVar1,0x800,*(byte *)(param_1 + 0x10a),0), cVar5 != '\0'))
-        {
-          bVar8 = true;
+    longlong *resource_ptr;
+    int quality_setting;
+    longlong resource_data;
+    longlong context_data;
+    char system_status;
+    longlong temp_resource;
+    byte render_flag;
+    bool needs_update;
+    undefined8 temp_result1;
+    undefined8 temp_result2;
+    undefined8 temp_result3;
+    undefined8 temp_result4;
+    undefined8 temp_result5;
+    double scale_value1;
+    double scale_value2;
+    
+    // 检查渲染对象是否激活
+    if (*(char *)(render_obj + 0x10b) != '\0') {
+        resource_ptr = (longlong *)(render_obj + 0x530);
+        
+        // 更新主要资源
+        if ((*resource_ptr != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+            temp_resource = FUN_1801f20c0(temp_result1, *resource_ptr + 0x18, *(undefined4 *)(*resource_ptr + 0x94));
+            *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+            *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+            FUN_180056f10(resource_ptr, temp_resource);
         }
-        else {
-          bVar8 = false;
+        
+        // 更新次要资源1
+        if ((*(longlong *)(render_obj + 0x538) != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+            temp_resource = FUN_1801f20c0(temp_result2, *(longlong *)(render_obj + 0x538) + 0x18,
+                                  *(undefined4 *)(*(longlong *)(render_obj + 0x538) + 0x94));
+            *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+            *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+            FUN_180056f10(render_obj + 0x538, temp_resource);
         }
-      }
-      dVar9 = 1.0;
-      dVar10 = 1.0;
-      lVar6 = *(longlong *)(_DAT_180c86890 + 0x7ab8);
-      if ((*(char *)(lVar6 + 0xd9) != '\0') &&
-         (iVar2 = *(int *)(_DAT_180c86920 + 0x540), iVar2 - 1U < 4)) {
-        dVar9 = *(double *)(lVar6 + -8 + (longlong)iVar2 * 0x10);
-        dVar10 = *(double *)(lVar6 + (longlong)iVar2 * 0x10);
-      }
-      if ((dVar9 != *(double *)(param_1 + 0x520)) || (dVar10 != *(double *)(param_1 + 0x528))) {
-        *(double *)(param_1 + 0x520) = dVar9;
-        *(double *)(param_1 + 0x528) = dVar10;
-        if (!bVar8) {
-          FUN_1802c98d0(lVar3,*plVar1,0x80000000,0,1);
+        
+        // 更新次要资源2
+        if ((*(longlong *)(render_obj + 0x540) != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+            temp_resource = FUN_1801f20c0(temp_result3, *(longlong *)(render_obj + 0x540) + 0x18,
+                                  *(undefined4 *)(*(longlong *)(render_obj + 0x540) + 0x94));
+            *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+            *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+            FUN_180056f10(render_obj + 0x540, temp_resource);
         }
-      }
-      *(undefined1 *)(param_1 + 0x10a) = 0;
+        
+        // 更新次要资源3
+        if ((*(longlong *)(render_obj + 0x550) != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+            temp_resource = FUN_1801f20c0(temp_result4, *(longlong *)(render_obj + 0x550) + 0x18,
+                                  *(undefined4 *)(*(longlong *)(render_obj + 0x550) + 0x94));
+            *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+            *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+            FUN_180056f10(render_obj + 0x550, temp_resource);
+        }
+        
+        // 更新次要资源4
+        if ((*(longlong *)(render_obj + 0x558) != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+            temp_resource = FUN_1801f20c0(temp_result5, *(longlong *)(render_obj + 0x558) + 0x18,
+                                  *(undefined4 *)(*(longlong *)(render_obj + 0x558) + 0x94));
+            *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+            *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+            FUN_180056f10(render_obj + 0x558, temp_resource);
+        }
+        
+        // 更新次要资源5
+        if ((*(longlong *)(render_obj + 0x548) != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+            temp_resource = FUN_1801f20c0(temp_result5, *(longlong *)(render_obj + 0x548) + 0x18,
+                                  *(undefined4 *)(*(longlong *)(render_obj + 0x548) + 0x94));
+            *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+            *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+            FUN_180056f10(render_obj + 0x548, temp_resource);
+        }
+        
+        temp_resource = *resource_ptr;
+        if ((temp_resource != 0) && (resource_data = *(longlong *)(temp_resource + 0x48), resource_data != 0)) {
+            context_data = *(longlong *)(render_obj + 0x6d0);
+            
+            // 检查渲染上下文状态
+            if ((context_data == 0) ||
+               (((*(float *)(context_data + 0x3f58) == 0.0 && (*(float *)(context_data + 0x3f5c) == 0.0)) ||
+                (*(char *)(global_string_constants + 0x1504) != '\0')))) {
+                render_flag = 0;
+            }
+            else {
+                render_flag = 1;
+            }
+            
+            needs_update = false;
+            
+            // 检查渲染标志是否需要更新
+            if (((byte)(*(uint *)(temp_resource + 0x10) >> 3) & 1) != render_flag) {
+                system_status = FUN_1802c98d0(resource_data, temp_resource, 8, render_flag, 0);
+                needs_update = system_status != '\0';
+            }
+            
+            // 检查其他渲染标志
+            if (((byte)(*(uint *)(*resource_ptr + 0x10) >> 0xb) & 1) != *(byte *)(render_obj + 0x10a)) {
+                if ((needs_update) ||
+                   (system_status = FUN_1802c98d0(resource_data, *resource_ptr, 0x800, *(byte *)(render_obj + 0x10a), 0), system_status != '\0')) {
+                    needs_update = true;
+                }
+                else {
+                    needs_update = false;
+                }
+            }
+            
+            // 设置默认缩放值
+            scale_value1 = 1.0;
+            scale_value2 = 1.0;
+            temp_resource = *(longlong *)(global_string_constants + 0x7ab8);
+            
+            // 根据系统设置调整缩放值
+            if ((*(char *)(temp_resource + 0xd9) != '\0') &&
+               (quality_setting = *(int *)(global_render_settings + 0x540), quality_setting - 1U < 4)) {
+                scale_value1 = *(double *)(temp_resource + -8 + (longlong)quality_setting * 0x10);
+                scale_value2 = *(double *)(temp_resource + (longlong)quality_setting * 0x10);
+            }
+            
+            // 更新缩放值
+            if ((scale_value1 != *(double *)(render_obj + 0x520)) || (scale_value2 != *(double *)(render_obj + 0x528))) {
+                *(double *)(render_obj + 0x520) = scale_value1;
+                *(double *)(render_obj + 0x528) = scale_value2;
+                if (!needs_update) {
+                    FUN_1802c98d0(resource_data, *resource_ptr, 0x80000000, 0, 1);
+                }
+            }
+            
+            // 重置更新标志
+            *(undefined1 *)(render_obj + 0x10a) = 0;
+        }
     }
-  }
-  return;
 }
 
 
@@ -923,130 +960,160 @@ void FUN_1803014f0(longlong param_1)
 
 
 
-// 函数: void FUN_180301506(longlong param_1)
-void FUN_180301506(longlong param_1)
-
+/**
+ * 更新渲染参数扩展版本
+ * @param render_obj 渲染对象指针
+ * 注意：此函数包含未定义的寄存器变量，可能存在实现问题
+ */
+void render_system_update_render_parameters_ex(longlong render_obj)
 {
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong lVar4;
-  char cVar5;
-  longlong lVar6;
-  longlong unaff_RBX;
-  byte bVar7;
-  bool bVar8;
-  undefined8 extraout_XMM0_Qa;
-  undefined8 extraout_XMM0_Qa_00;
-  undefined8 extraout_XMM0_Qa_01;
-  undefined8 extraout_XMM0_Qa_02;
-  undefined8 extraout_XMM0_Qa_03;
-  undefined8 extraout_XMM0_Qa_04;
-  double dVar9;
-  double dVar10;
-  
-  plVar1 = (longlong *)(param_1 + 0x530);
-  if ((*plVar1 != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa,*plVar1 + 0x18,*(undefined4 *)(*plVar1 + 0x94));
-    *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-    *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(plVar1,lVar6);
-  }
-  if ((*(longlong *)(unaff_RBX + 0x538) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_00,*(longlong *)(unaff_RBX + 0x538) + 0x18,
-                          *(undefined4 *)(*(longlong *)(unaff_RBX + 0x538) + 0x94));
-    *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-    *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(unaff_RBX + 0x538,lVar6);
-  }
-  if ((*(longlong *)(unaff_RBX + 0x540) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_01,*(longlong *)(unaff_RBX + 0x540) + 0x18,
-                          *(undefined4 *)(*(longlong *)(unaff_RBX + 0x540) + 0x94));
-    *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-    *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(unaff_RBX + 0x540,lVar6);
-  }
-  if ((*(longlong *)(unaff_RBX + 0x550) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_02,*(longlong *)(unaff_RBX + 0x550) + 0x18,
-                          *(undefined4 *)(*(longlong *)(unaff_RBX + 0x550) + 0x94));
-    *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-    *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(unaff_RBX + 0x550,lVar6);
-  }
-  if ((*(longlong *)(unaff_RBX + 0x558) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_03,*(longlong *)(unaff_RBX + 0x558) + 0x18,
-                          *(undefined4 *)(*(longlong *)(unaff_RBX + 0x558) + 0x94));
-    *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-    *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(unaff_RBX + 0x558,lVar6);
-  }
-  if ((*(longlong *)(unaff_RBX + 0x548) != 0) && (cVar5 = FUN_1802c8c60(), cVar5 != '\0')) {
-    lVar6 = FUN_1801f20c0(extraout_XMM0_Qa_04,*(longlong *)(unaff_RBX + 0x548) + 0x18,
-                          *(undefined4 *)(*(longlong *)(unaff_RBX + 0x548) + 0x94));
-    *(undefined4 *)(lVar6 + 0x90) = 0x3c888889;
-    *(undefined4 *)(lVar6 + 0x40) = 0x40000000;
-    FUN_180056f10(unaff_RBX + 0x548,lVar6);
-  }
-  lVar6 = *plVar1;
-  if (lVar6 != 0) {
-    lVar3 = *(longlong *)(lVar6 + 0x48);
-    if (lVar3 != 0) {
-      lVar4 = *(longlong *)(unaff_RBX + 0x6d0);
-      if ((lVar4 == 0) ||
-         (((*(float *)(lVar4 + 0x3f58) == 0.0 && (*(float *)(lVar4 + 0x3f5c) == 0.0)) ||
-          (*(char *)(_DAT_180c86890 + 0x1504) != '\0')))) {
-        bVar7 = 0;
-      }
-      else {
-        bVar7 = 1;
-      }
-      bVar8 = false;
-      if (((byte)(*(uint *)(lVar6 + 0x10) >> 3) & 1) != bVar7) {
-        cVar5 = FUN_1802c98d0(lVar3,lVar6,8,bVar7,0);
-        bVar8 = cVar5 != '\0';
-      }
-      if (((byte)(*(uint *)(*plVar1 + 0x10) >> 0xb) & 1) != *(byte *)(unaff_RBX + 0x10a)) {
-        if ((bVar8) ||
-           (cVar5 = FUN_1802c98d0(lVar3,*plVar1,0x800,*(byte *)(unaff_RBX + 0x10a),0), cVar5 != '\0'
-           )) {
-          bVar8 = true;
+    longlong *resource_ptr;
+    int quality_setting;
+    longlong resource_data;
+    longlong context_data;
+    char system_status;
+    longlong temp_resource;
+    longlong unaff_RBX; // 未定义的寄存器变量
+    byte render_flag;
+    bool needs_update;
+    undefined8 temp_result1;
+    undefined8 temp_result2;
+    undefined8 temp_result3;
+    undefined8 temp_result4;
+    undefined8 temp_result5;
+    double scale_value1;
+    double scale_value2;
+    
+    resource_ptr = (longlong *)(render_obj + 0x530);
+    
+    // 更新主要资源
+    if ((*resource_ptr != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+        temp_resource = FUN_1801f20c0(temp_result1, *resource_ptr + 0x18, *(undefined4 *)(*resource_ptr + 0x94));
+        *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+        *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+        FUN_180056f10(resource_ptr, temp_resource);
+    }
+    
+    // 更新次要资源1（使用未定义的寄存器变量）
+    if ((*(longlong *)(unaff_RBX + 0x538) != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+        temp_resource = FUN_1801f20c0(temp_result2, *(longlong *)(unaff_RBX + 0x538) + 0x18,
+                              *(undefined4 *)(*(longlong *)(unaff_RBX + 0x538) + 0x94));
+        *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+        *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+        FUN_180056f10(unaff_RBX + 0x538, temp_resource);
+    }
+    
+    // 更新次要资源2
+    if ((*(longlong *)(unaff_RBX + 0x540) != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+        temp_resource = FUN_1801f20c0(temp_result3, *(longlong *)(unaff_RBX + 0x540) + 0x18,
+                              *(undefined4 *)(*(longlong *)(unaff_RBX + 0x540) + 0x94));
+        *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+        *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+        FUN_180056f10(unaff_RBX + 0x540, temp_resource);
+    }
+    
+    // 更新次要资源3
+    if ((*(longlong *)(unaff_RBX + 0x550) != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+        temp_resource = FUN_1801f20c0(temp_result4, *(longlong *)(unaff_RBX + 0x550) + 0x18,
+                              *(undefined4 *)(*(longlong *)(unaff_RBX + 0x550) + 0x94));
+        *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+        *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+        FUN_180056f10(unaff_RBX + 0x550, temp_resource);
+    }
+    
+    // 更新次要资源4
+    if ((*(longlong *)(unaff_RBX + 0x558) != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+        temp_resource = FUN_1801f20c0(temp_result5, *(longlong *)(unaff_RBX + 0x558) + 0x18,
+                              *(undefined4 *)(*(longlong *)(unaff_RBX + 0x558) + 0x94));
+        *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+        *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+        FUN_180056f10(unaff_RBX + 0x558, temp_resource);
+    }
+    
+    // 更新次要资源5
+    if ((*(longlong *)(unaff_RBX + 0x548) != 0) && (system_status = FUN_1802c8c60(), system_status != '\0')) {
+        temp_resource = FUN_1801f20c0(temp_result5, *(longlong *)(unaff_RBX + 0x548) + 0x18,
+                              *(undefined4 *)(*(longlong *)(unaff_RBX + 0x548) + 0x94));
+        *(undefined4 *)(temp_resource + 0x90) = RENDER_FLOAT_MIN; // 0.015625
+        *(undefined4 *)(temp_resource + 0x40) = RENDER_FLOAT_TWO; // 2.0
+        FUN_180056f10(unaff_RBX + 0x548, temp_resource);
+    }
+    
+    temp_resource = *resource_ptr;
+    if (temp_resource != 0) {
+        resource_data = *(longlong *)(temp_resource + 0x48);
+        if (resource_data != 0) {
+            context_data = *(longlong *)(unaff_RBX + 0x6d0);
+            
+            // 检查渲染上下文状态
+            if ((context_data == 0) ||
+               (((*(float *)(context_data + 0x3f58) == 0.0 && (*(float *)(context_data + 0x3f5c) == 0.0)) ||
+                (*(char *)(global_string_constants + 0x1504) != '\0')))) {
+                render_flag = 0;
+            }
+            else {
+                render_flag = 1;
+            }
+            
+            needs_update = false;
+            
+            // 检查渲染标志是否需要更新
+            if (((byte)(*(uint *)(temp_resource + 0x10) >> 3) & 1) != render_flag) {
+                system_status = FUN_1802c98d0(resource_data, temp_resource, 8, render_flag, 0);
+                needs_update = system_status != '\0';
+            }
+            
+            // 检查其他渲染标志
+            if (((byte)(*(uint *)(*resource_ptr + 0x10) >> 0xb) & 1) != *(byte *)(unaff_RBX + 0x10a)) {
+                if ((needs_update) ||
+                   (system_status = FUN_1802c98d0(resource_data, *resource_ptr, 0x800, *(byte *)(unaff_RBX + 0x10a), 0), system_status != '\0')) {
+                    needs_update = true;
+                }
+                else {
+                    needs_update = false;
+                }
+            }
+            
+            // 设置默认缩放值
+            scale_value1 = 1.0;
+            scale_value2 = 1.0;
+            temp_resource = *(longlong *)(global_string_constants + 0x7ab8);
+            
+            // 根据系统设置调整缩放值
+            if ((*(char *)(temp_resource + 0xd9) != '\0') &&
+               (quality_setting = *(int *)(global_render_settings + 0x540), quality_setting - 1U < 4)) {
+                scale_value1 = *(double *)(temp_resource + -8 + (longlong)quality_setting * 0x10);
+                scale_value2 = *(double *)(temp_resource + (longlong)quality_setting * 0x10);
+            }
+            
+            // 更新缩放值
+            if ((scale_value1 != *(double *)(unaff_RBX + 0x520)) || (scale_value2 != *(double *)(unaff_RBX + 0x528))) {
+                *(double *)(unaff_RBX + 0x520) = scale_value1;
+                *(double *)(unaff_RBX + 0x528) = scale_value2;
+                if (!needs_update) {
+                    FUN_1802c98d0(resource_data, *resource_ptr, 0x80000000, 0, 1);
+                }
+            }
+            
+            // 重置更新标志
+            *(undefined1 *)(unaff_RBX + 0x10a) = 0;
+            return;
         }
-        else {
-          bVar8 = false;
-        }
-      }
-      dVar9 = 1.0;
-      dVar10 = 1.0;
-      lVar6 = *(longlong *)(_DAT_180c86890 + 0x7ab8);
-      if ((*(char *)(lVar6 + 0xd9) != '\0') &&
-         (iVar2 = *(int *)(_DAT_180c86920 + 0x540), iVar2 - 1U < 4)) {
-        dVar9 = *(double *)(lVar6 + -8 + (longlong)iVar2 * 0x10);
-        dVar10 = *(double *)(lVar6 + (longlong)iVar2 * 0x10);
-      }
-      if ((dVar9 != *(double *)(unaff_RBX + 0x520)) || (dVar10 != *(double *)(unaff_RBX + 0x528))) {
-        *(double *)(unaff_RBX + 0x520) = dVar9;
-        *(double *)(unaff_RBX + 0x528) = dVar10;
-        if (!bVar8) {
-          FUN_1802c98d0(lVar3,*plVar1,0x80000000,0,1);
-        }
-      }
-      *(undefined1 *)(unaff_RBX + 0x10a) = 0;
-      return;
+        return;
     }
     return;
-  }
-  return;
 }
 
 
 
 
 
-// 函数: void FUN_18030181f(void)
-void FUN_18030181f(void)
-
+/**
+ * 空函数（占位符）
+ */
+void render_system_empty_function_3(void)
 {
-  return;
+    // 空函数，用于占位符
 }
 
 

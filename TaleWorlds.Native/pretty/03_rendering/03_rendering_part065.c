@@ -1,98 +1,185 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 03_rendering_part065.c - 渲染系统高级资源管理和状态控制模块
-// 包含10个核心函数，涵盖渲染资源管理、状态控制、参数处理、内存分配等高级渲染功能
+// 03_rendering_part065.c - 渲染系统高级参数控制和资源管理模块
+// 本模块包含12个核心函数，主要负责渲染系统的高级参数控制、资源管理、内存清理和系统初始化
 
-// 渲染系统工作变量
-// 渲染对象指针数组
-longlong *render_object_pointers[16];
-// 渲染参数缓存
-float render_parameter_cache[32];
-// 渲染状态标志
-int render_state_flags[8];
-// 渲染内存池
-longlong *render_memory_pool[4];
-// 渲染数据缓冲区
-undefined4 render_data_buffer[64];
-// 渲染控制参数
-int render_control_params[12];
-// 渲染处理队列
-int render_processing_queue[10];
-// 渲染资源索引
-int render_resource_indices[8];
-// 渲染临时数据
-undefined4 render_temp_data[20];
-// 渲染系统配置
-int render_system_config[6];
-// 渲染调试信息
-int render_debug_info[4];
+// 常量定义
+#define RENDERING_SYSTEM_MAX_PARAMS 0x400        // 渲染系统最大参数数量
+#define RENDERING_STACK_GUARD_VALUE 0xfffffffffffffffe  // 栈保护值
+#define RENDERING_MEMORY_ALIGNMENT 0x40           // 内存对齐大小
+#define RENDERING_TEXTURE_MAX_SIZE 0xffffffff     // 纹理最大尺寸
+#define RENDERING_STATE_ENABLED 1                 // 渲染状态启用
+#define RENDERING_STATE_DISABLED 0                // 渲染状态禁用
+#define RENDERING_FLOAT_PRECISION 1e-05           // 浮点精度
+#define RENDERING_TIME_MODULO 1000000000          // 时间模数值
+#define RENDERING_QUEUE_PROCESS_TIMEOUT 0x3b     // 队列处理超时
+#define RENDERING_CLEANUP_TIMEOUT 0xffffffff     // 清理超时值
 
-// 函数：渲染系统高级参数处理器
-// 功能：处理渲染系统的高级参数设置和状态管理，支持复杂的渲染参数配置
-void render_system_advanced_parameter_processor(longlong render_context, undefined8 param_2, undefined8 param_3, undefined8 param_4)
+// 函数别名定义
+#define RenderingSystem_AdvancedParameterControl FUN_180301d10
+#define RenderingSystem_ExecuteRenderCommand FUN_180301ec0
+#define RenderingSystem_UpdateRenderContext FUN_180301f30
+#define RenderingSystem_CalculateTextureCoordinates FUN_180302090
+#define RenderingSystem_ProcessRenderData FUN_180302270
+#define RenderingSystem_ComplexResourceManagement FUN_180302370
+#define RenderingSystem_InitializeRenderState FUN_180302c30
+#define RenderingSystem_UpdateRenderParameters FUN_1803033b0
+#define RenderingSystem_CleanupRenderResources FUN_1803034a0
+#define RenderingSystem_FinalizeRenderContext FUN_1803034b9
+#define RenderingSystem_ExecuteRenderCleanup FUN_180303569
+#define RenderingSystem_CompleteRenderShutdown FUN_180303590
+
+// 全局变量引用
+extern longlong _DAT_180c8ed30;    // 渲染时间数据
+extern longlong _DAT_180c8ed18;    // 渲染上下文数据
+extern longlong _DAT_180c86950;    // 渲染配置数据
+extern longlong _DAT_180c86890;    // 系统状态数据
+extern longlong _DAT_180c8a9c8;    // 渲染器状态数据
+extern longlong _DAT_180c86920;    // 渲染参数数据
+extern longlong _DAT_180c82868;    // 渲染缓存数据
+extern longlong _DAT_180bf00a8;    // 栈保护数据
+
+// 字符串常量
+extern char UNK_180a0b780[];       // 渲染字符串常量1
+extern char UNK_180a19e38[];       // 渲染字符串常量2
+extern char UNK_180a19e28[];       // 渲染字符串常量3
+extern char DAT_18098bc73[];       // 渲染字符串常量4
+extern char UNK_180a0c2b8[];       // 渲染字符串常量5
+
+// 函数指针常量
+extern void *UNK_180a3c3e0;        // 渲染函数指针1
+extern void *UNK_18098bcb0;        // 渲染函数指针2
+extern void *UNK_180a144f8;        // 渲染函数指针3
+extern void *UNK_180a21720;        // 渲染函数指针4
+extern void *UNK_180a21690;        // 渲染函数指针5
+extern void *UNK_1809fcc28;        // 渲染函数指针6
+
+// 跳转表常量
+extern code *UNK_180302310;        // 渲染跳转表1
+
+// 外部函数声明
+extern void FUN_1801a3620(undefined8 param1, void *param2, undefined8 param3, undefined8 param4, undefined8 param5);
+extern void FUN_1801c2360(longlong param1, longlong **param2);
+extern void FUN_1800b6620(void);
+extern void FUN_18064e900(void);
+extern undefined8 FUN_180302c30(longlong param1);
+extern longlong FUN_18062b420(longlong param1, longlong param2, undefined1 param3);
+extern longlong func_0x00018066b9a0(void *param1);
+extern void FUN_18066bdc0(longlong param1, void *param2, void *param3, undefined8 param4, undefined8 param5);
+extern void FUN_1800571e0(undefined8 param1, longlong param2);
+extern longlong FUN_18019ad80(longlong param1, longlong param2);
+extern char FUN_1802aa800(longlong param1, longlong **param2);
+extern void FUN_180286e40(longlong param1);
+extern void FUN_18024b8d0(longlong param1);
+extern longlong FUN_1800b1230(longlong param1, longlong **param2, void **param3, uint *param4);
+extern longlong FUN_1800b1d80(undefined8 param1, longlong **param2, void **param3, uint *param4);
+extern void FUN_18019da10(longlong param1, longlong param2);
+extern void FUN_18005e6a0(longlong param1, longlong **param2, longlong param3);
+extern void FUN_18024cb50(longlong param1, longlong param2);
+extern void FUN_180246810(longlong param1);
+extern longlong FUN_180244ff0(longlong param1);
+extern void FUN_180056f10(longlong param1, longlong param2);
+extern void FUN_1801c0f40(longlong param1);
+extern void FUN_180198980(longlong param1, longlong *param2, undefined8 param3, undefined8 param4, longlong param5);
+extern void FUN_1801b32d0(undefined8 param1);
+extern void FUN_1803048f0(longlong param1, undefined8 *param2, undefined8 param3, undefined8 param4, undefined8 param5);
+extern void FUN_180095420(longlong param1);
+extern void FUN_1808fc8a8(longlong param1, longlong param2, longlong param3, void *param4);
+extern void FUN_180045af0(void);
+extern void FUN_1808fc050(ulonglong param1);
+
+/**
+ * 渲染系统高级参数控制函数
+ * 设置渲染系统的高级参数，包括渲染目标、纹理参数、内存管理等
+ * 
+ * @param render_context 渲染上下文指针
+ * @param param2 参数2（用途待定）
+ * @param param3 参数3（用途待定）
+ * @param param4 参数4（用途待定）
+ */
+void RenderingSystem_AdvancedParameterControl(longlong render_context, undefined8 param2, undefined8 param3, undefined8 param4)
 
 {
-  longlong context_manager;
-  longlong state_controller;
-  longlong resource_handler;
-  undefined8 render_value;
-  longlong *object_pointer;
-  ulonglong iteration_counter;
-  longlong stack_object;
-  undefined8 stack_param_1;
-  undefined8 stack_param_2;
-  undefined8 stack_param_3;
-  undefined8 stack_param_4;
-  undefined8 stack_param_5;
-  undefined8 stack_param_6;
-  undefined8 stack_param_7;
-  undefined8 stack_param_8;
-  longlong memory_block;
+  longlong context_data1;
+  longlong context_data2;
+  longlong context_data3;
+  undefined8 render_params;
+  longlong *resource_array;
+  ulonglong resource_index;
+  longlong resource_handle;
+  undefined8 stack_params[12];
+  undefined4 render_flags[4];
+  undefined1 render_state[3];
+  undefined4 texture_params;
+  undefined1 cleanup_flag;
+  undefined8 memory_info[4];
+  longlong cleanup_counter;
+  undefined8 queue_info[3];
+  undefined4 process_flags;
   
-  if (*(int *)(render_context + 0xe0) == 0) {
-    stack_param_3 = 0;
-    stack_param_4 = 0;
-    stack_param_5 = 0xffffffff;
-    stack_param_6 = 0;
-    stack_param_7 = 0xffffffff;
-    stack_param_8 = 1;
-    memory_block = 0;
-    stack_param_1 = 0;
-    stack_param_2 = 0;
-    stack_param_3 = 0;
+  // 检查渲染状态
+  if (*(int *)(render_context + 0xe0) == RENDERING_STATE_DISABLED) {
     // 初始化渲染参数
-    initialize_render_parameters(render_context, &stack_param_3, param_3, param_4, 0xfffffffffffffffe);
-    get_render_object_pointer(*(longlong *)(render_context + 0x6d0) + 0x60830, &object_pointer);
+    queue_info[0] = 0;
+    render_flags[0] = 0;
+    render_flags[1] = RENDERING_TEXTURE_MAX_SIZE;
+    render_state[1] = RENDERING_STATE_DISABLED;
+    texture_params = RENDERING_TEXTURE_MAX_SIZE;
+    cleanup_flag = RENDERING_STATE_ENABLED;
+    memory_info[0] = 0;
+    cleanup_counter = 0;
+    queue_info[1] = 0;
+    memory_info[1] = 0;
+    process_flags = 3;
+    queue_info[2] = 0;
     
-    // 处理渲染对象
-    while (iteration_counter != *(ulonglong *)(*(longlong *)(render_context + 0x6d0) + 0x60838)) {
-      *(byte *)(stack_object + 0x2e9) = *(byte *)(stack_object + 0x2e9) | 2;
-      context_manager = *object_pointer;
-      do {
-        iteration_counter = iteration_counter + 1;
-        state_controller = (iteration_counter & 0xffffffff) * 0x10;
-        resource_handler = state_controller + 8 + context_manager;
-        if ((*(ulonglong *)(state_controller + context_manager) & 0xffffffff00000000) == 0) {
-          resource_handler = 0;
-        }
-        if (resource_handler != 0) {
-          stack_object = *(longlong *)(context_manager + 8 + (iteration_counter & 0xffffffff) * 0x10);
-          break;
-        }
-      } while (iteration_counter != object_pointer[1]);
+    // 设置渲染状态
+    render_state[0] = CONCAT11(*(undefined1 *)(render_context + 0x6c2), RENDERING_STATE_ENABLED);
+    
+    // 调用渲染参数设置函数
+    FUN_1801a3620(*(undefined8 *)(render_context + 0x6d0), &queue_info[0], param3, param4, RENDERING_STACK_GUARD_VALUE);
+    FUN_1801c2360(*(longlong *)(render_context + 0x6d0) + 0x60830, &resource_array);
+    
+    // 资源处理循环
+    do {
+      if (resource_index != *(ulonglong *)(*(longlong *)(render_context + 0x6d0) + 0x60838)) {
+        // 更新资源状态
+        *(byte *)(resource_handle + 0x2e9) = *(byte *)(resource_handle + 0x2e9) | 2;
+        context_data1 = *resource_array;
+        
+        // 遍历资源数组
+        do {
+          resource_index = resource_index + 1;
+          context_data2 = (resource_index & 0xffffffff) * 0x10;
+          context_data3 = context_data2 + 8 + context_data1;
+          
+          // 检查资源有效性
+          if ((*(ulonglong *)(context_data2 + context_data1) & 0xffffffff00000000) == 0) {
+            context_data3 = 0;
+          }
+          
+          if (context_data3 != 0) {
+            resource_handle = *(longlong *)(context_data1 + 8 + (resource_index & 0xffffffff) * 0x10);
+            break;
+          }
+        } while (resource_index != resource_array[1]);
+      }
+    } while (resource_index != *(ulonglong *)(*(longlong *)(render_context + 0x6d0) + 0x60838));
+    
+    // 执行清理操作
+    FUN_1800b6620();
+    if (cleanup_counter != 0) {
+      // 执行内存清理
+      FUN_18064e900();
     }
     
-    // 清理渲染资源
-    cleanup_render_resources();
-    if (memory_block != 0) {
-      // 处理内存块
-      process_memory_block();
-    }
-    // 设置渲染时间参数
-    *(float *)(render_context + 0xe4) = (float)(render_system_time_counter % 1000000000) * 1e-05;
+    // 更新渲染时间
+    *(float *)(render_context + 0xe4) = (float)(_DAT_180c8ed30 % RENDERING_TIME_MODULO) * RENDERING_FLOAT_PRECISION;
   }
-  render_value = get_render_system_value(render_context);
-  *(undefined8 *)(render_context + 0x518) = render_value;
+  
+  // 设置渲染参数
+  render_params = FUN_180302c30(render_context);
+  *(undefined8 *)(render_context + 0x518) = render_params;
   return;
 }
 
